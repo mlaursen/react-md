@@ -1,0 +1,29 @@
+.content-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.content-container > div {
+  position: relative;
+  bottom: 0;
+  margin-top: 20px;
+}
+
+.content-container > div > span > div {
+  position: relative;
+  top: 0;
+  bottom: auto;
+  box-shadow: initial;
+  z-index: 1;
+  margin-bottom: 0;
+}
+
+.content-container > div > span > div:not(:first-child) {
+  display: none;
+  animation: initial;
+}
+
+.content-container form {
+  position: relative;
+  z-index: 2;
+}

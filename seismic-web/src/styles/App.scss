@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;500;700;800;900&display=swap');
+
+.App {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  font-family: 'Poppins', sans-serif;
+
+  .MuiCardContent-root .MuiTypography-h5 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  section {
+    justify-content: center;
+    min-height: 90vh;
+    //background-color: #e7ebf2;
+    //background-image: linear-gradient(-20deg, #a8edea 0%, #fed6e3 100%);
+    // background-image: linear-gradient(-20deg, #b6efe5 0%, #8ddad5 100%);
+    // background-image: linear-gradient( 95.2deg, rgba(173,252,234,1) 26.8%, rgba(192,229,246,1) 64% );
+    // background: no-repeat center 100% url('https://firebasestorage.googleapis.com/v0/b/showintel-8dcf8.appspot.com/o/main-bg.jpg?alt=media&token=0709c4a8-4e69-4ae6-8fdf-9361682ece7a');
+    width: 100%;
+    overflow: auto;
+    display: flex;
+    flex-direction: row;
+
+    &.body {
+      overflow: hidden;
+    }
+
+    &.main {
+      width: 70%;
+      display: flex;
+      background-size: cover;
+      align-items: center;
+      height: calc(100vh - 70px);
+      background-image: linear-gradient(
+        -90deg,
+        rgba(241, 224, 229, 1) 60%,
+        rgba(157, 193, 213, 0.5) 90%
+      );
+
+      .qr-code {
+        height: 150px;
+        width: 150px;
+        position: absolute;
+        top: 31%;
+      }
+
+      video {
+        width: 95%;
+      }
+
+      .text-block {
+        height: 60%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-self: self-end;
+        align-items: flex-start;
+        color: #fff;
+        padding: 2% 5%;
+        font-family: 'Poppins', sans-serif;
+
+        h1 {
+          font-size: 4em;
+          font-weight: 800;
+          margin-block-start: 0;
+          margin-block-end: 0;
+        }
+        h2 {
+          font-size: 2.5em;
+          font-weight: 400;
+          margin-block-start: 0;
+          margin-block-end: 0;
+        }
+        p {
+          width: 55%;
+          text-align: left;
+          font-weight: 300;
+          margin-inline-end: 0px;
+          margin-block-start: 0px;
+          margin-block-end: 0px;
+        }
+      }
+    }
+
+    &.rail {
+      width: 30%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      // height: 100%;
+      height: calc(100vh - 70px);
+      //background-image: linear-gradient(-20deg, #b6efe5 0%, #8ddad5 100%);
+      background-image: linear-gradient(
+        90deg,
+        rgba(241, 224, 229, 1) 60%,
+        rgba(157, 193, 213, 0.5) 90%
+      );
+    }
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+}
+
+@media screen and (max-width: 991px) {
+  .App {
+    section {
+      &.main {
+        width: 100%;
+        display: none;
+      }
+
+      &.rail {
+        width: 100%;
+      }
+    }
+  }
+}

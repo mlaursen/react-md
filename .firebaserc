@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "default": "showintel-8dcf8",
+    "staging": "showintel-8dcf8"
+  },
+  "targets": {}
+}

@@ -1,0 +1,90 @@
+.poll > div {
+  position: absolute;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  color: #fff;
+  background: rgba(13, 35, 72, 0.76);
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex !important;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  min-height: 24em;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.poll .close {
+  position: absolute;
+  right: 2%;
+  top: 2%;
+  cursor: pointer;
+  font-size: 21px;
+  color: #16a4fa;
+}
+
+.poll .component-container {
+  -webkit-box-flex: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+  min-width: 90%;
+}
+
+.poll li {
+  position: relative;
+  height: 40px;
+  width: 100%;
+  list-style: none;
+}
+
+.poll li label, .poll li div {
+  position: absolute;
+  height: 100%;
+}
+
+.poll li label {
+  z-index: 1;
+  line-height: 40px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, .4);
+}
+
+.poll h2 {
+  font-weight: 900;
+  text-transform: capitalize;
+}
+
+.poll .title {
+  left: 2%;
+}
+.poll .value {
+  right: 2%;
+}
+.poll .bar {
+  -webkit-transition: all .2s;
+  -webkit-transition-timing-function: ease-in-out;
+  transition: all .2s;
+  transition-timing-function: ease-in-out;
+
+  z-index: 0;
+  top: 0;
+  background: #00cbff;
+  cursor: pointer;
+}
+.poll .bar:hover {
+  opacity: .8;
+}
+
+.poll li:nth-child(1) .bar { background: #41b2ec; }
+.poll li:nth-child(2) .bar { background: #F3AD3B; }
+.poll li:nth-child(3) .bar { background: #8DD14F; }
+.poll li:nth-child(4) .bar { background: #f73b63; }

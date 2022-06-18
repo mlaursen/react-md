@@ -1,0 +1,25 @@
+.App .admin {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+
+  > section {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  section.main {
+    //width: calc(70% - 40px);
+    width: 70%;
+    align-items: flex-start;
+    justify-content: flex-start;
+    //height: calc(100vh - 100px);
+    // padding: 20px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .admin {
+  }
+}

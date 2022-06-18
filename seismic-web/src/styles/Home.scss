@@ -1,0 +1,178 @@
+.home {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  width: 100%;
+  background-color: #fff;
+  height: 90vh;
+  overflow: hidden;
+  //background: no-repeat center 100%
+  //  url('https://firebasestorage.googleapis.com/v0/b/showintel-8dcf8.appspot.com/o/wallpaper.png?alt=media&token=8ca3cfe1-a518-4e0e-a0c7-fd99a5ae0532');
+  background-size: cover;
+  background-image: linear-gradient(
+    -90deg,
+    rgba(241, 224, 229, 0.5) 60%,
+    rgba(157, 193, 213, 0.5) 90%
+  );
+
+  .main-copy {
+    position: absolute;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    //margin-block-end: 6rem;
+
+    h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      margin-block-start: 0;
+      margin-block-end: 190px;
+    }
+    h2 {
+      margin-block-start: 0;
+      margin-block-end: 5px;
+      font-weight: 300;
+    }
+
+    button.MuiButton-root {
+      background-color: #000;
+    }
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .home {
+    .main-copy {
+      h1 {
+        span {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+// Variables
+$gravitation-constant: 6.673;
+$animation: orbit;
+
+$planet-color: gray;
+$moon-color: #007ddb;
+
+// Orbit Function
+@function orbit($t) {
+  @return $animation $gravitation-constant * $t + s linear infinite;
+}
+
+// Use Flexbox To Center Content
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+// Create Our Orbit
+.orbit {
+  width: 400px;
+  height: 400px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  position: absolute;
+  border-radius: 100%;
+  margin: -100px auto;
+  margin-left: -98px;
+  animation: orbit(0.7);
+
+  &.two {
+    width: 600px;
+    height: 600px;
+    margin: -200px auto;
+    margin-left: -196px;
+    animation: orbit(1.1);
+  }
+
+  &.three {
+    width: 800px;
+    height: 800px;
+    margin: -304px auto;
+    margin-left: -295px;
+    animation: orbit(1.7);
+  }
+
+  &.four {
+    width: 1100px;
+    height: 1100px;
+    margin: -445px auto;
+    margin-left: -447px;
+    animation: orbit(2);
+  }
+
+  &.five {
+    width: 1400px;
+    height: 1400px;
+    margin: -587px auto;
+    margin-left: -600px;
+    animation: orbit(2.2);
+  }
+}
+
+// Planet Styles
+.planet {
+  background: $planet-color;
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  background: no-repeat center 100%
+    url('https://firebasestorage.googleapis.com/v0/b/showintel-8dcf8.appspot.com/o/epicenter.png?alt=media&token=396c140e-2ff1-469f-ae10-3ab3cc05611a');
+  background-size: cover;
+}
+
+// Moon Styles
+.moon {
+  background: $moon-color;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  margin: 36px;
+
+  &.two {
+    width: 50px;
+    height: 50px;
+    margin: 65px;
+    background: #9d59da;
+  }
+
+  &.three {
+    width: 50px;
+    height: 50px;
+    margin: 94px;
+    background: #00ccef;
+  }
+
+  &.four {
+    width: 50px;
+    height: 50px;
+    margin: 137px;
+    background: #fb5859;
+  }
+
+  &.five {
+    width: 50px;
+    height: 50px;
+    margin: 180px;
+    background: #00ac67;
+  }
+}
+
+// Animations
+@keyframes orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}

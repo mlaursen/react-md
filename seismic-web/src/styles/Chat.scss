@@ -1,0 +1,160 @@
+main {
+  padding: 10px;
+  height: 90vh;
+  margin: 0;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // height: 100%;
+
+  ul,
+  li {
+    text-align: left;
+    list-style: none;
+  }
+
+  .chat-message {
+    background-color: #fff;
+    border-radius: 20px;
+    width: 95%;
+    flex-direction: row;
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+    .avatar {
+      margin-left: 10px;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50px;
+    }
+
+    .messageContainer {
+      text-align: left;
+      padding: 0 15px 0 10px;
+      width: 100%;
+
+      .username {
+        font-size: 16px;
+        font-weight: 600;
+        color: #000;
+        text-transform: capitalize;
+        margin-block-end: 0;
+      }
+
+      .message {
+        font-size: 14px;
+        color: #7d7d7e;
+        margin-block-start: 0;
+      }
+
+      .date {
+        font-size: 10px;
+        color: #9e9e9e;
+        margin-block-start: 0;
+        text-transform: capitalize;
+        text-align: right;
+      }
+    }
+
+    .messageActions {
+      margin-right: 10px;
+
+      .BaseBadge-badge {
+        font-size: 0.7rem;
+        min-width: 16px;
+        height: 16px;
+      }
+    }
+  }
+}
+
+form {
+  /* height: 10vh;
+    position: fixed;
+    bottom: 0;
+    background-color: rgb(24, 23, 23);
+    width: 100%;
+    max-width: 728px;
+    display: flex;
+    font-size: 1.5rem; */
+}
+
+form button {
+  /* width: 20%;
+    background-color: rgb(56, 56, 143); */
+}
+
+.chatInput {
+  height: 7vh;
+  align-items: center;
+  justify-content: center;
+  min-height: 7vh;
+  display: flex;
+  padding: 0 1%;
+  min-width: 28%;
+  position: fixed;
+  bottom: 0;
+}
+
+.inputContainer {
+  background-color: #000;
+  flex: 1;
+  height: 45px;
+  border-radius: 25px;
+  flex-direction: row;
+  align-items: center;
+  display: inline-flex;
+  width: 95%;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
+    rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+
+  .MuiAvatar-root {
+    margin-left: 5px;
+  }
+
+  input {
+    line-height: 1.5;
+    width: 100%;
+    font-size: 1rem;
+    outline: none;
+    border: none;
+    padding: 0 10px;
+    letter-spacing: 0;
+    flex: 8;
+    background-color: transparent;
+    color: #fff;
+  }
+
+  button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.sign-in {
+  color: #282c34;
+  background: white;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 991px) {
+  .chatInput {
+    min-width: 98%;
+  }
+}
