@@ -1,9 +1,10 @@
 .trivia > div {
   position: absolute;
   z-index: 2;
-  height: 100%;
-  width: 100%;
-  top: 0;
+  //height: 100%;
+  height: calc(100vh - 70px);
+  width: 70%;
+  top: 70px;
   left: 0;
   color: #fff;
   background: rgba(13, 35, 72, 0.76);
@@ -80,23 +81,24 @@
       top: 0;
       background: #00cbff;
       cursor: pointer;
+      height: 100%;
 
       &:hover {
         opacity: 0.8;
       }
     }
+  }
 
-    li:nth-child(1) .bar {
-      background: #41b2ec;
-    }
-    li:nth-child(2) .bar {
-      background: #f3ad3b;
-    }
-    li:nth-child(3) .bar {
-      background: #8dd14f;
-    }
-    li:nth-child(4) .bar {
-      background: #f73b63;
-    }
+  li:nth-child(1) .bar {
+    background: #41b2ec;
+  }
+  li:nth-child(2) .bar {
+    background: #f3ad3b;
+  }
+  li:nth-child(3) .bar {
+    background: #8dd14f;
+  }
+  li:nth-child(4) .bar {
+    background: #f73b63;
   }
 }

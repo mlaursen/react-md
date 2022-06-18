@@ -62,7 +62,7 @@ function Trivia() {
   }
 
   return (
-    <div className={'trivia'}>
+    <div className="trivia">
       {viewable
         ? [
             <div key={currentTrivia.id}>
@@ -81,7 +81,6 @@ function Trivia() {
                         100
                       ).toFixed(0);
                     }
-                    console.log(optionValue);
                     return (
                       <li
                         key={option.label}
