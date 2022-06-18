@@ -14,6 +14,10 @@ module.exports = {
     "^@react-md/divider$": ["<rootDir>/packages/divider/src/index.ts"],
     "^@react-md/icon$": ["<rootDir>/packages/icon/src/index.ts"],
     "^@react-md/link$": ["<rootDir>/packages/link/src/index.ts"],
+    "^@react-md/list$": ["<rootDir>/packages/list/src/index.ts"],
+    "^@react-md/material-icons$": [
+      "<rootDir>/packages/material-icons/src/index.ts",
+    ],
     "^@react-md/progress$": ["<rootDir>/packages/progress/src/index.ts"],
   },
   testPathIgnorePatterns: ["prev\\/"],

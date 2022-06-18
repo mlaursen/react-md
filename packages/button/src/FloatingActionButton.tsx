@@ -4,11 +4,7 @@ import type { HTMLAttributes, Ref } from "react";
 import { forwardRef } from "react";
 import type { ButtonProps } from "./Button";
 import { Button } from "./Button";
-import type {
-  ButtonTheme,
-  ButtonThemeType,
-  ButtonType,
-} from "./getButtonClassName";
+import type { ButtonTheme, ButtonThemeType, ButtonType } from "./styles";
 
 const styles = bem("rmd-fab");
 

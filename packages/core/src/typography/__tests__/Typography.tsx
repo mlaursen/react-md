@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import type { HTMLAttributes, ReactElement } from "react";
-import type { TypographyType } from "../getTypographyClassName";
+import type { TypographyType } from "../styles";
 
 import { Typography } from "../Typography";
 

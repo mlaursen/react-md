@@ -1,7 +1,7 @@
 import { Avatar } from "@react-md/avatar";
 import { box, TextContainer } from "@react-md/core";
+import { FavoriteIcon } from "@react-md/material-icons/filled/action";
 import type { ReactElement } from "react";
-import { FavoriteSVGIcon } from "src/components/FavoriteSVGIcon";
 
 export default function AvatarPage(): ReactElement {
   return (
@@ -11,7 +11,7 @@ export default function AvatarPage(): ReactElement {
       <Avatar>A</Avatar>
       <Avatar color="orange">PL</Avatar>
       <Avatar color="teal">
-        <FavoriteSVGIcon />
+        <FavoriteIcon />
       </Avatar>
     </TextContainer>
   );

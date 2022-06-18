@@ -11,3 +11,4 @@ node_modules
 /public
 
 *.cjs
+packges/material-icons/src

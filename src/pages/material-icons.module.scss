@@ -1,0 +1,7 @@
+@use "everything";
+
+.grid {
+  @include everything.custom-grid($min: 13rem);
+
+  #{everything.$icon-size-var}: everything.$icon-size * 2;
+}

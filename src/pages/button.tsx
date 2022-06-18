@@ -1,7 +1,7 @@
 import { Button, FloatingActionButton } from "@react-md/button";
 import { box, TextContainer, Typography } from "@react-md/core";
+import { FavoriteIcon } from "@react-md/material-icons/filled/action";
 import type { ReactElement, ReactNode } from "react";
-import { FavoriteSVGIcon } from "src/components/FavoriteSVGIcon";
 
 function Heading({
   children,
@@ -69,27 +69,27 @@ export default function Buttons(): ReactElement {
           }}
         >
           <FloatingActionButton positionWithin="container" position="top-left">
-            <FavoriteSVGIcon />
+            <FavoriteIcon />
           </FloatingActionButton>
           <FloatingActionButton
             positionWithin="container"
             position="top-right"
             theme="primary"
           >
-            <FavoriteSVGIcon />
+            <FavoriteIcon />
           </FloatingActionButton>
           <FloatingActionButton
             positionWithin="container"
             position="bottom-left"
             theme="clear"
           >
-            <FavoriteSVGIcon />
+            <FavoriteIcon />
           </FloatingActionButton>
           <FloatingActionButton
             positionWithin="container"
             position="bottom-right"
           >
-            <FavoriteSVGIcon />
+            <FavoriteIcon />
           </FloatingActionButton>
         </div>
       </div>

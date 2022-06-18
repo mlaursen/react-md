@@ -68,7 +68,7 @@ $grids: () !default;
         flex-wrap: wrap;
       }
 
-      &--column {
+      &--flex-column {
         flex-direction: column;
       }
 
@@ -89,6 +89,13 @@ $grids: () !default;
           display: grid;
           grid-template-columns: repeat(
             auto-fit,
+            minmax(var($box-item-var, $box-item-min-size), 1fr)
+          );
+        }
+
+        &--grid-fill {
+          grid-template-columns: repeat(
+            auto-fill,
             minmax(var($box-item-var, $box-item-min-size), 1fr)
           );
         }

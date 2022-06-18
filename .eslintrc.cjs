@@ -15,5 +15,11 @@ module.exports = {
         "tsdoc/syntax": 0,
       },
     },
+    {
+      files: ["scripts/**"],
+      rules: {
+        "no-console": 0,
+      },
+    },
   ],
 };

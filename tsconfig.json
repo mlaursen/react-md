@@ -25,6 +25,8 @@
       "@react-md/divider": ["packages/divider/src/index.ts"],
       "@react-md/icon": ["packages/icon/src/index.ts"],
       "@react-md/link": ["packages/link/src/index.ts"],
+      "@react-md/list": ["packages/list/src/index.ts"],
+      "@react-md/material-icons/*": ["packages/material-icons/src/*"],
       "@react-md/progress": ["packages/progress/src/index.ts"]
     }
   },

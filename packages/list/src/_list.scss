@@ -1,0 +1,44 @@
+@use "sass:map";
+@use "@react-md/core";
+
+$vertical-padding-var: --rmd-list-padding-v;
+$horizontal-padding-var: --rmd-list-padding-h;
+$font-size: --rmd-list-font-size;
+
+$vertical-padding: 0.5rem !default;
+$dense-vertical-padding: 0.25rem !default;
+
+$horizontal-padding: 0 !default;
+$dense-horizontal-padding: $horizontal-padding !default;
+
+$dense-font-size: 0.8125rem !default;
+$typography-styles: map.merge(
+  core.$subtitle-1-styles,
+  (
+    line-height: map.get(core.$body-1-styles, line-height),
+  )
+) !default;
+
+$item-vertical-padding: 0.5rem !default;
+$item-horizontal-padding: 1rem !default;
+$item-height: 3rem !default;
+$item-dense-height: 2.5rem !default;
+$item-medium-height: 3.5rem !default;
+$item-dense-medium-height: 3rem !default;
+$item-large-height: 4rem !default;
+$item-dense-large-height: 3.5rem !default;
+$item-extra-large-height: 4.5rem !default;
+$item-dense-extra-large-height: 4rem !default;
+$item-three-line-height: 5.5rem !default;
+$item-dense-three-line-height: 5rem !default;
+
+@mixin styles {
+  .rmd-list {
+    @include core.map-to-styles($typography-styles);
+
+    list-style: none;
+    margin: 0;
+    padding: var($vertical-padding-var, $vertical-padding)
+      var($horizontal-padding-var, $horizontal-padding);
+  }
+}

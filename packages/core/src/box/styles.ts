@@ -47,9 +47,15 @@ export interface BoxOptions extends FlexCSSProperties {
   gridName?: string;
 
   /**
+   * @defaultValue `"fit"`
+   */
+  gridAutoType?: "fit" | "fill";
+
+  /**
    * @defaultValue `""`
    */
   alignItems?: "start" | "center" | "end" | "stretch";
+
   /**
    * The default value is really `center` or whatever the `$default-align-items` is set to.
    * @defaultValue `""`
@@ -63,7 +69,8 @@ export interface BoxOptions extends FlexCSSProperties {
     | "space-between"
     | "space-evenly";
 
-  column?: boolean;
+  /** @defaultValue `"row"` */
+  flexDirection?: "row" | "column";
 }
 
 export function box(options: BoxOptions = {}): string {
@@ -73,16 +80,19 @@ export function box(options: BoxOptions = {}): string {
     disableWrap = false,
     disablePadding = false,
     gridName = "",
+    gridAutoType = "fit",
     alignItems = "",
     justifyContent = "",
-    column = false,
+    flexDirection = "row",
   } = options;
 
   return cnb(
     styles({
       wrap: !disableWrap,
       padded: !disablePadding,
+      "flex-column": flexDirection === "column",
       grid,
+      "grid-fill": gridAutoType === "fill",
       [gridName]: grid && gridName,
       "align-start": alignItems === "start",
       "align-center": alignItems === "center",
@@ -95,7 +105,6 @@ export function box(options: BoxOptions = {}): string {
       "justify-around": justifyContent === "space-around",
       "justify-between": justifyContent === "space-between",
       "justify-evenly": justifyContent === "space-evenly",
-      column,
     }),
     className
   );

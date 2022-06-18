@@ -1,9 +1,7 @@
-import { Button } from "@react-md/button";
 import { loop, TextContainer, Typography } from "@react-md/core";
 import { CircularProgress, LinearProgress } from "@react-md/progress";
 import type { ReactElement } from "react";
 import { useEffect, useState } from "react";
-import { randomInt } from "src/utils/random";
 
 export default function Progress(): ReactElement {
   const [value, setValue] = useState(2);
@@ -18,6 +16,7 @@ export default function Progress(): ReactElement {
       window.clearInterval(interval);
     };
   }, []);
+
   return (
     <TextContainer>
       <Typography>Linear Horizontal</Typography>
