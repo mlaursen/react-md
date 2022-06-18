@@ -11,6 +11,7 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 import Chat from '../../components/Chat';
 import { VideoPlayer } from '../../components/VideoPlayer';
+import Trivia from '../../components/Tools/Poll/Trivia';
 
 import { MOVIES } from '../../helpers/constants';
 
@@ -45,6 +46,7 @@ function Event(props) {
             : 'none',
         }}
       >
+        <Trivia />
         {/*
           <img
             className="qr-code"
