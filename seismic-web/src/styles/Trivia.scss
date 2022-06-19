@@ -1,104 +1,163 @@
-.trivia > div {
-  position: absolute;
-  z-index: 2;
-  //height: 100%;
-  height: calc(100vh - 70px);
-  width: 70%;
-  top: 70px;
-  left: 0;
-  color: #fff;
-  background: rgba(13, 35, 72, 0.76);
-
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex !important;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
-  min-height: 24em;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-
-  .close {
+.trivia {
+  > div {
     position: absolute;
-    right: 2%;
-    top: 2%;
-    cursor: pointer;
-    font-size: 21px;
-    color: #16a4fa;
-  }
+    z-index: 2;
+    //height: 100%;
+    height: calc(90vh);
+    width: 70%;
+    top: 10vh;
+    left: 0;
+    color: #fff;
+    background: rgba(13, 35, 72, 0.76);
 
-  .component-container {
-    -webkit-box-flex: 0;
-    -webkit-flex: none;
-    -ms-flex: none;
-    flex: none;
-    min-width: 90%;
-  }
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex !important;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    min-height: 24em;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
 
-  li {
-    position: relative;
-    height: 40px;
-    width: 100%;
-    list-style: none;
-
-    label,
-    .poll li div {
+    .close {
       position: absolute;
-      height: 100%;
-    }
-
-    label {
-      z-index: 1;
-      line-height: 40px;
-      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
-    }
-
-    h2 {
-      font-weight: 900;
-      text-transform: capitalize;
-    }
-
-    .title {
-      left: 2%;
-    }
-
-    .value {
       right: 2%;
+      top: 2%;
+      cursor: pointer;
+      font-size: 21px;
+      color: #16a4fa;
     }
 
-    .bar {
+    .component-container {
+      -webkit-box-flex: 0;
+      -webkit-flex: none;
+      -ms-flex: none;
+      flex: none;
+      min-width: 90%;
+    }
+
+    ul {
+      padding-inline-start: 0;
+    }
+
+    li {
+      position: relative;
+      height: 40px;
+      width: 100%;
+      list-style: none;
+      border-radius: 25px;
+      border: 2px solid #ffffffb3;
+      overflow: hidden;
+      margin-bottom: 10px;
+
       -webkit-transition: all 0.2s;
       -webkit-transition-timing-function: ease-in-out;
       transition: all 0.2s;
       transition-timing-function: ease-in-out;
 
-      z-index: 0;
-      top: 0;
-      background: #00cbff;
-      cursor: pointer;
-      height: 100%;
-
       &:hover {
-        opacity: 0.8;
+        cursor: pointer;
+      }
+
+      label,
+      .poll li div,
+      svg {
+        position: absolute;
+        height: 100%;
+      }
+
+      svg {
+        right: 2%;
+      }
+
+      label {
+        z-index: 1;
+        line-height: 40px;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+      }
+
+      h2 {
+        font-weight: 900;
+        text-transform: capitalize;
+      }
+
+      .title {
+        left: 2%;
+      }
+
+      .value {
+        right: 5.5%;
+      }
+
+      .bar {
+        -webkit-transition: all 0.2s;
+        -webkit-transition-timing-function: ease-in-out;
+        transition: all 0.2s;
+        transition-timing-function: ease-in-out;
+        border-radius: 25px;
+        z-index: 0;
+        top: 0;
+        background: #00cbff;
+        cursor: pointer;
+        height: 100%;
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+
+    li:nth-child(1) .bar {
+      background: #41b2ec;
+    }
+    li:nth-child(2) .bar {
+      background: #f3ad3b;
+    }
+    li:nth-child(3) .bar {
+      background: #8dd14f;
+    }
+    li:nth-child(4) .bar {
+      background: #f73b63;
+    }
+  }
+
+  .response {
+    float: right;
+  }
+
+  &.active {
+    li {
+      &:hover {
+        background: black;
+        border-color: black;
       }
     }
   }
 
-  li:nth-child(1) .bar {
-    background: #41b2ec;
-  }
-  li:nth-child(2) .bar {
-    background: #f3ad3b;
-  }
-  li:nth-child(3) .bar {
-    background: #8dd14f;
-  }
-  li:nth-child(4) .bar {
-    background: #f73b63;
+  &.inactive {
+    li {
+      border: 2px solid transparent;
+
+      &.correct {
+        .bar {
+          background: #8dd14f !important;
+        }
+      }
+
+      &.incorrect {
+        .bar {
+          background: #f73b63 !important;
+        }
+      }
+
+      .bar {
+        background: gray !important;
+      }
+    }
   }
 }

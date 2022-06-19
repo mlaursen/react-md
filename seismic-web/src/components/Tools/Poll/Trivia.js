@@ -7,6 +7,8 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 import '../../../styles/Trivia.scss';
 
 import CloseIcon from '@mui/icons-material/Close';
+import CheckIcon from '@mui/icons-material/Check';
+import ClearIcon from '@mui/icons-material/Clear';
 
 function Trivia() {
   const triviaRef = db.collection('polls').where('type', '==', 'TRIVIA');
@@ -15,7 +17,8 @@ function Trivia() {
   const [currentTrivia, setCurrentTrivia] = useState(null);
   const [total, setTotal] = useState(0);
   const increment = firebase.firestore.FieldValue.increment(1);
-
+  const [myVote, setMyVote] = useState(null);
+  const [isCorrect, setIsCorrect] = useState(false);
   const [active, setActive] = useState(true);
   const [viewable, setViewable] = useState(false);
 
@@ -31,8 +34,12 @@ function Trivia() {
   }
 
   function triviaSubmit(vote) {
-    let triviaSnapshot = currentTrivia;
+    setMyVote(vote);
+    if (vote.label === currentTrivia.answer) {
+      setIsCorrect(true);
+    }
 
+    let triviaSnapshot = currentTrivia;
     triviaSnapshot.options.map((response) => {
       if (response.label === vote.label) {
         response.value++;
@@ -62,7 +69,7 @@ function Trivia() {
   }
 
   return (
-    <div className="trivia">
+    <div className={'trivia ' + (active ? 'active ' : 'inactive ')}>
       {viewable
         ? [
             <div key={currentTrivia.id}>
@@ -85,14 +92,47 @@ function Trivia() {
                       <li
                         key={option.label}
                         onClick={(e) => triviaSubmit(option)}
+                        className={
+                          (myVote &&
+                          !active &&
+                          currentTrivia.answer === myVote.label &&
+                          myVote.label === option.label
+                            ? 'correct '
+                            : '') +
+                          (myVote &&
+                          !active &&
+                          currentTrivia.answer !== myVote.label &&
+                          myVote.label === option.label
+                            ? 'incorrect '
+                            : '')
+                        }
                       >
                         <label className="title">{option.label}</label>
-                        <label className="value">{optionValue}%</label>
-                        <div className="bar" style={pollStyle}></div>
+                        {!active
+                          ? [
+                              <>
+                                <label className="value">{optionValue}%</label>
+                                {currentTrivia.answer === option.label ? (
+                                  <CheckIcon />
+                                ) : (
+                                  <ClearIcon />
+                                )}
+                                <div className="bar" style={pollStyle}></div>
+                              </>,
+                            ]
+                          : null}
                       </li>
                     );
                   })}
                 </ul>
+                <div className="response">
+                  {isCorrect && !active
+                    ? [<p>You got it right! +{currentTrivia.value} points</p>]
+                    : null}
+                  {!isCorrect && !active
+                    ? [<p>Incorrect. Better luck next time. +0 points</p>]
+                    : null}
+                </div>
               </div>
             </div>,
           ]
