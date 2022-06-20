@@ -1,7 +1,7 @@
 import { AppBar, AppBarTitle } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { box, TextContainer } from "@react-md/core";
-import { MenuIcon } from "@react-md/material-icons/filled/navigation";
+import { MenuIcon } from "@react-md/material-icons/filled/navigation/MenuIcon";
 import type { ReactElement } from "react";
 
 export default function AppBarPage(): ReactElement {

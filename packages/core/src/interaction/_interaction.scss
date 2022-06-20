@@ -25,6 +25,9 @@ $base-background-color: #000 !default;
 
 $ripple-background-color-var: --rmd-ripple-background-color;
 $interaction-background-color-var: --rmd-interaction-background-color;
+$hover-background-color-var: --rmd-interaction-hover-background-color;
+$focus-background-color-var: --rmd-interaction-focus-background-color;
+$press-background-color-var: --rmd-interaction-press-background-color;
 $outline-color-var: --rmd-outline-color;
 $outline-width-var: --rmd-outline-width;
 $outline-color: colors.$blue-500 !default;
@@ -156,19 +159,28 @@ $selected-background-color: if(
   @if $focus-selector {
     @include keyboard-only($css-modules) {
       #{$focus-selector} {
-        #{$interaction-background-color-var}: $focus-background-color;
+        #{$interaction-background-color-var}: var(
+          $focus-background-color-var,
+          $focus-background-color
+        );
         #{$outline-color-var}: $outline-color;
       }
     }
   }
 
   &:hover {
-    #{$interaction-background-color-var}: $hover-background-color;
+    #{$interaction-background-color-var}: var(
+      $hover-background-color-var,
+      $hover-background-color
+    );
   }
 
   @if $interaction-mode == press or $interaction-mode == both {
     &.rmd-pressed {
-      #{$interaction-background-color-var}: $press-background-color;
+      #{$interaction-background-color-var}: (
+        $press-background-color-var,
+        $press-background-color
+      );
     }
   }
 

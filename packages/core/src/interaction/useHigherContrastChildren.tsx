@@ -64,13 +64,19 @@ import { useElementInteractionContext } from "./ElementInteractionProvider";
  * ```
  *
  * @param propChildren - The children to conditionally wrap in spans.
+ * @param disable - Manually disable this functionality even if the higher
+ * contrast mode is enabled. This is really used within `ListItem`s so there
+ * aren't unneeded `<span>`s for string/number children when there are addons.
  * @returns the children to render
  * @remarks \@since 6.0.0
  * @internal
  */
-export function useHigherContrastChildren(propChildren: ReactNode): ReactNode {
+export function useHigherContrastChildren(
+  propChildren: ReactNode,
+  disable = false
+): ReactNode {
   const { higherContrast } = useElementInteractionContext();
-  if (!higherContrast) {
+  if (!higherContrast || disable) {
     return propChildren;
   }
 

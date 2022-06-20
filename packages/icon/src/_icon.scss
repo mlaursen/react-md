@@ -3,6 +3,11 @@
 
 $disable-font: false !default;
 $disable-svg: false !default;
+$disable-spacing-before: false !default;
+$disable-spacing-after: false !default;
+$disable-spacing-above: false !default;
+$disable-spacing-below: false !default;
+$disable-rotator: false !default;
 
 $color-var: --rmd-icon-color;
 $size-var: --rmd-icon-size;
@@ -23,6 +28,10 @@ $size: 1.5rem !default;
 $dense-size: 1.25rem !default;
 
 $spacing: 0.5rem !default;
+
+$rotate-from: rotate(0deg) !default;
+$rotate-to: rotate(180deg) !default;
+$rotate-duration: core.$linear-duration !default;
 
 @mixin use-light-theme {
   #{$color-var}: $light-theme-color;
@@ -46,15 +55,43 @@ $spacing: 0.5rem !default;
     user-select: none;
 
     @if not $disable-font {
-      color: var($color-var, $color);
-      font-size: var($size-var, $size);
-      text-align: center;
+      &--font {
+        color: var($color-var, $color);
+        font-size: var($size-var, $size);
+        text-align: center;
+      }
     }
 
     @if not $disable-svg {
-      fill: var($color-var, $color);
-      height: var($size-var, $size);
-      width: var($size-var, $size);
+      &--svg {
+        fill: var($color-var, $color);
+        height: var($size-var, $size);
+        width: var($size-var, $size);
+      }
+    }
+
+    @if not $disable-spacing-before {
+      &--before {
+        @include core.auto-rtl(margin-right, var($spacing-var, $spacing), 9);
+      }
+    }
+
+    @if not $disable-spacing-after {
+      &--after {
+        @include core.auto-rtl(margin-left, var($spacing-var, $spacing), 0);
+      }
+    }
+
+    @if not $disable-spacing-above {
+      &--above {
+        margin-bottom: var($spacing-var, $spacing);
+      }
+    }
+
+    @if not $disable-spacing-below {
+      &--below {
+        margin-bottom: var($spacing-var, $spacing);
+      }
     }
   }
 
@@ -62,6 +99,20 @@ $spacing: 0.5rem !default;
     @media (prefers-color-scheme: dark) {
       :root {
         @include use-dark-theme;
+      }
+    }
+  }
+
+  @if not $disable-rotator {
+    .rmd-icon-rotator {
+      transform: var($rotate-from-var, $rotate-from);
+
+      &--animate {
+        transition: transform $rotate-duration linear;
+      }
+
+      &--rotated {
+        transform: var($rotate-to-var, $rotate-to);
       }
     }
   }

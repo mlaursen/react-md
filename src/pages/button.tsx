@@ -1,6 +1,6 @@
 import { Button, FloatingActionButton } from "@react-md/button";
 import { box, TextContainer, Typography } from "@react-md/core";
-import { FavoriteIcon } from "@react-md/material-icons/filled/action";
+import { FavoriteIcon } from "@react-md/material-icons/filled/action/FavoriteIcon";
 import type { ReactElement, ReactNode } from "react";
 
 function Heading({

@@ -1,7 +1,7 @@
 import { useColorScheme } from "@react-md/core";
 import dynamic from "next/dynamic";
 import type { ReactElement } from "react";
-import { defaultColorSchemeMode } from "src/constants";
+import { defaultColorSchemeMode } from "src/constants/rmdConfig";
 
 const LightTheme = dynamic(() => import("./LightTheme"));
 const DarkTheme = dynamic(() => import("./DarkTheme"));

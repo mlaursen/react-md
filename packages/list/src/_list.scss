@@ -1,9 +1,40 @@
 @use "sass:map";
 @use "@react-md/core";
+@use "@react-md/avatar";
+@use "@react-md/icon";
+@use "@react-md/divider";
 
+$disable-horizontal: false !default;
+$disable-item-disabled-color: false !default;
+$disable-item-disabled-opacity: false !default;
+$disable-item-avatar: false;
+$disable-item-media: false !default;
+$disable-item-media-large: false !default;
+$disable-medium-height: false !default;
+$disable-large-height: false !default;
+$disable-extra-large-height: false !default;
+$disable-three-line-height: false !default;
+
+$disable-subheader: false !default;
+$disable-subheader-inset: False !default;
+
+$font-size: --rmd-list-font-size;
 $vertical-padding-var: --rmd-list-padding-v;
 $horizontal-padding-var: --rmd-list-padding-h;
-$font-size: --rmd-list-font-size;
+$item-keyline-var: --rmd-list-item-keyline;
+$item-vertical-padding-var: --rmd-list-item-padding-v;
+$item-horizontal-padding-var: --rmd-list-item-padding-h;
+$item-height-var: --rmd-list-item-height;
+$item-medium-height-var: --rmd-list-item-medium-height;
+$item-large-height-var: --rmd-list-item-large-height;
+$item-extra-large-height-var: --rmd-list-item-extra-large-height;
+$item-three-line-height-var: --rmd-list-item-three-line-height;
+$item-media-size-var: --rmd-list-item-media-size;
+$item-media-spacing-var: --rmd-list-item-media-spacing;
+$item-secondary-text-three-line-height-var: --rmd-list-item-text-three-line-height;
+
+$item-secondary-text-line-height: 1.42857 !default;
+$item-secondary-text-three-line-max-height: 3rem !default;
 
 $vertical-padding: 0.5rem !default;
 $dense-vertical-padding: 0.25rem !default;
@@ -19,6 +50,7 @@ $typography-styles: map.merge(
   )
 ) !default;
 
+$item-disabled-opacity: 0.5 !default;
 $item-vertical-padding: 0.5rem !default;
 $item-horizontal-padding: 1rem !default;
 $item-height: 3rem !default;
@@ -32,13 +64,167 @@ $item-dense-extra-large-height: 4rem !default;
 $item-three-line-height: 5.5rem !default;
 $item-dense-three-line-height: 5rem !default;
 
+$item-media-spacing: 1rem !default;
+$item-media-size: 3.5rem !default;
+$item-media-large-size: 6.25rem !default;
+
+$item-keyline: 4.5rem !default;
+
+@mixin _addon-spacing($subtract) {
+  $keyline: var($item-keyline-var, $item-keyline);
+  $padding: var($item-horizontal-padding-var, $item-horizontal-padding);
+
+  #{icon.$spacing-var}: calc(#{$keyline} - #{$padding} - #{$subtract});
+}
+
 @mixin styles {
   .rmd-list {
     @include core.map-to-styles($typography-styles);
+    #{divider.$inset-var}: var($item-keyline-var, $item-keyline);
 
     list-style: none;
     margin: 0;
     padding: var($vertical-padding-var, $vertical-padding)
       var($horizontal-padding-var, $horizontal-padding);
+  }
+
+  .rmd-list-item {
+    @include core.interaction-surface(
+      $disabled-selector: '&[aria-disabled="true"]'
+    );
+
+    align-items: center;
+    display: flex;
+    height: var($item-height-var, $item-height);
+    padding: var($item-vertical-padding-var, $item-vertical-padding)
+      var($item-horizontal-padding-var, $item-horizontal-padding);
+
+    @if not $disable-item-disabled-color {
+      &--disabled-color {
+        #{core.$text-secondary-color-var}: var(core.$text-disabled-color-var);
+        color: var(core.$text-disabled-color-var);
+      }
+    }
+
+    @if not $disable-item-disabled-opacity {
+      &--disabled-opacity {
+        opacity: $item-disabled-opacity;
+      }
+    }
+
+    @if not $disable-medium-height {
+      &--medium {
+        #{$item-height-var}: var($item-medium-height-var, $item-medium-height);
+      }
+    }
+
+    @if not $disable-large-height {
+      &--large {
+        #{$item-height-var}: var($item-large-height-var, $item-large-height);
+      }
+    }
+
+    @if not $disable-extra-large-height {
+      &--extra-large {
+        #{$item-height-var}: var(
+          $item-extra-large-height-var,
+          $item-extra-large-height
+        );
+      }
+    }
+
+    @if not $disable-three-line-height {
+      &--three-lines {
+        #{$item-height-var}: var(
+          $item-three-line-height-var,
+          $item-three-line-height
+        );
+      }
+    }
+
+    &__text {
+      @include core.text-overflow;
+      @include core.rtl {
+        margin-left: auto;
+      }
+
+      display: block;
+      flex-grow: 1;
+
+      &--secondary {
+        color: var(core.$text-secondary-color-var, core.$text-secondary-color);
+      }
+
+      &--clamped {
+        @include core.line-clamp;
+
+        line-height: $item-secondary-text-line-height;
+        max-height: var(
+          $item-secondary-text-three-line-height-var,
+          $item-secondary-text-three-line-max-height
+        );
+        white-space: normal;
+      }
+    }
+
+    &__addon {
+      flex-shrink: 0;
+
+      &--top {
+        align-self: flex-start;
+      }
+
+      &--bottom {
+        align-self: flex-end;
+      }
+
+      &--before {
+        @include _addon-spacing(var(icon.$size-var, icon.$size));
+      }
+
+      @if not $disable-item-avatar {
+        &--avatar-before {
+          @include _addon-spacing(var(avatar.$size-var, avatar.$size));
+        }
+      }
+
+      @if not $disable-item-media {
+        &--media {
+          #{icon.$spacing-var}: $item-media-spacing;
+
+          width: var($item-media-size-var, $item-media-size);
+        }
+
+        @if not $disable-item-media-large {
+          &--media-large {
+            #{$item-media-size-var}: $item-media-large-size;
+          }
+        }
+      }
+    }
+  }
+
+  @if not $disable-subheader {
+    .rmd-list-subheader {
+      @include core.map-to-styles(core.$subtitle-2-styles);
+
+      align-items: center;
+      color: var(core.$text-secondary-color-var, core.$text-secondary-color);
+      display: flex;
+
+      @if not $disable-subheader-inset {
+        &--inset {
+          @include core.rtl {
+            padding-left: var(
+              $item-horizontal-padding-var,
+              $item-horizontal-padding
+            );
+            padding-right: var($text-keyline-var, $text-keyline);
+          }
+
+          padding-left: var($item-keyline-var, $item-keyline);
+        }
+      }
+    }
   }
 }

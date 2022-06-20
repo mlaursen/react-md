@@ -11,7 +11,8 @@ import {
   defaultColorSchemeMode,
   defaultDisableHighContrastMode,
   defaultElementInteractionMode,
-} from "src/constants";
+} from "src/constants/rmdConfig";
+import Navigation from "src/components/Navigation";
 
 export default function App(props: AppProps): ReactElement {
   const { Component, pageProps } = props;
@@ -25,6 +26,7 @@ export default function App(props: AppProps): ReactElement {
       <ThemeProvider>
         <IconProvider>
           <Header />
+          <Navigation />
           <Component {...pageProps} />
           <LoadThemeStyles />
         </IconProvider>
