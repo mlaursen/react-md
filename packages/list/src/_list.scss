@@ -190,7 +190,10 @@ $item-keyline: 4.5rem !default;
 
       @if not $disable-item-media {
         &--media {
-          #{icon.$spacing-var}: $item-media-spacing;
+          #{icon.$spacing-var}: var(
+            $item-media-spacing-var,
+            $item-media-spacing
+          );
 
           width: var($item-media-size-var, $item-media-size);
         }

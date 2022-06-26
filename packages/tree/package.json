@@ -1,0 +1,55 @@
+{
+  "name": "@react-md/tree",
+  "version": "6.0.0-alpha.0",
+  "description": "Create an accessible tree component.",
+  "type": "module",
+  "sass": "./src/_tree.scss",
+  "main": "./cjs/index.cjs",
+  "module": "./mjs/index.mjs",
+  "types": "./types/index.d.ts",
+  "sideEffects": [
+    "dist/**/*"
+  ],
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mlaursen/react-md.git",
+    "directory": "packages/tree"
+  },
+  "bugs": {
+    "url": "https://github.com/mlaursen/react-md/issues"
+  },
+  "homepage": "https://react-md.dev",
+  "keywords": [
+    "accessibility",
+    "a11y",
+    "react-md",
+    "material design",
+    "react",
+    "tree",
+    "component",
+    "components"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@react-md/core": "^6.0.0-alpha.0",
+    "@react-md/icon": "^6.0.0-alpha.0",
+    "@react-md/list": "^6.0.0-alpha.0",
+    "cnbuilder": "^3.1.0"
+  },
+  "peerDependencies": {
+    "react": ">= 18",
+    "react-dom": ">= 18"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": false
+    },
+    "react-dom": {
+      "optional": false
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -24,6 +24,7 @@ export function Header(): ReactElement {
         <StyledLink href="/list">List</StyledLink>
         <StyledLink href="/material-icons">Material Icons</StyledLink>
         <StyledLink href="/progress">Progress</StyledLink>
+        <StyledLink href="/tree">Tree</StyledLink>
         <StyledLink href="/typography">Typography</StyledLink>
         <VerticalDivider maxHeight={0} />
         <StyledLink href="/coverage/lcov-report/index.html" target="_blank">

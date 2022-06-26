@@ -1,7 +1,7 @@
 @use "colors";
 
 @forward "react-md" with (
-  $color-scheme: system,
+  // $color-scheme: system,
   $primary-color: colors.$teal-500,
   $secondary-color: colors.$pink-a-200,
   $icon-disable-font: true,
@@ -12,6 +12,6 @@
     extra-padding: (
       padding: 2rem,
       gap: 0.5rem,
-    ),
+    )
   )
 );

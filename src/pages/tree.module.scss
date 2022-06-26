@@ -1,0 +1,22 @@
+@use "everything";
+
+.button {
+  #{everything.$hover-background-color-var}: transparent;
+  #{everything.$icon-rotate-from-var}: 90deg;
+  #{everything.$icon-rotate-to-var}: 0deg;
+}
+
+.item {
+  #{everything.$icon-rotate-from-var}: 90deg;
+  #{everything.$icon-rotate-to-var}: 0deg;
+  #{everything.$list-item-media-spacing-var}: 0.25rem;
+  #{everything.$tree-padding-base-var}: everything.$list-item-keyline + 0.25rem;
+
+  padding-right: 0;
+}
+
+.addon,
+.icon {
+  align-items: center;
+  display: flex;
+}

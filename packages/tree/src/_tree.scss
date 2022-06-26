@@ -1,0 +1,71 @@
+// @use "sass:list";
+// @use "sass:map";
+@use "@react-md/core";
+@use "@react-md/icon";
+@use "@react-md/list";
+
+$depth-var: --rmd-tree-depth;
+$padding-incrementor-var: --rmd-tree-item-padding;
+$padding-base-var: --rmd-tree-item-padding-base;
+
+$padding-incrementor: list.$item-horizontal-padding * 1.5 !default;
+$padding-base: list.$item-keyline !default;
+
+$selected-styles: (
+  font-weight: core.$font-weight-bold,
+) !default;
+
+@mixin styles {
+  .rmd-tree {
+    display: block;
+    height: 100%;
+    outline-style: none;
+    // this is mostly for firefox. moving the mouse even 1px while clicking will
+    // select the current item and all items to the tree root
+    user-select: none;
+    width: 100%;
+  }
+
+  .rmd-tree-item {
+    list-style: none;
+
+    &__content {
+      &--padded {
+        padding-left: calc(
+          var(#{$depth-var}) *
+            var($padding-incrementor-var, $padding-incrementor) +
+            var($padding-base-var, $padding-base)
+        );
+      }
+
+      &--focused::before {
+        .rmd-tree:focus & {
+          @include core.keyboard-only {
+            #{core.$interaction-background-color-var}: var(
+              core.$focus-background-color-var,
+              core.$focus-background-color
+            );
+            #{core.$outline-color-var}: core.$outline-color;
+          }
+        }
+      }
+
+      @if $selected-styles {
+        &--selected {
+          @include core.map-to-styles($selected-styles);
+        }
+      }
+    }
+  }
+
+  .rmd-tree-group {
+    background-color: inherit;
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit;
+
+    // remove the list padding to make it more condensed
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+}

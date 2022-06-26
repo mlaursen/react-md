@@ -27,7 +27,8 @@
       "@react-md/link": ["packages/link/src/index.ts"],
       "@react-md/list": ["packages/list/src/index.ts"],
       "@react-md/material-icons/*": ["packages/material-icons/src/*"],
-      "@react-md/progress": ["packages/progress/src/index.ts"]
+      "@react-md/progress": ["packages/progress/src/index.ts"],
+      "@react-md/tree": ["packages/tree/src/index.ts"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
