@@ -29,8 +29,8 @@ $dense-size: 1.25rem !default;
 
 $spacing: 0.5rem !default;
 
-$rotate-from: rotate(0deg) !default;
-$rotate-to: rotate(180deg) !default;
+$rotate-from: 0deg !default;
+$rotate-to: 180deg !default;
 $rotate-duration: core.$linear-duration !default;
 
 @mixin use-light-theme {
@@ -105,14 +105,14 @@ $rotate-duration: core.$linear-duration !default;
 
   @if not $disable-rotator {
     .rmd-icon-rotator {
-      transform: var($rotate-from-var, $rotate-from);
+      transform: rotate(var($rotate-from-var, $rotate-from));
 
       &--animate {
         transition: transform $rotate-duration linear;
       }
 
       &--rotated {
-        transform: var($rotate-to-var, $rotate-to);
+        transform: rotate(var($rotate-to-var, $rotate-to));
       }
     }
   }

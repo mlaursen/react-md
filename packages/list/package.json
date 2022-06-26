@@ -14,7 +14,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/mlaursen/react-md.git",
-    "directory": "packages/avatar"
+    "directory": "packages/list"
   },
   "bugs": {
     "url": "https://github.com/mlaursen/react-md/issues"
