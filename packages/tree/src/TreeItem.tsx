@@ -51,7 +51,6 @@ export function TreeItem(props: TreeItemProps): ReactElement {
     rightAddonPosition,
     forceAddonWrap,
     renderChildItems,
-    collapsible = true,
     isLeafNode,
     onItemSelection,
     onItemExpansion,

@@ -1,3 +1,4 @@
+import "./app.scss";
 import { CoreProviders, ThemeProvider } from "@react-md/core";
 import type { ConfiguredIcons } from "@react-md/icon";
 import { IconProvider } from "@react-md/icon";
@@ -25,7 +26,6 @@ import {
   defaultDisableHighContrastMode,
   defaultElementInteractionMode,
 } from "src/constants/rmdConfig";
-import "./app.scss";
 
 const icons: ConfiguredIcons = {
   back: <KeyboardArrowLeftIcon />,

@@ -10,6 +10,7 @@ const listStyles = bem("rmd-list");
 const itemStyles = bem("rmd-list-item");
 const subheaderStyles = bem("rmd-list-subheader");
 
+/** @remarks \@since 6.0.0 */
 export interface ListClassNameOptions {
   className?: string;
 
@@ -36,6 +37,7 @@ export function getListClassName(options: ListClassNameOptions = {}): string {
   );
 }
 
+/** @remarks \@since 6.0.0 */
 export interface ListItemClassNameOptions {
   className?: string;
   /**
@@ -63,12 +65,18 @@ export interface ListItemClassNameOptions {
   disabledOpacity?: boolean;
 }
 
-interface _ListItemClassNameOptions extends ListItemClassNameOptions {
+/** @remarks \@since 6.0.0 */
+export interface InternalListItemClassNameOptions
+  extends ListItemClassNameOptions {
+  /**
+   * This is prop is used internally when integrating with the
+   * {@link useElementInteraction} hook.
+   */
   pressedClassName?: string;
 }
 
 export function getListItemClassName(
-  options: _ListItemClassNameOptions = {}
+  options: InternalListItemClassNameOptions = {}
 ): string {
   const {
     className,
@@ -167,6 +175,7 @@ export function getListItemAddonClassName(
   );
 }
 
+/** @remarks \@since 6.0.0 */
 export interface ListSubheaderClassNameOptions {
   className?: string;
 

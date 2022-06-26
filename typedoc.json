@@ -9,10 +9,15 @@
   },
   "entryPoints": [
     "packages/app-bar/src/index.ts",
+    "packages/avatar/src/index.ts",
     "packages/button/src/index.ts",
     "packages/core/src/index.ts",
     "packages/dialog/src/index.ts",
+    "packages/divider/src/index.ts",
     "packages/icon/src/index.ts",
-    "packages/progress/src/index.ts"
+    "packages/link/src/index.ts",
+    "packages/list/src/index.ts",
+    "packages/progress/src/index.ts",
+    "packages/tree/src/index.ts"
   ]
 }

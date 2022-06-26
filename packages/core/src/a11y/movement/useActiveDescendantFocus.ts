@@ -23,8 +23,8 @@ export interface ActiveDescendantFocusHookOptions<E extends HTMLElement>
 
   /**
    * When the {@link defaultActiveId} is an empty string, this is used to set
-   * the {@link ActiveDescendantFocusHookReturnValue.activeId} to one of the
-   * focusable elements so that the container element is no longer focused.
+   * the {@link ActiveDescendantContext.activeId} to one of the focusable
+   * elements so that the container element is no longer focused.
    *
    * @defaultValue `0`
    * @remarks \@since 6.0.0

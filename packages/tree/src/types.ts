@@ -84,18 +84,6 @@ export interface ConfigurableTreeItemProps
   href?: string;
 
   disabled?: boolean;
-
-  /**
-   * Boolean if the tree item should display a collapse/expand button before the
-   * other `children` when there are child items.
-   *
-   * Note: this can also be configured by the
-   * {@link TreeProps.disableCollapsibleRoots} which is the main use-case for
-   * this prop.
-   *
-   * @defaultValue `true`
-   */
-  collapsible?: boolean;
   contentClassName?: string;
 
   /**

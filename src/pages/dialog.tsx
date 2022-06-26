@@ -1,5 +1,5 @@
 import { Button } from "@react-md/button";
-import { Typography } from "@react-md/core";
+import { Box, Typography } from "@react-md/core";
 import {
   Dialog,
   DialogContent,
@@ -29,44 +29,41 @@ export default function DialogPage(): ReactElement {
   }, []);
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          height: "calc(100% - 3.5rem)",
-          width: "100%",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
+      <Box
+        justifyContent="center"
+        alignItems="center"
+        style={{ height: "calc(100% - 3.5rem)" }}
       >
         <Button onClick={() => setVisible(true)}>Show</Button>
-        <Dialog
-          visible={visible && !sheet}
-          onRequestClose={() => setVisible(false)}
-          aria-label="Dialog"
-          type="full-page"
-        >
-          <DialogHeader>
-            <DialogTitle>Simple Dialog</DialogTitle>
-          </DialogHeader>
-          <DialogContent>This is some text in a dialog.</DialogContent>
-          <DialogFooter>
-            <Button onClick={() => setVisible(false)}>Close</Button>
-          </DialogFooter>
-        </Dialog>
-        <Sheet
-          visible={visible && sheet}
-          aria-label="Sheet"
-          onRequestClose={() => setVisible(false)}
-        >
-          <DialogHeader>
-            <DialogTitle>Hello</DialogTitle>
-          </DialogHeader>
-          <DialogContent>Content</DialogContent>
-          <DialogFooter>
-            <Button>Footer</Button>
-          </DialogFooter>
-        </Sheet>
-      </div>
+      </Box>
+      <Dialog
+        visible={visible && !sheet}
+        onRequestClose={() => setVisible(false)}
+        aria-label="Dialog"
+        // type="full-page"
+      >
+        <DialogHeader>
+          <DialogTitle>Simple Dialog</DialogTitle>
+        </DialogHeader>
+        <DialogContent>This is some text in a dialog.</DialogContent>
+        <DialogFooter>
+          <Button onClick={() => setVisible(false)}>Close</Button>
+        </DialogFooter>
+      </Dialog>
+      <Sheet
+        visible={visible && sheet}
+        aria-label="Sheet"
+        onRequestClose={() => setVisible(false)}
+      >
+        <DialogHeader>
+          <DialogTitle>Hello</DialogTitle>
+        </DialogHeader>
+        <DialogContent>Content</DialogContent>
+        <DialogFooter>
+          <Button>Footer</Button>
+        </DialogFooter>
+      </Sheet>
+      {/* added to test scroll lock behavior */}
       <Typography>Hello, world!</Typography>
     </>
   );

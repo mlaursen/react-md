@@ -4,7 +4,7 @@ import { forwardRef } from "react";
 import type { AvatarClassNameOptions } from "./styles";
 import { getAvatarClassName, getAvatarImageClassName } from "./styles";
 
-type ImgAttributes = ImgHTMLAttributes<HTMLImageElement>;
+export type AvatarImgAttributes = ImgHTMLAttributes<HTMLImageElement>;
 
 export interface AvatarProps
   extends HTMLAttributes<HTMLSpanElement>,
@@ -35,7 +35,7 @@ export interface AvatarProps
    *
    * @remarks \@since 2.2.0
    */
-  referrerPolicy?: ImgAttributes["referrerPolicy"];
+  referrerPolicy?: AvatarImgAttributes["referrerPolicy"];
 
   /**
    * An optional object of image props and ref that can be used to create an
@@ -48,7 +48,7 @@ export interface AvatarProps
    *
    * @remarks \@since 2.2.0
    */
-  imgProps?: PropsWithRef<ImgAttributes, HTMLImageElement>;
+  imgProps?: PropsWithRef<AvatarImgAttributes, HTMLImageElement>;
 }
 
 /**

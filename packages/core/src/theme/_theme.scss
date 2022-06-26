@@ -29,7 +29,7 @@ $color-scheme: light !default;
 ///
 /// If this is set to `false`, all surfaces will mimic the light theme and have
 /// a single surface color.
-$disable-dark-elevation: false !default;
+$disable-dark-elevation: $color-scheme == light !default;
 
 /// This value should be set to `false` if you do not want the initial bundle to
 /// include the `@media (prefers-color-scheme: dark)` styles.
@@ -144,6 +144,9 @@ $dark-elevation-colors: (
 
 @mixin use-light-theme {
   #{$background-color-var}: $light-theme-background-color;
+  @if $disable-dark-elevation {
+    #{$surface-color-var}: $light-theme-surface-color;
+  }
   #{$text-primary-color-var}: $light-theme-text-primary-color;
   #{$text-secondary-color-var}: $light-theme-text-secondary-color;
   #{$text-hint-color-var}: $light-theme-text-hint-color;
@@ -160,6 +163,10 @@ $dark-elevation-colors: (
 
 @mixin use-dark-theme {
   #{$background-color-var}: $dark-theme-background-color;
+  @if $disable-dark-elevation {
+    #{$surface-color-var}: $dark-theme-surface-color;
+  }
+
   #{$text-primary-color-var}: $dark-theme-text-primary-color;
   #{$text-secondary-color-var}: $dark-theme-text-secondary-color;
   #{$text-hint-color-var}: $dark-theme-text-hint-color;
@@ -175,6 +182,10 @@ $dark-elevation-colors: (
 
 @mixin colors {
   #{$background-color-var}: $background-color;
+  @if $disable-dark-elevation {
+    #{$surface-color-var}: $surface-color;
+  }
+
   #{$primary-color-var}: $primary-color;
   #{$on-primary-color-var}: $on-primary-color;
   #{$secondary-color-var}: $secondary-color;
@@ -194,6 +205,11 @@ $dark-elevation-colors: (
     @each $z-value, $background-color in $dark-elevation-colors {
       $var-name: $dark-elevation-var + "-" + $z-value;
       #{$var-name}: $background-color;
+    }
+  } @else if not $disable-dark-elevation and $color-scheme == light {
+    @each $z-value, $background-color in $dark-elevation-colors {
+      $var-name: $dark-elevation-var + "-" + $z-value;
+      #{$var-name}: $light-theme-surface-color;
     }
   }
 

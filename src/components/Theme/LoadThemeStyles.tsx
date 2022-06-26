@@ -9,14 +9,15 @@ const SystemTheme = dynamic(() => import("./SystemTheme"));
 
 export function LoadThemeStyles(): ReactElement | null {
   const { colorSchemeMode } = useColorScheme();
+  if (colorSchemeMode === defaultColorSchemeMode) {
+    return null;
+  }
+
   return (
     <>
-      {colorSchemeMode !== defaultColorSchemeMode &&
-        colorSchemeMode === "light" && <LightTheme />}
-      {colorSchemeMode !== defaultColorSchemeMode &&
-        colorSchemeMode === "dark" && <DarkTheme />}
-      {colorSchemeMode === defaultColorSchemeMode &&
-        colorSchemeMode === "system" && <SystemTheme />}
+      {colorSchemeMode === "light" && <LightTheme />}
+      {colorSchemeMode === "dark" && <DarkTheme />}
+      {colorSchemeMode === "system" && <SystemTheme />}
     </>
   );
 }
