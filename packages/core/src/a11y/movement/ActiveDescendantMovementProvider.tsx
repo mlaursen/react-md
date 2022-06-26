@@ -41,7 +41,7 @@ export interface ActiveDescendantMovementProviderProps
  *     useActiveDescendantFocus()
  *
  *   return (
- *     <ActiveDescendantMovementProvider>
+ *     <ActiveDescendantMovementProvider {...providerProps}>
  *       <div
  *         {...containerProps}
  *         id="some-unique-id"

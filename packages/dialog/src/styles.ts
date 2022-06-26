@@ -157,7 +157,7 @@ export interface BaseSheetClassNameOptions extends MergableClassName {
  * @remarks \@since 6.0.0
  * @internal
  */
-interface SheetClassNameOptions extends BaseSheetClassNameOptions {
+export interface SheetClassNameOptions extends BaseSheetClassNameOptions {
   offscreen?: boolean;
 }
 

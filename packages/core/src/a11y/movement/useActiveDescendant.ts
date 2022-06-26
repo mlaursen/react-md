@@ -38,6 +38,8 @@ export interface ActiveDescendantHookReturnValue<E extends HTMLElement> {
 }
 
 /**
+ * @see {@link ActiveDescendantMovementProvider} for an example
+ * @internal
  * @remarks \@since 5.0.0
  */
 export function useActiveDescendant<E extends HTMLElement>(

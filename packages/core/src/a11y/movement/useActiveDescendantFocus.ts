@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import type { ActiveDescendantContext } from "./activeDescendantContext";
 import type {
   KeyboardFocusCallbacks,
@@ -16,8 +15,21 @@ export interface ActiveDescendantFocusHookOptions<E extends HTMLElement>
   /**
    * An optional DOM id for one of the children that should be focused by
    * default.
+   *
+   * @defaultValue `""`
+   * @remarks \@since 6.0.0 Supports initializer function.
    */
-  defaultActiveId?: string;
+  defaultActiveId?: string | (() => string);
+
+  /**
+   * When the {@link defaultActiveId} is an empty string, this is used to set
+   * the {@link ActiveDescendantFocusHookReturnValue.activeId} to one of the
+   * focusable elements so that the container element is no longer focused.
+   *
+   * @defaultValue `0`
+   * @remarks \@since 6.0.0
+   */
+  defaultFocusIndex?: number;
 }
 
 /**
@@ -46,8 +58,13 @@ export interface ActiveDescendantFocusHookReturnValue<E extends HTMLElement>
 export function useActiveDescendantFocus<E extends HTMLElement>(
   options: ActiveDescendantFocusHookOptions<E> = {}
 ): ActiveDescendantFocusHookReturnValue<E> {
-  const { defaultActiveId = "", ...focusOptions } = options;
+  const {
+    defaultActiveId = "",
+    defaultFocusIndex = 0,
+    ...focusOptions
+  } = options;
   const [activeId, setActiveId] = useState(defaultActiveId);
+
   return {
     ...useKeyboardFocus({
       ...focusOptions,
@@ -56,7 +73,7 @@ export function useActiveDescendantFocus<E extends HTMLElement>(
       },
       getDefaultFocusIndex(elements) {
         if (!activeId) {
-          return -1;
+          return defaultFocusIndex;
         }
 
         return elements.findIndex(({ id }) => id === activeId);
