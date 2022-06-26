@@ -158,7 +158,7 @@ $selected-background-color: if(
 
   @if $focus-selector {
     @include keyboard-only($css-modules) {
-      #{$focus-selector} {
+      #{$focus-selector + "::before"} {
         #{$interaction-background-color-var}: var(
           $focus-background-color-var,
           $focus-background-color
@@ -168,7 +168,7 @@ $selected-background-color: if(
     }
   }
 
-  &:hover {
+  &:hover::before {
     #{$interaction-background-color-var}: var(
       $hover-background-color-var,
       $hover-background-color
@@ -176,7 +176,7 @@ $selected-background-color: if(
   }
 
   @if $interaction-mode == press or $interaction-mode == both {
-    &.rmd-pressed {
+    &.rmd-pressed::before {
       #{$interaction-background-color-var}: (
         $press-background-color-var,
         $press-background-color
@@ -185,7 +185,7 @@ $selected-background-color: if(
   }
 
   @if $disabled-selector {
-    #{$disabled-selector} {
+    #{$disabled-selector + "::before"} {
       #{$interaction-background-color-var}: transparent;
 
       @if $clickable {

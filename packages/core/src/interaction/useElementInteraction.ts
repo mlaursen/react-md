@@ -251,6 +251,7 @@ export function useElementInteraction<E extends HTMLElement>(
             return;
           }
 
+          event.stopPropagation();
           dispatch({ type: "press", style: getRippleStyle(event, true) });
         },
         [mode, onClick]
@@ -307,7 +308,8 @@ export function useElementInteraction<E extends HTMLElement>(
           if (
             event.isPropagationStopped() ||
             isInteractionDisabled ||
-            userMode !== "mouse"
+            userMode !== "mouse" ||
+            !holding.current
           ) {
             return;
           }
