@@ -1,22 +1,50 @@
 @use "everything";
 
+$horizontal-padding: var(
+  everything.$list-item-horizontal-padding-var,
+  everything.$list-item-horizontal-padding
+);
+
+.itemWithButton {
+  #{everything.$icon-rotate-from-var}: 270deg;
+  #{everything.$icon-rotate-to-var}: 360deg;
+  #{everything.$tree-padding-base-var}: everything.$list-item-media-size - 1rem;
+
+  @include everything.auto-rtl(padding-right, 0, $horizontal-padding);
+}
+
+.itemWithExpanderBefore {
+  #{everything.$icon-rotate-from-var}: 270deg;
+  #{everything.$icon-rotate-to-var}: 360deg;
+  #{everything.$tree-padding-base-var}: everything.$list-item-media-size - 1rem;
+}
+
+.lessPaddingStart {
+  @include everything.auto-rtl(padding-left, 0.25rem, $horizontal-padding);
+}
+
+.itemWithExpanderAfter {
+  #{everything.$icon-rotate-from-var}: 270deg;
+  #{everything.$icon-rotate-to-var}: 360deg;
+  #{everything.$list-item-media-spacing-var}: 0.25rem;
+  #{everything.$tree-padding-base-var}: everything.$list-item-media-size - 1rem;
+}
+
+.addon {
+  align-items: center;
+  display: flex;
+}
+
+.addonSpaceBetween {
+  justify-content: space-between;
+}
+
+.offset {
+  justify-content: flex-end;
+}
+
 .button {
   #{everything.$hover-background-color-var}: transparent;
   #{everything.$icon-rotate-from-var}: 90deg;
   #{everything.$icon-rotate-to-var}: 0deg;
-}
-
-.item {
-  #{everything.$icon-rotate-from-var}: 90deg;
-  #{everything.$icon-rotate-to-var}: 0deg;
-  #{everything.$list-item-media-spacing-var}: 0.25rem;
-  #{everything.$tree-padding-base-var}: everything.$list-item-keyline + 0.25rem;
-
-  padding-right: 0;
-}
-
-.addon,
-.icon {
-  align-items: center;
-  display: flex;
 }

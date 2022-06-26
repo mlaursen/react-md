@@ -126,9 +126,9 @@ export function TreeItem(props: TreeItemProps): ReactElement {
         {...(isLink ? a11yProps : undefined)}
         className={cnb(
           styles("content", {
+            padded: depth > 0,
             focused: active,
             selected,
-            padded: depth > 0,
           }),
           getListItemClassName({
             className: contentClassName,

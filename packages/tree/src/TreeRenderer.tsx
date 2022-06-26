@@ -40,7 +40,7 @@ export function TreeRenderer(props: TreeRendererProps): ReactElement {
     onFocus,
     onKeyDown,
     getTreeItemProps,
-    expansionMode = "item",
+    expansionMode = "auto",
     ...remaining
   } = props;
 
@@ -97,7 +97,9 @@ export function TreeRenderer(props: TreeRendererProps): ReactElement {
               onItemSelection(itemId);
             }}
             onItemExpansion={() => {
-              onItemExpansion(itemId, !expanded);
+              if (expansionMode === "auto") {
+                onItemExpansion(itemId, !expanded);
+              }
             }}
             renderChildItems={renderChildItems}
           />
@@ -110,6 +112,7 @@ export function TreeRenderer(props: TreeRendererProps): ReactElement {
     return result;
   }, [
     expandedIds,
+    expansionMode,
     getTreeItemProps,
     items,
     onItemExpansion,
@@ -152,7 +155,7 @@ export function TreeRenderer(props: TreeRendererProps): ReactElement {
         case "Enter":
           flagged = true;
           onItemSelection(itemId);
-          if (!isLeafNode && expansionMode !== "icon") {
+          if (!isLeafNode && expansionMode === "auto") {
             onItemExpansion(itemId, !expanded);
           }
           break;

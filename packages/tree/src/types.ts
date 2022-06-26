@@ -1,12 +1,5 @@
 import type { ListItemChildrenAddonProps } from "@react-md/list";
-import { ListItemChildrenProps } from "@react-md/list";
 import type { Dispatch, HTMLAttributes, Ref, SetStateAction } from "react";
-import {
-  FocusEventHandler,
-  KeyboardEventHandler,
-  ReactElement,
-  ReactNode,
-} from "react";
 
 export interface TreeItemNode {
   itemId: string;
@@ -102,9 +95,20 @@ export type GetTreeItemProps = (
 ) => ConfigurableTreeItemProps;
 
 /**
+ * When this is set to `"auto"`, clicking on a tree item with a mouse or with
+ * the Enter/Space keys will select and expand/collapse the tree item. The user
+ * can still use the ArrowLeft and ArrowRight keys to expand/collapse nested
+ * tree items.
  *
+ * When this is set to `"manual"`, clicking on a tree item with a mouse or with
+ * the Enter/Space keys will only select that tree item. The user must use the
+ * ArrowLeft and ArrowRight keys to expand/collapse nested tree items.
+ *
+ * The main use-case for the `"manual"` setting is creating a navigation tree
+ * that requires the user to click on an icon or a button to expand the child
+ * items.
  */
-export type TreeExpansionMode = "item" | "icon";
+export type TreeExpansionMode = "auto" | "manual";
 
 export interface TreeRendererProps
   extends TreeHTMLAttributes,
@@ -125,7 +129,7 @@ export interface TreeRendererProps
 
   /**
    * @see {@link TreeExpansionMode}
-   * @defaultValue `"item"`
+   * @defaultValue `"auto"`
    */
   expansionMode?: TreeExpansionMode;
 

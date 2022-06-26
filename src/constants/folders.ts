@@ -35,4 +35,14 @@ export const folders: Record<string, Folder> = {
     itemId: "folder-2-3",
     parentId: "folder-2",
   },
+  "folder-2-2-1": {
+    name: "Folder 2 Child 2 Child 1",
+    itemId: "folder-2-2-1",
+    parentId: "folder-2-2",
+  },
+  "folder-2-2-1-1": {
+    name: "Folder 2 Child 2 Child 1 Child 1",
+    itemId: "folder-2-2-1-1",
+    parentId: "folder-2-2-1",
+  },
 };
