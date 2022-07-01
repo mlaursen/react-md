@@ -61,6 +61,14 @@ $_swappable-position-prefixes: border margin padding;
   }
 }
 
+@mixin map-to-animation($map) {
+  @each $percentage, $styles in $map {
+    #{$percentage} {
+      @include map-to-styles($styles);
+    }
+  }
+}
+
 @mixin pseudo-element($z-index: 0) {
   border-radius: inherit;
   content: "";

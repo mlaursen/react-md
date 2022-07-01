@@ -42,6 +42,24 @@ export interface LabelA11y {
 /**
  * A small accessibility helper to ensure that either `aria-label` or
  * `aria-labelledby` have been provided to a component.
+ *
+ * @example
+ * Simple Example
+ * ```ts
+ * import type { HTMLAttributes, ReactElement } from "react";
+ * import type { LabelRequiredForA11y } from "@react-md/core";
+ *
+ * type Props = LabelRequiredForA11y<HTMLAttributes<HTMLDivElement>>;
+ *
+ * function Component(props: Props): ReactElement {
+ *   return <div {...props} />;
+ * }
+ *
+ * const test1 = <Component />
+ * //            ^ type error
+ * const test2 = <Component aria-label="Label" />
+ * const test3 = <Component aria-labelledby="some-other-id" />
+ * ```
  */
 export type LabelRequiredForA11y<Props extends LabelA11y> = RequireAtLeastOne<
   Props,
@@ -55,3 +73,6 @@ export type LabelRequiredForA11y<Props extends LabelA11y> = RequireAtLeastOne<
 export interface NonNullRef<T> {
   readonly current: T;
 }
+
+/** @remarks \@since 6.0.0 */
+export type HtmlTagName = keyof JSX.IntrinsicElements;

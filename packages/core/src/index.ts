@@ -10,6 +10,7 @@ export * from "./interaction";
 export * from "./loop";
 export * from "./portal";
 export * from "./positioning";
+export * from "./randomInt";
 export * from "./scroll";
 export * from "./search";
 export * from "./theme";
