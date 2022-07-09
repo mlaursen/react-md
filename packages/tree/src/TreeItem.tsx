@@ -1,61 +1,60 @@
 import {
   bem,
-  useActiveDescendant,
-  useHigherContrastChildren,
-  useElementInteraction,
   RippleContainer,
+  useElementInteraction,
+  useHigherContrastChildren,
 } from "@react-md/core";
-import { cnb } from "cnbuilder";
 import { getListItemClassName, ListItemChildren } from "@react-md/list";
-import type { ReactElement, ReactNode } from "react";
-import type { ConfigurableTreeItemProps } from "./types";
+import { cnb } from "cnbuilder";
+import type { MutableRefObject, ReactElement, ReactNode } from "react";
 import { TreeGroup } from "./TreeGroup";
+import { TreeItemExpander } from "./TreeItemExpander";
+import { useTreeContext } from "./TreeProvider";
+import type {
+  OverridableTreeItemProps,
+  TreeItemNode,
+  TreeItemStates,
+} from "./types";
 
 const styles = bem("rmd-tree-item");
 
-type CSSProperties = React.CSSProperties & {
-  "--rmd-tree-depth": number;
-};
-
-export interface TreeItemProps extends ConfigurableTreeItemProps {
+export interface TreeItemProps
+  extends OverridableTreeItemProps,
+    TreeItemStates {
   id: string;
-  selected: boolean;
-  expanded: boolean;
-  depth: number;
-  listSize: number;
-  itemIndex: number;
-  isLeafNode: boolean;
-  renderChildItems?(): ReactNode;
-  onItemSelection(): void;
-  onItemExpansion(): void;
+  item: TreeItemNode;
+  contentRef: MutableRefObject<HTMLSpanElement | null>;
+  childItems: ReactNode;
 }
 
 export function TreeItem(props: TreeItemProps): ReactElement {
   const {
     id,
-    to,
-    href,
     depth,
+    focused,
     expanded,
     selected,
-    listSize,
-    itemIndex,
     disabled = false,
+    disabledOpacity = false,
     children: propChildren,
     className,
+    as = "span",
+    item,
     leftAddon,
-    leftAddonType,
+    leftAddonType: propLeftAddonType,
     leftAddonPosition,
+    leftAddonClassName,
+    leftAddonForceWrap,
     rightAddon,
     rightAddonType,
     rightAddonPosition,
-    forceAddonWrap,
-    renderChildItems,
-    isLeafNode,
-    onItemSelection,
-    onItemExpansion,
+    rightAddonClassName,
+    rightAddonForceWrap,
+    disableLeftAddonCenteredMedia: propDisableLeftAddonCenteredMedia,
+    disableRightAddonCenteredMedia,
+    childItems,
     contentClassName,
-    disableCollapseTransition = false,
+    disableTransition: propDisableTransition,
     onClick,
     onKeyDown,
     onKeyUp,
@@ -65,12 +64,31 @@ export function TreeItem(props: TreeItemProps): ReactElement {
     onTouchStart,
     onTouchEnd,
     onTouchMove,
+    contentRef,
+    isLeafNode,
     ...remaining
   } = props;
+  const { itemId } = item;
 
-  const { ref, active } = useActiveDescendant({ id });
+  if (disabled) {
+    // you can't really disable a link other than removing the href, so
+    // unset these props
+    remaining.to = undefined;
+    remaining.href = undefined;
+  }
+
+  const {
+    expanderLeft,
+    expansionMode,
+    onItemSelection,
+    onItemExpansion,
+    disableTransition: contextDisableTransition,
+  } = useTreeContext();
+
+  const disableTransition = propDisableTransition ?? contextDisableTransition;
+
   const { pressedClassName, rippleContainerProps, handlers } =
-    useElementInteraction({
+    useElementInteraction<HTMLLIElement>({
       onClick(event) {
         onClick?.(event);
         if (event.isPropagationStopped()) {
@@ -78,9 +96,9 @@ export function TreeItem(props: TreeItemProps): ReactElement {
         }
 
         event.stopPropagation();
-        onItemSelection();
-        if (!isLeafNode) {
-          onItemExpansion();
+        onItemSelection(itemId);
+        if (!isLeafNode && expansionMode !== "manual") {
+          onItemExpansion(itemId, !expanded);
         }
       },
       onKeyDown,
@@ -99,63 +117,105 @@ export function TreeItem(props: TreeItemProps): ReactElement {
   const a11yProps = {
     "aria-expanded": !isLeafNode ? expanded : undefined,
     "aria-level": depth + 1,
-    "aria-setsize": listSize,
-    "aria-posinset": itemIndex + 1,
     "aria-selected": selected || undefined,
-    "aria-disabled": disabled ? "true" : undefined,
+    "aria-disabled": disabled || undefined,
     id,
-    ref,
+    ref: contentRef,
     role: "treeitem",
     tabIndex: -1,
     ...handlers,
-  } as const;
-  const noA11yProps = { role: "none" };
-  const isLink = !!(to || href);
-  const style: CSSProperties = {
-    "--rmd-tree-depth": depth - 1,
   };
+  const noA11yProps = { role: "none" };
+  const isLink = !!(remaining.to || remaining.href);
+
+  // cheating a bit so there are type errors around the event handlers
+  const ContentComponent = as as "span";
+  const leftAddonType =
+    propLeftAddonType ?? (expanderLeft && leftAddon) ? "media" : undefined;
+  const isMediaLeftAddon =
+    typeof propLeftAddonType === "undefined" && leftAddonType === "media";
+  const disableLeftAddonCenteredMedia =
+    propDisableLeftAddonCenteredMedia ?? isMediaLeftAddon;
 
   return (
     <li
       {...(isLink ? noA11yProps : a11yProps)}
-      style={style}
-      className={cnb(styles(), className)}
+      className={cnb(
+        styles({
+          "rotator-left": expanderLeft,
+          "rotator-right": !expanderLeft,
+        }),
+        className
+      )}
     >
-      <span
+      <ContentComponent
         {...remaining}
         {...(isLink ? a11yProps : undefined)}
         className={cnb(
           styles("content", {
+            link: isLink,
             padded: depth > 0,
-            focused: active,
+            focused,
             selected,
+            disabled,
+            "rotator-left": expanderLeft,
+            "rotator-right": !expanderLeft,
           }),
           getListItemClassName({
             className: contentClassName,
             disabled,
+            disabledOpacity,
             pressedClassName,
           })
         )}
       >
         <ListItemChildren
-          leftAddon={leftAddon}
+          leftAddon={
+            <TreeItemExpander
+              left
+              item={item}
+              addon={leftAddon}
+              expanded={expanded}
+              disabled={disabled}
+              isLeafNode={isLeafNode}
+            />
+          }
           leftAddonType={leftAddonType}
           leftAddonPosition={leftAddonPosition}
-          rightAddon={rightAddon}
+          leftAddonClassName={cnb(
+            leftAddonClassName,
+            isMediaLeftAddon && "rmd-tree-item__media",
+            isMediaLeftAddon && isLeafNode && "rmd-tree-item__media--single"
+          )}
+          leftAddonForceWrap={leftAddonForceWrap}
+          rightAddon={
+            <TreeItemExpander
+              item={item}
+              addon={rightAddon}
+              expanded={expanded}
+              disabled={disabled}
+              isLeafNode={isLeafNode}
+            />
+          }
           rightAddonType={rightAddonType}
           rightAddonPosition={rightAddonPosition}
-          forceAddonWrap={forceAddonWrap}
+          rightAddonClassName={rightAddonClassName}
+          rightAddonForceWrap={rightAddonForceWrap}
+          disableLeftAddonCenteredMedia={disableLeftAddonCenteredMedia}
+          disableRightAddonCenteredMedia={disableRightAddonCenteredMedia}
         >
           {children}
         </ListItemChildren>
         {rippleContainerProps && <RippleContainer {...rippleContainerProps} />}
-      </span>
+      </ContentComponent>
       <TreeGroup
         id={`${id}-group`}
+        depth={depth - 1}
         collapsed={isLeafNode || !expanded}
-        renderChildItems={renderChildItems}
-        disableTransition={disableCollapseTransition}
-      />
+        disableTransition={disableTransition}
+      >
+        {childItems}
+      </TreeGroup>
     </li>
   );
 }

@@ -1,5 +1,10 @@
 import { useMemo } from "react";
-import type { TreeData, TreeItemSorter, TreeItemNode } from "./types";
+import type {
+  TreeItemSorter,
+  RenderableTreeItemNode,
+  TreeItemNode,
+  TreeData,
+} from "./types";
 
 /**
  * This util performantly builds a nested list of tree items from a giant flat
@@ -13,12 +18,12 @@ import type { TreeData, TreeItemSorter, TreeItemNode } from "./types";
  *
  * @internal
  */
-export function buildTree(
+export function buildTree<T extends TreeItemNode>(
   parentId: string | null,
-  nodes: TreeItemNode[],
-  sort: TreeItemSorter
-): readonly Readonly<TreeItemNode>[] | undefined {
-  const childItems: TreeItemNode[] = [];
+  nodes: T[],
+  sort: TreeItemSorter<T>
+): readonly RenderableTreeItemNode<T>[] | undefined {
+  const childItems: RenderableTreeItemNode<T>[] = [];
 
   // doing a "reverse" order filter/move so that the items array shrinks while
   // looping. This makes it so that the entire items array doesn't need to
@@ -46,9 +51,9 @@ export function buildTree(
   return sort(childItems);
 }
 
-export interface TreeItemOptions {
-  data: TreeData;
-  sort: TreeItemSorter;
+export interface TreeItemOptions<T extends TreeItemNode> {
+  data: TreeData<T>;
+  sort: TreeItemSorter<T>;
   rootId: string | null;
 }
 
@@ -56,13 +61,20 @@ export interface TreeItemOptions {
  *
  * @internal
  */
-export function useTreeItems(
-  options: TreeItemOptions
-): readonly Readonly<TreeItemNode>[] {
+export function useTreeItems<T extends TreeItemNode>(
+  options: TreeItemOptions<T>
+): readonly RenderableTreeItemNode<T>[] {
   const { data, sort, rootId } = options;
 
-  return useMemo(
-    () => buildTree(rootId, Object.values(data), sort) || [],
-    [data, rootId, sort]
-  );
+  return useMemo(() => {
+    const values = Object.values(data);
+    const items = buildTree(rootId, values, sort) || [];
+    if (process.env.NODE_ENV !== "production" && values.length) {
+      /* eslint-disable no-console */
+      console.warn(`The following tree items are orphaned without a parent:`);
+      console.warn(values.slice());
+    }
+
+    return items;
+  }, [data, rootId, sort]);
 }

@@ -4,12 +4,21 @@
 @use "@react-md/icon";
 @use "@react-md/list";
 
+$disable-rotator-left: false !default;
+$disable-rotator-left-as-media: false !default;
+$disable-rotator-left-as-media-offset: false !default;
+
 $depth-var: --rmd-tree-depth;
-$padding-incrementor-var: --rmd-tree-item-padding;
+$padding-var: --rmd-tree-item-padding;
 $padding-base-var: --rmd-tree-item-padding-base;
+$padding-incrementor-var: --rmd-tree-item-padding-incrementor;
 
 $padding-incrementor: list.$item-horizontal-padding * 1.5 !default;
-$padding-base: list.$item-keyline !default;
+$padding-base: list.get-var(item-keyline) !default;
+$rotator-right-from: 360deg !default;
+$rotator-right-to: 270deg !default;
+$rotator-left-from: 180deg !default;
+$rotator-left-to: 270deg !default;
 
 $selected-styles: (
   font-weight: core.$font-weight-bold,
@@ -27,25 +36,54 @@ $selected-styles: (
   }
 
   .rmd-tree-item {
+    @include icon.set-var(rotate-from, $rotator-right-from);
+    @include icon.set-var(rotate-to, $rotator-right-to);
+    #{$padding-var}: calc(
+      var(#{$depth-var}) * var($padding-incrementor-var, $padding-incrementor) +
+        var($padding-base-var, $padding-base)
+    );
     list-style: none;
 
+    @if not $disable-rotator-left {
+      &--rotator-left {
+        @include icon.set-var(rotate-from, $rotator-left-from);
+        @include icon.set-var(rotate-to, $rotator-left-to);
+      }
+    }
+
     &__content {
+      &--disabled {
+        cursor: auto;
+
+        &:hover::before {
+          @include core.set-interaction-var(background-color, transparent);
+        }
+      }
+
+      &--link {
+        color: inherit;
+        text-decoration: none;
+      }
+
       &--padded {
-        padding-left: calc(
-          var(#{$depth-var}) *
-            var($padding-incrementor-var, $padding-incrementor) +
-            var($padding-base-var, $padding-base)
+        @include core.auto-rtl(
+          padding-left,
+          var($padding-var),
+          list.get-var(item-horizontal-padding)
         );
       }
 
       &--focused::before {
         .rmd-tree:focus & {
           @include core.keyboard-only {
-            #{core.$interaction-background-color-var}: var(
-              core.$focus-background-color-var,
-              core.$focus-background-color
+            @include core.set-interaction-var(
+              background-color,
+              core.get-interaction-var(focus-background-color)
             );
-            #{core.$outline-color-var}: core.$outline-color;
+            @include core.set-interaction-var(
+              outline-color,
+              core.$outline-color
+            );
           }
         }
       }
@@ -53,6 +91,20 @@ $selected-styles: (
       @if $selected-styles {
         &--selected {
           @include core.map-to-styles($selected-styles);
+        }
+      }
+    }
+
+    @if not $disable-rotator-left-as-media {
+      &__media {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+
+        @if not $disable-rotator-left-as-media-offset {
+          &--single {
+            justify-content: flex-end;
+          }
         }
       }
     }

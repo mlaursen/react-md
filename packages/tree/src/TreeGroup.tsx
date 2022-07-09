@@ -1,39 +1,71 @@
-import type { HTMLAttributes, ReactElement, ReactNode } from "react";
-import { cnb } from "cnbuilder";
 import { useCollapseTransition } from "@react-md/core";
+import { cnb } from "cnbuilder";
 import type { ListProps } from "@react-md/list";
 import { List } from "@react-md/list";
+import type { ReactNode } from "react";
+import { forwardRef } from "react";
 
-const noop = (): undefined => undefined;
+type CSSProperties = React.CSSProperties & {
+  "--rmd-tree-depth": number;
+};
 
-export interface TreeGroupProps extends Omit<ListProps, "children"> {
+export interface TreeGroupProps extends ListProps {
+  children: ReactNode;
+  depth: number;
   collapsed: boolean;
-  renderChildItems?(): ReactNode;
+
+  /** @defaultValue `false` */
   disableTransition?: boolean;
 }
 
-export function TreeGroup(props: TreeGroupProps): ReactElement | null {
-  const {
-    className,
-    renderChildItems = noop,
-    disableTransition = false,
-    collapsed,
-    ...remaining
-  } = props;
-  const { elementProps, rendered } = useCollapseTransition({
-    enter: !disableTransition,
-    exit: !disableTransition,
-    transitionIn: !collapsed,
-    className: cnb("rmd-tree-group", className),
-  });
+export const TreeGroup = forwardRef<HTMLUListElement, TreeGroupProps>(
+  function TreeGroup(props, ref) {
+    const {
+      className,
+      collapsed,
+      depth,
+      onClick,
+      onMouseDown,
+      disableTransition = false,
+      ...remaining
+    } = props;
 
-  if (!rendered) {
-    return null;
+    const style: CSSProperties = {
+      ...remaining.style,
+      "--rmd-tree-depth": depth,
+    };
+
+    const { elementProps, rendered } = useCollapseTransition({
+      style,
+      nodeRef: ref,
+      enter: !disableTransition,
+      exit: !disableTransition,
+      transitionIn: !collapsed,
+      className: cnb("rmd-tree-group", className),
+    });
+
+    if (!rendered) {
+      return null;
+    }
+
+    return (
+      <List
+        {...remaining}
+        onClick={(event) => {
+          onClick?.(event);
+          // always stop propagation for click events and mousedown for groups
+          // so that the parent child item's click and mousedown events aren't
+          // also fired while there are disabled child elementsS or
+          // non-interactable (like dividers or subheader)
+          event.stopPropagation();
+        }}
+        onMouseDown={(event) => {
+          onMouseDown?.(event);
+          event.stopPropagation();
+        }}
+        {...elementProps}
+        role="group"
+      />
+    );
   }
-
-  return (
-    <List {...remaining} {...elementProps} role="group">
-      {renderChildItems()}
-    </List>
-  );
-}
+);
