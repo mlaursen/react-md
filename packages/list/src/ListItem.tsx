@@ -39,10 +39,15 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
       leftAddon,
       leftAddonType = "icon",
       leftAddonPosition = "middle",
+      leftAddonClassName,
+      leftAddonForceWrap,
       rightAddon,
       rightAddonType = "icon",
       rightAddonPosition = "middle",
-      forceAddonWrap,
+      rightAddonClassName,
+      rightAddonForceWrap,
+      disableLeftAddonCenteredMedia = false,
+      disableRightAddonCenteredMedia = false,
       threeLines = false,
       disabled = false,
       disabledOpacity = false,
@@ -114,10 +119,15 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
           leftAddon={leftAddon}
           leftAddonType={leftAddonType}
           leftAddonPosition={leftAddonPosition}
+          leftAddonClassName={leftAddonClassName}
+          leftAddonForceWrap={leftAddonForceWrap}
           rightAddon={rightAddon}
           rightAddonType={rightAddonType}
           rightAddonPosition={rightAddonPosition}
-          forceAddonWrap={forceAddonWrap}
+          rightAddonClassName={rightAddonClassName}
+          rightAddonForceWrap={rightAddonForceWrap}
+          disableLeftAddonCenteredMedia={disableLeftAddonCenteredMedia}
+          disableRightAddonCenteredMedia={disableRightAddonCenteredMedia}
         >
           {children}
         </ListItemChildren>

@@ -484,7 +484,7 @@ export interface CSSTransitionHookOptions<E extends HTMLElement>
  * @remarks \@since 4.0.0
  */
 export interface CSSTransitionElementProps<E extends HTMLElement> {
-  /** {@inheritDoc TransitionHookReturnValue.ref} */
+  /** @see {@link TransitionHookReturnValue.ref} */
   ref: RefCallback<E>;
 
   /**

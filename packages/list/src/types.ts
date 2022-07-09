@@ -47,6 +47,17 @@ export interface ListItemChildrenAddonProps {
   leftAddonPosition?: ListItemAddonPosition;
 
   /**
+   * @remarks \@since 6.0.0
+   */
+  leftAddonClassName?: string;
+
+  /**
+   * @defaultValue `leftAddonType === "media" || leftAddonType === "large-media"`
+   * @remarks \@since 6.0.0
+   */
+  leftAddonForceWrap?: boolean;
+
+  /**
    * An optional addon to display to the right of the `primaryText` or
    * `children` and should be used with the `rightAddonType` prop to adjust
    * spacing.
@@ -70,11 +81,27 @@ export interface ListItemChildrenAddonProps {
   rightAddonPosition?: ListItemAddonPosition;
 
   /**
-   * Boolean if the left and/or right addons should be "forcefully" wrapped in a
-   * `<span>` with the spacing class names applied instead of attempting to
-   * clone it into the provided icon element.
+   * @remarks \@since 6.0.0
    */
-  forceAddonWrap?: boolean;
+  rightAddonClassName?: string;
+
+  /**
+   * @defaultValue `rightAddonType === "media" || rightAddonType === "large-media"`
+   * @remarks \@since 6.0.0
+   */
+  rightAddonForceWrap?: boolean;
+
+  /**
+   * @defaultValue `false`
+   * @remarks \@since 6.0.0
+   */
+  disableLeftAddonCenteredMedia?: boolean;
+
+  /**
+   * @defaultValue `false`
+   * @remarks \@since 6.0.0
+   */
+  disableRightAddonCenteredMedia?: boolean;
 }
 
 export interface ListItemChildrenProps extends ListItemChildrenAddonProps {

@@ -144,6 +144,21 @@ export interface ListItemAddonClassNameOptions {
    * @defaultValue `false`
    */
   addonAfter?: boolean;
+
+  /**
+   * The media items are centered by default using:
+   * ```scss
+   * align-items: center;
+   * display: flex;
+   * justify-content: center;
+   * ```
+   *
+   * When this is set to `true`, the flex styles will not be applied.
+   *
+   * @defaultValue `false`
+   * @remarks \@since 6.0.0
+   */
+  disableCenteredMedia?: boolean;
 }
 
 /**
@@ -158,6 +173,7 @@ export function getListItemAddonClassName(
     position = "middle",
     className,
     addonAfter = false,
+    disableCenteredMedia = false,
   } = options;
 
   const isMedia = type === "media" || type === "large-media";
@@ -170,6 +186,7 @@ export function getListItemAddonClassName(
       "avatar-before": !addonAfter && isAvatar,
       media: isMedia,
       "media-large": type === "large-media",
+      "media-centered": isMedia && !disableCenteredMedia,
     }),
     className
   );

@@ -9,8 +9,9 @@ import { useCrossFadeTransition } from "./useCrossFadeTransition";
 /**
  * @typeParam E - An HTMLElement type used for the ref required for the
  * transition.
- * @remarks \@since 2.0.0
- * @remarks \@since 4.0.0 Updated for the new CSS Transition API
+ * @remarks
+ * \@since 2.0.0
+ * \@since 4.0.0 Updated for the new CSS Transition API
  */
 export interface CrossFadeProps<E extends HTMLElement>
   extends CrossFadeTransitionHookOptions<E>,
@@ -85,9 +86,10 @@ export interface CrossFadeProps<E extends HTMLElement>
  *
  * @typeParam E - An HTMLElement type used for the ref required for the
  * transition.
- * @remarks \@since 2.0.0
- * @remarks \@since 4.0.0 Updated for the new CSS Transition API and no longer
- * supports wrapping children in a `<div>`.
+ * @remarks
+ * \@since 2.0.0
+ * \@since 4.0.0 Updated for the new CSS Transition API and no longer supports
+ * wrapping children in a `<div>`.
  */
 export function CrossFade<E extends HTMLElement>(
   props: CrossFadeProps<E>

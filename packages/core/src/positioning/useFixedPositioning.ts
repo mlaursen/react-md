@@ -1,12 +1,12 @@
-import type { CSSProperties, RefCallback, Ref, RefObject } from "react";
+import type { CSSProperties, Ref, RefCallback, RefObject } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { CalculateFixedPositionOptions } from "./types";
+import { delegateEvent } from "../events/delegateEvent";
 import type { TransitionCallbacks } from "../transition";
-import { BELOW_CENTER_ANCHOR } from "./constants";
-import { getFixedPosition } from "./getFixedPosition";
 import { useEnsuredRef } from "../useEnsuredRef";
 import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect";
-import { delegateEvent } from "../events/delegateEvent";
+import { BELOW_CENTER_ANCHOR } from "./constants";
+import { getFixedPosition } from "./getFixedPosition";
+import type { CalculateFixedPositionOptions } from "./types";
 import { isWithinViewport } from "./utils";
 
 /**
@@ -105,7 +105,7 @@ export interface FixedPositioningOptions<
    * is visible.
    */
   onResize?: EventListener;
-  /** {@inheritDoc TransitionScrollCallback} */
+  /** @see {@link TransitionScrollCallback} */
   onScroll?: TransitionScrollCallback<FixedToElement, FixedElement>;
 }
 
@@ -118,7 +118,7 @@ export interface FixedPositioningHookReturnValue<E extends HTMLElement> {
    * A ref that should be passed to a component for the fixed positioning
    * behavior to work correctly.
    *
-   * This should really only be used if the {@link transitionOptions} is not
+   * This should really only be used if the {@link TransitionOptions} is not
    * being used.
    */
   ref: RefCallback<E>;

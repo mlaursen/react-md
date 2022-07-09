@@ -89,7 +89,7 @@ export const getLastFocusableIndex = (
  * @remarks \@since 5.0.0
  * @internal
  */
-interface NextFocusableIndexOptions {
+export interface NextFocusableIndexOptions {
   loopable: boolean;
   watching: readonly KeyboardFocusElementData[];
   increment: boolean;

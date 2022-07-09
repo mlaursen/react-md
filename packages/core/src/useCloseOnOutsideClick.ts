@@ -2,6 +2,8 @@ import type { RefObject } from "react";
 import { useEffect, useRef } from "react";
 import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect";
 
+const EMPTY_LIST = [] as const;
+
 export interface CloseOnOutsideClickOptions {
   active: boolean;
   onRequestClose(event: MouseEvent): void;
@@ -44,7 +46,12 @@ export interface CloseOnOutsideClickOptions {
 export function useCloseOnOutsideClick(
   options: CloseOnOutsideClickOptions
 ): void {
-  const { active, onRequestClose, targetRef, otherTargetRefs = [] } = options;
+  const {
+    active,
+    onRequestClose,
+    targetRef,
+    otherTargetRefs = EMPTY_LIST,
+  } = options;
   const configRef = useRef({
     onRequestClose,
     targetRef,

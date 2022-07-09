@@ -76,3 +76,21 @@ export interface NonNullRef<T> {
 
 /** @remarks \@since 6.0.0 */
 export type HtmlTagName = keyof JSX.IntrinsicElements;
+
+/**
+ * A function to get a string from a generic item.
+ *
+ * @example
+ * Simple Example
+ * ```ts
+ * interface Item {
+ *   name: string;
+ * }
+ *
+ * const items: Item[] = [{ name: 'Hello' }, { name: 'World' }];
+ *
+ * const extractor: TextExtractor<Item> = (item) => item.name;
+ * ```
+ * @remarks \@since 6.0.0
+ */
+export type TextExtractor<T> = (item: T) => string;

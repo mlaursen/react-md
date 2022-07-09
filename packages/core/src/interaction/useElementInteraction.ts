@@ -241,6 +241,10 @@ export function useElementInteraction<E extends HTMLElement>(
     handlers: {
       onClick: useCallback(
         (event: MouseEvent<E>) => {
+          if (disabled) {
+            return;
+          }
+
           onClick(event);
           if (
             event.isPropagationStopped() ||
@@ -254,7 +258,7 @@ export function useElementInteraction<E extends HTMLElement>(
           event.stopPropagation();
           dispatch({ type: "press", style: getRippleStyle(event, true) });
         },
-        [mode, onClick]
+        [disabled, mode, onClick]
       ),
       onMouseDown: useCallback(
         (event: MouseEvent<E>) => {
@@ -287,7 +291,7 @@ export function useElementInteraction<E extends HTMLElement>(
 
           dispatch({ type: "press", style });
         },
-        [mode, isInteractionDisabled, onMouseDown, userMode]
+        [onMouseDown, isInteractionDisabled, userMode, mode]
       ),
       onMouseUp: useCallback(
         (event: MouseEvent<E>) => {

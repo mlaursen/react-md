@@ -11,8 +11,10 @@ import { useCollapseTransition } from "./useCollapseTransition";
 /**
  * @typeParam E - An HTMLElement type used for the ref required for the
  * transition.
- * @remarks \@since 2.0.0
- * @remarks \@since 4.0.0 Updated for the new CSS Transition API.
+ *
+ * @remarks
+ * \@since 2.0.0
+ * \@since 4.0.0 Updated for the new CSS Transition API.
  */
 export interface CollapseProps<E extends HTMLElement>
   extends Omit<CollapseTransitionHookOptions<E>, "transitionIn"> {
@@ -62,8 +64,9 @@ export interface CollapseProps<E extends HTMLElement>
  * @see {@link useCollapseTransition} for additional examples
  * @typeParam E - An HTMLElement type used for the ref required for the
  * transition.
- * @remarks \@since 2.0.0
- * @remarks \@since 4.0.0 Updated for the new CSS Transition API.
+ * @remarks
+ * \@since 2.0.0
+ * \@since 4.0.0 Updated for the new CSS Transition API.
  */
 export function Collapse<E extends HTMLElement>(
   props: CollapseProps<E>

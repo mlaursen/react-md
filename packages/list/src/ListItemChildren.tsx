@@ -26,10 +26,15 @@ export function ListItemChildren(props: ListItemChildrenProps): ReactElement {
     leftAddon,
     leftAddonType = "icon",
     leftAddonPosition = "middle",
+    leftAddonClassName,
+    leftAddonForceWrap,
+    disableLeftAddonCenteredMedia,
     rightAddon,
     rightAddonType = "icon",
     rightAddonPosition = "middle",
-    forceAddonWrap,
+    rightAddonClassName,
+    rightAddonForceWrap,
+    disableRightAddonCenteredMedia,
     children: propChildren,
   } = props;
 
@@ -55,7 +60,9 @@ export function ListItemChildren(props: ListItemChildrenProps): ReactElement {
       addon={leftAddon}
       type={leftAddonType}
       position={leftAddonPosition}
-      forceAddonWrap={forceAddonWrap}
+      className={leftAddonClassName}
+      forceAddonWrap={leftAddonForceWrap}
+      disableCenteredMedia={disableLeftAddonCenteredMedia}
     >
       {children}
     </ListItemAddon>
@@ -66,7 +73,9 @@ export function ListItemChildren(props: ListItemChildrenProps): ReactElement {
       addonAfter
       type={rightAddonType}
       position={rightAddonPosition}
-      forceAddonWrap={forceAddonWrap}
+      className={rightAddonClassName}
+      forceAddonWrap={rightAddonForceWrap}
+      disableCenteredMedia={disableRightAddonCenteredMedia}
     >
       {children}
     </ListItemAddon>

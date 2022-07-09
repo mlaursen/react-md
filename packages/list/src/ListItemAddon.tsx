@@ -1,9 +1,6 @@
-import type { ReactElement, ReactNode } from "react";
-import { cnb } from "cnbuilder";
-import { bem } from "@react-md/core";
 import type { TextIconSpacingProps } from "@react-md/icon";
 import { TextIconSpacing } from "@react-md/icon";
-import { ListItemAddonPosition, ListItemAddonType } from "./types";
+import type { ReactElement, ReactNode } from "react";
 import type { ListItemAddonClassNameOptions } from "./styles";
 import { getListItemAddonClassName } from "./styles";
 
@@ -16,11 +13,7 @@ export interface ListItemAddonProps
   addon: ReactNode;
 
   /**
-   * Boolean if the addon should be forced into a `<span>` with the class names
-   * applied instead of attempting to clone into the provided icon. If the
-   * `type` is set to `"media"` or `"large-media"`, this will default to `true`.
-   *
-   * @defaultValue `false`
+   * @defaultValue `type === "media" || type === "large-media"`
    */
   forceAddonWrap?: boolean;
 }
@@ -38,6 +31,7 @@ export function ListItemAddon(props: ListItemAddonProps): ReactElement {
     type = "icon",
     position = "middle",
     forceAddonWrap,
+    disableCenteredMedia = false,
     ...remaining
   } = props;
 
@@ -53,6 +47,7 @@ export function ListItemAddon(props: ListItemAddonProps): ReactElement {
         position,
         className,
         addonAfter,
+        disableCenteredMedia,
       })}
       iconAfter={addonAfter}
     >

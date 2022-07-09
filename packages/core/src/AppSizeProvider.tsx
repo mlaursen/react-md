@@ -137,7 +137,7 @@ export interface AppSizeQueries {
    * The min width for a desktop screen.
    *
    * @defaultValue `64.0625em`
-   * @see {@Link DEFAULT_DESKTOP_MIN_WIDTH}
+   * @see {@link DEFAULT_DESKTOP_MIN_WIDTH}
    */
   desktopMinWidth?: QuerySize;
 
@@ -145,7 +145,7 @@ export interface AppSizeQueries {
    * The min width for a large (1440p, 4k, etc) desktop screen.
    *
    * @defaultValue `80em`
-   * @see {@Link DEFAULT_DESKTOP_LARGE_MIN_WIDTH}
+   * @see {@link DEFAULT_DESKTOP_LARGE_MIN_WIDTH}
    */
   desktopLargeMinWidth?: QuerySize;
 }

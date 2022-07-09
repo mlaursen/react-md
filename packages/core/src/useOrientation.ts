@@ -5,7 +5,7 @@ import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect";
  * An extremely simple "polyfill" for the `window.screen.orientation` just for
  * the `type` value that is required for the `useOrientation` hook.
  *
- * @see {@Link https://caniuse.com/screen-orientation}
+ * @see {@link https://caniuse.com/screen-orientation}
  * @returns the orientation type either from the `window.screen.orientation` or
  * by comparing the `availHeight` and `availWidth` on the `window.screen`
  * @internal
@@ -34,7 +34,7 @@ export const getOrientationType = (): OrientationType => {
  * instead.
  *
  * @internal
- * @see {@Link https://caniuse.com/screen-orientation}
+ * @see {@link https://caniuse.com/screen-orientation}
  * @returns the current orientation type
  */
 export function useOrientation(): OrientationType {

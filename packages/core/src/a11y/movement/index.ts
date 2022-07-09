@@ -7,3 +7,4 @@ export * from "./useActiveDescendant";
 export * from "./useActiveDescendantFocus";
 export * from "./useKeyboardFocus";
 export * from "./useKeyboardFocusableElement";
+export * from "./utils";

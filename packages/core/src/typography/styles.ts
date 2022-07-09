@@ -107,17 +107,17 @@ export interface TypographyClassNameOptions {
    */
   type?: TypographyType;
 
-  /** {@inheritdoc TextAlign} */
+  /** {@inheritDoc TextAlign} */
   align?: TextAlign;
-  /** {@inheritdoc TextColor} */
+  /** {@inheritDoc TextColor} */
   textColor?: TextColor;
-  /** {@inheritdoc TextDecoration} */
+  /** {@inheritDoc TextDecoration} */
   decoration?: TextDecoration;
-  /** {@inheritdoc TextTransform} */
+  /** {@inheritDoc TextTransform} */
   transform?: TextTransform;
-  /** {@inheritdoc FontWeight} */
+  /** {@inheritDoc FontWeight} */
   weight?: FontWeight;
-  /** {@inheritdoc FontStyle} */
+  /** {@inheritDoc FontStyle} */
   fontStyle?: FontStyle;
   /**
    * @see {@link TypographyMargin}

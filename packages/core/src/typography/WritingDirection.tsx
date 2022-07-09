@@ -50,7 +50,7 @@ const context = createContext<InheritableContext>({
   },
 });
 context.displayName = "WritingDirection";
-const { Provider: WritingDirectionProvider } = context;
+const { Provider } = context;
 
 /**
  * Gets the writing direction context which provides access to the current `dir`
@@ -222,7 +222,5 @@ export function WritingDirection(props: WritingDirectionProps): ReactElement {
     child = cloneElement(child, { dir });
   }
 
-  return (
-    <WritingDirectionProvider value={value}>{child}</WritingDirectionProvider>
-  );
+  return <Provider value={value}>{child}</Provider>;
 }

@@ -11,8 +11,9 @@ import { useCSSTransition } from "./useCSSTransition";
  * The default {@link CSSTransitionClassNames} for a horizontal scale
  * transition.
  *
- * @remarks \@since 2.0.0
- * @remarks \@since 6.0.0 The class names were updated to be prefixed with
+ * @remarks
+ * \@since 2.0.0
+ * \@since 6.0.0 The class names were updated to be prefixed with
  * `rmd-scale-transition`
  */
 export const SCALE_CLASSNAMES: Readonly<CSSTransitionClassNamesObject> = {
@@ -28,8 +29,9 @@ export const SCALE_CLASSNAMES: Readonly<CSSTransitionClassNamesObject> = {
 /**
  * The default {@link CSSTransitionClassNames} for a vertical scale transition.
  *
- * @remarks \@since 2.0.0
- * @remarks \@since 6.0.0 The class names were updated to be prefixed with
+ * @remarks
+ * \@since 2.0.0
+ * \@since 6.0.0 The class names were updated to be prefixed with
  * `rmd-scale-y-transition` and merged with the {@link SCALE_CLASSNAMES}
  */
 export const SCALE_Y_CLASSNAMES: Readonly<CSSTransitionClassNamesObject> = {
