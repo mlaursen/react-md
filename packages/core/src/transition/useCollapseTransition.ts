@@ -350,75 +350,76 @@ export function useCollapseTransition<E extends HTMLElement>(
     exit,
   });
 
-  const { appearing, rendered, ref, stage, transitionTo } = useTransition({
-    nodeRef: refCallback,
-    timeout,
-    transitionIn,
-    reflow: true,
-    appear,
-    enter,
-    exit,
-    temporary,
-    onEnter(appearing) {
-      onEnter?.(appearing);
-      setStyle({
-        maxHeight: minHeight,
-        paddingTop: minPaddingTop,
-        paddingBottom: minPaddingBottom,
-      });
-    },
-    onEntering(appearing) {
-      onEntering?.(appearing);
-      const { maxHeight, paddingTop, paddingBottom } = getElementSizing(
-        nodeRef.current
-      );
+  const { appearing, rendered, ref, stage, transitionTo, disablePortal } =
+    useTransition({
+      nodeRef: refCallback,
+      timeout,
+      transitionIn,
+      reflow: true,
+      appear,
+      enter,
+      exit,
+      temporary,
+      onEnter(appearing) {
+        onEnter?.(appearing);
+        setStyle({
+          maxHeight: minHeight,
+          paddingTop: minPaddingTop,
+          paddingBottom: minPaddingBottom,
+        });
+      },
+      onEntering(appearing) {
+        onEntering?.(appearing);
+        const { maxHeight, paddingTop, paddingBottom } = getElementSizing(
+          nodeRef.current
+        );
 
-      const duration = appearing
-        ? transitionTimeout.appear
-        : transitionTimeout.enter;
+        const duration = appearing
+          ? transitionTimeout.appear
+          : transitionTimeout.enter;
 
-      setStyle({
-        maxHeight,
-        paddingTop,
-        paddingBottom,
-        transitionDuration: `${duration}ms`,
-      });
-    },
-    onEntered(appearing) {
-      onEntered?.(appearing);
-      setStyle(undefined);
-    },
-    onExit() {
-      onExit?.();
-      const { maxHeight, paddingTop, paddingBottom } = getElementSizing(
-        nodeRef.current
-      );
+        setStyle({
+          maxHeight,
+          paddingTop,
+          paddingBottom,
+          transitionDuration: `${duration}ms`,
+        });
+      },
+      onEntered(appearing) {
+        onEntered?.(appearing);
+        setStyle(undefined);
+      },
+      onExit() {
+        onExit?.();
+        const { maxHeight, paddingTop, paddingBottom } = getElementSizing(
+          nodeRef.current
+        );
 
-      setStyle({
-        maxHeight,
-        paddingTop,
-        paddingBottom,
-        transitionDuration: `${transitionTimeout.exit}ms`,
-      });
-    },
-    onExiting() {
-      onExiting?.();
-      setStyle({
-        maxHeight: minHeight,
-        paddingTop: minPaddingTop,
-        paddingBottom: minPaddingBottom,
-        transitionDuration: `${transitionTimeout.exit}ms`,
-      });
-    },
-    onExited() {
-      onExited?.();
-      setStyle({
-        maxHeight: minHeight,
-        paddingTop: minPaddingTop,
-        paddingBottom: minPaddingBottom,
-      });
-    },
-  });
+        setStyle({
+          maxHeight,
+          paddingTop,
+          paddingBottom,
+          transitionDuration: `${transitionTimeout.exit}ms`,
+        });
+      },
+      onExiting() {
+        onExiting?.();
+        setStyle({
+          maxHeight: minHeight,
+          paddingTop: minPaddingTop,
+          paddingBottom: minPaddingBottom,
+          transitionDuration: `${transitionTimeout.exit}ms`,
+        });
+      },
+      onExited() {
+        onExited?.();
+        setStyle({
+          maxHeight: minHeight,
+          paddingTop: minPaddingTop,
+          paddingBottom: minPaddingBottom,
+        });
+      },
+    });
   const entering = stage === "enter" || stage === "entering";
   const exiting = stage === "exit" || stage === "exiting";
   const collapsible =
@@ -454,5 +455,6 @@ export function useCollapseTransition<E extends HTMLElement>(
     appearing,
     elementProps,
     transitionTo,
+    disablePortal,
   };
 }

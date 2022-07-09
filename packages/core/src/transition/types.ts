@@ -450,6 +450,19 @@ export interface TransitionHookReturnValue<E extends HTMLElement>
    * @param stage - The {@link TransitionStage} to set to
    */
   transitionTo(stage: TransitionStage): void;
+
+  /**
+   * This is mostly used internally to make it so that you can render portalled
+   * elements inline with content if SSR is enabled in your app. To enable this
+   * feature, the {@link CoreProvidersProps.ssr} must be set to `true`.
+   *
+   * This value will be `true` if a portalled element was rendered by default
+   * from the server and remain true until it unmounts from the DOM.
+   *
+   * @defaultValue `false`
+   * @remarks \@since 6.0.0
+   */
+  disablePortal: boolean;
 }
 
 /**

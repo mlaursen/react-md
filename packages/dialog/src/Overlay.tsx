@@ -46,7 +46,8 @@ export const Overlay = forwardRef<HTMLSpanElement, OverlayProps>(
       onExited,
       ...remaining
     } = props;
-    const { elementProps, rendered } = useCSSTransition({
+
+    const { elementProps, rendered, disablePortal } = useCSSTransition({
       nodeRef,
       transitionIn: visible,
       timeout,
@@ -69,7 +70,7 @@ export const Overlay = forwardRef<HTMLSpanElement, OverlayProps>(
     });
 
     return (
-      <Portal>
+      <Portal disabled={disablePortal}>
         {rendered && (
           <span {...remaining} {...elementProps}>
             {children}

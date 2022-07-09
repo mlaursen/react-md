@@ -1,8 +1,9 @@
-import type { CSSProperties } from "react";
-import { useMemo } from "react";
 import { cnb } from "cnbuilder";
-import { randomInt } from "../randomInt";
+import type { CSSProperties } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { bem } from "../bem";
+import { randomInt } from "../randomInt";
+import { useSsr } from "../SsrProvider";
 
 const styles = bem("rmd-skeleton-placeholder");
 
@@ -44,14 +45,39 @@ export function useSkeletonPlaceholder(
     minPercentage = 40,
     maxPercentage = 85,
   } = options;
+  const ssr = useSsr();
+
+  const [randomPercentage, setRandomPercentage] = useState<string | undefined>(
+    () => {
+      if (typeof window === "undefined" || ssr) {
+        return;
+      }
+
+      return `${randomInt({ min: minPercentage, max: maxPercentage })}%`;
+    }
+  );
+
+  useEffect(() => {
+    if (!ssr || !active || typeof propWidth === "undefined") {
+      return;
+    }
+
+    setRandomPercentage(
+      `${randomInt({ min: minPercentage, max: maxPercentage })}%`
+    );
+  }, [active, maxPercentage, minPercentage, propWidth, ssr]);
 
   const width = useMemo(() => {
     if (!active || typeof propWidth !== "undefined") {
       return propWidth;
     }
 
+    if (ssr) {
+      return randomPercentage;
+    }
+
     return `${randomInt({ min: minPercentage, max: maxPercentage })}%`;
-  }, [active, maxPercentage, minPercentage, propWidth]);
+  }, [active, maxPercentage, minPercentage, propWidth, randomPercentage, ssr]);
 
   let style: CSSProperties | undefined = propStyle;
   if (typeof width !== "undefined" || typeof height !== "undefined") {

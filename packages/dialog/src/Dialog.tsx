@@ -9,10 +9,11 @@ import {
   ScrollLock,
   useCSSTransition,
   useEnsuredId,
+  useEnsuredRef,
 } from "@react-md/core";
-import { useEnsuredRef } from "packages/core/src/useEnsuredRef";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useRef } from "react";
+
 import { DialogContainer } from "./DialogContainer";
 import { Overlay } from "./Overlay";
 import type { DialogClassNameOptions } from "./styles";
@@ -105,7 +106,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
 
   const prevFocus = useRef<HTMLElement | null>(null);
   const [nodeRef, refCallback] = useEnsuredRef(ref);
-  const { elementProps, rendered } = useCSSTransition({
+  const { elementProps, rendered, disablePortal } = useCSSTransition({
     nodeRef: refCallback,
     transitionIn: visible,
     timeout,
@@ -143,7 +144,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
           hidden={overlayHidden}
         />
       )}
-      <Portal>
+      <Portal disabled={disablePortal}>
         {rendered && (
           <DialogContainer {...containerProps} enabled={type === "centered"}>
             <div

@@ -1,4 +1,5 @@
-import { useReducer, useRef } from "react";
+import { useReducer, useRef, useState } from "react";
+import { useSsr } from "../SsrProvider";
 import { useEnsuredRef } from "../useEnsuredRef";
 import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect";
 
@@ -82,7 +83,9 @@ export function useTransition<E extends HTMLElement>(
     timeout,
   ]);
 
+  const ssr = useSsr();
   const [ref, refCallback] = useEnsuredRef<E>(nodeRef);
+  const [disablePortal, setDisablePortal] = useState(ssr);
   const [state, dispatch] = useReducer(
     function reducer(
       state: TransitionState,
@@ -207,6 +210,7 @@ export function useTransition<E extends HTMLElement>(
         break;
       case "exited":
         onExited?.();
+        setDisablePortal(false);
         break;
     }
 
@@ -238,5 +242,6 @@ export function useTransition<E extends HTMLElement>(
     rendered,
     appearing,
     transitionTo: dispatch,
+    disablePortal,
   };
 }

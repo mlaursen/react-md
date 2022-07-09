@@ -169,14 +169,15 @@ export function useCSSTransition<E extends HTMLElement>(
     ...transitionOptions
   } = options;
 
-  const { ref, stage, rendered, appearing, transitionTo } = useTransition({
-    ...transitionOptions,
-    appear,
-    enter,
-    exit,
-    timeout,
-    reflow: true,
-  });
+  const { ref, stage, rendered, appearing, transitionTo, disablePortal } =
+    useTransition({
+      ...transitionOptions,
+      appear,
+      enter,
+      exit,
+      timeout,
+      reflow: true,
+    });
   const isEntering = stage === "entering";
   const isEnter = isEntering || stage === "enter";
   const isEntered = stage === "entered";
@@ -217,5 +218,6 @@ export function useCSSTransition<E extends HTMLElement>(
     appearing,
     elementProps,
     transitionTo,
+    disablePortal,
   };
 }

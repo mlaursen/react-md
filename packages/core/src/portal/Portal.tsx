@@ -35,7 +35,7 @@ export interface PortalProps {
 export function Portal(props: PortalProps): ReactElement {
   const { children, disabled = false } = props;
   const container = usePortalContainer();
-  if (!container) {
+  if (!container || disabled) {
     return <>{disabled && children}</>;
   }
 

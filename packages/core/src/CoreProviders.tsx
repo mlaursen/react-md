@@ -8,6 +8,7 @@ import {
 } from "./interaction";
 import type { PortalContainer } from "./portal/PortalContainerProvider";
 import { PortalContainerProvider } from "./portal/PortalContainerProvider";
+import { SsrProvider } from "./SsrProvider";
 import type { ColorSchemeMode } from "./theme/ColorSchemeProvider";
 import { ColorSchemeProvider } from "./theme/ColorSchemeProvider";
 import type { DefaultDir } from "./typography/WritingDirection";
@@ -29,8 +30,8 @@ export interface CoreProvidersProps {
   elementInteractionMode?: ElementInteractionMode;
 
   /**
+   * @see {@link ElementInteractionProviderProps.disableHigherContrast}
    * @defaultValue `false`
-   * {@inheritDoc ElementInteractionProviderProps.disableHigherContrast}
    */
   disableHigherContrast?: boolean;
 
@@ -43,6 +44,11 @@ export interface CoreProvidersProps {
    */
   defaultDir?: DefaultDir;
 
+  /**
+   * @defaultValue `false`
+   */
+  ssr?: boolean;
+
   colorSchemeMode?: ColorSchemeMode;
 
   children: ReactNode;
@@ -50,6 +56,7 @@ export interface CoreProvidersProps {
 
 export function CoreProviders(props: CoreProvidersProps): ReactElement {
   const {
+    ssr = false,
     appSizeQueries = DEFAULT_APP_SIZE_QUERIES,
     elementInteractionMode = "ripple",
     disableHigherContrast = false,
@@ -59,21 +66,23 @@ export function CoreProviders(props: CoreProvidersProps): ReactElement {
     children,
   } = props;
   return (
-    <ColorSchemeProvider mode={colorSchemeMode}>
-      <WritingDirection defaultDir={defaultDir}>
-        <PortalContainerProvider container={portalContainer}>
-          <UserInteractionModeProvider>
-            <AppSizeProvider {...appSizeQueries}>
-              <ElementInteractionProvider
-                mode={elementInteractionMode}
-                disableHigherContrast={disableHigherContrast}
-              >
-                {children}
-              </ElementInteractionProvider>
-            </AppSizeProvider>
-          </UserInteractionModeProvider>
-        </PortalContainerProvider>
-      </WritingDirection>
-    </ColorSchemeProvider>
+    <SsrProvider ssr={ssr}>
+      <ColorSchemeProvider mode={colorSchemeMode}>
+        <WritingDirection defaultDir={defaultDir}>
+          <PortalContainerProvider container={portalContainer}>
+            <UserInteractionModeProvider>
+              <AppSizeProvider {...appSizeQueries}>
+                <ElementInteractionProvider
+                  mode={elementInteractionMode}
+                  disableHigherContrast={disableHigherContrast}
+                >
+                  {children}
+                </ElementInteractionProvider>
+              </AppSizeProvider>
+            </UserInteractionModeProvider>
+          </PortalContainerProvider>
+        </WritingDirection>
+      </ColorSchemeProvider>
+    </SsrProvider>
   );
 }
