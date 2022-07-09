@@ -46,3 +46,7 @@ yarn-error.log*
 
 # updating icons
 /material-design-icons
+
+/packages/material-icons/*.mjs
+/packages/material-icons/*.cjs
+/packages/material-icons/*.d.ts

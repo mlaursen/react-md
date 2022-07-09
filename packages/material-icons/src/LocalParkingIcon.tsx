@@ -1,0 +1,14 @@
+import { forwardRef } from "react";
+import type { SVGIconProps } from "@react-md/icon";
+import { SVGIcon } from "@react-md/icon";
+
+export default forwardRef<SVGSVGElement, SVGIconProps>(
+  function LocalParkingIcon(props, ref) {
+    return (
+      <SVGIcon {...props} ref={ref}>
+        <path d="M0 0h24v24H0z" fill="none" />
+        <path d="M13 3H6v18h4v-6h3c3.31 0 6-2.69 6-6s-2.69-6-6-6zm.2 8H10V7h3.2c1.1 0 2 .9 2 2s-.9 2-2 2z" />
+      </SVGIcon>
+    );
+  }
+);

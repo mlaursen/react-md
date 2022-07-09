@@ -3,9 +3,6 @@
   "version": "6.0.0-alpha.0",
   "description": "Icon components and styles for react-md",
   "type": "module",
-  "main": "./cjs/index.cjs",
-  "module": "./mjs/index.mjs",
-  "types": "./types/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mlaursen/react-md.git",

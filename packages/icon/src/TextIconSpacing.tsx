@@ -131,8 +131,6 @@ export interface TextIconSpacingProps {
  *   );
  * }
  * ```
- *
- * @example
  */
 export function TextIconSpacing(props: TextIconSpacingProps): ReactElement {
   const {
