@@ -13,20 +13,7 @@ $disable-floating: false !default;
 $disable-floating-absolute-position: false !default;
 $disable-circular-progress: progress.$disable-circular !default;
 
-$background-color-var: --rmd-button-background-color;
-$color-var: --rmd-button-color;
-$border-radius-var: --rmd-button-text-border-radius;
-$outline-color-var: --rmd-button-outline-color;
-$contained-background-color-var: --rmd-button-contained-background-color;
-$contained-color-var: --rmd-button-contained-color;
-
 $themes: primary secondary warning error disabled !default;
-
-$text-horizontal-padding-var: --rmd-button-text-horizontal-padding;
-$text-vertical-padding-var: --rmd-button-text-vertical-padding;
-$text-min-height-var: --rmd-button-text-min-height;
-$text-min-width-var: --rmd-button-text-min-width;
-$icon-size-var: --rmd-button-icon-size;
 
 $text-border-radius: 0.5rem !default;
 $text-horizontal-padding: 1rem !default;
@@ -40,7 +27,7 @@ $icon-size: 3rem !default;
 
 $outline-width: 1px !default;
 
-$clear-color: var(core.$text-primary-color-var) !default;
+$clear-color: core.get-theme-var(text-primary-color) !default;
 $clear-outline-color: #999 !default;
 
 $contained-elevation: 2 !default;
@@ -50,7 +37,7 @@ $clear-contained-color: core.contrast-color(
   $clear-contained-background-color
 ) !default;
 
-$circular-progress-size: var(icon.$size-var) !default;
+$circular-progress-size: icon.get-var(size) !default;
 
 $floating-margin: 1.5rem !default;
 $floating-z-index: core.$temporary-element-z-index !default;
@@ -73,19 +60,96 @@ $floating-positions: (
   ),
 ) !default;
 
+$var-lookup: (
+  background-color: (
+    var: --rmd-button-background-color,
+    value: transparent,
+  ),
+  color: (
+    var: --rmd-button-color,
+    value: null,
+  ),
+  border-radius: (
+    var: --rmd-button-border-radius,
+    value: null,
+  ),
+  outline-color: (
+    var: --rmd-button-outline-color,
+    value: $clear-outline-color,
+  ),
+  contained-background-color: (
+    var: --rmd-button-contained-background-color,
+    value: $clear-contained-background-color,
+  ),
+  contained-color: (
+    var: --rmd-button-contained-color,
+    value: $clear-contained-color,
+  ),
+  text-horizontal-padding: (
+    var: --rmd-button-text-horizontal-padding,
+    value: $text-horizontal-padding,
+  ),
+  text-vertical-padding: (
+    var: --rmd-button-text-vertical-padding,
+    value: $text-vertical-padding,
+  ),
+  text-min-height: (
+    var: --rmd-button-text-min-height,
+    value: $text-min-height,
+  ),
+  text-min-width: (
+    var: --rmd-button-text-min-width,
+    value: $text-min-width,
+  ),
+  icon-size: (
+    var: --rmd-button-icon-size,
+    value: $icon-size,
+  ),
+);
+
+@function get-var($name, $fallback: null) {
+  $found: core.validate($var-lookup, $name, "button var");
+  $var: map.get($found, var);
+  $value: if($fallback, $fallback, map.get($found, value));
+
+  @if $value {
+    @return var(#{$var}, #{$value});
+  }
+
+  @return var(#{$var});
+}
+
+@mixin set-var($name, $value) {
+  $var: map.get(core.validate($var-lookup, $name, "button var"), var);
+
+  #{$var}: #{$value};
+}
+
+@mixin use-var($property, $name: $property, $fallback: null) {
+  #{$property}: get-var($name, $fallback);
+}
+
+@mixin use-light-theme {
+  @include set-var(
+    surface-background-color,
+    $light-theme-surface-background-color
+  );
+  @include set-var(surface-color, $light-theme-surface-color);
+}
+
 @mixin _theme($theme-name, $theme-color, $on-theme) {
   @if list.index($themes, $theme-name) {
     @if not $disable-contained {
       &--#{$theme-name} {
-        #{$background-color-var}: var($theme-color);
-        #{$color-var}: var($on-theme);
+        @include set-var(background-color, $theme-color);
+        @include set-var(color, $on-theme);
       }
     }
 
     &--text-#{$theme-name} {
-      #{$color-var}: var($theme-color);
+      @include set-var(color, $theme-color);
       @if not $disable-outline {
-        #{$outline-color-var}: var($theme-color);
+        @include set-var(outline-color, $theme-color);
       }
     }
   }
@@ -94,58 +158,52 @@ $floating-positions: (
 @mixin styles {
   .rmd-button {
     @if not $disable-circular-progress {
-      #{progress.$circular-size-var}: $circular-progress-size;
+      @include progress.set-var(circular-size, $circular-progress-size);
     }
 
     @include core.interaction-surface(
       $disabled-selector: "&:disabled" +
         if(list.index($themes, disabled), ",&[aria-disabled='true']", "")
     );
+    @include icon.use-var(gap, spacing);
+    @include use-var(background-color);
+    @include use-var(color);
+    @include use-var(border-radius);
 
     align-items: center;
-    background-color: var($background-color-var, transparent);
-    border-radius: var($border-radius-var);
     border-width: 0;
-    color: var($color-var);
     display: inline-flex;
     flex-shrink: 0;
-    gap: var(icon.$spacing-var, icon.$spacing);
     justify-content: center;
 
     @if not $disable-text {
       &--text {
-        #{$border-radius-var}: $text-border-radius;
-        #{icon.$size-var}: $text-icon-size;
-
+        @include icon.set-var(size, $text-icon-size);
+        @include set-var(border-radius, $text-border-radius);
         @include core.map-to-styles(core.$button-styles);
+        @include use-var(min-height, text-min-height);
+        @include use-var(min-width, text-min-width);
 
         border: 0;
-        min-height: var($text-min-height-var, $text-min-height);
-        min-width: var($text-min-width-var, $text-min-width);
-        padding: var($text-vertical-padding-var, $text-vertical-padding)
-          var($text-horizontal-padding-var, $text-horizontal-padding);
+        padding: get-var(text-vertical-padding)
+          get-var(text-horizontal-padding);
       }
     }
 
     @if not $disable-icon {
       &--icon {
-        #{$border-radius-var}: $icon-border-radius;
-        #{icon.$color-var}: currentColor;
+        @include icon.set-var(color, currentColor);
+        @include set-var(border-radius, $icon-border-radius);
+        @include use-var(height, icon-size);
+        @include use-var(width, icon-size);
 
-        height: var($icon-size-var, $icon-size);
         padding: 0;
-        width: var($icon-size-var, $icon-size);
       }
     }
 
     @if not $disable-outline {
       &--outline {
-        box-shadow: inset
-          0
-          0
-          0
-          $outline-width
-          var($outline-color-var, $clear-outline-color);
+        box-shadow: inset 0 0 0 $outline-width get-var(outline-color);
       }
     }
 
@@ -162,35 +220,39 @@ $floating-positions: (
           $pseudo-before: false
         );
 
-        #{$background-color-var}: var(
-          $contained-background-color-var,
-          $clear-contained-background-color
-        );
-        #{$color-var}: var($contained-color-var, $clear-contained-color);
+        @include set-var(background-color, get-var(contained-background-color));
+        @include set-var(color, get-var(contained-color));
       }
     }
 
     @include _theme(
       primary,
-      core.$primary-color-var,
-      core.$on-primary-color-var
+      core.get-theme-var(primary-color),
+      core.get-theme-var(on-primary-color)
     );
     @include _theme(
       secondary,
-      core.$secondary-color-var,
-      core.$on-secondary-color-var
+      core.get-theme-var(secondary-color),
+      core.get-theme-var(on-secondary-color)
     );
     @include _theme(
       warning,
-      core.$warning-color-var,
-      core.$on-warning-color-var
+      core.get-theme-var(warning-color),
+      core.get-theme-var(on-warning-color)
     );
-    @include _theme(error, core.$error-color-var, core.$on-error-color-var);
+    @include _theme(
+      error,
+      core.get-theme-var(error-color),
+      core.get-theme-var(on-error-color)
+    );
 
     @if list.index($themes, disabled) {
       &--disabled {
-        #{$outline-color-var}: var(core.$text-disabled-color-var);
-        color: var(core.$text-disabled-color-var);
+        @include core.use-theme-var(color, text-disabled-color);
+        @include set-var(
+          outline-color,
+          core.get-theme-var(text-disabled-color)
+        );
       }
     }
   }

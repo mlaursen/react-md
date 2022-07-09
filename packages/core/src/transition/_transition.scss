@@ -1,3 +1,4 @@
+@use "sass:map";
 @use "../utils";
 
 $disable-collapse-transition: false !default;
@@ -5,10 +6,6 @@ $disable-cross-fade-transition: false !default;
 $disable-scale-transition: false !default;
 $disable-scale-y-transition: $disable-scale-transition !default;
 $disable-skeleton-placeholder: false !default;
-
-$skeleton-placeholder-background-color-var: --rmd-skeleton-placeholder-background-color;
-$skeleton-placeholder-height-var: --rmd-skeleton-placeholder-height;
-$skeleton-placeholder-width-var: --rmd-skeleton-placeholder-width;
 
 $linear-duration: 0.15s !default;
 $enter-duration: 0.2s !default;
@@ -45,6 +42,46 @@ $skeleton-placeholder-animation: (
 ) !default;
 $skeleton-placeholder-animation-duration: 1.8s !default;
 $skeleton-placeholder-animation-timing-function: ease-in-out !default;
+
+$transition-var-lookup: (
+  skeleton-placeholder-background-color: (
+    var: --rmd-skeleton-placeholder-background-color,
+    value: $skeleton-placeholder-background-color,
+  ),
+  skeleton-placeholder-height: (
+    var: --rmd-skeleton-placeholder-height,
+    value: $skeleton-placeholder-height,
+  ),
+  skeleton-placeholder-width: (
+    var: --rmd-skeleton-placeholder-width,
+    value: null,
+  ),
+);
+
+@function get-transition-var($name, $fallback: null) {
+  $found: utils.validate($transition-var-lookup, $name, "transition var");
+  $var: map.get($found, var);
+  $value: if($fallback, $fallback, map.get($found, value));
+
+  @if $value {
+    @return var(#{$var}, #{$value});
+  }
+
+  @return var(#{$var});
+}
+
+@mixin set-transition-var($name, $value) {
+  $var: map.get(
+    utils.validate($transition-var-lookup, $name, "transition var"),
+    var
+  );
+
+  #{$var}: #{$value};
+}
+
+@mixin use-transition-var($property, $name: $property, $fallback: null) {
+  #{$property}: get-transition-var($name, $fallback);
+}
 
 @mixin collapse-transition {
   .rmd-collapse {
@@ -136,11 +173,11 @@ $skeleton-placeholder-animation-timing-function: ease-in-out !default;
 
 @mixin skeleton-placeholder-animation {
   .rmd-skeleton-placeholder {
-    background-color: var(
-      $skeleton-placeholder-background-color-var,
-      $skeleton-placeholder-background-color
+    @include use-transition-var(
+      background-color,
+      skeleton-placeholder-background-color
     );
-    height: var($skeleton-placeholder-height-var, $skeleton-placeholder-height);
+    @include use-transition-var(height, skeleton-placeholder-height);
 
     &--animate {
       animation: rmd-skeleton-placeholder

@@ -1,4 +1,5 @@
 @use "sass:color";
+@use "sass:map";
 @use "@react-md/core";
 
 $disable-font: false !default;
@@ -8,12 +9,6 @@ $disable-spacing-after: false !default;
 $disable-spacing-above: false !default;
 $disable-spacing-below: false !default;
 $disable-rotator: false !default;
-
-$color-var: --rmd-icon-color;
-$size-var: --rmd-icon-size;
-$spacing-var: --rmd-icon-spacing;
-$rotate-from-var: --rmd-icon-rotate-from;
-$rotate-to-var: --rmd-icon-rotate-to;
 
 $light-theme-color: color.adjust(#000, $lightness: 46%) !default;
 $dark-theme-color: color.adjust(#fff, $lightness: -30%) !default;
@@ -33,17 +28,62 @@ $rotate-from: 0deg !default;
 $rotate-to: 180deg !default;
 $rotate-duration: core.$linear-duration !default;
 
+$var-lookup: (
+  color: (
+    var: --rmd-icon-color,
+    value: $color,
+  ),
+  size: (
+    var: --rmd-icon-size,
+    value: $size,
+  ),
+  spacing: (
+    var: --rmd-icon-spacing,
+    value: $spacing,
+  ),
+  rotate-from: (
+    var: --rmd-icon-rotate-from,
+    value: $rotate-from,
+  ),
+  rotate-to: (
+    var: --rmd-icon-rotate-to,
+    value: $rotate-to,
+  ),
+);
+
+@function get-var($name, $fallback: null) {
+  $found: core.validate($var-lookup, $name, "icon var");
+  $var: map.get($found, var);
+  $value: if($fallback, $fallback, map.get($found, value));
+
+  @if $value {
+    @return var(#{$var}, #{$value});
+  }
+
+  @return var(#{$var});
+}
+
+@mixin set-var($name, $value) {
+  $var: map.get(core.validate($var-lookup, $name, "icon var"), var);
+
+  #{$var}: #{$value};
+}
+
+@mixin use-var($property, $name: $property, $fallback: null) {
+  #{$property}: get-var($name, $fallback);
+}
+
 @mixin use-light-theme {
-  #{$color-var}: $light-theme-color;
+  @include set-var(color, $light-theme-color);
 }
 
 @mixin use-dark-theme {
-  #{$color-var}: $dark-theme-color;
+  @include set-var(color, $dark-theme-color);
 }
 
 @mixin dense {
   @if $dense-size {
-    #{$size-var}: $dense-size;
+    @include set-var(size, $dense-size);
   }
 }
 
@@ -56,41 +96,44 @@ $rotate-duration: core.$linear-duration !default;
 
     @if not $disable-font {
       &--font {
-        color: var($color-var, $color);
-        font-size: var($size-var, $size);
+        @include use-var(color);
+        @include use-var(font-size, size);
+
         text-align: center;
       }
     }
 
     @if not $disable-svg {
       &--svg {
-        fill: var($color-var, $color);
-        height: var($size-var, $size);
-        width: var($size-var, $size);
+        @include use-var(fill, color);
+        @include use-var(height, size);
+        @include use-var(width, size);
       }
     }
 
     @if not $disable-spacing-before {
       &--before {
-        @include core.auto-rtl(margin-right, var($spacing-var, $spacing), 9);
+        @include core.auto-rtl(margin-right, get-var(spacing), 0);
+        // @include core.auto-rtl(margin-right, var($spacing-var, $spacing), 0);
       }
     }
 
     @if not $disable-spacing-after {
       &--after {
-        @include core.auto-rtl(margin-left, var($spacing-var, $spacing), 0);
+        @include core.auto-rtl(margin-left, get-var(spacing), 0);
+        // @include core.auto-rtl(margin-left, var($spacing-var, $spacing), 0);
       }
     }
 
     @if not $disable-spacing-above {
       &--above {
-        margin-bottom: var($spacing-var, $spacing);
+        @include use-var(margin-top, spacing);
       }
     }
 
     @if not $disable-spacing-below {
       &--below {
-        margin-bottom: var($spacing-var, $spacing);
+        @include use-var(margin-bottom, spacing);
       }
     }
   }
@@ -105,14 +148,16 @@ $rotate-duration: core.$linear-duration !default;
 
   @if not $disable-rotator {
     .rmd-icon-rotator {
-      transform: rotate(var($rotate-from-var, $rotate-from));
+      transform: rotate(get-var(rotate-from));
+      // transform: rotate(var($rotate-from-var, $rotate-from));
 
       &--animate {
         transition: transform $rotate-duration linear;
       }
 
       &--rotated {
-        transform: rotate(var($rotate-to-var, $rotate-to));
+        transform: rotate(get-var(rotate-to));
+        // transform: rotate(var($rotate-to-var, $rotate-to));
       }
     }
   }

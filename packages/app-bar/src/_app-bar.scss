@@ -11,12 +11,6 @@ $disable-prominent-dense-theme: false !default;
 
 $disable-title: false !default;
 
-$height-var: --rmd-app-bar-height;
-$background-color-var: --rmd-app-bar-background-color;
-$color-var: --rmd-app-bar-color;
-$surface-background-color-var: --rmd-app-bar-surface-background-color;
-$surface-color-var: --rmd-app-bar-surface-color;
-
 $height: 3.5rem !default;
 $dense-height: 3rem !default;
 $prominent-height: $height * 2 !default;
@@ -54,32 +48,84 @@ $vertical-padding: 0 !default;
 $keyline: 1rem !default;
 $title-keyline: 4.5rem !default;
 
+$var-lookup: (
+  height: (
+    var: --rmd-app-bar-height,
+    value: $height,
+  ),
+  background-color: (
+    var: --rmd-app-bar-background-color,
+    value: null,
+  ),
+  color: (
+    var: --rmd-app-bar-color,
+    value: core.get-theme-var(text-primary-color),
+  ),
+  surface-background-color: (
+    var: --rmd-app-bar-surface-background-color,
+    value: $surface-background-color,
+  ),
+  surface-color: (
+    var: --rmd-app-bar-surface-color,
+    value: $surface-color,
+  ),
+);
+
+@function get-var($name, $fallback: null) {
+  $found: core.validate($var-lookup, $name, "app-bar var");
+  $var: map.get($found, var);
+  $value: if($fallback, $fallback, map.get($found, value));
+
+  @if $value {
+    @return var(#{$var}, #{$value});
+  }
+
+  @return var(#{$var});
+}
+
+@mixin set-var($name, $value) {
+  $var: map.get(core.validate($var-lookup, $name, "app-bar var"), var);
+
+  #{$var}: #{$value};
+}
+
+@mixin use-var($property, $name: $property, $fallback: null) {
+  #{$property}: get-var($name, $fallback);
+}
+
 @mixin use-light-theme {
-  #{$surface-background-color-var}: $light-theme-surface-background-color;
-  #{$surface-color-var}: $light-theme-surface-color;
+  @include set-var(
+    surface-background-color,
+    $light-theme-surface-background-color
+  );
+  @include set-var(surface-color, $light-theme-surface-color);
 }
 
 @mixin use-dark-theme {
-  #{$surface-background-color-var}: $dark-theme-surface-background-color;
-  #{$surface-color-var}: $dark-theme-surface-color;
+  @include set-var(
+    surface-background-color,
+    $dark-theme-surface-background-color
+  );
+  @include set-var(surface-color, $dark-theme-surface-color);
 }
 
 @mixin dense {
-  #{$height-var}: $dense-height;
+  @include set-var(height, $dense-height);
 }
 
 @mixin styles {
   .rmd-app-bar {
+    @include use-var(background-color);
+    @include use-var(color);
+    @include use-var(height);
+
     align-items: center;
-    background-color: var($background-color-var);
-    color: var($color-var, var(core.$text-primary-color-var));
     display: flex;
     // since app bars can appear a lot in full page dialogs, setting these flex
     // values allows it be be a direct replacement of the `DialogHeader`
     // component without all the offsets and additional styles needed for fixed
     // app bars.
     flex: 0 0 auto;
-    height: var($height-var, $height);
     padding: $vertical-padding $horizontal-padding;
     width: 100%;
 
@@ -105,48 +151,45 @@ $title-keyline: 4.5rem !default;
     }
 
     &--auto {
-      #{$height-var}: auto;
+      @include set-var(height, auto);
     }
 
     @if not $disable-dense-theme {
       &--dense {
-        #{$height-var}: $dense-height;
+        @include set-var(height, $dense-height);
       }
     }
 
     @if not $disable-prominent-theme {
       &--prominent {
-        #{$height-var}: $prominent-height;
+        @include set-var(height, $prominent-height);
       }
     }
 
     @if not $disable-prominent-dense-theme {
       &--prominent-dense {
-        #{$height-var}: $prominent-dense-height;
+        @include set-var(height, $prominent-dense-height);
       }
     }
 
     @if not $disable-primary-theme {
       &--primary {
-        #{$background-color-var}: var(core.$primary-color-var);
-        #{$color-var}: var(core.$on-primary-color-var);
+        @include set-var(background-color, core.get-theme-var(primary-color));
+        @include set-var(color, core.get-theme-var(on-primary-color));
       }
     }
 
     @if not $disable-secondary-theme {
       &--secondary {
-        #{$background-color-var}: var(core.$secondary-color-var);
-        #{$color-var}: var(core.$on-secondary-color-var);
+        @include set-var(background-color, core.get-theme-var(secondary-color));
+        @include set-var(color, core.get-theme-var(on-secondary-color));
       }
     }
 
     @if not $disable-surface-theme {
       &--surface {
-        #{$background-color-var}: var(
-          $surface-background-color-var,
-          $surface-background-color
-        );
-        #{$color-var}: var($surface-color-var, $surface-color);
+        @include set-var(background-color, get-var(surface-background-color));
+        @include set-var(color, get-var(surface-color));
       }
     }
 

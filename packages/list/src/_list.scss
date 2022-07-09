@@ -18,21 +18,6 @@ $disable-three-line-height: false !default;
 $disable-subheader: false !default;
 $disable-subheader-inset: False !default;
 
-$font-size: --rmd-list-font-size;
-$vertical-padding-var: --rmd-list-padding-v;
-$horizontal-padding-var: --rmd-list-padding-h;
-$item-keyline-var: --rmd-list-item-keyline;
-$item-vertical-padding-var: --rmd-list-item-padding-v;
-$item-horizontal-padding-var: --rmd-list-item-padding-h;
-$item-height-var: --rmd-list-item-height;
-$item-medium-height-var: --rmd-list-item-medium-height;
-$item-large-height-var: --rmd-list-item-large-height;
-$item-extra-large-height-var: --rmd-list-item-extra-large-height;
-$item-three-line-height-var: --rmd-list-item-three-line-height;
-$item-media-size-var: --rmd-list-item-media-size;
-$item-media-spacing-var: --rmd-list-item-media-spacing;
-$item-secondary-text-three-line-height-var: --rmd-list-item-text-three-line-height;
-
 $item-secondary-text-line-height: 1.42857 !default;
 $item-secondary-text-three-line-max-height: 3rem !default;
 
@@ -70,39 +55,120 @@ $item-media-large-size: 6.25rem !default;
 
 $item-keyline: 4.5rem !default;
 
-@mixin _addon-spacing($subtract) {
-  $keyline: var($item-keyline-var, $item-keyline);
-  $padding: var($item-horizontal-padding-var, $item-horizontal-padding);
+$var-lookup: (
+  horizontal-padding: (
+    var: --rmd-list-padding-h,
+    value: $horizontal-padding,
+  ),
+  vertical-padding: (
+    var: --rmd-list-padding-v,
+    value: $vertical-padding,
+  ),
+  item-keyline: (
+    var: --rmd-list-item-keyline,
+    value: $item-keyline,
+  ),
+  item-horizontal-padding: (
+    var: --rmd-list-padding-h,
+    value: $item-horizontal-padding,
+  ),
+  item-vertical-padding: (
+    var: --rmd-list-item-padding-v,
+    value: $item-vertical-padding,
+  ),
+  item-height: (
+    var: --rmd-list-item-height,
+    value: $item-height,
+  ),
+  item-medium-height: (
+    var: --rmd-list-item-medium-height,
+    value: $item-medium-height,
+  ),
+  item-large-height: (
+    var: --rmd-list-item-large-height,
+    value: $item-large-height,
+  ),
+  item-extra-large-height: (
+    var: --rmd-list-item-extra-large-height,
+    value: $item-extra-large-height,
+  ),
+  item-three-line-height: (
+    var: --rmd-list-item-three-line-height,
+    value: $item-three-line-height,
+  ),
+  item-media-size: (
+    var: --rmd-list-item-media-size,
+    value: $item-media-size,
+  ),
+  item-media-spacing: (
+    var: --rmd-list-item-media-spacing,
+    value: $item-media-spacing,
+  ),
+  text-three-line-height: (
+    var: --rmd-list-item-text-three-line-height,
+    value: $item-secondary-text-three-line-max-height,
+  ),
+);
 
-  #{icon.$spacing-var}: calc(#{$keyline} - #{$padding} - #{$subtract});
+@function get-var($name, $fallback: null) {
+  $found: core.validate($var-lookup, $name, "list var");
+  $var: map.get($found, var);
+  $value: if($fallback, $fallback, map.get($found, value));
+
+  @if $value {
+    @return var(#{$var}, #{$value});
+  }
+
+  @return var(#{$var});
+}
+
+@mixin set-var($name, $value) {
+  $var: map.get(core.validate($var-lookup, $name, "list var"), var);
+
+  #{$var}: #{$value};
+}
+
+@mixin use-var($property, $name: $property, $fallback: null) {
+  #{$property}: get-var($name, $fallback);
+}
+
+@mixin _addon-spacing($subtract) {
+  $keyline: get-var(item-keyline);
+  $padding: get-var(item-horizontal-padding);
+
+  @include icon.set-var(
+    spacing,
+    calc(#{$keyline} - #{$padding} - #{$subtract})
+  );
 }
 
 @mixin styles {
   .rmd-list {
     @include core.map-to-styles($typography-styles);
-    #{divider.$inset-var}: var($item-keyline-var, $item-keyline);
+    @include divider.set-var(inset, get-var(item-keyline));
 
     list-style: none;
     margin: 0;
-    padding: var($vertical-padding-var, $vertical-padding)
-      var($horizontal-padding-var, $horizontal-padding);
+    padding: get-var(vertical-padding) get-var(horizontal-padding);
   }
 
   .rmd-list-item {
     @include core.interaction-surface(
       $disabled-selector: '&[aria-disabled="true"]'
     );
+    @include use-var(height, item-height);
 
     align-items: center;
     display: flex;
-    height: var($item-height-var, $item-height);
-    padding: var($item-vertical-padding-var, $item-vertical-padding)
-      var($item-horizontal-padding-var, $item-horizontal-padding);
+    padding: get-var(item-vertical-padding) get-var(item-horizontal-padding);
 
     @if not $disable-item-disabled-color {
       &--disabled-color {
-        #{core.$text-secondary-color-var}: var(core.$text-disabled-color-var);
-        color: var(core.$text-disabled-color-var);
+        @include core.set-theme-var(
+          text-secondary-color,
+          core.get-theme-var(text-disabled-color)
+        );
+        @include core.use-theme-var(color, text-disabled-color);
       }
     }
 
@@ -114,31 +180,25 @@ $item-keyline: 4.5rem !default;
 
     @if not $disable-medium-height {
       &--medium {
-        #{$item-height-var}: var($item-medium-height-var, $item-medium-height);
+        @include set-var(item-height, get-var(item-medium-height));
       }
     }
 
     @if not $disable-large-height {
       &--large {
-        #{$item-height-var}: var($item-large-height-var, $item-large-height);
+        @include set-var(item-height, get-var(item-large-height));
       }
     }
 
     @if not $disable-extra-large-height {
       &--extra-large {
-        #{$item-height-var}: var(
-          $item-extra-large-height-var,
-          $item-extra-large-height
-        );
+        @include set-var(item-height, get-var(item-extra-large-height));
       }
     }
 
     @if not $disable-three-line-height {
       &--three-lines {
-        #{$item-height-var}: var(
-          $item-three-line-height-var,
-          $item-three-line-height
-        );
+        @include set-var(item-height, get-var(item-three-line-height));
       }
     }
 
@@ -152,17 +212,14 @@ $item-keyline: 4.5rem !default;
       flex-grow: 1;
 
       &--secondary {
-        color: var(core.$text-secondary-color-var, core.$text-secondary-color);
+        @include core.use-theme-var(color, text-secondary-color);
       }
 
       &--clamped {
         @include core.line-clamp;
+        @include use-var(max-height, text-three-line-height);
 
         line-height: $item-secondary-text-line-height;
-        max-height: var(
-          $item-secondary-text-three-line-height-var,
-          $item-secondary-text-three-line-max-height
-        );
         white-space: normal;
       }
     }
@@ -179,28 +236,30 @@ $item-keyline: 4.5rem !default;
       }
 
       &--before {
-        @include _addon-spacing(var(icon.$size-var, icon.$size));
+        @include _addon-spacing(icon.get-var(size));
       }
 
       @if not $disable-item-avatar {
         &--avatar-before {
-          @include _addon-spacing(var(avatar.$size-var, avatar.$size));
+          @include _addon-spacing(avatar.get-var(size));
         }
       }
 
       @if not $disable-item-media {
         &--media {
-          #{icon.$spacing-var}: var(
-            $item-media-spacing-var,
-            $item-media-spacing
-          );
+          @include icon.set-var(spacing, get-var(item-media-spacing));
+          @include use-var(width, item-media-size);
+        }
 
-          width: var($item-media-size-var, $item-media-size);
+        &--media-centered {
+          align-items: center;
+          display: flex;
+          justify-content: center;
         }
 
         @if not $disable-item-media-large {
           &--media-large {
-            #{$item-media-size-var}: $item-media-large-size;
+            @include set-var(item-media-size, $item-media-large-size);
           }
         }
       }
@@ -210,22 +269,19 @@ $item-keyline: 4.5rem !default;
   @if not $disable-subheader {
     .rmd-list-subheader {
       @include core.map-to-styles(core.$subtitle-2-styles);
+      @include core.use-theme-var(color, text-secondary-color);
 
       align-items: center;
-      color: var(core.$text-secondary-color-var, core.$text-secondary-color);
       display: flex;
 
       @if not $disable-subheader-inset {
         &--inset {
           @include core.rtl {
-            padding-left: var(
-              $item-horizontal-padding-var,
-              $item-horizontal-padding
-            );
-            padding-right: var($text-keyline-var, $text-keyline);
+            @include use-var(padding-left, item-horizontal-padding);
+            @include use-var(padding-right, text-keyline);
           }
 
-          padding-left: var($item-keyline-var, $item-keyline);
+          @include use-var(padding-left, item-keyline);
         }
       }
     }

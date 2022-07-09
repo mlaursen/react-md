@@ -5,13 +5,6 @@
 $disable-icon: false !default;
 $disable-image: false !default;
 
-$color-var: --rmd-avatar-color;
-$background-color-var: --rmd-avatar-background-color;
-$border-color-var: --rmd-avatar-border-color;
-$border-radius-var: --rmd-avatar-border-radius;
-$size-var: --rmd-avatar-size;
-$font-size-var: --rmd-avatar-font-size;
-
 $color: core.$grey-100 !default;
 $background-color: core.$grey-700 !default;
 $line-height: map.get(core.$subtitle-1-styles, line-height) !default;
@@ -41,35 +34,84 @@ $colors: (
   blue-grey: core.$blue-grey-700 core.$blue-grey-50,
 ) !default;
 
+$var-lookup: (
+  background-color: (
+    var: --rmd-avatar-background-color,
+    value: $background-color,
+  ),
+  color: (
+    var: --rmd-avatar-color,
+    value: $color,
+  ),
+  border-color: (
+    var: --rmd-avatar-border-color,
+    value: transparent,
+  ),
+  border-radius: (
+    var: --rmd-avatar-border-radius,
+    value: $border-radius,
+  ),
+  size: (
+    var: --rmd-avatar-size,
+    value: $size,
+  ),
+  font-size: (
+    var: --rmd-avatar-font-size,
+    value: $font-size,
+  ),
+);
+
+@function get-var($name, $fallback: null) {
+  $found: core.validate($var-lookup, $name, "avatar var");
+  $var: map.get($found, var);
+  $value: if($fallback, $fallback, map.get($found, value));
+
+  @if $value {
+    @return var(#{$var}, #{$value});
+  }
+
+  @return var(#{$var});
+}
+
+@mixin set-var($name, $value) {
+  $var: map.get(core.validate($var-lookup, $name, "avatar var"), var);
+
+  #{$var}: #{$value};
+}
+
+@mixin use-var($property, $name: $property, $fallback: null) {
+  #{$property}: get-var($name, $fallback);
+}
+
 @mixin custom-color($name, $color, $background-color, $disable-prefix: false) {
   $class-name: if($disable-prefix, $name, ".rmd-avatar--#{$name}");
 
   #{$class-name} {
-    #{$background-color-var}: $background-color;
-    #{$color-var}: $color;
+    @include set-var(background-color, $background-color);
+    @include set-var(color, $color);
   }
 }
 
 @mixin styles {
   .rmd-avatar {
     @if not $disable-icon {
-      #{icon.$color-var}: currentColor;
+      @include icon.set-var(color, currentColor);
     }
     @include core.map-to-styles(core.$base-font-styles);
+    @include use-var(background-color);
+    @include use-var(border-radius);
+    @include use-var(color);
+    @include use-var(font-size);
+    @include use-var(height, size);
+    @include use-var(width, size);
 
     align-items: center;
-    background-color: var($background-color-var, $background-color);
-    border: 1px solid var($border-color-var, transparent);
-    border-radius: var($border-radius-var, $border-radius);
-    color: var($color-var, $color);
+    border: 1px solid get-var(border-color);
     display: inline-flex;
     flex-shrink: 0;
-    font-size: var($font-size-var, $font-size);
-    height: var($size-var, $size);
     justify-content: center;
     line-height: $line-height;
     overflow: hidden;
-    width: var($size-var, $size);
 
     @if not $disable-image {
       &__image {

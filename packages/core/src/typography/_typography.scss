@@ -177,23 +177,61 @@ $mobile-max-line-length: 17em !default;
 /// @see $mobile-max-line-length
 $desktop-max-line-length: 40em !default;
 
-$line-length-var: --rmd-line-length;
-$text-container-padding-var: --rmd-text-container-padding;
-
 $text-container-padding: 1rem !default;
+
+$typography-var-lookup: (
+  line-length: (
+    var: --rmd-line-length,
+    value: null,
+  ),
+  text-container-padding: (
+    var: --rmd-text-container-padding,
+    value: $text-container-padding,
+  ),
+);
+
+@function get-typography-var($name, $fallback: null) {
+  $found: utils.validate($typography-var-lookup, $name, "typography var");
+  $var: map.get($found, var);
+  $value: if($fallback, $fallback, map.get($found, value));
+
+  @if $value {
+    @return var(#{$var}, #{$value});
+  }
+
+  @return var(#{$var});
+}
+
+@mixin set-typography-var($name, $value) {
+  $var: map.get(
+    utils.validate($typography-var-lookup, $name, "typography var"),
+    var
+  );
+
+  #{$var}: #{$value};
+}
+
+@mixin use-typography-var($property, $name: $property, $fallback: null) {
+  #{$property}: get-typography-var($name, $fallback);
+}
 
 @mixin typography {
   @include media-queries.tablet-media {
     .rmd-text-container {
-      #{$line-length-var}: #{$desktop-max-line-length};
+      @include set-typography-var(line-length, $desktop-max-line-length);
     }
   }
 
   .rmd-text-container {
+    @include use-typography-var(
+      max-width,
+      line-length,
+      $mobile-max-line-length
+    );
+    @include use-typography-var(padding, text-container-padding);
+
     display: block;
     margin: 0 auto;
-    max-width: var(#{$line-length-var}, #{$mobile-max-line-length});
-    padding: var(#{$text-container-padding-var}, #{$text-container-padding});
     width: 100%;
   }
 

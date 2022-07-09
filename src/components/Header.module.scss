@@ -1,28 +1,6 @@
 @use "everything";
 
 .container {
-  // @include everything.rtl {
-  //   margin-right: calc(-1 * var(--scrollbar-size, 0px));
-  // }
-  // // @include everything.auto-rtl(
-  // //   padding-right,
-  // //   calc(0.25rem + var(--scrollbar-size, 0px))
-  // // );
-  // align-items: center;
-  // display: flex;
-  // background-color: var(everything.$primary-color-var);
-  // color: var(everything.$on-primary-color-var);
-  // height: var(--app-bar-height, 3.5rem);
-  // // since app bars can appear a lot in full page dialogs, setting these flex
-  // // values allows it be be a direct replacement of the `DialogHeader`
-  // // component without all the offsets and additional styles needed for fixed
-  // // app bars.
-  // flex: 0 0 auto;
-  // padding: 0 0.25rem;
-  // padding-right: calc(0.25rem + var(--scrollbar-size, 0px));
-  // // width: 100%;
-  // width: calc(100% + var(--scrollbar-size, 0px));
-
   @include everything.rtl {
     margin-right: calc(-1 * var(everything.$scrollbar-size-var, 0px));
   }
@@ -37,9 +15,12 @@
 
 .links {
   @include everything.auto-rtl(padding-right, 0.5rem);
-  #{everything.$divider-color-var}: var(everything.$on-primary-color-var);
-  #{everything.$divider-size-var}: 0.125rem;
-  #{everything.$divider-max-size-var}: 1.5em;
+  @include everything.divider-set-var(
+    color,
+    everything.get-theme-var(on-primary-color)
+  );
+  @include everything.divider-set-var(size, 0.125rem);
+  @include everything.divider-set-var(max-size, 1.5rem);
 
   overflow: auto;
   white-space: nowrap;

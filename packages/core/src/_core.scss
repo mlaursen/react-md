@@ -35,8 +35,9 @@ $temporary-element-z-index: 30 !default;
   }
 
   html {
-    background-color: var(theme.$background-color-var);
-    color: var(theme.$text-primary-color-var);
+    @include theme.use-theme-var(background-color);
+    @include theme.use-theme-var(color, text-primary-color);
+
     font-family: typography.$font-family;
   }
 

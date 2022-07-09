@@ -1,14 +1,8 @@
+@use "sass:map";
 @use "@react-md/core";
 
 $disable-vertical: false !default;
 $disable-inset: false !default;
-
-$size-var: --rmd-divider-size;
-$color-var: --rmd-divider-color;
-$spacing-var: --rmd-divider-spacing;
-$inset-var: --rmd-divider-inset;
-$width-var: --rmd-divider-width;
-$max-size-var: --rmd-divider-max-size;
 
 $size: 0.0625rem !default;
 $max-size: 100% !default;
@@ -25,49 +19,94 @@ $color: if(
   $light-theme-color
 ) !default;
 
+$var-lookup: (
+  size: (
+    var: --rmd-divider-size,
+    value: $size,
+  ),
+  color: (
+    var: --rmd-divider-color,
+    value: $color,
+  ),
+  spacing: (
+    var: --rmd-divider-spacing,
+    value: $spacing,
+  ),
+  inset: (
+    var: --rmd-divider-inset,
+    value: $inset,
+  ),
+  width: (
+    var: --rmd-divider-width,
+    value: $max-size,
+  ),
+  max-size: (
+    var: --rmd-divider-max-size,
+    value: $max-size,
+  ),
+);
+
+@function get-var($name, $fallback: null) {
+  $found: core.validate($var-lookup, $name, "divider var");
+  $var: map.get($found, var);
+  $value: if($fallback, $fallback, map.get($found, value));
+
+  @if $value {
+    @return var(#{$var}, #{$value});
+  }
+
+  @return var(#{$var});
+}
+
+@mixin set-var($name, $value) {
+  $var: map.get(core.validate($var-lookup, $name, "divider var"), var);
+
+  #{$var}: #{$value};
+}
+
+@mixin use-var($property, $name: $property, $fallback: null) {
+  #{$property}: get-var($name, $fallback);
+}
+
 @mixin use-light-theme {
-  #{$color-var}: $light-theme-color;
+  @include set-var(color, $light-theme-color);
 }
 
 @mixin use-dark-theme {
-  #{$color-var}: $dark-theme-color;
+  @include set-var(color, $dark-theme-color);
 }
 
 @mixin style($position) {
   $property: "border-#{$position}";
 
-  #{$property}: var($size-var, $size) inset var($color-var, $color);
+  #{$property}: get-var(size) inset get-var(color);
 }
 
 @mixin styles {
   .rmd-divider {
     @include style(bottom);
+    @include use-var(margin, spacing);
+    @include use-var(width);
 
     display: block;
     flex-shrink: 0;
-    margin: var($spacing-var, $spacing);
-    width: var($width-var, $max-size);
 
     @if not $disable-inset {
       &--inset {
-        @include core.rtl {
-          margin-left: auto;
-          margin-right: var($inset-var, $inset);
-        }
+        @include core.auto-rtl(margin-left, get-var(inset), auto);
 
-        margin-left: var($inset-var, $inset);
-        width: calc(var($max-size-var, $max-size) - var($inset-var, $inset));
+        width: calc(get-var(max-size) - get-var(inset));
       }
     }
 
     @if not $disable-vertical {
       &--vertical {
         @include style(left);
+        @include use-var(height, max-size);
+        @include use-var(width, size);
 
         border-bottom: 0;
         display: inline-block;
-        height: var($max-size-var, $max-size);
-        width: var($size-var, $size);
       }
     }
   }

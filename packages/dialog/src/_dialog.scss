@@ -1,3 +1,4 @@
+@use "sass:map";
 @use "@react-md/core";
 @use "overlay";
 
@@ -7,22 +8,11 @@ $disable-footer-flex-start: false !default;
 $disable-footer-space-between: false !default;
 $disable-footer-flex-end: false !default;
 
-$background-color-var: --rmd-dialog-background-color;
-$color-var: --rmd-dialog-color;
-$min-width-var: --rmd-dialog-min-width;
-$horizontal-margin-var: --rmd-dialog-h-margin;
-$vertical-margin-var: --rmd-dialog-v-margin;
-$z-index-var: --rmd-dialog-z-index;
-$header-padding-var: --rmd-dialog-header-padding;
-$header-padding-bottom-var: --rmd-dialog-header-padding-bottom;
-$content-padding-var: --rmd-dialog-content-padding;
-$footer-padding-var: --rmd-dialog-footer-padding;
-
 $elevation: 16 !default;
 $z-index: core.$temporary-element-z-index !default;
 
-$background-color: var(core.$surface-color-var) !default;
-$color: var(core.$text-primary-color-var) !default;
+$background-color: core.get-theme-var(surface-color) !default;
+$color: core.get-theme-var(text-primary-color) !default;
 
 $min-width: 17.5rem !default;
 $horizontal-margin: 2.5rem !default;
@@ -41,42 +31,108 @@ $content-padding: 1.5rem !default;
 
 $footer-padding: 0.5rem !default;
 
+$var-lookup: (
+  background-color: (
+    var: --rmd-dialog-background-color,
+    value: $background-color,
+  ),
+  color: (
+    var: --rmd-dialog-color,
+    value: $color,
+  ),
+  min-width: (
+    var: --rmd-dialog-min-width,
+    value: $min-width,
+  ),
+  horizontal-margin: (
+    var: --rmd-dialog-h-margin,
+    value: $horizontal-margin,
+  ),
+  vertical-margin: (
+    var: --rmd-dialog-v-margin,
+    value: $vertical-margin,
+  ),
+  z-index: (
+    var: --rmd-dialog-z-index,
+    value: $z-index,
+  ),
+  header-padding: (
+    var: --rmd-dialog-header-padding,
+    value: $header-padding,
+  ),
+  header-padding-bottom: (
+    var: --rmd-dialog-header-padding-bottom,
+    value: $header-padding-bottom,
+  ),
+  content-padding: (
+    var: --rmd-dialog-content-padding,
+    value: $content-padding,
+  ),
+  footer-padding: (
+    var: --rmd-dialog-footer-padding,
+    value: $footer-padding,
+  ),
+);
+
+@function get-var($name, $fallback: null) {
+  $found: core.validate($var-lookup, $name, "dialog var");
+  $var: map.get($found, var);
+  $value: if($fallback, $fallback, map.get($found, value));
+
+  @if $value {
+    @return var(#{$var}, #{$value});
+  }
+
+  @return var(#{$var});
+}
+
+@mixin set-var($name, $value) {
+  $var: map.get(core.validate($var-lookup, $name, "dialog var"), var);
+
+  #{$var}: #{$value};
+}
+
+@mixin use-var($property, $name: $property, $fallback: null) {
+  #{$property}: get-var($name, $fallback);
+}
+
 @mixin styles {
   .rmd-dialog-container {
+    @include use-var(z-index);
+
     align-items: center;
     display: flex;
     inset: 0;
     justify-content: center;
-    margin: var($vertical-margin-var, $vertical-margin)
-      var($horizontal-margin-var, $horizontal-margin);
+    margin: get-var(vertical-margin) get-var(horizontal-margin);
     position: fixed;
     pointer-events: none;
-    z-index: var($z-index-var, $z-index);
   }
 
   .rmd-dialog {
     @include core.box-shadow($elevation);
+    @include use-var(background-color);
+    @include use-var(color);
 
-    background-color: var($background-color-var, $background-color);
-    color: var($color-var, $color);
     display: flex;
     flex-direction: column;
     max-height: 100%;
     max-width: 100%;
 
     &--centered {
-      min-width: var($min-width-var, $min-width);
+      @include use-var(min-width);
 
       pointer-events: auto;
     }
 
     &--full-page {
+      @include use-var(z-index);
+
       height: 100%;
       inset: 0;
       overflow: auto;
       position: fixed;
       width: 100%;
-      z-index: var($z-index-var, $z-index);
     }
 
     &--enter {
@@ -103,16 +159,17 @@ $footer-padding: 0.5rem !default;
 
     @if not $disable-fixed {
       &--fixed {
-        z-index: var(z-index-var, $z-index);
+        @include use-var(z-index);
       }
     }
 
     &__header {
+      @include use-var(padding, header-padding);
+      @include use-var(padding-bottom, header-padding-bottom);
+
       align-items: center;
       display: flex;
       flex: 0 0 auto;
-      padding: var($header-padding-var, $header-padding);
-      padding-bottom: var($header-padding-bottom-var, $header-padding-bottom);
     }
 
     // &__title {
@@ -124,13 +181,14 @@ $footer-padding: 0.5rem !default;
       overflow: auto;
 
       &--padded {
-        padding: var($content-padding-var, $content-padding);
+        @include use-var(padding, content-padding);
       }
     }
 
     &__footer {
+      @include use-var(padding, footer-padding);
+
       flex: 0 0 auto;
-      padding: var($footer-padding-var, $footer-padding);
 
       @if not
         $disable-footer-flex-vertical or not

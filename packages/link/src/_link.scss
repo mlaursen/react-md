@@ -4,10 +4,6 @@
 
 $disable-skip-to-main: false !default;
 
-$color-var: --rmd-link-color;
-$visited-color-var: --rmd-link-visited-color;
-$hover-color-var: --rmd-link-hover-color;
-
 $transition-duration: core.$linear-duration !default;
 $color: core.$blue-500 !default;
 $visited-color: core.$blue-600 !default;
@@ -15,7 +11,7 @@ $hover-color: core.$blue-400 !default;
 
 $skip-to-main-z-index: 10000 !default;
 $skip-to-main-styles: (
-  color: var(core.$on-primary-color-var),
+  color: core.get-theme-var(on-primary-color),
   left: 50%,
   padding: 0.25rem 1rem,
   top: 0.25rem,
@@ -26,6 +22,57 @@ $skip-to-main-active-styles: (
   outline: 0.25rem dashed #000,
 ) !default;
 
+$var-lookup: (
+  color: (
+    var: --rmd-link-color,
+    value: $color,
+  ),
+  visited-color: (
+    var: --rmd-link-visited-color,
+    value: $visited-color,
+  ),
+  hover-color: (
+    var: --rmd-link-hover-color,
+    value: $hover-color,
+  ),
+);
+
+@function get-var($name, $fallback: null) {
+  $found: core.validate($var-lookup, $name, "link var");
+  $var: map.get($found, var);
+  $value: if($fallback, $fallback, map.get($found, value));
+
+  @if $value {
+    @return var(#{$var}, #{$value});
+  }
+
+  @return var(#{$var});
+}
+
+@mixin set-var($name, $value) {
+  $var: map.get(core.validate($var-lookup, $name, "link var"), var);
+
+  #{$var}: #{$value};
+}
+
+@mixin use-var($property, $name: $property, $fallback: null) {
+  #{$property}: get-var($name, $fallback);
+}
+
+@mixin use-light-theme {
+  @include set-var(color, $light-theme-color);
+}
+
+@mixin use-dark-theme {
+  @include set-var(color, $dark-theme-color);
+}
+
+@mixin style($position) {
+  $property: "border-#{$position}";
+
+  #{$property}: get-var(size) inset get-var(color);
+}
+
 @mixin styles {
   .rmd-link {
     // can't use the normal @include core.interaction-surface since links are
@@ -33,24 +80,23 @@ $skip-to-main-active-styles: (
     // nicely with block-like elements
     @include core.keyboard-only {
       &:focus {
-        #{core.$outline-color-var}: core.$outline-color;
+        @include core.set-interaction-var(outline-color, core.$outline-color);
       }
     }
+    @include core.use-interaction-outline;
+    @include icon.use-var(gap, spacing);
+    @include use-var(color);
 
     align-items: center;
-    color: var($color-var, $color);
     display: inline-flex;
-    gap: var(icon.$spacing-var, icon.$spacing);
-    outline: var(core.$outline-color-var, transparent) solid
-      var(core.$outline-width-var, core.$outline-width);
     transition: color $transition-duration;
 
     &:visited {
-      #{$color-var}: var($visited-color-var, $visited-color);
+      @include set-var(color, get-var(visited-color));
     }
 
     &:hover {
-      #{$color-var}: var($hover-color-var, $hover-color);
+      @include set-var(color, get-var(hover-color));
     }
 
     @if not $disable-skip-to-main {

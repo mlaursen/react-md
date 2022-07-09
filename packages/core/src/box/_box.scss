@@ -1,4 +1,5 @@
 @use "sass:map";
+@use "../utils";
 
 $default-box-align-items: center !default;
 
@@ -9,10 +10,6 @@ $box-align-items: (start end stretch) !default;
 $box-justify-content: (
   start center end stretch space-around space-between space-evenly
 ) !default;
-
-$box-gap-var: --rmd-box-gap;
-$box-padding-var: --rmd-box-padding;
-$box-item-var: --rmd-box-item-min-size;
 
 $box-gap: 1rem !default;
 $box-padding: $box-gap !default;
@@ -33,17 +30,54 @@ $box-item-min-size: 8rem !default;
 /// ```
 $grids: () !default;
 
+$box-var-lookup: (
+  gap: (
+    var: --rmd-box-gap,
+    value: $box-gap,
+  ),
+  padding: (
+    var: --rmd-box-padding,
+    value: $box-padding,
+  ),
+  min-size: (
+    var: --rmd-box-item-min-size,
+    value: $box-item-min-size,
+  ),
+);
+
+@function get-box-var($name, $fallback: null) {
+  $found: utils.validate($box-var-lookup, $name, "box var");
+  $var: map.get($found, var);
+  $value: if($fallback, $fallback, map.get($found, value));
+
+  @if $value {
+    @return var(#{$var}, #{$value});
+  }
+
+  @return var(#{$var});
+}
+
+@mixin set-box-var($name, $value) {
+  $var: map.get(utils.validate($box-var-lookup, $name, "box var"), var);
+
+  #{$var}: #{$value};
+}
+
+@mixin use-box-var($property, $name: $property, $fallback: null) {
+  #{$property}: get-box-var($name, $fallback);
+}
+
 @mixin custom-grid($min: null, $padding: null, $gap: null) {
   @if $min {
-    #{$box-item-var}: #{$min};
+    @include set-box-var(min-size, $min);
   }
 
   @if $padding {
-    #{$box-padding-var}: #{$padding};
+    @include set-box-var(padding, $padding);
   }
 
   @if $gap {
-    #{$box-gap-var}: #{$gap};
+    @include set-box-var(gap, $gap);
   }
 }
 
@@ -56,12 +90,13 @@ $grids: () !default;
 @mixin styles {
   @if not $disable-box {
     .rmd-box {
+      @include use-box-var(gap, gap);
       align-items: $default-box-align-items;
       display: flex;
-      gap: var($box-gap-var, $box-gap);
 
       &--padded {
-        padding: var($box-padding-var, $box-padding);
+        @include use-box-var(padding);
+        // padding: var($box-padding-var, $box-padding);
       }
 
       &--wrap {
@@ -89,15 +124,17 @@ $grids: () !default;
           display: grid;
           grid-template-columns: repeat(
             auto-fit,
-            minmax(var($box-item-var, $box-item-min-size), 1fr)
+            minmax(get-box-var(min-size), 1fr)
           );
+          // minmax(var($box-item-var, $box-item-min-size), 1fr)
         }
 
         &--grid-fill {
           grid-template-columns: repeat(
             auto-fill,
-            minmax(var($box-item-var, $box-item-min-size), 1fr)
+            minmax(get-box-var(min-size), 1fr)
           );
+          // minmax(var($box-item-var, $box-item-min-size), 1fr)
         }
 
         @each $name, $values in $grids {

@@ -1,3 +1,4 @@
+@use "sass:map";
 @use "../utils";
 @use "../theme/colors";
 @use "../theme/theme";
@@ -23,13 +24,6 @@ $disable-focus-background: false !default;
 $disable-higher-contrast-interactions: false !default;
 $base-background-color: #000 !default;
 
-$ripple-background-color-var: --rmd-ripple-background-color;
-$interaction-background-color-var: --rmd-interaction-background-color;
-$hover-background-color-var: --rmd-interaction-hover-background-color;
-$focus-background-color-var: --rmd-interaction-focus-background-color;
-$press-background-color-var: --rmd-interaction-press-background-color;
-$outline-color-var: --rmd-outline-color;
-$outline-width-var: --rmd-outline-width;
 $outline-color: colors.$blue-500 !default;
 $outline-width: 0.125rem !default;
 
@@ -94,6 +88,62 @@ $selected-background-color: if(
   $light-theme-selected-background-color
 ) !default;
 
+$interaction-var-lookup: (
+  ripple-background-color: (
+    var: --rmd-ripple-background-color,
+    value: $ripple-background-color,
+  ),
+  background-color: (
+    var: --rmd-interaction-background-color,
+    value: null,
+  ),
+  hover-background-color: (
+    var: --rmd-interaction-hover-background-color,
+    value: $hover-background-color,
+  ),
+  focus-background-color: (
+    var: --rmd-interaction-focus-background-color,
+    value: $focus-background-color,
+  ),
+  press-background-color: (
+    var: --rmd-interaction-press-background-color,
+    value: $press-background-color,
+  ),
+  outline-color: (
+    var: --rmd-outline-color,
+    value: $outline-color,
+  ),
+  outline-width: (
+    var: --rmd-outline-width,
+    value: $outline-width,
+  ),
+);
+
+@function get-interaction-var($name, $fallback: null) {
+  $found: utils.validate($interaction-var-lookup, $name, "interaction var");
+  $var: map.get($found, var);
+  $value: if($fallback, $fallback, map.get($found, value));
+
+  @if $value {
+    @return var(#{$var}, #{$value});
+  }
+
+  @return var(#{$var});
+}
+
+@mixin set-interaction-var($name, $value) {
+  $var: map.get(
+    utils.validate($interaction-var-lookup, $name, "interaction var"),
+    var
+  );
+
+  #{$var}: #{$value};
+}
+
+@mixin use-interaction-var($property, $name: $property, $fallback: null) {
+  #{$property}: get-interaction-var($name, $fallback);
+}
+
 @if $interaction-mode and
   $interaction-mode !=
   ripple and
@@ -127,6 +177,11 @@ $selected-background-color: if(
   }
 }
 
+@mixin use-interaction-outline {
+  outline: get-interaction-var(outline-color, transparent) solid
+    get-interaction-var(outline-width);
+}
+
 @mixin interaction-surface(
   $focus-selector: "&:focus",
   $disabled-selector: "&:disabled",
@@ -147,10 +202,9 @@ $selected-background-color: if(
 
   &::before {
     @include utils.pseudo-element;
+    @include use-interaction-var(background-color);
+    @include use-interaction-outline;
 
-    background-color: var($interaction-background-color-var);
-    outline: var($outline-color-var, transparent) solid
-      var($outline-width-var, $outline-width);
     transition-property: background-color, outline-color;
     transition-duration: transition.$linear-duration;
     transition-timing-function: transition.$linear-timing-function;
@@ -159,37 +213,39 @@ $selected-background-color: if(
   @if $focus-selector {
     @include keyboard-only($css-modules) {
       #{$focus-selector + "::before"} {
-        #{$interaction-background-color-var}: var(
-          $focus-background-color-var,
-          $focus-background-color
+        @include set-interaction-var(
+          background-color,
+          get-interaction-var(focus-background-color)
         );
-        #{$outline-color-var}: $outline-color;
+        @include set-interaction-var(outline-color, $outline-color);
       }
     }
   }
 
   &:hover::before {
-    #{$interaction-background-color-var}: var(
-      $hover-background-color-var,
-      $hover-background-color
+    @include set-interaction-var(
+      background-color,
+      get-interaction-var(hover-background-color)
     );
   }
 
   @if $interaction-mode == press or $interaction-mode == both {
     &.rmd-pressed::before {
-      #{$interaction-background-color-var}: (
-        $press-background-color-var,
-        $press-background-color
+      @include set-interaction-var(
+        background-color,
+        get-interaction-var(press-background-color)
       );
     }
   }
 
   @if $disabled-selector {
-    #{$disabled-selector + "::before"} {
-      #{$interaction-background-color-var}: transparent;
-
+    #{$disabled-selector} {
       @if $clickable {
         cursor: auto;
+      }
+
+      &::before {
+        @include set-interaction-var(background-color, transparent);
       }
     }
   }
@@ -207,10 +263,8 @@ $selected-background-color: if(
     }
 
     .rmd-ripple {
-      background-color: var(
-        $ripple-background-color-var,
-        $ripple-background-color
-      );
+      @include use-interaction-var(background-color, ripple-background-color);
+
       border-radius: 50%;
       position: absolute;
       transform: scale(0);
