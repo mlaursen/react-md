@@ -95,7 +95,7 @@ $var-lookup: (
 @mixin styles {
   .rmd-avatar {
     @if not $disable-icon {
-      @include icon.set-var(color, currentColor);
+      @include icon.set-var(color, currentcolor);
     }
     @include core.map-to-styles(core.$base-font-styles);
     @include use-var(background-color);

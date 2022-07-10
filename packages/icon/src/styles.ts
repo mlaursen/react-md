@@ -1,3 +1,4 @@
+import type { TextThemeColor, ThemeColor } from "@react-md/core";
 import { bem } from "@react-md/core";
 import { cnb } from "cnbuilder";
 
@@ -7,6 +8,20 @@ const rotatorStyles = bem("rmd-icon-rotator");
 /** @remarks \@since 6.0.0 */
 export interface SVGIconClassNameOptions {
   className?: string;
+
+  /**
+   * An optional theme color to apply to the icon. When this is `undefined`, the
+   * default icon color will be used instead.
+   *
+   * - `primary -> $primary-color`
+   * - `secondary -> $secondary-color`
+   * - `warning -> $warning-color`
+   * - `success -> $success-color`
+   * - `error -> $error-color`
+   * - `hint -> $text-hint-color`
+   * - `disabled -> $text-disabled-color`
+   */
+  color?: ThemeColor | TextThemeColor;
 
   /**
    * Boolean if the font icon should use the dense spec.
@@ -56,6 +71,7 @@ export function getIconClassName(options: IconClassNameOptions): string {
   const {
     className,
     type,
+    color,
     dense = false,
     forceSize = false,
     forceFontSize = false,
@@ -65,6 +81,7 @@ export function getIconClassName(options: IconClassNameOptions): string {
 
   return cnb(
     styles({
+      [color || ""]: !!color,
       [type]: true,
       dense,
       "forced-font": forceFontSize,

@@ -192,7 +192,7 @@ $var-lookup: (
 
     @if not $disable-icon {
       &--icon {
-        @include icon.set-var(color, currentColor);
+        @include icon.set-var(color, currentcolor);
         @include set-var(border-radius, $icon-border-radius);
         @include use-var(height, icon-size);
         @include use-var(width, icon-size);
@@ -271,8 +271,20 @@ $var-lookup: (
       @each $suffix, $styles in $floating-positions {
         &--#{$suffix} {
           @each $property, $value in $styles {
-            @if $property == left or $property == right {
-              @include core.auto-rtl($property, $value);
+            @if $property == left {
+              @include core.rtl {
+                left: auto;
+                right: calc(#{$value} + #{core.scrollbar-size()});
+              }
+
+              left: $value;
+            } @else if $property == right {
+              @include core.rtl {
+                left: $value;
+                right: auto;
+              }
+
+              right: calc(#{$value} + #{core.scrollbar-size()});
             } @else {
               #{$property}: #{$value};
             }

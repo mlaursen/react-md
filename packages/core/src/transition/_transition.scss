@@ -1,5 +1,8 @@
+@use "sass:color";
 @use "sass:map";
 @use "../utils";
+@use "../theme/colors";
+@use "../theme/theme";
 
 $disable-collapse-transition: false !default;
 $disable-cross-fade-transition: false !default;
@@ -24,8 +27,15 @@ $scale-transition-leave-duration: $leave-duration !default;
 $scale-y-transition-enter-duration: $enter-duration !default;
 $scale-y-transition-leave-duration: $leave-duration !default;
 
-$skeleton-placeholder-height: 1em !default;
-$skeleton-placeholder-background-color: #000 !default;
+$skeleton-placeholder-height: 1.125em !default;
+$skeleton-placeholder-border-radius: 0.25rem !default;
+$skeleton-placeholder-light-background-color: #000 !default;
+$skeleton-placeholder-dark-background-color: colors.$grey-300 !default;
+$skeleton-placeholder-background-color: if(
+  theme.$color-scheme == system,
+  $skeleton-placeholder-dark-background-color,
+  $skeleton-placeholder-light-background-color
+) !default;
 $skeleton-placeholder-animation: (
   0%: (
     opacity: 0.06,
@@ -81,6 +91,24 @@ $transition-var-lookup: (
 
 @mixin use-transition-var($property, $name: $property, $fallback: null) {
   #{$property}: get-transition-var($name, $fallback);
+}
+
+@mixin use-transition-light-theme {
+  @if not $disable-skeleton-placeholder {
+    @include set-transition-var(
+      skeleton-placeholder-background-color,
+      $skeleton-placeholder-light-background-color
+    );
+  }
+}
+
+@mixin use-transition-dark-theme {
+  @if not $disable-skeleton-placeholder {
+    @include set-transition-var(
+      skeleton-placeholder-background-color,
+      $skeleton-placeholder-dark-background-color
+    );
+  }
 }
 
 @mixin collapse-transition {
@@ -178,6 +206,9 @@ $transition-var-lookup: (
       skeleton-placeholder-background-color
     );
     @include use-transition-var(height, skeleton-placeholder-height);
+
+    border-radius: $skeleton-placeholder-border-radius;
+    color: transparent;
 
     &--animate {
       animation: rmd-skeleton-placeholder

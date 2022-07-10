@@ -29,7 +29,7 @@ $color-scheme: light !default;
 ///
 /// If this is set to `false`, all surfaces will mimic the light theme and have
 /// a single surface color.
-$disable-dark-elevation: $color-scheme == light !default;
+$disable-dark-elevation: false !default;
 
 /// This value should be set to `false` if you do not want the initial bundle to
 /// include the `@media (prefers-color-scheme: dark)` styles.
@@ -118,6 +118,8 @@ $dark-elevation-colors: (
   23: #353535,
   24: #383838,
 ) !default;
+
+$_dark-elevation-var: --rmd-dark-elevation-color;
 
 $theme-var-lookup: (
   background-color: (
@@ -228,7 +230,7 @@ $theme-var-lookup: (
 
   @if not $disable-dark-elevation and $color-scheme != light {
     @each $z-value, $background-color in $dark-elevation-colors {
-      $var-name: $dark-elevation-var + "-" + $z-value;
+      $var-name: $_dark-elevation-var + "-" + $z-value;
 
       #{$var-name}: $light-theme-surface-color;
     }
@@ -250,7 +252,7 @@ $theme-var-lookup: (
 
   @if not $disable-dark-elevation {
     @each $z-value, $background-color in $dark-elevation-colors {
-      $var-name: $dark-elevation-var + "-" + $z-value;
+      $var-name: $_dark-elevation-var + "-" + $z-value;
       #{$var-name}: $background-color;
     }
   }
@@ -279,12 +281,12 @@ $theme-var-lookup: (
 
   @if not $disable-dark-elevation and $color-scheme == dark {
     @each $z-value, $background-color in $dark-elevation-colors {
-      $var-name: $dark-elevation-var + "-" + $z-value;
+      $var-name: $_dark-elevation-var + "-" + $z-value;
       #{$var-name}: $background-color;
     }
   } @else if not $disable-dark-elevation and $color-scheme == light {
     @each $z-value, $background-color in $dark-elevation-colors {
-      $var-name: $dark-elevation-var + "-" + $z-value;
+      $var-name: $_dark-elevation-var + "-" + $z-value;
       #{$var-name}: $light-theme-surface-color;
     }
   }
@@ -293,6 +295,17 @@ $theme-var-lookup: (
     @media (prefers-color-scheme: dark) {
       @include use-dark-theme;
     }
+  }
+}
+
+@mixin create-surface($z-value, $disable-colors: $disable-dark-elevation) {
+  @if not $disable-dark-elevation {
+    $var-name: $_dark-elevation-var + "-" + $z-value;
+    @include set-theme-var(surface-color, var($var-name));
+  }
+  @if not $disable-colors {
+    @include use-theme-var(background-color, surface-color);
+    @include use-theme-var(color, text-primary-color);
   }
 }
 

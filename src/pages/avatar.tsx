@@ -1,6 +1,6 @@
 import { Avatar } from "@react-md/avatar";
 import { box, TextContainer } from "@react-md/core";
-import { FavoriteIcon } from "@react-md/material-icons/filled/action/FavoriteIcon";
+import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import type { ReactElement } from "react";
 
 export default function AvatarPage(): ReactElement {

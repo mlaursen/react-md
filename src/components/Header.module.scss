@@ -1,16 +1,7 @@
 @use "everything";
 
 .container {
-  @include everything.rtl {
-    margin-right: calc(-1 * var(everything.$scrollbar-size-var, 0px));
-  }
-
   gap: 0.5rem;
-  padding-right: calc(
-    everything.$app-bar-horizontal-padding +
-      var(everything.$scrollbar-size-var, 0px)
-  );
-  width: calc(100% + var(everything.$scrollbar-size-var, 0px));
 }
 
 .links {

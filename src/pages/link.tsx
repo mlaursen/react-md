@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { TextContainer } from "@react-md/core";
 import { Link, SkipToMainLink } from "@react-md/link";
-import { FavoriteIcon } from "@react-md/material-icons/filled/action/FavoriteIcon";
+import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import type { ReactElement } from "react";
 
 export default function LinkPage(): ReactElement {

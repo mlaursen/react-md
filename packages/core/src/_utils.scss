@@ -5,7 +5,6 @@
 
 $disable-rtl: false !default;
 $disable-validation: false !default;
-$scrollbar-size-var: --rmd-scrollbar-size;
 
 $_swappable-positions: top right bottom left;
 $_swappable-position-prefixes: border margin padding;
@@ -209,4 +208,8 @@ $_swappable-position-prefixes: border margin padding;
   }
 
   #{$property}: #{$value};
+}
+
+@function scrollbar-size() {
+  @return var(--rmd-scrollbar-size, 0px);
 }

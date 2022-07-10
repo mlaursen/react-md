@@ -120,14 +120,7 @@ $box-shadow-3-layers: (
   $opacity-boost: 0,
   $disable-colors: theme.$disable-dark-elevation
 ) {
-  @if not theme.$disable-dark-elevation {
-    $var-name: theme.$dark-elevation-var + "-" + $z-value;
-    #{theme.$surface-color-var}: var($var-name);
-  }
-  @if not $disable-colors {
-    background-color: var(theme.$surface-color-var);
-    color: var(theme.$text-primary-color-var);
-  }
+  @include theme.create-surface($z-value, $disable-colors);
 
   box-shadow: box-shadow($z-value, $color, $opacity-boost);
 }

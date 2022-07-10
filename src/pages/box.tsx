@@ -1,6 +1,5 @@
 import { Box } from "@react-md/core";
 import type { ReactElement } from "react";
-// import { randomInt } from "src/utils/random";
 
 import styles from "./box.module.scss";
 

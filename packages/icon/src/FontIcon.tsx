@@ -4,7 +4,7 @@ import type { FontIconClassNameOptions } from "./styles";
 import { getIconClassName } from "./styles";
 
 export interface FontIconProps
-  extends HTMLAttributes<HTMLElement>,
+  extends Omit<HTMLAttributes<HTMLElement>, "color">,
     FontIconClassNameOptions {
   /**
    * Any children to render to create the font icon. This is required for
@@ -29,6 +29,7 @@ export const FontIcon = forwardRef<HTMLElement, FontIconProps>(
       children,
       "aria-hidden": ariaHidden = true,
       dense = false,
+      color,
       iconClassName = "material-icons",
       forceSize = false,
       forceFontSize = false,
@@ -43,6 +44,7 @@ export const FontIcon = forwardRef<HTMLElement, FontIconProps>(
         className={getIconClassName({
           type: "font",
           dense,
+          color,
           className,
           iconClassName,
           forceSize,

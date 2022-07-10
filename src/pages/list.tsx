@@ -1,15 +1,25 @@
 import { Avatar } from "@react-md/avatar";
-import { Box, TextContainer, Typography, useColorScheme } from "@react-md/core";
-import { Divider } from "@react-md/divider";
+import {
+  Box,
+  SkeletonPlaceholder,
+  TextContainer,
+  Typography,
+  useColorScheme,
+} from "@react-md/core";
 import { List, ListItem, ListSubheader } from "@react-md/list";
-import { DeleteIcon } from "@react-md/material-icons/filled/action/DeleteIcon";
-import { ArchiveIcon } from "@react-md/material-icons/filled/content/ArchiveIcon";
-import { FolderIcon } from "@react-md/material-icons/filled/file/FolderIcon";
-import { AdjustIcon } from "@react-md/material-icons/filled/image/AdjustIcon";
-import { AppsIcon } from "@react-md/material-icons/filled/navigation/AppsIcon";
-import { ArrowBackIcon } from "@react-md/material-icons/filled/navigation/ArrowBackIcon";
-import { StarIcon } from "@react-md/material-icons/filled/toggle/StarIcon";
+import AdjustIcon from "@react-md/material-icons/AdjustIcon";
+import AppsIcon from "@react-md/material-icons/AppsIcon";
+import ArchiveIcon from "@react-md/material-icons/ArchiveIcon";
+import ArrowBackIcon from "@react-md/material-icons/ArrowBackIcon";
+import DeleteIcon from "@react-md/material-icons/DeleteIcon";
+import FolderIcon from "@react-md/material-icons/FolderIcon";
+import StarIcon from "@react-md/material-icons/StarIcon";
+import { cnb } from "cnbuilder";
 import type { CSSProperties, ReactElement } from "react";
+import { useEffect, useState } from "react";
+
+import { loremIpsum } from "src/utils/loremIpsum";
+import styles from "./list.module.scss";
 
 const style = {
   "--rmd-ripple-background-color": "rgba(255, 255, 255, 0.3)",
@@ -19,6 +29,31 @@ const style = {
 
 export default function ListPage(): ReactElement {
   const { colorSchemeMode } = useColorScheme();
+
+  const [loaded, setLoaded] = useState<
+    { image: string; primaryText: string; secondaryText: string } | undefined
+  >();
+
+  useEffect(() => {
+    let timeout: number;
+    if (loaded) {
+      timeout = window.setTimeout(() => {
+        setLoaded(undefined);
+      }, 8000);
+    } else {
+      timeout = window.setTimeout(() => {
+        setLoaded({
+          image: "https://picsum.photos/56?image=700",
+          primaryText: loremIpsum({ minWords: 4, maxWords: 10 }),
+          secondaryText: loremIpsum({ minWords: 1, maxWords: 5 }),
+        });
+      }, 3000);
+    }
+
+    return () => {
+      window.clearTimeout(timeout);
+    };
+  }, [loaded]);
   return (
     <TextContainer>
       <Box
@@ -30,6 +65,29 @@ export default function ListPage(): ReactElement {
           <ListItem>Item 1</ListItem>
           <ListItem>Item 2</ListItem>
           <ListItem>Item 3</ListItem>
+          <ListItem
+            leftAddon={
+              loaded ? (
+                <img src={loaded.image} alt="" />
+              ) : (
+                <SkeletonPlaceholder height="3.5rem" width="3.5rem" />
+              )
+            }
+            leftAddonType="media"
+            primaryText={
+              <SkeletonPlaceholder>{loaded?.primaryText}</SkeletonPlaceholder>
+            }
+            secondaryText={
+              <SkeletonPlaceholder minPercentage={10} maxPercentage={30}>
+                {loaded?.secondaryText}
+              </SkeletonPlaceholder>
+            }
+            textClassName={cnb(!loaded && styles.placeholderText)}
+            secondaryTextClassName={cnb(
+              !loaded && styles.placeholderSecondaryText
+            )}
+          />
+          <ListItem primaryText="Item 5" secondaryText="Sub text" />
         </List>
         <List>
           <ListItem leftAddon={<AppsIcon />}>Apps</ListItem>

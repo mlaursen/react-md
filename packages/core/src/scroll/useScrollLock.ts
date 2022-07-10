@@ -32,9 +32,9 @@ export function useScrollLock(locked: boolean): void {
     const { paddingRight } = el.style;
     const isScrollbarVisible = el.scrollHeight > el.offsetHeight;
 
-    el.style.setProperty(SCROLLBAR_SIZE_VAR, size);
     el.style.overflow = "hidden";
     if (isScrollbarVisible) {
+      el.style.setProperty(SCROLLBAR_SIZE_VAR, size);
       el.style.paddingRight = `var(${SCROLLBAR_SIZE_VAR})`;
     }
 

@@ -129,11 +129,19 @@ $var-lookup: (
     padding: $vertical-padding $horizontal-padding;
     width: 100%;
 
+    &--scrollbar-offset {
+      @include core.rtl {
+        margin-right: calc(-1 * #{core.scrollbar-size()});
+      }
+
+      padding-right: calc(#{$horizontal-padding} + #{core.scrollbar-size()});
+      width: calc(100% + core.scrollbar-size());
+    }
+
     @if not $disable-fixed {
       &--fixed {
         left: 0;
         position: fixed;
-        right: 0;
         z-index: $fixed-z-index;
       }
 

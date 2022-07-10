@@ -4,7 +4,7 @@ import type { SVGIconClassNameOptions } from "./styles";
 import { getIconClassName } from "./styles";
 
 export interface SVGIconProps
-  extends HTMLAttributes<SVGSVGElement>,
+  extends Omit<HTMLAttributes<SVGSVGElement>, "color">,
     SVGIconClassNameOptions {
   /**
    * Boolean if the SVG should gain the `focusable` attribute. This is disabled
@@ -88,6 +88,7 @@ export const SVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(function SVGIcon(
     viewBox = "0 0 24 24",
     dense = false,
     className,
+    color,
     children: propChildren,
     ...remaining
   } = props;
@@ -105,6 +106,7 @@ export const SVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(function SVGIcon(
       className={getIconClassName({
         type: "svg",
         dense,
+        color,
         className,
       })}
       focusable={focusable}

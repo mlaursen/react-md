@@ -35,10 +35,9 @@
   "exclude": [
     "node_modules",
     "prev",
-    "packages/material-icons/*RoundedIcon*",
-    "packages/material-icons/*OutlinedIcon*",
-    "packages/material-icons/*TwoToneIcon*",
-    "packages/material-icons/*SharpIcon*",
-    "packages/material-icons/*/**/*"
+    "packages/material-icons/**/*RoundedIcon*",
+    "packages/material-icons/**/*OutlinedIcon*",
+    "packages/material-icons/**/*TwoToneIcon*",
+    "packages/material-icons/**/*SharpIcon*"
   ]
 }

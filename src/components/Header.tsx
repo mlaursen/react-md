@@ -10,7 +10,7 @@ export function Header(): ReactElement {
   const { dir, toggleDir } = useDir();
   const { colorSchemeMode, setColorSchemeMode } = useColorScheme();
   return (
-    <AppBar className={styles.container}>
+    <AppBar className={styles.container} scrollbarOffset>
       <Box className={styles.links} disableWrap disablePadding>
         <StyledLink href="/">Home</StyledLink>
         <StyledLink href="/app-bar">AppBar</StyledLink>

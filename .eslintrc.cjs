@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  extends: ["@mlaursen/eslint-config"],
+  extends: ["@mlaursen/eslint-config", "plugin:@next/next/recommended"],
   parserOptions: {
     project: "./tsconfig.json",
     tsconfigRootDir: __dirname,

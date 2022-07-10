@@ -1,0 +1,8 @@
+@use "everything";
+
+.name {
+  @include everything.text-overflow;
+
+  text-align: center;
+  width: 100%;
+}

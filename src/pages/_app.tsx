@@ -1,25 +1,25 @@
 import "./app.scss";
+
 import { CoreProviders, ThemeProvider } from "@react-md/core";
 import type { ConfiguredIcons } from "@react-md/icon";
 import { IconProvider } from "@react-md/icon";
-import { ErrorOutlineIcon } from "@react-md/material-icons/filled/alert/ErrorOutlineIcon";
-import { FileUploadIcon } from "@react-md/material-icons/filled/file/FileUploadIcon";
-import { KeyboardArrowLeftIcon } from "@react-md/material-icons/filled/hardware/KeyboardArrowLeftIcon";
-import { KeyboardArrowRightIcon } from "@react-md/material-icons/filled/hardware/KeyboardArrowRightIcon";
-import { RemoveRedEyeIcon } from "@react-md/material-icons/filled/image/RemoveRedEyeIcon";
-import { ArrowDropDownIcon } from "@react-md/material-icons/filled/navigation/ArrowDropDownIcon";
-import { ArrowUpwardIcon } from "@react-md/material-icons/filled/navigation/ArrowUpwardIcon";
-import { CheckIcon } from "@react-md/material-icons/filled/navigation/CheckIcon";
-import { MenuIcon } from "@react-md/material-icons/filled/navigation/MenuIcon";
-import { NotificationsIcon } from "@react-md/material-icons/filled/social/NotificationsIcon";
-import { CheckBoxIcon } from "@react-md/material-icons/filled/toggle/CheckBoxIcon";
-import { RadioButtonCheckedIcon } from "@react-md/material-icons/filled/toggle/RadioButtonCheckedIcon";
+import ArrowDropDownIcon from "@react-md/material-icons/ArrowDropDownIcon";
+import ArrowUpwardIcon from "@react-md/material-icons/ArrowUpwardIcon";
+import CheckBoxIcon from "@react-md/material-icons/CheckBoxIcon";
+import CheckIcon from "@react-md/material-icons/CheckIcon";
+import ErrorOutlineIcon from "@react-md/material-icons/ErrorOutlineIcon";
+import FileUploadIcon from "@react-md/material-icons/FileUploadIcon";
+import KeyboardArrowLeftIcon from "@react-md/material-icons/KeyboardArrowLeftIcon";
+import KeyboardArrowRightIcon from "@react-md/material-icons/KeyboardArrowRightIcon";
+import MenuIcon from "@react-md/material-icons/MenuIcon";
+import NotificationsIcon from "@react-md/material-icons/NotificationsIcon";
+import RadioButtonCheckedIcon from "@react-md/material-icons/RadioButtonCheckedIcon";
+import RemoveRedEyeIcon from "@react-md/material-icons/RemoveRedEyeIcon";
 import { upperFirst } from "lodash";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import type { ReactElement } from "react";
 import { Header } from "src/components/Header";
-import Navigation from "src/components/Navigation";
 import { LoadThemeStyles } from "src/components/Theme/LoadThemeStyles";
 import {
   defaultColorSchemeMode,
@@ -114,6 +114,7 @@ export default function App(props: AppProps): ReactElement {
 
   return (
     <CoreProviders
+      ssr
       colorSchemeMode={defaultColorSchemeMode}
       elementInteractionMode={defaultElementInteractionMode}
       disableHigherContrast={defaultDisableHighContrastMode}
@@ -124,7 +125,6 @@ export default function App(props: AppProps): ReactElement {
       <ThemeProvider>
         <IconProvider {...icons}>
           <Header />
-          <Navigation />
           <Component {...pageProps} />
           <LoadThemeStyles />
         </IconProvider>

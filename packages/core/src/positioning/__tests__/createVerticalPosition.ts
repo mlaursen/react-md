@@ -1,3 +1,4 @@
+/* eslint-disable */
 import type { FixConfig } from "../createVerticalPosition";
 import {
   createAnchoredAbove,

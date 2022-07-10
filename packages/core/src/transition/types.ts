@@ -162,7 +162,7 @@ export interface PreconfiguredTransitionInDefaultedOptions<
 
   /**
    * Boolean if the element should mount and unmount based on the
-   * {@link transitionIn} value.
+   * {@link PreconfiguredTransitionInDefaultedOptions.transitionIn} value.
    *
    * @defaultValue `false`
    */
@@ -567,11 +567,11 @@ export interface CSSTransitionHookReturnValue<E extends HTMLElement>
  * @remarks \@since 4.0.0
  */
 export interface CSSTransitionComponentProps extends TransitionCallbacks {
-  /** {@inheritDoc CSSTransitionHookOptions.temporary} */
+  /** @see {@link CSSTransitionHookOptions.temporary} */
   temporary?: boolean;
-  /** {@inheritDoc TransitionTimeout} */
+  /** @see {@link TransitionTimeout} */
   timeout?: TransitionTimeout;
-  /** {@inheritDoc CSSTransitionClassNames} */
+  /** @see {@link CSSTransitionClassNames} */
   classNames?: CSSTransitionClassNames;
 }
 

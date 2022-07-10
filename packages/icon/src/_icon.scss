@@ -4,11 +4,19 @@
 
 $disable-font: false !default;
 $disable-svg: false !default;
+$disable-dense: false !default;
 $disable-spacing-before: false !default;
 $disable-spacing-after: false !default;
 $disable-spacing-above: false !default;
 $disable-spacing-below: false !default;
 $disable-rotator: false !default;
+$disable-primary-color: false !default;
+$disable-secondary-color: false !default;
+$disable-warning-color: False !default;
+$disable-error-color: false !default;
+$disable-success-color: false !default;
+$disable-hint-color: false !default;
+$disable-disabled-color: false !default;
 
 $light-theme-color: color.adjust(#000, $lightness: 46%) !default;
 $dark-theme-color: color.adjust(#fff, $lightness: -30%) !default;
@@ -89,6 +97,9 @@ $var-lookup: (
 
 @mixin styles {
   .rmd-icon {
+    @include use-var(font-size, size);
+    @include use-var(color);
+
     // you normally don't want icons to shrink in flex containers.
     // update the icon manually instead.
     flex-shrink: 0;
@@ -96,32 +107,27 @@ $var-lookup: (
 
     @if not $disable-font {
       &--font {
-        @include use-var(color);
-        @include use-var(font-size, size);
-
         text-align: center;
       }
     }
 
     @if not $disable-svg {
       &--svg {
-        @include use-var(fill, color);
-        @include use-var(height, size);
-        @include use-var(width, size);
+        fill: currentcolor;
+        height: 1em;
+        width: 1em;
       }
     }
 
     @if not $disable-spacing-before {
       &--before {
         @include core.auto-rtl(margin-right, get-var(spacing), 0);
-        // @include core.auto-rtl(margin-right, var($spacing-var, $spacing), 0);
       }
     }
 
     @if not $disable-spacing-after {
       &--after {
         @include core.auto-rtl(margin-left, get-var(spacing), 0);
-        // @include core.auto-rtl(margin-left, var($spacing-var, $spacing), 0);
       }
     }
 
@@ -134,6 +140,54 @@ $var-lookup: (
     @if not $disable-spacing-below {
       &--below {
         @include use-var(margin-bottom, spacing);
+      }
+    }
+
+    @if not $disable-primary-color {
+      &--primary {
+        @include set-var(color, core.get-theme-var(primary-color));
+      }
+    }
+
+    @if not $disable-secondary-color {
+      &--secondary {
+        @include set-var(color, core.get-theme-var(secondary-color));
+      }
+    }
+
+    @if not $disable-warning-color {
+      &--warning {
+        @include set-var(color, core.get-theme-var(warning-color));
+      }
+    }
+
+    @if not $disable-error-color {
+      &--error {
+        @include set-var(color, core.get-theme-var(error-color));
+      }
+    }
+
+    @if not $disable-success-color {
+      &--success {
+        @include set-var(color, core.get-theme-var(success-color));
+      }
+    }
+
+    @if not $disable-hint-color {
+      &--hint {
+        @include set-var(color, core.get-theme-var(text-hint-color));
+      }
+    }
+
+    @if not $disable-disabled-color {
+      &--disabled {
+        @include set-var(color, core.get-theme-var(text-disabled-color));
+      }
+    }
+
+    @if not $disable-dense {
+      &--dense {
+        @include set-var(size, $dense-size);
       }
     }
   }

@@ -44,6 +44,11 @@ export interface AppBarClassNameOptions {
    * @defaultValue `"normal"`
    */
   height?: AppBarHeight;
+
+  /**
+   * @defaultValue `fixed`
+   */
+  scrollbarOffset?: boolean;
 }
 
 export function getAppBarClassName(
@@ -55,6 +60,7 @@ export function getAppBarClassName(
     theme = "primary",
     fixed = false,
     fixedPosition = "top",
+    scrollbarOffset = fixed,
     disableFixedElevation = false,
   } = options;
   return cnb(
@@ -64,6 +70,7 @@ export function getAppBarClassName(
       fixed,
       [fixedPosition]: fixed,
       "fixed-elevation": fixed && !disableFixedElevation,
+      "scrollbar-offset": scrollbarOffset,
     }),
     className
   );

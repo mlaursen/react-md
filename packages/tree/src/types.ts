@@ -68,7 +68,7 @@ export type ReadonlyTreeData<T extends TreeItemNode = DefaultTreeItemNode> =
  * Note: This **should be memoized** to prevent rerendering the entire tree each
  * render.
  */
-export type TreeItemSorter<T extends TreeItemNode> = (
+export type TreeItemSorter<T extends TreeItemNode = DefaultTreeItemNode> = (
   items: readonly T[]
 ) => readonly T[];
 

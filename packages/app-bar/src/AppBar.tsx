@@ -27,6 +27,7 @@ export const AppBar = forwardRef<HTMLDivElement, AppBarProps>(function AppBar(
     theme = "primary",
     fixed = false,
     fixedPosition = "top",
+    scrollbarOffset = false,
     disableFixedElevation = false,
     children,
     ...remaining
@@ -42,6 +43,7 @@ export const AppBar = forwardRef<HTMLDivElement, AppBarProps>(function AppBar(
         disableFixedElevation,
         height,
         className,
+        scrollbarOffset,
       })}
       ref={ref}
     >

@@ -6,10 +6,11 @@ import type {
 } from "@react-md/core";
 import {
   Portal,
-  ScrollLock,
   useCSSTransition,
   useEnsuredId,
   useEnsuredRef,
+  useScrollLock,
+  useSsr,
 } from "@react-md/core";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useRef } from "react";
@@ -103,7 +104,9 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
     ...remaining
   } = props;
   const id = useEnsuredId(propId, "dialog");
+  useScrollLock(visible);
 
+  const ssr = useSsr();
   const prevFocus = useRef<HTMLElement | null>(null);
   const [nodeRef, refCallback] = useEnsuredRef(ref);
   const { elementProps, rendered, disablePortal } = useCSSTransition({
@@ -112,7 +115,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
     timeout,
     classNames,
     className: getDialogClassName({ type, className }),
-    appear: !disableTransition,
+    appear: !disableTransition && !ssr,
     enter: !disableTransition,
     exit: !disableTransition,
     onEnter(appearing) {
@@ -162,7 +165,6 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
                 onRequestClose();
               }}
             >
-              <ScrollLock />
               {children}
             </div>
           </DialogContainer>

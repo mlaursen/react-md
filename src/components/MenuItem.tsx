@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { RippleContainer, useElementInteraction } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes, ReactElement } from "react";

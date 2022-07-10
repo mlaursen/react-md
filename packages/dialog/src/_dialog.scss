@@ -105,6 +105,9 @@ $var-lookup: (
     inset: 0;
     justify-content: center;
     margin: get-var(vertical-margin) get-var(horizontal-margin);
+    margin-right: calc(
+      #{get-var(horizontal-margin)} + #{core.scrollbar-size()}
+    );
     position: fixed;
     pointer-events: none;
   }

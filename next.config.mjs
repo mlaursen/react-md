@@ -1,7 +1,11 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
+const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  eslint: {
+    // I have already run lint before this step...
+    ignoreDuringBuilds: true,
+  },
   webpack(config) {
     // config.module.rules.unshift({
     //   test: /\.md$/,
@@ -26,3 +30,5 @@ module.exports = {
     ];
   },
 };
+
+export default nextConfig;

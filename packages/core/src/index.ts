@@ -27,3 +27,4 @@ export * from "./useHtmlClassName";
 export * from "./useIsomorphicLayoutEffect";
 export * from "./useMediaQuery";
 export * from "./useOrientation";
+export * from "./useResizeObserver";

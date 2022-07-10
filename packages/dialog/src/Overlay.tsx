@@ -3,9 +3,10 @@ import type {
   CSSTransitionComponentProps,
   TransitionTimeout,
 } from "@react-md/core";
-import { Portal, useCSSTransition } from "@react-md/core";
+import { Portal, useCSSTransition, useSsr } from "@react-md/core";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
+
 import type { OverlayClassNameOptions } from "./styles";
 import { getOverlayClassName } from "./styles";
 
@@ -47,6 +48,7 @@ export const Overlay = forwardRef<HTMLSpanElement, OverlayProps>(
       ...remaining
     } = props;
 
+    const ssr = useSsr();
     const { elementProps, rendered, disablePortal } = useCSSTransition({
       nodeRef,
       transitionIn: visible,
@@ -57,7 +59,7 @@ export const Overlay = forwardRef<HTMLSpanElement, OverlayProps>(
         clickable,
         className,
       }),
-      appear: true,
+      appear: !ssr,
       enter: true,
       exit: true,
       onEnter,
