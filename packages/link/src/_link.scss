@@ -109,13 +109,16 @@ $var-lookup: (
             letter-spacing
           )
         );
-        @include core.sr-only;
+        @include core.sr-only(true, null);
       }
 
       &--skip-styled {
         @include core.map-to-styles($skip-to-main-styles);
         @include core.keyboard-only {
-          @include core.map-to-styles($skip-to-main-active-styles);
+          &:focus,
+          &:active {
+            @include core.map-to-styles($skip-to-main-active-styles);
+          }
         }
       }
     }
