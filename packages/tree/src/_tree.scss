@@ -4,9 +4,10 @@
 @use "@react-md/icon";
 @use "@react-md/list";
 
-$disable-rotator-left: false !default;
-$disable-rotator-left-as-media: false !default;
-$disable-rotator-left-as-media-offset: false !default;
+$disable-expander-left: false !default;
+$disable-expander-left-as-media: false !default;
+$disable-expander-left-as-media-offset: false !default;
+$disable-selected-background-color: false !default;
 
 $depth-var: --rmd-tree-depth;
 $padding-var: --rmd-tree-item-padding;
@@ -15,10 +16,10 @@ $padding-incrementor-var: --rmd-tree-item-padding-incrementor;
 
 $padding-incrementor: list.$item-horizontal-padding * 1.5 !default;
 $padding-base: list.get-var(item-keyline) !default;
-$rotator-right-from: 360deg !default;
-$rotator-right-to: 270deg !default;
-$rotator-left-from: 180deg !default;
-$rotator-left-to: 270deg !default;
+$expander-right-from: 360deg !default;
+$expander-right-to: 270deg !default;
+$expander-left-from: 180deg !default;
+$expander-left-to: 270deg !default;
 
 $selected-styles: (
   font-weight: core.$font-weight-bold,
@@ -36,18 +37,18 @@ $selected-styles: (
   }
 
   .rmd-tree-item {
-    @include icon.set-var(rotate-from, $rotator-right-from);
-    @include icon.set-var(rotate-to, $rotator-right-to);
+    @include icon.set-var(rotate-from, $expander-right-from);
+    @include icon.set-var(rotate-to, $expander-right-to);
     #{$padding-var}: calc(
       var(#{$depth-var}) * var($padding-incrementor-var, $padding-incrementor) +
         var($padding-base-var, $padding-base)
     );
     list-style: none;
 
-    @if not $disable-rotator-left {
-      &--rotator-left {
-        @include icon.set-var(rotate-from, $rotator-left-from);
-        @include icon.set-var(rotate-to, $rotator-left-to);
+    @if not $disable-expander-left {
+      &--expander-left {
+        @include icon.set-var(rotate-from, $expander-left-from);
+        @include icon.set-var(rotate-to, $expander-left-to);
       }
     }
 
@@ -90,18 +91,24 @@ $selected-styles: (
 
       @if $selected-styles {
         &--selected {
+          @if not $disable-selected-background-color {
+            @include core.set-interaction-var(
+              background-color,
+              core.get-interaction-var(selected-background-color)
+            );
+          }
           @include core.map-to-styles($selected-styles);
         }
       }
     }
 
-    @if not $disable-rotator-left-as-media {
+    @if not $disable-expander-left-as-media {
       &__media {
         align-items: center;
         display: flex;
         justify-content: space-between;
 
-        @if not $disable-rotator-left-as-media-offset {
+        @if not $disable-expander-left-as-media-offset {
           &--single {
             justify-content: flex-end;
           }

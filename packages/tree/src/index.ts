@@ -1,5 +1,6 @@
 /** @module @react-md/tree */
 export * from "./DefaultTreeItemRenderer";
+export * from "./styles";
 export * from "./Tree";
 export * from "./TreeGroup";
 export * from "./TreeItem";

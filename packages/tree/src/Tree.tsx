@@ -1,11 +1,11 @@
 import { identity, useEnsuredId } from "@react-md/core";
 import { LinkProvider } from "@react-md/link";
 import { List } from "@react-md/list";
-import { cnb } from "cnbuilder";
 import type { MutableRefObject, ReactElement, ReactNode } from "react";
 import { createRef, useMemo } from "react";
 
 import { DefaultTreeItemRenderer } from "./DefaultTreeItemRenderer";
+import { tree } from "./styles";
 import { TreeProvider } from "./TreeProvider";
 import type {
   CurrentTreeItem,
@@ -215,7 +215,7 @@ export function Tree<T extends TreeItemNode>(
           ref={treeRef}
           role="tree"
           tabIndex={0}
-          className={cnb("rmd-tree", className)}
+          className={tree({ className })}
         >
           {children}
         </List>

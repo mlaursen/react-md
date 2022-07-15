@@ -1,9 +1,10 @@
 import { useCollapseTransition } from "@react-md/core";
-import { cnb } from "cnbuilder";
 import type { ListProps } from "@react-md/list";
 import { List } from "@react-md/list";
 import type { ReactNode } from "react";
 import { forwardRef } from "react";
+
+import { treeGroup } from "./styles";
 
 type CSSProperties = React.CSSProperties & {
   "--rmd-tree-depth": number;
@@ -41,7 +42,7 @@ export const TreeGroup = forwardRef<HTMLUListElement, TreeGroupProps>(
       enter: !disableTransition,
       exit: !disableTransition,
       transitionIn: !collapsed,
-      className: cnb("rmd-tree-group", className),
+      className: treeGroup({ className }),
     });
 
     if (!rendered) {

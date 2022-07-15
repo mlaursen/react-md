@@ -1,14 +1,14 @@
 import {
-  bem,
   RippleContainer,
   useElementInteraction,
   useHigherContrastChildren,
 } from "@react-md/core";
 import { useLink } from "@react-md/link";
-import { getListItemClassName, ListItemChildren } from "@react-md/list";
+import { ListItemChildren } from "@react-md/list";
 import { cnb } from "cnbuilder";
 import type { MutableRefObject, ReactElement, ReactNode } from "react";
 
+import { treeItem, treeItemContent } from "./styles";
 import { TreeGroup } from "./TreeGroup";
 import { TreeItemExpander } from "./TreeItemExpander";
 import { useTreeContext } from "./TreeProvider";
@@ -17,8 +17,6 @@ import type {
   TreeItemNode,
   TreeItemStates,
 } from "./types";
-
-const styles = bem("rmd-tree-item");
 
 export interface TreeItemProps
   extends OverridableTreeItemProps,
@@ -142,34 +140,21 @@ export function TreeItem(props: TreeItemProps): ReactElement {
   return (
     <li
       {...(isLink ? noA11yProps : a11yProps)}
-      className={cnb(
-        styles({
-          "rotator-left": expanderLeft,
-          "rotator-right": !expanderLeft,
-        }),
-        className
-      )}
+      className={treeItem({ className, expanderLeft })}
     >
       <ContentComponent
         {...remaining}
         {...(isLink ? a11yProps : undefined)}
-        className={cnb(
-          styles("content", {
-            link: isLink,
-            padded: depth > 0,
-            focused,
-            selected,
-            disabled,
-            "rotator-left": expanderLeft,
-            "rotator-right": !expanderLeft,
-          }),
-          getListItemClassName({
-            className: contentClassName,
-            disabled,
-            disabledOpacity,
-            pressedClassName,
-          })
-        )}
+        className={treeItemContent({
+          link: isLink,
+          padded: depth > 0,
+          focused,
+          selected,
+          disabled,
+          disabledOpacity,
+          className: contentClassName,
+          pressedClassName,
+        })}
       >
         <ListItemChildren
           leftAddon={
