@@ -147,7 +147,7 @@ $var-lookup: (
 
       @if $fixed-elevation and $fixed-elevation != 0 {
         &--fixed-elevation {
-          @include core.box-shadow($fixed-elevation);
+          @include core.box-shadow($fixed-elevation, $disable-colors: true);
         }
       }
 
