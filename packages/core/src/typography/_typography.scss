@@ -3,6 +3,8 @@
 @use "../media-queries";
 @use "../utils";
 
+$disable-sr-only: false !default;
+
 /// A small utility function to get the letter spacing based on tracking and
 /// font-size
 ///
@@ -296,6 +298,12 @@ $typography-var-lookup: (
 
     &--no-margin-bottom {
       margin-bottom: 0;
+    }
+  }
+
+  @if not $disable-sr-only {
+    .rmd-sr-only {
+      @include utils.sr-only(true);
     }
   }
 }

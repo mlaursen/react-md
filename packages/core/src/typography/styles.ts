@@ -3,6 +3,7 @@ import { bem } from "../bem";
 
 const styles = bem("rmd-typography");
 const textContainerStyles = bem("rmd-text-container");
+const srOnlyStyles = bem("rmd-sr-only");
 
 /**
  * A union of all the material design provided typography styles. When used with
@@ -300,4 +301,23 @@ export function getTextContainerClassName(
   const { size = "auto", className } = options;
 
   return cnb(textContainerStyles({ [size]: true }), className);
+}
+
+export interface SrOnlyClassNameOptions {
+  className?: string;
+
+  /**
+   * Boolean if the text should become visible when focused. If this prop is
+   * enabled and the `tabIndex` prop is `undefined`, the `tabIndex` will be
+   * updated to be `0`.
+   *
+   * @defaultValue `false`
+   */
+  focusable?: boolean;
+}
+
+export function getSrOnlyClassName(options: SrOnlyClassNameOptions): string {
+  const { className, focusable = false } = options;
+
+  return cnb(srOnlyStyles({ focusable }), className);
 }
