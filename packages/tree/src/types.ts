@@ -1,12 +1,13 @@
 import type { ElementInteractionHandlers } from "@react-md/core";
+import type { CustomLinkComponent } from "@react-md/link";
 import type { ListItemChildrenAddonProps } from "@react-md/list";
 import type {
   Dispatch,
   ElementType,
-  ForwardRefExoticComponent,
   HTMLAttributes,
   MutableRefObject,
   ReactNode,
+  Ref,
   SetStateAction,
 } from "react";
 
@@ -21,6 +22,8 @@ export interface DefaultTreeItemNode
   to?: string;
   href?: string;
   name?: ReactNode;
+  rel?: string;
+  target?: string;
   children?: ReactNode;
   disabled?: boolean;
   className?: string;
@@ -114,14 +117,6 @@ export interface TreeExpansion {
   onMultiItemExpansion: Dispatch<SetStateAction<TreeItemIdSet>>;
 }
 
-export type TreeItemLinkElement =
-  | ForwardRefExoticComponent<{ href: string }>
-  | ForwardRefExoticComponent<{ to: string }>
-  | "a";
-export type TreeItemCustomComponent =
-  | TreeItemLinkElement
-  | keyof JSX.IntrinsicElements;
-
 export type TreeItemHTMLAttributes = Omit<
   HTMLAttributes<HTMLElement>,
   keyof ElementInteractionHandlers<HTMLElement> | "itemRef" | "id"
@@ -135,8 +130,6 @@ export interface ConfigurableTreeItemProps
    */
   to?: string;
   href?: string;
-  // as?: keyof JSX.IntrinsicElements | TreeItemLinkElement;
-  as?: TreeItemCustomComponent;
 
   item: TreeItemNode;
 
@@ -160,7 +153,6 @@ export interface TreeItemStates {
 export interface OverridableTreeItemProps
   extends ListItemChildrenAddonProps,
     Omit<HTMLAttributes<HTMLSpanElement>, "id"> {
-  as?: TreeItemCustomComponent;
   to?: string;
   href?: string;
   disabled?: boolean;
@@ -203,6 +195,7 @@ export interface TreeProps<T extends TreeItemNode>
     TreeExpansion,
     TreeSelection {
   data: ReadonlyTreeData<T>;
+  treeRef?: Ref<HTMLUListElement>;
 
   /** @defaultValue `identity` */
   sort?: TreeItemSorter<T>;
@@ -245,4 +238,6 @@ export interface TreeProps<T extends TreeItemNode>
   renderer?: ElementType<TreeItemRendererProps<T>>;
 
   getTreeItemProps?: GetTreeItemProps<T>;
+
+  linkComponent?: CustomLinkComponent;
 }

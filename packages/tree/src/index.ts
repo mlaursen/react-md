@@ -6,3 +6,4 @@ export * from "./TreeItem";
 export * from "./TreeItemExpander";
 export * from "./types";
 export * from "./useTree";
+export * from "./utils";

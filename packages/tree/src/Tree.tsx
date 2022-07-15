@@ -1,15 +1,17 @@
 import { identity, useEnsuredId } from "@react-md/core";
+import { LinkProvider } from "@react-md/link";
 import { List } from "@react-md/list";
 import { cnb } from "cnbuilder";
 import type { MutableRefObject, ReactElement, ReactNode } from "react";
 import { createRef, useMemo } from "react";
+
 import { DefaultTreeItemRenderer } from "./DefaultTreeItemRenderer";
 import { TreeProvider } from "./TreeProvider";
 import type {
-  TreeItemNode,
   CurrentTreeItem,
-  TreeProps,
   RenderableTreeItemNode,
+  TreeItemNode,
+  TreeProps,
 } from "./types";
 import { useTreeA11y } from "./useTreeA11y";
 import { useTreeItems } from "./useTreeItems";
@@ -29,6 +31,7 @@ export function Tree<T extends TreeItemNode>(
     data,
     sort = identity,
     rootId = null,
+    treeRef,
     className,
     expandedIds,
     selectedIds,
@@ -45,6 +48,7 @@ export function Tree<T extends TreeItemNode>(
     expanderIcon,
     expanderLeft = false,
     isTreeItem = alwaysTrue,
+    linkComponent,
     getTreeItemProps = noop,
     disableTransition = false,
     ...remaining
@@ -200,19 +204,22 @@ export function Tree<T extends TreeItemNode>(
       onMultiItemExpansion={onMultiItemExpansion}
       onMultiItemSelection={onMultiItemSelection}
     >
-      <List
-        {...remaining}
-        {...treeProps}
-        style={style}
-        aria-activedescendant={visibleItems.current[activeIndex]?.id}
-        aria-multiselectable={multiSelect || undefined}
-        id={treeId}
-        role="tree"
-        tabIndex={0}
-        className={cnb("rmd-tree", className)}
-      >
-        {children}
-      </List>
+      <LinkProvider link={linkComponent}>
+        <List
+          {...remaining}
+          {...treeProps}
+          style={style}
+          aria-activedescendant={visibleItems.current[activeIndex]?.id}
+          aria-multiselectable={multiSelect || undefined}
+          id={treeId}
+          ref={treeRef}
+          role="tree"
+          tabIndex={0}
+          className={cnb("rmd-tree", className)}
+        >
+          {children}
+        </List>
+      </LinkProvider>
     </TreeProvider>
   );
 }

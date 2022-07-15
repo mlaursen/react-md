@@ -4,9 +4,11 @@ import {
   useElementInteraction,
   useHigherContrastChildren,
 } from "@react-md/core";
+import { useLink } from "@react-md/link";
 import { getListItemClassName, ListItemChildren } from "@react-md/list";
 import { cnb } from "cnbuilder";
 import type { MutableRefObject, ReactElement, ReactNode } from "react";
+
 import { TreeGroup } from "./TreeGroup";
 import { TreeItemExpander } from "./TreeItemExpander";
 import { useTreeContext } from "./TreeProvider";
@@ -38,7 +40,6 @@ export function TreeItem(props: TreeItemProps): ReactElement {
     disabledOpacity = false,
     children: propChildren,
     className,
-    as = "span",
     item,
     leftAddon,
     leftAddonType: propLeftAddonType,
@@ -127,9 +128,10 @@ export function TreeItem(props: TreeItemProps): ReactElement {
   };
   const noA11yProps = { role: "none" };
   const isLink = !!(remaining.to || remaining.href);
+  const Link = useLink();
 
   // cheating a bit so there are type errors around the event handlers
-  const ContentComponent = as as "span";
+  const ContentComponent = (isLink ? Link : "span") as "span";
   const leftAddonType =
     propLeftAddonType ?? (expanderLeft && leftAddon) ? "media" : undefined;
   const isMediaLeftAddon =
