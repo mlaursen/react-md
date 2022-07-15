@@ -48,3 +48,8 @@ $horizontal-padding: var(
   #{everything.$icon-rotate-from-var}: 90deg;
   #{everything.$icon-rotate-to-var}: 0deg;
 }
+
+.link {
+  color: inherit;
+  text-decoration: none;
+}

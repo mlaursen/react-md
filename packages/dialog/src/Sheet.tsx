@@ -59,6 +59,7 @@ export const Sheet = forwardRef<HTMLDivElement, SheetProps>(function Sheet(
     onExited = noop,
     ...remaining
   } = props;
+  const { disableOverlay } = props;
 
   // if the sheet mounts while not visible and the conditional mounting isn't
   // enabled, need to default to the offscreen state which is normally handled
@@ -97,6 +98,7 @@ export const Sheet = forwardRef<HTMLDivElement, SheetProps>(function Sheet(
         horizontalSize,
         verticalSize,
         offscreen: offscreen.current,
+        disableOverlay,
         className,
       })}
     >

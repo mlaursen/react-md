@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 const sheet = false;
 
 export default function DialogPage(): ReactElement {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
   useEffect(() => {
     const rootNode = document.body.firstElementChild;
     if (!rootNode || !(rootNode instanceof HTMLElement)) {
@@ -27,6 +27,29 @@ export default function DialogPage(): ReactElement {
       rootNode.style.height = "";
     };
   }, []);
+
+  useEffect(() => {
+    const timeout = window.setTimeout(() => {
+      setVisible(true);
+    }, 3000);
+
+    return () => {
+      window.clearTimeout(timeout);
+    };
+  }, []);
+
+  // const [boop, setBoop] = useState(false);
+  // useEffect(() => {
+  //   if (!visible) {
+  //     return;
+  //   }
+  //   const interval = window.setInterval(() => {
+  //     setBoop((prev) => !prev);
+  //   }, 1000);
+  //   return () => {
+  //     window.clearInterval(interval);
+  //   };
+  // }, [visible]);
   return (
     <>
       <Box

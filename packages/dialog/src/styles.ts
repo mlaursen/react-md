@@ -159,6 +159,7 @@ export interface BaseSheetClassNameOptions extends MergableClassName {
  */
 export interface SheetClassNameOptions extends BaseSheetClassNameOptions {
   offscreen?: boolean;
+  disableOverlay?: boolean;
 }
 
 export function getSheetClassName(options: SheetClassNameOptions): string {
@@ -167,6 +168,7 @@ export function getSheetClassName(options: SheetClassNameOptions): string {
     horizontalSize = "media",
     verticalSize = "recommended",
     offscreen = false,
+    disableOverlay,
     className,
   } = options;
   const horizontal = position === "left" || position === "right";
@@ -175,7 +177,7 @@ export function getSheetClassName(options: SheetClassNameOptions): string {
     sheetStyles({
       horizontal,
       vertical: !horizontal,
-      raised: true /*overlay*/,
+      raised: !disableOverlay,
       offscreen,
       [position]: true,
       [`${horizontalSize}-width`]: horizontal,

@@ -132,6 +132,7 @@ $box-shadow-3-layers: (
   $duration: transition.$linear-duration,
   $pseudo-before: true,
   $pseudo-z-index: 0,
+  $pseudo-fixed: false,
   $create-pseudo: true
 ) {
   $pseudo-selector: if($pseudo-before, "&::before", "&::after");
@@ -145,7 +146,7 @@ $box-shadow-3-layers: (
 
     #{$pseudo-selector} {
       @if $create-pseudo {
-        @include utils.pseudo-element($pseudo-z-index);
+        @include utils.pseudo-element($pseudo-z-index, $pseudo-fixed);
       }
 
       box-shadow: $end-shadow;

@@ -1,0 +1,203 @@
+@use "sass:map";
+@use "@react-md/core";
+@use "@react-md/button";
+@use "@react-md/app-bar";
+@use "@react-md/dialog";
+@use "@react-md/divider";
+
+$disable-mini: false !default;
+
+$enter-duration: dialog.$sheet-enter-duration !default;
+$leave-duration: dialog.$sheet-leave-duration !default;
+
+$main-outline-color: core.$outline-color !default;
+$main-outline-width: core.$outline-width !default;
+$main-focused-z-index: 999 !default;
+$main-focus-shadow: inset 0 0 0 0.125rem core.$blue-500 !default;
+
+$navigation-z-index: dialog.$dialog-z-index !default;
+$navigation-mini-z-index: app-bar.$fixed-z-index - 1 !default;
+$navigation-width: dialog.$sheet-static-width !default;
+$navigation-mini-width: 3.5rem !default;
+
+$var-lookup: (
+  nav-width: (
+    var: --rmd-layout-nav-width,
+    value: $navigation-width,
+  ),
+  mini-nav-width: (
+    var: --rmd-layout-mini-nav-width,
+    value: $navigation-mini-width,
+  ),
+  main-offset: (
+    var: --rmd-layout-main-offset,
+    value: var(--rmd-layout-nav-width, $navigation-width),
+  ),
+);
+
+@function get-var($name, $fallback: null) {
+  $found: core.validate($var-lookup, $name, "layout var");
+  $var: map.get($found, var);
+  $value: if($fallback, $fallback, map.get($found, value));
+
+  @if $value {
+    @return var(#{$var}, #{$value});
+  }
+
+  @return var(#{$var});
+}
+
+@mixin set-var($name, $value) {
+  $var: map.get(core.validate($var-lookup, $name, "layout var"), var);
+
+  #{$var}: #{$value};
+}
+
+@mixin use-var($property, $name: $property, $fallback: null) {
+  #{$property}: get-var($name, $fallback);
+}
+
+@mixin styles {
+  // this is used for the title and main elements for animating their margin
+  // while the toggleable layout appears. it will use the same transition
+  // functions and time as the sheet so it all transitions together
+  .rmd-layout-transition {
+    &--enter {
+      transition: margin $enter-duration core.$deceleration-timing-function;
+    }
+
+    &--exit {
+      transition: margin $leave-duration core.$acceleration-timing-function;
+    }
+  }
+
+  .rmd-layout-navigation {
+    z-index: $navigation-z-index;
+
+    &--floating {
+      background-color: transparent;
+      box-shadow: none;
+    }
+
+    &--header-offset {
+      @include app-bar.use-var(top, height);
+    }
+
+    @if not $disable-mini {
+      &--mini {
+        @include dialog.sheet-set-var(width, get-var(mini-nav-width));
+        @include app-bar.use-var(top, height);
+
+        z-index: $navigation-mini-z-index;
+      }
+    }
+
+    &--sticky {
+      overflow: visible;
+      position: initial;
+    }
+  }
+
+  .rmd-layout-nav {
+    overflow: auto;
+
+    &--grow {
+      flex: 1 1 auto;
+      height: 100%;
+    }
+
+    &--sticky {
+      position: sticky;
+      top: 0;
+      will-change: transform;
+    }
+
+    &__mini-item {
+      justify-content: center;
+    }
+  }
+
+  .rmd-layout-tree {
+    height: auto;
+    overflow: visible;
+  }
+
+  .rmd-layout-title {
+    &--offset {
+      $margin: calc(
+        #{dialog.sheet-get-var(static-width)} + #{app-bar.$keyline}
+      );
+
+      @include core.auto-rtl(margin-left, $margin);
+    }
+  }
+
+  .rmd-layout-nav-toggle {
+    &--offset {
+      // $title-margin: app-bar.$rmd-app-bar-title-nav-margin -
+      //   ($rmd-app-bar-lr-margin * 2);
+      // $nav-size: rmd-layout-theme-var(nav-width);
+      // $icon-size: rmd-button-theme-var(icon-size);
+      // $distance: calc(#{$title-margin} + #{$nav-size} - #{$icon-size});
+      $distance: calc(#{get-var(nav-width)} - #{button.get-var(icon-size)});
+
+      @include core.auto-rtl(margin-right, $distance);
+    }
+  }
+
+  .rmd-layout-nav-header {
+    &--bordered {
+      @include divider.style(bottom);
+    }
+  }
+
+  .rmd-layout-mini-wrapper {
+    display: grid;
+    grid-template-columns: get-var(mini-nav-width) 1fr;
+  }
+
+  .rmd-layout-main {
+    @include core.keyboard-only {
+      @include core.box-shadow-transition(
+        none,
+        $main-focus-shadow,
+        "&:focus",
+        $pseudo-fixed: true,
+        $pseudo-z-index: $main-focused-z-index
+      );
+
+      &--nav-offset::before {
+        @include core.auto-rtl(left, get-var(main-offset));
+      }
+    }
+
+    // need to polyfill for IE11 even though not 100% supported
+    display: block;
+    height: 100%;
+    outline-style: none;
+
+    &--header-offset {
+      @include app-bar.use-var(padding-top, height);
+
+      @include core.keyboard-only {
+        &::before {
+          @include app-bar.use-var(top, height);
+        }
+      }
+    }
+
+    &--nav-offset {
+      @include core.auto-rtl(margin-left, get-var(main-offset));
+    }
+
+    &--mini {
+      @include set-var(main-offset, get-var(mini-nav-width));
+    }
+
+    &--mini-offset {
+      $distance: "#{get-var-var(nav-width)} - #{get-var(mini-nav-width)}";
+
+      @include set-var(main-offset, calc(#{$distance}));
+    }
+  }
+}

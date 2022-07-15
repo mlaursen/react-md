@@ -117,7 +117,7 @@ $var-lookup: (
     @if not $disable-position-left {
       &--left {
         @include core.auto-rtl(left, 0) {
-          @include set-var(transform-offscreen, translate3d(100%, 0 0));
+          @include set-var(transform-offscreen, translate3d(100%, 0, 0));
         }
         @include set-var(transform-offscreen, translate3d(-100%, 0, 0));
       }
@@ -125,10 +125,10 @@ $var-lookup: (
 
     @if not $disable-position-right {
       &--right {
-        @include core.auto-rtl(left, 0) {
+        @include core.auto-rtl(right, 0) {
           @include set-var(transform-offscreen, translate3d(-100%, 0, 0));
         }
-        @include set-var(transform-offscreen, translate3d(100%, 0 0));
+        @include set-var(transform-offscreen, translate3d(100%, 0, 0));
       }
     }
 

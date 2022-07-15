@@ -24,6 +24,7 @@
       "@react-md/dialog": ["packages/dialog/src/index.ts"],
       "@react-md/divider": ["packages/divider/src/index.ts"],
       "@react-md/icon": ["packages/icon/src/index.ts"],
+      "@react-md/layout": ["packages/layout/src/index.ts"],
       "@react-md/link": ["packages/link/src/index.ts"],
       "@react-md/list": ["packages/list/src/index.ts"],
       "@react-md/material-icons/*": ["packages/material-icons/src/*"],
@@ -38,6 +39,7 @@
     "packages/material-icons/**/*RoundedIcon*",
     "packages/material-icons/**/*OutlinedIcon*",
     "packages/material-icons/**/*TwoToneIcon*",
-    "packages/material-icons/**/*SharpIcon*"
+    "packages/material-icons/**/*SharpIcon*",
+    "packages/material-icons/**/*"
   ]
 }

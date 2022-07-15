@@ -161,6 +161,32 @@ importers:
       '@react-md/core': link:../core
       cnbuilder: 3.1.0
 
+  packages/layout:
+    specifiers:
+      '@react-md/app-bar': ^6.0.0-alpha.0
+      '@react-md/button': ^6.0.0-alpha.0
+      '@react-md/core': ^6.0.0-alpha.0
+      '@react-md/dialog': ^6.0.0-alpha.0
+      '@react-md/divider': ^6.0.0-alpha.0
+      '@react-md/icon': ^6.0.0-alpha.0
+      '@react-md/link': ^6.0.0-alpha.0
+      '@react-md/list': ^6.0.0-alpha.0
+      '@react-md/progress': ^6.0.0-alpha.0
+      '@react-md/tree': ^6.0.0-alpha.0
+      cnbuilder: ^3.1.0
+    dependencies:
+      '@react-md/app-bar': link:../app-bar
+      '@react-md/button': link:../button
+      '@react-md/core': link:../core
+      '@react-md/dialog': link:../dialog
+      '@react-md/divider': link:../divider
+      '@react-md/icon': link:../icon
+      '@react-md/link': link:../link
+      '@react-md/list': link:../list
+      '@react-md/progress': link:../progress
+      '@react-md/tree': link:../tree
+      cnbuilder: 3.1.0
+
   packages/link:
     specifiers:
       '@react-md/button': ^6.0.0-alpha.0
@@ -214,11 +240,13 @@ importers:
     specifiers:
       '@react-md/core': ^6.0.0-alpha.0
       '@react-md/icon': ^6.0.0-alpha.0
+      '@react-md/link': ^6.0.0-alpha.0
       '@react-md/list': ^6.0.0-alpha.0
       cnbuilder: ^3.1.0
     dependencies:
       '@react-md/core': link:../core
       '@react-md/icon': link:../icon
+      '@react-md/link': link:../link
       '@react-md/list': link:../list
       cnbuilder: 3.1.0
 

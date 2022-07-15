@@ -19,7 +19,7 @@ import { upperFirst } from "lodash";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import type { ReactElement } from "react";
-import { Header } from "src/components/Header";
+import Layout from "src/components/Layout/Layout";
 import { LoadThemeStyles } from "src/components/Theme/LoadThemeStyles";
 import {
   defaultColorSchemeMode,
@@ -111,6 +111,8 @@ const toBreadcrumbPageTitle = (
 
 export default function App(props: AppProps): ReactElement {
   const { Component, pageProps, router } = props;
+  const { pathname } = router;
+  const title = toBreadcrumbPageTitle(pathname);
 
   return (
     <CoreProviders
@@ -120,13 +122,14 @@ export default function App(props: AppProps): ReactElement {
       disableHigherContrast={defaultDisableHighContrastMode}
     >
       <Head>
-        <title>{toBreadcrumbPageTitle(router.pathname)}</title>
+        <title>{title}</title>
       </Head>
       <ThemeProvider>
         <IconProvider {...icons}>
-          <Header />
-          <Component {...pageProps} />
-          <LoadThemeStyles />
+          <Layout title={title}>
+            <Component {...pageProps} />
+            <LoadThemeStyles />
+          </Layout>
         </IconProvider>
       </ThemeProvider>
     </CoreProviders>

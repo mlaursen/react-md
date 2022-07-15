@@ -270,9 +270,11 @@ $var-lookup: (
     .rmd-list-subheader {
       @include core.map-to-styles(core.$subtitle-2-styles);
       @include core.use-theme-var(color, text-secondary-color);
+      @include use-var(min-height, item-height);
 
       align-items: center;
       display: flex;
+      padding: get-var(item-vertical-padding) get-var(item-horizontal-padding);
 
       @if not $disable-subheader-inset {
         &--inset {

@@ -63,7 +63,9 @@ export interface BaseDialogProps
 
   containerProps?: HTMLAttributes<HTMLDivElement>;
 
+  disablePortal?: boolean;
   disableOverlay?: boolean;
+  disableScrollLock?: boolean;
   overlayProps?: HTMLAttributes<HTMLSpanElement>;
   overlayHidden?: boolean;
 
@@ -100,11 +102,12 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
     overlayProps,
     overlayHidden,
     onKeyDown = noop,
+    disablePortal: propDisablePortal,
+    disableScrollLock = false,
     children,
     ...remaining
   } = props;
   const id = useEnsuredId(propId, "dialog");
-  useScrollLock(visible);
 
   const ssr = useSsr();
   const prevFocus = useRef<HTMLElement | null>(null);
@@ -135,6 +138,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
     onExited,
     temporary,
   });
+  useScrollLock(!disableScrollLock && visible);
 
   return (
     <>
@@ -147,7 +151,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
           hidden={overlayHidden}
         />
       )}
-      <Portal disabled={disablePortal}>
+      <Portal disabled={propDisablePortal || disablePortal}>
         {rendered && (
           <DialogContainer {...containerProps} enabled={type === "centered"}>
             <div
