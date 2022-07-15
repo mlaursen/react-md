@@ -1,5 +1,6 @@
 import type { ReactElement, ReactNode } from "react";
 import { createContext, useContext, useMemo } from "react";
+
 import { useMediaQuery } from "./useMediaQuery";
 import { useOrientation } from "./useOrientation";
 
@@ -45,6 +46,14 @@ export interface AppSize {
    */
   isLandscape: boolean;
 }
+
+export const DEFAULT_APP_SIZE: AppSize = {
+  isPhone: false,
+  isTablet: false,
+  isDesktop: true,
+  isLargeDesktop: false,
+  isLandscape: true,
+};
 
 /** @internal */
 interface AppSizeContext extends AppSize {
@@ -151,6 +160,11 @@ export interface AppSizeQueries {
 }
 
 export interface AppSizeProviderProps extends AppSizeQueries {
+  /**
+   * @defaultValue `DEFAULT_APP_SIZE`
+   * @see {@link DEFAULT_APP_SIZE}
+   */
+  ssrSize?: Readonly<AppSize>;
   children: ReactNode;
 }
 
@@ -160,6 +174,7 @@ export interface AppSizeProviderProps extends AppSizeQueries {
  */
 export function AppSizeProvider(props: AppSizeProviderProps): ReactElement {
   const {
+    ssrSize = DEFAULT_APP_SIZE,
     phoneMaxWidth = DEFAULT_PHONE_MAX_WIDTH,
     tabletMinWidth = DEFAULT_TABLET_MIN_WIDTH,
     tabletMaxWidth = DEFAULT_TABLET_MAX_WIDTH,
@@ -201,6 +216,10 @@ export function AppSizeProvider(props: AppSizeProviderProps): ReactElement {
     }),
     [isDesktop, isLandscape, isLargeDesktop, isPhone, isTablet]
   );
+
+  if (typeof window === "undefined") {
+    return <Provider value={{ __root: true, ...ssrSize }}>{children}</Provider>;
+  }
 
   return <Provider value={appSize}>{children}</Provider>;
 }
