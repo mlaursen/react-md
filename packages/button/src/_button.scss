@@ -165,6 +165,7 @@ $var-lookup: (
       $disabled-selector: "&:disabled" +
         if(list.index($themes, disabled), ",&[aria-disabled='true']", "")
     );
+    @include icon.set-var(color, currentcolor);
     @include icon.use-var(gap, spacing);
     @include use-var(background-color);
     @include use-var(color);
@@ -192,7 +193,6 @@ $var-lookup: (
 
     @if not $disable-icon {
       &--icon {
-        @include icon.set-var(color, currentcolor);
         @include set-var(border-radius, $icon-border-radius);
         @include use-var(height, icon-size);
         @include use-var(width, icon-size);

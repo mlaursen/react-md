@@ -24,8 +24,8 @@ export default function Layout(props: LayoutProps): ReactElement {
       treeProps={useLayoutNavigation(navItems, pathname, UnstyledLink)}
       phoneLayout="temporary"
       tabletLayout="temporary"
-      desktopLayout="toggleable-mini"
-      largeDesktopLayout="toggleable-mini"
+      desktopLayout="toggleable"
+      largeDesktopLayout="toggleable"
       landscapeTabletLayout="temporary"
     >
       {children}

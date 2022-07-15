@@ -268,6 +268,6 @@ export function useSkeletonPlaceholder(
 
   return {
     style,
-    className: cnb(className, disabled && skeletonPlaceholder()),
+    className: cnb(className, !disabled && skeletonPlaceholder()),
   };
 }

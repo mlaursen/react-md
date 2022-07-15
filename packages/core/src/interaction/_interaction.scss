@@ -109,6 +109,10 @@ $interaction-var-lookup: (
     var: --rmd-interaction-press-background-color,
     value: $press-background-color,
   ),
+  selected-background-color: (
+    var: --rmd-interaction-selected-background-color,
+    value: $selected-background-color,
+  ),
   outline-color: (
     var: --rmd-outline-color,
     value: $outline-color,
@@ -142,6 +146,44 @@ $interaction-var-lookup: (
 
 @mixin use-interaction-var($property, $name: $property, $fallback: null) {
   #{$property}: get-interaction-var($name, $fallback);
+}
+
+@mixin use-interaction-light-theme {
+  @include set-interaction-var(
+    hover-background-color,
+    $light-theme-hover-background-color
+  );
+  @include set-interaction-var(
+    focus-background-color,
+    $light-theme-focus-background-color
+  );
+  @include set-interaction-var(
+    press-background-color,
+    $light-theme-press-background-color
+  );
+  @include set-interaction-var(
+    selected-background-color,
+    $light-theme-selected-background-color
+  );
+}
+
+@mixin use-interaction-dark-theme {
+  @include set-interaction-var(
+    hover-background-color,
+    $dark-theme-hover-background-color
+  );
+  @include set-interaction-var(
+    focus-background-color,
+    $dark-theme-focus-background-color
+  );
+  @include set-interaction-var(
+    press-background-color,
+    $dark-theme-press-background-color
+  );
+  @include set-interaction-var(
+    selected-background-color,
+    $dark-theme-selected-background-color
+  );
 }
 
 @if $interaction-mode and

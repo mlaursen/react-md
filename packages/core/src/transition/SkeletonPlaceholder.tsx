@@ -134,7 +134,7 @@ export function SkeletonPlaceholder(
     ...remaining
   } = props;
   const skeleton = useSkeletonPlaceholder({
-    disabled: !disabled,
+    disabled,
     style,
     className,
     height,

@@ -207,14 +207,10 @@ $transition-var-lookup: (
     );
     @include use-transition-var(height, skeleton-placeholder-height);
 
+    animation: rmd-skeleton-placeholder $skeleton-placeholder-animation-duration
+      $skeleton-placeholder-animation-timing-function infinite;
     border-radius: $skeleton-placeholder-border-radius;
     color: transparent;
-
-    &--animate {
-      animation: rmd-skeleton-placeholder
-        $skeleton-placeholder-animation-duration
-        $skeleton-placeholder-animation-timing-function infinite;
-    }
   }
 
   @keyframes rmd-skeleton-placeholder {

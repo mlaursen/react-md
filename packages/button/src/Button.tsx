@@ -5,8 +5,9 @@ import {
 } from "@react-md/core";
 import type { ButtonHTMLAttributes } from "react";
 import { forwardRef } from "react";
+
 import type { ButtonClassNameThemeOptions } from "./styles";
-import { getButtonClassName } from "./styles";
+import { button } from "./styles";
 
 export interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
@@ -150,7 +151,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         aria-disabled={isThemeDisabled || undefined}
         ref={ref}
         type={type}
-        className={getButtonClassName({
+        className={button({
           theme,
           themeType,
           buttonType,
