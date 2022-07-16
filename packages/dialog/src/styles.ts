@@ -16,7 +16,7 @@ export interface DialogClassNameOptions extends MergableClassName {
   type?: "full-page" | "centered" | "custom";
 }
 
-export function getDialogClassName(options: DialogClassNameOptions): string {
+export function dialog(options: DialogClassNameOptions): string {
   const { type = "centered", className } = options;
 
   return cnb(
@@ -28,7 +28,7 @@ export function getDialogClassName(options: DialogClassNameOptions): string {
   );
 }
 
-export function getDialogHeaderClassName(options: MergableClassName): string {
+export function dialogHeader(options: MergableClassName): string {
   const { className } = options;
 
   return cnb(dialogStyles("header"), className);
@@ -39,9 +39,7 @@ export interface DialogContentCLassNameOptions extends MergableClassName {
   disablePadding?: boolean;
 }
 
-export function getDialogContentClassName(
-  options: DialogContentCLassNameOptions
-): string {
+export function dialogContent(options: DialogContentCLassNameOptions): string {
   const { className, disablePadding = false } = options;
 
   return cnb(dialogStyles("content", { padded: !disablePadding }), className);
@@ -67,9 +65,7 @@ export interface DialogFooterClassNameOptions extends MergableClassName {
   align?: DialogFooterAlignment;
 }
 
-export function getDialogFooterClassName(
-  options: DialogFooterClassNameOptions
-): string {
+export function dialogFooter(options: DialogFooterClassNameOptions): string {
   const { align = "end", className } = options;
 
   return cnb(
@@ -89,7 +85,7 @@ export interface OverlayClassNameOptions extends MergableClassName {
   clickable?: boolean;
 }
 
-export function getOverlayClassName(options: OverlayClassNameOptions): string {
+export function overlay(options: OverlayClassNameOptions): string {
   const { visible, clickable = false, className } = options;
 
   return cnb(
@@ -162,7 +158,7 @@ export interface SheetClassNameOptions extends BaseSheetClassNameOptions {
   disableOverlay?: boolean;
 }
 
-export function getSheetClassName(options: SheetClassNameOptions): string {
+export function sheet(options: SheetClassNameOptions): string {
   const {
     position = "left",
     horizontalSize = "media",

@@ -8,7 +8,7 @@ import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
 
 import type { OverlayClassNameOptions } from "./styles";
-import { getOverlayClassName } from "./styles";
+import { overlay } from "./styles";
 
 /** @remarks \@since 2.4.0 */
 export const DEFAULT_OVERLAY_TIMEOUT: TransitionTimeout = 150;
@@ -54,7 +54,7 @@ export const Overlay = forwardRef<HTMLSpanElement, OverlayProps>(
       transitionIn: visible,
       timeout,
       classNames,
-      className: getOverlayClassName({
+      className: overlay({
         visible,
         clickable,
         className,

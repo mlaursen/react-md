@@ -1,7 +1,8 @@
 import type { ElementType, HTMLAttributes } from "react";
 import { forwardRef } from "react";
+
 import type { DividerClassNameOptions } from "./styles";
-import { getDividerClassName } from "./styles";
+import { divider } from "./styles";
 
 export type DividerElement = HTMLHRElement | HTMLDivElement;
 
@@ -26,7 +27,7 @@ export const Divider = forwardRef<DividerElement, DividerProps>(
         {...remaining}
         ref={ref}
         role={role}
-        className={getDividerClassName({
+        className={divider({
           inset,
           vertical,
           className,

@@ -1,6 +1,6 @@
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
-import { getDialogHeaderClassName } from "./styles";
+import { dialogHeader } from "./styles";
 
 export type DialogHeaderProps = HTMLAttributes<HTMLDivElement>;
 
@@ -9,11 +9,7 @@ export const DialogHeader = forwardRef<HTMLDivElement, DialogHeaderProps>(
     const { children, className, ...remaining } = props;
 
     return (
-      <div
-        {...remaining}
-        ref={ref}
-        className={getDialogHeaderClassName({ className })}
-      >
+      <div {...remaining} ref={ref} className={dialogHeader({ className })}>
         {children}
       </div>
     );

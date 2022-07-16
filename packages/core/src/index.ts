@@ -6,6 +6,7 @@ export * from "./AppSizeProvider";
 export * from "./bem";
 export * from "./box";
 export * from "./CoreProviders";
+export * from "./focus";
 export * from "./getPercentage";
 export * from "./identity";
 export * from "./interaction";

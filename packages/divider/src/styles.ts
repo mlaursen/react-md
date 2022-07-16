@@ -31,9 +31,7 @@ export interface DividerClassNameOptions {
   vertical?: boolean;
 }
 
-export function getDividerClassName(
-  options: DividerClassNameOptions = {}
-): string {
+export function divider(options: DividerClassNameOptions = {}): string {
   const { inset = false, vertical = false, className } = options;
 
   return cnb(

@@ -1,7 +1,7 @@
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
 import type { DialogFooterClassNameOptions } from "./styles";
-import { getDialogFooterClassName } from "./styles";
+import { dialogFooter } from "./styles";
 
 export interface DialogFooterProps
   extends HTMLAttributes<HTMLDivElement>,
@@ -13,7 +13,7 @@ export const DialogFooter = forwardRef<HTMLDivElement, DialogFooterProps>(
       <footer
         {...props}
         ref={ref}
-        className={getDialogFooterClassName({
+        className={dialogFooter({
           align,
           className,
         })}

@@ -8,17 +8,17 @@ import {
   Portal,
   useCSSTransition,
   useEnsuredId,
-  useEnsuredRef,
   useScrollLock,
   useSsr,
+  useFocusContainer,
 } from "@react-md/core";
 import type { HTMLAttributes } from "react";
-import { forwardRef, useRef } from "react";
+import { forwardRef } from "react";
 
 import { DialogContainer } from "./DialogContainer";
 import { Overlay } from "./Overlay";
 import type { DialogClassNameOptions } from "./styles";
-import { getDialogClassName } from "./styles";
+import { dialog } from "./styles";
 
 /** @remarks \@since 4.0.0 */
 export const DEFAULT_DIALOG_CLASSNAMES: Readonly<CSSTransitionClassNames> = {
@@ -110,33 +110,34 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
   const id = useEnsuredId(propId, "dialog");
 
   const ssr = useSsr();
-  const prevFocus = useRef<HTMLElement | null>(null);
-  const [nodeRef, refCallback] = useEnsuredRef(ref);
+  const { eventHandlers, transitionOptions } = useFocusContainer({
+    ref,
+    activate: visible,
+    onEntering,
+    onExiting,
+    onKeyDown(event) {
+      onKeyDown(event);
+      if (event.isPropagationStopped() || event.key !== "Escape") {
+        return;
+      }
+
+      onRequestClose();
+    },
+  });
   const { elementProps, rendered, disablePortal } = useCSSTransition({
-    nodeRef: refCallback,
     transitionIn: visible,
     timeout,
     classNames,
-    className: getDialogClassName({ type, className }),
+    className: dialog({ type, className }),
     appear: !disableTransition && !ssr,
     enter: !disableTransition,
     exit: !disableTransition,
-    onEnter(appearing) {
-      onEnter(appearing);
-      prevFocus.current = document.activeElement as HTMLElement;
-    },
-    onEntering(appearing) {
-      onEntering(appearing);
-      nodeRef.current?.focus();
-    },
+    onEnter,
     onEntered,
     onExit,
-    onExiting() {
-      onExiting();
-      prevFocus.current?.focus();
-    },
     onExited,
     temporary,
+    ...transitionOptions,
   });
   useScrollLock(!disableScrollLock && visible);
 
@@ -157,17 +158,10 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
             <div
               {...remaining}
               {...elementProps}
+              {...eventHandlers}
               id={id}
               role={role}
               tabIndex={tabIndex}
-              onKeyDown={(event) => {
-                onKeyDown(event);
-                if (event.isPropagationStopped() || event.key !== "Escape") {
-                  return;
-                }
-
-                onRequestClose();
-              }}
             >
               {children}
             </div>

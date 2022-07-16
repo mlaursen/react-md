@@ -1,7 +1,7 @@
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
 import type { DialogContentCLassNameOptions } from "./styles";
-import { getDialogContentClassName } from "./styles";
+import { dialogContent } from "./styles";
 
 export interface DialogContentProps
   extends HTMLAttributes<HTMLDivElement>,
@@ -16,7 +16,7 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
       <div
         {...props}
         ref={ref}
-        className={getDialogContentClassName({
+        className={dialogContent({
           className,
           disablePadding,
         })}

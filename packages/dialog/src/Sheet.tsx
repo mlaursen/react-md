@@ -7,7 +7,7 @@ import { forwardRef, useEffect, useRef, useState } from "react";
 import type { BaseDialogProps } from "./Dialog";
 import { Dialog } from "./Dialog";
 import type { BaseSheetClassNameOptions } from "./styles";
-import { getSheetClassName } from "./styles";
+import { sheet } from "./styles";
 
 const noop = (): void => {
   // do nothing
@@ -93,7 +93,7 @@ export const Sheet = forwardRef<HTMLDivElement, SheetProps>(function Sheet(
         onExited();
         setHidden(!temporary);
       }}
-      className={getSheetClassName({
+      className={sheet({
         position,
         horizontalSize,
         verticalSize,
