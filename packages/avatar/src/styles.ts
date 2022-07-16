@@ -1,5 +1,5 @@
-import { cnb } from "cnbuilder";
 import { bem } from "@react-md/core";
+import { cnb } from "cnbuilder";
 
 const styles = bem("rmd-avatar");
 
@@ -18,7 +18,7 @@ export interface AvatarClassNameOptions {
   color?: string;
 }
 
-export function getAvatarClassName(options: AvatarClassNameOptions): string {
+export function avatar(options: AvatarClassNameOptions): string {
   const { className, color = "" } = options;
 
   return cnb(styles({ [color]: color }), className);
@@ -28,9 +28,7 @@ export interface AvatarImageClassNameOptions {
   className?: string;
 }
 
-export function getAvatarImageClassName(
-  options: AvatarImageClassNameOptions = {}
-): string {
+export function avatarImage(options: AvatarImageClassNameOptions = {}): string {
   const { className } = options;
 
   return cnb(styles("image"), className);

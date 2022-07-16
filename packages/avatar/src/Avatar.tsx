@@ -1,8 +1,9 @@
 import type { PropsWithRef } from "@react-md/core";
 import type { HTMLAttributes, ImgHTMLAttributes } from "react";
 import { forwardRef } from "react";
+
 import type { AvatarClassNameOptions } from "./styles";
-import { getAvatarClassName, getAvatarImageClassName } from "./styles";
+import { avatar, avatarImage } from "./styles";
 
 export type AvatarImgAttributes = ImgHTMLAttributes<HTMLImageElement>;
 
@@ -80,17 +81,13 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(function Avatar(
         alt={alt}
         referrerPolicy={referrerPolicy}
         {...imgProps}
-        className={getAvatarImageClassName({ className: imgProps?.className })}
+        className={avatarImage({ className: imgProps?.className })}
       />
     );
   }
 
   return (
-    <span
-      {...remaining}
-      ref={ref}
-      className={getAvatarClassName({ color, className })}
-    >
+    <span {...remaining} ref={ref} className={avatar({ color, className })}>
       {img}
       {children}
     </span>

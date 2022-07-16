@@ -1,7 +1,8 @@
 import { bem } from "@react-md/core";
 import { cnb } from "cnbuilder";
 
-const styles = bem("rmd-button");
+const buttonStyles = bem("rmd-button");
+const fabStyles = bem("rmd-button");
 
 /**
  * When this is set to `"text"`, the size of the button will be determined by
@@ -105,7 +106,7 @@ export function button(options: ButtonClassNameOptions = {}): string {
   const clear = theme === "clear";
 
   return cnb(
-    styles({
+    buttonStyles({
       text,
       icon,
       disabled,
@@ -117,6 +118,51 @@ export function button(options: ButtonClassNameOptions = {}): string {
       [`outline-${theme}`]: !disabled && !clear && outline,
     }),
     pressedClassName,
+    className
+  );
+}
+
+/**
+ * The position within the viewport for the floating action button.
+ * @remarks \@since 6.0.0 This was renamed from `FABPosition`
+ */
+export type FloatingActionButtonPosition =
+  | "bottom-left"
+  | "bottom-right"
+  | "top-left"
+  | "top-right";
+
+export interface FloatingActionButtonClassNameOptions {
+  className?: string;
+
+  /** @defaultValue `"bottom-right"` */
+  position?: FloatingActionButtonPosition;
+
+  /**
+   * This is used to update the `position` CSS value:
+   *
+   * - `"viewport" -> position: fixed;`
+   * - `"container" -> position: absolute;`
+   *
+   * Note: When this is set to `"container"`, you **must** have a parent element
+   * with `position: relative;` for it to display correctly.
+   *
+   * @defaultValue `"viewport"`
+   */
+  positionWithin?: "viewport" | "container";
+}
+
+export function fab(options: FloatingActionButtonClassNameOptions): string {
+  const { className, position, positionWithin } = options;
+
+  return cnb(
+    fabStyles({
+      tl: position === "top-left",
+      tr: position === "top-right",
+      bl: position === "bottom-left",
+      br: position === "bottom-right",
+      absolute: positionWithin === "container",
+    }),
     className
   );
 }
