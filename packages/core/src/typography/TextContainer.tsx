@@ -1,7 +1,7 @@
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
 import type { TextContainerClassNameOptions } from "./styles";
-import { getTextContainerClassName } from "./styles";
+import { textContainer } from "./styles";
 
 export interface TextContainerProps
   extends HTMLAttributes<HTMLDivElement>,
@@ -40,7 +40,7 @@ export const TextContainer = forwardRef<HTMLDivElement, TextContainerProps>(
       <div
         {...remaining}
         ref={ref}
-        className={getTextContainerClassName({ size, className })}
+        className={textContainer({ size, className })}
       >
         {children}
       </div>

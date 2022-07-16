@@ -299,6 +299,32 @@ $typography-var-lookup: (
     &--no-margin-bottom {
       margin-bottom: 0;
     }
+
+    @each $alignment in $text-alignments {
+      &--#{$alignment} {
+        text-align: $alignment;
+      }
+    }
+
+    @each $decoration in $text-decorations {
+      $suffix: $decoration + if($decoration == overline, "-decoration", "");
+
+      &--#{$suffix} {
+        text-decoration: $decoration;
+      }
+    }
+
+    @each $transform in $text-transforms {
+      &--#{$transform} {
+        text-transform: $transform;
+      }
+    }
+
+    @each $font-style in $font-styles {
+      &--#{$font-style} {
+        font-style: $font-style;
+      }
+    }
   }
 
   @if not $disable-sr-only {

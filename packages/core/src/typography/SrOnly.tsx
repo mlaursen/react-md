@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 
 import type { SrOnlyClassNameOptions } from "./styles";
-import { getSrOnlyClassName } from "./styles";
+import { srOnly } from "./styles";
 import type {
   CustomTypographyComponent,
   TypographyHTMLElement,
@@ -31,7 +31,7 @@ export const SrOnly = forwardRef<TypographyHTMLElement, SrOnlyProps>(
         as={as}
         ref={ref}
         tabIndex={tabIndex ?? (focusable ? 0 : undefined)}
-        className={getSrOnlyClassName({ focusable, className })}
+        className={srOnly({ focusable, className })}
       >
         {children}
       </Typography>

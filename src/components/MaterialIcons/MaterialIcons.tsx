@@ -3,7 +3,7 @@ import {
   box,
   Box,
   getScrollbarWidth,
-  getTypographyClassName,
+  typography,
   Typography,
   useResizeObserver,
 } from "@react-md/core";
@@ -85,7 +85,7 @@ export default function MaterialIcons(): ReactElement {
       <label
         htmlFor="search-input"
         className={box({
-          className: getTypographyClassName({
+          className: typography({
             margin: "none",
             type: "headline-6",
           }),

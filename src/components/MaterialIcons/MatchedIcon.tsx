@@ -1,6 +1,6 @@
 import {
   box,
-  getTypographyClassName,
+  typography,
   RippleContainer,
   SkeletonPlaceholder,
   useElementInteraction,
@@ -44,7 +44,7 @@ export function MatchedIcon(props: MatchedIconProps): ReactElement {
           className: cnb(
             styles.button,
             pressedClassName,
-            getTypographyClassName({ type: "body-1" })
+            typography({ type: "body-1" })
           ),
           flexDirection: "column",
           justifyContent: "center",

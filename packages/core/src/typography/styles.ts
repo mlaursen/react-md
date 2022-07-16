@@ -214,9 +214,7 @@ export interface TypographyClassNameOptions {
  * @returns a typography class name string
  * @remarks \@since 6.0.0
  */
-export function getTypographyClassName(
-  options: TypographyClassNameOptions = {}
-): string {
+export function typography(options: TypographyClassNameOptions = {}): string {
   const {
     type = "body-1",
     align,
@@ -295,7 +293,7 @@ export interface TextContainerClassNameOptions {
  * @see {@link TextContainer}
  * @remarks \@since 6.0.0
  */
-export function getTextContainerClassName(
+export function textContainer(
   options: TextContainerClassNameOptions = {}
 ): string {
   const { size = "auto", className } = options;
@@ -316,7 +314,7 @@ export interface SrOnlyClassNameOptions {
   focusable?: boolean;
 }
 
-export function getSrOnlyClassName(options: SrOnlyClassNameOptions): string {
+export function srOnly(options: SrOnlyClassNameOptions): string {
   const { className, focusable = false } = options;
 
   return cnb(srOnlyStyles({ focusable }), className);

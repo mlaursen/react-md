@@ -1,7 +1,7 @@
 import type { ElementType, HTMLAttributes, ReactElement } from "react";
 import { forwardRef } from "react";
 import type { TypographyClassNameOptions, TypographyType } from "./styles";
-import { getTypographyClassName } from "./styles";
+import { typography } from "./styles";
 
 /**
  * A union of the default supported elements that the `Typography` component can
@@ -144,7 +144,7 @@ export const Typography = forwardRef<TypographyHTMLElement, TypographyProps>(
       <Component
         {...remaining}
         ref={ref}
-        className={getTypographyClassName({
+        className={typography({
           type,
           align,
           textColor,
