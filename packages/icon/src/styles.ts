@@ -67,7 +67,7 @@ export type IconClassNameOptions =
  *
  * @remarks \@since 6.0.0
  */
-export function getIconClassName(options: IconClassNameOptions): string {
+export function icon(options: IconClassNameOptions): string {
   const {
     className,
     type,
@@ -113,9 +113,7 @@ export interface IconRotatorClassNameOptions {
  *
  * @remarks \@since 6.0.0
  */
-export function getIconRotatorClassName(
-  options: IconRotatorClassNameOptions
-): string {
+export function iconRotator(options: IconRotatorClassNameOptions): string {
   const { className, rotated, disableTransition = false } = options;
 
   return cnb(

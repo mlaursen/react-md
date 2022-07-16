@@ -1,7 +1,8 @@
 import type { HTMLAttributes, ReactNode } from "react";
 import { forwardRef } from "react";
+
 import type { SVGIconClassNameOptions } from "./styles";
-import { getIconClassName } from "./styles";
+import { icon } from "./styles";
 
 export interface SVGIconProps
   extends Omit<HTMLAttributes<SVGSVGElement>, "color">,
@@ -103,7 +104,7 @@ export const SVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(function SVGIcon(
       {...remaining}
       aria-hidden={ariaHidden}
       ref={ref}
-      className={getIconClassName({
+      className={icon({
         type: "svg",
         dense,
         color,

@@ -1,7 +1,8 @@
 import type { HTMLAttributes, ReactNode } from "react";
 import { forwardRef } from "react";
+
 import type { FontIconClassNameOptions } from "./styles";
-import { getIconClassName } from "./styles";
+import { icon } from "./styles";
 
 export interface FontIconProps
   extends Omit<HTMLAttributes<HTMLElement>, "color">,
@@ -41,7 +42,7 @@ export const FontIcon = forwardRef<HTMLElement, FontIconProps>(
         {...remaining}
         aria-hidden={ariaHidden}
         ref={ref}
-        className={getIconClassName({
+        className={icon({
           type: "font",
           dense,
           color,
