@@ -2,7 +2,7 @@ import type { TextIconSpacingProps } from "@react-md/icon";
 import { TextIconSpacing } from "@react-md/icon";
 import type { ReactElement, ReactNode } from "react";
 import type { ListItemAddonClassNameOptions } from "./styles";
-import { getListItemAddonClassName } from "./styles";
+import { listItemAddon } from "./styles";
 
 export interface ListItemAddonProps
   extends Omit<TextIconSpacingProps, "icon" | "iconAfter" | "forceIconWrap">,
@@ -42,7 +42,7 @@ export function ListItemAddon(props: ListItemAddonProps): ReactElement {
       {...remaining}
       icon={addon}
       forceIconWrap={forceAddonWrap ?? isMedia}
-      className={getListItemAddonClassName({
+      className={listItemAddon({
         type,
         position,
         className,

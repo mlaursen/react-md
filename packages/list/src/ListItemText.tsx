@@ -1,6 +1,6 @@
 import type { HTMLAttributes, ReactNode } from "react";
 import { forwardRef } from "react";
-import { getListItemTextClassName } from "./styles";
+import { listItemTExt } from "./styles";
 
 export interface ListItemTextProps extends HTMLAttributes<HTMLSpanElement> {
   secondaryText?: ReactNode;
@@ -23,14 +23,14 @@ export const ListItemText = forwardRef<HTMLSpanElement, ListItemTextProps>(
       <span
         {...remaining}
         ref={ref}
-        className={getListItemTextClassName({
+        className={listItemTExt({
           className,
         })}
       >
         {children}
         {secondaryText && (
           <span
-            className={getListItemTextClassName({
+            className={listItemTExt({
               clamped: secondaryTextClamped,
               className: secondaryTextClassName,
               secondary: true,

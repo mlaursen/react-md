@@ -1,6 +1,6 @@
 import { bem } from "@react-md/core";
 import type { InternalListItemClassNameOptions } from "@react-md/list";
-import { getListItemClassName } from "@react-md/list";
+import { listItem } from "@react-md/list";
 import { cnb } from "cnbuilder";
 
 const treeStyles = bem("rmd-tree");
@@ -115,7 +115,7 @@ export function treeItemContent(
       selected,
       disabled,
     }),
-    getListItemClassName({
+    listItem({
       className,
       disabled,
       ...remaining,

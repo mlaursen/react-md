@@ -1,7 +1,7 @@
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
 import type { ListClassNameOptions } from "./styles";
-import { getListClassName } from "./styles";
+import { list } from "./styles";
 
 export type ListElement = HTMLUListElement | HTMLOListElement;
 
@@ -51,7 +51,7 @@ export const List = forwardRef<ListElement, ListProps>(function List(
       {...remaining}
       ref={ref}
       role={role}
-      className={getListClassName({
+      className={list({
         dense,
         horizontal,
         className,

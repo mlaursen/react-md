@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 
 import { ListItemText } from "./ListItemText";
 import type { ListSubheaderClassNameOptions } from "./styles";
-import { getListSubheaderClassName } from "./styles";
+import { listSubheader } from "./styles";
 
 export interface ListSubheaderProps
   extends HTMLAttributes<HTMLLIElement>,
@@ -25,7 +25,7 @@ export const ListSubheader = forwardRef<HTMLLIElement, ListSubheaderProps>(
       <li
         {...remaining}
         ref={ref}
-        className={getListSubheaderClassName({
+        className={listSubheader({
           inset,
           className,
         })}

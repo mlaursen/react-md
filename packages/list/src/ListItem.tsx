@@ -8,7 +8,7 @@ import { forwardRef } from "react";
 import { getListItemHeight } from "./getListItemHeight";
 import { ListItemChildren } from "./ListItemChildren";
 import type { ListItemClassNameOptions } from "./styles";
-import { getListItemClassName } from "./styles";
+import { listItem } from "./styles";
 import type { ListItemChildrenProps } from "./types";
 
 export interface ListItemProps
@@ -100,7 +100,7 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
         ref={ref}
         role={role}
         tabIndex={tabIndex}
-        className={getListItemClassName({
+        className={listItem({
           className,
           height,
           disabled,

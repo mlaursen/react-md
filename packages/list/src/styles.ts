@@ -25,7 +25,7 @@ export interface ListClassNameOptions {
   horizontal?: boolean;
 }
 
-export function getListClassName(options: ListClassNameOptions = {}): string {
+export function list(options: ListClassNameOptions = {}): string {
   const { dense = false, horizontal = false, className } = options;
 
   return cnb(
@@ -75,7 +75,7 @@ export interface InternalListItemClassNameOptions
   pressedClassName?: string;
 }
 
-export function getListItemClassName(
+export function listItem(
   options: InternalListItemClassNameOptions = {}
 ): string {
   const {
@@ -102,11 +102,18 @@ export function getListItemClassName(
 
 export interface ListItemTextClassNameOptions {
   className?: string;
+  /**
+   * @defaultValue `false`
+   */
   clamped?: boolean;
+
+  /**
+   * @defaultValue `false`
+   */
   secondary?: boolean;
 }
 
-export function getListItemTextClassName(
+export function listItemTExt(
   options: ListItemTextClassNameOptions = {}
 ): string {
   const { className, secondary = false, clamped = false } = options;
@@ -165,7 +172,7 @@ export interface ListItemAddonClassNameOptions {
  *
  * @remarks \@since 6.0.0
  */
-export function getListItemAddonClassName(
+export function listItemAddon(
   options: ListItemAddonClassNameOptions = {}
 ): string {
   const {
@@ -205,9 +212,7 @@ export interface ListSubheaderClassNameOptions {
   inset?: boolean;
 }
 
-export function getListSubheaderClassName(
-  options: ListSubheaderClassNameOptions
-): string {
+export function listSubheader(options: ListSubheaderClassNameOptions): string {
   const { inset = false, className } = options;
 
   return cnb(
