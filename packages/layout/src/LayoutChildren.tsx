@@ -1,6 +1,6 @@
 import type { PropsWithRef } from "@react-md/core";
-import type { SkipToMainLinkProps } from "@react-md/link";
-import { SkipToMainLink } from "@react-md/link";
+import type { SkipToMainContentProps } from "@react-md/link";
+import { SkipToMainContent } from "@react-md/link";
 import type { TreeData, TreeItemNode } from "@react-md/tree";
 import type { HTMLAttributes, ReactElement, ReactNode } from "react";
 import { useEffect, useState } from "react";
@@ -53,7 +53,7 @@ export interface LayoutChildrenProps<
    * Any additional props to provide to the `<SkipToMainLink />` link that is
    * automatically rendered in the layout.
    */
-  skipProps?: Omit<SkipToMainLinkProps, "mainId">;
+  skipProps?: Omit<SkipToMainContentProps, "mainId">;
 
   /**
    * An optional tree to use for the mini navigation pane since the default
@@ -177,7 +177,7 @@ export function LayoutChildren<T extends TreeItemNode = LayoutNavigationItem>({
 
   return (
     <>
-      <SkipToMainLink {...skipProps} mainId={mainId} />
+      <SkipToMainContent {...skipProps} mainId={mainId} />
       {navAfterAppBar && appBar}
       {nav}
       {!navAfterAppBar && appBar}

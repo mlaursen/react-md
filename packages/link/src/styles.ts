@@ -14,13 +14,14 @@ export interface LinkClassNameOptions {
  *
  * @remarks \@since 6.0.0
  */
-export function getLinkClassName(options: LinkClassNameOptions): string {
+export function link(options: LinkClassNameOptions): string {
   const { className } = options;
+
   return cnb(styles(), className);
 }
 
 /** @remarks \@since 6.0.0 */
-export interface SKipToMainLinkClassNameOptions {
+export interface SKipToMainContentClassNameOptions {
   className?: string;
 
   /**
@@ -32,8 +33,8 @@ export interface SKipToMainLinkClassNameOptions {
 /**
  * @remarks \@since 6.0.0
  */
-export function getSkipToMainLinkClassName(
-  options: SKipToMainLinkClassNameOptions = {}
+export function skipToMainContent(
+  options: SKipToMainContentClassNameOptions = {}
 ): string {
   const { unstyled = false, className } = options;
 

@@ -1,7 +1,7 @@
 import type { AnchorHTMLAttributes } from "react";
 import { forwardRef } from "react";
 import type { LinkClassNameOptions } from "./styles";
-import { getLinkClassName } from "./styles";
+import { link } from "./styles";
 
 /**
  * @remarks
@@ -32,7 +32,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
   const { className, children, ...remaining } = props;
 
   return (
-    <a {...remaining} ref={ref} className={getLinkClassName({ className })}>
+    <a {...remaining} ref={ref} className={link({ className })}>
       {children}
     </a>
   );

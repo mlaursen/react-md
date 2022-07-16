@@ -3,16 +3,16 @@ import type { ReactNode } from "react";
 import { forwardRef, useRef } from "react";
 import type { LinkProps } from "./Link";
 import { Link } from "./Link";
-import type { SKipToMainLinkClassNameOptions } from "./styles";
-import { getSkipToMainLinkClassName } from "./styles";
+import type { SKipToMainContentClassNameOptions } from "./styles";
+import { skipToMainContent } from "./styles";
 
 const noop = (): void => {
   // do nothing
 };
 
-export interface SkipToMainLinkProps
+export interface SkipToMainContentProps
   extends Omit<LinkProps, "href">,
-    SKipToMainLinkClassNameOptions {
+    SKipToMainContentClassNameOptions {
   id?: string;
   mainId: string;
 
@@ -27,9 +27,9 @@ export interface SkipToMainLinkProps
  * be found with the provided `mainId` in development mode. The previous
  * behavior would only log an error after being clicked.
  */
-export const SkipToMainLink = forwardRef<
+export const SkipToMainContent = forwardRef<
   HTMLAnchorElement,
-  SkipToMainLinkProps
+  SkipToMainContentProps
 >(function SkipToMainContent(props, ref) {
   const {
     id = "skip-to-main",
@@ -72,7 +72,7 @@ export const SkipToMainLink = forwardRef<
         event.stopPropagation();
         mainNodeRef.current?.focus();
       }}
-      className={getSkipToMainLinkClassName({
+      className={skipToMainContent({
         unstyled,
         className,
       })}
