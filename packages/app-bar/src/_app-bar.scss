@@ -1,5 +1,6 @@
 @use "sass:map";
 @use "@react-md/core";
+@use "@react-md/button";
 
 $disable-fixed: false !default;
 $disable-primary-theme: false !default;
@@ -219,7 +220,7 @@ $var-lookup: (
         &--nav-keyline {
           @include core.auto-rtl(
             margin-left,
-            $title-keyline - $horizontal-padding - 3rem
+            $title-keyline - $horizontal-padding - button.$icon-size
           );
         }
 

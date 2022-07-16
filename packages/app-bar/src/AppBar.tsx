@@ -1,7 +1,7 @@
 import type { ElementType, HTMLAttributes, Ref } from "react";
 import { forwardRef } from "react";
 import type { AppBarClassNameOptions } from "./styles";
-import { getAppBarClassName } from "./styles";
+import { appBar } from "./styles";
 
 export type CustomAppBarComponent = ElementType<
   HTMLAttributes<HTMLDivElement> & {
@@ -36,7 +36,7 @@ export const AppBar = forwardRef<HTMLDivElement, AppBarProps>(function AppBar(
   return (
     <Component
       {...remaining}
-      className={getAppBarClassName({
+      className={appBar({
         theme,
         fixed,
         fixedPosition,
