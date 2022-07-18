@@ -87,7 +87,7 @@ $box-var-lookup: (
   }
 }
 
-@mixin styles {
+@mixin box-styles {
   @if not $disable-box {
     .rmd-box {
       @include use-box-var(gap, gap);

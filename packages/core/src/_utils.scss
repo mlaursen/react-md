@@ -9,6 +9,10 @@ $disable-validation: false !default;
 $_swappable-positions: top right bottom left;
 $_swappable-position-prefixes: border margin padding;
 
+@function scrollbar-size() {
+  @return var(--rmd-scrollbar-size, 0px);
+}
+
 /// Replace `$search` with `$replace` in `$string`
 ///
 /// @author Hugo Giraudel
@@ -208,8 +212,4 @@ $_swappable-position-prefixes: border margin padding;
   }
 
   #{$property}: #{$value};
-}
-
-@function scrollbar-size() {
-  @return var(--rmd-scrollbar-size, 0px);
 }

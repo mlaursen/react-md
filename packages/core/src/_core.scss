@@ -60,9 +60,10 @@ $temporary-element-z-index: 30 !default;
 @mixin styles {
   @include css-reset;
   @include typography.typography;
-  @include box.styles;
   @include transition.transition;
   @include interaction.interaction;
+
+  @include box.box-styles;
 
   :root {
     @include theme.colors;

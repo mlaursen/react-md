@@ -1,5 +1,4 @@
 /** @module @react-md/core */
-export * from "./a11y";
 export * from "./alphaNumericSort";
 export * from "./applyRef";
 export * from "./AppSizeProvider";
@@ -22,6 +21,7 @@ export * from "./transition";
 export * from "./types";
 export * from "./typography";
 export * from "./useCloseOnOutsideClick";
+export * from "./useDropzone";
 export * from "./useEnsuredId";
 export * from "./useEnsuredRef";
 export * from "./useHtmlClassName";
