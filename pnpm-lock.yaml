@@ -129,15 +129,31 @@ importers:
       '@react-md/progress': link:../progress
       cnbuilder: 3.1.0
 
+  packages/card:
+    specifiers:
+      '@react-md/core': ^6.0.0-alpha.0
+      '@react-md/divider': ^6.0.0-alpha.0
+      '@react-md/icon': ^6.0.0-alpha.0
+      '@react-md/progress': ^6.0.0-alpha.0
+      cnbuilder: ^3.1.0
+    dependencies:
+      '@react-md/core': link:../core
+      '@react-md/divider': link:../divider
+      '@react-md/icon': link:../icon
+      '@react-md/progress': link:../progress
+      cnbuilder: 3.1.0
+
   packages/core:
     specifiers: {}
 
   packages/dialog:
     specifiers:
       '@react-md/core': ^6.0.0-alpha.0
+      '@react-md/overlay': ^6.0.0-alpha.0
       cnbuilder: ^3.1.0
     dependencies:
       '@react-md/core': link:../core
+      '@react-md/overlay': link:../overlay
       cnbuilder: 3.1.0
 
   packages/divider:
@@ -222,6 +238,19 @@ importers:
       '@react-md/core': link:../core
       '@react-md/icon': link:../icon
       cnbuilder: 3.1.0
+
+  packages/overlay:
+    specifiers:
+      '@react-md/core': ^6.0.0-alpha.0
+      cnbuilder: ^3.1.0
+      react: ^18.1.0
+      react-dom: ^18.1.0
+    dependencies:
+      '@react-md/core': link:../core
+      cnbuilder: 3.1.0
+    devDependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
 
   packages/progress:
     specifiers:

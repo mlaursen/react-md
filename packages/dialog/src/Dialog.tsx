@@ -12,11 +12,11 @@ import {
   useSsr,
   useFocusContainer,
 } from "@react-md/core";
+import { Overlay } from "@react-md/overlay";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
 
 import { DialogContainer } from "./DialogContainer";
-import { Overlay } from "./Overlay";
 import type { DialogClassNameOptions } from "./styles";
 import { dialog } from "./styles";
 

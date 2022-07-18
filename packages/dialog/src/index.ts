@@ -4,6 +4,5 @@ export * from "./DialogContent";
 export * from "./DialogFooter";
 export * from "./DialogHeader";
 export * from "./DialogTitle";
-export * from "./Overlay";
 export * from "./Sheet";
 export * from "./styles";

@@ -1,30 +1,41 @@
 {
-  "name": "@react-md/dialog",
+  "name": "@react-md/overlay",
   "version": "6.0.0-alpha.0",
-  "description": "Create material design styled headers and footers for react-md",
+  "description": "Create material design styled overlays for react-md",
   "type": "module",
-  "sass": "./src/_index.scss",
+  "sass": "./src/_overlay.scss",
   "main": "./cjs/index.cjs",
   "module": "./mjs/index.mjs",
   "types": "./types/index.d.ts",
   "sideEffects": [
     "dist/**/*"
   ],
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mlaursen/react-md.git",
-    "directory": "packages/dialog"
+    "url": "https://github.com/mlaursen/react-md.git",
+    "directory": "packages/overlay"
   },
   "bugs": {
     "url": "https://github.com/mlaursen/react-md/issues"
   },
   "homepage": "https://react-md.dev",
-  "keywords": [],
+  "keywords": [
+    "react-md",
+    "material design",
+    "react",
+    "overlay",
+    "component",
+    "components"
+  ],
   "license": "MIT",
   "dependencies": {
     "@react-md/core": "^6.0.0-alpha.0",
-    "@react-md/overlay": "^6.0.0-alpha.0",
     "cnbuilder": "^3.1.0"
+  },
+  "devDependencies": {
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
   },
   "peerDependencies": {
     "react": ">= 18",
@@ -32,10 +43,10 @@
   },
   "peerDependenciesMeta": {
     "react": {
-      "optional": true
+      "optional": false
     },
     "react-dom": {
-      "optional": true
+      "optional": false
     }
   },
   "publishConfig": {

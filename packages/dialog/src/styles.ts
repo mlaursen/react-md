@@ -2,7 +2,6 @@ import { bem } from "@react-md/core";
 import { cnb } from "cnbuilder";
 
 const dialogStyles = bem("rmd-dialog");
-const overlayStyles = bem("rmd-overlay");
 const sheetStyles = bem("rmd-sheet");
 
 export interface MergableClassName {
@@ -75,23 +74,6 @@ export function dialogFooter(options: DialogFooterClassNameOptions): string {
       start: align === "start" || align === "stacked-start",
       between: align === "between",
       end: align === "end" || align === "stacked-end",
-    }),
-    className
-  );
-}
-
-export interface OverlayClassNameOptions extends MergableClassName {
-  visible: boolean;
-  clickable?: boolean;
-}
-
-export function overlay(options: OverlayClassNameOptions): string {
-  const { visible, clickable = false, className } = options;
-
-  return cnb(
-    overlayStyles({
-      visible,
-      clickable,
     }),
     className
   );

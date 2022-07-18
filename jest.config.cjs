@@ -19,6 +19,7 @@ module.exports = {
     "^@react-md/material-icons$": [
       "<rootDir>/packages/material-icons/src/index.ts",
     ],
+    "^@react-md/overlay$": ["<rootDir>/packages/overlay/src/index.ts"],
     "^@react-md/progress$": ["<rootDir>/packages/progress/src/index.ts"],
     "^@react-md/tree$": ["<rootDir>/packages/tree/src/index.ts"],
   },

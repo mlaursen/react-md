@@ -65,5 +65,9 @@ $var-lookup: (
     &--visible {
       pointer-events: auto;
     }
+
+    &--absolute {
+      position: absolute;
+    }
   }
 }
