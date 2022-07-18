@@ -1,14 +1,30 @@
 import { cnb } from "cnbuilder";
-import type { CSSProperties } from "react";
 import { bem } from "../bem";
 
 const styles = bem("rmd-box");
 
-type FlexCSSProperties = Pick<CSSProperties, "alignItems" | "justifyContent">;
+export type BoxAlignItems =
+  | "start"
+  | "flex-start"
+  | "center"
+  | "end"
+  | "flex-end"
+  | "stretch";
 
-export interface BoxOptions extends FlexCSSProperties {
+export type BoxJustifyContent =
+  | BoxAlignItems
+  | "space-around"
+  | "space-between"
+  | "space-evenly";
+
+export type BoxFlexDirection = "row" | "column";
+
+export interface BoxOptions {
   className?: string;
 
+  /**
+   * @defaultValue `false`
+   */
   grid?: boolean;
 
   /**
@@ -54,23 +70,16 @@ export interface BoxOptions extends FlexCSSProperties {
   /**
    * @defaultValue `""`
    */
-  alignItems?: "start" | "center" | "end" | "stretch";
+  alignItems?: BoxAlignItems;
 
   /**
    * The default value is really `center` or whatever the `$default-align-items` is set to.
    * @defaultValue `""`
    */
-  justifyContent?:
-    | "start"
-    | "center"
-    | "end"
-    | "stretch"
-    | "space-around"
-    | "space-between"
-    | "space-evenly";
+  justifyContent?: BoxJustifyContent;
 
   /** @defaultValue `"row"` */
-  flexDirection?: "row" | "column";
+  flexDirection?: BoxFlexDirection;
 }
 
 export function box(options: BoxOptions = {}): string {
@@ -94,13 +103,14 @@ export function box(options: BoxOptions = {}): string {
       grid,
       "grid-fill": gridAutoType === "fill",
       [gridName]: grid && gridName,
-      "align-start": alignItems === "start",
+      "align-start": alignItems === "start" || alignItems === "flex-start",
       "align-center": alignItems === "center",
-      "align-end": alignItems === "end",
+      "align-end": alignItems === "end" || alignItems === "flex-end",
       "align-stretch": alignItems === "stretch",
       "justify-center": justifyContent === "center",
-      "justify-start": justifyContent === "start",
-      "justify-end": justifyContent === "end",
+      "justify-start":
+        justifyContent === "start" || justifyContent === "flex-start",
+      "justify-end": justifyContent === "end" || justifyContent === "flex-end",
       "justify-stretch": justifyContent === "stretch",
       "justify-around": justifyContent === "space-around",
       "justify-between": justifyContent === "space-between",

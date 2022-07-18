@@ -20,6 +20,7 @@
       "@react-md/app-bar": ["packages/app-bar/src/index.ts"],
       "@react-md/avatar": ["packages/avatar/src/index.ts"],
       "@react-md/button": ["packages/button/src/index.ts"],
+      "@react-md/card": ["packages/card/src/index.ts"],
       "@react-md/core": ["packages/core/src/index.ts"],
       "@react-md/dialog": ["packages/dialog/src/index.ts"],
       "@react-md/divider": ["packages/divider/src/index.ts"],
@@ -30,7 +31,8 @@
       "@react-md/material-icons/*": ["packages/material-icons/src/*"],
       "@react-md/overlay": ["packages/overlay/src/index.ts"],
       "@react-md/progress": ["packages/progress/src/index.ts"],
-      "@react-md/tree": ["packages/tree/src/index.ts"]
+      "@react-md/tree": ["packages/tree/src/index.ts"],
+      "@react-md/visual-media": ["packages/visual-media/src/index.ts"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

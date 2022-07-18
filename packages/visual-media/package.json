@@ -1,0 +1,57 @@
+{
+  "name": "@react-md/visual-media",
+  "version": "6.0.0-alpha.0",
+  "description": "Responsive visual media (images, videos, iframes, etc) for react-md",
+  "type": "module",
+  "sass": "./src/_overlay.scss",
+  "main": "./cjs/index.cjs",
+  "module": "./mjs/index.mjs",
+  "types": "./types/index.d.ts",
+  "sideEffects": [
+    "dist/**/*"
+  ],
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mlaursen/react-md.git",
+    "directory": "packages/visual-media"
+  },
+  "bugs": {
+    "url": "https://github.com/mlaursen/react-md/issues"
+  },
+  "homepage": "https://react-md.dev",
+  "keywords": [
+    "react-md",
+    "material design",
+    "react",
+    "responsive",
+    "visual-media",
+    "media",
+    "component",
+    "components"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@react-md/core": "^6.0.0-alpha.0",
+    "cnbuilder": "^3.1.0"
+  },
+  "devDependencies": {
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
+  },
+  "peerDependencies": {
+    "react": ">= 18",
+    "react-dom": ">= 18"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": false
+    },
+    "react-dom": {
+      "optional": false
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

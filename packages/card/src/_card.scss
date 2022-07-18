@@ -1,0 +1,174 @@
+@use "sass:map";
+@use "@react-md/core";
+@use "@react-md/divider";
+
+$disable-bordered: false !default;
+$disable-shadowed: false !default;
+$disable-raiseable: false !default;
+$disable-full-width: false !default;
+
+$elevation: 2 !default;
+$raiseable-start-elevation: 1 !default;
+$raiseable-end-elevation: 8 !default;
+
+$light-theme-background-color: core.get-theme-var(surface-color) !default;
+$dark-theme-background-color: if(
+  core.$disable-dark-elevation,
+  core.$dark-theme-surface-color,
+  map.get(core.$dark-elevation-colors, $elevation)
+) !default;
+
+$background-color: if(
+  core.$color-scheme == dark,
+  $dark-theme-background-color,
+  $light-theme-background-color
+) !default;
+$color: core.get-theme-var(text-primary-color) !default;
+
+$border-color: divider.get-var(color) !default;
+$border-width: divider.get-var(size) !default;
+$border-radius: 0.25rem !default;
+
+$header-padding: 1rem !default;
+$header-padding-top: 1.5rem !default;
+
+$header-spacing: 1rem !default;
+
+$content-padding: 1rem !default;
+$content-padding-bottom: 1.5rem !default;
+
+$footer-padding: 0.5rem !default;
+
+$var-lookup: (
+  background-color: (
+    var: --rmd-card-background-color,
+    value: $background-color,
+  ),
+  color: (
+    var: --rmd-card-color,
+    value: $color,
+  ),
+  secondary-color: (
+    var: --rmd-card-secondary-color,
+    value: null,
+  ),
+);
+
+@function get-var($name, $fallback: null) {
+  $found: core.validate($var-lookup, $name, "card var");
+  $var: map.get($found, var);
+  $value: if($fallback, $fallback, map.get($found, value));
+
+  @if $value {
+    @return var(#{$var}, #{$value});
+  }
+
+  @return var(#{$var});
+}
+
+@mixin set-var($name, $value) {
+  $var: map.get(core.validate($var-lookup, $name, "card var"), var);
+
+  #{$var}: #{$value};
+}
+
+@mixin use-var($property, $name: $property, $fallback: null) {
+  #{$property}: get-var($name, $fallback);
+}
+
+@mixin use-light-theme {
+  @include set-var(background-color, $light-theme-background-color);
+}
+
+@mixin use-dark-theme {
+  @include set-var(background-color, $dark-theme-background-color);
+}
+
+@mixin styles {
+  .rmd-card {
+    @include use-var(background-color);
+    @include use-var(color);
+
+    border-radius: $border-radius;
+    display: inline-block;
+
+    @if not $disable-raiseable {
+      @include core.mouse-only {
+        &--raiseable {
+          @include core.elevation-transition(
+            $raiseable-start-elevation,
+            $raiseable-end-elevation,
+            "&:hover"
+          );
+        }
+      }
+    }
+
+    @if not $disable-shadowed {
+      &--shadowed {
+        @include core.box-shadow($elevation);
+      }
+    }
+
+    @if not $disable-bordered {
+      &--bordered {
+        border: $border-width inset $border-color;
+      }
+    }
+
+    @if not $disable-full-width {
+      &--full-width {
+        display: block;
+        width: 100%;
+      }
+    }
+
+    &__header {
+      align-items: center;
+      column-gap: $header-spacing;
+      display: flex;
+      padding: $header-padding-top $header-padding $header-padding;
+    }
+
+    &__header-content {
+      @include core.text-overflow;
+
+      flex: 1 1 auto;
+      min-width: 1;
+    }
+
+    // does not require custom styles
+    // &__title {
+    // }
+
+    // does not require custom styles
+    // &__subtitle {
+    // }
+
+    &__content {
+      &--secondary {
+        @include core.use-theme-var(color, text-secondary-color);
+      }
+
+      &--padded {
+        padding: $content-padding;
+      }
+
+      &--padded-bottom:last-child {
+        padding-bottom: $content-padding-bottom;
+      }
+    }
+
+    &__footer {
+      padding: $footer-padding;
+    }
+  }
+
+  @if core.$color-scheme == system {
+    @media (prefers-color-scheme: dark) {
+      :root {
+        @include use-dark-theme;
+      }
+    }
+  }
+}

@@ -7,6 +7,12 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: "module",
   },
+  rules: {
+    // I don't really want the image optimizations for the documentation site
+    // since I use random images from other services
+    "@next/next/no-img-element": 0,
+    "@next/next/no-html-link-for-pages": [1, "src/pages"],
+  },
   overrides: [
     {
       files: ["packages/*/src/index.ts"],

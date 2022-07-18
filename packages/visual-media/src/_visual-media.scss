@@ -1,0 +1,153 @@
+@use "sass:math";
+@use "@react-md/core";
+
+$disable-visual-media: false !default;
+$disable-auto: false !default;
+$disable-overlay: false !default;
+$disable-overlay-top: false !default;
+$disable-overlay-right: false !default;
+$disable-overlay-bottom: false !default;
+$disable-overlay-left: false !default;
+$disable-overlay-middle: false !default;
+$disable-overlay-center: false !default;
+$disable-overlay-absolute-center: false !default;
+
+$background-color: rgba(#000, 0.54) !default;
+$color: core.$dark-theme-text-primary-color !default;
+$z-index: 1 !default;
+
+$overlay-padding: 1rem !default;
+$selectors: (img ">svg" iframe video embed object) !default;
+
+$overlay-horizontal-width: 30% !default;
+
+$aspect-ratios: (
+  "16-9": 16 9,
+  "4-3": 4 3,
+  "1-1": 1 1,
+) !default;
+
+@mixin forced-aspect-ratio {
+  height: 100%;
+  inset: 0;
+  position: absolute;
+  width: 100%;
+}
+
+@mixin responsive {
+  height: auto;
+  width: 100%;
+}
+
+@mixin aspect-ratio($width, $height) {
+  padding-bottom: math.percentage(math.div($height, $width));
+}
+
+@mixin styles {
+  @if not $disable-visual-media {
+    .rmd-visual-media {
+      @include responsive;
+
+      &--aspect-ratio {
+        @include forced-aspect-ratio;
+      }
+    }
+
+    .rmd-visual-media-container {
+      display: inline-block;
+      position: relative;
+
+      @if not $disable-auto {
+        &--auto {
+          @each $selector in $selectors {
+            #{$selector} {
+              @include responsive;
+            }
+          }
+        }
+      }
+
+      &--full-width {
+        display: block;
+        width: 100%;
+      }
+
+      &--aspect-ratio {
+        display: block;
+        height: 0;
+        overflow: hidden;
+        padding: 0;
+
+        @each $selector in $selectors {
+          #{$selector} {
+            @include forced-aspect-ratio;
+          }
+        }
+      }
+
+      @each $suffix, $ratio-list in $aspect-ratios {
+        &--#{$suffix} {
+          @include aspect-ratio(nth($ratio-list, 1), nth($ratio-list, 2));
+        }
+      }
+    }
+
+    .rmd-visual-media-overlay {
+      background-color: $background-color;
+      color: $color;
+      padding: $overlay-padding;
+      position: absolute;
+      z-index: 0;
+
+      @if not $disable-overlay-top {
+        &--top {
+          inset: 0 0 auto;
+        }
+      }
+
+      @if not $disable-overlay-bottom {
+        &--bottom {
+          inset: auto 0 0;
+        }
+      }
+
+      &--horizontal {
+        inset: 0 auto;
+        width: $overlay-horizontal-width;
+      }
+
+      @if not $disable-overlay-left {
+        &--left {
+          @include core.auto-rtl(left, 0);
+        }
+      }
+
+      @if not $disable-overlay-right {
+        &--right {
+          @include core.auto-rtl(right, 0);
+        }
+      }
+
+      @if not $disable-overlay-middle {
+        &--middle {
+          inset: auto 0 50%;
+          transform: translate3d(0, 50%, 0);
+        }
+      }
+
+      @if not $disable-overlay-center {
+        &--center {
+          inset: 0 50% 0 auto;
+          transform: translate3d(50%, 0, 0);
+        }
+      }
+
+      @if not $disable-overlay-absolute-center {
+        &--absolute-center {
+          inset: auto 50% 50% auto;
+          transform: translate3d(50%, 50%, 0);
+        }
+      }
+    }
+  }
+}

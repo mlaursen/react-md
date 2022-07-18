@@ -9,6 +9,7 @@
       @include everything.icon-use-light-theme;
       @include everything.app-bar-use-light-theme;
       @include everything.divider-use-light-theme;
+      @include everything.card-use-light-theme;
     }
   }
 } @else {
@@ -20,6 +21,7 @@
       @include everything.icon-use-dark-theme;
       @include everything.app-bar-use-dark-theme;
       @include everything.divider-use-dark-theme;
+      @include everything.card-use-dark-theme;
     }
   }
 }
