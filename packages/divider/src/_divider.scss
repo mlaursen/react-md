@@ -5,6 +5,8 @@ $disable-vertical: false !default;
 $disable-inset: false !default;
 
 $size: 0.0625rem !default;
+// this is doubled since the `hr` element applies the size for border top and bottom
+$vertical-size: $size * 2 !default;
 $max-size: 100% !default;
 $inset: 4rem !default;
 $spacing: 0.25rem auto !default;
@@ -24,6 +26,10 @@ $var-lookup: (
     var: --rmd-divider-size,
     value: $size,
   ),
+  vertical-size: (
+    var: --rmd-divider-vertical-size,
+    value: $vertical-size,
+  ),
   color: (
     var: --rmd-divider-color,
     value: $color,
@@ -31,6 +37,10 @@ $var-lookup: (
   spacing: (
     var: --rmd-divider-spacing,
     value: $spacing,
+  ),
+  vertical-spacing: (
+    var: --rmd-divider-vertical-spacing,
+    value: $vertical-spacing,
   ),
   inset: (
     var: --rmd-divider-inset,
@@ -84,10 +94,10 @@ $var-lookup: (
 
 @mixin styles {
   .rmd-divider {
-    @include style(bottom);
     @include use-var(margin, spacing);
     @include use-var(width);
 
+    border: get-var(size) inset get-var(color);
     display: block;
     flex-shrink: 0;
 
@@ -103,7 +113,8 @@ $var-lookup: (
       &--vertical {
         @include style(left);
         @include use-var(height, max-size);
-        @include use-var(width, size);
+        @include use-var(width, vertical-size);
+        @include use-var(margin, vertical-spacing);
 
         border-bottom: 0;
         display: inline-block;
