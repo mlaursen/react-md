@@ -109,6 +109,7 @@ export function appBar(options: AppBarClassNameOptions = {}): string {
       [fixedPosition]: fixed,
       "fixed-elevation": fixed && !disableFixedElevation,
       "scrollbar-offset": scrollbarOffset,
+      "static-scrollbar-offset": !fixed && scrollbarOffset,
     }),
     className
   );

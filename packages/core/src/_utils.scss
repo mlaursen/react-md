@@ -37,6 +37,10 @@ $_swappable-position-prefixes: border margin padding;
   @return $string;
 }
 
+@function negate-var($css-variable) {
+  @return calc(-1 * #{$css-variable});
+}
+
 @function validate($list-or-map, $key-or-value, $error-message) {
   $type: meta.type-of($list-or-map);
   $is-map: $type == map;

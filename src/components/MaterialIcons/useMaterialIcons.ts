@@ -1,8 +1,8 @@
+import type { UseStateSetter } from "@react-md/core";
 import type { SVGIcon } from "@react-md/icon";
 import { camelCase } from "lodash";
 import { useRouter } from "next/router";
 import type { ParsedUrlQuery } from "querystring";
-import type { Dispatch, SetStateAction } from "react";
 import { useDeferredValue, useEffect, useMemo, useState } from "react";
 import type { IconCategory, IconType } from "src/constants/materialIcons";
 import { ICON_CATEGORIES, ICON_TYPES } from "src/constants/materialIcons";
@@ -116,7 +116,7 @@ interface State {
 type SetStateObject<Name extends string, Value> = {
   [key in Name]: Value;
 } & {
-  [key in `set${Capitalize<Name>}`]: Dispatch<SetStateAction<Value>>;
+  [key in `set${Capitalize<Name>}`]: UseStateSetter<Value>;
 };
 
 type ReturnValue = SetStateObject<"search", string> &

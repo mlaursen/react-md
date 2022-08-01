@@ -1,4 +1,4 @@
-import type { ReactElement, Ref } from "react";
+import type { Dispatch, ReactElement, Ref, SetStateAction } from "react";
 
 /**
  * A helper type that allows an optional `ref` to also be applied with a props
@@ -94,3 +94,15 @@ export type HtmlTagName = keyof JSX.IntrinsicElements;
  * @remarks \@since 6.0.0
  */
 export type TextExtractor<T> = (item: T) => string;
+
+/**
+ * @remarks \@since 6.0.0
+ * @internal
+ */
+export type UseStateSetter<T> = Dispatch<SetStateAction<T>>;
+
+/**
+ * @remarks \@since 6.0.0
+ * @internal
+ */
+export type UseStateInitializer<T> = T | (() => T);

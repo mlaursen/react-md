@@ -1,14 +1,16 @@
-import type { ElementInteractionHandlers } from "@react-md/core";
+import type {
+  ElementInteractionHandlers,
+  UseStateInitializer,
+  UseStateSetter,
+} from "@react-md/core";
 import type { CustomLinkComponent } from "@react-md/link";
 import type { ListItemChildrenAddonProps } from "@react-md/list";
 import type {
-  Dispatch,
   ElementType,
   HTMLAttributes,
   MutableRefObject,
   ReactNode,
   Ref,
-  SetStateAction,
 } from "react";
 
 export interface TreeItemNode {
@@ -76,7 +78,7 @@ export type TreeItemSorter<T extends TreeItemNode = DefaultTreeItemNode> = (
 ) => readonly T[];
 
 export type TreeItemIdSet = ReadonlySet<string>;
-export type TreeItemDefaultIds = readonly string[] | (() => readonly string[]);
+export type TreeItemDefaultIds = UseStateInitializer<readonly string[]>;
 
 export type SelectTreeItem = (itemId: string) => void;
 
@@ -114,7 +116,7 @@ export type SetTreeItemExpansion = (itemId: string, expanded: boolean) => void;
 export interface TreeExpansion {
   expandedIds: TreeItemIdSet;
   onItemExpansion: SetTreeItemExpansion;
-  onMultiItemExpansion: Dispatch<SetStateAction<TreeItemIdSet>>;
+  onMultiItemExpansion: UseStateSetter<TreeItemIdSet>;
 }
 
 export type TreeItemHTMLAttributes = Omit<

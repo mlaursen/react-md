@@ -1,3 +1,4 @@
+import type { UseStateSetter } from "@react-md/core";
 import {
   findMatchIndex,
   getSearchText,
@@ -5,14 +6,12 @@ import {
   useUserInteractionMode,
 } from "@react-md/core";
 import type {
-  Dispatch,
   FocusEvent,
   FocusEventHandler,
   KeyboardEvent,
   KeyboardEventHandler,
   MutableRefObject,
   RefObject,
-  SetStateAction,
 } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type {
@@ -59,7 +58,7 @@ interface ReturnValue {
    * This is a map of `depth -> [...itemIds]`
    */
   itemIdsAtDepth: MutableRefObject<Map<number, string[]>>;
-  setActiveIndex: Dispatch<SetStateAction<number>>;
+  setActiveIndex: UseStateSetter<number>;
 }
 
 /** @internal */

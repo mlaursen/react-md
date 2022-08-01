@@ -21,6 +21,7 @@ export const LayoutAppBar = forwardRef<HTMLDivElement, LayoutAppBarProps>(
       customTitle,
       title: titleChildren,
       titleProps,
+      scrollbarOffset = true,
       ...remaining
     } = props;
     const { baseId, layout } = useLayoutConfig();
@@ -40,7 +41,13 @@ export const LayoutAppBar = forwardRef<HTMLDivElement, LayoutAppBarProps>(
     }
 
     return (
-      <AppBar id={`${baseId}-header`} {...remaining} ref={ref} fixed={fixed}>
+      <AppBar
+        id={`${baseId}-header`}
+        {...remaining}
+        ref={ref}
+        fixed={fixed}
+        scrollbarOffset={scrollbarOffset}
+      >
         {nav}
         {title}
         {children}

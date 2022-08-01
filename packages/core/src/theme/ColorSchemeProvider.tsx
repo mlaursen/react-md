@@ -1,6 +1,7 @@
-import type { Dispatch, ReactElement, ReactNode, SetStateAction } from "react";
+import type { ReactElement, ReactNode } from "react";
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
+import type { UseStateInitializer, UseStateSetter } from "../types";
 import { useMediaQuery } from "../useMediaQuery";
 import { backgroundColorVar } from "./cssVars";
 import { getContrastRatio } from "./utils";
@@ -11,7 +12,7 @@ export type ColorScheme = "light" | "dark";
 /** @remarks \@since 6.0.0 */
 export type ColorSchemeMode = ColorScheme | "system";
 /** @remarks \@since 6.0.0 */
-export type SetColorSchemeMode = Dispatch<SetStateAction<ColorSchemeMode>>;
+export type SetColorSchemeMode = UseStateSetter<ColorSchemeMode>;
 
 /** @remarks \@since 6.0.0 */
 export interface ColorSchemeContext {
@@ -54,7 +55,7 @@ context.displayName = "ColorScheme";
 const { Provider } = context;
 
 /** @remarks \@since 6.0.0 */
-export type DefaultColorScheme = ColorScheme | (() => ColorScheme);
+export type DefaultColorScheme = UseStateInitializer<ColorScheme>;
 
 /**
  * @example

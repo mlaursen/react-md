@@ -129,14 +129,6 @@ $var-lookup: (
   #{$property}: get-var($name, $fallback);
 }
 
-@mixin use-light-theme {
-  @include set-var(
-    surface-background-color,
-    $light-theme-surface-background-color
-  );
-  @include set-var(surface-color, $light-theme-surface-color);
-}
-
 @mixin _theme($theme-name, $theme-color, $on-theme) {
   @if list.index($themes, $theme-name) {
     @if not $disable-contained {

@@ -314,7 +314,7 @@ export interface SrOnlyClassNameOptions {
   focusable?: boolean;
 }
 
-export function srOnly(options: SrOnlyClassNameOptions): string {
+export function srOnly(options: SrOnlyClassNameOptions = {}): string {
   const { className, focusable = false } = options;
 
   return cnb(srOnlyStyles({ focusable }), className);

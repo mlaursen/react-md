@@ -91,12 +91,12 @@ $box-var-lookup: (
   @if not $disable-box {
     .rmd-box {
       @include use-box-var(gap, gap);
+
       align-items: $default-box-align-items;
       display: flex;
 
       &--padded {
         @include use-box-var(padding);
-        // padding: var($box-padding-var, $box-padding);
       }
 
       &--wrap {
@@ -126,7 +126,6 @@ $box-var-lookup: (
             auto-fit,
             minmax(get-box-var(min-size), 1fr)
           );
-          // minmax(var($box-item-var, $box-item-min-size), 1fr)
         }
 
         &--grid-fill {
@@ -134,7 +133,6 @@ $box-var-lookup: (
             auto-fill,
             minmax(get-box-var(min-size), 1fr)
           );
-          // minmax(var($box-item-var, $box-item-min-size), 1fr)
         }
 
         @each $name, $values in $grids {

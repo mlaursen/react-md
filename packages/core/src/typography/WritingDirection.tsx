@@ -9,6 +9,7 @@ import {
   useMemo,
   useState,
 } from "react";
+import type { UseStateInitializer } from "../types";
 
 /**
  * Note: unlike the `dir` DOM attribute, the `"auto"` value is not supported.
@@ -18,7 +19,7 @@ import {
 export type Dir = "ltr" | "rtl";
 
 /** @remarks \@since 6.0.0 */
-export type DefaultDir = Dir | (() => Dir);
+export type DefaultDir = UseStateInitializer<Dir>;
 
 /** @remarks \@since 2.3.0 */
 export interface WritingDirectionContext {

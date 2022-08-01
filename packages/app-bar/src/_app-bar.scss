@@ -9,6 +9,8 @@ $disable-surface-theme: false !default;
 $disable-dense-theme: false !default;
 $disable-prominent-theme: false !default;
 $disable-prominent-dense-theme: false !default;
+$disable-scrollbar-offset: false !default;
+$disable-static-scrollbar-offset: false !default;
 
 $disable-title: false !default;
 
@@ -130,15 +132,6 @@ $var-lookup: (
     padding: $vertical-padding $horizontal-padding;
     width: 100%;
 
-    &--scrollbar-offset {
-      @include core.rtl {
-        margin-right: calc(-1 * #{core.scrollbar-size()});
-      }
-
-      padding-right: calc(#{$horizontal-padding} + #{core.scrollbar-size()});
-      width: calc(100% + core.scrollbar-size());
-    }
-
     @if not $disable-fixed {
       &--fixed {
         left: 0;
@@ -226,6 +219,22 @@ $var-lookup: (
 
         &--no-wrap {
           @include core.text-overflow;
+        }
+      }
+    }
+
+    @if not $disable-scrollbar-offset {
+      &--scrollbar-offset {
+        @include core.rtl {
+          margin-right: calc(-1 * #{core.scrollbar-size()});
+        }
+
+        padding-right: calc(#{$horizontal-padding} + #{core.scrollbar-size()});
+      }
+
+      @if not $disable-static-scrollbar-offset {
+        &--static-scrollbar-offset {
+          width: calc(100% + core.scrollbar-size());
         }
       }
     }
