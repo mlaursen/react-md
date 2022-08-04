@@ -28,6 +28,7 @@ const routes = [
   createRoute("/card", "Card"),
   createRoute("/dialog", "Dialog"),
   createRoute("/divider", "Divider"),
+  createRoute("/form", "Form"),
   createRoute("/link", "Link"),
   createRoute("/list", "List"),
   createRoute("/list", "List"),

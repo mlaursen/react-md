@@ -1,0 +1,526 @@
+@use "sass:map";
+@use "@react-md/core";
+@use "@react-md/icon";
+
+$disable-fieldset: false !default;
+$disable-message: false !default;
+$disable-label: false !default;
+$disable-floating-label: false !default;
+$disable-file-input: false !default;
+$disable-text-field: false !default;
+$disable-text-area: false !default;
+$disable-text-field-filled-theme: false !default;
+$disable-text-field-outlined-theme: false !default;
+$disable-text-field-underlined-theme: false !default;
+$disable-text-field-counter: false !default;
+$disable-text-field-addon: $disable-text-field and $disable-text-area !default;
+
+$error-color: core.get-theme-var(error-color) !default;
+$active-color: core.get-theme-var(secondary-color) !default;
+$focused-color: core.$outline-color !default;
+$disabled-color: core.get-theme-var(text-disabled-color) !default;
+
+$label-font-size: 1em !default;
+$label-typography: map.merge(
+  core.$body-1-styles,
+  (
+    font-size: $label-font-size,
+  )
+) !default;
+$label-floating-top: 1rem !default;
+$label-floating-top-dense: 0.9rem !default;
+$label-floating-font-size: 0.75em !default;
+$label-floating-padding: 0.25rem !default;
+
+$message-typography-styles: map.merge(
+  core.$body-2-styles,
+  (
+    font-size: 0.75rem,
+  )
+) !default;
+$message-counter-spacing: icon.$spacing !default;
+$message-margin-top: 0.5rem !default;
+$message-margin-bottom: 1rem !default;
+$message-min-height: 2rem !default;
+
+$text-field-typography: map.merge(
+  core.$body-1-styles,
+  (
+    font-size: 1em,
+  )
+) !default;
+$text-field-height: 3rem !default;
+$text-field-dense-height: 2.5rem !default;
+$text-field-label-height: 3.5rem !default;
+$text-field-label-dense-height: 3.25rem !default;
+$text-field-spacing: icon.$spacing !default;
+$text-field-border-radius: 0.25rem !default;
+$text-field-border-width: 1px !default;
+$text-field-border-width-active: 2px !default;
+$text-field-filled-padding: 0.75rem !default;
+$text-field-outlined-padding: 1rem !default;
+$text-field-underlined-padding: null !default;
+
+$text-field-light-border-color: rgba(#000, 0.12) !default;
+$text-field-dark-border-color: rgba(#fff, 0.5) !default;
+$text-field-border-color: if(
+  core.$color-scheme == dark,
+  $text-field-dark-border-color,
+  $text-field-light-border-color
+) !default;
+
+$text-field-light-hover-border-color: rgba(#000, 0.87) !default;
+$text-field-dark-hover-border-color: rgba(#fff, 0.87) !default;
+$text-field-hover-border-color: if(
+  core.$color-scheme == dark,
+  $text-field-dark-hover-border-color,
+  $text-field-light-hover-border-color
+) !default;
+
+$var-lookup: (
+  error-color: (
+    var: --rmd-form-error-color,
+    value: $error-color,
+  ),
+  active-color: (
+    var: --rmd-form-active-color,
+    value: $active-color,
+  ),
+  focused-color: (
+    var: --rmd-form-focused-color,
+    value: $focused-color,
+  ),
+  disabled-color: (
+    var: --rmd-form-disabled-color,
+    value: $disabled-color,
+  ),
+  floating-top: (
+    var: --rmd-form-floating-top,
+    value: $label-floating-top,
+  ),
+  label-left-offset: (
+    var: --rmd-form-label-left-offset,
+    value: 0px,
+  ),
+  label-top-offset: (
+    var: --rmd-form-label-top-offset,
+    value: 0px,
+  ),
+  label-active-padding: (
+    var: --rmd-form-label-active-padding,
+    value: 0px,
+  ),
+  label-active-background-color: (
+    var: --rmd-form-label-active-background-color,
+    value: transparent,
+  ),
+  text-height: (
+    var: --rmd-form-text-height,
+    value: $text-field-height,
+  ),
+  text-padding-left: (
+    var: --rmd-form-text-padding-left,
+    value: 0px,
+  ),
+  text-padding-right: (
+    var: --rmd-form-text-padding-right,
+    value: 0px,
+  ),
+  text-padding-top: (
+    var: --rmd-form-text-padding-top,
+    value: 0px,
+  ),
+  text-border-color: (
+    var: --rmd-form-text-border-color,
+    value: $text-field-border-color,
+  ),
+  text-hover-border-color: (
+    var: --rmd-form-text-hover-border-color,
+    value: $text-field-hover-border-color,
+  ),
+);
+
+@function get-var($name, $fallback: null) {
+  $found: core.validate($var-lookup, $name, "form var");
+  $var: map.get($found, var);
+  $value: if($fallback, $fallback, map.get($found, value));
+
+  @if $value {
+    @return var(#{$var}, #{$value});
+  }
+
+  @return var(#{$var});
+}
+
+@mixin set-var($name, $value) {
+  $var: map.get(core.validate($var-lookup, $name, "form var"), var);
+
+  #{$var}: #{$value};
+}
+
+@mixin use-var($property, $name: $property, $fallback: null) {
+  #{$property}: get-var($name, $fallback);
+}
+
+@mixin use-light-theme {
+  @include set-var(text-border-color, $text-field-light-border-color);
+  @include set-var(
+    text-hover-border-color,
+    $text-field-light-hover-border-color
+  );
+}
+
+@mixin use-dark-theme {
+  @include set-var(text-border-color, $text-field-dark-border-color);
+  @include set-var(
+    text-hover-border-color,
+    $text-field-dark-hover-border-color
+  );
+}
+
+@mixin file-input-styles {
+  .rmd-file-input {
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    width: 0.1px;
+    z-index: -1;
+  }
+}
+
+@mixin form-message-styles {
+  .rmd-form-message-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .rmd-form-message {
+    @include core.map-to-styles($message-typography-styles);
+    @include core.use-theme-var(color, text-secondary-color);
+
+    display: flex;
+    margin: $message-margin-top 0 $message-margin-bottom;
+    min-height: $message-min-height;
+
+    @if not $disable-text-field-filled-theme and $text-field-filled-padding {
+      &--filled {
+        padding-left: $text-field-filled-padding;
+        padding-right: $text-field-filled-padding;
+      }
+    }
+
+    @if not $disable-text-field-outlined-theme and $text-field-outlined-padding
+    {
+      &--outline {
+        padding-left: $text-field-outlined-padding;
+        padding-right: $text-field-outlined-padding;
+      }
+    }
+
+    @if not
+      $disable-text-field-underlined-theme and
+      $text-field-underlined-padding
+    {
+      &--underline {
+        padding-left: $text-field-underlined-padding;
+        padding-right: $text-field-underlined-padding;
+      }
+    }
+
+    &--error {
+      @include use-var(color, error-color);
+    }
+
+    &__message {
+      margin: 0;
+    }
+
+    @if not $disable-text-field-counter {
+      &__counter {
+        @include core.auto-rtl(margin-left, auto);
+        @include core.auto-rtl(padding-left, $message-counter-spacing);
+
+        flex-shrink: 0;
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+@mixin label-styles {
+  .rmd-label {
+    @include core.map-to-styles($label-typography);
+
+    display: inline-flex;
+    transition-property: background-color, color, font-size, transform;
+    transition-duration: core.$linear-duration;
+
+    &--active {
+      @include use-var(focused-color);
+    }
+
+    &--error {
+      @include use-var(error-color);
+    }
+
+    &--disabled {
+      @include use-var(disabled-color);
+    }
+
+    @if not $disable-floating-label {
+      &--floating {
+        @include core.rtl {
+          left: auto;
+          right: 0;
+          transform: translate(
+            core.negate-var(get-var(text-padding-left)),
+            get-var(floating-top)
+          );
+        }
+
+        left: 0;
+        position: absolute;
+        top: 0;
+        transform: translate(get-var(text-padding-left), get-var(floating-top));
+        will-change: font-size, transform;
+      }
+
+      &--floating-dense {
+        @include set-var(floating-top, $label-floating-top-dense);
+      }
+
+      &--floating-inactive {
+        @include core.use-theme-var(color, text-secondary-color);
+      }
+
+      &--floating-active {
+        @include core.rtl {
+          transform: translate(
+            core.negate-var(get-var(label-left-offset)),
+            get-var(label-top-offset)
+          );
+        }
+        @include use-var(background-color, label-active-background-color);
+        @include use-var(padding, label-active-padding);
+
+        font-size: $label-floating-font-size;
+        transform: translate(
+          get-var(label-left-offset),
+          get-var(label-top-offset)
+        );
+        z-index: 1;
+      }
+    }
+  }
+}
+
+@mixin text-field-container-styles {
+  .rmd-text-field-container {
+    @include use-var(height, text-height);
+
+    align-items: center;
+    display: flex;
+    position: relative;
+
+    &--inline {
+      display: inline-flex;
+    }
+
+    &--stretch {
+      flex: 1 1 auto;
+    }
+
+    &--label {
+      @include set-var(text-height, $text-field-label-height);
+    }
+
+    &--error {
+      @include set-var(active-color, get-var(error-color));
+      @include set-var(text-border-color, currentcolor);
+      @include icon.set-var(color, currentcolor);
+    }
+
+    &--hoverable:hover {
+      @include set-var(text-border-color, get-var(text-hover-border-color));
+    }
+
+    &--disabled {
+      @include icon.set-var(color, get-var(disabled-color));
+    }
+
+    @if not $disable-text-field-filled-theme {
+    }
+
+    @if not $disable-text-field-outlined-theme {
+      &--outline {
+        @include set-var(text-padding-left, $text-field-outlined-padding);
+        @include set-var(text-padding-right, $text-field-outlined-padding);
+        @include set-var(
+          label-left-offset,
+          $text-field-outlined-padding - $label-floating-padding
+        );
+        @include set-var(label-top-offset, -50%);
+        @include set-var(label-active-padding, 0 $label-floating-padding);
+        @include set-var(
+          label-active-background-color,
+          core.get-theme-var(background-color)
+        );
+        @include use-var(border-color, text-border-color);
+
+        border-radius: $text-field-border-radius;
+        border-style: solid;
+        border-width: $text-field-border-width;
+
+        &::after {
+          @include core.pseudo-element;
+
+          box-shadow: 0
+            0
+            0
+            $text-field-border-width-active
+            get-var(focused-color);
+          opacity: 0;
+          transition: opacity core.$linear-duration;
+        }
+      }
+
+      &--outline-active::after {
+        opacity: 1;
+      }
+
+      &--outline-left {
+        $distance: calc(
+          #{icon.get-var(size)} +
+            #{$text-field-outlined-padding +
+            $text-field-spacing}
+        );
+
+        @include set-var(text-padding-left, $distance);
+      }
+
+      &--outline-right {
+        $distance: calc(#{icon.get-var(size)} + #{$text-field-spacing * 2});
+
+        @include set-var(text-padding-right, $distance);
+      }
+    }
+
+    @if not $disable-text-field-underlined-theme {
+    }
+  }
+}
+
+@mixin text-field-styles {
+  .rmd-text-field {
+    @include core.map-to-styles($text-field-typography);
+    @include core.rtl {
+      @include use-var(padding-left, text-padding-right);
+      @include use-var(padding-right, text-padding-left);
+    }
+    @include use-var(padding-left, text-padding-left);
+    @include use-var(padding-right, text-padding-right);
+    @include use-var(padding-top, text-padding-top);
+
+    background-color: transparent;
+    border-width: 0;
+    color: inherit;
+    flex: 1 1 auto;
+    height: 100%;
+    outline: none;
+    width: 100%;
+
+    &::placeholder {
+      @include core.use-theme-var(color, text-secondary-color);
+      // want to gain the same font styles as the input/textarea itself,
+      // just apply different colors as needed instead. Can't just do font: inherit
+      // since it'll break the styles in firefox.
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: inherit;
+
+      // fix firefox setting opacity to 0.54 by default
+      opacity: 1;
+
+      // Note: doesn't look like firefox applies css transitions to placeholder text?
+      transition: opacity core.$linear-duration;
+    }
+
+    &[disabled] {
+      @include core.use-theme-var(color, text-disabled-color);
+
+      &::placeholder {
+        color: inherit;
+      }
+    }
+
+    &--placeholder-hidden::placeholder {
+      opacity: 0;
+    }
+  }
+}
+
+@mixin text-field-addon {
+  .rmd-text-field-addon {
+    @include icon.use-var(height, size);
+    @include icon.use-var(width, size);
+
+    position: absolute;
+
+    &:first-child {
+      @include core.auto-rtl(left, get-var(label-left-offset));
+    }
+
+    &:last-child {
+      @include core.auto-rtl(right, $text-field-spacing);
+    }
+  }
+}
+
+@mixin styles {
+  @if not $disable-fieldset {
+    .rmd-fieldset {
+      &--unstyled {
+        border: 0;
+        margin: 0;
+        min-width: 0; // just so it can shrink correctly in flex or grid
+        padding: 0;
+      }
+    }
+  }
+
+  @if not $disable-label {
+    @include label-styles;
+  }
+
+  @if not $disable-file-input {
+    @include file-input-styles;
+  }
+
+  @if not $disable-message {
+    @include form-message-styles;
+  }
+
+  @if not $disable-text-field or not $disable-text-area {
+    @include text-field-container-styles;
+  }
+
+  @if not $disable-text-field {
+    @include text-field-styles;
+  }
+
+  @if not $disable-text-area {
+  }
+
+  @if not $disable-text-field-addon {
+    @include text-field-addon;
+  }
+
+  @if not core.$disable-default-system-theme and core.$color-scheme == system {
+    @media (prefers-color-scheme: dark) {
+      :root {
+        @include use-dark-theme;
+      }
+    }
+  }
+}

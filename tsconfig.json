@@ -24,6 +24,7 @@
       "@react-md/core": ["packages/core/src/index.ts"],
       "@react-md/dialog": ["packages/dialog/src/index.ts"],
       "@react-md/divider": ["packages/divider/src/index.ts"],
+      "@react-md/form": ["packages/form/src/index.ts"],
       "@react-md/icon": ["packages/icon/src/index.ts"],
       "@react-md/layout": ["packages/layout/src/index.ts"],
       "@react-md/link": ["packages/link/src/index.ts"],

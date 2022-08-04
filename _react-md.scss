@@ -12,4 +12,6 @@
 @forward "./packages/tree/src/tree" as tree-*;
 @forward "./packages/layout/src/layout" as layout-*;
 @forward "./packages/visual-media/src/visual-media" as visual-media-*;
+
 @forward "./packages/card/src/card" as card-*;
+@forward "./packages/form/src/form" as form-*;

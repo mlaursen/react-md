@@ -38,7 +38,6 @@ importers:
       jest-watch-typeahead: ^1.1.0
       lint-staged: ^13.0.3
       lodash: ^4.17.21
-      nanoid: ^4.0.0
       next: ^12.2.0
       prettier: ^2.7.1
       react: ^18.2.0
@@ -52,7 +51,6 @@ importers:
     dependencies:
       cnbuilder: 3.1.0
       lodash: 4.17.21
-      nanoid: 4.0.0
       next: 12.2.0_b7sksnfkdyiidz7vzaadim75qm
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -164,6 +162,24 @@ importers:
     devDependencies:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+
+  packages/form:
+    specifiers:
+      '@react-md/button': ^6.0.0-alpha.0
+      '@react-md/core': ^6.0.0-alpha.0
+      '@react-md/icon': ^6.0.0-alpha.0
+      '@react-md/list': ^6.0.0-alpha.0
+      '@react-md/progress': ^6.0.0-alpha.0
+      cnbuilder: ^3.1.0
+      nanoid: ^4.0.0
+    dependencies:
+      '@react-md/button': link:../button
+      '@react-md/core': link:../core
+      '@react-md/icon': link:../icon
+      '@react-md/list': link:../list
+      '@react-md/progress': link:../progress
+      cnbuilder: 3.1.0
+      nanoid: 4.0.0
 
   packages/icon:
     specifiers:
