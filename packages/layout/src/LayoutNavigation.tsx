@@ -54,7 +54,7 @@ export function LayoutNavigation<T extends TreeItemNode = LayoutNavigationItem>(
 
   const isTemporary = !mini && isTemporaryLayout(layout);
   const isPersistent = mini || isPersistentLayout(layout);
-  const isToggleable = !mini && isToggleableLayout(layout);
+  const _isToggleable = !mini && isToggleableLayout(layout);
   const floating = layout === "floating";
 
   let header = propHeader;

@@ -11,9 +11,9 @@ node_modules
 /public
 
 *.cjs
-packges/material-icons/**/*.ts
-packges/material-icons/**/*.tsx
-packges/material-icons/**/*.mjs
-packges/material-icons/**/*.cjs
+packages/material-icons/**/*.ts
+packages/material-icons/**/*.tsx
+packages/material-icons/**/*.mjs
+packages/material-icons/**/*.cjs
 
 svgo.config.js

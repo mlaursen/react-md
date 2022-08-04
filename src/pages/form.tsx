@@ -25,12 +25,12 @@ const maxFiles = 4;
 
 export default function FormPage(): ReactElement {
   const {
-    stats,
-    errors,
-    clearErrors,
+    stats: _stats,
+    errors: _errors,
+    clearErrors: _clearErrors,
     onDrop,
-    reset,
-    remove,
+    reset: _reset,
+    remove: _remove,
     accept,
     onChange,
   } = useFileUpload({
@@ -41,7 +41,11 @@ export default function FormPage(): ReactElement {
       console.log("event:", event);
     },
   });
-  const { isOver, isDragging, handlers } = useDropzone({
+  const {
+    isOver: _isOver,
+    isDragging: _isDragging,
+    handlers,
+  } = useDropzone({
     onDrop,
   });
   // console.log("stats:", stats);
