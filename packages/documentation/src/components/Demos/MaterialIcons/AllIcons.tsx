@@ -6,9 +6,14 @@ import Code from "components/Code";
 
 import styles from "./AllIcons.module.scss";
 
-const allIcons = Object.entries(MaterialIcons).filter(([name]) =>
-  name.endsWith("SVGIcon")
-);
+const compare = new Intl.Collator("en-US", {
+  caseFirst: "upper",
+  numeric: true,
+}).compare;
+
+const allIcons = Object.entries(MaterialIcons)
+  .filter(([name]) => name.endsWith("SVGIcon"))
+  .sort(([a], [b]) => compare(a, b));
 
 function TooltippedName({ name }: { name: string }): ReactElement {
   const { elementProps, tooltipProps } = useTooltip({
