@@ -1,6 +1,6 @@
 import { bem } from "@react-md/core";
 import { cnb } from "cnbuilder";
-import type { FormTheme } from "./FormThemeProvider";
+import type { FormTheme } from "./types";
 
 const styles = bem("rmd-form-message");
 

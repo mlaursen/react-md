@@ -98,9 +98,12 @@ export interface SkeletonPlaceholderOptions {
    * If this value is `undefined`, a random percentage will be generated instead
    * using the {@link minPercentage} and {@link maxPercentage} options.
    *
+   * Set this value to `null` if the size should be derived from the provided
+   * `className` instead.
+   *
    * @defaultValue `randomInt({ min: minPercentage, max: maxPercentage })%`
    */
-  width?: number | string;
+  width?: number | string | null;
 
   /**
    * Settings this to `true` will prevent any of the skeleton placeholder styles

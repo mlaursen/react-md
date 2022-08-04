@@ -75,6 +75,10 @@ export function MatchedIcon(props: MatchedIconProps): ReactElement {
           <DialogTitle id={titleId}>{name}</DialogTitle>
         </DialogHeader>
         <DialogContent>
+          <pre>
+            <code>{`import ${name} from "@react-md/material-icons/${name}";`}</code>
+          </pre>
+          {/* TODO: Implement quick copy/paste */}
           <div className={styles.preview}>
             <Icon />
           </div>

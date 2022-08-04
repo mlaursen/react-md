@@ -1,0 +1,8 @@
+@use "everything";
+
+.grid {
+  @include everything.set-box-var(min-size, 6.25rem);
+  @include everything.button-set-var(icon-size, auto);
+
+  width: 100%;
+}
