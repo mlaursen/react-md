@@ -41,6 +41,8 @@ $circular-progress-size: icon.get-var(size) !default;
 
 $floating-margin: 1.5rem !default;
 $floating-z-index: core.$temporary-element-z-index !default;
+// set this below the app bar
+$floating-absolute-z-index: 5 !default;
 $floating-positions: (
   tl: (
     left: $floating-margin,
@@ -257,6 +259,7 @@ $var-lookup: (
       @if not $disable-floating-absolute-position {
         &--absolute {
           position: absolute;
+          z-index: $floating-absolute-z-index;
         }
       }
 

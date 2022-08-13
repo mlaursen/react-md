@@ -149,6 +149,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         // buttons
         {...(isThemeDisabled ? {} : handlers)}
         aria-disabled={isThemeDisabled || undefined}
+        disabled={disabled}
         ref={ref}
         type={type}
         className={button({

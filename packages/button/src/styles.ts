@@ -2,7 +2,7 @@ import { bem } from "@react-md/core";
 import { cnb } from "cnbuilder";
 
 const buttonStyles = bem("rmd-button");
-const fabStyles = bem("rmd-button");
+const fabStyles = bem("rmd-fab");
 
 /**
  * When this is set to `"text"`, the size of the button will be determined by
