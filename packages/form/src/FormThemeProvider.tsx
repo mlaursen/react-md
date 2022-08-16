@@ -15,7 +15,8 @@ const context = createContext<FormThemeContext>({
  * value will use any defined values from the theme props and fallback to the
  * context value.
  *
- * Example:
+ * @example
+ * Simple Example
  * ```ts
  * // everything is inherited
  * const formTheme = useFormTheme();

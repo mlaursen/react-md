@@ -10,6 +10,8 @@ export * from "./formMessageStyles";
 export * from "./FormThemeProvider";
 export * from "./Label";
 export * from "./Legend";
+export * from "./Password";
+export * from "./TextArea";
 export * from "./TextField";
 export * from "./TextFieldContainer";
 export * from "./types";

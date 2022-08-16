@@ -1,10 +1,15 @@
-import type { HTMLAttributes, ReactNode } from "react";
-import { forwardRef } from "react";
-import { cnb } from "cnbuilder";
-import { useFormTheme } from "./FormThemeProvider";
-import type { FormComponentStates, FormThemeOptions } from "./types";
 import { bem } from "@react-md/core";
+import { cnb } from "cnbuilder";
+import type { HTMLAttributes } from "react";
+import { forwardRef } from "react";
+
+import { useFormTheme } from "./FormThemeProvider";
 import { TextFieldAddon } from "./TextFieldAddon";
+import type {
+  FormComponentStates,
+  FormThemeOptions,
+  TextFieldContainerOptions,
+} from "./types";
 
 const styles = bem("rmd-text-field-container");
 
@@ -72,26 +77,21 @@ export function textFieldContainer(
   );
 }
 
-export interface TextFieldContainerOptions
-  extends FormThemeOptions,
-    FormComponentStates {
-  dense?: boolean;
-  inline?: boolean;
-  stretch?: boolean;
-  leftAddon?: ReactNode;
-  rightAddon?: ReactNode;
-}
-
 export interface TextFieldContainerProps
   extends HTMLAttributes<HTMLDivElement>,
     TextFieldContainerOptions {
+  /**
+   * Set this to `true` if there is a floating label with the `TextField` or
+   * `TextArea`.
+   *
+   * @defaultValue `false`
+   */
   label?: boolean;
-  leftAddon?: ReactNode;
-  disableLeftAddonStyles?: boolean;
-  rightAddon?: ReactNode;
-  disableRightAddonStyles?: boolean;
 }
 
+/**
+ * @internal
+ */
 export const TextFieldContainer = forwardRef<
   HTMLDivElement,
   TextFieldContainerProps
@@ -144,7 +144,7 @@ export const TextFieldContainer = forwardRef<
         {leftAddon}
       </TextFieldAddon>
       {children}
-      <TextFieldAddon disabled={disableRightAddonStyles}>
+      <TextFieldAddon disabled={disableRightAddonStyles} after>
         {rightAddon}
       </TextFieldAddon>
     </div>

@@ -1,18 +1,9 @@
 import { bem } from "@react-md/core";
 import { cnb } from "cnbuilder";
-import type { LabelHTMLAttributes } from "react";
 import { forwardRef } from "react";
-
-import type { FormComponentStates } from "./types";
+import type { LabelClassNameOptions, LabelProps } from "./types";
 
 const labelStyles = bem("rmd-label");
-
-export interface LabelClassNameOptions extends FormComponentStates {
-  className?: string;
-
-  dense?: boolean;
-  floating?: boolean;
-}
 
 export function label(options: LabelClassNameOptions): string {
   const {
@@ -40,10 +31,6 @@ export function label(options: LabelClassNameOptions): string {
     className
   );
 }
-
-export interface LabelProps
-  extends LabelHTMLAttributes<HTMLLabelElement>,
-    LabelClassNameOptions {}
 
 export const Label = forwardRef<HTMLLabelElement, LabelProps>(function Label(
   props,

@@ -1,28 +1,8 @@
 import { bem } from "@react-md/core";
 import { cnb } from "cnbuilder";
-import type { FormTheme } from "./types";
+import type { FormMessageClassNameOptions } from "./types";
 
 const styles = bem("rmd-form-message");
-
-export interface FormMessageClassNameOptions {
-  className?: string;
-
-  /**
-   * Boolean if the message should gain the error state which changes the text
-   * color to `red` by default.
-   *
-   * @defaultValue `false`
-   */
-  error?: boolean;
-
-  /**
-   * The current theme for the related text field. This is really only used to
-   * match the current horizontal padding of the text field.
-   *
-   * @defaultValue `"outline"`
-   */
-  theme?: FormTheme;
-}
 
 export function formMessage(options: FormMessageClassNameOptions = {}): string {
   const { className, error = false, theme = "none" } = options;

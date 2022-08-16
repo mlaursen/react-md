@@ -1,54 +1,10 @@
 import { useEnsuredId } from "@react-md/core";
-import type { CSSProperties, HTMLAttributes } from "react";
+import type { CSSProperties } from "react";
 import { forwardRef } from "react";
 import { FormMessageCounter } from "./FormMessageCounter";
-import type { FormMessageClassNameOptions } from "./formMessageStyles";
 import { formMessage, formMessageText } from "./formMessageStyles";
 import { useFormTheme } from "./FormThemeProvider";
-
-export interface FormMessageProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, "minLength" | "maxLength">,
-    FormMessageClassNameOptions {
-  /**
-   * If this component is acting as a form-level error message handler, the role
-   * should be updated to be `"alert"` for additional accessibility.
-   *
-   * Note: when creating a form-level error message handler, the messages should
-   * no longer appear as the user types and instead once the user tries to
-   * submit the form. Having an alert role disrupts normal screen reader
-   * behavior by immediately reading changes in this element.
-   *
-   * @defaultValue `undefined`
-   */
-  role?: "alert";
-
-  /**
-   * Boolean if the children should no longer be wrapped in a `<p>` tag. This
-   * should normally only be disabled if using a custom error message wrapper or
-   * the counter behavior is not being used. To get correct alignments of the
-   * message and counter, the `children` must be wrapped in some element and
-   * cannot be plain test.
-   *
-   * Note: this will always be considered `true` if the `role` is set to
-   * `"alert"`.
-   *
-   * @defaultValue `false`
-   */
-  disableWrap?: boolean;
-
-  /**
-   * An optional style to apply to the `<p>` tag that surrounds the `children`.
-   * This will not be used if `role="alert"` or `disableWrap={true}`.
-   */
-  messageStyle?: CSSProperties;
-
-  /**
-   * An optional className to apply to the `<p>` tag that surrounds the
-   * `children`. This will not be used if `role="alert"` or
-   * `disableWrap={true}`.
-   */
-  messageClassName?: string;
-}
+import type { FormMessageProps } from "./types";
 
 /**
  * Props that are used to automatically add a counter for the remaining letters

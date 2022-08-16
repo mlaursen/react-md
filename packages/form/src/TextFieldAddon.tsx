@@ -1,12 +1,17 @@
+import { bem } from "@react-md/core";
+import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
-import { cnb } from "cnbuilder";
-import { bem } from "@react-md/core";
 
 const styles = bem("rmd-text-field-addon");
 
 export interface TextFieldAddonClassNameOptions {
   className?: string;
+  /**
+   * @defaultValue `false`
+   */
+  after?: boolean;
+
   /**
    *
    * @defaultValue `true`
@@ -17,12 +22,24 @@ export interface TextFieldAddonClassNameOptions {
 export function textFieldAddon(
   options: TextFieldAddonClassNameOptions = {}
 ): string {
-  const { className, presentational = false } = options;
+  const { className, after = false, presentational = false } = options;
 
-  return cnb(styles({ presentational }), className);
+  return cnb(
+    styles({
+      before: !after,
+      after,
+      presentational,
+    }),
+    className
+  );
 }
 
 export interface TextFieldAddonProps extends HTMLAttributes<HTMLSpanElement> {
+  /**
+   * @defaultValue `false`
+   */
+  after?: boolean;
+
   /**
    * Set this to `true` if the addon should not be wrapped in a `<span>` with some
    * additional styles.
@@ -47,6 +64,7 @@ export interface TextFieldAddonProps extends HTMLAttributes<HTMLSpanElement> {
 export const TextFieldAddon = forwardRef<HTMLSpanElement, TextFieldAddonProps>(
   function TextFieldAddon(props, ref) {
     const {
+      after = false,
       children,
       className,
       disabled = false,
@@ -54,8 +72,12 @@ export const TextFieldAddon = forwardRef<HTMLSpanElement, TextFieldAddonProps>(
       ...remaining
     } = props;
 
-    if (!children || disabled) {
+    if (!children) {
       return null;
+    }
+
+    if (disabled) {
+      return <>{children}</>;
     }
 
     return (
@@ -63,6 +85,7 @@ export const TextFieldAddon = forwardRef<HTMLSpanElement, TextFieldAddonProps>(
         {...remaining}
         ref={ref}
         className={textFieldAddon({
+          after,
           presentational: !pointerEvents,
           className,
         })}

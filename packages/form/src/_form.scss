@@ -1,5 +1,6 @@
 @use "sass:map";
 @use "@react-md/core";
+@use "@react-md/button";
 @use "@react-md/icon";
 
 $disable-fieldset: false !default;
@@ -9,11 +10,18 @@ $disable-floating-label: false !default;
 $disable-file-input: false !default;
 $disable-text-field: false !default;
 $disable-text-area: false !default;
+$disable-password: $disable-text-field !default;
+$disable-text-field-addon: $disable-text-field and $disable-password and
+  $disable-text-area !default;
+
+// Note: enabling the filled theme forces the underlined theme to be used since it depends on the same styles
 $disable-text-field-filled-theme: false !default;
 $disable-text-field-outlined-theme: false !default;
 $disable-text-field-underlined-theme: false !default;
 $disable-text-field-counter: false !default;
-$disable-text-field-addon: $disable-text-field and $disable-text-area !default;
+$disable-text-field-underline-left: false !default;
+$disable-text-field-underline-center: false !default;
+$disable-text-field-underline-right: false !default;
 
 $error-color: core.get-theme-var(error-color) !default;
 $active-color: core.get-theme-var(secondary-color) !default;
@@ -44,9 +52,12 @@ $message-margin-bottom: 1rem !default;
 $message-min-height: 2rem !default;
 
 $text-field-typography: map.merge(
-  core.$body-1-styles,
-  (
-    font-size: 1em,
+  core.$base-font-styles,
+  map.merge(
+    core.$body-1-styles,
+    (
+      font-size: 1em,
+    )
   )
 ) !default;
 $text-field-height: 3rem !default;
@@ -60,6 +71,11 @@ $text-field-border-width-active: 2px !default;
 $text-field-filled-padding: 0.75rem !default;
 $text-field-outlined-padding: 1rem !default;
 $text-field-underlined-padding: null !default;
+// this is the default height of the label with line-height
+$text-field-underlined-label-padding-top: 1.5rem !default;
+$text-field-underlined-label-left-offset: icon.$spacing !default;
+
+$text-field-addon-margin: icon.$spacing !default;
 
 $text-field-light-border-color: rgba(#000, 0.12) !default;
 $text-field-dark-border-color: rgba(#fff, 0.5) !default;
@@ -76,6 +92,17 @@ $text-field-hover-border-color: if(
   $text-field-dark-hover-border-color,
   $text-field-light-hover-border-color
 ) !default;
+
+$text-field-light-filled-background-color: core.$grey-100 !default;
+$text-field-dark-filled-background-color: #424242 !default;
+// $text-field-dark-filled-background-color: core.$grey-700 !default;
+$text-field-filled-background-color: if(
+  core.$color-scheme == dark,
+  $text-field-dark-filled-background-color,
+  $text-field-light-filled-background-color
+) !default;
+
+$password-visibility-toggle-spacing: 0.25rem !default;
 
 $var-lookup: (
   error-color: (
@@ -138,6 +165,18 @@ $var-lookup: (
     var: --rmd-form-text-hover-border-color,
     value: $text-field-hover-border-color,
   ),
+  text-filled-color: (
+    var: --rmd-form-text-filled-color,
+    value: $text-field-filled-background-color,
+  ),
+  addon-top: (
+    var: --rmd-form-addon-top,
+    value: auto,
+  ),
+  addon-margin-top: (
+    var: --rmd-form-addon-margin-top,
+    value: 0px,
+  ),
 );
 
 @function get-var($name, $fallback: null) {
@@ -168,6 +207,10 @@ $var-lookup: (
     text-hover-border-color,
     $text-field-light-hover-border-color
   );
+  @include set-var(
+    text-filled-color,
+    $text-field-light-filled-background-color
+  );
 }
 
 @mixin use-dark-theme {
@@ -176,6 +219,7 @@ $var-lookup: (
     text-hover-border-color,
     $text-field-dark-hover-border-color
   );
+  @include set-var(text-filled-color, $text-field-dark-filled-background-color);
 }
 
 @mixin file-input-styles {
@@ -294,7 +338,14 @@ $var-lookup: (
         @include core.use-theme-var(color, text-secondary-color);
       }
 
-      &--floating-active {
+      $floating-active-selector: "&--floating-active";
+      @if not $disable-text-field or not $disable-text-area {
+        $floating-active-selector: $floating-active-selector +
+          ", .rmd-text-field-container:focus-within &--floating" +
+          ", .rmd-text-field:not(:placeholder-shown) + &--floating";
+      }
+
+      #{$floating-active-selector} {
         @include core.rtl {
           transform: translate(
             core.negate-var(get-var(label-left-offset)),
@@ -336,9 +387,19 @@ $var-lookup: (
     }
 
     &--error {
+      @if not $disable-text-field-addon {
+        @include icon.set-var(color, get-var(error-color));
+      }
       @include set-var(active-color, get-var(error-color));
-      @include set-var(text-border-color, currentcolor);
-      @include icon.set-var(color, currentcolor);
+      @include set-var(focused-color, get-var(error-color));
+
+      @if not
+        $disable-text-field-underlined-theme or not
+        $disable-text-field-outlined-theme
+      {
+        @include set-var(text-border-color, get-var(error-color));
+        @include set-var(text-hover-border-color, get-var(error-color));
+      }
     }
 
     &--hoverable:hover {
@@ -347,9 +408,6 @@ $var-lookup: (
 
     &--disabled {
       @include icon.set-var(color, get-var(disabled-color));
-    }
-
-    @if not $disable-text-field-filled-theme {
     }
 
     @if not $disable-text-field-outlined-theme {
@@ -385,6 +443,7 @@ $var-lookup: (
         }
       }
 
+      &--outline:focus-within::after,
       &--outline-active::after {
         opacity: 1;
       }
@@ -406,7 +465,93 @@ $var-lookup: (
       }
     }
 
-    @if not $disable-text-field-underlined-theme {
+    @if not $disable-text-field-filled-theme {
+      &--filled {
+        @include set-var(text-padding-left, $text-field-filled-padding);
+        @include set-var(text-padding-right, $text-field-filled-padding);
+        @include set-var(label-left-offset, $text-field-filled-padding);
+        @include use-var(background-color, text-filled-color);
+      }
+    }
+
+    // the filled theme uses the same styles as underline
+    @if not
+      $disable-text-field-underlined-theme or not
+      $disable-text-field-filled-theme
+    {
+      &--underline {
+        @include use-var(border-color, text-border-color);
+
+        border-bottom-style: solid;
+        border-bottom-width: $text-field-border-width;
+
+        @if $text-field-underlined-padding {
+          @include set-var(text-padding-left, $text-field-underlined-padding);
+          @include set-var(text-padding-right, $text-field-underlined-padding);
+        }
+
+        &::after {
+          @include use-var(background-color, focused-color);
+
+          bottom: -$text-field-border-width;
+          content: "";
+          height: $text-field-border-width-active;
+          left: 0;
+          position: absolute;
+          right: 0;
+          transform: scale(0);
+          transition: transform
+            core.$linear-duration
+            core.$linear-timing-function;
+          z-index: 1;
+        }
+      }
+
+      &--underline-labelled {
+        @include set-var(
+          text-padding-top,
+          $text-field-underlined-label-padding-top
+        );
+        @include set-var(addon-margin-top, $text-field-addon-margin);
+      }
+
+      @if not $disable-text-field-underline-left {
+        &--underline-left::after {
+          transform-origin: left;
+        }
+      }
+
+      @if not $disable-text-field-underline-center {
+        &--underline-center::after {
+          transform-origin: center;
+        }
+      }
+
+      @if not $disable-text-field-underline-right {
+        &--underline-right::after {
+          transform-origin: right;
+        }
+      }
+
+      &:focus-within::after,
+      &--underline-active::after {
+        transform: scale(1);
+      }
+
+      @if not $disable-text-field-addon {
+        $addon-offset: "#{icon.get-var(size)} + #{$text-field-underlined-label-left-offset * 2}";
+        @if $text-field-underlined-padding {
+          $addon-offset: "#{$addon-offset} + #{$text-field-underline-padding}";
+        }
+
+        &--underline-left-addon {
+          @include set-var(text-padding-left, calc(#{$addon-offset}));
+        }
+
+        &--underline-right-addon {
+          @include set-var(text-padding-right, calc(#{$addon-offset}));
+        }
+      }
     }
   }
 }
@@ -454,8 +599,28 @@ $var-lookup: (
       }
     }
 
-    &--placeholder-hidden::placeholder {
+    &--placeholder-hidden:not(:focus)::placeholder {
       opacity: 0;
+    }
+  }
+}
+
+@mixin password-styles {
+  .rmd-password {
+    &--offset {
+      @include set-var(text-padding-right, $password-visibility-toggle-spacing);
+    }
+
+    &__input {
+      &--offset {
+        @include core.auto-rtl(margin-right, button.get-var(icon-size));
+      }
+    }
+
+    &__toggle {
+      @include core.auto-rtl(right, 0);
+
+      position: absolute;
     }
   }
 }
@@ -465,14 +630,29 @@ $var-lookup: (
     @include icon.use-var(height, size);
     @include icon.use-var(width, size);
 
+    @if not
+      $disable-text-field-filled-theme or not
+      $disable-text-field-underlined-theme
+    {
+      @include use-var(margin-top, addon-margin-top);
+    }
+
     position: absolute;
 
-    &:first-child {
+    // Note: Can't use `:first-child` and `:last-child` since
+    // password/autocomplete managers might add another element into the
+    // `.rmd-text-field-container` which would prevent these styles from being
+    // applied
+    &--before {
       @include core.auto-rtl(left, get-var(label-left-offset));
     }
 
-    &:last-child {
+    &--after {
       @include core.auto-rtl(right, $text-field-spacing);
+    }
+
+    &--presentational {
+      pointer-events: none;
     }
   }
 }
@@ -501,12 +681,17 @@ $var-lookup: (
     @include form-message-styles;
   }
 
-  @if not $disable-text-field or not $disable-text-area {
+  @if not $disable-text-field or not $disable-password or not $disable-text-area
+  {
     @include text-field-container-styles;
   }
 
-  @if not $disable-text-field {
+  @if not $disable-text-field or not $disable-password {
     @include text-field-styles;
+  }
+
+  @if not $disable-password {
+    @include password-styles;
   }
 
   @if not $disable-text-area {
