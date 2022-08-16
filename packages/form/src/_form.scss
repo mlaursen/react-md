@@ -9,10 +9,10 @@ $disable-label: false !default;
 $disable-floating-label: false !default;
 $disable-file-input: false !default;
 $disable-text-field: false !default;
-$disable-text-area: false !default;
+$disable-textarea: false !default;
 $disable-password: $disable-text-field !default;
 $disable-text-field-addon: $disable-text-field and $disable-password and
-  $disable-text-area !default;
+  $disable-textarea !default;
 
 // Note: enabling the filled theme forces the underlined theme to be used since it depends on the same styles
 $disable-text-field-filled-theme: false !default;
@@ -22,6 +22,11 @@ $disable-text-field-counter: false !default;
 $disable-text-field-underline-left: false !default;
 $disable-text-field-underline-center: false !default;
 $disable-text-field-underline-right: false !default;
+
+$disable-textarea-resizing-rows: false !default;
+$disable-textarea-resizing-mask: $disable-textarea-resizing-rows !default;
+$disable-textarea-resize-horizontal: false !default;
+$disable-textarea-resize-vertical: false !default;
 
 $error-color: core.get-theme-var(error-color) !default;
 $active-color: core.get-theme-var(secondary-color) !default;
@@ -102,6 +107,9 @@ $text-field-filled-background-color: if(
   $text-field-light-filled-background-color
 ) !default;
 
+$textarea-addon-top: 1rem !default;
+$textarea-vertical-padding: 0.75rem !default;
+
 $password-visibility-toggle-spacing: 0.25rem !default;
 
 $var-lookup: (
@@ -168,6 +176,14 @@ $var-lookup: (
   text-filled-color: (
     var: --rmd-form-text-filled-color,
     value: $text-field-filled-background-color,
+  ),
+  textarea-height: (
+    var: --rmd-form-textarea-height,
+    value: 0px,
+  ),
+  textarea-padding: (
+    var: --rmd-form-textarea-padding,
+    value: $textarea-vertical-padding,
   ),
   addon-top: (
     var: --rmd-form-addon-top,
@@ -339,7 +355,7 @@ $var-lookup: (
       }
 
       $floating-active-selector: "&--floating-active";
-      @if not $disable-text-field or not $disable-text-area {
+      @if not $disable-text-field or not $disable-textarea {
         $floating-active-selector: $floating-active-selector +
           ", .rmd-text-field-container:focus-within &--floating" +
           ", .rmd-text-field:not(:placeholder-shown) + &--floating";
@@ -625,6 +641,106 @@ $var-lookup: (
   }
 }
 
+@mixin textarea-container-styles {
+  .rmd-textarea-container {
+    @include set-var(addon-top, $textarea-addon-top);
+
+    height: auto;
+    max-width: 100%;
+    padding-top: calc(
+      #{get-var(text-padding-top)} + #{get-var(textarea-padding)}
+    );
+
+    &--cursor:hover {
+      // need to add this cursor back since the textarea container adds padding to
+      // itself instead of the textarea so it loses this cursor. the container
+      // element will still focus the textarea when clicked
+      cursor: text;
+    }
+
+    @if not
+      $disable-text-field-filled-theme or not
+      $disable-text-field-underlined-theme
+    {
+      &--underline-labelled {
+        @include set-var(textarea-padding, 0px);
+        @include set-var(
+          floating-top,
+          $text-field-underlined-label-padding-top
+        );
+      }
+    }
+
+    @if not $disable-textarea-resizing-rows {
+      &--height {
+        height: calc(
+          #{get-var(text-padding-top)} +
+            #{get-var(textarea-padding)} +
+            #{get-var(textarea-height)}
+        );
+      }
+
+      &--animate {
+        transition: height core.$linear-duration core.$linear-timing-function;
+      }
+
+      &__inner {
+        height: get-var(textarea-height, 100%);
+        width: 100%;
+
+        &--animate {
+          transition: height core.$linear-duration core.$linear-timing-function;
+        }
+      }
+    }
+  }
+}
+
+@mixin textarea-styles {
+  .rmd-textarea {
+    @include set-var(text-padding-top, 0px);
+    @include use-var(min-height, text-height);
+
+    height: get-var(textarea-height, 100%);
+
+    @if not $disable-textarea-resize-horizontal {
+      &--rh {
+        resize: horizontal;
+      }
+    }
+
+    @if not $disable-textarea-resize-vertical {
+      &--rv {
+        resize: vertical;
+      }
+    }
+
+    &--rn {
+      overflow: hidden;
+      resize: none;
+    }
+
+    // only want the textarea to be scrollable if there's a limit on the rows
+    // since it'll flash the scrollbar on most OS during the height transition
+    &--scrollable {
+      overflow: auto;
+    }
+
+    @if not $disable-textarea-resizing-mask {
+      &--mask {
+        height: auto;
+        left: 0;
+        opacity: 0;
+        overflow: hidden;
+        pointer-events: none;
+        position: absolute;
+        right: 0;
+        z-index: -1;
+      }
+    }
+  }
+}
+
 @mixin text-field-addon {
   .rmd-text-field-addon {
     @include icon.use-var(height, size);
@@ -681,12 +797,13 @@ $var-lookup: (
     @include form-message-styles;
   }
 
-  @if not $disable-text-field or not $disable-password or not $disable-text-area
+  @if not $disable-text-field or not $disable-password or not $disable-textarea
   {
     @include text-field-container-styles;
   }
 
-  @if not $disable-text-field or not $disable-password {
+  @if not $disable-text-field or not $disable-password or not $disable-textarea
+  {
     @include text-field-styles;
   }
 
@@ -694,7 +811,9 @@ $var-lookup: (
     @include password-styles;
   }
 
-  @if not $disable-text-area {
+  @if not $disable-textarea {
+    @include textarea-container-styles;
+    @include textarea-styles;
   }
 
   @if not $disable-text-field-addon {
