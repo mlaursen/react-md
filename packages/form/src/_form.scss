@@ -13,6 +13,9 @@ $disable-textarea: false !default;
 $disable-password: $disable-text-field !default;
 $disable-text-field-addon: $disable-text-field and $disable-password and
   $disable-textarea !default;
+$disable-native-select: false !default;
+$disable-native-select-icon: false !default;
+$disable-native-select-multiple: false !default;
 
 // Note: enabling the filled theme forces the underlined theme to be used since it depends on the same styles
 $disable-text-field-filled-theme: false !default;
@@ -111,6 +114,9 @@ $textarea-addon-top: 1rem !default;
 $textarea-vertical-padding: 0.75rem !default;
 
 $password-visibility-toggle-spacing: 0.25rem !default;
+
+$native-select-addon-top: 1rem !default;
+$native-select-multiple-padding: 0.75rem !default;
 
 $var-lookup: (
   error-color: (
@@ -355,10 +361,18 @@ $var-lookup: (
       }
 
       $floating-active-selector: "&--floating-active";
-      @if not $disable-text-field or not $disable-textarea {
+      @if not
+        $disable-text-field or not
+        $disable-password or not
+        $disable-textarea
+      {
         $floating-active-selector: $floating-active-selector +
           ", .rmd-text-field-container:focus-within &--floating" +
           ", .rmd-text-field:not(:placeholder-shown) + &--floating";
+      }
+      @if not $disable-native-select {
+        $floating-active-selector: $floating-active-selector +
+          ", .rmd-native-select + &--floating";
       }
 
       #{$floating-active-selector} {
@@ -572,24 +586,32 @@ $var-lookup: (
   }
 }
 
+@mixin _text-field-base-styles {
+  @include core.map-to-styles($text-field-typography);
+  @include core.rtl {
+    @include use-var(padding-left, text-padding-right);
+    @include use-var(padding-right, text-padding-left);
+  }
+  @include use-var(padding-left, text-padding-left);
+  @include use-var(padding-right, text-padding-right);
+  @include use-var(padding-top, text-padding-top);
+
+  background-color: transparent;
+  border-width: 0;
+  color: inherit;
+  flex: 1 1 auto;
+  height: 100%;
+  outline: none;
+  width: 100%;
+
+  &[disabled] {
+    @include core.use-theme-var(color, text-disabled-color);
+  }
+}
+
 @mixin text-field-styles {
   .rmd-text-field {
-    @include core.map-to-styles($text-field-typography);
-    @include core.rtl {
-      @include use-var(padding-left, text-padding-right);
-      @include use-var(padding-right, text-padding-left);
-    }
-    @include use-var(padding-left, text-padding-left);
-    @include use-var(padding-right, text-padding-right);
-    @include use-var(padding-top, text-padding-top);
-
-    background-color: transparent;
-    border-width: 0;
-    color: inherit;
-    flex: 1 1 auto;
-    height: 100%;
-    outline: none;
-    width: 100%;
+    @include _text-field-base-styles;
 
     &::placeholder {
       @include core.use-theme-var(color, text-secondary-color);
@@ -607,12 +629,8 @@ $var-lookup: (
       transition: opacity core.$linear-duration;
     }
 
-    &[disabled] {
-      @include core.use-theme-var(color, text-disabled-color);
-
-      &::placeholder {
-        color: inherit;
-      }
+    &[disabled]::placeholder {
+      color: inherit;
     }
 
     &--placeholder-hidden:not(:focus)::placeholder {
@@ -741,6 +759,44 @@ $var-lookup: (
   }
 }
 
+@mixin native-select-styles {
+  @if not $disable-native-select-multiple {
+    .rmd-native-select-container {
+      @if not $disable-text-field-outlined-theme {
+        &--outline {
+          @include set-var(text-padding-top, $native-select-multiple-padding);
+        }
+      }
+
+      &--multi {
+        @include set-var(addon-top, $native-select-addon-top);
+        @include use-var(min-height, text-height);
+
+        height: auto;
+      }
+
+      &--padded {
+        padding-top: $native-select-multiple-padding;
+      }
+    }
+  }
+
+  .rmd-native-select {
+    @include _text-field-base-styles;
+
+    @if not $disable-native-select-icon {
+      &--icon {
+        appearance: none;
+      }
+
+      &__icon {
+        display: inline-flex;
+        pointer-events: none;
+      }
+    }
+  }
+}
+
 @mixin text-field-addon {
   .rmd-text-field-addon {
     @include icon.use-var(height, size);
@@ -814,6 +870,10 @@ $var-lookup: (
   @if not $disable-textarea {
     @include textarea-container-styles;
     @include textarea-styles;
+  }
+
+  @if not $disable-native-select {
+    @include native-select-styles;
   }
 
   @if not $disable-text-field-addon {

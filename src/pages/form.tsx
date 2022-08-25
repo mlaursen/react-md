@@ -4,6 +4,7 @@ import type { FormTheme } from "@react-md/form";
 import {
   FileInput,
   Form,
+  NativeSelect,
   TextArea,
   TextField,
   useFileUpload,
@@ -11,6 +12,7 @@ import {
 import type { ReactElement } from "react";
 import { useState } from "react";
 import { TempRadio } from "src/components/TempRadio";
+import { states } from "src/constants/states";
 
 const extensions = [
   "svg",
@@ -74,7 +76,7 @@ function Demo(): ReactElement {
   const [theme, setTheme] = useState<FormTheme>("outline");
 
   return (
-    <Form>
+    <Form style={{ marginBottom: "4rem" }}>
       <Box {...handlers}>
         <FileInput
           accept={accept}
@@ -108,6 +110,35 @@ function Demo(): ReactElement {
           />
         ))}
         <TextArea label="Label" placeholder="Placeholder" theme={theme} />
+        <NativeSelect
+          label="Label"
+          theme={theme}
+          required
+          name="selectField"
+          defaultValue=""
+        >
+          <option value="" disabled>
+            Choose a value
+          </option>
+          {states.map(({ name, abbreviation }) => (
+            <option key={abbreviation}>{name}</option>
+          ))}
+        </NativeSelect>
+        <NativeSelect
+          label="Label"
+          theme={theme}
+          required
+          name="selectField2"
+          defaultValue={[""]}
+          multiple
+        >
+          <option value="" disabled>
+            Choose a value
+          </option>
+          {states.map(({ name, abbreviation }) => (
+            <option key={abbreviation}>{name}</option>
+          ))}
+        </NativeSelect>
       </Box>
     </Form>
   );

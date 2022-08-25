@@ -69,8 +69,8 @@ export type AutoCompleteValue =
   | "new-password"
   | "current-password"
   | "one-time-code"
-  | "organiziation-title"
-  | "organiziation"
+  | "organization-title"
+  | "organization"
   | "street-address"
   | "address-line1"
   | "address-line2"
@@ -244,7 +244,7 @@ export interface FormFieldOptions
     FormMessageContainerExtension {
   /**
    * An optional floating label to use with the text field. A label is generally
-   * recommended for accessibility, but can be ommitted if an `aria-label` or
+   * recommended for accessibility, but can be omitted if an `aria-label` or
    * `aria-labelledby` is provided.
    */
   label?: ReactNode;
@@ -268,7 +268,7 @@ export interface FormFieldOptions
   labelProps?: PropsWithRef<LabelProps, HTMLLabelElement>;
 
   /**
-   * A conveniece prop for applying custom style to a label. This is equivalent
+   * A convenience prop for applying custom style to a label. This is equivalent
    * to:
    *
    * ```ts
