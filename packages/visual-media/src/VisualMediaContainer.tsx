@@ -4,34 +4,34 @@ import type { VisualMediaContainerClassNameOptions } from "./styles";
 import { visualMediaContainer } from "./styles";
 
 export interface VisualMediaContainerProps
-  extends HTMLAttributes<HTMLDivElement>,
+  extends HTMLAttributes<HTMLSpanElement>,
     VisualMediaContainerClassNameOptions {}
 
 export const VisualMediaContainer = forwardRef<
-  HTMLDivElement,
+  HTMLSpanElement,
   VisualMediaContainerProps
 >(function VisualMediaContainer(props, ref) {
   const {
     className,
     fullWidth = false,
     aspectRatio,
-    disableAuto = false,
+    responsive = "auto",
     children,
     ...remaining
   } = props;
 
   return (
-    <div
+    <span
       {...remaining}
       ref={ref}
       className={visualMediaContainer({
         className,
         fullWidth,
         aspectRatio,
-        disableAuto,
+        responsive,
       })}
     >
       {children}
-    </div>
+    </span>
   );
 });

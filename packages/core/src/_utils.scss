@@ -76,10 +76,10 @@ $_swappable-position-prefixes: border margin padding;
   }
 }
 
-@mixin pseudo-element($z-index: 0, $fixed: false) {
+@mixin pseudo-element($z-index: 0, $fixed: false, $inset: 0) {
   border-radius: inherit;
   content: "";
-  inset: 0;
+  inset: $inset;
   pointer-events: none;
   position: if($fixed, fixed, absolute);
   z-index: $z-index;

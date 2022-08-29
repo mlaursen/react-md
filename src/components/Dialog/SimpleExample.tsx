@@ -10,16 +10,20 @@ import {
 import type { ReactElement } from "react";
 
 export default function SimpleExample(): ReactElement {
-  const { toggled: visible, enable, disable } = useToggle(false);
+  const {
+    toggled: visible,
+    enable: showDialog,
+    disable: hideDialog,
+  } = useToggle(false);
   return (
     <>
-      <Button id="simple-dialog-toggle" onClick={enable}>
+      <Button id="simple-dialog-toggle" onClick={showDialog}>
         Show
       </Button>
       <Dialog
         id="simple-dialog"
         visible={visible}
-        onRequestClose={disable}
+        onRequestClose={hideDialog}
         aria-labelledby="dialog-title"
       >
         <DialogHeader>
@@ -29,7 +33,7 @@ export default function SimpleExample(): ReactElement {
           <Typography margin="none">This is some text in a dialog.</Typography>
         </DialogContent>
         <DialogFooter>
-          <Button id="dialog-close" onClick={disable}>
+          <Button id="dialog-close" onClick={hideDialog}>
             Close
           </Button>
         </DialogFooter>

@@ -1,0 +1,17 @@
+.image {
+  align-items: flex-start;
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+}
+
+.scaled {
+  cursor: zoom-in;
+  overflow: hidden;
+  padding: 1.5rem;
+}
+
+.fullResolution {
+  cursor: zoom-out;
+  overflow: auto;
+}

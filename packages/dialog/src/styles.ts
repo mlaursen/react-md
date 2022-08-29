@@ -4,11 +4,11 @@ import { cnb } from "cnbuilder";
 const dialogStyles = bem("rmd-dialog");
 const sheetStyles = bem("rmd-sheet");
 
-export interface MergableClassName {
+export interface MergeableClassName {
   className?: string;
 }
 
-export interface DialogClassNameOptions extends MergableClassName {
+export interface DialogClassNameOptions extends MergeableClassName {
   /**
    * @defaultValue `"centered"`
    */
@@ -27,13 +27,13 @@ export function dialog(options: DialogClassNameOptions): string {
   );
 }
 
-export function dialogHeader(options: MergableClassName): string {
+export function dialogHeader(options: MergeableClassName): string {
   const { className } = options;
 
   return cnb(dialogStyles("header"), className);
 }
 
-export interface DialogContentCLassNameOptions extends MergableClassName {
+export interface DialogContentCLassNameOptions extends MergeableClassName {
   /** @defaultValue `false` */
   disablePadding?: boolean;
 }
@@ -59,7 +59,7 @@ export type DialogFooterAlignment =
   | "stacked-start"
   | "stacked-end";
 
-export interface DialogFooterClassNameOptions extends MergableClassName {
+export interface DialogFooterClassNameOptions extends MergeableClassName {
   /** @defaultValue `"end"` */
   align?: DialogFooterAlignment;
 }
@@ -114,7 +114,7 @@ export type SheetHorizontalSize = "none" | "media" | "touch" | "static";
  */
 export type SheetVerticalSize = "none" | "touch" | "recommended";
 
-export interface BaseSheetClassNameOptions extends MergableClassName {
+export interface BaseSheetClassNameOptions extends MergeableClassName {
   /**
    * @defaultValue `"left"`
    */

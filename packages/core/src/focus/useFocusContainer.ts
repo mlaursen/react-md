@@ -56,11 +56,15 @@ export function useFocusContainer<E extends HTMLElement>(
   const prevFocus = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    if (disabled || !activate) {
+    if (
+      disabled ||
+      !activate ||
+      !(document.activeElement instanceof HTMLElement)
+    ) {
       return;
     }
 
-    prevFocus.current = document.activeElement as HTMLElement;
+    prevFocus.current = document.activeElement;
   }, [activate, disabled]);
 
   return {
@@ -70,24 +74,27 @@ export function useFocusContainer<E extends HTMLElement>(
         (appearing) => {
           onEntering(appearing);
           if (
-            !document.activeElement ||
-            !nodeRef.current?.contains(document.activeElement)
+            !disabled &&
+            (!document.activeElement ||
+              !nodeRef.current?.contains(document.activeElement))
           ) {
             nodeRef.current?.focus();
           }
         },
-        [nodeRef, onEntering]
+        [disabled, nodeRef, onEntering]
       ),
       onExiting: useCallback(() => {
         onExiting();
-        prevFocus.current?.focus();
-      }, [onExiting]),
+        if (!disabled) {
+          prevFocus.current?.focus();
+        }
+      }, [disabled, onExiting]),
     },
     eventHandlers: {
       onKeyDown: useCallback(
         (event) => {
           onKeyDown(event);
-          if (event.isPropagationStopped() || event.key !== "Tab") {
+          if (event.isPropagationStopped() || disabled || event.key !== "Tab") {
             return;
           }
 
@@ -117,7 +124,7 @@ export function useFocusContainer<E extends HTMLElement>(
             });
           }
         },
-        [onKeyDown]
+        [disabled, onKeyDown]
       ),
     },
   };

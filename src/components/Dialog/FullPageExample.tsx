@@ -1,8 +1,6 @@
-/* eslint-disable camelcase */
 import { Button } from "@react-md/button";
 import { Box } from "@react-md/core";
 import { Dialog } from "@react-md/dialog";
-import { VisualMediaContainer } from "@react-md/visual-media";
 import type { ReactElement } from "react";
 import { useState } from "react";
 
@@ -21,7 +19,7 @@ interface FullImageData {
   post_url: string;
 }
 
-const IMAGES: Record<number, FullImageData> = {
+const IMAGES: Record<string, FullImageData> = {
   277: {
     format: "jpeg",
     width: 5616,
@@ -121,14 +119,9 @@ const previews = validIds.map((id) => ({
 }));
 
 export default function FullPageExample(): ReactElement {
-  const [state, setState] = useState({ imageId: 277, visible: false });
-  const show = (event: React.MouseEvent<HTMLButtonElement>): void => {
-    const [index] = event.currentTarget.id.split("-").reverse();
-    if (!validIds.includes(index)) {
-      return;
-    }
-
-    setState({ visible: true, imageId: parseInt(index, 10) });
+  const [state, setState] = useState({ imageId: "277", visible: false });
+  const show = (imageId: string) => (): void => {
+    setState({ visible: true, imageId });
   };
   const hide = (): void => {
     setState((prevState) => ({ ...prevState, visible: false }));
@@ -142,17 +135,9 @@ export default function FullPageExample(): ReactElement {
   };
   return (
     <Box grid className={styles.grid}>
-      {previews.map(({ src, id }, i) => (
-        <Button
-          id={`image-preview-${id}`}
-          key={id}
-          onClick={show}
-          aria-label={`Show image ${i + 1}`}
-          buttonType="icon"
-        >
-          <VisualMediaContainer key={id}>
-            <img src={src} alt="" />
-          </VisualMediaContainer>
+      {previews.map(({ src, id }) => (
+        <Button aria-label="Show fullscreen" key={id} onClick={show(id)}>
+          <img src={src} alt="" />
         </Button>
       ))}
       <Dialog

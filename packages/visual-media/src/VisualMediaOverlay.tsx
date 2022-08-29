@@ -4,22 +4,22 @@ import type { VisualMediaOverlayClassNameOptions } from "./styles";
 import { visualMediaOverlay } from "./styles";
 
 export interface VisualMediaOverlayProps
-  extends HTMLAttributes<HTMLDivElement>,
+  extends HTMLAttributes<HTMLSpanElement>,
     VisualMediaOverlayClassNameOptions {}
 
 export const VisualMediaOverlay = forwardRef<
-  HTMLDivElement,
+  HTMLSpanElement,
   VisualMediaOverlayProps
 >(function VisualMediaOverlay(props, ref) {
   const { className, children, position = "bottom", ...remaining } = props;
 
   return (
-    <div
+    <span
       {...remaining}
       ref={ref}
       className={visualMediaOverlay({ className, position })}
     >
       {children}
-    </div>
+    </span>
   );
 });

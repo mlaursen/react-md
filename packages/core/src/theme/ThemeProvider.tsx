@@ -98,6 +98,46 @@ context.displayName = "Theme";
 const { Provider } = context;
 
 /** @remarks \@since 6.0.0 */
+export const getDerivedTheme = (
+  container: Element = document.documentElement
+): Readonly<ConfigurableThemeColors> => {
+  const rootStyles = window.getComputedStyle(container);
+  const backgroundColor = rootStyles.getPropertyValue(backgroundColorVar);
+  const primaryColor = rootStyles.getPropertyValue(primaryColorVar);
+  const onPrimaryColor = rootStyles.getPropertyValue(onPrimaryColorVar);
+  const secondaryColor = rootStyles.getPropertyValue(secondaryColorVar);
+  const onSecondaryColor = rootStyles.getPropertyValue(onSecondaryColorVar);
+  const warningColor = rootStyles.getPropertyValue(warningColorVar);
+  const onWarningColor = rootStyles.getPropertyValue(onWarningColorVar);
+  const errorColor = rootStyles.getPropertyValue(errorColorVar);
+  const onErrorColor = rootStyles.getPropertyValue(onErrorColorVar);
+  const successColor = rootStyles.getPropertyValue(successColorVar);
+  const onSuccessColor = rootStyles.getPropertyValue(onSuccessColorVar);
+  const textPrimaryColor = rootStyles.getPropertyValue(textPrimaryColorVar);
+  const textSecondaryColor = rootStyles.getPropertyValue(textSecondaryColorVar);
+  const textHintColor = rootStyles.getPropertyValue(textHintColorVar);
+  const textDisabledColor = rootStyles.getPropertyValue(textDisabledColorVar);
+
+  return {
+    backgroundColor,
+    primaryColor,
+    onPrimaryColor,
+    secondaryColor,
+    onSecondaryColor,
+    warningColor,
+    onWarningColor,
+    errorColor,
+    onErrorColor,
+    successColor,
+    onSuccessColor,
+    textPrimaryColor,
+    textSecondaryColor,
+    textHintColor,
+    textDisabledColor,
+  };
+};
+
+/** @remarks \@since 6.0.0 */
 export function useTheme(): Readonly<ConfigurableThemeColors> {
   const theme = useContext(context);
   if (!theme) {
@@ -118,52 +158,31 @@ export interface ThemeProviderProps {
  */
 export function ThemeProvider(props: ThemeProviderProps): ReactElement {
   const { children, theme } = props;
-  const { colorScheme } = useColorScheme();
+  const { colorScheme, colorSchemeMode } = useColorScheme();
   const [derivedTheme, setDerivedTheme] = useState<ConfigurableThemeColors>(
     colorScheme === "dark" ? DEFAULT_DARK_THEME : DEFAULT_LIGHT_THEME
   );
+
   useIsomorphicLayoutEffect(() => {
     if (theme) {
       return;
     }
 
-    const rootStyles = window.getComputedStyle(document.documentElement);
-    const backgroundColor = rootStyles.getPropertyValue(backgroundColorVar);
-    const primaryColor = rootStyles.getPropertyValue(primaryColorVar);
-    const onPrimaryColor = rootStyles.getPropertyValue(onPrimaryColorVar);
-    const secondaryColor = rootStyles.getPropertyValue(secondaryColorVar);
-    const onSecondaryColor = rootStyles.getPropertyValue(onSecondaryColorVar);
-    const warningColor = rootStyles.getPropertyValue(warningColorVar);
-    const onWarningColor = rootStyles.getPropertyValue(onWarningColorVar);
-    const errorColor = rootStyles.getPropertyValue(errorColorVar);
-    const onErrorColor = rootStyles.getPropertyValue(onErrorColorVar);
-    const successColor = rootStyles.getPropertyValue(successColorVar);
-    const onSuccessColor = rootStyles.getPropertyValue(onSuccessColorVar);
-    const textPrimaryColor = rootStyles.getPropertyValue(textPrimaryColorVar);
-    const textSecondaryColor = rootStyles.getPropertyValue(
-      textSecondaryColorVar
+    // This has to be recalculated after an animation to ensure the new theme
+    // styles have been applied. It will use the previous theme styles without
+    // this frame.
+    //
+    // NOTE: This will not be correct the first time a new theme is lazy-loaded
+    // and applied. It might be good to have a way to manually force this flow
+    // again?
+    const frame = window.requestAnimationFrame(() =>
+      setDerivedTheme(getDerivedTheme(document.documentElement))
     );
-    const textHintColor = rootStyles.getPropertyValue(textHintColorVar);
-    const textDisabledColor = rootStyles.getPropertyValue(textDisabledColorVar);
 
-    setDerivedTheme({
-      backgroundColor,
-      primaryColor,
-      onPrimaryColor,
-      secondaryColor,
-      onSecondaryColor,
-      warningColor,
-      onWarningColor,
-      errorColor,
-      onErrorColor,
-      successColor,
-      onSuccessColor,
-      textPrimaryColor,
-      textSecondaryColor,
-      textHintColor,
-      textDisabledColor,
-    });
-  }, [theme]);
+    return () => {
+      window.cancelAnimationFrame(frame);
+    };
+  }, [theme, colorScheme, colorSchemeMode]);
 
   const value = useMemo<ConfigurableThemeColors>(() => {
     const backgroundColor =
