@@ -290,12 +290,6 @@ $theme-var-lookup: (
       #{$var-name}: $light-theme-surface-color;
     }
   }
-
-  @if not $disable-default-system-theme and $color-scheme == system {
-    @media (prefers-color-scheme: dark) {
-      @include use-dark-theme;
-    }
-  }
 }
 
 @mixin create-surface($z-value, $disable-colors: $disable-dark-elevation) {

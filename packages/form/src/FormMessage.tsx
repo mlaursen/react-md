@@ -67,8 +67,8 @@ export interface FormMessageWithCounterProps
 export const FormMessage = forwardRef<
   HTMLDivElement,
   FormMessageProps & Partial<FormMessageInputLengthCounterProps>
->(function FormMessage(
-  {
+>(function FormMessage(props, ref) {
+  const {
     id: propId,
     role,
     className,
@@ -82,10 +82,8 @@ export const FormMessage = forwardRef<
     children,
     length,
     maxLength,
-    ...props
-  },
-  ref
-) {
+    ...remaining
+  } = props;
   const id = useEnsuredId(propId, "form-message");
   const { theme } = useFormTheme({ theme: propTheme });
 
@@ -104,7 +102,7 @@ export const FormMessage = forwardRef<
 
   return (
     <div
-      {...props}
+      {...remaining}
       id={id}
       ref={ref}
       aria-live={role !== "alert" ? "polite" : undefined}

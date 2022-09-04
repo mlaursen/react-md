@@ -11,9 +11,12 @@ $disable-prominent-theme: false !default;
 $disable-prominent-dense-theme: false !default;
 $disable-scrollbar-offset: false !default;
 $disable-static-scrollbar-offset: false !default;
+$disable-force-light-interaction-states: false !default;
+$disable-force-dark-interaction-states: false !default;
 
 $disable-title: false !default;
 
+$gap: 0.25rem !default;
 $height: 3.5rem !default;
 $dense-height: 3rem !default;
 $prominent-height: $height * 2 !default;
@@ -129,6 +132,7 @@ $var-lookup: (
     // component without all the offsets and additional styles needed for fixed
     // app bars.
     flex: 0 0 auto;
+    gap: $gap;
     padding: $vertical-padding $horizontal-padding;
     width: 100%;
 
@@ -174,6 +178,22 @@ $var-lookup: (
       }
     }
 
+    // Note: I might need better names for the interaction themes. The "dark
+    // theme" really makes it so the interaction states use white instead of
+    // black by default. So the "dark theme" should be used on dark colors while
+    // the "light theme" should be used on other colors.
+    @if not $disable-force-light-interaction-states {
+      &--light {
+        @include core.use-interaction-dark-theme;
+      }
+    }
+
+    @if not $disable-force-dark-interaction-states {
+      &--dark {
+        @include core.use-interaction-light-theme;
+      }
+    }
+
     @if not $disable-primary-theme {
       &--primary {
         @include set-var(background-color, core.get-theme-var(primary-color));
@@ -213,7 +233,7 @@ $var-lookup: (
         &--nav-keyline {
           @include core.auto-rtl(
             margin-left,
-            $title-keyline - $horizontal-padding - button.$icon-size
+            $title-keyline - $horizontal-padding - $gap - button.$icon-size
           );
         }
 

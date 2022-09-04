@@ -7,15 +7,19 @@ $disable-fieldset: false !default;
 $disable-message: false !default;
 $disable-label: false !default;
 $disable-floating-label: false !default;
+$disable-label-gap: false !default;
+$disable-label-reversed: false !default;
+$disable-label-stacked: false !default;
+$disable-label-stacked-reversed: false !default;
 $disable-file-input: false !default;
 $disable-text-field: false !default;
 $disable-textarea: false !default;
 $disable-password: $disable-text-field !default;
 $disable-text-field-addon: $disable-text-field and $disable-password and
   $disable-textarea !default;
-$disable-native-select: false !default;
-$disable-native-select-icon: false !default;
-$disable-native-select-multiple: false !default;
+$disable-checkbox: false !default;
+$disable-radio: false !default;
+$disable-switch: false !default;
 
 // Note: enabling the filled theme forces the underlined theme to be used since it depends on the same styles
 $disable-text-field-filled-theme: false !default;
@@ -36,6 +40,7 @@ $active-color: core.get-theme-var(secondary-color) !default;
 $focused-color: core.$outline-color !default;
 $disabled-color: core.get-theme-var(text-disabled-color) !default;
 
+$label-gap: icon.$spacing !default;
 $label-font-size: 1em !default;
 $label-typography: map.merge(
   core.$body-1-styles,
@@ -115,8 +120,12 @@ $textarea-vertical-padding: 0.75rem !default;
 
 $password-visibility-toggle-spacing: 0.25rem !default;
 
-$native-select-addon-top: 1rem !default;
-$native-select-multiple-padding: 0.75rem !default;
+$input-toggle-border-radius: 50% !default;
+$input-toggle-padding: 0.5em !default;
+$input-toggle-small-size: 1rem !default;
+$input-toggle-dense-size: icon.$dense-size !default;
+$input-toggle-normal-size: icon.$size !default;
+$input-toggle-large-size: 2rem !default;
 
 $var-lookup: (
   error-color: (
@@ -253,6 +262,16 @@ $var-lookup: (
     width: 0.1px;
     z-index: -1;
   }
+
+  .rmd-file-input-label:focus-within::before {
+    @include core.keyboard-only {
+      @include core.set-interaction-var(
+        background-color,
+        get-interaction-var(focus-background-color)
+      );
+      @include core.set-interaction-var(outline-color, core.$outline-color);
+    }
+  }
 }
 
 @mixin form-message-styles {
@@ -318,6 +337,7 @@ $var-lookup: (
   .rmd-label {
     @include core.map-to-styles($label-typography);
 
+    align-items: center;
     display: inline-flex;
     transition-property: background-color, color, font-size, transform;
     transition-duration: core.$linear-duration;
@@ -331,7 +351,7 @@ $var-lookup: (
     }
 
     &--disabled {
-      @include use-var(disabled-color);
+      @include use-var(color, disabled-color);
     }
 
     @if not $disable-floating-label {
@@ -370,10 +390,6 @@ $var-lookup: (
           ", .rmd-text-field-container:focus-within &--floating" +
           ", .rmd-text-field:not(:placeholder-shown) + &--floating";
       }
-      @if not $disable-native-select {
-        $floating-active-selector: $floating-active-selector +
-          ", .rmd-native-select + &--floating";
-      }
 
       #{$floating-active-selector} {
         @include core.rtl {
@@ -391,6 +407,30 @@ $var-lookup: (
           get-var(label-top-offset)
         );
         z-index: 1;
+      }
+    }
+
+    @if not $disable-label-gap {
+      &--gap {
+        gap: $label-gap;
+      }
+    }
+
+    @if not $disable-label-reversed {
+      &--reversed {
+        flex-direction: row-reverse;
+      }
+    }
+
+    @if not $disable-label-stacked {
+      &--stacked {
+        flex-direction: column;
+      }
+    }
+
+    @if not $disable-label-stacked-reversed {
+      &--stacked-reversed {
+        flex-direction: column-reverse;
       }
     }
   }
@@ -759,45 +799,7 @@ $var-lookup: (
   }
 }
 
-@mixin native-select-styles {
-  @if not $disable-native-select-multiple {
-    .rmd-native-select-container {
-      @if not $disable-text-field-outlined-theme {
-        &--outline {
-          @include set-var(text-padding-top, $native-select-multiple-padding);
-        }
-      }
-
-      &--multi {
-        @include set-var(addon-top, $native-select-addon-top);
-        @include use-var(min-height, text-height);
-
-        height: auto;
-      }
-
-      &--padded {
-        padding-top: $native-select-multiple-padding;
-      }
-    }
-  }
-
-  .rmd-native-select {
-    @include _text-field-base-styles;
-
-    @if not $disable-native-select-icon {
-      &--icon {
-        appearance: none;
-      }
-
-      &__icon {
-        display: inline-flex;
-        pointer-events: none;
-      }
-    }
-  }
-}
-
-@mixin text-field-addon {
+@mixin text-field-addon-styles {
   .rmd-text-field-addon {
     @include icon.use-var(height, size);
     @include icon.use-var(width, size);
@@ -825,6 +827,77 @@ $var-lookup: (
 
     &--presentational {
       pointer-events: none;
+    }
+  }
+}
+
+@mixin hidden-input-styles {
+  .rmd-hidden-input {
+    height: 100%;
+    inset: 0;
+    margin: 0;
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &--disabled:hover {
+      cursor: default;
+    }
+  }
+}
+
+@mixin input-toggle-styles {
+  .rmd-input-toggle {
+    @include core.interaction-surface(
+      $focus-selector: "&:focus-within",
+      $disabled-selector: "&--disabled",
+      $higher-contrast: false
+    );
+    @include icon.set-var(size, 1em);
+    @include icon.set-var(color, currentcolor);
+
+    align-items: center;
+    border-radius: $input-toggle-border-radius;
+    display: inline-flex;
+    flex-shrink: 0;
+    justify-content: center;
+    padding: $input-toggle-padding;
+
+    &--active {
+      @include use-var(color, active-color);
+    }
+
+    &--disabled {
+      @include use-var(color, disabled-color);
+    }
+
+    @if $input-toggle-small-size {
+      &--small {
+        font-size: $input-toggle-small-size;
+      }
+    }
+
+    @if $input-toggle-dense-size != null {
+      &--dense {
+        font-size: $input-toggle-dense-size;
+      }
+    }
+
+    @if $input-toggle-normal-size {
+      &--normal {
+        font-size: $input-toggle-normal-size;
+      }
+    }
+
+    @if $input-toggle-large-size {
+      &--large {
+        font-size: $input-toggle-large-size;
+      }
     }
   }
 }
@@ -872,12 +945,13 @@ $var-lookup: (
     @include textarea-styles;
   }
 
-  @if not $disable-native-select {
-    @include native-select-styles;
+  @if not $disable-text-field-addon {
+    @include text-field-addon-styles;
   }
 
-  @if not $disable-text-field-addon {
-    @include text-field-addon;
+  @if not $disable-checkbox or not $disable-radio or not $disable-switch {
+    @include hidden-input-styles;
+    @include input-toggle-styles;
   }
 
   @if not core.$disable-default-system-theme and core.$color-scheme == system {

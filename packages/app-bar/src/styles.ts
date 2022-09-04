@@ -69,6 +69,11 @@ export interface AppBarClassNameOptions {
   theme?: AppBarTheme;
 
   /**
+   * @defaultValue `theme === "primary" || theme === "secondary" ? "dark" : "light"`
+   */
+  contrast?: "light" | "dark";
+
+  /**
    * @defaultValue `"normal"`
    * @see {@link AppBarHeight}
    */
@@ -96,6 +101,7 @@ export function appBar(options: AppBarClassNameOptions = {}): string {
     className,
     height = "normal",
     theme = "primary",
+    contrast = theme === "primary" || theme === "secondary" ? "dark" : "light",
     fixed = false,
     fixedPosition = "top",
     scrollbarOffset = fixed,
@@ -106,6 +112,7 @@ export function appBar(options: AppBarClassNameOptions = {}): string {
       [theme]: theme !== "clear",
       [height]: height !== "normal",
       fixed,
+      [contrast]: true,
       [fixedPosition]: fixed,
       "fixed-elevation": fixed && !disableFixedElevation,
       "scrollbar-offset": scrollbarOffset,

@@ -2,6 +2,8 @@ import { AppBar, AppBarTitle } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { box, TextContainer } from "@react-md/core";
 import MenuIcon from "@react-md/material-icons/MenuIcon";
+import SearchIcon from "@react-md/material-icons/SearchIcon";
+import MoreVertIcon from "@react-md/material-icons/MoreVertIcon";
 import type { ReactElement } from "react";
 
 export default function AppBarPage(): ReactElement {
@@ -19,26 +21,37 @@ export default function AppBarPage(): ReactElement {
       <AppBar>
         <AppBarTitle keyline="title">Title</AppBarTitle>
         <Button buttonType="icon">
-          <MenuIcon />
+          <SearchIcon />
+        </Button>
+        <Button buttonType="icon">
+          <MoreVertIcon />
         </Button>
       </AppBar>
-
       <AppBar theme="secondary">
         <AppBarTitle keyline="title">Title</AppBarTitle>
         <Button buttonType="icon">
-          <MenuIcon />
+          <SearchIcon />
+        </Button>
+        <Button buttonType="icon">
+          <MoreVertIcon />
         </Button>
       </AppBar>
       <AppBar theme="surface">
         <AppBarTitle keyline="title">Title</AppBarTitle>
         <Button buttonType="icon">
-          <MenuIcon />
+          <SearchIcon />
+        </Button>
+        <Button buttonType="icon">
+          <MoreVertIcon />
         </Button>
       </AppBar>
       <AppBar theme="clear">
         <AppBarTitle keyline="title">Title</AppBarTitle>
         <Button buttonType="icon">
-          <MenuIcon />
+          <SearchIcon />
+        </Button>
+        <Button buttonType="icon">
+          <MoreVertIcon />
         </Button>
       </AppBar>
     </TextContainer>

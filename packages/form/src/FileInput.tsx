@@ -1,4 +1,7 @@
-import type { ButtonClassNameThemeOptions } from "@react-md/button";
+import type {
+  ButtonClassNameOptions,
+  ButtonClassNameThemeOptions,
+} from "@react-md/button";
 import { button } from "@react-md/button";
 import type { PropsWithRef } from "@react-md/core";
 import {
@@ -15,6 +18,16 @@ import type {
   ReactNode,
 } from "react";
 import { forwardRef } from "react";
+
+/** @remarks \@since 6.0.0 */
+export type FileInputLabelClassNameOptions = ButtonClassNameOptions;
+
+/** @remarks \@since 6.0.0 */
+export function fileInputLabel(
+  options: FileInputLabelClassNameOptions = {}
+): string {
+  return cnb("rmd-file-input-label", button(options));
+}
 
 export type FileInputHTMLAttributes = Omit<
   InputHTMLAttributes<HTMLInputElement>,
@@ -135,7 +148,20 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
     }
 
     return (
-      <>
+      <label
+        {...labelProps}
+        {...handlers}
+        className={fileInputLabel({
+          theme,
+          themeType,
+          buttonType,
+          disabled,
+          pressed,
+          pressedClassName,
+          className: className || labelProps?.className,
+        })}
+      >
+        {content}
         <input
           {...props}
           {...remaining}
@@ -147,30 +173,8 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
           disabled={disabled}
           multiple={multiple}
         />
-        <label
-          htmlFor={id}
-          {...labelProps}
-          {...handlers}
-          className={cnb(
-            button({
-              theme,
-              themeType,
-              buttonType,
-              disabled,
-              pressed,
-              pressedClassName,
-            }),
-            "rmd-file-input-label",
-            className,
-            labelProps?.className
-          )}
-        >
-          {content}
-          {rippleContainerProps && (
-            <RippleContainer {...rippleContainerProps} />
-          )}
-        </label>
-      </>
+        {rippleContainerProps && <RippleContainer {...rippleContainerProps} />}
+      </label>
     );
   }
 );

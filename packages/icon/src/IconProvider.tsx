@@ -15,11 +15,29 @@ export interface ConfigurableIcons {
   back?: ReactNode;
 
   /**
-   * The icon to use for checkboxes.
+   * The icon to use for unchecked checkboxes.
    *
-   * @defaultValue `<FontIcon>check_box</FontIcon>`
+   * @defaultValue `<FontIcon>check_box_outline_blank</FontIcon>`
+   * @remarks \@since 6.0.0 This icon now represents the unchecked state for
+   * checkboxes.
    */
   checkbox?: ReactNode;
+
+  /**
+   * The icon to use for checked checkboxes.
+   *
+   * @defaultValue `<FontIcon>check_box</FontIcon>`
+   * @remarks \@since 6.0.0
+   */
+  checkboxChecked?: ReactNode;
+
+  /**
+   * The icon to use for indeterminate checkboxes.
+   *
+   * @defaultValue `<FontIcon>indeterminate_check_box</FontIcon>`
+   * @remarks \@since 6.0.0
+   */
+  checkboxIndeterminate?: ReactNode;
 
   /**
    * The icon to use for dropdown menus or content that expands vertically in a
@@ -76,11 +94,20 @@ export interface ConfigurableIcons {
   password?: ReactNode;
 
   /**
-   * The icon to use for radio buttons.
+   * The icon to use for unchecked radio buttons.
+   *
+   * @defaultValue `<FontIcon>radio_button_unchecked</FontIcon>`
+   * @remarks \@since 6.0.0 This icon now represents the unchecked state for
+   * radios.
+   */
+  radio?: ReactNode;
+
+  /**
+   * The icon to use for checked radio buttons.
    *
    * @defaultValue `<FontIcon>radio_button_checked</FontIcon>`
    */
-  radio?: ReactNode;
+  radioChecked?: ReactNode;
 
   /**
    * The icon to use for showing that something has been selected that is not a
@@ -112,7 +139,9 @@ export type ConfiguredIcons = Required<ConfigurableIcons>;
 
 const DEFAULT_ICONS: ConfiguredIcons = {
   back: <FontIcon>keyboard_arrow_left</FontIcon>,
-  checkbox: <FontIcon>check_box</FontIcon>,
+  checkbox: <FontIcon>check_box_outline_blank</FontIcon>,
+  checkboxChecked: <FontIcon>check_box</FontIcon>,
+  checkboxIndeterminate: <FontIcon>indeterminate_check_box</FontIcon>,
   dropdown: <FontIcon>arrow_drop_down</FontIcon>,
   error: <FontIcon>error_outline</FontIcon>,
   expander: <FontIcon>keyboard_arrow_down</FontIcon>,
@@ -120,7 +149,8 @@ const DEFAULT_ICONS: ConfiguredIcons = {
   menu: <FontIcon>menu</FontIcon>,
   notification: <FontIcon>notifications</FontIcon>,
   password: <FontIcon>remove_red_eye</FontIcon>,
-  radio: <FontIcon>radio_button_checked</FontIcon>,
+  radio: <FontIcon>radio_button_unchecked</FontIcon>,
+  radioChecked: <FontIcon>radio_button_checked</FontIcon>,
   selected: <FontIcon>check</FontIcon>,
   sort: <FontIcon>arrow_upward</FontIcon>,
   upload: <FontIcon>file_upload</FontIcon>,
@@ -174,6 +204,8 @@ export function IconProvider(props: IconProviderProps): ReactElement {
     children,
     back = DEFAULT_ICONS.back,
     checkbox = DEFAULT_ICONS.checkbox,
+    checkboxChecked = DEFAULT_ICONS.checkboxChecked,
+    checkboxIndeterminate = DEFAULT_ICONS.checkboxIndeterminate,
     dropdown = DEFAULT_ICONS.dropdown,
     expander = DEFAULT_ICONS.expander,
     error = DEFAULT_ICONS.error,
@@ -182,6 +214,7 @@ export function IconProvider(props: IconProviderProps): ReactElement {
     notification = DEFAULT_ICONS.notification,
     password = DEFAULT_ICONS.password,
     radio = DEFAULT_ICONS.radio,
+    radioChecked = DEFAULT_ICONS.radioChecked,
     selected = DEFAULT_ICONS.selected,
     sort = DEFAULT_ICONS.sort,
     upload = DEFAULT_ICONS.upload,
@@ -191,6 +224,8 @@ export function IconProvider(props: IconProviderProps): ReactElement {
     () => ({
       back,
       checkbox,
+      checkboxChecked,
+      checkboxIndeterminate,
       dropdown,
       error,
       expander,
@@ -199,6 +234,7 @@ export function IconProvider(props: IconProviderProps): ReactElement {
       notification,
       password,
       radio,
+      radioChecked,
       selected,
       sort,
       upload,
@@ -206,6 +242,8 @@ export function IconProvider(props: IconProviderProps): ReactElement {
     [
       back,
       checkbox,
+      checkboxChecked,
+      checkboxIndeterminate,
       dropdown,
       error,
       expander,
@@ -214,6 +252,7 @@ export function IconProvider(props: IconProviderProps): ReactElement {
       notification,
       password,
       radio,
+      radioChecked,
       selected,
       sort,
       upload,

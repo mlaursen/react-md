@@ -45,9 +45,16 @@ export interface FormThemeOptions {
 }
 
 export interface FormComponentStates {
+  /** @defaultValue `false` */
   error?: boolean;
+
+  /** @defaultValue `false` */
   active?: boolean;
+
+  /** @defaultValue `false` */
   disabled?: boolean;
+
+  /** @defaultValue `false` */
   readOnly?: boolean;
 }
 
@@ -194,11 +201,74 @@ export interface FormMessageContainerExtension {
   >;
 }
 
-export interface LabelClassNameOptions extends FormComponentStates {
+/** @remarks \@since 6.0.0 */
+export interface LabelClassNameOptions {
   className?: string;
 
+  /**
+   * Set this to `true` to remove the `gap` style from the label.
+   *
+   * @see `$label-gap`
+   * @defaultValue `false`
+   */
+  gap?: boolean;
+
+  /**
+   * Set this to `true` when the parent `TextFieldContainer` has the `dense`
+   * spec enabled. This updates the floating styles to match the smaller height.
+   *
+   * @defaultValue `false`
+   */
   dense?: boolean;
+
+  /**
+   * Set this to `true` to update the label's color to the error color.
+   *
+   * @see `$error-color`
+   * @defaultValue `false`
+   */
+  error?: boolean;
+
+  /**
+   * Set this to `true` to update the label's color to the active color.
+   *
+   * @see `$active-color`
+   * @defaultValue `false`
+   */
+  active?: boolean;
+
+  /**
+   * Set this to `true` if the label should gain `flex-direction: column`
+   * styling.
+   *
+   * @defaultValue `false`
+   */
+  stacked?: boolean;
+
+  /**
+   * Set this to `true` to update the label's color to be the disabled color.
+   *
+   * @see `$disabled-color`
+   * @defaultValue `false`
+   */
+  disabled?: boolean;
+
+  /**
+   * Set this to true when label is currently floating above a text field or
+   * textarea inside of a `TextFieldContainer`.
+   *
+   * @defaultValue `false`
+   */
   floating?: boolean;
+
+  /**
+   * Set this to `true` to gain `flex-direction: row-reversed` styling. If the
+   * {@link stacked} prop is also `true`, `flex-direction: column-reversed` will
+   * be applied.
+   *
+   * @defaultValue `false`
+   */
+  reversed?: boolean;
 }
 
 export interface LabelProps
@@ -208,8 +278,27 @@ export interface LabelProps
 export interface TextFieldContainerOptions
   extends FormThemeOptions,
     FormComponentStates {
+  /**
+   * Set this to `true` to enable the dense spec which reduces the height.
+   *
+   * @defaultValue `false`
+   */
   dense?: boolean;
+
+  /**
+   * Set this to `true` to change the style from `display: flex` to
+   * `display: inline-flex`.
+   *
+   * @defaultValue `false`
+   */
   inline?: boolean;
+
+  /**
+   * Set this to `true` if this component should stretch to fill a flex or grid
+   * container using `flex: 1 1 auto`.
+   *
+   * @defaultValue `false`
+   */
   stretch?: boolean;
 
   /**

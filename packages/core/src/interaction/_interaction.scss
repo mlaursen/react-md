@@ -22,18 +22,19 @@ $disable-focus-background: false !default;
 /// interaction states apply an overlay with some opacity for the different
 /// states.
 $disable-higher-contrast-interactions: false !default;
-$base-background-color: #000 !default;
+$light-theme-base-background-color: #000 !default;
+$dark-theme-base-background-color: #fff !default;
 
 $outline-color: colors.$blue-500 !default;
 $outline-width: 0.125rem !default;
 
 $light-theme-ripple-background-color: rgba(
-  $base-background-color,
+  $light-theme-base-background-color,
   0.08
 ) !default;
 $dark-theme-ripple-background-color: rgba(
-  $base-background-color,
-  0.08
+  $dark-theme-base-background-color,
+  0.12
 ) !default;
 $ripple-background-color: if(
   theme.$color-scheme == dark,
@@ -44,26 +45,35 @@ $ripple-transform-duration: 0.45s !default;
 $ripple-opacity-duration: 0.3s !default;
 
 $light-theme-hover-background-color: rgba(
-  $base-background-color,
+  $light-theme-base-background-color,
   0.08
 ) !default;
 $light-theme-focus-background-color: rgba(
-  $base-background-color,
+  $light-theme-base-background-color,
   0.24
 ) !default;
 $light-theme-press-background-color: rgba(
-  $base-background-color,
+  $light-theme-base-background-color,
   0.32
 ) !default;
 $light-theme-selected-background-color: rgba(
-  $base-background-color,
+  $light-theme-base-background-color,
   0.16
 ) !default;
-$dark-theme-hover-background-color: rgba($base-background-color, 0.01) !default;
-$dark-theme-focus-background-color: rgba($base-background-color, 0.12) !default;
-$dark-theme-press-background-color: rgba($base-background-color, 0.16) !default;
+$dark-theme-hover-background-color: rgba(
+  $dark-theme-base-background-color,
+  0.1
+) !default;
+$dark-theme-focus-background-color: rgba(
+  $dark-theme-base-background-color,
+  0.12
+) !default;
+$dark-theme-press-background-color: rgba(
+  $dark-theme-base-background-color,
+  0.16
+) !default;
 $dark-theme-selected-background-color: rgba(
-  $base-background-color,
+  $dark-theme-base-background-color,
   0.12
 ) !default;
 
@@ -165,6 +175,10 @@ $interaction-var-lookup: (
     selected-background-color,
     $light-theme-selected-background-color
   );
+  @include set-interaction-var(
+    ripple-background-color,
+    $light-theme-ripple-background-color
+  );
 }
 
 @mixin use-interaction-dark-theme {
@@ -183,6 +197,10 @@ $interaction-var-lookup: (
   @include set-interaction-var(
     selected-background-color,
     $dark-theme-selected-background-color
+  );
+  @include set-interaction-var(
+    ripple-background-color,
+    $dark-theme-ripple-background-color
   );
 }
 
@@ -228,7 +246,8 @@ $interaction-var-lookup: (
   $focus-selector: "&:focus",
   $disabled-selector: "&:disabled",
   $clickable: true,
-  $css-modules: false
+  $css-modules: false,
+  $higher-contrast: true
 ) {
   @if $clickable {
     cursor: pointer;
@@ -236,7 +255,7 @@ $interaction-var-lookup: (
   position: relative;
   outline: none;
 
-  @if not $disable-higher-contrast-interactions {
+  @if not $disable-higher-contrast-interactions and $higher-contrast {
     > * {
       z-index: 1;
     }
@@ -286,7 +305,7 @@ $interaction-var-lookup: (
         cursor: auto;
       }
 
-      &::before {
+      &:hover::before {
         @include set-interaction-var(background-color, transparent);
       }
     }

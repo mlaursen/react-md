@@ -114,6 +114,23 @@ export interface PasswordProps
   visibilityProps?: PropsWithRef<ButtonProps, HTMLButtonElement>;
 }
 
+/**
+ * @example
+ * Simple Example
+ * ```tsx
+ * import { Password } from "@react-md/form";
+ *
+ * function Example(): ReactElement {
+ *   return (
+ *     <Password
+ *       label="Password"
+ *       name="password"
+ *       required
+ *     />
+ *   );
+ * }
+ * ```
+ */
 export const Password = forwardRef<HTMLInputElement, PasswordProps>(
   function Password(props, ref) {
     const {

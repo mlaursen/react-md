@@ -5,8 +5,10 @@ import { forwardRef } from "react";
 
 const styles = bem("rmd-text-field-addon");
 
+/** @remarks \@since 6.0.0 */
 export interface TextFieldAddonClassNameOptions {
   className?: string;
+
   /**
    * @defaultValue `false`
    */
@@ -19,6 +21,9 @@ export interface TextFieldAddonClassNameOptions {
   presentational?: boolean;
 }
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export function textFieldAddon(
   options: TextFieldAddonClassNameOptions = {}
 ): string {

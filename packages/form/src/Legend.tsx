@@ -10,6 +10,9 @@ export interface LegendProps extends TypographyProps {
   srOnly?: boolean;
 }
 
+/**
+ * This should be used within a `Fieldset` to apply a label.
+ */
 export const Legend = forwardRef<HTMLLegendElement, LegendProps>(
   function Legend(props, ref) {
     const {

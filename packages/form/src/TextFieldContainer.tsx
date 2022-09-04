@@ -13,18 +13,34 @@ import type {
 
 const styles = bem("rmd-text-field-container");
 
+/** @remarks \@since 6.0.0 */
 export interface TextFieldContainerClassNameOptions
   extends FormThemeOptions,
     FormComponentStates {
   className?: string;
+
+  /** @defaultValue `false` */
   dense?: boolean;
+
+  /** @defaultValue `false` */
   inline?: boolean;
+
+  /** @defaultValue `false` */
   stretch?: boolean;
+
+  /** @defaultValue `false` */
   label?: boolean;
+
+  /** @defaultValue `false` */
   leftAddon?: boolean;
+
+  /** @defaultValue `false` */
   rightAddon?: boolean;
 }
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export function textFieldContainer(
   options: TextFieldContainerClassNameOptions = {}
 ): string {
@@ -90,6 +106,9 @@ export interface TextFieldContainerProps
 }
 
 /**
+ * This component is used to add the additional `TextField`, `TextArea`, and
+ * `Select` theme styles.
+ *
  * @internal
  */
 export const TextFieldContainer = forwardRef<

@@ -233,7 +233,6 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
         error={error}
         active={active}
         disabled={disabled}
-        readOnly={readOnly}
       >
         {label}
       </Label>

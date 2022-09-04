@@ -67,5 +67,16 @@ $temporary-element-z-index: 30 !default;
 
   :root {
     @include theme.colors;
+
+    @if not
+      theme.$disable-default-system-theme and
+      theme.$color-scheme ==
+      system
+    {
+      @media (prefers-color-scheme: dark) {
+        @include theme.use-dark-theme;
+        @include interaction.use-interaction-dark-theme;
+      }
+    }
   }
 }

@@ -5,6 +5,7 @@ import { forwardRef } from "react";
 
 const styles = bem("rmd-fieldset");
 
+/** @remarks \@since 6.0.0 */
 export interface FieldsetClassNameOptions {
   className?: string;
   /**
@@ -14,6 +15,9 @@ export interface FieldsetClassNameOptions {
   browserStyles?: boolean;
 }
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export function fieldset(options: FieldsetClassNameOptions = {}): string {
   const { className, browserStyles = false } = options;
 

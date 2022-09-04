@@ -235,7 +235,6 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
               error={error}
               active={active}
               disabled={disabled}
-              readOnly={readOnly}
             >
               {label}
             </Label>

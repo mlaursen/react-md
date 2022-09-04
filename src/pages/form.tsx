@@ -1,18 +1,21 @@
 import { Button, FloatingActionButton } from "@react-md/button";
 import { Box, Typography, useDropzone } from "@react-md/core";
-import type { FormTheme } from "@react-md/form";
 import {
+  Checkbox,
+  Fieldset,
   FileInput,
   Form,
-  NativeSelect,
+  InputToggle,
+  Legend,
+  Radio,
   TextArea,
   TextField,
+  useCheckboxGroup,
   useFileUpload,
+  useRadioGroup,
 } from "@react-md/form";
 import type { ReactElement } from "react";
-import { useState } from "react";
-import { TempRadio } from "src/components/TempRadio";
-import { states } from "src/constants/states";
+import { Fragment, useState } from "react";
 
 const extensions = [
   "svg",
@@ -47,6 +50,25 @@ const inputTypes = [
 
 const themes = ["none", "underline", "filled", "outline"] as const;
 
+function RadioGroup(): ReactElement {
+  const { getRadioProps } = useRadioGroup({
+    name: "radio-group",
+    defaultValue: "",
+  });
+
+  return (
+    <Fieldset browserStyles>
+      <Legend>Radio Group</Legend>
+      <Box>
+        <Radio {...getRadioProps("a")} label="First" />
+        <Radio {...getRadioProps("b")} label="Second" />
+        <Radio {...getRadioProps("c")} label="Third" />
+        <Radio {...getRadioProps("d")} label="Forth" />
+      </Box>
+    </Fieldset>
+  );
+}
+
 function Demo(): ReactElement {
   const {
     stats: _stats,
@@ -73,7 +95,10 @@ function Demo(): ReactElement {
     onDrop,
   });
   const [active, setActive] = useState(false);
-  const [theme, setTheme] = useState<FormTheme>("outline");
+  const { value: theme, getRadioProps } = useRadioGroup<typeof themes[number]>({
+    name: "theme",
+    defaultValue: "outline",
+  });
 
   return (
     <Form style={{ marginBottom: "4rem" }}>
@@ -85,12 +110,10 @@ function Demo(): ReactElement {
         />
         <Button onClick={() => setActive((p) => !p)}>Toggle</Button>
         {themes.map((themeType) => (
-          <TempRadio
+          <Radio
+            {...getRadioProps(themeType)}
             key={themeType}
-            value={themeType}
             label={themeType}
-            checked={themeType === theme}
-            onChange={() => setTheme(themeType)}
           />
         ))}
         <Typography type="headline-4" style={{ width: "100%" }}>
@@ -110,35 +133,6 @@ function Demo(): ReactElement {
           />
         ))}
         <TextArea label="Label" placeholder="Placeholder" theme={theme} />
-        <NativeSelect
-          label="Label"
-          theme={theme}
-          required
-          name="selectField"
-          defaultValue=""
-        >
-          <option value="" disabled>
-            Choose a value
-          </option>
-          {states.map(({ name, abbreviation }) => (
-            <option key={abbreviation}>{name}</option>
-          ))}
-        </NativeSelect>
-        <NativeSelect
-          label="Label"
-          theme={theme}
-          required
-          name="selectField2"
-          defaultValue={[""]}
-          multiple
-        >
-          <option value="" disabled>
-            Choose a value
-          </option>
-          {states.map(({ name, abbreviation }) => (
-            <option key={abbreviation}>{name}</option>
-          ))}
-        </NativeSelect>
       </Box>
     </Form>
   );
@@ -146,13 +140,91 @@ function Demo(): ReactElement {
 
 export default function FormPage(): ReactElement {
   const [key, setKey] = useState(0);
+  const { getCheckboxProps, getIndeterminateProps } = useCheckboxGroup({
+    name: "themes",
+    values: themes,
+  });
 
   return (
-    <>
+    <Fragment key={key}>
+      <Box>
+        <Checkbox {...getIndeterminateProps()} label="All" />
+        {themes.map((theme) => (
+          <Checkbox {...getCheckboxProps(theme)} key={theme} label={theme} />
+        ))}
+      </Box>
+      <Box>
+        <label>
+          Native
+          <input type="checkbox" readOnly />
+        </label>
+        <InputToggle label="Example" type="checkbox" size="small" />
+        <InputToggle label="Example" type="checkbox" size="dense" />
+        <InputToggle label="Example" type="checkbox" size="normal" />
+        <InputToggle label="Example" type="checkbox" size="large" />
+      </Box>
+      <Box>
+        <InputToggle label="Example" type="checkbox" size="dense" iconAfter />
+        <InputToggle label="Example" type="checkbox" size="normal" stacked />
+        <InputToggle
+          label="Example"
+          type="checkbox"
+          size="large"
+          stacked
+          iconAfter
+        />
+      </Box>
+      <Box>
+        <InputToggle
+          label="Example"
+          type="checkbox"
+          size="auto"
+          style={{ fontSize: 42 }}
+        />
+        <InputToggle label="Example" type="checkbox" />
+        <InputToggle label="Example" type="checkbox" indeterminate checked />
+        <InputToggle label="Example" type="checkbox" disabled />
+        <InputToggle label="Example" type="checkbox" readOnly />
+        <InputToggle label="Example" type="checkbox" defaultChecked />
+      </Box>
+      <Box>
+        <label>
+          Native
+          <input type="radio" readOnly />
+        </label>
+        <InputToggle label="Example" type="radio" size="small" />
+        <InputToggle label="Example" type="radio" size="dense" />
+        <InputToggle label="Example" type="radio" size="normal" />
+        <InputToggle label="Example" type="radio" size="large" />
+      </Box>
+      <Box>
+        <InputToggle label="Example" type="radio" size="dense" iconAfter />
+        <InputToggle label="Example" type="radio" size="normal" stacked />
+        <InputToggle
+          label="Example"
+          type="radio"
+          size="large"
+          stacked
+          iconAfter
+        />
+      </Box>
+      <Box>
+        <InputToggle
+          label="Example"
+          type="radio"
+          size="auto"
+          style={{ fontSize: 42 }}
+        />
+        <InputToggle label="Example" type="radio" />
+        <InputToggle label="Example" type="radio" disabled />
+        <InputToggle label="Example" type="radio" readOnly />
+        <InputToggle label="Example" type="radio" defaultChecked />
+      </Box>
+      <RadioGroup />
+      <Demo />
       <FloatingActionButton onClick={() => setKey((prevKey) => prevKey + 1)}>
         Reset
       </FloatingActionButton>
-      <Demo key={key} />
-    </>
+    </Fragment>
   );
 }
