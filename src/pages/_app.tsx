@@ -10,12 +10,13 @@ import CheckBoxOutlineBlankIcon from "@react-md/material-icons/CheckBoxOutlineBl
 import CheckIcon from "@react-md/material-icons/CheckIcon";
 import ErrorOutlineIcon from "@react-md/material-icons/ErrorOutlineIcon";
 import FileUploadIcon from "@react-md/material-icons/FileUploadIcon";
+import IndeterminateCheckBoxIcon from "@react-md/material-icons/IndeterminateCheckBoxIcon";
 import KeyboardArrowLeftIcon from "@react-md/material-icons/KeyboardArrowLeftIcon";
 import KeyboardArrowRightIcon from "@react-md/material-icons/KeyboardArrowRightIcon";
 import MenuIcon from "@react-md/material-icons/MenuIcon";
 import NotificationsIcon from "@react-md/material-icons/NotificationsIcon";
-import RadioButtonUncheckedIcon from "@react-md/material-icons/RadioButtonUncheckedIcon";
 import RadioButtonCheckedIcon from "@react-md/material-icons/RadioButtonCheckedIcon";
+import RadioButtonUncheckedIcon from "@react-md/material-icons/RadioButtonUncheckedIcon";
 import RemoveRedEyeIcon from "@react-md/material-icons/RemoveRedEyeIcon";
 import { upperFirst } from "lodash";
 import type { AppProps } from "next/app";
@@ -33,6 +34,7 @@ const icons: ConfiguredIcons = {
   back: <KeyboardArrowLeftIcon />,
   checkbox: <CheckBoxOutlineBlankIcon />,
   checkboxChecked: <CheckBoxIcon />,
+  checkboxIndeterminate: <IndeterminateCheckBoxIcon />,
   dropdown: <ArrowDropDownIcon />,
   error: <ErrorOutlineIcon />,
   expander: <KeyboardArrowLeftIcon />,

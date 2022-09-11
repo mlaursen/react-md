@@ -21,4 +21,6 @@ export * from "./TextFieldContainer";
 export * from "./types";
 export * from "./useCheckboxGroup";
 export * from "./useFileUpload";
+export * from "./useNumberField";
 export * from "./useRadioGroup";
+export * from "./useTextField";

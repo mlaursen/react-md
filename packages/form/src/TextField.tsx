@@ -1,6 +1,7 @@
+import type { PropsWithRef } from "@react-md/core";
 import { bem, useEnsuredId } from "@react-md/core";
 import { cnb } from "cnbuilder";
-import type { CSSProperties, InputHTMLAttributes } from "react";
+import type { CSSProperties, HTMLAttributes, InputHTMLAttributes } from "react";
 import { forwardRef } from "react";
 import { FormMessageContainer } from "./FormMessageContainer";
 import { useFormTheme } from "./FormThemeProvider";
@@ -10,6 +11,7 @@ import type { AutoCompleteValue, FormFieldOptions } from "./types";
 
 const styles = bem("rmd-text-field");
 
+/** @remarks \@since 6.0.0 */
 export interface TextFieldClassNameOptions {
   className?: string;
 
@@ -24,6 +26,9 @@ export interface TextFieldClassNameOptions {
   placeholderHidden?: boolean;
 }
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export function textField(options: TextFieldClassNameOptions = {}): string {
   const { className, placeholderHidden = false } = options;
 
@@ -64,6 +69,11 @@ export type TextFieldAttributes = Omit<
 >;
 
 export interface TextFieldProps extends TextFieldAttributes, FormFieldOptions {
+  /**
+   * @defaultValue `useId() + '-text-field'`
+   */
+  id?: string;
+
   /**
    * Optional placeholder text to display in the text field.
    *
@@ -122,9 +132,30 @@ export interface TextFieldProps extends TextFieldAttributes, FormFieldOptions {
    * @remarks \@since 6.0.0
    */
   autoCompleteValue?: AutoCompleteValue;
+
+  /**
+   * Optional props to provide to the `TextFieldContainer` component. There
+   * probably isn't any real use for this prop other than if you need to add a
+   * `ref` for some DOM behavior.
+   *
+   * @see {@link TextField} for the component + prop structure
+   */
+  containerProps?: PropsWithRef<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 }
 
 /**
+ * The structure for this component is:
+ * @example
+ * Component Structure
+ * ```tsx
+ * <FormMessageContainer {...messageContainerProps}>
+ *   <TextFieldContainer {...containerProps}>
+ *     <input {...props} />
+ *     <Label {...labelProps} />
+ *   </TextFieldContainer>
+ * </FormMessageContainer>
+ * ```
+ *
  * @example
  * Simple Example
  * ```tsx
@@ -171,6 +202,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       underlineDirection: propUnderlineDirection,
       messageProps,
       messageContainerProps,
+      containerProps,
       ...remaining
     } = props;
     const { disabled = false, readOnly = false } = props;
@@ -192,6 +224,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
         messageProps={messageProps}
       >
         <TextFieldContainer
+          {...containerProps}
           style={style}
           className={className}
           theme={theme}

@@ -7,12 +7,15 @@ import {
   Form,
   InputToggle,
   Legend,
+  Password,
   Radio,
   TextArea,
   TextField,
   useCheckboxGroup,
   useFileUpload,
+  useNumberField,
   useRadioGroup,
+  useTextField,
 } from "@react-md/form";
 import type { ReactElement } from "react";
 import { Fragment, useState } from "react";
@@ -66,6 +69,71 @@ function RadioGroup(): ReactElement {
         <Radio {...getRadioProps("d")} label="Forth" />
       </Box>
     </Fieldset>
+  );
+}
+
+function TextFieldHook(): ReactElement {
+  // NEXT STEPS:
+  // - should I care about render optimzation>
+  // - how does this work with validating against other fields?
+  // - should I create ValidatedTextField/ValidatedTextArea componets that implement this hook?
+  //   - this would allow for some internal optimizations around persisting error states when needed
+  //   - alos around the value? This hook is only useful if you need the value immmediately
+  const { fieldProps } = useTextField({
+    name: "field",
+    required: true,
+    counter: true,
+    maxLength: 40,
+    minLength: 4,
+    disableMessage: true,
+    disableMaxLength: true,
+  });
+
+  return (
+    <Form>
+      <TextField {...fieldProps} label="Label" />
+      <Button type="submit">Submit</Button>
+    </Form>
+  );
+}
+
+const SPECIAL_CHARACTERS = "!@#$%^&*()_+=-";
+const pattern = `^(?=.*\\d)(?=.*[A-Z])(?!.*[^a-zA-Z0-9${SPECIAL_CHARACTERS}])(.{8,})$`;
+
+function PasswordConfirmation(): ReactElement {
+  const { fieldProps: passwordProps } = useTextField({
+    name: "password",
+    required: true,
+    minLength: 8,
+    pattern,
+    validationType: "change",
+  });
+  const { fieldProps: confirmProps } = useTextField({
+    name: "confirmPassword",
+    required: true,
+    minLength: 8,
+    pattern,
+    validationType: "change",
+  });
+  return (
+    <Form>
+      <Password {...passwordProps} label="Password" />
+      <Password {...confirmProps} label="Confirm Password" />
+      <Button type="submit" theme="secondary" themeType="outline">
+        Submit
+      </Button>
+    </Form>
+  );
+}
+
+function NumberExample(): ReactElement {
+  const { fieldProps } = useNumberField({
+    name: "number",
+  });
+  return (
+    <Form>
+      <TextField {...fieldProps} label="Number" />
+    </Form>
   );
 }
 
@@ -147,6 +215,15 @@ export default function FormPage(): ReactElement {
 
   return (
     <Fragment key={key}>
+      <Box>
+        <NumberExample />
+      </Box>
+      <Box>
+        <PasswordConfirmation />
+      </Box>
+      <Box>
+        <TextFieldHook />
+      </Box>
       <Box>
         <Checkbox {...getIndeterminateProps()} label="All" />
         {themes.map((theme) => (

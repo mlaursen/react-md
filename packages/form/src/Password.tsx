@@ -58,6 +58,12 @@ export interface ConfigurableVisibilityIcon {
 export interface PasswordProps
   extends Omit<TextFieldProps, "type" | "rightAddon"> {
   /**
+   * @defaultValue `"password"`
+   * @remarks \@since 6.0.0 Defaults to `"password"`
+   */
+  name?: string;
+
+  /**
    * @example
    * Configurable Visiblity Icon Object
    * ```tsx
@@ -135,6 +141,7 @@ export const Password = forwardRef<HTMLInputElement, PasswordProps>(
   function Password(props, ref) {
     const {
       id: propId,
+      name = "password",
       className,
       inputClassName,
       visibilityIcon: propVisibilityIcon,
@@ -166,6 +173,7 @@ export const Password = forwardRef<HTMLInputElement, PasswordProps>(
       <TextField
         {...remaining}
         ref={ref}
+        name={name}
         type={isPasswordVisible ? "text" : "password"}
         className={cnb(styles({ offset: true }), className)}
         inputClassName={cnb(styles("input", { offset: true }), inputClassName)}
