@@ -1,6 +1,7 @@
 import type {
   CSSTransitionClassNames,
   CSSTransitionComponentProps,
+  FocusType,
   LabelRequiredForA11y,
   TransitionTimeout,
 } from "@react-md/core";
@@ -17,7 +18,7 @@ import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
 
 import { DialogContainer } from "./DialogContainer";
-import type { DialogClassNameOptions } from "./styles";
+import type { DialogType } from "./styles";
 import { dialog } from "./styles";
 
 /** @remarks \@since 4.0.0 */
@@ -40,14 +41,20 @@ const noop = (): void => {
   // do nothing
 };
 
+const noopBool = (): boolean => false;
+
 export interface BaseDialogProps
   extends HTMLAttributes<HTMLDivElement>,
-    CSSTransitionComponentProps,
-    DialogClassNameOptions {
+    CSSTransitionComponentProps {
   /**
    * @defaultValue `useEnsuredId('dialog')`
    */
   id?: string;
+
+  /**
+   * @defaultValue `"centered"`
+   */
+  type?: DialogType;
 
   /**
    * @defaultValue `"dialog"`
@@ -83,6 +90,12 @@ export interface BaseDialogProps
    * @defaultValue `false`
    */
   modal?: boolean;
+
+  /**
+   * @internal
+   * @defaultValue `false`
+   */
+  fixed?: boolean;
 
   /**
    * Set this to `true` if the dialog should no longer use the `Portal`
@@ -151,10 +164,77 @@ export interface BaseDialogProps
    * @defaultValue `DEFAULT_DIALOG_CLASSNAMES`
    */
   classNames?: CSSTransitionComponentProps["classNames"];
+
+  /**
+   * @remarks \@since 6.0.0
+   * @defaultValue `() => false`
+   */
+  isFocusTypeDisabled?(type: FocusType): boolean;
+
+  /**
+   * Set this to `true` if the `Dialog` should not gain the normal focus box
+   * shadow while it is focused. The `Dialog` should normally only gain focus
+   * when it becomes visible and no child elements have `autoFocus` enabled.
+   *
+   * @remarks \@since 6.0.0
+   * @defaultValue `type === "full-page"`
+   */
+  disableFocusOutline?: boolean;
 }
 
 export type DialogProps = LabelRequiredForA11y<BaseDialogProps>;
 
+/**
+ * @example
+ * Simple Example
+ * ```tsx
+ * import { Button } from "@react-md/button";
+ * import { Typography, useToggle } from "@react-md/core";
+ * import {
+ *   Dialog,
+ *   DialogHeader,
+ *   DialogTitle,
+ *   DialogContent,
+ *   DialogFooter,
+ * } from "@react-md/dialog";
+ * import type { ReactElement } from "react";
+ *
+ * function Example(): ReactElement {
+ *   const {
+ *     toggle,
+ *     disable: onRequestClose,
+ *     toggled: visible,
+ *   } = useToggle(false);
+ *
+ *   return (
+ *     <>
+ *       <Button onClick={toggle}>Toggle</Button>
+ *       <Dialog
+ *         aria-labelledby="dialog-title"
+ *         visible={visible}
+ *         onRequestClose={onRequestClose}
+ *       >
+ *         <DialogHeader>
+ *           <DialogTitle id="dialog-title">Simple Dialog</DialogTitle>
+ *         </DialogHeader>
+ *         <DialogContent>
+ *           <Typography margin="none">This is some text in a dialog.</Typography>
+ *         </DialogContent>
+ *         <DialogFooter>
+ *           <Button onClick={onRequestClose}>
+ *             Close
+ *           </Button>
+ *         </DialogFooter>
+ *       </Dialog>
+ *     </>
+ *   );
+ * }
+ * ```
+ *
+ * @remarks \@since 6.0.0 The `Dialog` no longer supports focusing elements
+ * within once it becomes visible. You must manually add `autoFocus` to a
+ * element instead.
+ */
 export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
   props,
   ref
@@ -178,14 +258,17 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
     onExit,
     onExiting = noop,
     onExited,
+    fixed = false,
     modal = false,
     disableOverlay = type === "full-page",
     overlayProps,
     overlayHidden,
     onKeyDown = noop,
+    isFocusTypeDisabled = noopBool,
     disablePortal: propDisablePortal,
     disableScrollLock = false,
     disableEscapeClose = modal,
+    disableFocusOutline = type === "full-page",
     children,
     ...remaining
   } = props;
@@ -193,7 +276,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
 
   const ssr = useSsr();
   const { eventHandlers, transitionOptions } = useFocusContainer({
-    ref,
+    nodeRef: ref,
     activate: visible,
     onEntering,
     onExiting,
@@ -212,12 +295,18 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
       event.stopPropagation();
       onRequestClose();
     },
+    isDisabled: isFocusTypeDisabled,
   });
   const { elementProps, rendered, disablePortal } = useCSSTransition({
     transitionIn: visible,
     timeout,
     classNames,
-    className: dialog({ type, className }),
+    className: dialog({
+      type,
+      fixed,
+      outline: !disableFocusOutline,
+      className,
+    }),
     appear: !disableTransition && !ssr,
     enter: !disableTransition,
     exit: !disableTransition,

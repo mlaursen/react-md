@@ -52,6 +52,7 @@ export function ImagePreviewDialogContent(
           }
         }}
         className={cnb(
+          styles.container,
           fullResolution && styles.fullResolution,
           !fullResolution &&
             visualMediaContainer({

@@ -26,9 +26,46 @@ export interface OverlayProps
   extends HTMLAttributes<HTMLSpanElement>,
     CSSTransitionComponentProps,
     OverlayClassNameOptions {
+  /**
+   * Set this to `true` for when the overlay should be visible. Toggling this
+   * value will trigger the enter/exit animation.
+   */
   visible: boolean;
+
+  /**
+   * Set this to `true` if the overlay should be rendered with an `opacity: 0`
+   * and disabling the animation. This is useful if you'd like a "close on
+   * outside click" behavior.
+   *
+   * @defaultValue `false`
+   */
+  hidden?: boolean;
 }
 
+/**
+ * @example
+ * Simple Example
+ * ```tsx
+ * import { Button } from "@react-md/button";
+ * import { Overlay, useToggle } from "@react-md/core";
+ * import type { ReactElement } from "react";
+ *
+ * function Example(): ReactElement {
+ *   const {
+ *     toggle,
+ *     disable: onRequestClose
+ *     toggled: visible,
+ *   } = useToggle(false);
+ *
+ *   return (
+ *     <>
+ *       <Button onClick={toggle}>Toggle</Button>
+ *       <Overlay visible={visible} onRequestClose={onRequestClose} />
+ *     </>
+ *   );
+ * }
+ * ```
+ */
 export const Overlay = forwardRef<HTMLSpanElement, OverlayProps>(
   function Overlay(props, nodeRef) {
     const {
@@ -39,6 +76,7 @@ export const Overlay = forwardRef<HTMLSpanElement, OverlayProps>(
       temporary = true,
       timeout = DEFAULT_OVERLAY_TIMEOUT,
       classNames = DEFAULT_OVERLAY_CLASSNAMES,
+      hidden = false,
       onEnter,
       onEntering,
       onEntered,
@@ -52,8 +90,8 @@ export const Overlay = forwardRef<HTMLSpanElement, OverlayProps>(
     const { elementProps, rendered, disablePortal } = useCSSTransition({
       nodeRef,
       transitionIn: visible,
-      timeout,
-      classNames,
+      timeout: hidden ? 0 : timeout,
+      classNames: hidden ? "" : classNames,
       className: overlay({
         visible,
         clickable,

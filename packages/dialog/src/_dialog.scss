@@ -2,6 +2,7 @@
 @use "@react-md/core";
 
 $disable-fixed: false !default;
+$disable-focus-outline: false !default;
 $disable-footer-flex-vertical: false !default;
 $disable-footer-flex-start: false !default;
 $disable-footer-space-between: false !default;
@@ -120,6 +121,7 @@ $var-lookup: (
     flex-direction: column;
     max-height: 100%;
     max-width: 100%;
+    outline: none;
 
     &--centered {
       @include use-var(min-width);
@@ -135,6 +137,24 @@ $var-lookup: (
       overflow: auto;
       position: fixed;
       width: 100%;
+    }
+
+    @if not $disable-focus-outline {
+      &--outline {
+        &::before {
+          @include core.pseudo-element;
+          @include core.use-interaction-outline;
+        }
+
+        @include core.keyboard-only {
+          &:focus::before {
+            @include core.set-interaction-var(
+              outline-color,
+              core.$outline-color
+            );
+          }
+        }
+      }
     }
 
     &--enter {

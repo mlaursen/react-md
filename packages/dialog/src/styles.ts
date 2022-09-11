@@ -4,22 +4,41 @@ import { cnb } from "cnbuilder";
 const dialogStyles = bem("rmd-dialog");
 const sheetStyles = bem("rmd-sheet");
 
-export interface MergeableClassName {
-  className?: string;
-}
+export type DialogType = "full-page" | "centered" | "custom";
 
-export interface DialogClassNameOptions extends MergeableClassName {
+/** @remarks \@since 6.0.0 */
+export interface DialogClassNameOptions {
+  className?: string;
+
   /**
    * @defaultValue `"centered"`
    */
-  type?: "full-page" | "centered" | "custom";
+  type?: DialogType;
+
+  /**
+   * @defaultValue `false`
+   */
+  fixed?: boolean;
+
+  /**
+   * @defaultValue `type === "full-page"`
+   */
+  outline?: boolean;
 }
 
+/** @remarks \@since 6.0.0 */
 export function dialog(options: DialogClassNameOptions): string {
-  const { type = "centered", className } = options;
+  const {
+    type = "centered",
+    fixed = false,
+    outline = type === "full-page",
+    className,
+  } = options;
 
   return cnb(
     dialogStyles({
+      fixed,
+      outline,
       centered: type === "centered",
       "full-page": type === "full-page",
     }),
@@ -27,18 +46,28 @@ export function dialog(options: DialogClassNameOptions): string {
   );
 }
 
-export function dialogHeader(options: MergeableClassName): string {
+/** @remarks \@since 6.0.0 */
+export interface DialogHeaderClassNameOptions {
+  className?: string;
+}
+
+/** @remarks \@since 6.0.0 */
+export function dialogHeader(options: DialogHeaderClassNameOptions): string {
   const { className } = options;
 
   return cnb(dialogStyles("header"), className);
 }
 
-export interface DialogContentCLassNameOptions extends MergeableClassName {
+/** @remarks \@since 6.0.0 */
+export interface DialogContentClassNameOptions {
+  className?: string;
+
   /** @defaultValue `false` */
   disablePadding?: boolean;
 }
 
-export function dialogContent(options: DialogContentCLassNameOptions): string {
+/** @remarks \@since 6.0.0 */
+export function dialogContent(options: DialogContentClassNameOptions): string {
   const { className, disablePadding = false } = options;
 
   return cnb(dialogStyles("content", { padded: !disablePadding }), className);
@@ -59,11 +88,15 @@ export type DialogFooterAlignment =
   | "stacked-start"
   | "stacked-end";
 
-export interface DialogFooterClassNameOptions extends MergeableClassName {
+/** @remarks \@since 6.0.0 */
+export interface DialogFooterClassNameOptions {
+  className?: string;
+
   /** @defaultValue `"end"` */
   align?: DialogFooterAlignment;
 }
 
+/** @remarks \@since 6.0.0 */
 export function dialogFooter(options: DialogFooterClassNameOptions): string {
   const { align = "end", className } = options;
 
@@ -114,7 +147,10 @@ export type SheetHorizontalSize = "none" | "media" | "touch" | "static";
  */
 export type SheetVerticalSize = "none" | "touch" | "recommended";
 
-export interface BaseSheetClassNameOptions extends MergeableClassName {
+/** @remarks \@since 6.0.0 */
+export interface BaseSheetClassNameOptions {
+  className?: string;
+
   /**
    * @defaultValue `"left"`
    */
@@ -140,6 +176,7 @@ export interface SheetClassNameOptions extends BaseSheetClassNameOptions {
   disableOverlay?: boolean;
 }
 
+/** @remarks \@since 6.0.0 */
 export function sheet(options: SheetClassNameOptions): string {
   const {
     position = "left",

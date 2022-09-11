@@ -1,11 +1,12 @@
-export const FOCUSABLE_ELEMENTS = ["BUTTON", "TEXTAREA", "SELECT"];
-
-const BASE_FOCUSABLE_ELEMENTS =
-  'a[href],area[href],input:not([disabled]):not([type="hidden"])';
-const BASE_FOCUSABLE_QUERY = FOCUSABLE_ELEMENTS.reduce(
-  (queryString, element) => `${queryString},${element}:not([disabled])`,
-  BASE_FOCUSABLE_ELEMENTS
-);
+const queries = [
+  'input:not([type="hidden"]):not([disabled])',
+  "button:not([disabled])",
+  "textarea:not([disabled])",
+  "select:not([disabled])",
+  "a[href]",
+  "area[href]",
+  "[tabindex]",
+] as const;
 
 /**
  * A query selector to find elements that are programmatically focusable.
@@ -17,7 +18,7 @@ const BASE_FOCUSABLE_QUERY = FOCUSABLE_ELEMENTS.reduce(
  * // do something with elements
  * ```
  */
-export const PROGRAMMATICALLY_FOCUSABLE = `${BASE_FOCUSABLE_QUERY},[tabindex]`;
+export const PROGRAMMATICALLY_FOCUSABLE = queries.join(",");
 
 /**
  * A query selector to find elements that are focusable only with tab and shift+tab.
@@ -28,8 +29,17 @@ export const PROGRAMMATICALLY_FOCUSABLE = `${BASE_FOCUSABLE_QUERY},[tabindex]`;
  * const focusableElements = document.querySelectorAll(TAB_FOCUSABLE);
  * // do something with elements
  * ```
+ *
+ * @remarks \@since 6.0.0 This was updated to remove ALL elements that have a
+ * `tabindex="-1"` applied instead of only elements that had a manual tab index
+ * applied.
  */
-export const TAB_FOCUSABLE = `${PROGRAMMATICALLY_FOCUSABLE}:not([tabindex="-1"])`;
+export const TAB_FOCUSABLE = queries.reduce((fullQuery, query) => {
+  const prefix = `${fullQuery}${fullQuery ? "," : ""}`;
+  const notProgrammaticQuery = `${query}:not([tabindex="-1"])`;
+
+  return `${prefix}${notProgrammaticQuery}`;
+}, "");
 
 /**
  * A simple util that will find all the tab focusable elements within a

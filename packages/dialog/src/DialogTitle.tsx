@@ -24,8 +24,7 @@ export interface DialogTitleProps extends TypographyProps {
 }
 
 /**
- * This component adds some base styles to an `<h2>` element for a title within
- * a `Dialog`.
+ * Look at the `Dialog` or `FixedDialog` components for example usage.
  */
 export const DialogTitle = forwardRef<HTMLHeadingElement, DialogTitleProps>(
   function DialogTitle(

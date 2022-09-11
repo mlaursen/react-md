@@ -1,12 +1,15 @@
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
-import type { DialogContentCLassNameOptions } from "./styles";
+import type { DialogContentClassNameOptions } from "./styles";
 import { dialogContent } from "./styles";
 
 export interface DialogContentProps
   extends HTMLAttributes<HTMLDivElement>,
-    DialogContentCLassNameOptions {}
+    DialogContentClassNameOptions {}
 
+/**
+ * Look at the `Dialog` or `FixedDialog` components for example usage.
+ */
 export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
   function DialogContent(
     { children, className, disablePadding = false, ...props },
