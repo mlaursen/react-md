@@ -12,6 +12,7 @@ export interface UnstyledLinkProps
       | "as"
       | "onMouseEnter"
       | "onClick"
+      | "onTouchStart"
       | "href"
     >,
     Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "onError"> {

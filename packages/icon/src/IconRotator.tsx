@@ -1,4 +1,3 @@
-import type { ClassNameCloneableChild } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { CSSProperties, HTMLAttributes, ReactNode } from "react";
 import { Children, cloneElement, forwardRef, isValidElement } from "react";
@@ -58,8 +57,8 @@ export const IconRotator = forwardRef<HTMLSpanElement, IconRotatorProps>(
       className: propClassName,
       disableTransition,
     });
-    if (!forceIconWrap && isValidElement(children)) {
-      const child = Children.only<ClassNameCloneableChild>(children);
+    if (!forceIconWrap && isValidElement<{ className?: string }>(children)) {
+      const child = Children.only(children);
       return cloneElement(child, {
         className: cnb(className, child.props.className),
       });

@@ -164,7 +164,7 @@ export function TextIconSpacing(props: TextIconSpacingProps): ReactElement {
 
   let iconEl = propIcon;
   let content = children;
-  if (!forceIconWrap && isValidElement(propIcon)) {
+  if (!forceIconWrap && isValidElement<{ className?: string }>(propIcon)) {
     const icon = Children.only(propIcon);
     iconEl = cloneElement(icon, {
       className: cnb(baseClassName, icon.props.className),

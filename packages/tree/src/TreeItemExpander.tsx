@@ -38,7 +38,7 @@ export function TreeItemExpander(
   const icon = useIcon("expander", expanderIcon);
   const { itemId } = item;
   if (isLeafNode || expanderLeft !== left) {
-    if (isValidElement(addon)) {
+    if (isValidElement<{ className?: string }>(addon)) {
       return cloneElement(addon, { className });
     }
 
