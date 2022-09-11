@@ -36,7 +36,9 @@ export const LayoutAppBar = forwardRef<HTMLDivElement, LayoutAppBarProps>(
     let title = customTitle;
     if (typeof title === "undefined") {
       title = (
-        <LayoutAppBarTitle {...titleProps}>{titleChildren}</LayoutAppBarTitle>
+        <LayoutAppBarTitle keyline={nav ? "nav" : undefined} {...titleProps}>
+          {titleChildren}
+        </LayoutAppBarTitle>
       );
     }
 
