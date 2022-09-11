@@ -1,8 +1,58 @@
-import { Typography } from "@react-md/core";
+import { bem, Typography } from "@react-md/core";
+import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
-import type { AppBarTitleClassNameOptions } from "./styles";
-import { appBarTitle } from "./styles";
+
+const styles = bem("rmd-app-bar-title");
+
+/**
+ * - `"small"` - the first character in the title will be `1rem` (`$keyline`)
+ *   from the edge of the app bar horizontally
+ * - `"nav"` - this should be set when there is a nav button before the title so
+ *   that the first character in the title will be `4.5rem` (`title-keyline`)
+ * - `"title"` - this should be used when the title should align with the list
+ *   item keyline and there is no nav icon before.
+ *
+ * @remarks \@since 6.0.0
+ */
+export type AppBarTitleKeyline = "small" | "nav" | "title";
+
+/** @remarks \@since 6.0.0 */
+export interface AppBarTitleClassNameOptions {
+  className?: string;
+
+  /**
+   * @defaultValue `"small"`
+   * @see {@link AppBarTitleKeyline}
+   */
+  keyline?: AppBarTitleKeyline;
+
+  /**
+   * Set this to `true` if the title should no longer allow text wrap behavior
+   * and instead truncate with trailing ellipsis.
+   *
+   * @defaultValue `false`
+   */
+  noWrap?: boolean;
+}
+
+/**
+ * Apply the `className`s for a tree component. This will be type-safe if using
+ * typescript.
+ *
+ * @remarks \@since 6.0.0
+ */
+export function appBarTitle(options: AppBarTitleClassNameOptions = {}): string {
+  const { className, keyline = "small", noWrap = false } = options;
+  return cnb(
+    styles({
+      keyline: keyline == "title",
+      "no-wrap": noWrap,
+      "nav-keyline": keyline === "nav",
+    }),
+    className
+  );
+}
 
 export interface AppBarTitleProps
   extends HTMLAttributes<HTMLHeadingElement>,

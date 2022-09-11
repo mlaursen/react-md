@@ -9,6 +9,8 @@ $disable-icon: false !default;
 $disable-outline: false !default;
 $disable-contained: false !default;
 $disable-contained-pressed-elevation: false !default;
+$disable-contained-interaction-colors: core.$light-theme-base-background-color
+  == core.$dark-theme-base-background-color !default;
 $disable-floating: false !default;
 $disable-floating-absolute-position: false !default;
 $disable-circular-progress: progress.$disable-circular !default;
@@ -213,6 +215,13 @@ $var-lookup: (
           "&.rmd-button--pressed",
           $pseudo-before: false
         );
+
+        // contained buttons should _normally_ always force dark background
+        // colors for the interaction states This means use the default light
+        // theme since it is based off of the root background color
+        @if not $disable-contained-interaction-colors {
+          @include core.use-interaction-light-theme;
+        }
 
         @include set-var(background-color, get-var(contained-background-color));
         @include set-var(color, get-var(contained-color));

@@ -54,8 +54,17 @@ export interface ThemeTextColors {
 export interface ConfigurableThemeColors extends ThemeColors, ThemeTextColors {
   backgroundColor: string;
 }
+
 /** @remarks \@since 6.0.0 */
 export type ConfigurableThemeColorsName = keyof ConfigurableThemeColors;
+
+/** @remarks \@since 6.0.0 */
+export interface ThemeContext extends ConfigurableThemeColors {
+  /**
+   * This will be `true` if a `theme` wsa not provided to the {@link ThemeProvider}
+   */
+  derived: boolean;
+}
 
 /** @remarks \@since 6.0.0 */
 export const DEFAULT_THEME_COLORS: Readonly<ThemeColors> = {
@@ -91,9 +100,7 @@ export const DEFAULT_DARK_THEME: Readonly<ConfigurableThemeColors> = {
   textDisabledColor: "gray", // #808080
 };
 
-const context = createContext<Readonly<ConfigurableThemeColors> | undefined>(
-  undefined
-);
+const context = createContext<Readonly<ThemeContext> | undefined>(undefined);
 context.displayName = "Theme";
 const { Provider } = context;
 
@@ -137,8 +144,27 @@ export const getDerivedTheme = (
   };
 };
 
-/** @remarks \@since 6.0.0 */
-export function useTheme(): Readonly<ConfigurableThemeColors> {
+/**
+ * This hook can be used to access the current theme set by the
+ * {@link ThemeProvider}.
+ *
+ * @example
+ * Simple Example
+ * ```tsx
+ * import { useTheme } from "@react-md/core";
+ * import type { ReactElement } from "react";
+ *
+ * function Example(): ReactElement {
+ *   const theme = useTheme();
+ *
+ *   return <pre><code>{JSON.stringify(theme, null, 2)}</code></pre>;
+ * }
+ * ```
+ *
+ * @remarks \@since 6.0.0
+ * @throws "The `ThemeProvider` has not been initialized."
+ */
+export function useTheme(): Readonly<ThemeContext> {
   const theme = useContext(context);
   if (!theme) {
     throw new Error("The `ThemeProvider` has not been initialized.");
@@ -149,11 +175,96 @@ export function useTheme(): Readonly<ConfigurableThemeColors> {
 
 /** @remarks \@since 6.0.0 */
 export interface ThemeProviderProps {
+  /**
+   * When this is `undefined`, the theme will be derived by computing the
+   * `document.documentElement`'s styles for all the `react-md` theme custom
+   * properties. The theme will also automatically update whenever the
+   * `colorScheme` or `colorSchemeMode` change.
+   *
+   * It is recommended to manually provide your theme if you know it beforehand.
+   * Deriving the theme is really only useful if you allow your user to
+   * customize all these theme values themselves and persist through local
+   * storage/cookies.
+   *
+   * @see {@link DEFAULT_DARK_THEME}
+   * @see {@link DEFAULT_LIGHT_THEME}
+   * @defaultValue `colorScheme === "dark" ? DEFAULT_DARK_THEME : DEFAULT_LIGHT_THEME`
+   */
   theme?: Readonly<ConfigurableThemeColors>;
   children: ReactNode;
 }
 
 /**
+ * The `ThemeProvider` should be added to the root of your app but as a child of
+ * the `CoreProviders`.
+ *
+ * @example
+ * ```tsx
+ * import {
+ *   black,
+ *   blue500,
+ *   greenAccent700,
+ *   orangeAccent200,
+ *   orangeAccent400,
+ *   red500,
+ *   CoreProviders,
+ *   ThemeProvider,
+ * } from "@react-md/core";
+ * import type { ConfigurableThemeColors } from "@react-md/core";
+ * import type { ReactElement } from "react";
+ * import { createRoot } from "react-dom/client";
+ *
+ * import App from "./App";
+ *
+ * const theme: Readonly<ConfigurableThemeColors> = {
+ *   primaryColor: blue500,
+ *   onPrimaryColor: black,
+ *   secondaryColor: orangeAccent400,
+ *   onSecondaryColor: black,
+ *   warningColor: orangeAccent200,
+ *   onWarningColor: black,
+ *   errorColor: red500,
+ *   onErrorColor: black,
+ *   successColor: greenAccent700,
+ *   onSuccessColor: black,
+ *   backgroundColor: "#121212",
+ *   textPrimaryColor: "#d9d9d9",
+ *   textSecondaryColor: "#b3b3b3",
+ *   textHintColor: "gray", // #808080
+ *   textDisabledColor: "gray", // #808080
+ * };
+ *
+ * const container = document.getElementById("app");
+ * const root = createRoot(container);
+ * root.render(
+ *   <CoreProviders>
+ *     <ThemeProvider theme={theme}>
+ *       <App />
+ *     </ThemeProvider>
+ *   </CoreProviders>
+ * );
+ * ```
+ *
+ * @example
+ * Automatically Deriving the Theme
+ * ```tsx
+ * import { CoreProviders, ThemeProvider, } from "@react-md/core";
+ * import type { ReactElement } from "react";
+ * import { createRoot } from "react-dom/client";
+ *
+ * import App from "./App";
+ *
+ * const container = document.getElementById("app");
+ * const root = createRoot(container);
+ * root.render(
+ *   <CoreProviders>
+ *     <ThemeProvider>
+ *       <App />
+ *     </ThemeProvider>
+ *   </CoreProviders>
+ * );
+ * ```
+ *
  * @remarks \@since 6.0.0
  */
 export function ThemeProvider(props: ThemeProviderProps): ReactElement {
@@ -163,6 +274,7 @@ export function ThemeProvider(props: ThemeProviderProps): ReactElement {
     colorScheme === "dark" ? DEFAULT_DARK_THEME : DEFAULT_LIGHT_THEME
   );
 
+  const derived = !theme;
   useIsomorphicLayoutEffect(() => {
     if (theme) {
       return;
@@ -184,7 +296,7 @@ export function ThemeProvider(props: ThemeProviderProps): ReactElement {
     };
   }, [theme, colorScheme, colorSchemeMode]);
 
-  const value = useMemo<ConfigurableThemeColors>(() => {
+  const value = useMemo<ThemeContext>(() => {
     const backgroundColor =
       theme?.backgroundColor ?? derivedTheme.backgroundColor;
     const primaryColor = theme?.primaryColor ?? derivedTheme.primaryColor;
@@ -207,6 +319,7 @@ export function ThemeProvider(props: ThemeProviderProps): ReactElement {
       theme?.textDisabledColor ?? derivedTheme.textDisabledColor;
 
     return {
+      derived,
       backgroundColor,
       primaryColor,
       onPrimaryColor,
@@ -224,6 +337,7 @@ export function ThemeProvider(props: ThemeProviderProps): ReactElement {
       textDisabledColor,
     };
   }, [
+    derived,
     derivedTheme.backgroundColor,
     derivedTheme.errorColor,
     derivedTheme.onErrorColor,

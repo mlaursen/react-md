@@ -63,7 +63,17 @@ the dark elevation mode.
 
 ## Breaking Changes
 
-- removed `forceAddonWrap` from `ListItemChildren` in favor of `leftAddonForceWrap` and `rightAddonForceWrap`
+- **@react-md/** -
+- **@react-md/app-bar** - removed `AppBarNav` and `AppBarAction` components. These can now be replaced with the `Button` component since the `AppBar` is rendered with horizontal padding and `gap`
+- **@react-md/list** - removed `forceAddonWrap` from `ListItemChildren` in favor of `leftAddonForceWrap` and `rightAddonForceWrap`
+- **@react-md/form** - removed the `NativeSelect` implementation. Why would you use it when there is a customizable `Select` component?
+- **@react-md/form** - removed the `TextFieldWithMessage`, `TextAreaWithMessage`, and `PasswordWithMessage` components. The conditional inline messages are now built into the `TextField`, `TextArea`, and `Password` components respectively
+- **@react-md/form** - removed the `InputToggleIcon` component
+- **@react-md/form** - the `Checkbox` and `Radio` components now rely on icons for the `checked` and `unchecked` states. The checkbox also requires an `indeterminate` icon
+- **@react-md/form** -
+- **@react-md/form** - removed `useChoice` hook in favor of `useRadioGroup`
+- **@react-md/form** - removed `useChecked` and `useIndeterminateChecked` hooks in favor of `useCheckboxGroup`
+- TODO -- **@react-md/form** - removed `useSelectState` hook in favor of `useSelectField`
 
 ## Features
 
@@ -74,3 +84,23 @@ the dark elevation mode.
 - Color Scheme behavior (light, dark, system)
 - default `alphaNumericSort`
 - skeleton placeholder loaders
+
+## Bug Fixes
+
+- The `TAB_FOCUSABLE` query now correctly excludes all elements that have a `tabindex="-1"` instead of only elements that had a tabindex to begin with
+  ```diff
+  -input:not([type="hidden"]):not([disabled])
+  +input:not([type="hidden"]):not([disabled]):not([tabindex="-1"])
+  -button:not([disabled])
+  +button:not([disabled]):not([tabindex="-1"])
+  -textarea:not([disabled])
+  +textarea:not([disabled]):not([tabindex="-1"])
+  -select:not([disabled])
+  +select:not([disabled]):not([tabindex="-1"])
+  -a[href]
+  +a[href]:not([tabindex="-1"])
+  -area[href]
+  +area[href]:not([tabindex="-1"])
+   [tabindex]:not([tabindex="-1"])
+  ```
+  This fixes an issue where you could tab out of a Dialog that had a Tree that rendered links (temporary layouts)

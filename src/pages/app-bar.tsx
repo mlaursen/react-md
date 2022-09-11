@@ -54,6 +54,26 @@ export default function AppBarPage(): ReactElement {
           <MoreVertIcon />
         </Button>
       </AppBar>
+      <AppBar stacked>
+        <AppBar as="div">
+          <AppBarTitle keyline="title">Title</AppBarTitle>
+          <Button buttonType="icon">
+            <SearchIcon />
+          </Button>
+          <Button buttonType="icon">
+            <MoreVertIcon />
+          </Button>
+        </AppBar>
+        <AppBar as="div">
+          <AppBarTitle keyline="title">Title</AppBarTitle>
+          <Button buttonType="icon">
+            <SearchIcon />
+          </Button>
+          <Button buttonType="icon">
+            <MoreVertIcon />
+          </Button>
+        </AppBar>
+      </AppBar>
     </TextContainer>
   );
 }

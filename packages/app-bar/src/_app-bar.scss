@@ -11,8 +11,10 @@ $disable-prominent-theme: false !default;
 $disable-prominent-dense-theme: false !default;
 $disable-scrollbar-offset: false !default;
 $disable-static-scrollbar-offset: false !default;
-$disable-force-light-interaction-states: false !default;
-$disable-force-dark-interaction-states: false !default;
+$disable-primary-interaction-colors: core.$light-theme-base-background-color ==
+  core.$dark-theme-base-background-color !default;
+$disable-secondary-interaction-colors: core.$light-theme-base-background-color
+  == core.$dark-theme-base-background-color !default;
 
 $disable-title: false !default;
 
@@ -160,6 +162,12 @@ $var-lookup: (
       @include set-var(height, auto);
     }
 
+    &--stacked {
+      flex-direction: column;
+      gap: 0;
+      padding: 0;
+    }
+
     @if not $disable-dense-theme {
       &--dense {
         @include set-var(height, $dense-height);
@@ -178,24 +186,11 @@ $var-lookup: (
       }
     }
 
-    // Note: I might need better names for the interaction themes. The "dark
-    // theme" really makes it so the interaction states use white instead of
-    // black by default. So the "dark theme" should be used on dark colors while
-    // the "light theme" should be used on other colors.
-    @if not $disable-force-light-interaction-states {
-      &--light {
-        @include core.use-interaction-dark-theme;
-      }
-    }
-
-    @if not $disable-force-dark-interaction-states {
-      &--dark {
-        @include core.use-interaction-light-theme;
-      }
-    }
-
     @if not $disable-primary-theme {
       &--primary {
+        @if not $disable-primary-interaction-colors {
+          @include core.use-interaction-light-theme;
+        }
         @include set-var(background-color, core.get-theme-var(primary-color));
         @include set-var(color, core.get-theme-var(on-primary-color));
       }
@@ -203,6 +198,9 @@ $var-lookup: (
 
     @if not $disable-secondary-theme {
       &--secondary {
+        @if not $disable-secondary-interaction-colors {
+          @include core.use-interaction-light-theme;
+        }
         @include set-var(background-color, core.get-theme-var(secondary-color));
         @include set-var(color, core.get-theme-var(on-secondary-color));
       }
@@ -212,34 +210,6 @@ $var-lookup: (
       &--surface {
         @include set-var(background-color, get-var(surface-background-color));
         @include set-var(color, get-var(surface-color));
-      }
-    }
-
-    @if not $disable-title {
-      &__title {
-        @include core.auto-rtl(margin-left, $keyline - $horizontal-padding);
-
-        flex: 1 1 auto;
-        margin-bottom: 0;
-        margin-top: 0;
-
-        &--keyline {
-          @include core.auto-rtl(
-            margin-left,
-            $title-keyline - $horizontal-padding
-          );
-        }
-
-        &--nav-keyline {
-          @include core.auto-rtl(
-            margin-left,
-            $title-keyline - $horizontal-padding - $gap - button.$icon-size
-          );
-        }
-
-        &--no-wrap {
-          @include core.text-overflow;
-        }
       }
     }
 
@@ -256,6 +226,34 @@ $var-lookup: (
         &--static-scrollbar-offset {
           width: calc(100% + core.scrollbar-size());
         }
+      }
+    }
+  }
+
+  @if not $disable-title {
+    .rmd-app-bar-title {
+      @include core.auto-rtl(margin-left, $keyline - $horizontal-padding);
+
+      flex: 1 1 auto;
+      margin-bottom: 0;
+      margin-top: 0;
+
+      &--keyline {
+        @include core.auto-rtl(
+          margin-left,
+          $title-keyline - $horizontal-padding
+        );
+      }
+
+      &--nav-keyline {
+        @include core.auto-rtl(
+          margin-left,
+          $title-keyline - $horizontal-padding - $gap - button.$icon-size
+        );
+      }
+
+      &--no-wrap {
+        @include core.text-overflow;
       }
     }
   }
