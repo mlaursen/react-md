@@ -1,5 +1,7 @@
 import type { ReactElement, ReactNode } from "react";
 import { createContext, useContext, useMemo, useState } from "react";
+import { useSsr } from "../SsrProvider";
+import type { UseStateSetter } from "../types";
 import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect";
 import {
   black,
@@ -64,6 +66,34 @@ export interface ThemeContext extends ConfigurableThemeColors {
    * This will be `true` if a `theme` wsa not provided to the {@link ThemeProvider}
    */
   derived: boolean;
+
+  /**
+   * @example
+   * Simple Example
+   * ```tsx
+   * import { getDerivedTheme, useHtmlClassName, useTheme } from "@react-md/core";
+   * import { useEffect } from "react";
+   *
+   * import styles from "./LightTheme.module.scss";
+   *
+   * let loadedOnce = false;
+   *
+   * export default function LightTheme(): null {
+   *   useHtmlClassName(styles.container);
+   *   const { setDerivedTheme } = useTheme();
+   *   useEffect(() => {
+   *     if (loadedOnce) {
+   *       return;
+   *     }
+   *
+   *     loadedOnce = true;
+   *     setDerivedTheme(getDerivedTheme());
+   *   }, [setDerivedTheme]);
+   *   return null;
+   * }
+   * ```
+   */
+  setDerivedTheme: UseStateSetter<Readonly<ConfigurableThemeColors>>;
 }
 
 /** @remarks \@since 6.0.0 */
@@ -164,9 +194,26 @@ export const getDerivedTheme = (
  * @remarks \@since 6.0.0
  * @throws "The `ThemeProvider` has not been initialized."
  */
-export function useTheme(): Readonly<ThemeContext> {
+export function useTheme(): Readonly<ThemeContext>;
+
+/**
+ * @internal
+ * @remarks \@since 6.0.0
+ */
+export function useTheme(
+  allowUndefined: true
+): Readonly<ThemeContext> | undefined;
+
+/**
+ * @internal
+ * @remarks \@since 6.0.0
+ * @throws "The `ThemeProvider` has not been initialized."
+ */
+export function useTheme(
+  allowUndefed?: boolean
+): Readonly<ThemeContext> | undefined {
   const theme = useContext(context);
-  if (!theme) {
+  if (!theme && !allowUndefed) {
     throw new Error("The `ThemeProvider` has not been initialized.");
   }
 
@@ -191,6 +238,7 @@ export interface ThemeProviderProps {
    * @defaultValue `colorScheme === "dark" ? DEFAULT_DARK_THEME : DEFAULT_LIGHT_THEME`
    */
   theme?: Readonly<ConfigurableThemeColors>;
+
   children: ReactNode;
 }
 
@@ -269,9 +317,16 @@ export interface ThemeProviderProps {
  */
 export function ThemeProvider(props: ThemeProviderProps): ReactElement {
   const { children, theme } = props;
+  const ssr = useSsr();
   const { colorScheme, colorSchemeMode } = useColorScheme();
   const [derivedTheme, setDerivedTheme] = useState<ConfigurableThemeColors>(
-    colorScheme === "dark" ? DEFAULT_DARK_THEME : DEFAULT_LIGHT_THEME
+    () => {
+      if (!ssr && typeof document !== "undefined") {
+        return getDerivedTheme(document.documentElement);
+      }
+
+      return colorScheme === "dark" ? DEFAULT_DARK_THEME : DEFAULT_LIGHT_THEME;
+    }
   );
 
   const derived = !theme;
@@ -335,6 +390,7 @@ export function ThemeProvider(props: ThemeProviderProps): ReactElement {
       textSecondaryColor,
       textHintColor,
       textDisabledColor,
+      setDerivedTheme,
     };
   }, [
     derived,

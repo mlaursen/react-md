@@ -124,6 +124,7 @@ export default function App(props: AppProps): ReactElement {
     <CoreProviders
       ssr
       colorSchemeMode={defaultColorSchemeMode}
+      colorSchemeModeKey="colorScheme"
       elementInteractionMode={defaultElementInteractionMode}
       disableHigherContrast={defaultDisableHighContrastMode}
     >

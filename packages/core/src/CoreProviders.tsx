@@ -61,6 +61,10 @@ export interface CoreProvidersProps {
   ssr?: boolean;
 
   colorSchemeMode?: ColorSchemeMode;
+  /**
+   * @defaultValue `""`
+   */
+  colorSchemeModeKey?: string;
 
   children: ReactNode;
 }
@@ -74,12 +78,16 @@ export function CoreProviders(props: CoreProvidersProps): ReactElement {
     disableHigherContrast = false,
     defaultDir = DEFAULT_WRITING_DIRECTION,
     colorSchemeMode = "light",
+    colorSchemeModeKey = "",
     portalContainer,
     children,
   } = props;
   return (
     <SsrProvider ssr={ssr}>
-      <ColorSchemeProvider mode={colorSchemeMode}>
+      <ColorSchemeProvider
+        mode={colorSchemeMode}
+        localStorageKey={colorSchemeModeKey}
+      >
         <WritingDirection defaultDir={defaultDir}>
           <PortalContainerProvider container={portalContainer}>
             <UserInteractionModeProvider>

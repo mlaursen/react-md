@@ -32,6 +32,8 @@ export interface ToggleHookReturnValue {
  *   );
  * }
  * ```
+ *
+ * @param defaultValue - `false`
  */
 export function useToggle(
   defaultValue: UseStateInitializer<boolean> = false

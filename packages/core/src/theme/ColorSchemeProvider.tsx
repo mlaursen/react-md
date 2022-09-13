@@ -1,7 +1,8 @@
 import type { ReactElement, ReactNode } from "react";
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useContext, useEffect, useMemo } from "react";
 
 import type { UseStateInitializer, UseStateSetter } from "../types";
+import { useLocalStorage } from "../useLocalStorage";
 import { useMediaQuery } from "../useMediaQuery";
 import { backgroundColorVar } from "./cssVars";
 import { getContrastRatio } from "./utils";
@@ -148,6 +149,14 @@ export interface ColorSchemeProviderProps {
    * @defaultValue `"light"`
    */
   mode?: ColorSchemeMode;
+
+  /**
+   * Set this to a string like `"colorScheme"` if you want to store the user's
+   * color scheme preference in local storage.
+   *
+   * @defaultValue `""`
+   */
+  localStorageKey?: string;
   children: ReactNode;
 }
 
@@ -158,8 +167,16 @@ export interface ColorSchemeProviderProps {
 export function ColorSchemeProvider(
   props: ColorSchemeProviderProps
 ): ReactElement {
-  const { children, mode = "light" } = props;
-  const [colorSchemeMode, setColorSchemeMode] = useState<ColorSchemeMode>(mode);
+  const { children, mode = "light", localStorageKey = "" } = props;
+  const { value: colorSchemeMode, setValue: setColorSchemeMode } =
+    useLocalStorage({
+      raw: true,
+      key: localStorageKey,
+      defaultValue: mode,
+      deserializer: (item) =>
+        item === "light" || item === "dark" || item === "system" ? item : mode,
+    });
+
   const isDarkTheme = useMediaQuery(
     "(prefers-color-scheme: dark)",
     mode !== "system"
@@ -173,7 +190,7 @@ export function ColorSchemeProvider(
       colorSchemeMode,
       setColorSchemeMode,
     }),
-    [colorScheme, colorSchemeMode]
+    [colorScheme, colorSchemeMode, setColorSchemeMode]
   );
   if (process.env.NODE_ENV === "development") {
     /* eslint-disable react-hooks/rules-of-hooks, no-console */
