@@ -37,8 +37,8 @@ export interface AppBarTitleClassNameOptions {
 }
 
 /**
- * Apply the `className`s for a tree component. This will be type-safe if using
- * typescript.
+ * Apply the `className`s for a `AppBarTitle` component. This will be type-safe
+ * if using typescript.
  *
  * @remarks \@since 6.0.0
  */

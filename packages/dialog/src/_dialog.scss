@@ -140,15 +140,14 @@ $var-lookup: (
     }
 
     @if not $disable-focus-outline {
-      &--outline {
-        @include core.use-interaction-outline;
-        @include core.keyboard-only {
-          &:focus {
-            @include core.set-interaction-var(
-              outline-color,
-              core.$outline-color
-            );
-          }
+      @include core.keyboard-only {
+        &--outline:focus {
+          // Note: Do not use the `use-interaction-outline` mixin +
+          // `set-interaction-var(core.$outline-color)` like normal focus
+          // elements since it'll make all focusable children update with the
+          // outline color as well
+          outline: core.get-interaction-var(outline-color) solid
+            core.get-interaction-var(outline-width);
         }
       }
     }
