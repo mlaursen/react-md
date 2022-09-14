@@ -1,4 +1,6 @@
 import type { UseStateSetter } from "@react-md/core";
+import type { ProvidedRadioProps } from "@react-md/form";
+import { useRadioGroup } from "@react-md/form";
 import type { SVGIcon } from "@react-md/icon";
 import { camelCase } from "lodash";
 import { useRouter } from "next/router";
@@ -119,9 +121,21 @@ type SetStateObject<Name extends string, Value> = {
   [key in `set${Capitalize<Name>}`]: UseStateSetter<Value>;
 };
 
+type RadioGroup<Name extends string, Value> = {
+  [key in Name]: Value;
+} & {
+  [key in `get${Capitalize<Name>}Props`]: (value: Value) => ProvidedRadioProps;
+};
+
 type ReturnValue = SetStateObject<"search", string> &
-  SetStateObject<"iconType", IconTypeState> &
-  SetStateObject<"iconCategory", IconCategoryState> & {
+  // {
+  // iconType: IconTypeState;
+  // getIconTypeProps(value: IconTypeState): ProvidedRadioProps;
+  // }
+  RadioGroup<"iconType", IconTypeState> &
+  RadioGroup<"iconCategory", IconCategoryState> & {
+    // SetStateObject<"iconCategory", IconCategoryState> & {
+    // SetStateObject<"iconType", IconTypeState> &
     loading: boolean;
     matches: IconReferences;
   };
@@ -129,12 +143,15 @@ type ReturnValue = SetStateObject<"search", string> &
 export function useMaterialIcons(): ReturnValue {
   const { query } = useRouter();
   const [search, setSearch] = useState(() => getSearchQuery(query));
-  const [iconType, setIconType] = useState<IconTypeState>(() =>
-    getIconType(query)
-  );
-  const [iconCategory, setIconCategory] = useState<IconCategoryState>(() =>
-    getIconCategory(query)
-  );
+  const { value: iconType, getRadioProps: getIconTypeProps } = useRadioGroup({
+    name: "iconType",
+    defaultValue: () => getIconType(query),
+  });
+  const { value: iconCategory, getRadioProps: getIconCategoryProps } =
+    useRadioGroup({
+      name: "iconCategory",
+      defaultValue: () => getIconCategory(query),
+    });
   const [state, setState] = useState<State>({
     loading: false,
     components: [],
@@ -176,8 +193,8 @@ export function useMaterialIcons(): ReturnValue {
     search,
     setSearch,
     iconType,
-    setIconType,
+    getIconTypeProps,
     iconCategory,
-    setIconCategory,
+    getIconCategoryProps,
   };
 }

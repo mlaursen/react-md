@@ -11,7 +11,7 @@ export default function BoxShadow(): ReactElement {
         <Box
           key={zValue}
           className={cnb(styles.shadow, styles[`shadow${zValue}`])}
-          justifyContent="center"
+          justify="center"
         >
           {zValue}
         </Box>

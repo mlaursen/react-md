@@ -8,7 +8,7 @@ import SimpleExample from "src/components/Dialog/SimpleExample";
 export default function DialogPage(): ReactElement {
   return (
     <TextContainer>
-      <Box flexDirection="column">
+      <Box stacked>
         <DemoHeadingWithDivider margin="none">
           Simple Example
         </DemoHeadingWithDivider>

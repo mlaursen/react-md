@@ -1,4 +1,3 @@
-// @use "../../packages/core/src/core";
 @use "everything";
 
 @include everything.styles;
@@ -18,3 +17,13 @@
 @include everything.layout-styles;
 @include everything.card-styles;
 @include everything.form-styles;
+
+@if everything.$color-scheme == system {
+  :root {
+    @media (prefers-color-scheme: dark) {
+      --code-color: #{everything.$pink-400};
+    }
+
+    --code-color: #{everything.$pink-600};
+  }
+}

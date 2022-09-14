@@ -5,6 +5,7 @@ $default-box-align-items: center !default;
 
 $disable-box: false !default;
 $disable-grid-box: false !default;
+$disable-grid-columns: false !default;
 
 $box-align-items: (start end stretch) !default;
 $box-justify-content: (
@@ -42,6 +43,10 @@ $box-var-lookup: (
   min-size: (
     var: --rmd-box-item-min-size,
     value: $box-item-min-size,
+  ),
+  columns: (
+    var: --rmd-box-columns,
+    value: auto-fit,
   ),
 );
 
@@ -123,16 +128,19 @@ $box-var-lookup: (
         &--grid {
           display: grid;
           grid-template-columns: repeat(
-            auto-fit,
+            get-box-var(columns),
             minmax(get-box-var(min-size), 1fr)
           );
         }
 
         &--grid-fill {
-          grid-template-columns: repeat(
-            auto-fill,
-            minmax(get-box-var(min-size), 1fr)
-          );
+          @include set-box-var(columns, auto-fill);
+        }
+
+        @if not $disable-grid-columns {
+          &--grid-columns {
+            @include set-box-var(min-size, 0);
+          }
         }
 
         @each $name, $values in $grids {

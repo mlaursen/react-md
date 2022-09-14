@@ -1,22 +1,18 @@
 import {
   box,
-  typography,
   RippleContainer,
   SkeletonPlaceholder,
+  typography,
   useElementInteraction,
+  useToggle,
 } from "@react-md/core";
+import { Dialog } from "@react-md/dialog";
 import { cnb } from "cnbuilder";
 import type { ReactElement } from "react";
-import { useId, useState } from "react";
-import type { IconReference } from "./useMaterialIcons";
-
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@react-md/dialog";
+import { useId } from "react";
 import styles from "./MatchedIcon.module.scss";
+import { MatchedIconContent } from "./MatchedIconContent";
+import type { IconReference } from "./useMaterialIcons";
 
 export interface MatchedIconProps extends IconReference {
   loading: boolean;
@@ -24,13 +20,11 @@ export interface MatchedIconProps extends IconReference {
 
 export function MatchedIcon(props: MatchedIconProps): ReactElement {
   const { icon: Icon, name, loading } = props;
-  const [visible, setVisible] = useState(false);
+  const { toggle, toggled: visible, disable: onRequestClose } = useToggle();
 
   const { pressedClassName, handlers, rippleContainerProps } =
     useElementInteraction({
-      onClick() {
-        setVisible((p) => !p);
-      },
+      onClick: toggle,
     });
 
   const titleId = useId();
@@ -46,8 +40,8 @@ export function MatchedIcon(props: MatchedIconProps): ReactElement {
             pressedClassName,
             typography({ type: "body-1" })
           ),
-          flexDirection: "column",
-          justifyContent: "center",
+          stacked: true,
+          justify: "center",
         })}
       >
         <SkeletonPlaceholder
@@ -69,28 +63,14 @@ export function MatchedIcon(props: MatchedIconProps): ReactElement {
       <Dialog
         aria-labelledby={titleId}
         visible={visible}
-        onRequestClose={() => setVisible(false)}
+        onRequestClose={onRequestClose}
+        className={styles.dialog}
       >
-        <DialogHeader>
-          <DialogTitle id={titleId}>{name}</DialogTitle>
-        </DialogHeader>
-        <DialogContent>
-          <pre>
-            <code>{`import ${name} from "@react-md/material-icons/${name}";`}</code>
-          </pre>
-          {/* TODO: Implement quick copy/paste */}
-          <div className={styles.preview}>
-            <Icon />
-          </div>
-          <Icon dense />
-          <Icon color="primary" />
-          <Icon color="secondary" />
-          <Icon color="warning" />
-          <Icon color="success" />
-          <Icon color="error" />
-          <Icon color="hint" />
-          <Icon color="disabled" />
-        </DialogContent>
+        <MatchedIconContent
+          {...props}
+          titleId={titleId}
+          onRequestClose={onRequestClose}
+        />
       </Dialog>
     </>
   );

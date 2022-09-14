@@ -1,10 +1,11 @@
+import { transformFile } from "@swc/core";
 import glob from "glob";
 import lodash from "lodash";
-import { transformFile } from "@swc/core";
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { optimize } from "svgo";
 
+import { existsSync } from "node:fs";
 import {
   COPY_BANNER,
   PACKAGES_ROOT,
@@ -12,7 +13,6 @@ import {
 } from "./constants.js";
 import { format } from "./utils/format.js";
 import { pascalCase } from "./utils/strings.js";
-import { existsSync } from "node:fs";
 
 const SKIP_GENERATE = true;
 

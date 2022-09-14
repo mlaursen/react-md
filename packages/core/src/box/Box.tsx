@@ -9,10 +9,7 @@ export interface BoxProps extends HTMLAttributes<HTMLDivElement>, BoxOptions {}
  * The `Box` component is a wrapper around the CSS box model and should solve
  * most of your `flex` and `grid` layout requirements for responsive design.
  * There are pass-through props for all of the box module styling properties
- * available by default. i.e.
- * - `flexDirection`
- * - `alignItems`
- * - `justifyContent`
+ * available by default.
  *
  * @example
  * Default Styles
@@ -115,11 +112,11 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(
     className,
     children,
     grid = false,
-    flexDirection = "row",
+    stacked = false,
     gridName = "",
-    gridAutoType = "fit",
-    alignItems,
-    justifyContent,
+    gridColumns = "fit",
+    align,
+    justify,
     disableWrap = false,
     disablePadding = false,
     ...remaining
@@ -132,11 +129,11 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(
       className={box({
         className,
         grid,
-        flexDirection,
+        stacked,
         gridName,
-        gridAutoType,
-        alignItems,
-        justifyContent,
+        gridColumns,
+        align,
+        justify,
         disableWrap,
         disablePadding,
       })}

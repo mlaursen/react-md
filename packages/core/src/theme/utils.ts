@@ -1,10 +1,8 @@
-export type HexString = string;
-export type RedBit = number;
-export type GreenBit = number;
-export type BlueBit = number;
-
+const RGB_REGEX = /^rgb\(((\b([01]?\d\d?|2[0-4]\d|25[0-5])\b),?){3}\)$/;
 const SHORTHAND_REGEX = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
 const VERBOSE_REGEX = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i;
+
+export type RGB = readonly [red: number, green: number, blue: number];
 
 /**
  * Converts a hex string into an rgb value. This is useful for detecting color
@@ -13,10 +11,7 @@ const VERBOSE_REGEX = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i;
  * @param hex - The hex string to convert
  * @returns an object containing the r, g, b values for the color.
  */
-export function hexToRGB(hex: HexString): [RedBit, GreenBit, BlueBit] {
-  // chrome 102.0.50005.63 apparently has whitespace when calling `window.getComputedStyle(element)`
-  hex = hex.trim();
-
+export function hexToRGB(hex: string): RGB {
   if (
     process.env.NODE_ENV !== "production" &&
     !SHORTHAND_REGEX.test(hex) &&
@@ -36,6 +31,22 @@ export function hexToRGB(hex: HexString): [RedBit, GreenBit, BlueBit] {
   const b = parseInt(result[3] || "", 16) || 0;
 
   return [r, g, b];
+}
+
+export function getRGB(color: string): RGB {
+  // chrome 102.0.50005.63 apparently has whitespace when calling `window.getComputedStyle(element)`
+  // remove whitepsace to make it easy for supporting rgb or hex
+  color = color.replace(/\s/g, "");
+  const rgbMatches = color.match(RGB_REGEX);
+  if (rgbMatches) {
+    const r = parseInt(rgbMatches[1] || "", 16) || 0;
+    const g = parseInt(rgbMatches[2] || "", 16) || 0;
+    const b = parseInt(rgbMatches[3] || "", 16) || 0;
+
+    return [r, g, b];
+  }
+
+  return hexToRGB(color);
 }
 
 const RED_MULTIPLIER = 0.2126;
@@ -66,8 +77,8 @@ function get8BitColor(color: number): number {
  * @see https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
  * @internal
  */
-export function getLuminance(color: HexString): number {
-  const [r, g, b] = hexToRGB(color);
+export function getLuminance(color: string): number {
+  const [r, g, b] = getRGB(color);
 
   const red = get8BitColor(r) * RED_MULTIPLIER;
   const green = get8BitColor(g) * GREEN_MULTIPLIER;
@@ -87,8 +98,8 @@ export function getLuminance(color: HexString): number {
  * @returns the contrast ratio between the background and foreground colors.
  */
 export function getContrastRatio(
-  background: HexString,
-  foreground: HexString
+  background: string,
+  foreground: string
 ): number {
   const backgroundLuminance = getLuminance(background) + 0.05;
   const foregroundLuminance = getLuminance(foreground) + 0.05;
@@ -138,8 +149,8 @@ export const AAA_CONTRAST_RATIO = 7;
  * background colors for the provided compliance level.
  */
 export function isContrastCompliant(
-  background: HexString,
-  foreground: HexString,
+  background: string,
+  foreground: string,
   compliance: ContrastRatioCompliance | number = "normal"
 ): boolean {
   let ratio: number;

@@ -1,0 +1,19 @@
+.container {
+  border-right: 1px solid currentcolor;
+  counter-reset: line-numbers;
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  padding-right: 0.5em;
+  pointer-events: none;
+  position: absolute;
+  text-align: right;
+  width: 3em;
+  // this is required for the "coy" theme
+  z-index: 2;
+}
+
+.counter::before {
+  content: counter(line-numbers);
+  counter-increment: line-numbers;
+}

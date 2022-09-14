@@ -28,12 +28,12 @@ const positions: MediaOverlayPosition[] = [
 export default function VisualMediaPage(): ReactElement {
   return (
     <TextContainer>
-      <Box flexDirection="column" alignItems="stretch">
+      <Box stacked align="stretch">
         <DemoHeadingWithDivider margin="none">
           Simple Responsive Images
         </DemoHeadingWithDivider>
         <Card>
-          <Box alignItems="start">
+          <Box align="start">
             {images.map((image, i) => (
               <VisualMediaContainer key={i}>
                 <img src={`https://picsum.photos${image}`} alt="" />

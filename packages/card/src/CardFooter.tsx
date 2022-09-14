@@ -7,24 +7,19 @@ export interface CardFooterProps extends BoxProps {
   /**
    * @defaultValue `"flex-end"`
    */
-  justifyContent?: BoxJustifyContent;
+  justify?: BoxJustifyContent;
 }
 
 export const CardFooter = forwardRef<HTMLDivElement, CardFooterProps>(
   function CardFooter(props, ref) {
-    const {
-      className,
-      children,
-      justifyContent = "flex-end",
-      ...remaining
-    } = props;
+    const { className, children, justify = "flex-end", ...remaining } = props;
 
     return (
       <Box
         {...remaining}
         ref={ref}
         className={cardFooter({ className })}
-        justifyContent={justifyContent}
+        justify={justify}
       >
         {children}
       </Box>

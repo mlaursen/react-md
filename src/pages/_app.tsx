@@ -22,6 +22,7 @@ import { upperFirst } from "lodash";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import type { ReactElement } from "react";
+import { CodeConfigProvider } from "src/components/Code";
 import Layout from "src/components/Layout/Layout";
 import { LoadThemeStyles } from "src/components/Theme/LoadThemeStyles";
 import {
@@ -133,10 +134,12 @@ export default function App(props: AppProps): ReactElement {
       </Head>
       <ThemeProvider>
         <IconProvider {...icons}>
-          <Layout title={title}>
-            <Component {...pageProps} />
-            <LoadThemeStyles />
-          </Layout>
+          <CodeConfigProvider>
+            <Layout title={title}>
+              <Component {...pageProps} />
+              <LoadThemeStyles />
+            </Layout>
+          </CodeConfigProvider>
         </IconProvider>
       </ThemeProvider>
     </CoreProviders>

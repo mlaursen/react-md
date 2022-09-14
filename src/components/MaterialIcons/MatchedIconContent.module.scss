@@ -1,0 +1,7 @@
+@use "everything";
+
+.preview {
+  @include everything.icon-set-var(size, 8rem);
+
+  padding: 1rem;
+}

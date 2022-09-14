@@ -58,8 +58,8 @@ export default function ListPage(): ReactElement {
     <TextContainer>
       <Box
         style={colorSchemeMode === "light" ? undefined : style}
-        flexDirection="column"
-        alignItems="stretch"
+        stacked
+        align="stretch"
       >
         <List>
           <ListItem>Item 1</ListItem>

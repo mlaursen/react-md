@@ -161,6 +161,7 @@ export function useFocusContainer<E extends HTMLElement>(
         const elements = getFocusableElements(container);
         const count = elements.length;
         if (count === 0) {
+          event.preventDefault();
           return;
         }
 

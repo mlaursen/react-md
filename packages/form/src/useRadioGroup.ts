@@ -1,4 +1,4 @@
-import type { UseStateSetter } from "@react-md/core";
+import type { UseStateInitializer, UseStateSetter } from "@react-md/core";
 import type { ChangeEventHandler } from "react";
 import { useCallback, useState } from "react";
 
@@ -21,7 +21,7 @@ export interface RadioGroupOptions<T extends string | number> {
    *
    * @defaultValue `""`
    */
-  defaultValue?: T;
+  defaultValue?: UseStateInitializer<T>;
 
   /**
    * If you need custom `onChange` behavior for your `Radio` components, you can
@@ -51,25 +51,6 @@ export interface RadioGroupReturnValue<T extends string | number> {
 
 /**
  * @example
- * Generic String Example
- * ```tsx
- * const { value, getRadioProps } = useRadioGroup({ name: "group" });
- *
- * return (
- *   <>
- *     <Radio {...getRadioProps("a")} label="First" />
- *     <Radio {...getRadioProps("b")} label="Second" />
- *     <Radio {...getRadioProps("c")} label="Third" />
- *   </>
- * );
- * ```
- * @remarks \@since 6.0.0
- */
-export function useRadioGroup(
-  options: RadioGroupOptions<string> & { defaultValue?: string }
-): RadioGroupReturnValue<string>;
-/**
- * @example
  * Generic Number Example
  * ```tsx
  * const { value, getRadioProps } = useRadioGroup<number>({
@@ -89,9 +70,23 @@ export function useRadioGroup(
  * @remarks \@since 6.0.0
  */
 export function useRadioGroup<T extends number>(
-  options: RadioGroupOptions<T> & { defaultValue: number }
+  options: RadioGroupOptions<T> & { defaultValue: UseStateInitializer<T> }
 ): RadioGroupReturnValue<T>;
 /**
+ * @example
+ * Generic String Example
+ * ```tsx
+ * const { value, getRadioProps } = useRadioGroup({ name: "group" });
+ *
+ * return (
+ *   <>
+ *     <Radio {...getRadioProps("a")} label="First" />
+ *     <Radio {...getRadioProps("b")} label="Second" />
+ *     <Radio {...getRadioProps("c")} label="Third" />
+ *   </>
+ * );
+ * ```
+ *
  * @example
  * String Union Example
  * ```tsx
@@ -121,7 +116,7 @@ export function useRadioGroup<T extends number>(
  * @remarks \@since 6.0.0
  */
 export function useRadioGroup<T extends string>(
-  options: RadioGroupOptions<T> & { defaultValue: T }
+  options: RadioGroupOptions<T> & { defaultValue?: UseStateInitializer<T> }
 ): RadioGroupReturnValue<T>;
 /**
  * @example

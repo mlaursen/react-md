@@ -1,3 +1,4 @@
+import { useToggle } from "@react-md/core";
 import { Layout as RMDLayout, useLayoutNavigation } from "@react-md/layout";
 import type { ListElement } from "@react-md/list";
 import { useRouter } from "next/router";
@@ -18,6 +19,11 @@ export interface LayoutProps {
 export default function Layout(props: LayoutProps): ReactElement {
   const { pathname } = useRouter();
   const { title, children } = props;
+  const {
+    enable: showConfiguration,
+    disable: hideConfiguration,
+    toggled: configurationVisible,
+  } = useToggle();
 
   const focus = useCallback((instance: ListElement | null) => {
     // since I don't have anything else in the main navigation panel for now and
@@ -29,7 +35,13 @@ export default function Layout(props: LayoutProps): ReactElement {
   return (
     <RMDLayout
       appBarProps={{
-        children: <MainActions />,
+        children: (
+          <MainActions
+            showConfiguration={showConfiguration}
+            hideConfiguration={hideConfiguration}
+            configurationVisible={configurationVisible}
+          />
+        ),
       }}
       title={title}
       treeProps={{
@@ -42,7 +54,7 @@ export default function Layout(props: LayoutProps): ReactElement {
       largeDesktopLayout="temporary"
       landscapeTabletLayout="temporary"
     >
-      <KeyboardShortcuts />
+      <KeyboardShortcuts showConfiguration={showConfiguration} />
       {children}
     </RMDLayout>
   );

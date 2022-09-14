@@ -3,7 +3,7 @@ import type { ReactElement } from "react";
 
 export default function TransitionPage(): ReactElement {
   return (
-    <Box flexDirection="column" alignItems="start">
+    <Box stacked align="start">
       <SkeletonPlaceholder height="1rem" />
       <SkeletonPlaceholder height="1rem" />
       <SkeletonPlaceholder height="1rem" />

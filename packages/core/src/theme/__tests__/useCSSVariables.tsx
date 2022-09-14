@@ -1,9 +1,8 @@
 import { render } from "@testing-library/react";
-import type { ReactElement } from "react";
+import type { CSSProperties, ReactElement } from "react";
 import type { ThemeCssVarName } from "../cssVars";
 import { textPrimaryColorVar } from "../cssVars";
 
-import type { CSSVariablesProperties } from "../useCSSVariables";
 import { useCSSVariables } from "../useCSSVariables";
 
 describe("useCSSVariables", () => {
@@ -24,7 +23,7 @@ describe("useCSSVariables", () => {
   });
 
   it("should return a style object if the local argument is `true`", () => {
-    let style: CSSVariablesProperties | undefined;
+    let style: CSSProperties | undefined;
     function Test(): ReactElement {
       style = useCSSVariables([{ name: "--test", value: "3rem" }], true);
       return <div style={style} />;

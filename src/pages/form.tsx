@@ -56,7 +56,6 @@ const themes = ["none", "underline", "filled", "outline"] as const;
 function RadioGroup(): ReactElement {
   const { getRadioProps } = useRadioGroup({
     name: "radio-group",
-    defaultValue: "",
   });
 
   return (

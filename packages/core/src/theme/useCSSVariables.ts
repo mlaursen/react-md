@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { useMemo } from "react";
 import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect";
 import type { ThemeCssVarName } from "./cssVars";
@@ -25,7 +26,7 @@ export function useCSSVariables<Name extends CSSVariableName>(
 export function useCSSVariables<Name extends CSSVariableName>(
   variables: readonly Readonly<CSSVariable<Name>>[],
   local: true
-): CSSVariablesProperties<Name>;
+): CSSVariablesProperties<Name> & CSSProperties;
 export function useCSSVariables<Name extends CSSVariableName>(
   variables: readonly Readonly<CSSVariable<Name>>[],
   local?: boolean

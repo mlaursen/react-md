@@ -65,21 +65,21 @@ export interface BoxOptions {
   /**
    * @defaultValue `"fit"`
    */
-  gridAutoType?: "fit" | "fill";
+  gridColumns?: "fit" | "fill" | number;
 
   /**
    * @defaultValue `""`
    */
-  alignItems?: BoxAlignItems;
+  align?: BoxAlignItems;
 
   /**
    * The default value is really `center` or whatever the `$default-align-items` is set to.
    * @defaultValue `""`
    */
-  justifyContent?: BoxJustifyContent;
+  justify?: BoxJustifyContent;
 
-  /** @defaultValue `"row"` */
-  flexDirection?: BoxFlexDirection;
+  /** @defaultValue `false` */
+  stacked?: boolean;
 }
 
 export function box(options: BoxOptions = {}): string {
@@ -88,33 +88,33 @@ export function box(options: BoxOptions = {}): string {
     className,
     disableWrap = false,
     disablePadding = false,
+    stacked = false,
     gridName = "",
-    gridAutoType = "fit",
-    alignItems = "",
-    justifyContent = "",
-    flexDirection = "row",
+    gridColumns = "fit",
+    align = "",
+    justify = "",
   } = options;
 
   return cnb(
     styles({
       wrap: !disableWrap,
       padded: !disablePadding,
-      "flex-column": flexDirection === "column",
+      "flex-column": stacked,
       grid,
-      "grid-fill": gridAutoType === "fill",
+      "grid-fill": gridColumns === "fill",
+      "grid-columns": typeof gridColumns === "number",
       [gridName]: grid && gridName,
-      "align-start": alignItems === "start" || alignItems === "flex-start",
-      "align-center": alignItems === "center",
-      "align-end": alignItems === "end" || alignItems === "flex-end",
-      "align-stretch": alignItems === "stretch",
-      "justify-center": justifyContent === "center",
-      "justify-start":
-        justifyContent === "start" || justifyContent === "flex-start",
-      "justify-end": justifyContent === "end" || justifyContent === "flex-end",
-      "justify-stretch": justifyContent === "stretch",
-      "justify-around": justifyContent === "space-around",
-      "justify-between": justifyContent === "space-between",
-      "justify-evenly": justifyContent === "space-evenly",
+      "align-start": align === "start" || align === "flex-start",
+      "align-center": align === "center",
+      "align-end": align === "end" || align === "flex-end",
+      "align-stretch": align === "stretch",
+      "justify-center": justify === "center",
+      "justify-start": justify === "start" || justify === "flex-start",
+      "justify-end": justify === "end" || justify === "flex-end",
+      "justify-stretch": justify === "stretch",
+      "justify-around": justify === "space-around",
+      "justify-between": justify === "space-between",
+      "justify-evenly": justify === "space-evenly",
     }),
     className
   );

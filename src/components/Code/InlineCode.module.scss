@@ -1,0 +1,20 @@
+@use "everything";
+@use "sass:map";
+
+.code {
+  @include everything.map-to-styles(
+    map.remove(everything.$body-1-styles, font-size)
+  );
+
+  font-family: "Source Code Pro", Consolas, Monaco, monospace;
+}
+
+.inline {
+  color: var(--code-color);
+  white-space: pre-wrap;
+
+  &::before,
+  &::after {
+    content: "\`";
+  }
+}

@@ -23,8 +23,6 @@
   width: everything.icon-get-var(size);
 }
 
-.preview {
-  @include everything.icon-set-var(size, 8rem);
-
-  padding: 1rem;
+.dialog {
+  width: 40rem;
 }

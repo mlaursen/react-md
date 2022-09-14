@@ -3,18 +3,20 @@ import {
   box,
   Box,
   getScrollbarWidth,
-  typography,
   Typography,
+  useCSSVariables,
   useResizeObserver,
 } from "@react-md/core";
-import type { ReactElement } from "react";
-import { useCallback, useState } from "react";
-import { useMaterialIcons } from "./useMaterialIcons";
-
 import { Divider } from "@react-md/divider";
+import { Radio, TextField } from "@react-md/form";
+import SearchIcon from "@react-md/material-icons/SearchIcon";
+import type { ReactElement } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { ICON_CATEGORIES, ICON_TYPES } from "src/constants/materialIcons";
 import { MatchedIcons } from "./MatchedIcons";
-import { Radio } from "./Radio";
+import { useMaterialIcons } from "./useMaterialIcons";
+
+const MIN_CELL_WIDTH = 160;
 
 export default function MaterialIcons(): ReactElement {
   const {
@@ -22,13 +24,14 @@ export default function MaterialIcons(): ReactElement {
     matches,
     search,
     setSearch,
-    iconType,
-    setIconType,
-    iconCategory,
-    setIconCategory,
+    getIconTypeProps,
+    getIconCategoryProps,
   } = useMaterialIcons();
 
-  const [size, setSize] = useState({ containerWidth: 150, rowWidth: 150 });
+  const [{ containerWidth, rowWidth }, setSize] = useState({
+    containerWidth: 150,
+    rowWidth: 150,
+  });
   const [_ref, refCallback] = useResizeObserver(
     useCallback<OnResizeObserverChange>(({ height, scrollHeight, width }) => {
       setSize({
@@ -37,6 +40,11 @@ export default function MaterialIcons(): ReactElement {
       });
     }, [])
   );
+  const columns = Math.floor(rowWidth / MIN_CELL_WIDTH);
+  const style = useCSSVariables(
+    useMemo(() => [{ name: "--rmd-box-columns", value: columns }], [columns]),
+    true
+  );
 
   return (
     <>
@@ -44,20 +52,9 @@ export default function MaterialIcons(): ReactElement {
         Icon Type
       </Typography>
       <Box>
-        <Radio
-          name="iconType"
-          value="all"
-          currentValue={iconType}
-          setCurrentValue={setIconType}
-        />
+        <Radio {...getIconTypeProps("all")} label="All" />
         {ICON_TYPES.map((value) => (
-          <Radio
-            key={value}
-            name="iconType"
-            value={value}
-            currentValue={iconType}
-            setCurrentValue={setIconType}
-          />
+          <Radio key={value} label={value} {...getIconTypeProps(value)} />
         ))}
       </Box>
       <Divider />
@@ -65,45 +62,29 @@ export default function MaterialIcons(): ReactElement {
         Icon Category
       </Typography>
       <Box>
-        <Radio
-          name="iconCategory"
-          value="all"
-          currentValue={iconCategory}
-          setCurrentValue={setIconCategory}
-        />
+        <Radio label="All" {...getIconCategoryProps("all")} />
         {ICON_CATEGORIES.map((value) => (
-          <Radio
-            key={value}
-            name="iconCategory"
-            value={value}
-            currentValue={iconCategory}
-            setCurrentValue={setIconCategory}
-          />
+          <Radio key={value} {...getIconCategoryProps(value)} label={value} />
         ))}
       </Box>
       <Divider />
-      <label
-        htmlFor="search-input"
-        className={box({
-          className: typography({
-            margin: "none",
-            type: "headline-6",
-          }),
-        })}
-      >
-        Search...
-      </label>
       <Box>
-        <input
-          id="search-input"
-          type="text"
+        <TextField
+          type="search"
+          label="Search"
           value={search}
           onChange={(event) => setSearch(event.currentTarget.value)}
+          placeholder="favorite"
+          rightAddon={<SearchIcon />}
         />
       </Box>
-
-      <div ref={refCallback}>
-        <MatchedIcons {...size} matches={matches} loading={loading} />
+      <div style={style} ref={refCallback}>
+        <MatchedIcons
+          columns={columns}
+          containerWidth={containerWidth}
+          matches={matches}
+          loading={loading}
+        />
       </div>
     </>
   );

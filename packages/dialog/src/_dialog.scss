@@ -141,13 +141,9 @@ $var-lookup: (
 
     @if not $disable-focus-outline {
       &--outline {
-        &::before {
-          @include core.pseudo-element;
-          @include core.use-interaction-outline;
-        }
-
+        @include core.use-interaction-outline;
         @include core.keyboard-only {
-          &:focus::before {
+          &:focus {
             @include core.set-interaction-var(
               outline-color,
               core.$outline-color
@@ -194,9 +190,10 @@ $var-lookup: (
       flex: 0 0 auto;
     }
 
-    // &__title {
-    //   // no styles needed at this time
-    // }
+    &__title {
+      // this makes it so it's easy to add a close button after the title
+      flex: 1 1 auto;
+    }
 
     &__content {
       flex: 1 1 auto;

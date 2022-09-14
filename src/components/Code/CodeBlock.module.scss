@@ -1,0 +1,46 @@
+@use "everything";
+
+$offset: 0.125rem;
+
+.pre {
+  direction: left;
+  position: relative;
+  flex-shrink: 0;
+
+  &.lineNumbers.lineNumbers {
+    padding-left: 3.5em;
+  }
+}
+
+.copy {
+  @include everything.button-set-var(icon-size, 2.5rem);
+  @include everything.icon-set-var(size, everything.$icon-dense-size);
+  @include everything.keyboard-only(true) {
+    &:focus {
+      opacity: 1;
+    }
+  }
+
+  opacity: 0;
+  position: absolute;
+  right: $offset;
+  top: $offset;
+  transition: opacity everything.$linear-duration;
+  z-index: 2;
+
+  .pre:hover & {
+    opacity: 1;
+  }
+}
+
+.bgLight {
+  @include everything.use-interaction-light-theme;
+
+  color: everything.$black-base;
+}
+
+.bgDark {
+  @include everything.use-interaction-dark-theme;
+
+  color: everything.$white-base;
+}

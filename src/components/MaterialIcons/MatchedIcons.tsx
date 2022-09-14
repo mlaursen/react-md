@@ -1,25 +1,24 @@
+import { Box } from "@react-md/core";
 import type { HTMLAttributes, ReactElement } from "react";
 import { forwardRef } from "react";
 import { FixedSizeList } from "react-window";
 import { MatchedIcon } from "./MatchedIcon";
-import type { IconReferences } from "./useMaterialIcons";
 import styles from "./MatchedIcons.module.scss";
+import type { IconReferences } from "./useMaterialIcons";
 
-const MIN_CELL_WIDTH = 160;
 const CONTAINER_HEIGHT = 448;
-const ITEM_HEIGHT = 91;
+const ITEM_HEIGHT = 96 + 32;
 
 export interface MatchedIconsProps {
   loading: boolean;
-  rowWidth: number;
   containerWidth: number;
   matches: IconReferences;
+  columns: number;
 }
 
 export function MatchedIcons(props: MatchedIconsProps): ReactElement {
-  const { rowWidth, containerWidth, matches, loading } = props;
+  const { columns, containerWidth, matches, loading } = props;
   const total = matches.length;
-  const columns = Math.floor(rowWidth / MIN_CELL_WIDTH);
   const itemCount = Math.ceil(total / columns);
   const lastRowIndex = itemCount - 1;
   const lastRowColumns = Math.min(total, columns, total % columns);
@@ -34,15 +33,7 @@ export function MatchedIcons(props: MatchedIconsProps): ReactElement {
       innerElementType={HideNaNStyle}
     >
       {({ index, style }) => (
-        <div
-          style={{
-            ...style,
-            display: "grid",
-            gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
-            gridGap: "1rem",
-            padding: "0.5rem",
-          }}
-        >
+        <Box grid gridName="half-padding" gridColumns={columns} style={style}>
           {Array.from(
             { length: index === lastRowIndex ? lastRowColumns : columns },
             (_, column) => {
@@ -59,7 +50,7 @@ export function MatchedIcons(props: MatchedIconsProps): ReactElement {
               );
             }
           )}
-        </div>
+        </Box>
       )}
     </FixedSizeList>
   );

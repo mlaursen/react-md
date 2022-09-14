@@ -1,7 +1,14 @@
+import { useLayoutConfig } from "@react-md/layout";
 import { useEffect } from "react";
 
-export function KeyboardShortcuts(): null {
-  // const { showNav } = useLayoutConfig()
+export interface KeyboardShortcutsProps {
+  showConfiguration(): void;
+}
+
+export function KeyboardShortcuts({
+  showConfiguration,
+}: KeyboardShortcutsProps): null {
+  const { showNav } = useLayoutConfig();
   useEffect(() => {
     const callback = (event: KeyboardEvent): void => {
       const { key, altKey, shiftKey } = event;
@@ -9,26 +16,14 @@ export function KeyboardShortcuts(): null {
         return;
       }
 
-      let label = "";
       switch (key) {
         case "N":
-          label = "Show Navigation";
+          showNav();
           break;
         case "O":
-          label = "Configuration";
+          showConfiguration();
           break;
       }
-
-      if (!label) {
-        return;
-      }
-
-      const button = document.querySelector<HTMLButtonElement>(
-        `button[aria-label="${label}"]`
-      );
-
-      button?.focus();
-      button?.click();
     };
 
     window.addEventListener("keydown", callback);
@@ -36,7 +31,7 @@ export function KeyboardShortcuts(): null {
     return () => {
       window.removeEventListener("keydown", callback);
     };
-  }, []);
+  }, [showConfiguration, showNav]);
 
   return null;
 }
