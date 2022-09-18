@@ -290,6 +290,12 @@ $interaction-var-lookup: (
     );
   }
 
+  @include touch-only {
+    &:hover::before {
+      @include set-interaction-var(background-color, transparent);
+    }
+  }
+
   @if $interaction-mode == press or $interaction-mode == both {
     &.rmd-pressed::before {
       @include set-interaction-var(

@@ -1,4 +1,4 @@
-import type { KeyboardEvent, MouseEvent, TouchEvent } from "react";
+import type { KeyboardEvent, MouseEvent } from "react";
 import { useCallback, useReducer, useRef } from "react";
 import { useElementInteractionContext } from "./ElementInteractionProvider";
 import type {
@@ -92,9 +92,6 @@ const noop = (): void => {
  *     onMouseDown,
  *     onMouseUp,
  *     onMouseLeave,
- *     onTouchStart,
- *     onTouchMove,
- *     onTouchEnd,
  *     ...remaining,
  *   } = props;
  *
@@ -110,9 +107,6 @@ const noop = (): void => {
  *       onMouseDown,
  *       onMouseUp,
  *       onMouseLeave,
- *       onTouchStart,
- *       onTouchMove,
- *       onTouchEnd,
  *     })
  *
  *   return (
@@ -134,6 +128,9 @@ const noop = (): void => {
  * @param options - An object of {@link ElementInteractionOptions} that is used
  * to merge event handlers or disable the interactions.
  * @returns the {@link ElementInteractionHookReturnValue}
+ * @remarks \@since 6.0.0 Touch interactions were removed since it never looked
+ * good if the user touched a clickable element right before scrolling. The
+ * ripple effect will only be fired on click now for touch devices.
  */
 export function useElementInteraction<E extends HTMLElement>(
   options: ElementInteractionOptions<E> = {}
@@ -145,9 +142,6 @@ export function useElementInteraction<E extends HTMLElement>(
     onMouseLeave = noop,
     onKeyUp = noop,
     onKeyDown = noop,
-    onTouchStart = noop,
-    onTouchEnd = noop,
-    onTouchMove = noop,
     disabled = false,
   } = options;
 
@@ -256,9 +250,12 @@ export function useElementInteraction<E extends HTMLElement>(
           }
 
           event.stopPropagation();
-          dispatch({ type: "press", style: getRippleStyle(event, true) });
+          dispatch({
+            type: "press",
+            style: getRippleStyle(event, userMode !== "touch"),
+          });
         },
-        [disabled, mode, onClick]
+        [disabled, mode, onClick, userMode]
       ),
       onMouseDown: useCallback(
         (event: MouseEvent<E>) => {
@@ -382,49 +379,6 @@ export function useElementInteraction<E extends HTMLElement>(
           dispatch({ type: "release" });
         },
         [isInteractionDisabled, onKeyUp, userMode]
-      ),
-      onTouchStart: useCallback(
-        (event: TouchEvent<E>) => {
-          onTouchStart(event);
-          if (event.isPropagationStopped() || isInteractionDisabled) {
-            return;
-          }
-
-          holding.current = true;
-          event.stopPropagation();
-          let style: RippleStyle | undefined;
-          if (mode === "ripple") {
-            style = getRippleStyle(event, false);
-          }
-
-          dispatch({ type: "press", style });
-        },
-        [mode, isInteractionDisabled, onTouchStart]
-      ),
-      onTouchEnd: useCallback(
-        (event: TouchEvent<E>) => {
-          onTouchEnd(event);
-          if (event.isPropagationStopped() || isInteractionDisabled) {
-            return;
-          }
-
-          holding.current = false;
-          event.stopPropagation();
-        },
-        [isInteractionDisabled, onTouchEnd]
-      ),
-      onTouchMove: useCallback(
-        (event: TouchEvent<E>) => {
-          onTouchMove(event);
-          if (event.isPropagationStopped() || isInteractionDisabled) {
-            return;
-          }
-
-          holding.current = false;
-          event.stopPropagation();
-          dispatch({ type: "cancel" });
-        },
-        [isInteractionDisabled, onTouchMove]
       ),
     },
   };

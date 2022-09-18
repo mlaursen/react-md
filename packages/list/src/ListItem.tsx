@@ -58,9 +58,6 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
       onMouseDown,
       onMouseUp,
       onMouseLeave,
-      onTouchStart,
-      onTouchEnd,
-      onTouchMove,
       tabIndex = disabled ? -1 : 0,
       children: propChildren,
       ...remaining
@@ -73,9 +70,6 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
         onMouseDown,
         onMouseUp,
         onMouseLeave,
-        onTouchStart,
-        onTouchEnd,
-        onTouchMove,
         disabled,
       });
     const children = useHigherContrastChildren(

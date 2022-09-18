@@ -100,15 +100,6 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
       buttonType = propChildren ? "text" : "icon",
       disabled = false,
       multiple = false,
-      // onClick,
-      // onMouseDown,
-      // onMouseUp,
-      // onMouseLeave,
-      // onKeyUp,
-      // onKeyDown,
-      // onTouchStart,
-      // onTouchEnd,
-      // onTouchMove,
       ...remaining
     } = props;
     const id = useEnsuredId(propId, "file-input");

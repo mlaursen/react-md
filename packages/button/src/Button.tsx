@@ -117,9 +117,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       onMouseDown,
       onMouseUp,
       onMouseLeave,
-      onTouchStart,
-      onTouchEnd,
-      onTouchMove,
       ...remaining
     } = props;
     const isThemeDisabled = theme === "disabled";
@@ -131,9 +128,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         onMouseDown,
         onMouseUp,
         onMouseLeave,
-        onTouchStart,
-        onTouchEnd,
-        onTouchMove,
         disabled: disabled || isThemeDisabled,
       });
 

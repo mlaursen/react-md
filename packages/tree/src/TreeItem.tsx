@@ -60,9 +60,6 @@ export function TreeItem(props: TreeItemProps): ReactElement {
     onMouseDown,
     onMouseUp,
     onMouseLeave,
-    onTouchStart,
-    onTouchEnd,
-    onTouchMove,
     contentRef,
     isLeafNode,
     ...remaining
@@ -105,9 +102,6 @@ export function TreeItem(props: TreeItemProps): ReactElement {
       onMouseDown,
       onMouseUp,
       onMouseLeave,
-      onTouchStart,
-      onTouchEnd,
-      onTouchMove,
       disabled,
     });
 

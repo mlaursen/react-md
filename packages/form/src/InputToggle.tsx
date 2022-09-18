@@ -289,9 +289,6 @@ export const InputToggle = forwardRef<HTMLInputElement, InputToggleProps>(
       onMouseDown,
       onMouseLeave,
       onMouseUp,
-      onTouchEnd,
-      onTouchMove,
-      onTouchStart,
       ...remaining
     } = props as CheckboxInputToggleProps;
     const { disabled = false, readOnly = false } = props;
@@ -307,9 +304,6 @@ export const InputToggle = forwardRef<HTMLInputElement, InputToggleProps>(
         onMouseDown,
         onMouseLeave,
         onMouseUp,
-        onTouchEnd,
-        onTouchMove,
-        onTouchStart,
       });
     const uncheckedIcon = useIcon(type, propIcon);
     const checkedIcon = useIcon(`${type}Checked`, propCheckedIcon);
