@@ -14,6 +14,7 @@ $disable-medium-height: false !default;
 $disable-large-height: false !default;
 $disable-extra-large-height: false !default;
 $disable-three-line-height: false !default;
+$disable-item-link-styles: false !default;
 
 $disable-subheader: false !default;
 $disable-subheader-inset: False !default;
@@ -161,6 +162,13 @@ $var-lookup: (
     align-items: center;
     display: flex;
     padding: get-var(item-vertical-padding) get-var(item-horizontal-padding);
+
+    @if not $disable-item-link-styles {
+      &--link {
+        color: inherit;
+        text-decoration: none;
+      }
+    }
 
     @if not $disable-item-disabled-color {
       &--disabled-color {

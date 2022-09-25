@@ -1,4 +1,4 @@
-import type { KeyboardEventHandler } from "react";
+import type { KeyboardEventHandler, RefObject } from "react";
 import { useEffect, useRef } from "react";
 
 import type { TransitionOptions } from "../transition/types";
@@ -31,7 +31,7 @@ export type FocusType = "mount" | "unmount" | "keyboard";
 /** @remarks \@since 6.0.0 */
 export type FocusContainerTransitionOptions<E extends HTMLElement> = Pick<
   TransitionOptions<E>,
-  "onEntering" | "onExiting" | "nodeRef"
+  "onEntered" | "onExited" | "nodeRef"
 >;
 
 /** @remarks \@since 6.0.0 */
@@ -39,16 +39,21 @@ export interface FocusContainerEventHandlers<E extends HTMLElement> {
   onKeyDown?: KeyboardEventHandler<E>;
 }
 
+export interface FocusContainerComponentProps {
+  /**
+   * @defaultValue `() => false`
+   */
+  isFocusTypeDisabled?(type: FocusType): boolean;
+}
+
 /** @remarks \@since 6.0.0 */
 export interface FocusContainerOptions<E extends HTMLElement>
-  extends FocusContainerTransitionOptions<E> {
+  extends FocusContainerTransitionOptions<E>,
+    FocusContainerComponentProps {
   onKeyDown?: KeyboardEventHandler<E>;
-
-  isDisabled?(type: FocusType): boolean;
-
   /**
    * This to `true` will capture the current focused element as a focus target
-   * once the `onExiting` hook is fired. This should usually be set to the
+   * once the `onExited` hook is fired. This should usually be set to the
    * `transitionIn` prop for `useTransition`.
    */
   activate: boolean;
@@ -56,6 +61,7 @@ export interface FocusContainerOptions<E extends HTMLElement>
 
 /** @remarks \@since 6.0.0 */
 export interface FocusContainerImplementation<E extends HTMLElement> {
+  ref: RefObject<E>;
   eventHandlers: Required<FocusContainerEventHandlers<E>>;
   transitionOptions: Required<FocusContainerTransitionOptions<E>>;
 }
@@ -109,10 +115,10 @@ export function useFocusContainer<E extends HTMLElement>(
   const {
     nodeRef,
     activate,
-    onEntering = noop,
-    onExiting = noop,
+    onEntered = noop,
+    onExited = noop,
     onKeyDown = noop,
-    isDisabled = noop,
+    isFocusTypeDisabled = noop,
   } = options;
 
   const [ref, refCallback] = useEnsuredRef(nodeRef);
@@ -127,21 +133,22 @@ export function useFocusContainer<E extends HTMLElement>(
   }, [activate]);
 
   return {
+    ref,
     transitionOptions: {
       nodeRef: refCallback,
-      onEntering(appearing) {
-        onEntering(appearing);
+      onEntered(appearing) {
+        onEntered(appearing);
         if (
-          !isDisabled("mount") &&
+          !isFocusTypeDisabled("mount") &&
           (!document.activeElement ||
             !ref.current?.contains(document.activeElement))
         ) {
           ref.current?.focus();
         }
       },
-      onExiting() {
-        onExiting();
-        if (!isDisabled("unmount")) {
+      onExited() {
+        onExited();
+        if (!isFocusTypeDisabled("unmount")) {
           prevFocus.current?.focus();
         }
       },
@@ -152,7 +159,7 @@ export function useFocusContainer<E extends HTMLElement>(
         if (
           event.isPropagationStopped() ||
           event.key !== "Tab" ||
-          isDisabled("keyboard")
+          isFocusTypeDisabled("keyboard")
         ) {
           return;
         }

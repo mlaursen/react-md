@@ -55,6 +55,7 @@ const Solarizedlight = dynamic(() => import("./prism-themes/Solarizedlight"));
 const Tomorrow = dynamic(() => import("./prism-themes/Tomorrow"));
 const Twilight = dynamic(() => import("./prism-themes/Twilight"));
 const Default = dynamic(() => import("./prism-themes/Default"));
+const VimSolarizedDark = dynamic(() => import("./VimSolarizedDark"));
 
 export function LoadPrismTheme(): ReactElement {
   const { theme } = useCodeConfig();
@@ -107,6 +108,7 @@ export function LoadPrismTheme(): ReactElement {
       {theme === "tomorrow" && <Tomorrow />}
       {theme === "twilight" && <Twilight />}
       {theme === "default" && <Default />}
+      {theme === "vim-solarized-dark" && <VimSolarizedDark />}
     </>
   );
 }

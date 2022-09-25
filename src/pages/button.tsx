@@ -1,4 +1,4 @@
-import { Button, FloatingActionButton } from "@react-md/button";
+import { Button } from "@react-md/button";
 import { box, TextContainer, Typography } from "@react-md/core";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import type { ReactElement, ReactNode } from "react";
@@ -156,29 +156,26 @@ export default function Buttons(): ReactElement {
             margin: "0 auto",
           }}
         >
-          <FloatingActionButton positionWithin="container" position="top-left">
+          <Button floating="top-left" floatingProps={{ absolute: true }}>
             <FavoriteIcon />
-          </FloatingActionButton>
-          <FloatingActionButton
-            positionWithin="container"
-            position="top-right"
+          </Button>
+          <Button
+            floating="top-right"
             theme="primary"
+            floatingProps={{ absolute: true }}
           >
             <FavoriteIcon />
-          </FloatingActionButton>
-          <FloatingActionButton
-            positionWithin="container"
-            position="bottom-left"
+          </Button>
+          <Button
+            floatingProps={{ absolute: true }}
+            floating="bottom-left"
             theme="clear"
           >
             <FavoriteIcon />
-          </FloatingActionButton>
-          <FloatingActionButton
-            positionWithin="container"
-            position="bottom-right"
-          >
+          </Button>
+          <Button floatingProps={{ absolute: true }} floating="bottom-right">
             <FavoriteIcon />
-          </FloatingActionButton>
+          </Button>
         </div>
       </div>
       <div style={{ width: "100%" }}>
@@ -190,36 +187,36 @@ export default function Buttons(): ReactElement {
             margin: "0 auto",
           }}
         >
-          <FloatingActionButton
-            positionWithin="container"
-            position="top-left"
+          <Button
+            floatingProps={{ absolute: true }}
+            floating="top-left"
             buttonType="text"
           >
             Top left
-          </FloatingActionButton>
-          <FloatingActionButton
-            positionWithin="container"
-            position="top-right"
+          </Button>
+          <Button
+            floatingProps={{ absolute: true }}
+            floating="top-right"
             theme="primary"
             buttonType="text"
           >
             Top right
-          </FloatingActionButton>
-          <FloatingActionButton
-            positionWithin="container"
-            position="bottom-left"
+          </Button>
+          <Button
+            floatingProps={{ absolute: true }}
+            floating="bottom-left"
             theme="clear"
             buttonType="text"
           >
             Bottom left
-          </FloatingActionButton>
-          <FloatingActionButton
-            positionWithin="container"
-            position="bottom-right"
+          </Button>
+          <Button
+            floatingProps={{ absolute: true }}
+            floating="bottom-right"
             buttonType="text"
           >
             Bottom right
-          </FloatingActionButton>
+          </Button>
         </div>
       </div>
       <Heading>Icon Before</Heading>

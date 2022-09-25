@@ -146,6 +146,7 @@ export function useElementInteraction<E extends HTMLElement>(
   } = options;
 
   const holding = useRef(false);
+  const disableClick = useRef(false);
   const userMode = useUserInteractionMode();
   const { mode } = useElementInteractionContext();
   const isInteractionDisabled = disabled || mode === "none";
@@ -243,9 +244,11 @@ export function useElementInteraction<E extends HTMLElement>(
           if (
             event.isPropagationStopped() ||
             mode !== "ripple" ||
+            disableClick.current ||
             holding.current ||
             document.activeElement === event.currentTarget
           ) {
+            disableClick.current = false;
             return;
           }
 
@@ -273,6 +276,8 @@ export function useElementInteraction<E extends HTMLElement>(
             return;
           }
 
+          event.stopPropagation();
+
           // prevent text selection on double click
           // https://stackoverflow.com/a/43321596
           if (event.detail > 1) {
@@ -280,7 +285,7 @@ export function useElementInteraction<E extends HTMLElement>(
           }
 
           holding.current = true;
-          event.stopPropagation();
+          disableClick.current = true;
           let style: RippleStyle | undefined;
           if (mode === "ripple") {
             style = getRippleStyle(event, false);

@@ -8,6 +8,10 @@ import { PRISM_THEMES } from "./themes";
 export type ExampleLanguage = "ts" | "js";
 export type PackageManager = "npm" | "pnpm" | "yarn";
 
+export const PRISM_THEME_KEY = "prismTheme";
+export const CODE_LANGUAGE_KEY = "codeLanguage";
+export const PACKAGE_MANAGER_KEY = "packageManager";
+
 export const EXAMPLE_LANGUAGES: readonly ExampleLanguage[] = ["ts", "js"];
 export const PACKAGE_MANAGERS: readonly PackageManager[] = [
   "npm",
@@ -44,6 +48,21 @@ export interface CodeConfigProviderProps {
   children: ReactNode;
 }
 
+export function deserializePrismTheme(item: unknown): PrismTheme {
+  const theme = item as PrismTheme;
+  return PRISM_THEMES.includes(theme) ? theme : "default";
+}
+
+export function deserializeCodeLanguage(item: unknown): ExampleLanguage {
+  const lang = item as ExampleLanguage;
+  return EXAMPLE_LANGUAGES.includes(lang) ? lang : "ts";
+}
+
+export function deserializePackageManager(item: unknown): PackageManager {
+  const packageManager = item as PackageManager;
+  return PACKAGE_MANAGERS.includes(packageManager) ? packageManager : "npm";
+}
+
 export function CodeConfigProvider({
   children,
 }: CodeConfigProviderProps): ReactElement {
@@ -60,35 +79,24 @@ export function CodeConfigProvider({
   // ...etc
 
   const { value: theme, setValue: setTheme } = useLocalStorage<PrismTheme>({
-    key: "prismTheme",
+    key: PRISM_THEME_KEY,
     raw: true,
     defaultValue: "default",
-    deserializer(item) {
-      const theme = item as PrismTheme;
-      return PRISM_THEMES.includes(theme) ? theme : "default";
-    },
+    deserializer: deserializePrismTheme,
   });
   const { value: language, setValue: setLanguage } =
     useLocalStorage<ExampleLanguage>({
-      key: "codeLanguage",
+      key: CODE_LANGUAGE_KEY,
       raw: true,
       defaultValue: "ts",
-      deserializer(item) {
-        const lang = item as ExampleLanguage;
-        return EXAMPLE_LANGUAGES.includes(lang) ? lang : "ts";
-      },
+      deserializer: deserializeCodeLanguage,
     });
   const { value: packageManager, setValue: setPackageManager } =
     useLocalStorage<PackageManager>({
-      key: "packageManager",
+      key: PACKAGE_MANAGER_KEY,
       raw: true,
       defaultValue: "npm",
-      deserializer(item) {
-        const packageManager = item as PackageManager;
-        return PACKAGE_MANAGERS.includes(packageManager)
-          ? packageManager
-          : "npm";
-      },
+      deserializer: deserializePackageManager,
     });
 
   const value = useMemo<CodeConfigContext>(() => {

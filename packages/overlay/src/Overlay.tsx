@@ -40,6 +40,17 @@ export interface OverlayProps
    * @defaultValue `false`
    */
   hidden?: boolean;
+
+  /**
+   * @see {@link OverlayClassNameOptions.clickable}
+   * @defaultValue !hidden
+   */
+  clickable?: boolean;
+
+  /**
+   * @defaultValue `false`
+   */
+  disableTransition?: boolean;
 }
 
 /**
@@ -72,11 +83,12 @@ export const Overlay = forwardRef<HTMLSpanElement, OverlayProps>(
       children,
       className,
       visible,
-      clickable = true,
+      hidden = false,
+      clickable = !hidden,
       temporary = true,
       timeout = DEFAULT_OVERLAY_TIMEOUT,
       classNames = DEFAULT_OVERLAY_CLASSNAMES,
-      hidden = false,
+      disableTransition = false,
       onEnter,
       onEntering,
       onEntered,
@@ -97,9 +109,9 @@ export const Overlay = forwardRef<HTMLSpanElement, OverlayProps>(
         clickable,
         className,
       }),
-      appear: !ssr,
-      enter: true,
-      exit: true,
+      appear: !disableTransition && !ssr,
+      enter: !disableTransition,
+      exit: !disableTransition,
       onEnter,
       onEntering,
       onEntered,

@@ -3,11 +3,13 @@
 .container {
   outline: none;
 
-  &:focus {
-    @include everything.set-interaction-var(
-      outline-color,
-      everything.$outline-color
-    );
+  @include everything.keyboard-only(true) {
+    &:focus {
+      @include everything.set-interaction-var(
+        outline-color,
+        everything.$outline-color
+      );
+    }
   }
 }
 

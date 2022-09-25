@@ -2,9 +2,12 @@
 
 $offset: 0.125rem;
 
+.container {
+  position: relative;
+}
+
 .pre {
   direction: left;
-  position: relative;
   flex-shrink: 0;
 
   &.lineNumbers.lineNumbers {
@@ -24,7 +27,8 @@ $offset: 0.125rem;
   opacity: 0;
   position: absolute;
   right: $offset;
-  top: $offset;
+  // most themes have a 0.5em margin applied to the pre element
+  top: calc(0.5em + $offset);
   transition: opacity everything.$linear-duration;
   z-index: 2;
 

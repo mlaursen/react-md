@@ -73,7 +73,7 @@ export interface LocalStorageHookOptions<T> {
   deserializer?: LocalStorageDeserializer<T>;
 }
 
-const defaultSerializer = <T>(value: T): string =>
+export const defaultLocalStorageSerializer = <T>(value: T): string =>
   typeof value === "string" ? value : `${value}`;
 
 const getItem = <T>(
@@ -198,7 +198,7 @@ export function useLocalStorage<T>(
     raw = false,
     defaultValue,
     manual = false,
-    serializer = raw ? defaultSerializer : JSON.stringify,
+    serializer = raw ? defaultLocalStorageSerializer : JSON.stringify,
     deserializer = raw && typeof defaultValue === "string"
       ? identity
       : JSON.parse,

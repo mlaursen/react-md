@@ -47,6 +47,7 @@ export const ADDITIONAL_THEMES = [
   "vsc-dark-plus",
   "xonokai",
   "z-touch",
+  "vim-solarized-dark",
 ] as const;
 export const PRISM_THEMES = [
   ...DEFAULT_PRISM_THEMES,

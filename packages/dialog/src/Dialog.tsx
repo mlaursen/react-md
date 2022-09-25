@@ -1,7 +1,7 @@
 import type {
   CSSTransitionClassNames,
   CSSTransitionComponentProps,
-  FocusType,
+  FocusContainerComponentProps,
   LabelRequiredForA11y,
   TransitionTimeout,
 } from "@react-md/core";
@@ -9,9 +9,9 @@ import {
   Portal,
   useCSSTransition,
   useEnsuredId,
+  useFocusContainer,
   useScrollLock,
   useSsr,
-  useFocusContainer,
 } from "@react-md/core";
 import { Overlay } from "@react-md/overlay";
 import type { HTMLAttributes } from "react";
@@ -45,7 +45,8 @@ const noopBool = (): boolean => false;
 
 export interface BaseDialogProps
   extends HTMLAttributes<HTMLDivElement>,
-    CSSTransitionComponentProps {
+    CSSTransitionComponentProps,
+    FocusContainerComponentProps {
   /**
    * @defaultValue `useEnsuredId('dialog')`
    */
@@ -166,12 +167,6 @@ export interface BaseDialogProps
   classNames?: CSSTransitionComponentProps["classNames"];
 
   /**
-   * @remarks \@since 6.0.0
-   * @defaultValue `() => false`
-   */
-  isFocusTypeDisabled?(type: FocusType): boolean;
-
-  /**
    * Set this to `true` if the `Dialog` should not gain the normal focus box
    * shadow while it is focused. The `Dialog` should normally only gain focus
    * when it becomes visible and no child elements have `autoFocus` enabled.
@@ -278,8 +273,8 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
   const { eventHandlers, transitionOptions } = useFocusContainer({
     nodeRef: ref,
     activate: visible,
-    onEntering,
-    onExiting,
+    onEntered,
+    onExited,
     onKeyDown(event) {
       onKeyDown(event);
       if (
@@ -295,7 +290,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
       event.stopPropagation();
       onRequestClose();
     },
-    isDisabled: isFocusTypeDisabled,
+    isFocusTypeDisabled: isFocusTypeDisabled,
   });
   const { elementProps, rendered, disablePortal } = useCSSTransition({
     transitionIn: visible,
@@ -311,9 +306,9 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
     enter: !disableTransition,
     exit: !disableTransition,
     onEnter,
-    onEntered,
+    onEntering,
     onExit,
-    onExited,
+    onExiting,
     temporary,
     ...transitionOptions,
   });
@@ -324,6 +319,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
       {!disableOverlay && (
         <Overlay
           visible={visible}
+          disableTransition={disableTransition}
           {...overlayProps}
           onClick={modal ? noop : onRequestClose}
           clickable={!modal}

@@ -69,6 +69,11 @@ export interface ListItemClassNameOptions {
 export interface InternalListItemClassNameOptions
   extends ListItemClassNameOptions {
   /**
+   * @defaultValue `false`
+   */
+  link?: boolean;
+
+  /**
    * This is prop is used internally when integrating with the
    * {@link useElementInteraction} hook.
    */
@@ -80,6 +85,7 @@ export function listItem(
 ): string {
   const {
     className,
+    link = false,
     height = "auto",
     threeLines = false,
     disabled = false,
@@ -89,6 +95,7 @@ export function listItem(
 
   return cnb(
     itemStyles({
+      link,
       [height]: height !== "auto",
       "three-lines": threeLines,
       disabled,

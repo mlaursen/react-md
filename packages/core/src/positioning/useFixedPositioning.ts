@@ -9,6 +9,8 @@ import { getFixedPosition } from "./getFixedPosition";
 import type { CalculateFixedPositionOptions } from "./types";
 import { isWithinViewport } from "./utils";
 
+const noop = (): undefined => undefined;
+
 /**
  * @remarks \@since 4.0.0
  */
@@ -226,12 +228,11 @@ export function useFixedPositioning<
     width,
     xMargin,
     yMargin,
-    getFixedPositionOptions,
+    getFixedPositionOptions = noop,
     onScroll,
     onResize,
   } = options;
 
-  const [style, setStyle] = useState<CSSProperties | undefined>();
   const [active, setActive] = useState(false);
   const [ref, refHandler] = useEnsuredRef(nodeRef);
   const optionsRef = useRef({
@@ -280,6 +281,26 @@ export function useFixedPositioning<
     yMargin,
     getFixedPositionOptions,
   ]);
+  const [style, setStyle] = useState<CSSProperties | undefined>(
+    () =>
+      getFixedPosition({
+        container: ref.current,
+        element: fixedTo.current,
+        anchor,
+        disableSwapping,
+        disableVHBounds,
+        initialX,
+        initialY,
+        preventOverlap,
+        transformOrigin,
+        vhMargin,
+        vwMargin,
+        width,
+        xMargin,
+        yMargin,
+        ...getFixedPositionOptions(),
+      }).style
+  );
 
   const updateStyle = useCallback(() => {
     const {
@@ -314,7 +335,7 @@ export function useFixedPositioning<
       width,
       xMargin,
       yMargin,
-      ...getFixedPositionOptions?.(),
+      ...getFixedPositionOptions(),
     });
 
     setStyle(style);

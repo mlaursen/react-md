@@ -61,23 +61,23 @@ const FALLBACK_DOM_RECT: DOMRect = {
  * try to swap only to a `right` style instead of left to see if that fixes it,
  * otherwise keep both the `left` and `right` styles.
  */
-export function getFixedPosition({
-  container,
-  element,
-  anchor = BELOW_CENTER_ANCHOR,
-  initialX,
-  initialY,
-  vwMargin = 16,
-  vhMargin = 16,
-  xMargin = 0,
-  yMargin = 0,
-  width: widthType = "auto",
-  preventOverlap = false,
-  transformOrigin = false,
-  disableSwapping: propDisableSwapping = false,
-  disableVHBounds = false,
-}: FixedPositionOptions): FixedPosition {
-  container = findSizingContainer(container);
+export function getFixedPosition(options: FixedPositionOptions): FixedPosition {
+  const {
+    element,
+    anchor = BELOW_CENTER_ANCHOR,
+    initialX,
+    vwMargin = 16,
+    vhMargin = 16,
+    xMargin = 0,
+    yMargin = 0,
+    width: widthType = "auto",
+    preventOverlap = false,
+    transformOrigin = false,
+    disableSwapping: propDisableSwapping = false,
+    disableVHBounds = false,
+  } = options;
+  let { initialY } = options;
+  const container = findSizingContainer(options.container);
 
   if (process.env.NODE_ENV !== "production") {
     if (widthType !== "auto" && anchor.x !== "center") {
@@ -97,6 +97,12 @@ export function getFixedPosition({
     return {
       actualX: anchor.x,
       actualY: anchor.y,
+      style: {
+        position: disableVHBounds ? "absolute" : "fixed",
+        transformOrigin: transformOrigin
+          ? getTransformOrigin({ x: anchor.x, y: anchor.y })
+          : undefined,
+      },
     };
   }
 

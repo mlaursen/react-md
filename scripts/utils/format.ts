@@ -36,7 +36,6 @@ export function format(
       filepath,
       parser: resolvedParser,
       proseWrap: resolvedParser === "markdown" ? "always" : undefined,
-      singleQuote: resolvedParser === "scss" || resolvedParser === "babel",
     });
   } catch (e) {
     console.error(e);

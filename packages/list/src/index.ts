@@ -4,6 +4,7 @@ export * from "./List";
 export * from "./ListItem";
 export * from "./ListItemAddon";
 export * from "./ListItemChildren";
+export * from "./ListItemLink";
 export * from "./ListItemText";
 export * from "./ListSubheader";
 export * from "./styles";

@@ -104,3 +104,4 @@ the dark elevation mode.
    [tabindex]:not([tabindex="-1"])
   ```
   This fixes an issue where you could tab out of a Dialog that had a Tree that rendered links (temporary layouts)
+- The `useFixedPositioning` hook will always provide an initial style including `position: "fixed" | "absolute"` and `transform-origin` (if `transformOrigin === true`). This fixes an issue of the page scrolling while focusing temporary elements when the transition is disabled.

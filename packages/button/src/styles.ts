@@ -130,30 +130,23 @@ export type FloatingActionButtonPosition =
   | "bottom-left"
   | "bottom-right"
   | "top-left"
-  | "top-right";
+  | "top-right"
+  | null;
 
 export interface FloatingActionButtonClassNameOptions {
   className?: string;
 
-  /** @defaultValue `"bottom-right"` */
+  /** @defaultValue `null` */
   position?: FloatingActionButtonPosition;
 
   /**
-   * This is used to update the `position` CSS value:
-   *
-   * - `"viewport" -> position: fixed;`
-   * - `"container" -> position: absolute;`
-   *
-   * Note: When this is set to `"container"`, you **must** have a parent element
-   * with `position: relative;` for it to display correctly.
-   *
-   * @defaultValue `"viewport"`
+   * @defaultValue `false`
    */
-  positionWithin?: "viewport" | "container";
+  absolute?: boolean;
 }
 
 export function fab(options: FloatingActionButtonClassNameOptions): string {
-  const { className, position, positionWithin } = options;
+  const { className, position = null, absolute = false } = options;
 
   return cnb(
     fabStyles({
@@ -161,7 +154,7 @@ export function fab(options: FloatingActionButtonClassNameOptions): string {
       tr: position === "top-right",
       bl: position === "bottom-left",
       br: position === "bottom-right",
-      absolute: positionWithin === "container",
+      absolute,
     }),
     className
   );

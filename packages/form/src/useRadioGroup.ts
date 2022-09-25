@@ -1,6 +1,6 @@
 import type { UseStateInitializer, UseStateSetter } from "@react-md/core";
 import type { ChangeEventHandler } from "react";
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 const noop = (): void => {
   // do nothing
@@ -147,13 +147,20 @@ export function useRadioGroup<T extends string>(
 export function useRadioGroup<T extends string | number>(
   options: RadioGroupOptions<T>
 ): RadioGroupReturnValue<T> {
-  const { name, defaultValue = "" as T, onChange = noop } = options;
-  const [value, setValue] = useState(defaultValue as T);
+  const { name, defaultValue, onChange = noop } = options;
+  const [value, setValue] = useState<T>(() => {
+    if (typeof defaultValue === "function") {
+      return defaultValue();
+    }
+
+    return defaultValue ?? ("" as T);
+  });
+  const initial = useRef(value);
 
   return {
     reset: useCallback(() => {
-      setValue(defaultValue);
-    }, [defaultValue]),
+      setValue(initial.current);
+    }, []),
     value: value,
     setValue,
     getRadioProps(radioValue) {

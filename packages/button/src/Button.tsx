@@ -1,3 +1,4 @@
+import type { PropsWithRef } from "@react-md/core";
 import {
   RippleContainer,
   useElementInteraction,
@@ -5,8 +6,13 @@ import {
 } from "@react-md/core";
 import type { ButtonHTMLAttributes } from "react";
 import { forwardRef } from "react";
+import type { FloatingActionButtonProps } from "./FloatingActionButton";
+import { FloatingActionButton } from "./FloatingActionButton";
 
-import type { ButtonClassNameThemeOptions } from "./styles";
+import type {
+  ButtonClassNameThemeOptions,
+  FloatingActionButtonPosition,
+} from "./styles";
 import { button } from "./styles";
 
 export interface ButtonProps
@@ -14,6 +20,18 @@ export interface ButtonProps
     ButtonClassNameThemeOptions {
   /** @defaultValue `"button"` */
   type?: "button" | "reset" | "submit";
+
+  /**
+   * The position within the viewport to display the button as a floating action
+   * button.
+   */
+  floating?: FloatingActionButtonPosition;
+
+  /**
+   * Any additional props to provide the to `FAB` container element when the
+   * `floating` prop is provided
+   */
+  floatingProps?: PropsWithRef<FloatingActionButtonProps, HTMLSpanElement>;
 }
 
 /**
@@ -106,9 +124,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const {
       type = "button",
       disabled = false,
-      theme = "clear",
-      themeType = "flat",
-      buttonType = "text",
+      floating = null,
+      floatingProps,
+      theme = floating ? "secondary" : "clear",
+      themeType = floating ? "contained" : "flat",
+      buttonType = floating ? "icon" : "text",
       className,
       children: propChildren,
       onClick,
@@ -134,31 +154,35 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const children = useHigherContrastChildren(propChildren);
 
     return (
-      <button
-        {...remaining}
-        // when the theme is set to `"disabled"`, the event handlers should be
-        // removed so that it behaves like a disabled button. you do not want to
-        // actually set the `disabled` attribute since it will lose keyboard
-        // focus. this is mostly for supporting circular progress bars within
-        // buttons
-        {...(isThemeDisabled ? {} : handlers)}
-        aria-disabled={isThemeDisabled || undefined}
-        disabled={disabled}
-        ref={ref}
-        type={type}
-        className={button({
-          theme,
-          themeType,
-          buttonType,
-          disabled,
-          pressed,
-          pressedClassName,
-          className,
-        })}
-      >
-        {children}
-        {rippleContainerProps && <RippleContainer {...rippleContainerProps} />}
-      </button>
+      <FloatingActionButton position={floating} {...floatingProps}>
+        <button
+          {...remaining}
+          // when the theme is set to `"disabled"`, the event handlers should be
+          // removed so that it behaves like a disabled button. you do not want to
+          // actually set the `disabled` attribute since it will lose keyboard
+          // focus. this is mostly for supporting circular progress bars within
+          // buttons
+          {...(isThemeDisabled ? {} : handlers)}
+          aria-disabled={isThemeDisabled || undefined}
+          disabled={disabled}
+          ref={ref}
+          type={type}
+          className={button({
+            theme,
+            themeType,
+            buttonType,
+            disabled,
+            pressed,
+            pressedClassName,
+            className,
+          })}
+        >
+          {children}
+          {rippleContainerProps && (
+            <RippleContainer {...rippleContainerProps} />
+          )}
+        </button>
+      </FloatingActionButton>
     );
   }
 );

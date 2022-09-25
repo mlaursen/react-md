@@ -65,7 +65,7 @@ export const CodeBlock = forwardRef<HTMLPreElement, CodeBlockProps>(
     const isLight = LIGHT_BG_THEMES.has(theme);
 
     return (
-      <>
+      <div className={styles.container}>
         <pre
           {...remaining}
           ref={ref}
@@ -99,7 +99,7 @@ export const CodeBlock = forwardRef<HTMLPreElement, CodeBlockProps>(
             }}
           />
         </pre>
-      </>
+      </div>
     );
   }
 );

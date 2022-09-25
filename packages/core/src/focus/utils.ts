@@ -47,6 +47,14 @@ export const TAB_FOCUSABLE = queries.reduce((fullQuery, query) => {
  * but it can also be the entire document if you want to find **all** focusable
  * elements within your page.
  *
+ * @remarks
+ * \@since 6.0.0 This function will be used for all keyboard focus behavior
+ * instead of trying to use refs. I did some performance testing in Firefox and
+ * Chrome and the `querySelectorAll` takes 4ms with 5000 elements for my use
+ * cases. There is more of a performance issue around rendering all 5000
+ * elements and since this is only used for specific keydown events, this is
+ * good enough for me.
+ *
  * @param container - The container element/document to find focusable elements
  * within.
  * @param programmatic - Boolean if programmatically focusable elements should be
@@ -57,11 +65,12 @@ export function getFocusableElements(
   container: HTMLElement | Document,
   programmatic = false
 ): readonly HTMLElement[] {
-  return Array.from(
-    container.querySelectorAll<HTMLElement>(
+  // spread operator is faster than Array.from
+  return [
+    ...container.querySelectorAll<HTMLElement>(
       programmatic ? PROGRAMMATICALLY_FOCUSABLE : TAB_FOCUSABLE
-    )
-  );
+    ),
+  ];
 }
 
 /**

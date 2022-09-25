@@ -109,6 +109,10 @@ $var-lookup: (
     var: --rmd-button-icon-size,
     value: $icon-size,
   ),
+  fab-offset: (
+    var: --rmd-button-fab-offset,
+    value: core.scrollbar-size(),
+  ),
 );
 
 @function get-var($name, $fallback: null) {
@@ -267,6 +271,8 @@ $var-lookup: (
 
       @if not $disable-floating-absolute-position {
         &--absolute {
+          @include set-var(fab-offset, 0px);
+
           position: absolute;
           z-index: $floating-absolute-z-index;
         }
@@ -278,7 +284,7 @@ $var-lookup: (
             @if $property == left {
               @include core.rtl {
                 left: auto;
-                right: calc(#{$value} + #{core.scrollbar-size()});
+                right: calc(#{$value} + #{get-var(fab-offset)});
               }
 
               left: $value;
@@ -288,7 +294,7 @@ $var-lookup: (
                 right: auto;
               }
 
-              right: calc(#{$value} + #{core.scrollbar-size()});
+              right: calc(#{$value} + #{get-var(fab-offset)});
             } @else {
               #{$property}: #{$value};
             }
