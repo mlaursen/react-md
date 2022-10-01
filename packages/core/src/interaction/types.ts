@@ -1,4 +1,8 @@
-import type { KeyboardEventHandler, MouseEventHandler } from "react";
+import type {
+  FocusEventHandler,
+  KeyboardEventHandler,
+  MouseEventHandler,
+} from "react";
 
 /**
  * This is used to provide feedback to the user that they are interacting with
@@ -28,6 +32,8 @@ export type ElementInteractionMode = "ripple" | "press" | "none";
 
 /** @remarks \@since 6.0.0 */
 export interface ElementInteractionHandlers<E extends HTMLElement> {
+  onBlur: FocusEventHandler<E>;
+
   /**
    * The click event handler is is only used to display a ripple for
    * `<button type="submit" />` since pressing enter on form elements should

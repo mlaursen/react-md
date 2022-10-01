@@ -226,7 +226,7 @@ export function useTreeA11y(options: TreeA11yOptions): ReturnValue {
           break;
         }
         default: {
-          if (key.length !== 1 || altKey || ctrlKey || metaKey || shiftKey) {
+          if (key.length !== 1 || altKey || ctrlKey || metaKey) {
             return;
           }
 
@@ -242,7 +242,8 @@ export function useTreeA11y(options: TreeA11yOptions): ReturnValue {
             const index = findMatchIndex({
               value: key,
               values,
-              startIndex: prevActiveIndex,
+              // Shift key makes it so the first match is always used
+              startIndex: shiftKey ? -1 : prevActiveIndex,
               isSelfMatchable: true,
             });
 

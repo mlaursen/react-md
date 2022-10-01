@@ -4,6 +4,8 @@ import type {
 } from "@react-md/layout";
 import HomeIcon from "@react-md/material-icons/HomeIcon";
 import type { ReactNode } from "react";
+import MaterialDesignIcon from "../MaterialDesignIcon";
+import ReactIcon from "../ReactIcon";
 
 const createRoute = (
   pathname: string,
@@ -18,8 +20,21 @@ const createRoute = (
   leftAddon,
 });
 
-const routes = [
+const routes: readonly LayoutNavigationItem[] = [
   createRoute("/", "Home", <HomeIcon />),
+  {
+    itemId: "form",
+    parentId: null,
+    children: "Form",
+  },
+  createRoute("/textfield", "TextField", null, "form"),
+  createRoute("/password", "Password", null, "form"),
+  createRoute("/textarea", "TextArea", null, "form"),
+  createRoute("/select", "Select", null, "form"),
+  createRoute("/checkbox", "Checkbox", null, "form"),
+  createRoute("/radio", "Radio", null, "form"),
+  createRoute("/switch", "Switch", null, "form"),
+  createRoute("/fileinput", "FileInput", null, "form"),
   createRoute("/app-bar", "App Bar"),
   createRoute("/avatar", "Avatar"),
   createRoute("/box", "Box"),
@@ -28,11 +43,11 @@ const routes = [
   createRoute("/card", "Card"),
   createRoute("/dialog", "Dialog"),
   createRoute("/divider", "Divider"),
-  createRoute("/form", "Form"),
   createRoute("/link", "Link"),
   createRoute("/list", "List"),
   createRoute("/list", "List"),
   createRoute("/material-icons", "Material Icons"),
+  createRoute("/menu", "Menu"),
   createRoute("/progress", "Progress"),
   createRoute("/transition", "Transition"),
   createRoute("/tree", "Tree"),
@@ -48,6 +63,12 @@ const routes = [
     parentId: null,
     children: "References",
   },
+  createRoute("https://reactjs.org", "React", <ReactIcon />),
+  createRoute(
+    "https://material.io/design",
+    "Material Design",
+    <MaterialDesignIcon />
+  ),
 ];
 
 export const navItems = routes.reduce<LayoutNavigationTree>((tree, route) => {

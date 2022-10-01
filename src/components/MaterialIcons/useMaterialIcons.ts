@@ -1,4 +1,4 @@
-import type { UseStateSetter } from "@react-md/core";
+import type { UseStateObject } from "@react-md/core";
 import type { ProvidedRadioProps } from "@react-md/form";
 import { useRadioGroup } from "@react-md/form";
 import type { SVGIcon } from "@react-md/icon";
@@ -115,19 +115,13 @@ interface State {
   components: IconReferences;
 }
 
-type SetStateObject<Name extends string, Value> = {
-  [key in Name]: Value;
-} & {
-  [key in `set${Capitalize<Name>}`]: UseStateSetter<Value>;
-};
-
 type RadioGroup<Name extends string, Value> = {
   [key in Name]: Value;
 } & {
   [key in `get${Capitalize<Name>}Props`]: (value: Value) => ProvidedRadioProps;
 };
 
-type ReturnValue = SetStateObject<"search", string> &
+type ReturnValue = UseStateObject<"search", string> &
   // {
   // iconType: IconTypeState;
   // getIconTypeProps(value: IconTypeState): ProvidedRadioProps;

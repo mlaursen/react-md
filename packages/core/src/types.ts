@@ -106,3 +106,13 @@ export type UseStateSetter<T> = Dispatch<SetStateAction<T>>;
  * @internal
  */
 export type UseStateInitializer<T> = T | (() => T);
+
+/**
+ * @remarks \@since 6.0.0
+ * @internal
+ */
+export type UseStateObject<Name extends string, Value> = {
+  [key in Name]: Value;
+} & {
+  [key in `set${Capitalize<Name>}`]: UseStateSetter<Value>;
+};

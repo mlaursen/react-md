@@ -59,6 +59,7 @@ export const ListItemLink = forwardRef<HTMLAnchorElement, ListItemLinkProps>(
       threeLines = false,
       disabled = false,
       disabledOpacity = false,
+      onBlur,
       onClick,
       onKeyDown,
       onKeyUp,
@@ -71,6 +72,7 @@ export const ListItemLink = forwardRef<HTMLAnchorElement, ListItemLinkProps>(
     } = props;
     const { pressedClassName, rippleContainerProps, handlers } =
       useElementInteraction({
+        onBlur,
         onClick,
         onKeyDown,
         onKeyUp,

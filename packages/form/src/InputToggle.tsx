@@ -5,7 +5,6 @@ import {
   useElementInteraction,
   useEnsuredId,
 } from "@react-md/core";
-import { useIcon } from "@react-md/icon";
 import { cnb } from "cnbuilder";
 import type {
   CSSProperties,
@@ -16,6 +15,7 @@ import type {
 } from "react";
 import { forwardRef, useState } from "react";
 import { FormMessageContainer } from "./FormMessageContainer";
+import { InputToggleIcon } from "./InputToggleIcon";
 import { Label } from "./Label";
 import type {
   FormComponentStates,
@@ -91,15 +91,12 @@ export function inputToggle(options: InputToggleClassNameOptions): string {
   );
 }
 
-export interface BaseInputToggleProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size">,
-    FormMessageContainerExtension,
-    FormComponentStates {
+export interface InputToggleIconProps {
   /**
-   * @see https://stackoverflow.com/questions/5985839/bug-with-firefox-disabled-attribute-of-input-not-resetting-when-refreshing
-   * @defaultValue `type === "checkbox" ? "off" : undefined`
+   * @see {@link InputToggleSize}
+   * @defaultValue `"normal"`
    */
-  autoComplete?: string;
+  size?: InputToggleSize;
 
   /**
    * The icon to use while unchecked. This defaults to the unchecked
@@ -134,13 +131,9 @@ export interface BaseInputToggleProps
    * element.
    */
   iconClassName?: string;
+}
 
-  /**
-   * @see {@link InputToggleSize}
-   * @defaultValue `"normal"`
-   */
-  size?: InputToggleSize;
-
+export interface InputToggleLabelProps {
   /**
    * An optional label to display with the checkbox. If this is omitted, it is
    * recommended to provide an `aria-label` for accessibility.
@@ -215,7 +208,20 @@ export interface BaseInputToggleProps
   stacked?: boolean;
 }
 
-export interface CheckboxProps extends BaseInputToggleProps {
+export interface BaseInputToggleProps
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size">,
+    FormMessageContainerExtension,
+    FormComponentStates,
+    InputToggleIconProps,
+    InputToggleLabelProps {
+  /**
+   * @see https://stackoverflow.com/questions/5985839/bug-with-firefox-disabled-attribute-of-input-not-resetting-when-refreshing
+   * @defaultValue `type === "checkbox" ? "off" : undefined`
+   */
+  autoComplete?: string;
+}
+
+export interface IndeterminateCheckboxProps {
   /**
    * Set this value to `true` if the checkbox is in an "indeterminate" state:
    *
@@ -240,6 +246,10 @@ export interface CheckboxProps extends BaseInputToggleProps {
    */
   indeterminateIcon?: ReactNode;
 }
+
+export interface CheckboxProps
+  extends BaseInputToggleProps,
+    IndeterminateCheckboxProps {}
 
 /** @remarks \@since 6.0.0 */
 export interface CheckboxInputToggleProps extends CheckboxProps {
@@ -276,13 +286,14 @@ export const InputToggle = forwardRef<HTMLInputElement, InputToggleProps>(
       indeterminate = false,
       messageProps,
       messageContainerProps,
-      icon: propIcon,
-      checkedIcon: propCheckedIcon,
-      indeterminateIcon: propIndeterminateIcon,
+      icon,
+      checkedIcon,
+      indeterminateIcon,
       iconProps,
       iconStyle,
       iconClassName,
       onChange = noop,
+      onBlur,
       onClick,
       onKeyDown,
       onKeyUp,
@@ -298,6 +309,7 @@ export const InputToggle = forwardRef<HTMLInputElement, InputToggleProps>(
     const { pressedClassName, rippleContainerProps, handlers } =
       useElementInteraction({
         disabled: themeDisabled,
+        onBlur,
         onClick,
         onKeyDown,
         onKeyUp,
@@ -305,20 +317,9 @@ export const InputToggle = forwardRef<HTMLInputElement, InputToggleProps>(
         onMouseLeave,
         onMouseUp,
       });
-    const uncheckedIcon = useIcon(type, propIcon);
-    const checkedIcon = useIcon(`${type}Checked`, propCheckedIcon);
-    const indeterminateIcon = useIcon(
-      "checkboxIndeterminate",
-      propIndeterminateIcon
-    );
 
     const [isChecked, setChecked] = useState(props.defaultChecked ?? false);
     const checked = props.checked ?? isChecked;
-    const icon = checked
-      ? indeterminate
-        ? indeterminateIcon
-        : checkedIcon
-      : uncheckedIcon;
 
     // set on the `remaining` object to bypass the eslint rule about
     // aria-checked not being valid for textbox role
@@ -342,22 +343,23 @@ export const InputToggle = forwardRef<HTMLInputElement, InputToggleProps>(
           className={className}
         >
           {label}
-          <span
-            {...iconProps}
+          <InputToggleIcon
             style={iconStyle}
+            {...iconProps}
             className={cnb(
-              inputToggle({
-                size,
-                type,
-                active: checked,
-                disabled: themeDisabled,
-              }),
               pressedClassName,
               iconClassName,
               iconProps?.className
             )}
+            checked={checked}
+            disabled={disabled}
+            size={size}
+            type={type}
+            icon={icon}
+            checkedIcon={checkedIcon}
+            indeterminate={indeterminate}
+            indeterminateIcon={indeterminateIcon}
           >
-            {icon}
             <input
               {...remaining}
               {...handlers}
@@ -388,7 +390,7 @@ export const InputToggle = forwardRef<HTMLInputElement, InputToggleProps>(
             {rippleContainerProps && (
               <RippleContainer {...rippleContainerProps} />
             )}
-          </span>
+          </InputToggleIcon>
         </Label>
       </FormMessageContainer>
     );

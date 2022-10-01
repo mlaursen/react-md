@@ -1,4 +1,4 @@
-import type { KeyboardEvent, MouseEvent } from "react";
+import type { KeyboardEvent, MouseEvent, FocusEvent } from "react";
 import { useCallback, useReducer, useRef } from "react";
 import { useElementInteractionContext } from "./ElementInteractionProvider";
 import type {
@@ -86,6 +86,7 @@ const noop = (): void => {
  *   const {
  *     disabled = false,
  *     className,
+ *     onBlur,
  *     onClick,
  *     onKeyDown,
  *     onKeyUp,
@@ -101,6 +102,7 @@ const noop = (): void => {
  *       // pass remaining props so that if any event handlers were provided to
  *       // the component, they will be merged with the element interaction
  *       // handlers
+ *       onBlur,
  *       onClick,
  *       onKeyDown,
  *       onKeyUp,
@@ -136,6 +138,7 @@ export function useElementInteraction<E extends HTMLElement>(
   options: ElementInteractionOptions<E> = {}
 ): ElementInteractionHookReturnValue<E> {
   const {
+    onBlur = noop,
     onClick = noop,
     onMouseDown = noop,
     onMouseUp = noop,
@@ -234,6 +237,16 @@ export function useElementInteraction<E extends HTMLElement>(
       pressed && mode === "press" ? PRESSED_CLASS_NAME : undefined,
     rippleContainerProps,
     handlers: {
+      onBlur: useCallback(
+        (event: FocusEvent<E>) => {
+          onBlur(event);
+          if (holding.current) {
+            holding.current = false;
+            dispatch({ type: "release" });
+          }
+        },
+        [onBlur]
+      ),
       onClick: useCallback(
         (event: MouseEvent<E>) => {
           if (disabled) {
@@ -336,6 +349,7 @@ export function useElementInteraction<E extends HTMLElement>(
             event.isPropagationStopped() ||
             isInteractionDisabled ||
             userMode !== "keyboard" ||
+            disabled ||
             (key !== " " && key !== "Enter") ||
             // links do not support clicking on space
             (key === " " && tagName === "A") ||
@@ -366,7 +380,7 @@ export function useElementInteraction<E extends HTMLElement>(
           holding.current = true;
           dispatch({ type: "press", style: getRippleStyle(event, false) });
         },
-        [isInteractionDisabled, onKeyDown, userMode]
+        [disabled, isInteractionDisabled, onKeyDown, userMode]
       ),
       onKeyUp: useCallback(
         (event: KeyboardEvent<E>) => {
@@ -374,7 +388,8 @@ export function useElementInteraction<E extends HTMLElement>(
           if (
             event.isPropagationStopped() ||
             isInteractionDisabled ||
-            userMode !== "keyboard"
+            userMode !== "keyboard" ||
+            !holding.current
           ) {
             return;
           }

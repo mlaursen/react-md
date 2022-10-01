@@ -2,16 +2,21 @@ import type { UseStateInitializer, UseStateSetter } from "@react-md/core";
 import type { ChangeEventHandler } from "react";
 import { useCallback, useRef, useState } from "react";
 
-const noop = (): void => {
-  // do nothing
-};
-
 /** @remarks \@since 6.0.0 */
 export interface RadioGroupOptions<T extends string | number> {
   /**
-   * The name to apply to each radio within the group.
+   * A `name` to apply to all the radios within the group. This is required if
+   * the {@link menu} option is set to `true`.
    */
-  name: string;
+  name?: string;
+
+  /**
+   * Set this to `true` if using the `MenuItemRadio` component instead of the
+   * `Radio` so the correct props can be provided.
+   *
+   * @defaultValue `false`
+   */
+  menu?: boolean;
 
   /**
    * The value of a radio that should be checked by default. If you want to
@@ -34,20 +39,45 @@ export interface RadioGroupOptions<T extends string | number> {
 }
 
 /** @remarks \@since 6.0.0 */
-export interface ProvidedRadioProps {
-  name: string;
-  value: string | number;
-  checked: boolean;
-  onChange: ChangeEventHandler<HTMLInputElement>;
+export interface RadioGroupImplementation<V extends string | number> {
+  reset(): void;
+  value: V;
+  setValue: UseStateSetter<V>;
+  getRadioProps(value: V): {
+    name: string;
+    value: V;
+    checked: boolean;
+    onChange(): void;
+  };
 }
 
 /** @remarks \@since 6.0.0 */
-export interface RadioGroupReturnValue<T extends string | number> {
-  value: T;
-  setValue: UseStateSetter<T>;
+export interface MenuItemRadioGroupImplementation<V extends string | number> {
   reset(): void;
-  getRadioProps(value: T): ProvidedRadioProps;
+  value: V;
+  setValue: UseStateSetter<V>;
+  getCheckboxProps(value: V): {
+    checked: boolean;
+    onCheckedChange(): void;
+  };
 }
+
+/** @remarks \@since 6.0.0 */
+export interface CombinedRadioGroupReturnValue<V extends string | number> {
+  reset(): void;
+  value: V;
+  setValue: UseStateSetter<V>;
+  getRadioProps?(value: V): {
+    name?: string;
+    value: V;
+    checked: boolean;
+    onChange?(): void;
+    onCheckedChange?(): void;
+  };
+}
+
+// Note: These overrides are set up so that the value will default to any
+// string.
 
 /**
  * @example
@@ -69,9 +99,20 @@ export interface RadioGroupReturnValue<T extends string | number> {
  * ```
  * @remarks \@since 6.0.0
  */
-export function useRadioGroup<T extends number>(
-  options: RadioGroupOptions<T> & { defaultValue: UseStateInitializer<T> }
-): RadioGroupReturnValue<T>;
+export function useRadioGroup<V extends number>(
+  options: RadioGroupOptions<V> & {
+    menu?: false;
+    name: string;
+    defaultValue: UseStateInitializer<V>;
+  }
+): RadioGroupImplementation<V>;
+export function useRadioGroup<V extends number>(
+  options: RadioGroupOptions<V> & {
+    menu: true;
+    name?: never;
+    defaultValue: UseStateInitializer<V>;
+  }
+): MenuItemRadioGroupImplementation<V>;
 /**
  * @example
  * Generic String Example
@@ -115,9 +156,20 @@ export function useRadioGroup<T extends number>(
  * ```
  * @remarks \@since 6.0.0
  */
-export function useRadioGroup<T extends string>(
-  options: RadioGroupOptions<T> & { defaultValue?: UseStateInitializer<T> }
-): RadioGroupReturnValue<T>;
+export function useRadioGroup<V extends string>(
+  options: RadioGroupOptions<V> & {
+    menu?: false;
+    name: string;
+    defaultValue?: UseStateInitializer<V>;
+  }
+): RadioGroupImplementation<V>;
+export function useRadioGroup<V extends string>(
+  options: RadioGroupOptions<V> & {
+    menu: true;
+    name?: never;
+    defaultValue?: UseStateInitializer<V>;
+  }
+): MenuItemRadioGroupImplementation<V>;
 /**
  * @example
  * Strict Union Example
@@ -144,16 +196,16 @@ export function useRadioGroup<T extends string>(
  * ```
  * @remarks \@since 6.0.0
  */
-export function useRadioGroup<T extends string | number>(
-  options: RadioGroupOptions<T>
-): RadioGroupReturnValue<T> {
-  const { name, defaultValue, onChange = noop } = options;
-  const [value, setValue] = useState<T>(() => {
+export function useRadioGroup<V extends string | number>(
+  options: RadioGroupOptions<V>
+): CombinedRadioGroupReturnValue<V> {
+  const { name, defaultValue, menu = false } = options;
+  const [value, setValue] = useState<V>(() => {
     if (typeof defaultValue === "function") {
       return defaultValue();
     }
 
-    return defaultValue ?? ("" as T);
+    return defaultValue ?? ("" as V);
   });
   const initial = useRef(value);
 
@@ -168,11 +220,8 @@ export function useRadioGroup<T extends string | number>(
         name,
         value: radioValue,
         checked: value === radioValue,
-        onChange(event) {
-          onChange?.(event);
-          if (!event.isPropagationStopped()) {
-            setValue(radioValue);
-          }
+        [menu ? "onCheckedChange" : "onChange"]() {
+          setValue(radioValue);
         },
       };
     },

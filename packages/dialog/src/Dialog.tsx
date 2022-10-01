@@ -274,7 +274,10 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
     nodeRef: ref,
     activate: visible,
     onEntered,
+    onEntering,
+    onExiting,
     onExited,
+    disableTransition,
     onKeyDown(event) {
       onKeyDown(event);
       if (
@@ -306,9 +309,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
     enter: !disableTransition,
     exit: !disableTransition,
     onEnter,
-    onEntering,
     onExit,
-    onExiting,
     temporary,
     ...transitionOptions,
   });

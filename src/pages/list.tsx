@@ -4,7 +4,6 @@ import {
   SkeletonPlaceholder,
   TextContainer,
   Typography,
-  useColorScheme,
 } from "@react-md/core";
 import { List, ListItem, ListSubheader } from "@react-md/list";
 import AdjustIcon from "@react-md/material-icons/AdjustIcon";
@@ -15,21 +14,13 @@ import DeleteIcon from "@react-md/material-icons/DeleteIcon";
 import FolderIcon from "@react-md/material-icons/FolderIcon";
 import StarIcon from "@react-md/material-icons/StarIcon";
 import { cnb } from "cnbuilder";
-import type { CSSProperties, ReactElement } from "react";
+import type { ReactElement } from "react";
 import { useEffect, useState } from "react";
 
 import { loremIpsum } from "src/utils/loremIpsum";
 import styles from "./list.module.scss";
 
-const style = {
-  "--rmd-ripple-background-color": "rgba(255, 255, 255, 0.3)",
-  "--rmd-interaction-hover-background-color": "rgba(255, 255, 255, 0.08)",
-  "--rmd-interaction-focus-background-color": "rgba(255, 255, 255, 0.24)",
-} as CSSProperties;
-
 export default function ListPage(): ReactElement {
-  const { colorSchemeMode } = useColorScheme();
-
   const [loaded, setLoaded] = useState<
     { image: string; primaryText: string; secondaryText: string } | undefined
   >();
@@ -56,11 +47,7 @@ export default function ListPage(): ReactElement {
   }, [loaded]);
   return (
     <TextContainer>
-      <Box
-        style={colorSchemeMode === "light" ? undefined : style}
-        stacked
-        align="stretch"
-      >
+      <Box stacked align="stretch">
         <List>
           <ListItem>Item 1</ListItem>
           <ListItem>Item 2</ListItem>

@@ -1,7 +1,9 @@
 @use "sass:map";
+@use "sass:color";
 @use "@react-md/core";
 @use "@react-md/button";
 @use "@react-md/icon";
+@use "@react-md/progress";
 
 $disable-fieldset: false !default;
 $disable-message: false !default;
@@ -20,6 +22,10 @@ $disable-text-field-addon: $disable-text-field and $disable-password and
 $disable-checkbox: false !default;
 $disable-radio: false !default;
 $disable-switch: false !default;
+$disable-switch-circular-progress: progress.$disable-circular !default;
+$disable-menu-item-checkbox: $disable-checkbox !default;
+$disable-menu-item-radio: $disable-radio !default;
+$disable-menu-item-switch: $disable-switch !default;
 
 // Note: enabling the filled theme forces the underlined theme to be used since it depends on the same styles
 $disable-text-field-filled-theme: false !default;
@@ -127,6 +133,32 @@ $input-toggle-dense-size: icon.$dense-size !default;
 $input-toggle-normal-size: icon.$size !default;
 $input-toggle-large-size: 2rem !default;
 
+$switch-disabled-opacity: 0.5 !default;
+$switch-ball-size: 1.25em !default;
+$switch-ball-border-radius: 50% !default;
+$switch-ball-offset: 0.25em !default;
+$switch-ball-background-color: color.adjust(
+  core.$white-base,
+  $lightness: -5%
+) !default;
+$switch-track-height: 1em !default;
+$switch-track-width: 2.25em !default;
+$switch-track-border-radius: 0.5em !default;
+$switch-track-vertical-padding: 0.75em !default;
+$switch-track-horizontal-padding: 0.875em !default;
+$switch-track-light-background-color: core.$grey-400 !default;
+$switch-track-dark-background-color: if(
+  core.$disable-dark-elevation,
+  $switch-track-light-theme-background-color,
+  map.get(core.$dark-elevation-colors, 24)
+) !default;
+$switch-track-background-color: if(
+  core.$color-scheme == dark,
+  $switch-track-dark-background-color,
+  $switch-track-light-background-color
+) !default;
+$switch-circular-progress-width: 12 !default;
+
 $var-lookup: (
   error-color: (
     var: --rmd-form-error-color,
@@ -208,6 +240,14 @@ $var-lookup: (
     var: --rmd-form-addon-margin-top,
     value: 0px,
   ),
+  switch-track-background-color: (
+    var: --rmd-switch-track-background-color,
+    value: $switch-track-background-color,
+  ),
+  switch-ball-background-color: (
+    var: --rmd-switch-ball-background-color-color,
+    value: $switch-ball-background-color,
+  ),
 );
 
 @function get-var($name, $fallback: null) {
@@ -242,6 +282,12 @@ $var-lookup: (
     text-filled-color,
     $text-field-light-filled-background-color
   );
+  @if not $disable-switch {
+    @include set-var(
+      switch-track-background-color,
+      $switch-track-light-background-color
+    );
+  }
 }
 
 @mixin use-dark-theme {
@@ -251,6 +297,12 @@ $var-lookup: (
     $text-field-dark-hover-border-color
   );
   @include set-var(text-filled-color, $text-field-dark-filled-background-color);
+  @if not $disable-switch {
+    @include set-var(
+      switch-track-background-color,
+      $switch-track-dark-background-color
+    );
+  }
 }
 
 @mixin file-input-styles {
@@ -343,11 +395,11 @@ $var-lookup: (
     transition-duration: core.$linear-duration;
 
     &--active {
-      @include use-var(focused-color);
+      @include use-var(color, focused-color);
     }
 
     &--error {
-      @include use-var(error-color);
+      @include use-var(color, error-color);
     }
 
     &--disabled {
@@ -902,6 +954,123 @@ $var-lookup: (
   }
 }
 
+@mixin switch-styles {
+  .rmd-switch {
+    padding: $switch-track-vertical-padding $switch-track-horizontal-padding;
+
+    &--clickable:hover {
+      cursor: pointer;
+    }
+
+    &__input {
+      @include core.keyboard-only {
+        &:focus + .rmd-switch__ball::before {
+          @include core.interaction-focus-styles;
+        }
+      }
+
+      &:disabled + .rmd-switch__ball {
+        cursor: auto;
+
+        &:hover::before {
+          @include core.set-interaction-var(background-color, transparent);
+        }
+      }
+    }
+
+    &__track {
+      @include use-var(background-color, switch-track-background-color);
+
+      border-radius: $switch-track-border-radius;
+      height: $switch-track-height;
+      position: relative;
+      transition: background-color core.$linear-duration
+        core.$linear-timing-function;
+      width: $switch-track-width;
+
+      &--disabled {
+        opacity: $switch-disabled-opacity;
+      }
+
+      @if not $disable-switch-circular-progress {
+        &--async {
+          @include progress.set-var(
+            circular-stroke-width,
+            $switch-circular-progress-width
+          );
+          @include progress.set-var(circular-size, $switch-ball-size);
+        }
+      }
+    }
+
+    &__ball {
+      // The focus and disabled states are handled by the `.rmd-switch__input`'s
+      // :focus and :disabled' states instead.
+      @include core.interaction-surface(
+        $focus-selector: null,
+        $disabled-selector: null,
+        $clickable: false
+      );
+      @include core.auto-rtl(left, calc(-50% + #{$switch-ball-offset}));
+
+      align-items: center;
+      border-radius: $switch-ball-border-radius;
+      display: flex;
+      height: $switch-ball-size * 2;
+      justify-content: center;
+      top: calc(-50% - #{$switch-ball-size - $switch-track-height});
+      transition-duration: core.$linear-duration;
+      transition-property: background-color, transform;
+      transition-timing-function: core.$linear-timing-function;
+      width: $switch-ball-size * 2;
+      z-index: 1;
+
+      &::after {
+        @include use-var(background-color, switch-ball-background-color);
+
+        border-radius: inherit;
+        box-shadow: core.box-shadow(1);
+        content: "";
+        height: $switch-ball-size;
+        left: 25%;
+        pointer-events: none;
+        position: absolute;
+        top: 25%;
+        width: $switch-ball-size;
+        z-index: 1;
+      }
+
+      $active-selector: ".rmd-switch__input:checked + &" +
+        if($disable-menu-item-switch, "", ", &--active");
+
+      #{$active-selector} {
+        $offset: $switch-ball-size + $switch-ball-offset;
+
+        @include core.rtl {
+          transform: translateX(-$offset);
+        }
+        @include set-var(switch-ball-background-color, get-var(active-color));
+
+        transform: translateX($offset);
+      }
+    }
+  }
+}
+
+@mixin menu-item-input-toggle-styles {
+  .rmd-menu-item-input-toggle {
+    &__icon {
+      &::before {
+        content: none;
+      }
+    }
+
+    &--switch {
+      //
+    }
+  }
+}
+
 @mixin styles {
   @if not $disable-fieldset {
     .rmd-fieldset {
@@ -952,6 +1121,14 @@ $var-lookup: (
   @if not $disable-checkbox or not $disable-radio or not $disable-switch {
     @include hidden-input-styles;
     @include input-toggle-styles;
+  }
+
+  @if not $disable-switch {
+    @include switch-styles;
+  }
+
+  @if not $disable-menu-item-checkbox or not $disable-menu-item-radio {
+    @include menu-item-input-toggle-styles;
   }
 
   @if not core.$disable-default-system-theme and core.$color-scheme == system {

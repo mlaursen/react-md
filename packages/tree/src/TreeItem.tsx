@@ -54,6 +54,7 @@ export function TreeItem(props: TreeItemProps): ReactElement {
     childItems,
     contentClassName,
     disableTransition: propDisableTransition,
+    onBlur,
     onClick,
     onKeyDown,
     onKeyUp,
@@ -85,6 +86,7 @@ export function TreeItem(props: TreeItemProps): ReactElement {
 
   const { pressedClassName, rippleContainerProps, handlers } =
     useElementInteraction<HTMLLIElement>({
+      onBlur,
       onClick(event) {
         onClick?.(event);
         if (event.isPropagationStopped()) {

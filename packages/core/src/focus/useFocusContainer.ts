@@ -1,7 +1,11 @@
 import type { KeyboardEventHandler, RefObject } from "react";
 import { useEffect, useRef } from "react";
 
-import type { TransitionOptions } from "../transition/types";
+import type {
+  TransitionEnterHandler,
+  TransitionExitHandler,
+  TransitionOptions,
+} from "../transition/types";
 import { useEnsuredRef } from "../useEnsuredRef";
 import type { FocusElementWithinType } from "./utils";
 import { focusElementWithin, getFocusableElements } from "./utils";
@@ -31,7 +35,7 @@ export type FocusType = "mount" | "unmount" | "keyboard";
 /** @remarks \@since 6.0.0 */
 export type FocusContainerTransitionOptions<E extends HTMLElement> = Pick<
   TransitionOptions<E>,
-  "onEntered" | "onExited" | "nodeRef"
+  "onEntering" | "onEntered" | "onExiting" | "onExited" | "nodeRef"
 >;
 
 /** @remarks \@since 6.0.0 */
@@ -39,11 +43,21 @@ export interface FocusContainerEventHandlers<E extends HTMLElement> {
   onKeyDown?: KeyboardEventHandler<E>;
 }
 
+/**
+ * @remarks \@since 6.0.0
+ */
+export type IsFocusTypeDisabled = (type: FocusType) => boolean;
+
 export interface FocusContainerComponentProps {
   /**
    * @defaultValue `() => false`
    */
-  isFocusTypeDisabled?(type: FocusType): boolean;
+  isFocusTypeDisabled?: IsFocusTypeDisabled;
+
+  /**
+   * @defaultValue `false`
+   */
+  disableTransition?: boolean;
 }
 
 /** @remarks \@since 6.0.0 */
@@ -57,11 +71,19 @@ export interface FocusContainerOptions<E extends HTMLElement>
    * `transitionIn` prop for `useTransition`.
    */
   activate: boolean;
+
+  /**
+   * Set this to true if elements that can be programmatically focused should be
+   * included. These would be elements with a `tabIndex={-1}`.
+   *
+   * @defaultValue `false`
+   */
+  programmatic?: boolean;
 }
 
 /** @remarks \@since 6.0.0 */
 export interface FocusContainerImplementation<E extends HTMLElement> {
-  ref: RefObject<E>;
+  nodeRef: RefObject<E>;
   eventHandlers: Required<FocusContainerEventHandlers<E>>;
   transitionOptions: Required<FocusContainerTransitionOptions<E>>;
 }
@@ -115,9 +137,13 @@ export function useFocusContainer<E extends HTMLElement>(
   const {
     nodeRef,
     activate,
+    onEntering = noop,
     onEntered = noop,
+    onExiting = noop,
     onExited = noop,
     onKeyDown = noop,
+    programmatic = false,
+    disableTransition = false,
     isFocusTypeDisabled = noop,
   } = options;
 
@@ -132,26 +158,42 @@ export function useFocusContainer<E extends HTMLElement>(
     prevFocus.current = document.activeElement;
   }, [activate]);
 
+  const handleMountFocus =
+    (callback: TransitionEnterHandler, skipped: boolean) =>
+    (appearing: boolean) => {
+      callback(appearing);
+      if (
+        !skipped &&
+        !isFocusTypeDisabled("mount") &&
+        (!document.activeElement ||
+          !ref.current?.contains(document.activeElement))
+      ) {
+        ref.current?.focus();
+      }
+    };
+
+  const handleUnmountFocus =
+    (callback: TransitionExitHandler, skipped: boolean) => (): void => {
+      callback();
+      if (skipped || isFocusTypeDisabled("unmount")) {
+        return;
+      }
+
+      // For some reason, the `"Enter"` keydown event fires at a different timing
+      // than the Space  keydown event.
+      window.requestAnimationFrame(() => {
+        prevFocus.current?.focus();
+      });
+    };
+
   return {
-    ref,
+    nodeRef: ref,
     transitionOptions: {
       nodeRef: refCallback,
-      onEntered(appearing) {
-        onEntered(appearing);
-        if (
-          !isFocusTypeDisabled("mount") &&
-          (!document.activeElement ||
-            !ref.current?.contains(document.activeElement))
-        ) {
-          ref.current?.focus();
-        }
-      },
-      onExited() {
-        onExited();
-        if (!isFocusTypeDisabled("unmount")) {
-          prevFocus.current?.focus();
-        }
-      },
+      onEntering: handleMountFocus(onEntering, false),
+      onEntered: handleMountFocus(onEntered, !disableTransition),
+      onExiting: handleUnmountFocus(onExiting, false),
+      onExited: handleUnmountFocus(onExited, !disableTransition),
     },
     eventHandlers: {
       onKeyDown(event) {
@@ -164,21 +206,27 @@ export function useFocusContainer<E extends HTMLElement>(
           return;
         }
 
-        const container = event.currentTarget;
-        const elements = getFocusableElements(container);
+        const { target, shiftKey, currentTarget } = event;
+        const elements = getFocusableElements(currentTarget, programmatic);
         const count = elements.length;
         if (count === 0) {
           event.preventDefault();
           return;
         }
 
+        // if the container element is the current focus, need to either focus
+        // the first or last element so focus doesn't escape
         let type: FocusElementWithinType | undefined;
         if (
           count === 1 ||
-          (elements[count - 1] === event.target && !event.shiftKey)
+          (!shiftKey &&
+            (target === currentTarget || target === elements[count - 1]))
         ) {
           type = "first";
-        } else if (elements[0] === event.target && event.shiftKey) {
+        } else if (
+          shiftKey &&
+          (target === currentTarget || target === elements[0])
+        ) {
           type = "last";
         }
 
@@ -187,7 +235,7 @@ export function useFocusContainer<E extends HTMLElement>(
           focusElementWithin({
             type,
             elements,
-            container,
+            container: currentTarget,
           });
         }
       },

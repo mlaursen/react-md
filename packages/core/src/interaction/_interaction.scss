@@ -242,6 +242,14 @@ $interaction-var-lookup: (
     get-interaction-var(outline-width);
 }
 
+@mixin interaction-focus-styles {
+  @include set-interaction-var(
+    background-color,
+    get-interaction-var(focus-background-color)
+  );
+  @include set-interaction-var(outline-color, $outline-color);
+}
+
 @mixin interaction-surface(
   $focus-selector: "&:focus",
   $disabled-selector: "&:disabled",
@@ -274,11 +282,7 @@ $interaction-var-lookup: (
   @if $focus-selector {
     @include keyboard-only($css-modules) {
       #{$focus-selector + "::before"} {
-        @include set-interaction-var(
-          background-color,
-          get-interaction-var(focus-background-color)
-        );
-        @include set-interaction-var(outline-color, $outline-color);
+        @include interaction-focus-styles;
       }
     }
   }

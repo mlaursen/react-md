@@ -52,6 +52,7 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
       disabled = false,
       disabledOpacity = false,
       role = "button",
+      onBlur,
       onClick,
       onKeyDown,
       onKeyUp,
@@ -64,6 +65,7 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
     } = props;
     const { pressedClassName, rippleContainerProps, handlers } =
       useElementInteraction({
+        onBlur,
         onClick,
         onKeyDown,
         onKeyUp,

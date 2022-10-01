@@ -45,7 +45,12 @@ export default function Layout(props: LayoutProps): ReactElement {
       }}
       title={title}
       treeProps={{
-        ...useLayoutNavigation(navItems, pathname, UnstyledLink),
+        ...useLayoutNavigation({
+          navItems,
+          pathname,
+          linkComponent: UnstyledLink,
+          defaultExpandedIds: ["form"],
+        }),
         treeRef: focus,
       }}
       phoneLayout="temporary"

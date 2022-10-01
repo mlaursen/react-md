@@ -151,6 +151,14 @@ $var-lookup: (
     list-style: none;
     margin: 0;
     padding: get-var(vertical-padding) get-var(horizontal-padding);
+
+    @if not $disable-horizontal {
+      &--horizontal {
+        display: flex;
+        flex-wrap: nowrap;
+        padding: get-var(horizontal-padding) get-var(vertical-padding);
+      }
+    }
   }
 
   .rmd-list-item {
@@ -158,6 +166,8 @@ $var-lookup: (
       $disabled-selector: '&[aria-disabled="true"]'
     );
     @include use-var(height, item-height);
+    // TODO: Why did I switch to min-height in this implementation?
+    // @include use-var(min-height, item-height);
 
     align-items: center;
     display: flex;
@@ -278,7 +288,9 @@ $var-lookup: (
     .rmd-list-subheader {
       @include core.map-to-styles(core.$subtitle-2-styles);
       @include core.use-theme-var(color, text-secondary-color);
-      @include use-var(min-height, item-height);
+      @include use-var(height, item-height);
+      // TODO: Why did I switch to min-height in this implementation?
+      // @include use-var(min-height, item-height);
 
       align-items: center;
       display: flex;

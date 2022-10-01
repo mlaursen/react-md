@@ -129,7 +129,7 @@ export interface ProvidedTextFieldProps<
   E extends HTMLInputElement | HTMLTextAreaElement
 > extends TextFieldValidationOptions,
     TextFieldChangeHandlers<E>,
-    Required<Pick<TextFieldProps, "id" | "value" | "error">>,
+    Required<Pick<TextFieldProps, "id" | "name" | "value" | "error">>,
     Pick<TextFieldProps, "aria-describedby" | "rightAddon"> {
   /**
    * A ref that must be passed to the `TextField`/`TextArea` so that the custom
@@ -599,6 +599,7 @@ export function useTextField<E extends HTMLInputElement | HTMLTextAreaElement>(
   } = {
     id,
     ref,
+    name,
     value,
     error,
     required,

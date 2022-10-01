@@ -3,6 +3,7 @@ import { Link } from "@react-md/link";
 import type {
   TreeData,
   TreeExpansion,
+  TreeItemDefaultIds,
   TreeItemNode,
   TreeSelection,
 } from "@react-md/tree";
@@ -65,6 +66,38 @@ const removeQueryParams = (pathname: string): string => {
   return pathname.substring(0, i);
 };
 
+export interface LayoutNavigationOptions<
+  T extends TreeItemNode = LayoutNavigationItem
+> {
+  /**
+   * All the navigation items within your layout. This is used for determining
+   * which parent tree items should be expanded when the route changes so the
+   * current route won't be hidden from view. This sort of flow happens if you
+   * have a link outside of the navigation tree.
+   */
+  navItems: LayoutNavigationTree<T>;
+
+  /**
+   * The current pathname
+   */
+  pathname: string;
+
+  /**
+   * The link component to use within the navigation tree for any item that has
+   * a `to` or `href` attribute. This defaults to the `Link` from
+   * `@react-md/link` but should be changed to whatever link component you need
+   * if using a routing library like `react-router`.
+   *
+   * @defaultValue `Link`
+   */
+  linkComponent?: CustomLinkComponent;
+
+  /**
+   * @defaultValue `getParentIds(pathname, navItems)`
+   */
+  defaultExpandedIds?: TreeItemDefaultIds;
+}
+
 /**
  * This is a pretty reasonable default implementation for having a navigation
  * tree within the Layout component. The way it'll work is that the current
@@ -76,29 +109,24 @@ const removeQueryParams = (pathname: string): string => {
  * ensures that your layout re-renders on a path change.
  *
  * @see LayoutNavigationTree for description of the navItems
- * @param navItems - All the navigation items within your layout. This is used
- * for determining which parent tree items should be expanded when the route
- * changes so the current route won't be hidden from view. This sort of flow
- * happens if you have a link outside of the navigation tree.
- * @param pathname - The current pathname
- * @param linkComponent - The link component to use within the navigation tree
- * for any item that has a `to` or `href` attribute. This defaults to the `Link`
- * from `@react-md/link` but should be changed to whatever link component you
- * need if using a routing library like `react-router`.
  * @returns the required `Tree` selection and expansion state and handlers that
  * should be passed to the `Layout` component.
  */
 export function useLayoutNavigation<
   T extends TreeItemNode = LayoutNavigationItem
->(
-  navItems: LayoutNavigationTree<T>,
-  pathname: string,
-  linkComponent: CustomLinkComponent = Link
-): LayoutNavigationState<T> {
+>(options: LayoutNavigationOptions<T>): LayoutNavigationState<T> {
+  const {
+    navItems,
+    pathname,
+    linkComponent = Link,
+    defaultExpandedIds,
+  } = options;
   const itemId = removeQueryParams(pathname);
   const selectedIds = useMemo(() => new Set([itemId]), [itemId]);
   const { expandedIds, onItemExpansion, onMultiItemExpansion } =
-    useTreeExpansion(() => getParentIds(itemId, navItems));
+    useTreeExpansion(
+      defaultExpandedIds || (() => getParentIds(itemId, navItems))
+    );
 
   useEffect(() => {
     onMultiItemExpansion((prevExpandedIds) => {

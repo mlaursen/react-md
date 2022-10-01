@@ -1,5 +1,5 @@
 import type { UseStateInitializer, UseStateSetter } from "@react-md/core";
-import { useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 const EMPTY_LIST = [] as const;
 
@@ -55,6 +55,7 @@ export interface CheckboxGroupOptions<V> {
 
 /** @remarks \@since 6.0.0 */
 export interface CheckboxGroupImplementation<V extends string> {
+  reset(): void;
   checkedValues: ReadonlySet<V>;
   setCheckedValues: UseStateSetter<ReadonlySet<V>>;
   getCheckboxProps(value: V): {
@@ -79,6 +80,7 @@ export interface IndeterminateCheckboxGroupImplementation<V extends string>
 
 /** @remarks \@since 6.0.0 */
 export interface MenuItemCheckboxGroupImplementation<V extends string> {
+  reset(): void;
   checkedValues: ReadonlySet<V>;
   setCheckedValues: UseStateSetter<ReadonlySet<V>>;
   getCheckboxProps(value: V): {
@@ -101,6 +103,7 @@ export interface IndeterminateMenuItemCheckboxGroupImplementation<
 
 /** @remarks \@since 6.0.0 */
 export interface CombinedCheckboxGroupReturnValue<V extends string> {
+  reset(): void;
   checkedValues: ReadonlySet<V>;
   setCheckedValues: UseStateSetter<ReadonlySet<V>>;
   getCheckboxProps(value: V): {
@@ -274,6 +277,7 @@ export function useCheckboxGroup<V extends string>(
 
     return new Set(defaultCheckedValues);
   });
+  const initial = useRef(checkedValues);
 
   let getIndeterminateProps: CombinedCheckboxGroupReturnValue<V>["getIndeterminateProps"];
   if (values) {
@@ -300,6 +304,9 @@ export function useCheckboxGroup<V extends string>(
   }
 
   return {
+    reset: useCallback(() => {
+      setCheckedValues(initial.current);
+    }, []),
     checkedValues,
     setCheckedValues,
     getIndeterminateProps,

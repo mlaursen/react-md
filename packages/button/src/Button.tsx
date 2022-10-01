@@ -131,6 +131,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       buttonType = floating ? "icon" : "text",
       className,
       children: propChildren,
+      onBlur,
       onClick,
       onKeyDown,
       onKeyUp,
@@ -142,6 +143,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const isThemeDisabled = theme === "disabled";
     const { pressed, pressedClassName, rippleContainerProps, handlers } =
       useElementInteraction({
+        onBlur,
         onClick,
         onKeyDown,
         onKeyUp,

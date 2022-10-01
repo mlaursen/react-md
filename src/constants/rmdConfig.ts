@@ -9,3 +9,6 @@ export const defaultColorSchemeMode: ColorSchemeMode = "system";
 //
 export const defaultDisableHighContrastMode = false;
 // export const defaultDisableHighContrastMode = true
+
+// disabled since it makes debugging a bit easier by having all the css variables in one block
+export const disableDefaultSystemTheme = true;
