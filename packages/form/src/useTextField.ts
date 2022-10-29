@@ -30,10 +30,14 @@ const noop = (): void => {
   // do nothing
 };
 
-/** @remarks \@since 2.5.0 */
+/**
+ * @remarks
+ * \@since 2.5.0
+ * \@since 6.0.0 Added the `onInvalid` handler
+ */
 export type TextFieldChangeHandlers<
   E extends HTMLInputElement | HTMLTextAreaElement
-> = Pick<HTMLAttributes<E>, "onBlur" | "onChange">;
+> = Pick<HTMLAttributes<E>, "onBlur" | "onChange" | "onInvalid">;
 
 /** @remarks \@since 6.0.0 */
 export interface ErrorChangeHandlerOptions<
@@ -481,6 +485,7 @@ export function useTextField<E extends HTMLInputElement | HTMLTextAreaElement>(
     maxLength,
     onBlur = noop,
     onChange = noop,
+    onInvalid = noop,
     counter = false,
     helpText,
     validationType = "recommended",
@@ -571,10 +576,20 @@ export function useTextField<E extends HTMLInputElement | HTMLTextAreaElement>(
         field.setCustomValidity(errorMessage);
       }
 
-      setState({
-        value,
-        error,
-        errorMessage,
+      setState((prevState) => {
+        if (
+          prevState.value === value &&
+          prevState.error === error &&
+          prevState.errorMessage === errorMessage
+        ) {
+          return prevState;
+        }
+
+        return {
+          value,
+          error,
+          errorMessage,
+        };
       });
     },
     [
@@ -616,7 +631,6 @@ export function useTextField<E extends HTMLInputElement | HTMLTextAreaElement>(
       if (event.isPropagationStopped()) {
         return;
       }
-
       checkValidity(true);
     },
     onChange(event) {
@@ -634,6 +648,34 @@ export function useTextField<E extends HTMLInputElement | HTMLTextAreaElement>(
       }
 
       checkValidity(false);
+    },
+    onInvalid(event) {
+      onInvalid(event);
+      if (
+        event.isPropagationStopped() ||
+        event.currentTarget === document.activeElement
+      ) {
+        return;
+      }
+
+      // this makes it so that if a submit button is clicked in a form, all
+      // textfields will gain the error state immediately
+      // also need to extract the validationMessage immediately because of the
+      // SyntheticEvent behavior in React. By the time the `setState` is called,
+      // the event might've been deleted
+      const { validationMessage } = event.currentTarget;
+
+      setState((prevState) => {
+        if (prevState.error) {
+          return prevState;
+        }
+
+        return {
+          ...prevState,
+          error: true,
+          errorMessage: validationMessage,
+        };
+      });
     },
   };
 
