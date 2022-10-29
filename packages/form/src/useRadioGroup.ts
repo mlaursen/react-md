@@ -104,7 +104,7 @@ export interface CombinedRadioGroupReturnValue<V extends string | number> {
   setValue: UseStateSetter<V>;
   getRadioProps?(value: V): {
     name?: string;
-    value: V;
+    value?: V;
     checked: boolean;
     error?: boolean;
     required?: boolean;
@@ -248,8 +248,8 @@ export function useRadioGroup<V extends string | number>(
     defaultValue,
     menu = false,
     required,
-    onChange: propOnChange = noop,
-    onInvalid: propOnInvalid = noop,
+    onChange = noop,
+    onInvalid = noop,
   } = options;
   const [value, setValue] = useState<V>(() => {
     if (typeof defaultValue === "function") {
@@ -269,42 +269,39 @@ export function useRadioGroup<V extends string | number>(
     value: value,
     setValue,
     getRadioProps(radioValue) {
-      let onChange: ChangeEventHandler<HTMLInputElement> | undefined;
-      let onInvalid: FormEventHandler<HTMLInputElement> | undefined;
-      let onCheckedChange: (() => void) | undefined;
-      if (!menu) {
-        onChange = (event) => {
-          propOnChange(event);
-          if (event.isPropagationStopped()) {
-            return;
-          }
-
-          setError(false);
-          setValue(radioValue);
-        };
-        onInvalid = (event) => {
-          propOnInvalid(event);
-          if (event.isPropagationStopped()) {
-            return;
-          }
-          setError(true);
-        };
-      } else {
-        onCheckedChange = () => {
-          setError(false);
-          setValue(radioValue);
+      const checked = value === radioValue;
+      if (menu) {
+        return {
+          checked,
+          onCheckedChange() {
+            setError(false);
+            setValue(radioValue);
+          },
         };
       }
 
       return {
         name,
         value: radioValue,
-        error: menu ? undefined : error,
-        checked: value === radioValue,
-        required: menu ? undefined : required,
-        onChange,
-        onInvalid,
-        onCheckedChange,
+        error,
+        checked,
+        required,
+        onChange(event) {
+          onChange(event);
+          if (event.isPropagationStopped()) {
+            return;
+          }
+
+          setError(false);
+          setValue(radioValue);
+        },
+        onInvalid(event) {
+          onInvalid(event);
+          if (event.isPropagationStopped()) {
+            return;
+          }
+          setError(true);
+        },
       };
     },
   };
