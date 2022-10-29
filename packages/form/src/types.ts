@@ -269,6 +269,11 @@ export interface LabelClassNameOptions {
    * @defaultValue `false`
    */
   reversed?: boolean;
+
+  /**
+   * @defaultValue `false`
+   */
+  inactive?: boolean;
 }
 
 export interface LabelProps
@@ -357,7 +362,7 @@ export interface FormFieldOptions
   labelProps?: PropsWithRef<LabelProps, HTMLLabelElement>;
 
   /**
-   * A convenience prop for applying custom style to a label. This is equivalent
+   * A convenience prop to apply a custom style to a label. This is equivalent
    * to:
    *
    * ```ts
@@ -369,7 +374,7 @@ export interface FormFieldOptions
   labelStyle?: CSSProperties;
 
   /**
-   * A convenience prop for apply a custom className to a label. This is
+   * A convenience prop to apply a custom className to a label. This is
    * equivalent to:
    *
    * ```ts

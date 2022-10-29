@@ -58,6 +58,9 @@ export interface InputToggleClassNameOptions {
   /** @defaultValue `false` */
   disabled?: boolean;
 
+  /** @defaultValue `false` */
+  readOnly?: boolean;
+
   /**
    * @see {@link InputToggleSize}
    * @defaultValue `"auto"`
@@ -75,6 +78,7 @@ export function inputToggle(options: InputToggleClassNameOptions): string {
     size = "auto",
     active = false,
     disabled = false,
+    readOnly = false,
   } = options;
 
   return cnb(
@@ -82,6 +86,7 @@ export function inputToggle(options: InputToggleClassNameOptions): string {
     styles({
       active,
       disabled,
+      readonly: readOnly,
       small: size === "small",
       dense: size === "dense",
       normal: size === "normal",
@@ -305,7 +310,7 @@ export const InputToggle = forwardRef<HTMLInputElement, InputToggleProps>(
     const { disabled = false, readOnly = false } = props;
     const themeDisabled = disabled || readOnly;
 
-    const id = useEnsuredId(propId, "text-field");
+    const id = useEnsuredId(propId, type);
     const { pressedClassName, rippleContainerProps, handlers } =
       useElementInteraction({
         disabled: themeDisabled,
@@ -353,6 +358,7 @@ export const InputToggle = forwardRef<HTMLInputElement, InputToggleProps>(
             )}
             checked={checked}
             disabled={disabled}
+            readOnly={readOnly}
             size={size}
             type={type}
             icon={icon}

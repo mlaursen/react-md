@@ -156,7 +156,9 @@ $var-lookup: (
       &--horizontal {
         display: flex;
         flex-wrap: nowrap;
+        overflow: auto;
         padding: get-var(horizontal-padding) get-var(vertical-padding);
+        max-width: 100%;
       }
     }
   }
@@ -165,9 +167,7 @@ $var-lookup: (
     @include core.interaction-surface(
       $disabled-selector: '&[aria-disabled="true"]'
     );
-    @include use-var(height, item-height);
-    // TODO: Why did I switch to min-height in this implementation?
-    // @include use-var(min-height, item-height);
+    @include use-var(min-height, item-height);
 
     align-items: center;
     display: flex;

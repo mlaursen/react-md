@@ -11,6 +11,7 @@ export interface InputToggleIconProps extends HTMLAttributes<HTMLSpanElement> {
   size?: InputToggleSize;
   checked: boolean;
   disabled?: boolean;
+  readOnly?: boolean;
   indeterminate?: boolean;
   checkedIcon?: ReactNode;
   indeterminateIcon?: ReactNode;
@@ -27,6 +28,7 @@ export const InputToggleIcon = forwardRef<
     checked,
     children,
     disabled,
+    readOnly,
     indeterminate,
     className,
     checkedIcon: propCheckedIcon,
@@ -55,6 +57,7 @@ export const InputToggleIcon = forwardRef<
           type,
           active: checked,
           disabled,
+          readOnly,
           className,
         })
       )}

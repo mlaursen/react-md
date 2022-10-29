@@ -17,6 +17,7 @@ import { forwardRef } from "react";
 import type {
   IndeterminateCheckboxProps,
   InputToggleIconProps,
+  InputToggleSize,
 } from "./InputToggle";
 import { InputToggleIcon } from "./InputToggleIcon";
 import { SwitchTrack } from "./SwitchTrack";
@@ -39,13 +40,32 @@ export function menuItemInputToggle(
   );
 }
 
+export type MenuItemInputToggleCheckedCallback = (
+  checked: boolean,
+  event: MouseEvent<HTMLLIElement>
+) => void;
+
 export interface BaseMenuItemInputToggleProps
   extends HTMLAttributes<HTMLLIElement>,
     InputToggleIconProps {
   id?: string;
   disabled?: boolean;
   checked: boolean;
-  onCheckedChange(checked: boolean, event: MouseEvent<HTMLLIElement>): void;
+  onCheckedChange: MenuItemInputToggleCheckedCallback;
+  /**
+   * @defaultValue `false`
+   */
+  closeMenuOnChange?: boolean;
+
+  /**
+   * This is set to `"auto"` by default so the icon shrinks back down to the
+   * default icon size instead of relative to the current font size. You
+   * probably don't want to change this since it'll also modify the height of
+   * the menu item
+   *
+   * @defaultValue `"auto"`
+   */
+  size?: InputToggleSize;
 
   height?: ListItemHeight;
   threeLines?: boolean;
@@ -87,11 +107,12 @@ export const MenuItemInputToggle = forwardRef<
     disabled = false,
     checked,
     onCheckedChange,
+    closeMenuOnChange = false,
     onClick,
     className,
     tabIndex = -1,
     children,
-    size = "normal",
+    size = "auto",
     icon: propIcon,
     iconAfter = false,
     iconProps,
@@ -127,7 +148,7 @@ export const MenuItemInputToggle = forwardRef<
           active={checked}
           ballProps={ballProps}
           ballStyle={ballStyle}
-          ballClassName={ballClassName}
+          ballClassName={cnb(styles("ball"), ballClassName)}
         />
       );
     } else {
@@ -185,6 +206,9 @@ export const MenuItemInputToggle = forwardRef<
       onClick={(event) => {
         onClick?.(event);
         onCheckedChange(!checked, event);
+        if (!closeMenuOnChange) {
+          event.stopPropagation();
+        }
       }}
       ref={ref}
       className={menuItemInputToggle({ type, className })}

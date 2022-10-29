@@ -10,8 +10,8 @@ export function Resettable({ children }: ResettableProps): ReactElement {
   const [key, setKey] = useState(0);
 
   return (
-    <Fragment key={key}>
-      {children}
+    <>
+      <Fragment key={key}>{children}</Fragment>
       <Button
         onClick={() => setKey((key) => (key === 0 ? 1 : 0))}
         floating="bottom-right"
@@ -19,6 +19,6 @@ export function Resettable({ children }: ResettableProps): ReactElement {
       >
         Reset
       </Button>
-    </Fragment>
+    </>
   );
 }

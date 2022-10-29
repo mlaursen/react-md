@@ -126,8 +126,8 @@ export default function App(props: AppProps): ReactElement {
       ssr
       colorSchemeMode={defaultColorSchemeMode}
       colorSchemeModeKey="colorScheme"
-      elementInteractionMode={defaultElementInteractionMode}
       disableHigherContrast={defaultDisableHighContrastMode}
+      elementInteractionMode={defaultElementInteractionMode}
     >
       <Head>
         <title>{title}</title>

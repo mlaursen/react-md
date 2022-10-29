@@ -19,6 +19,10 @@ $disable-textarea: false !default;
 $disable-password: $disable-text-field !default;
 $disable-text-field-addon: $disable-text-field and $disable-password and
   $disable-textarea !default;
+$disable-select: false !default;
+$disable-native-select: false !default;
+$disable-native-select-icon: false !default;
+$disable-native-select-multiple: false !default;
 $disable-checkbox: false !default;
 $disable-radio: false !default;
 $disable-switch: false !default;
@@ -125,6 +129,9 @@ $textarea-addon-top: 1rem !default;
 $textarea-vertical-padding: 0.75rem !default;
 
 $password-visibility-toggle-spacing: 0.25rem !default;
+
+$native-select-addon-top: 1rem !default;
+$native-select-multiple-padding: 0.75rem !default;
 
 $input-toggle-border-radius: 50% !default;
 $input-toggle-padding: 0.5em !default;
@@ -418,6 +425,10 @@ $var-lookup: (
         }
 
         left: 0;
+        // disable pointer events for floating labels so that the input behind
+        // is clicked instead. this prevents double click events for the Select
+        // component
+        pointer-events: none;
         position: absolute;
         top: 0;
         transform: translate(get-var(text-padding-left), get-var(floating-top));
@@ -441,6 +452,10 @@ $var-lookup: (
         $floating-active-selector: $floating-active-selector +
           ", .rmd-text-field-container:focus-within &--floating" +
           ", .rmd-text-field:not(:placeholder-shown) + &--floating";
+      }
+      @if not $disable-native-select {
+        $floating-active-selector: $floating-active-selector +
+          ", .rmd-native-select + &--floating";
       }
 
       #{$floating-active-selector} {
@@ -851,6 +866,70 @@ $var-lookup: (
   }
 }
 
+@mixin select-styles {
+  .rmd-select-input {
+    opacity: 0;
+    // position: absolute;
+  }
+
+  .rmd-select-value {
+    align-items: center;
+    display: flex;
+    min-width: 20rem;
+    // position: absolute;
+  }
+
+  .rmd-listbox {
+    overflow: auto;
+
+    &--temporary {
+      @include core.box-shadow(8);
+      background-color: core.get-theme-var(surface-color);
+      color: core.get-theme-var(text-primary-color);
+
+      z-index: 30;
+    }
+  }
+}
+
+@mixin native-select-styles {
+  @if not $disable-native-select-multiple {
+    .rmd-native-select-container {
+      @if not $disable-text-field-outlined-theme {
+        &--outline {
+          @include set-var(text-padding-top, $native-select-multiple-padding);
+        }
+      }
+
+      &--multi {
+        @include set-var(addon-top, $native-select-addon-top);
+        @include use-var(min-height, text-height);
+
+        height: auto;
+      }
+
+      &--padded {
+        padding-top: $native-select-multiple-padding;
+      }
+    }
+  }
+
+  .rmd-native-select {
+    @include _text-field-base-styles;
+
+    @if not $disable-native-select-icon {
+      &--icon {
+        appearance: none;
+      }
+
+      &__icon {
+        display: inline-flex;
+        pointer-events: none;
+      }
+    }
+  }
+}
+
 @mixin text-field-addon-styles {
   .rmd-text-field-addon {
     @include icon.use-var(height, size);
@@ -907,11 +986,11 @@ $var-lookup: (
   .rmd-input-toggle {
     @include core.interaction-surface(
       $focus-selector: "&:focus-within",
-      $disabled-selector: "&--disabled",
+      $disabled-selector: "&--disabled,&--readonly",
       $higher-contrast: false
     );
-    @include icon.set-var(size, 1em);
     @include icon.set-var(color, currentcolor);
+    @include icon.set-var(size, 1em);
 
     align-items: center;
     border-radius: $input-toggle-border-radius;
@@ -1059,14 +1138,12 @@ $var-lookup: (
 
 @mixin menu-item-input-toggle-styles {
   .rmd-menu-item-input-toggle {
-    &__icon {
+    // disable the hover states since it's handled by the ListItem instead
+    &__icon,
+    &__ball {
       &::before {
         content: none;
       }
-    }
-
-    &--switch {
-      //
     }
   }
 }
@@ -1095,7 +1172,11 @@ $var-lookup: (
     @include form-message-styles;
   }
 
-  @if not $disable-text-field or not $disable-password or not $disable-textarea
+  @if not
+    $disable-text-field or not
+    $disable-password or not
+    $disable-textarea or not
+    $disable-native-select
   {
     @include text-field-container-styles;
   }
@@ -1112,6 +1193,14 @@ $var-lookup: (
   @if not $disable-textarea {
     @include textarea-container-styles;
     @include textarea-styles;
+  }
+
+  @if not $disable-select {
+    @include select-styles;
+  }
+
+  @if not $disable-native-select {
+    @include native-select-styles;
   }
 
   @if not $disable-text-field-addon {
