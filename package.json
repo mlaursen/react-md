@@ -10,8 +10,10 @@
     "test": "jest",
     "create-docs": "typedoc",
     "build-ejs": "swc src -d ejs",
-    "lint": "eslint \"**/*.{ts,tsx,js,jsx}\"",
-    "typecheck": "tsc --noEmit",
+    "lint": "eslint \"**/*.{ts,tsx,js,jsx,cjs,mjs}\"",
+    "typecheck-main": "tsc --noEmit",
+    "typecheck-scripts": "tsc --noEmit --project scripts/tsconfig.json",
+    "typecheck": "pnpm run typecheck-main && pnpm run typecheck-scripts",
     "format": "prettier --write .",
     "fix-type-imports": "eslint -c .precommit.eslintrc.cjs \"packages/**/*.{ts,tsx}\" --fix",
     "format-imports": "pnpm run fix-type-imports; pnpm run format",
@@ -21,6 +23,10 @@
     "start": "next start",
     "build-static": "next build && next export"
   },
+  "engines": {
+    "pnpm": ">=7"
+  },
+  "engineStrict": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mlaursen/react-md.git"

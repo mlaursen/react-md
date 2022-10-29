@@ -26,12 +26,6 @@ module.exports = {
       },
     },
     {
-      files: ["scripts/**"],
-      rules: {
-        "no-console": 0,
-      },
-    },
-    {
       files: ["**/__tests__/**"],
       rules: {
         "jest/no-alias-methods": 0,

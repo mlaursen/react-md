@@ -36,6 +36,11 @@
       "@react-md/visual-media": ["packages/visual-media/src/index.ts"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "prev", "packages/material-icons/**/*", "scripts"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "next.config.mjs"],
+  "exclude": [
+    "node_modules",
+    "prev",
+    "packages/material-icons/**/*",
+    "scripts/**"
+  ]
 }
