@@ -6,8 +6,8 @@ import type { ReactElement } from "react";
 export default function AvatarPage(): ReactElement {
   return (
     <TextContainer className={box()}>
-      <Avatar src="https://picsum.photos/40/40?image=153" />
-      <Avatar src="https://picsum.photos/40/40?image=103" color="blue" />
+      <Avatar src="https://i.pravatar.cc/40?img=24" />
+      <Avatar src="https://i.pravatar.cc/40?img=24" color="blue" />
       <Avatar>A</Avatar>
       <Avatar color="orange">PL</Avatar>
       <Avatar color="teal">

@@ -34,7 +34,7 @@ export default function FixedDialogExample(): ReactElement {
         options={{ xMargin: 12, yMargin: 12 }}
         aria-labelledby="dialog-title"
       >
-        <AppBar>
+        <AppBar theme="clear">
           <AppBarTitle id="dialog-title">Title</AppBarTitle>
           <Button onClick={hide} buttonType="icon" aria-label="Close">
             <CloseIcon />

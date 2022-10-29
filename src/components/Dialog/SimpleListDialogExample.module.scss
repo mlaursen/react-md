@@ -1,0 +1,10 @@
+@use "react-md";
+
+.list {
+  @include react-md.list-set-var(
+    item-horizontal-padding,
+    react-md.$dialog-header-padding
+  );
+
+  padding-top: 0;
+}

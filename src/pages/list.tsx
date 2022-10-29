@@ -1,4 +1,5 @@
 import { Avatar } from "@react-md/avatar";
+import Image from "next/image";
 import {
   Box,
   SkeletonPlaceholder,
@@ -17,6 +18,7 @@ import { cnb } from "cnbuilder";
 import type { ReactElement } from "react";
 import { useEffect, useState } from "react";
 
+import largeGraphic from "src/pexels/pexels-lumn-167699-100x56.jpg";
 import { loremIpsum } from "src/utils/loremIpsum";
 import styles from "./list.module.scss";
 
@@ -34,7 +36,7 @@ export default function ListPage(): ReactElement {
     } else {
       timeout = window.setTimeout(() => {
         setLoaded({
-          image: "https://picsum.photos/56?image=700",
+          image: "https://i.pravatar.cc/56?img=68",
           primaryText: loremIpsum({ minWords: 4, maxWords: 10 }),
           secondaryText: loremIpsum({ minWords: 1, maxWords: 5 }),
         });
@@ -85,7 +87,7 @@ export default function ListPage(): ReactElement {
         </List>
         <List>
           <ListItem
-            leftAddon={<Avatar src="https://picsum.photos/40?image=844" />}
+            leftAddon={<Avatar src="https://i.pravatar.cc/40?img=58" />}
             leftAddonType="avatar"
             rightAddon={<DeleteIcon />}
           >
@@ -93,7 +95,7 @@ export default function ListPage(): ReactElement {
           </ListItem>
           <ListItem
             leftAddon={<AdjustIcon />}
-            rightAddon={<Avatar src="https://picsum.photos/40?image=553" />}
+            rightAddon={<Avatar src="https://i.pravatar.cc/40?img=55" />}
             rightAddonType="avatar"
           >
             Marco Sherman
@@ -101,30 +103,26 @@ export default function ListPage(): ReactElement {
         </List>
         <List>
           <ListItem
-            leftAddon={<img src="https://picsum.photos/56?image=700" alt="" />}
+            leftAddon={<img src="https://i.pravatar.cc/56?img=44" alt="" />}
             leftAddonType="media"
           >
             With a graphic
           </ListItem>
           <ListItem
-            leftAddon={
-              <img src="https://picsum.photos/100/56?image=800" alt="" />
-            }
+            leftAddon={<Image src={largeGraphic} alt="" />}
             leftAddonType="large-media"
           >
             With a large graphic
           </ListItem>
           <ListItem
-            rightAddon={<img src="https://picsum.photos/56?image=700" alt="" />}
+            rightAddon={<img src="https://i.pravatar.cc/56?img=44" alt="" />}
             rightAddonType="media"
           >
             With a graphic
           </ListItem>
           <ListItem
             id="media-item-3"
-            rightAddon={
-              <img src="https://picsum.photos/100/56?image=800" alt="" />
-            }
+            rightAddon={<Image src={largeGraphic} alt="" />}
             rightAddonType="large-media"
           >
             With a large graphic
@@ -134,7 +132,7 @@ export default function ListPage(): ReactElement {
           <ListItem
             leftAddon={<AppsIcon />}
             disabled
-            rightAddon={<Avatar src="https://picsum.photos/40?image=553" />}
+            rightAddon={<Avatar src="https://i.pravatar.cc/56?img=20" />}
             rightAddonType="avatar"
           >
             Disabled
@@ -143,7 +141,7 @@ export default function ListPage(): ReactElement {
             leftAddon={<AppsIcon />}
             disabled
             disabledOpacity
-            rightAddon={<Avatar src="https://picsum.photos/40?image=553" />}
+            rightAddon={<Avatar src="https://i.pravatar.cc/56?img=20" />}
             rightAddonType="avatar"
           >
             Disabled with opacity
@@ -151,7 +149,7 @@ export default function ListPage(): ReactElement {
           <ListItem
             leftAddon={<AppsIcon />}
             disabled
-            rightAddon={<img src="https://picsum.photos/56?image=700" alt="" />}
+            rightAddon={<img src="https://i.pravatar.cc/56?img=20" alt="" />}
             rightAddonType="media"
           >
             Disabled
@@ -160,7 +158,7 @@ export default function ListPage(): ReactElement {
             leftAddon={<AppsIcon />}
             disabled
             disabledOpacity
-            rightAddon={<img src="https://picsum.photos/56?image=700" alt="" />}
+            rightAddon={<img src="https://i.pravatar.cc/56?img=20" alt="" />}
             rightAddonType="media"
           >
             Disabled with opacity
@@ -210,7 +208,7 @@ export default function ListPage(): ReactElement {
         </Typography>
         <List style={{ maxWidth: "30rem" }}>
           <ListItem
-            leftAddon={<img src="https://picsum.photos/40?image=1000" alt="" />}
+            leftAddon={<img src="https://i.pravatar.cc/56?img=54" alt="" />}
             leftAddonType="media"
             rightAddon={<StarIcon />}
             rightAddonPosition="top"
@@ -220,7 +218,7 @@ export default function ListPage(): ReactElement {
             Brunch this weekend?
           </ListItem>
           <ListItem
-            leftAddon={<img src="https://picsum.photos/40?image=1001" alt="" />}
+            leftAddon={<img src="https://i.pravatar.cc/56?img=1" alt="" />}
             leftAddonType="media"
             rightAddon={<StarIcon />}
             rightAddonPosition="top"
@@ -230,7 +228,7 @@ export default function ListPage(): ReactElement {
             Summer BBQ
           </ListItem>
           <ListItem
-            leftAddon={<img src="https://picsum.photos/40?image=1002" alt="" />}
+            leftAddon={<img src="https://i.pravatar.cc/56?img=8" alt="" />}
             leftAddonType="media"
             rightAddon={<StarIcon />}
             rightAddonPosition="top"

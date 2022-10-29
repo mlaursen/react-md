@@ -9,11 +9,13 @@ import {
 } from "@react-md/dialog";
 import type { ReactElement } from "react";
 
+export interface SimpleExampleProps {
+  depth?: number;
+}
+
 export default function SimpleExample({
   depth = 0,
-}: {
-  depth?: number;
-}): ReactElement {
+}: SimpleExampleProps): ReactElement {
   const {
     toggled: visible,
     enable: showDialog,
@@ -21,20 +23,19 @@ export default function SimpleExample({
   } = useToggle(false);
   return (
     <>
-      <Button id="simple-dialog-toggle" onClick={showDialog}>
-        Show
-      </Button>
+      <Button onClick={showDialog}>Show</Button>
       <Dialog
-        id={`simple-dialog-${depth}`}
         visible={visible}
         onRequestClose={hideDialog}
-        aria-labelledby="dialog-title"
+        aria-labelledby={`dialog-title-${depth}`}
       >
         <DialogHeader>
-          <DialogTitle id="dialog-title">Simple Dialog</DialogTitle>
+          <DialogTitle id={`dialog-title-${depth}`}>Simple Dialog</DialogTitle>
         </DialogHeader>
         <DialogContent>
-          <Typography margin="none">This is some text in a dialog.</Typography>
+          <Typography margin="bottom">
+            This is some text in a dialog.
+          </Typography>
           <SimpleExample depth={depth + 1} />
         </DialogContent>
         <DialogFooter>

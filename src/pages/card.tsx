@@ -21,6 +21,9 @@ import {
 import type { ReactElement } from "react";
 import { useState } from "react";
 import { DemoHeadingWithDivider } from "src/components/DemoHeadingWithDivider";
+import moraineLake from "src/pexels/pexels-jaime-reimer-2662116-600x427.jpg";
+import Image from "next/image";
+import { Link } from "@react-md/link";
 
 export default function CardPage(): ReactElement {
   const [expanded, setExpanded] = useState(false);
@@ -114,12 +117,17 @@ export default function CardPage(): ReactElement {
         <DemoHeadingWithDivider>With Media</DemoHeadingWithDivider>
         <Card>
           <VisualMediaContainer>
-            <img src="https://picsum.photos/600/337?image=402" alt="" />
+            <Image src={moraineLake} alt="" />
             <VisualMediaOverlay>
               <CardTitle>Wow</CardTitle>
             </VisualMediaOverlay>
           </VisualMediaContainer>
           <CardContent>
+            <Typography>
+              <Link href="https://www.pexels.com/photo/beautiful-view-of-moraine-lake-2662116/">
+                https://www.pexels.com/photo/beautiful-view-of-moraine-lake-2662116/
+              </Link>
+            </Typography>
             <Typography margin="none">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut
               eleifend odio. Vivamus quis quam eget augue facilisis laoreet.
@@ -176,14 +184,10 @@ export default function CardPage(): ReactElement {
         <DemoHeadingWithDivider>Expandable Card</DemoHeadingWithDivider>
         <Card fullWidth>
           <VisualMediaContainer fullWidth>
-            <img src="https://picsum.photos/300/200?image=1011" alt="" />
+            <Image src={moraineLake} alt="" />
           </VisualMediaContainer>
           <CardHeader
-            beforeAddon={
-              <Avatar>
-                <img src="https://picsum.photos/40?image=1011" alt="" />
-              </Avatar>
-            }
+            beforeAddon={<Avatar src="https://i.pravatar.cc/56?img=24" />}
             afterAddon={
               <Button
                 buttonType="icon"
