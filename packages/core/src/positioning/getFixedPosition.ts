@@ -1,3 +1,4 @@
+import { getScrollbarWidth } from "../scroll";
 import { BELOW_CENTER_ANCHOR } from "./constants";
 import { createHorizontalPosition } from "./createHorizontalPosition";
 import { createVerticalPosition } from "./createVerticalPosition";
@@ -98,6 +99,8 @@ export function getFixedPosition(options: FixedPositionOptions): FixedPosition {
       actualX: anchor.x,
       actualY: anchor.y,
       style: {
+        left: initialX,
+        top: initialY,
         position: disableVHBounds ? "absolute" : "fixed",
         transformOrigin: transformOrigin
           ? getTransformOrigin({ x: anchor.x, y: anchor.y })
@@ -110,7 +113,20 @@ export function getFixedPosition(options: FixedPositionOptions): FixedPosition {
   const vh = window.innerHeight;
   const vw = window.innerWidth;
 
-  const { height, width: elWidth } = getElementRect(element);
+  const { minWidth: elMinWidth } = element.style;
+  // Note: This makes it "min-content" or "min-container-width"
+  if (widthType === "min") {
+    element.style.overflow = "visible";
+    element.style.minWidth = "";
+  }
+  const elementRect = getElementRect(element);
+  const { height } = elementRect;
+  let elWidth = elementRect.width;
+  if (widthType === "min") {
+    elWidth += getScrollbarWidth();
+    element.style.overflow = "";
+    element.style.minWidth = elMinWidth;
+  }
   if (disableVHBounds) {
     const dialog = element.closest("[role='dialog']");
     if (!dialog) {

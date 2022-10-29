@@ -74,6 +74,25 @@ export function getFocusableElements(
 }
 
 /**
+ * Attempts to find the first focusable element within a container.
+ *
+ * @remarks \@since 6.0.0
+ * @param container - The container element/document to find focusable elements
+ * within.
+ * @param programmatic - Boolean if programmatically focusable elements should be
+ * included instead of only tab focusable.
+ * @returns A list of HTMLElements that are focusable within the container.
+ */
+export function getFocusableElement(
+  container: HTMLElement | Document,
+  programmatic = false
+): HTMLElement | null {
+  return container.querySelector<HTMLElement>(
+    programmatic ? PROGRAMMATICALLY_FOCUSABLE : TAB_FOCUSABLE
+  );
+}
+
+/**
  * An element can be tab focused if it is:
  * - an anchor or area with an `href`
  * - a non-disabled `input` element that is not `type="hidden"`

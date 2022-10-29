@@ -1,4 +1,4 @@
-import type { Coords, PositionAnchor } from "./types";
+import type { PositionAnchor } from "./types";
 
 /** @internal */
 export interface XCoordConfig {
@@ -294,26 +294,16 @@ export function findSizingContainer(
   return el;
 }
 
-function applyCoords(coord: number | undefined): string {
-  return typeof coord === "number" ? `${coord}px` : "";
-}
-
 /**
  * This util is used to get the "true" `element.getBoundingClientRect()` that
  * ensures that transitions using transforms don't mess up the sizing so that
  * position calculations are easier to do.
  *
  * @param element - The element to get a rect for.
- * @param coords - An optional object of coordinates to apply to the positioning
- * styles. This should be used when the coords might resize the element since it
- * needs to try to fit within the viewport.
  * @returns either a DOMRect for the element
  * @internal
  */
-export function getElementRect(
-  element: HTMLElement,
-  coords: Coords = {}
-): DOMRect {
+export function getElementRect(element: HTMLElement): DOMRect {
   const cloned = element.cloneNode(true) as HTMLElement;
   // remove the id so there won't be two elements with the same id on the page
   cloned.removeAttribute("id");
@@ -328,13 +318,12 @@ export function getElementRect(
 
   // reset positioning to get a "pure" calculation. otherwise this will mess up
   // the height and width if the element is able to line wrap.
-  cloned.style.left = applyCoords(coords.left);
-  cloned.style.top = applyCoords(coords.top);
-  cloned.style.right = applyCoords(coords.right);
-  cloned.style.bottom = applyCoords(coords.bottom);
+  cloned.style.left = "";
+  cloned.style.top = "";
+  cloned.style.right = "";
+  cloned.style.bottom = "";
 
   // reset transforms so that custom animations don't mess with the sizing
-  cloned.style.webkitTransform = "none";
   cloned.style.transform = "none";
 
   const parent = element.parentElement || document.body;

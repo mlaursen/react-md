@@ -226,15 +226,25 @@ export function createEqualWidth({
   containerRect,
   isMinWidth,
 }: EqualWidthOptions): XPosition {
-  const left = initialX ?? containerRect.left + xMargin;
+  let left = initialX ?? containerRect.left + xMargin;
 
   let width: number | undefined = containerRect.width - xMargin * 2;
   let minWidth: number | undefined;
   let right: number | undefined;
   if (isMinWidth) {
     minWidth = width;
+    // if the fixed element has a width greater than the element it is fixed to,
+    // update the width to be the fixed element's width. since the "min-width"
+    // option is only possible for horizontally centered elements, need to then
+    // update the `left` position again.
+    if (elWidth > width) {
+      left -= (elWidth - width) / 2;
+      minWidth = elWidth;
+    }
+
     width = undefined;
     if (left + elWidth > vw - vwMargin) {
+      left -= vwMargin;
       right = vwMargin;
     }
   }

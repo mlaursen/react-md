@@ -1,10 +1,10 @@
-import type { KeyboardEventHandler, RefObject } from "react";
+import type { KeyboardEventHandler, Ref, RefObject } from "react";
 import { useEffect, useRef } from "react";
 
 import type {
+  TransitionCallbacks,
   TransitionEnterHandler,
   TransitionExitHandler,
-  TransitionOptions,
 } from "../transition/types";
 import { useEnsuredRef } from "../useEnsuredRef";
 import type { FocusElementWithinType } from "./utils";
@@ -33,10 +33,20 @@ const noop = (): void => {
 export type FocusType = "mount" | "unmount" | "keyboard";
 
 /** @remarks \@since 6.0.0 */
-export type FocusContainerTransitionOptions<E extends HTMLElement> = Pick<
-  TransitionOptions<E>,
-  "onEntering" | "onEntered" | "onExiting" | "onExited" | "nodeRef"
+export type FocusContainerTransitionCallbacks = Pick<
+  TransitionCallbacks,
+  "onEntering" | "onEntered" | "onExiting" | "onExited"
 >;
+
+/** @remarks \@since 6.0.0 */
+export interface FocusContainerTransitionOptions<E extends HTMLElement>
+  extends FocusContainerTransitionCallbacks {
+  /**
+   * An optional ref that will be merged with the
+   * {@link FocusContainerImplementation.nodeRef}
+   */
+  nodeRef?: Ref<E>;
+}
 
 /** @remarks \@since 6.0.0 */
 export interface FocusContainerEventHandlers<E extends HTMLElement> {
