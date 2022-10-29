@@ -1,3 +1,4 @@
+import { Button } from "@react-md/button";
 import { Box, Typography } from "@react-md/core";
 import { Form, Radio, useRadioGroup } from "@react-md/form";
 import type { ReactElement } from "react";
@@ -15,6 +16,28 @@ function RadioGroup(): ReactElement {
       <Radio {...getRadioProps("c")} label="Third" />
       <Radio {...getRadioProps("d")} label="Forth" />
     </>
+  );
+}
+
+function Validation(): ReactElement {
+  const { getRadioProps } = useRadioGroup({
+    name: "radio-group",
+    required: true,
+  });
+
+  return (
+    <Form>
+      <Box stacked align="start">
+        <Typography type="headline-4" margin="top">
+          Validation
+        </Typography>
+        <Radio {...getRadioProps("a")} label="First" />
+        <Radio {...getRadioProps("b")} label="Second" />
+        <Radio {...getRadioProps("c")} label="Third" />
+        <Radio {...getRadioProps("d")} label="Forth" />
+      </Box>
+      <Button type="submit">Submit</Button>
+    </Form>
   );
 }
 
@@ -50,6 +73,7 @@ export default function RadioPage(): ReactElement {
           <RadioGroup />
         </Box>
       </Form>
+      <Validation />
     </Resettable>
   );
 }
