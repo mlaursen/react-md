@@ -1,5 +1,5 @@
 import type { UseStateObject } from "@react-md/core";
-import type { ProvidedRadioProps } from "@react-md/form";
+import type { ProvidedRadioGroupProps } from "@react-md/form";
 import { useRadioGroup } from "@react-md/form";
 import type { SVGIcon } from "@react-md/icon";
 import { camelCase } from "lodash";
@@ -115,10 +115,12 @@ interface State {
   components: IconReferences;
 }
 
-type RadioGroup<Name extends string, Value> = {
+type RadioGroup<Name extends string, Value extends string> = {
   [key in Name]: Value;
 } & {
-  [key in `get${Capitalize<Name>}Props`]: (value: Value) => ProvidedRadioProps;
+  [key in `get${Capitalize<Name>}Props`]: (
+    value: Value
+  ) => ProvidedRadioGroupProps<Value>;
 };
 
 type ReturnValue = UseStateObject<"search", string> &

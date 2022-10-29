@@ -32,10 +32,15 @@ export const UnstyledLink = forwardRef<HTMLAnchorElement, UnstyledLinkProps>(
     }
 
     return (
-      <Link shallow={shallow} scroll={scroll} replace={replace} href={href}>
-        <a {...remaining} ref={ref} href={href}>
-          {children}
-        </a>
+      <Link
+        {...remaining}
+        ref={ref}
+        shallow={shallow}
+        scroll={scroll}
+        replace={replace}
+        href={href}
+      >
+        {children}
       </Link>
     );
   }

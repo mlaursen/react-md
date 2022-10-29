@@ -37,5 +37,5 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "prev", "packages/material-icons/**/*"]
+  "exclude": ["node_modules", "prev", "packages/material-icons/**/*", "scripts"]
 }

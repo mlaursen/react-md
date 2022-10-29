@@ -68,19 +68,22 @@ export interface RadioGroupOptions<T extends string | number> {
 }
 
 /** @remarks \@since 6.0.0 */
+export interface ProvidedRadioGroupProps<V extends string | number> {
+  name: string;
+  value: V;
+  checked: boolean;
+  onChange: ChangeEventHandler<HTMLInputElement>;
+  error: boolean;
+  required: boolean;
+  onInvalid: FormEventHandler<HTMLInputElement>;
+}
+
+/** @remarks \@since 6.0.0 */
 export interface RadioGroupImplementation<V extends string | number> {
   reset(): void;
   value: V;
   setValue: UseStateSetter<V>;
-  getRadioProps(value: V): {
-    name: string;
-    value: V;
-    checked: boolean;
-    onChange: ChangeEventHandler<HTMLInputElement>;
-    error: boolean;
-    required: boolean;
-    onInvalid: FormEventHandler<HTMLInputElement>;
-  };
+  getRadioProps(value: V): Readonly<ProvidedRadioGroupProps<V>>;
 }
 
 /** @remarks \@since 6.0.0 */

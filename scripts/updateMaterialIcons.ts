@@ -114,9 +114,6 @@ async function getSvgContents(sourceFilePath: string): Promise<string> {
     plugins: ["preset-default"],
     multipass: true,
   });
-  if (!("data" in optimized)) {
-    throw new Error(optimized.error);
-  }
 
   const contents = optimized.data;
 

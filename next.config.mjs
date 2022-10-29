@@ -6,6 +6,9 @@ const nextConfig = {
     // I have already run lint before this step...
     ignoreDuringBuilds: true,
   },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   webpack(config) {
     // config.module.rules.unshift({
     //   test: /\.md$/,

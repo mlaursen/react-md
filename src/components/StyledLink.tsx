@@ -16,15 +16,13 @@ export function StyledLink(props: StyledLinkProps): ReactElement {
   const { href, children, target, style } = props;
   const { pathname } = useRouter();
   return (
-    <Link href={href}>
-      <a
-        style={style}
-        href={href}
-        className={cnb(styles.link, pathname === href && styles.active)}
-        target={target}
-      >
-        {children}
-      </a>
+    <Link
+      href={href}
+      style={style}
+      className={cnb(styles.link, pathname === href && styles.active)}
+      target={target}
+    >
+      {children}
     </Link>
   );
 }
