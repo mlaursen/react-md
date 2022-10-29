@@ -86,10 +86,6 @@
     "typescript": "^4.8.3"
   },
   "lint-staged": {
-    "**/*.{ts,tsx}": [
-      "eslint -c .precommit.eslintrc.cjs --fix",
-      "prettier --write"
-    ],
     "**/*.{scss,js,jsx,md,yml,json}": [
       "prettier --write"
     ]
