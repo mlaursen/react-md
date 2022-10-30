@@ -23,6 +23,7 @@ module.exports = {
     ],
     "^@react-md/overlay$": ["<rootDir>/packages/overlay/src/index.ts"],
     "^@react-md/progress$": ["<rootDir>/packages/progress/src/index.ts"],
+    "^@react-md/table$": ["<rootDir>/packages/table/src/index.ts"],
     "^@react-md/tree$": ["<rootDir>/packages/tree/src/index.ts"],
     "^@react-md/visual-media$": ["<rootDir>/packages/tree/src/index.ts"],
   },

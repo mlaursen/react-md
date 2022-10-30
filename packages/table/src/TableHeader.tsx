@@ -1,11 +1,19 @@
+import { bem } from "@react-md/core";
+import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useMemo } from "react";
-import cn from "classnames";
-import { bem } from "@react-md/utils";
 
-import type { TableCellConfig } from "./config";
-import { TableConfigProvider, useTableConfig } from "./config";
-import { StickyTableProvider } from "./sticky";
+import { StickyTableProvider } from "./StickyTableProvider";
+import type {
+  TableCellConfig,
+  TableConfigContext,
+} from "./TableConfigurationProvider";
+import {
+  TableConfigProvider,
+  useTableConfig,
+} from "./TableConfigurationProvider";
+
+const styles = bem("rmd-thead");
 
 export interface TableHeaderProps
   extends HTMLAttributes<HTMLTableSectionElement>,
@@ -14,17 +22,19 @@ export interface TableHeaderProps
    * This is a rename of the `disableHover` of the `TableConfig` since table
    * headers are not hoverable by default. This prop can be enabled to add the
    * row hover color within table headers, but it is not really recommended.
+   *
+   * @defaultValue `false`
    */
   hoverable?: boolean;
 
   /**
    * Boolean if the header should be rendered as a sticky header that will cover
    * the table contents as the page or `TableContainer` is scrolled.
+   *
+   * @defaultValue `false`
    */
   sticky?: boolean;
 }
-
-const block = bem("rmd-thead");
 
 /**
  * Creates a `<thead>` element with some basic styles. This component will also
@@ -37,26 +47,26 @@ const block = bem("rmd-thead");
 export const TableHeader = forwardRef<
   HTMLTableSectionElement,
   TableHeaderProps
->(function TableHeader(
-  {
+>(function TableHeader(props, ref) {
+  const {
     className,
     hoverable = false,
     lineWrap: propLineWrap,
     children,
     sticky = false,
-    ...props
-  },
-  ref
-) {
+    ...remaining
+  } = props;
+
   // update the table configuration with the custom overrides for the `<thead>`
-  const { hAlign, vAlign, lineWrap, disableHover, disableBorders } =
+  const { dense, hAlign, vAlign, lineWrap, disableHover, disableBorders } =
     useTableConfig({
       lineWrap: propLineWrap,
       disableHover: !hoverable,
     });
 
-  const configuration = useMemo(
+  const configuration = useMemo<TableConfigContext>(
     () => ({
+      dense,
       header: true,
       hAlign,
       vAlign,
@@ -64,12 +74,16 @@ export const TableHeader = forwardRef<
       disableBorders,
       disableHover,
     }),
-    [hAlign, vAlign, lineWrap, disableBorders, disableHover]
+    [dense, hAlign, vAlign, lineWrap, disableBorders, disableHover]
   );
 
   return (
     <TableConfigProvider value={configuration}>
-      <thead {...props} ref={ref} className={cn(block(), className)}>
+      <thead
+        {...remaining}
+        ref={ref}
+        className={cnb(styles({ dense }), className)}
+      >
         <StickyTableProvider value={sticky}>{children}</StickyTableProvider>
       </thead>
     </TableConfigProvider>

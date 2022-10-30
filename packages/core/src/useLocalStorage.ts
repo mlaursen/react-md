@@ -22,7 +22,7 @@ export interface LocalStorageHookOptions<T> {
   /**
    * The local storage key name to use.
    *
-   * This can be set to an empty string for internal usage of conditioanlly
+   * This can be set to an empty string for internal usage of conditionally
    * saving items to local storage.
    */
   key: string;

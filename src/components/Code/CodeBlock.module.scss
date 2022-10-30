@@ -40,11 +40,11 @@ $offset: 0.125rem;
 .bgLight {
   @include everything.use-interaction-light-theme;
 
-  color: everything.$black-base;
+  color: everything.$black;
 }
 
 .bgDark {
   @include everything.use-interaction-dark-theme;
 
-  color: everything.$white-base;
+  color: everything.$white;
 }

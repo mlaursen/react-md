@@ -1,0 +1,46 @@
+{
+  "name": "@react-md/table",
+  "version": "6.0.0-alpha.0",
+  "description": "Create responsive data tables and accessible fixed tables",
+  "type": "module",
+  "sass": "./src/_table.scss",
+  "main": "./cjs/index.cjs",
+  "module": "./mjs/index.mjs",
+  "types": "./types/index.d.ts",
+  "sideEffects": [
+    "dist/**/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mlaursen/react-md.git",
+    "directory": "packages/button"
+  },
+  "bugs": {
+    "url": "https://github.com/mlaursen/react-md/issues"
+  },
+  "homepage": "https://react-md.dev",
+  "keywords": [],
+  "license": "MIT",
+  "dependencies": {
+    "@react-md/core": "^6.0.0-alpha.0",
+    "@react-md/divider": "^6.0.0-alpha.0",
+    "@react-md/form": "^6.0.0-alpha.0",
+    "@react-md/icon": "^6.0.0-alpha.0",
+    "cnbuilder": "^3.1.0"
+  },
+  "peerDependencies": {
+    "react": ">= 18",
+    "react-dom": ">= 18"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

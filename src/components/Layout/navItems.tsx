@@ -50,6 +50,7 @@ const routes: readonly LayoutNavigationItem[] = [
   createRoute("/menu", "Menu"),
   createRoute("/progress", "Progress"),
   createRoute("/transition", "Transition"),
+  createRoute("/table", "Table"),
   createRoute("/tree", "Tree"),
   createRoute("/typography", "Typography"),
   createRoute("/visual-media", "Visual Media"),

@@ -761,10 +761,10 @@ $blue-grey-800: #37474f;
 $blue-grey-900: #263238;
 
 /// @type Color
-$black-base: #000;
+$black: #000;
 
 /// @type Color
-$white-base: #fff;
+$white: #fff;
 
 /// This is a map of all the material design base colors so that you can
 /// programmatically get variables with the neat sass-map functions.
@@ -1030,8 +1030,8 @@ $color-map: (
   blue-grey-700: $blue-grey-700,
   blue-grey-800: $blue-grey-800,
   blue-grey-900: $blue-grey-900,
-  black-base: $black-base,
-  white-base: $white-base,
+  black: $black,
+  white: $white,
 );
 
 /// The "primary" color suffix numbers that are available for use. This is

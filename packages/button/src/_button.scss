@@ -14,6 +14,7 @@ $disable-contained-interaction-colors: core.$light-theme-base-background-color
 $disable-floating: false !default;
 $disable-floating-absolute-position: false !default;
 $disable-circular-progress: progress.$disable-circular !default;
+$disable-unstyled-utility-class: false !default;
 
 $themes: primary secondary warning error disabled !default;
 
@@ -261,6 +262,16 @@ $var-lookup: (
           core.get-theme-var(text-disabled-color)
         );
       }
+    }
+  }
+
+  @if not $disable-unstyled-utility-class {
+    .rmd-button-unstyled {
+      @include core.interaction-surface;
+
+      background-color: transparent;
+      border-width: 0;
+      display: inline-flex;
     }
   }
 

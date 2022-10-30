@@ -1,0 +1,258 @@
+@use "sass:map";
+@use "@react-md/core";
+@use "@react-md/divider";
+
+$disable-container: false !default;
+$disable-caption: false !default;
+$disable-dense: false !default;
+$disable-full-width: false !default;
+$disable-cell-header-align-left: false !default;
+$disable-cell-align-center: false !default;
+$disable-cell-align-right: false !default;
+$disable-cell-align-top: false !default;
+$disable-cell-align-bottom: false !default;
+$disable-bordered: false !default;
+$disable-bordered-except-last: false !default;
+$disable-selected: false !default;
+$disable-clickable: false !default;
+$disable-hoverable: false !default;
+$disable-sticky: false !default;
+$disable-checkbox: false !default;
+$disable-cell-no-wrap: false !default;
+$disable-cell-grow: false !default;
+$disable-cell-no-padding: false !default;
+$disable-sort: false !default;
+
+// defaults to `null` so it just inherits the background color
+$light-theme-background-color: null !default;
+$dark-theme-background-color: null !default;
+$background-color: if(
+  core.$color-scheme == dark,
+  $dark-theme-background-color,
+  $light-theme-background-color
+) !default;
+$light-theme-border-color: #e0e0e0 !default;
+$dark-theme-border-color: #2f2f2f !default;
+$border-color: if(
+  core.$color-scheme == dark,
+  $dark-theme-border-color,
+  $light-theme-border-color
+) !default;
+$border-size: divider.$size !default;
+
+$light-theme-header-background-color: null !default;
+$dark-theme-header-background-color: null !default;
+$header-background-color: if(
+  core.$color-scheme == dark,
+  $dark-theme-header-background-color,
+  $light-theme-header-background-color
+) !default;
+
+$cell-typography: core.$body-2-styles !default;
+$cell-color: core.get-theme-var(text-primary-color) !default;
+$cell-height: 3.25rem !default;
+$cell-dense-height: 2rem !default;
+$cell-header-color: $cell-color !default;
+$cell-header-typography: (
+  font-weight: map.get(core.$subtitle-2-styles, font-weight),
+  letter-spacing: map.get(core.$subtitle-2-styles, letter-spacing),
+  line-height: map.get(core.$subtitle-2-styles, line-height),
+) !default;
+$cell-header-height: 3.5rem !default;
+$cell-header-dense-height: 2.125rem !default;
+$cell-horizontal-padding: 1rem !default;
+$cell-vertical-padding: 0.375rem !default;
+$cell-checkbox-horizontal-padding: 0.5rem !default;
+
+$row-hover-color: core.get-interaction-var(hover-background-color) !default;
+$row-selected-color: core.get-interaction-var(
+  selected-background-color
+) !default;
+
+$var-lookup: (
+  background-color: (
+    var: --rmd-table-background-color,
+    value: $background-color,
+  ),
+  border-size: (
+    var: --rmd-table-border-size,
+    value: $border-size,
+  ),
+  border-color: (
+    var: --rmd-table-border-color,
+    value: $border-color,
+  ),
+  header-background-color: (
+    var: --rmd-table-header-background-color,
+    value: $header-background-color,
+  ),
+  cell-color: (
+    var: --rmd-table-cell-color,
+    value: $cell-color,
+  ),
+  cell-height: (
+    var: --rmd-table-cell-height,
+    value: $cell-height,
+  ),
+  cell-horizontal-padding: (
+    var: --rmd-table-cell-horizontal-padding,
+    value: $cell-horizontal-padding,
+  ),
+  cell-vertical-padding: (
+    var: --rmd-table-cell-vertical-padding,
+    value: $cell-vertical-padding,
+  ),
+  header-cell-height: (
+    var: --rmd-table-header-cell-height,
+    value: $cell-header-height,
+  ),
+  hover-color: (
+    var: --rmd-table-hover-color,
+    value: $row-hover-color,
+  ),
+  selected-color: (
+    var: --rmd-table-selected-color,
+    value: $row-selected-color,
+  ),
+);
+
+@function get-var($name, $fallback: null) {
+  $found: core.validate($var-lookup, $name, "table var");
+  $var: map.get($found, var);
+  $value: if($fallback, $fallback, map.get($found, value));
+
+  @if $value {
+    @return var(#{$var}, #{$value});
+  }
+
+  @return var(#{$var});
+}
+
+@mixin set-var($name, $value) {
+  $var: map.get(core.validate($var-lookup, $name, "table var"), var);
+
+  #{$var}: #{$value};
+}
+
+@mixin use-var($property, $name: $property, $fallback: null) {
+  #{$property}: get-var($name, $fallback);
+}
+
+// these have to be initialized after the css-var stuff to work
+$row-hover-styles: (
+  background-color: get-var(hover-color),
+) !default;
+$row-selected-styles: (
+  background-color: get-var(selected-color),
+) !default;
+
+@mixin styles {
+  @if not $disable-container {
+    .rmd-table-container {
+      max-width: 100%;
+      overflow: auto;
+    }
+  }
+
+  .rmd-table {
+    @include use-var(background-color);
+
+    border-collapse: collapse;
+    max-width: 100%;
+
+    @if not $disable-full-width {
+      &--full-width {
+        width: 100%;
+      }
+    }
+  }
+
+  .rmd-thead {
+    @include use-var(background-color, header-background-color);
+    @if $cell-height != $cell-header-height {
+      @include set-var(cell-height, $cell-header-height);
+    }
+
+    @if not $disable-dense and $cell-dense-height {
+      &--dense {
+        @include set-var(cell-height, $cell-header-dense-height);
+      }
+    }
+  }
+
+  .rmd-tr {
+    @if not $disable-clickable {
+      &--clickable:hover {
+        cursor: pointer;
+      }
+    }
+
+    @if not $disable-selected {
+      &--selected {
+        @include core.map-to-styles($row-selected-styles);
+      }
+    }
+
+    @if not $disable-bordered {
+      &--bordered {
+        border-bottom: get-var(border-size) solid get-var(border-color);
+
+        @if not $disable-bordered-except-last {
+          &:last-child {
+            border-bottom-width: 0;
+          }
+        }
+      }
+    }
+
+    @if not $disable-hoverable {
+      &--hoverable {
+        @include core.mouse-only {
+          transition: background core.$linear-duration
+            core.$linear-timing-function;
+
+          &:hover {
+            @include core.map-to-styles($row-hover-styles);
+          }
+        }
+      }
+    }
+  }
+
+  .rmd-table-cell {
+    @include core.map-to-styles($cell-typography);
+    @include use-var(color, cell-color);
+    @include use-var(height, cell-height);
+
+    padding: 0 get-var(cell-horizontal-padding);
+
+    &--header {
+      @include core.map-to-styles($cell-header-typography);
+      @if $cell-color != $cell-header-color {
+        @include set-var(cell-color, $cell-header-color);
+      }
+      @if not $disable-cell-header-align-left {
+        @include core.rtl {
+          text-align: right;
+        }
+
+        text-align: left;
+      }
+    }
+
+    @if not $disable-checkbox {
+      &--checkbox {
+        @include set-var(
+          cell-horizontal-padding,
+          $cell-checkbox-horizontal-padding
+        );
+      }
+    }
+
+    @if not $disable-cell-no-wrap {
+      &--no-wrap {
+        @include core.text-overflow;
+      }
+    }
+  }
+}

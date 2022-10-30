@@ -1,15 +1,21 @@
-import type { ReactNode, TdHTMLAttributes, ThHTMLAttributes } from "react";
-import { forwardRef } from "react";
-import cn from "classnames";
+import type { PropsWithRef } from "@react-md/core";
+import { bem } from "@react-md/core";
 import { useIcon } from "@react-md/icon";
-import { bem } from "@react-md/utils";
+import { cnb } from "cnbuilder";
+import type {
+  ButtonHTMLAttributes,
+  ReactNode,
+  TdHTMLAttributes,
+  ThHTMLAttributes,
+} from "react";
+import { forwardRef } from "react";
 
-import type { TableCellConfig } from "./config";
-import { useTableConfig } from "./config";
-import { useTableFooter } from "./footer";
-import { useSticky } from "./sticky";
+import { useSticky } from "./StickyTableProvider";
 import type { SortOrder } from "./TableCellContent";
 import { TableCellContent } from "./TableCellContent";
+import type { TableCellConfig } from "./TableConfigurationProvider";
+import { useTableConfig } from "./TableConfigurationProvider";
+import { useTableFooter } from "./TableFooterProvider";
 
 export type TableCellAttributes = Omit<
   | TdHTMLAttributes<HTMLTableCellElement>
@@ -56,6 +62,12 @@ export interface TableCellOptions extends TableCellConfig {
    * cells will scroll beneath this cell.
    */
   sticky?: boolean | "header" | "cell" | "header-cell";
+
+  /**
+   * @internal
+   * @defaultValue `false`
+   */
+  checkbox?: boolean;
 }
 
 export interface TableCellProps extends TableCellAttributes, TableCellOptions {
@@ -104,9 +116,14 @@ export interface TableCellProps extends TableCellAttributes, TableCellOptions {
    * default behavior by manually setting this to `true` or `false`.
    */
   disablePadding?: boolean;
+
+  contentProps?: PropsWithRef<
+    ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  >;
 }
 
-const block = bem("rmd-table-cell");
+const styles = bem("rmd-table-cell");
 
 /**
  * Creates a `<th>` or `<td>` cell with sensible styled defaults. You can create
@@ -119,10 +136,9 @@ const block = bem("rmd-table-cell");
  * readers.
  */
 export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
-  function TableCell(
-    {
+  function TableCell(props, ref) {
+    const {
       "aria-sort": sortOrder,
-      id,
       className,
       grow = false,
       scope: propScope,
@@ -130,6 +146,7 @@ export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
       vAlign: propVAlign,
       header: propHeader,
       lineWrap: propDisableLineWrap,
+      checkbox,
       children,
       sticky: propSticky,
       sortIcon: propSortIcon,
@@ -137,10 +154,10 @@ export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
       sortIconRotated,
       disablePadding,
       colSpan: propColSpan,
-      ...props
-    },
-    ref
-  ) {
+      contentProps,
+      ...remaining
+    } = props;
+
     // have to double cast to get the `100%` value to work.
     const colSpan = propColSpan as unknown as number;
     const sortIcon = useIcon("sort", propSortIcon);
@@ -178,16 +195,16 @@ export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
     const Component = header ? "th" : "td";
     return (
       <Component
-        {...props}
+        {...remaining}
         ref={ref}
-        id={id}
         aria-sort={sortOrder === "none" ? undefined : sortOrder}
         colSpan={colSpan}
-        className={cn(
-          block({
+        className={cnb(
+          styles({
             grow,
             header,
             sticky,
+            checkbox,
             "sticky-header":
               (header && sticky && propSticky !== "cell") ||
               isStickyHeader ||
@@ -207,7 +224,7 @@ export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
         scope={scope}
       >
         <TableCellContent
-          id={id ? `${id}-sort` : undefined}
+          {...contentProps}
           icon={sortIcon}
           iconAfter={sortIconAfter}
           sortOrder={sortOrder}

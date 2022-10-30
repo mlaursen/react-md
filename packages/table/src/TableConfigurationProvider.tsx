@@ -5,14 +5,18 @@ import { createContext, useContext } from "react";
 
 export interface TableRowConfiguration {
   /**
-   * Boolean if the rows should no longer applied a different background color
-   * when hovered.
+   * Set to `true` if rows should no longer change background color while
+   * hovered.
+   *
+   * @defaultValue `false`
    */
   disableHover?: boolean;
 
   /**
-   * Boolean if the table should no longer have a border-bottom applied to each
-   * row within the `<tbody>`.
+   * Set to `true` if the rows in the `TableBody` should no longer have borders
+   * applied.
+   *
+   * @defaultValue `false`
    */
   disableBorders?: boolean;
 }
@@ -28,49 +32,18 @@ export type TableCellHorizontalAlignment = "left" | "center" | "right";
  * The vertical alignment for the content within a cell.
  *
  * Note: When this is set to `"top"` or `"bottom"`, `padding-top` or
- * `padding-bottom` will also be applied due to how styling tables work. This
- * padding can be configured with the `$rmd-table-cell-vertical-padding` or
- * `$rmd-table-cell-vertical-alignments` variables.
+ * `padding-bottom` will also be applied due to how styling tables work.
  */
 export type TableCellVerticalAlignment = "top" | "middle" | "bottom";
 
 export interface TableCellConfiguration {
-  /** {@inheritDoc TableCellHorizontalAlignment} */
   hAlign?: TableCellHorizontalAlignment;
-  /** {@inheritDoc TableCellVerticalAlignment} */
   vAlign?: TableCellVerticalAlignment;
 
   /**
-   * Boolean if the `<td>` and `<th>` cells should support line wrapping. This
-   * is disabled by default since you _normally_ don't want line wrapping in
-   * tables unless it provides additional descriptions or other content.
-   *
-   * If this is set to the string `"padded"`, line wrapping will be enabled
-   * along with adding some additional vertical padding to each cell.
+   * @defaultValue `false`
    */
   lineWrap?: boolean | "padded";
-}
-
-/**
- * This is the public table configuration that can be used.
- */
-export interface TableConfiguration
-  extends TableRowConfiguration,
-    TableCellConfiguration {
-  /**
-   * Boolean if the table should use the dense spec to reduce the height of each
-   * cell.
-   */
-  dense?: boolean;
-
-  /**
-   * Boolean if the `<table>` element should span the entire width of the
-   * container `<div>` element instead of having its width be determined by the
-   * table's contents.
-   *
-   * Note: There will always be horizontal overflow if the table is too wide.
-   */
-  fullWidth?: boolean;
 }
 
 /**
@@ -89,10 +62,17 @@ export interface TableCellConfig extends TableCellConfiguration {
   header?: boolean;
 }
 
-export interface TableConfig extends TableRowConfiguration, TableCellConfig {}
+export interface TableConfig extends TableRowConfiguration, TableCellConfig {
+  dense?: boolean;
+}
+
+export interface TableConfiguration extends TableConfig {
+  fullWidth?: boolean;
+}
 export type TableConfigContext = Required<TableConfig>;
 
 const context = createContext<TableConfigContext>({
+  dense: false,
   header: false,
   hAlign: "left",
   vAlign: "middle",
@@ -110,6 +90,7 @@ const context = createContext<TableConfigContext>({
  */
 export function useTableConfig(options: TableConfig): TableConfigContext {
   const inherited = useContext(context);
+  const dense = options.dense ?? inherited.dense;
   const header = options.header ?? inherited.header;
   const hAlign = options.hAlign ?? inherited.hAlign;
   const vAlign = options.vAlign ?? inherited.vAlign;
@@ -118,6 +99,7 @@ export function useTableConfig(options: TableConfig): TableConfigContext {
   const disableBorders = options.disableBorders ?? inherited.disableBorders;
 
   return {
+    dense,
     header,
     hAlign,
     vAlign,
@@ -127,7 +109,5 @@ export function useTableConfig(options: TableConfig): TableConfigContext {
   };
 }
 
-/**
- * @internal
- */
+/** @internal */
 export const { Provider: TableConfigProvider } = context;

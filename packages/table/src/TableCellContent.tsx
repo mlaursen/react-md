@@ -1,31 +1,23 @@
-import type { CSSProperties, ReactNode } from "react";
-import { forwardRef } from "react";
-import cn from "classnames";
-import { UnstyledButton } from "@react-md/button";
-import type { TextIconSpacingProps } from "@react-md/icon";
+import { bem } from "@react-md/core";
 import { IconRotator, TextIconSpacing } from "@react-md/icon";
-import { bem } from "@react-md/utils";
+import { cnb } from "cnbuilder";
+import type { ButtonHTMLAttributes, ReactNode } from "react";
+import { forwardRef } from "react";
 
-import type { TableCellHorizontalAlignment } from "./config";
+import type { TableCellHorizontalAlignment } from "./TableConfigurationProvider";
 
 export type SortOrder = "ascending" | "descending" | "none" | "other";
 
-export interface TableCellContentProps extends TextIconSpacingProps {
-  /**
-   * An optional id for the sort order button.
-   */
-  id?: string;
-
-  /**
-   * An optional style for the sort order button.
-   */
-  style?: CSSProperties;
-
+export interface TableCellContentProps
+  extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * The current sort order for this cell. Setting this to `null` will prevent
    * the button from being rendered.
    */
   sortOrder?: SortOrder;
+
+  icon?: ReactNode;
+  iconAfter?: boolean;
 
   /**
    * Boolean if the icon should be rotated.
@@ -39,7 +31,7 @@ export interface TableCellContentProps extends TextIconSpacingProps {
   hAlign?: TableCellHorizontalAlignment;
 }
 
-const block = bem("rmd-table-cell");
+const styles = bem("rmd-table-cell");
 
 /**
  * This is mostly an internal component since it is automatically used within
@@ -50,9 +42,8 @@ const block = bem("rmd-table-cell");
 export const TableCellContent = forwardRef<
   HTMLButtonElement,
   TableCellContentProps
->(function TableCellContent(
-  {
-    id,
+>(function TableCellContent(props, ref) {
+  const {
     icon: propIcon,
     style,
     className,
@@ -60,10 +51,9 @@ export const TableCellContent = forwardRef<
     children,
     rotated: propRotated,
     hAlign = "left",
-    ...props
-  },
-  ref
-) {
+    iconAfter,
+    ...remaining
+  } = props;
   if (!sortOrder || propIcon === null) {
     return <>{children}</>;
   }
@@ -76,20 +66,21 @@ export const TableCellContent = forwardRef<
   }
 
   return (
-    <UnstyledButton
-      id={id}
+    <button
+      {...remaining}
       ref={ref}
+      type="button"
       style={style}
-      className={cn(
-        block("child", {
+      className={cnb(
+        styles("child", {
           [hAlign]: hAlign !== "left",
         }),
         className
       )}
     >
-      <TextIconSpacing {...props} icon={icon}>
+      <TextIconSpacing icon={icon} iconAfter={iconAfter}>
         {children}
       </TextIconSpacing>
-    </UnstyledButton>
+    </button>
   );
 });

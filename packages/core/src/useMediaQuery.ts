@@ -1,6 +1,18 @@
 import { useEffect, useState } from "react";
 
 /**
+ * @example
+ * Simple Example
+ * ```tsx
+ * import { useMediaQuery } from "@react-md/core";
+ * import type { ReactElement } from "react";
+ *
+ * function Example(): ReactElement {
+ *   const matches = useMediaQuery("screen and (min-width: 768px)");
+ *
+ *   return <>{matches ? "Matches" : "Doesn't"}</>;
+ * }
+ * ```
  *
  * @param query - The media query to use
  * @param disabled - When `true`, the `window.matchMedia` API will not be

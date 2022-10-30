@@ -64,7 +64,13 @@ $_swappable-position-prefixes: border margin padding;
 
 @mixin map-to-styles($map) {
   @each $property, $value in $map {
-    #{$property}: $value;
+    @if meta.type-of($value) == map {
+      #{$property} {
+        @include map-to-styles($value);
+      }
+    } @else {
+      #{$property}: $value;
+    }
   }
 }
 

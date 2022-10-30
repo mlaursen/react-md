@@ -145,7 +145,7 @@ $switch-ball-size: 1.25em !default;
 $switch-ball-border-radius: 50% !default;
 $switch-ball-offset: 0.25em !default;
 $switch-ball-background-color: color.adjust(
-  core.$white-base,
+  core.$white,
   $lightness: -5%
 ) !default;
 $switch-track-height: 1em !default;

@@ -1,9 +1,15 @@
 import type { HTMLAttributes } from "react";
 import { forwardRef, useMemo } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 
-import type { TableConfig } from "./config";
-import { TableConfigProvider, useTableConfig } from "./config";
+import type {
+  TableConfig,
+  TableConfigContext,
+} from "./TableConfigurationProvider";
+import {
+  TableConfigProvider,
+  useTableConfig,
+} from "./TableConfigurationProvider";
 
 export interface TableBodyProps
   extends HTMLAttributes<HTMLTableSectionElement>,
@@ -28,7 +34,7 @@ export const TableBody = forwardRef<HTMLTableSectionElement, TableBodyProps>(
     ref
   ) {
     // update the table configuration with the custom overrides for the `<thead>`
-    const { hAlign, vAlign, lineWrap, disableHover, disableBorders } =
+    const { dense, hAlign, vAlign, lineWrap, disableHover, disableBorders } =
       useTableConfig({
         hAlign: propHAlign,
         vAlign: propVAlign,
@@ -37,21 +43,22 @@ export const TableBody = forwardRef<HTMLTableSectionElement, TableBodyProps>(
         disableBorders: propDisableBorders,
       });
 
-    const configuration = useMemo(
+    const configuration = useMemo<TableConfigContext>(
       () => ({
         header: false,
+        dense,
         hAlign,
         vAlign,
         lineWrap,
         disableBorders,
         disableHover,
       }),
-      [hAlign, vAlign, lineWrap, disableBorders, disableHover]
+      [dense, hAlign, vAlign, lineWrap, disableBorders, disableHover]
     );
 
     return (
       <TableConfigProvider value={configuration}>
-        <tbody {...props} ref={ref} className={cn("rmd-tbody", className)}>
+        <tbody {...props} ref={ref} className={cnb("rmd-tbody", className)}>
           {children}
         </tbody>
       </TableConfigProvider>

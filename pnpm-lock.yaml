@@ -287,6 +287,20 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
 
+  packages/table:
+    specifiers:
+      '@react-md/core': ^6.0.0-alpha.0
+      '@react-md/divider': ^6.0.0-alpha.0
+      '@react-md/form': ^6.0.0-alpha.0
+      '@react-md/icon': ^6.0.0-alpha.0
+      cnbuilder: ^3.1.0
+    dependencies:
+      '@react-md/core': link:../core
+      '@react-md/divider': link:../divider
+      '@react-md/form': link:../form
+      '@react-md/icon': link:../icon
+      cnbuilder: 3.1.0
+
   packages/tree:
     specifiers:
       '@react-md/core': ^6.0.0-alpha.0

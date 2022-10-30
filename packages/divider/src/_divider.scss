@@ -12,8 +12,8 @@ $inset: 4rem !default;
 $spacing: 0.25rem auto !default;
 $vertical-spacing: auto 0.25rem !default;
 
-$light-theme-color: rgba(#000, 0.12) !default;
-$dark-theme-color: rgba(#fff, 0.12) !default;
+$light-theme-color: rgba(core.$black, 0.12) !default;
+$dark-theme-color: rgba(core.$white, 0.12) !default;
 
 $color: if(
   core.$color-scheme == dark,

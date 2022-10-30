@@ -15,7 +15,6 @@
     "typecheck-scripts": "tsc --noEmit --project scripts/tsconfig.json",
     "typecheck": "pnpm run typecheck-main && pnpm run typecheck-scripts",
     "format": "prettier --write .",
-    "fix-type-imports": "eslint -c .precommit.eslintrc.cjs \"packages/**/*.{ts,tsx}\" --fix",
     "format-imports": "pnpm run fix-type-imports; pnpm run format",
     "dev": "next dev",
     "prismjs-themes": "pnpm run cli scripts/prismThemes.ts",
