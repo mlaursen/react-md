@@ -237,9 +237,19 @@ $interaction-var-lookup: (
   }
 }
 
-@mixin use-interaction-outline {
-  outline: get-interaction-var(outline-color, transparent) solid
-    get-interaction-var(outline-width);
+@mixin use-interaction-outline($box-shadow: false) {
+  @if $box-shadow {
+    box-shadow: inset
+      0
+      0
+      0
+      get-interaction-var(outline-width)
+      get-interaction-var(outline-color, transparent);
+  } @else {
+    outline: get-interaction-var(outline-color, transparent)
+      solid
+      get-interaction-var(outline-width);
+  }
 }
 
 @mixin interaction-focus-styles {
@@ -254,8 +264,10 @@ $interaction-var-lookup: (
   $focus-selector: "&:focus",
   $disabled-selector: "&:disabled",
   $clickable: true,
+  $hoverable: true,
   $css-modules: false,
-  $higher-contrast: true
+  $higher-contrast: true,
+  $box-shadow: false
 ) {
   @if $clickable {
     cursor: pointer;
@@ -271,8 +283,10 @@ $interaction-var-lookup: (
 
   &::before {
     @include utils.pseudo-element;
-    @include use-interaction-var(background-color);
-    @include use-interaction-outline;
+    @include use-interaction-outline($box-shadow);
+    @if $hoverable {
+      @include use-interaction-var(background-color);
+    }
 
     transition-property: background-color, outline-color;
     transition-duration: transition.$linear-duration;
@@ -287,25 +301,27 @@ $interaction-var-lookup: (
     }
   }
 
-  &:hover::before {
-    @include set-interaction-var(
-      background-color,
-      get-interaction-var(hover-background-color)
-    );
-  }
-
-  @include touch-only {
+  @if $hoverable {
     &:hover::before {
-      @include set-interaction-var(background-color, transparent);
-    }
-  }
-
-  @if $interaction-mode == press or $interaction-mode == both {
-    &.rmd-pressed::before {
       @include set-interaction-var(
         background-color,
-        get-interaction-var(press-background-color)
+        get-interaction-var(hover-background-color)
       );
+    }
+
+    @include touch-only {
+      &:hover::before {
+        @include set-interaction-var(background-color, transparent);
+      }
+    }
+
+    @if $interaction-mode == press or $interaction-mode == both {
+      &.rmd-pressed::before {
+        @include set-interaction-var(
+          background-color,
+          get-interaction-var(press-background-color)
+        );
+      }
     }
   }
 
@@ -315,8 +331,10 @@ $interaction-var-lookup: (
         cursor: auto;
       }
 
-      &:hover::before {
-        @include set-interaction-var(background-color, transparent);
+      @if $hoverable {
+        &:hover::before {
+          @include set-interaction-var(background-color, transparent);
+        }
       }
     }
   }

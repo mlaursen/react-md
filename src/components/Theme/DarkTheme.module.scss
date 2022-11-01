@@ -9,6 +9,7 @@
   @include everything.divider-use-dark-theme;
   @include everything.card-use-dark-theme;
   @include everything.form-use-dark-theme;
+  @include everything.table-use-dark-theme;
 
   --code-color: #{everything.$pink-400};
 }

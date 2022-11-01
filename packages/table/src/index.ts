@@ -1,5 +1,3 @@
-export * from "./Caption";
-export * from "./StickyTableProvider";
 export * from "./Table";
 export * from "./TableBody";
 export * from "./TableCell";
@@ -8,6 +6,6 @@ export * from "./TableCheckbox";
 export * from "./TableConfigurationProvider";
 export * from "./TableContainer";
 export * from "./TableFooter";
-export * from "./TableFooterProvider";
 export * from "./TableHeader";
 export * from "./TableRow";
+export * from "./types";

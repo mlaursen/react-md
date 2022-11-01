@@ -1,6 +1,23 @@
-import type { HTMLAttributes } from "react";
-import { forwardRef } from "react";
+import { useEnsuredRef } from "@react-md/core";
 import { cnb } from "cnbuilder";
+import type { HTMLAttributes, RefObject } from "react";
+import { createContext, forwardRef, useContext, useMemo } from "react";
+
+export interface TableContainerContext {
+  exists: boolean;
+  containerRef: RefObject<HTMLDivElement>;
+}
+
+const context = createContext<Readonly<TableContainerContext>>({
+  exists: false,
+  containerRef: { current: null },
+});
+context.displayName = "TableContainer";
+const { Provider } = context;
+
+export function useTableContainer(): Readonly<TableContainerContext> {
+  return useContext(context);
+}
 
 export function tableContainer({ className }: { className?: string }): string {
   return cnb("rmd-table-container", className);
@@ -17,11 +34,26 @@ export type TableContainerProps = HTMLAttributes<HTMLDivElement>;
 export const TableContainer = forwardRef<HTMLDivElement, TableContainerProps>(
   function TableContainer(props, ref) {
     const { className, children, ...remaining } = props;
+    const [nodeRef, refCallback] = useEnsuredRef(ref);
+
+    const value = useMemo(
+      () => ({
+        exists: true,
+        containerRef: nodeRef,
+      }),
+      [nodeRef]
+    );
 
     return (
-      <div {...remaining} ref={ref} className={tableContainer({ className })}>
-        {children}
-      </div>
+      <Provider value={value}>
+        <div
+          {...remaining}
+          ref={refCallback}
+          className={tableContainer({ className })}
+        >
+          {children}
+        </div>
+      </Provider>
     );
   }
 );

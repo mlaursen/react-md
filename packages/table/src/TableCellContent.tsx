@@ -72,6 +72,7 @@ export const TableCellContent = forwardRef<
       type="button"
       style={style}
       className={cnb(
+        "rmd-button-unstyled",
         styles("child", {
           [hAlign]: hAlign !== "left",
         }),

@@ -1,9 +1,8 @@
-import { bem } from "@react-md/core";
+import { bem, useEnsuredRef, useIntersectionObserver } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
-import { forwardRef, useMemo } from "react";
+import { forwardRef, useMemo, useState } from "react";
 
-import { StickyTableProvider } from "./StickyTableProvider";
 import type {
   TableCellConfig,
   TableConfigContext,
@@ -12,12 +11,40 @@ import {
   TableConfigProvider,
   useTableConfig,
 } from "./TableConfigurationProvider";
+import { useTableContainer } from "./TableContainer";
+import type { TableStickySectionProps } from "./types";
 
 const styles = bem("rmd-thead");
 
+/** @remarks \@since 6.0.0 */
+export interface TableHeaderClassNameOptions {
+  className?: string;
+  dense?: boolean;
+  sticky?: boolean;
+  stickyActive?: boolean;
+}
+
+/** @remarks \@since 6.0.0 */
+export function tableHeader(options: TableHeaderClassNameOptions = {}): string {
+  const { dense, sticky, stickyActive, className } = options;
+
+  return cnb(
+    styles({
+      dense,
+      sticky,
+      "sticky-active": stickyActive,
+    }),
+    className
+  );
+}
+
+/**
+ * @remarks \@since 6.0.0 Added support for "sticky-active" state.
+ */
 export interface TableHeaderProps
   extends HTMLAttributes<HTMLTableSectionElement>,
-    Pick<TableCellConfig, "lineWrap"> {
+    Pick<TableCellConfig, "lineWrap">,
+    TableStickySectionProps {
   /**
    * This is a rename of the `disableHover` of the `TableConfig` since table
    * headers are not hoverable by default. This prop can be enabled to add the
@@ -26,15 +53,19 @@ export interface TableHeaderProps
    * @defaultValue `false`
    */
   hoverable?: boolean;
-
-  /**
-   * Boolean if the header should be rendered as a sticky header that will cover
-   * the table contents as the page or `TableContainer` is scrolled.
-   *
-   * @defaultValue `false`
-   */
-  sticky?: boolean;
 }
+
+/**
+ * @remarks \@since 6.0.0
+ */
+export const isTableHeaderStickyActive = (
+  entry: IntersectionObserverEntry
+): boolean => {
+  return (
+    entry.intersectionRatio < 1 &&
+    entry.boundingClientRect.bottom <= window.innerHeight
+  );
+};
 
 /**
  * Creates a `<thead>` element with some basic styles. This component will also
@@ -47,13 +78,15 @@ export interface TableHeaderProps
 export const TableHeader = forwardRef<
   HTMLTableSectionElement,
   TableHeaderProps
->(function TableHeader(props, ref) {
+>(function TableHeader(props, propRef) {
   const {
     className,
     hoverable = false,
     lineWrap: propLineWrap,
     children,
     sticky = false,
+    stickyOptions,
+    isStickyActive = isTableHeaderStickyActive,
     ...remaining
   } = props;
 
@@ -77,15 +110,56 @@ export const TableHeader = forwardRef<
     [dense, hAlign, vAlign, lineWrap, disableBorders, disableHover]
   );
 
+  const [theadRef, theadRefCallback] = useEnsuredRef(propRef);
+  const { exists: exists, containerRef } = useTableContainer();
+  const [stickyActive, setStickyActive] = useState(false);
+  const targetRef = useIntersectionObserver({
+    ref: exists ? undefined : theadRefCallback,
+    root: containerRef,
+    disabled: !sticky,
+    threshold: exists ? 0 : 1,
+    getRootMargin() {
+      const thead = theadRef.current;
+      if (!thead) {
+        return;
+      }
+
+      let topOffset: number;
+      if (exists) {
+        topOffset = thead.offsetHeight - 1;
+      } else {
+        const top = parseFloat(window.getComputedStyle(thead).top);
+        topOffset = Number.isNaN(top) ? 1 : top + 1;
+      }
+
+      return `-${topOffset}px 0px 0px`;
+    },
+    onUpdate(entry) {
+      setStickyActive(isStickyActive(entry));
+    },
+    // allow the user defined sticky options to override the default behavior
+    ...stickyOptions,
+  });
+
   return (
     <TableConfigProvider value={configuration}>
       <thead
         {...remaining}
-        ref={ref}
-        className={cnb(styles({ dense }), className)}
+        ref={exists ? theadRefCallback : targetRef}
+        className={tableHeader({
+          dense,
+          sticky,
+          stickyActive,
+          className,
+        })}
       >
-        <StickyTableProvider value={sticky}>{children}</StickyTableProvider>
+        {children}
       </thead>
+      {exists && sticky && (
+        // rendering a `<tbody>` since it is valid to have 0-many in a table
+        // https://html.spec.whatwg.org/multipage/tables.html#the-table-element
+        <tbody aria-hidden ref={targetRef} />
+      )}
     </TableConfigProvider>
   );
 });

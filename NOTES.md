@@ -42,6 +42,19 @@ the dark elevation mode.
 
 ## TODO
 
+I think it might be better to consider the "core" of react-md to include:
+
+- icons
+- buttons
+- dividers
+- overlays
+- dialogs
+- links
+- lists
+- layout
+
+The main reason is that I don't think a user would actually install only one of those packages on their own.
+
 <!-- - combine `@react-md/app-bar`, `@react-md/link`, `@react-md/layout` into `@react-md/navigation` -->
 <!--   - or some other name -->
 <!--   - these components heavily rely on each other and don't seem useful as standalone packages -->
@@ -51,12 +64,13 @@ the dark elevation mode.
 <!--   - instead, https://stackoverflow.com/a/4770179 -->
 <!--     - need to make sure it only affects the document.body or window -->
 
-- update fixed app bars to be offset by the scrollbar size? The `Header.module.scss` does this atm
-- do not use folders for material icons
-  - this makes imports much easier
-  - filled should be default. the others should be `{{ICON_NAME}}{{ICON_TYPE}}Icon`
-  - makes it a bit harder for the material icons page
-- create skeleton loaders
+<!-- - update fixed app bars to be offset by the scrollbar size? The `Header.module.scss` does this atm -->
+<!-- - do not use folders for material icons -->
+<!--   - this makes imports much easier -->
+<!--   - filled should be default. the others should be `{{ICON_NAME}}{{ICON_TYPE}}Icon` -->
+<!--   - makes it a bit harder for the material icons page -->
+<!-- - create skeleton loaders -->
+
 - might be better to not use active descendant movement behavior for tree and copy what I did at FWI.
   - having to manually sort is going yucky
   - i can get all the required references now by building the lookups while rendering
@@ -84,6 +98,9 @@ the dark elevation mode.
 - Color Scheme behavior (light, dark, system)
 - default `alphaNumericSort`
 - skeleton placeholder loaders
+- update `useTextField` to enable the error state once a form is submitted if there are validation errors. This also will enable the error state for ALL text fields within the form using this hook. The previous behavior would only focus the first text field with an error without the error color.
+- add `useResizeObserver` hook
+- update `TableHeader` and `TableFooter` sticky behavior to include an "active" state.
 
 ## Bug Fixes
 
@@ -105,3 +122,10 @@ the dark elevation mode.
   ```
   This fixes an issue where you could tab out of a Dialog that had a Tree that rendered links (temporary layouts)
 - The `useFixedPositioning` hook will always provide an initial style including `position: "fixed" | "absolute"` and `transform-origin` (if `transformOrigin === true`). This fixes an issue of the page scrolling while focusing temporary elements when the transition is disabled.
+
+## TODO
+
+- Implement a "responsive-icon-button" implementation for the button component
+  - it should render as an icon button on phone only and an icon + text on other media types
+    - it should be sr-only on phones to maintain a11y
+  - requires both an `icon` and `children` for a11y

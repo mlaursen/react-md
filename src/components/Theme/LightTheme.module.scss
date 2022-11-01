@@ -9,6 +9,7 @@
   @include everything.divider-use-light-theme;
   @include everything.card-use-light-theme;
   @include everything.form-use-light-theme;
+  @include everything.table-use-light-theme;
 
   --code-color: #{everything.$pink-600};
 }

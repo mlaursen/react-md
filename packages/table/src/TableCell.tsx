@@ -10,12 +10,10 @@ import type {
 } from "react";
 import { forwardRef } from "react";
 
-import { useSticky } from "./StickyTableProvider";
 import type { SortOrder } from "./TableCellContent";
 import { TableCellContent } from "./TableCellContent";
 import type { TableCellConfig } from "./TableConfigurationProvider";
 import { useTableConfig } from "./TableConfigurationProvider";
-import { useTableFooter } from "./TableFooterProvider";
 
 export type TableCellAttributes = Omit<
   | TdHTMLAttributes<HTMLTableCellElement>
@@ -148,7 +146,7 @@ export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
       lineWrap: propDisableLineWrap,
       checkbox,
       children,
-      sticky: propSticky,
+      sticky,
       sortIcon: propSortIcon,
       sortIconAfter = false,
       sortIconRotated,
@@ -178,14 +176,14 @@ export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
       lineWrap: propDisableLineWrap,
     });
     const header = propHeader ?? inheritedHeader;
-    const footer = useTableFooter();
-    const sticky = useSticky(propSticky);
-    const isStickyCell = propSticky === "cell" || (!header && sticky);
-    const isStickyHeader = propSticky === "header";
-    const isStickyFooter = sticky && footer;
-    const isStickyFooterCell =
-      isStickyFooter && (propColSpan === "100%" || propColSpan === 0);
-    const isStickyAbove = propSticky === "header-cell" || isStickyFooterCell;
+    // const footer = useTableFooter();
+    // const sticky = useSticky(propSticky);
+    // const isStickyCell = sticky === "cell" || (!header && sticky);
+    // const isStickyHeader = propSticky === "header";
+    // const isStickyFooter = sticky && footer;
+    // const isStickyFooterCell =
+    //   isStickyFooter && (propColSpan === "100%" || propColSpan === 0);
+    // const isStickyAbove = propSticky === "header-cell" || isStickyFooterCell;
 
     let scope = propScope;
     if (!scope && header) {
@@ -203,19 +201,19 @@ export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
           styles({
             grow,
             header,
-            sticky,
+            // sticky,
             checkbox,
-            "sticky-header":
-              (header && sticky && propSticky !== "cell") ||
-              isStickyHeader ||
-              isStickyAbove,
-            "sticky-cell": isStickyCell || isStickyAbove || isStickyFooterCell,
-            "sticky-footer": isStickyFooter,
-            "sticky-above": isStickyAbove,
+            // "sticky-header":
+            //   (header && sticky && propSticky !== "cell") ||
+            //   isStickyHeader ||
+            //   isStickyAbove,
+            // "sticky-cell": isStickyCell || isStickyAbove || isStickyFooterCell,
+            // "sticky-footer": isStickyFooter,
+            // "sticky-above": isStickyAbove,
             [hAlign]: hAlign !== "left",
             [vAlign]: vAlign !== "middle",
             vertical: vAlign !== "middle",
-            "no-wrap": !lineWrap,
+            "no-wrap": !lineWrap && !sortOrder,
             padded: !isNoPadding && lineWrap === "padded",
             "no-padding": isNoPadding,
           }),

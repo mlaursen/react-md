@@ -218,7 +218,8 @@ $var-lookup: (
             $contained-pressed-elevation
           ),
           "&.rmd-button--pressed",
-          $pseudo-before: false
+          $pseudo-before: false,
+          $position-relative: false
         );
 
         // contained buttons should _normally_ always force dark background
@@ -267,7 +268,7 @@ $var-lookup: (
 
   @if not $disable-unstyled-utility-class {
     .rmd-button-unstyled {
-      @include core.interaction-surface;
+      @include core.interaction-surface($hoverable: false, $box-shadow: true);
 
       background-color: transparent;
       border-width: 0;

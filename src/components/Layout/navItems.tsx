@@ -54,6 +54,17 @@ const routes: readonly LayoutNavigationItem[] = [
   createRoute("/tree", "Tree"),
   createRoute("/typography", "Typography"),
   createRoute("/visual-media", "Visual Media"),
+  {
+    itemId: "hooks",
+    parentId: null,
+    children: "Hooks",
+  },
+  createRoute(
+    "/use-intersection-observer",
+    "useIntersectionObserver",
+    null,
+    "hooks"
+  ),
   { divider: true, itemId: "divider-1", parentId: null },
   createRoute("/coverage/lcov-report/index.html", "Test Coverage"),
   createRoute("/docs/index.html", "Typedoc"),

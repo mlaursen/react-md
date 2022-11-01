@@ -3,7 +3,6 @@
 @use "@react-md/divider";
 
 $disable-container: false !default;
-$disable-caption: false !default;
 $disable-dense: false !default;
 $disable-full-width: false !default;
 $disable-cell-header-align-left: false !default;
@@ -16,12 +15,19 @@ $disable-bordered-except-last: false !default;
 $disable-selected: false !default;
 $disable-clickable: false !default;
 $disable-hoverable: false !default;
+// convenience variable to disable all sticky behavior
 $disable-sticky: false !default;
+// disable the sticky cells (within tbody)
+$disable-sticky-cell: $disable-sticky !default;
+$disable-sticky-header: $disable-sticky !default;
+$disable-sticky-footer: $disable-sticky !default;
 $disable-checkbox: false !default;
 $disable-cell-no-wrap: false !default;
 $disable-cell-grow: false !default;
 $disable-cell-no-padding: false !default;
-$disable-sort: false !default;
+$disable-cell-sort: false !default;
+$disable-cell-grow: false !default;
+$disable-cell-vertical-padding: false !default;
 
 // defaults to `null` so it just inherits the background color
 $light-theme-background-color: null !default;
@@ -63,6 +69,34 @@ $cell-header-dense-height: 2.125rem !default;
 $cell-horizontal-padding: 1rem !default;
 $cell-vertical-padding: 0.375rem !default;
 $cell-checkbox-horizontal-padding: 0.5rem !default;
+
+$sticky-cell-position: 0 !default;
+$sticky-header-position: 0 !default;
+$sticky-header-z-index: 2 !default;
+$sticky-footer-position: 0 !default;
+$sticky-footer-z-index: $sticky-header-z-index - 1 !default;
+$sticky-background-color: core.get-theme-var(background-color) !default;
+$sticky-header-inactive-styles: (
+  transition: background core.$linear-duration core.$linear-timing-function,
+  "&::after": (
+    box-shadow: core.box-shadow(4),
+    content: "",
+    inset: 0,
+    pointer-events: none,
+    opacity: 0,
+    position: absolute,
+    transition: opacity core.$linear-duration core.$linear-timing-function,
+    z-index: 0,
+  ),
+) !default;
+$sticky-header-active-styles: (
+  background-color: core.get-dark-elevation-color(4),
+  "&::after": (
+    opacity: 1,
+  ),
+) !default;
+$sticky-footer-inactive-styles: $sticky-header-inactive-styles !default;
+$sticky-footer-active-styles: $sticky-header-active-styles !default;
 
 $row-hover-color: core.get-interaction-var(hover-background-color) !default;
 $row-selected-color: core.get-interaction-var(
@@ -114,6 +148,22 @@ $var-lookup: (
     var: --rmd-table-selected-color,
     value: $row-selected-color,
   ),
+  sticky-cell: (
+    var: --rmd-table-sticky-cell,
+    value: $sticky-cell-position,
+  ),
+  sticky-header: (
+    var: --rmd-table-sticky-header,
+    value: $sticky-header-position,
+  ),
+  sticky-footer: (
+    var: --rmd-table-sticky-footer,
+    value: $sticky-footer-position,
+  ),
+  sticky-background-color: (
+    var: --rmd-table-sticky-background-color,
+    value: $sticky-background-color,
+  ),
 );
 
 @function get-var($name, $fallback: null) {
@@ -146,6 +196,28 @@ $row-selected-styles: (
   background-color: get-var(selected-color),
 ) !default;
 
+@mixin use-light-theme {
+  @include set-var(border-color, $light-theme-border-color);
+  @if $light-theme-background-color {
+    @include set-var(background-color, $light-theme-background-color);
+  }
+
+  @if $light-theme-header-background-color {
+    @include set-var(header-color, $light-theme-header-background-color);
+  }
+}
+
+@mixin use-dark-theme {
+  @include set-var(border-color, $dark-theme-border-color);
+  @if $dark-theme-background-color {
+    @include set-var(background-color, $dark-theme-background-color);
+  }
+
+  @if $dark-theme-header-background-color {
+    @include set-var(header-color, $dark-theme-header-background-color);
+  }
+}
+
 @mixin styles {
   @if not $disable-container {
     .rmd-table-container {
@@ -176,6 +248,38 @@ $row-selected-styles: (
     @if not $disable-dense and $cell-dense-height {
       &--dense {
         @include set-var(cell-height, $cell-header-dense-height);
+      }
+    }
+
+    @if not $disable-sticky-header {
+      &--sticky {
+        @include use-var(background-color, sticky-background-color);
+        @include use-var(top, sticky-header);
+        @include core.map-to-styles($sticky-header-inactive-styles);
+
+        position: sticky;
+        z-index: $sticky-header-z-index;
+      }
+
+      &--sticky-active {
+        @include core.map-to-styles($sticky-header-active-styles);
+      }
+    }
+  }
+
+  .rmd-tfoot {
+    @if not $disable-sticky-footer {
+      &--sticky {
+        @include use-var(background-color, sticky-background-color);
+        @include use-var(bottom, sticky-footer);
+        @include core.map-to-styles($sticky-footer-inactive-styles);
+
+        position: sticky;
+        z-index: $sticky-footer-z-index;
+      }
+
+      &--sticky-active {
+        @include core.map-to-styles($sticky-footer-active-styles);
       }
     }
   }
@@ -249,9 +353,41 @@ $row-selected-styles: (
       }
     }
 
+    @if not $disable-cell-grow {
+      &--grow {
+        width: 100%;
+      }
+    }
+
     @if not $disable-cell-no-wrap {
       &--no-wrap {
         @include core.text-overflow;
+      }
+    }
+
+    @if not $disable-cell-vertical-padding {
+      &--padded {
+        @include use-var(padding-bottom, cell-vertical-padding);
+        @include use-var(padding-top, cell-vertical-padding);
+      }
+    }
+
+    @if not $disable-cell-sort {
+      &--no-padding {
+        // this is used with the `__size` to make a parent element
+        // (usually clickable) be the full size and height of the cell
+        padding: 0;
+      }
+
+      &__child {
+        @include use-var(padding-left, cell-horizontal-padding);
+        @include use-var(padding-right, cell-horizontal-padding);
+
+        align-items: center;
+        color: inherit;
+        font: inherit;
+        height: 100%;
+        width: 100%;
       }
     }
   }

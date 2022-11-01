@@ -1,9 +1,9 @@
-@use "react-md";
+@use "everything";
 
 .list {
-  @include react-md.list-set-var(
+  @include everything.list-set-var(
     item-horizontal-padding,
-    react-md.$dialog-header-padding
+    everything.$dialog-header-padding
   );
 
   padding-top: 0;

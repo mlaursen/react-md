@@ -133,7 +133,8 @@ $box-shadow-3-layers: (
   $pseudo-before: true,
   $pseudo-z-index: 0,
   $pseudo-fixed: false,
-  $create-pseudo: true
+  $create-pseudo: true,
+  $position-relative: true
 ) {
   $pseudo-selector: if($pseudo-before, "&::before", "&::after");
   $suffix: string.slice($pseudo-selector, 2);
@@ -142,7 +143,9 @@ $box-shadow-3-layers: (
   box-shadow: $start-shadow;
 
   @if $end-shadow {
-    position: relative;
+    @if $position-relative {
+      position: relative;
+    }
 
     #{$pseudo-selector} {
       @if $create-pseudo {
@@ -178,7 +181,8 @@ $box-shadow-3-layers: (
   $pseudo-before: true,
   $duration: transition.$linear-duration,
   $color: $box-shadow-color,
-  $opacity-boost: 0
+  $opacity-boost: 0,
+  $position-relative: true
 ) {
   $start-shadow: if(
     $start-z-value == none or $start-z-value == 0,
@@ -196,6 +200,7 @@ $box-shadow-3-layers: (
     $end-shadow,
     $active-selectors,
     $duration,
-    $pseudo-before
+    $pseudo-before,
+    $position-relative: $position-relative
   );
 }

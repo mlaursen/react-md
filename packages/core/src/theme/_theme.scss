@@ -119,8 +119,6 @@ $dark-elevation-colors: (
   24: #383838,
 ) !default;
 
-$_dark-elevation-var: --rmd-dark-elevation-color;
-
 $theme-var-lookup: (
   background-color: (
     var: --rmd-background-color,
@@ -200,6 +198,18 @@ $theme-var-lookup: (
   @return var(#{$var});
 }
 
+@function _dark-elevation-color($z-value) {
+  @return "--rmd-dark-elevation-color-#{$z-value}";
+}
+
+@function get-dark-elevation-color($z-value) {
+  @return var(#{_dark-elevation-color($z-value)});
+}
+
+@mixin set-dark-elevation-color($z-value, $value) {
+  #{_dark-elevation-color($z-value)}: #{$value};
+}
+
 @mixin set-theme-var($name, $value) {
   $var: map.get(utils.validate($theme-var-lookup, $name, "theme var"), var);
 
@@ -230,9 +240,7 @@ $theme-var-lookup: (
 
   @if not $disable-dark-elevation and $color-scheme != light {
     @each $z-value, $background-color in $dark-elevation-colors {
-      $var-name: $_dark-elevation-var + "-" + $z-value;
-
-      #{$var-name}: $light-theme-surface-color;
+      @include set-dark-elevation-color($z-value, $light-theme-surface-color);
     }
   }
 }
@@ -252,8 +260,7 @@ $theme-var-lookup: (
 
   @if not $disable-dark-elevation {
     @each $z-value, $background-color in $dark-elevation-colors {
-      $var-name: $_dark-elevation-var + "-" + $z-value;
-      #{$var-name}: $background-color;
+      @include set-dark-elevation-color($z-value, $background-color);
     }
   }
 }
@@ -281,21 +288,18 @@ $theme-var-lookup: (
 
   @if not $disable-dark-elevation and $color-scheme == dark {
     @each $z-value, $background-color in $dark-elevation-colors {
-      $var-name: $_dark-elevation-var + "-" + $z-value;
-      #{$var-name}: $background-color;
+      @include set-dark-elevation-color($z-value, $background-color);
     }
   } @else if not $disable-dark-elevation and $color-scheme == light {
     @each $z-value, $background-color in $dark-elevation-colors {
-      $var-name: $_dark-elevation-var + "-" + $z-value;
-      #{$var-name}: $light-theme-surface-color;
+      @include set-dark-elevation-color($z-value, $light-theme-surface-color);
     }
   }
 }
 
 @mixin create-surface($z-value, $disable-colors: $disable-dark-elevation) {
   @if not $disable-dark-elevation {
-    $var-name: $_dark-elevation-var + "-" + $z-value;
-    @include set-theme-var(surface-color, var($var-name));
+    @include set-theme-var(surface-color, get-dark-elevation-color($z-value));
   }
   @if not $disable-colors {
     @include use-theme-var(background-color, surface-color);
