@@ -1,0 +1,24 @@
+@use "everything";
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  align-items: center;
+  height: 12rem;
+  display: flex;
+}
+
+.icon {
+  @include everything.icon-set-var(size, 4rem);
+
+  margin-top: 10%;
+}
+
+.progress {
+  @include everything.progress-set-var(linear-size, 0.5rem);
+
+  margin-top: auto;
+}

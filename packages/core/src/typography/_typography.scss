@@ -300,6 +300,12 @@ $typography-var-lookup: (
       margin-bottom: 0;
     }
 
+    &--no-wrap {
+      @include text-overflow;
+
+      white-space: nowrap;
+    }
+
     @each $alignment in $text-alignments {
       &--#{$alignment} {
         text-align: $alignment;

@@ -1,0 +1,12 @@
+@use "everything";
+
+.container {
+  @include everything.set-box-var(min-size, 18rem);
+
+  width: 100%;
+}
+
+.progress {
+  max-width: 30rem;
+  padding: everything.$box-padding;
+}

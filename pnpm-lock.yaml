@@ -30,6 +30,7 @@ importers:
       eslint: ^8.26.0
       eslint-config-next: ^13.0.0
       eslint-plugin-next: ^0.0.0
+      filesize: ^10.0.5
       glob: ^8.0.3
       husky: ^8.0.1
       identity-obj-proxy: ^3.0.0
@@ -55,6 +56,7 @@ importers:
       typescript: ^4.8.4
     dependencies:
       cnbuilder: 3.1.0
+      filesize: 10.0.5
       js-cookie: 3.0.1
       lodash: 4.17.21
       next: 13.0.0_2mygebwfgdyopr3fy2qddu2eli
@@ -3297,6 +3299,11 @@ packages:
     dependencies:
       flat-cache: 3.0.4
     dev: true
+
+  /filesize/10.0.5:
+    resolution: {integrity: sha512-qrzyt8gLh86nsyYiC3ibI5KyIYRCWg2yqIklYrWF4a0qNfekik4OQfn7AoPJG2hRrPMSlH6fET4VEITweZAzjA==}
+    engines: {node: '>= 14.0.0'}
+    dev: false
 
   /fill-range/7.0.1:
     resolution: {integrity: sha512-qOo9F+dMUmC2Lcb4BbVvnKJxTPjCm+RRpe4gDuGrzkL7mEVl/djYSu2OdQ2Pa302N4oqkSg9ir6jaLWJ2USVpQ==}

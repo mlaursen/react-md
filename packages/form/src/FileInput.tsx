@@ -154,7 +154,6 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
       >
         {content}
         <input
-          {...props}
           {...remaining}
           id={id}
           ref={ref}

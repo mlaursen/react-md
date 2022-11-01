@@ -102,6 +102,8 @@ export type FontStyle = "italic" | "oblique" | "normal";
 
 /** @remarks \@since 6.0.0 */
 export interface TypographyClassNameOptions {
+  className?: string;
+
   /**
    * @see {@link TypographyType}
    * @defaultValue `"body-1"`
@@ -127,9 +129,9 @@ export interface TypographyClassNameOptions {
   margin?: TypographyMargin;
 
   /**
-   * An optional className to merge into typography styles.
+   * @defaultValue `false`
    */
-  className?: string;
+  disableLineWrap?: boolean;
 }
 
 /**
@@ -225,6 +227,7 @@ export function typography(options: TypographyClassNameOptions = {}): string {
     fontStyle,
     margin = "initial",
     className,
+    disableLineWrap,
   } = options;
 
   return cnb(
@@ -241,6 +244,7 @@ export function typography(options: TypographyClassNameOptions = {}): string {
       [transform || ""]: transform,
       [weight || ""]: weight,
       [fontStyle || ""]: fontStyle,
+      "no-wrap": disableLineWrap,
     }),
     className
   );

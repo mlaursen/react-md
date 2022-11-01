@@ -136,6 +136,7 @@ export const Typography = forwardRef<TypographyHTMLElement, TypographyProps>(
       className,
       as,
       children,
+      disableLineWrap,
       ...remaining
     } = props;
 
@@ -153,6 +154,7 @@ export const Typography = forwardRef<TypographyHTMLElement, TypographyProps>(
           weight,
           fontStyle,
           margin,
+          disableLineWrap,
           className,
         })}
       >
