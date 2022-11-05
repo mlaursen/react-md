@@ -101,6 +101,7 @@ The main reason is that I don't think a user would actually install only one of 
 - update `useTextField` to enable the error state once a form is submitted if there are validation errors. This also will enable the error state for ALL text fields within the form using this hook. The previous behavior would only focus the first text field with an error without the error color.
 - add `useResizeObserver` hook
 - update `TableHeader` and `TableFooter` sticky behavior to include an "active" state.
+- add `useSlideTransition`, `SlideContainer`, and `Slide` as a public API. This used to be the `TabPanels` + `TabPanel` components.
 
 ## Bug Fixes
 

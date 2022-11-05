@@ -9,6 +9,7 @@ $disable-cross-fade-transition: false !default;
 $disable-scale-transition: false !default;
 $disable-scale-y-transition: $disable-scale-transition !default;
 $disable-skeleton-placeholder: false !default;
+$disable-slide-transition: false !default;
 
 $linear-duration: 0.15s !default;
 $enter-duration: 0.2s !default;
@@ -53,6 +54,9 @@ $skeleton-placeholder-animation: (
 $skeleton-placeholder-animation-duration: 1.8s !default;
 $skeleton-placeholder-animation-timing-function: ease-in-out !default;
 
+$slide-duration: $linear-duration !default;
+$slide-timing-function: $linear-timing-function !default;
+
 $transition-var-lookup: (
   skeleton-placeholder-background-color: (
     var: --rmd-skeleton-placeholder-background-color,
@@ -65,6 +69,10 @@ $transition-var-lookup: (
   skeleton-placeholder-width: (
     var: --rmd-skeleton-placeholder-width,
     value: null,
+  ),
+  slide-duration: (
+    var: --rmd-slide-duration,
+    value: $slide-duration,
   ),
 );
 
@@ -218,6 +226,58 @@ $transition-var-lookup: (
   }
 }
 
+@mixin slide-transition {
+  .rmd-slide-container {
+    align-items: flex-start;
+    display: flex;
+    flex-wrap: nowrap;
+    height: 100%;
+    overflow: hidden auto;
+
+    &--rtl {
+      --p1-start: 0;
+      --p2-start: 0;
+      --p1-end: -100%;
+      --p2-end: -100%;
+    }
+
+    &--ltr {
+      --p1-start: -100%;
+      --p2-start: -100%;
+      --p1-end: 0;
+      --p2-end: 0;
+    }
+  }
+
+  .rmd-slide {
+    flex: 1 0 auto;
+    height: 100%;
+    width: 100%;
+    will-change: transform;
+
+    &--animate {
+      transition: transform get-transition-var(slide-duration)
+        $slide-timing-function;
+    }
+
+    &--enter {
+      transform: translate3d(var(--p1-start), 0, 0);
+    }
+
+    &--enter-active {
+      transform: translate3d(var(--p1-end), 0, 0);
+    }
+
+    &--exit {
+      transform: translate3d(var(--p2-start), 0, 0);
+    }
+
+    &--exit-active {
+      transform: translate3d(var(--p2-end), 0, 0);
+    }
+  }
+}
+
 @mixin transition {
   @if not $disable-collapse-transition {
     @include collapse-transition;
@@ -237,5 +297,9 @@ $transition-var-lookup: (
 
   @if not $disable-skeleton-placeholder {
     @include skeleton-placeholder-animation;
+  }
+
+  @if not $disable-slide-transition {
+    @include slide-transition;
   }
 }

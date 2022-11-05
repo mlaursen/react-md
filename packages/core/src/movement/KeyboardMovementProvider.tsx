@@ -45,7 +45,7 @@ export const { Provider: KeyboardMovementProvider } = context;
  * @remarks \@since 5.0.0
  * @internal
  */
-export function useKeyboardFocusContext(): Readonly<KeyboardMovementContext> {
+export function useKeyboardMovementContext(): Readonly<KeyboardMovementContext> {
   return useContext(context);
 }
 
