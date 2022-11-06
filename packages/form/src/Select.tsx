@@ -62,7 +62,7 @@ export function Select(props: SelectProps): ReactElement {
 
   return (
     <>
-      <Overlay visible={visible} hidden onClick={hide} />
+      <Overlay visible={visible} noOpacity onClick={hide} />
       <TextField
         {...remaining}
         active={visible}

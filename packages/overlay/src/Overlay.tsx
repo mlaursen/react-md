@@ -39,13 +39,18 @@ export interface OverlayProps
    *
    * @defaultValue `false`
    */
-  hidden?: boolean;
+  noOpacity?: boolean;
 
   /**
    * @see {@link OverlayClassNameOptions.clickable}
-   * @defaultValue !hidden
+   * @defaultValue `!noOpacity`
    */
   clickable?: boolean;
+
+  /**
+   * @defaultValue `false`
+   */
+  disablePortal?: boolean;
 
   /**
    * @defaultValue `false`
@@ -83,8 +88,8 @@ export const Overlay = forwardRef<HTMLSpanElement, OverlayProps>(
       children,
       className,
       visible,
-      hidden = false,
-      clickable = !hidden,
+      noOpacity = false,
+      clickable = !noOpacity,
       temporary = true,
       timeout = DEFAULT_OVERLAY_TIMEOUT,
       classNames = DEFAULT_OVERLAY_CLASSNAMES,
@@ -95,6 +100,7 @@ export const Overlay = forwardRef<HTMLSpanElement, OverlayProps>(
       onExit,
       onExiting,
       onExited,
+      disablePortal: propDisablePortal = false,
       ...remaining
     } = props;
 
@@ -102,8 +108,8 @@ export const Overlay = forwardRef<HTMLSpanElement, OverlayProps>(
     const { elementProps, rendered, disablePortal } = useCSSTransition({
       nodeRef,
       transitionIn: visible,
-      timeout: hidden ? 0 : timeout,
-      classNames: hidden ? "" : classNames,
+      timeout: noOpacity ? 0 : timeout,
+      classNames: noOpacity ? "" : classNames,
       className: overlay({
         visible,
         clickable,
@@ -119,10 +125,11 @@ export const Overlay = forwardRef<HTMLSpanElement, OverlayProps>(
       onExiting,
       onExited,
       temporary,
+      exitedHidden: true,
     });
 
     return (
-      <Portal disabled={disablePortal}>
+      <Portal disabled={propDisablePortal || disablePortal}>
         {rendered && (
           <span {...remaining} {...elementProps}>
             {children}

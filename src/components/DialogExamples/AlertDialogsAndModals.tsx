@@ -1,9 +1,13 @@
 import { Button } from "@react-md/button";
-import { Typography } from "@react-md/core";
-import { Dialog, DialogContent, DialogFooter } from "@react-md/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogTitle,
+} from "@react-md/dialog";
 import { TextArea } from "@react-md/form";
 import type { ReactElement } from "react";
-import { useState } from "react";
+import { useId, useState } from "react";
 
 import styles from "./AlertDialogsAndModals.module.scss";
 
@@ -13,7 +17,8 @@ draft. When you click on "Submit", a modal confirmation dialog will ask you
 if you really want to submit this.
 `.replace(/\r?\n/g, " ");
 
-export default function AlertDialogsAndModals(): ReactElement {
+export function AlertDialogsAndModals(): ReactElement {
+  const titleId = useId();
   const [state, setState] = useState({ visible: false, modal: false });
   const hide = (): void => {
     setState((prevState) => ({ ...prevState, visible: false }));
@@ -21,7 +26,7 @@ export default function AlertDialogsAndModals(): ReactElement {
   const show = (event: React.MouseEvent<HTMLButtonElement>): void => {
     setState({
       visible: true,
-      modal: event.currentTarget.id === "draft-submit",
+      modal: event.currentTarget.type === "submit",
     });
   };
 
@@ -30,58 +35,39 @@ export default function AlertDialogsAndModals(): ReactElement {
   return (
     <>
       <form
-        id="draft-form"
         onSubmit={(e) => {
           e.preventDefault();
         }}
       >
         <TextArea
-          id="draft-area"
           defaultValue={DRAFT}
           className={styles.textarea}
           resize="none"
         />
         <DialogFooter>
-          <Button
-            id="draft-discard"
-            onClick={show}
-            type="reset"
-            theme="warning"
-          >
+          <Button onClick={show} type="reset" theme="warning">
             Reset
           </Button>
-          <Button id="draft-submit" onClick={show} type="submit">
+          <Button onClick={show} type="submit">
             Submit
           </Button>
         </DialogFooter>
       </form>
       <Dialog
-        id="draft-dialog"
         role="alertdialog"
         modal={modal}
         visible={visible}
         onRequestClose={hide}
-        aria-labelledby="dialog-title"
+        aria-labelledby={titleId}
       >
         <DialogContent>
-          <Typography
-            id="dialog-title"
-            type="subtitle-1"
-            margin="none"
-            color="secondary"
-          >
+          <DialogTitle id={titleId}>
             {!modal ? "Discard draft?" : "Are you sure?"}
-          </Typography>
+          </DialogTitle>
         </DialogContent>
         <DialogFooter>
-          <Button id="dialog-cancel" onClick={hide}>
-            Cancel
-          </Button>
-          <Button
-            id="dialog-discard"
-            onClick={hide}
-            theme={modal ? "primary" : "error"}
-          >
+          <Button onClick={hide}>Cancel</Button>
+          <Button onClick={hide} theme={modal ? "primary" : "error"}>
             {!modal ? "Discard" : "Submit"}
           </Button>
         </DialogFooter>

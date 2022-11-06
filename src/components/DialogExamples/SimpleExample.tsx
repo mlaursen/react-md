@@ -8,14 +8,10 @@ import {
   DialogTitle,
 } from "@react-md/dialog";
 import type { ReactElement } from "react";
+import { useId } from "react";
 
-export interface SimpleExampleProps {
-  depth?: number;
-}
-
-export default function SimpleExample({
-  depth = 0,
-}: SimpleExampleProps): ReactElement {
+export function SimpleExample(): ReactElement {
+  const titleId = useId();
   const {
     toggled: visible,
     enable: showDialog,
@@ -27,21 +23,18 @@ export default function SimpleExample({
       <Dialog
         visible={visible}
         onRequestClose={hideDialog}
-        aria-labelledby={`dialog-title-${depth}`}
+        aria-labelledby={titleId}
       >
         <DialogHeader>
-          <DialogTitle id={`dialog-title-${depth}`}>Simple Dialog</DialogTitle>
+          <DialogTitle id={titleId}>Simple Dialog</DialogTitle>
         </DialogHeader>
         <DialogContent>
           <Typography margin="bottom">
             This is some text in a dialog.
           </Typography>
-          <SimpleExample depth={depth + 1} />
         </DialogContent>
         <DialogFooter>
-          <Button id="dialog-close" onClick={hideDialog}>
-            Close
-          </Button>
+          <Button onClick={hideDialog}>Close</Button>
         </DialogFooter>
       </Dialog>
     </>

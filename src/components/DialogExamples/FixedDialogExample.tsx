@@ -2,18 +2,19 @@ import { AppBar, AppBarTitle } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { Typography, useToggle } from "@react-md/core";
 import { DialogContent, FixedDialog } from "@react-md/dialog";
+import CloseIcon from "@react-md/material-icons/CloseIcon";
 import MenuIcon from "@react-md/material-icons/MenuIcon";
 import MoreVertIcon from "@react-md/material-icons/MoreVertIcon";
-import CloseIcon from "@react-md/material-icons/CloseIcon";
 import type { ReactElement } from "react";
-import { useRef } from "react";
+import { useId, useRef } from "react";
 
-export default function FixedDialogExample(): ReactElement {
+export function FixedDialogExample(): ReactElement {
+  const titleId = useId();
   const fixedTo = useRef<HTMLButtonElement>(null);
   const { toggled: visible, toggle, disable: hide } = useToggle(false);
 
   return (
-    <AppBar>
+    <AppBar style={{ marginBottom: "10rem" }}>
       <Button aria-label="Nav" buttonType="icon">
         <MenuIcon />
       </Button>
@@ -32,10 +33,10 @@ export default function FixedDialogExample(): ReactElement {
         onRequestClose={hide}
         aria-label="Boop"
         options={{ xMargin: 12, yMargin: 12 }}
-        aria-labelledby="dialog-title"
+        aria-labelledby={titleId}
       >
         <AppBar theme="clear">
-          <AppBarTitle id="dialog-title">Title</AppBarTitle>
+          <AppBarTitle id={titleId}>Title</AppBarTitle>
           <Button onClick={hide} buttonType="icon" aria-label="Close">
             <CloseIcon />
           </Button>

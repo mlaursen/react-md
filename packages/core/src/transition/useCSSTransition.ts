@@ -166,6 +166,8 @@ export function useCSSTransition<E extends HTMLElement>(
     enter = true,
     exit = true,
     timeout,
+    temporary = false,
+    exitedHidden = false,
     ...transitionOptions
   } = options;
 
@@ -177,6 +179,7 @@ export function useCSSTransition<E extends HTMLElement>(
       exit,
       timeout,
       reflow: true,
+      temporary,
     });
   const isEntering = stage === "entering";
   const isEnter = isEntering || stage === "enter";
@@ -194,6 +197,7 @@ export function useCSSTransition<E extends HTMLElement>(
 
   const elementProps: CSSTransitionElementProps<E> = {
     ref,
+    hidden: (!temporary && exitedHidden && stage === "exited") || undefined,
     className:
       cnb(
         // always apply the provided className first since it makes snapshot

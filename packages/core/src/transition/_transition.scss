@@ -119,6 +119,13 @@ $transition-var-lookup: (
   }
 }
 
+/// Note: This was only added because there was an issue with stylelint using @include as the only child within a keyframes
+@mixin keyframes($name) {
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
 @mixin collapse-transition {
   .rmd-collapse {
     transition-property: max-height, padding-bottom, padding-top;
@@ -221,7 +228,7 @@ $transition-var-lookup: (
     color: transparent;
   }
 
-  @keyframes rmd-skeleton-placeholder {
+  @include keyframes(rmd-skeleton-placeholder) {
     @include utils.map-to-animation($skeleton-placeholder-animation);
   }
 }

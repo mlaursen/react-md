@@ -4,8 +4,10 @@ import { Typography, useToggle } from "@react-md/core";
 import { Dialog, DialogContent } from "@react-md/dialog";
 import CloseIcon from "@react-md/material-icons/CloseIcon";
 import type { ReactElement } from "react";
+import { useId } from "react";
 
-export default function FullPageExample(): ReactElement {
+export function FullPageExample(): ReactElement {
+  const titleId = useId();
   const {
     toggled: visible,
     enable: showDialog,
@@ -18,13 +20,13 @@ export default function FullPageExample(): ReactElement {
         type="full-page"
         visible={visible}
         onRequestClose={hideDialog}
-        aria-labelledby="dialog-title"
+        aria-labelledby={titleId}
       >
         <AppBar>
           <Button aria-label="Close" onClick={hideDialog} buttonType="icon">
             <CloseIcon />
           </Button>
-          <AppBarTitle id="dialog-title">Simple Full Page Dialog</AppBarTitle>
+          <AppBarTitle id={titleId}>Simple Full Page Dialog</AppBarTitle>
         </AppBar>
         <DialogContent>
           <Typography margin="none">This is some text in a dialog.</Typography>

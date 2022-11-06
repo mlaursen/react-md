@@ -476,6 +476,16 @@ export interface CSSTransitionHookOptions<E extends HTMLElement>
   timeout: TransitionTimeout;
   /** {@inheritDoc CSSTransitionClassNames} */
   classNames: CSSTransitionClassNames;
+
+  /**
+   * When this is `true` and the {@link temporary} option is `false`, the
+   * element will gain an `hidden` attribute to hide it instead of conditionally
+   * rendering the element.
+   *
+   * @defaultValue `false`
+   * @remarks \@since 6.0.0
+   */
+  exitedHidden?: boolean;
 }
 
 /**
@@ -491,6 +501,16 @@ export interface CSSTransitionElementProps<E extends HTMLElement> {
    * The current transition class name or `undefined`.
    */
   className: string | undefined;
+
+  /**
+   * This will only be `true` when:
+   * - {@link CSSTransitionHookOptions.exitedHidden} is `true`
+   * - {@link CSSTransitionHookOptions.temporary} is `false`
+   * - the {@link TransitionStage} is `"exited"`
+   *
+   * @remarks \@since 6.0.0
+   */
+  hidden?: boolean;
 }
 
 /**

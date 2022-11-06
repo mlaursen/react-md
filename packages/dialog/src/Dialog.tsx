@@ -15,9 +15,13 @@ import {
 } from "@react-md/core";
 import { Overlay } from "@react-md/overlay";
 import type { HTMLAttributes } from "react";
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
 
 import { DialogContainer } from "./DialogContainer";
+import {
+  NestedDialogProvider,
+  useNestedDialogContext,
+} from "./NestedDialogProvider";
 import type { DialogType } from "./styles";
 import { dialog } from "./styles";
 
@@ -250,7 +254,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
     onEnter = noop,
     onEntering = noop,
     onEntered,
-    onExit,
+    onExit = noop,
     onExiting = noop,
     onExited,
     fixed = false,
@@ -270,6 +274,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
   const id = useEnsuredId(propId, "dialog");
 
   const ssr = useSsr();
+  const setChildVisible = useNestedDialogContext();
   const { eventHandlers, transitionOptions } = useFocusContainer({
     nodeRef: ref,
     activate: visible,
@@ -308,28 +313,46 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
     appear: !disableTransition && !ssr,
     enter: !disableTransition,
     exit: !disableTransition,
-    onEnter,
-    onExit,
+    onEnter(appearing) {
+      onEnter(appearing);
+      setChildVisible(type !== "full-page");
+    },
+    onExit() {
+      onExit();
+      setChildVisible(false);
+    },
     temporary,
+    exitedHidden: true,
     ...transitionOptions,
   });
   useScrollLock(!disableScrollLock && visible);
 
+  // this makes it so that as more non-full page dialogs become visible, the
+  // overlay does not become darker as more and more overlays are stacked upon
+  // each other. only the top-most overlay will have and active background
+  // color.
+  const [isChildVisible, setIsChildVisible] = useState(false);
+
   return (
-    <>
+    <NestedDialogProvider value={setIsChildVisible}>
       {!disableOverlay && (
         <Overlay
           visible={visible}
           disableTransition={disableTransition}
+          temporary={temporary}
           {...overlayProps}
           onClick={modal ? noop : onRequestClose}
           clickable={!modal}
-          hidden={overlayHidden}
+          noOpacity={overlayHidden || isChildVisible}
         />
       )}
       <Portal disabled={propDisablePortal || disablePortal}>
         {rendered && (
-          <DialogContainer {...containerProps} enabled={type === "centered"}>
+          <DialogContainer
+            hidden={elementProps.hidden}
+            {...containerProps}
+            enabled={type === "centered"}
+          >
             <div
               {...remaining}
               {...elementProps}
@@ -343,6 +366,6 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
           </DialogContainer>
         )}
       </Portal>
-    </>
+    </NestedDialogProvider>
   );
 });
