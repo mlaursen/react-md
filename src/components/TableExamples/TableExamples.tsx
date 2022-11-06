@@ -6,6 +6,7 @@ import { ContainerBasedStickyTable } from "./ContainerBasedStickyTable";
 import { DefaultStyles } from "./DefaultStyles";
 import { SelectableRows } from "./SelectableRows";
 import { SortableColumns } from "./SortableColumns";
+import { StickyColumns } from "./StickyColumns";
 import { ViewportBasedStickyTable } from "./ViewportBasedStickyTable";
 
 export default function TableExamples(): ReactElement {
@@ -26,6 +27,8 @@ export default function TableExamples(): ReactElement {
           Viewport Based Sticky Table
         </DemoHeadingWithDivider>
         <ViewportBasedStickyTable />
+        <DemoHeadingWithDivider>Sticky Columns</DemoHeadingWithDivider>
+        <StickyColumns />
       </Box>
     </Resettable>
   );

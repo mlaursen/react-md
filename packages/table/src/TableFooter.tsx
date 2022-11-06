@@ -51,6 +51,7 @@ export const TableFooter = forwardRef<
     sticky = false,
     stickyOptions,
     isStickyActive,
+    disableStickyStyles = false,
     ...remaining
   } = props;
 
@@ -82,7 +83,7 @@ export const TableFooter = forwardRef<
   >({
     ref: exists ? undefined : tfootRefCallback,
     root: containerRef,
-    disabled: !sticky,
+    disabled: !sticky || disableStickyStyles,
     threshold: exists ? 0 : 1,
     getRootMargin() {
       const topOffset =
@@ -109,7 +110,7 @@ export const TableFooter = forwardRef<
 
   return (
     <TableConfigProvider value={configuration}>
-      {exists && sticky && (
+      {exists && sticky && !disableStickyStyles && (
         // rendering a `<tbody>` since it is valid to have 0-many in a table
         // https://html.spec.whatwg.org/multipage/tables.html#the-table-element
         <tbody aria-hidden ref={targetRef} />

@@ -66,4 +66,15 @@ export interface TableStickySectionProps {
    * @remarks \@since 6.0.0
    */
   isStickyActive?(entry: IntersectionObserverEntry): boolean;
+
+  /**
+   * Set this to `true` when the {@link sticky} prop is `true` to disable the
+   * behavior of adding an additional className when the sticky mode is active.
+   *
+   * The `TableHeader` would gain the `.rmd-thead--sticky-active` class while
+   * the `TableFooter` would gain the `.rmd-tfoot--sticky-active` class.
+   *
+   * @defaultValue `false`
+   */
+  disableStickyStyles?: boolean;
 }

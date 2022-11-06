@@ -87,6 +87,7 @@ export const TableHeader = forwardRef<
     sticky = false,
     stickyOptions,
     isStickyActive = isTableHeaderStickyActive,
+    disableStickyStyles = false,
     ...remaining
   } = props;
 
@@ -111,12 +112,12 @@ export const TableHeader = forwardRef<
   );
 
   const [theadRef, theadRefCallback] = useEnsuredRef(propRef);
-  const { exists: exists, containerRef } = useTableContainer();
+  const { exists, containerRef } = useTableContainer();
   const [stickyActive, setStickyActive] = useState(false);
   const targetRef = useIntersectionObserver({
     ref: exists ? undefined : theadRefCallback,
     root: containerRef,
-    disabled: !sticky,
+    disabled: !sticky || disableStickyStyles,
     threshold: exists ? 0 : 1,
     getRootMargin() {
       const thead = theadRef.current;
@@ -155,7 +156,7 @@ export const TableHeader = forwardRef<
       >
         {children}
       </thead>
-      {exists && sticky && (
+      {exists && sticky && !disableStickyStyles && (
         // rendering a `<tbody>` since it is valid to have 0-many in a table
         // https://html.spec.whatwg.org/multipage/tables.html#the-table-element
         <tbody aria-hidden ref={targetRef} />

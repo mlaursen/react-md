@@ -73,6 +73,8 @@ $cell-checkbox-horizontal-padding: 0.5rem !default;
 $sticky-cell-position: 0 !default;
 $sticky-header-position: 0 !default;
 $sticky-header-z-index: 2 !default;
+$sticky-header-cell-z-index: $sticky-header-z-index + 1 !default;
+$sticky-cell-z-index: $sticky-header-z-index - 1 !default;
 $sticky-footer-position: 0 !default;
 $sticky-footer-z-index: $sticky-header-z-index - 1 !default;
 $sticky-background-color: core.get-theme-var(background-color) !default;
@@ -90,7 +92,8 @@ $sticky-header-inactive-styles: (
   ),
 ) !default;
 $sticky-header-active-styles: (
-  background-color: core.get-dark-elevation-color(4),
+  "--rmd-background-color": core.get-dark-elevation-color(4),
+  background-color: core.get-theme-var(background-color),
   "&::after": (
     opacity: 1,
   ),
@@ -229,7 +232,11 @@ $row-selected-styles: (
   .rmd-table {
     @include use-var(background-color);
 
-    border-collapse: collapse;
+    // NOTE: Switched from `border-collapse: collapse` to `border-spacing: 0`
+    // since enabling sticky headers removed the borders for some reason in
+    // firefox. all I really wanted was the spacing to be removed from each
+    // cell, so border-spacing seems better.
+    border-spacing: 0;
     max-width: 100%;
 
     @if not $disable-full-width {
@@ -328,6 +335,7 @@ $row-selected-styles: (
     @include use-var(color, cell-color);
     @include use-var(height, cell-height);
 
+    border: inherit;
     padding: 0 get-var(cell-horizontal-padding);
 
     &--header {
@@ -341,6 +349,52 @@ $row-selected-styles: (
         }
 
         text-align: left;
+      }
+    }
+
+    @if not $disable-sticky-cell {
+      &--sticky {
+        position: sticky;
+        will-change: transform;
+      }
+
+      &--sticky-cell {
+        @include core.auto-rtl(left, get-var(sticky-cell));
+        @include core.use-theme-var(background-color);
+
+        transition: background-color core.$linear-duration;
+        z-index: $sticky-cell-z-index;
+
+        &::after {
+          @include core.pseudo-element;
+
+          background-color: transparent;
+          transition: background
+            core.$linear-duration
+            core.$linear-timing-function;
+
+          .rmd-tr--hoverable:hover & {
+            @include use-var(background-color, hover-color);
+          }
+
+          .rmd-tr--selected & {
+            @include use-var(background-color, selected-color);
+          }
+        }
+      }
+
+      @if not $disable-sticky-header {
+        &--sticky-header {
+          @include use-var(top, sticky-header);
+
+          z-index: $sticky-header-z-index;
+        }
+      }
+
+      @if not $disable-checkbox and not $disable-sticky-header {
+        &--sticky-header-cell {
+          z-index: $sticky-header-cell-z-index;
+        }
       }
     }
 
@@ -374,8 +428,6 @@ $row-selected-styles: (
 
     @if not $disable-cell-sort {
       &--no-padding {
-        // this is used with the `__size` to make a parent element
-        // (usually clickable) be the full size and height of the cell
         padding: 0;
       }
 

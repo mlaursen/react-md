@@ -40,26 +40,11 @@ export interface TableCellOptions extends TableCellConfig {
   scope?: "row" | "col" | "rowgroup" | "colgroup";
 
   /**
-   * The number of columns that the cell should span. If you would like a cell
-   * to span an entire row ignoring the other rows and cells, you can set this
-   * value to the number of columns within your table or `"100%"`.
-   */
-  colSpan?: number | "100%";
-
-  /**
-   * If this is a trueish value, the cell will become a sticky cell that will be
-   * fixed while the user scrolls the table. When this is a `boolean` (or
-   * inherited from a `TableHeader`) or set to `"header"`, the cell will act as
-   * a sticky header that will be visible for vertical scrolling.
    *
-   * When this is set to `"cell"`, the cell will be fixed to the left or right
-   * for horizontal scrolling.
-   *
-   * Finally, if this is set to `"header-cell"`, it will be a combination of
-   * both vertical and horizontal scrolling. This means that other sticky header
-   * cells will scroll beneath this cell.
+   * @defaultValue `false`
+   * @remarks \@since 6.0.0 This prop is only a boolean.
    */
-  sticky?: boolean | "header" | "cell" | "header-cell";
+  sticky?: boolean;
 
   /**
    * @internal
@@ -68,6 +53,10 @@ export interface TableCellOptions extends TableCellConfig {
   checkbox?: boolean;
 }
 
+/**
+ * @remarks \@since 6.0.0 Removed the `colSpan="100%"` support since `colSpan`
+ * really only supports numbers.
+ */
 export interface TableCellProps extends TableCellAttributes, TableCellOptions {
   /**
    * If you want to apply a sort icon for a header cell, set this prop to either
@@ -151,15 +140,12 @@ export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
       sortIconAfter = false,
       sortIconRotated,
       disablePadding,
-      colSpan: propColSpan,
       contentProps,
       ...remaining
     } = props;
 
-    // have to double cast to get the `100%` value to work.
-    const colSpan = propColSpan as unknown as number;
     const sortIcon = useIcon("sort", propSortIcon);
-    const isNoPadding = disablePadding ?? (sortIcon && sortOrder);
+    const isNoPadding = disablePadding ?? !!(sortIcon && sortOrder);
 
     // Note: unlike the other usages of `useTableConfig`, the `propHeader`
     // is not provided. This is so that `TableCheckbox` components can still
@@ -176,14 +162,6 @@ export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
       lineWrap: propDisableLineWrap,
     });
     const header = propHeader ?? inheritedHeader;
-    // const footer = useTableFooter();
-    // const sticky = useSticky(propSticky);
-    // const isStickyCell = sticky === "cell" || (!header && sticky);
-    // const isStickyHeader = propSticky === "header";
-    // const isStickyFooter = sticky && footer;
-    // const isStickyFooterCell =
-    //   isStickyFooter && (propColSpan === "100%" || propColSpan === 0);
-    // const isStickyAbove = propSticky === "header-cell" || isStickyFooterCell;
 
     let scope = propScope;
     if (!scope && header) {
@@ -196,20 +174,15 @@ export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
         {...remaining}
         ref={ref}
         aria-sort={sortOrder === "none" ? undefined : sortOrder}
-        colSpan={colSpan}
         className={cnb(
           styles({
             grow,
             header,
-            // sticky,
+            sticky,
             checkbox,
-            // "sticky-header":
-            //   (header && sticky && propSticky !== "cell") ||
-            //   isStickyHeader ||
-            //   isStickyAbove,
-            // "sticky-cell": isStickyCell || isStickyAbove || isStickyFooterCell,
-            // "sticky-footer": isStickyFooter,
-            // "sticky-above": isStickyAbove,
+            "sticky-cell": sticky && (!inheritedHeader || checkbox),
+            "sticky-header": sticky && inheritedHeader,
+            "sticky-header-cell": sticky && inheritedHeader && checkbox,
             [hAlign]: hAlign !== "left",
             [vAlign]: vAlign !== "middle",
             vertical: vAlign !== "middle",
@@ -226,8 +199,8 @@ export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
           icon={sortIcon}
           iconAfter={sortIconAfter}
           sortOrder={sortOrder}
-          rotated={sortIconRotated}
           hAlign={hAlign}
+          rotated={sortIconRotated}
         >
           {children}
         </TableCellContent>

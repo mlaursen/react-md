@@ -77,7 +77,6 @@ export function SortableColumns(): ReactElement {
   const { data, sortKey, sortOrder } = state;
   return (
     <TableContainer>
-      <Button>Test</Button>
       <Table fullWidth>
         <TableHeader>
           <TableRow>
