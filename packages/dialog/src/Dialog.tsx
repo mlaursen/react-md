@@ -257,6 +257,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
     onExit = noop,
     onExiting = noop,
     onExited,
+    exitedHidden = true,
     fixed = false,
     modal = false,
     disableOverlay = type === "full-page",
@@ -322,7 +323,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
       setChildVisible(false);
     },
     temporary,
-    exitedHidden: true,
+    exitedHidden,
     ...transitionOptions,
   });
   useScrollLock(!disableScrollLock && visible);

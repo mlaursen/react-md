@@ -1,0 +1,222 @@
+@use "sass:map";
+@use "@react-md/core";
+@use "@react-md/icon";
+
+$disable-icon: false !default;
+$disable-stacked: false !default;
+$disable-reversed: false !default;
+$disable-tablist-padded: false !default;
+$disable-tablist-vertical: false !default;
+$disable-tablist-indicator: false !default;
+$disable-tablist-hidden-scrollbar: false !default;
+$disable-tablist-scroll-button: false !default;
+
+$typography: map.remove(core.$button-styles, line-height) !default;
+$gap: icon.$spacing !default;
+$height: 3rem !default;
+$stacked-height: 4.5rem !default;
+$horizontal-padding: 1rem !default;
+$vertical-padding: 0.75rem !default;
+$min-width: 5.625rem !default;
+$max-width: 20rem !default;
+$indicator-height: 0.125rem !default;
+$indicator-background: core.get-theme-var(primary-color) !default;
+$active-color: core.get-theme-var(text-primary-color) !default;
+$inactive-color: core.get-theme-var(text-secondary-color) !default;
+$disabled-color: core.get-theme-var(text-disabled-color) !default;
+$transition-duration: core.$linear-duration !default;
+$transition-timing-function: core.$linear-timing-function !default;
+
+$tablist-padding-left: 3.25rem !default;
+$tablist-scroller-z-index: 2 !default;
+$tablist-scroller-background-color: core.get-theme-var(
+  background-color,
+  inherit
+) !default;
+
+$var-lookup: (
+  color: (
+    var: --rmd-tab-color,
+    value: $inactive-color,
+  ),
+  active-color: (
+    var: --rmd-tab-active-color,
+    value: $active-color,
+  ),
+  inactive-color: (
+    var: --rmd-tab-inactive-color,
+    value: $inactive-color,
+  ),
+  disabled-color: (
+    var: --rmd-tab-disabled-color,
+    value: $disabled-color,
+  ),
+  indicator-background: (
+    var: --rmd-tab-indicator-background,
+    value: $indicator-background,
+  ),
+);
+
+@function get-var($name, $fallback: null) {
+  $found: core.validate($var-lookup, $name, "tabs var");
+  $var: map.get($found, var);
+  $value: if($fallback, $fallback, map.get($found, value));
+
+  @if $value {
+    @return var(#{$var}, #{$value});
+  }
+
+  @return var(#{$var});
+}
+
+@mixin set-var($name, $value) {
+  $var: map.get(core.validate($var-lookup, $name, "tabs var"), var);
+
+  #{$var}: #{$value};
+}
+
+@mixin use-var($property, $name: $property, $fallback: null) {
+  #{$property}: get-var($name, $fallback);
+}
+
+@mixin styles {
+  .rmd-tablist {
+    display: flex;
+    flex-wrap: nowrap;
+    outline: none;
+    overflow-x: auto;
+    position: relative;
+    width: 100%;
+
+    @if not $disable-tablist-indicator {
+      &::after {
+        @include use-var(background, indicator-background);
+
+        bottom: 0;
+        content: "";
+        height: $indicator-height;
+        left: 0;
+        max-width: var(--rmd-tab-width, $min-width);
+        pointer-events: none;
+        position: absolute;
+        transform: translateX(var(--rmd-tab-offset, 0));
+        width: 100%;
+        z-index: 1;
+      }
+
+      &--animate::after {
+        transition-duration: $transition-duration;
+        transition-property: transform, max-width;
+        transition-timing-function: $transition-timing-function;
+      }
+    }
+
+    @if not $disable-tablist-hidden-scrollbar {
+      &--no-scrollbar {
+        @include core.hide-scrollbar;
+      }
+    }
+
+    @if not $disable-tablist-vertical {
+      &--vertical {
+        flex-direction: column;
+
+        @if not $disable-tablist-indicator {
+          &::after {
+            bottom: auto;
+            left: auto;
+            right: 0;
+            top: 0;
+            transform: translateY(var(--rmd-tab-offset, 0));
+          }
+        }
+      }
+    }
+
+    @if not $disable-tablist-padded {
+      &--padded {
+        @include core.auto-rtl(padding-left, $tablist-padding-left);
+      }
+    }
+
+    &--center {
+      justify-content: center;
+    }
+  }
+
+  @if not $disable-tablist-scroll-button {
+    .rmd-tablist-button {
+      align-items: center;
+      background-color: $tablist-scroller-background-color;
+      display: inline-flex;
+      justify-content: center;
+      position: sticky;
+      flex-shrink: 0;
+      z-index: $tablist-scroller-z-index;
+
+      &--left {
+        @include core.auto-rtl(left, 0);
+      }
+
+      &--right {
+        @include core.auto-rtl(right, 0);
+      }
+
+      &__button {
+        @include core.rtl {
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+
+  .rmd-tab {
+    @include core.interaction-surface;
+    @include core.map-to-styles($typography);
+    @include use-var(color);
+    @if not $disable-icon {
+      @include icon.set-var(color, currentcolor);
+    }
+
+    align-items: center;
+    background-color: transparent;
+    border-width: 0;
+    display: inline-flex;
+    flex: 1 1 auto;
+    gap: $gap;
+    height: $height;
+    justify-content: center;
+    max-width: $max-width;
+    min-width: $min-width;
+    padding: 0 $horizontal-padding;
+    transition: color $transition-duration $transition-timing-function;
+
+    @if not $disable-stacked {
+      &--stacked {
+        flex-direction: column;
+        height: $stacked-height;
+        padding: $vertical-padding $horizontal-padding;
+      }
+
+      @if not $disable-reversed {
+        &--stacked-reversed {
+          flex-direction: column-reverse;
+        }
+      }
+    }
+
+    @if not $disable-reversed {
+      &--reversed {
+        flex-direction: row-reverse;
+      }
+    }
+
+    &--active {
+      @include set-var(color, get-var(active-color));
+    }
+
+    &--disabled {
+      @include set-var(color, get-var(disabled-color));
+    }
+  }
+}

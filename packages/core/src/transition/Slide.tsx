@@ -1,32 +1,26 @@
 import type { HTMLAttributes, ReactNode } from "react";
 import { forwardRef } from "react";
 import type {
+  CSSTransitionComponentProps,
   TransitionActions,
-  TransitionCallbacks,
   TransitionTimeout,
 } from "./types";
-import { useSlideTransition } from "./useSlideTransition";
+import {
+  DEFAULT_SLIDE_TRANSITION_TIMEOUT,
+  useSlideTransition,
+} from "./useSlideTransition";
 
 /** @remarks \@since 6.0.0 */
 export interface SlideProps
   extends HTMLAttributes<HTMLDivElement>,
-    TransitionActions,
-    TransitionCallbacks {
+    CSSTransitionComponentProps,
+    TransitionActions {
   /**
    * Set this to `true` to animate this slide into view within a
    * `SlideContainer`. When this switches from `true` to `false`, it will
    * animate out.
    */
   active: boolean;
-
-  /**
-   * Set this to `true` if the slide should not unmount when {@link active} is
-   * `false`. This is useful if the slide has state that should not be reset
-   * while not active or contains images/videos that should not reload.
-   *
-   * @defaultValue `false`
-   */
-  persistant?: boolean;
 
   /** @defaultValue {@link DEFAULT_SLIDE_TRANSITION_DURATION} */
   timeout?: TransitionTimeout;
@@ -57,8 +51,9 @@ export const Slide = forwardRef<HTMLDivElement, SlideProps>(function Slide(
     onExited,
     className,
     children,
-    timeout,
-    persistant = false,
+    timeout = DEFAULT_SLIDE_TRANSITION_TIMEOUT,
+    temporary = false,
+    exitedHidden = true,
     ...remaining
   } = props;
 
@@ -75,8 +70,9 @@ export const Slide = forwardRef<HTMLDivElement, SlideProps>(function Slide(
     onExited,
     className,
     timeout,
-    temporary: !persistant,
+    temporary,
     transitionIn: active,
+    exitedHidden,
   });
 
   if (!rendered) {

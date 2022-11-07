@@ -139,6 +139,15 @@ export interface VirtualFocusableIndexOptions {
 
 export type GetDefaultFocusedIndex = (options: FocusableIndexOptions) => number;
 
+export interface FocusChangeEvent {
+  index: number;
+  element: HTMLElement;
+}
+
+export type KeyboardMovementFocusChangeEvent = (
+  event: FocusChangeEvent
+) => void;
+
 export interface KeyboardMovementProviderOptions<E extends HTMLElement>
   extends KeyboardMovementBehavior,
     KeyboardMovementConfiguration {
@@ -147,6 +156,7 @@ export interface KeyboardMovementProviderOptions<E extends HTMLElement>
 
   onFocus?: FormEventHandler<E>;
   onKeyDown?: KeyboardEventHandler<E>;
+  onFocusChange?: KeyboardMovementFocusChangeEvent;
 
   /**
    * From what I've understood so far, programmatically focusable elements
@@ -157,6 +167,10 @@ export interface KeyboardMovementProviderOptions<E extends HTMLElement>
    */
   programmatic?: boolean;
 
+  getFocusableElements?(
+    container: HTMLElement,
+    programmatic: boolean
+  ): readonly HTMLElement[];
   getDefaultFocusedIndex?: GetDefaultFocusedIndex;
 }
 

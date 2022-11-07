@@ -240,15 +240,16 @@ $transition-var-lookup: (
     flex-wrap: nowrap;
     height: 100%;
     overflow: hidden auto;
+    width: 100%;
 
-    &--rtl {
+    &--left {
       --p1-start: 0;
       --p2-start: 0;
       --p1-end: -100%;
       --p2-end: -100%;
     }
 
-    &--ltr {
+    &--right {
       --p1-start: -100%;
       --p2-start: -100%;
       --p1-end: 0;

@@ -346,6 +346,16 @@ export interface PreconfiguredCSSTransitionInDefaultedOptions<
    * An optional className to be merged with the transition classes.
    */
   className?: string;
+
+  /**
+   * When this is `true` and the {@link temporary} option is `false`, the
+   * element will gain an `hidden` attribute to hide it instead of conditionally
+   * rendering the element.
+   *
+   * @defaultValue `false`
+   * @remarks \@since 6.0.0
+   */
+  exitedHidden?: boolean;
 }
 
 /**
@@ -476,16 +486,6 @@ export interface CSSTransitionHookOptions<E extends HTMLElement>
   timeout: TransitionTimeout;
   /** {@inheritDoc CSSTransitionClassNames} */
   classNames: CSSTransitionClassNames;
-
-  /**
-   * When this is `true` and the {@link temporary} option is `false`, the
-   * element will gain an `hidden` attribute to hide it instead of conditionally
-   * rendering the element.
-   *
-   * @defaultValue `false`
-   * @remarks \@since 6.0.0
-   */
-  exitedHidden?: boolean;
 }
 
 /**
@@ -593,6 +593,8 @@ export interface CSSTransitionComponentProps extends TransitionCallbacks {
   timeout?: TransitionTimeout;
   /** @see {@link CSSTransitionClassNames} */
   classNames?: CSSTransitionClassNames;
+  /** @see {@link CSSTransitionHookOptions.exitedHidden} */
+  exitedHidden?: boolean;
 }
 
 /**

@@ -12,6 +12,7 @@ import {
 } from "@react-md/core";
 import type { ReactElement } from "react";
 import { useEffect, useState } from "react";
+import { Resettable } from "src/components/Resettable";
 
 import styles from "./transition.module.scss";
 
@@ -62,7 +63,7 @@ function Content3(): ReactElement {
 }
 
 interface SlideState {
-  rtl: boolean;
+  direction: "left" | "right";
   activeIndex: number;
 }
 
@@ -81,7 +82,7 @@ function SlideControl({
     <Button
       onClick={() =>
         setState((prev) => ({
-          rtl: prev.activeIndex < index,
+          direction: prev.activeIndex < index ? "left" : "right",
           activeIndex: index,
         }))
       }
@@ -93,9 +94,26 @@ function SlideControl({
   );
 }
 
-export default function TransitionPage(): ReactElement {
-  const [state, setState] = useState<SlideState>({ rtl: true, activeIndex: 0 });
-  const { activeIndex, rtl } = state;
+function Skeletons(): ReactElement {
+  return (
+    <Box stacked align="start">
+      <SkeletonPlaceholder height="1rem" />
+      <SkeletonPlaceholder height="1rem" />
+      <SkeletonPlaceholder height="1rem" />
+      <SkeletonPlaceholder height="1rem" />
+      <SkeletonPlaceholder height="1rem" />
+      <SkeletonPlaceholder height="1rem" />
+      <SkeletonPlaceholder height="1rem" />
+    </Box>
+  );
+}
+
+function Slides(): ReactElement {
+  const [state, setState] = useState<SlideState>({
+    direction: "left",
+    activeIndex: 0,
+  });
+  const { direction, activeIndex } = state;
   useEffect(() => {
     const timeout = window.setTimeout(() => {
       setState((prev) => {
@@ -106,8 +124,8 @@ export default function TransitionPage(): ReactElement {
           increment: true,
         });
         return {
+          direction: prev.activeIndex < activeIndex ? "left" : "right",
           activeIndex,
-          rtl: prev.activeIndex < activeIndex,
         };
       });
     }, 10000);
@@ -118,50 +136,48 @@ export default function TransitionPage(): ReactElement {
   }, [activeIndex]);
 
   return (
-    <>
-      <Box stacked align="start">
-        <SkeletonPlaceholder height="1rem" />
-        <SkeletonPlaceholder height="1rem" />
-        <SkeletonPlaceholder height="1rem" />
-        <SkeletonPlaceholder height="1rem" />
-        <SkeletonPlaceholder height="1rem" />
-        <SkeletonPlaceholder height="1rem" />
-        <SkeletonPlaceholder height="1rem" />
-      </Box>
-      <TextContainer className={styles.slides}>
-        <Card>
-          <Box>
-            <SlideControl
-              index={0}
-              activeIndex={activeIndex}
-              setState={setState}
-            />
-            <SlideControl
-              index={1}
-              activeIndex={activeIndex}
-              setState={setState}
-            />
-            <SlideControl
-              index={2}
-              activeIndex={activeIndex}
-              setState={setState}
-            />
-          </Box>
-          <CardContent>
-            <SlideContainer rtl={rtl}>
-              <Slide active={activeIndex === 0} timeout={1000}>
-                <Content1 />
-              </Slide>
-              <Slide active={activeIndex === 1} timeout={1000}>
-                <Content2 />
-              </Slide>
-              <Slide active={activeIndex === 2} timeout={1000}>
-                <Content3 />
-              </Slide>
-            </SlideContainer>
-          </CardContent>
-        </Card>
-      </TextContainer>
-    </>
+    <TextContainer className={styles.slides}>
+      <Card>
+        <Box>
+          <SlideControl
+            index={0}
+            activeIndex={activeIndex}
+            setState={setState}
+          />
+          <SlideControl
+            index={1}
+            activeIndex={activeIndex}
+            setState={setState}
+          />
+          <SlideControl
+            index={2}
+            activeIndex={activeIndex}
+            setState={setState}
+          />
+        </Box>
+        <CardContent>
+          <SlideContainer direction={direction}>
+            <Slide active={activeIndex === 0} timeout={1000}>
+              <Content1 />
+            </Slide>
+            <Slide active={activeIndex === 1} timeout={1000}>
+              <Content2 />
+            </Slide>
+            <Slide active={activeIndex === 2} timeout={1000}>
+              <Content3 />
+            </Slide>
+          </SlideContainer>
+        </CardContent>
+      </Card>
+    </TextContainer>
+  );
+}
+
+export default function TransitionPage(): ReactElement {
+  return (
+    <Resettable>
+      <Skeletons />
+      <Slides />
+    </Resettable>
   );
 }

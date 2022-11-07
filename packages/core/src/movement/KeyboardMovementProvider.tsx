@@ -1,5 +1,5 @@
 import { createContext, useContext, useMemo, useRef, useState } from "react";
-import { getFocusableElements } from "../focus";
+import { getFocusableElements as defaultGetFocusableElements } from "../focus";
 import { useUserInteractionMode } from "../interaction";
 import { useDir } from "../typography/WritingDirection";
 import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect";
@@ -49,6 +49,10 @@ export function useKeyboardMovementContext(): Readonly<KeyboardMovementContext> 
   return useContext(context);
 }
 
+const noop = (): void => {
+  // do nothing
+};
+
 export function useKeyboardMovementProvider<E extends HTMLElement>(
   options: KeyboardMovementProviderOptions<E> = {}
 ): KeyboardMovementProviderImplementation<E> {
@@ -60,11 +64,13 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
     horizontal = false,
     includeDisabled = false,
     tabIndexBehavior,
+    onFocusChange = noop,
     programmatic = includeDisabled,
     incrementKeys: propIncrementKeys,
     decrementKeys: propDecrementKeys,
     jumpToFirstKeys: propJumpToFirstKeys,
     jumpToLastKeys: propJumpToLastKeys,
+    getFocusableElements = defaultGetFocusableElements,
     getDefaultFocusedIndex,
   } = options;
 
@@ -149,10 +155,15 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
           }
 
           currentFocusIndex.current = focusedIndex;
-
+          const focused = focusables[focusedIndex];
           if (tabIndexBehavior) {
-            setActiveDescendantId(focusables[focusedIndex].id);
+            setActiveDescendantId(focused.id);
           }
+
+          onFocusChange({
+            index: focusedIndex,
+            element: focused,
+          });
           return;
         }
 
@@ -197,6 +208,11 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
         if (tabIndexBehavior !== "virtual") {
           focused.focus();
         }
+
+        onFocusChange({
+          index: defaultFocusIndex,
+          element: focused,
+        });
       },
       onKeyDown(event) {
         onKeyDown?.(event);
@@ -264,6 +280,11 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
           if (tabIndexBehavior !== "virtual") {
             focused.focus();
           }
+
+          onFocusChange({
+            index,
+            element: focused,
+          });
         };
 
         if (

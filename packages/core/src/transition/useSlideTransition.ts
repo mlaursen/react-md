@@ -1,7 +1,6 @@
 import { cnb } from "cnbuilder";
 import type {
   CSSTransitionClassNames,
-  CSSTransitionElementProps,
   CSSTransitionHookReturnValue,
   PreconfiguredCSSTransitionOptions,
   TransitionTimeout,
@@ -23,18 +22,6 @@ export const DEFAULT_SLIDE_TRANSITION_CLASSNAMES: Readonly<CSSTransitionClassNam
 /** @remarks \@since 6.0.0 */
 export type SlideTransitionOptions<E extends HTMLElement> =
   PreconfiguredCSSTransitionOptions<E>;
-
-/** @remarks \@since 6.0.0 */
-export interface SlideTransitionElementProps<E extends HTMLElement>
-  extends CSSTransitionElementProps<E> {
-  hidden: boolean;
-}
-
-/** @remarks \@since 6.0.0 */
-export interface SlideTransition<E extends HTMLElement>
-  extends CSSTransitionHookReturnValue<E> {
-  elementProps: SlideTransitionElementProps<E>;
-}
 
 /**
  * @example
@@ -61,23 +48,29 @@ export interface SlideTransition<E extends HTMLElement>
  *   return <div {...elementProps}>{children}</div>;
  * }
  *
+ * interface State {
+ *   direction: "left" | "right";
+ *   activeIndex: number;
+ * }
+ *
  * function Example(): ReactElement {
- *   const [state, setState] = useState({
- *     rtl: true,
+ *   const [state, setState] = useState<State>({
+ *     direction: "left",
  *     activeIndex: 0,
  *   });
+ *   const { direction, activeIndex } = state
  *
- *   // when changing a slide, `rtl` should be set to true if the previous
- *   // `activeIndex` is less than the next index
+ *   // when changing a slide, `direction` should be set to "left" if the
+ *   // previous `activeIndex` is less than the next index
  *   //
  *   // i.e.
  *   // setState((prevState) => ({
- *   //   rtl: prevState.activeIndex < index,
+ *   //   direction: prevState.activeIndex < index ? "left" : "right",
  *   //   activeIndex: index,
  *   // }))
  *
  *   return (
- *     <div className={slideContainer({ rtl )}>
+ *     <div className={slideContainer({ direction )}>
  *       <Slide active={activeIndex === 0}>
  *         Slide 1
  *       </Slide>
@@ -98,28 +91,21 @@ export interface SlideTransition<E extends HTMLElement>
  */
 export function useSlideTransition<E extends HTMLElement>(
   options: SlideTransitionOptions<E>
-): SlideTransition<E> {
+): CSSTransitionHookReturnValue<E> {
   const {
     timeout = DEFAULT_SLIDE_TRANSITION_TIMEOUT,
     className,
     temporary = false,
+    exitedHidden = true,
     ...transitionOptions
   } = options;
 
-  const { stage, elementProps, ...transition } = useCSSTransition({
+  return useCSSTransition({
     ...transitionOptions,
     timeout,
     className: cnb("rmd-slide", className),
     classNames: DEFAULT_SLIDE_TRANSITION_CLASSNAMES,
     temporary,
+    exitedHidden,
   });
-
-  return {
-    ...transition,
-    stage,
-    elementProps: {
-      ...elementProps,
-      hidden: !temporary && stage === "exited",
-    },
-  };
 }

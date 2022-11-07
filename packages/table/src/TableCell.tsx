@@ -18,7 +18,7 @@ import { useTableConfig } from "./TableConfigurationProvider";
 export type TableCellAttributes = Omit<
   | TdHTMLAttributes<HTMLTableCellElement>
   | ThHTMLAttributes<HTMLTableCellElement>,
-  "colSpan" | "scope"
+  "scope"
 >;
 
 export interface TableCellOptions extends TableCellConfig {
