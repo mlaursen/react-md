@@ -167,6 +167,7 @@ export function useCSSTransition<E extends HTMLElement>(
     exit = true,
     timeout,
     temporary = false,
+    hidden,
     exitedHidden = false,
     ...transitionOptions
   } = options;
@@ -197,7 +198,7 @@ export function useCSSTransition<E extends HTMLElement>(
 
   const elementProps: CSSTransitionElementProps<E> = {
     ref,
-    hidden: (!temporary && exitedHidden && stage === "exited") || undefined,
+    hidden: (!temporary && exitedHidden && stage === "exited") || hidden,
     className:
       cnb(
         // always apply the provided className first since it makes snapshot

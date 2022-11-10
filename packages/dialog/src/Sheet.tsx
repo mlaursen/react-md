@@ -3,15 +3,11 @@ import type {
   LabelRequiredForA11y,
   TransitionTimeout,
 } from "@react-md/core";
-import { forwardRef, useEffect, useRef, useState } from "react";
+import { forwardRef } from "react";
 import type { BaseDialogProps } from "./Dialog";
 import { Dialog } from "./Dialog";
 import type { BaseSheetClassNameOptions } from "./styles";
 import { sheet } from "./styles";
-
-const noop = (): void => {
-  // do nothing
-};
 
 export const DEFAULT_SHEET_TIMEOUT: Readonly<TransitionTimeout> = {
   enter: 200,
@@ -28,15 +24,22 @@ export const DEFAULT_SHEET_CLASSNAMES: Readonly<CSSTransitionClassNames> = {
   exitDone: "rmd-sheet--offscreen rmd-sheet--hidden",
 };
 
-type AllowedDialogProps = Omit<BaseDialogProps, "role" | "type" | "modal">;
+export type SheetDialogProps = Omit<BaseDialogProps, "role" | "type" | "modal">;
 
 export interface BaseSheetProps
-  extends AllowedDialogProps,
+  extends SheetDialogProps,
     BaseSheetClassNameOptions {
   /**
    * @defaultValue `"dialog"`
    */
   role?: "dialog" | "menu" | "none";
+
+  /**
+   * @defaultValue `true`
+   * @see {@link SheetDialogProps.exitedHidden}
+   * @remarks \@since 6.0.0
+   */
+  exitedHidden?: boolean;
 }
 
 export type SheetProps = LabelRequiredForA11y<BaseSheetProps>;
@@ -55,28 +58,11 @@ export const Sheet = forwardRef<HTMLDivElement, SheetProps>(function Sheet(
     classNames = DEFAULT_SHEET_CLASSNAMES,
     visible,
     temporary = true,
+    exitedHidden = true,
     children,
-    onExited = noop,
     ...remaining
   } = props;
   const { disableOverlay } = props;
-
-  // if the sheet mounts while not visible and the conditional mounting isn't
-  // enabled, need to default to the offscreen state which is normally handled
-  // by the CSSTransition's exit state.
-  const offscreen = useRef(!visible && !temporary);
-  if (offscreen.current && visible) {
-    offscreen.current = false;
-  }
-
-  // when sheets are not unmounted on exit, need to set it to hidden so that
-  // tabbing no longer focuses any of the elements inside
-  const [hidden, setHidden] = useState(!visible && !temporary);
-  useEffect(() => {
-    if (hidden && visible) {
-      setHidden(false);
-    }
-  }, [hidden, visible]);
 
   return (
     <Dialog
@@ -84,20 +70,15 @@ export const Sheet = forwardRef<HTMLDivElement, SheetProps>(function Sheet(
       ref={ref}
       role={role}
       type="custom"
-      hidden={remaining.hidden ?? hidden}
       timeout={timeout}
       classNames={classNames}
       visible={visible}
       temporary={temporary}
-      onExited={() => {
-        onExited();
-        setHidden(!temporary);
-      }}
+      exitedHidden={exitedHidden}
       className={sheet({
         position,
         horizontalSize,
         verticalSize,
-        offscreen: offscreen.current,
         disableOverlay,
         className,
       })}

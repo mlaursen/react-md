@@ -265,6 +265,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
     overlayHidden,
     onKeyDown = noop,
     isFocusTypeDisabled = noopBool,
+    hidden,
     disablePortal: propDisablePortal,
     disableScrollLock = false,
     disableEscapeClose = modal,
@@ -323,6 +324,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
       setChildVisible(false);
     },
     temporary,
+    hidden,
     exitedHidden,
     ...transitionOptions,
   });
@@ -341,6 +343,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
           visible={visible}
           disableTransition={disableTransition}
           temporary={temporary}
+          disablePortal={propDisablePortal || disablePortal}
           {...overlayProps}
           onClick={modal ? noop : onRequestClose}
           clickable={!modal}

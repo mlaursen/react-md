@@ -100,6 +100,7 @@ export const Overlay = forwardRef<HTMLSpanElement, OverlayProps>(
       onExit,
       onExiting,
       onExited,
+      hidden,
       exitedHidden = true,
       disablePortal: propDisablePortal = false,
       ...remaining
@@ -126,6 +127,7 @@ export const Overlay = forwardRef<HTMLSpanElement, OverlayProps>(
       onExiting,
       onExited,
       temporary,
+      hidden,
       exitedHidden,
     });
 

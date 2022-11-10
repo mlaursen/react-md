@@ -54,7 +54,7 @@ export function LayoutNavigation<T extends TreeItemNode = LayoutNavigationItem>(
 
   const isTemporary = !mini && isTemporaryLayout(layout);
   const isPersistent = mini || isPersistentLayout(layout);
-  const _isToggleable = !mini && isToggleableLayout(layout);
+  const isToggleable = isToggleableLayout(layout);
   const floating = layout === "floating";
 
   let header = propHeader;
@@ -87,8 +87,8 @@ export function LayoutNavigation<T extends TreeItemNode = LayoutNavigationItem>(
       disablePortal={!isTemporary}
       disableOverlay={!isTemporary}
       disableScrollLock={!isTemporary}
-      // disableTabFocusWrap={isToggleable}
-      // disableNestedDialogFixes={mini}
+      temporary={false}
+      isFocusTypeDisabled={(type) => type === "keyboard" && isToggleable}
       className={cnb(
         styles({
           mini,

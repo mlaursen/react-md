@@ -53,6 +53,7 @@ export const Slide = forwardRef<HTMLDivElement, SlideProps>(function Slide(
     children,
     timeout = DEFAULT_SLIDE_TRANSITION_TIMEOUT,
     temporary = false,
+    hidden,
     exitedHidden = true,
     ...remaining
   } = props;
@@ -72,6 +73,7 @@ export const Slide = forwardRef<HTMLDivElement, SlideProps>(function Slide(
     timeout,
     temporary,
     transitionIn: active,
+    hidden,
     exitedHidden,
   });
 
