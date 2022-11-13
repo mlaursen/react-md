@@ -3,11 +3,10 @@ import { Layout as RMDLayout, useLayoutNavigation } from "@react-md/layout";
 import type { ListElement } from "@react-md/list";
 import { useRouter } from "next/router";
 import type { ReactElement, ReactNode } from "react";
-import { useCallback } from "react";
+import { useCallback, useRef } from "react";
 
 import { UnstyledLink } from "src/components/UnstyledLink";
 import { KeyboardShortcuts } from "./KeyboardShortcuts";
-
 import { MainActions } from "./MainActions";
 import { navItems } from "./navItems";
 
@@ -24,12 +23,25 @@ export default function Layout(props: LayoutProps): ReactElement {
     disable: hideConfiguration,
     toggled: configurationVisible,
   } = useToggle();
+  const treeRef = useRef<ListElement>(null);
+  const focus = useCallback(() => {
+    const instance = treeRef.current;
+    if (!instance) {
+      return;
+    }
 
-  const focus = useCallback((instance: ListElement | null) => {
-    // since I don't have anything else in the main navigation panel for now and
-    // I have a temporary layout, just focus the tree so I can quickly jump to
-    // other pages
-    instance?.focus();
+    instance.focus();
+    const activeItem = instance.querySelector<HTMLLIElement>(
+      '[aria-selected="true"]'
+    );
+
+    if (!activeItem) {
+      return;
+    }
+
+    activeItem.scrollIntoView({
+      block: "center",
+    });
   }, []);
 
   return (
@@ -51,7 +63,10 @@ export default function Layout(props: LayoutProps): ReactElement {
           linkComponent: UnstyledLink,
           defaultExpandedIds: ["form"],
         }),
-        treeRef: focus,
+        treeRef,
+      }}
+      navProps={{
+        onEnter: focus,
       }}
       phoneLayout="temporary"
       tabletLayout="temporary"

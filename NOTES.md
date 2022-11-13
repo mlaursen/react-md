@@ -88,6 +88,7 @@ The main reason is that I don't think a user would actually install only one of 
 - **@react-md/form** - removed `useChoice` hook in favor of `useRadioGroup`
 - **@react-md/form** - removed `useChecked` and `useIndeterminateChecked` hooks in favor of `useCheckboxGroup`
 - TODO -- **@react-md/form** - removed `useSelectState` hook in favor of `useSelectField`
+- **@react-md/layout** - The `LayoutNavigation` is no longer temporary by default and instead will apply `hidden` while not `visible`. This allows the previous scroll position to be saved for temporary and toggleable layout types.
 
 ## Features
 
@@ -127,6 +128,7 @@ The main reason is that I don't think a user would actually install only one of 
 
 ## TODO
 
+- see if I can update the Tree to use the KeyboardMovementProvider implementation. Current rendering seems slow.
 - Implement a "responsive-icon-button" implementation for the button component
   - it should render as an icon button on phone only and an icon + text on other media types
     - it should be sr-only on phones to maintain a11y

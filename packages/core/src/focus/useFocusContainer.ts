@@ -172,13 +172,14 @@ export function useFocusContainer<E extends HTMLElement>(
     (callback: TransitionEnterHandler, skipped: boolean) =>
     (appearing: boolean) => {
       callback(appearing);
+      const instance = ref.current;
       if (
+        instance &&
         !skipped &&
         !isFocusTypeDisabled("mount") &&
-        (!document.activeElement ||
-          !ref.current?.contains(document.activeElement))
+        (!document.activeElement || !instance.contains(document.activeElement))
       ) {
-        ref.current?.focus();
+        instance.focus();
       }
     };
 
