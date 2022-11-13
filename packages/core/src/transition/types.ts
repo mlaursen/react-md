@@ -175,6 +175,7 @@ export interface PreconfiguredTransitionInDefaultedOptions<
    * @see {@link TransitionActions} for a description around the transitions.
    */
   transitionIn?: boolean;
+
   /** {@inheritDoc TransitionTimeout} */
   timeout?: TransitionTimeout;
 }
@@ -406,6 +407,12 @@ export interface TransitionHookOptions<E extends HTMLElement>
    * @defaultValue `false`
    */
   reflow?: boolean;
+
+  /**
+   * @remarks \@since 6.0.0
+   * @defaultValue `false`
+   */
+  disablePortal?: boolean;
 }
 
 /**
@@ -508,6 +515,11 @@ export interface CSSTransitionHookOptions<E extends HTMLElement>
   timeout: TransitionTimeout;
   /** {@inheritDoc CSSTransitionClassNames} */
   classNames: CSSTransitionClassNames;
+
+  /**
+   * @remarks \@since 6.0.0
+   */
+  disablePortal?: boolean;
 }
 
 /**

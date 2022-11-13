@@ -129,10 +129,11 @@ export const Overlay = forwardRef<HTMLSpanElement, OverlayProps>(
       temporary,
       hidden,
       exitedHidden,
+      disablePortal: propDisablePortal,
     });
 
     return (
-      <Portal disabled={propDisablePortal || disablePortal}>
+      <Portal disabled={disablePortal}>
         {rendered && (
           <span {...remaining} {...elementProps}>
             {children}

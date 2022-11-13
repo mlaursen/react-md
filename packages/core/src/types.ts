@@ -74,6 +74,14 @@ export interface NonNullRef<T> {
   readonly current: T;
 }
 
+/**
+ * @remarks \@since 6.0.0
+ * @internal
+ */
+export interface NonNullMutableRef<T> {
+  current: T;
+}
+
 /** @remarks \@since 6.0.0 */
 export type HtmlTagName = keyof JSX.IntrinsicElements;
 

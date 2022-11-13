@@ -44,6 +44,7 @@ export function useTransition<E extends HTMLElement>(
     onExit,
     onExiting,
     onExited,
+    disablePortal: propDisablePortal,
   } = options;
 
   const configurationRef = useRef({
@@ -242,6 +243,6 @@ export function useTransition<E extends HTMLElement>(
     rendered,
     appearing,
     transitionTo: dispatch,
-    disablePortal,
+    disablePortal: propDisablePortal || disablePortal,
   };
 }

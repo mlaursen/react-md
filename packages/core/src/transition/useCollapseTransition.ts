@@ -13,6 +13,10 @@ import type {
 import { useTransition } from "./useTransition";
 import { getElementSizing, getTransitionTimeout } from "./utils";
 
+const noop = (): void => {
+  // do nothing
+};
+
 /**
  * @remarks \@since 2.0.0
  */
@@ -159,7 +163,7 @@ export interface CollapseTransitionHookOptions<E extends HTMLElement>
  * @remarks \@since 4.0.0
  */
 export interface CollapseTransitionHookReturnValue<E extends HTMLElement>
-  extends CSSTransitionHookReturnValue<E>,
+  extends Omit<CSSTransitionHookReturnValue<E>, "hidden">,
     CollapseElementProps<E> {
   /**
    * This is just a convenience object so that you don't need to destructure as
@@ -322,12 +326,12 @@ export function useCollapseTransition<E extends HTMLElement>(
     appear = false,
     enter = true,
     exit = true,
-    onEnter,
-    onEntering,
-    onEntered,
-    onExit,
-    onExiting,
-    onExited,
+    onEnter = noop,
+    onEntering = noop,
+    onEntered = noop,
+    onExit = noop,
+    onExiting = noop,
+    onExited = noop,
   } = options;
 
   const [nodeRef, refCallback] = useEnsuredRef(propNodeRef);
@@ -361,7 +365,7 @@ export function useCollapseTransition<E extends HTMLElement>(
       exit,
       temporary,
       onEnter(appearing) {
-        onEnter?.(appearing);
+        onEnter(appearing);
         setStyle({
           maxHeight: minHeight,
           paddingTop: minPaddingTop,
@@ -369,7 +373,7 @@ export function useCollapseTransition<E extends HTMLElement>(
         });
       },
       onEntering(appearing) {
-        onEntering?.(appearing);
+        onEntering(appearing);
         const { maxHeight, paddingTop, paddingBottom } = getElementSizing(
           nodeRef.current
         );
@@ -386,11 +390,11 @@ export function useCollapseTransition<E extends HTMLElement>(
         });
       },
       onEntered(appearing) {
-        onEntered?.(appearing);
+        onEntered(appearing);
         setStyle(undefined);
       },
       onExit() {
-        onExit?.();
+        onExit();
         const { maxHeight, paddingTop, paddingBottom } = getElementSizing(
           nodeRef.current
         );
@@ -403,7 +407,7 @@ export function useCollapseTransition<E extends HTMLElement>(
         });
       },
       onExiting() {
-        onExiting?.();
+        onExiting();
         setStyle({
           maxHeight: minHeight,
           paddingTop: minPaddingTop,
@@ -412,7 +416,7 @@ export function useCollapseTransition<E extends HTMLElement>(
         });
       },
       onExited() {
-        onExited?.();
+        onExited();
         setStyle({
           maxHeight: minHeight,
           paddingTop: minPaddingTop,

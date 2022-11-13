@@ -326,6 +326,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
     temporary,
     hidden,
     exitedHidden,
+    disablePortal: propDisablePortal,
     ...transitionOptions,
   });
   useScrollLock(!disableScrollLock && visible);
@@ -343,14 +344,14 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
           visible={visible}
           disableTransition={disableTransition}
           temporary={temporary}
-          disablePortal={propDisablePortal || disablePortal}
+          disablePortal={disablePortal}
           {...overlayProps}
           onClick={modal ? noop : onRequestClose}
           clickable={!modal}
           noOpacity={overlayHidden || isChildVisible}
         />
       )}
-      <Portal disabled={propDisablePortal || disablePortal}>
+      <Portal disabled={disablePortal}>
         {rendered && (
           <DialogContainer
             hidden={elementProps.hidden}
