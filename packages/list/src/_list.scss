@@ -164,14 +164,17 @@ $var-lookup: (
   }
 
   .rmd-list-item {
-    @include core.interaction-surface(
-      $disabled-selector: '&[aria-disabled="true"]'
-    );
     @include use-var(min-height, item-height);
 
     align-items: center;
     display: flex;
     padding: get-var(item-vertical-padding) get-var(item-horizontal-padding);
+
+    &--clickable {
+      @include core.interaction-surface(
+        $disabled-selector: '&[aria-disabled="true"]'
+      );
+    }
 
     @if not $disable-item-link-styles {
       &--link {

@@ -63,6 +63,15 @@ export interface ListItemClassNameOptions {
    * @remarks \@since 2.4.3
    */
   disabledOpacity?: boolean;
+
+  /**
+   * Set this to `false` if the list item should not gain the interaction
+   * states: hover, focus, press, etc. This is kind of like being disabled
+   * without the disabled styles being applied.
+   *
+   * @defaultValue `true`
+   */
+  clickable?: boolean;
 }
 
 /** @remarks \@since 6.0.0 */
@@ -87,6 +96,7 @@ export function listItem(
     className,
     link = false,
     height = "auto",
+    clickable = true,
     threeLines = false,
     disabled = false,
     disabledOpacity = false,
@@ -96,9 +106,9 @@ export function listItem(
   return cnb(
     itemStyles({
       link,
+      clickable,
       [height]: height !== "auto",
       "three-lines": threeLines,
-      disabled,
       "disabled-color": disabled && !disabledOpacity,
       "disabled-opacity": disabled && disabledOpacity,
     }),

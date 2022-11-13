@@ -4,6 +4,7 @@ import { DemoHeadingWithDivider } from "../DemoHeadingWithDivider";
 import { Resettable } from "../Resettable";
 import { FileUploadExample } from "./FileUploadExample";
 import { SimpleFileInputs } from "./SimpleFileInputs";
+import { WithDropzoneExample } from "./WithDropzoneExample";
 
 export default function FileInputExamples(): ReactElement {
   return (
@@ -13,6 +14,8 @@ export default function FileInputExamples(): ReactElement {
         <SimpleFileInputs />
         <DemoHeadingWithDivider>File Upload Example</DemoHeadingWithDivider>
         <FileUploadExample />
+        <DemoHeadingWithDivider>With Dropzone Example</DemoHeadingWithDivider>
+        <WithDropzoneExample />
       </Box>
     </Resettable>
   );

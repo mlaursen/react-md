@@ -38,6 +38,7 @@ export function FileUploadErrorModal({
   return (
     <Dialog
       aria-labelledby="error-modal-title"
+      role="alertdialog"
       modal
       onRequestClose={onRequestClose}
       visible={visible}
