@@ -7,7 +7,6 @@ import { MenuItemInputToggle } from "./MenuItemInputToggle";
  * render it as a radio and pulling the radio icon from the
  * {@link IconProvider}.
  *
- * @remarks
  * If a menu or menubar contains more than one group of menuitemradio elements,
  * or if the menu contains one group and other, unrelated menu items, authors
  * SHOULD nest each set of related menuitemradio elements in an element using

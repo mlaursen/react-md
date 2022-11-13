@@ -7,6 +7,10 @@ import { useEnsuredId } from "@react-md/core";
 import type { Ref, RefObject } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
+const noop = (): void => {
+  // do nothing
+};
+
 export interface TabsState {
   direction: SlideDirection;
   activeIndex: number;
@@ -14,6 +18,26 @@ export interface TabsState {
 
 export interface TabsHookOptions {
   baseId?: string;
+
+  /**
+   * Use this callback trigger an effect whenever the `activeIndex` changes.
+   * This should **not** be used to manually set the `activeIndex` in state
+   * yourself.
+   *
+   * @example
+   * Main Example
+   * ```tsx
+   * const { elementProps, transitionTo } = useCrossFadeTransition();
+   * const { activeIndex, getTabProps, getTabListProps } = useTabs({
+   *   onActiveIndexChange() {
+   *     transitionTo("enter");
+   *   },
+   * });
+   * ```
+   *
+   * @defaultValue `() => {}`
+   */
+  onActiveIndexChange?(activeIndex: number): void;
 
   /**
    * @defaultValue `false`
@@ -60,6 +84,7 @@ export interface TabsHookReturnValue extends TabsState {
 export function useTabs(options: TabsHookOptions = {}): TabsHookReturnValue {
   const {
     baseId: propBaseId,
+    onActiveIndexChange = noop,
     disableScrollFix = false,
     defaultActiveIndex = 0,
   } = options;
@@ -90,13 +115,17 @@ export function useTabs(options: TabsHookOptions = {}): TabsHookReturnValue {
             ? indexOrFunction(activeIndex)
             : indexOrFunction;
 
+        if (nextActiveIndex !== activeIndex) {
+          onActiveIndexChange(nextActiveIndex);
+        }
+
         return {
           direction: activeIndex < nextActiveIndex ? "left" : "right",
           activeIndex: nextActiveIndex,
         };
       });
     },
-    []
+    [onActiveIndexChange]
   );
   useEffect(() => {
     const container = tabPanelsRef.current;

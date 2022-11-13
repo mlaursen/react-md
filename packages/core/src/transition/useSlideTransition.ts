@@ -27,6 +27,7 @@ export type SlideTransitionOptions<E extends HTMLElement> =
  * @example
  * Simple Example
  * ```tsx
+ * import type { SlideDirection } from "@react-md/core";
  * import { slideContainer, useSlideTransition } from "@react-md/core";
  * import type { ReactElement, ReactNode } from "react";
  * import { useState } from "react";
@@ -49,7 +50,7 @@ export type SlideTransitionOptions<E extends HTMLElement> =
  * }
  *
  * interface State {
- *   direction: "left" | "right";
+ *   direction: SlideDirection;
  *   activeIndex: number;
  * }
  *

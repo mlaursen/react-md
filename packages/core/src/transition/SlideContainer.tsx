@@ -83,8 +83,13 @@ export interface SlideContainerProps
  * import type { ReactElement, ReactNode } from "react";
  * import { useState } from "react";
  *
+ * interface State {
+ *   direction: SlideDirection;
+ *   activeIndex: number;
+ * }
+ *
  * function Example(): ReactElement {
- *   const [state, setState] = useState({
+ *   const [state, setState] = useState<State>({
  *     direction: "left",
  *     activeIndex: 0,
  *   });

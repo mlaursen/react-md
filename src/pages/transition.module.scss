@@ -1,7 +1,0 @@
-@use "everything";
-
-.slides {
-  @include everything.set-transition-var(slide-duration, 1s);
-
-  margin: 4rem auto;
-}

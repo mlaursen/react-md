@@ -68,7 +68,7 @@ export interface SkeletonPlaceholderProps
  *     !modifiedOn;
  *
  *   return (
- *     <Box grid gridClassName="custom-class-name">
+ *     <Box grid gridName="custom-class-name">
  *       <SkeletonPlaceholder disabled={!loading}>
  *         {id}
  *       </SkeletonPlaceholder>

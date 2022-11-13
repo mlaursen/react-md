@@ -61,7 +61,7 @@ export default function Layout(props: LayoutProps): ReactElement {
           navItems,
           pathname,
           linkComponent: UnstyledLink,
-          defaultExpandedIds: ["form"],
+          defaultExpandedIds: ["/form", "/transition"],
         }),
         treeRef,
       }}

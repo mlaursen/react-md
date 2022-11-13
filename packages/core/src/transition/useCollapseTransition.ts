@@ -133,7 +133,7 @@ export interface CollapseElementProps<E extends HTMLElement>
  * @remarks \@since 4.0.0
  */
 export interface CollapseTransitionHookOptions<E extends HTMLElement>
-  extends PreconfiguredCSSTransitionOptions<E>,
+  extends Omit<PreconfiguredCSSTransitionOptions<E>, "exitedHidden">,
     CollapseConfigurationStyle {
   /**
    * An optional style to merge with the required collapse transition styles.
@@ -443,10 +443,8 @@ export function useCollapseTransition<E extends HTMLElement>(
         className
       ) || undefined,
     hidden:
-      !transitionIn &&
-      rendered &&
-      stage === "exited" &&
       !temporary &&
+      stage === "exited" &&
       minHeight === 0 &&
       minPaddingTop === 0 &&
       minPaddingBottom === 0,

@@ -85,8 +85,9 @@ export interface ErrorChangeHandlerOptions<
  * <Button type="submit" disabled={invalid} onClick={submitForm}>Submit</Button>
  * ```
  *
- * @remarks \@since 2.5.0
- * @remarks \@since 6.0.0 Changed to object argument.
+ * @remarks
+ * \@since 2.5.0
+ * \@since 6.0.0 Changed to object argument.
  */
 export type ErrorChangeHandler<
   E extends HTMLInputElement | HTMLTextAreaElement

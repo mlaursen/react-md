@@ -91,6 +91,7 @@ $var-lookup: (
 
     border-radius: $border-radius;
     display: inline-block;
+    max-width: 100%;
 
     @if not $disable-raiseable {
       @include core.mouse-only {

@@ -1,3 +1,4 @@
+/** @module @react-md/form */
 export { nanoid } from "nanoid";
 export * from "./Checkbox";
 export * from "./Fieldset";
@@ -16,6 +17,7 @@ export * from "./MenuItemCheckbox";
 export * from "./MenuItemInputToggle";
 export * from "./MenuItemRadio";
 export * from "./MenuItemSwitch";
+export * from "./NativeSelect";
 export * from "./Password";
 export * from "./Radio";
 export * from "./Switch";

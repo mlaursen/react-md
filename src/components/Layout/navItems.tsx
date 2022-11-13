@@ -7,69 +7,156 @@ import type { ReactNode } from "react";
 import MaterialDesignIcon from "../MaterialDesignIcon";
 import ReactIcon from "../ReactIcon";
 
-const createRoute = (
-  pathname: string,
-  children: ReactNode,
-  leftAddon: ReactNode | undefined = undefined,
-  parentId: string | null = null
-): LayoutNavigationItem => ({
-  itemId: pathname,
-  parentId,
-  href: pathname,
-  children,
-  leftAddon,
-});
+interface RouteOptions {
+  name: ReactNode;
+  href?: string | null;
+  pathname: string;
+  parentId?: string | null;
+  leftAddon?: ReactNode;
+
+  routes?: RouteOptions[];
+}
+
+function createRoute(
+  options: Omit<RouteOptions, "routes">
+): LayoutNavigationItem {
+  const {
+    name,
+    pathname,
+    href = pathname,
+    leftAddon,
+    parentId = null,
+  } = options;
+
+  return {
+    href: !href ? undefined : href,
+    itemId: pathname,
+    parentId,
+    children: name,
+    leftAddon,
+  };
+}
+
+function createRoutes(options: RouteOptions): readonly LayoutNavigationItem[] {
+  const { name, pathname, leftAddon, parentId = null, routes = [] } = options;
+  return [
+    createRoute({
+      name,
+      href: routes.length ? null : pathname,
+      pathname,
+      leftAddon,
+      parentId,
+    }),
+    ...routes.flatMap((route) =>
+      createRoutes({
+        parentId: pathname,
+        ...route,
+        pathname: `${pathname}${route.pathname}`,
+      })
+    ),
+  ];
+}
 
 const routes: readonly LayoutNavigationItem[] = [
-  createRoute("/", "Home", <HomeIcon />),
-  {
-    itemId: "form",
-    parentId: null,
-    children: "Form",
-  },
-  createRoute("/textfield", "TextField", null, "form"),
-  createRoute("/password", "Password", null, "form"),
-  createRoute("/textarea", "TextArea", null, "form"),
-  createRoute("/select", "Select", null, "form"),
-  createRoute("/checkbox", "Checkbox", null, "form"),
-  createRoute("/radio", "Radio", null, "form"),
-  createRoute("/switch", "Switch", null, "form"),
-  createRoute("/fileinput", "FileInput", null, "form"),
-  createRoute("/app-bar", "App Bar"),
-  createRoute("/avatar", "Avatar"),
-  createRoute("/box", "Box"),
-  createRoute("/button", "Button"),
-  createRoute("/box-shadow", "Box Shadow"),
-  createRoute("/card", "Card"),
-  createRoute("/dialog", "Dialog"),
-  createRoute("/divider", "Divider"),
-  createRoute("/link", "Link"),
-  createRoute("/list", "List"),
-  createRoute("/list", "List"),
-  createRoute("/material-icons", "Material Icons"),
-  createRoute("/menu", "Menu"),
-  createRoute("/progress", "Progress"),
-  createRoute("/transition", "Transition"),
-  createRoute("/table", "Table"),
-  createRoute("/tabs", "Tabs"),
-  createRoute("/tooltip", "Tooltip"),
-  createRoute("/tree", "Tree"),
-  createRoute("/typography", "Typography"),
-  createRoute("/visual-media", "Visual Media"),
-  {
-    itemId: "hooks",
-    parentId: null,
-    children: "Hooks",
-  },
-  createRoute(
-    "/use-intersection-observer",
-    "useIntersectionObserver",
-    null,
-    "hooks"
-  ),
+  createRoute({
+    name: "Home",
+    pathname: "/",
+    leftAddon: <HomeIcon />,
+  }),
+  ...createRoutes({
+    name: "Form",
+    pathname: "/form",
+    routes: [
+      { name: "TextField", pathname: "/textfield" },
+      { name: "Password", pathname: "/password" },
+      { name: "TextArea", pathname: "/textarea" },
+      { name: "Select", pathname: "/select" },
+      { name: "FileInput", pathname: "/fileinput" },
+      { name: "Checkbox", pathname: "/checkbox" },
+      { name: "Radio", pathname: "/radio" },
+      { name: "Switch", pathname: "/switch" },
+    ],
+  }),
+  createRoute({ name: "Box", pathname: "/box" }),
+  createRoute({ name: "Typography", pathname: "/typography" }),
+  createRoute({ name: "Button", pathname: "/button" }),
+  createRoute({ name: "Material Icons", pathname: "/material-icons" }),
+
+  createRoute({ name: "Menu", pathname: "/menu" }),
+
+  createRoute({ name: "List", pathname: "/list" }),
+  createRoute({ name: "App Bar", pathname: "/app-bar" }),
+  createRoute({ name: "Card", pathname: "/card" }),
+  createRoute({ name: "Dialog", pathname: "/dialog" }),
+  createRoute({ name: "Link", pathname: "/link" }),
+  createRoute({ name: "Avatar", pathname: "/avatar" }),
+  createRoute({ name: "Progress", pathname: "/progress" }),
+
+  createRoute({ name: "Box Shadow", pathname: "/box-shadow" }),
+  createRoute({ name: "Divider", pathname: "/divider" }),
+
+  ...createRoutes({
+    name: "Transition",
+    pathname: "/transition",
+    routes: [
+      { name: "Collapse", pathname: "/collapse" },
+      {
+        name: "Skeleton Placeholder",
+        pathname: "/skeleton-placeholder",
+      },
+      { name: "Carousel", pathname: "/carousel" },
+      { name: "Scale", pathname: "/scale" },
+      { name: "Cross Fade", pathname: "/cross-fade" },
+      { name: "Slide", pathname: "/slide" },
+      { name: "useCSSTransition", pathname: "/use-css-transition" },
+      { name: "useTransition", pathname: "/use-transition" },
+    ],
+  }),
+
+  createRoute({ name: "Table", pathname: "/table" }),
+  createRoute({ name: "Tabs", pathname: "/tabs" }),
+  createRoute({ name: "Tooltip", pathname: "/tooltip" }),
+  createRoute({ name: "Tree", pathname: "/tree" }),
+  createRoute({ name: "Visual Media", pathname: "/visual-media" }),
+
+  ...createRoutes({
+    name: "Hooks",
+    pathname: "/hooks",
+    routes: [
+      { name: "useAppSize", pathname: "/use-app-size" },
+      { name: "useToggle", pathname: "/use-toggle" },
+      { name: "useFixedPositioning", pathname: "/use-fixed-positioning" },
+      { name: "useLocalStorage", pathname: "/use-local-storage" },
+      { name: "useHtmlClassName", pathname: "/use-html-class-name" },
+      {
+        name: "useIntersectionObserver",
+        pathname: "/use-intersection-observer",
+      },
+      { name: "useResizeObserver", pathname: "/use-resize-observer" },
+      { name: "useMediaQuery", pathname: "/use-media-query" },
+      { name: "useFocusContainer", pathname: "/use-focus-container" },
+      { name: "useHoverMode", pathname: "/use-hover-mode" },
+      { name: "useCSSVariables", pathname: "/use-css-variables" },
+    ],
+  }),
+
+  ...createRoutes({
+    name: "Utils",
+    pathname: "/utils",
+    routes: [
+      { name: "bem", pathname: "/bem" },
+      { name: "alphaNumericSort", pathname: "/alpha-numeric-sort" },
+      { name: "loop", pathname: "/loop" },
+      { name: "randomInt", pathname: "/random-int" },
+      { name: "getScrollbarWidth", pathname: "/get-scrollbar-width" },
+    ],
+  }),
   { divider: true, itemId: "divider-1", parentId: null },
-  createRoute("/coverage/lcov-report/index.html", "Test Coverage"),
-  createRoute("/docs/index.html", "Typedoc"),
+  createRoute({
+    name: "Test Coverage",
+    pathname: "/coverage/lcov-report/index.html",
+  }),
+  createRoute({ name: "Typedoc", pathname: "/docs/index.html" }),
   { divider: true, itemId: "divider-2", parentId: null },
   {
     subheader: true,
@@ -77,12 +164,16 @@ const routes: readonly LayoutNavigationItem[] = [
     parentId: null,
     children: "References",
   },
-  createRoute("https://reactjs.org", "React", <ReactIcon />),
-  createRoute(
-    "https://material.io/design",
-    "Material Design",
-    <MaterialDesignIcon />
-  ),
+  createRoute({
+    name: "React",
+    pathname: "https://reactjs.org",
+    leftAddon: <ReactIcon />,
+  }),
+  createRoute({
+    name: "Material Design",
+    pathname: "https://material.io/design",
+    leftAddon: <MaterialDesignIcon />,
+  }),
 ];
 
 export const navItems = routes.reduce<LayoutNavigationTree>((tree, route) => {

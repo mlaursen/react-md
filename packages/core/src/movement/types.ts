@@ -104,8 +104,9 @@ export interface KeyboardMovementBehavior {
 }
 
 /**
- * @remarks \@since 5.0.0
- * @remarks \@since 6.0.0 Removed `attach`, `detach` and `watching`
+ * @remarks
+ * \@since 5.0.0
+ * \@since 6.0.0 Removed `attach`, `detach` and `watching`
  * @internal
  */
 export interface KeyboardMovementContext

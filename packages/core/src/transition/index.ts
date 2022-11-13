@@ -6,6 +6,7 @@ export * from "./SkeletonPlaceholder";
 export * from "./Slide";
 export * from "./SlideContainer";
 export * from "./types";
+export * from "./useCarousel";
 export * from "./useCollapseTransition";
 export * from "./useCrossFadeTransition";
 export * from "./useCSSTransition";

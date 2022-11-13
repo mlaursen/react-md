@@ -75,8 +75,9 @@ export interface LayoutChildrenProps<
    * - the `miniNav` prop has not been defined
    * - `treeProps` have been provided
    *
-   * @remarks \@since 2.8.3
-   * @remarks \@since 2.9.1 This will render if any provided layout type is `mini`.
+   * @remarks
+   * \@since 2.8.3
+   * \@since 2.9.1 This will render if any provided layout type is `mini`.
    */
   miniWrapperProps?: PropsWithRef<
     HTMLAttributes<HTMLDivElement>,
