@@ -1,0 +1,18 @@
+@use "everything";
+
+// make the main navigation more dense because there are so many options
+.nav {
+  @include everything.list-set-var(item-height, auto);
+}
+
+.sheet {
+  @include everything.set-theme-var(
+    background-color,
+    everything.get-theme-var(surface-color)
+  );
+
+  option {
+    // this fixes the white/grey background color in firefox when using dark mode
+    @include everything.use-theme-var(background-color);
+  }
+}

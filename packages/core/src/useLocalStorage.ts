@@ -4,14 +4,6 @@ import { useSsr } from "./SsrProvider";
 import type { UseStateSetter } from "./types";
 import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect";
 
-export const LOCAL_STORAGE_EVENT = "local-storage";
-
-declare global {
-  interface WindowEventMap {
-    "local-storage": CustomEvent;
-  }
-}
-
 /** @remarks \@since 6.0.0 */
 export type LocalStorageSerializer<T> = (value: T) => string;
 /** @remarks \@since 6.0.0 */
@@ -283,10 +275,8 @@ export function useLocalStorage<T>(
     };
 
     window.addEventListener("storage", callback);
-    window.addEventListener(LOCAL_STORAGE_EVENT, callback);
     return () => {
       window.removeEventListener("storage", callback);
-      window.removeEventListener(LOCAL_STORAGE_EVENT, callback);
     };
   }, []);
 

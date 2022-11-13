@@ -74,7 +74,9 @@ export function LayoutNavigation<T extends TreeItemNode = LayoutNavigationItem>(
   return (
     <Sheet
       {...remaining}
-      key={layout}
+      // why did I add this key? removing it helps switch between the different layouts
+      // with less animations
+      // key={layout}
       id={id}
       // ref={ref}
       aria-label={ariaLabel}

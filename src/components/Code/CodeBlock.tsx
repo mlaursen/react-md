@@ -93,6 +93,7 @@ export const CodeBlock = forwardRef<HTMLPreElement, CodeBlockProps>(
           </Button>
           {lineNumbers && <LineNumbers lines={lines} />}
           <code
+            suppressHydrationWarning={remaining.suppressHydrationWarning}
             className={base}
             dangerouslySetInnerHTML={{
               __html: highlightCode(code, language),

@@ -1,14 +1,19 @@
 import { useToggle } from "@react-md/core";
+import { Sheet } from "@react-md/dialog";
 import { Layout as RMDLayout, useLayoutNavigation } from "@react-md/layout";
 import type { ListElement } from "@react-md/list";
 import { useRouter } from "next/router";
 import type { ReactElement, ReactNode } from "react";
 import { useCallback, useRef } from "react";
-
 import { UnstyledLink } from "src/components/UnstyledLink";
-import { KeyboardShortcuts } from "./KeyboardShortcuts";
+import styles from "./Layout.module.scss";
 import { MainActions } from "./MainActions";
 import { navItems } from "./navItems";
+import {
+  useWebsiteConfigurationProvider,
+  WebsiteConfigurationProvider,
+} from "./WebsideConfigurationProvider";
+import { WebsiteConfiguration } from "./WebsiteConfiguration";
 
 export interface LayoutProps {
   title: string;
@@ -43,39 +48,52 @@ export default function Layout(props: LayoutProps): ReactElement {
       block: "center",
     });
   }, []);
+  const context = useWebsiteConfigurationProvider();
+  const {
+    phoneLayout,
+    tabletLayout,
+    desktopLayout,
+    largeDesktopLayout,
+    landscapeTabletLayout,
+  } = context;
 
   return (
-    <RMDLayout
-      appBarProps={{
-        children: (
-          <MainActions
-            showConfiguration={showConfiguration}
-            hideConfiguration={hideConfiguration}
-            configurationVisible={configurationVisible}
-          />
-        ),
-      }}
-      title={title}
-      treeProps={{
-        ...useLayoutNavigation({
-          navItems,
-          pathname,
-          linkComponent: UnstyledLink,
-          defaultExpandedIds: ["/form", "/transition"],
-        }),
-        treeRef,
-      }}
-      navProps={{
-        onEnter: focus,
-      }}
-      phoneLayout="temporary"
-      tabletLayout="temporary"
-      desktopLayout="temporary"
-      largeDesktopLayout="temporary"
-      landscapeTabletLayout="temporary"
-    >
-      <KeyboardShortcuts showConfiguration={showConfiguration} />
-      {children}
-    </RMDLayout>
+    <WebsiteConfigurationProvider value={context}>
+      <RMDLayout
+        appBarProps={{
+          children: <MainActions showConfiguration={showConfiguration} />,
+        }}
+        title={title}
+        treeProps={{
+          ...useLayoutNavigation({
+            navItems,
+            pathname,
+            linkComponent: UnstyledLink,
+            defaultExpandedIds: ["/form", "/transition"],
+          }),
+          treeRef,
+        }}
+        navProps={{
+          onEnter: focus,
+          className: styles.nav,
+        }}
+        phoneLayout={phoneLayout}
+        tabletLayout={tabletLayout}
+        desktopLayout={desktopLayout}
+        largeDesktopLayout={largeDesktopLayout}
+        landscapeTabletLayout={landscapeTabletLayout}
+      >
+        {children}
+      </RMDLayout>
+      <Sheet
+        aria-label="Configuration"
+        visible={configurationVisible}
+        onRequestClose={hideConfiguration}
+        position="right"
+        className={styles.sheet}
+      >
+        <WebsiteConfiguration />
+      </Sheet>
+    </WebsiteConfigurationProvider>
   );
 }
