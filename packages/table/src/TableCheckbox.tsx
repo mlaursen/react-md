@@ -3,7 +3,6 @@ import type { CheckboxProps } from "@react-md/form";
 import { Checkbox } from "@react-md/form";
 import type { TdHTMLAttributes } from "react";
 import { forwardRef } from "react";
-import type { TableCellStickyBehavior } from "./TableCell";
 import { TableCell } from "./TableCell";
 
 export type TableCheckboxTdHTMLAttributes = Omit<
@@ -31,7 +30,7 @@ export type TableCheckboxSupportedCheckboxProps = Pick<
 export interface TableCheckboxProps
   extends TableCheckboxTdHTMLAttributes,
     TableCheckboxSupportedCheckboxProps {
-  sticky?: TableCellStickyBehavior;
+  sticky?: boolean;
   checkboxProps?: PropsWithRef<CheckboxProps, HTMLInputElement>;
 }
 

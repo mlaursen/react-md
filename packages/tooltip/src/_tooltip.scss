@@ -1,0 +1,153 @@
+@use "sass:map";
+@use "@react-md/core";
+
+$disable-vertical: false !default;
+$disable-horizontal: false !default;
+$disable-above: $disable-vertical !default;
+$disable-below: $disable-vertical !default;
+$disable-left: $disable-horizontal !default;
+$disable-right: $disable-horizontal !default;
+$disable-dense: false !default;
+
+$background-color: #616161 !default;
+$color: core.$white !default;
+
+$typography: map.merge(
+  core.$body-1-styles,
+  (
+    letter-spacing: null,
+  )
+) !default;
+$border-radius: 0.25rem !default;
+$z-index: core.$temporary-element-z-index + 20 !default;
+$max-width: 15rem !default;
+$min-height: 2rem !default;
+$horizontal-padding: 1rem !default;
+$vertical-padding: 0.5625rem !default;
+$spacing: 1.5rem !default;
+
+$dense-spacing: 0.875rem !default;
+$dense-typography: (
+  font-size: 0.625rem,
+  line-height: 0.825rem,
+) !default;
+$dense-min-height: 1.375rem !default;
+$dense-horizontal-padding: 0.5rem !default;
+$dense-vertical-padding: 0.375rem !default;
+
+$enter-duration: core.$linear-duration !default;
+$enter-timing-function: core.$deceleration-timing-function !default;
+$leave-duration: core.$linear-duration !default;
+$leave-timing-function: core.$acceleration-timing-function !default;
+$transition-distance: 0.5rem !default;
+
+$var-lookup: (
+  background-color: (
+    var: --rmd-tooltip-background-color,
+    value: $background-color,
+  ),
+  color: (
+    var: --rmd-tooltip-color,
+    value: $color,
+  ),
+  spacing: (
+    // this is only added so you can safely do:
+    // @include react-md.tooltip-set-var(spacing, $custom-spacing);
+    var: --rmd-tooltip-spacing,
+    value: $spacing,
+  ),
+);
+
+@function get-var($name, $fallback: null) {
+  $found: core.validate($var-lookup, $name, "tooltip var");
+  $var: map.get($found, var);
+  $value: if($fallback, $fallback, map.get($found, value));
+
+  @if $value {
+    @return var(#{$var}, #{$value});
+  }
+
+  @return var(#{$var});
+}
+
+@mixin set-var($name, $value) {
+  $var: map.get(core.validate($var-lookup, $name, "tooltip var"), var);
+
+  #{$var}: #{$value};
+}
+
+@mixin use-var($property, $name: $property, $fallback: null) {
+  #{$property}: get-var($name, $fallback);
+}
+
+@mixin styles {
+  .rmd-tooltip {
+    @include core.text-overflow($white-space: null);
+    @include core.map-to-styles($typography);
+    @include use-var(background-color);
+    @include use-var(color);
+
+    border-radius: $border-radius;
+    max-width: $max-width;
+    min-height: $min-height;
+    opacity: 0;
+    padding: $vertical-padding $horizontal-padding;
+    pointer-events: none;
+    position: fixed;
+    text-transform: none;
+    user-select: none;
+    z-index: $z-index;
+
+    @if not $disable-dense {
+      &--dense {
+        @include core.map-to-styles($dense-typography);
+        @include set-var(spacing, $dense-spacing);
+
+        min-height: $dense-min-height;
+        padding: $dense-vertical-padding $dense-horizontal-padding;
+      }
+    }
+
+    @if not $disable-above {
+      &--above {
+        transform: translateY(-$transition-distance);
+      }
+    }
+
+    @if not $disable-below {
+      &--below {
+        transform: translateY($transition-distance);
+      }
+    }
+
+    @if not $disable-left {
+      &--left {
+        transform: translateX(-$transition-distance);
+      }
+    }
+
+    @if not $disable-right {
+      &--right {
+        transform: translateX($transition-distance);
+      }
+    }
+
+    &--visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    &--enter {
+      transition: opacity $enter-duration, transform $enter-duration * 2;
+      transition-timing-function: $enter-timing-function;
+    }
+
+    &--exit {
+      transition: opacity $leave-duration $leave-timing-function;
+    }
+
+    &--exit-active {
+      opacity: 0;
+    }
+  }
+}

@@ -13,7 +13,7 @@ export interface ParseCssLengthUnitOptions {
   /**
    * @defaultValue `document.documentElement`
    */
-  container?: Element;
+  container?: Element | null;
 }
 
 /**

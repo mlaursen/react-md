@@ -302,8 +302,6 @@ $typography-var-lookup: (
 
     &--no-wrap {
       @include text-overflow;
-
-      white-space: nowrap;
     }
 
     @each $alignment in $text-alignments {
@@ -340,10 +338,11 @@ $typography-var-lookup: (
   }
 }
 
-@mixin text-overflow {
+@mixin text-overflow($white-space: nowrap) {
   overflow: hidden;
+  overflow-wrap: anywhere;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: $white-space;
 }
 
 @mixin line-clamp($lines: 2) {

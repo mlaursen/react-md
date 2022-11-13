@@ -1,6 +1,5 @@
 import { Typography } from "@react-md/core";
 import {
-  Caption,
   Table,
   TableBody,
   TableCell,

@@ -34,6 +34,7 @@
       "@react-md/progress": ["packages/progress/src/index.ts"],
       "@react-md/table": ["packages/table/src/index.ts"],
       "@react-md/tabs": ["packages/tabs/src/index.ts"],
+      "@react-md/tooltip": ["packages/tooltip/src/index.ts"],
       "@react-md/tree": ["packages/tree/src/index.ts"],
       "@react-md/visual-media": ["packages/visual-media/src/index.ts"]
     }

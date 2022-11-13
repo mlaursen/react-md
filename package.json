@@ -23,7 +23,8 @@
     "build-static": "next build && next export"
   },
   "engines": {
-    "pnpm": ">=7"
+    "pnpm": ">=7",
+    "node": ">=16"
   },
   "engineStrict": true,
   "repository": {
