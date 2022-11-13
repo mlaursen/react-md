@@ -5,6 +5,10 @@ import { useEffect } from "react";
  */
 export function useHtmlClassName(className: string): void {
   useEffect(() => {
+    if (!className) {
+      return;
+    }
+
     const html = document.documentElement;
     html.classList.add(className);
     return () => {

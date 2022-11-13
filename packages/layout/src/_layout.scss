@@ -72,6 +72,9 @@ $var-lookup: (
   }
 
   .rmd-layout-navigation {
+    // makes it so you can just set the `--rmd-layout-nav-width` to the window splitter size
+    @include use-var(width, nav-width);
+
     z-index: $navigation-z-index;
 
     &--floating {
@@ -124,9 +127,8 @@ $var-lookup: (
 
   .rmd-layout-title {
     &--offset {
-      $margin: calc(
-        #{dialog.sheet-get-var(static-width)} + #{app-bar.$keyline}
-      );
+      // use the nav-width so that you can use window splitters easily
+      $margin: calc(#{get-var(nav-width)} + #{app-bar.$keyline});
 
       @include core.auto-rtl(margin-left, $margin);
     }

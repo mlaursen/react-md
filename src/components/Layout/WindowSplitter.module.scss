@@ -1,0 +1,50 @@
+@use "everything";
+
+.separator {
+  $width: 0.25rem;
+
+  background-color: everything.$outline-color;
+  bottom: 0;
+  left: calc(#{everything.layout-get-var(nav-width)} - #{$width * 0.5});
+  opacity: 0;
+  position: fixed;
+  outline-style: none;
+  top: everything.app-bar-get-var(height);
+  transition: opacity everything.$linear-duration;
+  width: $width;
+  z-index: everything.$layout-navigation-z-index + 1;
+
+  &:hover {
+    cursor: col-resize;
+    opacity: 1;
+  }
+
+  @include everything.keyboard-only(true) {
+    &:focus {
+      opacity: 1;
+    }
+  }
+
+  @include everything.touch-only(true) {
+    &:hover {
+      opacity: 0;
+    }
+  }
+}
+
+.fullHeight {
+  top: 0;
+}
+
+.dragging {
+  cursor: col-resize;
+  user-select: none;
+
+  * {
+    pointer-events: none;
+  }
+
+  .separator {
+    opacity: 1;
+  }
+}

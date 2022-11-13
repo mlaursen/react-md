@@ -90,7 +90,9 @@ export function LayoutNavigation<T extends TreeItemNode = LayoutNavigationItem>(
       disableOverlay={!isTemporary}
       disableScrollLock={!isTemporary}
       temporary={false}
-      isFocusTypeDisabled={(type) => type === "keyboard" && isToggleable}
+      isFocusTypeDisabled={(type) =>
+        type === "keyboard" && (isToggleable || isPersistent)
+      }
       className={cnb(
         styles({
           mini,

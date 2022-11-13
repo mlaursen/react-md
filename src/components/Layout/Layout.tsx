@@ -9,6 +9,7 @@ import { UnstyledLink } from "src/components/UnstyledLink";
 import styles from "./Layout.module.scss";
 import { MainActions } from "./MainActions";
 import { navItems } from "./navItems";
+import { NavWindowSplitter } from "./NavWindowSplitter";
 import {
   useWebsiteConfigurationProvider,
   WebsiteConfigurationProvider,
@@ -83,6 +84,7 @@ export default function Layout(props: LayoutProps): ReactElement {
         largeDesktopLayout={largeDesktopLayout}
         landscapeTabletLayout={landscapeTabletLayout}
       >
+        <NavWindowSplitter />
         {children}
       </RMDLayout>
       <Sheet
