@@ -3,8 +3,8 @@ import { Sheet } from "@react-md/dialog";
 import type { TreeItemNode } from "@react-md/tree";
 import { cnb } from "cnbuilder";
 import type { ReactElement } from "react";
-import { DefaultMiniLayoutNavigationItemRenderer } from "./DefaultLayoutNavigationMiniItemRenderer";
 
+import { DefaultMiniLayoutNavigationItemRenderer } from "./DefaultLayoutNavigationMiniItemRenderer";
 import { LayoutNavigationHeader } from "./LayoutNavigationHeader";
 import { useLayoutConfig } from "./LayoutProvider";
 import { LayoutTree } from "./LayoutTree";
@@ -39,6 +39,7 @@ export function LayoutNavigation<T extends TreeItemNode = LayoutNavigationItem>(
     closeNavProps,
     treeProps,
     sticky = false,
+    temporary = false,
     miniNavItemRenderer = DefaultMiniLayoutNavigationItemRenderer,
     ...remaining
   } = props;
@@ -83,13 +84,13 @@ export function LayoutNavigation<T extends TreeItemNode = LayoutNavigationItem>(
       aria-labelledby={ariaLabelledby}
       role={!isPersistent ? "dialog" : "none"}
       visible={visible}
+      temporary={temporary}
       onRequestClose={hideNav}
       // do not want to portal for the other types so that logical tab order
       // is preserved
       disablePortal={!isTemporary}
       disableOverlay={!isTemporary}
       disableScrollLock={!isTemporary}
-      temporary={false}
       isFocusTypeDisabled={(type) =>
         type === "keyboard" && (isToggleable || isPersistent)
       }

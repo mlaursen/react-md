@@ -33,12 +33,8 @@ export interface GetPercentageOptions {
  * @remarks \@since 4.0.1 uses an object for options instead of multiple
  * arguments.
  */
-export function getPercentage({
-  min,
-  max,
-  value,
-  validate = true,
-}: GetPercentageOptions): number {
+export function getPercentage(options: GetPercentageOptions): number {
+  const { min, max, value, validate = true } = options;
   if (validate) {
     if (min >= max) {
       throw new RangeError(

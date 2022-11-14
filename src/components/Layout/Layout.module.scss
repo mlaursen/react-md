@@ -2,7 +2,9 @@
 
 // make the main navigation more dense because there are so many options
 .nav {
-  @include everything.list-set-var(item-height, auto);
+  @include everything.tablet-media {
+    @include everything.list-set-var(item-height, auto);
+  }
 }
 
 .sheet {

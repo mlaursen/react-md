@@ -79,6 +79,8 @@ The main reason is that I don't think a user would actually install only one of 
 
 - **@react-md/** -
 - **@react-md/app-bar** - removed `AppBarNav` and `AppBarAction` components. These can now be replaced with the `Button` component since the `AppBar` is rendered with horizontal padding and `gap`
+- **@react-md/app-bar** - `AppBarTitle` defaults to preventing line wrapping and `noWrap` was renamed to `disableNoWrap` to match this new behavior
+- **@react-md/layout** - The `LayoutNavigation` is no longer temporary by default and instead will apply `hidden` while not `visible`. This allows the previous scroll position to be saved for temporary and toggleable layout types.
 - **@react-md/list** - removed `forceAddonWrap` from `ListItemChildren` in favor of `leftAddonForceWrap` and `rightAddonForceWrap`
 - **@react-md/form** - removed the `NativeSelect` implementation. Why would you use it when there is a customizable `Select` component?
 - **@react-md/form** - removed the `TextFieldWithMessage`, `TextAreaWithMessage`, and `PasswordWithMessage` components. The conditional inline messages are now built into the `TextField`, `TextArea`, and `Password` components respectively
@@ -88,7 +90,6 @@ The main reason is that I don't think a user would actually install only one of 
 - **@react-md/form** - removed `useChoice` hook in favor of `useRadioGroup`
 - **@react-md/form** - removed `useChecked` and `useIndeterminateChecked` hooks in favor of `useCheckboxGroup`
 - TODO -- **@react-md/form** - removed `useSelectState` hook in favor of `useSelectField`
-- **@react-md/layout** - The `LayoutNavigation` is no longer temporary by default and instead will apply `hidden` while not `visible`. This allows the previous scroll position to be saved for temporary and toggleable layout types.
 
 ## Features
 
@@ -129,6 +130,8 @@ The main reason is that I don't think a user would actually install only one of 
 ## TODO
 
 - see if I can update the Tree to use the KeyboardMovementProvider implementation. Current rendering seems slow.
+- See if I can remove the `process.env.NODE_ENV === "test"` part in `useEnsuredId`
+- why did I add a key to the `LayoutNavigation`'s sheet component based on the `layout`
 - Implement a "responsive-icon-button" implementation for the button component
   - it should render as an icon button on phone only and an icon + text on other media types
     - it should be sr-only on phones to maintain a11y

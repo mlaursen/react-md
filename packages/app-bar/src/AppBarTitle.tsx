@@ -28,12 +28,11 @@ export interface AppBarTitleClassNameOptions {
   keyline?: AppBarTitleKeyline;
 
   /**
-   * Set this to `true` if the title should no longer allow text wrap behavior
-   * and instead truncate with trailing ellipsis.
+   * Set this to `true` if the children should be allowed to line wrap.
    *
    * @defaultValue `false`
    */
-  noWrap?: boolean;
+  disableNoWrap?: boolean;
 }
 
 /**
@@ -43,11 +42,11 @@ export interface AppBarTitleClassNameOptions {
  * @remarks \@since 6.0.0
  */
 export function appBarTitle(options: AppBarTitleClassNameOptions = {}): string {
-  const { className, keyline = "small", noWrap = false } = options;
+  const { className, keyline = "small", disableNoWrap = false } = options;
   return cnb(
     styles({
       keyline: keyline == "title",
-      "no-wrap": noWrap,
+      "no-wrap": !disableNoWrap,
       "nav-keyline": keyline === "nav",
     }),
     className
@@ -61,7 +60,7 @@ export interface AppBarTitleProps
 export const AppBarTitle = forwardRef<HTMLHeadingElement, AppBarTitleProps>(
   function AppBarTitle(props, ref) {
     const {
-      noWrap = false,
+      disableNoWrap = false,
       keyline = "small",
       children,
       className,
@@ -73,9 +72,9 @@ export const AppBarTitle = forwardRef<HTMLHeadingElement, AppBarTitleProps>(
         {...remaining}
         type="headline-6"
         className={appBarTitle({
-          noWrap,
           keyline,
           className,
+          disableNoWrap,
         })}
       >
         {children}
