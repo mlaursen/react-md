@@ -1,6 +1,8 @@
 @use "everything";
 
 .card {
+  @include everything.button-set-var(color, everything.$white);
+
   max-width: 42rem;
 }
 

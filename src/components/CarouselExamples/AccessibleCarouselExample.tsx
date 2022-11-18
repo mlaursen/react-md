@@ -107,7 +107,7 @@ export function AccessibleCarouselExample(): ReactElement {
                 role="tab"
                 type="button"
                 className={styles.indicator}
-                onClick={() => setActiveIndex(0)}
+                onClick={() => setActiveIndex(index)}
               />
             ))}
           </div>
