@@ -42,7 +42,7 @@ describe("useMediaQuery", () => {
 
     render(<Test />);
 
-    expect(matchMedia).not.toBeCalled();
+    expect(matchMedia).not.toHaveBeenCalled();
     expect(matches).toBe(false);
   });
 
@@ -55,7 +55,7 @@ describe("useMediaQuery", () => {
 
     render(<Test />);
 
-    expect(matchMedia).toBeCalledTimes(2);
+    expect(matchMedia).toHaveBeenCalledTimes(2);
     expect(matches).toBe(true);
   });
 
@@ -83,7 +83,7 @@ describe("useMediaQuery", () => {
 
     render(<Test />);
 
-    expect(matchMedia).toBeCalledTimes(2);
+    expect(matchMedia).toHaveBeenCalledTimes(2);
     expect(matches).toBe(true);
 
     act(() => {
@@ -99,7 +99,7 @@ describe("useMediaQuery", () => {
       );
     });
 
-    expect(matchMedia).toBeCalledTimes(2);
+    expect(matchMedia).toHaveBeenCalledTimes(2);
     expect(matches).toBe(false);
   });
 });

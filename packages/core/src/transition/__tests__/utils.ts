@@ -165,14 +165,14 @@ describe("getElementSizing", () => {
       paddingBottom,
     });
     // this is really just testing the implementation... but these steps are required...
-    expect(setMaxHeight).toBeCalledWith("");
-    expect(setPadding).toBeCalledWith("");
-    expect(setPaddingLeft).toBeCalledWith(element.style.paddingLeft);
-    expect(setPaddingRight).toBeCalledWith(element.style.paddingRight);
-    expect(setVisibility).toBeCalledWith("hidden");
-    expect(appendChild).toBeCalledWith(clone);
-    expect(getComputedStyle).toBeCalledWith(clone);
-    expect(removeChild).toBeCalledWith(clone);
+    expect(setMaxHeight).toHaveBeenCalledWith("");
+    expect(setPadding).toHaveBeenCalledWith("");
+    expect(setPaddingLeft).toHaveBeenCalledWith(element.style.paddingLeft);
+    expect(setPaddingRight).toHaveBeenCalledWith(element.style.paddingRight);
+    expect(setVisibility).toHaveBeenCalledWith("hidden");
+    expect(appendChild).toHaveBeenCalledWith(clone);
+    expect(getComputedStyle).toHaveBeenCalledWith(clone);
+    expect(removeChild).toHaveBeenCalledWith(clone);
   });
 });
 

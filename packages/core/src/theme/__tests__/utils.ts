@@ -31,10 +31,10 @@ describe("hexToRGB", () => {
   it("should throw an error for an invalid color string", () => {
     const error = new TypeError("Invalid color string.");
 
-    expect(() => hexToRGB("")).toThrowError(error);
-    expect(() => hexToRGB("#")).toThrowError(error);
-    expect(() => hexToRGB("#fafa")).toThrowError(error);
-    expect(() => hexToRGB("fffa")).toThrowError(error);
+    expect(() => hexToRGB("")).toThrow(error);
+    expect(() => hexToRGB("#")).toThrow(error);
+    expect(() => hexToRGB("#fafa")).toThrow(error);
+    expect(() => hexToRGB("fffa")).toThrow(error);
   });
 });
 

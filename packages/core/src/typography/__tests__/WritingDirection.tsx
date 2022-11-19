@@ -108,7 +108,7 @@ describe("WritingDirection", () => {
       throw new Error();
     }
 
-    expect(toggleDir).toThrowError(
+    expect(toggleDir).toThrow(
       "Tried to toggle the current writing direction without initializing the `Dir` component."
     );
   });

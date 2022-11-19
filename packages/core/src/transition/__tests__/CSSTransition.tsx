@@ -121,47 +121,47 @@ describe("CSSTransition", () => {
     const { getByRole } = render(<Test {...props} />);
     const toggle = getByRole("button");
 
-    expect(onEnter).not.toBeCalled();
-    expect(onEntering).not.toBeCalled();
-    expect(onEntered).not.toBeCalled();
-    expect(onExit).not.toBeCalled();
-    expect(onExiting).not.toBeCalled();
-    expect(onExited).not.toBeCalled();
+    expect(onEnter).not.toHaveBeenCalled();
+    expect(onEntering).not.toHaveBeenCalled();
+    expect(onEntered).not.toHaveBeenCalled();
+    expect(onExit).not.toHaveBeenCalled();
+    expect(onExiting).not.toHaveBeenCalled();
+    expect(onExited).not.toHaveBeenCalled();
 
     fireEvent.click(toggle);
-    expect(onEnter).toBeCalledTimes(1);
-    expect(onEntering).toBeCalledTimes(1);
-    expect(onEntered).not.toBeCalled();
-    expect(onExit).not.toBeCalled();
-    expect(onExiting).not.toBeCalled();
-    expect(onExited).not.toBeCalled();
+    expect(onEnter).toHaveBeenCalledTimes(1);
+    expect(onEntering).toHaveBeenCalledTimes(1);
+    expect(onEntered).not.toHaveBeenCalled();
+    expect(onExit).not.toHaveBeenCalled();
+    expect(onExiting).not.toHaveBeenCalled();
+    expect(onExited).not.toHaveBeenCalled();
 
     act(() => {
       jest.runAllTimers();
     });
-    expect(onEnter).toBeCalledTimes(1);
-    expect(onEntering).toBeCalledTimes(1);
-    expect(onEntered).toBeCalledTimes(1);
-    expect(onExit).not.toBeCalled();
-    expect(onExiting).not.toBeCalled();
-    expect(onExited).not.toBeCalled();
+    expect(onEnter).toHaveBeenCalledTimes(1);
+    expect(onEntering).toHaveBeenCalledTimes(1);
+    expect(onEntered).toHaveBeenCalledTimes(1);
+    expect(onExit).not.toHaveBeenCalled();
+    expect(onExiting).not.toHaveBeenCalled();
+    expect(onExited).not.toHaveBeenCalled();
 
     fireEvent.click(toggle);
-    expect(onEnter).toBeCalledTimes(1);
-    expect(onEntering).toBeCalledTimes(1);
-    expect(onEntered).toBeCalledTimes(1);
-    expect(onExit).toBeCalledTimes(1);
-    expect(onExiting).toBeCalledTimes(1);
-    expect(onExited).not.toBeCalled();
+    expect(onEnter).toHaveBeenCalledTimes(1);
+    expect(onEntering).toHaveBeenCalledTimes(1);
+    expect(onEntered).toHaveBeenCalledTimes(1);
+    expect(onExit).toHaveBeenCalledTimes(1);
+    expect(onExiting).toHaveBeenCalledTimes(1);
+    expect(onExited).not.toHaveBeenCalled();
 
     act(() => {
       jest.runAllTimers();
     });
-    expect(onEnter).toBeCalledTimes(1);
-    expect(onEntering).toBeCalledTimes(1);
-    expect(onEntered).toBeCalledTimes(1);
-    expect(onExit).toBeCalledTimes(1);
-    expect(onExiting).toBeCalledTimes(1);
-    expect(onExited).toBeCalledTimes(1);
+    expect(onEnter).toHaveBeenCalledTimes(1);
+    expect(onEntering).toHaveBeenCalledTimes(1);
+    expect(onEntered).toHaveBeenCalledTimes(1);
+    expect(onExit).toHaveBeenCalledTimes(1);
+    expect(onExiting).toHaveBeenCalledTimes(1);
+    expect(onExited).toHaveBeenCalledTimes(1);
   });
 });

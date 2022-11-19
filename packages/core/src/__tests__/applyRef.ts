@@ -9,10 +9,10 @@ describe("applyRef", () => {
     const ref = jest.fn();
 
     applyRef(instance, ref);
-    expect(ref).toBeCalledWith(instance);
+    expect(ref).toHaveBeenCalledWith(instance);
 
     applyRef(null, ref);
-    expect(ref).toBeCalledWith(null);
+    expect(ref).toHaveBeenCalledWith(null);
   });
 
   it("should update mutable ref objects", () => {

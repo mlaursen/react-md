@@ -88,14 +88,14 @@ describe("ColorSchemeProvider", () => {
     const { rerender } = render(
       <ColorSchemeProvider mode="system">Child</ColorSchemeProvider>
     );
-    expect(warn).not.toBeCalled();
+    expect(warn).not.toHaveBeenCalled();
 
     rerender(<ColorSchemeProvider mode="light">Child</ColorSchemeProvider>);
-    expect(warn).toBeCalledWith(
+    expect(warn).toHaveBeenCalledWith(
       `The \`${backgroundColorVar}\` does not exist on the root element. ` +
         "This should only happen in tests or the `react-md` styles have not been loaded."
     );
-    expect(warn).toBeCalledTimes(1);
+    expect(warn).toHaveBeenCalledTimes(1);
 
     warn.mockClear();
 
@@ -110,10 +110,10 @@ describe("ColorSchemeProvider", () => {
       },
     });
     rerender(<ColorSchemeProvider mode="light">Child</ColorSchemeProvider>);
-    expect(warn).not.toBeCalled();
+    expect(warn).not.toHaveBeenCalled();
 
     rerender(<ColorSchemeProvider mode="dark">Child</ColorSchemeProvider>);
-    expect(warn).toBeCalledWith(
+    expect(warn).toHaveBeenCalledWith(
       `The \`mode\` for the \`ColorSchemeProvider\` has been set to "dark" but ` +
         `the root background color is "light". ` +
         `This prop might need to be changed to "light" or "system".`
@@ -126,7 +126,7 @@ describe("ColorSchemeProvider", () => {
       },
     });
     rerender(<ColorSchemeProvider mode="light">Child</ColorSchemeProvider>);
-    expect(warn).toBeCalledWith(
+    expect(warn).toHaveBeenCalledWith(
       `The \`mode\` for the \`ColorSchemeProvider\` has been set to "light" but ` +
         `the root background color is "dark". ` +
         `This prop might need to be changed to "dark" or "system".`
@@ -172,7 +172,7 @@ describe("ColorSchemeProvider", () => {
     );
 
     expect(colorScheme).toBe("dark");
-    expect(matchMedia).toBeCalledWith("(prefers-color-scheme: dark)");
-    expect(matchMedia).toBeCalledTimes(2);
+    expect(matchMedia).toHaveBeenCalledWith("(prefers-color-scheme: dark)");
+    expect(matchMedia).toHaveBeenCalledTimes(2);
   });
 });

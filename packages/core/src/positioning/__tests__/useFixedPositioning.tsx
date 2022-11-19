@@ -94,7 +94,7 @@ describe("useFixedPositioning", () => {
     act(() => {
       jest.runAllTimers();
     });
-    expect(onScroll).not.toBeCalled();
+    expect(onScroll).not.toHaveBeenCalled();
 
     const scrollEvent = new UIEvent("scroll");
     act(() => {
@@ -103,7 +103,7 @@ describe("useFixedPositioning", () => {
     });
 
     // this logic is really handled in the utils tests.
-    expect(onScroll).toBeCalledWith(scrollEvent, {
+    expect(onScroll).toHaveBeenCalledWith(scrollEvent, {
       visible: expect.any(Boolean),
       fixedElement: expect.any(HTMLElement),
       fixedToElement: expect.any(HTMLElement),
@@ -119,13 +119,13 @@ describe("useFixedPositioning", () => {
     act(() => {
       jest.runAllTimers();
     });
-    expect(onResize).not.toBeCalled();
+    expect(onResize).not.toHaveBeenCalled();
 
     act(() => {
       window.dispatchEvent(new UIEvent("resize"));
       jest.runAllTimers();
     });
-    expect(onResize).toBeCalled();
+    expect(onResize).toHaveBeenCalled();
   });
 
   it("should update the style correctly based on the initialX and initialY so that it can be used for context menus", () => {
@@ -157,38 +157,38 @@ describe("useFixedPositioning", () => {
     const { getByRole } = render(<Test {...props} />);
     const toggle = getByRole("button");
 
-    expect(onEnter).not.toBeCalled();
-    expect(onEntering).not.toBeCalled();
-    expect(onEntered).not.toBeCalled();
-    expect(onExited).not.toBeCalled();
+    expect(onEnter).not.toHaveBeenCalled();
+    expect(onEntering).not.toHaveBeenCalled();
+    expect(onEntered).not.toHaveBeenCalled();
+    expect(onExited).not.toHaveBeenCalled();
 
     fireEvent.click(toggle);
-    expect(onEnter).toBeCalledTimes(1);
-    expect(onEntering).toBeCalledTimes(1);
-    expect(onEntered).not.toBeCalled();
-    expect(onExited).not.toBeCalled();
+    expect(onEnter).toHaveBeenCalledTimes(1);
+    expect(onEntering).toHaveBeenCalledTimes(1);
+    expect(onEntered).not.toHaveBeenCalled();
+    expect(onExited).not.toHaveBeenCalled();
 
     act(() => {
       jest.runAllTimers();
     });
-    expect(onEnter).toBeCalledTimes(1);
-    expect(onEntering).toBeCalledTimes(1);
-    expect(onEntered).toBeCalledTimes(1);
-    expect(onExited).not.toBeCalled();
+    expect(onEnter).toHaveBeenCalledTimes(1);
+    expect(onEntering).toHaveBeenCalledTimes(1);
+    expect(onEntered).toHaveBeenCalledTimes(1);
+    expect(onExited).not.toHaveBeenCalled();
 
     fireEvent.click(toggle);
-    expect(onEnter).toBeCalledTimes(1);
-    expect(onEntering).toBeCalledTimes(1);
-    expect(onEntered).toBeCalledTimes(1);
-    expect(onExited).not.toBeCalled();
+    expect(onEnter).toHaveBeenCalledTimes(1);
+    expect(onEntering).toHaveBeenCalledTimes(1);
+    expect(onEntered).toHaveBeenCalledTimes(1);
+    expect(onExited).not.toHaveBeenCalled();
 
     act(() => {
       jest.runAllTimers();
     });
-    expect(onEnter).toBeCalledTimes(1);
-    expect(onEntering).toBeCalledTimes(1);
-    expect(onEntered).toBeCalledTimes(1);
-    expect(onExited).toBeCalledTimes(1);
+    expect(onEnter).toHaveBeenCalledTimes(1);
+    expect(onEntering).toHaveBeenCalledTimes(1);
+    expect(onEntered).toHaveBeenCalledTimes(1);
+    expect(onExited).toHaveBeenCalledTimes(1);
   });
 
   it("should allow for configuring the fixed position", () => {

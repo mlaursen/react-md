@@ -51,9 +51,9 @@ describe("useCSSVariables", () => {
       return null;
     }
 
-    expect(warn).not.toBeCalled();
+    expect(warn).not.toHaveBeenCalled();
     render(<Test />);
-    expect(warn).toBeCalledWith(
+    expect(warn).toHaveBeenCalledWith(
       `The "--test" css variable has already been set to "1rem" ` +
         `on the root element and will be overwritten to "3rem". There might be conflicting overrides.`
     );

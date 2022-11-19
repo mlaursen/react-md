@@ -57,7 +57,7 @@ describe("ThemeProvider", () => {
       </ThemeProvider>
     );
 
-    expect(getComputedStyle).toBeCalledTimes(1);
+    expect(getComputedStyle).toHaveBeenCalledTimes(1);
     expect(theme).toEqual(DEFAULT_LIGHT_THEME);
   });
 
@@ -75,7 +75,7 @@ describe("ThemeProvider", () => {
       </ThemeProvider>
     );
 
-    expect(getComputedStyle).not.toBeCalled();
+    expect(getComputedStyle).not.toHaveBeenCalled();
     expect(theme).toEqual(DEFAULT_DARK_THEME);
   });
 });

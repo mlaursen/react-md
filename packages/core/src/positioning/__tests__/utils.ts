@@ -1029,7 +1029,7 @@ describe("getElementRect", () => {
     const { element, cloned, cloneNode } = createTestElement();
     getElementRect(element);
 
-    expect(cloneNode).toBeCalledWith(true);
+    expect(cloneNode).toHaveBeenCalledWith(true);
     expect(element.id).toBe("element-id");
     expect(cloned.id).toBe("");
 
@@ -1059,19 +1059,19 @@ describe("getElementRect", () => {
     const bodyRemoveChild = jest.spyOn(document.body, "removeChild");
 
     getElementRect(parent.firstChild as HTMLElement);
-    expect(bodyAppendChild).not.toBeCalled();
-    expect(bodyRemoveChild).not.toBeCalled();
-    expect(parentAppendChild).toBeCalledWith(cloned);
-    expect(parentRemoveChild).toBeCalledWith(cloned);
+    expect(bodyAppendChild).not.toHaveBeenCalled();
+    expect(bodyRemoveChild).not.toHaveBeenCalled();
+    expect(parentAppendChild).toHaveBeenCalledWith(cloned);
+    expect(parentRemoveChild).toHaveBeenCalledWith(cloned);
 
     parentAppendChild.mockClear();
     parentRemoveChild.mockClear();
     ({ element, cloned } = createTestElement());
     getElementRect(element);
-    expect(bodyAppendChild).toBeCalledWith(cloned);
-    expect(bodyRemoveChild).toBeCalledWith(cloned);
-    expect(parentAppendChild).not.toBeCalled();
-    expect(parentRemoveChild).not.toBeCalled();
+    expect(bodyAppendChild).toHaveBeenCalledWith(cloned);
+    expect(bodyRemoveChild).toHaveBeenCalledWith(cloned);
+    expect(parentAppendChild).not.toHaveBeenCalled();
+    expect(parentRemoveChild).not.toHaveBeenCalled();
   });
 });
 
@@ -1091,7 +1091,7 @@ describe("findSizingContainer", () => {
     treeItem.appendChild(treeItemContent);
 
     const result1 = findSizingContainer(treeItem);
-    expect(treeItemQS).toBeCalledWith(query);
+    expect(treeItemQS).toHaveBeenCalledWith(query);
     expect(result1).toBe(treeItemContent);
 
     const listItem = document.createElement("li");
@@ -1103,7 +1103,7 @@ describe("findSizingContainer", () => {
     listItem.appendChild(listItemContent);
 
     const result2 = findSizingContainer(listItem);
-    expect(listItemQS).toBeCalledWith(query);
+    expect(listItemQS).toHaveBeenCalledWith(query);
     expect(result2).toBe(listItemContent);
   });
 
@@ -1144,7 +1144,7 @@ describe("findSizingContainer", () => {
     const getAttribute = jest.spyOn(element, "getAttribute");
 
     const container = findSizingContainer(element);
-    expect(getAttribute).toBeCalledWith("data-sizing-selector");
+    expect(getAttribute).toHaveBeenCalledWith("data-sizing-selector");
     expect(container).toBe(child);
   });
 
@@ -1152,7 +1152,7 @@ describe("findSizingContainer", () => {
     const element = document.createElement("span");
     element.setAttribute("data-sizing-selector", ".query");
 
-    expect(() => findSizingContainer(element)).toThrowError(
+    expect(() => findSizingContainer(element)).toThrow(
       "Unable to find a child element using the `data-sizing-selector`"
     );
   });

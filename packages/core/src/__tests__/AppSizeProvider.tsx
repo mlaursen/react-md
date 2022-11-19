@@ -54,7 +54,7 @@ describe("AppSizeProvider", () => {
           <AppSizeProvider>Hello</AppSizeProvider>
         </AppSizeProvider>
       );
-    }).toThrowError("The `AppSizeProvider` cannot be mounted multiple times.");
+    }).toThrow("The `AppSizeProvider` cannot be mounted multiple times.");
   });
 });
 
@@ -69,7 +69,7 @@ describe("useAppSize", () => {
     // hide React uncaught error message
     error.mockImplementation();
 
-    expect(() => render(<Test />)).toThrowError(
+    expect(() => render(<Test />)).toThrow(
       "The `AppSizeProvider` has not been mounted."
     );
   });
