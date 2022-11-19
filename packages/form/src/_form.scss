@@ -1013,7 +1013,7 @@ $var-lookup: (
       }
     }
 
-    @if $input-toggle-dense-size != null {
+    @if $input-toggle-dense-size {
       &--dense {
         font-size: $input-toggle-dense-size;
       }

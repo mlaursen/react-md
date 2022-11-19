@@ -1,0 +1,14 @@
+{
+  "extends": [
+    "stylelint-config-recommended-scss",
+    "stylelint-config-prettier-scss"
+  ],
+  "plugins": ["stylelint-order", "stylelint-scss"],
+  "rules": {
+    "no-descending-specificity": null,
+    "selector-pseudo-class-no-unknown": [
+      true,
+      { "ignorePseudoClasses": ["global", "local"] }
+    ]
+  }
+}

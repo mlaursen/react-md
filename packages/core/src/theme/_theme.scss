@@ -317,7 +317,7 @@ $theme-var-lookup: (
   $current-color-index: list.index(map.values(colors.$color-map), $color);
 
   @if not $current-color-index {
-    @if $fallback-color == null {
+    @if not $fallback-color {
       $fallback: if(
         $fallback-name,
         "the '$#{$fallback-name}' variable",

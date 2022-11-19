@@ -245,7 +245,7 @@ $var-lookup: (
 }
 
 @mixin _animation($styles) {
-  @if $styles != null {
+  @if $styles {
     @each $percentage, $style in $styles {
       #{$percentage} {
         @include core.map-to-styles($style);
@@ -273,7 +273,7 @@ $var-lookup: (
       }
     }
 
-    @if $circular-small-size != null {
+    @if $circular-small-size {
       &--small {
         @include set-var(circular-size, $circular-small-size);
       }

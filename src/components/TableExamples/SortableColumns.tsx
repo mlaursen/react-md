@@ -1,4 +1,3 @@
-import { Button } from "@react-md/button";
 import type { SortOrder } from "@react-md/table";
 import {
   Table,

@@ -1,0 +1,56 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Main
+
+on:
+  push:
+    branches: [main, next]
+  pull_request:
+    branches: [main, next, develop]
+
+jobs:
+  validate_node_lts:
+    # only want to use codecov for node latest long-term-support
+    name: Validate Using Latest Node LTS
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'skip ci')"
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2.2.4
+        with:
+          version: 7
+
+      - name: Use Node.js 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm typecheck
+      # don't care about testing at this stage
+      # - run: pnpm test --coverage
+      # - run: npx codecov -t ${{ secrets.CODECOV_TOKEN }}
+
+  # validate_matrix:
+  #   name: Validate Using Node Matrix
+  #   runs-on: ubuntu-latest
+  #   if: "!contains(github.event.head_commit.message, 'skip ci')"
+  #   strategy:
+  #     matrix:
+  #       node-version: [16.x]
+
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: pnpm/action-setup@v2.2.4
+
+  #     - name: Use Node.js ${{ matrix.node-version }}
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: ${{ matrix.node-version }}
+  #         cache: pnpm
+  #     - run: pnpm install --frozen-lockfile
+  #     - run: pnpm lint
+  #     - run: pnpm typecheck
+  #     - run: pnpm test

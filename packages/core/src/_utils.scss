@@ -206,7 +206,7 @@ $_swappable-position-prefixes: border margin padding;
 @mixin auto-rtl($property, $value, $swapped-value: null) {
   $inversed-property: _swap-position($property);
   @include rtl {
-    @if $swapped-value == null {
+    @if not $swapped-value {
       $swapped-value: auto;
 
       @each $prefix in $_swappable-position-prefixes {
