@@ -3,7 +3,11 @@
 @forward "react-md" with (
   $color-scheme: system,
   // $color-scheme: light,
-  // $disable-dark-elevation: false,
+  // $color-scheme: dark,
+  // disabled since it makes debugging a bit easier by having all the css
+  // variables in one block
+  $disable-default-root-theme: true,
+  $disable-default-system-theme: true,
   $primary-color: colors.$teal-500,
   $secondary-color: colors.$pink-a-200,
   $icon-disable-font: true,

@@ -96,6 +96,10 @@ $var-lookup: (
 }
 
 @mixin styles {
+  @include core.default-system-theme {
+    @include use-dark-theme;
+  }
+
   .rmd-icon {
     @include use-var(font-size, size);
     @include use-var(color);
@@ -188,14 +192,6 @@ $var-lookup: (
     @if not $disable-dense {
       &--dense {
         @include set-var(size, $dense-size);
-      }
-    }
-  }
-
-  @if core.$color-scheme == system {
-    @media (prefers-color-scheme: dark) {
-      :root {
-        @include use-dark-theme;
       }
     }
   }

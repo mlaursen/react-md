@@ -85,6 +85,10 @@ $var-lookup: (
 }
 
 @mixin styles {
+  @include core.default-system-theme {
+    @include use-dark-theme;
+  }
+
   .rmd-card {
     @include use-var(background-color);
     @include use-var(color);
@@ -162,14 +166,6 @@ $var-lookup: (
 
     &__footer {
       padding: $footer-padding;
-    }
-  }
-
-  @if core.$color-scheme == system {
-    @media (prefers-color-scheme: dark) {
-      :root {
-        @include use-dark-theme;
-      }
     }
   }
 }

@@ -93,6 +93,10 @@ $var-lookup: (
 }
 
 @mixin styles {
+  @include core.default-system-theme {
+    @include use-dark-theme;
+  }
+
   .rmd-divider {
     @include use-var(margin, spacing);
     @include use-var(width);
@@ -118,14 +122,6 @@ $var-lookup: (
 
         border-bottom: 0;
         display: inline-block;
-      }
-    }
-  }
-
-  @if not core.$disable-default-system-theme and core.$color-scheme == system {
-    @media (prefers-color-scheme: dark) {
-      :root {
-        @include use-dark-theme;
       }
     }
   }

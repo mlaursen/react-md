@@ -290,10 +290,6 @@ $theme-var-lookup: (
     @each $z-value, $background-color in $dark-elevation-colors {
       @include set-dark-elevation-color($z-value, $background-color);
     }
-  } @else if not $disable-dark-elevation and $color-scheme == light {
-    @each $z-value, $background-color in $dark-elevation-colors {
-      @include set-dark-elevation-color($z-value, $light-theme-surface-color);
-    }
   }
 }
 
@@ -372,4 +368,14 @@ $theme-var-lookup: (
   $color-name: "#{$current-color-name}#{if($accent, "-a", "")}-#{$swatch}";
 
   @return map-get(colors.$color-map, $color-name);
+}
+
+@mixin default-system-theme {
+  @if not $disable-default-system-theme and $color-scheme == system {
+    @media (prefers-color-scheme: dark) {
+      :root {
+        @content;
+      }
+    }
+  }
 }

@@ -122,6 +122,10 @@ $var-lookup: (
 }
 
 @mixin styles {
+  @include core.default-system-theme {
+    @include use-dark-theme;
+  }
+
   .rmd-app-bar {
     @include use-var(background-color);
     @include use-var(color);
@@ -254,14 +258,6 @@ $var-lookup: (
 
       &--no-wrap {
         @include core.text-overflow;
-      }
-    }
-  }
-
-  @if core.$color-scheme == system {
-    @media (prefers-color-scheme: dark) {
-      :root {
-        @include use-dark-theme;
       }
     }
   }

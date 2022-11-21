@@ -12,3 +12,4 @@ export const defaultDisableHighContrastMode = false;
 
 // disabled since it makes debugging a bit easier by having all the css variables in one block
 export const disableDefaultSystemTheme = true;
+// export const disableDefaultSystemTheme = false;

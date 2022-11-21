@@ -1149,6 +1149,10 @@ $var-lookup: (
 }
 
 @mixin styles {
+  @include core.default-system-theme {
+    @include use-dark-theme;
+  }
+
   @if not $disable-fieldset {
     .rmd-fieldset {
       &--unstyled {
@@ -1218,13 +1222,5 @@ $var-lookup: (
 
   @if not $disable-menu-item-checkbox or not $disable-menu-item-radio {
     @include menu-item-input-toggle-styles;
-  }
-
-  @if not core.$disable-default-system-theme and core.$color-scheme == system {
-    @media (prefers-color-scheme: dark) {
-      :root {
-        @include use-dark-theme;
-      }
-    }
   }
 }

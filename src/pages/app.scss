@@ -21,12 +21,23 @@
 @include everything.card-styles;
 @include everything.form-styles;
 
-@if everything.$color-scheme == system {
-  :root {
+:root {
+  @if everything.$disable-default-root-theme {
+    @include everything.colors;
+  }
+
+  @if everything.$color-scheme ==
+    system and not
+    everything.$disable-default-system-theme
+  {
     @media (prefers-color-scheme: dark) {
       --code-color: #{everything.$pink-400};
     }
-
-    --code-color: #{everything.$pink-600};
   }
+
+  --code-color: #{if(
+      everything.$color-scheme == dark,
+      everything.$pink-400,
+      everything.$pink-600
+    )};
 }
