@@ -1,3 +1,4 @@
+import { ButtonUnstyled } from "@react-md/button";
 import { bem } from "@react-md/core";
 import { IconRotator, TextIconSpacing } from "@react-md/icon";
 import { cnb } from "cnbuilder";
@@ -66,13 +67,11 @@ export const TableCellContent = forwardRef<
   }
 
   return (
-    <button
+    <ButtonUnstyled
       {...remaining}
       ref={ref}
-      type="button"
       style={style}
       className={cnb(
-        "rmd-button-unstyled",
         styles("child", {
           [hAlign]: hAlign !== "left",
         }),
@@ -82,6 +81,6 @@ export const TableCellContent = forwardRef<
       <TextIconSpacing icon={icon} iconAfter={iconAfter}>
         {children}
       </TextIconSpacing>
-    </button>
+    </ButtonUnstyled>
   );
 });

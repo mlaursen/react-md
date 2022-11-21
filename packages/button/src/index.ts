@@ -1,4 +1,5 @@
 /** @module @react-md/button */
 export * from "./Button";
-export * from "./styles";
+export * from "./ButtonUnstyled";
 export * from "./FloatingActionButton";
+export * from "./styles";

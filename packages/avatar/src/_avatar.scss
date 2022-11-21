@@ -4,6 +4,7 @@
 
 $disable-icon: false !default;
 $disable-image: false !default;
+$disable-auto-image: false !default;
 
 $color: core.$grey-100 !default;
 $background-color: core.$grey-700 !default;
@@ -115,6 +116,13 @@ $var-lookup: (
 
     @if not $disable-image {
       &__image {
+        height: 100%;
+        width: auto;
+      }
+    }
+
+    @if not $disable-auto-image {
+      img {
         height: 100%;
         width: auto;
       }

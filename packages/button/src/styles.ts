@@ -124,6 +124,7 @@ export function button(options: ButtonClassNameOptions = {}): string {
 
 /**
  * The position within the viewport for the floating action button.
+ *
  * @remarks \@since 6.0.0 This was renamed from `FABPosition`
  */
 export type FloatingActionButtonPosition =
@@ -133,6 +134,10 @@ export type FloatingActionButtonPosition =
   | "top-right"
   | null;
 
+/**
+ * @remarks \@since 6.0.0
+ * @internal
+ */
 export interface FloatingActionButtonClassNameOptions {
   className?: string;
 
@@ -145,6 +150,12 @@ export interface FloatingActionButtonClassNameOptions {
   absolute?: boolean;
 }
 
+/**
+ * FAB = Floating Action Button
+ *
+ * @remarks \@since 6.0.0
+ * @internal
+ */
 export function fab(options: FloatingActionButtonClassNameOptions): string {
   const { className, position = null, absolute = false } = options;
 

@@ -156,6 +156,22 @@ $var-lookup: (
   }
 }
 
+@mixin unstyled(
+  $hoverable: false,
+  $css-modules: false,
+  $box-shadow: core.$outline-box-shadow
+) {
+  @include core.interaction-surface(
+    $hoverable: $hoverable,
+    $css-modules: $css-modules,
+    $box-shadow: $box-shadow
+  );
+
+  background-color: transparent;
+  border-width: 0;
+  display: inline-flex;
+}
+
 @mixin styles {
   .rmd-button {
     @if not $disable-circular-progress {
@@ -268,11 +284,7 @@ $var-lookup: (
 
   @if not $disable-unstyled-utility-class {
     .rmd-button-unstyled {
-      @include core.interaction-surface($hoverable: false, $box-shadow: true);
-
-      background-color: transparent;
-      border-width: 0;
-      display: inline-flex;
+      @include unstyled;
     }
   }
 
