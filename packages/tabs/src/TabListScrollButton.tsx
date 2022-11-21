@@ -8,7 +8,7 @@ import { applyRef, bem, useDir, useIntersectionObserver } from "@react-md/core";
 import { useIcon } from "@react-md/icon";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
-import { forwardRef, useRef, useState } from "react";
+import { forwardRef, useCallback, useRef, useState } from "react";
 import type { GetTabListScrollToOptions } from "./utils";
 import { getTabListScrollToOptions } from "./utils";
 
@@ -57,9 +57,9 @@ export const TabListScrollButton = forwardRef<
   const [disabled, setDisabled] = useState(!forward);
   const nodeRef = useIntersectionObserver({
     root,
-    onUpdate(entry) {
+    onUpdate: useCallback((entry) => {
       setDisabled(entry.intersectionRatio === 1);
-    },
+    }, []),
   });
 
   return (

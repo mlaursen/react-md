@@ -96,13 +96,12 @@ export function useResizingTextArea(
       }
     }
 
-    if (height !== nextHeight) {
-      setHeight(nextHeight);
-    }
-  }, [height, maxRows, scrollable]);
+    setHeight(nextHeight);
+  }, [maxRows, scrollable]);
 
-  const [, maskRefCallback] = useResizeObserver(updateHeight, {
+  const maskRefCallback = useResizeObserver({
     ref: maskRef,
+    onUpdate: updateHeight,
     disableHeight: true,
   });
 

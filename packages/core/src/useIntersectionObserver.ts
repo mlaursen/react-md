@@ -1,7 +1,6 @@
 import type { Ref, RefCallback, RefObject } from "react";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useEnsuredRef } from "./useEnsuredRef";
-import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect";
 
 /** @remarks \@since 6.0.0 */
 export type IntersectionObserverRoot = IntersectionObserverInit["root"];
@@ -16,7 +15,7 @@ export type IntersectionObserverRootMargin =
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#intersection_observer_options}
  * @remarks \@since 6.0.0
  */
-export interface IntersectionObserverOptions<E extends HTMLElement> {
+export interface IntersectionObserverHookOptions<E extends HTMLElement> {
   /**
    * An optional ref to merge with the ref returned by this hook.
    */
@@ -25,7 +24,6 @@ export interface IntersectionObserverOptions<E extends HTMLElement> {
   /**
    * This is the same as the normal `root` for an IntersectionObserverInit, but
    * also supports refs.
-   *
    */
   root?: RefObject<IntersectionObserverRoot> | IntersectionObserverRoot;
 
@@ -37,13 +35,55 @@ export interface IntersectionObserverOptions<E extends HTMLElement> {
    */
   disabled?: boolean;
 
-  /** @see {@link getThreshold} */
+  /**
+   * **When using a list of thresholds, they must either be defined outside of
+   * the component or wrapped in a `useMemo` to prevent the IntersectionObserver
+   * from being re-created each render.**
+   *
+   * @example
+   * Moving Out of Render
+   * ```tsx
+   * const threshold = [0, 0.25, 0.5, 0.75, 1];
+   *
+   * function Example() {
+   *   const targetRef = useIntersectionObserver({
+   *     threshold,
+   *     onUpdate: useCallback((entry) => {
+   *       // do something
+   *     }, []),
+   *   })
+   * }
+   * ```
+   *
+   * @example
+   * Wrapping in useMemo
+   * ```tsx
+   * interface ExampleProps {
+   *   min: number;
+   *   max: number;
+   * }
+   *
+   * function Example({ min, max }: ExampleProps): ReactElement {
+   *   const targetRef = useIntersectionObserver({
+   *     threshold: useMemo(() => [min, max], [min, max]),
+   *     onUpdate: useCallback((entry) => {
+   *       // do something
+   *     }, []),
+   *   });
+   * }
+   * ```
+   *
+   * @see {@link getThreshold}
+   */
   threshold?: IntersectionObserverThreshold;
 
   /** @see {@link getRootMargin} */
   rootMargin?: IntersectionObserverRootMargin;
 
   /**
+   * **Must be wrapped in `useCallback` to prevent re-creating the
+   * IntersectionObserver each render.**
+   *
    * This can be used to dynamically generate the {@link threshold} which is
    * generally useful if you need access to the DOM or do some expensive
    * computation.
@@ -52,35 +92,38 @@ export interface IntersectionObserverOptions<E extends HTMLElement> {
    * Simple Example
    * ```tsx
    * const targetRef = useIntersectionObserver({
-   *   getThreshold() {
+   *   getThreshold: useCallback(() => {
    *     // pretend some expensive computation
    *     return [0, 0.25, 0.5, 0.75, 1];
-   *   },
-   *   OnUpdate() {
+   *   }, []),
+   *   OnUpdate: useCallback(() => {
    *     // do something
-   *   },
+   *   }, []),
    * });
    * ```
    *
-   * Note: If this option is provided, {@link threshold}'s value will be
-   * ignored.
+   * If this option is provided, {@link threshold}'s value will be ignored.
    */
   getThreshold?(): IntersectionObserverThreshold;
 
   /**
+   * **Must be wrapped in `useCallback` to prevent re-creating the
+   * IntersectionObserver each render.**
+   *
    * This can be used to dynamically generate the {@link rootMargin} which is
    * generally useful if you need access to the DOM.
    *
    * @example
    * Simple Example
    * ```tsx
+   * const nodeRef = useRef<HTMLElement>();
    * const targetRef = useIntersectionObserver({
-   *   getRootMargin() {
+   *   getRootMargin: useCallback(() => {
    *     return `-${nodeRef.current.offsetHeight - 1}px 0px 0px`;
-   *   },
-   *   OnUpdate() {
+   *   }, []),
+   *   OnUpdate: useCallback(() => {
    *     // do something
-   *   },
+   *   }, []),
    * });
    * ```
    *
@@ -89,16 +132,26 @@ export interface IntersectionObserverOptions<E extends HTMLElement> {
   getRootMargin?(): IntersectionObserverRootMargin;
 
   /**
+   * **Must be wrapped in `useCallback` to prevent re-creating the
+   * IntersectionObserver each render.**
+   *
    * @example
    * Simple Example
    * ```tsx
-   * const [intersecting, setIntersecting]
-   * const targetRef = useIntersectionObserver({
-   *   threshold: [0, 0.25, 0.5, 0.75, 1],
-   *   onUpdate(entry) {
-   *     setIntersecting(entry.isIntersecting);
-   *   },
-   * });
+   * const threshold = [0, 0.25, 0.5, 0.75, 1];
+   *
+   * function Example(): ReactElement {
+   *   const [intersecting, setIntersecting] = useState(false);
+   *   const targetRef = useIntersectionObserver({
+   *     threshold,
+   *     onUpdate: useCallback((entry) {
+   *       setIntersecting(entry.isIntersecting);
+   *     }, []),
+   *   });
+   *
+   *   // implementation
+   * }
+   *
    * ```
    */
   onUpdate(entry: IntersectionObserverEntry): void;
@@ -132,7 +185,7 @@ export interface IntersectionObserverOptions<E extends HTMLElement> {
  *   const targetRef = useIntersectionObserver({
  *     threshold: thresholds,
  *     rootMargin: "0px",
- *     onUpdate(entry) {
+ *     onUpdate: useCallback((entry) => {
  *       const { intersectionRatio } = entry;
  *       setState((prevState) => {
  *         return {
@@ -140,7 +193,7 @@ export interface IntersectionObserverOptions<E extends HTMLElement> {
  *           increasing: intersectionRatio > prevState.ratio,
  *         };
  *       });
- *     },
+ *     }, []),
  *   });
  *
  *   return (
@@ -166,7 +219,7 @@ export interface IntersectionObserverOptions<E extends HTMLElement> {
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API}
  */
 export function useIntersectionObserver<E extends HTMLElement>(
-  options: IntersectionObserverOptions<E>
+  options: IntersectionObserverHookOptions<E>
 ): RefCallback<E> {
   const {
     ref,
@@ -181,31 +234,11 @@ export function useIntersectionObserver<E extends HTMLElement>(
 
   const [targetNodeRef, targetRef] = useEnsuredRef(ref);
 
-  const configuration = useRef({
-    onUpdate,
-    getThreshold,
-    getRootMargin,
-  } as const);
-  useIsomorphicLayoutEffect(() => {
-    configuration.current = {
-      onUpdate,
-      getThreshold,
-      getRootMargin,
-    };
-  });
-
-  const observerRef = useRef<IntersectionObserver | null>(null);
   useEffect(() => {
     const element = targetNodeRef.current;
     if (disabled || !element) {
       return;
     }
-
-    const {
-      onUpdate,
-      getThreshold = () => threshold,
-      getRootMargin = () => rootMargin,
-    } = configuration.current;
 
     let resolvedRoot: IntersectionObserverRoot;
     if (root && "current" in root) {
@@ -216,25 +249,38 @@ export function useIntersectionObserver<E extends HTMLElement>(
 
     const options: IntersectionObserverInit = {
       root: resolvedRoot,
-      threshold: getThreshold(),
-      rootMargin: getRootMargin(),
+      threshold: (getThreshold || (() => threshold))(),
+      rootMargin: (getRootMargin || (() => rootMargin))(),
     };
 
     const callback: IntersectionObserverCallback = ([entry]) => {
       onUpdate(entry);
     };
 
+    // Just like the ResizeObserver, you can see performance improvements by
+    // sharing a single intersection observer but I don't think it's worth the
+    // effort to implement here since I'd need to:
+    // - check if there is an observer with the same options
+    //   - if there is, add the callback to that existing observer
+    //   - if there isn't, create a new observer
+    // - when cleaning up, check if there are any other existing callbacks
+    //   - disconnect and remove the observer if there are none left
     const observer = new IntersectionObserver(callback, options);
-    observerRef.current = observer;
-    if (element) {
-      observer.observe(element);
-    }
+    observer.observe(element);
 
     return () => {
-      observerRef.current = null;
       observer.disconnect();
     };
-  }, [disabled, root, rootMargin, targetNodeRef, threshold]);
+  }, [
+    disabled,
+    getRootMargin,
+    getThreshold,
+    onUpdate,
+    root,
+    rootMargin,
+    targetNodeRef,
+    threshold,
+  ]);
 
   return targetRef;
 }

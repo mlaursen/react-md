@@ -1,4 +1,3 @@
-import type { OnResizeObserverChange } from "@react-md/core";
 import {
   box,
   Box,
@@ -32,14 +31,17 @@ export default function MaterialIcons(): ReactElement {
     containerWidth: 150,
     rowWidth: 150,
   });
-  const [_ref, refCallback] = useResizeObserver(
-    useCallback<OnResizeObserverChange>(({ height, scrollHeight, width }) => {
+  const refCallback = useResizeObserver({
+    onUpdate: useCallback((entry) => {
+      const { height, width } = entry.contentRect;
+      const { scrollHeight } = entry.target;
+
       setSize({
         containerWidth: width,
         rowWidth: width - (scrollHeight > height ? getScrollbarWidth() : 0),
       });
-    }, [])
-  );
+    }, []),
+  });
   const columns = Math.floor(rowWidth / MIN_CELL_WIDTH);
   const style = useCSSVariables(
     useMemo(() => [{ name: "--rmd-box-columns", value: columns }], [columns]),

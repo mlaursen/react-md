@@ -1,0 +1,20 @@
+@use "everything";
+
+.container {
+  width: 100%;
+}
+
+.wrapper {
+  @include everything.box-shadow(4);
+
+  margin-top: 1rem;
+  overflow: hidden;
+  padding: 1rem;
+  transition-duration: 1s;
+  transition-property: max-height, max-width;
+}
+
+.table {
+  // make it grow to fit the entire max-height
+  padding-bottom: 100%;
+}

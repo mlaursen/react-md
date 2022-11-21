@@ -1,8 +1,8 @@
-import type { IntersectionObserverOptions } from "@react-md/core";
+import type { IntersectionObserverHookOptions } from "@react-md/core";
 
 /** @remarks \@since 6.0.0 */
 export type TableStickySectionOptions = Pick<
-  IntersectionObserverOptions<HTMLTableSectionElement>,
+  IntersectionObserverHookOptions<HTMLTableSectionElement>,
   "disabled" | "getThreshold" | "getRootMargin"
 >;
 
@@ -29,19 +29,19 @@ export interface TableStickySectionProps {
    * Custom Options
    * ```ts
    * stickyOptions={{
-   *   getThreshold() {
+   *   getThreshold: useCallback(() => {
    *     // you can access the DOM safely from here
    *     return [0, 0.25, 0.5, 1];
-   *   },
-   *   getRootMargin() {
+   *   }, []),
+   *   getRootMargin: useCallback(() => {
    *     // you can access the DOM safely from here
    *     return "-1px 0px 150px 0px";
-   *   },
+   *   }, []),
    * }}
-   * isStickyActive={(entry) => {
+   * isStickyActive={useCallback((entry) => {
    *   // whatever custom logic you want. you can access the DOM safely from here
    *   return entry.isIntersecting;
-   * }}
+   * }, [])}
    * ```
    *
    * @remarks \@since 6.0.0
@@ -50,6 +50,8 @@ export interface TableStickySectionProps {
   stickyOptions?: TableStickySectionOptions;
 
   /**
+   * This **should be wrapped in `useCallback`** to increase performance.
+   *
    * The default behavior is to enable the "active" state for sticky headers is:
    *
    * - if the `TableHeader` is within a `TableContainer`, add a hidden `<tbody>`
@@ -60,6 +62,7 @@ export interface TableStickySectionProps {
    *   overlaps with this value AND the `TableHeader` exists within the
    *   viewport.
    *   - Note: This really only works with `px` and `rem` units.
+   *
    *
    * @see {@link stickyOptions} for an example usage with custom threshold and
    * margin.

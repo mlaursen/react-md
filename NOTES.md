@@ -80,6 +80,7 @@ The main reason is that I don't think a user would actually install only one of 
 - **@react-md/** -
 - **@react-md/app-bar** - removed `AppBarNav` and `AppBarAction` components. These can now be replaced with the `Button` component since the `AppBar` is rendered with horizontal padding and `gap`
 - **@react-md/app-bar** - `AppBarTitle` defaults to preventing line wrapping and `noWrap` was renamed to `disableNoWrap` to match this new behavior
+- **@react-md/core** - The `useResizeObserver` has a new API and type definitions. Now, it only accepts a single object parameter and requires an `onUpdate` function being provided. In addition, it only returns a `RefCallback` instead of an ordered list of `[nodeRef, refCallback]`.
 - **@react-md/layout** - The `LayoutNavigation` is no longer temporary by default and instead will apply `hidden` while not `visible`. This allows the previous scroll position to be saved for temporary and toggleable layout types.
 - **@react-md/list** - removed `forceAddonWrap` from `ListItemChildren` in favor of `leftAddonForceWrap` and `rightAddonForceWrap`
 - **@react-md/form** - removed the `NativeSelect` implementation. Why would you use it when there is a customizable `Select` component?

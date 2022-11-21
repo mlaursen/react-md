@@ -1,7 +1,7 @@
 import { bem, useEnsuredRef, useIntersectionObserver } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
-import { forwardRef, useMemo, useState } from "react";
+import { forwardRef, useCallback, useMemo, useState } from "react";
 
 import type {
   TableCellConfig,
@@ -85,25 +85,28 @@ export const TableFooter = forwardRef<
     root: containerRef,
     disabled: !sticky || disableStickyStyles,
     threshold: exists ? 0 : 1,
-    getRootMargin() {
+    getRootMargin: useCallback(() => {
       const topOffset =
         exists && tfootRef.current ? tfootRef.current.offsetHeight - 1 : 1;
 
       return `0px 0px -${topOffset}px 0px`;
-    },
-    onUpdate(entry) {
-      if (typeof isStickyActive === "function") {
-        return isStickyActive(entry);
-      }
+    }, [exists, tfootRef]),
+    onUpdate: useCallback(
+      (entry) => {
+        if (typeof isStickyActive === "function") {
+          return isStickyActive(entry);
+        }
 
-      const { intersectionRatio, boundingClientRect, isIntersecting } = entry;
-      if (exists) {
-        setStickyActive(!isIntersecting);
-        return;
-      }
+        const { intersectionRatio, boundingClientRect, isIntersecting } = entry;
+        if (exists) {
+          setStickyActive(!isIntersecting);
+          return;
+        }
 
-      setStickyActive(intersectionRatio < 1 && boundingClientRect.top >= 0);
-    },
+        setStickyActive(intersectionRatio < 1 && boundingClientRect.top >= 0);
+      },
+      [exists, isStickyActive]
+    ),
     // allow the user defined sticky options to override the default behavior
     ...stickyOptions,
   });

@@ -1,11 +1,11 @@
 import type {
   KeyboardMovementContext,
   KeyboardMovementProps,
-  OnResizeObserverChange,
   UseStateSetter,
 } from "@react-md/core";
 import {
   useDir,
+  useEnsuredRef,
   useKeyboardMovementProvider,
   useResizeObserver,
 } from "@react-md/core";
@@ -69,7 +69,7 @@ export function useTabList(
   options: TabListHookOptions
 ): TabListHookReturnValue {
   const {
-    ref,
+    ref: propRef,
     style,
     activeIndex,
     scrollButtons,
@@ -92,41 +92,41 @@ export function useTabList(
       };
     });
 
-  const updateIndicatorStyles = useCallback<OnResizeObserverChange>(
-    (data) => {
-      const { element } = data;
-      // this is kind of hacky -- the styles should update when switching between
-      // RTL, but the RTL state isn't required for any styles. Just reference it
-      // so that the hooks eslint rule doesn't show a warning...
-      isRTL;
+  const [nodeRef, ref] = useEnsuredRef(propRef);
+  const tabListRef = useResizeObserver({
+    ref,
+    onUpdate: useCallback(
+      (entry) => {
+        // this is kind of hacky -- the styles should update when switching between
+        // RTL, but the RTL state isn't required for any styles. Just reference it
+        // so that the hooks eslint rule doesn't show a warning...
+        isRTL;
 
-      const tabs = element.querySelectorAll<HTMLButtonElement>("[role='tab']");
-      const current = tabs[activeIndex];
-      if (!current) {
-        return;
-      }
-
-      const cssVars: IndicatorCSSProperties = {
-        [TAB_WIDTH_VAR]: `${current.offsetWidth}px`,
-        [TAB_OFFSET_VAR]: `${current.offsetLeft}px`,
-      };
-
-      setIndicatorStyles((prevStyles) => {
-        if (
-          prevStyles[TAB_WIDTH_VAR] === cssVars[TAB_WIDTH_VAR] &&
-          prevStyles[TAB_OFFSET_VAR] === cssVars[TAB_OFFSET_VAR]
-        ) {
-          return prevStyles;
+        const tabs =
+          entry.target.querySelectorAll<HTMLButtonElement>("[role='tab']");
+        const current = tabs[activeIndex];
+        if (!current) {
+          return;
         }
 
-        return cssVars;
-      });
-    },
-    [activeIndex, isRTL]
-  );
+        const cssVars: IndicatorCSSProperties = {
+          [TAB_WIDTH_VAR]: `${current.offsetWidth}px`,
+          [TAB_OFFSET_VAR]: `${current.offsetLeft}px`,
+        };
 
-  const [nodeRef, tabListRef] = useResizeObserver(updateIndicatorStyles, {
-    ref,
+        setIndicatorStyles((prevStyles) => {
+          if (
+            prevStyles[TAB_WIDTH_VAR] === cssVars[TAB_WIDTH_VAR] &&
+            prevStyles[TAB_OFFSET_VAR] === cssVars[TAB_OFFSET_VAR]
+          ) {
+            return prevStyles;
+          }
+
+          return cssVars;
+        });
+      },
+      [activeIndex, isRTL]
+    ),
   });
   const forwardRef = useRef<HTMLDivElement>(null);
   const backwardRef = useRef<HTMLDivElement>(null);

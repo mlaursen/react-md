@@ -120,9 +120,11 @@ const routes: readonly LayoutNavigationItem[] = [
   createRoute({ name: "Visual Media", pathname: "/visual-media" }),
 
   ...createRoutes({
-    name: "Hooks",
-    pathname: "/hooks",
+    name: "Utils",
+    pathname: "/utils",
     routes: [
+      { name: "bem", pathname: "/bem" },
+      { name: "alphaNumericSort", pathname: "/alpha-numeric-sort" },
       { name: "useAppSize", pathname: "/use-app-size" },
       { name: "useToggle", pathname: "/use-toggle" },
       { name: "useFixedPositioning", pathname: "/use-fixed-positioning" },
@@ -137,20 +139,12 @@ const routes: readonly LayoutNavigationItem[] = [
       { name: "useFocusContainer", pathname: "/use-focus-container" },
       { name: "useHoverMode", pathname: "/use-hover-mode" },
       { name: "useCSSVariables", pathname: "/use-css-variables" },
-    ],
-  }),
-
-  ...createRoutes({
-    name: "Utils",
-    pathname: "/utils",
-    routes: [
-      { name: "bem", pathname: "/bem" },
-      { name: "alphaNumericSort", pathname: "/alpha-numeric-sort" },
       { name: "loop", pathname: "/loop" },
       { name: "randomInt", pathname: "/random-int" },
       { name: "getScrollbarWidth", pathname: "/get-scrollbar-width" },
     ],
   }),
+
   { divider: true, itemId: "divider-1", parentId: null },
   createRoute({
     name: "Test Coverage",

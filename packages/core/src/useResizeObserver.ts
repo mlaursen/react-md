@@ -1,113 +1,35 @@
-import type { Ref } from "react";
-
-import type { EnsuredRefs } from "./useEnsuredRef";
+import type { Ref, RefCallback } from "react";
+import { useEffect } from "react";
 import { useEnsuredRef } from "./useEnsuredRef";
-import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect";
 
 /**
- * @remarks \@since 2.3.0
+ * @remarks \@since 6.0.0
  */
-export interface UseResizeObserverOptions<E extends HTMLElement> {
-  /**
-   * An optional ref to merge with the returned ref handler function
-   */
-  ref?: Ref<E | null>;
+export type ResizeObserverEntryCallback = (entry: ResizeObserverEntry) => void;
 
-  /**
-   * Boolean if the `onResize` callback should not be triggered if only the
-   * height has changed for the watched element.
-   */
-  disableHeight?: boolean;
-
-  /**
-   * Boolean if the `onResize` callback should not be triggered if only the
-   * width has changed for the watched element.
-   */
-  disableWidth?: boolean;
-}
-
-/**
- * @remarks \@since 2.3.0
- */
-export interface ResizeObserverElementSize {
-  /**
-   * The height for the element that was changed.
-   */
+/** @internal */
+interface TargetSize {
   height: number;
-
-  /**
-   * The width for the element that was changed.
-   */
   width: number;
-
-  /**
-   * The scroll height for the element that was changed.
-   */
   scrollHeight: number;
-
-  /**
-   * The scroll height for the element that was changed.
-   */
   scrollWidth: number;
 }
 
-/**
- * @remarks \@since 2.3.0
- */
-export interface ResizeObserverElementData<E extends HTMLElement = HTMLElement>
-  extends ResizeObserverElementSize {
-  /**
-   * The element that changed due to the resize observer.
-   */
-  element: E;
-}
-
-/**
- * The callback that is triggered each time an element's size change has been
- * observed.
- * @remarks \@since 2.3.0
- */
-export type OnResizeObserverChange<E extends HTMLElement = HTMLElement> = (
-  resizeData: ResizeObserverElementData<E>
-) => void;
-
-/**
- * @internal
- */
-interface ResizeObserverSubscription<E extends HTMLElement> {
-  readonly target: E;
-  readonly handler: OnResizeObserverChange<E>;
+/** @internal */
+interface TargetSubscription {
+  readonly onUpdate: ResizeObserverEntryCallback;
   readonly disableHeight: boolean;
   readonly disableWidth: boolean;
-  prevSize: ResizeObserverElementSize | undefined;
+
+  size?: TargetSize;
 }
 
-/**
- * @internal
- */
-function isHeightChange(
-  prevSize: ResizeObserverElementSize | undefined,
-  nextSize: ResizeObserverElementSize
-): boolean {
-  return (
-    !prevSize ||
-    prevSize.height !== nextSize.height ||
-    prevSize.scrollHeight !== nextSize.scrollHeight
-  );
-}
-
-/**
- * @internal
- */
-function isWidthChange(
-  prevSize: ResizeObserverElementSize | undefined,
-  nextSize: ResizeObserverElementSize
-): boolean {
-  return (
-    !prevSize ||
-    prevSize.width !== nextSize.width ||
-    prevSize.scrollWidth !== nextSize.scrollWidth
-  );
+/** @internal */
+interface SubscribeOptions {
+  element: Element;
+  onUpdate: ResizeObserverEntryCallback;
+  disableHeight: boolean;
+  disableWidth: boolean;
 }
 
 /**
@@ -121,147 +43,201 @@ function isWidthChange(
  */
 let sharedObserver: ResizeObserver | undefined;
 
-/**
- *
- * @internal
- */
-const subscriptions: ResizeObserverSubscription<HTMLElement>[] = [];
+/** @internal */
+const subscriptions = new Map<Element, Set<TargetSubscription>>();
 
 /**
- * Lazy initializes the shared resize observer which will loop through all the
- * subscriptions when a resize event is called.
- *
  * @internal
  */
-function init(): void {
-  if (sharedObserver || typeof document === "undefined") {
-    return;
-  }
+const handleResizeEntries: ResizeObserverCallback = (entries) => {
+  for (const entry of entries) {
+    const targetSubscriptions = subscriptions.get(entry.target);
+    // shoudln't really happen
+    if (!targetSubscriptions) {
+      continue;
+    }
 
-  sharedObserver = new ResizeObserver((entries) => {
-    // Note: might need to wait until an requestAnimationFrame has completed to
-    // fix the resize observer loop exceeded error if switching to
-    // `useIsomorphicLayoutEffect` and a shared observer didn't fix that error:
-    // https://stackoverflow.com/questions/49384120/resizeobserver-loop-limit-exceeded
-    for (let i = 0; i < entries.length; i += 1) {
-      const entry = entries[i];
-      const currentSubscriptions = subscriptions.filter(
-        ({ target }) => target === entry.target
-      );
-      if (!currentSubscriptions.length) {
-        return;
-      }
-
+    const entries = targetSubscriptions.values();
+    for (const subscription of entries) {
       const { height, width } = entry.contentRect;
       const { scrollHeight, scrollWidth } = entry.target;
-      const nextSize: ResizeObserverElementSize = {
+      const { onUpdate, size, disableHeight, disableWidth } = subscription;
+      const isHeightChange =
+        !disableHeight &&
+        (!size || size.height !== height || size.scrollHeight !== scrollHeight);
+      const isWidthChange =
+        !disableWidth &&
+        (!size || size.width !== width || size.scrollWidth !== scrollWidth);
+
+      subscription.size = {
         height,
         width,
         scrollHeight,
         scrollWidth,
       };
-
-      for (let j = 0; j < currentSubscriptions.length; j += 1) {
-        const subscription = currentSubscriptions[j];
-        const { handler, prevSize, disableHeight, disableWidth } = subscription;
-        const isNewHeight = isHeightChange(prevSize, nextSize);
-        const isNewWidth = isWidthChange(prevSize, nextSize);
-        if ((isNewHeight && !disableHeight) || (isNewWidth && !disableWidth)) {
-          subscription.prevSize = nextSize;
-          handler({
-            ...nextSize,
-            element: entry.target as typeof subscription.target,
-          });
-        }
+      if (isHeightChange || isWidthChange) {
+        onUpdate(entry);
       }
     }
-  });
-}
+  }
+};
 
-/**
- *
- * @internal
- */
-function subscribe<E extends HTMLElement>(
-  target: E,
-  onResize: OnResizeObserverChange<E>,
-  disableHeight: boolean,
-  disableWidth: boolean
-): void {
-  const exists = subscriptions.find((sub) => sub.target === target);
-  subscriptions.push({
-    target,
-    handler: onResize as OnResizeObserverChange<HTMLElement>,
-    disableWidth,
+/** @internal */
+type Unsubscribe = () => void;
+
+/** @internal */
+function subscribe(options: SubscribeOptions): Unsubscribe {
+  const { element, onUpdate, disableHeight, disableWidth } = options;
+
+  // lazy initialize the observer
+  const observer = sharedObserver || new ResizeObserver(handleResizeEntries);
+  sharedObserver = observer;
+
+  const updates = subscriptions.get(element) || new Set();
+  const subscription: TargetSubscription = {
+    onUpdate,
     disableHeight,
-    prevSize: undefined,
-  });
-
-  if (!exists) {
-    // I'll silently fail non-initialized observers for now until it becomes an
-    // issue... But how will I ever know?
-    sharedObserver?.observe(target);
+    disableWidth,
+  };
+  updates.add(subscription);
+  if (!subscriptions.has(element)) {
+    subscriptions.set(element, updates);
   }
+
+  observer.observe(element);
+
+  return () => {
+    observer.unobserve(element);
+    updates.delete(subscription);
+  };
 }
 
 /**
- *
- * @internal
+ * @remarks
+ * \@since 2.3.0
+ * \@since 6.0.0 Renamed from `UseResizeObserverOptions` and added
+ * `onUpdate`/`disabled` options.
  */
-function unsubscribe<E extends HTMLElement>(
-  target: E,
-  onResize: OnResizeObserverChange<E>,
-  disableHeight: boolean,
-  disableWidth: boolean
-): void {
-  const i = subscriptions.findIndex(
-    (sub) =>
-      sub.target === target &&
-      sub.handler === onResize &&
-      sub.disableWidth === disableWidth &&
-      sub.disableHeight === disableHeight
-  );
-  if (i !== -1) {
-    subscriptions.splice(i, 1);
-  }
+export interface ResizeObserverHookOptions<E extends HTMLElement> {
+  /**
+   * An optional ref to merge with the ref returned by this hook.
+   */
+  ref?: Ref<E>;
 
-  const remaining = subscriptions.some((sub) => sub.target === target);
-  if (!remaining) {
-    // I'll silently fail non-initialized observers for now until it becomes an
-    // issue... But how will I ever know?
-    sharedObserver?.unobserve(target);
-  }
+  /**
+   * **Must be wrapped in `useCallback` to prevent re-creating the
+   * ResizeObserver each render.**
+   *
+   * This function will be called whenever the target element resizes.
+   *
+   * @see {@link useResizeObserver} for an example.
+   */
+  onUpdate: ResizeObserverEntryCallback;
+
+  /**
+   * Set this to `true` to prevent observing the element's size changes. THis is
+   * equivalent to not attaching the returned ref to any element.
+   *
+   * @defaultValue `false`
+   */
+  disabled?: boolean;
+
+  /**
+   * Set this to `true` if the {@link onUpdate} should not be fired for height
+   * changes.
+   *
+   * @defaultValue `false`
+   */
+  disableHeight?: boolean;
+
+  /**
+   * Set this to `true` if the {@link onUpdate} should not be fired for width
+   * changes.
+   *
+   * @defaultValue `false`
+   */
+  disableWidth?: boolean;
 }
 
 /**
- * The new resize observer API that returns a `refHandler` to attach to a DOM
- * node instead of using the weird `target` API.
+ * @example
+ * Simple Example
+ * ```tsx
+ * import { useResizeObserver } from "@react-md/core";
+ * import type { ReactElement } from "react";
+ * import { useState } from "react";
  *
- * @remarks \@since 2.3.0
- * @param onResize - The resize handler to call when the element has changed
- * height or width. If you notice performance issues or other oddities, it is
- * recommended to wrap this function in `useCallback`.
- * @param options - Any additional options to use for the resize observer.
+ * interface Size {
+ *   height: number;
+ *   width: number;
+ * }
+ *
+ * function Example(): ReactElement {
+ *   const [{ height, width }, setSize] = useState<Size>({
+ *     height: 0,
+ *     width: 0,
+ *   });
+ *   const targetRef = useResizeObserver({
+ *     onResize: useCallback((entry) => {
+ *       const { height, width } = entry.borderBox;
+ *       setSize({ height, width });
+ *     }, []),
+ *   });
+ *
+ *   return (
+ *     <div ref={targetRef}>
+ *       <table>
+ *         <tbody>
+ *           <tr>
+ *             <th scope="col">Height:</th>
+ *             <td>{height}</td>
+ *           </tr>
+ *           <tr>
+ *             <th scope="col">Width:</th>
+ *             <td>{width}</td>
+ *           </tr>
+ *         </tbody>
+ *       </table>
+ *     </div>
+ *   );
+ * }
+ * ```
+ *
+ * @remarks
+ * \@since 2.3.0
+ * \@since 6.0.0 The API was updated to match the `useIntersectionObserver`
+ * implementation -- accepts only a single object paramter and returns a
+ * {@link RefCallback} instead of `[nodeRef, refCallback]`
  */
 export function useResizeObserver<E extends HTMLElement>(
-  onResize: OnResizeObserverChange<E>,
-  options: UseResizeObserverOptions<E> = {}
-): EnsuredRefs<E> {
-  const { ref: propRef, disableWidth = false, disableHeight = false } = options;
-  const [ref, refHandler] = useEnsuredRef<E>(propRef);
+  options: ResizeObserverHookOptions<E>
+): RefCallback<E> {
+  const {
+    ref,
+    onUpdate,
+    disabled,
+    disableHeight = false,
+    disableWidth = false,
+  } = options;
 
-  useIsomorphicLayoutEffect(() => {
-    const target = ref.current;
-    if ((disableHeight && disableWidth) || !target) {
+  const [targetNodeRef, refCallback] = useEnsuredRef(ref);
+  useEffect(() => {
+    const element = targetNodeRef.current;
+    if (disabled || (disableHeight && disableWidth) || !element) {
       return;
     }
 
-    init();
-    subscribe(target, onResize, disableHeight, disableWidth);
-    return () => {
-      unsubscribe(target, onResize, disableHeight, disableWidth);
-    };
-  }, [disableHeight, disableWidth, onResize]);
+    const unsubscribe = subscribe({
+      element,
+      onUpdate,
+      disableHeight,
+      disableWidth,
+    });
 
-  return [ref, refHandler];
+    return () => {
+      unsubscribe();
+    };
+  }, [disableHeight, disableWidth, disabled, onUpdate, targetNodeRef]);
+
+  return refCallback;
 }

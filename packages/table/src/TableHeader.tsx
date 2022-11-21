@@ -1,7 +1,7 @@
 import { bem, useEnsuredRef, useIntersectionObserver } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
-import { forwardRef, useMemo, useState } from "react";
+import { forwardRef, useCallback, useMemo, useState } from "react";
 
 import type {
   TableCellConfig,
@@ -119,7 +119,7 @@ export const TableHeader = forwardRef<
     root: containerRef,
     disabled: !sticky || disableStickyStyles,
     threshold: exists ? 0 : 1,
-    getRootMargin() {
+    getRootMargin: useCallback(() => {
       const thead = theadRef.current;
       if (!thead) {
         return;
@@ -134,10 +134,13 @@ export const TableHeader = forwardRef<
       }
 
       return `-${topOffset}px 0px 0px`;
-    },
-    onUpdate(entry) {
-      setStickyActive(isStickyActive(entry));
-    },
+    }, [exists, theadRef]),
+    onUpdate: useCallback(
+      (entry) => {
+        setStickyActive(isStickyActive(entry));
+      },
+      [isStickyActive]
+    ),
     // allow the user defined sticky options to override the default behavior
     ...stickyOptions,
   });
