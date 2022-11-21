@@ -35,7 +35,7 @@ export function TreeItemExpander(
     disableTransition,
   } = useTreeContext();
 
-  const icon = useIcon("expander", expanderIcon);
+  const icon = useIcon("dropdown", expanderIcon);
   const { itemId } = item;
   if (isLeafNode || expanderLeft !== left) {
     if (isValidElement<{ className?: string }>(addon)) {

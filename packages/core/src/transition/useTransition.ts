@@ -17,6 +17,10 @@ const INITIAL_STATE: TransitionState = {
   stage: "exited",
 };
 
+const noop = (): void => {
+  // do nothing
+};
+
 /**
  * You'll most likely want to use the {@link useCSSTransition} hook instead
  * since this is just a low-level hook that can be used to transition using
@@ -38,12 +42,12 @@ export function useTransition<E extends HTMLElement>(
     appear = false,
     enter = true,
     exit = true,
-    onEnter,
-    onEntering,
-    onEntered,
-    onExit,
-    onExiting,
-    onExited,
+    onEnter = noop,
+    onEntering = noop,
+    onEntered = noop,
+    onExit = noop,
+    onExiting = noop,
+    onExited = noop,
     disablePortal: propDisablePortal,
   } = options;
 
@@ -189,28 +193,28 @@ export function useTransition<E extends HTMLElement>(
     let nextStage: TransitionStage = stage;
     switch (stage) {
       case "enter":
-        onEnter?.(appearing);
+        onEnter(appearing);
         nextStage = "entering";
         break;
       case "entering":
-        onEntering?.(appearing);
+        onEntering(appearing);
         duration = timeout.enter;
         nextStage = "entered";
         break;
       case "entered":
-        onEntered?.(appearing);
+        onEntered(appearing);
         break;
       case "exit":
-        onExit?.();
+        onExit();
         nextStage = "exiting";
         break;
       case "exiting":
-        onExiting?.();
+        onExiting();
         duration = timeout.exit;
         nextStage = "exited";
         break;
       case "exited":
-        onExited?.();
+        onExited();
         setDisablePortal(false);
         break;
     }

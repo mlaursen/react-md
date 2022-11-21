@@ -11,6 +11,7 @@ import CheckIcon from "@react-md/material-icons/CheckIcon";
 import ErrorOutlineIcon from "@react-md/material-icons/ErrorOutlineIcon";
 import FileUploadIcon from "@react-md/material-icons/FileUploadIcon";
 import IndeterminateCheckBoxIcon from "@react-md/material-icons/IndeterminateCheckBoxIcon";
+import KeyboardArrowDownIcon from "@react-md/material-icons/KeyboardArrowDownIcon";
 import KeyboardArrowLeftIcon from "@react-md/material-icons/KeyboardArrowLeftIcon";
 import KeyboardArrowRightIcon from "@react-md/material-icons/KeyboardArrowRightIcon";
 import MenuIcon from "@react-md/material-icons/MenuIcon";
@@ -38,7 +39,7 @@ const icons: ConfiguredIcons = {
   checkboxIndeterminate: <IndeterminateCheckBoxIcon />,
   dropdown: <ArrowDropDownIcon />,
   error: <ErrorOutlineIcon />,
-  expander: <KeyboardArrowLeftIcon />,
+  expander: <KeyboardArrowDownIcon />,
   forward: <KeyboardArrowRightIcon />,
   menu: <MenuIcon />,
   notification: <NotificationsIcon />,

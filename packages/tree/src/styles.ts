@@ -27,6 +27,7 @@ export function tree(options: TreeClassNameOptions = {}): string {
 /** @remarks \@since 6.0.0 */
 export interface TreeItemClassNameOptions {
   className?: string;
+  expander?: boolean;
 
   /**
    * Settings this to `true` will update the styles for the expander icon within
@@ -44,12 +45,12 @@ export interface TreeItemClassNameOptions {
  * @remarks \@since 6.0.0
  */
 export function treeItem(options: TreeItemClassNameOptions = {}): string {
-  const { className, expanderLeft = false } = options;
+  const { className, expander = false, expanderLeft = false } = options;
 
   return cnb(
     treeItemStyles({
-      "expander-left": expanderLeft,
-      "expander-right": !expanderLeft,
+      "expander-left": expander && expanderLeft,
+      "expander-right": expander && !expanderLeft,
     }),
     className
   );

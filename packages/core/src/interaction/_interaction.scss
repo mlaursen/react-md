@@ -8,6 +8,8 @@
 $interaction-mode: ripple !default;
 $disable-focus-background: false !default;
 
+$pressed-class-name: "rmd-pressed";
+
 /// Setting this value to `true` will update the styles for all interactable
 /// elements so that the different interaction states no longer cover the other
 /// content within the element by applying:
@@ -320,7 +322,7 @@ $interaction-var-lookup: (
     }
 
     @if $interaction-mode == press or $interaction-mode == both {
-      &.rmd-pressed::before {
+      &.#{$pressed-class-name}::before {
         @include set-interaction-var(
           background-color,
           get-interaction-var(press-background-color)

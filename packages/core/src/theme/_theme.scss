@@ -302,7 +302,8 @@ $theme-var-lookup: (
     @include set-theme-var(surface-color, get-dark-elevation-color($z-value));
   }
   @if not $disable-colors {
-    @include use-theme-var(background-color, surface-color);
+    @include set-theme-var(background-color, get-theme-var(surface-color));
+    @include use-theme-var(background-color);
     @include use-theme-var(color, text-primary-color);
   }
 }

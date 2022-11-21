@@ -16,10 +16,10 @@ $padding-incrementor-var: --rmd-tree-item-padding-incrementor;
 
 $padding-incrementor: list.$item-horizontal-padding * 1.5 !default;
 $padding-base: list.get-var(item-keyline) !default;
-$expander-right-from: 360deg !default;
-$expander-right-to: 270deg !default;
-$expander-left-from: 180deg !default;
-$expander-left-to: 270deg !default;
+$expander-right-from: icon.$rotate-from !default;
+$expander-right-to: 90deg !default;
+$expander-left-from: 0deg !default;
+$expander-left-to: -90deg !default;
 
 $selected-styles: (
   font-weight: core.$font-weight-bold,

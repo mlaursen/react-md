@@ -161,6 +161,7 @@ export interface OverridableTreeItemProps
   disabledOpacity?: boolean;
   contentClassName?: string;
   disableTransition?: boolean;
+  disableTextChildren?: boolean;
 }
 
 export interface CurrentTreeItem<T extends TreeItemNode>

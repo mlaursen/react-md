@@ -49,6 +49,7 @@ export function TreeItem(props: TreeItemProps): ReactElement {
     rightAddonPosition,
     rightAddonClassName,
     rightAddonForceWrap,
+    disableTextChildren,
     disableLeftAddonCenteredMedia: propDisableLeftAddonCenteredMedia,
     disableRightAddonCenteredMedia,
     childItems,
@@ -136,7 +137,7 @@ export function TreeItem(props: TreeItemProps): ReactElement {
   return (
     <li
       {...(isLink ? noA11yProps : a11yProps)}
-      className={treeItem({ className, expanderLeft })}
+      className={treeItem({ className, expander: !!childItems, expanderLeft })}
     >
       <ContentComponent
         {...remaining}
@@ -184,6 +185,7 @@ export function TreeItem(props: TreeItemProps): ReactElement {
           rightAddonPosition={rightAddonPosition}
           rightAddonClassName={rightAddonClassName}
           rightAddonForceWrap={rightAddonForceWrap}
+          disableTextChildren={disableTextChildren}
           disableLeftAddonCenteredMedia={disableLeftAddonCenteredMedia}
           disableRightAddonCenteredMedia={disableRightAddonCenteredMedia}
         >
