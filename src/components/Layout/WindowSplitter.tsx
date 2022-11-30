@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import {
   parseCssLengthUnit,
   useCSSVariables,
@@ -32,6 +30,7 @@ export function WindowSplitter(): ReactElement {
         hideNav();
       }
     },
+    localStorageKey: "navWidth",
   });
 
   useCSSVariables(
@@ -39,7 +38,7 @@ export function WindowSplitter(): ReactElement {
       () => [
         {
           name: "--rmd-layout-nav-width",
-          value: `${window.innerWidth * (value / 100)}px`,
+          value: `${Math.round(window.innerWidth * (value / 100))}px`,
         },
       ],
       [value]
@@ -48,10 +47,11 @@ export function WindowSplitter(): ReactElement {
   useHtmlClassName(cnb(dragging && styles.dragging));
 
   return (
-    <span
+    <button
       {...splitterProps}
       aria-label="Resize Navigation"
       aria-controls="layout-nav-container"
+      type="button"
       className={cnb(styles.separator, fullHeight && styles.fullHeight)}
     />
   );

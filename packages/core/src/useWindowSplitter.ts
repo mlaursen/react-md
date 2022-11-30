@@ -2,6 +2,7 @@ import type { HTMLAttributes, KeyboardEvent, MouseEvent } from "react";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { getPercentage } from "./getPercentage";
 import type { UseStateInitializer, UseStateSetter } from "./types";
+import { useLocalStorage } from "./useLocalStorage";
 import { withinRange } from "./withinRange";
 
 const noop = (): void => {
@@ -40,7 +41,12 @@ export interface WIndowSplitterOptions<E extends HTMLElement> {
    */
   vertical?: boolean;
   onKeyDown?(event: KeyboardEvent<E>): void;
+  onMouseUp?(event: MouseEvent<E>): void;
   onMouseDown?(event: MouseEvent<E>): void;
+  onMouseMove?(event: MouseEvent<E>): void;
+
+  localStorageKey?: string;
+  localStorageManual?: boolean;
 }
 
 export interface WindowSplitterWidgetProps<E extends HTMLElement>
@@ -53,7 +59,9 @@ export interface WindowSplitterWidgetProps<E extends HTMLElement>
   role: "separator";
   tabIndex: number;
   onKeyDown(event: KeyboardEvent<E>): void;
+  onMouseUp(event: MouseEvent<E>): void;
   onMouseDown(event: MouseEvent<E>): void;
+  onMouseMove(event: MouseEvent<E>): void;
 }
 
 export interface WindowSplitterImplementation<E extends HTMLElement> {
@@ -65,6 +73,9 @@ export interface WindowSplitterImplementation<E extends HTMLElement> {
   increment(): void;
   decrement(): void;
   splitterProps: Readonly<WindowSplitterWidgetProps<E>>;
+
+  persistToLocalStorage(): void;
+  removeFromLocalStorage(): void;
 }
 
 /**
@@ -86,26 +97,41 @@ export function useWindowSplitter<E extends HTMLElement>(
     vertical = false,
     defaultValue = 50,
     onKeyDown = noop,
+    onMouseUp = noop,
     onMouseDown = noop,
+    onMouseMove = noop,
+    localStorageKey = "",
+    localStorageManual,
   } = options;
 
   const id = `${useId()}-splitter`;
-  const [value, setValue] = useState(defaultValue);
+  const draggingRef = useRef(false);
   const [dragging, setDragging] = useState(false);
-  const prevExpandedValue = useRef(value);
+  const { value, setValue, persist, remove } = useLocalStorage({
+    key: localStorageKey,
+    manual: localStorageManual || dragging,
+    defaultValue,
+  });
+  const percentage = Math.floor(
+    getPercentage({
+      min,
+      max,
+      value,
+    }) * 100
+  );
 
   const maxValue = useCallback(() => {
     setValue(max);
-  }, [max]);
+  }, [max, setValue]);
   const minValue = useCallback(() => {
     setValue(min);
-  }, [min]);
+  }, [min, setValue]);
   const increment = useCallback(() => {
     setValue((prevValue) => withinRange(prevValue + step, min, max));
-  }, [max, min, step]);
+  }, [max, min, setValue, step]);
   const decrement = useCallback(() => {
     setValue((prevValue) => withinRange(prevValue - step, min, max));
-  }, [max, min, step]);
+  }, [max, min, setValue, step]);
 
   useEffect(() => {
     if (!dragging) {
@@ -121,6 +147,7 @@ export function useWindowSplitter<E extends HTMLElement>(
 
     const stopDragging = (event: globalThis.MouseEvent): void => {
       updatePosition(event);
+      draggingRef.current = false;
       setDragging(false);
     };
 
@@ -131,7 +158,7 @@ export function useWindowSplitter<E extends HTMLElement>(
       window.removeEventListener("mousemove", updatePosition);
       window.removeEventListener("mouseup", stopDragging);
     };
-  }, [dragging, max, min]);
+  }, [dragging, max, min, setValue]);
 
   return {
     value,
@@ -141,14 +168,11 @@ export function useWindowSplitter<E extends HTMLElement>(
     minValue,
     increment,
     decrement,
+    persistToLocalStorage: persist,
+    removeFromLocalStorage: remove,
     splitterProps: {
       "aria-orientation": vertical ? "vertical" : undefined,
-      "aria-valuenow":
-        getPercentage({
-          min,
-          max,
-          value,
-        }) * 100,
+      "aria-valuenow": percentage,
       "aria-valuemin": 0,
       "aria-valuemax": 100,
       id,
@@ -180,14 +204,7 @@ export function useWindowSplitter<E extends HTMLElement>(
           case "Enter":
             event.preventDefault();
             event.stopPropagation();
-            setValue((prevValue) => {
-              if (prevValue === min) {
-                return prevExpandedValue.current;
-              }
-
-              prevExpandedValue.current = prevValue;
-              return min;
-            });
+            // TODO
             break;
         }
       },
@@ -201,8 +218,19 @@ export function useWindowSplitter<E extends HTMLElement>(
           !event.ctrlKey &&
           !event.shiftKey
         ) {
+          // don't set dragging immediately so that click events can still happen
+          draggingRef.current = true;
+        }
+      },
+      onMouseMove(event) {
+        onMouseMove(event);
+        if (draggingRef.current) {
           setDragging(true);
         }
+      },
+      onMouseUp(event) {
+        onMouseUp(event);
+        draggingRef.current = false;
       },
     },
   };

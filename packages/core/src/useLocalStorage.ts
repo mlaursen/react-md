@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { identity } from "./identity";
 import { useSsr } from "./SsrProvider";
-import type { UseStateSetter } from "./types";
+import type { UseStateInitializer, UseStateSetter } from "./types";
 import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect";
 
 /** @remarks \@since 6.0.0 */
@@ -22,7 +22,7 @@ export interface LocalStorageHookOptions<T> {
   /**
    * The default value to use if an item does not exist in local storage.
    */
-  defaultValue: T;
+  defaultValue: UseStateInitializer<T>;
 
   /**
    * Set this to `true` if the `value` should not persist to local storage
@@ -186,7 +186,7 @@ export function useLocalStorage<T>(
   options: LocalStorageHookOptions<T>
 ): LocalStorageHookReturnValue<T> {
   const {
-    key,
+    key = "",
     raw = false,
     defaultValue,
     manual = false,
@@ -266,10 +266,11 @@ export function useLocalStorage<T>(
     setValue(valueToSave);
   }, [key, ssr]);
 
+  // update the value if another tab changed the local storage value
   useEffect(() => {
-    const callback = (event: StorageEvent | CustomEvent): void => {
+    const callback = (event: StorageEvent): void => {
       const { key, defaultValue, deserializer } = config.current;
-      if (!("key" in event) || event.key === key) {
+      if (event.key === key) {
         setStoredValue(getItem(key, defaultValue, deserializer));
       }
     };
