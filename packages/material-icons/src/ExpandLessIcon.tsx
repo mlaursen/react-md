@@ -8,7 +8,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(function ExpandLessIcon(
 ) {
   return (
     <SVGIcon {...props} ref={ref}>
-      <path d="M0 0h24v24H0z" fill="none" />
       <path d="m12 8-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z" />
     </SVGIcon>
   );

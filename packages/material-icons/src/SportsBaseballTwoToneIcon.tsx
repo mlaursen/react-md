@@ -6,7 +6,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function SportsBaseballTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path fill="none" d="M0 0h24v24H0z" />
         <path
           d="M5.61 7.22C4.6 8.55 4 10.2 4 12s.6 3.45 1.61 4.78a5.975 5.975 0 0 0 0-9.56z"
           opacity=".3"

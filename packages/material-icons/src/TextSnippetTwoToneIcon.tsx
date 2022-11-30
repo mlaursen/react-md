@@ -6,7 +6,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function TextSnippetTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path fill="none" d="M0 0h24v24H0z" />
         <path
           d="M14.17 5 19 9.83V19H5V5h9.17M7 15h10v2H7v-2zm0-4h10v2H7v-2zm0-4h7v2H7V7z"
           opacity=".3"

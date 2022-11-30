@@ -6,7 +6,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function SanitizerTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path fill="none" d="M0 0h24v24H0z" />
         <path
           d="M10 8c-2.21 0-4 1.79-4 4v8h8v-8c0-2.21-1.79-4-4-4zm3 8h-2v2H9v-2H7v-2h2v-2h2v2h2v2z"
           opacity=".3"

@@ -6,8 +6,10 @@ export { default as IndeterminateCheckBoxIcon } from "../../IndeterminateCheckBo
 export { default as RadioButtonCheckedIcon } from "../../RadioButtonCheckedIcon";
 export { default as RadioButtonUncheckedIcon } from "../../RadioButtonUncheckedIcon";
 export { default as StarBorderIcon } from "../../StarBorderIcon";
+export { default as StarBorderPurple500Icon } from "../../StarBorderPurple500Icon";
 export { default as StarHalfIcon } from "../../StarHalfIcon";
 export { default as StarIcon } from "../../StarIcon";
 export { default as StarOutlineIcon } from "../../StarOutlineIcon";
+export { default as StarPurple500Icon } from "../../StarPurple500Icon";
 export { default as ToggleOffIcon } from "../../ToggleOffIcon";
 export { default as ToggleOnIcon } from "../../ToggleOnIcon";

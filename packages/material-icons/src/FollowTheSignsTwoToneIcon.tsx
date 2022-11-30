@@ -6,7 +6,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function FollowTheSignsTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path fill="none" d="M0 0h24v24H0z" />
         <path
           d="M17.64 7.75V6h-3.51V4.5h3.51V2.75l2.49 2.5-2.49 2.5z"
           opacity=".3"

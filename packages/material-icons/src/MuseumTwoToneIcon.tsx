@@ -6,7 +6,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function MuseumTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path fill="none" d="M0 0h24v24H0z" />
         <path
           d="M6 20h12V9H6v11zm2-9h2l2 3 2-3h2v7h-2v-4l-2 3-2-3v4H8v-7z"
           opacity=".3"

@@ -6,7 +6,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function FireplaceTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path fill="none" d="M0 0h24v24H0z" />
         <path
           d="M4 20h2v-2h2.23c-.75-.93-1.2-2.04-1.23-3-.02-.53-.73-4.43 6-8 0 0-.8 2.61 2.15 4.63.76.52 1.85 1.48 1.85 3.37 0 1.13-.39 2.16-1.02 3H18v2h2V4H4v16z"
           opacity=".3"

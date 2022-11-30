@@ -8,8 +8,7 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(function ViewListIcon(
 ) {
   return (
     <SVGIcon {...props} ref={ref}>
-      <path d="M0 0h24v24H0z" fill="none" />
-      <path d="M4 14h4v-4H4v4zm0 5h4v-4H4v4zM4 9h4V5H4v4zm5 5h12v-4H9v4zm0 5h12v-4H9v4zM9 5v4h12V5H9z" />
+      <path d="M3 14h4v-4H3v4zm0 5h4v-4H3v4zM3 9h4V5H3v4zm5 5h13v-4H8v4zm0 5h13v-4H8v4zM8 5v4h13V5H8z" />
     </SVGIcon>
   );
 });

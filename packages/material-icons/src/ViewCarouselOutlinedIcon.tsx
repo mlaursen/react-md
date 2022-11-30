@@ -6,7 +6,7 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function ViewCarouselOutlinedIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path d="M2 6h4v11H2zm5 13h10V4H7v15zM9 6h6v11H9V6zm9 0h4v11h-4z" />
+        <path d="M2 7h4v10H2V7zm5 12h10V5H7v14zM9 7h6v10H9V7zm9 0h4v10h-4V7z" />
       </SVGIcon>
     );
   }

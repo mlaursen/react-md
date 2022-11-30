@@ -6,7 +6,7 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function ViewCarouselSharpIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path d="M7 19h10V4H7v15zm-5-2h4V6H2v11zM18 6v11h4V6h-4z" />
+        <path d="M2 7h4v10H2V7zm5 12h10V5H7v14zM18 7h4v10h-4V7z" />
       </SVGIcon>
     );
   }

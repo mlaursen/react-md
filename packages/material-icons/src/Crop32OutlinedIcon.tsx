@@ -6,7 +6,7 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function Crop32OutlinedIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path d="M19 4H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H5V6h14v12z" />
+        <path d="M19 6H5c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 10H5V8h14v8z" />
       </SVGIcon>
     );
   }

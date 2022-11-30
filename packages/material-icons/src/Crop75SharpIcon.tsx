@@ -8,7 +8,7 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(function Crop75SharpIcon(
 ) {
   return (
     <SVGIcon {...props} ref={ref}>
-      <path d="M21 7H3v10h18V7zm-2 8H5V9h14v6z" />
+      <path d="M21 5H3v14h18V5zm-2 12H5V7h14v10z" />
     </SVGIcon>
   );
 });

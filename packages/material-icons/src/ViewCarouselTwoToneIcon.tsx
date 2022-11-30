@@ -6,8 +6,8 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function ViewCarouselTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path d="M18 6h4v11h-4zM7 19h10V4H7v15zM9 6h6v11H9V6zM2 6h4v11H2z" />
-        <path d="M9 6h6v11H9z" opacity=".3" />
+        <path d="M9 7h6v10H9z" opacity=".3" />
+        <path d="M2 7h4v10H2V7zm5 12h10V5H7v14zM9 7h6v10H9V7zm9 0h4v10h-4V7z" />
       </SVGIcon>
     );
   }

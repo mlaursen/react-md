@@ -6,7 +6,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function NoStrollerTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path fill="none" d="M0 0h24v24H0z" />
         <path
           d="M8.1 5.27A7.09 7.09 0 0 1 10 5c.29 0 .58.02.86.05L9.49 6.67 8.1 5.27zm6.9 6.9V8.66l-1.61 1.89L15 12.17zM12.17 15l-1.39-1.39L9.6 15h2.57z"
           opacity=".3"

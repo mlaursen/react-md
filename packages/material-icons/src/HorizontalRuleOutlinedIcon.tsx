@@ -6,7 +6,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function HorizontalRuleOutlinedIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path fill="none" d="M0 0h24v24H0z" />
         <path fillRule="evenodd" d="M4 11h16v2H4z" />
       </SVGIcon>
     );

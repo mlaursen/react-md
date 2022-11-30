@@ -6,7 +6,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function BlurOnTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path d="M0 0h24v24H0z" fill="none" />
         <circle cx="14" cy="10" r="1.5" />
         <circle cx="14" cy="18" r="1" />
         <circle cx="14" cy="14" r="1.5" />

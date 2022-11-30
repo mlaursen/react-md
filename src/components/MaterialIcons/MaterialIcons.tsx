@@ -14,6 +14,7 @@ import { useCallback, useMemo, useState } from "react";
 import { ICON_CATEGORIES, ICON_TYPES } from "src/constants/materialIcons";
 import { MatchedIcons } from "./MatchedIcons";
 import { useMaterialIcons } from "./useMaterialIcons";
+import styles from "./MaterialIcons.module.scss";
 
 const MIN_CELL_WIDTH = 160;
 
@@ -80,7 +81,7 @@ export default function MaterialIcons(): ReactElement {
           rightAddon={<SearchIcon />}
         />
       </Box>
-      <div style={style} ref={refCallback}>
+      <div ref={refCallback} style={style} className={styles.container}>
         <MatchedIcons
           columns={columns}
           containerWidth={containerWidth}

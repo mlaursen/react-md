@@ -8,7 +8,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(function PauseIcon(
 ) {
   return (
     <SVGIcon {...props} ref={ref}>
-      <path d="M0 0h24v24H0z" fill="none" />
       <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
     </SVGIcon>
   );

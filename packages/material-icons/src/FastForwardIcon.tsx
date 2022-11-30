@@ -8,7 +8,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(function FastForwardIcon(
 ) {
   return (
     <SVGIcon {...props} ref={ref}>
-      <path d="M0 0h24v24H0z" fill="none" />
       <path d="m4 18 8.5-6L4 6v12zm9-12v12l8.5-6L13 6z" />
     </SVGIcon>
   );

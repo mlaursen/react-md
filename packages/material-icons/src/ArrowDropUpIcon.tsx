@@ -8,7 +8,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(function ArrowDropUpIcon(
 ) {
   return (
     <SVGIcon {...props} ref={ref}>
-      <path d="M0 0h24v24H0z" fill="none" />
       <path d="m7 14 5-5 5 5z" />
     </SVGIcon>
   );

@@ -6,7 +6,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function ExposureTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path d="M0 0h24v24H0z" fill="none" />
         <path
           d="M19 19V5L5 19h14zm-4.5-4.5v-2H16v2h2V16h-2v2h-1.5v-2h-2v-1.5h2z"
           opacity=".3"

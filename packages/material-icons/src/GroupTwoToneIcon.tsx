@@ -6,7 +6,7 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function GroupTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <circle cx="9" cy="8.5" opacity=".3" r="1.5" />
+        <circle cx="9" cy="8.5" r="1.5" opacity=".3" />
         <path
           d="M4.34 17h9.32c-.84-.58-2.87-1.25-4.66-1.25s-3.82.67-4.66 1.25z"
           opacity=".3"

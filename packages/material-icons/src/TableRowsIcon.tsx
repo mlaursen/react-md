@@ -8,8 +8,7 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(function TableRowsIcon(
 ) {
   return (
     <SVGIcon {...props} ref={ref}>
-      <path fill="none" d="M0 0h24v24H0z" />
-      <path d="M22 7H2V2h20v5zm0 2.5H2v5h20v-5zm0 7.5H2v5h20v-5z" />
+      <path d="M21 8H3V4h18v4zm0 2H3v4h18v-4zm0 6H3v4h18v-4z" />
     </SVGIcon>
   );
 });

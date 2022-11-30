@@ -6,9 +6,7 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function BorderColorTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path d="m14 6.08-8 8V15h.92l8-8z" fillOpacity=".36" />
-        <path d="m14 3.25-10 10V17h3.75l10-10L14 3.25zM6.92 15H6v-.92l8-8 .92.92-8 8zM20.71 4.04a.996.996 0 0 0 0-1.41L18.37.29a.996.996 0 0 0-1.41 0L15 2.25 18.75 6l1.96-1.96z" />
-        <path d="M0 20h24v4H0v-4z" fillOpacity=".36" />
+        <path d="m16.81 8.94-3.75-3.75L4 14.25V18h3.75l9.06-9.06zM6 16v-.92l7.06-7.06.92.92L6.92 16H6zm13.71-9.96a.996.996 0 0 0 0-1.41l-2.34-2.34a1.001 1.001 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83zM2 20h20v4H2z" />
       </SVGIcon>
     );
   }

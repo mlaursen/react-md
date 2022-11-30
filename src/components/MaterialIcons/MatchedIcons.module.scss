@@ -2,7 +2,4 @@
 
 .container {
   @include everything.create-surface(4);
-
-  // background-color: var(everything.$surface-color-var);
-  // color: var(everything.$text-primary-color-var);
 }

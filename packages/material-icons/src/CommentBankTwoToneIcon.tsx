@@ -6,7 +6,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function CommentBankTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path fill="none" d="M0 0h24v24H0z" />
         <path
           d="m4 18 2-2h14V4H4v14zm9-12h5v8l-2.5-1.5L13 14V6z"
           opacity=".3"

@@ -6,7 +6,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function DoNotTouchTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path fill="none" d="M0 0h24v24H0z" />
         <path
           d="M18 15.17V13h-2.17L18 15.17zm-9-3.34 8.14 8.14c-.05.01-.09.03-.14.03h-6c-.39 0-.64-.23-.75-.36L6.87 16H9v-4.17z"
           opacity=".3"

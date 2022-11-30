@@ -6,7 +6,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function ContactMailTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path d="M0 0h24v24H0z" fill="none" />
         <path
           d="M2 19h20V5H2v14zM14 6h7v5h-7V6zM9 6c1.65 0 3 1.35 3 3s-1.35 3-3 3-3-1.35-3-3 1.35-3 3-3zM3 16.59C3 14.08 6.97 13 9 13s6 1.08 6 3.58V18H3v-1.41z"
           opacity=".3"

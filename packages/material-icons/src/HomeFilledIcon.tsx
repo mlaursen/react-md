@@ -8,7 +8,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(function HomeFilledIcon(
 ) {
   return (
     <SVGIcon {...props} ref={ref}>
-      <path d="M0 0h24v24H0z" fill="none" />
       <path d="M12 3 4 9v12h5v-7h6v7h5V9z" />
     </SVGIcon>
   );

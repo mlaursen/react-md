@@ -1,20 +1,24 @@
 import { transformFile } from "@swc/core";
 import glob from "glob";
 import lodash from "lodash";
+import { ExecOptions } from "node:child_process";
+import { existsSync } from "node:fs";
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { optimize } from "svgo";
-
-import { existsSync } from "node:fs";
 import {
   COPY_BANNER,
+  MATERIAL_ICONS_FOLDER,
+  MATERIAL_ICONS_REPO,
+  MATERIAL_ICONS_SPARSE_CHECKOUT,
+  MATERIAL_ICONS_VERSION,
   PACKAGES_ROOT,
-  TEMP_MATERIAL_ICONS_FOLDER,
 } from "./constants.js";
 import { format } from "./utils/format.js";
+import { loggedExecSync } from "./utils/loggedExecSync.js";
 import { pascalCase } from "./utils/strings.js";
 
-const SKIP_GENERATE = true;
+const SKIP_GENERATE = false;
 
 type IconType = "filled" | "outlined" | "rounded" | "two-tone" | "sharp";
 
@@ -56,6 +60,8 @@ function getComponentName(
     snakeCaseName = "add_chart";
   } else if (snakeCaseName.endsWith("_outlined")) {
     snakeCaseName = `Outlined${snakeCaseName.replace("_outlined", "")}`;
+  } else if (snakeCaseName.endsWith("_rounded")) {
+    snakeCaseName = `Rounded${snakeCaseName.replace("_rounded", "")}`;
   }
 
   const suffix = `${iconType === "filled" ? "" : `_${iconType}`}_icon`;
@@ -95,23 +101,32 @@ const fixStyle = (children: string): string =>
   });
 
 const camelCaseProps = (children: string): string =>
-  children.replace(/-([a-z])/g, (_, letter: string) => letter.toUpperCase());
+  children.replace(/(-|:)([a-z])/g, (_, __, letter: string) =>
+    letter.toUpperCase()
+  );
 const removeClass = (children: string): string =>
   children.replace(/class="[^"]+"/g, "");
-
-const EMPTY_PATH_REGEX = /<path d="M0 0h24v24H0(V0z)?" fill="none"\s?\/>/g;
-const removeUnneededParts = (children: string): string =>
-  children.replace(EMPTY_PATH_REGEX, "");
 
 const END_SVG = "</svg>";
 
 async function getSvgContents(sourceFilePath: string): Promise<string> {
   const buffer = await readFile(sourceFilePath);
-  const svgContents = removeUnneededParts(removeClass(buffer.toString()));
+  const svgContents = removeClass(buffer.toString());
 
   const optimized = optimize(svgContents, {
     path: sourceFilePath,
-    plugins: ["preset-default"],
+    plugins: [
+      {
+        name: "preset-default",
+        params: {
+          overrides: {
+            removeUselessStrokeAndFill: {
+              removeNone: true,
+            },
+          },
+        },
+      },
+    ],
     multipass: true,
   });
 
@@ -127,8 +142,38 @@ async function getSvgContents(sourceFilePath: string): Promise<string> {
   return camelCaseProps(fixStyle(contents.substring(startIndex, endIndex)));
 }
 
+/**
+ * Use the new git sparse-checkout to help speed up the update process. This
+ * repo is giant and takes forever to clone and update.
+ */
+function sparseCheckout(): void {
+  const options: ExecOptions = {
+    cwd: MATERIAL_ICONS_FOLDER,
+  };
+  if (!existsSync(MATERIAL_ICONS_FOLDER)) {
+    // clone the repo with no history and without pulling down all the files
+    // immediately. still takes awhile...
+    loggedExecSync(
+      `git clone --depth 1 --no-checkout --branch ${MATERIAL_ICONS_VERSION} ${MATERIAL_ICONS_REPO} ${MATERIAL_ICONS_FOLDER}`
+    );
+
+    // enable the sparse checkout
+    loggedExecSync("git config core.sparseCheckout true", options);
+    loggedExecSync("git sparse-checkout init", options);
+  }
+
+  // force change the sparce checkout rules for the material icons only since
+  // I'm planning on supporting the symbols in the future
+  loggedExecSync(MATERIAL_ICONS_SPARSE_CHECKOUT, options);
+
+  // pull down only the material icons
+  loggedExecSync(`git checkout ${MATERIAL_ICONS_VERSION}`, options);
+}
+
 async function run(): Promise<void> {
-  const svgs = glob.sync("**/24px.svg", { cwd: TEMP_MATERIAL_ICONS_FOLDER });
+  sparseCheckout();
+
+  const svgs = glob.sync("**/24px.svg", { cwd: MATERIAL_ICONS_FOLDER });
 
   const chunked = lodash.chunk(svgs, 50);
 
@@ -161,7 +206,7 @@ async function run(): Promise<void> {
   for (const chunk of chunked) {
     await Promise.all(
       chunk.map(async (iconPath) => {
-        const sourceFilePath = join(TEMP_MATERIAL_ICONS_FOLDER, iconPath);
+        const sourceFilePath = join(MATERIAL_ICONS_FOLDER, iconPath);
 
         // the current structure of the material-icons repo is:
         // src/
@@ -169,7 +214,8 @@ async function run(): Promise<void> {
         //     [snake_case_name]/
         //       materialicons[type?]/
         //         24px.svg
-        const [category, snakeCaseName, materialIconType] = iconPath.split("/");
+        const [_src, category, snakeCaseName, materialIconType] =
+          iconPath.split("/");
         const iconType = getIconType(materialIconType);
         const componentName = getComponentName(
           snakeCaseName,
@@ -180,15 +226,15 @@ async function run(): Promise<void> {
 
         const contents = format(
           `import { forwardRef } from "react";
-import type { SVGIconProps} from "@react-md/icon";
-import { SVGIcon } from "@react-md/icon";
+  import type { SVGIconProps} from "@react-md/icon";
+  import { SVGIcon } from "@react-md/icon";
 
-export default forwardRef<SVGSVGElement, SVGIconProps>(
+  export default forwardRef<SVGSVGElement, SVGIconProps>(
   function ${componentName}(props, ref) {
     return <SVGIcon {...props} ref={ref}>${svgContents}</SVGIcon>;
   }
-);
-`,
+  );
+  `,
           "typescript"
         );
 
@@ -199,6 +245,9 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
           console.log("existing: ", existingName);
           console.log("sourceFilePath:", sourceFilePath);
           console.log("");
+          console.log(
+            "update the `getComponentName` to handle this edge case."
+          );
           return;
         }
         nameLookup.set(lowerName, sourceFilePath);
@@ -247,8 +296,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   }
 
   const categories = new Set<string>();
-
-  // const categories: Record<string, Record<IconType, boolean>> = {};
   await Promise.all(
     Object.entries(collection).map(async ([iconType, category]) => {
       await Promise.all(
@@ -256,19 +303,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
           const folder = join(MATERIAL_ICONS_SRC, iconType, categoryName);
           const fileName = join(folder, "index.ts");
 
-          // if (!categories[categoryName]) {
-          //   categories[categoryName] = {
-          //     filled: false,
-          //     outlined: false,
-          //     rounded: false,
-          //     "two-tone": false,
-          //     sharp: false,
-          //   };
-          // }
-          // categories[categoryName][iconType as IconType] = true;
-
-          // modified[iconType as IconType] = true;
-          // categories.set(categoryName, modified);
           categories.add(categoryName);
 
           const exportDeclarations = alphaNumericSort(components).reduce(
@@ -283,8 +317,8 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
           const contents = format(
             `${COPY_BANNER}
 
-${exportDeclarations}
-`,
+  ${exportDeclarations}
+  `,
             "typescript"
           );
 
@@ -301,12 +335,12 @@ ${exportDeclarations}
   const contents = format(
     `${COPY_BANNER}
 
-export const ICON_TYPES = ["filled", "outlined", "rounded", "two-tone", "sharp"] as const;
-export const ICON_CATEGORIES = ${JSON.stringify([...categories])} as const;
+  export const ICON_TYPES = ["filled", "outlined", "rounded", "two-tone", "sharp"] as const;
+  export const ICON_CATEGORIES = ${JSON.stringify([...categories])} as const;
 
-export type IconType = typeof ICON_TYPES[number];
-export type IconCategory = typeof ICON_CATEGORIES[number];
-`,
+  export type IconType = typeof ICON_TYPES[number];
+  export type IconCategory = typeof ICON_CATEGORIES[number];
+  `,
     "typescript"
   );
 

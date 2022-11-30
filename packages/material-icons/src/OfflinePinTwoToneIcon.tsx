@@ -6,7 +6,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function OfflinePinTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path d="M0 0h24v24H0z" fill="none" />
         <path
           d="M12 4c-4.41 0-8 3.59-8 8s3.59 8 8 8 8-3.59 8-8-3.59-8-8-8zm5 13H7v-2h10v2zm-6.7-3L7 10.7l1.4-1.4 1.9 1.9 5.3-5.3L17 7.3 10.3 14z"
           opacity=".3"

@@ -6,11 +6,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function PauseCircleFilledTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <g fill="none">
-          <path d="M0 0h24v24H0z" />
-          <path d="M0 0h24v24H0z" />
-          <path d="M0 0h24v24H0z" />
-        </g>
         <path
           d="M12 4c-4.41 0-8 3.59-8 8s3.59 8 8 8 8-3.59 8-8-3.59-8-8-8zm-1 12H9V8h2v8zm4 0h-2V8h2v8z"
           opacity=".3"

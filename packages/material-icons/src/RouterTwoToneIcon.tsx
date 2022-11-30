@@ -6,7 +6,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function RouterTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path d="M0 0h24v24H0V0zm0 0h24v24H0V0z" fill="none" />
         <path
           d="M15 15H5v4h14v-4h-4zm-7 3H6v-2h2v2zm3.5 0h-2v-2h2v2zm3.5 0h-2v-2h2v2z"
           opacity=".3"

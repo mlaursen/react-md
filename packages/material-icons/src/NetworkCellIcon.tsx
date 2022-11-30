@@ -8,7 +8,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(function NetworkCellIcon(
 ) {
   return (
     <SVGIcon {...props} ref={ref}>
-      <path fill="none" d="M0 0h24v24H0z" />
       <path d="M2 22h20V2L2 22zm18-2h-3V9.83l3-3V20z" />
     </SVGIcon>
   );

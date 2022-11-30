@@ -6,8 +6,7 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function ArrowForwardIosOutlinedIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path d="M24 24H0V0h24v24z" fill="none" opacity=".87" />
-        <path d="m6.49 20.13 1.77 1.77 9.9-9.9-9.9-9.9-1.77 1.77L14.62 12l-8.13 8.13z" />
+        <path d="M6.23 20.23 8 22l10-10L8 2 6.23 3.77 14.46 12z" />
       </SVGIcon>
     );
   }

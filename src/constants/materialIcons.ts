@@ -23,6 +23,7 @@ export const ICON_CATEGORIES = [
   "navigation",
   "notification",
   "places",
+  "search",
   "social",
   "toggle",
 ] as const;

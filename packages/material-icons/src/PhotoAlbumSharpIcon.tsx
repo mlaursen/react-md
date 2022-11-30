@@ -6,7 +6,7 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function PhotoAlbumSharpIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path d="M20 2H4v20h16V2zM6 4h5v8l-2.5-1.5L6 12V4zm0 15 3-3.86 2.14 2.58 3-3.86L18 19H6z" />
+        <path d="M20 2H4v20h16V2zm-9 2h5v7l-2.5-1.5L11 11V4zM7 18l2.38-3.17L11 17l2.62-3.5L17 18H7z" />
       </SVGIcon>
     );
   }

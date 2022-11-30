@@ -18,6 +18,7 @@
     "typecheck": "pnpm run typecheck-main && pnpm run typecheck-scripts",
     "format": "prettier --write .",
     "prismjs-themes": "pnpm run cli scripts/prismThemes.ts",
+    "update-material-icons": "pnpm run cli scripts/updateMaterialIcons.ts",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

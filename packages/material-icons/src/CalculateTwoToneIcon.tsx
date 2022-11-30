@@ -6,7 +6,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function CalculateTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path fill="none" d="M0 0h24v24H0z" />
         <path
           d="M5 19h14V5H5v14zm8.03-11.94L14.09 6l1.41 1.41L16.91 6l1.06 1.06-1.41 1.41 1.41 1.41-1.06 1.06-1.41-1.4-1.41 1.41-1.06-1.06 1.41-1.41-1.41-1.42zM13 13.25h5v1.5h-5v-1.5zm0 2.5h5v1.5h-5v-1.5zM6.25 7.72h5v1.5h-5v-1.5zM6 14.5h2v-2h1.5v2h2V16h-2v2H8v-2H6v-1.5z"
           opacity=".3"

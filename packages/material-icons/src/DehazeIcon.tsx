@@ -8,7 +8,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(function DehazeIcon(
 ) {
   return (
     <SVGIcon {...props} ref={ref}>
-      <path d="M0 0h24v24H0z" fill="none" />
       <path d="M2 15.5v2h20v-2H2zm0-5v2h20v-2H2zm0-5v2h20v-2H2z" />
     </SVGIcon>
   );

@@ -6,7 +6,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function HandymanTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path fill="none" d="M0 0h24v24H0z" />
         <path
           d="m8.66 14.64-4.25 4.24.71.71 4.24-4.25-.7-.7zm5.936.705.707-.707 4.242 4.243-.707.707z"
           opacity=".3"

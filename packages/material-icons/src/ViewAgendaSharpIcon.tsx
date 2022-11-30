@@ -6,7 +6,7 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function ViewAgendaSharpIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path d="M21 13H2v8h19v-8zm0-10H2v8h19V3z" />
+        <path d="M3 13h18v8H3zM3 3h18v8H3z" />
       </SVGIcon>
     );
   }

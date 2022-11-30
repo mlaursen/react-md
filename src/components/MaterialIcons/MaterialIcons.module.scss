@@ -1,8 +1,6 @@
-@use "everything";
-
-.name {
-  @include everything.text-overflow;
-
-  text-align: center;
-  width: 100%;
+// make it so you can resize the pge without a horizontal scrollbar temporarily
+// appearing
+.container {
+  max-width: 100%;
+  overflow: hidden;
 }

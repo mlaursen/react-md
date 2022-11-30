@@ -6,7 +6,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function BurstModeTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path d="M0 0h24v24H0z" fill="none" />
         <path
           d="M11 17h10V7H11v10zm3-3.53 1.43 1.72 2-2.58L20 15.99h-8l2-2.52z"
           opacity=".3"

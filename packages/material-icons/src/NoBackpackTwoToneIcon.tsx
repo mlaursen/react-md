@@ -6,7 +6,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function NoBackpackTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path fill="none" d="M0 0h24v24H0z" />
         <path
           d="M18 15.17V8c0-1.1-.9-2-2-2H8.83l6 6h1.67v1.67l1.5 1.5zM17.17 20l-6-6H7.5v-2h1.67L6 8.83V20h11.17z"
           opacity=".3"

@@ -6,8 +6,7 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function NetworkCellTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path d="M2 22h20V2L2 22z" fillOpacity=".3" />
-        <path d="M17 7 2 22h15V7z" />
+        <path d="M2 22h20V2L2 22zm18-2h-3V9.83l3-3V20z" />
       </SVGIcon>
     );
   }

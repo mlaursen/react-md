@@ -6,7 +6,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function EmojiEventsTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path fill="none" d="M0 0h24v24H0z" />
         <path
           d="M12 14c-1.65 0-3-1.35-3-3V5h6v6c0 1.65-1.35 3-3 3z"
           opacity=".3"

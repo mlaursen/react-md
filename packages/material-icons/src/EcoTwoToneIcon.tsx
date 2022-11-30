@@ -8,7 +8,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(function EcoTwoToneIcon(
 ) {
   return (
     <SVGIcon {...props} ref={ref}>
-      <path fill="none" d="M0 0h24v24H0z" />
       <path
         d="M7.46 9.46c-1.78 1.79-1.91 4.58-.43 6.54 1.53-2.54 3.73-4.64 6.37-6a15.994 15.994 0 0 0-4.88 7.32c.75.43 1.59.68 2.48.68 1.34 0 2.59-.52 3.54-1.46 1.74-1.74 2.81-6.57 3.26-10.33-3.76.44-8.59 1.51-10.34 3.25z"
         opacity=".3"

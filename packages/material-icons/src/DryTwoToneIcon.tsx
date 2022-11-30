@@ -8,7 +8,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(function DryTwoToneIcon(
 ) {
   return (
     <SVGIcon {...props} ref={ref}>
-      <path fill="none" d="M0 0h24v24H0z" />
       <path
         d="M10 21H4c-.55 0-1-.45-1-1v-6c0-.39.23-.64.36-.75L7 9.87V12h3v9z"
         opacity=".3"

@@ -6,7 +6,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function DeveloperBoardTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path d="M0 0h24v24H0V0zm0 0h24v24H0V0z" fill="none" />
         <path
           d="M4 19h14V5H4v14zm8-12h4v3h-4V7zm0 4h4v6h-4v-6zM6 7h5v5H6V7zm0 6h5v4H6v-4z"
           opacity=".3"

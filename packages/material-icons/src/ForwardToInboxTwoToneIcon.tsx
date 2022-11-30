@@ -6,7 +6,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function ForwardToInboxTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path fill="none" d="M0 0h24v24H0z" />
         <path
           d="M13 18H4V8l8 5 8-5v5h-2c-2.76 0-5 2.24-5 5zm-1-7L4 6h16l-8 5z"
           opacity=".3"

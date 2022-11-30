@@ -6,7 +6,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function ImageNotSupportedTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path fill="none" d="M0 0h24v24H0z" />
         <path
           d="M7.83 5H19v11.17L7.83 5zm8.34 14-2-2H6l3-4 2 2.72.84-1.05L5 7.83V19h11.17z"
           opacity=".3"

@@ -6,7 +6,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function NightsStayTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path fill="none" d="M0 0h24v24H0z" />
         <path
           d="M8.1 14.15A4.01 4.01 0 0 1 11 18c0 .68-.19 1.31-.48 1.87a8 8 0 0 0 5.61-1.01c-2.62-.92-5.23-2.82-6.8-5.86-1.59-3.06-1.55-5.91-1.04-8.1a7.966 7.966 0 0 0-4.3 7.1h.02c1.65 0 3.17.83 4.09 2.15z"
           opacity=".3"

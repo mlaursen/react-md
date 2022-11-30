@@ -6,7 +6,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function MarkEmailUnreadTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path fill="none" d="M0 0h24v24H0z" />
         <path
           d="M4 6h10.1c.22 1.07.79 2 1.57 2.71L12 11 4 6zm0 2v10h16V9.9a4.842 4.842 0 0 1-2.7-.22L12 13 4 8z"
           opacity=".3"

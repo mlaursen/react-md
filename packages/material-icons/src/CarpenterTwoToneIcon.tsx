@@ -6,7 +6,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function CarpenterTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path fill="none" d="M0 0h24v24H0z" />
         <path
           d="M5.71 5.62 7 4.33l8.49 8.49-2.81 2.81L5.71 5.62z"
           opacity=".3"

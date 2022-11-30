@@ -6,7 +6,7 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function SignalCellular3BarTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path d="M2 22h20V2L2 22z" fillOpacity=".3" />
+        <path fillOpacity=".3" d="M2 22h20V2L2 22z" />
         <path d="M17 7 2 22h15V7z" />
       </SVGIcon>
     );

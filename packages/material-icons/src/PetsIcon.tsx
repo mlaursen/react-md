@@ -8,7 +8,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(function PetsIcon(
 ) {
   return (
     <SVGIcon {...props} ref={ref}>
-      <path d="M0 0h24v24H0z" fill="none" />
       <circle cx="4.5" cy="9.5" r="2.5" />
       <circle cx="9" cy="5.5" r="2.5" />
       <circle cx="15" cy="5.5" r="2.5" />

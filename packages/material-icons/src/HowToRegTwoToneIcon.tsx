@@ -6,7 +6,7 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function HowToRegTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <circle cx="11" cy="8" opacity=".3" r="2" />
+        <circle cx="11" cy="8" r="2" opacity=".3" />
         <path
           d="M5 18h4.99L9 17l.93-.94C7.55 16.33 5.2 17.37 5 18z"
           opacity=".3"

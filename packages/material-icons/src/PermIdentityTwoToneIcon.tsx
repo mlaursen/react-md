@@ -6,7 +6,7 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function PermIdentityTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <circle cx="12" cy="8" opacity=".3" r="2" />
+        <circle cx="12" cy="8" r="2" opacity=".3" />
         <path
           d="M12 15c-2.7 0-5.8 1.29-6 2.01V18h12v-1c-.2-.71-3.3-2-6-2z"
           opacity=".3"

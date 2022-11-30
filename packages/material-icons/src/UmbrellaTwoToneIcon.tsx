@@ -6,7 +6,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function UmbrellaTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path fill="none" d="M0 0h24v24H0z" />
         <path
           d="m13.28 8.5.76.58.92-.23L13 14.8V8.29l.28.21zm-4.25.36L11 14.8V8.29l-.28.21-.76.59-.93-.23z"
           opacity=".3"

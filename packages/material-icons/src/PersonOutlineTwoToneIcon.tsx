@@ -6,7 +6,7 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function PersonOutlineTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <circle cx="12" cy="8" opacity=".3" r="2.1" />
+        <circle cx="12" cy="8" r="2.1" opacity=".3" />
         <path
           d="M12 14.9c-2.97 0-6.1 1.46-6.1 2.1v1.1h12.2V17c0-.64-3.13-2.1-6.1-2.1z"
           opacity=".3"

@@ -6,7 +6,7 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function SupervisorAccountTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <circle cx="9" cy="8.5" opacity=".3" r="1.5" />
+        <circle cx="9" cy="8.5" r="1.5" opacity=".3" />
         <path
           d="M4.77 17h4.28c.01-.06.12-.58.29-.99-.11 0-.23-.01-.34-.01-1.53 0-3.25.5-4.23 1z"
           opacity=".3"

@@ -8,11 +8,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(function MicTwoToneIcon(
 ) {
   return (
     <SVGIcon {...props} ref={ref}>
-      <g fill="none">
-        <path d="M0 0h24v24H0z" />
-        <path d="M0 0h24v24H0z" />
-        <path d="M0 0h24v24H0z" />
-      </g>
       <path
         d="M12 12c.55 0 1-.45 1-1V5c0-.55-.45-1-1-1s-1 .45-1 1v6c0 .55.45 1 1 1z"
         opacity=".3"

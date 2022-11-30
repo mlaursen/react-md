@@ -6,7 +6,7 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function BarChartTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path d="M5 9.2h3V19H5zM16.2 13H19v6h-2.8zm-5.6-8h2.8v14h-2.8z" />
+        <path d="M4 9h4v11H4zm12 4h4v7h-4zm-6-9h4v16h-4z" />
       </SVGIcon>
     );
   }

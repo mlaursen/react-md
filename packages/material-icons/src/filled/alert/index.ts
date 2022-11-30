@@ -5,4 +5,5 @@ export { default as AutoDeleteIcon } from "../../AutoDeleteIcon";
 export { default as ErrorIcon } from "../../ErrorIcon";
 export { default as ErrorOutlineIcon } from "../../ErrorOutlineIcon";
 export { default as NotificationImportantIcon } from "../../NotificationImportantIcon";
+export { default as WarningAmberIcon } from "../../WarningAmberIcon";
 export { default as WarningIcon } from "../../WarningIcon";

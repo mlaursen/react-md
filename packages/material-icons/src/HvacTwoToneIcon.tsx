@@ -8,7 +8,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(function HvacTwoToneIcon(
 ) {
   return (
     <SVGIcon {...props} ref={ref}>
-      <path fill="none" d="M0 0h24v24H0z" />
       <path
         d="M5 19h14V5H5v14zm7-13c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6 2.69-6 6-6z"
         opacity=".3"

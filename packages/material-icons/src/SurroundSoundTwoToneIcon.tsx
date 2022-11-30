@@ -6,11 +6,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function SurroundSoundTwoToneIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <g fill="none">
-          <path d="M0 0h24v24H0z" />
-          <path d="M0 0h24v24H0z" />
-          <path d="M0 0h24v24H0z" />
-        </g>
         <path
           d="M4 18h16V6H4v12zM16.94 7.06C18.32 8.41 19 10.21 19 12s-.68 3.59-2.05 4.95l-1.23-1.23A5.262 5.262 0 0 0 17.25 12c0-1.35-.52-2.69-1.54-3.71l1.23-1.23zM12 8.5c1.93 0 3.5 1.57 3.5 3.5s-1.57 3.5-3.5 3.5-3.5-1.57-3.5-3.5 1.57-3.5 3.5-3.5zM7.05 7.05l1.23 1.23A5.305 5.305 0 0 0 6.75 12c0 1.35.52 2.69 1.54 3.71l-1.23 1.23C5.68 15.59 5 13.79 5 12s.68-3.59 2.05-4.95z"
           opacity=".3"

@@ -8,7 +8,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(function StreamIcon(
 ) {
   return (
     <SVGIcon {...props} ref={ref}>
-      <path d="M0 0h24v24H0z" fill="none" />
       <circle cx="20" cy="12" r="2" />
       <circle cx="4" cy="12" r="2" />
       <circle cx="12" cy="20" r="2" />

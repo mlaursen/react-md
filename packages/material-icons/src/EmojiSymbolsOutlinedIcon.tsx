@@ -6,7 +6,6 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function EmojiSymbolsOutlinedIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path fill="none" d="M0 0h24v24H0z" />
         <path d="M3 2h8v2H3zm3 9h2V7h3V5H3v2h3zm6.404 9.182 7.778-7.778 1.414 1.414-7.778 7.778z" />
         <circle cx="14.5" cy="14.5" r="1.5" />
         <circle cx="19.5" cy="19.5" r="1.5" />
