@@ -10,6 +10,7 @@ module.exports = {
     "^@react-md/avatar$": ["<rootDir>/packages/avatar/src/index.ts"],
     "^@react-md/button$": ["<rootDir>/packages/button/src/index.ts"],
     "^@react-md/card$": ["<rootDir>/packages/card/src/index.ts"],
+    "^@react-md/chip$": ["<rootDir>/packages/chip/src/index.ts"],
     "^@react-md/core$": ["<rootDir>/packages/core/src/index.ts"],
     "^@react-md/dialog$": ["<rootDir>/packages/dialog/src/index.ts"],
     "^@react-md/divider$": ["<rootDir>/packages/divider/src/index.ts"],

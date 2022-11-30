@@ -80,6 +80,7 @@ const routes: readonly LayoutNavigationItem[] = [
   createRoute({ name: "Box", pathname: "/box" }),
   createRoute({ name: "Typography", pathname: "/typography" }),
   createRoute({ name: "Button", pathname: "/button" }),
+  createRoute({ name: "Chip", pathname: "/chip" }),
   createRoute({ name: "Material Icons", pathname: "/material-icons" }),
 
   createRoute({ name: "Menu", pathname: "/menu" }),

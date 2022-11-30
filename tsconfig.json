@@ -21,6 +21,7 @@
       "@react-md/avatar": ["packages/avatar/src/index.ts"],
       "@react-md/button": ["packages/button/src/index.ts"],
       "@react-md/card": ["packages/card/src/index.ts"],
+      "@react-md/chip": ["packages/chip/src/index.ts"],
       "@react-md/core": ["packages/core/src/index.ts"],
       "@react-md/dialog": ["packages/dialog/src/index.ts"],
       "@react-md/divider": ["packages/divider/src/index.ts"],

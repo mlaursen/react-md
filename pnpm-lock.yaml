@@ -159,6 +159,20 @@ importers:
       '@react-md/divider': link:../divider
       cnbuilder: 3.1.0
 
+  packages/chip:
+    specifiers:
+      '@react-md/avatar': ^6.0.0-alpha.0
+      '@react-md/core': ^6.0.0-alpha.0
+      '@react-md/icon': ^6.0.0-alpha.0
+      '@react-md/progress': ^6.0.0-alpha.0
+      cnbuilder: ^3.1.0
+    dependencies:
+      '@react-md/avatar': link:../avatar
+      '@react-md/core': link:../core
+      '@react-md/icon': link:../icon
+      '@react-md/progress': link:../progress
+      cnbuilder: 3.1.0
+
   packages/core:
     specifiers: {}
 

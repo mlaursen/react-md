@@ -12,6 +12,7 @@
     "packages/avatar/src/index.ts",
     "packages/button/src/index.ts",
     "packages/card/src/index.ts",
+    "packages/chip/src/index.ts",
     "packages/core/src/index.ts",
     "packages/dialog/src/index.ts",
     "packages/divider/src/index.ts",
