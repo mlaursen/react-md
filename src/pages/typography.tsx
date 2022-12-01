@@ -4,7 +4,9 @@ import type { ReactElement } from "react";
 export default function TypographyPage(): ReactElement {
   return (
     <TextContainer>
-      <Typography type="headline-1">Headline 1</Typography>
+      <Typography type="headline-1" style={{ overflowWrap: "anywhere" }}>
+        Headline 1
+      </Typography>
       <Typography type="body-1">
         Body 1: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Phasellus accumsan auctor neque, eu dignissim ex. Etiam vitae nisl ex.

@@ -23,7 +23,7 @@ $navigation-mini-width: 3.5rem !default;
 $var-lookup: (
   nav-width: (
     var: --rmd-layout-nav-width,
-    value: $navigation-width,
+    value: dialog.sheet-get-var(width, $navigation-width),
   ),
   mini-nav-width: (
     var: --rmd-layout-mini-nav-width,

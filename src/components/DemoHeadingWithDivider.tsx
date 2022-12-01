@@ -10,7 +10,12 @@ export function DemoHeadingWithDivider({
 }: TypographyProps): ReactElement {
   return (
     <>
-      <Typography {...props} type={type} margin={margin} />
+      <Typography
+        {...props}
+        type={type}
+        margin={margin}
+        style={{ overflowWrap: "anywhere" }}
+      />
       <Divider />
     </>
   );

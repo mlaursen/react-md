@@ -7,7 +7,7 @@ export function ScrollableTabsWithScrollbar(): ReactElement {
   const { getTabProps, getTabListProps } = useTabs();
 
   return (
-    <div style={{ maxWidth: "30rem", marginBottom: "10rem" }}>
+    <div style={{ maxWidth: "30rem", marginBottom: "10rem", width: "100%" }}>
       <TabList {...getTabListProps()} scrollButtons scrollbar>
         {tabs.map((name, i) => (
           <Tab key={name} {...getTabProps(i)}>

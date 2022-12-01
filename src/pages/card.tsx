@@ -8,8 +8,9 @@ import {
   CardSubtitle,
   CardTitle,
 } from "@react-md/card";
-import { Box, Collapse, TextContainer, Typography } from "@react-md/core";
+import { Box, Collapse, Typography } from "@react-md/core";
 import { IconRotator } from "@react-md/icon";
+import { Link } from "@react-md/link";
 import { List, ListItem } from "@react-md/list";
 import EmailIcon from "@react-md/material-icons/EmailIcon";
 import KeyboardArrowDownIcon from "@react-md/material-icons/KeyboardArrowDownIcon";
@@ -18,18 +19,18 @@ import {
   VisualMediaContainer,
   VisualMediaOverlay,
 } from "@react-md/visual-media";
+import Image from "next/image";
 import type { ReactElement } from "react";
 import { useState } from "react";
 import { DemoHeadingWithDivider } from "src/components/DemoHeadingWithDivider";
+import { Resettable } from "src/components/Resettable";
 import moraineLake from "src/pexels/pexels-jaime-reimer-2662116-600x427.jpg";
-import Image from "next/image";
-import { Link } from "@react-md/link";
 
 export default function CardPage(): ReactElement {
   const [expanded, setExpanded] = useState(false);
   return (
-    <TextContainer>
-      <Box>
+    <Resettable>
+      <Box stacked>
         <DemoHeadingWithDivider margin="none">
           SImple Example
         </DemoHeadingWithDivider>
@@ -217,6 +218,6 @@ export default function CardPage(): ReactElement {
           </Collapse>
         </Card>
       </Box>
-    </TextContainer>
+    </Resettable>
   );
 }
