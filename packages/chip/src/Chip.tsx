@@ -150,6 +150,9 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(function Chip(
     onMouseDown,
     onMouseUp,
     onMouseLeave,
+    onTouchStart,
+    onTouchEnd,
+    onTouchMove,
     leftAddon: propLeftAddon,
     rightAddon: propRightAddon,
     contentProps,
@@ -222,6 +225,9 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(function Chip(
       onMouseDown,
       onMouseUp,
       onMouseLeave,
+      onTouchStart,
+      onTouchEnd,
+      onTouchMove,
       disabled: disabled || noninteractive,
     });
   const children = useHigherContrastChildren(content);

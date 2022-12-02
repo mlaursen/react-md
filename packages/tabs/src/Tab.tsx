@@ -61,6 +61,9 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
     onMouseDown,
     onMouseUp,
     onMouseLeave,
+    onTouchStart,
+    onTouchEnd,
+    onTouchMove,
     ...remaining
   } = props;
   const { disabled } = props;
@@ -75,6 +78,9 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
     onMouseDown,
     onMouseUp,
     onMouseLeave,
+    onTouchStart,
+    onTouchEnd,
+    onTouchMove,
     disabled,
   });
 

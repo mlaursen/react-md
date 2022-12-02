@@ -2,6 +2,7 @@ import type {
   FocusEventHandler,
   KeyboardEventHandler,
   MouseEventHandler,
+  TouchEventHandler,
 } from "react";
 
 /**
@@ -81,6 +82,25 @@ export interface ElementInteractionHandlers<E extends HTMLElement> {
    * outside of the element which would never trigger the `onMouseUp` flow.
    */
   onMouseLeave: MouseEventHandler<E>;
+
+  /**
+   * The touchstart event handler is used to either activate the `pressed` state
+   * for the element or start the ripple animation.
+   */
+  onTouchStart: TouchEventHandler<E>;
+
+  /**
+   * The touchend event handler is used to either deactivate the `pressed`
+   * state for the element or start the exit animation for the ripple if the
+   * ripple was activated by the touchstart event.
+   */
+  onTouchEnd: TouchEventHandler<E>;
+
+  /**
+   * The touchmove event handler will remove all ripples and prevent any other
+   * interactions if the current {@link UserInteractionMode} is `"touch"`.
+   */
+  onTouchMove: TouchEventHandler<E>;
 }
 
 /**

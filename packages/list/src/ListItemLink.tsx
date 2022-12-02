@@ -66,6 +66,9 @@ export const ListItemLink = forwardRef<HTMLAnchorElement, ListItemLinkProps>(
       onMouseDown,
       onMouseUp,
       onMouseLeave,
+      onTouchStart,
+      onTouchEnd,
+      onTouchMove,
       tabIndex = disabled ? -1 : undefined,
       children: propChildren,
       ...remaining
@@ -79,6 +82,9 @@ export const ListItemLink = forwardRef<HTMLAnchorElement, ListItemLinkProps>(
         onMouseDown,
         onMouseUp,
         onMouseLeave,
+        onTouchStart,
+        onTouchEnd,
+        onTouchMove,
         disabled,
       });
     const children = useHigherContrastChildren(

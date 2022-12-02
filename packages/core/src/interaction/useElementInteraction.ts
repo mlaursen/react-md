@@ -1,4 +1,4 @@
-import type { KeyboardEvent, MouseEvent, FocusEvent } from "react";
+import type { FocusEvent, KeyboardEvent, MouseEvent, TouchEvent } from "react";
 import { useCallback, useReducer, useRef } from "react";
 import { useElementInteractionContext } from "./ElementInteractionProvider";
 import type {
@@ -93,6 +93,9 @@ const noop = (): void => {
  *     onMouseDown,
  *     onMouseUp,
  *     onMouseLeave,
+ *     onTouchStart,
+ *     onTouchMove,
+ *     onTouchEnd,
  *     ...remaining,
  *   } = props;
  *
@@ -109,6 +112,9 @@ const noop = (): void => {
  *       onMouseDown,
  *       onMouseUp,
  *       onMouseLeave,
+ *       onTouchStart,
+ *       onTouchMove,
+ *       onTouchEnd,
  *     })
  *
  *   return (
@@ -145,6 +151,9 @@ export function useElementInteraction<E extends HTMLElement>(
     onMouseLeave = noop,
     onKeyUp = noop,
     onKeyDown = noop,
+    onTouchStart = noop,
+    onTouchEnd = noop,
+    onTouchMove = noop,
     disabled = false,
   } = options;
 
@@ -180,13 +189,12 @@ export function useElementInteraction<E extends HTMLElement>(
           };
         }
         case "cancel":
+          // Note: unlike previous react-md versions, this will immediately
+          // remove ALL ripple effects instead of trying to fade out. this seems
+          // much nicer for touch deviecs when they are trying to scroll
           return {
             pressed: false,
-            ripples: state.ripples.map((ripple) => ({
-              ...ripple,
-              entered: true,
-              exiting: true,
-            })),
+            ripples: [],
           };
         case "release": {
           if (mode === "press") {
@@ -399,6 +407,50 @@ export function useElementInteraction<E extends HTMLElement>(
           dispatch({ type: "release" });
         },
         [isInteractionDisabled, onKeyUp, userMode]
+      ),
+      onTouchStart: useCallback(
+        (event: TouchEvent<E>) => {
+          onTouchStart(event);
+          if (event.isPropagationStopped() || isInteractionDisabled) {
+            return;
+          }
+
+          holding.current = true;
+          event.stopPropagation();
+          let style: RippleStyle | undefined;
+          if (mode === "ripple") {
+            style = getRippleStyle(event, false);
+          }
+
+          dispatch({ type: "press", style });
+        },
+        [mode, isInteractionDisabled, onTouchStart]
+      ),
+      onTouchEnd: useCallback(
+        (event: TouchEvent<E>) => {
+          onTouchEnd(event);
+          if (event.isPropagationStopped() || isInteractionDisabled) {
+            return;
+          }
+
+          holding.current = false;
+          event.stopPropagation();
+          dispatch({ type: "release" });
+        },
+        [isInteractionDisabled, onTouchEnd]
+      ),
+      onTouchMove: useCallback(
+        (event: TouchEvent<E>) => {
+          onTouchMove(event);
+          if (event.isPropagationStopped() || isInteractionDisabled) {
+            return;
+          }
+
+          holding.current = false;
+          event.stopPropagation();
+          dispatch({ type: "cancel" });
+        },
+        [isInteractionDisabled, onTouchMove]
       ),
     },
   };
