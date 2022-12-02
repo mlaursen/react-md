@@ -127,6 +127,7 @@ The main reason is that I don't think a user would actually install only one of 
   ```
   This fixes an issue where you could tab out of a Dialog that had a Tree that rendered links (temporary layouts)
 - The `useFixedPositioning` hook will always provide an initial style including `position: "fixed" | "absolute"` and `transform-origin` (if `transformOrigin === true`). This fixes an issue of the page scrolling while focusing temporary elements when the transition is disabled.
+- The collapse transition animates more smoothly when the element has vertical padding applied
 
 ## TODO
 

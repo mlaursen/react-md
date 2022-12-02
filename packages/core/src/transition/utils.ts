@@ -61,11 +61,9 @@ export function getElementSizing(element: HTMLElement | null): CollapseSizing {
   let paddingTop;
   let paddingBottom;
   if (element) {
-    maxHeight = element.scrollHeight;
-
-    // clone the element (not deep) just to figure out it's padding without the
-    // inline styles applied
-    const cloned = element.cloneNode(false) as HTMLElement;
+    // clone the element so that the total height and padding can be calculated
+    // without being affected by the collapse transition inline styles
+    const cloned = element.cloneNode(true) as HTMLElement;
     cloned.style.maxHeight = "";
     cloned.style.padding = "";
     cloned.style.paddingLeft = element.style.paddingLeft;
@@ -74,13 +72,16 @@ export function getElementSizing(element: HTMLElement | null): CollapseSizing {
 
     const container = element.parentElement || document.body;
     container.appendChild(cloned);
+    maxHeight = cloned.scrollHeight;
     const style = window.getComputedStyle(cloned);
     if (style.paddingTop) {
       paddingTop = parseFloat(style.paddingTop);
+      maxHeight + paddingTop;
     }
 
     if (style.paddingBottom) {
       paddingBottom = parseFloat(style.paddingBottom);
+      maxHeight + paddingBottom;
     }
     container.removeChild(cloned);
   }
