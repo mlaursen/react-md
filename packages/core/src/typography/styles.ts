@@ -134,6 +134,21 @@ export interface TypographyClassNameOptions {
   disableLineWrap?: boolean;
 }
 
+/** @remarks \@since 6.0.0 */
+export type NullableTypographyClassNameOptions = Omit<
+  TypographyClassNameOptions,
+  "type"
+> & {
+  /**
+   * When using the {@link typography} class name utility, the `type` can be set
+   * to `null` to inherit font.
+   *
+   * @see {@link TypographyType}
+   * @defaultValue `"body-1"`
+   */
+  type?: TypographyType | null;
+};
+
 /**
  * Get a typography class name based on different typography options. This is
  * only useful if you are unable to use the {@link Typography} component for
@@ -216,7 +231,9 @@ export interface TypographyClassNameOptions {
  * @returns a typography class name string
  * @remarks \@since 6.0.0
  */
-export function typography(options: TypographyClassNameOptions = {}): string {
+export function typography(
+  options: NullableTypographyClassNameOptions = {}
+): string {
   const {
     type = "body-1",
     align,
@@ -232,7 +249,7 @@ export function typography(options: TypographyClassNameOptions = {}): string {
 
   return cnb(
     styles({
-      [type]: true,
+      [type || ""]: !!type,
       "no-margin": margin === "none",
       "no-margin-top": margin === "bottom",
       "no-margin-bottom": margin === "top",

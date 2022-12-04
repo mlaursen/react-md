@@ -6,6 +6,8 @@ $disable-bordered: false !default;
 $disable-shadowed: false !default;
 $disable-raiseable: false !default;
 $disable-full-width: false !default;
+$disable-content-secondary-color: false !default;
+$disable-content-last-child-padding: false !default;
 
 $elevation: 2 !default;
 $raiseable-start-elevation: 1 !default;
@@ -151,21 +153,29 @@ $var-lookup: (
     // }
 
     &__content {
-      &--secondary {
-        @include core.use-theme-var(color, text-secondary-color);
+      @if not $disable-content-secondary-color {
+        &--secondary {
+          @include core.use-theme-var(color, text-secondary-color);
+        }
       }
 
-      &--padded {
-        padding: $content-padding;
+      @if $content-padding {
+        &--padded {
+          padding: $content-padding;
+        }
       }
 
-      &--padded-bottom:last-child {
-        padding-bottom: $content-padding-bottom;
+      @if not $disable-content-last-child-padding {
+        &--padded-bottom:last-child {
+          padding-bottom: $content-padding-bottom;
+        }
       }
     }
 
-    &__footer {
-      padding: $footer-padding;
+    @if $footer-padding {
+      &__footer {
+        padding: $footer-padding;
+      }
     }
   }
 }

@@ -3,17 +3,26 @@ import { forwardRef } from "react";
 import type { CardContentClassNameOptions } from "./styles";
 import { cardContent } from "./styles";
 
+/**
+ * @remarks
+ * \@since 6.0.0 Renamed `disableExtraPadding` to `disableLastChildPadding` and
+ * removed the `disableParagraphMargin` prop.
+ */
 export interface CardContentProps
   extends HTMLAttributes<HTMLDivElement>,
     CardContentClassNameOptions {}
 
+/**
+ * The default implementation for content within a card.
+ */
 export const CardContent = forwardRef<HTMLDivElement, CardContentProps>(
   function CardContent(props, ref) {
     const {
       children,
       className,
-      disablePadding,
-      disableLastChildPadding,
+      disablePadding = false,
+      disableSecondaryColor = false,
+      disableLastChildPadding = false,
       ...remaining
     } = props;
 
@@ -24,6 +33,7 @@ export const CardContent = forwardRef<HTMLDivElement, CardContentProps>(
         className={cardContent({
           className,
           disablePadding,
+          disableSecondaryColor,
           disableLastChildPadding,
         })}
       >

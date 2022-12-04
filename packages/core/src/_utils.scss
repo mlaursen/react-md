@@ -8,6 +8,7 @@ $disable-validation: false !default;
 
 $_swappable-positions: top right bottom left;
 $_swappable-position-prefixes: border margin padding;
+$_swappable-properties: text-align;
 
 @function scrollbar-size() {
   @return var(--rmd-scrollbar-size, 0px);
@@ -157,13 +158,13 @@ $_swappable-position-prefixes: border margin padding;
   }
 }
 
-@function _swap-position($style) {
+@function _swap-position($property) {
   $prefix: "";
-  $position: $style;
+  $position: $property;
   @each $valid-prefix in $_swappable-position-prefixes {
-    @if string.index($style, "#{$valid-prefix}-") {
+    @if string.index($property, "#{$valid-prefix}-") {
       $prefix: "#{$valid-prefix}-";
-      $position: str-replace($style, $prefix, "");
+      $position: str-replace($property, $prefix, "");
     }
   }
 
@@ -204,20 +205,25 @@ $_swappable-position-prefixes: border margin padding;
 }
 
 @mixin auto-rtl($property, $value, $swapped-value: null) {
-  $inversed-property: _swap-position($property);
   @include rtl {
-    @if not $swapped-value {
-      $swapped-value: auto;
+    @if list.index($_swappable-properties, $property) {
+      $swapped-property-value: $swapped-value or _swap-position($value);
+      #{$property}: #{$swapped-property-value};
+    } @else {
+      $inversed-property: _swap-position($property);
+      @if not $swapped-value {
+        $swapped-value: auto;
 
-      @each $prefix in $_swappable-position-prefixes {
-        @if string.index($property, "#{$prefix}-") {
-          $swapped-value: 0;
+        @each $prefix in $_swappable-position-prefixes {
+          @if string.index($property, "#{$prefix}-") {
+            $swapped-value: 0;
+          }
         }
       }
-    }
 
-    #{$property}: #{$swapped-value};
-    #{$inversed-property}: #{$value};
+      #{$property}: #{$swapped-value};
+      #{$inversed-property}: #{$value};
+    }
     @content;
   }
 

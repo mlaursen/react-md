@@ -8,16 +8,25 @@ export interface CardClassNameOptions {
   className?: string;
 
   /**
+   * Set this to `true` if the card should use apply an inset `border` instead
+   * of `box-shadow`.
+   *
    * @defaultValue `false`
    */
   bordered?: boolean;
 
   /**
+   * Set this to `true` if the card should gain additional box shadow while
+   * hovered.
+   *
    * @defaultValue `false`
    */
   raiseable?: boolean;
 
   /**
+   * Update the card to have `display: block` and `width: 100%` instead of
+   * `display: inline-block`.
+   *
    * @defaultValue `false`
    */
   fullWidth?: boolean;
@@ -117,7 +126,28 @@ export function cardSubtitle(
 /** @remarks \@since 6.0.0 */
 export interface CardContentClassNameOptions {
   className?: string;
+
+  /**
+   * Set this to `true` to disable the card's padding.
+   *
+   * @defaultValue `false`
+   */
   disablePadding?: boolean;
+
+  /**
+   * Set this to `true` to disable applying the `text-secondary-color`.
+   *
+   * @defaultValue `false`
+   */
+  disableSecondaryColor?: boolean;
+
+  /**
+   * Set this to `true` to disable applying extra `padding-bottom` if the
+   * `CardContent` component is the last child.
+   *
+   * @defaultValue `false`
+   * @remarks \@since 6.0.0 Renamed from `disableExtraPadding`
+   */
   disableLastChildPadding?: boolean;
 }
 
@@ -128,12 +158,14 @@ export function cardContent(options: CardContentClassNameOptions): string {
   const {
     className,
     disablePadding = false,
+    disableSecondaryColor = false,
     disableLastChildPadding = false,
   } = options;
 
   return cnb(
     cardStyles("content", {
       padded: !disablePadding,
+      secondary: !disableSecondaryColor,
       "padding-bottom": !disableLastChildPadding,
     }),
     className

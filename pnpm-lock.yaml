@@ -199,6 +199,18 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
 
+  packages/expansion-panel:
+    specifiers:
+      '@react-md/button': ^6.0.0-alpha.0
+      '@react-md/core': ^6.0.0-alpha.0
+      '@react-md/icon': ^6.0.0-alpha.0
+      cnbuilder: ^3.1.0
+    dependencies:
+      '@react-md/button': link:../button
+      '@react-md/core': link:../core
+      '@react-md/icon': link:../icon
+      cnbuilder: 3.1.0
+
   packages/form:
     specifiers:
       '@react-md/button': ^6.0.0-alpha.0

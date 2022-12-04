@@ -16,6 +16,7 @@
     "packages/core/src/index.ts",
     "packages/dialog/src/index.ts",
     "packages/divider/src/index.ts",
+    "packages/expansion-panel/src/index.ts",
     "packages/form/src/index.ts",
     "packages/icon/src/index.ts",
     "packages/layout/src/index.ts",

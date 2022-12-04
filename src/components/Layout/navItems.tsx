@@ -115,6 +115,7 @@ const routes: readonly LayoutNavigationItem[] = [
   }),
 
   createRoute({ name: "Table", pathname: "/table" }),
+  createRoute({ name: "Expansion Panel", pathname: "/expansion-panel" }),
   createRoute({ name: "Tabs", pathname: "/tabs" }),
   createRoute({ name: "Tooltip", pathname: "/tooltip" }),
   createRoute({ name: "Tree", pathname: "/tree" }),

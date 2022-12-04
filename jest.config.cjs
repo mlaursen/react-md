@@ -14,6 +14,9 @@ module.exports = {
     "^@react-md/core$": ["<rootDir>/packages/core/src/index.ts"],
     "^@react-md/dialog$": ["<rootDir>/packages/dialog/src/index.ts"],
     "^@react-md/divider$": ["<rootDir>/packages/divider/src/index.ts"],
+    "^@react-md/expansion-panel$": [
+      "<rootDir>/packages/expansion-panel/src/index.ts",
+    ],
     "^@react-md/form$": ["<rootDir>/packages/form/src/index.ts"],
     "^@react-md/icon$": ["<rootDir>/packages/icon/src/index.ts"],
     "^@react-md/layout$": ["<rootDir>/packages/layout/src/index.ts"],
