@@ -12,9 +12,4 @@
     background-color,
     everything.get-theme-var(surface-color)
   );
-
-  option {
-    // this fixes the white/grey background color in firefox when using dark mode
-    @include everything.use-theme-var(background-color);
-  }
 }

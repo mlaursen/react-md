@@ -157,6 +157,14 @@ export interface ColorSchemeProviderProps {
    * @defaultValue `""`
    */
   localStorageKey?: string;
+
+  /**
+   * Set this to `true` to prevent a `<meta name="color-scheme" content="{COLOR_SCHEME}">`
+   * from being added to the `document.head`.
+   *
+   * @defaultValue `false`
+   */
+  disableMetaTag?: boolean;
   children: ReactNode;
 }
 
@@ -167,7 +175,12 @@ export interface ColorSchemeProviderProps {
 export function ColorSchemeProvider(
   props: ColorSchemeProviderProps
 ): ReactElement {
-  const { children, mode = "light", localStorageKey = "" } = props;
+  const {
+    children,
+    mode = "light",
+    localStorageKey = "",
+    disableMetaTag,
+  } = props;
   const { value: colorSchemeMode, setValue: setColorSchemeMode } =
     useLocalStorage({
       raw: true,
@@ -227,6 +240,31 @@ export function ColorSchemeProvider(
       }
     }, [mode]);
   }
+
+  useEffect(() => {
+    if (disableMetaTag || document.querySelector('meta[name="color-scheme"]')) {
+      return;
+    }
+
+    // Adding the meta tag allows the default browser styles for form inputs to
+    // be updated as well.
+    //
+    // Chrome and Firefox:
+    // - the input type="number"'s spinner color will update from grey to white
+    // - native `<select>` background color updates from grey/white to a dark color
+    //
+    // Chrome:
+    // - the date/time/datetime icons will change from black to white
+    // - the date/time/datetime pickers will use a darker theme instead of white
+    const meta = document.createElement("meta");
+    meta.name = "color-scheme";
+    meta.content = colorSchemeMode === "system" ? colorScheme : colorSchemeMode;
+    document.head.appendChild(meta);
+
+    return () => {
+      document.head.removeChild(meta);
+    };
+  }, [colorScheme, colorSchemeMode, disableMetaTag, mode]);
 
   return <Provider value={value}>{children}</Provider>;
 }

@@ -14,7 +14,11 @@ import {
 import type { PortalContainer } from "./portal/PortalContainerProvider";
 import { PortalContainerProvider } from "./portal/PortalContainerProvider";
 import { SsrProvider } from "./SsrProvider";
-import type { ColorSchemeMode } from "./theme/ColorSchemeProvider";
+import type {
+  ColorSchemeMode,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  ColorSchemeProviderProps,
+} from "./theme/ColorSchemeProvider";
 import { ColorSchemeProvider } from "./theme/ColorSchemeProvider";
 import type { DefaultDir } from "./typography/WritingDirection";
 import {
@@ -60,11 +64,23 @@ export interface CoreProvidersProps {
    */
   ssr?: boolean;
 
-  colorSchemeMode?: ColorSchemeMode;
   /**
+   * @see {@link ColorSchemeProviderProps.mode}
+   * @defaultValue `"light"`
+   */
+  colorSchemeMode?: ColorSchemeMode;
+
+  /**
+   * @see {@link ColorSchemeProviderProps.localStorageKey}
    * @defaultValue `""`
    */
   colorSchemeModeKey?: string;
+
+  /**
+   * @see {@link ColorSchemeProviderProps.disableMetaTag}
+   * @defaultValue `false`
+   */
+  disableColorSchemeMetaTag?: boolean;
 
   children: ReactNode;
 }
@@ -79,6 +95,7 @@ export function CoreProviders(props: CoreProvidersProps): ReactElement {
     defaultDir = DEFAULT_WRITING_DIRECTION,
     colorSchemeMode = "light",
     colorSchemeModeKey = "",
+    disableColorSchemeMetaTag = false,
     portalContainer,
     children,
   } = props;
@@ -87,6 +104,7 @@ export function CoreProviders(props: CoreProvidersProps): ReactElement {
       <ColorSchemeProvider
         mode={colorSchemeMode}
         localStorageKey={colorSchemeModeKey}
+        disableMetaTag={disableColorSchemeMetaTag}
       >
         <WritingDirection defaultDir={defaultDir}>
           <PortalContainerProvider container={portalContainer}>
