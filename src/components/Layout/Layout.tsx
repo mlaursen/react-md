@@ -83,6 +83,7 @@ export default function Layout(props: LayoutProps): ReactElement {
         desktopLayout={desktopLayout}
         largeDesktopLayout={largeDesktopLayout}
         landscapeTabletLayout={landscapeTabletLayout}
+        defaultToggleableVisible
       >
         <NavWindowSplitter />
         {children}

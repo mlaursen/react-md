@@ -19,6 +19,10 @@ export function WindowSplitter(): ReactElement {
   const { layout, hideNav } = useLayoutConfig();
   const toggleable = isToggleableLayout(layout);
   const fullHeight = isFullHeightLayout(layout) || toggleable;
+
+  // TODO: The `value` should be the total distance dragged instead of the
+  // current percentage. This should also update the `min` and `max` to be
+  // min/max draggable distance in px
   const { value, dragging, splitterProps } = useWindowSplitter({
     min: 4,
     max: 60,
