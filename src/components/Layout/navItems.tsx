@@ -77,7 +77,11 @@ const routes: readonly LayoutNavigationItem[] = [
       { name: "Switch", pathname: "/switch" },
     ],
   }),
-  createRoute({ name: "Box", pathname: "/box" }),
+  ...createRoutes({
+    name: "CSS Layout",
+    pathname: "/css-layout",
+    routes: [{ name: "Box", pathname: "/box" }],
+  }),
   createRoute({ name: "Typography", pathname: "/typography" }),
   createRoute({ name: "Button", pathname: "/button" }),
   createRoute({ name: "Chip", pathname: "/chip" }),

@@ -4,6 +4,8 @@
 $default-box-align-items: center !default;
 
 $disable-box: false !default;
+$disable-box-stacked: false !default;
+$disable-box-reversed: false !default;
 $disable-grid-box: false !default;
 $disable-grid-columns: false !default;
 
@@ -108,8 +110,22 @@ $box-var-lookup: (
         flex-wrap: wrap;
       }
 
-      &--flex-column {
-        flex-direction: column;
+      @if not $disable-box-stacked {
+        &--column {
+          flex-direction: column;
+        }
+      }
+
+      @if not $disable-box-reversed {
+        &--reverse {
+          flex-direction: row-reverse;
+        }
+
+        @if not $disable-box-stacked {
+          &--column-reverse {
+            flex-direction: column-reverse;
+          }
+        }
       }
 
       @each $value in $box-align-items {

@@ -80,6 +80,9 @@ export interface BoxOptions {
 
   /** @defaultValue `false` */
   stacked?: boolean;
+
+  /** @defaultValue `false` */
+  reversed?: boolean;
 }
 
 export function box(options: BoxOptions = {}): string {
@@ -93,13 +96,16 @@ export function box(options: BoxOptions = {}): string {
     gridColumns = "fit",
     align = "",
     justify = "",
+    reversed,
   } = options;
 
   return cnb(
     styles({
       wrap: !disableWrap,
       padded: !disablePadding,
-      "flex-column": stacked,
+      column: stacked && !reversed,
+      reverse: !stacked && reversed,
+      "column-reverse": stacked && reversed,
       grid,
       "grid-fill": gridColumns === "fill",
       "grid-columns": typeof gridColumns === "number",

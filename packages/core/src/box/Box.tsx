@@ -117,6 +117,7 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(
     gridColumns = "fit",
     align,
     justify,
+    reversed = false,
     disableWrap = false,
     disablePadding = false,
     ...remaining
@@ -134,6 +135,7 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(
         gridColumns,
         align,
         justify,
+        reversed,
         disableWrap,
         disablePadding,
       })}
