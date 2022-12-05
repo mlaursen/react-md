@@ -91,7 +91,7 @@ export interface MenuItemRadioGroupImplementation<V extends string | number> {
   reset(): void;
   value: V;
   setValue: UseStateSetter<V>;
-  getCheckboxProps(value: V): {
+  getRadioProps(value: V): {
     checked: boolean;
     onCheckedChange(): void;
   };
