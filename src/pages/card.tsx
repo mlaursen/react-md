@@ -10,7 +10,6 @@ import {
 } from "@react-md/card";
 import { Box, Collapse, Typography } from "@react-md/core";
 import { IconRotator } from "@react-md/icon";
-import { Link } from "@react-md/link";
 import { List, ListItem } from "@react-md/list";
 import EmailIcon from "@react-md/material-icons/EmailIcon";
 import KeyboardArrowDownIcon from "@react-md/material-icons/KeyboardArrowDownIcon";
@@ -19,12 +18,10 @@ import {
   VisualMediaContainer,
   VisualMediaOverlay,
 } from "@react-md/visual-media";
-import Image from "next/image";
 import type { ReactElement } from "react";
 import { useState } from "react";
 import { DemoHeadingWithDivider } from "src/components/DemoHeadingWithDivider";
 import { Resettable } from "src/components/Resettable";
-import moraineLake from "src/pexels/pexels-jaime-reimer-2662116-600x427.jpg";
 
 export default function CardPage(): ReactElement {
   const [expanded, setExpanded] = useState(false);
@@ -32,7 +29,7 @@ export default function CardPage(): ReactElement {
     <Resettable>
       <Box stacked>
         <DemoHeadingWithDivider margin="none">
-          SImple Example
+          Simple Example
         </DemoHeadingWithDivider>
         <Card>
           <CardHeader>
@@ -117,18 +114,13 @@ export default function CardPage(): ReactElement {
         </Card>
         <DemoHeadingWithDivider>With Media</DemoHeadingWithDivider>
         <Card>
-          <VisualMediaContainer>
-            <Image src={moraineLake} alt="" />
+          <VisualMediaContainer fullWidth>
+            <img src="https://picsum.photos/600/337?image=402" alt="" />
             <VisualMediaOverlay>
               <CardTitle>Wow</CardTitle>
             </VisualMediaOverlay>
           </VisualMediaContainer>
           <CardContent>
-            <Typography>
-              <Link href="https://www.pexels.com/photo/beautiful-view-of-moraine-lake-2662116/">
-                https://www.pexels.com/photo/beautiful-view-of-moraine-lake-2662116/
-              </Link>
-            </Typography>
             <Typography margin="none">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut
               eleifend odio. Vivamus quis quam eget augue facilisis laoreet.
@@ -183,12 +175,12 @@ export default function CardPage(): ReactElement {
           </CardFooter>
         </Card>
         <DemoHeadingWithDivider>Expandable Card</DemoHeadingWithDivider>
-        <Card fullWidth>
+        <Card fullWidth style={{ maxWidth: "20rem" }}>
           <VisualMediaContainer fullWidth>
-            <Image src={moraineLake} alt="" />
+            <img src="https://picsum.photos/300/200?image=1011" alt="" />
           </VisualMediaContainer>
           <CardHeader
-            beforeAddon={<Avatar src="https://i.pravatar.cc/56?img=24" />}
+            beforeAddon={<Avatar src="https://picsum.photos/40?image=1011" />}
             afterAddon={
               <Button
                 buttonType="icon"

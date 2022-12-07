@@ -26,17 +26,17 @@ export function useCustomLayout(): CustomLayout {
   const { value: desktopLayout, setValue: setDesktopLayout } =
     useLocalStorage<SupportedWideLayout>({
       key: "desktopLayout",
-      defaultValue: "temporary",
+      defaultValue: "toggleable",
     });
   const { value: largeDesktopLayout, setValue: setLargeDesktopLayout } =
     useLocalStorage<SupportedWideLayout>({
       key: "largeDesktopLayout",
-      defaultValue: "temporary",
+      defaultValue: "toggleable",
     });
   const { value: landscapeTabletLayout, setValue: setLandscapeTabletLayout } =
     useLocalStorage<SupportedTabletLayout>({
       key: "landscapeTabletLayout",
-      defaultValue: "temporary",
+      defaultValue: "toggleable",
     });
 
   return {

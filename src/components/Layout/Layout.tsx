@@ -1,7 +1,8 @@
-import { useToggle } from "@react-md/core";
+import { useTheme, useToggle } from "@react-md/core";
 import { Sheet } from "@react-md/dialog";
 import { Layout as RMDLayout, useLayoutNavigation } from "@react-md/layout";
 import type { ListElement } from "@react-md/list";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import type { ReactElement, ReactNode } from "react";
 import { useCallback, useRef } from "react";
@@ -57,9 +58,13 @@ export default function Layout(props: LayoutProps): ReactElement {
     largeDesktopLayout,
     landscapeTabletLayout,
   } = context;
+  const { primaryColor } = useTheme();
 
   return (
     <WebsiteConfigurationProvider value={context}>
+      <Head>
+        <meta name="theme-color" content={primaryColor} />
+      </Head>
       <RMDLayout
         appBarProps={{
           children: <MainActions showConfiguration={showConfiguration} />,

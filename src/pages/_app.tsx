@@ -132,6 +132,7 @@ export default function App(props: AppProps): ReactElement {
     >
       <Head>
         <title>{title}</title>
+        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
       </Head>
       <ThemeProvider>
         <IconProvider {...icons}>

@@ -7,12 +7,13 @@ import {
 } from "@react-md/visual-media";
 import type { ReactElement } from "react";
 import { DemoHeadingWithDivider } from "src/components/DemoHeadingWithDivider";
-import image1 from "src/pexels/pexels-jaime-reimer-2662116-600x427.jpg";
-import image2 from "src/pexels/pexels-james-wheeler-1539225-300x200.jpg";
-import image3 from "src/pexels/pexels-mateusz-sałaciak-4275885-100x110.jpg";
-import image4 from "src/pexels/pexels-eberhard-grossgasteiger-1417647-300x300.jpg";
 
-const images = [image1.src, image2.src, image3.src, image4.src];
+const images = [
+  "https://picsum.photos/200/300?image=30",
+  "https://picsum.photos/300/200?image=3",
+  "https://picsum.photos/300?image=1008",
+  "https://picsum.photos/100/110?image=233",
+];
 
 const positions: MediaOverlayPosition[] = [
   "top",
@@ -42,10 +43,10 @@ export default function VisualMediaPage(): ReactElement {
         </Card>
         <DemoHeadingWithDivider>Forced Aspect Ratio</DemoHeadingWithDivider>
         <VisualMediaContainer aspectRatio="16-9">
-          <img src={image4.src} alt="" />
+          <img src="https://picsum.photos/400/300?image=3" alt="" />
         </VisualMediaContainer>
         <VisualMediaContainer aspectRatio="1-1">
-          <img src={image1.src} alt="" />
+          <img src="https://picsum.photos/400/300?image=623" alt="" />
         </VisualMediaContainer>
         <VisualMediaContainer aspectRatio="16-9">
           <iframe
@@ -55,11 +56,11 @@ export default function VisualMediaPage(): ReactElement {
             title="YouTube Video"
           />
         </VisualMediaContainer>
-        <DemoHeadingWithDivider>Forced Aspect Ratio</DemoHeadingWithDivider>
+        <DemoHeadingWithDivider>With Overlay</DemoHeadingWithDivider>
         {/* TODO: Update this is it is copy/paste-able instead */}
-        {positions.map((position) => (
+        {positions.map((position, i) => (
           <VisualMediaContainer key={position} aspectRatio="16-9">
-            <img src={image1.src} alt="" />
+            <img src={`https://picsum.photos/800/800?image=43${i}`} alt="" />
             <VisualMediaOverlay position={position}>
               <Typography
                 type="headline-5"
