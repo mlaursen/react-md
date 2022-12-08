@@ -54,9 +54,11 @@ export function parseCssLengthUnit(options: ParseCssLengthUnitOptions): number {
     return parsed * fallbackFontSize;
   }
 
+  const styleContainer =
+    !container || /rem$/i.test(value) ? document.documentElement : container;
+
   const fontSize = parseFloat(
-    window.getComputedStyle(container || document.documentElement).fontSize ||
-      `${fallbackFontSize}px`
+    window.getComputedStyle(styleContainer).fontSize || `${fallbackFontSize}px`
   );
 
   return parsed * fontSize;

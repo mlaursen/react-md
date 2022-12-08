@@ -258,10 +258,10 @@ export function useDraggable<E extends HTMLElement>(
     setValue(min);
   }, [min, setValue]);
   const increment = useCallback(() => {
-    setValue((prevValue) => withinRange(prevValue + step, min, max));
+    setValue((prevValue) => withinRange({ min, max, value: prevValue + step }));
   }, [max, min, setValue, step]);
   const decrement = useCallback(() => {
-    setValue((prevValue) => withinRange(prevValue - step, min, max));
+    setValue((prevValue) => withinRange({ min, max, value: prevValue - step }));
   }, [max, min, setValue, step]);
 
   const draggingClassName = dragging && !disableDraggingClassName;
@@ -293,7 +293,7 @@ export function useDraggable<E extends HTMLElement>(
         container,
       });
 
-      setValue(withinRange(position, min, max));
+      setValue(withinRange({ min, max, value: position }));
     };
 
     const stopDragging = (event: MouseEvent | TouchEvent): void => {

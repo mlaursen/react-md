@@ -29,8 +29,8 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
       - run: pnpm typecheck
-      # don't care about testing at this stage
-      # - run: pnpm test --coverage
+      - run: pnpm test -- --coverage
+      # don't care about codecov at this stage
       # - run: npx codecov -t ${{ secrets.CODECOV_TOKEN }}
 
   # validate_matrix:

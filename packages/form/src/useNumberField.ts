@@ -399,7 +399,7 @@ export function useNumberField(
 
       // can't have both rangeUnderflow and rangeOverflow at the same time, so
       // it's "safe" to always provide both
-      value = withinRange(value, min, max);
+      value = withinRange({ min, max, value });
       if (!Number.isNaN(value)) {
         setNumber(value);
         input.value = `${value}`;
@@ -415,7 +415,11 @@ export function useNumberField(
 
       const input = event.currentTarget;
       input.checkValidity();
-      const value = withinRange(event.currentTarget.valueAsNumber, min, max);
+      const value = withinRange({
+        min,
+        max,
+        value: event.currentTarget.valueAsNumber,
+      });
       if (
         !input.validity.valid &&
         !input.validity.rangeUnderflow &&

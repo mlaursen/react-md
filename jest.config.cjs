@@ -43,6 +43,7 @@ module.exports = {
   collectCoverageFrom: [
     // "<rootDir>/src/**/*.{ts,tsx}",
     "<rootDir>/packages/*/src/**/*.{ts,tsx}",
+    "!<rootDir>/packages/material-icons/src/**/*.{ts,tsx}",
     // index.ts files are always `export * from "./fileOrFolder"`
     "!<rootDir>/**/index.ts",
     "!<rootDir>/prev/**/*",
