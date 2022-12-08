@@ -2,7 +2,6 @@ import type { UseStateSetter } from "@react-md/core";
 import {
   findMatchIndex,
   getSearchText,
-  useIsomorphicLayoutEffect,
   useUserInteractionMode,
 } from "@react-md/core";
 import type {
@@ -279,13 +278,15 @@ export function useTreeA11y(options: TreeA11yOptions): ReturnValue {
     }
   }, [mode, selectedIds]);
 
-  useIsomorphicLayoutEffect(() => {
-    if (mode !== "keyboard") {
+  useEffect(() => {
+    if (!isTreeFocused || mode !== "keyboard") {
       return;
     }
 
-    visibleItems.current[activeIndex]?.itemRef.current?.scrollIntoView(false);
-  }, [mode, activeIndex]);
+    visibleItems.current[activeIndex]?.itemRef.current?.scrollIntoView({
+      block: "nearest",
+    });
+  }, [mode, activeIndex, isTreeFocused]);
 
   return {
     treeProps: {
