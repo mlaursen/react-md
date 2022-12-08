@@ -88,8 +88,8 @@ $var-lookup: (
 
     @if not $disable-mini {
       &--mini {
-        @include dialog.sheet-set-var(width, get-var(mini-nav-width));
         @include app-bar.use-var(top, height);
+        @include use-var(width, mini-nav-width);
 
         z-index: $navigation-mini-z-index;
       }

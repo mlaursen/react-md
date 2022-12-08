@@ -6,6 +6,7 @@ import {
 import {
   isFullHeightLayout,
   isPersistentLayout,
+  isTemporaryLayout,
   isToggleableLayout,
   useLayoutConfig,
 } from "@react-md/layout";
@@ -31,12 +32,9 @@ export function NavWindowSplitter(): ReactElement | null {
     },
     localStorageKey: "navWidth",
   });
-  const isNotRendered =
-    !isPersistentLayout(layout) && (!visible || !isToggleableLayout(layout));
-
   useCSSVariables(
     useMemo(() => {
-      if (isNotRendered) {
+      if (isTemporaryLayout(layout)) {
         return [];
       }
 
@@ -46,10 +44,13 @@ export function NavWindowSplitter(): ReactElement | null {
           value: `${value}px`,
         },
       ];
-    }, [isNotRendered, value])
+    }, [layout, value])
   );
 
-  if (isNotRendered) {
+  if (
+    !isPersistentLayout(layout) &&
+    (!visible || !isToggleableLayout(layout))
+  ) {
     return null;
   }
 
