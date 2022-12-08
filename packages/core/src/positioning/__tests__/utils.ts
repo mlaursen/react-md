@@ -1042,8 +1042,6 @@ describe("getElementRect", () => {
     expect(element.style.visibility).toBe("");
     expect(cloned.style.visibility).toBe("hidden");
 
-    expect(element.style.webkitTransform).toBe("");
-    expect(cloned.style.webkitTransform).toBe("none");
     expect(element.style.transform).toBe("");
     expect(cloned.style.transform).toBe("none");
   });

@@ -9,7 +9,7 @@ exports[`useFixedPositioning should allow for configuring the fixed position 1`]
   </button>
   <div
     data-testid="element"
-    style="left: 16px; top: 0px; position: fixed; transform-origin: 0 0;"
+    style="position: fixed; transform-origin: 0 0; left: 16px; top: 0px;"
   >
     Some content.
   </div>
@@ -36,7 +36,7 @@ exports[`useFixedPositioning should default to fixing itself with the BELOW_CENT
   <div
     class="rmd-scale-transition--enter rmd-scale-transition--enter-active"
     data-testid="element"
-    style="left: 16px; top: 0px; position: fixed;"
+    style="position: fixed; left: 16px; top: 0px;"
   >
     Some content.
   </div>
@@ -52,7 +52,7 @@ exports[`useFixedPositioning should default to fixing itself with the BELOW_CENT
   </button>
   <div
     data-testid="element"
-    style="left: 16px; top: 0px; position: fixed;"
+    style="position: fixed; left: 16px; top: 0px;"
   >
     Some content.
   </div>
@@ -69,7 +69,7 @@ exports[`useFixedPositioning should default to fixing itself with the BELOW_CENT
   <div
     class="rmd-scale-transition--exit rmd-scale-transition--exit-active"
     data-testid="element"
-    style="left: 16px; top: 0px; position: fixed;"
+    style="position: fixed; left: 16px; top: 0px;"
   >
     Some content.
   </div>
@@ -95,7 +95,7 @@ exports[`useFixedPositioning should update the style correctly based on the init
   </button>
   <div
     data-testid="element"
-    style="left: 16px; top: 0px; position: fixed;"
+    style="position: fixed; left: 16px; top: 0px;"
   >
     Some content.
   </div>
@@ -111,7 +111,7 @@ exports[`useFixedPositioning should update the style correctly based on the init
   </button>
   <div
     data-testid="element"
-    style="left: 30px; top: 40px; position: fixed;"
+    style="position: fixed; left: 30px; top: 40px;"
   >
     Some content.
   </div>

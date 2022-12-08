@@ -247,6 +247,8 @@ export function createEqualWidth({
       left -= vwMargin;
       right = vwMargin;
     }
+
+    left = Math.max(vwMargin, left);
   }
 
   // going to assume that the container element is visible in the DOM and just

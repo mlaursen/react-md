@@ -321,6 +321,10 @@ export function ThemeProvider(props: ThemeProviderProps): ReactElement {
   const { colorScheme, colorSchemeMode } = useColorScheme();
   const [derivedTheme, setDerivedTheme] = useState<ConfigurableThemeColors>(
     () => {
+      if (theme) {
+        return theme;
+      }
+
       if (!ssr && typeof document !== "undefined") {
         return getDerivedTheme(document.documentElement);
       }

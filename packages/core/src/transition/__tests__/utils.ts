@@ -140,7 +140,7 @@ describe("getElementSizing", () => {
     const element = document.createElement("div");
     const clone = document.createElement("div");
 
-    jest.spyOn(element, "scrollHeight", "get").mockReturnValue(scrollHeight);
+    jest.spyOn(clone, "scrollHeight", "get").mockReturnValue(scrollHeight);
     jest.spyOn(element, "cloneNode").mockReturnValue(clone);
     const setMaxHeight = jest.spyOn(clone.style, "maxHeight", "set");
     const setPadding = jest.spyOn(clone.style, "padding", "set");

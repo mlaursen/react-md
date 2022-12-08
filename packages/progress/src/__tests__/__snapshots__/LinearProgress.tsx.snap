@@ -5,7 +5,7 @@ exports[`LinearProgress should render correctly 1`] = `
   <span
     aria-valuemax="100"
     aria-valuemin="0"
-    class="rmd-linear-progress rmd-linear-progress--indeterminate"
+    class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--indeterminate"
     id="linear"
     role="progressbar"
   >
@@ -72,7 +72,7 @@ exports[`LinearProgress should render correctly 5`] = `
   <span
     aria-valuemax="100"
     aria-valuemin="0"
-    class="rmd-linear-progress rmd-linear-progress--indeterminate"
+    class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--indeterminate"
     id="linear"
     role="progressbar"
     style=""

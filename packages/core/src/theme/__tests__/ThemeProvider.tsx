@@ -58,7 +58,11 @@ describe("ThemeProvider", () => {
     );
 
     expect(getComputedStyle).toHaveBeenCalledTimes(1);
-    expect(theme).toEqual(DEFAULT_LIGHT_THEME);
+    expect(theme).toEqual({
+      ...DEFAULT_LIGHT_THEME,
+      derived: true,
+      setDerivedTheme: expect.any(Function),
+    });
   });
 
   it("should use the provided theme if it was provided", () => {
@@ -76,6 +80,10 @@ describe("ThemeProvider", () => {
     );
 
     expect(getComputedStyle).not.toHaveBeenCalled();
-    expect(theme).toEqual(DEFAULT_DARK_THEME);
+    expect(theme).toEqual({
+      ...DEFAULT_DARK_THEME,
+      derived: false,
+      setDerivedTheme: expect.any(Function),
+    });
   });
 });

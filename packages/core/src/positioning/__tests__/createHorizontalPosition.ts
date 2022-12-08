@@ -650,26 +650,26 @@ describe("createEqualWidth", () => {
     const opt4 = { ...opt2, xMargin: 5 };
 
     expect(createEqualWidth(opt1)).toEqual({
-      left: 300,
-      minWidth: 400,
+      left: opt1.vwMargin,
+      minWidth: opt1.elWidth,
       right: 0,
       actualX: "center",
     });
     expect(createEqualWidth(opt2)).toEqual({
-      left: 300,
-      minWidth: 400,
+      left: opt2.vwMargin,
+      minWidth: opt1.elWidth,
       right: 16,
       actualX: "center",
     });
     expect(createEqualWidth(opt3)).toEqual({
-      left: 305,
-      minWidth: 390,
+      left: opt3.vwMargin,
+      minWidth: opt3.elWidth,
       right: 0,
       actualX: "center",
     });
     expect(createEqualWidth(opt4)).toEqual({
-      left: 305,
-      minWidth: 390,
+      left: opt4.vwMargin,
+      minWidth: opt4.elWidth,
       right: 16,
       actualX: "center",
     });
@@ -709,8 +709,8 @@ describe("createHorizontalPosition", () => {
       width: "min",
     } as const;
     expect(createHorizontalPosition(minWidthOptions)).toEqual({
-      left: containerRect1.left,
-      minWidth: containerRect1.width,
+      left: 90,
+      minWidth: 120,
       actualX: "inner-left",
     });
 
