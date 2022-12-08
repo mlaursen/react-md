@@ -1,10 +1,15 @@
-import { cnb } from "cnbuilder";
+import { Card, CardContent } from "@react-md/card";
 import { Box, NoSsr, useWindowSplitter, WindowSplitter } from "@react-md/core";
 import type { ReactElement } from "react";
 import { useId } from "react";
 import { DemoHeadingWithDivider } from "src/components/DemoHeadingWithDivider";
 import { Resettable } from "src/components/Resettable";
-import { Card, CardContent } from "@react-md/card";
+
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-window-splitter-position"?: string;
+  }
+}
 
 function SimpleExample(): ReactElement {
   const { value, dragging, splitterProps } = useWindowSplitter({
