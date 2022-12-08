@@ -1,7 +1,4 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-import { useId, useMemo } from "react";
-
-let i = 0;
+import { useId } from "react";
 
 /**
  * This hook is used to ensure that an `id` has been provided to a component
@@ -27,12 +24,7 @@ export function useEnsuredId(
   propId: string | undefined,
   prefix: string
 ): string {
-  let id: string;
-  if (process.env.NODE_ENV === "test") {
-    id = useMemo(() => `ensured-id-${i++}`, []);
-  } else {
-    id = useId();
-  }
+  const id = useId();
 
   return propId ?? `${prefix}-${id}`;
 }

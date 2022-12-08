@@ -70,7 +70,7 @@ export type TextFieldAttributes = Omit<
 
 export interface TextFieldProps extends TextFieldAttributes, FormFieldOptions {
   /**
-   * @defaultValue `useId() + '-text-field'`
+   * @defaultValue `"text-field-" + useId()`
    */
   id?: string;
 

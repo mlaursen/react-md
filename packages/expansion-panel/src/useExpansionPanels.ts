@@ -8,7 +8,7 @@ export interface ExpansionPanelHookOptions {
   /**
    * An optional id to prefix each panel with.
    *
-   * @defaultValue `useId() + "-expansion-panel"`
+   * @defaultValue `"expansion-panel-" + useId()`
    */
   baseId?: string;
 
@@ -36,7 +36,7 @@ export interface ExpansionPanelHookOptions {
   disableTransition?: boolean;
 
   /**
-   * @defaultValue `preventAllClosed ? [useId() + "-expansion-panel-1"] : []`
+   * @defaultValue `preventAllClosed ? ["expansion-panel-" + useId() + "-1"] : []`
    */
   defaultExpandedIds?: UseStateInitializer<string[]>;
 

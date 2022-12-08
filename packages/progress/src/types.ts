@@ -9,12 +9,8 @@ export interface ProgressProps {
    * should also be updated to have `aria-busy="true"` and
    * `aria-describedby="THIS_ID"`.
    *
-   * Note: During tests, the `useId()` will be set to
-   * `ensured-id-${memoizedRenderIndex}`
-   *
-   * @defaultValue `"circular-progress-${useId()}" || "linear-progress-${useId()}"`
-   * @remarks \@since 6.0.0 This value is now optional and default to
-   * `React.useId()`
+   * @defaultValue `"circular-progress-" useId() || "linear-progress-" + useId()`
+   * @remarks \@since 6.0.0 This prop is now optional.
    */
   id?: string;
 

@@ -167,7 +167,7 @@ export interface TextFieldHookOptions<
    * An optional id to use for the `TextField` or `TextArea` that is also used
    * to create an id for the inline help/error messages.
    *
-   * @defaultValue `useId() + '-text-field'`
+   * @defaultValue `"text-field-" + useId()`
    */
   id?: string;
 
