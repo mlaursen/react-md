@@ -8,12 +8,16 @@
 @forward "transition/transition";
 @forward "box-shadows";
 @forward "interaction/interaction";
+@forward "draggable/draggable";
+@forward "windowSplitter/window-splitter";
 
 @use "box/box";
 @use "theme/theme";
 @use "transition/transition";
 @use "interaction/interaction";
 @use "typography/typography";
+@use "draggable/draggable";
+@use "windowSplitter/window-splitter";
 
 $temporary-element-z-index: 30 !default;
 $disable-default-root-theme: false !default;
@@ -65,6 +69,8 @@ $disable-default-root-theme: false !default;
   @include interaction.interaction;
 
   @include box.box-styles;
+  @include draggable.draggable-styles;
+  @include window-splitter.window-splitter-styles;
 
   @if not $disable-default-root-theme {
     :root {

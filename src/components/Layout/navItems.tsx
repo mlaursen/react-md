@@ -136,6 +136,7 @@ const routes: readonly LayoutNavigationItem[] = [
       { name: "useFixedPositioning", pathname: "/use-fixed-positioning" },
       { name: "useLocalStorage", pathname: "/use-local-storage" },
       { name: "useHtmlClassName", pathname: "/use-html-class-name" },
+      { name: "useWindowSplitter", pathname: "/use-window-splitter" },
       {
         name: "useIntersectionObserver",
         pathname: "/use-intersection-observer",

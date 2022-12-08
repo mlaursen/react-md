@@ -12,6 +12,10 @@ export type CustomLayout = UseStateObject<"phoneLayout", SupportedPhoneLayout> &
   UseStateObject<"largeDesktopLayout", SupportedWideLayout> &
   UseStateObject<"landscapeTabletLayout", SupportedTabletLayout>;
 
+/**
+ * Note: I'd like to be able to say that large layouts are toggleable by
+ * default, but it appears to cause SSR issues that way on mobile
+ */
 export function useCustomLayout(): CustomLayout {
   const { value: phoneLayout, setValue: setPhoneLayout } =
     useLocalStorage<SupportedPhoneLayout>({
@@ -26,17 +30,17 @@ export function useCustomLayout(): CustomLayout {
   const { value: desktopLayout, setValue: setDesktopLayout } =
     useLocalStorage<SupportedWideLayout>({
       key: "desktopLayout",
-      defaultValue: "toggleable",
+      defaultValue: "temporary",
     });
   const { value: largeDesktopLayout, setValue: setLargeDesktopLayout } =
     useLocalStorage<SupportedWideLayout>({
       key: "largeDesktopLayout",
-      defaultValue: "toggleable",
+      defaultValue: "temporary",
     });
   const { value: landscapeTabletLayout, setValue: setLandscapeTabletLayout } =
     useLocalStorage<SupportedTabletLayout>({
       key: "landscapeTabletLayout",
-      defaultValue: "toggleable",
+      defaultValue: "temporary",
     });
 
   return {

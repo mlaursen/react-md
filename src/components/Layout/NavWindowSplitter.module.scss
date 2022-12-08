@@ -1,0 +1,12 @@
+@use "everything";
+
+.splitter {
+  @include everything.set-window-splitter-var(
+    position,
+    everything.layout-get-var(nav-width)
+  );
+}
+
+.offset {
+  @include everything.app-bar-use-var(top, height);
+}

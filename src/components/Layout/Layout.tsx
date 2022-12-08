@@ -1,4 +1,4 @@
-import { useTheme, useToggle } from "@react-md/core";
+import { NoSsr, useTheme, useToggle } from "@react-md/core";
 import { Sheet } from "@react-md/dialog";
 import { Layout as RMDLayout, useLayoutNavigation } from "@react-md/layout";
 import type { ListElement } from "@react-md/list";
@@ -90,7 +90,9 @@ export default function Layout(props: LayoutProps): ReactElement {
         landscapeTabletLayout={landscapeTabletLayout}
         defaultToggleableVisible
       >
-        <NavWindowSplitter />
+        <NoSsr>
+          <NavWindowSplitter />
+        </NoSsr>
         {children}
       </RMDLayout>
       <Sheet

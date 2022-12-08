@@ -1,0 +1,155 @@
+@use "sass:map";
+@use "../utils";
+@use "../transition/transition";
+@use "../theme/colors";
+@use "../interaction/interaction";
+
+$disable-window-splitter: false !default;
+$disable-window-splitter-horizontal: false !default;
+$disable-window-splitter-vertical: false !default;
+$disable-window-splitter-absolute-position: false !default;
+
+$window-splitter-size: 1.25rem !default;
+$window-splitter-background-size: 0.375rem !default;
+$window-splitter-background-color: colors.$blue-500 !default;
+$window-splitter-z-index: 30 !default;
+
+$window-splitter-var-lookup: (
+  top: (
+    var: --rmd-window-splitter-top,
+    value: 0,
+  ),
+  right: (
+    var: --rmd-window-splitter-right,
+    value: 0,
+  ),
+  bottom: (
+    var: --rmd-window-splitter-bottom,
+    value: 0,
+  ),
+  left: (
+    var: --rmd-window-splitter-left,
+    value: 0,
+  ),
+  opacity: (
+    var: --rmd-window-splitter-opacity,
+    value: 0,
+  ),
+  position: (
+    var: --rmd-window-splitter-position,
+    value: 0,
+  ),
+);
+
+@function get-window-splitter-var($name, $fallback: null) {
+  $found: utils.validate(
+    $window-splitter-var-lookup,
+    $name,
+    "window-splitter var"
+  );
+  $var: map.get($found, var);
+  $value: if($fallback, $fallback, map.get($found, value));
+
+  @if $value {
+    @return var(#{$var}, #{$value});
+  }
+
+  @return var(#{$var});
+}
+
+@mixin set-window-splitter-var($name, $value) {
+  $var: map.get(
+    utils.validate($window-splitter-var-lookup, $name, "window-splitter var"),
+    var
+  );
+
+  #{$var}: #{$value};
+}
+
+@mixin use-window-splitter-var($property, $name: $property, $fallback: null) {
+  #{$property}: get-window-splitter-var($name, $fallback);
+}
+
+@mixin window-splitter-styles {
+  @if not $disable-window-splitter {
+    .rmd-window-splitter {
+      @include use-window-splitter-var(opacity);
+
+      background-color: transparent;
+      border: 0;
+      outline-style: none;
+      padding: 0;
+      position: fixed;
+      transition: opacity transition.$linear-duration;
+      z-index: $window-splitter-z-index;
+
+      &::after {
+        background-color: $window-splitter-background-color;
+        content: "";
+        inset: 0;
+        position: absolute;
+      }
+
+      &:hover {
+        @include set-window-splitter-var(opacity, 1);
+      }
+
+      @include interaction.keyboard-only {
+        &:focus {
+          @include set-window-splitter-var(opacity, 1);
+        }
+      }
+
+      @include interaction.touch-only {
+        &:hover {
+          @include set-window-splitter-var(opacity, 0);
+        }
+      }
+
+      @if not $disable-window-splitter-horizontal {
+        &--h {
+          @include utils.auto-rtl(left, get-window-splitter-var(position));
+          @include use-window-splitter-var(bottom);
+          @include use-window-splitter-var(top);
+
+          cursor: col-resize;
+          width: $window-splitter-size;
+
+          &::after {
+            width: $window-splitter-background-size;
+          }
+        }
+      }
+
+      @if not $disable-window-splitter-vertical {
+        &--v {
+          @include use-window-splitter-var(left);
+          @include use-window-splitter-var(right);
+          @include use-window-splitter-var(top, position);
+
+          cursor: row-resize;
+          height: $window-splitter-size;
+          width: 100%;
+
+          &::after {
+            height: $window-splitter-background-size;
+          }
+        }
+      }
+
+      @if not $disable-window-splitter-absolute-position {
+        &--a {
+          position: absolute;
+        }
+      }
+
+      &--dragging {
+        @include set-window-splitter-var(opacity, 1);
+
+        // set to important so that the `.rmd-dragging` styles do not affect
+        // window splitter
+        pointer-events: auto !important;
+      }
+    }
+  }
+}

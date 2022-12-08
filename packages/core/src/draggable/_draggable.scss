@@ -1,0 +1,25 @@
+$disable-draggable: false !default;
+$disable-draggable-horizontal: false !default;
+$disable-draggable-vertical: false !default;
+
+@mixin draggable-styles {
+  @if not $disable-draggable {
+    .rmd-dragging {
+      * {
+        pointer-events: none;
+      }
+
+      @if not $disable-draggable-horizontal {
+        &--h {
+          cursor: col-resize;
+        }
+      }
+
+      @if not $disable-draggable-vertical {
+        &--v {
+          cursor: row-resize;
+        }
+      }
+    }
+  }
+}
