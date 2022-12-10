@@ -30,10 +30,12 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
   function ListItem(props, ref) {
     const {
       className,
+      textProps,
       textClassName,
       secondaryTextClassName,
       primaryText,
       secondaryText,
+      secondaryTextProps,
       disableTextChildren = false,
       height: propHeight = "auto",
       leftAddon,
@@ -117,7 +119,9 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
           secondaryTextClassName={secondaryTextClassName}
           disableTextChildren={disableTextChildren}
           primaryText={primaryText}
+          textProps={textProps}
           secondaryText={secondaryText}
+          secondaryTextProps={secondaryTextProps}
           leftAddon={leftAddon}
           leftAddonType={leftAddonType}
           leftAddonPosition={leftAddonPosition}

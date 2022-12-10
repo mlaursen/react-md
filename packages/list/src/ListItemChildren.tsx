@@ -18,11 +18,13 @@ import type { ListItemChildrenProps } from "./types";
 export function ListItemChildren(props: ListItemChildrenProps): ReactElement {
   const {
     threeLines,
+    textProps,
     textClassName,
     secondaryTextClassName,
     disableTextChildren,
     primaryText,
     secondaryText,
+    secondaryTextProps,
     leftAddon,
     leftAddonType = "icon",
     leftAddonPosition = "middle",
@@ -45,8 +47,10 @@ export function ListItemChildren(props: ListItemChildrenProps): ReactElement {
   if (primaryText || secondaryText || !disableTextChildren) {
     children = (
       <ListItemText
+        {...textProps}
         className={textClassName}
         secondaryText={secondaryText}
+        secondaryTextProps={secondaryTextProps}
         secondaryTextClamped={threeLines}
         secondaryTextClassName={secondaryTextClassName}
       >

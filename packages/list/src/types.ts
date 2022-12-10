@@ -1,4 +1,5 @@
-import type { ReactNode } from "react";
+import type { PropsWithRef } from "@react-md/core";
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * The height to apply to the list item.
@@ -113,6 +114,14 @@ export interface ListItemChildrenProps extends ListItemChildrenAddonProps {
   children?: ReactNode;
 
   /**
+   * Any additional props that should be passed to the `<span>` surrounding
+   * the {@link children}, {@link primaryText}, and {@link secondaryText}.
+   *
+   * @remarks \@since 6.0.0
+   */
+  textProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>;
+
+  /**
    * An optional className to apply to the `<span>` that surrounds the
    * `primaryText` and optionally `secondaryText` within the list item.
    */
@@ -125,6 +134,8 @@ export interface ListItemChildrenProps extends ListItemChildrenAddonProps {
   secondaryTextClassName?: string;
 
   /**
+   * Set this to `true` if the {@link children} should not automatically be
+   * wrapped in the `ListItemText` component.
    *
    * @remarks \@since 6.0.0 Renamed from `textChildren` since it was defaulted on.
    * @defaultValue `false`
@@ -149,6 +160,21 @@ export interface ListItemChildrenProps extends ListItemChildrenAddonProps {
   secondaryText?: ReactNode;
 
   /**
+   * Any additional props that should be passed to the `<span>` surrounding
+   * the {@link secondaryText}.
+   *
+   * @remarks \@since 6.0.0
+   */
+  secondaryTextProps?: PropsWithRef<
+    HTMLAttributes<HTMLSpanElement>,
+    HTMLSpanElement
+  >;
+
+  /**
+   * Set this to `true` to allow the {@link secondaryText} to span multiple
+   * lines and use the CSS clamp after two lines of text are visible.
+   *
+   * @see {@link https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-line-clamp}
    * @defaultValue `false`
    */
   threeLines?: boolean;

@@ -38,10 +38,12 @@ export const ListItemLink = forwardRef<HTMLAnchorElement, ListItemLinkProps>(
       href,
       className,
       liProps,
+      textProps,
       textClassName,
       secondaryTextClassName,
       primaryText,
       secondaryText,
+      secondaryTextProps,
       disableTextChildren = false,
       height: propHeight = "auto",
       leftAddon,
@@ -127,7 +129,9 @@ export const ListItemLink = forwardRef<HTMLAnchorElement, ListItemLinkProps>(
             secondaryTextClassName={secondaryTextClassName}
             disableTextChildren={disableTextChildren}
             primaryText={primaryText}
+            textProps={textProps}
             secondaryText={secondaryText}
+            secondaryTextProps={secondaryTextProps}
             leftAddon={leftAddon}
             leftAddonType={leftAddonType}
             leftAddonPosition={leftAddonPosition}
