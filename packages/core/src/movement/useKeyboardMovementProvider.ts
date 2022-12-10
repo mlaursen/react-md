@@ -22,7 +22,9 @@ import {
   getNextFocusableIndex,
   getSearchText,
   getVirtualFocusDefaultIndex,
+  isElementDisabled,
   isNotFocusable,
+  recalculateFocusIndex,
 } from "./utils";
 
 /**
@@ -53,17 +55,142 @@ const noop = (): void => {
   // do nothing
 };
 
+/**
+ * Implements the custom keyboard movement behavior throughout react-md. Using
+ * the "Find References" will be the best way to see example usage.
+ *
+ * @example
+ * Default Keyboard Movement for any Focusable Element
+ * ```tsx
+ * import {
+ *   KeyboardMovementProvider,
+ *   useKeyboardMovementProvider,
+ * } from "@react-md/core";
+ * import type { ReactElement, ReactNode } from "react";
+ *
+ * function Example({ children }: { children: ReactNode }): ReactElement {
+ *   const { movementContext, movementProps } = useKeyboardMovementProvider();
+ *
+ *   // any focusable element child can be focused with the arrow , home, and
+ *   // end keys
+ *   return (
+ *     <KeyboardMovementProvider value={movementContext}>
+ *       <div {...movementProps}>
+ *         {children}
+ *       </div>
+ *     </KeyboardMovementProvider>
+ *   );
+ * }
+ * ```
+ *
+ * @example
+ * Active Descendant Movement
+ * ```tsx
+ * import {
+ *   KeyboardMovementProvider,
+ *   useKeyboardMovementContext,
+ *   useKeyboardMovementProvider,
+ * } from "@react-md/core";
+ * import type { ReactElement, ReactNode } from "react";
+ * import { useId } from "react";
+ *
+ * function Child(): ReactElement {
+ *   const id = useId()
+ *   const { activeDescendantId } = useKeyboardMovementContext();
+ *
+ *   return (
+ *     <div
+ *       {...props}
+ *       id={id}
+ *       className={cnb(id === activeDescendantId && "focused-class-name")}
+ *     >
+ *       Some Content
+ *     </div>
+ *   );
+ * }
+ *
+ * function Example({ children }: { children: ReactNode }): ReactElement {
+ *   const { movementContext, movementProps } = useKeyboardMovementProvider({
+ *     loopable: true,
+ *     searchable: true,
+ *     tabIndexBehavior: "virtual",
+ *   });
+ *
+ *   // any focusable element child can be focused with the arrow , home, and
+ *   // end keys
+ *   return (
+ *     <KeyboardMovementProvider value={movementContext}>
+ *       <div {...movementProps}>
+ *         <Child />
+ *         <Child />
+ *         <Child />
+ *       </div>
+ *     </KeyboardMovementProvider>
+ *   );
+ * }
+ * ```
+ *
+ * @example
+ * Roving Tab Index
+ * ```tsx
+ * import {
+ *   KeyboardMovementProvider,
+ *   useKeyboardMovementContext,
+ *   useKeyboardMovementProvider,
+ * } from "@react-md/core";
+ * import type { ReactElement, ReactNode } from "react";
+ * import { useId } from "react";
+ *
+ * function Child(): ReactElement {
+ *   const id = useId()
+ *   const { activeDescendantId } = useKeyboardMovementContext();
+ *
+ *   return (
+ *     <div
+ *       {...props}
+ *       id={id}
+ *       tabIndex={id === activeDescendantId ? 0 : -1}
+ *     >
+ *       Some Content
+ *     </div>
+ *   );
+ * }
+ *
+ * function Example({ children }: { children: ReactNode }): ReactElement {
+ *   const { movementContext, movementProps } = useKeyboardMovementProvider({
+ *     loopable: true,
+ *     searchable: true,
+ *     tabIndexBehavior: "roving",
+ *   });
+ *
+ *   // any focusable element child can be focused with the arrow , home, and
+ *   // end keys
+ *   return (
+ *     <KeyboardMovementProvider value={movementContext}>
+ *       <div {...movementProps}>
+ *         <Child />
+ *         <Child />
+ *         <Child />
+ *       </div>
+ *     </KeyboardMovementProvider>
+ *   );
+ * }
+ * ```
+ * @remarks \@since 6.0.0
+ * @internal
+ */
 export function useKeyboardMovementProvider<E extends HTMLElement>(
   options: KeyboardMovementProviderOptions<E> = {}
 ): KeyboardMovementProviderImplementation<E> {
   const {
-    onFocus,
-    onKeyDown,
+    onFocus = noop,
+    onKeyDown = noop,
     loopable = false,
     searchable = false,
     horizontal = false,
     includeDisabled = false,
     tabIndexBehavior,
+    extendKeyDown = noop,
     onFocusChange = noop,
     programmatic = includeDisabled,
     incrementKeys: propIncrementKeys,
@@ -122,6 +249,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
   );
   const currentFocusIndex = useRef(-1);
   const mode = useUserInteractionMode();
+  const refocus = useRef(false);
 
   return {
     movementProps: {
@@ -134,8 +262,9 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
             : 0
           : undefined,
       onFocus(event) {
-        onFocus?.(event);
-        if (event.isPropagationStopped()) {
+        onFocus(event);
+        if (event.isPropagationStopped() || refocus.current) {
+          refocus.current = false;
           return;
         }
 
@@ -163,6 +292,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
           // need to force focus back to the container element when using
           // aria activedescendant
           if (tabIndexBehavior === "virtual") {
+            refocus.current = true;
             event.currentTarget.focus();
           }
 
@@ -221,43 +351,10 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
         });
       },
       onKeyDown(event) {
-        onKeyDown?.(event);
-        if (event.isPropagationStopped()) {
-          return;
-        }
+        onKeyDown(event);
+        const { currentTarget } = event;
 
-        const { key, altKey, ctrlKey, metaKey, shiftKey } = event;
-        if (
-          tabIndexBehavior === "virtual" &&
-          activeDescendantId &&
-          (key === " " || key === "Enter")
-        ) {
-          if (key === " ") {
-            event.preventDefault();
-          }
-
-          const focusables = getFocusableElements(
-            event.currentTarget,
-            programmatic
-          );
-          const activeElement = focusables[currentFocusIndex.current];
-          const disabled = activeElement?.getAttribute("disabled");
-          const ariaDisabled = activeElement?.getAttribute("aria-disabled");
-          if (!activeElement || disabled === "" || ariaDisabled === "true") {
-            return;
-          }
-
-          activeElement.click();
-          return;
-        }
-
-        const {
-          incrementKeys,
-          decrementKeys,
-          jumpToFirstKeys,
-          jumpToLastKeys,
-        } = config.current;
-        const update = (
+        const setFocusIndex = (
           index: number,
           focusables: readonly HTMLElement[]
         ): void => {
@@ -287,6 +384,56 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
           });
         };
 
+        extendKeyDown({
+          event,
+          setFocusIndex,
+          currentFocusIndex,
+          setActiveDescendantId,
+          ...movementContext,
+        });
+
+        if (event.isPropagationStopped()) {
+          return;
+        }
+
+        // TODO: Figure this part out. This is currently required for the tree
+        // movement when the asterisk key is pressed. There might be other cases
+        // as well.
+        if (currentFocusIndex.current === -1) {
+          currentFocusIndex.current = recalculateFocusIndex({
+            focusables: getFocusableElements(currentTarget, programmatic),
+            tabIndexBehavior,
+            activeDescendantId,
+          });
+        }
+
+        const { key, altKey, ctrlKey, metaKey, shiftKey } = event;
+        if (
+          tabIndexBehavior === "virtual" &&
+          activeDescendantId &&
+          (key === " " || key === "Enter")
+        ) {
+          if (key === " ") {
+            event.preventDefault();
+          }
+
+          const focusables = getFocusableElements(currentTarget, programmatic);
+          const activeElement = focusables[currentFocusIndex.current];
+          if (!activeElement || isElementDisabled(activeElement)) {
+            return;
+          }
+
+          activeElement.click();
+          return;
+        }
+
+        const {
+          incrementKeys,
+          decrementKeys,
+          jumpToFirstKeys,
+          jumpToLastKeys,
+        } = config.current;
+
         if (
           searchable &&
           key.length === 1 &&
@@ -296,10 +443,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
           !ctrlKey &&
           !metaKey
         ) {
-          const focusables = getFocusableElements(
-            event.currentTarget,
-            programmatic
-          );
+          const focusables = getFocusableElements(currentTarget, programmatic);
           const index = findMatchIndex({
             value: key,
             values: focusables.map((element) =>
@@ -307,7 +451,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
             ),
             startIndex: shiftKey ? -1 : currentFocusIndex.current,
           });
-          update(index, focusables);
+          setFocusIndex(index, focusables);
           return;
         }
 
@@ -324,10 +468,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
         if (!jumpToFirst && !jumpToLast && !increment && !decrement) {
           return;
         }
-        const focusables = getFocusableElements(
-          event.currentTarget,
-          programmatic
-        );
+        const focusables = getFocusableElements(currentTarget, programmatic);
 
         let index: number;
         if (jumpToFirst) {
@@ -350,7 +491,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
           });
         }
 
-        update(index, focusables);
+        setFocusIndex(index, focusables);
       },
     },
     movementContext,

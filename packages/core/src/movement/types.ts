@@ -1,5 +1,10 @@
-import type { FormEventHandler, KeyboardEventHandler } from "react";
-import type { NonNullRef } from "../types";
+import type {
+  FocusEvent,
+  FocusEventHandler,
+  KeyboardEvent,
+  KeyboardEventHandler,
+} from "react";
+import type { NonNullMutableRef, NonNullRef } from "../types";
 
 /**
  * Set this to `"roving"` when:
@@ -124,6 +129,10 @@ export interface KeyboardMovementContext
   activeDescendantId: string;
 }
 
+/**
+ * @remarks \@since 6.0.0
+ * @internal
+ */
 export interface FocusableIndexOptions {
   focusables: readonly HTMLElement[];
   includeDisabled: boolean;
@@ -133,30 +142,58 @@ export interface FocusableIndexOptions {
  * @remarks \@since 6.0.0
  * @internal
  */
-export interface VirtualFocusableIndexOptions {
-  focusables: readonly HTMLElement[];
-  activeDescendantId: string;
-}
-
 export type GetDefaultFocusedIndex = (options: FocusableIndexOptions) => number;
 
+/**
+ * @remarks \@since 6.0.0
+ * @internal
+ */
 export interface FocusChangeEvent {
   index: number;
   element: HTMLElement;
 }
 
+/**
+ * @remarks \@since 6.0.0
+ * @internal
+ */
 export type KeyboardMovementFocusChangeEvent = (
   event: FocusChangeEvent
 ) => void;
 
+/**
+ * @remarks \@since 6.0.0
+ * @internal
+ */
+export interface KeyboardMovementExtensionData<E extends HTMLElement>
+  extends KeyboardMovementContext {
+  event: KeyboardEvent<E>;
+  currentFocusIndex: NonNullMutableRef<number>;
+  setFocusIndex(index: number, focusables: readonly HTMLElement[]): void;
+  setActiveDescendantId(id: string): void;
+}
+
+/**
+ * @remarks \@since 6.0.0
+ * @internal
+ */
 export interface KeyboardMovementProviderOptions<E extends HTMLElement>
   extends KeyboardMovementBehavior,
     KeyboardMovementConfiguration {
   /** @see {@link TabIndexBehavior} */
   tabIndexBehavior?: TabIndexBehavior;
 
-  onFocus?: FormEventHandler<E>;
-  onKeyDown?: KeyboardEventHandler<E>;
+  onFocus?(event: FocusEvent<E>): void;
+  onKeyDown?(event: KeyboardEvent<E>): void;
+
+  /**
+   * This is used to implement custom keyboard movement for the `keydown` event.
+   */
+  extendKeyDown?(movementData: KeyboardMovementExtensionData<E>): void;
+
+  /**
+   * Triggered whenever the focus changes.
+   */
   onFocusChange?: KeyboardMovementFocusChangeEvent;
 
   /**
@@ -168,20 +205,63 @@ export interface KeyboardMovementProviderOptions<E extends HTMLElement>
    */
   programmatic?: boolean;
 
+  /**
+   * This should be used for specific widgets that should not include all
+   * focusable elements and instead only specific elements.
+   *
+   * @example
+   * ```ts
+   * const getExpansionPanelsOnly = (container: HTMLElement): readonly HTMLElement[] =>
+   *   container.querySelectorAll(".rmd-expansion-panel__button");
+   *
+   * const getTreeItemsOnly = (container: HTMLElement): readonly HTMLElement[] =>
+   *   container.querySelectorAll("[role='treeitem']");
+   * ```
+   *
+   * @defaultValue `getFocusableElements`
+   * @see the default `getFocusableElements` function.
+   */
   getFocusableElements?(
     container: HTMLElement,
     programmatic: boolean
   ): readonly HTMLElement[];
+
+  /**
+   * This can be used to set the initial focus index whenever the container
+   * element is first focused or the focus index is `-1` on other focus events.
+   */
   getDefaultFocusedIndex?: GetDefaultFocusedIndex;
 }
 
+/**
+ * @remarks \@since 6.0.0
+ * @internal
+ */
 export interface KeyboardMovementProps<E extends HTMLElement> {
+  /**
+   * This will only be provided if the {@link KeyboardMovementContext.tabIndexBehavior}
+   * is set to `"virtual"`.
+   */
   "aria-activedescendant"?: string;
+
+  /**
+   * This will not be provided if the {@link KeyboardMovementContext.tabIndexBehavior}
+   * is `undefined`. Otherwise:
+   * - `0` when `"virtual"`
+   * - `0` when `"roving"` and the container element has not been focused at
+   *   least once
+   * - `-1` when `"roving"` and the container has been focused at least once
+   *   - a child element **should** have a `tabIndex={0}` instead
+   */
   tabIndex?: number;
-  onFocus: FormEventHandler<E>;
+  onFocus: FocusEventHandler<E>;
   onKeyDown: KeyboardEventHandler<E>;
 }
 
+/**
+ * @remarks \@since 6.0.0
+ * @internal
+ */
 export interface KeyboardMovementProviderImplementation<E extends HTMLElement> {
   movementProps: Readonly<KeyboardMovementProps<E>>;
   movementContext: Readonly<KeyboardMovementContext>;

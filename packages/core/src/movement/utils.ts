@@ -1,8 +1,12 @@
 import { loop } from "../loop";
-import type {
-  FocusableIndexOptions,
-  VirtualFocusableIndexOptions,
-} from "./types";
+import type { FocusableIndexOptions, TabIndexBehavior } from "./types";
+
+/**
+ * @remarks \@since 6.0.0
+ * @internal
+ */
+export const isElementDisabled = (element: HTMLElement): boolean =>
+  element.getAttribute("disabled") !== null || element.ariaDisabled === "true";
 
 /**
  * @remarks \@since 5.0.0
@@ -20,11 +24,17 @@ export const isNotFocusable = (
     return false;
   }
 
-  return (
-    element.getAttribute("disabled") !== null ||
-    element.getAttribute("aria-disabled") === "true"
-  );
+  return isElementDisabled(element);
 };
+
+/**
+ * @remarks \@since 6.0.0
+ * @internal
+ */
+export interface VirtualFocusableIndexOptions {
+  focusables: readonly HTMLElement[];
+  activeDescendantId: string;
+}
 
 /**
  * @remarks \@since 6.0.0
@@ -179,4 +189,32 @@ export function getSearchText(
   // this is fine?
   // https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent#differences_from_innertext
   return (cloned.textContent || "").substring(0, 1).toUpperCase();
+}
+
+/**
+ * @remarks \@since 6.0.0
+ * @internal
+ */
+export interface RecalculateOptions {
+  focusables: readonly HTMLElement[];
+  tabIndexBehavior: TabIndexBehavior | undefined;
+  activeDescendantId: string;
+}
+
+/**
+ * This was added to help with specific widgets that cause focus index to change
+ * between renders (i.e. expanding all tree items on the same level with `*`).
+ * There might be a better way to handle this in the future.
+ *
+ * @remarks \@since 6.0.0
+ * @internal
+ */
+export function recalculateFocusIndex(options: RecalculateOptions): number {
+  const { focusables, tabIndexBehavior, activeDescendantId } = options;
+  if (tabIndexBehavior === "virtual") {
+    return getVirtualFocusDefaultIndex({ focusables, activeDescendantId });
+  }
+
+  const { activeElement } = document;
+  return focusables.findIndex((element) => element === activeElement);
 }
