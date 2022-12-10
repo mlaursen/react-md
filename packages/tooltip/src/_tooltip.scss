@@ -132,6 +132,10 @@ $var-lookup: (
       }
     }
 
+    &--no-wrap {
+      max-width: none;
+    }
+
     &--visible {
       opacity: 1;
       transform: none;

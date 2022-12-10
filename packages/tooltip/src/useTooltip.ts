@@ -80,6 +80,13 @@ export interface TooltipPositioningOptions {
   disableAutoSpacing?: boolean;
 }
 
+/**
+ * @remarks
+ * \@since 2.8.0
+ * \@since 6.0.0 Removed the `TooltipTouchEventHandlers` and
+ * `TooltipKeyboardEventHandlers` types. Also removed the need for the
+ * `onKeyDown` event.
+ */
 export interface TooltippedElementEventHandlers<E extends HTMLElement> {
   onBlur?: FocusEventHandler<E>;
   onFocus?: FocusEventHandler<E>;
@@ -89,25 +96,124 @@ export interface TooltippedElementEventHandlers<E extends HTMLElement> {
   onContextMenu?: MouseEventHandler<E>;
 }
 
+/** @remarks \@since 2.8.0 */
 export interface ProvidedTooltippedElementProps<E extends HTMLElement>
   extends Required<TooltippedElementEventHandlers<E>> {
   "aria-describedby": string | undefined;
   id: string;
 }
 
+/**
+ * @remarks
+ * \@since 2.8.0
+ * \@since 6.0.0 A major API change for the hover mode behavior and no longer
+ * requires a `baseId`/`id` for the tooltip.
+ */
 export interface TooltipHookOptions<E extends HTMLElement>
   extends FixedPositioningTransitionCallbacks,
     TooltippedElementEventHandlers<E>,
     TooltipPositioningOptions,
     TooltipPositionHookOptions {
+  /**
+   * @defaultValue `"tooltip-" + useId()`
+   */
   id?: string;
+
+  /**
+   * An optional override for the `aria-describedby`
+   */
   describedBy?: string;
+
+  /**
+   * Any styles to be merged with the fixed positioning styles for the tooltip.
+   */
   style?: CSSProperties;
+
+  /**
+   * Boolean if the event handlers should no longer attempt to show a tooltip. This
+   * should be set to `true` when your component might not have a tooltip associated
+   * with it.
+   *
+   * @example
+   * Real World Example
+   * ```tsx
+   * import { Button, ButtonProps } from "@react-md/button";
+   * import { Tooltip, useTooltip } from "@react-md/tooltip":
+   * import type { ReactElement, ReactNode } from "react";
+   *
+   * export interface TooltippedButtonProps extends ButtonProps {
+   *   tooltip?: ReactNode;
+   * }
+   *
+   * export function TooltippedButton({
+   *   id,
+   *   tooltip,
+   *   children,
+   *   onClick,
+   *   onBlur,
+   *   onFocus,
+   *   onMouseEnter,
+   *   onMouseLeave,
+   *   onTouchStart,
+   *   onContextMenu,
+   *   ...props
+   * }: TooltippedButtonProps): ReactElement {
+   *   const { elementProps, tooltipProps } = useTooltip({
+   *     id,
+   *     disabled: !tooltip,
+   *     onClick,
+   *     onBlur,
+   *     onFocus,
+   *     onMouseEnter,
+   *     onMouseLeave,
+   *     onTouchStart,
+   *     onContextMenu,
+   *   });
+   *
+   *   return (
+   *     <>
+   *       <Button {...props} {...elementProps}>
+   *         {children}
+   *       </Button>
+   *       <Tooltip {...tooltipProps}>{tooltip}</Tooltip>
+   *     </>
+   *   );
+   * }
+   * ```
+   *
+   * @defaultValue `false`
+   * @remarks \@since 5.1.0
+   */
   disabled?: boolean;
+
+  /**
+   * The amount of time (in ms) to hover an element before the tooltip becomes
+   * visible.
+   *
+   * The default value is really the current hover timeout from the
+   * `TooltipHoverModeProvider`.
+   *
+   * @defaultValue `DEFAULT_TOOLTIP_DELAY`
+   */
   hoverTime?: number;
+
+  /**
+   * The amount of time to wait before triggering the exit animation for the
+   * tooltip.
+   *
+   * The default value is really the current leaveTimeout timeout from the
+   * `TooltipHoverModeProvider`.
+   *
+   * @defaultValue `0`
+   */
   leaveTime?: number;
 }
 
+/**
+ * @remarks
+ * \@since 2.8.0
+ * \@since 6.0.0 This was renamed from `TooltipHookProvidedTooltipProps`
+ */
 export interface ProvidedTooltipProps
   extends Required<FixedPositioningTransitionCallbacks> {
   id: string;
@@ -117,6 +223,12 @@ export interface ProvidedTooltipProps
   visible: boolean;
 }
 
+/**
+ * @remarks
+ * \@since 2.8.0
+ * \@since 6.0.0 No longer returns any properties from the hovermode provider
+ * because of the major API change to hover mode.
+ */
 export interface TooltipHookReturnValue<E extends HTMLElement> {
   visible: boolean;
   setVisible: UseStateSetter<boolean>;
@@ -126,6 +238,25 @@ export interface TooltipHookReturnValue<E extends HTMLElement> {
 }
 
 /**
+ * @example
+ * Simple Usage
+ * ```tsx
+ * import { Button } from "@react-md/button";
+ * import { useTooltip, Tooltip } from "@react-md/tooltip";
+ *
+ * function Example() {
+ *   const { elementProps, tooltipProps } = useTooltip();
+ *
+ *   return (
+ *     <>
+ *       <Button {...elementProps}>Button</Button>
+ *       <Tooltip {...tooltipProps}>
+ *         Tooltip Content
+ *       </Tooltip>
+ *     </>
+ *   );
+ * }
+ * ```
  *
  * ## Inspecting Tooltip Styles
  *
@@ -139,6 +270,10 @@ export interface TooltipHookReturnValue<E extends HTMLElement> {
  *
  * The tooltip will now remain visible allowing you to find it within the
  * "Inspector" tab in the dev tools.
+ *
+ * @remarks
+ * \@since 2.8.0
+ * \@since 6.0.0 Uses a separate `TooltipHoverModeProvider`.
  */
 export function useTooltip<E extends HTMLElement>(
   options: TooltipHookOptions<E> = {}

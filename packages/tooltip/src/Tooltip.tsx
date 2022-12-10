@@ -3,7 +3,7 @@ import type {
   SimplePosition,
   TransitionActions,
 } from "@react-md/core";
-import { bem, Portal, useCSSTransition } from "@react-md/core";
+import { bem, Portal, useCSSTransition, useEnsuredId } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
@@ -15,31 +15,96 @@ import {
 
 const styles = bem("rmd-tooltip");
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export interface TooltipClassNameOptions {
   className?: string;
   dense?: boolean;
   position: SimplePosition;
+  disableLineWrap?: boolean;
 }
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export function tooltip(options: TooltipClassNameOptions): string {
-  const { dense, position, className } = options;
-  return cnb(styles({ dense, [position]: true }), className);
+  const { dense, position, className, disableLineWrap } = options;
+
+  return cnb(
+    styles({ dense, [position]: true, "no-wrap": disableLineWrap }),
+    className
+  );
 }
 
+/**
+ * The base props for the `Tooltip` component. This can be extended when
+ * creating custom tooltip implementations.
+ *
+ * @remarks
+ * \@since 2.8.0 Supports the `RenderConditionalPortalProps`
+ * \@since 6.0.0 No longer supports the `RenderConditionalPortalProps`.
+ */
 export interface TooltipProps
   extends HTMLAttributes<HTMLSpanElement>,
     CSSTransitionComponentProps,
     TransitionActions {
-  id: string;
-  dense?: boolean;
   visible: boolean;
+
+  /**
+   * @defaultValue `false`
+   */
+  dense?: boolean;
+
+  /**
+   * @defaultValue `DEFAULT_TOOLTIP_POSITION`
+   * @see {@link DEFAULT_TOOLTIP_POSITION}
+   */
   position?: SimplePosition;
+
+  /**
+   * @defaultValue `false`
+   */
   disablePortal?: boolean;
+
+  /**
+   * Set this to `true` to disable the `max-width` behavior.
+   *
+   * @defaultValue `false`
+   */
+  disableLineWrap?: boolean;
 }
 
+/**
+ * This is the base tooltip component that can only be used to render a tooltip
+ * with an animation when the visibility changes. If this component is used, you
+ * will need to manually add all the event listeners and triggers to change the
+ * `visible` prop.
+ *
+ * @example
+ * Simple Usage
+ * ```tsx
+ * import { Button } from "@react-md/button";
+ * import { useTooltip, Tooltip } from "@react-md/tooltip";
+ *
+ * function Example() {
+ *   const { elementProps, tooltipProps } = useTooltip();
+ *
+ *   return (
+ *     <>
+ *       <Button {...elementProps}>Button</Button>
+ *       <Tooltip {...tooltipProps}>
+ *         Tooltip Content
+ *       </Tooltip>
+ *     </>
+ *   );
+ * }
+ * ```
+ */
 export const Tooltip = forwardRef<HTMLSpanElement, TooltipProps>(
   function Tooltip(props, nodeRef) {
     const {
+      id: propId,
       dense,
       visible,
       children,
@@ -58,9 +123,11 @@ export const Tooltip = forwardRef<HTMLSpanElement, TooltipProps>(
       position = DEFAULT_TOOLTIP_POSITION,
       temporary,
       exitedHidden = !temporary,
+      disableLineWrap,
       disablePortal: propDisablePortal,
       ...remaining
     } = props;
+    const id = useEnsuredId(propId, "tooltip");
 
     const { rendered, elementProps, disablePortal } = useCSSTransition({
       nodeRef,
@@ -72,6 +139,7 @@ export const Tooltip = forwardRef<HTMLSpanElement, TooltipProps>(
       classNames,
       className: tooltip({
         dense,
+        disableLineWrap,
         position,
         className,
       }),
@@ -89,7 +157,7 @@ export const Tooltip = forwardRef<HTMLSpanElement, TooltipProps>(
     return (
       <Portal disabled={disablePortal}>
         {rendered && (
-          <span {...remaining} {...elementProps} role="tooltip">
+          <span {...remaining} {...elementProps} id={id} role="tooltip">
             {children}
           </span>
         )}
