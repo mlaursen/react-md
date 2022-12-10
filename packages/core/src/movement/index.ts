@@ -1,5 +1,5 @@
 export * from "./constants";
 export * from "./findMatchIndex";
-export * from "./KeyboardMovementProvider";
+export * from "./useKeyboardMovementProvider";
 export * from "./types";
 export * from "./utils";

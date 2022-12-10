@@ -160,6 +160,12 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
             setActiveDescendantId(focused.id);
           }
 
+          // need to force focus back to the container element when using
+          // aria activedescendant
+          if (tabIndexBehavior === "virtual") {
+            event.currentTarget.focus();
+          }
+
           onFocusChange({
             index: focusedIndex,
             element: focused,
@@ -235,19 +241,13 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
             programmatic
           );
           const activeElement = focusables[currentFocusIndex.current];
-          const disabled = activeElement?.getAttribute("aria-disabled");
-          if ((!disabled && disabled === "") || disabled === "true") {
+          const disabled = activeElement?.getAttribute("disabled");
+          const ariaDisabled = activeElement?.getAttribute("aria-disabled");
+          if (!activeElement || disabled === "" || ariaDisabled === "true") {
             return;
           }
 
-          activeElement.focus();
           activeElement.click();
-          // const activeElement = document.getElementById(activeDescendantId);
-          // need to focus first because the useElementInteraction calls
-          // event.stopPropagation() for maybe preventing bulbbing ripples?
-          // maybe I can remove that
-          // activeElement?.focus();
-          // activeElement?.click();
           return;
         }
 
