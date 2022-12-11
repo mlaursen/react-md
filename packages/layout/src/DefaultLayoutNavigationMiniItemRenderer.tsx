@@ -9,13 +9,13 @@ import type { LayoutNavigationItem } from "./types";
 export function DefaultMiniLayoutNavigationItemRenderer<
   T extends TreeItemNode = LayoutNavigationItem
 >(props: TreeItemRendererProps<T>): ReactElement | null {
-  const { getTreeItemProps: _getTreeItemProps, ...remaining } = props;
+  const { item: _item, ...remaining } = props;
   const item = props.item as LayoutNavigationItem;
   const { leftAddon, itemId } = item;
 
   if (leftAddon) {
     return (
-      <TreeItem key={itemId} {...remaining}>
+      <TreeItem key={itemId} itemId={itemId} {...remaining}>
         {leftAddon}
         <SrOnly>{item.name ?? item.children}</SrOnly>
       </TreeItem>

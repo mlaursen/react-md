@@ -5,18 +5,26 @@ import type { ReactNode } from "react";
 import { forwardRef } from "react";
 
 import { treeGroup } from "./styles";
+import { useTreeContext } from "./TreeProvider";
 
 type CSSProperties = React.CSSProperties & {
   "--rmd-tree-depth": number;
 };
 
-export interface TreeGroupProps extends ListProps {
-  children: ReactNode;
-  depth: number;
-  collapsed: boolean;
+export interface OverridableTreeGroupProps extends ListProps {
+  /**
+   * @defaultValue `false`
+   */
+  temporary?: boolean;
 
   /** @defaultValue `false` */
   disableTransition?: boolean;
+}
+
+export interface TreeGroupProps extends OverridableTreeGroupProps {
+  children: ReactNode;
+  depth: number;
+  collapsed: boolean;
 }
 
 export const TreeGroup = forwardRef<HTMLUListElement, TreeGroupProps>(
@@ -25,8 +33,11 @@ export const TreeGroup = forwardRef<HTMLUListElement, TreeGroupProps>(
       className,
       collapsed,
       depth,
+      hidden,
       onClick,
       onMouseDown,
+      children,
+      temporary: propTemporary,
       disableTransition = false,
       ...remaining
     } = props;
@@ -36,16 +47,21 @@ export const TreeGroup = forwardRef<HTMLUListElement, TreeGroupProps>(
       "--rmd-tree-depth": depth,
     };
 
+    const { temporaryChildItems } = useTreeContext();
+    const temporary = propTemporary ?? temporaryChildItems;
+
     const { elementProps, rendered } = useCollapseTransition({
       style,
       nodeRef: ref,
+      hidden,
       enter: !disableTransition,
       exit: !disableTransition,
       transitionIn: !collapsed,
+      temporary,
       className: treeGroup({ className }),
     });
 
-    if (!rendered) {
+    if (!rendered || !children) {
       return null;
     }
 
@@ -66,7 +82,9 @@ export const TreeGroup = forwardRef<HTMLUListElement, TreeGroupProps>(
         }}
         {...elementProps}
         role="group"
-      />
+      >
+        {children}
+      </List>
     );
   }
 );

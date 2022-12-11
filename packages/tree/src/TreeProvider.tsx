@@ -1,49 +1,124 @@
+import type { NonNullRef } from "@react-md/core";
 import type { ReactElement, ReactNode } from "react";
 import { createContext, useContext, useMemo } from "react";
-import type {
-  DefaultTreeItemNode,
-  ReadonlyTreeData,
-  TreeExpansion,
-  TreeExpansionMode,
-  TreeItemNode,
-  TreeSelection,
-} from "./types";
 
+import type { DefaultTreeItemNode, TreeData, TreeItemNode } from "./types";
+import type { TreeExpansion } from "./useTreeExpansion";
+import type { TreeSelection } from "./useTreeSelection";
+
+/**
+ * When this is set to `"auto"`, clicking on a tree item with a mouse or with
+ * the Enter/Space keys will select and expand/collapse the tree item. The user
+ * can still use the ArrowLeft and ArrowRight keys to expand/collapse nested
+ * tree items.
+ *
+ * When this is set to `"manual"`, clicking on a tree item with a mouse or with
+ * the Enter/Space keys will only select that tree item. The user must use the
+ * ArrowLeft and ArrowRight keys to expand/collapse nested tree items.
+ *
+ * The main use-case for the `"manual"` setting is creating a navigation tree
+ * that requires the user to click on an icon or a button to expand the child
+ * items.
+ *
+ * @remarks \@since 6.0.0
+ */
+export type TreeExpansionMode = "auto" | "manual";
+
+/**
+ * @internal
+ * @remarks \@since 6.0.0
+ */
+export interface TreeItemMetadataLookup {
+  /**
+   * This is used for the keyboard movement behavior for trees that allow the
+   * `ArrowRight` key for tree items that have children.
+   */
+  expandable: Record<string, boolean>;
+
+  /**
+   * This is a quick lookup if a tree item is disabled since it's possible the
+   * custom `renderer` sets the `disabled` state and not the `TreeData`.
+   */
+  disabledItems: Record<string, boolean>;
+
+  /**
+   * A lookup of element `id` (DOM id) for each tree item to the `itemId`. This
+   * is a quick way to figure out which item is being interacted with from a
+   * keyboard event without needed to add `data-*` attributes.
+   */
+  elementToItem: Record<string, string>;
+
+  /**
+   * A lookup of tree item `itemId` to the element `id` (DOM id). This is used
+   * to be able to find a parent tree item when the `ArrowLeft` key is pressed
+   * to focus that parent item.
+   */
+  itemToElement: Record<string, string>;
+}
+
+/**
+ * The tree context is mostly a convenience API for implementing a custom tree
+ * item that requires the {@link TreeExpansion}, {@link TreeSelection} and
+ * {@link TreeData} to work.
+ *
+ * The other properties on the context are most likely for internal use only.
+ *
+ * @remarks \@since 6.0.0
+ */
 export interface TreeContext<T extends TreeItemNode = DefaultTreeItemNode>
-  extends Omit<TreeExpansion, "expandedIds">,
-    Required<Omit<TreeSelection, "selectedIds">> {
-  data: ReadonlyTreeData<T>;
+  extends TreeExpansion,
+    TreeSelection {
+  data: TreeData<T>;
   rootId: string | null;
-  expanderLeft: boolean;
-  expanderIcon: ReactNode;
-  expansionMode: TreeExpansionMode;
   disableTransition: boolean;
+  temporaryChildItems: boolean;
+
+  /** @internal */
+  expanderLeft: boolean;
+  /** @internal */
+  expanderIcon: ReactNode;
+  /** @internal */
+  expansionMode: TreeExpansionMode;
+  /** @internal */
+  metadataLookup: NonNullRef<TreeItemMetadataLookup>;
 }
 
-const context = createContext<TreeContext | undefined>(undefined);
+// Allow the hook to correct typecast this instead
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const context = createContext<TreeContext<any> | undefined>(undefined);
+context.displayName = "Tree";
 const { Provider } = context;
-if (process.env.NODE_ENV !== "production") {
-  context.displayName = "Tree";
-}
 
+/**
+ * This can be used for a custom tree item renderer.
+ *
+ * @see The `Tree` component for an example.
+ * @remarks \@since 6.0.0
+ */
 export function useTreeContext<
   T extends TreeItemNode = DefaultTreeItemNode
->(): Readonly<TreeContext<T>> {
+>(): TreeContext<T> {
   const value = useContext(context);
   if (!value) {
     throw new Error("Cannot find a parent Tree component");
   }
 
-  // I don't really think this will be used publicly, so just type cast it.
-  // users can always provide their correct type
-  return value as Readonly<TreeContext<T>>;
+  return value;
 }
 
+/**
+ * @internal
+ * @remarks \@since 6.0.0
+ */
 export interface TreeProviderProps<T extends TreeItemNode = DefaultTreeItemNode>
   extends TreeContext<T> {
   children: ReactNode;
 }
 
+/**
+ * @internal
+ * @remarks \@since 6.0.0
+ */
 export function TreeProvider<T extends TreeItemNode = DefaultTreeItemNode>(
   props: TreeProviderProps<T>
 ): ReactElement {
@@ -55,11 +130,15 @@ export function TreeProvider<T extends TreeItemNode = DefaultTreeItemNode>(
     expanderIcon,
     expanderLeft,
     expansionMode,
-    onItemExpansion,
-    onItemSelection,
+    metadataLookup,
     disableTransition,
-    onMultiItemExpansion,
-    onMultiItemSelection,
+    temporaryChildItems,
+    expandedIds,
+    selectedIds,
+    expandMultipleTreeItems,
+    toggleTreeItemExpansion,
+    selectMultipleTreeItems,
+    toggleTreeItemSelection,
   } = props;
   const value = useMemo<TreeContext<T>>(
     () => ({
@@ -69,24 +148,32 @@ export function TreeProvider<T extends TreeItemNode = DefaultTreeItemNode>(
       expanderIcon,
       expanderLeft,
       expansionMode,
-      onItemExpansion,
-      onItemSelection,
-      onMultiItemExpansion,
-      onMultiItemSelection,
+      metadataLookup,
       disableTransition,
+      temporaryChildItems,
+      expandedIds,
+      selectedIds,
+      expandMultipleTreeItems,
+      toggleTreeItemExpansion,
+      selectMultipleTreeItems,
+      toggleTreeItemSelection,
     }),
     [
       data,
-      rootId,
-      multiSelect,
+      disableTransition,
+      expandMultipleTreeItems,
+      expandedIds,
       expanderIcon,
       expanderLeft,
       expansionMode,
-      onItemExpansion,
-      onItemSelection,
-      onMultiItemExpansion,
-      onMultiItemSelection,
-      disableTransition,
+      metadataLookup,
+      multiSelect,
+      rootId,
+      selectMultipleTreeItems,
+      selectedIds,
+      temporaryChildItems,
+      toggleTreeItemExpansion,
+      toggleTreeItemSelection,
     ]
   );
 

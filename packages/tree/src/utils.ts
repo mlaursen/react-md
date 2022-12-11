@@ -1,25 +1,5 @@
 import type { TreeItemNode, TreeData, DefaultTreeItemNode } from "./types";
 
-interface TreeItemIdOptions {
-  treeId: string;
-  index: number;
-  parentIndexes: readonly number[];
-}
-
-/**
- * @internal
- */
-export function getTreeItemId(options: TreeItemIdOptions): string {
-  const { treeId, index, parentIndexes } = options;
-
-  let parents = "";
-  if (parentIndexes.length) {
-    parents = `-${parentIndexes.join("-")}`;
-  }
-
-  return `${treeId}-item${parents}-${index + 1}`;
-}
-
 /**
  * This will get all the items from the provided itemId up to the root of the
  * tree that can be used for drag and drop behavior or building a breadcrumb

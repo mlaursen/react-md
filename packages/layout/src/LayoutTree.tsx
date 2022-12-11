@@ -33,8 +33,6 @@ export function LayoutTree<T extends TreeItemNode = LayoutNavigationItem>(
     miniItemRenderer = DefaultMiniLayoutNavigationItemRenderer,
     renderer = mini ? miniItemRenderer : DefaultLayoutNavigationItemRenderer,
     disableTemporaryAutoClose = false,
-    isTreeItem = (item: LayoutNavigationItem) =>
-      !item.divider && !item.subheader,
     ...remaining
   } = props;
   const { baseId, layout, hideNav, visible } = useLayoutConfig();
@@ -70,7 +68,6 @@ export function LayoutTree<T extends TreeItemNode = LayoutNavigationItem>(
     >
       <Tree
         {...remaining}
-        isTreeItem={isTreeItem}
         id={id}
         aria-label={ariaLabel}
         aria-labelledby={ariaLabelledBy}

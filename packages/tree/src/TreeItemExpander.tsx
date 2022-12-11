@@ -3,11 +3,10 @@ import { cnb } from "cnbuilder";
 import type { MouseEventHandler, ReactElement, ReactNode } from "react";
 import { cloneElement, isValidElement } from "react";
 import { useTreeContext } from "./TreeProvider";
-import type { TreeItemNode } from "./types";
 
 export interface TreeItemExpanderProps {
   left?: boolean;
-  item: TreeItemNode;
+  itemId: string;
   addon: ReactNode;
   disabled: boolean;
   expanded: boolean;
@@ -19,7 +18,7 @@ export function TreeItemExpander(
   props: TreeItemExpanderProps
 ): ReactElement | null {
   const {
-    item,
+    itemId,
     left = false,
     addon,
     expanded,
@@ -31,12 +30,11 @@ export function TreeItemExpander(
     expanderIcon,
     expanderLeft,
     expansionMode,
-    onItemExpansion,
     disableTransition,
+    toggleTreeItemExpansion,
   } = useTreeContext();
 
   const icon = useIcon("dropdown", expanderIcon);
-  const { itemId } = item;
   if (isLeafNode || expanderLeft !== left) {
     if (isValidElement<{ className?: string }>(addon)) {
       return cloneElement(addon, { className });
@@ -51,7 +49,7 @@ export function TreeItemExpander(
     clickProps = {
       onClick(event) {
         event.preventDefault();
-        onItemExpansion(itemId, !expanded);
+        toggleTreeItemExpansion(itemId);
       },
     };
   }

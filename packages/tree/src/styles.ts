@@ -124,6 +124,27 @@ export function treeItemContent(
   );
 }
 
+/**
+ * @remarks \@since 6.0.0
+ */
+export interface TreeItemMediaClassNameOptions {
+  className?: string;
+  isLeafNode: boolean;
+  isMediaLeftAddon: boolean;
+}
+
+/**
+ * @remarks \@since 6.0.0
+ */
+export function treeItemMedia(options: TreeItemMediaClassNameOptions): string {
+  const { isLeafNode, isMediaLeftAddon, className } = options;
+
+  return cnb(
+    isMediaLeftAddon && treeItemStyles("media", { single: isLeafNode }),
+    className
+  );
+}
+
 /** @remarks \@since 6.0.0 */
 export interface TreeGroupClassNameOptions {
   className?: string;

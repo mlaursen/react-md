@@ -1,0 +1,14 @@
+@use "everything";
+
+.item {
+  @include everything.auto-rtl(
+    padding-left,
+    0.25rem,
+    everything.list-get-var(item-horizontal-padding)
+  );
+}
+
+.container {
+  @include everything.tree-set-var(padding-base, 2rem);
+  @include everything.tree-set-var(padding-incrementor, 1rem);
+}

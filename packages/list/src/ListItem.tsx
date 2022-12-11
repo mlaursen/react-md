@@ -7,13 +7,11 @@ import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
 import { getListItemHeight } from "./getListItemHeight";
 import { ListItemChildren } from "./ListItemChildren";
-import type { ListItemClassNameOptions } from "./styles";
 import { listItem } from "./styles";
-import type { ListItemChildrenProps } from "./types";
+import type { ListItemChildrenProps, ListItemHeight } from "./types";
 
 export interface ListItemProps
   extends HTMLAttributes<HTMLLIElement>,
-    ListItemClassNameOptions,
     ListItemChildrenProps {
   /**
    * @defaultValue `"button"`
@@ -24,6 +22,39 @@ export interface ListItemProps
    * @defaultValue `disabled ? -1 : 0`
    */
   tabIndex?: number;
+
+  /**
+   * @see {@link ListItemHeight}
+   * @defaultValue `"auto"`
+   */
+  height?: ListItemHeight;
+
+  /**
+   * @defaultValue `false`
+   */
+  threeLines?: boolean;
+
+  /**
+   * @defaultValue `false`
+   */
+  disabled?: boolean;
+
+  /**
+   * Note: This does nothing if the `disabled` prop is not enabled.
+   *
+   * @defaultValue `false`
+   * @remarks \@since 2.4.3
+   */
+  disabledOpacity?: boolean;
+
+  /**
+   * Set this to `false` if the list item should not gain the interaction
+   * states: hover, focus, press, etc. This is kind of like being disabled
+   * without the disabled styles being applied.
+   *
+   * @defaultValue `true`
+   */
+  clickable?: boolean;
 }
 
 export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(

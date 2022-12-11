@@ -123,13 +123,13 @@ export function useLayoutNavigation<
   } = options;
   const itemId = removeQueryParams(pathname);
   const selectedIds = useMemo(() => new Set([itemId]), [itemId]);
-  const { expandedIds, onItemExpansion, onMultiItemExpansion } =
+  const { expandedIds, toggleTreeItemExpansion, expandMultipleTreeItems } =
     useTreeExpansion(
       defaultExpandedIds || (() => getParentIds(itemId, navItems))
     );
 
   useEffect(() => {
-    onMultiItemExpansion((prevExpandedIds) => {
+    expandMultipleTreeItems((prevExpandedIds) => {
       const nextExpandedIds = new Set([
         ...prevExpandedIds,
         ...getParentIds(itemId, navItems),
@@ -137,17 +137,17 @@ export function useLayoutNavigation<
 
       return nextExpandedIds;
     });
-  }, [itemId, navItems, onMultiItemExpansion]);
+  }, [expandMultipleTreeItems, itemId, navItems]);
 
   return {
     navItems,
     multiSelect: false,
-    selectedIds,
-    onItemSelection: noop,
-    onMultiItemSelection: noop,
-    expandedIds,
-    onItemExpansion,
-    onMultiItemExpansion,
     linkComponent,
+    expandedIds,
+    selectedIds,
+    expandMultipleTreeItems,
+    toggleTreeItemExpansion,
+    selectMultipleTreeItems: noop,
+    toggleTreeItemSelection: noop,
   };
 }
