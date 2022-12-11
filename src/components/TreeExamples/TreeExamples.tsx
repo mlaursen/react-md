@@ -3,6 +3,7 @@ import type { ReactElement } from "react";
 import { DemoHeadingWithDivider } from "../DemoHeadingWithDivider";
 import { Resettable } from "../Resettable";
 import { DecreasingSpacingExample } from "./DecreasingSpacingExample";
+import { DragAndDropExample } from "./DragAndDropExample";
 import { IconExpanderBeforeExample } from "./IconExpanderBeforeExample";
 import { IconExpansionExample } from "./IconExpansionExample";
 import { MultiSelectTree } from "./MultiSelectTree";
@@ -26,6 +27,8 @@ export default function TreeExamples(): ReactElement {
           Decreasing Spacing Example
         </DemoHeadingWithDivider>
         <DecreasingSpacingExample />
+        <DemoHeadingWithDivider>Drag and Drop Example</DemoHeadingWithDivider>
+        <DragAndDropExample />
       </Box>
     </Resettable>
   );

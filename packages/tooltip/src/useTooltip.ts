@@ -1,5 +1,6 @@
 import type {
   FixedPositioningTransitionCallbacks,
+  SimplePosition,
   UserInteractionMode,
   UseStateSetter,
 } from "@react-md/core";
@@ -221,6 +222,7 @@ export interface ProvidedTooltipProps
   dense: boolean;
   style: CSSProperties;
   visible: boolean;
+  position: SimplePosition;
 }
 
 /**
@@ -442,6 +444,7 @@ export function useTooltip<E extends HTMLElement>(
       dense,
       style,
       visible,
+      position,
       ...callbacks,
     },
     elementProps: {

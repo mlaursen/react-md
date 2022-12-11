@@ -47,6 +47,8 @@
     "next": "^13.0.4",
     "prismjs": "^1.29.0",
     "react": "^18.2.0",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^18.2.0",
     "react-marked-renderer": "^1.1.2",
     "react-window": "^1.8.8"

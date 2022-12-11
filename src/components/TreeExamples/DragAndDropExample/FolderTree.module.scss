@@ -1,0 +1,28 @@
+@use "everything";
+
+.container {
+  @include everything.set-window-splitter-var(
+    position,
+    var(--dnd-panel-width, 16rem)
+  );
+
+  @include everything.tablet-media {
+    grid-template-columns: var(--dnd-panel-width, 16rem) 1fr;
+  }
+
+  align-items: stretch;
+  display: grid;
+  grid-template-columns: 10rem 1fr;
+  height: 30rem;
+  margin-bottom: 4rem;
+  position: relative;
+  width: 100%;
+}
+
+.card {
+  @include everything.tree-set-var(padding-base, 2rem);
+  @include everything.tree-set-var(padding-incrementor, 1rem);
+  @include everything.list-set-var(item-horizontal-padding, 0.25rem);
+
+  overflow: hidden;
+}
