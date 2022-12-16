@@ -47,12 +47,15 @@
   right: 0;
 }
 
-.indicator {
-  @include everything.interaction-surface($css-modules: true);
+.tablist {
+  gap: 0.25rem;
+  width: auto;
+}
 
+.indicator {
   background-color: rgba(everything.$white, 0.54);
-  border: 0;
   height: 0.75rem;
+  min-width: 3rem;
   width: 3rem;
 
   &[aria-selected="true"] {

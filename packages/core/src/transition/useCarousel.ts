@@ -44,7 +44,7 @@ export interface CarouselImplementation extends CarouselState {
    * ensure the {@link CarouselSlideState.direction} is correct based on the
    * current active index and next active index.
    */
-  setActiveIndex(nextActiveIndex: number): void;
+  setActiveIndex: UseStateSetter<number>;
 
   /**
    * This can be used if the provided carousel actions do not solve your use
@@ -104,11 +104,25 @@ export interface CarouselOptions {
  *     totalSlides: slides.length,
  *   });
  *
+ *   const slideId = useId();
+ *
  *   return (
- *     <>
- *       <SlideContainer direction={direction}>
+ *     <div
+ *       aria-roledescription="carousel"
+ *       aria-label="Carousel"
+ *       id={useId()}
+ *       role="region"
+ *     >
+ *       <SlideContainer aria-live="off" direction={direction}>
  *         {slides.map(({ title }, index) => (
- *           <Slide key={title} active={activeIndex === index}>
+ *           <Slide
+ *             key={title}
+ *             aria-label={`Slide ${index + 1} of ${slides.length - 1}`}
+ *             aria-roledescription="slide"
+ *             id={`${slideId}-${index}`}
+ *             role="group"
+ *             active={activeIndex === index}
+ *           >
  *             {title}
  *           </Slide>
  *         ))}
@@ -126,6 +140,7 @@ export interface CarouselOptions {
  *           key={title}
  *           aria-label={`Slide ${index + 1}`}
  *           aria-selected={activeIndex === index}
+ *           aria-controls={`${slideId}-${index}`}
  *           role="tab"
  *           onClick={() => setActiveIndex(index))}
  *         />
@@ -146,11 +161,14 @@ export interface CarouselOptions {
  *       >
  *         <ChevronRightIcon />
  *       </Button>
- *     </>
+ *     </div>
  *   );
  * }
  * ```
+ *
  * @remarks \@since 6.0.0
+ * @see {@link https://www.w3.org/WAI/ARIA/apg/patterns/carousel/}
+ * @see {@link https://www.w3.org/WAI/ARIA/apg/example-index/carousel/carousel-2-tablist.html}
  */
 export function useCarousel(options: CarouselOptions): CarouselImplementation {
   const { duration = 8000, totalSlides } = options;
@@ -165,12 +183,23 @@ export function useCarousel(options: CarouselOptions): CarouselImplementation {
     toggle: togglePaused,
     setToggled: setPaused,
   } = useToggle(false);
-  const setActiveIndex = useCallback((activeIndex: number) => {
-    setCarouselSlideState((prevState) => ({
-      direction: prevState.activeIndex < activeIndex ? "left" : "right",
-      activeIndex,
-    }));
-  }, []);
+  const setActiveIndex = useCallback<UseStateSetter<number>>(
+    (activeIndexOrGetter) => {
+      setCarouselSlideState((prevState) => {
+        const prevActiveIndex = prevState.activeIndex;
+        const nextActiveIndex =
+          typeof activeIndexOrGetter === "function"
+            ? activeIndexOrGetter(prevActiveIndex)
+            : activeIndexOrGetter;
+
+        return {
+          direction: prevActiveIndex < nextActiveIndex ? "left" : "right",
+          activeIndex: nextActiveIndex,
+        };
+      });
+    },
+    []
+  );
   const increment = useCallback(() => {
     setCarouselSlideState((prevState) => ({
       direction: "left",

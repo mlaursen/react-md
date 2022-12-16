@@ -5,8 +5,10 @@ import ChevronLeftIcon from "@react-md/material-icons/ChevronLeftIcon";
 import ChevronRightIcon from "@react-md/material-icons/ChevronRightIcon";
 import PauseIcon from "@react-md/material-icons/PauseIcon";
 import PlayArrowIcon from "@react-md/material-icons/PlayArrowIcon";
+import { Tab, TabList } from "@react-md/tabs";
 import { visualMedia, VisualMediaOverlay } from "@react-md/visual-media";
 import type { ReactElement } from "react";
+import { useId } from "react";
 import styles from "./AccessibleCarouselExample.module.scss";
 
 interface CarouselSlide {
@@ -33,6 +35,10 @@ const slides: readonly CarouselSlide[] = [
   },
 ];
 
+/**
+ * @see {@link https://www.w3.org/WAI/ARIA/apg/patterns/carousel/}
+ * @see {@link https://www.w3.org/WAI/ARIA/apg/example-index/carousel/carousel-2-tablist.html}
+ */
 export function AccessibleCarouselExample(): ReactElement {
   const {
     paused,
@@ -43,13 +49,29 @@ export function AccessibleCarouselExample(): ReactElement {
     togglePaused,
     setActiveIndex,
   } = useCarousel({ totalSlides: slides.length });
+  const id = useId();
+  const carouselId = useId();
 
   return (
     <Card fullWidth className={styles.card}>
-      <CardContent>
-        <SlideContainer direction={direction} className={styles.container}>
+      <CardContent
+        aria-label="Highlighted nature shots"
+        aria-roledescription="carousel"
+        id={id}
+        role="region"
+      >
+        <SlideContainer
+          aria-live="off"
+          id={carouselId}
+          direction={direction}
+          className={styles.container}
+        >
           {slides.map(({ src, title, subtitle }, index) => (
             <Slide
+              aria-label={`Slide ${index + 1} of ${slides.length + 1}`}
+              aria-roledescription="slide"
+              id={`${carouselId}-${index + 1}`}
+              role="group"
               key={title}
               active={activeIndex === index}
               timeout={500}
@@ -99,17 +121,21 @@ export function AccessibleCarouselExample(): ReactElement {
             >
               {paused ? <PlayArrowIcon /> : <PauseIcon />}
             </Button>
-            {slides.map(({ title }, index) => (
-              <button
-                key={title}
-                aria-label={`Slide ${index + 1}`}
-                aria-selected={activeIndex === index}
-                role="tab"
-                type="button"
-                className={styles.indicator}
-                onClick={() => setActiveIndex(index)}
-              />
-            ))}
+            <TabList
+              activeIndex={activeIndex}
+              setActiveIndex={setActiveIndex}
+              className={styles.tablist}
+            >
+              {slides.map(({ title }, index) => (
+                <Tab
+                  key={title}
+                  aria-label={`Slide ${index + 1}`}
+                  aria-controls={`${carouselId}-${index + 1}`}
+                  active={activeIndex === index}
+                  className={styles.indicator}
+                />
+              ))}
+            </TabList>
           </div>
         </SlideContainer>
       </CardContent>
