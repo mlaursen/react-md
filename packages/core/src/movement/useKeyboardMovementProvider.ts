@@ -1,4 +1,11 @@
-import { createContext, useContext, useMemo, useRef, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { getFocusableElements as defaultGetFocusableElements } from "../focus";
 import { useUserInteractionMode } from "../interaction";
 import { useDir } from "../typography/WritingDirection";
@@ -250,6 +257,16 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
   const currentFocusIndex = useRef(-1);
   const mode = useUserInteractionMode();
   const refocus = useRef(false);
+
+  if (process.env.NODE_ENV !== "production") {
+    // this fixes issues during hot reloading and using the `useId()` hook
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useEffect(() => {
+      return () => {
+        setActiveDescendantId("");
+      };
+    }, []);
+  }
 
   return {
     movementProps: {

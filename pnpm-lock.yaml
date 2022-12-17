@@ -301,6 +301,24 @@ importers:
       '@react-md/icon': link:../icon
       cnbuilder: 3.1.0
 
+  packages/menu:
+    specifiers:
+      '@react-md/button': ^6.0.0-alpha.0
+      '@react-md/core': ^6.0.0-alpha.0
+      '@react-md/dialog': ^6.0.0-alpha.0
+      '@react-md/divider': ^6.0.0-alpha.0
+      '@react-md/icon': ^6.0.0-alpha.0
+      '@react-md/list': ^6.0.0-alpha.0
+      cnbuilder: ^3.1.0
+    dependencies:
+      '@react-md/button': link:../button
+      '@react-md/core': link:../core
+      '@react-md/dialog': link:../dialog
+      '@react-md/divider': link:../divider
+      '@react-md/icon': link:../icon
+      '@react-md/list': link:../list
+      cnbuilder: 3.1.0
+
   packages/overlay:
     specifiers:
       '@react-md/core': ^6.0.0-alpha.0

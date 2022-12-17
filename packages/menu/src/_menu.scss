@@ -1,0 +1,121 @@
+@use "sass:map";
+@use "@react-md/core";
+@use "@react-md/icon";
+
+$disable-menu: false !default;
+$disable-menu-item: false !default;
+$disable-focus-outline: false !default;
+$disable-elevation-colors: core.$disable-dark-elevation !default;
+
+$elevation: 8 !default;
+$background-color: core.get-theme-var(surface-color) !default;
+$color: core.get-theme-var(text-primary-color) !default;
+
+$z-index: core.$temporary-element-z-index !default;
+$min-width: 7rem !default;
+
+$spacing: 1rem !default;
+
+$var-lookup: (
+  background-color: (
+    var: --rmd-menu-background-color,
+    value: $background-color,
+  ),
+  color: (
+    var: --rmd-menu-color,
+    value: $color,
+  ),
+  min-width: (
+    var: --rmd-menu-min-width,
+    value: $min-width,
+  ),
+  spacing: (
+    var: --rmd-menu-spacing,
+    value: $spacing,
+  ),
+);
+
+@function get-var($name, $fallback: null) {
+  $found: core.validate($var-lookup, $name, "dialog var");
+  $var: map.get($found, var);
+  $value: if($fallback, $fallback, map.get($found, value));
+
+  @if $value {
+    @return var(#{$var}, #{$value});
+  }
+
+  @return var(#{$var});
+}
+
+@mixin set-var($name, $value) {
+  $var: map.get(core.validate($var-lookup, $name, "dialog var"), var);
+
+  #{$var}: #{$value};
+}
+
+@mixin use-var($property, $name: $property, $fallback: null) {
+  #{$property}: get-var($name, $fallback);
+}
+
+@mixin menu-styles {
+  .rmd-menu {
+    outline: none;
+    overflow: auto;
+
+    @if not $disable-focus-outline {
+      @include core.keyboard-only {
+        &--outline:focus {
+          // Note: Do not use the `use-interaction-outline` mixin +
+          // `set-interaction-var(core.$outline-color)` like normal focus
+          // elements since it'll make all focusable children update with the
+          // outline color as well
+          outline: core.get-interaction-var(outline-color) solid
+            core.get-interaction-var(outline-width);
+        }
+      }
+    }
+
+    &--elevated {
+      @include core.box-shadow(
+        $elevation,
+        $disable-colors: $disable-elevation-colors
+      );
+      @if $disable-elevation-colors {
+        @include use-var(background-color);
+        @include use-var(color);
+      }
+      @include use-var(min-width);
+
+      z-index: $z-index;
+    }
+  }
+}
+
+@mixin menu-item-styles {
+  .rmd-menu-item {
+    @include icon.set-var(spacing, get-var(spacing));
+
+    height: var(--rmd-list-item-height);
+
+    // &::before {
+    //   // this makes the outline appear inset in menus. for some reason the
+    //   // `outline-style: inset` doesn't look correct
+    //   inset: core.get-interaction-var(outline-width);
+    // }
+
+    // role="option" ONLY
+    &--focused {
+      @include core.set-interaction-var(outline-color, core.$outline-color);
+    }
+  }
+}
+
+@mixin styles {
+  @if not $disable-menu {
+    @include menu-styles;
+
+    @if not $disable-menu-item {
+      @include menu-item-styles;
+    }
+  }
+}

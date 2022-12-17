@@ -32,6 +32,7 @@
       "@react-md/link": ["packages/link/src/index.ts"],
       "@react-md/list": ["packages/list/src/index.ts"],
       "@react-md/material-icons/*": ["packages/material-icons/src/*"],
+      "@react-md/menu": ["packages/menu/src/index.ts"],
       "@react-md/overlay": ["packages/overlay/src/index.ts"],
       "@react-md/progress": ["packages/progress/src/index.ts"],
       "@react-md/table": ["packages/table/src/index.ts"],

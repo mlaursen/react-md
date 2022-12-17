@@ -19,6 +19,7 @@ import NotificationsIcon from "@react-md/material-icons/NotificationsIcon";
 import RadioButtonCheckedIcon from "@react-md/material-icons/RadioButtonCheckedIcon";
 import RadioButtonUncheckedIcon from "@react-md/material-icons/RadioButtonUncheckedIcon";
 import RemoveRedEyeIcon from "@react-md/material-icons/RemoveRedEyeIcon";
+import { MenuConfigurationProvider } from "@react-md/menu";
 import { upperFirst } from "lodash";
 import type { AppProps } from "next/app";
 import Head from "next/head";
@@ -130,20 +131,22 @@ export default function App(props: AppProps): ReactElement {
       disableHigherContrast={defaultDisableHighContrastMode}
       elementInteractionMode={defaultElementInteractionMode}
     >
-      <Head>
-        <title>{title}</title>
-        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-      </Head>
-      <ThemeProvider>
-        <IconProvider {...icons}>
-          <CodeConfigProvider>
-            <Layout title={title}>
-              <Component {...pageProps} />
-              <LoadThemeStyles />
-            </Layout>
-          </CodeConfigProvider>
-        </IconProvider>
-      </ThemeProvider>
+      <MenuConfigurationProvider renderAsSheet="phone">
+        <Head>
+          <title>{title}</title>
+          <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        </Head>
+        <ThemeProvider>
+          <IconProvider {...icons}>
+            <CodeConfigProvider>
+              <Layout title={title}>
+                <Component {...pageProps} />
+                <LoadThemeStyles />
+              </Layout>
+            </CodeConfigProvider>
+          </IconProvider>
+        </ThemeProvider>
+      </MenuConfigurationProvider>
     </CoreProviders>
   );
 }

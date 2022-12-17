@@ -116,6 +116,20 @@ export type UseStateSetter<T> = Dispatch<SetStateAction<T>>;
 export type UseStateInitializer<T> = T | (() => T);
 
 /**
+ * @example
+ * ```ts
+ * type Visibility = UseStateObject<"visible", boolean>;
+ * // type Visibility = {
+ * //   visible: boolean;
+ * //   setVisible: UseStateSetter<boolean>
+ * // }
+ *
+ * type AnotherOne = UseStateObject<"renderAsSheet", RenderMenuAsSheet>;
+ * // type ANotherOne = {
+ * //   renderAsSheet: RenderMenuAsSheet;
+ * //   setRenderAsSheet: UseStateSetter<RenderMenuAsSheet>;
+ * // }
+ * ```
  * @remarks \@since 6.0.0
  * @internal
  */

@@ -22,6 +22,7 @@
 @include everything.card-styles;
 @include everything.expansion-panel-styles;
 @include everything.form-styles;
+@include everything.menu-styles;
 
 :root {
   @if everything.$disable-default-root-theme {

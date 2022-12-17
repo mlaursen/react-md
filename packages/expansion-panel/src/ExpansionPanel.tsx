@@ -108,13 +108,13 @@ export interface ExpansionPanelProps extends CardProps {
   >;
 
   /**
-   * Convenience prop to pply custom style to the `ExpansionPanelHeader`
+   * Convenience prop to apply custom style to the `ExpansionPanelHeader`
    * component.
    */
   headerStyle?: CSSProperties;
 
   /**
-   * Convenience prop to pply custom class name to the `ExpansionPanelHeader`
+   * Convenience prop to apply custom class name to the `ExpansionPanelHeader`
    * component.
    */
   headerClassName?: string;

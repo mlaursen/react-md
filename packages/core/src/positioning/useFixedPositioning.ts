@@ -212,10 +212,10 @@ export function useFixedPositioning<
     style: propStyle,
     nodeRef,
     fixedTo,
-    onEnter,
-    onEntering,
-    onEntered,
-    onExited,
+    onEnter = noop,
+    onEntering = noop,
+    onEntered = noop,
+    onExited = noop,
     anchor = BELOW_CENTER_ANCHOR,
     disableSwapping,
     disableVHBounds,
@@ -230,7 +230,7 @@ export function useFixedPositioning<
     yMargin,
     getFixedPositionOptions = noop,
     onScroll,
-    onResize,
+    onResize = noop,
   } = options;
 
   const [active, setActive] = useState(false);
@@ -351,7 +351,7 @@ export function useFixedPositioning<
     }
 
     const resizeCallback = (event: Event): void => {
-      onResize?.(event);
+      onResize(event);
       updateStyle();
     };
     const scrollCallback = (event: Event): void => {
@@ -388,19 +388,19 @@ export function useFixedPositioning<
 
   const callbacks: Required<FixedPositioningTransitionCallbacks> = {
     onEnter(appearing) {
-      onEnter?.(appearing);
+      onEnter(appearing);
       updateStyle();
     },
     onEntering(appearing) {
-      onEntering?.(appearing);
+      onEntering(appearing);
       updateStyle();
     },
     onEntered(appearing) {
-      onEntered?.(appearing);
+      onEntered(appearing);
       updateStyle();
     },
     onExited() {
-      onExited?.();
+      onExited();
       setActive(false);
     },
   };

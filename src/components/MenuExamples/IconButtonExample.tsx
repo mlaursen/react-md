@@ -1,0 +1,17 @@
+import MoreVertIcon from "@react-md/material-icons/MoreVertIcon";
+import { DropdownMenu, MenuItem } from "@react-md/menu";
+import type { ReactElement } from "react";
+
+export function IconButtonExample(): ReactElement {
+  return (
+    <DropdownMenu
+      aria-label="Options"
+      buttonType="icon"
+      buttonChildren={<MoreVertIcon />}
+    >
+      <MenuItem>Item 1</MenuItem>
+      <MenuItem>Item 2</MenuItem>
+      <MenuItem>Item 3</MenuItem>
+    </DropdownMenu>
+  );
+}

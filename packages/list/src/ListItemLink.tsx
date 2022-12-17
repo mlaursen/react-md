@@ -71,7 +71,8 @@ export const ListItemLink = forwardRef<HTMLAnchorElement, ListItemLinkProps>(
       onTouchStart,
       onTouchEnd,
       onTouchMove,
-      tabIndex = disabled ? -1 : undefined,
+      role,
+      tabIndex = disabled || role === "menuitem" ? -1 : undefined,
       children: propChildren,
       ...remaining
     } = props;
@@ -109,6 +110,7 @@ export const ListItemLink = forwardRef<HTMLAnchorElement, ListItemLinkProps>(
           ref={ref}
           {...remaining}
           {...handlers}
+          role={role}
           className={listItem({
             className,
             link: true,

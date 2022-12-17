@@ -25,6 +25,7 @@ module.exports = {
     "^@react-md/material-icons$": [
       "<rootDir>/packages/material-icons/src/index.ts",
     ],
+    "^@react-md/menu$": ["<rootDir>/packages/menu/src/index.ts"],
     "^@react-md/overlay$": ["<rootDir>/packages/overlay/src/index.ts"],
     "^@react-md/progress$": ["<rootDir>/packages/progress/src/index.ts"],
     "^@react-md/table$": ["<rootDir>/packages/table/src/index.ts"],

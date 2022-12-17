@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { NonNullMutableRef, NonNullRef } from "../types";
 
 const noop = (): void => {
@@ -82,6 +82,11 @@ export interface SimpleHoverModeContext {
  */
 export interface HoverModeContext extends SimpleHoverModeContext {
   /**
+   * This will only be updated if {@link HoverModeConfiguration.forceRerender} is `true`
+   */
+  activeId: string;
+
+  /**
    * This ref contains the current DOM `id` for the element that is being
    * hovered within the `HoverModeProvider`. This will be an empty string
    * when the hover mode is not active.
@@ -141,6 +146,7 @@ export function createHoverModeContext(
   const { defaultActiveId = "", hoverTimeout, leaveTimeout = 0 } = options;
 
   return {
+    activeId: defaultActiveId,
     activeIdRef: { current: defaultActiveId },
     hoverTimeoutRef: { current: hoverTimeout },
     leaveTimeoutRef: { current: leaveTimeout },
@@ -154,9 +160,6 @@ export function createHoverModeContext(
 
 /** @remarks \@since 6.0.0 */
 export interface HoverModeConfiguration extends CreateHoverModeContextOptions {
-  /** @see {@link CreateHoverModeContextOptions.hoverTimeout} */
-  hoverTimeout: number;
-
   /**
    * The amount of time to wait before disabling the hover mode beahvior if none
    * of the components are being hovered.
@@ -166,6 +169,11 @@ export interface HoverModeConfiguration extends CreateHoverModeContextOptions {
    * to disable the hover mode instead.
    */
   disableTimeout?: number;
+
+  /**
+   * @defaultValue `false`
+   */
+  forceRerender?: boolean;
 }
 
 /**
@@ -226,14 +234,16 @@ export function useHoverModeProvider(
   const {
     hoverTimeout,
     leaveTimeout = 0,
+    forceRerender = false,
     defaultActiveId = "",
     disableTimeout,
   } = options;
 
+  const [activeId, setActiveId] = useState(defaultActiveId);
   const activeIdRef = useRef(defaultActiveId);
   const hoverTimeoutRef = useRef(hoverTimeout);
   const leaveTimeoutRef = useRef(leaveTimeout);
-  const animatedOnceRef = useRef(false);
+  const animatedOnceRef = useRef(!!defaultActiveId);
   const disableHoverModeTimeout = useRef<number | undefined>();
   const clearDisableTimer = useCallback(() => {
     window.clearTimeout(disableHoverModeTimeout.current);
@@ -243,15 +253,22 @@ export function useHoverModeProvider(
       clearDisableTimer();
       activeIdRef.current = activeId;
       hoverTimeoutRef.current = 0;
+
+      if (forceRerender) {
+        setActiveId(activeId);
+      }
     },
-    [clearDisableTimer]
+    [clearDisableTimer, forceRerender]
   );
   const disableHoverMode = useCallback(() => {
     clearDisableTimer();
     activeIdRef.current = "";
     hoverTimeoutRef.current = hoverTimeout;
     animatedOnceRef.current = false;
-  }, [clearDisableTimer, hoverTimeout]);
+    if (forceRerender) {
+      setActiveId("");
+    }
+  }, [clearDisableTimer, forceRerender, hoverTimeout]);
   const startDisableTimer = useCallback(() => {
     if (typeof disableTimeout !== "number") {
       return;
@@ -264,13 +281,15 @@ export function useHoverModeProvider(
   }, [clearDisableTimer, disableHoverMode, disableTimeout]);
 
   useEffect(() => {
+    hoverTimeoutRef.current = hoverTimeout;
     return () => {
       window.clearTimeout(disableHoverModeTimeout.current);
     };
-  }, []);
+  }, [hoverTimeout]);
 
   return useMemo<HoverModeContext>(
     () => ({
+      activeId,
       activeIdRef,
       hoverTimeoutRef,
       leaveTimeoutRef,
@@ -280,6 +299,12 @@ export function useHoverModeProvider(
       startDisableTimer,
       clearDisableTimer,
     }),
-    [enableHoverMode, disableHoverMode, startDisableTimer, clearDisableTimer]
+    [
+      activeId,
+      enableHoverMode,
+      disableHoverMode,
+      startDisableTimer,
+      clearDisableTimer,
+    ]
   );
 }
