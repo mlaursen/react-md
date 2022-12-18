@@ -3,7 +3,7 @@ import type {
   DraggableImplementation,
   DraggableKeyboardEventHanders,
   DraggableMouseEventHandlers,
-  DraggableOptions,
+  UncontrolledDraggableOptions,
   DraggableTouchEventHandlers,
 } from "../draggable";
 import { useDraggable } from "../draggable";
@@ -19,7 +19,7 @@ const noop = (): void => {
  */
 export interface WindowSplitterOptions<E extends HTMLElement>
   extends Omit<
-    DraggableOptions<E>,
+    UncontrolledDraggableOptions<E>,
     "disableTouch" | keyof DraggableTouchEventHandlers<E>
   > {
   /**

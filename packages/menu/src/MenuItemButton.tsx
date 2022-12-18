@@ -1,6 +1,6 @@
 import {
-  useControlledHoverMode,
   useEnsuredId,
+  useHoverMode,
   useUserInteractionMode,
 } from "@react-md/core";
 import { IconRotator, useIcon } from "@react-md/icon";
@@ -50,7 +50,7 @@ export const MenuItemButton = forwardRef<HTMLLIElement, MenuItemButtonProps>(
       hoverTimeoutRef,
     } = useMenuBarContext();
     const { visible, setVisible, defaultFocusIndex } = useMenuVisibility();
-    const { startShowFlow, clearVisibilityTimeout } = useControlledHoverMode({
+    const { startShowFlow, clearVisibilityTimeout } = useHoverMode({
       setVisible,
       enableHoverMode,
       disableHoverMode,

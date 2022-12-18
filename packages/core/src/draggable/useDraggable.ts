@@ -61,7 +61,7 @@ export type DraggableEventHandlers<E extends HTMLElement> =
 /**
  * @remarks \@since 6.0.0
  */
-export interface DraggableOptions<E extends HTMLElement>
+export interface BaseDraggableOptions<E extends HTMLElement>
   extends DraggableEventHandlers<E> {
   /**
    * The minimum number of pixels allowed for the draggable element. This must
@@ -75,11 +75,6 @@ export interface DraggableOptions<E extends HTMLElement>
    * viewport size.
    */
   max: number;
-
-  /**
-   * @defaultValue `Math.ceil((max - min) / 2)`
-   */
-  defaultValue?: UseStateInitializer<number>;
 
   /**
    * An optional ref to merge with the returned
@@ -121,6 +116,25 @@ export interface DraggableOptions<E extends HTMLElement>
   disableDraggingClassName?: boolean;
 
   /**
+   * Set this to `true` to prevent the vertical or horizontal cursor from
+   * appearing while dragging.
+   *
+   * @defaultValue `false`
+   */
+  disableDraggingCursorClassName?: boolean;
+}
+
+/**
+ * @remarks \@since 6.0.0
+ */
+export interface UncontrolledDraggableOptions<E extends HTMLElement>
+  extends BaseDraggableOptions<E> {
+  /**
+   * @defaultValue `Math.ceil((max - min) / 2)`
+   */
+  defaultValue?: UseStateInitializer<number>;
+
+  /**
    * @defaultValue `""`
    * @see {@link LocalStorageHookOptions.key}
    */
@@ -140,21 +154,18 @@ export interface DraggableOptions<E extends HTMLElement>
 /**
  * @remarks \@since 6.0.0
  */
-export interface DraggableImplementation<E extends HTMLElement> {
+export interface ControlledDraggableOptions<E extends HTMLElement>
+  extends BaseDraggableOptions<E> {
+  setValue: UseStateSetter<number>;
+}
+
+/**
+ * @remarks \@since 6.0.0
+ */
+export interface ControlledDraggableImplementation<E extends HTMLElement> {
   mouseEventHandlers: Required<DraggableMouseEventHandlers<E>>;
   touchEventHandlers: Required<DraggableTouchEventHandlers<E>>;
   keyboardEventHandlers: Required<DraggableKeyboardEventHanders<E>>;
-
-  /**
-   * The current drag distance in pixels.
-   */
-  value: number;
-
-  /**
-   * This can be used to manually set the {@link value} if that is needed for
-   * some custom behavior.
-   */
-  setValue: UseStateSetter<number>;
 
   /**
    * This will be `true` when the user is dragging the element through mouse or
@@ -186,6 +197,23 @@ export interface DraggableImplementation<E extends HTMLElement> {
    * A ref that **Must** be passed to the element that should be draggable.
    */
   draggableRef: RefCallback<E>;
+}
+
+/**
+ * @remarks \@since 6.0.0
+ */
+export interface UncontrolledDraggableImplementation<E extends HTMLElement>
+  extends ControlledDraggableImplementation<E> {
+  /**
+   * The current drag distance in pixels.
+   */
+  value: number;
+
+  /**
+   * This can be used to manually set the {@link value} if that is needed for
+   * some custom behavior.
+   */
+  setValue: UseStateSetter<number>;
 
   /**
    * @see {@link LocalStorageHookReturnValue.persist}
@@ -199,6 +227,18 @@ export interface DraggableImplementation<E extends HTMLElement> {
 }
 
 /**
+ * @internal
+ * @remarks \@since 6.0.0
+ */
+export interface DraggableImplementation<E extends HTMLElement>
+  extends ControlledDraggableImplementation<E> {
+  value?: number;
+  setValue?: UseStateSetter<number>;
+  persistToLocalStorage?(): void;
+  removeFromLocalStorage?(): void;
+}
+
+/**
  * This is most likely an internal only hook that provides the functionality for
  * dragging an element through mouse, touch, and keyboard events. The main use
  * cases so far for this hook are:
@@ -208,7 +248,13 @@ export interface DraggableImplementation<E extends HTMLElement> {
  * @remarks \@since 6.0.0
  */
 export function useDraggable<E extends HTMLElement>(
-  options: DraggableOptions<E>
+  options: ControlledDraggableOptions<E>
+): ControlledDraggableImplementation<E>;
+export function useDraggable<E extends HTMLElement>(
+  options: UncontrolledDraggableOptions<E>
+): UncontrolledDraggableImplementation<E>;
+export function useDraggable<E extends HTMLElement>(
+  options: ControlledDraggableOptions<E> | UncontrolledDraggableOptions<E>
 ): DraggableImplementation<E> {
   const {
     ref: propRef,
@@ -216,7 +262,6 @@ export function useDraggable<E extends HTMLElement>(
     max,
     step = 1,
     vertical = false,
-    defaultValue,
     onKeyDown = noop,
     onMouseUp = noop,
     onMouseDown = noop,
@@ -224,17 +269,21 @@ export function useDraggable<E extends HTMLElement>(
     onTouchStart = noop,
     onTouchMove = noop,
     onTouchEnd = noop,
+    setValue: propSetValue,
+    defaultValue,
     localStorageKey = "",
     localStorageManual,
     disabled = false,
     disableDraggingClassName = false,
-  } = options;
+    disableDraggingCursorClassName = disableDraggingClassName,
+  } = options as ControlledDraggableOptions<E> &
+    UncontrolledDraggableOptions<E>;
 
   const [nodeRef, ref] = useEnsuredRef(propRef);
   const isTouch = useUserInteractionMode() === "touch";
   const draggingRef = useRef(false);
   const [dragging, setDragging] = useState(false);
-  const { value, setValue, persist, remove } = useLocalStorage({
+  const localStorage = useLocalStorage({
     key: localStorageKey,
     manual: localStorageManual || dragging,
     defaultValue: () => {
@@ -249,6 +298,15 @@ export function useDraggable<E extends HTMLElement>(
       return defaultValue;
     },
   });
+  let value: number | undefined;
+  let setValue: UseStateSetter<number>;
+  let persist: (() => void) | undefined;
+  let remove: (() => void) | undefined;
+  if (typeof propSetValue !== "undefined") {
+    setValue = propSetValue;
+  } else {
+    ({ value, setValue, persist, remove } = localStorage);
+  }
 
   const isRTL = useDir().dir === "rtl";
   const maximum = useCallback(() => {
@@ -267,7 +325,11 @@ export function useDraggable<E extends HTMLElement>(
   const draggingClassName = dragging && !disableDraggingClassName;
   useHtmlClassName(cnb(draggingClassName && "rmd-dragging"));
   useHtmlClassName(
-    cnb(draggingClassName && `rmd-dragging--${vertical ? "v" : "h"}`)
+    cnb(
+      !disableDraggingCursorClassName &&
+        draggingClassName &&
+        `rmd-dragging--${vertical ? "v" : "h"}`
+    )
   );
 
   useEffect(() => {
@@ -279,13 +341,13 @@ export function useDraggable<E extends HTMLElement>(
       event.preventDefault();
       event.stopPropagation();
 
-      const splitter = nodeRef.current;
-      if (!splitter) {
+      const element = nodeRef.current;
+      if (!element) {
         return;
       }
 
       // firefox defaults to `document.body` while chrome will return `null`
-      const container = splitter.offsetParent || document.body;
+      const container = element.offsetParent || document.body;
       const position = getDragPosition({
         event,
         isRTL,
@@ -338,7 +400,7 @@ export function useDraggable<E extends HTMLElement>(
   }, [max, min, setValue, step]);
 
   useEffect(() => {
-    if (!dragging) {
+    if (!dragging && persist) {
       persist();
     }
   }, [dragging, persist]);
@@ -431,7 +493,7 @@ export function useDraggable<E extends HTMLElement>(
   return {
     value,
     dragging,
-    setValue,
+    setValue: setValue === propSetValue ? undefined : setValue,
     maximum,
     minimum,
     increment,
