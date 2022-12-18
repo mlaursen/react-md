@@ -188,7 +188,7 @@ export type FileValidationError<E = GenericFileError> =
  * @param error - The error to check
  * @returns true if the error is a {@link FileAccessError}
  */
-export function isGenericFileError<CustomError>(
+export function isGenericFileError<CustomError extends {}>(
   error: FileValidationError<CustomError>
 ): error is GenericFileError {
   return "name" in error && error.name === "GenericFileError";
@@ -202,7 +202,7 @@ export function isGenericFileError<CustomError>(
  * @param error - The error to check
  * @returns true if the error is a {@link FileAccessError}
  */
-export function isFileAccessError<CustomError>(
+export function isFileAccessError<CustomError extends {}>(
   error: FileValidationError<CustomError>
 ): error is FileAccessError {
   return "name" in error && error.name === "FileAccessError";
@@ -216,7 +216,7 @@ export function isFileAccessError<CustomError>(
  * @param error - The error to check
  * @returns true if the error is a {@link TooManyFilesError}
  */
-export function isTooManyFilesError<CustomError>(
+export function isTooManyFilesError<CustomError extends {}>(
   error: FileValidationError<CustomError>
 ): error is TooManyFilesError {
   return "name" in error && error.name === "TooManyFilesError";
@@ -230,7 +230,7 @@ export function isTooManyFilesError<CustomError>(
  * @param error - The error to check
  * @returns true if the error is a {@link FileSizeError}
  */
-export function isFileSizeError<CustomError>(
+export function isFileSizeError<CustomError extends {}>(
   error: FileValidationError<CustomError>
 ): error is FileSizeError {
   return "name" in error && error.name === "FileSizeError";
@@ -244,7 +244,7 @@ export function isFileSizeError<CustomError>(
  * @param error - The error to check
  * @returns true if the error is a {@link FileExtensionError}
  */
-export function isFileExtensionError<CustomError>(
+export function isFileExtensionError<CustomError extends {}>(
   error: FileValidationError<CustomError>
 ): error is FileExtensionError {
   return "name" in error && error.name === "FileExtensionError";

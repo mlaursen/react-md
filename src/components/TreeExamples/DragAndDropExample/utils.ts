@@ -4,7 +4,7 @@ import { getChildItems } from "@react-md/tree";
 import type { Folder } from "src/constants/folders";
 
 export const isFolder = (item: unknown): item is Folder =>
-  !!item && "itemId" in item;
+  !!item && typeof item === "object" && "itemId" in item;
 
 interface Options {
   data: TreeData<Folder>;
