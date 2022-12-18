@@ -11,22 +11,32 @@ type CSSProperties = React.CSSProperties & {
   "--rmd-tree-depth": number;
 };
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export interface OverridableTreeGroupProps extends ListProps {
-  /**
-   * @defaultValue `false`
-   */
+  /** @defaultValue `false` */
   temporary?: boolean;
 
   /** @defaultValue `false` */
   disableTransition?: boolean;
 }
 
+/**
+ * @internal
+ * @remarks \@since 6.0.0
+ */
 export interface TreeGroupProps extends OverridableTreeGroupProps {
   children: ReactNode;
   depth: number;
   collapsed: boolean;
 }
 
+/**
+ * @internal
+ * @remarks \@since 6.0.0 Removed the collapse options and is no longer a
+ * "public" component.
+ */
 export const TreeGroup = forwardRef<HTMLUListElement, TreeGroupProps>(
   function TreeGroup(props, ref) {
     const {

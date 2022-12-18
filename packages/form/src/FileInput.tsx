@@ -29,6 +29,7 @@ export function fileInputLabel(
   return cnb("rmd-file-input-label", button(options));
 }
 
+/** @remarks \@since 6.0.0 */
 export type FileInputHTMLAttributes = Omit<
   InputHTMLAttributes<HTMLInputElement>,
   "type" | "defaultValue" | "value"
@@ -44,6 +45,8 @@ export interface FileInputProps
 
   /**
    * An optional icon to display for the file input.
+   *
+   * @defaultValue `useIcon("upload")`
    */
   icon?: ReactNode;
 
@@ -84,6 +87,49 @@ export interface FileInputProps
   children?: ReactNode;
 }
 
+/**
+ * @example
+ * Simple Example
+ * ```tsx
+ * import { FileInput, Form } from "@react-md/form";
+ * import type { ReactElement } from "react";
+ *
+ * const extensions = [
+ *   "svg",
+ *   "jpeg",
+ *   "jpg",
+ *   "png",
+ *   "apng",
+ *   "mkv",
+ *   "mp4",
+ *   "mpeg",
+ *   "mpg",
+ *   "webm",
+ *   "mov",
+ * ] as const;
+ *
+ * const FOUR_HUNDRED_MB = 400 * 1024 * 1024;
+ * const maxFiles = 10;
+ *
+ * function Example(): ReactElement {
+ *   const { stats, errors, onChange, clearErrors, reset, remove, accept } =
+ *     useFileUpload({
+ *       maxFiles,
+ *       maxFileSize: FOUR_HUNDRED_MB,
+ *       extensions,
+ *     });
+ *
+ *   return (
+ *     <Form>
+ *       <FileInput accept={accept} multiple={maxFiles > 1} onChange={onChange} />
+ *       <Button onClick={reset} disabled={!stats.length}>
+ *         Remove all files
+ *       </Button>
+ *     </Form>
+ *   );
+ * }
+ * ```
+ */
 export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
   function FileInput(props, ref) {
     const {

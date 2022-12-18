@@ -5,18 +5,58 @@ import { forwardRef } from "react";
 import type { InputToggleSize } from "./InputToggle";
 import { inputToggle } from "./InputToggle";
 
+/**
+ * @remarks
+ * \@since 2.8.0
+ * \@since 6.0.0 Removed the `circle` and `overlay` props since they are no
+ * longer needed. Added the `icon`, `readOnly`, `disableEm`, `checkedIcon` and
+ * `indeterminateIcon` props.
+ * @internal
+ */
 export interface InputToggleIconProps extends HTMLAttributes<HTMLSpanElement> {
   type: "checkbox" | "radio";
-  icon?: ReactNode;
-  size?: InputToggleSize;
   checked: boolean;
-  disabled?: boolean;
-  readOnly?: boolean;
-  indeterminate?: boolean;
+
+  /**
+   * The icon to display while {@link checked} is `false`.
+   */
+  icon?: ReactNode;
+
+  /**
+   * The icon to display while {@link checked} is `true` and
+   * {@link indeterminate} is `false`.
+   */
   checkedIcon?: ReactNode;
+
+  /**
+   * The icon to display while both {@link checked} and {@link indeterminate}
+   * are `true`.
+   */
   indeterminateIcon?: ReactNode;
+
+  /** @defaultValue `"normal"` */
+  size?: InputToggleSize;
+
+  /** @defaultValue `false` */
+  disabled?: boolean;
+
+  /** @defaultValue `false` */
+  readOnly?: boolean;
+
+  /** @defaultValue `false` */
+  disableEm?: boolean;
+
+  /** @defaultValue `false` */
+  indeterminate?: boolean;
 }
 
+/**
+ * @remarks
+ * \@since 2.8.0
+ * \@since 6.0.0 Updated to use different icons for each checked state instead
+ * of a css overlay hack.
+ * @internal
+ */
 export const InputToggleIcon = forwardRef<
   HTMLSpanElement,
   InputToggleIconProps
@@ -31,6 +71,7 @@ export const InputToggleIcon = forwardRef<
     readOnly,
     indeterminate,
     className,
+    disableEm = false,
     checkedIcon: propCheckedIcon,
     indeterminateIcon: propIndeterminateIcon,
     ...remaining
@@ -53,6 +94,7 @@ export const InputToggleIcon = forwardRef<
       ref={ref}
       className={cnb(
         inputToggle({
+          em: !disableEm,
           size,
           type,
           active: checked,

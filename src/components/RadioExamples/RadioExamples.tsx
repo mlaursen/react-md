@@ -7,6 +7,7 @@ import { RadioStates } from "./RadioStates";
 import { RequiredRadioGroup } from "./RequiredRadioGroup";
 import { SimpleRadioGroup } from "./SimpleRadioGroup";
 import { StrictTypescriptTypes } from "./StrictTypescriptTypes";
+import { WithFormMessageExample } from "./WithFormMessageExample";
 
 export default function RadioExamples(): ReactElement {
   return (
@@ -22,6 +23,10 @@ export default function RadioExamples(): ReactElement {
         <RadioStates />
         <DemoHeadingWithDivider>Different Sizes</DemoHeadingWithDivider>
         <DifferentSizes />
+        <DemoHeadingWithDivider>
+          With Form Message Example
+        </DemoHeadingWithDivider>
+        <WithFormMessageExample />
       </Box>
     </Resettable>
   );

@@ -4,11 +4,14 @@ import type { Dispatch, ReactElement, Ref, SetStateAction } from "react";
  * A helper type that allows an optional `ref` to also be applied with a props
  * object even though a `ref` isn't a real prop.
  */
-export type PropsWithRef<P extends {}, E extends HTMLElement> = P & {
+export type PropsWithRef<
+  Props extends {},
+  Element extends HTMLElement
+> = Props & {
   /**
    * An optional ref that can be applied.
    */
-  ref?: Ref<E>;
+  ref?: Ref<Element>;
 };
 
 /**

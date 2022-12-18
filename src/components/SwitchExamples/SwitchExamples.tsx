@@ -5,6 +5,7 @@ import { Resettable } from "../Resettable";
 import { DifferentSizes } from "./DifferentSizes";
 import { SimpleSwitches } from "./SimpleSwitches";
 import { StackedSwitches } from "./StackedSwitches";
+import { WithFormMessageExample } from "./WithFormMessageExample";
 
 export default function SwitchExamples(): ReactElement {
   return (
@@ -16,6 +17,10 @@ export default function SwitchExamples(): ReactElement {
         <StackedSwitches />
         <DemoHeadingWithDivider>Different Sizes</DemoHeadingWithDivider>
         <DifferentSizes />
+        <DemoHeadingWithDivider>
+          With Form Message Example
+        </DemoHeadingWithDivider>
+        <WithFormMessageExample />
       </Box>
     </Resettable>
   );

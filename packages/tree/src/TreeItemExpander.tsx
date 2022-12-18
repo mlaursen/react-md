@@ -4,7 +4,12 @@ import type { MouseEventHandler, ReactElement, ReactNode } from "react";
 import { cloneElement, isValidElement } from "react";
 import { useTreeContext } from "./TreeProvider";
 
+/**
+ * @internal
+ * @remarks \@since 6.0.0 Updated to use the latest API
+ */
 export interface TreeItemExpanderProps {
+  /** @defaultValue `false` */
   left?: boolean;
   itemId: string;
   addon: ReactNode;
@@ -14,6 +19,10 @@ export interface TreeItemExpanderProps {
   className?: string;
 }
 
+/**
+ * @internal
+ * @remarks \@since 6.0.0 Updated to support the new `expansionMode` behavior.
+ */
 export function TreeItemExpander(
   props: TreeItemExpanderProps
 ): ReactElement | null {

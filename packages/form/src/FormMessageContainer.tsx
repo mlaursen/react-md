@@ -5,6 +5,9 @@ import { forwardRef } from "react";
 import { FormMessage } from "./FormMessage";
 import type { FormMessageProps } from "./types";
 
+/**
+ * @remarks \@since 2.5.0
+ */
 export interface FormMessageContainerProps
   extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -17,6 +20,7 @@ export interface FormMessageContainerProps
 
 /**
  * @internal
+ * @remarks \@since 2.5.0
  */
 export const FormMessageContainer = forwardRef<
   HTMLDivElement,

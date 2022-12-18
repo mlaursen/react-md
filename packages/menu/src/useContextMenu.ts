@@ -5,7 +5,7 @@ import type {
 } from "@react-md/core";
 import { BELOW_INNER_LEFT_ANCHOR } from "@react-md/core";
 import type { MouseEvent, RefObject } from "react";
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 /** @remarks \@since 6.0.0 */
 export interface ContextMenuProps extends InitialCoords {
@@ -103,6 +103,9 @@ export function useContextMenu(
   const [coords, setCoords] = useState<InitialCoords>({});
   const [visible, setVisible] = useState(false);
   const fixedTo = useRef<HTMLElement>(null);
+  const onRequestClose = useCallback(() => {
+    setVisible(false);
+  }, []);
 
   return {
     visible,
@@ -113,9 +116,7 @@ export function useContextMenu(
       ...coords,
       fixedTo,
       visible,
-      onRequestClose: () => {
-        setVisible(false);
-      },
+      onRequestClose,
       preventScroll,
     },
     onContextMenu(event) {

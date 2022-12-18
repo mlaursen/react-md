@@ -521,6 +521,14 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
       ...callbacks,
     });
     useScrollLock(visible && preventScroll);
+
+    // need to make sure that the useEffect does not refire for hiding on click
+    // events because of the `window.requestAnimationFrame`. It'll make it so
+    // that menu items that update state are unable to close when clicked
+    const hide = useRef(onRequestClose);
+    useEffect(() => {
+      hide.current = onRequestClose;
+    });
     useEffect(() => {
       if (!visible) {
         return;
@@ -535,7 +543,7 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
           !event.target.closest(`[role="${role}"]`);
 
         // this won't be called if `event.stopPropagation()` is called
-        onRequestClose();
+        hide.current();
         disableHoverMode();
       };
 
@@ -549,7 +557,7 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
         window.cancelAnimationFrame(frame);
         window.removeEventListener("click", callback);
       };
-    }, [disableHoverMode, onRequestClose, role, visible]);
+    }, [disableHoverMode, role, visible]);
     useEffect(() => {
       return () => {
         window.cancelAnimationFrame(sheetBlurredFame.current);

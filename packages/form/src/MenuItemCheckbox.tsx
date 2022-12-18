@@ -30,6 +30,8 @@ import { MenuItemInputToggle } from "./MenuItemInputToggle";
  *   );
  * }
  * ```
+ *
+ * @remarks \@since 2.8.0
  */
 export const MenuItemCheckbox = forwardRef<
   HTMLLIElement,

@@ -166,6 +166,8 @@ $switch-track-background-color: if(
 ) !default;
 $switch-circular-progress-width: 12 !default;
 
+$menu-item-switch-spacing: calc(icon.$spacing + $switch-ball-size) !default;
+
 $var-lookup: (
   error-color: (
     var: --rmd-form-error-color,
@@ -486,6 +488,8 @@ $var-lookup: (
     @if not $disable-label-reversed {
       &--reversed {
         flex-direction: row-reverse;
+        // this makes it so the content is at the starting edge
+        justify-content: flex-end;
       }
     }
 
@@ -990,7 +994,6 @@ $var-lookup: (
       $higher-contrast: false
     );
     @include icon.set-var(color, currentcolor);
-    @include icon.set-var(size, 1em);
 
     align-items: center;
     border-radius: $input-toggle-border-radius;
@@ -998,6 +1001,10 @@ $var-lookup: (
     flex-shrink: 0;
     justify-content: center;
     padding: $input-toggle-padding;
+
+    &--em {
+      @include icon.set-var(size, 1em);
+    }
 
     &--active {
       @include use-var(color, active-color);
@@ -1138,11 +1145,47 @@ $var-lookup: (
 
 @mixin menu-item-input-toggle-styles {
   .rmd-menu-item-input-toggle {
-    // disable the hover states since it's handled by the ListItem instead
-    &__icon,
-    &__ball {
-      &::before {
-        content: none;
+    @if not $disable-menu-item-radio or not $disable-menu-item-switch {
+      &__icon {
+        // remove the padding since the icon isn't the click target anymore.
+        padding: 0;
+
+        // disable the hover states since it's handled by the ListItem instead
+        &::before {
+          content: none;
+        }
+      }
+    }
+
+    @if not $disable-menu-item-switch {
+      // increase the spacing because the switch's ball extends past the
+      // container's width
+      @if $menu-item-switch-spacing and
+        $menu-item-switch-spacing !=
+        icon.$spacing
+      {
+        &--switch {
+          @include icon.set-var(spacing, $menu-item-switch-spacing);
+        }
+      }
+
+      // decrease the ball size and remove the hover states since it's handled
+      // by the ListItem instead. without decreasing the ball size, horizontal
+      // scrollbars will appear when the switch is checked
+      &__ball {
+        @include core.auto-rtl(left, -$switch-ball-offset);
+
+        height: $switch-ball-size;
+        top: calc(50% - $switch-ball-size * 0.5);
+        width: $switch-ball-size;
+
+        &::before {
+          content: none;
+        }
+
+        &::after {
+          inset: 0;
+        }
       }
     }
   }
@@ -1220,7 +1263,11 @@ $var-lookup: (
     @include switch-styles;
   }
 
-  @if not $disable-menu-item-checkbox or not $disable-menu-item-radio {
+  @if not
+    $disable-menu-item-checkbox or not
+    $disable-menu-item-radio or not
+    $disable-menu-item-switch
+  {
     @include menu-item-input-toggle-styles;
   }
 }

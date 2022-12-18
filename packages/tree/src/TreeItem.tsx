@@ -18,17 +18,53 @@ import { TreeItemExpander } from "./TreeItemExpander";
 import { useTreeContext } from "./TreeProvider";
 import type { DefaultTreeItemNode } from "./types";
 
+/**
+ * @remarks \@since 6.0.0  Added the `groupProps` prop.
+ */
 export interface TreeItemProps
   extends Omit<DefaultTreeItemNode, "parentId">,
     HTMLAttributes<HTMLLIElement> {
+  /**
+   * @defaultValue `"tree-item-" + useId()`
+   */
   id?: string;
+
+  /**
+   * This is used to set the `--rmd-tree-depth` CSS variable which allows the
+   * padding to increase for each nested tree.
+   */
   depth: number;
+
+  /**
+   * Any additional props that should be passed to the surrounding `<li>`
+   * element. The top-level props are passed to the `<span>` or `<a>` element
+   * instead.
+   */
   liProps?: PropsWithRef<HTMLAttributes<HTMLLIElement>, HTMLLIElement>;
+
+  /**
+   * Any additional props to pass to the `TreeGroup` component.
+   */
   groupProps?: PropsWithRef<OverridableTreeGroupProps, HTMLUListElement>;
+
+  /**
+   * This should normally be the text/content to display within the tree item
+   * and should **not** include nested trees.
+   */
   childern?: ReactNode;
+
+  /**
+   * The nested tree items to render within a `TreeGroup`.
+   */
   childItems?: ReactNode;
+
+  /** @defaultValue `false` */
   disableTransition?: boolean;
 
+  /**
+   * This ref is applied to the `<span>` or `<a>` element and can be used to
+   * implement drag and drop behavior.
+   */
   contentRef?: Ref<HTMLElement>;
 
   /**

@@ -3,6 +3,9 @@ import { srOnly, Typography } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import { forwardRef } from "react";
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export interface LegendProps extends TypographyProps {
   /**
    * @defaultValue `false`
@@ -12,6 +15,8 @@ export interface LegendProps extends TypographyProps {
 
 /**
  * This should be used within a `Fieldset` to apply a label.
+ *
+ * @remarks \@since 6.0.0
  */
 export const Legend = forwardRef<HTMLLegendElement, LegendProps>(
   function Legend(props, ref) {

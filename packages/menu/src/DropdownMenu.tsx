@@ -4,7 +4,7 @@ import {
   useUserInteractionMode,
 } from "@react-md/core";
 import type { ReactElement, ReactNode, RefObject } from "react";
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import type { MenuConvenienceProps, MenuListConvenienceProps } from "./Menu";
 import { Menu } from "./Menu";
 import type { MenuButtonProps } from "./MenuButton";
@@ -152,6 +152,10 @@ export function DropdownMenu(props: DropdownMenuProps): ReactElement {
       !!activeIdRef.current &&
       (mouse || keyboard));
 
+  const onRequestClose = useCallback(() => {
+    setVisible(false);
+  }, []);
+
   let iconRotatorProps = propIconRotatorProps;
   if (disableTransition) {
     iconRotatorProps = {
@@ -234,7 +238,7 @@ export function DropdownMenu(props: DropdownMenuProps): ReactElement {
 
           return defaultIndex;
         }}
-        onRequestClose={() => setVisible(false)}
+        onRequestClose={onRequestClose}
         onEntered={(appearing) => {
           menuProps?.onEntered?.(appearing);
 

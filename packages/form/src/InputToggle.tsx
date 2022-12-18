@@ -48,6 +48,13 @@ export interface InputToggleClassNameOptions {
   type: "checkbox" | "radio";
 
   /**
+   * Set the icon size to `1em` to allow easy sizing through font size.
+   *
+   * @defaultValue `true`
+   */
+  em?: boolean;
+
+  /**
    * Set this to `true` when the input toggle should gain the active colors.
    * This should normally be when the input toggle is checked.
    *
@@ -74,6 +81,7 @@ export interface InputToggleClassNameOptions {
 export function inputToggle(options: InputToggleClassNameOptions): string {
   const {
     className,
+    em = true,
     type,
     size = "auto",
     active = false,
@@ -84,6 +92,7 @@ export function inputToggle(options: InputToggleClassNameOptions): string {
   return cnb(
     `rmd-${type}`,
     styles({
+      em,
       active,
       disabled,
       readonly: readOnly,
@@ -96,6 +105,9 @@ export function inputToggle(options: InputToggleClassNameOptions): string {
   );
 }
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export interface InputToggleIconProps {
   /**
    * @see {@link InputToggleSize}
@@ -138,6 +150,9 @@ export interface InputToggleIconProps {
   iconClassName?: string;
 }
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export interface InputToggleLabelProps {
   /**
    * An optional label to display with the checkbox. If this is omitted, it is
@@ -213,6 +228,9 @@ export interface InputToggleLabelProps {
   stacked?: boolean;
 }
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export interface BaseInputToggleProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "size">,
     FormMessageContainerExtension,
@@ -226,6 +244,12 @@ export interface BaseInputToggleProps
   autoComplete?: string;
 }
 
+/**
+ * @remarks
+ * \@since 2.8.5
+ * \@since 6.0.0 Removed the `aria-controls` prop and added the
+ * `indeterminateIcon` prop.
+ */
 export interface IndeterminateCheckboxProps {
   /**
    * Set this value to `true` if the checkbox is in an "indeterminate" state:
@@ -262,6 +286,12 @@ export interface CheckboxInputToggleProps extends CheckboxProps {
 }
 
 export interface RadioProps extends BaseInputToggleProps {
+  /**
+   * The value for the radio button.
+   *
+   * @remarks \@since 6.0.0 This is now optional and no longer supports
+   * `string[]` since there isn't much of a use case for array values.
+   */
   value?: string | number;
 }
 
@@ -270,8 +300,16 @@ export interface RadioInputToggleProps extends RadioProps {
   type: "radio";
 }
 
+/**
+ * @remarks \@since 6.0.0 Updated to be a union between
+ * `CheckboxInputToggleProps` and `RadioInputToggleProps`
+ */
 export type InputToggleProps = CheckboxInputToggleProps | RadioInputToggleProps;
 
+/**
+ * @remarks \@since 6.0.0 Now supports the `FormMessage` behavior and requires
+ * different icons for each checked state.
+ */
 export const InputToggle = forwardRef<HTMLInputElement, InputToggleProps>(
   function InputToggle(props, ref) {
     const {

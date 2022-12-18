@@ -18,11 +18,15 @@ const noop = (): void => {
   // do nothing
 };
 
+/**
+ * @remarks \@since 6.0.0 Added `containerProps` and support for the
+ * `FormMessage` behavior.
+ */
 export interface SwitchProps
-  extends FormMessageContainerExtension,
-    FormComponentStates,
+  extends InputHTMLAttributes<HTMLInputElement>,
     InputToggleLabelProps,
-    InputHTMLAttributes<HTMLInputElement> {
+    FormMessageContainerExtension,
+    FormComponentStates {
   containerProps?: PropsWithRef<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
   trackProps?: PropsWithRef<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
   trackStyle?: CSSProperties;
@@ -32,6 +36,32 @@ export interface SwitchProps
   ballClassName?: string;
 }
 
+/**
+ * @example
+ * Simple Example
+ * ```tsx
+ * import { Form, Switch } from "@react-md/form";
+ * import type { ReactElement } from "react";
+ * import { useState } from "react";
+ *
+ * function Example(): ReactElement {
+ *   const [checked, setChecked] = useState(false);
+ *
+ *   return (
+ *     <Form>
+ *       <Switch
+ *         label="Label"
+ *         name="enabled"
+ *         checked={checked}
+ *         onChange={(event) => setChecked(event.currentTarget.checked)}
+ *       />
+ *     </Form>
+ *   );
+ * }
+ * ```
+ *
+ * @remarks \@since 6.0.0 Added support for `FormMessage` behavior.
+ */
 export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
   props,
   ref

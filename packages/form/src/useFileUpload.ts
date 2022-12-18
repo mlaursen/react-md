@@ -20,6 +20,10 @@ import {
   validateFiles as defaultValidateFiles,
 } from "./fileUtils";
 
+const noop = (): void => {
+  // do nothing
+};
+
 /**
  *
  * @typeParam CustomError - An optional error type that gets returned from the
@@ -213,8 +217,8 @@ export function useFileUpload<E extends HTMLElement, CustomError = never>({
   maxFileSize = -1,
   totalFileSize = -1,
   concurrency = -1,
-  onDrop: propOnDrop,
-  onChange: propOnChange,
+  onDrop: propOnDrop = noop,
+  onChange: propOnChange = noop,
   validateFiles = defaultValidateFiles,
   getFileParser = defaultGetFileParser,
   isValidFileName = defaultIsValidFileName,
@@ -389,7 +393,7 @@ export function useFileUpload<E extends HTMLElement, CustomError = never>({
   );
   const onDrop = useCallback(
     (event: DragEvent<E>) => {
-      propOnDrop?.(event);
+      propOnDrop(event);
       event.preventDefault();
       event.stopPropagation();
 
@@ -412,7 +416,7 @@ export function useFileUpload<E extends HTMLElement, CustomError = never>({
   );
   const onChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
-      propOnChange?.(event);
+      propOnChange(event);
       try {
         const files = event.currentTarget.files;
         if (files) {

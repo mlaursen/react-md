@@ -1,17 +1,19 @@
 import { Button } from "@react-md/button";
 import { Box } from "@react-md/core";
 import {
-  FileInput,
-  Form,
   FormMessage,
   FormMessageCounter,
+  MenuItemFileInput,
   useFileUpload,
 } from "@react-md/form";
+import FileUploadIcon from "@react-md/material-icons/FileUploadIcon";
+import { DropdownMenu } from "@react-md/menu";
 import { LinearProgress } from "@react-md/progress";
 import type { ReactElement } from "react";
+
 import { FilePreview } from "../FilePreview";
 import { FileUploadErrorModal } from "../FileUploadErrorModal";
-import styles from "./FileUploadExample.module.scss";
+import styles from "./FileInputMenuItemExample.module.scss";
 
 const extensions = [
   "svg",
@@ -30,7 +32,8 @@ const extensions = [
 const FOUR_HUNDRED_MB = 400 * 1024 * 1024;
 const maxFiles = 10;
 
-export function FileUploadExample(): ReactElement {
+// See the main File Upload Example for more details around the `useFileUpload` hook
+export function FileInputMenuItemExample(): ReactElement {
   const { stats, errors, onChange, clearErrors, reset, remove, accept } =
     useFileUpload({
       maxFiles,
@@ -39,14 +42,43 @@ export function FileUploadExample(): ReactElement {
     });
 
   return (
-    <Form className={styles.container}>
+    <div className={styles.container}>
       <FileUploadErrorModal errors={errors} clearErrors={clearErrors} />
       <Box>
-        <FileInput
-          accept={accept}
-          onChange={onChange}
-          multiple={maxFiles > 1}
-        />
+        <DropdownMenu
+          buttonChildren="Dropdown"
+          themeType="outline"
+          renderAsSheet
+        >
+          <MenuItemFileInput accept={accept} onChange={onChange} multiple>
+            Upload
+          </MenuItemFileInput>
+          <MenuItemFileInput
+            accept={accept}
+            onChange={onChange}
+            multiple
+            preventMenuHideOnClick
+          >
+            Upload
+          </MenuItemFileInput>
+          <MenuItemFileInput
+            accept={accept}
+            onChange={onChange}
+            multiple
+            disabled
+          >
+            Upload
+          </MenuItemFileInput>
+          <MenuItemFileInput
+            accept={accept}
+            onChange={onChange}
+            multiple
+            leftAddon={null}
+            rightAddon={<FileUploadIcon />}
+          >
+            Upload
+          </MenuItemFileInput>
+        </DropdownMenu>
         <Button onClick={reset} disabled={!stats.length}>
           Remove all files
         </Button>
@@ -69,6 +101,6 @@ export function FileUploadExample(): ReactElement {
           />
         ))}
       </Box>
-    </Form>
+    </div>
   );
 }

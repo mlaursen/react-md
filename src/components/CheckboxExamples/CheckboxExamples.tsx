@@ -5,6 +5,7 @@ import { Resettable } from "../Resettable";
 import { DifferentSizes } from "./DifferentSizes";
 import { IndeterminateCheckboxes } from "./IndeterminateCheckboxes";
 import { SimpleCheckboxes } from "./SimpleCheckboxes";
+import { WithFormMessageExample } from "./WithFormMessageExample";
 
 export default function CheckboxExamples(): ReactElement {
   return (
@@ -18,6 +19,10 @@ export default function CheckboxExamples(): ReactElement {
           Indeterminate Checkboxes
         </DemoHeadingWithDivider>
         <IndeterminateCheckboxes />
+        <DemoHeadingWithDivider>
+          With Form Message Example
+        </DemoHeadingWithDivider>
+        <WithFormMessageExample />
       </Box>
     </Resettable>
   );

@@ -1,5 +1,9 @@
 import type { FormHTMLAttributes } from "react";
-import { forwardRef, useCallback } from "react";
+import { forwardRef } from "react";
+
+const noop = (): void => {
+  // do nothing
+};
 
 export interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
   /**
@@ -23,24 +27,23 @@ export const Form = forwardRef<HTMLFormElement, FormProps>(function Form(
 ) {
   const {
     children,
-    onSubmit,
+    onSubmit = noop,
     disablePreventDefault = false,
     ...remaining
   } = props;
 
-  const handleOnSubmit = useCallback<React.FormEventHandler<HTMLFormElement>>(
-    (event) => {
-      if (!disablePreventDefault) {
-        event.preventDefault();
-      }
-
-      onSubmit?.(event);
-    },
-    [disablePreventDefault, onSubmit]
-  );
-
   return (
-    <form {...remaining} onSubmit={handleOnSubmit} ref={ref}>
+    <form
+      {...remaining}
+      onSubmit={(event) => {
+        if (!disablePreventDefault) {
+          event.preventDefault();
+        }
+
+        onSubmit(event);
+      }}
+      ref={ref}
+    >
       {children}
     </form>
   );

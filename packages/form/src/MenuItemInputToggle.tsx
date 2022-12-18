@@ -22,13 +22,20 @@ import type {
 import { InputToggleIcon } from "./InputToggleIcon";
 import { SwitchTrack } from "./SwitchTrack";
 
+const noop = (): void => {
+  // do nothing
+};
 const styles = bem("rmd-menu-item-input-toggle");
 
+/** @remarks \@since 6.0.0 */
 export interface MenuItemInputToggleClassNameOptions {
   className?: string;
   type: "radio" | "checkbox" | "switch";
 }
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export function menuItemInputToggle(
   options: MenuItemInputToggleClassNameOptions
 ): string {
@@ -40,22 +47,38 @@ export function menuItemInputToggle(
   );
 }
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export type MenuItemInputToggleCheckedCallback = (
   checked: boolean,
   event: MouseEvent<HTMLLIElement>
 ) => void;
 
+/** @remarks \@since 2.8.0 */
 export interface BaseMenuItemInputToggleProps
   extends HTMLAttributes<HTMLLIElement>,
     InputToggleIconProps {
-  id?: string;
-  disabled?: boolean;
   checked: boolean;
   onCheckedChange: MenuItemInputToggleCheckedCallback;
+
   /**
+   * @defaultValue `"menu-item-" + useId()`
+   */
+  id?: string;
+
+  /** @defaultValue `false` */
+  disabled?: boolean;
+
+  /**
+   * Set this to `true` if the `Menu` should not close when the input toggle is
+   * clicked. This can be useful when interacting with a checkbox group within a
+   * menu or allowing the user to select multiple options before closing the
+   * menu.
+   *
    * @defaultValue `false`
    */
-  closeMenuOnChange?: boolean;
+  preventMenuHideOnClick?: boolean;
 
   /**
    * This is set to `"auto"` by default so the icon shrinks back down to the
@@ -67,15 +90,27 @@ export interface BaseMenuItemInputToggleProps
    */
   size?: InputToggleSize;
 
+  /** @defaultValue `"auto"` */
   height?: ListItemHeight;
+
+  /** @defaultValue `false` */
   threeLines?: boolean;
+
+  /** @defaultValue `false` */
   disableTextChildren?: boolean;
+
+  /** @defaultValue `false` */
   iconAfter?: boolean;
+
   addon?: ReactNode;
   addonType?: ListItemAddonType;
   addonPosition?: ListItemAddonPosition;
+
+  /** @defaultValue `false` */
   addonForceWrap?: boolean;
-  disableAddongCenteredMedia?: boolean;
+
+  /** @defaultValue `false` */
+  disableAddonCenteredMedia?: boolean;
 }
 
 export interface MenuItemCheckboxProps
@@ -83,6 +118,12 @@ export interface MenuItemCheckboxProps
     IndeterminateCheckboxProps {}
 
 export type MenuItemRadioProps = BaseMenuItemInputToggleProps;
+
+/**
+ * @remarks
+ * \@since 2.8.0
+ * \@since 6.0.0 Added additional props for styling the track and ball.
+ */
 export interface MenuItemSwitchProps extends BaseMenuItemInputToggleProps {
   trackProps?: PropsWithRef<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
   trackStyle?: CSSProperties;
@@ -92,11 +133,27 @@ export interface MenuItemSwitchProps extends BaseMenuItemInputToggleProps {
   ballClassName?: string;
 }
 
+/**
+ * @remarks
+ * \@since 2.8.0
+ * \@since 6.0.0 Updated to be a union of the different props to enforce the
+ * correct props based on `type`
+ */
 export type MenuItemInputToggleProps =
   | (MenuItemCheckboxProps & { type: "checkbox" })
   | (MenuItemRadioProps & { type: "radio" })
   | (MenuItemSwitchProps & { type: "switch" });
 
+/**
+ * This is a low-level component that should probably not be used externally and
+ * instead the `MenuItemCheckbox`, `MenuItemRadio`, or `MenuItemSwitch` should
+ * be used instead.
+ *
+ * @see {@link MenuItemCheckbox} for checkbox examples
+ * @see {@link MenuItemRadio} for radio examples
+ * @see {@link MenuItemSwitch} for switch examples
+ * @remarks \@since 2.8.0
+ */
 export const MenuItemInputToggle = forwardRef<
   HTMLLIElement,
   MenuItemInputToggleProps
@@ -107,8 +164,8 @@ export const MenuItemInputToggle = forwardRef<
     disabled = false,
     checked,
     onCheckedChange,
-    closeMenuOnChange = false,
-    onClick,
+    preventMenuHideOnClick = false,
+    onClick = noop,
     className,
     tabIndex = -1,
     children,
@@ -125,7 +182,7 @@ export const MenuItemInputToggle = forwardRef<
     addonType,
     addonPosition,
     addonForceWrap,
-    disableAddongCenteredMedia,
+    disableAddonCenteredMedia,
     ballProps,
     ballStyle,
     ballClassName,
@@ -155,6 +212,7 @@ export const MenuItemInputToggle = forwardRef<
       icon = (
         <InputToggleIcon
           style={iconStyle}
+          disableEm
           {...iconProps}
           className={cnb(styles("icon"), iconClassName, iconProps?.className)}
           size={size}
@@ -185,7 +243,7 @@ export const MenuItemInputToggle = forwardRef<
     leftAddonType = addonType;
     leftAddonPosition = addonPosition;
     leftAddonForceWrap = addonForceWrap;
-    disableLeftAddonCenteredMedia = disableAddongCenteredMedia;
+    disableLeftAddonCenteredMedia = disableAddonCenteredMedia;
     rightAddon = icon;
   } else {
     leftAddon = icon;
@@ -193,7 +251,7 @@ export const MenuItemInputToggle = forwardRef<
     rightAddonType = addonType;
     rightAddonPosition = addonPosition;
     rightAddonForceWrap = addonForceWrap;
-    disableRightAddonCenteredMedia = disableAddongCenteredMedia;
+    disableRightAddonCenteredMedia = disableAddonCenteredMedia;
   }
 
   return (
@@ -204,9 +262,10 @@ export const MenuItemInputToggle = forwardRef<
       id={id}
       role={type === "radio" ? "menuitemradio" : "menuitemcheckbox"}
       onClick={(event) => {
-        onClick?.(event);
+        onClick(event);
         onCheckedChange(!checked, event);
-        if (!closeMenuOnChange) {
+
+        if (preventMenuHideOnClick) {
           event.stopPropagation();
         }
       }}
