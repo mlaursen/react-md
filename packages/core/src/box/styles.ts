@@ -1,5 +1,5 @@
 import { cnb } from "cnbuilder";
-import { bem } from "../bem";
+import { bem } from "../utils";
 
 const styles = bem("rmd-box");
 

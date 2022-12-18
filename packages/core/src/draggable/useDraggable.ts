@@ -1,9 +1,7 @@
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes, Ref, RefCallback } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { getRangeSteps } from "../getRangeSteps";
 import { useUserInteractionMode } from "../interaction";
-import { nearest } from "../nearest";
 import type { UseStateInitializer, UseStateSetter } from "../types";
 import { useDir } from "../typography";
 import { useEnsuredRef } from "../useEnsuredRef";
@@ -15,7 +13,7 @@ import type {
   LocalStorageHookReturnValue,
 } from "../useLocalStorage";
 import { useLocalStorage } from "../useLocalStorage";
-import { withinRange } from "../withinRange";
+import { getRangeSteps, nearest, withinRange } from "../utils";
 import {
   getDragPosition,
   isMouseDragStartEvent,

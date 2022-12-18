@@ -1,4 +1,4 @@
-import { loop } from "../loop";
+import { loop } from "../utils";
 import type { FocusableIndexOptions, TabIndexBehavior } from "./types";
 
 /**

@@ -2,9 +2,8 @@ import { cnb } from "cnbuilder";
 import type { CSSProperties } from "react";
 import { useEffect, useMemo, useState } from "react";
 
-import { bem } from "../bem";
-import { randomInt } from "../randomInt";
 import { useSsr } from "../SsrProvider";
+import { bem, randomInt } from "../utils";
 
 export const skeletonPlaceholder = bem("rmd-skeleton-placeholder");
 

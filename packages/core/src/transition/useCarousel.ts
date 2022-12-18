@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
-import { loop } from "../loop";
 import type { UseStateSetter } from "../types";
 import { useToggle } from "../useToggle";
+import { loop } from "../utils";
 import type { SlideDirection } from "./SlideContainer";
 
 /** @remarks \@since 6.0.0 */

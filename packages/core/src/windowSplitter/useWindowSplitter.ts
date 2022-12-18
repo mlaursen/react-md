@@ -7,8 +7,8 @@ import type {
   DraggableTouchEventHandlers,
 } from "../draggable";
 import { useDraggable } from "../draggable";
-import { getPercentage } from "../getPercentage";
 import { useEnsuredId } from "../useEnsuredId";
+import { getPercentage } from "../utils";
 
 const noop = (): void => {
   // do nothing

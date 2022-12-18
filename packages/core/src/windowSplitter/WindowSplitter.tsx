@@ -1,8 +1,8 @@
 import { cnb } from "cnbuilder";
 import type { ButtonHTMLAttributes } from "react";
 import { forwardRef } from "react";
-import { bem } from "../bem";
 import type { LabelRequiredForA11y } from "../types";
+import { bem } from "../utils";
 
 const styles = bem("rmd-window-splitter");
 
