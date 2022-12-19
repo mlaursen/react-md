@@ -1,0 +1,471 @@
+diff --git a/packages/form/src/Select_Hidden.tsx b/packages/form/src/Select_Hidden.tsx
+new file mode 100644
+index 000000000..68b96e34f
+--- /dev/null
++++ b/packages/form/src/Select_Hidden.tsx
+@@ -0,0 +1,251 @@
++import { BELOW_CENTER_ANCHOR, useEnsuredId } from "@react-md/core";
++import { cnb } from "cnbuilder";
++import { Menu, useDropdownMenu } from "@react-md/menu";
++import type { HTMLAttributes, ReactElement, ReactNode, Ref } from "react";
++import { forwardRef } from "react";
++import { FormMessageContainer } from "./FormMessageContainer";
++import { useFormTheme } from "./FormThemeProvider";
++import { Label } from "./Label";
++import { TextFieldContainer } from "./TextFieldContainer";
++import type { FormFieldOptions } from "./types";
++import { TextField, textField, TextFieldProps } from "./TextField";
++
++// export interface SelectProps
++//   extends Omit<FormFieldOptions, "containerProps">,
++//     HTMLAttributes<HTMLDivElement> {
++//   value: string | number;
++//   children: ReactNode;
++// }
++
++// export const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
++//   props,
++//   ref
++// ) {
++//   const {
++//     id: propId,
++//     style,
++//     className,
++//     label,
++//     labelProps,
++//     labelStyle,
++//     labelClassName,
++//     dense = false,
++//     error = false,
++//     active = false,
++//     inline = false,
++//     stretch = false,
++//     leftAddon,
++//     rightAddon,
++//     disableLeftAddonStyles = false,
++//     disableRightAddonStyles = false,
++//     theme: propTheme,
++//     underlineDirection: propUnderlineDirection,
++//     value,
++//     children,
++//     messageProps,
++//     messageContainerProps,
++//     ...remaining
++//   } = props;
++//   const { disabled = false, readOnly = false } = props;
++//   const id = useEnsuredId(propId, "select");
++//   const { theme, underlineDirection } = useFormTheme({
++//     theme: propTheme,
++//     underlineDirection: propUnderlineDirection,
++//   });
++//   const { visible, menuProps, toggleProps } = useDropdownMenu({
++//     role: "listbox",
++//     toggleRef: ref,
++//     width: "equal",
++//     transformOrigin: true,
++//     anchor: BELOW_CENTER_ANCHOR,
++//     onToggleKeyDown(event) {
++//       if (event.key === " ") {
++//         event.preventDefault();
++//         event.stopPropagation();
++//         event.currentTarget.click();
++//       }
++//     },
++//   });
++
++//   return (
++//     <FormMessageContainer
++//       {...messageContainerProps}
++//       messageProps={messageProps}
++//     >
++//       <TextFieldContainer
++//         {...remaining}
++//         {...toggleProps}
++//         aria-haspopup="listbox"
++//         role="button"
++//         tabIndex={0}
++//         style={style}
++//         className={cnb("rmd-select", className)}
++//         theme={theme}
++//         label={!!label}
++//         error={error}
++//         dense={dense}
++//         inline={inline}
++//         active={active || visible}
++//         stretch={stretch}
++//         readOnly={readOnly}
++//         disabled={disabled}
++//         leftAddon={leftAddon}
++//         rightAddon={rightAddon}
++//         underlineDirection={underlineDirection}
++//         disableLeftAddonStyles={disableLeftAddonStyles}
++//         disableRightAddonStyles={disableRightAddonStyles}
++//       >
++//         <div
++//           className={textField({
++//             className: "rmd-select-value",
++//           })}
++//         >
++//           {value}
++//         </div>
++//         <input
++//           id={id}
++//           type="hidden"
++//           aria-hidden
++//           // className={textField({
++//           //   // className: "rmd-select-value",
++//           // })}
++//           className="rmd-hidden-input"
++//           readOnly
++//           value={value}
++//         />
++//         {label && (
++//           <Label
++//             {...labelProps}
++//             htmlFor={id}
++//             style={labelProps?.style ?? labelStyle}
++//             className={labelProps?.className ?? labelClassName}
++//             floating
++//             dense={dense}
++//             error={error}
++//             active={active || !!value}
++//             disabled={disabled}
++//             inactive={!!value}
++//           >
++//             {label}
++//           </Label>
++//         )}
++//       </TextFieldContainer>
++//       <Menu {...menuProps}>{children}</Menu>
++//     </FormMessageContainer>
++//   );
++// });
++
++export type SelectValue = number | string;
++
++export interface SelectOptionObject {
++  label: ReactNode;
++  value: SelectValue;
++  disabled?: boolean;
++}
++
++export interface SelectProps<Value extends SelectValue | SelectOptionObject>
++  extends FormFieldOptions,
++    HTMLAttributes<HTMLDivElement> {
++  /**
++   * @defaultValue `useId() + '-select'`
++   */
++  id?: string;
++
++  /**
++   * Optional placeholder text to display in the text field.
++   *
++   * @defaultValue `label ? " " : ""`
++   */
++  placeholder?: string;
++  value: Value;
++  onChange(nextValue: Value): void;
++  inputRef?: Ref<HTMLInputElement>;
++}
++
++export function Select<Value extends SelectValue | SelectOptionObject>(
++  props: SelectProps<Value>
++): ReactElement {
++  const {
++    id: propId,
++    label,
++    labelProps,
++    labelStyle,
++    labelClassName,
++    children,
++    inputRef,
++    value,
++    onChange,
++    dense = false,
++    error = false,
++    active = false,
++    disabled = false,
++    ...remaining
++  } = props;
++  const id = useEnsuredId(propId, "select");
++  const { visible, menuProps, toggleProps } = useDropdownMenu({
++    role: "listbox",
++    toggleRef: inputRef,
++    width: "equal",
++    transformOrigin: true,
++    anchor: BELOW_CENTER_ANCHOR,
++    onToggleKeyDown(event) {
++      if (event.key === " ") {
++        event.preventDefault();
++        event.stopPropagation();
++        event.currentTarget.click();
++      }
++    },
++  });
++
++  let inputLabel: ReactNode;
++  let inputValue: string | number;
++  if (typeof value === "number" || typeof value === "string") {
++    inputLabel = value;
++    inputValue = value;
++  } else {
++    inputLabel = value.label;
++    inputValue = value.value;
++  }
++
++  return (
++    <>
++      <TextFieldContainer
++        {...remaining}
++        {...toggleProps}
++        active={active || visible}
++        aria-haspopup="listbox"
++        id={id}
++        role="button"
++        tabIndex={0}
++        dense={dense}
++        error={error}
++        disabled={disabled}
++      >
++        <span id={`${id}-label`} className={textField()}>
++          {inputLabel}
++        </span>
++        <input id={id} type="hidden" value={inputValue} />
++        {label && (
++          <Label
++            {...labelProps}
++            htmlFor={id}
++            style={labelProps?.style ?? labelStyle}
++            className={cnb(
++              !!inputLabel &&
++                "rmd-label--floating-active rmd-label--floating-inactive",
++              labelProps?.className ?? labelClassName
++            )}
++            floating
++            dense={dense}
++            error={error}
++            active={active}
++            disabled={disabled}
++          >
++            {label}
++          </Label>
++        )}
++      </TextFieldContainer>
++      <Menu {...menuProps}>{children}</Menu>
++    </>
++  );
++}
+diff --git a/packages/form/src/Select_TextField.tsx b/packages/form/src/Select_TextField.tsx
+new file mode 100644
+index 000000000..e8174c000
+--- /dev/null
++++ b/packages/form/src/Select_TextField.tsx
+@@ -0,0 +1,208 @@
++import { BELOW_CENTER_ANCHOR, useEnsuredId } from "@react-md/core";
++import { cnb } from "cnbuilder";
++import { Menu, useDropdownMenu } from "@react-md/menu";
++import type { HTMLAttributes, ReactElement, ReactNode, Ref } from "react";
++import { forwardRef } from "react";
++import { FormMessageContainer } from "./FormMessageContainer";
++import { useFormTheme } from "./FormThemeProvider";
++import { Label } from "./Label";
++import { TextFieldContainer } from "./TextFieldContainer";
++import type { FormFieldOptions } from "./types";
++import { TextField, textField, TextFieldProps } from "./TextField";
++
++// export interface SelectProps
++//   extends Omit<FormFieldOptions, "containerProps">,
++//     HTMLAttributes<HTMLDivElement> {
++//   value: string | number;
++//   children: ReactNode;
++// }
++
++// export const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
++//   props,
++//   ref
++// ) {
++//   const {
++//     id: propId,
++//     style,
++//     className,
++//     label,
++//     labelProps,
++//     labelStyle,
++//     labelClassName,
++//     dense = false,
++//     error = false,
++//     active = false,
++//     inline = false,
++//     stretch = false,
++//     leftAddon,
++//     rightAddon,
++//     disableLeftAddonStyles = false,
++//     disableRightAddonStyles = false,
++//     theme: propTheme,
++//     underlineDirection: propUnderlineDirection,
++//     value,
++//     children,
++//     messageProps,
++//     messageContainerProps,
++//     ...remaining
++//   } = props;
++//   const { disabled = false, readOnly = false } = props;
++//   const id = useEnsuredId(propId, "select");
++//   const { theme, underlineDirection } = useFormTheme({
++//     theme: propTheme,
++//     underlineDirection: propUnderlineDirection,
++//   });
++//   const { visible, menuProps, toggleProps } = useDropdownMenu({
++//     role: "listbox",
++//     toggleRef: ref,
++//     width: "equal",
++//     transformOrigin: true,
++//     anchor: BELOW_CENTER_ANCHOR,
++//     onToggleKeyDown(event) {
++//       if (event.key === " ") {
++//         event.preventDefault();
++//         event.stopPropagation();
++//         event.currentTarget.click();
++//       }
++//     },
++//   });
++
++//   return (
++//     <FormMessageContainer
++//       {...messageContainerProps}
++//       messageProps={messageProps}
++//     >
++//       <TextFieldContainer
++//         {...remaining}
++//         {...toggleProps}
++//         aria-haspopup="listbox"
++//         role="button"
++//         tabIndex={0}
++//         style={style}
++//         className={cnb("rmd-select", className)}
++//         theme={theme}
++//         label={!!label}
++//         error={error}
++//         dense={dense}
++//         inline={inline}
++//         active={active || visible}
++//         stretch={stretch}
++//         readOnly={readOnly}
++//         disabled={disabled}
++//         leftAddon={leftAddon}
++//         rightAddon={rightAddon}
++//         underlineDirection={underlineDirection}
++//         disableLeftAddonStyles={disableLeftAddonStyles}
++//         disableRightAddonStyles={disableRightAddonStyles}
++//       >
++//         <div
++//           className={textField({
++//             className: "rmd-select-value",
++//           })}
++//         >
++//           {value}
++//         </div>
++//         <input
++//           id={id}
++//           type="hidden"
++//           aria-hidden
++//           // className={textField({
++//           //   // className: "rmd-select-value",
++//           // })}
++//           className="rmd-hidden-input"
++//           readOnly
++//           value={value}
++//         />
++//         {label && (
++//           <Label
++//             {...labelProps}
++//             htmlFor={id}
++//             style={labelProps?.style ?? labelStyle}
++//             className={labelProps?.className ?? labelClassName}
++//             floating
++//             dense={dense}
++//             error={error}
++//             active={active || !!value}
++//             disabled={disabled}
++//             inactive={!!value}
++//           >
++//             {label}
++//           </Label>
++//         )}
++//       </TextFieldContainer>
++//       <Menu {...menuProps}>{children}</Menu>
++//     </FormMessageContainer>
++//   );
++// });
++
++export type SelectValue = number | string;
++
++export interface SelectOptionObject {
++  label: ReactNode;
++  value: SelectValue;
++  disabled?: boolean;
++}
++
++export interface SelectProps<Value extends SelectValue | SelectOptionObject>
++  extends Omit<TextFieldProps, "type" | "value" | "onChange"> {
++  value: Value;
++  onChange(nextValue: Value): void;
++  inputRef?: Ref<HTMLInputElement>;
++}
++
++export function Select<Value extends SelectValue | SelectOptionObject>(
++  props: SelectProps<Value>
++): ReactElement {
++  const {
++    id: propId,
++    children,
++    inputRef,
++    value,
++    onChange,
++    ...remaining
++  } = props;
++  const id = useEnsuredId(propId, "select");
++  const { visible, menuProps, toggleProps } = useDropdownMenu({
++    role: "listbox",
++    toggleRef: inputRef,
++    width: "equal",
++    transformOrigin: true,
++    anchor: BELOW_CENTER_ANCHOR,
++    onToggleKeyDown(event) {
++      if (event.key === " ") {
++        event.preventDefault();
++        event.stopPropagation();
++        event.currentTarget.click();
++      }
++    },
++  });
++
++  const inputValue =
++    typeof value === "number" || typeof value === "string"
++      ? value
++      : value.value;
++
++  return (
++    <>
++      <TextField
++        {...remaining}
++        {...toggleProps}
++        active={visible}
++        aria-haspopup="listbox"
++        id={id}
++        role="button"
++        tabIndex={0}
++        value={inputValue}
++        readOnly
++        onFocus={(event) => {
++          const input = event.currentTarget;
++          input.setSelectionRange(null, null);
++        }}
++        onChange={(event) => {
++          console.log("event:", event);
++        }}
++      />
++      <Menu {...menuProps}>{children}</Menu>
++    </>
++  );
++}

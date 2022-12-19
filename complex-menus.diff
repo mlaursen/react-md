@@ -1,0 +1,522 @@
+diff --git a/src/components/MenuExamples/EditorMenubarExample/ConfigurationDialog.module.scss b/src/components/MenuExamples/EditorMenubarExample/ConfigurationDialog.module.scss
+new file mode 100644
+index 000000000..3647e8abc
+--- /dev/null
++++ b/src/components/MenuExamples/EditorMenubarExample/ConfigurationDialog.module.scss
+@@ -0,0 +1,3 @@
++.dialog {
++  width: 30rem;
++}
+diff --git a/src/components/MenuExamples/EditorMenubarExample/ConfigurationDialog.tsx b/src/components/MenuExamples/EditorMenubarExample/ConfigurationDialog.tsx
+new file mode 100644
+index 000000000..44a78003f
+--- /dev/null
++++ b/src/components/MenuExamples/EditorMenubarExample/ConfigurationDialog.tsx
+@@ -0,0 +1,81 @@
++import { Button } from "@react-md/button";
++import { Typography } from "@react-md/core";
++import {
++  Dialog,
++  DialogContent,
++  DialogFooter,
++  DialogHeader,
++  DialogTitle,
++} from "@react-md/dialog";
++import type { NumberFieldWithMessageImplementation } from "@react-md/form";
++import { Form, TextField } from "@react-md/form";
++import type { ReactElement } from "react";
++import { InlineCode } from "src/components/Code";
++
++import styles from "./ConfigurationDialog.module.scss";
++
++export interface ConfigurationDialogProps
++  extends Pick<
++    NumberFieldWithMessageImplementation,
++    "fieldProps" | "error" | "reset"
++  > {
++  visible: boolean;
++  onRequestClose(): void;
++}
++
++export function ConfigurationDialog(
++  props: ConfigurationDialogProps
++): ReactElement {
++  const { visible, onRequestClose, error, reset, fieldProps } = props;
++  return (
++    <Dialog
++      aria-labelledby="configure-dialog-title"
++      modal
++      visible={visible}
++      onRequestClose={onRequestClose}
++      className={styles.dialog}
++    >
++      <DialogHeader>
++        <DialogTitle id="configure-dialog-title">
++          Configure Hover Timeout
++        </DialogTitle>
++      </DialogHeader>
++      <DialogContent>
++        <Form
++          onSubmit={onRequestClose}
++          onReset={() => {
++            reset();
++            onRequestClose();
++          }}
++        >
++          <TextField {...fieldProps} label="Hover Timeout" placeholder="0" />
++        </Form>
++        <Typography>
++          The amount of time the user must over over a menu in milliseconds
++          before the hover mode behavior is enabled.
++        </Typography>
++        <Typography>
++          If this is <InlineCode>undefined</InlineCode>, the user must click one
++          of the dropdown buttons before the hover mode is enabled.
++        </Typography>
++        <Typography>
++          If this is set to <InlineCode>0</InlineCode>, the menus will become
++          visible immediately on hover.
++        </Typography>
++      </DialogContent>
++      <DialogFooter>
++        <Button form="configure-form" type="reset" theme="warning">
++          Reset
++        </Button>
++        <Button
++          form="configure-form"
++          type="submit"
++          theme="primary"
++          disabled={error}
++        >
++          Confirm
++        </Button>
++      </DialogFooter>
++    </Dialog>
++  );
++}
+diff --git a/src/components/MenuExamples/EditorMenubarExample/EditorContent.tsx b/src/components/MenuExamples/EditorMenubarExample/EditorContent.tsx
+new file mode 100644
+index 000000000..fdcd0dc0f
+--- /dev/null
++++ b/src/components/MenuExamples/EditorMenubarExample/EditorContent.tsx
+@@ -0,0 +1,5 @@
++import type { ReactElement } from "react";
++
++export function EditorContent(): ReactElement {
++  return <></>;
++}
+diff --git a/src/components/MenuExamples/EditorMenubarExample/EditorMenubarExample.tsx b/src/components/MenuExamples/EditorMenubarExample/EditorMenubarExample.tsx
+new file mode 100644
+index 000000000..d4277495c
+--- /dev/null
++++ b/src/components/MenuExamples/EditorMenubarExample/EditorMenubarExample.tsx
+@@ -0,0 +1,16 @@
++import { Button } from "@react-md/button";
++import { useToggle } from "@react-md/core";
++import { Dialog } from "@react-md/dialog";
++import type { ReactElement } from "react";
++
++export function EditorMenubarExample(): ReactElement {
++  const { enable, disable, toggled } = useToggle();
++  return (
++    <>
++      <Button onClick={enable}>Show</Button>
++      <Dialog type="full-page" visible={toggled} onRequestClose={disable}>
++        <Editor />
++      </Dialog>
++    </>
++  );
++}
+diff --git a/src/components/MenuExamples/EditorMenubarExample/index.ts b/src/components/MenuExamples/EditorMenubarExample/index.ts
+new file mode 100644
+index 000000000..ee73b9fdc
+--- /dev/null
++++ b/src/components/MenuExamples/EditorMenubarExample/index.ts
+@@ -0,0 +1 @@
++export * from "./EditorMenubarExample";
+diff --git a/src/components/Menus/HoverableMenus.module.scss b/src/components/Menus/HoverableMenus.module.scss
+new file mode 100644
+index 000000000..2e9271a96
+--- /dev/null
++++ b/src/components/Menus/HoverableMenus.module.scss
+@@ -0,0 +1,23 @@
++@use "everything";
++
++.container {
++  display: grid;
++  grid-template: max-content 1fr / 1fr;
++  height: 100%;
++}
++
++.appbar {
++  overflow: auto;
++  padding: 0 0.5rem;
++}
++
++.text {
++  // @include rmd-typography-theme(max-width, line-width);
++
++  justify-self: center;
++  margin: 1rem;
++}
++
++.dialog {
++  width: 30rem;
++}
+diff --git a/src/components/Menus/HoverableMenus.tsx b/src/components/Menus/HoverableMenus.tsx
+new file mode 100644
+index 000000000..119ce5bb4
+--- /dev/null
++++ b/src/components/Menus/HoverableMenus.tsx
+@@ -0,0 +1,320 @@
++import { AppBar } from "@react-md/app-bar";
++import { Button } from "@react-md/button";
++import type { CalculateFixedPositionOptions } from "@react-md/core";
++import { blue500, green500, red500, Typography } from "@react-md/core";
++import {
++  Dialog,
++  DialogContent,
++  DialogFooter,
++  DialogHeader,
++  DialogTitle,
++} from "@react-md/dialog";
++import {
++  Form,
++  MenuItemCheckbox,
++  MenuItemRadio,
++  TextField,
++  useNumberField,
++} from "@react-md/form";
++import { List } from "@react-md/list";
++import AddIcon from "@react-md/material-icons/AddIcon";
++import BuildIcon from "@react-md/material-icons/BuildIcon";
++import RemoveIcon from "@react-md/material-icons/RemoveIcon";
++import {
++  DropdownMenu,
++  MenuBar,
++  MenuItem,
++  MenuItemSeparator,
++} from "@react-md/menu";
++import type { ReactElement } from "react";
++import { useState } from "react";
++import { InlineCode } from "../Code";
++
++import styles from "./HoverableMenus.module.scss";
++import { InfiniteDropdownMenu } from "./InfiniateDropdownMenu";
++
++const FONT_FAMILIES = [
++  "Roboto",
++  "Sans-serif",
++  "Serif",
++  "Monospace",
++  "Fantasy",
++] as const;
++type FontFamily = typeof FONT_FAMILIES[number];
++
++const COLORS = [
++  { label: "Current Color", value: "" },
++  { label: "Blue", value: blue500 },
++  { label: "Red", value: red500 },
++  { label: "Green", value: green500 },
++] as const;
++type Color = typeof COLORS[number]["value"];
++
++const TEXT_DECORATIONS = [
++  { label: "None", value: "none" },
++  { label: "Overline", value: "overline" },
++  { label: "Line-through", value: "line-through" },
++  { label: "Underline", value: "underline" },
++] as const;
++type TextDecoration = typeof TEXT_DECORATIONS[number]["value"];
++
++const TEXT_ALIGNS = [
++  { label: "Left", value: "left" },
++  { label: "Right", value: "right" },
++  { label: "Center", value: "center" },
++  { label: "Justify", value: "justify" },
++] as const;
++type TextAlign = typeof TEXT_ALIGNS[number]["value"];
++
++const FONT_SIZES = [
++  { label: "X-Small", value: "x-small" },
++  { label: "Small", value: "small" },
++  { label: "Medium", value: "medium" },
++  { label: "Large", value: "large" },
++  { label: "X-Large", value: "x-large" },
++] as const;
++type FontSize = typeof FONT_SIZES[number]["value"];
++
++const getFixedPositionOptions = (): CalculateFixedPositionOptions => ({
++  // preventOverlap: true,
++  // disableSwapping: true,
++});
++
++const EXAMPLE_TEXT =
++  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dictum sodales sem, non molestie nunc mollis at. Morbi sed lobortis lorem. Vivamus nisi turpis, blandit eu dolor a, tincidunt eleifend odio. Integer id dui velit. Nulla nisi eros, porttitor id ligula id, hendrerit maximus mauris. Sed feugiat lacinia euismod. Mauris eros lectus, ultrices et arcu in, finibus ornare neque. Proin rhoncus molestie sagittis. Cras sit amet magna sed erat scelerisque auctor. Mauris iaculis erat non mi mollis, eget feugiat odio lacinia. Aliquam dapibus at velit quis posuere. Phasellus est sem, auctor in mattis ut, rhoncus eu metus. In turpis sem, fermentum a elementum eu, lobortis ut massa. Suspendisse a urna enim.";
++
++export function HoverableMenus(): ReactElement {
++  const [visible, setVisible] = useState(false);
++  const onRequestClose = (): void => setVisible(false);
++  const [fontFamily, setFontFamily] = useState<FontFamily>(FONT_FAMILIES[0]);
++  const [color, setColor] = useState<Color>(COLORS[0].value);
++  const [bold, setBold] = useState(false);
++  const [italic, setItalic] = useState(false);
++  const [textDecoration, setTextDecoration] = useState<TextDecoration>(
++    TEXT_DECORATIONS[0].value
++  );
++  const [textAlign, setTextAlign] = useState<TextAlign>(TEXT_ALIGNS[0].value);
++  const [fontSize, setFontSize] = useState<FontSize>("medium");
++
++  const updateFontSize = (increment: boolean): void => {
++    setFontSize((fontSize) => {
++      const i = FONT_SIZES.findIndex(({ value }) => value === fontSize);
++      const amount = increment ? 1 : -1;
++      const nextIndex = Math.max(0, Math.min(FONT_SIZES.length, i + amount));
++
++      return FONT_SIZES[nextIndex].value;
++    });
++  };
++  const {
++    value: hoverTimeout,
++    fieldProps,
++    error,
++    reset,
++  } = useNumberField({
++    name: "timeout",
++    min: 0,
++    max: 3000,
++    step: 100,
++    updateValueOnBlur: false,
++  });
++  return (
++    <div className={styles.container}>
++      <AppBar as="div" theme="surface" className={styles.appbar}>
++        <MenuBar
++          aria-label="Text Formatting"
++          // The default behavior is to require the user to click one of the
++          // `DropdownMenu` below before enabling the "hover mode" behavior.
++          // This can be overridden by setting the `hoverTimeout` prop which
++          // will update the behavior so the "hover mode" behavior will be
++          // active after the user has hovered over one of the `DropdownMenu`s
++          // for that amount of time in milliseconds
++          hoverTimeout={hoverTimeout}
++        >
++          <DropdownMenu
++            id="font-item"
++            buttonChildren="Font"
++            getFixedPositionOptions={getFixedPositionOptions}
++          >
++            {FONT_FAMILIES.map((font) => (
++              <MenuItemRadio
++                key={font}
++                checked={font === fontFamily}
++                onCheckedChange={() => setFontFamily(font)}
++              >
++                {font}
++              </MenuItemRadio>
++            ))}
++          </DropdownMenu>
++          <DropdownMenu
++            buttonChildren="Style/Color"
++            getFixedPositionOptions={getFixedPositionOptions}
++          >
++            <MenuItemCheckbox
++              checked={bold}
++              onCheckedChange={(checked) => setBold(checked)}
++            >
++              Bold
++            </MenuItemCheckbox>
++            <MenuItemCheckbox
++              checked={italic}
++              onCheckedChange={(checked) => setItalic(checked)}
++            >
++              Italic
++            </MenuItemCheckbox>
++            <List aria-label="Color" role="group">
++              {COLORS.map(({ label, value }) => (
++                <MenuItemRadio
++                  key={value}
++                  checked={color === value}
++                  onCheckedChange={() => setColor(value)}
++                >
++                  {label}
++                </MenuItemRadio>
++              ))}
++            </List>
++            <MenuItemSeparator />
++            <List aria-label="Text Decoration" role="group">
++              {TEXT_DECORATIONS.map(({ label, value }) => (
++                <MenuItemRadio
++                  key={value}
++                  checked={textDecoration === value}
++                  onCheckedChange={() => setTextDecoration(value)}
++                >
++                  {label}
++                </MenuItemRadio>
++              ))}
++            </List>
++          </DropdownMenu>
++          <DropdownMenu
++            buttonChildren="Text Align"
++            getFixedPositionOptions={getFixedPositionOptions}
++          >
++            <List aria-label="Text Align" role="group">
++              {TEXT_ALIGNS.map(({ label, value }) => (
++                <MenuItemRadio
++                  key={value}
++                  checked={value === textAlign}
++                  onCheckedChange={() => setTextAlign(value)}
++                >
++                  {label}
++                </MenuItemRadio>
++              ))}
++            </List>
++            <MenuItemSeparator />
++            <InfiniteDropdownMenu
++              index={3}
++              depth={1}
++              buttonChildren="Infinite Menu"
++            />
++          </DropdownMenu>
++          <DropdownMenu
++            buttonChildren="Size"
++            getFixedPositionOptions={getFixedPositionOptions}
++          >
++            <MenuItem
++              onClick={() => updateFontSize(false)}
++              leftAddon={<RemoveIcon />}
++              disabled={fontSize === "x-small"}
++              disabledOpacity
++            >
++              Smaller
++            </MenuItem>
++            <MenuItem
++              onClick={() => updateFontSize(true)}
++              leftAddon={<AddIcon />}
++              disabled={fontSize === "x-large"}
++              disabledOpacity
++            >
++              Bigger
++            </MenuItem>
++            <MenuItemSeparator />
++            <List aria-label="Font Size" role="group">
++              {FONT_SIZES.map(({ label, value }) => (
++                <MenuItemRadio
++                  key={value}
++                  checked={value === fontSize}
++                  onCheckedChange={() => setFontSize(value)}
++                >
++                  {label}
++                </MenuItemRadio>
++              ))}
++            </List>
++          </DropdownMenu>
++        </MenuBar>
++      </AppBar>
++      <div className={styles.text}>
++        <Typography
++          style={{
++            color: color === "" ? undefined : color,
++            fontFamily,
++            fontSize,
++            fontStyle: italic ? "italic" : undefined,
++            fontWeight: bold ? "bold" : undefined,
++            textAlign,
++            textDecoration,
++          }}
++        >
++          {EXAMPLE_TEXT}
++        </Typography>
++      </div>
++      <Button
++        theme="warning"
++        floating="bottom-left"
++        aria-label="Configure"
++        onClick={() => setVisible((prevVisible) => !prevVisible)}
++      >
++        <BuildIcon />
++      </Button>
++      <Dialog
++        aria-labelledby="configure-dialog-title"
++        modal
++        visible={visible}
++        onRequestClose={onRequestClose}
++        className={styles.dialog}
++      >
++        <DialogHeader>
++          <DialogTitle id="configure-dialog-title">
++            Configure Hover Timeout
++          </DialogTitle>
++        </DialogHeader>
++        <DialogContent>
++          <Form
++            id="configure-form"
++            onSubmit={onRequestClose}
++            onReset={() => {
++              reset();
++              onRequestClose();
++            }}
++          >
++            <TextField {...fieldProps} label="Hover Timeout" placeholder="0" />
++          </Form>
++          <Typography>
++            The amount of time the user must over over a menu in milliseconds
++            before the hover mode behavior is enabled.
++          </Typography>
++          <Typography>
++            If this is <InlineCode>undefined</InlineCode>, the user must click
++            one of the dropdown buttons before the hover mode is enabled.
++          </Typography>
++          <Typography>
++            If this is set to <InlineCode>0</InlineCode>, the menus will become
++            visible immediately on hover.
++          </Typography>
++        </DialogContent>
++        <DialogFooter>
++          <Button form="configure-form" type="reset" theme="warning">
++            Reset
++          </Button>
++          <Button
++            form="configure-form"
++            type="submit"
++            theme="primary"
++            disabled={error}
++          >
++            Confirm
++          </Button>
++        </DialogFooter>
++      </Dialog>
++    </div>
++  );
++}
+diff --git a/src/components/Menus/InfiniateDropdownMenu.tsx b/src/components/Menus/InfiniateDropdownMenu.tsx
+new file mode 100644
+index 000000000..f24e5c2f4
+--- /dev/null
++++ b/src/components/Menus/InfiniateDropdownMenu.tsx
+@@ -0,0 +1,25 @@
++import { DropdownMenu, MenuItem } from "@react-md/menu";
++import type { ReactElement, ReactNode } from "react";
++
++interface InfiniteDropdownMenuProps {
++  index: number;
++  depth: number;
++  buttonChildren?: ReactNode;
++}
++
++export function InfiniteDropdownMenu({
++  index,
++  depth,
++  buttonChildren,
++}: InfiniteDropdownMenuProps): ReactElement {
++  return (
++    <DropdownMenu buttonChildren={buttonChildren ?? `Item ${index + 3}`}>
++      <MenuItem>Item 1</MenuItem>
++      <MenuItem>Item 2</MenuItem>
++      {Array.from({ length: 4 }, (_, i) => (
++        <InfiniteDropdownMenu key={i} depth={depth + 1} index={i} />
++      ))}
++      <MenuItem>Item 7</MenuItem>
++    </DropdownMenu>
++  );
++}

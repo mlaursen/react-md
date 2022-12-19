@@ -1,0 +1,198 @@
+diff --git a/useFlexGrid.ts b/useFlexGrid.ts
+new file mode 100644
+index 000000000..769008eae
+--- /dev/null
++++ b/useFlexGrid.ts
+@@ -0,0 +1,192 @@
++import { cnb } from "cnbuilder";
++import type { CSSProperties, Ref, RefCallback } from "react";
++import { createContext, useCallback, useContext, useState } from "react";
++import type { UseStateInitializer } from "../types";
++import { useResizeObserver } from "../useResizeObserver";
++import { box } from "./styles";
++
++/**
++ * This is the css variable that is used store the current size of each cell.
++ */
++export const CELL_SIZE_VAR = "--rmd-cell-size";
++
++/**
++ * This is the css variable that is used store the current margin of each cell.
++ */
++export const CELL_MARGIN_VAR = "--rmd-cell-margin";
++
++/**
++ * @remarks
++ * \@since 2.3.0
++ * \@since 6.0.0 Renamed from `DEFAULT_GRID_LIST_MAX_CELL_SIZE`
++ */
++export const DEFAULT_FLEX_GRID_MAX_CELL_SIZE = 150;
++
++/**
++ * @remarks
++ * \@since 2.3.0
++ * \@since 6.0.0 Renamed from `DEFAULT_GRID_LIST_PADDING`
++ */
++export const DEFAULT_FLEX_GRID_LAYOUT_PADDING = 16;
++
++/**
++ * @remarks
++ * \@since 6.0.0 This used to be named `GridListSize`
++ */
++export interface FlexGridLayout {
++  /**
++   * The current number of visible columns. This will be `-1` on the first
++   * render and SSR unless a {@link FlexGridOptions.defaultLayout} is provided.
++   */
++  columns: number;
++
++  /**
++   * The width for each cell. This will be {@link FlexGridOptions.maxCellSize}
++   * on the first render and SSR unless the {@link FlexGridOptions.defaultLayout}
++   * is provided.
++   */
++  cellWidth: number;
++}
++
++const context = createContext<FlexGridLayout | undefined>(undefined);
++context.displayName = "FlexGridLayout";
++
++export function useFlexGridLayout(): Readonly<FlexGridLayout> {
++  const value = useContext(context);
++  if (!value) {
++    throw new Error(
++      "FlexGridLayoutProvider must be a parent component to use the `useFlexGridLayout` hook"
++    );
++  }
++
++  return value;
++}
++
++export interface FlexGridOptions<E extends HTMLElement> {
++  ref?: Ref<E>;
++  style?: CSSProperties;
++  className?: string;
++
++  /**
++   *
++   * @defaultValue `{ columns: -1, cellWidth: maxCellSize }`
++   */
++  defaultLayout?: UseStateInitializer<FlexGridLayout>;
++
++  /**
++   *
++   * @see {@link DEFAULT_FLEX_GRID_MAX_CELL_SIZE}
++   * @defaultValue `DEFAULT_FLEX_GRID_MAX_CELL_SIZE`
++   */
++  maxCellSize?: number;
++
++  /**
++   */
++  cellMargin?: string;
++
++  /**
++   * @see {@link DEFAULT_FLEX_GRID_LAYOUT_PADDING}
++   * @defaultValue `DEFAULT_FLEX_GRID_LAYOUT_PADDING`
++   */
++  containerPadding?: number;
++
++  /**
++   * @defaultValue `false`
++   */
++  disableHeight?: boolean;
++
++  /**
++   * @defaultValue `false`
++   */
++  disableWidth?: boolean;
++}
++
++export interface ProvidedFlexGridProps<E extends HTMLElement> {
++  ref: RefCallback<E>;
++  style: CSSProperties;
++  className: string;
++}
++
++export interface FlexGridImplementation<E extends HTMLElement>
++  extends FlexGridLayout,
++    ProvidedFlexGridProps<E> {
++  flexGridProps: ProvidedFlexGridProps<E>;
++}
++
++export function useFlexGrid<E extends HTMLElement>(
++  options: FlexGridOptions<E> = {}
++): FlexGridImplementation<E> {
++  const {
++    ref: propRef,
++    style: propStyle,
++    className: propClassName,
++    defaultLayout,
++    cellMargin,
++    maxCellSize = DEFAULT_FLEX_GRID_MAX_CELL_SIZE,
++    disableHeight = false,
++    disableWidth = false,
++  } = options;
++
++  const [layout, setLayout] = useState<FlexGridLayout>(() => {
++    if (typeof defaultLayout === "function") {
++      return defaultLayout();
++    }
++
++    return defaultLayout || { columns: -1, cellWidth: maxCellSize };
++  });
++  const { columns, cellWidth } = layout;
++
++  const ref = useResizeObserver({
++    ref: propRef,
++    onUpdate: useCallback(
++      (entry) => {
++        const { width } = entry.contentRect;
++        const columns = Math.ceil(width / maxCellSize);
++        console.log("columns:", columns);
++        const cellWidth = width / columns;
++
++        setLayout((prevLayout) => {
++          if (
++            prevLayout.columns === columns &&
++            prevLayout.cellWidth === cellWidth
++          ) {
++            return prevLayout;
++          }
++
++          return { cellWidth, columns };
++        });
++      },
++      [maxCellSize]
++    ),
++    disableHeight,
++    disableWidth,
++  });
++
++  const style = {
++    ...propStyle,
++    "--rmd-box-columns": columns,
++    "--rmd-box-margin": cellMargin || "0px",
++    "--rmd-box-gap": "0px",
++    "--rmd-box-item-min-size": `${cellWidth}px`,
++    // "--rmd-box-item-min-size": `${layout.cellWidth}px`,
++    // [CELL_SIZE_VAR]: `${layout.cellWidth}px`,
++    // [CELL_MARGIN_VAR]: cellMargin,
++  } as CSSProperties;
++  const className = cnb(
++    box({
++      align: "start",
++    }),
++    propClassName
++  );
++  const flexGridProps: ProvidedFlexGridProps<E> = {
++    ref,
++    style,
++    className,
++  };
++
++  return {
++    ...layout,
++    ...flexGridProps,
++    flexGridProps,
++  };
++}

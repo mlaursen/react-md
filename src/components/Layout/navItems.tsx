@@ -75,6 +75,7 @@ const routes: readonly LayoutNavigationItem[] = [
       { name: "Checkbox", pathname: "/checkbox" },
       { name: "Radio", pathname: "/radio" },
       { name: "Switch", pathname: "/switch" },
+      { name: "Slider", pathname: "/slider" },
     ],
   }),
   ...createRoutes({
@@ -118,6 +119,7 @@ const routes: readonly LayoutNavigationItem[] = [
     ],
   }),
 
+  createRoute({ name: "Alert", pathname: "/alert" }),
   createRoute({ name: "Table", pathname: "/table" }),
   createRoute({ name: "Expansion Panel", pathname: "/expansion-panel" }),
   createRoute({ name: "Tabs", pathname: "/tabs" }),

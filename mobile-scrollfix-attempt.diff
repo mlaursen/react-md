@@ -1,0 +1,79 @@
+diff --git a/packages/core/src/scroll/useScrollLock.ts b/packages/core/src/scroll/useScrollLock.ts
+index 308277e5e..cd0c8f0a2 100644
+--- a/packages/core/src/scroll/useScrollLock.ts
++++ b/packages/core/src/scroll/useScrollLock.ts
+@@ -1,8 +1,12 @@
+ import { useEffect } from "react";
++import { useUserInteractionMode } from "../interaction";
+ import { getScrollbarWidth } from "./getScrollbarWidth";
+ 
+ export const SCROLLBAR_SIZE_VAR = "--rmd-scrollbar-size";
+ 
++const TOUCH_FIX_TIMEOUT = 15;
++const TOUCH_FIX_DISTANCE = -100;
++
+ // this is really just so that nested dialogs will work correctly. Only the
+ // first created dialog should prevent scroll locking on the `document.body`
+ let isLocked = false;
+@@ -15,11 +19,13 @@ let isLocked = false;
+  * the `document.body` since it's more reliable to scroll lock with an overlay.
+  * \@since 6.0.0 Now applies `paddingRight` equal to the current OS's
+  * scrollbar width if there is a full page scrollbar to prevent layout shifting.
++ * \@since 6.0.0 Fixes scroll locking on touch devies.
+  *
+  * @param locked - The `document.body` will not be scrollable when this is
+  * `true`.
+  */
+ export function useScrollLock(locked: boolean): void {
++  const isTouch = useUserInteractionMode() === "touch";
+   useEffect(() => {
+     if (isLocked || !locked) {
+       return;
+@@ -27,9 +33,16 @@ export function useScrollLock(locked: boolean): void {
+ 
+     isLocked = true;
+ 
++    const { scrollY } = window;
+     const size = `${getScrollbarWidth()}px`;
+     const el = document.body;
+     const { paddingRight } = el.style;
++
++    // Note: This will fail if scrollbars are visible due to adding margin
++    // instead of padding to elements which cause the page to become scrollable
++    // since margin isn't included in height calculations.
++    //
++    // I don't plan of fixing that though since it seems like an edge case.
+     const isScrollbarVisible = el.scrollHeight > el.offsetHeight;
+ 
+     el.style.overflow = "hidden";
+@@ -38,14 +51,29 @@ export function useScrollLock(locked: boolean): void {
+       el.style.paddingRight = `var(${SCROLLBAR_SIZE_VAR})`;
+     }
+ 
++    let timeout: number | undefined;
++    if (isTouch) {
++      // On touch devices, the scroll locking might not work correctly if the
++      // fixed address bar has either shrunken or hidden based on ascroll
++      // position. So the way you can fix this is by forcing the address bar to
++      // become full size again by scrolling upwards causing it to become full
++      // size, and then setting the scroll position back to it's previous value.
++
++      window.scrollTo(0, TOUCH_FIX_DISTANCE);
++      timeout = window.setTimeout(() => {
++        window.scrollTo(0, scrollY);
++      }, TOUCH_FIX_TIMEOUT);
++    }
++
+     return () => {
+       isLocked = false;
+ 
++      window.clearTimeout(timeout);
+       el.style.removeProperty(SCROLLBAR_SIZE_VAR);
+       el.style.overflow = "";
+       if (isScrollbarVisible) {
+         el.style.paddingRight = paddingRight;
+       }
+     };
+-  }, [locked]);
++  }, [isTouch, locked]);
+ }

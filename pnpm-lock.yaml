@@ -119,6 +119,16 @@ importers:
       ts-node: 10.9.1_lmuplpas2gjawkb632kmjhvemy
       typescript: 4.9.4
 
+  packages/alert:
+    specifiers:
+      '@react-md/button': ^6.0.0-alpha.0
+      '@react-md/core': ^6.0.0-alpha.0
+      cnbuilder: ^3.1.0
+    dependencies:
+      '@react-md/button': link:../button
+      '@react-md/core': link:../core
+      cnbuilder: 3.1.0
+
   packages/app-bar:
     specifiers:
       '@react-md/button': ^6.0.0-alpha.0

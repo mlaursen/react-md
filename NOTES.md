@@ -1,3 +1,31 @@
+# Documentation Notes
+
+- Implement a better search
+  - probably do a modal search instead of a list to show more results and
+    context
+  - find a better indexer instead of trying to do it manually
+  - https://www.algolia.com/
+    - I get about 10k searches per month
+    - 10 search terms though, whatever that is
+- apparently people want copy/paste for code
+- always have simple examples
+- move to component based documentation instead of package based
+- figure out how to get the typescript interfaces and props available
+- each package's README should show a minimal setup with including styles and
+  any context providers
+- might be nice to support selecting line numbers in the demos, but that is
+  taken care of by using the GitHub links
+- the SassDoc should be much more condensed
+  - variables should probably be displayed in a table
+  - mixins and functions are probably fine. I should just make sure they always
+    have an example
+    - start with examples before showing the source code
+    - maybe lazy-load the compiled examples?
+- I think I'd like to implement the prefers-color-scheme by default, but might
+  require adding that feature first
+  - default to System, but allow light and dark
+- Add quick nav item to Theme Builder in main AppBar
+
 # Documentation Updates
 
 - allow the user to modify the whole layout and theme for the website
@@ -80,6 +108,7 @@ The main reason is that I don't think a user would actually install only one of 
 - **@react-md/** -
 - **@react-md/app-bar** - removed `AppBarNav` and `AppBarAction` components. These can now be replaced with the `Button` component since the `AppBar` is rendered with horizontal padding and `gap`
 - **@react-md/app-bar** - `AppBarTitle` defaults to preventing line wrapping and `noWrap` was renamed to `disableNoWrap` to match this new behavior
+- **@react-md/chip** - The `leftIcon` and `rightIcon` props were removed. Include these icons in the `children` instead and gap will automatically be applied.
 - **@react-md/core** - The `useResizeObserver` has a new API and type definitions. Now, it only accepts a single object parameter and requires an `onUpdate` function being provided. In addition, it only returns a `RefCallback` instead of an ordered list of `[nodeRef, refCallback]`.
 - **@react-md/layout** - The `LayoutNavigation` is no longer temporary by default and instead will apply `hidden` while not `visible`. This allows the previous scroll position to be saved for temporary and toggleable layout types.
 - **@react-md/list** - removed `forceAddonWrap` from `ListItemChildren` in favor of `leftAddonForceWrap` and `rightAddonForceWrap`
@@ -131,6 +160,9 @@ The main reason is that I don't think a user would actually install only one of 
 
 ## TODO
 
+- I need to redo the Layout components. Lots of issues.
+  - also need to make sure `aria-current` exists on one of the nav items
+- Should I update all flex and grid components to use the box utility instead of reapplying the styles each time? Would be good to measure size difference
 - see if I can update the Tree to use the KeyboardMovementProvider implementation. Current rendering seems slow.
 - See if I can remove the `process.env.NODE_ENV === "test"` part in `useEnsuredId`
 - why did I add a key to the `LayoutNavigation`'s sheet component based on the `layout`
@@ -138,3 +170,7 @@ The main reason is that I don't think a user would actually install only one of 
   - it should render as an icon button on phone only and an icon + text on other media types
     - it should be sr-only on phones to maintain a11y
   - requires both an `icon` and `children` for a11y
+
+## Other notes
+
+- the linear progress can almost be replaced by the native `<progress>` element. The only thing that I haven't figured out is how to style the indeterminate animation
