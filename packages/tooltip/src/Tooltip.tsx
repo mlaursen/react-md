@@ -32,7 +32,7 @@ export function tooltip(options: TooltipClassNameOptions): string {
   const { dense, position, className, disableLineWrap } = options;
 
   return cnb(
-    styles({ dense, [position]: true, "no-wrap": disableLineWrap }),
+    styles({ dense, [position]: true, wrap: !disableLineWrap }),
     className
   );
 }

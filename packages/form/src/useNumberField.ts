@@ -194,7 +194,7 @@ export function useNumberField(
   }
 ): NumberFieldImplementation & {
   value: number;
-  setState: UseStateSetter<NumberFieldHookOptions & { value: number }>;
+  setState: UseStateSetter<NumberFieldHookState & { value: number }>;
 };
 
 /**
@@ -286,7 +286,7 @@ export function useNumberField(
   }
 ): NumberFieldWithMessageImplementation & {
   value: number;
-  setState: UseStateSetter<NumberFieldHookOptions & { value: number }>;
+  setState: UseStateSetter<NumberFieldHookState & { value: number }>;
 };
 
 /**

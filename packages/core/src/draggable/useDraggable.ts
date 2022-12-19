@@ -66,6 +66,9 @@ export interface BaseDraggableOptions<E extends HTMLElement>
   /**
    * The minimum number of pixels allowed for the draggable element. This must
    * be a number greater than or equal to 0.
+   *
+   * When {@link withinOffsetParent} is set to `true`, this is the minimum value
+   * allowed instead of pixels.
    */
   min: number;
 
@@ -73,8 +76,48 @@ export interface BaseDraggableOptions<E extends HTMLElement>
    * The maximum number of pixels allowed for the draggable element. This must
    * be a number greater than the {@link min} and usually a number less than the
    * viewport size.
+   *
+   * When {@link withinOffsetParent} is set to `true`, this is the maximum value
+   * allowed instead of pixels.
    */
   max: number;
+
+  /**
+   * This was added to support range sliders where there are two (or more)
+   * draggable elements within the same container element and their values
+   * cannot pass each other. Without these overrides, the range would keep
+   * changing as the other values change, so the drag percentage would be
+   * incorrect.
+   *
+   * @example
+   * Range Slider
+   * ```ts
+   * const min = 0;
+   * const max = 100;
+   * const minValue = 3;
+   * const maxValue = 80;
+   *
+   * const minValueDraggable = useDraggable({
+   *   min,
+   *   max,
+   *   rangeMax: maxValue,
+   * });
+   * const maxValueDraggable = useDraggable({
+   *   min,
+   *   max,
+   *   rangeMin: minValue,
+   * });
+   * ```
+   *
+   * @defaultValue `min`
+   */
+  rangeMin?: number;
+
+  /**
+   * @see {@link rangeMin} for an explanation of this option.
+   * @defaultValue `max`
+   */
+  rangeMax?: number;
 
   /**
    * An optional ref to merge with the returned
@@ -301,6 +344,8 @@ export function useDraggable<E extends HTMLElement>(
     ref: propRef,
     min,
     max,
+    rangeMin = min,
+    rangeMax = max,
     step = 1,
     vertical = false,
     onKeyDown = noop,
@@ -381,6 +426,10 @@ export function useDraggable<E extends HTMLElement>(
     }
 
     const updatePosition = (event: MouseEvent | TouchEvent): void => {
+      if (!event.cancelable) {
+        return;
+      }
+
       event.preventDefault();
       event.stopPropagation();
 
@@ -409,8 +458,8 @@ export function useDraggable<E extends HTMLElement>(
       }
 
       const { value, dragPercentage } = getRelativeDragPosition({
-        min,
-        max,
+        min: rangeMin,
+        max: rangeMax,
         step,
         event,
         isRTL,
@@ -445,6 +494,8 @@ export function useDraggable<E extends HTMLElement>(
     max,
     min,
     nodeRef,
+    rangeMax,
+    rangeMin,
     setValue,
     step,
     vertical,
@@ -495,18 +546,32 @@ export function useDraggable<E extends HTMLElement>(
 
       const container = element.offsetParent || document.body;
       const { value, dragPercentage } = getRelativeDragPosition({
-        min,
-        max,
+        min: rangeMin,
+        max: rangeMax,
         step,
         event,
         isRTL,
         vertical,
         container,
       });
+
+      // unlike the other flow, start dragging immediately so that you can
+      // trigger a mousedown or touchstart event on the container element and
+      // drag until the user lets go
       setValue(value);
+      setDragging(true);
       setDragPercentage(dragPercentage);
     },
-    [isRTL, max, min, nodeRef, setValue, step, vertical, withinOffsetParent]
+    [
+      isRTL,
+      nodeRef,
+      rangeMax,
+      rangeMin,
+      setValue,
+      step,
+      vertical,
+      withinOffsetParent,
+    ]
   );
 
   const mouseEventHandlers: Required<DraggableMouseEventHandlers<E>> = {
@@ -529,14 +594,14 @@ export function useDraggable<E extends HTMLElement>(
     onMouseMove: useCallback(
       (event) => {
         onMouseMove(event);
-        if (disabled || isTouch || !draggingRef.current) {
+        if (disabled || isTouch || !draggingRef.current || dragging) {
           return;
         }
 
         updateWithinOffsetParent(event);
         setDragging(true);
       },
-      [disabled, isTouch, onMouseMove, updateWithinOffsetParent]
+      [disabled, dragging, isTouch, onMouseMove, updateWithinOffsetParent]
     ),
     onMouseUp: useCallback(
       (event) => {

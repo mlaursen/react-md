@@ -82,7 +82,6 @@ $var-lookup: (
 
 @mixin styles {
   .rmd-tooltip {
-    @include core.text-overflow($white-space: null);
     @include core.map-to-styles($typography);
     @include use-var(background-color);
     @include use-var(color);
@@ -132,8 +131,8 @@ $var-lookup: (
       }
     }
 
-    &--no-wrap {
-      max-width: none;
+    &--wrap {
+      @include core.text-overflow($white-space: null);
     }
 
     &--visible {

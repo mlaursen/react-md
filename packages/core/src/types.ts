@@ -141,3 +141,25 @@ export type UseStateObject<Name extends string, Value> = {
 } & {
   [key in `set${Capitalize<Name>}`]: UseStateSetter<Value>;
 };
+
+/**
+ * @example
+ * ```ts
+ * interface Example {
+ *   value: number;
+ *   setValue: UseStateSetter<number>;
+ * }
+ *
+ * type WithPrefix = RenameKeysWithPrefix<Example, "thumb1">;
+ * // type WithPrefix = {
+ * //   thumb1Value: number;
+ * //   thumb1SetValue: UseStateSetter<number>;
+ * // }
+ * ```
+ *
+ * @remarks \@since 6.0.0
+ * @internal
+ */
+export type RenameKeysWithPrefix<T, Prefix extends string> = {
+  [Key in keyof T & string as `${Prefix}${Capitalize<Key>}`]: T[Key];
+};
