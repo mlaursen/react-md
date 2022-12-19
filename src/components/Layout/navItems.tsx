@@ -75,6 +75,7 @@ const routes: readonly LayoutNavigationItem[] = [
       { name: "Checkbox", pathname: "/checkbox" },
       { name: "Radio", pathname: "/radio" },
       { name: "Switch", pathname: "/switch" },
+      { name: "Slider", pathname: "/slider" },
     ],
   }),
   ...createRoutes({
