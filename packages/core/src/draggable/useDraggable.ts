@@ -13,9 +13,11 @@ import type {
   LocalStorageHookReturnValue,
 } from "../useLocalStorage";
 import { useLocalStorage } from "../useLocalStorage";
+import type { ClientEventPosition, ClientTouchEventPosition } from "../utils";
 import { getRangeSteps, nearest, withinRange } from "../utils";
 import {
   getDragPosition,
+  getRelativeDragPosition,
   isMouseDragStartEvent,
   isTouchDragStartEvent,
 } from "./utils";
@@ -29,7 +31,7 @@ const noop = (): void => {
  */
 export type DraggableTouchEventHandlers<E extends HTMLElement> = Pick<
   HTMLAttributes<E>,
-  "onTouchStart" | "onTouchEnd" | "onTouchMove"
+  "onTouchStart"
 >;
 
 /**
@@ -103,6 +105,15 @@ export interface BaseDraggableOptions<E extends HTMLElement>
   disabled?: boolean;
 
   /**
+   * Set this to `true` if the dragging calculations should be to the
+   * `draggableRef.current.offsetParent` instead of the entire window. The main
+   * use case for this is sliders.
+   *
+   * @defaultValue `false`
+   */
+  withinOffsetParent?: boolean;
+
+  /**
    * Set this to `true` to prevent the `document.documentElement` from gaining
    * the `.rmd-dragging` class names while dragging.
    *
@@ -154,13 +165,15 @@ export interface UncontrolledDraggableOptions<E extends HTMLElement>
  */
 export interface ControlledDraggableOptions<E extends HTMLElement>
   extends BaseDraggableOptions<E> {
+  value: number;
   setValue: UseStateSetter<number>;
 }
 
 /**
  * @remarks \@since 6.0.0
  */
-export interface ControlledDraggableImplementation<E extends HTMLElement> {
+export interface ControlledDraggableImplementation<E extends HTMLElement>
+  extends Required<DraggableEventHandlers<E>> {
   mouseEventHandlers: Required<DraggableMouseEventHandlers<E>>;
   touchEventHandlers: Required<DraggableTouchEventHandlers<E>>;
   keyboardEventHandlers: Required<DraggableKeyboardEventHanders<E>>;
@@ -195,6 +208,36 @@ export interface ControlledDraggableImplementation<E extends HTMLElement> {
    * A ref that **Must** be passed to the element that should be draggable.
    */
   draggableRef: RefCallback<E>;
+
+  /**
+   * This value will only update while dragging with a mouse or touch and should
+   * be used for the positioning styles while dragging.
+   *
+   * @example
+   * Inline Styles
+   * ```ts
+   * import { getPercentage, useDraggable } from "@react-md/core";
+   *
+   * const min = 120;
+   * const max = 256;
+   * const { value, dragging, dragPercentage } = useDraggable({
+   *   min,
+   *   max,
+   *   defaultValue: min,
+   * });
+   *
+   * const percentage = dragging
+   *   ? dragPercentage
+   *   : getPercentage({ min, max, value });
+   *
+   * const style: CSSProperties = {
+   *   left: `${percentage * 100}%`<>
+   * };
+   *
+   * // do stuff
+   * ```
+   */
+  dragPercentage: number;
 }
 
 /**
@@ -230,8 +273,8 @@ export interface UncontrolledDraggableImplementation<E extends HTMLElement>
  */
 export interface DraggableImplementation<E extends HTMLElement>
   extends ControlledDraggableImplementation<E> {
-  value?: number;
-  setValue?: UseStateSetter<number>;
+  value: number;
+  setValue: UseStateSetter<number>;
   persistToLocalStorage?(): void;
   removeFromLocalStorage?(): void;
 }
@@ -265,12 +308,12 @@ export function useDraggable<E extends HTMLElement>(
     onMouseDown = noop,
     onMouseMove = noop,
     onTouchStart = noop,
-    onTouchMove = noop,
-    onTouchEnd = noop,
+    value: propValue,
     setValue: propSetValue,
     defaultValue,
     localStorageKey = "",
     localStorageManual,
+    withinOffsetParent = false,
     disabled = false,
     disableDraggingClassName = false,
     disableDraggingCursorClassName = disableDraggingClassName,
@@ -281,6 +324,7 @@ export function useDraggable<E extends HTMLElement>(
   const isTouch = useUserInteractionMode() === "touch";
   const draggingRef = useRef(false);
   const [dragging, setDragging] = useState(false);
+  const [dragPercentage, setDragPercentage] = useState(min);
   const localStorage = useLocalStorage({
     key: localStorageKey,
     manual: localStorageManual || dragging,
@@ -296,11 +340,12 @@ export function useDraggable<E extends HTMLElement>(
       return defaultValue;
     },
   });
-  let value: number | undefined;
+  let value: number;
   let setValue: UseStateSetter<number>;
   let persist: (() => void) | undefined;
   let remove: (() => void) | undefined;
-  if (typeof propSetValue !== "undefined") {
+  if (typeof propValue !== "undefined") {
+    value = propValue;
     setValue = propSetValue;
   } else {
     ({ value, setValue, persist, remove } = localStorage);
@@ -346,14 +391,35 @@ export function useDraggable<E extends HTMLElement>(
 
       // firefox defaults to `document.body` while chrome will return `null`
       const container = element.offsetParent || document.body;
-      const position = getDragPosition({
+      if (!withinOffsetParent) {
+        setValue(
+          withinRange({
+            min,
+            max,
+            value: getDragPosition({
+              event,
+              isRTL,
+              vertical,
+              container,
+            }),
+          })
+        );
+
+        return;
+      }
+
+      const { value, dragPercentage } = getRelativeDragPosition({
+        min,
+        max,
+        step,
         event,
         isRTL,
         vertical,
         container,
       });
 
-      setValue(withinRange({ min, max, value: position }));
+      setValue(value);
+      setDragPercentage(dragPercentage);
     };
 
     const stopDragging = (event: MouseEvent | TouchEvent): void => {
@@ -364,14 +430,26 @@ export function useDraggable<E extends HTMLElement>(
 
     const updateKey = isTouch ? "touchmove" : "mousemove";
     const stopKey = isTouch ? "touchend" : "mouseup";
+    const passive = isTouch ? { passive: false } : undefined;
 
-    window.addEventListener(updateKey, updatePosition);
+    window.addEventListener(updateKey, updatePosition, passive);
     window.addEventListener(stopKey, stopDragging);
     return () => {
       window.removeEventListener(updateKey, updatePosition);
       window.removeEventListener(stopKey, stopDragging);
     };
-  }, [dragging, isRTL, isTouch, max, min, nodeRef, setValue, vertical]);
+  }, [
+    dragging,
+    isRTL,
+    isTouch,
+    max,
+    min,
+    nodeRef,
+    setValue,
+    step,
+    vertical,
+    withinOffsetParent,
+  ]);
 
   const prevRange = useRef({ min, max, step });
   useEffect(() => {
@@ -403,104 +481,145 @@ export function useDraggable<E extends HTMLElement>(
     }
   }, [dragging, persist]);
 
+  const updateWithinOffsetParent = useCallback(
+    (event: ClientEventPosition | ClientTouchEventPosition) => {
+      const element = nodeRef.current;
+      if (!element) {
+        return;
+      }
+
+      element.focus();
+      if (!withinOffsetParent) {
+        return;
+      }
+
+      const container = element.offsetParent || document.body;
+      const { value, dragPercentage } = getRelativeDragPosition({
+        min,
+        max,
+        step,
+        event,
+        isRTL,
+        vertical,
+        container,
+      });
+      setValue(value);
+      setDragPercentage(dragPercentage);
+    },
+    [isRTL, max, min, nodeRef, setValue, step, vertical, withinOffsetParent]
+  );
+
   const mouseEventHandlers: Required<DraggableMouseEventHandlers<E>> = {
-    onMouseDown(event) {
-      onMouseDown(event);
-      if (disabled || isTouch || !isMouseDragStartEvent(event)) {
-        return;
-      }
+    onMouseDown: useCallback(
+      (event) => {
+        onMouseDown(event);
+        if (disabled || isTouch || !isMouseDragStartEvent(event)) {
+          return;
+        }
 
-      // don't set dragging immediately so that click events can still happen
-      draggingRef.current = true;
-    },
-    onMouseMove(event) {
-      onMouseMove(event);
-      if (disabled || isTouch || !draggingRef.current) {
-        return;
-      }
+        // dont' allow text to be selected
+        event.preventDefault();
+        updateWithinOffsetParent(event);
 
-      setDragging(true);
-    },
-    onMouseUp(event) {
-      onMouseUp(event);
-      if (disabled || isTouch) {
-        return;
-      }
+        // don't set dragging immediately so that click events can still happen
+        draggingRef.current = true;
+      },
+      [disabled, isTouch, onMouseDown, updateWithinOffsetParent]
+    ),
+    onMouseMove: useCallback(
+      (event) => {
+        onMouseMove(event);
+        if (disabled || isTouch || !draggingRef.current) {
+          return;
+        }
 
-      draggingRef.current = false;
-    },
-  };
-  const touchEventHandlers: Required<DraggableTouchEventHandlers<E>> = {
-    onTouchStart(event) {
-      onTouchStart(event);
-      if (disabled || !isTouchDragStartEvent(event)) {
-        return;
-      }
+        updateWithinOffsetParent(event);
+        setDragging(true);
+      },
+      [disabled, isTouch, onMouseMove, updateWithinOffsetParent]
+    ),
+    onMouseUp: useCallback(
+      (event) => {
+        onMouseUp(event);
+        if (disabled || isTouch) {
+          return;
+        }
 
-      // don't set dragging immediately so that click events can still happen
-      draggingRef.current = true;
-    },
-    onTouchMove(event) {
-      onTouchMove(event);
-      if (disabled || !draggingRef.current) {
-        return;
-      }
-
-      setDragging(true);
-    },
-    onTouchEnd(event) {
-      onTouchEnd(event);
-      if (disabled) {
-        return;
-      }
-
-      draggingRef.current = false;
-    },
+        draggingRef.current = false;
+      },
+      [disabled, isTouch, onMouseUp]
+    ),
   };
   const keyboardEventHandlers: Required<DraggableKeyboardEventHanders<E>> = {
-    onKeyDown(event) {
-      onKeyDown(event);
-      if (disabled) {
-        return;
-      }
+    onKeyDown: useCallback(
+      (event) => {
+        onKeyDown(event);
+        if (disabled) {
+          return;
+        }
 
-      const decrementKey = vertical ? "ArrowUp" : "ArrowLeft";
-      const incrementKey = vertical ? "ArrowDown" : "ArrowRight";
+        const decrementKey = vertical ? "ArrowUp" : "ArrowLeft";
+        const incrementKey = vertical ? "ArrowDown" : "ArrowRight";
 
-      switch (event.key) {
-        case decrementKey:
-          event.preventDefault();
-          decrement();
-          break;
-        case incrementKey:
-          event.preventDefault();
-          increment();
-          break;
-        case "Home":
-          event.preventDefault();
-          minimum();
-          break;
-        case "End":
-          event.preventDefault();
-          maximum();
-          break;
-      }
-    },
+        switch (event.key) {
+          case decrementKey:
+            event.preventDefault();
+            decrement();
+            break;
+          case incrementKey:
+            event.preventDefault();
+            increment();
+            break;
+          case "Home":
+            event.preventDefault();
+            minimum();
+            break;
+          case "End":
+            event.preventDefault();
+            maximum();
+            break;
+        }
+      },
+      [decrement, disabled, increment, maximum, minimum, onKeyDown, vertical]
+    ),
+  };
+  const touchEventHandlers: Required<DraggableTouchEventHandlers<E>> = {
+    onTouchStart: useCallback(
+      (event) => {
+        onTouchStart(event);
+        if (disabled || !isTouchDragStartEvent(event)) {
+          return;
+        }
+
+        // Unlike mouse events, touch events must begin immediately on
+        // touchstart because of the new passive event behavior.
+        // `event.preventDefault()` can't be called which allows the page to
+        // scroll while the user is dragging which is annoying.
+        draggingRef.current = true;
+        setDragging(true);
+        updateWithinOffsetParent(event);
+      },
+      [disabled, onTouchStart, updateWithinOffsetParent]
+    ),
   };
 
   return {
+    ...touchEventHandlers,
+    ...mouseEventHandlers,
+    ...keyboardEventHandlers,
     value,
+    setValue,
     dragging,
-    setValue: setValue === propSetValue ? undefined : setValue,
     maximum,
     minimum,
     increment,
     decrement,
     draggableRef: ref,
-    mouseEventHandlers,
-    touchEventHandlers,
-    keyboardEventHandlers,
+    dragPercentage,
     persistToLocalStorage: persist,
     removeFromLocalStorage: remove,
+    touchEventHandlers,
+    mouseEventHandlers,
+    keyboardEventHandlers,
   };
 }

@@ -10,21 +10,25 @@ describe("getPercentage", () => {
       min: 0,
       max: -100,
       value: 0,
+      validate: true,
     };
     const options2: GetPercentageOptions = {
       min: 0,
       max: 0,
       value: 0,
+      validate: true,
     };
     const options3: GetPercentageOptions = {
       min: 0,
       max: -100,
       value: 20,
+      validate: true,
     };
     const options4: GetPercentageOptions = {
       min: 0,
       max: 0,
       value: 20,
+      validate: true,
     };
     expect(() => getPercentage(options1)).toThrow(expected);
     expect(() => getPercentage(options2)).toThrow(expected);
@@ -52,16 +56,19 @@ describe("getPercentage", () => {
       min: 0,
       max: 100,
       value: -1,
+      validate: true,
     };
     const options2: GetPercentageOptions = {
       min: 0,
       max: 1,
       value: -1,
+      validate: true,
     };
     const options3: GetPercentageOptions = {
       min: 0,
       max: 1,
       value: -0.5,
+      validate: true,
     };
 
     expect(() => getPercentage(options1)).toThrow(expected);

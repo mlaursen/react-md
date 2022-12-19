@@ -23,6 +23,9 @@ export interface NearestOptions {
  */
 export function nearest(options: NearestOptions): number {
   const { min, max, steps, value, range = max - min } = options;
+  if (min === max) {
+    return max;
+  }
 
   const rounded = Math.round(((value - min) * steps) / range) / steps;
   const zeroToOne = Math.min(Math.max(rounded, 0), 1);

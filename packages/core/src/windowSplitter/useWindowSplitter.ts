@@ -3,8 +3,8 @@ import type {
   DraggableImplementation,
   DraggableKeyboardEventHanders,
   DraggableMouseEventHandlers,
-  UncontrolledDraggableOptions,
   DraggableTouchEventHandlers,
+  UncontrolledDraggableOptions,
 } from "../draggable";
 import { useDraggable } from "../draggable";
 import { useEnsuredId } from "../useEnsuredId";
@@ -155,23 +155,24 @@ export function useWindowSplitter<E extends HTMLElement>(
     localStorageManual,
     disableDraggingClassName,
   });
-  const { value, draggableRef, mouseEventHandlers, keyboardEventHandlers } =
-    draggableImplementation;
+  const {
+    value,
+    dragging,
+    draggableRef,
+    dragPercentage,
+    mouseEventHandlers,
+    keyboardEventHandlers,
+  } = draggableImplementation;
+
+  const percentage = dragging
+    ? dragPercentage
+    : getPercentage({ min, max, value });
 
   return {
     ...draggableImplementation,
     splitterProps: {
       "aria-orientation": vertical ? "vertical" : undefined,
-      "aria-valuenow": Math.ceil(
-        getPercentage({
-          min,
-          max,
-          value,
-          // Do not validate since the `useDraggable` will automatically keep
-          // these values in range
-          validate: false,
-        }) * 100
-      ),
+      "aria-valuenow": Math.ceil(percentage * 100),
       "aria-valuemin": 0,
       "aria-valuemax": 100,
       id,

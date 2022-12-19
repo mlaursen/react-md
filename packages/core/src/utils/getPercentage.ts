@@ -19,7 +19,7 @@ export interface GetPercentageOptions {
    * Boolean if the min, max, and value options should be validated to make sure
    * they are within the correct range relative to each other.
    *
-   * @defaultValue `true`
+   * @defaultValue `false`
    */
   validate?: boolean;
 }
@@ -29,12 +29,14 @@ export interface GetPercentageOptions {
  *
  * @returns the percentage that the `value` is between the `min` and `max`
  * values.
- * @internal
- * @remarks \@since 4.0.1 uses an object for options instead of multiple
- * arguments.
+ *
+ * @remarks
+ * \@since 4.0.1 uses an object for options instead of multiple arguments.
+ * \@since 6.0.0 Updated to be included in the public API and `validate`
+ * defaults to `false` instead of `true`.
  */
 export function getPercentage(options: GetPercentageOptions): number {
-  const { min, max, value, validate = true } = options;
+  const { min, max, value, validate = false } = options;
   if (validate) {
     if (min >= max) {
       throw new RangeError(

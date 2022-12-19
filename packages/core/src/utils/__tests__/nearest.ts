@@ -59,4 +59,24 @@ describe("nearest", () => {
       minValue
     );
   });
+
+  it("should just return the min/max value if they are equal to support range sliders that have values one step apart", () => {
+    expect(
+      nearest({
+        min: 100,
+        max: 100,
+        steps: 0,
+        value: 100,
+      })
+    ).toBe(100);
+
+    expect(
+      nearest({
+        min: 100,
+        max: 100,
+        steps: 0,
+        value: 103,
+      })
+    ).toBe(100);
+  });
 });
