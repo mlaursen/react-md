@@ -57,7 +57,10 @@ export function TreeItemExpander(
   if (expansionMode === "manual" && !disabled) {
     clickProps = {
       onClick(event) {
+        // do not select the tree item if the icon is clicked
+        event.stopPropagation();
         event.preventDefault();
+
         toggleTreeItemExpansion(itemId);
       },
     };
@@ -67,7 +70,7 @@ export function TreeItemExpander(
     <>
       <IconRotator
         className={cnb(!addon && className)}
-        {...(isCloneable ? clickProps : undefined)}
+        {...(!isCloneable ? clickProps : undefined)}
         rotated={expanded}
         forceIconWrap={!isCloneable}
         disableTransition={disableTransition}
