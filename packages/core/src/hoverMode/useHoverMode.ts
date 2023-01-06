@@ -1,5 +1,5 @@
 import type { MouseEvent } from "react";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { UseStateInitializer, UseStateSetter } from "../types";
 import type { SimpleHoverModeContext } from "./useHoverModeProvider";
 
@@ -105,9 +105,9 @@ export function useHoverMode(
   }
 
   const visibilityTimeout = useRef<number | undefined>();
-  const clearVisibilityTimeout = (): void => {
+  const clearVisibilityTimeout = useCallback(() => {
     window.clearTimeout(visibilityTimeout.current);
-  };
+  }, []);
 
   // if the element is near the viewport edge, the mouseleave event might not
   // trigger correctly. for these cases, just clear any timeouts to be safe.
@@ -142,27 +142,38 @@ export function useHoverMode(
   return {
     visible,
     setVisible: setVisible === propSetVisible ? undefined : setVisible,
-    startShowFlow(eventOrId) {
-      const hoverTimeout = hoverTime ?? hoverTimeoutRef.current;
-      if (disabled || typeof hoverTimeout === "undefined") {
-        return;
-      }
+    startShowFlow: useCallback(
+      (eventOrId) => {
+        const hoverTimeout = hoverTime ?? hoverTimeoutRef.current;
+        if (disabled || typeof hoverTimeout === "undefined") {
+          return;
+        }
 
-      let id: string;
-      if (typeof eventOrId === "string" || typeof eventOrId === "undefined") {
-        id = eventOrId || "";
-      } else {
-        id = eventOrId.currentTarget.id;
-      }
+        let id: string;
+        if (typeof eventOrId === "string" || typeof eventOrId === "undefined") {
+          id = eventOrId || "";
+        } else {
+          id = eventOrId.currentTarget.id;
+        }
 
-      clearDisableTimer();
-      clearVisibilityTimeout();
-      visibilityTimeout.current = window.setTimeout(() => {
-        enableHoverMode(id);
-        setVisible(true);
-      }, hoverTimeout);
-    },
-    startHideFlow() {
+        clearDisableTimer();
+        clearVisibilityTimeout();
+        visibilityTimeout.current = window.setTimeout(() => {
+          enableHoverMode(id);
+          setVisible(true);
+        }, hoverTimeout);
+      },
+      [
+        clearDisableTimer,
+        clearVisibilityTimeout,
+        disabled,
+        enableHoverMode,
+        hoverTime,
+        hoverTimeoutRef,
+        setVisible,
+      ]
+    ),
+    startHideFlow: useCallback(() => {
       if (disabled) {
         return;
       }
@@ -172,7 +183,14 @@ export function useHoverMode(
       visibilityTimeout.current = window.setTimeout(() => {
         setVisible(false);
       }, leaveTime ?? leaveTimeoutRef.current);
-    },
+    }, [
+      clearVisibilityTimeout,
+      disabled,
+      leaveTime,
+      leaveTimeoutRef,
+      setVisible,
+      startDisableTimer,
+    ]),
     clearVisibilityTimeout,
   };
 }

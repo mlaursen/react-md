@@ -321,7 +321,13 @@ export function useTooltip<E extends HTMLElement>(
     startDisableTimer,
     clearDisableTimer,
   } = useTooltipHoverMode();
-  const { visible, setVisible, startShowFlow, startHideFlow } = useHoverMode({
+  const {
+    visible,
+    setVisible,
+    startShowFlow,
+    startHideFlow,
+    clearVisibilityTimeout,
+  } = useHoverMode({
     hoverTime,
     hoverTimeoutRef,
     leaveTime,
@@ -416,6 +422,11 @@ export function useTooltip<E extends HTMLElement>(
   }, [disableHoverMode, setVisible, visible]);
   useEffect(() => {
     if (disabled) {
+      // clearing the timers and hiding was added so tooltips do not remain
+      // visible for a draggable element that has started to drag.
+      clearDisableTimer();
+      clearVisibilityTimeout();
+      setVisible(false);
       return;
     }
 
@@ -432,7 +443,13 @@ export function useTooltip<E extends HTMLElement>(
     return () => {
       window.removeEventListener("visibilitychange", handleVisibilityChange);
     };
-  }, [disableHoverMode, disabled, setVisible]);
+  }, [
+    clearDisableTimer,
+    clearVisibilityTimeout,
+    disableHoverMode,
+    disabled,
+    setVisible,
+  ]);
 
   return {
     visible,

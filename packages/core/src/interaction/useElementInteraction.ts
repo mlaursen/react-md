@@ -264,6 +264,7 @@ export function useElementInteraction<E extends HTMLElement>(
           onClick(event);
           if (
             event.isPropagationStopped() ||
+            userMode === "touch" ||
             mode !== "ripple" ||
             disableClick.current ||
             holding.current ||
@@ -276,7 +277,7 @@ export function useElementInteraction<E extends HTMLElement>(
           event.stopPropagation();
           dispatch({
             type: "press",
-            style: getRippleStyle(event, userMode !== "touch"),
+            style: getRippleStyle(event, true),
           });
         },
         [disabled, mode, onClick, userMode]
@@ -347,6 +348,19 @@ export function useElementInteraction<E extends HTMLElement>(
         },
         [isInteractionDisabled, onMouseLeave, userMode]
       ),
+      onDragStart(event) {
+        // onDragStart(event);
+        if (
+          event.isPropagationStopped() ||
+          !holding.current ||
+          userMode !== "mouse"
+        ) {
+          return;
+        }
+
+        holding.current = false;
+        dispatch({ type: "cancel" });
+      },
       onKeyDown: useCallback(
         (event: KeyboardEvent<E>) => {
           onKeyDown(event);

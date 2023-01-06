@@ -40,7 +40,7 @@ export function getRippleStyle(
     | MouseEvent<HTMLElement>
     | TouchEvent<HTMLElement>
     | KeyboardEvent<HTMLElement>,
-  programmatic?: boolean
+  programmatic: boolean
 ): RippleStyle {
   const element =
     findSizingContainer(event.currentTarget) || event.currentTarget;
