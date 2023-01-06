@@ -80,11 +80,13 @@ export const getClostedThumbEventHandlers = (
     thumb1OnMouseUp,
     thumb1OnMouseDown,
     thumb1OnTouchStart,
+    thumb1OnTouchMove,
     thumb2Ref,
     thumb2Dragging,
     thumb2OnMouseUp,
     thumb2OnMouseDown,
     thumb2OnTouchStart,
+    thumb2OnTouchMove,
     isRangeSlider,
     vertical,
   } = options;
@@ -94,6 +96,7 @@ export const getClostedThumbEventHandlers = (
       onMouseDown: thumb1OnMouseDown,
       onMouseUp: thumb1OnMouseUp,
       onTouchStart: thumb1OnTouchStart,
+      onTouchMove: thumb1OnTouchMove,
     };
   }
 
@@ -142,6 +145,13 @@ export const getClostedThumbEventHandlers = (
         thumb1OnTouchStart(event);
       } else {
         thumb2OnTouchStart(event);
+      }
+    },
+    onTouchMove(event) {
+      if (isThumbOneClosest(event)) {
+        thumb1OnTouchMove(event);
+      } else {
+        thumb2OnTouchMove(event);
       }
     },
   };

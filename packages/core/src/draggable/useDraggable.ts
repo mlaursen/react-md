@@ -2,6 +2,7 @@ import { cnb } from "cnbuilder";
 import type { HTMLAttributes, Ref, RefCallback } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useUserInteractionMode } from "../interaction";
+import { useScrollLock } from "../scroll";
 import type { UseStateInitializer, UseStateSetter } from "../types";
 import { useDir } from "../typography";
 import { useEnsuredRef } from "../useEnsuredRef";
@@ -31,7 +32,7 @@ const noop = (): void => {
  */
 export type DraggableTouchEventHandlers<E extends HTMLElement> = Pick<
   HTMLAttributes<E>,
-  "onTouchStart"
+  "onTouchStart" | "onTouchMove"
 >;
 
 /**
@@ -353,6 +354,7 @@ export function useDraggable<E extends HTMLElement>(
     onMouseDown = noop,
     onMouseMove = noop,
     onTouchStart = noop,
+    onTouchMove = noop,
     value: propValue,
     setValue: propSetValue,
     defaultValue,
@@ -539,8 +541,8 @@ export function useDraggable<E extends HTMLElement>(
         return;
       }
 
-      element.focus();
-      if (!withinOffsetParent) {
+      element.focus({ preventScroll: true });
+      if (!withinOffsetParent && !("changedTouches" in event)) {
         return;
       }
 
@@ -648,6 +650,17 @@ export function useDraggable<E extends HTMLElement>(
       [decrement, disabled, increment, maximum, minimum, onKeyDown, vertical]
     ),
   };
+
+  // touch devices are a bit weird and cause issues since the "start" event is
+  // also used for scrolling. If the user quickly grabs the draggable element
+  // and drags vertically, most of the time it will try to scroll instead of
+  // dragging the element. The workaround is to being the drag events
+  // immediately on touchstart and disable scroll behavior for the page.
+  //
+  // There are also some issues with calling `event.preventDefault()` within
+  // touch events even while `{ passive: false } is manually set, so need to
+  // also attach a touchmove event.
+  useScrollLock(isTouch && dragging);
   const touchEventHandlers: Required<DraggableTouchEventHandlers<E>> = {
     onTouchStart: useCallback(
       (event) => {
@@ -656,15 +669,23 @@ export function useDraggable<E extends HTMLElement>(
           return;
         }
 
-        // Unlike mouse events, touch events must begin immediately on
-        // touchstart because of the new passive event behavior.
-        // `event.preventDefault()` can't be called which allows the page to
-        // scroll while the user is dragging which is annoying.
         draggingRef.current = true;
-        setDragging(true);
         updateWithinOffsetParent(event);
       },
       [disabled, onTouchStart, updateWithinOffsetParent]
+    ),
+    onTouchMove: useCallback(
+      (event) => {
+        onTouchMove(event);
+        if (disabled || !draggingRef.current) {
+          return;
+        }
+
+        // prevent the document's touchmove event from also firing
+        event.stopPropagation();
+        updateWithinOffsetParent(event);
+      },
+      [disabled, onTouchMove, updateWithinOffsetParent]
     ),
   };
 

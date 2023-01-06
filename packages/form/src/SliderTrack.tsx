@@ -56,6 +56,7 @@ export const SliderTrack = forwardRef<HTMLSpanElement, SliderTrackProps>(
       thumb1OnMouseDown,
       thumb1OnMouseMove,
       thumb1OnTouchStart,
+      thumb1OnTouchMove,
       thumb2Ref,
       thumb2Value,
       thumb2Dragging,
@@ -64,6 +65,7 @@ export const SliderTrack = forwardRef<HTMLSpanElement, SliderTrackProps>(
       thumb2OnMouseDown,
       thumb2OnMouseMove,
       thumb2OnTouchStart,
+      thumb2OnTouchMove,
       isRangeSlider,
       children,
       ...remaining
@@ -110,12 +112,14 @@ export const SliderTrack = forwardRef<HTMLSpanElement, SliderTrackProps>(
           thumb1OnMouseDown,
           thumb1OnMouseMove,
           thumb1OnTouchStart,
+          thumb1OnTouchMove,
           thumb2Ref,
           thumb2Dragging,
           thumb2OnMouseUp,
           thumb2OnMouseDown,
           thumb2OnMouseMove,
           thumb2OnTouchStart,
+          thumb2OnTouchMove,
         })}
       >
         {children}
