@@ -154,6 +154,7 @@ export function useElementInteraction<E extends HTMLElement>(
     onTouchStart = noop,
     onTouchEnd = noop,
     onTouchMove = noop,
+    onDragStart = noop,
     disabled = false,
   } = options;
 
@@ -349,7 +350,7 @@ export function useElementInteraction<E extends HTMLElement>(
         [isInteractionDisabled, onMouseLeave, userMode]
       ),
       onDragStart(event) {
-        // onDragStart(event);
+        onDragStart(event);
         if (
           event.isPropagationStopped() ||
           !holding.current ||

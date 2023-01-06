@@ -1,4 +1,5 @@
 import type {
+  DragEventHandler,
   FocusEventHandler,
   KeyboardEventHandler,
   MouseEventHandler,
@@ -82,6 +83,12 @@ export interface ElementInteractionHandlers<E extends HTMLElement> {
    * outside of the element which would never trigger the `onMouseUp` flow.
    */
   onMouseLeave: MouseEventHandler<E>;
+
+  /**
+   * The dragstart event handler will remove the ripples and prevent any other
+   * interactions.
+   */
+  onDragStart: DragEventHandler<E>;
 
   /**
    * The touchstart event handler is used to either activate the `pressed` state
