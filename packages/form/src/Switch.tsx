@@ -133,6 +133,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
               {...remaining}
               id={id}
               ref={ref}
+              role="switch"
               type="checkbox"
               className={cnb(
                 "rmd-switch__input rmd-hidden-input",
