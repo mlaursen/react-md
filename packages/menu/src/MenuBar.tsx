@@ -19,6 +19,7 @@ export interface MenuBarProps extends Omit<ListProps, "role"> {
 export const MenuBar = forwardRef<HTMLUListElement, MenuBarProps>(
   function MenuBar(props, ref) {
     const {
+      onClick,
       onFocus,
       onKeyDown,
       horizontal = true,
@@ -33,6 +34,7 @@ export const MenuBar = forwardRef<HTMLUListElement, MenuBarProps>(
     });
     const { activeId, enableHoverMode } = menuBarContext;
     const { movementProps, movementContext } = useKeyboardMovementProvider({
+      onClick,
       onFocus,
       onKeyDown,
       loopable: true,

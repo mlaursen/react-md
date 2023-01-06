@@ -238,6 +238,7 @@ export function Tree<T extends TreeItemNode>(
     selectMultipleTreeItems,
     toggleTreeItemExpansion,
     expandMultipleTreeItems,
+    onClick,
     onFocus,
     onKeyDown,
     renderer: TreeItemRenderer = DefaultTreeItemRenderer,
@@ -258,6 +259,7 @@ export function Tree<T extends TreeItemNode>(
   });
 
   const { metadataLookup, movementContext, movementProps } = useTreeMovement({
+    onClick,
     onFocus,
     onKeyDown,
     data,

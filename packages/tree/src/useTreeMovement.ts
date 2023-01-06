@@ -6,20 +6,16 @@ import {
   getNextFocusableIndex,
   useKeyboardMovementProvider,
 } from "@react-md/core";
-import type { FocusEventHandler, KeyboardEventHandler } from "react";
+import type {
+  FocusEventHandler,
+  KeyboardEventHandler,
+  MouseEventHandler,
+} from "react";
 import { useRef } from "react";
 import type { TreeItemMetadataLookup } from "./TreeProvider";
 import type { TreeData, TreeItemNode } from "./types";
 import type { TreeExpansion } from "./useTreeExpansion";
 import type { RenderedTreeItemsMetadata } from "./useTreeItems";
-
-/**
- * @remarks \@since 6.0.0
- * @internal
- */
-const noop = (): void => {
-  // do nothing
-};
 
 /**
  * @remarks \@since 6.0.0
@@ -50,8 +46,9 @@ const getTreeItemsOnly = (container: HTMLElement): readonly HTMLElement[] => {
 interface TreeMovementOptions<T extends TreeItemNode> extends TreeExpansion {
   data: TreeData<T>;
   metadata: RenderedTreeItemsMetadata;
-  onFocus?: FocusEventHandler<HTMLUListElement>;
-  onKeyDown?: KeyboardEventHandler<HTMLUListElement>;
+  onClick: MouseEventHandler<HTMLUListElement> | undefined;
+  onFocus: FocusEventHandler<HTMLUListElement> | undefined;
+  onKeyDown: KeyboardEventHandler<HTMLUListElement> | undefined;
 }
 
 /**
@@ -71,8 +68,9 @@ export function useTreeMovement<T extends TreeItemNode>(
   options: TreeMovementOptions<T>
 ): TreeMovement {
   const {
-    onFocus = noop,
-    onKeyDown = noop,
+    onClick,
+    onFocus,
+    onKeyDown,
     data,
     metadata,
     expandedIds,
@@ -87,6 +85,7 @@ export function useTreeMovement<T extends TreeItemNode>(
     itemToElement: {},
   });
   const movement = useKeyboardMovementProvider({
+    onClick,
     onFocus,
     onKeyDown,
     extendKeyDown(movementData) {

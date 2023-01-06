@@ -3,6 +3,8 @@ import type {
   FocusEventHandler,
   KeyboardEvent,
   KeyboardEventHandler,
+  MouseEvent,
+  MouseEventHandler,
 } from "react";
 import type { NonNullMutableRef, NonNullRef } from "../types";
 
@@ -183,6 +185,7 @@ export interface KeyboardMovementProviderOptions<E extends HTMLElement>
   /** @see {@link TabIndexBehavior} */
   tabIndexBehavior?: TabIndexBehavior;
 
+  onClick?(event: MouseEvent<E>): void;
   onFocus?(event: FocusEvent<E>): void;
   onKeyDown?(event: KeyboardEvent<E>): void;
 
@@ -254,6 +257,7 @@ export interface KeyboardMovementProps<E extends HTMLElement> {
    *   - a child element **should** have a `tabIndex={0}` instead
    */
   tabIndex?: number;
+  onClick: MouseEventHandler<E>;
   onFocus: FocusEventHandler<E>;
   onKeyDown: KeyboardEventHandler<E>;
 }

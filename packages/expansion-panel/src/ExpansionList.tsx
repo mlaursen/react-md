@@ -21,9 +21,10 @@ export interface ExpansionListProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const ExpansionList = forwardRef<HTMLDivElement, ExpansionListProps>(
   function ExpansionList(props, ref) {
-    const { onFocus, onKeyDown, children, ...remaining } = props;
+    const { onClick, onFocus, onKeyDown, children, ...remaining } = props;
 
     const { movementContext, movementProps } = useExpansionList({
+      onClick,
       onFocus,
       onKeyDown,
     });

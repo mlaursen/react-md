@@ -190,6 +190,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
   options: KeyboardMovementProviderOptions<E> = {}
 ): KeyboardMovementProviderImplementation<E> {
   const {
+    onClick = noop,
     onFocus = noop,
     onKeyDown = noop,
     loopable = false,
@@ -278,12 +279,11 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
             ? -1
             : 0
           : undefined,
-      onFocus(event) {
-        onFocus(event);
-        if (event.isPropagationStopped() || refocus.current) {
-          refocus.current = false;
-          return;
-        }
+
+      // Note: This used to be on the `onFocus` event, but this causes issues in
+      // Chromium browsers for drag and drop behavior
+      onClick(event) {
+        onClick(event);
 
         // This makes it so you can click an element with a mouse and then
         // keyboard navigate from that element instead of the last keyboard focus
@@ -319,8 +319,15 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
           });
           return;
         }
+      },
+      onFocus(event) {
+        onFocus(event);
+        if (event.isPropagationStopped() || refocus.current) {
+          refocus.current = false;
+          return;
+        }
 
-        if (mode !== "keyboard") {
+        if (mode !== "keyboard" || event.target !== event.currentTarget) {
           return;
         }
 

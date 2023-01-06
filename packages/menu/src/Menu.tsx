@@ -294,6 +294,7 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
       onExited,
       onBlur = noop,
       onFocus = noop,
+      onClick,
       onKeyDown = noop,
       getDefaultFocusedIndex,
       listProps,
@@ -447,6 +448,7 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
     });
     const { movementProps, movementContext } = useKeyboardMovementProvider({
       ...eventHandlers,
+      onClick,
       onFocus(event) {
         onFocus(event);
 

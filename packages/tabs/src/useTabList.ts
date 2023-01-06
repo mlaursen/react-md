@@ -23,6 +23,10 @@ import { getTabRoleOnly, scrollTabIntoView } from "./utils";
 const TAB_WIDTH_VAR = "--rmd-tab-width";
 const TAB_OFFSET_VAR = "--rmd-tab-offset";
 
+const noop = (): void => {
+  // do nothing
+};
+
 type TabWidthVar = typeof TAB_WIDTH_VAR;
 type TabOffsetVar = typeof TAB_OFFSET_VAR;
 
@@ -73,7 +77,7 @@ export function useTabList(
     style,
     activeIndex,
     scrollButtons,
-    onClick,
+    onClick = noop,
     onFocus,
     onKeyDown,
     activationMode,
@@ -131,6 +135,19 @@ export function useTabList(
   const forwardRef = useRef<HTMLDivElement>(null);
   const backwardRef = useRef<HTMLDivElement>(null);
   const { movementProps, movementContext } = useKeyboardMovementProvider({
+    onClick(event) {
+      onClick(event);
+      if (event.isPropagationStopped() || !(event.target instanceof Element)) {
+        return;
+      }
+
+      const clickedTab = event.target.closest("[role='tab']");
+      const tabs = getTabRoleOnly(event.currentTarget);
+      const i = tabs.findIndex((tab) => tab === clickedTab);
+      if (i !== -1) {
+        setActiveIndex(i);
+      }
+    },
     onFocus,
     onKeyDown,
     onFocusChange(event) {
@@ -174,22 +191,6 @@ export function useTabList(
         ...indicatorStyles,
       },
       ...movementProps,
-      onClick(event) {
-        onClick?.(event);
-        if (
-          event.isPropagationStopped() ||
-          !(event.target instanceof Element)
-        ) {
-          return;
-        }
-
-        const clickedTab = event.target.closest("[role='tab']");
-        const tabs = getTabRoleOnly(event.currentTarget);
-        const i = tabs.findIndex((tab) => tab === clickedTab);
-        if (i !== -1) {
-          setActiveIndex(i);
-        }
-      },
     },
     backwardProps: {
       ref: backwardRef,

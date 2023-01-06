@@ -26,7 +26,7 @@ export function DragAndDropTreeItem(
 
   const [tooltipDisabled, setTooltipDisabled] = useState(true);
   const { elementProps, tooltipProps } = useTooltip({
-    disabled: tooltipDisabled,
+    disabled: tooltipDisabled || isDisabled || isDragging,
     position: "right",
     spacing: "0.5rem",
   });
@@ -57,8 +57,6 @@ export function DragAndDropTreeItem(
         disabled={isDisabled || isDragging}
         disabledOpacity
         contentClassName={cnb(droppable && styles.droppable)}
-        // must make the draggable item focusable for chrome
-        tabIndex={-1}
         leftAddon={expanded ? <FolderOpenIcon /> : <FolderIcon />}
         textProps={{
           ref: targetRef,
