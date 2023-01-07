@@ -1,6 +1,7 @@
 import type { LabelRequiredForA11y } from "@react-md/core";
 import type { ListElement, ListProps } from "@react-md/list";
 import { List } from "@react-md/list";
+import { cnb } from "cnbuilder";
 import type { ReactNode } from "react";
 import { forwardRef } from "react";
 import { useMenuConfiguration } from "./MenuConfigurationProvider";
@@ -73,10 +74,16 @@ export type MenuItemGroupProps = LabelRequiredForA11y<
  * @remarks \@since 5.0.0
  */
 export const MenuItemGroup = forwardRef<ListElement, MenuItemGroupProps>(
-  function MenuItemGroup({ children, ...props }, ref) {
+  function MenuItemGroup({ children, className, ...props }, ref) {
     const { horizontal } = useMenuConfiguration(props);
     return (
-      <List {...props} horizontal={horizontal} ref={ref} role="group">
+      <List
+        {...props}
+        ref={ref}
+        role="group"
+        className={cnb("rmd-menu-item-group", className)}
+        horizontal={horizontal}
+      >
         {children}
       </List>
     );

@@ -4,6 +4,7 @@
 
 $disable-menu: false !default;
 $disable-menu-item: false !default;
+$disable-menu-item-group: false !default;
 $disable-focus-outline: false !default;
 $disable-elevation-colors: core.$disable-dark-elevation !default;
 
@@ -97,16 +98,16 @@ $var-lookup: (
 
     height: var(--rmd-list-item-height);
 
-    // &::before {
-    //   // this makes the outline appear inset in menus. for some reason the
-    //   // `outline-style: inset` doesn't look correct
-    //   inset: core.get-interaction-var(outline-width);
-    // }
-
     // role="option" ONLY
     &--focused {
       @include core.set-interaction-var(outline-color, core.$outline-color);
     }
+  }
+}
+
+@mixin menu-item-group-styles {
+  .rmd-menu-item-group {
+    padding: 0;
   }
 }
 
@@ -116,6 +117,10 @@ $var-lookup: (
 
     @if not $disable-menu-item {
       @include menu-item-styles;
+    }
+
+    @if not $disable-menu-item-group {
+      @include menu-item-group-styles;
     }
   }
 }

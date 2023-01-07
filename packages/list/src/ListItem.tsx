@@ -98,6 +98,7 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
       onTouchMove,
       tabIndex = disabled ? -1 : 0,
       children: propChildren,
+      clickable,
       ...remaining
     } = props;
     const { pressedClassName, rippleContainerProps, handlers } =
@@ -140,6 +141,7 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
         className={listItem({
           className,
           height,
+          clickable,
           disabled,
           disabledOpacity,
           threeLines,
