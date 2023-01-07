@@ -253,18 +253,25 @@ export function useLocalStorage<T>(
     setItem(key, value, serializer);
   }, []);
 
-  useIsomorphicLayoutEffect(() => {
-    if (manual) {
+  // This effect is mostly used to get the value from local storage after SSR
+  //
+  // NOTE: This used to be `useIsomorphicLayoutEffect` but this started causing
+  // the error below:
+  //
+  // Error: This Suspense boundary received an update before it finished
+  // hydrating. This caused the boundary to switch to client rendering. The
+  // usual way to fix this is to wrap the original update in startTransition.
+  //
+  // Switching to useEffect appears to fix it completely, so I guess this must
+  // be called after the painting phase with Suspense.
+  useEffect(() => {
+    const { defaultValue, deserializer, manual } = config.current;
+    if (manual || !ssr) {
       return;
     }
 
-    let valueToSave = value;
-    if (ssr) {
-      valueToSave = getItem(key, defaultValue, deserializer);
-      setItem(key, valueToSave, serializer);
-    }
-    setValue(valueToSave);
-  }, [key, ssr]);
+    setValue(getItem(key, defaultValue, deserializer));
+  }, [key, ssr, setValue]);
 
   // update the value if another tab changed the local storage value
   useEffect(() => {
