@@ -1,19 +1,59 @@
+import type { PropsWithRef } from "@react-md/core";
+import { bem } from "@react-md/core";
+import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
 
 import { ListItemText } from "./ListItemText";
-import type { ListSubheaderClassNameOptions } from "./styles";
-import { listSubheader } from "./styles";
+
+const styles = bem("rmd-list-subheader");
+
+/** @remarks \@since 6.0.0 */
+export interface ListSubheaderClassNameOptions {
+  className?: string;
+
+  /**
+   * Boolean if the subheader should be inset to match the `ListItem` text
+   * keyline.
+   *
+   * @defaultValue `false`
+   */
+  inset?: boolean;
+}
+
+/**
+ * @remarks \@since 6.0.0
+ */
+export function listSubheader(
+  options: ListSubheaderClassNameOptions = {}
+): string {
+  const { inset = false, className } = options;
+
+  return cnb(styles({ inset }), className);
+}
 
 export interface ListSubheaderProps
   extends HTMLAttributes<HTMLLIElement>,
     ListSubheaderClassNameOptions {
-  textProps?: HTMLAttributes<HTMLSpanElement>;
+  /**
+   * @defaultValue `"presentation"`
+   */
+  role?: HTMLAttributes<HTMLLIElement>["role"];
+
+  /**
+   * @remarks \@since 6.0.0
+   */
+  textProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>;
 }
 
+/**
+ * The `ListSubheader` is a wrapper for the `<li>` element to apply subheader
+ * typography styles and {@link ListItemText} layout.
+ */
 export const ListSubheader = forwardRef<HTMLLIElement, ListSubheaderProps>(
   function ListSubheader(props, ref) {
     const {
+      role = "presentation",
       inset = false,
       className,
       children,
@@ -25,6 +65,7 @@ export const ListSubheader = forwardRef<HTMLLIElement, ListSubheaderProps>(
       <li
         {...remaining}
         ref={ref}
+        role={role}
         className={listSubheader({
           inset,
           className,

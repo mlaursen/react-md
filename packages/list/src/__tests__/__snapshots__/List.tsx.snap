@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`List should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<ul
+  class="rmd-list"
+  role="none"
+/>
+`;
+
+exports[`List should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<ul
+  class="rmd-list custom-class-name"
+  role="none"
+  style="max-width: 30px;"
+/>
+`;
+
+exports[`List should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+<ul
+  class="rmd-list rmd-list--dense rmd-list--horizontal custom-class-name"
+  role="none"
+  style="max-width: 30px;"
+/>
+`;
+
+exports[`List should apply the correct styling, HTML attributes, and allow a ref 4`] = `
+<ol
+  class="rmd-list"
+  role="none"
+/>
+`;
+
+exports[`List should apply the correct styling, HTML attributes, and allow a ref 5`] = `
+<ol
+  class="rmd-list rmd-list--dense rmd-list--horizontal custom-class-name"
+  role="none"
+  style="max-width: 30px;"
+/>
+`;

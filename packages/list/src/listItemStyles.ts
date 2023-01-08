@@ -6,36 +6,7 @@ import type {
   ListItemHeight,
 } from "./types";
 
-const listStyles = bem("rmd-list");
-const itemStyles = bem("rmd-list-item");
-const subheaderStyles = bem("rmd-list-subheader");
-
-/** @remarks \@since 6.0.0 */
-export interface ListClassNameOptions {
-  className?: string;
-
-  /**
-   * @defaultValue `false`
-   */
-  dense?: boolean;
-
-  /**
-   * @defaultValue `false`
-   */
-  horizontal?: boolean;
-}
-
-export function list(options: ListClassNameOptions = {}): string {
-  const { dense = false, horizontal = false, className } = options;
-
-  return cnb(
-    listStyles({
-      dense,
-      horizontal,
-    }),
-    className
-  );
-}
+const styles = bem("rmd-list-item");
 
 /** @remarks \@since 6.0.0 */
 export interface ListItemClassNameOptions {
@@ -89,6 +60,9 @@ export interface InternalListItemClassNameOptions
   pressedClassName?: string;
 }
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export function listItem(
   options: InternalListItemClassNameOptions = {}
 ): string {
@@ -104,7 +78,7 @@ export function listItem(
   } = options;
 
   return cnb(
-    itemStyles({
+    styles({
       link,
       clickable,
       [height]: height !== "auto",
@@ -117,6 +91,7 @@ export function listItem(
   );
 }
 
+/** @remarks \@since 6.0.0 */
 export interface ListItemTextClassNameOptions {
   className?: string;
   /**
@@ -130,13 +105,16 @@ export interface ListItemTextClassNameOptions {
   secondary?: boolean;
 }
 
-export function listItemTExt(
+/**
+ * @remarks \@since 6.0.0
+ */
+export function listItemText(
   options: ListItemTextClassNameOptions = {}
 ): string {
   const { className, secondary = false, clamped = false } = options;
 
   return cnb(
-    itemStyles("text", {
+    styles("text", {
       clamped: secondary && clamped,
       secondary,
     }),
@@ -204,37 +182,13 @@ export function listItemAddon(
   const isAvatar = type === "avatar";
 
   return cnb(
-    itemStyles("addon", {
+    styles("addon", {
       [position]: position !== "middle",
       before: !addonAfter,
       "avatar-before": !addonAfter && isAvatar,
       media: isMedia,
       "media-large": type === "large-media",
       "media-centered": isMedia && !disableCenteredMedia,
-    }),
-    className
-  );
-}
-
-/** @remarks \@since 6.0.0 */
-export interface ListSubheaderClassNameOptions {
-  className?: string;
-
-  /**
-   * Boolean if the subheader should be inset to match the `ListItem` text
-   * keyline.
-   *
-   * @defaultValue `false`
-   */
-  inset?: boolean;
-}
-
-export function listSubheader(options: ListSubheaderClassNameOptions): string {
-  const { inset = false, className } = options;
-
-  return cnb(
-    subheaderStyles({
-      inset,
     }),
     className
   );

@@ -1,8 +1,8 @@
 import type { TextIconSpacingProps } from "@react-md/icon";
 import { TextIconSpacing } from "@react-md/icon";
 import type { ReactElement, ReactNode } from "react";
-import type { ListItemAddonClassNameOptions } from "./styles";
-import { listItemAddon } from "./styles";
+import type { ListItemAddonClassNameOptions } from "./listItemStyles";
+import { listItemAddon } from "./listItemStyles";
 
 export interface ListItemAddonProps
   extends Omit<TextIconSpacingProps, "icon" | "iconAfter" | "forceIconWrap">,
@@ -21,6 +21,8 @@ export interface ListItemAddonProps
 /**
  * The `ListItemAddon` is used to create an addon to the left or right of the
  * text/children of a `ListItem`.
+ *
+ * @internal
  */
 export function ListItemAddon(props: ListItemAddonProps): ReactElement {
   const {

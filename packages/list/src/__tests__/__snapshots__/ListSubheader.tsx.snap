@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListSubheader should allow for custom props to be passed to the text wrapper 1`] = `
+<li
+  class="rmd-list-subheader"
+  role="presentation"
+>
+  <span
+    class="rmd-list-item__text custom-class-name"
+    style="background-color: orange;"
+  >
+    Subheader
+  </span>
+</li>
+`;
+
+exports[`ListSubheader should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+<li
+  class="rmd-list-subheader"
+  role="presentation"
+>
+  <span
+    class="rmd-list-item__text"
+  >
+    Subheader
+  </span>
+</li>
+`;
+
+exports[`ListSubheader should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+<li
+  class="rmd-list-subheader rmd-list-subheader--inset"
+  role="presentation"
+>
+  <span
+    class="rmd-list-item__text"
+  >
+    Subheader
+  </span>
+</li>
+`;
+
+exports[`ListSubheader should apply the correct styling, HTMLAttributes, and allow a ref 3`] = `
+<li
+  class="rmd-list-subheader custom-class-name"
+  role="presentation"
+  style="color: orange;"
+>
+  <span
+    class="rmd-list-item__text"
+  >
+    Subheader
+  </span>
+</li>
+`;
+
+exports[`ListSubheader should apply the correct styling, HTMLAttributes, and allow a ref 4`] = `
+<li
+  class="rmd-list-subheader rmd-list-subheader--inset custom-class-name"
+  role="presentation"
+  style="color: orange;"
+>
+  <span
+    class="rmd-list-item__text"
+  >
+    Subheader
+  </span>
+</li>
+`;
+
+exports[`ListSubheader should apply the correct styling, HTMLAttributes, and allow a ref 5`] = `
+<li
+  class="rmd-list-subheader"
+  role="listitem"
+  style=""
+>
+  <span
+    class="rmd-list-item__text"
+  >
+    Subheader
+  </span>
+</li>
+`;
+
+exports[`ListSubheader should apply the correct styling, HTMLAttributes, and allow a ref 6`] = `
+<li
+  class="rmd-list-subheader"
+  role="presentation"
+  style=""
+>
+  <span
+    class="rmd-list-item__text"
+  >
+    <span>
+      Some amazing custom content
+    </span>
+  </span>
+</li>
+`;

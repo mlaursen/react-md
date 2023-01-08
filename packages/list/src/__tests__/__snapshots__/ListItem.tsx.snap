@@ -1,0 +1,422 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListItem should allow for custom props to be passed to the primary text wrapper 1`] = `
+<li
+  class="rmd-list-item rmd-list-item--clickable rmd-list-item--normal"
+  role="button"
+  tabindex="0"
+>
+  <span
+    class="rmd-list-item__text"
+    style="background-color: red;"
+  >
+    Item
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</li>
+`;
+
+exports[`ListItem should allow for custom props to be passed to the secondary text wrapper 1`] = `
+<li
+  class="rmd-list-item rmd-list-item--clickable rmd-list-item--extra-large"
+  role="button"
+  tabindex="0"
+>
+  <span
+    class="rmd-list-item__text"
+  >
+    Item
+    <span
+      class="rmd-list-item__text rmd-list-item__text--secondary"
+      style="background-color: red;"
+    >
+      Secondary Text!
+    </span>
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</li>
+`;
+
+exports[`ListItem should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+<li
+  class="rmd-list-item rmd-list-item--clickable rmd-list-item--normal"
+  role="button"
+  tabindex="0"
+>
+  <span
+    class="rmd-list-item__text"
+  >
+    Item
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</li>
+`;
+
+exports[`ListItem should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+<li
+  class="rmd-list-item rmd-list-item--clickable rmd-list-item--normal custom-class-name"
+  role="button"
+  style="color: orange;"
+  tabindex="0"
+>
+  <span
+    class="rmd-list-item__text"
+  >
+    Item
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</li>
+`;
+
+exports[`ListItem should apply the correct styling, HTMLAttributes, and allow a ref 3`] = `
+<li
+  aria-disabled="true"
+  class="rmd-list-item rmd-list-item--clickable rmd-list-item--normal rmd-list-item--disabled-color custom-class-name"
+  role="button"
+  style="color: orange;"
+  tabindex="-1"
+>
+  <span
+    class="rmd-list-item__text"
+  >
+    Item
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</li>
+`;
+
+exports[`ListItem should apply the correct styling, HTMLAttributes, and allow a ref 4`] = `
+<li
+  class="rmd-list-item rmd-list-item--clickable rmd-list-item--normal custom-class-name"
+  role="button"
+  style="color: orange;"
+  tabindex="0"
+>
+  <span
+    class="rmd-list-item__text"
+  >
+    Item
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</li>
+`;
+
+exports[`ListItem should apply the correct styling, HTMLAttributes, and allow a ref 5`] = `
+<li
+  aria-disabled="true"
+  class="rmd-list-item rmd-list-item--clickable rmd-list-item--normal rmd-list-item--disabled-opacity custom-class-name"
+  role="button"
+  style="color: orange;"
+  tabindex="-1"
+>
+  <span
+    class="rmd-list-item__text"
+  >
+    Item
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</li>
+`;
+
+exports[`ListItem should update the height based on the provided addons and render correctly 1`] = `
+<li
+  class="rmd-list-item rmd-list-item--clickable rmd-list-item--normal"
+  role="button"
+  tabindex="0"
+>
+  <span
+    class="rmd-list-item__text"
+  >
+    Item
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</li>
+`;
+
+exports[`ListItem should update the height based on the provided addons and render correctly 2`] = `
+<li
+  class="rmd-list-item rmd-list-item--clickable rmd-list-item--extra-large"
+  role="button"
+  tabindex="0"
+>
+  <span
+    class="rmd-list-item__text"
+  >
+    Item
+    <span
+      class="rmd-list-item__text rmd-list-item__text--secondary"
+    >
+      Secondary text!
+    </span>
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</li>
+`;
+
+exports[`ListItem should update the height based on the provided addons and render correctly 3`] = `
+<li
+  class="rmd-list-item rmd-list-item--clickable rmd-list-item--extra-large"
+  role="button"
+  tabindex="0"
+>
+  <span
+    class="rmd-list-item__text"
+  >
+    Item
+    <span
+      class="rmd-list-item__text rmd-list-item__text--secondary"
+    >
+      <span>
+        Secondary text as element!
+      </span>
+    </span>
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</li>
+`;
+
+exports[`ListItem should update the height based on the provided addons and render correctly 4`] = `
+<li
+  class="rmd-list-item rmd-list-item--clickable rmd-list-item--extra-large"
+  role="button"
+  tabindex="0"
+>
+  <span
+    class="rmd-list-item__text"
+  >
+    Primary Text!
+    <span
+      class="rmd-list-item__text rmd-list-item__text--secondary"
+    >
+      Secondary text!
+    </span>
+  </span>
+  <span>
+    Item
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</li>
+`;
+
+exports[`ListItem should update the height based on the provided addons and render correctly 5`] = `
+<li
+  class="rmd-list-item rmd-list-item--clickable rmd-list-item--medium"
+  role="button"
+  tabindex="0"
+>
+  <span
+    class="rmd-text-icon-spacing rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+  >
+    Pretend Icon
+  </span>
+  <span
+    class="rmd-list-item__text"
+  >
+    Item
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</li>
+`;
+
+exports[`ListItem should update the height based on the provided addons and render correctly 6`] = `
+<li
+  class="rmd-list-item rmd-list-item--clickable rmd-list-item--large"
+  role="button"
+  tabindex="0"
+>
+  <span
+    class="rmd-text-icon-spacing rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+  >
+    Pretend Icon
+  </span>
+  <span
+    class="rmd-list-item__text"
+  >
+    Item
+  </span>
+  <span
+    class="rmd-text-icon-spacing rmd-icon--after rmd-list-item__addon"
+  >
+    Pretend Avatar
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</li>
+`;
+
+exports[`ListItem should update the height based on the provided addons and render correctly 7`] = `
+<li
+  class="rmd-list-item rmd-list-item--clickable rmd-list-item--extra-large"
+  role="button"
+  tabindex="0"
+>
+  <span
+    class="rmd-text-icon-spacing rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-list-item__addon--media rmd-list-item__addon--media-centered"
+  >
+    Pretend Media
+  </span>
+  <span
+    class="rmd-list-item__text"
+  >
+    Item
+  </span>
+  <span
+    class="rmd-text-icon-spacing rmd-icon--after rmd-list-item__addon"
+  >
+    Pretend Avatar
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</li>
+`;
+
+exports[`ListItem should update the height based on the provided addons and render correctly 8`] = `
+<li
+  class="rmd-list-item rmd-list-item--clickable rmd-list-item--extra-large"
+  role="button"
+  tabindex="0"
+>
+  <span
+    class="rmd-text-icon-spacing rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-list-item__addon--media rmd-list-item__addon--media-large rmd-list-item__addon--media-centered"
+  >
+    Pretend Large Media
+  </span>
+  <span
+    class="rmd-list-item__text"
+  >
+    Item
+  </span>
+  <span
+    class="rmd-text-icon-spacing rmd-icon--after rmd-list-item__addon rmd-list-item__addon--bottom"
+  >
+    Pretend Icon
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</li>
+`;
+
+exports[`ListItem should update the height based on the provided addons and render correctly 9`] = `
+<li
+  class="rmd-list-item rmd-list-item--clickable rmd-list-item--extra-large rmd-list-item--three-lines"
+  role="button"
+  tabindex="0"
+>
+  <span
+    class="rmd-text-icon-spacing rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-list-item__addon--media rmd-list-item__addon--media-large rmd-list-item__addon--media-centered"
+  >
+    Pretend Large Media
+  </span>
+  <span
+    class="rmd-list-item__text"
+  >
+    Item
+    <span
+      class="rmd-list-item__text rmd-list-item__text--clamped rmd-list-item__text--secondary"
+    >
+      Secondary Text!
+    </span>
+  </span>
+  <span
+    class="rmd-text-icon-spacing rmd-icon--after rmd-list-item__addon rmd-list-item__addon--bottom"
+  >
+    Pretend Icon
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</li>
+`;
+
+exports[`ListItem should wrap text children in span elements to enable higher contrast 1`] = `
+<li
+  class="rmd-list-item rmd-list-item--clickable rmd-list-item--normal"
+  role="button"
+  tabindex="0"
+>
+  <span
+    class="rmd-list-item__text"
+  >
+    Item
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</li>
+`;
+
+exports[`ListItem should wrap text children in span elements to enable higher contrast 2`] = `
+<li
+  class="rmd-list-item rmd-list-item--clickable rmd-list-item--normal"
+  role="button"
+  tabindex="0"
+>
+  <span>
+    Item
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</li>
+`;
+
+exports[`ListItem should wrap text children in span elements to enable higher contrast 3`] = `
+<li
+  class="rmd-list-item rmd-list-item--clickable rmd-list-item--normal"
+  role="button"
+  tabindex="0"
+>
+  <span
+    class="rmd-list-item__text"
+  >
+    <div>
+      This is some content
+    </div>
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</li>
+`;
+
+exports[`ListItem should wrap text children in span elements to enable higher contrast 4`] = `
+<li
+  class="rmd-list-item rmd-list-item--clickable rmd-list-item--normal"
+  role="button"
+  tabindex="0"
+>
+  <div>
+    This is some content
+  </div>
+  <span
+    class="rmd-ripple-container"
+  />
+</li>
+`;

@@ -14,6 +14,29 @@ import type { ListItemChildrenProps } from "./types";
  * Note: This will return a `React.Fragment` of the children and does not wrap
  * in a DOM node for styling. The parent component should normally have
  * `display: flex` for the styling to work.
+ *
+ * @example
+ * Custom Component Usage
+ * ```tsx
+ * import { ListItemChildren } from "@react-md/list";
+ * import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
+ * import type { ReactElement } from "react";
+ *
+ * function Example(): ReactElement {
+ *   return (
+ *     <div style={{ display: "flex" }}>
+ *       <ListItemChildren
+ *         leftAddon={<FavoriteIcon />}
+ *         rightAddon={<img alt="" src="/some-image.png" />}
+ *         rightAddonType="media"
+ *         secondaryText={<span>Some <strong>additional</strong> content.</span>}
+ *       >
+ *         Content
+ *       </ListItemChildren>
+ *     </div>
+ *   );
+ * }
+ * ```
  */
 export function ListItemChildren(props: ListItemChildrenProps): ReactElement {
   const {

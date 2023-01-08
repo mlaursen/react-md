@@ -7,7 +7,7 @@ import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
 import { getListItemHeight } from "./getListItemHeight";
 import { ListItemChildren } from "./ListItemChildren";
-import { listItem } from "./styles";
+import { listItem } from "./listItemStyles";
 import type { ListItemChildrenProps, ListItemHeight } from "./types";
 
 export interface ListItemProps
@@ -52,11 +52,74 @@ export interface ListItemProps
    * states: hover, focus, press, etc. This is kind of like being disabled
    * without the disabled styles being applied.
    *
-   * @defaultValue `true`
+   * @defaultValue `role === "presentation"`
    */
-  clickable?: boolean;
+  presentational?: boolean;
 }
 
+/**
+ * The `ListItem` is used to create a clickable/focusable button within a
+ * `List` and removes the normal `<li>` styles.
+ *
+ * @example
+ * Simple Example
+ * ```tsx
+ * import { List, ListItem } from "@react-md/list";
+ * import type { ReactElement  } from "react";
+ *
+ * function Example(): ReactElement {
+ *   return (
+ *     <List>
+ *       <ListItem
+ *         onClick={() => {
+ *           // do something
+ *         }}
+ *       >
+ *         Item 1
+ *       </ListItem>
+ *       <ListItem
+ *         onClick={() => {
+ *           // do something
+ *         }}
+ *         secondaryText={<span>Some <strong>additional</strong> content.</span>}
+ *       >
+ *         Item 2
+ *       </ListItem>
+ *     </List>
+ *   );
+ *   );
+ * }
+ * ```
+ *
+ * @example
+ * Applying Addons Example
+ * ```tsx
+ * import { List, ListItem } from "@react-md/list";
+ * import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
+ * import type { ReactElement  } from "react";
+ *
+ * function Example(): ReactElement {
+ *   return (
+ *     <List>
+ *       <ListItem leftAddon={<FavoriteIcon />}>
+ *         Item 1
+ *       </ListItem>
+ *       <ListItem rightAddon={<FavoriteIcon />}>
+ *         Item 2
+ *       </ListItem>
+ *       <ListItem
+ *         leftAddon={<FavoriteIcon />}
+ *         rightAddon={<img alt="" src="/some-image.png" />}
+ *         rightAddonType="media"
+ *       >
+ *         Item 3
+ *       </ListItem>
+ *     </List>
+ *   );
+ *   );
+ * }
+ * ```
+ */
 export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
   function ListItem(props, ref) {
     const {
@@ -98,7 +161,7 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
       onTouchMove,
       tabIndex = disabled ? -1 : 0,
       children: propChildren,
-      clickable,
+      presentational = role === "presentation",
       ...remaining
     } = props;
     const { pressedClassName, rippleContainerProps, handlers } =
@@ -141,10 +204,10 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
         className={listItem({
           className,
           height,
-          clickable,
           disabled,
           disabledOpacity,
           threeLines,
+          clickable: !presentational,
           pressedClassName,
         })}
       >

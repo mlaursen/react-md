@@ -20,8 +20,21 @@ export interface ListItemLinkProps
   /** @defaultValue `"a"` */
   as?: CustomLinkComponent;
 
+  /**
+   * This should only be used if the {@link as} {@link CustomLinkComponent}
+   * accepts a `to` prop instead of {@link href}.
+   */
   to?: string;
+
+  /**
+   * The link's href. Either this or the {@link to} prop **should** be provided.
+   */
   href?: string;
+
+  /**
+   * Any additional props to provide the wrapping `<li>` element such as
+   * `style`, `className`, and `ref`.
+   */
   liProps?: PropsWithRef<HTMLAttributes<HTMLLIElement>, HTMLLIElement>;
 
   /**
@@ -30,6 +43,9 @@ export interface ListItemLinkProps
   tabIndex?: number;
 }
 
+/**
+ * The `ListItemLink` should be used to render links within the `List` component.
+ */
 export const ListItemLink = forwardRef<HTMLAnchorElement, ListItemLinkProps>(
   function ListItemLink(props, ref) {
     const {
@@ -77,6 +93,7 @@ export const ListItemLink = forwardRef<HTMLAnchorElement, ListItemLinkProps>(
       children: propChildren,
       ...remaining
     } = props;
+
     const { pressedClassName, rippleContainerProps, handlers } =
       useElementInteraction({
         onBlur,

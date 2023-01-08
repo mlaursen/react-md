@@ -1,7 +1,7 @@
 import type { PropsWithRef } from "@react-md/core";
 import type { HTMLAttributes, ReactNode } from "react";
 import { forwardRef } from "react";
-import { listItemTExt } from "./styles";
+import { listItemText } from "./listItemStyles";
 
 /**
  * @internal
@@ -19,6 +19,9 @@ export interface ListItemTextProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 /**
+ * This is mostly an internal componecnt that can conditionally render secondary
+ * text within list items.
+ *
  * @internal
  */
 export const ListItemText = forwardRef<HTMLSpanElement, ListItemTextProps>(
@@ -37,7 +40,7 @@ export const ListItemText = forwardRef<HTMLSpanElement, ListItemTextProps>(
       <span
         {...remaining}
         ref={ref}
-        className={listItemTExt({
+        className={listItemText({
           className,
         })}
       >
@@ -45,7 +48,7 @@ export const ListItemText = forwardRef<HTMLSpanElement, ListItemTextProps>(
         {secondaryText && (
           <span
             {...secondaryTextProps}
-            className={listItemTExt({
+            className={listItemText({
               clamped: secondaryTextClamped,
               className: secondaryTextClassName,
               secondary: true,

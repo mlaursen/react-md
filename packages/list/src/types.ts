@@ -53,6 +53,9 @@ export interface ListItemChildrenAddonProps {
   leftAddonClassName?: string;
 
   /**
+   * Set this to `true` if your addon does not accept a `className` prop to
+   * apply the correct styling.
+   *
    * @defaultValue `leftAddonType === "media" || leftAddonType === "large-media"`
    * @remarks \@since 6.0.0
    */
@@ -87,18 +90,39 @@ export interface ListItemChildrenAddonProps {
   rightAddonClassName?: string;
 
   /**
+   * Set this to `true` if your addon does not accept a `className` prop to
+   * apply the correct styling.
+   *
    * @defaultValue `rightAddonType === "media" || rightAddonType === "large-media"`
    * @remarks \@since 6.0.0
    */
   rightAddonForceWrap?: boolean;
 
   /**
+   * The media items are centered by default using:
+   * ```scss
+   * align-items: center;
+   * display: flex;
+   * justify-content: center;
+   * ```
+   *
+   * When this is set to `true`, the flex styles will not be applied.
+   *
    * @defaultValue `false`
    * @remarks \@since 6.0.0
    */
   disableLeftAddonCenteredMedia?: boolean;
 
   /**
+   * The media items are centered by default using:
+   * ```scss
+   * align-items: center;
+   * display: flex;
+   * justify-content: center;
+   * ```
+   *
+   * When this is set to `true`, the flex styles will not be applied.
+   *
    * @defaultValue `false`
    * @remarks \@since 6.0.0
    */

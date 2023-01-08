@@ -34,6 +34,7 @@ module.exports = {
     "^@react-md/tree$": ["<rootDir>/packages/tree/src/index.ts"],
     "^@react-md/visual-media$": ["<rootDir>/packages/tree/src/index.ts"],
   },
+  modulePathIgnorePatterns: ["prev\\/"],
   testPathIgnorePatterns: ["prev\\/"],
   watchPathIgnorePatterns: ["\\.next", "public\\/"],
   setupFilesAfterEnv: ["<rootDir>/testSetup/init.ts"],

@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListItemLink should allow for a custom link component using the as prop 1`] = `
+<div>
+  <ul
+    class="rmd-list"
+    role="none"
+  >
+    <li
+      role="none"
+    >
+      <a
+        class="rmd-link rmd-list-item rmd-list-item--link rmd-list-item--clickable rmd-list-item--normal"
+        href="/link"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Hello
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </a>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`ListItemLink should render as an <a> element by default 1`] = `
+<div>
+  <ul
+    class="rmd-list"
+    role="none"
+  >
+    <li
+      role="none"
+    >
+      <a
+        class="rmd-list-item rmd-list-item--link rmd-list-item--clickable rmd-list-item--normal"
+        href="/link"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Hello
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </a>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`ListItemLink should support the to prop for routing libraries like react-router-dom 1`] = `
+<div>
+  <ul
+    class="rmd-list"
+    role="none"
+  >
+    <li
+      role="none"
+    >
+      <a
+        class="rmd-list-item rmd-list-item--link rmd-list-item--clickable rmd-list-item--normal"
+        href="/link"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Hello
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </a>
+    </li>
+  </ul>
+</div>
+`;

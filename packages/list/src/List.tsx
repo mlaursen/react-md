@@ -1,37 +1,102 @@
+import { bem } from "@react-md/core";
+import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
-import type { ListClassNameOptions } from "./styles";
-import { list } from "./styles";
+
+const styles = bem("rmd-list");
+
+/** @remarks \@since 6.0.0 */
+export interface ListClassNameOptions {
+  className?: string;
+
+  /** @defaultValue `false` */
+  dense?: boolean;
+
+  /** @defaultValue `false` */
+  horizontal?: boolean;
+}
+
+/**
+ * @remarks \@since 6.0.0
+ */
+export function list(options: ListClassNameOptions = {}): string {
+  const { dense = false, horizontal = false, className } = options;
+
+  return cnb(styles({ dense, horizontal }), className);
+}
 
 export type ListElement = HTMLUListElement | HTMLOListElement;
 
-export interface ListProps
-  extends HTMLAttributes<ListElement>,
-    ListClassNameOptions {
+export interface ListProps extends HTMLAttributes<ListElement> {
   /**
    * @defaultValue `"none"`
    */
   role?: HTMLAttributes<ListElement>["role"];
 
   /**
-   * Boolean if the dense spec should be applied to the list.
+   * Set to `true` to decrease the amount of padding and font size within the
+   * list.
+   *
+   * @defaultValue `false`
    */
   dense?: boolean;
 
   /**
-   * Boolean if the list's order is important. This will update the list to be
-   * rendered as an `<ol>` instead of `<ul>`.
+   * Set this to `true` to render as `<ol>` instead of `<ul>` when the children
+   * are in a specific order. For example: steps within a recipe.
    *
    * @defaultValue `false`
    */
   ordered?: boolean;
 
   /**
-   * Boolean if the list should appear horizontally instead of vertically.
+   * Set this to `true` to render horizontally instead of vertically.
+   *
+   * @defaultValue `false`
    */
   horizontal?: boolean;
 }
 
+/**
+ * The `List` component is used to render a collection of clickable actions
+ * vertically or horizontally and does not include the default `ol`/`ul` styles.
+ *
+ * @example
+ * Simple Example
+ * ```tsx
+ * import { List, ListItem, ListItemLink } from "@react-md/list";
+ * import type { ReactElement } from "react";
+ *
+ * function Example(): ReactElement {
+ *   return (
+ *     <List>
+ *       <ListItem
+ *         onClick={() => {
+ *           // do something
+ *         }}
+ *       >
+ *         Item 1
+ *       </ListItem>
+ *       <ListItem
+ *         onClick={() => {
+ *           // do something
+ *         }}
+ *       >
+ *         Item 2
+ *       </ListItem>
+ *       <ListItem
+ *         onClick={() => {
+ *           // do something
+ *         }}
+ *       >
+ *         Item 3
+ *       </ListItem>
+ *       <ListItemLink href="/some-route">Link Example</ListItemLink>
+ *     </List>
+ *   );
+ * }
+ * ```
+ */
 export const List = forwardRef<ListElement, ListProps>(function List(
   props,
   ref

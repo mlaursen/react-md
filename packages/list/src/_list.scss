@@ -292,8 +292,6 @@ $var-lookup: (
       @include core.map-to-styles(core.$subtitle-2-styles);
       @include core.use-theme-var(color, text-secondary-color);
       @include use-var(height, item-height);
-      // TODO: Why did I switch to min-height in this implementation?
-      // @include use-var(min-height, item-height);
 
       align-items: center;
       display: flex;
