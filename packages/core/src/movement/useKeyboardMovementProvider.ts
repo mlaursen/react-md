@@ -288,37 +288,38 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
         // This makes it so you can click an element with a mouse and then
         // keyboard navigate from that element instead of the last keyboard focus
         // element
-        if (event.target !== event.currentTarget) {
-          const focusables = getFocusableElements(
-            event.currentTarget,
-            programmatic
-          );
-          const focusedIndex = focusables.findIndex(
-            (element) => element === event.target
-          );
-          if (focusedIndex === -1) {
-            return;
-          }
-
-          currentFocusIndex.current = focusedIndex;
-          const focused = focusables[focusedIndex];
-          if (tabIndexBehavior) {
-            setActiveDescendantId(focused.id);
-          }
-
-          // need to force focus back to the container element when using
-          // aria activedescendant
-          if (tabIndexBehavior === "virtual") {
-            refocus.current = true;
-            event.currentTarget.focus();
-          }
-
-          onFocusChange({
-            index: focusedIndex,
-            element: focused,
-          });
+        if (event.target === event.currentTarget) {
           return;
         }
+
+        const focusables = getFocusableElements(
+          event.currentTarget,
+          programmatic
+        );
+        const focusedIndex = focusables.findIndex(
+          (element) => element === event.target
+        );
+        if (focusedIndex === -1) {
+          return;
+        }
+
+        currentFocusIndex.current = focusedIndex;
+        const focused = focusables[focusedIndex];
+        if (tabIndexBehavior) {
+          setActiveDescendantId(focused.id);
+        }
+
+        // need to force focus back to the container element when using
+        // aria activedescendant
+        if (tabIndexBehavior === "virtual") {
+          refocus.current = true;
+          event.currentTarget.focus();
+        }
+
+        onFocusChange({
+          index: focusedIndex,
+          element: focused,
+        });
       },
       onFocus(event) {
         onFocus(event);

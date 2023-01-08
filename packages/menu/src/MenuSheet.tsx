@@ -103,7 +103,7 @@ export function MenuSheet(
         if (
           !(event.target instanceof HTMLElement) ||
           event.target
-            .closest('[role="menu"],[role="dialog"]')
+            .closest('.rmd-menu,[role="dialog"]')
             ?.getAttribute("role") === "dialog"
         ) {
           event.stopPropagation();

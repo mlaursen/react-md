@@ -8,22 +8,19 @@ import type {
 } from "@react-md/core";
 import {
   bem,
-  KeyboardMovementProvider,
   Portal,
   useAppSize,
   useEnsuredId,
   useFixedPositioning,
   useFocusContainer,
-  useKeyboardMovementProvider,
   useScaleTransition,
   useScrollLock,
   useUserInteractionMode,
 } from "@react-md/core";
 import type { ListElement, ListProps } from "@react-md/list";
-import { List } from "@react-md/list";
 import { cnb } from "cnbuilder";
 import type { CSSProperties, HTMLAttributes } from "react";
-import { forwardRef, useEffect, useRef, useState } from "react";
+import { forwardRef, useEffect, useRef } from "react";
 import type {
   MenuConfiguration,
   MenuOrientationProps,
@@ -34,11 +31,8 @@ import {
 } from "./MenuConfigurationProvider";
 import type { MenuSheetConvenienceProps } from "./MenuSheet";
 import { MenuSheet } from "./MenuSheet";
-import {
-  MenuBarProvider,
-  useMenuBarContext,
-  useMenuBarProvider,
-} from "./useMenuBarProvider";
+import { MenuWidget } from "./MenuWidget";
+import { useMenuBarContext } from "./useMenuBarProvider";
 import { getDefaultAnchor } from "./utils";
 
 const styles = bem("rmd-menu");
@@ -292,11 +286,7 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
       onExit,
       onExiting,
       onExited,
-      onBlur = noop,
-      onFocus = noop,
-      onClick,
       onKeyDown = noop,
-      getDefaultFocusedIndex,
       listProps,
       listStyle,
       listClassName,
@@ -355,16 +345,6 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
     const mode = useUserInteractionMode();
     const mouse = mode === "mouse";
 
-    // Since there is the possibility of other tab focusable elements within the
-    // sheet and the menu items are programmatically focused, the menu's
-    // tabIndex needs to be set to `-1` while one of the child menu items are
-    // focused. This allows Shift+Tab correctly focuses the previous focusable
-    // element within the sheet. Since `onFocus` and `onBlur` will be bubbled up
-    // to the menu widget each time a new MenuItem is focused, only disable the
-    // focused state if the blur event is fired without another focus event
-    // within an animation frame.
-    const [sheetMenuFocused, setSheetMenuFocused] = useState(false);
-    const sheetBlurredFame = useRef(0);
     const { eventHandlers, transitionOptions } = useFocusContainer({
       nodeRef: propRef,
       activate: visible,
@@ -437,38 +417,6 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
           cancelUnmountFocus.current ||
           (root && !!activeId && id !== activeId)
         );
-      },
-    });
-
-    const menuBarContext = useMenuBarProvider({
-      root: false,
-      menubar,
-      hoverTimeout: menubar ? 0 : undefined,
-      defaultActiveId: id,
-    });
-    const { movementProps, movementContext } = useKeyboardMovementProvider({
-      ...eventHandlers,
-      onClick,
-      onFocus(event) {
-        onFocus(event);
-
-        if (!isSheet) {
-          return;
-        }
-
-        window.cancelAnimationFrame(sheetBlurredFame.current);
-        setSheetMenuFocused(true);
-      },
-      horizontal,
-      loopable: true,
-      searchable: true,
-      includeDisabled: true,
-      tabIndexBehavior: role === "listbox" ? "virtual" : undefined,
-      getDefaultFocusedIndex,
-      onFocusChange(event) {
-        if (menuBarContext.activeId) {
-          menuBarContext.enableHoverMode(event.element.id);
-        }
       },
     });
 
@@ -560,11 +508,6 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
         window.removeEventListener("click", callback);
       };
     }, [disableHoverMode, role, visible]);
-    useEffect(() => {
-      return () => {
-        window.cancelAnimationFrame(sheetBlurredFame.current);
-      };
-    }, []);
 
     return (
       <MenuConfigurationProvider
@@ -593,59 +536,23 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
         >
           <Portal disabled={isSheet || (propDisablePortal ?? disablePortal)}>
             {rendered && (
-              <KeyboardMovementProvider value={movementContext}>
-                <MenuBarProvider value={menuBarContext}>
-                  <div
-                    aria-orientation={horizontal ? "horizontal" : undefined}
-                    {...remaining}
-                    {...elementProps}
-                    {...movementProps}
-                    id={id}
-                    role={role}
-                    style={isSheet ? propStyle : style}
-                    tabIndex={isSheet && !sheetMenuFocused ? 0 : tabIndex}
-                    onBlur={(event) => {
-                      onBlur(event);
-                      if (!isSheet) {
-                        return;
-                      }
-
-                      sheetBlurredFame.current = window.requestAnimationFrame(
-                        () => {
-                          setSheetMenuFocused(false);
-                        }
-                      );
-                    }}
-                  >
-                    <List
-                      {...listProps}
-                      style={listStyle ?? listProps?.style}
-                      className={listClassName || listProps?.className}
-                      horizontal={horizontal}
-                      onClick={(event) => {
-                        listProps?.onClick?.(event);
-
-                        // this makes it so you can click on the menu/list without
-                        // closing the menu
-                        if (event.target === event.currentTarget) {
-                          event.stopPropagation();
-                        }
-
-                        // This might be a test only workaround since clicking links move focus
-                        // somewhere else
-                        if (event.target instanceof HTMLElement) {
-                          cancelUnmountFocus.current =
-                            event.currentTarget.contains(
-                              event.target.closest("a")
-                            );
-                        }
-                      }}
-                    >
-                      {children}
-                    </List>
-                  </div>
-                </MenuBarProvider>
-              </KeyboardMovementProvider>
+              <MenuWidget
+                {...remaining}
+                {...elementProps}
+                {...eventHandlers}
+                id={id}
+                role={role}
+                style={isSheet ? propStyle : style}
+                isSheet={isSheet}
+                tabIndex={tabIndex}
+                horizontal={horizontal}
+                listProps={listProps}
+                listStyle={listStyle}
+                listClassName={listClassName}
+                cancelUnmountFocus={cancelUnmountFocus}
+              >
+                {children}
+              </MenuWidget>
             )}
           </Portal>
         </MenuSheet>
