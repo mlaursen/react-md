@@ -10,10 +10,7 @@
         "runtime": "automatic"
       }
     },
-    "baseUrl": ".",
-    "paths": {
-      "@react-md/utils": ["packages/utils/src/*"]
-    }
+    "baseUrl": "."
   },
   "sourceMaps": true,
   "env": {}
