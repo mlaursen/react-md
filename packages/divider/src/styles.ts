@@ -3,8 +3,10 @@ import { cnb } from "cnbuilder";
 
 const styles = bem("rmd-divider");
 
+/** @remarks \@since 6.0.0 */
 export interface DividerClassNameOptions {
   className?: string;
+
   /**
    * Boolean if the divider should appear inset instead of full width. This
    * really just applied a margin-left (or margin-right when dir="rtl").
@@ -31,6 +33,9 @@ export interface DividerClassNameOptions {
   vertical?: boolean;
 }
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export function divider(options: DividerClassNameOptions = {}): string {
   const { inset = false, vertical = false, className } = options;
 

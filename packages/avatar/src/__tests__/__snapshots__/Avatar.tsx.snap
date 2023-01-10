@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Avatar should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<span
+  class="rmd-avatar"
+  data-testid="avatar"
+/>
+`;
+
+exports[`Avatar should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<span
+  class="rmd-avatar custom-class-name"
+  data-testid="avatar"
+  style="color: red;"
+/>
+`;
+
+exports[`Avatar should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+<span
+  class="rmd-avatar rmd-avatar--primary"
+  data-testid="avatar"
+  style=""
+/>
+`;
+
+exports[`Avatar should render an img if a src or imgProps are provided 1`] = `
+<span
+  class="rmd-avatar"
+  data-testid="avatar"
+>
+  <img
+    alt=""
+    class="rmd-avatar__image"
+    src="/some-image.png"
+  />
+</span>
+`;
+
+exports[`Avatar should render an img if a src or imgProps are provided 2`] = `
+<span
+  class="rmd-avatar"
+  data-testid="avatar"
+>
+  <img
+    alt=""
+    class="rmd-avatar__image"
+    referrerpolicy="no-referrer"
+    src="/some-image.png"
+  />
+</span>
+`;
+
+exports[`Avatar should render an img if a src or imgProps are provided 3`] = `
+<span
+  class="rmd-avatar"
+  data-testid="avatar"
+>
+  <img
+    alt=""
+    class="rmd-avatar__image custom-class-name"
+    src="/another-image.png"
+    style="opacity: 0.5;"
+  />
+</span>
+`;
+
+exports[`Avatar styling utils should allow the avatarImage to be called without any parameters 1`] = `"rmd-avatar__image"`;

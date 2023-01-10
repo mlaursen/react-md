@@ -13,7 +13,9 @@ export interface CardContentProps
     CardContentClassNameOptions {}
 
 /**
- * The default implementation for content within a card.
+ * @remarks
+ * \@since 6.0.0 Renamed `disableExtraPadding` to `disableLastChildPadding` and
+ * removed the `disableParagraphMargin` prop.
  */
 export const CardContent = forwardRef<HTMLDivElement, CardContentProps>(
   function CardContent(props, ref) {

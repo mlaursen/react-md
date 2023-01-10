@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardTitle should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<h5
+  class="rmd-typography rmd-typography--headline-5 rmd-typography--no-margin rmd-card__title"
+>
+  Title
+</h5>
+`;
+
+exports[`CardTitle should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<h5
+  class="rmd-typography rmd-typography--headline-5 rmd-typography--no-margin rmd-card__title custom-class-name"
+  style="color: white;"
+>
+  Title
+</h5>
+`;

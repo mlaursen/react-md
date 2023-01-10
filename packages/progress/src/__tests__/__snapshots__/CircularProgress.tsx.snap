@@ -6,9 +6,8 @@ exports[`CircularProgress should merge the transform style if it exists 1`] = `
   aria-valuemin="0"
   aria-valuenow="20"
   class="rmd-circular-progress rmd-circular-progress--centered"
-  id="progress"
+  id="circular-progress-:r1:"
   role="progressbar"
-  style="transform: translateX(20px);"
 >
   <svg
     class="rmd-circular-progress__svg rmd-circular-progress__svg--animate rmd-circular-progress__svg--determinate"
@@ -26,76 +25,117 @@ exports[`CircularProgress should merge the transform style if it exists 1`] = `
 </span>
 `;
 
-exports[`CircularProgress should render correctly 1`] = `
-<div>
-  <span
-    aria-valuemax="100"
-    aria-valuemin="0"
-    class="rmd-circular-progress rmd-circular-progress--centered"
-    id="progress"
-    role="progressbar"
+exports[`CircularProgress should merge the transform style if it exists 2`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  aria-valuenow="20"
+  class="rmd-circular-progress rmd-circular-progress--centered"
+  id="circular-progress-:r1:"
+  role="progressbar"
+>
+  <svg
+    class="rmd-circular-progress__svg rmd-circular-progress__svg--animate rmd-circular-progress__svg--determinate"
+    style="transform: translateX(20px);"
+    viewBox="0 0 66 66"
   >
-    <svg
-      class="rmd-circular-progress__svg rmd-circular-progress__svg--indeterminate"
-      viewBox="0 0 66 66"
-    >
-      <circle
-        class="rmd-circular-progress__circle rmd-circular-progress__circle--indeterminate"
-        cx="33"
-        cy="33"
-        r="30"
-      />
-    </svg>
-  </span>
-</div>
+    <circle
+      class="rmd-circular-progress__circle rmd-circular-progress__circle--animate rmd-circular-progress__circle--determinate"
+      cx="33"
+      cy="33"
+      r="30"
+      style="stroke-dashoffset: 149.6;"
+    />
+  </svg>
+</span>
+`;
+
+exports[`CircularProgress should render correctly 1`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  class="rmd-circular-progress rmd-circular-progress--centered"
+  id="circular-progress-:r0:"
+  role="progressbar"
+>
+  <svg
+    class="rmd-circular-progress__svg rmd-circular-progress__svg--indeterminate"
+    viewBox="0 0 66 66"
+  >
+    <circle
+      class="rmd-circular-progress__circle rmd-circular-progress__circle--indeterminate"
+      cx="33"
+      cy="33"
+      r="30"
+    />
+  </svg>
+</span>
 `;
 
 exports[`CircularProgress should render correctly 2`] = `
-<div>
-  <span
-    aria-valuemax="100"
-    aria-valuemin="0"
-    class="rmd-circular-progress rmd-circular-progress--centered"
-    id="progress"
-    role="progressbar"
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  class="rmd-circular-progress rmd-circular-progress--centered"
+  id="circular-progress-:r0:"
+  role="progressbar"
+>
+  <svg
+    class="rmd-circular-progress__svg rmd-circular-progress__svg--indeterminate"
+    viewBox="0 0 66 66"
   >
-    <svg
-      class="rmd-circular-progress__svg rmd-circular-progress__svg--indeterminate"
-      viewBox="0 0 66 66"
-    >
-      <circle
-        class="rmd-circular-progress__circle rmd-circular-progress__circle--indeterminate"
-        cx="33"
-        cy="33"
-        r="30"
-      />
-    </svg>
-  </span>
-</div>
+    <circle
+      class="rmd-circular-progress__circle rmd-circular-progress__circle--indeterminate"
+      cx="33"
+      cy="33"
+      r="30"
+    />
+  </svg>
+</span>
 `;
 
 exports[`CircularProgress should render correctly 3`] = `
-<div>
-  <span
-    aria-valuemax="100"
-    aria-valuemin="0"
-    class="rmd-circular-progress"
-    id="progress"
-    role="progressbar"
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  class="rmd-circular-progress"
+  id="circular-progress-:r0:"
+  role="progressbar"
+>
+  <svg
+    class="rmd-circular-progress__svg rmd-circular-progress__svg--indeterminate"
+    viewBox="0 0 66 66"
   >
-    <svg
-      class="rmd-circular-progress__svg rmd-circular-progress__svg--indeterminate"
-      viewBox="0 0 66 66"
-    >
-      <circle
-        class="rmd-circular-progress__circle rmd-circular-progress__circle--indeterminate"
-        cx="33"
-        cy="33"
-        r="30"
-      />
-    </svg>
-  </span>
-</div>
+    <circle
+      class="rmd-circular-progress__circle rmd-circular-progress__circle--indeterminate"
+      cx="33"
+      cy="33"
+      r="30"
+    />
+  </svg>
+</span>
+`;
+
+exports[`CircularProgress should render correctly 4`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  class="rmd-circular-progress rmd-circular-progress--centered"
+  id="custom-id"
+  role="progressbar"
+>
+  <svg
+    class="rmd-circular-progress__svg rmd-circular-progress__svg--indeterminate"
+    viewBox="0 0 66 66"
+  >
+    <circle
+      class="rmd-circular-progress__circle rmd-circular-progress__circle--indeterminate"
+      cx="33"
+      cy="33"
+      r="30"
+    />
+  </svg>
+</span>
 `;
 
 exports[`CircularProgress should support a small variant 1`] = `
@@ -103,7 +143,7 @@ exports[`CircularProgress should support a small variant 1`] = `
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-circular-progress--small"
-  id="small-progress"
+  id="circular-progress-:r2:"
   role="progressbar"
 >
   <svg
@@ -125,7 +165,7 @@ exports[`CircularProgress should support a small variant 2`] = `
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--small"
-  id="small-circular-progress"
+  id="circular-progress-:r2:"
   role="progressbar"
 >
   <svg

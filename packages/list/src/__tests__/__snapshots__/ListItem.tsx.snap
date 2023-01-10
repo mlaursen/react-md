@@ -420,3 +420,67 @@ exports[`ListItem should wrap text children in span elements to enable higher co
   />
 </li>
 `;
+
+exports[`ListItem should wrap text children in span elements to enable higher contrast unless the higher contrast is disabled 1`] = `
+<li
+  class="rmd-list-item rmd-list-item--clickable rmd-list-item--normal"
+  role="button"
+  tabindex="0"
+>
+  <span
+    class="rmd-list-item__text"
+  >
+    Item
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</li>
+`;
+
+exports[`ListItem should wrap text children in span elements to enable higher contrast unless the higher contrast is disabled 2`] = `
+<li
+  class="rmd-list-item rmd-list-item--clickable rmd-list-item--normal"
+  role="button"
+  tabindex="0"
+>
+  Item
+  <span
+    class="rmd-ripple-container"
+  />
+</li>
+`;
+
+exports[`ListItem should wrap text children in span elements to enable higher contrast unless the higher contrast is disabled 3`] = `
+<li
+  class="rmd-list-item rmd-list-item--clickable rmd-list-item--normal"
+  role="button"
+  tabindex="0"
+>
+  <span
+    class="rmd-list-item__text"
+  >
+    <div>
+      This is some content
+    </div>
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</li>
+`;
+
+exports[`ListItem should wrap text children in span elements to enable higher contrast unless the higher contrast is disabled 4`] = `
+<li
+  class="rmd-list-item rmd-list-item--clickable rmd-list-item--normal"
+  role="button"
+  tabindex="0"
+>
+  <div>
+    This is some content
+  </div>
+  <span
+    class="rmd-ripple-container"
+  />
+</li>
+`;

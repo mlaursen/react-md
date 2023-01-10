@@ -12,7 +12,11 @@ import { forwardRef } from "react";
 
 import type { SortOrder } from "./TableCellContent";
 import { TableCellContent } from "./TableCellContent";
-import type { TableCellConfig } from "./TableConfigurationProvider";
+import type {
+  TableCellConfig,
+  TableCellHorizontalAlignment,
+  TableCellVerticalAlignment,
+} from "./TableConfigurationProvider";
 import { useTableConfig } from "./TableConfigurationProvider";
 
 export type TableCellAttributes = Omit<
@@ -21,6 +25,9 @@ export type TableCellAttributes = Omit<
   "scope"
 >;
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export interface TableCellOptions extends TableCellConfig {
   /**
    * This is a bit of a "weird" prop since all it does is apply `width: 100%` to
@@ -28,6 +35,8 @@ export interface TableCellOptions extends TableCellConfig {
    * the table (if there is any). If no cells have this prop enabled and the
    * `fullWidth` table configuration is enabled, all cells will have an
    * equal-sized width.
+   *
+   * @defaultValue `false`
    */
   grow?: boolean;
 
@@ -36,6 +45,8 @@ export interface TableCellOptions extends TableCellConfig {
    * `TableCell` is a child of the `TableHeader` component. This will generally
    * be used with a value of `"row"` if you have table headers that are at the
    * start of each row instead of at the top of the table.
+   *
+   * @defaultValue `"col"`
    */
   scope?: "row" | "col" | "rowgroup" | "colgroup";
 
@@ -112,6 +123,78 @@ export interface TableCellProps extends TableCellAttributes, TableCellOptions {
 
 const styles = bem("rmd-table-cell");
 
+/** @remarks \@since 6.0.0 */
+export interface TableCellClassNameOptions {
+  className?: string;
+
+  /**
+   * Set this to `true` if the cell is rendered as a `<th>` so that the correct
+   * sticky styles can be applied.
+   */
+  header: boolean;
+
+  /**
+   * Set this to true if the cell is rendered in a `<thead>` so that the correct
+   * sticky styles can be applied.
+   */
+  isInTableHeader: boolean;
+
+  /** @defaultValue `false` */
+  grow?: boolean;
+
+  /** @defaultValue `false` */
+  sticky?: boolean;
+
+  /** @defaultValue `false` */
+  checkbox?: boolean;
+
+  hAlign?: TableCellHorizontalAlignment;
+  vAlign?: TableCellVerticalAlignment;
+
+  /** @defaultValue `true` */
+  lineWrap?: boolean | "padded";
+
+  /** @defaultValue `false` */
+  disablePadding?: boolean;
+}
+
+/**
+ * @remarks \@since 6.0.0
+ */
+export function tableCell(options: TableCellClassNameOptions): string {
+  const {
+    grow,
+    sticky,
+    header,
+    checkbox,
+    hAlign = "",
+    vAlign = "",
+    lineWrap = true,
+    disablePadding,
+    isInTableHeader,
+    className,
+  } = options;
+
+  return cnb(
+    styles({
+      grow,
+      header,
+      sticky,
+      checkbox,
+      "sticky-cell": sticky && (!isInTableHeader || checkbox),
+      "sticky-header": sticky && isInTableHeader,
+      "sticky-header-cell": sticky && isInTableHeader && checkbox,
+      [hAlign]: hAlign !== "left",
+      [vAlign]: vAlign !== "middle",
+      vertical: vAlign !== "middle",
+      "no-wrap": !lineWrap,
+      padded: !disablePadding && lineWrap === "padded",
+      "no-padding": disablePadding,
+    }),
+    className
+  );
+}
+
 /**
  * Creates a `<th>` or `<td>` cell with sensible styled defaults. You can create
  * a `<th>` element by enabling the `header` prop OR having a `TableCell` as a
@@ -174,24 +257,18 @@ export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
         {...remaining}
         ref={ref}
         aria-sort={sortOrder === "none" ? undefined : sortOrder}
-        className={cnb(
-          styles({
-            grow,
-            header,
-            sticky,
-            checkbox,
-            "sticky-cell": sticky && (!inheritedHeader || checkbox),
-            "sticky-header": sticky && inheritedHeader,
-            "sticky-header-cell": sticky && inheritedHeader && checkbox,
-            [hAlign]: hAlign !== "left",
-            [vAlign]: vAlign !== "middle",
-            vertical: vAlign !== "middle",
-            "no-wrap": !lineWrap && !sortOrder,
-            padded: !isNoPadding && lineWrap === "padded",
-            "no-padding": isNoPadding,
-          }),
-          className
-        )}
+        className={tableCell({
+          className,
+          grow,
+          header,
+          sticky,
+          checkbox,
+          hAlign,
+          vAlign,
+          lineWrap: !sortOrder && lineWrap,
+          disablePadding: isNoPadding,
+          isInTableHeader: inheritedHeader,
+        })}
         scope={scope}
       >
         <TableCellContent

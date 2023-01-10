@@ -35,8 +35,11 @@ export interface VerticalDividerHeight<E extends HTMLElement> {
  * This is a small hook that is used to automatically create a vertical divider
  * based on the computed height of its parent element.
  *
+ * @internal
  * @remarks \@since 5.0.0 The hook accepts an object instead of using multiple
  * params and uses a generic for the HTMLElement type.
+ * @remarks \@since 6.0.0 Updated to be internal only since it doesn't make much
+ * sense to be a public API.
  */
 export function useVerticalDividerHeight<E extends HTMLElement>(
   options: VerticalDividerHookOptions<E>

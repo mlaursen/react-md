@@ -1,6 +1,6 @@
 import { Card } from "@react-md/card";
 import { Box, TextContainer, Typography } from "@react-md/core";
-import type { MediaOverlayPosition } from "@react-md/visual-media";
+import type { VisualMediaOverlayPosition } from "@react-md/visual-media";
 import {
   VisualMediaContainer,
   VisualMediaOverlay,
@@ -15,7 +15,7 @@ const images = [
   "https://picsum.photos/100/110?image=233",
 ];
 
-const positions: MediaOverlayPosition[] = [
+const positions: VisualMediaOverlayPosition[] = [
   "top",
   "right",
   "bottom",

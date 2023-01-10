@@ -21,7 +21,7 @@ export interface CardClassNameOptions {
    *
    * @defaultValue `false`
    */
-  raiseable?: boolean;
+  raisable?: boolean;
 
   /**
    * Update the card to have `display: block` and `width: 100%` instead of
@@ -39,7 +39,7 @@ export function card(options: CardClassNameOptions = {}): string {
   const {
     className,
     bordered = false,
-    raiseable = false,
+    raisable = false,
     fullWidth = false,
   } = options;
 
@@ -47,7 +47,7 @@ export function card(options: CardClassNameOptions = {}): string {
     cardStyles({
       bordered,
       shadowed: !bordered,
-      raiseable: !bordered && raiseable,
+      raisable: !bordered && raisable,
       "full-width": fullWidth,
     }),
     className
@@ -57,7 +57,11 @@ export function card(options: CardClassNameOptions = {}): string {
 /** @remarks \@since 6.0.0 */
 export interface CardHeaderClassNameOptions {
   className?: string;
+
+  /** @defaultValue `false` */
   addonAfter?: boolean;
+
+  /** @defaultValue `false` */
   addonBefore?: boolean;
 }
 

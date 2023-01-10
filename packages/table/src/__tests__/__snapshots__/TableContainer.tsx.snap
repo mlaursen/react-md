@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TableContainer should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<div
+  class="rmd-table-container"
+  data-testid="container"
+/>
+`;
+
+exports[`TableContainer should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<div
+  class="rmd-table-container custom-class-name"
+  data-testid="container"
+  style="background-color: red;"
+/>
+`;

@@ -1,6 +1,6 @@
-import { useIsomorphicLayoutEffect } from "@react-md/core";
+import { PROGRAMMATICALLY_FOCUSABLE } from "@react-md/core";
 import type { ReactNode } from "react";
-import { forwardRef, useRef } from "react";
+import { forwardRef, useEffect, useRef } from "react";
 import type { LinkProps } from "./Link";
 import { Link } from "./Link";
 import type { SKipToMainContentClassNameOptions } from "./styles";
@@ -42,17 +42,22 @@ export const SkipToMainContent = forwardRef<
   } = props;
 
   const mainNodeRef = useRef<HTMLElement | null>(null);
-  useIsomorphicLayoutEffect(() => {
+  useEffect(() => {
     mainNodeRef.current = document.getElementById(mainId);
-    if (process.env.NODE_ENV !== "production" && !mainNodeRef.current) {
-      /* eslint-disable no-console */
-      const foundMainId = document.querySelector("main")?.id;
-      let message = `Unable to find a main element to focus with an id of: "${mainId}".`;
-      if (foundMainId) {
-        message += `\nHowever, a "<main>" element was found with an id: "${foundMainId}". Should this be the "mainId" prop for the "SkipToMainContent" component?`;
+    if (process.env.NODE_ENV !== "production") {
+      const main = mainNodeRef.current;
+      if (!main) {
+        const foundMainId = document.querySelector('main,[role="main"]')?.id;
+        let message = `Unable to find a main element to focus with an id of "${mainId}".`;
+        if (foundMainId) {
+          message += `\nHowever, a "<main>" element was found with an id of "${foundMainId}". Should this be the "mainId" for the "SkipToMainContent" component?`;
+        }
+        throw new Error(message);
+      } else if (main.closest(PROGRAMMATICALLY_FOCUSABLE) !== main) {
+        throw new Error(
+          `The main element with id "${mainId}" is not focusable so the "SkipToMainContent" component will do nothing. Add a \`tabIndex={-1}\` to the element to fix this error.`
+        );
       }
-
-      throw new Error(message);
     }
   }, [mainId]);
 

@@ -4,14 +4,14 @@
 
 $disable-bordered: false !default;
 $disable-shadowed: false !default;
-$disable-raiseable: false !default;
+$disable-raisable: false !default;
 $disable-full-width: false !default;
 $disable-content-secondary-color: false !default;
 $disable-content-last-child-padding: false !default;
 
 $elevation: 2 !default;
-$raiseable-start-elevation: 1 !default;
-$raiseable-end-elevation: 8 !default;
+$raisable-start-elevation: 1 !default;
+$raisable-end-elevation: 8 !default;
 
 $light-theme-background-color: core.get-theme-var(surface-color) !default;
 $dark-theme-background-color: if(
@@ -99,12 +99,12 @@ $var-lookup: (
     display: inline-block;
     max-width: 100%;
 
-    @if not $disable-raiseable {
+    @if not $disable-raisable {
       @include core.mouse-only {
-        &--raiseable {
+        &--raisable {
           @include core.elevation-transition(
-            $raiseable-start-elevation,
-            $raiseable-end-elevation,
+            $raisable-start-elevation,
+            $raisable-end-elevation,
             "&:hover"
           );
         }

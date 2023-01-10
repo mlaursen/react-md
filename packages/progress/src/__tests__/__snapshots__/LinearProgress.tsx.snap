@@ -6,7 +6,7 @@ exports[`LinearProgress should render correctly 1`] = `
     aria-valuemax="100"
     aria-valuemin="0"
     class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--indeterminate"
-    id="linear"
+    id="linear-progress-:r0:"
     role="progressbar"
   >
     <span
@@ -22,7 +22,7 @@ exports[`LinearProgress should render correctly 2`] = `
     aria-valuemax="100"
     aria-valuemin="0"
     class="rmd-linear-progress rmd-linear-progress--vertical rmd-linear-progress--indeterminate"
-    id="linear"
+    id="linear-progress-:r0:"
     role="progressbar"
     style="height: 240px;"
   >
@@ -39,7 +39,7 @@ exports[`LinearProgress should render correctly 3`] = `
     aria-valuemax="100"
     aria-valuemin="0"
     class="rmd-linear-progress rmd-linear-progress--vertical rmd-linear-progress--indeterminate"
-    id="linear"
+    id="linear-progress-:r0:"
     role="progressbar"
     style=""
   >
@@ -56,7 +56,7 @@ exports[`LinearProgress should render correctly 4`] = `
     aria-valuemax="100"
     aria-valuemin="0"
     class="rmd-linear-progress rmd-linear-progress--vertical rmd-linear-progress--indeterminate"
-    id="linear"
+    id="linear-progress-:r0:"
     role="progressbar"
     style="height: 300px;"
   >
@@ -73,12 +73,106 @@ exports[`LinearProgress should render correctly 5`] = `
     aria-valuemax="100"
     aria-valuemin="0"
     class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--indeterminate"
-    id="linear"
+    id="linear-progress-:r0:"
     role="progressbar"
     style=""
   >
     <span
       class="rmd-linear-progress__bar rmd-linear-progress__bar--horizontal rmd-linear-progress__bar--horizontal-reverse rmd-linear-progress__bar--indeterminate rmd-linear-progress__bar--indeterminate-reverse"
+    />
+  </span>
+</div>
+`;
+
+exports[`LinearProgress should render correctly 6`] = `
+<div>
+  <span
+    aria-valuemax="100"
+    aria-valuemin="0"
+    aria-valuenow="30"
+    class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--determinate"
+    id="linear-progress-:r0:"
+    role="progressbar"
+    style=""
+  >
+    <span
+      class="rmd-linear-progress__bar rmd-linear-progress__bar--horizontal rmd-linear-progress__bar--animate rmd-linear-progress__bar--determinate"
+      style="width: 30%;"
+    />
+  </span>
+</div>
+`;
+
+exports[`LinearProgress should render correctly 7`] = `
+<div>
+  <span
+    aria-valuemax="100"
+    aria-valuemin="0"
+    aria-valuenow="30"
+    class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--determinate"
+    id="linear-progress-:r0:"
+    role="progressbar"
+    style=""
+  >
+    <span
+      class="rmd-linear-progress__bar rmd-linear-progress__bar--horizontal rmd-linear-progress__bar--horizontal-reverse rmd-linear-progress__bar--animate rmd-linear-progress__bar--determinate rmd-linear-progress__bar--determinate-reverse"
+      style="width: 30%;"
+    />
+  </span>
+</div>
+`;
+
+exports[`LinearProgress should render correctly 8`] = `
+<div>
+  <span
+    aria-valuemax="100"
+    aria-valuemin="0"
+    aria-valuenow="30"
+    class="rmd-linear-progress rmd-linear-progress--vertical rmd-linear-progress--determinate"
+    id="linear-progress-:r0:"
+    role="progressbar"
+    style="height: 240px;"
+  >
+    <span
+      class="rmd-linear-progress__bar rmd-linear-progress__bar--vertical rmd-linear-progress__bar--animate rmd-linear-progress__bar--determinate"
+      style="height: 30%;"
+    />
+  </span>
+</div>
+`;
+
+exports[`LinearProgress should render correctly 9`] = `
+<div>
+  <span
+    aria-valuemax="100"
+    aria-valuemin="0"
+    aria-valuenow="30"
+    class="rmd-linear-progress rmd-linear-progress--vertical rmd-linear-progress--determinate"
+    id="linear-progress-:r0:"
+    role="progressbar"
+    style="height: 240px;"
+  >
+    <span
+      class="rmd-linear-progress__bar rmd-linear-progress__bar--vertical rmd-linear-progress__bar--vertical-reverse rmd-linear-progress__bar--animate rmd-linear-progress__bar--determinate rmd-linear-progress__bar--determinate-vertical-reverse"
+      style="height: 30%;"
+    />
+  </span>
+</div>
+`;
+
+exports[`LinearProgress should render correctly 10`] = `
+<div>
+  <span
+    aria-valuemax="100"
+    aria-valuemin="0"
+    class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--indeterminate"
+    id="custom-id"
+    role="progressbar"
+    style=""
+  >
+    <span
+      class="rmd-linear-progress__bar rmd-linear-progress__bar--horizontal rmd-linear-progress__bar--indeterminate"
+      style=""
     />
   </span>
 </div>

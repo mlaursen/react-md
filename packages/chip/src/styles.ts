@@ -36,41 +36,28 @@ const styles = bem("rmd-chip");
 export interface ChipClassNameOptions {
   className?: string;
 
-  /**
-   * @defaultValue `"solid"`
-   */
+  /** @defaultValue `"solid"` */
   theme?: "outline" | "solid";
 
-  /**
-   * @defaultValue `false`
-   */
+  /** @defaultValue `false` */
   disabled?: boolean;
 
-  /**
-   * @defaultValue `false`
-   */
+  /** @defaultValue `false` */
   selected?: boolean;
 
-  /**
-   * @defaultValue `false`
-   */
+  /** @defaultValue `false` */
   selectedThemed?: boolean;
 
-  /**
-   * @defaultValue `false`
-   */
+  /** @defaultValue `false` */
   noninteractive?: boolean;
 
-  /**
-   * @defaultValue `false`
-   */
+  /** @defaultValue `false` */
   leftAddon?: boolean;
 
-  /**
-   * @defaultValue `false`
-   */
+  /** @defaultValue `false` */
   rightAddon?: boolean;
 
+  /** @defaultValue `false` */
   pressed?: boolean;
   pressedClassName?: string;
 }

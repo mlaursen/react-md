@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Link should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<a
+  class="rmd-link"
+  href="/some-url"
+>
+  Content
+</a>
+`;
+
+exports[`Link should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<a
+  class="rmd-link custom-class-name"
+  href="/some-url"
+>
+  Content
+</a>
+`;

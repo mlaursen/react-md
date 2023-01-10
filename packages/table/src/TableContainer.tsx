@@ -3,6 +3,10 @@ import { cnb } from "cnbuilder";
 import type { HTMLAttributes, RefObject } from "react";
 import { createContext, forwardRef, useContext, useMemo } from "react";
 
+/**
+ * @internal
+ * @remarks \@since 6.0.0
+ */
 export interface TableContainerContext {
   exists: boolean;
   containerRef: RefObject<HTMLDivElement>;
@@ -15,10 +19,20 @@ const context = createContext<Readonly<TableContainerContext>>({
 context.displayName = "TableContainer";
 const { Provider } = context;
 
+/**
+ * This is used to implement the sticky header and footer intersection observer
+ * behavior.
+ *
+ * @internal
+ * @remarks \@since 6.0.0
+ */
 export function useTableContainer(): Readonly<TableContainerContext> {
   return useContext(context);
 }
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export function tableContainer({ className }: { className?: string }): string {
   return cnb("rmd-table-container", className);
 }

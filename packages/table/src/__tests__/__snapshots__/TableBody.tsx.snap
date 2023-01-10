@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TableBody should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<tbody
+  class="rmd-tbody"
+  data-testid="body"
+>
+  <tr
+    class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+  >
+    <td
+      class="rmd-table-cell rmd-table-cell--no-wrap"
+    >
+      Cell 1
+    </td>
+  </tr>
+</tbody>
+`;
+
+exports[`TableBody should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<tbody
+  class="rmd-tbody custom-class-name"
+  data-testid="body"
+  style="color: red;"
+>
+  <tr
+    class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+  >
+    <td
+      class="rmd-table-cell rmd-table-cell--no-wrap"
+    >
+      Cell 1
+    </td>
+  </tr>
+</tbody>
+`;
+
+exports[`TableBody should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+<tbody
+  class="rmd-tbody"
+  data-testid="body"
+  style=""
+>
+  <tr
+    class="rmd-tr"
+  >
+    <td
+      class="rmd-table-cell rmd-table-cell--no-wrap"
+    >
+      Cell 1
+    </td>
+  </tr>
+</tbody>
+`;

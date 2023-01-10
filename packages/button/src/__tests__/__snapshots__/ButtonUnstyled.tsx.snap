@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonUnstyled should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<button
+  class="rmd-button-unstyled"
+  type="button"
+>
+  Content
+</button>
+`;
+
+exports[`ButtonUnstyled should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<button
+  class="rmd-button-unstyled custom-class-name"
+  style="color: white;"
+  type="button"
+>
+  Content
+</button>
+`;
+
+exports[`ButtonUnstyled styling utility class should be callable without any arguments 1`] = `"rmd-button-unstyled"`;

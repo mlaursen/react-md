@@ -25,6 +25,8 @@ export interface AvatarProps
    * provide this prop. This should only be used if the `Avatar` is not
    * accompanied by some other component or main content as it will be extra
    * noise for screen readers.
+   *
+   * @defaultValue `""`
    */
   alt?: string;
 

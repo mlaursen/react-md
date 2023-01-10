@@ -1,0 +1,665 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button floating action buttons should allow for custom props to be passed to the wrapper span element 1`] = `
+<span
+  class="rmd-fab rmd-fab--bl custom-class-name"
+  style="z-index: 20;"
+>
+  <button
+    aria-label="Button"
+    class="rmd-button rmd-button--icon rmd-button--contained rmd-button--secondary"
+    type="button"
+  >
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button floating action buttons should default to a secondary themed contained icon button if the floating behavior is enabled 1`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    aria-label="Button"
+    class="rmd-button rmd-button--icon rmd-button--contained rmd-button--secondary"
+    type="button"
+  >
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button floating action buttons should default to a secondary themed contained icon button if the floating behavior is enabled 2`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    aria-label="Button"
+    class="rmd-button rmd-button--icon rmd-button--contained rmd-button--secondary"
+    type="button"
+  >
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button floating action buttons should default to a secondary themed contained icon button if the floating behavior is enabled 3`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    aria-label="Button"
+    class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-primary rmd-button--outline-primary"
+    type="button"
+  >
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button floating action buttons should default to a secondary themed contained icon button if the floating behavior is enabled 4`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--outline"
+    type="button"
+  >
+    <span>
+      Content
+    </span>
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should allow for the different themes 1`] = `
+<button
+  class="rmd-button rmd-button--text"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 2`] = `
+<button
+  class="rmd-button rmd-button--text"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 3`] = `
+<button
+  class="rmd-button rmd-button--text rmd-button--outline"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 4`] = `
+<button
+  class="rmd-button rmd-button--text rmd-button--contained"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 5`] = `
+<button
+  class="rmd-button rmd-button--text rmd-button--text-primary"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 6`] = `
+<button
+  class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-primary rmd-button--outline-primary"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 7`] = `
+<button
+  class="rmd-button rmd-button--text rmd-button--contained rmd-button--primary"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 8`] = `
+<button
+  class="rmd-button rmd-button--text rmd-button--text-secondary"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 9`] = `
+<button
+  class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-secondary rmd-button--outline-secondary"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 10`] = `
+<button
+  class="rmd-button rmd-button--text rmd-button--contained rmd-button--secondary"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 11`] = `
+<button
+  class="rmd-button rmd-button--text rmd-button--text-warning"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 12`] = `
+<button
+  class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-warning rmd-button--outline-warning"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 13`] = `
+<button
+  class="rmd-button rmd-button--text rmd-button--contained rmd-button--warning"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 14`] = `
+<button
+  class="rmd-button rmd-button--text rmd-button--text-error"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 15`] = `
+<button
+  class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-error rmd-button--outline-error"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 16`] = `
+<button
+  class="rmd-button rmd-button--text rmd-button--contained rmd-button--error"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 17`] = `
+<button
+  aria-disabled="true"
+  class="rmd-button rmd-button--text rmd-button--disabled"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 18`] = `
+<button
+  aria-disabled="true"
+  class="rmd-button rmd-button--text rmd-button--disabled rmd-button--outline"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 19`] = `
+<button
+  aria-disabled="true"
+  class="rmd-button rmd-button--text rmd-button--disabled"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 20`] = `
+<button
+  class="rmd-button rmd-button--icon"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 21`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--outline"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 22`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--contained"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 23`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--text-primary"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 24`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-primary rmd-button--outline-primary"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 25`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--contained rmd-button--primary"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 26`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--text-secondary"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 27`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-secondary rmd-button--outline-secondary"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 28`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--contained rmd-button--secondary"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 29`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--text-warning"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 30`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-warning rmd-button--outline-warning"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 31`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--contained rmd-button--warning"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 32`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--text-error"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 33`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-error rmd-button--outline-error"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 34`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--contained rmd-button--error"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 35`] = `
+<button
+  aria-disabled="true"
+  class="rmd-button rmd-button--icon rmd-button--disabled"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 36`] = `
+<button
+  aria-disabled="true"
+  class="rmd-button rmd-button--icon rmd-button--disabled rmd-button--outline"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should allow for the different themes 37`] = `
+<button
+  aria-disabled="true"
+  class="rmd-button rmd-button--icon rmd-button--disabled"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<button
+  class="rmd-button rmd-button--text"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<button
+  class="rmd-button rmd-button--text custom-class-name"
+  style="color: white;"
+  type="button"
+>
+  <span>
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should wrap text children in span elements to enable higher contrast unless the higher contrast is disabled 1`] = `
+<button
+  class="rmd-button rmd-button--text"
+  type="button"
+>
+  Content
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should wrap text children in span elements to enable higher contrast unless the higher contrast is disabled 2`] = `
+<button
+  class="rmd-button rmd-button--text"
+  type="button"
+>
+  <strong>
+    Strong Content
+  </strong>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button styling utility class should be callable without any arguments 1`] = `"rmd-button rmd-button--text"`;

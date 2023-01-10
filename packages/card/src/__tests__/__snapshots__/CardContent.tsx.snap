@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardContent should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<div
+  class="rmd-card__content rmd-card__content--padded rmd-card__content--secondary rmd-card__content--padding-bottom"
+  data-testid="content"
+>
+  Content
+</div>
+`;
+
+exports[`CardContent should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<div
+  class="rmd-card__content rmd-card__content--padded rmd-card__content--secondary rmd-card__content--padding-bottom custom-class-name"
+  data-testid="content"
+  style="color: white;"
+>
+  Content
+</div>
+`;
+
+exports[`CardContent should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+<div
+  class="rmd-card__content rmd-card__content--secondary rmd-card__content--padding-bottom"
+  data-testid="content"
+  style=""
+>
+  Content
+</div>
+`;
+
+exports[`CardContent should apply the correct styling, HTML attributes, and allow a ref 4`] = `
+<div
+  class="rmd-card__content rmd-card__content--padded rmd-card__content--padding-bottom"
+  data-testid="content"
+  style=""
+>
+  Content
+</div>
+`;
+
+exports[`CardContent should apply the correct styling, HTML attributes, and allow a ref 5`] = `
+<div
+  class="rmd-card__content rmd-card__content--padded rmd-card__content--secondary"
+  data-testid="content"
+  style=""
+>
+  Content
+</div>
+`;

@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SkipToMainContent should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<a
+  class="rmd-link rmd-link rmd-link--skip rmd-link--skip-styled"
+  href="#main-id"
+  id="skip-to-main"
+>
+  Skip to main content
+</a>
+`;
+
+exports[`SkipToMainContent should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<a
+  class="rmd-link rmd-link rmd-link--skip rmd-link--skip-styled custom-class-name"
+  href="#main-id"
+  id="skip-to-main"
+  style="opacity: 0.5;"
+>
+  Skip to main content
+</a>
+`;

@@ -1,8 +1,8 @@
 import { render } from "@testing-library/react";
 import type { HTMLAttributes, ReactElement } from "react";
-import type { TypographyType } from "../styles";
 
-import { Typography } from "../Typography";
+import type { TypographyType } from "../Typography";
+import { typography, Typography } from "../Typography";
 
 describe("Typography", () => {
   it("should default to rendering as a paragraph and body-1 styles", () => {
@@ -77,5 +77,12 @@ describe("Typography", () => {
     );
 
     expect(getByTestId("text")).toMatchSnapshot();
+  });
+
+  describe("styling utility class", () => {
+    it("should be callable without any arguments or with a null type", () => {
+      expect(typography()).toMatchSnapshot();
+      expect(typography({ type: null })).toMatchSnapshot();
+    });
   });
 });

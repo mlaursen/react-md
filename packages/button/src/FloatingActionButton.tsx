@@ -1,7 +1,58 @@
+import { bem } from "@react-md/core";
+import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
-import type { FloatingActionButtonClassNameOptions } from "./styles";
-import { fab } from "./styles";
+
+const styles = bem("rmd-fab");
+
+/**
+ * The position within the viewport for the floating action button.
+ *
+ * @remarks \@since 6.0.0 This was renamed from `FABPosition`
+ */
+export type FloatingActionButtonPosition =
+  | "bottom-left"
+  | "bottom-right"
+  | "top-left"
+  | "top-right"
+  | null;
+
+/**
+ * @remarks \@since 6.0.0
+ * @internal
+ */
+export interface FloatingActionButtonClassNameOptions {
+  className?: string;
+
+  /** @defaultValue `null` */
+  position?: FloatingActionButtonPosition;
+
+  /**
+   * @defaultValue `false`
+   */
+  absolute?: boolean;
+}
+
+/**
+ * FAB = Floating Action Button
+ *
+ * @remarks \@since 6.0.0
+ * @internal
+ */
+export function fab(options: FloatingActionButtonClassNameOptions): string {
+  const { className, position = null, absolute = false } = options;
+
+  return cnb(
+    styles({
+      tl: position === "top-left",
+      tr: position === "top-right",
+      bl: position === "bottom-left",
+      br: position === "bottom-right",
+      absolute,
+    }),
+    className
+  );
+}
 
 /** @remarks \@since 6.0.0 */
 export interface FloatingActionButtonProps

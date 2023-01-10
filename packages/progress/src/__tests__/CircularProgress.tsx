@@ -5,43 +5,51 @@ import { CircularProgress } from "../CircularProgress";
 
 describe("CircularProgress", () => {
   it("should render correctly", () => {
-    const { container, rerender } = render(<CircularProgress id="progress" />);
+    const { getByRole, rerender } = render(<CircularProgress />);
 
-    expect(container).toMatchSnapshot();
+    const progress = getByRole("progressbar");
+    expect(progress).toMatchSnapshot();
 
-    rerender(<CircularProgress id="progress" disableCentered={false} />);
-    expect(container).toMatchSnapshot();
+    rerender(<CircularProgress disableCentered={false} />);
+    expect(progress).toMatchSnapshot();
 
-    rerender(<CircularProgress id="progress" disableCentered />);
-    expect(container).toMatchSnapshot();
+    rerender(<CircularProgress disableCentered />);
+    expect(progress).toMatchSnapshot();
+
+    rerender(<CircularProgress id="custom-id" />);
+    expect(progress).toMatchSnapshot();
   });
 
   it("should merge the transform style if it exists", () => {
-    const style: CSSProperties = {
+    const svgStyle: CSSProperties = {
       WebkitTransform: "translateX(20px)",
       transform: "translateX(20px)",
     };
 
-    const { getByRole } = render(
-      <CircularProgress id="progress" style={style} value={20} />
-    );
+    const { getByRole, rerender } = render(<CircularProgress value={20} />);
     const progress = getByRole("progressbar");
-    expect(progress.style.transform).toContain(style.transform);
+    expect(progress).toMatchSnapshot();
+
+    rerender(<CircularProgress value={30} svgStyle={svgStyle} />);
+
+    rerender(
+      <CircularProgress
+        value={20}
+        svgStyle={svgStyle}
+        determinateRotateDegrees={-1}
+      />
+    );
     expect(progress).toMatchSnapshot();
   });
 
   it("should support a small variant", () => {
-    const { getByRole, rerender } = render(
-      <CircularProgress id="small-progress" small />
-    );
+    const { getByRole, rerender } = render(<CircularProgress small />);
     const progress = getByRole("progressbar");
 
     expect(progress.className).toContain("rmd-circular-progress--small");
     expect(progress).toMatchSnapshot();
 
-    rerender(
-      <CircularProgress id="small-circular-progress" small disableCentered />
-    );
+    rerender(<CircularProgress small disableCentered />);
 
     expect(progress.className).toContain("rmd-circular-progress--small");
     expect(progress).toMatchSnapshot();

@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VisualMediaContainer should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<div>
+  <span
+    class="rmd-visual-media-container rmd-visual-media-container--auto"
+  >
+    <img
+      alt=""
+      src="/some-image.png"
+    />
+  </span>
+</div>
+`;
+
+exports[`VisualMediaContainer should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<div>
+  <span
+    class="rmd-visual-media-container rmd-visual-media-container--auto rmd-visual-media-container--full-width"
+  >
+    <img
+      alt=""
+      src="/some-image.png"
+    />
+  </span>
+</div>
+`;
+
+exports[`VisualMediaContainer should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+<div>
+  <span
+    class="rmd-visual-media-container rmd-visual-media-container--auto custom-class-name"
+    style="background-color: orange;"
+  >
+    <img
+      alt=""
+      src="/some-image.png"
+    />
+  </span>
+</div>
+`;
+
+exports[`VisualMediaContainer should apply the correct styling, HTML attributes, and allow a ref 4`] = `
+<div>
+  <span
+    class="rmd-visual-media-container"
+    style=""
+  >
+    <img
+      alt=""
+      src="/some-image.png"
+    />
+  </span>
+</div>
+`;
+
+exports[`VisualMediaContainer should apply the correct styling, HTML attributes, and allow a ref 5`] = `
+<div>
+  <span
+    class="rmd-visual-media-container rmd-visual-media-container--auto rmd-visual-media-container--auto-scale"
+    style=""
+  >
+    <img
+      alt=""
+      src="/some-image.png"
+    />
+  </span>
+</div>
+`;
+
+exports[`VisualMediaContainer should apply the correct styling, HTML attributes, and allow a ref 6`] = `
+<div>
+  <span
+    class="rmd-visual-media-container rmd-visual-media-container--auto rmd-visual-media-container--aspect-ratio rmd-visual-media-container--16-9"
+    style=""
+  >
+    <img
+      alt=""
+      src="/some-image.png"
+    />
+  </span>
+</div>
+`;
+
+exports[`VisualMediaContainer style utility function should be callable without any arguments 1`] = `"rmd-visual-media-container rmd-visual-media-container--auto"`;

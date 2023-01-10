@@ -1,4 +1,7 @@
-import { UserInteractionModeProvider } from "@react-md/core";
+import {
+  ElementInteractionProvider,
+  UserInteractionModeProvider,
+} from "@react-md/core";
 import { fireEvent, render, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import type { ReactElement, Ref } from "react";
@@ -110,6 +113,35 @@ describe("ListItem", () => {
 
   it("should wrap text children in span elements to enable higher contrast", () => {
     const { getByRole, rerender } = render(<Test />);
+    const item = getByRole("button", { name: "Item" });
+    expect(item).toMatchSnapshot();
+
+    rerender(<Test disableTextChildren />);
+    expect(item).toMatchSnapshot();
+
+    rerender(
+      <Test>
+        <div>This is some content</div>
+      </Test>
+    );
+    expect(item).toMatchSnapshot();
+
+    rerender(
+      <Test disableTextChildren>
+        <div>This is some content</div>
+      </Test>
+    );
+    expect(item).toMatchSnapshot();
+  });
+
+  it("should wrap text children in span elements to enable higher contrast unless the higher contrast is disabled", () => {
+    const { getByRole, rerender } = render(<Test />, {
+      wrapper: ({ children }) => (
+        <ElementInteractionProvider disableHigherContrast>
+          {children}
+        </ElementInteractionProvider>
+      ),
+    });
     const item = getByRole("button", { name: "Item" });
     expect(item).toMatchSnapshot();
 

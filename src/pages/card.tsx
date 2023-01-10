@@ -150,7 +150,7 @@ export default function CardPage(): ReactElement {
           </CardContent>
         </Card>
         <DemoHeadingWithDivider>With Actions</DemoHeadingWithDivider>
-        <Card raiseable>
+        <Card raisable>
           <CardHeader>
             <CardTitle>This is a title</CardTitle>
           </CardHeader>

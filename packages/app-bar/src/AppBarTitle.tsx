@@ -10,12 +10,12 @@ const styles = bem("rmd-app-bar-title");
  *   from the edge of the app bar horizontally
  * - `"nav"` - this should be set when there is a nav button before the title so
  *   that the first character in the title will be `4.5rem` (`title-keyline`)
- * - `"title"` - this should be used when the title should align with the list
+ * - `"list"` - this should be used when the title should align with the list
  *   item keyline and there is no nav icon before.
  *
  * @remarks \@since 6.0.0
  */
-export type AppBarTitleKeyline = "small" | "nav" | "title";
+export type AppBarTitleKeyline = "small" | "nav" | "list";
 
 /** @remarks \@since 6.0.0 */
 export interface AppBarTitleClassNameOptions {
@@ -32,7 +32,7 @@ export interface AppBarTitleClassNameOptions {
    *
    * @defaultValue `false`
    */
-  disableNoWrap?: boolean;
+  lineWrap?: boolean;
 }
 
 /**
@@ -42,26 +42,54 @@ export interface AppBarTitleClassNameOptions {
  * @remarks \@since 6.0.0
  */
 export function appBarTitle(options: AppBarTitleClassNameOptions = {}): string {
-  const { className, keyline = "small", disableNoWrap = false } = options;
+  const { className, keyline = "small", lineWrap = false } = options;
   return cnb(
     styles({
-      keyline: keyline == "title",
-      "no-wrap": !disableNoWrap,
+      keyline: keyline == "list",
+      "no-wrap": !lineWrap,
       "nav-keyline": keyline === "nav",
     }),
     className
   );
 }
 
+/**
+ * @remarks \@since 6.0.0 Renamed the `noWrap` prop to `lineWrap` since the
+ * `AppBarTitle` does not line wrap by default.
+ */
 export interface AppBarTitleProps
   extends HTMLAttributes<HTMLHeadingElement>,
     AppBarTitleClassNameOptions {}
 
+/**
+ * @example
+ * Updating the Keyline
+ * ```tsx
+ * import { AppBar, AppBarTitle } from "@react-md/app-bar";
+ * import type { ReactElement } from "react";
+ *
+ * function Example(): ReactElement {
+ *   return (
+ *     <AppBar>
+ *       <AppBarTitle keyline="nav">
+ *         Offset as if there was a nav button to the left
+ *       </AppBarTitle>
+ *     </AppBar>
+ *   );
+ * }
+ * ```
+ *
+ * @remarks
+ * \@since 6.0.0 Renamed the `noWrap` prop to `lineWrap` since the `AppBarTitle`
+ * does not line wrap by default.
+ * \@since 6.0.0 The {@link keyline} prop was changed from a boolean to a type
+ * union of different keylines: {@link AppBarTitleKeyline}
+ */
 export const AppBarTitle = forwardRef<HTMLHeadingElement, AppBarTitleProps>(
   function AppBarTitle(props, ref) {
     const {
-      disableNoWrap = false,
       keyline = "small",
+      lineWrap = false,
       children,
       className,
       ...remaining
@@ -73,8 +101,8 @@ export const AppBarTitle = forwardRef<HTMLHeadingElement, AppBarTitleProps>(
         type="headline-6"
         className={appBarTitle({
           keyline,
+          lineWrap,
           className,
-          disableNoWrap,
         })}
       >
         {children}

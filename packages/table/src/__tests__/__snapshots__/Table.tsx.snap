@@ -1,0 +1,2428 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Table should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<table
+  class="rmd-table"
+>
+  <thead
+    class="rmd-thead"
+  >
+    <tr
+      class="rmd-tr rmd-tr--bordered"
+    >
+      <th
+        class="rmd-table-cell rmd-table-cell--header rmd-table-cell--no-wrap"
+        scope="col"
+      >
+        Header 1
+      </th>
+      <th
+        class="rmd-table-cell rmd-table-cell--header rmd-table-cell--no-wrap"
+        scope="col"
+      >
+        Header 2
+      </th>
+      <th
+        class="rmd-table-cell rmd-table-cell--header rmd-table-cell--no-wrap"
+        scope="col"
+      >
+        Header 3
+      </th>
+    </tr>
+  </thead>
+  <tbody
+    class="rmd-tbody"
+  >
+    <tr
+      class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+    >
+      <td
+        class="rmd-table-cell rmd-table-cell--no-wrap"
+      >
+        Row 1 Cell 1
+      </td>
+      <td
+        class="rmd-table-cell rmd-table-cell--no-wrap"
+      >
+        Row 1 Cell 2
+      </td>
+      <td
+        class="rmd-table-cell rmd-table-cell--no-wrap"
+      >
+        Row 1 Cell 3
+      </td>
+    </tr>
+    <tr
+      class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+    >
+      <td
+        class="rmd-table-cell rmd-table-cell--no-wrap"
+      >
+        Row 2 Cell 1
+      </td>
+      <td
+        class="rmd-table-cell rmd-table-cell--no-wrap"
+      >
+        Row 2 Cell 2
+      </td>
+      <td
+        class="rmd-table-cell rmd-table-cell--no-wrap"
+      >
+        Row 2 Cell 3
+      </td>
+    </tr>
+    <tr
+      class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+    >
+      <td
+        class="rmd-table-cell rmd-table-cell--no-wrap"
+      >
+        Row 3 Cell 1
+      </td>
+      <td
+        class="rmd-table-cell rmd-table-cell--no-wrap"
+      >
+        Row 3 Cell 2
+      </td>
+      <td
+        class="rmd-table-cell rmd-table-cell--no-wrap"
+      >
+        Row 3 Cell 3
+      </td>
+    </tr>
+  </tbody>
+  <tfoot
+    class="rmd-tfoot"
+  >
+    <tr
+      class="rmd-tr rmd-tr--bordered"
+    >
+      <td
+        class="rmd-table-cell rmd-table-cell--no-wrap"
+        colspan="3"
+      >
+        Footer Cell
+      </td>
+    </tr>
+  </tfoot>
+</table>
+`;
+
+exports[`Table should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<table
+  class="rmd-table rmd-table--full-width custom-class-name"
+  style="background-color: orange;"
+>
+  <thead
+    class="rmd-thead"
+  >
+    <tr
+      class="rmd-tr"
+    >
+      <th
+        class="rmd-table-cell rmd-table-cell--header rmd-table-cell--no-wrap"
+        scope="col"
+      >
+        Header 1
+      </th>
+      <th
+        class="rmd-table-cell rmd-table-cell--header rmd-table-cell--no-wrap"
+        scope="col"
+      >
+        Header 2
+      </th>
+      <th
+        class="rmd-table-cell rmd-table-cell--header rmd-table-cell--no-wrap"
+        scope="col"
+      >
+        Header 3
+      </th>
+    </tr>
+  </thead>
+  <tbody
+    class="rmd-tbody"
+  >
+    <tr
+      class="rmd-tr"
+    >
+      <td
+        class="rmd-table-cell rmd-table-cell--no-wrap"
+      >
+        Row 1 Cell 1
+      </td>
+      <td
+        class="rmd-table-cell rmd-table-cell--no-wrap"
+      >
+        Row 1 Cell 2
+      </td>
+      <td
+        class="rmd-table-cell rmd-table-cell--no-wrap"
+      >
+        Row 1 Cell 3
+      </td>
+    </tr>
+    <tr
+      class="rmd-tr"
+    >
+      <td
+        class="rmd-table-cell rmd-table-cell--no-wrap"
+      >
+        Row 2 Cell 1
+      </td>
+      <td
+        class="rmd-table-cell rmd-table-cell--no-wrap"
+      >
+        Row 2 Cell 2
+      </td>
+      <td
+        class="rmd-table-cell rmd-table-cell--no-wrap"
+      >
+        Row 2 Cell 3
+      </td>
+    </tr>
+    <tr
+      class="rmd-tr"
+    >
+      <td
+        class="rmd-table-cell rmd-table-cell--no-wrap"
+      >
+        Row 3 Cell 1
+      </td>
+      <td
+        class="rmd-table-cell rmd-table-cell--no-wrap"
+      >
+        Row 3 Cell 2
+      </td>
+      <td
+        class="rmd-table-cell rmd-table-cell--no-wrap"
+      >
+        Row 3 Cell 3
+      </td>
+    </tr>
+  </tbody>
+  <tfoot
+    class="rmd-tfoot"
+  >
+    <tr
+      class="rmd-tr"
+    >
+      <td
+        class="rmd-table-cell rmd-table-cell--no-wrap"
+        colspan="3"
+      >
+        Footer Cell
+      </td>
+    </tr>
+  </tfoot>
+</table>
+`;
+
+exports[`Table should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+<table
+  class="rmd-table rmd-table--dense"
+  style=""
+>
+  <thead
+    class="rmd-thead rmd-thead--dense"
+  >
+    <tr
+      class="rmd-tr rmd-tr--bordered"
+    >
+      <th
+        class="rmd-table-cell rmd-table-cell--header"
+        scope="col"
+      >
+        Header 1
+      </th>
+      <th
+        class="rmd-table-cell rmd-table-cell--header"
+        scope="col"
+      >
+        Header 2
+      </th>
+      <th
+        class="rmd-table-cell rmd-table-cell--header"
+        scope="col"
+      >
+        Header 3
+      </th>
+    </tr>
+  </thead>
+  <tbody
+    class="rmd-tbody"
+  >
+    <tr
+      class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+    >
+      <td
+        class="rmd-table-cell"
+      >
+        Row 1 Cell 1
+      </td>
+      <td
+        class="rmd-table-cell"
+      >
+        Row 1 Cell 2
+      </td>
+      <td
+        class="rmd-table-cell"
+      >
+        Row 1 Cell 3
+      </td>
+    </tr>
+    <tr
+      class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+    >
+      <td
+        class="rmd-table-cell"
+      >
+        Row 2 Cell 1
+      </td>
+      <td
+        class="rmd-table-cell"
+      >
+        Row 2 Cell 2
+      </td>
+      <td
+        class="rmd-table-cell"
+      >
+        Row 2 Cell 3
+      </td>
+    </tr>
+    <tr
+      class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+    >
+      <td
+        class="rmd-table-cell"
+      >
+        Row 3 Cell 1
+      </td>
+      <td
+        class="rmd-table-cell"
+      >
+        Row 3 Cell 2
+      </td>
+      <td
+        class="rmd-table-cell"
+      >
+        Row 3 Cell 3
+      </td>
+    </tr>
+  </tbody>
+  <tfoot
+    class="rmd-tfoot"
+  >
+    <tr
+      class="rmd-tr rmd-tr--bordered"
+    >
+      <td
+        class="rmd-table-cell"
+        colspan="3"
+      >
+        Footer Cell
+      </td>
+    </tr>
+  </tfoot>
+</table>
+`;
+
+exports[`Table sticky table behavior TableFooter should use an intersection observer to apply a custom className when the table's footer is covering content within the table using the full viewport 1`] = `
+<div>
+  <table
+    class="rmd-table"
+  >
+    <tbody
+      class="rmd-tbody"
+    >
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 1
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 2
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 3
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 4
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 5
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 6
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 7
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 8
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 9
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 10
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 11
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 12
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 13
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 14
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 15
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 16
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 17
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 18
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 19
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 20
+        </td>
+      </tr>
+    </tbody>
+    <tfoot
+      class="rmd-tfoot rmd-tfoot--sticky"
+    >
+      <tr
+        class="rmd-tr rmd-tr--bordered"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Footer Cell
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+`;
+
+exports[`Table sticky table behavior TableFooter should use an intersection observer to apply a custom className when the table's footer is covering content within the table using the full viewport 2`] = `
+<div>
+  <table
+    class="rmd-table"
+  >
+    <tbody
+      class="rmd-tbody"
+    >
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 1
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 2
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 3
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 4
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 5
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 6
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 7
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 8
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 9
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 10
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 11
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 12
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 13
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 14
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 15
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 16
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 17
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 18
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 19
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 20
+        </td>
+      </tr>
+    </tbody>
+    <tfoot
+      class="rmd-tfoot rmd-tfoot--sticky rmd-tfoot--sticky-active"
+    >
+      <tr
+        class="rmd-tr rmd-tr--bordered"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Footer Cell
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+`;
+
+exports[`Table sticky table behavior TableFooter should use an intersection observer to apply a custom className when the table's footer is covering content within the table using the full viewport 3`] = `
+<div>
+  <table
+    class="rmd-table"
+  >
+    <tbody
+      class="rmd-tbody"
+    >
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 1
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 2
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 3
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 4
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 5
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 6
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 7
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 8
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 9
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 10
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 11
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 12
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 13
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 14
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 15
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 16
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 17
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 18
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 19
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 20
+        </td>
+      </tr>
+    </tbody>
+    <tfoot
+      class="rmd-tfoot rmd-tfoot--sticky"
+    >
+      <tr
+        class="rmd-tr rmd-tr--bordered"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Footer Cell
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+`;
+
+exports[`Table sticky table behavior TableFooter should use an intersection observer to apply a custom className when the table's footer is covering content within the table using the table container 1`] = `
+<div>
+  <div
+    class="rmd-table-container"
+  >
+    <table
+      class="rmd-table"
+    >
+      <tbody
+        class="rmd-tbody"
+      >
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 1
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 2
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 3
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 4
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 5
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 6
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 7
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 8
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 9
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 10
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 11
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 12
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 13
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 14
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 15
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 16
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 17
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 18
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 19
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 20
+          </td>
+        </tr>
+      </tbody>
+      <tbody
+        aria-hidden="true"
+      />
+      <tfoot
+        class="rmd-tfoot rmd-tfoot--sticky"
+      >
+        <tr
+          class="rmd-tr rmd-tr--bordered"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Footer Cell
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Table sticky table behavior TableFooter should use an intersection observer to apply a custom className when the table's footer is covering content within the table using the table container 2`] = `
+<div>
+  <div
+    class="rmd-table-container"
+  >
+    <table
+      class="rmd-table"
+    >
+      <tbody
+        class="rmd-tbody"
+      >
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 1
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 2
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 3
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 4
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 5
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 6
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 7
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 8
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 9
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 10
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 11
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 12
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 13
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 14
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 15
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 16
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 17
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 18
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 19
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 20
+          </td>
+        </tr>
+      </tbody>
+      <tbody
+        aria-hidden="true"
+      />
+      <tfoot
+        class="rmd-tfoot rmd-tfoot--sticky"
+      >
+        <tr
+          class="rmd-tr rmd-tr--bordered"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Footer Cell
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Table sticky table behavior TableFooter should use an intersection observer to apply a custom className when the table's footer is covering content within the table using the table container 3`] = `
+<div>
+  <div
+    class="rmd-table-container"
+  >
+    <table
+      class="rmd-table"
+    >
+      <tbody
+        class="rmd-tbody"
+      >
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 1
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 2
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 3
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 4
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 5
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 6
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 7
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 8
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 9
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 10
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 11
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 12
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 13
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 14
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 15
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 16
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 17
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 18
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 19
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 20
+          </td>
+        </tr>
+      </tbody>
+      <tbody
+        aria-hidden="true"
+      />
+      <tfoot
+        class="rmd-tfoot rmd-tfoot--sticky rmd-tfoot--sticky-active"
+      >
+        <tr
+          class="rmd-tr rmd-tr--bordered"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Footer Cell
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Table sticky table behavior TableHeader should use an intersection observer to apply a custom className when the table's header is covering content within the table using the full viewport 1`] = `
+<div>
+  <table
+    class="rmd-table"
+  >
+    <thead
+      class="rmd-thead rmd-thead--sticky"
+    >
+      <tr
+        class="rmd-tr rmd-tr--bordered"
+      >
+        <th
+          class="rmd-table-cell rmd-table-cell--header rmd-table-cell--no-wrap"
+          scope="col"
+        >
+          Header Cell
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="rmd-tbody"
+    >
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 1
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 2
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 3
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 4
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 5
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 6
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 7
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 8
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 9
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 10
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 11
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 12
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 13
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 14
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 15
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 16
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 17
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 18
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 19
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 20
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`Table sticky table behavior TableHeader should use an intersection observer to apply a custom className when the table's header is covering content within the table using the full viewport 2`] = `
+<div>
+  <table
+    class="rmd-table"
+  >
+    <thead
+      class="rmd-thead rmd-thead--sticky rmd-thead--sticky-active"
+    >
+      <tr
+        class="rmd-tr rmd-tr--bordered"
+      >
+        <th
+          class="rmd-table-cell rmd-table-cell--header rmd-table-cell--no-wrap"
+          scope="col"
+        >
+          Header Cell
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="rmd-tbody"
+    >
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 1
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 2
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 3
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 4
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 5
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 6
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 7
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 8
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 9
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 10
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 11
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 12
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 13
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 14
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 15
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 16
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 17
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 18
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 19
+        </td>
+      </tr>
+      <tr
+        class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+      >
+        <td
+          class="rmd-table-cell rmd-table-cell--no-wrap"
+        >
+          Row 20
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`Table sticky table behavior TableHeader should use an intersection observer to apply a custom className when the table's header is covering content within the table using the table container 1`] = `
+<div>
+  <div
+    class="rmd-table-container"
+  >
+    <table
+      class="rmd-table"
+    >
+      <thead
+        class="rmd-thead rmd-thead--sticky"
+      >
+        <tr
+          class="rmd-tr rmd-tr--bordered"
+        >
+          <th
+            class="rmd-table-cell rmd-table-cell--header rmd-table-cell--no-wrap"
+            scope="col"
+          >
+            Header Cell
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        aria-hidden="true"
+      />
+      <tbody
+        class="rmd-tbody"
+      >
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 1
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 2
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 3
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 4
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 5
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 6
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 7
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 8
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 9
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 10
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 11
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 12
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 13
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 14
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 15
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 16
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 17
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 18
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 19
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 20
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Table sticky table behavior TableHeader should use an intersection observer to apply a custom className when the table's header is covering content within the table using the table container 2`] = `
+<div>
+  <div
+    class="rmd-table-container"
+  >
+    <table
+      class="rmd-table"
+    >
+      <thead
+        class="rmd-thead rmd-thead--sticky rmd-thead--sticky-active"
+      >
+        <tr
+          class="rmd-tr rmd-tr--bordered"
+        >
+          <th
+            class="rmd-table-cell rmd-table-cell--header rmd-table-cell--no-wrap"
+            scope="col"
+          >
+            Header Cell
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        aria-hidden="true"
+      />
+      <tbody
+        class="rmd-tbody"
+      >
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 1
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 2
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 3
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 4
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 5
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 6
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 7
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 8
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 9
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 10
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 11
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 12
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 13
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 14
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 15
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 16
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 17
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 18
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 19
+          </td>
+        </tr>
+        <tr
+          class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
+        >
+          <td
+            class="rmd-table-cell rmd-table-cell--no-wrap"
+          >
+            Row 20
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Table styling utility class should be callable without any arguments 1`] = `"rmd-table"`;

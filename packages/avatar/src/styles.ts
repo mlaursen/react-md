@@ -3,6 +3,7 @@ import { cnb } from "cnbuilder";
 
 const styles = bem("rmd-avatar");
 
+/** @remarks \@since 6.0.0 */
 export interface AvatarClassNameOptions {
   className?: string;
 
@@ -18,16 +19,23 @@ export interface AvatarClassNameOptions {
   color?: string;
 }
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export function avatar(options: AvatarClassNameOptions): string {
   const { className, color = "" } = options;
 
   return cnb(styles({ [color]: color }), className);
 }
 
+/** @remarks \@since 6.0.0 */
 export interface AvatarImageClassNameOptions {
   className?: string;
 }
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export function avatarImage(options: AvatarImageClassNameOptions = {}): string {
   const { className } = options;
 

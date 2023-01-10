@@ -3,8 +3,25 @@ import { Typography } from "@react-md/core";
 import { forwardRef } from "react";
 import { cardTitle } from "./styles";
 
-export type CardTitleProps = TypographyProps;
+/**
+ * @remarks \@since 6,0.0 Extends the {@link TypographyProps} and removed the
+ * `small`/`noWrap` props.
+ */
+export interface CardTitleProps extends TypographyProps {
+  /** @defaultValue `"h5"` */
+  as?: TypographyProps["as"];
 
+  /** @defaultValue `"headline-5"` */
+  type?: TypographyProps["type"];
+
+  /** @defaultValue "none" */
+  margin?: TypographyProps["margin"];
+}
+
+/**
+ * @remarks \@since 6.0.0 Extends the {@Link Typography} component and removed
+ * the `small`/`noWrap` props.
+ */
 export const CardTitle = forwardRef<TypographyHTMLElement, CardTitleProps>(
   function CardTitle(props, ref) {
     const {

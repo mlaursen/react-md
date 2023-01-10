@@ -51,3 +51,5 @@ exports[`TextContainer should render correctly and apply the correct class names
   </p>
 </div>
 `;
+
+exports[`TextContainer styling utility class should be callable without any arguments 1`] = `"rmd-text-container rmd-text-container--auto"`;

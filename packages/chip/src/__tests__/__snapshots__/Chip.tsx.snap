@@ -1,0 +1,711 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Chip selectable chips should allow for a custom selectedIcon 1`] = `
+<button
+  class="rmd-chip rmd-chip--solid"
+  type="button"
+>
+  <svg
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--svg rmd-chip__icon"
+    focusable="false"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="m12 21.35-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+    />
+  </svg>
+  <span
+    class="rmd-chip__content"
+  >
+    Chip
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Chip selectable chips should allow for a custom selectedIcon 2`] = `
+<button
+  aria-pressed="true"
+  class="rmd-chip rmd-chip--selected rmd-chip--solid rmd-chip--left-addon"
+  type="button"
+>
+  <svg
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--svg rmd-chip__icon rmd-chip__icon--visible"
+    focusable="false"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="m12 21.35-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+    />
+  </svg>
+  <span
+    class="rmd-chip__content"
+  >
+    Chip
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Chip selectable chips should allow for a custom selectedIcon 3`] = `
+<button
+  class="rmd-chip rmd-chip--solid"
+  type="button"
+>
+  Text
+  <span
+    class="rmd-chip__content"
+  >
+    Chip
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Chip selectable chips should allow for a custom selectedIcon 4`] = `
+<button
+  aria-pressed="true"
+  class="rmd-chip rmd-chip--selected rmd-chip--solid rmd-chip--left-addon"
+  type="button"
+>
+  Text
+  <span
+    class="rmd-chip__content"
+  >
+    Chip
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Chip selectable chips should allow for a custom selectedIcon 5`] = `
+<button
+  class="rmd-chip rmd-chip--solid"
+  type="button"
+>
+  <span
+    class="rmd-chip__content"
+  >
+    Chip
+  </span>
+  Text
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Chip selectable chips should allow for a custom selectedIcon 6`] = `
+<button
+  aria-pressed="true"
+  class="rmd-chip rmd-chip--selected rmd-chip--solid rmd-chip--right-addon"
+  type="button"
+>
+  <span
+    class="rmd-chip__content"
+  >
+    Chip
+  </span>
+  Text
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Chip selectable chips should apply the hidden attribute if the disableIconTransition prop is enabled 1`] = `
+<button
+  class="rmd-chip rmd-chip--solid"
+  type="button"
+>
+  <span
+    class="rmd-chip__content"
+  >
+    Chip
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Chip selectable chips should apply the hidden attribute if the disableIconTransition prop is enabled 2`] = `
+<button
+  aria-pressed="true"
+  class="rmd-chip rmd-chip--themed rmd-chip--solid"
+  type="button"
+>
+  <span
+    class="rmd-chip__content"
+  >
+    Chip
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Chip selectable chips should apply the hidden attribute if the disableIconTransition prop is enabled 3`] = `
+<button
+  class="rmd-chip rmd-chip--solid"
+  type="button"
+>
+  <span
+    class="rmd-chip__content"
+  >
+    Chip
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Chip selectable chips should apply the hidden attribute if the disableIconTransition prop is enabled 4`] = `
+<button
+  aria-pressed="true"
+  class="rmd-chip rmd-chip--themed rmd-chip--solid"
+  type="button"
+>
+  <span
+    class="rmd-chip__content"
+  >
+    Chip
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Chip selectable chips should apply the selected icon when the selectedThemed prop is not true 1`] = `
+<button
+  class="rmd-chip rmd-chip--solid"
+  type="button"
+>
+  <i
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons rmd-chip__icon"
+  >
+    check
+  </i>
+  <span
+    class="rmd-chip__content"
+  >
+    Chip
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Chip selectable chips should apply the selected icon when the selectedThemed prop is not true 2`] = `
+<button
+  aria-pressed="true"
+  class="rmd-chip rmd-chip--selected rmd-chip--solid rmd-chip--left-addon"
+  type="button"
+>
+  <i
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons rmd-chip__icon rmd-chip__icon--visible"
+  >
+    check
+  </i>
+  <span
+    class="rmd-chip__content"
+  >
+    Chip
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Chip selectable chips should apply the selected icon when the selectedThemed prop is not true 3`] = `
+<button
+  class="rmd-chip rmd-chip--solid"
+  type="button"
+>
+  <svg
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--svg"
+    focusable="false"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="m12 21.35-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+    />
+  </svg>
+  <span
+    class="rmd-chip__content"
+  >
+    Chip
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Chip selectable chips should apply the selected icon when the selectedThemed prop is not true 4`] = `
+<button
+  aria-pressed="true"
+  class="rmd-chip rmd-chip--selected rmd-chip--solid rmd-chip--left-addon"
+  type="button"
+>
+  <svg
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--svg"
+    focusable="false"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="m12 21.35-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+    />
+  </svg>
+  <span
+    class="rmd-chip__content"
+  >
+    Chip
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Chip selectable chips should apply the selected icon when the selectedThemed prop is not true 5`] = `
+<button
+  class="rmd-chip rmd-chip--solid rmd-chip--left-addon"
+  type="button"
+>
+  <svg
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--svg"
+    focusable="false"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="m12 21.35-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+    />
+  </svg>
+  <span
+    class="rmd-chip__content"
+  >
+    Chip
+  </span>
+  <i
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons rmd-chip__icon"
+  >
+    check
+  </i>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Chip selectable chips should apply the selected icon when the selectedThemed prop is not true 6`] = `
+<button
+  aria-pressed="true"
+  class="rmd-chip rmd-chip--selected rmd-chip--solid rmd-chip--surrounded"
+  type="button"
+>
+  <svg
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--svg"
+    focusable="false"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="m12 21.35-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+    />
+  </svg>
+  <span
+    class="rmd-chip__content"
+  >
+    Chip
+  </span>
+  <i
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons rmd-chip__icon rmd-chip__icon--visible"
+  >
+    check
+  </i>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Chip selectable chips should apply the selected icon when the selectedThemed prop is not true 7`] = `
+<button
+  class="rmd-chip rmd-chip--solid rmd-chip--right-addon"
+  type="button"
+>
+  <i
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons rmd-chip__icon"
+  >
+    check
+  </i>
+  <span
+    class="rmd-chip__content"
+  >
+    Chip
+  </span>
+  <svg
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--svg"
+    focusable="false"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="m12 21.35-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+    />
+  </svg>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Chip selectable chips should apply the selected icon when the selectedThemed prop is not true 8`] = `
+<button
+  aria-pressed="true"
+  class="rmd-chip rmd-chip--selected rmd-chip--solid rmd-chip--surrounded"
+  type="button"
+>
+  <i
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons rmd-chip__icon rmd-chip__icon--visible"
+  >
+    check
+  </i>
+  <span
+    class="rmd-chip__content"
+  >
+    Chip
+  </span>
+  <svg
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--svg"
+    focusable="false"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="m12 21.35-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+    />
+  </svg>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Chip selectable chips should apply the selected icon when the selectedThemed prop is not true 9`] = `
+<button
+  class="rmd-chip rmd-chip--solid"
+  type="button"
+>
+  <span
+    class="rmd-chip__content"
+  >
+    Chip
+  </span>
+  <svg
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--svg"
+    focusable="false"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="m12 21.35-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+    />
+  </svg>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Chip selectable chips should apply the selected icon when the selectedThemed prop is not true 10`] = `
+<button
+  aria-pressed="true"
+  class="rmd-chip rmd-chip--selected rmd-chip--solid rmd-chip--right-addon"
+  type="button"
+>
+  <span
+    class="rmd-chip__content"
+  >
+    Chip
+  </span>
+  <svg
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--svg"
+    focusable="false"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="m12 21.35-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+    />
+  </svg>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Chip should allow for addons to appear before and after the children 1`] = `
+<button
+  class="rmd-chip rmd-chip--solid rmd-chip--surrounded"
+  type="button"
+>
+  <svg
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--svg"
+    focusable="false"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="m12 21.35-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+    />
+  </svg>
+  <span
+    class="rmd-chip__content"
+  >
+    Content
+  </span>
+  <svg
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--svg"
+    focusable="false"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+    />
+  </svg>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Chip should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<button
+  class="rmd-chip rmd-chip--solid"
+  type="button"
+>
+  <span
+    class="rmd-chip__content"
+  >
+    Chip
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Chip should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<button
+  class="rmd-chip rmd-chip--solid"
+  style="color: white;"
+  type="button"
+>
+  <span
+    class="rmd-chip__content"
+  >
+    Chip
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Chip should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+<button
+  class="rmd-chip rmd-chip--solid rmd-chip--disabled"
+  disabled=""
+  style=""
+  type="button"
+>
+  <span
+    class="rmd-chip__content"
+  >
+    Chip
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Chip should apply the correct styling, HTML attributes, and allow a ref 4`] = `
+<button
+  class="rmd-chip rmd-chip--outline"
+  style=""
+  type="button"
+>
+  <span
+    class="rmd-chip__content"
+  >
+    Chip
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Chip should apply the correct styling, HTML attributes, and allow a ref 5`] = `
+<button
+  class="rmd-chip rmd-chip--outline rmd-chip--disabled"
+  disabled=""
+  style=""
+  type="button"
+>
+  <span
+    class="rmd-chip__content"
+  >
+    Chip
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Chip should apply the pressed class name while raisable 1`] = `
+<button
+  class="rmd-chip rmd-chip--solid rmd-chip--pressed rmd-pressed"
+  type="button"
+>
+  <span
+    class="rmd-chip__content"
+  >
+    Chip
+  </span>
+</button>
+`;
+
+exports[`Chip should apply the pressed class name while raisable 2`] = `
+<button
+  class="rmd-chip rmd-chip--solid"
+  type="button"
+>
+  <span
+    class="rmd-chip__content"
+  >
+    Chip
+  </span>
+</button>
+`;
+
+exports[`Chip should apply the pressed class name while raisable 3`] = `
+<button
+  class="rmd-chip rmd-chip--solid rmd-pressed"
+  type="button"
+>
+  <span
+    class="rmd-chip__content"
+  >
+    Chip
+  </span>
+</button>
+`;
+
+exports[`Chip should apply the pressed class name while raisable 4`] = `
+<button
+  class="rmd-chip rmd-chip--solid"
+  type="button"
+>
+  <span
+    class="rmd-chip__content"
+  >
+    Chip
+  </span>
+</button>
+`;
+
+exports[`Chip should render as a span when the noninteractive prop is enabled 1`] = `
+<span
+  class="rmd-chip rmd-chip--solid rmd-chip--noninteractive"
+  data-testid="chip"
+>
+  <span
+    class="rmd-chip__content"
+  >
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</span>
+`;
+
+exports[`Chip should render as a span when the noninteractive prop is enabled 2`] = `
+<button
+  class="rmd-chip rmd-chip--solid"
+  data-testid="chip"
+  type="button"
+>
+  <span
+    class="rmd-chip__content"
+  >
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Chip should wrap the children in an additional span unless the disableContentWrap prop is enabled 1`] = `
+<button
+  class="rmd-chip rmd-chip--solid"
+  type="button"
+>
+  <span
+    class="rmd-chip__content content-class-name custom-class-name"
+    style="color: red;"
+  >
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Chip should wrap the children in an additional span unless the disableContentWrap prop is enabled 2`] = `
+<button
+  class="rmd-chip rmd-chip--solid"
+  type="button"
+>
+  <span
+    style=""
+  >
+    Content
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;

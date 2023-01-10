@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Overlay should allow for overriding CSS transition options 1`] = `
+<span
+  class="rmd-overlay rmd-overlay--clickable"
+  data-testid="overlay"
+  hidden=""
+/>
+`;
+
+exports[`Overlay should allow for overriding CSS transition options 2`] = `
+<span
+  class="rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-overlay--active"
+  data-testid="overlay"
+/>
+`;
+
+exports[`Overlay should allow for overriding CSS transition options 3`] = `
+<span
+  class="rmd-overlay rmd-overlay--clickable"
+  data-testid="overlay"
+  hidden=""
+/>
+`;
+
+exports[`Overlay should disable the transition if the noOpacity prop is true 1`] = `
+<span
+  class="rmd-overlay rmd-overlay--visible"
+  data-testid="overlay"
+/>
+`;
+
+exports[`Overlay should suport rendering inline if it was visible by default and rendered through ssr 1`] = `
+<div>
+  <button
+    class="rmd-button rmd-button--text"
+    type="button"
+  >
+    <span>
+      Toggle
+    </span>
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+  <span
+    class="rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-overlay--active"
+    data-testid="overlay"
+  />
+</div>
+`;
+
+exports[`Overlay should support rendering inline if disablePortal prop is true 1`] = `
+<div>
+  <span
+    class="rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-overlay--active"
+    data-testid="overlay"
+  />
+</div>
+`;

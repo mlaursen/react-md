@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<div
+  class="rmd-card rmd-card--shadowed"
+  data-testid="card"
+>
+  Content
+</div>
+`;
+
+exports[`Card should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<div
+  class="rmd-card rmd-card--shadowed custom-class-name"
+  data-testid="card"
+  style="color: white;"
+>
+  Content
+</div>
+`;
+
+exports[`Card should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+<div
+  class="rmd-card rmd-card--bordered"
+  data-testid="card"
+  style=""
+>
+  Content
+</div>
+`;
+
+exports[`Card should apply the correct styling, HTML attributes, and allow a ref 4`] = `
+<div
+  class="rmd-card rmd-card--shadowed rmd-card--full-width"
+  data-testid="card"
+  style=""
+>
+  Content
+</div>
+`;

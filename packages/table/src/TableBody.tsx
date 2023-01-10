@@ -1,6 +1,6 @@
+import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useMemo } from "react";
-import { cnb } from "cnbuilder";
 
 import type {
   TableConfig,
@@ -20,8 +20,8 @@ export interface TableBodyProps
  * `TableCell` components with additional styling behavior.
  */
 export const TableBody = forwardRef<HTMLTableSectionElement, TableBodyProps>(
-  function TableBody(
-    {
+  function TableBody(props, ref) {
+    const {
       className,
       children,
       hAlign: propHAlign,
@@ -29,10 +29,9 @@ export const TableBody = forwardRef<HTMLTableSectionElement, TableBodyProps>(
       lineWrap: propLineWrap,
       disableHover: propDisableHover,
       disableBorders: propDisableBorders,
-      ...props
-    },
-    ref
-  ) {
+      ...remaining
+    } = props;
+
     // update the table configuration with the custom overrides for the `<thead>`
     const { dense, hAlign, vAlign, lineWrap, disableHover, disableBorders } =
       useTableConfig({
@@ -58,7 +57,7 @@ export const TableBody = forwardRef<HTMLTableSectionElement, TableBodyProps>(
 
     return (
       <TableConfigProvider value={configuration}>
-        <tbody {...props} ref={ref} className={cnb("rmd-tbody", className)}>
+        <tbody {...remaining} ref={ref} className={cnb("rmd-tbody", className)}>
           {children}
         </tbody>
       </TableConfigProvider>

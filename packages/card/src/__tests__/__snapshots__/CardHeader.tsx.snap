@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardHeader should allow addons before and after the children 1`] = `
+<header
+  class="rmd-card__header rmd-card__header--surrounded"
+  data-testid="header"
+>
+  <img
+    alt=""
+    src="/some-image.png"
+  />
+  <div
+    class="rmd-card__header-content"
+  >
+    <h5
+      class="rmd-typography rmd-typography--headline-5 rmd-typography--no-margin rmd-card__title"
+    >
+      Elizabeth Park
+    </h5>
+    <h6
+      class="rmd-typography rmd-typography--subtitle-2 rmd-typography--no-margin rmd-card__subtitle"
+    >
+      Work contact
+    </h6>
+  </div>
+  <button
+    aria-label="Expand"
+    class="rmd-button rmd-button--icon"
+    type="button"
+  >
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</header>
+`;
+
+exports[`CardHeader should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<header
+  class="rmd-card__header"
+  data-testid="header"
+>
+  <div
+    class="rmd-card__header-content"
+  >
+    Header
+  </div>
+</header>
+`;
+
+exports[`CardHeader should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<header
+  class="rmd-card__header custom-class-name"
+  data-testid="header"
+  style="color: white;"
+>
+  <div
+    class="rmd-card__header-content"
+  >
+    Header
+  </div>
+</header>
+`;
+
+exports[`CardHeader should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+<header
+  class="rmd-card__header"
+  data-testid="header"
+  style=""
+>
+  <div
+    class="rmd-card__header-content custom-class-name"
+    style="color: orange;"
+  >
+    Header
+  </div>
+</header>
+`;

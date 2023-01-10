@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SrOnly should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<div>
+  <span
+    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+  >
+    Some content
+  </span>
+</div>
+`;
+
+exports[`SrOnly should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<div>
+  <span
+    class="rmd-typography rmd-typography--body-1 rmd-sr-only custom-class-name"
+    style="opacity: 0.3;"
+  >
+    Some content
+  </span>
+</div>
+`;
+
+exports[`SrOnly should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+<div>
+  <span
+    class="rmd-typography rmd-typography--body-1 rmd-sr-only rmd-sr-only--focusable"
+    style=""
+    tabindex="0"
+  >
+    Some content
+  </span>
+</div>
+`;
+
+exports[`SrOnly should apply the correct styling, HTML attributes, and allow a ref 4`] = `
+<div>
+  <span
+    class="rmd-typography rmd-typography--body-1 rmd-sr-only rmd-sr-only--focusable"
+    style=""
+    tabindex="-1"
+  >
+    Some content
+  </span>
+</div>
+`;
+
+exports[`SrOnly should apply the correct styling, HTML attributes, and allow a ref 5`] = `
+<div>
+  <h4
+    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+  >
+    Some content
+  </h4>
+</div>
+`;
+
+exports[`SrOnly styling utility class should be callable without any arguments 1`] = `"rmd-sr-only"`;

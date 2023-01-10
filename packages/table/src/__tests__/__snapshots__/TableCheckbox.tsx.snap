@@ -1,0 +1,130 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TableCheckbox should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<td
+  class="rmd-table-cell rmd-table-cell--checkbox rmd-table-cell--no-wrap"
+>
+  <label
+    class="rmd-label rmd-label--gap rmd-label--reversed"
+  >
+    <span
+      class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
+    >
+      <i
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons"
+      >
+        check_box_outline_blank
+      </i>
+      <input
+        aria-label="Select Row"
+        autocomplete="off"
+        class="rmd-hidden-input"
+        id="checkbox-:r0:"
+        type="checkbox"
+        value=""
+      />
+      <span
+        class="rmd-ripple-container"
+      />
+    </span>
+  </label>
+</td>
+`;
+
+exports[`TableCheckbox should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<td
+  class="rmd-table-cell rmd-table-cell--checkbox rmd-table-cell--no-wrap custom-class-name"
+  style="pointer-events: none;"
+>
+  <label
+    class="rmd-label rmd-label--gap rmd-label--reversed"
+  >
+    <span
+      class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
+    >
+      <i
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons"
+      >
+        check_box_outline_blank
+      </i>
+      <input
+        aria-label="Select Row"
+        autocomplete="off"
+        class="rmd-hidden-input"
+        id="checkbox-:r0:"
+        type="checkbox"
+        value=""
+      />
+      <span
+        class="rmd-ripple-container"
+      />
+    </span>
+  </label>
+</td>
+`;
+
+exports[`TableCheckbox should handle the aria-label/aria-labelledby props correctly 1`] = `
+<td
+  class="rmd-table-cell rmd-table-cell--checkbox rmd-table-cell--no-wrap"
+>
+  <label
+    class="rmd-label rmd-label--gap rmd-label--reversed"
+  >
+    <span
+      class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
+    >
+      <i
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons"
+      >
+        check_box_outline_blank
+      </i>
+      <input
+        aria-label="Custom Label"
+        autocomplete="off"
+        class="rmd-hidden-input"
+        id="checkbox-:r2:"
+        type="checkbox"
+        value=""
+      />
+      <span
+        class="rmd-ripple-container"
+      />
+    </span>
+  </label>
+</td>
+`;
+
+exports[`TableCheckbox should handle the aria-label/aria-labelledby props correctly 2`] = `
+<td
+  class="rmd-table-cell rmd-table-cell--checkbox rmd-table-cell--no-wrap"
+>
+  <label
+    class="rmd-label rmd-label--gap rmd-label--reversed"
+  >
+    <span
+      class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
+    >
+      <i
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons"
+      >
+        check_box_outline_blank
+      </i>
+      <input
+        aria-labelledby="another-id"
+        autocomplete="off"
+        class="rmd-hidden-input"
+        id="checkbox-:r2:"
+        type="checkbox"
+        value=""
+      />
+      <span
+        class="rmd-ripple-container"
+      />
+    </span>
+  </label>
+</td>
+`;

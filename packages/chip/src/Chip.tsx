@@ -15,6 +15,10 @@ import type {
 import { cloneElement, forwardRef, isValidElement } from "react";
 import { chip, chipContent, chipIcon } from "./styles";
 
+/**
+ * @remarks \@since 6.0.0 Renamed the `noninteractive` prop to
+ * `noninteractable`.
+ */
 export interface ChipProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * @defaultValue `"solid"`
@@ -128,6 +132,56 @@ export interface ChipProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   contentClassName?: string;
 }
 
+/**
+ * @example
+ * Simple Example
+ * ```tsx
+ * import { Chip } from "@react-md/chip";
+ * import type { ReactElement } from "react";
+ *
+ * function Example(): ReactElement {
+ *   return <Chip>Content</Chip>;
+ * }
+ * ```
+ *
+ * @example
+ * Outlined Example
+ * ```tsx
+ * import { Chip } from "@react-md/chip";
+ * import type { ReactElement } from "react";
+ *
+ * function Example(): ReactElement {
+ *   return <Chip theme="outline">Content</Chip>;
+ * }
+ * ```
+ *
+ * @example
+ * Addons Example
+ * ```tsx
+ * import { Avatar } from "@react-md/avatar";
+ * import { Chip } from "@react-md/chip";
+ * import AddCircleIcon from "@react-md/material-icons/AddCircleIcon";
+ * import type { ReactElement } from "react";
+ *
+ * function Example(): ReactElement {
+ *   return (
+ *     <Chip
+ *       leftAddon={
+ *         <Avatar>
+ *           <img src="https://i.pravatar.cc/40?img=3" alt="" />
+ *         </Avatar>
+ *       }
+ *       rightAddon={<AddCircleIcon />}
+ *     >
+ *       Chip
+ *     </Chip>
+ *   );
+ * }
+ * ```
+ *
+ * @remarks \@since 6.0.0 Renamed the `noninteractable` prop to
+ * `noninteractive`.
+ */
 export const Chip = forwardRef<HTMLButtonElement, ChipProps>(function Chip(
   props,
   ref

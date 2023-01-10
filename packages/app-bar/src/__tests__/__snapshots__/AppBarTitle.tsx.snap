@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppBarTitle should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<h6
+  class="rmd-typography rmd-typography--headline-6 rmd-app-bar-title rmd-app-bar-title--no-wrap"
+>
+  Title
+</h6>
+`;
+
+exports[`AppBarTitle should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<h6
+  class="rmd-typography rmd-typography--headline-6 rmd-app-bar-title rmd-app-bar-title--no-wrap custom-class-name"
+  style="color: aqua;"
+>
+  Title
+</h6>
+`;
+
+exports[`AppBarTitle should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+<h6
+  class="rmd-typography rmd-typography--headline-6 rmd-app-bar-title rmd-app-bar-title--no-wrap rmd-app-bar-title--nav-keyline"
+  style=""
+>
+  Title
+</h6>
+`;
+
+exports[`AppBarTitle should apply the correct styling, HTML attributes, and allow a ref 4`] = `
+<h6
+  class="rmd-typography rmd-typography--headline-6 rmd-app-bar-title rmd-app-bar-title--keyline rmd-app-bar-title--no-wrap"
+  style=""
+>
+  Title
+</h6>
+`;
+
+exports[`AppBarTitle should apply the correct styling, HTML attributes, and allow a ref 5`] = `
+<h6
+  class="rmd-typography rmd-typography--headline-6 rmd-app-bar-title"
+  style=""
+>
+  Title
+</h6>
+`;
+
+exports[`AppBarTitle styling utils should be callable without any arguments 1`] = `"rmd-app-bar-title rmd-app-bar-title--no-wrap"`;

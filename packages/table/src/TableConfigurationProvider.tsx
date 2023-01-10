@@ -41,6 +41,10 @@ export interface TableCellConfiguration {
   vAlign?: TableCellVerticalAlignment;
 
   /**
+   * Set this to `true` to allow `TableCell` content to line wrap. Set this to
+   * `"padded"` to allow `TableCell` content to line wrap and add additional
+   * vertical padding.
+   *
    * @defaultValue `false`
    */
   lineWrap?: boolean | "padded";
@@ -63,12 +67,25 @@ export interface TableCellConfig extends TableCellConfiguration {
 }
 
 export interface TableConfig extends TableRowConfiguration, TableCellConfig {
+  /**
+   * Set this to `true` to decrease the height of all cells within the table.
+   *
+   * @defaultValue `false`
+   */
   dense?: boolean;
 }
 
 export interface TableConfiguration extends TableConfig {
+  /**
+   * Set this to `true` to allow the table to span the full width of the
+   * container element instead of having the width be deteremined by the content
+   * within the table.
+   *
+   * @defaultValue `false`
+   */
   fullWidth?: boolean;
 }
+
 export type TableConfigContext = Required<TableConfig>;
 
 const context = createContext<TableConfigContext>({

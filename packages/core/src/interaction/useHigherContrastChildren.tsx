@@ -80,6 +80,8 @@ export function useHigherContrastChildren(
     return propChildren;
   }
 
+  // Note: This will fail if the child is wrapped in a Fragment, but that use
+  // case doesn't matter to me
   return Children.map(propChildren, (child) => {
     const t = typeof child;
     if (t === "string" || t === "number") {

@@ -27,6 +27,9 @@ const config: Config = {
     "^@react-md/material-icons$": [
       "<rootDir>/packages/material-icons/src/index.ts",
     ],
+    "^@react-md/material-icons/(.*)": [
+      "<rootDir>/packages/material-icons/src/$1",
+    ],
     "^@react-md/menu$": ["<rootDir>/packages/menu/src/index.ts"],
     "^@react-md/overlay$": ["<rootDir>/packages/overlay/src/index.ts"],
     "^@react-md/progress$": ["<rootDir>/packages/progress/src/index.ts"],
@@ -39,6 +42,7 @@ const config: Config = {
 
   testPathIgnorePatterns: ["prev\\/", "\\.next", "public\\/"],
   modulePathIgnorePatterns: ["prev\\/"],
+  moduleDirectories: ["node_modules", "<rootDir>"],
 
   watchPlugins: [
     "jest-watch-typeahead/filename",
@@ -66,6 +70,7 @@ const config: Config = {
 
     // TODO: Uncomment these lines once I figure out how the documentation site
     // will work
+    "!<rootDir>/src/**/*",
     // "<rootDir>/src/**/*.{ts,tsx}",
     // "!<rootDir>/src/pages/**/*",
 
@@ -76,6 +81,7 @@ const config: Config = {
     // index.ts files are always `export * from "./fileOrFolder"`. I might be
     // able to remove this one I start testing the documentation site
     "!<rootDir>/**/index.ts",
+    "!<rootDir>/**/types.ts",
   ],
 };
 

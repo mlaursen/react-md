@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import { createRef } from "react";
 
-import { TextContainer } from "../TextContainer";
+import { textContainer, TextContainer } from "../TextContainer";
 import { Typography } from "../Typography";
 
 describe("TextContainer", () => {
@@ -61,5 +61,11 @@ describe("TextContainer", () => {
     render(<TextContainer ref={ref} />);
 
     expect(ref.current).toBeInstanceOf(HTMLDivElement);
+  });
+
+  describe("styling utility class", () => {
+    it("should be callable without any arguments", () => {
+      expect(textContainer()).toMatchSnapshot();
+    });
   });
 });

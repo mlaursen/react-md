@@ -19,7 +19,7 @@ export default function AppBarPage(): ReactElement {
         <AppBarTitle keyline="nav">Title</AppBarTitle>
       </AppBar>
       <AppBar>
-        <AppBarTitle keyline="title">Title</AppBarTitle>
+        <AppBarTitle keyline="list">Title</AppBarTitle>
         <Button buttonType="icon">
           <SearchIcon />
         </Button>
@@ -28,7 +28,7 @@ export default function AppBarPage(): ReactElement {
         </Button>
       </AppBar>
       <AppBar theme="secondary">
-        <AppBarTitle keyline="title">Title</AppBarTitle>
+        <AppBarTitle keyline="list">Title</AppBarTitle>
         <Button buttonType="icon">
           <SearchIcon />
         </Button>
@@ -37,7 +37,7 @@ export default function AppBarPage(): ReactElement {
         </Button>
       </AppBar>
       <AppBar theme="surface">
-        <AppBarTitle keyline="title">Title</AppBarTitle>
+        <AppBarTitle keyline="list">Title</AppBarTitle>
         <Button buttonType="icon">
           <SearchIcon />
         </Button>
@@ -46,7 +46,7 @@ export default function AppBarPage(): ReactElement {
         </Button>
       </AppBar>
       <AppBar theme="clear">
-        <AppBarTitle keyline="title">Title</AppBarTitle>
+        <AppBarTitle keyline="list">Title</AppBarTitle>
         <Button buttonType="icon">
           <SearchIcon />
         </Button>
@@ -56,7 +56,7 @@ export default function AppBarPage(): ReactElement {
       </AppBar>
       <AppBar stacked>
         <AppBar as="div">
-          <AppBarTitle keyline="title">Title</AppBarTitle>
+          <AppBarTitle keyline="list">Title</AppBarTitle>
           <Button buttonType="icon">
             <SearchIcon />
           </Button>
@@ -65,7 +65,7 @@ export default function AppBarPage(): ReactElement {
           </Button>
         </AppBar>
         <AppBar as="div">
-          <AppBarTitle keyline="title">Title</AppBarTitle>
+          <AppBarTitle keyline="list">Title</AppBarTitle>
           <Button buttonType="icon">
             <SearchIcon />
           </Button>

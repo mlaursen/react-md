@@ -3,12 +3,41 @@ import type {
   CSSTransitionComponentProps,
   TransitionTimeout,
 } from "@react-md/core";
-import { Portal, useCSSTransition, useSsr } from "@react-md/core";
+import { bem, Portal, useCSSTransition, useSsr } from "@react-md/core";
+import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
 
-import type { OverlayClassNameOptions } from "./styles";
-import { overlay } from "./styles";
+const styles = bem("rmd-overlay");
+
+/** @remarks \@since 6.0.0 */
+export interface OverlayClassNameOptions {
+  className?: string;
+
+  visible: boolean;
+
+  /** @defaultValue `false` */
+  clickable?: boolean;
+
+  /** @defaultValue `false` */
+  absolute?: boolean;
+}
+
+/**
+ * @remarks \@since 6.0.0
+ */
+export function overlay(options: OverlayClassNameOptions): string {
+  const { visible, absolute = false, clickable = false, className } = options;
+
+  return cnb(
+    styles({
+      visible,
+      clickable,
+      absolute,
+    }),
+    className
+  );
+}
 
 /** @remarks \@since 2.4.0 */
 export const DEFAULT_OVERLAY_TIMEOUT: TransitionTimeout = 150;
@@ -67,20 +96,19 @@ export interface OverlayProps
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {
- *   const {
- *     toggle,
- *     disable: onRequestClose
- *     toggled: visible,
- *   } = useToggle(false);
+ *   const { toggle, disable, toggled: visible } = useToggle(false);
  *
  *   return (
  *     <>
  *       <Button onClick={toggle}>Toggle</Button>
- *       <Overlay visible={visible} onRequestClose={onRequestClose} />
+ *       <Overlay visible={visible} onClick={disable} />
  *     </>
  *   );
  * }
  * ```
+ *
+ * @remarks \@since 6.0.0 Removed the `onRequestClose` prop in favor of using
+ * the `onClick` prop instead.
  */
 export const Overlay = forwardRef<HTMLSpanElement, OverlayProps>(
   function Overlay(props, nodeRef) {

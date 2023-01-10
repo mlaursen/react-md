@@ -106,3 +106,7 @@ exports[`Typography should render as the correct element based on the typography
   data-testid="text"
 />
 `;
+
+exports[`Typography styling utility class should be callable without any arguments or with a null type 1`] = `"rmd-typography rmd-typography--body-1"`;
+
+exports[`Typography styling utility class should be callable without any arguments or with a null type 2`] = `"rmd-typography"`;

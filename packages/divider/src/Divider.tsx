@@ -6,10 +6,25 @@ import { divider } from "./styles";
 
 export type DividerElement = HTMLHRElement | HTMLDivElement;
 
+/**
+ * @remarks \@since 6.0.0 Extends the {@Link DividerClassNameOptions}
+ */
 export interface DividerProps
   extends HTMLAttributes<DividerElement>,
     DividerClassNameOptions {}
 
+/**
+ * @example
+ * Simple Example
+ * ```tsx
+ * import { Divider } from "@react-md/divider";
+ * import type {ReactElement} from "react";
+ *
+ * function Example(): ReactElement {
+ *   return  <Divider />;
+ * }
+ * ```
+ */
 export const Divider = forwardRef<DividerElement, DividerProps>(
   function Divider(props, ref) {
     const {
