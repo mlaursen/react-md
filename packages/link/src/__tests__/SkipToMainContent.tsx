@@ -60,21 +60,6 @@ describe("SkipToMainContent", () => {
     );
   });
 
-  it("should throw an error if the found main element is not focusable", () => {
-    // hide thrown error in test reports
-    jest.spyOn(console, "error").mockImplementation(() => {});
-    expect(() =>
-      render(
-        <>
-          <SkipToMainContent mainId="main-id" />
-          <main id="main-id" />
-        </>
-      )
-    ).toThrow(
-      'The main element with id "main-id" is not focusable so the "SkipToMainContent" component will do nothing. Add a `tabIndex={-1}` to the element to fix this error.'
-    );
-  });
-
   it("should not throw an error if the mainId cannot be found for production", () => {
     // this is caused by next defining process.env.NODE_ENV as readonly 'development' | 'production' | 'test'
     // @ts-expect-error

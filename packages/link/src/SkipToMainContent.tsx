@@ -53,10 +53,6 @@ export const SkipToMainContent = forwardRef<
           message += `\nHowever, a "<main>" element was found with an id of "${foundMainId}". Should this be the "mainId" for the "SkipToMainContent" component?`;
         }
         throw new Error(message);
-      } else if (main.closest(PROGRAMMATICALLY_FOCUSABLE) !== main) {
-        throw new Error(
-          `The main element with id "${mainId}" is not focusable so the "SkipToMainContent" component will do nothing. Add a \`tabIndex={-1}\` to the element to fix this error.`
-        );
       }
     }
   }, [mainId]);
