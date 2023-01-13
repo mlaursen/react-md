@@ -7,25 +7,20 @@ const styles = bem("rmd-avatar");
 export interface AvatarClassNameOptions {
   className?: string;
 
-  /**
-   * An optional color to apply to the avatar. This will apply a className of
-   * `rmd-avatar--${color}`, so only the keys from the `$rmd-avatar-colors` Map
-   * are supported by default. It is recommended to create custom colors using
-   * the `rmd-avatar-theme-update-var` mixin with custom class names if the
-   * default colors aren't extensive enough.
-   *
-   * @defaultValue `""`
-   */
+  /** @defaultValue `""` */
   color?: string;
+
+  /** @defaultValue `"avatar"` */
+  size?: "avatar" | "icon";
 }
 
 /**
  * @remarks \@since 6.0.0
  */
 export function avatar(options: AvatarClassNameOptions): string {
-  const { className, color = "" } = options;
+  const { className, color = "", size } = options;
 
-  return cnb(styles({ [color]: color }), className);
+  return cnb(styles({ [color]: color, icon: size === "icon" }), className);
 }
 
 /** @remarks \@since 6.0.0 */

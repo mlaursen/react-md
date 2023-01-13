@@ -5,11 +5,19 @@ import { forwardRef } from "react";
 import type { AvatarClassNameOptions } from "./styles";
 import { avatar, avatarImage } from "./styles";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-avatar-background-color"?: string;
+    "--rmd-avatar-color"?: string;
+    "--rmd-avatar-border-color"?: string;
+    "--rmd-avatar-size"?: string | number;
+    "--rmd-avatar-font-size"?: string | number;
+  }
+}
+
 export type AvatarImgAttributes = ImgHTMLAttributes<HTMLImageElement>;
 
-export interface AvatarProps
-  extends HTMLAttributes<HTMLSpanElement>,
-    AvatarClassNameOptions {
+export interface AvatarProps extends HTMLAttributes<HTMLSpanElement> {
   /**
    * This should be an image `src` attribute to create an avatar from. When this
    * prop is defined, you should not add any children to the avatar as the
@@ -52,6 +60,22 @@ export interface AvatarProps
    * @remarks \@since 2.2.0
    */
   imgProps?: PropsWithRef<AvatarImgAttributes, HTMLImageElement>;
+
+  /**
+   * An optional color to apply to the avatar. This will apply a className of
+   * `rmd-avatar--${color}`, so only the keys from the `$rmd-avatar-colors` Map
+   * are supported by default. It is recommended to create custom colors using
+   * the `rmd-avatar-theme-update-var` mixin with custom class names if the
+   * default colors aren't extensive enough.
+   *
+   * @defaultValue `""`
+   */
+  color?: string;
+
+  /**
+   * @defaultValue `"avatar"`
+   */
+  size?: "avatar" | "icon";
 }
 
 /**
@@ -68,6 +92,7 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(function Avatar(
     className,
     children,
     src,
+    size = "avatar",
     alt = "",
     color = "",
     imgProps,
@@ -89,7 +114,11 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(function Avatar(
   }
 
   return (
-    <span {...remaining} ref={ref} className={avatar({ color, className })}>
+    <span
+      {...remaining}
+      ref={ref}
+      className={avatar({ color, size, className })}
+    >
       {img}
       {children}
     </span>

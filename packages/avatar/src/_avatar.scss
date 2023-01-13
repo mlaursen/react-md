@@ -1,8 +1,10 @@
 @use "sass:map";
+@use "sass:math";
 @use "@react-md/core";
 @use "@react-md/icon";
 
 $disable-icon: false !default;
+$disable-icon-size: false !default;
 $disable-image: false !default;
 $disable-auto-image: false !default;
 
@@ -12,6 +14,7 @@ $line-height: map.get(core.$subtitle-1-styles, line-height) !default;
 $border-radius: 50% !default;
 $size: 2.5rem !default;
 $font-size: 1.5rem !default;
+$icon-size-scale: math.div(icon.$size, $size) !default;
 
 $colors: (
   red: core.$red-a-700 core.$red-50,
@@ -113,6 +116,12 @@ $var-lookup: (
     justify-content: center;
     line-height: $line-height;
     overflow: hidden;
+
+    @if not $disable-icon-size {
+      &--icon {
+        transform: scale($icon-size-scale);
+      }
+    }
 
     @if not $disable-image {
       &__image {
