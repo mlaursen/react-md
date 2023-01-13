@@ -20,6 +20,13 @@ import { useResizingTextArea } from "./useResizingTextArea";
 const styles = bem("rmd-textarea");
 const containerStyles = bem("rmd-textarea-container");
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-form-textarea-height"?: string | number;
+    "--rmd-form-textarea-padding"?: string | number;
+  }
+}
+
 export interface TextAreaClassNameOptions extends TextFieldClassNameOptions {
   className?: string;
 
@@ -284,12 +291,10 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
         messageProps={messageProps}
       >
         <TextFieldContainer
-          style={
-            {
-              ...style,
-              "--rmd-form-textarea-height": height,
-            } as CSSProperties
-          }
+          style={{
+            ...style,
+            "--rmd-form-textarea-height": height,
+          }}
           className={cnb(
             containerStyles({
               animate: !disableTransition && resize == "auto",

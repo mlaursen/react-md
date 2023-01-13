@@ -7,7 +7,7 @@ import { FormMessageContainer } from "./FormMessageContainer";
 import { useFormTheme } from "./FormThemeProvider";
 import { Label } from "./Label";
 import { TextFieldContainer } from "./TextFieldContainer";
-import type { AutoCompleteValue, FormFieldOptions } from "./types";
+import type { FormFieldOptions, UserAgentAutoCompleteProps } from "./types";
 
 const styles = bem("rmd-text-field");
 
@@ -68,7 +68,13 @@ export type TextFieldAttributes = Omit<
   "type"
 >;
 
-export interface TextFieldProps extends TextFieldAttributes, FormFieldOptions {
+/**
+ * @remarks \@since 6.0.0 Removed the `containerRef` prop.
+ */
+export interface TextFieldProps
+  extends TextFieldAttributes,
+    UserAgentAutoCompleteProps,
+    FormFieldOptions {
   /**
    * @defaultValue `"text-field-" + useId()`
    */
@@ -99,46 +105,9 @@ export interface TextFieldProps extends TextFieldAttributes, FormFieldOptions {
   type?: SupportedInputTypes;
 
   /**
-   * Set this to enable additional autocompletion suggestions for a user for
-   * different form fields. Using this prop will update the {@link name} and
-   * {@link autoComplete} to default to this value.
-   *
-   * @example
-   * ```tsx
-   * <Form>
-   *   <TextField
-   *     label="Enter your credit card number"
-   *     autoCompleteValue="cc-number"
-   *     {...creditCardProps}
-   *     inputMode="number"
-   *   />
-   *   <TextField
-   *     label="Name on card"
-   *     autoCompleteValue="cc-name"
-   *     {...creditCardNameProps}
-   *   />
-   *   <TextField
-   *     label="Security code"
-   *     autoCompleteValue="cc-csc"
-   *     {...securityCodeProps}
-   *     inputMode="number"
-   *   />
-   *   <Button type="submit">Submit</Button>
-   * </Form>
-   * ```
-   *
-   * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values
-   * @see {@link AutoCompleteValue}
-   * @remarks \@since 6.0.0
-   */
-  autoCompleteValue?: AutoCompleteValue;
-
-  /**
-   * Optional props to provide to the `TextFieldContainer` component. There
-   * probably isn't any real use for this prop other than if you need to add a
-   * `ref` for some DOM behavior.
-   *
-   * @see {@link TextField} for the component + prop structure
+   * Optional props to provide to the {@link TextFieldContainer} component.
+   * There probably isn't any real use for this prop other than if you need to
+   * add a `ref` for some DOM behavior.
    */
   containerProps?: PropsWithRef<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 }

@@ -2,6 +2,7 @@ import type { PropsWithRef } from "@react-md/core";
 import type {
   CSSProperties,
   HTMLAttributes,
+  InputHTMLAttributes,
   LabelHTMLAttributes,
   ReactNode,
 } from "react";
@@ -60,6 +61,7 @@ export interface FormComponentStates {
 
 /**
  * @remarks \@since 6.0.0
+ * @see https://html.spec.whatwg.org/multipage/forms.html#autofill
  * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values
  */
 export type AutoCompleteValue =
@@ -69,6 +71,7 @@ export type AutoCompleteValue =
   | "honorific-prefix"
   | "given-name"
   | "additional-name"
+  | "family-name"
   | "honorific-suffix"
   | "nickname"
   | "email"
@@ -113,8 +116,64 @@ export type AutoCompleteValue =
   | "tek-area-code"
   | "tel-local"
   | "tel-extension"
+  | "impp"
   | "url"
   | "photo";
+
+/**
+ * @remarks \@since 6.0.0
+ */
+export interface UserAgentAutoCompleteProps {
+  /**
+   * Set this to enable additional autocompletion suggestions for a user for
+   * different form fields. Using this prop will update the
+   * {@link InputAutocompletePropsname} and {@link autoComplete} to default to
+   * this value.
+   *
+   * @example
+   * ```tsx
+   * <Form>
+   *   <TextField
+   *     label="Enter your credit card number"
+   *     autoCompleteValue="cc-number"
+   *     {...creditCardProps}
+   *     inputMode="number"
+   *   />
+   *   <TextField
+   *     label="Name on card"
+   *     autoCompleteValue="cc-name"
+   *     {...creditCardNameProps}
+   *   />
+   *   <TextField
+   *     label="Security code"
+   *     autoCompleteValue="cc-csc"
+   *     {...securityCodeProps}
+   *     inputMode="number"
+   *   />
+   *   <Button type="submit">Submit</Button>
+   * </Form>
+   * ```
+   *
+   * @see https://html.spec.whatwg.org/multipage/forms.html#autofill
+   * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values
+   * @see {@link AutoCompleteValue}
+   * @see {@link autoComplete}
+   * @see {@link UserAgentAutoCompleteProps.name}
+   */
+  autoCompleteValue?: AutoCompleteValue;
+
+  /**
+   * @see {@link autoCompleteValue}
+   * @defaultValue `autoCompleteValue`
+   */
+  autoComplete?: InputHTMLAttributes<HTMLInputElement>["autoComplete"];
+
+  /**
+   * @see {@link autoCompleteValue}
+   * @defaultValue `autoCompleteValue`
+   */
+  name?: string;
+}
 
 export interface FormMessageClassNameOptions {
   className?: string;

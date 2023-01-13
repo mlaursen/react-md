@@ -13,7 +13,7 @@ import { FormMessageContainer } from "./FormMessageContainer";
 import { useFormTheme } from "./FormThemeProvider";
 import { Label } from "./Label";
 import { TextFieldContainer } from "./TextFieldContainer";
-import type { FormFieldOptions } from "./types";
+import type { FormFieldOptions, UserAgentAutoCompleteProps } from "./types";
 
 const styles = bem("rmd-native-select");
 const containerStyles = bem("rmd-native-select-container");
@@ -42,6 +42,7 @@ export function nativeSelect(
 
 export interface NativeSelectProps
   extends SelectHTMLAttributes<HTMLSelectElement>,
+    UserAgentAutoCompleteProps,
     FormFieldOptions {
   /**
    * A custom dropdown icon to use instead of the browser's default select
@@ -94,6 +95,13 @@ export interface NativeSelectProps
    * text and requiring a value to be selected.
    */
   children: ReactNode;
+
+  /**
+   * Optional props to provide to the {@link TextFieldContainer} component.
+   * There probably isn't any real use for this prop other than if you need to
+   * add a `ref` for some DOM behavior.
+   */
+  containerProps?: PropsWithRef<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 }
 
 /**
@@ -155,6 +163,9 @@ export const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
       labelClassName,
       selectStyle,
       selectClassName,
+      autoCompleteValue,
+      autoComplete = autoCompleteValue,
+      name = autoCompleteValue,
       dense = false,
       error = false,
       active = false,
@@ -168,6 +179,7 @@ export const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
       underlineDirection: propUnderlineDirection,
       messageProps,
       messageContainerProps,
+      containerProps,
       children,
       ...remaining
     } = props;
@@ -186,6 +198,7 @@ export const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
         messageProps={messageProps}
       >
         <TextFieldContainer
+          {...containerProps}
           style={style}
           className={cnb(
             containerStyles({
@@ -213,6 +226,8 @@ export const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
             {...remaining}
             id={id}
             ref={ref}
+            autoComplete={autoComplete}
+            name={name}
             disabled={disabled}
             style={selectStyle}
             className={nativeSelect({
