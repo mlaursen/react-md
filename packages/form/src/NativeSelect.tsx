@@ -55,27 +55,6 @@ export interface NativeSelectProps
   icon?: ReactNode;
 
   /**
-   * The {@link icon} is wrapped in a `<span>` element to apply some styles, so
-   * this prop can be used to add additional styles or attributes to that
-   * element if needed.
-   *
-   * @example
-   * ```tsx
-   * <NativeSelect
-   *   {...selectProps}
-   *   iconProps={{
-   *     ref: spanRef,
-   *     style: {{
-   *       backgroundColor: 'red',
-   *     }},
-   *     className: "some-custom-class-name",
-   *   }}
-   * />
-   * ```
-   */
-  iconProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>;
-
-  /**
    * This applies custom inline styles to the `<select>` element since the
    * `style` prop is applied to the container element instead.
    */
@@ -156,7 +135,6 @@ export const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
       style,
       className,
       icon: propIcon,
-      iconProps,
       label,
       labelProps,
       labelStyle,
@@ -172,7 +150,7 @@ export const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
       inline = false,
       stretch = false,
       leftAddon,
-      rightAddon,
+      rightAddon: propRightAddon,
       disableLeftAddonStyles = false,
       disableRightAddonStyles = false,
       theme: propTheme,
@@ -191,6 +169,11 @@ export const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
     });
     const icon = useIcon("dropdown", propIcon);
     const underlined = theme === "underline" || theme === "filled";
+
+    let rightAddon = propRightAddon;
+    if (typeof propRightAddon === "undefined") {
+      rightAddon = icon;
+    }
 
     return (
       <FormMessageContainer
@@ -251,14 +234,6 @@ export const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
             >
               {label}
             </Label>
-          )}
-          {!multiple && icon && (
-            <span
-              {...iconProps}
-              className={cnb(styles("icon"), iconProps?.className)}
-            >
-              {icon}
-            </span>
           )}
         </TextFieldContainer>
       </FormMessageContainer>

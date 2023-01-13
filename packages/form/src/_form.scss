@@ -22,7 +22,6 @@ $disable-text-field-addon: $disable-text-field and $disable-password and
   $disable-textarea !default;
 $disable-select: false !default;
 $disable-native-select: false !default;
-$disable-native-select-icon: false !default;
 $disable-native-select-multiple: false !default;
 $disable-checkbox: false !default;
 $disable-radio: false !default;
@@ -999,16 +998,7 @@ $var-lookup: (
   .rmd-native-select {
     @include _text-field-base-styles;
 
-    @if not $disable-native-select-icon {
-      &--icon {
-        appearance: none;
-      }
-
-      &__icon {
-        display: inline-flex;
-        pointer-events: none;
-      }
-    }
+    appearance: none;
   }
 }
 
