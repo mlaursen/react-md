@@ -1,9 +1,13 @@
 import { useResizeObserver } from "@react-md/core";
-import type { ChangeEventHandler, RefCallback } from "react";
+import type { ChangeEventHandler, RefCallback, RefObject } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 // this is the default of 1.5rem line-height in the styles
 const DEFAULT_LINE_HEIGHT = "24";
+
+const noop = (): void => {
+  // do nothing
+};
 
 /**
  * A textarea is normally resizable in browsers by default by dragging the
@@ -31,22 +35,10 @@ export type TextAreaResize =
 
 /** @internal */
 export interface ResizingTextAreaOptions {
-  id?: string;
-  onChange?: ChangeEventHandler<HTMLTextAreaElement>;
-
-  /**
-   * @see {@link TextAreaResize}
-   * @defaultValue `"auto"`
-   */
-  resize?: TextAreaResize;
-
-  /**
-   * The maximum number of rows a textarea can expand to before showing a
-   * scrollbar. When this is set to `-1`, there will be no limit.
-   *
-   * @defaultValue `-1`
-   */
-  maxRows?: number;
+  resize: TextAreaResize;
+  maxRows: number;
+  onChange: ChangeEventHandler<HTMLTextAreaElement> | undefined;
+  containerRef: RefObject<HTMLDivElement>;
 }
 
 /** @internal */
@@ -61,7 +53,7 @@ export interface ResizingTextAreaReturnValue {
 export function useResizingTextArea(
   options: ResizingTextAreaOptions
 ): ResizingTextAreaReturnValue {
-  const { maxRows = -1, resize = "auto", onChange } = options;
+  const { maxRows, resize, onChange = noop, containerRef } = options;
 
   const maskRef = useRef<HTMLTextAreaElement>(null);
   const [height, setHeight] = useState<number>();
@@ -74,11 +66,16 @@ export function useResizingTextArea(
 
   const updateHeight = useCallback(() => {
     const mask = maskRef.current;
-    if (!mask) {
+    const container = containerRef.current;
+    if (!mask || !container) {
       return;
     }
 
-    let nextHeight = mask.scrollHeight;
+    const containerStyles = window.getComputedStyle(container);
+    const borderHeight =
+      parseFloat(containerStyles.borderTopWidth) +
+      parseFloat(containerStyles.borderBottomWidth);
+    let nextHeight = mask.scrollHeight + borderHeight;
     /* istanbul ignore if */
     if (maxRows > 0) {
       const lineHeight = parseFloat(
@@ -96,8 +93,8 @@ export function useResizingTextArea(
       }
     }
 
-    setHeight(nextHeight);
-  }, [maxRows, scrollable]);
+    setHeight(nextHeight + 2);
+  }, [containerRef, maxRows, scrollable]);
 
   const maskRefCallback = useResizeObserver({
     ref: maskRef,
@@ -111,7 +108,7 @@ export function useResizingTextArea(
     scrollable,
     onChange(event) {
       const mask = maskRef.current;
-      onChange?.(event);
+      onChange(event);
       if (event.isPropagationStopped() || !mask || resize !== "auto") {
         return;
       }

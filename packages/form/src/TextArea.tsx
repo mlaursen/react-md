@@ -6,7 +6,7 @@ import type {
   HTMLAttributes,
   TextareaHTMLAttributes,
 } from "react";
-import { forwardRef } from "react";
+import { forwardRef, useRef } from "react";
 import { FormMessageContainer } from "./FormMessageContainer";
 import { useFormTheme } from "./FormThemeProvider";
 import { Label } from "./Label";
@@ -194,11 +194,13 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       underlineDirection: propUnderlineDirection,
     });
     const [areaRef, areaRefCallback] = useEnsuredRef(ref);
+    const containerRef = useRef<HTMLDivElement>(null);
 
     const { maskRef, height, onChange, scrollable } = useResizingTextArea({
       maxRows,
       resize,
       onChange: propOnChange,
+      containerRef,
     });
 
     let { placeholder = "" } = props;
@@ -291,6 +293,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
         messageProps={messageProps}
       >
         <TextFieldContainer
+          ref={containerRef}
           style={{
             ...style,
             "--rmd-form-textarea-height": height,
