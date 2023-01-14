@@ -159,11 +159,17 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
       onTouchStart,
       onTouchEnd,
       onTouchMove,
-      tabIndex = disabled ? -1 : 0,
+      tabIndex: propTabIndex,
       children: propChildren,
       presentational = role === "presentation",
       ...remaining
     } = props;
+
+    let tabIndex = propTabIndex;
+    if (!presentational && typeof tabIndex === "undefined") {
+      tabIndex = disabled ? -1 : 0;
+    }
+
     const { pressedClassName, rippleContainerProps, handlers } =
       useElementInteraction({
         onBlur,
@@ -177,7 +183,7 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
         onTouchStart,
         onTouchEnd,
         onTouchMove,
-        disabled,
+        disabled: disabled || presentational,
       });
     const children = useHigherContrastChildren(
       propChildren,

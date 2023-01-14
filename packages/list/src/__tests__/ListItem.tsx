@@ -266,4 +266,14 @@ describe("ListItem", () => {
     expect(ref.current).toBeInstanceOf(HTMLSpanElement);
     expect(item).toMatchSnapshot();
   });
+
+  it("should not allow presentational items to be interactable", async () => {
+    const { getByRole } = render(<Test role="presentation" />);
+
+    const item = getByRole("presentation");
+    expect(item).not.toHaveAttribute("tabIndex");
+
+    await userEvent.click(item);
+    expect(item.querySelector(".rmd-ripple")).toBeNull();
+  });
 });

@@ -3,7 +3,7 @@ import { render } from "@testing-library/react";
 import { createRef } from "react";
 
 import type { ListElement, ListProps } from "../List";
-import { List } from "../List";
+import { list, List } from "../List";
 
 describe("List", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {
@@ -48,5 +48,11 @@ describe("List", () => {
 
     expect(() => getByRole("none")).toThrow();
     expect(() => getByRole("menu")).not.toThrow();
+  });
+
+  describe("styling utility class", () => {
+    it("should be callable without any arguments", () => {
+      expect(list()).toMatchSnapshot();
+    });
   });
 });
