@@ -1,4 +1,4 @@
-import { useReducer, useRef, useState } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
 import { useSsr } from "../SsrProvider";
 import { useEnsuredRef } from "../useEnsuredRef";
 import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect";
@@ -148,7 +148,7 @@ export function useTransition<E extends HTMLElement>(
   const { appearing, rendered, stage } = state;
 
   const isFirstRender = useRef(true);
-  useIsomorphicLayoutEffect(() => {
+  useEffect(() => {
     const {
       appear,
       timeout,
