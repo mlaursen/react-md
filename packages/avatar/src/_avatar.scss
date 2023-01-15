@@ -14,7 +14,8 @@ $line-height: map.get(core.$subtitle-1-styles, line-height) !default;
 $border-radius: 50% !default;
 $size: 2.5rem !default;
 $font-size: 1.5rem !default;
-$icon-size-scale: math.div(icon.$size, $size) !default;
+$icon-sized-size: icon.get-var(size) !default;
+$icon-sized-font-size: 0.75rem !default;
 
 $colors: (
   red: core.$red-a-700 core.$red-50,
@@ -119,7 +120,9 @@ $var-lookup: (
 
     @if not $disable-icon-size {
       &--icon {
-        transform: scale($icon-size-scale);
+        @include set-var(size, $icon-sized-size);
+
+        font-size: $icon-sized-font-size;
       }
     }
 
