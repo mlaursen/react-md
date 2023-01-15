@@ -69,4 +69,4 @@ export const LIGHT_BG_THEMES = new Set([
   "vs",
 ]);
 
-export type PrismTheme = typeof PRISM_THEMES[number];
+export type PrismTheme = (typeof PRISM_THEMES)[number];

@@ -28,5 +28,5 @@ export const ICON_CATEGORIES = [
   "toggle",
 ] as const;
 
-export type IconType = typeof ICON_TYPES[number];
-export type IconCategory = typeof ICON_CATEGORIES[number];
+export type IconType = (typeof ICON_TYPES)[number];
+export type IconCategory = (typeof ICON_CATEGORIES)[number];

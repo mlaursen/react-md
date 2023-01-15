@@ -14,7 +14,7 @@ import { useState } from "react";
 
 const options = ["undefined", "true", "false"] as const;
 
-type TemporaryBehavior = typeof options[number];
+type TemporaryBehavior = (typeof options)[number];
 
 export function ConfigurableExample(): ReactElement {
   const {

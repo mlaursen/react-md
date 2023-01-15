@@ -10,7 +10,7 @@ const decorations = [
   "overline",
   "strike-through",
 ] as const;
-type Decoration = typeof decorations[number];
+type Decoration = (typeof decorations)[number];
 
 const getDecoration = (decoration: Decoration): TextDecoration | undefined => {
   if (decoration == "none") {

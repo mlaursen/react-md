@@ -233,5 +233,9 @@ export const states = [
   },
 ] as const;
 
-export type StateName = typeof states[number]["name"];
-export type StateAbbreviation = typeof states[number]["abbreviation"];
+export type StateName = (typeof states)[number]["name"];
+export type StateAbbreviation = (typeof states)[number]["abbreviation"];
+export interface State {
+  name: StateName;
+  abbreviation: StateAbbreviation;
+}
