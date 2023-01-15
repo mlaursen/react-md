@@ -275,7 +275,6 @@ export function useElementInteraction<E extends HTMLElement>(
             return;
           }
 
-          event.stopPropagation();
           dispatch({
             type: "press",
             style: getRippleStyle(event, true),
@@ -298,8 +297,6 @@ export function useElementInteraction<E extends HTMLElement>(
           ) {
             return;
           }
-
-          event.stopPropagation();
 
           // prevent text selection on double click
           // https://stackoverflow.com/a/43321596
@@ -326,7 +323,6 @@ export function useElementInteraction<E extends HTMLElement>(
           }
 
           holding.current = false;
-          event.stopPropagation();
           dispatch({ type: "release" });
         },
         [isInteractionDisabled, onMouseUp]
@@ -344,7 +340,6 @@ export function useElementInteraction<E extends HTMLElement>(
           }
 
           holding.current = false;
-          event.stopPropagation();
           dispatch({ type: "cancel" });
         },
         [isInteractionDisabled, onMouseLeave, userMode]
@@ -418,7 +413,6 @@ export function useElementInteraction<E extends HTMLElement>(
           }
 
           holding.current = false;
-          event.stopPropagation();
           dispatch({ type: "release" });
         },
         [isInteractionDisabled, onKeyUp, userMode]
@@ -431,7 +425,6 @@ export function useElementInteraction<E extends HTMLElement>(
           }
 
           holding.current = true;
-          event.stopPropagation();
           let style: RippleStyle | undefined;
           if (mode === "ripple") {
             style = getRippleStyle(event, false);
@@ -449,7 +442,6 @@ export function useElementInteraction<E extends HTMLElement>(
           }
 
           holding.current = false;
-          event.stopPropagation();
           dispatch({ type: "release" });
         },
         [isInteractionDisabled, onTouchEnd]
@@ -462,7 +454,6 @@ export function useElementInteraction<E extends HTMLElement>(
           }
 
           holding.current = false;
-          event.stopPropagation();
           dispatch({ type: "cancel" });
         },
         [isInteractionDisabled, onTouchMove]
