@@ -6,7 +6,8 @@ import type { FocusableIndexOptions, TabIndexBehavior } from "./types";
  * @internal
  */
 export const isElementDisabled = (element: HTMLElement): boolean =>
-  element.getAttribute("disabled") !== null || element.ariaDisabled === "true";
+  element.getAttribute("disabled") !== null ||
+  element.getAttribute("aria-disabled") === "true";
 
 /**
  * @remarks \@since 5.0.0

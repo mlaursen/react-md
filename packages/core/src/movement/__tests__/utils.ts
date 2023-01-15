@@ -16,10 +16,10 @@ disabledButton.id = "button-2";
 disabledButton.disabled = true;
 const ariaDisabledButton = document.createElement("button");
 ariaDisabledButton.id = "button-3";
-ariaDisabledButton.ariaDisabled = "true";
+ariaDisabledButton.setAttribute("aria-disabled", "true");
 const ariaDisabledFalseButton = document.createElement("button");
 ariaDisabledFalseButton.id = "button-4";
-ariaDisabledFalseButton.ariaDisabled = "false";
+ariaDisabledFalseButton.setAttribute("aria-disabled", "false");
 
 const input = document.createElement("input");
 input.id = "input-1";
@@ -31,11 +31,11 @@ disabledInput.disabled = true;
 const ariaDisabledInput = document.createElement("input");
 ariaDisabledInput.id = "input-3";
 ariaDisabledInput.type = "text";
-ariaDisabledInput.ariaDisabled = "true";
+ariaDisabledInput.setAttribute("aria-disabled", "true");
 const ariaDisabledFalseInput = document.createElement("input");
 ariaDisabledFalseInput.id = "input-4";
 ariaDisabledFalseInput.type = "text";
-ariaDisabledFalseInput.ariaDisabled = "false";
+ariaDisabledFalseInput.setAttribute("aria-disabled", "false");
 
 const select = document.createElement("select");
 select.id = "select-1";
@@ -44,10 +44,10 @@ disabledSelect.id = "select-2";
 disabledSelect.disabled = true;
 const ariaDisabledSelect = document.createElement("select");
 ariaDisabledSelect.id = "select-3";
-ariaDisabledSelect.ariaDisabled = "true";
+ariaDisabledSelect.setAttribute("aria-disabled", "true");
 const ariaDisabledFalseSelect = document.createElement("select");
 ariaDisabledFalseSelect.id = "select-4";
-ariaDisabledFalseSelect.ariaDisabled = "false";
+ariaDisabledFalseSelect.setAttribute("aria-disabled", "false");
 
 const textarea = document.createElement("textarea");
 textarea.id = "textarea-1";
@@ -56,16 +56,16 @@ disabledTextarea.id = "textarea-2";
 disabledTextarea.disabled = true;
 const ariaDisabledTextarea = document.createElement("textarea");
 ariaDisabledTextarea.id = "textarea-3";
-ariaDisabledTextarea.ariaDisabled = "true";
+ariaDisabledTextarea.setAttribute("aria-disabled", "true");
 const ariaDisabledFalseTextarea = document.createElement("textarea");
 ariaDisabledFalseTextarea.id = "textarea-4";
-ariaDisabledFalseTextarea.ariaDisabled = "false";
+ariaDisabledFalseTextarea.setAttribute("aria-disabled", "false");
 
 const span = document.createElement("span");
 const ariaDisabledSpan = document.createElement("span");
-ariaDisabledSpan.ariaDisabled = "true";
+ariaDisabledSpan.setAttribute("aria-disabled", "true");
 const ariaDisabledFalseSpan = document.createElement("span");
-ariaDisabledFalseSpan.ariaDisabled = "false";
+ariaDisabledFalseSpan.setAttribute("aria-disabled", "false");
 
 describe("isElementDisabled", () => {
   it("should correctly identify disabled elements", () => {
