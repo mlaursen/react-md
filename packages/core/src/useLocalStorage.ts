@@ -197,12 +197,13 @@ export function useLocalStorage<T>(
   } = options;
 
   const ssr = useSsr();
+  const [initialValue] = useState(defaultValue);
   const [value, setStoredValue] = useState<T>(() => {
     if (ssr) {
-      return defaultValue;
+      return initialValue;
     }
 
-    const value = getItem(key, defaultValue, deserializer);
+    const value = getItem(key, initialValue, deserializer);
     if (!manual) {
       setItem(key, value, serializer);
     }
@@ -215,7 +216,7 @@ export function useLocalStorage<T>(
     manual,
     serializer,
     deserializer,
-    defaultValue,
+    defaultValue: initialValue,
   } as const);
   useIsomorphicLayoutEffect(() => {
     config.current = {
@@ -224,7 +225,7 @@ export function useLocalStorage<T>(
       manual,
       serializer,
       deserializer,
-      defaultValue,
+      defaultValue: initialValue,
     };
   });
 
