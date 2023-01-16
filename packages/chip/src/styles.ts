@@ -86,7 +86,7 @@ export function chip(options: ChipClassNameOptions = {}): string {
       solid: theme === "solid",
       outline: theme === "outline",
       disabled,
-      noninteractive: noninteractive,
+      noninteractive,
       "left-addon": leftAddon && !rightAddon,
       "right-addon": !leftAddon && rightAddon,
       surrounded: leftAddon && rightAddon,

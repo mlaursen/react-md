@@ -1,4 +1,3 @@
-import { PROGRAMMATICALLY_FOCUSABLE } from "@react-md/core";
 import type { ReactNode } from "react";
 import { forwardRef, useEffect, useRef } from "react";
 import type { LinkProps } from "./Link";

@@ -16,11 +16,14 @@ export interface ListboxContext {
    * selected or not.
    */
   currentValue: string | number | null;
+
+  disableSelectedIcon: boolean;
 }
 
 const context = createContext<ListboxContext>({
   inputRef: { current: null },
   currentValue: null,
+  disableSelectedIcon: false,
 });
 
 /**

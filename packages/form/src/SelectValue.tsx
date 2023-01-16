@@ -8,7 +8,9 @@ const styles = bem("rmd-select-value");
 /**
  * @remarks \@since 6.0.0
  */
-export type SelectValueProps = Partial<OptionProps>;
+export interface SelectValueProps extends Partial<OptionProps> {
+  disableAddon: boolean;
+}
 
 /**
  * This component is used to render the current option.
@@ -17,7 +19,7 @@ export type SelectValueProps = Partial<OptionProps>;
  * @internal
  */
 export function SelectValue(props: SelectValueProps): ReactElement {
-  const { leftAddon, rightAddon, children: propChildren } = props;
+  const { leftAddon, disableAddon, children: propChildren } = props;
 
   let children = propChildren;
   // when the children are a string or number, wrap it in additional span so
@@ -28,9 +30,8 @@ export function SelectValue(props: SelectValueProps): ReactElement {
 
   return (
     <div className={cnb(styles())}>
-      {leftAddon}
+      {!disableAddon && leftAddon}
       {children}
-      {rightAddon}
     </div>
   );
 }

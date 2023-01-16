@@ -1,12 +1,12 @@
 import { bem, useEnsuredId } from "@react-md/core";
 import type { TextIconSpacingProps } from "@react-md/icon";
 import { icon, TextIconSpacing, useIcon } from "@react-md/icon";
-import { getListItemHeight } from "@react-md/list";
+import { getListItemHeight, ListItemText } from "@react-md/list";
 import type { MenuItemProps } from "@react-md/menu";
 import { MenuItem } from "@react-md/menu";
 import { cnb } from "cnbuilder";
 import type { ReactNode } from "react";
-import { forwardRef } from "react";
+import { forwardRef, Fragment } from "react";
 
 import { useListboxContext } from "./useListboxProvider";
 import { triggerManualChangeEvent } from "./utils";
@@ -121,7 +121,7 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>(function Option(
     onClick = noop,
     className,
     selectedIcon: propSelectedIcon,
-    unselectedIcon = DEFAULT_OPTION_UNSELECTED_ICON,
+    unselectedIcon: propUnselectedIcon,
     selectedIconAfter = false,
     textIconSpacingProps,
     leftAddon: propLeftAddon,
@@ -132,33 +132,47 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>(function Option(
     rightAddonClassName,
     secondaryText,
     height: propHeight,
+    disableTextChildren: propDisableTextChildren,
     ...remaining
   } = props;
 
   const id = useEnsuredId(propId, "option");
-  const { inputRef, currentValue } = useListboxContext();
+  const { inputRef, currentValue, disableSelectedIcon } = useListboxContext();
   const selected = value === currentValue;
-  const selectedIcon = useIcon("selected", propSelectedIcon);
+  const selectedIcon = useIcon(
+    "selected",
+    disableSelectedIcon ? null : propSelectedIcon
+  );
+  const unselectedIcon = disableSelectedIcon
+    ? null
+    : propUnselectedIcon ?? DEFAULT_OPTION_UNSELECTED_ICON;
   const icon = selected ? selectedIcon : unselectedIcon;
 
   let leftAddon = propLeftAddon;
   let rightAddon = propRightAddon;
   let children = propChildren;
+  let disableTextChildren = propDisableTextChildren;
   if (!selectedIconAfter && icon) {
     leftAddon = icon;
     if (propLeftAddon) {
+      disableTextChildren = true;
+      const Wrapper = propDisableTextChildren ? Fragment : ListItemText;
+
       children = (
         <TextIconSpacing {...textIconSpacingProps} icon={propLeftAddon}>
-          {children}
+          <Wrapper>{children}</Wrapper>
         </TextIconSpacing>
       );
     }
   } else if (icon) {
     rightAddon = icon;
     if (propRightAddon) {
+      disableTextChildren = true;
+      const Wrapper = propDisableTextChildren ? Fragment : ListItemText;
+
       children = (
         <TextIconSpacing {...textIconSpacingProps} icon={propRightAddon}>
-          {children}
+          <Wrapper>{children}</Wrapper>
         </TextIconSpacing>
       );
     }
@@ -199,6 +213,7 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>(function Option(
         rightAddon === icon && "rmd-option__icon",
         rightAddonClassName
       )}
+      disableTextChildren={disableTextChildren}
     >
       {children}
     </MenuItem>

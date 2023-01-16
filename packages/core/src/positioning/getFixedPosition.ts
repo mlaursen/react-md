@@ -81,12 +81,6 @@ export function getFixedPosition(options: FixedPositionOptions): FixedPosition {
   const container = findSizingContainer(options.container);
 
   if (process.env.NODE_ENV !== "production") {
-    if (widthType !== "auto" && anchor.x !== "center") {
-      throw new Error(
-        'Unable to use a calculated width when the horizontal anchor is not `"center"`.'
-      );
-    }
-
     if (preventOverlap && anchor.y !== "above" && anchor.y !== "below") {
       throw new Error(
         'Unable to prevent overlap when the vertical anchor is not `"above"` or `"below"`'

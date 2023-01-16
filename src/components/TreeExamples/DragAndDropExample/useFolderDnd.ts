@@ -29,7 +29,7 @@ export function useFolderDnd(
 
   const [{ isDragging }, drag, preview] = useDrag(() => ({
     type: "FOLDER",
-    item: item,
+    item,
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),

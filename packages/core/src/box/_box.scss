@@ -135,7 +135,7 @@ $box-var-lookup: (
       }
 
       @each $value in $box-justify-content {
-        &--justify-#{$value} {
+        &--justify-#{utils.str-replace($value, "space-", "")} {
           justify-content: $value;
         }
       }

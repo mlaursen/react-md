@@ -166,6 +166,22 @@ export interface SelectProps<Value extends string>
   menuProps?: Omit<MenuProps, "visible" | "onRequestClose" | "fixedTo">;
 
   /**
+   * Set this to `true` to update all the `Option` components to no longer
+   * render an icon while selected.
+   *
+   * @defaultValue `false`
+   */
+  disableSelectedIcon?: boolean;
+
+  /**
+   * Set this to `true` to prevent the current option from rendering the
+   * `leftAddon` in the `TextFieldContainer`.
+   *
+   * @defaultValue `false`
+   */
+  disableValueAddon?: boolean;
+
+  /**
    * This should be the available `Option`s for the select to choose from. It
    * can also contain `OptGroup` or any other elements but only clicking on an
    * `Option` component will update the value.
@@ -217,6 +233,8 @@ export function Select<Value extends string>(
     rightAddon: propRightAddon,
     disableLeftAddonStyles = false,
     disableRightAddonStyles = false,
+    disableValueAddon = false,
+    disableSelectedIcon = false,
     theme: propTheme,
     underlineDirection: propUnderlineDirection,
     messageProps,
@@ -287,8 +305,9 @@ export function Select<Value extends string>(
     () => ({
       inputRef,
       currentValue: typeof value === "undefined" ? currentValue : value,
+      disableSelectedIcon,
     }),
-    [currentValue, inputRef, value]
+    [currentValue, disableSelectedIcon, inputRef, value]
   );
 
   return (
@@ -403,7 +422,7 @@ export function Select<Value extends string>(
             show();
           }}
         >
-          <SelectValue {...currentOption} />
+          <SelectValue disableAddon={disableValueAddon} {...currentOption} />
           <input
             aria-hidden
             autoComplete={autoComplete}

@@ -1081,8 +1081,13 @@ $var-lookup: (
 
   .rmd-native-select {
     @include _text-field-base-styles;
+    @include core.text-overflow;
 
     appearance: none;
+
+    &[multiple] {
+      overflow: auto;
+    }
   }
 }
 

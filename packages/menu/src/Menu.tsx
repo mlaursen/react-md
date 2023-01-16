@@ -17,6 +17,7 @@ import {
   useUserInteractionMode,
 } from "@react-md/core";
 import type { ListElement, ListProps } from "@react-md/list";
+import { cnb } from "cnbuilder";
 import type { CSSProperties, HTMLAttributes } from "react";
 import { forwardRef, useEffect, useRef } from "react";
 import type {
@@ -216,6 +217,18 @@ export interface MenuProps
    * @internal
    */
   getDefaultFocusedIndex?: GetDefaultFocusedIndex;
+
+  /**
+   * Custom style that should be applied to the menu only while not rendered
+   * within a sheet since the {@link style} would be applied to both versions.
+   */
+  menuStyle?: CSSProperties;
+
+  /**
+   * Custom class name that should be applied only while not rendered within a
+   * sheet.
+   */
+  menuClassName?: string;
 }
 
 /**
@@ -249,6 +262,8 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
       sheetProps,
       sheetStyle,
       sheetClassName,
+      menuStyle,
+      menuClassName,
       disableElevation = false,
       temporary = true,
       tabIndex = role === "listbox" ? 0 : -1,
@@ -402,7 +417,7 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
     const { ref, style, callbacks } = useFixedPositioning({
       ...transitionOptions,
       onEnter,
-      style: propStyle,
+      style: isSheet ? propStyle : menuStyle,
       fixedTo,
       anchor: getDefaultAnchor({
         anchor,
@@ -431,7 +446,7 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
     });
     const { rendered, disablePortal, elementProps } = useScaleTransition({
       nodeRef: ref,
-      className,
+      className: cnb(!isSheet && menuClassName, className),
       transitionIn: visible,
       vertical: !horizontal,
       temporary,

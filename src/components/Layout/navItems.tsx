@@ -70,6 +70,7 @@ const routes: readonly LayoutNavigationItem[] = [
       { name: "TextField", pathname: "/textfield" },
       { name: "Password", pathname: "/password" },
       { name: "TextArea", pathname: "/textarea" },
+      { name: "NativeSelect", pathname: "/native-select" },
       { name: "Select", pathname: "/select" },
       { name: "FileInput", pathname: "/fileinput" },
       { name: "Checkbox", pathname: "/checkbox" },
