@@ -20,6 +20,7 @@ export function label(options: LabelClassNameOptions): string {
     disabled = false,
     floating = false,
     inactive = false,
+    floatingActive = active,
   } = options;
 
   return cnb(
@@ -34,7 +35,7 @@ export function label(options: LabelClassNameOptions): string {
       reversed: !stacked && reversed,
       "stacked-reversed": stacked && reversed,
       "floating-dense": floating && dense,
-      "floating-active": floating && active,
+      "floating-active": floating && floatingActive,
       "floating-inactive": floating && inactive,
     }),
     className
@@ -64,6 +65,7 @@ export const Label = forwardRef<HTMLLabelElement, LabelProps>(function Label(
     disabled = false,
     floating = false,
     inactive = false,
+    floatingActive = active,
     className,
     children,
     ...remaining
@@ -82,6 +84,7 @@ export const Label = forwardRef<HTMLLabelElement, LabelProps>(function Label(
         reversed,
         disabled,
         floating,
+        floatingActive,
         inactive,
         className,
       })}

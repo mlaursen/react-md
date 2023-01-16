@@ -266,7 +266,7 @@ export function useRadioGroup<V extends string | number>(
       setError(false);
       setValue(initial.current);
     }, []),
-    value: value,
+    value,
     setValue,
     getRadioProps(radioValue) {
       const checked = value === radioValue;

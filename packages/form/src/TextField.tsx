@@ -63,7 +63,11 @@ export type SupportedInputTypes =
   | "color"
   | "search";
 
-export type TextFieldAttributes = Omit<
+/**
+ * @remarks \@since 6.0.0 Renamed from `TextFieldAttributes` to
+ * `TextFieldInputAttributes`
+ */
+export type TextFieldInputAttributes = Omit<
   InputHTMLAttributes<HTMLInputElement>,
   "type"
 >;
@@ -72,7 +76,7 @@ export type TextFieldAttributes = Omit<
  * @remarks \@since 6.0.0 Removed the `containerRef` prop.
  */
 export interface TextFieldProps
-  extends TextFieldAttributes,
+  extends TextFieldInputAttributes,
     UserAgentAutoCompleteProps,
     FormFieldOptions {
   /**

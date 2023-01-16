@@ -380,7 +380,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
         if (tabIndexBehavior !== "virtual") {
           focused.focus();
         } else {
-          focused.scrollIntoView({ block: "center" });
+          focused.scrollIntoView({ block: "nearest" });
         }
 
         onFocusChange({

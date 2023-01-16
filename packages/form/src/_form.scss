@@ -1,8 +1,10 @@
 @use "sass:map";
+@use "sass:math";
 @use "sass:color";
 @use "@react-md/core";
 @use "@react-md/button";
 @use "@react-md/icon";
+@use "@react-md/list";
 @use "@react-md/progress";
 @use "@react-md/tooltip";
 
@@ -21,6 +23,7 @@ $disable-password: $disable-text-field !default;
 $disable-text-field-addon: $disable-text-field and $disable-password and
   $disable-textarea !default;
 $disable-select: false !default;
+$disable-option: $disable-select !default;
 $disable-native-select: false !default;
 $disable-native-select-multiple: false !default;
 $disable-checkbox: false !default;
@@ -138,6 +141,16 @@ $password-visibility-toggle-spacing: 0.25rem !default;
 $native-select-addon-top: 1rem !default;
 $native-select-multiple-padding: 0.75rem !default;
 
+$option-selected-icon-size: 1rem !default;
+$option-selected-styles: (
+  --rmd-icon-color: currentcolor,
+  background-color: core.$blue-900,
+  color: core.$white,
+) !default;
+$option-padding-left: list.$item-horizontal-padding -
+  math.div(icon.$size - $option-selected-icon-size, 2) !default;
+$option-selected-icon-spacing: $option-padding-left !default;
+
 $input-toggle-border-radius: 50% !default;
 $input-toggle-padding: 0.5em !default;
 $input-toggle-small-size: 1rem !default;
@@ -200,6 +213,10 @@ $slider-container-padding: $slider-thumb-size * 0.5 !default;
 $slider-container-addon-spacing: $slider-thumb-size !default;
 $slider-transition-duration: core.$linear-duration !default;
 $slider-transition-timing-function: core.$linear-timing-function !default;
+
+// internal variable helpers
+$_disable-text-field-container: $disable-text-field and $disable-password and
+  $disable-textarea and $disable-select and $disable-native-select;
 
 $var-lookup: (
   error-color: (
@@ -480,7 +497,13 @@ $var-lookup: (
     transition-property: background-color, color, font-size, transform;
     transition-duration: core.$linear-duration;
 
-    &--active {
+    $active-selector: "&--active";
+    @if not $_disable-text-field-container {
+      $active-selector: $active-selector +
+        ", .rmd-text-field-container:focus-within &";
+    }
+
+    #{$active-selector} {
       @include use-var(color, focused-color);
     }
 
@@ -534,7 +557,8 @@ $var-lookup: (
       }
       @if not $disable-native-select {
         $floating-active-selector: $floating-active-selector +
-          ", .rmd-native-select + &--floating";
+          ", .rmd-native-select[multiple] + &--floating" +
+          ", .rmd-native-select:not(:invalid) + &--floating";
       }
 
       #{$floating-active-selector} {
@@ -759,7 +783,7 @@ $var-lookup: (
       @if not $disable-text-field-addon {
         $addon-offset: "#{icon.get-var(size)} + #{$text-field-underlined-label-left-offset * 2}";
         @if $text-field-underlined-padding {
-          $addon-offset: "#{$addon-offset} + #{$text-field-underline-padding}";
+          $addon-offset: "#{$addon-offset} + #{$text-field-underlined-padding}";
         }
 
         &--underline-left-addon {
@@ -948,27 +972,87 @@ $var-lookup: (
 }
 
 @mixin select-styles {
-  .rmd-select-input {
-    opacity: 0;
-    // position: absolute;
+  .rmd-select-container {
+    outline-style: none;
   }
 
   .rmd-select-value {
+    @include _text-field-base-styles;
+
     align-items: center;
     display: flex;
-    min-width: 20rem;
-    // position: absolute;
+    gap: 0.5rem;
+    position: absolute;
+    white-space: nowrap;
+
+    &__v {
+      @include core.text-overflow;
+    }
   }
 
-  .rmd-listbox {
-    overflow: auto;
+  .rmd-select {
+    opacity: 0;
+    pointer-events: none;
 
-    &--temporary {
-      @include core.box-shadow(8);
-      background-color: core.get-theme-var(surface-color);
-      color: core.get-theme-var(text-primary-color);
+    // ALl these additional overrides are provided so that the select will have
+    // the same sizing as a text field with the same props provided.
+    @if not $disable-text-field-underlined-theme {
+      &--underline {
+        @include core.rtl {
+          @include use-var(padding-right, text-padding-left);
 
-      z-index: 30;
+          padding-left: 0;
+        }
+
+        padding-right: 0;
+      }
+    }
+
+    @if not $disable-text-field-outlined-theme {
+      &--outline {
+        @include core.rtl {
+          @include use-var(padding-right, text-padding-left);
+
+          padding-left: $text-field-outlined-padding;
+        }
+
+        padding-right: $text-field-outlined-padding;
+      }
+    }
+
+    @if not $disable-text-field-filled-theme {
+      &--filled {
+        @include core.rtl {
+          @include use-var(padding-right, text-padding-left);
+
+          padding-left: $text-field-filled-padding;
+        }
+
+        padding-right: $text-field-filled-padding;
+      }
+    }
+  }
+}
+
+@mixin option-styles {
+  .rmd-option {
+    &--icon {
+      @include core.rtl {
+        @include list.use-var(padding-left, item-horizontal-padding);
+
+        padding-right: $option-padding-left;
+      }
+
+      padding-left: $option-padding-left;
+    }
+
+    &--selected {
+      @include core.map-to-styles($option-selected-styles);
+    }
+
+    &__icon {
+      @include icon.set-var(spacing, $option-selected-icon-spacing);
+      @include icon.set-var(size, $option-selected-icon-size);
     }
   }
 }
@@ -1685,12 +1769,7 @@ $var-lookup: (
     @include form-message-styles;
   }
 
-  @if not
-    $disable-text-field or not
-    $disable-password or not
-    $disable-textarea or not
-    $disable-native-select
-  {
+  @if not $_disable-text-field-container {
     @include text-field-container-styles;
   }
 
@@ -1710,6 +1789,10 @@ $var-lookup: (
 
   @if not $disable-select {
     @include select-styles;
+  }
+
+  @if not $disable-option {
+    @include option-styles;
   }
 
   @if not $disable-native-select {

@@ -171,7 +171,7 @@ export const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
     const underlined = theme === "underline" || theme === "filled";
 
     let rightAddon = propRightAddon;
-    if (typeof propRightAddon === "undefined") {
+    if (typeof propRightAddon === "undefined" && !multiple) {
       rightAddon = icon;
     }
 

@@ -7,7 +7,6 @@ import type {
   ScaleTransitionHookOptions,
 } from "@react-md/core";
 import {
-  bem,
   Portal,
   useAppSize,
   useEnsuredId,
@@ -18,7 +17,6 @@ import {
   useUserInteractionMode,
 } from "@react-md/core";
 import type { ListElement, ListProps } from "@react-md/list";
-import { cnb } from "cnbuilder";
 import type { CSSProperties, HTMLAttributes } from "react";
 import { forwardRef, useEffect, useRef } from "react";
 import type {
@@ -35,28 +33,9 @@ import { MenuWidget } from "./MenuWidget";
 import { useMenuBarContext } from "./useMenuBarProvider";
 import { getDefaultAnchor } from "./utils";
 
-const styles = bem("rmd-menu");
 const noop = (): void => {
   // do nothing
 };
-
-/**
- * @remarks \@since 6.0.0
- */
-export interface MenuClassNameOptions {
-  className?: string;
-  horizontal?: boolean;
-  elevated?: boolean;
-}
-
-/**
- * @remarks \@since 6.0.0
- */
-export function menu(options: MenuClassNameOptions = {}): string {
-  const { className, horizontal, elevated } = options;
-
-  return cnb(styles({ horizontal, elevated }), className);
-}
 
 /** @remarks \@since 5.0.0 */
 export type MenuTransitionProps = Omit<
@@ -452,11 +431,7 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
     });
     const { rendered, disablePortal, elementProps } = useScaleTransition({
       nodeRef: ref,
-      className: menu({
-        className,
-        elevated: !disableElevation && !isSheet,
-        horizontal,
-      }),
+      className,
       transitionIn: visible,
       vertical: !horizontal,
       temporary,
@@ -549,6 +524,7 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
                 listProps={listProps}
                 listStyle={listStyle}
                 listClassName={listClassName}
+                disableElevation={disableElevation}
                 cancelUnmountFocus={cancelUnmountFocus}
               >
                 {children}

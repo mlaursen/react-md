@@ -313,12 +313,21 @@ export interface LabelClassNameOptions {
   disabled?: boolean;
 
   /**
-   * Set this to true when label is currently floating above a text field or
-   * textarea inside of a `TextFieldContainer`.
+   * Set this to true when label can floating above an input, textarea, or
+   * select inside of a `TextFieldContainer`.
    *
    * @defaultValue `false`
    */
   floating?: boolean;
+
+  /**
+   * Set this to true when label is currently floating above an input,
+   * textarea, or selected inside of a `TextFieldContainer`.
+   *
+   * @see {@link active}
+   * @defaultValue `active`
+   */
+  floatingActive?: boolean;
 
   /**
    * Set this to `true` to gain `flex-direction: row-reversed` styling. If the

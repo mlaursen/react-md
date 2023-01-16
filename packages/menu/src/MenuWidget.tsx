@@ -1,9 +1,11 @@
 import type { GetDefaultFocusedIndex, NonNullMutableRef } from "@react-md/core";
 import {
+  bem,
   KeyboardMovementProvider,
   useKeyboardMovementProvider,
 } from "@react-md/core";
 import { List } from "@react-md/list";
+import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useRef, useState } from "react";
 import type { MenuListConvenienceProps } from "./Menu";
@@ -13,6 +15,7 @@ import {
   useMenuBarProvider,
 } from "./useMenuBarProvider";
 
+const styles = bem("rmd-menu");
 const noop = (): void => {
   // do nothing
 };
@@ -26,6 +29,24 @@ const getNonDisabledOptions = (
 ];
 
 /**
+ * @remarks \@since 6.0.0
+ */
+export interface MenuClassNameOptions {
+  className?: string;
+  horizontal?: boolean;
+  elevated?: boolean;
+}
+
+/**
+ * @remarks \@since 6.0.0
+ */
+export function menu(options: MenuClassNameOptions = {}): string {
+  const { className, horizontal, elevated } = options;
+
+  return cnb(styles({ horizontal, elevated }), className);
+}
+
+/**
  * @internal
  */
 export interface MenuWidgetProps
@@ -33,6 +54,7 @@ export interface MenuWidgetProps
     MenuListConvenienceProps {
   isSheet: boolean;
   horizontal: boolean;
+  disableElevation?: boolean;
   cancelUnmountFocus: NonNullMutableRef<boolean>;
   getDefaultFocusedIndex?: GetDefaultFocusedIndex;
 }
@@ -50,6 +72,7 @@ export const MenuWidget = forwardRef<HTMLDivElement, MenuWidgetProps>(
     const {
       id,
       role = "menu",
+      className,
       listStyle,
       listClassName,
       listProps,
@@ -61,6 +84,7 @@ export const MenuWidget = forwardRef<HTMLDivElement, MenuWidgetProps>(
       tabIndex = role === "listbox" ? 0 : -1,
       isSheet,
       horizontal,
+      disableElevation,
       cancelUnmountFocus,
       getDefaultFocusedIndex,
       ...remaining
@@ -122,6 +146,11 @@ export const MenuWidget = forwardRef<HTMLDivElement, MenuWidgetProps>(
             id={id}
             ref={ref}
             role={role}
+            className={menu({
+              className,
+              elevated: !disableElevation && !isSheet,
+              horizontal,
+            })}
             tabIndex={isSheet && !sheetMenuFocused ? 0 : tabIndex}
             onBlur={(event) => {
               onBlur(event);
