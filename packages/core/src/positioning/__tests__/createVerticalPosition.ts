@@ -73,29 +73,29 @@ const topBoundsConfig1: FixConfig = {
   },
 };
 const topBoundsConfig2: FixConfig = { ...topBoundsConfig1, vhMargin: 8 };
-const bottomBoundsConfig1: FixConfig = {
-  yMargin: 0,
-  vhMargin: 0,
-  elHeight: 100,
-  screenBottom: vh,
-  preventOverlap: false,
-  disableSwapping: false,
-  disableVHBounds: false,
-  // position this element as if it's near the bottom edge of the screen
-  containerRect: {
-    top: vh - 40,
-    bottom: vh,
-    left: 0,
-    right: 0,
-    // pretending an icon button
-    height: 40,
-    width: 40,
-    x: 0,
-    y: 0,
-    toJSON() {},
-  },
-};
-const bottomBoundsConfig2: FixConfig = { ...bottomBoundsConfig1, vhMargin: 8 };
+// const bottomBoundsConfig1: FixConfig = {
+//   yMargin: 0,
+//   vhMargin: 0,
+//   elHeight: 100,
+//   screenBottom: vh,
+//   preventOverlap: false,
+//   disableSwapping: false,
+//   disableVHBounds: false,
+//   // position this element as if it's near the bottom edge of the screen
+//   containerRect: {
+//     top: vh - 40,
+//     bottom: vh,
+//     left: 0,
+//     right: 0,
+//     // pretending an icon button
+//     height: 40,
+//     width: 40,
+//     x: 0,
+//     y: 0,
+//     toJSON() {},
+//   },
+// };
+// const bottomBoundsConfig2: FixConfig = { ...bottomBoundsConfig1, vhMargin: 8 };
 const largerThanViewportOptions1: CreateVerticalPositionOptions = {
   y: "above",
   vh,
