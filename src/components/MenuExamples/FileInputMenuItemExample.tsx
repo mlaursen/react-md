@@ -45,11 +45,7 @@ export function FileInputMenuItemExample(): ReactElement {
     <div className={styles.container}>
       <FileUploadErrorModal errors={errors} clearErrors={clearErrors} />
       <Box>
-        <DropdownMenu
-          buttonChildren="Dropdown"
-          themeType="outline"
-          renderAsSheet
-        >
+        <DropdownMenu buttonChildren="Dropdown" themeType="outline">
           <MenuItemFileInput accept={accept} onChange={onChange} multiple>
             Upload
           </MenuItemFileInput>
