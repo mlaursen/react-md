@@ -74,7 +74,7 @@ export function getFixedPosition(options: FixedPositionOptions): FixedPosition {
     width: widthType = "auto",
     preventOverlap = false,
     transformOrigin = false,
-    disableSwapping: propDisableSwapping = false,
+    disableSwapping = false,
     disableVHBounds = false,
   } = options;
   let { initialY } = options;
@@ -127,8 +127,6 @@ export function getFixedPosition(options: FixedPositionOptions): FixedPosition {
       initialY = (initialY ?? 0) + window.scrollY;
     }
   }
-
-  const disableSwapping = propDisableSwapping || !container;
 
   const { left, right, width, minWidth, actualX } = createHorizontalPosition({
     x: anchor.x,

@@ -236,7 +236,7 @@ export function createAnchoredBelow(config: FixConfig): YPosition {
 
   const swappedTop = getAboveCoord(config);
   if (disableSwapping || swappedTop < vhMargin) {
-    top = Math.max(top, screenBottom - elHeight);
+    top = Math.min(top, screenBottom - elHeight);
   } else {
     actualY = "above";
     top = swappedTop;
