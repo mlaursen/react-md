@@ -17,6 +17,14 @@ const noop = (): void => {
   // do nothing
 };
 
+const getNonDisabledOptions = (
+  container: HTMLElement
+): readonly HTMLElement[] => [
+  ...container.querySelectorAll<HTMLLIElement>(
+    '[role="option"]:not([aria-disabled])'
+  ),
+];
+
 /**
  * @internal
  */
@@ -41,7 +49,7 @@ export const MenuWidget = forwardRef<HTMLDivElement, MenuWidgetProps>(
   function MenuWidget(props, ref) {
     const {
       id,
-      role,
+      role = "menu",
       listStyle,
       listClassName,
       listProps,
@@ -50,7 +58,7 @@ export const MenuWidget = forwardRef<HTMLDivElement, MenuWidgetProps>(
       onBlur = noop,
       onFocus = noop,
       onKeyDown = noop,
-      tabIndex,
+      tabIndex = role === "listbox" ? 0 : -1,
       isSheet,
       horizontal,
       cancelUnmountFocus,
@@ -91,7 +99,8 @@ export const MenuWidget = forwardRef<HTMLDivElement, MenuWidgetProps>(
       horizontal,
       loopable: true,
       searchable: true,
-      includeDisabled: true,
+      programmatic: true,
+      includeDisabled: role !== "listbox",
       tabIndexBehavior: role === "listbox" ? "virtual" : undefined,
       getDefaultFocusedIndex,
       onFocusChange(event) {
@@ -99,6 +108,8 @@ export const MenuWidget = forwardRef<HTMLDivElement, MenuWidgetProps>(
           menuBarContext.enableHoverMode(event.element.id);
         }
       },
+      getFocusableElements:
+        role === "listbox" ? getNonDisabledOptions : undefined,
     });
 
     return (

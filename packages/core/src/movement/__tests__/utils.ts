@@ -117,6 +117,7 @@ describe("getVirtualFocusDefaultIndex", () => {
       getVirtualFocusDefaultIndex({
         activeDescendantId: "",
         focusables: [button],
+        includeDisabled: true,
       })
     ).toBe(0);
 
@@ -124,6 +125,23 @@ describe("getVirtualFocusDefaultIndex", () => {
       getVirtualFocusDefaultIndex({
         activeDescendantId: "some-element-id",
         focusables: [],
+        includeDisabled: true,
+      })
+    ).toBe(0);
+
+    expect(
+      getVirtualFocusDefaultIndex({
+        activeDescendantId: "",
+        focusables: [button],
+        includeDisabled: false,
+      })
+    ).toBe(0);
+
+    expect(
+      getVirtualFocusDefaultIndex({
+        activeDescendantId: "some-element-id",
+        focusables: [],
+        includeDisabled: false,
       })
     ).toBe(0);
   });
@@ -131,31 +149,46 @@ describe("getVirtualFocusDefaultIndex", () => {
   it("should return the index of the element matching the activeDescendantId or fallback to 0 if it doesn't exist somehow", () => {
     const focusables = [button, input, select, textarea];
     expect(
-      getVirtualFocusDefaultIndex({ focusables, activeDescendantId: "fake" })
+      getVirtualFocusDefaultIndex({
+        focusables,
+        includeDisabled: true,
+        activeDescendantId: "fake",
+      })
     ).toBe(0);
     expect(
       getVirtualFocusDefaultIndex({
         focusables,
+        includeDisabled: true,
         activeDescendantId: "button-1",
       })
     ).toBe(0);
     expect(
-      getVirtualFocusDefaultIndex({ focusables, activeDescendantId: "input-1" })
+      getVirtualFocusDefaultIndex({
+        focusables,
+        includeDisabled: true,
+        activeDescendantId: "input-1",
+      })
     ).toBe(1);
     expect(
       getVirtualFocusDefaultIndex({
         focusables,
+        includeDisabled: true,
         activeDescendantId: "select-1",
       })
     ).toBe(2);
     expect(
       getVirtualFocusDefaultIndex({
         focusables,
+        includeDisabled: true,
         activeDescendantId: "textarea-1",
       })
     ).toBe(3);
     expect(
-      getVirtualFocusDefaultIndex({ focusables, activeDescendantId: "input-1" })
+      getVirtualFocusDefaultIndex({
+        focusables,
+        includeDisabled: true,
+        activeDescendantId: "input-1",
+      })
     ).toBe(1);
   });
 });
@@ -316,18 +349,18 @@ describe("getNextFocusableIndex", () => {
       getNextFocusableIndex({
         loopable: true,
         increment: true,
+        focusables,
         includeDisabled: true,
         currentFocusIndex: 0,
-        focusables: focusables,
       })
     ).toBe(1);
     expect(
       getNextFocusableIndex({
         loopable: true,
         increment: true,
+        focusables,
         includeDisabled: false,
         currentFocusIndex: 0,
-        focusables: focusables,
       })
     ).toBe(1);
 
@@ -335,18 +368,18 @@ describe("getNextFocusableIndex", () => {
       getNextFocusableIndex({
         loopable: true,
         increment: true,
+        focusables,
         includeDisabled: true,
         currentFocusIndex: 1,
-        focusables: focusables,
       })
     ).toBe(2);
     expect(
       getNextFocusableIndex({
         loopable: true,
         increment: true,
+        focusables,
         includeDisabled: false,
         currentFocusIndex: 1,
-        focusables: focusables,
       })
     ).toBe(2);
 
@@ -354,9 +387,9 @@ describe("getNextFocusableIndex", () => {
       getNextFocusableIndex({
         loopable: true,
         increment: false,
+        focusables,
         includeDisabled: true,
         currentFocusIndex: 3,
-        focusables: focusables,
       })
     ).toBe(2);
 
@@ -364,9 +397,9 @@ describe("getNextFocusableIndex", () => {
       getNextFocusableIndex({
         loopable: true,
         increment: false,
+        focusables,
         includeDisabled: false,
         currentFocusIndex: 3,
-        focusables: focusables,
       })
     ).toBe(2);
 
@@ -374,18 +407,18 @@ describe("getNextFocusableIndex", () => {
       getNextFocusableIndex({
         loopable: true,
         increment: true,
+        focusables,
         includeDisabled: true,
         currentFocusIndex: 4,
-        focusables: focusables,
       })
     ).toBe(0);
     expect(
       getNextFocusableIndex({
         loopable: false,
         increment: true,
+        focusables,
         includeDisabled: true,
         currentFocusIndex: 4,
-        focusables: focusables,
       })
     ).toBe(4);
 
@@ -393,27 +426,27 @@ describe("getNextFocusableIndex", () => {
       getNextFocusableIndex({
         loopable: false,
         increment: false,
+        focusables,
         includeDisabled: true,
         currentFocusIndex: 4,
-        focusables: focusables,
       })
     ).toBe(3);
     expect(
       getNextFocusableIndex({
         loopable: true,
         increment: false,
+        focusables,
         includeDisabled: true,
         currentFocusIndex: 0,
-        focusables: focusables,
       })
     ).toBe(4);
     expect(
       getNextFocusableIndex({
         loopable: false,
         increment: false,
+        focusables,
         includeDisabled: true,
         currentFocusIndex: 0,
-        focusables: focusables,
       })
     ).toBe(0);
   });
@@ -431,18 +464,18 @@ describe("getNextFocusableIndex", () => {
       getNextFocusableIndex({
         loopable: true,
         increment: true,
+        focusables,
         includeDisabled: false,
         currentFocusIndex: 2,
-        focusables,
       })
     ).toBe(3);
     expect(
       getNextFocusableIndex({
         loopable: true,
         increment: true,
+        focusables,
         includeDisabled: false,
         currentFocusIndex: 3,
-        focusables,
       })
     ).toBe(2);
 
@@ -450,20 +483,52 @@ describe("getNextFocusableIndex", () => {
       getNextFocusableIndex({
         loopable: true,
         increment: false,
+        focusables,
         includeDisabled: false,
         currentFocusIndex: 2,
-        focusables,
       })
     ).toBe(3);
     expect(
       getNextFocusableIndex({
         loopable: true,
         increment: false,
+        focusables,
         includeDisabled: false,
         currentFocusIndex: 3,
-        focusables,
       })
     ).toBe(2);
+  });
+
+  it("should loop until a focusable element is found", () => {
+    const focusables = [
+      button,
+      disabledButton,
+      disabledButton,
+      disabledButton,
+      disabledButton,
+      disabledButton,
+      button,
+    ];
+
+    expect(
+      getNextFocusableIndex({
+        loopable: false,
+        increment: true,
+        focusables,
+        includeDisabled: false,
+        currentFocusIndex: 0,
+      })
+    ).toBe(6);
+
+    expect(
+      getNextFocusableIndex({
+        loopable: false,
+        increment: false,
+        focusables,
+        includeDisabled: false,
+        currentFocusIndex: 6,
+      })
+    ).toBe(0);
   });
 });
 
@@ -517,6 +582,7 @@ describe("recalculateFocusIndex", () => {
     expect(
       recalculateFocusIndex({
         focusables,
+        includeDisabled: true,
         tabIndexBehavior: undefined,
         activeDescendantId: "",
       })
@@ -524,6 +590,7 @@ describe("recalculateFocusIndex", () => {
     expect(
       recalculateFocusIndex({
         focusables,
+        includeDisabled: true,
         tabIndexBehavior: undefined,
         activeDescendantId: "some-active-id",
       })
@@ -531,6 +598,7 @@ describe("recalculateFocusIndex", () => {
     expect(
       recalculateFocusIndex({
         focusables,
+        includeDisabled: true,
         tabIndexBehavior: "roving",
         activeDescendantId: "",
       })
@@ -538,6 +606,7 @@ describe("recalculateFocusIndex", () => {
     expect(
       recalculateFocusIndex({
         focusables,
+        includeDisabled: true,
         tabIndexBehavior: "roving",
         activeDescendantId: "some-active-id",
       })
@@ -548,6 +617,7 @@ describe("recalculateFocusIndex", () => {
     expect(
       recalculateFocusIndex({
         focusables,
+        includeDisabled: true,
         tabIndexBehavior: undefined,
         activeDescendantId: "",
       })
@@ -555,6 +625,7 @@ describe("recalculateFocusIndex", () => {
     expect(
       recalculateFocusIndex({
         focusables,
+        includeDisabled: true,
         tabIndexBehavior: "roving",
         activeDescendantId: "",
       })
@@ -565,6 +636,7 @@ describe("recalculateFocusIndex", () => {
     expect(
       recalculateFocusIndex({
         focusables,
+        includeDisabled: true,
         tabIndexBehavior: undefined,
         activeDescendantId: "",
       })
@@ -572,6 +644,7 @@ describe("recalculateFocusIndex", () => {
     expect(
       recalculateFocusIndex({
         focusables,
+        includeDisabled: true,
         tabIndexBehavior: "roving",
         activeDescendantId: "",
       })
@@ -584,6 +657,7 @@ describe("recalculateFocusIndex", () => {
     expect(
       recalculateFocusIndex({
         focusables,
+        includeDisabled: true,
         tabIndexBehavior: "virtual",
         activeDescendantId: "",
       })
@@ -591,6 +665,7 @@ describe("recalculateFocusIndex", () => {
     expect(
       recalculateFocusIndex({
         focusables,
+        includeDisabled: true,
         tabIndexBehavior: "virtual",
         activeDescendantId: "button-1",
       })
@@ -598,6 +673,7 @@ describe("recalculateFocusIndex", () => {
     expect(
       recalculateFocusIndex({
         focusables,
+        includeDisabled: true,
         tabIndexBehavior: "virtual",
         activeDescendantId: "select-1",
       })
@@ -605,6 +681,7 @@ describe("recalculateFocusIndex", () => {
     expect(
       recalculateFocusIndex({
         focusables,
+        includeDisabled: true,
         tabIndexBehavior: "virtual",
         activeDescendantId: "input-1",
       })
@@ -612,6 +689,7 @@ describe("recalculateFocusIndex", () => {
     expect(
       recalculateFocusIndex({
         focusables,
+        includeDisabled: true,
         tabIndexBehavior: "virtual",
         activeDescendantId: "textarea-1",
       })

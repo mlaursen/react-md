@@ -31,7 +31,7 @@ export interface FixConfig extends XCoordConfig {
 /**
  * @internal
  */
-interface Options
+export interface CreateHorizontalPositionOptions
   extends Required<
     Pick<
       FixedPositionOptions,
@@ -201,7 +201,7 @@ export function createAnchoredRight(config: FixConfig): XPosition {
 
 interface EqualWidthOptions
   extends Pick<
-    Options,
+    CreateHorizontalPositionOptions,
     | "x"
     | "vw"
     | "elWidth"
@@ -267,17 +267,21 @@ export function createEqualWidth({
  * options.
  * @internal
  */
-export function createHorizontalPosition({
-  x,
-  vw,
-  vwMargin,
-  xMargin,
-  width,
-  elWidth,
-  initialX,
-  containerRect,
-  disableSwapping,
-}: Options): XPosition {
+export function createHorizontalPosition(
+  options: CreateHorizontalPositionOptions
+): XPosition {
+  const {
+    x,
+    vw,
+    vwMargin,
+    xMargin,
+    width,
+    elWidth,
+    initialX,
+    containerRect,
+    disableSwapping,
+  } = options;
+
   if (width === "min" || width === "equal") {
     return createEqualWidth({
       x,

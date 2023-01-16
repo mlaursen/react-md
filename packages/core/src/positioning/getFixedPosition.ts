@@ -147,7 +147,7 @@ export function getFixedPosition(options: FixedPositionOptions): FixedPosition {
     containerRect,
     disableSwapping,
   });
-  const { top, bottom, actualY } = createVerticalPosition({
+  const { top, bottom, actualY, transformOriginY } = createVerticalPosition({
     y: anchor.y,
     vh,
     vhMargin,
@@ -172,7 +172,11 @@ export function getFixedPosition(options: FixedPositionOptions): FixedPosition {
       minWidth,
       position: disableVHBounds ? "absolute" : "fixed",
       transformOrigin: transformOrigin
-        ? getTransformOrigin({ x: actualX, y: actualY })
+        ? getTransformOrigin({
+            x: actualX,
+            y: actualY,
+            transformOriginY,
+          })
         : undefined,
     },
   };

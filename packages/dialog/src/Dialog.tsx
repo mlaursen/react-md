@@ -300,7 +300,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
       event.stopPropagation();
       onRequestClose();
     },
-    isFocusTypeDisabled: isFocusTypeDisabled,
+    isFocusTypeDisabled,
   });
   const { elementProps, rendered, disablePortal } = useCSSTransition({
     transitionIn: visible,

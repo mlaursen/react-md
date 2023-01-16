@@ -1,3 +1,4 @@
+import type { KeyboardEvent } from "react";
 import { loop } from "../utils";
 import type { FocusableIndexOptions, TabIndexBehavior } from "./types";
 
@@ -34,6 +35,7 @@ export const isNotFocusable = (
  */
 export interface VirtualFocusableIndexOptions {
   focusables: readonly HTMLElement[];
+  includeDisabled: boolean;
   activeDescendantId: string;
 }
 
@@ -44,14 +46,18 @@ export interface VirtualFocusableIndexOptions {
 export const getVirtualFocusDefaultIndex = (
   options: VirtualFocusableIndexOptions
 ): number => {
-  const { focusables, activeDescendantId } = options;
-  if (!activeDescendantId || !focusables.length) {
+  const { focusables, includeDisabled, activeDescendantId } = options;
+  if (!focusables.length || (!activeDescendantId && includeDisabled)) {
     return 0;
   }
 
-  const activeIndex = focusables.findIndex(
-    (element) => element.id === activeDescendantId
-  );
+  const activeIndex = focusables.findIndex((element) => {
+    if (activeDescendantId) {
+      return element.id === activeDescendantId;
+    }
+
+    return !isElementDisabled(element);
+  });
   return Math.max(0, activeIndex);
 };
 
@@ -189,7 +195,7 @@ export function getSearchText(
   // but it returns `undefined` in jsdom. It also does cause a reflow, so maybe
   // this is fine?
   // https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent#differences_from_innertext
-  return (cloned.textContent || "").substring(0, 1).toUpperCase();
+  return (cloned.textContent || "")[0].toUpperCase();
 }
 
 /**
@@ -198,6 +204,7 @@ export function getSearchText(
  */
 export interface RecalculateOptions {
   focusables: readonly HTMLElement[];
+  includeDisabled: boolean;
   tabIndexBehavior: TabIndexBehavior | undefined;
   activeDescendantId: string;
 }
@@ -211,11 +218,42 @@ export interface RecalculateOptions {
  * @internal
  */
 export function recalculateFocusIndex(options: RecalculateOptions): number {
-  const { focusables, tabIndexBehavior, activeDescendantId } = options;
+  const { focusables, includeDisabled, tabIndexBehavior, activeDescendantId } =
+    options;
   if (tabIndexBehavior === "virtual") {
-    return getVirtualFocusDefaultIndex({ focusables, activeDescendantId });
+    return getVirtualFocusDefaultIndex({
+      focusables,
+      includeDisabled,
+      activeDescendantId,
+    });
   }
 
   const { activeElement } = document;
   return focusables.findIndex((element) => element === activeElement);
+}
+
+/**
+ * Checks if a keyboard event can trigger a search through focusable elements
+ * by:
+ *
+ * - checking if the key is a single letter that is not the space key
+ * - checking that the alt, ctrl, and meta keys are not being held
+ *
+ * The shift key **is allowed** because holding shift means "search from the
+ * beginning" instead of "search from current location".
+ *
+ * @remarks \@since 6.0.0
+ * @internal
+ */
+export function isSearchableEvent(event: KeyboardEvent): boolean {
+  const { key, altKey, ctrlKey, metaKey } = event;
+
+  return (
+    key.length === 1 &&
+    // can't search with space since it is generally a click event
+    key !== " " &&
+    !altKey &&
+    !ctrlKey &&
+    !metaKey
+  );
 }

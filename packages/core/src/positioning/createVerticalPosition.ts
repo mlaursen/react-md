@@ -13,6 +13,8 @@ interface YPosition {
   top: number;
   bottom?: number;
   actualY: VerticalPosition;
+  /** @remarks \@since 6.0.0 */
+  transformOriginY?: number;
 }
 
 /** @internal */
@@ -25,7 +27,7 @@ export interface FixConfig extends YCoordConfig {
 }
 
 /** @internal */
-interface Options
+export interface CreateVerticalPositionOptions
   extends Required<
     Pick<
       FixedPositionOptions,
@@ -69,7 +71,7 @@ export function createAnchoredAbove(config: FixConfig): YPosition {
 
   if (disableVHBounds) {
     // can't actually allow a top value as a negative number since browsers
-    // won't scroll upwards pas the normal page top
+    // won't scroll upwards past the normal page top
     return { actualY, top: Math.max(0, top) };
   }
 
@@ -95,7 +97,7 @@ export function createAnchoredAbove(config: FixConfig): YPosition {
     actualY === "above" &&
     top + elHeight > containerRect.top
   ) {
-    bottom = window.innerHeight - containerRect.top + yMargin;
+    bottom = screenBottom - containerRect.top + yMargin;
   }
 
   return { actualY, top, bottom };
@@ -248,18 +250,22 @@ export function createAnchoredBelow(config: FixConfig): YPosition {
  *
  * @internal
  */
-export function createVerticalPosition({
-  y,
-  vh,
-  vhMargin,
-  yMargin,
-  elHeight,
-  initialY,
-  containerRect,
-  disableSwapping,
-  preventOverlap,
-  disableVHBounds,
-}: Options): YPosition {
+export function createVerticalPosition(
+  options: CreateVerticalPositionOptions
+): YPosition {
+  const {
+    y,
+    vh,
+    vhMargin,
+    yMargin,
+    elHeight,
+    initialY,
+    containerRect,
+    disableSwapping,
+    preventOverlap,
+    disableVHBounds,
+  } = options;
+
   if (!disableVHBounds && !preventOverlap && elHeight > vh - vhMargin * 2) {
     // the element is too big to be displayed in the viewport, so just span the
     // full viewport excluding margins
@@ -267,6 +273,7 @@ export function createVerticalPosition({
       top: vhMargin,
       bottom: vhMargin,
       actualY: "center",
+      transformOriginY: containerRect.top,
     };
   }
 

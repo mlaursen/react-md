@@ -49,6 +49,7 @@ interface TreeMovementOptions<T extends TreeItemNode> extends TreeExpansion {
   onClick: MouseEventHandler<HTMLUListElement> | undefined;
   onFocus: FocusEventHandler<HTMLUListElement> | undefined;
   onKeyDown: KeyboardEventHandler<HTMLUListElement> | undefined;
+  selectedIds: ReadonlySet<string>;
 }
 
 /**
@@ -74,6 +75,7 @@ export function useTreeMovement<T extends TreeItemNode>(
     data,
     metadata,
     expandedIds,
+    selectedIds,
     toggleTreeItemExpansion,
     expandMultipleTreeItems,
   } = options;
@@ -160,6 +162,14 @@ export function useTreeMovement<T extends TreeItemNode>(
     searchable: true,
     tabIndexBehavior: "virtual",
     getFocusableElements: getTreeItemsOnly,
+    getDefaultFocusedIndex(options) {
+      const { focusables } = options;
+      const { elementToItem } = metadataLookup.current;
+
+      return focusables.findIndex((element) =>
+        selectedIds.has(elementToItem[element.id])
+      );
+    },
   });
 
   return {

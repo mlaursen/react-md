@@ -31,6 +31,7 @@ import {
   getVirtualFocusDefaultIndex,
   isElementDisabled,
   isNotFocusable,
+  isSearchableEvent,
   recalculateFocusIndex,
 } from "./utils";
 
@@ -61,6 +62,8 @@ export function useKeyboardMovementContext(): Readonly<KeyboardMovementContext> 
 const noop = (): void => {
   // do nothing
 };
+
+const returnNegative1 = (): number => -1;
 
 /**
  * Implements the custom keyboard movement behavior throughout react-md. Using
@@ -206,7 +209,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
     jumpToFirstKeys: propJumpToFirstKeys,
     jumpToLastKeys: propJumpToLastKeys,
     getFocusableElements = defaultGetFocusableElements,
-    getDefaultFocusedIndex,
+    getDefaultFocusedIndex = returnNegative1,
   } = options;
 
   const isRTL = useDir().dir === "rtl";
@@ -328,7 +331,10 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
           return;
         }
 
-        if (mode !== "keyboard" || event.target !== event.currentTarget) {
+        if (
+          (mode !== "keyboard" && tabIndexBehavior !== "virtual") ||
+          event.target !== event.currentTarget
+        ) {
           return;
         }
 
@@ -337,23 +343,28 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
           programmatic
         );
 
-        let defaultFocusIndex: number;
-        if (typeof getDefaultFocusedIndex === "function") {
-          defaultFocusIndex = getDefaultFocusedIndex({
-            focusables,
-            includeDisabled,
-          });
-        } else if (tabIndexBehavior === "virtual") {
-          // virtual keyboard navigation **must** always focus at least one element
-          defaultFocusIndex = getVirtualFocusDefaultIndex({
-            focusables,
-            activeDescendantId,
-          });
-        } else {
-          defaultFocusIndex = getFirstFocusableIndex({
-            focusables,
-            includeDisabled,
-          });
+        let defaultFocusIndex = getDefaultFocusedIndex({
+          focusables,
+          includeDisabled,
+        });
+
+        // This allows my custom `getDefaultFocusedIndex` implementations to
+        // have a nice fallback without having to re-imeplement the "focus
+        // first" behavior
+        if (defaultFocusIndex === -1) {
+          if (tabIndexBehavior === "virtual") {
+            // virtual keyboard navigation **must** always focus at least one element
+            defaultFocusIndex = getVirtualFocusDefaultIndex({
+              focusables,
+              includeDisabled,
+              activeDescendantId,
+            });
+          } else {
+            defaultFocusIndex = getFirstFocusableIndex({
+              focusables,
+              includeDisabled,
+            });
+          }
         }
 
         if (defaultFocusIndex === -1) {
@@ -368,6 +379,8 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
 
         if (tabIndexBehavior !== "virtual") {
           focused.focus();
+        } else {
+          focused.scrollIntoView({ block: "center" });
         }
 
         onFocusChange({
@@ -427,12 +440,13 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
         if (currentFocusIndex.current === -1) {
           currentFocusIndex.current = recalculateFocusIndex({
             focusables: getFocusableElements(currentTarget, programmatic),
+            includeDisabled,
             tabIndexBehavior,
             activeDescendantId,
           });
         }
 
-        const { key, altKey, ctrlKey, metaKey, shiftKey } = event;
+        const { key, shiftKey } = event;
         if (
           tabIndexBehavior === "virtual" &&
           activeDescendantId &&
@@ -459,15 +473,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
           jumpToLastKeys,
         } = config.current;
 
-        if (
-          searchable &&
-          key.length === 1 &&
-          // can't search with space since it is generally a click event
-          key !== " " &&
-          !altKey &&
-          !ctrlKey &&
-          !metaKey
-        ) {
+        if (searchable && isSearchableEvent(event)) {
           const focusables = getFocusableElements(currentTarget, programmatic);
           const index = findMatchIndex({
             value: key,

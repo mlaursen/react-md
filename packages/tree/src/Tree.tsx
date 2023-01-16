@@ -265,6 +265,7 @@ export function Tree<T extends TreeItemNode>(
     data,
     metadata,
     expandedIds,
+    selectedIds,
     toggleTreeItemExpansion,
     expandMultipleTreeItems,
   });
