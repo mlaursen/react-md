@@ -102,19 +102,23 @@ $var-lookup: (
 }
 
 @mixin use-light-theme {
-  @include set-var(
-    surface-background-color,
-    $light-theme-surface-background-color
-  );
-  @include set-var(surface-color, $light-theme-surface-color);
+  @if not $disable-surface-theme {
+    @include set-var(
+      surface-background-color,
+      $light-theme-surface-background-color
+    );
+    @include set-var(surface-color, $light-theme-surface-color);
+  }
 }
 
 @mixin use-dark-theme {
-  @include set-var(
-    surface-background-color,
-    $dark-theme-surface-background-color
-  );
-  @include set-var(surface-color, $dark-theme-surface-color);
+  @if not $disable-surface-theme {
+    @include set-var(
+      surface-background-color,
+      $dark-theme-surface-background-color
+    );
+    @include set-var(surface-color, $dark-theme-surface-color);
+  }
 }
 
 @mixin dense {
@@ -163,7 +167,8 @@ $var-lookup: (
     }
 
     &--auto {
-      @include set-var(height, auto);
+      // do not set variable so that child AppBar can maintain their height as needed
+      height: auto;
     }
 
     &--stacked {
