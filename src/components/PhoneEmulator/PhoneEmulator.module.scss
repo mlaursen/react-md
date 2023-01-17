@@ -1,0 +1,37 @@
+@use "everything";
+
+.container {
+  @include everything.tablet-media {
+    @include everything.box-shadow(4);
+    @include everything.set-typography-var(
+      line-length,
+      everything.$mobile-max-line-length
+    );
+
+    height: 35.5rem;
+    margin: 1rem auto;
+    overflow: hidden;
+    position: relative;
+    width: 20rem;
+
+    :global {
+      .rmd-app-bar--fixed {
+        position: absolute;
+        z-index: 1;
+      }
+    }
+  }
+
+  height: 100%;
+}
+
+.content {
+  height: 100%;
+  overflow: auto;
+}
+
+.phoneOnly {
+  @include everything.tablet-media {
+    display: none;
+  }
+}

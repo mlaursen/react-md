@@ -1,5 +1,6 @@
 import type { ReactElement, ReactNode } from "react";
-import { createContext, useContext, useMemo } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { useSsr } from "./SsrProvider";
 
 import { useMediaQuery } from "./useMediaQuery";
 import { useOrientation } from "./useOrientation";
@@ -187,6 +188,9 @@ export function AppSizeProvider(props: AppSizeProviderProps): ReactElement {
     throw new Error("The `AppSizeProvider` cannot be mounted multiple times.");
   }
 
+  // TODO: Look into undoing this commit in the future. See commit for more info
+  const ssr = useSsr();
+  const [, hydrate] = useState(0);
   const matchesDesktop = useMediaQuery(
     `screen and (min-width: ${desktopMinWidth})`
   );
@@ -199,11 +203,30 @@ export function AppSizeProvider(props: AppSizeProviderProps): ReactElement {
   const matchesPhone = useMediaQuery(
     `screen and (max-width: ${phoneMaxWidth})`
   );
-  const isDesktop = matchesDesktop;
-  const isTablet = !matchesDesktop && matchesTablet;
-  const isPhone = !isTablet && !isDesktop && matchesPhone;
-  const isLandscape = useOrientation().includes("landscape");
-  const isLargeDesktop = matchesLargeDesktop;
+  const landscape = useOrientation().includes("landscape");
+
+  let isPhone: boolean;
+  let isTablet: boolean;
+  let isDesktop: boolean;
+  let isLandscape: boolean;
+  let isLargeDesktop: boolean;
+  if (ssr) {
+    ({ isPhone, isTablet, isDesktop, isLargeDesktop, isLandscape } = ssrSize);
+  } else {
+    isDesktop = matchesDesktop;
+    isTablet = !matchesDesktop && matchesTablet;
+    isPhone = !isTablet && !isDesktop && matchesPhone;
+    isLandscape = landscape;
+    isLargeDesktop = matchesLargeDesktop;
+  }
+
+  useEffect(() => {
+    if (!ssr) {
+      return;
+    }
+
+    hydrate(1);
+  }, [ssr]);
 
   const appSize = useMemo<AppSizeContext>(
     () => ({

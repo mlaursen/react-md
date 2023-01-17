@@ -13,3 +13,12 @@
     everything.get-theme-var(surface-color)
   );
 }
+
+.main {
+  @include everything.tablet-media {
+    --main-padding: 6rem;
+  }
+
+  padding-left: var(--main-padding, 2rem);
+  padding-right: var(--main-padding, 2rem);
+}

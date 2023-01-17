@@ -1,3 +1,4 @@
+import { cnb } from "cnbuilder";
 import { NoSsr, useTheme, useToggle } from "@react-md/core";
 import { Sheet } from "@react-md/dialog";
 import { Layout as RMDLayout, useLayoutNavigation } from "@react-md/layout";
@@ -89,6 +90,9 @@ export default function Layout(props: LayoutProps): ReactElement {
         largeDesktopLayout={largeDesktopLayout}
         landscapeTabletLayout={landscapeTabletLayout}
         defaultToggleableVisible
+        mainProps={{
+          className: cnb(pathname.startsWith("/components") && styles.main),
+        }}
       >
         <NoSsr>
           <NavWindowSplitter />

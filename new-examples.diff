@@ -1,0 +1,4271 @@
+diff --git a/package.json b/package.json
+index 6cc4af928..a5800c3a3 100644
+--- a/package.json
++++ b/package.json
+@@ -44,7 +44,7 @@
+     "filesize": "^10.0.5",
+     "js-cookie": "^3.0.1",
+     "lodash": "^4.17.21",
+-    "next": "^13.0.4",
++    "next": "^13.0.6",
+     "prismjs": "^1.29.0",
+     "react": "^18.2.0",
+     "react-dom": "^18.2.0",
+@@ -53,9 +53,9 @@
+   },
+   "devDependencies": {
+     "@jest/types": "^29.3.1",
+-    "@mlaursen/eslint-config": "^1.9.0",
++    "@mlaursen/eslint-config": "^2.0.1",
+     "@swc/cli": "^0.1.57",
+-    "@swc/core": "^1.3.18",
++    "@swc/core": "^1.3.21",
+     "@swc/jest": "^0.2.23",
+     "@testing-library/dom": "^8.19.0",
+     "@testing-library/jest-dom": "^5.16.5",
+@@ -63,19 +63,19 @@
+     "@testing-library/user-event": "^14.4.3",
+     "@types/glob": "^8.0.0",
+     "@types/inquirer": "^9.0.3",
+-    "@types/jest": "^29.2.3",
++    "@types/jest": "^29.2.4",
+     "@types/js-cookie": "^3.0.2",
+-    "@types/lodash": "^4.14.189",
+-    "@types/node": "^18.11.9",
++    "@types/lodash": "^4.14.191",
++    "@types/node": "^18.11.11",
+     "@types/prismjs": "^1.26.0",
+-    "@types/react": "^18.0.25",
++    "@types/react": "^18.0.26",
+     "@types/react-dom": "^18.0.9",
+     "@types/react-window": "^1.8.5",
+     "@types/testing-library__jest-dom": "^5.14.5",
+     "browserslist": "^4.21.4",
+     "commander": "^9.4.1",
+-    "eslint": "^8.28.0",
+-    "eslint-config-next": "^13.0.4",
++    "eslint": "^8.29.0",
++    "eslint-config-next": "^13.0.6",
+     "eslint-plugin-next": "^0.0.0",
+     "glob": "^8.0.3",
+     "husky": "^8.0.2",
+@@ -84,19 +84,20 @@
+     "jest": "^29.3.1",
+     "jest-environment-jsdom": "^29.3.1",
+     "jest-watch-typeahead": "^2.2.1",
+-    "lint-staged": "^13.0.3",
++    "lint-staged": "^13.1.0",
+     "postcss": "^8.4.19",
+-    "prettier": "^2.7.1",
++    "prettier": "^2.8.0",
+     "prism-themes": "^1.9.0",
+     "sass": "^1.56.1",
+-    "stylelint": "^14.15.0",
++    "stylelint": "^14.16.0",
+     "stylelint-config-prettier-scss": "^0.0.1",
+     "stylelint-config-recommended-scss": "^8.0.0",
+     "stylelint-order": "^5.0.0",
+     "svgo": "^3.0.2",
++    "ts-morph": "^17.0.1",
+     "ts-node": "^10.9.1",
+     "typedoc": "^0.23.14",
+-    "typescript": "^4.8.4"
++    "typescript": "^4.9.3"
+   },
+   "lint-staged": {
+     "**/*.{scss,js,jsx,md,yml,json,ts,tsx}": [
+diff --git a/pnpm-lock.yaml b/pnpm-lock.yaml
+index 4985118cf..be7ee432d 100644
+--- a/pnpm-lock.yaml
++++ b/pnpm-lock.yaml
+@@ -5,9 +5,9 @@ importers:
+   .:
+     specifiers:
+       '@jest/types': ^29.3.1
+-      '@mlaursen/eslint-config': ^1.9.0
++      '@mlaursen/eslint-config': ^2.0.1
+       '@swc/cli': ^0.1.57
+-      '@swc/core': ^1.3.18
++      '@swc/core': ^1.3.21
+       '@swc/jest': ^0.2.23
+       '@testing-library/dom': ^8.19.0
+       '@testing-library/jest-dom': ^5.16.5
+@@ -15,20 +15,20 @@ importers:
+       '@testing-library/user-event': ^14.4.3
+       '@types/glob': ^8.0.0
+       '@types/inquirer': ^9.0.3
+-      '@types/jest': ^29.2.3
++      '@types/jest': ^29.2.4
+       '@types/js-cookie': ^3.0.2
+-      '@types/lodash': ^4.14.189
+-      '@types/node': ^18.11.9
++      '@types/lodash': ^4.14.191
++      '@types/node': ^18.11.11
+       '@types/prismjs': ^1.26.0
+-      '@types/react': ^18.0.25
++      '@types/react': ^18.0.26
+       '@types/react-dom': ^18.0.9
+       '@types/react-window': ^1.8.5
+       '@types/testing-library__jest-dom': ^5.14.5
+       browserslist: ^4.21.4
+       cnbuilder: ^3.1.0
+       commander: ^9.4.1
+-      eslint: ^8.28.0
+-      eslint-config-next: ^13.0.4
++      eslint: ^8.29.0
++      eslint-config-next: ^13.0.6
+       eslint-plugin-next: ^0.0.0
+       filesize: ^10.0.5
+       glob: ^8.0.3
+@@ -39,11 +39,11 @@ importers:
+       jest-environment-jsdom: ^29.3.1
+       jest-watch-typeahead: ^2.2.1
+       js-cookie: ^3.0.1
+-      lint-staged: ^13.0.3
++      lint-staged: ^13.1.0
+       lodash: ^4.17.21
+-      next: ^13.0.4
++      next: ^13.0.6
+       postcss: ^8.4.19
+-      prettier: ^2.7.1
++      prettier: ^2.8.0
+       prism-themes: ^1.9.0
+       prismjs: ^1.29.0
+       react: ^18.2.0
+@@ -51,20 +51,21 @@ importers:
+       react-marked-renderer: ^1.1.2
+       react-window: ^1.8.8
+       sass: ^1.56.1
+-      stylelint: ^14.15.0
++      stylelint: ^14.16.0
+       stylelint-config-prettier-scss: ^0.0.1
+       stylelint-config-recommended-scss: ^8.0.0
+       stylelint-order: ^5.0.0
+       svgo: ^3.0.2
++      ts-morph: ^17.0.1
+       ts-node: ^10.9.1
+       typedoc: ^0.23.14
+-      typescript: ^4.8.4
++      typescript: ^4.9.3
+     dependencies:
+       cnbuilder: 3.1.0
+       filesize: 10.0.5
+       js-cookie: 3.0.1
+       lodash: 4.17.21
+-      next: 13.0.4_m5sxuueb27gk6ddc5gums6vtgq
++      next: 13.0.6_m5sxuueb27gk6ddc5gums6vtgq
+       prismjs: 1.29.0
+       react: 18.2.0
+       react-dom: 18.2.0_react@18.2.0
+@@ -72,50 +73,51 @@ importers:
+       react-window: 1.8.8_biqbaboplfbrettd7655fr4n2y
+     devDependencies:
+       '@jest/types': 29.3.1
+-      '@mlaursen/eslint-config': 1.9.0_gagdlpbsikswtmr4d44b5exjla
+-      '@swc/cli': 0.1.57_@swc+core@1.3.18
+-      '@swc/core': 1.3.18
+-      '@swc/jest': 0.2.23_@swc+core@1.3.18
++      '@mlaursen/eslint-config': 2.0.1_sxdq44kqdhjoww4fj4nhc3vc7e
++      '@swc/cli': 0.1.57_@swc+core@1.3.21
++      '@swc/core': 1.3.21
++      '@swc/jest': 0.2.23_@swc+core@1.3.21
+       '@testing-library/dom': 8.19.0
+       '@testing-library/jest-dom': 5.16.5
+       '@testing-library/react': 13.4.0_biqbaboplfbrettd7655fr4n2y
+       '@testing-library/user-event': 14.4.3_aaq3sbffpfe3jnxzm2zngsddei
+       '@types/glob': 8.0.0
+       '@types/inquirer': 9.0.3
+-      '@types/jest': 29.2.3
++      '@types/jest': 29.2.4
+       '@types/js-cookie': 3.0.2
+-      '@types/lodash': 4.14.189
+-      '@types/node': 18.11.9
++      '@types/lodash': 4.14.191
++      '@types/node': 18.11.11
+       '@types/prismjs': 1.26.0
+-      '@types/react': 18.0.25
++      '@types/react': 18.0.26
+       '@types/react-dom': 18.0.9
+       '@types/react-window': 1.8.5
+       '@types/testing-library__jest-dom': 5.14.5
+       browserslist: 4.21.4
+       commander: 9.4.1
+-      eslint: 8.28.0
+-      eslint-config-next: 13.0.4_zksrc6ykdxhogxjbhb5axiabwi
++      eslint: 8.29.0
++      eslint-config-next: 13.0.6_s5ps7njkmjlaqajutnox5ntcla
+       eslint-plugin-next: 0.0.0
+       glob: 8.0.3
+       husky: 8.0.2
+       identity-obj-proxy: 3.0.0
+       inquirer: 9.1.4
+-      jest: 29.3.1_odkjkoia5xunhxkdrka32ib6vi
++      jest: 29.3.1_k7quxe733nexnlgzi4yxvxoplq
+       jest-environment-jsdom: 29.3.1
+       jest-watch-typeahead: 2.2.1_jest@29.3.1
+-      lint-staged: 13.0.3
++      lint-staged: 13.1.0
+       postcss: 8.4.19
+-      prettier: 2.7.1
++      prettier: 2.8.0
+       prism-themes: 1.9.0
+       sass: 1.56.1
+-      stylelint: 14.15.0
+-      stylelint-config-prettier-scss: 0.0.1_stylelint@14.15.0
+-      stylelint-config-recommended-scss: 8.0.0_a37symlv4urgexnspmy4gyeh7i
+-      stylelint-order: 5.0.0_stylelint@14.15.0
++      stylelint: 14.16.0
++      stylelint-config-prettier-scss: 0.0.1_stylelint@14.16.0
++      stylelint-config-recommended-scss: 8.0.0_u4cmdib575x7lmfjhgvokchuwe
++      stylelint-order: 5.0.0_stylelint@14.16.0
+       svgo: 3.0.2
+-      ts-node: 10.9.1_gs2wtvhfs5f4ebmfhr7ie3vdfm
+-      typedoc: 0.23.14_typescript@4.8.4
+-      typescript: 4.8.4
++      ts-morph: 17.0.1
++      ts-node: 10.9.1_lpj2q7bjbv7owmpf5rj6kndjrq
++      typedoc: 0.23.14_typescript@4.9.3
++      typescript: 4.9.3
+ 
+   packages/app-bar:
+     specifiers:
+@@ -694,8 +696,8 @@ packages:
+       '@babel/helper-plugin-utils': 7.20.2
+     dev: true
+ 
+-  /@babel/runtime-corejs3/7.20.1:
+-    resolution: {integrity: sha512-CGulbEDcg/ND1Im7fUNRZdGXmX2MTWVVZacQi/6DiKE5HNwZ3aVTm5PV4lO8HHz0B2h8WQyvKKjbX5XgTtydsg==}
++  /@babel/runtime-corejs3/7.20.6:
++    resolution: {integrity: sha512-tqeujPiuEfcH067mx+7otTQWROVMKHXEaOQcAeNV5dDdbPWvPcFA8/W9LXw2NfjNmOetqLl03dfnG2WALPlsRQ==}
+     engines: {node: '>=6.9.0'}
+     dependencies:
+       core-js-pure: 3.26.1
+@@ -714,6 +716,14 @@ packages:
+     engines: {node: '>=6.9.0'}
+     dependencies:
+       regenerator-runtime: 0.13.11
++    dev: false
++
++  /@babel/runtime/7.20.6:
++    resolution: {integrity: sha512-Q+8MqP7TiHMWzSfwiJwXCjyf4GYA4Dgw3emg/7xmwsdLJOZUp+nMqcOwOzzYheuM1rhDu8FSj2l0aoMygEuXuA==}
++    engines: {node: '>=6.9.0'}
++    dependencies:
++      regenerator-runtime: 0.13.11
++    dev: true
+ 
+   /@babel/template/7.18.10:
+     resolution: {integrity: sha512-TI+rCtooWHr3QJ27kJxfjutghu44DLnasDMwpDqCXVTal9RLp3RSYNh4NdBrRP2cQAoG9A8juOQl6P6oZG4JxA==}
+@@ -762,7 +772,7 @@ packages:
+       '@jridgewell/trace-mapping': 0.3.9
+     dev: true
+ 
+-  /@csstools/selector-specificity/2.0.2_45y636a2vqremknoajyxd5nkzy:
++  /@csstools/selector-specificity/2.0.2_tbwh2mpcdwdeb2slx6bobindua:
+     resolution: {integrity: sha512-IkpVW/ehM1hWKln4fCA3NzJU8KwD+kIOvPZA4cqxoJHtE21CCzjyp+Kxbu0i5I4tBNOlXPL9mjwnWlL0VEG4Fg==}
+     engines: {node: ^12 || ^14 || >=16}
+     peerDependencies:
+@@ -770,7 +780,7 @@ packages:
+       postcss-selector-parser: ^6.0.10
+     dependencies:
+       postcss: 8.4.19
+-      postcss-selector-parser: 6.0.10
++      postcss-selector-parser: 6.0.11
+     dev: true
+ 
+   /@eslint/eslintrc/1.3.3:
+@@ -781,7 +791,7 @@ packages:
+       debug: 4.3.4
+       espree: 9.4.1
+       globals: 13.18.0
+-      ignore: 5.2.0
++      ignore: 5.2.1
+       import-fresh: 3.3.0
+       js-yaml: 4.1.0
+       minimatch: 3.1.2
+@@ -831,7 +841,7 @@ packages:
+     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
+     dependencies:
+       '@jest/types': 29.3.1
+-      '@types/node': 18.11.9
++      '@types/node': 18.11.11
+       chalk: 4.1.2
+       jest-message-util: 29.3.1
+       jest-util: 29.3.1
+@@ -852,14 +862,14 @@ packages:
+       '@jest/test-result': 29.3.1
+       '@jest/transform': 29.3.1
+       '@jest/types': 29.3.1
+-      '@types/node': 18.11.9
++      '@types/node': 18.11.11
+       ansi-escapes: 4.3.2
+       chalk: 4.1.2
+       ci-info: 3.6.1
+       exit: 0.1.2
+       graceful-fs: 4.2.10
+       jest-changed-files: 29.2.0
+-      jest-config: 29.3.1_odkjkoia5xunhxkdrka32ib6vi
++      jest-config: 29.3.1_k7quxe733nexnlgzi4yxvxoplq
+       jest-haste-map: 29.3.1
+       jest-message-util: 29.3.1
+       jest-regex-util: 29.2.0
+@@ -893,7 +903,7 @@ packages:
+     dependencies:
+       '@jest/fake-timers': 29.3.1
+       '@jest/types': 29.3.1
+-      '@types/node': 18.11.9
++      '@types/node': 18.11.11
+       jest-mock: 29.3.1
+     dev: true
+ 
+@@ -920,7 +930,7 @@ packages:
+     dependencies:
+       '@jest/types': 29.3.1
+       '@sinonjs/fake-timers': 9.1.2
+-      '@types/node': 18.11.9
++      '@types/node': 18.11.11
+       jest-message-util: 29.3.1
+       jest-mock: 29.3.1
+       jest-util: 29.3.1
+@@ -953,7 +963,7 @@ packages:
+       '@jest/transform': 29.3.1
+       '@jest/types': 29.3.1
+       '@jridgewell/trace-mapping': 0.3.17
+-      '@types/node': 18.11.9
++      '@types/node': 18.11.11
+       chalk: 4.1.2
+       collect-v8-coverage: 1.0.1
+       exit: 0.1.2
+@@ -1040,7 +1050,7 @@ packages:
+     dependencies:
+       '@types/istanbul-lib-coverage': 2.0.4
+       '@types/istanbul-reports': 3.0.1
+-      '@types/node': 18.11.9
++      '@types/node': 18.11.11
+       '@types/yargs': 16.0.4
+       chalk: 4.1.2
+     dev: true
+@@ -1052,7 +1062,7 @@ packages:
+       '@jest/schemas': 29.0.0
+       '@types/istanbul-lib-coverage': 2.0.4
+       '@types/istanbul-reports': 3.0.1
+-      '@types/node': 18.11.9
++      '@types/node': 18.11.11
+       '@types/yargs': 17.0.13
+       chalk: 4.1.2
+     dev: true
+@@ -1120,8 +1130,9 @@ packages:
+     resolution: {integrity: sha512-9b8mPpKrfeGRuhFH5iO1iwCLeIIsV6+H1sRfxbkoGXIyQE2BTsPd9zqSqQJ+pv5sJ/hT5M1zvOFL02MnEezFug==}
+     dev: true
+ 
+-  /@mlaursen/eslint-config/1.9.0_gagdlpbsikswtmr4d44b5exjla:
+-    resolution: {integrity: sha512-pAZRMJS2yb921yRqO+pN+Xktwl1ZBBRW7Dz7if1aK0d/Aai1+f0NmHC0uiOXbFjeJKYMYD8//A1D2jMLBg3DUA==}
++  /@mlaursen/eslint-config/2.0.1_sxdq44kqdhjoww4fj4nhc3vc7e:
++    resolution: {integrity: sha512-DEvAKdt9Rc3mNhKuXIpS/cIdrrZlUZDayrLfnYAa0p1frf7p1hy04g5uYEymZIlZ2RpYy9rYufXW2Z3MJskfJg==}
++    engines: {node: '>=16', pnpm: '>=7'}
+     peerDependencies:
+       eslint: '>= 8.0.0'
+       typescript: '>= 4'
+@@ -1129,18 +1140,18 @@ packages:
+       typescript:
+         optional: true
+     dependencies:
+-      '@typescript-eslint/eslint-plugin': 5.43.0_ol5heeoi7wmwb4tenztnb7jlze
+-      '@typescript-eslint/parser': 5.43.0_zksrc6ykdxhogxjbhb5axiabwi
++      '@typescript-eslint/eslint-plugin': 5.45.1_tdm6ms4ntwhlpozn7kjqrhum74
++      '@typescript-eslint/parser': 5.45.1_s5ps7njkmjlaqajutnox5ntcla
+       confusing-browser-globals: 1.0.11
+-      eslint: 8.28.0
+-      eslint-config-prettier: 8.5.0_eslint@8.28.0
+-      eslint-plugin-import: 2.26.0_ivdjtymx6ubvknadox4oh4qsue
+-      eslint-plugin-jest: 27.1.5_zac7yqzhl3hrdb2vyrot7xofk4
+-      eslint-plugin-jsx-a11y: 6.6.1_eslint@8.28.0
+-      eslint-plugin-react: 7.31.11_eslint@8.28.0
+-      eslint-plugin-react-hooks: 4.6.0_eslint@8.28.0
++      eslint: 8.29.0
++      eslint-config-prettier: 8.5.0_eslint@8.29.0
++      eslint-plugin-import: 2.26.0_i656iqvetrvx3ajhg4t6psfrl4
++      eslint-plugin-jest: 27.1.6_wphnk73nuaukzqdbeh73ahlnhy
++      eslint-plugin-jsx-a11y: 6.6.1_eslint@8.29.0
++      eslint-plugin-react: 7.31.11_eslint@8.29.0
++      eslint-plugin-react-hooks: 4.6.0_eslint@8.29.0
+       eslint-plugin-tsdoc: 0.2.17
+-      typescript: 4.8.4
++      typescript: 4.9.3
+     transitivePeerDependencies:
+       - eslint-import-resolver-typescript
+       - eslint-import-resolver-webpack
+@@ -1148,18 +1159,18 @@ packages:
+       - supports-color
+     dev: true
+ 
+-  /@next/env/13.0.4:
+-    resolution: {integrity: sha512-N5Z3bdxBzoxrC5bwykDFITzdWuwDteOdZ+7nxixY+I1XpRX8/iQYbw2wuXMdqdfBGm2NNUpAqg8YF2e4oAC2UQ==}
++  /@next/env/13.0.6:
++    resolution: {integrity: sha512-yceT6DCHKqPRS1cAm8DHvDvK74DLIkDQdm5iV+GnIts8h0QbdHvkUIkdOvQoOODgpr6018skbmSQp12z5OWIQQ==}
+     dev: false
+ 
+-  /@next/eslint-plugin-next/13.0.4:
+-    resolution: {integrity: sha512-jZ4urKT+aO9QHm3ttihrIQscQISDSKK8isAom750+EySn9o3LCSkTdPGBtvBqY7Yku+NqhfQempR5J58DqTaVg==}
++  /@next/eslint-plugin-next/13.0.6:
++    resolution: {integrity: sha512-JUANdYNCddhmQBjQQPxEJYL7GMCqYtbfrdmtX7c013srig7waNCG69Aoql7CgAgjdy8jn1ovHVdcF/NB46XN3Q==}
+     dependencies:
+       glob: 7.1.7
+     dev: true
+ 
+-  /@next/swc-android-arm-eabi/13.0.4:
+-    resolution: {integrity: sha512-SD9H+/zuV3L0oHIhsDdFkDqFtg6pIHtqRUPlsrNdOsmWXgMlSzxBmwt2ta4kyrazS62BQu7XRUG++ZyODS7AWg==}
++  /@next/swc-android-arm-eabi/13.0.6:
++    resolution: {integrity: sha512-FGFSj3v2Bluw8fD/X+1eXIEB0PhoJE0zfutsAauRhmNpjjZshLDgoXMWm1jTRL/04K/o9gwwO2+A8+sPVCH1uw==}
+     engines: {node: '>= 10'}
+     cpu: [arm]
+     os: [android]
+@@ -1167,8 +1178,8 @@ packages:
+     dev: false
+     optional: true
+ 
+-  /@next/swc-android-arm64/13.0.4:
+-    resolution: {integrity: sha512-F8W5WcBbdn/zBoy32/mQiefs9DNsT12CTSSVCsO8GvQR7GjJU+uduQ4drKcSDoDLuAFULc2jDN06Circq4vuQg==}
++  /@next/swc-android-arm64/13.0.6:
++    resolution: {integrity: sha512-7MgbtU7kimxuovVsd7jSJWMkIHBDBUsNLmmlkrBRHTvgzx5nDBXogP0hzZm7EImdOPwVMPpUHRQMBP9mbsiJYQ==}
+     engines: {node: '>= 10'}
+     cpu: [arm64]
+     os: [android]
+@@ -1176,8 +1187,8 @@ packages:
+     dev: false
+     optional: true
+ 
+-  /@next/swc-darwin-arm64/13.0.4:
+-    resolution: {integrity: sha512-/lajev+9GSie+rRTl5z8skW9RJwZ+TwMKLzzM24TbDk8lUjqPTyJZ/cU0NDj8J7VQAZ6EehACSh9rcJeBRtLuA==}
++  /@next/swc-darwin-arm64/13.0.6:
++    resolution: {integrity: sha512-AUVEpVTxbP/fxdFsjVI9d5a0CFn6NVV7A/RXOb0Y+pXKIIZ1V5rFjPwpYfIfyOo2lrqgehMNQcyMRoTrhq04xg==}
+     engines: {node: '>= 10'}
+     cpu: [arm64]
+     os: [darwin]
+@@ -1185,8 +1196,8 @@ packages:
+     dev: false
+     optional: true
+ 
+-  /@next/swc-darwin-x64/13.0.4:
+-    resolution: {integrity: sha512-HK4b2rFiju8d40GTL/jH9U6OQ7BYA2MeEHs7Dm7Rp7kwQtLzP3z6osdQS8er20tIFHDE4b+oVBy03ZUQkHf0Pg==}
++  /@next/swc-darwin-x64/13.0.6:
++    resolution: {integrity: sha512-SasCDJlshglsPnbzhWaIF6VEGkQy2NECcAOxPwaPr0cwbbt4aUlZ7QmskNzgolr5eAjFS/xTr7CEeKJtZpAAtQ==}
+     engines: {node: '>= 10'}
+     cpu: [x64]
+     os: [darwin]
+@@ -1194,8 +1205,8 @@ packages:
+     dev: false
+     optional: true
+ 
+-  /@next/swc-freebsd-x64/13.0.4:
+-    resolution: {integrity: sha512-xBvIGLaGzZtgJfRRJ2DBN82DQCJ/O7jkXyBp8X/vHefPWyVXVqF6C68Rv8ADp11thPpf8WpjkvDDLb9AuWHQUA==}
++  /@next/swc-freebsd-x64/13.0.6:
++    resolution: {integrity: sha512-6Lbxd9gAdXneTkwHyYW/qtX1Tdw7ND9UbiGsGz/SP43ZInNWnW6q0au4hEVPZ9bOWWRKzcVoeTBdoMpQk9Hx9w==}
+     engines: {node: '>= 10'}
+     cpu: [x64]
+     os: [freebsd]
+@@ -1203,8 +1214,8 @@ packages:
+     dev: false
+     optional: true
+ 
+-  /@next/swc-linux-arm-gnueabihf/13.0.4:
+-    resolution: {integrity: sha512-s13pxNp9deKmmxEGTp1MoL1e4nf4wbEymEaHgFxUlhoR1OD9tK8oTNrQphQePJgVjzcWmRGH/dX7O9mVkHbU/g==}
++  /@next/swc-linux-arm-gnueabihf/13.0.6:
++    resolution: {integrity: sha512-wNdi5A519e1P+ozEuYOhWPzzE6m1y7mkO6NFwn6watUwO0X9nZs7fT9THmnekvmFQpaZ6U+xf2MQ9poQoCh6jQ==}
+     engines: {node: '>= 10'}
+     cpu: [arm]
+     os: [linux]
+@@ -1212,8 +1223,8 @@ packages:
+     dev: false
+     optional: true
+ 
+-  /@next/swc-linux-arm64-gnu/13.0.4:
+-    resolution: {integrity: sha512-Lklo65usNzoYwjX51CpDKOepWVZBdwO49/Jz3djxiYUr2lRtpDVnlfwCvzN+47j3BMVMWtC2ndIi8Q4s3J0v4g==}
++  /@next/swc-linux-arm64-gnu/13.0.6:
++    resolution: {integrity: sha512-e8KTRnleQY1KLk5PwGV5hrmvKksCc74QRpHl5ffWnEEAtL2FE0ave5aIkXqErsPdXkiKuA/owp3LjQrP+/AH7Q==}
+     engines: {node: '>= 10'}
+     cpu: [arm64]
+     os: [linux]
+@@ -1221,8 +1232,8 @@ packages:
+     dev: false
+     optional: true
+ 
+-  /@next/swc-linux-arm64-musl/13.0.4:
+-    resolution: {integrity: sha512-+3BXtXBwjVhd5lahDe5nKZ7EwD6hE/oLFQkITCvgxymU5qYHGlLFyF52/lyw8qhyxoCr7mMVsUFhlCzVwCfNjg==}
++  /@next/swc-linux-arm64-musl/13.0.6:
++    resolution: {integrity: sha512-/7RF03C3mhjYpHN+pqOolgME3guiHU5T3TsejuyteqyEyzdEyLHod+jcYH6ft7UZ71a6TdOewvmbLOtzHW2O8A==}
+     engines: {node: '>= 10'}
+     cpu: [arm64]
+     os: [linux]
+@@ -1230,8 +1241,8 @@ packages:
+     dev: false
+     optional: true
+ 
+-  /@next/swc-linux-x64-gnu/13.0.4:
+-    resolution: {integrity: sha512-QB8qoZrvHhZsz62nUrTKlp5IiZ8I7KZsaa6437H/W/NOZHLGJjCxROnhUjLvKVe/T5P86pjya2SUOUqWAjz4Pg==}
++  /@next/swc-linux-x64-gnu/13.0.6:
++    resolution: {integrity: sha512-kxyEXnYHpOEkFnmrlwB1QlzJtjC6sAJytKcceIyFUHbCaD3W/Qb5tnclcnHKTaFccizZRePXvV25Ok/eUSpKTw==}
+     engines: {node: '>= 10'}
+     cpu: [x64]
+     os: [linux]
+@@ -1239,8 +1250,8 @@ packages:
+     dev: false
+     optional: true
+ 
+-  /@next/swc-linux-x64-musl/13.0.4:
+-    resolution: {integrity: sha512-WaahF6DYUQRg1QqIMcuOu2ZsFhS3aC5iWeQyeptMHklP9wb4FfTNmBArKHknX/GXD8P9gI38WTAHJ25cc0zVwg==}
++  /@next/swc-linux-x64-musl/13.0.6:
++    resolution: {integrity: sha512-N0c6gubS3WW1oYYgo02xzZnNatfVQP/CiJq2ax+DJ55ePV62IACbRCU99TZNXXg+Kos6vNW4k+/qgvkvpGDeyA==}
+     engines: {node: '>= 10'}
+     cpu: [x64]
+     os: [linux]
+@@ -1248,8 +1259,8 @@ packages:
+     dev: false
+     optional: true
+ 
+-  /@next/swc-win32-arm64-msvc/13.0.4:
+-    resolution: {integrity: sha512-FD+k1j2jeY0aKcqcpzFKfTsv55PPmIZ5GKDyPjjV5AO6XvQ4nALwWl4JwizjH2426TfLXObb+C3MH0bl9Ok1Kw==}
++  /@next/swc-win32-arm64-msvc/13.0.6:
++    resolution: {integrity: sha512-QjeMB2EBqBFPb/ac0CYr7GytbhUkrG4EwFWbcE0vsRp4H8grt25kYpFQckL4Jak3SUrp7vKfDwZ/SwO7QdO8vw==}
+     engines: {node: '>= 10'}
+     cpu: [arm64]
+     os: [win32]
+@@ -1257,8 +1268,8 @@ packages:
+     dev: false
+     optional: true
+ 
+-  /@next/swc-win32-ia32-msvc/13.0.4:
+-    resolution: {integrity: sha512-+Q/Q8Ydvz3X3U84CyZdNv1HC7fE43k+xB8C6b3IFmWGa5Tu2tfskQ2FsUNBrYreZjhFC/894J3rVQ6Vj6Auugg==}
++  /@next/swc-win32-ia32-msvc/13.0.6:
++    resolution: {integrity: sha512-EQzXtdqRTcmhT/tCq81rIwE36Y3fNHPInaCuJzM/kftdXfa0F+64y7FAoMO13npX8EG1+SamXgp/emSusKrCXg==}
+     engines: {node: '>= 10'}
+     cpu: [ia32]
+     os: [win32]
+@@ -1266,8 +1277,8 @@ packages:
+     dev: false
+     optional: true
+ 
+-  /@next/swc-win32-x64-msvc/13.0.4:
+-    resolution: {integrity: sha512-vXtbo9N1FdtZZRcv4BliU28tTYrkb1EnVpUiiFFe88I6kS9aZVTMY9Z/OtDR52rl1JF1hgs9sL/59D/TQqSATQ==}
++  /@next/swc-win32-x64-msvc/13.0.6:
++    resolution: {integrity: sha512-pSkqZ//UP/f2sS9T7IvHLfEWDPTX0vRyXJnAUNisKvO3eF3e1xdhDX7dix/X3Z3lnN4UjSwOzclAI87JFbOwmQ==}
+     engines: {node: '>= 10'}
+     cpu: [x64]
+     os: [win32]
+@@ -1293,7 +1304,7 @@ packages:
+     engines: {node: '>= 8'}
+     dependencies:
+       '@nodelib/fs.scandir': 2.1.5
+-      fastq: 1.13.0
++      fastq: 1.14.0
+     dev: true
+ 
+   /@pkgr/utils/2.3.1:
+@@ -1328,7 +1339,7 @@ packages:
+       '@sinonjs/commons': 1.8.5
+     dev: true
+ 
+-  /@swc/cli/0.1.57_@swc+core@1.3.18:
++  /@swc/cli/0.1.57_@swc+core@1.3.21:
+     resolution: {integrity: sha512-HxM8TqYHhAg+zp7+RdTU69bnkl4MWdt1ygyp6BDIPjTiaJVH6Dizn2ezbgDS8mnFZI1FyhKvxU/bbaUs8XhzQg==}
+     engines: {node: '>= 12.13'}
+     hasBin: true
+@@ -1339,15 +1350,15 @@ packages:
+       chokidar:
+         optional: true
+     dependencies:
+-      '@swc/core': 1.3.18
++      '@swc/core': 1.3.21
+       commander: 7.2.0
+       fast-glob: 3.2.11
+       slash: 3.0.0
+       source-map: 0.7.4
+     dev: true
+ 
+-  /@swc/core-darwin-arm64/1.3.18:
+-    resolution: {integrity: sha512-4UEQ+LyzDFTszEy4LCU50h4cjVNJcNwD87aVBT/8i6YXj5dyMki/TrkIQ6Bhv7g5beg2GRncB2ndjN66r8I8+w==}
++  /@swc/core-darwin-arm64/1.3.21:
++    resolution: {integrity: sha512-5dBrJyrCzdHOQ9evS9NBJm2geKcXffIuAvSrnwbMHkfTpl+pOM7crry2tolydFXdOE/Jbx8yyahAIXPne1fTHw==}
+     engines: {node: '>=10'}
+     cpu: [arm64]
+     os: [darwin]
+@@ -1355,8 +1366,8 @@ packages:
+     dev: true
+     optional: true
+ 
+-  /@swc/core-darwin-x64/1.3.18:
+-    resolution: {integrity: sha512-DSCd7eVr+4ukffNnvhrFmUoCF0VLOXPgGmdwm6u0irLWOLtr2VZNZcf7UF+t/Y9jPKmXz3OY6lVgwtjxZhiklQ==}
++  /@swc/core-darwin-x64/1.3.21:
++    resolution: {integrity: sha512-CAtzfsRoVZr7DLKOOWPua6npFdj06wRuv1us275CY2QS3mg1bPl9BxA3c94q3mMcu5Bf06+dzUOjJSGrsBD7Ig==}
+     engines: {node: '>=10'}
+     cpu: [x64]
+     os: [darwin]
+@@ -1364,8 +1375,8 @@ packages:
+     dev: true
+     optional: true
+ 
+-  /@swc/core-linux-arm-gnueabihf/1.3.18:
+-    resolution: {integrity: sha512-9dy6qJiWAls9OrBvrWbFDbjEkuOPrEP6OsKyrQWTMqLjCLwgLa3g4yC0YtPdUa/A8uyNVKtRcq+NXoKW+mP/QQ==}
++  /@swc/core-linux-arm-gnueabihf/1.3.21:
++    resolution: {integrity: sha512-oPO7oFr89pjDFlHJ2aZvzGR6hwy5nmQyeiuqpTgfn+RFFLLbipFawJe/2NBWyD35bxuguW6a3/w9I6edKTpLUw==}
+     engines: {node: '>=10'}
+     cpu: [arm]
+     os: [linux]
+@@ -1373,8 +1384,8 @@ packages:
+     dev: true
+     optional: true
+ 
+-  /@swc/core-linux-arm64-gnu/1.3.18:
+-    resolution: {integrity: sha512-8FZjiUSM4JBQTD4sV7Y6BNMdo0oDlqa8xYVaAimuIBL8ixD/Fb+0GIxKdB59yKRVQyuXJRa6Pwzd7zk3wY5T0Q==}
++  /@swc/core-linux-arm64-gnu/1.3.21:
++    resolution: {integrity: sha512-cgPw35T8HO4gB/tvPJMwjJuNNpydmw6U5hkxZ+7jiE+qA8hN8a71i+BBfXeSzlo60t4c44+zK4t+gK7UacZg2w==}
+     engines: {node: '>=10'}
+     cpu: [arm64]
+     os: [linux]
+@@ -1382,8 +1393,8 @@ packages:
+     dev: true
+     optional: true
+ 
+-  /@swc/core-linux-arm64-musl/1.3.18:
+-    resolution: {integrity: sha512-0zNqfFeAHZp37lu+lTVvZKfDM10EIoYJtv9sWz+0EA5mkzwj4NtC3ialTIjcPAyJ9Oq4zBtToW2hv7qEtyBHZw==}
++  /@swc/core-linux-arm64-musl/1.3.21:
++    resolution: {integrity: sha512-kwH+HHtcakSqR3gF5QJ7N7SPs96ilFiXuauB02Ct3UflaGbVYVoeFYj/VEIJ+ZJvlvvOEDByOiLyrk2bw0bG7A==}
+     engines: {node: '>=10'}
+     cpu: [arm64]
+     os: [linux]
+@@ -1391,8 +1402,8 @@ packages:
+     dev: true
+     optional: true
+ 
+-  /@swc/core-linux-x64-gnu/1.3.18:
+-    resolution: {integrity: sha512-PA3Cc97Kc6W6RtpBLeJaoXLCRL5dJLYd2dszf+f5hGHHJybh6eXGIU0ZkZr898NUHoL8fT6Mg6I4JCNImq/yBg==}
++  /@swc/core-linux-x64-gnu/1.3.21:
++    resolution: {integrity: sha512-/kLQLNxwdX6kO2R751uUrxXZsAhOkA1EeQzAqj+5Y+bzt3hA5asH5evkY0w0Aj1zCofX4p4o/Q35mandUPxMlw==}
+     engines: {node: '>=10'}
+     cpu: [x64]
+     os: [linux]
+@@ -1400,8 +1411,8 @@ packages:
+     dev: true
+     optional: true
+ 
+-  /@swc/core-linux-x64-musl/1.3.18:
+-    resolution: {integrity: sha512-RiZXHwED8cfD/zoBG01iY8YZtOF/8t9XHZ1JqCx9PWOMjXD3Vc8F2I7bp1Qg6ahzWEaP+2+/rqGO1kSwaJjJLw==}
++  /@swc/core-linux-x64-musl/1.3.21:
++    resolution: {integrity: sha512-s+l3LqUzDli6rbmIPR3IfO23IOLYBVxk97CDdcJWrRTVtCwUKFhFVJVZyErveriqLXSGJhy5+UL+aOuxC4dk8g==}
+     engines: {node: '>=10'}
+     cpu: [x64]
+     os: [linux]
+@@ -1409,8 +1420,8 @@ packages:
+     dev: true
+     optional: true
+ 
+-  /@swc/core-win32-arm64-msvc/1.3.18:
+-    resolution: {integrity: sha512-G1Lu/sP+v34lwsGFreklnCdxygMLmobyLY31cNPd0i47ZwgrGowuTV34Mcqfc4AWRkayqVAIlb/WWIZ1+qemcA==}
++  /@swc/core-win32-arm64-msvc/1.3.21:
++    resolution: {integrity: sha512-59gWcdbZxvmyzh+J50yCCodKDYRUnMwNypzzfamF1Vusa4Np+IGMWEaE2KsZUq50OQIRo0PGHpBPMKVYkuGv8g==}
+     engines: {node: '>=10'}
+     cpu: [arm64]
+     os: [win32]
+@@ -1418,8 +1429,8 @@ packages:
+     dev: true
+     optional: true
+ 
+-  /@swc/core-win32-ia32-msvc/1.3.18:
+-    resolution: {integrity: sha512-Uu+m5BPemw5ZiG6LaF+pP0qFQuIXF55wMZNa0Dbl/16hF7ci6q941MT6CqeK5LQQ52FVVqeYO5lDk5CggaA3Mw==}
++  /@swc/core-win32-ia32-msvc/1.3.21:
++    resolution: {integrity: sha512-3gH86ffVAiCmeRy+xSxR5iWSbKy4nUddo4PIahD1zwGJx6LC5ahC/I6EpL1pvoX3KdJKVioUBn0KDfPDUYfqJw==}
+     engines: {node: '>=10'}
+     cpu: [ia32]
+     os: [win32]
+@@ -1427,8 +1438,8 @@ packages:
+     dev: true
+     optional: true
+ 
+-  /@swc/core-win32-x64-msvc/1.3.18:
+-    resolution: {integrity: sha512-9o8uFNsPmWB5FFQSDCsI/KVBSHuAILEwB/hMvbUxKtZeSWAQTm5BqbNPi6X11KJ3MdyoJn7zPejj3grL3dcd/w==}
++  /@swc/core-win32-x64-msvc/1.3.21:
++    resolution: {integrity: sha512-JKWLJdJ3oFc8fGBk4P6mGKhW8n+FmEjLLbsST+h94bZmelrSTeShBt3rr+pMMatFevlu/c9lM3OW2GHsZeZNkg==}
+     engines: {node: '>=10'}
+     cpu: [x64]
+     os: [win32]
+@@ -1436,38 +1447,38 @@ packages:
+     dev: true
+     optional: true
+ 
+-  /@swc/core/1.3.18:
+-    resolution: {integrity: sha512-VChk3ldLhmVoX3Hd2M3Y4j960T0lo2Zus60iZoWST6P65RVPt8BatFVVPAB9dABy1dB5zn1BCpHlH85yXVysQw==}
++  /@swc/core/1.3.21:
++    resolution: {integrity: sha512-RTmqkm5e5sb+Q+YbyqiE52xjvX+kcIVDgaSdSD7mNy2opgDfIdFMhExmB8UQStt3TLrlpAslWaFNWNmvaHP9rg==}
+     engines: {node: '>=10'}
+     hasBin: true
+     requiresBuild: true
+     optionalDependencies:
+-      '@swc/core-darwin-arm64': 1.3.18
+-      '@swc/core-darwin-x64': 1.3.18
+-      '@swc/core-linux-arm-gnueabihf': 1.3.18
+-      '@swc/core-linux-arm64-gnu': 1.3.18
+-      '@swc/core-linux-arm64-musl': 1.3.18
+-      '@swc/core-linux-x64-gnu': 1.3.18
+-      '@swc/core-linux-x64-musl': 1.3.18
+-      '@swc/core-win32-arm64-msvc': 1.3.18
+-      '@swc/core-win32-ia32-msvc': 1.3.18
+-      '@swc/core-win32-x64-msvc': 1.3.18
++      '@swc/core-darwin-arm64': 1.3.21
++      '@swc/core-darwin-x64': 1.3.21
++      '@swc/core-linux-arm-gnueabihf': 1.3.21
++      '@swc/core-linux-arm64-gnu': 1.3.21
++      '@swc/core-linux-arm64-musl': 1.3.21
++      '@swc/core-linux-x64-gnu': 1.3.21
++      '@swc/core-linux-x64-musl': 1.3.21
++      '@swc/core-win32-arm64-msvc': 1.3.21
++      '@swc/core-win32-ia32-msvc': 1.3.21
++      '@swc/core-win32-x64-msvc': 1.3.21
+     dev: true
+ 
+-  /@swc/helpers/0.4.11:
+-    resolution: {integrity: sha512-rEUrBSGIoSFuYxwBYtlUFMlE2CwGhmW+w9355/5oduSw8e5h2+Tj4UrAGNNgP9915++wj5vkQo0UuOBqOAq4nw==}
++  /@swc/helpers/0.4.14:
++    resolution: {integrity: sha512-4C7nX/dvpzB7za4Ql9K81xK3HPxCpHMgwTZVyf+9JQ6VUbn9jjZVN7/Nkdz/Ugzs2CSjqnL/UPXroiVBVHUWUw==}
+     dependencies:
+       tslib: 2.4.1
+     dev: false
+ 
+-  /@swc/jest/0.2.23_@swc+core@1.3.18:
++  /@swc/jest/0.2.23_@swc+core@1.3.21:
+     resolution: {integrity: sha512-ZLj17XjHbPtNsgqjm83qizENw05emLkKGu3WuPUttcy9hkngl0/kcc7fDbcSBpADS0GUtsO+iKPjZFWVAtJSlA==}
+     engines: {npm: '>= 7.0.0'}
+     peerDependencies:
+       '@swc/core': '*'
+     dependencies:
+       '@jest/create-cache-key-function': 27.5.1
+-      '@swc/core': 1.3.18
++      '@swc/core': 1.3.21
+       jsonc-parser: 3.2.0
+     dev: true
+ 
+@@ -1533,6 +1544,15 @@ packages:
+     engines: {node: '>=10.13.0'}
+     dev: true
+ 
++  /@ts-morph/common/0.18.0:
++    resolution: {integrity: sha512-UvWF+oQdMa4qMWhXTOd2JWtAbAJGgkPMNzGHgEcfOwQRIcViKdwsSqXXjSaQCZ4fo+bZMhdfuwQCjlW5bNcqEQ==}
++    dependencies:
++      fast-glob: 3.2.12
++      minimatch: 5.1.0
++      mkdirp: 1.0.4
++      path-browserify: 1.0.1
++    dev: true
++
+   /@tsconfig/node10/1.0.9:
+     resolution: {integrity: sha512-jNsYVVxU8v5g43Erja32laIDHXeoNvFEpX33OK4d6hljo3jDhCBDhx5dhCCTMWUojscpAagGiRkBKxpdl9fxqA==}
+     dev: true
+@@ -1586,13 +1606,13 @@ packages:
+     resolution: {integrity: sha512-l6NQsDDyQUVeoTynNpC9uRvCUint/gSUXQA2euwmTuWGvPY5LSDUu6tkCtJB2SvGQlJQzLaKqcGZP4//7EDveA==}
+     dependencies:
+       '@types/minimatch': 5.1.2
+-      '@types/node': 18.11.9
++      '@types/node': 18.11.11
+     dev: true
+ 
+   /@types/graceful-fs/4.1.5:
+     resolution: {integrity: sha512-anKkLmZZ+xm4p8JWBf4hElkM4XR+EZeA2M9BAkkTldmcyDY4mbdIJnRghDJH3Ov5ooY7/UAoENtmdMSkaAd7Cw==}
+     dependencies:
+-      '@types/node': 18.11.9
++      '@types/node': 18.11.11
+     dev: true
+ 
+   /@types/inquirer/9.0.3:
+@@ -1618,8 +1638,8 @@ packages:
+       '@types/istanbul-lib-report': 3.0.0
+     dev: true
+ 
+-  /@types/jest/29.2.3:
+-    resolution: {integrity: sha512-6XwoEbmatfyoCjWRX7z0fKMmgYKe9+/HrviJ5k0X/tjJWHGAezZOfYaxqQKuzG/TvQyr+ktjm4jgbk0s4/oF2w==}
++  /@types/jest/29.2.4:
++    resolution: {integrity: sha512-PipFB04k2qTRPePduVLTRiPzQfvMeLwUN3Z21hsAKaB/W9IIzgB2pizCL466ftJlcyZqnHoC9ZHpxLGl3fS86A==}
+     dependencies:
+       expect: 29.3.1
+       pretty-format: 29.3.1
+@@ -1632,7 +1652,7 @@ packages:
+   /@types/jsdom/20.0.1:
+     resolution: {integrity: sha512-d0r18sZPmMQr1eG35u12FZfhIXNrnsPU/g5wvRKCUf/tOGilKKwYMYGqh33BNR6ba+2gkHw1EUiHoN3mn7E5IQ==}
+     dependencies:
+-      '@types/node': 18.11.9
++      '@types/node': 18.11.11
+       '@types/tough-cookie': 4.0.2
+       parse5: 7.1.1
+     dev: true
+@@ -1645,8 +1665,8 @@ packages:
+     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
+     dev: true
+ 
+-  /@types/lodash/4.14.189:
+-    resolution: {integrity: sha512-kb9/98N6X8gyME9Cf7YaqIMvYGnBSWqEci6tiettE6iJWH1XdJz/PO8LB0GtLCG7x8dU3KWhZT+lA1a35127tA==}
++  /@types/lodash/4.14.191:
++    resolution: {integrity: sha512-BdZ5BCCvho3EIXw6wUCXHe7rS53AIDPLE+JzwgT+OsJk53oBfbSmZZ7CX4VaRoN78N+TJpFi9QPlfIVNmJYWxQ==}
+     dev: true
+ 
+   /@types/marked/4.0.7:
+@@ -1661,8 +1681,8 @@ packages:
+     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
+     dev: true
+ 
+-  /@types/node/18.11.9:
+-    resolution: {integrity: sha512-CRpX21/kGdzjOpFsZSkcrXMGIBWMGNIHXXBVFSH+ggkftxg+XYP20TESbh+zFvFj3EQOl5byk0HTRn1IL6hbqg==}
++  /@types/node/18.11.11:
++    resolution: {integrity: sha512-KJ021B1nlQUBLopzZmPBVuGU9un7WJd/W4ya7Ih02B4Uwky5Nja0yGYav2EfYIk0RR2Q9oVhf60S2XR1BCWJ2g==}
+     dev: true
+ 
+   /@types/normalize-package-data/2.4.1:
+@@ -1688,17 +1708,17 @@ packages:
+   /@types/react-dom/18.0.9:
+     resolution: {integrity: sha512-qnVvHxASt/H7i+XG1U1xMiY5t+IHcPGUK7TDMDzom08xa7e86eCeKOiLZezwCKVxJn6NEiiy2ekgX8aQssjIKg==}
+     dependencies:
+-      '@types/react': 18.0.25
++      '@types/react': 18.0.26
+     dev: true
+ 
+   /@types/react-window/1.8.5:
+     resolution: {integrity: sha512-V9q3CvhC9Jk9bWBOysPGaWy/Z0lxYcTXLtLipkt2cnRj1JOSFNF7wqGpkScSXMgBwC+fnVRg/7shwgddBG5ICw==}
+     dependencies:
+-      '@types/react': 18.0.25
++      '@types/react': 18.0.26
+     dev: true
+ 
+-  /@types/react/18.0.25:
+-    resolution: {integrity: sha512-xD6c0KDT4m7n9uD4ZHi02lzskaiqcBxf4zi+tXZY98a04wvc0hi/TcCPC2FOESZi51Nd7tlUeOJY8RofL799/g==}
++  /@types/react/18.0.26:
++    resolution: {integrity: sha512-hCR3PJQsAIXyxhTNSiDFY//LhnMZWpNNr5etoCqx/iUfGc5gXWtQR2Phl908jVR6uPXacojQWTg4qRpkxTuGug==}
+     dependencies:
+       '@types/prop-types': 15.7.5
+       '@types/scheduler': 0.16.2
+@@ -1720,13 +1740,13 @@ packages:
+   /@types/testing-library__jest-dom/5.14.5:
+     resolution: {integrity: sha512-SBwbxYoyPIvxHbeHxTZX2Pe/74F/tX2/D3mMvzabdeJ25bBojfW0TyB8BHrbq/9zaaKICJZjLP+8r6AeZMFCuQ==}
+     dependencies:
+-      '@types/jest': 29.2.3
++      '@types/jest': 29.2.4
+     dev: true
+ 
+   /@types/through/0.0.30:
+     resolution: {integrity: sha512-FvnCJljyxhPM3gkRgWmxmDZyAQSiBQQWLI0A0VFL0K7W1oRUrPJSqNO0NvTnLkBcotdlp3lKvaT0JrnyRDkzOg==}
+     dependencies:
+-      '@types/node': 18.11.9
++      '@types/node': 18.11.11
+     dev: true
+ 
+   /@types/tough-cookie/4.0.2:
+@@ -1749,8 +1769,8 @@ packages:
+       '@types/yargs-parser': 21.0.0
+     dev: true
+ 
+-  /@typescript-eslint/eslint-plugin/5.43.0_ol5heeoi7wmwb4tenztnb7jlze:
+-    resolution: {integrity: sha512-wNPzG+eDR6+hhW4yobEmpR36jrqqQv1vxBq5LJO3fBAktjkvekfr4BRl+3Fn1CM/A+s8/EiGUbOMDoYqWdbtXA==}
++  /@typescript-eslint/eslint-plugin/5.45.1_tdm6ms4ntwhlpozn7kjqrhum74:
++    resolution: {integrity: sha512-cOizjPlKEh0bXdFrBLTrI/J6B/QMlhwE9auOov53tgB+qMukH6/h8YAK/qw+QJGct/PTbdh2lytGyipxCcEtAw==}
+     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+     peerDependencies:
+       '@typescript-eslint/parser': ^5.0.0
+@@ -1760,24 +1780,24 @@ packages:
+       typescript:
+         optional: true
+     dependencies:
+-      '@typescript-eslint/parser': 5.43.0_zksrc6ykdxhogxjbhb5axiabwi
+-      '@typescript-eslint/scope-manager': 5.43.0
+-      '@typescript-eslint/type-utils': 5.43.0_zksrc6ykdxhogxjbhb5axiabwi
+-      '@typescript-eslint/utils': 5.43.0_zksrc6ykdxhogxjbhb5axiabwi
++      '@typescript-eslint/parser': 5.45.1_s5ps7njkmjlaqajutnox5ntcla
++      '@typescript-eslint/scope-manager': 5.45.1
++      '@typescript-eslint/type-utils': 5.45.1_s5ps7njkmjlaqajutnox5ntcla
++      '@typescript-eslint/utils': 5.45.1_s5ps7njkmjlaqajutnox5ntcla
+       debug: 4.3.4
+-      eslint: 8.28.0
+-      ignore: 5.2.0
++      eslint: 8.29.0
++      ignore: 5.2.1
+       natural-compare-lite: 1.4.0
+       regexpp: 3.2.0
+       semver: 7.3.8
+-      tsutils: 3.21.0_typescript@4.8.4
+-      typescript: 4.8.4
++      tsutils: 3.21.0_typescript@4.9.3
++      typescript: 4.9.3
+     transitivePeerDependencies:
+       - supports-color
+     dev: true
+ 
+-  /@typescript-eslint/parser/5.43.0_zksrc6ykdxhogxjbhb5axiabwi:
+-    resolution: {integrity: sha512-2iHUK2Lh7PwNUlhFxxLI2haSDNyXvebBO9izhjhMoDC+S3XI9qt2DGFUsiJ89m2k7gGYch2aEpYqV5F/+nwZug==}
++  /@typescript-eslint/parser/5.45.1_s5ps7njkmjlaqajutnox5ntcla:
++    resolution: {integrity: sha512-JQ3Ep8bEOXu16q0ztsatp/iQfDCtvap7sp/DKo7DWltUquj5AfCOpX2zSzJ8YkAVnrQNqQ5R62PBz2UtrfmCkA==}
+     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+     peerDependencies:
+       eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
+@@ -1786,26 +1806,26 @@ packages:
+       typescript:
+         optional: true
+     dependencies:
+-      '@typescript-eslint/scope-manager': 5.43.0
+-      '@typescript-eslint/types': 5.43.0
+-      '@typescript-eslint/typescript-estree': 5.43.0_typescript@4.8.4
++      '@typescript-eslint/scope-manager': 5.45.1
++      '@typescript-eslint/types': 5.45.1
++      '@typescript-eslint/typescript-estree': 5.45.1_typescript@4.9.3
+       debug: 4.3.4
+-      eslint: 8.28.0
+-      typescript: 4.8.4
++      eslint: 8.29.0
++      typescript: 4.9.3
+     transitivePeerDependencies:
+       - supports-color
+     dev: true
+ 
+-  /@typescript-eslint/scope-manager/5.43.0:
+-    resolution: {integrity: sha512-XNWnGaqAtTJsUiZaoiGIrdJYHsUOd3BZ3Qj5zKp9w6km6HsrjPk/TGZv0qMTWyWj0+1QOqpHQ2gZOLXaGA9Ekw==}
++  /@typescript-eslint/scope-manager/5.45.1:
++    resolution: {integrity: sha512-D6fCileR6Iai7E35Eb4Kp+k0iW7F1wxXYrOhX/3dywsOJpJAQ20Fwgcf+P/TDtvQ7zcsWsrJaglaQWDhOMsspQ==}
+     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+     dependencies:
+-      '@typescript-eslint/types': 5.43.0
+-      '@typescript-eslint/visitor-keys': 5.43.0
++      '@typescript-eslint/types': 5.45.1
++      '@typescript-eslint/visitor-keys': 5.45.1
+     dev: true
+ 
+-  /@typescript-eslint/type-utils/5.43.0_zksrc6ykdxhogxjbhb5axiabwi:
+-    resolution: {integrity: sha512-K21f+KY2/VvYggLf5Pk4tgBOPs2otTaIHy2zjclo7UZGLyFH86VfUOm5iq+OtDtxq/Zwu2I3ujDBykVW4Xtmtg==}
++  /@typescript-eslint/type-utils/5.45.1_s5ps7njkmjlaqajutnox5ntcla:
++    resolution: {integrity: sha512-aosxFa+0CoYgYEl3aptLe1svP910DJq68nwEJzyQcrtRhC4BN0tJAvZGAe+D0tzjJmFXe+h4leSsiZhwBa2vrA==}
+     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+     peerDependencies:
+       eslint: '*'
+@@ -1814,23 +1834,23 @@ packages:
+       typescript:
+         optional: true
+     dependencies:
+-      '@typescript-eslint/typescript-estree': 5.43.0_typescript@4.8.4
+-      '@typescript-eslint/utils': 5.43.0_zksrc6ykdxhogxjbhb5axiabwi
++      '@typescript-eslint/typescript-estree': 5.45.1_typescript@4.9.3
++      '@typescript-eslint/utils': 5.45.1_s5ps7njkmjlaqajutnox5ntcla
+       debug: 4.3.4
+-      eslint: 8.28.0
+-      tsutils: 3.21.0_typescript@4.8.4
+-      typescript: 4.8.4
++      eslint: 8.29.0
++      tsutils: 3.21.0_typescript@4.9.3
++      typescript: 4.9.3
+     transitivePeerDependencies:
+       - supports-color
+     dev: true
+ 
+-  /@typescript-eslint/types/5.43.0:
+-    resolution: {integrity: sha512-jpsbcD0x6AUvV7tyOlyvon0aUsQpF8W+7TpJntfCUWU1qaIKu2K34pMwQKSzQH8ORgUrGYY6pVIh1Pi8TNeteg==}
++  /@typescript-eslint/types/5.45.1:
++    resolution: {integrity: sha512-HEW3U0E5dLjUT+nk7b4lLbOherS1U4ap+b9pfu2oGsW3oPu7genRaY9dDv3nMczC1rbnRY2W/D7SN05wYoGImg==}
+     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+     dev: true
+ 
+-  /@typescript-eslint/typescript-estree/5.43.0_typescript@4.8.4:
+-    resolution: {integrity: sha512-BZ1WVe+QQ+igWal2tDbNg1j2HWUkAa+CVqdU79L4HP9izQY6CNhXfkNwd1SS4+sSZAP/EthI1uiCSY/+H0pROg==}
++  /@typescript-eslint/typescript-estree/5.45.1_typescript@4.9.3:
++    resolution: {integrity: sha512-76NZpmpCzWVrrb0XmYEpbwOz/FENBi+5W7ipVXAsG3OoFrQKJMiaqsBMbvGRyLtPotGqUfcY7Ur8j0dksDJDng==}
+     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+     peerDependencies:
+       typescript: '*'
+@@ -1838,43 +1858,43 @@ packages:
+       typescript:
+         optional: true
+     dependencies:
+-      '@typescript-eslint/types': 5.43.0
+-      '@typescript-eslint/visitor-keys': 5.43.0
++      '@typescript-eslint/types': 5.45.1
++      '@typescript-eslint/visitor-keys': 5.45.1
+       debug: 4.3.4
+       globby: 11.1.0
+       is-glob: 4.0.3
+       semver: 7.3.8
+-      tsutils: 3.21.0_typescript@4.8.4
+-      typescript: 4.8.4
++      tsutils: 3.21.0_typescript@4.9.3
++      typescript: 4.9.3
+     transitivePeerDependencies:
+       - supports-color
+     dev: true
+ 
+-  /@typescript-eslint/utils/5.43.0_zksrc6ykdxhogxjbhb5axiabwi:
+-    resolution: {integrity: sha512-8nVpA6yX0sCjf7v/NDfeaOlyaIIqL7OaIGOWSPFqUKK59Gnumd3Wa+2l8oAaYO2lk0sO+SbWFWRSvhu8gLGv4A==}
++  /@typescript-eslint/utils/5.45.1_s5ps7njkmjlaqajutnox5ntcla:
++    resolution: {integrity: sha512-rlbC5VZz68+yjAzQBc4I7KDYVzWG2X/OrqoZrMahYq3u8FFtmQYc+9rovo/7wlJH5kugJ+jQXV5pJMnofGmPRw==}
+     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+     peerDependencies:
+       eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
+     dependencies:
+       '@types/json-schema': 7.0.11
+       '@types/semver': 7.3.13
+-      '@typescript-eslint/scope-manager': 5.43.0
+-      '@typescript-eslint/types': 5.43.0
+-      '@typescript-eslint/typescript-estree': 5.43.0_typescript@4.8.4
+-      eslint: 8.28.0
++      '@typescript-eslint/scope-manager': 5.45.1
++      '@typescript-eslint/types': 5.45.1
++      '@typescript-eslint/typescript-estree': 5.45.1_typescript@4.9.3
++      eslint: 8.29.0
+       eslint-scope: 5.1.1
+-      eslint-utils: 3.0.0_eslint@8.28.0
++      eslint-utils: 3.0.0_eslint@8.29.0
+       semver: 7.3.8
+     transitivePeerDependencies:
+       - supports-color
+       - typescript
+     dev: true
+ 
+-  /@typescript-eslint/visitor-keys/5.43.0:
+-    resolution: {integrity: sha512-icl1jNH/d18OVHLfcwdL3bWUKsBeIiKYTGxMJCoGe7xFht+E4QgzOqoWYrU8XSLJWhVw8nTacbm03v23J/hFTg==}
++  /@typescript-eslint/visitor-keys/5.45.1:
++    resolution: {integrity: sha512-cy9ln+6rmthYWjH9fmx+5FU/JDpjQb586++x2FZlveq7GdGuLLW9a2Jcst2TGekH82bXpfmRNSwP9tyEs6RjvQ==}
+     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+     dependencies:
+-      '@typescript-eslint/types': 5.43.0
++      '@typescript-eslint/types': 5.45.1
+       eslint-visitor-keys: 3.3.0
+     dev: true
+ 
+@@ -2022,8 +2042,8 @@ packages:
+     resolution: {integrity: sha512-o/HelwhuKpTj/frsOsbNLNgnNGVIFsVP/SW2BSF14gVl7kAfMOJ6/8wUAUvG1R1NHKrfG+2sHZTu0yauT1qBrA==}
+     engines: {node: '>=6.0'}
+     dependencies:
+-      '@babel/runtime': 7.20.1
+-      '@babel/runtime-corejs3': 7.20.1
++      '@babel/runtime': 7.20.6
++      '@babel/runtime-corejs3': 7.20.6
+     dev: true
+ 
+   /aria-query/5.0.0:
+@@ -2286,8 +2306,8 @@ packages:
+     resolution: {integrity: sha512-n7cosrHLl8AWt0wwZw/PJZgUg3lV0gk9LMI7ikGJwhyhgsd2Nb65vKvmSexCqq/J7rbH3mFG6yZZiPR5dLPW5A==}
+     dev: true
+ 
+-  /caniuse-lite/1.0.30001431:
+-    resolution: {integrity: sha512-zBUoFU0ZcxpvSt9IU66dXVT/3ctO1cy4y9cscs1szkPlcWb6pasYM144GqrUygUbT+k7cmUCW61cvskjcv0enQ==}
++  /caniuse-lite/1.0.30001436:
++    resolution: {integrity: sha512-ZmWkKsnC2ifEPoWUvSAIGyOYwT+keAaaWPHiQ9DfMqS1t6tfuyFYoWR78TeZtznkEQ64+vGXH9cZrElwR2Mrxg==}
+     dev: false
+ 
+   /chalk/2.4.2:
+@@ -2429,6 +2449,10 @@ packages:
+     engines: {iojs: '>= 1.0.0', node: '>= 0.12.0'}
+     dev: true
+ 
++  /code-block-writer/11.0.3:
++    resolution: {integrity: sha512-NiujjUFB4SwScJq2bwbYUtXbZhBSlY6vYzm++3Q6oC+U+injTqfPYFK8wS9COOmb2lueqp0ZRB4nK1VYeHgNyw==}
++    dev: true
++
+   /collect-v8-coverage/1.0.1:
+     resolution: {integrity: sha512-iBPtljfCNcTKNAto0KEtDfZ3qzjJvqE3aTGZsbhjSBlorqpXJlaWWtPO35D+ZImoC3KWejX64o+yPGxhWSTzfg==}
+     dev: true
+@@ -2784,8 +2808,8 @@ packages:
+     resolution: {integrity: sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==}
+     dev: true
+ 
+-  /enhanced-resolve/5.10.0:
+-    resolution: {integrity: sha512-T0yTFjdpldGY8PmuXXR0PyQ1ufZpEGiHVrp7zHKB7jdR4qlmZHhONVM5AQOAWXuF/w3dnHbEQVrNptJgt7F+cQ==}
++  /enhanced-resolve/5.12.0:
++    resolution: {integrity: sha512-QHTXI/sZQmko1cbDoNAa3mJ5qhWUUNAq3vR0/YiD379fWQrcfuoX1+HW2S0MTt7XmoPLapdaDKUtelUSPic7hQ==}
+     engines: {node: '>=10.13.0'}
+     dependencies:
+       graceful-fs: 4.2.10
+@@ -2886,8 +2910,8 @@ packages:
+       source-map: 0.6.1
+     dev: true
+ 
+-  /eslint-config-next/13.0.4_zksrc6ykdxhogxjbhb5axiabwi:
+-    resolution: {integrity: sha512-moEC7BW2TK7JKq3QfnaauqRjWzVcEf71gp5DbClpFPHM6QXE0u0uVvSTiHlmOgtCe1vyWAO+AhF87ZITd8mIDw==}
++  /eslint-config-next/13.0.6_s5ps7njkmjlaqajutnox5ntcla:
++    resolution: {integrity: sha512-Tfn/0lirhkEuoGxKMtDQNtQuC7P3eHcyUyhIJY/OHtjU9ExHFtcge/Fe8Ou/Jd7DIC71vN3CT72oszVwia71cg==}
+     peerDependencies:
+       eslint: ^7.23.0 || ^8.0.0
+       typescript: '>=3.3.1'
+@@ -2895,29 +2919,29 @@ packages:
+       typescript:
+         optional: true
+     dependencies:
+-      '@next/eslint-plugin-next': 13.0.4
++      '@next/eslint-plugin-next': 13.0.6
+       '@rushstack/eslint-patch': 1.2.0
+-      '@typescript-eslint/parser': 5.43.0_zksrc6ykdxhogxjbhb5axiabwi
+-      eslint: 8.28.0
++      '@typescript-eslint/parser': 5.45.1_s5ps7njkmjlaqajutnox5ntcla
++      eslint: 8.29.0
+       eslint-import-resolver-node: 0.3.6
+-      eslint-import-resolver-typescript: 3.5.2_ktrec6dplf4now6nlbc6d67jee
+-      eslint-plugin-import: 2.26.0_d5vn4nsvkp5ugznurcfxmdkaeu
+-      eslint-plugin-jsx-a11y: 6.6.1_eslint@8.28.0
+-      eslint-plugin-react: 7.31.11_eslint@8.28.0
+-      eslint-plugin-react-hooks: 4.6.0_eslint@8.28.0
+-      typescript: 4.8.4
++      eslint-import-resolver-typescript: 3.5.2_lt3hqehuojhfcbzgzqfngbtmrq
++      eslint-plugin-import: 2.26.0_qfsg7upu5e4dqco5ntekgyqxwu
++      eslint-plugin-jsx-a11y: 6.6.1_eslint@8.29.0
++      eslint-plugin-react: 7.31.11_eslint@8.29.0
++      eslint-plugin-react-hooks: 4.6.0_eslint@8.29.0
++      typescript: 4.9.3
+     transitivePeerDependencies:
+       - eslint-import-resolver-webpack
+       - supports-color
+     dev: true
+ 
+-  /eslint-config-prettier/8.5.0_eslint@8.28.0:
++  /eslint-config-prettier/8.5.0_eslint@8.29.0:
+     resolution: {integrity: sha512-obmWKLUNCnhtQRKc+tmnYuQl0pFU1ibYJQ5BGhTVB08bHe9wC8qUeG7c08dj9XX+AuPj1YSGSQIHl1pnDHZR0Q==}
+     hasBin: true
+     peerDependencies:
+       eslint: '>=7.0.0'
+     dependencies:
+-      eslint: 8.28.0
++      eslint: 8.29.0
+     dev: true
+ 
+   /eslint-import-resolver-node/0.3.6:
+@@ -2929,7 +2953,7 @@ packages:
+       - supports-color
+     dev: true
+ 
+-  /eslint-import-resolver-typescript/3.5.2_ktrec6dplf4now6nlbc6d67jee:
++  /eslint-import-resolver-typescript/3.5.2_lt3hqehuojhfcbzgzqfngbtmrq:
+     resolution: {integrity: sha512-zX4ebnnyXiykjhcBvKIf5TNvt8K7yX6bllTRZ14MiurKPjDpCAZujlszTdB8pcNXhZcOf+god4s9SjQa5GnytQ==}
+     engines: {node: ^14.18.0 || >=16.0.0}
+     peerDependencies:
+@@ -2937,9 +2961,9 @@ packages:
+       eslint-plugin-import: '*'
+     dependencies:
+       debug: 4.3.4
+-      enhanced-resolve: 5.10.0
+-      eslint: 8.28.0
+-      eslint-plugin-import: 2.26.0_d5vn4nsvkp5ugznurcfxmdkaeu
++      enhanced-resolve: 5.12.0
++      eslint: 8.29.0
++      eslint-plugin-import: 2.26.0_qfsg7upu5e4dqco5ntekgyqxwu
+       get-tsconfig: 4.2.0
+       globby: 13.1.2
+       is-core-module: 2.11.0
+@@ -2949,7 +2973,7 @@ packages:
+       - supports-color
+     dev: true
+ 
+-  /eslint-module-utils/2.7.4_4sj2pgnhb6wbtprrvnb5kjfgfe:
++  /eslint-module-utils/2.7.4_jnakocfte2jywffz4vixv5kpsq:
+     resolution: {integrity: sha512-j4GT+rqzCoRKHwURX7pddtIPGySnX9Si/cgMI5ztrcqOPtk5dDEeZ34CQVPphnqkJytlc97Vuk05Um2mJ3gEQA==}
+     engines: {node: '>=4'}
+     peerDependencies:
+@@ -2970,15 +2994,15 @@ packages:
+       eslint-import-resolver-webpack:
+         optional: true
+     dependencies:
+-      '@typescript-eslint/parser': 5.43.0_zksrc6ykdxhogxjbhb5axiabwi
++      '@typescript-eslint/parser': 5.45.1_s5ps7njkmjlaqajutnox5ntcla
+       debug: 3.2.7
+-      eslint: 8.28.0
++      eslint: 8.29.0
+       eslint-import-resolver-node: 0.3.6
+     transitivePeerDependencies:
+       - supports-color
+     dev: true
+ 
+-  /eslint-module-utils/2.7.4_hkyvkcuamndkjh6xd3yrie643u:
++  /eslint-module-utils/2.7.4_wbv6cezew2qbikiravago3ef2u:
+     resolution: {integrity: sha512-j4GT+rqzCoRKHwURX7pddtIPGySnX9Si/cgMI5ztrcqOPtk5dDEeZ34CQVPphnqkJytlc97Vuk05Um2mJ3gEQA==}
+     engines: {node: '>=4'}
+     peerDependencies:
+@@ -2999,16 +3023,16 @@ packages:
+       eslint-import-resolver-webpack:
+         optional: true
+     dependencies:
+-      '@typescript-eslint/parser': 5.43.0_zksrc6ykdxhogxjbhb5axiabwi
++      '@typescript-eslint/parser': 5.45.1_s5ps7njkmjlaqajutnox5ntcla
+       debug: 3.2.7
+-      eslint: 8.28.0
++      eslint: 8.29.0
+       eslint-import-resolver-node: 0.3.6
+-      eslint-import-resolver-typescript: 3.5.2_ktrec6dplf4now6nlbc6d67jee
++      eslint-import-resolver-typescript: 3.5.2_lt3hqehuojhfcbzgzqfngbtmrq
+     transitivePeerDependencies:
+       - supports-color
+     dev: true
+ 
+-  /eslint-plugin-import/2.26.0_d5vn4nsvkp5ugznurcfxmdkaeu:
++  /eslint-plugin-import/2.26.0_i656iqvetrvx3ajhg4t6psfrl4:
+     resolution: {integrity: sha512-hYfi3FXaM8WPLf4S1cikh/r4IxnO6zrhZbEGz2b660EJRbuxgpDS5gkCuYgGWg2xxh2rBuIr4Pvhve/7c31koA==}
+     engines: {node: '>=4'}
+     peerDependencies:
+@@ -3018,14 +3042,14 @@ packages:
+       '@typescript-eslint/parser':
+         optional: true
+     dependencies:
+-      '@typescript-eslint/parser': 5.43.0_zksrc6ykdxhogxjbhb5axiabwi
++      '@typescript-eslint/parser': 5.45.1_s5ps7njkmjlaqajutnox5ntcla
+       array-includes: 3.1.6
+       array.prototype.flat: 1.3.1
+       debug: 2.6.9
+       doctrine: 2.1.0
+-      eslint: 8.28.0
++      eslint: 8.29.0
+       eslint-import-resolver-node: 0.3.6
+-      eslint-module-utils: 2.7.4_hkyvkcuamndkjh6xd3yrie643u
++      eslint-module-utils: 2.7.4_jnakocfte2jywffz4vixv5kpsq
+       has: 1.0.3
+       is-core-module: 2.11.0
+       is-glob: 4.0.3
+@@ -3039,7 +3063,7 @@ packages:
+       - supports-color
+     dev: true
+ 
+-  /eslint-plugin-import/2.26.0_ivdjtymx6ubvknadox4oh4qsue:
++  /eslint-plugin-import/2.26.0_qfsg7upu5e4dqco5ntekgyqxwu:
+     resolution: {integrity: sha512-hYfi3FXaM8WPLf4S1cikh/r4IxnO6zrhZbEGz2b660EJRbuxgpDS5gkCuYgGWg2xxh2rBuIr4Pvhve/7c31koA==}
+     engines: {node: '>=4'}
+     peerDependencies:
+@@ -3049,14 +3073,14 @@ packages:
+       '@typescript-eslint/parser':
+         optional: true
+     dependencies:
+-      '@typescript-eslint/parser': 5.43.0_zksrc6ykdxhogxjbhb5axiabwi
++      '@typescript-eslint/parser': 5.45.1_s5ps7njkmjlaqajutnox5ntcla
+       array-includes: 3.1.6
+       array.prototype.flat: 1.3.1
+       debug: 2.6.9
+       doctrine: 2.1.0
+-      eslint: 8.28.0
++      eslint: 8.29.0
+       eslint-import-resolver-node: 0.3.6
+-      eslint-module-utils: 2.7.4_4sj2pgnhb6wbtprrvnb5kjfgfe
++      eslint-module-utils: 2.7.4_wbv6cezew2qbikiravago3ef2u
+       has: 1.0.3
+       is-core-module: 2.11.0
+       is-glob: 4.0.3
+@@ -3070,8 +3094,8 @@ packages:
+       - supports-color
+     dev: true
+ 
+-  /eslint-plugin-jest/27.1.5_zac7yqzhl3hrdb2vyrot7xofk4:
+-    resolution: {integrity: sha512-CK2dekZ5VBdzsOSOH5Fc1rwC+cWXjkcyrmf1RV714nDUDKu+o73TTJiDxpbILG8PtPPpAAl3ywzh5QA7Ft0mjA==}
++  /eslint-plugin-jest/27.1.6_wphnk73nuaukzqdbeh73ahlnhy:
++    resolution: {integrity: sha512-XA7RFLSrlQF9IGtAmhddkUkBuICCTuryfOTfCSWcZHiHb69OilIH05oozH2XA6CEOtztnOd0vgXyvxZodkxGjg==}
+     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
+     peerDependencies:
+       '@typescript-eslint/eslint-plugin': ^5.0.0
+@@ -3083,22 +3107,22 @@ packages:
+       jest:
+         optional: true
+     dependencies:
+-      '@typescript-eslint/eslint-plugin': 5.43.0_ol5heeoi7wmwb4tenztnb7jlze
+-      '@typescript-eslint/utils': 5.43.0_zksrc6ykdxhogxjbhb5axiabwi
+-      eslint: 8.28.0
+-      jest: 29.3.1_odkjkoia5xunhxkdrka32ib6vi
++      '@typescript-eslint/eslint-plugin': 5.45.1_tdm6ms4ntwhlpozn7kjqrhum74
++      '@typescript-eslint/utils': 5.45.1_s5ps7njkmjlaqajutnox5ntcla
++      eslint: 8.29.0
++      jest: 29.3.1_k7quxe733nexnlgzi4yxvxoplq
+     transitivePeerDependencies:
+       - supports-color
+       - typescript
+     dev: true
+ 
+-  /eslint-plugin-jsx-a11y/6.6.1_eslint@8.28.0:
++  /eslint-plugin-jsx-a11y/6.6.1_eslint@8.29.0:
+     resolution: {integrity: sha512-sXgFVNHiWffBq23uiS/JaP6eVR622DqwB4yTzKvGZGcPq6/yZ3WmOZfuBks/vHWo9GaFOqC2ZK4i6+C35knx7Q==}
+     engines: {node: '>=4.0'}
+     peerDependencies:
+       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
+     dependencies:
+-      '@babel/runtime': 7.20.1
++      '@babel/runtime': 7.20.6
+       aria-query: 4.2.2
+       array-includes: 3.1.6
+       ast-types-flow: 0.0.7
+@@ -3106,10 +3130,10 @@ packages:
+       axobject-query: 2.2.0
+       damerau-levenshtein: 1.0.8
+       emoji-regex: 9.2.2
+-      eslint: 8.28.0
++      eslint: 8.29.0
+       has: 1.0.3
+       jsx-ast-utils: 3.3.3
+-      language-tags: 1.0.5
++      language-tags: 1.0.6
+       minimatch: 3.1.2
+       semver: 6.3.0
+     dev: true
+@@ -3118,16 +3142,16 @@ packages:
+     resolution: {integrity: sha512-IldNDVb6WNduggwRbYzSGZhaskUwVecJ6fhmqwX01+S1aohwAWNzU4me6y47DDzpD/g0fdayNBGxEdt9vKkUtg==}
+     dev: true
+ 
+-  /eslint-plugin-react-hooks/4.6.0_eslint@8.28.0:
++  /eslint-plugin-react-hooks/4.6.0_eslint@8.29.0:
+     resolution: {integrity: sha512-oFc7Itz9Qxh2x4gNHStv3BqJq54ExXmfC+a1NjAta66IAN87Wu0R/QArgIS9qKzX3dXKPI9H5crl9QchNMY9+g==}
+     engines: {node: '>=10'}
+     peerDependencies:
+       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0
+     dependencies:
+-      eslint: 8.28.0
++      eslint: 8.29.0
+     dev: true
+ 
+-  /eslint-plugin-react/7.31.11_eslint@8.28.0:
++  /eslint-plugin-react/7.31.11_eslint@8.29.0:
+     resolution: {integrity: sha512-TTvq5JsT5v56wPa9OYHzsrOlHzKZKjV+aLgS+55NJP/cuzdiQPC7PfYoUjMoxlffKtvijpk7vA/jmuqRb9nohw==}
+     engines: {node: '>=4'}
+     peerDependencies:
+@@ -3137,7 +3161,7 @@ packages:
+       array.prototype.flatmap: 1.3.1
+       array.prototype.tosorted: 1.1.1
+       doctrine: 2.1.0
+-      eslint: 8.28.0
++      eslint: 8.29.0
+       estraverse: 5.3.0
+       jsx-ast-utils: 3.3.3
+       minimatch: 3.1.2
+@@ -3174,13 +3198,13 @@ packages:
+       estraverse: 5.3.0
+     dev: true
+ 
+-  /eslint-utils/3.0.0_eslint@8.28.0:
++  /eslint-utils/3.0.0_eslint@8.29.0:
+     resolution: {integrity: sha512-uuQC43IGctw68pJA1RgbQS8/NP7rch6Cwd4j3ZBtgo4/8Flj4eGE7ZYSZRN3iq5pVUv6GPdW5Z1RFleo84uLDA==}
+     engines: {node: ^10.0.0 || ^12.0.0 || >= 14.0.0}
+     peerDependencies:
+       eslint: '>=5'
+     dependencies:
+-      eslint: 8.28.0
++      eslint: 8.29.0
+       eslint-visitor-keys: 2.1.0
+     dev: true
+ 
+@@ -3194,8 +3218,8 @@ packages:
+     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+     dev: true
+ 
+-  /eslint/8.28.0:
+-    resolution: {integrity: sha512-S27Di+EVyMxcHiwDrFzk8dJYAaD+/5SoWKxL1ri/71CRHsnJnRDPNt2Kzj24+MT9FDupf4aqqyqPrvI8MvQ4VQ==}
++  /eslint/8.29.0:
++    resolution: {integrity: sha512-isQ4EEiyUjZFbEKvEGJKKGBwXtvXX+zJbkVKCgTuB9t/+jUBcy8avhkEwWJecI15BkRkOYmvIM5ynbhRjEkoeg==}
+     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+     hasBin: true
+     dependencies:
+@@ -3210,7 +3234,7 @@ packages:
+       doctrine: 3.0.0
+       escape-string-regexp: 4.0.0
+       eslint-scope: 7.1.1
+-      eslint-utils: 3.0.0_eslint@8.28.0
++      eslint-utils: 3.0.0_eslint@8.29.0
+       eslint-visitor-keys: 3.3.0
+       espree: 9.4.1
+       esquery: 1.4.0
+@@ -3221,12 +3245,12 @@ packages:
+       glob-parent: 6.0.2
+       globals: 13.18.0
+       grapheme-splitter: 1.0.4
+-      ignore: 5.2.0
++      ignore: 5.2.1
+       import-fresh: 3.3.0
+       imurmurhash: 0.1.4
+       is-glob: 4.0.3
+       is-path-inside: 3.0.3
+-      js-sdsl: 4.1.5
++      js-sdsl: 4.2.0
+       js-yaml: 4.1.0
+       json-stable-stringify-without-jsonify: 1.0.1
+       levn: 0.4.1
+@@ -3380,8 +3404,8 @@ packages:
+     engines: {node: '>= 4.9.1'}
+     dev: true
+ 
+-  /fastq/1.13.0:
+-    resolution: {integrity: sha512-YpkpUnK8od0o1hmeSc7UUs/eB/vIPWJYjKck2QKIzAf71Vm1AAQ3EbuZB3g2JIy+pg+ERD0vqI79KyZiB2e2Nw==}
++  /fastq/1.14.0:
++    resolution: {integrity: sha512-eR2D+V9/ExcbF9ls441yIuN6TI2ED1Y2ZcA5BmMtJsOkWOFRJQ0Jt0g1UwqXJJVAb+V+umH5Dfr8oh4EVP7VVg==}
+     dependencies:
+       reusify: 1.0.4
+     dev: true
+@@ -3598,7 +3622,7 @@ packages:
+       array-union: 2.1.0
+       dir-glob: 3.0.1
+       fast-glob: 3.2.12
+-      ignore: 5.2.0
++      ignore: 5.2.1
+       merge2: 1.4.1
+       slash: 3.0.0
+     dev: true
+@@ -3609,7 +3633,7 @@ packages:
+     dependencies:
+       dir-glob: 3.0.1
+       fast-glob: 3.2.12
+-      ignore: 5.2.0
++      ignore: 5.2.1
+       merge2: 1.4.1
+       slash: 4.0.0
+     dev: true
+@@ -3767,8 +3791,8 @@ packages:
+     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
+     dev: true
+ 
+-  /ignore/5.2.0:
+-    resolution: {integrity: sha512-CmxgYGiEPCLhfLnpPp1MoRmifwEIOgjcHXxOBjv7mY96c+eWScsOP9c112ZyLdWHi0FxHjI+4uVhKYp/gcdRmQ==}
++  /ignore/5.2.1:
++    resolution: {integrity: sha512-d2qQLzTJ9WxQftPAuEQpSPmKqzxePjzVbpAVv62AQ64NTL+wR4JkrVqR/LqFsFEUsHDAiId52mJteHDFuDkElA==}
+     engines: {node: '>= 4'}
+     dev: true
+ 
+@@ -4092,7 +4116,7 @@ packages:
+       '@jest/expect': 29.3.1
+       '@jest/test-result': 29.3.1
+       '@jest/types': 29.3.1
+-      '@types/node': 18.11.9
++      '@types/node': 18.11.11
+       chalk: 4.1.2
+       co: 4.6.0
+       dedent: 0.7.0
+@@ -4111,7 +4135,7 @@ packages:
+       - supports-color
+     dev: true
+ 
+-  /jest-cli/29.3.1_odkjkoia5xunhxkdrka32ib6vi:
++  /jest-cli/29.3.1_k7quxe733nexnlgzi4yxvxoplq:
+     resolution: {integrity: sha512-TO/ewvwyvPOiBBuWZ0gm04z3WWP8TIK8acgPzE4IxgsLKQgb377NYGrQLc3Wl/7ndWzIH2CDNNsUjGxwLL43VQ==}
+     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
+     hasBin: true
+@@ -4128,7 +4152,7 @@ packages:
+       exit: 0.1.2
+       graceful-fs: 4.2.10
+       import-local: 3.1.0
+-      jest-config: 29.3.1_odkjkoia5xunhxkdrka32ib6vi
++      jest-config: 29.3.1_k7quxe733nexnlgzi4yxvxoplq
+       jest-util: 29.3.1
+       jest-validate: 29.3.1
+       prompts: 2.4.2
+@@ -4139,7 +4163,7 @@ packages:
+       - ts-node
+     dev: true
+ 
+-  /jest-config/29.3.1_odkjkoia5xunhxkdrka32ib6vi:
++  /jest-config/29.3.1_k7quxe733nexnlgzi4yxvxoplq:
+     resolution: {integrity: sha512-y0tFHdj2WnTEhxmGUK1T7fgLen7YK4RtfvpLFBXfQkh2eMJAQq24Vx9472lvn5wg0MAO6B+iPfJfzdR9hJYalg==}
+     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
+     peerDependencies:
+@@ -4154,7 +4178,7 @@ packages:
+       '@babel/core': 7.20.2
+       '@jest/test-sequencer': 29.3.1
+       '@jest/types': 29.3.1
+-      '@types/node': 18.11.9
++      '@types/node': 18.11.11
+       babel-jest: 29.3.1_@babel+core@7.20.2
+       chalk: 4.1.2
+       ci-info: 3.6.1
+@@ -4174,7 +4198,7 @@ packages:
+       pretty-format: 29.3.1
+       slash: 3.0.0
+       strip-json-comments: 3.1.1
+-      ts-node: 10.9.1_gs2wtvhfs5f4ebmfhr7ie3vdfm
++      ts-node: 10.9.1_lpj2q7bjbv7owmpf5rj6kndjrq
+     transitivePeerDependencies:
+       - supports-color
+     dev: true
+@@ -4220,7 +4244,7 @@ packages:
+       '@jest/fake-timers': 29.3.1
+       '@jest/types': 29.3.1
+       '@types/jsdom': 20.0.1
+-      '@types/node': 18.11.9
++      '@types/node': 18.11.11
+       jest-mock: 29.3.1
+       jest-util: 29.3.1
+       jsdom: 20.0.2
+@@ -4237,7 +4261,7 @@ packages:
+       '@jest/environment': 29.3.1
+       '@jest/fake-timers': 29.3.1
+       '@jest/types': 29.3.1
+-      '@types/node': 18.11.9
++      '@types/node': 18.11.11
+       jest-mock: 29.3.1
+       jest-util: 29.3.1
+     dev: true
+@@ -4253,7 +4277,7 @@ packages:
+     dependencies:
+       '@jest/types': 29.3.1
+       '@types/graceful-fs': 4.1.5
+-      '@types/node': 18.11.9
++      '@types/node': 18.11.11
+       anymatch: 3.1.2
+       fb-watchman: 2.0.2
+       graceful-fs: 4.2.10
+@@ -4304,7 +4328,7 @@ packages:
+     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
+     dependencies:
+       '@jest/types': 29.3.1
+-      '@types/node': 18.11.9
++      '@types/node': 18.11.11
+       jest-util: 29.3.1
+     dev: true
+ 
+@@ -4359,7 +4383,7 @@ packages:
+       '@jest/test-result': 29.3.1
+       '@jest/transform': 29.3.1
+       '@jest/types': 29.3.1
+-      '@types/node': 18.11.9
++      '@types/node': 18.11.11
+       chalk: 4.1.2
+       emittery: 0.13.1
+       graceful-fs: 4.2.10
+@@ -4390,7 +4414,7 @@ packages:
+       '@jest/test-result': 29.3.1
+       '@jest/transform': 29.3.1
+       '@jest/types': 29.3.1
+-      '@types/node': 18.11.9
++      '@types/node': 18.11.11
+       chalk: 4.1.2
+       cjs-module-lexer: 1.2.2
+       collect-v8-coverage: 1.0.1
+@@ -4446,7 +4470,7 @@ packages:
+     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
+     dependencies:
+       '@jest/types': 29.3.1
+-      '@types/node': 18.11.9
++      '@types/node': 18.11.11
+       chalk: 4.1.2
+       ci-info: 3.6.1
+       graceful-fs: 4.2.10
+@@ -4473,7 +4497,7 @@ packages:
+     dependencies:
+       ansi-escapes: 6.0.0
+       chalk: 4.1.2
+-      jest: 29.3.1_odkjkoia5xunhxkdrka32ib6vi
++      jest: 29.3.1_k7quxe733nexnlgzi4yxvxoplq
+       jest-regex-util: 29.2.0
+       jest-watcher: 29.3.1
+       slash: 5.0.0
+@@ -4487,7 +4511,7 @@ packages:
+     dependencies:
+       '@jest/test-result': 29.3.1
+       '@jest/types': 29.3.1
+-      '@types/node': 18.11.9
++      '@types/node': 18.11.11
+       ansi-escapes: 4.3.2
+       chalk: 4.1.2
+       emittery: 0.13.1
+@@ -4499,13 +4523,13 @@ packages:
+     resolution: {integrity: sha512-lY4AnnmsEWeiXirAIA0c9SDPbuCBq8IYuDVL8PMm0MZ2PEs2yPvRA/J64QBXuZp7CYKrDM/rmNrc9/i3KJQncw==}
+     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
+     dependencies:
+-      '@types/node': 18.11.9
++      '@types/node': 18.11.11
+       jest-util: 29.3.1
+       merge-stream: 2.0.0
+       supports-color: 8.1.1
+     dev: true
+ 
+-  /jest/29.3.1_odkjkoia5xunhxkdrka32ib6vi:
++  /jest/29.3.1_k7quxe733nexnlgzi4yxvxoplq:
+     resolution: {integrity: sha512-6iWfL5DTT0Np6UYs/y5Niu7WIfNv/wRTtN5RSXt2DIEft3dx3zPuw/3WJQBCJfmEzvDiEKwoqMbGD9n49+qLSA==}
+     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
+     hasBin: true
+@@ -4518,7 +4542,7 @@ packages:
+       '@jest/core': 29.3.1_ts-node@10.9.1
+       '@jest/types': 29.3.1
+       import-local: 3.1.0
+-      jest-cli: 29.3.1_odkjkoia5xunhxkdrka32ib6vi
++      jest-cli: 29.3.1_k7quxe733nexnlgzi4yxvxoplq
+     transitivePeerDependencies:
+       - '@types/node'
+       - supports-color
+@@ -4534,8 +4558,8 @@ packages:
+     engines: {node: '>=12'}
+     dev: false
+ 
+-  /js-sdsl/4.1.5:
+-    resolution: {integrity: sha512-08bOAKweV2NUC1wqTtf3qZlnpOX/R2DU9ikpjOHs0H+ibQv3zpncVQg6um4uYtRtrwIX8M4Nh3ytK4HGlYAq7Q==}
++  /js-sdsl/4.2.0:
++    resolution: {integrity: sha512-dyBIzQBDkCqCu+0upx25Y2jGdbTGxE9fshMsCdK0ViOongpV+n5tXRcZY9v7CaVQ79AGS9KA1KHtojxiM7aXSQ==}
+     dev: true
+ 
+   /js-tokens/4.0.0:
+@@ -4662,8 +4686,8 @@ packages:
+     resolution: {integrity: sha512-tN0MCzyWnoz/4nHS6uxdlFWoUZT7ABptwKPQ52Ea7URk6vll88bWBVhodtnlfEuCcKWNGoc+uGbw1cwa9IKh/w==}
+     dev: true
+ 
+-  /language-tags/1.0.5:
+-    resolution: {integrity: sha512-qJhlO9cGXi6hBGKoxEG/sKZDAHD5Hnu9Hs4WbOY3pCWXDhw0N8x1NenNzm2EnNLkLkk7J2SdxAkDSbb6ftT+UQ==}
++  /language-tags/1.0.6:
++    resolution: {integrity: sha512-HNkaCgM8wZgE/BZACeotAAgpL9FUjEnhgF0FVQMIgH//zqTPreLYMb3rWYkYAqPoF75Jwuycp1da7uz66cfFQg==}
+     dependencies:
+       language-subtag-registry: 0.3.22
+     dev: true
+@@ -4689,8 +4713,8 @@ packages:
+       type-check: 0.4.0
+     dev: true
+ 
+-  /lilconfig/2.0.5:
+-    resolution: {integrity: sha512-xaYmXZtTHPAw5m+xLN8ab9C+3a8YmV3asNSPOATITbtwrfbwaLJj8h66H1WMIpALCkqsIzK3h7oQ+PdX+LQ9Eg==}
++  /lilconfig/2.0.6:
++    resolution: {integrity: sha512-9JROoBW7pobfsx+Sq2JsASvCo6Pfo6WWoUW79HuB1BCoBXD4PLWJPqDF6fNj67pqBYTbAHkE57M1kS/+L1neOg==}
+     engines: {node: '>=10'}
+     dev: true
+ 
+@@ -4698,8 +4722,8 @@ packages:
+     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
+     dev: true
+ 
+-  /lint-staged/13.0.3:
+-    resolution: {integrity: sha512-9hmrwSCFroTSYLjflGI8Uk+GWAwMB4OlpU4bMJEAT5d/llQwtYKoim4bLOyLCuWFAhWEupE0vkIFqtw/WIsPug==}
++  /lint-staged/13.1.0:
++    resolution: {integrity: sha512-pn/sR8IrcF/T0vpWLilih8jmVouMlxqXxKuAojmbiGX5n/gDnz+abdPptlj0vYnbfE0SQNl3CY/HwtM0+yfOVQ==}
+     engines: {node: ^14.13.1 || >=16.0.0}
+     hasBin: true
+     dependencies:
+@@ -4708,22 +4732,22 @@ packages:
+       commander: 9.4.1
+       debug: 4.3.4
+       execa: 6.1.0
+-      lilconfig: 2.0.5
+-      listr2: 4.0.5
++      lilconfig: 2.0.6
++      listr2: 5.0.6
+       micromatch: 4.0.5
+       normalize-path: 3.0.0
+       object-inspect: 1.12.2
+       pidtree: 0.6.0
+       string-argv: 0.3.1
+-      yaml: 2.1.1
++      yaml: 2.1.3
+     transitivePeerDependencies:
+       - enquirer
+       - supports-color
+     dev: true
+ 
+-  /listr2/4.0.5:
+-    resolution: {integrity: sha512-juGHV1doQdpNT3GSTs9IUN43QJb7KHdF9uqg7Vufs/tG9VTzpFphqF4pm/ICdAABGQxsyNn9CiYA3StkI6jpwA==}
+-    engines: {node: '>=12'}
++  /listr2/5.0.6:
++    resolution: {integrity: sha512-u60KxKBy1BR2uLJNTWNptzWQ1ob/gjMzIJPZffAENzpZqbMZ/5PrXXOomDcevIS/+IB7s1mmCEtSlT2qHWMqag==}
++    engines: {node: ^14.13.1 || >=16.0.0}
+     peerDependencies:
+       enquirer: '>= 2.3.0 < 3'
+     peerDependenciesMeta:
+@@ -4735,7 +4759,7 @@ packages:
+       log-update: 4.0.0
+       p-map: 4.0.0
+       rfdc: 1.3.0
+-      rxjs: 7.5.7
++      rxjs: 7.6.0
+       through: 2.3.8
+       wrap-ansi: 7.0.0
+     dev: true
+@@ -4944,6 +4968,12 @@ packages:
+     resolution: {integrity: sha512-bzfL1YUZsP41gmu/qjrEk0Q6i2ix/cVeAhbCbqH9u3zYutS1cLg00qhrD0M2MVdCcx4Sc0UpP2eBWo9rotpq6g==}
+     dev: true
+ 
++  /mkdirp/1.0.4:
++    resolution: {integrity: sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==}
++    engines: {node: '>=10'}
++    hasBin: true
++    dev: true
++
+   /ms/2.0.0:
+     resolution: {integrity: sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A==}
+     dev: true
+@@ -4979,8 +5009,8 @@ packages:
+     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
+     dev: true
+ 
+-  /next/13.0.4_m5sxuueb27gk6ddc5gums6vtgq:
+-    resolution: {integrity: sha512-4P0MvbjPCI1E/UPL1GrTXtYlgFnbBbY3JQ+AMY8jYE2SwyvCWctEJySoRjveznAHjrl6TIjuAJeB8u1c2StYUQ==}
++  /next/13.0.6_m5sxuueb27gk6ddc5gums6vtgq:
++    resolution: {integrity: sha512-COvigvms2LRt1rrzfBQcMQ2GZd86Mvk1z+LOLY5pniFtL4VrTmhZ9salrbKfSiXbhsD01TrDdD68ec3ABDyscA==}
+     engines: {node: '>=14.6.0'}
+     hasBin: true
+     peerDependencies:
+@@ -4997,29 +5027,28 @@ packages:
+       sass:
+         optional: true
+     dependencies:
+-      '@next/env': 13.0.4
+-      '@swc/helpers': 0.4.11
+-      caniuse-lite: 1.0.30001431
++      '@next/env': 13.0.6
++      '@swc/helpers': 0.4.14
++      caniuse-lite: 1.0.30001436
+       postcss: 8.4.14
+       react: 18.2.0
+       react-dom: 18.2.0_react@18.2.0
+       sass: 1.56.1
+       styled-jsx: 5.1.0_react@18.2.0
+-      use-sync-external-store: 1.2.0_react@18.2.0
+     optionalDependencies:
+-      '@next/swc-android-arm-eabi': 13.0.4
+-      '@next/swc-android-arm64': 13.0.4
+-      '@next/swc-darwin-arm64': 13.0.4
+-      '@next/swc-darwin-x64': 13.0.4
+-      '@next/swc-freebsd-x64': 13.0.4
+-      '@next/swc-linux-arm-gnueabihf': 13.0.4
+-      '@next/swc-linux-arm64-gnu': 13.0.4
+-      '@next/swc-linux-arm64-musl': 13.0.4
+-      '@next/swc-linux-x64-gnu': 13.0.4
+-      '@next/swc-linux-x64-musl': 13.0.4
+-      '@next/swc-win32-arm64-msvc': 13.0.4
+-      '@next/swc-win32-ia32-msvc': 13.0.4
+-      '@next/swc-win32-x64-msvc': 13.0.4
++      '@next/swc-android-arm-eabi': 13.0.6
++      '@next/swc-android-arm64': 13.0.6
++      '@next/swc-darwin-arm64': 13.0.6
++      '@next/swc-darwin-x64': 13.0.6
++      '@next/swc-freebsd-x64': 13.0.6
++      '@next/swc-linux-arm-gnueabihf': 13.0.6
++      '@next/swc-linux-arm64-gnu': 13.0.6
++      '@next/swc-linux-arm64-musl': 13.0.6
++      '@next/swc-linux-x64-gnu': 13.0.6
++      '@next/swc-linux-x64-musl': 13.0.6
++      '@next/swc-win32-arm64-msvc': 13.0.6
++      '@next/swc-win32-ia32-msvc': 13.0.6
++      '@next/swc-win32-x64-msvc': 13.0.6
+     transitivePeerDependencies:
+       - '@babel/core'
+       - babel-plugin-macros
+@@ -5274,6 +5303,10 @@ packages:
+       entities: 4.4.0
+     dev: true
+ 
++  /path-browserify/1.0.1:
++    resolution: {integrity: sha512-b7uo2UCUOYZcnF/3ID0lulOJi/bafxa1xPe7ZPsammBSpjSWQkjNxlt635YGS2MiR9GjvuXCtz2emr3jbsz98g==}
++    dev: true
++
+   /path-exists/4.0.0:
+     resolution: {integrity: sha512-ak9Qy5Q7jYb2Wwcey5Fpvg2KoAc/ZIhLSLOSBmRmygPsGwkVVt0fZa0qrtMz+m6tJTAHfZQ8FnmB4MG4LWy7/w==}
+     engines: {node: '>=8'}
+@@ -5362,6 +5395,14 @@ packages:
+       util-deprecate: 1.0.2
+     dev: true
+ 
++  /postcss-selector-parser/6.0.11:
++    resolution: {integrity: sha512-zbARubNdogI9j7WY4nQJBiNqQf3sLS3wCP4WfOidu+p28LofJqDH1tcXypGrcmMHhDk2t9wGhCsYe/+szLTy1g==}
++    engines: {node: '>=4'}
++    dependencies:
++      cssesc: 3.0.0
++      util-deprecate: 1.0.2
++    dev: true
++
+   /postcss-sorting/7.0.1_postcss@8.4.19:
+     resolution: {integrity: sha512-iLBFYz6VRYyLJEJsBJ8M3TCqNcckVzz4wFounSc5Oez35ogE/X+aoC5fFu103Ot7NyvjU3/xqIXn93Gp3kJk4g==}
+     peerDependencies:
+@@ -5402,8 +5443,8 @@ packages:
+     engines: {node: '>= 0.8.0'}
+     dev: true
+ 
+-  /prettier/2.7.1:
+-    resolution: {integrity: sha512-ujppO+MkdPqoVINuDFDRLClm7D78qbDt0/NR+wp5FqEZOoTNAjPHWj17QRhu7geIHJfcNhRk1XVQmF8Bp3ye+g==}
++  /prettier/2.8.0:
++    resolution: {integrity: sha512-9Lmg8hTFZKG0Asr/kW9Bp8tJjRVluO8EJQVfY2T7FMw9T5jy4I/Uvx0Rca/XWf50QQ1/SS48+6IJWnrb+2yemA==}
+     engines: {node: '>=10.13.0'}
+     hasBin: true
+     dev: true
+@@ -5692,6 +5733,12 @@ packages:
+       tslib: 2.4.1
+     dev: true
+ 
++  /rxjs/7.6.0:
++    resolution: {integrity: sha512-DDa7d8TFNUalGC9VqXvQ1euWNN7sc63TrUCuM9J998+ViviahMIjKSOU7rfcgFOF+FCD71BhDRv4hrFz+ImDLQ==}
++    dependencies:
++      tslib: 2.4.1
++    dev: true
++
+   /safe-buffer/5.2.1:
+     resolution: {integrity: sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==}
+     dev: true
+@@ -6019,28 +6066,28 @@ packages:
+       react: 18.2.0
+     dev: false
+ 
+-  /stylelint-config-prettier-scss/0.0.1_stylelint@14.15.0:
++  /stylelint-config-prettier-scss/0.0.1_stylelint@14.16.0:
+     resolution: {integrity: sha512-lBAYG9xYOh2LeWEPC/64xeUxwOTnQ8nDyBijQoWoJb10/bMGrUwnokpt8jegGck2Vbtxh6XGwH63z5qBcVHreQ==}
+     engines: {node: '>= 12'}
+     hasBin: true
+     peerDependencies:
+       stylelint: '>=11.0.0'
+     dependencies:
+-      stylelint: 14.15.0
+-      stylelint-config-prettier: 9.0.4_stylelint@14.15.0
++      stylelint: 14.16.0
++      stylelint-config-prettier: 9.0.4_stylelint@14.16.0
+     dev: true
+ 
+-  /stylelint-config-prettier/9.0.4_stylelint@14.15.0:
++  /stylelint-config-prettier/9.0.4_stylelint@14.16.0:
+     resolution: {integrity: sha512-38nIGTGpFOiK5LjJ8Ma1yUgpKENxoKSOhbDNSemY7Ep0VsJoXIW9Iq/2hSt699oB9tReynfWicTAoIHiq8Rvbg==}
+     engines: {node: '>= 12'}
+     hasBin: true
+     peerDependencies:
+       stylelint: '>=11.0.0'
+     dependencies:
+-      stylelint: 14.15.0
++      stylelint: 14.16.0
+     dev: true
+ 
+-  /stylelint-config-recommended-scss/8.0.0_a37symlv4urgexnspmy4gyeh7i:
++  /stylelint-config-recommended-scss/8.0.0_u4cmdib575x7lmfjhgvokchuwe:
+     resolution: {integrity: sha512-BxjxEzRaZoQb7Iinc3p92GS6zRdRAkIuEu2ZFLTxJK2e1AIcCb5B5MXY9KOXdGTnYFZ+KKx6R4Fv9zU6CtMYPQ==}
+     peerDependencies:
+       postcss: ^8.3.3
+@@ -6051,30 +6098,30 @@ packages:
+     dependencies:
+       postcss: 8.4.19
+       postcss-scss: 4.0.5_postcss@8.4.19
+-      stylelint: 14.15.0
+-      stylelint-config-recommended: 9.0.0_stylelint@14.15.0
+-      stylelint-scss: 4.3.0_stylelint@14.15.0
++      stylelint: 14.16.0
++      stylelint-config-recommended: 9.0.0_stylelint@14.16.0
++      stylelint-scss: 4.3.0_stylelint@14.16.0
+     dev: true
+ 
+-  /stylelint-config-recommended/9.0.0_stylelint@14.15.0:
++  /stylelint-config-recommended/9.0.0_stylelint@14.16.0:
+     resolution: {integrity: sha512-9YQSrJq4NvvRuTbzDsWX3rrFOzOlYBmZP+o513BJN/yfEmGSr0AxdvrWs0P/ilSpVV/wisamAHu5XSk8Rcf4CQ==}
+     peerDependencies:
+       stylelint: ^14.10.0
+     dependencies:
+-      stylelint: 14.15.0
++      stylelint: 14.16.0
+     dev: true
+ 
+-  /stylelint-order/5.0.0_stylelint@14.15.0:
++  /stylelint-order/5.0.0_stylelint@14.16.0:
+     resolution: {integrity: sha512-OWQ7pmicXufDw5BlRqzdz3fkGKJPgLyDwD1rFY3AIEfIH/LQY38Vu/85v8/up0I+VPiuGRwbc2Hg3zLAsJaiyw==}
+     peerDependencies:
+       stylelint: ^14.0.0
+     dependencies:
+       postcss: 8.4.19
+       postcss-sorting: 7.0.1_postcss@8.4.19
+-      stylelint: 14.15.0
++      stylelint: 14.16.0
+     dev: true
+ 
+-  /stylelint-scss/4.3.0_stylelint@14.15.0:
++  /stylelint-scss/4.3.0_stylelint@14.16.0:
+     resolution: {integrity: sha512-GvSaKCA3tipzZHoz+nNO7S02ZqOsdBzMiCx9poSmLlb3tdJlGddEX/8QzCOD8O7GQan9bjsvLMsO5xiw6IhhIQ==}
+     peerDependencies:
+       stylelint: ^14.5.1
+@@ -6084,15 +6131,15 @@ packages:
+       postcss-resolve-nested-selector: 0.1.1
+       postcss-selector-parser: 6.0.10
+       postcss-value-parser: 4.2.0
+-      stylelint: 14.15.0
++      stylelint: 14.16.0
+     dev: true
+ 
+-  /stylelint/14.15.0:
+-    resolution: {integrity: sha512-JOgDAo5QRsqiOZPZO+B9rKJvBm64S0xasbuRPAbPs6/vQDgDCnZLIiw6XcAS6GQKk9k1sBWR6rmH3Mfj8OknKg==}
++  /stylelint/14.16.0:
++    resolution: {integrity: sha512-X6uTi9DcxjzLV8ZUAjit1vsRtSwcls0nl07c9rqOPzvpA8IvTX/xWEkBRowS0ffevRrqkHa/ThDEu86u73FQDg==}
+     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+     hasBin: true
+     dependencies:
+-      '@csstools/selector-specificity': 2.0.2_45y636a2vqremknoajyxd5nkzy
++      '@csstools/selector-specificity': 2.0.2_tbwh2mpcdwdeb2slx6bobindua
+       balanced-match: 2.0.0
+       colord: 2.9.3
+       cosmiconfig: 7.1.0
+@@ -6105,7 +6152,7 @@ packages:
+       globby: 11.1.0
+       globjoin: 0.1.4
+       html-tags: 3.2.0
+-      ignore: 5.2.0
++      ignore: 5.2.1
+       import-lazy: 4.0.0
+       imurmurhash: 0.1.4
+       is-plain-object: 5.0.0
+@@ -6119,7 +6166,7 @@ packages:
+       postcss-media-query-parser: 0.2.3
+       postcss-resolve-nested-selector: 0.1.1
+       postcss-safe-parser: 6.0.0_postcss@8.4.19
+-      postcss-selector-parser: 6.0.10
++      postcss-selector-parser: 6.0.11
+       postcss-value-parser: 4.2.0
+       resolve-from: 5.0.0
+       string-width: 4.2.3
+@@ -6281,7 +6328,14 @@ packages:
+     engines: {node: '>=8'}
+     dev: true
+ 
+-  /ts-node/10.9.1_gs2wtvhfs5f4ebmfhr7ie3vdfm:
++  /ts-morph/17.0.1:
++    resolution: {integrity: sha512-10PkHyXmrtsTvZSL+cqtJLTgFXkU43Gd0JCc0Rw6GchWbqKe0Rwgt1v3ouobTZwQzF1mGhDeAlWYBMGRV7y+3g==}
++    dependencies:
++      '@ts-morph/common': 0.18.0
++      code-block-writer: 11.0.3
++    dev: true
++
++  /ts-node/10.9.1_lpj2q7bjbv7owmpf5rj6kndjrq:
+     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
+     hasBin: true
+     peerDependencies:
+@@ -6296,19 +6350,19 @@ packages:
+         optional: true
+     dependencies:
+       '@cspotcode/source-map-support': 0.8.1
+-      '@swc/core': 1.3.18
++      '@swc/core': 1.3.21
+       '@tsconfig/node10': 1.0.9
+       '@tsconfig/node12': 1.0.11
+       '@tsconfig/node14': 1.0.3
+       '@tsconfig/node16': 1.0.3
+-      '@types/node': 18.11.9
++      '@types/node': 18.11.11
+       acorn: 8.7.1
+       acorn-walk: 8.2.0
+       arg: 4.1.3
+       create-require: 1.1.1
+       diff: 4.0.2
+       make-error: 1.3.6
+-      typescript: 4.8.4
++      typescript: 4.9.3
+       v8-compile-cache-lib: 3.0.1
+       yn: 3.1.1
+     dev: true
+@@ -6329,14 +6383,14 @@ packages:
+   /tslib/2.4.1:
+     resolution: {integrity: sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==}
+ 
+-  /tsutils/3.21.0_typescript@4.8.4:
++  /tsutils/3.21.0_typescript@4.9.3:
+     resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}
+     engines: {node: '>= 6'}
+     peerDependencies:
+       typescript: '>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta'
+     dependencies:
+       tslib: 1.14.1
+-      typescript: 4.8.4
++      typescript: 4.9.3
+     dev: true
+ 
+   /type-check/0.3.2:
+@@ -6388,7 +6442,7 @@ packages:
+     engines: {node: '>=14.16'}
+     dev: true
+ 
+-  /typedoc/0.23.14_typescript@4.8.4:
++  /typedoc/0.23.14_typescript@4.9.3:
+     resolution: {integrity: sha512-s2I+ZKBET38EctZvbXp2GooHrNaKjWZkrwGEK/sttnOGiKJqU0vHrsdcwLgKZGuo2aedNL3RRPj1LnAAeYscig==}
+     engines: {node: '>= 14.14'}
+     hasBin: true
+@@ -6399,11 +6453,11 @@ packages:
+       marked: 4.1.0
+       minimatch: 5.1.0
+       shiki: 0.11.1
+-      typescript: 4.8.4
++      typescript: 4.9.3
+     dev: true
+ 
+-  /typescript/4.8.4:
+-    resolution: {integrity: sha512-QCh+85mCy+h0IGff8r5XWzOVSbBO+KfeYrMQh7NJ58QujwcE22u+NUSmUxqF+un70P9GXKxa2HCNiTTMJknyjQ==}
++  /typescript/4.9.3:
++    resolution: {integrity: sha512-CIfGzTelbKNEnLpLdGFgdyKhG23CKdKgQPOBc+OUNrkJ2vr+KSzsSV5kq5iWhEQbok+quxgGzrAtGWCyU7tHnA==}
+     engines: {node: '>=4.2.0'}
+     hasBin: true
+     dev: true
+@@ -6446,14 +6500,6 @@ packages:
+       requires-port: 1.0.0
+     dev: true
+ 
+-  /use-sync-external-store/1.2.0_react@18.2.0:
+-    resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
+-    peerDependencies:
+-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+-    dependencies:
+-      react: 18.2.0
+-    dev: false
+-
+   /util-deprecate/1.0.2:
+     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
+     dev: true
+@@ -6639,8 +6685,8 @@ packages:
+     engines: {node: '>= 6'}
+     dev: true
+ 
+-  /yaml/2.1.1:
+-    resolution: {integrity: sha512-o96x3OPo8GjWeSLF+wOAbrPfhFOGY0W00GNaxCDv+9hkcDJEnev1yh8S7pgHF0ik6zc8sQLuL8hjHjJULZp8bw==}
++  /yaml/2.1.3:
++    resolution: {integrity: sha512-AacA8nRULjKMX2DvWvOAdBZMOfQlypSFkjcOcu9FalllIDJ1kvlREzcdIZmidQUqqeMv7jorHjq2HlLv/+c2lg==}
+     engines: {node: '>= 14'}
+     dev: true
+ 
+diff --git a/src/components/DialogExamples/examples.ts b/src/components/DialogExamples/examples.ts
+new file mode 100644
+index 000000000..9c2e78979
+--- /dev/null
++++ b/src/components/DialogExamples/examples.ts
+@@ -0,0 +1,8 @@
++export { AlertDialogsAndModals } from "./AlertDialogsAndModals";
++export { FixedDialogExample } from "./FixedDialogExample";
++export { FullPageExample } from "./FullPageExample";
++export { NestedDialogs } from "./NestedDialogs";
++export { PersistentDialog } from "./PersistentDialog";
++export { SettingInitialFocus } from "./SettingInitialFocus";
++export { SimpleExample } from "./SimpleExample";
++export { SimpleListDialogExample } from "./SimpleListDialogExample";
+diff --git a/src/pages/components/[name].tsx b/src/pages/components/[name].tsx
+new file mode 100644
+index 000000000..232b83068
+--- /dev/null
++++ b/src/pages/components/[name].tsx
+@@ -0,0 +1,52 @@
++import type { GetStaticPaths, GetStaticProps } from "next";
++import { resolve } from "node:path";
++import type { ReactElement } from "react";
++import { Project, SyntaxKind } from "ts-morph";
++import { qsToString } from "src/utils/qs";
++
++export default function Examples(props): ReactElement {
++  console.log("props:", props);
++  return <></>;
++}
++
++export const getStaticProps: GetStaticProps = async ({ params }) => {
++  const name = qsToString(params?.name);
++  const project = new Project({
++    tsConfigFilePath: resolve(process.cwd(), "tsconfig.json"),
++  });
++  const sourceFile = project.getSourceFileOrThrow(
++    "src/components/DialogExamples/examples.ts"
++  );
++  // const imports = sourceFile.getImportDeclarations();
++  const exports = sourceFile.getExportDeclarations();
++  exports.slice(0, 1).forEach((exportDeclaration) => {
++    const file = exportDeclaration.getModuleSpecifierSourceFile();
++    console.log(file?.getText());
++  });
++  // console.log(
++  //   "exports:",
++  //   exports.map((exportDeclaration) => {
++  //     return {
++  //       path: exportDeclaration
++  //         .getChildrenOfKind(SyntaxKind.StringLiteral)
++  //         .at(0)
++  //         ?.getText(),
++  //       // names: exportDeclaration
++  //       //   .getNamedExports()
++  //       //   .map((namedExport) => namedExport.getText()),
++  //     };
++  //   })
++  // );
++  // console.log("imports:", imports);
++
++  return {
++    props: {},
++  };
++};
++
++export const getStaticPaths: GetStaticPaths = async () => {
++  return {
++    paths: ["/components/dialog"],
++    fallback: false,
++  };
++};
+diff --git a/src/utils/qs.ts b/src/utils/qs.ts
+new file mode 100644
+index 000000000..a126a9538
+--- /dev/null
++++ b/src/utils/qs.ts
+@@ -0,0 +1,25 @@
++import type { ParsedUrlQuery } from "querystring";
++
++type QueryParamterValue = ParsedUrlQuery[string];
++
++export const qsToString = (q: QueryParamterValue): string => {
++  if (!q) {
++    return "";
++  }
++
++  if (Array.isArray(q)) {
++    return q[0] || "";
++  }
++
++  return q;
++};
++
++export const qsToInt = (q: QueryParamterValue, fallback = 0): number => {
++  const value = qsToString(q);
++  const asNumber = parseInt(value, 10);
++
++  return Number.isNaN(asNumber) ? fallback : asNumber;
++};
++
++export const qsToBoolean = (q: QueryParamterValue): boolean =>
++  typeof q !== "undefined";
+diff --git a/updated-demo-behavior.diff b/updated-demo-behavior.diff
+new file mode 100644
+index 000000000..c4904c03e
+--- /dev/null
++++ b/updated-demo-behavior.diff
+@@ -0,0 +1,2166 @@
++commit 56253e552bf72061a7daedaeb0ae1d3055e616b8
++Author: Mikkel Laursen <mlaursen03@gmail.com>
++Date:   Mon Jun 7 21:37:01 2021 -0600
++
++    WIP
++
++diff --git a/.eslintrc.js b/.eslintrc.js
++index 50bab0115..1ac96cd71 100644
++--- a/.eslintrc.js
+++++ b/.eslintrc.js
++@@ -32,6 +32,12 @@ module.exports = {
++         'react/no-array-index-key': 0,
++       },
++     },
+++    {
+++      files: ['packages/documentation/src/examples/*/examples.tsx'],
+++      rules: {
+++        '@typescript-eslint/explicit-module-boundary-types': 0,
+++      },
+++    },
++     {
++       files: ['**/*.ts', '**/*.tsx'],
++       rules: {
++diff --git a/packages/dev-utils/src/cli.ts b/packages/dev-utils/src/cli.ts
++index 7ae30ee0e..2e8ae62ac 100644
++--- a/packages/dev-utils/src/cli.ts
+++++ b/packages/dev-utils/src/cli.ts
++@@ -6,6 +6,7 @@ import loglevel from "loglevel";
++ import { clean } from "./clean";
++ import { configs } from "./configs";
++ import { CLEAN, DEBUG, SILENT } from "./constants";
+++import { examples } from "./examples";
++ import { indexer } from "./indexer";
++ import { libsize } from "./libsize";
++ import { release, RELEASE_TYPES, toReleaseType } from "./release";
++@@ -181,6 +182,11 @@ createCommand("libsize")
++         // .action only allows Promise<void> or void
++       })
++   );
+++createCommand("examples")
+++  .description(
+++    "Re-creates the `packages/documentation/src/constants/examples.ts` file"
+++  )
+++  .action(() => examples());
++ 
++ createCommand("themes")
++   .description(
++diff --git a/packages/dev-utils/src/examples.ts b/packages/dev-utils/src/examples.ts
++new file mode 100644
++index 000000000..d3312e612
++--- /dev/null
+++++ b/packages/dev-utils/src/examples.ts
++@@ -0,0 +1,53 @@
+++import { readFile, writeFile } from "fs-extra";
+++import { join, sep } from "path";
+++import { COPY_BANNER, documentationRoot, src } from "./constants";
+++import { format, glob } from "./utils";
+++
+++const TITLE_REGEXP = /title: "(.+)"/g;
+++
+++export async function examples(): Promise<void> {
+++  const cwd = join(documentationRoot, src, "examples");
+++  const files = await glob("*/examples.ts", { cwd });
+++
+++  const lookup: Record<string, string[]> = {};
+++
+++  await Promise.all(
+++    files.map(async (filename) => {
+++      const component = filename.substring(0, filename.indexOf(sep));
+++      const contents = await readFile(join(cwd, filename), "utf8");
+++      const examples = (contents.match(TITLE_REGEXP) || []).map((line) =>
+++        line.substring(line.indexOf('"') + 1, line.length - 1)
+++      );
+++
+++      lookup[component] = examples;
+++    })
+++  );
+++
+++  const components = Object.keys(lookup).sort();
+++
+++  const contents = `${COPY_BANNER}
+++import { ComponentType } from "react";
+++import dynamic from "next/dynamic";
+++
+++export type ExampleLookup = Record<string, Record<string, ComponentType>>;
+++
+++export const examples: ExampleLookup = {
+++  ${components.map(
+++    (component) => `"${component}": {
+++  ${lookup[component].map(
+++    (name) =>
+++      `"${name}": dynamic(() => import("../examples/${component}/${name.replace(
+++        /\s+/g,
+++        ""
+++      )}"))`
+++  )}
+++}`
+++  )}
+++}
+++`;
+++
+++  const formatted = format(contents, "typescript");
+++
+++  const constants = join(documentationRoot, src, "constants", "examples.ts");
+++  await writeFile(constants, formatted);
+++}
++diff --git a/packages/documentation/src/components/Demos/types.ts b/packages/documentation/src/components/Demos/types.ts
++index ed45c06f1..7c344b05d 100644
++--- a/packages/documentation/src/components/Demos/types.ts
+++++ b/packages/documentation/src/components/Demos/types.ts
++@@ -1,4 +1,4 @@
++-import { ReactNode } from "react";
+++import { ComponentType, ReactNode } from "react";
++ import { PhoneConfiguration } from "components/Phone/Phone";
++ import { ConditionalFullPageDialogProps } from "components/ConditionalFullPageDialog";
++ 
++@@ -81,6 +81,9 @@ export interface DemoConfig extends DemoOptions {
++    * or inline depending on the other flags.
++    */
++   children: ReactNode;
+++
+++  Children?: ComponentType;
+++  getChildren?(): Promise<ComponentType>;
++ }
++ 
++ export interface DemoProps extends DemoConfig {
++@@ -100,7 +103,7 @@ export interface DemoPageConfig extends DemoOptions {
++   /**
++    * The demos to display on the page.
++    */
++-  demos: DemoConfig[];
+++  demos: readonly DemoConfig[];
++ 
++   /**
++    * Any additional fonts that should be loaded for this page.
++diff --git a/packages/documentation/src/components/Examples/Container.module.scss b/packages/documentation/src/components/Examples/Container.module.scss
++new file mode 100644
++index 000000000..dc351ea7d
++--- /dev/null
+++++ b/packages/documentation/src/components/Examples/Container.module.scss
++@@ -0,0 +1,25 @@
+++@import '~@react-md/utils/dist/mixins';
+++@import '~@react-md/sheet/dist/variables';
+++@import './variables';
+++
+++.container {
+++  @include rmd-utils-tablet-media {
+++    @include rmd-utils-rtl-auto(margin-right, $toc-width, auto);
+++
+++    padding: 0 $demo-padding-extra;
+++
+++    :global .code--counted {
+++      width: calc(100vw - #{$demo-padding-extra * 2});
+++    }
+++  }
+++
+++  @include rmd-utils-desktop-media {
+++    :global .code--counted {
+++      $offset: $rmd-sheet-static-width + $toc-width + ($demo-padding-extra * 2);
+++
+++      width: calc(100vw - #{$offset});
+++    }
+++  }
+++
+++  padding: 0 $demo-padding;
+++}
++diff --git a/packages/documentation/src/components/Examples/Container.tsx b/packages/documentation/src/components/Examples/Container.tsx
++new file mode 100644
++index 000000000..65af11a38
++--- /dev/null
+++++ b/packages/documentation/src/components/Examples/Container.tsx
++@@ -0,0 +1,15 @@
+++import React, { ElementType, ReactElement, ReactNode } from "react";
+++
+++import styles from "./Container.module.scss";
+++
+++export interface ContainerProps {
+++  as?: ElementType;
+++  children?: ReactNode;
+++}
+++
+++export function Container({
+++  as: Component = "div",
+++  children,
+++}: ContainerProps): ReactElement | null {
+++  return <Component className={styles.container}>{children}</Component>;
+++}
++diff --git a/packages/documentation/src/components/Examples/Description.module.scss b/packages/documentation/src/components/Examples/Description.module.scss
++new file mode 100644
++index 000000000..a5be64715
++--- /dev/null
+++++ b/packages/documentation/src/components/Examples/Description.module.scss
++@@ -0,0 +1,18 @@
+++@import '~@react-md/typography/dist/mixins';
+++
+++.container {
+++  @include rmd-typography(subtitle-1);
+++  @include rmd-typography-theme(max-width, line-width);
+++
+++  p {
+++    font: inherit;
+++  }
+++
+++  strong {
+++    font-weight: map-get($rmd-typography-font-weights, bold);
+++  }
+++
+++  em {
+++    font-style: italic;
+++  }
+++}
++diff --git a/packages/documentation/src/components/Examples/Description.tsx b/packages/documentation/src/components/Examples/Description.tsx
++new file mode 100644
++index 000000000..baefd89f3
++--- /dev/null
+++++ b/packages/documentation/src/components/Examples/Description.tsx
++@@ -0,0 +1,16 @@
+++import React, { ReactElement } from "react";
+++
+++import Markdown, { MarkdownProps } from "components/Markdown/Markdown";
+++
+++import styles from "./Description.module.scss";
+++
+++export function Description({
+++  children,
+++  ...props
+++}: MarkdownProps): ReactElement {
+++  return (
+++    <Markdown {...props} className={styles.container}>
+++      {children}
+++    </Markdown>
+++  );
+++}
++diff --git a/packages/documentation/src/components/Examples/Example.tsx b/packages/documentation/src/components/Examples/Example.tsx
++new file mode 100644
++index 000000000..3493f615e
++--- /dev/null
+++++ b/packages/documentation/src/components/Examples/Example.tsx
++@@ -0,0 +1,37 @@
+++import React, { ReactElement } from "react";
+++
+++import Heading from "components/Heading";
+++
+++import { Container } from "./Container";
+++import { Description } from "./Description";
+++import ExamplePreview from "./ExamplePreview";
+++import { Example as ExampleConfig } from "./types";
+++
+++export interface ExampleProps extends ExampleConfig {
+++  id: string;
+++  first: boolean;
+++  name: string;
+++}
+++
+++export function Example({
+++  id,
+++  first,
+++  name,
+++  title,
+++  description,
+++  ...props
+++}: ExampleProps): ReactElement {
+++  return (
+++    <Container>
+++      <Heading
+++        level={2}
+++        id={`${id}-title`}
+++        margin={!first ? "bottom" : "initial"}
+++      >
+++        {title}
+++      </Heading>
+++      <Description id={`${id}-description`}>{description}</Description>
+++      <ExamplePreview {...props} name={name} title={title} />
+++    </Container>
+++  );
+++}
++diff --git a/packages/documentation/src/components/Examples/ExamplePreview.tsx b/packages/documentation/src/components/Examples/ExamplePreview.tsx
++new file mode 100644
++index 000000000..6ad4170c8
++--- /dev/null
+++++ b/packages/documentation/src/components/Examples/ExamplePreview.tsx
++@@ -0,0 +1,26 @@
+++import React, { ReactElement } from "react";
+++
+++import { examples } from "constants/examples";
+++
+++import PreviewContainer from "./PreviewContainer";
+++import PreviewUnavailable from "./PreviewUnavailable";
+++import { ExamplePreviewOptions } from "./types";
+++
+++export interface ExamplePreviewProps extends ExamplePreviewOptions {
+++  name: string;
+++  title: string;
+++}
+++
+++export default function ExamplePreview({
+++  name,
+++  title,
+++  disableCard = false,
+++}: ExamplePreviewProps): ReactElement {
+++  const ExampleContent = examples[name]?.[title] ?? PreviewUnavailable;
+++
+++  return (
+++    <PreviewContainer disableCard={disableCard}>
+++      <ExampleContent />
+++    </PreviewContainer>
+++  );
+++}
++diff --git a/packages/documentation/src/components/Examples/Examples.module.scss b/packages/documentation/src/components/Examples/Examples.module.scss
++new file mode 100644
++index 000000000..e69de29bb
++diff --git a/packages/documentation/src/components/Examples/Examples.tsx b/packages/documentation/src/components/Examples/Examples.tsx
++new file mode 100644
++index 000000000..6d7a678bc
++--- /dev/null
+++++ b/packages/documentation/src/components/Examples/Examples.tsx
++@@ -0,0 +1,41 @@
+++import { IconProvider } from "@react-md/icon";
+++import React, { Fragment, ReactElement } from "react";
+++import { toId } from "utils/toTitle";
+++import { Example } from "./Example";
+++import Font from "./Font";
+++import { Header } from "./Header";
+++import { ExampleList, ExamplesConfig } from "./types";
+++
+++export interface ExamplesProps extends ExamplesConfig {
+++  name: string;
+++  description: string;
+++  examples: ExampleList;
+++}
+++
+++const EMPTY_LIST = [] as const;
+++
+++export default function Examples({
+++  name,
+++  description,
+++  examples,
+++  fonts = EMPTY_LIST,
+++  resetIcons = false,
+++}: ExamplesProps): ReactElement | null {
+++  const Container = resetIcons ? IconProvider : Fragment;
+++  return (
+++    <Container>
+++      {fonts.map((font) => (
+++        <Font key={font} font={font} />
+++      ))}
+++      {resetIcons && <Font font="Material Icons" />}
+++      <Header name={name}>{description}</Header>
+++      {examples.map((example, i) => {
+++        const id = toId(example.title);
+++
+++        return (
+++          <Example {...example} key={id} id={id} first={i === 0} name={name} />
+++        );
+++      })}
+++    </Container>
+++  );
+++}
++diff --git a/packages/documentation/src/components/Examples/Font.tsx b/packages/documentation/src/components/Examples/Font.tsx
++new file mode 100644
++index 000000000..acaccbe5c
++--- /dev/null
+++++ b/packages/documentation/src/components/Examples/Font.tsx
++@@ -0,0 +1,24 @@
+++import React, { ReactElement } from "react";
+++import Head from "next/head";
+++
+++import GoogleFont from "components/GoogleFont";
+++
+++export interface FontProps {
+++  font: string;
+++}
+++
+++export default function Font({ font }: FontProps): ReactElement | null {
+++  if (font === "Font Awesome") {
+++    return (
+++      <Head>
+++        <link
+++          key="font-awesome"
+++          rel="stylesheet"
+++          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css"
+++        />
+++      </Head>
+++    );
+++  }
+++
+++  return <GoogleFont font={font} />;
+++}
++diff --git a/packages/documentation/src/components/Examples/Header.tsx b/packages/documentation/src/components/Examples/Header.tsx
++new file mode 100644
++index 000000000..19d25764e
++--- /dev/null
+++++ b/packages/documentation/src/components/Examples/Header.tsx
++@@ -0,0 +1,27 @@
+++import React, { ReactElement } from "react";
+++
+++import Heading from "components/Heading";
+++import { toTitle } from "utils/toTitle";
+++
+++import { Container } from "./Container";
+++import { Description } from "./Description";
+++
+++export interface HeaderProps {
+++  name: string;
+++  children?: string;
+++}
+++
+++export function Header({ name, children }: HeaderProps): ReactElement | null {
+++  if (!children) {
+++    return null;
+++  }
+++
+++  return (
+++    <Container as="header">
+++      <Heading level={2} id="demo-page-title">
+++        {toTitle(name)}
+++      </Heading>
+++      <Description>{children}</Description>
+++    </Container>
+++  );
+++}
++diff --git a/packages/documentation/src/components/Examples/PreviewContainer.module.scss b/packages/documentation/src/components/Examples/PreviewContainer.module.scss
++new file mode 100644
++index 000000000..35ee25b47
++--- /dev/null
+++++ b/packages/documentation/src/components/Examples/PreviewContainer.module.scss
++@@ -0,0 +1,3 @@
+++.container {
+++  padding: 2rem;
+++}
++diff --git a/packages/documentation/src/components/Examples/PreviewContainer.tsx b/packages/documentation/src/components/Examples/PreviewContainer.tsx
++new file mode 100644
++index 000000000..aa9d2aa25
++--- /dev/null
+++++ b/packages/documentation/src/components/Examples/PreviewContainer.tsx
++@@ -0,0 +1,24 @@
+++import { Card } from "@react-md/card";
+++import React, { ReactElement, ReactNode } from "react";
+++
+++import styles from "./PreviewContainer.module.scss";
+++
+++export interface PreviewContainerProps {
+++  children: ReactNode;
+++  disableCard?: boolean;
+++}
+++
+++export default function PreviewContainer({
+++  children,
+++  disableCard = false,
+++}: PreviewContainerProps): ReactElement {
+++  if (disableCard) {
+++    return <>{children}</>;
+++  }
+++
+++  return (
+++    <Card fullWidth className={styles.container}>
+++      {children}
+++    </Card>
+++  );
+++}
++diff --git a/packages/documentation/src/components/Examples/PreviewUnavailable.module.scss b/packages/documentation/src/components/Examples/PreviewUnavailable.module.scss
++new file mode 100644
++index 000000000..534406bd1
++--- /dev/null
+++++ b/packages/documentation/src/components/Examples/PreviewUnavailable.module.scss
++@@ -0,0 +1,7 @@
+++@import '~@react-md/icon/dist/mixins';
+++
+++.container {
+++  @include rmd-icon-theme-update-var(size, 4rem);
+++
+++  text-align: center;
+++}
++diff --git a/packages/documentation/src/components/Examples/PreviewUnavailable.tsx b/packages/documentation/src/components/Examples/PreviewUnavailable.tsx
++new file mode 100644
++index 000000000..0a258262b
++--- /dev/null
+++++ b/packages/documentation/src/components/Examples/PreviewUnavailable.tsx
++@@ -0,0 +1,20 @@
+++import { BrokenImageSVGIcon } from "@react-md/material-icons";
+++import { Text } from "@react-md/typography";
+++import { Markdown } from "components/Markdown";
+++import React, { ReactElement } from "react";
+++
+++import styles from "./PreviewUnavailable.module.scss";
+++
+++const message = `This error normally only happens when a new example has been added without
+++running the \`yarn dev-utils examples\` command.
+++  `;
+++
+++export default function PreviewUnavailable(): ReactElement {
+++  return (
+++    <div className={styles.container}>
+++      <Text type="headline-5">Preview unavailable</Text>
+++      {process.env.NODE_ENV !== "production" && <Markdown>{message}</Markdown>}
+++      <BrokenImageSVGIcon />
+++    </div>
+++  );
+++}
++diff --git a/packages/documentation/src/components/Examples/_variables.scss b/packages/documentation/src/components/Examples/_variables.scss
++new file mode 100644
++index 000000000..5d46e3906
++--- /dev/null
+++++ b/packages/documentation/src/components/Examples/_variables.scss
++@@ -0,0 +1,4 @@
+++// duplicated from TableOfContents.scss
+++$toc-width: 15rem;
+++$demo-padding: 2rem;
+++$demo-padding-extra: 6rem;
++diff --git a/packages/documentation/src/components/Examples/types.ts b/packages/documentation/src/components/Examples/types.ts
++new file mode 100644
++index 000000000..10d670bf6
++--- /dev/null
+++++ b/packages/documentation/src/components/Examples/types.ts
++@@ -0,0 +1,15 @@
+++export interface ExamplePreviewOptions {
+++  disableCard?: boolean;
+++}
+++
+++export interface Example extends ExamplePreviewOptions {
+++  title: string;
+++  description: string;
+++}
+++
+++export type ExampleList = readonly Example[];
+++
+++export interface ExamplesConfig {
+++  fonts?: readonly string[];
+++  resetIcons?: boolean;
+++}
++diff --git a/packages/documentation/src/constants/examples.ts b/packages/documentation/src/constants/examples.ts
++new file mode 100644
++index 000000000..f1cada511
++--- /dev/null
+++++ b/packages/documentation/src/constants/examples.ts
++@@ -0,0 +1,55 @@
+++/**
+++ * This file was generated from \@react-md/dev-utils and should not be updated
+++ * manually.
+++ */
+++
+++import { ComponentType } from "react";
+++import dynamic from "next/dynamic";
+++
+++export type ExampleLookup = Record<string, Record<string, ComponentType>>;
+++
+++export const examples: ExampleLookup = {
+++  autocomplete: {
+++    "Simple Example": dynamic(
+++      () => import("../examples/autocomplete/SimpleExample")
+++    ),
+++    "Using Object Data Sets": dynamic(
+++      () => import("../examples/autocomplete/UsingObjectDataSets")
+++    ),
+++    "Highlight Matches": dynamic(
+++      () => import("../examples/autocomplete/HighlightMatches")
+++    ),
+++  },
+++  badge: {
+++    "Simple Examples": dynamic(
+++      () => import("../examples/badge/SimpleExamples")
+++    ),
+++    "Themed Badges": dynamic(() => import("../examples/badge/ThemedBadges")),
+++    "With Tooltips": dynamic(() => import("../examples/badge/WithTooltips")),
+++    "Customizing Badges": dynamic(
+++      () => import("../examples/badge/CustomizingBadges")
+++    ),
+++  },
+++  button: {
+++    "Text Buttons": dynamic(() => import("../examples/button/TextButtons")),
+++    "Outlined Buttons": dynamic(
+++      () => import("../examples/button/OutlinedButtons")
+++    ),
+++    "Contained Buttons": dynamic(
+++      () => import("../examples/button/ContainedButtons")
+++    ),
+++    "Icon Buttons": dynamic(() => import("../examples/button/IconButtons")),
+++    "Text Buttons with Icons": dynamic(
+++      () => import("../examples/button/TextButtonsWithIcons")
+++    ),
+++    "Floating Action Buttons": dynamic(
+++      () => import("../examples/button/FloatingActionButtons")
+++    ),
+++    "Button with Circular Progress": dynamic(
+++      () => import("../examples/button/ButtonWithCircularProgress")
+++    ),
+++    "Custom Button Theme": dynamic(
+++      () => import("../examples/button/CustomButtonTheme")
+++    ),
+++  },
+++};
++diff --git a/packages/documentation/src/constants/navItems.tsx b/packages/documentation/src/constants/navItems.tsx
++index 2c20acc62..7a3828111 100644
++--- a/packages/documentation/src/constants/navItems.tsx
+++++ b/packages/documentation/src/constants/navItems.tsx
++@@ -76,6 +76,8 @@ const getPackageRoutes = (name: string): readonly RouteNavItem[] => {
++   return routes;
++ };
++ 
+++const components = ["autocomplete", "badge", "button"];
+++
++ const routes: readonly NavItem[] = [
++   {
++     href: "/",
++@@ -171,6 +173,15 @@ const routes: readonly NavItem[] = [
++       },
++     ],
++   },
+++  {
+++    href: "/components",
+++    children: "Components",
+++    leftAddon: <BuildSVGIcon />,
+++    routes: components.map((name) => ({
+++      href: `/${name}`,
+++      children: toTitle(name),
+++    })),
+++  },
++   {
++     href: "/packages",
++     children: "Packages",
++diff --git a/packages/documentation/src/examples/autocomplete/DessertTable.tsx b/packages/documentation/src/examples/autocomplete/DessertTable.tsx
++new file mode 100644
++index 000000000..cdc6042e7
++--- /dev/null
+++++ b/packages/documentation/src/examples/autocomplete/DessertTable.tsx
++@@ -0,0 +1,83 @@
+++import React, { ReactElement } from "react";
+++import { Table, TableBody, TableRow, TableCell } from "@react-md/table";
+++import { CrossFade } from "@react-md/transition";
+++
+++import { Dessert } from "constants/desserts";
+++
+++export interface DessertTableProps {
+++  dessert: null | Dessert;
+++}
+++
+++export default function DessertTable({
+++  dessert,
+++}: DessertTableProps): ReactElement | null {
+++  if (!dessert) {
+++    return null;
+++  }
+++
+++  const { name, type, calories, fat, carbs, protein, sodium, calcium, iron } =
+++    dessert;
+++
+++  return (
+++    <CrossFade key={name}>
+++      <Table fullWidth>
+++        <TableBody>
+++          <TableRow>
+++            <TableCell header scope="row">
+++              Name
+++            </TableCell>
+++            <TableCell grow>{name}</TableCell>
+++          </TableRow>
+++          <TableRow>
+++            <TableCell header scope="row">
+++              Type
+++            </TableCell>
+++            <TableCell>{type}</TableCell>
+++          </TableRow>
+++          <TableRow>
+++            <TableCell header scope="row">
+++              Calories
+++            </TableCell>
+++            <TableCell>{calories}</TableCell>
+++          </TableRow>
+++          <TableRow>
+++            <TableCell header scope="row">
+++              Fat
+++            </TableCell>
+++            <TableCell>{fat}</TableCell>
+++          </TableRow>
+++          <TableRow>
+++            <TableCell header scope="row">
+++              Carbs
+++            </TableCell>
+++            <TableCell>{carbs}</TableCell>
+++          </TableRow>
+++          <TableRow>
+++            <TableCell header scope="row">
+++              Protein
+++            </TableCell>
+++            <TableCell>{protein}</TableCell>
+++          </TableRow>
+++          <TableRow>
+++            <TableCell header scope="row">
+++              Calcium
+++            </TableCell>
+++            <TableCell>{calcium}</TableCell>
+++          </TableRow>
+++          <TableRow>
+++            <TableCell header scope="row">
+++              Iron
+++            </TableCell>
+++            <TableCell>{iron}</TableCell>
+++          </TableRow>
+++          <TableRow>
+++            <TableCell header scope="row">
+++              Sodium
+++            </TableCell>
+++            <TableCell>{sodium}</TableCell>
+++          </TableRow>
+++        </TableBody>
+++      </Table>
+++    </CrossFade>
+++  );
+++}
++diff --git a/packages/documentation/src/examples/autocomplete/ExampleGrid.tsx b/packages/documentation/src/examples/autocomplete/ExampleGrid.tsx
++new file mode 100644
++index 000000000..defc79713
++--- /dev/null
+++++ b/packages/documentation/src/examples/autocomplete/ExampleGrid.tsx
++@@ -0,0 +1,16 @@
+++import React, { Children, ReactElement, ReactNode } from "react";
+++import { GridList, GridListCell } from "@react-md/utils";
+++
+++export default function ExampleGrid({
+++  children,
+++}: {
+++  children: ReactNode;
+++}): ReactElement {
+++  return (
+++    <GridList maxCellSize={500}>
+++      {Children.map(children, (child) => (
+++        <GridListCell clone>{child}</GridListCell>
+++      ))}
+++    </GridList>
+++  );
+++}
++diff --git a/packages/documentation/src/examples/autocomplete/HighlightMatches.md b/packages/documentation/src/examples/autocomplete/HighlightMatches.md
++new file mode 100644
++index 000000000..dfcc2bf22
++--- /dev/null
+++++ b/packages/documentation/src/examples/autocomplete/HighlightMatches.md
++@@ -0,0 +1,7 @@
+++The `AutoComplete` also supports some basic support for highlight letters that
+++match the text field's value when the list of data have string labels. This will
+++only work for `"case-insensitive"` filtering or a custom filter function that
+++ensures that the matches always match all the letters in order.
+++
+++If you need more robust highlighting, you can also update the `getResultLabel`
+++prop and implement your own highlighting behavior instead.
++diff --git a/packages/documentation/src/examples/autocomplete/HighlightMatches.module.scss b/packages/documentation/src/examples/autocomplete/HighlightMatches.module.scss
++new file mode 100644
++index 000000000..80c015783
++--- /dev/null
+++++ b/packages/documentation/src/examples/autocomplete/HighlightMatches.module.scss
++@@ -0,0 +1,28 @@
+++@import '~@react-md/app-bar/dist/mixins';
+++@import '~@react-md/icon/dist/mixins';
+++@import '~@react-md/utils/dist/mixins';
+++
+++// all the importants are really just required to override the useFixedPositioning styles
+++// that aren't configurable right now that have to be changed for the hacky phone "emulation"
+++// sass-lint:disable no-important
+++.listbox {
+++  @include rmd-utils-tablet-media {
+++    bottom: auto !important;
+++    max-height: 30rem;
+++    position: absolute !important;
+++
+++    // status bar height + app-bar height
+++    top: calc(
+++      #{rmd-app-bar-theme-var(height)} + #{rmd-icon-theme-var(size)}
+++    ) !important;
+++  }
+++
+++  left: 0 !important;
+++  right: 0 !important;
+++}
+++
+++.container {
+++  @include rmd-utils-phone-media {
+++    @include rmd-app-bar-theme(padding-top, height);
+++  }
+++}
++diff --git a/packages/documentation/src/examples/autocomplete/HighlightMatches.tsx b/packages/documentation/src/examples/autocomplete/HighlightMatches.tsx
++new file mode 100644
++index 000000000..b3cc571d4
++--- /dev/null
+++++ b/packages/documentation/src/examples/autocomplete/HighlightMatches.tsx
++@@ -0,0 +1,73 @@
+++import React, { ReactElement, useCallback, useState } from "react";
+++import {
+++  AppBar,
+++  AppBarAction,
+++  AppBarNav,
+++  AppBarTitle,
+++} from "@react-md/app-bar";
+++import { AutoComplete, AutoCompleteHandler } from "@react-md/autocomplete";
+++import { KeyboardVoiceSVGIcon, SearchSVGIcon } from "@react-md/material-icons";
+++import { Text } from "@react-md/typography";
+++import { PhoneOnly, useAppSize } from "@react-md/utils";
+++
+++import Phone, { ClosePhone, PhoneAppBar } from "components/Phone";
+++import dessertList, { Dessert } from "constants/desserts";
+++
+++import DessertTable from "./DessertTable";
+++import styles from "./HighlightMatches.module.scss";
+++
+++const desserts = dessertList.map(({ name }) => name);
+++
+++export default function HighlightMatches(): ReactElement {
+++  const [dessert, setDessert] = useState<Dessert | null>(null);
+++  const onAutoComplete = useCallback<AutoCompleteHandler>(({ dataIndex }) => {
+++    setDessert(dessertList[dataIndex]);
+++  }, []);
+++
+++  const { isPhone } = useAppSize();
+++
+++  return (
+++    <Phone
+++      id="highlight-example"
+++      onPhoneClose={() => setDessert(null)}
+++      disableAppBar
+++      disableContent={isPhone}
+++      contentClassName={styles.container}
+++      appBar={
+++        <PhoneAppBar>
+++          <AppBar>
+++            <AppBarNav id="phone-nav">
+++              <SearchSVGIcon />
+++            </AppBarNav>
+++            <AppBarTitle>
+++              <AutoComplete
+++                id="phone-search"
+++                placeholder="Search"
+++                data={desserts}
+++                onAutoComplete={onAutoComplete}
+++                highlight
+++                theme="none"
+++                listboxWidth="auto"
+++                listboxClassName={styles.listbox}
+++                vhMargin={0}
+++                vwMargin={0}
+++                clearOnAutoComplete
+++              />
+++            </AppBarTitle>
+++            <AppBarAction id="phone-action" first last>
+++              <KeyboardVoiceSVGIcon />
+++            </AppBarAction>
+++          </AppBar>
+++        </PhoneAppBar>
+++      }
+++    >
+++      <Text type="headline-6" style={{ margin: "1rem" }}>
+++        {dessert ? "Nutrition" : "No Dessert Chosen"}
+++      </Text>
+++      <DessertTable dessert={dessert} />
+++      <PhoneOnly>
+++        <ClosePhone id="phone-close" floating />
+++      </PhoneOnly>
+++    </Phone>
+++  );
+++}
++diff --git a/packages/documentation/src/examples/autocomplete/README.md b/packages/documentation/src/examples/autocomplete/README.md
++new file mode 100644
++index 000000000..0c19796e4
++--- /dev/null
+++++ b/packages/documentation/src/examples/autocomplete/README.md
++@@ -0,0 +1,31 @@
+++> Note: The `AutoComplete` is mostly a desktop only component out of the box due
+++> to how soft keyboards work on touch devices. If you want to create an
+++> `AutoComplete` on mobile, you should follow the pattern in the
+++> [Highlight Matches](#highlight-matches) example where the `AutoComplete` gets
+++> moved into a static header and the menu no longer hides on scroll or page
+++> resizing.
+++
+++An `AutoComplete` is a component that allows for real-time suggestions from a
+++pre-determined list as the user types by filtering data based on the current
+++value. It can also be used to interact with an API that handles the sorting,
+++filtering, matching, etc as well.
+++
+++This component has been implemented following the
+++[combobox widget specifications](https://www.w3.org/TR/wai-aria-practices/#combobox)
+++so it will be fully accessible. It is recommended to also check out the #form
+++package for additional styling options since it uses the `TextField` and
+++`Listbox` components behind the scenes to show matches.
+++
+++Here's a quick summary of the accessibility features if you don't want to read
+++the combobox info:
+++
+++- `ArrowDown` - keyboard focus the next suggestion (wraps)
+++- `ArrowUp` - keyboard focus the previous suggestion (wraps)
+++- `Escape` - hide suggestions if they were visible. clear text field if the
+++  suggestions were hidden
+++- `Enter` - selects the keyboard focused suggestion if there was one. Submits
+++  form otherwise
+++- `alt + ArrowDown` - show suggestions if they were hidden and there are
+++  suggestions available
+++- `alt + ArrowUp` - hide suggestions if they were visible without selecting a
+++  new value
++diff --git a/packages/documentation/src/examples/autocomplete/SimpleExample.md b/packages/documentation/src/examples/autocomplete/SimpleExample.md
++new file mode 100644
++index 000000000..55e2b112f
++--- /dev/null
+++++ b/packages/documentation/src/examples/autocomplete/SimpleExample.md
++@@ -0,0 +1,15 @@
+++The base requirements for an `AutoComplete` are to provide an `id`, a list of
+++`data` to filter, and a `filter` behavior/custom function. However, it is
+++recommended to also provide a `label` or `aria-label` for additional
+++accessibility and a `placeholder` value for additional context.
+++
+++Since there are a lot of different ways to filter, this library will be keeping
+++it simple and only providing two filter functions out of the box:
+++
+++- `"case-insensitive"` (default) - A simple case insensitive filter that will
+++  only show results that contain the input's value in order ignoring case
+++- `"fuzzy"` - A fuzzy filter that will show any results that just contain the
+++  same letters in any order ignoring case.
+++
+++To start off simple, the following examples will just filter based off a list of
+++fruits and show these two filter behaviors.
++diff --git a/packages/documentation/src/examples/autocomplete/SimpleExample.tsx b/packages/documentation/src/examples/autocomplete/SimpleExample.tsx
++new file mode 100644
++index 000000000..b6d598131
++--- /dev/null
+++++ b/packages/documentation/src/examples/autocomplete/SimpleExample.tsx
++@@ -0,0 +1,51 @@
+++import React, { ReactElement } from "react";
+++import { AutoComplete } from "@react-md/autocomplete";
+++
+++import ExampleGrid from "./ExampleGrid";
+++
+++const fruits = [
+++  "Apple",
+++  "Apricot",
+++  "Banana",
+++  "Blueberry",
+++  "Cranberry",
+++  "Kiwi",
+++  "Peach",
+++  "Plum",
+++  "Strawberry",
+++];
+++
+++export default function SimpleExample(): ReactElement {
+++  return (
+++    <ExampleGrid>
+++      <AutoComplete
+++        id="simple-autocomplete-1"
+++        label="Case insensitive"
+++        placeholder="Apple"
+++        data={fruits}
+++      />
+++      <AutoComplete
+++        id="simple-autocomplete-2"
+++        label="Fuzzy filter"
+++        placeholder="Apple"
+++        data={fruits}
+++        filter="fuzzy"
+++      />
+++      <AutoComplete
+++        id="simple-autocomplete-3"
+++        label="Inline Autocomplete"
+++        placeholder="Apple"
+++        data={fruits}
+++        autoComplete="inline"
+++      />
+++      <AutoComplete
+++        id="simple-autocomplete-4"
+++        label="Both Autocomplete"
+++        placeholder="Apple"
+++        data={fruits}
+++        autoComplete="both"
+++        highlight
+++      />
+++    </ExampleGrid>
+++  );
+++}
++diff --git a/packages/documentation/src/examples/autocomplete/UsingObjectDataSets.md b/packages/documentation/src/examples/autocomplete/UsingObjectDataSets.md
++new file mode 100644
++index 000000000..22b96bb48
++--- /dev/null
+++++ b/packages/documentation/src/examples/autocomplete/UsingObjectDataSets.md
++@@ -0,0 +1,17 @@
+++Since it isn't extremely helpful to only use strings, the `AutoComplete` can
+++also filter and display a list of objects. The base requirements for an object
+++result is that it should have:
+++
+++- a `label` key or a `children` key - This is what will be displayed in the
+++  suggestions dropdown menu
+++- a `value` key - This is the searchable **string** that is used for filtering
+++  down the data by the current text field's value.
+++
+++This allows you to have more complex suggestions by being able to render custom
+++styles within the dropdown list, but still being searchable. In addition, you
+++can use all the list item props for adding icons, avatars, or even media in the
+++suggestion list.
+++
+++You can also customize this behavior a bit by changing the `labelKey` and
+++`valueKey` props to be different values if your object is simple and don't want
+++to transform it to match this structure.
++diff --git a/packages/documentation/src/examples/autocomplete/UsingObjectDataSets.tsx b/packages/documentation/src/examples/autocomplete/UsingObjectDataSets.tsx
++new file mode 100644
++index 000000000..e52ec33df
++--- /dev/null
+++++ b/packages/documentation/src/examples/autocomplete/UsingObjectDataSets.tsx
++@@ -0,0 +1,89 @@
+++import React, { ReactElement } from "react";
+++import { AutoComplete, AutoCompleteData } from "@react-md/autocomplete";
+++import { Avatar } from "@react-md/avatar";
+++
+++import dessertsList from "constants/desserts";
+++import statesList from "constants/states";
+++
+++import ExampleGrid from "./ExampleGrid";
+++
+++const data = [
+++  { label: "This is a result", value: "This is a result" },
+++  {
+++    // if children is defined, `label` isn't required
+++    children: (
+++      <>
+++        No, <strong>this</strong> is a result
+++      </>
+++    ),
+++    // still need a search string
+++    value: "No, this is a result",
+++  },
+++  {
+++    label: (
+++      <>
+++        I am not sure. <i>This</i> also seems like a <strong>result</strong>
+++      </>
+++    ),
+++    value: "I am not sure. This also seems like a result",
+++  },
+++];
+++
+++function getColor(type: string): string {
+++  switch (type) {
+++    case "Ice cream":
+++      return "blue";
+++    case "Pastry":
+++      return "orange";
+++    default:
+++      return "blue-grey";
+++  }
+++}
+++
+++const desserts = dessertsList.map<AutoCompleteData>(
+++  ({ name, type, calories }, i) => ({
+++    label: (
+++      <>
+++        {`${name} `}(<i>{`${calories} kcal`}</i>)
+++      </>
+++    ),
+++    value: name,
+++    leftAddon: (
+++      <Avatar style={{ fontSize: ".85rem" }} color={getColor(type)}>
+++        {type.substring(0, 3)}
+++      </Avatar>
+++    ),
+++    rightAddon: <img src={`https://picsum.photos/56?image=${30 + i}`} alt="" />,
+++    rightAddonType: "media",
+++  })
+++);
+++
+++// just slicing since `statesList` is readonly
+++const states = statesList.slice();
+++
+++export default function UsingObjectDataSets(): ReactElement {
+++  return (
+++    <ExampleGrid>
+++      <AutoComplete
+++        id="object-dataset-1"
+++        label="Results"
+++        placeholder="Search..."
+++        data={data}
+++      />
+++      <AutoComplete
+++        id="object-dataset-2"
+++        label="Desserts"
+++        placeholder="Cupcake"
+++        data={desserts}
+++      />
+++      <AutoComplete
+++        id="object-dataset-3"
+++        label="State"
+++        placeholder="Search..."
+++        data={states}
+++        labelKey="name"
+++        valueKey="name"
+++      />
+++    </ExampleGrid>
+++  );
+++}
++diff --git a/packages/documentation/src/examples/autocomplete/examples.ts b/packages/documentation/src/examples/autocomplete/examples.ts
++new file mode 100644
++index 000000000..a8476f11e
++--- /dev/null
+++++ b/packages/documentation/src/examples/autocomplete/examples.ts
++@@ -0,0 +1,22 @@
+++import { ExampleList } from "components/Examples/types";
+++
+++import simpleExample from "./SimpleExample.md";
+++import usingObjectDataSets from "./UsingObjectDataSets.md";
+++import highlightMatches from "./HighlightMatches.md";
+++
+++export { default as description } from "./README.md";
+++
+++export const examples: ExampleList = [
+++  {
+++    title: "Simple Example",
+++    description: simpleExample,
+++  },
+++  {
+++    title: "Using Object Data Sets",
+++    description: usingObjectDataSets,
+++  },
+++  {
+++    title: "Highlight Matches",
+++    description: highlightMatches,
+++  },
+++];
++diff --git a/packages/documentation/src/examples/badge/CustomizingBadges.md b/packages/documentation/src/examples/badge/CustomizingBadges.md
++new file mode 100644
++index 000000000..424db0ebc
++--- /dev/null
+++++ b/packages/documentation/src/examples/badge/CustomizingBadges.md
++@@ -0,0 +1,15 @@
+++Badges do not need to always be rendered with a `Button` and can be used as
+++supplementary text for any other element. To create a custom badge, you can use
+++the `BadgeContainer` and `Badge` components directly instead of the
+++`BadgedButton`.
+++
+++The `BadgeContainer` is just a simple wrapper that will add
+++`display: inline-flex` and `position: relative` so that the `Badge` can be
+++displayed relative to the other children. You can also update some of the css
+++variables for the badge to add additional offset to the container element or
+++increase the font-size as needed.
+++
+++> You don't need custom components for updating the theme. It just tied together
+++> with the custom components section so it was added here. The custom theme can
+++> be applied by adding a new `className` to the `BadgedButton` and using the
+++> `rmd-badge-theme-update-var` `mixin` as well.
++diff --git a/packages/documentation/src/examples/badge/CustomizingBadges.module.scss b/packages/documentation/src/examples/badge/CustomizingBadges.module.scss
++new file mode 100644
++index 000000000..7e47032aa
++--- /dev/null
+++++ b/packages/documentation/src/examples/badge/CustomizingBadges.module.scss
++@@ -0,0 +1,24 @@
+++@import '~@react-md/badge/dist/mixins';
+++@import '~@react-md/utils/dist/mixins';
+++
+++.container {
+++  @include rmd-badge-theme-update-var(
+++    font-size,
+++    rmd-typography-value(body-1, font-size)
+++  );
+++  @include rmd-badge-theme-update-var(top, 0.5rem);
+++  @include rmd-badge-theme-update-var(right, -0.25rem);
+++
+++  // add padding for the badge and auto-swap when direction changes
+++  @include rmd-utils-rtl-auto(padding-right, 1rem);
+++
+++  margin: 1rem;
+++}
+++
+++.custom {
+++  // update the badge to partially outside of the button
+++  @include rmd-badge-theme-update-var(top, -0.5rem);
+++  @include rmd-badge-theme-update-var(right, -0.5rem);
+++
+++  margin: 1rem;
+++}
++diff --git a/packages/documentation/src/examples/badge/CustomizingBadges.tsx b/packages/documentation/src/examples/badge/CustomizingBadges.tsx
++new file mode 100644
++index 000000000..fe99cf62a
++--- /dev/null
+++++ b/packages/documentation/src/examples/badge/CustomizingBadges.tsx
++@@ -0,0 +1,34 @@
+++import React, { ReactElement } from "react";
+++import { Badge, BadgeContainer } from "@react-md/badge";
+++import { Button } from "@react-md/button";
+++import { NotificationsSVGIcon } from "@react-md/material-icons";
+++import { Text } from "@react-md/typography";
+++
+++import { COPYRIGHT } from "constants/unicode";
+++
+++import styles from "./CustomizingBadges.module.scss";
+++
+++export default function CustomizingBadges(): ReactElement {
+++  return (
+++    <>
+++      <BadgeContainer className={styles.container}>
+++        {/* since the badge is presentational, don't add the `aria-describedby` value */}
+++        <Text>Some amazing product</Text>
+++        <Badge id="copyright-badge" theme="clear">
+++          {COPYRIGHT}
+++        </Badge>
+++      </BadgeContainer>
+++      {/* this is _basically_ the `BadgedButton` component except with an extra `<span>` */}
+++      <BadgeContainer className={styles.custom}>
+++        <Button
+++          id="custom-badged-button"
+++          aria-describedby="custom-badged-button-badge"
+++          buttonType="icon"
+++        >
+++          <NotificationsSVGIcon />
+++        </Button>
+++        <Badge id="custom-badged-button-badge">8</Badge>
+++      </BadgeContainer>
+++    </>
+++  );
+++}
++diff --git a/packages/documentation/src/examples/badge/SimpleExamples.md b/packages/documentation/src/examples/badge/SimpleExamples.md
++new file mode 100644
++index 000000000..be03035a2
++--- /dev/null
+++++ b/packages/documentation/src/examples/badge/SimpleExamples.md
++@@ -0,0 +1,8 @@
+++The most common use-case for a badge is to be displayed on a button indicating
+++the number of new alerts for a user. This package exports a nice wrapper
+++component named the `BadgedButton` which will default to rendering as a icon
+++button with a notification `FontIcon` and an `aria-label="Notifications"`.
+++
+++The default behavior of the `Badge` is to not render when the children are `0`
+++or `null` since it normally isn't helpful to display an "empty" badge. This
+++behavior can be disabled by using the `disableNullOnZero` prop.
++diff --git a/packages/documentation/src/examples/badge/SimpleExamples.module.scss b/packages/documentation/src/examples/badge/SimpleExamples.module.scss
++new file mode 100644
++index 000000000..0e29e924c
++--- /dev/null
+++++ b/packages/documentation/src/examples/badge/SimpleExamples.module.scss
++@@ -0,0 +1,3 @@
+++.container {
+++  margin: 1rem;
+++}
++diff --git a/packages/documentation/src/examples/badge/SimpleExamples.tsx b/packages/documentation/src/examples/badge/SimpleExamples.tsx
++new file mode 100644
++index 000000000..3008b7bce
++--- /dev/null
+++++ b/packages/documentation/src/examples/badge/SimpleExamples.tsx
++@@ -0,0 +1,33 @@
+++import React, { ReactElement } from "react";
+++import { BadgedButton } from "@react-md/badge";
+++import { NotificationsSVGIcon } from "@react-md/material-icons";
+++
+++import styles from "./SimpleExamples.module.scss";
+++
+++export default function SimpleExamples(): ReactElement {
+++  return (
+++    <>
+++      <BadgedButton id="badged-button-1" className={styles.container}>
+++        3
+++      </BadgedButton>
+++      <BadgedButton
+++        id="badged-button-2"
+++        className={styles.container}
+++        buttonChildren={<NotificationsSVGIcon />}
+++      >
+++        7
+++      </BadgedButton>
+++      <BadgedButton id="badged-button-3" className={styles.container}>
+++        0
+++      </BadgedButton>
+++      <BadgedButton id="badged-button-4" className={styles.container} />
+++      <BadgedButton
+++        id="badged-button-5"
+++        className={styles.container}
+++        disableNullOnZero
+++      >
+++        0
+++      </BadgedButton>
+++    </>
+++  );
+++}
++diff --git a/packages/documentation/src/examples/badge/ThemedBadges.md b/packages/documentation/src/examples/badge/ThemedBadges.md
++new file mode 100644
++index 000000000..931a36574
++--- /dev/null
+++++ b/packages/documentation/src/examples/badge/ThemedBadges.md
++@@ -0,0 +1,7 @@
+++Just like other components within `react-md`, the `Badge` component comes with a
+++few themes:
+++
+++- `primary` - the theme primary color
+++- `secondary` - the theme secondary color
+++- `default` - the default theme for the tooltip
+++- `clear` - an "unstyled" theme
++diff --git a/packages/documentation/src/examples/badge/ThemedBadges.tsx b/packages/documentation/src/examples/badge/ThemedBadges.tsx
++new file mode 100644
++index 000000000..b24861ca9
++--- /dev/null
+++++ b/packages/documentation/src/examples/badge/ThemedBadges.tsx
++@@ -0,0 +1,23 @@
+++import React, { ReactElement } from "react";
+++import { BadgedButton, BadgeTheme } from "@react-md/badge";
+++
+++import styles from "./SimpleExamples.module.scss";
+++
+++const themes: BadgeTheme[] = ["primary", "secondary", "default", "clear"];
+++
+++export default function ThemedBadges(): ReactElement {
+++  return (
+++    <>
+++      {themes.map((theme) => (
+++        <BadgedButton
+++          key={theme}
+++          id={`badged-button-${theme}`}
+++          badgeTheme={theme}
+++          className={styles.container}
+++        >
+++          {theme.length}
+++        </BadgedButton>
+++      ))}
+++    </>
+++  );
+++}
++diff --git a/packages/documentation/src/examples/badge/TooltippedBadgedButton.tsx b/packages/documentation/src/examples/badge/TooltippedBadgedButton.tsx
++new file mode 100644
++index 000000000..3dc80c28f
++--- /dev/null
+++++ b/packages/documentation/src/examples/badge/TooltippedBadgedButton.tsx
++@@ -0,0 +1,30 @@
+++import React, { CSSProperties, forwardRef, ReactNode } from "react";
+++import { BadgedButton, BadgedButtonProps } from "@react-md/badge";
+++import { Tooltipped } from "@react-md/tooltip";
+++
+++export interface TooltippedBadgedButtonProps extends BadgedButtonProps {
+++  id: string;
+++  tooltip?: ReactNode;
+++  tooltipStyle?: CSSProperties;
+++  tooltipClassName?: string;
+++}
+++
+++export default forwardRef<HTMLButtonElement, TooltippedBadgedButtonProps>(
+++  function TooltippedBadgedButton(
+++    { id, tooltip, tooltipStyle, tooltipClassName, children, ...props },
+++    ref
+++  ) {
+++    return (
+++      <Tooltipped
+++        id={id}
+++        tooltip={tooltip}
+++        style={tooltipStyle}
+++        className={tooltipClassName}
+++      >
+++        <BadgedButton {...props} ref={ref}>
+++          {children}
+++        </BadgedButton>
+++      </Tooltipped>
+++    );
+++  }
+++);
++diff --git a/packages/documentation/src/examples/badge/WithTooltips.md b/packages/documentation/src/examples/badge/WithTooltips.md
++new file mode 100644
++index 000000000..7b7680290
++--- /dev/null
+++++ b/packages/documentation/src/examples/badge/WithTooltips.md
++@@ -0,0 +1,4 @@
+++Tooltips can also be integrated with a `Badge` to show additional information
+++about these notifications as well. Unfortunately there isn't a component
+++included in `react-md` at this time to do this, but it can easily be created
+++using the `Tooltipped` and `BadgedButton` components.
++diff --git a/packages/documentation/src/examples/badge/WithTooltips.tsx b/packages/documentation/src/examples/badge/WithTooltips.tsx
++new file mode 100644
++index 000000000..4c7684489
++--- /dev/null
+++++ b/packages/documentation/src/examples/badge/WithTooltips.tsx
++@@ -0,0 +1,31 @@
+++import React, { ReactElement } from "react";
+++
+++import TooltippedBadgedButton from "./TooltippedBadgedButton";
+++
+++import styles from "./SimpleExamples.module.scss";
+++
+++export default function WithTooltips(): ReactElement {
+++  return (
+++    <>
+++      <TooltippedBadgedButton
+++        id="tooltipped-badged-button-1"
+++        tooltip="No Alerts"
+++        className={styles.container}
+++      />
+++      <TooltippedBadgedButton
+++        id="tooltipped-badged-button-2"
+++        tooltip="10 New Alerts"
+++        className={styles.container}
+++      >
+++        10
+++      </TooltippedBadgedButton>
+++      <TooltippedBadgedButton
+++        id="tooltipped-badged-button-3"
+++        tooltip="100 New Alerts"
+++        className={styles.container}
+++      >
+++        99+
+++      </TooltippedBadgedButton>
+++    </>
+++  );
+++}
++diff --git a/packages/documentation/src/examples/badge/examples.ts b/packages/documentation/src/examples/badge/examples.ts
++new file mode 100644
++index 000000000..c6be57957
++--- /dev/null
+++++ b/packages/documentation/src/examples/badge/examples.ts
++@@ -0,0 +1,29 @@
+++import { ExampleList, ExamplesConfig } from "components/Examples/types";
+++
+++import simpleExamples from "./SimpleExamples.md";
+++import themedBadges from "./ThemedBadges.md";
+++import withTooltips from "./WithTooltips.md";
+++import customizingBadges from "./CustomizingBadges.md";
+++
+++export const examples: ExampleList = [
+++  {
+++    title: "Simple Examples",
+++    description: simpleExamples,
+++  },
+++  {
+++    title: "Themed Badges",
+++    description: themedBadges,
+++  },
+++  {
+++    title: "With Tooltips",
+++    description: withTooltips,
+++  },
+++  {
+++    title: "Customizing Badges",
+++    description: customizingBadges,
+++  },
+++];
+++
+++export const config: ExamplesConfig = {
+++  resetIcons: true,
+++};
++diff --git a/packages/documentation/src/examples/button/ButtonWithCircularProgress.md b/packages/documentation/src/examples/button/ButtonWithCircularProgress.md
++new file mode 100644
++index 000000000..3b99c7ab7
++--- /dev/null
+++++ b/packages/documentation/src/examples/button/ButtonWithCircularProgress.md
++@@ -0,0 +1,14 @@
+++If you have the #progress package installed, the `Button` component will
+++automatically update the size of any child `CircularProgress` to be the same
+++size as an icon. Since you'll normally want to prevent the button from being
+++interactable while displaying a loading spinner, you can set the button's
+++`theme` to `"disabled"` which will make the button look and behave as if it was
+++disabled without actually enabling the `disabled` attribute so that it is still
+++keyboard focusable.
+++
+++This example will show how you can add a `CircularProgress` as a child with the
+++`TextIconSpacing` component as well as showing the `"disabled"` theme behavior.
+++
+++> You can also check out the
+++> [progress bars within buttons demo](/packages/progress/demos#within-buttons)
+++> for a more complex example as well as using the `LinearProgress` component.
++diff --git a/packages/documentation/src/examples/button/ButtonWithCircularProgress.tsx b/packages/documentation/src/examples/button/ButtonWithCircularProgress.tsx
++new file mode 100644
++index 000000000..6cccdc893
++--- /dev/null
+++++ b/packages/documentation/src/examples/button/ButtonWithCircularProgress.tsx
++@@ -0,0 +1,40 @@
+++import React, { ReactElement, useEffect } from "react";
+++import { TextIconSpacing } from "@react-md/icon";
+++import { Button } from "@react-md/button";
+++import { CircularProgress, getProgressA11y } from "@react-md/progress";
+++import { useTimeout, useToggle } from "@react-md/utils";
+++import { StarSVGIcon } from "@react-md/material-icons";
+++
+++export default function ButtonWithCircularProgress(): ReactElement | null {
+++  const [loading, enable, disable] = useToggle(false);
+++  const [start] = useTimeout(disable, 5000);
+++  useEffect(() => {
+++    if (loading) {
+++      start();
+++    }
+++  }, [loading, start]);
+++
+++  const id = "button-with-progress";
+++  const progressId = `${id}-loading`;
+++  return (
+++    <Button
+++      id={id}
+++      {...getProgressA11y(progressId, loading)}
+++      onClick={enable}
+++      theme={loading ? "disabled" : "primary"}
+++      themeType="outline"
+++    >
+++      <TextIconSpacing
+++        icon={
+++          loading ? (
+++            <CircularProgress id={progressId} centered={false} />
+++          ) : (
+++            <StarSVGIcon />
+++          )
+++        }
+++      >
+++        Button
+++      </TextIconSpacing>
+++    </Button>
+++  );
+++}
++diff --git a/packages/documentation/src/examples/button/ContainedButtons.md b/packages/documentation/src/examples/button/ContainedButtons.md
++new file mode 100644
++index 000000000..593cbf2ec
++--- /dev/null
+++++ b/packages/documentation/src/examples/button/ContainedButtons.md
++@@ -0,0 +1,8 @@
+++Contained buttons have high emphasis as they have an entire color fill and
+++shadow. Contained buttons can be created by setting the `themeType="contained"`
+++prop.
+++
+++Note that the `clear` prop still works for a contained button but looks
+++extremely out of place most of the time since it just gains the `surface` theme
+++background color. It is generally recommended to not use the `clear` theme for
+++contained buttons or add a custom theme override for it instead.
++diff --git a/packages/documentation/src/examples/button/ContainedButtons.tsx b/packages/documentation/src/examples/button/ContainedButtons.tsx
++new file mode 100644
++index 000000000..fa4376043
++--- /dev/null
+++++ b/packages/documentation/src/examples/button/ContainedButtons.tsx
++@@ -0,0 +1,29 @@
+++import React, { FC } from "react";
+++import { Button } from "@react-md/button";
+++
+++import Container from "./Container";
+++
+++const ContainedButtons: FC = () => (
+++  <Container>
+++    <Button id="contained-button-1" theme="primary" themeType="contained">
+++      Contained Button 1
+++    </Button>
+++    <Button id="contained-button-2" theme="secondary" themeType="contained">
+++      Contained Button 2
+++    </Button>
+++    <Button id="contained-button-3" theme="warning" themeType="contained">
+++      Contained Button 3
+++    </Button>
+++    <Button id="contained-button-4" theme="error" themeType="contained">
+++      Contained Button 4
+++    </Button>
+++    <Button id="contained-button-5" theme="clear" themeType="contained">
+++      Contained Button 5
+++    </Button>
+++    <Button id="contained-button-6" themeType="contained" disabled>
+++      Disabled Contained Button
+++    </Button>
+++  </Container>
+++);
+++
+++export default ContainedButtons;
++diff --git a/packages/documentation/src/examples/button/Container.module.scss b/packages/documentation/src/examples/button/Container.module.scss
++new file mode 100644
++index 000000000..255a728ee
++--- /dev/null
+++++ b/packages/documentation/src/examples/button/Container.module.scss
++@@ -0,0 +1,9 @@
+++.container {
+++  align-items: center;
+++  display: flex;
+++  flex-wrap: wrap;
+++
+++  :global .rmd-button {
+++    margin: 1rem;
+++  }
+++}
++diff --git a/packages/documentation/src/examples/button/Container.tsx b/packages/documentation/src/examples/button/Container.tsx
++new file mode 100644
++index 000000000..bd388e6bb
++--- /dev/null
+++++ b/packages/documentation/src/examples/button/Container.tsx
++@@ -0,0 +1,16 @@
+++import React, { FC, HTMLAttributes } from "react";
+++import cn from "classnames";
+++
+++import styles from "./Container.module.scss";
+++
+++const Container: FC<HTMLAttributes<HTMLDivElement>> = ({
+++  className,
+++  children,
+++  ...props
+++}) => (
+++  <div {...props} className={cn(styles.container, className)}>
+++    {children}
+++  </div>
+++);
+++
+++export default Container;
++diff --git a/packages/documentation/src/examples/button/CustomButtonTheme.md b/packages/documentation/src/examples/button/CustomButtonTheme.md
++new file mode 100644
++index 000000000..e0a6c7f2f
++--- /dev/null
+++++ b/packages/documentation/src/examples/button/CustomButtonTheme.md
++@@ -0,0 +1,8 @@
+++Since it might not be desired to have the same material design theme for your
+++app, it is possible to update the base button theme by updating the different
+++button SCSS variables before importing and including the button styles. If you
+++have not done so, please read the pretty good write up in the
+++[theme documentation](/packages/theme#custom-theme) for all the detailed theming
+++information. It's also recommended to read the
+++[states documentation](/packages/states) to read about disable the ripple effect
+++or custom interaction states as well.
++diff --git a/packages/documentation/src/examples/button/CustomButtonTheme.module.scss b/packages/documentation/src/examples/button/CustomButtonTheme.module.scss
++new file mode 100644
++index 000000000..8d4c1fc00
++--- /dev/null
+++++ b/packages/documentation/src/examples/button/CustomButtonTheme.module.scss
++@@ -0,0 +1,18 @@
+++@import '~@react-md/theme/dist/color-palette';
+++@import '~@react-md/button/dist/mixins';
+++@import '~@react-md/icon/dist/mixins';
+++@import '~@react-md/theme/dist/mixins';
+++
+++.container {
+++  @include rmd-button-theme-update-var(outline-width, 4px);
+++  @include rmd-button-theme-update-var(text-height, 4rem);
+++  @include rmd-button-theme-update-var(text-min-width, 8rem);
+++  @include rmd-button-theme-update-var(text-horizontal-padding, 4rem);
+++  @include rmd-button-theme-update-var(text-border-radius, 2rem);
+++  @include rmd-button-theme-update-var(icon-border-radius, 1rem);
+++}
+++
+++.large {
+++  @include rmd-button-theme-update-var(icon-size, $rmd-button-icon-size * 2);
+++  @include rmd-icon-theme-update-var(size, $rmd-icon-size * 2);
+++}
++diff --git a/packages/documentation/src/examples/button/CustomButtonTheme.tsx b/packages/documentation/src/examples/button/CustomButtonTheme.tsx
++new file mode 100644
++index 000000000..9288ec4d3
++--- /dev/null
+++++ b/packages/documentation/src/examples/button/CustomButtonTheme.tsx
++@@ -0,0 +1,44 @@
+++import React, { FC } from "react";
+++import { Button } from "@react-md/button";
+++import { TextIconSpacing } from "@react-md/icon";
+++import {
+++  ChatSVGIcon,
+++  CloseSVGIcon,
+++  DeleteSVGIcon,
+++} from "@react-md/material-icons";
+++
+++import Container from "./Container";
+++
+++import styles from "./CustomButtonTheme.module.scss";
+++
+++const CustomButtonTheme: FC = () => (
+++  <Container className={styles.container}>
+++    <Button id="custom-themed-button-1" themeType="outline" theme="secondary">
+++      Custom
+++    </Button>
+++    <Button
+++      id="custom-themed-button-2"
+++      buttonType="icon"
+++      themeType="outline"
+++      theme="primary"
+++      aria-label="Close"
+++    >
+++      <CloseSVGIcon />
+++    </Button>
+++    <Button id="custom-themed-button-3" themeType="contained" theme="error">
+++      <TextIconSpacing icon={<DeleteSVGIcon />}>Delete Forever</TextIconSpacing>
+++    </Button>
+++    <Button
+++      id="custom-themed-button-4"
+++      aria-label="Chat"
+++      buttonType="icon"
+++      themeType="outline"
+++      theme="warning"
+++      className={styles.large}
+++    >
+++      <ChatSVGIcon />
+++    </Button>
+++  </Container>
+++);
+++
+++export default CustomButtonTheme;
++diff --git a/packages/documentation/src/examples/button/FloatingActionButtons.md b/packages/documentation/src/examples/button/FloatingActionButtons.md
++new file mode 100644
++index 000000000..b98166c68
++--- /dev/null
+++++ b/packages/documentation/src/examples/button/FloatingActionButtons.md
++@@ -0,0 +1,12 @@
+++Buttons can also be rendered as a
+++[floating action button](https://material.io/components/buttons-floating-action-button)
+++(FAB) by setting the `floating` prop to a position to render within the
+++viewport. The default available positions are:
+++
+++- `"top-left"`
+++- `"top-right"`
+++- `"bottom-left"`
+++- `"bottom-right"`
+++
+++Even though this example will show within a phone on larger screen sizes, these
+++type of buttons do not need to be mobile only.
++diff --git a/packages/documentation/src/examples/button/FloatingActionButtons.tsx b/packages/documentation/src/examples/button/FloatingActionButtons.tsx
++new file mode 100644
++index 000000000..bdfc7700f
++--- /dev/null
+++++ b/packages/documentation/src/examples/button/FloatingActionButtons.tsx
++@@ -0,0 +1,27 @@
+++import React, { FC } from "react";
+++import {
+++  StarSVGIcon,
+++  StarHalfSVGIcon,
+++  StarBorderSVGIcon,
+++  StarsSVGIcon,
+++} from "@react-md/material-icons";
+++import { Button } from "@react-md/button";
+++
+++const FloatingActionButtons: FC = () => (
+++  <>
+++    <Button floating="top-left">
+++      <StarSVGIcon />
+++    </Button>
+++    <Button floating="top-right">
+++      <StarHalfSVGIcon />
+++    </Button>
+++    <Button floating="bottom-left">
+++      <StarBorderSVGIcon />
+++    </Button>
+++    <Button floating="bottom-right">
+++      <StarsSVGIcon />
+++    </Button>
+++  </>
+++);
+++
+++export default FloatingActionButtons;
++diff --git a/packages/documentation/src/examples/button/IconButtons.md b/packages/documentation/src/examples/button/IconButtons.md
++new file mode 100644
++index 000000000..81c4f279f
++--- /dev/null
+++++ b/packages/documentation/src/examples/button/IconButtons.md
++@@ -0,0 +1,14 @@
+++Icon Buttons are great when you have limited space and an icon that is well
+++known/self-describing. Common places for icon buttons are within the #app-bar or
+++as expansion toggles. You will need to install the #icon and include the styles
+++for icons for these types of buttons. It is also recommended to install the
+++#material-icons package for all the material icons pre-built as React
+++components.
+++
+++Unfortunately, icon buttons are not as accessible out of the box for screen
+++readers as they normally do not have text within them.
+++[Material Icons](https://design.google.com/icons/) is an exemption to this since
+++their font icons are rendered based on the text content, but other font icon
+++libraries or SVG icons normally do not have text for a screen reader to read. In
+++these cases, you should apply an `aria-label` or `aria-labelledby` to the button
+++and optionally using a #tooltip to add an extra description.
++diff --git a/packages/documentation/src/examples/button/IconButtons.tsx b/packages/documentation/src/examples/button/IconButtons.tsx
++new file mode 100644
++index 000000000..babafb127
++--- /dev/null
+++++ b/packages/documentation/src/examples/button/IconButtons.tsx
++@@ -0,0 +1,110 @@
+++import React, { FC } from "react";
+++import { Button } from "@react-md/button";
+++import { FontIcon } from "@react-md/icon";
+++import { DeleteSVGIcon, FavoriteSVGIcon } from "@react-md/material-icons";
+++
+++import Container from "./Container";
+++
+++const IconButtons: FC = () => (
+++  <Container>
+++    <Button
+++      id="icon-button-1"
+++      buttonType="icon"
+++      theme="primary"
+++      aria-label="Favorite"
+++    >
+++      <FontIcon>favorite</FontIcon>
+++    </Button>
+++    <Button
+++      id="icon-button-2"
+++      buttonType="icon"
+++      theme="secondary"
+++      aria-label="Favorite"
+++    >
+++      <FavoriteSVGIcon />
+++    </Button>
+++    <Button
+++      id="icon-button-3"
+++      buttonType="icon"
+++      theme="warning"
+++      aria-label="Move to Trash"
+++    >
+++      <DeleteSVGIcon />
+++    </Button>
+++    <Button
+++      id="icon-button-4"
+++      buttonType="icon"
+++      theme="error"
+++      aria-label="Permanently Delete"
+++    >
+++      <DeleteSVGIcon />
+++    </Button>
+++    <Button id="icon-button-5" buttonType="icon" theme="clear" aria-label="Add">
+++      <FontIcon>add</FontIcon>
+++    </Button>
+++    <Button
+++      id="icon-button-6"
+++      buttonType="icon"
+++      disabled
+++      aria-label="Disabled Add Button"
+++    >
+++      <FontIcon>add</FontIcon>
+++    </Button>
+++    <Button
+++      id="icon-button-7"
+++      buttonType="icon"
+++      theme="primary"
+++      themeType="outline"
+++      aria-label="Favorite"
+++    >
+++      <FontIcon>favorite</FontIcon>
+++    </Button>
+++    <Button
+++      id="icon-button-8"
+++      buttonType="icon"
+++      theme="secondary"
+++      themeType="outline"
+++      aria-label="Favorite"
+++    >
+++      <FavoriteSVGIcon />
+++    </Button>
+++    <Button
+++      id="icon-button-9"
+++      buttonType="icon"
+++      theme="warning"
+++      themeType="contained"
+++      aria-label="Move to Trash"
+++    >
+++      <DeleteSVGIcon />
+++    </Button>
+++    <Button
+++      id="icon-button-10"
+++      buttonType="icon"
+++      theme="error"
+++      themeType="contained"
+++      aria-label="Permanently Delete"
+++    >
+++      <DeleteSVGIcon />
+++    </Button>
+++    <Button
+++      id="icon-button-11"
+++      buttonType="icon"
+++      theme="clear"
+++      themeType="outline"
+++      aria-label="Add"
+++    >
+++      <FontIcon>add</FontIcon>
+++    </Button>
+++    <Button
+++      id="icon-button-12"
+++      buttonType="icon"
+++      disabled
+++      aria-label="Disabled Add Button"
+++      themeType="outline"
+++    >
+++      <FontIcon>add</FontIcon>
+++    </Button>
+++  </Container>
+++);
+++
+++export default IconButtons;
++diff --git a/packages/documentation/src/examples/button/OutlinedButtons.md b/packages/documentation/src/examples/button/OutlinedButtons.md
++new file mode 100644
++index 000000000..4d75f5100
++--- /dev/null
+++++ b/packages/documentation/src/examples/button/OutlinedButtons.md
++@@ -0,0 +1,4 @@
+++Outline buttons have a bit more emphasis than text buttons since they have an
+++additional outline color. They should generally be used in places that aren't
+++the primary action in the app, but should still be noticeable. You can create
+++outlined buttons by adding a new prop: `themeType="outline"`.
++diff --git a/packages/documentation/src/examples/button/OutlinedButtons.tsx b/packages/documentation/src/examples/button/OutlinedButtons.tsx
++new file mode 100644
++index 000000000..9e44c65dd
++--- /dev/null
+++++ b/packages/documentation/src/examples/button/OutlinedButtons.tsx
++@@ -0,0 +1,29 @@
+++import React, { FC } from "react";
+++import { Button } from "@react-md/button";
+++
+++import Container from "./Container";
+++
+++const OutlinedButtons: FC = () => (
+++  <Container>
+++    <Button id="outlined-button-1" theme="primary" themeType="outline">
+++      Outlined Button 1
+++    </Button>
+++    <Button id="outlined-button-2" theme="secondary" themeType="outline">
+++      Outlined Button 2
+++    </Button>
+++    <Button id="outlined-button-3" theme="warning" themeType="outline">
+++      Outlined Button 3
+++    </Button>
+++    <Button id="outlined-button-4" theme="error" themeType="outline">
+++      Outlined Button 4
+++    </Button>
+++    <Button id="outlined-button-5" theme="clear" themeType="outline">
+++      Outlined Button 5
+++    </Button>
+++    <Button id="outlined-button-6" themeType="outline" disabled>
+++      Disabled Outlined Button
+++    </Button>
+++  </Container>
+++);
+++
+++export default OutlinedButtons;
++diff --git a/packages/documentation/src/examples/button/README.md b/packages/documentation/src/examples/button/README.md
++new file mode 100644
++index 000000000..72b759e69
++--- /dev/null
+++++ b/packages/documentation/src/examples/button/README.md
++@@ -0,0 +1,21 @@
+++A button will default to a `"clear"` theme so that it can be used easily with no
+++additional props, but there are 5 total theme colors provided by default:
+++
+++- `"primary"` - the **theme** primary color
+++- `"secondary"` - the **theme** secondary color
+++- `"warning"` - the **theme** warning color
+++- `"error"` - the **theme** error color
+++- `"clear"` - the current **typography** primary text color
+++- `disabled` - disabled styles when the button is disabled (not using the
+++  `theme` prop)
+++
+++These themes will either be applied to the text, border, or background colors
+++depending on the theme type. The available theme types are:
+++
+++- `"flat"` - the button will be flat with the background.
+++- `"outline"` - the button with have a border
+++- `"contained"` - the button with be slightly elevated and have different
+++  background colors.
+++
+++Check out the couple of examples below for the different button theme types
+++available.
++diff --git a/packages/documentation/src/examples/button/TextButtons.md b/packages/documentation/src/examples/button/TextButtons.md
++new file mode 100644
++index 000000000..78c3a05f0
++--- /dev/null
+++++ b/packages/documentation/src/examples/button/TextButtons.md
++@@ -0,0 +1,10 @@
+++Text buttons are generally used when an action is less important or should not
+++be the user's main focus. This is the default button theme type and allows you
+++to create a button with no additional props (other than `children`):
+++
+++```tsx
+++<Button>Button</Button>
+++```
+++
+++These types of buttons are normally placed with the #dialog or #card packages
+++and components.
++diff --git a/packages/documentation/src/examples/button/TextButtons.tsx b/packages/documentation/src/examples/button/TextButtons.tsx
++new file mode 100644
++index 000000000..3f699c9f3
++--- /dev/null
+++++ b/packages/documentation/src/examples/button/TextButtons.tsx
++@@ -0,0 +1,29 @@
+++import React, { FC } from "react";
+++import { Button } from "@react-md/button";
+++
+++import Container from "./Container";
+++
+++const TextButtons: FC = () => (
+++  <Container>
+++    <Button id="text-button-1" theme="primary">
+++      Text Button 1
+++    </Button>
+++    <Button id="text-button-2" theme="secondary">
+++      Text Button 2
+++    </Button>
+++    <Button id="text-button-3" theme="warning">
+++      Text Button 3
+++    </Button>
+++    <Button id="text-button-4" theme="error">
+++      Text Button 4
+++    </Button>
+++    <Button id="text-button-5" theme="clear">
+++      Text Button 5
+++    </Button>
+++    <Button id="text-button-6" disabled>
+++      Disabled Text Button
+++    </Button>
+++  </Container>
+++);
+++
+++export default TextButtons;
++diff --git a/packages/documentation/src/examples/button/TextButtonsWithIcons.md b/packages/documentation/src/examples/button/TextButtonsWithIcons.md
++new file mode 100644
++index 000000000..3fba42441
++--- /dev/null
+++++ b/packages/documentation/src/examples/button/TextButtonsWithIcons.md
++@@ -0,0 +1,2 @@
+++When you have the additional room, it is also possible to render icons with text
+++within buttons using the `TextIconSpacing` component from #icon.
++diff --git a/packages/documentation/src/examples/button/TextButtonsWithIcons.tsx b/packages/documentation/src/examples/button/TextButtonsWithIcons.tsx
++new file mode 100644
++index 000000000..88d6b1165
++--- /dev/null
+++++ b/packages/documentation/src/examples/button/TextButtonsWithIcons.tsx
++@@ -0,0 +1,43 @@
+++import React, { FC } from "react";
+++import { Button } from "@react-md/button";
+++import { FontIcon, TextIconSpacing } from "@react-md/icon";
+++import {
+++  ChatSVGIcon,
+++  DeleteSVGIcon,
+++  DoneSVGIcon,
+++  SaveSVGIcon,
+++} from "@react-md/material-icons";
+++import Container from "./Container";
+++
+++const TextButtonsWithIcons: FC = () => (
+++  <Container>
+++    <Button id="combined-button-1">
+++      <TextIconSpacing icon={<FontIcon>favorite</FontIcon>}>
+++        Favorite
+++      </TextIconSpacing>
+++    </Button>
+++    <Button id="combined-button-2" theme="secondary" themeType="outline">
+++      <TextIconSpacing icon={<ChatSVGIcon />} iconAfter>
+++        Messages
+++      </TextIconSpacing>
+++    </Button>
+++    <Button id="combined-button-3" theme="warning" themeType="contained">
+++      <TextIconSpacing icon={<DoneSVGIcon />}>Done</TextIconSpacing>
+++    </Button>
+++    <Button id="combined-button-4" theme="error" themeType="contained">
+++      <TextIconSpacing icon={<DoneSVGIcon />}>
+++        <TextIconSpacing icon={<DeleteSVGIcon />} iconAfter>
+++          Delete Forever
+++        </TextIconSpacing>
+++      </TextIconSpacing>
+++    </Button>
+++    <Button id="combined-button-5" theme="clear" themeType="outline">
+++      <TextIconSpacing icon={<SaveSVGIcon />}>Save</TextIconSpacing>
+++    </Button>
+++    <Button id="combined-button-6" theme="error" themeType="outline" disabled>
+++      <TextIconSpacing icon={<SaveSVGIcon />}>Save</TextIconSpacing>
+++    </Button>
+++  </Container>
+++);
+++
+++export default TextButtonsWithIcons;
++diff --git a/packages/documentation/src/examples/button/examples.ts b/packages/documentation/src/examples/button/examples.ts
++new file mode 100644
++index 000000000..934eee495
++--- /dev/null
+++++ b/packages/documentation/src/examples/button/examples.ts
++@@ -0,0 +1,53 @@
+++import { ExampleList, ExamplesConfig } from "components/Examples/types";
+++
+++import buttonWithCircularProgress from "./ButtonWithCircularProgress.md";
+++import containedButtons from "./ContainedButtons.md";
+++import customButtonTheme from "./CustomButtonTheme.md";
+++import floatingActionButtons from "./FloatingActionButtons.md";
+++import iconButtons from "./IconButtons.md";
+++import outlinedButtons from "./OutlinedButtons.md";
+++import textButtons from "./TextButtons.md";
+++import textButtonsWithIcons from "./TextButtonsWithIcons.md";
+++
+++export { default as description } from "./README.md";
+++
+++export const examples: ExampleList = [
+++  {
+++    title: "Text Buttons",
+++    description: textButtons,
+++  },
+++  {
+++    title: "Outlined Buttons",
+++    description: outlinedButtons,
+++  },
+++  {
+++    title: "Contained Buttons",
+++    description: containedButtons,
+++  },
+++  {
+++    title: "Icon Buttons",
+++    description: iconButtons,
+++  },
+++  {
+++    title: "Text Buttons with Icons",
+++    description: textButtonsWithIcons,
+++  },
+++  {
+++    title: "Floating Action Buttons",
+++    description: floatingActionButtons,
+++    disableCard: true,
+++    // emulated: { fabOffset: true },
+++  },
+++  {
+++    title: "Button with Circular Progress",
+++    description: buttonWithCircularProgress,
+++  },
+++  {
+++    title: "Custom Button Theme",
+++    description: customButtonTheme,
+++  },
+++];
+++
+++export const config: ExamplesConfig = {
+++  fonts: ["Material Icons"],
+++};
++diff --git a/packages/documentation/src/pages/components/[id].tsx b/packages/documentation/src/pages/components/[id].tsx
++new file mode 100644
++index 000000000..b5b803f09
++--- /dev/null
+++++ b/packages/documentation/src/pages/components/[id].tsx
++@@ -0,0 +1,63 @@
+++import React from "react";
+++import { NextFC } from "next";
+++
+++import NotFoundPage from "components/NotFoundPage";
+++import { useHotReload } from "hooks/useHotReload";
+++import { qsToString } from "utils/routes";
+++import { ExampleList, ExamplesConfig } from "components/Examples/types";
+++import Examples from "components/Examples/Examples";
+++
+++interface DemoExports {
+++  config?: ExamplesConfig;
+++  examples: ExampleList | null;
+++  description: string;
+++}
+++
+++export interface ComponentsProps extends DemoExports {
+++  name: string;
+++}
+++
+++const getProps = async (name: string): Promise<DemoExports> =>
+++  import(`../../examples/${name}/examples.ts`).catch(() => ({
+++    examples: null,
+++    description: "",
+++  }));
+++
+++const Components: NextFC<ComponentsProps> = ({
+++  name,
+++  config: propConfig,
+++  examples: propExamples,
+++  description: propDescription,
+++}) => {
+++  const { examples, description, config } = useHotReload(
+++    name,
+++    {
+++      config: propConfig,
+++      examples: propExamples,
+++      description: propDescription,
+++    },
+++    getProps
+++  );
+++
+++  if (examples === null) {
+++    return <NotFoundPage />;
+++  }
+++
+++  return (
+++    <Examples
+++      name={name}
+++      examples={examples}
+++      description={description}
+++      {...config}
+++    />
+++  );
+++};
+++
+++Components.getInitialProps = async ({ query }) => {
+++  const name = qsToString(query.id);
+++  const props = await getProps(name);
+++
+++  return { ...props, name };
+++};
+++
+++export default Components;
