@@ -266,7 +266,7 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
       menuClassName,
       disableElevation = false,
       temporary = true,
-      tabIndex = role === "listbox" ? 0 : -1,
+      tabIndex = -1,
       fixedTo,
       className,
       classNames,
@@ -397,6 +397,10 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
       onExiting,
       disableTransition,
       isFocusTypeDisabled(type) {
+        if (role === "listbox") {
+          return !isSheet;
+        }
+
         if (type === "keyboard") {
           return isSheet;
         }

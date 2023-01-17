@@ -302,7 +302,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
         const focusedIndex = focusables.findIndex(
           (element) => element === event.target
         );
-        if (focusedIndex === -1) {
+        if (focusedIndex === -1 || !focusables.length) {
           return;
         }
 
@@ -342,6 +342,9 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
           event.currentTarget,
           programmatic
         );
+        if (!focusables.length) {
+          return;
+        }
 
         let defaultFocusIndex = getDefaultFocusedIndex({
           focusables,
@@ -526,5 +529,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
       },
     },
     movementContext,
+    currentFocusIndex,
+    setActiveDescendantId,
   };
 }

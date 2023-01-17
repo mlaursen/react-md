@@ -1,34 +1,31 @@
+import type {
+  TransitionEnterHandler,
+  TransitionExitHandler,
+} from "@react-md/core";
 import {
   BELOW_CENTER_ANCHOR,
   bem,
   findMatchIndex,
   isSearchableEvent,
+  KeyboardMovementProvider,
   loop,
   useEnsuredId,
   useEnsuredRef,
+  useKeyboardMovementProvider,
   useToggle,
 } from "@react-md/core";
 import { IconRotator, useIcon } from "@react-md/icon";
 import type { MenuProps } from "@react-md/menu";
 import { Menu } from "@react-md/menu";
 import { cnb } from "cnbuilder";
-import type {
-  ChangeEvent,
-  HTMLAttributes,
-  ReactElement,
-  ReactNode,
-  Ref,
-} from "react";
+import type { ChangeEvent, ReactElement, ReactNode, Ref } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
-import { FormMessageContainer } from "./FormMessageContainer";
 import { useFormTheme } from "./FormThemeProvider";
-import { Label } from "./Label";
 import { extractOptionsFromChildren } from "./selectUtils";
 import { SelectValue } from "./SelectValue";
 import type { TextFieldProps } from "./TextField";
-import { textField } from "./TextField";
-import { TextFieldContainer } from "./TextFieldContainer";
+import { TextField } from "./TextField";
 import type { FormFieldOptions, UserAgentAutoCompleteProps } from "./types";
 import { ListboxProvider } from "./useListboxProvider";
 import { triggerManualChangeEvent, tryToSubmitRelatedForm } from "./utils";
@@ -38,6 +35,14 @@ const EMPTY_STRING = "" as const;
 const noop = (): void => {
   // do nothing
 };
+
+const getNonDisabledOptions = (
+  container: HTMLElement
+): readonly HTMLElement[] => [
+  ...container.querySelectorAll<HTMLLIElement>(
+    '[role="option"]:not([aria-disabled])'
+  ),
+];
 
 /**
  * This is a convenience type for casting the `event.currentTarget.value` of a
@@ -86,40 +91,12 @@ export type SelectChangeEvent<Value extends string> =
   ChangeEvent<HTMLInputElement> & { currentTarget: { value: Value } };
 
 /**
- * @remarks \@since 6.0.0
- */
-export type SelectInputAttributes = Pick<
-  TextFieldProps,
-  | "form"
-  | "size"
-  | "pattern"
-  | "minLength"
-  | "maxLength"
-  | "required"
-  | "readOnly"
->;
-
-/**
  * @remarks \@since 6.0.0 Rewritten with a new API.
  */
 export interface SelectProps<Value extends string>
-  extends Omit<HTMLAttributes<HTMLDivElement>, "placeholder">,
+  extends Omit<TextFieldProps, "placeholder" | "type" | "onChange">,
     UserAgentAutoCompleteProps,
-    SelectInputAttributes,
     FormFieldOptions {
-  /**
-   * An optional id to provide to the `TextFieldContainer` component.
-   *
-   * @defaultValue `"select-container-" + useId()`
-   */
-  containerId?: string;
-
-  /**
-   * An optional ref to provide to the `TextFieldContainer` component. This is
-   * useful for implementing drag and drop or other DOM interactions.
-   */
-  containerRef?: Ref<HTMLDivElement>;
-
   /**
    * An optional ref to pass to the hidden `<input type="text" />` element that
    * stores the current value. This is really only useful if you'd like to keep
@@ -197,63 +174,36 @@ export function Select<Value extends string>(
 ): ReactElement {
   const {
     id: propId,
-    containerId: propContainerId,
-    containerRef,
-    style,
     className,
-    label,
-    labelProps,
-    labelStyle,
-    labelClassName,
-    autoCompleteValue,
-    autoComplete = autoCompleteValue,
-    name = autoCompleteValue,
-    form,
-    size,
-    pattern,
-    minLength,
-    maxLength,
-    dense = false,
-    error = false,
-    active: propActive = false,
-    inline = false,
-    stretch = false,
-    readOnly = false,
-    disabled = false,
-    required = false,
+    active = false,
     inputRef: propInputRef,
+    inputClassName,
+    menuProps = {},
+    containerProps: propContainerProps = {},
     icon: propIcon,
     value,
     defaultValue,
     onChange = noop,
-    onInvalid,
-    onClick = noop,
-    onKeyDown = noop,
     leftAddon,
     rightAddon: propRightAddon,
-    disableLeftAddonStyles = false,
-    disableRightAddonStyles = false,
     disableValueAddon = false,
     disableSelectedIcon = false,
-    theme: propTheme,
-    underlineDirection: propUnderlineDirection,
-    messageProps,
-    messageContainerProps,
-    tabIndex = disabled ? -1 : 0,
     children,
-    menuProps,
     ...remaining
   } = props;
+  const { disabled = false, form } = props;
+
   const id = useEnsuredId(propId, "select");
-  const containerId = useEnsuredId(propContainerId, "select-container");
-  const { theme, underlineDirection } = useFormTheme({
-    theme: propTheme,
-    underlineDirection: propUnderlineDirection,
-  });
+  const containerId = useEnsuredId(propContainerProps.id, "select-container");
   const icon = useIcon("dropdown", propIcon);
+  const { theme } = useFormTheme(props);
 
   const { toggled: visible, enable: show, disable: hide } = useToggle();
   const [inputRef, inputRefCallback] = useEnsuredRef(propInputRef);
+  const [containerRef, containerRefCallback] = useEnsuredRef(
+    propContainerProps.ref
+  );
+  const [menuRef, menuRefCallback] = useEnsuredRef(menuProps.nodeRef);
   const [currentValue, setCurrentValue] = useState(() => {
     if (typeof defaultValue !== "undefined") {
       return defaultValue;
@@ -288,7 +238,6 @@ export function Select<Value extends string>(
     };
   }, [form, inputRef]);
 
-  const active = propActive || visible;
   const { options, searchValues, currentOption, currentIndex } =
     extractOptionsFromChildren(
       children,
@@ -310,203 +259,251 @@ export function Select<Value extends string>(
     [currentValue, disableSelectedIcon, inputRef, value]
   );
 
+  // TODO: Need to update this to support editable listboxes where these props
+  // would go to the input element instead of the container
+  const a11yProps = {
+    "aria-haspopup": "listbox",
+    "aria-expanded": visible,
+    role: "combobox",
+    tabIndex: disabled ? -1 : 0,
+  } as const;
+  const {
+    movementProps,
+    movementContext,
+    currentFocusIndex,
+    setActiveDescendantId,
+  } = useKeyboardMovementProvider<HTMLDivElement>({
+    onFocus: propContainerProps.onFocus,
+    onClick(event) {
+      propContainerProps.onClick?.(event);
+      if (disabled) {
+        return;
+      }
+
+      show();
+    },
+    onKeyDown(event) {
+      propContainerProps.onKeyDown?.(event);
+      if (disabled) {
+        return;
+      }
+
+      if (visible) {
+        if (event.key === "Escape" || event.key === "Tab") {
+          event.stopPropagation();
+          hide();
+        }
+
+        return;
+      }
+
+      if (isSearchableEvent(event)) {
+        event.stopPropagation();
+
+        const nextIndex = findMatchIndex({
+          value: event.key,
+          values: searchValues,
+          startIndex: event.shiftKey ? -1 : currentIndex,
+        });
+
+        if (nextIndex !== -1) {
+          triggerManualChangeEvent(inputRef.current, options[nextIndex].value);
+        }
+        return;
+      }
+
+      switch (event.key) {
+        case " ":
+          event.preventDefault();
+          event.stopPropagation();
+          show();
+          break;
+        case "Enter":
+          tryToSubmitRelatedForm(event, form);
+          break;
+        case "Home":
+          event.preventDefault();
+          event.stopPropagation();
+          if (currentIndex !== 0) {
+            triggerManualChangeEvent(inputRef.current, options[0].value);
+          }
+          break;
+        case "End":
+          event.preventDefault();
+          event.stopPropagation();
+          if (currentIndex !== totalOptions) {
+            triggerManualChangeEvent(
+              inputRef.current,
+              options[totalOptions].value
+            );
+          }
+          break;
+        case "ArrowDown":
+        case "ArrowUp": {
+          event.preventDefault();
+          event.stopPropagation();
+
+          const increment = event.key === "ArrowDown";
+          if (currentIndex === -1 && !increment) {
+            // this matches the native select behavior where it will do
+            // nothing if there is no current value
+            return;
+          }
+
+          const nextIndex = loop({
+            max: totalOptions,
+            value: currentIndex,
+            minmax: true,
+            increment,
+          });
+
+          triggerManualChangeEvent(inputRef.current, options[nextIndex].value);
+          break;
+        }
+      }
+    },
+    loopable: false,
+    searchable: true,
+    programmatic: true,
+    includeDisabled: false,
+    tabIndexBehavior: "virtual",
+    getDefaultFocusedIndex(focusOptions) {
+      if (typeof menuProps.getDefaultFocusedIndex === "function") {
+        return menuProps.getDefaultFocusedIndex(focusOptions);
+      }
+
+      const val = typeof value === "undefined" ? currentValue : value;
+      return options.findIndex((option) => option.value === val);
+    },
+    getFocusableElements() {
+      const menu = menuRef.current;
+      if (!menu) {
+        return [];
+      }
+
+      return [
+        ...menu.querySelectorAll<HTMLLIElement>(
+          '[role="option"]:not([aria-disabled])'
+        ),
+      ];
+    },
+  });
+
+  const containerProps: Required<SelectProps<Value>>["containerProps"] = {
+    ...propContainerProps,
+    ...movementProps,
+    ...a11yProps,
+    ref: containerRefCallback,
+  };
+
+  const { onEntering, onEntered, onExiting, onExited, disableTransition } =
+    menuProps;
+  const handleMounting =
+    (callback: TransitionEnterHandler | undefined = noop, skipped = false) =>
+    (appearing: boolean) => {
+      callback(appearing);
+
+      const menu = menuRef.current;
+      if (!menu || skipped) {
+        return;
+      }
+
+      // Since the keyboard movement behavior is tied to the
+      // `TextFieldContainer` or `input` element instead of the menu for this
+      // widget, the focus index and active descendant must manually be updated
+      // whenever the menu becomes visible. Without this, no items will be
+      // focused until the first keyboard event that would move focus
+      const val = typeof value === "undefined" ? currentValue : value;
+      const focusables = getNonDisabledOptions(menu);
+      const index = Math.max(
+        0,
+        options.findIndex((option) => option.value === val)
+      );
+      currentFocusIndex.current = index;
+      setActiveDescendantId(focusables[index]?.id || "");
+    };
+
+  const handleUnmounting =
+    (callback: TransitionExitHandler | undefined = noop, skipped = false) =>
+    (): void => {
+      callback();
+
+      if (!skipped) {
+        // since the menu is unmounted or set to hidden while not visible, need
+        // to clear the aria-activedescendant and current focus index when
+        // hiding
+        currentFocusIndex.current = -1;
+        setActiveDescendantId("");
+      }
+    };
+
   return (
     <ListboxProvider value={listboxContext}>
-      <FormMessageContainer
-        {...messageContainerProps}
-        messageProps={messageProps}
-      >
-        <TextFieldContainer
+      <KeyboardMovementProvider value={movementContext}>
+        <TextField
           {...remaining}
-          aria-haspopup="listbox"
-          id={containerId}
-          ref={containerRef}
-          role="button"
-          style={style}
-          className={cnb("rmd-select-container", className)}
-          tabIndex={tabIndex}
+          aria-hidden
+          id={id}
+          ref={inputRefCallback}
+          containerProps={containerProps}
+          type="text"
+          tabIndex={-1}
           theme={theme}
-          label={!!label}
-          error={error}
-          dense={dense}
-          inline={inline}
-          active={active}
-          stretch={stretch}
-          readOnly={readOnly}
-          disabled={disabled}
+          value={value}
+          defaultValue={defaultValue}
+          active={active || visible}
           leftAddon={leftAddon}
           rightAddon={rightAddon}
-          underlineDirection={underlineDirection}
-          disableLeftAddonStyles={disableLeftAddonStyles}
-          disableRightAddonStyles={disableRightAddonStyles}
-          onKeyDown={(event) => {
-            onKeyDown(event);
-            if (disabled) {
+          className={cnb("rmd-select-container", className)}
+          inputClassName={cnb(
+            styles({
+              filled: theme === "filled",
+              outline: theme === "outline",
+              underline: theme === "underline",
+            }),
+            inputClassName
+          )}
+          onChange={(event) => {
+            onChange(event as SelectChangeEvent<Value>);
+            if (typeof value !== "undefined") {
               return;
             }
 
-            if (isSearchableEvent(event)) {
-              const nextIndex = findMatchIndex({
-                value: event.key,
-                values: searchValues,
-                startIndex: event.shiftKey ? -1 : currentIndex,
-              });
-              if (nextIndex !== -1) {
-                triggerManualChangeEvent(
-                  inputRef.current,
-                  options[nextIndex].value
-                );
-              }
-              return;
-            }
+            const nextValue = event.currentTarget.value;
+            const valueAsNumber = parseFloat(nextValue);
+            const nextOption = options.find(
+              (option) =>
+                // need to compare both here since
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-expect-error
+                option.value === nextValue || option.value === valueAsNumber
+            );
 
-            switch (event.key) {
-              case " ":
-                event.preventDefault();
-                event.stopPropagation();
-                show();
-                break;
-              case "Enter":
-                tryToSubmitRelatedForm(event, form);
-                break;
-              case "Home":
-                event.preventDefault();
-                event.stopPropagation();
-                if (currentIndex !== 0) {
-                  triggerManualChangeEvent(inputRef.current, options[0].value);
-                }
-                break;
-              case "End":
-                event.preventDefault();
-                event.stopPropagation();
-                if (currentIndex !== totalOptions) {
-                  triggerManualChangeEvent(
-                    inputRef.current,
-                    options[totalOptions].value
-                  );
-                }
-                break;
-              case "ArrowDown":
-              case "ArrowUp": {
-                event.preventDefault();
-                event.stopPropagation();
-
-                const increment = event.key === "ArrowDown";
-                if (currentIndex === -1 && !increment) {
-                  // this matches the native select behavior where it will do
-                  // nothing if there is no current value
-                  return;
-                }
-
-                const nextIndex = loop({
-                  max: totalOptions,
-                  value: currentIndex,
-                  minmax: true,
-                  increment,
-                });
-
-                triggerManualChangeEvent(
-                  inputRef.current,
-                  options[nextIndex].value
-                );
-                break;
-              }
-            }
-          }}
-          onClick={(event) => {
-            onClick(event);
-            if (disabled) {
-              return;
-            }
-
-            show();
+            setCurrentValue(
+              nextOption ? nextOption.value : initialValue.current
+            );
           }}
         >
           <SelectValue disableAddon={disableValueAddon} {...currentOption} />
-          <input
-            aria-hidden
-            autoComplete={autoComplete}
-            id={id}
-            ref={inputRefCallback}
-            type="text"
-            name={name}
-            value={value}
-            defaultValue={defaultValue}
-            placeholder=" "
-            onChange={(event) => {
-              onChange(event as SelectChangeEvent<Value>);
-              if (typeof value !== "undefined") {
-                return;
-              }
-
-              const nextValue = event.currentTarget.value;
-              const valueAsNumber = parseFloat(nextValue);
-              const nextOption = options.find(
-                (option) =>
-                  // need to compare both here since
-                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                  // @ts-expect-error
-                  option.value === nextValue || option.value === valueAsNumber
-              );
-
-              setCurrentValue(
-                nextOption ? nextOption.value : initialValue.current
-              );
-            }}
-            onInvalid={onInvalid}
-            form={form}
-            size={size}
-            pattern={pattern}
-            minLength={minLength}
-            maxLength={maxLength}
-            required={required}
-            readOnly={readOnly}
-            className={cnb(
-              styles({
-                filled: theme === "filled",
-                outline: theme === "outline",
-                underline: theme === "underline",
-              }),
-              textField()
-            )}
-            tabIndex={-1}
-          />
-          {label && (
-            <Label
-              {...labelProps}
-              htmlFor={id}
-              style={labelProps?.style ?? labelStyle}
-              className={labelProps?.className ?? labelClassName}
-              floating
-              dense={dense}
-              error={error}
-              active={active}
-              disabled={disabled}
-            >
-              {label}
-            </Label>
-          )}
-        </TextFieldContainer>
-      </FormMessageContainer>
-      <Menu
-        aria-labelledby={containerId}
-        anchor={BELOW_CENTER_ANCHOR}
-        role="listbox"
-        width="min"
-        {...menuProps}
-        visible={visible}
-        fixedTo={inputRef}
-        onRequestClose={hide}
-        getDefaultFocusedIndex={(focusOptions) => {
-          if (typeof menuProps?.getDefaultFocusedIndex === "function") {
-            return menuProps.getDefaultFocusedIndex(focusOptions);
-          }
-
-          return options.findIndex((option) => option.value === currentValue);
-        }}
-      >
-        {children}
-      </Menu>
+        </TextField>
+        <Menu
+          aria-labelledby={containerId}
+          anchor={BELOW_CENTER_ANCHOR}
+          role="listbox"
+          width="min"
+          {...menuProps}
+          ref={menuRefCallback}
+          visible={visible}
+          fixedTo={containerRef}
+          onRequestClose={hide}
+          onEntering={handleMounting(onEntering, false)}
+          onEntered={handleMounting(onEntered, !disableTransition)}
+          onExiting={handleUnmounting(onExiting, false)}
+          onExited={handleUnmounting(onExited, !disableTransition)}
+        >
+          {children}
+        </Menu>
+      </KeyboardMovementProvider>
     </ListboxProvider>
   );
 }

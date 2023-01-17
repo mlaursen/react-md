@@ -1,14 +1,11 @@
 import type { GetDefaultFocusedIndex, NonNullMutableRef } from "@react-md/core";
-import {
-  bem,
-  KeyboardMovementProvider,
-  useKeyboardMovementProvider,
-} from "@react-md/core";
+import { bem, useKeyboardMovementProvider } from "@react-md/core";
 import { List } from "@react-md/list";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useRef, useState } from "react";
 import type { MenuListConvenienceProps } from "./Menu";
+import { MenuWidgetKeyboardProvider } from "./MenuWidgetKeyboardProvider";
 import {
   MenuBarProvider,
   useMenuBarContext,
@@ -19,14 +16,6 @@ const styles = bem("rmd-menu");
 const noop = (): void => {
   // do nothing
 };
-
-const getNonDisabledOptions = (
-  container: HTMLElement
-): readonly HTMLElement[] => [
-  ...container.querySelectorAll<HTMLLIElement>(
-    '[role="option"]:not([aria-disabled])'
-  ),
-];
 
 /**
  * @remarks \@since 6.0.0
@@ -81,7 +70,7 @@ export const MenuWidget = forwardRef<HTMLDivElement, MenuWidgetProps>(
       onBlur = noop,
       onFocus = noop,
       onKeyDown = noop,
-      tabIndex = role === "listbox" ? 0 : -1,
+      tabIndex = -1,
       isSheet,
       horizontal,
       disableElevation,
@@ -89,6 +78,7 @@ export const MenuWidget = forwardRef<HTMLDivElement, MenuWidgetProps>(
       getDefaultFocusedIndex,
       ...remaining
     } = props;
+    const isListbox = role === "listbox";
     const { menubar } = useMenuBarContext();
 
     // Since there is the possibility of other tab focusable elements within the
@@ -124,25 +114,22 @@ export const MenuWidget = forwardRef<HTMLDivElement, MenuWidgetProps>(
       loopable: true,
       searchable: true,
       programmatic: true,
-      includeDisabled: role !== "listbox",
-      tabIndexBehavior: role === "listbox" ? "virtual" : undefined,
+      includeDisabled: true,
       getDefaultFocusedIndex,
       onFocusChange(event) {
         if (menuBarContext.activeId) {
           menuBarContext.enableHoverMode(event.element.id);
         }
       },
-      getFocusableElements:
-        role === "listbox" ? getNonDisabledOptions : undefined,
     });
 
     return (
-      <KeyboardMovementProvider value={movementContext}>
+      <MenuWidgetKeyboardProvider disabled={isListbox} value={movementContext}>
         <MenuBarProvider value={menuBarContext}>
           <div
             aria-orientation={horizontal ? "horizontal" : undefined}
             {...remaining}
-            {...movementProps}
+            {...(isListbox ? { onClick, onFocus, onKeyDown } : movementProps)}
             id={id}
             ref={ref}
             role={role}
@@ -190,7 +177,7 @@ export const MenuWidget = forwardRef<HTMLDivElement, MenuWidgetProps>(
             </List>
           </div>
         </MenuBarProvider>
-      </KeyboardMovementProvider>
+      </MenuWidgetKeyboardProvider>
     );
   }
 );

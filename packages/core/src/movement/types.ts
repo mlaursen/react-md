@@ -6,7 +6,7 @@ import type {
   MouseEvent,
   MouseEventHandler,
 } from "react";
-import type { NonNullMutableRef, NonNullRef } from "../types";
+import type { NonNullMutableRef, NonNullRef, UseStateSetter } from "../types";
 
 /**
  * Set this to `"roving"` when:
@@ -269,4 +269,6 @@ export interface KeyboardMovementProps<E extends HTMLElement> {
 export interface KeyboardMovementProviderImplementation<E extends HTMLElement> {
   movementProps: Readonly<KeyboardMovementProps<E>>;
   movementContext: Readonly<KeyboardMovementContext>;
+  currentFocusIndex: NonNullMutableRef<number>;
+  setActiveDescendantId: UseStateSetter<string>;
 }

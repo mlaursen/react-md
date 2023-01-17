@@ -1,7 +1,12 @@
 import type { PropsWithRef } from "@react-md/core";
 import { bem, useEnsuredId } from "@react-md/core";
 import { cnb } from "cnbuilder";
-import type { CSSProperties, HTMLAttributes, InputHTMLAttributes } from "react";
+import type {
+  CSSProperties,
+  HTMLAttributes,
+  InputHTMLAttributes,
+  ReactNode,
+} from "react";
 import { forwardRef } from "react";
 import { FormMessageContainer } from "./FormMessageContainer";
 import { useFormTheme } from "./FormThemeProvider";
@@ -114,6 +119,16 @@ export interface TextFieldProps
    * add a `ref` for some DOM behavior.
    */
   containerProps?: PropsWithRef<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+
+  /**
+   * The `children` will be rendered within the `TextFieldContainer` and before
+   * the `<input />` element. This was added to support the new `Select`
+   * component implementation
+   *
+   * @internal
+   * @remarks \@since 6.0.0
+   */
+  children?: ReactNode;
 }
 
 /**
@@ -176,6 +191,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       messageProps,
       messageContainerProps,
       containerProps,
+      children,
       ...remaining
     } = props;
     const { disabled = false, readOnly = false } = props;
@@ -215,6 +231,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
           disableLeftAddonStyles={disableLeftAddonStyles}
           disableRightAddonStyles={disableRightAddonStyles}
         >
+          {children}
           <input
             {...remaining}
             id={id}

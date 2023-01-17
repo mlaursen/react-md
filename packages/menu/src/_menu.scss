@@ -99,14 +99,12 @@ $var-lookup: (
     height: var(--rmd-list-item-height);
 
     &--focused {
-      .rmd-menu:focus-within & {
-        @include core.keyboard-only {
-          @include core.set-interaction-var(
-            background-color,
-            core.get-interaction-var(focus-background-color)
-          );
-          @include core.set-interaction-var(outline-color, core.$outline-color);
-        }
+      @include core.keyboard-only {
+        @include core.set-interaction-var(
+          background-color,
+          core.get-interaction-var(focus-background-color)
+        );
+        @include core.set-interaction-var(outline-color, core.$outline-color);
       }
     }
   }
