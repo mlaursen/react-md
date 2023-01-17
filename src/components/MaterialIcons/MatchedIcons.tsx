@@ -11,6 +11,19 @@ import type { IconReferences } from "./useMaterialIcons";
 const CONTAINER_HEIGHT = 448;
 const ITEM_HEIGHT = 96 + 32;
 
+const HideNaNStyle = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
+  function HideNaNStyle(props, ref) {
+    const { style: propStyle, ...remaining } = props;
+    let style = propStyle;
+    if (propStyle && Number.isNaN(propStyle.height)) {
+      const { height: _height, ...fixed } = propStyle;
+      style = fixed;
+    }
+
+    return <div {...remaining} style={style} ref={ref} />;
+  }
+);
+
 export interface MatchedIconsProps {
   loading: boolean;
   containerWidth: number;
@@ -84,16 +97,3 @@ export function MatchedIcons(props: MatchedIconsProps): ReactElement {
     </>
   );
 }
-
-const HideNaNStyle = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
-  function HideNaNStyle(props, ref) {
-    const { style: propStyle, ...remaining } = props;
-    let style = propStyle;
-    if (propStyle && Number.isNaN(propStyle.height)) {
-      const { height: _height, ...fixed } = propStyle;
-      style = fixed;
-    }
-
-    return <div {...remaining} style={style} ref={ref} />;
-  }
-);
