@@ -186,7 +186,7 @@ $theme-var-lookup: (
   ),
 );
 
-@function get-theme-var($name, $fallback: null) {
+@function theme-get-var($name, $fallback: null) {
   $found: utils.validate($theme-var-lookup, $name, "theme var");
   $var: map.get($found, var);
   $value: if($fallback, $fallback, map.get($found, value));
@@ -210,14 +210,14 @@ $theme-var-lookup: (
   #{_dark-elevation-color($z-value)}: #{$value};
 }
 
-@mixin set-theme-var($name, $value) {
+@mixin theme-set-var($name, $value) {
   $var: map.get(utils.validate($theme-var-lookup, $name, "theme var"), var);
 
   #{$var}: #{$value};
 }
 
 @mixin use-theme-var($property, $name: $property, $fallback: null) {
-  #{$property}: get-theme-var($name, $fallback);
+  #{$property}: theme-get-var($name, $fallback);
 }
 
 @if $color-scheme != light and $color-scheme != dark and $color-scheme != system
@@ -226,17 +226,17 @@ $theme-var-lookup: (
 }
 
 @mixin use-light-theme {
-  @include set-theme-var(background-color, $light-theme-background-color);
+  @include theme-set-var(background-color, $light-theme-background-color);
   @if $disable-dark-elevation {
-    @include set-theme-var(surface-color, $light-theme-surface-color);
+    @include theme-set-var(surface-color, $light-theme-surface-color);
   }
-  @include set-theme-var(text-primary-color, $light-theme-text-primary-color);
-  @include set-theme-var(
+  @include theme-set-var(text-primary-color, $light-theme-text-primary-color);
+  @include theme-set-var(
     text-secondary-color,
     $light-theme-text-secondary-color
   );
-  @include set-theme-var(text-hint-color, $light-theme-text-hint-color);
-  @include set-theme-var(text-disabled-color, $light-theme-text-disabled-color);
+  @include theme-set-var(text-hint-color, $light-theme-text-hint-color);
+  @include theme-set-var(text-disabled-color, $light-theme-text-disabled-color);
 
   @if not $disable-dark-elevation and $color-scheme != light {
     @each $z-value, $background-color in $dark-elevation-colors {
@@ -246,17 +246,17 @@ $theme-var-lookup: (
 }
 
 @mixin use-dark-theme {
-  @include set-theme-var(background-color, $dark-theme-background-color);
+  @include theme-set-var(background-color, $dark-theme-background-color);
   @if $disable-dark-elevation {
-    @include set-theme-var(surface-color, $dark-theme-surface-color);
+    @include theme-set-var(surface-color, $dark-theme-surface-color);
   }
-  @include set-theme-var(text-primary-color, $dark-theme-text-primary-color);
-  @include set-theme-var(
+  @include theme-set-var(text-primary-color, $dark-theme-text-primary-color);
+  @include theme-set-var(
     text-secondary-color,
     $dark-theme-text-secondary-color
   );
-  @include set-theme-var(text-hint-color, $dark-theme-text-hint-color);
-  @include set-theme-var(text-disabled-color, $dark-theme-text-disabled-color);
+  @include theme-set-var(text-hint-color, $dark-theme-text-hint-color);
+  @include theme-set-var(text-disabled-color, $dark-theme-text-disabled-color);
 
   @if not $disable-dark-elevation {
     @each $z-value, $background-color in $dark-elevation-colors {
@@ -266,25 +266,25 @@ $theme-var-lookup: (
 }
 
 @mixin colors {
-  @include set-theme-var(background-color, $background-color);
+  @include theme-set-var(background-color, $background-color);
   @if $disable-dark-elevation {
-    @include set-theme-var(surface-color, $surface-color);
+    @include theme-set-var(surface-color, $surface-color);
   }
 
-  @include set-theme-var(primary-color, $primary-color);
-  @include set-theme-var(on-primary-color, $on-primary-color);
-  @include set-theme-var(secondary-color, $secondary-color);
-  @include set-theme-var(on-secondary-color, $on-secondary-color);
-  @include set-theme-var(warning-color, $warning-color);
-  @include set-theme-var(on-warning-color, $on-warning-color);
-  @include set-theme-var(error-color, $error-color);
-  @include set-theme-var(on-error-color, $on-error-color);
-  @include set-theme-var(success-color, $success-color);
-  @include set-theme-var(on-success-color, $on-success-color);
-  @include set-theme-var(text-primary-color, $text-primary-color);
-  @include set-theme-var(text-secondary-color, $text-secondary-color);
-  @include set-theme-var(text-hint-color, $text-hint-color);
-  @include set-theme-var(text-disabled-color, $text-disabled-color);
+  @include theme-set-var(primary-color, $primary-color);
+  @include theme-set-var(on-primary-color, $on-primary-color);
+  @include theme-set-var(secondary-color, $secondary-color);
+  @include theme-set-var(on-secondary-color, $on-secondary-color);
+  @include theme-set-var(warning-color, $warning-color);
+  @include theme-set-var(on-warning-color, $on-warning-color);
+  @include theme-set-var(error-color, $error-color);
+  @include theme-set-var(on-error-color, $on-error-color);
+  @include theme-set-var(success-color, $success-color);
+  @include theme-set-var(on-success-color, $on-success-color);
+  @include theme-set-var(text-primary-color, $text-primary-color);
+  @include theme-set-var(text-secondary-color, $text-secondary-color);
+  @include theme-set-var(text-hint-color, $text-hint-color);
+  @include theme-set-var(text-disabled-color, $text-disabled-color);
 
   @if not $disable-dark-elevation and $color-scheme == dark {
     @each $z-value, $background-color in $dark-elevation-colors {
@@ -295,10 +295,10 @@ $theme-var-lookup: (
 
 @mixin create-surface($z-value, $disable-colors: $disable-dark-elevation) {
   @if not $disable-dark-elevation {
-    @include set-theme-var(surface-color, get-dark-elevation-color($z-value));
+    @include theme-set-var(surface-color, get-dark-elevation-color($z-value));
   }
   @if not $disable-colors {
-    @include set-theme-var(background-color, get-theme-var(surface-color));
+    @include theme-set-var(background-color, theme-get-var(surface-color));
     @include use-theme-var(background-color);
     @include use-theme-var(color, text-primary-color);
   }

@@ -11,8 +11,8 @@ $disable-footer-flex-end: false !default;
 $elevation: 16 !default;
 $z-index: core.$temporary-element-z-index !default;
 
-$background-color: core.get-theme-var(surface-color) !default;
-$color: core.get-theme-var(text-primary-color) !default;
+$background-color: core.theme-get-var(surface-color) !default;
+$color: core.theme-get-var(text-primary-color) !default;
 
 $min-width: 17.5rem !default;
 $horizontal-margin: 2.5rem !default;
@@ -142,12 +142,12 @@ $var-lookup: (
     @if not $disable-focus-outline {
       @include core.keyboard-only {
         &--outline:focus {
-          // Note: Do not use the `use-interaction-outline` mixin +
-          // `set-interaction-var(core.$outline-color)` like normal focus
+          // Note: Do not use the `interaction-outline` mixin +
+          // `interaction-set-var(core.$interaction-outline-color)` like normal focus
           // elements since it'll make all focusable children update with the
           // outline color as well
-          outline: core.get-interaction-var(outline-color) solid
-            core.get-interaction-var(outline-width);
+          outline: core.interaction-get-var(outline-color) solid
+            core.interaction-get-var(outline-width);
         }
       }
     }

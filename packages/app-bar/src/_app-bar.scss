@@ -11,10 +11,10 @@ $disable-prominent-theme: false !default;
 $disable-prominent-dense-theme: false !default;
 $disable-scrollbar-offset: false !default;
 $disable-static-scrollbar-offset: false !default;
-$disable-primary-interaction-colors: core.$light-theme-base-background-color ==
-  core.$dark-theme-base-background-color !default;
-$disable-secondary-interaction-colors: core.$light-theme-base-background-color
-  == core.$dark-theme-base-background-color !default;
+$disable-primary-interaction-colors: core.$interaction-light-theme-base-background-color
+  == core.$interaction-dark-theme-base-background-color !default;
+$disable-secondary-interaction-colors: core.$interaction-light-theme-base-background-color
+  == core.$interaction-dark-theme-base-background-color !default;
 
 $disable-title: false !default;
 
@@ -67,7 +67,7 @@ $var-lookup: (
   ),
   color: (
     var: --rmd-app-bar-color,
-    value: core.get-theme-var(text-primary-color),
+    value: core.theme-get-var(text-primary-color),
   ),
   surface-background-color: (
     var: --rmd-app-bar-surface-background-color,
@@ -198,20 +198,20 @@ $var-lookup: (
     @if not $disable-primary-theme {
       &--primary {
         @if not $disable-primary-interaction-colors {
-          @include core.use-interaction-light-theme;
+          @include core.interaction-use-light-theme;
         }
-        @include set-var(background-color, core.get-theme-var(primary-color));
-        @include set-var(color, core.get-theme-var(on-primary-color));
+        @include set-var(background-color, core.theme-get-var(primary-color));
+        @include set-var(color, core.theme-get-var(on-primary-color));
       }
     }
 
     @if not $disable-secondary-theme {
       &--secondary {
         @if not $disable-secondary-interaction-colors {
-          @include core.use-interaction-light-theme;
+          @include core.interaction-use-light-theme;
         }
-        @include set-var(background-color, core.get-theme-var(secondary-color));
-        @include set-var(color, core.get-theme-var(on-secondary-color));
+        @include set-var(background-color, core.theme-get-var(secondary-color));
+        @include set-var(color, core.theme-get-var(on-secondary-color));
       }
     }
 

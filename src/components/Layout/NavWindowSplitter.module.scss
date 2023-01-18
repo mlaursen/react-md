@@ -1,7 +1,7 @@
 @use "everything";
 
 .splitter {
-  @include everything.set-window-splitter-var(
+  @include everything.window-splitter-set-var(
     position,
     everything.layout-get-var(nav-width)
   );

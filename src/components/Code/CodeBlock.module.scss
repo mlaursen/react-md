@@ -38,13 +38,13 @@ $offset: 0.125rem;
 }
 
 .bgLight {
-  @include everything.use-interaction-light-theme;
+  @include everything.interaction-use-light-theme;
 
   color: everything.$black;
 }
 
 .bgDark {
-  @include everything.use-interaction-dark-theme;
+  @include everything.interaction-use-dark-theme;
 
   color: everything.$white;
 }

@@ -9,8 +9,8 @@ $disable-focus-outline: false !default;
 $disable-elevation-colors: core.$disable-dark-elevation !default;
 
 $elevation: 8 !default;
-$background-color: core.get-theme-var(surface-color) !default;
-$color: core.get-theme-var(text-primary-color) !default;
+$background-color: core.theme-get-var(surface-color) !default;
+$color: core.theme-get-var(text-primary-color) !default;
 
 $z-index: core.$temporary-element-z-index !default;
 $min-width: 7rem !default;
@@ -66,12 +66,12 @@ $var-lookup: (
     @if not $disable-focus-outline {
       @include core.keyboard-only {
         &--outline:focus {
-          // Note: Do not use the `use-interaction-outline` mixin +
-          // `set-interaction-var(core.$outline-color)` like normal focus
+          // Note: Do not use the `interaction-outline` mixin +
+          // `interaction-set-var(core.$interaction-outline-color)` like normal focus
           // elements since it'll make all focusable children update with the
           // outline color as well
-          outline: core.get-interaction-var(outline-color) solid
-            core.get-interaction-var(outline-width);
+          outline: core.interaction-get-var(outline-color) solid
+            core.interaction-get-var(outline-width);
         }
       }
     }
@@ -100,11 +100,14 @@ $var-lookup: (
 
     &--focused {
       @include core.keyboard-only {
-        @include core.set-interaction-var(
+        @include core.interaction-set-var(
           background-color,
-          core.get-interaction-var(focus-background-color)
+          core.interaction-get-var(focus-background-color)
         );
-        @include core.set-interaction-var(outline-color, core.$outline-color);
+        @include core.interaction-set-var(
+          outline-color,
+          core.$interaction-outline-color
+        );
       }
     }
   }

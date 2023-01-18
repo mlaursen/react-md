@@ -1,15 +1,15 @@
 @forward "utils";
 @forward "media-queries";
-@forward "box/box";
+@forward "box/box" as box-*;
 @forward "theme/a11y";
 @forward "theme/colors";
 @forward "theme/theme";
 @forward "typography/typography";
 @forward "transition/transition";
 @forward "box-shadows";
-@forward "interaction/interaction";
-@forward "draggable/draggable";
-@forward "windowSplitter/window-splitter";
+@forward "interaction/interaction" as interaction-*;
+@forward "draggable/draggable" as draggable-*;
+@forward "windowSplitter/window-splitter" as window-splitter-*;
 
 @use "box/box";
 @use "theme/theme";
@@ -64,13 +64,13 @@ $disable-default-root-theme: false !default;
 
 @mixin styles {
   @include css-reset;
-  @include typography.typography;
-  @include transition.transition;
-  @include interaction.interaction;
+  @include typography.typography-styles;
+  @include transition.transition-styles;
+  @include interaction.styles;
 
-  @include box.box-styles;
-  @include draggable.draggable-styles;
-  @include window-splitter.window-splitter-styles;
+  @include box.styles;
+  @include draggable.styles;
+  @include window-splitter.styles;
 
   @if not $disable-default-root-theme {
     :root {
@@ -83,7 +83,7 @@ $disable-default-root-theme: false !default;
       {
         @media (prefers-color-scheme: dark) {
           @include theme.use-dark-theme;
-          @include interaction.use-interaction-dark-theme;
+          @include interaction.interaction-use-dark-theme;
         }
       }
     }

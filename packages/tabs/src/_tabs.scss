@@ -20,16 +20,16 @@ $vertical-padding: 0.75rem !default;
 $min-width: 5.625rem !default;
 $max-width: 20rem !default;
 $indicator-height: 0.125rem !default;
-$indicator-background: core.get-theme-var(primary-color) !default;
-$active-color: core.get-theme-var(text-primary-color) !default;
-$inactive-color: core.get-theme-var(text-secondary-color) !default;
-$disabled-color: core.get-theme-var(text-disabled-color) !default;
+$indicator-background: core.theme-get-var(primary-color) !default;
+$active-color: core.theme-get-var(text-primary-color) !default;
+$inactive-color: core.theme-get-var(text-secondary-color) !default;
+$disabled-color: core.theme-get-var(text-disabled-color) !default;
 $transition-duration: core.$linear-duration !default;
 $transition-timing-function: core.$linear-timing-function !default;
 
 $tablist-padding-left: 3.25rem !default;
 $tablist-scroller-z-index: 2 !default;
-$tablist-scroller-background-color: core.get-theme-var(
+$tablist-scroller-background-color: core.theme-get-var(
   background-color,
   inherit
 ) !default;

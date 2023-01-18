@@ -8,8 +8,8 @@
 }
 
 .sheet {
-  @include everything.set-theme-var(
+  @include everything.theme-set-var(
     background-color,
-    everything.get-theme-var(surface-color)
+    everything.theme-get-var(surface-color)
   );
 }

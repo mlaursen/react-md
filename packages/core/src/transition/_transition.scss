@@ -76,7 +76,7 @@ $transition-var-lookup: (
   ),
 );
 
-@function get-transition-var($name, $fallback: null) {
+@function transition-get-var($name, $fallback: null) {
   $found: utils.validate($transition-var-lookup, $name, "transition var");
   $var: map.get($found, var);
   $value: if($fallback, $fallback, map.get($found, value));
@@ -88,7 +88,7 @@ $transition-var-lookup: (
   @return var(#{$var});
 }
 
-@mixin set-transition-var($name, $value) {
+@mixin transition-set-var($name, $value) {
   $var: map.get(
     utils.validate($transition-var-lookup, $name, "transition var"),
     var
@@ -97,22 +97,22 @@ $transition-var-lookup: (
   #{$var}: #{$value};
 }
 
-@mixin use-transition-var($property, $name: $property, $fallback: null) {
+@mixin transition-use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-transition-var($name, $fallback);
 }
 
-@mixin use-transition-light-theme {
+@mixin transition-use-light-theme {
   @if not $disable-skeleton-placeholder {
-    @include set-transition-var(
+    @include transition-set-var(
       skeleton-placeholder-background-color,
       $skeleton-placeholder-light-background-color
     );
   }
 }
 
-@mixin use-transition-dark-theme {
+@mixin transition-use-dark-theme {
   @if not $disable-skeleton-placeholder {
-    @include set-transition-var(
+    @include transition-set-var(
       skeleton-placeholder-background-color,
       $skeleton-placeholder-dark-background-color
     );
@@ -216,11 +216,11 @@ $transition-var-lookup: (
 
 @mixin skeleton-placeholder-animation {
   .rmd-skeleton-placeholder {
-    @include use-transition-var(
+    @include transition-use-var(
       background-color,
       skeleton-placeholder-background-color
     );
-    @include use-transition-var(height, skeleton-placeholder-height);
+    @include transition-use-var(height, skeleton-placeholder-height);
 
     animation: rmd-skeleton-placeholder $skeleton-placeholder-animation-duration
       $skeleton-placeholder-animation-timing-function infinite;
@@ -286,7 +286,7 @@ $transition-var-lookup: (
   }
 }
 
-@mixin transition {
+@mixin transition-styles {
   @if not $disable-collapse-transition {
     @include collapse-transition;
   }

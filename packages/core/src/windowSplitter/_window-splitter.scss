@@ -2,19 +2,18 @@
 @use "../utils";
 @use "../transition/transition";
 @use "../theme/colors";
-@use "../interaction/interaction";
 
-$disable-window-splitter: false !default;
-$disable-window-splitter-horizontal: false !default;
-$disable-window-splitter-vertical: false !default;
-$disable-window-splitter-absolute-position: false !default;
+$disable-everything: false !default;
+$disable-horizontal: false !default;
+$disable-vertical: false !default;
+$disable-absolute-position: false !default;
 
 $window-splitter-size: 1.25rem !default;
 $window-splitter-background-size: 0.375rem !default;
 $window-splitter-background-color: colors.$blue-500 !default;
 $window-splitter-z-index: 30 !default;
 
-$window-splitter-var-lookup: (
+$var-lookup: (
   top: (
     var: --rmd-window-splitter-top,
     value: 0,
@@ -41,12 +40,8 @@ $window-splitter-var-lookup: (
   ),
 );
 
-@function get-window-splitter-var($name, $fallback: null) {
-  $found: utils.validate(
-    $window-splitter-var-lookup,
-    $name,
-    "window-splitter var"
-  );
+@function get-var($name, $fallback: null) {
+  $found: utils.validate($var-lookup, $name, "window-splitter var");
   $var: map.get($found, var);
   $value: if($fallback, $fallback, map.get($found, value));
 
@@ -57,23 +52,20 @@ $window-splitter-var-lookup: (
   @return var(#{$var});
 }
 
-@mixin set-window-splitter-var($name, $value) {
-  $var: map.get(
-    utils.validate($window-splitter-var-lookup, $name, "window-splitter var"),
-    var
-  );
+@mixin set-var($name, $value) {
+  $var: map.get(utils.validate($var-lookup, $name, "window-splitter var"), var);
 
   #{$var}: #{$value};
 }
 
-@mixin use-window-splitter-var($property, $name: $property, $fallback: null) {
-  #{$property}: get-window-splitter-var($name, $fallback);
+@mixin use-var($property, $name: $property, $fallback: null) {
+  #{$property}: get-var($name, $fallback);
 }
 
-@mixin window-splitter-styles {
-  @if not $disable-window-splitter {
+@mixin styles {
+  @if not $disable-everything {
     .rmd-window-splitter {
-      @include use-window-splitter-var(opacity);
+      @include use-var(opacity);
 
       background-color: transparent;
       border: 0;
@@ -91,26 +83,26 @@ $window-splitter-var-lookup: (
       }
 
       &:hover {
-        @include set-window-splitter-var(opacity, 1);
+        @include set-var(opacity, 1);
       }
 
-      @include interaction.keyboard-only {
+      @include utils.keyboard-only {
         &:focus {
-          @include set-window-splitter-var(opacity, 1);
+          @include set-var(opacity, 1);
         }
       }
 
-      @include interaction.touch-only {
+      @include utils.touch-only {
         &:hover {
-          @include set-window-splitter-var(opacity, 0);
+          @include set-var(opacity, 0);
         }
       }
 
-      @if not $disable-window-splitter-horizontal {
+      @if not $disable-horizontal {
         &--h {
-          @include utils.auto-rtl(left, get-window-splitter-var(position));
-          @include use-window-splitter-var(bottom);
-          @include use-window-splitter-var(top);
+          @include utils.auto-rtl(left, get-var(position));
+          @include use-var(bottom);
+          @include use-var(top);
 
           cursor: col-resize;
           width: $window-splitter-size;
@@ -121,11 +113,11 @@ $window-splitter-var-lookup: (
         }
       }
 
-      @if not $disable-window-splitter-vertical {
+      @if not $disable-vertical {
         &--v {
-          @include use-window-splitter-var(left);
-          @include use-window-splitter-var(right);
-          @include use-window-splitter-var(top, position);
+          @include use-var(left);
+          @include use-var(right);
+          @include use-var(top, position);
 
           cursor: row-resize;
           height: $window-splitter-size;
@@ -137,14 +129,14 @@ $window-splitter-var-lookup: (
         }
       }
 
-      @if not $disable-window-splitter-absolute-position {
+      @if not $disable-absolute-position {
         &--a {
           position: absolute;
         }
       }
 
       &--dragging {
-        @include set-window-splitter-var(opacity, 1);
+        @include set-var(opacity, 1);
 
         // set to important so that the `.rmd-dragging` styles do not affect
         // window splitter

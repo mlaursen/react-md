@@ -13,7 +13,7 @@ $elevation: 2 !default;
 $raisable-start-elevation: 1 !default;
 $raisable-end-elevation: 8 !default;
 
-$light-theme-background-color: core.get-theme-var(surface-color) !default;
+$light-theme-background-color: core.theme-get-var(surface-color) !default;
 $dark-theme-background-color: if(
   core.$disable-dark-elevation,
   core.$dark-theme-surface-color,
@@ -25,7 +25,7 @@ $background-color: if(
   $dark-theme-background-color,
   $light-theme-background-color
 ) !default;
-$color: core.get-theme-var(text-primary-color) !default;
+$color: core.theme-get-var(text-primary-color) !default;
 
 $border-color: divider.get-var(color) !default;
 $border-width: divider.get-var(size) !default;

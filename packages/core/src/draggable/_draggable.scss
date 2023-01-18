@@ -1,21 +1,21 @@
-$disable-draggable: false !default;
-$disable-draggable-horizontal: false !default;
-$disable-draggable-vertical: false !default;
+$disable-everything: false !default;
+$disable-horizontal: false !default;
+$disable-vertical: false !default;
 
-@mixin draggable-styles {
-  @if not $disable-draggable {
+@mixin styles {
+  @if not $disable-everything {
     .rmd-dragging {
       * {
         pointer-events: none;
       }
 
-      @if not $disable-draggable-horizontal {
+      @if not $disable-horizontal {
         &--h {
           cursor: col-resize;
         }
       }
 
-      @if not $disable-draggable-vertical {
+      @if not $disable-vertical {
         &--v {
           cursor: row-resize;
         }

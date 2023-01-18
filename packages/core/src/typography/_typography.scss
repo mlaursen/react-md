@@ -4,6 +4,7 @@
 @use "../utils";
 
 $disable-sr-only: false !default;
+$disable-text-container: false !default;
 
 /// A small utility function to get the letter spacing based on tracking and
 /// font-size
@@ -217,24 +218,26 @@ $typography-var-lookup: (
   #{$property}: get-typography-var($name, $fallback);
 }
 
-@mixin typography {
-  @include media-queries.tablet-media {
-    .rmd-text-container {
-      @include set-typography-var(line-length, $desktop-max-line-length);
+@mixin typography-styles {
+  @if not $disable-text-container {
+    @include media-queries.tablet-media {
+      .rmd-text-container {
+        @include set-typography-var(line-length, $desktop-max-line-length);
+      }
     }
-  }
 
-  .rmd-text-container {
-    @include use-typography-var(
-      max-width,
-      line-length,
-      $mobile-max-line-length
-    );
-    @include use-typography-var(padding, text-container-padding);
+    .rmd-text-container {
+      @include use-typography-var(
+        max-width,
+        line-length,
+        $mobile-max-line-length
+      );
+      @include use-typography-var(padding, text-container-padding);
 
-    display: block;
-    margin: 0 auto;
-    width: 100%;
+      display: block;
+      margin: 0 auto;
+      width: 100%;
+    }
   }
 
   .rmd-typography {

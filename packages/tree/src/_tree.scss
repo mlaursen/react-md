@@ -114,7 +114,7 @@ $var-lookup: (
         cursor: auto;
 
         &:hover::before {
-          @include core.set-interaction-var(background-color, transparent);
+          @include core.interaction-set-var(background-color, transparent);
         }
       }
 
@@ -134,13 +134,13 @@ $var-lookup: (
       &--focused::before {
         .rmd-tree:focus-within & {
           @include core.keyboard-only {
-            @include core.set-interaction-var(
+            @include core.interaction-set-var(
               background-color,
-              core.get-interaction-var(focus-background-color)
+              core.interaction-get-var(focus-background-color)
             );
-            @include core.set-interaction-var(
+            @include core.interaction-set-var(
               outline-color,
-              core.$outline-color
+              core.$interaction-outline-color
             );
           }
         }
@@ -149,9 +149,9 @@ $var-lookup: (
       @if $selected-styles {
         &--selected {
           @if not $disable-selected-background-color {
-            @include core.set-interaction-var(
+            @include core.interaction-set-var(
               background-color,
-              core.get-interaction-var(selected-background-color)
+              core.interaction-get-var(selected-background-color)
             );
           }
           @include core.map-to-styles($selected-styles);

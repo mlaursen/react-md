@@ -24,7 +24,7 @@
 }
 
 .slide {
-  @include everything.set-transition-var(slide-duration, 0.5s);
+  @include everything.transition-set-var(slide-duration, 0.5s);
 
   height: 22.5rem;
   overflow: hidden;

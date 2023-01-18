@@ -10,8 +10,8 @@ $disable-mini: false !default;
 $enter-duration: dialog.$sheet-enter-duration !default;
 $leave-duration: dialog.$sheet-leave-duration !default;
 
-$main-outline-color: core.$outline-color !default;
-$main-outline-width: core.$outline-width !default;
+$main-outline-color: core.$interaction-outline-color !default;
+$main-outline-width: core.$interaction-outline-width !default;
 $main-focused-z-index: 999 !default;
 $main-focus-shadow: inset 0 0 0 0.125rem core.$blue-500 !default;
 

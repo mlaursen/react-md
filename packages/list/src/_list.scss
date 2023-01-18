@@ -185,9 +185,9 @@ $var-lookup: (
 
     @if not $disable-item-disabled-color {
       &--disabled-color {
-        @include core.set-theme-var(
+        @include core.theme-set-var(
           text-secondary-color,
-          core.get-theme-var(text-disabled-color)
+          core.theme-get-var(text-disabled-color)
         );
         @include core.use-theme-var(color, text-disabled-color);
       }

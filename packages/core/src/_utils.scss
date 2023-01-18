@@ -229,3 +229,25 @@ $_swappable-properties: text-align;
 
   #{$property}: #{$value};
 }
+
+@mixin keyboard-only($css-modules: false, $parent-selector: true) {
+  @include optional-css-modules(
+    ".keyboard-mode",
+    $css-modules,
+    $parent-selector
+  ) {
+    @content;
+  }
+}
+
+@mixin mouse-only($css-modules: false) {
+  @include optional-css-modules(".mouse-mode", $css-modules) {
+    @content;
+  }
+}
+
+@mixin touch-only($css-modules: false) {
+  @include optional-css-modules(".touch-mode", $css-modules) {
+    @content;
+  }
+}

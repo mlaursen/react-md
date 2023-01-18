@@ -44,8 +44,8 @@ export interface SkeletonPlaceholderOptions {
    *   // You could use these mixins on a parent element instead which would
    *   // set the height and width to all skeleton placeholders that appear as a
    *   // child instead
-   *   // @include core.set-transition-var(skeleton-placeholder-height, 1.5rem);
-   *   // @include core.set-transition-var(skeleton-placeholder-width, 40%);
+   *   // @include core.transition-set-var(skeleton-placeholder-height, 1.5rem);
+   *   // @include core.transition-set-var(skeleton-placeholder-width, 40%);
    *
    *   height: 1,5rem;
    *   width: 40%;

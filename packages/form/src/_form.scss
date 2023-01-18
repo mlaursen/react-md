@@ -53,10 +53,10 @@ $disable-textarea-resizing-mask: $disable-textarea-resizing-rows !default;
 $disable-textarea-resize-horizontal: false !default;
 $disable-textarea-resize-vertical: false !default;
 
-$error-color: core.get-theme-var(error-color) !default;
-$active-color: core.get-theme-var(secondary-color) !default;
-$focused-color: core.$outline-color !default;
-$disabled-color: core.get-theme-var(text-disabled-color) !default;
+$error-color: core.theme-get-var(error-color) !default;
+$active-color: core.theme-get-var(secondary-color) !default;
+$focused-color: core.$interaction-outline-color !default;
+$disabled-color: core.theme-get-var(text-disabled-color) !default;
 
 $label-gap: icon.$spacing !default;
 $label-font-size: 1em !default;
@@ -188,7 +188,7 @@ $menu-item-switch-spacing: calc(icon.$spacing + $switch-ball-size) !default;
 
 $slider-size: 2rem !default;
 $slider-vertical-size: 15rem !default;
-$slider-track-color: core.get-theme-var(secondary-color) !default;
+$slider-track-color: core.theme-get-var(secondary-color) !default;
 $slider-track-active-size: 0.375rem !default;
 $slider-track-active-color: null !default;
 $slider-track-active-opacity: null !default;
@@ -197,7 +197,7 @@ $slider-track-inactive-size: 0.25rem !default;
 $slider-track-inactive-color: null !default;
 $slider-track-inactive-opacity: 0.5 !default;
 $slider-track-inactive-z-index: 1 !default;
-$slider-track-disabled-color: core.get-theme-var(text-disabled-color) !default;
+$slider-track-disabled-color: core.theme-get-var(text-disabled-color) !default;
 $slider-thumb-size: 1.25rem !default;
 $slider-thumb-border-radius: 50% !default;
 $slider-thumb-bubble-opacity: 0.3 !default;
@@ -420,11 +420,14 @@ $var-lookup: (
 
   .rmd-file-input-label:focus-within::before {
     @include core.keyboard-only {
-      @include core.set-interaction-var(
+      @include core.interaction-set-var(
         background-color,
-        get-interaction-var(focus-background-color)
+        interaction-get-var(focus-background-color)
       );
-      @include core.set-interaction-var(outline-color, core.$outline-color);
+      @include core.interaction-set-var(
+        outline-color,
+        core.$interaction-outline-color
+      );
     }
   }
 }
@@ -664,7 +667,7 @@ $var-lookup: (
         @include set-var(label-active-padding, 0 $label-floating-padding);
         @include set-var(
           label-active-background-color,
-          core.get-theme-var(background-color)
+          core.theme-get-var(background-color)
         );
         @include use-var(border-color, text-border-color);
 
@@ -1216,7 +1219,7 @@ $var-lookup: (
         cursor: auto;
 
         &:hover::before {
-          @include core.set-interaction-var(background-color, transparent);
+          @include core.interaction-set-var(background-color, transparent);
         }
       }
     }

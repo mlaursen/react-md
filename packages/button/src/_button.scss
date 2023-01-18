@@ -9,8 +9,8 @@ $disable-icon: false !default;
 $disable-outline: false !default;
 $disable-contained: false !default;
 $disable-contained-pressed-elevation: false !default;
-$disable-contained-interaction-colors: core.$light-theme-base-background-color
-  == core.$dark-theme-base-background-color !default;
+$disable-contained-interaction-colors: core.$interaction-light-theme-base-background-color
+  == core.$interaction-dark-theme-base-background-color !default;
 $disable-floating: false !default;
 $disable-floating-absolute-position: false !default;
 $disable-circular-progress: progress.$disable-circular !default;
@@ -30,7 +30,7 @@ $icon-size: 3rem !default;
 
 $outline-width: 1px !default;
 
-$clear-color: core.get-theme-var(text-primary-color) !default;
+$clear-color: core.theme-get-var(text-primary-color) !default;
 $clear-outline-color: #999 !default;
 
 $contained-elevation: 2 !default;
@@ -159,7 +159,7 @@ $var-lookup: (
 @mixin unstyled(
   $hoverable: false,
   $css-modules: false,
-  $box-shadow: core.$outline-box-shadow
+  $box-shadow: core.$interaction-outline-box-shadow
 ) {
   @include core.interaction-surface(
     $hoverable: $hoverable,
@@ -242,7 +242,7 @@ $var-lookup: (
         // colors for the interaction states This means use the default light
         // theme since it is based off of the root background color
         @if not $disable-contained-interaction-colors {
-          @include core.use-interaction-light-theme;
+          @include core.interaction-use-light-theme;
         }
 
         @include set-var(background-color, get-var(contained-background-color));
@@ -252,23 +252,23 @@ $var-lookup: (
 
     @include _theme(
       primary,
-      core.get-theme-var(primary-color),
-      core.get-theme-var(on-primary-color)
+      core.theme-get-var(primary-color),
+      core.theme-get-var(on-primary-color)
     );
     @include _theme(
       secondary,
-      core.get-theme-var(secondary-color),
-      core.get-theme-var(on-secondary-color)
+      core.theme-get-var(secondary-color),
+      core.theme-get-var(on-secondary-color)
     );
     @include _theme(
       warning,
-      core.get-theme-var(warning-color),
-      core.get-theme-var(on-warning-color)
+      core.theme-get-var(warning-color),
+      core.theme-get-var(on-warning-color)
     );
     @include _theme(
       error,
-      core.get-theme-var(error-color),
-      core.get-theme-var(on-error-color)
+      core.theme-get-var(error-color),
+      core.theme-get-var(on-error-color)
     );
 
     @if list.index($themes, disabled) {
@@ -276,7 +276,7 @@ $var-lookup: (
         @include core.use-theme-var(color, text-disabled-color);
         @include set-var(
           outline-color,
-          core.get-theme-var(text-disabled-color)
+          core.theme-get-var(text-disabled-color)
         );
       }
     }

@@ -149,43 +149,43 @@ $var-lookup: (
 
     @if not $disable-primary-color {
       &--primary {
-        @include set-var(color, core.get-theme-var(primary-color));
+        @include set-var(color, core.theme-get-var(primary-color));
       }
     }
 
     @if not $disable-secondary-color {
       &--secondary {
-        @include set-var(color, core.get-theme-var(secondary-color));
+        @include set-var(color, core.theme-get-var(secondary-color));
       }
     }
 
     @if not $disable-warning-color {
       &--warning {
-        @include set-var(color, core.get-theme-var(warning-color));
+        @include set-var(color, core.theme-get-var(warning-color));
       }
     }
 
     @if not $disable-error-color {
       &--error {
-        @include set-var(color, core.get-theme-var(error-color));
+        @include set-var(color, core.theme-get-var(error-color));
       }
     }
 
     @if not $disable-success-color {
       &--success {
-        @include set-var(color, core.get-theme-var(success-color));
+        @include set-var(color, core.theme-get-var(success-color));
       }
     }
 
     @if not $disable-hint-color {
       &--hint {
-        @include set-var(color, core.get-theme-var(text-hint-color));
+        @include set-var(color, core.theme-get-var(text-hint-color));
       }
     }
 
     @if not $disable-disabled-color {
       &--disabled {
-        @include set-var(color, core.get-theme-var(text-disabled-color));
+        @include set-var(color, core.theme-get-var(text-disabled-color));
       }
     }
 

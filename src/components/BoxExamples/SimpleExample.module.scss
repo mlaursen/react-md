@@ -1,7 +1,7 @@
 @use "everything";
 
 .container {
-  @include everything.custom-grid($min: 10rem);
+  @include everything.box-custom-grid($min: 10rem);
 
   margin: 2rem auto 0;
   width: 80%;

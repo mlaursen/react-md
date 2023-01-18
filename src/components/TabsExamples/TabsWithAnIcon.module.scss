@@ -1,7 +1,7 @@
 @use "everything";
 
 .container {
-  @include everything.set-box-var(min-size, 45%);
+  @include everything.box-set-var(min-size, 45%);
 
   max-width: 20rem;
   width: 100%;

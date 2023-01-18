@@ -2,8 +2,8 @@
 
 .container {
   @include everything.use-light-theme;
-  @include everything.use-interaction-light-theme;
-  @include everything.use-transition-light-theme;
+  @include everything.interaction-use-light-theme;
+  @include everything.transition-use-light-theme;
   @include everything.icon-use-light-theme;
   @include everything.chip-use-light-theme;
   @include everything.app-bar-use-light-theme;

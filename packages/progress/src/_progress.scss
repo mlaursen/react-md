@@ -11,7 +11,7 @@ $disable-circular-centered-styles: false !default;
 $disable-determinate: false !default;
 $disable-indeterminate: false !default;
 
-$color: core.get-theme-var(primary-color) !default;
+$color: core.theme-get-var(primary-color) !default;
 $background-color: core.get-swatch(
   core.$primary-color,
   300,

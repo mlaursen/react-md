@@ -44,7 +44,8 @@
 .list {
   @include everything.box-shadow-transition(
     none,
-    inset 0 0 0 everything.$outline-width everything.$outline-color,
+    inset 0 0 0 everything.$interaction-outline-width
+      everything.$interaction-outline-color,
     "&.dragging"
   );
 

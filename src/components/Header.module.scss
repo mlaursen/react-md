@@ -8,7 +8,7 @@
   @include everything.auto-rtl(padding-right, 0.5rem);
   @include everything.divider-set-var(
     color,
-    everything.get-theme-var(on-primary-color)
+    everything.theme-get-var(on-primary-color)
   );
   @include everything.divider-set-var(size, 0.125rem);
   @include everything.divider-set-var(max-size, 1.5rem);

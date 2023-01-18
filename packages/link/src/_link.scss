@@ -11,7 +11,7 @@ $hover-color: core.$blue-400 !default;
 
 $skip-to-main-z-index: 10000 !default;
 $skip-to-main-styles: (
-  color: core.get-theme-var(on-primary-color),
+  color: core.theme-get-var(on-primary-color),
   left: 50%,
   padding: 0.25rem 1rem,
   top: 0.25rem,
@@ -80,10 +80,13 @@ $var-lookup: (
     // nicely with block-like elements
     @include core.keyboard-only {
       &:focus {
-        @include core.set-interaction-var(outline-color, core.$outline-color);
+        @include core.interaction-set-var(
+          outline-color,
+          core.$interaction-outline-color
+        );
       }
     }
-    @include core.use-interaction-outline;
+    @include core.interaction-outline;
     @include icon.use-var(gap, spacing);
     @include use-var(color);
 

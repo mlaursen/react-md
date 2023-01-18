@@ -2,8 +2,8 @@
 
 .container {
   @include everything.use-dark-theme;
-  @include everything.use-interaction-dark-theme;
-  @include everything.use-transition-dark-theme;
+  @include everything.interaction-use-dark-theme;
+  @include everything.transition-use-dark-theme;
   @include everything.icon-use-dark-theme;
   @include everything.chip-use-dark-theme;
   @include everything.app-bar-use-dark-theme;

@@ -1,22 +1,22 @@
 @use "sass:map";
 @use "../utils";
 
-$default-box-align-items: center !default;
+$default-align-items: center !default;
 
-$disable-box: false !default;
-$disable-box-stacked: false !default;
-$disable-box-reversed: false !default;
-$disable-grid-box: false !default;
+$disable-everything: false !default;
+$disable-stacked: false !default;
+$disable-reversed: false !default;
+$disable-grid: false !default;
 $disable-grid-columns: false !default;
 
-$box-align-items: (start end stretch) !default;
-$box-justify-content: (
+$align-items: (start end stretch) !default;
+$justify-content: (
   start center end stretch space-around space-between space-evenly
 ) !default;
 
-$box-gap: 1rem !default;
-$box-padding: $box-gap !default;
-$box-item-min-size: 8rem !default;
+$gap: 1rem !default;
+$padding: $gap !default;
+$item-min-size: 8rem !default;
 
 /// This should look like:
 /// ```scss
@@ -33,18 +33,18 @@ $box-item-min-size: 8rem !default;
 /// ```
 $grids: () !default;
 
-$box-var-lookup: (
+$var-lookup: (
   gap: (
     var: --rmd-box-gap,
-    value: $box-gap,
+    value: $gap,
   ),
   padding: (
     var: --rmd-box-padding,
-    value: $box-padding,
+    value: $padding,
   ),
   min-size: (
     var: --rmd-box-item-min-size,
-    value: $box-item-min-size,
+    value: $item-min-size,
   ),
   columns: (
     var: --rmd-box-columns,
@@ -52,8 +52,8 @@ $box-var-lookup: (
   ),
 );
 
-@function get-box-var($name, $fallback: null) {
-  $found: utils.validate($box-var-lookup, $name, "box var");
+@function get-var($name, $fallback: null) {
+  $found: utils.validate($var-lookup, $name, "box var");
   $var: map.get($found, var);
   $value: if($fallback, $fallback, map.get($found, value));
 
@@ -64,27 +64,27 @@ $box-var-lookup: (
   @return var(#{$var});
 }
 
-@mixin set-box-var($name, $value) {
-  $var: map.get(utils.validate($box-var-lookup, $name, "box var"), var);
+@mixin set-var($name, $value) {
+  $var: map.get(utils.validate($var-lookup, $name, "box var"), var);
 
   #{$var}: #{$value};
 }
 
-@mixin use-box-var($property, $name: $property, $fallback: null) {
-  #{$property}: get-box-var($name, $fallback);
+@mixin use-var($property, $name: $property, $fallback: null) {
+  #{$property}: get-var($name, $fallback);
 }
 
 @mixin custom-grid($min: null, $padding: null, $gap: null) {
   @if $min {
-    @include set-box-var(min-size, $min);
+    @include set-var(min-size, $min);
   }
 
   @if $padding {
-    @include set-box-var(padding, $padding);
+    @include set-var(padding, $padding);
   }
 
   @if $gap {
-    @include set-box-var(gap, $gap);
+    @include set-var(gap, $gap);
   }
 }
 
@@ -94,68 +94,68 @@ $box-var-lookup: (
   }
 }
 
-@mixin box-styles {
-  @if not $disable-box {
+@mixin styles {
+  @if not $disable-everything {
     .rmd-box {
-      @include use-box-var(gap, gap);
+      @include use-var(gap, gap);
 
-      align-items: $default-box-align-items;
+      align-items: $default-align-items;
       display: flex;
 
       &--padded {
-        @include use-box-var(padding);
+        @include use-var(padding);
       }
 
       &--wrap {
         flex-wrap: wrap;
       }
 
-      @if not $disable-box-stacked {
+      @if not $disable-stacked {
         &--column {
           flex-direction: column;
         }
       }
 
-      @if not $disable-box-reversed {
+      @if not $disable-reversed {
         &--reverse {
           flex-direction: row-reverse;
         }
 
-        @if not $disable-box-stacked {
+        @if not $disable-stacked {
           &--column-reverse {
             flex-direction: column-reverse;
           }
         }
       }
 
-      @each $value in $box-align-items {
+      @each $value in $align-items {
         &--align-#{$value} {
           align-items: $value;
         }
       }
 
-      @each $value in $box-justify-content {
+      @each $value in $justify-content {
         &--justify-#{utils.str-replace($value, "space-", "")} {
           justify-content: $value;
         }
       }
 
-      @if not $disable-grid-box {
+      @if not $disable-grid {
         &--grid {
           display: grid;
           grid-template-columns: repeat(
-            get-box-var(columns),
-            minmax(get-box-var(min-size), 1fr)
+            get-var(columns),
+            minmax(get-var(min-size), 1fr)
           );
         }
 
         &--grid-fill {
-          @include set-box-var(columns, auto-fill);
+          @include set-var(columns, auto-fill);
         }
 
         @if not $disable-grid-columns {
           &--grid-columns {
-            @include set-box-var(min-size, 0);
+            @include set-var(min-size, 0);
           }
         }
 
