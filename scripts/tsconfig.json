@@ -13,7 +13,7 @@
     "forceConsistentCasingInFileNames": true,
     "lib": ["esnext"]
   },
-  "include": ["**/*.ts"],
+  "include": ["**/*.ts", "*.mjs"],
   "exclude": ["node_modules"],
   "ts-node": {
     "esm": true

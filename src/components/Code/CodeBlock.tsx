@@ -1,7 +1,7 @@
 import { Button } from "@react-md/button";
 import ContentCopyIcon from "@react-md/material-icons/ContentCopyIcon";
 import { cnb } from "cnbuilder";
-import type { HTMLAttributes } from "react";
+import type { HTMLAttributes, ReactNode } from "react";
 import { forwardRef } from "react";
 import styles from "./CodeBlock.module.scss";
 import { useCodeConfig } from "./CodeConfigProvider";
@@ -35,7 +35,14 @@ export type PrismLanguage =
 export interface CodeBlockProps extends HTMLAttributes<HTMLPreElement> {
   /** @defaultValue `"markdown"` */
   language?: PrismLanguage;
-  children: string;
+  children: ReactNode;
+
+  /**
+   * This should only be used when the code has been rendered by MDX. The custom
+   * `mdxLineNumbers` plugin will calculate the number of lines within a code
+   * block to use since the `children` will already be highlighted code.
+   */
+  lines?: number;
 
   /**
    * Set this to true if the code block should display line numbers. Defaults to
@@ -49,16 +56,25 @@ export interface CodeBlockProps extends HTMLAttributes<HTMLPreElement> {
 export const CodeBlock = forwardRef<HTMLPreElement, CodeBlockProps>(
   function CodeBlock(props, ref) {
     const {
+      className,
       children,
       language = "markdown",
+      lines: propLines,
       lineNumbers: propLineNumbers,
       ...remaining
     } = props;
 
     const code = typeof children === "string" ? children.trim() : "";
-    const lines = (code.match(/\r?\n/g)?.length ?? 0) + 1;
-    const lineNumbers =
-      propLineNumbers ?? (!/markup|markdown|shell/.test(language) && lines > 3);
+    let lines = propLines;
+    let lineNumbers = propLineNumbers;
+    if (typeof lines !== "undefined") {
+      lineNumbers = true;
+    } else {
+      lines = (code.match(/\r?\n/g)?.length ?? 0) + 1;
+      lineNumbers =
+        propLineNumbers ??
+        (!/markup|markdown|shell/.test(language) && lines > 3);
+    }
 
     const base = `language-${language}`;
     const { theme } = useCodeConfig();
@@ -73,7 +89,8 @@ export const CodeBlock = forwardRef<HTMLPreElement, CodeBlockProps>(
             styles.pre,
             base,
             lineNumbers && styles.lineNumbers,
-            lineNumbers && "line-numbers"
+            lineNumbers && "line-numbers",
+            className
           )}
         >
           <Button
@@ -92,13 +109,16 @@ export const CodeBlock = forwardRef<HTMLPreElement, CodeBlockProps>(
             <ContentCopyIcon />
           </Button>
           {lineNumbers && <LineNumbers lines={lines} />}
-          <code
-            suppressHydrationWarning={remaining.suppressHydrationWarning}
-            className={base}
-            dangerouslySetInnerHTML={{
-              __html: highlightCode(code, language),
-            }}
-          />
+          {code && (
+            <code
+              suppressHydrationWarning={remaining.suppressHydrationWarning}
+              className={base}
+              dangerouslySetInnerHTML={{
+                __html: highlightCode(code, language),
+              }}
+            />
+          )}
+          {!code && children}
         </pre>
       </div>
     );

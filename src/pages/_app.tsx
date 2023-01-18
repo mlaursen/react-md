@@ -1,6 +1,7 @@
 import "./app.scss";
 
 import { CoreProviders, ThemeProvider } from "@react-md/core";
+import { MDXProvider } from "@mdx-js/react";
 import type { ConfiguredIcons } from "@react-md/icon";
 import { IconProvider } from "@react-md/icon";
 import ArrowDropDownIcon from "@react-md/material-icons/ArrowDropDownIcon";
@@ -27,6 +28,7 @@ import type { ReactElement } from "react";
 import { CodeConfigProvider } from "src/components/Code";
 import Layout from "src/components/Layout/Layout";
 import { LoadThemeStyles } from "src/components/Theme/LoadThemeStyles";
+import { MDX_COMPONENTS } from "src/components/MDXComponents";
 import {
   defaultColorSchemeMode,
   defaultDisableHighContrastMode,
@@ -139,10 +141,12 @@ export default function App(props: AppProps): ReactElement {
         <ThemeProvider>
           <IconProvider {...icons}>
             <CodeConfigProvider>
-              <Layout title={title}>
-                <Component {...pageProps} />
-                <LoadThemeStyles />
-              </Layout>
+              <MDXProvider components={MDX_COMPONENTS}>
+                <Layout title={title}>
+                  <Component {...pageProps} />
+                  <LoadThemeStyles />
+                </Layout>
+              </MDXProvider>
             </CodeConfigProvider>
           </IconProvider>
         </ThemeProvider>

@@ -1,7 +1,22 @@
+import rehypePrism from "@mapbox/rehype-prism";
+import mdx from "@next/mdx";
+
+import mdxLineNumbers from "./scripts/mdxLineNumbers.mjs";
+
+const withMDX = mdx({
+  extension: /\.mdx?/,
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [mdxLineNumbers, rehypePrism],
+    providerImportSource: "@mdx-js/react",
+  },
+});
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  pageExtensions: ["ts", "tsx", "mdx"],
   eslint: {
     // I have already run lint before this step...
     ignoreDuringBuilds: true,
@@ -34,4 +49,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+export default withMDX(nextConfig);
