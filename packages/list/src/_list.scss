@@ -1,7 +1,6 @@
 @use "sass:map";
 @use "@react-md/core";
 @use "@react-md/avatar";
-@use "@react-md/divider";
 
 $disable-horizontal: false !default;
 $disable-item-disabled-color: false !default;
@@ -145,7 +144,7 @@ $var-lookup: (
 @mixin styles {
   .rmd-list {
     @include core.map-to-styles($typography-styles);
-    @include divider.set-var(inset, get-var(item-keyline));
+    @include core.divider-set-var(inset, get-var(item-keyline));
 
     list-style: none;
     margin: 0;

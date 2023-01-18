@@ -1,6 +1,7 @@
 export * from "./AppSizeProvider";
 export * from "./box";
 export * from "./CoreProviders";
+export * from "./divider";
 export * from "./draggable";
 export * from "./focus";
 export * from "./hoverMode";

@@ -1,6 +1,5 @@
 @use "sass:map";
 @use "@react-md/core";
-@use "@react-md/divider";
 
 $disable-bordered: false !default;
 $disable-shadowed: false !default;
@@ -27,8 +26,8 @@ $background-color: if(
 ) !default;
 $color: core.theme-get-var(text-primary-color) !default;
 
-$border-color: divider.get-var(color) !default;
-$border-width: divider.get-var(size) !default;
+$border-color: core.divider-get-var(color) !default;
+$border-width: core.divider-get-var(size) !default;
 $border-radius: 0.25rem !default;
 
 $header-padding: 1rem !default;

@@ -1,7 +1,6 @@
 import { AppBar } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
-import { Box, useColorScheme, useDir } from "@react-md/core";
-import { VerticalDivider } from "@react-md/divider";
+import { Box, useColorScheme, useDir, VerticalDivider } from "@react-md/core";
 import type { ReactElement } from "react";
 import styles from "./Header.module.scss";
 import { StyledLink } from "./StyledLink";

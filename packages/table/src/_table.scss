@@ -1,6 +1,5 @@
 @use "sass:map";
 @use "@react-md/core";
-@use "@react-md/divider";
 
 $disable-container: false !default;
 $disable-dense: false !default;
@@ -44,7 +43,7 @@ $border-color: if(
   $dark-theme-border-color,
   $light-theme-border-color
 ) !default;
-$border-size: divider.$size !default;
+$border-size: core.$divider-size !default;
 
 $light-theme-header-background-color: null !default;
 $dark-theme-header-background-color: null !default;

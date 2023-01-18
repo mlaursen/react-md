@@ -3,7 +3,6 @@
 @use "@react-md/button";
 @use "@react-md/app-bar";
 @use "@react-md/dialog";
-@use "@react-md/divider";
 
 $disable-mini: false !default;
 
@@ -149,7 +148,7 @@ $var-lookup: (
 
   .rmd-layout-nav-header {
     &--bordered {
-      @include divider.style(bottom);
+      @include core.divider-style(bottom);
     }
   }
 

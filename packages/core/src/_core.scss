@@ -11,9 +11,11 @@
 @forward "draggable/draggable" as draggable-*;
 @forward "windowSplitter/window-splitter" as window-splitter-*;
 @forward "icon/icon" as icon-*;
+@forward "divider/divider" as divider-*;
 
 @use "box/box";
 @use "icon/icon";
+@use "divider/divider";
 @use "theme/theme";
 @use "transition/transition";
 @use "interaction/interaction";
@@ -72,6 +74,7 @@ $disable-default-root-theme: false !default;
 
   @include box.styles;
   @include icon.styles;
+  @include divider.styles;
   @include draggable.styles;
   @include window-splitter.styles;
 

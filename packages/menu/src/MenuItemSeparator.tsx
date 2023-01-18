@@ -1,5 +1,5 @@
-import type { DividerProps, VerticalDividerProps } from "@react-md/divider";
-import { divider, useVerticalDividerHeight } from "@react-md/divider";
+import type { DividerProps, VerticalDividerProps } from "@react-md/core";
+import { divider, useVerticalDividerHeight } from "@react-md/core";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
 import { useMenuConfiguration } from "./MenuConfigurationProvider";

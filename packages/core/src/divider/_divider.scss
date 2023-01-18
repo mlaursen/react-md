@@ -1,5 +1,7 @@
 @use "sass:map";
-@use "@react-md/core";
+@use "../utils";
+@use "../theme/theme";
+@use "../theme/colors";
 
 $disable-vertical: false !default;
 $disable-inset: false !default;
@@ -12,11 +14,11 @@ $inset: 4rem !default;
 $spacing: 0.25rem auto !default;
 $vertical-spacing: auto 0.25rem !default;
 
-$light-theme-color: rgba(core.$black, 0.12) !default;
-$dark-theme-color: rgba(core.$white, 0.12) !default;
+$light-theme-color: rgba(colors.$black, 0.12) !default;
+$dark-theme-color: rgba(colors.$white, 0.12) !default;
 
 $color: if(
-  core.$color-scheme == dark,
+  theme.$color-scheme == dark,
   $dark-theme-color,
   $light-theme-color
 ) !default;
@@ -57,7 +59,7 @@ $var-lookup: (
 );
 
 @function get-var($name, $fallback: null) {
-  $found: core.validate($var-lookup, $name, "divider var");
+  $found: utils.validate($var-lookup, $name, "divider var");
   $var: map.get($found, var);
   $value: if($fallback, $fallback, map.get($found, value));
 
@@ -69,7 +71,7 @@ $var-lookup: (
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(core.validate($var-lookup, $name, "divider var"), var);
+  $var: map.get(utils.validate($var-lookup, $name, "divider var"), var);
 
   #{$var}: #{$value};
 }
@@ -93,7 +95,7 @@ $var-lookup: (
 }
 
 @mixin styles {
-  @include core.default-system-theme {
+  @include theme.default-system-theme {
     @include use-dark-theme;
   }
 
@@ -107,7 +109,7 @@ $var-lookup: (
 
     @if not $disable-inset {
       &--inset {
-        @include core.auto-rtl(margin-left, get-var(inset), auto);
+        @include utils.auto-rtl(margin-left, get-var(inset), auto);
 
         width: calc(get-var(max-size) - get-var(inset));
       }

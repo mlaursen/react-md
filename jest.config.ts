@@ -15,7 +15,6 @@ const config: Config = {
     "^@react-md/chip$": ["<rootDir>/packages/chip/src/index.ts"],
     "^@react-md/core$": ["<rootDir>/packages/core/src/index.ts"],
     "^@react-md/dialog$": ["<rootDir>/packages/dialog/src/index.ts"],
-    "^@react-md/divider$": ["<rootDir>/packages/divider/src/index.ts"],
     "^@react-md/expansion-panel$": [
       "<rootDir>/packages/expansion-panel/src/index.ts",
     ],

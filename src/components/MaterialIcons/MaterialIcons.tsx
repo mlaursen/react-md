@@ -1,20 +1,20 @@
 import {
   box,
   Box,
+  Divider,
   getScrollbarWidth,
   Typography,
   useCSSVariables,
   useResizeObserver,
 } from "@react-md/core";
-import { Divider } from "@react-md/divider";
 import { Radio, TextField } from "@react-md/form";
 import SearchIcon from "@react-md/material-icons/SearchIcon";
 import type { ReactElement } from "react";
 import { useCallback, useMemo, useState } from "react";
 import { ICON_CATEGORIES, ICON_TYPES } from "src/constants/materialIcons";
 import { MatchedIcons } from "./MatchedIcons";
-import { useMaterialIcons } from "./useMaterialIcons";
 import styles from "./MaterialIcons.module.scss";
+import { useMaterialIcons } from "./useMaterialIcons";
 
 const MIN_CELL_WIDTH = 160;
 

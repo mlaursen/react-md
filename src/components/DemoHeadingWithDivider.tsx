@@ -1,6 +1,6 @@
 import type { TypographyProps } from "@react-md/core";
 import { Typography } from "@react-md/core";
-import { Divider } from "@react-md/divider";
+import { Divider } from "@react-md/core";
 import type { ReactElement } from "react";
 
 export function DemoHeadingWithDivider({

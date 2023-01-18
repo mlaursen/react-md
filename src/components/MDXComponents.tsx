@@ -1,6 +1,5 @@
 import type { MDXProvider } from "@mdx-js/react";
-import { Typography } from "@react-md/core";
-import { Divider } from "@react-md/divider";
+import { Divider, Typography } from "@react-md/core";
 import { link } from "@react-md/link";
 import type {
   ComponentProps,
