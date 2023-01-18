@@ -14,16 +14,8 @@ module.exports = {
     "@next/next/no-html-link-for-pages": [1, "src/pages"],
     "@typescript-eslint/consistent-type-imports": ["error"],
 
-    "no-use-before-define": 0,
-    "@typescript-eslint/no-use-before-define": [
-      "warn",
-      { ignoreTypeReferences: true },
-    ],
-
     // I only use this within dialogs which IS recommended
     "jsx-a11y/no-autofocus": 0,
-
-    "object-shorthand": ["error", "always"],
   },
   overrides: [
     {

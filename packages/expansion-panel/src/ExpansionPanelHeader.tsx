@@ -105,7 +105,7 @@ export const ExpansionPanelHeader = forwardRef<
 >(function ExpansionPanelHeader(props, ref) {
   const {
     id,
-    headingType: headingType = "subtitle-1",
+    headingType = "subtitle-1",
     headingProps,
     iconRotatorProps,
     icon: propIcon,
