@@ -1,6 +1,11 @@
-import { bem, useEnsuredId } from "@react-md/core";
-import type { TextIconSpacingProps } from "@react-md/icon";
-import { icon, TextIconSpacing, useIcon } from "@react-md/icon";
+import type { TextIconSpacingProps } from "@react-md/core";
+import {
+  bem,
+  icon,
+  TextIconSpacing,
+  useEnsuredId,
+  useIcon,
+} from "@react-md/core";
 import { getListItemHeight, ListItemText } from "@react-md/list";
 import type { MenuItemProps } from "@react-md/menu";
 import { MenuItem } from "@react-md/menu";

@@ -255,7 +255,7 @@ export interface CollapseTransitionHookReturnValue<E extends HTMLElement>
  * ```tsx
  * import { ReactElement, useState } from "react";
  * import { Button } from "@react-md/button";
- * import { IconRotator } from "@react-md/icon";
+ * import { IconRotator } from "@react-md/core";
  * import { KeyboardArrowDownSVGIcon } from "@react-md/material-icons";
  * import { useCollapseTransition } from "@react-md/transition";
  * import { Typography } from "@react-md/typography";

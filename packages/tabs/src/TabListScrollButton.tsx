@@ -4,8 +4,13 @@ import type {
 } from "@react-md/button";
 import { Button } from "@react-md/button";
 import type { PropsWithRef } from "@react-md/core";
-import { applyRef, bem, useDir, useIntersectionObserver } from "@react-md/core";
-import { useIcon } from "@react-md/icon";
+import {
+  applyRef,
+  bem,
+  useDir,
+  useIcon,
+  useIntersectionObserver,
+} from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useCallback, useRef, useState } from "react";

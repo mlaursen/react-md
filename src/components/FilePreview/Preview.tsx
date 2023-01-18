@@ -1,7 +1,6 @@
-import { Typography } from "@react-md/core";
+import { TextIconSpacing, Typography } from "@react-md/core";
 import type { FileReaderResult } from "@react-md/form";
 import { isImageFile, isVideoFile } from "@react-md/form";
-import { TextIconSpacing } from "@react-md/icon";
 import ErrorIcon from "@react-md/material-icons/ErrorIcon";
 import { VisualMediaOverlay } from "@react-md/visual-media";
 import type { ReactElement } from "react";

@@ -1,4 +1,4 @@
-import { useIcon } from "@react-md/icon";
+import { useIcon } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes, ReactNode } from "react";
 import { forwardRef } from "react";

@@ -1,6 +1,8 @@
 @use "sass:color";
 @use "sass:map";
-@use "@react-md/core";
+@use "../theme/theme";
+@use "../transition/transition";
+@use "../utils";
 
 $disable-font: false !default;
 $disable-svg: false !default;
@@ -22,7 +24,7 @@ $light-theme-color: color.adjust(#000, $lightness: 46%) !default;
 $dark-theme-color: color.adjust(#fff, $lightness: -30%) !default;
 
 $color: if(
-  core.$color-scheme == dark,
+  theme.$color-scheme == dark,
   $dark-theme-color,
   $light-theme-color
 ) !default;
@@ -34,7 +36,7 @@ $spacing: 0.5rem !default;
 
 $rotate-from: 0deg !default;
 $rotate-to: 180deg !default;
-$rotate-duration: core.$linear-duration !default;
+$rotate-duration: transition.$linear-duration !default;
 
 $var-lookup: (
   color: (
@@ -60,7 +62,7 @@ $var-lookup: (
 );
 
 @function get-var($name, $fallback: null) {
-  $found: core.validate($var-lookup, $name, "icon var");
+  $found: utils.validate($var-lookup, $name, "icon var");
   $var: map.get($found, var);
   $value: if($fallback, $fallback, map.get($found, value));
 
@@ -72,7 +74,7 @@ $var-lookup: (
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(core.validate($var-lookup, $name, "icon var"), var);
+  $var: map.get(utils.validate($var-lookup, $name, "icon var"), var);
 
   #{$var}: #{$value};
 }
@@ -96,7 +98,7 @@ $var-lookup: (
 }
 
 @mixin styles {
-  @include core.default-system-theme {
+  @include theme.default-system-theme {
     @include use-dark-theme;
   }
 
@@ -125,13 +127,13 @@ $var-lookup: (
 
     @if not $disable-spacing-before {
       &--before {
-        @include core.auto-rtl(margin-right, get-var(spacing), 0);
+        @include utils.auto-rtl(margin-right, get-var(spacing), 0);
       }
     }
 
     @if not $disable-spacing-after {
       &--after {
-        @include core.auto-rtl(margin-left, get-var(spacing), 0);
+        @include utils.auto-rtl(margin-left, get-var(spacing), 0);
       }
     }
 
@@ -149,43 +151,43 @@ $var-lookup: (
 
     @if not $disable-primary-color {
       &--primary {
-        @include set-var(color, core.theme-get-var(primary-color));
+        @include set-var(color, theme.theme-get-var(primary-color));
       }
     }
 
     @if not $disable-secondary-color {
       &--secondary {
-        @include set-var(color, core.theme-get-var(secondary-color));
+        @include set-var(color, theme.theme-get-var(secondary-color));
       }
     }
 
     @if not $disable-warning-color {
       &--warning {
-        @include set-var(color, core.theme-get-var(warning-color));
+        @include set-var(color, theme.theme-get-var(warning-color));
       }
     }
 
     @if not $disable-error-color {
       &--error {
-        @include set-var(color, core.theme-get-var(error-color));
+        @include set-var(color, theme.theme-get-var(error-color));
       }
     }
 
     @if not $disable-success-color {
       &--success {
-        @include set-var(color, core.theme-get-var(success-color));
+        @include set-var(color, theme.theme-get-var(success-color));
       }
     }
 
     @if not $disable-hint-color {
       &--hint {
-        @include set-var(color, core.theme-get-var(text-hint-color));
+        @include set-var(color, theme.theme-get-var(text-hint-color));
       }
     }
 
     @if not $disable-disabled-color {
       &--disabled {
-        @include set-var(color, core.theme-get-var(text-disabled-color));
+        @include set-var(color, theme.theme-get-var(text-disabled-color));
       }
     }
 

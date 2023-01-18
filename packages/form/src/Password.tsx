@@ -1,8 +1,7 @@
 import type { ButtonProps } from "@react-md/button";
 import { Button } from "@react-md/button";
 import type { PropsWithRef } from "@react-md/core";
-import { bem, useEnsuredId, useToggle } from "@react-md/core";
-import { useIcon } from "@react-md/icon";
+import { bem, useEnsuredId, useIcon, useToggle } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { ReactNode } from "react";
 import { forwardRef } from "react";

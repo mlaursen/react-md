@@ -1,6 +1,5 @@
 @use "sass:map";
 @use "@react-md/core";
-@use "@react-md/icon";
 
 $disable-menu: false !default;
 $disable-menu-item: false !default;
@@ -94,7 +93,7 @@ $var-lookup: (
 
 @mixin menu-item-styles {
   .rmd-menu-item {
-    @include icon.set-var(spacing, get-var(spacing));
+    @include core.icon-set-var(spacing, get-var(spacing));
 
     height: var(--rmd-list-item-height);
 

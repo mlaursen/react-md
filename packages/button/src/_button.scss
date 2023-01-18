@@ -1,7 +1,6 @@
 @use "sass:list";
 @use "sass:map";
 @use "@react-md/core";
-@use "@react-md/icon";
 @use "@react-md/progress";
 
 $disable-text: false !default;
@@ -40,7 +39,7 @@ $clear-contained-color: core.contrast-color(
   $clear-contained-background-color
 ) !default;
 
-$circular-progress-size: icon.get-var(size) !default;
+$circular-progress-size: core.icon-get-var(size) !default;
 
 $floating-margin: 1.5rem !default;
 $floating-z-index: core.$temporary-element-z-index !default;
@@ -182,8 +181,8 @@ $var-lookup: (
       $disabled-selector: "&:disabled" +
         if(list.index($themes, disabled), ",&[aria-disabled='true']", "")
     );
-    @include icon.set-var(color, currentcolor);
-    @include icon.use-var(gap, spacing);
+    @include core.icon-set-var(color, currentcolor);
+    @include core.icon-use-var(gap, spacing);
     @include use-var(background-color);
     @include use-var(color);
     @include use-var(border-radius);
@@ -196,7 +195,7 @@ $var-lookup: (
 
     @if not $disable-text {
       &--text {
-        @include icon.set-var(size, $text-icon-size);
+        @include core.icon-set-var(size, $text-icon-size);
         @include set-var(border-radius, $text-border-radius);
         @include core.map-to-styles(core.$button-styles);
         @include use-var(min-height, text-min-height);

@@ -3,7 +3,6 @@
 @use "sass:color";
 @use "@react-md/core";
 @use "@react-md/button";
-@use "@react-md/icon";
 @use "@react-md/list";
 @use "@react-md/progress";
 @use "@react-md/tooltip";
@@ -58,7 +57,7 @@ $active-color: core.theme-get-var(secondary-color) !default;
 $focused-color: core.$interaction-outline-color !default;
 $disabled-color: core.theme-get-var(text-disabled-color) !default;
 
-$label-gap: icon.$spacing !default;
+$label-gap: core.$icon-spacing !default;
 $label-font-size: 1em !default;
 $label-typography: map.merge(
   core.$body-1-styles,
@@ -77,7 +76,7 @@ $message-typography-styles: map.merge(
     font-size: 0.75rem,
   )
 ) !default;
-$message-counter-spacing: icon.$spacing !default;
+$message-counter-spacing: core.$icon-spacing !default;
 $message-margin-top: 0.5rem !default;
 $message-margin-bottom: 1rem !default;
 $message-min-height: 2rem !default;
@@ -95,7 +94,7 @@ $text-field-height: 3rem !default;
 $text-field-dense-height: 2.5rem !default;
 $text-field-label-height: 3.5rem !default;
 $text-field-label-dense-height: 3.25rem !default;
-$text-field-spacing: icon.$spacing !default;
+$text-field-spacing: core.$icon-spacing !default;
 $text-field-border-radius: 0.25rem !default;
 $text-field-border-width: 1px !default;
 $text-field-border-width-active: 2px !default;
@@ -104,9 +103,9 @@ $text-field-outlined-padding: 1rem !default;
 $text-field-underlined-padding: null !default;
 // this is the default height of the label with line-height
 $text-field-underlined-label-padding-top: 1.5rem !default;
-$text-field-underlined-label-left-offset: icon.$spacing !default;
+$text-field-underlined-label-left-offset: core.$icon-spacing !default;
 
-$text-field-addon-margin: icon.$spacing !default;
+$text-field-addon-margin: core.$icon-spacing !default;
 
 $text-field-light-border-color: rgba(#000, 0.12) !default;
 $text-field-dark-border-color: rgba(#fff, 0.5) !default;
@@ -148,14 +147,14 @@ $option-selected-styles: (
   color: core.$white,
 ) !default;
 $option-padding-left: list.$item-horizontal-padding -
-  math.div(icon.$size - $option-selected-icon-size, 2) !default;
+  math.div(core.$icon-size - $option-selected-icon-size, 2) !default;
 $option-selected-icon-spacing: $option-padding-left !default;
 
 $input-toggle-border-radius: 50% !default;
 $input-toggle-padding: 0.5em !default;
 $input-toggle-small-size: 1rem !default;
-$input-toggle-dense-size: icon.$dense-size !default;
-$input-toggle-normal-size: icon.$size !default;
+$input-toggle-dense-size: core.$icon-dense-size !default;
+$input-toggle-normal-size: core.$icon-size !default;
 $input-toggle-large-size: 2rem !default;
 
 $switch-disabled-opacity: 0.5 !default;
@@ -184,7 +183,9 @@ $switch-track-background-color: if(
 ) !default;
 $switch-circular-progress-width: 12 !default;
 
-$menu-item-switch-spacing: calc(icon.$spacing + $switch-ball-size) !default;
+$menu-item-switch-spacing: calc(
+  core.$icon-spacing + $switch-ball-size
+) !default;
 
 $slider-size: 2rem !default;
 $slider-vertical-size: 15rem !default;
@@ -208,7 +209,7 @@ $slider-thumb-disabled-scale: 0.5 !default;
 $slider-thumb-mask-scale: 0.8 !default;
 $slider-thumb-disabled-color: $slider-track-disabled-color !default;
 $slider-tooltip-caret-size: 0.3rem !default;
-$slider-tooltip-offset: -($slider-thumb-size + icon.$spacing) !default;
+$slider-tooltip-offset: -($slider-thumb-size + core.$icon-spacing) !default;
 $slider-container-padding: $slider-thumb-size * 0.5 !default;
 $slider-container-addon-spacing: $slider-thumb-size !default;
 $slider-transition-duration: core.$linear-duration !default;
@@ -633,7 +634,7 @@ $var-lookup: (
 
     &--error {
       @if not $disable-text-field-addon {
-        @include icon.set-var(color, get-var(error-color));
+        @include core.icon-set-var(color, get-var(error-color));
       }
       @include set-var(active-color, get-var(error-color));
       @include set-var(focused-color, get-var(error-color));
@@ -652,7 +653,7 @@ $var-lookup: (
     }
 
     &--disabled {
-      @include icon.set-var(color, get-var(disabled-color));
+      @include core.icon-set-var(color, get-var(disabled-color));
     }
 
     @if not $disable-text-field-outlined-theme {
@@ -695,7 +696,7 @@ $var-lookup: (
 
       &--outline-left {
         $distance: calc(
-          #{icon.get-var(size)} +
+          #{core.icon-get-var(size)} +
             #{$text-field-outlined-padding +
             $text-field-spacing}
         );
@@ -704,7 +705,9 @@ $var-lookup: (
       }
 
       &--outline-right {
-        $distance: calc(#{icon.get-var(size)} + #{$text-field-spacing * 2});
+        $distance: calc(
+          #{core.icon-get-var(size)} + #{$text-field-spacing * 2}
+        );
 
         @include set-var(text-padding-right, $distance);
       }
@@ -784,7 +787,7 @@ $var-lookup: (
       }
 
       @if not $disable-text-field-addon {
-        $addon-offset: "#{icon.get-var(size)} + #{$text-field-underlined-label-left-offset * 2}";
+        $addon-offset: "#{core.icon-get-var(size)} + #{$text-field-underlined-label-left-offset * 2}";
         @if $text-field-underlined-padding {
           $addon-offset: "#{$addon-offset} + #{$text-field-underlined-padding}";
         }
@@ -1054,8 +1057,8 @@ $var-lookup: (
     }
 
     &__icon {
-      @include icon.set-var(spacing, $option-selected-icon-spacing);
-      @include icon.set-var(size, $option-selected-icon-size);
+      @include core.icon-set-var(spacing, $option-selected-icon-spacing);
+      @include core.icon-set-var(size, $option-selected-icon-size);
     }
   }
 }
@@ -1096,8 +1099,8 @@ $var-lookup: (
 
 @mixin text-field-addon-styles {
   .rmd-text-field-addon {
-    @include icon.use-var(height, size);
-    @include icon.use-var(width, size);
+    @include core.icon-use-var(height, size);
+    @include core.icon-use-var(width, size);
 
     @if not
       $disable-text-field-filled-theme or not
@@ -1153,7 +1156,7 @@ $var-lookup: (
       $disabled-selector: "&--disabled,&--readonly",
       $higher-contrast: false
     );
-    @include icon.set-var(color, currentcolor);
+    @include core.icon-set-var(color, currentcolor);
 
     align-items: center;
     border-radius: $input-toggle-border-radius;
@@ -1163,7 +1166,7 @@ $var-lookup: (
     padding: $input-toggle-padding;
 
     &--em {
-      @include icon.set-var(size, 1em);
+      @include core.icon-set-var(size, 1em);
     }
 
     &--active {
@@ -1322,10 +1325,10 @@ $var-lookup: (
       // container's width
       @if $menu-item-switch-spacing and
         $menu-item-switch-spacing !=
-        icon.$spacing
+        core.$icon-spacing
       {
         &--switch {
-          @include icon.set-var(spacing, $menu-item-switch-spacing);
+          @include core.icon-set-var(spacing, $menu-item-switch-spacing);
         }
       }
 
@@ -1355,12 +1358,12 @@ $var-lookup: (
   .rmd-slider-container {
     @if $slider-container-addon-spacing and
       $slider-container-addon-spacing !=
-      icon.$spacing
+      core.$icon-spacing
     {
-      @include icon.set-var(spacing, $slider-container-addon-spacing);
+      @include core.icon-set-var(spacing, $slider-container-addon-spacing);
     }
 
-    @include icon.use-var(gap, spacing);
+    @include core.icon-use-var(gap, spacing);
 
     align-items: center;
 

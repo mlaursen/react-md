@@ -13,8 +13,7 @@ const styles = bem("rmd-slider-container");
 export interface SliderAddonProps {
   /**
    * An optional addon to render before the slider's track. This can be anything
-   * and will be wrapped in the `TextIconSpacing` component from
-   * `@react-md/icon`.
+   * and will be wrapped in the `TextIconSpacing` component.
    *
    * When the `vertical` prop is enabled, the addon will appear underneath the
    * track.
@@ -23,8 +22,7 @@ export interface SliderAddonProps {
 
   /**
    * An optional addon to render after the slider's track. This can be anything
-   * and will be wrapped in the `TextIconSpacing` component from
-   * `@react-md/icon`.
+   * and will be wrapped in the `TextIconSpacing` component.
    *
    * When the `vertical` prop is enabled, the addon will appear above the track.
    */

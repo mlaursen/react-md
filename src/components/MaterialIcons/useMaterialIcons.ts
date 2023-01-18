@@ -1,7 +1,6 @@
-import type { UseStateObject } from "@react-md/core";
+import type { SVGIcon, UseStateObject } from "@react-md/core";
 import type { ProvidedRadioGroupProps } from "@react-md/form";
 import { useRadioGroup } from "@react-md/form";
-import type { SVGIcon } from "@react-md/icon";
 import { camelCase } from "lodash";
 import { useRouter } from "next/router";
 import type { ParsedUrlQuery } from "querystring";

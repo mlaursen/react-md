@@ -1,14 +1,13 @@
 @use "@react-md/button";
 @use "@react-md/core";
-@use "@react-md/icon";
 
 $disable-margin-top-transition: false !default;
 
 $padding: 1rem !default;
 $spacing: 1rem !default;
-$button-spacing: icon.$spacing !default;
-$rotate-from: icon.$rotate-from !default;
-$rotate-to: icon.$rotate-to !default;
+$button-spacing: core.$icon-spacing !default;
+$rotate-from: core.$icon-rotate-from !default;
+$rotate-to: core.$icon-rotate-to !default;
 
 @mixin styles {
   // does not require custom styles
@@ -48,12 +47,12 @@ $rotate-to: icon.$rotate-to !default;
   // }
 
   .rmd-expansion-panel__button {
-    @if $rotate-from != icon.$rotate-from {
-      @include icon.set-var(rotate-from, $rotate-from);
+    @if $rotate-from != core.$icon-rotate-from {
+      @include core.icon-set-var(rotate-from, $rotate-from);
     }
 
-    @if $rotate-to != icon.$rotate-to {
-      @include icon.set-var(rotate-to, $rotate-to);
+    @if $rotate-to != core.$icon-rotate-to {
+      @include core.icon-set-var(rotate-to, $rotate-to);
     }
 
     @if button.$disable-unstyled-utility-class {

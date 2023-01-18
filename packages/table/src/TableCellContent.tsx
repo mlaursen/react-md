@@ -1,6 +1,5 @@
 import { ButtonUnstyled } from "@react-md/button";
-import { bem } from "@react-md/core";
-import { IconRotator, TextIconSpacing } from "@react-md/icon";
+import { bem, IconRotator, TextIconSpacing } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 import { forwardRef } from "react";

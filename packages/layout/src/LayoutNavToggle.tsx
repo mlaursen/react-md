@@ -1,7 +1,6 @@
 import { Button } from "@react-md/button";
-import { useCSSTransition } from "@react-md/core";
+import { useCSSTransition, useIcon } from "@react-md/core";
 import { DEFAULT_SHEET_TIMEOUT } from "@react-md/dialog";
-import { useIcon } from "@react-md/icon";
 import { cnb } from "cnbuilder";
 import { forwardRef } from "react";
 

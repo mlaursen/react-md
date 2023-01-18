@@ -1,12 +1,11 @@
 import { ButtonUnstyled } from "@react-md/button";
 import type {
+  IconRotatorProps,
   PropsWithRef,
   TypographyProps,
   TypographyType,
 } from "@react-md/core";
-import { Typography } from "@react-md/core";
-import type { IconRotatorProps } from "@react-md/icon";
-import { IconRotator, useIcon } from "@react-md/icon";
+import { IconRotator, Typography, useIcon } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { ButtonHTMLAttributes, MouseEventHandler, ReactNode } from "react";
 import { forwardRef } from "react";

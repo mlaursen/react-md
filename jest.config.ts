@@ -20,7 +20,6 @@ const config: Config = {
       "<rootDir>/packages/expansion-panel/src/index.ts",
     ],
     "^@react-md/form$": ["<rootDir>/packages/form/src/index.ts"],
-    "^@react-md/icon$": ["<rootDir>/packages/icon/src/index.ts"],
     "^@react-md/layout$": ["<rootDir>/packages/layout/src/index.ts"],
     "^@react-md/link$": ["<rootDir>/packages/link/src/index.ts"],
     "^@react-md/list$": ["<rootDir>/packages/list/src/index.ts"],

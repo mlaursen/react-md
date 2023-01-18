@@ -10,8 +10,10 @@
 @forward "interaction/interaction" as interaction-*;
 @forward "draggable/draggable" as draggable-*;
 @forward "windowSplitter/window-splitter" as window-splitter-*;
+@forward "icon/icon" as icon-*;
 
 @use "box/box";
+@use "icon/icon";
 @use "theme/theme";
 @use "transition/transition";
 @use "interaction/interaction";
@@ -69,6 +71,7 @@ $disable-default-root-theme: false !default;
   @include interaction.styles;
 
   @include box.styles;
+  @include icon.styles;
   @include draggable.styles;
   @include window-splitter.styles;
 

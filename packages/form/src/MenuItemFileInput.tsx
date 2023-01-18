@@ -1,5 +1,4 @@
-import { useEnsuredId } from "@react-md/core";
-import { useIcon } from "@react-md/icon";
+import { useEnsuredId, useIcon } from "@react-md/core";
 import type { MenuItemProps } from "@react-md/menu";
 import { MenuItem } from "@react-md/menu";
 import type { ChangeEventHandler, InputHTMLAttributes } from "react";

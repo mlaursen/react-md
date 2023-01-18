@@ -1,4 +1,4 @@
-import { IconRotator, useIcon } from "@react-md/icon";
+import { IconRotator, useIcon } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { MouseEventHandler, ReactElement, ReactNode } from "react";
 import { cloneElement, isValidElement } from "react";

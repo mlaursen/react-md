@@ -3,8 +3,8 @@ import {
   RippleContainer,
   useElementInteraction,
   useHigherContrastChildren,
+  useIcon,
 } from "@react-md/core";
-import { useIcon } from "@react-md/icon";
 import { cnb } from "cnbuilder";
 import type {
   ButtonHTMLAttributes,

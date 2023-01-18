@@ -2,7 +2,6 @@
 @use "sass:map";
 @use "@react-md/avatar";
 @use "@react-md/core";
-@use "@react-md/icon";
 @use "@react-md/progress";
 
 $disable-icon: false !default;
@@ -20,7 +19,7 @@ $disable-selected-theme: false !default;
 $disable-selectable-icon-transition: false !default;
 $disable-noninteractive: false !default;
 
-$gap: icon.$spacing !default;
+$gap: core.$icon-spacing !default;
 $height: 2rem !default;
 $border-radius: 1rem !default;
 $icon-size: 1.125rem !default;
@@ -184,7 +183,7 @@ $var-lookup: (
 
   .rmd-chip {
     @if not $disable-icon {
-      @include icon.set-var(size, $icon-size);
+      @include core.icon-set-var(size, $icon-size);
     }
 
     @if not $disable-avatar {
@@ -251,7 +250,7 @@ $var-lookup: (
         @include use-var(background-color, theme-background-color);
         @include use-var(color, theme-color);
         @if not $disable-icon {
-          @include icon.set-var(color, currentcolor);
+          @include core.icon-set-var(color, currentcolor);
         }
       }
     }
@@ -259,7 +258,7 @@ $var-lookup: (
     &--disabled {
       @include core.use-theme-var(color, text-disabled-color);
       @if not $disable-icon {
-        @include icon.set-var(color, currentcolor);
+        @include core.icon-set-var(color, currentcolor);
       }
     }
 
@@ -323,7 +322,7 @@ $var-lookup: (
           $selected-transition-timing-function;
 
         &--visible {
-          @include icon.use-var(max-width, size);
+          @include core.icon-use-var(max-width, size);
           @include core.auto-rtl(margin-right, 0);
         }
       }

@@ -7,10 +7,11 @@ import type { PropsWithRef } from "@react-md/core";
 import {
   RippleContainer,
   SrOnly,
+  TextIconSpacing,
   useElementInteraction,
   useEnsuredId,
+  useIcon,
 } from "@react-md/core";
-import { TextIconSpacing, useIcon } from "@react-md/icon";
 import { cnb } from "cnbuilder";
 import type {
   InputHTMLAttributes,

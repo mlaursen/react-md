@@ -1,6 +1,5 @@
 @use "sass:map";
 @use "@react-md/core";
-@use "@react-md/icon";
 
 $disable-icon: false !default;
 $disable-stacked: false !default;
@@ -12,7 +11,7 @@ $disable-tablist-hidden-scrollbar: false !default;
 $disable-tablist-scroll-button: false !default;
 
 $typography: map.remove(core.$button-styles, line-height) !default;
-$gap: icon.$spacing !default;
+$gap: core.$icon-spacing !default;
 $height: 3rem !default;
 $stacked-height: 4.5rem !default;
 $horizontal-padding: 1rem !default;
@@ -175,7 +174,7 @@ $var-lookup: (
     @include core.map-to-styles($typography);
     @include use-var(color);
     @if not $disable-icon {
-      @include icon.set-var(color, currentcolor);
+      @include core.icon-set-var(color, currentcolor);
     }
 
     align-items: center;

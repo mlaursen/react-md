@@ -1,6 +1,6 @@
-import { forwardRef } from "react";
-import type { SVGIconProps } from "@react-md/icon";
-import { SVGIcon } from "@react-md/icon";
+import type {SVGIconProps} from "@react-md/core";
+import {SVGIcon} from "@react-md/core";
+import {forwardRef} from "react";
 
 export default forwardRef<SVGSVGElement, SVGIconProps>(
   function FileDownloadOffIcon(props, ref) {

@@ -1,5 +1,5 @@
-import type { SVGIconProps } from "@react-md/icon";
-import { SVGIcon } from "@react-md/icon";
+import type { SVGIconProps } from "@react-md/core";
+import { SVGIcon } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { ReactElement } from "react";
 

@@ -1,6 +1,5 @@
 import type { UseStateInitializer, UseStateSetter } from "@react-md/core";
-import { useEnsuredId, useEnsuredRef } from "@react-md/core";
-import { useIcon } from "@react-md/icon";
+import { useEnsuredId, useEnsuredRef, useIcon } from "@react-md/core";
 import type {
   HTMLAttributes,
   ReactNode,

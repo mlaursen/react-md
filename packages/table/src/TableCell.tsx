@@ -1,6 +1,5 @@
 import type { PropsWithRef } from "@react-md/core";
-import { bem } from "@react-md/core";
-import { useIcon } from "@react-md/icon";
+import { bem, useIcon } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type {
   ButtonHTMLAttributes,
@@ -84,7 +83,7 @@ export interface TableCellProps extends TableCellAttributes, TableCellOptions {
 
   /**
    * An optional sort icon to use. This will be defaulted to the configured sort
-   * icon from the `@react-md/icon` package. If you do not want the default
+   * icon from the `@react-md/core` package. If you do not want the default
    * implementation for the sort icon behavior from `react-md`, you can set this
    * prop to `null`.
    */

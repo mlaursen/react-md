@@ -1,6 +1,5 @@
 import type { PropsWithRef } from "@react-md/core";
-import { bem, useEnsuredId } from "@react-md/core";
-import { useIcon } from "@react-md/icon";
+import { bem, useEnsuredId, useIcon } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type {
   CSSProperties,

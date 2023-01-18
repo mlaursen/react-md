@@ -1,5 +1,5 @@
 import { Button } from "@react-md/button";
-import { useIcon } from "@react-md/icon";
+import { useIcon } from "@react-md/core";
 import type { MouseEvent } from "react";
 import { forwardRef, useCallback } from "react";
 

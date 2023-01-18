@@ -1,9 +1,8 @@
 import "./app.scss";
 
-import { CoreProviders, ThemeProvider } from "@react-md/core";
 import { MDXProvider } from "@mdx-js/react";
-import type { ConfiguredIcons } from "@react-md/icon";
-import { IconProvider } from "@react-md/icon";
+import type { ConfiguredIcons } from "@react-md/core";
+import { CoreProviders, IconProvider, ThemeProvider } from "@react-md/core";
 import ArrowDropDownIcon from "@react-md/material-icons/ArrowDropDownIcon";
 import ArrowUpwardIcon from "@react-md/material-icons/ArrowUpwardIcon";
 import CheckBoxIcon from "@react-md/material-icons/CheckBoxIcon";
@@ -27,8 +26,8 @@ import Head from "next/head";
 import type { ReactElement } from "react";
 import { CodeConfigProvider } from "src/components/Code";
 import Layout from "src/components/Layout/Layout";
-import { LoadThemeStyles } from "src/components/Theme/LoadThemeStyles";
 import { MDX_COMPONENTS } from "src/components/MDXComponents";
+import { LoadThemeStyles } from "src/components/Theme/LoadThemeStyles";
 import {
   defaultColorSchemeMode,
   defaultDisableHighContrastMode,

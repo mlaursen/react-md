@@ -1,6 +1,6 @@
-import type { TextThemeColor, ThemeColor } from "@react-md/core";
-import { bem } from "@react-md/core";
 import { cnb } from "cnbuilder";
+import type { TextThemeColor, ThemeColor } from "../theme";
+import { bem } from "../utils";
 
 const styles = bem("rmd-icon");
 const rotatorStyles = bem("rmd-icon-rotator");

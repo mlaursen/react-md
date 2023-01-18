@@ -1,7 +1,6 @@
 @use "sass:map";
 @use "@react-md/core";
 @use "@react-md/avatar";
-@use "@react-md/icon";
 @use "@react-md/divider";
 
 $disable-horizontal: false !default;
@@ -137,7 +136,7 @@ $var-lookup: (
   $keyline: get-var(item-keyline);
   $padding: get-var(item-horizontal-padding);
 
-  @include icon.set-var(
+  @include core.icon-set-var(
     spacing,
     calc(#{$keyline} - #{$padding} - #{$subtract})
   );
@@ -257,7 +256,7 @@ $var-lookup: (
       }
 
       &--before {
-        @include _addon-spacing(icon.get-var(size));
+        @include _addon-spacing(core.icon-get-var(size));
       }
 
       @if not $disable-item-avatar {
@@ -268,7 +267,7 @@ $var-lookup: (
 
       @if not $disable-item-media {
         &--media {
-          @include icon.set-var(spacing, get-var(item-media-spacing));
+          @include core.icon-set-var(spacing, get-var(item-media-spacing));
           @include use-var(width, item-media-size);
         }
 

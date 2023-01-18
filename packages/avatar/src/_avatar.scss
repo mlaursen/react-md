@@ -1,7 +1,6 @@
 @use "sass:map";
 @use "sass:math";
 @use "@react-md/core";
-@use "@react-md/icon";
 
 $disable-icon: false !default;
 $disable-icon-size: false !default;
@@ -14,7 +13,7 @@ $line-height: map.get(core.$subtitle-1-styles, line-height) !default;
 $border-radius: 50% !default;
 $size: 2.5rem !default;
 $font-size: 1.5rem !default;
-$icon-sized-size: icon.get-var(size) !default;
+$icon-sized-size: core.icon-get-var(size) !default;
 $icon-sized-font-size: 0.75rem !default;
 
 $colors: (
@@ -100,7 +99,7 @@ $var-lookup: (
 @mixin styles {
   .rmd-avatar {
     @if not $disable-icon {
-      @include icon.set-var(color, currentcolor);
+      @include core.icon-set-var(color, currentcolor);
     }
     @include core.map-to-styles(core.$base-font-styles);
     @include use-var(background-color);

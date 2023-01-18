@@ -1,4 +1,3 @@
-/** @module @react-md/icon */
 export * from "./FontIcon";
 export * from "./IconProvider";
 export * from "./IconRotator";

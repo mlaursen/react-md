@@ -105,7 +105,7 @@ export interface TextIconSpacingProps {
  * @example
  * Simple Example
  * ```tsx
- * import { TextIconSpacing, FontIcon } from "@react-md/icon";
+ * import { TextIconSpacing, FontIcon } from "@react-md/core";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {
@@ -120,7 +120,7 @@ export interface TextIconSpacingProps {
  * @example
  * Stacked Example
  * ```tsx
- * import { TextIconSpacing, FontIcon } from "@react-md/icon";
+ * import { TextIconSpacing, FontIcon } from "@react-md/core";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {

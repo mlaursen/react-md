@@ -1,6 +1,5 @@
 @use "sass:map";
 @use "@react-md/core";
-@use "@react-md/icon";
 
 $disable-skip-to-main: false !default;
 
@@ -87,7 +86,7 @@ $var-lookup: (
       }
     }
     @include core.interaction-outline;
-    @include icon.use-var(gap, spacing);
+    @include core.icon-use-var(gap, spacing);
     @include use-var(color);
 
     align-items: center;

@@ -6,15 +6,16 @@ import {
   BELOW_CENTER_ANCHOR,
   bem,
   findMatchIndex,
+  IconRotator,
   isSearchableEvent,
   KeyboardMovementProvider,
   loop,
   useEnsuredId,
   useEnsuredRef,
+  useIcon,
   useKeyboardMovementProvider,
   useToggle,
 } from "@react-md/core";
-import { IconRotator, useIcon } from "@react-md/icon";
 import type { MenuProps } from "@react-md/menu";
 import { Menu } from "@react-md/menu";
 import { cnb } from "cnbuilder";

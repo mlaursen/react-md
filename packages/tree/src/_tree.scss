@@ -1,7 +1,6 @@
 // @use "sass:list";
 @use "sass:map";
 @use "@react-md/core";
-@use "@react-md/icon";
 @use "@react-md/list";
 
 $disable-expander-left: false !default;
@@ -11,7 +10,7 @@ $disable-selected-background-color: false !default;
 
 $padding-incrementor: list.$item-horizontal-padding * 1.5 !default;
 $padding-base: list.get-var(item-keyline) !default;
-$expander-right-from: icon.$rotate-from !default;
+$expander-right-from: core.$icon-rotate-from !default;
 $expander-right-to: 90deg !default;
 $expander-left-from: 0deg !default;
 $expander-left-to: -90deg !default;
@@ -91,8 +90,8 @@ $var-lookup: (
   }
 
   .rmd-tree-item {
-    @include icon.set-var(rotate-from, $expander-right-from);
-    @include icon.set-var(rotate-to, $expander-right-to);
+    @include core.icon-set-var(rotate-from, $expander-right-from);
+    @include core.icon-set-var(rotate-to, $expander-right-to);
     @include set-var(
       item-padding,
       calc(
@@ -104,8 +103,8 @@ $var-lookup: (
 
     @if not $disable-expander-left {
       &--expander-left {
-        @include icon.set-var(rotate-from, $expander-left-from);
-        @include icon.set-var(rotate-to, $expander-left-to);
+        @include core.icon-set-var(rotate-from, $expander-left-from);
+        @include core.icon-set-var(rotate-to, $expander-left-to);
       }
     }
 

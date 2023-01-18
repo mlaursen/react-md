@@ -25,7 +25,6 @@
     "@react-md/core": "^6.0.0-alpha.0",
     "@react-md/divider": "^6.0.0-alpha.0",
     "@react-md/form": "^6.0.0-alpha.0",
-    "@react-md/icon": "^6.0.0-alpha.0",
     "cnbuilder": "^3.1.0"
   },
   "peerDependencies": {

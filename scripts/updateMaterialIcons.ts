@@ -73,7 +73,7 @@ const MATERIAL_ICONS_ROOT = join(PACKAGES_ROOT, "material-icons");
 const MATERIAL_ICONS_SRC = join(MATERIAL_ICONS_ROOT, "src");
 
 const TYPE_DEFINITION_FILE = `/// <reference types="react" />
-import { SVGIconProps } from "@react-md/icon"
+import { SVGIconProps } from "@react-md/core"
 declare const _default: import("react").ForwardRefExoticComponent<SVGIconProps & import("react").RefAttributes<SVGSVGElement>>;
 export default _default;
 `;
@@ -226,8 +226,8 @@ async function run(): Promise<void> {
 
         const contents = format(
           `import { forwardRef } from "react";
-  import type { SVGIconProps} from "@react-md/icon";
-  import { SVGIcon } from "@react-md/icon";
+  import type { SVGIconProps} from "@react-md/core";
+  import { SVGIcon } from "@react-md/core";
 
   export default forwardRef<SVGSVGElement, SVGIconProps>(
   function ${componentName}(props, ref) {

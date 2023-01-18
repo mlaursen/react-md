@@ -8,8 +8,7 @@ import {
   CardSubtitle,
   CardTitle,
 } from "@react-md/card";
-import { Box, Collapse, Typography } from "@react-md/core";
-import { IconRotator } from "@react-md/icon";
+import { Box, Collapse, IconRotator, Typography } from "@react-md/core";
 import { List, ListItem } from "@react-md/list";
 import EmailIcon from "@react-md/material-icons/EmailIcon";
 import KeyboardArrowDownIcon from "@react-md/material-icons/KeyboardArrowDownIcon";
