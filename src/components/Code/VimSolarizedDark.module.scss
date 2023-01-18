@@ -109,19 +109,19 @@ $green: #859900;
     &.entity {
       cursor: help;
     }
+  }
 
-    .language-scss .token.function,
-    .language-scss .token.variable {
-      color: $blue;
-    }
+  .language-scss .token.function,
+  .language-scss .token.variable {
+    color: $blue;
+  }
 
-    .language-ts .token + .class-name {
-      color: $base-1;
-    }
+  .language-ts .token + .class-name {
+    color: $base-1;
+  }
 
-    .language-scss .token.function,
-    .language-shell .token.function {
-      color: $orange;
-    }
+  .language-scss .token.function,
+  .language-shell .token.function {
+    color: $orange;
   }
 }
