@@ -12,10 +12,12 @@
 @forward "windowSplitter/window-splitter" as window-splitter-*;
 @forward "icon/icon" as icon-*;
 @forward "divider/divider" as divider-*;
+@forward "progress/progress" as progress-*;
 
 @use "box/box";
 @use "icon/icon";
 @use "divider/divider";
+@use "progress/progress";
 @use "theme/theme";
 @use "transition/transition";
 @use "interaction/interaction";
@@ -75,6 +77,7 @@ $disable-default-root-theme: false !default;
   @include box.styles;
   @include icon.styles;
   @include divider.styles;
+  @include progress.styles;
   @include draggable.styles;
   @include window-splitter.styles;
 

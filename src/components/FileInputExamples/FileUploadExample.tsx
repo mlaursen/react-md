@@ -7,7 +7,7 @@ import {
   FormMessageCounter,
   useFileUpload,
 } from "@react-md/form";
-import { LinearProgress } from "@react-md/progress";
+import { LinearProgress } from "@react-md/core";
 import type { ReactElement } from "react";
 import { FilePreview } from "../FilePreview";
 import { FileUploadErrorModal } from "../FileUploadErrorModal";

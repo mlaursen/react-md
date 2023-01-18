@@ -4,7 +4,6 @@
 @use "@react-md/core";
 @use "@react-md/button";
 @use "@react-md/list";
-@use "@react-md/progress";
 @use "@react-md/tooltip";
 
 $disable-fieldset: false !default;
@@ -28,7 +27,7 @@ $disable-native-select-multiple: false !default;
 $disable-checkbox: false !default;
 $disable-radio: false !default;
 $disable-switch: false !default;
-$disable-switch-circular-progress: progress.$disable-circular !default;
+$disable-switch-circular-progress: core.$progress-disable-circular !default;
 $disable-menu-item-checkbox: $disable-checkbox !default;
 $disable-menu-item-radio: $disable-radio !default;
 $disable-menu-item-switch: $disable-switch !default;
@@ -1243,11 +1242,11 @@ $var-lookup: (
 
       @if not $disable-switch-circular-progress {
         &--async {
-          @include progress.set-var(
+          @include core.progress-set-var(
             circular-stroke-width,
             $switch-circular-progress-width
           );
-          @include progress.set-var(circular-size, $switch-ball-size);
+          @include core.progress-set-var(circular-size, $switch-ball-size);
         }
       }
     }

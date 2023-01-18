@@ -1,7 +1,6 @@
 @use "sass:list";
 @use "sass:map";
 @use "@react-md/core";
-@use "@react-md/progress";
 
 $disable-text: false !default;
 $disable-icon: false !default;
@@ -12,7 +11,7 @@ $disable-contained-interaction-colors: core.$interaction-light-theme-base-backgr
   == core.$interaction-dark-theme-base-background-color !default;
 $disable-floating: false !default;
 $disable-floating-absolute-position: false !default;
-$disable-circular-progress: progress.$disable-circular !default;
+$disable-circular-progress: core.$progress-disable-circular !default;
 $disable-unstyled-utility-class: false !default;
 
 $themes: primary secondary warning error disabled !default;
@@ -174,7 +173,7 @@ $var-lookup: (
 @mixin styles {
   .rmd-button {
     @if not $disable-circular-progress {
-      @include progress.set-var(circular-size, $circular-progress-size);
+      @include core.progress-set-var(circular-size, $circular-progress-size);
     }
 
     @include core.interaction-surface(

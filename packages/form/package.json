@@ -38,7 +38,6 @@
     "@react-md/button": "^6.0.0-alpha.0",
     "@react-md/core": "^6.0.0-alpha.0",
     "@react-md/list": "^6.0.0-alpha.0",
-    "@react-md/progress": "^6.0.0-alpha.0",
     "@react-md/tooltip": "^6.0.0-alpha.0",
     "cnbuilder": "^3.1.0",
     "nanoid": "^4.0.0"

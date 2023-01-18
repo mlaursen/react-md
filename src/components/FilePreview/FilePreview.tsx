@@ -13,7 +13,7 @@ import type {
 } from "@react-md/form";
 import CloseIcon from "@react-md/material-icons/CloseIcon";
 import InsertDriveFileIcon from "@react-md/material-icons/InsertDriveFileIcon";
-import { LinearProgress } from "@react-md/progress";
+import { LinearProgress } from "@react-md/core";
 import { visualMediaContainer } from "@react-md/visual-media";
 import { cnb } from "cnbuilder";
 import { filesize } from "filesize";

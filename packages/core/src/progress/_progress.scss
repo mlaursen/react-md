@@ -1,6 +1,8 @@
 @use "sass:color";
 @use "sass:map";
-@use "@react-md/core";
+@use "../utils";
+@use "../theme/theme";
+@use "../transition/transition";
 
 $disable-linear: false !default;
 $disable-linear-vertical: false !default;
@@ -11,12 +13,12 @@ $disable-circular-centered-styles: false !default;
 $disable-determinate: false !default;
 $disable-indeterminate: false !default;
 
-$color: core.theme-get-var(primary-color) !default;
-$background-color: core.get-swatch(
-  core.$primary-color,
+$color: theme.theme-get-var(primary-color) !default;
+$background-color: theme.get-swatch(
+  theme.$primary-color,
   300,
   false,
-  rgba(core.$primary-color, 0.4)
+  rgba(theme.$primary-color, 0.4)
 ) !default;
 
 $circular-size: 3rem !default;
@@ -223,7 +225,7 @@ $var-lookup: (
 );
 
 @function get-var($name, $fallback: null) {
-  $found: core.validate($var-lookup, $name, "progress var");
+  $found: utils.validate($var-lookup, $name, "progress var");
   $var: map.get($found, var);
   $value: if($fallback, $fallback, map.get($found, value));
 
@@ -235,7 +237,7 @@ $var-lookup: (
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(core.validate($var-lookup, $name, "progress var"), var);
+  $var: map.get(utils.validate($var-lookup, $name, "progress var"), var);
 
   #{$var}: #{$value};
 }
@@ -248,7 +250,7 @@ $var-lookup: (
   @if $styles {
     @each $percentage, $style in $styles {
       #{$percentage} {
-        @include core.map-to-styles($style);
+        @include utils.map-to-styles($style);
       }
     }
   }
@@ -287,7 +289,7 @@ $var-lookup: (
         &--animate {
           transition: transform
             $circular-transition-duration
-            core.$linear-timing-function;
+            transition.$linear-timing-function;
         }
       }
 
@@ -313,7 +315,7 @@ $var-lookup: (
         &--animate {
           transition: stroke-dasharray
             $circular-transition-duration
-            core.$linear-timing-function;
+            transition.$linear-timing-function;
         }
       }
 
@@ -340,12 +342,12 @@ $var-lookup: (
 @mixin _linear-progress-bar {
   @if not $disable-linear-horizontal {
     &--horizontal {
-      @include core.auto-rtl(left, 0);
+      @include utils.auto-rtl(left, 0);
     }
 
     @if not $disable-linear-reverse {
       &--horizontal-reverse {
-        @include core.auto-rtl-group(
+        @include utils.auto-rtl-group(
           (
             left: auto,
             right: 0,
@@ -371,9 +373,9 @@ $var-lookup: (
   }
 
   &--animate {
-    transition-duration: core.$linear-duration;
+    transition-duration: transition.$linear-duration;
     transition-property: height, width;
-    transition-timing-function: core.$sharp-timing-function;
+    transition-timing-function: transition.$sharp-timing-function;
   }
 
   @if not $disable-determinate {
@@ -390,7 +392,7 @@ $var-lookup: (
     &--indeterminate {
       &::before,
       &::after {
-        @include core.auto-rtl-group(
+        @include utils.auto-rtl-group(
           (
             left: 0,
             right: 100%,
@@ -402,7 +404,7 @@ $var-lookup: (
 
         animation-duration: $linear-transition-duration;
         animation-iteration-count: infinite;
-        animation-timing-function: core.$linear-timing-function;
+        animation-timing-function: transition.$linear-timing-function;
         content: "";
         position: absolute;
         will-change: left, right;

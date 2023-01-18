@@ -8,7 +8,7 @@ import {
 } from "@react-md/form";
 import FileUploadIcon from "@react-md/material-icons/FileUploadIcon";
 import { DropdownMenu } from "@react-md/menu";
-import { LinearProgress } from "@react-md/progress";
+import { LinearProgress } from "@react-md/core";
 import type { ReactElement } from "react";
 
 import { FilePreview } from "../FilePreview";

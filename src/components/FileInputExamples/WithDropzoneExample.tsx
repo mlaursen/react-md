@@ -14,7 +14,7 @@ import CheckCircleIcon from "@react-md/material-icons/CheckCircleIcon";
 import CloseIcon from "@react-md/material-icons/CloseIcon";
 import FileUploadIcon from "@react-md/material-icons/FileUploadIcon";
 import WatchIcon from "@react-md/material-icons/WatchIcon";
-import { LinearProgress } from "@react-md/progress";
+import { LinearProgress } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import { filesize } from "filesize";
 import type { ReactElement } from "react";

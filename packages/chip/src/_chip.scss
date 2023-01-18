@@ -2,7 +2,6 @@
 @use "sass:map";
 @use "@react-md/avatar";
 @use "@react-md/core";
-@use "@react-md/progress";
 
 $disable-icon: false !default;
 $disable-avatar: false !default;
@@ -191,8 +190,8 @@ $var-lookup: (
     }
 
     @if not $disable-progress {
-      @include progress.set-var(circular-size, $progress-size);
-      @include progress.set-var(circular-stroke-width, $progress-width);
+      @include core.progress-set-var(circular-size, $progress-size);
+      @include core.progress-set-var(circular-stroke-width, $progress-width);
     }
     @include core.interaction-surface(
       $disabled-selector: "&:disabled" +
