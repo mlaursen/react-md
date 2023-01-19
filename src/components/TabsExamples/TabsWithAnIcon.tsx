@@ -1,7 +1,13 @@
-import { Box, Slide, SlideContainer } from "@react-md/core";
+import {
+  Box,
+  Slide,
+  SlideContainer,
+  Tab,
+  TabList,
+  useTabs,
+} from "@react-md/core";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import TimerIcon from "@react-md/material-icons/TimerIcon";
-import { Tab, TabList, useTabs } from "@react-md/tabs";
 import { VisualMediaContainer } from "@react-md/visual-media";
 import type { ReactElement } from "react";
 

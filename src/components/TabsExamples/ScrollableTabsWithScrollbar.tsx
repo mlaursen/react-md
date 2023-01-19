@@ -1,4 +1,4 @@
-import { Tab, TabList, useTabs } from "@react-md/tabs";
+import { Tab, TabList, useTabs } from "@react-md/core";
 import type { ReactElement } from "react";
 
 const tabs = Array.from({ length: 20 }, (_, i) => `Tab ${i + 1}`);

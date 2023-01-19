@@ -14,12 +14,14 @@
 @forward "divider/divider" as divider-*;
 @forward "progress/progress" as progress-*;
 @forward "button/button" as button-*;
+@forward "tabs/tabs" as tabs-*;
 
 @use "box/box";
 @use "icon/icon";
 @use "divider/divider";
 @use "progress/progress";
 @use "button/button";
+@use "tabs/tabs";
 @use "theme/theme";
 @use "transition/transition";
 @use "interaction/interaction";
@@ -77,6 +79,7 @@
   @include icon.styles;
   @include divider.styles;
   @include button.styles;
+  @include tabs.styles;
   @include progress.styles;
   @include draggable.styles;
   @include window-splitter.styles;

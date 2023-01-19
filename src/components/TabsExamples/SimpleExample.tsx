@@ -1,5 +1,4 @@
-import { Slide, SlideContainer } from "@react-md/core";
-import { Tab, TabList, useTabs } from "@react-md/tabs";
+import { Slide, SlideContainer, Tab, TabList, useTabs } from "@react-md/core";
 import type { ReactElement } from "react";
 
 import styles from "./SimpleExample.module.scss";

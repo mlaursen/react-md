@@ -1,8 +1,10 @@
-import type { UseStateSetter } from "@react-md/core";
-import { bem, KeyboardMovementProvider, useAppSize } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
+import { useAppSize } from "../AppSizeProvider";
+import { KeyboardMovementProvider } from "../movement";
+import type { UseStateSetter } from "../types";
+import { bem } from "../utils";
 import type { BaseTabListScrollButtonProps } from "./TabListScrollButton";
 import { TabListScrollButton } from "./TabListScrollButton";
 import { useTabList } from "./useTabList";

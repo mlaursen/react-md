@@ -15,6 +15,7 @@ export * from "./positioning";
 export * from "./progress";
 export * from "./scroll";
 export * from "./SsrProvider";
+export * from "./tabs";
 export * from "./theme";
 export * from "./transition";
 export * from "./types";

@@ -3,6 +3,8 @@ import {
   Button,
   Slide,
   SlideContainer,
+  Tab,
+  TabList,
   Typography,
   useCarousel,
 } from "@react-md/core";
@@ -10,7 +12,6 @@ import ChevronLeftIcon from "@react-md/material-icons/ChevronLeftIcon";
 import ChevronRightIcon from "@react-md/material-icons/ChevronRightIcon";
 import PauseIcon from "@react-md/material-icons/PauseIcon";
 import PlayArrowIcon from "@react-md/material-icons/PlayArrowIcon";
-import { Tab, TabList } from "@react-md/tabs";
 import { visualMedia, VisualMediaOverlay } from "@react-md/visual-media";
 import type { ReactElement } from "react";
 import { useId } from "react";

@@ -1,11 +1,8 @@
-import type {
-  SlideDirection,
-  UseStateInitializer,
-  UseStateSetter,
-} from "@react-md/core";
-import { useEnsuredId } from "@react-md/core";
 import type { Ref, RefObject } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
+import type { SlideDirection } from "../transition";
+import type { UseStateInitializer, UseStateSetter } from "../types";
+import { useEnsuredId } from "../useEnsuredId";
 
 const noop = (): void => {
   // do nothing

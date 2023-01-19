@@ -1,5 +1,11 @@
 @use "sass:map";
-@use "@react-md/core";
+
+@use "../utils";
+@use "../theme/theme";
+@use "../transition/transition";
+@use "../typography/typography";
+@use "../interaction/interaction";
+@use "../icon/icon";
 
 $disable-icon: false !default;
 $disable-stacked: false !default;
@@ -10,8 +16,8 @@ $disable-tablist-indicator: false !default;
 $disable-tablist-hidden-scrollbar: false !default;
 $disable-tablist-scroll-button: false !default;
 
-$typography: map.remove(core.$button-styles, line-height) !default;
-$gap: core.$icon-spacing !default;
+$typography: map.remove(typography.$button-styles, line-height) !default;
+$gap: icon.$spacing !default;
 $height: 3rem !default;
 $stacked-height: 4.5rem !default;
 $horizontal-padding: 1rem !default;
@@ -19,16 +25,16 @@ $vertical-padding: 0.75rem !default;
 $min-width: 5.625rem !default;
 $max-width: 20rem !default;
 $indicator-height: 0.125rem !default;
-$indicator-background: core.theme-get-var(primary-color) !default;
-$active-color: core.theme-get-var(text-primary-color) !default;
-$inactive-color: core.theme-get-var(text-secondary-color) !default;
-$disabled-color: core.theme-get-var(text-disabled-color) !default;
-$transition-duration: core.$linear-duration !default;
-$transition-timing-function: core.$linear-timing-function !default;
+$indicator-background: theme.theme-get-var(primary-color) !default;
+$active-color: theme.theme-get-var(text-primary-color) !default;
+$inactive-color: theme.theme-get-var(text-secondary-color) !default;
+$disabled-color: theme.theme-get-var(text-disabled-color) !default;
+$transition-duration: transition.$linear-duration !default;
+$transition-timing-function: transition.$linear-timing-function !default;
 
 $tablist-padding-left: 3.25rem !default;
 $tablist-scroller-z-index: 2 !default;
-$tablist-scroller-background-color: core.theme-get-var(
+$tablist-scroller-background-color: theme.theme-get-var(
   background-color,
   inherit
 ) !default;
@@ -57,7 +63,7 @@ $var-lookup: (
 );
 
 @function get-var($name, $fallback: null) {
-  $found: core.validate($var-lookup, $name, "tabs var");
+  $found: utils.validate($var-lookup, $name, "tabs var");
   $var: map.get($found, var);
   $value: if($fallback, $fallback, map.get($found, value));
 
@@ -69,7 +75,7 @@ $var-lookup: (
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(core.validate($var-lookup, $name, "tabs var"), var);
+  $var: map.get(utils.validate($var-lookup, $name, "tabs var"), var);
 
   #{$var}: #{$value};
 }
@@ -112,7 +118,7 @@ $var-lookup: (
 
     @if not $disable-tablist-hidden-scrollbar {
       &--no-scrollbar {
-        @include core.hide-scrollbar;
+        @include utils.hide-scrollbar;
       }
     }
 
@@ -134,7 +140,7 @@ $var-lookup: (
 
     @if not $disable-tablist-padded {
       &--padded {
-        @include core.auto-rtl(padding-left, $tablist-padding-left);
+        @include utils.auto-rtl(padding-left, $tablist-padding-left);
       }
     }
 
@@ -154,15 +160,15 @@ $var-lookup: (
       z-index: $tablist-scroller-z-index;
 
       &--left {
-        @include core.auto-rtl(left, 0);
+        @include utils.auto-rtl(left, 0);
       }
 
       &--right {
-        @include core.auto-rtl(right, 0);
+        @include utils.auto-rtl(right, 0);
       }
 
       &__button {
-        @include core.rtl {
+        @include utils.rtl {
           transform: rotate(180deg);
         }
       }
@@ -170,11 +176,11 @@ $var-lookup: (
   }
 
   .rmd-tab {
-    @include core.interaction-surface;
-    @include core.map-to-styles($typography);
+    @include interaction.surface;
+    @include utils.map-to-styles($typography);
     @include use-var(color);
     @if not $disable-icon {
-      @include core.icon-set-var(color, currentcolor);
+      @include icon.set-var(color, currentcolor);
     }
 
     align-items: center;

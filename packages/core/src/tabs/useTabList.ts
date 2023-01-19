@@ -1,15 +1,4 @@
 import type {
-  KeyboardMovementContext,
-  KeyboardMovementProps,
-  UseStateSetter,
-} from "@react-md/core";
-import {
-  useDir,
-  useEnsuredRef,
-  useKeyboardMovementProvider,
-  useResizeObserver,
-} from "@react-md/core";
-import type {
   CSSProperties,
   FocusEventHandler,
   KeyboardEventHandler,
@@ -18,6 +7,15 @@ import type {
   RefObject,
 } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
+import type {
+  KeyboardMovementContext,
+  KeyboardMovementProps,
+} from "../movement";
+import { useKeyboardMovementProvider } from "../movement";
+import type { UseStateSetter } from "../types";
+import { useDir } from "../typography";
+import { useEnsuredRef } from "../useEnsuredRef";
+import { useResizeObserver } from "../useResizeObserver";
 import { getTabRoleOnly, scrollTabIntoView } from "./utils";
 
 const TAB_WIDTH_VAR = "--rmd-tab-width";

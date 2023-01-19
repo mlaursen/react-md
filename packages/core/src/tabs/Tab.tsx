@@ -1,14 +1,15 @@
-import {
-  bem,
-  RippleContainer,
-  useElementInteraction,
-  useEnsuredId,
-  useHigherContrastChildren,
-  useKeyboardMovementContext,
-} from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 import { forwardRef } from "react";
+
+import { useKeyboardMovementContext } from "../movement";
+import {
+  RippleContainer,
+  useElementInteraction,
+  useHigherContrastChildren,
+} from "../interaction";
+import { bem } from "../utils";
+import { useEnsuredId } from "../useEnsuredId";
 
 const styles = bem("rmd-tab");
 

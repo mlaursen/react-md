@@ -1,19 +1,13 @@
-import type {
-  ButtonClassNameThemeOptions,
-  ButtonProps,
-  PropsWithRef,
-} from "@react-md/core";
-import {
-  applyRef,
-  bem,
-  Button,
-  useDir,
-  useIcon,
-  useIntersectionObserver,
-} from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useCallback, useRef, useState } from "react";
+import type { ButtonClassNameThemeOptions, ButtonProps } from "../button";
+import { Button } from "../button";
+import { useIcon } from "../icon";
+import type { PropsWithRef } from "../types";
+import { useDir } from "../typography";
+import { useIntersectionObserver } from "../useIntersectionObserver";
+import { applyRef, bem } from "../utils";
 import type { GetTabListScrollToOptions } from "./utils";
 import { getTabListScrollToOptions } from "./utils";
 
