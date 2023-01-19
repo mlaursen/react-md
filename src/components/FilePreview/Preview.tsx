@@ -1,8 +1,11 @@
-import { TextIconSpacing, Typography } from "@react-md/core";
+import {
+  ResponsiveItemOverlay,
+  TextIconSpacing,
+  Typography,
+} from "@react-md/core";
 import type { FileReaderResult } from "@react-md/form";
 import { isImageFile, isVideoFile } from "@react-md/form";
 import ErrorIcon from "@react-md/material-icons/ErrorIcon";
-import { VisualMediaOverlay } from "@react-md/visual-media";
 import type { ReactElement } from "react";
 import { useState } from "react";
 
@@ -24,7 +27,7 @@ export function Preview({ file, result }: PreviewProps): ReactElement {
   return (
     <>
       {(typeof result !== "string" || error) && (
-        <VisualMediaOverlay position="middle" className={styles.overlay}>
+        <ResponsiveItemOverlay position="middle" className={styles.overlay}>
           <TextIconSpacing stacked icon={<ErrorIcon />}>
             <Typography>
               {!error
@@ -32,7 +35,7 @@ export function Preview({ file, result }: PreviewProps): ReactElement {
                 : "Your Browser is unable to preview this file."}
             </Typography>
           </TextIconSpacing>
-        </VisualMediaOverlay>
+        </ResponsiveItemOverlay>
       )}
       {typeof result === "string" && (
         <>

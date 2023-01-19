@@ -1,10 +1,10 @@
-import { bem } from "@react-md/core";
 import { cnb } from "cnbuilder";
+import { bem } from "../utils";
 
-const styles = bem("rmd-visual-media");
+const styles = bem("rmd-responsive-item");
 
 /** @remarks \@since 6.0.0 */
-export interface VisualMediaClassNameOptions {
+export interface ResponsiveItemClassNameOptions {
   className?: string;
 
   /**
@@ -26,7 +26,7 @@ export interface VisualMediaClassNameOptions {
    * Set this to `true` to force a specific aspect ratio.
    *
    * Note: This will only work if the parent element has applied the correct
-   * {@link visualMediaContainerStyles} as well.
+   * {@link ResponsiveItemContainerStyles} as well.
    *
    * @defaultValue `false`
    */
@@ -35,11 +35,13 @@ export interface VisualMediaClassNameOptions {
 
 /**
  * Applies the visual media responsive styles manually if you cannot use the
- * `VisualMediaContainer` component.
+ * `ResponsiveItemContainer` component.
  *
  * @remarks \@since 6.0.0
  */
-export function visualMedia(options: VisualMediaClassNameOptions = {}): string {
+export function responsiveItem(
+  options: ResponsiveItemClassNameOptions = {}
+): string {
   const {
     className,
     scaleToContainer = false,

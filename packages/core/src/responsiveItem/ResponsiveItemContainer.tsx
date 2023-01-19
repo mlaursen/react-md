@@ -1,12 +1,12 @@
-import { bem } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
+import { bem } from "../utils";
 
-const styles = bem("rmd-visual-media-container");
+const styles = bem("rmd-responsive-item-container");
 
 /** @remarks \@since 6.0.0 */
-export interface VisualMediaContainerClassNameOptions {
+export interface ResponsiveItemContainerClassNameOptions {
   className?: string;
 
   /**
@@ -34,7 +34,7 @@ export interface VisualMediaContainerClassNameOptions {
    * aspectRatio="1-1"
    * ```
    *
-   * These values are based on the `visual-media.$aspect-ratios` map.
+   * These values are based on the `core.$responsive-item-aspect-ratios` map.
    *
    * @defaultValue `""`
    */
@@ -53,7 +53,7 @@ export interface VisualMediaContainerClassNameOptions {
    * the container's dimensions.
    *
    * Note: The `"auto"` and `"container"` values use the
-   * `visual-media.$selectors` value for their behavior.
+   * `core.$respnsive-item-selectors` value for their behavior.
    *
    * @defaultValue `"auto"`
    */
@@ -61,8 +61,8 @@ export interface VisualMediaContainerClassNameOptions {
 }
 
 /** @remarks \@since 6.0.0 */
-export function visualMediaContainer(
-  options: VisualMediaContainerClassNameOptions = {}
+export function responsiveItemContainer(
+  options: ResponsiveItemContainerClassNameOptions = {}
 ): string {
   const {
     className,
@@ -86,29 +86,29 @@ export function visualMediaContainer(
 /**
  * @remarks
  * \@since 6.0.0 Renamed from `MediaContainerProps` to
- * `VisualMediaContainerProps`
+ * `ResponsiveItemContainerProps`
  * \@since 6.0.0 The `height` and `width` props were removed in favor of the
  * `aspectRatio` props since the latest typescript string interpolation supports
  * enforcing the correct format.
  * \@since 6.0.0 The `auto` prop was removed in favor of the new
- * {@link VisualMediaContainerProps.responsive} prop.
+ * {@link ResponsiveItemContainerProps.responsive} prop.
  */
-export interface VisualMediaContainerProps
+export interface ResponsiveItemContainerProps
   extends HTMLAttributes<HTMLSpanElement>,
-    VisualMediaContainerClassNameOptions {}
+    ResponsiveItemContainerClassNameOptions {}
 
 /**
  * @example
  * Image Example
  * ```tsx
- * import { VisualMediaContainer } from "@react-md/visual-media";
+ * import { ResponsiveItemContainer } from "@react-md/core";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {
  *   return (
- *     <VisualMediaContainer>
+ *     <ResponsiveItemContainer>
  *       <img alt="" src="/some-image.png" />
- *     </VisualMediaContainer>
+ *     </ResponsiveItemContainer>
  *   );
  * }
  * ```
@@ -116,18 +116,18 @@ export interface VisualMediaContainerProps
  * @example
  * Iframe Example
  * ```tsx
- * import { VisualMediaContainer } from "@react-md/visual-media";
+ * import { ResponsiveItemContainer } from "@react-md/core";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {
  *   return (
- *     <VisualMediaContainer>
+ *     <ResponsiveItemContainer>
  *       <iframe
  *         src="https://youtube.com/some-video-url"
  *         title="Some YouTube video"
  *         allowFullScreen
  *       />
- *     </VisualMediaContainer>
+ *     </ResponsiveItemContainer>
  *   );
  * }
  * ```
@@ -135,25 +135,25 @@ export interface VisualMediaContainerProps
  * @example
  * Forced Aspect Ratio
  * ```tsx
- * import { VisualMediaContainer } from "@react-md/visual-media";
+ * import { ResponsiveItemContainer } from "@react-md/core";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {
  *   return (
- *     <VisualMediaContainer aspectRatio="16-9">
+ *     <ResponsiveItemContainer aspectRatio="16-9">
  *       <img alt="" src="/some-image.png" />
- *     </VisualMediaContainer>
+ *     </ResponsiveItemContainer>
  *   );
  * }
  * ```
  *
  * @remarks \@since 6.0.0 Renamed from `MediaContainer` to
- * `VisualMediaContainer` and renders a `<span>` instead of a `<div>`.
+ * `ResponsiveItemContainer` and renders a `<span>` instead of a `<div>`.
  */
-export const VisualMediaContainer = forwardRef<
+export const ResponsiveItemContainer = forwardRef<
   HTMLSpanElement,
-  VisualMediaContainerProps
->(function VisualMediaContainer(props, ref) {
+  ResponsiveItemContainerProps
+>(function ResponsiveItemContainer(props, ref) {
   const {
     className,
     fullWidth = false,
@@ -167,7 +167,7 @@ export const VisualMediaContainer = forwardRef<
     <span
       {...remaining}
       ref={ref}
-      className={visualMediaContainer({
+      className={responsiveItemContainer({
         className,
         fullWidth,
         aspectRatio,

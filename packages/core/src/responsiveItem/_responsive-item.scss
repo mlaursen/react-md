@@ -1,10 +1,11 @@
 @use "sass:list";
 @use "sass:map";
 @use "sass:math";
-@use "@react-md/core";
+@use "../utils";
+@use "../theme/theme";
 
-$disable-visual-media: false !default;
-$disable-visual-media-item: false !default;
+$disable-everything: false !default;
+$disable-item: false !default;
 $disable-scale-to-container: false !default;
 $disable-auto: false !default;
 $disable-auto-scale: false !default;
@@ -19,7 +20,7 @@ $disable-overlay-center: false !default;
 $disable-overlay-absolute-center: false !default;
 
 $background-color: rgba(#000, 0.54) !default;
-$color: core.$dark-theme-text-primary-color !default;
+$color: theme.$dark-theme-text-primary-color !default;
 $z-index: 1 !default;
 
 $overlay-padding: 1rem !default;
@@ -42,7 +43,7 @@ $disable-aspect-ratios: not list.length(map.keys($aspect-ratios)) !default;
   width: 100%;
 }
 
-@mixin responsive {
+@mixin responsive-item {
   height: auto;
   width: 100%;
 }
@@ -58,10 +59,10 @@ $disable-aspect-ratios: not list.length(map.keys($aspect-ratios)) !default;
 }
 
 @mixin styles {
-  @if not $disable-visual-media {
-    @if not $disable-visual-media-item {
-      .rmd-visual-media {
-        @include responsive;
+  @if not $disable-everything {
+    @if not $disable-item {
+      .rmd-responsive-item {
+        @include responsive-item;
 
         @if not $disable-scale-to-container {
           &--scale {
@@ -77,7 +78,7 @@ $disable-aspect-ratios: not list.length(map.keys($aspect-ratios)) !default;
       }
     }
 
-    .rmd-visual-media-container {
+    .rmd-responsive-item-container {
       display: inline-block;
       position: relative;
 
@@ -85,7 +86,7 @@ $disable-aspect-ratios: not list.length(map.keys($aspect-ratios)) !default;
         &--auto {
           @each $selector in $selectors {
             #{$selector} {
-              @include responsive;
+              @include responsive-item;
             }
           }
         }
@@ -131,7 +132,7 @@ $disable-aspect-ratios: not list.length(map.keys($aspect-ratios)) !default;
     }
 
     @if not $disable-overlay {
-      .rmd-visual-media-overlay {
+      .rmd-responsive-item-overlay {
         background-color: $background-color;
         color: $color;
         padding: $overlay-padding;
@@ -157,13 +158,13 @@ $disable-aspect-ratios: not list.length(map.keys($aspect-ratios)) !default;
 
         @if not $disable-overlay-left {
           &--left {
-            @include core.auto-rtl(left, 0);
+            @include utils.auto-rtl(left, 0);
           }
         }
 
         @if not $disable-overlay-right {
           &--right {
-            @include core.auto-rtl(right, 0);
+            @include utils.auto-rtl(right, 0);
           }
         }
 

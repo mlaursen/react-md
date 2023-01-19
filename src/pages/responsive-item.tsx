@@ -1,10 +1,12 @@
 import { Card } from "@react-md/card";
-import { Box, TextContainer, Typography } from "@react-md/core";
-import type { VisualMediaOverlayPosition } from "@react-md/visual-media";
+import type { ResponsiveItemOverlayPosition } from "@react-md/core";
 import {
-  VisualMediaContainer,
-  VisualMediaOverlay,
-} from "@react-md/visual-media";
+  Box,
+  ResponsiveItemContainer,
+  ResponsiveItemOverlay,
+  TextContainer,
+  Typography,
+} from "@react-md/core";
 import type { ReactElement } from "react";
 import { DemoHeadingWithDivider } from "src/components/DemoHeadingWithDivider";
 
@@ -15,7 +17,7 @@ const images = [
   "https://picsum.photos/100/110?image=233",
 ];
 
-const positions: VisualMediaOverlayPosition[] = [
+const positions: ResponsiveItemOverlayPosition[] = [
   "top",
   "right",
   "bottom",
@@ -25,7 +27,7 @@ const positions: VisualMediaOverlayPosition[] = [
   "absolute-center",
 ];
 
-export default function VisualMediaPage(): ReactElement {
+export default function ResponsiveItemPage(): ReactElement {
   return (
     <TextContainer>
       <Box stacked align="stretch">
@@ -35,33 +37,33 @@ export default function VisualMediaPage(): ReactElement {
         <Card>
           <Box align="start">
             {images.map((src, i) => (
-              <VisualMediaContainer key={i}>
+              <ResponsiveItemContainer key={i}>
                 <img src={src} alt="" />
-              </VisualMediaContainer>
+              </ResponsiveItemContainer>
             ))}
           </Box>
         </Card>
         <DemoHeadingWithDivider>Forced Aspect Ratio</DemoHeadingWithDivider>
-        <VisualMediaContainer aspectRatio="16-9">
+        <ResponsiveItemContainer aspectRatio="16-9">
           <img src="https://picsum.photos/400/300?image=3" alt="" />
-        </VisualMediaContainer>
-        <VisualMediaContainer aspectRatio="1-1">
+        </ResponsiveItemContainer>
+        <ResponsiveItemContainer aspectRatio="1-1">
           <img src="https://picsum.photos/400/300?image=623" alt="" />
-        </VisualMediaContainer>
-        <VisualMediaContainer aspectRatio="16-9">
+        </ResponsiveItemContainer>
+        <ResponsiveItemContainer aspectRatio="16-9">
           <iframe
             src="https://www.youtube.com/embed/kyAn3fSs8_A"
             allowFullScreen
             frameBorder="0"
             title="YouTube Video"
           />
-        </VisualMediaContainer>
+        </ResponsiveItemContainer>
         <DemoHeadingWithDivider>With Overlay</DemoHeadingWithDivider>
         {/* TODO: Update this is it is copy/paste-able instead */}
         {positions.map((position, i) => (
-          <VisualMediaContainer key={position} aspectRatio="16-9">
+          <ResponsiveItemContainer key={position} aspectRatio="16-9">
             <img src={`https://picsum.photos/800/800?image=43${i}`} alt="" />
-            <VisualMediaOverlay position={position}>
+            <ResponsiveItemOverlay position={position}>
               <Typography
                 type="headline-5"
                 margin="none"
@@ -73,8 +75,8 @@ export default function VisualMediaPage(): ReactElement {
               >
                 Moraine Lake from Jaime Reimer
               </Typography>
-            </VisualMediaOverlay>
-          </VisualMediaContainer>
+            </ResponsiveItemOverlay>
+          </ResponsiveItemContainer>
         ))}
       </Box>
     </TextContainer>

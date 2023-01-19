@@ -7,15 +7,19 @@ import {
   CardSubtitle,
   CardTitle,
 } from "@react-md/card";
-import { Box, Button, Collapse, IconRotator, Typography } from "@react-md/core";
+import {
+  Box,
+  Button,
+  Collapse,
+  IconRotator,
+  ResponsiveItemContainer,
+  ResponsiveItemOverlay,
+  Typography,
+} from "@react-md/core";
 import { List, ListItem } from "@react-md/list";
 import EmailIcon from "@react-md/material-icons/EmailIcon";
 import KeyboardArrowDownIcon from "@react-md/material-icons/KeyboardArrowDownIcon";
 import PhoneIcon from "@react-md/material-icons/PhoneIcon";
-import {
-  VisualMediaContainer,
-  VisualMediaOverlay,
-} from "@react-md/visual-media";
 import type { ReactElement } from "react";
 import { useState } from "react";
 import { DemoHeadingWithDivider } from "src/components/DemoHeadingWithDivider";
@@ -112,12 +116,12 @@ export default function CardPage(): ReactElement {
         </Card>
         <DemoHeadingWithDivider>With Media</DemoHeadingWithDivider>
         <Card>
-          <VisualMediaContainer fullWidth>
+          <ResponsiveItemContainer fullWidth>
             <img src="https://picsum.photos/600/337?image=402" alt="" />
-            <VisualMediaOverlay>
+            <ResponsiveItemOverlay>
               <CardTitle>Wow</CardTitle>
-            </VisualMediaOverlay>
-          </VisualMediaContainer>
+            </ResponsiveItemOverlay>
+          </ResponsiveItemContainer>
           <CardContent>
             <Typography margin="none">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut
@@ -174,9 +178,9 @@ export default function CardPage(): ReactElement {
         </Card>
         <DemoHeadingWithDivider>Expandable Card</DemoHeadingWithDivider>
         <Card fullWidth style={{ maxWidth: "20rem" }}>
-          <VisualMediaContainer fullWidth>
+          <ResponsiveItemContainer fullWidth>
             <img src="https://picsum.photos/300/200?image=1011" alt="" />
-          </VisualMediaContainer>
+          </ResponsiveItemContainer>
           <CardHeader
             beforeAddon={<Avatar src="https://picsum.photos/40?image=1011" />}
             afterAddon={

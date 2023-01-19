@@ -1,6 +1,8 @@
 import { Card, CardContent } from "@react-md/card";
 import {
   Button,
+  responsiveItem,
+  ResponsiveItemOverlay,
   Slide,
   SlideContainer,
   Tab,
@@ -12,7 +14,6 @@ import ChevronLeftIcon from "@react-md/material-icons/ChevronLeftIcon";
 import ChevronRightIcon from "@react-md/material-icons/ChevronRightIcon";
 import PauseIcon from "@react-md/material-icons/PauseIcon";
 import PlayArrowIcon from "@react-md/material-icons/PlayArrowIcon";
-import { visualMedia, VisualMediaOverlay } from "@react-md/visual-media";
 import type { ReactElement } from "react";
 import { useId } from "react";
 import styles from "./AccessibleCarouselExample.module.scss";
@@ -86,18 +87,21 @@ export function AccessibleCarouselExample(): ReactElement {
               <img
                 src={src}
                 alt=""
-                className={visualMedia({
+                className={responsiveItem({
                   scaleToContainer: true,
                 })}
               />
-              <VisualMediaOverlay position="bottom" className={styles.overlay}>
+              <ResponsiveItemOverlay
+                position="bottom"
+                className={styles.overlay}
+              >
                 <Typography margin="none" type="headline-4" align="center">
                   {title}
                 </Typography>
                 <Typography margin="none" type="headline-6" align="center">
                   {subtitle}
                 </Typography>
-              </VisualMediaOverlay>
+              </ResponsiveItemOverlay>
             </Slide>
           ))}
           <Button

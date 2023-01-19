@@ -1,5 +1,6 @@
 import {
   Box,
+  ResponsiveItemContainer,
   Slide,
   SlideContainer,
   Tab,
@@ -8,7 +9,6 @@ import {
 } from "@react-md/core";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import TimerIcon from "@react-md/material-icons/TimerIcon";
-import { VisualMediaContainer } from "@react-md/visual-media";
 import type { ReactElement } from "react";
 
 import styles from "./TabsWithAnIcon.module.scss";
@@ -31,18 +31,18 @@ export function TabsWithAnIcon(): ReactElement {
         <Slide {...getTabPanelProps(0)}>
           <Box grid>
             {Array.from({ length: 9 }, (_, i) => (
-              <VisualMediaContainer key={i}>
+              <ResponsiveItemContainer key={i}>
                 <img src={`https://picsum.photos/200?image=${i + 1}`} alt="" />
-              </VisualMediaContainer>
+              </ResponsiveItemContainer>
             ))}
           </Box>
         </Slide>
         <Slide {...getTabPanelProps(1)}>
           <Box grid>
             {Array.from({ length: 22 }, (_, i) => (
-              <VisualMediaContainer key={i}>
+              <ResponsiveItemContainer key={i}>
                 <img src={`https://picsum.photos/200?image=${i + 51}`} alt="" />
-              </VisualMediaContainer>
+              </ResponsiveItemContainer>
             ))}
           </Box>
         </Slide>

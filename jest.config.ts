@@ -32,7 +32,6 @@ const config: Config = {
     "^@react-md/table$": ["<rootDir>/packages/table/src/index.ts"],
     "^@react-md/tooltip$": ["<rootDir>/packages/tooltip/src/index.ts"],
     "^@react-md/tree$": ["<rootDir>/packages/tree/src/index.ts"],
-    "^@react-md/visual-media$": ["<rootDir>/packages/tree/src/index.ts"],
   },
 
   testPathIgnorePatterns: ["prev\\/", "\\.next", "public\\/"],

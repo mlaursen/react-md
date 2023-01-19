@@ -13,6 +13,7 @@ export * from "./NoSsr";
 export * from "./portal";
 export * from "./positioning";
 export * from "./progress";
+export * from "./responsiveItem";
 export * from "./scroll";
 export * from "./SsrProvider";
 export * from "./tabs";

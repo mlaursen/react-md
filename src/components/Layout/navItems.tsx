@@ -125,7 +125,7 @@ const routes: readonly LayoutNavigationItem[] = [
   createRoute({ name: "Tabs", pathname: "/tabs" }),
   createRoute({ name: "Tooltip", pathname: "/tooltip" }),
   createRoute({ name: "Tree", pathname: "/tree" }),
-  createRoute({ name: "Visual Media", pathname: "/visual-media" }),
+  createRoute({ name: "Responsive Item", pathname: "/responsive-item" }),
 
   ...createRoutes({
     name: "Utils",

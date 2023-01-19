@@ -4,15 +4,18 @@ import { render } from "@testing-library/react";
 import { createRef } from "react";
 
 import type {
-  VisualMediaOverlayPosition,
-  VisualMediaOverlayProps,
-} from "../VisualMediaOverlay";
-import { visualMediaOverlay, VisualMediaOverlay } from "../VisualMediaOverlay";
+  ResponsiveItemOverlayPosition,
+  ResponsiveItemOverlayProps,
+} from "../ResponsiveItemOverlay";
+import {
+  responsiveItemOverlay,
+  ResponsiveItemOverlay,
+} from "../ResponsiveItemOverlay";
 
-describe("VisualMediaOverlay", () => {
+describe("ResponsiveItemOverlay", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {
     const ref = createRef<HTMLSpanElement>();
-    const props: PropsWithRef<VisualMediaOverlayProps, HTMLSpanElement> = {
+    const props: PropsWithRef<ResponsiveItemOverlayProps, HTMLSpanElement> = {
       ref,
       children: (
         <Typography type="headline-5" margin="none">
@@ -20,17 +23,19 @@ describe("VisualMediaOverlay", () => {
         </Typography>
       ),
     };
-    const { container, rerender } = render(<VisualMediaOverlay {...props} />);
+    const { container, rerender } = render(
+      <ResponsiveItemOverlay {...props} />
+    );
 
     expect(ref.current).toBeInstanceOf(HTMLSpanElement);
     expect(ref.current).toBe(container.firstElementChild);
     expect(container).toMatchSnapshot();
 
-    rerender(<VisualMediaOverlay {...props} />);
+    rerender(<ResponsiveItemOverlay {...props} />);
     expect(container).toMatchSnapshot();
 
     rerender(
-      <VisualMediaOverlay
+      <ResponsiveItemOverlay
         {...props}
         style={{ backgroundColor: "orange" }}
         className="custom-class-name"
@@ -38,7 +43,7 @@ describe("VisualMediaOverlay", () => {
     );
     expect(container).toMatchSnapshot();
 
-    const positions: readonly VisualMediaOverlayPosition[] = [
+    const positions: readonly ResponsiveItemOverlayPosition[] = [
       "top",
       "right",
       "bottom",
@@ -49,14 +54,14 @@ describe("VisualMediaOverlay", () => {
     ];
 
     positions.forEach((position) => {
-      rerender(<VisualMediaOverlay {...props} position={position} />);
+      rerender(<ResponsiveItemOverlay {...props} position={position} />);
       expect(container).toMatchSnapshot();
     });
   });
 
   describe("style utility function", () => {
     it("should be callable without any arguments", () => {
-      expect(visualMediaOverlay()).toMatchSnapshot();
+      expect(responsiveItemOverlay()).toMatchSnapshot();
     });
   });
 });

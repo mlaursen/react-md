@@ -1,14 +1,14 @@
-import { visualMedia } from "../styles";
+import { responsiveItem } from "../styles";
 
-describe("visualMedia styles", () => {
+describe("responsiveItem styles", () => {
   it("should return the correct class name", () => {
-    expect(visualMedia()).toBe("rmd-visual-media");
-    expect(visualMedia({})).toBe("rmd-visual-media");
+    expect(responsiveItem()).toBe("rmd-responsive-item");
+    expect(responsiveItem({})).toBe("rmd-responsive-item");
 
-    const result1 = visualMedia({ className: "custom-class-name" });
-    const result2 = visualMedia({ scaleToContainer: true });
-    const result3 = visualMedia({ forcedAspectRatio: true });
-    const result4 = visualMedia({
+    const result1 = responsiveItem({ className: "custom-class-name" });
+    const result2 = responsiveItem({ scaleToContainer: true });
+    const result3 = responsiveItem({ forcedAspectRatio: true });
+    const result4 = responsiveItem({
       className: "custom-class-name",
       scaleToContainer: true,
       forcedAspectRatio: true,

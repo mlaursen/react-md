@@ -1,10 +1,9 @@
-import { bem } from "@react-md/core";
 import { cnb } from "cnbuilder";
-
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
+import { bem } from "../utils";
 
-const styles = bem("rmd-visual-media-overlay");
+const styles = bem("rmd-responsive-item-overlay");
 
 /**
  * The overlay positions relative to the `MediaContainer` component.  Most of
@@ -12,9 +11,9 @@ const styles = bem("rmd-visual-media-overlay");
  * vertically while `center` will be centered `horizontally`.
  *
  * @remarks \@since 6.0.0 Renamed from `MediaOverlayPosition` to
- * `VisualMediaOverlayProps`.
+ * `ResponsiveItemOverlayProps`.
  */
-export type VisualMediaOverlayPosition =
+export type ResponsiveItemOverlayPosition =
   | "top"
   | "right"
   | "bottom"
@@ -24,17 +23,17 @@ export type VisualMediaOverlayPosition =
   | "absolute-center";
 
 /** @remarks \@since 6.0.0 */
-export interface VisualMediaOverlayClassNameOptions {
+export interface ResponsiveItemOverlayClassNameOptions {
   className?: string;
   /** @defaultValue `"bottom"` */
-  position?: VisualMediaOverlayPosition;
+  position?: ResponsiveItemOverlayPosition;
 }
 
 /**
  * @remarks \@since 6.0.0
  */
-export function visualMediaOverlay(
-  options: VisualMediaOverlayClassNameOptions = {}
+export function responsiveItemOverlay(
+  options: ResponsiveItemOverlayClassNameOptions = {}
 ): string {
   const { className, position = "bottom" } = options;
 
@@ -50,49 +49,49 @@ export function visualMediaOverlay(
 
 /**
  * @remarks \@since 6.0.0 Renamed from `MediaOverlayProps` to
- * `VisualMediaOverlayProps`.
+ * `ResponsiveItemOverlayProps`.
  */
-export interface VisualMediaOverlayProps
+export interface ResponsiveItemOverlayProps
   extends HTMLAttributes<HTMLSpanElement>,
-    VisualMediaOverlayClassNameOptions {}
+    ResponsiveItemOverlayClassNameOptions {}
 
 /**
  * @example
  * Simple Example
  * ```tsx
- * import { VisualMediaContainer, VisualMediaOverlay } from "@react-md/visual-media";
+ * import { ResponsiveItemContainer, ResponsiveItemOverlay } from "@react-md/core";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {
  *   return (
- *     <VisualMediaContainer>
+ *     <ResponsiveItemContainer>
  *       <img alt="" src="/some-image.png" />
- *       <VisualMediaOverlay>
+ *       <ResponsiveItemOverlay>
  *         <Typography type="headline-5" margin="none">
  *           This appears at the bottom by default.
  *         </Typography>
- *       </VisualMediaOverlay>
- *     </VisualMediaContainer>
+ *       </ResponsiveItemOverlay>
+ *     </ResponsiveItemContainer>
  *   );
  * }
  * ```
  *
- * @see {@link VisualMediaOverlayPosition}
+ * @see {@link ResponsiveItemOverlayPosition}
  *
- * @remarks \@since 6.0.0 Renamed from `MediaOverlay` to `VisualMediaOverlay`
+ * @remarks \@since 6.0.0 Renamed from `MediaOverlay` to `ResponsiveItemOverlay`
  * and renders as a `<span>` instead of a `<div>`.
  */
-export const VisualMediaOverlay = forwardRef<
+export const ResponsiveItemOverlay = forwardRef<
   HTMLSpanElement,
-  VisualMediaOverlayProps
->(function VisualMediaOverlay(props, ref) {
+  ResponsiveItemOverlayProps
+>(function ResponsiveItemOverlay(props, ref) {
   const { className, children, position = "bottom", ...remaining } = props;
 
   return (
     <span
       {...remaining}
       ref={ref}
-      className={visualMediaOverlay({ className, position })}
+      className={responsiveItemOverlay({ className, position })}
     >
       {children}
     </span>

@@ -5,7 +5,11 @@ import {
   CardSubtitle,
   CardTitle,
 } from "@react-md/card";
-import { Button, LinearProgress } from "@react-md/core";
+import {
+  Button,
+  LinearProgress,
+  responsiveItemContainer,
+} from "@react-md/core";
 import type {
   FileReaderResult,
   FileUploadActions,
@@ -13,7 +17,6 @@ import type {
 } from "@react-md/form";
 import CloseIcon from "@react-md/material-icons/CloseIcon";
 import InsertDriveFileIcon from "@react-md/material-icons/InsertDriveFileIcon";
-import { visualMediaContainer } from "@react-md/visual-media";
 import { cnb } from "cnbuilder";
 import { filesize } from "filesize";
 import type { HTMLAttributes, ReactElement } from "react";
@@ -60,7 +63,7 @@ export function FilePreview({
         <CardSubtitle>{filesize(size).toString()}</CardSubtitle>
       </CardHeader>
       <CardContent
-        className={visualMediaContainer({
+        className={responsiveItemContainer({
           responsive: "container",
           className: styles.content,
         })}

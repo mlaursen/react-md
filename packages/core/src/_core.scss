@@ -15,6 +15,7 @@
 @forward "progress/progress" as progress-*;
 @forward "button/button" as button-*;
 @forward "tabs/tabs" as tabs-*;
+@forward "responsiveItem/responsive-item" as responsive-item-*;
 
 @use "box/box";
 @use "icon/icon";
@@ -23,6 +24,7 @@
 @use "button/button";
 @use "tabs/tabs";
 @use "theme/theme";
+@use "responsiveItem/responsive-item";
 @use "transition/transition";
 @use "interaction/interaction";
 @use "typography/typography";
@@ -81,6 +83,7 @@
   @include button.styles;
   @include tabs.styles;
   @include progress.styles;
+  @include responsive-item.styles;
   @include draggable.styles;
   @include window-splitter.styles;
 

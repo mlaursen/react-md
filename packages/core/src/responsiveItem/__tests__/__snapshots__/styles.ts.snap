@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`responsiveItem styles should return the correct class name 1`] = `"rmd-responsive-item custom-class-name"`;
+
+exports[`responsiveItem styles should return the correct class name 2`] = `"rmd-responsive-item rmd-responsive-item--scale"`;
+
+exports[`responsiveItem styles should return the correct class name 3`] = `"rmd-responsive-item rmd-responsive-item--aspect-ratio"`;
+
+exports[`responsiveItem styles should return the correct class name 4`] = `"rmd-responsive-item rmd-responsive-item--scale rmd-responsive-item--aspect-ratio custom-class-name"`;
