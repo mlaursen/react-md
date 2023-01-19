@@ -1,19 +1,22 @@
-@use "@react-md/core";
+@use "../utils";
+@use "../transition/transition";
+@use "../icon/icon";
+@use "../button/button";
 
 $disable-margin-top-transition: false !default;
 
 $padding: 1rem !default;
 $spacing: 1rem !default;
-$button-spacing: core.$icon-spacing !default;
-$rotate-from: core.$icon-rotate-from !default;
-$rotate-to: core.$icon-rotate-to !default;
+$button-spacing: icon.$spacing !default;
+$rotate-from: icon.$rotate-from !default;
+$rotate-to: icon.$rotate-to !default;
 
 @mixin styles {
   // does not require custom styles
   .rmd-expansion-panel {
     @if not $disable-margin-top-transition and $spacing {
       &--animate {
-        transition: margin-top core.$linear-duration;
+        transition: margin-top transition.$linear-duration;
       }
     }
 
@@ -46,18 +49,18 @@ $rotate-to: core.$icon-rotate-to !default;
   // }
 
   .rmd-expansion-panel__button {
-    @if $rotate-from != core.$icon-rotate-from {
-      @include core.icon-set-var(rotate-from, $rotate-from);
+    @if $rotate-from != icon.$rotate-from {
+      @include icon.set-var(rotate-from, $rotate-from);
     }
 
-    @if $rotate-to != core.$icon-rotate-to {
-      @include core.icon-set-var(rotate-to, $rotate-to);
+    @if $rotate-to != icon.$rotate-to {
+      @include icon.set-var(rotate-to, $rotate-to);
     }
 
-    @if core.$button-disable-unstyled-utility-class {
-      @include core.button-unstyled;
+    @if button.$disable-unstyled-utility-class {
+      @include button.unstyled;
     }
-    @include core.auto-rtl(text-align, left);
+    @include utils.auto-rtl(text-align, left);
 
     align-items: center;
     color: inherit;

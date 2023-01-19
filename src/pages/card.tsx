@@ -1,15 +1,13 @@
 import { Avatar } from "@react-md/avatar";
 import {
+  Box,
+  Button,
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardSubtitle,
   CardTitle,
-} from "@react-md/card";
-import {
-  Box,
-  Button,
   Collapse,
   IconRotator,
   ResponsiveItemContainer,

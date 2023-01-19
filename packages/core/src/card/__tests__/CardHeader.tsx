@@ -1,7 +1,6 @@
-import { Button } from "@react-md/core";
 import { render } from "@testing-library/react";
 import { createRef } from "react";
-
+import { Button } from "../../button";
 import { CardHeader } from "../CardHeader";
 import { CardSubtitle } from "../CardSubtitle";
 import { CardTitle } from "../CardTitle";

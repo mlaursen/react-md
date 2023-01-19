@@ -1,6 +1,7 @@
-import { Card, CardContent } from "@react-md/card";
 import {
   Button,
+  Card,
+  CardContent,
   responsiveItem,
   ResponsiveItemOverlay,
   Slide,

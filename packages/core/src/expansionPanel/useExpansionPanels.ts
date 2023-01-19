@@ -1,6 +1,6 @@
-import type { UseStateInitializer, UseStateSetter } from "@react-md/core";
-import { useEnsuredId } from "@react-md/core";
 import { useState } from "react";
+import type { UseStateInitializer, UseStateSetter } from "../types";
+import { useEnsuredId } from "../useEnsuredId";
 import type { ExpansionPanelProps } from "./ExpansionPanel";
 
 /** @remarks \@since 6.0.0 */
@@ -131,7 +131,7 @@ export interface ExpansionPanelImplementation {
  *   ExpansionList,
  *   ExpansionPanel,
  *   useExpansionPanels,
- * } from "@react-md/expansion-panel";
+ * } from "@react-md/core";
  * import { type ReactElement } from "react";
  *
  * function Example(): ReactElement {
@@ -160,7 +160,7 @@ export interface ExpansionPanelImplementation {
  *   ExpansionList,
  *   ExpansionPanel,
  *   useExpansionPanels,
- * } from "@react-md/expansion-panel";
+ * } from "@react-md/core";
  * import { type ReactElement } from "react";
  *
  * import { BillingAddress } from "./BillingAddress";

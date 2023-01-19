@@ -17,6 +17,8 @@
 @forward "tabs/tabs" as tabs-*;
 @forward "responsiveItem/responsive-item" as responsive-item-*;
 @forward "overlay/overlay" as overlay-*;
+@forward "card/card" as card-*;
+@forward "expansionPanel/expansion-panel" as expansion-panel-*;
 
 @use "box/box";
 @use "icon/icon";
@@ -26,7 +28,9 @@
 @use "tabs/tabs";
 @use "theme/theme";
 @use "responsiveItem/responsive-item";
+@use "card/card";
 @use "overlay/overlay";
+@use "expansionPanel/expansion-panel";
 @use "transition/transition";
 @use "interaction/interaction";
 @use "typography/typography";
@@ -87,6 +91,8 @@
   @include progress.styles;
   @include responsive-item.styles;
   @include overlay.styles;
+  @include card.styles;
+  @include expansion-panel.styles;
   @include draggable.styles;
   @include window-splitter.styles;
 

@@ -1,5 +1,4 @@
-import { Card } from "@react-md/card";
-import { Button } from "@react-md/core";
+import { Button, Card } from "@react-md/core";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import type { CSSProperties, ReactElement } from "react";
 

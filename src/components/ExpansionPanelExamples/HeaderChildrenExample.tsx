@@ -1,5 +1,4 @@
-import { typography, Typography } from "@react-md/core";
-import { ExpansionPanel } from "@react-md/expansion-panel";
+import { ExpansionPanel, typography, Typography } from "@react-md/core";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import type { ReactElement } from "react";
 

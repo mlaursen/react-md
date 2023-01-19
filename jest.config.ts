@@ -10,13 +10,9 @@ const config: Config = {
     "\\.scss$": "identity-obj-proxy",
     "^@react-md/app-bar$": ["<rootDir>/packages/app-bar/src/index.ts"],
     "^@react-md/avatar$": ["<rootDir>/packages/avatar/src/index.ts"],
-    "^@react-md/card$": ["<rootDir>/packages/card/src/index.ts"],
     "^@react-md/chip$": ["<rootDir>/packages/chip/src/index.ts"],
     "^@react-md/core$": ["<rootDir>/packages/core/src/index.ts"],
     "^@react-md/dialog$": ["<rootDir>/packages/dialog/src/index.ts"],
-    "^@react-md/expansion-panel$": [
-      "<rootDir>/packages/expansion-panel/src/index.ts",
-    ],
     "^@react-md/form$": ["<rootDir>/packages/form/src/index.ts"],
     "^@react-md/layout$": ["<rootDir>/packages/layout/src/index.ts"],
     "^@react-md/link$": ["<rootDir>/packages/link/src/index.ts"],

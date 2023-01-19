@@ -1,5 +1,11 @@
-import { Card, CardContent } from "@react-md/card";
-import { Box, NoSsr, useWindowSplitter, WindowSplitter } from "@react-md/core";
+import {
+  Box,
+  Card,
+  CardContent,
+  NoSsr,
+  useWindowSplitter,
+  WindowSplitter,
+} from "@react-md/core";
 import type { ReactElement } from "react";
 import { useId } from "react";
 import { DemoHeadingWithDivider } from "src/components/DemoHeadingWithDivider";

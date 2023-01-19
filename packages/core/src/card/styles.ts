@@ -1,5 +1,5 @@
-import { bem } from "@react-md/core";
 import { cnb } from "cnbuilder";
+import { bem } from "../utils";
 
 const cardStyles = bem("rmd-card");
 

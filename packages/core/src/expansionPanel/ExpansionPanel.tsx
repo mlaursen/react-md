@@ -1,10 +1,12 @@
-import type { CardContentProps, CardProps } from "@react-md/card";
-import { Card, CardContent } from "@react-md/card";
-import type { PropsWithRef } from "@react-md/core";
-import { bem, useCollapseTransition, useEnsuredId } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { CSSProperties, ReactNode } from "react";
 import { forwardRef } from "react";
+import type { CardContentProps, CardProps } from "../card";
+import { Card, CardContent } from "../card";
+import { useCollapseTransition } from "../transition";
+import type { PropsWithRef } from "../types";
+import { useEnsuredId } from "../useEnsuredId";
+import { bem } from "../utils";
 import type { ExpansionPanelHeaderProps } from "./ExpansionPanelHeader";
 import { ExpansionPanelHeader } from "./ExpansionPanelHeader";
 

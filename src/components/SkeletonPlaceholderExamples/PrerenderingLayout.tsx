@@ -1,5 +1,10 @@
-import { Card, CardHeader } from "@react-md/card";
-import { Button, randomInt, SkeletonPlaceholder } from "@react-md/core";
+import {
+  Button,
+  Card,
+  CardHeader,
+  randomInt,
+  SkeletonPlaceholder,
+} from "@react-md/core";
 import { nanoid } from "@react-md/form";
 import {
   Table,

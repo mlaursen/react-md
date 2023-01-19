@@ -1,6 +1,6 @@
-import type { BoxJustifyContent, BoxProps } from "@react-md/core";
-import { Box } from "@react-md/core";
 import { forwardRef } from "react";
+import type { BoxJustifyContent, BoxProps } from "../box";
+import { Box } from "../box";
 import { cardFooter } from "./styles";
 
 /** @remarks \@since 6.0.0 */

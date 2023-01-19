@@ -1,5 +1,9 @@
 @use "sass:map";
-@use "@react-md/core";
+@use "../utils";
+@use "../theme/theme";
+@use "../box-shadows";
+@use "../typography/typography";
+@use "../divider/divider";
 
 $disable-bordered: false !default;
 $disable-shadowed: false !default;
@@ -12,22 +16,22 @@ $elevation: 2 !default;
 $raisable-start-elevation: 1 !default;
 $raisable-end-elevation: 8 !default;
 
-$light-theme-background-color: core.theme-get-var(surface-color) !default;
+$light-theme-background-color: theme.theme-get-var(surface-color) !default;
 $dark-theme-background-color: if(
-  core.$disable-dark-elevation,
-  core.$dark-theme-surface-color,
-  map.get(core.$dark-elevation-colors, $elevation)
+  theme.$disable-dark-elevation,
+  theme.$dark-theme-surface-color,
+  map.get(theme.$dark-elevation-colors, $elevation)
 ) !default;
 
 $background-color: if(
-  core.$color-scheme == dark,
+  theme.$color-scheme == dark,
   $dark-theme-background-color,
   $light-theme-background-color
 ) !default;
-$color: core.theme-get-var(text-primary-color) !default;
+$color: theme.theme-get-var(text-primary-color) !default;
 
-$border-color: core.divider-get-var(color) !default;
-$border-width: core.divider-get-var(size) !default;
+$border-color: divider.get-var(color) !default;
+$border-width: divider.get-var(size) !default;
 $border-radius: 0.25rem !default;
 
 $header-padding: 1rem !default;
@@ -56,7 +60,7 @@ $var-lookup: (
 );
 
 @function get-var($name, $fallback: null) {
-  $found: core.validate($var-lookup, $name, "card var");
+  $found: utils.validate($var-lookup, $name, "card var");
   $var: map.get($found, var);
   $value: if($fallback, $fallback, map.get($found, value));
 
@@ -68,7 +72,7 @@ $var-lookup: (
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(core.validate($var-lookup, $name, "card var"), var);
+  $var: map.get(utils.validate($var-lookup, $name, "card var"), var);
 
   #{$var}: #{$value};
 }
@@ -86,7 +90,7 @@ $var-lookup: (
 }
 
 @mixin styles {
-  @include core.default-system-theme {
+  @include theme.default-system-theme {
     @include use-dark-theme;
   }
 
@@ -99,9 +103,9 @@ $var-lookup: (
     max-width: 100%;
 
     @if not $disable-raisable {
-      @include core.mouse-only {
+      @include utils.mouse-only {
         &--raisable {
-          @include core.elevation-transition(
+          @include box-shadows.elevation-transition(
             $raisable-start-elevation,
             $raisable-end-elevation,
             "&:hover"
@@ -112,7 +116,7 @@ $var-lookup: (
 
     @if not $disable-shadowed {
       &--shadowed {
-        @include core.box-shadow($elevation);
+        @include box-shadows.box-shadow($elevation);
       }
     }
 
@@ -137,7 +141,7 @@ $var-lookup: (
     }
 
     &__header-content {
-      @include core.text-overflow;
+      @include typography.text-overflow;
 
       flex: 1 1 auto;
       min-width: 1;
@@ -154,7 +158,7 @@ $var-lookup: (
     &__content {
       @if not $disable-content-secondary-color {
         &--secondary {
-          @include core.theme-use-var(color, text-secondary-color);
+          @include theme.theme-use-var(color, text-secondary-color);
         }
       }
 

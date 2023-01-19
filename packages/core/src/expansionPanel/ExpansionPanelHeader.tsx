@@ -1,18 +1,12 @@
-import type {
-  IconRotatorProps,
-  PropsWithRef,
-  TypographyProps,
-  TypographyType,
-} from "@react-md/core";
-import {
-  ButtonUnstyled,
-  IconRotator,
-  Typography,
-  useIcon,
-} from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { ButtonHTMLAttributes, MouseEventHandler, ReactNode } from "react";
 import { forwardRef } from "react";
+import { ButtonUnstyled } from "../button";
+import type { IconRotatorProps } from "../icon";
+import { IconRotator, useIcon } from "../icon";
+import type { PropsWithRef } from "../types";
+import type { TypographyProps, TypographyType } from "../typography";
+import { Typography } from "../typography";
 
 /**
  * @remarks \@since 6.0.0 Updated to include additional heading/Typography
@@ -59,11 +53,11 @@ export interface ExpansionPanelHeaderProps
  * @example
  * Custom Header
  * ```tsx
- * import type { ExpansionPanelProps } from "@react-md/expansion-panel";
+ * import type { ExpansionPanelProps } from "@react-md/core";
  * import {
  *   ExpansionPanel,
  *   ExpansionPanelHeader,
- * } from "@react-md/expansion-panel";
+ * } from "@react-md/core";
  * import type { ReactElement } from "react";
  * const { useId } from "react";
  *

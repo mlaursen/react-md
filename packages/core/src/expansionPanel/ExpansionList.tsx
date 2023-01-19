@@ -1,6 +1,6 @@
-import { KeyboardMovementProvider } from "@react-md/core";
 import type { HTMLAttributes, ReactNode } from "react";
 import { forwardRef } from "react";
+import { KeyboardMovementProvider } from "../movement";
 import { useExpansionList } from "./useExpansionList";
 
 /**

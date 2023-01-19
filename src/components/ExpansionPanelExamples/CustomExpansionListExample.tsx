@@ -1,9 +1,9 @@
-import { KeyboardMovementProvider } from "@react-md/core";
 import {
   ExpansionPanel,
-  useExpansionPanels,
+  KeyboardMovementProvider,
   useExpansionList,
-} from "@react-md/expansion-panel";
+  useExpansionPanels,
+} from "@react-md/core";
 import { Form, TextField } from "@react-md/form";
 import type { ReactElement } from "react";
 

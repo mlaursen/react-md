@@ -2,7 +2,7 @@ import {
   ExpansionList,
   ExpansionPanel,
   useExpansionPanels,
-} from "@react-md/expansion-panel";
+} from "@react-md/core";
 import type { ReactElement } from "react";
 
 export function DisableTransitionExample(): ReactElement {

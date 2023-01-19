@@ -1,10 +1,10 @@
-import type { KeyboardMovementProviderImplementation } from "@react-md/core";
-import { useKeyboardMovementProvider } from "@react-md/core";
 import type {
   FocusEventHandler,
   KeyboardEventHandler,
   MouseEventHandler,
 } from "react";
+import type { KeyboardMovementProviderImplementation } from "../movement";
+import { useKeyboardMovementProvider } from "../movement";
 
 /**
  * @internal
@@ -29,12 +29,12 @@ export type ExpansionListImplementation<E extends HTMLElement> =
  * @example
  * Custom Implementation
  * ```tsx
- * import { KeyboardMovementProvider } from "@react-md/core";
  * import {
  *   ExpansionPanel,
+ *   KeyboardMovementProvider,
  *   useExpansionList,
  *   useExpansionPanels,
- * } from "@react-md/expansion-panel";
+ * } from "@react-md/core";
  * import { Form } from "@react-md/form";
  * import type { ReactElement } from "react";
  *

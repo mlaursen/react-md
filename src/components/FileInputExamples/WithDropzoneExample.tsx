@@ -1,7 +1,8 @@
-import { Card, CardContent } from "@react-md/card";
 import {
   Box,
   Button,
+  Card,
+  CardContent,
   LinearProgress,
   Typography,
   useDropzone,

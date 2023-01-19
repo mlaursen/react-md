@@ -1,5 +1,4 @@
-import { useToggle } from "@react-md/core";
-import { ExpansionPanel } from "@react-md/expansion-panel";
+import { ExpansionPanel, useToggle } from "@react-md/core";
 import type { ReactElement } from "react";
 
 export function SinglePanelExample(): ReactElement {

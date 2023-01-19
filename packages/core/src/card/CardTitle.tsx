@@ -1,6 +1,6 @@
-import type { TypographyHTMLElement, TypographyProps } from "@react-md/core";
-import { Typography } from "@react-md/core";
 import { forwardRef } from "react";
+import type { TypographyHTMLElement, TypographyProps } from "../typography";
+import { Typography } from "../typography";
 import { cardTitle } from "./styles";
 
 /**

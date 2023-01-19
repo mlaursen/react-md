@@ -1,5 +1,4 @@
-import { Card } from "@react-md/card";
-import { Box } from "@react-md/core";
+import { Box, Card } from "@react-md/core";
 import type { TreeData } from "@react-md/tree";
 import { Tree, useTree } from "@react-md/tree";
 import type { ReactElement } from "react";

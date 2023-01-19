@@ -1,9 +1,9 @@
-import { Box } from "@react-md/core";
 import {
+  Box,
   ExpansionList,
   ExpansionPanel,
   useExpansionPanels,
-} from "@react-md/expansion-panel";
+} from "@react-md/core";
 import { Form, TextField } from "@react-md/form";
 import type { ReactElement } from "react";
 

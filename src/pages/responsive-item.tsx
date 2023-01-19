@@ -1,7 +1,7 @@
-import { Card } from "@react-md/card";
 import type { ResponsiveItemOverlayPosition } from "@react-md/core";
 import {
   Box,
+  Card,
   ResponsiveItemContainer,
   ResponsiveItemOverlay,
   TextContainer,
