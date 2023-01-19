@@ -1,6 +1,5 @@
 @use "sass:map";
 @use "@react-md/core";
-@use "@react-md/button";
 @use "@react-md/app-bar";
 @use "@react-md/dialog";
 
@@ -140,7 +139,9 @@ $var-lookup: (
       // $nav-size: rmd-layout-theme-var(nav-width);
       // $icon-size: rmd-button-theme-var(icon-size);
       // $distance: calc(#{$title-margin} + #{$nav-size} - #{$icon-size});
-      $distance: calc(#{get-var(nav-width)} - #{button.get-var(icon-size)});
+      $distance: calc(
+        #{get-var(nav-width)} - #{core.button-get-var(icon-size)}
+      );
 
       @include core.auto-rtl(margin-right, $distance);
     }

@@ -1,5 +1,4 @@
-import { Button } from "@react-md/button";
-import { Box } from "@react-md/core";
+import { Box, Button } from "@react-md/core";
 import {
   Tooltip,
   TooltipHoverModeProvider,

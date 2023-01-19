@@ -1,5 +1,4 @@
-import { Button } from "@react-md/button";
-import { Box, Divider, useColorScheme, useDir } from "@react-md/core";
+import { Box, Button, Divider, useColorScheme, useDir } from "@react-md/core";
 import { DialogContent, DialogHeader, DialogTitle } from "@react-md/dialog";
 import { Fieldset, Form, Legend, NativeSelect } from "@react-md/form";
 import type {

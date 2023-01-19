@@ -220,9 +220,7 @@ export interface CollapseTransitionHookReturnValue<E extends HTMLElement>
  * Simple Example
  * ```tsx
  * import { ReactElement, useState } from "react";
- * import { Button } from "@react-md/button";
- * import { useCollapseTransition } from "@react-md/transition";
- * import { Typography } from "@react-md/typography";
+ * import { Button, Typography, useCollapseTransition } from "@react-md/core";
  *
  * function Example(): ReactElement {
  *   const [collapsed, setCollapsed] = useState(true);
@@ -254,11 +252,8 @@ export interface CollapseTransitionHookReturnValue<E extends HTMLElement>
  * See More Example
  * ```tsx
  * import { ReactElement, useState } from "react";
- * import { Button } from "@react-md/button";
- * import { IconRotator } from "@react-md/core";
+ * import { Button, IconRotator, Typography, useCollapseTransition } from "@react-md/core";
  * import { KeyboardArrowDownSVGIcon } from "@react-md/material-icons";
- * import { useCollapseTransition } from "@react-md/transition";
- * import { Typography } from "@react-md/typography";
  *
  * import styles from "./Example.module.scss";
  * // pretend styles:

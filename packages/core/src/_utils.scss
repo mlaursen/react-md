@@ -5,6 +5,7 @@
 
 $disable-rtl: false !default;
 $disable-validation: false !default;
+$temporary-element-z-index: 30 !default;
 
 $_swappable-positions: top right bottom left;
 $_swappable-position-prefixes: border margin padding;

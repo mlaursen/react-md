@@ -160,7 +160,7 @@ export interface AppBarProps
  * Simple Example
  * ```tsx
  * import { AppBar, AppBarTitle } from "@react-md/app-bar";
- * import { Button } from "@react-md/button";
+ * import { Button } from "@react-md/core";
  * import MenuIcon from "@react-md/material-icons/MenuIcon";
  * import MoreVertIcon from "@react-md/material-icons/MoreVertIcon";
  * import type { ReactElement } from "react";

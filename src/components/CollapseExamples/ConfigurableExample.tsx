@@ -1,6 +1,5 @@
-import { Button } from "@react-md/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@react-md/card";
-import { Box, useCollapseTransition, useToggle } from "@react-md/core";
+import { Box, Button, useCollapseTransition, useToggle } from "@react-md/core";
 import {
   Fieldset,
   Form,

@@ -15,9 +15,7 @@ import { getTransitionClassNames } from "./utils";
  * Simple Transition
  * ```tsx
  * import { ReactElement, useState } from "react";
- * import { Button } from "@react-md/button";
- * import { useCSSTransition } from "@react-md/transition";
- * import { Typography } from "@react-md/typography";
+ * import { Button, Typography, useCSSTransition } from "@react-md/core";
  *
  * // Pretend styles
  * // .enter {
@@ -68,9 +66,7 @@ import { getTransitionClassNames } from "./utils";
  * Visibility Transition
  * ```tsx
  * import { ReactElement, useState } from "react";
- * import { Button } from "@react-md/button";
- * import { useCSSTransition } from "@react-md/transition";
- * import { Typography } from "@react-md/typography";
+ * import { Button, Typography, useCSSTransition } from "@react-md/core";
  *
  * // Pretend styles
  * // .enter {

@@ -1,4 +1,4 @@
-import { Button } from "@react-md/button";
+import { Button } from "@react-md/core";
 import { DialogContent, DialogHeader, DialogTitle } from "@react-md/dialog";
 import CloseIcon from "@react-md/material-icons/CloseIcon";
 import type { ReactElement } from "react";

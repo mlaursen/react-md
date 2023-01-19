@@ -1,6 +1,5 @@
 import { AppBar } from "@react-md/app-bar";
-import { CrossFade, Typography } from "@react-md/core";
-import { CircularProgress } from "@react-md/core";
+import { CircularProgress, CrossFade, Typography } from "@react-md/core";
 import { Tab, TabList, useTabs } from "@react-md/tabs";
 import type { ReactElement } from "react";
 import { Suspense, useEffect, useRef } from "react";

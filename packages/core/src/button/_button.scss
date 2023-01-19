@@ -1,17 +1,24 @@
 @use "sass:list";
 @use "sass:map";
-@use "@react-md/core";
+@use "../utils";
+@use "../theme/a11y";
+@use "../theme/theme";
+@use "../icon/icon";
+@use "../box-shadows";
+@use "../interaction/interaction";
+@use "../progress/progress";
+@use "../typography/typography";
 
 $disable-text: false !default;
 $disable-icon: false !default;
 $disable-outline: false !default;
 $disable-contained: false !default;
 $disable-contained-pressed-elevation: false !default;
-$disable-contained-interaction-colors: core.$interaction-light-theme-base-background-color
-  == core.$interaction-dark-theme-base-background-color !default;
+$disable-contained-interaction-colors: interaction.$light-theme-base-background-color
+  == interaction.$dark-theme-base-background-color !default;
 $disable-floating: false !default;
 $disable-floating-absolute-position: false !default;
-$disable-circular-progress: core.$progress-disable-circular !default;
+$disable-circular-progress: progress.$disable-circular !default;
 $disable-unstyled-utility-class: false !default;
 
 $themes: primary secondary warning error disabled !default;
@@ -28,20 +35,20 @@ $icon-size: 3rem !default;
 
 $outline-width: 1px !default;
 
-$clear-color: core.theme-get-var(text-primary-color) !default;
+$clear-color: theme.theme-get-var(text-primary-color) !default;
 $clear-outline-color: #999 !default;
 
 $contained-elevation: 2 !default;
 $contained-pressed-elevation: 4 !default;
-$clear-contained-background-color: core.$light-theme-surface-color !default;
-$clear-contained-color: core.contrast-color(
+$clear-contained-background-color: theme.$light-theme-surface-color !default;
+$clear-contained-color: a11y.contrast-color(
   $clear-contained-background-color
 ) !default;
 
-$circular-progress-size: core.icon-get-var(size) !default;
+$circular-progress-size: icon.get-var(size) !default;
 
 $floating-margin: 1.5rem !default;
-$floating-z-index: core.$temporary-element-z-index !default;
+$floating-z-index: utils.$temporary-element-z-index !default;
 // set this below the app bar
 $floating-absolute-z-index: 5 !default;
 $floating-positions: (
@@ -110,12 +117,12 @@ $var-lookup: (
   ),
   fab-offset: (
     var: --rmd-button-fab-offset,
-    value: core.scrollbar-size(),
+    value: utils.scrollbar-size(),
   ),
 );
 
 @function get-var($name, $fallback: null) {
-  $found: core.validate($var-lookup, $name, "button var");
+  $found: utils.validate($var-lookup, $name, "button var");
   $var: map.get($found, var);
   $value: if($fallback, $fallback, map.get($found, value));
 
@@ -127,7 +134,7 @@ $var-lookup: (
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(core.validate($var-lookup, $name, "button var"), var);
+  $var: map.get(utils.validate($var-lookup, $name, "button var"), var);
 
   #{$var}: #{$value};
 }
@@ -157,9 +164,9 @@ $var-lookup: (
 @mixin unstyled(
   $hoverable: false,
   $css-modules: false,
-  $box-shadow: core.$interaction-outline-box-shadow
+  $box-shadow: interaction.$outline-box-shadow
 ) {
-  @include core.interaction-surface(
+  @include interaction.surface(
     $hoverable: $hoverable,
     $css-modules: $css-modules,
     $box-shadow: $box-shadow
@@ -173,15 +180,15 @@ $var-lookup: (
 @mixin styles {
   .rmd-button {
     @if not $disable-circular-progress {
-      @include core.progress-set-var(circular-size, $circular-progress-size);
+      @include progress.set-var(circular-size, $circular-progress-size);
     }
 
-    @include core.interaction-surface(
+    @include interaction.surface(
       $disabled-selector: "&:disabled" +
         if(list.index($themes, disabled), ",&[aria-disabled='true']", "")
     );
-    @include core.icon-set-var(color, currentcolor);
-    @include core.icon-use-var(gap, spacing);
+    @include icon.set-var(color, currentcolor);
+    @include icon.use-var(gap, spacing);
     @include use-var(background-color);
     @include use-var(color);
     @include use-var(border-radius);
@@ -194,9 +201,9 @@ $var-lookup: (
 
     @if not $disable-text {
       &--text {
-        @include core.icon-set-var(size, $text-icon-size);
+        @include icon.set-var(size, $text-icon-size);
         @include set-var(border-radius, $text-border-radius);
-        @include core.map-to-styles(core.$button-styles);
+        @include utils.map-to-styles(typography.$button-styles);
         @include use-var(min-height, text-min-height);
         @include use-var(min-width, text-min-width);
 
@@ -224,7 +231,7 @@ $var-lookup: (
 
     @if not $disable-contained {
       &--contained {
-        @include core.elevation-transition(
+        @include box-shadows.elevation-transition(
           $contained-elevation,
           if(
             $disable-contained-pressed-elevation,
@@ -240,7 +247,7 @@ $var-lookup: (
         // colors for the interaction states This means use the default light
         // theme since it is based off of the root background color
         @if not $disable-contained-interaction-colors {
-          @include core.interaction-use-light-theme;
+          @include interaction.use-light-theme;
         }
 
         @include set-var(background-color, get-var(contained-background-color));
@@ -250,31 +257,31 @@ $var-lookup: (
 
     @include _theme(
       primary,
-      core.theme-get-var(primary-color),
-      core.theme-get-var(on-primary-color)
+      theme.theme-get-var(primary-color),
+      theme.theme-get-var(on-primary-color)
     );
     @include _theme(
       secondary,
-      core.theme-get-var(secondary-color),
-      core.theme-get-var(on-secondary-color)
+      theme.theme-get-var(secondary-color),
+      theme.theme-get-var(on-secondary-color)
     );
     @include _theme(
       warning,
-      core.theme-get-var(warning-color),
-      core.theme-get-var(on-warning-color)
+      theme.theme-get-var(warning-color),
+      theme.theme-get-var(on-warning-color)
     );
     @include _theme(
       error,
-      core.theme-get-var(error-color),
-      core.theme-get-var(on-error-color)
+      theme.theme-get-var(error-color),
+      theme.theme-get-var(on-error-color)
     );
 
     @if list.index($themes, disabled) {
       &--disabled {
-        @include core.use-theme-var(color, text-disabled-color);
+        @include theme.theme-use-var(color, text-disabled-color);
         @include set-var(
           outline-color,
-          core.theme-get-var(text-disabled-color)
+          theme.theme-get-var(text-disabled-color)
         );
       }
     }
@@ -304,14 +311,14 @@ $var-lookup: (
         &--#{$suffix} {
           @each $property, $value in $styles {
             @if $property == left {
-              @include core.rtl {
+              @include utils.rtl {
                 left: auto;
                 right: calc(#{$value} + #{get-var(fab-offset)});
               }
 
               left: $value;
             } @else if $property == right {
-              @include core.rtl {
+              @include utils.rtl {
                 left: $value;
                 right: auto;
               }

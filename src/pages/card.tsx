@@ -1,5 +1,4 @@
 import { Avatar } from "@react-md/avatar";
-import { Button } from "@react-md/button";
 import {
   Card,
   CardContent,
@@ -8,7 +7,7 @@ import {
   CardSubtitle,
   CardTitle,
 } from "@react-md/card";
-import { Box, Collapse, IconRotator, Typography } from "@react-md/core";
+import { Box, Button, Collapse, IconRotator, Typography } from "@react-md/core";
 import { List, ListItem } from "@react-md/list";
 import EmailIcon from "@react-md/material-icons/EmailIcon";
 import KeyboardArrowDownIcon from "@react-md/material-icons/KeyboardArrowDownIcon";

@@ -1,7 +1,9 @@
-import type { ButtonProps } from "@react-md/button";
-import { Button } from "@react-md/button";
-import type { IconRotatorProps, TextIconSpacingProps } from "@react-md/core";
-import { IconRotator, useEnsuredId, useIcon } from "@react-md/core";
+import type {
+  ButtonProps,
+  IconRotatorProps,
+  TextIconSpacingProps,
+} from "@react-md/core";
+import { Button, IconRotator, useEnsuredId, useIcon } from "@react-md/core";
 import { forwardRef } from "react";
 import { useMenuVisibility } from "./MenuVisibilityProvider";
 

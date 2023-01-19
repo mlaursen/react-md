@@ -1,4 +1,4 @@
-import { Button } from "@react-md/button";
+import { Button } from "@react-md/core";
 import { render } from "@testing-library/react";
 import { createRef } from "react";
 

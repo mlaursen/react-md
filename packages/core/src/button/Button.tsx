@@ -1,13 +1,13 @@
-import type { PropsWithRef } from "@react-md/core";
-import {
-  bem,
-  RippleContainer,
-  useElementInteraction,
-  useHigherContrastChildren,
-} from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { ButtonHTMLAttributes } from "react";
 import { forwardRef } from "react";
+import {
+  RippleContainer,
+  useElementInteraction,
+  useHigherContrastChildren,
+} from "../interaction";
+import type { PropsWithRef } from "../types";
+import { bem } from "../utils";
 import type {
   FloatingActionButtonPosition,
   FloatingActionButtonProps,
@@ -157,7 +157,7 @@ export interface ButtonProps
  * @example
  * Simple Example
  * ```tsx
- * import { Button } from "@react-md/button";
+ * import { Button } from "@react-md/core";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {
@@ -176,7 +176,7 @@ export interface ButtonProps
  * @example
  * Theme Example
  * ```tsx
- * import { Button } from "@react-md/button";
+ * import { Button } from "@react-md/core";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {
@@ -197,7 +197,7 @@ export interface ButtonProps
  * @example
  * Icon Button Example
  * ```tsx
- * import { Button } from "@react-md/button";
+ * import { Button } from "@react-md/core";
  * import { FavoriteSVGIcon } from "@react-md/material-icons";
  * import type { ReactElement } from "react";
  *
@@ -220,7 +220,7 @@ export interface ButtonProps
  * @example
  * Text Button with icons
  * ```tsx
- * import { Button } from "@react-md/button";
+ * import { Button } from "@react-md/core";
  * import { FavoriteSVGIcon } from "@react-md/material-icons";
  * import type { ReactElement } from "react";
  *

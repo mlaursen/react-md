@@ -1,10 +1,10 @@
 import type {
   ButtonClassNameOptions,
   ButtonClassNameThemeOptions,
-} from "@react-md/button";
-import { button } from "@react-md/button";
-import type { PropsWithRef } from "@react-md/core";
+  PropsWithRef,
+} from "@react-md/core";
 import {
+  button,
   RippleContainer,
   SrOnly,
   TextIconSpacing,

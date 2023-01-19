@@ -34,6 +34,7 @@ $disable-dark-elevation: false !default;
 /// This value should be set to `false` if you do not want the initial bundle to
 /// include the `@media (prefers-color-scheme: dark)` styles.
 $disable-default-system-theme: false !default;
+$disable-default-root-theme: false !default;
 
 $primary-color: colors.$blue-500 !default;
 $on-primary-color: a11y.contrast-color($primary-color) !default;
@@ -216,7 +217,7 @@ $theme-var-lookup: (
   #{$var}: #{$value};
 }
 
-@mixin use-theme-var($property, $name: $property, $fallback: null) {
+@mixin theme-use-var($property, $name: $property, $fallback: null) {
   #{$property}: theme-get-var($name, $fallback);
 }
 
@@ -299,8 +300,8 @@ $theme-var-lookup: (
   }
   @if not $disable-colors {
     @include theme-set-var(background-color, theme-get-var(surface-color));
-    @include use-theme-var(background-color);
-    @include use-theme-var(color, text-primary-color);
+    @include theme-use-var(background-color);
+    @include theme-use-var(color, text-primary-color);
   }
 }
 

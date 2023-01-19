@@ -1,5 +1,4 @@
-import { Button } from "@react-md/button";
-import { Typography, useToggle } from "@react-md/core";
+import { Button, Typography, useToggle } from "@react-md/core";
 import {
   Dialog,
   DialogContent,

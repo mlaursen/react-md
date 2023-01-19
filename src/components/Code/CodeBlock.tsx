@@ -1,4 +1,4 @@
-import { Button } from "@react-md/button";
+import { Button } from "@react-md/core";
 import ContentCopyIcon from "@react-md/material-icons/ContentCopyIcon";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes, ReactNode } from "react";

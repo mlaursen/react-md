@@ -1,6 +1,11 @@
-import { Button } from "@react-md/button";
 import { Card, CardContent } from "@react-md/card";
-import { Slide, SlideContainer, Typography, useCarousel } from "@react-md/core";
+import {
+  Button,
+  Slide,
+  SlideContainer,
+  Typography,
+  useCarousel,
+} from "@react-md/core";
 import ChevronLeftIcon from "@react-md/material-icons/ChevronLeftIcon";
 import ChevronRightIcon from "@react-md/material-icons/ChevronRightIcon";
 import PauseIcon from "@react-md/material-icons/PauseIcon";

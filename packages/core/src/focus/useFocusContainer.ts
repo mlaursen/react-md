@@ -107,8 +107,12 @@ export interface FocusContainerImplementation<E extends HTMLElement> {
  * @example
  * Main Usage
  * ```tsx
- * import { Button } from "@react-md/button";
- * import { useFocusContainer, useScaleTransition, useToggle } from "@react-md/core";
+ * import {
+ *   Button,
+ *   useFocusContainer,
+ *   useScaleTransition,
+ *   useToggle,
+ * } from "@react-md/core";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {

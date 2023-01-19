@@ -1,5 +1,7 @@
-import type { FloatingActionButtonPosition } from "@react-md/button";
-import type { PositionAnchor } from "@react-md/core";
+import type {
+  FloatingActionButtonPosition,
+  PositionAnchor,
+} from "@react-md/core";
 import {
   BELOW_CENTER_ANCHOR,
   BELOW_INNER_LEFT_ANCHOR,

@@ -1,6 +1,11 @@
-import { Button } from "@react-md/button";
 import { Card, CardContent } from "@react-md/card";
-import { Box, Typography, useDropzone } from "@react-md/core";
+import {
+  Box,
+  Button,
+  LinearProgress,
+  Typography,
+  useDropzone,
+} from "@react-md/core";
 import { DialogFooter } from "@react-md/dialog";
 import {
   FileInput,
@@ -14,7 +19,6 @@ import CheckCircleIcon from "@react-md/material-icons/CheckCircleIcon";
 import CloseIcon from "@react-md/material-icons/CloseIcon";
 import FileUploadIcon from "@react-md/material-icons/FileUploadIcon";
 import WatchIcon from "@react-md/material-icons/WatchIcon";
-import { LinearProgress } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import { filesize } from "filesize";
 import type { ReactElement } from "react";

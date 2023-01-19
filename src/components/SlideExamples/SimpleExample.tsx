@@ -1,6 +1,5 @@
-import { Button } from "@react-md/button";
 import type { SlideDirection } from "@react-md/core";
-import { Box, Slide, SlideContainer } from "@react-md/core";
+import { Box, Button, Slide, SlideContainer } from "@react-md/core";
 import type { ReactElement } from "react";
 import { useState } from "react";
 import { ExamplePage1 } from "../ExamplePage1";

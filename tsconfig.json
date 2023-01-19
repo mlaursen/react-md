@@ -19,7 +19,6 @@
     "paths": {
       "@react-md/app-bar": ["packages/app-bar/src/index.ts"],
       "@react-md/avatar": ["packages/avatar/src/index.ts"],
-      "@react-md/button": ["packages/button/src/index.ts"],
       "@react-md/card": ["packages/card/src/index.ts"],
       "@react-md/chip": ["packages/chip/src/index.ts"],
       "@react-md/core": ["packages/core/src/index.ts"],

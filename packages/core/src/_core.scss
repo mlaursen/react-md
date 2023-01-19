@@ -13,20 +13,19 @@
 @forward "icon/icon" as icon-*;
 @forward "divider/divider" as divider-*;
 @forward "progress/progress" as progress-*;
+@forward "button/button" as button-*;
 
 @use "box/box";
 @use "icon/icon";
 @use "divider/divider";
 @use "progress/progress";
+@use "button/button";
 @use "theme/theme";
 @use "transition/transition";
 @use "interaction/interaction";
 @use "typography/typography";
 @use "draggable/draggable";
 @use "windowSplitter/window-splitter";
-
-$temporary-element-z-index: 30 !default;
-$disable-default-root-theme: false !default;
 
 @mixin css-reset {
   // setting everything to border-box for easier positioning and calculations
@@ -46,8 +45,8 @@ $disable-default-root-theme: false !default;
   }
 
   html {
-    @include theme.use-theme-var(background-color);
-    @include theme.use-theme-var(color, text-primary-color);
+    @include theme.theme-use-var(background-color);
+    @include theme.theme-use-var(color, text-primary-color);
 
     font-family: typography.$font-family;
   }
@@ -77,11 +76,12 @@ $disable-default-root-theme: false !default;
   @include box.styles;
   @include icon.styles;
   @include divider.styles;
+  @include button.styles;
   @include progress.styles;
   @include draggable.styles;
   @include window-splitter.styles;
 
-  @if not $disable-default-root-theme {
+  @if not theme.$disable-default-root-theme {
     :root {
       @include theme.colors;
 

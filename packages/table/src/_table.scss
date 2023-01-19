@@ -359,7 +359,7 @@ $row-selected-styles: (
 
       &--sticky-cell {
         @include core.auto-rtl(left, get-var(sticky-cell));
-        @include core.use-theme-var(background-color);
+        @include core.theme-use-var(background-color);
 
         transition: background-color core.$linear-duration;
         z-index: $sticky-cell-z-index;

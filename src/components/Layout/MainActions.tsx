@@ -1,4 +1,4 @@
-import { Button } from "@react-md/button";
+import { Button } from "@react-md/core";
 import MoreVertIcon from "@react-md/material-icons/MoreVertIcon";
 import type { ReactElement } from "react";
 

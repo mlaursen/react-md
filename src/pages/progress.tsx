@@ -1,5 +1,10 @@
-import { loop, TextContainer, Typography } from "@react-md/core";
-import { CircularProgress, LinearProgress } from "@react-md/core";
+import {
+  CircularProgress,
+  LinearProgress,
+  loop,
+  TextContainer,
+  Typography,
+} from "@react-md/core";
 import type { ReactElement } from "react";
 import { useEffect, useState } from "react";
 

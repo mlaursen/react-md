@@ -3,7 +3,7 @@
 
 .button {
   @include everything.interaction-surface($css-modules: true);
-  @include everything.use-theme-var(color, text-primary-color);
+  @include everything.theme-use-var(color, text-primary-color);
   @include everything.icon-set-var(color, currentcolor);
 
   background-color: transparent;

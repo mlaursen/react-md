@@ -50,8 +50,7 @@ export const DEFAULT_FIXED_DIALOG_CLASSNAMES: Readonly<CSSTransitionClassNamesOb
  * @example
  * Simple Example
  * ```tsx
- * import { Button } from "@react-md/button";
- * import { Typography, useToggle } from "@react-md/core";
+ * import { Button, Typography, useToggle } from "@react-md/core";
  * import {
  *   DialogHeader,
  *   DialogTitle,

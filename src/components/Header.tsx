@@ -1,6 +1,11 @@
 import { AppBar } from "@react-md/app-bar";
-import { Button } from "@react-md/button";
-import { Box, useColorScheme, useDir, VerticalDivider } from "@react-md/core";
+import {
+  Box,
+  Button,
+  useColorScheme,
+  useDir,
+  VerticalDivider,
+} from "@react-md/core";
 import type { ReactElement } from "react";
 import styles from "./Header.module.scss";
 import { StyledLink } from "./StyledLink";
@@ -15,7 +20,7 @@ export function Header(): ReactElement {
         <StyledLink href="/app-bar">AppBar</StyledLink>
         <StyledLink href="/avatar">Avatar</StyledLink>
         <StyledLink href="/box">Box</StyledLink>
-        <StyledLink href="/button">Button</StyledLink>
+        <StyledLink href="/core">Button</StyledLink>
         <StyledLink href="/box-shadow">Box Shadow</StyledLink>
         <StyledLink href="/dialog">Dialog</StyledLink>
         <StyledLink href="/divider">Divider</StyledLink>

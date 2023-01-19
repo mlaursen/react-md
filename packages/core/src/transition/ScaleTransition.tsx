@@ -27,8 +27,7 @@ export interface ScaleTransitionProps<E extends HTMLElement>
  * Dropdown Menu Example
  * ```tsx
  * import { ReactElement, useRef, useState } from "react";
- * import { Button } from "@react-md/button";
- * import { useFixedPositioning, useScaleTransition } from "@react-md/transition";
+ * import { Button, useFixedPositioning, useScaleTransition } from "@react-md/core";
  *
  * function Example(): ReactElement {
  *   const buttonRef = useRef<HTMLButtonElement>(null);

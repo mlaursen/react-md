@@ -1,4 +1,3 @@
-@use "@react-md/button";
 @use "@react-md/core";
 
 $disable-margin-top-transition: false !default;
@@ -55,8 +54,8 @@ $rotate-to: core.$icon-rotate-to !default;
       @include core.icon-set-var(rotate-to, $rotate-to);
     }
 
-    @if button.$disable-unstyled-utility-class {
-      @include button.unstyled;
+    @if core.$button-disable-unstyled-utility-class {
+      @include core.button-unstyled;
     }
     @include core.auto-rtl(text-align, left);
 

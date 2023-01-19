@@ -1,5 +1,4 @@
-import { Button } from "@react-md/button";
-import { Box } from "@react-md/core";
+import { Box, Button } from "@react-md/core";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import StarIcon from "@react-md/material-icons/StarIcon";
 import type { ReactElement } from "react";

@@ -187,7 +187,7 @@ $var-lookup: (
           text-secondary-color,
           core.theme-get-var(text-disabled-color)
         );
-        @include core.use-theme-var(color, text-disabled-color);
+        @include core.theme-use-var(color, text-disabled-color);
       }
     }
 
@@ -231,7 +231,7 @@ $var-lookup: (
       flex-grow: 1;
 
       &--secondary {
-        @include core.use-theme-var(color, text-secondary-color);
+        @include core.theme-use-var(color, text-secondary-color);
       }
 
       &--clamped {
@@ -288,7 +288,7 @@ $var-lookup: (
   @if not $disable-subheader {
     .rmd-list-subheader {
       @include core.map-to-styles(core.$subtitle-2-styles);
-      @include core.use-theme-var(color, text-secondary-color);
+      @include core.theme-use-var(color, text-secondary-color);
       @include use-var(height, item-height);
 
       align-items: center;

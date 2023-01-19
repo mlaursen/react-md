@@ -14,16 +14,16 @@ export interface CardProps
  * @example
  * Simple Example
  * ```tsx
- * import { Button } from "@react-md/button";
  * import {
+ *   Button,
  *   Card,
  *   CardContent,
  *   CardFooter,
  *   CardHeader,
  *   CardTitle,
  *   CardSubtitle,
- * } from "@react-md/card";
- * import { Typography } from "@react-md/core";
+ *   Typography,
+ * } from "@react-md/core";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {

@@ -2,7 +2,6 @@
 @use "sass:math";
 @use "sass:color";
 @use "@react-md/core";
-@use "@react-md/button";
 @use "@react-md/list";
 @use "@react-md/tooltip";
 
@@ -440,7 +439,7 @@ $var-lookup: (
 
   .rmd-form-message {
     @include core.map-to-styles($message-typography-styles);
-    @include core.use-theme-var(color, text-secondary-color);
+    @include core.theme-use-var(color, text-secondary-color);
 
     display: flex;
     margin: $message-margin-top 0 $message-margin-bottom;
@@ -545,7 +544,7 @@ $var-lookup: (
       }
 
       &--floating-inactive {
-        @include core.use-theme-var(color, text-secondary-color);
+        @include core.theme-use-var(color, text-secondary-color);
       }
 
       $floating-active-selector: "&--floating-active";
@@ -822,7 +821,7 @@ $var-lookup: (
   width: 100%;
 
   &[disabled] {
-    @include core.use-theme-var(color, text-disabled-color);
+    @include core.theme-use-var(color, text-disabled-color);
   }
 }
 
@@ -831,7 +830,7 @@ $var-lookup: (
     @include _text-field-base-styles;
 
     &::placeholder {
-      @include core.use-theme-var(color, text-secondary-color);
+      @include core.theme-use-var(color, text-secondary-color);
       // want to gain the same font styles as the input/textarea itself,
       // just apply different colors as needed instead. Can't just do font: inherit
       // since it'll break the styles in firefox.
@@ -864,7 +863,7 @@ $var-lookup: (
 
     &__input {
       &--offset {
-        @include core.auto-rtl(margin-right, button.get-var(icon-size));
+        @include core.auto-rtl(margin-right, core.button-get-var(icon-size));
       }
     }
 
@@ -1597,7 +1596,7 @@ $var-lookup: (
     }
 
     &--mask {
-      @include core.use-theme-var(background-color);
+      @include core.theme-use-var(background-color);
 
       border-radius: 0;
     }

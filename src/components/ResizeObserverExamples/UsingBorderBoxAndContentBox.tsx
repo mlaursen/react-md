@@ -1,5 +1,9 @@
-import { Button } from "@react-md/button";
-import { randomInt, useResizeObserver, useToggle } from "@react-md/core";
+import {
+  Button,
+  randomInt,
+  useResizeObserver,
+  useToggle,
+} from "@react-md/core";
 import { Table, TableBody, TableCell, TableRow } from "@react-md/table";
 import type { ReactElement } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";

@@ -1,5 +1,4 @@
-import { Button } from "@react-md/button";
-import { Box } from "@react-md/core";
+import { Box, Button } from "@react-md/core";
 import { Form, NativeSelect } from "@react-md/form";
 import type { ReactElement } from "react";
 import { states } from "src/constants/states";

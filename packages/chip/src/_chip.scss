@@ -255,7 +255,7 @@ $var-lookup: (
     }
 
     &--disabled {
-      @include core.use-theme-var(color, text-disabled-color);
+      @include core.theme-use-var(color, text-disabled-color);
       @if not $disable-icon {
         @include core.icon-set-var(color, currentcolor);
       }

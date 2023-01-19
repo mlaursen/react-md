@@ -3,7 +3,7 @@
 .blockquote {
   $border-style: 0.25em solid everything.divider-get-var(color);
 
-  @include everything.use-theme-var(color, text-secondary-color);
+  @include everything.theme-use-var(color, text-secondary-color);
   @include everything.auto-rtl(border-left, $border-style);
 
   font-style: italic;

@@ -1,4 +1,4 @@
-import { Button } from "@react-md/button";
+import { Button } from "@react-md/core";
 import {
   Dialog,
   DialogContent,

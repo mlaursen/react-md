@@ -1,12 +1,12 @@
 import type {
   ButtonClassNameThemeOptions,
   ButtonProps,
-} from "@react-md/button";
-import { Button } from "@react-md/button";
-import type { PropsWithRef } from "@react-md/core";
+  PropsWithRef,
+} from "@react-md/core";
 import {
   applyRef,
   bem,
+  Button,
   useDir,
   useIcon,
   useIntersectionObserver,

@@ -1,6 +1,5 @@
 import { AppBar } from "@react-md/app-bar";
-import { Button } from "@react-md/button";
-import { Typography } from "@react-md/core";
+import { Button, Typography } from "@react-md/core";
 import { Tab, TabList, useTabs } from "@react-md/tabs";
 import type { ReactElement } from "react";
 

@@ -1,5 +1,4 @@
-import { Button } from "@react-md/button";
-import { SsrProvider, useToggle } from "@react-md/core";
+import { Button, SsrProvider, useToggle } from "@react-md/core";
 import { fireEvent, render, waitFor, within } from "@testing-library/react";
 import type { ReactElement } from "react";
 

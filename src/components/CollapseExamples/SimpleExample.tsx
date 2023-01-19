@@ -1,5 +1,4 @@
-import { Button } from "@react-md/button";
-import { Collapse, useToggle } from "@react-md/core";
+import { Button, Collapse, useToggle } from "@react-md/core";
 import type { ReactElement } from "react";
 import { ExamplePage1 } from "../ExamplePage1";
 

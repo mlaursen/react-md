@@ -1,9 +1,8 @@
 import { AppBar, AppBarTitle } from "@react-md/app-bar";
-import { Button } from "@react-md/button";
-import { box, TextContainer } from "@react-md/core";
+import { box, Button, TextContainer } from "@react-md/core";
 import MenuIcon from "@react-md/material-icons/MenuIcon";
-import SearchIcon from "@react-md/material-icons/SearchIcon";
 import MoreVertIcon from "@react-md/material-icons/MoreVertIcon";
+import SearchIcon from "@react-md/material-icons/SearchIcon";
 import type { ReactElement } from "react";
 
 export default function AppBarPage(): ReactElement {

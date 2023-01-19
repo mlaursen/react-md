@@ -154,7 +154,7 @@ $var-lookup: (
     &__content {
       @if not $disable-content-secondary-color {
         &--secondary {
-          @include core.use-theme-var(color, text-secondary-color);
+          @include core.theme-use-var(color, text-secondary-color);
         }
       }
 

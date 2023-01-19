@@ -1,8 +1,8 @@
 @use "everything";
 
 .tooltip {
-  @include everything.use-theme-var(background-color, primary-color);
-  @include everything.use-theme-var(color, on-primary-color);
+  @include everything.theme-use-var(background-color, primary-color);
+  @include everything.theme-use-var(color, on-primary-color);
   @include everything.auto-rtl(left, 0);
 
   top: 0;

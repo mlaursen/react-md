@@ -138,8 +138,7 @@ export interface TooltipHookOptions<E extends HTMLElement>
    * @example
    * Real World Example
    * ```tsx
-   * import { Button, ButtonProps } from "@react-md/button";
-   * import { Tooltip, useTooltip } from "@react-md/tooltip":
+   * import { Button, ButtonProps, Tooltip, useTooltip  } from "@react-md/core";
    * import type { ReactElement, ReactNode } from "react";
    *
    * export interface TooltippedButtonProps extends ButtonProps {
@@ -243,8 +242,7 @@ export interface TooltipHookReturnValue<E extends HTMLElement> {
  * @example
  * Simple Usage
  * ```tsx
- * import { Button } from "@react-md/button";
- * import { useTooltip, Tooltip } from "@react-md/tooltip";
+ * import { Button, useTooltip, Tooltip } from "@react-md/core";
  *
  * function Example() {
  *   const { elementProps, tooltipProps } = useTooltip();

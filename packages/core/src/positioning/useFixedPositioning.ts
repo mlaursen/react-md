@@ -155,8 +155,7 @@ export interface FixedPositioningHookReturnValue<E extends HTMLElement> {
  * Simple Example
  * ```tsx
  * import { ReactElement, useRef, useState } from "react";
- * import { Button } from "@react-md/button";
- * import { useCSSTransition, useFixedPositioning } from "@react-md/transition";
+ * import { Button, useCSSTransition, useFixedPositioning } from "@react-md/core";
  *
  * function Example(): ReactElement {
  *   const fixedTo = useRef<HTMLButtonElement>(null);

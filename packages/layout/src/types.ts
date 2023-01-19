@@ -1,6 +1,6 @@
 import type { AppBarProps, AppBarTitleProps } from "@react-md/app-bar";
-import type { ButtonProps } from "@react-md/button";
 import type {
+  ButtonProps,
   CSSTransitionClassNames,
   PropsWithRef,
   TransitionTimeout,
