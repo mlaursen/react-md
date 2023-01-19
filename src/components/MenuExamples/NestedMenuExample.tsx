@@ -1,6 +1,5 @@
-import { Box } from "@react-md/core";
+import { Box, DropdownMenu, MenuItem } from "@react-md/core";
 import { Switch } from "@react-md/form";
-import { DropdownMenu, MenuItem } from "@react-md/menu";
 import type { ReactElement } from "react";
 import { useState } from "react";
 import { InfiniteDropdownMenu } from "./InfiniteDropdownMenu";

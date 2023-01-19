@@ -4,14 +4,12 @@ import {
   Button,
   DialogFooter,
   Divider,
-} from "@react-md/core";
-import CloseIcon from "@react-md/material-icons/CloseIcon";
-import {
   DropdownMenu,
   MenuConfigurationProvider,
   MenuItem,
   useMenuVisibility,
-} from "@react-md/menu";
+} from "@react-md/core";
+import CloseIcon from "@react-md/material-icons/CloseIcon";
 import type { ReactElement } from "react";
 
 function Header(): ReactElement {

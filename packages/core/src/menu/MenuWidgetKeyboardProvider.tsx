@@ -1,6 +1,6 @@
-import type { KeyboardMovementContext } from "@react-md/core";
-import { KeyboardMovementProvider } from "@react-md/core";
 import type { ReactElement, ReactNode } from "react";
+import type { KeyboardMovementContext } from "../movement";
+import { KeyboardMovementProvider } from "../movement";
 
 /**
  * @remarks \@since 6.0.0

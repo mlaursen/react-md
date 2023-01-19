@@ -1,17 +1,21 @@
 @use "sass:map";
-@use "@react-md/core";
+@use "../utils";
+@use "../box-shadows";
+@use "../theme/theme";
+@use "../interaction/interaction";
+@use "../icon/icon";
 
 $disable-menu: false !default;
 $disable-menu-item: false !default;
 $disable-menu-item-group: false !default;
 $disable-focus-outline: false !default;
-$disable-elevation-colors: core.$disable-dark-elevation !default;
+$disable-elevation-colors: theme.$disable-dark-elevation !default;
 
 $elevation: 8 !default;
-$background-color: core.theme-get-var(surface-color) !default;
-$color: core.theme-get-var(text-primary-color) !default;
+$background-color: theme.theme-get-var(surface-color) !default;
+$color: theme.theme-get-var(text-primary-color) !default;
 
-$z-index: core.$temporary-element-z-index !default;
+$z-index: utils.$temporary-element-z-index !default;
 $min-width: 7rem !default;
 
 $spacing: 1rem !default;
@@ -36,7 +40,7 @@ $var-lookup: (
 );
 
 @function get-var($name, $fallback: null) {
-  $found: core.validate($var-lookup, $name, "dialog var");
+  $found: utils.validate($var-lookup, $name, "dialog var");
   $var: map.get($found, var);
   $value: if($fallback, $fallback, map.get($found, value));
 
@@ -48,7 +52,7 @@ $var-lookup: (
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(core.validate($var-lookup, $name, "dialog var"), var);
+  $var: map.get(utils.validate($var-lookup, $name, "dialog var"), var);
 
   #{$var}: #{$value};
 }
@@ -63,20 +67,20 @@ $var-lookup: (
     overflow: auto;
 
     @if not $disable-focus-outline {
-      @include core.keyboard-only {
+      @include utils.keyboard-only {
         &--outline:focus {
           // Note: Do not use the `interaction-outline` mixin +
-          // `interaction-set-var(core.$interaction-outline-color)` like normal focus
+          // `interaction-set-var(interaction.$outline-color)` like normal focus
           // elements since it'll make all focusable children update with the
           // outline color as well
-          outline: core.interaction-get-var(outline-color) solid
-            core.interaction-get-var(outline-width);
+          outline: interaction.get-var(outline-color) solid
+            interaction.get-var(outline-width);
         }
       }
     }
 
     &--elevated {
-      @include core.box-shadow(
+      @include box-shadows.box-shadow(
         $elevation,
         $disable-colors: $disable-elevation-colors
       );
@@ -93,20 +97,17 @@ $var-lookup: (
 
 @mixin menu-item-styles {
   .rmd-menu-item {
-    @include core.icon-set-var(spacing, get-var(spacing));
+    @include icon.set-var(spacing, get-var(spacing));
 
     height: var(--rmd-list-item-height);
 
     &--focused {
-      @include core.keyboard-only {
-        @include core.interaction-set-var(
+      @include utils.keyboard-only {
+        @include interaction.set-var(
           background-color,
-          core.interaction-get-var(focus-background-color)
+          interaction.get-var(focus-background-color)
         );
-        @include core.interaction-set-var(
-          outline-color,
-          core.$interaction-outline-color
-        );
+        @include interaction.set-var(outline-color, interaction.$outline-color);
       }
     }
   }

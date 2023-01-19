@@ -1,12 +1,9 @@
-import type {
-  LabelRequiredForA11y,
-  ListElement,
-  ListProps,
-} from "@react-md/core";
-import { List } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { ReactNode } from "react";
 import { forwardRef } from "react";
+import type { ListElement, ListProps } from "../list";
+import { List } from "../list";
+import type { LabelRequiredForA11y } from "../types";
 import { useMenuConfiguration } from "./MenuConfigurationProvider";
 
 /** @remarks \@since 5.0.0 */
@@ -29,8 +26,13 @@ export type MenuItemGroupProps = LabelRequiredForA11y<
  * Simple Example
  * ```tsx
  * import { ReactElement, useState } from "react";
- * import { DropdownMenu, MenuItemGroup, MenuItemSeparator } from "@react-md/menu";
- * import { MenuItemRadio, MenuItemSwitch } from "@react-md/form";
+ * import {
+ *   DropdownMenu,
+ *   MenuItemGroup,
+ *   MenuItemRadio,
+ *   MenuItemSeparator,
+ *   MenuItemSwitch,
+ * } from "@react-md/core";
  *
  * function Example(): ReactElement {
  *   const [value, setValue] = useState("value1");

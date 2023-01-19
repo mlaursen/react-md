@@ -1,10 +1,10 @@
-import type { ListProps } from "@react-md/core";
+import { forwardRef } from "react";
+import type { ListProps } from "../list";
+import { List } from "../list";
 import {
   KeyboardMovementProvider,
-  List,
   useKeyboardMovementProvider,
-} from "@react-md/core";
-import { forwardRef } from "react";
+} from "../movement";
 import { MenuBarProvider, useMenuBarProvider } from "./useMenuBarProvider";
 
 export interface MenuBarProps extends Omit<ListProps, "role"> {

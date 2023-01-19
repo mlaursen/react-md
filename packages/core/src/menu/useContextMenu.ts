@@ -1,11 +1,8 @@
-import type {
-  InitialCoords,
-  PositionAnchor,
-  UseStateObject,
-} from "@react-md/core";
-import { BELOW_INNER_LEFT_ANCHOR } from "@react-md/core";
 import type { MouseEvent, RefObject } from "react";
 import { useCallback, useRef, useState } from "react";
+import type { InitialCoords, PositionAnchor } from "../positioning";
+import { BELOW_INNER_LEFT_ANCHOR } from "../positioning";
+import type { UseStateObject } from "../types";
 
 /** @remarks \@since 6.0.0 */
 export interface ContextMenuProps extends InitialCoords {
@@ -67,7 +64,7 @@ const noop = (): void => {
  * Simple Example
  * ```tsx
  * import type { ReactElement } from "react";
- * import [ Menu, MenuItem, useContextMenu ] from "@react-md/menu":
+ * import [ Menu, MenuItem, useContextMenu ] from "@react-md/core":
  *
  * function Example(): ReactElement {
  *   const { menuProps, onContextMenu } = useContextMenu();

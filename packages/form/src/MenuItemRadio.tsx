@@ -18,8 +18,7 @@ import { MenuItemInputToggle } from "./MenuItemInputToggle";
  * Only Radio Items
  * ```tsx
  * import { ReactElement, useState } from "react";
- * import { DropdownMenu } from "@react-md/menu";
- * import { MenuItemRadio } from "@react-md/form";
+ * import { DropdownMenu, MenuItemRadio } from "@react-md/core";
  *
  * function Example(): ReactElement {
  *   const [value, setValue] = useState("value1");
@@ -55,9 +54,15 @@ import { MenuItemInputToggle } from "./MenuItemInputToggle";
  * @example
  * With Other Items
  * ```tsx
- * import { ReactElement, useState } from "react";
- * import { DropdownMenu, MenuItemGroup, MenuItemSeparator } from "@react-md/menu";
- * import { MenuItemRadio, MenuItemSwitch } from "@react-md/form";
+ * import {
+ *   DropdownMenu,
+ *   MenuItemGroup,
+ *   MenuItemRadio,
+ *   MenuItemSwitch,
+ *   MenuItemSeparator,
+ * } from "@react-md/core";
+ * import type { ReactElement } from "react";
+ * import { useState } from "react";
  *
  * function Example(): ReactElement {
  *   const [value, setValue] = useState("value1");

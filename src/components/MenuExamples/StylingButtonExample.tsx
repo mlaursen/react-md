@@ -1,4 +1,4 @@
-import { DropdownMenu, MenuItem } from "@react-md/menu";
+import { DropdownMenu, MenuItem } from "@react-md/core";
 import type { ReactElement } from "react";
 
 export function StylingButtonExample(): ReactElement {

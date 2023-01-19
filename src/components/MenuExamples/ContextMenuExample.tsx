@@ -1,8 +1,8 @@
+import { Menu, MenuItem, useContextMenu } from "@react-md/core";
 import { TextArea } from "@react-md/form";
 import ContentCopyIcon from "@react-md/material-icons/ContentCopyIcon";
 import ContentCutIcon from "@react-md/material-icons/ContentCutIcon";
 import ContentPasteIcon from "@react-md/material-icons/ContentPasteIcon";
-import { Menu, MenuItem, useContextMenu } from "@react-md/menu";
 import type { ReactElement } from "react";
 
 export function ContextMenuExample(): ReactElement {

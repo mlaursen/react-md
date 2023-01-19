@@ -1,5 +1,5 @@
+import { DropdownMenu } from "@react-md/core";
 import { MenuItemSwitch } from "@react-md/form";
-import { DropdownMenu } from "@react-md/menu";
 import type { ReactElement } from "react";
 import { useState } from "react";
 

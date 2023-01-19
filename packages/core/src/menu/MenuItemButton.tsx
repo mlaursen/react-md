@@ -1,11 +1,8 @@
-import {
-  IconRotator,
-  useEnsuredId,
-  useHoverMode,
-  useIcon,
-  useUserInteractionMode,
-} from "@react-md/core";
 import { forwardRef, useEffect } from "react";
+import { useHoverMode } from "../hoverMode";
+import { IconRotator, useIcon } from "../icon";
+import { useUserInteractionMode } from "../interaction";
+import { useEnsuredId } from "../useEnsuredId";
 import type { BaseMenuButtonProps } from "./MenuButton";
 import { useMenuConfiguration } from "./MenuConfigurationProvider";
 import type { MenuItemProps } from "./MenuItem";

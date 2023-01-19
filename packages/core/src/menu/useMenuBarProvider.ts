@@ -1,6 +1,6 @@
-import type { HoverModeContext } from "@react-md/core";
-import { createHoverModeContext, useHoverModeProvider } from "@react-md/core";
 import { createContext, useContext, useMemo } from "react";
+import type { HoverModeContext } from "../hoverMode";
+import { createHoverModeContext, useHoverModeProvider } from "../hoverMode";
 
 /**
  * @internal

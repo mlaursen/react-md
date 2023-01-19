@@ -1,5 +1,4 @@
-import { Box } from "@react-md/core";
-import { MenuConfigurationProvider } from "@react-md/menu";
+import { Box, MenuConfigurationProvider } from "@react-md/core";
 import type { ReactElement } from "react";
 import { DemoHeadingWithDivider } from "../DemoHeadingWithDivider";
 import { Resettable } from "../Resettable";

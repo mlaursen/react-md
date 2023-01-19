@@ -1,5 +1,5 @@
+import { DropdownMenu, MenuItem } from "@react-md/core";
 import MoreVertIcon from "@react-md/material-icons/MoreVertIcon";
-import { DropdownMenu, MenuItem } from "@react-md/menu";
 import type { ReactElement } from "react";
 
 export function IconButtonExample(): ReactElement {

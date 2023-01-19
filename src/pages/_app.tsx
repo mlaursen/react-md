@@ -2,7 +2,12 @@ import "./app.scss";
 
 import { MDXProvider } from "@mdx-js/react";
 import type { ConfiguredIcons } from "@react-md/core";
-import { CoreProviders, IconProvider, ThemeProvider } from "@react-md/core";
+import {
+  CoreProviders,
+  IconProvider,
+  MenuConfigurationProvider,
+  ThemeProvider,
+} from "@react-md/core";
 import ArrowDropDownIcon from "@react-md/material-icons/ArrowDropDownIcon";
 import ArrowUpwardIcon from "@react-md/material-icons/ArrowUpwardIcon";
 import CheckBoxIcon from "@react-md/material-icons/CheckBoxIcon";
@@ -19,7 +24,6 @@ import NotificationsIcon from "@react-md/material-icons/NotificationsIcon";
 import RadioButtonCheckedIcon from "@react-md/material-icons/RadioButtonCheckedIcon";
 import RadioButtonUncheckedIcon from "@react-md/material-icons/RadioButtonUncheckedIcon";
 import RemoveRedEyeIcon from "@react-md/material-icons/RemoveRedEyeIcon";
-import { MenuConfigurationProvider } from "@react-md/menu";
 import { upperFirst } from "lodash";
 import type { AppProps } from "next/app";
 import Head from "next/head";

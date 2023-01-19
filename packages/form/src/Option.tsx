@@ -1,15 +1,14 @@
-import type { TextIconSpacingProps } from "@react-md/core";
+import type { MenuItemProps, TextIconSpacingProps } from "@react-md/core";
 import {
   bem,
   getListItemHeight,
   icon,
   ListItemText,
+  MenuItem,
   TextIconSpacing,
   useEnsuredId,
   useIcon,
 } from "@react-md/core";
-import type { MenuItemProps } from "@react-md/menu";
-import { MenuItem } from "@react-md/menu";
 import { cnb } from "cnbuilder";
 import type { ReactNode } from "react";
 import { forwardRef, Fragment } from "react";

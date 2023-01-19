@@ -1,4 +1,5 @@
 import type {
+  MenuProps,
   TransitionEnterHandler,
   TransitionExitHandler,
 } from "@react-md/core";
@@ -10,14 +11,13 @@ import {
   isSearchableEvent,
   KeyboardMovementProvider,
   loop,
+  Menu,
   useEnsuredId,
   useEnsuredRef,
   useIcon,
   useKeyboardMovementProvider,
   useToggle,
 } from "@react-md/core";
-import type { MenuProps } from "@react-md/menu";
-import { Menu } from "@react-md/menu";
 import { cnb } from "cnbuilder";
 import type { ChangeEvent, ReactElement, ReactNode, Ref } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";

@@ -1,6 +1,5 @@
-import { useEnsuredId, useIcon } from "@react-md/core";
-import type { MenuItemProps } from "@react-md/menu";
-import { MenuItem } from "@react-md/menu";
+import type { MenuItemProps } from "@react-md/core";
+import { MenuItem, useEnsuredId, useIcon } from "@react-md/core";
 import type { ChangeEventHandler, InputHTMLAttributes } from "react";
 import { forwardRef } from "react";
 

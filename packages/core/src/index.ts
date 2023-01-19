@@ -16,6 +16,7 @@ export * from "./icon";
 export * from "./interaction";
 export * from "./link";
 export * from "./list";
+export * from "./menu";
 export * from "./movement";
 export * from "./NoSsr";
 export * from "./overlay";

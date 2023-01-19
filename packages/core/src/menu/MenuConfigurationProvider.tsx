@@ -1,4 +1,4 @@
-import type { SheetPosition, SheetVerticalSize } from "@react-md/core";
+import type { SheetPosition, SheetVerticalSize } from "../sheet";
 import type { ReactElement, ReactNode } from "react";
 import { createContext, useContext, useMemo } from "react";
 

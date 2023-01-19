@@ -1,11 +1,9 @@
-import type { ListItemProps } from "@react-md/core";
-import {
-  ListItem,
-  useEnsuredId,
-  useKeyboardMovementContext,
-} from "@react-md/core";
 import { cnb } from "cnbuilder";
 import { forwardRef } from "react";
+import type { ListItemProps } from "../list";
+import { ListItem } from "../list";
+import { useKeyboardMovementContext } from "../movement";
+import { useEnsuredId } from "../useEnsuredId";
 
 export interface MenuItemProps extends Omit<ListItemProps, "role"> {
   /**

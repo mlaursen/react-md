@@ -1,10 +1,8 @@
-import {
-  getLastFocusableIndex,
-  useEnsuredId,
-  useUserInteractionMode,
-} from "@react-md/core";
 import type { ReactElement, ReactNode, RefObject } from "react";
 import { useCallback, useRef, useState } from "react";
+import { useUserInteractionMode } from "../interaction";
+import { getLastFocusableIndex } from "../movement";
+import { useEnsuredId } from "../useEnsuredId";
 import type { MenuConvenienceProps, MenuListConvenienceProps } from "./Menu";
 import { Menu } from "./Menu";
 import type { MenuButtonProps } from "./MenuButton";
@@ -47,7 +45,7 @@ export type DropdownMenuProps = DropdownMenuButtonProps &
  * Simple Example
  * ```tsx
  * import type { ReactElement } from "react";
- * import { DropdownMenu, MenuItem } from "@react-md/menu";
+ * import { DropdownMenu, MenuItem } from "@react-md/core";
  *
  * function Example() {
  *   return (
@@ -67,7 +65,7 @@ export type DropdownMenuProps = DropdownMenuButtonProps &
  * Nested Dropdown Menus
  * ```tsx
  * import type { ReactElement } from "react";
- * import { DropdownMenu, MenuItem } from "@react-md/menu";
+ * import { DropdownMenu, MenuItem } from "@react-md/core";
  *
  * function Example() {
  *   return (

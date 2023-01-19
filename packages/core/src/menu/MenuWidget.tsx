@@ -1,8 +1,11 @@
-import type { GetDefaultFocusedIndex, NonNullMutableRef } from "@react-md/core";
-import { bem, List, useKeyboardMovementProvider } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useRef, useState } from "react";
+import { List } from "../list";
+import type { GetDefaultFocusedIndex } from "../movement";
+import { useKeyboardMovementProvider } from "../movement";
+import type { NonNullMutableRef } from "../types";
+import { bem } from "../utils";
 import type { MenuListConvenienceProps } from "./Menu";
 import { MenuWidgetKeyboardProvider } from "./MenuWidgetKeyboardProvider";
 import {

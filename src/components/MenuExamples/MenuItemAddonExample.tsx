@@ -1,7 +1,7 @@
+import { DropdownMenu, MenuItem } from "@react-md/core";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import PlayArrowIcon from "@react-md/material-icons/PlayArrowIcon";
 import StarIcon from "@react-md/material-icons/StarIcon";
-import { DropdownMenu, MenuItem } from "@react-md/menu";
 import type { ReactElement } from "react";
 
 export function MenuItemAddonExample(): ReactElement {

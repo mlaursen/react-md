@@ -1,10 +1,7 @@
-import type {
-  BaseSheetProps,
-  LabelRequiredForA11y,
-  PropsWithRef,
-} from "@react-md/core";
-import { Sheet } from "@react-md/core";
 import type { CSSProperties, ReactElement, ReactNode } from "react";
+import type { BaseSheetProps } from "../sheet";
+import { Sheet } from "../sheet";
+import type { LabelRequiredForA11y, PropsWithRef } from "../types";
 import type { RenderMenuAsSheet } from "./MenuConfigurationProvider";
 
 const noop = (): void => {

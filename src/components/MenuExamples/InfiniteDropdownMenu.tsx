@@ -1,4 +1,4 @@
-import { DropdownMenu, MenuItem } from "@react-md/menu";
+import { DropdownMenu, MenuItem } from "@react-md/core";
 import type { ReactElement, ReactNode } from "react";
 
 export interface InfiniteDropdownMenuProps {

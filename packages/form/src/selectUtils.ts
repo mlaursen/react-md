@@ -1,4 +1,4 @@
-import type { MenuItemProps } from "@react-md/menu";
+import type { MenuItemProps } from "@react-md/core";
 import type { ReactNode } from "react";
 import { Children, isValidElement } from "react";
 

@@ -1,10 +1,9 @@
-import type {
-  ButtonProps,
-  IconRotatorProps,
-  TextIconSpacingProps,
-} from "@react-md/core";
-import { Button, IconRotator, useEnsuredId, useIcon } from "@react-md/core";
 import { forwardRef } from "react";
+import type { ButtonProps } from "../button";
+import { Button } from "../button";
+import type { IconRotatorProps, TextIconSpacingProps } from "../icon";
+import { IconRotator, useIcon } from "../icon";
+import { useEnsuredId } from "../useEnsuredId";
 import { useMenuVisibility } from "./MenuVisibilityProvider";
 
 const noop = (): void => {

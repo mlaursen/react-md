@@ -1,26 +1,22 @@
-import type {
-  CalculateFixedPositionOptions,
-  FixedPositioningOptions,
-  GetDefaultFocusedIndex,
-  LabelRequiredForA11y,
-  ListElement,
-  ListProps,
-  PropsWithRef,
-  ScaleTransitionHookOptions,
-} from "@react-md/core";
-import {
-  Portal,
-  useAppSize,
-  useEnsuredId,
-  useFixedPositioning,
-  useFocusContainer,
-  useScaleTransition,
-  useScrollLock,
-  useUserInteractionMode,
-} from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { CSSProperties, HTMLAttributes } from "react";
 import { forwardRef, useEffect, useRef } from "react";
+import { useAppSize } from "../AppSizeProvider";
+import { useFocusContainer } from "../focus";
+import { useUserInteractionMode } from "../interaction";
+import type { ListElement, ListProps } from "../list";
+import type { GetDefaultFocusedIndex } from "../movement";
+import { Portal } from "../portal";
+import type {
+  CalculateFixedPositionOptions,
+  FixedPositioningOptions,
+} from "../positioning";
+import { useFixedPositioning } from "../positioning";
+import { useScrollLock } from "../scroll";
+import type { ScaleTransitionHookOptions } from "../transition";
+import { useScaleTransition } from "../transition";
+import type { LabelRequiredForA11y, PropsWithRef } from "../types";
+import { useEnsuredId } from "../useEnsuredId";
 import type {
   MenuConfiguration,
   MenuOrientationProps,

@@ -21,7 +21,6 @@
       "@react-md/form": ["packages/form/src/index.ts"],
       "@react-md/layout": ["packages/layout/src/index.ts"],
       "@react-md/material-icons/*": ["packages/material-icons/src/*"],
-      "@react-md/menu": ["packages/menu/src/index.ts"],
       "@react-md/table": ["packages/table/src/index.ts"]
     }
   },

@@ -10,8 +10,7 @@ import { MenuItemInputToggle } from "./MenuItemInputToggle";
  * Simple Example
  * ```tsx
  * import { ReactElement, useState } from "react";
- * import { DropdownMenu } from "@react-md/menu";
- * import { MenuItemSwitch } from "@react-md/form";
+ * import { DropdownMenu, MenuItemSwitch } from "@react-md/core";
  *
  * function Example(): ReactElement {
  *   const [checked, setChecked] = useState(false);
