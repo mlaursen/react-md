@@ -1,4 +1,3 @@
-import { useCheckboxGroup } from "@react-md/core";
 import {
   Table,
   TableBody,
@@ -8,7 +7,8 @@ import {
   TableFooter,
   TableHeader,
   TableRow,
-} from "@react-md/table";
+  useCheckboxGroup,
+} from "@react-md/core";
 import type { ReactElement } from "react";
 
 import styles from "./StickyColumns.module.scss";

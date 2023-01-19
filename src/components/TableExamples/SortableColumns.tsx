@@ -1,4 +1,4 @@
-import type { SortOrder } from "@react-md/table";
+import type { SortOrder } from "@react-md/core";
 import {
   Table,
   TableBody,
@@ -6,7 +6,7 @@ import {
   TableContainer,
   TableHeader,
   TableRow,
-} from "@react-md/table";
+} from "@react-md/core";
 import { upperFirst } from "lodash";
 import type { ReactElement } from "react";
 import { useState } from "react";

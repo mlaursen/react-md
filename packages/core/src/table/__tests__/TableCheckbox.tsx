@@ -1,8 +1,9 @@
-import { ElementInteractionProvider, useCheckboxGroup } from "@react-md/core";
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import type { FC, ReactElement, ReactNode } from "react";
 import { createRef } from "react";
+import { useCheckboxGroup } from "../../form";
+import { ElementInteractionProvider } from "../../interaction";
 import { Table } from "../Table";
 import { TableBody } from "../TableBody";
 import { TableCheckbox } from "../TableCheckbox";

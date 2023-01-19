@@ -1,4 +1,3 @@
-import { useCheckboxGroup } from "@react-md/core";
 import {
   Table,
   TableBody,
@@ -7,7 +6,8 @@ import {
   TableContainer,
   TableHeader,
   TableRow,
-} from "@react-md/table";
+  useCheckboxGroup,
+} from "@react-md/core";
 import type { ReactElement } from "react";
 import { DESSERTS } from "src/constants/desserts";
 

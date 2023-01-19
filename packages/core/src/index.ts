@@ -28,6 +28,7 @@ export * from "./responsiveItem";
 export * from "./scroll";
 export * from "./sheet";
 export * from "./SsrProvider";
+export * from "./table";
 export * from "./tabs";
 export * from "./theme";
 export * from "./tooltip";

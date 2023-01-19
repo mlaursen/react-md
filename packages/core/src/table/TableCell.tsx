@@ -1,5 +1,3 @@
-import type { PropsWithRef } from "@react-md/core";
-import { bem, useIcon } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type {
   ButtonHTMLAttributes,
@@ -8,7 +6,9 @@ import type {
   ThHTMLAttributes,
 } from "react";
 import { forwardRef } from "react";
-
+import { useIcon } from "../icon";
+import type { PropsWithRef } from "../types";
+import { bem } from "../utils";
 import type { SortOrder } from "./TableCellContent";
 import { TableCellContent } from "./TableCellContent";
 import type {

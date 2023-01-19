@@ -1,7 +1,7 @@
-import { useEnsuredRef } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes, RefObject } from "react";
 import { createContext, forwardRef, useContext, useMemo } from "react";
+import { useEnsuredRef } from "../useEnsuredRef";
 
 /**
  * @internal

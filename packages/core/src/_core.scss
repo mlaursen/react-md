@@ -16,6 +16,7 @@
 @forward "button/button" as button-*;
 @forward "tabs/tabs" as tabs-*;
 @forward "chip/chip" as chip-*;
+@forward "table/table" as table-*;
 @forward "appBar/app-bar" as app-bar-*;
 @forward "responsiveItem/responsive-item" as responsive-item-*;
 @forward "overlay/overlay" as overlay-*;
@@ -50,6 +51,7 @@
 @use "responsiveItem/responsive-item";
 @use "tabs/tabs";
 @use "chip/chip";
+@use "table/table";
 @use "theme/theme";
 @use "dialog/dialog";
 @use "sheet/sheet";
@@ -122,6 +124,7 @@
   @include dialog.styles;
   @include sheet.styles;
   @include tooltip.styles;
+  @include table.styles;
   @include app-bar.styles;
   @include expansion-panel.styles;
   @include draggable.styles;

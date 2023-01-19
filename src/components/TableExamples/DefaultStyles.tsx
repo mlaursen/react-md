@@ -1,11 +1,11 @@
-import { Typography } from "@react-md/core";
 import {
   Table,
   TableBody,
   TableCell,
   TableHeader,
   TableRow,
-} from "@react-md/table";
+  Typography,
+} from "@react-md/core";
 import type { ReactElement } from "react";
 
 export function DefaultStyles(): ReactElement {

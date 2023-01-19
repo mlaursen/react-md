@@ -1,8 +1,7 @@
-import type { PropsWithRef } from "@react-md/core";
 import { render } from "@testing-library/react";
 import { createRef } from "react";
 import { act } from "react-dom/test-utils";
-
+import type { PropsWithRef } from "../../types";
 import type { TableProps } from "../Table";
 import { table, Table } from "../Table";
 import { TableBody } from "../TableBody";

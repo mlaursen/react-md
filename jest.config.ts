@@ -16,7 +16,6 @@ const config: Config = {
     "^@react-md/material-icons/(.*)": [
       "<rootDir>/packages/material-icons/src/$1",
     ],
-    "^@react-md/table$": ["<rootDir>/packages/table/src/index.ts"],
   },
 
   testPathIgnorePatterns: ["prev\\/", "\\.next", "public\\/"],

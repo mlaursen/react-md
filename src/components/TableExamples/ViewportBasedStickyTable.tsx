@@ -5,7 +5,7 @@ import {
   TableFooter,
   TableHeader,
   TableRow,
-} from "@react-md/table";
+} from "@react-md/core";
 import type { ReactElement } from "react";
 import { useRef } from "react";
 

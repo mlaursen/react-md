@@ -1,4 +1,4 @@
-import type { IntersectionObserverHookOptions } from "@react-md/core";
+import type { IntersectionObserverHookOptions } from "../useIntersectionObserver";
 
 /** @remarks \@since 6.0.0 */
 export type TableStickySectionOptions = Pick<

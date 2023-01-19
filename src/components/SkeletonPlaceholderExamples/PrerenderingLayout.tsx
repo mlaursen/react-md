@@ -5,15 +5,13 @@ import {
   nanoid,
   randomInt,
   SkeletonPlaceholder,
-} from "@react-md/core";
-import {
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHeader,
   TableRow,
-} from "@react-md/table";
+} from "@react-md/core";
 import type { ReactElement } from "react";
 import { useEffect, useMemo, useState } from "react";
 import { loremIpsum } from "src/utils/loremIpsum";

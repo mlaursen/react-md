@@ -1,10 +1,13 @@
 import {
   Button,
   randomInt,
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
   useResizeObserver,
   useToggle,
 } from "@react-md/core";
-import { Table, TableBody, TableCell, TableRow } from "@react-md/table";
 import type { ReactElement } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 

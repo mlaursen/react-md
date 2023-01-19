@@ -1,8 +1,9 @@
-import { bem, useEnsuredRef, useIntersectionObserver } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useCallback, useMemo, useState } from "react";
-
+import { useEnsuredRef } from "../useEnsuredRef";
+import { useIntersectionObserver } from "../useIntersectionObserver";
+import { bem } from "../utils";
 import type {
   TableCellConfig,
   TableConfigContext,

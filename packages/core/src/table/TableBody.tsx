@@ -1,7 +1,6 @@
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useMemo } from "react";
-
 import type {
   TableConfig,
   TableConfigContext,

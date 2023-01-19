@@ -1,7 +1,8 @@
-import type { CheckboxProps, PropsWithRef } from "@react-md/core";
-import { Checkbox } from "@react-md/core";
 import type { TdHTMLAttributes } from "react";
 import { forwardRef } from "react";
+import type { CheckboxProps } from "../form";
+import { Checkbox } from "../form";
+import type { PropsWithRef } from "../types";
 import { TableCell } from "./TableCell";
 
 const noop = (): void => {
@@ -88,7 +89,7 @@ export interface TableCheckboxProps
  *   TableContainer,
  *   TableHeader,
  *   TableRow,
- * } from "@react-md/table";
+ * } from "@react-md/core";
  * import type { ReactElement } from "react";
  *
  * const rows = [

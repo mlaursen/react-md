@@ -1,8 +1,7 @@
-import { bem } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { TableHTMLAttributes } from "react";
 import { forwardRef, useMemo } from "react";
-
+import { bem } from "../utils";
 import type {
   TableConfigContext,
   TableConfiguration,
@@ -46,7 +45,7 @@ export interface TableProps
  *   TableContainer,
  *   TableHeader,
  *   TableRow,
- * } from "@react-md/table";
+ * } from "@react-md/core";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {

@@ -1,8 +1,7 @@
-import { bem } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
-
+import { bem } from "../utils";
 import type { TableRowConfiguration } from "./TableConfigurationProvider";
 import { useTableConfig } from "./TableConfigurationProvider";
 

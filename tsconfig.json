@@ -19,8 +19,7 @@
     "paths": {
       "@react-md/core": ["packages/core/src/index.ts"],
       "@react-md/layout": ["packages/layout/src/index.ts"],
-      "@react-md/material-icons/*": ["packages/material-icons/src/*"],
-      "@react-md/table": ["packages/table/src/index.ts"]
+      "@react-md/material-icons/*": ["packages/material-icons/src/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "next.config.mjs"],

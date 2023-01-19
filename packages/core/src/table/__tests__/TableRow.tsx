@@ -1,6 +1,5 @@
 import { render } from "@testing-library/react";
 import { createRef } from "react";
-
 import { Table } from "../Table";
 import { TableBody } from "../TableBody";
 import { TableCell } from "../TableCell";
