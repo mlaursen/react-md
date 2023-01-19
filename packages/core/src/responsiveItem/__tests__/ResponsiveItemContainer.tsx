@@ -1,7 +1,6 @@
-import type { PropsWithRef } from "@react-md/core";
 import { render } from "@testing-library/react";
 import { createRef } from "react";
-
+import type { PropsWithRef } from "../../types";
 import type { ResponsiveItemContainerProps } from "../ResponsiveItemContainer";
 import {
   responsiveItemContainer,

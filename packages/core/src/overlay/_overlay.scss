@@ -1,0 +1,77 @@
+@use "sass:map";
+@use "../utils";
+@use "../transition/transition";
+
+$disable-everything: false !default;
+$background-color: rgba(0, 0, 0, 0.4) !default;
+$z-index: utils.$temporary-element-z-index !default;
+
+$transition-duration: transition.$linear-duration !default;
+$transition-timing-function: transition.$linear-timing-function !default;
+
+$var-lookup: (
+  background-color: (
+    var: --rmd-overlay-background-color,
+    value: $background-color,
+  ),
+  z-index: (
+    var: --rmd-overlay-z-index,
+    value: $z-index,
+  ),
+);
+
+@function get-var($name, $fallback: null) {
+  $found: utils.validate($var-lookup, $name, "overlay var");
+  $var: map.get($found, var);
+  $value: if($fallback, $fallback, map.get($found, value));
+
+  @if $value {
+    @return var(#{$var}, #{$value});
+  }
+
+  @return var(#{$var});
+}
+
+@mixin set-var($name, $value) {
+  $var: map.get(utils.validate($var-lookup, $name, "overlay var"), var);
+
+  #{$var}: #{$value};
+}
+
+@mixin use-var($property, $name: $property, $fallback: null) {
+  #{$property}: get-var($name, $fallback);
+}
+
+@mixin styles {
+  @if not $disable-everything {
+    .rmd-overlay {
+      @include use-var(background-color);
+      @include use-var(z-index);
+
+      align-items: center;
+      display: flex;
+      inset: 0;
+      justify-content: center;
+      opacity: 0;
+      position: fixed;
+      pointer-events: none;
+      transition: opacity $transition-duration $transition-timing-function;
+
+      &--active {
+        opacity: 1;
+      }
+
+      &--clickable {
+        cursor: pointer;
+      }
+
+      &--visible {
+        pointer-events: auto;
+      }
+
+      &--absolute {
+        position: absolute;
+      }
+    }
+  }
+}

@@ -28,7 +28,6 @@ const config: Config = {
       "<rootDir>/packages/material-icons/src/$1",
     ],
     "^@react-md/menu$": ["<rootDir>/packages/menu/src/index.ts"],
-    "^@react-md/overlay$": ["<rootDir>/packages/overlay/src/index.ts"],
     "^@react-md/table$": ["<rootDir>/packages/table/src/index.ts"],
     "^@react-md/tooltip$": ["<rootDir>/packages/tooltip/src/index.ts"],
     "^@react-md/tree$": ["<rootDir>/packages/tree/src/index.ts"],

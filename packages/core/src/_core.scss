@@ -16,6 +16,7 @@
 @forward "button/button" as button-*;
 @forward "tabs/tabs" as tabs-*;
 @forward "responsiveItem/responsive-item" as responsive-item-*;
+@forward "overlay/overlay" as overlay-*;
 
 @use "box/box";
 @use "icon/icon";
@@ -25,6 +26,7 @@
 @use "tabs/tabs";
 @use "theme/theme";
 @use "responsiveItem/responsive-item";
+@use "overlay/overlay";
 @use "transition/transition";
 @use "interaction/interaction";
 @use "typography/typography";
@@ -84,6 +86,7 @@
   @include tabs.styles;
   @include progress.styles;
   @include responsive-item.styles;
+  @include overlay.styles;
   @include draggable.styles;
   @include window-splitter.styles;
 

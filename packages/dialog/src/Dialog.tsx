@@ -6,6 +6,7 @@ import type {
   TransitionTimeout,
 } from "@react-md/core";
 import {
+  Overlay,
   Portal,
   useCSSTransition,
   useEnsuredId,
@@ -13,7 +14,6 @@ import {
   useScrollLock,
   useSsr,
 } from "@react-md/core";
-import { Overlay } from "@react-md/overlay";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useState } from "react";
 

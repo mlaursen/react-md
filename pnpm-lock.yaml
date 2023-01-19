@@ -169,11 +169,9 @@ importers:
   packages/dialog:
     specifiers:
       '@react-md/core': ^6.0.0-alpha.0
-      '@react-md/overlay': ^6.0.0-alpha.0
       cnbuilder: ^3.1.0
     dependencies:
       '@react-md/core': link:../core
-      '@react-md/overlay': link:../overlay
       cnbuilder: 3.1.0
 
   packages/expansion-panel:
@@ -253,19 +251,6 @@ importers:
       '@react-md/dialog': link:../dialog
       '@react-md/list': link:../list
       cnbuilder: 3.1.0
-
-  packages/overlay:
-    specifiers:
-      '@react-md/core': ^6.0.0-alpha.0
-      cnbuilder: ^3.1.0
-      react: ^18.1.0
-      react-dom: ^18.1.0
-    dependencies:
-      '@react-md/core': link:../core
-      cnbuilder: 3.1.0
-    devDependencies:
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
 
   packages/table:
     specifiers:

@@ -1,7 +1,6 @@
-import { ElementInteractionProvider } from "@react-md/core";
 import { fireEvent, render } from "@testing-library/react";
 import { createRef } from "react";
-
+import { ElementInteractionProvider } from "../../interaction";
 import type { ButtonTheme, ButtonThemeType, ButtonType } from "../Button";
 import { button, Button } from "../Button";
 

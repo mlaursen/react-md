@@ -1,12 +1,15 @@
+import { cnb } from "cnbuilder";
+import type { HTMLAttributes } from "react";
+import { forwardRef } from "react";
+import { Portal } from "../portal";
+import { useSsr } from "../SsrProvider";
 import type {
   CSSTransitionClassNamesObject,
   CSSTransitionComponentProps,
   TransitionTimeout,
-} from "@react-md/core";
-import { bem, Portal, useCSSTransition, useSsr } from "@react-md/core";
-import { cnb } from "cnbuilder";
-import type { HTMLAttributes } from "react";
-import { forwardRef } from "react";
+} from "../transition";
+import { useCSSTransition } from "../transition";
+import { bem } from "../utils";
 
 const styles = bem("rmd-overlay");
 

@@ -10,6 +10,7 @@ export * from "./icon";
 export * from "./interaction";
 export * from "./movement";
 export * from "./NoSsr";
+export * from "./overlay";
 export * from "./portal";
 export * from "./positioning";
 export * from "./progress";
