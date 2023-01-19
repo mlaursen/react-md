@@ -1,5 +1,4 @@
-import { Divider } from "@react-md/core";
-import { ListSubheader } from "@react-md/list";
+import { Divider, ListSubheader } from "@react-md/core";
 import type { TreeItemNode, TreeItemRendererProps } from "@react-md/tree";
 import { DefaultTreeItemRenderer } from "@react-md/tree";
 import type { ReactElement } from "react";

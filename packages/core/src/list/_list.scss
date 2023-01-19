@@ -1,5 +1,11 @@
 @use "sass:map";
-@use "@react-md/core";
+@use "../utils";
+@use "../theme/theme";
+@use "../avatar/avatar";
+@use "../icon/icon";
+@use "../divider/divider";
+@use "../interaction/interaction";
+@use "../typography/typography";
 
 $disable-horizontal: false !default;
 $disable-item-disabled-color: false !default;
@@ -27,9 +33,9 @@ $dense-horizontal-padding: $horizontal-padding !default;
 
 $dense-font-size: 0.8125rem !default;
 $typography-styles: map.merge(
-  core.$subtitle-1-styles,
+  typography.$subtitle-1-styles,
   (
-    line-height: map.get(core.$body-1-styles, line-height),
+    line-height: map.get(typography.$body-1-styles, line-height),
   )
 ) !default;
 
@@ -109,7 +115,7 @@ $var-lookup: (
 );
 
 @function get-var($name, $fallback: null) {
-  $found: core.validate($var-lookup, $name, "list var");
+  $found: utils.validate($var-lookup, $name, "list var");
   $var: map.get($found, var);
   $value: if($fallback, $fallback, map.get($found, value));
 
@@ -121,7 +127,7 @@ $var-lookup: (
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(core.validate($var-lookup, $name, "list var"), var);
+  $var: map.get(utils.validate($var-lookup, $name, "list var"), var);
 
   #{$var}: #{$value};
 }
@@ -134,7 +140,7 @@ $var-lookup: (
   $keyline: get-var(item-keyline);
   $padding: get-var(item-horizontal-padding);
 
-  @include core.icon-set-var(
+  @include icon.set-var(
     spacing,
     calc(#{$keyline} - #{$padding} - #{$subtract})
   );
@@ -142,8 +148,8 @@ $var-lookup: (
 
 @mixin styles {
   .rmd-list {
-    @include core.map-to-styles($typography-styles);
-    @include core.divider-set-var(inset, get-var(item-keyline));
+    @include utils.map-to-styles($typography-styles);
+    @include divider.set-var(inset, get-var(item-keyline));
 
     list-style: none;
     margin: 0;
@@ -168,7 +174,7 @@ $var-lookup: (
     padding: get-var(item-vertical-padding) get-var(item-horizontal-padding);
 
     &--clickable {
-      @include core.interaction-surface(
+      @include interaction.surface(
         $disabled-selector: '&[aria-disabled="true"]'
       );
     }
@@ -182,11 +188,11 @@ $var-lookup: (
 
     @if not $disable-item-disabled-color {
       &--disabled-color {
-        @include core.theme-set-var(
+        @include theme.theme-set-var(
           text-secondary-color,
-          core.theme-get-var(text-disabled-color)
+          theme.theme-get-var(text-disabled-color)
         );
-        @include core.theme-use-var(color, text-disabled-color);
+        @include theme.theme-use-var(color, text-disabled-color);
       }
     }
 
@@ -221,8 +227,8 @@ $var-lookup: (
     }
 
     &__text {
-      @include core.text-overflow;
-      @include core.rtl {
+      @include typography.text-overflow;
+      @include utils.rtl {
         margin-left: auto;
       }
 
@@ -230,11 +236,11 @@ $var-lookup: (
       flex-grow: 1;
 
       &--secondary {
-        @include core.theme-use-var(color, text-secondary-color);
+        @include theme.theme-use-var(color, text-secondary-color);
       }
 
       &--clamped {
-        @include core.line-clamp;
+        @include typography.line-clamp;
         @include use-var(max-height, text-three-line-height);
 
         line-height: $item-secondary-text-line-height;
@@ -254,18 +260,18 @@ $var-lookup: (
       }
 
       &--before {
-        @include _addon-spacing(core.icon-get-var(size));
+        @include _addon-spacing(icon.get-var(size));
       }
 
       @if not $disable-item-avatar {
         &--avatar-before {
-          @include _addon-spacing(core.avatar-get-var(size));
+          @include _addon-spacing(avatar.get-var(size));
         }
       }
 
       @if not $disable-item-media {
         &--media {
-          @include core.icon-set-var(spacing, get-var(item-media-spacing));
+          @include icon.set-var(spacing, get-var(item-media-spacing));
           @include use-var(width, item-media-size);
         }
 
@@ -286,8 +292,8 @@ $var-lookup: (
 
   @if not $disable-subheader {
     .rmd-list-subheader {
-      @include core.map-to-styles(core.$subtitle-2-styles);
-      @include core.theme-use-var(color, text-secondary-color);
+      @include utils.map-to-styles(typography.$subtitle-2-styles);
+      @include theme.theme-use-var(color, text-secondary-color);
       @include use-var(height, item-height);
 
       align-items: center;
@@ -296,7 +302,7 @@ $var-lookup: (
 
       @if not $disable-subheader-inset {
         &--inset {
-          @include core.rtl {
+          @include utils.rtl {
             @include use-var(padding-left, item-horizontal-padding);
             @include use-var(padding-right, text-keyline);
           }

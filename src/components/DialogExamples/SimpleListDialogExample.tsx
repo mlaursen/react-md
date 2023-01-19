@@ -1,6 +1,5 @@
-import { Button, useToggle } from "@react-md/core";
+import { Button, List, ListItem, useToggle } from "@react-md/core";
 import { Dialog, DialogHeader, DialogTitle } from "@react-md/dialog";
-import { List, ListItem } from "@react-md/list";
 import type { ReactElement } from "react";
 import { useId } from "react";
 

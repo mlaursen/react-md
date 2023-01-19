@@ -1,4 +1,3 @@
-/** @module @react-md/list */
 export * from "./getListItemHeight";
 export * from "./List";
 export * from "./ListItem";

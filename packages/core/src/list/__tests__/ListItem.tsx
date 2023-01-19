@@ -1,12 +1,11 @@
-import {
-  ElementInteractionProvider,
-  UserInteractionModeProvider,
-} from "@react-md/core";
 import { fireEvent, render, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import type { ReactElement, Ref } from "react";
 import { createRef } from "react";
-
+import {
+  ElementInteractionProvider,
+  UserInteractionModeProvider,
+} from "../../interaction";
 import { List } from "../List";
 import type { ListItemProps } from "../ListItem";
 import { ListItem } from "../ListItem";

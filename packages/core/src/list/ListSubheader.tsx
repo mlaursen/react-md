@@ -1,9 +1,8 @@
-import type { PropsWithRef } from "@react-md/core";
-import { bem } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
-
+import type { PropsWithRef } from "../types";
+import { bem } from "../utils";
 import { ListItemText } from "./ListItemText";
 
 const styles = bem("rmd-list-subheader");

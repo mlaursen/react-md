@@ -3,9 +3,9 @@ import {
   identity,
   KeyboardMovementProvider,
   LinkProvider,
+  List,
   useEnsuredId,
 } from "@react-md/core";
-import { List } from "@react-md/list";
 import type {
   ElementType,
   HTMLAttributes,

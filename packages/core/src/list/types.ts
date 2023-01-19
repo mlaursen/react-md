@@ -1,5 +1,5 @@
-import type { PropsWithRef } from "@react-md/core";
 import type { HTMLAttributes, ReactNode } from "react";
+import type { PropsWithRef } from "../types";
 
 /**
  * The height to apply to the list item.

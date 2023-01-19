@@ -1,4 +1,4 @@
-import { List, ListItem } from "@react-md/list";
+import { List, ListItem } from "@react-md/core";
 import StarIcon from "@react-md/material-icons/StarIcon";
 import type { ReactElement } from "react";
 

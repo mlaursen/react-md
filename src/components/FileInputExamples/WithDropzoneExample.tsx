@@ -4,6 +4,9 @@ import {
   Card,
   CardContent,
   LinearProgress,
+  List,
+  listItem,
+  ListItemChildren,
   Typography,
   useDropzone,
 } from "@react-md/core";
@@ -15,7 +18,6 @@ import {
   FormMessageCounter,
   useFileUpload,
 } from "@react-md/form";
-import { List, listItem, ListItemChildren } from "@react-md/list";
 import CheckCircleIcon from "@react-md/material-icons/CheckCircleIcon";
 import CloseIcon from "@react-md/material-icons/CloseIcon";
 import FileUploadIcon from "@react-md/material-icons/FileUploadIcon";

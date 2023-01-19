@@ -3,6 +3,8 @@ import type {
   FixedPositioningOptions,
   GetDefaultFocusedIndex,
   LabelRequiredForA11y,
+  ListElement,
+  ListProps,
   PropsWithRef,
   ScaleTransitionHookOptions,
 } from "@react-md/core";
@@ -16,7 +18,6 @@ import {
   useScrollLock,
   useUserInteractionMode,
 } from "@react-md/core";
-import type { ListElement, ListProps } from "@react-md/list";
 import { cnb } from "cnbuilder";
 import type { CSSProperties, HTMLAttributes } from "react";
 import { forwardRef, useEffect, useRef } from "react";

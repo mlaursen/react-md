@@ -12,7 +12,6 @@ const config: Config = {
     "^@react-md/dialog$": ["<rootDir>/packages/dialog/src/index.ts"],
     "^@react-md/form$": ["<rootDir>/packages/form/src/index.ts"],
     "^@react-md/layout$": ["<rootDir>/packages/layout/src/index.ts"],
-    "^@react-md/list$": ["<rootDir>/packages/list/src/index.ts"],
     "^@react-md/material-icons$": [
       "<rootDir>/packages/material-icons/src/index.ts",
     ],

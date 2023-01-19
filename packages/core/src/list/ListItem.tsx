@@ -1,10 +1,10 @@
+import type { HTMLAttributes } from "react";
+import { forwardRef } from "react";
 import {
   RippleContainer,
   useElementInteraction,
   useHigherContrastChildren,
-} from "@react-md/core";
-import type { HTMLAttributes } from "react";
-import { forwardRef } from "react";
+} from "../interaction";
 import { getListItemHeight } from "./getListItemHeight";
 import { ListItemChildren } from "./ListItemChildren";
 import { listItem } from "./listItemStyles";
@@ -64,7 +64,7 @@ export interface ListItemProps
  * @example
  * Simple Example
  * ```tsx
- * import { List, ListItem } from "@react-md/list";
+ * import { List, ListItem } from "@react-md/core";
  * import type { ReactElement  } from "react";
  *
  * function Example(): ReactElement {
@@ -94,7 +94,7 @@ export interface ListItemProps
  * @example
  * Applying Addons Example
  * ```tsx
- * import { List, ListItem } from "@react-md/list";
+ * import { List, ListItem } from "@react-md/core";
  * import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
  * import type { ReactElement  } from "react";
  *

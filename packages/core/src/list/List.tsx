@@ -1,7 +1,7 @@
-import { bem } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
+import { bem } from "../utils";
 
 const styles = bem("rmd-list");
 
@@ -64,7 +64,7 @@ export interface ListProps extends HTMLAttributes<ListElement> {
  * @example
  * Simple Example
  * ```tsx
- * import { List, ListItem, ListItemLink } from "@react-md/list";
+ * import { List, ListItem, ListItemLink } from "@react-md/core";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {

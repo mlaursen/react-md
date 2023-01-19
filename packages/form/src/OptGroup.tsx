@@ -1,11 +1,10 @@
-import type { PropsWithRef } from "@react-md/core";
-import { useEnsuredId } from "@react-md/core";
 import type {
   ListElement,
   ListProps,
   ListSubheaderProps,
-} from "@react-md/list";
-import { ListSubheader } from "@react-md/list";
+  PropsWithRef,
+} from "@react-md/core";
+import { ListSubheader, useEnsuredId } from "@react-md/core";
 import { MenuItemGroup } from "@react-md/menu";
 import type { ReactNode } from "react";
 import { forwardRef } from "react";

@@ -1,6 +1,5 @@
-import { useCollapseTransition } from "@react-md/core";
-import type { ListProps } from "@react-md/list";
-import { List } from "@react-md/list";
+import type { ListProps } from "@react-md/core";
+import { List, useCollapseTransition } from "@react-md/core";
 import type { ReactNode } from "react";
 import { forwardRef } from "react";
 

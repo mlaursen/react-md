@@ -1,6 +1,9 @@
-import type { LabelRequiredForA11y } from "@react-md/core";
-import type { ListElement, ListProps } from "@react-md/list";
-import { List } from "@react-md/list";
+import type {
+  LabelRequiredForA11y,
+  ListElement,
+  ListProps,
+} from "@react-md/core";
+import { List } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { ReactNode } from "react";
 import { forwardRef } from "react";

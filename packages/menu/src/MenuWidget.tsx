@@ -1,6 +1,5 @@
 import type { GetDefaultFocusedIndex, NonNullMutableRef } from "@react-md/core";
-import { bem, useKeyboardMovementProvider } from "@react-md/core";
-import { List } from "@react-md/list";
+import { bem, List, useKeyboardMovementProvider } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useRef, useState } from "react";

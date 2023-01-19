@@ -1,11 +1,10 @@
-import type { PropsWithRef } from "@react-md/core";
-import { bem, useEnsuredId } from "@react-md/core";
 import type {
   ListItemAddonPosition,
   ListItemAddonType,
   ListItemHeight,
-} from "@react-md/list";
-import { ListItem } from "@react-md/list";
+  PropsWithRef,
+} from "@react-md/core";
+import { bem, ListItem, useEnsuredId } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type {
   CSSProperties,

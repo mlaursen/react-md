@@ -1,16 +1,17 @@
-import type { CustomLinkComponent, PropsWithRef } from "@react-md/core";
+import type { AnchorHTMLAttributes, HTMLAttributes } from "react";
+import { forwardRef } from "react";
 import {
   RippleContainer,
   useElementInteraction,
   useHigherContrastChildren,
-} from "@react-md/core";
-import type {
-  ListItemChildrenProps,
-  ListItemClassNameOptions,
-} from "@react-md/list";
-import { getListItemHeight, listItem, ListItemChildren } from "@react-md/list";
-import type { AnchorHTMLAttributes, HTMLAttributes } from "react";
-import { forwardRef } from "react";
+} from "../interaction";
+import type { CustomLinkComponent } from "../link";
+import type { PropsWithRef } from "../types";
+import { getListItemHeight } from "./getListItemHeight";
+import { ListItemChildren } from "./ListItemChildren";
+import type { ListItemClassNameOptions } from "./listItemStyles";
+import { listItem } from "./listItemStyles";
+import type { ListItemChildrenProps } from "./types";
 
 export interface ListItemLinkProps
   extends AnchorHTMLAttributes<HTMLAnchorElement>,

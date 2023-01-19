@@ -1,6 +1,6 @@
-import type { TextIconSpacingProps } from "@react-md/core";
-import { TextIconSpacing } from "@react-md/core";
 import type { ReactElement, ReactNode } from "react";
+import type { TextIconSpacingProps } from "../icon";
+import { TextIconSpacing } from "../icon";
 import type { ListItemAddonClassNameOptions } from "./listItemStyles";
 import { listItemAddon } from "./listItemStyles";
 

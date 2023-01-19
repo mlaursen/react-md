@@ -1,7 +1,6 @@
 import { render } from "@testing-library/react";
 import type { ReactElement, Ref } from "react";
 import { createRef } from "react";
-
 import { List } from "../List";
 import type { ListSubheaderProps } from "../ListSubheader";
 import { ListSubheader } from "../ListSubheader";

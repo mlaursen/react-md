@@ -1,9 +1,9 @@
+import type { ListProps } from "@react-md/core";
 import {
   KeyboardMovementProvider,
+  List,
   useKeyboardMovementProvider,
 } from "@react-md/core";
-import type { ListProps } from "@react-md/list";
-import { List } from "@react-md/list";
 import { forwardRef } from "react";
 import { MenuBarProvider, useMenuBarProvider } from "./useMenuBarProvider";
 

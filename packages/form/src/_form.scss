@@ -2,7 +2,6 @@
 @use "sass:math";
 @use "sass:color";
 @use "@react-md/core";
-@use "@react-md/list";
 
 $disable-fieldset: false !default;
 $disable-message: false !default;
@@ -143,7 +142,7 @@ $option-selected-styles: (
   background-color: core.$blue-900,
   color: core.$white,
 ) !default;
-$option-padding-left: list.$item-horizontal-padding -
+$option-padding-left: core.$list-item-horizontal-padding -
   math.div(core.$icon-size - $option-selected-icon-size, 2) !default;
 $option-selected-icon-spacing: $option-padding-left !default;
 
@@ -1041,7 +1040,7 @@ $var-lookup: (
   .rmd-option {
     &--icon {
       @include core.rtl {
-        @include list.use-var(padding-left, item-horizontal-padding);
+        @include core.list-use-var(padding-left, item-horizontal-padding);
 
         padding-right: $option-padding-left;
       }

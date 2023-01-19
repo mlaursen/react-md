@@ -1,5 +1,7 @@
-import type { UseStateInitializer } from "@react-md/core";
-import type { ListItemChildrenProps } from "@react-md/list";
+import type {
+  ListItemChildrenProps,
+  UseStateInitializer,
+} from "@react-md/core";
 import type { ReactNode } from "react";
 
 /**

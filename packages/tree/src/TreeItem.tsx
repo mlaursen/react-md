@@ -1,5 +1,6 @@
 import type { PropsWithRef } from "@react-md/core";
 import {
+  ListItemChildren,
   RippleContainer,
   useElementInteraction,
   useEnsuredId,
@@ -7,7 +8,6 @@ import {
   useKeyboardMovementContext,
   useLink,
 } from "@react-md/core";
-import { ListItemChildren } from "@react-md/list";
 import type { HTMLAttributes, ReactElement, ReactNode, Ref } from "react";
 import { useEffect } from "react";
 

@@ -1,6 +1,6 @@
-import type { PropsWithRef } from "@react-md/core";
 import type { HTMLAttributes, ReactNode } from "react";
 import { forwardRef } from "react";
+import type { PropsWithRef } from "../types";
 import { listItemText } from "./listItemStyles";
 
 /**

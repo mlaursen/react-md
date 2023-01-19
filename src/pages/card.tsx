@@ -10,11 +10,12 @@ import {
   CardTitle,
   Collapse,
   IconRotator,
+  List,
+  ListItem,
   ResponsiveItemContainer,
   ResponsiveItemOverlay,
   Typography,
 } from "@react-md/core";
-import { List, ListItem } from "@react-md/list";
 import EmailIcon from "@react-md/material-icons/EmailIcon";
 import KeyboardArrowDownIcon from "@react-md/material-icons/KeyboardArrowDownIcon";
 import PhoneIcon from "@react-md/material-icons/PhoneIcon";

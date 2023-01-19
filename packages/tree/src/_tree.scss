@@ -1,15 +1,14 @@
-// @use "sass:list";
+@use "sass:list";
 @use "sass:map";
 @use "@react-md/core";
-@use "@react-md/list";
 
 $disable-expander-left: false !default;
 $disable-expander-left-as-media: false !default;
 $disable-expander-left-as-media-offset: false !default;
 $disable-selected-background-color: false !default;
 
-$padding-incrementor: list.$item-horizontal-padding * 1.5 !default;
-$padding-base: list.get-var(item-keyline) !default;
+$padding-incrementor: core.$list-item-horizontal-padding * 1.5 !default;
+$padding-base: core.list-get-var(item-keyline) !default;
 $expander-right-from: core.$icon-rotate-from !default;
 $expander-right-to: 90deg !default;
 $expander-left-from: 0deg !default;
@@ -126,7 +125,7 @@ $var-lookup: (
         @include core.auto-rtl(
           padding-left,
           get-var(item-padding),
-          list.get-var(item-horizontal-padding)
+          core.list-get-var(item-horizontal-padding)
         );
       }
 
