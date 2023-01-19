@@ -15,6 +15,7 @@
 @forward "progress/progress" as progress-*;
 @forward "button/button" as button-*;
 @forward "tabs/tabs" as tabs-*;
+@forward "appBar/app-bar" as app-bar-*;
 @forward "responsiveItem/responsive-item" as responsive-item-*;
 @forward "overlay/overlay" as overlay-*;
 @forward "avatar/avatar" as avatar-*;
@@ -22,23 +23,24 @@
 @forward "link/link" as link-*;
 @forward "expansionPanel/expansion-panel" as expansion-panel-*;
 
+@use "avatar/avatar";
+@use "appBar/app-bar";
 @use "box/box";
-@use "icon/icon";
-@use "divider/divider";
-@use "progress/progress";
 @use "button/button";
+@use "card/card";
+@use "divider/divider";
+@use "draggable/draggable";
+@use "expansionPanel/expansion-panel";
+@use "icon/icon";
+@use "interaction/interaction";
+@use "link/link";
+@use "overlay/overlay";
+@use "progress/progress";
+@use "responsiveItem/responsive-item";
 @use "tabs/tabs";
 @use "theme/theme";
-@use "responsiveItem/responsive-item";
-@use "card/card";
-@use "overlay/overlay";
-@use "avatar/avatar";
-@use "link/link";
-@use "expansionPanel/expansion-panel";
 @use "transition/transition";
-@use "interaction/interaction";
 @use "typography/typography";
-@use "draggable/draggable";
 @use "windowSplitter/window-splitter";
 
 @mixin css-reset {
@@ -98,6 +100,7 @@
   @include card.styles;
   @include avatar.styles;
   @include link.styles;
+  @include app-bar.styles;
   @include expansion-panel.styles;
   @include draggable.styles;
   @include window-splitter.styles;

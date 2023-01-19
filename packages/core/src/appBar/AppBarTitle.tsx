@@ -1,7 +1,8 @@
-import { bem, Typography } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
+import { Typography } from "../typography";
+import { bem } from "../utils";
 
 const styles = bem("rmd-app-bar-title");
 
@@ -65,7 +66,7 @@ export interface AppBarTitleProps
  * @example
  * Updating the Keyline
  * ```tsx
- * import { AppBar, AppBarTitle } from "@react-md/app-bar";
+ * import { AppBar, AppBarTitle } from "@react-md/core";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {

@@ -1,6 +1,5 @@
 @use "sass:map";
 @use "@react-md/core";
-@use "@react-md/app-bar";
 @use "@react-md/dialog";
 
 $disable-mini: false !default;
@@ -14,7 +13,7 @@ $main-focused-z-index: 999 !default;
 $main-focus-shadow: inset 0 0 0 0.125rem core.$blue-500 !default;
 
 $navigation-z-index: dialog.$dialog-z-index !default;
-$navigation-mini-z-index: app-bar.$fixed-z-index - 1 !default;
+$navigation-mini-z-index: core.$app-bar-fixed-z-index - 1 !default;
 $navigation-width: dialog.$sheet-static-width !default;
 $navigation-mini-width: 3.5rem !default;
 
@@ -81,12 +80,12 @@ $var-lookup: (
     }
 
     &--header-offset {
-      @include app-bar.use-var(top, height);
+      @include core.app-bar-use-var(top, height);
     }
 
     @if not $disable-mini {
       &--mini {
-        @include app-bar.use-var(top, height);
+        @include core.app-bar-use-var(top, height);
         @include use-var(width, mini-nav-width);
 
         z-index: $navigation-mini-z-index;
@@ -126,7 +125,7 @@ $var-lookup: (
   .rmd-layout-title {
     &--offset {
       // use the nav-width so that you can use window splitters easily
-      $margin: calc(#{get-var(nav-width)} + #{app-bar.$keyline});
+      $margin: calc(#{get-var(nav-width)} + #{core.$app-bar-keyline});
 
       @include core.auto-rtl(margin-left, $margin);
     }
@@ -179,11 +178,11 @@ $var-lookup: (
     outline-style: none;
 
     &--header-offset {
-      @include app-bar.use-var(padding-top, height);
+      @include core.app-bar-use-var(padding-top, height);
 
       @include core.keyboard-only {
         &::before {
-          @include app-bar.use-var(top, height);
+          @include core.app-bar-use-var(top, height);
         }
       }
     }

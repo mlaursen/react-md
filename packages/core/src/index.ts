@@ -1,3 +1,4 @@
+export * from "./appBar";
 export * from "./AppSizeProvider";
 export * from "./avatar";
 export * from "./box";
@@ -11,6 +12,7 @@ export * from "./focus";
 export * from "./hoverMode";
 export * from "./icon";
 export * from "./interaction";
+export * from "./link";
 export * from "./movement";
 export * from "./NoSsr";
 export * from "./overlay";
@@ -38,4 +40,3 @@ export * from "./useResizeObserver";
 export * from "./useToggle";
 export * from "./utils";
 export * from "./windowSplitter";
-export * from "./link";

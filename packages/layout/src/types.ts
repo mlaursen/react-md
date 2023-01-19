@@ -1,5 +1,6 @@
-import type { AppBarProps, AppBarTitleProps } from "@react-md/app-bar";
 import type {
+  AppBarProps,
+  AppBarTitleProps,
   ButtonProps,
   CSSTransitionClassNames,
   PropsWithRef,

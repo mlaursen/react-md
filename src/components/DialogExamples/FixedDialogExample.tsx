@@ -1,5 +1,10 @@
-import { AppBar, AppBarTitle } from "@react-md/app-bar";
-import { Button, Typography, useToggle } from "@react-md/core";
+import {
+  AppBar,
+  AppBarTitle,
+  Button,
+  Typography,
+  useToggle,
+} from "@react-md/core";
 import { DialogContent, FixedDialog } from "@react-md/dialog";
 import CloseIcon from "@react-md/material-icons/CloseIcon";
 import MenuIcon from "@react-md/material-icons/MenuIcon";

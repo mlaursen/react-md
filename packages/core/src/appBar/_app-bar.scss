@@ -1,5 +1,12 @@
 @use "sass:map";
-@use "@react-md/core";
+
+@use "../utils";
+@use "../box-shadows";
+@use "../interaction/interaction";
+@use "../theme/a11y";
+@use "../theme/theme";
+@use "../button/button";
+@use "../typography/typography";
 
 $disable-fixed: false !default;
 $disable-primary-theme: false !default;
@@ -10,10 +17,10 @@ $disable-prominent-theme: false !default;
 $disable-prominent-dense-theme: false !default;
 $disable-scrollbar-offset: false !default;
 $disable-static-scrollbar-offset: false !default;
-$disable-primary-interaction-colors: core.$interaction-light-theme-base-background-color
-  == core.$interaction-dark-theme-base-background-color !default;
-$disable-secondary-interaction-colors: core.$interaction-light-theme-base-background-color
-  == core.$interaction-dark-theme-base-background-color !default;
+$disable-primary-interaction-colors: interaction.$light-theme-base-background-color
+  == interaction.$dark-theme-base-background-color !default;
+$disable-secondary-interaction-colors: interaction.$light-theme-base-background-color
+  == interaction.$dark-theme-base-background-color !default;
 
 $disable-title: false !default;
 
@@ -27,24 +34,24 @@ $fixed-z-index: 10 !default;
 $fixed-elevation: 2 !default;
 $fixed-positions: top bottom !default;
 
-$light-theme-surface-background-color: core.$light-theme-surface-color !default;
-$light-theme-surface-color: core.contrast-color(
+$light-theme-surface-background-color: theme.$light-theme-surface-color !default;
+$light-theme-surface-color: a11y.contrast-color(
   $light-theme-surface-background-color
 ) !default;
 $dark-theme-surface-background-color: if(
-  core.$disable-dark-elevation,
-  core.$dark-theme-surface-color,
-  map.get(core.$dark-elevation-colors, $fixed-elevation)
+  theme.$disable-dark-elevation,
+  theme.$dark-theme-surface-color,
+  map.get(theme.$dark-elevation-colors, $fixed-elevation)
 ) !default;
 $dark-theme-surface-color: #fff !default;
 
 $surface-background-color: if(
-  core.$color-scheme == dark,
+  theme.$color-scheme == dark,
   $dark-theme-surface-background-color,
   $light-theme-surface-background-color
 ) !default;
 $surface-color: if(
-  core.$color-scheme == dark,
+  theme.$color-scheme == dark,
   $dark-theme-surface-color,
   $light-theme-surface-color
 ) !default;
@@ -66,7 +73,7 @@ $var-lookup: (
   ),
   color: (
     var: --rmd-app-bar-color,
-    value: core.theme-get-var(text-primary-color),
+    value: theme.theme-get-var(text-primary-color),
   ),
   surface-background-color: (
     var: --rmd-app-bar-surface-background-color,
@@ -79,7 +86,7 @@ $var-lookup: (
 );
 
 @function get-var($name, $fallback: null) {
-  $found: core.validate($var-lookup, $name, "app-bar var");
+  $found: utils.validate($var-lookup, $name, "app-bar var");
   $var: map.get($found, var);
   $value: if($fallback, $fallback, map.get($found, value));
 
@@ -91,7 +98,7 @@ $var-lookup: (
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(core.validate($var-lookup, $name, "app-bar var"), var);
+  $var: map.get(utils.validate($var-lookup, $name, "app-bar var"), var);
 
   #{$var}: #{$value};
 }
@@ -125,7 +132,7 @@ $var-lookup: (
 }
 
 @mixin styles {
-  @include core.default-system-theme {
+  @include theme.default-system-theme {
     @include use-dark-theme;
   }
 
@@ -154,7 +161,10 @@ $var-lookup: (
 
       @if $fixed-elevation and $fixed-elevation != 0 {
         &--fixed-elevation {
-          @include core.box-shadow($fixed-elevation, $disable-colors: true);
+          @include box-shadows.box-shadow(
+            $fixed-elevation,
+            $disable-colors: true
+          );
         }
       }
 
@@ -197,20 +207,23 @@ $var-lookup: (
     @if not $disable-primary-theme {
       &--primary {
         @if not $disable-primary-interaction-colors {
-          @include core.interaction-use-light-theme;
+          @include interaction.use-light-theme;
         }
-        @include set-var(background-color, core.theme-get-var(primary-color));
-        @include set-var(color, core.theme-get-var(on-primary-color));
+        @include set-var(background-color, theme.theme-get-var(primary-color));
+        @include set-var(color, theme.theme-get-var(on-primary-color));
       }
     }
 
     @if not $disable-secondary-theme {
       &--secondary {
         @if not $disable-secondary-interaction-colors {
-          @include core.interaction-use-light-theme;
+          @include interaction.use-light-theme;
         }
-        @include set-var(background-color, core.theme-get-var(secondary-color));
-        @include set-var(color, core.theme-get-var(on-secondary-color));
+        @include set-var(
+          background-color,
+          theme.theme-get-var(secondary-color)
+        );
+        @include set-var(color, theme.theme-get-var(on-secondary-color));
       }
     }
 
@@ -223,16 +236,16 @@ $var-lookup: (
 
     @if not $disable-scrollbar-offset {
       &--scrollbar-offset {
-        @include core.rtl {
-          margin-right: calc(-1 * #{core.scrollbar-size()});
+        @include utils.rtl {
+          margin-right: calc(-1 * #{utils.scrollbar-size()});
         }
 
-        padding-right: calc(#{$horizontal-padding} + #{core.scrollbar-size()});
+        padding-right: calc(#{$horizontal-padding} + #{utils.scrollbar-size()});
       }
 
       @if not $disable-static-scrollbar-offset {
         &--static-scrollbar-offset {
-          width: calc(100% + core.scrollbar-size());
+          width: calc(100% + utils.scrollbar-size());
         }
       }
     }
@@ -240,28 +253,28 @@ $var-lookup: (
 
   @if not $disable-title {
     .rmd-app-bar-title {
-      @include core.auto-rtl(margin-left, $keyline - $horizontal-padding);
+      @include utils.auto-rtl(margin-left, $keyline - $horizontal-padding);
 
       flex: 1 1 auto;
       margin-bottom: 0;
       margin-top: 0;
 
       &--keyline {
-        @include core.auto-rtl(
+        @include utils.auto-rtl(
           margin-left,
           $title-keyline - $horizontal-padding
         );
       }
 
       &--nav-keyline {
-        @include core.auto-rtl(
+        @include utils.auto-rtl(
           margin-left,
-          $title-keyline - $horizontal-padding - $gap - core.$button-icon-size
+          $title-keyline - $horizontal-padding - $gap - button.$icon-size
         );
       }
 
       &--no-wrap {
-        @include core.text-overflow;
+        @include typography.text-overflow;
       }
     }
   }

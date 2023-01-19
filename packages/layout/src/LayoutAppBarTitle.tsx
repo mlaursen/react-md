@@ -1,6 +1,5 @@
-import type { AppBarTitleProps } from "@react-md/app-bar";
-import { AppBarTitle } from "@react-md/app-bar";
-import { bem } from "@react-md/core";
+import type { AppBarTitleProps } from "@react-md/core";
+import { AppBarTitle, bem } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import { forwardRef } from "react";
 

@@ -1,5 +1,10 @@
-import { AppBar } from "@react-md/app-bar";
-import { Tab, TabList, useCrossFadeTransition, useTabs } from "@react-md/core";
+import {
+  AppBar,
+  Tab,
+  TabList,
+  useCrossFadeTransition,
+  useTabs,
+} from "@react-md/core";
 import type { ReactElement } from "react";
 import { ExamplePage1 } from "../ExamplePage1";
 import { ExamplePage2 } from "../ExamplePage2";

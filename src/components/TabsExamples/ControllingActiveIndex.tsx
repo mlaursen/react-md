@@ -1,5 +1,11 @@
-import { AppBar } from "@react-md/app-bar";
-import { Button, Tab, TabList, Typography, useTabs } from "@react-md/core";
+import {
+  AppBar,
+  Button,
+  Tab,
+  TabList,
+  Typography,
+  useTabs,
+} from "@react-md/core";
 import type { ReactElement } from "react";
 
 import styles from "./ControllingActiveIndex.module.scss";

@@ -1,5 +1,4 @@
-import { AppBar, AppBarTitle } from "@react-md/app-bar";
-import { bem } from "@react-md/core";
+import { AppBar, AppBarTitle, bem } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { ReactNode } from "react";
 import { forwardRef } from "react";

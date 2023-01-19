@@ -1,7 +1,7 @@
-import { bem } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { ElementType, HTMLAttributes, Ref } from "react";
 import { forwardRef } from "react";
+import { bem } from "../utils";
 
 const styles = bem("rmd-app-bar");
 
@@ -159,8 +159,7 @@ export interface AppBarProps
  * @example
  * Simple Example
  * ```tsx
- * import { AppBar, AppBarTitle } from "@react-md/app-bar";
- * import { Button } from "@react-md/core";
+ * import { AppBar, AppBarTitle, Button } from "@react-md/core";
  * import MenuIcon from "@react-md/material-icons/MenuIcon";
  * import MoreVertIcon from "@react-md/material-icons/MoreVertIcon";
  * import type { ReactElement } from "react";

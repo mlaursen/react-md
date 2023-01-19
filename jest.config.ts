@@ -8,7 +8,6 @@ const config: Config = {
   setupFilesAfterEnv: ["<rootDir>/testSetup/init.ts"],
   moduleNameMapper: {
     "\\.scss$": "identity-obj-proxy",
-    "^@react-md/app-bar$": ["<rootDir>/packages/app-bar/src/index.ts"],
     "^@react-md/chip$": ["<rootDir>/packages/chip/src/index.ts"],
     "^@react-md/core$": ["<rootDir>/packages/core/src/index.ts"],
     "^@react-md/dialog$": ["<rootDir>/packages/dialog/src/index.ts"],
