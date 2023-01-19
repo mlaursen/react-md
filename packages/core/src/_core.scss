@@ -19,6 +19,7 @@
 @forward "overlay/overlay" as overlay-*;
 @forward "avatar/avatar" as avatar-*;
 @forward "card/card" as card-*;
+@forward "link/link" as link-*;
 @forward "expansionPanel/expansion-panel" as expansion-panel-*;
 
 @use "box/box";
@@ -32,6 +33,7 @@
 @use "card/card";
 @use "overlay/overlay";
 @use "avatar/avatar";
+@use "link/link";
 @use "expansionPanel/expansion-panel";
 @use "transition/transition";
 @use "interaction/interaction";
@@ -95,6 +97,7 @@
   @include overlay.styles;
   @include card.styles;
   @include avatar.styles;
+  @include link.styles;
   @include expansion-panel.styles;
   @include draggable.styles;
   @include window-splitter.styles;

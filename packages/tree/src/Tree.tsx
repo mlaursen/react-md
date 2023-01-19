@@ -1,10 +1,10 @@
+import type { CustomLinkComponent } from "@react-md/core";
 import {
   identity,
   KeyboardMovementProvider,
+  LinkProvider,
   useEnsuredId,
 } from "@react-md/core";
-import type { CustomLinkComponent } from "@react-md/link";
-import { LinkProvider } from "@react-md/link";
 import { List } from "@react-md/list";
 import type {
   ElementType,

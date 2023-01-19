@@ -1,5 +1,5 @@
-import type { CustomLinkComponent } from "@react-md/link";
-import { Link } from "@react-md/link";
+import type { CustomLinkComponent } from "@react-md/core";
+import { Link } from "@react-md/core";
 import type {
   TreeData,
   TreeExpansion,
@@ -24,7 +24,7 @@ export interface LayoutNavigationState<
 
   /**
    * The link component to use when a nav item is clicked. This defaults to the
-   * `Link` component from `@react-md/link`, but can also be a `Link` from
+   * `Link` component from `@react-md/core`, but can also be a `Link` from
    * `react-router` or another routing library.
    */
   linkComponent: CustomLinkComponent;
@@ -85,7 +85,7 @@ export interface LayoutNavigationOptions<
   /**
    * The link component to use within the navigation tree for any item that has
    * a `to` or `href` attribute. This defaults to the `Link` from
-   * `@react-md/link` but should be changed to whatever link component you need
+   * `@react-md/core` but should be changed to whatever link component you need
    * if using a routing library like `react-router`.
    *
    * @defaultValue `Link`

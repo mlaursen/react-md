@@ -1,6 +1,5 @@
 import type { MDXProvider } from "@mdx-js/react";
-import { Divider, Typography } from "@react-md/core";
-import { link } from "@react-md/link";
+import { Divider, link, Typography } from "@react-md/core";
 import type {
   ComponentProps,
   ElementType,
@@ -10,7 +9,6 @@ import type {
 import { UnstyledLink } from "src/components/UnstyledLink";
 import { Blockquote } from "./Blockquote";
 import { CodeBlock, InlineCode } from "./Code";
-
 type IntrinsicElements = {
   [Key in keyof JSX.IntrinsicElements]?: ElementType<
     Omit<JSX.IntrinsicElements[Key], "ref">

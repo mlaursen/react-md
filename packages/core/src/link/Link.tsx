@@ -27,8 +27,7 @@ export interface LinkProps
  * @example
  * Simple Example
  * ```tsx
- * import { Typography } from "@react-md/core";
- * import { Link } from "@react-md/link";
+ * import { Link, Typography } from "@react-md/core";
  * import type { ReactElement } from "react";
  *
  * function Element(): ReactElement {

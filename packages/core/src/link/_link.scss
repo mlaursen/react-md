@@ -1,16 +1,23 @@
 @use "sass:map";
-@use "@react-md/core";
+@use "../utils";
+@use "../theme/colors";
+@use "../theme/theme";
+@use "../icon/icon";
+@use "../interaction/interaction";
+@use "../typography/typography";
+@use "../transition/transition";
 
+$disable-everything: false !default;
 $disable-skip-to-main: false !default;
 
-$transition-duration: core.$linear-duration !default;
-$color: core.$blue-500 !default;
-$visited-color: core.$blue-600 !default;
-$hover-color: core.$blue-400 !default;
+$transition-duration: transition.$linear-duration !default;
+$color: colors.$blue-500 !default;
+$visited-color: colors.$blue-600 !default;
+$hover-color: colors.$blue-400 !default;
 
 $skip-to-main-z-index: 10000 !default;
 $skip-to-main-styles: (
-  color: core.theme-get-var(on-primary-color),
+  color: theme.theme-get-var(on-primary-color),
   left: 50%,
   padding: 0.25rem 1rem,
   top: 0.25rem,
@@ -37,7 +44,7 @@ $var-lookup: (
 );
 
 @function get-var($name, $fallback: null) {
-  $found: core.validate($var-lookup, $name, "link var");
+  $found: utils.validate($var-lookup, $name, "link var");
   $var: map.get($found, var);
   $value: if($fallback, $fallback, map.get($found, value));
 
@@ -49,7 +56,7 @@ $var-lookup: (
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(core.validate($var-lookup, $name, "link var"), var);
+  $var: map.get(utils.validate($var-lookup, $name, "link var"), var);
 
   #{$var}: #{$value};
 }
@@ -74,19 +81,16 @@ $var-lookup: (
 
 @mixin styles {
   .rmd-link {
-    // can't use the normal @include core.interaction-surface since links are
+    // can't use the normal @include interaction.surface since links are
     // rendered inline and the `::before`/`::after` pseudo selectors only work
     // nicely with block-like elements
-    @include core.keyboard-only {
+    @include utils.keyboard-only {
       &:focus {
-        @include core.interaction-set-var(
-          outline-color,
-          core.$interaction-outline-color
-        );
+        @include interaction.set-var(outline-color, interaction.$outline-color);
       }
     }
-    @include core.interaction-outline;
-    @include core.icon-use-var(gap, spacing);
+    @include interaction.outline;
+    @include icon.use-var(gap, spacing);
     @include use-var(color);
 
     align-items: center;
@@ -103,23 +107,23 @@ $var-lookup: (
 
     @if not $disable-skip-to-main {
       &--skip {
-        @include core.map-to-styles(
+        @include utils.map-to-styles(
           map.remove(
-            core.$headline-6-styles,
+            typography.$headline-6-styles,
             font-size,
             font-weight,
             letter-spacing
           )
         );
-        @include core.sr-only(true, null);
+        @include utils.sr-only(true, null);
       }
 
       &--skip-styled {
-        @include core.map-to-styles($skip-to-main-styles);
-        @include core.keyboard-only {
+        @include utils.map-to-styles($skip-to-main-styles);
+        @include utils.keyboard-only {
           &:focus,
           &:active {
-            @include core.map-to-styles($skip-to-main-active-styles);
+            @include utils.map-to-styles($skip-to-main-active-styles);
           }
         }
       }

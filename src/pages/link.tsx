@@ -1,5 +1,4 @@
-import { TextContainer } from "@react-md/core";
-import { Link, SkipToMainContent } from "@react-md/link";
+import { Link, SkipToMainContent, TextContainer } from "@react-md/core";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import type { ReactElement } from "react";
 

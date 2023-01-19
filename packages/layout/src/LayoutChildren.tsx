@@ -1,6 +1,5 @@
-import type { PropsWithRef } from "@react-md/core";
-import type { SkipToMainContentProps } from "@react-md/link";
-import { SkipToMainContent } from "@react-md/link";
+import type { PropsWithRef, SkipToMainContentProps } from "@react-md/core";
+import { SkipToMainContent } from "@react-md/core";
 import type { TreeData, TreeItemNode } from "@react-md/tree";
 import type { HTMLAttributes, ReactElement, ReactNode } from "react";
 import { useEffect, useState } from "react";

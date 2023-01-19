@@ -1,10 +1,9 @@
-import type { PropsWithRef } from "@react-md/core";
+import type { CustomLinkComponent, PropsWithRef } from "@react-md/core";
 import {
   RippleContainer,
   useElementInteraction,
   useHigherContrastChildren,
 } from "@react-md/core";
-import type { CustomLinkComponent } from "@react-md/link";
 import type {
   ListItemChildrenProps,
   ListItemClassNameOptions,

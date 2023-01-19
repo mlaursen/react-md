@@ -38,3 +38,4 @@ export * from "./useResizeObserver";
 export * from "./useToggle";
 export * from "./utils";
 export * from "./windowSplitter";
+export * from "./link";

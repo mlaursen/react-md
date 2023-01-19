@@ -5,8 +5,8 @@ import {
   useEnsuredId,
   useHigherContrastChildren,
   useKeyboardMovementContext,
+  useLink,
 } from "@react-md/core";
-import { useLink } from "@react-md/link";
 import { ListItemChildren } from "@react-md/list";
 import type { HTMLAttributes, ReactElement, ReactNode, Ref } from "react";
 import { useEffect } from "react";

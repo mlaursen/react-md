@@ -23,7 +23,6 @@
       "@react-md/dialog": ["packages/dialog/src/index.ts"],
       "@react-md/form": ["packages/form/src/index.ts"],
       "@react-md/layout": ["packages/layout/src/index.ts"],
-      "@react-md/link": ["packages/link/src/index.ts"],
       "@react-md/list": ["packages/list/src/index.ts"],
       "@react-md/material-icons/*": ["packages/material-icons/src/*"],
       "@react-md/menu": ["packages/menu/src/index.ts"],

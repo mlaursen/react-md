@@ -1,4 +1,4 @@
-import { Link } from "@react-md/link";
+import { Link } from "@react-md/core";
 import { render } from "@testing-library/react";
 import type { HTMLAttributes, ReactElement } from "react";
 import { forwardRef } from "react";
