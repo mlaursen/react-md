@@ -1,12 +1,12 @@
+import { cnb } from "cnbuilder";
+import { forwardRef } from "react";
 import type {
   CustomTypographyComponent,
   TypographyMargin,
   TypographyProps,
   TypographyType,
-} from "@react-md/core";
-import { Typography } from "@react-md/core";
-import { cnb } from "cnbuilder";
-import { forwardRef } from "react";
+} from "../typography";
+import { Typography } from "../typography";
 
 /**
  * @remarks \@since 6.0.0 Inherits the `TypographyProps` instead of

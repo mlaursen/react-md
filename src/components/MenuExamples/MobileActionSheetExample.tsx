@@ -1,5 +1,10 @@
-import { AppBar, AppBarTitle, Button, Divider } from "@react-md/core";
-import { DialogFooter } from "@react-md/dialog";
+import {
+  AppBar,
+  AppBarTitle,
+  Button,
+  DialogFooter,
+  Divider,
+} from "@react-md/core";
 import CloseIcon from "@react-md/material-icons/CloseIcon";
 import {
   DropdownMenu,

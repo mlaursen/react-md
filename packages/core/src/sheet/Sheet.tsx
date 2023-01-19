@@ -4,8 +4,8 @@ import type {
   TransitionTimeout,
 } from "@react-md/core";
 import { forwardRef } from "react";
-import type { BaseDialogProps } from "./Dialog";
-import { Dialog } from "./Dialog";
+import type { BaseDialogProps } from "../dialog";
+import { Dialog } from "../dialog";
 import type { BaseSheetClassNameOptions } from "./styles";
 import { sheet } from "./styles";
 

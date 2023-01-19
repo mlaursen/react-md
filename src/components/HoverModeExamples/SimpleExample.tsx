@@ -1,12 +1,13 @@
 import {
   BELOW_CENTER_ANCHOR,
   createHoverModeContext,
+  DialogContent,
+  FixedDialog,
   Link,
   Typography,
   useHoverMode,
   useHoverModeProvider,
 } from "@react-md/core";
-import { DialogContent, FixedDialog } from "@react-md/dialog";
 import type { ReactElement, ReactNode } from "react";
 import { createContext, useContext, useId, useRef } from "react";
 

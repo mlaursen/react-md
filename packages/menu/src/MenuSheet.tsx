@@ -1,6 +1,9 @@
-import type { LabelRequiredForA11y, PropsWithRef } from "@react-md/core";
-import type { BaseSheetProps } from "@react-md/dialog";
-import { Sheet } from "@react-md/dialog";
+import type {
+  BaseSheetProps,
+  LabelRequiredForA11y,
+  PropsWithRef,
+} from "@react-md/core";
+import { Sheet } from "@react-md/core";
 import type { CSSProperties, ReactElement, ReactNode } from "react";
 import type { RenderMenuAsSheet } from "./MenuConfigurationProvider";
 

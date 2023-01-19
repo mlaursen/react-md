@@ -1,5 +1,4 @@
-import { Box } from "@react-md/core";
-import { Dialog } from "@react-md/dialog";
+import { Box, Dialog } from "@react-md/core";
 import type { HTMLAttributes, ReactElement } from "react";
 import { forwardRef, useId, useState } from "react";
 import { FixedSizeList } from "react-window";

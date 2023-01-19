@@ -1,22 +1,19 @@
+import type { HTMLAttributes } from "react";
+import { forwardRef, useState } from "react";
+import type { FocusContainerComponentProps } from "../focus";
+import { useFocusContainer } from "../focus";
+import { Overlay } from "../overlay";
+import { Portal } from "../portal";
+import { useScrollLock } from "../scroll";
+import { useSsr } from "../SsrProvider";
 import type {
   CSSTransitionClassNames,
   CSSTransitionComponentProps,
-  FocusContainerComponentProps,
-  LabelRequiredForA11y,
   TransitionTimeout,
-} from "@react-md/core";
-import {
-  Overlay,
-  Portal,
-  useCSSTransition,
-  useEnsuredId,
-  useFocusContainer,
-  useScrollLock,
-  useSsr,
-} from "@react-md/core";
-import type { HTMLAttributes } from "react";
-import { forwardRef, useState } from "react";
-
+} from "../transition";
+import { useCSSTransition } from "../transition";
+import type { LabelRequiredForA11y } from "../types";
+import { useEnsuredId } from "../useEnsuredId";
 import { DialogContainer } from "./DialogContainer";
 import {
   NestedDialogProvider,
@@ -187,14 +184,16 @@ export type DialogProps = LabelRequiredForA11y<BaseDialogProps>;
  * @example
  * Simple Example
  * ```tsx
- * import { Button, Typography, useToggle } from "@react-md/core";
  * import {
+ *   Button,
  *   Dialog,
  *   DialogHeader,
  *   DialogTitle,
  *   DialogContent,
  *   DialogFooter,
- * } from "@react-md/dialog";
+ *   Typography,
+ *   useToggle,
+ * } from "@react-md/core";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {

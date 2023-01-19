@@ -5,13 +5,13 @@ import type {
   CSSTransitionClassNames,
   DefaultTreeItemNode,
   PropsWithRef,
+  SheetProps,
   TransitionTimeout,
   TreeData,
   TreeItemNode,
   TreeItemRendererProps,
   TreeProps,
 } from "@react-md/core";
-import type { SheetProps } from "@react-md/dialog";
 import type { CSSProperties, ElementType, ReactNode } from "react";
 
 /**

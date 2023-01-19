@@ -2,8 +2,12 @@ import type {
   CSSTransitionClassNames,
   TransitionTimeout,
 } from "@react-md/core";
-import { bem, useCSSTransition, useUserInteractionMode } from "@react-md/core";
-import { DEFAULT_SHEET_TIMEOUT } from "@react-md/dialog";
+import {
+  bem,
+  DEFAULT_SHEET_TIMEOUT,
+  useCSSTransition,
+  useUserInteractionMode,
+} from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useRef } from "react";

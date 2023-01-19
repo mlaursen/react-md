@@ -1,10 +1,10 @@
-import { Button } from "@react-md/core";
 import {
+  Button,
   Dialog,
   DialogContent,
   DialogFooter,
   DialogTitle,
-} from "@react-md/dialog";
+} from "@react-md/core";
 import { TextArea } from "@react-md/form";
 import type { ReactElement } from "react";
 import { useId, useState } from "react";

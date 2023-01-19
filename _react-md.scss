@@ -1,5 +1,4 @@
 @forward "./packages/core/src/core";
-@forward "./packages/dialog/src/index";
 @forward "./packages/table/src/table" as table-*;
 @forward "./packages/layout/src/layout" as layout-*;
 @forward "./packages/menu/src/menu" as menu-*;

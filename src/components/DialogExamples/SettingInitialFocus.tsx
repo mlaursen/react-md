@@ -1,11 +1,13 @@
-import { Button, Typography, useToggle } from "@react-md/core";
 import {
+  Button,
   Dialog,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@react-md/dialog";
+  Typography,
+  useToggle,
+} from "@react-md/core";
 import type { ReactElement } from "react";
 import { useId } from "react";
 

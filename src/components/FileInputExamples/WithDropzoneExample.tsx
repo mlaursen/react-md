@@ -3,6 +3,7 @@ import {
   Button,
   Card,
   CardContent,
+  DialogFooter,
   LinearProgress,
   List,
   listItem,
@@ -10,7 +11,6 @@ import {
   Typography,
   useDropzone,
 } from "@react-md/core";
-import { DialogFooter } from "@react-md/dialog";
 import {
   FileInput,
   Form,

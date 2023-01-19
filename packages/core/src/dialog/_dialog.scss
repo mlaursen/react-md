@@ -1,5 +1,9 @@
 @use "sass:map";
-@use "@react-md/core";
+@use "../utils";
+@use "../box-shadows";
+@use "../transition/transition";
+@use "../interaction/interaction";
+@use "../theme/theme";
 
 $disable-fixed: false !default;
 $disable-focus-outline: false !default;
@@ -9,20 +13,20 @@ $disable-footer-space-between: false !default;
 $disable-footer-flex-end: false !default;
 
 $elevation: 16 !default;
-$z-index: core.$temporary-element-z-index !default;
+$z-index: utils.$temporary-element-z-index !default;
 
-$background-color: core.theme-get-var(surface-color) !default;
-$color: core.theme-get-var(text-primary-color) !default;
+$background-color: theme.theme-get-var(surface-color) !default;
+$color: theme.theme-get-var(text-primary-color) !default;
 
 $min-width: 17.5rem !default;
 $horizontal-margin: 2.5rem !default;
 $vertical-margin: 1.5rem !default;
 $transition-distance: 1.875rem !default;
 
-$enter-duration: core.$enter-duration !default;
-$enter-timing-function: core.$deceleration-timing-function !default;
-$leave-timing-function: core.$acceleration-timing-function !default;
-$leave-duration: core.$leave-duration !default;
+$enter-duration: transition.$enter-duration !default;
+$enter-timing-function: transition.$deceleration-timing-function !default;
+$leave-timing-function: transition.$acceleration-timing-function !default;
+$leave-duration: transition.$leave-duration !default;
 
 $header-padding: 1.5rem !default;
 $header-padding-bottom: 1.25rem !default;
@@ -75,7 +79,7 @@ $var-lookup: (
 );
 
 @function get-var($name, $fallback: null) {
-  $found: core.validate($var-lookup, $name, "dialog var");
+  $found: utils.validate($var-lookup, $name, "dialog var");
   $var: map.get($found, var);
   $value: if($fallback, $fallback, map.get($found, value));
 
@@ -87,7 +91,7 @@ $var-lookup: (
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(core.validate($var-lookup, $name, "dialog var"), var);
+  $var: map.get(utils.validate($var-lookup, $name, "dialog var"), var);
 
   #{$var}: #{$value};
 }
@@ -106,14 +110,14 @@ $var-lookup: (
     justify-content: center;
     margin: get-var(vertical-margin) get-var(horizontal-margin);
     margin-right: calc(
-      #{get-var(horizontal-margin)} + #{core.scrollbar-size()}
+      #{get-var(horizontal-margin)} + #{utils.scrollbar-size()}
     );
     position: fixed;
     pointer-events: none;
   }
 
   .rmd-dialog {
-    @include core.box-shadow($elevation);
+    @include box-shadows.box-shadow($elevation);
     @include use-var(background-color);
     @include use-var(color);
 
@@ -140,14 +144,14 @@ $var-lookup: (
     }
 
     @if not $disable-focus-outline {
-      @include core.keyboard-only {
+      @include utils.keyboard-only {
         &--outline:focus {
           // Note: Do not use the `interaction-outline` mixin +
-          // `interaction-set-var(core.$interaction-outline-color)` like normal focus
+          // `interaction-set-var(interaction.$outline-color)` like normal focus
           // elements since it'll make all focusable children update with the
           // outline color as well
-          outline: core.interaction-get-var(outline-color) solid
-            core.interaction-get-var(outline-width);
+          outline: interaction.get-var(outline-color) solid
+            interaction.get-var(outline-width);
         }
       }
     }

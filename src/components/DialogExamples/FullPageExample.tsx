@@ -2,10 +2,11 @@ import {
   AppBar,
   AppBarTitle,
   Button,
+  Dialog,
+  DialogContent,
   Typography,
   useToggle,
 } from "@react-md/core";
-import { Dialog, DialogContent } from "@react-md/dialog";
 import CloseIcon from "@react-md/material-icons/CloseIcon";
 import type { ReactElement } from "react";
 import { useId } from "react";

@@ -1,5 +1,8 @@
 @use "sass:map";
-@use "@react-md/core";
+@use "../utils";
+@use "../box-shadows";
+@use "../media-queries";
+@use "../transition/transition";
 
 $disable-position-left: false !default;
 $disable-position-right: false !default;
@@ -9,13 +12,13 @@ $disable-position-top: false !default;
 $elevation: 2 !default;
 $raised-elevation: 16 !default;
 
-$enter-duration: core.$enter-duration !default;
-$enter-timing-function: core.$deceleration-timing-function !default;
-$leave-duration: core.$leave-duration !default;
-$leave-timing-function: core.$acceleration-timing-function !default;
+$enter-duration: transition.$enter-duration !default;
+$enter-timing-function: transition.$deceleration-timing-function !default;
+$leave-duration: transition.$leave-duration !default;
+$leave-timing-function: transition.$acceleration-timing-function !default;
 
 $z-index: 5 !default;
-$raised-z-index: core.$temporary-element-z-index !default;
+$raised-z-index: utils.$temporary-element-z-index !default;
 
 $static-width: 16rem !default;
 $touch-margin: 3.5rem !default;
@@ -62,7 +65,7 @@ $var-lookup: (
 );
 
 @function get-var($name, $fallback: null) {
-  $found: core.validate($var-lookup, $name, "sheet var");
+  $found: utils.validate($var-lookup, $name, "sheet var");
   $var: map.get($found, var);
   $value: if($fallback, $fallback, map.get($found, value));
 
@@ -74,7 +77,7 @@ $var-lookup: (
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(core.validate($var-lookup, $name, "sheet var"), var);
+  $var: map.get(utils.validate($var-lookup, $name, "sheet var"), var);
 
   #{$var}: #{$value};
 }
@@ -85,7 +88,7 @@ $var-lookup: (
 
 @mixin styles {
   .rmd-sheet {
-    @include core.box-shadow($elevation);
+    @include box-shadows.box-shadow($elevation);
     @include use-var(height);
     @include use-var(max-height);
     @include use-var(width);
@@ -110,12 +113,12 @@ $var-lookup: (
 
     &--raised {
       @include set-var(z-index, $raised-z-index);
-      @include core.box-shadow($raised-elevation);
+      @include box-shadows.box-shadow($raised-elevation);
     }
 
     @if not $disable-position-left {
       &--left {
-        @include core.auto-rtl(left, 0) {
+        @include utils.auto-rtl(left, 0) {
           @include set-var(transform-offscreen, translate3d(100%, 0, 0));
         }
         @include set-var(transform-offscreen, translate3d(-100%, 0, 0));
@@ -124,7 +127,7 @@ $var-lookup: (
 
     @if not $disable-position-right {
       &--right {
-        @include core.auto-rtl(right, 0) {
+        @include utils.auto-rtl(right, 0) {
           @include set-var(transform-offscreen, translate3d(-100%, 0, 0));
         }
         @include set-var(transform-offscreen, translate3d(100%, 0, 0));
@@ -156,7 +159,7 @@ $var-lookup: (
     }
 
     &--media-width {
-      @include core.tablet-media {
+      @include media-queries.tablet-media {
         @include set-var(width, get-var(static-width));
       }
 

@@ -1,6 +1,6 @@
-import type { SheetPosition, SheetVerticalSize } from "@react-md/dialog";
+import type { SheetPosition, SheetVerticalSize } from "@react-md/core";
 import type { ReactElement, ReactNode } from "react";
-import { useMemo, createContext, useContext } from "react";
+import { createContext, useContext, useMemo } from "react";
 
 /** @remarks \@since 5.0.0 */
 export interface MenuOrientationProps {

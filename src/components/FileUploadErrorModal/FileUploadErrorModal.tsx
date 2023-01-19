@@ -1,11 +1,11 @@
-import { Button } from "@react-md/core";
 import {
+  Button,
   Dialog,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@react-md/dialog";
+} from "@react-md/core";
 import type { FileValidationError } from "@react-md/form";
 import type { ReactElement } from "react";
 import { useEffect, useState } from "react";

@@ -1,16 +1,13 @@
-import type {
-  CalculateFixedPositionOptions,
-  CSSTransitionClassNamesObject,
-  LabelRequiredForA11y,
-  PositionAnchor,
-} from "@react-md/core";
-import {
-  SCALE_CLASSNAMES,
-  TOP_INNER_RIGHT_ANCHOR,
-  useFixedPositioning,
-} from "@react-md/core";
 import type { RefObject } from "react";
 import { forwardRef, useRef } from "react";
+import type {
+  CalculateFixedPositionOptions,
+  PositionAnchor,
+} from "../positioning";
+import { TOP_INNER_RIGHT_ANCHOR, useFixedPositioning } from "../positioning";
+import type { CSSTransitionClassNamesObject } from "../transition";
+import { SCALE_CLASSNAMES } from "../transition";
+import type { LabelRequiredForA11y } from "../types";
 import type { BaseDialogProps } from "./Dialog";
 import { Dialog } from "./Dialog";
 
@@ -50,14 +47,16 @@ export const DEFAULT_FIXED_DIALOG_CLASSNAMES: Readonly<CSSTransitionClassNamesOb
  * @example
  * Simple Example
  * ```tsx
- * import { Button, Typography, useToggle } from "@react-md/core";
  * import {
+ *   Button,
  *   DialogHeader,
  *   DialogTitle,
  *   DialogContent,
  *   DialogFooter,
  *   FixedDialog,
- * } from "@react-md/dialog";
+ *   Typography,
+ *   useToggle,
+ * } from "@react-md/core";
  * import { useRef } from "react";
  * import type { ReactElement } from "react";
  *

@@ -1,6 +1,5 @@
 import type { ListElement } from "@react-md/core";
-import { NoSsr, useTheme, useToggle } from "@react-md/core";
-import { Sheet } from "@react-md/dialog";
+import { NoSsr, Sheet, useTheme, useToggle } from "@react-md/core";
 import { Layout as RMDLayout, useLayoutNavigation } from "@react-md/layout";
 import Head from "next/head";
 import { useRouter } from "next/router";

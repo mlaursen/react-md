@@ -1,5 +1,13 @@
-import { Box, Button, Divider, useColorScheme, useDir } from "@react-md/core";
-import { DialogContent, DialogHeader, DialogTitle } from "@react-md/dialog";
+import {
+  Box,
+  Button,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  Divider,
+  useColorScheme,
+  useDir,
+} from "@react-md/core";
 import { Fieldset, Form, Legend, NativeSelect } from "@react-md/form";
 import type {
   SupportedPhoneLayout,

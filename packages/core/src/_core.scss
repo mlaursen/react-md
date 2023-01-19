@@ -24,6 +24,8 @@
 @forward "link/link" as link-*;
 @forward "list/list" as list-*;
 @forward "tree/tree" as tree-*;
+@forward "dialog/dialog" as dialog-*;
+@forward "sheet/sheet" as sheet-*;
 @forward "tooltip/tooltip" as tooltip-*;
 @forward "expansionPanel/expansion-panel" as expansion-panel-*;
 
@@ -47,6 +49,8 @@
 @use "tabs/tabs";
 @use "chip/chip";
 @use "theme/theme";
+@use "dialog/dialog";
+@use "sheet/sheet";
 @use "transition/transition";
 @use "typography/typography";
 @use "windowSplitter/window-splitter";
@@ -111,6 +115,8 @@
   @include link.styles;
   @include list.styles;
   @include tree.styles;
+  @include dialog.styles;
+  @include sheet.styles;
   @include tooltip.styles;
   @include app-bar.styles;
   @include expansion-panel.styles;

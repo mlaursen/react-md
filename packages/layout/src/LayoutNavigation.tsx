@@ -1,6 +1,5 @@
 import type { TreeItemNode } from "@react-md/core";
-import { bem } from "@react-md/core";
-import { Sheet } from "@react-md/dialog";
+import { bem, Sheet } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { ReactElement } from "react";
 

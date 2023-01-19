@@ -2,10 +2,11 @@ import {
   AppBar,
   AppBarTitle,
   Button,
+  DialogContent,
+  FixedDialog,
   Typography,
   useToggle,
 } from "@react-md/core";
-import { DialogContent, FixedDialog } from "@react-md/dialog";
 import CloseIcon from "@react-md/material-icons/CloseIcon";
 import MenuIcon from "@react-md/material-icons/MenuIcon";
 import MoreVertIcon from "@react-md/material-icons/MoreVertIcon";
