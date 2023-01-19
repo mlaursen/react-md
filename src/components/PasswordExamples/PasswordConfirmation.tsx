@@ -1,5 +1,4 @@
-import { Box, Button } from "@react-md/core";
-import { Form, Password, useTextField } from "@react-md/form";
+import { Box, Button, Form, Password, useTextField } from "@react-md/core";
 import type { ReactElement } from "react";
 
 const SPECIAL_CHARACTERS = "!@#$%^&*()_+=-";

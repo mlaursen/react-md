@@ -1,6 +1,11 @@
-import { List, listItem, ListItemChildren, Typography } from "@react-md/core";
-import type { FileValidationError } from "@react-md/form";
-import { isFileSizeError } from "@react-md/form";
+import type { FileValidationError } from "@react-md/core";
+import {
+  isFileSizeError,
+  List,
+  listItem,
+  ListItemChildren,
+  Typography,
+} from "@react-md/core";
 import { filesize } from "filesize";
 import type { ReactElement } from "react";
 import { Fragment } from "react";

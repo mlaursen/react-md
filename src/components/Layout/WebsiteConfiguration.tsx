@@ -5,10 +5,13 @@ import {
   DialogHeader,
   DialogTitle,
   Divider,
+  Fieldset,
+  Form,
+  Legend,
+  NativeSelect,
   useColorScheme,
   useDir,
 } from "@react-md/core";
-import { Fieldset, Form, Legend, NativeSelect } from "@react-md/form";
 import type {
   SupportedPhoneLayout,
   SupportedTabletLayout,

@@ -1,4 +1,4 @@
-import { useCheckboxGroup } from "@react-md/form";
+import { useCheckboxGroup } from "@react-md/core";
 import {
   Table,
   TableBody,

@@ -1,16 +1,16 @@
-import { Typography } from "@react-md/core";
 import type {
   FormMessageContainerProps,
   GetErrorMessage,
-} from "@react-md/form";
+} from "@react-md/core";
 import {
   Fieldset,
   Form,
   Legend,
   Slider,
   TextField,
+  Typography,
   useNumberField,
-} from "@react-md/form";
+} from "@react-md/core";
 import type { ReactElement } from "react";
 import { useId } from "react";
 

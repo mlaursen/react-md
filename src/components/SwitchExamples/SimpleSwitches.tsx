@@ -1,5 +1,4 @@
-import { Box } from "@react-md/core";
-import { Form, Switch } from "@react-md/form";
+import { Box, Form, Switch } from "@react-md/core";
 import type { ReactElement } from "react";
 
 export function SimpleSwitches(): ReactElement {

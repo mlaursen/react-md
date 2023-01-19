@@ -1,5 +1,4 @@
-import { Box } from "@react-md/core";
-import { Form, Radio } from "@react-md/form";
+import { Box, Form, Radio } from "@react-md/core";
 import type { ReactElement } from "react";
 
 export function DifferentSizes(): ReactElement {

@@ -1,5 +1,4 @@
-import { Box } from "@react-md/core";
-import { Form, TextArea } from "@react-md/form";
+import { Box, Form, TextArea } from "@react-md/core";
 import type { ReactElement } from "react";
 
 export default function SimpleTextAreas(): ReactElement {

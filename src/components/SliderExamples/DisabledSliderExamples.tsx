@@ -5,7 +5,7 @@ import {
   Slider,
   useRangeSlider,
   useSlider,
-} from "@react-md/form";
+} from "@react-md/core";
 import type { ReactElement } from "react";
 import { useId } from "react";
 

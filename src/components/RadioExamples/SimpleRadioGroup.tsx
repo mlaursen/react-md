@@ -1,5 +1,4 @@
-import { Box, Typography } from "@react-md/core";
-import { Form, Radio, useRadioGroup } from "@react-md/form";
+import { Box, Form, Radio, Typography, useRadioGroup } from "@react-md/core";
 import type { ReactElement } from "react";
 
 export function SimpleRadioGroup(): ReactElement {

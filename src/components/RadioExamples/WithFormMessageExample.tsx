@@ -1,5 +1,4 @@
-import { box } from "@react-md/core";
-import { Form, Radio, useRadioGroup } from "@react-md/form";
+import { box, Form, Radio, useRadioGroup } from "@react-md/core";
 import type { ReactElement } from "react";
 
 export function WithFormMessageExample(): ReactElement {

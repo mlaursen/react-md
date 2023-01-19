@@ -1,5 +1,4 @@
-import { box } from "@react-md/core";
-import { Form, Option, Select } from "@react-md/form";
+import { box, Form, Option, Select } from "@react-md/core";
 import type { ReactElement } from "react";
 
 export function SimpleExample(): ReactElement {

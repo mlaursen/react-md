@@ -1,10 +1,11 @@
 import {
   ExpansionPanel,
+  Form,
   KeyboardMovementProvider,
+  TextField,
   useExpansionList,
   useExpansionPanels,
 } from "@react-md/core";
-import { Form, TextField } from "@react-md/form";
 import type { ReactElement } from "react";
 
 export function CustomExpansionListExample(): ReactElement {

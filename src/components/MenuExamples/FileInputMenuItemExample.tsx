@@ -1,10 +1,13 @@
-import { Box, Button, DropdownMenu, LinearProgress } from "@react-md/core";
 import {
+  Box,
+  Button,
+  DropdownMenu,
   FormMessage,
   FormMessageCounter,
+  LinearProgress,
   MenuItemFileInput,
   useFileUpload,
-} from "@react-md/form";
+} from "@react-md/core";
 import FileUploadIcon from "@react-md/material-icons/FileUploadIcon";
 import type { ReactElement } from "react";
 

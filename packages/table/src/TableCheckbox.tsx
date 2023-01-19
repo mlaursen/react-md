@@ -1,6 +1,5 @@
-import type { PropsWithRef } from "@react-md/core";
-import type { CheckboxProps } from "@react-md/form";
-import { Checkbox } from "@react-md/form";
+import type { CheckboxProps, PropsWithRef } from "@react-md/core";
+import { Checkbox } from "@react-md/core";
 import type { TdHTMLAttributes } from "react";
 import { forwardRef } from "react";
 import { TableCell } from "./TableCell";
@@ -80,7 +79,7 @@ export interface TableCheckboxProps
  * @example
  * Simple Example
  * ```tsx
- * import { useCheckboxGroup } from "@react-md/form";
+ * import { useCheckboxGroup } from "@react-md/core";
  * import {
  *   Table,
  *   TableBody,

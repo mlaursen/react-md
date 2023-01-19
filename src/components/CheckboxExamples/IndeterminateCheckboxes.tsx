@@ -1,5 +1,4 @@
-import { Box } from "@react-md/core";
-import { Checkbox, Form, useCheckboxGroup } from "@react-md/form";
+import { Box, Checkbox, Form, useCheckboxGroup } from "@react-md/core";
 import type { ReactElement } from "react";
 
 const themes = ["none", "underline", "filled", "outline"] as const;

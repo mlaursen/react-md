@@ -4,20 +4,18 @@ import {
   Card,
   CardContent,
   DialogFooter,
+  FileInput,
+  Form,
+  FormMessage,
+  FormMessageCounter,
   LinearProgress,
   List,
   listItem,
   ListItemChildren,
   Typography,
   useDropzone,
-} from "@react-md/core";
-import {
-  FileInput,
-  Form,
-  FormMessage,
-  FormMessageCounter,
   useFileUpload,
-} from "@react-md/form";
+} from "@react-md/core";
 import CheckCircleIcon from "@react-md/material-icons/CheckCircleIcon";
 import CloseIcon from "@react-md/material-icons/CloseIcon";
 import FileUploadIcon from "@react-md/material-icons/FileUploadIcon";

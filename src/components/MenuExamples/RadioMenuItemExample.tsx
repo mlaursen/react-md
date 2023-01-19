@@ -1,6 +1,10 @@
 import type { TextDecoration } from "@react-md/core";
-import { DropdownMenu, Typography } from "@react-md/core";
-import { MenuItemRadio, useRadioGroup } from "@react-md/form";
+import {
+  DropdownMenu,
+  MenuItemRadio,
+  Typography,
+  useRadioGroup,
+} from "@react-md/core";
 import type { ReactElement } from "react";
 
 const decorations = [

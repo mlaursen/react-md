@@ -1,5 +1,3 @@
 @forward "./packages/core/src/core";
 @forward "./packages/table/src/table" as table-*;
 @forward "./packages/layout/src/layout" as layout-*;
-
-@forward "./packages/form/src/form" as form-*;

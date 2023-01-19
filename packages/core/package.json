@@ -21,6 +21,10 @@
   "homepage": "https://react-md.dev",
   "keywords": [],
   "license": "MIT",
+  "dependencies": {
+    "cnbuilder": "^3.1.0",
+    "nanoid": "^4.0.0"
+  },
   "peerDependencies": {
     "react": ">= 18",
     "react-dom": ">= 18"

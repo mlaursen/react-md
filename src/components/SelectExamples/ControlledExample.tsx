@@ -1,5 +1,4 @@
-import { Box, Button } from "@react-md/core";
-import { Form, Option, Select } from "@react-md/form";
+import { Box, Button, Form, Option, Select } from "@react-md/core";
 import type { ReactElement } from "react";
 import { useState } from "react";
 

@@ -1,11 +1,8 @@
-import type {
-  CSSTransitionClassNames,
-  LabelRequiredForA11y,
-  TransitionTimeout,
-} from "@react-md/core";
 import { forwardRef } from "react";
 import type { BaseDialogProps } from "../dialog";
 import { Dialog } from "../dialog";
+import type { CSSTransitionClassNames, TransitionTimeout } from "../transition";
+import type { LabelRequiredForA11y } from "../types";
 import type { BaseSheetClassNameOptions } from "./styles";
 import { sheet } from "./styles";
 

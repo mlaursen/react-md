@@ -3,7 +3,6 @@
 @include everything.styles;
 @include everything.table-styles;
 @include everything.layout-styles;
-@include everything.form-styles;
 
 :root {
   @if everything.$disable-default-root-theme {

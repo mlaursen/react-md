@@ -31,11 +31,11 @@ export type ExpansionListImplementation<E extends HTMLElement> =
  * ```tsx
  * import {
  *   ExpansionPanel,
+ *   Form,
  *   KeyboardMovementProvider,
  *   useExpansionList,
  *   useExpansionPanels,
  * } from "@react-md/core";
- * import { Form } from "@react-md/form";
  * import type { ReactElement } from "react";
  *
  * import { BillingAddress } from "./BillingAddress";

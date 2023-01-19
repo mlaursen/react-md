@@ -65,8 +65,7 @@ export type DefaultColorScheme = UseStateInitializer<ColorScheme>;
  * import type { ChangeEvent, ReactElement } from "react";
  * import { lazy } from "react";
  * import { createRoot } from "react-doc/client";
- * import { ColorSchemeProvider, useColorScheme } from "@react-md/core";
- * import { Checkbox } from "@react-md/form";
+ * import { Checkbox, ColorSchemeProvider, useColorScheme } from "@react-md/core";
  *
  * const DarkTheme = lazy(() => import("./DarkTheme"));
  * const SystemTheme = lazy(() => import("./SystemTheme"));

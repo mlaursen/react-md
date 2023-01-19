@@ -29,6 +29,7 @@
 @forward "tooltip/tooltip" as tooltip-*;
 @forward "expansionPanel/expansion-panel" as expansion-panel-*;
 @forward "menu/menu" as menu-*;
+@forward "form/form" as form-*;
 
 @use "avatar/avatar";
 @use "appBar/app-bar";
@@ -56,6 +57,7 @@
 @use "typography/typography";
 @use "windowSplitter/window-splitter";
 @use "menu/menu";
+@use "form/form";
 
 @mixin css-reset {
   // setting everything to border-box for easier positioning and calculations
@@ -125,6 +127,7 @@
   @include draggable.styles;
   @include window-splitter.styles;
   @include menu.styles;
+  @include form.styles;
 
   @if not theme.$disable-default-root-theme {
     :root {

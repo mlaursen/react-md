@@ -1,5 +1,4 @@
-import { Box } from "@react-md/core";
-import { Checkbox, Form } from "@react-md/form";
+import { Box, Checkbox, Form } from "@react-md/core";
 import type { ReactElement } from "react";
 
 export function SimpleCheckboxes(): ReactElement {

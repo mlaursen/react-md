@@ -1,5 +1,9 @@
-import { DropdownMenu, MenuItem, MenuItemSeparator } from "@react-md/core";
-import { MenuItemTextField } from "@react-md/form";
+import {
+  DropdownMenu,
+  MenuItem,
+  MenuItemSeparator,
+  MenuItemTextField,
+} from "@react-md/core";
 import SearchIcon from "@react-md/material-icons/SearchIcon";
 import type { ReactElement } from "react";
 

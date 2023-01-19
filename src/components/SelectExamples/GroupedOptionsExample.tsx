@@ -1,5 +1,11 @@
-import { box, typography } from "@react-md/core";
-import { Form, OptGroup, Option, Select } from "@react-md/form";
+import {
+  box,
+  Form,
+  OptGroup,
+  Option,
+  Select,
+  typography,
+} from "@react-md/core";
 import type { ReactElement } from "react";
 
 export function GroupedOptionsExample(): ReactElement {

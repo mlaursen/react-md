@@ -1,10 +1,11 @@
+import type { FileReaderResult } from "@react-md/core";
 import {
+  isImageFile,
+  isVideoFile,
   ResponsiveItemOverlay,
   TextIconSpacing,
   Typography,
 } from "@react-md/core";
-import type { FileReaderResult } from "@react-md/form";
-import { isImageFile, isVideoFile } from "@react-md/form";
 import ErrorIcon from "@react-md/material-icons/ErrorIcon";
 import type { ReactElement } from "react";
 import { useState } from "react";

@@ -1,5 +1,12 @@
-import { Avatar, BELOW_INNER_LEFT_ANCHOR, Box, Button } from "@react-md/core";
-import { Form, Option, Select } from "@react-md/form";
+import {
+  Avatar,
+  BELOW_INNER_LEFT_ANCHOR,
+  Box,
+  Button,
+  Form,
+  Option,
+  Select,
+} from "@react-md/core";
 import type { ReactElement } from "react";
 import { states } from "src/constants/states";
 

@@ -1,5 +1,4 @@
-import { Box } from "@react-md/core";
-import { Form, Password } from "@react-md/form";
+import { Box, Form, Password } from "@react-md/core";
 import type { ReactElement } from "react";
 
 export function SimplePasswords(): ReactElement {

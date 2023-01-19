@@ -1,4 +1,4 @@
-import { Form, NativeSelect } from "@react-md/form";
+import { Form, NativeSelect } from "@react-md/core";
 import type { ReactElement } from "react";
 
 export function SimpleExample(): ReactElement {

@@ -1,3 +1,8 @@
+import type {
+  FileReaderResult,
+  FileUploadActions,
+  FileUploadStats,
+} from "@react-md/core";
 import {
   Button,
   Card,
@@ -8,11 +13,6 @@ import {
   LinearProgress,
   responsiveItemContainer,
 } from "@react-md/core";
-import type {
-  FileReaderResult,
-  FileUploadActions,
-  FileUploadStats,
-} from "@react-md/form";
 import CloseIcon from "@react-md/material-icons/CloseIcon";
 import InsertDriveFileIcon from "@react-md/material-icons/InsertDriveFileIcon";
 import { cnb } from "cnbuilder";

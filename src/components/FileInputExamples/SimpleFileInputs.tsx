@@ -1,5 +1,4 @@
-import { Box } from "@react-md/core";
-import { FileInput, Form } from "@react-md/form";
+import { Box, FileInput, Form } from "@react-md/core";
 import type { ReactElement } from "react";
 
 const onChange = (): void => {

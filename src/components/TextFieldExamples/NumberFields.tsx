@@ -1,4 +1,4 @@
-import { Form, TextField, useNumberField } from "@react-md/form";
+import { Form, TextField, useNumberField } from "@react-md/core";
 import type { ReactElement } from "react";
 
 export function NumberFields(): ReactElement {

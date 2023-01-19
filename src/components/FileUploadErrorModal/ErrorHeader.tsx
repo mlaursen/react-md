@@ -1,10 +1,13 @@
-import { Typography } from "@react-md/core";
 import type {
   FileExtensionError,
   FileSizeError,
   TooManyFilesError,
-} from "@react-md/form";
-import { isFileSizeError, isTooManyFilesError } from "@react-md/form";
+} from "@react-md/core";
+import {
+  isFileSizeError,
+  isTooManyFilesError,
+  Typography,
+} from "@react-md/core";
 import { filesize } from "filesize";
 import type { ReactElement } from "react";
 

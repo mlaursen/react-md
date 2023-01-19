@@ -4,8 +4,8 @@ import {
   DialogContent,
   DialogFooter,
   DialogTitle,
+  TextArea,
 } from "@react-md/core";
-import { TextArea } from "@react-md/form";
 import type { ReactElement } from "react";
 import { useId, useState } from "react";
 

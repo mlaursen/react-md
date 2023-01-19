@@ -1,4 +1,4 @@
-import { Fieldset, Form, Legend, Slider, useSlider } from "@react-md/form";
+import { Fieldset, Form, Legend, Slider, useSlider } from "@react-md/core";
 import VolumeOffIcon from "@react-md/material-icons/VolumeOffIcon";
 import VolumeUpIcon from "@react-md/material-icons/VolumeUpIcon";
 import type { ReactElement } from "react";

@@ -1,5 +1,4 @@
-import { Box, box, Button } from "@react-md/core";
-import { Form, NativeSelect } from "@react-md/form";
+import { Box, box, Button, Form, NativeSelect } from "@react-md/core";
 import type { ReactElement } from "react";
 
 export function RequiredExample(): ReactElement {

@@ -1,5 +1,4 @@
-import { box } from "@react-md/core";
-import { Form, Checkbox } from "@react-md/form";
+import { box, Checkbox, Form } from "@react-md/core";
 import type { ReactElement } from "react";
 import { useState } from "react";
 

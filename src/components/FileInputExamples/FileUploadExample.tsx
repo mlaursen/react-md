@@ -1,11 +1,13 @@
-import { Box, Button, LinearProgress } from "@react-md/core";
 import {
+  Box,
+  Button,
   FileInput,
   Form,
   FormMessage,
   FormMessageCounter,
+  LinearProgress,
   useFileUpload,
-} from "@react-md/form";
+} from "@react-md/core";
 import type { ReactElement } from "react";
 import { FilePreview } from "../FilePreview";
 import { FileUploadErrorModal } from "../FileUploadErrorModal";

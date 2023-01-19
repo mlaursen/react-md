@@ -1,4 +1,4 @@
-import { Fieldset, Legend, Slider, useSlider } from "@react-md/form";
+import { Fieldset, Legend, Slider, useSlider } from "@react-md/core";
 import type { ReactElement } from "react";
 import { useId } from "react";
 

@@ -1,3 +1,4 @@
+import type { FileValidationError } from "@react-md/core";
 import {
   Button,
   Dialog,
@@ -6,7 +7,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@react-md/core";
-import type { FileValidationError } from "@react-md/form";
 import type { ReactElement } from "react";
 import { useEffect, useState } from "react";
 

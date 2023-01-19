@@ -1,5 +1,4 @@
-import { Box } from "@react-md/core";
-import { Form, TextField } from "@react-md/form";
+import { Box, Form, TextField } from "@react-md/core";
 import type { ReactElement } from "react";
 
 export function PlaceholderOnlyTextFields(): ReactElement {

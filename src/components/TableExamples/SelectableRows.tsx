@@ -1,12 +1,12 @@
-import { useCheckboxGroup } from "@react-md/form";
+import { useCheckboxGroup } from "@react-md/core";
 import {
   Table,
   TableBody,
   TableCell,
+  TableCheckbox,
   TableContainer,
   TableHeader,
   TableRow,
-  TableCheckbox,
 } from "@react-md/table";
 import type { ReactElement } from "react";
 import { DESSERTS } from "src/constants/desserts";

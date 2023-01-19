@@ -1,5 +1,4 @@
-import { Avatar, box } from "@react-md/core";
-import { Form, OptGroup, Option, Select } from "@react-md/form";
+import { Avatar, box, Form, OptGroup, Option, Select } from "@react-md/core";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import MenuIcon from "@react-md/material-icons/MenuIcon";
 import type { ReactElement } from "react";

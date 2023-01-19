@@ -1,4 +1,4 @@
-import { Fieldset, Form, Legend, Slider, useRangeSlider } from "@react-md/form";
+import { Fieldset, Form, Legend, Slider, useRangeSlider } from "@react-md/core";
 import type { ReactElement } from "react";
 
 export function SimpleHorizontalRangeSliderExample(): ReactElement {

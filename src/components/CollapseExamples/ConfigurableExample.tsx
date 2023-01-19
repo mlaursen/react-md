@@ -5,17 +5,15 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-  useCollapseTransition,
-  useToggle,
-} from "@react-md/core";
-import {
   Fieldset,
   Form,
   Legend,
   NativeSelect,
   TextField,
+  useCollapseTransition,
   useNumberField,
-} from "@react-md/form";
+  useToggle,
+} from "@react-md/core";
 import type { ReactElement } from "react";
 import { useState } from "react";
 

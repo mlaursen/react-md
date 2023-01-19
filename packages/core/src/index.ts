@@ -11,6 +11,7 @@ export * from "./divider";
 export * from "./draggable";
 export * from "./expansionPanel";
 export * from "./focus";
+export * from "./form";
 export * from "./hoverMode";
 export * from "./icon";
 export * from "./interaction";
