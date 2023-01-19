@@ -1,7 +1,7 @@
-import type { HoverModeConfiguration, HoverModeContext } from "@react-md/core";
-import { createHoverModeContext, useHoverModeProvider } from "@react-md/core";
 import type { ReactElement, ReactNode } from "react";
 import { createContext, useContext } from "react";
+import type { HoverModeConfiguration, HoverModeContext } from "../hoverMode";
+import { createHoverModeContext, useHoverModeProvider } from "../hoverMode";
 import { DEFAULT_TOOLTIP_DELAY } from "./constants";
 
 /** @remarks \@since 6.0.0 */

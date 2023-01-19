@@ -1,6 +1,7 @@
 import type {
   LabelRequiredForA11y,
   PropsWithRef,
+  TooltipProps,
   UseStateSetter,
 } from "@react-md/core";
 import {
@@ -9,7 +10,6 @@ import {
   useEnsuredId,
   withinRange,
 } from "@react-md/core";
-import type { TooltipProps } from "@react-md/tooltip";
 import type { HTMLAttributes, ReactNode } from "react";
 import { forwardRef, useRef } from "react";
 import type { SliderAddonProps } from "./SliderContainer";

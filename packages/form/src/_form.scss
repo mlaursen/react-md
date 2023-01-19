@@ -3,7 +3,6 @@
 @use "sass:color";
 @use "@react-md/core";
 @use "@react-md/list";
-@use "@react-md/tooltip";
 
 $disable-fieldset: false !default;
 $disable-message: false !default;
@@ -1703,7 +1702,7 @@ $var-lookup: (
           scale(get-var(slider-tooltip-scale));
 
         &::after {
-          @include tooltip.use-var(border-top-color, background-color);
+          @include core.tooltip-use-var(border-top-color, background-color);
 
           left: 50%;
           top: 100%;
@@ -1729,7 +1728,7 @@ $var-lookup: (
         transform: translateY(50%) scale(1);
 
         &::after {
-          @include tooltip.use-var(border-left-color, background-color);
+          @include core.tooltip-use-var(border-left-color, background-color);
 
           left: 100%;
           top: 50%;

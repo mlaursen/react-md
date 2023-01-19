@@ -1,12 +1,15 @@
-import type {
-  CSSTransitionComponentProps,
-  SimplePosition,
-  TransitionActions,
-} from "@react-md/core";
-import { bem, Portal, useCSSTransition, useEnsuredId } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
+import { Portal } from "../portal";
+import type { SimplePosition } from "../positioning";
+import type {
+  CSSTransitionComponentProps,
+  TransitionActions,
+} from "../transition";
+import { useCSSTransition } from "../transition";
+import { useEnsuredId } from "../useEnsuredId";
+import { bem } from "../utils";
 import {
   DEFAULT_TOOLTIP_CLASSNAMES,
   DEFAULT_TOOLTIP_POSITION,

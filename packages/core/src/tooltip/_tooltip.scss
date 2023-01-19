@@ -1,6 +1,10 @@
 @use "sass:map";
-@use "@react-md/core";
+@use "../utils";
+@use "../theme/colors";
+@use "../transition/transition";
+@use "../typography/typography";
 
+$disable-everything: false !default;
 $disable-vertical: false !default;
 $disable-horizontal: false !default;
 $disable-above: $disable-vertical !default;
@@ -10,16 +14,16 @@ $disable-right: $disable-horizontal !default;
 $disable-dense: false !default;
 
 $background-color: #616161 !default;
-$color: core.$white !default;
+$color: colors.$white !default;
 
 $typography: map.merge(
-  core.$body-1-styles,
+  typography.$body-1-styles,
   (
     letter-spacing: null,
   )
 ) !default;
 $border-radius: 0.25rem !default;
-$z-index: core.$temporary-element-z-index + 20 !default;
+$z-index: utils.$temporary-element-z-index + 20 !default;
 $max-width: 15rem !default;
 $min-height: 2rem !default;
 $horizontal-padding: 1rem !default;
@@ -35,10 +39,10 @@ $dense-min-height: 1.375rem !default;
 $dense-horizontal-padding: 0.5rem !default;
 $dense-vertical-padding: 0.375rem !default;
 
-$enter-duration: core.$linear-duration !default;
-$enter-timing-function: core.$deceleration-timing-function !default;
-$leave-duration: core.$linear-duration !default;
-$leave-timing-function: core.$acceleration-timing-function !default;
+$enter-duration: transition.$linear-duration !default;
+$enter-timing-function: transition.$deceleration-timing-function !default;
+$leave-duration: transition.$linear-duration !default;
+$leave-timing-function: transition.$acceleration-timing-function !default;
 $transition-distance: 0.5rem !default;
 
 $var-lookup: (
@@ -59,7 +63,7 @@ $var-lookup: (
 );
 
 @function get-var($name, $fallback: null) {
-  $found: core.validate($var-lookup, $name, "tooltip var");
+  $found: utils.validate($var-lookup, $name, "tooltip var");
   $var: map.get($found, var);
   $value: if($fallback, $fallback, map.get($found, value));
 
@@ -71,7 +75,7 @@ $var-lookup: (
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(core.validate($var-lookup, $name, "tooltip var"), var);
+  $var: map.get(utils.validate($var-lookup, $name, "tooltip var"), var);
 
   #{$var}: #{$value};
 }
@@ -82,7 +86,7 @@ $var-lookup: (
 
 @mixin styles {
   .rmd-tooltip {
-    @include core.map-to-styles($typography);
+    @include utils.map-to-styles($typography);
     @include use-var(background-color);
     @include use-var(color);
 
@@ -99,7 +103,7 @@ $var-lookup: (
 
     @if not $disable-dense {
       &--dense {
-        @include core.map-to-styles($dense-typography);
+        @include utils.map-to-styles($dense-typography);
         @include set-var(spacing, $dense-spacing);
 
         min-height: $dense-min-height;
@@ -132,7 +136,7 @@ $var-lookup: (
     }
 
     &--wrap {
-      @include core.text-overflow($white-space: null);
+      @include typography.text-overflow($white-space: null);
     }
 
     &--visible {

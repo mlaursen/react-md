@@ -1,5 +1,5 @@
-import type { SimplePosition } from "@react-md/core";
 import { useCallback, useState } from "react";
+import type { SimplePosition } from "../positioning";
 
 import {
   DEFAULT_TOOLTIP_POSITION,

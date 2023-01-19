@@ -1,7 +1,5 @@
-import type { CSSTransitionClassNames } from "@react-md/core";
-import { bem } from "@react-md/core";
-import type { TooltipProps } from "@react-md/tooltip";
-import { Tooltip } from "@react-md/tooltip";
+import type { CSSTransitionClassNames, TooltipProps } from "@react-md/core";
+import { bem, Tooltip } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { ReactElement, ReactNode } from "react";
 

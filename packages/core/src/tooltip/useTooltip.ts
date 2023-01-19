@@ -1,15 +1,3 @@
-import type {
-  FixedPositioningTransitionCallbacks,
-  SimplePosition,
-  UserInteractionMode,
-  UseStateSetter,
-} from "@react-md/core";
-import {
-  parseCssLengthUnit,
-  useFixedPositioning,
-  useHoverMode,
-  useUserInteractionMode,
-} from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type {
   CSSProperties,
@@ -19,7 +7,16 @@ import type {
   TouchEventHandler,
 } from "react";
 import { useEffect, useId, useRef } from "react";
-
+import { useHoverMode } from "../hoverMode";
+import type { UserInteractionMode } from "../interaction";
+import { useUserInteractionMode } from "../interaction";
+import type {
+  FixedPositioningTransitionCallbacks,
+  SimplePosition,
+} from "../positioning";
+import { useFixedPositioning } from "../positioning";
+import type { UseStateSetter } from "../types";
+import { parseCssLengthUnit } from "../utils";
 import {
   DEFAULT_TOOLTIP_DENSE_SPACING,
   DEFAULT_TOOLTIP_MARGIN,

@@ -1,6 +1,5 @@
-import type { LabelRequiredForA11y } from "@react-md/core";
+import type { LabelRequiredForA11y, TooltipProps } from "@react-md/core";
 import { bem, useUserInteractionMode } from "@react-md/core";
-import type { TooltipProps } from "@react-md/tooltip";
 import { cnb } from "cnbuilder";
 import type { ChangeEventHandler, HTMLAttributes, ReactNode } from "react";
 import { forwardRef, useEffect, useState } from "react";

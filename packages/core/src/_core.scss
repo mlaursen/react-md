@@ -22,6 +22,7 @@
 @forward "avatar/avatar" as avatar-*;
 @forward "card/card" as card-*;
 @forward "link/link" as link-*;
+@forward "tooltip/tooltip" as tooltip-*;
 @forward "expansionPanel/expansion-panel" as expansion-panel-*;
 
 @use "avatar/avatar";
@@ -35,6 +36,7 @@
 @use "icon/icon";
 @use "interaction/interaction";
 @use "link/link";
+@use "tooltip/tooltip";
 @use "overlay/overlay";
 @use "progress/progress";
 @use "responsiveItem/responsive-item";
@@ -103,6 +105,7 @@
   @include card.styles;
   @include avatar.styles;
   @include link.styles;
+  @include tooltip.styles;
   @include app-bar.styles;
   @include expansion-panel.styles;
   @include draggable.styles;

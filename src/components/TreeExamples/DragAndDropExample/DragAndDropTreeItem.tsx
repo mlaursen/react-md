@@ -1,7 +1,6 @@
-import { useResizeObserver } from "@react-md/core";
+import { Tooltip, useResizeObserver, useTooltip } from "@react-md/core";
 import FolderIcon from "@react-md/material-icons/FolderIcon";
 import FolderOpenIcon from "@react-md/material-icons/FolderOpenIcon";
-import { Tooltip, useTooltip } from "@react-md/tooltip";
 import type { TreeItemRendererProps } from "@react-md/tree";
 import { TreeItem } from "@react-md/tree";
 import { cnb } from "cnbuilder";

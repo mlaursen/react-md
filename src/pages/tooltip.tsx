@@ -1,9 +1,10 @@
-import { Box, Button } from "@react-md/core";
 import {
+  Box,
+  Button,
   Tooltip,
   TooltipHoverModeProvider,
   useTooltip,
-} from "@react-md/tooltip";
+} from "@react-md/core";
 import type { ReactElement } from "react";
 import { DemoHeadingWithDivider } from "src/components/DemoHeadingWithDivider";
 import { Resettable } from "src/components/Resettable";

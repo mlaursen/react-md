@@ -25,7 +25,6 @@
       "@react-md/material-icons/*": ["packages/material-icons/src/*"],
       "@react-md/menu": ["packages/menu/src/index.ts"],
       "@react-md/table": ["packages/table/src/index.ts"],
-      "@react-md/tooltip": ["packages/tooltip/src/index.ts"],
       "@react-md/tree": ["packages/tree/src/index.ts"]
     }
   },

@@ -1,10 +1,10 @@
-import type { PositionAnchor, SimplePosition } from "@react-md/core";
+import type { PositionAnchor, SimplePosition } from "../positioning";
 import {
   ABOVE_CENTER_ANCHOR,
   BELOW_CENTER_ANCHOR,
   CENTER_LEFT_ANCHOR,
   CENTER_RIGHT_ANCHOR,
-} from "@react-md/core";
+} from "../positioning";
 
 /** @internal */
 export function getAnchor(position: SimplePosition): PositionAnchor {

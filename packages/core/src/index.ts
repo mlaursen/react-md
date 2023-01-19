@@ -25,6 +25,7 @@ export * from "./scroll";
 export * from "./SsrProvider";
 export * from "./tabs";
 export * from "./theme";
+export * from "./tooltip";
 export * from "./transition";
 export * from "./types";
 export * from "./typography";

@@ -1,4 +1,4 @@
-import { Tooltip } from "@react-md/tooltip";
+import { Tooltip } from "@react-md/core";
 import type { ReactElement } from "react";
 import { useDragLayer } from "react-dnd";
 
