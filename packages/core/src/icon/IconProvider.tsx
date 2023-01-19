@@ -112,7 +112,7 @@ export interface ConfigurableIcons {
   /**
    * The icon to use for showing that something has been selected that is not a
    * radio or checkbox. This is used internally for the `Chip` in the
-   * `@react-md/chip` package.
+   * `@react-md/core` package.
    *
    * @defaultValue `<FontIcon>check</FontIcon>`
    */

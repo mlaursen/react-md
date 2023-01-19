@@ -1,10 +1,3 @@
-import type { PropsWithRef } from "@react-md/core";
-import {
-  RippleContainer,
-  useElementInteraction,
-  useHigherContrastChildren,
-  useIcon,
-} from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type {
   ButtonHTMLAttributes,
@@ -13,6 +6,13 @@ import type {
   ReactNode,
 } from "react";
 import { cloneElement, forwardRef, isValidElement } from "react";
+import { useIcon } from "../icon";
+import {
+  RippleContainer,
+  useElementInteraction,
+  useHigherContrastChildren,
+} from "../interaction";
+import type { PropsWithRef } from "../types";
 import { chip, chipContent, chipIcon } from "./styles";
 
 /**

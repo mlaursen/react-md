@@ -15,6 +15,7 @@
 @forward "progress/progress" as progress-*;
 @forward "button/button" as button-*;
 @forward "tabs/tabs" as tabs-*;
+@forward "chip/chip" as chip-*;
 @forward "appBar/app-bar" as app-bar-*;
 @forward "responsiveItem/responsive-item" as responsive-item-*;
 @forward "overlay/overlay" as overlay-*;
@@ -38,6 +39,7 @@
 @use "progress/progress";
 @use "responsiveItem/responsive-item";
 @use "tabs/tabs";
+@use "chip/chip";
 @use "theme/theme";
 @use "transition/transition";
 @use "typography/typography";
@@ -94,6 +96,7 @@
   @include divider.styles;
   @include button.styles;
   @include tabs.styles;
+  @include chip.styles;
   @include progress.styles;
   @include responsive-item.styles;
   @include overlay.styles;

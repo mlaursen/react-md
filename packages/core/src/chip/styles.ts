@@ -1,5 +1,5 @@
 import { cnb } from "cnbuilder";
-import { bem } from "@react-md/core";
+import { bem } from "../utils";
 
 const styles = bem("rmd-chip");
 

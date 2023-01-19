@@ -1,5 +1,4 @@
-import { Chip } from "@react-md/chip";
-import { Box, useToggle } from "@react-md/core";
+import { Box, Chip, useToggle } from "@react-md/core";
 import CheckCircleIcon from "@react-md/material-icons/CheckCircleIcon";
 import type { ReactElement } from "react";
 

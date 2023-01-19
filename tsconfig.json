@@ -17,7 +17,6 @@
     "downlevelIteration": true,
     "jsx": "preserve",
     "paths": {
-      "@react-md/chip": ["packages/chip/src/index.ts"],
       "@react-md/core": ["packages/core/src/index.ts"],
       "@react-md/dialog": ["packages/dialog/src/index.ts"],
       "@react-md/form": ["packages/form/src/index.ts"],

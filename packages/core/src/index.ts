@@ -4,6 +4,7 @@ export * from "./avatar";
 export * from "./box";
 export * from "./button";
 export * from "./card";
+export * from "./chip";
 export * from "./CoreProviders";
 export * from "./divider";
 export * from "./draggable";

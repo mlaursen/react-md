@@ -1,9 +1,8 @@
-import { ElementInteractionProvider } from "@react-md/core";
 import CloseIcon from "@react-md/material-icons/CloseIcon";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import { fireEvent, render } from "@testing-library/react";
 import { createRef } from "react";
-
+import { ElementInteractionProvider } from "../../interaction";
 import { Chip } from "../Chip";
 
 describe("Chip", () => {

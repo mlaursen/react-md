@@ -1,5 +1,4 @@
-import { Chip } from "@react-md/chip";
-import { Box, CircularProgress, randomInt } from "@react-md/core";
+import { Box, Chip, CircularProgress, randomInt } from "@react-md/core";
 import BrightnessHighIcon from "@react-md/material-icons/BrightnessHighIcon";
 import BrightnessLowIcon from "@react-md/material-icons/BrightnessLowIcon";
 import type { ReactElement } from "react";
