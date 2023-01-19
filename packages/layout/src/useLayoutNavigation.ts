@@ -1,13 +1,12 @@
-import type { CustomLinkComponent } from "@react-md/core";
-import { Link } from "@react-md/core";
 import type {
+  CustomLinkComponent,
   TreeData,
   TreeExpansion,
   TreeItemDefaultIds,
   TreeItemNode,
   TreeSelection,
-} from "@react-md/tree";
-import { getItemsFrom, useTreeExpansion } from "@react-md/tree";
+} from "@react-md/core";
+import { getItemsFrom, Link, useTreeExpansion } from "@react-md/core";
 import { useEffect, useMemo } from "react";
 
 import type { LayoutNavigationItem, LayoutNavigationTree } from "./types";
@@ -18,7 +17,7 @@ export interface LayoutNavigationState<
     TreeExpansion {
   /**
    * The navigation items to use that will be passed to the `Tree` component
-   * from `@react-md/tree`
+   * from `@react-md/core`
    */
   navItems: LayoutNavigationTree<T>;
 

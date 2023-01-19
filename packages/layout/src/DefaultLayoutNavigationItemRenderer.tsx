@@ -1,6 +1,9 @@
-import { Divider, ListSubheader } from "@react-md/core";
-import type { TreeItemNode, TreeItemRendererProps } from "@react-md/tree";
-import { DefaultTreeItemRenderer } from "@react-md/tree";
+import type { TreeItemNode, TreeItemRendererProps } from "@react-md/core";
+import {
+  DefaultTreeItemRenderer,
+  Divider,
+  ListSubheader,
+} from "@react-md/core";
 import type { ReactElement } from "react";
 
 import type { LayoutNavigationItem } from "./types";

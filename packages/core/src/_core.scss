@@ -23,6 +23,7 @@
 @forward "card/card" as card-*;
 @forward "link/link" as link-*;
 @forward "list/list" as list-*;
+@forward "tree/tree" as tree-*;
 @forward "tooltip/tooltip" as tooltip-*;
 @forward "expansionPanel/expansion-panel" as expansion-panel-*;
 
@@ -38,6 +39,7 @@
 @use "interaction/interaction";
 @use "link/link";
 @use "list/list";
+@use "tree/tree";
 @use "tooltip/tooltip";
 @use "overlay/overlay";
 @use "progress/progress";
@@ -108,6 +110,7 @@
   @include avatar.styles;
   @include link.styles;
   @include list.styles;
+  @include tree.styles;
   @include tooltip.styles;
   @include app-bar.styles;
   @include expansion-panel.styles;

@@ -1,16 +1,15 @@
-import type { PropsWithRef } from "@react-md/core";
-import {
-  ListItemChildren,
-  RippleContainer,
-  useElementInteraction,
-  useEnsuredId,
-  useHigherContrastChildren,
-  useKeyboardMovementContext,
-  useLink,
-} from "@react-md/core";
 import type { HTMLAttributes, ReactElement, ReactNode, Ref } from "react";
 import { useEffect } from "react";
-
+import {
+  RippleContainer,
+  useElementInteraction,
+  useHigherContrastChildren,
+} from "../interaction";
+import { useLink } from "../link";
+import { ListItemChildren } from "../list";
+import { useKeyboardMovementContext } from "../movement";
+import type { PropsWithRef } from "../types";
+import { useEnsuredId } from "../useEnsuredId";
 import { treeItem, treeItemContent, treeItemMedia } from "./styles";
 import type { OverridableTreeGroupProps } from "./TreeGroup";
 import { TreeGroup } from "./TreeGroup";

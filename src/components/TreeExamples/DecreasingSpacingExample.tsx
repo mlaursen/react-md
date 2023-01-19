@@ -1,6 +1,6 @@
+import type { TreeItemRendererProps } from "@react-md/core";
+import { DefaultTreeItemRenderer, Tree, useTree } from "@react-md/core";
 import FolderIcon from "@react-md/material-icons/FolderIcon";
-import type { TreeItemRendererProps } from "@react-md/tree";
-import { DefaultTreeItemRenderer, Tree, useTree } from "@react-md/tree";
 import { cnb } from "cnbuilder";
 import type { ReactElement } from "react";
 import { folders } from "src/constants/folders";

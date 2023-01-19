@@ -1,6 +1,7 @@
-import type { InternalListItemClassNameOptions } from "@react-md/core";
-import { bem, listItem } from "@react-md/core";
 import { cnb } from "cnbuilder";
+import type { InternalListItemClassNameOptions } from "../list";
+import { listItem } from "../list";
+import { bem } from "../utils";
 
 const treeStyles = bem("rmd-tree");
 const treeItemStyles = bem("rmd-tree-item");

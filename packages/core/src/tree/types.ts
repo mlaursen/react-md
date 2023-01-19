@@ -1,8 +1,6 @@
-import type {
-  ListItemChildrenProps,
-  UseStateInitializer,
-} from "@react-md/core";
 import type { ReactNode } from "react";
+import type { ListItemChildrenProps } from "../list";
+import type { UseStateInitializer } from "../types";
 
 /**
  * @remarks \@since 6.0.0 This was renamed from `TreeItemIds`
@@ -72,8 +70,8 @@ export interface DefaultTreeItemNode
  * @example
  * Default Structure
  * ```tsx
+ * import type { TreeData } from "@react-md/core";
  * import FolderIcon from "@react-md/material-icons/FolderIcon";
- * import type { TreeData } from "@react-md/tree";
  *
  * export const MY_DATA: TreeData = {
  *   "item-1": {

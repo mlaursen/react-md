@@ -3,17 +3,15 @@ import type {
   AppBarTitleProps,
   ButtonProps,
   CSSTransitionClassNames,
+  DefaultTreeItemNode,
   PropsWithRef,
   TransitionTimeout,
-} from "@react-md/core";
-import type { SheetProps } from "@react-md/dialog";
-import type {
-  DefaultTreeItemNode,
   TreeData,
   TreeItemNode,
   TreeItemRendererProps,
   TreeProps,
-} from "@react-md/tree";
+} from "@react-md/core";
+import type { SheetProps } from "@react-md/dialog";
 import type { CSSProperties, ElementType, ReactNode } from "react";
 
 /**

@@ -1,6 +1,5 @@
-import type { PropsWithRef } from "@react-md/core";
+import type { PropsWithRef, TreeData, TreeItemNode } from "@react-md/core";
 import { bem } from "@react-md/core";
-import type { TreeData, TreeItemNode } from "@react-md/tree";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes, ReactElement, ReactNode } from "react";
 

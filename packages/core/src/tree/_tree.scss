@@ -1,21 +1,25 @@
-@use "sass:list";
+@use "sass:list" as sassList;
 @use "sass:map";
-@use "@react-md/core";
+@use "../utils";
+@use "../icon/icon";
+@use "../list/list";
+@use "../typography/typography";
+@use "../interaction/interaction";
 
 $disable-expander-left: false !default;
 $disable-expander-left-as-media: false !default;
 $disable-expander-left-as-media-offset: false !default;
 $disable-selected-background-color: false !default;
 
-$padding-incrementor: core.$list-item-horizontal-padding * 1.5 !default;
-$padding-base: core.list-get-var(item-keyline) !default;
-$expander-right-from: core.$icon-rotate-from !default;
+$padding-incrementor: list.$item-horizontal-padding * 1.5 !default;
+$padding-base: list.get-var(item-keyline) !default;
+$expander-right-from: icon.$rotate-from !default;
 $expander-right-to: 90deg !default;
 $expander-left-from: 0deg !default;
 $expander-left-to: -90deg !default;
 
 $selected-styles: (
-  font-weight: core.$font-weight-bold,
+  font-weight: typography.$font-weight-bold,
 ) !default;
 
 $var-lookup: (
@@ -38,7 +42,7 @@ $var-lookup: (
 );
 
 @function get-var($name, $fallback: null) {
-  $found: core.validate($var-lookup, $name, "tree var");
+  $found: utils.validate($var-lookup, $name, "tree var");
   $var: map.get($found, var);
   $value: if($fallback, $fallback, map.get($found, value));
 
@@ -50,7 +54,7 @@ $var-lookup: (
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(core.validate($var-lookup, $name, "tree var"), var);
+  $var: map.get(utils.validate($var-lookup, $name, "tree var"), var);
 
   #{$var}: #{$value};
 }
@@ -60,7 +64,7 @@ $var-lookup: (
 }
 
 @mixin _theme($theme-name, $theme-color, $on-theme) {
-  @if list.index($themes, $theme-name) {
+  @if sassList.index($themes, $theme-name) {
     @if not $disable-contained {
       &--#{$theme-name} {
         @include set-var(background-color, $theme-color);
@@ -89,8 +93,8 @@ $var-lookup: (
   }
 
   .rmd-tree-item {
-    @include core.icon-set-var(rotate-from, $expander-right-from);
-    @include core.icon-set-var(rotate-to, $expander-right-to);
+    @include icon.set-var(rotate-from, $expander-right-from);
+    @include icon.set-var(rotate-to, $expander-right-to);
     @include set-var(
       item-padding,
       calc(
@@ -102,8 +106,8 @@ $var-lookup: (
 
     @if not $disable-expander-left {
       &--expander-left {
-        @include core.icon-set-var(rotate-from, $expander-left-from);
-        @include core.icon-set-var(rotate-to, $expander-left-to);
+        @include icon.set-var(rotate-from, $expander-left-from);
+        @include icon.set-var(rotate-to, $expander-left-to);
       }
     }
 
@@ -112,7 +116,7 @@ $var-lookup: (
         cursor: auto;
 
         &:hover::before {
-          @include core.interaction-set-var(background-color, transparent);
+          @include interaction.set-var(background-color, transparent);
         }
       }
 
@@ -122,23 +126,23 @@ $var-lookup: (
       }
 
       &--padded {
-        @include core.auto-rtl(
+        @include utils.auto-rtl(
           padding-left,
           get-var(item-padding),
-          core.list-get-var(item-horizontal-padding)
+          list.get-var(item-horizontal-padding)
         );
       }
 
       &--focused::before {
         .rmd-tree:focus-within & {
-          @include core.keyboard-only {
-            @include core.interaction-set-var(
+          @include utils.keyboard-only {
+            @include interaction.set-var(
               background-color,
-              core.interaction-get-var(focus-background-color)
+              interaction.get-var(focus-background-color)
             );
-            @include core.interaction-set-var(
+            @include interaction.set-var(
               outline-color,
-              core.$interaction-outline-color
+              interaction.$outline-color
             );
           }
         }
@@ -147,12 +151,12 @@ $var-lookup: (
       @if $selected-styles {
         &--selected {
           @if not $disable-selected-background-color {
-            @include core.interaction-set-var(
+            @include interaction.set-var(
               background-color,
-              core.interaction-get-var(selected-background-color)
+              interaction.get-var(selected-background-color)
             );
           }
-          @include core.map-to-styles($selected-styles);
+          @include utils.map-to-styles($selected-styles);
         }
       }
     }

@@ -1,12 +1,12 @@
-import FolderIcon from "@react-md/material-icons/FolderIcon";
-import FolderOpenIcon from "@react-md/material-icons/FolderOpenIcon";
-import type { TreeItemRendererProps } from "@react-md/tree";
+import type { TreeItemRendererProps } from "@react-md/core";
 import {
   DefaultTreeItemRenderer,
   Tree,
   useTree,
   useTreeContext,
-} from "@react-md/tree";
+} from "@react-md/core";
+import FolderIcon from "@react-md/material-icons/FolderIcon";
+import FolderOpenIcon from "@react-md/material-icons/FolderOpenIcon";
 import type { ReactElement } from "react";
 import { folders } from "src/constants/folders";
 

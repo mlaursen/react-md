@@ -20,7 +20,6 @@ const config: Config = {
     ],
     "^@react-md/menu$": ["<rootDir>/packages/menu/src/index.ts"],
     "^@react-md/table$": ["<rootDir>/packages/table/src/index.ts"],
-    "^@react-md/tree$": ["<rootDir>/packages/tree/src/index.ts"],
   },
 
   testPathIgnorePatterns: ["prev\\/", "\\.next", "public\\/"],

@@ -1,6 +1,5 @@
-import { bem } from "@react-md/core";
-import type { TreeItemNode } from "@react-md/tree";
-import { Tree } from "@react-md/tree";
+import type { TreeItemNode } from "@react-md/core";
+import { bem, Tree } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { ReactElement } from "react";
 import { useEffect, useRef } from "react";

@@ -28,6 +28,7 @@ export * from "./tabs";
 export * from "./theme";
 export * from "./tooltip";
 export * from "./transition";
+export * from "./tree";
 export * from "./types";
 export * from "./typography";
 export * from "./useDropzone";

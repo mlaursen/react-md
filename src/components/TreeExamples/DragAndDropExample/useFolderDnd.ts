@@ -1,4 +1,4 @@
-import { useTreeContext } from "@react-md/tree";
+import { useTreeContext } from "@react-md/core";
 import type { ReactNode } from "react";
 import { useEffect } from "react";
 import type { ConnectDragSource, ConnectDropTarget } from "react-dnd";

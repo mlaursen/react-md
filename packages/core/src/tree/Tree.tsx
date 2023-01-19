@@ -1,11 +1,3 @@
-import type { CustomLinkComponent } from "@react-md/core";
-import {
-  identity,
-  KeyboardMovementProvider,
-  LinkProvider,
-  List,
-  useEnsuredId,
-} from "@react-md/core";
 import type {
   ElementType,
   HTMLAttributes,
@@ -14,7 +6,12 @@ import type {
   Ref,
 } from "react";
 import { useMemo } from "react";
-
+import type { CustomLinkComponent } from "../link";
+import { LinkProvider } from "../link";
+import { List } from "../list";
+import { KeyboardMovementProvider } from "../movement";
+import { useEnsuredId } from "../useEnsuredId";
+import { identity } from "../utils";
 import type { TreeItemRendererProps } from "./DefaultTreeItemRenderer";
 import { DefaultTreeItemRenderer } from "./DefaultTreeItemRenderer";
 import { tree } from "./styles";
@@ -111,11 +108,10 @@ export interface TreeProps<T extends TreeItemNode>
    * @example
    * Custom Tree Item Renderer
    * ```tsx
-   * import { useKeyboardMovementContext } from "@react-md/core";
+   * import type { TreeItemRendererProps } from "@react-md/core";
+   * import { TreeItem, useKeyboardMovementContext, useTreeContext } from "@react-md/core";
    * import FolderIcon from "@react-md/material-icons/FolderIcon";
    * import FolderOpenIcon from "@react-md/material-icons/FolderOpenIcon";
-   * import type { TreeItemRendererProps } from "@react-md/tree";
-   * import { TreeItem, useTreeContext } from "@react-md/tree";
    * import type { ReactElement } from "react";
    *
    * export function CustomTreeItem(props: TreeItemRendererProps): ReactElement {
@@ -168,8 +164,8 @@ export interface TreeProps<T extends TreeItemNode>
  * @example
  * Simple Tree
  * ```tsx
- * import type { TreeData } from "@react-md/tree";
- * import { Tree, useTree } from "@react-md/tree";
+ * import type { TreeData } from "@react-md/core";
+ * import { Tree, useTree } from "@react-md/core";
  * import type { ReactElement } from "react";
  *
  * const data: TreeData = {

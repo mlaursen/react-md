@@ -1,5 +1,4 @@
-import type { UseStateSetter } from "@react-md/core";
-import type { TreeData } from "@react-md/tree";
+import type { TreeData, UseStateSetter } from "@react-md/core";
 import { createContext, useContext } from "react";
 
 import type { Folder } from "src/constants/folders";

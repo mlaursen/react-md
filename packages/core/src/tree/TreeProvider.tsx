@@ -1,7 +1,6 @@
-import type { NonNullRef } from "@react-md/core";
 import type { ReactElement, ReactNode } from "react";
 import { createContext, useContext, useMemo } from "react";
-
+import type { NonNullRef } from "../types";
 import type { DefaultTreeItemNode, TreeData, TreeItemNode } from "./types";
 import type { TreeExpansion } from "./useTreeExpansion";
 import type { TreeSelection } from "./useTreeSelection";

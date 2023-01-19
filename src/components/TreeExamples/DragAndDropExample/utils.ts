@@ -1,5 +1,5 @@
-import type { TreeData } from "@react-md/tree";
-import { getChildItems } from "@react-md/tree";
+import type { TreeData } from "@react-md/core";
+import { getChildItems } from "@react-md/core";
 
 import type { Folder } from "src/constants/folders";
 

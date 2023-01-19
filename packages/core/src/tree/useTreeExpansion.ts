@@ -1,5 +1,5 @@
-import type { UseStateSetter } from "@react-md/core";
 import { useCallback, useState } from "react";
+import type { UseStateSetter } from "../types";
 import type { TreeItemDefaultIds, TreeItemIdSet } from "./types";
 
 /**

@@ -1,4 +1,4 @@
-import type { TreeItemNode } from "@react-md/tree";
+import type { TreeItemNode } from "@react-md/core";
 import type { ReactElement } from "react";
 import type { LayoutConfiguration, LayoutNavigationItem } from "./types";
 
