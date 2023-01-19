@@ -1,4 +1,4 @@
-import type { FixConfig } from "../createHorizontalPosition";
+import type { EqualWidthOptions, FixConfig } from "../createHorizontalPosition";
 import {
   createAnchoredCenter,
   createAnchoredInnerLeft,
@@ -570,9 +570,8 @@ describe("createAnchoredRight", () => {
 });
 
 describe("createEqualWidth", () => {
-  const options1 = {
+  const options1: EqualWidthOptions = {
     x: "center",
-    vw: 1000,
     vwMargin: 0,
     xMargin: 0,
     elWidth: 200,
@@ -587,11 +586,16 @@ describe("createEqualWidth", () => {
       y: 0,
       toJSON() {},
     },
+    screenRight: 1000,
     isMinWidth: false,
-  } as const;
-  const options2 = { ...options1, vwMargin: 16 };
-  const options3 = { ...options1, xMargin: 5 };
-  const options4 = { ...options2, xMargin: 5 };
+  };
+  const options2: EqualWidthOptions = {
+    ...options1,
+    screenRight: 984,
+    vwMargin: 16,
+  };
+  const options3: EqualWidthOptions = { ...options1, xMargin: 5 };
+  const options4: EqualWidthOptions = { ...options2, xMargin: 5 };
 
   it("should return the width of the container element along with the left value", () => {
     expect(createEqualWidth(options1)).toEqual({

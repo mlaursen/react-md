@@ -5,7 +5,6 @@ import type {
 } from "@react-md/core";
 import {
   Box,
-  Button,
   DialogContent,
   DialogHeader,
   DialogTitle,
@@ -13,14 +12,15 @@ import {
   Fieldset,
   Form,
   Legend,
-  NativeSelect,
-  useColorScheme,
-  useDir,
+  Option,
+  Select,
 } from "@react-md/core";
 import type { ReactElement } from "react";
 import type { PrismTheme } from "../Code";
 import { PRISM_THEMES, useCodeConfig } from "../Code";
+import { ColorSchemeButtons } from "./ColorSchemeButtons";
 import { useWebsiteConfiguration } from "./WebsideConfigurationProvider";
+import { WritingDirectionButtons } from "./WritingDirectionButtons";
 
 const PHONE_LAYOUTS: readonly SupportedPhoneLayout[] = [
   "temporary",
@@ -41,9 +41,7 @@ const DESKTOP_LAYOUTS: readonly SupportedWideLayout[] = [
 ];
 
 export function WebsiteConfiguration(): ReactElement {
-  const { dir, toggleDir } = useDir();
   const { theme, setTheme } = useCodeConfig();
-  const { colorSchemeMode, setColorSchemeMode } = useColorScheme();
   const {
     phoneLayout,
     setPhoneLayout,
@@ -64,49 +62,30 @@ export function WebsiteConfiguration(): ReactElement {
       <DialogContent>
         <Form>
           <Box disablePadding align="start" stacked>
-            <Button
-              aria-pressed={dir === "rtl"}
-              onClick={toggleDir}
-              themeType="outline"
-            >
-              {dir}
-            </Button>
-            <Button
-              themeType="outline"
-              onClick={() => {
-                setColorSchemeMode((mode) => {
-                  if (mode === "dark") {
-                    return "system";
-                  }
-                  if (mode === "system") {
-                    return "light";
-                  }
-
-                  return "dark";
-                });
-              }}
-            >
-              {colorSchemeMode}
-            </Button>
-            <NativeSelect
+            <WritingDirectionButtons />
+            <Divider />
+            <ColorSchemeButtons />
+            <Divider />
+            <Select
               label="Code Theme"
               name="theme"
               value={theme}
+              stretch
               onChange={(event) =>
                 setTheme(event.currentTarget.value as PrismTheme)
               }
             >
               {PRISM_THEMES.map((theme) => (
-                <option key={theme} value={theme}>
+                <Option key={theme} value={theme}>
                   {theme}
-                </option>
+                </Option>
               ))}
-            </NativeSelect>
+            </Select>
             <Divider />
-            <Fieldset style={{ width: "100%" }}>
+            <Fieldset fullWidth>
               <Box stacked disablePadding align="stretch">
                 <Legend>Layout</Legend>
-                <NativeSelect
+                <Select
                   label="Desktop"
                   name="desktopLayout"
                   value={desktopLayout}
@@ -115,14 +94,15 @@ export function WebsiteConfiguration(): ReactElement {
                       event.currentTarget.value as SupportedWideLayout
                     )
                   }
+                  stretch
                 >
                   {DESKTOP_LAYOUTS.map((layout) => (
-                    <option key={layout} value={layout}>
+                    <Option key={layout} value={layout}>
                       {layout}
-                    </option>
+                    </Option>
                   ))}
-                </NativeSelect>
-                <NativeSelect
+                </Select>
+                <Select
                   label="Large Desktop"
                   name="largeDesktopLayout"
                   value={largeDesktopLayout}
@@ -131,14 +111,15 @@ export function WebsiteConfiguration(): ReactElement {
                       event.currentTarget.value as SupportedWideLayout
                     )
                   }
+                  stretch
                 >
                   {DESKTOP_LAYOUTS.map((layout) => (
-                    <option key={layout} value={layout}>
+                    <Option key={layout} value={layout}>
                       {layout}
-                    </option>
+                    </Option>
                   ))}
-                </NativeSelect>
-                <NativeSelect
+                </Select>
+                <Select
                   label="Tablet"
                   name="tabletLayout"
                   value={tabletLayout}
@@ -147,14 +128,15 @@ export function WebsiteConfiguration(): ReactElement {
                       event.currentTarget.value as SupportedTabletLayout
                     )
                   }
+                  stretch
                 >
                   {TABLET_LAYOUTS.map((layout) => (
-                    <option key={layout} value={layout}>
+                    <Option key={layout} value={layout}>
                       {layout}
-                    </option>
+                    </Option>
                   ))}
-                </NativeSelect>
-                <NativeSelect
+                </Select>
+                <Select
                   label="Landscape Tablet"
                   name="landscapeTabletLayout"
                   value={landscapeTabletLayout}
@@ -163,14 +145,15 @@ export function WebsiteConfiguration(): ReactElement {
                       event.currentTarget.value as SupportedTabletLayout
                     )
                   }
+                  stretch
                 >
                   {TABLET_LAYOUTS.map((layout) => (
-                    <option key={layout} value={layout}>
+                    <Option key={layout} value={layout}>
                       {layout}
-                    </option>
+                    </Option>
                   ))}
-                </NativeSelect>
-                <NativeSelect
+                </Select>
+                <Select
                   label="Phone"
                   name="phoneLayout"
                   value={phoneLayout}
@@ -179,13 +162,14 @@ export function WebsiteConfiguration(): ReactElement {
                       event.currentTarget.value as SupportedPhoneLayout
                     )
                   }
+                  stretch
                 >
                   {PHONE_LAYOUTS.map((layout) => (
-                    <option key={layout} value={layout}>
+                    <Option key={layout} value={layout}>
                       {layout}
-                    </option>
+                    </Option>
                   ))}
-                </NativeSelect>
+                </Select>
               </Box>
             </Fieldset>
           </Box>

@@ -628,6 +628,7 @@ $var-lookup: (
 
     &--stretch {
       flex: 1 1 auto;
+      width: 100%;
     }
 
     &--label {
@@ -1768,6 +1769,11 @@ $var-lookup: (
         margin: 0;
         min-width: 0; // just so it can shrink correctly in flex or grid
         padding: 0;
+      }
+
+      &--full-width {
+        flex: 1 1 auto;
+        width: 100%;
       }
     }
   }

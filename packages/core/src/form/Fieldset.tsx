@@ -16,15 +16,23 @@ export interface FieldsetClassNameOptions {
    * @defaultValue `false`
    */
   browserStyles?: boolean;
+
+  /**
+   * @defaultValue `false`
+   */
+  fullWidth?: boolean;
 }
 
 /**
  * @remarks \@since 6.0.0
  */
 export function fieldset(options: FieldsetClassNameOptions = {}): string {
-  const { className, browserStyles = false } = options;
+  const { className, fullWidth, browserStyles = false } = options;
 
-  return cnb(styles({ unstyled: !browserStyles }), className);
+  return cnb(
+    styles({ unstyled: !browserStyles, "full-width": fullWidth }),
+    className
+  );
 }
 
 /**
@@ -56,7 +64,13 @@ export interface FieldsetProps
  */
 export const Fieldset = forwardRef<HTMLFieldSetElement, FieldsetProps>(
   function Fieldset(props, ref) {
-    const { className, browserStyles = false, children, ...remaining } = props;
+    const {
+      className,
+      fullWidth = false,
+      browserStyles = false,
+      children,
+      ...remaining
+    } = props;
 
     return (
       <fieldset
@@ -64,6 +78,7 @@ export const Fieldset = forwardRef<HTMLFieldSetElement, FieldsetProps>(
         ref={ref}
         className={fieldset({
           className,
+          fullWidth,
           browserStyles,
         })}
       >

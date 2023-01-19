@@ -417,6 +417,7 @@ export function Select<Value extends string>(
         0,
         options.findIndex((option) => option.value === val)
       );
+      focusables[index].scrollIntoView({ block: "nearest" });
       currentFocusIndex.current = index;
       setActiveDescendantId(focusables[index]?.id || "");
     };

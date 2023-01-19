@@ -8,6 +8,7 @@
 }
 
 .sheet {
+  @include everything.sheet-set-var(static-width, 21rem);
   @include everything.theme-set-var(
     background-color,
     everything.theme-get-var(surface-color)

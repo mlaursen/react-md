@@ -199,33 +199,30 @@ export function createAnchoredRight(config: FixConfig): XPosition {
   return { actualX, left };
 }
 
-interface EqualWidthOptions
+export interface EqualWidthOptions
   extends Pick<
     CreateHorizontalPositionOptions,
-    | "x"
-    | "vw"
-    | "elWidth"
-    | "xMargin"
-    | "vwMargin"
-    | "containerRect"
-    | "initialX"
+    "x" | "elWidth" | "xMargin" | "vwMargin" | "containerRect" | "initialX"
   > {
+  screenRight: number;
   isMinWidth: boolean;
 }
 
 /**
  * @internal
  */
-export function createEqualWidth({
-  x,
-  vw,
-  elWidth,
-  xMargin,
-  vwMargin,
-  initialX,
-  containerRect,
-  isMinWidth,
-}: EqualWidthOptions): XPosition {
+export function createEqualWidth(options: EqualWidthOptions): XPosition {
+  const {
+    x,
+    elWidth,
+    xMargin,
+    vwMargin,
+    initialX,
+    containerRect,
+    screenRight,
+    isMinWidth,
+  } = options;
+
   let left = initialX ?? containerRect.left + xMargin;
 
   let width: number | undefined = containerRect.width - xMargin * 2;
@@ -243,8 +240,9 @@ export function createEqualWidth({
     }
 
     width = undefined;
-    if (left + elWidth > vw - vwMargin) {
-      left -= vwMargin;
+    const elRight = left + elWidth;
+    if (elRight > screenRight) {
+      left -= elRight - screenRight;
       right = vwMargin;
     }
 
@@ -282,15 +280,16 @@ export function createHorizontalPosition(
     disableSwapping,
   } = options;
 
+  const screenRight = vw - vwMargin;
   if (width === "min" || width === "equal") {
     return createEqualWidth({
       x,
-      vw,
       vwMargin,
       xMargin,
       elWidth,
       initialX,
       containerRect,
+      screenRight,
       isMinWidth: width === "min",
     });
   }
@@ -311,7 +310,7 @@ export function createHorizontalPosition(
     xMargin,
     elWidth,
     initialX,
-    screenRight: vw - vwMargin,
+    screenRight,
     containerRect,
     disableSwapping,
   };
