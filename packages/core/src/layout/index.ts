@@ -1,4 +1,3 @@
-/** @module @react-md/layout */
 export * from "./constants";
 export * from "./DefaultLayoutNavigationItemRenderer";
 export * from "./DefaultLayoutNavigationMiniItemRenderer";

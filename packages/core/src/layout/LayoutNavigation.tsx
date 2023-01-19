@@ -1,8 +1,8 @@
-import type { TreeItemNode } from "@react-md/core";
-import { bem, Sheet } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { ReactElement } from "react";
-
+import { Sheet } from "../sheet";
+import type { TreeItemNode } from "../tree";
+import { bem } from "../utils";
 import { DefaultMiniLayoutNavigationItemRenderer } from "./DefaultLayoutNavigationMiniItemRenderer";
 import { LayoutNavigationHeader } from "./LayoutNavigationHeader";
 import { useLayoutConfig } from "./LayoutProvider";

@@ -1,7 +1,7 @@
 import type {
   LayoutNavigationItem,
   LayoutNavigationTree,
-} from "@react-md/layout";
+} from "@react-md/core";
 import HomeIcon from "@react-md/material-icons/HomeIcon";
 import type { ReactNode } from "react";
 import MaterialDesignIcon from "../MaterialDesignIcon";

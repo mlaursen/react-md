@@ -1,7 +1,7 @@
-import { Button, useIcon } from "@react-md/core";
 import type { MouseEvent } from "react";
 import { forwardRef, useCallback } from "react";
-
+import { Button } from "../button";
+import { useIcon } from "../icon";
 import { useLayoutConfig } from "./LayoutProvider";
 import type { LayoutCloseNavigationButtonProps } from "./types";
 import { isToggleableLayout } from "./utils";

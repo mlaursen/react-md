@@ -1,7 +1,5 @@
-import type { TreeItemNode } from "@react-md/core";
 import type { ReactElement } from "react";
-import type { LayoutConfiguration, LayoutNavigationItem } from "./types";
-
+import type { TreeItemNode } from "../tree";
 import {
   DEFAULT_DESKTOP_LAYOUT,
   DEFAULT_LANDSCAPE_TABLET_LAYOUT,
@@ -11,6 +9,7 @@ import {
 import type { LayoutChildrenProps } from "./LayoutChildren";
 import { LayoutChildren } from "./LayoutChildren";
 import { LayoutProvider } from "./LayoutProvider";
+import type { LayoutConfiguration, LayoutNavigationItem } from "./types";
 
 export interface LayoutProps<T extends TreeItemNode = LayoutNavigationItem>
   extends LayoutConfiguration,

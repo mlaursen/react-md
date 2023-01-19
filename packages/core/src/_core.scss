@@ -31,6 +31,7 @@
 @forward "expansionPanel/expansion-panel" as expansion-panel-*;
 @forward "menu/menu" as menu-*;
 @forward "form/form" as form-*;
+@forward "layout/layout" as layout-*;
 
 @use "avatar/avatar";
 @use "appBar/app-bar";
@@ -60,6 +61,7 @@
 @use "windowSplitter/window-splitter";
 @use "menu/menu";
 @use "form/form";
+@use "layout/layout";
 
 @mixin css-reset {
   // setting everything to border-box for easier positioning and calculations
@@ -131,6 +133,7 @@
   @include window-splitter.styles;
   @include menu.styles;
   @include form.styles;
+  @include layout.styles;
 
   @if not theme.$disable-default-root-theme {
     :root {

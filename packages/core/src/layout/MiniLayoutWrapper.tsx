@@ -1,8 +1,8 @@
-import type { PropsWithRef, TreeData, TreeItemNode } from "@react-md/core";
-import { bem } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes, ReactElement, ReactNode } from "react";
-
+import type { TreeData, TreeItemNode } from "../tree";
+import type { PropsWithRef } from "../types";
+import { bem } from "../utils";
 import { LayoutNavigation } from "./LayoutNavigation";
 import { useLayoutConfig } from "./LayoutProvider";
 import type { LayoutNavigationItem, LayoutNavigationProps } from "./types";

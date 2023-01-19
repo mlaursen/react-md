@@ -1,16 +1,11 @@
-import type {
-  CSSTransitionClassNames,
-  TransitionTimeout,
-} from "@react-md/core";
-import {
-  bem,
-  DEFAULT_SHEET_TIMEOUT,
-  useCSSTransition,
-  useUserInteractionMode,
-} from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useRef } from "react";
+import { useUserInteractionMode } from "../interaction";
+import { DEFAULT_SHEET_TIMEOUT } from "../sheet";
+import type { CSSTransitionClassNames, TransitionTimeout } from "../transition";
+import { useCSSTransition } from "../transition";
+import { bem } from "../utils";
 
 import { DEFAULT_LAYOUT_MAIN_CLASSNAMES } from "./constants";
 import { useLayoutConfig } from "./LayoutProvider";

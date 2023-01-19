@@ -1,7 +1,8 @@
-import type { AppBarTitleProps } from "@react-md/core";
-import { AppBarTitle, bem } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import { forwardRef } from "react";
+import type { AppBarTitleProps } from "../appBar";
+import { AppBarTitle } from "../appBar";
+import { bem } from "../utils";
 
 import { useLayoutConfig } from "./LayoutProvider";
 import { isFullHeightLayout } from "./utils";

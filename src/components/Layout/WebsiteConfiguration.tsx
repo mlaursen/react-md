@@ -1,3 +1,8 @@
+import type {
+  SupportedPhoneLayout,
+  SupportedTabletLayout,
+  SupportedWideLayout,
+} from "@react-md/core";
 import {
   Box,
   Button,
@@ -12,11 +17,6 @@ import {
   useColorScheme,
   useDir,
 } from "@react-md/core";
-import type {
-  SupportedPhoneLayout,
-  SupportedTabletLayout,
-  SupportedWideLayout,
-} from "@react-md/layout";
 import type { ReactElement } from "react";
 import type { PrismTheme } from "../Code";
 import { PRISM_THEMES, useCodeConfig } from "../Code";

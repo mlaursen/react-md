@@ -1,7 +1,6 @@
 @use "everything";
 
 @include everything.styles;
-@include everything.layout-styles;
 
 :root {
   @if everything.$disable-default-root-theme {

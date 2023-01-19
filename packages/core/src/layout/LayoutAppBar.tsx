@@ -1,6 +1,5 @@
-import { AppBar } from "@react-md/core";
 import { forwardRef } from "react";
-
+import { AppBar } from "../appBar";
 import { LayoutAppBarTitle } from "./LayoutAppBarTitle";
 import { LayoutNavToggle } from "./LayoutNavToggle";
 import { useLayoutConfig } from "./LayoutProvider";

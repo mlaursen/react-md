@@ -1,15 +1,13 @@
 import {
-  useCSSVariables,
-  useWindowSplitter,
-  WindowSplitter,
-} from "@react-md/core";
-import {
   isFullHeightLayout,
   isPersistentLayout,
   isTemporaryLayout,
   isToggleableLayout,
+  useCSSVariables,
   useLayoutConfig,
-} from "@react-md/layout";
+  useWindowSplitter,
+  WindowSplitter,
+} from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { ReactElement } from "react";
 import { useMemo } from "react";

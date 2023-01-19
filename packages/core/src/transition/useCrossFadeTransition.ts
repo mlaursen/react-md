@@ -66,12 +66,11 @@ export interface CrossFadeTransitionHookOptions<E extends HTMLElement>
  * changes.
  *
  * @example
- * New Page Transition with `@react-md/layout`
+ * New Page Transition with the Layout component
  * ```tsx
  * import { ReactElement, ReactNode, useLayoutEffect } from "react";
  * import { useLocation } from "react-router-dom":
- * import { Layout, useLayoutNavigation } from "@react-md/layout";
- * import { useCrossFadeTransition } from "@react-md/transition";
+ * import { Layout, useCrossFadeTransition, useLayoutNavigation } from "@react-md/core";
  *
  * import { navItems } from "./navItems";
  *

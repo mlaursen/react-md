@@ -1,11 +1,9 @@
-import {
-  Button,
-  DEFAULT_SHEET_TIMEOUT,
-  useCSSTransition,
-  useIcon,
-} from "@react-md/core";
 import { cnb } from "cnbuilder";
 import { forwardRef } from "react";
+import { Button } from "../button";
+import { useIcon } from "../icon";
+import { DEFAULT_SHEET_TIMEOUT } from "../sheet";
+import { useCSSTransition } from "../transition";
 import { DEFAULT_LAYOUT_NAV_TOGGLE_CLASSNAMES } from "./constants";
 import { useLayoutConfig } from "./LayoutProvider";
 import type { LayoutNavToggleProps } from "./types";

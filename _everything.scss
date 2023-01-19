@@ -1,6 +1,6 @@
 @use "colors";
 
-@forward "react-md" with (
+@forward "./packages/core/src/core" with (
   $color-scheme: system,
   // $color-scheme: light,
   // $color-scheme: dark,

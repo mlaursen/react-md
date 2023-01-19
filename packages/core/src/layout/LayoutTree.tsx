@@ -1,8 +1,9 @@
-import type { TreeItemNode } from "@react-md/core";
-import { bem, Tree } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { ReactElement } from "react";
 import { useEffect, useRef } from "react";
+import type { TreeItemNode } from "../tree";
+import { Tree } from "../tree";
+import { bem } from "../utils";
 import { DefaultLayoutNavigationItemRenderer } from "./DefaultLayoutNavigationItemRenderer";
 import { DefaultMiniLayoutNavigationItemRenderer } from "./DefaultLayoutNavigationMiniItemRenderer";
 import { useLayoutConfig } from "./LayoutProvider";

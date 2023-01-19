@@ -1,5 +1,4 @@
-import type { AppSize } from "@react-md/core";
-
+import type { AppSize } from "../AppSizeProvider";
 import {
   DEFAULT_DESKTOP_LAYOUT,
   DEFAULT_LANDSCAPE_TABLET_LAYOUT,

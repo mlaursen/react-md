@@ -1,25 +1,34 @@
 @use "sass:map";
-@use "@react-md/core";
+@use "../utils";
+@use "../appBar/app-bar";
+@use "../box-shadows";
+@use "../button/button";
+@use "../dialog/dialog";
+@use "../divider/divider";
+@use "../interaction/interaction";
+@use "../sheet/sheet";
+@use "../theme/colors";
+@use "../transition/transition";
 
 $disable-mini: false !default;
 
-$enter-duration: core.$sheet-enter-duration !default;
-$leave-duration: core.$sheet-leave-duration !default;
+$enter-duration: sheet.$enter-duration !default;
+$leave-duration: sheet.$leave-duration !default;
 
-$main-outline-color: core.$interaction-outline-color !default;
-$main-outline-width: core.$interaction-outline-width !default;
+$main-outline-color: interaction.$outline-color !default;
+$main-outline-width: interaction.$outline-width !default;
 $main-focused-z-index: 999 !default;
-$main-focus-shadow: inset 0 0 0 0.125rem core.$blue-500 !default;
+$main-focus-shadow: inset 0 0 0 0.125rem colors.$blue-500 !default;
 
-$navigation-z-index: core.$dialog-z-index !default;
-$navigation-mini-z-index: core.$app-bar-fixed-z-index - 1 !default;
-$navigation-width: core.$sheet-static-width !default;
+$navigation-z-index: dialog.$z-index !default;
+$navigation-mini-z-index: app-bar.$fixed-z-index - 1 !default;
+$navigation-width: sheet.$static-width !default;
 $navigation-mini-width: 3.5rem !default;
 
 $var-lookup: (
   nav-width: (
     var: --rmd-layout-nav-width,
-    value: core.sheet-get-var(width, $navigation-width),
+    value: sheet.get-var(width, $navigation-width),
   ),
   mini-nav-width: (
     var: --rmd-layout-mini-nav-width,
@@ -32,7 +41,7 @@ $var-lookup: (
 );
 
 @function get-var($name, $fallback: null) {
-  $found: core.validate($var-lookup, $name, "layout var");
+  $found: utils.validate($var-lookup, $name, "layout var");
   $var: map.get($found, var);
   $value: if($fallback, $fallback, map.get($found, value));
 
@@ -44,7 +53,7 @@ $var-lookup: (
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(core.validate($var-lookup, $name, "layout var"), var);
+  $var: map.get(utils.validate($var-lookup, $name, "layout var"), var);
 
   #{$var}: #{$value};
 }
@@ -59,11 +68,13 @@ $var-lookup: (
   // functions and time as the sheet so it all transitions together
   .rmd-layout-transition {
     &--enter {
-      transition: margin $enter-duration core.$deceleration-timing-function;
+      transition: margin $enter-duration
+        transition.$deceleration-timing-function;
     }
 
     &--exit {
-      transition: margin $leave-duration core.$acceleration-timing-function;
+      transition: margin $leave-duration
+        transition.$acceleration-timing-function;
     }
   }
 
@@ -79,12 +90,12 @@ $var-lookup: (
     }
 
     &--header-offset {
-      @include core.app-bar-use-var(top, height);
+      @include app-bar.use-var(top, height);
     }
 
     @if not $disable-mini {
       &--mini {
-        @include core.app-bar-use-var(top, height);
+        @include app-bar.use-var(top, height);
         @include use-var(width, mini-nav-width);
 
         z-index: $navigation-mini-z-index;
@@ -124,9 +135,9 @@ $var-lookup: (
   .rmd-layout-title {
     &--offset {
       // use the nav-width so that you can use window splitters easily
-      $margin: calc(#{get-var(nav-width)} + #{core.$app-bar-keyline});
+      $margin: calc(#{get-var(nav-width)} + #{app-bar.$keyline});
 
-      @include core.auto-rtl(margin-left, $margin);
+      @include utils.auto-rtl(margin-left, $margin);
     }
   }
 
@@ -137,17 +148,15 @@ $var-lookup: (
       // $nav-size: rmd-layout-theme-var(nav-width);
       // $icon-size: rmd-button-theme-var(icon-size);
       // $distance: calc(#{$title-margin} + #{$nav-size} - #{$icon-size});
-      $distance: calc(
-        #{get-var(nav-width)} - #{core.button-get-var(icon-size)}
-      );
+      $distance: calc(#{get-var(nav-width)} - #{button.get-var(icon-size)});
 
-      @include core.auto-rtl(margin-right, $distance);
+      @include utils.auto-rtl(margin-right, $distance);
     }
   }
 
   .rmd-layout-nav-header {
     &--bordered {
-      @include core.divider-style(bottom);
+      @include divider.style(bottom);
     }
   }
 
@@ -157,8 +166,8 @@ $var-lookup: (
   }
 
   .rmd-layout-main {
-    @include core.keyboard-only {
-      @include core.box-shadow-transition(
+    @include utils.keyboard-only {
+      @include box-shadows.box-shadow-transition(
         none,
         $main-focus-shadow,
         "&:focus",
@@ -167,7 +176,7 @@ $var-lookup: (
       );
 
       &--nav-offset::before {
-        @include core.auto-rtl(left, get-var(main-offset));
+        @include utils.auto-rtl(left, get-var(main-offset));
       }
     }
 
@@ -177,17 +186,17 @@ $var-lookup: (
     outline-style: none;
 
     &--header-offset {
-      @include core.app-bar-use-var(padding-top, height);
+      @include app-bar.use-var(padding-top, height);
 
-      @include core.keyboard-only {
+      @include utils.keyboard-only {
         &::before {
-          @include core.app-bar-use-var(top, height);
+          @include app-bar.use-var(top, height);
         }
       }
     }
 
     &--nav-offset {
-      @include core.auto-rtl(margin-left, get-var(main-offset));
+      @include utils.auto-rtl(margin-left, get-var(main-offset));
     }
 
     &--mini {

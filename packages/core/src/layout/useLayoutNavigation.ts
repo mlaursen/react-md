@@ -1,13 +1,14 @@
+import { useEffect, useMemo } from "react";
+import type { CustomLinkComponent } from "../link";
+import { Link } from "../link";
 import type {
-  CustomLinkComponent,
   TreeData,
   TreeExpansion,
   TreeItemDefaultIds,
   TreeItemNode,
   TreeSelection,
-} from "@react-md/core";
-import { getItemsFrom, Link, useTreeExpansion } from "@react-md/core";
-import { useEffect, useMemo } from "react";
+} from "../tree";
+import { getItemsFrom, useTreeExpansion } from "../tree";
 
 import type { LayoutNavigationItem, LayoutNavigationTree } from "./types";
 

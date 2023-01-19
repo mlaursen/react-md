@@ -15,6 +15,7 @@ export * from "./form";
 export * from "./hoverMode";
 export * from "./icon";
 export * from "./interaction";
+export * from "./layout";
 export * from "./link";
 export * from "./list";
 export * from "./menu";

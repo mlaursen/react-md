@@ -1,12 +1,9 @@
-import type {
-  PropsWithRef,
-  SkipToMainContentProps,
-  TreeData,
-  TreeItemNode,
-} from "@react-md/core";
-import { SkipToMainContent } from "@react-md/core";
 import type { HTMLAttributes, ReactElement, ReactNode } from "react";
 import { useEffect, useState } from "react";
+import type { SkipToMainContentProps } from "../link";
+import { SkipToMainContent } from "../link";
+import type { TreeData, TreeItemNode } from "../tree";
+import type { PropsWithRef } from "../types";
 import { LayoutAppBar } from "./LayoutAppBar";
 import type { LayoutMainProps } from "./LayoutMain";
 import { LayoutMain } from "./LayoutMain";

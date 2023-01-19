@@ -7,8 +7,8 @@ import {
   useMemo,
   useState,
 } from "react";
-import { useAppSize, useEnsuredId } from "@react-md/core";
-
+import { useAppSize } from "../AppSizeProvider";
+import { useEnsuredId } from "../useEnsuredId";
 import {
   DEFAULT_DESKTOP_LAYOUT,
   DEFAULT_LANDSCAPE_TABLET_LAYOUT,

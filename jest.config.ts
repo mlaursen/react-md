@@ -9,7 +9,6 @@ const config: Config = {
   moduleNameMapper: {
     "\\.scss$": "identity-obj-proxy",
     "^@react-md/core$": ["<rootDir>/packages/core/src/index.ts"],
-    "^@react-md/layout$": ["<rootDir>/packages/layout/src/index.ts"],
     "^@react-md/material-icons$": [
       "<rootDir>/packages/material-icons/src/index.ts",
     ],

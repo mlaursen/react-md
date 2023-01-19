@@ -1,10 +1,10 @@
-import type { UseStateObject } from "@react-md/core";
-import { useLocalStorage } from "@react-md/core";
 import type {
   SupportedPhoneLayout,
   SupportedTabletLayout,
   SupportedWideLayout,
-} from "@react-md/layout";
+  UseStateObject,
+} from "@react-md/core";
+import { useLocalStorage } from "@react-md/core";
 
 export type CustomLayout = UseStateObject<"phoneLayout", SupportedPhoneLayout> &
   UseStateObject<"tabletLayout", SupportedTabletLayout> &
