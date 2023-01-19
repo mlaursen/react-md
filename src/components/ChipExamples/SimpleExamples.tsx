@@ -1,6 +1,5 @@
-import { Avatar } from "@react-md/avatar";
 import { Chip } from "@react-md/chip";
-import { Box } from "@react-md/core";
+import { Avatar, Box } from "@react-md/core";
 import AddCircleIcon from "@react-md/material-icons/AddCircleIcon";
 import ImageIcon from "@react-md/material-icons/ImageIcon";
 import type { ReactElement } from "react";

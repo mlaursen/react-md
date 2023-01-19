@@ -1,4 +1,4 @@
-import { Avatar } from "@react-md/avatar";
+import { Avatar } from "@react-md/core";
 import { List, ListItem, ListSubheader } from "@react-md/list";
 import FolderIcon from "@react-md/material-icons/FolderIcon";
 import InfoOutlineIcon from "@react-md/material-icons/InfoOutlineIcon";

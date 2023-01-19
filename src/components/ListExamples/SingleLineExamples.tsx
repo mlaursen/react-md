@@ -1,5 +1,4 @@
-import { Avatar } from "@react-md/avatar";
-import { Divider } from "@react-md/core";
+import { Avatar, Divider } from "@react-md/core";
 import { List, ListItem } from "@react-md/list";
 import AdjustIcon from "@react-md/material-icons/AdjustIcon";
 import AppsIcon from "@react-md/material-icons/AppsIcon";

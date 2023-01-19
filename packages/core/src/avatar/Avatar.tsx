@@ -1,7 +1,6 @@
-import type { PropsWithRef } from "@react-md/core";
 import type { HTMLAttributes, ImgHTMLAttributes } from "react";
 import { forwardRef } from "react";
-
+import type { PropsWithRef } from "../types";
 import { avatar, avatarImage } from "./styles";
 
 declare module "react" {

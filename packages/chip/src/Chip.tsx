@@ -136,7 +136,7 @@ export interface ChipProps extends ButtonHTMLAttributes<HTMLButtonElement> {
  * @example
  * Simple Example
  * ```tsx
- * import { Chip } from "@react-md/chip";
+ * import { Chip } from "@react-md/core";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {
@@ -147,7 +147,7 @@ export interface ChipProps extends ButtonHTMLAttributes<HTMLButtonElement> {
  * @example
  * Outlined Example
  * ```tsx
- * import { Chip } from "@react-md/chip";
+ * import { Chip } from "@react-md/core";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {
@@ -158,8 +158,7 @@ export interface ChipProps extends ButtonHTMLAttributes<HTMLButtonElement> {
  * @example
  * Addons Example
  * ```tsx
- * import { Avatar } from "@react-md/avatar";
- * import { Chip } from "@react-md/chip";
+ * import { Avatar, Chip } from "@react-md/core";
  * import AddCircleIcon from "@react-md/material-icons/AddCircleIcon";
  * import type { ReactElement } from "react";
  *

@@ -1,6 +1,5 @@
 @use "sass:color";
 @use "sass:map";
-@use "@react-md/avatar";
 @use "@react-md/core";
 
 $disable-icon: false !default;
@@ -186,7 +185,7 @@ $var-lookup: (
     }
 
     @if not $disable-avatar {
-      @include avatar.set-var(size, $avatar-size);
+      @include core.avatar-set-var(size, $avatar-size);
     }
 
     @if not $disable-progress {

@@ -1,5 +1,4 @@
-import { Avatar } from "@react-md/avatar";
-import { Box, Button } from "@react-md/core";
+import { Avatar, Box, Button } from "@react-md/core";
 import { Form, Option, Select } from "@react-md/form";
 import type { ReactElement } from "react";
 import { states } from "src/constants/states";

@@ -1,6 +1,5 @@
 @use "sass:map";
 @use "@react-md/core";
-@use "@react-md/avatar";
 
 $disable-horizontal: false !default;
 $disable-item-disabled-color: false !default;
@@ -260,7 +259,7 @@ $var-lookup: (
 
       @if not $disable-item-avatar {
         &--avatar-before {
-          @include _addon-spacing(avatar.get-var(size));
+          @include _addon-spacing(core.avatar-get-var(size));
         }
       }
 

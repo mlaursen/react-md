@@ -1,5 +1,5 @@
-import { Avatar } from "@react-md/avatar";
 import {
+  Avatar,
   Box,
   Button,
   Card,

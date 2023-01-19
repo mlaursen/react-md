@@ -17,6 +17,7 @@
 @forward "tabs/tabs" as tabs-*;
 @forward "responsiveItem/responsive-item" as responsive-item-*;
 @forward "overlay/overlay" as overlay-*;
+@forward "avatar/avatar" as avatar-*;
 @forward "card/card" as card-*;
 @forward "expansionPanel/expansion-panel" as expansion-panel-*;
 
@@ -30,6 +31,7 @@
 @use "responsiveItem/responsive-item";
 @use "card/card";
 @use "overlay/overlay";
+@use "avatar/avatar";
 @use "expansionPanel/expansion-panel";
 @use "transition/transition";
 @use "interaction/interaction";
@@ -92,6 +94,7 @@
   @include responsive-item.styles;
   @include overlay.styles;
   @include card.styles;
+  @include avatar.styles;
   @include expansion-panel.styles;
   @include draggable.styles;
   @include window-splitter.styles;

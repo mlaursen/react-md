@@ -1,5 +1,4 @@
-import { Avatar } from "@react-md/avatar";
-import { box, TextContainer } from "@react-md/core";
+import { Avatar, box, TextContainer } from "@react-md/core";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import type { ReactElement } from "react";
 

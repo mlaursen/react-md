@@ -137,14 +137,6 @@ importers:
       '@react-md/core': link:../core
       cnbuilder: 3.1.0
 
-  packages/avatar:
-    specifiers:
-      '@react-md/core': ^6.0.0-alpha.0
-      cnbuilder: ^3.1.0
-    dependencies:
-      '@react-md/core': link:../core
-      cnbuilder: 3.1.0
-
   packages/card:
     specifiers:
       '@react-md/core': ^6.0.0-alpha.0
@@ -155,11 +147,9 @@ importers:
 
   packages/chip:
     specifiers:
-      '@react-md/avatar': ^6.0.0-alpha.0
       '@react-md/core': ^6.0.0-alpha.0
       cnbuilder: ^3.1.0
     dependencies:
-      '@react-md/avatar': link:../avatar
       '@react-md/core': link:../core
       cnbuilder: 3.1.0
 
@@ -216,11 +206,9 @@ importers:
 
   packages/list:
     specifiers:
-      '@react-md/avatar': ^6.0.0-alpha.0
       '@react-md/core': ^6.0.0-alpha.0
       cnbuilder: ^3.1.0
     dependencies:
-      '@react-md/avatar': link:../avatar
       '@react-md/core': link:../core
       cnbuilder: 3.1.0
 

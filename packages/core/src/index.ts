@@ -1,4 +1,5 @@
 export * from "./AppSizeProvider";
+export * from "./avatar";
 export * from "./box";
 export * from "./button";
 export * from "./card";
