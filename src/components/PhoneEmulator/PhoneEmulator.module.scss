@@ -3,7 +3,7 @@
 .container {
   @include everything.tablet-media {
     @include everything.box-shadow(4);
-    @include everything.set-typography-var(
+    @include everything.typography-set-var(
       line-length,
       everything.$mobile-max-line-length
     );

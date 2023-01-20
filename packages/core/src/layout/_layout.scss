@@ -204,7 +204,7 @@ $var-lookup: (
     }
 
     &--mini-offset {
-      $distance: "#{get-var-var(nav-width)} - #{get-var(mini-nav-width)}";
+      $distance: "#{get-var(nav-width)} - #{get-var(mini-nav-width)}";
 
       @include set-var(main-offset, calc(#{$distance}));
     }

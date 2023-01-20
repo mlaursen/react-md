@@ -98,7 +98,7 @@ $transition-var-lookup: (
 }
 
 @mixin transition-use-var($property, $name: $property, $fallback: null) {
-  #{$property}: get-transition-var($name, $fallback);
+  #{$property}: transition-get-var($name, $fallback);
 }
 
 @mixin transition-use-light-theme {
@@ -264,7 +264,7 @@ $transition-var-lookup: (
     will-change: transform;
 
     &--animate {
-      transition: transform get-transition-var(slide-duration)
+      transition: transform transition-get-var(slide-duration)
         $slide-timing-function;
     }
 

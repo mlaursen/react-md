@@ -193,7 +193,7 @@ $typography-var-lookup: (
   ),
 );
 
-@function get-typography-var($name, $fallback: null) {
+@function typography-get-var($name, $fallback: null) {
   $found: utils.validate($typography-var-lookup, $name, "typography var");
   $var: map.get($found, var);
   $value: if($fallback, $fallback, map.get($found, value));
@@ -205,7 +205,7 @@ $typography-var-lookup: (
   @return var(#{$var});
 }
 
-@mixin set-typography-var($name, $value) {
+@mixin typography-set-var($name, $value) {
   $var: map.get(
     utils.validate($typography-var-lookup, $name, "typography var"),
     var
@@ -214,25 +214,25 @@ $typography-var-lookup: (
   #{$var}: #{$value};
 }
 
-@mixin use-typography-var($property, $name: $property, $fallback: null) {
-  #{$property}: get-typography-var($name, $fallback);
+@mixin typography-use-var($property, $name: $property, $fallback: null) {
+  #{$property}: typography-get-var($name, $fallback);
 }
 
 @mixin typography-styles {
   @if not $disable-text-container {
     @include media-queries.tablet-media {
       .rmd-text-container {
-        @include set-typography-var(line-length, $desktop-max-line-length);
+        @include typography-set-var(line-length, $desktop-max-line-length);
       }
     }
 
     .rmd-text-container {
-      @include use-typography-var(
+      @include typography-use-var(
         max-width,
         line-length,
         $mobile-max-line-length
       );
-      @include use-typography-var(padding, text-container-padding);
+      @include typography-use-var(padding, text-container-padding);
 
       display: block;
       margin: 0 auto;
