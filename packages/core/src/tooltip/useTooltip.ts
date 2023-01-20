@@ -91,6 +91,7 @@ export interface TooltippedElementEventHandlers<E extends HTMLElement> {
   onMouseEnter?: MouseEventHandler<E>;
   onMouseLeave?: MouseEventHandler<E>;
   onTouchStart?: TouchEventHandler<E>;
+  onTouchEnd?: TouchEventHandler<E>;
   onContextMenu?: MouseEventHandler<E>;
 }
 
@@ -146,24 +147,24 @@ export interface TooltipHookOptions<E extends HTMLElement>
    *   id,
    *   tooltip,
    *   children,
-   *   onClick,
    *   onBlur,
    *   onFocus,
    *   onMouseEnter,
    *   onMouseLeave,
    *   onTouchStart,
+   *   onTouchEnd,
    *   onContextMenu,
    *   ...props
    * }: TooltippedButtonProps): ReactElement {
    *   const { elementProps, tooltipProps } = useTooltip({
    *     id,
    *     disabled: !tooltip,
-   *     onClick,
    *     onBlur,
    *     onFocus,
    *     onMouseEnter,
    *     onMouseLeave,
    *     onTouchStart,
+   *     onTouchEnd,
    *     onContextMenu,
    *   });
    *
@@ -297,6 +298,7 @@ export function useTooltip<E extends HTMLElement>(
     onMouseEnter = noop,
     onMouseLeave = noop,
     onTouchStart = noop,
+    onTouchEnd = noop,
     onContextMenu = noop,
     onEnter = noop,
     onEntering,
@@ -396,6 +398,7 @@ export function useTooltip<E extends HTMLElement>(
 
     const hide = (): void => {
       disableHoverMode();
+      clearVisibilityTimeout();
       initiatedBy.current = null;
       setVisible(false);
     };
@@ -414,7 +417,7 @@ export function useTooltip<E extends HTMLElement>(
       window.removeEventListener("scroll", hide, true);
       window.removeEventListener("touchend", hide, true);
     };
-  }, [disableHoverMode, setVisible, visible]);
+  }, [clearVisibilityTimeout, disableHoverMode, setVisible, visible]);
   useEffect(() => {
     if (disabled) {
       // clearing the timers and hiding was added so tooltips do not remain
@@ -512,6 +515,18 @@ export function useTooltip<E extends HTMLElement>(
         elementRef.current = event.currentTarget;
         updatePosition(event.currentTarget);
         startShowFlow(id);
+      },
+      onTouchEnd(event) {
+        onTouchEnd(event);
+
+        if (disabled) {
+          return;
+        }
+
+        disableHoverMode();
+        clearVisibilityTimeout();
+        initiatedBy.current = null;
+        setVisible(false);
       },
       onContextMenu(event) {
         onContextMenu(event);
