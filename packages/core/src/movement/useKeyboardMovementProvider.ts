@@ -291,16 +291,14 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
         // This makes it so you can click an element with a mouse and then
         // keyboard navigate from that element instead of the last keyboard focus
         // element
-        if (event.target === event.currentTarget) {
+        const { currentTarget, target } = event;
+        if (target === currentTarget || !(target instanceof HTMLElement)) {
           return;
         }
 
-        const focusables = getFocusableElements(
-          event.currentTarget,
-          programmatic
-        );
+        const focusables = getFocusableElements(currentTarget, programmatic);
         const focusedIndex = focusables.findIndex(
-          (element) => element === event.target
+          (element) => element === target || element.contains(target)
         );
         if (focusedIndex === -1 || !focusables.length) {
           return;
@@ -316,7 +314,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
         // aria activedescendant
         if (tabIndexBehavior === "virtual") {
           refocus.current = true;
-          event.currentTarget.focus();
+          currentTarget.focus();
         }
 
         onFocusChange({
