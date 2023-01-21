@@ -1,6 +1,6 @@
 import type { ReactElement, ReactNode } from "react";
 import { createContext, useContext, useMemo } from "react";
-
+import { useSsr, useSsrRehydrate } from "./SsrProvider";
 import { useMediaQuery } from "./useMediaQuery";
 import { useOrientation } from "./useOrientation";
 
@@ -187,6 +187,11 @@ export function AppSizeProvider(props: AppSizeProviderProps): ReactElement {
     throw new Error("The `AppSizeProvider` cannot be mounted multiple times.");
   }
 
+  // this is kind of an edge case where the user enables devtools or resizes the
+  // browser immediately after reloading the page or navigating to the new url
+  const ssr = useSsr();
+  useSsrRehydrate();
+
   const matchesDesktop = useMediaQuery(
     `screen and (min-width: ${desktopMinWidth})`
   );
@@ -199,11 +204,22 @@ export function AppSizeProvider(props: AppSizeProviderProps): ReactElement {
   const matchesPhone = useMediaQuery(
     `screen and (max-width: ${phoneMaxWidth})`
   );
-  const isDesktop = matchesDesktop;
-  const isTablet = !matchesDesktop && matchesTablet;
-  const isPhone = !isTablet && !isDesktop && matchesPhone;
-  const isLandscape = useOrientation().includes("landscape");
-  const isLargeDesktop = matchesLargeDesktop;
+  const landscape = useOrientation().includes("landscape");
+
+  let isPhone: boolean;
+  let isTablet: boolean;
+  let isDesktop: boolean;
+  let isLandscape: boolean;
+  let isLargeDesktop: boolean;
+  if (ssr) {
+    ({ isPhone, isTablet, isDesktop, isLargeDesktop, isLandscape } = ssrSize);
+  } else {
+    isDesktop = matchesDesktop;
+    isTablet = !matchesDesktop && matchesTablet;
+    isPhone = !isTablet && !isDesktop && matchesPhone;
+    isLandscape = landscape;
+    isLargeDesktop = matchesLargeDesktop;
+  }
 
   const appSize = useMemo<AppSizeContext>(
     () => ({

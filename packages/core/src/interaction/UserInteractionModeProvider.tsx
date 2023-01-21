@@ -1,6 +1,12 @@
 import type { ReactElement, ReactNode } from "react";
-import { createContext, useContext, useMemo, useRef, useState } from "react";
-import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
 /**
  * This is the current mode for how your user is interacting with your app. This
@@ -125,7 +131,7 @@ export function UserInteractionModeProvider(
    * don't really know of any use-cases other than the weird touch-desktop stuff
    * and I have no experience using them.
    */
-  useIsomorphicLayoutEffect(() => {
+  useEffect(() => {
     const enableMouseMode = (): void => setMode("mouse");
     const enableKeyboardMode = (): void => setMode("keyboard");
 

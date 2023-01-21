@@ -1,8 +1,7 @@
 import type { ReactElement, ReactNode } from "react";
-import { createContext, useContext, useMemo, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { useSsr } from "../SsrProvider";
 import type { UseStateSetter } from "../types";
-import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect";
 import {
   black,
   blue500,
@@ -334,7 +333,7 @@ export function ThemeProvider(props: ThemeProviderProps): ReactElement {
   );
 
   const derived = !theme;
-  useIsomorphicLayoutEffect(() => {
+  useEffect(() => {
     if (theme) {
       return;
     }
