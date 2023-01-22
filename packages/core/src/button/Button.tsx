@@ -25,7 +25,7 @@ const styles = bem("rmd-button");
  * When this is set to `"icon"`, the button will be equal height/width and
  * circular.
  */
-export type ButtonType = "text" | "icon";
+export type ButtonType = "text" | "icon" | "icon-square";
 
 /**
  * One of the valid material design default button themes that can be used. This
@@ -112,7 +112,7 @@ export function button(options: ButtonClassNameOptions = {}): string {
   const theme = propTheme === "disabled" ? "clear" : propTheme;
   const disabled = propDisabled || propTheme === "disabled";
   const text = buttonType === "text";
-  const icon = buttonType === "icon";
+  const icon = !text;
   const outline = themeType === "outline";
   const contained = themeType === "contained";
   const clear = theme === "clear";
@@ -121,6 +121,7 @@ export function button(options: ButtonClassNameOptions = {}): string {
     styles({
       text,
       icon,
+      "icon-square": buttonType === "icon-square",
       disabled,
       contained: !disabled && contained,
       outline,

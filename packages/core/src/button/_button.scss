@@ -12,6 +12,7 @@
 $disable-everything: false !default;
 $disable-text: false !default;
 $disable-icon: false !default;
+$disable-icon-square: false !default;
 $disable-outline: false !default;
 $disable-contained: false !default;
 $disable-contained-pressed-elevation: false !default;
@@ -32,6 +33,7 @@ $text-min-width: 4rem !default;
 $text-icon-size: 1.125rem !default;
 
 $icon-border-radius: 50% !default;
+$icon-square-border-radius: $text-border-radius !default;
 $icon-size: 3rem !default;
 
 $outline-width: 1px !default;
@@ -115,6 +117,10 @@ $var-lookup: (
   icon-size: (
     var: --rmd-button-icon-size,
     value: $icon-size,
+  ),
+  icon-border-radius: (
+    var: --rmd-button-icon-radius,
+    value: $icon-border-radius,
   ),
   fab-offset: (
     var: --rmd-button-fab-offset,
@@ -217,11 +223,17 @@ $var-lookup: (
 
       @if not $disable-icon {
         &--icon {
-          @include set-var(border-radius, $icon-border-radius);
+          @include set-var(border-radius, get-var(icon-border-radius));
           @include use-var(height, icon-size);
           @include use-var(width, icon-size);
 
           padding: 0;
+        }
+
+        @if not $disable-icon-square {
+          &--icon-square {
+            @include set-var(icon-border-radius, $icon-square-border-radius);
+          }
         }
       }
 
