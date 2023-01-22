@@ -226,7 +226,7 @@ $theme-var-lookup: (
   @error "$color-scheme must be one of: light, dark, or system but was #{$color-scheme}";
 }
 
-@mixin use-light-theme {
+@mixin use-light-theme-colors {
   @include theme-set-var(background-color, $light-theme-background-color);
   @if $disable-dark-elevation {
     @include theme-set-var(surface-color, $light-theme-surface-color);
@@ -246,7 +246,7 @@ $theme-var-lookup: (
   }
 }
 
-@mixin use-dark-theme {
+@mixin use-dark-theme-colors {
   @include theme-set-var(background-color, $dark-theme-background-color);
   @if $disable-dark-elevation {
     @include theme-set-var(surface-color, $dark-theme-surface-color);

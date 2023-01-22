@@ -9,13 +9,14 @@
 @use "../progress/progress";
 @use "../typography/typography";
 
+$disable-everything: false !default;
 $disable-text: false !default;
 $disable-icon: false !default;
 $disable-outline: false !default;
 $disable-contained: false !default;
 $disable-contained-pressed-elevation: false !default;
-$disable-contained-interaction-colors: interaction.$light-theme-base-background-color
-  == interaction.$dark-theme-base-background-color !default;
+$disable-contained-interaction-colors: interaction.$light-surface-base-background-color
+  == interaction.$dark-surface-base-background-color !default;
 $disable-floating: false !default;
 $disable-floating-absolute-position: false !default;
 $disable-circular-progress: progress.$disable-circular !default;
@@ -178,154 +179,159 @@ $var-lookup: (
 }
 
 @mixin styles {
-  .rmd-button {
-    @if not $disable-circular-progress {
-      @include progress.set-var(circular-size, $circular-progress-size);
-    }
-
-    @include interaction.surface(
-      $disabled-selector: "&:disabled" +
-        if(list.index($themes, disabled), ",&[aria-disabled='true']", "")
-    );
-    @include icon.set-var(color, currentcolor);
-    @include icon.use-var(gap, spacing);
-    @include use-var(background-color);
-    @include use-var(color);
-    @include use-var(border-radius);
-
-    align-items: center;
-    border-width: 0;
-    display: inline-flex;
-    flex-shrink: 0;
-    justify-content: center;
-
-    @if not $disable-text {
-      &--text {
-        @include icon.set-var(size, $text-icon-size);
-        @include set-var(border-radius, $text-border-radius);
-        @include utils.map-to-styles(typography.$button-styles);
-        @include use-var(min-height, text-min-height);
-        @include use-var(min-width, text-min-width);
-
-        border: 0;
-        padding: get-var(text-vertical-padding)
-          get-var(text-horizontal-padding);
+  @if not $disable-everything {
+    .rmd-button {
+      @if not $disable-circular-progress {
+        @include progress.set-var(circular-size, $circular-progress-size);
       }
-    }
 
-    @if not $disable-icon {
-      &--icon {
-        @include set-var(border-radius, $icon-border-radius);
-        @include use-var(height, icon-size);
-        @include use-var(width, icon-size);
+      @include interaction.surface(
+        $disabled-selector: "&:disabled" +
+          if(list.index($themes, disabled), ",&[aria-disabled='true']", "")
+      );
+      @include icon.set-var(color, currentcolor);
+      @include icon.use-var(gap, spacing);
+      @include use-var(background-color);
+      @include use-var(color);
+      @include use-var(border-radius);
 
-        padding: 0;
-      }
-    }
+      align-items: center;
+      border-width: 0;
+      display: inline-flex;
+      flex-shrink: 0;
+      justify-content: center;
 
-    @if not $disable-outline {
-      &--outline {
-        box-shadow: inset 0 0 0 $outline-width get-var(outline-color);
-      }
-    }
+      @if not $disable-text {
+        &--text {
+          @include icon.set-var(size, $text-icon-size);
+          @include set-var(border-radius, $text-border-radius);
+          @include utils.map-to-styles(typography.$button-styles);
+          @include use-var(min-height, text-min-height);
+          @include use-var(min-width, text-min-width);
 
-    @if not $disable-contained {
-      &--contained {
-        @include box-shadows.elevation-transition(
-          $contained-elevation,
-          if(
-            $disable-contained-pressed-elevation,
-            null,
-            $contained-pressed-elevation
-          ),
-          "&.rmd-button--pressed",
-          $pseudo-before: false,
-          $position-relative: false
-        );
-
-        // contained buttons should _normally_ always force dark background
-        // colors for the interaction states This means use the default light
-        // theme since it is based off of the root background color
-        @if not $disable-contained-interaction-colors {
-          @include interaction.use-light-theme;
-        }
-
-        @include set-var(background-color, get-var(contained-background-color));
-        @include set-var(color, get-var(contained-color));
-      }
-    }
-
-    @include _theme(
-      primary,
-      theme.theme-get-var(primary-color),
-      theme.theme-get-var(on-primary-color)
-    );
-    @include _theme(
-      secondary,
-      theme.theme-get-var(secondary-color),
-      theme.theme-get-var(on-secondary-color)
-    );
-    @include _theme(
-      warning,
-      theme.theme-get-var(warning-color),
-      theme.theme-get-var(on-warning-color)
-    );
-    @include _theme(
-      error,
-      theme.theme-get-var(error-color),
-      theme.theme-get-var(on-error-color)
-    );
-
-    @if list.index($themes, disabled) {
-      &--disabled {
-        @include theme.theme-use-var(color, text-disabled-color);
-        @include set-var(
-          outline-color,
-          theme.theme-get-var(text-disabled-color)
-        );
-      }
-    }
-  }
-
-  @if not $disable-unstyled-utility-class {
-    .rmd-button-unstyled {
-      @include unstyled;
-    }
-  }
-
-  @if not $disable-floating {
-    .rmd-fab {
-      position: fixed;
-      z-index: $floating-z-index;
-
-      @if not $disable-floating-absolute-position {
-        &--absolute {
-          @include set-var(fab-offset, 0px);
-
-          position: absolute;
-          z-index: $floating-absolute-z-index;
+          border: 0;
+          padding: get-var(text-vertical-padding)
+            get-var(text-horizontal-padding);
         }
       }
 
-      @each $suffix, $styles in $floating-positions {
-        &--#{$suffix} {
-          @each $property, $value in $styles {
-            @if $property == left {
-              @include utils.rtl {
-                left: auto;
-                right: calc(#{$value} + #{get-var(fab-offset)});
-              }
+      @if not $disable-icon {
+        &--icon {
+          @include set-var(border-radius, $icon-border-radius);
+          @include use-var(height, icon-size);
+          @include use-var(width, icon-size);
 
-              left: $value;
-            } @else if $property == right {
-              @include utils.rtl {
+          padding: 0;
+        }
+      }
+
+      @if not $disable-outline {
+        &--outline {
+          box-shadow: inset 0 0 0 $outline-width get-var(outline-color);
+        }
+      }
+
+      @if not $disable-contained {
+        &--contained {
+          @include box-shadows.elevation-transition(
+            $contained-elevation,
+            if(
+              $disable-contained-pressed-elevation,
+              null,
+              $contained-pressed-elevation
+            ),
+            "&.rmd-button--pressed",
+            $pseudo-before: false,
+            $position-relative: false
+          );
+
+          // contained buttons should _normally_ always force dark background
+          // colors for the interaction states This means use the default light
+          // theme since it is based off of the root background color
+          @if not $disable-contained-interaction-colors {
+            @include interaction.use-light-surface;
+          }
+
+          @include set-var(
+            background-color,
+            get-var(contained-background-color)
+          );
+          @include set-var(color, get-var(contained-color));
+        }
+      }
+
+      @include _theme(
+        primary,
+        theme.theme-get-var(primary-color),
+        theme.theme-get-var(on-primary-color)
+      );
+      @include _theme(
+        secondary,
+        theme.theme-get-var(secondary-color),
+        theme.theme-get-var(on-secondary-color)
+      );
+      @include _theme(
+        warning,
+        theme.theme-get-var(warning-color),
+        theme.theme-get-var(on-warning-color)
+      );
+      @include _theme(
+        error,
+        theme.theme-get-var(error-color),
+        theme.theme-get-var(on-error-color)
+      );
+
+      @if list.index($themes, disabled) {
+        &--disabled {
+          @include theme.theme-use-var(color, text-disabled-color);
+          @include set-var(
+            outline-color,
+            theme.theme-get-var(text-disabled-color)
+          );
+        }
+      }
+    }
+
+    @if not $disable-unstyled-utility-class {
+      .rmd-button-unstyled {
+        @include unstyled;
+      }
+    }
+
+    @if not $disable-floating {
+      .rmd-fab {
+        position: fixed;
+        z-index: $floating-z-index;
+
+        @if not $disable-floating-absolute-position {
+          &--absolute {
+            @include set-var(fab-offset, 0px);
+
+            position: absolute;
+            z-index: $floating-absolute-z-index;
+          }
+        }
+
+        @each $suffix, $styles in $floating-positions {
+          &--#{$suffix} {
+            @each $property, $value in $styles {
+              @if $property == left {
+                @include utils.rtl {
+                  left: auto;
+                  right: calc(#{$value} + #{get-var(fab-offset)});
+                }
+
                 left: $value;
-                right: auto;
-              }
+              } @else if $property == right {
+                @include utils.rtl {
+                  left: $value;
+                  right: auto;
+                }
 
-              right: calc(#{$value} + #{get-var(fab-offset)});
-            } @else {
-              #{$property}: #{$value};
+                right: calc(#{$value} + #{get-var(fab-offset)});
+              } @else {
+                #{$property}: #{$value};
+              }
             }
           }
         }

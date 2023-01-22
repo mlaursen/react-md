@@ -8,19 +8,20 @@
 @use "../button/button";
 @use "../typography/typography";
 
+$disable-everything: false !default;
 $disable-fixed: false !default;
 $disable-primary-theme: false !default;
 $disable-secondary-theme: false !default;
-$disable-surface-theme: false !default;
+$disable-surface-theme: $disable-everything !default;
 $disable-dense-theme: false !default;
 $disable-prominent-theme: false !default;
 $disable-prominent-dense-theme: false !default;
 $disable-scrollbar-offset: false !default;
 $disable-static-scrollbar-offset: false !default;
-$disable-primary-interaction-colors: interaction.$light-theme-base-background-color
-  == interaction.$dark-theme-base-background-color !default;
-$disable-secondary-interaction-colors: interaction.$light-theme-base-background-color
-  == interaction.$dark-theme-base-background-color !default;
+$disable-primary-interaction-colors: interaction.$light-surface-base-background-color
+  == interaction.$dark-surface-base-background-color !default;
+$disable-secondary-interaction-colors: interaction.$light-surface-base-background-color
+  == interaction.$dark-surface-base-background-color !default;
 
 $disable-title: false !default;
 
@@ -132,149 +133,156 @@ $var-lookup: (
 }
 
 @mixin styles {
-  @include theme.default-system-theme {
-    @include use-dark-theme;
-  }
+  @if not $disable-everything {
+    @include theme.default-system-theme {
+      @include use-dark-theme;
+    }
 
-  .rmd-app-bar {
-    @include use-var(background-color);
-    @include use-var(color);
-    @include use-var(height);
+    .rmd-app-bar {
+      @include use-var(background-color);
+      @include use-var(color);
+      @include use-var(height);
 
-    align-items: center;
-    display: flex;
-    // since app bars can appear a lot in full page dialogs, setting these flex
-    // values allows it be be a direct replacement of the `DialogHeader`
-    // component without all the offsets and additional styles needed for fixed
-    // app bars.
-    flex: 0 0 auto;
-    gap: $gap;
-    padding: $vertical-padding $horizontal-padding;
-    width: 100%;
+      align-items: center;
+      display: flex;
+      // since app bars can appear a lot in full page dialogs, setting these flex
+      // values allows it be be a direct replacement of the `DialogHeader`
+      // component without all the offsets and additional styles needed for fixed
+      // app bars.
+      flex: 0 0 auto;
+      gap: $gap;
+      padding: $vertical-padding $horizontal-padding;
+      width: 100%;
 
-    @if not $disable-fixed {
-      &--fixed {
-        left: 0;
-        position: fixed;
-        z-index: $fixed-z-index;
+      @if not $disable-fixed {
+        &--fixed {
+          left: 0;
+          position: fixed;
+          z-index: $fixed-z-index;
+        }
+
+        @if $fixed-elevation and $fixed-elevation != 0 {
+          &--fixed-elevation {
+            @include box-shadows.box-shadow(
+              $fixed-elevation,
+              $disable-colors: true
+            );
+          }
+        }
+
+        @each $position in $fixed-positions {
+          &--#{$position} {
+            #{$position}: 0;
+          }
+        }
       }
 
-      @if $fixed-elevation and $fixed-elevation != 0 {
-        &--fixed-elevation {
-          @include box-shadows.box-shadow(
-            $fixed-elevation,
-            $disable-colors: true
+      &--auto {
+        // do not set variable so that child AppBar can maintain their height as needed
+        height: auto;
+      }
+
+      &--stacked {
+        flex-direction: column;
+        gap: 0;
+        padding: 0;
+      }
+
+      @if not $disable-dense-theme {
+        &--dense {
+          @include set-var(height, $dense-height);
+        }
+      }
+
+      @if not $disable-prominent-theme {
+        &--prominent {
+          @include set-var(height, $prominent-height);
+        }
+      }
+
+      @if not $disable-prominent-dense-theme {
+        &--prominent-dense {
+          @include set-var(height, $prominent-dense-height);
+        }
+      }
+
+      @if not $disable-primary-theme {
+        &--primary {
+          @if not $disable-primary-interaction-colors {
+            @include interaction.use-light-surface;
+          }
+          @include set-var(
+            background-color,
+            theme.theme-get-var(primary-color)
+          );
+          @include set-var(color, theme.theme-get-var(on-primary-color));
+        }
+      }
+
+      @if not $disable-secondary-theme {
+        &--secondary {
+          @if not $disable-secondary-interaction-colors {
+            @include interaction.use-light-surface;
+          }
+          @include set-var(
+            background-color,
+            theme.theme-get-var(secondary-color)
+          );
+          @include set-var(color, theme.theme-get-var(on-secondary-color));
+        }
+      }
+
+      @if not $disable-surface-theme {
+        &--surface {
+          @include set-var(background-color, get-var(surface-background-color));
+          @include set-var(color, get-var(surface-color));
+        }
+      }
+
+      @if not $disable-scrollbar-offset {
+        &--scrollbar-offset {
+          @include utils.rtl {
+            margin-right: calc(-1 * #{utils.scrollbar-size()});
+          }
+
+          padding-right: calc(
+            #{$horizontal-padding} + #{utils.scrollbar-size()}
           );
         }
-      }
 
-      @each $position in $fixed-positions {
-        &--#{$position} {
-          #{$position}: 0;
+        @if not $disable-static-scrollbar-offset {
+          &--static-scrollbar-offset {
+            width: calc(100% + utils.scrollbar-size());
+          }
         }
       }
     }
 
-    &--auto {
-      // do not set variable so that child AppBar can maintain their height as needed
-      height: auto;
-    }
+    @if not $disable-title {
+      .rmd-app-bar-title {
+        @include utils.auto-rtl(margin-left, $keyline - $horizontal-padding);
 
-    &--stacked {
-      flex-direction: column;
-      gap: 0;
-      padding: 0;
-    }
+        flex: 1 1 auto;
+        margin-bottom: 0;
+        margin-top: 0;
 
-    @if not $disable-dense-theme {
-      &--dense {
-        @include set-var(height, $dense-height);
-      }
-    }
-
-    @if not $disable-prominent-theme {
-      &--prominent {
-        @include set-var(height, $prominent-height);
-      }
-    }
-
-    @if not $disable-prominent-dense-theme {
-      &--prominent-dense {
-        @include set-var(height, $prominent-dense-height);
-      }
-    }
-
-    @if not $disable-primary-theme {
-      &--primary {
-        @if not $disable-primary-interaction-colors {
-          @include interaction.use-light-theme;
-        }
-        @include set-var(background-color, theme.theme-get-var(primary-color));
-        @include set-var(color, theme.theme-get-var(on-primary-color));
-      }
-    }
-
-    @if not $disable-secondary-theme {
-      &--secondary {
-        @if not $disable-secondary-interaction-colors {
-          @include interaction.use-light-theme;
-        }
-        @include set-var(
-          background-color,
-          theme.theme-get-var(secondary-color)
-        );
-        @include set-var(color, theme.theme-get-var(on-secondary-color));
-      }
-    }
-
-    @if not $disable-surface-theme {
-      &--surface {
-        @include set-var(background-color, get-var(surface-background-color));
-        @include set-var(color, get-var(surface-color));
-      }
-    }
-
-    @if not $disable-scrollbar-offset {
-      &--scrollbar-offset {
-        @include utils.rtl {
-          margin-right: calc(-1 * #{utils.scrollbar-size()});
+        &--keyline {
+          @include utils.auto-rtl(
+            margin-left,
+            $title-keyline - $horizontal-padding
+          );
         }
 
-        padding-right: calc(#{$horizontal-padding} + #{utils.scrollbar-size()});
-      }
-
-      @if not $disable-static-scrollbar-offset {
-        &--static-scrollbar-offset {
-          width: calc(100% + utils.scrollbar-size());
+        &--nav-keyline {
+          @include utils.auto-rtl(
+            margin-left,
+            $title-keyline - $horizontal-padding - $gap - button.$icon-size
+          );
         }
-      }
-    }
-  }
 
-  @if not $disable-title {
-    .rmd-app-bar-title {
-      @include utils.auto-rtl(margin-left, $keyline - $horizontal-padding);
-
-      flex: 1 1 auto;
-      margin-bottom: 0;
-      margin-top: 0;
-
-      &--keyline {
-        @include utils.auto-rtl(
-          margin-left,
-          $title-keyline - $horizontal-padding
-        );
-      }
-
-      &--nav-keyline {
-        @include utils.auto-rtl(
-          margin-left,
-          $title-keyline - $horizontal-padding - $gap - button.$icon-size
-        );
-      }
-
-      &--no-wrap {
-        @include typography.text-overflow;
+        &--no-wrap {
+          @include typography.text-overflow;
+        }
       }
     }
   }

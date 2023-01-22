@@ -146,7 +146,7 @@
       {
         @media (prefers-color-scheme: dark) {
           @include theme.use-dark-theme;
-          @include interaction.interaction-use-dark-theme;
+          @include interaction.interaction-use-dark-surface;
         }
       }
     }

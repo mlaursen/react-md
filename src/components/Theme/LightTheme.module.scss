@@ -2,15 +2,6 @@
 
 .container {
   @include everything.use-light-theme;
-  @include everything.interaction-use-light-theme;
-  @include everything.transition-use-light-theme;
-  @include everything.icon-use-light-theme;
-  @include everything.chip-use-light-theme;
-  @include everything.app-bar-use-light-theme;
-  @include everything.divider-use-light-theme;
-  @include everything.card-use-light-theme;
-  @include everything.form-use-light-theme;
-  @include everything.table-use-light-theme;
 
   --code-color: #{everything.$pink-600};
   --phone-app-bar-bg: #{everything.$grey-100};

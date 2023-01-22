@@ -1,7 +1,7 @@
 @use "sass:map";
 @use "../utils";
+@use "../interaction/interaction";
 @use "../transition/transition";
-@use "../theme/colors";
 
 $disable-everything: false !default;
 $disable-horizontal: false !default;
@@ -10,7 +10,7 @@ $disable-absolute-position: false !default;
 
 $window-splitter-size: 1.25rem !default;
 $window-splitter-background-size: 0.375rem !default;
-$window-splitter-background-color: colors.$blue-500 !default;
+$window-splitter-background-color: interaction.get-var(outline-color) !default;
 $window-splitter-z-index: 30 !default;
 
 $var-lookup: (

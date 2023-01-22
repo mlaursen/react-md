@@ -49,7 +49,7 @@ $_swappable-properties: text-align;
   $is-list: $type == list;
 
   @if $disable-validation {
-    @return if($is-list, $key-or-value, map-get($list-or-map, $key-or-value));
+    @return if($is-list, $key-or-value, map.get($list-or-map, $key-or-value));
   }
 
   @if not $is-map and not $is-list {
@@ -61,7 +61,7 @@ $_swappable-properties: text-align;
     @error "Invalid #{$error-message}: '#{$key-or-value}'. Choose one of: #{$choices}";
   }
 
-  @return if($is-list, $key-or-value, map-get($list-or-map, $key-or-value));
+  @return if($is-list, $key-or-value, map.get($list-or-map, $key-or-value));
 }
 
 @mixin map-to-styles($map) {

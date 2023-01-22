@@ -4,11 +4,12 @@
 @use "../theme/theme";
 @use "../transition/transition";
 
-$disable-linear: false !default;
+$disable-everything: false !default;
+$disable-linear: $disable-everything !default;
 $disable-linear-vertical: false !default;
 $disable-linear-horizontal: false !default;
 $disable-linear-reverse: false !default;
-$disable-circular: false !default;
+$disable-circular: $disable-everything !default;
 $disable-circular-centered-styles: false !default;
 $disable-determinate: false !default;
 $disable-indeterminate: false !default;

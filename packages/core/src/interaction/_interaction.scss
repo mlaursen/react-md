@@ -1,4 +1,5 @@
 @use "sass:map";
+@use "sass:list";
 @use "../utils";
 @use "../theme/colors";
 @use "../theme/theme";
@@ -7,6 +8,12 @@
 /// ripple | press | both | null
 $mode: ripple !default;
 $disable-focus-background: false !default;
+
+$_disable-ripple: not
+  list.index(
+    (ripple, both),
+    utils.validate((ripple, press, both, null), $mode, "interaction mode")
+  );
 
 $pressed-class-name: "rmd-pressed";
 
@@ -24,81 +31,81 @@ $pressed-class-name: "rmd-pressed";
 /// interaction states apply an overlay with some opacity for the different
 /// states.
 $disable-higher-contrast: false !default;
-$light-theme-base-background-color: #000 !default;
-$dark-theme-base-background-color: #fff !default;
+$light-surface-base-background-color: #000 !default;
+$dark-surface-base-background-color: #fff !default;
 
 $outline-color: colors.$blue-500 !default;
 $outline-width: 0.125rem !default;
 $outline-box-shadow: false !default;
 
-$light-theme-ripple-background-color: rgba(
-  $light-theme-base-background-color,
+$light-surface-ripple-background-color: rgba(
+  $light-surface-base-background-color,
   0.08
 ) !default;
-$dark-theme-ripple-background-color: rgba(
-  $dark-theme-base-background-color,
+$dark-surface-ripple-background-color: rgba(
+  $dark-surface-base-background-color,
   0.12
 ) !default;
 $ripple-background-color: if(
   theme.$color-scheme == dark,
-  $dark-theme-ripple-background-color,
-  $light-theme-ripple-background-color
+  $dark-surface-ripple-background-color,
+  $light-surface-ripple-background-color
 ) !default;
 $ripple-transform-duration: 0.45s !default;
 $ripple-opacity-duration: 0.3s !default;
 
-$light-theme-hover-background-color: rgba(
-  $light-theme-base-background-color,
+$light-surface-hover-background-color: rgba(
+  $light-surface-base-background-color,
   0.08
 ) !default;
-$light-theme-focus-background-color: rgba(
-  $light-theme-base-background-color,
+$light-surface-focus-background-color: rgba(
+  $light-surface-base-background-color,
   0.24
 ) !default;
-$light-theme-press-background-color: rgba(
-  $light-theme-base-background-color,
+$light-surface-press-background-color: rgba(
+  $light-surface-base-background-color,
   0.32
 ) !default;
-$light-theme-selected-background-color: rgba(
-  $light-theme-base-background-color,
+$light-surface-selected-background-color: rgba(
+  $light-surface-base-background-color,
   0.16
 ) !default;
-$dark-theme-hover-background-color: rgba(
-  $dark-theme-base-background-color,
+$dark-surface-hover-background-color: rgba(
+  $dark-surface-base-background-color,
   0.1
 ) !default;
-$dark-theme-focus-background-color: rgba(
-  $dark-theme-base-background-color,
+$dark-surface-focus-background-color: rgba(
+  $dark-surface-base-background-color,
   0.12
 ) !default;
-$dark-theme-press-background-color: rgba(
-  $dark-theme-base-background-color,
+$dark-surface-press-background-color: rgba(
+  $dark-surface-base-background-color,
   0.16
 ) !default;
-$dark-theme-selected-background-color: rgba(
-  $dark-theme-base-background-color,
+$dark-surface-selected-background-color: rgba(
+  $dark-surface-base-background-color,
   0.12
 ) !default;
 
 $hover-background-color: if(
   theme.$color-scheme == dark,
-  $dark-theme-hover-background-color,
-  $light-theme-hover-background-color
+  $dark-surface-hover-background-color,
+  $light-surface-hover-background-color
 ) !default;
 $focus-background-color: if(
   theme.$color-scheme == dark,
-  $dark-theme-focus-background-color,
-  $light-theme-focus-background-color
+  $dark-surface-focus-background-color,
+  $light-surface-focus-background-color
 ) !default;
 $press-background-color: if(
   theme.$color-scheme == dark,
-  $dark-theme-press-background-color,
-  $light-theme-press-background-color
+  $dark-surface-press-background-color,
+  $light-surface-press-background-color
 ) !default;
 $selected-background-color: if(
   theme.$color-scheme == dark,
-  $dark-theme-selected-background-color,
-  $light-theme-selected-background-color
+  $dark-surface-selected-background-color,
+  $light-surface-selected-background-color
 ) !default;
 
 $var-lookup: (
@@ -158,57 +165,75 @@ $var-lookup: (
   #{$property}: get-var($name, $fallback);
 }
 
-@mixin use-light-theme {
-  @include set-var(hover-background-color, $light-theme-hover-background-color);
-  @include set-var(focus-background-color, $light-theme-focus-background-color);
-  @include set-var(press-background-color, $light-theme-press-background-color);
+@mixin use-light-surface {
+  @include set-var(
+    hover-background-color,
+    $light-surface-hover-background-color
+  );
+  @include set-var(
+    focus-background-color,
+    $light-surface-focus-background-color
+  );
+  @include set-var(
+    press-background-color,
+    $light-surface-press-background-color
+  );
   @include set-var(
     selected-background-color,
-    $light-theme-selected-background-color
+    $light-surface-selected-background-color
   );
-  @include set-var(
-    ripple-background-color,
-    $light-theme-ripple-background-color
-  );
+  @if not $_disable-ripple {
+    @include set-var(
+      ripple-background-color,
+      $light-surface-ripple-background-color
+    );
+  }
 }
 
-@mixin use-dark-theme {
-  @include set-var(hover-background-color, $dark-theme-hover-background-color);
-  @include set-var(focus-background-color, $dark-theme-focus-background-color);
-  @include set-var(press-background-color, $dark-theme-press-background-color);
+@mixin use-dark-surface {
+  @include set-var(
+    hover-background-color,
+    $dark-surface-hover-background-color
+  );
+  @include set-var(
+    focus-background-color,
+    $dark-surface-focus-background-color
+  );
+  @include set-var(
+    press-background-color,
+    $dark-surface-press-background-color
+  );
   @include set-var(
     selected-background-color,
-    $dark-theme-selected-background-color
+    $dark-surface-selected-background-color
   );
-  @include set-var(
-    ripple-background-color,
-    $dark-theme-ripple-background-color
-  );
-}
-
-@if $mode and $mode != ripple and $mode != press and $mode != both {
-  @error "$mode must be one of: ripple, press, both, or null but was #{$mode}";
+  @if not $_disable-ripple {
+    @include set-var(
+      ripple-background-color,
+      $dark-surface-ripple-background-color
+    );
+  }
 }
 
 @mixin outline($box-shadow: $outline-box-shadow) {
-  @if $box-shadow {
-    box-shadow: inset
-      0
-      0
-      0
-      get-var(outline-width)
-      get-var(outline-color, transparent);
-  } @else {
-    outline: get-var(outline-color, transparent) solid get-var(outline-width);
+  // do not apply box shadow styles here. they will only be applied in the
+  // `focus-styles` mixin to minimize bundle size and help with overriding the
+  // focus color in specific surfaces
+  @if not $box-shadow {
+    outline: transparent solid get-var(outline-width);
     // adding an outline-offset makes it so it behaves the same way as an inset
     // box shadow
     outline-offset: utils.negate-var(get-var(outline-width));
   }
 }
 
-@mixin focus-styles {
+@mixin focus-styles($box-shadow: $outline-box-shadow) {
   @include set-var(background-color, get-var(focus-background-color));
-  @include set-var(outline-color, $outline-color);
+  @if $box-shadow {
+    box-shadow: inset 0 0 0 get-var(outline-width) get-var(outline-color);
+  } @else {
+    @include use-var(outline-color);
+  }
 }
 
 @mixin surface(
@@ -239,7 +264,8 @@ $var-lookup: (
       @include use-var(background-color);
     }
 
-    transition-property: background-color, outline-color;
+    transition-property: background-color,
+      if($outline-box-shadow, box-shadow, outline-color);
     transition-duration: transition.$linear-duration;
     transition-timing-function: transition.$linear-timing-function;
   }
@@ -286,7 +312,7 @@ $var-lookup: (
 }
 
 @mixin styles {
-  @if $mode == ripple or $mode == both {
+  @if not $_disable-ripple {
     .rmd-ripple-container {
       border-radius: inherit;
       inset: 0;

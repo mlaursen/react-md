@@ -7,7 +7,6 @@
 @use "../divider/divider";
 @use "../interaction/interaction";
 @use "../sheet/sheet";
-@use "../theme/colors";
 @use "../transition/transition";
 
 $disable-mini: false !default;
@@ -15,10 +14,10 @@ $disable-mini: false !default;
 $enter-duration: sheet.$enter-duration !default;
 $leave-duration: sheet.$leave-duration !default;
 
-$main-outline-color: interaction.$outline-color !default;
-$main-outline-width: interaction.$outline-width !default;
+$main-outline-color: interaction.get-var(outline-color) !default;
+$main-outline-width: interaction.get-var(outline-width) !default;
 $main-focused-z-index: 999 !default;
-$main-focus-shadow: inset 0 0 0 0.125rem colors.$blue-500 !default;
+$main-focus-shadow: inset 0 0 0 $main-outline-width $main-outline-color !default;
 
 $navigation-z-index: dialog.$z-index !default;
 $navigation-mini-z-index: app-bar.$fixed-z-index - 1 !default;

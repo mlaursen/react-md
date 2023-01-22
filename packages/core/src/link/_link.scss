@@ -80,50 +80,55 @@ $var-lookup: (
 }
 
 @mixin styles {
-  .rmd-link {
-    // can't use the normal @include interaction.surface since links are
-    // rendered inline and the `::before`/`::after` pseudo selectors only work
-    // nicely with block-like elements
-    @include utils.keyboard-only {
-      &:focus {
-        @include interaction.set-var(outline-color, interaction.$outline-color);
+  @if not $disable-everything {
+    .rmd-link {
+      // can't use the normal @include interaction.surface since links are
+      // rendered inline and the `::before`/`::after` pseudo selectors only work
+      // nicely with block-like elements
+      @include utils.keyboard-only {
+        &:focus {
+          @include interaction.set-var(
+            outline-color,
+            interaction.$outline-color
+          );
+        }
       }
-    }
-    @include interaction.outline;
-    @include icon.use-var(gap, spacing);
-    @include use-var(color);
+      @include interaction.outline;
+      @include icon.use-var(gap, spacing);
+      @include use-var(color);
 
-    align-items: center;
-    display: inline-flex;
-    transition: color $transition-duration;
+      align-items: center;
+      display: inline-flex;
+      transition: color $transition-duration;
 
-    &:visited {
-      @include set-var(color, get-var(visited-color));
-    }
-
-    &:hover {
-      @include set-var(color, get-var(hover-color));
-    }
-
-    @if not $disable-skip-to-main {
-      &--skip {
-        @include utils.map-to-styles(
-          map.remove(
-            typography.$headline-6-styles,
-            font-size,
-            font-weight,
-            letter-spacing
-          )
-        );
-        @include utils.sr-only(true, null);
+      &:visited {
+        @include set-var(color, get-var(visited-color));
       }
 
-      &--skip-styled {
-        @include utils.map-to-styles($skip-to-main-styles);
-        @include utils.keyboard-only {
-          &:focus,
-          &:active {
-            @include utils.map-to-styles($skip-to-main-active-styles);
+      &:hover {
+        @include set-var(color, get-var(hover-color));
+      }
+
+      @if not $disable-skip-to-main {
+        &--skip {
+          @include utils.map-to-styles(
+            map.remove(
+              typography.$headline-6-styles,
+              font-size,
+              font-weight,
+              letter-spacing
+            )
+          );
+          @include utils.sr-only(true, null);
+        }
+
+        &--skip-styled {
+          @include utils.map-to-styles($skip-to-main-styles);
+          @include utils.keyboard-only {
+            &:focus,
+            &:active {
+              @include utils.map-to-styles($skip-to-main-active-styles);
+            }
           }
         }
       }

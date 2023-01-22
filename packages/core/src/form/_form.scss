@@ -14,50 +14,51 @@
 @use "../typography/typography";
 @use "../interaction/interaction";
 
-$disable-fieldset: false !default;
-$disable-message: false !default;
-$disable-label: false !default;
-$disable-floating-label: false !default;
-$disable-label-gap: false !default;
-$disable-label-reversed: false !default;
-$disable-label-stacked: false !default;
-$disable-label-stacked-reversed: false !default;
-$disable-file-input: false !default;
-$disable-text-field: false !default;
-$disable-textarea: false !default;
+$disable-everything: false !default;
+$disable-fieldset: $disable-everything !default;
+$disable-message: $disable-everything !default;
+$disable-label: $disable-everything !default;
+$disable-floating-label: $disable-everything !default;
+$disable-label-gap: $disable-everything !default;
+$disable-label-reversed: $disable-everything !default;
+$disable-label-stacked: $disable-everything !default;
+$disable-label-stacked-reversed: $disable-everything !default;
+$disable-file-input: $disable-everything !default;
+$disable-text-field: $disable-everything !default;
+$disable-textarea: $disable-everything !default;
 $disable-password: $disable-text-field !default;
 $disable-text-field-addon: $disable-text-field and $disable-password and
   $disable-textarea !default;
-$disable-select: false !default;
+$disable-select: $disable-everything !default;
 $disable-option: $disable-select !default;
-$disable-native-select: false !default;
-$disable-native-select-multiple: false !default;
-$disable-checkbox: false !default;
-$disable-radio: false !default;
-$disable-switch: false !default;
+$disable-native-select: $disable-everything !default;
+$disable-native-select-multiple: $disable-everything !default;
+$disable-checkbox: $disable-everything !default;
+$disable-radio: $disable-everything !default;
+$disable-switch: $disable-everything !default;
 $disable-switch-circular-progress: progress.$disable-circular !default;
 $disable-menu-item-checkbox: $disable-checkbox !default;
 $disable-menu-item-radio: $disable-radio !default;
 $disable-menu-item-switch: $disable-switch !default;
-$disable-slider: false !default;
-$disable-horizontal-slider: false !default;
-$disable-vertical-slider: false !default;
-$disable-range-slider: false !default;
-$disable-discrete-slider: false !default;
+$disable-slider: $disable-everything !default;
+$disable-horizontal-slider: $disable-everything !default;
+$disable-vertical-slider: $disable-everything !default;
+$disable-range-slider: $disable-everything !default;
+$disable-discrete-slider: $disable-everything !default;
 
 // Note: enabling the filled theme forces the underlined theme to be used since it depends on the same styles
-$disable-text-field-filled-theme: false !default;
-$disable-text-field-outlined-theme: false !default;
-$disable-text-field-underlined-theme: false !default;
-$disable-text-field-counter: false !default;
-$disable-text-field-underline-left: false !default;
-$disable-text-field-underline-center: false !default;
-$disable-text-field-underline-right: false !default;
+$disable-text-field-filled-theme: $disable-everything !default;
+$disable-text-field-outlined-theme: $disable-everything !default;
+$disable-text-field-underlined-theme: $disable-everything !default;
+$disable-text-field-counter: $disable-everything !default;
+$disable-text-field-underline-left: $disable-everything !default;
+$disable-text-field-underline-center: $disable-everything !default;
+$disable-text-field-underline-right: $disable-everything !default;
 
-$disable-textarea-resizing-rows: false !default;
+$disable-textarea-resizing-rows: $disable-everything !default;
 $disable-textarea-resizing-mask: $disable-textarea-resizing-rows !default;
-$disable-textarea-resize-horizontal: false !default;
-$disable-textarea-resize-vertical: false !default;
+$disable-textarea-resize-horizontal: $disable-everything !default;
+$disable-textarea-resize-vertical: $disable-everything !default;
 
 $error-color: theme.theme-get-var(error-color) !default;
 $active-color: theme.theme-get-var(secondary-color) !default;
@@ -382,35 +383,42 @@ $var-lookup: (
 }
 
 @mixin use-light-theme {
-  @include set-var(text-border-color, $text-field-light-border-color);
-  @include set-var(
-    text-hover-border-color,
-    $text-field-light-hover-border-color
-  );
-  @include set-var(
-    text-filled-color,
-    $text-field-light-filled-background-color
-  );
-  @if not $disable-switch {
+  @if not $disable-everything {
+    @include set-var(text-border-color, $text-field-light-border-color);
     @include set-var(
-      switch-track-background-color,
-      $switch-track-light-background-color
+      text-hover-border-color,
+      $text-field-light-hover-border-color
     );
+    @include set-var(
+      text-filled-color,
+      $text-field-light-filled-background-color
+    );
+    @if not $disable-switch {
+      @include set-var(
+        switch-track-background-color,
+        $switch-track-light-background-color
+      );
+    }
   }
 }
 
 @mixin use-dark-theme {
-  @include set-var(text-border-color, $text-field-dark-border-color);
-  @include set-var(
-    text-hover-border-color,
-    $text-field-dark-hover-border-color
-  );
-  @include set-var(text-filled-color, $text-field-dark-filled-background-color);
-  @if not $disable-switch {
+  @if not $disable-everything {
+    @include set-var(text-border-color, $text-field-dark-border-color);
     @include set-var(
-      switch-track-background-color,
-      $switch-track-dark-background-color
+      text-hover-border-color,
+      $text-field-dark-hover-border-color
     );
+    @include set-var(
+      text-filled-color,
+      $text-field-dark-filled-background-color
+    );
+    @if not $disable-switch {
+      @include set-var(
+        switch-track-background-color,
+        $switch-track-dark-background-color
+      );
+    }
   }
 }
 

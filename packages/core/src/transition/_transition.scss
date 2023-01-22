@@ -4,12 +4,13 @@
 @use "../theme/colors";
 @use "../theme/theme";
 
-$disable-collapse-transition: false !default;
-$disable-cross-fade-transition: false !default;
-$disable-scale-transition: false !default;
+$disable-everything: false !default;
+$disable-collapse-transition: $disable-everything !default;
+$disable-cross-fade-transition: $disable-everything !default;
+$disable-scale-transition: $disable-everything !default;
 $disable-scale-y-transition: $disable-scale-transition !default;
-$disable-skeleton-placeholder: false !default;
-$disable-slide-transition: false !default;
+$disable-skeleton-placeholder: $disable-everything !default;
+$disable-slide-transition: $disable-everything !default;
 
 $linear-duration: 0.15s !default;
 $enter-duration: 0.2s !default;

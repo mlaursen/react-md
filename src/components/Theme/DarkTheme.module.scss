@@ -2,15 +2,6 @@
 
 .container {
   @include everything.use-dark-theme;
-  @include everything.interaction-use-dark-theme;
-  @include everything.transition-use-dark-theme;
-  @include everything.icon-use-dark-theme;
-  @include everything.chip-use-dark-theme;
-  @include everything.app-bar-use-dark-theme;
-  @include everything.divider-use-dark-theme;
-  @include everything.card-use-dark-theme;
-  @include everything.form-use-dark-theme;
-  @include everything.table-use-dark-theme;
 
   --code-color: #{everything.$pink-400};
   --phone-app-bar-bg: #{everything.$grey-900};

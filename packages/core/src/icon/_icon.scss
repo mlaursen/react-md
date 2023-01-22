@@ -84,11 +84,15 @@ $var-lookup: (
 }
 
 @mixin use-light-theme {
-  @include set-var(color, $light-theme-color);
+  @if not $disable-font or not $disable-svg {
+    @include set-var(color, $light-theme-color);
+  }
 }
 
 @mixin use-dark-theme {
-  @include set-var(color, $dark-theme-color);
+  @if not $disable-font or not $disable-svg {
+    @include set-var(color, $dark-theme-color);
+  }
 }
 
 @mixin dense {
@@ -98,102 +102,105 @@ $var-lookup: (
 }
 
 @mixin styles {
-  @include theme.default-system-theme {
-    @include use-dark-theme;
-  }
-
-  .rmd-icon {
-    @include use-var(font-size, size);
-    @include use-var(color);
-
-    // you normally don't want icons to shrink in flex containers.
-    // update the icon manually instead.
-    flex-shrink: 0;
-    user-select: none;
-
-    @if not $disable-font {
-      &--font {
-        text-align: center;
-      }
+  // shouldn't really use react-md without icons though...
+  @if not $disable-font or not $disable-svg {
+    @include theme.default-system-theme {
+      @include use-dark-theme;
     }
 
-    @if not $disable-svg {
-      &--svg {
-        fill: currentcolor;
-        height: 1em;
-        width: 1em;
-      }
-    }
+    .rmd-icon {
+      @include use-var(font-size, size);
+      @include use-var(color);
 
-    @if not $disable-spacing-before {
-      &--before {
-        @include utils.auto-rtl(margin-right, get-var(spacing), 0);
-      }
-    }
+      // you normally don't want icons to shrink in flex containers.
+      // update the icon manually instead.
+      flex-shrink: 0;
+      user-select: none;
 
-    @if not $disable-spacing-after {
-      &--after {
-        @include utils.auto-rtl(margin-left, get-var(spacing), 0);
+      @if not $disable-font {
+        &--font {
+          text-align: center;
+        }
       }
-    }
 
-    @if not $disable-spacing-above {
-      &--above {
-        @include use-var(margin-top, spacing);
+      @if not $disable-svg {
+        &--svg {
+          fill: currentcolor;
+          height: 1em;
+          width: 1em;
+        }
       }
-    }
 
-    @if not $disable-spacing-below {
-      &--below {
-        @include use-var(margin-bottom, spacing);
+      @if not $disable-spacing-before {
+        &--before {
+          @include utils.auto-rtl(margin-right, get-var(spacing), 0);
+        }
       }
-    }
 
-    @if not $disable-primary-color {
-      &--primary {
-        @include set-var(color, theme.theme-get-var(primary-color));
+      @if not $disable-spacing-after {
+        &--after {
+          @include utils.auto-rtl(margin-left, get-var(spacing), 0);
+        }
       }
-    }
 
-    @if not $disable-secondary-color {
-      &--secondary {
-        @include set-var(color, theme.theme-get-var(secondary-color));
+      @if not $disable-spacing-above {
+        &--above {
+          @include use-var(margin-top, spacing);
+        }
       }
-    }
 
-    @if not $disable-warning-color {
-      &--warning {
-        @include set-var(color, theme.theme-get-var(warning-color));
+      @if not $disable-spacing-below {
+        &--below {
+          @include use-var(margin-bottom, spacing);
+        }
       }
-    }
 
-    @if not $disable-error-color {
-      &--error {
-        @include set-var(color, theme.theme-get-var(error-color));
+      @if not $disable-primary-color {
+        &--primary {
+          @include set-var(color, theme.theme-get-var(primary-color));
+        }
       }
-    }
 
-    @if not $disable-success-color {
-      &--success {
-        @include set-var(color, theme.theme-get-var(success-color));
+      @if not $disable-secondary-color {
+        &--secondary {
+          @include set-var(color, theme.theme-get-var(secondary-color));
+        }
       }
-    }
 
-    @if not $disable-hint-color {
-      &--hint {
-        @include set-var(color, theme.theme-get-var(text-hint-color));
+      @if not $disable-warning-color {
+        &--warning {
+          @include set-var(color, theme.theme-get-var(warning-color));
+        }
       }
-    }
 
-    @if not $disable-disabled-color {
-      &--disabled {
-        @include set-var(color, theme.theme-get-var(text-disabled-color));
+      @if not $disable-error-color {
+        &--error {
+          @include set-var(color, theme.theme-get-var(error-color));
+        }
       }
-    }
 
-    @if not $disable-dense {
-      &--dense {
-        @include set-var(size, $dense-size);
+      @if not $disable-success-color {
+        &--success {
+          @include set-var(color, theme.theme-get-var(success-color));
+        }
+      }
+
+      @if not $disable-hint-color {
+        &--hint {
+          @include set-var(color, theme.theme-get-var(text-hint-color));
+        }
+      }
+
+      @if not $disable-disabled-color {
+        &--disabled {
+          @include set-var(color, theme.theme-get-var(text-disabled-color));
+        }
+      }
+
+      @if not $disable-dense {
+        &--dense {
+          @include set-var(size, $dense-size);
+        }
       }
     }
   }
@@ -201,7 +208,6 @@ $var-lookup: (
   @if not $disable-rotator {
     .rmd-icon-rotator {
       transform: rotate(get-var(rotate-from));
-      // transform: rotate(var($rotate-from-var, $rotate-from));
 
       &--animate {
         transition: transform $rotate-duration linear;
@@ -209,7 +215,6 @@ $var-lookup: (
 
       &--rotated {
         transform: rotate(get-var(rotate-to));
-        // transform: rotate(var($rotate-to-var, $rotate-to));
       }
     }
   }

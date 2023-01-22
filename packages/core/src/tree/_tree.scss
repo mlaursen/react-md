@@ -136,14 +136,7 @@ $var-lookup: (
       &--focused::before {
         .rmd-tree:focus-within & {
           @include utils.keyboard-only {
-            @include interaction.set-var(
-              background-color,
-              interaction.get-var(focus-background-color)
-            );
-            @include interaction.set-var(
-              outline-color,
-              interaction.$outline-color
-            );
+            @include interaction.focus-styles;
           }
         }
       }

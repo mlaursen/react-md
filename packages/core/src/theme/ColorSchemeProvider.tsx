@@ -189,11 +189,11 @@ export function ColorSchemeProvider(
         item === "light" || item === "dark" || item === "system" ? item : mode,
     });
 
-  const isDarkTheme = useMediaQuery(
+  const prefersDarkTheme = useMediaQuery(
     "(prefers-color-scheme: dark)",
     mode !== "system"
   );
-  const derivedColorScheme = isDarkTheme ? "dark" : "light";
+  const derivedColorScheme = prefersDarkTheme ? "dark" : "light";
   const colorScheme = mode === "system" ? derivedColorScheme : mode;
 
   const value = useMemo<ColorSchemeContext>(

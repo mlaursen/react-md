@@ -3,6 +3,7 @@
 @use "../theme/theme";
 @use "../theme/colors";
 
+$disable-everything: false !default;
 $disable-vertical: false !default;
 $disable-inset: false !default;
 
@@ -81,11 +82,15 @@ $var-lookup: (
 }
 
 @mixin use-light-theme {
-  @include set-var(color, $light-theme-color);
+  @if not $disable-everything {
+    @include set-var(color, $light-theme-color);
+  }
 }
 
 @mixin use-dark-theme {
-  @include set-var(color, $dark-theme-color);
+  @if not $disable-everything {
+    @include set-var(color, $dark-theme-color);
+  }
 }
 
 @mixin style($position) {
@@ -95,35 +100,37 @@ $var-lookup: (
 }
 
 @mixin styles {
-  @include theme.default-system-theme {
-    @include use-dark-theme;
-  }
-
-  .rmd-divider {
-    @include use-var(margin, spacing);
-    @include use-var(width);
-
-    border: get-var(size) inset get-var(color);
-    display: block;
-    flex-shrink: 0;
-
-    @if not $disable-inset {
-      &--inset {
-        @include utils.auto-rtl(margin-left, get-var(inset), auto);
-
-        width: calc(get-var(max-size) - get-var(inset));
-      }
+  @if not $disable-everything {
+    @include theme.default-system-theme {
+      @include use-dark-theme;
     }
 
-    @if not $disable-vertical {
-      &--vertical {
-        @include style(left);
-        @include use-var(height, max-size);
-        @include use-var(width, vertical-size);
-        @include use-var(margin, vertical-spacing);
+    .rmd-divider {
+      @include use-var(margin, spacing);
+      @include use-var(width);
 
-        border-bottom: 0;
-        display: inline-block;
+      border: get-var(size) inset get-var(color);
+      display: block;
+      flex-shrink: 0;
+
+      @if not $disable-inset {
+        &--inset {
+          @include utils.auto-rtl(margin-left, get-var(inset), auto);
+
+          width: calc(get-var(max-size) - get-var(inset));
+        }
+      }
+
+      @if not $disable-vertical {
+        &--vertical {
+          @include style(left);
+          @include use-var(height, max-size);
+          @include use-var(width, vertical-size);
+          @include use-var(margin, vertical-spacing);
+
+          border-bottom: 0;
+          display: inline-block;
+        }
       }
     }
   }

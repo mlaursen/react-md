@@ -206,24 +206,28 @@ $row-selected-styles: (
 ) !default;
 
 @mixin use-light-theme {
-  @include set-var(border-color, $light-theme-border-color);
-  @if $light-theme-background-color {
-    @include set-var(background-color, $light-theme-background-color);
-  }
+  @if not $disable-everything {
+    @include set-var(border-color, $light-theme-border-color);
+    @if $light-theme-background-color {
+      @include set-var(background-color, $light-theme-background-color);
+    }
 
-  @if $light-theme-header-background-color {
-    @include set-var(header-color, $light-theme-header-background-color);
+    @if $light-theme-header-background-color {
+      @include set-var(header-color, $light-theme-header-background-color);
+    }
   }
 }
 
 @mixin use-dark-theme {
-  @include set-var(border-color, $dark-theme-border-color);
-  @if $dark-theme-background-color {
-    @include set-var(background-color, $dark-theme-background-color);
-  }
+  @if not $disable-everything {
+    @include set-var(border-color, $dark-theme-border-color);
+    @if $dark-theme-background-color {
+      @include set-var(background-color, $dark-theme-background-color);
+    }
 
-  @if $dark-theme-header-background-color {
-    @include set-var(header-color, $dark-theme-header-background-color);
+    @if $dark-theme-header-background-color {
+      @include set-var(header-color, $dark-theme-header-background-color);
+    }
   }
 }
 

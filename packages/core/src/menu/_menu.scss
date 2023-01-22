@@ -5,7 +5,7 @@
 @use "../interaction/interaction";
 @use "../icon/icon";
 
-$disable-menu: false !default;
+$disable-everything: false !default;
 $disable-menu-item: false !default;
 $disable-menu-item-group: false !default;
 $disable-focus-outline: false !default;
@@ -120,7 +120,7 @@ $var-lookup: (
 }
 
 @mixin styles {
-  @if not $disable-menu {
+  @if not $disable-everything {
     @include menu-styles;
 
     @if not $disable-menu-item {

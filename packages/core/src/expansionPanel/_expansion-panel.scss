@@ -3,6 +3,7 @@
 @use "../icon/icon";
 @use "../button/button";
 
+$disable-everything: false !default;
 $disable-margin-top-transition: false !default;
 
 $padding: 1rem !default;
@@ -12,67 +13,69 @@ $rotate-from: icon.$rotate-from !default;
 $rotate-to: icon.$rotate-to !default;
 
 @mixin styles {
-  // does not require custom styles
-  .rmd-expansion-panel {
-    @if not $disable-margin-top-transition and $spacing {
-      &--animate {
-        transition: margin-top transition.$linear-duration;
+  @if not $disable-everything {
+    // does not require custom styles
+    .rmd-expansion-panel {
+      @if not $disable-margin-top-transition and $spacing {
+        &--animate {
+          transition: margin-top transition.$linear-duration;
+        }
       }
+
+      @if $spacing {
+        &--expanded + .rmd-expansion-panel {
+          margin-top: $spacing;
+        }
+      }
+
+      // once firefox supports the `:has` selector, I can handle most of this in CSS instead of javascript:
+      // &:where(:not(.rmd-expansion-panel--expanded)):has(+ .rmd-expansion-panel) {
+      //   border-bottom-left-radius: 0;
+      //   border-bottom-right-radius: 0;
+      //   position: relative;
+
+      //   &::after {
+      //     background: #fff;
+      //     bottom: -5px;
+      //     content: "";
+      //     height: 8px;
+      //     left: 0;
+      //     position: absolute;
+      //     right: 0;
+      //     z-index: 1;
+      //   }
+      // }
     }
 
-    @if $spacing {
-      &--expanded + .rmd-expansion-panel {
-        margin-top: $spacing;
-      }
-    }
-
-    // once firefox supports the `:has` selector, I can handle most of this in CSS instead of javascript:
-    // &:where(:not(.rmd-expansion-panel--expanded)):has(+ .rmd-expansion-panel) {
-    //   border-bottom-left-radius: 0;
-    //   border-bottom-right-radius: 0;
-    //   position: relative;
-
-    //   &::after {
-    //     background: #fff;
-    //     bottom: -5px;
-    //     content: "";
-    //     height: 8px;
-    //     left: 0;
-    //     position: absolute;
-    //     right: 0;
-    //     z-index: 1;
-    //   }
+    // .rmd-expansion-panel__header {
     // }
-  }
 
-  // .rmd-expansion-panel__header {
-  // }
+    .rmd-expansion-panel__button {
+      @if $rotate-from != icon.$rotate-from {
+        @include icon.set-var(rotate-from, $rotate-from);
+      }
 
-  .rmd-expansion-panel__button {
-    @if $rotate-from != icon.$rotate-from {
-      @include icon.set-var(rotate-from, $rotate-from);
-    }
+      @if $rotate-to != icon.$rotate-to {
+        @include icon.set-var(rotate-to, $rotate-to);
+      }
 
-    @if $rotate-to != icon.$rotate-to {
-      @include icon.set-var(rotate-to, $rotate-to);
-    }
+      @if button.$disable-unstyled-utility-class {
+        @include button.unstyled;
+      }
+      @include utils.auto-rtl(text-align, left);
 
-    @if button.$disable-unstyled-utility-class {
-      @include button.unstyled;
-    }
-    @include utils.auto-rtl(text-align, left);
+      align-items: center;
+      color: inherit;
+      font: inherit;
+      gap: $button-spacing;
+      justify-content: space-between;
+      letter-spacing: inherit;
+      padding: $padding;
+      width: 100%;
 
-    align-items: center;
-    color: inherit;
-    font: inherit;
-    gap: $button-spacing;
-    justify-content: space-between;
-    letter-spacing: inherit;
-    padding: $padding;
-    width: 100%;
-
-    &[aria-disabled="true"] {
-      cursor: auto;
+      &[aria-disabled="true"] {
+        cursor: auto;
+      }
     }
   }
 }
