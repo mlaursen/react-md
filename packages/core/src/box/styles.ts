@@ -3,6 +3,15 @@ import { bem } from "../utils";
 
 const styles = bem("rmd-box");
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-box-gap"?: string | number;
+    "--rmd-box-padding"?: string | number;
+    "--rmd-box-item-min-size"?: string | number;
+    "--rmd-box-columns"?: string | number;
+  }
+}
+
 export type BoxAlignItems =
   | "start"
   | "flex-start"
