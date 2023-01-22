@@ -248,8 +248,8 @@ $var-lookup: (
   @if $clickable {
     cursor: pointer;
   }
-  position: relative;
   outline: none;
+  position: relative;
 
   @if not $disable-higher-contrast and $higher-contrast {
     > * {
@@ -264,9 +264,9 @@ $var-lookup: (
       @include use-var(background-color);
     }
 
+    transition-duration: transition.$linear-duration;
     transition-property: background-color,
       if($outline-box-shadow, box-shadow, outline-color);
-    transition-duration: transition.$linear-duration;
     transition-timing-function: transition.$linear-timing-function;
   }
 

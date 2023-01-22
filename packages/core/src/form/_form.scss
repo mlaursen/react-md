@@ -508,8 +508,8 @@ $var-lookup: (
 
     align-items: center;
     display: inline-flex;
-    transition-property: background-color, color, font-size, transform;
     transition-duration: transition.$linear-duration;
+    transition-property: background-color, color, font-size, transform;
 
     $active-selector: "&--active";
     @if not $_disable-text-field-container {

@@ -161,9 +161,9 @@ $var-lookup: (
         &--horizontal {
           display: flex;
           flex-wrap: nowrap;
+          max-width: 100%;
           overflow: auto;
           padding: get-var(horizontal-padding) get-var(vertical-padding);
-          max-width: 100%;
         }
       }
     }

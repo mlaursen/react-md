@@ -32,11 +32,11 @@ $green: #859900;
   pre[class*="language-"] {
     background-color: $base-03;
     color: $base-1;
+    hyphens: none;
     margin: 0.5em 0;
     min-height: calc(everything.button-get-var(text-min-height) + 0.5em);
     overflow: auto;
     padding: 1em;
-    hyphens: none;
     white-space: pre;
 
     &::selection,

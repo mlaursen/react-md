@@ -114,8 +114,8 @@ $var-lookup: (
       margin-right: calc(
         #{get-var(horizontal-margin)} + #{utils.scrollbar-size()}
       );
-      position: fixed;
       pointer-events: none;
+      position: fixed;
     }
 
     .rmd-dialog {

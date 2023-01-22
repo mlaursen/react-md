@@ -349,6 +349,7 @@ $typography-var-lookup: (
 }
 
 @mixin line-clamp($lines: 2) {
+  // stylelint-disable order/properties-alphabetical-order
   -webkit-box-orient: vertical;
   -webkit-line-clamp: $lines;
   display: -webkit-box;

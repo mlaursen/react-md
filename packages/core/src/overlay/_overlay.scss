@@ -53,8 +53,8 @@ $var-lookup: (
       inset: 0;
       justify-content: center;
       opacity: 0;
-      position: fixed;
       pointer-events: none;
+      position: fixed;
       transition: opacity $transition-duration $transition-timing-function;
 
       &--active {

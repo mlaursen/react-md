@@ -6,8 +6,8 @@ $margin-right: calc(#{everything.icon-get-var(spacing)} + #{$offset});
 $margin-left: -$offset;
 
 .container {
-  position: relative;
   height: everything.$icon-size;
+  position: relative;
   width: everything.$icon-size;
 }
 

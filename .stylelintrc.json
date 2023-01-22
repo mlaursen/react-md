@@ -9,6 +9,7 @@
     "selector-pseudo-class-no-unknown": [
       true,
       { "ignorePseudoClasses": ["global", "local"] }
-    ]
+    ],
+    "order/properties-alphabetical-order": true
   }
 }

@@ -156,9 +156,9 @@ $var-lookup: (
         align-items: center;
         background-color: $tablist-scroller-background-color;
         display: inline-flex;
+        flex-shrink: 0;
         justify-content: center;
         position: sticky;
-        flex-shrink: 0;
         z-index: $tablist-scroller-z-index;
 
         &--left {

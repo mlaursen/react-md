@@ -88,6 +88,7 @@
   }
 
   body.touch-mode {
+    // stylelint-disable order/properties-alphabetical-order
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
     // this allows for click events to be bubble-able on iOS to the root
@@ -101,6 +102,32 @@
   [hidden] {
     display: none !important;
   }
+}
+
+@mixin use-light-theme {
+  @include theme.use-light-theme-colors;
+  @include interaction.use-light-surface;
+  @include transition.transition-use-light-theme;
+  @include icon.use-light-theme;
+  @include chip.use-light-theme;
+  @include app-bar.use-light-theme;
+  @include divider.use-light-theme;
+  @include card.use-light-theme;
+  @include form.use-light-theme;
+  @include table.use-light-theme;
+}
+
+@mixin use-dark-theme {
+  @include theme.use-dark-theme-colors;
+  @include interaction.use-dark-surface;
+  @include transition.transition-use-dark-theme;
+  @include icon.use-dark-theme;
+  @include chip.use-dark-theme;
+  @include app-bar.use-dark-theme;
+  @include divider.use-dark-theme;
+  @include card.use-dark-theme;
+  @include form.use-dark-theme;
+  @include table.use-dark-theme;
 }
 
 @mixin styles {
@@ -145,8 +172,7 @@
         system
       {
         @media (prefers-color-scheme: dark) {
-          @include theme.use-dark-theme;
-          @include interaction.interaction-use-dark-surface;
+          @include use-dark-theme;
         }
       }
     }
