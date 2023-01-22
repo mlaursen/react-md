@@ -6,6 +6,8 @@ import {
   DEFAULT_APP_SIZE,
   DEFAULT_APP_SIZE_QUERIES,
 } from "./AppSizeProvider";
+import type { ConfigurableIcons } from "./icon";
+import { IconProvider } from "./icon";
 import type { ElementInteractionMode } from "./interaction";
 import {
   ElementInteractionProvider,
@@ -64,6 +66,9 @@ export interface CoreProvidersProps {
    */
   ssr?: boolean;
 
+  /** @see {@link ConfigurableIcons} for default values */
+  icons?: ConfigurableIcons;
+
   /**
    * @see {@link ColorSchemeProviderProps.mode}
    * @defaultValue `"light"`
@@ -85,10 +90,14 @@ export interface CoreProvidersProps {
   children: ReactNode;
 }
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export function CoreProviders(props: CoreProvidersProps): ReactElement {
   const {
     ssr = false,
     ssrAppSize = DEFAULT_APP_SIZE,
+    icons,
     appSizeQueries = DEFAULT_APP_SIZE_QUERIES,
     elementInteractionMode = "ripple",
     disableHigherContrast = false,
@@ -114,7 +123,7 @@ export function CoreProviders(props: CoreProvidersProps): ReactElement {
                   mode={elementInteractionMode}
                   disableHigherContrast={disableHigherContrast}
                 >
-                  {children}
+                  <IconProvider {...icons}>{children}</IconProvider>
                 </ElementInteractionProvider>
               </AppSizeProvider>
             </UserInteractionModeProvider>

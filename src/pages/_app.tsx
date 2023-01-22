@@ -4,7 +4,6 @@ import { MDXProvider } from "@mdx-js/react";
 import type { ConfiguredIcons } from "@react-md/core";
 import {
   CoreProviders,
-  IconProvider,
   MenuConfigurationProvider,
   ThemeProvider,
 } from "@react-md/core";
@@ -13,6 +12,7 @@ import ArrowUpwardIcon from "@react-md/material-icons/ArrowUpwardIcon";
 import CheckBoxIcon from "@react-md/material-icons/CheckBoxIcon";
 import CheckBoxOutlineBlankIcon from "@react-md/material-icons/CheckBoxOutlineBlankIcon";
 import CheckIcon from "@react-md/material-icons/CheckIcon";
+import CloseIcon from "@react-md/material-icons/CloseIcon";
 import ErrorOutlineIcon from "@react-md/material-icons/ErrorOutlineIcon";
 import FileUploadIcon from "@react-md/material-icons/FileUploadIcon";
 import IndeterminateCheckBoxIcon from "@react-md/material-icons/IndeterminateCheckBoxIcon";
@@ -40,6 +40,7 @@ import {
 
 const icons: ConfiguredIcons = {
   back: <KeyboardArrowLeftIcon />,
+  close: <CloseIcon />,
   checkbox: <CheckBoxOutlineBlankIcon />,
   checkboxChecked: <CheckBoxIcon />,
   checkboxIndeterminate: <IndeterminateCheckBoxIcon />,
@@ -131,6 +132,7 @@ export default function App(props: AppProps): ReactElement {
   return (
     <CoreProviders
       ssr
+      icons={icons}
       colorSchemeMode={defaultColorSchemeMode}
       colorSchemeModeKey="colorScheme"
       disableHigherContrast={defaultDisableHighContrastMode}
@@ -142,16 +144,14 @@ export default function App(props: AppProps): ReactElement {
           <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         </Head>
         <ThemeProvider>
-          <IconProvider {...icons}>
-            <CodeConfigProvider>
-              <MDXProvider components={MDX_COMPONENTS}>
-                <Layout title={title}>
-                  <Component {...pageProps} />
-                  <LoadThemeStyles />
-                </Layout>
-              </MDXProvider>
-            </CodeConfigProvider>
-          </IconProvider>
+          <CodeConfigProvider>
+            <MDXProvider components={MDX_COMPONENTS}>
+              <Layout title={title}>
+                <Component {...pageProps} />
+                <LoadThemeStyles />
+              </Layout>
+            </MDXProvider>
+          </CodeConfigProvider>
         </ThemeProvider>
       </MenuConfigurationProvider>
     </CoreProviders>

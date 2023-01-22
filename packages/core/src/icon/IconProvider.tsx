@@ -15,6 +15,13 @@ export interface ConfigurableIcons {
   back?: ReactNode;
 
   /**
+   * @defaultValue `<FontIcon>close</FontIcon>`
+   *
+   * @remarks \@since 6.0.0
+   */
+  close?: ReactNode;
+
+  /**
    * The icon to use for unchecked checkboxes.
    *
    * @defaultValue `<FontIcon>check_box_outline_blank</FontIcon>`
@@ -139,6 +146,7 @@ export type ConfiguredIcons = Required<ConfigurableIcons>;
 
 const DEFAULT_ICONS: ConfiguredIcons = {
   back: <FontIcon>keyboard_arrow_left</FontIcon>,
+  close: <FontIcon>close</FontIcon>,
   checkbox: <FontIcon>check_box_outline_blank</FontIcon>,
   checkboxChecked: <FontIcon>check_box</FontIcon>,
   checkboxIndeterminate: <FontIcon>indeterminate_check_box</FontIcon>,
@@ -203,6 +211,7 @@ export function IconProvider(props: IconProviderProps): ReactElement {
   const {
     children,
     back = DEFAULT_ICONS.back,
+    close = DEFAULT_ICONS.close,
     checkbox = DEFAULT_ICONS.checkbox,
     checkboxChecked = DEFAULT_ICONS.checkboxChecked,
     checkboxIndeterminate = DEFAULT_ICONS.checkboxIndeterminate,
@@ -223,6 +232,7 @@ export function IconProvider(props: IconProviderProps): ReactElement {
   const value = useMemo<ConfiguredIcons>(
     () => ({
       back,
+      close,
       checkbox,
       checkboxChecked,
       checkboxIndeterminate,
@@ -241,6 +251,7 @@ export function IconProvider(props: IconProviderProps): ReactElement {
     }),
     [
       back,
+      close,
       checkbox,
       checkboxChecked,
       checkboxIndeterminate,
