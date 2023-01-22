@@ -148,6 +148,15 @@ $var-lookup: (
               background-color,
               interaction.get-var(selected-background-color)
             );
+
+            @include utils.touch-only {
+              &:hover::before {
+                @include interaction.set-var(
+                  background-color,
+                  interaction.get-var(selected-background-color)
+                );
+              }
+            }
           }
           @include utils.map-to-styles($selected-styles);
         }
