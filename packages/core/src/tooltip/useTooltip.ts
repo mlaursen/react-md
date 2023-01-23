@@ -6,7 +6,7 @@ import type {
   Ref,
   TouchEventHandler,
 } from "react";
-import { useEffect, useId, useRef } from "react";
+import { useCallback, useEffect, useId, useRef } from "react";
 import { useHoverMode } from "../hoverMode";
 import type { UserInteractionMode } from "../interaction";
 import { useUserInteractionMode } from "../interaction";
@@ -16,6 +16,7 @@ import type {
 } from "../positioning";
 import { useFixedPositioning } from "../positioning";
 import type { UseStateSetter } from "../types";
+import { usePageInactive } from "../usePageInactive";
 import { parseCssLengthUnit } from "../utils";
 import {
   DEFAULT_TOOLTIP_DENSE_SPACING,
@@ -344,7 +345,6 @@ export function useTooltip<E extends HTMLElement>(
   const elementRef = useRef<HTMLElement | null>(null);
   const tooltipRef = useRef<HTMLSpanElement>(null);
   const initiatedBy = useRef<UserInteractionMode | null>(null);
-  const documentHidden = useRef(false);
   const { ref, style, callbacks } = useFixedPositioning({
     nodeRef: tooltipRef,
     style: propStyle,
@@ -418,30 +418,30 @@ export function useTooltip<E extends HTMLElement>(
       window.removeEventListener("touchend", hide, true);
     };
   }, [clearVisibilityTimeout, disableHoverMode, setVisible, visible]);
-  useEffect(() => {
-    if (disabled) {
-      // clearing the timers and hiding was added so tooltips do not remain
-      // visible for a draggable element that has started to drag.
-      disableHoverMode();
-      clearVisibilityTimeout();
-      setVisible(false);
-      return;
-    }
+  const cleanup = useCallback(() => {
+    initiatedBy.current = null;
+    disableHoverMode();
+    clearVisibilityTimeout();
+    setVisible(false);
+  }, [clearVisibilityTimeout, disableHoverMode, setVisible]);
 
-    const handleVisibilityChange = (): void => {
-      if (document.hidden) {
-        documentHidden.current = true;
-        disableHoverMode();
-        initiatedBy.current = null;
-        setVisible(false);
+  const refocusFrame = useRef(0);
+  const pageInactive = useRef(false);
+  usePageInactive({
+    disabled,
+    onDisabledCleanup: cleanup,
+    onChange(active) {
+      if (active) {
+        refocusFrame.current = window.requestAnimationFrame(() => {
+          pageInactive.current = false;
+        });
+        return;
       }
-    };
 
-    window.addEventListener("visibilitychange", handleVisibilityChange);
-    return () => {
-      window.removeEventListener("visibilitychange", handleVisibilityChange);
-    };
-  }, [clearVisibilityTimeout, disableHoverMode, disabled, setVisible]);
+      pageInactive.current = true;
+      cleanup();
+    },
+  });
 
   return {
     visible,
@@ -490,13 +490,15 @@ export function useTooltip<E extends HTMLElement>(
       },
       onFocus(event) {
         onFocus(event);
+        // skip the focus events when the browser is re-focused if the user
+        // pressed alt-tab, minimized the browser, etc
         if (
           disabled ||
           mode !== "keyboard" ||
           initiatedBy.current !== null ||
-          documentHidden.current
+          pageInactive.current
         ) {
-          documentHidden.current = false;
+          pageInactive.current = false;
           return;
         }
 

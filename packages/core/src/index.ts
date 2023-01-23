@@ -47,6 +47,7 @@ export * from "./useIsomorphicLayoutEffect";
 export * from "./useLocalStorage";
 export * from "./useMediaQuery";
 export * from "./useOrientation";
+export * from "./usePageInactive";
 export * from "./useResizeObserver";
 export * from "./useToggle";
 export * from "./utils";

@@ -6,6 +6,7 @@ import {
   useRef,
 } from "react";
 import type { UseStateSetter } from "../types";
+import { usePageInactive } from "../usePageInactive";
 import { useToggle } from "../useToggle";
 import { useRemoveToast } from "./ToastProvider";
 
@@ -93,27 +94,16 @@ export function useToast(options: ToastMeta): ToastImplementation {
 
     startExitTimeout();
   }, [duplicates, startExitTimeout, updated, visible]);
-
-  useEffect(() => {
-    if (!visible) {
-      return;
-    }
-
-    const callback = (event: Event): void => {
-      if (event.type === "focus") {
+  usePageInactive({
+    disabled: !visible,
+    onChange(active) {
+      if (active) {
         startExitTimeout();
       } else {
         clearExitTimeout();
       }
-    };
-
-    window.addEventListener("focus", callback);
-    window.addEventListener("blur", callback);
-    return () => {
-      window.removeEventListener("focus", callback);
-      window.removeEventListener("blur", callback);
-    };
-  }, [clearExitTimeout, startExitTimeout, visible]);
+    },
+  });
   useEffect(() => {
     return () => {
       window.clearTimeout(exitTimeout.current);
