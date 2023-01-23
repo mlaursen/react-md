@@ -92,19 +92,19 @@ export class ToastManager {
     // );
   }
 
+  private _emit = (): void => {
+    this._queue = [...this._queue];
+    this._listeners.forEach((callback) => {
+      callback(this._queue);
+    });
+  };
+
   subscribe = (callback: ToastCallback): (() => void) => {
     this._listeners.push(callback);
 
     return () => {
       this._listeners = this._listeners.filter((cb) => cb !== callback);
     };
-  };
-
-  emit = (): void => {
-    this._queue = [...this._queue];
-    this._listeners.forEach((callback) => {
-      callback(this._queue);
-    });
   };
 
   addToast = (toast: CreateToastOptions): void => {
@@ -134,22 +134,22 @@ export class ToastManager {
       });
     }
 
-    this.emit();
+    this._emit();
   };
 
   popToast = (): void => {
     this._queue.pop();
-    this.emit();
+    this._emit();
   };
 
   removeToast = (toastId: string): void => {
     this._queue = this._queue.filter((toast) => toast.toastId !== toastId);
-    this.emit();
+    this._emit();
   };
 
   clearToasts = (): void => {
     this._queue = [];
-    this.emit();
+    this._emit();
   };
 
   getQueue = (): ToastQueue => {
@@ -214,6 +214,7 @@ export function useClearToasts(): () => void {
 }
 
 /**
+ * @param limit - the total number of toasts that can be visible at once.
  * @remarks \@since 6.0.0
  */
 export function useToastQueue(limit?: number): ToastQueue {
@@ -237,7 +238,7 @@ export function useToastQueue(limit?: number): ToastQueue {
 /**
  * @remarks \@since 6.0.0
  */
-export interface ToastProviderProps {
+export interface ToastManagerProviderProps {
   children: ReactNode;
 
   /**
@@ -247,9 +248,17 @@ export interface ToastProviderProps {
 }
 
 /**
+ * This component can be used to implement separate instances of toasts if
+ * requried in your app. This probably shouldn't be required for most apps with
+ * the default {@link addToast}, {@link removeToast}, and {@link clearToasts}
+ * implementation.
+ *
+ * @see {@link ToastManager} for example usage.
  * @remarks \@since 6.0.0
  */
-export function ToastProvider(props: ToastProviderProps): ReactElement {
+export function ToastManagerProvider(
+  props: ToastManagerProviderProps
+): ReactElement {
   const { children, manager = toastManager } = props;
 
   return <Provider value={manager}>{children}</Provider>;

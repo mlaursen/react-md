@@ -4,5 +4,5 @@ export * from "./Toast";
 export * from "./ToastActionButton";
 export * from "./ToastCloseButton";
 export * from "./ToastContent";
-export * from "./ToastProvider";
+export * from "./ToastManagerProvider";
 export * from "./useToast";

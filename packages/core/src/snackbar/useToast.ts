@@ -8,7 +8,7 @@ import {
 import type { UseStateSetter } from "../types";
 import { usePageInactive } from "../usePageInactive";
 import { useToggle } from "../useToggle";
-import { useRemoveToast } from "./ToastProvider";
+import { useRemoveToast } from "./ToastManagerProvider";
 
 const noop = (): void => {
   // do nothing
@@ -38,6 +38,9 @@ export function useHideToast(): () => void {
  */
 export type ToastDuplicateBehavior = "allow" | "restart" | "update";
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export interface ToastMeta {
   toastId: string;
   updated: number;
@@ -45,6 +48,9 @@ export interface ToastMeta {
   visibleTime: number | null;
 }
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export interface ToastImplementation {
   visible: boolean;
   showToast(): void;
@@ -55,6 +61,9 @@ export interface ToastImplementation {
   setToastVisibility: UseStateSetter<boolean>;
 }
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export function useToast(options: ToastMeta): ToastImplementation {
   const { toastId, visibleTime, duplicates, updated } = options;
 

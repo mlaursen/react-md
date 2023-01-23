@@ -7,7 +7,7 @@ import { bem } from "../utils";
 import type { ToastRendererProps } from "./DefaultToastRenderer";
 import { DefaultToastRenderer } from "./DefaultToastRenderer";
 import type { ConfigurableToastProps } from "./Toast";
-import { useToastQueue } from "./ToastProvider";
+import { useToastQueue } from "./ToastManagerProvider";
 
 const styles = bem("rmd-snackbar");
 
@@ -26,6 +26,9 @@ function snackbar(options: SnackbarClassNameOptions): string {
   return cnb(styles({ [position]: true }), className);
 }
 
+/**
+ * @remarks \@since 2.0.0
+ */
 export type SnackbarPosition = "bottom" | "top";
 
 /**
@@ -61,20 +64,37 @@ export interface SnackbarProps extends HTMLAttributes<HTMLDivElement> {
    *
    * @example
    * ```ts
-   * import type { CustomToastRendererProps } from "@react-md/core";
-   * import { Snackbar, Toast, useHideToast } from "@react-md/core";
+   * import type { ToastRendererProps } from "@react-md/core";
+   * import { Snackbar, Toast, ToastContent } from "@react-md/core";
    * import type { ReactElement } from "react";
    *
    * function CustomToast(props: CustomToastRendererProps): ReactElement {
-   *   const { toastId, visibleTime, ...remaining } = props;
-   *   const hideToast = useHideToast();
+   *   // Pretend like we don't need anything else from the toast since the
+   *   // custom behavior is related to the `toastId`
+   *   const { toastId, updated, duplicates, visibleTime } = props;
+   *
+   *   const { visible, hideToast, removeToast, startExitTimeout } = useToast({
+   *     toastId,
+   *     updated,
+   *     duplicates,
+   *     visibleTime,
+   *   });
+   *
+   *   // Note: If you want to rely on the `action` and `closeButton` behavior,
+   *   // you must also wrap the `Toast` with:
+   *   // <HideToastProvider value={hideToast}>
    *
    *   return (
    *     <Toast
    *       theme={isError(toastId) ? "error" : "surface"}
-   *       {...remaining}
+   *       visible={visible}
+   *       onEntered={startExitTimeout}
+   *       onExited={removeToast}
+   *       disableContentWrapper
    *     >
-   *       <TranslateMessage id={toastId} />
+   *       <ToastContent>
+   *         <TranslateMessage id={toastId} />
+   *       </ToastContent>
    *       {isActionalable(toastId) && (
    *         <Button
    *           onClick={async () => {
@@ -86,7 +106,7 @@ export interface SnackbarProps extends HTMLAttributes<HTMLDivElement> {
    *         </Button>
    *       )}
    *     </Toast>
-   *   )
+   *   );
    * }
    *
    * function Example(): ReactElement {
@@ -99,6 +119,13 @@ export interface SnackbarProps extends HTMLAttributes<HTMLDivElement> {
    */
   renderToast?: ComponentType<ToastRendererProps>;
 
+  /**
+   * Optional props that should be passed to each `Toast` from the `Snackbar`.
+   * This is a great way to enforce each toast having a close button, a custom
+   * class name, theme, etc.
+   *
+   * @see {@link DefaultToastRenderer}
+   */
   toastDefaults?: ConfigurableToastProps;
 }
 

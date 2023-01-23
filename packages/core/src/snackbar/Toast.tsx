@@ -1,6 +1,6 @@
 import { cnb } from "cnbuilder";
 import type { AriaRole, HTMLAttributes, ReactElement, ReactNode } from "react";
-import { forwardRef, isValidElement, useCallback, useState } from "react";
+import { forwardRef, isValidElement } from "react";
 import type { ButtonProps } from "../button";
 import type {
   CSSTransitionClassNames,
@@ -10,7 +10,6 @@ import type {
 import { useScaleTransition } from "../transition";
 import type { PropsWithRef } from "../types";
 import { useEnsuredId } from "../useEnsuredId";
-import { useResizeObserver } from "../useResizeObserver";
 import { bem } from "../utils";
 import { ToastActionButton } from "./ToastActionButton";
 import { ToastCloseButton } from "./ToastCloseButton";
@@ -18,9 +17,6 @@ import type { ToastContentProps } from "./ToastContent";
 import { ToastContent } from "./ToastContent";
 
 const styles = bem("rmd-toast");
-const noop = (): void => {
-  // do nothing
-};
 
 /**
  * @remarks \@since 6.0.0
@@ -36,7 +32,8 @@ export type ToastTheme =
 /** @remarks \@since 6.0.0 */
 export interface ToastClassNameOptions {
   className?: string;
-
+  /** @defaultValue `"surface"` */
+  theme?: ToastTheme;
   /** @defaultValue `false` */
   action?: boolean;
   /** @defaultValue `false` */
@@ -45,9 +42,6 @@ export interface ToastClassNameOptions {
   reordered?: boolean;
   /** @defaultValue `false` */
   closeButton?: boolean;
-
-  /** @defaultValue `"surface"` */
-  theme?: ToastTheme;
 }
 
 /**
@@ -120,6 +114,11 @@ export interface ConfigurableToastProps
   action?: ButtonProps | ReactElement | string;
 
   /**
+   * This can be used to replace the custom action button behavior.
+   */
+  actionButton?: ReactNode;
+
+  /**
    * @defaultValue `useIcon("close")`
    */
   closeIcon?: ReactNode;
@@ -138,10 +137,19 @@ export interface ConfigurableToastProps
   closeButtonProps?: ButtonProps;
 
   /**
-   * Any additional props that should be provided to the `<div>` that surroundes
+   * Any additional props that should be provided to the `<div>` that surrounds
    * the toast `children`.
    */
   contentProps?: PropsWithRef<ToastContentProps, HTMLDivElement>;
+
+  /**
+   * Set this to `true` if the `children` for the toast should no longer be
+   * wrapped in an additional `<div>` that applies some toast layout styles.
+   * This should normally only be used for custom `Toast` implementations.
+   *
+   * @see the `Snackbar`'s `renderToast` prop for an example.
+   */
+  disableToastContent?: boolean;
 
   /**
    * The toast's transition timeout for entering and exiting. This is **not**
@@ -167,6 +175,9 @@ export interface ToastProps extends ConfigurableToastProps {
 }
 
 /**
+ * This component is just used for toast styling and does not implement any of
+ * the visibility behavior.
+ *
  * @remarks \@since 6.0.0
  */
 export const Toast = forwardRef<HTMLDivElement, ToastProps>(function Toast(
@@ -180,25 +191,27 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(function Toast(
     classNames,
     theme = "surface",
     action: propAction,
+    actionButton: propActionButton,
     visible,
     closeIcon,
     closeButtonProps,
     closeButton = !!closeButtonProps,
     contentProps,
+    disableToastContent,
     stacked,
-    multiline: propMultiline,
+    multiline,
     onEnter,
     onEntering,
-    onEntered = noop,
+    onEntered,
     onExit,
     onExiting,
-    onExited = noop,
+    onExited,
     children,
     ...remaining
   } = props;
   const id = useEnsuredId(propId, "toast");
 
-  let actionButton: ReactNode;
+  let actionButton = propActionButton;
   if (propAction) {
     let overrides: ButtonProps = {};
     let buttonChildren: ReactNode;
@@ -219,8 +232,6 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(function Toast(
     );
   }
 
-  const [isMultiline, setMultiline] = useState(false);
-  const multiline = propMultiline ?? isMultiline;
   const action = !!actionButton;
   const reordered = stacked && action && closeButton;
   const { elementProps } = useScaleTransition({
@@ -245,21 +256,6 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(function Toast(
     transitionIn: visible,
   });
 
-  const contentRef = useResizeObserver({
-    ref: contentProps?.ref,
-    disabled: typeof propMultiline === "boolean",
-    disableWidth: true,
-    onUpdate: useCallback((entry) => {
-      const element = entry.target;
-      const style = window.getComputedStyle(element);
-      const lineHeight = parseFloat(style.lineHeight);
-      if (Number.isNaN(lineHeight)) {
-        return;
-      }
-
-      setMultiline(element.scrollHeight > lineHeight);
-    }, []),
-  });
   return (
     <div {...remaining} {...elementProps} id={id}>
       <ToastContent
@@ -267,8 +263,8 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(function Toast(
         stacked={stacked}
         multiline={multiline}
         closeButton={closeButton}
+        disableWrapper={disableToastContent}
         {...contentProps}
-        ref={contentRef}
       >
         {children}
       </ToastContent>

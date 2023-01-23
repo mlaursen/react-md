@@ -1,0 +1,15 @@
+@use "everything";
+
+// hide everything in the button except for the overlay containing the circular
+// progress
+.loading > *:not(.overlay) {
+  opacity: 0;
+}
+
+.overlay {
+  border-radius: inherit;
+  box-shadow: inherit;
+  inset: 0;
+  position: absolute;
+  z-index: 1;
+}

@@ -1,8 +1,9 @@
-import { Box, ToastManager, ToastProvider } from "@react-md/core";
+import { Box, ToastManager, ToastManagerProvider } from "@react-md/core";
 import type { ReactElement } from "react";
 import { DemoHeadingWithDivider } from "../DemoHeadingWithDivider";
 import { Resettable } from "../Resettable";
 import { ActionableExample } from "./ActionableExample";
+import { CustomToastRenderer } from "./CustomToastRenderer";
 import { IncludeCloseButtonExample } from "./IncludeCloseButtonExample";
 import { MultipleLinesExample } from "./MultipleLinesExample";
 import { MultipleVisibleToastsExample } from "./MultipleVisibleToastsExample";
@@ -17,45 +18,49 @@ export default function SnackbarExamples(): ReactElement {
     <Resettable>
       <Box stacked>
         <DemoHeadingWithDivider>Simple Example</DemoHeadingWithDivider>
-        <ToastProvider manager={new ToastManager()}>
+        <ToastManagerProvider manager={new ToastManager()}>
           <SimpleExample />
-        </ToastProvider>
+        </ToastManagerProvider>
         <DemoHeadingWithDivider>Actionable Example</DemoHeadingWithDivider>
-        <ToastProvider manager={new ToastManager()}>
+        <ToastManagerProvider manager={new ToastManager()}>
           <ActionableExample />
-        </ToastProvider>
+        </ToastManagerProvider>
         <DemoHeadingWithDivider>Require Action Example</DemoHeadingWithDivider>
-        <ToastProvider manager={new ToastManager()}>
+        <ToastManagerProvider manager={new ToastManager()}>
           <RequireActionExample />
-        </ToastProvider>
+        </ToastManagerProvider>
         <DemoHeadingWithDivider>
           Include Close Button Example
         </DemoHeadingWithDivider>
-        <ToastProvider manager={new ToastManager()}>
+        <ToastManagerProvider manager={new ToastManager()}>
           <IncludeCloseButtonExample />
-        </ToastProvider>
+        </ToastManagerProvider>
         <DemoHeadingWithDivider>Stacked Example</DemoHeadingWithDivider>
-        <ToastProvider manager={new ToastManager()}>
+        <ToastManagerProvider manager={new ToastManager()}>
           <StackedExample />
-        </ToastProvider>
+        </ToastManagerProvider>
         <DemoHeadingWithDivider>Using Themes Example</DemoHeadingWithDivider>
-        <ToastProvider manager={new ToastManager()}>
+        <ToastManagerProvider manager={new ToastManager()}>
           <UsingThemesExample />
-        </ToastProvider>
+        </ToastManagerProvider>
         <DemoHeadingWithDivider>Multiple Lines Example</DemoHeadingWithDivider>
-        <ToastProvider manager={new ToastManager()}>
+        <ToastManagerProvider manager={new ToastManager()}>
           <MultipleLinesExample />
-        </ToastProvider>
+        </ToastManagerProvider>
         <DemoHeadingWithDivider>
           Prevent Duplicates Example
         </DemoHeadingWithDivider>
-        <ToastProvider manager={new ToastManager()}>
+        <ToastManagerProvider manager={new ToastManager()}>
           <PreventingDuplicatesExample />
-        </ToastProvider>
+        </ToastManagerProvider>
         <DemoHeadingWithDivider>Multiple Visible Toasts</DemoHeadingWithDivider>
-        <ToastProvider manager={new ToastManager()}>
+        <ToastManagerProvider manager={new ToastManager()}>
           <MultipleVisibleToastsExample />
-        </ToastProvider>
+        </ToastManagerProvider>
+        <DemoHeadingWithDivider>Custom Toast Renderer</DemoHeadingWithDivider>
+        <ToastManagerProvider manager={new ToastManager()}>
+          <CustomToastRenderer />
+        </ToastManagerProvider>
       </Box>
     </Resettable>
   );
