@@ -28,6 +28,7 @@
 @forward "dialog/dialog" as dialog-*;
 @forward "sheet/sheet" as sheet-*;
 @forward "tooltip/tooltip" as tooltip-*;
+@forward "snackbar/snackbar" as snackbar-*;
 @forward "expansionPanel/expansion-panel" as expansion-panel-*;
 @forward "menu/menu" as menu-*;
 @forward "form/form" as form-*;
@@ -42,6 +43,7 @@
 @use "draggable/draggable";
 @use "expansionPanel/expansion-panel";
 @use "icon/icon";
+@use "snackbar/snackbar";
 @use "interaction/interaction";
 @use "link/link";
 @use "list/list";
@@ -161,6 +163,7 @@
   @include menu.styles;
   @include form.styles;
   @include layout.styles;
+  @include snackbar.styles;
 
   @if not theme.$disable-default-root-theme {
     :root {

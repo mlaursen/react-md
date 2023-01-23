@@ -120,6 +120,7 @@ const routes: readonly LayoutNavigationItem[] = [
     ],
   }),
 
+  createRoute({ name: "Snackbar", pathname: "/snackbar" }),
   createRoute({ name: "Table", pathname: "/table" }),
   createRoute({ name: "Expansion Panel", pathname: "/expansion-panel" }),
   createRoute({ name: "Tabs", pathname: "/tabs" }),

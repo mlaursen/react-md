@@ -28,6 +28,7 @@ export * from "./progress";
 export * from "./responsiveItem";
 export * from "./scroll";
 export * from "./sheet";
+export * from "./snackbar";
 export * from "./SsrProvider";
 export * from "./table";
 export * from "./tabs";

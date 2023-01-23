@@ -1,0 +1,286 @@
+@use "sass:map";
+@use "../utils";
+@use "../box-shadows";
+@use "../button/button";
+@use "../theme/a11y";
+@use "../theme/theme";
+@use "../icon/icon";
+@use "../media-queries";
+@use "../interaction/interaction";
+@use "../typography/typography";
+@use "../transition/transition";
+
+$disable-everything: false !default;
+$disable-top: false !default;
+$disable-bottom: false !default;
+$disable-primary-theme: false !default;
+$disable-secondary-theme: false !default;
+$disable-warning-theme: false !default;
+$disable-error-theme: false !default;
+$disable-success-theme: false !default;
+$disable-close-button: false !default;
+$disable-action-button: false !default;
+$disable-stacked: false !default;
+
+$align: center !default;
+$gap: 1rem !default;
+$toast-gap: 1rem !default;
+$toast-gap-stacked: 0.5rem !default;
+$toast-gap-both-buttons: 0.25rem !default;
+$margin: 1rem !default;
+$box-shadow: 6 !default;
+$border-radius: 0.25rem !default;
+$vertical-padding: 0.75em !default;
+$horizontal-padding: 1rem !default;
+$action-horizontal-padding: 0.5rem !default;
+$close-button-horizontal-padding: 0 !default;
+
+$min-height: 3rem !default;
+$min-width: 21.5rem !default;
+$max-width: 35.5rem !default;
+$z-index: utils.$temporary-element-z-index + 10 !default;
+
+$typography: map.merge(
+  typography.$base-font-styles,
+  typography.$subtitle-2-styles
+) !default;
+
+$light-theme-background-color: #323232 !default;
+$light-theme-color: a11y.contrast-color($light-theme-background-color) !default;
+
+$dark-theme-background-color: if(
+  theme.$disable-dark-elevation,
+  $light-theme-background-color,
+  map.get(theme.$dark-elevation-colors, $box-shadow)
+) !default;
+$dark-theme-color: a11y.contrast-color($dark-theme-background-color) !default;
+
+$background-color: if(
+  theme.$color-scheme == dark,
+  $dark-theme-background-color,
+  $light-theme-background-color
+) !default;
+$color: if(
+  theme.$color-scheme == dark,
+  $dark-theme-color,
+  $light-theme-color
+) !default;
+
+$var-lookup: (
+  color: (
+    var: --rmd-toast-color,
+    value: $color,
+  ),
+  background-color: (
+    var: --rmd-toast-background-color,
+    value: $background-color,
+  ),
+  offset: (
+    var: --rmd-snackbar-offset,
+    value: 0,
+  ),
+);
+
+@function get-var($name, $fallback: null) {
+  $found: utils.validate($var-lookup, $name, "alert var");
+  $var: map.get($found, var);
+  $value: if($fallback, $fallback, map.get($found, value));
+
+  @if $value {
+    @return var(#{$var}, #{$value});
+  }
+
+  @return var(#{$var});
+}
+
+@mixin set-var($name, $value) {
+  $var: map.get(utils.validate($var-lookup, $name, "alert var"), var);
+
+  #{$var}: #{$value};
+}
+
+@mixin use-var($property, $name: $property, $fallback: null) {
+  #{$property}: get-var($name, $fallback);
+}
+
+@mixin styles {
+  @if not $disable-everything {
+    .rmd-snackbar {
+      align-items: $align;
+      display: flex;
+      flex-direction: column;
+      gap: $gap;
+      left: 0;
+      margin: $margin;
+      pointer-events: none;
+      position: fixed;
+      right: 0;
+      z-index: $z-index;
+
+      @if not $disable-top {
+        &--top {
+          @include use-var(top, offset);
+        }
+      }
+
+      @if not $disable-bottom {
+        &--bottom {
+          @include use-var(bottom, offset);
+        }
+      }
+    }
+
+    .rmd-toast {
+      @include box-shadows.box-shadow($box-shadow, $disable-colors: true);
+      @include utils.map-to-styles($typography);
+      @include use-var(background-color);
+      @include use-var(color);
+
+      align-items: center;
+      border-radius: $border-radius;
+      display: flex;
+      gap: $toast-gap;
+      justify-content: space-between;
+      max-width: $max-width;
+      min-height: $min-height;
+      padding-left: $horizontal-padding;
+      padding-right: $horizontal-padding;
+      pointer-events: auto;
+      width: 100%;
+
+      @include media-queries.tablet-media {
+        min-width: $min-width;
+        width: auto;
+      }
+
+      @if not $disable-primary-theme {
+        &--primary {
+          @include theme.theme-use-var(background-color, primary-color);
+          @include theme.theme-use-var(color, on-primary-color);
+        }
+      }
+
+      @if not $disable-secondary-theme {
+        &--secondary {
+          @include theme.theme-use-var(background-color, secondary-color);
+          @include theme.theme-use-var(color, on-secondary-color);
+        }
+      }
+
+      @if not $disable-warning-theme {
+        &--warning {
+          @include theme.theme-use-var(background-color, warning-color);
+          @include theme.theme-use-var(color, on-warning-color);
+        }
+      }
+
+      @if not $disable-error-theme {
+        &--error {
+          @include theme.theme-use-var(background-color, error-color);
+          @include theme.theme-use-var(color, on-error-color);
+        }
+      }
+
+      @if not $disable-success-theme {
+        &--success {
+          @include theme.theme-use-var(background-color, success-color);
+          @include theme.theme-use-var(color, on-success-color);
+        }
+      }
+
+      @if not $disable-action-button {
+        &--action {
+          @include utils.auto-rtl(
+            padding-right,
+            $action-horizontal-padding,
+            $horizontal-padding
+          );
+        }
+      }
+
+      @if not $disable-close-button {
+        &--x {
+          @include utils.auto-rtl(
+            padding-right,
+            $close-button-horizontal-padding,
+            $horizontal-padding
+          );
+        }
+
+        @if not $disable-action-button {
+          &--small-gap {
+            gap: $toast-gap-both-buttons;
+          }
+        }
+      }
+
+      @if not $disable-stacked {
+        &--stacked {
+          display: grid;
+          gap: $toast-gap-stacked;
+          grid-template-columns: 1fr;
+          padding-bottom: $vertical-padding;
+          padding-top: $vertical-padding;
+        }
+
+        &--reordered {
+          grid-template-columns: 1fr min-content;
+          padding-top: 0;
+        }
+      }
+    }
+
+    .rmd-toast-content {
+      flex: 1 1 auto;
+
+      p {
+        margin: 0;
+      }
+
+      &--v-padding {
+        padding: $vertical-padding 0;
+      }
+
+      &--t-padding {
+        padding-bottom: 0;
+      }
+
+      @if not $disable-action-button {
+        &--action {
+          @include utils.auto-rtl(
+            padding-right,
+            button.$text-horizontal-padding
+          );
+        }
+      }
+
+      @if not $disable-close-button and not $disable-action-button {
+        &--gap {
+          @include utils.auto-rtl(margin-right, $toast-gap);
+        }
+      }
+    }
+
+    @if not $disable-close-button {
+      .rmd-toast-x {
+        &--reordered {
+          align-self: flex-start;
+          order: 2;
+        }
+      }
+    }
+
+    @if not $disable-action-button {
+      .rmd-toast-action {
+        justify-self: flex-end;
+
+        &--reordered {
+          @include utils.auto-rtl(margin-right, $action-horizontal-padding);
+
+          grid-column-end: span 2;
+          order: 3;
+        }
+      }
+    }
+  }
+}
