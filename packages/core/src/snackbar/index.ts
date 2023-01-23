@@ -5,3 +5,4 @@ export * from "./ToastActionButton";
 export * from "./ToastCloseButton";
 export * from "./ToastContent";
 export * from "./ToastProvider";
+export * from "./useToast";

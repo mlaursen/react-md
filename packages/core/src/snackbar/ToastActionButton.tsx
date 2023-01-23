@@ -1,9 +1,9 @@
 import { cnb } from "cnbuilder";
 import { forwardRef } from "react";
-import { useHideToast } from ".";
 import type { ButtonProps, ButtonTheme } from "../button";
 import { Button } from "../button";
-import { bem } from "../utils/bem";
+import { bem } from "../utils";
+import { useHideToast } from "./useToast";
 
 const styles = bem("rmd-toast-action");
 const noop = (): void => {

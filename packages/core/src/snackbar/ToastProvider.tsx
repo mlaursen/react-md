@@ -1,18 +1,13 @@
 import { nanoid } from "nanoid";
-import type { AriaRole, HTMLAttributes, ReactElement, ReactNode } from "react";
-import { createContext, useContext, useSyncExternalStore } from "react";
-import type { ButtonProps } from "../button";
-import type {
-  CSSTransitionClassNames,
-  TransitionCallbacks,
-  TransitionTimeout,
-} from "../transition";
-import type { PropsWithRef } from "../types";
-import type { ToastContentProps } from "./ToastContent";
-
-const noop = (): void => {
-  // do nothing
-};
+import type { ReactElement, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useMemo,
+  useSyncExternalStore,
+} from "react";
+import type { ConfigurableToastProps } from "./Toast";
+import type { ToastDuplicateBehavior, ToastMeta } from "./useToast";
 
 /**
  * @remarks \@since 6.0.0
@@ -20,144 +15,48 @@ const noop = (): void => {
 export const DEFAULT_TOAST_VISIBLE_TIME = 5000;
 
 /**
- * @remarks \@since 6.0.0
+ * @remarks \@since 6.0.0 Renamed from `MessagePriority` to `ToastPriority`
  */
-export type ToastTheme =
-  | "surface"
-  | "primary"
-  | "secondary"
-  | "warning"
-  | "error"
-  | "success";
-
-/**
- * @remarks \@since 6.0.0 Renamed from `DuplicateBehavior`
- */
-export type ToastDuplicateBehavior = "allow" | "restart" | "update";
+export type ToastPriority = "normal" | "immediate" | "replace";
 
 /**
  * @remarks \@since 6.0.0
  */
-export interface ConfigurableToastProps
-  extends HTMLAttributes<HTMLDivElement>,
-    TransitionCallbacks {
-  /**
-   * Note: this default value will only be generated in the `Toast` component.
-   *
-   * @defaultValue `"toast-" + useId()`
-   */
-  id?: string;
-
-  /**
-   * @defaultValue `visibleTime === null ? "alert" : undefined`
-   */
-  role?: AriaRole;
-
-  /**
-   * When this is a string or React element, it will be rendered as the
-   * `children` within a `Button`
-   */
-  action?: ButtonProps | ReactElement | string;
-
-  /**
-   * The toast's transition timeout for entering and exiting. This is **not**
-   * how long the toast should remain visible.
-   *
-   * @defaultValue `SCALE_TIMEOUT`
-   */
-  timeout?: TransitionTimeout;
-
-  /**
-   * The toast's transition class names for entering and exiting.
-   *
-   * @defaultValue `SCALE_CLASSNAMES`
-   */
-  classNames?: CSSTransitionClassNames;
-
-  /**
-   * @defaultValue `"surface"`
-   */
-  theme?: ToastTheme;
-
-  /**
-   * Any additional props that should be provided to the `<div>` that surroundes
-   * the toast `children`.
-   */
-  contentProps?: PropsWithRef<ToastContentProps, HTMLDivElement>;
-
-  /**
-   * @defaultValue `useIcon("close")`
-   */
-  closeIcon?: ReactNode;
-
-  /**
-   * Set this to `true` if a close button should be rendered to the right of the
-   * `children`.
-   *
-   * @defaultValue `!!closeButtonProps`
-   */
-  closeButton?: boolean;
-
-  /**
-   * Use this prop to override most of the close button behavior. The
-   */
-  closeButtonProps?: ButtonProps;
-
-  /**
-   * Set this to `true` to stack the content above the {@link action}. It is not
-   * recommended to enable this prop if the {@link closeButton} is enabled.
-   *
-   * @defaultValue `false`
-   */
-  stacked?: boolean;
-
-  /**
-   * If this is not provided, a `ResizeObserver` will be used to determine if
-   * there are multiple lines of content.
-   */
-  multiline?: boolean;
-}
-
-/**
- * @remarks \@since 6.0.0
- */
-export interface ToastOptions extends ConfigurableToastProps {
+export interface CreateToastOptions extends ConfigurableToastProps {
   /**
    * @defaultValue `nanoid()`
    */
   toastId?: string;
 
   /**
+   * @defaultValue `"restart"`
+   */
+  duplicates?: ToastDuplicateBehavior;
+
+  /**
+   * Set this to `null` to prevent the toast from automatically hiding,
+   * otherwise set this to the number of milliseconds to remain visible.
    *
    * @see {@link DEFAULT_TOAST_VISIBLE_TIME}
-   * @defaultValue `DEFAULT_NOTIFICATION_TIME`
+   * @defaultValue `DEFAULT_TOAST_VISIBLE_TIME`
    */
   visibleTime?: number | null;
-
-  duplicates?: ToastDuplicateBehavior;
 }
 
 /**
  * @remarks \@since 6.0.0
  */
-export interface QueuedToast extends ToastOptions {
-  /** @see {@link ToastOptions.toastId} */
-  toastId: string;
-
-  /** @see {@link ToastOptions.visibleTime} */
-  visibleTime: number | null;
-
-  duplicates: ToastDuplicateBehavior;
-}
+export interface QueuedToast extends ConfigurableToastProps, ToastMeta {}
 
 /**
  * @remarks \@since 6.0.0
  */
-export type AddToast = (toast: ToastOptions) => void;
+export type AddToast = (toast: CreateToastOptions) => void;
+
 /**
  * @remarks \@since 6.0.0
  */
-export type RemoveToast = (toast: ToastOptions) => void;
+export type RemoveToast = (toastId: string) => void;
 
 /**
  * @remarks \@since 6.0.0
@@ -173,12 +72,13 @@ export type ToastCallback = (queue: ToastQueue) => void;
  * @remarks \@since 6.0.0
  */
 export class ToastManager {
-  #queue: QueuedToast[];
-  #listeners: ToastCallback[];
+  // TODO: switch back to native private fields once I can change the root tsconfig
+  private _queue: QueuedToast[];
+  private _listeners: ToastCallback[];
 
   constructor() {
-    this.#queue = [];
-    this.#listeners = [];
+    this._queue = [];
+    this._listeners = [];
 
     // All of the class methods must be arrow functions to preserve the correct
     // `this` value. If they aren't arrow functions, I'd have to wrap each call
@@ -193,21 +93,21 @@ export class ToastManager {
   }
 
   subscribe = (callback: ToastCallback): (() => void) => {
-    this.#listeners.push(callback);
+    this._listeners.push(callback);
 
     return () => {
-      this.#listeners = this.#listeners.filter((cb) => cb !== callback);
+      this._listeners = this._listeners.filter((cb) => cb !== callback);
     };
   };
 
   emit = (): void => {
-    this.#queue = [...this.#queue];
-    this.#listeners.forEach((callback) => {
-      callback(this.#queue);
+    this._queue = [...this._queue];
+    this._listeners.forEach((callback) => {
+      callback(this._queue);
     });
   };
 
-  addToast = (toast: ToastOptions): void => {
+  addToast = (toast: CreateToastOptions): void => {
     const {
       toastId = nanoid(),
       visibleTime = DEFAULT_TOAST_VISIBLE_TIME,
@@ -215,16 +115,18 @@ export class ToastManager {
       duplicates = "restart",
     } = toast;
     const existingIndex = toast.toastId
-      ? this.#queue.findIndex((toast) => toast.toastId === toastId)
+      ? this._queue.findIndex((toast) => toast.toastId === toastId)
       : -1;
     if (existingIndex !== -1) {
-      this.#queue[existingIndex] = {
-        ...this.#queue[existingIndex],
+      this._queue[existingIndex] = {
+        ...this._queue[existingIndex],
         ...toast,
+        updated: Date.now(),
       };
     } else {
-      this.#queue.push({
+      this._queue.push({
         ...toast,
+        updated: Date.now(),
         role,
         toastId,
         duplicates,
@@ -236,22 +138,22 @@ export class ToastManager {
   };
 
   popToast = (): void => {
-    this.#queue.pop();
+    this._queue.pop();
     this.emit();
   };
 
-  removeToast = (toast: ToastOptions): void => {
-    this.#queue = this.#queue.filter((item) => item !== toast);
+  removeToast = (toastId: string): void => {
+    this._queue = this._queue.filter((toast) => toast.toastId !== toastId);
     this.emit();
   };
 
-  resetToasts = (): void => {
-    this.#queue = [];
+  clearToasts = (): void => {
+    this._queue = [];
     this.emit();
   };
 
   getQueue = (): ToastQueue => {
-    return this.#queue;
+    return this._queue;
   };
 }
 
@@ -260,60 +162,34 @@ export class ToastManager {
  * @internal
  */
 export const toastManager = new ToastManager();
-/**
- * @remarks \@since 6.0.0
- * @internal
- */
-const toastManagerContext = createContext(toastManager);
-toastManagerContext.displayName = "Toast";
-const { Provider } = toastManagerContext;
 
-/**
- * @remarks \@since 6.0.0
- * @internal
- */
-const hideToastContext = createContext(noop);
-hideToastContext.displayName = "HideToast";
-
-/**
- * @remarks \@since 6.0.0
- * @internal
- */
-export const { Provider: HideToastProvider } = hideToastContext;
-
-/**
- * This is only required if you have multiple `Snackbar` implementations in your
- * app.
- *
- * @remarks \@since 6.0.0
- */
-export function useHideToast(): () => void {
-  return useContext(hideToastContext);
-}
+const context = createContext(toastManager);
+context.displayName = "Toast";
+const { Provider } = context;
 
 /**
  * @remarks \@since 6.0.0
  */
-export const addToast = (toast: ToastOptions): void =>
+export const addToast = (toast: CreateToastOptions): void =>
   toastManager.addToast(toast);
 
 /**
  * @remarks \@since 6.0.0
  */
-export const removeToast = (toast: ToastOptions): void =>
-  toastManager.removeToast(toast);
+export const removeToast = (toastId: string): void =>
+  toastManager.removeToast(toastId);
 
 /**
  * @remarks \@since 6.0.0
  */
-export const resetToasts = (): void => toastManager.resetToasts();
+export const clearToasts = (): void => toastManager.clearToasts();
 
 /**
  * @internal
  * @remarks \@since 6.0.0
  */
 export function useToastManager(): ToastManager {
-  return useContext(toastManagerContext);
+  return useContext(context);
 }
 
 /**
@@ -333,21 +209,29 @@ export function useRemoveToast(): RemoveToast {
 /**
  * @remarks \@since 6.0.0
  */
-export function useResetToasts(): () => void {
-  return useToastManager().resetToasts;
+export function useClearToasts(): () => void {
+  return useToastManager().clearToasts;
 }
 
 /**
  * @remarks \@since 6.0.0
  */
-export function useToastQueue(): ToastQueue {
+export function useToastQueue(limit?: number): ToastQueue {
   const manager = useToastManager();
 
-  return useSyncExternalStore(
+  const queue = useSyncExternalStore(
     manager.subscribe,
     manager.getQueue,
     manager.getQueue
   );
+
+  return useMemo(() => {
+    if (!limit) {
+      return queue;
+    }
+
+    return queue.slice(0, limit);
+  }, [limit, queue]);
 }
 
 /**

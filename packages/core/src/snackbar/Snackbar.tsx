@@ -4,10 +4,10 @@ import { forwardRef } from "react";
 import { Portal } from "../portal";
 import { useEnsuredId } from "../useEnsuredId";
 import { bem } from "../utils";
-import type { CustomToastRendererProps } from "./DefaultToastRenderer";
+import type { ToastRendererProps } from "./DefaultToastRenderer";
 import { DefaultToastRenderer } from "./DefaultToastRenderer";
-import type { ConfigurableToastProps } from "./ToastProvider";
-import { useSnackbar } from "./useSnackbar";
+import type { ConfigurableToastProps } from "./Toast";
+import { useToastQueue } from "./ToastProvider";
 
 const styles = bem("rmd-snackbar");
 
@@ -97,14 +97,9 @@ export interface SnackbarProps extends HTMLAttributes<HTMLDivElement> {
    * @see {@link DefaultToastRenderer}
    * @defaultValue `DefaultToastRenderer`
    */
-  renderToast?: ComponentType<CustomToastRendererProps>;
+  renderToast?: ComponentType<ToastRendererProps>;
 
-  /**
-   * Use this prop to set defaults for each toast that can be overridden by each
-   * toast. This is great for configuring a `className`, rendering a
-   * `closeButton`, etc for each toast.
-   */
-  toastProps?: ConfigurableToastProps;
+  toastDefaults?: ConfigurableToastProps;
 }
 
 /**
@@ -141,18 +136,15 @@ export const Snackbar = forwardRef<HTMLDivElement, SnackbarProps>(
       id: propId,
       role = "status",
       className,
-      limit,
+      limit = 1,
       position = "bottom",
       renderToast: RenderToast = DefaultToastRenderer,
-      toastProps,
       disablePortal,
+      toastDefaults,
       ...remaining
     } = props;
     const id = useEnsuredId(propId, "snackbar");
-
-    const { queue, setToastVisibility } = useSnackbar({
-      limit,
-    });
+    const queue = useToastQueue(limit);
 
     return (
       <Portal disabled={disablePortal}>
@@ -165,10 +157,9 @@ export const Snackbar = forwardRef<HTMLDivElement, SnackbarProps>(
         >
           {queue.map((toast) => (
             <RenderToast
+              {...toast}
               key={toast.toastId}
-              toast={toast}
-              toastProps={toastProps}
-              hideToast={() => setToastVisibility(toast.toastId, false)}
+              toastDefaults={toastDefaults}
             />
           ))}
         </div>

@@ -4,7 +4,7 @@ import type { ButtonProps, ButtonType } from "../button";
 import { Button } from "../button";
 import { useIcon } from "../icon";
 import { bem } from "../utils";
-import { useHideToast } from "./ToastProvider";
+import { useHideToast } from "./useToast";
 
 const styles = bem("rmd-toast-x");
 const noop = (): void => {

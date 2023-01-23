@@ -69,7 +69,7 @@ export function PreventingDuplicatesExample(): ReactElement {
         Toast!
       </Button>
       <Snackbar
-        toastProps={{
+        toastDefaults={{
           closeButton: true,
           children: <ActiveTime />,
           onExiting: () => {

@@ -1,53 +1,70 @@
 import type { ReactElement } from "react";
-import type { ToastProps } from "./Toast";
+import type { ConfigurableToastProps } from "./Toast";
 import { Toast } from "./Toast";
-import type { ConfigurableToastProps, QueuedToast } from "./ToastProvider";
-import { HideToastProvider } from "./ToastProvider";
+import type { ToastMeta } from "./useToast";
+import { HideToastProvider, useToast } from "./useToast";
+
+const noop = (): void => {
+  // do nothing
+};
 
 /**
  * @remarks \@since 6.0.0
  */
-export interface CustomToastRendererProps {
-  toast: ToastProps & QueuedToast;
-  toastProps?: ConfigurableToastProps;
-  hideToast(): void;
+export interface ToastRendererProps extends ConfigurableToastProps, ToastMeta {
+  toastDefaults?: ConfigurableToastProps;
 }
 
 /**
- * A very simple default implementation that wraps the `Toast` in the
- * {@link HideToastProvider} and enables a close button if the
- * {@link QueuedToast.visibleTime} is `null` and there is no
- * {@link ToastProps.action}.
- *
  * @remarks \@since 6.0.0
  */
-export function DefaultToastRenderer(
-  props: CustomToastRendererProps
-): ReactElement {
-  const { toast, hideToast, toastProps = {} } = props;
-  const { toastId, visibleTime, duplicates: _duplicates, ...overrides } = toast;
+export function DefaultToastRenderer(props: ToastRendererProps): ReactElement {
+  const {
+    toastId,
+    updated,
+    duplicates,
+    visibleTime,
+    onExited = noop,
+    onEntered = noop,
+    toastDefaults = {},
+    ...remaining
+  } = props;
+  const {
+    closeButtonProps,
+    closeButton = !!closeButtonProps,
+    onEntered: defaultOnEntered = noop,
+    onExited: defaultOnExited = noop,
+    ...defaults
+  } = toastDefaults;
+
+  const { visible, hideToast, removeToast, startExitTimeout } = useToast({
+    toastId,
+    updated,
+    duplicates,
+    visibleTime,
+  });
 
   return (
-    <HideToastProvider key={toastId} value={hideToast}>
+    <HideToastProvider value={hideToast}>
       <Toast
-        {...toastProps}
-        closeButton={
-          toastProps.closeButton ||
-          !!toastProps.closeButtonProps ||
-          (!visibleTime && !overrides.action)
-        }
-        {...overrides}
+        closeButton={closeButton || (!visibleTime && !remaining.action)}
+        closeButtonProps={closeButtonProps}
+        {...defaults}
+        {...remaining}
+        visible={visible}
         onEntered={(appearing) => {
-          toastProps.onEntered?.(appearing);
-          overrides.onEntered?.(appearing);
+          defaultOnEntered(appearing);
+          onEntered(appearing);
+          startExitTimeout();
         }}
         onExited={() => {
-          toastProps.onExited?.();
-          overrides.onExited?.();
+          defaultOnExited();
+          onExited();
+          removeToast();
         }}
       >
-        {overrides.children}
-        {toastProps.children}
+        {defaults.children}
+        {remaining.children}
       </Toast>
     </HideToastProvider>
   );

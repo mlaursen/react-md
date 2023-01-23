@@ -1,21 +1,37 @@
 import { cnb } from "cnbuilder";
-import type { ReactNode } from "react";
+import type { AriaRole, HTMLAttributes, ReactElement, ReactNode } from "react";
 import { forwardRef, isValidElement, useCallback, useState } from "react";
 import type { ButtonProps } from "../button";
 import type {
-  CSSTransitionComponentProps,
-  TransitionActions,
+  CSSTransitionClassNames,
+  TransitionCallbacks,
+  TransitionTimeout,
 } from "../transition";
 import { useScaleTransition } from "../transition";
+import type { PropsWithRef } from "../types";
 import { useEnsuredId } from "../useEnsuredId";
 import { useResizeObserver } from "../useResizeObserver";
 import { bem } from "../utils";
 import { ToastActionButton } from "./ToastActionButton";
 import { ToastCloseButton } from "./ToastCloseButton";
+import type { ToastContentProps } from "./ToastContent";
 import { ToastContent } from "./ToastContent";
-import type { ConfigurableToastProps, ToastTheme } from "./ToastProvider";
 
 const styles = bem("rmd-toast");
+const noop = (): void => {
+  // do nothing
+};
+
+/**
+ * @remarks \@since 6.0.0
+ */
+export type ToastTheme =
+  | "surface"
+  | "primary"
+  | "secondary"
+  | "warning"
+  | "error"
+  | "success";
 
 /** @remarks \@since 6.0.0 */
 export interface ToastClassNameOptions {
@@ -63,18 +79,90 @@ export function toast(options: ToastClassNameOptions = {}): string {
 /**
  * @remarks \@since 6.0.0
  */
-export interface ToastProps
-  extends ConfigurableToastProps,
-    CSSTransitionComponentProps,
-    TransitionActions {
+export interface ConfigurableToastProps
+  extends HTMLAttributes<HTMLDivElement>,
+    TransitionCallbacks {
   /**
-   * @defaultValue `true`
+   * Note: this default value will only be generated in the `Toast` component.
+   *
+   * @defaultValue `"toast-" + useId()`
    */
-  appear?: boolean;
+  id?: string;
 
-  /** @defaultValue `false` */
-  vertical?: boolean;
+  /**
+   * @defaultValue `visibleTime === null ? "alert" : undefined`
+   */
+  role?: AriaRole;
 
+  /**
+   * @defaultValue `"surface"`
+   */
+  theme?: ToastTheme;
+
+  /**
+   * Set this to `true` to stack the content above the {@link action}. It is not
+   * recommended to enable this prop if the {@link closeButton} is enabled.
+   *
+   * @defaultValue `false`
+   */
+  stacked?: boolean;
+
+  /**
+   * If this is not provided, a `ResizeObserver` will be used to determine if
+   * there are multiple lines of content.
+   */
+  multiline?: boolean;
+
+  /**
+   * When this is a string or React element, it will be rendered as the
+   * `children` within a `Button`
+   */
+  action?: ButtonProps | ReactElement | string;
+
+  /**
+   * @defaultValue `useIcon("close")`
+   */
+  closeIcon?: ReactNode;
+
+  /**
+   * Set this to `true` if a close button should be rendered to the right of the
+   * `children`.
+   *
+   * @defaultValue `!!closeButtonProps`
+   */
+  closeButton?: boolean;
+
+  /**
+   * Use this prop to override most of the close button behavior. The
+   */
+  closeButtonProps?: ButtonProps;
+
+  /**
+   * Any additional props that should be provided to the `<div>` that surroundes
+   * the toast `children`.
+   */
+  contentProps?: PropsWithRef<ToastContentProps, HTMLDivElement>;
+
+  /**
+   * The toast's transition timeout for entering and exiting. This is **not**
+   * how long the toast should remain visible.
+   *
+   * @defaultValue `SCALE_TIMEOUT`
+   */
+  timeout?: TransitionTimeout;
+
+  /**
+   * The toast's transition class names for entering and exiting.
+   *
+   * @defaultValue `SCALE_CLASSNAMES`
+   */
+  classNames?: CSSTransitionClassNames;
+}
+
+/**
+ * @remarks \@since 6.0.0
+ */
+export interface ToastProps extends ConfigurableToastProps {
   visible: boolean;
 }
 
@@ -88,33 +176,26 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(function Toast(
   const {
     id: propId,
     className,
-    children,
-    appear = true,
-    enter,
-    exit,
-    temporary = true,
-    exitedHidden = true,
-    onEnter,
-    onEntering,
-    onEntered,
-    onExit,
-    onExiting,
-    onExited,
-    visible,
     timeout,
     classNames,
-    vertical,
-    action: propAction,
     theme = "surface",
+    action: propAction,
+    visible,
     closeIcon,
     closeButtonProps,
     closeButton = !!closeButtonProps,
     contentProps,
     stacked,
     multiline: propMultiline,
+    onEnter,
+    onEntering,
+    onEntered = noop,
+    onExit,
+    onExiting,
+    onExited = noop,
+    children,
     ...remaining
   } = props;
-
   const id = useEnsuredId(propId, "toast");
 
   let actionButton: ReactNode;
@@ -142,7 +223,8 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(function Toast(
   const multiline = propMultiline ?? isMultiline;
   const action = !!actionButton;
   const reordered = stacked && action && closeButton;
-  const { rendered, elementProps } = useScaleTransition({
+  const { elementProps } = useScaleTransition({
+    appear: true,
     nodeRef: ref,
     className: toast({
       className,
@@ -152,25 +234,20 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(function Toast(
       reordered,
       closeButton,
     }),
-    transitionIn: visible,
-    appear,
-    enter,
-    exit,
-    temporary,
-    exitedHidden,
+    timeout,
+    classNames,
     onEnter,
     onEntering,
     onEntered,
     onExit,
     onExiting,
     onExited,
-    timeout,
-    classNames,
-    vertical,
+    transitionIn: visible,
   });
+
   const contentRef = useResizeObserver({
     ref: contentProps?.ref,
-    disabled: !rendered || typeof propMultiline === "boolean",
+    disabled: typeof propMultiline === "boolean",
     disableWidth: true,
     onUpdate: useCallback((entry) => {
       const element = entry.target;
@@ -183,29 +260,24 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(function Toast(
       setMultiline(element.scrollHeight > lineHeight);
     }, []),
   });
-
   return (
-    <>
-      {rendered && (
-        <div id={id} {...remaining} {...elementProps}>
-          <ToastContent
-            action={action}
-            stacked={stacked}
-            multiline={multiline}
-            closeButton={closeButton}
-            {...contentProps}
-            ref={contentRef}
-          >
-            {children}
-          </ToastContent>
-          {actionButton}
-          {closeButton && (
-            <ToastCloseButton reordered={reordered} {...closeButtonProps}>
-              {closeIcon}
-            </ToastCloseButton>
-          )}
-        </div>
+    <div {...remaining} {...elementProps} id={id}>
+      <ToastContent
+        action={action}
+        stacked={stacked}
+        multiline={multiline}
+        closeButton={closeButton}
+        {...contentProps}
+        ref={contentRef}
+      >
+        {children}
+      </ToastContent>
+      {actionButton}
+      {closeButton && (
+        <ToastCloseButton reordered={reordered} {...closeButtonProps}>
+          {closeIcon}
+        </ToastCloseButton>
       )}
-    </>
+    </div>
   );
 });

@@ -30,7 +30,7 @@ export function MultipleVisibleToastsExample(): ReactElement {
         limit={5}
         position="top"
         className={styles.snackbar}
-        toastProps={{
+        toastDefaults={{
           className: styles.toast,
           closeButton: true,
           onEntered: () => {
