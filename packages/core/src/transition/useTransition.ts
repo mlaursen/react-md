@@ -52,7 +52,6 @@ export function useTransition<E extends HTMLElement>(
   } = options;
 
   const configurationRef = useRef({
-    appear,
     timeout: getTransitionTimeout({ timeout, appear, enter, exit }),
     reflow,
     onEnter,
@@ -64,7 +63,6 @@ export function useTransition<E extends HTMLElement>(
   } as const);
   useIsomorphicLayoutEffect(() => {
     configurationRef.current = {
-      appear,
       timeout: getTransitionTimeout({ timeout, appear, enter, exit }),
       reflow,
       onEnter,
@@ -138,19 +136,24 @@ export function useTransition<E extends HTMLElement>(
       }
     },
     INITIAL_STATE,
-    () =>
-      ({
+    () => {
+      let stage: TransitionStage = "exited";
+      if (transitionIn) {
+        stage = appear ? "enter" : "entered";
+      }
+
+      return {
         appearing: appear && transitionIn,
         rendered: !temporary || transitionIn,
-        stage: transitionIn && !appear ? "entered" : "exited",
-      } as const)
+        stage,
+      };
+    }
   );
   const { appearing, rendered, stage } = state;
 
   const isFirstRender = useRef(true);
   useEffect(() => {
     const {
-      appear,
       timeout,
       reflow,
       onEnter,
@@ -158,16 +161,13 @@ export function useTransition<E extends HTMLElement>(
       onEntered,
       onExit,
       onExiting,
-      onExited,
     } = configurationRef.current;
-
+    let { onExited } = configurationRef.current;
     if (isFirstRender.current) {
+      // The exited hook should **not** fire on first render since the element
+      // was never in the DOM.
       isFirstRender.current = false;
-      if (appear && transitionIn) {
-        dispatch("enter");
-      }
-
-      return;
+      onExited = noop;
     }
 
     // Cancel any exiting/exited transitions and instead immediately start the
