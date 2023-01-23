@@ -1,7 +1,6 @@
-import CloseIcon from "@react-md/material-icons/CloseIcon";
-import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import { fireEvent, render } from "@testing-library/react";
 import { createRef } from "react";
+import { FontIcon } from "../../icon";
 import { ElementInteractionProvider } from "../../interaction";
 import { Chip } from "../Chip";
 
@@ -92,7 +91,10 @@ describe("Chip", () => {
 
   it("should allow for addons to appear before and after the children", () => {
     const { getByRole } = render(
-      <Chip leftAddon={<FavoriteIcon />} rightAddon={<CloseIcon />}>
+      <Chip
+        leftAddon={<FontIcon>favorite</FontIcon>}
+        rightAddon={<FontIcon>close</FontIcon>}
+      >
         Content
       </Chip>
     );
@@ -169,35 +171,47 @@ describe("Chip", () => {
       rerender(<Chip {...props} selected />);
       expect(chip).toMatchSnapshot();
 
-      rerender(<Chip {...props} leftAddon={<FavoriteIcon />} />);
-      expect(chip).toMatchSnapshot();
-
-      rerender(<Chip {...props} selected leftAddon={<FavoriteIcon />} />);
+      rerender(<Chip {...props} leftAddon={<FontIcon>favorite</FontIcon>} />);
       expect(chip).toMatchSnapshot();
 
       rerender(
-        <Chip {...props} leftAddon={<FavoriteIcon />} selectedIconAfter />
+        <Chip {...props} selected leftAddon={<FontIcon>favorite</FontIcon>} />
       );
       expect(chip).toMatchSnapshot();
 
       rerender(
         <Chip
           {...props}
-          selected
-          leftAddon={<FavoriteIcon />}
+          leftAddon={<FontIcon>favorite</FontIcon>}
           selectedIconAfter
         />
       );
       expect(chip).toMatchSnapshot();
 
-      rerender(<Chip {...props} rightAddon={<FavoriteIcon />} />);
+      rerender(
+        <Chip
+          {...props}
+          selected
+          leftAddon={<FontIcon>favorite</FontIcon>}
+          selectedIconAfter
+        />
+      );
       expect(chip).toMatchSnapshot();
 
-      rerender(<Chip {...props} selected rightAddon={<FavoriteIcon />} />);
+      rerender(<Chip {...props} rightAddon={<FontIcon>favorite</FontIcon>} />);
       expect(chip).toMatchSnapshot();
 
       rerender(
-        <Chip {...props} rightAddon={<FavoriteIcon />} selectedIconAfter />
+        <Chip {...props} selected rightAddon={<FontIcon>favorite</FontIcon>} />
+      );
+      expect(chip).toMatchSnapshot();
+
+      rerender(
+        <Chip
+          {...props}
+          rightAddon={<FontIcon>favorite</FontIcon>}
+          selectedIconAfter
+        />
       );
       expect(chip).toMatchSnapshot();
 
@@ -205,7 +219,7 @@ describe("Chip", () => {
         <Chip
           {...props}
           selected
-          rightAddon={<FavoriteIcon />}
+          rightAddon={<FontIcon>favorite</FontIcon>}
           selectedIconAfter
         />
       );
@@ -214,7 +228,7 @@ describe("Chip", () => {
 
     it("should allow for a custom selectedIcon", () => {
       const { getByRole, rerender } = render(
-        <Chip selected={false} selectedIcon={<FavoriteIcon />}>
+        <Chip selected={false} selectedIcon={<FontIcon>favorite</FontIcon>}>
           Chip
         </Chip>
       );
@@ -223,7 +237,7 @@ describe("Chip", () => {
       expect(chip).toMatchSnapshot();
 
       rerender(
-        <Chip selected selectedIcon={<FavoriteIcon />}>
+        <Chip selected selectedIcon={<FontIcon>favorite</FontIcon>}>
           Chip
         </Chip>
       );

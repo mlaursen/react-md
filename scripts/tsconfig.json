@@ -16,6 +16,7 @@
   "include": ["**/*.ts", "*.mjs"],
   "exclude": ["node_modules"],
   "ts-node": {
-    "esm": true
+    "esm": true,
+    "swc": true
   }
 }

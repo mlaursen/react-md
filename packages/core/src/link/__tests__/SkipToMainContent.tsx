@@ -62,7 +62,7 @@ describe("SkipToMainContent", () => {
 
   it("should not throw an error if the mainId cannot be found for production", () => {
     // this is caused by next defining process.env.NODE_ENV as readonly 'development' | 'production' | 'test'
-    // @ts-expect-error
+    // @ts-ignore
     process.env.NODE_ENV = "production";
 
     expect(() =>

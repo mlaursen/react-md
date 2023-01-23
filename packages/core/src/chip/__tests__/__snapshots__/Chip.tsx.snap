@@ -5,16 +5,12 @@ exports[`Chip selectable chips should allow for a custom selectedIcon 1`] = `
   class="rmd-chip rmd-chip--solid"
   type="button"
 >
-  <svg
+  <i
     aria-hidden="true"
-    class="rmd-icon rmd-icon--svg rmd-chip__icon"
-    focusable="false"
-    viewBox="0 0 24 24"
+    class="rmd-icon rmd-icon--font material-icons rmd-chip__icon"
   >
-    <path
-      d="m12 21.35-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-    />
-  </svg>
+    favorite
+  </i>
   <span
     class="rmd-chip__content"
   >
@@ -32,16 +28,12 @@ exports[`Chip selectable chips should allow for a custom selectedIcon 2`] = `
   class="rmd-chip rmd-chip--selected rmd-chip--solid rmd-chip--left-addon"
   type="button"
 >
-  <svg
+  <i
     aria-hidden="true"
-    class="rmd-icon rmd-icon--svg rmd-chip__icon rmd-chip__icon--visible"
-    focusable="false"
-    viewBox="0 0 24 24"
+    class="rmd-icon rmd-icon--font material-icons rmd-chip__icon rmd-chip__icon--visible"
   >
-    <path
-      d="m12 21.35-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-    />
-  </svg>
+    favorite
+  </i>
   <span
     class="rmd-chip__content"
   >
@@ -239,16 +231,12 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
   class="rmd-chip rmd-chip--solid"
   type="button"
 >
-  <svg
+  <i
     aria-hidden="true"
-    class="rmd-icon rmd-icon--svg"
-    focusable="false"
-    viewBox="0 0 24 24"
+    class="rmd-icon rmd-icon--font material-icons"
   >
-    <path
-      d="m12 21.35-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-    />
-  </svg>
+    favorite
+  </i>
   <span
     class="rmd-chip__content"
   >
@@ -266,16 +254,12 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
   class="rmd-chip rmd-chip--selected rmd-chip--solid rmd-chip--left-addon"
   type="button"
 >
-  <svg
+  <i
     aria-hidden="true"
-    class="rmd-icon rmd-icon--svg"
-    focusable="false"
-    viewBox="0 0 24 24"
+    class="rmd-icon rmd-icon--font material-icons"
   >
-    <path
-      d="m12 21.35-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-    />
-  </svg>
+    favorite
+  </i>
   <span
     class="rmd-chip__content"
   >
@@ -292,16 +276,12 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
   class="rmd-chip rmd-chip--solid rmd-chip--left-addon"
   type="button"
 >
-  <svg
+  <i
     aria-hidden="true"
-    class="rmd-icon rmd-icon--svg"
-    focusable="false"
-    viewBox="0 0 24 24"
+    class="rmd-icon rmd-icon--font material-icons"
   >
-    <path
-      d="m12 21.35-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-    />
-  </svg>
+    favorite
+  </i>
   <span
     class="rmd-chip__content"
   >
@@ -325,16 +305,12 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
   class="rmd-chip rmd-chip--selected rmd-chip--solid rmd-chip--surrounded"
   type="button"
 >
-  <svg
+  <i
     aria-hidden="true"
-    class="rmd-icon rmd-icon--svg"
-    focusable="false"
-    viewBox="0 0 24 24"
+    class="rmd-icon rmd-icon--font material-icons"
   >
-    <path
-      d="m12 21.35-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-    />
-  </svg>
+    favorite
+  </i>
   <span
     class="rmd-chip__content"
   >
@@ -368,16 +344,12 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
   >
     Chip
   </span>
-  <svg
+  <i
     aria-hidden="true"
-    class="rmd-icon rmd-icon--svg"
-    focusable="false"
-    viewBox="0 0 24 24"
+    class="rmd-icon rmd-icon--font material-icons"
   >
-    <path
-      d="m12 21.35-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-    />
-  </svg>
+    favorite
+  </i>
   <span
     class="rmd-ripple-container"
   />
@@ -401,16 +373,12 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
   >
     Chip
   </span>
-  <svg
+  <i
     aria-hidden="true"
-    class="rmd-icon rmd-icon--svg"
-    focusable="false"
-    viewBox="0 0 24 24"
+    class="rmd-icon rmd-icon--font material-icons"
   >
-    <path
-      d="m12 21.35-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-    />
-  </svg>
+    favorite
+  </i>
   <span
     class="rmd-ripple-container"
   />
@@ -427,16 +395,12 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
   >
     Chip
   </span>
-  <svg
+  <i
     aria-hidden="true"
-    class="rmd-icon rmd-icon--svg"
-    focusable="false"
-    viewBox="0 0 24 24"
+    class="rmd-icon rmd-icon--font material-icons"
   >
-    <path
-      d="m12 21.35-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-    />
-  </svg>
+    favorite
+  </i>
   <span
     class="rmd-ripple-container"
   />
@@ -454,16 +418,12 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
   >
     Chip
   </span>
-  <svg
+  <i
     aria-hidden="true"
-    class="rmd-icon rmd-icon--svg"
-    focusable="false"
-    viewBox="0 0 24 24"
+    class="rmd-icon rmd-icon--font material-icons"
   >
-    <path
-      d="m12 21.35-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-    />
-  </svg>
+    favorite
+  </i>
   <span
     class="rmd-ripple-container"
   />
@@ -475,31 +435,23 @@ exports[`Chip should allow for addons to appear before and after the children 1`
   class="rmd-chip rmd-chip--solid rmd-chip--surrounded"
   type="button"
 >
-  <svg
+  <i
     aria-hidden="true"
-    class="rmd-icon rmd-icon--svg"
-    focusable="false"
-    viewBox="0 0 24 24"
+    class="rmd-icon rmd-icon--font material-icons"
   >
-    <path
-      d="m12 21.35-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-    />
-  </svg>
+    favorite
+  </i>
   <span
     class="rmd-chip__content"
   >
     Content
   </span>
-  <svg
+  <i
     aria-hidden="true"
-    class="rmd-icon rmd-icon--svg"
-    focusable="false"
-    viewBox="0 0 24 24"
+    class="rmd-icon rmd-icon--font material-icons"
   >
-    <path
-      d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-    />
-  </svg>
+    close
+  </i>
   <span
     class="rmd-ripple-container"
   />

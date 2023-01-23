@@ -81,7 +81,7 @@ describe("ColorSchemeProvider", () => {
 
   it("should warn the user in development if the provided mode does not match the background color", () => {
     // this is caused by next defining process.env.NODE_ENV as readonly 'development' | 'production' | 'test'
-    // @ts-expect-error
+    // @ts-ignore
     process.env.NODE_ENV = "development";
     const warn = jest.spyOn(console, "warn").mockImplementation(() => {});
 
