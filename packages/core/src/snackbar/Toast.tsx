@@ -37,6 +37,8 @@ export interface ToastClassNameOptions {
   /** @defaultValue `false` */
   action?: boolean;
   /** @defaultValue `false` */
+  paused?: boolean;
+  /** @defaultValue `false` */
   stacked?: boolean;
   /** @defaultValue `false` */
   reordered?: boolean;
@@ -52,6 +54,7 @@ export function toast(options: ToastClassNameOptions = {}): string {
     className,
     theme = "surface",
     action,
+    paused,
     stacked,
     reordered,
     closeButton,
@@ -62,6 +65,7 @@ export function toast(options: ToastClassNameOptions = {}): string {
       [theme]: true,
       x: closeButton,
       action,
+      paused,
       "small-gap": closeButton && action,
       stacked,
       reordered: stacked && reordered,
@@ -171,6 +175,7 @@ export interface ConfigurableToastProps
  * @remarks \@since 6.0.0
  */
 export interface ToastProps extends ConfigurableToastProps {
+  paused?: boolean;
   visible: boolean;
 }
 
@@ -192,6 +197,7 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(function Toast(
     theme = "surface",
     action: propAction,
     actionButton: propActionButton,
+    paused,
     visible,
     closeIcon,
     closeButtonProps,
@@ -240,8 +246,9 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(function Toast(
     className: toast({
       className,
       theme,
-      stacked,
       action,
+      paused,
+      stacked,
       reordered,
       closeButton,
     }),

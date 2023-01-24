@@ -51,7 +51,14 @@ function RenderToast(props: ToastRendererProps): ReactElement {
       break;
   }
 
-  const { visible, hideToast, removeToast, startExitTimeout } = useToast({
+  const {
+    visible,
+    hideToast,
+    removeToast,
+    startExitTimeout,
+    pauseExitTimeout,
+    resumeExitTimeout,
+  } = useToast({
     toastId,
     updated,
     duplicates,
@@ -67,6 +74,8 @@ function RenderToast(props: ToastRendererProps): ReactElement {
         visible={visible}
         onEntered={startExitTimeout}
         onExited={removeToast}
+        onMouseEnter={pauseExitTimeout}
+        onMouseLeave={resumeExitTimeout}
         disableToastContent
       >
         <ToastContent>{toastId}</ToastContent>

@@ -45,18 +45,30 @@ export function DefaultToastRenderer(props: ToastRendererProps): ReactElement {
     visibleTime,
     onExited = noop,
     onEntered = noop,
+    onMouseEnter = noop,
+    onMouseLeave = noop,
     toastDefaults = {},
     ...remaining
   } = props;
   const {
     closeButtonProps,
     closeButton = !!closeButtonProps,
-    onEntered: defaultOnEntered = noop,
-    onExited: defaultOnExited = noop,
+    onEntered: defaultEntered = noop,
+    onExited: defaultExited = noop,
+    onMouseEnter: defaultMouseEnter = noop,
+    onMouseLeave: defaultMouseLeave = noop,
     ...defaults
   } = toastDefaults;
 
-  const { visible, hideToast, removeToast, startExitTimeout } = useToast({
+  const {
+    paused,
+    visible,
+    hideToast,
+    removeToast,
+    startExitTimeout,
+    pauseExitTimeout,
+    resumeExitTimeout,
+  } = useToast({
     toastId,
     updated,
     duplicates,
@@ -73,16 +85,27 @@ export function DefaultToastRenderer(props: ToastRendererProps): ReactElement {
         closeButtonProps={closeButtonProps}
         {...defaults}
         {...remaining}
+        paused={paused}
         visible={visible}
         onEntered={(appearing) => {
-          defaultOnEntered(appearing);
+          defaultEntered(appearing);
           onEntered(appearing);
           startExitTimeout();
         }}
         onExited={() => {
-          defaultOnExited();
+          defaultExited();
           onExited();
           removeToast();
+        }}
+        onMouseEnter={(event) => {
+          defaultMouseEnter(event);
+          onMouseEnter(event);
+          pauseExitTimeout();
+        }}
+        onMouseLeave={(event) => {
+          defaultMouseLeave(event);
+          onMouseLeave(event);
+          resumeExitTimeout();
         }}
       >
         {defaults.children}

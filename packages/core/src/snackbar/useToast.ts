@@ -4,6 +4,7 @@ import {
   useContext,
   useEffect,
   useRef,
+  useState,
 } from "react";
 import type { UseStateSetter } from "../types";
 import { usePageInactive } from "../usePageInactive";
@@ -52,12 +53,15 @@ export interface ToastMeta {
  * @remarks \@since 6.0.0
  */
 export interface ToastImplementation {
+  paused: boolean;
   visible: boolean;
   showToast(): void;
   hideToast(): void;
   removeToast(): void;
   startExitTimeout(): void;
   clearExitTimeout(): void;
+  pauseExitTimeout(): void;
+  resumeExitTimeout(): void;
   setToastVisibility: UseStateSetter<boolean>;
 }
 
@@ -67,7 +71,6 @@ export interface ToastImplementation {
 export function useToast(options: ToastMeta): ToastImplementation {
   const { toastId, visibleTime, duplicates, updated } = options;
 
-  const exitTimeout = useRef<number | undefined>();
   const removeToastById = useRemoveToast();
   const {
     toggled: visible,
@@ -75,6 +78,11 @@ export function useToast(options: ToastMeta): ToastImplementation {
     enable: showToast,
     setToggled: setToastVisibility,
   } = useToggle(true);
+
+  const [paused, setPaused] = useState(false);
+  const startTime = useRef<number | null>(null);
+  const ellapsedTime = useRef<number>(0);
+  const exitTimeout = useRef<number | undefined>();
 
   const removeToast = useCallback(() => {
     removeToastById(toastId);
@@ -88,9 +96,16 @@ export function useToast(options: ToastMeta): ToastImplementation {
     }
 
     clearExitTimeout();
+
+    let duration = visibleTime;
+    if (ellapsedTime.current) {
+      duration -= ellapsedTime.current;
+    }
+
+    startTime.current = Date.now();
     exitTimeout.current = window.setTimeout(() => {
       hideToast();
-    }, visibleTime);
+    }, duration);
   }, [clearExitTimeout, hideToast, visibleTime]);
 
   const prevUpdatedRef = useRef(updated);
@@ -101,15 +116,42 @@ export function useToast(options: ToastMeta): ToastImplementation {
       return;
     }
 
+    ellapsedTime.current = 0;
     startExitTimeout();
   }, [duplicates, startExitTimeout, updated, visible]);
+
+  // this inactive state is used so that the pause/exit can't be called while
+  // the page is inactive from outside consumers (i.e., mouse enter/leave
+  // events)
+  const inactive = useRef(false);
+  const pauseExitTimeout = useCallback(() => {
+    if (!visibleTime || !startTime.current || inactive.current) {
+      return;
+    }
+
+    clearExitTimeout();
+    ellapsedTime.current =
+      Date.now() - startTime.current + ellapsedTime.current;
+    setPaused(true);
+  }, [clearExitTimeout, visibleTime]);
+  const resumeExitTimeout = useCallback(() => {
+    if (!ellapsedTime.current || inactive.current) {
+      return;
+    }
+
+    startExitTimeout();
+    setPaused(false);
+  }, [startExitTimeout]);
+
   usePageInactive({
     disabled: !visible,
     onChange(active) {
       if (active) {
-        startExitTimeout();
+        inactive.current = false;
+        resumeExitTimeout();
       } else {
-        clearExitTimeout();
+        pauseExitTimeout();
+        inactive.current = true;
       }
     },
   });
@@ -120,12 +162,15 @@ export function useToast(options: ToastMeta): ToastImplementation {
   }, []);
 
   return {
+    paused,
     visible,
     showToast,
     hideToast,
     removeToast,
     startExitTimeout,
     clearExitTimeout,
+    pauseExitTimeout,
+    resumeExitTimeout,
     setToastVisibility,
   };
 }
