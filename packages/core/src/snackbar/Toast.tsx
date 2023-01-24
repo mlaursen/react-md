@@ -261,6 +261,7 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(function Toast(
     onExiting,
     onExited,
     transitionIn: visible,
+    exitedHidden: true,
   });
 
   return (

@@ -215,12 +215,12 @@ $var-lookup: (
   }
 }
 
-@mixin outline($box-shadow: $outline-box-shadow) {
+@mixin outline($box-shadow: $outline-box-shadow, $color: transparent) {
   // do not apply box shadow styles here. they will only be applied in the
   // `focus-styles` mixin to minimize bundle size and help with overriding the
   // focus color in specific surfaces
   @if not $box-shadow {
-    outline: transparent solid get-var(outline-width);
+    outline: $color solid get-var(outline-width);
     // adding an outline-offset makes it so it behaves the same way as an inset
     // box shadow
     outline-offset: utils.negate-var(get-var(outline-width));
