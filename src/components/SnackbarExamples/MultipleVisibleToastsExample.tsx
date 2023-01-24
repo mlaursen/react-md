@@ -28,8 +28,7 @@ export function MultipleVisibleToastsExample(): ReactElement {
       </Button>
       <Snackbar
         limit={5}
-        position="top"
-        className={styles.snackbar}
+        position="top-right"
         toastDefaults={{
           className: styles.toast,
           closeButton: true,

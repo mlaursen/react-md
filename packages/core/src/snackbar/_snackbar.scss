@@ -13,6 +13,10 @@
 $disable-everything: false !default;
 $disable-top: false !default;
 $disable-bottom: false !default;
+$disable-top-right: $disable-top !default;
+$disable-top-left: $disable-top !default;
+$disable-bottom-left: $disable-bottom !default;
+$disable-bottom-right: $disable-bottom !default;
 $disable-primary-theme: false !default;
 $disable-secondary-theme: false !default;
 $disable-warning-theme: false !default;
@@ -22,7 +26,7 @@ $disable-close-button: false !default;
 $disable-action-button: false !default;
 $disable-stacked: false !default;
 
-$align: center !default;
+$default-align-items: center !default;
 $gap: 1rem !default;
 $toast-gap: 1rem !default;
 $toast-gap-stacked: 0.5rem !default;
@@ -106,7 +110,7 @@ $var-lookup: (
 @mixin styles {
   @if not $disable-everything {
     .rmd-snackbar {
-      align-items: $align;
+      align-items: $default-align-items;
       display: flex;
       flex-direction: column;
       gap: $gap;
@@ -117,15 +121,32 @@ $var-lookup: (
       right: 0;
       z-index: $z-index;
 
-      @if not $disable-top {
+      @if not $disable-top or not $disable-top-left or not $disable-bottom-left
+      {
         &--top {
           @include use-var(top, offset);
         }
       }
 
-      @if not $disable-bottom {
+      @if not
+        $disable-bottom or not
+        $disable-bottom-left or not
+        $disable-bottom-right
+      {
         &--bottom {
           @include use-var(bottom, offset);
+        }
+      }
+
+      @if not $disable-top-left or not $disable-bottom-left {
+        &--start {
+          align-items: flex-start;
+        }
+      }
+
+      @if not $disable-top-right or not $disable-bottom-right {
+        &--end {
+          align-items: flex-end;
         }
       }
     }

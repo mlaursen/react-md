@@ -11,6 +11,7 @@ import { PreventingDuplicatesExample } from "./PreventingDuplicatesExample";
 import { RequireActionExample } from "./RequireActionExample";
 import { SimpleExample } from "./SimpleExample";
 import { StackedExample } from "./StackedExample";
+import { ToastPositionExample } from "./ToastPositionExample";
 import { UsingThemesExample } from "./UsingThemesExample";
 
 export default function SnackbarExamples(): ReactElement {
@@ -52,6 +53,10 @@ export default function SnackbarExamples(): ReactElement {
         </DemoHeadingWithDivider>
         <ToastManagerProvider manager={new ToastManager()}>
           <PreventingDuplicatesExample />
+        </ToastManagerProvider>
+        <DemoHeadingWithDivider>Toast Position Example</DemoHeadingWithDivider>
+        <ToastManagerProvider manager={new ToastManager()}>
+          <ToastPositionExample />
         </ToastManagerProvider>
         <DemoHeadingWithDivider>Multiple Visible Toasts</DemoHeadingWithDivider>
         <ToastManagerProvider manager={new ToastManager()}>

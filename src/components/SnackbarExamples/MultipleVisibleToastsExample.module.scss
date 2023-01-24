@@ -1,10 +1,5 @@
 @use "everything";
 
-.snackbar {
-  align-items: flex-end;
-  right: 0;
-}
-
 .toast {
   @include everything.rtl {
     transform-origin: left;
