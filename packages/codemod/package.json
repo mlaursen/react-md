@@ -1,6 +1,7 @@
 {
   "name": "@react-md/codemod",
-  "version": "5.1.3",
+  "type": "module",
+  "version": "0.0.0-alpha.0",
   "description": "ReactMD codemod scripts",
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "bin": {
@@ -10,7 +11,7 @@
     "bin"
   ],
   "scripts": {
-    "update-docs": "node updateDocs.js",
+    "update-docs": "node updateDocs.cjs",
     "build": "tsc --project tsconfig.build.json"
   },
   "repository": {
@@ -32,14 +33,16 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "commander": "^9.2.0",
+    "commander": "^10.0.0",
     "glob": "^8.0.1",
-    "inquirer": "^8.2.4",
-    "jscodeshift": "^0.13.0"
+    "inquirer": "^9.1.4",
+    "jscodeshift": "^0.14.0"
   },
   "devDependencies": {
-    "@types/glob": "^7.2.0",
-    "@types/inquirer": "^8.2.1",
+    "@babel/core": "^7.20.12",
+    "@babel/preset-env": "^7.20.2",
+    "@types/glob": "^8.0.1",
+    "@types/inquirer": "^9.0.3",
     "@types/jscodeshift": "^0.11.5",
     "typescript": "^4.6.4"
   },

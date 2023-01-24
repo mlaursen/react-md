@@ -26,6 +26,7 @@
     "node_modules",
     "prev",
     "scripts/**",
-    "packages/material-icons/**/*"
+    "packages/material-icons/**/*",
+    "packages/codemod/transforms/**/__testfixtures__"
   ]
 }

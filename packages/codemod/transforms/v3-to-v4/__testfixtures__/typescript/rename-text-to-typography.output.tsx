@@ -31,11 +31,11 @@ const props: TypographyProps = {};
 let element: TypographyHTMLElement;
 
 export default function Example() {
-  return <>
+  return (<>
     <Typography>Hello</Typography>
     <TextContainer>
       <Typography>World!</Typography>
       <Typography type="headline-1">Headline</Typography>
     </TextContainer>
-  </>;
+  </>);
 }

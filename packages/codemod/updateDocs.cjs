@@ -1,17 +1,17 @@
-const glob = require('glob');
-const { join } = require('path');
-const { execSync, spawnSync } = require('child_process');
-const { readFileSync, writeFileSync, existsSync } = require('fs');
+const glob = require("glob");
+const { join } = require("path");
+const { execSync, spawnSync } = require("child_process");
+const { readFileSync, writeFileSync, existsSync } = require("fs");
 
-const codemod = 'node ./bin/rmd-codemod';
-const transforms = glob.sync('**/*.ts', {
-  cwd: 'transforms',
-  ignore: ['**/__tests__/**', '**/__testfixtures__/**', 'utils/**/*'],
+const codemod = "node ./bin/rmd-codemod";
+const transforms = glob.sync("**/*.ts", {
+  cwd: "transforms",
+  ignore: ["**/__tests__/**", "**/__testfixtures__/**", "utils/**/*"],
 });
 
 const toTs = (fileName) => fileName.substring(0, fileName.length - 1);
 
-const getHelpText = (command = '') => {
+const getHelpText = (command = "") => {
   const helpOutput = execSync(`${codemod} ${command} -h`).toString().trim();
 
   const helpText = `\`\`\`sh
@@ -19,12 +19,12 @@ ${helpOutput}
 \`\`\``;
 
   if (command) {
-    const [folder, transformation] = command.split('/');
+    const [folder, transformation] = command.split("/");
     const fixtures = join(
-      'transforms',
+      "transforms",
       folder,
-      '__testfixtures__',
-      'typescript'
+      "__testfixtures__",
+      "typescript"
     );
 
     let input = join(fixtures, `${transformation}.input.tsx`);
@@ -36,14 +36,14 @@ ${helpOutput}
 
     if (existsSync(input) && existsSync(output)) {
       const args = [
-        '--no-pager',
-        'diff',
-        '--no-index',
-        '--ignore-all-space',
+        "--no-pager",
+        "diff",
+        "--no-index",
+        "--ignore-all-space",
         input,
         output,
       ];
-      const diffLines = spawnSync('git', args).output.toString().split(/\r?\n/);
+      const diffLines = spawnSync("git", args).output.toString().split(/\r?\n/);
       const diff = diffLines.reduce((diff, line, lineNumber) => {
         // remove all this junk
         // ,diff --git a/transforms/v3-to-v4/__testfixtures__/typescript/rename-text-to-typography.input.tsx b/transforms/v3-to-v4/__testfixtures__/typescript/rename-text-to-typography.output.tsx
@@ -52,11 +52,11 @@ ${helpOutput}
         // +++ b/transforms/v3-to-v4/__testfixtures__/typescript/rename-text-to-typography.output.tsx
         // @@ -1,17 +1,17 @@
         if (lineNumber > 4) {
-          return `${diff ? `${diff}\n` : ''}${line}`;
+          return `${diff ? `${diff}\n` : ""}${line}`;
         }
 
         return diff;
-      }, '');
+      }, "");
 
       return `#### Changes
 
@@ -71,10 +71,10 @@ ${helpText}`;
   return helpText;
 };
 
-const README = 'README.md';
-const DOCS_TOKEN = '<!-- docs -->';
+const README = "README.md";
+const DOCS_TOKEN = "<!-- docs -->";
 
-const contents = readFileSync(README, 'utf8');
+const contents = readFileSync(README, "utf8");
 const prefix = contents.substring(
   0,
   contents.indexOf(DOCS_TOKEN) + DOCS_TOKEN.length + 1
@@ -89,13 +89,13 @@ ${getHelpText()}
 
 ${transforms
   .map((fileName) => {
-    const transform = fileName.replace(/\.(j|t)s$/, '');
+    const transform = fileName.replace(/\.(j|t)s$/, "");
 
     return `### \`${transform}\`
 
 ${getHelpText(transform)}
 `;
   })
-  .join('\n\n')}`;
+  .join("\n\n")}`;
 
-writeFileSync(README, updated, 'utf8');
+writeFileSync(README, updated, "utf8");

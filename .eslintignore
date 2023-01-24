@@ -15,5 +15,6 @@ packages/material-icons/**/*.ts
 packages/material-icons/**/*.tsx
 packages/material-icons/**/*.mjs
 packages/material-icons/**/*.cjs
+packages/codemod/transforms/**/__testfixtures__
 
 svgo.config.js

@@ -22,7 +22,7 @@ const parserOptions = [
 ] as const;
 const parsers = parserOptions.map(({ value }) => value);
 
-type Parser = typeof parsers[number];
+type Parser = (typeof parsers)[number];
 
 const program = new Command().name("npx @react-md/codemod").description(
   `Run a codemod script to update to the latest version of ReactMD.

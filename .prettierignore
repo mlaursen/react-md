@@ -11,3 +11,4 @@ CHANGELOG.md
 **/CHANGELOG.md
 
 packages/material-icons/src
+packages/codemod/transforms/**/__testfixtures__
