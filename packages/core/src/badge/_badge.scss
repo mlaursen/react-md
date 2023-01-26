@@ -1,0 +1,95 @@
+@use "sass:map";
+@use "../utils";
+@use "../theme/a11y";
+@use "../theme/colors";
+@use "../theme/theme";
+@use "../typography/typography";
+
+$disable-everything: false !default;
+$disable-greyscale-theme: false !default;
+$disable-primary-theme: false !default;
+$disable-secondary-theme: false !default;
+
+$size: 1.5rem !default;
+$font-size: 0.625rem !default;
+$offset-top: 0 !default;
+$offset-right: 0 !default;
+$border-radius: 50% !default;
+$typography: map.merge(
+  map.remove(typography.$body-1-styles, line-height, font-size),
+  (
+    font-size: $font-size,
+  )
+) !default;
+
+$greyscale-background-color: rgba(colors.$black, 0.2) !default;
+$greyscale-color: a11y.contrast-color($greyscale-background-color) !default;
+
+$var-lookup: (
+  size: (
+    var: --rmd-badge-size,
+    value: $size,
+  ),
+);
+
+@function get-var($name, $fallback: null) {
+  $found: utils.validate($var-lookup, $name, "badge var");
+  $var: map.get($found, var);
+  $value: if($fallback, $fallback, map.get($found, value));
+
+  @if $value {
+    @return var(#{$var}, #{$value});
+  }
+
+  @return var(#{$var});
+}
+
+@mixin set-var($name, $value) {
+  $var: map.get(utils.validate($var-lookup, $name, "badge var"), var);
+
+  #{$var}: #{$value};
+}
+
+@mixin use-var($property, $name: $property, $fallback: null) {
+  #{$property}: get-var($name, $fallback);
+}
+
+@mixin styles {
+  @if not $disable-everything {
+    .rmd-badge {
+      @include utils.map-to-styles($typography);
+      @include use-var(height, size);
+      @include use-var(width, size);
+      @include utils.auto-rtl(right, $offset-right);
+
+      align-items: center;
+      border-radius: $border-radius;
+      display: inline-flex;
+      justify-content: center;
+      pointer-events: none; // badges are _kind_ of presentational and shouldn't trigger mouse events
+      position: absolute;
+      top: $offset-top;
+
+      @if not $disable-greyscale-theme {
+        &--greyscale {
+          background-color: $greyscale-background-color;
+          color: $greyscale-color;
+        }
+      }
+
+      @if not $disable-primary-theme {
+        &--primary {
+          @include theme.theme-use-var(background-color, primary-color);
+          @include theme.theme-use-var(color, on-primary-color);
+        }
+      }
+
+      @if not $disable-secondary-theme {
+        &--secondary {
+          @include theme.theme-use-var(background-color, secondary-color);
+          @include theme.theme-use-var(color, on-secondary-color);
+        }
+      }
+    }
+  }
+}

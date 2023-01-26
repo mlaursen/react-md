@@ -14,6 +14,7 @@
 @forward "divider/divider" as divider-*;
 @forward "progress/progress" as progress-*;
 @forward "button/button" as button-*;
+@forward "badge/badge" as badge-*;
 @forward "tabs/tabs" as tabs-*;
 @forward "chip/chip" as chip-*;
 @forward "table/table" as table-*;
@@ -38,6 +39,7 @@
 @use "app-bar/app-bar";
 @use "box/box";
 @use "button/button";
+@use "badge/badge";
 @use "card/card";
 @use "divider/divider";
 @use "draggable/draggable";
@@ -142,6 +144,7 @@
   @include icon.styles;
   @include divider.styles;
   @include button.styles;
+  @include badge.styles;
   @include tabs.styles;
   @include chip.styles;
   @include progress.styles;

@@ -1,6 +1,7 @@
 export * from "./app-bar";
 export * from "./AppSizeProvider";
 export * from "./avatar";
+export * from "./badge";
 export * from "./box";
 export * from "./button";
 export * from "./card";
