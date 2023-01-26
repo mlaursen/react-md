@@ -1,7 +1,7 @@
 import { cnb } from "cnbuilder";
 import { forwardRef } from "react";
-import type { AppBarTitleProps } from "../appBar";
-import { AppBarTitle } from "../appBar";
+import type { AppBarTitleProps } from "../app-bar";
+import { AppBarTitle } from "../app-bar";
 import { bem } from "../utils";
 
 import { useLayoutConfig } from "./LayoutProvider";

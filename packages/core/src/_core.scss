@@ -9,7 +9,7 @@
 @forward "box-shadows";
 @forward "interaction/interaction" as interaction-*;
 @forward "draggable/draggable" as draggable-*;
-@forward "windowSplitter/window-splitter" as window-splitter-*;
+@forward "window-splitter/window-splitter" as window-splitter-*;
 @forward "icon/icon" as icon-*;
 @forward "divider/divider" as divider-*;
 @forward "progress/progress" as progress-*;
@@ -17,8 +17,8 @@
 @forward "tabs/tabs" as tabs-*;
 @forward "chip/chip" as chip-*;
 @forward "table/table" as table-*;
-@forward "appBar/app-bar" as app-bar-*;
-@forward "responsiveItem/responsive-item" as responsive-item-*;
+@forward "app-bar/app-bar" as app-bar-*;
+@forward "responsive-item/responsive-item" as responsive-item-*;
 @forward "overlay/overlay" as overlay-*;
 @forward "avatar/avatar" as avatar-*;
 @forward "card/card" as card-*;
@@ -29,19 +29,19 @@
 @forward "sheet/sheet" as sheet-*;
 @forward "tooltip/tooltip" as tooltip-*;
 @forward "snackbar/snackbar" as snackbar-*;
-@forward "expansionPanel/expansion-panel" as expansion-panel-*;
+@forward "expansion-panel/expansion-panel" as expansion-panel-*;
 @forward "menu/menu" as menu-*;
 @forward "form/form" as form-*;
 @forward "layout/layout" as layout-*;
 
 @use "avatar/avatar";
-@use "appBar/app-bar";
+@use "app-bar/app-bar";
 @use "box/box";
 @use "button/button";
 @use "card/card";
 @use "divider/divider";
 @use "draggable/draggable";
-@use "expansionPanel/expansion-panel";
+@use "expansion-panel/expansion-panel";
 @use "icon/icon";
 @use "snackbar/snackbar";
 @use "interaction/interaction";
@@ -51,7 +51,7 @@
 @use "tooltip/tooltip";
 @use "overlay/overlay";
 @use "progress/progress";
-@use "responsiveItem/responsive-item";
+@use "responsive-item/responsive-item";
 @use "tabs/tabs";
 @use "chip/chip";
 @use "table/table";
@@ -60,7 +60,7 @@
 @use "sheet/sheet";
 @use "transition/transition";
 @use "typography/typography";
-@use "windowSplitter/window-splitter";
+@use "window-splitter/window-splitter";
 @use "menu/menu";
 @use "form/form";
 @use "layout/layout";

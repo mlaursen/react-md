@@ -1,5 +1,5 @@
 import type { CSSProperties, ElementType, ReactNode } from "react";
-import type { AppBarProps, AppBarTitleProps } from "../appBar";
+import type { AppBarProps, AppBarTitleProps } from "../app-bar";
 import type { ButtonProps } from "../button";
 import type { SheetProps } from "../sheet";
 import type { CSSTransitionClassNames, TransitionTimeout } from "../transition";
