@@ -138,7 +138,7 @@ export interface ExpansionPanelImplementation {
  *   const { getPanelProps } = useExpansionPanels();
  *
  *   return (
- *     <ExpanionList>
+ *     <ExpansionList>
  *       <ExpansionPanel {...getPanelProps(0)} headerChildren="Panel 1">
  *         Panel 1 Contents
  *       </ExpansionPanel>
@@ -178,7 +178,7 @@ export interface ExpansionPanelImplementation {
  *   });
  *
  *   return (
- *     <ExpanionList>
+ *     <ExpansionList>
  *       <ExpansionPanel {...getPanelProps(panel1Id)} headerChildren="Personal Information">
  *         <PersonalInformation />
  *       </ExpansionPanel>

@@ -94,7 +94,7 @@ export interface TableCheckboxProps
  *
  * const rows = [
  *   { name: "Frozen Yogurt", type: "Ice Cream" },
- *   { name: "Ice cream sandwhich", type: "Ice Cream" },
+ *   { name: "Ice cream sandwich", type: "Ice Cream" },
  *   { name: "Eclair", type: "Pastry" },
  *   // ...other content
  * ] as const;

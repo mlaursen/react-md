@@ -161,7 +161,7 @@ export function createHoverModeContext(
 /** @remarks \@since 6.0.0 */
 export interface HoverModeConfiguration extends CreateHoverModeContextOptions {
   /**
-   * The amount of time to wait before disabling the hover mode beahvior if none
+   * The amount of time to wait before disabling the hover mode behavior if none
    * of the components are being hovered.
    *
    * If this is `undefined`, {@link HoverModeContext.startDisableTimer} will do

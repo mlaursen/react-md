@@ -128,7 +128,7 @@ export type UseStateInitializer<T> = T | (() => T);
  * // }
  *
  * type AnotherOne = UseStateObject<"renderAsSheet", RenderMenuAsSheet>;
- * // type ANotherOne = {
+ * // type AnotherOne = {
  * //   renderAsSheet: RenderMenuAsSheet;
  * //   setRenderAsSheet: UseStateSetter<RenderMenuAsSheet>;
  * // }

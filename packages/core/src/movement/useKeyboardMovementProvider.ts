@@ -350,7 +350,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
         });
 
         // This allows my custom `getDefaultFocusedIndex` implementations to
-        // have a nice fallback without having to re-imeplement the "focus
+        // have a nice fallback without having to re-implement the "focus
         // first" behavior
         if (defaultFocusIndex === -1) {
           if (tabIndexBehavior === "virtual") {

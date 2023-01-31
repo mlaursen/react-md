@@ -226,7 +226,7 @@ export interface ProvidedTooltipProps
 /**
  * @remarks
  * \@since 2.8.0
- * \@since 6.0.0 No longer returns any properties from the hovermode provider
+ * \@since 6.0.0 No longer returns any properties from the hover mode provider
  * because of the major API change to hover mode.
  */
 export interface TooltipHookReturnValue<E extends HTMLElement> {

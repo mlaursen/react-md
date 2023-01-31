@@ -131,8 +131,8 @@ export interface ExpansionPanelProps extends CardProps {
   headerChildren?: ReactNode;
 
   /**
-   * This can be used to apply additionl props to the `CardContent` component if
-   * needed.
+   * This can be used to apply additional props to the `CardContent` component
+   * if needed.
    *
    * Note: The `disableLastChildPadding` defaults to `true` in this
    * implementation.

@@ -173,7 +173,7 @@ export interface IntersectionObserverHookOptions<E extends HTMLElement> {
  * const thresholds = Array.from({ length: numSteps }, (_, i) => i / numSteps);
  * thresholds.push(0);
  *
- * const INCREASEING = "rgba(40, 40, 190, ratio)";
+ * const INCREASING = "rgba(40, 40, 190, ratio)";
  * const DECREASING = "rgba(190, 40, 40, ratio)";
  *
  * export default function Example(): ReactElement {
@@ -201,7 +201,7 @@ export interface IntersectionObserverHookOptions<E extends HTMLElement> {
  *       ref={targetRef}
  *       className={styles.box}
  *       style={{
- *         backgroundColor: (increasing ? INCREASEING : DECREASING).replace(
+ *         backgroundColor: (increasing ? INCREASING : DECREASING).replace(
  *           "ratio",
  *           `${ratio}`
  *         ),

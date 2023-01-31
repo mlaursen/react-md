@@ -478,7 +478,7 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
       const callback = (event: globalThis.MouseEvent): void => {
         // if the user clicks outside of the menu to close it, the toggle button
         // should not be focused. instead the nearest focusable element from the
-        // click event should be focused when Tab or Shoft + tab is pressed
+        // click event should be focused when Tab or Shift + tab is pressed
         cancelUnmountFocus.current =
           !(event.target instanceof HTMLElement) ||
           !event.target.closest(`[role="${role}"]`);

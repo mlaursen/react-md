@@ -67,7 +67,7 @@ export interface PasswordProps
 
   /**
    * @example
-   * Configurable Visiblity Icon Object
+   * Configurable Visibility Icon Object
    * ```tsx
    * <Password
    *   {...props}
@@ -79,7 +79,7 @@ export interface PasswordProps
    * ```
    *
    * @example
-   * Get Password Visiblity Icon Function
+   * Get Password Visibility Icon Function
    * ```tsx
    * <Password
    *   {...props}

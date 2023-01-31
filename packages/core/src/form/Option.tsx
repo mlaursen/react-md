@@ -81,7 +81,7 @@ export interface OptionProps extends MenuItemProps {
    * Since the `selectedIcon`/`unselectedIcon` are rendered as
    * `leftAddon`/`rightAddon`, the provided `leftAddon`/`rightAddon` will be
    * wrapped in the {@link TextIconSpacing} component to maintain the correct
-   * spacing. You can use this prop to provide any additionl configuration to
+   * spacing. You can use this prop to provide any additional configuration to
    * the spacing.
    *
    * @example

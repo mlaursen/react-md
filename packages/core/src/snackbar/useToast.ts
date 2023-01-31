@@ -81,7 +81,7 @@ export function useToast(options: ToastMeta): ToastImplementation {
 
   const [paused, setPaused] = useState(false);
   const startTime = useRef<number | null>(null);
-  const ellapsedTime = useRef<number>(0);
+  const elapsedTime = useRef<number>(0);
   const exitTimeout = useRef<number | undefined>();
 
   const removeToast = useCallback(() => {
@@ -98,8 +98,8 @@ export function useToast(options: ToastMeta): ToastImplementation {
     clearExitTimeout();
 
     let duration = visibleTime;
-    if (ellapsedTime.current) {
-      duration -= ellapsedTime.current;
+    if (elapsedTime.current) {
+      duration -= elapsedTime.current;
     }
 
     startTime.current = Date.now();
@@ -116,7 +116,7 @@ export function useToast(options: ToastMeta): ToastImplementation {
       return;
     }
 
-    ellapsedTime.current = 0;
+    elapsedTime.current = 0;
     startExitTimeout();
   }, [duplicates, startExitTimeout, updated, visible]);
 
@@ -130,12 +130,11 @@ export function useToast(options: ToastMeta): ToastImplementation {
     }
 
     clearExitTimeout();
-    ellapsedTime.current =
-      Date.now() - startTime.current + ellapsedTime.current;
+    elapsedTime.current = Date.now() - startTime.current + elapsedTime.current;
     setPaused(true);
   }, [clearExitTimeout, visibleTime]);
   const resumeExitTimeout = useCallback(() => {
-    if (!ellapsedTime.current || inactive.current) {
+    if (!elapsedTime.current || inactive.current) {
       return;
     }
 

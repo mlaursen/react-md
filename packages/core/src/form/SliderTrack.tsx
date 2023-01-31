@@ -6,7 +6,7 @@ import type {
   ClosestThumbEventHandlersOptions,
   ThumbOffsetsOptions,
 } from "./sliderUtils";
-import { getClostedThumbEventHandlers, getThumbOffsets } from "./sliderUtils";
+import { getClosestThumbEventHandlers, getThumbOffsets } from "./sliderUtils";
 
 declare module "react" {
   interface CSSProperties {
@@ -102,7 +102,7 @@ export const SliderTrack = forwardRef<HTMLSpanElement, SliderTrackProps>(
           }),
           className
         )}
-        {...getClostedThumbEventHandlers({
+        {...getClosestThumbEventHandlers({
           vertical,
           isRangeSlider,
           thumb1Ref,

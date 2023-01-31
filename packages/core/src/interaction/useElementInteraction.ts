@@ -192,7 +192,7 @@ export function useElementInteraction<E extends HTMLElement>(
         case "cancel":
           // Note: unlike previous react-md versions, this will immediately
           // remove ALL ripple effects instead of trying to fade out. this seems
-          // much nicer for touch deviecs when they are trying to scroll
+          // much nicer for touch devices when they are trying to scroll
           return {
             pressed: false,
             ripples: [],

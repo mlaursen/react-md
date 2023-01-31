@@ -50,7 +50,7 @@ export interface TreeItemProps
    * This should normally be the text/content to display within the tree item
    * and should **not** include nested trees.
    */
-  childern?: ReactNode;
+  children?: ReactNode;
 
   /**
    * The nested tree items to render within a `TreeGroup`.

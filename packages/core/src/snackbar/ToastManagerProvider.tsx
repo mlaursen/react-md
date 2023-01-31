@@ -249,7 +249,7 @@ export interface ToastManagerProviderProps {
 
 /**
  * This component can be used to implement separate instances of toasts if
- * requried in your app. This probably shouldn't be required for most apps with
+ * required in your app. This probably shouldn't be required for most apps with
  * the default {@link addToast}, {@link removeToast}, and {@link clearToasts}
  * implementation.
  *

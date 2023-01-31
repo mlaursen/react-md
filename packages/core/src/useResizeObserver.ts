@@ -52,7 +52,7 @@ const subscriptions = new Map<Element, Set<TargetSubscription>>();
 const handleResizeEntries: ResizeObserverCallback = (entries) => {
   for (const entry of entries) {
     const targetSubscriptions = subscriptions.get(entry.target);
-    // shoudln't really happen
+    // shouldn't really happen
     if (!targetSubscriptions) {
       continue;
     }
@@ -206,7 +206,7 @@ export interface ResizeObserverHookOptions<E extends HTMLElement> {
  * @remarks
  * \@since 2.3.0
  * \@since 6.0.0 The API was updated to match the `useIntersectionObserver`
- * implementation -- accepts only a single object paramter and returns a
+ * implementation -- accepts only a single object parameter and returns a
  * {@link RefCallback} instead of `[nodeRef, refCallback]`
  */
 export function useResizeObserver<E extends HTMLElement>(

@@ -114,7 +114,7 @@ export interface SnackbarProps extends HTMLAttributes<HTMLDivElement> {
    *       <ToastContent>
    *         <TranslateMessage id={toastId} />
    *       </ToastContent>
-   *       {isActionalable(toastId) && (
+   *       {isActionable(toastId) && (
    *         <Button
    *           onClick={async () => {
    *             await someApiCall();

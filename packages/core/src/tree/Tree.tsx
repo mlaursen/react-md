@@ -36,7 +36,7 @@ export type TreeHTMLAttributes = Omit<
  * @remarks
  * \@since 6.0.0 There was a major API change and the `id` is now `optional`.
  * In addition, the following props were removed:
- * - `itemREnderer`
+ * - `itemRenderer`
  * - `labelKey`
  * - `valueKey`
  * - `getItemLabel`
@@ -211,7 +211,7 @@ export interface TreeProps<T extends TreeItemNode>
  * @remarks
  * \@since 6.0.0 There was a major API change and the `id` is now `optional`.
  * In addition, the following props were removed:
- * - `itemREnderer`
+ * - `itemRenderer`
  * - `labelKey`
  * - `valueKey`
  * - `getItemLabel`

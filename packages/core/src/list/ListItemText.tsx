@@ -19,7 +19,7 @@ export interface ListItemTextProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 /**
- * This is mostly an internal componecnt that can conditionally render secondary
+ * This is mostly an internal component that can conditionally render secondary
  * text within list items.
  *
  * @internal

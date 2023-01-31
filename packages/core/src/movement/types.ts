@@ -10,7 +10,7 @@ import type { NonNullMutableRef, NonNullRef, UseStateSetter } from "../types";
 
 /**
  * Set this to `"roving"` when:
- * - there are a group of focusable elemnets that have a `tabIndex={-1}`
+ * - there are a group of focusable elements that have a `tabIndex={-1}`
  * - the container element defaults to having a `tabIndex={0}`
  * - if the container is focused, it should no longer be included in the normal
  *   tab flow. Instead, the current focused element should be included instead

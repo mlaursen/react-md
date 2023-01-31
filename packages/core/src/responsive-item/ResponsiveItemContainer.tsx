@@ -53,7 +53,7 @@ export interface ResponsiveItemContainerClassNameOptions {
    * the container's dimensions.
    *
    * Note: The `"auto"` and `"container"` values use the
-   * `core.$respnsive-item-selectors` value for their behavior.
+   * `core.$responsive-item-selectors` value for their behavior.
    *
    * @defaultValue `"auto"`
    */

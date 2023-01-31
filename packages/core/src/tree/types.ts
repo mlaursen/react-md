@@ -104,7 +104,7 @@ export type TreeData<T extends TreeItemNode = DefaultTreeItemNode> = Record<
 >;
 
 /**
- * @remarks \@since 6.0.0 This ised to be `TreeItemIds` but was converted to a
+ * @remarks \@since 6.0.0 This used to be `TreeItemIds` but was converted to a
  * Set to increase performance for large trees.
  */
 export type TreeItemIdSet = ReadonlySet<string>;

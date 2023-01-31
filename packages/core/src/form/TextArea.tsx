@@ -207,7 +207,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
 
     let { placeholder = "" } = props;
     if (label && !placeholder) {
-      // See the placeholer type defintiion comments for information
+      // See the placeholder type definition comments for information
       placeholder = " ";
     }
 

@@ -22,7 +22,7 @@ export type DefaultTreeItemRendererProps<
 
 /**
  * A reasonable default for rendering tree items that will extract all the
- * `ListItemChildrenProps` from the item and attempt to pass them intp the
+ * `ListItemChildrenProps` from the item and attempt to pass them into the
  * `TreeItem`.
  *
  * Look at the `Tree` component for an example of creating a custom

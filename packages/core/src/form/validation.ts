@@ -228,7 +228,7 @@ export const defaultIsErrored: IsErrored = (options) => {
  */
 export interface GetErrorIconOptions {
   /**
-   * This will be `true` if the `TextField` or `TextArea` is in an errorred state.
+   * This will be `true` if the `TextField` or `TextArea` is in an errored state.
    */
   error: boolean;
 

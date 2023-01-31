@@ -78,7 +78,7 @@ export interface TableConfig extends TableRowConfiguration, TableCellConfig {
 export interface TableConfiguration extends TableConfig {
   /**
    * Set this to `true` to allow the table to span the full width of the
-   * container element instead of having the width be deteremined by the content
+   * container element instead of having the width be determined by the content
    * within the table.
    *
    * @defaultValue `false`

@@ -32,7 +32,7 @@ export interface PageInactiveOptions {
   disabled?: boolean;
 
   /**
-   * This will be called whenever the page activity changes basedon the
+   * This will be called whenever the page activity changes based on the
    * {@link PageInactiveType}.
    */
   onChange(active: boolean): void;

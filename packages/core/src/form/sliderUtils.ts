@@ -66,7 +66,7 @@ export type ClosestThumbEventHandlersOptions = RenameKeysWithPrefix<
  * @remarks \@since 6.0.0
  * @internal
  */
-export const getClostedThumbEventHandlers = (
+export const getClosestThumbEventHandlers = (
   options: ClosestThumbEventHandlersOptions
 ): DraggableEventHandlers<HTMLElement> => {
   const {

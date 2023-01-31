@@ -127,7 +127,7 @@ export interface UserAgentAutoCompleteProps {
   /**
    * Set this to enable additional autocompletion suggestions for a user for
    * different form fields. Using this prop will update the
-   * {@link InputAutocompletePropsname} and {@link autoComplete} to default to
+   * {@link UserAgentAutoCompleteProps.name} and {@link autoComplete} to default to
    * this value.
    *
    * @example

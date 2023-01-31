@@ -209,10 +209,10 @@ export function useTheme(
  * @throws "The `ThemeProvider` has not been initialized."
  */
 export function useTheme(
-  allowUndefed?: boolean
+  allowUndefined?: boolean
 ): Readonly<ThemeContext> | undefined {
   const theme = useContext(context);
-  if (!theme && !allowUndefed) {
+  if (!theme && !allowUndefined) {
     throw new Error("The `ThemeProvider` has not been initialized.");
   }
 

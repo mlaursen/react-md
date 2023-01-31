@@ -56,7 +56,7 @@ export interface RadioGroupOptions<T extends string | number> {
 
   /**
    * If the radio group has {@link required} set to `true`, the radios will gain
-   * the `error` state if a form is submitted wiithout a checked radio. If you
+   * the `error` state if a form is submitted without a checked radio. If you
    * want to prevent that behavior for some reason, you can provide this
    * function and call `event.stopPropagation()`.
    *

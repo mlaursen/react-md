@@ -32,7 +32,7 @@ const styles = bem("rmd-input-toggle");
  * - `"normal"` - `$input-toggle-large-size`
  * - `"large"` - `$input-toggle-large-size`
  *
- * When this is set to `"auto"`, the size will be determinated by the current
+ * When this is set to `"auto"`, the size will be determined by the current
  * `font-size` of the `Label` element.
  *
  * @remarks \@since 6.0.0

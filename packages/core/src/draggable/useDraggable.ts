@@ -46,7 +46,7 @@ export type DraggableMouseEventHandlers<E extends HTMLElement> = Pick<
 /**
  * @remarks \@since 6.0.0
  */
-export type DraggableKeyboardEventHanders<E extends HTMLElement> = Pick<
+export type DraggableKeyboardEventHandlers<E extends HTMLElement> = Pick<
   HTMLAttributes<E>,
   "onKeyDown"
 >;
@@ -57,7 +57,7 @@ export type DraggableKeyboardEventHanders<E extends HTMLElement> = Pick<
 export type DraggableEventHandlers<E extends HTMLElement> =
   DraggableTouchEventHandlers<E> &
     DraggableMouseEventHandlers<E> &
-    DraggableKeyboardEventHanders<E>;
+    DraggableKeyboardEventHandlers<E>;
 
 /**
  * @remarks \@since 6.0.0
@@ -220,7 +220,7 @@ export interface ControlledDraggableImplementation<E extends HTMLElement>
   extends Required<DraggableEventHandlers<E>> {
   mouseEventHandlers: Required<DraggableMouseEventHandlers<E>>;
   touchEventHandlers: Required<DraggableTouchEventHandlers<E>>;
-  keyboardEventHandlers: Required<DraggableKeyboardEventHanders<E>>;
+  keyboardEventHandlers: Required<DraggableKeyboardEventHandlers<E>>;
 
   /**
    * This will be `true` when the user is dragging the element through mouse or
@@ -617,7 +617,7 @@ export function useDraggable<E extends HTMLElement>(
       [disabled, isTouch, onMouseUp]
     ),
   };
-  const keyboardEventHandlers: Required<DraggableKeyboardEventHanders<E>> = {
+  const keyboardEventHandlers: Required<DraggableKeyboardEventHandlers<E>> = {
     onKeyDown: useCallback(
       (event) => {
         onKeyDown(event);

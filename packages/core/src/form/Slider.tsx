@@ -351,7 +351,7 @@ export const Slider = forwardRef<
   const {
     onKeyDown: thumb1OnKeyDown,
     onMouseUp: thumb1OnMouseUp,
-    onMouseDown: thumb1OnMousDown,
+    onMouseDown: thumb1OnMouseDown,
     onMouseMove: thumb1OnMouseMove,
     onTouchStart: thumb1OnTouchStart,
     onTouchMove: thumb1OnTouchMove,
@@ -401,7 +401,7 @@ export const Slider = forwardRef<
   const {
     onKeyDown: thumb2OnKeyDown,
     onMouseUp: thumb2OnMouseUp,
-    onMouseDown: thumb2OnMousDown,
+    onMouseDown: thumb2OnMouseDown,
     onMouseMove: thumb2OnMouseMove,
     onTouchStart: thumb2OnTouchStart,
     onTouchMove: thumb2OnTouchMove,
@@ -461,7 +461,7 @@ export const Slider = forwardRef<
         thumb1Dragging={thumb1Dragging}
         thumb1DragPercentage={thumb1DragPercentage}
         thumb1OnMouseUp={thumb1OnMouseUp}
-        thumb1OnMouseDown={thumb1OnMousDown}
+        thumb1OnMouseDown={thumb1OnMouseDown}
         thumb1OnMouseMove={thumb1OnMouseMove}
         thumb1OnTouchStart={thumb1OnTouchStart}
         thumb1OnTouchMove={thumb1OnTouchMove}
@@ -470,7 +470,7 @@ export const Slider = forwardRef<
         thumb2Dragging={thumb2Dragging}
         thumb2DragPercentage={thumb2DragPercentage}
         thumb2OnMouseUp={thumb2OnMouseUp}
-        thumb2OnMouseDown={thumb2OnMousDown}
+        thumb2OnMouseDown={thumb2OnMouseDown}
         thumb2OnMouseMove={thumb2OnMouseMove}
         thumb2OnTouchStart={thumb2OnTouchStart}
         thumb2OnTouchMove={thumb2OnTouchMove}

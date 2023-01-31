@@ -1,7 +1,7 @@
 import type { Ref, RefCallback } from "react";
 import type {
   DraggableImplementation,
-  DraggableKeyboardEventHanders,
+  DraggableKeyboardEventHandlers,
   DraggableMouseEventHandlers,
   DraggableTouchEventHandlers,
   UncontrolledDraggableOptions,
@@ -36,7 +36,7 @@ export interface WindowSplitterOptions<E extends HTMLElement>
  */
 export interface WindowSplitterWidgetProps<E extends HTMLElement>
   extends Required<DraggableMouseEventHandlers<E>>,
-    Required<DraggableKeyboardEventHanders<E>> {
+    Required<DraggableKeyboardEventHandlers<E>> {
   "aria-orientation": "vertical" | undefined;
   "aria-valuenow": number;
   "aria-valuemin": number;
