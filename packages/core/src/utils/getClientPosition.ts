@@ -2,7 +2,7 @@
  * @internal
  * @remarks \@since 6.0.0
  */
-export interface ClientEventPosition {
+export interface ClientPositionMouseEvent {
   clientX: number;
   clientY: number;
 }
@@ -11,18 +11,22 @@ export interface ClientEventPosition {
  * @internal
  * @remarks \@since 6.0.0
  */
-export interface ClientTouchEventPosition {
+export interface ClientPositionTouchEvent {
   changedTouches: {
-    item(index: number): ClientEventPosition | null;
+    [index: number]: ClientPositionMouseEvent;
   };
 }
+
+export type ClientPositionEvent =
+  | ClientPositionMouseEvent
+  | ClientPositionTouchEvent;
 
 /**
  * @internal
  * @remarks \@since 6.0.0
  */
 export interface ClientPositionOptions {
-  event: ClientEventPosition | ClientTouchEventPosition;
+  event: ClientPositionEvent;
   vertical: boolean;
 }
 
@@ -39,5 +43,5 @@ export const getClientPosition = (options: ClientPositionOptions): number => {
   }
 
   // this should pretty much always be defined
-  return event.changedTouches.item(0)?.[key] || 0;
+  return event.changedTouches[0]?.[key] || 0;
 };

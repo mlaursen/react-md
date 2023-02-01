@@ -14,13 +14,11 @@ import type {
   LocalStorageHookReturnValue,
 } from "../useLocalStorage";
 import { useLocalStorage } from "../useLocalStorage";
-import type { ClientEventPosition, ClientTouchEventPosition } from "../utils";
 import { getRangeSteps, nearest, withinRange } from "../utils";
 import {
-  getDragPosition,
-  getRelativeDragPosition,
   isMouseDragStartEvent,
   isTouchDragStartEvent,
+  updateDragPosition,
 } from "./utils";
 
 const noop = (): void => {
@@ -65,6 +63,12 @@ export type DraggableEventHandlers<E extends HTMLElement> =
 export interface BaseDraggableOptions<E extends HTMLElement>
   extends DraggableEventHandlers<E> {
   /**
+   * An optional ref to merge with the returned
+   * {@link DraggableImplementation.draggableRef}.
+   */
+  ref?: Ref<E>;
+
+  /**
    * The minimum number of pixels allowed for the draggable element. This must
    * be a number greater than or equal to 0.
    *
@@ -82,6 +86,13 @@ export interface BaseDraggableOptions<E extends HTMLElement>
    * allowed instead of pixels.
    */
   max: number;
+
+  /**
+   * The amount to increment or decrement the value with arrow keys.
+   *
+   * @defaultValue `1`
+   */
+  step?: number;
 
   /**
    * This was added to support range sliders where there are two (or more)
@@ -119,19 +130,6 @@ export interface BaseDraggableOptions<E extends HTMLElement>
    * @defaultValue `max`
    */
   rangeMax?: number;
-
-  /**
-   * An optional ref to merge with the returned
-   * {@link DraggableImplementation.draggableRef}.
-   */
-  ref?: Ref<E>;
-
-  /**
-   * The amount to increment or decrement the value with arrow keys.
-   *
-   * @defaultValue `1`
-   */
-  step?: number;
 
   /**
    * Set this to `true` to enable dragging vertically instead of horizontally.
@@ -435,42 +433,22 @@ export function useDraggable<E extends HTMLElement>(
       event.preventDefault();
       event.stopPropagation();
 
-      const element = nodeRef.current;
-      if (!element) {
-        return;
-      }
-
-      // firefox defaults to `document.body` while chrome will return `null`
-      const container = element.offsetParent || document.body;
-      if (!withinOffsetParent) {
-        setValue(
-          withinRange({
-            min,
-            max,
-            value: getDragPosition({
-              event,
-              isRTL,
-              vertical,
-              container,
-            }),
-          })
-        );
-
-        return;
-      }
-
-      const { value, dragPercentage } = getRelativeDragPosition({
-        min: rangeMin,
-        max: rangeMax,
-        step,
+      updateDragPosition({
         event,
+        nodeRef,
+        min,
+        max,
+        step,
+        rangeMin,
+        rangeMax,
         isRTL,
+        isDragStart: false,
         vertical,
-        container,
+        setValue,
+        setDragging,
+        setDragPercentage,
+        withinOffsetParent,
       });
-
-      setValue(value);
-      setDragPercentage(dragPercentage);
     };
 
     const stopDragging = (event: MouseEvent | TouchEvent): void => {
@@ -534,48 +512,6 @@ export function useDraggable<E extends HTMLElement>(
     }
   }, [dragging, persist]);
 
-  const updateWithinOffsetParent = useCallback(
-    (event: ClientEventPosition | ClientTouchEventPosition) => {
-      const element = nodeRef.current;
-      if (!element) {
-        return;
-      }
-
-      element.focus({ preventScroll: true });
-      if (!withinOffsetParent && !("changedTouches" in event)) {
-        return;
-      }
-
-      const container = element.offsetParent || document.body;
-      const { value, dragPercentage } = getRelativeDragPosition({
-        min: rangeMin,
-        max: rangeMax,
-        step,
-        event,
-        isRTL,
-        vertical,
-        container,
-      });
-
-      // unlike the other flow, start dragging immediately so that you can
-      // trigger a mousedown or touchstart event on the container element and
-      // drag until the user lets go
-      setValue(value);
-      setDragging(true);
-      setDragPercentage(dragPercentage);
-    },
-    [
-      isRTL,
-      nodeRef,
-      rangeMax,
-      rangeMin,
-      setValue,
-      step,
-      vertical,
-      withinOffsetParent,
-    ]
-  );
-
   const mouseEventHandlers: Required<DraggableMouseEventHandlers<E>> = {
     onMouseDown: useCallback(
       (event) => {
@@ -586,12 +522,41 @@ export function useDraggable<E extends HTMLElement>(
 
         // dont' allow text to be selected
         event.preventDefault();
-        updateWithinOffsetParent(event);
+        updateDragPosition({
+          isDragStart: true,
+          event,
+          nodeRef,
+          min,
+          max,
+          step,
+          rangeMin,
+          rangeMax,
+          isRTL,
+          vertical,
+          setValue,
+          setDragging,
+          setDragPercentage,
+          withinOffsetParent,
+        });
 
         // don't set dragging immediately so that click events can still happen
         draggingRef.current = true;
       },
-      [disabled, isTouch, onMouseDown, updateWithinOffsetParent]
+      [
+        disabled,
+        isRTL,
+        isTouch,
+        max,
+        min,
+        nodeRef,
+        onMouseDown,
+        rangeMax,
+        rangeMin,
+        setValue,
+        step,
+        vertical,
+        withinOffsetParent,
+      ]
     ),
     onMouseMove: useCallback(
       (event) => {
@@ -600,10 +565,40 @@ export function useDraggable<E extends HTMLElement>(
           return;
         }
 
-        updateWithinOffsetParent(event);
+        updateDragPosition({
+          isDragStart: true,
+          event,
+          nodeRef,
+          min,
+          max,
+          step,
+          rangeMin,
+          rangeMax,
+          isRTL,
+          vertical,
+          setValue,
+          setDragging,
+          setDragPercentage,
+          withinOffsetParent,
+        });
         setDragging(true);
       },
-      [disabled, dragging, isTouch, onMouseMove, updateWithinOffsetParent]
+      [
+        disabled,
+        dragging,
+        isRTL,
+        isTouch,
+        max,
+        min,
+        nodeRef,
+        onMouseMove,
+        rangeMax,
+        rangeMin,
+        setValue,
+        step,
+        vertical,
+        withinOffsetParent,
+      ]
     ),
     onMouseUp: useCallback(
       (event) => {
@@ -670,22 +665,78 @@ export function useDraggable<E extends HTMLElement>(
         }
 
         draggingRef.current = true;
-        updateWithinOffsetParent(event);
+        updateDragPosition({
+          isDragStart: true,
+          event,
+          nodeRef,
+          min,
+          max,
+          step,
+          rangeMin,
+          rangeMax,
+          isRTL,
+          vertical,
+          setValue,
+          setDragging,
+          setDragPercentage,
+          withinOffsetParent,
+        });
       },
-      [disabled, onTouchStart, updateWithinOffsetParent]
+      [
+        disabled,
+        isRTL,
+        max,
+        min,
+        nodeRef,
+        onTouchStart,
+        rangeMax,
+        rangeMin,
+        setValue,
+        step,
+        vertical,
+        withinOffsetParent,
+      ]
     ),
     onTouchMove: useCallback(
       (event) => {
         onTouchMove(event);
-        if (disabled || !draggingRef.current) {
+        if (disabled || !draggingRef.current || !event.cancelable) {
           return;
         }
 
         // prevent the document's touchmove event from also firing
         event.stopPropagation();
-        updateWithinOffsetParent(event);
+        updateDragPosition({
+          isDragStart: true,
+          event,
+          nodeRef,
+          min,
+          max,
+          step,
+          rangeMin,
+          rangeMax,
+          isRTL,
+          vertical,
+          setValue,
+          setDragging,
+          setDragPercentage,
+          withinOffsetParent,
+        });
       },
-      [disabled, onTouchMove, updateWithinOffsetParent]
+      [
+        disabled,
+        isRTL,
+        max,
+        min,
+        nodeRef,
+        onTouchMove,
+        rangeMax,
+        rangeMin,
+        setValue,
+        step,
+        vertical,
+        withinOffsetParent,
+      ]
     ),
   };
 

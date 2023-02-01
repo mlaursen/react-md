@@ -6,7 +6,7 @@ import type {
   UncontrolledDraggableImplementation,
 } from "../draggable";
 import type { RenameKeysWithPrefix } from "../types";
-import type { ClientEventPosition, ClientTouchEventPosition } from "../utils";
+import type { ClientPositionEvent } from "../utils";
 import { getClientPosition, getPercentage, getRangeSteps } from "../utils";
 
 /**
@@ -95,9 +95,7 @@ export const getClosestThumbEventHandlers = (
     };
   }
 
-  const isThumbOneClosest = (
-    event: ClientEventPosition | ClientTouchEventPosition
-  ): boolean => {
+  const isThumbOneClosest = (event: ClientPositionEvent): boolean => {
     if (thumb2Dragging) {
       return false;
     }
