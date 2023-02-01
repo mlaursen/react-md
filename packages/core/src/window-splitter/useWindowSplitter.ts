@@ -116,29 +116,16 @@ export function useWindowSplitter<E extends HTMLElement>(
 ): WindowSplitterImplementation<E> {
   const {
     id: propId,
-    ref: propRef,
     min,
     max,
-    step = 1,
-    vertical = false,
-    defaultValue,
+    vertical,
     onKeyDown = noop,
-    onMouseUp = noop,
-    onMouseDown = noop,
-    onMouseMove = noop,
-    localStorageKey = "",
-    localStorageManual,
-    disableDraggingClassName = false,
+    withinOffsetParent,
   } = options;
 
   const id = useEnsuredId(propId, "splitter");
   const draggableImplementation = useDraggable({
-    ref: propRef,
-    min,
-    max,
-    step,
-    vertical,
-    defaultValue,
+    ...options,
     onKeyDown(event) {
       onKeyDown(event);
 
@@ -148,12 +135,6 @@ export function useWindowSplitter<E extends HTMLElement>(
         // TODO
       }
     },
-    onMouseUp,
-    onMouseDown,
-    onMouseMove,
-    localStorageKey,
-    localStorageManual,
-    disableDraggingClassName,
   });
   const {
     value,
@@ -164,9 +145,10 @@ export function useWindowSplitter<E extends HTMLElement>(
     keyboardEventHandlers,
   } = draggableImplementation;
 
-  const percentage = dragging
-    ? dragPercentage
-    : getPercentage({ min, max, value });
+  const percentage =
+    dragging && withinOffsetParent
+      ? dragPercentage
+      : getPercentage({ min, max, value });
 
   return {
     ...draggableImplementation,
