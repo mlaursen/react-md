@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CardHeader should allow addons before and after the children 1`] = `
-<header
+<div
   class="rmd-card__header rmd-card__header--surrounded"
   data-testid="header"
 >
@@ -32,11 +32,11 @@ exports[`CardHeader should allow addons before and after the children 1`] = `
       class="rmd-ripple-container"
     />
   </button>
-</header>
+</div>
 `;
 
 exports[`CardHeader should apply the correct styling, HTML attributes, and allow a ref 1`] = `
-<header
+<div
   class="rmd-card__header"
   data-testid="header"
 >
@@ -45,11 +45,11 @@ exports[`CardHeader should apply the correct styling, HTML attributes, and allow
   >
     Header
   </div>
-</header>
+</div>
 `;
 
 exports[`CardHeader should apply the correct styling, HTML attributes, and allow a ref 2`] = `
-<header
+<div
   class="rmd-card__header custom-class-name"
   data-testid="header"
   style="color: white;"
@@ -59,11 +59,11 @@ exports[`CardHeader should apply the correct styling, HTML attributes, and allow
   >
     Header
   </div>
-</header>
+</div>
 `;
 
 exports[`CardHeader should apply the correct styling, HTML attributes, and allow a ref 3`] = `
-<header
+<div
   class="rmd-card__header"
   data-testid="header"
   style=""
@@ -74,5 +74,5 @@ exports[`CardHeader should apply the correct styling, HTML attributes, and allow
   >
     Header
   </div>
-</header>
+</div>
 `;

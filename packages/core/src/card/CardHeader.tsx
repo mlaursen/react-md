@@ -40,6 +40,7 @@ export interface CardHeaderProps extends HTMLAttributes<HTMLDivElement> {
  * {@link contentProps}.
  * \@since 6.0.0 No longer uses the `TextIconSpacing` component and instead
  * relies on the CSS `gap` for spacing.
+ * \@since 6.0.0 Renders as a `<div>` instead of a `<header>`
  */
 export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
   function CardHeader(props, ref) {
@@ -53,7 +54,7 @@ export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
     } = props;
 
     return (
-      <header
+      <div
         {...remaining}
         ref={ref}
         className={cardHeader({
@@ -70,7 +71,7 @@ export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
           {children}
         </div>
         {afterAddon}
-      </header>
+      </div>
     );
   }
 );
