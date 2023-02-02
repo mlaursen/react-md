@@ -6,7 +6,7 @@
 Create an accessible React application with the
 [material design specifications](https://material.io/design/) and SCSS.
 
-## [Full Documentation](https://react-md.dev)
+## [Full Documentation (Preview)](https://next.react-md.dev)
 
 ### Highlights/Features
 

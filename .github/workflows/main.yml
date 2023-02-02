@@ -30,8 +30,7 @@ jobs:
       - run: pnpm lint
       - run: pnpm typecheck
       - run: pnpm test -- --coverage
-      # don't care about codecov at this stage
-      # - run: npx codecov -t ${{ secrets.CODECOV_TOKEN }}
+      - run: npx codecov -t ${{ secrets.CODECOV_TOKEN }}
 
   # validate_matrix:
   #   name: Validate Using Node Matrix
