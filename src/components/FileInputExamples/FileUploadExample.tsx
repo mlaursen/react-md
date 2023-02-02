@@ -1,3 +1,4 @@
+import type { FileUploadOptions } from "@react-md/core";
 import {
   Box,
   Button,
@@ -13,7 +14,7 @@ import { FilePreview } from "../FilePreview";
 import { FileUploadErrorModal } from "../FileUploadErrorModal";
 import styles from "./FileUploadExample.module.scss";
 
-const extensions = [
+export const EXTENSIONS = [
   "svg",
   "jpeg",
   "jpg",
@@ -27,14 +28,22 @@ const extensions = [
   "mov",
 ] as const;
 
-const FOUR_HUNDRED_MB = 400 * 1024 * 1024;
-const maxFiles = 10;
+export const FOUR_HUNDRED_MB = 400 * 1024 * 1024;
+export const MAX_FILES = 10;
 
-export function FileUploadExample(): ReactElement {
+export type FileUploadExampleProps = Partial<FileUploadOptions<HTMLElement>>;
+
+export function FileUploadExample(props: FileUploadExampleProps): ReactElement {
+  const {
+    maxFiles = MAX_FILES,
+    maxFileSize = FOUR_HUNDRED_MB,
+    extensions = EXTENSIONS,
+  } = props;
   const { stats, errors, onChange, clearErrors, reset, remove, accept } =
     useFileUpload({
+      ...props,
       maxFiles,
-      maxFileSize: FOUR_HUNDRED_MB,
+      maxFileSize,
       extensions,
     });
 

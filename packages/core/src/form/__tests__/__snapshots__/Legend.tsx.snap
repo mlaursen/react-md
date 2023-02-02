@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Legend should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<legend
+  class="rmd-typography rmd-typography--body-1 rmd-legend"
+  data-testid="fieldset"
+>
+  Content
+</legend>
+`;
+
+exports[`Legend should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<legend
+  class="rmd-typography rmd-typography--body-1 rmd-legend custom-class-name"
+  data-testid="fieldset"
+  style="color: white;"
+>
+  Content
+</legend>
+`;
+
+exports[`Legend should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+<legend
+  class="rmd-typography rmd-typography--body-1 rmd-legend rmd-sr-only"
+  data-testid="fieldset"
+  style=""
+>
+  Content
+</legend>
+`;

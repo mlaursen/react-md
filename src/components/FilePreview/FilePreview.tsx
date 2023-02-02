@@ -18,6 +18,7 @@ import InsertDriveFileIcon from "@react-md/material-icons/InsertDriveFileIcon";
 import { cnb } from "cnbuilder";
 import { filesize } from "filesize";
 import type { HTMLAttributes, ReactElement } from "react";
+import { useId } from "react";
 
 import styles from "./FilePreview.module.scss";
 import { Preview } from "./Preview";
@@ -41,9 +42,15 @@ export function FilePreview({
   ...props
 }: FilePreviewProps): ReactElement {
   const { name, size } = file;
+  const titleId = useId();
 
   return (
-    <Card {...props} className={cnb(styles.container, className)}>
+    <Card
+      {...props}
+      aria-labelledby={titleId}
+      role="region"
+      className={cnb(styles.container, className)}
+    >
       <CardHeader
         afterAddon={
           <Button
@@ -55,7 +62,7 @@ export function FilePreview({
           </Button>
         }
       >
-        <CardTitle type="subtitle-2" disableLineWrap>
+        <CardTitle id={titleId} type="subtitle-2" disableLineWrap>
           {name}
         </CardTitle>
         <CardSubtitle>{filesize(size).toString()}</CardSubtitle>

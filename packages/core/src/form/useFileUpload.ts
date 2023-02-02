@@ -276,11 +276,6 @@ export function useFileUpload<E extends HTMLElement, CustomError = never>({
           };
         case "start": {
           const { key, reader } = action;
-          /* istanbul ignore next */
-          if (!state.stats[key]) {
-            throw new Error(`Missing file with key "${key}"`);
-          }
-
           const fileStats: ProcessingFileUploadStats = {
             key,
             file: state.stats[key].file,
@@ -302,11 +297,6 @@ export function useFileUpload<E extends HTMLElement, CustomError = never>({
         }
         case "progress": {
           const { key, progress } = action;
-          /* istanbul ignore next */
-          if (!state.stats[key]) {
-            throw new Error(`Missing file with key "${key}"`);
-          }
-
           return {
             ...state,
             stats: {
@@ -320,11 +310,6 @@ export function useFileUpload<E extends HTMLElement, CustomError = never>({
         }
         case "complete": {
           const { key, result } = action;
-          /* istanbul ignore next */
-          if (!state.stats[key]) {
-            throw new Error(`Missing file with key "${key}"`);
-          }
-
           const file: CompletedFileUploadStats = {
             key,
             file: state.stats[key].file,
@@ -345,9 +330,6 @@ export function useFileUpload<E extends HTMLElement, CustomError = never>({
         }
         case "clearErrors":
           return { ...state, errors: [] };
-        default:
-          /* istanbul ignore next */
-          return state;
       }
     },
     {

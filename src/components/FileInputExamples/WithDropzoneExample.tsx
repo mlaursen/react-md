@@ -22,7 +22,7 @@ import FileUploadIcon from "@react-md/material-icons/FileUploadIcon";
 import WatchIcon from "@react-md/material-icons/WatchIcon";
 import { cnb } from "cnbuilder";
 import { filesize } from "filesize";
-import type { ReactElement } from "react";
+import type { DragEventHandler, ReactElement } from "react";
 import { FileUploadErrorModal } from "../FileUploadErrorModal";
 import styles from "./WithDropzoneExample.module.scss";
 
@@ -43,7 +43,13 @@ const extensions = [
 const maxFiles = 5;
 const MAX_UPLOAD_SIZE = 5 * 1000 * 1000;
 
-export function WithDropzoneExample(): ReactElement {
+export interface WithDropzoneExampleProps {
+  onDrop?: DragEventHandler;
+}
+
+export function WithDropzoneExample(
+  props: WithDropzoneExampleProps
+): ReactElement {
   const {
     stats,
     errors,
@@ -56,6 +62,7 @@ export function WithDropzoneExample(): ReactElement {
     totalBytes,
     totalFiles,
   } = useFileUpload({
+    ...props,
     concurrency: 1,
     maxFiles,
     maxFileSize: MAX_UPLOAD_SIZE,

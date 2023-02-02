@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Fieldset should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<fieldset
+  class="rmd-fieldset rmd-fieldset--unstyled"
+  data-testid="fieldset"
+>
+  <legend
+    class="rmd-typography rmd-typography--body-1 rmd-legend"
+  >
+    I am Legend
+  </legend>
+</fieldset>
+`;
+
+exports[`Fieldset should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<fieldset
+  class="rmd-fieldset rmd-fieldset--unstyled custom-class-name"
+  data-testid="fieldset"
+  style="color: white;"
+>
+  <legend
+    class="rmd-typography rmd-typography--body-1 rmd-legend"
+  >
+    I am Legend
+  </legend>
+</fieldset>
+`;
+
+exports[`Fieldset should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+<fieldset
+  class="rmd-fieldset"
+  data-testid="fieldset"
+  style=""
+>
+  <legend
+    class="rmd-typography rmd-typography--body-1 rmd-legend"
+  >
+    I am Legend
+  </legend>
+</fieldset>
+`;
+
+exports[`Fieldset should apply the correct styling, HTML attributes, and allow a ref 4`] = `
+<fieldset
+  class="rmd-fieldset rmd-fieldset--unstyled rmd-fieldset--full-width"
+  data-testid="fieldset"
+  style=""
+>
+  <legend
+    class="rmd-typography rmd-typography--body-1 rmd-legend"
+  >
+    I am Legend
+  </legend>
+</fieldset>
+`;
+
+exports[`Fieldset styling utility class should be callable without any arguments 1`] = `"rmd-fieldset rmd-fieldset--unstyled"`;

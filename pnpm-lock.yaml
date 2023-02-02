@@ -161,10 +161,13 @@ importers:
   packages/core:
     specifiers:
       cnbuilder: ^3.1.0
+      filesize: ^10.0.6
       nanoid: ^4.0.0
     dependencies:
       cnbuilder: 3.1.0
       nanoid: 4.0.0
+    devDependencies:
+      filesize: 10.0.6
 
   packages/material-icons:
     specifiers:
@@ -5111,7 +5114,6 @@ packages:
   /filesize/10.0.6:
     resolution: {integrity: sha512-rzpOZ4C9vMFDqOa6dNpog92CoLYjD79dnjLk2TYDDtImRIyLTOzqojCb05Opd1WuiWjs+fshhCgTd8cl7y5t+g==}
     engines: {node: '>= 10.4.0'}
-    dev: false
 
   /fill-range/7.0.1:
     resolution: {integrity: sha512-qOo9F+dMUmC2Lcb4BbVvnKJxTPjCm+RRpe4gDuGrzkL7mEVl/djYSu2OdQ2Pa302N4oqkSg9ir6jaLWJ2USVpQ==}
