@@ -10,7 +10,7 @@ $disable-absolute-position: false !default;
 
 $window-splitter-size: 1rem !default;
 $window-splitter-background-size: 0.25rem !default;
-$window-splitter-background-color: interaction.get-var(outline-color) !default;
+$window-splitter-background-color: interaction.get-var(focus-color) !default;
 $window-splitter-z-index: 30 !default;
 
 $var-lookup: (

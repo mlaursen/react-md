@@ -87,10 +87,7 @@ $var-lookup: (
       // nicely with block-like elements
       @include utils.keyboard-only {
         &:focus {
-          @include interaction.set-var(
-            outline-color,
-            interaction.$outline-color
-          );
+          @include interaction.set-var(focus-color, interaction.$focus-color);
         }
       }
       @include interaction.outline;

@@ -63,24 +63,6 @@ $var-lookup: (
   #{$property}: get-var($name, $fallback);
 }
 
-@mixin _theme($theme-name, $theme-color, $on-theme) {
-  @if sassList.index($themes, $theme-name) {
-    @if not $disable-contained {
-      &--#{$theme-name} {
-        @include set-var(background-color, $theme-color);
-        @include set-var(color, $on-theme);
-      }
-    }
-
-    &--text-#{$theme-name} {
-      @include set-var(color, $theme-color);
-      @if not $disable-outline {
-        @include set-var(outline-color, $theme-color);
-      }
-    }
-  }
-}
-
 @mixin styles {
   .rmd-tree {
     display: block;

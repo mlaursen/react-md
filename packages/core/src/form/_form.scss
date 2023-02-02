@@ -62,7 +62,7 @@ $disable-textarea-resize-vertical: $disable-everything !default;
 
 $error-color: theme.theme-get-var(error-color) !default;
 $active-color: theme.theme-get-var(secondary-color) !default;
-$focused-color: interaction.$outline-color !default;
+$focus-color: interaction.$focus-color !default;
 $disabled-color: theme.theme-get-var(text-disabled-color) !default;
 
 $label-gap: icon.$spacing !default;
@@ -234,9 +234,9 @@ $var-lookup: (
     var: --rmd-form-active-color,
     value: $active-color,
   ),
-  focused-color: (
-    var: --rmd-form-focused-color,
-    value: $focused-color,
+  focus-color: (
+    var: --rmd-form-focus-color,
+    value: $focus-color,
   ),
   disabled-color: (
     var: --rmd-form-disabled-color,
@@ -438,7 +438,7 @@ $var-lookup: (
         background-color,
         interaction-get-var(focus-background-color)
       );
-      @include interaction.set-var(outline-color, interaction.$outline-color);
+      @include interaction.set-var(focus-color, interaction.$focus-color);
     }
   }
 }
@@ -518,7 +518,7 @@ $var-lookup: (
     }
 
     #{$active-selector} {
-      @include use-var(color, focused-color);
+      @include use-var(color, focus-color);
     }
 
     &--error {
@@ -648,7 +648,7 @@ $var-lookup: (
         @include icon.set-var(color, get-var(error-color));
       }
       @include set-var(active-color, get-var(error-color));
-      @include set-var(focused-color, get-var(error-color));
+      @include set-var(focus-color, get-var(error-color));
 
       @if not
         $disable-text-field-underlined-theme or not
@@ -694,7 +694,7 @@ $var-lookup: (
             0
             0
             $text-field-border-width-active
-            get-var(focused-color);
+            get-var(focus-color);
           opacity: 0;
           transition: opacity transition.$linear-duration;
         }
@@ -748,7 +748,7 @@ $var-lookup: (
         }
 
         &::after {
-          @include use-var(background-color, focused-color);
+          @include use-var(background-color, focus-color);
 
           bottom: -$text-field-border-width;
           content: "";

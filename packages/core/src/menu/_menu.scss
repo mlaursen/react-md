@@ -70,11 +70,11 @@ $var-lookup: (
       @include utils.keyboard-only {
         &--outline:focus {
           // Note: Do not use the `interaction-outline` mixin +
-          // `interaction-set-var(interaction.$outline-color)` like normal focus
+          // `interaction.set-var(interaction.$focus-color)` like normal focus
           // elements since it'll make all focusable children update with the
           // outline color as well
-          outline: interaction.get-var(outline-color) solid
-            interaction.get-var(outline-width);
+          outline: interaction.get-var(focus-color) solid
+            interaction.get-var(focus-width);
         }
       }
     }
@@ -107,7 +107,7 @@ $var-lookup: (
           background-color,
           interaction.get-var(focus-background-color)
         );
-        @include interaction.set-var(outline-color, interaction.$outline-color);
+        @include interaction.set-var(focus-color, interaction.$focus-color);
       }
     }
   }
