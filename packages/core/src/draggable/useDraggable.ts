@@ -420,11 +420,13 @@ export function useDraggable<E extends HTMLElement>(
     )
   );
 
+  const draggedOnce = useRef(false);
   useEffect(() => {
     if (!dragging) {
       return;
     }
 
+    draggedOnce.current = true;
     const updatePosition = (event: MouseEvent | TouchEvent): void => {
       if (!event.cancelable) {
         return;
@@ -507,7 +509,7 @@ export function useDraggable<E extends HTMLElement>(
   }, [max, min, setValue, step]);
 
   useEffect(() => {
-    if (!dragging && persist) {
+    if (!dragging && persist && draggedOnce.current) {
       persist();
     }
   }, [dragging, persist]);

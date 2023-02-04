@@ -17,8 +17,9 @@ const noop = (): void => {
 /**
  * @remarks \@since 6.0.0
  */
-export interface WindowSplitterOptions<E extends HTMLElement>
-  extends Omit<
+export interface WindowSplitterOptions<
+  E extends HTMLElement = HTMLButtonElement
+> extends Omit<
     UncontrolledDraggableOptions<E>,
     "disableTouch" | keyof DraggableTouchEventHandlers<E>
   > {
@@ -111,7 +112,7 @@ export interface WindowSplitterImplementation<E extends HTMLElement>
  * @remarks \@since 6.0.0
  * @see {@link https://www.w3.org/WAI/ARIA/apg/patterns/windowsplitter/}
  */
-export function useWindowSplitter<E extends HTMLElement>(
+export function useWindowSplitter<E extends HTMLElement = HTMLButtonElement>(
   options: WindowSplitterOptions<E>
 ): WindowSplitterImplementation<E> {
   const {
