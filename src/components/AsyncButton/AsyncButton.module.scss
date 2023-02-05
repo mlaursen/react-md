@@ -1,5 +1,3 @@
-@use "everything";
-
 // hide everything in the button except for the overlay containing the circular
 // progress
 .loading > *:not(.overlay) {

@@ -39,6 +39,7 @@ export * from "./transition";
 export * from "./tree";
 export * from "./types";
 export * from "./typography";
+export * from "./useAsyncAction";
 export * from "./useDropzone";
 export * from "./useEnsuredId";
 export * from "./useEnsuredRef";

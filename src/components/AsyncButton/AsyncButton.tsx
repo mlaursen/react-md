@@ -1,8 +1,7 @@
 import type { ButtonProps } from "@react-md/core";
-import { box, Button, CircularProgress } from "@react-md/core";
+import { box, Button, CircularProgress, useAsyncAction } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { MouseEvent, ReactElement } from "react";
-import { useEffect, useRef, useState } from "react";
 
 import styles from "./AsyncButton.module.scss";
 
@@ -11,35 +10,20 @@ export interface AsyncButtonProps extends ButtonProps {
 }
 
 export function AsyncButton(props: AsyncButtonProps): ReactElement {
-  const { onClick, children, theme, className, ...remaining } = props;
-  const [loading, setLoading] = useState(false);
-  const unmounted = useRef(false);
-  useEffect(() => {
-    unmounted.current = false;
-    return () => {
-      unmounted.current = true;
-    };
-  }, []);
+  const { onClick, children, theme, className, disabled, ...remaining } = props;
+  const { handleAsync, pending } = useAsyncAction({ disabled });
 
   return (
     <Button
       {...remaining}
-      className={cnb(loading && styles.loading, className)}
-      theme={loading ? "disabled" : theme}
-      onClick={async (event) => {
-        if (loading) {
-          return;
-        }
-
-        setLoading(true);
-        await onClick(event);
-        if (!unmounted.current) {
-          setLoading(false);
-        }
-      }}
+      aria-disabled={pending || undefined}
+      disabled={disabled}
+      className={cnb(pending && styles.loading, className)}
+      theme={pending ? "disabled" : theme}
+      onClick={handleAsync(onClick)}
     >
       {children}
-      {loading && (
+      {pending && (
         <span
           className={box({
             align: "center",
