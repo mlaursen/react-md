@@ -49,8 +49,8 @@ export interface LayoutMainProps extends HTMLAttributes<HTMLDivElement> {
 
   /**
    * Boolean if the mini layout is currently hidden to help determine if
-   * specific mini styles should be applied when the {@link LayoutContext.fixedAppBar}
-   * config is `false`.
+   * specific mini styles should be applied when the {@link LayoutContext.appBarPosition}
+   * config is `""`.
    *
    * @internal
    * @remarks \@since 2.8.3
@@ -112,7 +112,7 @@ export const LayoutMain = forwardRef<HTMLDivElement, LayoutMainProps>(
       tabIndex = -1;
     }
 
-    const { layout, visible, fixedAppBar } = useLayoutConfig();
+    const { layout, visible, appBarPosition } = useLayoutConfig();
     let navOffset = propNavOffset;
     if (typeof navOffset === "undefined") {
       navOffset = visible && !isTemporaryLayout(layout);
@@ -129,11 +129,11 @@ export const LayoutMain = forwardRef<HTMLDivElement, LayoutMainProps>(
       timeout = 0;
     }
 
-    const isMini = mini && (fixedAppBar || miniHidden);
+    const isMini = mini && (!!appBarPosition || miniHidden);
     const isMiniOffset =
       mini &&
       navOffset &&
-      !fixedAppBar &&
+      !appBarPosition &&
       visible &&
       isToggleableLayout(layout);
 

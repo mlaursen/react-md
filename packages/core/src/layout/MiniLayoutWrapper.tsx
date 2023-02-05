@@ -94,7 +94,7 @@ export function MiniLayoutWrapper<
     ...remaining
   } = props;
 
-  const { fixedAppBar, isMiniable } = useLayoutConfig();
+  const { appBarPosition, isMiniable } = useLayoutConfig();
   if ((!mini && !isMiniable) || !treeProps || typeof miniNav !== "undefined") {
     return (
       <>
@@ -123,12 +123,12 @@ export function MiniLayoutWrapper<
       treeProps={miniTreeProps}
       {...remaining}
       mini
-      sticky={!fixedAppBar}
+      sticky={!appBarPosition}
       hidden={miniHidden}
     />
   );
 
-  if (fixedAppBar) {
+  if (appBarPosition) {
     return (
       <>
         {miniNavigation}

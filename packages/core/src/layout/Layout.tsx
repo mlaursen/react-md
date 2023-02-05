@@ -32,8 +32,10 @@ export function Layout<T extends TreeItemNode = LayoutNavigationItem>(
   return (
     <LayoutProvider
       baseId={id}
-      fixedAppBar={
-        props.appBarProps?.fixed ?? typeof props.appBar === "undefined"
+      appBarPosition={
+        props.appBarProps?.position ?? typeof props.appBar === "undefined"
+          ? "fixed"
+          : ""
       }
       phoneLayout={phoneLayout}
       tabletLayout={tabletLayout}

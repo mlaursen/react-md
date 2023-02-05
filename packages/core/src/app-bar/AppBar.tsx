@@ -15,7 +15,15 @@ declare module "react" {
 
 const styles = bem("rmd-app-bar");
 
-export type AppBarPosition = "top" | "bottom";
+/**
+ * @remarks \@since 6.0.0 Renamed from `AppBarPosition` to `AppBarPagePosition`
+ */
+export type AppBarPagePosition = "top" | "bottom";
+
+/**
+ * @remarks \@since 6.0.0
+ */
+export type AppBarPosition = "fixed" | "sticky" | "";
 
 /**
  * - `"clear"` - the background color will be transparent
@@ -50,11 +58,13 @@ export interface AppBarClassNameOptions {
   className?: string;
 
   /**
-   * Set this to `true` if the `AppBar` should use `position: fixed`.
+   * Set this to `"fixed"` or `"sticky"` to set `position: fixed;` or
+   * `position: sticky;` to the app bar. The default position will be static and
+   * inline with other content.
    *
-   * @defaultValue `false`
+   * @defaultValue `''`
    */
-  fixed?: boolean;
+  position?: AppBarPosition;
 
   /**
    * The position within the page to "fix" the `AppBar` when the `fixed` prop is
@@ -62,15 +72,15 @@ export interface AppBarClassNameOptions {
    *
    * @defaultValue `"top"`
    */
-  fixedPosition?: AppBarPosition;
+  pagePosition?: AppBarPagePosition;
 
   /**
-   * Set this to `true` if enabling the {@link fixed} prop should not include
+   * Set this to `true` if enabling the {@link position} prop should not include
    * box-shadow.
    *
    * @defaultValue `false`
    */
-  disableFixedElevation?: boolean;
+  disableElevation?: boolean;
 
   /**
    * The theme to apply to the `AppBar`.
@@ -98,7 +108,7 @@ export interface AppBarClassNameOptions {
   /**
    * Set this to `true` if the app bar's positioning and width should be
    * changed whenever the scrollbar is visible on the page. This defaults to
-   * `true` when the {@link fixed} prop is `true` so that once dialogs and menus
+   * `true` when the {@link position} prop is `true` so that once dialogs and menus
    * become visible the contents in the app bar do not need to be repainted.
    *
    * @remarks \@since 6.0.0
@@ -119,22 +129,22 @@ export function appBar(options: AppBarClassNameOptions = {}): string {
     height = "normal",
     theme = "primary",
     stacked = false,
-    fixed = false,
-    fixedPosition = "top",
-    scrollbarOffset = fixed,
-    disableFixedElevation = false,
+    position = "",
+    pagePosition = "top",
+    scrollbarOffset = !!position,
+    disableElevation = false,
   } = options;
 
   return cnb(
     styles({
       [theme]: theme !== "clear",
       [height]: height !== "normal",
-      fixed,
+      [position]: position,
       stacked,
-      [fixedPosition]: fixed,
-      "fixed-elevation": fixed && !disableFixedElevation,
+      [pagePosition]: position,
+      elevated: position && !disableElevation,
       "scrollbar-offset": scrollbarOffset,
-      "static-scrollbar-offset": !fixed && scrollbarOffset,
+      "static-scrollbar-offset": !position && scrollbarOffset,
     }),
     className
   );
@@ -156,6 +166,8 @@ export type CustomAppBarComponent = ElementType<
  * match naming conventions when a feature is enabled by default.
  * \@since 6.0.0 Removed the `inheritColor` and `flexWrap` props since they are
  * no longer required.
+ * \@since 6.0.0 Removed the `fixed` prop in favor of the new `position` prop
+ * which enables position `fixed` or `sticky` behavior.
  * \@since 6.0.0 Added the {@link stacked} and {@link scrollbarOffset} props.
  */
 export interface AppBarProps
@@ -197,11 +209,11 @@ export const AppBar = forwardRef<HTMLDivElement, AppBarProps>(function AppBar(
     height = "normal",
     theme = "primary",
     stacked = false,
-    fixed = false,
-    fixedPosition = "top",
+    position,
+    pagePosition = "top",
     scrollbarOffset = false,
-    disableFixedElevation = false,
-    as: Component = fixed ? "header" : "div",
+    disableElevation = false,
+    as: Component = position ? "header" : "div",
     children,
     ...remaining
   } = props;
@@ -211,9 +223,9 @@ export const AppBar = forwardRef<HTMLDivElement, AppBarProps>(function AppBar(
       {...remaining}
       className={appBar({
         theme,
-        fixed,
-        fixedPosition,
-        disableFixedElevation,
+        position,
+        pagePosition,
+        disableElevation,
         stacked,
         height,
         className,

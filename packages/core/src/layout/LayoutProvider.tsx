@@ -7,6 +7,7 @@ import {
   useMemo,
   useState,
 } from "react";
+import type { AppBarPosition } from "../app-bar";
 import { useAppSize } from "../AppSizeProvider";
 import { useEnsuredId } from "../useEnsuredId";
 import {
@@ -60,12 +61,11 @@ export interface LayoutContext {
   hideNav(): void;
 
   /**
-   * Boolean if the layout is currently using a fixed app bar which can be
-   * useful for determining specific scroll or layout behavior.
-   *
-   * @remarks \@since 2.8.3
+   * @remarks
+   * \@since 2.8.3
+   * \@since 6.0.0 Changed to be a type union of position types
    */
-  fixedAppBar: boolean;
+  appBarPosition: AppBarPosition;
 
   /**
    * Boolean if one of the layout types are mini. This is mostly used internally
@@ -83,7 +83,7 @@ const context = createContext<LayoutContext>({
   visible: false,
   showNav: noop,
   hideNav: noop,
-  fixedAppBar: true,
+  appBarPosition: "fixed",
   isMiniable: false,
 });
 
@@ -112,10 +112,10 @@ export interface LayoutProviderProps extends LayoutConfiguration {
   children: ReactNode;
 
   /**
-   * @see {@link LayoutContext.fixedAppBar}
+   * @see {@link LayoutContext.appBarPosition}
    * @defaultValue `true`
    */
-  fixedAppBar?: boolean;
+  appBarPosition?: AppBarPosition;
 }
 
 /**
@@ -146,7 +146,7 @@ export function LayoutProvider(props: LayoutProviderProps): ReactElement {
     desktopLayout = DEFAULT_DESKTOP_LAYOUT,
     largeDesktopLayout = desktopLayout,
     defaultToggleableVisible = false,
-    fixedAppBar = true,
+    appBarPosition = "fixed",
     children,
   } = props;
   const appSize = useAppSize();
@@ -197,10 +197,10 @@ export function LayoutProvider(props: LayoutProviderProps): ReactElement {
       visible,
       showNav,
       hideNav,
-      fixedAppBar,
+      appBarPosition,
       isMiniable,
     }),
-    [baseId, layout, visible, showNav, hideNav, fixedAppBar, isMiniable]
+    [baseId, layout, visible, showNav, hideNav, appBarPosition, isMiniable]
   );
 
   return <Provider value={value}>{children}</Provider>;

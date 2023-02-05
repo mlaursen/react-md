@@ -128,7 +128,7 @@ export function LayoutChildren<T extends TreeItemNode = LayoutNavigationItem>({
   children,
 }: LayoutChildrenProps<T>): ReactElement {
   const mainId = mainProps?.id || `${id}-main`;
-  const { layout, visible, fixedAppBar } = useLayoutConfig();
+  const { layout, visible, appBarPosition } = useLayoutConfig();
   const mini = isMiniLayout(layout);
   const [miniHidden, setMiniHidden] = useState(visible);
   // when the layout changes, the hidden state for the mini drawer must also be
@@ -197,7 +197,7 @@ export function LayoutChildren<T extends TreeItemNode = LayoutNavigationItem>({
         closeNavProps={closeNavProps}
       >
         <LayoutMain
-          headerOffset={fixedAppBar}
+          headerOffset={!!appBarPosition}
           mini={mini}
           miniHidden={miniHidden}
           {...mainProps}

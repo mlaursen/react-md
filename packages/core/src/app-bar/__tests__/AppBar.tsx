@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import { createRef } from "react";
 
-import type { AppBarHeight, AppBarPosition } from "../AppBar";
+import type { AppBarHeight, AppBarPagePosition } from "../AppBar";
 import { appBar, AppBar } from "../AppBar";
 import { AppBarTitle } from "../AppBarTitle";
 
@@ -15,7 +15,7 @@ describe("AppBar", () => {
     } as const;
 
     const { getByTestId, rerender } = render(<AppBar {...props} />);
-    const appBar = getByTestId("app-bar");
+    let appBar = getByTestId("app-bar");
     expect(ref.current).toBeInstanceOf(HTMLDivElement);
     expect(ref.current).toBe(appBar);
     expect(appBar).toMatchSnapshot();
@@ -27,15 +27,27 @@ describe("AppBar", () => {
         className="custom-class-name"
       />
     );
+    appBar = getByTestId("app-bar");
     expect(appBar).toMatchSnapshot();
 
-    rerender(<AppBar {...props} fixed />);
+    rerender(<AppBar {...props} position="fixed" />);
+    appBar = getByTestId("app-bar");
     expect(appBar).toMatchSnapshot();
 
-    rerender(<AppBar {...props} fixed disableFixedElevation />);
+    rerender(<AppBar {...props} position="fixed" disableElevation />);
+    appBar = getByTestId("app-bar");
+    expect(appBar).toMatchSnapshot();
+
+    rerender(<AppBar {...props} position="sticky" />);
+    appBar = getByTestId("app-bar");
+    expect(appBar).toMatchSnapshot();
+
+    rerender(<AppBar {...props} position="sticky" disableElevation />);
+    appBar = getByTestId("app-bar");
     expect(appBar).toMatchSnapshot();
 
     rerender(<AppBar {...props} stacked />);
+    appBar = getByTestId("app-bar");
     expect(appBar).toMatchSnapshot();
   });
 
@@ -59,17 +71,17 @@ describe("AppBar", () => {
   });
 
   it("should allow the app bar to be fixed to the top or bottom of the page", () => {
-    const positions: readonly AppBarPosition[] = ["top", "bottom"];
+    const positions: readonly AppBarPagePosition[] = ["top", "bottom"];
     const props = {
       "data-testid": "app-bar",
-      fixed: true,
+      position: "fixed",
     } as const;
     const { getByTestId, rerender } = render(<AppBar {...props} />);
     const appBar = getByTestId("app-bar");
     expect(appBar).toMatchSnapshot();
 
     positions.forEach((position) => {
-      rerender(<AppBar {...props} fixedPosition={position} />);
+      rerender(<AppBar {...props} pagePosition={position} />);
       expect(appBar).toMatchSnapshot();
     });
   });

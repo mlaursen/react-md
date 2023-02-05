@@ -14,7 +14,7 @@ export const LayoutAppBar = forwardRef<HTMLDivElement, LayoutAppBarProps>(
   function LayoutAppBar(props, ref) {
     const {
       children,
-      fixed = true,
+      position = "fixed",
       navToggle: propNavToggle,
       navToggleProps,
       customTitle,
@@ -46,7 +46,7 @@ export const LayoutAppBar = forwardRef<HTMLDivElement, LayoutAppBarProps>(
         id={`${baseId}-header`}
         {...remaining}
         ref={ref}
-        fixed={fixed}
+        position={position}
         scrollbarOffset={scrollbarOffset}
       >
         {nav}

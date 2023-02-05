@@ -10,6 +10,7 @@
 
 $disable-everything: false !default;
 $disable-fixed: false !default;
+$disable-sticky: false !default;
 $disable-primary-theme: false !default;
 $disable-secondary-theme: false !default;
 $disable-surface-theme: $disable-everything !default;
@@ -154,7 +155,7 @@ $var-lookup: (
       padding: $vertical-padding $horizontal-padding;
       width: 100%;
 
-      @if not $disable-fixed {
+      @if not $disable-fixed or not $disable-sticky {
         &--fixed {
           left: 0;
           position: fixed;
@@ -162,7 +163,7 @@ $var-lookup: (
         }
 
         @if $fixed-elevation and $fixed-elevation != 0 {
-          &--fixed-elevation {
+          &--elevated {
             @include box-shadows.box-shadow(
               $fixed-elevation,
               $disable-colors: true
@@ -173,6 +174,12 @@ $var-lookup: (
         @each $position in $fixed-positions {
           &--#{$position} {
             #{$position}: 0;
+          }
+        }
+
+        @if not $disable-sticky {
+          &--sticky {
+            position: sticky;
           }
         }
       }

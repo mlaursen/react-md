@@ -206,9 +206,9 @@ export interface BaseLayoutAppBarProps extends Omit<AppBarProps, "title"> {
    * Boolean if the `AppBar` should be fixed to the top of the page. Unlike the
    * regular `AppBar`, this will be defaulted to `true`
    *
-   * @defaultValue `true`
+   * @defaultValue `"fixed"`
    */
-  fixed?: boolean;
+  position?: AppBarProps["position"];
 }
 
 export interface LayoutAppBarProps

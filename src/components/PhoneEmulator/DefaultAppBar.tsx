@@ -14,8 +14,8 @@ export function DefaultAppBar(): ReactElement {
       theme="clear"
       className={styles.container}
       stacked
-      fixed
-      disableFixedElevation
+      position="fixed"
+      disableElevation
     >
       <StatusBar />
       <AppBar theme="clear">
