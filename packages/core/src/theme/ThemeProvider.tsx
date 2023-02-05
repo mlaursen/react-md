@@ -29,6 +29,26 @@ import {
   warningColorVar,
 } from "./cssVars";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-background-color"?: string;
+    "--rmd-primary-color"?: string;
+    "--rmd-on-primary-color"?: string;
+    "--rmd-secondary-color"?: string;
+    "--rmd-on-secondary-color"?: string;
+    "--rmd-warning-color"?: string;
+    "--rmd-on-warning-color"?: string;
+    "--rmd-error-color"?: string;
+    "--rmd-on-error-color"?: string;
+    "--rmd-success-color"?: string;
+    "--rmd-on-success-color"?: string;
+    "--rmd-text-primary-color"?: string;
+    "--rmd-text-secondary-color"?: string;
+    "--rmd-text-hint-color"?: string;
+    "--rmd-text-disabled-color"?: string;
+  }
+}
+
 /** @remarks \@since 6.0.0 */
 export interface ThemeColors {
   primaryColor: string;

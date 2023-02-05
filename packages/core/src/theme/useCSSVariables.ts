@@ -1,33 +1,113 @@
-import type { CSSProperties } from "react";
 import { useEffect, useMemo } from "react";
-import type { ThemeCssVarName } from "./cssVars";
+import type { CSSVariableName, DefinedCSSVariableNames } from "./types";
 
-export type CSSVariableName = `--${string}`;
-
-export interface CSSVariable<Name extends CSSVariableName = CSSVariableName> {
+/**
+ * @remarks \@since 6.0.0
+ */
+export interface CSSVariable<
+  Name extends CSSVariableName = DefinedCSSVariableNames
+> {
   name: Name;
   value: string | number;
 }
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export type CSSVariablesProperties<
-  Name extends CSSVariableName = CSSVariableName
+  Name extends CSSVariableName = DefinedCSSVariableNames
 > = {
-  [key in Name]: string | number;
+  [key in Name]?: string | number;
 };
 
-export type ThemeCSSVariable = CSSVariable<ThemeCssVarName>;
-export type ThemeCSSVariablesProperties =
-  CSSVariablesProperties<ThemeCssVarName>;
+/**
+ * @remarks \@since 6.0.0
+ */
+export type ReadonlyCSSVariableList<
+  Name extends CSSVariableName = DefinedCSSVariableNames
+> = readonly Readonly<CSSVariable<Name>>[];
 
+/**
+ * @example
+ * Applying Variables the root html element
+ * ```ts
+ * import {
+ *   contrastColor,
+ *   pinkAccent200,
+ *   purple500,
+ *   useCSSVariables,
+ *  } from "@react-md/core";
+ * import { useMemo } from "react";
+ *
+ * function Example(): null {
+ *   // Note: You should use `useMemo` so that the custom variables are not
+ *   // added and removed during each render.
+ *   useCSSVariables(useMemo(() => {
+ *     return [
+ *       {
+ *         name: "--rmd-primary-color",
+ *         value: purple500,
+ *       },
+ *       {
+ *         name: "--rmd-on-primary-color",
+ *         value: contrastColor(purple500),
+ *       },
+ *     ];
+ *   }, []));
+ *
+ *   return null;
+ * }
+ * ```
+ *
+ * @remarks \@since 6.0.0
+ */
 export function useCSSVariables<Name extends CSSVariableName>(
-  variables: readonly Readonly<CSSVariable<Name>>[]
+  variables: ReadonlyCSSVariableList<Name>
 ): void;
+/**
+ * @example
+ * Applying variables through inline styles
+ * ```tsx
+ * import {
+ *   contrastColor,
+ *   ReadonlyCSSVariableList,
+ *   pinkAccent200,
+ *   purple500,
+ *   useCSSVariables,
+ *  } from "@react-md/core";
+ * import { useMemo } from "react";
+ * import type { ReactElement, ReactNode } from "react";
+ *
+ * function Example({ children }: { children: ReactNode }): ReactElement {
+ *   const customVariables = useMemo<ReadonlyCSSVariableList>(() => {
+ *     return [
+ *       {
+ *         name: "--rmd-primary-color",
+ *         value: purple500,
+ *       },
+ *       {
+ *         name: "--rmd-on-primary-color",
+ *         value: contrastColor(purple500),
+ *       },
+ *     ];
+ *   }, []);
+ *   const style = useCSSVariables(customVariables, true);
+ *
+ *   return <div style={style}>{children}</div>;
+ * }
+ * ```
+ *
+ * @remarks \@since 6.0.0
+ */
 export function useCSSVariables<Name extends CSSVariableName>(
-  variables: readonly Readonly<CSSVariable<Name>>[],
+  variables: ReadonlyCSSVariableList<Name>,
   local: true
-): CSSVariablesProperties<Name> & CSSProperties;
+): CSSVariablesProperties<Name>;
+/**
+ * @remarks \@since 6.0.0
+ */
 export function useCSSVariables<Name extends CSSVariableName>(
-  variables: readonly Readonly<CSSVariable<Name>>[],
+  variables: ReadonlyCSSVariableList<Name>,
   local?: boolean
 ): CSSVariablesProperties<Name> | void {
   useEffect(() => {
@@ -67,7 +147,7 @@ export function useCSSVariables<Name extends CSSVariableName>(
       return;
     }
 
-    return variables.reduce<CSSVariablesProperties>(
+    return variables.reduce<CSSVariablesProperties<Name>>(
       (style, { name, value }) => {
         style[name] = value;
         return style;

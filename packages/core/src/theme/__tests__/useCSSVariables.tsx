@@ -1,9 +1,15 @@
 import { render } from "@testing-library/react";
 import type { CSSProperties, ReactElement } from "react";
-import type { ThemeCssVarName } from "../cssVars";
 import { textPrimaryColorVar } from "../cssVars";
+import type { DefinedCSSVariableNames } from "../types";
 
 import { useCSSVariables } from "../useCSSVariables";
+
+declare module "react" {
+  interface CSSProperties {
+    "--test-defined"?: string | number;
+  }
+}
 
 describe("useCSSVariables", () => {
   it("should modify the html element with the custom properties by default", () => {
@@ -25,7 +31,15 @@ describe("useCSSVariables", () => {
   it("should return a style object if the local argument is `true`", () => {
     let style: CSSProperties | undefined;
     function Test(): ReactElement {
+      // this is an error because the global CSSProperties have not been augmented
+      // @ts-expect-error
       style = useCSSVariables([{ name: "--test", value: "3rem" }], true);
+
+      // this one should work without issue since it was added at the top of the test
+      const _style2 = useCSSVariables(
+        [{ name: "--test-defined", value: "1" }],
+        true
+      );
       return <div style={style} />;
     }
 
@@ -61,7 +75,7 @@ describe("useCSSVariables", () => {
 
   it("should allow strictly typing the css variable names to react-md theme variables", () => {
     function Test(): null {
-      useCSSVariables<ThemeCssVarName>([
+      useCSSVariables<DefinedCSSVariableNames>([
         {
           name: "--rmd-background-color",
           value: "#000",

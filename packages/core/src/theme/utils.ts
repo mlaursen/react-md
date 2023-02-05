@@ -1,3 +1,5 @@
+import { black, white } from "./colors";
+
 const RGB_REGEX = /^rgb\(((\b([01]?\d\d?|2[0-4]\d|25[0-5])\b),?){3}\)$/;
 const SHORTHAND_REGEX = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
 const VERBOSE_REGEX = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i;
@@ -169,4 +171,25 @@ export function isContrastCompliant(
   }
 
   return getContrastRatio(background, foreground) >= ratio;
+}
+
+/**
+ * Returns the highest contrast color to the provided `backgroundColor`. This is
+ * normally used to ensure that a new background color can use an accessible text
+ * color of either `#000` or `#fff`.
+ *
+ * This is pretty much a javascript implementation as the `contrast-color` Sass
+ * function.
+ *
+ * @remarks \@since 6.0.0
+ */
+export function contrastColor(
+  backgroundColor: string,
+  lightColor = white,
+  darkColor = black
+): string {
+  const lightContrast = getContrastRatio(backgroundColor, lightColor);
+  const darkContrast = getContrastRatio(backgroundColor, darkColor);
+
+  return lightContrast > darkContrast ? lightColor : darkColor;
 }

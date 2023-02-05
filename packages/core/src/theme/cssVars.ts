@@ -13,20 +13,3 @@ export const textPrimaryColorVar = "--rmd-text-primary-color";
 export const textSecondaryColorVar = "--rmd-text-secondary-color";
 export const textHintColorVar = "--rmd-text-hint-color";
 export const textDisabledColorVar = "--rmd-text-disabled-color";
-
-export type ThemeCssVarName =
-  | typeof backgroundColorVar
-  | typeof primaryColorVar
-  | typeof onPrimaryColorVar
-  | typeof secondaryColorVar
-  | typeof onSecondaryColorVar
-  | typeof warningColorVar
-  | typeof onWarningColorVar
-  | typeof errorColorVar
-  | typeof onErrorColorVar
-  | typeof successColorVar
-  | typeof onSuccessColorVar
-  | typeof textPrimaryColorVar
-  | typeof textSecondaryColorVar
-  | typeof textHintColorVar
-  | typeof textDisabledColorVar;
