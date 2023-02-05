@@ -11,6 +11,15 @@ import {
 import { bem } from "../utils";
 import { useEnsuredId } from "../useEnsuredId";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-tab-color"?: string;
+    "--rmd-tab-active-color"?: string;
+    "--rmd-tab-inactive-color"?: string;
+    "--rmd-tab-disabled-color"?: string;
+  }
+}
+
 const styles = bem("rmd-tab");
 
 export interface TabClassNameOptions {

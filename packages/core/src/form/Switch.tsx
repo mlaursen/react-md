@@ -13,6 +13,13 @@ import type {
   FormMessageContainerExtension,
 } from "./types";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-switch-track-background-color"?: string;
+    "--rmd-switch-ball-background-color"?: string;
+  }
+}
+
 const styles = bem("rmd-switch");
 
 const noop = (): void => {

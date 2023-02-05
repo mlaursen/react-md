@@ -2,6 +2,14 @@ import type { HTMLAttributes, ReactElement, ReactNode } from "react";
 import type { SkeletonPlaceholderOptions } from "./useSkeletonPlaceholder";
 import { useSkeletonPlaceholder } from "./useSkeletonPlaceholder";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-skeleton-placeholder-background-color"?: string;
+    "--rmd-skeleton-placeholder-height"?: string | number;
+    "--rmd-skeleton-placeholder-width"?: string | number;
+  }
+}
+
 /** @remarks \@since 6.0.0 */
 export interface SkeletonPlaceholderProps
   extends HTMLAttributes<HTMLDivElement>,

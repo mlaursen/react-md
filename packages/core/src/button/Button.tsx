@@ -14,6 +14,22 @@ import type {
 } from "./FloatingActionButton";
 import { FloatingActionButton } from "./FloatingActionButton";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-button-background-color"?: string;
+    "--rmd-button-color"?: string;
+    "--rmd-button-border-radius"?: string | number;
+    "--rmd-button-contained-background-color"?: string;
+    "--rmd-button-contained-color"?: string;
+    "--rmd-button-text-horizontal-padding"?: string | number;
+    "--rmd-button-text-vertical-padding"?: string | number;
+    "--rmd-button-text-min-height"?: string | number;
+    "--rmd-button-text-min-width"?: string | number;
+    "--rmd-button-icon-size"?: string | number;
+    "--rmd-button-icon-radius"?: string | number;
+  }
+}
+
 const styles = bem("rmd-button");
 
 /**

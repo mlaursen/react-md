@@ -16,6 +16,14 @@ import { ToastCloseButton } from "./ToastCloseButton";
 import type { ToastContentProps } from "./ToastContent";
 import { ToastContent } from "./ToastContent";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-toast-color"?: string;
+    "--rmd-toast-background-color"?: string;
+    "--rmd-toast-offset"?: string | number;
+  }
+}
+
 const styles = bem("rmd-toast");
 
 /**

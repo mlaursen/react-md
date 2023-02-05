@@ -10,6 +10,17 @@ import { useDraggable } from "../draggable";
 import { useEnsuredId } from "../useEnsuredId";
 import { getPercentage } from "../utils";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-window-splitter-top"?: number | string;
+    "--rmd-window-splitter-right"?: number | string;
+    "--rmd-window-splitter-bottom"?: number | string;
+    "--rmd-window-splitter-left"?: number | string;
+    "--rmd-window-splitter-opacity"?: number | string;
+    "--rmd-window-splitter-position"?: number | string;
+  }
+}
+
 const noop = (): void => {
   // do nothing
 };

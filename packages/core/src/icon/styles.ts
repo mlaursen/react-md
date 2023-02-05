@@ -2,6 +2,16 @@ import { cnb } from "cnbuilder";
 import type { TextThemeColor, ThemeColor } from "../theme";
 import { bem } from "../utils";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-icon-color"?: string;
+    "--rmd-icon-size"?: string | number;
+    "--rmd-icon-spacing"?: string | number;
+    "--rmd-icon-rotate-from"?: string | number;
+    "--rmd-icon-rotate-to"?: string | number;
+  }
+}
+
 const styles = bem("rmd-icon");
 const rotatorStyles = bem("rmd-icon-rotator");
 

@@ -18,6 +18,14 @@ import { useEnsuredRef } from "../useEnsuredRef";
 import { useResizeObserver } from "../useResizeObserver";
 import { getTabRoleOnly, scrollTabIntoView } from "./utils";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-tab-width"?: string;
+    "--rmd-tab-offset"?: string | number;
+    "--rmd-tab-indicator-background"?: string;
+  }
+}
+
 const TAB_WIDTH_VAR = "--rmd-tab-width";
 const TAB_OFFSET_VAR = "--rmd-tab-offset";
 
@@ -25,10 +33,10 @@ const noop = (): void => {
   // do nothing
 };
 
-type TabWidthVar = typeof TAB_WIDTH_VAR;
-type TabOffsetVar = typeof TAB_OFFSET_VAR;
+export type TabWidthVar = typeof TAB_WIDTH_VAR;
+export type TabOffsetVar = typeof TAB_OFFSET_VAR;
 
-type IndicatorCSSProperties = CSSProperties &
+export type IndicatorCSSProperties = CSSProperties &
   Record<TabWidthVar | TabOffsetVar, string>;
 
 export interface TabListHookOptions {

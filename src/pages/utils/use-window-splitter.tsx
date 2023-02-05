@@ -11,12 +11,6 @@ import { useId } from "react";
 import { DemoHeadingWithDivider } from "src/components/DemoHeadingWithDivider";
 import { Resettable } from "src/components/Resettable";
 
-declare module "react" {
-  interface CSSProperties {
-    "--rmd-window-splitter-position"?: string;
-  }
-}
-
 function SimpleExample(): ReactElement {
   const { value, dragging, splitterProps } = useWindowSplitter({
     min: 68,

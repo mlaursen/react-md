@@ -15,6 +15,18 @@ import {
 import type { PropsWithRef } from "../types";
 import { chip, chipContent, chipIcon } from "./styles";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-chip-solid-background-color"?: string;
+    "--rmd-chip-solid-disabled-background-color"?: string;
+    "--rmd-chip-solid-color"?: string;
+    "--rmd-chip-theme-background-color"?: string;
+    "--rmd-chip-theme-color"?: string;
+    "--rmd-chip-outline-background-color"?: string;
+    "--rmd-chip-outline-color"?: string;
+  }
+}
+
 /**
  * @remarks \@since 6.0.0 Renamed the `noninteractive` prop to
  * `noninteractable`.

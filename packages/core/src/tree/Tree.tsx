@@ -24,6 +24,15 @@ import { useTreeItems } from "./useTreeItems";
 import { useTreeMovement } from "./useTreeMovement";
 import type { TreeSelection } from "./useTreeSelection";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-tree-depth"?: number;
+    "--rmd-tree-item-padding"?: string | number;
+    "--rmd-tree-item-padding-base"?: string | number;
+    "--rmd-tree-item-padding-incrementor"?: string | number;
+  }
+}
+
 /**
  * @remarks \@since 6.0.0
  */

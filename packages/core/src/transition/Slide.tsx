@@ -10,6 +10,12 @@ import {
   useSlideTransition,
 } from "./useSlideTransition";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-slide-duration"?: string | number;
+  }
+}
+
 /** @remarks \@since 6.0.0 */
 export interface SlideProps
   extends HTMLAttributes<HTMLDivElement>,

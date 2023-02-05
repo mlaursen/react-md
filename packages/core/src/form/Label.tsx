@@ -3,6 +3,16 @@ import { forwardRef } from "react";
 import { bem } from "../utils";
 import type { LabelClassNameOptions, LabelProps } from "./types";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-form-label-floating-top"?: string | number;
+    "--rmd-form-label-left-offset"?: string | number;
+    "--rmd-form-label-top-offset"?: string | number;
+    "--rmd-form-label-active-padding"?: string | number;
+    "--rmd-form-label-active-background-color"?: string;
+  }
+}
+
 const labelStyles = bem("rmd-label");
 
 /**

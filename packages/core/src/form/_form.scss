@@ -243,7 +243,7 @@ $var-lookup: (
     value: $disabled-color,
   ),
   floating-top: (
-    var: --rmd-form-floating-top,
+    var: --rmd-form-label-floating-top,
     value: $label-floating-top,
   ),
   label-left-offset: (
@@ -311,7 +311,7 @@ $var-lookup: (
     value: $switch-track-background-color,
   ),
   switch-ball-background-color: (
-    var: --rmd-switch-ball-background-color-color,
+    var: --rmd-switch-ball-background-color,
     value: $switch-ball-background-color,
   ),
   slider-color: (

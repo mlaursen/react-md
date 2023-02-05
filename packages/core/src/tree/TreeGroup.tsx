@@ -1,14 +1,10 @@
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { forwardRef } from "react";
 import type { ListProps } from "../list";
 import { List } from "../list";
 import { useCollapseTransition } from "../transition";
 import { treeGroup } from "./styles";
 import { useTreeContext } from "./TreeProvider";
-
-type CSSProperties = React.CSSProperties & {
-  "--rmd-tree-depth": number;
-};
 
 /**
  * @remarks \@since 6.0.0

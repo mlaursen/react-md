@@ -18,6 +18,22 @@ import { getJumpValue } from "./sliderUtils";
 import type { RangeSliderState } from "./useRangeSlider";
 import type { SliderState, SliderValueOptions } from "./useSlider";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-slider-color"?: string;
+    "--rmd-slider-active-color"?: string;
+    "--rmd-slider-inactive-color"?: string;
+    "--rmd-slider-size"?: string | number;
+    "--rmd-slider-active-size"?: string | number;
+    "--rmd-slider-inactive-size"?: string | number;
+    "--rmd-slider-vertical-size"?: string | number;
+    "--rmd-slider-offset-1"?: string;
+    "--rmd-slider-offset-2"?: string;
+    "--rmd-slider-tooltip-scale"?: string | number;
+    "--rmd-slider-tooltip-translate"?: string | number;
+  }
+}
+
 const emptyString = (): string => "";
 const noop = (): void => {
   // do nothing

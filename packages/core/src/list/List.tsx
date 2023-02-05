@@ -3,6 +3,13 @@ import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
 import { bem } from "../utils";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-list-padding-h"?: string | number;
+    "--rmd-list-padding-v"?: string | number;
+  }
+}
+
 const styles = bem("rmd-list");
 
 /** @remarks \@since 6.0.0 */

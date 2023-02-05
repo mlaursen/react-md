@@ -31,6 +31,15 @@ import { MenuWidget } from "./MenuWidget";
 import { useMenuBarContext } from "./useMenuBarProvider";
 import { getDefaultAnchor } from "./utils";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-menu-background-color"?: string;
+    "--rmd-menu-color"?: string;
+    "--rmd-menu-min-width"?: string | number;
+    "--rmd-menu-spacing"?: string | number;
+  }
+}
+
 const noop = (): void => {
   // do nothing
 };

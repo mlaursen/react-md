@@ -11,6 +11,20 @@ import type {
   TextFieldContainerOptions,
 } from "./types";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-form-text-height"?: string | number;
+    "--rmd-form-text-padding-left"?: string | number;
+    "--rmd-form-text-padding-right"?: string | number;
+    "--rmd-form-text-padding-top"?: string | number;
+    "--rmd-form-text-border-color"?: string;
+    "--rmd-form-text-hover-border-color"?: string;
+    "--rmd-form-text-filled-color"?: string;
+    "--rmd-form-addon-top"?: string | number;
+    "--rmd-form-addon-margin-top"?: string | number;
+  }
+}
+
 const styles = bem("rmd-text-field-container");
 
 /** @remarks \@since 6.0.0 */

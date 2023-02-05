@@ -22,6 +22,21 @@ import {
 import type { DialogType } from "./styles";
 import { dialog } from "./styles";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-dialog-background-color"?: string;
+    "--rmd-dialog-color"?: string;
+    "--rmd-dialog-min-width"?: string | number;
+    "--rmd-dialog-horizontal-margin"?: string | number;
+    "--rmd-dialog-vertical-margin"?: string | number;
+    "--rmd-dialog-z-index"?: string | number;
+    "--rmd-dialog-header-padding"?: string | number;
+    "--rmd-dialog-header-padding-bottom"?: string | number;
+    "--rmd-dialog-content-padding"?: string | number;
+    "--rmd-dialog-footer-padding"?: string | number;
+  }
+}
+
 /** @remarks \@since 4.0.0 */
 export const DEFAULT_DIALOG_CLASSNAMES: Readonly<CSSTransitionClassNames> = {
   appear: "rmd-dialog--enter",

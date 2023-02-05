@@ -31,6 +31,14 @@ import type { TooltipPositionHookOptions } from "./useTooltipPosition";
 import { useTooltipPosition } from "./useTooltipPosition";
 import { getAnchor } from "./utils";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-tooltip-background-color"?: string;
+    "--rmd-tooltip-color"?: string;
+    "--rmd-tooltip-spacing"?: string | number;
+  }
+}
+
 const noop = (): void => {
   // do nothing
 };

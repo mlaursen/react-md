@@ -1,3 +1,13 @@
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-progress-background-color"?: string;
+    "--rmd-progress-color"?: string;
+    "--rmd-progress-circular-size"?: string | number;
+    "--rmd-progress-circular-stroke-width"?: number;
+    "--rmd-progress-linear-size"?: string | number;
+  }
+}
+
 /**
  * The base progress props for both the linear and circular progress components.
  */

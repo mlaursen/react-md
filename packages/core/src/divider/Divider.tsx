@@ -4,6 +4,19 @@ import { forwardRef } from "react";
 import type { DividerClassNameOptions } from "./styles";
 import { divider } from "./styles";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-divider-size"?: string | number;
+    "--rmd-divider-vertical-size"?: string | number;
+    "--rmd-divider-color"?: string;
+    "--rmd-divider-spacing"?: string | number;
+    "--rmd-divider-vertical-spacing"?: string | number;
+    "--rmd-divider-inset"?: string | number;
+    "--rmd-divider-width"?: string | number;
+    "--rmd-divider-max-size"?: string | number;
+  }
+}
+
 export type DividerElement = HTMLHRElement | HTMLDivElement;
 
 /**

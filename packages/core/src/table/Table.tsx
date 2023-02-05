@@ -8,6 +8,26 @@ import type {
 } from "./TableConfigurationProvider";
 import { TableConfigProvider } from "./TableConfigurationProvider";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-table-background-color"?: string;
+    "--rmd-table-border-size"?: string | number;
+    "--rmd-table-border-color"?: string;
+    "--rmd-table-header-background-color"?: string;
+    "--rmd-table-cell-color"?: string;
+    "--rmd-table-cell-height"?: string | number;
+    "--rmd-table-cell-horizontal-padding"?: string | number;
+    "--rmd-table-cell-vertical-padding"?: string | number;
+    "--rmd-table-header-cell-height"?: string | number;
+    "--rmd-table-hover-color"?: string;
+    "--rmd-table-selected-color"?: string;
+    "--rmd-table-sticky-cell"?: string | number;
+    "--rmd-table-sticky-header"?: string | number;
+    "--rmd-table-sticky-footer"?: string | number;
+    "--rmd-table-sticky-background-color"?: string;
+  }
+}
+
 const styles = bem("rmd-table");
 
 /** @remarks \@since 6.0.0 */

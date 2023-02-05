@@ -3,6 +3,16 @@ import type { ElementType, HTMLAttributes, Ref } from "react";
 import { forwardRef } from "react";
 import { bem } from "../utils";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-app-bar-height"?: string | number;
+    "--rmd-app-bar-background-color"?: string;
+    "--rmd-app-bar-color"?: string;
+    "--rmd-app-bar-surface-background-color"?: string;
+    "--rmd-app-bar-surface-color"?: string;
+  }
+}
+
 const styles = bem("rmd-app-bar");
 
 export type AppBarPosition = "top" | "bottom";

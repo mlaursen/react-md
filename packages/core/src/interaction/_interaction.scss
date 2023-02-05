@@ -118,19 +118,19 @@ $var-lookup: (
     value: null,
   ),
   hover-background-color: (
-    var: --rmd-interaction-hover-background-color,
+    var: --rmd-hover-background-color,
     value: $hover-background-color,
   ),
   focus-background-color: (
-    var: --rmd-interaction-focus-background-color,
+    var: --rmd-focus-background-color,
     value: $focus-background-color,
   ),
   press-background-color: (
-    var: --rmd-interaction-press-background-color,
+    var: --rmd-press-background-color,
     value: $press-background-color,
   ),
   selected-background-color: (
-    var: --rmd-interaction-selected-background-color,
+    var: --rmd-selected-background-color,
     value: $selected-background-color,
   ),
   focus-color: (

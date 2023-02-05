@@ -7,6 +7,15 @@ import type {
 } from "react";
 import type { PropsWithRef } from "../types";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-form-error-color"?: string;
+    "--rmd-form-active-color"?: string;
+    "--rmd-form-focus-color"?: string;
+    "--rmd-form-disabled-color"?: string;
+  }
+}
+
 /**
  * The supported themes for the `TextField`, `TextArea`, and `Select`
  * components.

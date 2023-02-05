@@ -3,6 +3,14 @@ import { forwardRef } from "react";
 import type { CardClassNameOptions } from "./styles";
 import { card } from "./styles";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-card-background-color"?: string;
+    "--rmd-card-color"?: string;
+    "--rmd-card-secondary-color"?: string;
+  }
+}
+
 /**
  * @remarks \@since 6.0.0 Extends the {@link CardClassNameOptions}.
  */

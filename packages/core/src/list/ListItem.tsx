@@ -10,6 +10,22 @@ import { ListItemChildren } from "./ListItemChildren";
 import { listItem } from "./listItemStyles";
 import type { ListItemChildrenProps, ListItemHeight } from "./types";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-list-item-keyline"?: string | number;
+    "--rmd-list-item-padding-h"?: string | number;
+    "--rmd-list-item-padding-v"?: string | number;
+    "--rmd-list-item-height"?: string | number;
+    "--rmd-list-item-medium-height"?: string | number;
+    "--rmd-list-item-large-height"?: string | number;
+    "--rmd-list-item-extra-large-height"?: string | number;
+    "--rmd-list-item-three-line-height"?: string | number;
+    "--rmd-list-item-media-size"?: string | number;
+    "--rmd-list-item-media-spacing"?: string | number;
+    "--rmd-list-item-text-three-line-height"?: string | number;
+  }
+}
+
 export interface ListItemProps
   extends HTMLAttributes<HTMLLIElement>,
     ListItemChildrenProps {

@@ -3,6 +3,14 @@ import { forwardRef } from "react";
 import type { LinkClassNameOptions } from "./styles";
 import { link } from "./styles";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-link-color"?: string;
+    "--rmd-link-visited-color"?: string;
+    "--rmd-link-hover-color"?: string;
+  }
+}
+
 /**
  * @remarks
  * \@since 6.0.0 Removed the `preventMaliciousTarget` prop since browsers

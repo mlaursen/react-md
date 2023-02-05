@@ -3,6 +3,12 @@ import type { HTMLAttributes, ReactNode } from "react";
 import { forwardRef } from "react";
 import { bem } from "../utils";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-badge-size"?: string | number;
+  }
+}
+
 const styles = bem("rmd-badge");
 
 /**

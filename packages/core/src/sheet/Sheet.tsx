@@ -6,6 +6,19 @@ import type { LabelRequiredForA11y } from "../types";
 import type { BaseSheetClassNameOptions } from "./styles";
 import { sheet } from "./styles";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-sheet-height"?: string | number;
+    "--rmd-sheet-width"?: string | number;
+    "--rmd-sheet-max-height"?: string | number;
+    "--rmd-sheet-touch-width"?: string | number;
+    "--rmd-sheet-touch-max-height"?: string | number;
+    "--rmd-sheet-static-width"?: string | number;
+    "--rmd-sheet-transform-offscreen"?: string | number;
+    "--rmd-sheet-z-index"?: number;
+  }
+}
+
 export const DEFAULT_SHEET_TIMEOUT: Readonly<TransitionTimeout> = {
   enter: 200,
   exit: 150,

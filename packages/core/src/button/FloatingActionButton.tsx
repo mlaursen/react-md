@@ -3,6 +3,12 @@ import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
 import { bem } from "../utils";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-fab-offset"?: string | number;
+  }
+}
+
 const styles = bem("rmd-fab");
 
 /**

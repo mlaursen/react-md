@@ -8,13 +8,6 @@ import type {
 } from "./sliderUtils";
 import { getClosestThumbEventHandlers, getThumbOffsets } from "./sliderUtils";
 
-declare module "react" {
-  interface CSSProperties {
-    "--rmd-slider-offset-1"?: string;
-    "--rmd-slider-offset-2"?: string;
-  }
-}
-
 const styles = bem("rmd-slider-track");
 
 /**

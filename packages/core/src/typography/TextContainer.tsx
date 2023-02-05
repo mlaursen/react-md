@@ -3,6 +3,13 @@ import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
 import { bem } from "../utils";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-line-length"?: string | number;
+    "--rmd-text-container-padding"?: string | number;
+  }
+}
+
 const styles = bem("rmd-text-container");
 
 /**

@@ -6,6 +6,19 @@ import type {
   TouchEventHandler,
 } from "react";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-ripple-background-color"?: string;
+    "--rmd-interaction-background-color"?: string;
+    "--rmd-hover-background-color"?: string;
+    "--rmd-focus-background-color"?: string;
+    "--rmd-press-background-color"?: string;
+    "--rmd-selected-background-color"?: string;
+    "--rmd-focus-color"?: string;
+    "--rmd-focus-width"?: string | number;
+  }
+}
+
 /**
  * This is used to provide feedback to the user that they are interacting with
  * elements on the page. It is recommended to not set this to `"none"` unless
