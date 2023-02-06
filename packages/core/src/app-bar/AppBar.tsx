@@ -139,7 +139,8 @@ export function appBar(options: AppBarClassNameOptions = {}): string {
     styles({
       [theme]: theme !== "clear",
       [height]: height !== "normal",
-      [position]: position,
+      fixed: !!position,
+      sticky: position === "sticky",
       stacked,
       [pagePosition]: position,
       elevated: position && !disableElevation,

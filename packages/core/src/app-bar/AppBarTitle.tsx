@@ -1,6 +1,6 @@
 import { cnb } from "cnbuilder";
-import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
+import type { TypographyProps, TypographyType } from "../typography";
 import { Typography } from "../typography";
 import { bem } from "../utils";
 
@@ -59,8 +59,11 @@ export function appBarTitle(options: AppBarTitleClassNameOptions = {}): string {
  * `AppBarTitle` does not line wrap by default.
  */
 export interface AppBarTitleProps
-  extends HTMLAttributes<HTMLHeadingElement>,
-    AppBarTitleClassNameOptions {}
+  extends TypographyProps,
+    AppBarTitleClassNameOptions {
+  /** @defaultValue `"headline-6"` */
+  type?: TypographyType;
+}
 
 /**
  * @example
@@ -89,6 +92,7 @@ export interface AppBarTitleProps
 export const AppBarTitle = forwardRef<HTMLHeadingElement, AppBarTitleProps>(
   function AppBarTitle(props, ref) {
     const {
+      type = "headline-6",
       keyline = "small",
       lineWrap = false,
       children,
@@ -97,9 +101,9 @@ export const AppBarTitle = forwardRef<HTMLHeadingElement, AppBarTitleProps>(
     } = props;
     return (
       <Typography
-        ref={ref}
         {...remaining}
-        type="headline-6"
+        ref={ref}
+        type={type}
         className={appBarTitle({
           keyline,
           lineWrap,
