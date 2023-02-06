@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useSsr, useSsrRehydrate } from "./SsrProvider";
+import { useSsr } from "./SsrProvider";
 import type { UseStateInitializer, UseStateSetter } from "./types";
 import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect";
 import { identity } from "./utils";
@@ -254,9 +254,14 @@ export function useLocalStorage<T>(
     setItem(key, value, serializer);
   }, []);
 
-  useSsrRehydrate(() => {
+  useEffect(() => {
+    const { defaultValue, deserializer, manual } = config.current;
+    if (manual || !ssr) {
+      return;
+    }
+
     setValue(getItem(key, defaultValue, deserializer));
-  }, manual);
+  }, [key, ssr, setValue]);
 
   // update the value if another tab changed the local storage value
   useEffect(() => {

@@ -1,8 +1,8 @@
 import { cnb } from "cnbuilder";
 import type { CSSProperties } from "react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
-import { useSsr, useSsrRehydrate } from "../SsrProvider";
+import { useSsr } from "../SsrProvider";
 import { bem, randomInt } from "../utils";
 
 export const skeletonPlaceholder = bem("rmd-skeleton-placeholder");
@@ -226,11 +226,16 @@ export function useSkeletonPlaceholder(
       return `${randomInt({ min: minPercentage, max: maxPercentage })}%`;
     }
   );
-  useSsrRehydrate(() => {
+
+  useEffect(() => {
+    if (!ssr || disabled || typeof propWidth !== "undefined") {
+      return;
+    }
+
     setRandomPercentage(
       `${randomInt({ min: minPercentage, max: maxPercentage })}%`
     );
-  }, disabled || typeof propWidth !== "undefined");
+  }, [disabled, maxPercentage, minPercentage, propWidth, ssr]);
 
   const width = useMemo(() => {
     if (disabled || typeof propWidth !== "undefined") {

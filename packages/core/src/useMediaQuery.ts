@@ -1,4 +1,5 @@
-import { startTransition, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useSsr } from "./SsrProvider";
 
 /**
  * @example
@@ -29,27 +30,23 @@ export function useMediaQuery(query: string, disabled = false): boolean {
     return window.matchMedia(query).matches;
   });
 
+  const ssr = useSsr();
   useEffect(() => {
-    if (disabled) {
+    if (disabled || ssr) {
       return;
     }
 
     const result = window.matchMedia(query);
     setMatches(result.matches);
 
-    const updater = ({ matches }: MediaQueryListEvent): void => {
-      // This might be a bit overkill to include `startTransition` here, but
-      // this would sometimes cause the error noted on `useSsrRehydrate`.
-      startTransition(() => {
-        setMatches(matches);
-      });
-    };
+    const updater = ({ matches }: MediaQueryListEvent): void =>
+      setMatches(matches);
 
     result.addEventListener("change", updater);
     return () => {
       result.removeEventListener("change", updater);
     };
-  }, [disabled, query]);
+  }, [disabled, query, ssr]);
 
   return matches;
 }
