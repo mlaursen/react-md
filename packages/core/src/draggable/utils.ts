@@ -1,4 +1,5 @@
 import type { MouseEvent, RefObject, TouchEvent } from "react";
+import type { UseStateInitializer } from "../types";
 import type { ClientPositionEvent, ClientPositionOptions } from "../utils";
 import {
   getClientPosition,
@@ -198,3 +199,31 @@ export const updateDragPosition = (
   setValue(value);
   setDragPercentage(dragPercentage);
 };
+
+/**
+ * @internal
+ */
+export interface DraggableDefaultValueOptions {
+  min: number;
+  max: number;
+  defaultValue: UseStateInitializer<number> | undefined;
+}
+
+/**
+ * @internal
+ */
+export function getDraggableDefaultValue(
+  options: DraggableDefaultValueOptions
+): number {
+  const { min, max, defaultValue } = options;
+
+  if (typeof defaultValue === "function") {
+    return defaultValue();
+  }
+
+  if (typeof defaultValue === "undefined") {
+    return Math.ceil((max - min) / 2);
+  }
+
+  return defaultValue;
+}

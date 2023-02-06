@@ -16,6 +16,7 @@ import type {
 import { useLocalStorage } from "../useLocalStorage";
 import { getRangeSteps, nearest, withinRange } from "../utils";
 import {
+  getDraggableDefaultValue,
   isMouseDragStartEvent,
   isTouchDragStartEvent,
   updateDragPosition,
@@ -373,17 +374,7 @@ export function useDraggable<E extends HTMLElement>(
   const localStorage = useLocalStorage({
     key: localStorageKey,
     manual: localStorageManual || dragging,
-    defaultValue: () => {
-      if (typeof defaultValue === "function") {
-        return defaultValue();
-      }
-
-      if (typeof defaultValue === "undefined") {
-        return Math.ceil((max - min) / 2);
-      }
-
-      return defaultValue;
-    },
+    defaultValue: () => getDraggableDefaultValue({ min, max, defaultValue }),
   });
   let value: number;
   let setValue: UseStateSetter<number>;
