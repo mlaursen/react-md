@@ -1,0 +1,140 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Label should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<label
+  class="rmd-label"
+  data-testid="label"
+>
+  Label content
+</label>
+`;
+
+exports[`Label should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<label
+  class="rmd-label custom-class-name"
+  data-testid="label"
+  style="color: white;"
+>
+  Label content
+</label>
+`;
+
+exports[`Label should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+<label
+  class="rmd-label rmd-label--floating"
+  data-testid="label"
+  style=""
+>
+  Label content
+</label>
+`;
+
+exports[`Label should apply the correct styling, HTML attributes, and allow a ref 4`] = `
+<label
+  class="rmd-label rmd-label--active rmd-label--floating rmd-label--floating-active"
+  data-testid="label"
+  style=""
+>
+  Label content
+</label>
+`;
+
+exports[`Label should apply the correct styling, HTML attributes, and allow a ref 5`] = `
+<label
+  class="rmd-label rmd-label--active rmd-label--floating rmd-label--floating-active rmd-label--floating-inactive"
+  data-testid="label"
+  style=""
+>
+  Label content
+</label>
+`;
+
+exports[`Label should apply the correct styling, HTML attributes, and allow a ref 6`] = `
+<label
+  class="rmd-label rmd-label--active rmd-label--floating rmd-label--floating-inactive"
+  data-testid="label"
+  style=""
+>
+  Label content
+</label>
+`;
+
+exports[`Label should apply the correct styling, HTML attributes, and allow a ref 7`] = `
+<label
+  class="rmd-label rmd-label--dense"
+  data-testid="label"
+  style=""
+>
+  Label content
+</label>
+`;
+
+exports[`Label should apply the correct styling, HTML attributes, and allow a ref 8`] = `
+<label
+  class="rmd-label rmd-label--error"
+  data-testid="label"
+  style=""
+>
+  Label content
+</label>
+`;
+
+exports[`Label should apply the correct styling, HTML attributes, and allow a ref 9`] = `
+<label
+  class="rmd-label rmd-label--error rmd-label--active"
+  data-testid="label"
+  style=""
+>
+  Label content
+</label>
+`;
+
+exports[`Label should apply the correct styling, HTML attributes, and allow a ref 10`] = `
+<label
+  class="rmd-label rmd-label--error rmd-label--active rmd-label--floating rmd-label--floating-active"
+  data-testid="label"
+  style=""
+>
+  Label content
+</label>
+`;
+
+exports[`Label should apply the correct styling, HTML attributes, and allow a ref 11`] = `
+<label
+  class="rmd-label rmd-label--gap"
+  data-testid="label"
+  style=""
+>
+  Label content
+</label>
+`;
+
+exports[`Label should apply the correct styling, HTML attributes, and allow a ref 12`] = `
+<label
+  class="rmd-label rmd-label--stacked"
+  data-testid="label"
+  style=""
+>
+  Label content
+</label>
+`;
+
+exports[`Label should apply the correct styling, HTML attributes, and allow a ref 13`] = `
+<label
+  class="rmd-label rmd-label--stacked-reversed"
+  data-testid="label"
+  style=""
+>
+  Label content
+</label>
+`;
+
+exports[`Label should apply the correct styling, HTML attributes, and allow a ref 14`] = `
+<label
+  class="rmd-label rmd-label--reversed"
+  data-testid="label"
+  style=""
+>
+  Label content
+</label>
+`;

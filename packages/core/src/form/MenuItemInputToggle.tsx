@@ -259,7 +259,8 @@ export const MenuItemInputToggle = forwardRef<
     <ListItem
       {...remaining}
       aria-disabled={disabled || undefined}
-      aria-checked={checked}
+      // I'm not actually sure if this is correct
+      aria-checked={indeterminate && checked ? "mixed" : checked}
       id={id}
       role={type === "radio" ? "menuitemradio" : "menuitemcheckbox"}
       onClick={(event) => {

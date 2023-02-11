@@ -1,0 +1,553 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useCheckboxGroup should not behave as an indeterminate checkbox group and check any checkboxes by default 1`] = `
+<div>
+  <form>
+    <label
+      class="rmd-label rmd-label--gap rmd-label--reversed"
+    >
+      First
+      <span
+        class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
+      >
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box_outline_blank
+        </i>
+        <input
+          autocomplete="off"
+          class="rmd-hidden-input"
+          id="checkbox-:r0:"
+          name="example"
+          type="checkbox"
+          value="a"
+        />
+        <span
+          class="rmd-ripple-container"
+        />
+      </span>
+    </label>
+    <label
+      class="rmd-label rmd-label--gap rmd-label--reversed"
+    >
+      Second
+      <span
+        class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
+      >
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box_outline_blank
+        </i>
+        <input
+          autocomplete="off"
+          class="rmd-hidden-input"
+          id="checkbox-:r1:"
+          name="example"
+          type="checkbox"
+          value="b"
+        />
+        <span
+          class="rmd-ripple-container"
+        />
+      </span>
+    </label>
+    <label
+      class="rmd-label rmd-label--gap rmd-label--reversed"
+    >
+      Third
+      <span
+        class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
+      >
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box_outline_blank
+        </i>
+        <input
+          autocomplete="off"
+          class="rmd-hidden-input"
+          id="checkbox-:r2:"
+          name="example"
+          type="checkbox"
+          value="c"
+        />
+        <span
+          class="rmd-ripple-container"
+        />
+      </span>
+    </label>
+  </form>
+</div>
+`;
+
+exports[`useCheckboxGroup should support an indeterminate checkbox group 1`] = `
+<div>
+  <form>
+    <label
+      class="rmd-label rmd-label--gap rmd-label--reversed"
+    >
+      Indeterminate
+      <span
+        class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
+      >
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box_outline_blank
+        </i>
+        <input
+          autocomplete="off"
+          class="rmd-hidden-input"
+          id="checkbox-:r9:"
+          name="example"
+          type="checkbox"
+        />
+        <span
+          class="rmd-ripple-container"
+        />
+      </span>
+    </label>
+    <label
+      class="rmd-label rmd-label--gap rmd-label--reversed"
+    >
+      A
+      <span
+        class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
+      >
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box_outline_blank
+        </i>
+        <input
+          autocomplete="off"
+          class="rmd-hidden-input"
+          id="checkbox-:ra:"
+          name="example"
+          type="checkbox"
+          value="a"
+        />
+        <span
+          class="rmd-ripple-container"
+        />
+      </span>
+    </label>
+    <label
+      class="rmd-label rmd-label--gap rmd-label--reversed"
+    >
+      B
+      <span
+        class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
+      >
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box_outline_blank
+        </i>
+        <input
+          autocomplete="off"
+          class="rmd-hidden-input"
+          id="checkbox-:rb:"
+          name="example"
+          type="checkbox"
+          value="b"
+        />
+        <span
+          class="rmd-ripple-container"
+        />
+      </span>
+    </label>
+    <label
+      class="rmd-label rmd-label--gap rmd-label--reversed"
+    >
+      C
+      <span
+        class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
+      >
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box_outline_blank
+        </i>
+        <input
+          autocomplete="off"
+          class="rmd-hidden-input"
+          id="checkbox-:rc:"
+          name="example"
+          type="checkbox"
+          value="c"
+        />
+        <span
+          class="rmd-ripple-container"
+        />
+      </span>
+    </label>
+  </form>
+</div>
+`;
+
+exports[`useCheckboxGroup should support an indeterminate checkbox group 2`] = `
+<div>
+  <form>
+    <label
+      class="rmd-label rmd-label--gap rmd-label--reversed"
+    >
+      Indeterminate
+      <span
+        class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--active rmd-input-toggle--normal"
+      >
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box
+        </i>
+        <input
+          autocomplete="off"
+          class="rmd-hidden-input"
+          id="checkbox-:r9:"
+          name="example"
+          type="checkbox"
+        />
+        <span
+          class="rmd-ripple-container"
+        >
+          <span
+            class="rmd-ripple rmd-ripple--animating rmd-ripple--scaling"
+            style="left: 0px; top: 0px; height: 0px; width: 0px;"
+          />
+        </span>
+      </span>
+    </label>
+    <label
+      class="rmd-label rmd-label--gap rmd-label--reversed"
+    >
+      A
+      <span
+        class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--active rmd-input-toggle--normal"
+      >
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box
+        </i>
+        <input
+          autocomplete="off"
+          class="rmd-hidden-input"
+          id="checkbox-:ra:"
+          name="example"
+          type="checkbox"
+          value="a"
+        />
+        <span
+          class="rmd-ripple-container"
+        />
+      </span>
+    </label>
+    <label
+      class="rmd-label rmd-label--gap rmd-label--reversed"
+    >
+      B
+      <span
+        class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--active rmd-input-toggle--normal"
+      >
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box
+        </i>
+        <input
+          autocomplete="off"
+          class="rmd-hidden-input"
+          id="checkbox-:rb:"
+          name="example"
+          type="checkbox"
+          value="b"
+        />
+        <span
+          class="rmd-ripple-container"
+        />
+      </span>
+    </label>
+    <label
+      class="rmd-label rmd-label--gap rmd-label--reversed"
+    >
+      C
+      <span
+        class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--active rmd-input-toggle--normal"
+      >
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box
+        </i>
+        <input
+          autocomplete="off"
+          class="rmd-hidden-input"
+          id="checkbox-:rc:"
+          name="example"
+          type="checkbox"
+          value="c"
+        />
+        <span
+          class="rmd-ripple-container"
+        />
+      </span>
+    </label>
+  </form>
+</div>
+`;
+
+exports[`useCheckboxGroup should support an indeterminate checkbox group 3`] = `
+<div>
+  <form>
+    <label
+      class="rmd-label rmd-label--gap rmd-label--reversed"
+    >
+      Indeterminate
+      <span
+        class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--active rmd-input-toggle--normal"
+      >
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          indeterminate_check_box
+        </i>
+        <input
+          aria-checked="mixed"
+          autocomplete="off"
+          class="rmd-hidden-input"
+          id="checkbox-:r9:"
+          name="example"
+          type="checkbox"
+        />
+        <span
+          class="rmd-ripple-container"
+        >
+          <span
+            class="rmd-ripple rmd-ripple--animating rmd-ripple--scaling"
+            style="left: 0px; top: 0px; height: 0px; width: 0px;"
+          />
+        </span>
+      </span>
+    </label>
+    <label
+      class="rmd-label rmd-label--gap rmd-label--reversed"
+    >
+      A
+      <span
+        class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--active rmd-input-toggle--normal"
+      >
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box
+        </i>
+        <input
+          autocomplete="off"
+          class="rmd-hidden-input"
+          id="checkbox-:ra:"
+          name="example"
+          type="checkbox"
+          value="a"
+        />
+        <span
+          class="rmd-ripple-container"
+        />
+      </span>
+    </label>
+    <label
+      class="rmd-label rmd-label--gap rmd-label--reversed"
+    >
+      B
+      <span
+        class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--active rmd-input-toggle--normal"
+      >
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box
+        </i>
+        <input
+          autocomplete="off"
+          class="rmd-hidden-input"
+          id="checkbox-:rb:"
+          name="example"
+          type="checkbox"
+          value="b"
+        />
+        <span
+          class="rmd-ripple-container"
+        />
+      </span>
+    </label>
+    <label
+      class="rmd-label rmd-label--gap rmd-label--reversed"
+    >
+      C
+      <span
+        class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
+      >
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box_outline_blank
+        </i>
+        <input
+          autocomplete="off"
+          class="rmd-hidden-input"
+          id="checkbox-:rc:"
+          name="example"
+          type="checkbox"
+          value="c"
+        />
+        <span
+          class="rmd-ripple-container"
+        >
+          <span
+            class="rmd-ripple rmd-ripple--animating rmd-ripple--scaling"
+            style="left: 0px; top: 0px; height: 0px; width: 0px;"
+          />
+        </span>
+      </span>
+    </label>
+  </form>
+</div>
+`;
+
+exports[`useCheckboxGroup should support rendering a group of MenuItemCheckbox by enabling the \`menu\` option 1`] = `
+<div
+  aria-labelledby="menubutton-:rd:"
+  class="rmd-menu rmd-menu--elevated rmd-scale-transition--enter rmd-scale-transition--y-enter rmd-scale-transition--enter-active rmd-scale-transition--y-enter-active"
+  id="menu-:rf:"
+  role="menu"
+  style="position: fixed; transform-origin: 0 0; left: 16px; top: 0px;"
+  tabindex="-1"
+>
+  <ul
+    class="rmd-list"
+    role="none"
+  >
+    <li
+      aria-checked="false"
+      class="rmd-list-item rmd-list-item--clickable rmd-list-item--medium rmd-checkbox-menu-item rmd-menu-item-input-toggle"
+      id="menu-item-:rg:"
+      role="menuitemcheckbox"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-checkbox rmd-input-toggle rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-menu-item-input-toggle__icon"
+      >
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box_outline_blank
+        </i>
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        Indeterminate
+      </span>
+      <span
+        class="rmd-ripple-container"
+      />
+    </li>
+    <li
+      aria-checked="false"
+      class="rmd-list-item rmd-list-item--clickable rmd-list-item--medium rmd-checkbox-menu-item rmd-menu-item-input-toggle"
+      id="menu-item-:rh:"
+      role="menuitemcheckbox"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-checkbox rmd-input-toggle rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-menu-item-input-toggle__icon"
+      >
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box_outline_blank
+        </i>
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        1
+      </span>
+      <span
+        class="rmd-ripple-container"
+      />
+    </li>
+    <li
+      aria-checked="false"
+      class="rmd-list-item rmd-list-item--clickable rmd-list-item--medium rmd-checkbox-menu-item rmd-menu-item-input-toggle"
+      id="menu-item-:ri:"
+      role="menuitemcheckbox"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-checkbox rmd-input-toggle rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-menu-item-input-toggle__icon"
+      >
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box_outline_blank
+        </i>
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        3
+      </span>
+      <span
+        class="rmd-ripple-container"
+      />
+    </li>
+    <li
+      aria-checked="false"
+      class="rmd-list-item rmd-list-item--clickable rmd-list-item--medium rmd-checkbox-menu-item rmd-menu-item-input-toggle"
+      id="menu-item-:rj:"
+      role="menuitemcheckbox"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-checkbox rmd-input-toggle rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-menu-item-input-toggle__icon"
+      >
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box_outline_blank
+        </i>
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        FIVE
+      </span>
+      <span
+        class="rmd-ripple-container"
+      />
+    </li>
+  </ul>
+</div>
+`;

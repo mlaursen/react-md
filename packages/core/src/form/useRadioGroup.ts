@@ -274,7 +274,6 @@ export function useRadioGroup<V extends string | number>(
         return {
           checked,
           onCheckedChange() {
-            setError(false);
             setValue(radioValue);
           },
         };
@@ -288,18 +287,11 @@ export function useRadioGroup<V extends string | number>(
         required,
         onChange(event) {
           onChange(event);
-          if (event.isPropagationStopped()) {
-            return;
-          }
-
           setError(false);
           setValue(radioValue);
         },
         onInvalid(event) {
           onInvalid(event);
-          if (event.isPropagationStopped()) {
-            return;
-          }
           setError(true);
         },
       };
