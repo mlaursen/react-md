@@ -116,6 +116,7 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(function Avatar(
     <span
       {...remaining}
       ref={ref}
+      role="presentation"
       className={avatar({ color, size, className })}
     >
       {img}

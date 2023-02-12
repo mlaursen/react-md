@@ -186,7 +186,9 @@ export function getSearchText(
 
   const cloned = element.cloneNode(true) as HTMLElement;
   cloned
-    .querySelectorAll(".rmd-icon--font,[aria-hidden=true],[hidden]")
+    .querySelectorAll(
+      ".rmd-icon--font,[aria-hidden=true],[hidden],[role=presentation]"
+    )
     .forEach((element) => {
       element.parentNode?.removeChild(element);
     });

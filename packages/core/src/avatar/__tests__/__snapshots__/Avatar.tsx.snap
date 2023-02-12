@@ -4,6 +4,7 @@ exports[`Avatar should apply the correct styling, HTML attributes, and allow a r
 <span
   class="rmd-avatar"
   data-testid="avatar"
+  role="presentation"
 />
 `;
 
@@ -11,6 +12,7 @@ exports[`Avatar should apply the correct styling, HTML attributes, and allow a r
 <span
   class="rmd-avatar custom-class-name"
   data-testid="avatar"
+  role="presentation"
   style="color: red;"
 />
 `;
@@ -19,6 +21,7 @@ exports[`Avatar should apply the correct styling, HTML attributes, and allow a r
 <span
   class="rmd-avatar rmd-avatar--primary"
   data-testid="avatar"
+  role="presentation"
   style=""
 />
 `;
@@ -27,6 +30,7 @@ exports[`Avatar should render an img if a src or imgProps are provided 1`] = `
 <span
   class="rmd-avatar"
   data-testid="avatar"
+  role="presentation"
 >
   <img
     alt=""
@@ -40,6 +44,7 @@ exports[`Avatar should render an img if a src or imgProps are provided 2`] = `
 <span
   class="rmd-avatar"
   data-testid="avatar"
+  role="presentation"
 >
   <img
     alt=""
@@ -54,6 +59,7 @@ exports[`Avatar should render an img if a src or imgProps are provided 3`] = `
 <span
   class="rmd-avatar"
   data-testid="avatar"
+  role="presentation"
 >
   <img
     alt=""

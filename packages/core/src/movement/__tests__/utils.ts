@@ -533,7 +533,7 @@ describe("getNextFocusableIndex", () => {
 });
 
 describe("getSearchText", () => {
-  it("should get the first letter from content ignoring icons and hidden elements", () => {
+  it("should get the first letter from content ignoring icons, hidden elements, or presentational roles", () => {
     const button = document.createElement("button");
     button.textContent = "Button";
     const span = document.createElement("span");
@@ -565,6 +565,17 @@ describe("getSearchText", () => {
     const lowercase = document.createElement("span");
     lowercase.textContent = "lowercase";
     expect(getSearchText(lowercase, true)).toBe("L");
+
+    const presentational = document.createElement("span");
+    presentational.setAttribute("role", "presentation");
+    presentational.textContent = "A";
+    presentational.className = "rmd-avatar";
+    const presentationalContainer = document.createElement("div");
+    presentationalContainer.appendChild(presentational);
+    presentationalContainer.append(
+      document.createTextNode("This is the real content")
+    );
+    expect(getSearchText(presentationalContainer, true)).toBe("T");
   });
 });
 
