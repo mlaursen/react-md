@@ -2,10 +2,45 @@ import type { ReactElement, ReactNode } from "react";
 import { useEffect, useState } from "react";
 import { useSsr } from "./SsrProvider";
 
+/** @remarks \@since 6.0.0 */
 export interface NoSsrProps {
   children: ReactNode;
 }
 
+/**
+ * A small wrapper that can be used to render children client side only. The
+ * main use-case are for components that rely on browser API to work correctly.
+ *
+ * @example
+ * Simple Example
+ * ```tsx
+ * import { CoreProviders, NoSsr, Typography } from "@react-md/core";
+ * import type { ReactElement } from "react";
+ *
+ * function Example(): ReactElement {
+ *   return (
+ *     <>
+ *       <Typography>This is always rendered.</Typography>
+ *       <NoSsr>
+ *         <Typography>
+ *           This is only rendered client-side after rehydrating.
+ *         </Typography>
+ *       </NoSsr>
+ *     </>
+ *   );
+ * }
+ *
+ * function App(): ReactElement {
+ *   return (
+ *     <CoreProviders ssr>
+ *       <Example />
+ *     </CoreProviders>
+ *   );
+ * }
+ * ```
+ *
+ * @remarks \@since 6.0.0
+ */
 export function NoSsr(props: NoSsrProps): ReactElement {
   const { children } = props;
   const ssr = useSsr();
