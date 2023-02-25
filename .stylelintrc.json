@@ -1,8 +1,5 @@
 {
-  "extends": [
-    "stylelint-config-recommended-scss",
-    "stylelint-config-prettier-scss"
-  ],
+  "extends": ["stylelint-config-recommended-scss"],
   "plugins": ["stylelint-order", "stylelint-scss"],
   "rules": {
     "no-descending-specificity": null,
@@ -10,6 +7,8 @@
       true,
       { "ignorePseudoClasses": ["global", "local"] }
     ],
-    "order/properties-alphabetical-order": true
+    "order/properties-alphabetical-order": true,
+    "scss/operator-no-newline-before": null,
+    "scss/operator-no-newline-after": null
   }
 }
