@@ -47,6 +47,9 @@ const nextConfig = {
       },
     ];
   },
+  sassOptions: {
+    additionalData: `$env: ${process.env.NODE_ENV};`,
+  },
 };
 
 export default withMDX(nextConfig);

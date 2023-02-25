@@ -10,6 +10,7 @@ export const defaultColorSchemeMode: ColorSchemeMode = "system";
 export const defaultDisableHighContrastMode = false;
 // export const defaultDisableHighContrastMode = true
 
-// disabled since it makes debugging a bit easier by having all the css variables in one block
-export const disableDefaultSystemTheme = true;
-// export const disableDefaultSystemTheme = false;
+// disabled in development since it makes debugging a bit easier by having all
+// the css variables in one block in the `SystemTheme_container__` class
+// The `app.scss` will include the default system theme for production
+export const disableDefaultSystemTheme = process.env.NODE_ENV !== "production";
