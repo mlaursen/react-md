@@ -163,3 +163,8 @@ export type UseStateObject<Name extends string, Value> = {
 export type RenameKeysWithPrefix<T, Prefix extends string> = {
   [Key in keyof T & string as `${Prefix}${Capitalize<Key>}`]: T[Key];
 };
+
+/**
+ * @remarks \@since 6.0.0
+ */
+export type CssPosition = "fixed" | "sticky" | "static";

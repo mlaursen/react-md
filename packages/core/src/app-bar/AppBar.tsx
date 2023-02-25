@@ -1,6 +1,7 @@
 import { cnb } from "cnbuilder";
 import type { ElementType, HTMLAttributes, Ref } from "react";
 import { forwardRef } from "react";
+import type { CssPosition } from "../types";
 import { bem } from "../utils";
 
 declare module "react" {
@@ -15,15 +16,7 @@ declare module "react" {
 
 const styles = bem("rmd-app-bar");
 
-/**
- * @remarks \@since 6.0.0 Renamed from `AppBarPosition` to `AppBarPagePosition`
- */
-export type AppBarPagePosition = "top" | "bottom";
-
-/**
- * @remarks \@since 6.0.0
- */
-export type AppBarPosition = "fixed" | "sticky" | "";
+export type AppBarPosition = "top" | "bottom";
 
 /**
  * - `"clear"` - the background color will be transparent
@@ -62,9 +55,9 @@ export interface AppBarClassNameOptions {
    * `position: sticky;` to the app bar. The default position will be static and
    * inline with other content.
    *
-   * @defaultValue `''`
+   * @defaultValue `'static'`
    */
-  position?: AppBarPosition;
+  position?: CssPosition;
 
   /**
    * The position within the page to "fix" the `AppBar` when the `fixed` prop is
@@ -72,7 +65,7 @@ export interface AppBarClassNameOptions {
    *
    * @defaultValue `"top"`
    */
-  pagePosition?: AppBarPagePosition;
+  pagePosition?: AppBarPosition;
 
   /**
    * Set this to `true` if enabling the {@link position} prop should not include
@@ -112,7 +105,7 @@ export interface AppBarClassNameOptions {
    * become visible the contents in the app bar do not need to be repainted.
    *
    * @remarks \@since 6.0.0
-   * @defaultValue `fixed`
+   * @defaultValue `position === "fixed"`
    */
   scrollbarOffset?: boolean;
 }
@@ -129,9 +122,9 @@ export function appBar(options: AppBarClassNameOptions = {}): string {
     height = "normal",
     theme = "primary",
     stacked = false,
-    position = "",
+    position = "static",
     pagePosition = "top",
-    scrollbarOffset = !!position,
+    scrollbarOffset = position === "fixed",
     disableElevation = false,
   } = options;
 
@@ -139,7 +132,7 @@ export function appBar(options: AppBarClassNameOptions = {}): string {
     styles({
       [theme]: theme !== "clear",
       [height]: height !== "normal",
-      fixed: !!position,
+      fixed: position !== "static",
       sticky: position === "sticky",
       stacked,
       [pagePosition]: position,
@@ -207,13 +200,13 @@ export const AppBar = forwardRef<HTMLDivElement, AppBarProps>(function AppBar(
 ) {
   const {
     className,
-    height = "normal",
-    theme = "primary",
-    stacked = false,
+    height,
+    theme,
+    stacked,
     position,
-    pagePosition = "top",
-    scrollbarOffset = false,
-    disableElevation = false,
+    pagePosition,
+    scrollbarOffset,
+    disableElevation,
     as: Component = position ? "header" : "div",
     children,
     ...remaining

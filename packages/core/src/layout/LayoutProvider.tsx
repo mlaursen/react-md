@@ -7,8 +7,8 @@ import {
   useMemo,
   useState,
 } from "react";
-import type { AppBarPosition } from "../app-bar";
 import { useAppSize } from "../AppSizeProvider";
+import type { CssPosition } from "../types";
 import { useEnsuredId } from "../useEnsuredId";
 import {
   DEFAULT_DESKTOP_LAYOUT,
@@ -65,7 +65,7 @@ export interface LayoutContext {
    * \@since 2.8.3
    * \@since 6.0.0 Changed to be a type union of position types
    */
-  appBarPosition: AppBarPosition;
+  appBarPosition: CssPosition;
 
   /**
    * Boolean if one of the layout types are mini. This is mostly used internally
@@ -115,7 +115,7 @@ export interface LayoutProviderProps extends LayoutConfiguration {
    * @see {@link LayoutContext.appBarPosition}
    * @defaultValue `true`
    */
-  appBarPosition?: AppBarPosition;
+  appBarPosition?: CssPosition;
 }
 
 /**
