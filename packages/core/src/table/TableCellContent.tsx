@@ -2,12 +2,17 @@ import { cnb } from "cnbuilder";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 import { forwardRef } from "react";
 import { ButtonUnstyled } from "../button";
-import { IconRotator, TextIconSpacing } from "../icon";
+import { IconRotator } from "../icon";
 import { bem } from "../utils";
 import type { TableCellHorizontalAlignment } from "./TableConfigurationProvider";
 
 export type SortOrder = "ascending" | "descending" | "none" | "other";
 
+/**
+ * @remarks \@since 6.0.0 Extends the `ButtonHTMLAttributes` so the extra props
+ * can be passed to the `ButtonUnstyled`
+ * @internal
+ */
 export interface TableCellContentProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
@@ -16,7 +21,12 @@ export interface TableCellContentProps
    */
   sortOrder?: SortOrder;
 
+  /**
+   * This should normally be the `useIcon("sort")`
+   */
   icon?: ReactNode;
+
+  /** @defaultValue `false` */
   iconAfter?: boolean;
 
   /**
@@ -38,6 +48,8 @@ const styles = bem("rmd-table-cell");
  * the `TableCell` component but this will conditionally wrap the `children`
  * within an `UnstyledButton` to make a clickable cell. This is really to help
  * with sort behavior within headers.
+ *
+ * @internal
  */
 export const TableCellContent = forwardRef<
   HTMLButtonElement,
@@ -71,15 +83,15 @@ export const TableCellContent = forwardRef<
       ref={ref}
       style={style}
       className={cnb(
-        styles("child", {
+        styles("content", {
           [hAlign]: hAlign !== "left",
         }),
         className
       )}
     >
-      <TextIconSpacing icon={icon} iconAfter={iconAfter}>
-        {children}
-      </TextIconSpacing>
+      {!iconAfter && icon}
+      {children}
+      {iconAfter && icon}
     </ButtonUnstyled>
   );
 });

@@ -78,6 +78,9 @@ export interface TableCellProps extends TableCellAttributes, TableCellOptions {
    * If this prop is set to `"none"`, the cell will render the clickable button
    * in the children, just without the sort icon. This is so that the sort
    * behavior can still be toggled for keyboard users and will be tab-focusable.
+   *
+   * @see {@link beforeChildren}
+   * @see {@link afterChildren}
    */
   "aria-sort"?: SortOrder;
 
@@ -114,10 +117,84 @@ export interface TableCellProps extends TableCellAttributes, TableCellOptions {
    */
   disablePadding?: boolean;
 
+  /**
+   * This can be used to apply styling or any other props to the
+   * `UnstyledButton` that surrounds the `children` when the `"aria-sort"` prop
+   * has been provided.
+   *
+   * @remarks \@since 6.0.0
+   */
   contentProps?: PropsWithRef<
     ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
   >;
+
+  /**
+   * Since providing an `aria-sort` prop will wrap the `children` in an
+   * `UnstyledButton`, you can use this prop to render another button within the
+   * table cell before the main `children`.
+   *
+   * @see {@link afterChildren} for an example.
+   * @remarks \@since 6.0.0
+   */
+  beforeChildren?: ReactNode;
+
+  /**
+   * Since providing an `aria-sort` prop will wrap the `children` in an
+   * `UnstyledButton`, you can use this prop to render another button within the
+   * table cell before the main `children`.
+   *
+   * @example
+   * ```tsx
+   * import type { SortOrder } from "@react-md/core";
+   * import { Button, Dialog, TableCell } from "@react-md/core";
+   * import MoreVertIcon from "@react-md/material-icons/MoreVertIcon";
+   * import type { ReactElement } from "react";
+   * import { useState } from "react";
+   *
+   * interface Props {
+   *   setSort(sort: string): void;
+   *   sortKey: string;
+   *   sortOrder: SortOrder;
+   * }
+   *
+   * function Example({ sortKey, sortOrder, setSort }: Props): ReactElement {
+   *   const [visible, setVisible] = useState(false);
+   *
+   *   return (
+   *     <>
+   *       <TableCell
+   *         aria-sort={sortKey === "example" ? sortOrder : "none"}
+   *         onClick={() => setSort("example")}
+   *         afterChildren={
+   *           <Button
+   *             aria-label="Options"
+   *             buttonType="icon"
+   *             onClick={() => {
+   *               setVisible(true)
+   *             }}
+   *           >
+   *             <MoreVertIcon />
+   *           </Button>
+   *         }
+   *       >
+   *         Example content
+   *       </TableCell>
+   *       <Dialog
+   *         aria-label="Options"
+   *         visible={visible}
+   *         onRequestClose={() => setVisible(false)}
+   *       >
+   *         Pretend Content...
+   *       </Dialog>
+   *     </>
+   *   );
+   * }
+   * ```
+   *
+   * @remarks \@since 6.0.0
+   */
+  afterChildren?: ReactNode;
 }
 
 const styles = bem("rmd-table-cell");
@@ -217,6 +294,8 @@ export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
       lineWrap: propDisableLineWrap,
       checkbox,
       children,
+      beforeChildren,
+      afterChildren,
       sticky,
       sortIcon: propSortIcon,
       sortIconAfter = false,
@@ -270,6 +349,7 @@ export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
         })}
         scope={scope}
       >
+        {beforeChildren}
         <TableCellContent
           {...contentProps}
           icon={sortIcon}
@@ -280,6 +360,7 @@ export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
         >
           {children}
         </TableCellContent>
+        {afterChildren}
       </Component>
     );
   }

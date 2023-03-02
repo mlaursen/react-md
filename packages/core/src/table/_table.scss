@@ -2,6 +2,7 @@
 @use "../utils";
 @use "../box-shadows";
 @use "../theme/theme";
+@use "../icon/icon";
 @use "../interaction/interaction";
 @use "../typography/typography";
 @use "../transition/transition";
@@ -75,6 +76,7 @@ $cell-header-dense-height: 2.125rem !default;
 $cell-horizontal-padding: 1rem !default;
 $cell-vertical-padding: 0.375rem !default;
 $cell-checkbox-horizontal-padding: 0.5rem !default;
+$cell-content-gap: icon.$spacing !default;
 
 $sticky-cell-position: 0 !default;
 $sticky-header-position: 0 !default;
@@ -442,13 +444,14 @@ $row-selected-styles: (
           padding: 0;
         }
 
-        &__child {
+        &__content {
           @include use-var(padding-left, cell-horizontal-padding);
           @include use-var(padding-right, cell-horizontal-padding);
 
           align-items: center;
           color: inherit;
           font: inherit;
+          gap: $cell-content-gap;
           height: 100%;
           width: 100%;
         }
