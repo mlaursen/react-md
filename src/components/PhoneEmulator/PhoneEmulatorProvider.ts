@@ -26,7 +26,7 @@ context.displayName = "PhoneEmulator";
 
 export const { Provider: PhoneEmulatorProvider } = context;
 
-export function usePhoneEnumator(): Readonly<PhoneEmulatorContext> {
+export function usePhoneEmulator(): Readonly<PhoneEmulatorContext> {
   return useContext(context);
 }
 
@@ -39,7 +39,7 @@ export interface PhoneEmulatorProviderImplementation {
   emulatorContext: PhoneEmulatorContext;
 }
 
-export function usePhoneEnumatorProvider(
+export function usePhoneEmulatorProvider(
   options: PhoneEmulatorProviderOptions
 ): PhoneEmulatorProviderImplementation {
   const { onPhoneClose = noop } = options;

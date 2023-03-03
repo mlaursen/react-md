@@ -1,7 +1,7 @@
 import { Button, Dialog, Typography } from "@react-md/core";
 import LaunchIcon from "@react-md/material-icons/LaunchIcon";
 import type { ReactElement, ReactNode } from "react";
-import { usePhoneEnumator } from "./PhoneEmulatorProvider";
+import { usePhoneEmulator } from "./PhoneEmulatorProvider";
 
 export interface ConditionalFullPageDialogProps {
   disabled: boolean;
@@ -12,7 +12,7 @@ export function ConditionalFullPageDialog(
   props: ConditionalFullPageDialogProps
 ): ReactElement {
   const { disabled, children } = props;
-  const { showPhone, closePhone, isPhoneOpen } = usePhoneEnumator();
+  const { showPhone, closePhone, isPhoneOpen } = usePhoneEmulator();
   if (disabled) {
     return <>{children}</>;
   }

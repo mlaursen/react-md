@@ -3,7 +3,7 @@ import { Button } from "@react-md/core";
 import CloseIcon from "@react-md/material-icons/CloseIcon";
 import KeyboardArrowLeftIcon from "@react-md/material-icons/KeyboardArrowLeftIcon";
 import type { ReactElement } from "react";
-import { usePhoneEnumator } from "./PhoneEmulatorProvider";
+import { usePhoneEmulator } from "./PhoneEmulatorProvider";
 
 const noop = (): void => {
   // do nothing
@@ -22,7 +22,7 @@ export function ClosePhoneEmulatorButton(
     ...remaining
   } = props;
 
-  const { closePhone } = usePhoneEnumator();
+  const { closePhone } = usePhoneEmulator();
 
   return (
     <Button

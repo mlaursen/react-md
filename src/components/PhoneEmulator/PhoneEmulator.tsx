@@ -7,7 +7,7 @@ import styles from "./PhoneEmulator.module.scss";
 import type { PhoneEmulatorProviderOptions } from "./PhoneEmulatorProvider";
 import {
   PhoneEmulatorProvider,
-  usePhoneEnumatorProvider,
+  usePhoneEmulatorProvider,
 } from "./PhoneEmulatorProvider";
 import { StatusBar } from "./StatusBar";
 
@@ -39,7 +39,7 @@ export function PhoneEmulator(props: PhoneEmulatorProps): ReactElement {
     ...remaining
   } = props;
 
-  const { isPhone, emulatorContext } = usePhoneEnumatorProvider({
+  const { isPhone, emulatorContext } = usePhoneEmulatorProvider({
     onPhoneClose,
   });
 
