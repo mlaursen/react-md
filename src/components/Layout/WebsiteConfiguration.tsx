@@ -19,7 +19,7 @@ import type { ReactElement } from "react";
 import type { PrismTheme } from "../Code";
 import { PRISM_THEMES, useCodeConfig } from "../Code";
 import { ColorSchemeButtons } from "./ColorSchemeButtons";
-import { useWebsiteConfiguration } from "./WebsideConfigurationProvider";
+import { useWebsiteConfiguration } from "./WebsiteConfigurationProvider";
 import { WritingDirectionButtons } from "./WritingDirectionButtons";
 
 const PHONE_LAYOUTS: readonly SupportedPhoneLayout[] = [

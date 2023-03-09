@@ -1,4 +1,4 @@
-import glob from "glob";
+import { globSync } from "glob";
 import { existsSync } from "node:fs";
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
@@ -11,9 +11,9 @@ const themesPath = resolve(codeFolder, "themes.ts");
 const prismThemesFolder = resolve(codeFolder, "prism-themes");
 const loadThemePath = resolve(codeFolder, "LoadPrismTheme.tsx");
 
-const files = glob.sync("node_modules/prism@(js|-themes)/themes/*.css", {
+const files = globSync("node_modules/prism@(js|-themes)/themes/*.css", {
   ignore: "**/*.min.css",
-});
+}).sort();
 
 const defaultThemes = ["default"];
 const additionalThemes: string[] = [];

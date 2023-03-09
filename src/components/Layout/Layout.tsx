@@ -19,7 +19,7 @@ import { NavWindowSplitter } from "./NavWindowSplitter";
 import {
   useWebsiteConfigurationProvider,
   WebsiteConfigurationProvider,
-} from "./WebsideConfigurationProvider";
+} from "./WebsiteConfigurationProvider";
 import { WebsiteConfiguration } from "./WebsiteConfiguration";
 
 export interface LayoutProps {

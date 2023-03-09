@@ -1,5 +1,5 @@
 import { transformFile } from "@swc/core";
-import glob from "glob";
+import { glob } from "glob";
 import lodash from "lodash";
 import { ExecOptions } from "node:child_process";
 import { existsSync } from "node:fs";
@@ -162,7 +162,7 @@ function sparseCheckout(): void {
     loggedExecSync("git sparse-checkout init", options);
   }
 
-  // force change the sparce checkout rules for the material icons only since
+  // force change the sparse checkout rules for the material icons only since
   // I'm planning on supporting the symbols in the future
   loggedExecSync(MATERIAL_ICONS_SPARSE_CHECKOUT, options);
 
@@ -173,7 +173,7 @@ function sparseCheckout(): void {
 async function run(): Promise<void> {
   sparseCheckout();
 
-  const svgs = glob.sync("**/24px.svg", { cwd: MATERIAL_ICONS_FOLDER });
+  const svgs = await glob("**/24px.svg", { cwd: MATERIAL_ICONS_FOLDER });
 
   const chunked = lodash.chunk(svgs, 50);
 
@@ -182,7 +182,7 @@ async function run(): Promise<void> {
       await rm(MATERIAL_ICONS_SRC, { recursive: true });
     }
 
-    const files = glob.sync("*.{cjs,mjs,d.ts}", {
+    const files = await glob("*.{cjs,mjs,d.ts}", {
       cwd: MATERIAL_ICONS_ROOT,
     });
     await Promise.all(files.map((name) => rm(join(MATERIAL_ICONS_ROOT, name))));

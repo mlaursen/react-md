@@ -10,5 +10,9 @@ pnpm*.yaml
 CHANGELOG.md
 **/CHANGELOG.md
 
-packages/material-icons/src
+# these will be handled automatically with the material icons script
+packages/material-icons/**/*.ts
+packages/material-icons/**/*.tsx
+packages/material-icons/**/*.mjs
+
 packages/codemod/transforms/**/__testfixtures__
