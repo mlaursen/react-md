@@ -7,6 +7,7 @@ export * from "./button";
 export * from "./card";
 export * from "./chip";
 export * from "./CoreProviders";
+export * from "./delegateEvent";
 export * from "./dialog";
 export * from "./divider";
 export * from "./draggable";

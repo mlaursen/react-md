@@ -191,10 +191,11 @@ export function ColorSchemeProvider(
 
   const prefersDarkTheme = useMediaQuery(
     "(prefers-color-scheme: dark)",
-    mode !== "system"
+    colorSchemeMode !== "system"
   );
   const derivedColorScheme = prefersDarkTheme ? "dark" : "light";
-  const colorScheme = mode === "system" ? derivedColorScheme : mode;
+  const colorScheme =
+    colorSchemeMode === "system" ? derivedColorScheme : colorSchemeMode;
 
   const value = useMemo<ColorSchemeContext>(
     () => ({
@@ -207,7 +208,7 @@ export function ColorSchemeProvider(
   if (process.env.NODE_ENV === "development") {
     /* eslint-disable react-hooks/rules-of-hooks, no-console */
     useEffect(() => {
-      if (mode === "system") {
+      if (colorSchemeMode === "system") {
         return;
       }
 
@@ -227,17 +228,17 @@ export function ColorSchemeProvider(
       const isDarkMode = darkContrast < lightContrast;
       const isLightMode = lightContrast < darkContrast;
       if (
-        (isDarkMode && mode === "light") ||
-        (isLightMode && mode === "dark")
+        (isDarkMode && colorSchemeMode === "light") ||
+        (isLightMode && colorSchemeMode === "dark")
       ) {
         const currentMode = isDarkMode ? "dark" : "light";
         console.warn(
-          `The \`mode\` for the \`ColorSchemeProvider\` has been set to "${mode}" but ` +
+          `The \`mode\` for the \`ColorSchemeProvider\` has been set to "${colorSchemeMode}" but ` +
             `the root background color is "${currentMode}". ` +
             `This prop might need to be changed to "${currentMode}" or "system".`
         );
       }
-    }, [mode]);
+    }, [colorSchemeMode]);
   }
 
   useEffect(() => {

@@ -79,22 +79,28 @@ export interface ProvidedRadioGroupProps<V extends string | number> {
 }
 
 /** @remarks \@since 6.0.0 */
+export type GetRadioGroupProps<V extends string | number> = (
+  value: V
+) => Readonly<ProvidedRadioGroupProps<V>>;
+
+/** @remarks \@since 6.0.0 */
 export interface RadioGroupImplementation<V extends string | number> {
   reset(): void;
   value: V;
   setValue: UseStateSetter<V>;
-  getRadioProps(value: V): Readonly<ProvidedRadioGroupProps<V>>;
+  getRadioProps: GetRadioGroupProps<V>;
 }
+
+export type GetMenuItemRadioGroupProps<V extends string | number> = (
+  value: V
+) => Readonly<{ checked: boolean; onCheckedChange(): void }>;
 
 /** @remarks \@since 6.0.0 */
 export interface MenuItemRadioGroupImplementation<V extends string | number> {
   reset(): void;
   value: V;
   setValue: UseStateSetter<V>;
-  getRadioProps(value: V): {
-    checked: boolean;
-    onCheckedChange(): void;
-  };
+  getRadioProps: GetMenuItemRadioGroupProps<V>;
 }
 
 /** @remarks \@since 6.0.0 */

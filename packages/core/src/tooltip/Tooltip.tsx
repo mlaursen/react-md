@@ -35,7 +35,11 @@ export function tooltip(options: TooltipClassNameOptions): string {
   const { dense, position, className, disableLineWrap } = options;
 
   return cnb(
-    styles({ dense, [position]: true, wrap: !disableLineWrap }),
+    styles({
+      dense,
+      [position]: true,
+      nowrap: disableLineWrap,
+    }),
     className
   );
 }
@@ -71,7 +75,11 @@ export interface TooltipProps
   disablePortal?: boolean;
 
   /**
-   * Set this to `true` to disable the `max-width` behavior.
+   * Set this to `true` to add `whitespace: nowrap` to the tooltip.
+   *
+   * This prop is useful for tooltips that are positioned near the edge of the
+   * viewport with `"above"` or `"below"` so that the tooltip no longer aligns
+   * the center of the tooltip with the center of the tooltipped element.
    *
    * @defaultValue `false`
    */
@@ -141,9 +149,9 @@ export const Tooltip = forwardRef<HTMLSpanElement, TooltipProps>(
       classNames,
       className: tooltip({
         dense,
-        disableLineWrap,
         position,
         className,
+        disableLineWrap,
       }),
       onEnter,
       onEntering,

@@ -216,7 +216,7 @@ export interface IntersectionObserverHookOptions<E extends HTMLElement> {
  * ```
  *
  * @remarks \@since 6.0.0
- * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API}
+ * @see https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
  */
 export function useIntersectionObserver<E extends HTMLElement>(
   options: IntersectionObserverHookOptions<E>

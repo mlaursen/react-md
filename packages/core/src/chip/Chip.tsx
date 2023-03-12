@@ -200,6 +200,7 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(function Chip(
   const {
     "aria-pressed": ariaPressed,
     theme = "solid",
+    className,
     raisable = false,
     disabled = false,
     selected,
@@ -306,6 +307,7 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(function Chip(
       {...buttonProps}
       {...handlers}
       className={chip({
+        className,
         theme,
         pressed: raisable && pressed,
         disabled,

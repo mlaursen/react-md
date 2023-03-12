@@ -476,7 +476,7 @@ exports[`Chip should apply the correct styling, HTML attributes, and allow a ref
 
 exports[`Chip should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <button
-  class="rmd-chip rmd-chip--solid"
+  class="rmd-chip rmd-chip--solid custom-class-name"
   style="color: white;"
   type="button"
 >

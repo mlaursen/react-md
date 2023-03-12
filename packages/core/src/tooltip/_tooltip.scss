@@ -95,6 +95,7 @@ $var-lookup: (
       max-width: $max-width;
       min-height: $min-height;
       opacity: 0;
+      overflow-wrap: anywhere;
       padding: $vertical-padding $horizontal-padding;
       pointer-events: none;
       position: fixed;
@@ -136,8 +137,8 @@ $var-lookup: (
         }
       }
 
-      &--wrap {
-        @include typography.text-overflow($white-space: null);
+      &--nowrap {
+        white-space: nowrap;
       }
 
       &--visible {

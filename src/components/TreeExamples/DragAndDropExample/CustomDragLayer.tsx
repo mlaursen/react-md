@@ -27,7 +27,6 @@ export function CustomDragLayer(): ReactElement | null {
         transform,
       }}
       className={styles.tooltip}
-      disableLineWrap
     >
       Move {item.name}
     </Tooltip>

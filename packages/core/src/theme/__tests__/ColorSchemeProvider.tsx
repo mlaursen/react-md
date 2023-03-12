@@ -86,11 +86,17 @@ describe("ColorSchemeProvider", () => {
     const warn = jest.spyOn(console, "warn").mockImplementation(() => {});
 
     const { rerender } = render(
-      <ColorSchemeProvider mode="system">Child</ColorSchemeProvider>
+      <ColorSchemeProvider key="system" mode="system">
+        Child
+      </ColorSchemeProvider>
     );
     expect(warn).not.toHaveBeenCalled();
 
-    rerender(<ColorSchemeProvider mode="light">Child</ColorSchemeProvider>);
+    rerender(
+      <ColorSchemeProvider key="light" mode="light">
+        Child
+      </ColorSchemeProvider>
+    );
     expect(warn).toHaveBeenCalledWith(
       `The \`${backgroundColorVar}\` does not exist on the root element. ` +
         "This should only happen in tests or the `react-md` styles have not been loaded."
@@ -109,10 +115,18 @@ describe("ColorSchemeProvider", () => {
         return "#fff";
       },
     });
-    rerender(<ColorSchemeProvider mode="light">Child</ColorSchemeProvider>);
+    rerender(
+      <ColorSchemeProvider key="light" mode="light">
+        Child
+      </ColorSchemeProvider>
+    );
     expect(warn).not.toHaveBeenCalled();
 
-    rerender(<ColorSchemeProvider mode="dark">Child</ColorSchemeProvider>);
+    rerender(
+      <ColorSchemeProvider key="dark" mode="dark">
+        Child
+      </ColorSchemeProvider>
+    );
     expect(warn).toHaveBeenCalledWith(
       `The \`mode\` for the \`ColorSchemeProvider\` has been set to "dark" but ` +
         `the root background color is "light". ` +

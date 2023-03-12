@@ -67,9 +67,7 @@ export function DragAndDropTreeItem(
       >
         {name}
       </TreeItem>
-      <Tooltip {...tooltipProps} disableLineWrap>
-        {name}
-      </Tooltip>
+      <Tooltip {...tooltipProps}>{name}</Tooltip>
     </>
   );
 }

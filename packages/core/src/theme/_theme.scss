@@ -221,10 +221,11 @@ $theme-var-lookup: (
   #{$property}: theme-get-var($name, $fallback);
 }
 
-@if $color-scheme != light and $color-scheme != dark and $color-scheme != system
-{
-  @error "$color-scheme must be one of: light, dark, or system but was #{$color-scheme}";
-}
+$_validated_color_scheme: utils.validate(
+  (light dark system),
+  $color-scheme,
+  "$color-scheme"
+);
 
 @mixin use-light-theme-colors {
   @include theme-set-var(background-color, $light-theme-background-color);

@@ -29,6 +29,8 @@ $disable-textarea: $disable-everything !default;
 $disable-password: $disable-text-field !default;
 $disable-text-field-addon: $disable-text-field and $disable-password and
   $disable-textarea !default;
+$disable-placeholder-ellipsis: false !default;
+$disable-text-field-container-dense: false !default;
 $disable-select: $disable-everything !default;
 $disable-option: $disable-select !default;
 $disable-native-select: $disable-everything !default;
@@ -630,6 +632,16 @@ $var-lookup: (
     display: flex;
     position: relative;
 
+    @if not $disable-text-field-container-dense {
+      &--dense {
+        @include set-var(text-height, $text-field-dense-height);
+      }
+
+      &--dense-label {
+        @include set-var(text-height, $text-field-label-dense-height);
+      }
+    }
+
     &--inline {
       display: inline-flex;
     }
@@ -841,6 +853,10 @@ $var-lookup: (
     @include _text-field-base-styles;
 
     &::placeholder {
+      @if not $disable-placeholder-ellipsis {
+        @include typography.text-overflow;
+      }
+
       @include theme.theme-use-var(color, text-secondary-color);
       // want to gain the same font styles as the input/textarea itself,
       // just apply different colors as needed instead. Can't just do font: inherit
