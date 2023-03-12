@@ -50,3 +50,6 @@ yarn-error.log*
 /packages/material-icons/*.mjs
 /packages/material-icons/*.cjs
 /packages/material-icons/*.d.ts
+
+generating.json
+material-metadata.json

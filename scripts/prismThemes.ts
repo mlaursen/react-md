@@ -2,7 +2,7 @@ import { globSync } from "glob";
 import { existsSync } from "node:fs";
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
-import { COPY_BANNER } from "./constants.js";
+import { GENERATED_FILE_BANNER } from "./constants.js";
 import { format } from "./utils/format.js";
 import { pascalCase } from "./utils/strings.js";
 
@@ -98,7 +98,7 @@ await Promise.all(
 
     const originalCss = await readFile(filePath, "utf8");
     const css = format(
-      `${COPY_BANNER}
+      `${GENERATED_FILE_BANNER}
 .container :global {
 ${originalCss}
 
@@ -106,7 +106,7 @@ ${originalCss}
       "scss"
     );
     const component = format(
-      `${COPY_BANNER}
+      `${GENERATED_FILE_BANNER}
 
 import { useHtmlClassName } from "@react-md/core";
 import styles from "./${title}.module.scss"
@@ -130,7 +130,7 @@ export default function ${title}(): null {
 additionalThemes.push("vim-solarized-dark");
 
 const themesContent = format(
-  `${COPY_BANNER}
+  `${GENERATED_FILE_BANNER}
 
 export const DEFAULT_PRISM_THEMES = ${JSON.stringify(defaultThemes)} as const;
 export const ADDITIONAL_THEMES = ${JSON.stringify(additionalThemes)} as const;
@@ -143,7 +143,7 @@ export type PrismTheme = typeof PRISM_THEMES[number];
 );
 
 const loadThemeContent = format(
-  `${COPY_BANNER}
+  `${GENERATED_FILE_BANNER}
 
 import dynamic from "next/dynamic";
 import type { ReactElement } from "react";

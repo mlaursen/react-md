@@ -6,6 +6,11 @@ $offset: 0.125rem;
   position: relative;
 }
 
+.lineWrap > pre[class*="language-"] {
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
 .pre {
   direction: left;
   flex-shrink: 0;

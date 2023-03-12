@@ -143,8 +143,13 @@ export interface BaseDialogProps
   /**
    * Set this to `true` if an overlay should not appear behind the dialog.
    *
+   * Note: this was changed from `type === "full-page"` to `false` so that you
+   * can change between full-page and centered based on media queries. If the
+   * type changes the overlay would end up rendering above the dialog instead of
+   * behind.
+   *
    * @see {@link overlayHidden}
-   * @defaultValue `type === "full-page"`
+   * @defaultValue `false`
    */
   disableOverlay?: boolean;
 
@@ -273,7 +278,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
     exitedHidden = true,
     fixed = false,
     modal = false,
-    disableOverlay = type === "full-page",
+    disableOverlay = false,
     overlayProps,
     overlayHidden,
     onKeyDown = noop,

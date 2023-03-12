@@ -1,6 +1,7 @@
 import { cnb } from "cnbuilder";
 import type { TextThemeColor, ThemeColor } from "../theme";
 import { bem } from "../utils";
+import type { MaterialIconFamily, MaterialSymbolFamily } from "./material";
 
 declare module "react" {
   interface CSSProperties {
@@ -69,9 +70,22 @@ export interface FontIconClassNameOptions extends SVGIconClassNameOptions {
 }
 
 /** @remarks \@since 6.0.0 */
+export interface MaterialIconClassNameOptions extends SVGIconClassNameOptions {
+  family: MaterialIconFamily;
+}
+
+/** @remarks \@since 6.0.0 */
+export interface MaterialSymbolClassNameOptions
+  extends SVGIconClassNameOptions {
+  family: MaterialSymbolFamily;
+}
+
+/** @remarks \@since 6.0.0 */
 export type IconClassNameOptions =
   | ({ type: "font" } & FontIconClassNameOptions)
-  | ({ type: "svg" } & SVGIconClassNameOptions);
+  | ({ type: "svg" } & SVGIconClassNameOptions)
+  | ({ type: "material" } & MaterialIconClassNameOptions)
+  | ({ type: "symbol" } & MaterialSymbolClassNameOptions);
 
 /**
  *
@@ -81,22 +95,38 @@ export function icon(options: IconClassNameOptions): string {
   const {
     className,
     type,
-    color,
+    color = "",
+    family = "",
     dense = false,
     forceSize = false,
     forceFontSize = false,
-    iconClassName = type === "font" ? "material-icons" : undefined,
+    iconClassName,
   } = options as FontIconClassNameOptions &
-    SVGIconClassNameOptions & { type: "font" | "svg" };
+    SVGIconClassNameOptions & {
+      type: "font" | "svg" | "symbol" | "material";
+      family?: MaterialIconFamily;
+    };
+
+  const isFont = type === "font";
+  const isSvg = type === "svg";
+  const isSymbol = type === "symbol";
+  const isMaterial = type === "material";
 
   return cnb(
     styles({
-      [color || ""]: !!color,
-      [type]: true,
+      [color]: !!color,
+      svg: isSvg,
+      font: isFont || isMaterial,
+      symbol: isSymbol,
       dense,
       "forced-font": forceFontSize,
       "forced-size": forceSize,
     }),
+    isSymbol && `material-symbols-${family}`,
+    isMaterial &&
+      `material-icons${
+        family === "filled" ? "" : `-${family === "rounded" ? "round" : family}`
+      }`,
     iconClassName,
     className
   );

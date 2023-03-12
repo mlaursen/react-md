@@ -1,0 +1,11 @@
+@use "sass:map";
+@use "everything";
+
+.button {
+  @include everything.icon-set-var(size, 2rem);
+
+  gap: 1rem;
+  line-height: normal;
+  text-align: center;
+  text-transform: capitalize;
+}

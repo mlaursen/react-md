@@ -1,0 +1,23 @@
+@use "everything";
+
+.container {
+  overflow: hidden;
+}
+
+.dark :global(.material-icons-two-tone) {
+  color: rgba(everything.$black, 0.87);
+  filter: contrast(4) invert(1);
+}
+
+.system {
+  @media (prefers-color-scheme: dark) {
+    :global(.material-icons-two-tone) {
+      color: rgba(everything.$black, 0.87);
+      filter: contrast(4) invert(1);
+    }
+  }
+}
+
+.category {
+  padding: 0 1rem;
+}

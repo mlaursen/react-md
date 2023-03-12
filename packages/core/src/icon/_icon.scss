@@ -6,6 +6,7 @@
 
 $disable-font: false !default;
 $disable-svg: false !default;
+$disable-symbol: false !default;
 $disable-dense: false !default;
 $disable-spacing-before: false !default;
 $disable-spacing-after: false !default;
@@ -31,6 +32,24 @@ $color: if(
 
 $size: 1.5rem !default;
 $dense-size: 1.25rem !default;
+
+$symbol-fill: 0 !default;
+$symbol-weight: 400 !default;
+$symbol-grade: 0 !default;
+$symbol-optical-size: 48 !default;
+
+$_validated-fill: utils.validate((0, 1), $symbol-fill, "$symbol-fill");
+$_validated_weight: utils.validate(
+  (100 200 300 400 500 600 700),
+  $symbol-weight,
+  "$symbol-weight"
+);
+$_validated_grade: utils.validate((-25 0 200), $symbol-grade, "$symbol-grade");
+$_validated_optical-size: utils.validate(
+  (20 24 40 48),
+  $symbol-optical-size,
+  "$symbol-optical-size"
+);
 
 $spacing: 0.5rem !default;
 
@@ -58,6 +77,22 @@ $var-lookup: (
   rotate-to: (
     var: --rmd-icon-rotate-to,
     value: $rotate-to,
+  ),
+  symbol-fill: (
+    var: --rmd-symbol-fill,
+    value: $symbol-fill,
+  ),
+  symbol-grade: (
+    var: --rmd-symbol-grad,
+    value: $symbol-grade,
+  ),
+  symbol-weight: (
+    var: --rmd-symbol-wght,
+    value: $symbol-weight,
+  ),
+  symbol-optical-size: (
+    var: --rmd-symbol-opsz,
+    value: $symbol-optical-size,
   ),
 );
 
@@ -103,7 +138,7 @@ $var-lookup: (
 
 @mixin styles {
   // shouldn't really use react-md without icons though...
-  @if not $disable-font or not $disable-svg {
+  @if not $disable-font or not $disable-svg and not $disable-symbol {
     @include theme.default-system-theme {
       @include use-dark-theme;
     }
@@ -128,6 +163,14 @@ $var-lookup: (
           fill: currentcolor;
           height: 1em;
           width: 1em;
+        }
+      }
+
+      @if not $disable-symbol {
+        &--symbol {
+          font-variation-settings: "FILL" get-var(symbol-fill),
+            "wght" get-var(symbol-weight), "GRAD" get-var(symbol-grade),
+            "opsz" get-var(symbol-optical-size);
         }
       }
 

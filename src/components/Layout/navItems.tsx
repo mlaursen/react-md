@@ -4,6 +4,7 @@ import type {
 } from "@react-md/core";
 import HomeIcon from "@react-md/material-icons/HomeIcon";
 import type { ReactNode } from "react";
+
 import MaterialDesignIcon from "../MaterialDesignIcon";
 import ReactIcon from "../ReactIcon";
 
@@ -97,7 +98,10 @@ const routes: readonly LayoutNavigationItem[] = [
   createRoute({ name: "Expansion Panel", pathname: "/expansion-panel" }),
   createRoute({ name: "Link", pathname: "/link" }),
   createRoute({ name: "List", pathname: "/list" }),
-  createRoute({ name: "Material Icons", pathname: "/material-icons" }),
+  createRoute({
+    name: "Material Icons & Symbols",
+    pathname: "/material-icons-and-symbols",
+  }),
   createRoute({ name: "Menu", pathname: "/menu" }),
   createRoute({ name: "Progress", pathname: "/progress" }),
   createRoute({ name: "Responsive Item", pathname: "/responsive-item" }),

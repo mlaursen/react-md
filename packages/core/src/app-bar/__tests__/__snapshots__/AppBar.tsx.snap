@@ -2,98 +2,98 @@
 
 exports[`AppBar should allow for different heights 1`] = `
 <div
-  class="rmd-app-bar rmd-app-bar--primary"
+  class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--top rmd-app-bar--elevated"
   data-testid="app-bar"
 />
 `;
 
 exports[`AppBar should allow for different heights 2`] = `
 <div
-  class="rmd-app-bar rmd-app-bar--primary"
+  class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--top rmd-app-bar--elevated"
   data-testid="app-bar"
 />
 `;
 
 exports[`AppBar should allow for different heights 3`] = `
 <div
-  class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--prominent"
+  class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--prominent rmd-app-bar--top rmd-app-bar--elevated"
   data-testid="app-bar"
 />
 `;
 
 exports[`AppBar should allow for different heights 4`] = `
 <div
-  class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--prominent-dense"
+  class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--prominent-dense rmd-app-bar--top rmd-app-bar--elevated"
   data-testid="app-bar"
 />
 `;
 
 exports[`AppBar should allow for different heights 5`] = `
 <div
-  class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--dense"
+  class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--dense rmd-app-bar--top rmd-app-bar--elevated"
   data-testid="app-bar"
 />
 `;
 
 exports[`AppBar should allow for different heights 6`] = `
 <div
-  class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--auto"
+  class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--auto rmd-app-bar--top rmd-app-bar--elevated"
   data-testid="app-bar"
 />
 `;
 
 exports[`AppBar should allow for different theme colors 1`] = `
 <div
-  class="rmd-app-bar rmd-app-bar--primary"
+  class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--top rmd-app-bar--elevated"
   data-testid="app-bar"
 />
 `;
 
 exports[`AppBar should allow for different theme colors 2`] = `
 <div
-  class="rmd-app-bar rmd-app-bar--secondary"
+  class="rmd-app-bar rmd-app-bar--secondary rmd-app-bar--top rmd-app-bar--elevated"
   data-testid="app-bar"
 />
 `;
 
 exports[`AppBar should allow for different theme colors 3`] = `
 <div
-  class="rmd-app-bar rmd-app-bar--surface"
+  class="rmd-app-bar rmd-app-bar--surface rmd-app-bar--top rmd-app-bar--elevated"
   data-testid="app-bar"
 />
 `;
 
 exports[`AppBar should allow for different theme colors 4`] = `
 <div
-  class="rmd-app-bar"
+  class="rmd-app-bar rmd-app-bar--top rmd-app-bar--elevated"
   data-testid="app-bar"
 />
 `;
 
 exports[`AppBar should allow the app bar to be fixed to the top or bottom of the page 1`] = `
 <header
-  class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--elevated"
+  class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--elevated rmd-app-bar--scrollbar-offset"
   data-testid="app-bar"
 />
 `;
 
 exports[`AppBar should allow the app bar to be fixed to the top or bottom of the page 2`] = `
 <header
-  class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--elevated"
+  class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--elevated rmd-app-bar--scrollbar-offset"
   data-testid="app-bar"
 />
 `;
 
 exports[`AppBar should allow the app bar to be fixed to the top or bottom of the page 3`] = `
 <header
-  class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--fixed rmd-app-bar--bottom rmd-app-bar--elevated"
+  class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--fixed rmd-app-bar--bottom rmd-app-bar--elevated rmd-app-bar--scrollbar-offset"
   data-testid="app-bar"
 />
 `;
 
 exports[`AppBar should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <div
-  class="rmd-app-bar rmd-app-bar--primary"
+  class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--top rmd-app-bar--elevated"
   data-testid="app-bar"
 >
   <h6
@@ -106,7 +106,7 @@ exports[`AppBar should apply the correct styling, HTML attributes, and allow a r
 
 exports[`AppBar should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <div
-  class="rmd-app-bar rmd-app-bar--primary custom-class-name"
+  class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--top rmd-app-bar--elevated custom-class-name"
   data-testid="app-bar"
   style="background-color: orange;"
 >
@@ -120,7 +120,7 @@ exports[`AppBar should apply the correct styling, HTML attributes, and allow a r
 
 exports[`AppBar should apply the correct styling, HTML attributes, and allow a ref 3`] = `
 <header
-  class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--elevated"
+  class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--elevated rmd-app-bar--scrollbar-offset"
   data-testid="app-bar"
 >
   <h6
@@ -133,7 +133,7 @@ exports[`AppBar should apply the correct styling, HTML attributes, and allow a r
 
 exports[`AppBar should apply the correct styling, HTML attributes, and allow a ref 4`] = `
 <header
-  class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--fixed rmd-app-bar--top"
+  class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--scrollbar-offset"
   data-testid="app-bar"
 >
   <h6
@@ -172,7 +172,7 @@ exports[`AppBar should apply the correct styling, HTML attributes, and allow a r
 
 exports[`AppBar should apply the correct styling, HTML attributes, and allow a ref 7`] = `
 <div
-  class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--stacked"
+  class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--stacked rmd-app-bar--top rmd-app-bar--elevated"
   data-testid="app-bar"
 >
   <h6
@@ -183,4 +183,4 @@ exports[`AppBar should apply the correct styling, HTML attributes, and allow a r
 </div>
 `;
 
-exports[`AppBar styling utils should allow the avatarImage to be called without any parameters 1`] = `"rmd-app-bar rmd-app-bar--primary"`;
+exports[`AppBar styling utils should allow the avatarImage to be called without any parameters 1`] = `"rmd-app-bar rmd-app-bar--primary rmd-app-bar--top rmd-app-bar--elevated"`;
