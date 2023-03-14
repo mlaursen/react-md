@@ -6,6 +6,7 @@
 $disable-everything: false !default;
 $disable-horizontal: false !default;
 $disable-vertical: false !default;
+$disable-reversed: false !default;
 $disable-absolute-position: false !default;
 
 $window-splitter-size: 1rem !default;
@@ -111,6 +112,18 @@ $var-lookup: (
             width: $window-splitter-background-size;
           }
         }
+
+        @if not $disable-reversed {
+          &--hr {
+            @include utils.auto-rtl(right, get-var(position));
+
+            left: auto;
+
+            &::after {
+              @include utils.auto-rtl(margin-left, auto);
+            }
+          }
+        }
       }
 
       @if not $disable-vertical {
@@ -125,6 +138,18 @@ $var-lookup: (
 
           &::after {
             height: $window-splitter-background-size;
+          }
+        }
+
+        @if not $disable-reversed {
+          &--vr {
+            @include use-var(bottom, position);
+
+            top: auto;
+
+            &::after {
+              top: calc(100% - $window-splitter-background-size);
+            }
           }
         }
       }

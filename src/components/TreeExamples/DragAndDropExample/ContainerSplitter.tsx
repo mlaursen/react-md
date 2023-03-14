@@ -9,7 +9,7 @@ import { useMemo } from "react";
 import styles from "./ContainerSplitter.module.scss";
 
 export function ContainerSplitter(): ReactElement {
-  const { value, dragging, splitterProps } = useWindowSplitter({
+  const { value, splitterProps } = useWindowSplitter({
     min: 96,
     max: 600,
     defaultValue: 256,
@@ -32,7 +32,6 @@ export function ContainerSplitter(): ReactElement {
       aria-label="Resize Navigation"
       aria-controls="layout-nav-container"
       {...splitterProps}
-      dragging={dragging}
       className={styles.splitter}
       disableFixed
     />

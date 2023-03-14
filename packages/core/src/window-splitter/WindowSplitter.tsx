@@ -4,6 +4,9 @@ import { forwardRef } from "react";
 import type { LabelRequiredForA11y } from "../types";
 import { bem } from "../utils";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { useWindowSplitter } from "./useWindowSplitter";
+
 const styles = bem("rmd-window-splitter");
 
 /**
@@ -12,6 +15,7 @@ const styles = bem("rmd-window-splitter");
 export interface WindowSplitterClassNameOptions {
   className?: string;
   dragging?: boolean;
+  reversed?: boolean;
   vertical?: boolean;
   disableFixed?: boolean;
 }
@@ -22,10 +26,23 @@ export interface WindowSplitterClassNameOptions {
 export function windowSplitter(
   options: WindowSplitterClassNameOptions = {}
 ): string {
-  const { vertical = false, dragging, disableFixed, className } = options;
+  const {
+    vertical = false,
+    dragging,
+    reversed,
+    disableFixed,
+    className,
+  } = options;
 
   return cnb(
-    styles({ h: !vertical, v: vertical, dragging, a: disableFixed }),
+    styles({
+      h: !vertical,
+      hr: !vertical && reversed,
+      v: vertical,
+      vr: vertical && reversed,
+      a: disableFixed,
+      dragging,
+    }),
     className
   );
 }
@@ -36,8 +53,20 @@ export function windowSplitter(
  */
 export interface BaseWindowSplitterProps
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "type" | "children"> {
+  /**
+   * This will be provided by the {@link useWindowSplitter} hook.
+   */
   "aria-controls": string;
+
+  /**
+   * This will be provided by the {@link useWindowSplitter} hook.
+   */
   dragging: boolean;
+
+  /**
+   * This will be provided by the {@link useWindowSplitter} hook.
+   */
+  reversed: boolean;
 
   /**
    * Set this to `true` if the window splitter should use `position: absolute`
@@ -65,6 +94,7 @@ export const WindowSplitter = forwardRef<
     role = "separator",
     className,
     dragging,
+    reversed,
     disableFixed = false,
     ...remaining
   } = props;
@@ -78,6 +108,7 @@ export const WindowSplitter = forwardRef<
       role={role}
       className={windowSplitter({
         className,
+        reversed,
         dragging,
         vertical,
         disableFixed,

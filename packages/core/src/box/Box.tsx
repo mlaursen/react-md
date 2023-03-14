@@ -3,6 +3,9 @@ import { forwardRef } from "react";
 import type { BoxOptions } from "./styles";
 import { box } from "./styles";
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export interface BoxProps extends HTMLAttributes<HTMLDivElement>, BoxOptions {}
 
 /**
@@ -103,6 +106,8 @@ export interface BoxProps extends HTMLAttributes<HTMLDivElement>, BoxOptions {}
  *   ):
  * }
  * ```
+ *
+ * @remarks \@since 6.0.0
  */
 export const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(
   props,
@@ -111,13 +116,14 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(
   const {
     className,
     children,
-    grid = false,
-    stacked = false,
-    gridName = "",
-    gridColumns = "fit",
     align,
+    grid = false,
+    gridName = "",
     justify,
+    stacked = false,
     reversed = false,
+    gridColumns = "fit",
+    fullWidth = false,
     disableWrap = false,
     disablePadding = false,
     ...remaining
@@ -129,6 +135,7 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(
       ref={ref}
       className={box({
         className,
+        fullWidth,
         grid,
         stacked,
         gridName,

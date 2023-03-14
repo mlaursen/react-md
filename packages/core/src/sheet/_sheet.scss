@@ -148,7 +148,7 @@ $var-lookup: (
         &--top {
           @include set-var(transform-offscreen, translate3d(0, -100%, 0));
 
-          bottom: 0;
+          top: 0;
         }
       }
 

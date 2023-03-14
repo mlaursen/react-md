@@ -29,6 +29,7 @@ export const isTouchDragStartEvent = (event: TouchEvent): boolean =>
  */
 interface DragPositionOptions extends ClientPositionOptions {
   isRTL: boolean;
+  reversed: boolean;
   container: Element;
 }
 
@@ -36,15 +37,21 @@ interface DragPositionOptions extends ClientPositionOptions {
  * @internal
  */
 export const getDragPosition = (options: DragPositionOptions): number => {
-  const { isRTL, vertical, container } = options;
+  const { isRTL, reversed, vertical, container } = options;
 
   const clientPosition = getClientPosition(options);
   const { left, right, top } = container.getBoundingClientRect();
   if (vertical) {
-    return clientPosition - top;
+    if (reversed) {
+      return window.innerHeight - clientPosition;
+    }
+
+    // added `Math.max` since the `top` will be a negative number if rendered
+    // within a portal element like a dialog/sheet
+    return clientPosition - Math.max(0, top);
   }
 
-  if (isRTL) {
+  if (reversed ? !isRTL : isRTL) {
     return right - clientPosition;
   }
 
@@ -139,6 +146,7 @@ export const updateDragPosition = (
     rangeMin,
     rangeMax,
     isRTL,
+    reversed,
     vertical,
     isDragStart,
     setValue,
@@ -173,6 +181,7 @@ export const updateDragPosition = (
     const dragPosition = getDragPosition({
       event,
       isRTL,
+      reversed,
       vertical,
       container,
     });
@@ -192,6 +201,7 @@ export const updateDragPosition = (
     step,
     event,
     isRTL,
+    reversed,
     vertical,
     container,
   });

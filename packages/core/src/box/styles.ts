@@ -12,6 +12,9 @@ declare module "react" {
   }
 }
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export type BoxAlignItems =
   | "start"
   | "flex-start"
@@ -20,14 +23,23 @@ export type BoxAlignItems =
   | "flex-end"
   | "stretch";
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export type BoxJustifyContent =
   | BoxAlignItems
   | "space-around"
   | "space-between"
   | "space-evenly";
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export type BoxFlexDirection = "row" | "column";
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export interface BoxOptions {
   className?: string;
 
@@ -35,6 +47,14 @@ export interface BoxOptions {
    * @defaultValue `false`
    */
   grid?: boolean;
+
+  /**
+   * Set this to `true` to apply `width: 100%`. This can be useful when using
+   * nested box layouts.
+   *
+   * @defaultValue `false`
+   */
+  fullWidth?: boolean;
 
   /**
    * @defaultValue `false`
@@ -94,18 +114,22 @@ export interface BoxOptions {
   reversed?: boolean;
 }
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export function box(options: BoxOptions = {}): string {
   const {
-    grid = false,
     className,
-    disableWrap = false,
-    disablePadding = false,
-    stacked = false,
+    align = "",
+    grid = false,
     gridName = "",
     gridColumns = "fit",
-    align = "",
     justify = "",
+    stacked = false,
     reversed,
+    fullWidth = false,
+    disableWrap = false,
+    disablePadding = false,
   } = options;
 
   return cnb(
@@ -115,6 +139,7 @@ export function box(options: BoxOptions = {}): string {
       column: stacked && !reversed,
       reverse: !stacked && reversed,
       "column-reverse": stacked && reversed,
+      "full-width": fullWidth,
       grid,
       "grid-fill": gridColumns === "fill",
       "grid-columns": typeof gridColumns === "number",

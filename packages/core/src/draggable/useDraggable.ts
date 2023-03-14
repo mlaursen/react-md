@@ -140,6 +140,23 @@ export interface BaseDraggableOptions<E extends HTMLElement>
   vertical?: boolean;
 
   /**
+   * The default drag behavior is to increase the value when:
+   *
+   * - dragging `"right"` and the writing direction is `"ltr"`
+   * - dragging `"left"` and the writing direction is `"rtl"`
+   * - dragging `"upwards"`
+   *
+   * When this is set to `true`, the value when increase when:
+   *
+   * - dragging `"left"` and the writing direction is `"ltr"`
+   * - dragging `"right"` and the writing direction is `"rtl"`
+   * - dragging `"downwards"`
+   *
+   * @defaultValue `false`
+   */
+  reversed?: boolean;
+
+  /**
    * Set this to `true` to disable all drag behavior. This will still call any
    * of the provided {@link DraggableEventHandlers}.
    *
@@ -347,6 +364,7 @@ export function useDraggable<E extends HTMLElement>(
     rangeMin = min,
     rangeMax = max,
     step = 1,
+    reversed = false,
     vertical = false,
     onKeyDown = noop,
     onMouseUp = noop,
@@ -436,6 +454,7 @@ export function useDraggable<E extends HTMLElement>(
         rangeMax,
         isRTL,
         isDragStart: false,
+        reversed,
         vertical,
         setValue,
         setDragging,
@@ -469,6 +488,7 @@ export function useDraggable<E extends HTMLElement>(
     nodeRef,
     rangeMax,
     rangeMin,
+    reversed,
     setValue,
     step,
     vertical,
@@ -525,6 +545,7 @@ export function useDraggable<E extends HTMLElement>(
           rangeMin,
           rangeMax,
           isRTL,
+          reversed,
           vertical,
           setValue,
           setDragging,
@@ -545,6 +566,7 @@ export function useDraggable<E extends HTMLElement>(
         onMouseDown,
         rangeMax,
         rangeMin,
+        reversed,
         setValue,
         step,
         vertical,
@@ -568,6 +590,7 @@ export function useDraggable<E extends HTMLElement>(
           rangeMin,
           rangeMax,
           isRTL,
+          reversed,
           vertical,
           setValue,
           setDragging,
@@ -587,6 +610,7 @@ export function useDraggable<E extends HTMLElement>(
         onMouseMove,
         rangeMax,
         rangeMin,
+        reversed,
         setValue,
         step,
         vertical,
@@ -668,6 +692,7 @@ export function useDraggable<E extends HTMLElement>(
           rangeMin,
           rangeMax,
           isRTL,
+          reversed,
           vertical,
           setValue,
           setDragging,
@@ -684,6 +709,7 @@ export function useDraggable<E extends HTMLElement>(
         onTouchStart,
         rangeMax,
         rangeMin,
+        reversed,
         setValue,
         step,
         vertical,
@@ -709,6 +735,7 @@ export function useDraggable<E extends HTMLElement>(
           rangeMin,
           rangeMax,
           isRTL,
+          reversed,
           vertical,
           setValue,
           setDragging,
@@ -725,6 +752,7 @@ export function useDraggable<E extends HTMLElement>(
         onTouchMove,
         rangeMax,
         rangeMin,
+        reversed,
         setValue,
         step,
         vertical,

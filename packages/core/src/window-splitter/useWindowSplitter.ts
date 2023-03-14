@@ -21,10 +21,6 @@ declare module "react" {
   }
 }
 
-const noop = (): void => {
-  // do nothing
-};
-
 /**
  * @remarks \@since 6.0.0
  */
@@ -40,6 +36,11 @@ export interface WindowSplitterOptions<
    * @defaultValue `"window-splitter-" + useId()`
    */
   id?: string;
+
+  /**
+   * An optional ref for the window splitter element. This will be merged into
+   * the {@link WindowSplitterWidgetProps.ref}.
+   */
   ref?: Ref<E>;
 }
 
@@ -56,6 +57,8 @@ export interface WindowSplitterWidgetProps<E extends HTMLElement>
   id: string;
   ref: RefCallback<E>;
   role: "separator";
+  reversed: boolean;
+  dragging: boolean;
 }
 
 /**
@@ -63,7 +66,7 @@ export interface WindowSplitterWidgetProps<E extends HTMLElement>
  */
 export interface WindowSplitterImplementation<E extends HTMLElement>
   extends DraggableImplementation<E> {
-  splitterProps: Readonly<WindowSplitterWidgetProps<E>>;
+  splitterProps: WindowSplitterWidgetProps<E>;
 }
 
 /**
@@ -81,7 +84,7 @@ export interface WindowSplitterImplementation<E extends HTMLElement>
  * const POSITION_VAR = "--rmd-window-splitter-position";
  *
  * function Example(): ReactElement {
- *   const { value, dragging, splitterProps } = useWindowSplitter({
+ *   const { value, splitterProps } = useWindowSplitter({
  *     min: 96,
  *     max: 600,
  *     defaultValue: 256,
@@ -102,10 +105,9 @@ export interface WindowSplitterImplementation<E extends HTMLElement>
  *         // pretend nav content
  *       </nav>
  *       <WindowSplitter
- *         {...splitterProps}
  *         aria-label="Resize Navigation"
  *         aria-controls="main-nav"
- *         dragging={dragging}
+ *         {...splitterProps}
  *       />
  *       <main>
  *         // pretend main content
@@ -115,13 +117,11 @@ export interface WindowSplitterImplementation<E extends HTMLElement>
  * }
  * ```
  *
- * TODO:
- * - maybe add a default implementation into the Layout component?
- * - figure out the best way to "reset" it?
- * - need to provide an `aria-controls`, `aria-label`/`aria-labelledby`
+ * Note: This implementation is missing the toggle behavior when the `"Enter"`
+ * key is pressed.
  *
  * @remarks \@since 6.0.0
- * @see {@link https://www.w3.org/WAI/ARIA/apg/patterns/windowsplitter/}
+ * @see https://www.w3.org/WAI/ARIA/apg/patterns/windowsplitter/
  */
 export function useWindowSplitter<E extends HTMLElement = HTMLButtonElement>(
   options: WindowSplitterOptions<E>
@@ -130,24 +130,13 @@ export function useWindowSplitter<E extends HTMLElement = HTMLButtonElement>(
     id: propId,
     min,
     max,
+    reversed = false,
     vertical,
-    onKeyDown = noop,
     withinOffsetParent,
   } = options;
 
   const id = useEnsuredId(propId, "splitter");
-  const draggableImplementation = useDraggable({
-    ...options,
-    onKeyDown(event) {
-      onKeyDown(event);
-
-      if (event.key === "Enter") {
-        event.preventDefault();
-        event.stopPropagation();
-        // TODO
-      }
-    },
-  });
+  const draggableImplementation = useDraggable(options);
   const {
     value,
     dragging,
@@ -172,6 +161,8 @@ export function useWindowSplitter<E extends HTMLElement = HTMLButtonElement>(
       id,
       ref: draggableRef,
       role: "separator",
+      dragging,
+      reversed,
       ...mouseEventHandlers,
       ...keyboardEventHandlers,
     },

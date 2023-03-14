@@ -18,7 +18,7 @@ export function NavWindowSplitter(): ReactElement | null {
   const { layout, hideNav, visible } = useLayoutConfig();
   const toggleable = isToggleableLayout(layout);
   const fullHeight = isFullHeightLayout(layout) || toggleable;
-  const { value, dragging, splitterProps } = useWindowSplitter({
+  const { value, splitterProps } = useWindowSplitter({
     min: 96,
     max: 600,
     defaultValue: 256,
@@ -57,7 +57,6 @@ export function NavWindowSplitter(): ReactElement | null {
       aria-label="Resize Navigation"
       aria-controls="layout-nav-container"
       {...splitterProps}
-      dragging={dragging}
       className={cnb(styles.splitter, !fullHeight && styles.offset)}
     />
   );

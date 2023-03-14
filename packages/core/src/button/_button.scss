@@ -36,7 +36,7 @@ $icon-border-radius: 50% !default;
 $icon-square-border-radius: $text-border-radius !default;
 $icon-size: 3rem !default;
 
-$outline-width: 1px !default;
+$outline-width: 0.0625rem !default;
 
 $clear-color: theme.theme-get-var(text-primary-color) !default;
 $clear-outline-color: #999 !default;
@@ -89,6 +89,10 @@ $var-lookup: (
   outline-color: (
     var: --rmd-button-outline-color,
     value: $clear-outline-color,
+  ),
+  outline-width: (
+    var: --rmd-button-outline-width,
+    value: $outline-width,
   ),
   contained-background-color: (
     var: --rmd-button-contained-background-color,
@@ -239,7 +243,7 @@ $var-lookup: (
 
       @if not $disable-outline {
         &--outline {
-          box-shadow: inset 0 0 0 $outline-width get-var(outline-color);
+          box-shadow: inset 0 0 0 get-var(outline-width) get-var(outline-color);
         }
       }
 

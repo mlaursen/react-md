@@ -232,7 +232,7 @@ $var-lookup: (
   @if $box-shadow {
     box-shadow: inset 0 0 0 get-var(focus-width) get-var(focus-color);
   } @else {
-    @include use-var(focus-color);
+    @include use-var(outline-color, focus-color);
   }
 }
 

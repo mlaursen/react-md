@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect";
+import { useEffect, useState } from "react";
 
 /**
  * An extremely simple "polyfill" for the `window.screen.orientation` just for
@@ -39,7 +38,7 @@ export const getOrientationType = (): OrientationType => {
  */
 export function useOrientation(): OrientationType {
   const [orientation, setOrientation] = useState(getOrientationType);
-  useIsomorphicLayoutEffect(() => {
+  useEffect(() => {
     const handler = (): void => setOrientation(getOrientationType());
 
     const { orientation } = window.screen;
