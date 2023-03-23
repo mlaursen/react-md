@@ -79,6 +79,14 @@ export interface BaseSliderProps
    * `"left"` for vertical sliders.
    */
   tooltipProps?: Omit<Partial<TooltipProps>, "position">;
+
+  /**
+   * Set this to `true` if the slider's thumb position should only update when
+   * the user has dragged to the next value instead of with the mouse.
+   *
+   * @defaultValue `false`
+   */
+  disableSmoothDragging?: boolean;
 }
 
 /**
@@ -303,6 +311,7 @@ export const Slider = forwardRef<
     maxThumbLabelledBy,
     tooltipProps,
     getTooltipChildren = identity,
+    disableSmoothDragging = false,
     ...remaining
   } = props as SliderProps & RangeSliderProps;
 
@@ -474,7 +483,7 @@ export const Slider = forwardRef<
         max={max}
         thumb1Ref={thumb1Ref}
         thumb1Value={thumb1Value}
-        thumb1Dragging={thumb1Dragging}
+        thumb1Dragging={!disableSmoothDragging && thumb1Dragging}
         thumb1DragPercentage={thumb1DragPercentage}
         thumb1OnMouseUp={thumb1OnMouseUp}
         thumb1OnMouseDown={thumb1OnMouseDown}
@@ -483,14 +492,14 @@ export const Slider = forwardRef<
         thumb1OnTouchMove={thumb1OnTouchMove}
         thumb2Ref={thumb2Ref}
         thumb2Value={thumb2Value}
-        thumb2Dragging={thumb2Dragging}
+        thumb2Dragging={!disableSmoothDragging && thumb2Dragging}
         thumb2DragPercentage={thumb2DragPercentage}
         thumb2OnMouseUp={thumb2OnMouseUp}
         thumb2OnMouseDown={thumb2OnMouseDown}
         thumb2OnMouseMove={thumb2OnMouseMove}
         thumb2OnTouchStart={thumb2OnTouchStart}
         thumb2OnTouchMove={thumb2OnTouchMove}
-        animate={!dragging}
+        animate={!disableSmoothDragging && !dragging}
         disabled={disabled}
         vertical={vertical}
         isRangeSlider={isRangeSlider}
@@ -519,6 +528,7 @@ export const Slider = forwardRef<
           getValueText={getValueText}
           tooltipProps={tooltipProps}
           getTooltipChildren={getTooltipChildren}
+          disableSmoothDragging={disableSmoothDragging}
         />
         {isRangeSlider && (
           <SliderThumb
@@ -544,6 +554,7 @@ export const Slider = forwardRef<
             getValueText={getValueText}
             tooltipProps={tooltipProps}
             getTooltipChildren={getTooltipChildren}
+            disableSmoothDragging={disableSmoothDragging}
           />
         )}
       </SliderTrack>

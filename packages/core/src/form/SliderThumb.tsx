@@ -113,6 +113,7 @@ export interface SliderThumbProps
   onChange: ChangeEventHandler<HTMLInputElement>;
   tooltipProps?: Partial<TooltipProps>;
   getTooltipChildren(value: number, isMinValue: boolean): ReactNode;
+  disableSmoothDragging: boolean;
 }
 
 /**
@@ -146,6 +147,7 @@ export const SliderThumb = forwardRef<
     onKeyDown = noop,
     tooltipProps,
     getTooltipChildren,
+    disableSmoothDragging,
     ...remaining
   } = props;
   const { "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy } = props;
@@ -181,7 +183,7 @@ export const SliderThumb = forwardRef<
   const classNameOptions = {
     index,
     active,
-    animate,
+    animate: !disableSmoothDragging && animate,
     disabled,
     vertical,
     className,
@@ -246,7 +248,7 @@ export const SliderThumb = forwardRef<
         <SliderValueTooltip
           position={vertical ? "left" : "above"}
           vertical={vertical}
-          animate={!active}
+          animate={!disableSmoothDragging && !active}
           visible={active || keyboardVisible}
           {...tooltipProps}
           index={index}
