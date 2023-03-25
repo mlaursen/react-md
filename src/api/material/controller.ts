@@ -330,12 +330,10 @@ ${this._printTypeUnion("MaterialSymbolName", [...symbolNames])}
       iconsLookup,
       iconCategories,
       iconFamilyTypes,
-      // iconsByFamilyType,
       symbolNames,
       symbolsLookup,
       symbolCategories,
       symbolFamilyTypes,
-      // symbolsByFamilyType,
     };
   }
 
@@ -354,8 +352,8 @@ ${this._printTypeUnion("MaterialSymbolName", [...symbolNames])}
     lookup: CategoriesByFamilyTypeMap
   ): readonly string[] {
     const categories = new Set<string>();
-    lookup.forEach(([_familyType, categoryLookup]) => {
-      Object.keys(categoryLookup).forEach((category) => {
+    lookup.forEach((value) => {
+      value.forEach((_value, category) => {
         categories.add(category);
       });
     });

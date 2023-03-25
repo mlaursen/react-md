@@ -10972,8 +10972,45 @@ export const MATERIAL_ICON_FAMILY_TYPES = [
   "filled",
   "two-tone",
 ] as const;
-export const MATERIAL_ICON_CATEGORIES = ["0", "1"] as const;
-export type MaterialIconCategory = "0" | "1";
+export const MATERIAL_ICON_CATEGORIES = [
+  "action",
+  "alert",
+  "av",
+  "communication",
+  "content",
+  "device",
+  "editor",
+  "file",
+  "hardware",
+  "home",
+  "image",
+  "maps",
+  "navigation",
+  "notification",
+  "places",
+  "search",
+  "social",
+  "toggle",
+] as const;
+export type MaterialIconCategory =
+  | "action"
+  | "alert"
+  | "av"
+  | "communication"
+  | "content"
+  | "device"
+  | "editor"
+  | "file"
+  | "hardware"
+  | "home"
+  | "image"
+  | "maps"
+  | "navigation"
+  | "notification"
+  | "places"
+  | "search"
+  | "social"
+  | "toggle";
 
 export const MATERIAL_SYMBOLS: CategoriesByFamilyType = {
   outlined: {
@@ -11008,6 +11045,7 @@ export const MATERIAL_SYMBOLS: CategoriesByFamilyType = {
       "auto_videocam",
       "autopause",
       "autoplay",
+      "autostop",
       "av_timer",
       "branding_watermark",
       "broadcast_on_home",
@@ -11427,6 +11465,7 @@ export const MATERIAL_SYMBOLS: CategoriesByFamilyType = {
       "bolt",
       "bottom_panel_close",
       "bottom_panel_open",
+      "bottom_right_click",
       "browse_activity",
       "browse_gallery",
       "cached",
@@ -11490,6 +11529,7 @@ export const MATERIAL_SYMBOLS: CategoriesByFamilyType = {
       "empty_dashboard",
       "enable",
       "error_med",
+      "event_list",
       "exit_to_app",
       "expand",
       "expand_circle_down",
@@ -11744,6 +11784,7 @@ export const MATERIAL_SYMBOLS: CategoriesByFamilyType = {
       "emoticon",
       "endocrinology",
       "ent",
+      "explosion",
       "eyeglasses",
       "face",
       "face_2",
@@ -11939,6 +11980,7 @@ export const MATERIAL_SYMBOLS: CategoriesByFamilyType = {
       "water_voc",
       "waving_hand",
       "wc",
+      "weather_hail",
       "weight",
       "whatshot",
       "wind_power",
@@ -12756,6 +12798,7 @@ export const MATERIAL_SYMBOLS: CategoriesByFamilyType = {
       "auto_meeting_room",
       "autopay",
       "bar_chart",
+      "bar_chart_4_bars",
       "barcode",
       "barcode_reader",
       "barcode_scanner",
@@ -13394,6 +13437,7 @@ export const MATERIAL_SYMBOLS: CategoriesByFamilyType = {
       "report_off",
       "security",
       "shield",
+      "shield_lock",
       "sync_lock",
       "verified_user",
       "vpn_key",
@@ -13519,6 +13563,7 @@ export const MATERIAL_SYMBOLS: CategoriesByFamilyType = {
       "screen_share",
       "screenshot",
       "screenshot_monitor",
+      "screenshot_tablet",
       "sd_card",
       "sd_card_alert",
       "security_update_good",
@@ -13551,6 +13596,7 @@ export const MATERIAL_SYMBOLS: CategoriesByFamilyType = {
       "tablet_android",
       "tablet_mac",
       "tap_and_play",
+      "touchpad_mouse",
       "tty",
       "tv",
       "tv_off",
@@ -13835,6 +13881,7 @@ export const MATERIAL_SYMBOLS: CategoriesByFamilyType = {
       "auto_videocam",
       "autopause",
       "autoplay",
+      "autostop",
       "av_timer",
       "branding_watermark",
       "broadcast_on_home",
@@ -14254,6 +14301,7 @@ export const MATERIAL_SYMBOLS: CategoriesByFamilyType = {
       "bolt",
       "bottom_panel_close",
       "bottom_panel_open",
+      "bottom_right_click",
       "browse_activity",
       "browse_gallery",
       "cached",
@@ -14317,6 +14365,7 @@ export const MATERIAL_SYMBOLS: CategoriesByFamilyType = {
       "empty_dashboard",
       "enable",
       "error_med",
+      "event_list",
       "exit_to_app",
       "expand",
       "expand_circle_down",
@@ -14571,6 +14620,7 @@ export const MATERIAL_SYMBOLS: CategoriesByFamilyType = {
       "emoticon",
       "endocrinology",
       "ent",
+      "explosion",
       "eyeglasses",
       "face",
       "face_2",
@@ -14766,6 +14816,7 @@ export const MATERIAL_SYMBOLS: CategoriesByFamilyType = {
       "water_voc",
       "waving_hand",
       "wc",
+      "weather_hail",
       "weight",
       "whatshot",
       "wind_power",
@@ -15583,6 +15634,7 @@ export const MATERIAL_SYMBOLS: CategoriesByFamilyType = {
       "auto_meeting_room",
       "autopay",
       "bar_chart",
+      "bar_chart_4_bars",
       "barcode",
       "barcode_reader",
       "barcode_scanner",
@@ -16221,6 +16273,7 @@ export const MATERIAL_SYMBOLS: CategoriesByFamilyType = {
       "report_off",
       "security",
       "shield",
+      "shield_lock",
       "sync_lock",
       "verified_user",
       "vpn_key",
@@ -16346,6 +16399,7 @@ export const MATERIAL_SYMBOLS: CategoriesByFamilyType = {
       "screen_share",
       "screenshot",
       "screenshot_monitor",
+      "screenshot_tablet",
       "sd_card",
       "sd_card_alert",
       "security_update_good",
@@ -16378,6 +16432,7 @@ export const MATERIAL_SYMBOLS: CategoriesByFamilyType = {
       "tablet_android",
       "tablet_mac",
       "tap_and_play",
+      "touchpad_mouse",
       "tty",
       "tv",
       "tv_off",
@@ -16662,6 +16717,7 @@ export const MATERIAL_SYMBOLS: CategoriesByFamilyType = {
       "auto_videocam",
       "autopause",
       "autoplay",
+      "autostop",
       "av_timer",
       "branding_watermark",
       "broadcast_on_home",
@@ -17081,6 +17137,7 @@ export const MATERIAL_SYMBOLS: CategoriesByFamilyType = {
       "bolt",
       "bottom_panel_close",
       "bottom_panel_open",
+      "bottom_right_click",
       "browse_activity",
       "browse_gallery",
       "cached",
@@ -17144,6 +17201,7 @@ export const MATERIAL_SYMBOLS: CategoriesByFamilyType = {
       "empty_dashboard",
       "enable",
       "error_med",
+      "event_list",
       "exit_to_app",
       "expand",
       "expand_circle_down",
@@ -17398,6 +17456,7 @@ export const MATERIAL_SYMBOLS: CategoriesByFamilyType = {
       "emoticon",
       "endocrinology",
       "ent",
+      "explosion",
       "eyeglasses",
       "face",
       "face_2",
@@ -17593,6 +17652,7 @@ export const MATERIAL_SYMBOLS: CategoriesByFamilyType = {
       "water_voc",
       "waving_hand",
       "wc",
+      "weather_hail",
       "weight",
       "whatshot",
       "wind_power",
@@ -18410,6 +18470,7 @@ export const MATERIAL_SYMBOLS: CategoriesByFamilyType = {
       "auto_meeting_room",
       "autopay",
       "bar_chart",
+      "bar_chart_4_bars",
       "barcode",
       "barcode_reader",
       "barcode_scanner",
@@ -19048,6 +19109,7 @@ export const MATERIAL_SYMBOLS: CategoriesByFamilyType = {
       "report_off",
       "security",
       "shield",
+      "shield_lock",
       "sync_lock",
       "verified_user",
       "vpn_key",
@@ -19173,6 +19235,7 @@ export const MATERIAL_SYMBOLS: CategoriesByFamilyType = {
       "screen_share",
       "screenshot",
       "screenshot_monitor",
+      "screenshot_tablet",
       "sd_card",
       "sd_card_alert",
       "security_update_good",
@@ -19205,6 +19268,7 @@ export const MATERIAL_SYMBOLS: CategoriesByFamilyType = {
       "tablet_android",
       "tablet_mac",
       "tap_and_play",
+      "touchpad_mouse",
       "tty",
       "tv",
       "tv_off",
@@ -19463,5 +19527,44 @@ export const MATERIAL_SYMBOL_FAMILY_TYPES = [
   "rounded",
   "sharp",
 ] as const;
-export const MATERIAL_SYMBOL_CATEGORIES = ["0", "1"] as const;
-export type MaterialSymbolCategory = "0" | "1";
+export const MATERIAL_SYMBOL_CATEGORIES = [
+  "activities",
+  "android",
+  "audio&video",
+  "brand",
+  "business&payments",
+  "common actions",
+  "communication",
+  "hardware",
+  "home",
+  "household",
+  "maps",
+  "others",
+  "photo&image",
+  "privacy&security",
+  "social",
+  "text formatting",
+  "transportation",
+  "travel",
+  "ui actions",
+] as const;
+export type MaterialSymbolCategory =
+  | "activities"
+  | "android"
+  | "audio&video"
+  | "brand"
+  | "business&payments"
+  | "common actions"
+  | "communication"
+  | "hardware"
+  | "home"
+  | "household"
+  | "maps"
+  | "others"
+  | "photo&image"
+  | "privacy&security"
+  | "social"
+  | "text formatting"
+  | "transportation"
+  | "travel"
+  | "ui actions";
