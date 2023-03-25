@@ -21,7 +21,7 @@ describe("Link", () => {
     rerender(
       <Link
         {...props}
-        style={{ color: "vlue" }}
+        style={{ color: "blue" }}
         className="custom-class-name"
       />
     );

@@ -9,6 +9,7 @@
 
 $disable-everything: false !default;
 $disable-skip-to-main: false !default;
+$disable-flex: false !default;
 
 $transition-duration: transition.$linear-duration !default;
 $color: colors.$blue-500 !default;
@@ -91,11 +92,8 @@ $var-lookup: (
         }
       }
       @include interaction.outline;
-      @include icon.use-var(gap, spacing);
       @include use-var(color);
 
-      align-items: center;
-      display: inline-flex;
       transition: color $transition-duration;
 
       &:visited {
@@ -104,6 +102,15 @@ $var-lookup: (
 
       &:hover {
         @include set-var(color, get-var(hover-color));
+      }
+
+      @if not $disable-flex {
+        &--flex {
+          @include icon.use-var(gap, spacing);
+
+          align-items: center;
+          display: inline-flex;
+        }
       }
 
       @if not $disable-skip-to-main {

@@ -29,6 +29,15 @@ export interface LinkProps
    * All links **must** have a valid href.
    */
   href: string;
+
+  /**
+   * Set this to `true` if your link contains icons that should be centered and
+   * spaced with additional text. This is not used by default so that links can
+   * correctly line wrap while rendered within paragraphs of text.
+   *
+   * @defaultValue `false`
+   */
+  flex?: boolean;
 }
 
 /**
@@ -63,10 +72,10 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
   props,
   ref
 ) {
-  const { className, children, ...remaining } = props;
+  const { className, flex, children, ...remaining } = props;
 
   return (
-    <a {...remaining} ref={ref} className={link({ className })}>
+    <a {...remaining} ref={ref} className={link({ flex, className })}>
       {children}
     </a>
   );

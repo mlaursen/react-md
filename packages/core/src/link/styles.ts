@@ -6,6 +6,9 @@ const styles = bem("rmd-link");
 /** @remarks \@since 6.0.0 */
 export interface LinkClassNameOptions {
   className?: string;
+
+  /** @defaultValue `false` */
+  flex?: boolean;
 }
 
 /**
@@ -15,9 +18,9 @@ export interface LinkClassNameOptions {
  * @remarks \@since 6.0.0
  */
 export function link(options: LinkClassNameOptions): string {
-  const { className } = options;
+  const { flex, className } = options;
 
-  return cnb(styles(), className);
+  return cnb(styles({ flex }), className);
 }
 
 /** @remarks \@since 6.0.0 */

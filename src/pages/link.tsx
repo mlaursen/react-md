@@ -6,7 +6,7 @@ export default function LinkPage(): ReactElement {
   return (
     <TextContainer>
       <Link href="#">Link</Link>
-      <Link href="#">
+      <Link href="#" flex>
         <FavoriteIcon />
         Link
       </Link>
