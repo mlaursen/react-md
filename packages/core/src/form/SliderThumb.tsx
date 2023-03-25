@@ -90,6 +90,28 @@ export interface SliderThumbPresentation {
    * @defaultValue `() => ""`
    */
   getValueText?(value: number): string;
+
+  /**
+   * Set this to `true` if the slider's thumb position should only update when
+   * the user has dragged to the next value instead of with the mouse.
+   *
+   * @see {@link marks}
+   * @defaultValue `!!marks`
+   */
+  disableSmoothDragging?: boolean;
+
+  /**
+   * The discrete slider's value tooltip will only become visible when:
+   *
+   * - `"auto"` - the user is dragging with touch/mouse or focused with a keyboard
+   * - `"hover"` - the behavior of `"auto"` plus while hovering the thumb with a mouse
+   * - `"always"` - ... always
+   *
+   * This only applies when the {@link discrete} prop is `true`.
+   *
+   * @defaultValue `"auto"`
+   */
+  tooltipVisibility?: "auto" | "hover" | "always";
 }
 
 /**
@@ -113,7 +135,6 @@ export interface SliderThumbProps
   onChange: ChangeEventHandler<HTMLInputElement>;
   tooltipProps?: Partial<TooltipProps>;
   getTooltipChildren(value: number, isMinValue: boolean): ReactNode;
-  disableSmoothDragging: boolean;
 }
 
 /**
@@ -145,15 +166,20 @@ export const SliderThumb = forwardRef<
     className,
     onFocus = noop,
     onKeyDown = noop,
+    onMouseEnter = noop,
+    onMouseLeave = noop,
     tooltipProps,
     getTooltipChildren,
     disableSmoothDragging,
+    tooltipVisibility = "auto",
     ...remaining
   } = props;
   const { "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy } = props;
 
   const mode = useUserInteractionMode();
   const keyboard = mode === "keyboard";
+  const touch = mode === "touch";
+  const [mouseVisible, setMouseVisible] = useState(false);
   const [keyboardVisible, setKeyboardVisible] = useState(false);
   useEffect(() => {
     if (disabled || !discrete) {
@@ -164,6 +190,14 @@ export const SliderThumb = forwardRef<
     // if the mode changes away from keyboard, need to disable the keyboard
     // state
     setKeyboardVisible((prevVisible) => prevVisible && mode === "keyboard");
+  }, [disabled, discrete, mode]);
+  useEffect(() => {
+    if (disabled || !discrete) {
+      setMouseVisible(false);
+      return;
+    }
+
+    setMouseVisible((prevVisible) => prevVisible && mode !== "touch");
   }, [disabled, discrete, mode]);
   useEffect(() => {
     if (!keyboardVisible) {
@@ -228,6 +262,18 @@ export const SliderThumb = forwardRef<
             setKeyboardVisible(true);
           }
         }}
+        onMouseEnter={(event) => {
+          onMouseEnter(event);
+          if (discrete && tooltipVisibility === "hover" && !touch) {
+            setMouseVisible(true);
+          }
+        }}
+        onMouseLeave={(event) => {
+          onMouseLeave(event);
+          if (discrete && tooltipVisibility === "hover" && !touch) {
+            setMouseVisible(false);
+          }
+        }}
       />
       <input
         aria-label={ariaLabel}
@@ -249,7 +295,12 @@ export const SliderThumb = forwardRef<
           position={vertical ? "left" : "above"}
           vertical={vertical}
           animate={!disableSmoothDragging && !active}
-          visible={active || keyboardVisible}
+          visible={
+            tooltipVisibility === "always" ||
+            active ||
+            keyboardVisible ||
+            mouseVisible
+          }
           {...tooltipProps}
           index={index}
         >

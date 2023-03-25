@@ -1,5 +1,19 @@
-import type { HTMLAttributes, ReactNode } from "react";
-import { forwardRef, useRef } from "react";
+// Note: Uses function overloading so that the `getTooltipChildren` can be
+// inferred inline. If this is set to:
+//
+// ```tsx
+// forwardRef<
+//   HTMLDivElement,
+//   LabelRequiredForA11y<SliderProps> | RangeSliderProps
+// >(...implementation...)
+// ```
+//
+// `value` would be implicitly `any` for the non-range slider since typescript
+// can't tell it is a non-range slider.
+//
+
+import type { HTMLAttributes, ReactElement, ReactNode, Ref } from "react";
+import { useRef } from "react";
 import { useDraggable } from "../draggable";
 import type { TooltipProps } from "../tooltip";
 import type {
@@ -11,10 +25,12 @@ import { useEnsuredId } from "../useEnsuredId";
 import { identity, withinRange } from "../utils";
 import type { SliderAddonProps } from "./SliderContainer";
 import { SliderContainer } from "./SliderContainer";
-import type { SliderThumbPresentation } from "./SliderThumb";
+import type { SliderThumbPresentation, SliderThumbProps } from "./SliderThumb";
 import { SliderThumb } from "./SliderThumb";
 import { SliderTrack } from "./SliderTrack";
 import { getJumpValue } from "./sliderUtils";
+import type { SliderMarksOptions } from "./SliderValueMarks";
+import { SliderValueMarks } from "./SliderValueMarks";
 import type { RangeSliderState } from "./useRangeSlider";
 import type { SliderState, SliderValueOptions } from "./useSlider";
 
@@ -31,6 +47,7 @@ declare module "react" {
     "--rmd-slider-offset-2"?: string;
     "--rmd-slider-tooltip-scale"?: string | number;
     "--rmd-slider-tooltip-translate"?: string | number;
+    "--rmd-slider-mark-offset"?: string;
   }
 }
 
@@ -46,7 +63,14 @@ export interface BaseSliderProps
   extends HTMLAttributes<HTMLDivElement>,
     SliderThumbPresentation,
     SliderValueOptions,
-    SliderAddonProps {
+    SliderAddonProps,
+    SliderMarksOptions {
+  /**
+   * This can be used to apply a ref to the container element since this
+   * component does not use `forwardRef`.
+   */
+  containerRef?: Ref<HTMLDivElement>;
+
   /**
    * The amount to jump the slider's value when the `PageUp` or `PageDown`
    * key is pressed.
@@ -79,14 +103,6 @@ export interface BaseSliderProps
    * `"left"` for vertical sliders.
    */
   tooltipProps?: Omit<Partial<TooltipProps>, "position">;
-
-  /**
-   * Set this to `true` if the slider's thumb position should only update when
-   * the user has dragged to the next value instead of with the mouse.
-   *
-   * @defaultValue `false`
-   */
-  disableSmoothDragging?: boolean;
 }
 
 /**
@@ -281,10 +297,11 @@ export interface RangeSliderProps extends BaseSliderProps, RangeSliderState {
  * \@since 6.0.0 Each thumb includes an invisible `<input type="range">` instead
  * of an `<input type="hidden">`.
  */
-export const Slider = forwardRef<
-  HTMLDivElement,
-  LabelRequiredForA11y<SliderProps> | RangeSliderProps
->(function Slider(props, ref) {
+export function Slider(props: LabelRequiredForA11y<SliderProps>): ReactElement;
+export function Slider(props: RangeSliderProps): ReactElement;
+export function Slider(
+  props: LabelRequiredForA11y<SliderProps> | RangeSliderProps
+): ReactElement {
   const {
     "aria-label": ariaLabel,
     "aria-labelledby": ariaLabelledBy,
@@ -297,6 +314,8 @@ export const Slider = forwardRef<
     discrete = false,
     disabled = false,
     getValueText = emptyString,
+    children,
+    marks = false,
     value,
     setValue,
     rangeValue,
@@ -310,8 +329,12 @@ export const Slider = forwardRef<
     maxThumbLabel,
     maxThumbLabelledBy,
     tooltipProps,
+    containerRef,
+    getMarkProps = noop,
+    getMarkLabelProps = noop,
+    tooltipVisibility = "auto",
     getTooltipChildren = identity,
-    disableSmoothDragging = false,
+    disableSmoothDragging = !!marks,
     ...remaining
   } = props as SliderProps & RangeSliderProps;
 
@@ -474,9 +497,21 @@ export const Slider = forwardRef<
   });
 
   const dragging = thumb1Dragging || thumb2Dragging;
+  const sharedThumbProps = {
+    step,
+    animate: !dragging,
+    discrete,
+    disabled,
+    vertical,
+    getValueText,
+    tooltipProps,
+    getTooltipChildren,
+    tooltipVisibility,
+    disableSmoothDragging,
+  } as const satisfies Partial<SliderThumbProps>;
 
   return (
-    <SliderContainer {...remaining} ref={ref} vertical={vertical}>
+    <SliderContainer {...remaining} ref={containerRef} vertical={vertical}>
       <SliderTrack
         {...trackProps}
         min={min}
@@ -510,25 +545,17 @@ export const Slider = forwardRef<
           id={thumb1Id}
           {...thumbProps}
           {...minThumbProps}
+          {...sharedThumbProps}
           ref={thumb1DraggableRef}
           min={min}
           max={thumb1Max}
-          step={step}
           value={thumb1Value}
           index={1}
           active={thumb1Dragging}
-          animate={!dragging}
-          discrete={discrete}
-          disabled={disabled}
-          vertical={vertical}
           onChange={(event) =>
             setThumb1Value(event.currentTarget.valueAsNumber)
           }
           onKeyDown={thumb1OnKeyDown}
-          getValueText={getValueText}
-          tooltipProps={tooltipProps}
-          getTooltipChildren={getTooltipChildren}
-          disableSmoothDragging={disableSmoothDragging}
         />
         {isRangeSlider && (
           <SliderThumb
@@ -536,28 +563,35 @@ export const Slider = forwardRef<
             aria-labelledby={thumb2LabelledBy}
             id={thumb2Id}
             {...maxThumbProps}
+            {...sharedThumbProps}
             ref={thumb2DraggableRef}
             min={thumb2Min}
             max={max}
-            step={step}
             value={thumb2Value}
             index={2}
             active={thumb2Dragging}
-            animate={!dragging}
-            disabled={disabled}
-            discrete={discrete}
-            vertical={vertical}
             onChange={(event) =>
               setThumb2Value(event.currentTarget.valueAsNumber)
             }
             onKeyDown={thumb2OnKeyDown}
-            getValueText={getValueText}
-            tooltipProps={tooltipProps}
-            getTooltipChildren={getTooltipChildren}
-            disableSmoothDragging={disableSmoothDragging}
           />
         )}
+        {marks && (
+          <SliderValueMarks
+            min={min}
+            max={max}
+            step={step}
+            marks={marks}
+            vertical={vertical}
+            thumb1Value={thumb1Value}
+            thumb2Value={thumb2Value}
+            isRangeSlider={isRangeSlider}
+            getMarkProps={getMarkProps}
+            getMarkLabelProps={getMarkLabelProps}
+          />
+        )}
+        {children}
       </SliderTrack>
     </SliderContainer>
   );
-});
+}

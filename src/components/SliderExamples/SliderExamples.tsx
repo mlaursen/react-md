@@ -5,6 +5,7 @@ import { Resettable } from "../Resettable";
 import { DisabledSliderExamples } from "./DisabledSliderExamples";
 import { DiscreteHorizontalRangeSliderExample } from "./DiscreteHorizontalRangeSliderExample";
 import { DiscreteHorizontalSliderExample } from "./DiscreteHorizontalSliderExample";
+import { DiscreteSliderMarks } from "./DiscreteSliderMarks";
 import { DiscreteVerticalRangeSliderExample } from "./DiscreteVerticalRangeSliderExample";
 import { DiscreteVerticalSliderExample } from "./DiscreteVerticalSliderExample";
 import { HorizontalWithAddonsExample } from "./HorizontalWithAddonsExample";
@@ -41,6 +42,8 @@ export default function SliderExamples(): ReactElement {
           Discrete Vertical Slider Example
         </DemoHeadingWithDivider>
         <DiscreteVerticalSliderExample />
+        <DemoHeadingWithDivider>Discrete Slider Marks</DemoHeadingWithDivider>
+        <DiscreteSliderMarks />
         <DemoHeadingWithDivider>
           Simple Horizontal Range Slider Example
         </DemoHeadingWithDivider>

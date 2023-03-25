@@ -47,6 +47,8 @@ $disable-horizontal-slider: $disable-everything !default;
 $disable-vertical-slider: $disable-everything !default;
 $disable-range-slider: $disable-everything !default;
 $disable-discrete-slider: $disable-everything !default;
+$disable-discrete-slider-marks: $disable-discrete-slider !default;
+$disable-discrete-slider-marks-labels: $disable-discrete-slider-marks !default;
 
 // Note: enabling the filled theme forces the underlined theme to be used since it depends on the same styles
 $disable-text-field-filled-theme: $disable-everything !default;
@@ -207,6 +209,42 @@ $slider-track-inactive-color: null !default;
 $slider-track-inactive-opacity: 0.5 !default;
 $slider-track-inactive-z-index: 1 !default;
 $slider-track-disabled-color: theme.theme-get-var(text-disabled-color) !default;
+
+$slider-mark-height: $slider-track-inactive-size !default;
+$slider-mark-width: $slider-track-inactive-size !default;
+$slider-mark-border-radius: 50% !default;
+$slider-mark-light-active-color: theme.theme-get-var(on-primary-color) !default;
+$slider-mark-dark-active-color: $slider-mark-light-active-color !default;
+$slider-mark-light-active-opacity: 0.38 !default;
+$slider-mark-dark-active-opacity: 0.38 !default;
+$slider-mark-active-color: if(
+  theme.$color-scheme == dar,
+  $slider-mark-dark-active-color,
+  $slider-mark-light-active-color
+) !default;
+$slider-mark-active-opacity: if(
+  theme.$color-scheme == dark,
+  $slider-mark-dark-active-opacity,
+  $slider-mark-light-active-opacity
+) !default;
+
+$slider-mark-light-inactive-color: colors.$black !default;
+$slider-mark-dark-inactive-color: colors.$white !default;
+$slider-mark-inactive-color: if(
+  theme.$color-scheme == dark,
+  $slider-mark-dark-inactive-color,
+  $slider-mark-light-inactive-color
+) !default;
+$slider-mark-light-inactive-opacity: 1 !default;
+$slider-mark-dark-inactive-opacity: 0.8 !default;
+$slider-mark-inactive-opacity: if(
+  theme.$color-scheme == dark,
+  $slider-mark-dark-inactive-opacity,
+  $slider-mark-light-inactive-opacity
+) !default;
+$slider-mark-inactive-z-index: 1 !default;
+$slider-mark-active-z-index: $slider-track-active-z-index + 1 !default;
+
 $slider-thumb-size: 1.25rem !default;
 $slider-thumb-border-radius: 50% !default;
 $slider-thumb-bubble-opacity: 0.3 !default;
@@ -360,6 +398,26 @@ $var-lookup: (
     var: --rmd-slider-tooltip-translate,
     value: -50%,
   ),
+  slider-mark-offset: (
+    var: --rmd-slider-mark-offset,
+    value: 0%,
+  ),
+  slider-mark-active-color: (
+    var: --rmd-slider-mark-active-color,
+    value: $slider-mark-active-color,
+  ),
+  slider-mark-active-opacity: (
+    var: --rmd-slider-mark-active-opacity,
+    value: $slider-mark-active-opacity,
+  ),
+  slider-mark-inactive-color: (
+    var: --rmd-slider-mark-inactive-color,
+    value: $slider-mark-inactive-color,
+  ),
+  slider-mark-inactive-opacity: (
+    var: --rmd-slider-mark-inactive-opacity,
+    value: $slider-mark-inactive-opacity,
+  ),
 );
 
 @function get-var($name, $fallback: null) {
@@ -402,6 +460,37 @@ $var-lookup: (
       );
     }
   }
+
+  @if not $disable-discrete-slider-marks {
+    @if $slider-mark-light-active-color and
+      $slider-mark-light-active-color !=
+      $slider-mark-dark-active-color
+    {
+      @include set-var(
+        slider-mark-active-color,
+        $slider-mark-light-active-color
+      );
+    }
+
+    @if $slider-mark-light-inactive-color and
+      $slider-mark-light-inactive-color !=
+      $slider-mark-dark-inactive-color
+    {
+      @include set-var(
+        slider-mark-inactive-color,
+        $slider-mark-light-inactive-color
+      );
+    }
+    @if $slider-mark-light-inactive-opacity and
+      $slider-mark-light-inactive-opacity !=
+      $slider-mark-dark-inactive-opacity
+    {
+      @include set-var(
+        slider-mark-inactive-opacity,
+        $slider-mark-light-inactive-opacity
+      );
+    }
+  }
 }
 
 @mixin use-dark-theme {
@@ -419,6 +508,37 @@ $var-lookup: (
       @include set-var(
         switch-track-background-color,
         $switch-track-dark-background-color
+      );
+    }
+  }
+
+  @if not $disable-discrete-slider-marks {
+    @if $slider-mark-dark-active-color and
+      $slider-mark-light-active-color !=
+      $slider-mark-dark-active-color
+    {
+      @include set-var(
+        slider-mark-active-color,
+        $slider-mark-dark-active-color
+      );
+    }
+
+    @if $slider-mark-dark-inactive-color and
+      $slider-mark-light-inactive-color !=
+      $slider-mark-dark-inactive-color
+    {
+      @include set-var(
+        slider-mark-inactive-color,
+        $slider-mark-dark-inactive-color
+      );
+    }
+    @if $slider-mark-dark-inactive-opacity and
+      $slider-mark-light-inactive-opacity !=
+      $slider-mark-dark-inactive-opacity
+    {
+      @include set-var(
+        slider-mark-inactive-opacity,
+        $slider-mark-dark-inactive-opacity
       );
     }
   }
@@ -1707,75 +1827,149 @@ $var-lookup: (
     }
   }
 
-  .rmd-slider-tooltip {
-    opacity: 1;
-    position: absolute;
-
-    // this is used to generate the triangle
-    &::after {
-      border: $slider-tooltip-caret-size solid transparent;
-      content: "";
+  @if not $disable-discrete-slider {
+    .rmd-slider-tooltip {
+      opacity: 1;
       position: absolute;
-    }
 
-    &--animate {
-      transition: transform $slider-transition-duration
-        $slider-transition-timing-function;
-    }
+      // this is used to generate the triangle
+      &::after {
+        border: $slider-tooltip-caret-size solid transparent;
+        content: "";
+        position: absolute;
+      }
 
-    @if not $disable-horizontal-slider {
-      &--h {
-        @include utils.rtl {
-          @include set-var(slider-tooltip-translate, 50%);
+      &--animate {
+        transition: transform
+          $slider-transition-duration
+          $slider-transition-timing-function;
+      }
+
+      @if not $disable-horizontal-slider {
+        &--h {
+          @include utils.rtl {
+            @include set-var(slider-tooltip-translate, 50%);
+          }
+
+          top: $slider-tooltip-offset;
+          transform: translateX(get-var(slider-tooltip-translate))
+            scale(get-var(slider-tooltip-scale));
+
+          &::after {
+            @include tooltip.use-var(border-top-color, background-color);
+
+            left: 50%;
+            top: 100%;
+            transform: translateX(get-var(slider-tooltip-translate));
+          }
         }
 
-        top: $slider-tooltip-offset;
-        transform: translateX(get-var(slider-tooltip-translate))
-          scale(get-var(slider-tooltip-scale));
+        &--h-off {
+          @include set-var(slider-tooltip-scale, 0);
+        }
 
-        &::after {
-          @include tooltip.use-var(border-top-color, background-color);
-
-          left: 50%;
-          top: 100%;
-          transform: translateX(get-var(slider-tooltip-translate));
+        // have to "duplicate" these styles since the `--h-off` would override the
+        // `--h` styles due to css order.
+        &--h-on {
+          @include set-var(slider-tooltip-scale, 1);
         }
       }
 
-      &--h-off {
-        @include set-var(slider-tooltip-scale, 0);
-      }
+      @if not $disable-vertical-slider {
+        &--v {
+          // going to force rendering always to the left even in RTL languages
+          left: $slider-tooltip-offset;
+          transform: translateY(50%) scale(1);
 
-      // have to "duplicate" these styles since the `--h-off` would override the
-      // `--h` styles due to css order.
-      &--h-on {
-        @include set-var(slider-tooltip-scale, 1);
+          &::after {
+            @include tooltip.use-var(border-left-color, background-color);
+
+            left: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+        }
+
+        &--v-off {
+          transform: translateY(50%) scale(0);
+        }
+
+        // have to "duplicate" these styles since the `--v-off` would override the
+        // `--v` styles due to css order.
+        &--v-on {
+          transform: translateY(50%) scale(1);
+        }
       }
     }
+  }
 
-    @if not $disable-vertical-slider {
-      &--v {
-        // going to force rendering always to the left even in RTL languages
-        left: $slider-tooltip-offset;
-        transform: translateY(50%) scale(1);
+  @if not $disable-discrete-slider-marks {
+    .rmd-slider-mark {
+      border-radius: $slider-mark-border-radius;
+      position: absolute;
 
-        &::after {
-          @include tooltip.use-var(border-left-color, background-color);
+      &--inactive {
+        @include use-var(background-color, slider-mark-inactive-color);
+        @include use-var(opacity, slider-mark-inactive-opacity);
 
-          left: 100%;
+        z-index: $slider-mark-inactive-z-index;
+      }
+
+      &--active {
+        @include use-var(background-color, slider-mark-active-color);
+        @include use-var(opacity, slider-mark-active-opacity);
+
+        z-index: $slider-mark-active-z-index;
+      }
+
+      @if not $disable-horizontal-slider {
+        &--h {
+          @include utils.auto-rtl(left, get-var(slider-mark-offset));
+
+          height: $slider-mark-height;
           top: 50%;
           transform: translateY(-50%);
+          width: $slider-mark-width;
         }
       }
 
-      &--v-off {
-        transform: translateY(50%) scale(0);
+      @if not $disable-vertical-slider {
+        &--v {
+          bottom: get-var(slider-mark-offset);
+          height: $slider-mark-width;
+          transform: translateY(50%);
+          width: $slider-mark-height;
+        }
+      }
+    }
+  }
+
+  @if not $disable-discrete-slider-marks-labels {
+    .rmd-slider-mark-label {
+      position: absolute;
+
+      @if not $disable-horizontal-slider {
+        &--h {
+          @include utils.rtl {
+            @include use-var(right, slider-mark-offset);
+
+            left: auto;
+            transform: translateX(50%);
+          }
+          @include use-var(left, slider-mark-offset);
+
+          top: 100%;
+          transform: translateX(-50%);
+        }
       }
 
-      // have to "duplicate" these styles since the `--v-off` would override the
-      // `--v` styles due to css order.
-      &--v-on {
-        transform: translateY(50%) scale(1);
+      @if not $disable-vertical-slider {
+        &--v {
+          @include utils.auto-rtl(left, 100%);
+
+          top: get-var(slider-mark-offset);
+          transform: translateY(-50%);
+        }
       }
     }
   }
