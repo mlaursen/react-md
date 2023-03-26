@@ -1,0 +1,12 @@
+@use "everything";
+
+.sheet {
+  @include everything.box-set-var(gap, 2rem);
+
+  align-self: flex-start;
+  border-radius: 0.5rem;
+  bottom: auto;
+  position: sticky;
+  top: everything.$app-bar-height;
+  width: var(--customization-width, 20rem);
+}

@@ -1,5 +1,17 @@
 @use "everything";
 
+.grid {
+  @include everything.large-desktop-media {
+    grid-template-columns: 1fr var(--customization-width, 0px) var(
+        --how-to-use-width,
+        0px
+      );
+  }
+
+  display: grid;
+  grid-template-columns: 1fr var(--customization-width, 0px);
+}
+
 .container {
   overflow: hidden;
 }

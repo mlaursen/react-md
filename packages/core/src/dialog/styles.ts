@@ -26,7 +26,7 @@ export interface DialogClassNameOptions {
 }
 
 /** @remarks \@since 6.0.0 */
-export function dialog(options: DialogClassNameOptions): string {
+export function dialog(options: DialogClassNameOptions = {}): string {
   const {
     type = "centered",
     fixed = false,
@@ -51,7 +51,9 @@ export interface DialogHeaderClassNameOptions {
 }
 
 /** @remarks \@since 6.0.0 */
-export function dialogHeader(options: DialogHeaderClassNameOptions): string {
+export function dialogHeader(
+  options: DialogHeaderClassNameOptions = {}
+): string {
   const { className } = options;
 
   return cnb(styles("header"), className);
@@ -66,7 +68,9 @@ export interface DialogContentClassNameOptions {
 }
 
 /** @remarks \@since 6.0.0 */
-export function dialogContent(options: DialogContentClassNameOptions): string {
+export function dialogContent(
+  options: DialogContentClassNameOptions = {}
+): string {
   const { className, disablePadding = false } = options;
 
   return cnb(styles("content", { padded: !disablePadding }), className);

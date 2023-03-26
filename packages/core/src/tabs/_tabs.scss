@@ -89,6 +89,9 @@ $var-lookup: (
   @if not $disable-everything {
     .rmd-tablist {
       display: flex;
+      // disable shrinking since tabs should normally be full width and this
+      // also fixes issues when placed within a flex column container
+      flex-shrink: 0;
       flex-wrap: nowrap;
       outline: none;
       overflow-x: auto;

@@ -6,9 +6,13 @@ $offset: 0.125rem;
   position: relative;
 }
 
-.lineWrap > pre[class*="language-"] {
-  overflow-wrap: anywhere;
-  white-space: pre-wrap;
+.lineWrap {
+  pre[class*="language-"],
+  code[class*="language-"] {
+    overflow-wrap: anywhere !important;
+    word-break: break-all !important;
+    white-space: pre-wrap !important;
+  }
 }
 
 .pre {
@@ -20,6 +24,10 @@ $offset: 0.125rem;
   }
 }
 
+.noOpacity {
+  opacity: 0;
+}
+
 .copy {
   @include everything.button-set-var(icon-size, 2.5rem);
   @include everything.icon-set-var(size, everything.$icon-dense-size);
@@ -29,7 +37,6 @@ $offset: 0.125rem;
     }
   }
 
-  opacity: 0;
   position: absolute;
   right: $offset;
   // most themes have a 0.5em margin applied to the pre element

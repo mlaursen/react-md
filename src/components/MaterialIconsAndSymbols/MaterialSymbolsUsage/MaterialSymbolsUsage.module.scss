@@ -1,0 +1,5 @@
+@use "everything";
+
+.container {
+  padding: everything.$dialog-content-padding;
+}

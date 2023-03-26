@@ -1,32 +1,19 @@
-import {
-  MaterialIconsProvider,
-  MaterialSymbolsProvider,
-  NoSsr,
-} from "@react-md/core";
+import { NoSsr } from "@react-md/core";
 import type { ReactElement } from "react";
+
 import { FullScreenVirtualizedList } from "./FullScreenVirtualizedList";
 import { HeaderControls } from "./HeaderControls";
-import { HowToUse } from "./HowToUse";
+import { MaterialIconsAndSymbolsProvider } from "./MaterialIconsAndSymbolsProvider";
 import { RebuildIcons } from "./RebuildIcons";
-import { MaterialStateProvider, useMaterialState } from "./useMaterialState";
 
 export default function MaterialIconsAndSymbols(): ReactElement {
-  const { context, iconFamily, symbolFamily, getRadioProps } =
-    useMaterialState();
-
   return (
-    <MaterialStateProvider value={context}>
-      <HeaderControls getRadioProps={getRadioProps} />
+    <MaterialIconsAndSymbolsProvider>
+      <HeaderControls />
       <NoSsr>
-        <MaterialSymbolsProvider family={symbolFamily}>
-          <MaterialIconsProvider value={iconFamily}>
-            <HowToUse>
-              <FullScreenVirtualizedList />
-            </HowToUse>
-          </MaterialIconsProvider>
-        </MaterialSymbolsProvider>
+        <FullScreenVirtualizedList />
       </NoSsr>
       {process.env.NODE_ENV !== "production" && <RebuildIcons />}
-    </MaterialStateProvider>
+    </MaterialIconsAndSymbolsProvider>
   );
 }

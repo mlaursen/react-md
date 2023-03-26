@@ -281,6 +281,11 @@ export interface TooltipHookReturnValue<E extends HTMLElement> {
  * @remarks
  * \@since 2.8.0
  * \@since 6.0.0 Uses a separate `TooltipHoverModeProvider`.
+ *
+ * TODO: I need to fix the tooltip for click events and history changes since
+ * the mouseleave event will not be correctly bubbled if hovering a child
+ * element when the click or history update happens. this causes the tooltip to
+ * stay visible
  */
 export function useTooltip<E extends HTMLElement>(
   options: TooltipHookOptions<E> = {}
@@ -372,12 +377,13 @@ export function useTooltip<E extends HTMLElement>(
       const currentSpacing = parseCssLengthUnit({
         value: tooltipSpacing,
       });
+      const horizontal = position === "left" || position === "right";
 
       return {
         vwMargin,
         vhMargin,
-        xMargin: currentSpacing,
-        yMargin: currentSpacing,
+        xMargin: horizontal ? currentSpacing : undefined,
+        yMargin: horizontal ? undefined : currentSpacing,
       };
     },
     onEnter(appearing) {

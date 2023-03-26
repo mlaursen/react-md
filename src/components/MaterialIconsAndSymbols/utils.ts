@@ -1,6 +1,7 @@
 import type { MaterialIconFamily, MaterialSymbolName } from "@react-md/core";
 import { upperFirst } from "lodash";
 import { pascalCase } from "src/utils/string";
+import type { IconCategoryFilter } from "./MaterialIconsAndSymbolsProvider";
 
 import type {
   IconsByCategory,
@@ -8,7 +9,6 @@ import type {
   MaterialIconType,
 } from "./metadata";
 import { ICON_NAME_FIXES, MATERIAL_ICONS, MATERIAL_SYMBOLS } from "./metadata";
-import type { IconCategoryFilter } from "./useMaterialState";
 
 export function getCategoryName(category: string): string {
   if (category.includes("&")) {

@@ -1,4 +1,4 @@
-import type { PropsWithRef } from "@react-md/core";
+import { PropsWithRef, Tooltip, useTooltip } from "@react-md/core";
 import { Button } from "@react-md/core";
 import ContentCopyIcon from "@react-md/material-icons/ContentCopyIcon";
 import { cnb } from "cnbuilder";
@@ -25,6 +25,7 @@ export type PrismLanguage =
   | "typescript"
   | "css"
   | "scss"
+  | "html"
   | "markup"
   | "markdown"
   | "bash"
@@ -75,6 +76,8 @@ export const CodeBlock = forwardRef<HTMLPreElement, CodeBlockProps>(
       ...remaining
     } = props;
 
+    const { elementProps, tooltipProps } = useTooltip({ position: "left" });
+
     let code = typeof children === "string" ? children.trim() : "";
     let lines = propLines;
     let lineNumbers = propLineNumbers;
@@ -118,7 +121,7 @@ export const CodeBlock = forwardRef<HTMLPreElement, CodeBlockProps>(
         >
           <Button
             aria-label="Copy"
-            // TODO: Add toast for success/failure. Also add tooltip
+            {...elementProps}
             onClick={() => {
               navigator.clipboard.writeText(code.trim());
               addAppToast({ toastId: "copied" });
@@ -127,6 +130,7 @@ export const CodeBlock = forwardRef<HTMLPreElement, CodeBlockProps>(
             themeType="flat"
             buttonType="icon"
             className={cnb(
+              styles.noOpacity,
               styles.copy,
               isLight && styles.bgLight,
               !isLight && styles.bgDark
@@ -134,6 +138,7 @@ export const CodeBlock = forwardRef<HTMLPreElement, CodeBlockProps>(
           >
             <ContentCopyIcon />
           </Button>
+          <Tooltip {...tooltipProps}>Copy code to clipboard</Tooltip>
           {lineNumbers && <LineNumbers lines={lines} />}
           {code && (
             <code

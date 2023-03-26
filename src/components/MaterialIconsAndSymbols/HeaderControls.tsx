@@ -1,8 +1,3 @@
-import type {
-  GetMenuItemRadioGroupProps,
-  MaterialIconFamily,
-  MaterialSymbolFamily,
-} from "@react-md/core";
 import {
   Box,
   Chip,
@@ -17,7 +12,8 @@ import { upperFirst } from "lodash";
 import type { ReactElement } from "react";
 import { useCallback, useState } from "react";
 
-import styles from "./MaterialIconsAndSymbols.module.scss";
+import styles from "./HeaderControls.module.scss";
+import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider";
 import {
   MATERIAL_ICON_CATEGORIES,
   MATERIAL_ICON_FAMILY_TYPES,
@@ -25,30 +21,11 @@ import {
   MATERIAL_SYMBOL_FAMILY_TYPES,
 } from "./metadata";
 import { ReturnToTop } from "./ReturnToTop";
-import { useMaterialFontLoader } from "./useMaterialFontLoader";
-import { useMaterialStateContext } from "./useMaterialState";
 import { getCategoryName } from "./utils";
 
-export interface HeaderControlsProps {
-  getRadioProps: GetMenuItemRadioGroupProps<
-    MaterialIconFamily | MaterialSymbolFamily
-  >;
-}
-
-export function HeaderControls(props: HeaderControlsProps): ReactElement {
-  const { getRadioProps } = props;
-  const {
-    iconType,
-    setIconType,
-    iconFamily,
-    setIconFamily,
-    iconCategory,
-    setIconCategory,
-    search,
-    setSearch,
-  } = useMaterialStateContext();
-
-  useMaterialFontLoader(iconFamily, iconType);
+export function HeaderControls(): ReactElement {
+  const { dispatch, search, iconType, iconFamily, iconCategory } =
+    useMaterialIconsAndSymbols();
 
   const isIcon = iconType === "icon";
   const familyTypes = isIcon
@@ -64,26 +41,19 @@ export function HeaderControls(props: HeaderControlsProps): ReactElement {
       setReturnToTopVisible(!entry.isIntersecting);
     }, []),
   });
+
   return (
     <>
-      <Box ref={targetRef}>
+      <ReturnToTop visible={returnToTopVisible} />
+      <Box ref={targetRef} className={styles.box}>
         <Select
           dense
           value={iconType}
           onChange={(event) => {
-            const family = event.currentTarget.value;
-            const nextFamilyTypes =
-              family === "icon"
-                ? MATERIAL_ICON_FAMILY_TYPES
-                : MATERIAL_SYMBOL_FAMILY_TYPES;
-
-            setIconType(family);
-            if (!nextFamilyTypes.includes(iconFamily as "outlined")) {
-              setIconFamily("outlined");
-            }
-            if (iconCategory) {
-              setIconCategory("");
-            }
+            dispatch({
+              type: "setIconType",
+              payload: event.currentTarget.value,
+            });
           }}
         >
           <Option value="symbol">Material Symbols</Option>
@@ -93,8 +63,10 @@ export function HeaderControls(props: HeaderControlsProps): ReactElement {
           dense
           value={iconCategory}
           onChange={(event) => {
-            const nextCategory = event.currentTarget.value;
-            setIconCategory(nextCategory);
+            dispatch({
+              type: "setIconCategory",
+              payload: event.currentTarget.value,
+            });
           }}
           menuProps={{
             preventOverlap: true,
@@ -112,20 +84,28 @@ export function HeaderControls(props: HeaderControlsProps): ReactElement {
           type="search"
           value={search}
           className={styles.search}
-          onChange={(event) => setSearch(event.currentTarget.value)}
+          onChange={(event) => {
+            dispatch({
+              type: "setSearch",
+              payload: event.currentTarget.value,
+            });
+          }}
           placeholder={`Search Material ${upperFirst(iconType)}s`}
           leftAddon={<SearchIcon />}
         />
       </Box>
       <Box>
         {familyTypes.map((familyType) => {
-          const { checked, onCheckedChange } = getRadioProps(familyType);
-
           return (
             <Chip
               key={familyType}
-              selected={checked}
-              onClick={onCheckedChange}
+              selected={iconFamily === familyType}
+              onClick={() =>
+                dispatch({
+                  type: "setIconFamily",
+                  payload: familyType,
+                })
+              }
               className={typography({
                 type: null,
                 transform: "capitalize",
@@ -136,7 +116,6 @@ export function HeaderControls(props: HeaderControlsProps): ReactElement {
           );
         })}
       </Box>
-      <ReturnToTop visible={returnToTopVisible} />
     </>
   );
 }

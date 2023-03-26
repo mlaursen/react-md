@@ -3,6 +3,7 @@ import type {
   LayoutNavigationTree,
 } from "@react-md/core";
 import HomeIcon from "@react-md/material-icons/HomeIcon";
+import FontDownloadIcon from "@react-md/material-icons/FontDownloadIcon";
 import type { ReactNode } from "react";
 
 import MaterialDesignIcon from "../MaterialDesignIcon";
@@ -178,6 +179,16 @@ const routes: readonly LayoutNavigationItem[] = [
   createRoute({
     name: "Material Design",
     pathname: "https://material.io/design",
+    leftAddon: <MaterialDesignIcon />,
+  }),
+  createRoute({
+    name: "Google Fonts",
+    pathname: "https://fonts.google.com",
+    leftAddon: <FontDownloadIcon />,
+  }),
+  createRoute({
+    name: "Material Font Icons",
+    pathname: "https://fonts.google.com/icons",
     leftAddon: <MaterialDesignIcon />,
   }),
 ];

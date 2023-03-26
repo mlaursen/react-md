@@ -1,0 +1,11 @@
+@use "everything";
+
+.search {
+  flex: 1 1 auto;
+}
+
+.box {
+  @include everything.desktop-media {
+    width: calc(100% - var(--how-to-use-width, 0));
+  }
+}

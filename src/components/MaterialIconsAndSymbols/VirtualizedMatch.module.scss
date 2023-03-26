@@ -8,4 +8,26 @@
   line-height: normal;
   text-align: center;
   text-transform: capitalize;
+
+  :global(.rmd-icon) {
+    overflow: hidden;
+  }
+}
+
+.selected {
+  @include everything.button-set-var(
+    outline-color,
+    everything.theme-get-var(primary-color)
+  );
+  @include everything.button-set-var(outline-width, 0.25rem);
+}
+
+.selectedDark {
+  background-color: rgba(everything.$primary-color, 0.2);
+  color: everything.$white;
+}
+
+.selectedLight {
+  background-color: rgba(everything.$primary-color, 0.4);
+  color: everything.$black;
 }

@@ -1,0 +1,8 @@
+@use "everything";
+
+.splitter {
+  @include everything.window-splitter-set-var(
+    position,
+    calc(var(--how-to-use-width) - 1rem)
+  );
+}
