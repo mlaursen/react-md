@@ -6,6 +6,7 @@ import {
   MaterialSymbol,
   Typography,
   useColorScheme,
+  useHtmlClassName,
   useTransition,
 } from "@react-md/core";
 import { cnb } from "cnbuilder";
@@ -17,6 +18,7 @@ import { HowToUseSheet } from "./HowToUseSheet";
 import { IgnoreInvalidHeightStyle } from "./IgnoreInvalidHeightStyle";
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider";
 import { MaterialSymbolCustomizationSheet } from "./MaterialSymbolCustomizationSheet";
+import { NoMatches } from "./NoMatches";
 import { useVirtualizedColumns } from "./useVirtualizedColumns";
 import { useVirtualizedWindow } from "./useVirtualizedWindow";
 import { getCategoryName, isMaterialSymbol } from "./utils";
@@ -52,17 +54,25 @@ export function FullScreenVirtualizedList(): ReactElement {
     transitionIn: howToUseVisible,
   });
 
+  // apply to html so that the icons in the HowToUseSheet are also updated
+  useHtmlClassName(
+    cnb(
+      colorSchemeMode === "dark" && styles.dark,
+      colorSchemeMode === "system" && styles.system
+    )
+  );
+
+  const isEmpty = !list.length;
+
   return (
     <div className={styles.grid}>
+      {!isEmpty && <MaterialSymbolCustomizationSheet />}
       <div
         ref={ref}
         style={containerStyle}
-        className={cnb(
-          styles.container,
-          colorSchemeMode === "dark" && styles.dark,
-          colorSchemeMode === "system" && styles.system
-        )}
+        className={cnb(styles.container, isEmpty && styles.empty)}
       >
+        {isEmpty && <NoMatches />}
         <VariableSizeList
           {...listProps}
           width={containerWidth}
@@ -118,7 +128,6 @@ export function FullScreenVirtualizedList(): ReactElement {
           }}
         </VariableSizeList>
       </div>
-      <MaterialSymbolCustomizationSheet />
       <HowToUseSheet stage={stage} />
     </div>
   );

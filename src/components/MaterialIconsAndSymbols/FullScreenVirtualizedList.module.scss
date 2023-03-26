@@ -16,6 +16,10 @@
   overflow: hidden;
 }
 
+.empty {
+  text-align: center;
+}
+
 .dark :global(.material-icons-two-tone) {
   color: rgba(everything.$black, 0.87);
   filter: contrast(4) invert(1);

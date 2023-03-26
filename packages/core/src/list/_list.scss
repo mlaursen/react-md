@@ -21,7 +21,7 @@ $disable-three-line-height: false !default;
 $disable-item-link-styles: false !default;
 
 $disable-subheader: false !default;
-$disable-subheader-inset: False !default;
+$disable-subheader-inset: false !default;
 
 $item-secondary-text-line-height: 1.42857 !default;
 $item-secondary-text-three-line-max-height: 3rem !default;
@@ -307,7 +307,7 @@ $var-lookup: (
           &--inset {
             @include utils.rtl {
               @include use-var(padding-left, item-horizontal-padding);
-              @include use-var(padding-right, text-keyline);
+              @include use-var(padding-right, item-keyline);
             }
 
             @include use-var(padding-left, item-keyline);

@@ -1,4 +1,5 @@
 import {
+  AppBar,
   Box,
   Chip,
   Option,
@@ -45,9 +46,15 @@ export function HeaderControls(): ReactElement {
   return (
     <>
       <ReturnToTop visible={returnToTopVisible} />
-      <Box ref={targetRef} className={styles.box}>
+      <span ref={targetRef} />
+      <AppBar
+        theme={returnToTopVisible ? "surface" : "clear"}
+        height="auto"
+        position="sticky"
+        className={styles.header}
+      >
         <Select
-          dense
+          dense={!returnToTopVisible}
           value={iconType}
           onChange={(event) => {
             dispatch({
@@ -60,7 +67,7 @@ export function HeaderControls(): ReactElement {
           <Option value="icon">Material Icons</Option>
         </Select>
         <Select
-          dense
+          dense={!returnToTopVisible}
           value={iconCategory}
           onChange={(event) => {
             dispatch({
@@ -80,7 +87,7 @@ export function HeaderControls(): ReactElement {
           ))}
         </Select>
         <TextField
-          dense
+          dense={!returnToTopVisible}
           type="search"
           value={search}
           className={styles.search}
@@ -93,7 +100,7 @@ export function HeaderControls(): ReactElement {
           placeholder={`Search Material ${upperFirst(iconType)}s`}
           leftAddon={<SearchIcon />}
         />
-      </Box>
+      </AppBar>
       <Box>
         {familyTypes.map((familyType) => {
           return (

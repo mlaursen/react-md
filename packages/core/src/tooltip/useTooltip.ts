@@ -243,6 +243,12 @@ export interface TooltipHookReturnValue<E extends HTMLElement> {
   animatedOnce: boolean;
   elementProps: Readonly<ProvidedTooltippedElementProps<E>>;
   tooltipProps: Readonly<ProvidedTooltipProps>;
+
+  /**
+   * This is a wrapper around the {@link setVisible} behavior that will also
+   * clear any pending timeouts.
+   */
+  hideTooltip(): void;
 }
 
 /**
@@ -405,45 +411,39 @@ export function useTooltip<E extends HTMLElement>(
     onExited,
   });
 
-  useEffect(() => {
-    if (!visible) {
-      return;
-    }
-
-    const hide = (): void => {
-      disableHoverMode();
-      clearVisibilityTimeout();
-      initiatedBy.current = null;
-      setVisible(false);
-    };
-
-    const handleKeyDown = (event: KeyboardEvent): void => {
-      if (event.key === "Escape") {
-        hide();
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("scroll", hide, true);
-    window.addEventListener("touchend", hide, true);
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("scroll", hide, true);
-      window.removeEventListener("touchend", hide, true);
-    };
-  }, [clearVisibilityTimeout, disableHoverMode, setVisible, visible]);
-  const cleanup = useCallback(() => {
+  const hideTooltip = useCallback(() => {
     initiatedBy.current = null;
     disableHoverMode();
     clearVisibilityTimeout();
     setVisible(false);
   }, [clearVisibilityTimeout, disableHoverMode, setVisible]);
 
+  useEffect(() => {
+    if (!visible) {
+      return;
+    }
+
+    const handleKeyDown = (event: KeyboardEvent): void => {
+      if (event.key === "Escape") {
+        hideTooltip();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("scroll", hideTooltip, true);
+    window.addEventListener("touchend", hideTooltip, true);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("scroll", hideTooltip, true);
+      window.removeEventListener("touchend", hideTooltip, true);
+    };
+  }, [hideTooltip, visible]);
+
   const refocusFrame = useRef(0);
   const pageInactive = useRef(false);
   usePageInactive({
     disabled,
-    onDisabledCleanup: cleanup,
+    onDisabledCleanup: hideTooltip,
     onChange(active) {
       if (active) {
         refocusFrame.current = window.requestAnimationFrame(() => {
@@ -453,13 +453,14 @@ export function useTooltip<E extends HTMLElement>(
       }
 
       pageInactive.current = true;
-      cleanup();
+      hideTooltip();
     },
   });
 
   return {
     visible,
     setVisible,
+    hideTooltip,
     animatedOnce: animatedOnceRef.current,
     tooltipProps: {
       id: tooltipId,

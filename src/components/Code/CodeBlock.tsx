@@ -1,5 +1,5 @@
-import { PropsWithRef, Tooltip, useTooltip } from "@react-md/core";
-import { Button } from "@react-md/core";
+import type { PropsWithRef } from "@react-md/core";
+import { Button, Tooltip, useTooltip } from "@react-md/core";
 import ContentCopyIcon from "@react-md/material-icons/ContentCopyIcon";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes, ReactNode } from "react";

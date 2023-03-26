@@ -1,0 +1,7 @@
+@use "everything";
+
+.container {
+  @include everything.theme-use-var(color, text-secondary-color);
+
+  font: 200px/1.25 Google Sans, Helvetica Neue, sans-serif;
+}

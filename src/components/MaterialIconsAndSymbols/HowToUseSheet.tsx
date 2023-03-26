@@ -19,6 +19,7 @@ import type { ReactElement, ReactNode } from "react";
 import styles from "./HowToUseSheet.module.scss";
 import { HowToUseSplitter } from "./HowToUseSplitter";
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider";
+import { MaterialIconUsage } from "./MaterialIconUsage/MaterialIconUsage";
 import { MaterialSymbolsUsage } from "./MaterialSymbolsUsage/MaterialSymbolsUsage";
 import { isMaterialSymbol } from "./utils";
 
@@ -31,7 +32,7 @@ export function HowToUseSheet({ stage }: HowToUseSheetProps): ReactElement {
     useMaterialIconsAndSymbols();
 
   const { toggled, toggle, disable } = useToggle();
-  const { elementProps, tooltipProps } = useTooltip();
+  const { elementProps, tooltipProps, hideTooltip } = useTooltip();
 
   let icon: ReactNode;
   let content: ReactNode;
@@ -40,6 +41,7 @@ export function HowToUseSheet({ stage }: HowToUseSheetProps): ReactElement {
     content = <MaterialSymbolsUsage />;
   } else {
     icon = <MaterialIcon name={selectedIconName} />;
+    content = <MaterialIconUsage />;
   }
 
   return (
@@ -72,7 +74,11 @@ export function HowToUseSheet({ stage }: HowToUseSheetProps): ReactElement {
         <Button
           aria-label="Full Screen"
           buttonType="icon"
-          onClick={toggle}
+          onClick={() => {
+            toggle();
+            // TODO: hopefully remove one I fix pending tooltip bug?
+            hideTooltip();
+          }}
           {...elementProps}
         >
           {toggled ? <FullscreenExitIcon /> : <FullscreenIcon />}

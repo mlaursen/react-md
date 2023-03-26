@@ -8,6 +8,7 @@ import styles from "./MaterialSymbolCustomizationSheet.module.scss";
 const noop = (): void => {
   // do nothing
 };
+const alwaysTrue = (): boolean => true;
 
 export function MaterialSymbolCustomizationSheet(): ReactElement {
   const { iconType } = useMaterialIconsAndSymbols();
@@ -25,6 +26,7 @@ export function MaterialSymbolCustomizationSheet(): ReactElement {
       disableOverlay
       disableScrollLock
       disableTransition
+      isFocusTypeDisabled={alwaysTrue}
     >
       <MaterialSymbolCustomization />
     </Sheet>

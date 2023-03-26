@@ -81,7 +81,7 @@ type MaterialIconsAndSymbolsAction =
   | { type: "setIconType"; payload: MaterialIconType }
   | { type: "setIconFamily"; payload: MaterialIconFamily }
   | { type: "setIconCategory"; payload: IconCategoryFilter }
-  | { type: "resetSymbols" | "deselectIcon" }
+  | { type: "reset" | "resetFilters" | "resetSymbols" | "deselectIcon" }
   | { type: "selectIcon"; payload: MaterialIconAndSymbolName }
   | {
       type: "setFill" | "setWeight" | "setGrade" | "setOpticalSize";
@@ -184,6 +184,14 @@ export function MaterialIconsAndSymbolsProvider({
           [`symbol${key}`]: action.payload,
         };
       }
+      case "reset":
+        return INITIAL_STATE;
+      case "resetFilters":
+        return {
+          ...state,
+          search: "",
+          iconCategory: "" as const,
+        };
       case "resetSymbols":
         return {
           ...state,

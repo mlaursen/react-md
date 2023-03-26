@@ -6,6 +6,9 @@
   align-self: flex-start;
   border-radius: 0.5rem;
   bottom: auto;
+  // this makes it so the sheet appears before the icon grid in the tab order,
+  // but displays after the icon grid
+  order: 2;
   position: sticky;
   top: everything.$app-bar-height;
   width: var(--customization-width, 20rem);

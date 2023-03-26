@@ -120,8 +120,17 @@ $green: #859900;
     color: $base-1;
   }
 
-  .language-scss .token.function,
+  .language-scss .token.function {
+    color: $orange;
+  }
+
+  .language-bash .token.function,
   .language-shell .token.function {
+    color: $blue;
+  }
+
+  .language-bash .token.parameter,
+  .language-shell .token.parameter {
     color: $orange;
   }
 }

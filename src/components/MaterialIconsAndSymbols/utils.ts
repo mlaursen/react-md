@@ -2,7 +2,6 @@ import type { MaterialIconFamily, MaterialSymbolName } from "@react-md/core";
 import { upperFirst } from "lodash";
 import { pascalCase } from "src/utils/string";
 import type { IconCategoryFilter } from "./MaterialIconsAndSymbolsProvider";
-
 import type {
   IconsByCategory,
   MaterialIconAndSymbolName,
@@ -59,12 +58,6 @@ export function getIconsByCategory(
   return iconsByCategory;
 }
 
-export function getSymbolFontHref(type: string): string {
-  const name = upperFirst(type);
-
-  return `https://fonts.googleapis.com/css2?family=Material+Symbols+${name}:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200`;
-}
-
 export function getIconFontName(type: MaterialIconFamily): string {
   switch (type) {
     case "two-tone":
@@ -78,16 +71,9 @@ export function getIconFontName(type: MaterialIconFamily): string {
   }
 }
 
-export function getIconFontHref(type: MaterialIconFamily): string {
-  const name = getIconFontName(type).replace(/ /, "+");
-  const suffix = name ? `+${name}` : "";
-
-  return `https://fonts.googleapis.com/icon?family=Material+Icons${suffix}`;
-}
-
 export interface MaterialIconComponentNameOptions {
   // use string instead of giant type union to improve performance. I also don't _need_
-  // to know it is a MaterialIconAndSymbolName for this ti work
+  // to know it is a MaterialIconAndSymbolName for this to work
   iconName: string;
   iconFamily: MaterialIconFamily;
 }

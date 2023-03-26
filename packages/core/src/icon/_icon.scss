@@ -8,6 +8,7 @@ $disable-font: false !default;
 $disable-svg: false !default;
 $disable-symbol: false !default;
 $disable-dense: false !default;
+$disable-inline: false !default;
 $disable-spacing-before: false !default;
 $disable-spacing-after: false !default;
 $disable-spacing-above: false !default;
@@ -15,7 +16,7 @@ $disable-spacing-below: false !default;
 $disable-rotator: false !default;
 $disable-primary-color: false !default;
 $disable-secondary-color: false !default;
-$disable-warning-color: False !default;
+$disable-warning-color: false !default;
 $disable-error-color: false !default;
 $disable-success-color: false !default;
 $disable-hint-color: false !default;
@@ -171,6 +172,12 @@ $var-lookup: (
           font-variation-settings: "FILL" get-var(symbol-fill),
             "wght" get-var(symbol-weight), "GRAD" get-var(symbol-grade),
             "opsz" get-var(symbol-optical-size);
+        }
+      }
+
+      @if not $disable-inline {
+        &--vab {
+          vertical-align: bottom;
         }
       }
 
