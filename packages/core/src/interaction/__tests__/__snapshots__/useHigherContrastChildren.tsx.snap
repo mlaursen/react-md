@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useHigherContrastChildren should not wrap fragments since I don't care for my use cases 1`] = `
+<div>
+  String
+</div>
+`;
+
+exports[`useHigherContrastChildren should wrap a list of children correctly 1`] = `
+<div>
+  <span>
+    String 1
+  </span>
+  <span>
+    String 2
+  </span>
+  <span>
+    String 3
+  </span>
+</div>
+`;
+
+exports[`useHigherContrastChildren should wrap a list of children correctly 2`] = `
+<div>
+  <span>
+    String 1
+  </span>
+  <p>
+    Text
+  </p>
+  <span>
+    String 3
+  </span>
+</div>
+`;
+
+exports[`useHigherContrastChildren should wrap string and number DIRECT children in spans to enable higher contrast 1`] = `
+<div>
+  <span>
+    String
+  </span>
+</div>
+`;
+
+exports[`useHigherContrastChildren should wrap string and number DIRECT children in spans to enable higher contrast 2`] = `
+<div>
+  String
+</div>
+`;
+
+exports[`useHigherContrastChildren should wrap string and number DIRECT children in spans to enable higher contrast 3`] = `
+<div>
+  <span>
+    0
+  </span>
+</div>
+`;
+
+exports[`useHigherContrastChildren should wrap string and number DIRECT children in spans to enable higher contrast 4`] = `
+<div>
+  0
+</div>
+`;
+
+exports[`useHigherContrastChildren should wrap string and number DIRECT children in spans to enable higher contrast 5`] = `
+<div>
+  <p>
+    Text
+  </p>
+</div>
+`;
+
+exports[`useHigherContrastChildren should wrap string and number DIRECT children in spans to enable higher contrast 6`] = `
+<div>
+  <p>
+    Text
+  </p>
+</div>
+`;
