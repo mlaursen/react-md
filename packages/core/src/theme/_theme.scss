@@ -120,6 +120,12 @@ $dark-elevation-colors: (
   24: #383838,
 ) !default;
 
+$_validated_color_scheme: utils.validate(
+  (light dark system),
+  $color-scheme,
+  "$color-scheme"
+);
+
 $theme-var-lookup: (
   background-color: (
     var: --rmd-background-color,
@@ -220,12 +226,6 @@ $theme-var-lookup: (
 @mixin theme-use-var($property, $name: $property, $fallback: null) {
   #{$property}: theme-get-var($name, $fallback);
 }
-
-$_validated_color_scheme: utils.validate(
-  (light dark system),
-  $color-scheme,
-  "$color-scheme"
-);
 
 @mixin use-light-theme-colors {
   @include theme-set-var(background-color, $light-theme-background-color);

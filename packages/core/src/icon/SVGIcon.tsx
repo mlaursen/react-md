@@ -90,6 +90,7 @@ export const SVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(function SVGIcon(
     dense = false,
     className,
     color,
+    inline,
     children: propChildren,
     ...remaining
   } = props;
@@ -108,6 +109,7 @@ export const SVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(function SVGIcon(
         type: "svg",
         dense,
         color,
+        inline,
         className,
       })}
       focusable={focusable}

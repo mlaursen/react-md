@@ -19,8 +19,10 @@ $disable-secondary-color: false !default;
 $disable-warning-color: false !default;
 $disable-error-color: false !default;
 $disable-success-color: false !default;
-$disable-hint-color: false !default;
-$disable-disabled-color: false !default;
+$disable-text-primary-color: false !default;
+$disable-text-secondary-color: false !default;
+$disable-text-hint-color: false !default;
+$disable-text-disabled-color: false !default;
 
 $light-theme-color: color.adjust(#000, $lightness: 46%) !default;
 $dark-theme-color: color.adjust(#fff, $lightness: -30%) !default;
@@ -235,14 +237,26 @@ $var-lookup: (
         }
       }
 
-      @if not $disable-hint-color {
-        &--hint {
+      @if not $disable-text-primary-color {
+        &--text-primary {
+          @include set-var(color, theme.theme-get-var(text-primary-color));
+        }
+      }
+
+      @if not $disable-text-secondary-color {
+        &--text-secondary {
+          @include set-var(color, theme.theme-get-var(text-secondary-color));
+        }
+      }
+
+      @if not $disable-text-hint-color {
+        &--text-hint {
           @include set-var(color, theme.theme-get-var(text-hint-color));
         }
       }
 
-      @if not $disable-disabled-color {
-        &--disabled {
+      @if not $disable-text-disabled-color {
+        &--text-disabled {
           @include set-var(color, theme.theme-get-var(text-disabled-color));
         }
       }

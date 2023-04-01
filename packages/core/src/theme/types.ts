@@ -17,14 +17,23 @@ export type ThemeColor =
   | "error";
 
 /**
- * - `primary -> $text-primary-color`
- * - `secondary -> $text-secondary-color`
- * - `hint -> $text-hint-color`
- * - `disabled -> $text-disabled-color`
+ * - `text-primary -> $text-primary-color`
+ * - `text-secondary -> $text-secondary-color`
+ * - `text-hint -> $text-hint-color`
+ * - `text-disabled -> $text-disabled-color`
  *
  * @remarks \@since 6.0.0
  */
-export type TextThemeColor = "primary" | "secondary" | "hint" | "disabled";
+export type TextColor =
+  | "text-primary"
+  | "text-secondary"
+  | "text-hint"
+  | "text-disabled";
+
+/**
+ * @remarks \@since 6.0.0
+ */
+export type ThemeOrTextColor = ThemeColor | TextColor;
 
 /**
  * @remarks \@since 6.0.0

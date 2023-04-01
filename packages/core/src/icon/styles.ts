@@ -1,5 +1,5 @@
 import { cnb } from "cnbuilder";
-import type { TextThemeColor, ThemeColor } from "../theme";
+import type { ThemeOrTextColor } from "../theme";
 import { bem } from "../utils";
 import type { MaterialIconFamily, MaterialSymbolFamily } from "./material";
 
@@ -29,10 +29,12 @@ export interface SVGIconClassNameOptions {
    * - `warning -> $warning-color`
    * - `success -> $success-color`
    * - `error -> $error-color`
-   * - `hint -> $text-hint-color`
-   * - `disabled -> $text-disabled-color`
+   * - `text-primary -> $text-primary-color`
+   * - `text-secondary -> $text-primary-color`
+   * - `text-hint -> $text-hint-color`
+   * - `text-disabled -> $text-disabled-color`
    */
-  color?: ThemeColor | TextThemeColor;
+  color?: ThemeOrTextColor;
 
   /**
    * Boolean if the font icon should use the dense spec.
@@ -40,6 +42,22 @@ export interface SVGIconClassNameOptions {
    * @defaultValue `false`
    */
   dense?: boolean;
+
+  /**
+   * Set this to `true` if the icon should display inline with other text (like
+   * a paragraph) by applying `vertical-align: bottom`.
+   *
+   * @example
+   * ```tsx
+   * <Typography>
+   *   <InfoIcon inline className="rmd-icon--before" />
+   *   Some additional information around xyz.
+   * </Typography>
+   * ```
+   *
+   * @defaultValue `false`
+   */
+  inline?: boolean;
 }
 
 /** @remarks \@since 6.0.0 */
@@ -98,6 +116,7 @@ export function icon(options: IconClassNameOptions): string {
     color = "",
     family = "",
     dense = false,
+    inline = false,
     forceSize = false,
     forceFontSize = false,
     iconClassName,
@@ -118,6 +137,7 @@ export function icon(options: IconClassNameOptions): string {
       svg: isSvg,
       font: isFont || isMaterial,
       symbol: isSymbol,
+      vab: inline,
       dense,
       "forced-font": forceFontSize,
       "forced-size": forceSize,
