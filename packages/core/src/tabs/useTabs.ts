@@ -8,12 +8,24 @@ const noop = (): void => {
   // do nothing
 };
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export interface TabsState {
   direction: SlideDirection;
   activeIndex: number;
 }
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export interface TabsHookOptions {
+  /**
+   * This can be used to generate the ids for the different components within
+   * the tab widget.
+   *
+   * @defaultValue `"tab-" + useId()`
+   */
   baseId?: string;
 
   /**
@@ -47,17 +59,26 @@ export interface TabsHookOptions {
   defaultActiveIndex?: UseStateInitializer<number>;
 }
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export interface ProvidedTabProps {
   "aria-controls": string | undefined;
   id: string;
   active: boolean;
 }
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export interface ProvidedTabListProps {
   activeIndex: number;
   setActiveIndex: UseStateSetter<number>;
 }
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export interface ProvidedTabPanelProps {
   "aria-labelledby": string;
   id: string;
@@ -65,11 +86,17 @@ export interface ProvidedTabPanelProps {
   active: boolean;
 }
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export interface ProvidedTabPanelsProps<E extends HTMLElement> {
   ref: Ref<E>;
   direction: SlideDirection;
 }
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export interface TabsHookReturnValue extends TabsState {
   setActiveIndex: UseStateSetter<number>;
   getTabProps(index: number): ProvidedTabProps;
@@ -78,6 +105,36 @@ export interface TabsHookReturnValue extends TabsState {
   getTabPanelsProps<E extends HTMLElement>(): ProvidedTabPanelsProps<E>;
 }
 
+/**
+ * @example
+ * Simple Example
+ * ```tsx
+ * import { Slide, SlideContainer, Tab, TabList, useTabs } from "@react-md/core";
+ * import type { ReactElement } from "react";
+ *
+ * export function Example(): ReactElement {
+ *   const { getTabProps, getTabListProps, getTabPanelProps, getTabPanelsProps } =
+ *     useTabs();
+ *
+ *   return (
+ *     <>
+ *       <TabList {...getTabListProps()}>
+ *         <Tab {...getTabProps(0)}>Tab 1</Tab>
+ *         <Tab {...getTabProps(1)}>Tab 2</Tab>
+ *         <Tab {...getTabProps(2)}>Tab 3</Tab>
+ *       </TabList>
+ *       <SlideContainer {...getTabPanelsProps()}>
+ *         <Slide {...getTabPanelProps(0)}>Tab 1 Content</Slide>
+ *         <Slide {...getTabPanelProps(1)}>Tab 2 Content</Slide>
+ *         <Slide {...getTabPanelProps(2)}>Tab 3 Content</Slide>
+ *       </SlideContainer>
+ *     </>
+ *   );
+ * }
+ * ```
+ *
+ * @remarks \@since 6.0.0
+ */
 export function useTabs(options: TabsHookOptions = {}): TabsHookReturnValue {
   const {
     baseId: propBaseId,

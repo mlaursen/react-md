@@ -16,6 +16,7 @@ $disable-tablist-vertical: false !default;
 $disable-tablist-indicator: false !default;
 $disable-tablist-hidden-scrollbar: false !default;
 $disable-tablist-scroll-button: false !default;
+$disable-tablist-active-indicator-transition: false !default;
 
 $typography: map.remove(typography.$button-styles, line-height) !default;
 $gap: icon.$spacing !default;
@@ -114,10 +115,12 @@ $var-lookup: (
           z-index: 1;
         }
 
-        &--animate::after {
-          transition-duration: $transition-duration;
-          transition-property: transform, max-width;
-          transition-timing-function: $transition-timing-function;
+        @if not $disable-tablist-active-indicator-transition {
+          &--animate::after {
+            transition-duration: $transition-duration;
+            transition-property: transform, max-width;
+            transition-timing-function: $transition-timing-function;
+          }
         }
       }
 

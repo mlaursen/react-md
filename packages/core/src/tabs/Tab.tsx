@@ -11,6 +11,9 @@ import {
 import { bem } from "../utils";
 import { useEnsuredId } from "../useEnsuredId";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { useTabs } from "./useTabs";
+
 declare module "react" {
   interface CSSProperties {
     "--rmd-tab-color"?: string;
@@ -22,6 +25,9 @@ declare module "react" {
 
 const styles = bem("rmd-tab");
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export interface TabClassNameOptions {
   className?: string;
   active?: boolean;
@@ -30,6 +36,9 @@ export interface TabClassNameOptions {
   disabled?: boolean;
 }
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export function tab(options: TabClassNameOptions = {}): string {
   const { className, active, stacked, reversed, disabled } = options;
 
@@ -45,13 +54,45 @@ export function tab(options: TabClassNameOptions = {}): string {
   );
 }
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export interface TabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   active: boolean;
+
+  /**
+   * An optional icon to render with the with the {@link children}. The default
+   * behavior will render this icon before the children.
+   *
+   * @see {@link iconAfter}
+   * @see {@link stacked}
+   */
   icon?: ReactNode;
+
+  /**
+   * Set this to `true` to render the {@link icon} after the {@link children}.
+   *
+   * @defaultValue `false`
+   */
   iconAfter?: boolean;
+
+  /**
+   * Set this to `true` to render the {@link icon} and {@link children} stacked
+   * instead of horizontally.
+   *
+   * @defaultValue `false`
+   */
   stacked?: boolean;
 }
 
+/**
+ * This component should usually be used with the `TabsList` component and
+ * `useTabs` hook.
+ *
+ * @see {@link useTabs}
+ *
+ * @remarks \@since 6.0.0
+ */
 export const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
   props,
   ref

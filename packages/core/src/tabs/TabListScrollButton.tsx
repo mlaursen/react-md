@@ -13,6 +13,10 @@ import { getTabListScrollToOptions } from "./utils";
 
 const styles = bem("rmd-tablist-button");
 
+/**
+ * @internal
+ * @remarks \@since 6.0.0
+ */
 export interface BaseTabListScrollButtonProps
   extends HTMLAttributes<HTMLDivElement>,
     ButtonClassNameThemeOptions {
@@ -21,11 +25,19 @@ export interface BaseTabListScrollButtonProps
   getScrollToOptions?: GetTabListScrollToOptions;
 }
 
+/**
+ * @internal
+ * @remarks \@since 6.0.0
+ */
 export interface TabListScrollButtonProps extends BaseTabListScrollButtonProps {
   type: "back" | "forward";
   vertical?: boolean;
 }
 
+/**
+ * @internal
+ * @remarks \@since 6.0.0
+ */
 export const TabListScrollButton = forwardRef<
   HTMLDivElement,
   TabListScrollButtonProps

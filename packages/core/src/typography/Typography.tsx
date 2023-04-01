@@ -1,6 +1,7 @@
 import { cnb } from "cnbuilder";
 import type { ElementType, HTMLAttributes, ReactElement } from "react";
 import { forwardRef } from "react";
+import type { ThemeOrTextColor } from "../theme";
 import { bem } from "../utils";
 
 const styles = bem("rmd-typography");
@@ -62,25 +63,6 @@ export type FontWeight =
   | "black";
 
 /**
- * An optional text color to apply. These values map to:
- *
- * - `undefined` - current text color
- * - `secondary` - slightly lighter than the default text color
- * - `hint` - slightly lighter than the secondary color
- * - `theme-primary` - the primary color set for your app
- * - `theme-secondary` - the secondary color set for your app
- * - `theme-warning` - the warning color set for your app
- * - `theme-error` - the error color set for your app
- */
-export type TextColor =
-  | "secondary"
-  | "hint"
-  | "theme-primary"
-  | "theme-secondary"
-  | "theme-warning"
-  | "theme-error";
-
-/**
  * Since the typography within react-md tries to not modify base elements, the
  * default margin applied to heading tags (h1-h6) and paragraph (p) might have
  * large margin that you don't want applied when using this component. You can
@@ -112,8 +94,8 @@ export interface TypographyClassNameOptions {
 
   /** {@inheritDoc TextAlign} */
   align?: TextAlign;
-  /** {@inheritDoc TextColor} */
-  textColor?: TextColor;
+  /** {@inheritDoc ThemeOrTextColor} */
+  textColor?: ThemeOrTextColor;
   /** {@inheritDoc TextDecoration} */
   decoration?: TextDecoration;
   /** {@inheritDoc TextTransform} */
@@ -236,12 +218,12 @@ export function typography(
 ): string {
   const {
     type = "body-1",
-    align,
-    textColor,
-    decoration,
-    transform,
-    weight,
-    fontStyle,
+    align = "",
+    textColor = "",
+    decoration = "",
+    transform = "",
+    weight = "",
+    fontStyle = "",
     margin = "initial",
     className,
     disableLineWrap,
@@ -253,14 +235,15 @@ export function typography(
       "no-margin": margin === "none",
       "no-margin-top": margin === "bottom",
       "no-margin-bottom": margin === "top",
-      [align || ""]: align,
-      [decoration || ""]: decoration && decoration !== "overline",
-      [textColor || ""]: textColor,
+      [align]: align,
+      [decoration]: decoration && decoration !== "overline",
+      // TODO: Implement text colors
+      [textColor]: textColor,
       // only because "overline" is technically one of the valid material design types :/
       "overline-decoration": decoration === "overline",
-      [transform || ""]: transform,
-      [weight || ""]: weight,
-      [fontStyle || ""]: fontStyle,
+      [transform]: transform,
+      [weight]: weight,
+      [fontStyle]: fontStyle,
       "no-wrap": disableLineWrap,
     }),
     className
