@@ -393,6 +393,14 @@ export function useDraggable<E extends HTMLElement>(
     key: localStorageKey,
     manual: localStorageManual || dragging,
     defaultValue: () => getDraggableDefaultValue({ min, max, defaultValue }),
+    deserializer(item) {
+      const value = parseFloat(item);
+      if (Number.isNaN(item)) {
+        return min;
+      }
+
+      return Math.max(min, Math.min(max, value));
+    },
   });
   let value: number;
   let setValue: UseStateSetter<number>;
