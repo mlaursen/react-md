@@ -94,11 +94,11 @@ export function getEverythingScss(
     changes.push(`$icon-symbol-fill: ${fill}`);
   }
 
-  if (isGradeChanged) {
+  if (isWeightChanged) {
     changes.push(`$icon-symbol-weight: ${weight}`);
   }
 
-  if (isWeightChanged) {
+  if (isGradeChanged) {
     changes.push(`$icon-symbol-grade: ${grade}`);
   }
 
