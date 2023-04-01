@@ -12,7 +12,7 @@ export function HowToUseSplitter(): ReactElement {
   const { value, splitterProps } = useWindowSplitter({
     min: 416,
     max: 600,
-    defaultValue: 256,
+    defaultValue: 416,
     reversed: true,
     localStorageKey: "howToUseWidth",
   });

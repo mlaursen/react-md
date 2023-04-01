@@ -227,13 +227,21 @@ export function getDraggableDefaultValue(
 ): number {
   const { min, max, defaultValue } = options;
 
+  let value: number;
   if (typeof defaultValue === "function") {
-    return defaultValue();
+    value = defaultValue();
+  } else if (typeof defaultValue === "undefined") {
+    value = Math.ceil((max - min) / 2);
+  } else {
+    value = defaultValue;
   }
 
-  if (typeof defaultValue === "undefined") {
-    return Math.ceil((max - min) / 2);
+  if (value < min || value > max) {
+    // TODO: Determine if this should just be a `Math.min(Math.max(min, value), max)` instead
+    throw new Error(
+      "useDraggable default value must be between the min and max values"
+    );
   }
 
-  return defaultValue;
+  return value;
 }
