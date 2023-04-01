@@ -1,3 +1,4 @@
+import { cnb } from "cnbuilder";
 import {
   AppBar,
   Box,
@@ -51,7 +52,11 @@ export function HeaderControls(): ReactElement {
         theme={returnToTopVisible ? "surface" : "clear"}
         height="auto"
         position="sticky"
-        className={styles.header}
+        className={cnb(
+          styles.header,
+          !returnToTopVisible && styles.sheetOffset
+        )}
+        disableElevation
       >
         <Select
           dense={!returnToTopVisible}

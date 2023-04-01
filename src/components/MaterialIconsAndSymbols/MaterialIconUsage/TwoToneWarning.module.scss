@@ -1,7 +1,0 @@
-@use "everything";
-
-.warning {
-  @include everything.auto-rtl(margin-right, everything.$icon-spacing);
-
-  vertical-align: bottom;
-}

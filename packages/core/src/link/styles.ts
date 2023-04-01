@@ -17,7 +17,7 @@ export interface LinkClassNameOptions {
  *
  * @remarks \@since 6.0.0
  */
-export function link(options: LinkClassNameOptions): string {
+export function link(options: LinkClassNameOptions = {}): string {
   const { flex, className } = options;
 
   return cnb(styles({ flex }), className);

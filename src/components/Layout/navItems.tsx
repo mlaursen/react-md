@@ -97,6 +97,7 @@ const routes: readonly LayoutNavigationItem[] = [
   createRoute({ name: "Dialog", pathname: "/dialog" }),
   createRoute({ name: "Divider", pathname: "/divider" }),
   createRoute({ name: "Expansion Panel", pathname: "/expansion-panel" }),
+  createRoute({ name: "Icons", pathname: "/icons" }),
   createRoute({ name: "Link", pathname: "/link" }),
   createRoute({ name: "List", pathname: "/list" }),
   createRoute({

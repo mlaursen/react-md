@@ -7,3 +7,9 @@
 .header {
   min-height: everything.$app-bar-height;
 }
+
+.sheetOffset {
+  @include everything.large-desktop-media {
+    width: calc(100% - var(--how-to-use-width, 0px));
+  }
+}

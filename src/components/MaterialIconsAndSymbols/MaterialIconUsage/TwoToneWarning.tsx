@@ -3,8 +3,6 @@ import WarningIcon from "@react-md/material-icons/WarningIcon";
 import type { ReactElement } from "react";
 import { FormattedCodeBlock } from "src/components/Code/FormattedCodeBlock";
 
-import styles from "./TwoToneWarning.module.scss";
-
 const EXAMPLE_CODE = `
 @use "everything";
 
@@ -30,7 +28,7 @@ export function TwoToneWarning(): ReactElement {
   return (
     <>
       <Typography>
-        <WarningIcon className={styles.warning} color="warning" />
+        <WarningIcon inline className="rmd-icon--before" color="warning" />
         The two-tone icons do not support dark mode out of the box and require
         additional styling to work correctly. Here is an example for how you can
         add dark mode styles.

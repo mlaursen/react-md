@@ -60,7 +60,7 @@ export function MaterialIconUsage(): ReactElement {
           </CodeBlock>
           <Blockquote>
             <Typography>
-              <InfoIcon className={styles.info} />
+              <InfoIcon inline className="rmd-icon--before" />
               If you use a lot of icons in your app, you might be able to reduce
               your bundle size and dependencies by using the font icons instead.
             </Typography>
@@ -73,6 +73,7 @@ export function MaterialIconUsage(): ReactElement {
           <FormattedCodeBlock language="tsx" lineWrap stripTrailingSemi>
             {`<MaterialIcon name="${selectedIconName}" />`}
           </FormattedCodeBlock>
+          {iconFamily === "two-tone" && <TwoToneWarning />}
           <Typography type="headline-5" margin="top">
             Stylesheet
           </Typography>
@@ -82,7 +83,6 @@ export function MaterialIconUsage(): ReactElement {
           <FormattedCodeBlock language="html" lineWrap>
             {`<link rel="stylesheet" href="${href}" />`}
           </FormattedCodeBlock>
-          {iconFamily === "two-tone" && <TwoToneWarning />}
           {isFontFamilyChanged && <AdditionalChanges />}
         </Slide>
       </SlideContainer>

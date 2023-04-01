@@ -3,9 +3,3 @@
 .container {
   padding: everything.$dialog-content-padding;
 }
-
-.info {
-  @include everything.auto-rtl(margin-right, everything.$icon-spacing);
-
-  vertical-align: bottom;
-}
