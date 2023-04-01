@@ -107,7 +107,10 @@ $var-lookup: (
           background-color,
           interaction.get-var(focus-background-color)
         );
-        @include interaction.set-var(focus-color, interaction.$focus-color);
+
+        &::before {
+          @include interaction.focus-styles;
+        }
       }
     }
   }
