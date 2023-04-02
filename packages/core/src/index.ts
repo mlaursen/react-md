@@ -32,6 +32,7 @@ export * from "./scroll";
 export * from "./sheet";
 export * from "./snackbar";
 export * from "./SsrProvider";
+export * from "./suspense";
 export * from "./table";
 export * from "./tabs";
 export * from "./theme";
