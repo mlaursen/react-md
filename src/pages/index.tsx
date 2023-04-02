@@ -24,18 +24,21 @@ export default function Home(): ReactElement {
             <Radio
               label="Light"
               value="light"
+              name="colorScheme"
               checked={colorSchemeMode === "light"}
               onChange={() => setColorSchemeMode("light")}
             />
             <Radio
               label="Dark"
               value="dark"
+              name="colorScheme"
               checked={colorSchemeMode === "dark"}
               onChange={() => setColorSchemeMode("dark")}
             />
             <Radio
               label="System"
               value="system"
+              name="colorScheme"
               checked={colorSchemeMode === "system"}
               onChange={() => setColorSchemeMode("system")}
             />

@@ -68,8 +68,7 @@ export interface AppBarClassNameOptions {
   pagePosition?: AppBarPosition;
 
   /**
-   * Set this to `true` if enabling the {@link position} prop should not include
-   * box-shadow.
+   * Set this to `true` to remove the box-shadow.
    *
    * @defaultValue `false`
    */
@@ -135,10 +134,10 @@ export function appBar(options: AppBarClassNameOptions = {}): string {
       fixed: position !== "static",
       sticky: position === "sticky",
       stacked,
-      [pagePosition]: position,
-      elevated: position && !disableElevation,
+      [pagePosition]: position !== "static",
+      elevated: position !== "static" && !disableElevation,
       "scrollbar-offset": scrollbarOffset,
-      "static-scrollbar-offset": !position && scrollbarOffset,
+      "static-scrollbar-offset": position === "static" && scrollbarOffset,
     }),
     className
   );

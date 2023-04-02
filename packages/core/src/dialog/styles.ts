@@ -100,7 +100,9 @@ export interface DialogFooterClassNameOptions {
 }
 
 /** @remarks \@since 6.0.0 */
-export function dialogFooter(options: DialogFooterClassNameOptions): string {
+export function dialogFooter(
+  options: DialogFooterClassNameOptions = {}
+): string {
   const { align = "end", className } = options;
 
   return cnb(
