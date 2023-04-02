@@ -44,7 +44,7 @@ export type CSSVariableName = `--${string}`;
  * @internal
  * @remarks \@since 6.0.0
  */
-export type DefinedCustomProperties<Property = keyof CSSProperties> =
+export type DefinedCustomProperty<Property = keyof CSSProperties> =
   Property extends CSSVariableName ? Property : never;
 
 /**
@@ -64,10 +64,10 @@ export type DefinedCustomProperties<Property = keyof CSSProperties> =
  *   "--custom-property": "red",
  * };
  *
- * // `DefinedCSSVariableNames` will also include `--custom-property` with all
+ * // `DefinedCSSVariableName` will also include `--custom-property` with all
  * // defined react-md custom properties
  * ```
  *
  * @remarks \@since 6.0.0
  */
-export type DefinedCSSVariableNames = DefinedCustomProperties;
+export type DefinedCSSVariableName = DefinedCustomProperty;

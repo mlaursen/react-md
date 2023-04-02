@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useCSSVariables should allow for a custom root node using refs 1`] = `
+<div
+  data-testid="div"
+  style="--test: 100px;"
+>
+  <button
+    type="button"
+  >
+    Style
+  </button>
+</div>
+`;
+
+exports[`useCSSVariables should allow for a custom root node using refs 2`] = `
+<div
+  data-testid="div"
+  style="--test: 100px; background: red;"
+>
+  <button
+    type="button"
+  >
+    Style
+  </button>
+</div>
+`;

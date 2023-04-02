@@ -1,8 +1,10 @@
-import { render } from "@testing-library/react";
-import type { CSSProperties, ReactElement } from "react";
+import { fireEvent, render } from "@testing-library/react";
+import type { CSSProperties, ReactElement, RefObject } from "react";
+import { useMemo, useRef, useState } from "react";
 import { textPrimaryColorVar } from "../cssVars";
-import type { DefinedCSSVariableNames } from "../types";
+import type { CSSVariableName, DefinedCSSVariableName } from "../types";
 
+import type { ReadonlyCSSVariableList } from "../useCSSVariables";
 import { useCSSVariables } from "../useCSSVariables";
 
 declare module "react" {
@@ -73,9 +75,56 @@ describe("useCSSVariables", () => {
     );
   });
 
+  it("should allow for a custom root node using refs", () => {
+    function Child(props: { rootRef: RefObject<HTMLElement> }): null {
+      const { rootRef } = props;
+
+      const variables = useMemo<ReadonlyCSSVariableList<CSSVariableName>>(
+        () => [{ name: "--test", value: "100px" }],
+        []
+      );
+      useCSSVariables(variables, rootRef);
+
+      return null;
+    }
+
+    function Test(): ReactElement {
+      const rootRef = useRef<HTMLDivElement>(null);
+      const [style, setStyle] = useState<CSSProperties | undefined>();
+
+      return (
+        <div data-testid="div" ref={rootRef} style={style}>
+          <button
+            type="button"
+            onClick={() => {
+              setStyle({ background: "red" });
+            }}
+          >
+            Style
+          </button>
+          <Child rootRef={rootRef} />
+        </div>
+      );
+    }
+
+    const { getByTestId, getByRole } = render(<Test />);
+    const div = getByTestId("div");
+    const button = getByRole("button", { name: "Style" });
+
+    expect(div.style.getPropertyValue("--test")).toBe("100px");
+    expect(div).toMatchSnapshot();
+
+    // this is just to make sure that adding inline style does not remove the
+    // custom properties
+    fireEvent.click(button);
+    expect(div.style.getPropertyValue("--test")).toBe("100px");
+    expect(div.style.backgroundColor).toBe("red");
+    expect(div).toMatchSnapshot();
+  });
+
   it("should allow strictly typing the css variable names to react-md theme variables", () => {
     function Test(): null {
-      useCSSVariables<DefinedCSSVariableNames>([
+      useCSSVariables<DefinedCSSVariableName>([
         {
           name: "--rmd-background-color",
           value: "#000",

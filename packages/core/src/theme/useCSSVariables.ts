@@ -1,11 +1,12 @@
+import type { RefObject } from "react";
 import { useEffect, useMemo } from "react";
-import type { CSSVariableName, DefinedCSSVariableNames } from "./types";
+import type { CSSVariableName, DefinedCSSVariableName } from "./types";
 
 /**
  * @remarks \@since 6.0.0
  */
 export interface CSSVariable<
-  Name extends CSSVariableName = DefinedCSSVariableNames
+  Name extends CSSVariableName = DefinedCSSVariableName
 > {
   name: Name;
   value: string | number;
@@ -15,7 +16,7 @@ export interface CSSVariable<
  * @remarks \@since 6.0.0
  */
 export type CSSVariablesProperties<
-  Name extends CSSVariableName = DefinedCSSVariableNames
+  Name extends CSSVariableName = DefinedCSSVariableName
 > = {
   [key in Name]?: string | number;
 };
@@ -24,7 +25,7 @@ export type CSSVariablesProperties<
  * @remarks \@since 6.0.0
  */
 export type ReadonlyCSSVariableList<
-  Name extends CSSVariableName = DefinedCSSVariableNames
+  Name extends CSSVariableName = DefinedCSSVariableName
 > = readonly Readonly<CSSVariable<Name>>[];
 
 /**
@@ -62,7 +63,8 @@ export type ReadonlyCSSVariableList<
  * @remarks \@since 6.0.0
  */
 export function useCSSVariables<Name extends CSSVariableName>(
-  variables: ReadonlyCSSVariableList<Name>
+  variables: ReadonlyCSSVariableList<Name>,
+  rootNode?: RefObject<HTMLElement> | HTMLElement
 ): void;
 /**
  * @example
@@ -101,21 +103,39 @@ export function useCSSVariables<Name extends CSSVariableName>(
  */
 export function useCSSVariables<Name extends CSSVariableName>(
   variables: ReadonlyCSSVariableList<Name>,
-  local: true
+  inlineStyle: true
 ): CSSVariablesProperties<Name>;
 /**
  * @remarks \@since 6.0.0
  */
 export function useCSSVariables<Name extends CSSVariableName>(
   variables: ReadonlyCSSVariableList<Name>,
-  local?: boolean
+  rootNodeOrInlineStyle?: RefObject<HTMLElement> | HTMLElement | boolean
 ): CSSVariablesProperties<Name> | void {
   useEffect(() => {
-    if (local || !variables.length) {
+    if (rootNodeOrInlineStyle === true || !variables.length) {
       return;
     }
 
-    const root = document.documentElement;
+    // use an iife so that hoisting doesn't cause a possible "null" issue for
+    // the root
+    const root = (() => {
+      if (!rootNodeOrInlineStyle) {
+        return document.documentElement;
+      }
+
+      if ("current" in rootNodeOrInlineStyle) {
+        return rootNodeOrInlineStyle.current;
+      }
+
+      return rootNodeOrInlineStyle;
+    })();
+
+    if (!root) {
+      return;
+    }
+
+    // const root = document.documentElement;
     variables.forEach(({ name, value }) => {
       if (
         process.env.NODE_ENV !== "production" &&
@@ -140,10 +160,10 @@ export function useCSSVariables<Name extends CSSVariableName>(
         root.style.removeProperty(name);
       });
     };
-  }, [variables, local]);
+  }, [variables, rootNodeOrInlineStyle]);
 
   return useMemo(() => {
-    if (!local) {
+    if (rootNodeOrInlineStyle !== true) {
       return;
     }
 
@@ -154,5 +174,5 @@ export function useCSSVariables<Name extends CSSVariableName>(
       },
       {}
     );
-  }, [local, variables]);
+  }, [rootNodeOrInlineStyle, variables]);
 }
