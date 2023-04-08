@@ -13,7 +13,3 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
     );
   }
 );
-con>
-    );
-  }
-);
