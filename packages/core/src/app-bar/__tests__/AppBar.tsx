@@ -109,7 +109,7 @@ describe("AppBar", () => {
   });
 
   describe("styling utils", () => {
-    it("should allow the avatarImage to be called without any parameters", () => {
+    it("should be callback without any arguments", () => {
       expect(appBar()).toMatchSnapshot();
     });
   });
