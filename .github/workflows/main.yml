@@ -30,7 +30,10 @@ jobs:
       - run: pnpm build
       - run: pnpm lint
       - run: pnpm test -- -- --coverage
-      - run: npx codecov -t ${{ secrets.CODECOV_TOKEN }}
+      - run: npx codecov -t ${{ secrets.CODECOV_TOKEN }} -F core
+        working-directory: ./packages/core
+      - run: npx codecov -t ${{ secrets.CODECOV_TOKEN }} -F docs
+        working-directory: ./apps/docs
 
   # validate_matrix:
   #   name: Validate Using Node Matrix

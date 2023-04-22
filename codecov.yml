@@ -1,0 +1,23 @@
+coverage:
+  status:
+    project:
+      default:
+        target: 1%
+      core:
+        target: 80%
+        flags:
+          - core
+      docs:
+        target: 1%
+        flags:
+          - docs
+
+flags:
+  core:
+    paths:
+      - packages/core/
+    carryforward: false
+  docs:
+    paths:
+      - apps/docs/
+    carryforward: true
