@@ -2,7 +2,7 @@
 // this is a temp file before I write the "combine everything" stuffs
 import { glob } from "glob";
 import chokidar from "chokidar";
-import { copyFile, rm } from "node:fs/promises";
+import { copyFile, mkdir, rm } from "node:fs/promises";
 import { existsSync } from "node:fs";
 
 let log = false;
@@ -40,6 +40,10 @@ if (process.argv.includes("--watch")) {
     console.log("Watching changes...");
   });
 } else {
+  if (!existsSync("dist")) {
+    await mkdir("dist");
+  }
+
   const styles = await glob(pattern);
   await Promise.all(styles.map(async (filePath) => cp(filePath)));
   console.log(`Copied ${styles.length} scss files`);
