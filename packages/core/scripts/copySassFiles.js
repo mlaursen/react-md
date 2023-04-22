@@ -4,11 +4,19 @@ import { glob } from "glob";
 import chokidar from "chokidar";
 import { copyFile, mkdir, rm } from "node:fs/promises";
 import { existsSync } from "node:fs";
+import { dirname } from "node:path";
 
 let log = false;
 const pattern = "src/**/*.scss";
 
 const replaceDist = (path) => path.replace("src", "dist");
+const ensureParentDirectories = async (filePath) => {
+  const folder = dirname(filePath);
+  if (!existsSync(folder)) {
+    await mkdir(folder, { recursive: true });
+  }
+};
+
 const cp = async (path, dest = replaceDist(path)) => {
   await copyFile(path, dest);
   if (log) {
@@ -45,6 +53,10 @@ if (process.argv.includes("--watch")) {
   }
 
   const styles = await glob(pattern);
-  await Promise.all(styles.map(async (filePath) => cp(filePath)));
+  for (const filePath of styles) {
+    const dist = replaceDist(filePath);
+    await ensureParentDirectories(dist);
+    await cp(filePath, dist);
+  }
   console.log(`Copied ${styles.length} scss files`);
 }
