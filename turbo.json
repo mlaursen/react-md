@@ -2,6 +2,10 @@
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
   "pipeline": {
+    "@react-md/material-icons#build": {
+      "dependsOn": ["^build"],
+      "outputs": ["*.d.ts", "*.js"]
+    },
     "build": {
       "outputs": [
         "esm/**",
