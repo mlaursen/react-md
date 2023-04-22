@@ -1,7 +1,7 @@
 import type { BuiltInParserName } from "prettier";
 import type { ReactElement } from "react";
 import { useMemo } from "react";
-import type { PrettierFormatOptions } from "src/utils/format";
+import type { PrettierFormatOptions } from "src/utils/browserFormat";
 import { formatInBrowser } from "src/utils/browserFormat";
 import type { CodeBlockProps } from "./CodeBlock";
 import { CodeBlock } from "./CodeBlock";
