@@ -9,12 +9,13 @@
     "build": "next build",
     "build-static": "next build && next export",
     "start": "next start",
+    "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{ts,tsx,js,jsx,cjs,mjs}\"",
     "test": "jest"
   },
   "engines": {
-    "pnpm": ">=7",
-    "node": ">=16"
+    "pnpm": ">=8",
+    "node": "^18"
   },
   "engineStrict": true,
   "repository": {
@@ -58,6 +59,7 @@
     "@types/react": "^18.0.38",
     "@types/react-dom": "^18.0.11",
     "@types/react-window": "^1.8.5",
+    "@types/testing-library__jest-dom": "^5.14.5",
     "eslint-config-next": "^13.3.1",
     "eslint-plugin-next": "^0.0.0",
     "glob": "^10.2.1",
@@ -68,6 +70,6 @@
     "prism-themes": "^1.9.0",
     "sass": "^1.62.0",
     "svgo": "^3.0.2",
-    "typescript": "^5.0.4"
+    "typescript": "^4.9.4"
   }
 }

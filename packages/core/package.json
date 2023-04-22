@@ -18,6 +18,7 @@
     "build-types": "tsc -P tsconfig.types.json",
     "build-scss": "node scripts/copySassFiles.js",
     "clean": "rm -rf .turbo esm dist node_modules",
+    "typecheck": "tsc --noEmit",
     "lint-scripts": "eslint \"src/**/*.{ts,tsx,js,jsx,cjs,mjs}\"",
     "lint-styles": "stylelint \"src/**/*.{css,scss}\"",
     "lint": "npm-run-all lint-scripts lint-styles",
@@ -76,7 +77,7 @@
     "stylelint-config-recommended-scss": "^10.0.0",
     "stylelint-order": "^6.0.3",
     "ts-node": "^10.9.1",
-    "typescript": "^5.0.4"
+    "typescript": "^4.9.4"
   },
   "peerDependencies": {
     "react": ">= 18",

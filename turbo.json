@@ -28,6 +28,7 @@
     },
     "clean": {
       "cache": false
-    }
+    },
+    "typecheck": {}
   }
 }

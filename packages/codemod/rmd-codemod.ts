@@ -4,17 +4,15 @@
 import { execSync } from "child_process";
 import { Command, Option } from "commander";
 import { existsSync } from "fs";
-import glob from "glob";
+import { globSync } from "glob";
 import inquirer from "inquirer";
 import { join } from "path";
 
 const jscodeshiftExecutable = require.resolve(".bin/jscodeshift");
-const transforms = glob
-  .sync("**/*.js", {
-    cwd: join(__dirname, "transforms"),
-    ignore: ["**/__tests__/**", "**/__testfixtures__/**", "utils/**/*"],
-  })
-  .map((transform) => transform.replace(".js", ""));
+const transforms = globSync("**/*.js", {
+  cwd: join(__dirname, "transforms"),
+  ignore: ["**/__tests__/**", "**/__testfixtures__/**", "utils/**/*"],
+}).map((transform) => transform.replace(".js", ""));
 
 const parserOptions = [
   { name: "Javascript", value: "babel" },
@@ -99,7 +97,7 @@ async function handleAction(options: Options): Promise<void> {
   const files = [];
   for (const pattern of filePatterns) {
     if (pattern.includes("*")) {
-      files.push(...glob.sync(pattern));
+      files.push(...globSync(pattern));
     } else {
       files.push(pattern);
     }
