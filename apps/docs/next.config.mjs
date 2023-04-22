@@ -1,16 +1,16 @@
-import rehypePrism from "@mapbox/rehype-prism";
-import mdx from "@next/mdx";
+// import rehypePrism from "@mapbox/rehype-prism";
+// import mdx from "@next/mdx";
 
-import mdxLineNumbers from "./scripts/mdxLineNumbers.mjs";
+// import mdxLineNumbers from "./scripts/mdxLineNumbers.mjs";
 
-const withMDX = mdx({
-  extension: /\.mdx?/,
-  options: {
-    remarkPlugins: [],
-    rehypePlugins: [mdxLineNumbers, rehypePrism],
-    providerImportSource: "@mdx-js/react",
-  },
-});
+// const withMDX = mdx({
+//   extension: /\.mdx?/,
+//   options: {
+//     remarkPlugins: [],
+//     rehypePlugins: [mdxLineNumbers, rehypePrism],
+//     providerImportSource: "@mdx-js/react",
+//   },
+// });
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -24,6 +24,9 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  // experimental: {
+  //   appDir: true,
+  // },
   webpack(config) {
     // config.module.rules.unshift({
     //   test: /\.md$/,
@@ -52,4 +55,5 @@ const nextConfig = {
   },
 };
 
-export default withMDX(nextConfig);
+export default nextConfig;
+// export default withMDX(nextConfig);

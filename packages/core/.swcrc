@@ -1,5 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/swcrc.json",
+  "exclude": ["__tests__"],
   "jsc": {
     "parser": {
       "syntax": "typescript",
@@ -9,9 +10,10 @@
       "react": {
         "runtime": "automatic"
       }
-    },
-    "baseUrl": "."
+    }
   },
-  "sourceMaps": true,
-  "env": {}
+  "env": {
+    "targets": ["defaults"]
+  }
 }
+

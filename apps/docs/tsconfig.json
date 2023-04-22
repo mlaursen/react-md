@@ -16,17 +16,20 @@
     "isolatedModules": true,
     "downlevelIteration": true,
     "jsx": "preserve",
-    "paths": {
-      "@react-md/core": ["packages/core/src/index.ts"],
-      "@react-md/material-icons/*": ["packages/material-icons/src/*"]
-    }
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "next.config.mjs", "src"],
-  "exclude": [
-    "node_modules",
-    "prev",
-    "scripts/**",
-    "packages/material-icons/**/*",
-    "packages/codemod/transforms/**/__testfixtures__"
-  ]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.jsx",
+    "next.config.mjs",
+    "jest.setup.ts",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": ["node_modules", "scripts/**"]
 }

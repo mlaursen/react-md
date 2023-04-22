@@ -3,13 +3,26 @@
   "version": "6.0.0-alpha.0",
   "description": "The core components and functionality for react-md.",
   "type": "module",
-  "sass": "./src/_core.scss",
-  "main": "./cjs/index.cjs",
-  "module": "./mjs/index.mjs",
+  "sass": "./dist/_core.scss",
+  "main": "./esm/index.js",
+  "module": "./esm/index.js",
   "types": "./types/index.d.ts",
   "sideEffects": [
     "dist/**/*"
   ],
+  "scripts": {
+    "dev": "npm-run-all build-esm-watch \"build-scss --watch\"",
+    "build": "npm-run-all build-esm build-scss",
+    "build-esm": "swc src -d ./esm",
+    "build-esm-watch": "pnpm run build-esm -- --watch",
+    "build-types": "tsc -P tsconfig.types.json",
+    "build-scss": "node scripts/copySassFiles.js",
+    "clean": "rm -rf .turbo esm dist node_modules",
+    "lint-scripts": "eslint \"src/**/*.{ts,tsx,js,jsx,cjs,mjs}\"",
+    "lint-styles": "stylelint \"src/**/*.{css,scss}\"",
+    "lint": "npm-run-all lint-scripts lint-styles",
+    "test": "jest"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mlaursen/react-md.git",
@@ -19,11 +32,51 @@
     "url": "https://github.com/mlaursen/react-md/issues"
   },
   "homepage": "https://react-md.dev",
-  "keywords": [],
+  "keywords": [
+    "react",
+    "material design",
+    "react-md",
+    "components",
+    "ui",
+    "library",
+    "react-md"
+  ],
   "license": "MIT",
   "dependencies": {
     "cnbuilder": "^3.1.0",
-    "nanoid": "^4.0.0"
+    "nanoid": "^4.0.2"
+  },
+  "devDependencies": {
+    "@jest/types": "^29.5.0",
+    "@swc/cli": "^0.1.62",
+    "@swc/core": "^1.3.53",
+    "@swc/jest": "^0.2.26",
+    "@testing-library/dom": "^9.2.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/jest": "^29.5.1",
+    "@types/lodash": "^4.14.194",
+    "@types/node": "^18.15.13",
+    "@types/react": "^18.0.38",
+    "@types/react-dom": "^18.0.11",
+    "@types/testing-library__jest-dom": "^5.14.5",
+    "chokidar": "^3.5.3",
+    "filesize": "^10.0.7",
+    "glob": "10.2.1",
+    "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0",
+    "jest-watch-typeahead": "^2.2.2",
+    "lodash": "^4.17.21",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.23",
+    "postcss-scss": "^4.0.6",
+    "stylelint": "^15.5.0",
+    "stylelint-config-prettier-scss": "^0.0.1",
+    "stylelint-config-recommended-scss": "^10.0.0",
+    "stylelint-order": "^6.0.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
   },
   "peerDependencies": {
     "react": ">= 18",
@@ -39,8 +92,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "devDependencies": {
-    "filesize": "^10.0.6"
   }
 }

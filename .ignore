@@ -1,1 +1,6 @@
 # prev/
+/packages/*/esm
+/packages/*/dist
+/packages/*/types
+/packages/material-icons/*.d.ts
+/packages/material-icons/*.js

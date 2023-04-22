@@ -1,6 +1,6 @@
 import "./app.scss";
 
-import { MDXProvider } from "@mdx-js/react";
+// import { MDXProvider } from "@mdx-js/react";
 import type { ConfiguredIcons } from "@react-md/core";
 import {
   CoreProviders,
@@ -30,7 +30,7 @@ import Head from "next/head";
 import type { ReactElement } from "react";
 import { CodeConfigProvider } from "src/components/Code";
 import Layout from "src/components/Layout/Layout";
-import { MDX_COMPONENTS } from "src/components/MDXComponents";
+// import { MDX_COMPONENTS } from "src/components/MDXComponents";
 import { LoadThemeStyles } from "src/components/Theme/LoadThemeStyles";
 import {
   defaultColorSchemeMode,
@@ -145,12 +145,12 @@ export default function App(props: AppProps): ReactElement {
         </Head>
         <ThemeProvider>
           <CodeConfigProvider>
-            <MDXProvider components={MDX_COMPONENTS}>
-              <Layout title={title}>
-                <Component {...pageProps} />
-                <LoadThemeStyles />
-              </Layout>
-            </MDXProvider>
+            {/* <MDXProvider components={MDX_COMPONENTS}> */}
+            <Layout title={title}>
+              <Component {...pageProps} />
+              <LoadThemeStyles />
+            </Layout>
+            {/* </MDXProvider> */}
           </CodeConfigProvider>
         </ThemeProvider>
       </MenuConfigurationProvider>

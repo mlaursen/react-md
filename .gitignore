@@ -6,9 +6,10 @@ node_modules
 .sass-cache
 node_modules
 
+.turbo
+
 # testing
-/coverage
-/public/coverage
+coverage/
 
 # next.js
 /.next/
@@ -18,6 +19,14 @@ node_modules
 
 # production
 /build
+
+# generated files
+/packages/*/cjs
+/packages/*/esm
+/packages/*/dist
+/packages/*/types
+/packages/material-icons/*Icon.js
+/packages/material-icons/*Icon.d.ts
 
 # misc
 .DS_Store
@@ -45,11 +54,5 @@ yarn-error.log*
 /.vim
 
 # updating icons
-/material-design-icons
-
-/packages/material-icons/*.mjs
-/packages/material-icons/*.cjs
-/packages/material-icons/*.d.ts
-
 generating.json
 material-metadata.json

@@ -6,8 +6,8 @@ import { readFile, rm, writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import { optimize } from "svgo";
 
-import { GENERATED_FILE_BANNER, PACKAGES_ROOT } from "scripts/constants";
-import { format } from "scripts/utils/format";
+import { GENERATED_FILE_BANNER } from "src/constants/codegen";
+import { formatInNode } from "src/utils/nodeFormat";
 import { getMaterialIconComponentName } from "src/components/MaterialIconsAndSymbols/utils";
 import { BadRequestError, ForbiddenError } from "src/utils/errors";
 import { wait } from "src/utils/wait";
@@ -20,6 +20,7 @@ import type {
   MaterialFamilyParts,
   MaterialIconAndSymbolMetadata,
 } from "./types";
+import { execSync } from "node:child_process";
 
 export class MaterialIconController {
   private _fontMetadataPath: string;
@@ -33,9 +34,14 @@ export class MaterialIconController {
       throw new ForbiddenError();
     }
 
+    const projectRoot = execSync("git rev-parse --show-toplevel")
+      .toString()
+      .trim();
+    const packagesRoot = join(projectRoot, "packages");
+
     this._fontMetadataPath = resolve(process.cwd(), "material-metadata.json");
     this._materialTypesPath = resolve(
-      PACKAGES_ROOT,
+      packagesRoot,
       "core",
       "src",
       "icon",
@@ -49,7 +55,7 @@ export class MaterialIconController {
       "metadata.ts"
     );
     this._generatingStatsPath = resolve(process.cwd(), "generating.json");
-    this._materialIconsSrc = resolve(PACKAGES_ROOT, "material-icons", "src");
+    this._materialIconsSrc = resolve(packagesRoot, "material-icons", "src");
   }
 
   async updateEverything(): Promise<void> {
@@ -130,7 +136,7 @@ export class MaterialIconController {
     });
     const rawSvg = await response.text();
     const svgContents = await this._getSvgContents(rawSvg);
-    const contents = format(
+    const contents = formatInNode(
       `${GENERATED_FILE_BANNER}
 
 import { forwardRef } from "react";
@@ -202,7 +208,7 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
       iconNameFixes,
     } = options;
 
-    const generatedMetadata = format(`${GENERATED_FILE_BANNER}
+    const generatedMetadata = formatInNode(`${GENERATED_FILE_BANNER}
 
 import type { MaterialIconName, MaterialSymbolName } from "@react-md/core";
 
@@ -237,7 +243,7 @@ ${this._printTypeUnion("MaterialSymbolCategory", symbolCategories)}
     const { iconNames, iconFamilyTypes, symbolNames, symbolFamilyTypes } =
       options;
 
-    const generatedTypes = format(`${GENERATED_FILE_BANNER}
+    const generatedTypes = formatInNode(`${GENERATED_FILE_BANNER}
 
 /** @remarks \\@since 6.0.0 */
 ${this._printTypeUnion("MaterialIconFamily", iconFamilyTypes)}

@@ -1,6 +1,6 @@
 @use "colors";
 
-@forward "./packages/core/src/core" with (
+@forward "@react-md/core" with (
   $color-scheme: system,
   // $color-scheme: light,
   // $color-scheme: dark,
@@ -8,6 +8,7 @@
   // variables in one block
   $disable-default-root-theme: true,
   $disable-default-system-theme: true,
+  // $font-family: var(--roboto),
   $primary-color: colors.$teal-500,
   $secondary-color: colors.$pink-a-200,
   $icon-disable-font: true,

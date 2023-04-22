@@ -1,8 +1,13 @@
 {
   "name": "@react-md/material-icons",
   "version": "6.0.0-alpha.0",
-  "description": "Icon components and styles for react-md",
+  "description": "Material Design Icon components for react-md",
   "type": "module",
+  "sideEffects": false,
+  "scripts": {
+    "build": "node scripts/build.js",
+    "clean": "rm -rf .turbo node_modules *Icon.d.ts *Icon.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mlaursen/react-md.git",
@@ -16,12 +21,17 @@
     "icon",
     "react",
     "component",
+    "react-md",
     "material design"
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/core": "^6.0.0-alpha.0",
+    "@react-md/core": "workspace:*",
     "cnbuilder": "^3.1.0"
+  },
+  "devDependencies": {
+    "@swc/core": "^1.3.46",
+    "glob": "^9.3.4"
   },
   "peerDependencies": {
     "react": ">= 18",

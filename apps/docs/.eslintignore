@@ -1,0 +1,8 @@
+node_modules
+/coverage
+
+/.next/
+/out/
+.eslintrc.cjs
+
+/__mocks__
