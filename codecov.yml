@@ -16,8 +16,6 @@ flags:
   core:
     paths:
       - packages/core/
-    carryforward: false
   docs:
     paths:
       - apps/docs/
-    carryforward: true
