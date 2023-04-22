@@ -27,12 +27,12 @@ jobs:
           node-version: 18
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm build
+      - run: pnpm build --filter="./packages/*"
       - run: pnpm lint
       - run: pnpm test -- -- --coverage
-      - run: npx codecov -t ${{ secrets.CODECOV_TOKEN }} -F core
+      - run: npx codecov -t ${{ secrets.CODECOV_TOKEN }} -c -F core
         working-directory: ./packages/core
-      - run: npx codecov -t ${{ secrets.CODECOV_TOKEN }} -F docs
+      - run: npx codecov -t ${{ secrets.CODECOV_TOKEN }} -c -F docs
         working-directory: ./apps/docs
 
   # validate_matrix:
