@@ -1,3 +1,20 @@
+Title: react-md 5.1.5
+
+Date: 05/09/2023
+
+Summary:
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/autocomplete:** Prevent event default when pressing enter with
+  open `AutoComplete` #1439 (c505642)
+
+##### Documentation<!-- no-margin -->
+
+- fix material-icons after SSR (8417216), closes #1423
+
+---
+
 Title: react-md 5.1.4
 
 Date: 06/15/2022
