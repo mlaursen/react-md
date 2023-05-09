@@ -395,6 +395,7 @@ export function useAutoComplete({
           break;
         case "Enter":
           if (visible && focusedIndex >= 0) {
+            event.preventDefault();
             event.stopPropagation();
             handleAutoComplete(focusedIndex);
             hide();
