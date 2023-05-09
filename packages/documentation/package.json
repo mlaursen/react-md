@@ -1,6 +1,6 @@
 {
   "name": "documentation",
-  "version": "2.9.1",
+  "version": "2.9.2",
   "description": "The documentation site for react-md",
   "private": true,
   "scripts": {
@@ -22,7 +22,7 @@
   "dependencies": {
     "@react-md/alert": "^2.9.1",
     "@react-md/app-bar": "^2.9.1",
-    "@react-md/autocomplete": "^2.9.1",
+    "@react-md/autocomplete": "^2.9.2",
     "@react-md/avatar": "^2.9.1",
     "@react-md/badge": "^2.9.1",
     "@react-md/button": "^2.9.1",

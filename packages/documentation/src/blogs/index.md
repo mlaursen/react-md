@@ -1,3 +1,16 @@
+Title: react-md 2.9.2
+
+Date: 05/09/2023
+
+Summary:
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/autocomplete:** Prevent event default when pressing enter with
+  open `AutoComplete` #1439 (f03548a)
+
+---
+
 Title: react-md 2.9.1
 
 Date: 07/26/2021

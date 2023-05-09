@@ -1,6 +1,6 @@
 {
   "name": "@react-md/autocomplete",
-  "version": "2.9.1",
+  "version": "2.9.2",
   "description": "",
   "main": "./lib/index.js",
   "module": "./es/index.js",
