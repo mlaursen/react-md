@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.4](https://github.com/mlaursen/react-md/compare/v4.0.3...v4.0.4) (2023-05-09)
+
+
+### Bug Fixes
+
+* **@react-md/autocomplete:** Prevent event default when pressing enter with open `AutoComplete` ([#1439](https://github.com/mlaursen/react-md/issues/1439)) ([50c3472](https://github.com/mlaursen/react-md/commit/50c34726d37c1bb4314d373ad598461b5545f7dc))
+
+
+
+
+
+
 ## [4.0.3](https://github.com/mlaursen/react-md/compare/v4.0.2...v4.0.3) (2021-12-31)
 
 

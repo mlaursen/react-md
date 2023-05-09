@@ -1,3 +1,20 @@
+Title: react-md 4.0.4
+
+Date: 05/09/2023
+
+Summary:
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/autocomplete:** Prevent event default when pressing enter with
+  open `AutoComplete` #1439 (50c3472)
+
+##### Other Internal Changes<!-- no-margin -->
+
+- fix invalid blog (8cf801b)
+
+---
+
 Title: react-md 4.0.3
 
 Date: 12/31/2021

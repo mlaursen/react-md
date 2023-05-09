@@ -1,6 +1,6 @@
 {
   "name": "react-md",
-  "version": "4.0.3",
+  "version": "4.0.4",
   "description": "This is the full react-md library bundled together for convenience.",
   "main": "./lib/index.js",
   "module": "./es/index.js",
@@ -31,7 +31,7 @@
   "dependencies": {
     "@react-md/alert": "^4.0.3",
     "@react-md/app-bar": "^4.0.3",
-    "@react-md/autocomplete": "^4.0.3",
+    "@react-md/autocomplete": "^4.0.4",
     "@react-md/avatar": "^4.0.3",
     "@react-md/badge": "^4.0.3",
     "@react-md/button": "^4.0.3",
