@@ -13,6 +13,14 @@ Summary:
 
 - fix material-icons after SSR (8417216), closes #1423
 
+##### Additional Releases<!-- no-margin -->
+
+This commit was also included in previous versions:
+
+- [2.9.2](https://github.com/mlaursen/react-md/releases/tag/v2.9.2)
+- [3.1.2](https://github.com/mlaursen/react-md/releases/tag/v3.1.2)
+- [4.0.4](https://github.com/mlaursen/react-md/releases/tag/v4.0.4)
+
 ---
 
 Title: react-md 5.1.4
