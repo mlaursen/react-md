@@ -1,9 +1,10 @@
 node_modules
-/coverage
 .next
 public/docs
-public/coverage
 /prev
+
+# also ignore coverage in subdirectories
+coverage/
 
 pnpm*.yaml
 
@@ -14,5 +15,11 @@ CHANGELOG.md
 packages/material-icons/**/*.ts
 packages/material-icons/**/*.tsx
 packages/material-icons/**/*.mjs
+packages/material-icons/*.d.ts
+packages/material-icons/*.js
+packages/codemod/bin/
 
 packages/codemod/transforms/**/__testfixtures__
+
+generating.json
+material-metadata.json

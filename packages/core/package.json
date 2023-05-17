@@ -11,12 +11,14 @@
     "dist/**/*"
   ],
   "scripts": {
-    "dev": "npm-run-all build-esm-watch \"build-scss --watch\"",
+    "dev": "npm-run-all --parallel build-esm-watch build-scss-watch build-types-watch",
     "build": "npm-run-all build-esm build-scss",
     "build-esm": "swc src -d ./esm",
-    "build-esm-watch": "pnpm run build-esm -- --watch",
+    "build-esm-watch": "pnpm run build-esm --watch",
     "build-types": "tsc -P tsconfig.types.json",
+    "build-types-watch": "pnpm run build-types --watch",
     "build-scss": "node scripts/copySassFiles.js",
+    "build-scss-watch": "pnpm run build-scss --watch",
     "clean": "rm -rf .turbo esm dist node_modules",
     "typecheck": "tsc --noEmit",
     "lint-scripts": "eslint \"src/**/*.{ts,tsx,js,jsx,cjs,mjs}\"",
@@ -39,8 +41,7 @@
     "react-md",
     "components",
     "ui",
-    "library",
-    "react-md"
+    "library"
   ],
   "license": "MIT",
   "dependencies": {
