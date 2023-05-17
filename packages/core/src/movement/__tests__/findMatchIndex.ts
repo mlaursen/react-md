@@ -17,6 +17,15 @@ const lorem = [
 ];
 
 describe("findMatchInRange", () => {
+  it("should boop", () => {
+    findMatchInRange({
+      value: "",
+      values: [],
+      startIndex: 1,
+      endIndex: 0,
+    });
+  });
+
   it("should compare ignoring case", () => {
     expect(
       findMatchInRange({
@@ -229,5 +238,15 @@ describe("findMatchIndex", () => {
     expect(
       findMatchIndex({ value: "items", values: list, startIndex: 3 })
     ).toBe(8);
+  });
+
+  it("should not error if there are no values provided", () => {
+    expect(findMatchIndex({ value: "a", values: [], startIndex: 0 })).toBe(-1);
+    expect(findMatchIndex({ value: "app", values: [], startIndex: 0 })).toBe(
+      -1
+    );
+    expect(findMatchIndex({ value: "items", values: [], startIndex: 0 })).toBe(
+      -1
+    );
   });
 });

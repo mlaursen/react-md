@@ -36,6 +36,10 @@ export interface MatchInRangeOptions extends BaseOptions {
  */
 export function findMatchInRange(options: MatchInRangeOptions): number {
   const { values, startIndex, endIndex } = options;
+  if (!values.length) {
+    return -1;
+  }
+
   const value = options.value.toUpperCase();
 
   for (let i = startIndex; i < endIndex; i += 1) {
@@ -71,6 +75,11 @@ export interface MatchIndexOptions extends BaseOptions {
  */
 export function findMatchIndex(options: MatchIndexOptions): number {
   const { value, values, startIndex, isSelfMatchable = true } = options;
+  // this was added to support comboboxes when there are no options available
+  if (!values.length) {
+    return -1;
+  }
+
   let index = findMatchInRange({
     value,
     values,
