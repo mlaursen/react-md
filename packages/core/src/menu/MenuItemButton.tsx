@@ -1,4 +1,5 @@
 import { forwardRef, useEffect } from "react";
+import { useAppSize } from "../AppSizeProvider";
 import { useHoverMode } from "../hoverMode";
 import { IconRotator, useIcon } from "../icon";
 import { useUserInteractionMode } from "../interaction";
@@ -14,10 +15,21 @@ const noop = (): void => {
   // do nothing
 };
 
+/**
+ * @internal
+ * @remarks \@since 5.0.0
+ */
 export interface MenuItemButtonProps
   extends BaseMenuButtonProps,
     MenuItemProps {}
 
+/**
+ * This is just an internal component that handles rendering a submenu as a
+ * menuitem for a `DropdownMenu` with a conditional dropdown icon.
+ *
+ * @internal
+ * @remarks \@since 5.0.0
+ */
 export const MenuItemButton = forwardRef<HTMLLIElement, MenuItemButtonProps>(
   function MenuItemButton(props, ref) {
     const {
@@ -36,6 +48,10 @@ export const MenuItemButton = forwardRef<HTMLLIElement, MenuItemButtonProps>(
 
     const id = useEnsuredId(propId, "menuitem");
     const mode = useUserInteractionMode();
+    const { renderAsSheet } = useMenuConfiguration();
+    const { isPhone } = useAppSize();
+    const isSheet =
+      renderAsSheet === true || (renderAsSheet === "phone" && isPhone);
     const {
       root,
       menubar,
@@ -90,7 +106,7 @@ export const MenuItemButton = forwardRef<HTMLLIElement, MenuItemButtonProps>(
     return (
       <MenuItem
         {...remaining}
-        aria-haspopup="menu"
+        aria-haspopup={isSheet ? "dialog" : "menu"}
         aria-expanded={visible || undefined}
         id={id}
         ref={ref}

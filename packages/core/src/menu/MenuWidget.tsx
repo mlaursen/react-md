@@ -118,11 +118,6 @@ export const MenuWidget = forwardRef<HTMLDivElement, MenuWidgetProps>(
       programmatic: true,
       includeDisabled: true,
       getDefaultFocusedIndex,
-      onFocusChange(event) {
-        if (menuBarContext.activeId) {
-          menuBarContext.enableHoverMode(event.element.id);
-        }
-      },
     });
 
     return (

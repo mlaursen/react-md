@@ -365,7 +365,6 @@ export function useElementInteraction<E extends HTMLElement>(
 
           if (
             event.isPropagationStopped() ||
-            isInteractionDisabled ||
             userMode !== "keyboard" ||
             disabled ||
             (key !== " " && key !== "Enter") ||
@@ -391,7 +390,7 @@ export function useElementInteraction<E extends HTMLElement>(
             event.currentTarget.click();
           }
 
-          if (holding.current) {
+          if (holding.current || isInteractionDisabled) {
             return;
           }
 

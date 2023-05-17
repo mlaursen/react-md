@@ -8,6 +8,7 @@ import { Menu } from "./Menu";
 import type { MenuButtonProps } from "./MenuButton";
 import { MenuButton } from "./MenuButton";
 import type { MenuConfiguration } from "./MenuConfigurationProvider";
+import { MenuConfigurationProvider } from "./MenuConfigurationProvider";
 import type { MenuItemButtonProps } from "./MenuItemButton";
 import { MenuItemButton } from "./MenuItemButton";
 import type { MenuSheetConvenienceProps } from "./MenuSheet";
@@ -167,6 +168,7 @@ export function DropdownMenu(props: DropdownMenuProps): ReactElement {
     toggle = (
       <MenuItemButton
         {...(remaining as DropdownMenuItemButtonProps)}
+        id={id}
         ref={fixedTo as RefObject<HTMLLIElement>}
         iconRotatorProps={iconRotatorProps}
       >
@@ -177,6 +179,7 @@ export function DropdownMenu(props: DropdownMenuProps): ReactElement {
     toggle = (
       <MenuButton
         {...(remaining as DropdownMenuButtonProps)}
+        id={id}
         ref={fixedTo as RefObject<HTMLButtonElement>}
         iconRotatorProps={iconRotatorProps}
       >
@@ -191,9 +194,18 @@ export function DropdownMenu(props: DropdownMenuProps): ReactElement {
       setVisible={setVisible}
       defaultFocusIndex={defaultFocusIndex}
     >
-      {toggle}
+      <MenuConfigurationProvider
+        horizontal={horizontal}
+        renderAsSheet={renderAsSheet}
+        sheetFooter={sheetFooter}
+        sheetHeader={sheetHeader}
+        sheetPosition={sheetPosition}
+        sheetVerticalSize={sheetVerticalSize}
+      >
+        {toggle}
+      </MenuConfigurationProvider>
       <Menu
-        aria-labelledby={id}
+        aria-labelledby={(menuProps?.["aria-label"] ? undefined : id) as string}
         style={menuStyle}
         className={menuClassName}
         sheetProps={sheetProps}
@@ -239,6 +251,10 @@ export function DropdownMenu(props: DropdownMenuProps): ReactElement {
         onRequestClose={onRequestClose}
         onEntered={(appearing) => {
           menuProps?.onEntered?.(appearing);
+          // this will be called before `getDefaultFocusedIndex`
+          if (disableTransition) {
+            return;
+          }
 
           defaultFocusIndex.current = 0;
         }}

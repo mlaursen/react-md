@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MenuBar should support a click-first hover mode behavior by default 1`] = `
+<ul
+  aria-label="Example"
+  class="rmd-list rmd-list--horizontal"
+  role="menubar"
+  tabindex="0"
+>
+  <li
+    aria-haspopup="menu"
+    class="rmd-list-item rmd-list-item--clickable rmd-list-item--medium rmd-menu-item"
+    id="menuitem-:r0:"
+    role="menuitem"
+    tabindex="-1"
+  >
+    <span
+      class="rmd-list-item__text"
+    >
+      Font
+    </span>
+    <i
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+    >
+      arrow_drop_down
+    </i>
+  </li>
+  <li
+    aria-haspopup="menu"
+    class="rmd-list-item rmd-list-item--clickable rmd-list-item--medium rmd-menu-item"
+    id="menuitem-:r4:"
+    role="menuitem"
+    tabindex="-1"
+  >
+    <span
+      class="rmd-list-item__text"
+    >
+      Style
+    </span>
+    <i
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+    >
+      arrow_drop_down
+    </i>
+  </li>
+  <li
+    aria-haspopup="menu"
+    class="rmd-list-item rmd-list-item--clickable rmd-list-item--medium rmd-menu-item"
+    id="menuitem-:r8:"
+    role="menuitem"
+    tabindex="-1"
+  >
+    <span
+      class="rmd-list-item__text"
+    >
+      Text Align
+    </span>
+    <i
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+    >
+      arrow_drop_down
+    </i>
+  </li>
+  <li
+    aria-haspopup="menu"
+    class="rmd-list-item rmd-list-item--clickable rmd-list-item--medium rmd-menu-item"
+    id="menuitem-:rc:"
+    role="menuitem"
+    tabindex="-1"
+  >
+    <span
+      class="rmd-list-item__text"
+    >
+      Size
+    </span>
+    <i
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+    >
+      arrow_drop_down
+    </i>
+  </li>
+</ul>
+`;

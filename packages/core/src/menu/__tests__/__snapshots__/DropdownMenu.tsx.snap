@@ -1,0 +1,292 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DropdownMenu should allow for a custom dropdown icon before or after the children 1`] = `
+<button
+  aria-haspopup="menu"
+  class="rmd-button rmd-button--text"
+  id="menubutton-:r1s:"
+  type="button"
+>
+  <span>
+    Dropdown
+  </span>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate"
+  >
+    favorite
+  </span>
+</button>
+`;
+
+exports[`DropdownMenu should allow for a custom dropdown icon before or after the children 2`] = `
+<button
+  aria-haspopup="menu"
+  class="rmd-button rmd-button--text"
+  id="menubutton-:r1s:"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate"
+  >
+    favorite
+  </span>
+  <span>
+    Dropdown
+  </span>
+</button>
+`;
+
+exports[`DropdownMenu should allow for a custom dropdown icon before or after the children 3`] = `
+<button
+  aria-haspopup="menu"
+  class="rmd-button rmd-button--text"
+  id="menubutton-:r1s:"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    favorite
+  </span>
+  <span>
+    Dropdown
+  </span>
+</button>
+`;
+
+exports[`DropdownMenu should be able to render as a sheet 1`] = `
+<div
+  aria-labelledby="menubutton-:r1f:"
+  class="rmd-dialog rmd-dialog--outline rmd-sheet rmd-sheet--vertical rmd-sheet--raised rmd-sheet--bottom rmd-sheet--touchable-height"
+  id="dialog-:r1l:"
+  role="dialog"
+  tabindex="-1"
+>
+  <div
+    class="rmd-dialog__header"
+  >
+    <button
+      class="rmd-button rmd-button--text"
+      type="button"
+    >
+      <span>
+        Header Close
+      </span>
+    </button>
+  </div>
+  <div
+    aria-labelledby="menubutton-:r1f:"
+    class="rmd-menu"
+    id="menu-:r1h:"
+    role="menu"
+    tabindex="0"
+  >
+    <ul
+      class="rmd-list"
+      role="none"
+    >
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-list-item--normal rmd-menu-item"
+        id="menuitem-:r1m:"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Item 1
+        </span>
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-list-item--normal rmd-menu-item"
+        id="menuitem-:r1n:"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Item 2
+        </span>
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-list-item--normal rmd-menu-item"
+        id="menuitem-:r1o:"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Item 3
+        </span>
+      </li>
+    </ul>
+  </div>
+  <footer
+    class="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end"
+  >
+    <button
+      class="rmd-button rmd-button--text"
+      type="button"
+    >
+      <span>
+        Footer Close
+      </span>
+    </button>
+  </footer>
+</div>
+`;
+
+exports[`DropdownMenu should remove the dropdown icon when rendered as an icon button 1`] = `
+<button
+  aria-haspopup="menu"
+  aria-label="Options"
+  class="rmd-button rmd-button--icon"
+  id="menubutton-:r1p:"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    more_vert
+  </span>
+</button>
+`;
+
+exports[`DropdownMenu should remove the dropdown icon when rendered as an icon button 2`] = `
+<button
+  aria-haspopup="menu"
+  aria-label="Options"
+  class="rmd-button rmd-button--icon rmd-button--contained rmd-button--secondary"
+  id="menubutton-:r1p:"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    more_vert
+  </span>
+</button>
+`;
+
+exports[`DropdownMenu should render as a button and toggle the visibility when clicked 1`] = `
+<button
+  aria-haspopup="menu"
+  class="rmd-button rmd-button--text"
+  id="menubutton-:r0:"
+  type="button"
+>
+  <span>
+    Dropdown
+  </span>
+  <i
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate"
+  >
+    arrow_drop_down
+  </i>
+</button>
+`;
+
+exports[`DropdownMenu should render as a button and toggle the visibility when clicked 2`] = `
+<div
+  aria-labelledby="menubutton-:r0:"
+  class="rmd-menu rmd-menu--elevated"
+  id="menu-:r2:"
+  role="menu"
+  style="position: fixed; transform-origin: 0 0; left: 16px; top: 0px;"
+  tabindex="-1"
+>
+  <ul
+    class="rmd-list"
+    role="none"
+  >
+    <li
+      class="rmd-list-item rmd-list-item--clickable rmd-list-item--normal rmd-menu-item"
+      id="menuitem-:r3:"
+      role="menuitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        Item 1
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--clickable rmd-list-item--normal rmd-menu-item"
+      id="menuitem-:r4:"
+      role="menuitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        Item 2
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--clickable rmd-list-item--normal rmd-menu-item"
+      id="menuitem-:r5:"
+      role="menuitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        Item 3
+      </span>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`DropdownMenu should render as a menuitem when a DropdownMenu is a child of another DropdownMenu 1`] = `
+<li
+  aria-haspopup="menu"
+  class="rmd-list-item rmd-list-item--clickable rmd-list-item--medium rmd-menu-item"
+  id="menuitem-:r22:"
+  role="menuitem"
+  tabindex="-1"
+>
+  <span
+    class="rmd-list-item__text"
+  >
+    Nested Dropdown 1
+  </span>
+  <i
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+  >
+    keyboard_arrow_right
+  </i>
+</li>
+`;
+
+exports[`DropdownMenu should render as a menuitem when a DropdownMenu is a child of another DropdownMenu 2`] = `
+<li
+  aria-haspopup="dialog"
+  class="rmd-list-item rmd-list-item--clickable rmd-list-item--medium rmd-menu-item"
+  id="menuitem-:r26:"
+  role="menuitem"
+  tabindex="-1"
+>
+  <span
+    class="rmd-list-item__text"
+  >
+    Nested Dropdown 2
+  </span>
+  <i
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+  >
+    keyboard_arrow_right
+  </i>
+</li>
+`;

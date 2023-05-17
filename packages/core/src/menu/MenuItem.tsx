@@ -5,6 +5,9 @@ import { ListItem } from "../list";
 import { useKeyboardMovementContext } from "../movement";
 import { useEnsuredId } from "../useEnsuredId";
 
+/**
+ * @remarks \@since 5.0.0
+ */
 export interface MenuItemProps extends Omit<ListItemProps, "role"> {
   /**
    * @defaultValue `"menuitem"`

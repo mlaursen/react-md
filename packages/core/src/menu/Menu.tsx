@@ -281,11 +281,11 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
       enter,
       exit,
       onEnter,
-      onEntering,
+      onEntering = noop,
       onEntered = noop,
       onExit,
       onExiting,
-      onExited,
+      onExited = noop,
       onKeyDown = noop,
       listProps,
       listStyle,
@@ -337,6 +337,7 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
     const isSheet =
       renderAsSheet === true || (renderAsSheet === "phone" && isPhone);
 
+    const entered = useRef(false);
     const cancelUnmountFocus = useRef(false);
     const hideWithoutRefocus = (): void => {
       cancelUnmountFocus.current = true;
@@ -393,13 +394,20 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
             break;
         }
       },
-      onEntering,
+      onEntering(appearing) {
+        onEntering(appearing);
+        entered.current = true;
+      },
       onEntered(appearing) {
         onEntered(appearing);
+        entered.current = true;
         cancelUnmountFocus.current = false;
         animatedOnceRef.current = true;
       },
-      onExited,
+      onExited() {
+        onExited();
+        entered.current = false;
+      },
       onExiting,
       disableTransition,
       isFocusTypeDisabled(type) {
@@ -460,7 +468,7 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
       transitionIn: visible,
       vertical: !horizontal,
       temporary,
-      timeout: disableTransition ? 0 : timeout,
+      timeout: isSheet || disableTransition ? 0 : timeout,
       classNames,
       appear,
       enter,
@@ -485,6 +493,11 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
       }
 
       const callback = (event: globalThis.MouseEvent): void => {
+        // this is required for when the transition is disabled
+        if (!entered.current) {
+          return;
+        }
+
         // if the user clicks outside of the menu to close it, the toggle button
         // should not be focused. instead the nearest focusable element from the
         // click event should be focused when Tab or Shift + tab is pressed
@@ -532,6 +545,7 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
           className={sheetClassName}
           disablePortal={propDisablePortal}
           temporary={temporary}
+          disableTransition={disableTransition}
           {...sheetProps}
         >
           <Portal disabled={isSheet || (propDisablePortal ?? disablePortal)}>
