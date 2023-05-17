@@ -1,4 +1,4 @@
-import type { HTMLAttributes } from "react";
+import type { AriaAttributes, HTMLAttributes } from "react";
 import { forwardRef } from "react";
 import type { MaterialIconName } from "./material";
 import { useMaterialIconsFamily } from "./MaterialIconsProvider";
@@ -9,6 +9,8 @@ import { icon } from "./styles";
 export interface MaterialIconProps
   extends Omit<HTMLAttributes<HTMLSpanElement>, "color">,
     Partial<MaterialIconClassNameOptions> {
+  /** @defaultValue `true` */
+  "aria-hidden"?: AriaAttributes["aria-hidden"];
   name: MaterialIconName;
 }
 
@@ -18,6 +20,7 @@ export interface MaterialIconProps
 export const MaterialIcon = forwardRef<HTMLSpanElement, MaterialIconProps>(
   function MaterialIcon(props, ref) {
     const {
+      "aria-hidden": ariaHidden = true,
       name,
       family: propFamily,
       color,
@@ -30,6 +33,7 @@ export const MaterialIcon = forwardRef<HTMLSpanElement, MaterialIconProps>(
     return (
       <span
         ref={ref}
+        aria-hidden={ariaHidden}
         {...remaining}
         className={icon({
           type: "material",
