@@ -168,3 +168,9 @@ export type RenameKeysWithPrefix<T, Prefix extends string> = {
  * @remarks \@since 6.0.0
  */
 export type CssPosition = "fixed" | "sticky" | "static";
+
+/**
+ * @remarks \@since 6.0.0
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type AnyFunction = (...args: any[]) => any | void;

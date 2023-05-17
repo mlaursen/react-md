@@ -1,5 +1,6 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useState } from "react";
 import type { NonNullRef, UseStateSetter } from "./types";
+import { useUnmounted } from "./useUnmounted";
 
 /**
  * @remarks \@since 6.0.0
@@ -119,7 +120,7 @@ export interface AsyncActionImplementation {
  * }
  *
  * function Example({ hide, submit }: ExampleProps): ReactElement {
- *   const { handleAsync, pending } = useAsyncAction(submit);
+ *   const { handleAsync, pending } = useAsyncAction();
  *   const formId = useId();
  *
  *   return (
@@ -168,13 +169,7 @@ export function useAsyncAction(
   const { disabled } = options;
 
   const [pending, setPending] = useState(false);
-  const unmounted = useRef(false);
-  useEffect(() => {
-    unmounted.current = false;
-    return () => {
-      unmounted.current = true;
-    };
-  }, []);
+  const unmounted = useUnmounted();
 
   const handleAsync = useCallback<HandleAsyncAction>(
     (action) =>
@@ -192,7 +187,7 @@ export function useAsyncAction(
           }
         }
       },
-    [disabled, pending]
+    [disabled, pending, unmounted]
   );
 
   return {
