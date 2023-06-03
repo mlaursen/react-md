@@ -17,15 +17,6 @@ const lorem = [
 ];
 
 describe("findMatchInRange", () => {
-  it("should boop", () => {
-    findMatchInRange({
-      value: "",
-      values: [],
-      startIndex: 1,
-      endIndex: 0,
-    });
-  });
-
   it("should compare ignoring case", () => {
     expect(
       findMatchInRange({
