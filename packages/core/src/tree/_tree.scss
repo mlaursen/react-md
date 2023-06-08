@@ -68,6 +68,7 @@ $var-lookup: (
     display: block;
     height: 100%;
     outline-style: none;
+    overflow: auto;
     // this is mostly for firefox. moving the mouse even 1px while clicking will
     // select the current item and all items to the tree root
     user-select: none;

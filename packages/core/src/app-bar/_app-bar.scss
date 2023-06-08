@@ -159,6 +159,10 @@ $var-lookup: (
         &--fixed {
           left: 0;
           position: fixed;
+          // Note: right and width were added to support the main navigation
+          // behavior with toggleable full-height navigation
+          right: 0;
+          width: auto;
           z-index: $fixed-z-index;
         }
 
