@@ -1,6 +1,7 @@
 import type { ReactElement, ReactNode } from "react";
 import { createContext, useContext, useMemo } from "react";
 
+import { useSsr } from "./SsrProvider";
 import { useMediaQuery } from "./useMediaQuery";
 import { useOrientation } from "./useOrientation";
 
@@ -187,6 +188,7 @@ export function AppSizeProvider(props: AppSizeProviderProps): ReactElement {
     throw new Error("The `AppSizeProvider` cannot be mounted multiple times.");
   }
 
+  const ssr = useSsr();
   const matchesDesktop = useMediaQuery(
     `screen and (min-width: ${desktopMinWidth})`
   );
@@ -217,9 +219,13 @@ export function AppSizeProvider(props: AppSizeProviderProps): ReactElement {
     [isDesktop, isLandscape, isLargeDesktop, isPhone, isTablet]
   );
 
-  if (typeof window === "undefined") {
-    return <Provider value={{ __root: true, ...ssrSize }}>{children}</Provider>;
+  let value = appSize;
+  if (ssr || typeof window === "undefined") {
+    value = {
+      __root: true,
+      ...ssrSize,
+    };
   }
 
-  return <Provider value={appSize}>{children}</Provider>;
+  return <Provider value={value}>{children}</Provider>;
 }
