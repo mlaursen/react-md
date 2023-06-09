@@ -90,7 +90,14 @@ function subscribe(options: SubscribeOptions): Unsubscribe {
   const { element, onUpdate, disableHeight, disableWidth } = options;
 
   // lazy initialize the observer
-  const observer = sharedObserver || new ResizeObserver(handleResizeEntries);
+  const observer =
+    sharedObserver ||
+    new ResizeObserver((entries, observer) => {
+      // this prevents the `ResizeObserver loop limit exceeded`
+      window.requestAnimationFrame(() => {
+        handleResizeEntries(entries, observer);
+      });
+    });
   sharedObserver = observer;
 
   const updates = subscriptions.get(element) || new Set();
