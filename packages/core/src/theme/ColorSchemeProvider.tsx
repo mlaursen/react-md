@@ -182,7 +182,6 @@ export function ColorSchemeProvider(
   } = props;
   const { value: colorSchemeMode, setValue: setColorSchemeMode } =
     useLocalStorage({
-      raw: true,
       key: localStorageKey,
       defaultValue: mode,
       deserializer: (item) =>
