@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tab should support rendering an icon in different positions around the children 1`] = `
+<button
+  aria-selected="false"
+  class="rmd-tab"
+  id="tab-:r0:"
+  role="tab"
+  tabindex="-1"
+  type="button"
+>
+  <i
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    favorite
+  </i>
+  <span>
+    Tab
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Tab should support rendering an icon in different positions around the children 2`] = `
+<button
+  aria-selected="false"
+  class="rmd-tab rmd-tab--stacked"
+  id="tab-:r0:"
+  role="tab"
+  tabindex="-1"
+  type="button"
+>
+  <i
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    favorite
+  </i>
+  <span>
+    Tab
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Tab should support rendering an icon in different positions around the children 3`] = `
+<button
+  aria-selected="false"
+  class="rmd-tab rmd-tab--reversed"
+  id="tab-:r0:"
+  role="tab"
+  tabindex="-1"
+  type="button"
+>
+  <i
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    favorite
+  </i>
+  <span>
+    Tab
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Tab should support rendering an icon in different positions around the children 4`] = `
+<button
+  aria-selected="false"
+  class="rmd-tab rmd-tab--stacked rmd-tab--stacked-reversed"
+  id="tab-:r0:"
+  role="tab"
+  tabindex="-1"
+  type="button"
+>
+  <i
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    favorite
+  </i>
+  <span>
+    Tab
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;

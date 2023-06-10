@@ -21,7 +21,11 @@ export interface BaseTabListScrollButtonProps
   extends HTMLAttributes<HTMLDivElement>,
     ButtonClassNameThemeOptions {
   buttonProps?: PropsWithRef<ButtonProps, HTMLButtonElement>;
+
+  /** @defaultValue `false` */
   disableTransition?: boolean;
+
+  /** @defaultValue {@link getTabListScrollToOptions} */
   getScrollToOptions?: GetTabListScrollToOptions;
 }
 
@@ -31,6 +35,7 @@ export interface BaseTabListScrollButtonProps
  */
 export interface TabListScrollButtonProps extends BaseTabListScrollButtonProps {
   type: "back" | "forward";
+  /** @defaultValue `false` */
   vertical?: boolean;
 }
 
@@ -91,7 +96,7 @@ export const TabListScrollButton = forwardRef<
         )}
       >
         <Button
-          aria-label={ariaLabel || iconButton ? type : undefined}
+          aria-label={ariaLabel || (iconButton ? type : undefined)}
           theme={theme}
           themeType={themeType}
           buttonType={buttonType}
@@ -101,7 +106,7 @@ export const TabListScrollButton = forwardRef<
           onClick={(event) => {
             buttonProps?.onClick?.(event);
             const container = root.current;
-            if (!container || event.isPropagationStopped()) {
+            if (!container) {
               return;
             }
 

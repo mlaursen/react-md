@@ -98,7 +98,7 @@ export function useTabList(
       const tabWidth = `${100 / 3}%`;
       return {
         [TAB_WIDTH_VAR]: tabWidth,
-        [TAB_OFFSET_VAR]: "0",
+        [TAB_OFFSET_VAR]: "0px",
       };
     });
 
@@ -112,16 +112,14 @@ export function useTabList(
         // so that the hooks eslint rule doesn't show a warning...
         isRTL;
 
-        const tabs =
-          entry.target.querySelectorAll<HTMLButtonElement>("[role='tab']");
-        const current = tabs[activeIndex];
-        if (!current) {
+        const activeTab = getTabRoleOnly(entry.target)[activeIndex];
+        if (!activeTab) {
           return;
         }
 
         const cssVars: IndicatorCSSProperties = {
-          [TAB_WIDTH_VAR]: `${current.offsetWidth}px`,
-          [TAB_OFFSET_VAR]: `${current.offsetLeft}px`,
+          [TAB_WIDTH_VAR]: `${activeTab.offsetWidth}px`,
+          [TAB_OFFSET_VAR]: `${activeTab.offsetLeft}px`,
         };
 
         setIndicatorStyles((prevStyles) => {

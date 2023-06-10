@@ -131,8 +131,9 @@ The main reason is that I don't think a user would actually install only one of 
 
 ## TODO
 
-- see if I can update the Tree to use the KeyboardMovementProvider implementation. Current rendering seems slow.
-- See if I can remove the `process.env.NODE_ENV === "test"` part in `useEnsuredId`
+- might need to create a `@react-md/test-utils` package to help with testing
+  around `ResizeObserver` and `IntersectionObserver`. Otherwise just create
+  documentation around how to polyfill them since I'm no longer using `@juggle/resize-observer`
 - why did I add a key to the `LayoutNavigation`'s sheet component based on the `layout`
 - Implement a "responsive-icon-button" implementation for the button component
   - it should render as an icon button on phone only and an icon + text on other media types

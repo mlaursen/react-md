@@ -8,6 +8,7 @@ import { bem } from "../utils";
 import type { BaseTabListScrollButtonProps } from "./TabListScrollButton";
 import { TabListScrollButton } from "./TabListScrollButton";
 import { useTabList } from "./useTabList";
+import type { GetTabListScrollToOptions } from "./utils";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { useTabs } from "./useTabs";
@@ -96,6 +97,13 @@ export interface TabListProps extends HTMLAttributes<HTMLDivElement> {
   disableTransition?: boolean;
 
   /**
+   * This should be equal to the `$tabs-transition-duration` variable.
+   *
+   * @defaultValue `150`
+   */
+  transitionDuration?: number;
+
+  /**
    * @defaultValue `"manual"`
    */
   activationMode?: "manual" | "automatic";
@@ -109,7 +117,46 @@ export interface TabListProps extends HTMLAttributes<HTMLDivElement> {
    */
   scrollButtons?: boolean | "allow-phone";
 
+  /**
+   * A convenience prop for the {@link BaseTabListScrollButtonProps.getScrollToOptions}
+   * on {@link forwardScrollButtonProps} and {@link backwardScrollButtonProps}.
+   */
+  getScrollToOptions?: GetTabListScrollToOptions;
+
+  /**
+   * Any additional props that should be passed to the scroll forward button.
+   *
+   * @example
+   * ```tsx
+   * forwardScrollButtonProps={{
+   *   "aria-label": "Scroll right",
+   *   theme: "primary",
+   *   themeType: "contained",
+   *   className: styles.buttonContainer,
+   *   buttonProps: {
+   *     className: styles.button,
+   *   }
+   * }}
+   * ```
+   */
   forwardScrollButtonProps?: BaseTabListScrollButtonProps;
+
+  /**
+   * Any additional props that should be passed to the scroll backward button.
+   *
+   * @example
+   * ```tsx
+   * forwardScrollButtonProps={{
+   *   "aria-label": "Scroll left",
+   *   theme: "primary",
+   *   themeType: "contained",
+   *   className: styles.buttonContainer,
+   *   buttonProps: {
+   *     className: styles.button,
+   *   }
+   * }}
+   * ```
+   */
   backwardScrollButtonProps?: BaseTabListScrollButtonProps;
 }
 
@@ -136,6 +183,8 @@ export const TabList = forwardRef<HTMLDivElement, TabListProps>(
       scrollbar = false,
       scrollButtons = false,
       disableTransition = false,
+      transitionDuration = 150,
+      getScrollToOptions,
       forwardScrollButtonProps,
       backwardScrollButtonProps,
       ...remaining
@@ -171,12 +220,12 @@ export const TabList = forwardRef<HTMLDivElement, TabListProps>(
       setAnimate(true);
       const timeout = window.setTimeout(() => {
         setAnimate(false);
-      }, 150);
+      }, transitionDuration);
 
       return () => {
         window.clearTimeout(timeout);
       };
-    }, [activeIndex, disableTransition]);
+    }, [activeIndex, disableTransition, transitionDuration]);
 
     return (
       <KeyboardMovementProvider value={movementContext}>
@@ -195,6 +244,7 @@ export const TabList = forwardRef<HTMLDivElement, TabListProps>(
         >
           {showScrollButtons && (
             <TabListScrollButton
+              getScrollToOptions={getScrollToOptions}
               {...backwardScrollButtonProps}
               {...backwardProps}
             />
@@ -202,6 +252,7 @@ export const TabList = forwardRef<HTMLDivElement, TabListProps>(
           {children}
           {showScrollButtons && (
             <TabListScrollButton
+              getScrollToOptions={getScrollToOptions}
               {...forwardScrollButtonProps}
               {...forwardProps}
             />

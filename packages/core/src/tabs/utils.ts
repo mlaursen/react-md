@@ -1,9 +1,7 @@
 /**
  * @internal
  */
-export const getTabRoleOnly = (
-  container: HTMLElement
-): readonly HTMLElement[] => [
+export const getTabRoleOnly = (container: Element): readonly HTMLElement[] => [
   ...container.querySelectorAll<HTMLElement>('[role="tab"]'),
 ];
 
@@ -25,8 +23,7 @@ export const scrollTabIntoView = (options: ScrollOptions): void => {
     return;
   }
 
-  const activeTab =
-    container.querySelectorAll<HTMLElement>("[role='tab']")[activeIndex];
+  const activeTab = getTabRoleOnly(container)[activeIndex];
   if (!activeTab) {
     return;
   }
