@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snackbar default toast manager should work without needing to setup a toast manager yourself 1`] = `
+<div
+  class="rmd-snackbar rmd-snackbar--bottom"
+  id="snackbar-:r0:"
+  role="status"
+>
+  <div
+    class="rmd-toast rmd-toast--surface rmd-scale-transition--enter rmd-scale-transition--enter-active"
+    id="toast-:r1:"
+  >
+    <div
+      class="rmd-toast-content"
+    >
+      Hello, world!
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Snackbar default toast manager should work without needing to setup a toast manager yourself 2`] = `
+<div
+  class="rmd-snackbar rmd-snackbar--bottom"
+  id="snackbar-:r0:"
+  role="status"
+>
+  <div
+    class="rmd-toast rmd-toast--surface rmd-scale-transition--enter rmd-scale-transition--enter-active"
+    id="toast-:r1:"
+  >
+    <div
+      class="rmd-toast-content"
+    >
+      Hello, world!
+    </div>
+  </div>
+</div>
+`;

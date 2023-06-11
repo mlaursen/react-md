@@ -22,7 +22,7 @@ const config: Config = {
       } satisfies SwcOptions,
     ],
   },
-  setupFilesAfterEnv: ["<rootDir>/testSetup/init.ts"],
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
   moduleNameMapper: {
     "\\.scss$": "identity-obj-proxy",
   },

@@ -1,7 +1,7 @@
 import {
   DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
   DEFAULT_DESKTOP_MIN_WIDTH,
-} from "../src/AppSizeProvider";
+} from "./src/AppSizeProvider";
 import "@testing-library/jest-dom/extend-expect";
 
 // window will be undefined for the one test I force to be run in node instead

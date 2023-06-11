@@ -84,31 +84,35 @@ export interface SnackbarProps extends HTMLAttributes<HTMLDivElement> {
    * @example
    * ```ts
    * import type { ToastRendererProps } from "@react-md/core";
-   * import { Snackbar, Toast, ToastContent } from "@react-md/core";
+   * import {
+   *   Snackbar,
+   *   Toast,
+   *   ToastContent,
+   *   useToastManager,
+   * } from "@react-md/core";
    * import type { ReactElement } from "react";
    *
    * function CustomToast(props: CustomToastRendererProps): ReactElement {
    *   // Pretend like we don't need anything else from the toast since the
    *   // custom behavior is related to the `toastId`
-   *   const { toastId, updated, duplicates, visibleTime } = props;
+   *   const { toastId, visible, duplicates, visibleTime } = props;
    *
-   *   const { visible, hideToast, removeToast, startExitTimeout } = useToast({
-   *     toastId,
-   *     updated,
-   *     duplicates,
-   *     visibleTime,
-   *   });
+   *   const toastManager = useToastManager();
    *
    *   // Note: If you want to rely on the `action` and `closeButton` behavior,
    *   // you must also wrap the `Toast` with:
-   *   // <HideToastProvider value={hideToast}>
+   *   // <RemoveToastProvider value={() => toastManager.removeToast(toastId, true)}>
    *
    *   return (
    *     <Toast
    *       theme={isError(toastId) ? "error" : "surface"}
    *       visible={visible}
-   *       onEntered={startExitTimeout}
-   *       onExited={removeToast}
+   *       onEntered={() => {
+   *         toastManager.startRemoveTimeout(toastId);
+   *       }}
+   *       onExited={() => {
+   *         toastManager.removeToast(toastId, false)
+   *       }}
    *       disableContentWrapper
    *     >
    *       <ToastContent>
@@ -118,7 +122,7 @@ export interface SnackbarProps extends HTMLAttributes<HTMLDivElement> {
    *         <Button
    *           onClick={async () => {
    *             await someApiCall();
-   *             hideToast();
+   *             toastManager.removeToast(toastId, true);
    *           }}
    *         >
    *           Dismiss

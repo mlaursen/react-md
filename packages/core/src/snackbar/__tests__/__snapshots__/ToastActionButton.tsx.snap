@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ToastActionButton should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<button
+  class="rmd-button rmd-button--text rmd-button--text-secondary rmd-toast-action"
+  type="button"
+>
+  <span>
+    Button
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`ToastActionButton should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<button
+  class="rmd-button rmd-button--text rmd-button--text-secondary rmd-toast-action custom-class-name"
+  style="color: white;"
+  type="button"
+>
+  <span>
+    Button
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`ToastActionButton should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+<button
+  class="rmd-button rmd-button--text rmd-button--text-secondary rmd-toast-action rmd-toast-action--reordered"
+  style=""
+  type="button"
+>
+  <span>
+    Button
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;

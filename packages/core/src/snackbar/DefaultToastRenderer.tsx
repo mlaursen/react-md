@@ -1,8 +1,13 @@
 import type { ReactElement } from "react";
+import { useCallback, useEffect } from "react";
+import { usePageInactive } from "../usePageInactive";
 import type { ConfigurableToastProps } from "./Toast";
 import { Toast } from "./Toast";
-import type { ToastMeta } from "./useToast";
-import { HideToastProvider, useToast } from "./useToast";
+import type { ToastMeta } from "./ToastManagerProvider";
+import { useToastManager } from "./ToastManagerProvider";
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { RemoveToastProvider } from "./useRemoveToast";
 
 const noop = (): void => {
   // do nothing
@@ -40,8 +45,9 @@ export interface ToastRendererProps extends ConfigurableToastProps, ToastMeta {
 export function DefaultToastRenderer(props: ToastRendererProps): ReactElement {
   const {
     toastId,
-    updated,
-    duplicates,
+    paused,
+    visible,
+    duplicates: _duplicates,
     visibleTime,
     onExited = noop,
     onEntered = noop,
@@ -60,23 +66,29 @@ export function DefaultToastRenderer(props: ToastRendererProps): ReactElement {
     ...defaults
   } = toastDefaults;
 
-  const {
-    paused,
-    visible,
-    hideToast,
-    removeToast,
-    startExitTimeout,
-    pauseExitTimeout,
-    resumeExitTimeout,
-  } = useToast({
-    toastId,
-    updated,
-    duplicates,
-    visibleTime,
+  const toastManager = useToastManager();
+  useEffect(() => {
+    return () => {
+      toastManager.clearTimer(toastId);
+    };
+  }, [toastManager, toastId]);
+  usePageInactive({
+    disabled: !visible,
+    onChange(active) {
+      if (active) {
+        toastManager.resumeRemoveTimeout(toastId);
+      } else {
+        toastManager.pauseRemoveTimeout(toastId);
+      }
+    },
   });
 
   return (
-    <HideToastProvider value={hideToast}>
+    <RemoveToastProvider
+      value={useCallback(() => {
+        toastManager.removeToast(toastId, true);
+      }, [toastManager, toastId])}
+    >
       <Toast
         closeButton={
           closeButton ||
@@ -90,27 +102,27 @@ export function DefaultToastRenderer(props: ToastRendererProps): ReactElement {
         onEntered={(appearing) => {
           defaultEntered(appearing);
           onEntered(appearing);
-          startExitTimeout();
+          toastManager.startRemoveTimeout(toastId);
         }}
         onExited={() => {
           defaultExited();
           onExited();
-          removeToast();
+          toastManager.removeToast(toastId, false);
         }}
         onMouseEnter={(event) => {
           defaultMouseEnter(event);
           onMouseEnter(event);
-          pauseExitTimeout();
+          toastManager.pauseRemoveTimeout(toastId);
         }}
         onMouseLeave={(event) => {
           defaultMouseLeave(event);
           onMouseLeave(event);
-          resumeExitTimeout();
+          toastManager.resumeRemoveTimeout(toastId);
         }}
       >
         {defaults.children}
         {remaining.children}
       </Toast>
-    </HideToastProvider>
+    </RemoveToastProvider>
   );
 }

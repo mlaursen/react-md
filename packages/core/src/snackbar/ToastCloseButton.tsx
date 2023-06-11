@@ -4,7 +4,7 @@ import type { ButtonProps, ButtonType } from "../button";
 import { Button } from "../button";
 import { useIcon } from "../icon";
 import { bem } from "../utils";
-import { useHideToast } from "./useToast";
+import { useRemoveToast } from "./useRemoveToast";
 
 const styles = bem("rmd-toast-x");
 const noop = (): void => {
@@ -26,12 +26,19 @@ export interface ToastCloseButtonProps extends ButtonProps {
   /** @defaultValue `"icon-square"` */
   buttonType?: ButtonType;
 
-  /** @defaultValue `false` */
+  /**
+   * Set this to `true` when there is a close button visible and the content is
+   * stacked. This will update the styles so the button renders next to the
+   * content and above the action button.
+   *
+   * @defaultValue `false`
+   */
   reordered?: boolean;
 }
 
 /**
- * This button will automatically close the toast when clicked.
+ * This button will automatically close the toast when clicked unless
+ * `event.stopPropagation()` is called from the `onClick` prop.
  *
  * @remarks \@since 6.0.0
  */
@@ -42,7 +49,7 @@ export const ToastCloseButton = forwardRef<
   const {
     buttonType = "icon-square",
     "aria-labelledby": ariaLabelledBy,
-    "aria-label": ariaLabel = buttonType === "text" && !ariaLabelledBy
+    "aria-label": ariaLabel = buttonType !== "text" && !ariaLabelledBy
       ? "Close"
       : undefined,
     children: propChildren,
@@ -53,7 +60,7 @@ export const ToastCloseButton = forwardRef<
   } = props;
 
   const children = useIcon("close", propChildren);
-  const hideToast = useHideToast();
+  const removeToast = useRemoveToast();
 
   return (
     <Button
@@ -63,7 +70,11 @@ export const ToastCloseButton = forwardRef<
       ref={ref}
       onClick={(event) => {
         onClick(event);
-        hideToast();
+        if (event.isPropagationStopped()) {
+          return;
+        }
+
+        removeToast();
       }}
       className={cnb(styles({ reordered }), className)}
       buttonType={buttonType}

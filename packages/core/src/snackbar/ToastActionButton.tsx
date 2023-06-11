@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 import type { ButtonProps, ButtonTheme } from "../button";
 import { Button } from "../button";
 import { bem } from "../utils";
-import { useHideToast } from "./useToast";
+import { useRemoveToast } from "./useRemoveToast";
 
 const styles = bem("rmd-toast-action");
 const noop = (): void => {
@@ -17,7 +17,13 @@ export interface ToastActionButtonProps extends ButtonProps {
   /** @defaultValue `"secondary"` */
   theme?: ButtonTheme;
 
-  /** @defaultValue `false` */
+  /**
+   * Set this to `true` when there is a close button visible and the content is
+   * stacked. This will update the styles so the button renders in the bottom
+   * right below the content and close button.
+   *
+   * @defaultValue `false`
+   */
   reordered?: boolean;
 }
 
@@ -39,7 +45,7 @@ export const ToastActionButton = forwardRef<
     reordered,
     ...remaining
   } = props;
-  const hideToast = useHideToast();
+  const removeToast = useRemoveToast();
 
   return (
     <Button
@@ -51,7 +57,7 @@ export const ToastActionButton = forwardRef<
           return;
         }
 
-        hideToast();
+        removeToast();
       }}
       theme={theme}
       className={cnb(styles({ reordered }), className)}

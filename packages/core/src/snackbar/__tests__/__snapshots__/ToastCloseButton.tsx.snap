@@ -1,0 +1,128 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ToastCloseButton should add an aria-label for text button types when an aria-labelledby has not been provided 1`] = `
+<button
+  aria-label="Close"
+  class="rmd-button rmd-button--icon rmd-button--icon-square rmd-toast-x"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    close
+  </span>
+</button>
+`;
+
+exports[`ToastCloseButton should add an aria-label for text button types when an aria-labelledby has not been provided 2`] = `
+<button
+  aria-label="Custom"
+  class="rmd-button rmd-button--icon rmd-button--icon-square rmd-toast-x"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    close
+  </span>
+</button>
+`;
+
+exports[`ToastCloseButton should add an aria-label for text button types when an aria-labelledby has not been provided 3`] = `
+<button
+  aria-labelledby="custom-id"
+  class="rmd-button rmd-button--icon rmd-button--icon-square rmd-toast-x"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    close
+  </span>
+</button>
+`;
+
+exports[`ToastCloseButton should add an aria-label for text button types when an aria-labelledby has not been provided 4`] = `
+<button
+  class="rmd-button rmd-button--text rmd-toast-x"
+  type="button"
+>
+  <span>
+    Close
+  </span>
+</button>
+`;
+
+exports[`ToastCloseButton should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<button
+  aria-label="Close"
+  class="rmd-button rmd-button--icon rmd-button--icon-square rmd-toast-x"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    close
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`ToastCloseButton should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<button
+  aria-label="Close"
+  class="rmd-button rmd-button--icon rmd-button--icon-square rmd-toast-x custom-class-name"
+  style="color: white;"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    close
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`ToastCloseButton should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+<button
+  aria-label="Close"
+  class="rmd-button rmd-button--icon rmd-button--icon-square rmd-toast-x rmd-toast-x--reordered"
+  style=""
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    close
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`ToastCloseButton should not crash if the button is clicked without a parent RemoveToastProvider 1`] = `
+<button
+  aria-label="Close"
+  class="rmd-button rmd-button--icon rmd-button--icon-square rmd-toast-x"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    close
+  </span>
+</button>
+`;
