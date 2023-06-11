@@ -8,7 +8,6 @@ import type {
 import { forwardRef } from "react";
 import { useIcon } from "../icon";
 import type { PropsWithRef } from "../types";
-import { bem } from "../utils";
 import type { SortOrder } from "./TableCellContent";
 import { TableCellContent } from "./TableCellContent";
 import type {
@@ -197,8 +196,6 @@ export interface TableCellProps extends TableCellAttributes, TableCellOptions {
   afterChildren?: ReactNode;
 }
 
-const styles = bem("rmd-table-cell");
-
 /** @remarks \@since 6.0.0 */
 export interface TableCellClassNameOptions {
   className?: string;
@@ -243,30 +240,31 @@ export function tableCell(options: TableCellClassNameOptions): string {
     sticky,
     header,
     checkbox,
-    hAlign = "",
-    vAlign = "",
+    hAlign,
+    vAlign,
     lineWrap = true,
     disablePadding,
     isInTableHeader,
     className,
   } = options;
 
+  // using `&&` instead of `bem` since the latest version of typescript does not
+  // support setting the same object key (empty string)
+  const p = "rmd-table-cell--";
   return cnb(
-    styles({
-      grow,
-      header,
-      sticky,
-      checkbox,
-      "sticky-cell": sticky && (!isInTableHeader || checkbox),
-      "sticky-header": sticky && isInTableHeader,
-      "sticky-header-cell": sticky && isInTableHeader && checkbox,
-      [hAlign]: hAlign !== "left",
-      [vAlign]: vAlign !== "middle",
-      vertical: vAlign !== "middle",
-      "no-wrap": !lineWrap,
-      padded: !disablePadding && lineWrap === "padded",
-      "no-padding": disablePadding,
-    }),
+    "rmd-table-cell",
+    grow && `${p}grow`,
+    header && `${p}header`,
+    sticky && `${p}sticky`,
+    checkbox && `${p}checkbox`,
+    sticky && (!isInTableHeader || checkbox) && `${p}sticky-cell`,
+    sticky && isInTableHeader && `${p}sticky-header`,
+    sticky && isInTableHeader && checkbox && `${p}header-cell`,
+    hAlign && hAlign !== "left" && `${p}${hAlign}`,
+    vAlign && vAlign !== "middle" && `${p}${vAlign}`,
+    !lineWrap && `${p}no-wrap`,
+    !disablePadding && lineWrap === "padded" && `${p}padded`,
+    disablePadding && `${p}no-padding`,
     className
   );
 }

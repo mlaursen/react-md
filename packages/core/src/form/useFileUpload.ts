@@ -229,7 +229,7 @@ export function useFileUpload<E extends HTMLElement, CustomError = never>({
     function reducer(
       state: FileUploadHookState<CustomError>,
       action: Action<CustomError>
-    ) {
+    ): FileUploadHookState<CustomError> {
       switch (action.type) {
         case "reset":
           // need to reuse constants so that calling reset doesn't cause an

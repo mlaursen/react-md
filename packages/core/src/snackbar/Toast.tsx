@@ -229,7 +229,9 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(function Toast(
   if (propAction) {
     let overrides: ButtonProps = {};
     let buttonChildren: ReactNode;
-    if (isValidElement(propAction) || typeof propAction !== "object") {
+    // have to use `any` to correctly filter out all react elements
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    if (isValidElement<any>(propAction) || typeof propAction !== "object") {
       buttonChildren = propAction;
     } else {
       ({ children: buttonChildren, ...overrides } = propAction);

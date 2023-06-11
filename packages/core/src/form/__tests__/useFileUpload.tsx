@@ -17,12 +17,19 @@ function createFile(name: string, bytes: number): File {
 }
 
 class MockFileReader implements FileReader {
+  readyState: 0 | 1 | 2;
+  EMPTY: 0;
+  LOADING: 1;
+  DONE: 2;
   error = null;
   result: string | ArrayBuffer | null = null;
-  EMPTY = 0;
-  LOADING = 1;
-  DONE = 2;
-  readyState = 0;
+
+  constructor() {
+    this.readyState = 0;
+    this.EMPTY = 0;
+    this.LOADING = 1;
+    this.DONE = 2;
+  }
 
   _progressEvents: ((event: Event) => void)[] = [];
   _loadEvents: ((event: Event) => void)[] = [];

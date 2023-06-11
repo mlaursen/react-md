@@ -2,9 +2,6 @@ import { cnb } from "cnbuilder";
 import type { ElementType, HTMLAttributes, ReactElement } from "react";
 import { forwardRef } from "react";
 import type { ThemeOrTextColor } from "../theme";
-import { bem } from "../utils";
-
-const styles = bem("rmd-typography");
 
 /**
  * A union of all the material design provided typography styles. When used with
@@ -218,34 +215,35 @@ export function typography(
 ): string {
   const {
     type = "body-1",
-    align = "",
-    textColor = "",
-    decoration = "",
-    transform = "",
-    weight = "",
-    fontStyle = "",
+    align,
+    textColor,
+    decoration,
+    transform,
+    weight,
+    fontStyle,
     margin = "initial",
     className,
     disableLineWrap,
   } = options;
 
+  // using `&&` instead of `bem` since the latest version of typescript does not
+  // support setting the same object key (empty string)
+  const p = "rmd-typography--";
   return cnb(
-    styles({
-      [type || ""]: !!type,
-      "no-margin": margin === "none",
-      "no-margin-top": margin === "bottom",
-      "no-margin-bottom": margin === "top",
-      [align]: align,
-      [decoration]: decoration && decoration !== "overline",
-      // TODO: Implement text colors
-      [textColor]: textColor,
-      // only because "overline" is technically one of the valid material design types :/
-      "overline-decoration": decoration === "overline",
-      [transform]: transform,
-      [weight]: weight,
-      [fontStyle]: fontStyle,
-      "no-wrap": disableLineWrap,
-    }),
+    "rmd-typography",
+    type && `${p}${type}`,
+    margin === "none" && `${p}no-margin`,
+    margin === "bottom" && `${p}no-margin-top`,
+    margin === "top" && `${p}no-margin-bottom`,
+    align && `${p}${align}`,
+    // TODO: Implement text colors
+    textColor && `${p}${textColor}`,
+    decoration === "overline" && `${p}overline-decoration`,
+    decoration && decoration !== "overline" && `${p}${decoration}`,
+    transform && `${p}${transform}`,
+    weight && `${p}${weight}`,
+    fontStyle && `${p}${fontStyle}`,
+    disableLineWrap && `${p}no-wrap`,
     className
   );
 }
