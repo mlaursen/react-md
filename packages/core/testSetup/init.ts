@@ -31,92 +31,98 @@ if (typeof window !== "undefined") {
       // do nothing
     };
   }
-}
+  if (typeof ResizeObserver === "undefined") {
+    // eslint-disable-next-line no-global-assign
+    ResizeObserver = class ResizeObserver implements globalThis.ResizeObserver {
+      frame: number;
+      elements: Set<Element>;
 
-if (typeof ResizeObserver === "undefined") {
-  // eslint-disable-next-line no-global-assign
-  ResizeObserver = class ResizeObserver implements globalThis.ResizeObserver {
-    elements: Set<Element>;
+      constructor(public callback: ResizeObserverCallback) {
+        this.frame = 0;
+        this.elements = new Set();
+      }
 
-    constructor(public callback: ResizeObserverCallback) {
-      this.elements = new Set();
-    }
+      observe(target: Element): void {
+        this.elements.add(target);
 
-    observe(target: Element): void {
-      this.elements.add(target);
+        window.cancelAnimationFrame(this.frame);
+        this.frame = window.requestAnimationFrame(() => {
+          const entries = [...this.elements].map<ResizeObserverEntry>(
+            (target) => ({
+              target,
+              contentRect: target.getBoundingClientRect(),
+              borderBoxSize: [],
+              contentBoxSize: [],
+              devicePixelContentBoxSize: [],
+            })
+          );
+          this.callback(entries, this);
+        });
+      }
 
-      const entries = [...this.elements].map<ResizeObserverEntry>((target) => ({
-        target,
-        contentRect: target.getBoundingClientRect(),
-        borderBoxSize: [],
-        contentBoxSize: [],
-        devicePixelContentBoxSize: [],
-      }));
-      this.callback(entries, this);
-    }
+      unobserve(target: Element): void {
+        this.elements.delete(target);
+      }
 
-    unobserve(target: Element): void {
-      this.elements.delete(target);
-    }
+      disconnect(): void {
+        this.elements.clear();
+      }
+    };
+  }
 
-    disconnect(): void {
-      this.elements.clear();
-    }
-  };
-}
+  if (typeof IntersectionObserver === "undefined") {
+    // eslint-disable-next-line no-global-assign
+    IntersectionObserver = class IntersectionObserver
+      implements globalThis.IntersectionObserver
+    {
+      root: Document | Element | null;
+      rootMargin: string;
+      thresholds: readonly number[];
 
-if (typeof IntersectionObserver === "undefined") {
-  // eslint-disable-next-line no-global-assign
-  IntersectionObserver = class IntersectionObserver
-    implements globalThis.IntersectionObserver
-  {
-    root: Document | Element | null;
-    rootMargin: string;
-    thresholds: readonly number[];
+      elements: Set<Element>;
 
-    elements: Set<Element>;
+      constructor(
+        public callback: IntersectionObserverCallback,
+        options: IntersectionObserverInit = {}
+      ) {
+        this.root = options.root || null;
+        this.rootMargin = options.rootMargin || "";
+        this.thresholds =
+          typeof options.threshold === "number"
+            ? [options.threshold]
+            : options.threshold ?? [];
 
-    constructor(
-      public callback: IntersectionObserverCallback,
-      options: IntersectionObserverInit = {}
-    ) {
-      this.root = options.root || null;
-      this.rootMargin = options.rootMargin || "";
-      this.thresholds =
-        typeof options.threshold === "number"
-          ? [options.threshold]
-          : options.threshold ?? [];
+        this.elements = new Set();
+      }
 
-      this.elements = new Set();
-    }
+      observe(target: Element): void {
+        this.elements.add(target);
 
-    observe(target: Element): void {
-      this.elements.add(target);
+        this.callback(this.takeRecords(), this);
+      }
 
-      this.callback(this.takeRecords(), this);
-    }
+      unobserve(target: Element): void {
+        this.elements.delete(target);
+      }
 
-    unobserve(target: Element): void {
-      this.elements.delete(target);
-    }
+      takeRecords(): IntersectionObserverEntry[] {
+        return [...this.elements].map<IntersectionObserverEntry>((target) => ({
+          time: Date.now(),
+          target,
+          boundingClientRect: target.getBoundingClientRect(),
+          intersectionRatio: 0,
+          intersectionRect: target.getBoundingClientRect(),
+          isIntersecting: false,
+          rootBounds:
+            this.root && "getBoundingClientRect" in this.root
+              ? this.root.getBoundingClientRect()
+              : null,
+        }));
+      }
 
-    takeRecords(): IntersectionObserverEntry[] {
-      return [...this.elements].map<IntersectionObserverEntry>((target) => ({
-        time: Date.now(),
-        target,
-        boundingClientRect: target.getBoundingClientRect(),
-        intersectionRatio: 0,
-        intersectionRect: target.getBoundingClientRect(),
-        isIntersecting: false,
-        rootBounds:
-          this.root && "getBoundingClientRect" in this.root
-            ? this.root.getBoundingClientRect()
-            : null,
-      }));
-    }
-
-    disconnect(): void {
-      this.elements.clear();
-    }
-  };
+      disconnect(): void {
+        this.elements.clear();
+      }
+    };
+  }
 }

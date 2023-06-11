@@ -78,6 +78,9 @@ importers:
       '@jest/types':
         specifier: ^29.5.0
         version: 29.5.0
+      '@react-md/test-utils':
+        specifier: workspace:*
+        version: link:../../packages/test-utils
       '@swc/core':
         specifier: ^1.3.53
         version: 1.3.53
@@ -318,6 +321,28 @@ importers:
       glob:
         specifier: ^10.2.1
         version: 10.2.1
+
+  packages/test-utils:
+    dependencies:
+      '@react-md/core':
+        specifier: workspace:*
+        version: link:../core
+    devDependencies:
+      '@swc/cli':
+        specifier: ^0.1.62
+        version: 0.1.62(@swc/core@1.3.53)
+      '@swc/core':
+        specifier: ^1.3.53
+        version: 1.3.53
+      '@types/node':
+        specifier: ^18.15.13
+        version: 18.15.13
+      npm-run-all:
+        specifier: ^4.1.5
+        version: 4.1.5
+      typescript:
+        specifier: ^4.9.4
+        version: 4.9.4
 
 packages:
 
@@ -2493,6 +2518,26 @@ packages:
       '@sinonjs/commons': 2.0.0
     dev: true
 
+  /@swc/cli@0.1.62(@swc/core@1.3.53):
+    resolution: {integrity: sha512-kOFLjKY3XH1DWLfXL1/B5MizeNorHR8wHKEi92S/Zi9Md/AK17KSqR8MgyRJ6C1fhKHvbBCl8wboyKAFXStkYw==}
+    engines: {node: '>= 12.13'}
+    hasBin: true
+    peerDependencies:
+      '@swc/core': ^1.2.66
+      chokidar: ^3.5.1
+    peerDependenciesMeta:
+      chokidar:
+        optional: true
+    dependencies:
+      '@mole-inc/bin-wrapper': 8.0.1
+      '@swc/core': 1.3.53
+      commander: 7.2.0
+      fast-glob: 3.2.12
+      semver: 7.5.0
+      slash: 3.0.0
+      source-map: 0.7.4
+    dev: true
+
   /@swc/cli@0.1.62(@swc/core@1.3.53)(chokidar@3.5.3):
     resolution: {integrity: sha512-kOFLjKY3XH1DWLfXL1/B5MizeNorHR8wHKEi92S/Zi9Md/AK17KSqR8MgyRJ6C1fhKHvbBCl8wboyKAFXStkYw==}
     engines: {node: '>= 12.13'}
@@ -3562,7 +3607,7 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       bin-version: 6.0.0
-      semver: 7.3.8
+      semver: 7.5.0
       semver-truncate: 2.0.0
     dev: true
 
