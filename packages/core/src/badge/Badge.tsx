@@ -6,6 +6,9 @@ import { bem } from "../utils";
 declare module "react" {
   interface CSSProperties {
     "--rmd-badge-size"?: string | number;
+    "--rmd-badge-offset"?: string | number;
+    "--rmd-badge-offset-top"?: string | number;
+    "--rmd-badge-offset-right"?: string | number;
   }
 }
 

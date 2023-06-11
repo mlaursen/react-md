@@ -30,6 +30,18 @@ $var-lookup: (
     var: --rmd-badge-size,
     value: $size,
   ),
+  offset: (
+    var: --rmd-badge-offset,
+    value: 0,
+  ),
+  offset-top: (
+    var: --rmd-badge-offset-top,
+    value: var(--rmd-badge-offset, $offset-top),
+  ),
+  offset-right: (
+    var: --rmd-badge-offset-right,
+    value: var(--rmd-badge-offset, $offset-right),
+  ),
 );
 
 @function get-var($name, $fallback: null) {
@@ -60,7 +72,8 @@ $var-lookup: (
       @include utils.map-to-styles($typography);
       @include use-var(height, size);
       @include use-var(width, size);
-      @include utils.auto-rtl(right, $offset-right);
+      @include utils.auto-rtl(right, get-var(offset-right));
+      @include use-var(top, offset-top);
 
       align-items: center;
       border-radius: $border-radius;
@@ -68,7 +81,6 @@ $var-lookup: (
       justify-content: center;
       pointer-events: none; // badges are _kind_ of presentational and shouldn't trigger mouse events
       position: absolute;
-      top: $offset-top;
 
       @if not $disable-greyscale-theme {
         &--greyscale {
