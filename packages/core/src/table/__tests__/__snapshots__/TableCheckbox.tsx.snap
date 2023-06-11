@@ -10,12 +10,12 @@ exports[`TableCheckbox should apply the correct styling, HTML attributes, and al
     <span
       class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
     >
-      <i
+      <span
         aria-hidden="true"
         class="rmd-icon rmd-icon--font material-icons"
       >
         check_box_outline_blank
-      </i>
+      </span>
       <input
         aria-label="Select Row"
         autocomplete="off"
@@ -43,12 +43,12 @@ exports[`TableCheckbox should apply the correct styling, HTML attributes, and al
     <span
       class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
     >
-      <i
+      <span
         aria-hidden="true"
         class="rmd-icon rmd-icon--font material-icons"
       >
         check_box_outline_blank
-      </i>
+      </span>
       <input
         aria-label="Select Row"
         autocomplete="off"
@@ -75,12 +75,12 @@ exports[`TableCheckbox should handle the aria-label/aria-labelledby props correc
     <span
       class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
     >
-      <i
+      <span
         aria-hidden="true"
         class="rmd-icon rmd-icon--font material-icons"
       >
         check_box_outline_blank
-      </i>
+      </span>
       <input
         aria-label="Custom Label"
         autocomplete="off"
@@ -107,12 +107,12 @@ exports[`TableCheckbox should handle the aria-label/aria-labelledby props correc
     <span
       class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
     >
-      <i
+      <span
         aria-hidden="true"
         class="rmd-icon rmd-icon--font material-icons"
       >
         check_box_outline_blank
-      </i>
+      </span>
       <input
         aria-labelledby="another-id"
         autocomplete="off"

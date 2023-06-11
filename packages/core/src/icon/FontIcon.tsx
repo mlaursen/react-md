@@ -22,6 +22,8 @@ export interface FontIconProps
  * If you are using another font icon library that does not always create icons
  * with a perfect 1:1 scale (such as font awesome), it is recommended to use the
  * `forceSize` and `forceFontSize` props to fix the sizing issues.
+ *
+ * \@remarks \@since 6.0.0 Switched from `<i>` to `<span>` element.
  */
 export const FontIcon = forwardRef<HTMLElement, FontIconProps>(
   function FontIcon(props, ref) {
@@ -38,7 +40,7 @@ export const FontIcon = forwardRef<HTMLElement, FontIconProps>(
     } = props;
 
     return (
-      <i
+      <span
         {...remaining}
         aria-hidden={ariaHidden}
         ref={ref}
@@ -53,7 +55,7 @@ export const FontIcon = forwardRef<HTMLElement, FontIconProps>(
         })}
       >
         {children}
-      </i>
+      </span>
     );
   }
 );

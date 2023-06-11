@@ -19,12 +19,12 @@ exports[`SimpleExample should default to single expansion, allowing all panels t
           type="button"
         >
           Panel 1
-          <i
+          <span
             aria-hidden="true"
             class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate"
           >
             keyboard_arrow_down
-          </i>
+          </span>
         </button>
       </h6>
       <div
@@ -52,12 +52,12 @@ exports[`SimpleExample should default to single expansion, allowing all panels t
           type="button"
         >
           Panel 2
-          <i
+          <span
             aria-hidden="true"
             class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate"
           >
             keyboard_arrow_down
-          </i>
+          </span>
         </button>
       </h6>
       <div
@@ -85,12 +85,12 @@ exports[`SimpleExample should default to single expansion, allowing all panels t
           type="button"
         >
           Panel 3
-          <i
+          <span
             aria-hidden="true"
             class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate"
           >
             keyboard_arrow_down
-          </i>
+          </span>
         </button>
       </h6>
       <div

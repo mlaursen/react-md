@@ -9,12 +9,12 @@ exports[`Tab should support rendering an icon in different positions around the 
   tabindex="-1"
   type="button"
 >
-  <i
+  <span
     aria-hidden="true"
     class="rmd-icon rmd-icon--font material-icons"
   >
     favorite
-  </i>
+  </span>
   <span>
     Tab
   </span>
@@ -33,12 +33,12 @@ exports[`Tab should support rendering an icon in different positions around the 
   tabindex="-1"
   type="button"
 >
-  <i
+  <span
     aria-hidden="true"
     class="rmd-icon rmd-icon--font material-icons"
   >
     favorite
-  </i>
+  </span>
   <span>
     Tab
   </span>
@@ -57,12 +57,12 @@ exports[`Tab should support rendering an icon in different positions around the 
   tabindex="-1"
   type="button"
 >
-  <i
+  <span
     aria-hidden="true"
     class="rmd-icon rmd-icon--font material-icons"
   >
     favorite
-  </i>
+  </span>
   <span>
     Tab
   </span>
@@ -81,12 +81,12 @@ exports[`Tab should support rendering an icon in different positions around the 
   tabindex="-1"
   type="button"
 >
-  <i
+  <span
     aria-hidden="true"
     class="rmd-icon rmd-icon--font material-icons"
   >
     favorite
-  </i>
+  </span>
   <span>
     Tab
   </span>

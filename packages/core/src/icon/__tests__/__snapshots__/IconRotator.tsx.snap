@@ -20,23 +20,23 @@ exports[`IconRotator should default to cloning the icon rotator class names into
 
 exports[`IconRotator should work automatically with the FontIcon component 1`] = `
 <div>
-  <i
+  <span
     aria-hidden="true"
     class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate"
   >
     home
-  </i>
+  </span>
 </div>
 `;
 
 exports[`IconRotator should work automatically with the FontIcon component 2`] = `
 <div>
-  <i
+  <span
     aria-hidden="true"
     class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated"
   >
     home
-  </i>
+  </span>
 </div>
 `;
 
@@ -101,12 +101,12 @@ exports[`IconRotator should wrapp the children with a span if the forceIconWrap 
   <span
     class="rmd-icon-rotator rmd-icon-rotator--animate"
   >
-    <i
+    <span
       aria-hidden="true"
       class="rmd-icon rmd-icon--font material-icons"
     >
       home
-    </i>
+    </span>
   </span>
 </div>
 `;
@@ -116,12 +116,12 @@ exports[`IconRotator should wrapp the children with a span if the forceIconWrap 
   <span
     class="rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated"
   >
-    <i
+    <span
       aria-hidden="true"
       class="rmd-icon rmd-icon--font material-icons"
     >
       home
-    </i>
+    </span>
   </span>
 </div>
 `;

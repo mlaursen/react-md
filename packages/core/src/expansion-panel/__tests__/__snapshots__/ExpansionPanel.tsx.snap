@@ -40,12 +40,12 @@ exports[`ExpansionPanel should apply the correct styling, HTML attributes, and a
       id="expansion-panel-:rl:"
       type="button"
     >
-      <i
+      <span
         aria-hidden="true"
         class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate"
       >
         keyboard_arrow_down
-      </i>
+      </span>
     </button>
   </h6>
   <div
@@ -76,12 +76,12 @@ exports[`ExpansionPanel should apply the correct styling, HTML attributes, and a
       id="expansion-panel-:rl:"
       type="button"
     >
-      <i
+      <span
         aria-hidden="true"
         class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate"
       >
         keyboard_arrow_down
-      </i>
+      </span>
     </button>
   </h6>
   <div
@@ -114,12 +114,12 @@ exports[`ExpansionPanel should default to single expansion, allowing all panels 
           type="button"
         >
           Panel 1
-          <i
+          <span
             aria-hidden="true"
             class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate"
           >
             keyboard_arrow_down
-          </i>
+          </span>
         </button>
       </h6>
       <div
@@ -147,12 +147,12 @@ exports[`ExpansionPanel should default to single expansion, allowing all panels 
           type="button"
         >
           Panel 2
-          <i
+          <span
             aria-hidden="true"
             class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate"
           >
             keyboard_arrow_down
-          </i>
+          </span>
         </button>
       </h6>
       <div
@@ -180,12 +180,12 @@ exports[`ExpansionPanel should default to single expansion, allowing all panels 
           type="button"
         >
           Panel 3
-          <i
+          <span
             aria-hidden="true"
             class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate"
           >
             keyboard_arrow_down
-          </i>
+          </span>
         </button>
       </h6>
       <div

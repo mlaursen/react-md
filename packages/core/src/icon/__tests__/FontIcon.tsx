@@ -7,7 +7,7 @@ describe("FontIcon", () => {
     const { getByTestId } = render(
       <FontIcon data-testid="icon">home</FontIcon>
     );
-    expect(getByTestId("icon").tagName).toBe("I");
+    expect(getByTestId("icon")).toBeInstanceOf(HTMLSpanElement);
   });
 
   it("should render correctly", () => {

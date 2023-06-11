@@ -5,12 +5,12 @@ exports[`Chip selectable chips should allow for a custom selectedIcon 1`] = `
   class="rmd-chip rmd-chip--solid"
   type="button"
 >
-  <i
+  <span
     aria-hidden="true"
     class="rmd-icon rmd-icon--font material-icons rmd-chip__icon"
   >
     favorite
-  </i>
+  </span>
   <span
     class="rmd-chip__content"
   >
@@ -28,12 +28,12 @@ exports[`Chip selectable chips should allow for a custom selectedIcon 2`] = `
   class="rmd-chip rmd-chip--selected rmd-chip--solid rmd-chip--left-addon"
   type="button"
 >
-  <i
+  <span
     aria-hidden="true"
     class="rmd-icon rmd-icon--font material-icons rmd-chip__icon rmd-chip__icon--visible"
   >
     favorite
-  </i>
+  </span>
   <span
     class="rmd-chip__content"
   >
@@ -186,12 +186,12 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
   class="rmd-chip rmd-chip--solid"
   type="button"
 >
-  <i
+  <span
     aria-hidden="true"
     class="rmd-icon rmd-icon--font material-icons rmd-chip__icon"
   >
     check
-  </i>
+  </span>
   <span
     class="rmd-chip__content"
   >
@@ -209,12 +209,12 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
   class="rmd-chip rmd-chip--selected rmd-chip--solid rmd-chip--left-addon"
   type="button"
 >
-  <i
+  <span
     aria-hidden="true"
     class="rmd-icon rmd-icon--font material-icons rmd-chip__icon rmd-chip__icon--visible"
   >
     check
-  </i>
+  </span>
   <span
     class="rmd-chip__content"
   >
@@ -231,12 +231,12 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
   class="rmd-chip rmd-chip--solid"
   type="button"
 >
-  <i
+  <span
     aria-hidden="true"
     class="rmd-icon rmd-icon--font material-icons"
   >
     favorite
-  </i>
+  </span>
   <span
     class="rmd-chip__content"
   >
@@ -254,12 +254,12 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
   class="rmd-chip rmd-chip--selected rmd-chip--solid rmd-chip--left-addon"
   type="button"
 >
-  <i
+  <span
     aria-hidden="true"
     class="rmd-icon rmd-icon--font material-icons"
   >
     favorite
-  </i>
+  </span>
   <span
     class="rmd-chip__content"
   >
@@ -276,23 +276,23 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
   class="rmd-chip rmd-chip--solid rmd-chip--left-addon"
   type="button"
 >
-  <i
+  <span
     aria-hidden="true"
     class="rmd-icon rmd-icon--font material-icons"
   >
     favorite
-  </i>
+  </span>
   <span
     class="rmd-chip__content"
   >
     Chip
   </span>
-  <i
+  <span
     aria-hidden="true"
     class="rmd-icon rmd-icon--font material-icons rmd-chip__icon"
   >
     check
-  </i>
+  </span>
   <span
     class="rmd-ripple-container"
   />
@@ -305,23 +305,23 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
   class="rmd-chip rmd-chip--selected rmd-chip--solid rmd-chip--surrounded"
   type="button"
 >
-  <i
+  <span
     aria-hidden="true"
     class="rmd-icon rmd-icon--font material-icons"
   >
     favorite
-  </i>
+  </span>
   <span
     class="rmd-chip__content"
   >
     Chip
   </span>
-  <i
+  <span
     aria-hidden="true"
     class="rmd-icon rmd-icon--font material-icons rmd-chip__icon rmd-chip__icon--visible"
   >
     check
-  </i>
+  </span>
   <span
     class="rmd-ripple-container"
   />
@@ -333,23 +333,23 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
   class="rmd-chip rmd-chip--solid rmd-chip--right-addon"
   type="button"
 >
-  <i
+  <span
     aria-hidden="true"
     class="rmd-icon rmd-icon--font material-icons rmd-chip__icon"
   >
     check
-  </i>
+  </span>
   <span
     class="rmd-chip__content"
   >
     Chip
   </span>
-  <i
+  <span
     aria-hidden="true"
     class="rmd-icon rmd-icon--font material-icons"
   >
     favorite
-  </i>
+  </span>
   <span
     class="rmd-ripple-container"
   />
@@ -362,23 +362,23 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
   class="rmd-chip rmd-chip--selected rmd-chip--solid rmd-chip--surrounded"
   type="button"
 >
-  <i
+  <span
     aria-hidden="true"
     class="rmd-icon rmd-icon--font material-icons rmd-chip__icon rmd-chip__icon--visible"
   >
     check
-  </i>
+  </span>
   <span
     class="rmd-chip__content"
   >
     Chip
   </span>
-  <i
+  <span
     aria-hidden="true"
     class="rmd-icon rmd-icon--font material-icons"
   >
     favorite
-  </i>
+  </span>
   <span
     class="rmd-ripple-container"
   />
@@ -395,12 +395,12 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
   >
     Chip
   </span>
-  <i
+  <span
     aria-hidden="true"
     class="rmd-icon rmd-icon--font material-icons"
   >
     favorite
-  </i>
+  </span>
   <span
     class="rmd-ripple-container"
   />
@@ -418,12 +418,12 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
   >
     Chip
   </span>
-  <i
+  <span
     aria-hidden="true"
     class="rmd-icon rmd-icon--font material-icons"
   >
     favorite
-  </i>
+  </span>
   <span
     class="rmd-ripple-container"
   />
@@ -435,23 +435,23 @@ exports[`Chip should allow for addons to appear before and after the children 1`
   class="rmd-chip rmd-chip--solid rmd-chip--surrounded"
   type="button"
 >
-  <i
+  <span
     aria-hidden="true"
     class="rmd-icon rmd-icon--font material-icons"
   >
     favorite
-  </i>
+  </span>
   <span
     class="rmd-chip__content"
   >
     Content
   </span>
-  <i
+  <span
     aria-hidden="true"
     class="rmd-icon rmd-icon--font material-icons"
   >
     close
-  </i>
+  </span>
   <span
     class="rmd-ripple-container"
   />

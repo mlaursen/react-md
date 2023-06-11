@@ -185,12 +185,12 @@ exports[`DropdownMenu should render as a button and toggle the visibility when c
   <span>
     Dropdown
   </span>
-  <i
+  <span
     aria-hidden="true"
     class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate"
   >
     arrow_drop_down
-  </i>
+  </span>
 </button>
 `;
 
@@ -260,12 +260,12 @@ exports[`DropdownMenu should render as a menuitem when a DropdownMenu is a child
   >
     Nested Dropdown 1
   </span>
-  <i
+  <span
     aria-hidden="true"
     class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
   >
     keyboard_arrow_right
-  </i>
+  </span>
 </li>
 `;
 
@@ -282,11 +282,11 @@ exports[`DropdownMenu should render as a menuitem when a DropdownMenu is a child
   >
     Nested Dropdown 2
   </span>
-  <i
+  <span
     aria-hidden="true"
     class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
   >
     keyboard_arrow_right
-  </i>
+  </span>
 </li>
 `;

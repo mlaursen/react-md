@@ -10,12 +10,12 @@ exports[`useRadioGroup should not check any radio elements by default 1`] = `
       <span
         class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
       >
-        <i
+        <span
           aria-hidden="true"
           class="rmd-icon rmd-icon--font material-icons"
         >
           radio_button_unchecked
-        </i>
+        </span>
         <input
           class="rmd-hidden-input"
           id="radio-:r0:"
@@ -35,12 +35,12 @@ exports[`useRadioGroup should not check any radio elements by default 1`] = `
       <span
         class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
       >
-        <i
+        <span
           aria-hidden="true"
           class="rmd-icon rmd-icon--font material-icons"
         >
           radio_button_unchecked
-        </i>
+        </span>
         <input
           class="rmd-hidden-input"
           id="radio-:r1:"
@@ -60,12 +60,12 @@ exports[`useRadioGroup should not check any radio elements by default 1`] = `
       <span
         class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
       >
-        <i
+        <span
           aria-hidden="true"
           class="rmd-icon rmd-icon--font material-icons"
         >
           radio_button_unchecked
-        </i>
+        </span>
         <input
           class="rmd-hidden-input"
           id="radio-:r2:"
@@ -85,12 +85,12 @@ exports[`useRadioGroup should not check any radio elements by default 1`] = `
       <span
         class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
       >
-        <i
+        <span
           aria-hidden="true"
           class="rmd-icon rmd-icon--font material-icons"
         >
           radio_button_unchecked
-        </i>
+        </span>
         <input
           class="rmd-hidden-input"
           id="radio-:r3:"
@@ -117,12 +117,12 @@ exports[`useRadioGroup should not check any radio elements by default 2`] = `
       <span
         class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--active rmd-input-toggle--normal"
       >
-        <i
+        <span
           aria-hidden="true"
           class="rmd-icon rmd-icon--font material-icons"
         >
           radio_button_checked
-        </i>
+        </span>
         <input
           class="rmd-hidden-input"
           id="radio-:r0:"
@@ -147,12 +147,12 @@ exports[`useRadioGroup should not check any radio elements by default 2`] = `
       <span
         class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
       >
-        <i
+        <span
           aria-hidden="true"
           class="rmd-icon rmd-icon--font material-icons"
         >
           radio_button_unchecked
-        </i>
+        </span>
         <input
           class="rmd-hidden-input"
           id="radio-:r1:"
@@ -172,12 +172,12 @@ exports[`useRadioGroup should not check any radio elements by default 2`] = `
       <span
         class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
       >
-        <i
+        <span
           aria-hidden="true"
           class="rmd-icon rmd-icon--font material-icons"
         >
           radio_button_unchecked
-        </i>
+        </span>
         <input
           class="rmd-hidden-input"
           id="radio-:r2:"
@@ -197,12 +197,12 @@ exports[`useRadioGroup should not check any radio elements by default 2`] = `
       <span
         class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
       >
-        <i
+        <span
           aria-hidden="true"
           class="rmd-icon rmd-icon--font material-icons"
         >
           radio_button_unchecked
-        </i>
+        </span>
         <input
           class="rmd-hidden-input"
           id="radio-:r3:"
@@ -229,12 +229,12 @@ exports[`useRadioGroup should not check any radio elements by default 3`] = `
       <span
         class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--active rmd-input-toggle--normal"
       >
-        <i
+        <span
           aria-hidden="true"
           class="rmd-icon rmd-icon--font material-icons"
         >
           radio_button_checked
-        </i>
+        </span>
         <input
           class="rmd-hidden-input"
           id="radio-:r0:"
@@ -263,12 +263,12 @@ exports[`useRadioGroup should not check any radio elements by default 3`] = `
       <span
         class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
       >
-        <i
+        <span
           aria-hidden="true"
           class="rmd-icon rmd-icon--font material-icons"
         >
           radio_button_unchecked
-        </i>
+        </span>
         <input
           class="rmd-hidden-input"
           id="radio-:r1:"
@@ -288,12 +288,12 @@ exports[`useRadioGroup should not check any radio elements by default 3`] = `
       <span
         class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
       >
-        <i
+        <span
           aria-hidden="true"
           class="rmd-icon rmd-icon--font material-icons"
         >
           radio_button_unchecked
-        </i>
+        </span>
         <input
           class="rmd-hidden-input"
           id="radio-:r2:"
@@ -313,12 +313,12 @@ exports[`useRadioGroup should not check any radio elements by default 3`] = `
       <span
         class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
       >
-        <i
+        <span
           aria-hidden="true"
           class="rmd-icon rmd-icon--font material-icons"
         >
           radio_button_unchecked
-        </i>
+        </span>
         <input
           class="rmd-hidden-input"
           id="radio-:r3:"
@@ -345,12 +345,12 @@ exports[`useRadioGroup should not check any radio elements by default 4`] = `
       <span
         class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
       >
-        <i
+        <span
           aria-hidden="true"
           class="rmd-icon rmd-icon--font material-icons"
         >
           radio_button_unchecked
-        </i>
+        </span>
         <input
           class="rmd-hidden-input"
           id="radio-:r0:"
@@ -379,12 +379,12 @@ exports[`useRadioGroup should not check any radio elements by default 4`] = `
       <span
         class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
       >
-        <i
+        <span
           aria-hidden="true"
           class="rmd-icon rmd-icon--font material-icons"
         >
           radio_button_unchecked
-        </i>
+        </span>
         <input
           class="rmd-hidden-input"
           id="radio-:r1:"
@@ -404,12 +404,12 @@ exports[`useRadioGroup should not check any radio elements by default 4`] = `
       <span
         class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--active rmd-input-toggle--normal"
       >
-        <i
+        <span
           aria-hidden="true"
           class="rmd-icon rmd-icon--font material-icons"
         >
           radio_button_checked
-        </i>
+        </span>
         <input
           class="rmd-hidden-input"
           id="radio-:r2:"
@@ -434,12 +434,12 @@ exports[`useRadioGroup should not check any radio elements by default 4`] = `
       <span
         class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
       >
-        <i
+        <span
           aria-hidden="true"
           class="rmd-icon rmd-icon--font material-icons"
         >
           radio_button_unchecked
-        </i>
+        </span>
         <input
           class="rmd-hidden-input"
           id="radio-:r3:"
@@ -466,12 +466,12 @@ exports[`useRadioGroup should support creating a required radio group 1`] = `
       <span
         class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
       >
-        <i
+        <span
           aria-hidden="true"
           class="rmd-icon rmd-icon--font material-icons"
         >
           radio_button_unchecked
-        </i>
+        </span>
         <input
           class="rmd-hidden-input"
           id="radio-:r4:"
@@ -492,12 +492,12 @@ exports[`useRadioGroup should support creating a required radio group 1`] = `
       <span
         class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
       >
-        <i
+        <span
           aria-hidden="true"
           class="rmd-icon rmd-icon--font material-icons"
         >
           radio_button_unchecked
-        </i>
+        </span>
         <input
           class="rmd-hidden-input"
           id="radio-:r5:"
@@ -518,12 +518,12 @@ exports[`useRadioGroup should support creating a required radio group 1`] = `
       <span
         class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
       >
-        <i
+        <span
           aria-hidden="true"
           class="rmd-icon rmd-icon--font material-icons"
         >
           radio_button_unchecked
-        </i>
+        </span>
         <input
           class="rmd-hidden-input"
           id="radio-:r6:"
@@ -544,12 +544,12 @@ exports[`useRadioGroup should support creating a required radio group 1`] = `
       <span
         class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
       >
-        <i
+        <span
           aria-hidden="true"
           class="rmd-icon rmd-icon--font material-icons"
         >
           radio_button_unchecked
-        </i>
+        </span>
         <input
           class="rmd-hidden-input"
           id="radio-:r7:"
@@ -593,12 +593,12 @@ exports[`useRadioGroup should support creating a required radio group 2`] = `
       <span
         class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--active rmd-input-toggle--normal"
       >
-        <i
+        <span
           aria-hidden="true"
           class="rmd-icon rmd-icon--font material-icons"
         >
           radio_button_checked
-        </i>
+        </span>
         <input
           class="rmd-hidden-input"
           id="radio-:r4:"
@@ -624,12 +624,12 @@ exports[`useRadioGroup should support creating a required radio group 2`] = `
       <span
         class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
       >
-        <i
+        <span
           aria-hidden="true"
           class="rmd-icon rmd-icon--font material-icons"
         >
           radio_button_unchecked
-        </i>
+        </span>
         <input
           class="rmd-hidden-input"
           id="radio-:r5:"
@@ -650,12 +650,12 @@ exports[`useRadioGroup should support creating a required radio group 2`] = `
       <span
         class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
       >
-        <i
+        <span
           aria-hidden="true"
           class="rmd-icon rmd-icon--font material-icons"
         >
           radio_button_unchecked
-        </i>
+        </span>
         <input
           class="rmd-hidden-input"
           id="radio-:r6:"
@@ -676,12 +676,12 @@ exports[`useRadioGroup should support creating a required radio group 2`] = `
       <span
         class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
       >
-        <i
+        <span
           aria-hidden="true"
           class="rmd-icon rmd-icon--font material-icons"
         >
           radio_button_unchecked
-        </i>
+        </span>
         <input
           class="rmd-hidden-input"
           id="radio-:r7:"
@@ -738,12 +738,12 @@ exports[`useRadioGroup should support rendering within a menu 1`] = `
       <span
         class="rmd-radio rmd-input-toggle rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-menu-item-input-toggle__icon"
       >
-        <i
+        <span
           aria-hidden="true"
           class="rmd-icon rmd-icon--font material-icons"
         >
           radio_button_unchecked
-        </i>
+        </span>
       </span>
       <span
         class="rmd-list-item__text"
@@ -764,12 +764,12 @@ exports[`useRadioGroup should support rendering within a menu 1`] = `
       <span
         class="rmd-radio rmd-input-toggle rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-menu-item-input-toggle__icon"
       >
-        <i
+        <span
           aria-hidden="true"
           class="rmd-icon rmd-icon--font material-icons"
         >
           radio_button_unchecked
-        </i>
+        </span>
       </span>
       <span
         class="rmd-list-item__text"
@@ -790,12 +790,12 @@ exports[`useRadioGroup should support rendering within a menu 1`] = `
       <span
         class="rmd-radio rmd-input-toggle rmd-input-toggle--active rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-menu-item-input-toggle__icon"
       >
-        <i
+        <span
           aria-hidden="true"
           class="rmd-icon rmd-icon--font material-icons"
         >
           radio_button_checked
-        </i>
+        </span>
       </span>
       <span
         class="rmd-list-item__text"
@@ -816,12 +816,12 @@ exports[`useRadioGroup should support rendering within a menu 1`] = `
       <span
         class="rmd-radio rmd-input-toggle rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-menu-item-input-toggle__icon"
       >
-        <i
+        <span
           aria-hidden="true"
           class="rmd-icon rmd-icon--font material-icons"
         >
           radio_button_unchecked
-        </i>
+        </span>
       </span>
       <span
         class="rmd-list-item__text"

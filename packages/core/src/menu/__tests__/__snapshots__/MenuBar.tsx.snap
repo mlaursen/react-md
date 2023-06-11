@@ -19,12 +19,12 @@ exports[`MenuBar should support a click-first hover mode behavior by default 1`]
     >
       Font
     </span>
-    <i
+    <span
       aria-hidden="true"
       class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
     >
       arrow_drop_down
-    </i>
+    </span>
   </li>
   <li
     aria-haspopup="menu"
@@ -38,12 +38,12 @@ exports[`MenuBar should support a click-first hover mode behavior by default 1`]
     >
       Style
     </span>
-    <i
+    <span
       aria-hidden="true"
       class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
     >
       arrow_drop_down
-    </i>
+    </span>
   </li>
   <li
     aria-haspopup="menu"
@@ -57,12 +57,12 @@ exports[`MenuBar should support a click-first hover mode behavior by default 1`]
     >
       Text Align
     </span>
-    <i
+    <span
       aria-hidden="true"
       class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
     >
       arrow_drop_down
-    </i>
+    </span>
   </li>
   <li
     aria-haspopup="menu"
@@ -76,12 +76,12 @@ exports[`MenuBar should support a click-first hover mode behavior by default 1`]
     >
       Size
     </span>
-    <i
+    <span
       aria-hidden="true"
       class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
     >
       arrow_drop_down
-    </i>
+    </span>
   </li>
 </ul>
 `;

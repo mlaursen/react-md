@@ -9,12 +9,12 @@ exports[`Radio should apply the correct styles, HTMLAttributes, and allow a ref 
     <span
       class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
     >
-      <i
+      <span
         aria-hidden="true"
         class="rmd-icon rmd-icon--font material-icons"
       >
         radio_button_unchecked
-      </i>
+      </span>
       <input
         class="rmd-hidden-input"
         id="radio-:r0:"
@@ -39,12 +39,12 @@ exports[`Radio should apply the correct styles, HTMLAttributes, and allow a ref 
     <span
       class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
     >
-      <i
+      <span
         aria-hidden="true"
         class="rmd-icon rmd-icon--font material-icons"
       >
         radio_button_unchecked
-      </i>
+      </span>
       <input
         class="rmd-hidden-input"
         id="radio-:r0:"
@@ -69,12 +69,12 @@ exports[`Radio should apply the correct styles, HTMLAttributes, and allow a ref 
     <span
       class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
     >
-      <i
+      <span
         aria-hidden="true"
         class="rmd-icon rmd-icon--font material-icons"
       >
         radio_button_unchecked
-      </i>
+      </span>
       <input
         class="rmd-hidden-input"
         id="custom-id"
