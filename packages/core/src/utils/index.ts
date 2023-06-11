@@ -10,4 +10,5 @@ export * from "./loop";
 export * from "./nearest";
 export * from "./parseCssLengthUnit";
 export * from "./randomInt";
+export * from "./wait";
 export * from "./withinRange";

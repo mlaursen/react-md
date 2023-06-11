@@ -1,4 +1,5 @@
 import type { MaterialIconFamily } from "@react-md/core";
+import { wait } from "@react-md/core";
 import { glob } from "glob";
 import lodash from "lodash";
 import { existsSync } from "node:fs";
@@ -10,7 +11,6 @@ import { GENERATED_FILE_BANNER } from "src/constants/codegen";
 import { formatInNode } from "src/utils/nodeFormat";
 import { getMaterialIconComponentName } from "src/components/MaterialIconsAndSymbols/utils";
 import { BadRequestError, ForbiddenError } from "src/utils/errors";
-import { wait } from "src/utils/wait";
 import type {
   CategoriesByFamilyType,
   CategoriesByFamilyTypeMap,
