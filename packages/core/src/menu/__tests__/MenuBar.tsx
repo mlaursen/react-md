@@ -192,7 +192,9 @@ describe("MenuBar", () => {
     });
 
     await user.hover(getByRole("menuitem", { name: "Submenu" }));
-    expect(getByRole("menuitem", { name: "Item 1" })).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByRole("menuitem", { name: "Item 1" })).toBeInTheDocument();
+    });
   });
 
   it("should support keyboard movement correctly", async () => {

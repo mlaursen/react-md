@@ -238,7 +238,9 @@ describe("Tooltip", () => {
 
   it("should support rendering the tooltip temporarily instead of using hidden", async () => {
     const user = userEvent.setup();
-    const { getByRole } = render(<Test tooltip={{ temporary: true }} />);
+    const { getByRole } = render(
+      <Test tooltip={{ temporary: true }} hoverTime={0} />
+    );
 
     expect(() => getByRole("tooltip", { hidden: true })).toThrow();
 
