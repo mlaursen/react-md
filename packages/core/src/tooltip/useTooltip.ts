@@ -1,10 +1,10 @@
 import { cnb } from "cnbuilder";
 import type {
   CSSProperties,
-  FocusEventHandler,
-  MouseEventHandler,
+  FocusEvent,
+  MouseEvent,
   Ref,
-  TouchEventHandler,
+  TouchEvent,
 } from "react";
 import { useCallback, useEffect, useId, useRef } from "react";
 import { useHoverMode } from "../hoverMode";
@@ -91,22 +91,22 @@ export interface TooltipPositioningOptions {
  * @remarks
  * \@since 2.8.0
  * \@since 6.0.0 Removed the `TooltipTouchEventHandlers` and
- * `TooltipKeyboardEventHandlers` types. Also removed the need for the
- * `onKeyDown` event.
+ * `TooltipKeyboardEventHandlers` types, removed the need for the `onKeyDown`
+ * event, and infer element typeparam while calling instead of at hook level.
  */
-export interface TooltippedElementEventHandlers<E extends HTMLElement> {
-  onBlur?: FocusEventHandler<E>;
-  onFocus?: FocusEventHandler<E>;
-  onMouseEnter?: MouseEventHandler<E>;
-  onMouseLeave?: MouseEventHandler<E>;
-  onTouchStart?: TouchEventHandler<E>;
-  onTouchEnd?: TouchEventHandler<E>;
-  onContextMenu?: MouseEventHandler<E>;
+export interface TooltippedElementEventHandlers {
+  onBlur?<E extends HTMLElement>(event: FocusEvent<E>): void;
+  onFocus?<E extends HTMLElement>(event: FocusEvent<E>): void;
+  onMouseEnter?<E extends HTMLElement>(event: MouseEvent<E>): void;
+  onMouseLeave?<E extends HTMLElement>(event: MouseEvent<E>): void;
+  onTouchStart?<E extends HTMLElement>(event: TouchEvent<E>): void;
+  onTouchEnd?<E extends HTMLElement>(event: TouchEvent<E>): void;
+  onContextMenu?<E extends HTMLElement>(event: MouseEvent<E>): void;
 }
 
 /** @remarks \@since 2.8.0 */
-export interface ProvidedTooltippedElementProps<E extends HTMLElement>
-  extends Required<TooltippedElementEventHandlers<E>> {
+export interface ProvidedTooltippedElementProps
+  extends Required<TooltippedElementEventHandlers> {
   "aria-describedby": string | undefined;
   id: string;
 }
@@ -117,9 +117,9 @@ export interface ProvidedTooltippedElementProps<E extends HTMLElement>
  * \@since 6.0.0 A major API change for the hover mode behavior and no longer
  * requires a `baseId`/`id` for the tooltip.
  */
-export interface TooltipHookOptions<E extends HTMLElement>
+export interface TooltipHookOptions
   extends FixedPositioningTransitionCallbacks,
-    TooltippedElementEventHandlers<E>,
+    TooltippedElementEventHandlers,
     TooltipPositioningOptions,
     TooltipPositionHookOptions {
   /**
@@ -237,12 +237,12 @@ export interface ProvidedTooltipProps
  * \@since 6.0.0 No longer returns any properties from the hover mode provider
  * because of the major API change to hover mode.
  */
-export interface TooltipHookReturnValue<E extends HTMLElement> {
+export interface TooltipHookReturnValue {
   visible: boolean;
   setVisible: UseStateSetter<boolean>;
   animatedOnce: boolean;
-  elementProps: Readonly<ProvidedTooltippedElementProps<E>>;
-  tooltipProps: Readonly<ProvidedTooltipProps>;
+  elementProps: ProvidedTooltippedElementProps;
+  tooltipProps: ProvidedTooltipProps;
 
   /**
    * This is a wrapper around the {@link setVisible} behavior that will also
@@ -293,9 +293,9 @@ export interface TooltipHookReturnValue<E extends HTMLElement> {
  * element when the click or history update happens. this causes the tooltip to
  * stay visible
  */
-export function useTooltip<E extends HTMLElement>(
-  options: TooltipHookOptions<E> = {}
-): TooltipHookReturnValue<E> {
+export function useTooltip(
+  options: TooltipHookOptions = {}
+): TooltipHookReturnValue {
   const {
     id: propId,
     style: propStyle,
@@ -399,7 +399,7 @@ export function useTooltip<E extends HTMLElement>(
       // inspector without first hovering or focusing the tooltipped element
       // beforehand by setting the `HoverMode` hook to `true`
       if (process.env.NODE_ENV !== "production" && !elementRef.current) {
-        elementRef.current = document.getElementById(id) as E | null;
+        elementRef.current = document.getElementById(id);
       }
     },
     onEntering,
@@ -535,15 +535,12 @@ export function useTooltip<E extends HTMLElement>(
       },
       onTouchEnd(event) {
         onTouchEnd(event);
-
         if (disabled) {
           return;
         }
 
-        disableHoverMode();
-        clearVisibilityTimeout();
         initiatedBy.current = null;
-        setVisible(false);
+        startHideFlow();
       },
       onContextMenu(event) {
         onContextMenu(event);

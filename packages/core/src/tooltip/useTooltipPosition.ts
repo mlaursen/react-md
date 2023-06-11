@@ -1,10 +1,10 @@
 import { useCallback, useState } from "react";
 import type { SimplePosition } from "../positioning";
-
 import {
   DEFAULT_TOOLTIP_POSITION,
   DEFAULT_TOOLTIP_THRESHOLD,
 } from "./constants";
+import { getPosition } from "./utils";
 
 /** @internal */
 const noop = (): void => {
@@ -69,29 +69,25 @@ export type TooltipPositionHookReturnValue = [
  * @internal
  * @remarks \@since 2.8.0
  */
-export function useTooltipPosition({
-  position: determinedPosition,
-  defaultPosition = DEFAULT_TOOLTIP_POSITION,
-  threshold = DEFAULT_TOOLTIP_THRESHOLD,
-}: TooltipPositionHookOptions): TooltipPositionHookReturnValue {
+export function useTooltipPosition(
+  options: TooltipPositionHookOptions
+): TooltipPositionHookReturnValue {
+  const {
+    position: determinedPosition,
+    threshold = DEFAULT_TOOLTIP_THRESHOLD,
+    defaultPosition = DEFAULT_TOOLTIP_POSITION,
+  } = options;
+
   const [position, setPosition] = useState(defaultPosition);
   const updatePosition = useCallback<UpdateTooltipPosition>(
     (container) => {
-      const { top, left } = container.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const vw = window.innerWidth;
-      let nextPosition = defaultPosition;
-      if (defaultPosition === "above" && top < vh * threshold) {
-        nextPosition = "below";
-      } else if (defaultPosition === "below" && top > vh * threshold) {
-        nextPosition = "above";
-      } else if (defaultPosition === "left" && left < vw * threshold) {
-        nextPosition = "right";
-      } else if (defaultPosition === "right" && left > vw * threshold) {
-        nextPosition = "left";
-      }
-
-      setPosition(nextPosition);
+      setPosition(
+        getPosition({
+          container,
+          threshold,
+          defaultPosition,
+        })
+      );
     },
     [defaultPosition, threshold]
   );

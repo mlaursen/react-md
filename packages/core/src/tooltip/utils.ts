@@ -18,6 +18,34 @@ export function getAnchor(position: SimplePosition): PositionAnchor {
     case "right":
       return CENTER_RIGHT_ANCHOR;
     default:
-      throw new Error(`Invalid position: ${position}`);
+      throw new Error(`Invalid tooltip position: "${position}"`);
   }
+}
+
+/** @internal */
+export interface GetPositionOptions {
+  container: HTMLElement;
+  threshold: number;
+  defaultPosition: SimplePosition;
+}
+
+/** @internal */
+export function getPosition(options: GetPositionOptions): SimplePosition {
+  const { container, defaultPosition, threshold } = options;
+
+  const { top, left } = container.getBoundingClientRect();
+  const vh = window.innerHeight;
+  const vw = window.innerWidth;
+  let nextPosition = defaultPosition;
+  if (defaultPosition === "above" && top < vh - vh * threshold) {
+    nextPosition = "below";
+  } else if (defaultPosition === "below" && top > vh * threshold) {
+    nextPosition = "above";
+  } else if (defaultPosition === "left" && left < vw - vw * threshold) {
+    nextPosition = "right";
+  } else if (defaultPosition === "right" && left > vw * threshold) {
+    nextPosition = "left";
+  }
+
+  return nextPosition;
 }
