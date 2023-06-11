@@ -268,11 +268,11 @@ export const ExpansionPanel = forwardRef<
         <CardContent
           id={`${id}-content`}
           aria-labelledby={id}
-          {...elementProps}
           disablePadding={disableContentPadding}
           disableSecondaryColor
           disableLastChildPadding
           {...contentProps}
+          {...elementProps}
           role="region"
         >
           {children}

@@ -254,10 +254,6 @@ export function useExpansionPanels(
 
           setExpandedIds((prevIds) => {
             const expanded = prevIds.has(id);
-            if (expanded && preventAllClosed && prevIds.size === 1) {
-              return prevIds;
-            }
-
             if (!multiple) {
               return new Set(expanded ? [] : [id]);
             }

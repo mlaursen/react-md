@@ -37,8 +37,38 @@ export interface ExpansionPanelHeaderProps
    * @defaultValue `"subtitle-1"`
    */
   headingType?: TypographyType;
+
+  /**
+   * Any additional props to provide to the heading element that wraps the
+   * expansion panel button.
+   */
   headingProps?: PropsWithRef<TypographyProps, HTMLHeadingElement>;
   iconRotatorProps?: Omit<IconRotatorProps, "rotated" | "disableTransition">;
+
+  /**
+   * Any children to display **before** the button in the heading element. This
+   * should really only be used if you need to add additional clickable elements
+   * within the header.
+   */
+  beforeChildren?: ReactNode;
+
+  /**
+   * Any children to display **after** the button in the heading element.This
+   * should really only be used if you need to add additional clickable elements
+   * within the header.
+   *
+   * @example
+   * ```tsx
+   * afterChildren={
+   *   <DropdownMenu buttonType="icon" ButtonChildren={<MoreVertSVGIcon />}>
+   *     <MenuItem>Item 1</MenuItem>
+   *     <MenuItem>Item 2</MenuItem>
+   *     <MenuItem>Item 3</MenuItem>
+   *   </DropdownMenu>
+   * }
+   * ```
+   */
+  afterChildren?: ReactNode;
 
   /**
    * @defaultValue `false`
@@ -109,6 +139,8 @@ export const ExpansionPanelHeader = forwardRef<
     expanded,
     className,
     children,
+    beforeChildren,
+    afterChildren,
     disableTransition = false,
     ...remaining
   } = props;
@@ -123,6 +155,7 @@ export const ExpansionPanelHeader = forwardRef<
       {...headingProps}
       className={cnb("rmd-expansion-panel__heading", headingProps?.className)}
     >
+      {beforeChildren}
       <ButtonUnstyled
         {...remaining}
         aria-expanded={expanded}
@@ -140,6 +173,7 @@ export const ExpansionPanelHeader = forwardRef<
           </IconRotator>
         )}
       </ButtonUnstyled>
+      {afterChildren}
     </Typography>
   );
 });

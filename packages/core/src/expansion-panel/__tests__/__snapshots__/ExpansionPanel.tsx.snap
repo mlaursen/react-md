@@ -1,0 +1,204 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExpansionPanel should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<div
+  aria-labelledby="expansion-panel-:rk:"
+  class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow"
+  hidden=""
+  id="expansion-panel-:rk:-content"
+  role="region"
+  style="max-height: 0; padding-top: 0px; padding-bottom: 0px;"
+>
+  Content
+</div>
+`;
+
+exports[`ExpansionPanel should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<div
+  aria-labelledby="expansion-panel-:rk:"
+  class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow"
+  hidden=""
+  id="expansion-panel-:rk:-content"
+  role="region"
+  style="max-height: 0; padding-top: 0px; padding-bottom: 0px;"
+>
+  Content
+</div>
+`;
+
+exports[`ExpansionPanel should apply the correct styling, HTML attributes, and allow a ref on the content element 1`] = `
+<div
+  class="rmd-card rmd-card--shadowed rmd-card--full-width rmd-expansion-panel rmd-expansion-panel--animate"
+  id="expansion-panel-:rl:-container"
+>
+  <h6
+    class="rmd-typography rmd-typography--subtitle-1 rmd-typography--no-margin rmd-expansion-panel__heading"
+  >
+    <button
+      aria-expanded="false"
+      class="rmd-button-unstyled rmd-expansion-panel__button"
+      id="expansion-panel-:rl:"
+      type="button"
+    >
+      <i
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate"
+      >
+        keyboard_arrow_down
+      </i>
+    </button>
+  </h6>
+  <div
+    aria-labelledby="expansion-panel-:rl:"
+    class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow"
+    hidden=""
+    id="expansion-panel-:rl:-content"
+    role="region"
+    style="max-height: 0; padding-top: 0px; padding-bottom: 0px;"
+  >
+    Content
+  </div>
+</div>
+`;
+
+exports[`ExpansionPanel should apply the correct styling, HTML attributes, and allow a ref on the content element 2`] = `
+<div
+  class="rmd-card rmd-card--shadowed rmd-card--full-width rmd-expansion-panel rmd-expansion-panel--animate custom-class-name"
+  id="expansion-panel-:rl:-container"
+  style="color: white;"
+>
+  <h6
+    class="rmd-typography rmd-typography--subtitle-1 rmd-typography--no-margin rmd-expansion-panel__heading"
+  >
+    <button
+      aria-expanded="false"
+      class="rmd-button-unstyled rmd-expansion-panel__button"
+      id="expansion-panel-:rl:"
+      type="button"
+    >
+      <i
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate"
+      >
+        keyboard_arrow_down
+      </i>
+    </button>
+  </h6>
+  <div
+    aria-labelledby="expansion-panel-:rl:"
+    class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow"
+    hidden=""
+    id="expansion-panel-:rl:-content"
+    role="region"
+    style="max-height: 0; padding-top: 0px; padding-bottom: 0px;"
+  >
+    Content
+  </div>
+</div>
+`;
+
+exports[`ExpansionPanel should default to single expansion, allowing all panels to be closed, no expanded ids, and apply hidden while collapsed 1`] = `
+<div>
+  <div>
+    <div
+      class="rmd-card rmd-card--shadowed rmd-card--full-width rmd-expansion-panel rmd-expansion-panel--animate"
+      id="expansion-panel-:r0:-1-container"
+    >
+      <h6
+        class="rmd-typography rmd-typography--subtitle-1 rmd-typography--no-margin rmd-expansion-panel__heading"
+      >
+        <button
+          aria-expanded="false"
+          class="rmd-button-unstyled rmd-expansion-panel__button"
+          id="expansion-panel-:r0:-1"
+          type="button"
+        >
+          Panel 1
+          <i
+            aria-hidden="true"
+            class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate"
+          >
+            keyboard_arrow_down
+          </i>
+        </button>
+      </h6>
+      <div
+        aria-labelledby="expansion-panel-:r0:-1"
+        class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow"
+        hidden=""
+        id="expansion-panel-:r0:-1-content"
+        role="region"
+        style="max-height: 0; padding-top: 0px; padding-bottom: 0px;"
+      >
+        Panel 1 Contents
+      </div>
+    </div>
+    <div
+      class="rmd-card rmd-card--shadowed rmd-card--full-width rmd-expansion-panel rmd-expansion-panel--animate"
+      id="expansion-panel-:r0:-2-container"
+    >
+      <h6
+        class="rmd-typography rmd-typography--subtitle-1 rmd-typography--no-margin rmd-expansion-panel__heading"
+      >
+        <button
+          aria-expanded="false"
+          class="rmd-button-unstyled rmd-expansion-panel__button"
+          id="expansion-panel-:r0:-2"
+          type="button"
+        >
+          Panel 2
+          <i
+            aria-hidden="true"
+            class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate"
+          >
+            keyboard_arrow_down
+          </i>
+        </button>
+      </h6>
+      <div
+        aria-labelledby="expansion-panel-:r0:-2"
+        class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow"
+        hidden=""
+        id="expansion-panel-:r0:-2-content"
+        role="region"
+        style="max-height: 0; padding-top: 0px; padding-bottom: 0px;"
+      >
+        Panel 2 Contents
+      </div>
+    </div>
+    <div
+      class="rmd-card rmd-card--shadowed rmd-card--full-width rmd-expansion-panel rmd-expansion-panel--animate"
+      id="expansion-panel-:r0:-3-container"
+    >
+      <h6
+        class="rmd-typography rmd-typography--subtitle-1 rmd-typography--no-margin rmd-expansion-panel__heading"
+      >
+        <button
+          aria-expanded="false"
+          class="rmd-button-unstyled rmd-expansion-panel__button"
+          id="expansion-panel-:r0:-3"
+          type="button"
+        >
+          Panel 3
+          <i
+            aria-hidden="true"
+            class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate"
+          >
+            keyboard_arrow_down
+          </i>
+        </button>
+      </h6>
+      <div
+        aria-labelledby="expansion-panel-:r0:-3"
+        class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow"
+        hidden=""
+        id="expansion-panel-:r0:-3-content"
+        role="region"
+        style="max-height: 0; padding-top: 0px; padding-bottom: 0px;"
+      >
+        Panel 3 Contents
+      </div>
+    </div>
+  </div>
+</div>
+`;
