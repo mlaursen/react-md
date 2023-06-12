@@ -13,6 +13,7 @@ import { SimpleExample } from "./SimpleExample";
 import { StackedExample } from "./StackedExample";
 import { ToastPositionExample } from "./ToastPositionExample";
 import { UsingThemesExample } from "./UsingThemesExample";
+import { ToastPriorityExample } from "./ToastPriorityExample";
 
 export default function SnackbarExamples(): ReactElement {
   return (
@@ -65,6 +66,10 @@ export default function SnackbarExamples(): ReactElement {
         <DemoHeadingWithDivider>Custom Toast Renderer</DemoHeadingWithDivider>
         <ToastManagerProvider manager={new ToastManager()}>
           <CustomToastRenderer />
+        </ToastManagerProvider>
+        <DemoHeadingWithDivider>Toast Priority Example</DemoHeadingWithDivider>
+        <ToastManagerProvider manager={new ToastManager()}>
+          <ToastPriorityExample />
         </ToastManagerProvider>
       </Box>
     </Resettable>

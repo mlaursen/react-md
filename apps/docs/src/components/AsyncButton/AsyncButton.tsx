@@ -7,23 +7,33 @@ import styles from "./AsyncButton.module.scss";
 
 export interface AsyncButtonProps extends ButtonProps {
   onClick(event: MouseEvent<HTMLButtonElement>): Promise<void>;
+  pending?: boolean;
 }
 
 export function AsyncButton(props: AsyncButtonProps): ReactElement {
-  const { onClick, children, theme, className, disabled, ...remaining } = props;
+  const {
+    onClick,
+    children,
+    theme,
+    className,
+    disabled,
+    pending: propPending,
+    ...remaining
+  } = props;
   const { handleAsync, pending } = useAsyncAction({ disabled });
+  const isPending = pending || propPending;
 
   return (
     <Button
       {...remaining}
-      aria-disabled={pending || undefined}
+      aria-disabled={isPending || undefined}
       disabled={disabled}
-      className={cnb(pending && styles.loading, className)}
-      theme={pending ? "disabled" : theme}
+      className={cnb(isPending && styles.loading, className)}
+      theme={isPending ? "disabled" : theme}
       onClick={handleAsync(onClick)}
     >
       {children}
-      {pending && (
+      {isPending && (
         <span
           className={box({
             align: "center",

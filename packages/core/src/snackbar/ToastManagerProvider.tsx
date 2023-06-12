@@ -14,6 +14,21 @@ import type { ConfigurableToastProps } from "./Toast";
 export const DEFAULT_TOAST_VISIBLE_TIME = 5000;
 
 /**
+ * - `"normal"` - the toast will be added to the end of the queue
+ * - `"next"` - the toast will be inserted next-in-line in the queue, waiting
+ *   for the current visible toast to exit before being shown. If the toast does
+ *   not support duplicates, the existing toast will be moved instead and merged
+ *   with the toast.
+ * - `"replace"` - if there is a currently visible toast, it will start the
+ *   leave transition and display the newly added toast instead.
+ * - `"immediate"` - the same behavior as `"replace"` except that if there was a
+ *   currently visible toast, it will be shown once the newly added toast again.
+ *
+ * @remarks \@since 6.0.0 Renamed from `MessagePriority` to `ToastPriority`
+ */
+export type ToastPriority = "normal" | "next" | "replace" | "immediate";
+
+/**
  * - `"allow"` - toasts with the same `toastId` can be added into the queue, but
  *   the leave timeout behavior might not work if multiple toasts can be shown
  *   at the same time.
@@ -52,6 +67,7 @@ export interface ToastMeta {
    * - {@link ToastManager.resumeRemoveTimeout}
    */
   toastId: string;
+  priority: ToastPriority;
   duplicates: ToastDuplicateBehavior;
   visibleTime: number | null;
 }
@@ -70,6 +86,12 @@ export interface CreateToastOptions extends ConfigurableToastProps {
    * @defaultValue `"restart"`
    */
   duplicates?: ToastDuplicateBehavior;
+
+  /**
+   * @see {@link ToastPriority}
+   * @defaultValue `"normal"`
+   */
+  priority?: ToastPriority;
 
   /**
    * Set this to `null` to prevent the toast from automatically hiding,
@@ -164,6 +186,28 @@ export class ToastManager {
     return this.#queue[this.#getToastIndex(toastId)];
   };
 
+  /**
+   * Starts the exit transition for the currently shown toast and adds the next
+   * toast into the queue. This requires a manual call to `this.#emit()`
+   * afterwards.
+   */
+  #addToastImmediately = (nextToast: QueuedToast): void => {
+    const [current] = this.#queue;
+    this.clearTimer(current.toastId);
+    this.#queue[0] = {
+      ...current,
+      visible: false,
+    };
+    if (nextToast.priority === "immediate") {
+      this.#queue.splice(1, 0, nextToast, current);
+    } else {
+      this.#queue.splice(1, 0, nextToast);
+    }
+  };
+
+  /**
+   * This calls `this.#emit()` if the toast was updated
+   */
   #updateToast = (
     toastIdOrIndex: string | number,
     patch: Partial<QueuedToast>
@@ -278,14 +322,39 @@ export class ToastManager {
       toastId = nanoid(),
       visibleTime = DEFAULT_TOAST_VISIBLE_TIME,
       role = visibleTime === null ? "alert" : undefined,
+      priority = "normal",
       duplicates = "restart",
     } = toast;
 
     const existingIndex = this.#getToastIndex(toast.toastId);
     if (existingIndex !== -1 && duplicates !== "allow") {
-      const existing = this.#queue[existingIndex];
+      const existingToast = this.#queue[existingIndex];
+
+      // reorder/move the existing toast to be the next item in the queue by:
+      // - removing the toast from the queue
+      // - inserting it into the next position with the updates
+      if (priority === "next" && existingIndex > 1) {
+        this.#queue.splice(existingIndex, 1);
+        this.#queue.splice(1, 0, { ...existingToast, ...toast });
+        this.#emit();
+        return;
+      }
+
+      // only need to reorder the queue if it is not being shown
+      if (
+        priority === "replace" ||
+        (priority === "immediate" && existingIndex !== 0)
+      ) {
+        this.#addToastImmediately({
+          ...existingToast,
+          ...toast,
+        });
+        this.#emit();
+        return;
+      }
+
       const timers = this.#timers.get(toastId);
-      if (existing.visible && duplicates === "restart" && timers) {
+      if (existingToast.visible && duplicates === "restart" && timers) {
         this.#timers.set(toastId, { ...timers, elapsedTime: 0 });
         this.startRemoveTimeout(toastId);
       }
@@ -294,15 +363,29 @@ export class ToastManager {
       return;
     }
 
-    this.#queue.push({
+    const nextToast: QueuedToast = {
       ...toast,
       role,
       paused: false,
       visible: true,
       toastId,
+      priority,
       duplicates,
       visibleTime,
-    });
+    };
+
+    const isReorderRequired = this.#queue.length > 0;
+    if (priority === "next" && isReorderRequired) {
+      this.#queue.splice(1, 0, nextToast);
+    } else if (
+      (priority === "replace" || priority === "immediate") &&
+      isReorderRequired
+    ) {
+      this.#addToastImmediately(nextToast);
+    } else {
+      this.#queue.push(nextToast);
+    }
+
     this.#emit();
   };
 
@@ -390,19 +473,18 @@ export class ToastManager {
    * transition instead of immediately.
    */
   removeToast = (toastId: string, transition: boolean): void => {
-    const toastIndex = transition ? this.#getToastIndex(toastId) : -1;
-    if (toastIndex !== -1) {
+    const toastIndex = this.#getToastIndex(toastId);
+    if (toastIndex === -1) {
+      return;
+    }
+
+    if (transition) {
       this.clearTimer(toastId);
       this.#updateToast(toastIndex, { visible: false });
       return;
     }
 
-    const filtered = this.#queue.filter((toast) => toast.toastId !== toastId);
-    if (filtered.length === this.#queue.length) {
-      return;
-    }
-
-    this.#queue = filtered;
+    this.#queue.splice(toastIndex, 1);
     this.#emit();
   };
 

@@ -47,6 +47,7 @@ export function DefaultToastRenderer(props: ToastRendererProps): ReactElement {
     toastId,
     paused,
     visible,
+    priority: _priority,
     duplicates: _duplicates,
     visibleTime,
     onExited = noop,
