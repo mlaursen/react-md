@@ -1,6 +1,7 @@
 export * from "./alphaNumericSort";
 export * from "./applyRef";
 export * from "./bem";
+export * from "./filters";
 export * from "./getClientPosition";
 export * from "./getPercentage";
 export * from "./getRangeDefaultValue";
