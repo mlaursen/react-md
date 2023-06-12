@@ -12,6 +12,7 @@ import {
 import type { ReactElement } from "react";
 import { AsyncButton } from "../AsyncButton";
 import { CodeBlock } from "../Code";
+import styles from "./ToastPriorityExample.module.scss";
 
 export function ToastPriorityExample(): ReactElement {
   const { addToast, removeToast } = useToastManager();
@@ -66,12 +67,7 @@ export function ToastPriorityExample(): ReactElement {
   };
 
   return (
-    <Form
-      style={{
-        maxWidth: "30rem",
-        width: "100%",
-      }}
-    >
+    <Form className={styles.form}>
       <Box stacked align="flex-start">
         <Radio {...getRadioProps("next")} label="Next" />
         <Radio {...getRadioProps("replace")} label="Replace" />
@@ -95,13 +91,9 @@ export function ToastPriorityExample(): ReactElement {
       </AsyncButton>
       <Snackbar />
       <CodeBlock
-        style={{
-          height: "100%",
-        }}
+        className={styles.code}
         containerProps={{
-          style: {
-            height: "80rem",
-          },
+          className: styles.block,
         }}
         language="typescript"
         lineNumbers={false}

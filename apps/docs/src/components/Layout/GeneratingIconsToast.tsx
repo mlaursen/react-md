@@ -3,7 +3,7 @@ import {
   CircularProgress,
   LinearProgress,
   ToastContent,
-  useHideToast,
+  useRemoveToast,
 } from "@react-md/core";
 import CheckCircleIcon from "@react-md/material-icons/CheckCircleIcon";
 import prettyMilliseconds from "pretty-ms";
@@ -30,7 +30,7 @@ async function getStats(): Promise<GeneratingStats> {
 export default function GeneratingIconsToast(): ReactElement {
   const [state, setState] = useState<State>({ loading: false });
   const { loading, stats } = state;
-  const hide = useHideToast();
+  const removeToast = useRemoveToast();
 
   useEffect(() => {
     if (loading) {
@@ -52,7 +52,7 @@ export default function GeneratingIconsToast(): ReactElement {
     let timeout: number;
     if (remaining === 0) {
       timeout = window.setTimeout(() => {
-        hide();
+        removeToast();
       }, FIVE_SECONDS);
     } else {
       timeout = window.setTimeout(() => {
@@ -63,7 +63,7 @@ export default function GeneratingIconsToast(): ReactElement {
     return () => {
       window.clearTimeout(timeout);
     };
-  }, [hide, loading, stats]);
+  }, [loading, removeToast, stats]);
 
   let complete = false;
   let progress: ReactNode;

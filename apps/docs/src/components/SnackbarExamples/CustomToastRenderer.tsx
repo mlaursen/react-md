@@ -1,40 +1,24 @@
 import type { ToastRendererProps, ToastTheme } from "@react-md/core";
 import {
   Button,
-  HideToastProvider,
+  DefaultToastRenderer,
   Snackbar,
-  Toast,
   ToastContent,
   ToastManager,
   ToastManagerProvider,
-  useToast,
+  useRemoveToast,
+  wait,
 } from "@react-md/core";
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 import { AsyncButton } from "src/components/AsyncButton";
-import { delay } from "src/utils/delay";
 
 const manager = new ToastManager();
 
 type ToastId = "Undo" | "Redo" | "Offline" | "Success";
 
-const addToast = (toastId: ToastId): void => manager.addToast({ toastId });
-
-function assertKnownToast(_toastId: string): asserts _toastId is ToastId {
-  // pretend assertion
-}
-
-function RenderToast(props: ToastRendererProps): ReactElement {
-  const {
-    toastId,
-    updated,
-    duplicates,
-    visibleTime: propVisibleTime,
-    toastDefaults: _toastDefaults,
-    ...remaining
-  } = props;
-  assertKnownToast(toastId);
+const addToast = (toastId: ToastId): void => {
   let theme: ToastTheme = "surface";
-  let visibleTime = propVisibleTime;
+  let visibleTime: number | undefined | null;
   let closeButton = true;
   switch (toastId) {
     case "Offline":
@@ -51,47 +35,45 @@ function RenderToast(props: ToastRendererProps): ReactElement {
       break;
   }
 
-  const {
-    visible,
-    hideToast,
-    removeToast,
-    startExitTimeout,
-    pauseExitTimeout,
-    resumeExitTimeout,
-  } = useToast({
+  manager.addToast({
     toastId,
-    updated,
-    duplicates,
+    theme,
     visibleTime,
+    closeButton,
   });
+};
+
+function assertKnownToast(_toastId: string): asserts _toastId is ToastId {
+  // pretend assertion
+}
+
+function AsyncAction({ toastId }: { toastId: ToastId }): ReactElement {
+  const removeToast = useRemoveToast();
 
   return (
-    <HideToastProvider value={hideToast}>
-      <Toast
-        theme={theme}
-        closeButton={closeButton}
-        {...remaining}
-        visible={visible}
-        onEntered={startExitTimeout}
-        onExited={removeToast}
-        onMouseEnter={pauseExitTimeout}
-        onMouseLeave={resumeExitTimeout}
-        disableToastContent
-      >
-        <ToastContent>{toastId}</ToastContent>
-        {toastId !== "Offline" && toastId !== "Success" && (
-          <AsyncButton
-            onClick={async () => {
-              // pretend some API call or business logic
-              await delay(3000);
-              hideToast();
-            }}
-          >
-            {toastId}
-          </AsyncButton>
-        )}
-      </Toast>
-    </HideToastProvider>
+    <AsyncButton
+      onClick={async () => {
+        // pretend some API call or business logic
+        await wait(3000);
+        removeToast();
+      }}
+    >
+      {toastId}
+    </AsyncButton>
+  );
+}
+
+function RenderToast(props: ToastRendererProps): ReactElement {
+  const { toastId } = props;
+  assertKnownToast(toastId);
+
+  return (
+    <DefaultToastRenderer {...props} disableToastContent>
+      <ToastContent>{toastId}</ToastContent>
+      {toastId !== "Offline" && toastId !== "Success" && (
+        <AsyncAction toastId={toastId} />
+      )}
+    </DefaultToastRenderer>
   );
 }
 
