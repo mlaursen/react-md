@@ -48,6 +48,10 @@ function assertKnownToast(_toastId: string): asserts _toastId is ToastId {
 }
 
 function AsyncAction({ toastId }: { toastId: ToastId }): ReactElement {
+  // If you don't have access to the current `toastId`, you could also do:
+  // const { removeToast } = useCurrentToastActions();
+  // removeToast(true);
+
   const removeToast = useRemoveToast();
 
   return (
@@ -55,7 +59,7 @@ function AsyncAction({ toastId }: { toastId: ToastId }): ReactElement {
       onClick={async () => {
         // pretend some API call or business logic
         await wait(3000);
-        removeToast();
+        removeToast(toastId, true);
       }}
     >
       {toastId}

@@ -96,6 +96,8 @@ export interface ConfigurableToastProps
   id?: string;
 
   /**
+   * Note: This is set while creating the toast.
+   *
    * @defaultValue `visibleTime === null ? "alert" : undefined`
    */
   role?: AriaRole;
@@ -250,7 +252,7 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(function Toast(
 
   const action = !!actionButton;
   const reordered = stacked && action && closeButton;
-  const { elementProps } = useScaleTransition({
+  const { elementProps, rendered } = useScaleTransition({
     appear: true,
     nodeRef: ref,
     className: toast({
@@ -270,9 +272,16 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(function Toast(
     onExit,
     onExiting,
     onExited,
+    temporary: true,
     transitionIn: visible,
     exitedHidden: true,
   });
+
+  // this might get rid of the weird popping-back-in for a split second
+  // that sometimes happens on mobile firefox
+  if (!rendered) {
+    return null;
+  }
 
   return (
     <div {...remaining} {...elementProps} id={id}>

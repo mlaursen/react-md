@@ -1,9 +1,10 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { createRef, type MouseEvent } from "react";
-import { ToastActionButton } from "../ToastActionButton";
-import { RemoveToastProvider } from "../useRemoveToast";
 import { CoreProviders } from "../../CoreProviders";
+import { ToastActionButton } from "../ToastActionButton";
+import type { CurrentToastActions } from "../useCurrentToastActions";
+import { CurrentToastActionsProvider } from "../useCurrentToastActions";
 
 describe("ToastActionButton", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {
@@ -12,7 +13,18 @@ describe("ToastActionButton", () => {
       ref,
       children: "Button",
     } as const;
-    const { getByRole, rerender } = render(<ToastActionButton {...props} />);
+    const actions: CurrentToastActions = {
+      clearTimer: jest.fn(),
+      removeToast: jest.fn(),
+      pauseRemoveTimeout: jest.fn(),
+      startRemoveTimeout: jest.fn(),
+      resumeRemoveTimeout: jest.fn(),
+    };
+    const { getByRole, rerender } = render(
+      <CurrentToastActionsProvider value={actions}>
+        <ToastActionButton {...props} />
+      </CurrentToastActionsProvider>
+    );
 
     const button = getByRole("button", { name: "Button" });
     expect(ref.current).toBeInstanceOf(HTMLButtonElement);
@@ -20,15 +32,21 @@ describe("ToastActionButton", () => {
     expect(button).toMatchSnapshot();
 
     rerender(
-      <ToastActionButton
-        {...props}
-        style={{ color: "white" }}
-        className="custom-class-name"
-      />
+      <CurrentToastActionsProvider value={actions}>
+        <ToastActionButton
+          {...props}
+          style={{ color: "white" }}
+          className="custom-class-name"
+        />
+      </CurrentToastActionsProvider>
     );
     expect(button).toMatchSnapshot();
 
-    rerender(<ToastActionButton {...props} reordered />);
+    rerender(
+      <CurrentToastActionsProvider value={actions}>
+        <ToastActionButton {...props} reordered />
+      </CurrentToastActionsProvider>
+    );
     expect(button).toMatchSnapshot();
   });
 
@@ -38,14 +56,21 @@ describe("ToastActionButton", () => {
     const handleClick = jest.fn((_event: MouseEvent<HTMLButtonElement>) => {
       // do nothing
     });
+    const actions: CurrentToastActions = {
+      clearTimer: jest.fn(),
+      removeToast,
+      pauseRemoveTimeout: jest.fn(),
+      startRemoveTimeout: jest.fn(),
+      resumeRemoveTimeout: jest.fn(),
+    };
     const { rerender } = render(
       <ToastActionButton onClick={handleClick}>Button</ToastActionButton>,
       {
         wrapper: ({ children }) => (
           <CoreProviders elementInteractionMode="none">
-            <RemoveToastProvider value={removeToast}>
+            <CurrentToastActionsProvider value={actions}>
               {children}
-            </RemoveToastProvider>
+            </CurrentToastActionsProvider>
           </CoreProviders>
         ),
       }
@@ -67,5 +92,16 @@ describe("ToastActionButton", () => {
     rerender(<ToastActionButton>Button</ToastActionButton>);
     await user.click(button);
     expect(removeToast).toHaveBeenCalledTimes(2);
+  });
+
+  it("should throw an error if mounted without a parent CurrentToastActionsProvider", () => {
+    const error = jest.spyOn(console, "error").mockImplementation(() => {
+      // do nothing
+    });
+    expect(() => render(<ToastActionButton />)).toThrow(
+      "The `CurrentToastActionsProvider` has not been initialized"
+    );
+
+    error.mockRestore();
   });
 });

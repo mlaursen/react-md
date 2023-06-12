@@ -1,5 +1,5 @@
 import { cnb } from "cnbuilder";
-import type { ComponentType, HTMLAttributes } from "react";
+import type { AriaRole, ComponentType, HTMLAttributes } from "react";
 import { forwardRef } from "react";
 import { Portal } from "../portal";
 import { useEnsuredId } from "../useEnsuredId";
@@ -58,6 +58,9 @@ export interface SnackbarProps extends HTMLAttributes<HTMLDivElement> {
    * @defaultValue `"snackbar-" + useId()`
    */
   id?: string;
+
+  /** @defaultValue `"status"` */
+  role?: AriaRole;
 
   /**
    * Set this to the number of toasts that can be visible within the snackbar at

@@ -1,13 +1,12 @@
 import type { ReactElement } from "react";
-import { useCallback, useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { usePageInactive } from "../usePageInactive";
 import type { ConfigurableToastProps } from "./Toast";
 import { Toast } from "./Toast";
 import type { ToastMeta } from "./ToastManagerProvider";
 import { useToastManager } from "./ToastManagerProvider";
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { RemoveToastProvider } from "./useRemoveToast";
+import type { CurrentToastActions } from "./useCurrentToastActions";
+import { CurrentToastActionsProvider } from "./useCurrentToastActions";
 
 const noop = (): void => {
   // do nothing
@@ -68,28 +67,44 @@ export function DefaultToastRenderer(props: ToastRendererProps): ReactElement {
   } = toastDefaults;
 
   const toastManager = useToastManager();
+  const currentToastActions = useMemo<CurrentToastActions>(
+    () => ({
+      clearTimer() {
+        toastManager.clearTimer(toastId);
+      },
+      removeToast(transition) {
+        toastManager.removeToast(toastId, transition);
+      },
+      startRemoveTimeout() {
+        toastManager.startRemoveTimeout(toastId);
+      },
+      pauseRemoveTimeout() {
+        toastManager.pauseRemoveTimeout(toastId);
+      },
+      resumeRemoveTimeout() {
+        toastManager.resumeRemoveTimeout(toastId);
+      },
+    }),
+    [toastId, toastManager]
+  );
   useEffect(() => {
     return () => {
-      toastManager.clearTimer(toastId);
+      currentToastActions.clearTimer();
     };
-  }, [toastManager, toastId]);
+  }, [currentToastActions]);
   usePageInactive({
     disabled: !visible,
     onChange(active) {
       if (active) {
-        toastManager.resumeRemoveTimeout(toastId);
+        currentToastActions.resumeRemoveTimeout();
       } else {
-        toastManager.pauseRemoveTimeout(toastId);
+        currentToastActions.pauseRemoveTimeout();
       }
     },
   });
 
   return (
-    <RemoveToastProvider
-      value={useCallback(() => {
-        toastManager.removeToast(toastId, true);
-      }, [toastManager, toastId])}
-    >
+    <CurrentToastActionsProvider value={currentToastActions}>
       <Toast
         closeButton={
           closeButton ||
@@ -103,27 +118,27 @@ export function DefaultToastRenderer(props: ToastRendererProps): ReactElement {
         onEntered={(appearing) => {
           defaultEntered(appearing);
           onEntered(appearing);
-          toastManager.startRemoveTimeout(toastId);
+          currentToastActions.startRemoveTimeout();
         }}
         onExited={() => {
           defaultExited();
           onExited();
-          toastManager.removeToast(toastId, false);
+          currentToastActions.removeToast(false);
         }}
         onMouseEnter={(event) => {
           defaultMouseEnter(event);
           onMouseEnter(event);
-          toastManager.pauseRemoveTimeout(toastId);
+          currentToastActions.pauseRemoveTimeout();
         }}
         onMouseLeave={(event) => {
           defaultMouseLeave(event);
           onMouseLeave(event);
-          toastManager.resumeRemoveTimeout(toastId);
+          currentToastActions.resumeRemoveTimeout();
         }}
       >
         {defaults.children}
         {remaining.children}
       </Toast>
-    </RemoveToastProvider>
+    </CurrentToastActionsProvider>
   );
 }

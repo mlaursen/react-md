@@ -4,7 +4,7 @@ import type { ButtonProps, ButtonType } from "../button";
 import { Button } from "../button";
 import { useIcon } from "../icon";
 import { bem } from "../utils";
-import { useRemoveToast } from "./useRemoveToast";
+import { useCurrentToastActions } from "./useCurrentToastActions";
 
 const styles = bem("rmd-toast-x");
 const noop = (): void => {
@@ -60,7 +60,7 @@ export const ToastCloseButton = forwardRef<
   } = props;
 
   const children = useIcon("close", propChildren);
-  const removeToast = useRemoveToast();
+  const { removeToast } = useCurrentToastActions();
 
   return (
     <Button
@@ -74,7 +74,7 @@ export const ToastCloseButton = forwardRef<
           return;
         }
 
-        removeToast();
+        removeToast(true);
       }}
       className={cnb(styles({ reordered }), className)}
       buttonType={buttonType}

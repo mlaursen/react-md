@@ -3,7 +3,8 @@ import userEvent from "@testing-library/user-event";
 import { createRef, type MouseEvent } from "react";
 import { CoreProviders } from "../../CoreProviders";
 import { ToastCloseButton } from "../ToastCloseButton";
-import { RemoveToastProvider } from "../useRemoveToast";
+import type { CurrentToastActions } from "../useCurrentToastActions";
+import { CurrentToastActionsProvider } from "../useCurrentToastActions";
 
 describe("ToastCloseButton", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {
@@ -11,7 +12,18 @@ describe("ToastCloseButton", () => {
     const props = {
       ref,
     } as const;
-    const { getByRole, rerender } = render(<ToastCloseButton {...props} />);
+    const actions: CurrentToastActions = {
+      clearTimer: jest.fn(),
+      removeToast: jest.fn(),
+      pauseRemoveTimeout: jest.fn(),
+      startRemoveTimeout: jest.fn(),
+      resumeRemoveTimeout: jest.fn(),
+    };
+    const { getByRole, rerender } = render(
+      <CurrentToastActionsProvider value={actions}>
+        <ToastCloseButton {...props} />
+      </CurrentToastActionsProvider>
+    );
 
     const button = getByRole("button", { name: "Close" });
     expect(ref.current).toBeInstanceOf(HTMLButtonElement);
@@ -19,15 +31,21 @@ describe("ToastCloseButton", () => {
     expect(button).toMatchSnapshot();
 
     rerender(
-      <ToastCloseButton
-        {...props}
-        style={{ color: "white" }}
-        className="custom-class-name"
-      />
+      <CurrentToastActionsProvider value={actions}>
+        <ToastCloseButton
+          {...props}
+          style={{ color: "white" }}
+          className="custom-class-name"
+        />
+      </CurrentToastActionsProvider>
     );
     expect(button).toMatchSnapshot();
 
-    rerender(<ToastCloseButton {...props} reordered />);
+    rerender(
+      <CurrentToastActionsProvider value={actions}>
+        <ToastCloseButton {...props} reordered />
+      </CurrentToastActionsProvider>
+    );
     expect(button).toMatchSnapshot();
   });
 
@@ -37,11 +55,18 @@ describe("ToastCloseButton", () => {
     const handleClick = jest.fn((_event: MouseEvent<HTMLButtonElement>) => {
       // do nothing
     });
+    const actions: CurrentToastActions = {
+      removeToast,
+      clearTimer: jest.fn(),
+      pauseRemoveTimeout: jest.fn(),
+      startRemoveTimeout: jest.fn(),
+      resumeRemoveTimeout: jest.fn(),
+    };
     render(
       <CoreProviders elementInteractionMode="none">
-        <RemoveToastProvider value={removeToast}>
+        <CurrentToastActionsProvider value={actions}>
           <ToastCloseButton onClick={handleClick} />
-        </RemoveToastProvider>
+        </CurrentToastActionsProvider>
       </CoreProviders>
     );
 
@@ -62,12 +87,19 @@ describe("ToastCloseButton", () => {
   it("should add an aria-label for text button types when an aria-labelledby has not been provided", async () => {
     const user = userEvent.setup();
     const removeToast = jest.fn();
+    const actions: CurrentToastActions = {
+      removeToast,
+      clearTimer: jest.fn(),
+      startRemoveTimeout: jest.fn(),
+      pauseRemoveTimeout: jest.fn(),
+      resumeRemoveTimeout: jest.fn(),
+    };
     const { rerender } = render(<ToastCloseButton />, {
       wrapper: ({ children }) => (
         <CoreProviders elementInteractionMode="none">
-          <RemoveToastProvider value={removeToast}>
+          <CurrentToastActionsProvider value={actions}>
             {children}
-          </RemoveToastProvider>
+          </CurrentToastActionsProvider>
         </CoreProviders>
       ),
     });
@@ -92,16 +124,14 @@ describe("ToastCloseButton", () => {
     expect(removeToast).toHaveBeenCalled();
   });
 
-  it("should not crash if the button is clicked without a parent RemoveToastProvider", async () => {
-    const user = userEvent.setup();
-    render(
-      <CoreProviders elementInteractionMode="none">
-        <ToastCloseButton />
-      </CoreProviders>
+  it("should throw an error if mounted without a parent CurrentToastActionsProvider", () => {
+    const error = jest.spyOn(console, "error").mockImplementation(() => {
+      // do nothing
+    });
+    expect(() => render(<ToastCloseButton />)).toThrow(
+      "The `CurrentToastActionsProvider` has not been initialized"
     );
 
-    const button = screen.getByRole("button", { name: "Close" });
-    await user.click(button);
-    expect(button).toMatchSnapshot();
+    error.mockRestore();
   });
 });

@@ -111,16 +111,6 @@ export interface QueuedToast extends ConfigurableToastProps, ToastMeta {}
 /**
  * @remarks \@since 6.0.0
  */
-export type AddToast = (toast: CreateToastOptions) => void;
-
-/**
- * @remarks \@since 6.0.0
- */
-export type RemoveToast = (toastId: string) => void;
-
-/**
- * @remarks \@since 6.0.0
- */
 export type ToastQueue = readonly Readonly<QueuedToast>[];
 
 /**
@@ -342,9 +332,10 @@ export class ToastManager {
 
       // only need to reorder the queue if it is not being shown
       if (
-        priority === "replace" ||
-        (priority === "immediate" && existingIndex !== 0)
+        (priority === "replace" || priority === "immediate") &&
+        existingIndex !== 0
       ) {
+        this.#queue.splice(existingIndex, 1);
         this.#addToastImmediately({
           ...existingToast,
           ...toast,
@@ -374,12 +365,12 @@ export class ToastManager {
       visibleTime,
     };
 
-    const isReorderRequired = this.#queue.length > 0;
-    if (priority === "next" && isReorderRequired) {
+    const queueSize = this.#queue.length;
+    if (priority === "next" && queueSize > 1) {
       this.#queue.splice(1, 0, nextToast);
     } else if (
       (priority === "replace" || priority === "immediate") &&
-      isReorderRequired
+      queueSize > 0
     ) {
       this.#addToastImmediately(nextToast);
     } else {
@@ -539,40 +530,44 @@ export class ToastManager {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * The default toast manager for react-md apps that will allow toasts to be
+ * added without setting up the {@link ToastManagerProvider}.
+ *
  * @internal
+ * @remarks \@since 6.0.0
  */
 export const toastManager = new ToastManager();
 
 const context = createContext(toastManager);
-context.displayName = "Toast";
+context.displayName = "ToastManager";
 const { Provider } = context;
 
 /**
  * @see {@link ToastManager.addToast}
  * @remarks \@since 6.0.0
  */
-export const addToast = (toast: CreateToastOptions): void =>
+export const addToast: ToastManager["addToast"] = (toast) =>
   toastManager.addToast(toast);
 
 /**
  * @see {@link ToastManager.startRemoveTimeout}
  * @remarks \@since 6.0.0
  */
-export const startRemoveToastTimeout = (toastId: string): void =>
-  toastManager.startRemoveTimeout(toastId);
+export const startRemoveToastTimeout: ToastManager["startRemoveTimeout"] = (
+  toastId
+) => toastManager.startRemoveTimeout(toastId);
 
 /**
  * @see {@link ToastManager.popToast}
  * @remarks \@since 6.0.0
  */
-export const popToast = (): void => toastManager.popToast();
+export const popToast: ToastManager["popToast"] = () => toastManager.popToast();
 
 /**
  * @see {@link ToastManager.removeToast}
  * @remarks \@since 6.0.0
  */
-export const removeToast = (toastId: string, transition: boolean): void =>
+export const removeToast: ToastManager["removeToast"] = (toastId, transition) =>
   toastManager.removeToast(toastId, transition);
 
 /**
@@ -582,7 +577,16 @@ export const removeToast = (toastId: string, transition: boolean): void =>
 export const clearToasts = (): void => toastManager.clearToasts();
 
 /**
- * @internal
+ * This is mostly an internal hook to implement the toast functionality but can
+ * be used externally as well for custom toast behavior if the other hooks do
+ * not support your needs.
+ *
+ * @see {@link useAddToast}
+ * @see {@link useToastQueue}
+ * @see {@link useRemoveToast}
+ *
+ * @returns The current `ToastManager` set in the `ToastManagerProvider`.
+ * Defaults to {@link toastManager} if there are no parent providers.
  * @remarks \@since 6.0.0
  */
 export function useToastManager(): ToastManager {
@@ -590,10 +594,19 @@ export function useToastManager(): ToastManager {
 }
 
 /**
+ * @see {@link ToastManager.addToast}
  * @remarks \@since 6.0.0
  */
-export function useAddToast(): AddToast {
+export function useAddToast(): ToastManager["addToast"] {
   return useToastManager().addToast;
+}
+
+/**
+ * @see {@link ToastManager.removeToast}
+ * @remarks \@since 6.0.0
+ */
+export function useRemoveToast(): ToastManager["removeToast"] {
+  return useToastManager().removeToast;
 }
 
 /**

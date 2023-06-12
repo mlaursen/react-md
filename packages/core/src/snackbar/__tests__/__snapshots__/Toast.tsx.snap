@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toast should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<div
+  class="rmd-toast rmd-toast--surface rmd-scale-transition--enter rmd-scale-transition--enter-active"
+  data-testid="toast"
+  id="toast-:r0:"
+>
+  <div
+    class="rmd-toast-content"
+  />
+</div>
+`;
+
+exports[`Toast should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<div
+  class="rmd-toast rmd-toast--surface custom-class-name rmd-scale-transition--enter rmd-scale-transition--enter-active"
+  data-testid="toast"
+  id="toast-:r0:"
+  style="color: white;"
+>
+  <div
+    class="rmd-toast-content"
+  />
+</div>
+`;
+
+exports[`Toast should render any valid element within the ToastActionButton 1`] = `
+<button
+  class="rmd-button rmd-button--text rmd-button--text-secondary rmd-toast-action"
+  type="button"
+>
+  <span>
+    Action
+  </span>
+</button>
+`;
+
+exports[`Toast should render any valid element within the ToastActionButton 2`] = `
+<button
+  aria-label="New Action"
+  class="rmd-button rmd-button--icon rmd-button--text-secondary rmd-toast-action"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    favorite
+  </span>
+</button>
+`;

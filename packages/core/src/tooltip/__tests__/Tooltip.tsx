@@ -347,8 +347,10 @@ describe("Tooltip", () => {
     });
 
     await user.tab();
-    expect(tooltip).not.toHaveAttribute("hidden");
-    expect(tooltip).toHaveClass("rmd-tooltip--above");
+    await waitFor(() => {
+      expect(tooltip).not.toHaveAttribute("hidden");
+      expect(tooltip).toHaveClass("rmd-tooltip--above");
+    });
 
     await user.tab();
     await waitFor(() => {

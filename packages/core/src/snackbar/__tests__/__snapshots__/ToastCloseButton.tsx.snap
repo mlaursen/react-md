@@ -111,18 +111,3 @@ exports[`ToastCloseButton should apply the correct styling, HTML attributes, and
   />
 </button>
 `;
-
-exports[`ToastCloseButton should not crash if the button is clicked without a parent RemoveToastProvider 1`] = `
-<button
-  aria-label="Close"
-  class="rmd-button rmd-button--icon rmd-button--icon-square rmd-toast-x"
-  type="button"
->
-  <span
-    aria-hidden="true"
-    class="rmd-icon rmd-icon--font material-icons"
-  >
-    close
-  </span>
-</button>
-`;

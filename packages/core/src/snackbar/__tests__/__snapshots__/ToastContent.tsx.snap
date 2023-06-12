@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ToastContent should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<div
+  class="rmd-toast-content"
+  data-testid="content"
+>
+  Some Content!
+</div>
+`;
+
+exports[`ToastContent should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<div
+  class="rmd-toast-content custom-class-name"
+  data-testid="content"
+  style="color: white;"
+>
+  Some Content!
+</div>
+`;
+
+exports[`ToastContent should only render the children if the disableWrapper prop is enabled 1`] = `
+<div>
+  Content
+</div>
+`;

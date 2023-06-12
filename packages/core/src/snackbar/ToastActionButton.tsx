@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 import type { ButtonProps, ButtonTheme } from "../button";
 import { Button } from "../button";
 import { bem } from "../utils";
-import { useRemoveToast } from "./useRemoveToast";
+import { useCurrentToastActions } from "./useCurrentToastActions";
 
 const styles = bem("rmd-toast-action");
 const noop = (): void => {
@@ -45,7 +45,7 @@ export const ToastActionButton = forwardRef<
     reordered,
     ...remaining
   } = props;
-  const removeToast = useRemoveToast();
+  const { removeToast } = useCurrentToastActions();
 
   return (
     <Button
@@ -57,7 +57,7 @@ export const ToastActionButton = forwardRef<
           return;
         }
 
-        removeToast();
+        removeToast(true);
       }}
       theme={theme}
       className={cnb(styles({ reordered }), className)}
