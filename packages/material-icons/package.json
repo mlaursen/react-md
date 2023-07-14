@@ -30,8 +30,8 @@
     "cnbuilder": "^3.1.0"
   },
   "devDependencies": {
-    "@swc/core": "^1.3.62",
-    "glob": "^10.2.7"
+    "@swc/core": "^1.3.69",
+    "glob": "^10.3.3"
   },
   "peerDependencies": {
     "react": ">= 18",
