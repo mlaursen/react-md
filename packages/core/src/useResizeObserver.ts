@@ -8,6 +8,9 @@ import { useEnsuredRef } from "./useEnsuredRef";
 export type ResizeObserverEntryCallback = (entry: ResizeObserverEntry) => void;
 
 /** @internal */
+type Unsubscribe = () => void;
+
+/** @internal */
 interface TargetSize {
   height: number;
   width: number;
@@ -33,91 +36,109 @@ interface SubscribeOptions {
 }
 
 /**
- * Why is there a single shared observer instead of multiple and a
- * "subscription" model?
- *
- * Note: Probably a bit of a premature optimization right now...
- *
- * @see https://github.com/WICG/resize-observer/issues/59
  * @internal
+ * @remarks \@since 6.0.0 This was added to help with testing. The
+ * `subscriptions` and `sharedObserver` used to be module-level variables but
+ * moving to a class makes it easier to mock. Checkout the
+ * `src/tests-utils/ResizeObserver.ts`
  */
-let sharedObserver: ResizeObserver | undefined;
+export class ResizeObserverManager {
+  frame: number;
+  subscriptions: Map<Element, Set<TargetSubscription>>;
 
-/** @internal */
-const subscriptions = new Map<Element, Set<TargetSubscription>>();
+  /**
+   * Why is there a single shared observer instead of multiple and a
+   * "subscription" model?
+   *
+   * Note: Probably a bit of a premature optimization right now...
+   *
+   * @see https://github.com/WICG/resize-observer/issues/59
+   * @internal
+   */
+  sharedObserver: ResizeObserver | undefined;
+
+  constructor() {
+    this.frame = 0;
+    this.subscriptions = new Map();
+  }
+
+  subscribe = (options: SubscribeOptions): Unsubscribe => {
+    const { element, onUpdate, disableHeight, disableWidth } = options;
+
+    // lazy initialize the observer
+    const observer =
+      this.sharedObserver ||
+      new ResizeObserver((entries) => {
+        // this prevents the `ResizeObserver loop limit exceeded`
+        window.cancelAnimationFrame(this.frame);
+        this.frame = window.requestAnimationFrame(() => {
+          this.handleResizeEntries(entries);
+        });
+      });
+    this.sharedObserver = observer;
+
+    const updates = this.subscriptions.get(element) || new Set();
+    const subscription: TargetSubscription = {
+      onUpdate,
+      disableHeight,
+      disableWidth,
+    };
+    updates.add(subscription);
+    if (!this.subscriptions.has(element)) {
+      this.subscriptions.set(element, updates);
+    }
+
+    observer.observe(element);
+
+    return () => {
+      observer.unobserve(element);
+      updates.delete(subscription);
+    };
+  };
+
+  handleResizeEntries = (entries: ResizeObserverEntry[]): void => {
+    for (const entry of entries) {
+      const targetSubscriptions = this.subscriptions.get(entry.target);
+      // shouldn't really happen
+      /* c8 ignore start */
+      if (!targetSubscriptions) {
+        continue;
+      }
+      /* c8 ignore end */
+
+      const entries = targetSubscriptions.values();
+      for (const subscription of entries) {
+        const { height, width } = entry.contentRect;
+        const { scrollHeight, scrollWidth } = entry.target;
+        const { onUpdate, size, disableHeight, disableWidth } = subscription;
+        const isHeightChange =
+          !disableHeight &&
+          (!size ||
+            size.height !== height ||
+            size.scrollHeight !== scrollHeight);
+        const isWidthChange =
+          !disableWidth &&
+          (!size || size.width !== width || size.scrollWidth !== scrollWidth);
+
+        subscription.size = {
+          height,
+          width,
+          scrollHeight,
+          scrollWidth,
+        };
+        if (isHeightChange || isWidthChange) {
+          onUpdate(entry);
+        }
+      }
+    }
+  };
+}
 
 /**
  * @internal
+ * @remarks \@since 6.0.0
  */
-const handleResizeEntries: ResizeObserverCallback = (entries) => {
-  for (const entry of entries) {
-    const targetSubscriptions = subscriptions.get(entry.target);
-    // shouldn't really happen
-    if (!targetSubscriptions) {
-      continue;
-    }
-
-    const entries = targetSubscriptions.values();
-    for (const subscription of entries) {
-      const { height, width } = entry.contentRect;
-      const { scrollHeight, scrollWidth } = entry.target;
-      const { onUpdate, size, disableHeight, disableWidth } = subscription;
-      const isHeightChange =
-        !disableHeight &&
-        (!size || size.height !== height || size.scrollHeight !== scrollHeight);
-      const isWidthChange =
-        !disableWidth &&
-        (!size || size.width !== width || size.scrollWidth !== scrollWidth);
-
-      subscription.size = {
-        height,
-        width,
-        scrollHeight,
-        scrollWidth,
-      };
-      if (isHeightChange || isWidthChange) {
-        onUpdate(entry);
-      }
-    }
-  }
-};
-
-/** @internal */
-type Unsubscribe = () => void;
-
-/** @internal */
-function subscribe(options: SubscribeOptions): Unsubscribe {
-  const { element, onUpdate, disableHeight, disableWidth } = options;
-
-  // lazy initialize the observer
-  const observer =
-    sharedObserver ||
-    new ResizeObserver((entries, observer) => {
-      // this prevents the `ResizeObserver loop limit exceeded`
-      window.requestAnimationFrame(() => {
-        handleResizeEntries(entries, observer);
-      });
-    });
-  sharedObserver = observer;
-
-  const updates = subscriptions.get(element) || new Set();
-  const subscription: TargetSubscription = {
-    onUpdate,
-    disableHeight,
-    disableWidth,
-  };
-  updates.add(subscription);
-  if (!subscriptions.has(element)) {
-    subscriptions.set(element, updates);
-  }
-
-  observer.observe(element);
-
-  return () => {
-    observer.unobserve(element);
-    updates.delete(subscription);
-  };
-}
+export const resizeObserverManager = new ResizeObserverManager();
 
 /**
  * @remarks
@@ -234,7 +255,7 @@ export function useResizeObserver<E extends HTMLElement>(
       return;
     }
 
-    const unsubscribe = subscribe({
+    const unsubscribe = resizeObserverManager.subscribe({
       element,
       onUpdate,
       disableHeight,
