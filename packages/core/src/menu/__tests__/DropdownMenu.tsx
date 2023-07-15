@@ -1,34 +1,24 @@
-import type { RenderResult } from "@testing-library/react";
+import type { ReactElement } from "react";
 import {
   act,
-  render as baseRender,
+  rmdRender,
+  userEvent,
   waitFor,
   waitForElementToBeRemoved,
   within,
-} from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import type { ReactElement } from "react";
+} from "../../test-utils";
+
 import {
   DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
   DEFAULT_DESKTOP_MIN_WIDTH,
   DEFAULT_PHONE_MAX_WIDTH,
 } from "../../AppSizeProvider";
 import { Button } from "../../button";
-import { CoreProviders } from "../../CoreProviders";
 import { DialogFooter, DialogHeader } from "../../dialog";
 import { MaterialIcon } from "../../icon";
-
 import { DropdownMenu } from "../DropdownMenu";
 import { MenuItem } from "../MenuItem";
 import { useMenuVisibility } from "../MenuVisibilityProvider";
-
-function render(ui: ReactElement): RenderResult {
-  return baseRender(ui, {
-    wrapper: ({ children }) => (
-      <CoreProviders elementInteractionMode="none">{children}</CoreProviders>
-    ),
-  });
-}
 
 describe("DropdownMenu", () => {
   it("should render as a button and toggle the visibility when clicked", async () => {
@@ -37,7 +27,7 @@ describe("DropdownMenu", () => {
     const onItem2Click = jest.fn();
     const onItem3Click = jest.fn();
 
-    const { getByRole, getByTestId, findByRole } = render(
+    const { getByRole, getByTestId, findByRole } = rmdRender(
       <>
         <div data-testid="outside" />
         <DropdownMenu buttonChildren="Dropdown">
@@ -94,7 +84,7 @@ describe("DropdownMenu", () => {
   it("should allow all transitions to be disabled with the disableTransition prop", async () => {
     const user = userEvent.setup();
 
-    const { getByRole, getByText } = render(
+    const { getByRole, getByText } = rmdRender(
       <DropdownMenu buttonChildren="Dropdown" disableTransition>
         <MenuItem>Item 1</MenuItem>
         <MenuItem>Item 2</MenuItem>
@@ -118,7 +108,7 @@ describe("DropdownMenu", () => {
   // easier to not have to wait for the transitions to complete
   it("should allow for a custom id for the button and menu", async () => {
     const user = userEvent.setup();
-    const { getByRole } = render(
+    const { getByRole } = rmdRender(
       <DropdownMenu
         id="custom-button-id"
         menuProps={{ id: "custom-menu-id" }}
@@ -139,7 +129,7 @@ describe("DropdownMenu", () => {
 
   it("should allow for a custom aria-label instead of using the aria-labelledby", async () => {
     const user = userEvent.setup();
-    const { getByRole } = render(
+    const { getByRole } = rmdRender(
       <DropdownMenu
         menuProps={{ "aria-label": "Custom" }}
         buttonChildren="Dropdown"
@@ -158,7 +148,7 @@ describe("DropdownMenu", () => {
 
   it("should implement the correct keyboard movement behavior", async () => {
     const user = userEvent.setup();
-    const { getByRole, getAllByRole } = render(
+    const { getByRole, getAllByRole } = rmdRender(
       <DropdownMenu buttonChildren="Dropdown" disableTransition>
         <MenuItem>Item 1</MenuItem>
         <MenuItem>Another 1</MenuItem>
@@ -219,7 +209,7 @@ describe("DropdownMenu", () => {
         return 0;
       });
     const user = userEvent.setup();
-    const { getByRole, rerender } = render(
+    const { getByRole, rerender } = rmdRender(
       <DropdownMenu buttonChildren="Dropdown" disableTransition>
         <MenuItem>Item</MenuItem>
       </DropdownMenu>
@@ -262,7 +252,7 @@ describe("DropdownMenu", () => {
         return 0;
       });
     const user = userEvent.setup();
-    const { getByRole, rerender } = render(
+    const { getByRole, rerender } = rmdRender(
       <DropdownMenu buttonChildren="Dropdown" disableTransition>
         <MenuItem>Item</MenuItem>
       </DropdownMenu>
@@ -376,7 +366,7 @@ describe("DropdownMenu", () => {
       );
     }
 
-    const { getByRole, findByRole } = render(
+    const { getByRole, findByRole } = rmdRender(
       <DropdownMenu
         buttonChildren="Dropdown"
         renderAsSheet="phone"
@@ -466,7 +456,7 @@ describe("DropdownMenu", () => {
   });
 
   it("should remove the dropdown icon when rendered as an icon button", () => {
-    const { getByRole, rerender } = render(
+    const { getByRole, rerender } = rmdRender(
       <DropdownMenu
         aria-label="Options"
         buttonType="icon"
@@ -488,7 +478,7 @@ describe("DropdownMenu", () => {
   });
 
   it("should allow for a custom dropdown icon before or after the children", () => {
-    const { getByRole, rerender } = render(
+    const { getByRole, rerender } = rmdRender(
       <DropdownMenu
         buttonChildren="Dropdown"
         icon={<MaterialIcon name="favorite" />}
@@ -523,7 +513,7 @@ describe("DropdownMenu", () => {
 
   it("should render as a menuitem when a DropdownMenu is a child of another DropdownMenu", async () => {
     const user = userEvent.setup();
-    const { getByRole, findByRole } = render(
+    const { getByRole, findByRole } = rmdRender(
       <DropdownMenu buttonChildren="Dropdown">
         <DropdownMenu buttonChildren="Nested Dropdown 1">
           <MenuItem>Nested Item 1</MenuItem>
@@ -587,7 +577,7 @@ describe("DropdownMenu", () => {
   it("should include disabled menu items for the keyboard movement", async () => {
     const onItemClick = jest.fn();
     const user = userEvent.setup();
-    const { getByRole } = render(
+    const { getByRole } = rmdRender(
       <DropdownMenu buttonChildren="Dropdown">
         <MenuItem disabled>Frozen yogurt</MenuItem>
         <MenuItem disabled onClick={onItemClick}>

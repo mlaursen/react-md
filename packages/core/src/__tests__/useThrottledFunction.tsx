@@ -1,9 +1,8 @@
-import { act, fireEvent, render, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import type { MutableRefObject, ReactElement } from "react";
 import { useEffect, useState } from "react";
-import { TextField } from "../form";
+import { act, fireEvent, render, userEvent, waitFor } from "../test-utils";
 
+import { TextField } from "../form";
 import { useThrottledFunction } from "../useThrottledFunction";
 
 function SyncTest(): ReactElement {

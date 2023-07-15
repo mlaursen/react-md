@@ -1,30 +1,27 @@
-import type { RenderResult } from "@testing-library/react";
-import { render as baseRender, screen } from "@testing-library/react";
 import type { ReactElement } from "react";
 import { createRef } from "react";
-import { CoreProviders } from "../../CoreProviders";
+import type { RenderResult } from "../../test-utils";
+import { rmdRender as baseRender, screen, userEvent } from "../../test-utils";
+
+import { FontIcon } from "../../icon";
 import { Typography } from "../../typography";
 import { Toast } from "../Toast";
 import { CurrentToastActionsProvider } from "../useCurrentToastActions";
-import { FontIcon } from "../../icon";
-import userEvent from "@testing-library/user-event";
 
 const render = (ui: ReactElement): RenderResult =>
   baseRender(ui, {
     wrapper: ({ children }) => (
-      <CoreProviders elementInteractionMode="none">
-        <CurrentToastActionsProvider
-          value={{
-            clearTimer: jest.fn(),
-            pauseRemoveTimeout: jest.fn(),
-            removeToast: jest.fn(),
-            resumeRemoveTimeout: jest.fn(),
-            startRemoveTimeout: jest.fn(),
-          }}
-        >
-          {children}
-        </CurrentToastActionsProvider>
-      </CoreProviders>
+      <CurrentToastActionsProvider
+        value={{
+          clearTimer: jest.fn(),
+          pauseRemoveTimeout: jest.fn(),
+          removeToast: jest.fn(),
+          resumeRemoveTimeout: jest.fn(),
+          startRemoveTimeout: jest.fn(),
+        }}
+      >
+        {children}
+      </CurrentToastActionsProvider>
     ),
   });
 

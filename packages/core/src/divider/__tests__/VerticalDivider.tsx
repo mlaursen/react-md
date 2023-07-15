@@ -1,5 +1,5 @@
-import { render } from "@testing-library/react";
 import { createRef } from "react";
+import { render } from "../../test-utils";
 
 import { VerticalDivider } from "../VerticalDivider";
 
@@ -16,7 +16,7 @@ describe("VerticalDivider", () => {
     rerender(
       <VerticalDivider
         ref={ref}
-        style={{ color: "vlue" }}
+        style={{ color: "blue" }}
         className="custom-class-name"
       />
     );

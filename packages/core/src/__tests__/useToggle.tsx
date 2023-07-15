@@ -1,4 +1,4 @@
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render } from "../test-utils";
 import type { ReactElement } from "react";
 
 import { useToggle } from "../useToggle";

@@ -1,6 +1,6 @@
-import { render, screen, waitFor } from "@testing-library/react";
-
 import { createRef } from "react";
+import { render, screen, waitFor } from "../../test-utils";
+
 import { ToastContent } from "../ToastContent";
 
 describe("ToastContent", () => {

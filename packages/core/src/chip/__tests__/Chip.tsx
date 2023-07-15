@@ -1,5 +1,6 @@
-import { fireEvent, render } from "@testing-library/react";
 import { createRef } from "react";
+import { fireEvent, render } from "../../test-utils";
+
 import { FontIcon } from "../../icon";
 import { ElementInteractionProvider } from "../../interaction";
 import { Chip } from "../Chip";

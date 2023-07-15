@@ -11,6 +11,7 @@ exports[`Divider should apply the correct styling, HTML attributes, and allow a 
 <hr
   class="rmd-divider custom-class-name"
   role="separator"
+  style="color: blue;"
 />
 `;
 
@@ -18,6 +19,7 @@ exports[`Divider should apply the correct styling, HTML attributes, and allow a 
 <hr
   class="rmd-divider rmd-divider--inset"
   role="separator"
+  style=""
 />
 `;
 

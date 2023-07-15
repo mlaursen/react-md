@@ -1,6 +1,6 @@
-import { fireEvent, render } from "@testing-library/react";
-import { Button } from "../../button";
+import { fireEvent, render } from "../../test-utils";
 
+import { Button } from "../../button";
 import { useMenuVisibility } from "../MenuVisibilityProvider";
 
 describe("MenuVisibilityProvider", () => {

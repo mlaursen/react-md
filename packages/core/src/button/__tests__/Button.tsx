@@ -1,8 +1,9 @@
-import { fireEvent, render } from "@testing-library/react";
 import { createRef } from "react";
+import { fireEvent, render } from "../../test-utils";
+
 import { ElementInteractionProvider } from "../../interaction";
 import type { ButtonTheme, ButtonThemeType, ButtonType } from "../Button";
-import { button, Button } from "../Button";
+import { Button, button } from "../Button";
 
 describe("Button", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {

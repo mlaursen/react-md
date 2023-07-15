@@ -1,5 +1,6 @@
-import { render } from "@testing-library/react";
 import { cnb } from "cnbuilder";
+import { render } from "../../test-utils";
+
 import { FontIcon } from "../FontIcon";
 import { IconRotator } from "../IconRotator";
 import { SVGIcon } from "../SVGIcon";

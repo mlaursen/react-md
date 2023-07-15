@@ -1,5 +1,5 @@
-import { render } from "@testing-library/react";
 import type { HTMLAttributes, ReactElement } from "react";
+import { render } from "../../test-utils";
 
 import type { TypographyType } from "../Typography";
 import { typography, Typography } from "../Typography";

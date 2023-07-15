@@ -1,19 +1,11 @@
-import { act, render as baseRender, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import type { MouseEvent, ReactElement } from "react";
+import { act, rmdRender, userEvent, waitFor } from "../test-utils";
+
 import { box } from "../box";
 import type { ButtonProps } from "../button";
 import { Button } from "../button";
-import { CoreProviders } from "../CoreProviders";
 import { CircularProgress } from "../progress";
 import { useAsyncAction } from "../useAsyncAction";
-
-const render = (ui: ReactElement): ReturnType<typeof baseRender> =>
-  baseRender(ui, {
-    wrapper: ({ children }) => (
-      <CoreProviders elementInteractionMode="none">{children}</CoreProviders>
-    ),
-  });
 
 interface TestProps extends ButtonProps {
   onClick(event: MouseEvent<HTMLButtonElement>): Promise<void>;
@@ -67,7 +59,7 @@ describe("useAsyncAction", () => {
         instance.addEventListener("resolve-promise", () => resolve());
       });
     });
-    const { getByRole, unmount } = render(<Test onClick={onClick} />);
+    const { getByRole, unmount } = rmdRender(<Test onClick={onClick} />);
     const button = getByRole("button", { name: "Button" });
 
     expect(button).not.toHaveAttribute("aria-disabled");
@@ -109,7 +101,7 @@ describe("useAsyncAction", () => {
       onClick,
     };
 
-    const { getByRole, rerender } = render(<Test {...props} disabled />);
+    const { getByRole, rerender } = rmdRender(<Test {...props} disabled />);
     const button = getByRole("button", { name: "Button" });
     expect(button).toBeDisabled();
 

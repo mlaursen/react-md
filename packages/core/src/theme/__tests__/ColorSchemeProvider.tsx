@@ -1,5 +1,6 @@
-import { render } from "@testing-library/react";
 import type { ChangeEvent, ReactElement } from "react";
+import { render } from "../../test-utils";
+
 import type { ColorScheme, SetColorSchemeMode } from "../ColorSchemeProvider";
 import { ColorSchemeProvider, useColorScheme } from "../ColorSchemeProvider";
 import { backgroundColorVar } from "../cssVars";

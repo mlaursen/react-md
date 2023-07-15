@@ -1,21 +1,12 @@
-import { render as baseRender, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import type { ReactElement } from "react";
-import { CoreProviders } from "../../CoreProviders";
+import { rmdRender, userEvent, waitFor } from "../../test-utils";
+
 import { Slide, SlideContainer } from "../../transition";
 import { Tab } from "../Tab";
 import type { TabListProps } from "../TabList";
 import { TabList } from "../TabList";
-
 import type { TabsHookOptions } from "../useTabs";
 import { useTabs } from "../useTabs";
-
-const render = (ui: ReactElement): ReturnType<typeof baseRender> =>
-  baseRender(ui, {
-    wrapper: ({ children }) => (
-      <CoreProviders elementInteractionMode="none">{children}</CoreProviders>
-    ),
-  });
 
 type TestProps = TabsHookOptions & Pick<TabListProps, "activationMode">;
 
@@ -43,7 +34,7 @@ function Test(props: TestProps): ReactElement {
 describe("useTabs", () => {
   it("should scroll to the top of the tab panels element unless disableScrollFix is true", async () => {
     const user = userEvent.setup();
-    const { getByRole, getByTestId, rerender } = render(
+    const { getByRole, getByTestId, rerender } = rmdRender(
       <Test disableScrollFix />
     );
 
@@ -63,7 +54,7 @@ describe("useTabs", () => {
 
   it("should move focus without selecting the next tab with keyboard movement when the activationMode is not automatic", async () => {
     const user = userEvent.setup();
-    const { getByRole } = render(<Test />);
+    const { getByRole } = rmdRender(<Test />);
     const tabList = getByRole("tablist");
     const tab1 = getByRole("tab", { name: "Tab 1" });
     const tab2 = getByRole("tab", { name: "Tab 2" });
@@ -180,7 +171,7 @@ describe("useTabs", () => {
 
   it("should focus and select next tab when the activationMode is set to automatic", async () => {
     const user = userEvent.setup();
-    const { getByRole } = render(<Test activationMode="automatic" />);
+    const { getByRole } = rmdRender(<Test activationMode="automatic" />);
     const tabList = getByRole("tablist");
     const tab1 = getByRole("tab", { name: "Tab 1" });
     const tab2 = getByRole("tab", { name: "Tab 2" });

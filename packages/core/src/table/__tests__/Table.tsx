@@ -1,9 +1,9 @@
-import { render } from "@testing-library/react";
 import { createRef } from "react";
-import { act } from "react-dom/test-utils";
+import { act, render } from "../../test-utils";
+
 import type { PropsWithRef } from "../../types";
 import type { TableProps } from "../Table";
-import { table, Table } from "../Table";
+import { Table, table } from "../Table";
 import { TableBody } from "../TableBody";
 import { TableCell } from "../TableCell";
 import { TableContainer } from "../TableContainer";

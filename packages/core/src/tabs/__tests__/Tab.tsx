@@ -1,4 +1,5 @@
-import { render } from "@testing-library/react";
+import { render } from "../../test-utils";
+
 import { FontIcon } from "../../icon";
 import type { TabProps } from "../Tab";
 import { Tab } from "../Tab";

@@ -1,24 +1,22 @@
-import type { RenderOptions, RenderResult } from "@testing-library/react";
-import { render as baseRender, screen } from "@testing-library/react";
 import type { ReactElement } from "react";
 import { createRef } from "react";
-import { CoreProviders } from "../../CoreProviders";
+import type { ReactMDRenderOptions, RenderResult } from "../../test-utils";
+import { rmdRender, screen } from "../../test-utils";
+
 import type { SnackbarPosition } from "../Snackbar";
 import { Snackbar } from "../Snackbar";
 import { ToastManager, ToastManagerProvider } from "../ToastManagerProvider";
 
 const render = (
   ui: ReactElement,
-  options: RenderOptions = {}
+  options?: ReactMDRenderOptions
 ): RenderResult => {
-  return baseRender(ui, {
+  return rmdRender(ui, {
     ...options,
     wrapper: ({ children }) => (
-      <CoreProviders elementInteractionMode="none">
-        <ToastManagerProvider manager={new ToastManager()}>
-          {children}
-        </ToastManagerProvider>
-      </CoreProviders>
+      <ToastManagerProvider manager={new ToastManager()}>
+        {children}
+      </ToastManagerProvider>
     ),
   });
 };

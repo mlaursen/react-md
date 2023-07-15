@@ -1,14 +1,14 @@
 import type { ReactElement } from "react";
 import { useRef, useState } from "react";
-import { act, fireEvent, render } from "@testing-library/react";
+import { act, fireEvent, render } from "../../test-utils";
 
+import { useScaleTransition } from "../../transition";
+import { TOP_INNER_RIGHT_ANCHOR } from "../constants";
 import type {
   FixedPositioningOptions,
   FixedPositioningTransitionCallbacks,
 } from "../useFixedPositioning";
 import { useFixedPositioning } from "../useFixedPositioning";
-import { useScaleTransition } from "../../transition";
-import { TOP_INNER_RIGHT_ANCHOR } from "../constants";
 
 interface TestProps
   extends Omit<

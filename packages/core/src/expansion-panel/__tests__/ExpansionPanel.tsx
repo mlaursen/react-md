@@ -1,7 +1,13 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import type { ReactElement } from "react";
 import { createRef } from "react";
+import {
+  fireEvent,
+  render,
+  screen,
+  userEvent,
+  waitFor,
+} from "../../test-utils";
+
 import { ExpansionList } from "../ExpansionList";
 import type { ExpansionPanelProps } from "../ExpansionPanel";
 import { ExpansionPanel } from "../ExpansionPanel";

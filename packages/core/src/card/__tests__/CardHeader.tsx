@@ -1,5 +1,6 @@
-import { render } from "@testing-library/react";
 import { createRef } from "react";
+import { render } from "../../test-utils";
+
 import { Button } from "../../button";
 import { CardHeader } from "../CardHeader";
 import { CardSubtitle } from "../CardSubtitle";

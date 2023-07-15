@@ -1,6 +1,7 @@
-import { render } from "@testing-library/react";
 import type { HTMLAttributes, ReactElement } from "react";
 import { forwardRef } from "react";
+import { render } from "../../test-utils";
+
 import { Link } from "../../link";
 import { List } from "../List";
 import { ListItemLink } from "../ListItemLink";

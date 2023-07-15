@@ -1,7 +1,6 @@
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { createRef, type MouseEvent } from "react";
-import { CoreProviders } from "../../CoreProviders";
+import { render, rmdRender, screen, userEvent } from "../../test-utils";
+
 import { ToastActionButton } from "../ToastActionButton";
 import type { CurrentToastActions } from "../useCurrentToastActions";
 import { CurrentToastActionsProvider } from "../useCurrentToastActions";
@@ -63,15 +62,13 @@ describe("ToastActionButton", () => {
       startRemoveTimeout: jest.fn(),
       resumeRemoveTimeout: jest.fn(),
     };
-    const { rerender } = render(
+    const { rerender } = rmdRender(
       <ToastActionButton onClick={handleClick}>Button</ToastActionButton>,
       {
         wrapper: ({ children }) => (
-          <CoreProviders elementInteractionMode="none">
-            <CurrentToastActionsProvider value={actions}>
-              {children}
-            </CurrentToastActionsProvider>
-          </CoreProviders>
+          <CurrentToastActionsProvider value={actions}>
+            {children}
+          </CurrentToastActionsProvider>
         ),
       }
     );

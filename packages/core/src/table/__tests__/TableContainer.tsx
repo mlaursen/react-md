@@ -1,5 +1,6 @@
-import { render } from "@testing-library/react";
 import { createRef } from "react";
+import { render } from "../../test-utils";
+
 import { TableContainer } from "../TableContainer";
 
 describe("TableContainer", () => {

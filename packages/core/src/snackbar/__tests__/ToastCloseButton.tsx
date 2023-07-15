@@ -1,7 +1,6 @@
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { createRef, type MouseEvent } from "react";
-import { CoreProviders } from "../../CoreProviders";
+import { render, rmdRender, screen, userEvent } from "../../test-utils";
+
 import { ToastCloseButton } from "../ToastCloseButton";
 import type { CurrentToastActions } from "../useCurrentToastActions";
 import { CurrentToastActionsProvider } from "../useCurrentToastActions";
@@ -62,12 +61,10 @@ describe("ToastCloseButton", () => {
       startRemoveTimeout: jest.fn(),
       resumeRemoveTimeout: jest.fn(),
     };
-    render(
-      <CoreProviders elementInteractionMode="none">
-        <CurrentToastActionsProvider value={actions}>
-          <ToastCloseButton onClick={handleClick} />
-        </CurrentToastActionsProvider>
-      </CoreProviders>
+    rmdRender(
+      <CurrentToastActionsProvider value={actions}>
+        <ToastCloseButton onClick={handleClick} />
+      </CurrentToastActionsProvider>
     );
 
     const button = screen.getByRole("button", { name: "Close" });
@@ -77,7 +74,7 @@ describe("ToastCloseButton", () => {
     expect(handleClick).toHaveBeenCalledTimes(1);
 
     handleClick.mockImplementation((event) => {
-      event?.stopPropagation();
+      event.stopPropagation();
     });
     await user.click(button);
     expect(removeToast).toHaveBeenCalledTimes(1);
@@ -94,13 +91,11 @@ describe("ToastCloseButton", () => {
       pauseRemoveTimeout: jest.fn(),
       resumeRemoveTimeout: jest.fn(),
     };
-    const { rerender } = render(<ToastCloseButton />, {
+    const { rerender } = rmdRender(<ToastCloseButton />, {
       wrapper: ({ children }) => (
-        <CoreProviders elementInteractionMode="none">
-          <CurrentToastActionsProvider value={actions}>
-            {children}
-          </CurrentToastActionsProvider>
-        </CoreProviders>
+        <CurrentToastActionsProvider value={actions}>
+          {children}
+        </CurrentToastActionsProvider>
       ),
     });
 

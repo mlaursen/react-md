@@ -1,2 +1,2 @@
-import "@react-md/test-utils/polyfills";
+import "@react-md/core/test-utils/polyfills";
 import "@testing-library/jest-dom/extend-expect";

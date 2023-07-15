@@ -1,6 +1,6 @@
 import type { ReactElement, ReactNode } from "react";
 import { cnb } from "cnbuilder";
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render } from "../test-utils";
 
 import type { DropzoneOptions } from "../useDropzone";
 import { useDropzone } from "../useDropzone";

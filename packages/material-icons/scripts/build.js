@@ -9,16 +9,18 @@ declare const _default: import("react").ForwardRefExoticComponent<SVGIconProps &
 export default _default;
 `;
 
+const SRC_DIR = "src";
+
 // clean -- about the same as `rm -f *Icon.d.ts *Icon.js`
 const existing = await glob(["*Icon.d.ts", "*Icon.js"]);
 await Promise.all(existing.map((fileName) => rm(fileName)));
 
 const components = await glob("*.tsx", {
-  cwd: "src",
+  cwd: SRC_DIR,
 });
 
 const promises = components.map(async (name) => {
-  const { code } = await transformFile(join("src", name), {
+  const { code } = await transformFile(join(SRC_DIR, name), {
     jsc: {
       parser: {
         syntax: "typescript",

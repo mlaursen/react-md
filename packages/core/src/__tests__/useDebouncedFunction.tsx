@@ -1,6 +1,5 @@
-import { act, fireEvent, render, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { useState } from "react";
+import { act, fireEvent, render, userEvent, waitFor } from "../test-utils";
 
 import { TextField } from "../form";
 import { useDebouncedFunction } from "../useDebouncedFunction";

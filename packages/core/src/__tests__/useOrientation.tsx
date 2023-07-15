@@ -1,5 +1,4 @@
-import { render } from "@testing-library/react";
-import { act } from "react-dom/test-utils";
+import { act, render } from "../test-utils";
 
 import { useOrientation } from "../useOrientation";
 

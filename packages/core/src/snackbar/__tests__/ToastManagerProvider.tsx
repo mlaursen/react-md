@@ -1,15 +1,14 @@
-import type { RenderOptions, RenderResult } from "@testing-library/react";
+import type { RenderResult } from "../../test-utils";
 import {
   act,
-  render as baseRender,
+  rmdRender,
   screen,
+  userEvent,
   waitFor,
   within,
-} from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+} from "../../test-utils";
+
 import type { ReactElement, ReactNode } from "react";
-import { Fragment } from "react";
-import { CoreProviders } from "../../CoreProviders";
 import { Button } from "../../button";
 import type { SnackbarProps } from "../Snackbar";
 import { Snackbar } from "../Snackbar";
@@ -28,23 +27,8 @@ import {
 const ENTER_CLASS_NAME = "rmd-scale-transition--enter";
 const LEAVE_CLASS_NAME = "rmd-scale-transition--exit";
 
-const render = (
-  ui: ReactElement,
-  options: RenderOptions = {}
-): RenderResult => {
-  const { wrapper: Wrapper = Fragment } = options;
-  return baseRender(ui, {
-    ...options,
-    wrapper: ({ children }) => (
-      <CoreProviders elementInteractionMode="none">
-        <Wrapper>{children}</Wrapper>
-      </CoreProviders>
-    ),
-  });
-};
-
 const renderWithManager = (ui: ReactElement): RenderResult =>
-  render(ui, {
+  rmdRender(ui, {
     wrapper: ({ children }) => (
       <ToastManagerProvider manager={new ToastManager()}>
         {children}
@@ -111,7 +95,7 @@ describe("ToastManagerProvider", () => {
         );
       }
 
-      render(<Test />);
+      rmdRender(<Test />);
       const button = screen.getByRole("button", { name: "Button" });
       const snackbar = screen.getByRole("status");
       expect(snackbar).toBeInTheDocument();
@@ -131,7 +115,7 @@ describe("ToastManagerProvider", () => {
     });
 
     it("should allow toasts to be added outside of a react component (like redux)", async () => {
-      render(<Snackbar />);
+      rmdRender(<Snackbar />);
       const snackbar = screen.getByRole("status");
       expect(snackbar).toBeInTheDocument();
       expect(snackbar).toBeEmptyDOMElement();

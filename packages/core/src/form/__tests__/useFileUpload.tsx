@@ -1,6 +1,5 @@
-import { act, fireEvent, render } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { useEffect } from "react";
+import { act, fireEvent, render, userEvent } from "../../test-utils";
 
 import { ElementInteractionProvider } from "../../interaction";
 import { FileInput } from "../FileInput";

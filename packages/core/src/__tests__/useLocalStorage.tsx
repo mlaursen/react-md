@@ -1,10 +1,10 @@
-import { act, fireEvent, render } from "@testing-library/react";
 import { compress, decompress } from "lz-string";
 import type { ReactElement } from "react";
 import { useEffect } from "react";
+import { act, fireEvent, render } from "../test-utils";
+
 import { Button } from "../button";
 import { SsrProvider } from "../SsrProvider";
-
 import type { LocalStorageDeserializer } from "../useLocalStorage";
 import { useLocalStorage } from "../useLocalStorage";
 

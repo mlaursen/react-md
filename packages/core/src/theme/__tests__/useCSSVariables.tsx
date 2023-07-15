@@ -1,9 +1,9 @@
-import { fireEvent, render } from "@testing-library/react";
 import type { CSSProperties, ReactElement, RefObject } from "react";
 import { useMemo, useRef, useState } from "react";
+import { fireEvent, render } from "../../test-utils";
+
 import { textPrimaryColorVar } from "../cssVars";
 import type { CSSVariableName, DefinedCSSVariableName } from "../types";
-
 import type { ReadonlyCSSVariableList } from "../useCSSVariables";
 import { useCSSVariables } from "../useCSSVariables";
 

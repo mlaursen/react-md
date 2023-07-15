@@ -1,5 +1,5 @@
-import { render } from "@testing-library/react";
 import type { FC, PropsWithChildren } from "react";
+import { render } from "../../test-utils";
 
 import { useHigherContrastChildren } from "../useHigherContrastChildren";
 

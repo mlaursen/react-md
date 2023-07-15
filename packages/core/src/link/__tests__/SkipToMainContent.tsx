@@ -1,6 +1,6 @@
-import { fireEvent, render } from "@testing-library/react";
 import type { FC, ReactNode } from "react";
 import { createRef } from "react";
+import { fireEvent, render } from "../../test-utils";
 
 import { SkipToMainContent } from "../SkipToMainContent";
 

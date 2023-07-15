@@ -1,5 +1,6 @@
-import { render } from "@testing-library/react";
 import { createRef } from "react";
+import { render } from "../../test-utils";
+
 import type { PropsWithRef } from "../../types";
 import { Typography } from "../../typography";
 import type {
@@ -7,8 +8,8 @@ import type {
   ResponsiveItemOverlayProps,
 } from "../ResponsiveItemOverlay";
 import {
-  responsiveItemOverlay,
   ResponsiveItemOverlay,
+  responsiveItemOverlay,
 } from "../ResponsiveItemOverlay";
 
 describe("ResponsiveItemOverlay", () => {

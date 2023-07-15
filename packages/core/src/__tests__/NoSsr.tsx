@@ -1,5 +1,5 @@
-import { render } from "@testing-library/react";
 import type { ReactElement } from "react";
+import { render } from "../test-utils";
 
 import { NoSsr } from "../NoSsr";
 import { SsrProvider, useSsr } from "../SsrProvider";

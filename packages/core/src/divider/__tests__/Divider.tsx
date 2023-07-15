@@ -1,5 +1,5 @@
-import { render } from "@testing-library/react";
 import { createRef } from "react";
+import { render } from "../../test-utils";
 
 import { Divider } from "../Divider";
 import { divider } from "../styles";
@@ -17,7 +17,7 @@ describe("Divider", () => {
     rerender(
       <Divider
         ref={ref}
-        style={{ color: "vlue" }}
+        style={{ color: "blue" }}
         className="custom-class-name"
       />
     );

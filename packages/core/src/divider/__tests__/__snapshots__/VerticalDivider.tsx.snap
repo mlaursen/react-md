@@ -12,7 +12,7 @@ exports[`VerticalDivider should apply the correct styling, HTML attributes, and 
 <div
   class="rmd-divider rmd-divider--vertical custom-class-name"
   role="separator"
-  style="height: 0px;"
+  style="height: 0px; color: blue;"
 />
 `;
 

@@ -9,6 +9,7 @@
     "build": "next build",
     "build-static": "next build && next export",
     "start": "next start",
+    "clean": "rm -rf .turbo node_modules",
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{ts,tsx,js,jsx,cjs,mjs}\"",
     "test": "jest"
@@ -46,7 +47,6 @@
   },
   "devDependencies": {
     "@jest/types": "^29.6.1",
-    "@react-md/test-utils": "workspace:*",
     "@swc/core": "^1.3.69",
     "@testing-library/dom": "^9.3.1",
     "@testing-library/jest-dom": "^5.16.5",

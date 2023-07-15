@@ -1,9 +1,9 @@
-import { fireEvent, render, waitFor, within } from "@testing-library/react";
 import type { ReactElement } from "react";
+import { fireEvent, render, waitFor, within } from "../../test-utils";
+
 import { Button } from "../../button";
 import { SsrProvider } from "../../SsrProvider";
 import { useToggle } from "../../useToggle";
-
 import type { OverlayProps } from "../Overlay";
 import { Overlay } from "../Overlay";
 

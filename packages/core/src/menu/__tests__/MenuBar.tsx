@@ -1,26 +1,16 @@
-import type { RenderOptions } from "@testing-library/react";
+import type { MouseEventHandler, ReactElement } from "react";
 import {
   act,
   fireEvent,
-  render as baseRender,
+  rmdRender,
+  userEvent,
   waitFor,
   within,
-} from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import type { MouseEventHandler, ReactElement } from "react";
-import { CoreProviders } from "../../CoreProviders";
-import { DropdownMenu } from "../DropdownMenu";
+} from "../../test-utils";
 
+import { DropdownMenu } from "../DropdownMenu";
 import { MenuBar } from "../MenuBar";
 import { MenuItem } from "../MenuItem";
-
-const render = (ui: ReactElement, options?: RenderOptions) =>
-  baseRender(ui, {
-    ...options,
-    wrapper: ({ children }) => (
-      <CoreProviders elementInteractionMode="none">{children}</CoreProviders>
-    ),
-  });
 
 interface TestProps {
   hoverTimeout?: number;
@@ -74,7 +64,7 @@ describe("MenuBar", () => {
 
   it("should support a click-first hover mode behavior by default", async () => {
     const user = userEvent.setup();
-    const { getByRole } = render(<Test />);
+    const { getByRole } = rmdRender(<Test />);
 
     const menubar = getByRole("menubar", { name: "Example" });
     const menubarItems = within(menubar).getAllByRole("menuitem");
@@ -107,7 +97,7 @@ describe("MenuBar", () => {
 
   it("should support immediate hover mode behavior by setting the hoverTimeout to 0", async () => {
     const user = userEvent.setup();
-    const { getByRole } = render(<Test hoverTimeout={0} />);
+    const { getByRole } = rmdRender(<Test hoverTimeout={0} />);
     const item1 = getByRole("menuitem", { name: "Font" });
     const item4 = getByRole("menuitem", { name: "Size" });
 
@@ -141,7 +131,7 @@ describe("MenuBar", () => {
 
   it("should support a custom hover timeout to start the hover mode", () => {
     jest.useFakeTimers();
-    const { getByRole } = render(<Test hoverTimeout={1000} />);
+    const { getByRole } = rmdRender(<Test hoverTimeout={1000} />);
 
     const font = getByRole("menuitem", { name: "Font" });
     const style = getByRole("menuitem", { name: "Style" });
@@ -180,7 +170,7 @@ describe("MenuBar", () => {
 
   it("should open nested dropdown menus immediately on hover", async () => {
     const user = userEvent.setup();
-    const { getByRole } = render(<Test />);
+    const { getByRole } = rmdRender(<Test />);
 
     const menubar = getByRole("menubar", { name: "Example" });
     const menubarItems = within(menubar).getAllByRole("menuitem");
@@ -199,7 +189,7 @@ describe("MenuBar", () => {
 
   it("should support keyboard movement correctly", async () => {
     const user = userEvent.setup();
-    const { getByRole } = render(
+    const { getByRole } = rmdRender(
       <>
         <button>before</button>
         <Test />
@@ -327,7 +317,7 @@ describe("MenuBar", () => {
 
   it("should refocus the top-level menuitem when the tab key is pressed", async () => {
     const user = userEvent.setup();
-    const { getByRole } = render(<Test />);
+    const { getByRole } = rmdRender(<Test />);
 
     await user.tab();
     await user.keyboard("[End][Space]");

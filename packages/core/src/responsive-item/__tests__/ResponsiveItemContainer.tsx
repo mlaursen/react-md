@@ -1,5 +1,6 @@
-import { render } from "@testing-library/react";
+import { render } from "../../test-utils";
 import { createRef } from "react";
+
 import type { PropsWithRef } from "../../types";
 import type { ResponsiveItemContainerProps } from "../ResponsiveItemContainer";
 import {

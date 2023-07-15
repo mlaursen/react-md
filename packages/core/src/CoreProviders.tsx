@@ -28,7 +28,8 @@ import {
   WritingDirection,
 } from "./typography/WritingDirection";
 
-export interface CoreProvidersProps {
+/** @remarks \@since 6.0.0 */
+export interface ReactMDCoreConfiguration {
   /**
    * @defaultValue `DEFAULT_APP_SIZE`
    * @see {@link DEFAULT_APP_SIZE}
@@ -86,7 +87,10 @@ export interface CoreProvidersProps {
    * @defaultValue `false`
    */
   disableColorSchemeMetaTag?: boolean;
+}
 
+/** @remarks \@since 6.0.0 */
+export interface CoreProvidersProps extends ReactMDCoreConfiguration {
   children: ReactNode;
 }
 

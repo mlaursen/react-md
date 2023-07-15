@@ -1,12 +1,12 @@
-import { fireEvent, render } from "@testing-library/react";
 import type { ReactElement } from "react";
+import { fireEvent, render } from "../../test-utils";
+
 import { AppSizeProvider } from "../../AppSizeProvider";
 import { Button } from "../../button";
 import { DropdownMenu } from "../../menu";
 import { Form } from "../Form";
 import { MenuItemRadio } from "../MenuItemRadio";
 import { Radio } from "../Radio";
-
 import { useRadioGroup } from "../useRadioGroup";
 
 describe("useRadioGroup", () => {

@@ -1,23 +1,13 @@
-import { fireEvent, render as baseRender } from "@testing-library/react";
 import { cnb } from "cnbuilder";
 import type { ReactElement, Ref } from "react";
 import { createRef, useState } from "react";
+import { fireEvent, rmdRender as render } from "../../test-utils";
 
 import { Button } from "../../button";
-import { ElementInteractionProvider } from "../../interaction";
 import { WritingDirection } from "../../typography";
 import { getPercentage } from "../../utils";
 import type { UncontrolledDraggableOptions } from "../useDraggable";
 import { useDraggable } from "../useDraggable";
-
-const render = (ui: ReactElement): ReturnType<typeof baseRender> =>
-  baseRender(ui, {
-    wrapper: ({ children }) => (
-      <ElementInteractionProvider mode="none">
-        {children}
-      </ElementInteractionProvider>
-    ),
-  });
 
 type TestProps = Partial<UncontrolledDraggableOptions<HTMLButtonElement>> & {
   nodeRef?: Ref<HTMLButtonElement>;

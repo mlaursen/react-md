@@ -1,19 +1,18 @@
+import type { ReactElement } from "react";
 import {
   act,
   fireEvent,
-  render as baseRender,
+  rmdRender,
   screen,
+  userEvent,
   waitFor,
-} from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import type { ReactElement } from "react";
+} from "../../test-utils";
 
 import {
   DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
   DEFAULT_DESKTOP_MIN_WIDTH,
   DEFAULT_PHONE_MAX_WIDTH,
 } from "../../AppSizeProvider";
-import { CoreProviders } from "../../CoreProviders";
 import { Tooltip, useTooltip } from "../../tooltip";
 import { Tab } from "../Tab";
 import type { TabListProps } from "../TabList";
@@ -21,18 +20,6 @@ import { TabList } from "../TabList";
 import type { ProvidedTabListProps } from "../useTabs";
 import { useTabs } from "../useTabs";
 import type { TabListScrollToOptions } from "../utils";
-
-const render = (ui: ReactElement, rtl = false): ReturnType<typeof baseRender> =>
-  baseRender(ui, {
-    wrapper: ({ children }) => (
-      <CoreProviders
-        elementInteractionMode="none"
-        defaultDir={rtl ? "rtl" : "ltr"}
-      >
-        {children}
-      </CoreProviders>
-    ),
-  });
 
 // make it so the back button defaults to intersecting
 const getIntersectionRatio = jest.fn((target: Element): number =>
@@ -129,7 +116,7 @@ describe("TabList", () => {
       .mockReturnValue(120);
 
     const user = userEvent.setup();
-    const { getByRole } = render(<Test />);
+    const { getByRole } = rmdRender(<Test />);
     const tablist = getByRole("tablist");
     const tab1 = getByRole("tab", { name: "Tab 1" });
     const tab2 = getByRole("tab", { name: "Tab 2" });
@@ -188,7 +175,7 @@ describe("TabList", () => {
       });
 
     const user = userEvent.setup();
-    const { getByRole } = render(<Test scrollButtons />);
+    const { getByRole } = rmdRender(<Test scrollButtons />);
     const tablist = getByRole("tablist");
     await waitFor(() => {
       expect(backObserver).toBeDefined();
@@ -281,7 +268,7 @@ describe("TabList", () => {
       });
 
     const user = userEvent.setup();
-    const { getByRole } = render(<Test scrollButtons vertical />);
+    const { getByRole } = rmdRender(<Test scrollButtons vertical />);
     const tablist = getByRole("tablist");
     await waitFor(() => {
       expect(backObserver).toBeDefined();
@@ -356,7 +343,7 @@ describe("TabList", () => {
   });
 
   it("should support custom labels for the scroll buttons", () => {
-    const { getByRole } = render(
+    const { getByRole } = rmdRender(
       <Test
         scrollButtons
         backwardScrollButtonProps={{
@@ -396,7 +383,7 @@ describe("TabList", () => {
       },
     }));
 
-    const { getByRole, rerender } = render(<Test scrollButtons />);
+    const { getByRole, rerender } = rmdRender(<Test scrollButtons />);
 
     const back = getByRole("button", { name: "back" });
     const forward = getByRole("button", { name: "forward" });
@@ -441,7 +428,11 @@ describe("TabList", () => {
       });
 
     const user = userEvent.setup();
-    const { getByRole } = render(<Test scrollButtons />, true);
+    const { getByRole } = rmdRender(<Test scrollButtons />, {
+      rmdConfig: {
+        defaultDir: "rtl",
+      },
+    });
     const tablist = getByRole("tablist");
     await waitFor(() => {
       expect(backObserver).toBeDefined();
@@ -526,7 +517,7 @@ describe("TabList", () => {
       behavior: "auto",
     }));
     const user = userEvent.setup();
-    const { getByRole } = render(
+    const { getByRole } = rmdRender(
       <Test scrollButtons getScrollToOptions={getScrollToOptions} />
     );
     const tablist = getByRole("tablist");
@@ -571,7 +562,7 @@ describe("TabList", () => {
   });
 
   it("should support rendering scrollbars if the scrollbar prop is enabled", () => {
-    const { getByRole, rerender } = render(<Test />);
+    const { getByRole, rerender } = rmdRender(<Test />);
     const tablist = getByRole("tablist");
     expect(tablist).toHaveClass("rmd-tablist--no-scrollbar");
 
@@ -606,7 +597,7 @@ describe("TabList", () => {
       );
     }
 
-    const { getByRole } = render(<TooltipTest />);
+    const { getByRole } = rmdRender(<TooltipTest />);
     const back = getByRole("button", { name: "back" });
     const forward = getByRole("button", { name: "forward" });
 

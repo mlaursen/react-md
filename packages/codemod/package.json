@@ -12,6 +12,7 @@
   ],
   "scripts": {
     "update-docs": "node updateDocs.cjs",
+    "clean": "rm -rf .turbo bin node_modules",
     "build": "tsc --project tsconfig.build.json"
   },
   "repository": {

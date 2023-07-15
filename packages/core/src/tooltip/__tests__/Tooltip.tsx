@@ -1,13 +1,13 @@
+import type { ReactElement } from "react";
 import {
   act,
   fireEvent,
-  render as baseRender,
+  rmdRender,
+  userEvent,
   waitFor,
-} from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import type { ReactElement } from "react";
+} from "../../test-utils";
+
 import { Button } from "../../button";
-import { CoreProviders } from "../../CoreProviders";
 import { FontIcon } from "../../icon";
 import { parseCssLengthUnit } from "../../utils";
 import {
@@ -18,13 +18,6 @@ import type { TooltipProps } from "../Tooltip";
 import { Tooltip } from "../Tooltip";
 import type { TooltipHookOptions } from "../useTooltip";
 import { useTooltip } from "../useTooltip";
-
-const render = (ui: ReactElement): ReturnType<typeof baseRender> =>
-  baseRender(ui, {
-    wrapper: ({ children }) => (
-      <CoreProviders elementInteractionMode="none">{children}</CoreProviders>
-    ),
-  });
 
 interface TestProps extends TooltipHookOptions {
   tooltip?: Partial<TooltipProps>;
@@ -67,7 +60,7 @@ describe("Tooltip", () => {
 
   it("should display the tooltip after hovering for 1s by default", () => {
     jest.useFakeTimers();
-    const { getByRole } = render(<Test />);
+    const { getByRole } = rmdRender(<Test />);
     const button = getByRole("button", { name: "Button" });
     const tooltip = getByRole("tooltip", { hidden: true });
     expect(tooltip).toBeInTheDocument();
@@ -95,7 +88,7 @@ describe("Tooltip", () => {
 
   it("should display the tooltip after focusing for 1s by default only in keyboard mode", () => {
     jest.useFakeTimers();
-    const { getByRole } = render(<Test />);
+    const { getByRole } = rmdRender(<Test />);
     const button = getByRole("button", { name: "Button" });
     const tooltip = getByRole("tooltip", { hidden: true });
 
@@ -138,7 +131,7 @@ describe("Tooltip", () => {
     // need to make sure that does not happen for tooltipped elements on mobile
     jest.useFakeTimers();
 
-    const { getByRole } = render(<Test />);
+    const { getByRole } = rmdRender(<Test />);
     const button = getByRole("button", { name: "Button" });
     const tooltip = getByRole("tooltip", { hidden: true });
 
@@ -201,7 +194,7 @@ describe("Tooltip", () => {
 
   it("should support controlling the visibility manually with the setVisible and hideTooltip returned functions", async () => {
     const user = userEvent.setup();
-    const { getByRole } = render(<Test />);
+    const { getByRole } = rmdRender(<Test />);
 
     const button = getByRole("button", { name: "Button" });
     const tooltip = getByRole("tooltip", { hidden: true });
@@ -238,7 +231,7 @@ describe("Tooltip", () => {
 
   it("should support rendering the tooltip temporarily instead of using hidden", async () => {
     const user = userEvent.setup();
-    const { getByRole } = render(
+    const { getByRole } = rmdRender(
       <Test tooltip={{ temporary: true }} hoverTime={0} />
     );
 
@@ -252,7 +245,7 @@ describe("Tooltip", () => {
 
   it("should close the tooltip whenever the escape key is pressed", async () => {
     const user = userEvent.setup();
-    const { getByRole } = render(<Test hoverTime={0} />);
+    const { getByRole } = rmdRender(<Test hoverTime={0} />);
     const tooltip = getByRole("tooltip", { hidden: true });
 
     await user.tab();
@@ -269,7 +262,7 @@ describe("Tooltip", () => {
 
   it("should close the tooltip whenever the page is scrolled", async () => {
     const user = userEvent.setup();
-    const { getByRole } = render(<Test hoverTime={0} />);
+    const { getByRole } = rmdRender(<Test hoverTime={0} />);
     const tooltip = getByRole("tooltip", { hidden: true });
 
     await user.tab();
@@ -286,7 +279,7 @@ describe("Tooltip", () => {
 
   it("should hide the tooltip when the page becomes inactive or blurs and not show the tooltip again on focus", async () => {
     const user = userEvent.setup();
-    const { getByRole } = render(<Test hoverTime={0} />);
+    const { getByRole } = rmdRender(<Test hoverTime={0} />);
     const button = getByRole("button", { name: "Button" });
     const tooltip = getByRole("tooltip", { hidden: true });
 
@@ -336,7 +329,7 @@ describe("Tooltip", () => {
     expect(window.innerHeight).toBe(vh);
 
     const user = userEvent.setup();
-    const { getByRole } = render(<Test hoverTime={0} position="above" />);
+    const { getByRole } = rmdRender(<Test hoverTime={0} position="above" />);
     const button = getByRole("button", { name: "Button" });
     const tooltip = getByRole("tooltip", { hidden: true });
 
@@ -368,7 +361,7 @@ describe("Tooltip", () => {
 
   it("should never display the tooltip if the disabled option is true", async () => {
     const user = userEvent.setup();
-    const { getByRole } = render(<Test hoverTime={0} disabled />);
+    const { getByRole } = rmdRender(<Test hoverTime={0} disabled />);
     const button = getByRole("button", { name: "Button" });
     const tooltip = getByRole("tooltip", { hidden: true });
 
@@ -393,7 +386,7 @@ describe("Tooltip", () => {
 
   it("should automatically attempt to determine the spacing based on the computed style of the spacing custom property", async () => {
     const user = userEvent.setup();
-    const { getByRole, rerender } = render(<Test hoverTime={0} />);
+    const { getByRole, rerender } = rmdRender(<Test hoverTime={0} />);
     const button = getByRole("button", { name: "Button" });
     const tooltip = getByRole("tooltip", { hidden: true });
 

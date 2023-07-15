@@ -1,14 +1,14 @@
+import type { ReactElement } from "react";
 import {
   render,
   screen,
+  userEvent,
   waitFor,
   waitForElementToBeRemoved,
-} from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import type { ReactElement } from "react";
+} from "../../test-utils";
+
 import { Button } from "../../button";
 import { Tooltip } from "../Tooltip";
-
 import { TooltipHoverModeProvider } from "../TooltipHoverModeProvider";
 import { useTooltip } from "../useTooltip";
 

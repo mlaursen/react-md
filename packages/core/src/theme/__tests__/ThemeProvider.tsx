@@ -1,5 +1,5 @@
-import { render } from "@testing-library/react";
 import { camelCase } from "lodash";
+import { render } from "../../test-utils";
 
 import type { ConfigurableThemeColors } from "../ThemeProvider";
 import {

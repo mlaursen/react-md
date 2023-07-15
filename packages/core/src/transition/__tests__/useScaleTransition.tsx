@@ -1,6 +1,7 @@
-import { act, fireEvent, render } from "@testing-library/react";
 import type { ReactElement } from "react";
 import { useState } from "react";
+import { act, fireEvent, render } from "../../test-utils";
+
 import type { ScaleTransitionHookOptions } from "../useScaleTransition";
 import { useScaleTransition } from "../useScaleTransition";
 
