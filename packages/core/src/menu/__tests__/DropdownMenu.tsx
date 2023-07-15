@@ -2,6 +2,7 @@ import type { ReactElement } from "react";
 import {
   act,
   rmdRender,
+  useImmediateRaf,
   userEvent,
   waitFor,
   waitForElementToBeRemoved,
@@ -201,13 +202,7 @@ describe("DropdownMenu", () => {
   });
 
   it("should hide the menu when the page is resized when the closeOnResize prop is enabled", async () => {
-    // invoke requestAnimationFrame immediately
-    const raf = jest
-      .spyOn(window, "requestAnimationFrame")
-      .mockImplementation((cb) => {
-        cb(0);
-        return 0;
-      });
+    const raf = useImmediateRaf();
     const user = userEvent.setup();
     const { getByRole, rerender } = rmdRender(
       <DropdownMenu buttonChildren="Dropdown" disableTransition>
@@ -244,13 +239,7 @@ describe("DropdownMenu", () => {
   });
 
   it("should hide the menu when the page is scrolled when the closeOnScroll prop is enabled or the menu button is scrolled out of the viewport", async () => {
-    // invoke requestAnimationFrame immediately
-    const raf = jest
-      .spyOn(window, "requestAnimationFrame")
-      .mockImplementation((cb) => {
-        cb(0);
-        return 0;
-      });
+    const raf = useImmediateRaf();
     const user = userEvent.setup();
     const { getByRole, rerender } = rmdRender(
       <DropdownMenu buttonChildren="Dropdown" disableTransition>
