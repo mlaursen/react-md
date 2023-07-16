@@ -10,13 +10,14 @@ import type { CustomLinkComponent } from "../link";
 import { LinkProvider } from "../link";
 import { List } from "../list";
 import { KeyboardMovementProvider } from "../movement";
+import type { LabelRequiredForA11y } from "../types";
 import { useEnsuredId } from "../useEnsuredId";
 import { identity } from "../utils";
 import type { TreeItemRendererProps } from "./DefaultTreeItemRenderer";
 import { DefaultTreeItemRenderer } from "./DefaultTreeItemRenderer";
-import { tree } from "./styles";
 import type { TreeExpansionMode } from "./TreeProvider";
 import { TreeProvider } from "./TreeProvider";
+import { tree } from "./styles";
 import type { TreeData, TreeItemNode, TreeItemSorter } from "./types";
 import type { TreeExpansion } from "./useTreeExpansion";
 import type { RenderableTreeItemNode } from "./useTreeItems";
@@ -228,7 +229,7 @@ export interface TreeProps<T extends TreeItemNode>
  * - `getItemProps`
  */
 export function Tree<T extends TreeItemNode>(
-  props: TreeProps<T>
+  props: LabelRequiredForA11y<TreeProps<T>>
 ): ReactElement {
   const {
     id,

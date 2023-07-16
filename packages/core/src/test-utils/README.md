@@ -69,6 +69,7 @@ import "@react-md/core/test-utils/polyfills";
 // or pick and choose from the following polyfills as needed
 import "@react-md/core/test-utils/polyfills/IntersectionObserver";
 import "@react-md/core/test-utils/polyfills/mediaQuery";
+import "@react-md/core/test-utils/polyfills/offsetParent";
 import "@react-md/core/test-utils/polyfills/ResizeObserver";
 import "@react-md/core/test-utils/polyfills/scrollIntoView";
 

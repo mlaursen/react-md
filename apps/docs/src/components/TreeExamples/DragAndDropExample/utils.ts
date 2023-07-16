@@ -1,5 +1,5 @@
 import type { TreeData } from "@react-md/core";
-import { getChildItems } from "@react-md/core";
+import { getChildTreeItems } from "@react-md/core";
 
 import type { Folder } from "src/constants/folders";
 
@@ -24,7 +24,7 @@ export const isValidFolderPath = (options: Options): boolean => {
   return (
     currentItemId !== draggingItemId &&
     currentItemId !== draggingParentId &&
-    !getChildItems(data, draggingItemId, true).find(
+    !getChildTreeItems(data, draggingItemId, true).find(
       (childFolder) => currentItemId === childFolder.itemId
     )
   );

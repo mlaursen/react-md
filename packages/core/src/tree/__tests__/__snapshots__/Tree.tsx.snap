@@ -1,0 +1,2333 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tree multi-select should handle multi-select tree behavior 1`] = `
+<ul
+  aria-activedescendant=""
+  aria-label="Tree"
+  class="rmd-list rmd-tree"
+  id="tree-:rs:"
+  role="tree"
+  tabindex="0"
+>
+  <li
+    class="rmd-tree-item"
+    role="none"
+  >
+    <span
+      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      id="tree-item-:rt:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 1
+        </span>
+      </span>
+    </span>
+  </li>
+  <li
+    class="rmd-tree-item rmd-tree-item--expander-right"
+    role="none"
+  >
+    <span
+      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      id="tree-item-:ru:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 2
+        </span>
+      </span>
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+      >
+        arrow_drop_down
+      </span>
+    </span>
+    <ul
+      aria-labelledby="tree-item-:ru:"
+      class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
+      hidden=""
+      id="tree-item-:ru:-group"
+      role="group"
+      style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: -1;"
+    >
+      <li
+        class="rmd-tree-item"
+        role="none"
+      >
+        <span
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          id="tree-item-:rv:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 1
+            </span>
+          </span>
+        </span>
+      </li>
+      <li
+        class="rmd-tree-item rmd-tree-item--expander-right"
+        role="none"
+      >
+        <span
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          id="tree-item-:r10:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 2
+            </span>
+          </span>
+          <span
+            aria-hidden="true"
+            class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+          >
+            arrow_drop_down
+          </span>
+        </span>
+        <ul
+          aria-labelledby="tree-item-:r10:"
+          class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
+          hidden=""
+          id="tree-item-:r10:-group"
+          role="group"
+          style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 0;"
+        >
+          <li
+            class="rmd-tree-item rmd-tree-item--expander-right"
+            role="none"
+          >
+            <span
+              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+              id="tree-item-:r11:"
+              role="treeitem"
+              tabindex="-1"
+            >
+              <span
+                class="rmd-list-item__text"
+              >
+                <span>
+                  Folder 2 Child 2 Child 1
+                </span>
+              </span>
+              <span
+                aria-hidden="true"
+                class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+              >
+                arrow_drop_down
+              </span>
+            </span>
+            <ul
+              aria-labelledby="tree-item-:r11:"
+              class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
+              hidden=""
+              id="tree-item-:r11:-group"
+              role="group"
+              style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
+            >
+              <li
+                class="rmd-tree-item"
+                role="none"
+              >
+                <span
+                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+                  id="tree-item-:r12:"
+                  role="treeitem"
+                  tabindex="-1"
+                >
+                  <span
+                    class="rmd-list-item__text"
+                  >
+                    <span>
+                      Folder 2 Child 2 Child 1 Child 1
+                    </span>
+                  </span>
+                </span>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li
+        class="rmd-tree-item"
+        role="none"
+      >
+        <span
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          id="tree-item-:r13:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 3
+            </span>
+          </span>
+        </span>
+      </li>
+    </ul>
+  </li>
+  <li
+    class="rmd-tree-item"
+    role="none"
+  >
+    <span
+      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      id="tree-item-:r14:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 3
+        </span>
+      </span>
+    </span>
+  </li>
+</ul>
+`;
+
+exports[`Tree multi-select should handle multi-select tree behavior 2`] = `
+<ul
+  aria-activedescendant="tree-item-:ru:"
+  aria-label="Tree"
+  class="rmd-list rmd-tree"
+  id="tree-:rs:"
+  role="tree"
+  tabindex="0"
+>
+  <li
+    class="rmd-tree-item"
+    role="none"
+  >
+    <span
+      aria-selected="true"
+      class="rmd-tree-item__content rmd-tree-item__content--selected rmd-list-item rmd-list-item--clickable"
+      id="tree-item-:rt:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 1
+        </span>
+      </span>
+    </span>
+  </li>
+  <li
+    class="rmd-tree-item rmd-tree-item--expander-right"
+    role="none"
+  >
+    <span
+      aria-expanded="true"
+      aria-selected="true"
+      class="rmd-tree-item__content rmd-tree-item__content--focused rmd-tree-item__content--selected rmd-list-item rmd-list-item--clickable"
+      id="tree-item-:ru:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 2
+        </span>
+      </span>
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated rmd-icon--after rmd-list-item__addon"
+      >
+        arrow_drop_down
+      </span>
+    </span>
+    <ul
+      aria-labelledby="tree-item-:ru:"
+      class="rmd-list rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow rmd-tree-group"
+      id="tree-item-:ru:-group"
+      role="group"
+      style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: -1; transition-duration: 250ms;"
+    >
+      <li
+        class="rmd-tree-item"
+        role="none"
+      >
+        <span
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          id="tree-item-:rv:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 1
+            </span>
+          </span>
+        </span>
+      </li>
+      <li
+        class="rmd-tree-item rmd-tree-item--expander-right"
+        role="none"
+      >
+        <span
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          id="tree-item-:r10:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 2
+            </span>
+          </span>
+          <span
+            aria-hidden="true"
+            class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+          >
+            arrow_drop_down
+          </span>
+        </span>
+        <ul
+          aria-labelledby="tree-item-:r10:"
+          class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
+          hidden=""
+          id="tree-item-:r10:-group"
+          role="group"
+          style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 0;"
+        >
+          <li
+            class="rmd-tree-item rmd-tree-item--expander-right"
+            role="none"
+          >
+            <span
+              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+              id="tree-item-:r11:"
+              role="treeitem"
+              tabindex="-1"
+            >
+              <span
+                class="rmd-list-item__text"
+              >
+                <span>
+                  Folder 2 Child 2 Child 1
+                </span>
+              </span>
+              <span
+                aria-hidden="true"
+                class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+              >
+                arrow_drop_down
+              </span>
+            </span>
+            <ul
+              aria-labelledby="tree-item-:r11:"
+              class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
+              hidden=""
+              id="tree-item-:r11:-group"
+              role="group"
+              style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
+            >
+              <li
+                class="rmd-tree-item"
+                role="none"
+              >
+                <span
+                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+                  id="tree-item-:r12:"
+                  role="treeitem"
+                  tabindex="-1"
+                >
+                  <span
+                    class="rmd-list-item__text"
+                  >
+                    <span>
+                      Folder 2 Child 2 Child 1 Child 1
+                    </span>
+                  </span>
+                </span>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li
+        class="rmd-tree-item"
+        role="none"
+      >
+        <span
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          id="tree-item-:r13:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 3
+            </span>
+          </span>
+        </span>
+      </li>
+    </ul>
+  </li>
+  <li
+    class="rmd-tree-item"
+    role="none"
+  >
+    <span
+      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      id="tree-item-:r14:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 3
+        </span>
+      </span>
+    </span>
+  </li>
+</ul>
+`;
+
+exports[`Tree multi-select should handle multi-select tree behavior 3`] = `
+<ul
+  aria-activedescendant="tree-item-:ru:"
+  aria-label="Tree"
+  class="rmd-list rmd-tree"
+  id="tree-:rs:"
+  role="tree"
+  tabindex="0"
+>
+  <li
+    class="rmd-tree-item"
+    role="none"
+  >
+    <span
+      aria-selected="true"
+      class="rmd-tree-item__content rmd-tree-item__content--selected rmd-list-item rmd-list-item--clickable"
+      id="tree-item-:rt:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 1
+        </span>
+      </span>
+    </span>
+  </li>
+  <li
+    class="rmd-tree-item rmd-tree-item--expander-right"
+    role="none"
+  >
+    <span
+      aria-expanded="true"
+      aria-selected="true"
+      class="rmd-tree-item__content rmd-tree-item__content--focused rmd-tree-item__content--selected rmd-list-item rmd-list-item--clickable"
+      id="tree-item-:ru:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 2
+        </span>
+      </span>
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated rmd-icon--after rmd-list-item__addon"
+      >
+        arrow_drop_down
+      </span>
+    </span>
+    <ul
+      aria-labelledby="tree-item-:ru:"
+      class="rmd-list rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow rmd-tree-group"
+      id="tree-item-:ru:-group"
+      role="group"
+      style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: -1; transition-duration: 250ms;"
+    >
+      <li
+        class="rmd-tree-item"
+        role="none"
+      >
+        <span
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          id="tree-item-:rv:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 1
+            </span>
+          </span>
+        </span>
+      </li>
+      <li
+        class="rmd-tree-item rmd-tree-item--expander-right"
+        role="none"
+      >
+        <span
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          id="tree-item-:r10:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 2
+            </span>
+          </span>
+          <span
+            aria-hidden="true"
+            class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+          >
+            arrow_drop_down
+          </span>
+        </span>
+        <ul
+          aria-labelledby="tree-item-:r10:"
+          class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
+          hidden=""
+          id="tree-item-:r10:-group"
+          role="group"
+          style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 0;"
+        >
+          <li
+            class="rmd-tree-item rmd-tree-item--expander-right"
+            role="none"
+          >
+            <span
+              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+              id="tree-item-:r11:"
+              role="treeitem"
+              tabindex="-1"
+            >
+              <span
+                class="rmd-list-item__text"
+              >
+                <span>
+                  Folder 2 Child 2 Child 1
+                </span>
+              </span>
+              <span
+                aria-hidden="true"
+                class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+              >
+                arrow_drop_down
+              </span>
+            </span>
+            <ul
+              aria-labelledby="tree-item-:r11:"
+              class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
+              hidden=""
+              id="tree-item-:r11:-group"
+              role="group"
+              style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
+            >
+              <li
+                class="rmd-tree-item"
+                role="none"
+              >
+                <span
+                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+                  id="tree-item-:r12:"
+                  role="treeitem"
+                  tabindex="-1"
+                >
+                  <span
+                    class="rmd-list-item__text"
+                  >
+                    <span>
+                      Folder 2 Child 2 Child 1 Child 1
+                    </span>
+                  </span>
+                </span>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li
+        class="rmd-tree-item"
+        role="none"
+      >
+        <span
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          id="tree-item-:r13:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 3
+            </span>
+          </span>
+        </span>
+      </li>
+    </ul>
+  </li>
+  <li
+    class="rmd-tree-item"
+    role="none"
+  >
+    <span
+      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      id="tree-item-:r14:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 3
+        </span>
+      </span>
+    </span>
+  </li>
+</ul>
+`;
+
+exports[`Tree multi-select should handle multi-select tree behavior 4`] = `
+<ul
+  aria-activedescendant="tree-item-:rt:"
+  aria-label="Tree"
+  class="rmd-list rmd-tree"
+  id="tree-:rs:"
+  role="tree"
+  tabindex="0"
+>
+  <li
+    class="rmd-tree-item"
+    role="none"
+  >
+    <span
+      class="rmd-tree-item__content rmd-tree-item__content--focused rmd-list-item rmd-list-item--clickable"
+      id="tree-item-:rt:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 1
+        </span>
+      </span>
+    </span>
+  </li>
+  <li
+    class="rmd-tree-item rmd-tree-item--expander-right"
+    role="none"
+  >
+    <span
+      aria-expanded="true"
+      aria-selected="true"
+      class="rmd-tree-item__content rmd-tree-item__content--selected rmd-list-item rmd-list-item--clickable"
+      id="tree-item-:ru:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 2
+        </span>
+      </span>
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated rmd-icon--after rmd-list-item__addon"
+      >
+        arrow_drop_down
+      </span>
+    </span>
+    <ul
+      aria-labelledby="tree-item-:ru:"
+      class="rmd-list rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow rmd-tree-group"
+      id="tree-item-:ru:-group"
+      role="group"
+      style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: -1; transition-duration: 250ms;"
+    >
+      <li
+        class="rmd-tree-item"
+        role="none"
+      >
+        <span
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          id="tree-item-:rv:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 1
+            </span>
+          </span>
+        </span>
+      </li>
+      <li
+        class="rmd-tree-item rmd-tree-item--expander-right"
+        role="none"
+      >
+        <span
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          id="tree-item-:r10:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 2
+            </span>
+          </span>
+          <span
+            aria-hidden="true"
+            class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+          >
+            arrow_drop_down
+          </span>
+        </span>
+        <ul
+          aria-labelledby="tree-item-:r10:"
+          class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
+          hidden=""
+          id="tree-item-:r10:-group"
+          role="group"
+          style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 0;"
+        >
+          <li
+            class="rmd-tree-item rmd-tree-item--expander-right"
+            role="none"
+          >
+            <span
+              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+              id="tree-item-:r11:"
+              role="treeitem"
+              tabindex="-1"
+            >
+              <span
+                class="rmd-list-item__text"
+              >
+                <span>
+                  Folder 2 Child 2 Child 1
+                </span>
+              </span>
+              <span
+                aria-hidden="true"
+                class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+              >
+                arrow_drop_down
+              </span>
+            </span>
+            <ul
+              aria-labelledby="tree-item-:r11:"
+              class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
+              hidden=""
+              id="tree-item-:r11:-group"
+              role="group"
+              style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
+            >
+              <li
+                class="rmd-tree-item"
+                role="none"
+              >
+                <span
+                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+                  id="tree-item-:r12:"
+                  role="treeitem"
+                  tabindex="-1"
+                >
+                  <span
+                    class="rmd-list-item__text"
+                  >
+                    <span>
+                      Folder 2 Child 2 Child 1 Child 1
+                    </span>
+                  </span>
+                </span>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li
+        class="rmd-tree-item"
+        role="none"
+      >
+        <span
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          id="tree-item-:r13:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 3
+            </span>
+          </span>
+        </span>
+      </li>
+    </ul>
+  </li>
+  <li
+    class="rmd-tree-item"
+    role="none"
+  >
+    <span
+      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      id="tree-item-:r14:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 3
+        </span>
+      </span>
+    </span>
+  </li>
+</ul>
+`;
+
+exports[`Tree multi-select should handle multi-select tree behavior 5`] = `
+<ul
+  aria-activedescendant="tree-item-:ru:"
+  aria-label="Tree"
+  class="rmd-list rmd-tree"
+  id="tree-:rs:"
+  role="tree"
+  tabindex="0"
+>
+  <li
+    class="rmd-tree-item"
+    role="none"
+  >
+    <span
+      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      id="tree-item-:rt:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 1
+        </span>
+      </span>
+    </span>
+  </li>
+  <li
+    class="rmd-tree-item rmd-tree-item--expander-right"
+    role="none"
+  >
+    <span
+      class="rmd-tree-item__content rmd-tree-item__content--focused rmd-list-item rmd-list-item--clickable"
+      id="tree-item-:ru:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 2
+        </span>
+      </span>
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+      >
+        arrow_drop_down
+      </span>
+    </span>
+    <ul
+      aria-labelledby="tree-item-:ru:"
+      class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
+      hidden=""
+      id="tree-item-:ru:-group"
+      role="group"
+      style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: -1;"
+    >
+      <li
+        class="rmd-tree-item"
+        role="none"
+      >
+        <span
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          id="tree-item-:rv:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 1
+            </span>
+          </span>
+        </span>
+      </li>
+      <li
+        class="rmd-tree-item rmd-tree-item--expander-right"
+        role="none"
+      >
+        <span
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          id="tree-item-:r10:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 2
+            </span>
+          </span>
+          <span
+            aria-hidden="true"
+            class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+          >
+            arrow_drop_down
+          </span>
+        </span>
+        <ul
+          aria-labelledby="tree-item-:r10:"
+          class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
+          hidden=""
+          id="tree-item-:r10:-group"
+          role="group"
+          style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 0;"
+        >
+          <li
+            class="rmd-tree-item rmd-tree-item--expander-right"
+            role="none"
+          >
+            <span
+              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+              id="tree-item-:r11:"
+              role="treeitem"
+              tabindex="-1"
+            >
+              <span
+                class="rmd-list-item__text"
+              >
+                <span>
+                  Folder 2 Child 2 Child 1
+                </span>
+              </span>
+              <span
+                aria-hidden="true"
+                class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+              >
+                arrow_drop_down
+              </span>
+            </span>
+            <ul
+              aria-labelledby="tree-item-:r11:"
+              class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
+              hidden=""
+              id="tree-item-:r11:-group"
+              role="group"
+              style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
+            >
+              <li
+                class="rmd-tree-item"
+                role="none"
+              >
+                <span
+                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+                  id="tree-item-:r12:"
+                  role="treeitem"
+                  tabindex="-1"
+                >
+                  <span
+                    class="rmd-list-item__text"
+                  >
+                    <span>
+                      Folder 2 Child 2 Child 1 Child 1
+                    </span>
+                  </span>
+                </span>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li
+        class="rmd-tree-item"
+        role="none"
+      >
+        <span
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          id="tree-item-:r13:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 3
+            </span>
+          </span>
+        </span>
+      </li>
+    </ul>
+  </li>
+  <li
+    class="rmd-tree-item"
+    role="none"
+  >
+    <span
+      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      id="tree-item-:r14:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 3
+        </span>
+      </span>
+    </span>
+  </li>
+</ul>
+`;
+
+exports[`Tree should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<ul
+  aria-activedescendant=""
+  aria-label="Tree"
+  class="rmd-list rmd-tree"
+  id="tree-:r0:"
+  role="tree"
+  tabindex="0"
+/>
+`;
+
+exports[`Tree should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<ul
+  aria-activedescendant=""
+  aria-label="Tree"
+  class="rmd-list rmd-tree custom-class-name"
+  id="tree-:r0:"
+  role="tree"
+  style="color: white;"
+  tabindex="0"
+/>
+`;
+
+exports[`Tree should handle single select tree behavior 1`] = `
+<ul
+  aria-activedescendant=""
+  aria-label="Tree"
+  class="rmd-list rmd-tree"
+  id="tree-:r1:"
+  role="tree"
+  tabindex="0"
+>
+  <li
+    class="rmd-tree-item"
+    role="none"
+  >
+    <span
+      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      id="tree-item-:r2:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 1
+        </span>
+      </span>
+    </span>
+  </li>
+  <li
+    class="rmd-tree-item rmd-tree-item--expander-right"
+    role="none"
+  >
+    <span
+      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      id="tree-item-:r3:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 2
+        </span>
+      </span>
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+      >
+        arrow_drop_down
+      </span>
+    </span>
+    <ul
+      aria-labelledby="tree-item-:r3:"
+      class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
+      hidden=""
+      id="tree-item-:r3:-group"
+      role="group"
+      style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: -1;"
+    >
+      <li
+        class="rmd-tree-item"
+        role="none"
+      >
+        <span
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          id="tree-item-:r4:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 1
+            </span>
+          </span>
+        </span>
+      </li>
+      <li
+        class="rmd-tree-item rmd-tree-item--expander-right"
+        role="none"
+      >
+        <span
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          id="tree-item-:r5:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 2
+            </span>
+          </span>
+          <span
+            aria-hidden="true"
+            class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+          >
+            arrow_drop_down
+          </span>
+        </span>
+        <ul
+          aria-labelledby="tree-item-:r5:"
+          class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
+          hidden=""
+          id="tree-item-:r5:-group"
+          role="group"
+          style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 0;"
+        >
+          <li
+            class="rmd-tree-item rmd-tree-item--expander-right"
+            role="none"
+          >
+            <span
+              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+              id="tree-item-:r6:"
+              role="treeitem"
+              tabindex="-1"
+            >
+              <span
+                class="rmd-list-item__text"
+              >
+                <span>
+                  Folder 2 Child 2 Child 1
+                </span>
+              </span>
+              <span
+                aria-hidden="true"
+                class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+              >
+                arrow_drop_down
+              </span>
+            </span>
+            <ul
+              aria-labelledby="tree-item-:r6:"
+              class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
+              hidden=""
+              id="tree-item-:r6:-group"
+              role="group"
+              style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
+            >
+              <li
+                class="rmd-tree-item"
+                role="none"
+              >
+                <span
+                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+                  id="tree-item-:r7:"
+                  role="treeitem"
+                  tabindex="-1"
+                >
+                  <span
+                    class="rmd-list-item__text"
+                  >
+                    <span>
+                      Folder 2 Child 2 Child 1 Child 1
+                    </span>
+                  </span>
+                </span>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li
+        class="rmd-tree-item"
+        role="none"
+      >
+        <span
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          id="tree-item-:r8:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 3
+            </span>
+          </span>
+        </span>
+      </li>
+    </ul>
+  </li>
+  <li
+    class="rmd-tree-item"
+    role="none"
+  >
+    <span
+      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      id="tree-item-:r9:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 3
+        </span>
+      </span>
+    </span>
+  </li>
+</ul>
+`;
+
+exports[`Tree should handle single select tree behavior 2`] = `
+<ul
+  aria-activedescendant="tree-item-:r3:"
+  aria-label="Tree"
+  class="rmd-list rmd-tree"
+  id="tree-:r1:"
+  role="tree"
+  tabindex="0"
+>
+  <li
+    class="rmd-tree-item"
+    role="none"
+  >
+    <span
+      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      id="tree-item-:r2:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 1
+        </span>
+      </span>
+    </span>
+  </li>
+  <li
+    class="rmd-tree-item rmd-tree-item--expander-right"
+    role="none"
+  >
+    <span
+      aria-expanded="true"
+      aria-selected="true"
+      class="rmd-tree-item__content rmd-tree-item__content--focused rmd-tree-item__content--selected rmd-list-item rmd-list-item--clickable"
+      id="tree-item-:r3:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 2
+        </span>
+      </span>
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated rmd-icon--after rmd-list-item__addon"
+      >
+        arrow_drop_down
+      </span>
+    </span>
+    <ul
+      aria-labelledby="tree-item-:r3:"
+      class="rmd-list rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow rmd-tree-group"
+      id="tree-item-:r3:-group"
+      role="group"
+      style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: -1; transition-duration: 250ms;"
+    >
+      <li
+        class="rmd-tree-item"
+        role="none"
+      >
+        <span
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          id="tree-item-:r4:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 1
+            </span>
+          </span>
+        </span>
+      </li>
+      <li
+        class="rmd-tree-item rmd-tree-item--expander-right"
+        role="none"
+      >
+        <span
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          id="tree-item-:r5:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 2
+            </span>
+          </span>
+          <span
+            aria-hidden="true"
+            class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+          >
+            arrow_drop_down
+          </span>
+        </span>
+        <ul
+          aria-labelledby="tree-item-:r5:"
+          class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
+          hidden=""
+          id="tree-item-:r5:-group"
+          role="group"
+          style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 0;"
+        >
+          <li
+            class="rmd-tree-item rmd-tree-item--expander-right"
+            role="none"
+          >
+            <span
+              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+              id="tree-item-:r6:"
+              role="treeitem"
+              tabindex="-1"
+            >
+              <span
+                class="rmd-list-item__text"
+              >
+                <span>
+                  Folder 2 Child 2 Child 1
+                </span>
+              </span>
+              <span
+                aria-hidden="true"
+                class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+              >
+                arrow_drop_down
+              </span>
+            </span>
+            <ul
+              aria-labelledby="tree-item-:r6:"
+              class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
+              hidden=""
+              id="tree-item-:r6:-group"
+              role="group"
+              style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
+            >
+              <li
+                class="rmd-tree-item"
+                role="none"
+              >
+                <span
+                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+                  id="tree-item-:r7:"
+                  role="treeitem"
+                  tabindex="-1"
+                >
+                  <span
+                    class="rmd-list-item__text"
+                  >
+                    <span>
+                      Folder 2 Child 2 Child 1 Child 1
+                    </span>
+                  </span>
+                </span>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li
+        class="rmd-tree-item"
+        role="none"
+      >
+        <span
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          id="tree-item-:r8:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 3
+            </span>
+          </span>
+        </span>
+      </li>
+    </ul>
+  </li>
+  <li
+    class="rmd-tree-item"
+    role="none"
+  >
+    <span
+      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      id="tree-item-:r9:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 3
+        </span>
+      </span>
+    </span>
+  </li>
+</ul>
+`;
+
+exports[`Tree should handle single select tree behavior 3`] = `
+<ul
+  aria-activedescendant="tree-item-:r3:"
+  aria-label="Tree"
+  class="rmd-list rmd-tree"
+  id="tree-:r1:"
+  role="tree"
+  tabindex="0"
+>
+  <li
+    class="rmd-tree-item"
+    role="none"
+  >
+    <span
+      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      id="tree-item-:r2:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 1
+        </span>
+      </span>
+    </span>
+  </li>
+  <li
+    class="rmd-tree-item rmd-tree-item--expander-right"
+    role="none"
+  >
+    <span
+      aria-expanded="true"
+      aria-selected="true"
+      class="rmd-tree-item__content rmd-tree-item__content--focused rmd-tree-item__content--selected rmd-list-item rmd-list-item--clickable"
+      id="tree-item-:r3:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 2
+        </span>
+      </span>
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated rmd-icon--after rmd-list-item__addon"
+      >
+        arrow_drop_down
+      </span>
+    </span>
+    <ul
+      aria-labelledby="tree-item-:r3:"
+      class="rmd-list rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow rmd-tree-group"
+      id="tree-item-:r3:-group"
+      role="group"
+      style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: -1; transition-duration: 250ms;"
+    >
+      <li
+        class="rmd-tree-item"
+        role="none"
+      >
+        <span
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          id="tree-item-:r4:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 1
+            </span>
+          </span>
+        </span>
+      </li>
+      <li
+        class="rmd-tree-item rmd-tree-item--expander-right"
+        role="none"
+      >
+        <span
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          id="tree-item-:r5:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 2
+            </span>
+          </span>
+          <span
+            aria-hidden="true"
+            class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+          >
+            arrow_drop_down
+          </span>
+        </span>
+        <ul
+          aria-labelledby="tree-item-:r5:"
+          class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
+          hidden=""
+          id="tree-item-:r5:-group"
+          role="group"
+          style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 0;"
+        >
+          <li
+            class="rmd-tree-item rmd-tree-item--expander-right"
+            role="none"
+          >
+            <span
+              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+              id="tree-item-:r6:"
+              role="treeitem"
+              tabindex="-1"
+            >
+              <span
+                class="rmd-list-item__text"
+              >
+                <span>
+                  Folder 2 Child 2 Child 1
+                </span>
+              </span>
+              <span
+                aria-hidden="true"
+                class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+              >
+                arrow_drop_down
+              </span>
+            </span>
+            <ul
+              aria-labelledby="tree-item-:r6:"
+              class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
+              hidden=""
+              id="tree-item-:r6:-group"
+              role="group"
+              style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
+            >
+              <li
+                class="rmd-tree-item"
+                role="none"
+              >
+                <span
+                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+                  id="tree-item-:r7:"
+                  role="treeitem"
+                  tabindex="-1"
+                >
+                  <span
+                    class="rmd-list-item__text"
+                  >
+                    <span>
+                      Folder 2 Child 2 Child 1 Child 1
+                    </span>
+                  </span>
+                </span>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li
+        class="rmd-tree-item"
+        role="none"
+      >
+        <span
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          id="tree-item-:r8:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 3
+            </span>
+          </span>
+        </span>
+      </li>
+    </ul>
+  </li>
+  <li
+    class="rmd-tree-item"
+    role="none"
+  >
+    <span
+      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      id="tree-item-:r9:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 3
+        </span>
+      </span>
+    </span>
+  </li>
+</ul>
+`;
+
+exports[`Tree should handle single select tree behavior 4`] = `
+<ul
+  aria-activedescendant="tree-item-:r2:"
+  aria-label="Tree"
+  class="rmd-list rmd-tree"
+  id="tree-:r1:"
+  role="tree"
+  tabindex="0"
+>
+  <li
+    class="rmd-tree-item"
+    role="none"
+  >
+    <span
+      aria-selected="true"
+      class="rmd-tree-item__content rmd-tree-item__content--focused rmd-tree-item__content--selected rmd-list-item rmd-list-item--clickable"
+      id="tree-item-:r2:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 1
+        </span>
+      </span>
+    </span>
+  </li>
+  <li
+    class="rmd-tree-item rmd-tree-item--expander-right"
+    role="none"
+  >
+    <span
+      aria-expanded="true"
+      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      id="tree-item-:r3:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 2
+        </span>
+      </span>
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated rmd-icon--after rmd-list-item__addon"
+      >
+        arrow_drop_down
+      </span>
+    </span>
+    <ul
+      aria-labelledby="tree-item-:r3:"
+      class="rmd-list rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow rmd-tree-group"
+      id="tree-item-:r3:-group"
+      role="group"
+      style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: -1; transition-duration: 250ms;"
+    >
+      <li
+        class="rmd-tree-item"
+        role="none"
+      >
+        <span
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          id="tree-item-:r4:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 1
+            </span>
+          </span>
+        </span>
+      </li>
+      <li
+        class="rmd-tree-item rmd-tree-item--expander-right"
+        role="none"
+      >
+        <span
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          id="tree-item-:r5:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 2
+            </span>
+          </span>
+          <span
+            aria-hidden="true"
+            class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+          >
+            arrow_drop_down
+          </span>
+        </span>
+        <ul
+          aria-labelledby="tree-item-:r5:"
+          class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
+          hidden=""
+          id="tree-item-:r5:-group"
+          role="group"
+          style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 0;"
+        >
+          <li
+            class="rmd-tree-item rmd-tree-item--expander-right"
+            role="none"
+          >
+            <span
+              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+              id="tree-item-:r6:"
+              role="treeitem"
+              tabindex="-1"
+            >
+              <span
+                class="rmd-list-item__text"
+              >
+                <span>
+                  Folder 2 Child 2 Child 1
+                </span>
+              </span>
+              <span
+                aria-hidden="true"
+                class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+              >
+                arrow_drop_down
+              </span>
+            </span>
+            <ul
+              aria-labelledby="tree-item-:r6:"
+              class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
+              hidden=""
+              id="tree-item-:r6:-group"
+              role="group"
+              style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
+            >
+              <li
+                class="rmd-tree-item"
+                role="none"
+              >
+                <span
+                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+                  id="tree-item-:r7:"
+                  role="treeitem"
+                  tabindex="-1"
+                >
+                  <span
+                    class="rmd-list-item__text"
+                  >
+                    <span>
+                      Folder 2 Child 2 Child 1 Child 1
+                    </span>
+                  </span>
+                </span>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li
+        class="rmd-tree-item"
+        role="none"
+      >
+        <span
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          id="tree-item-:r8:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 3
+            </span>
+          </span>
+        </span>
+      </li>
+    </ul>
+  </li>
+  <li
+    class="rmd-tree-item"
+    role="none"
+  >
+    <span
+      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      id="tree-item-:r9:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 3
+        </span>
+      </span>
+    </span>
+  </li>
+</ul>
+`;
+
+exports[`Tree should handle single select tree behavior 5`] = `
+<ul
+  aria-activedescendant="tree-item-:r3:"
+  aria-label="Tree"
+  class="rmd-list rmd-tree"
+  id="tree-:r1:"
+  role="tree"
+  tabindex="0"
+>
+  <li
+    class="rmd-tree-item"
+    role="none"
+  >
+    <span
+      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      id="tree-item-:r2:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 1
+        </span>
+      </span>
+    </span>
+  </li>
+  <li
+    class="rmd-tree-item rmd-tree-item--expander-right"
+    role="none"
+  >
+    <span
+      aria-selected="true"
+      class="rmd-tree-item__content rmd-tree-item__content--focused rmd-tree-item__content--selected rmd-list-item rmd-list-item--clickable"
+      id="tree-item-:r3:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 2
+        </span>
+      </span>
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+      >
+        arrow_drop_down
+      </span>
+    </span>
+    <ul
+      aria-labelledby="tree-item-:r3:"
+      class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
+      hidden=""
+      id="tree-item-:r3:-group"
+      role="group"
+      style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: -1;"
+    >
+      <li
+        class="rmd-tree-item"
+        role="none"
+      >
+        <span
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          id="tree-item-:r4:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 1
+            </span>
+          </span>
+        </span>
+      </li>
+      <li
+        class="rmd-tree-item rmd-tree-item--expander-right"
+        role="none"
+      >
+        <span
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          id="tree-item-:r5:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 2
+            </span>
+          </span>
+          <span
+            aria-hidden="true"
+            class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+          >
+            arrow_drop_down
+          </span>
+        </span>
+        <ul
+          aria-labelledby="tree-item-:r5:"
+          class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
+          hidden=""
+          id="tree-item-:r5:-group"
+          role="group"
+          style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 0;"
+        >
+          <li
+            class="rmd-tree-item rmd-tree-item--expander-right"
+            role="none"
+          >
+            <span
+              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+              id="tree-item-:r6:"
+              role="treeitem"
+              tabindex="-1"
+            >
+              <span
+                class="rmd-list-item__text"
+              >
+                <span>
+                  Folder 2 Child 2 Child 1
+                </span>
+              </span>
+              <span
+                aria-hidden="true"
+                class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+              >
+                arrow_drop_down
+              </span>
+            </span>
+            <ul
+              aria-labelledby="tree-item-:r6:"
+              class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
+              hidden=""
+              id="tree-item-:r6:-group"
+              role="group"
+              style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
+            >
+              <li
+                class="rmd-tree-item"
+                role="none"
+              >
+                <span
+                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+                  id="tree-item-:r7:"
+                  role="treeitem"
+                  tabindex="-1"
+                >
+                  <span
+                    class="rmd-list-item__text"
+                  >
+                    <span>
+                      Folder 2 Child 2 Child 1 Child 1
+                    </span>
+                  </span>
+                </span>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li
+        class="rmd-tree-item"
+        role="none"
+      >
+        <span
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          id="tree-item-:r8:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 3
+            </span>
+          </span>
+        </span>
+      </li>
+    </ul>
+  </li>
+  <li
+    class="rmd-tree-item"
+    role="none"
+  >
+    <span
+      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      id="tree-item-:r9:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 3
+        </span>
+      </span>
+    </span>
+  </li>
+</ul>
+`;
+
+exports[`Tree should support default selected and expanded ids 1`] = `
+<ul
+  aria-activedescendant=""
+  aria-label="Tree"
+  class="rmd-list rmd-tree"
+  id="tree-:ra:"
+  role="tree"
+  tabindex="0"
+>
+  <li
+    class="rmd-tree-item"
+    role="none"
+  >
+    <span
+      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      id="tree-item-:rb:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 1
+        </span>
+      </span>
+    </span>
+  </li>
+  <li
+    class="rmd-tree-item rmd-tree-item--expander-right"
+    role="none"
+  >
+    <span
+      aria-expanded="true"
+      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      id="tree-item-:rc:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 2
+        </span>
+      </span>
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated rmd-icon--after rmd-list-item__addon"
+      >
+        arrow_drop_down
+      </span>
+    </span>
+    <ul
+      aria-labelledby="tree-item-:rc:"
+      class="rmd-list rmd-collapse rmd-tree-group"
+      id="tree-item-:rc:-group"
+      role="group"
+      style="--rmd-tree-depth: -1;"
+    >
+      <li
+        class="rmd-tree-item"
+        role="none"
+      >
+        <span
+          aria-selected="true"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-tree-item__content--selected rmd-list-item rmd-list-item--clickable"
+          id="tree-item-:rd:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 1
+            </span>
+          </span>
+        </span>
+      </li>
+      <li
+        class="rmd-tree-item rmd-tree-item--expander-right"
+        role="none"
+      >
+        <span
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          id="tree-item-:re:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 2
+            </span>
+          </span>
+          <span
+            aria-hidden="true"
+            class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+          >
+            arrow_drop_down
+          </span>
+        </span>
+        <ul
+          aria-labelledby="tree-item-:re:"
+          class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
+          hidden=""
+          id="tree-item-:re:-group"
+          role="group"
+          style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 0;"
+        >
+          <li
+            class="rmd-tree-item rmd-tree-item--expander-right"
+            role="none"
+          >
+            <span
+              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+              id="tree-item-:rf:"
+              role="treeitem"
+              tabindex="-1"
+            >
+              <span
+                class="rmd-list-item__text"
+              >
+                <span>
+                  Folder 2 Child 2 Child 1
+                </span>
+              </span>
+              <span
+                aria-hidden="true"
+                class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+              >
+                arrow_drop_down
+              </span>
+            </span>
+            <ul
+              aria-labelledby="tree-item-:rf:"
+              class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
+              hidden=""
+              id="tree-item-:rf:-group"
+              role="group"
+              style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
+            >
+              <li
+                class="rmd-tree-item"
+                role="none"
+              >
+                <span
+                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+                  id="tree-item-:rg:"
+                  role="treeitem"
+                  tabindex="-1"
+                >
+                  <span
+                    class="rmd-list-item__text"
+                  >
+                    <span>
+                      Folder 2 Child 2 Child 1 Child 1
+                    </span>
+                  </span>
+                </span>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li
+        class="rmd-tree-item"
+        role="none"
+      >
+        <span
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          id="tree-item-:rh:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 3
+            </span>
+          </span>
+        </span>
+      </li>
+    </ul>
+  </li>
+  <li
+    class="rmd-tree-item"
+    role="none"
+  >
+    <span
+      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      id="tree-item-:ri:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 3
+        </span>
+      </span>
+    </span>
+  </li>
+</ul>
+`;

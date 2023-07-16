@@ -8,7 +8,7 @@ import type {
   TreeItemNode,
   TreeSelection,
 } from "../tree";
-import { getItemsFrom, useTreeExpansion } from "../tree";
+import { getTreeItemsFrom, useTreeExpansion } from "../tree";
 
 import type { LayoutNavigationItem, LayoutNavigationTree } from "./types";
 
@@ -37,7 +37,7 @@ const getParentIds = (
   itemId: string,
   navItems: TreeData<TreeItemNode>
 ): readonly string[] =>
-  getItemsFrom(navItems, itemId).map(({ itemId }) => itemId);
+  getTreeItemsFrom(navItems, itemId).map(({ itemId }) => itemId);
 
 /**
  * This is used to disable the item select and multi item select functionality

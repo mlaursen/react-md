@@ -9,8 +9,9 @@ import type { TreeItemNode, TreeData, DefaultTreeItemNode } from "./types";
  * @param itemId - The item id to start the search at.
  * @returns an ordered list of the current item followed by all the direct
  * parents of that item.
+ * @remarks \@since 6.0.0 Renamed from `getItemsFrom` to `getTreeItemsFrom`.
  */
-export function getItemsFrom<T extends TreeItemNode = DefaultTreeItemNode>(
+export function getTreeItemsFrom<T extends TreeItemNode = DefaultTreeItemNode>(
   data: TreeData<T>,
   itemId: string | null
 ): readonly T[] {
@@ -18,7 +19,7 @@ export function getItemsFrom<T extends TreeItemNode = DefaultTreeItemNode>(
   let currentId = itemId;
   while (currentId) {
     const item = data[currentId];
-    currentId = (item && item.parentId) || null;
+    currentId = item?.parentId ?? null;
     if (item) {
       items.push(item);
     }
@@ -40,8 +41,9 @@ export function getItemsFrom<T extends TreeItemNode = DefaultTreeItemNode>(
  * recursive param is enabled, the list will be ordered so that the children of
  * a item will appear before the next item at the same level. So you either need
  * to sort by `parentId` or something else if you want a specific order.
+ * @remarks \@since 6.0.0 Renamed from `getChildItems` to `getChildTreeItems`.
  */
-export function getChildItems<T extends TreeItemNode = DefaultTreeItemNode>(
+export function getChildTreeItems<T extends TreeItemNode = DefaultTreeItemNode>(
   data: TreeData<T> | readonly T[],
   parentId: string | null,
   recursive = false
@@ -56,7 +58,7 @@ export function getChildItems<T extends TreeItemNode = DefaultTreeItemNode>(
     return [
       ...list,
       item,
-      ...(recursive ? getChildItems(items, item.itemId, recursive) : []),
+      ...(recursive ? getChildTreeItems(items, item.itemId, recursive) : []),
     ];
   }, []);
 }

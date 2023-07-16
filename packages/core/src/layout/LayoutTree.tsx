@@ -69,7 +69,7 @@ export function LayoutTree<T extends TreeItemNode = LayoutNavigationItem>(
       <Tree
         {...remaining}
         id={id}
-        aria-label={ariaLabel}
+        aria-label={ariaLabel as string}
         aria-labelledby={ariaLabelledBy}
         data={navItems}
         selectedIds={selectedIds}
