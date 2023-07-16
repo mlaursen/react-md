@@ -1,4 +1,11 @@
-import { matchPhone, render, spyOnMatchMedia } from "../test-utils";
+import {
+  matchAnyDesktop,
+  matchLargeDesktop,
+  matchPhone,
+  matchTablet,
+  render,
+  spyOnMatchMedia,
+} from "../test-utils";
 
 import type { AppSize } from "../AppSizeProvider";
 import { AppSizeProvider, useAppSize } from "../AppSizeProvider";
@@ -78,6 +85,33 @@ describe("useAppSize", () => {
       isTablet: false,
       isDesktop: false,
       isLargeDesktop: false,
+      isLandscape: false,
+    });
+
+    matchMedia.changeViewport(matchTablet);
+    expect(appSize).toEqual({
+      isPhone: false,
+      isTablet: true,
+      isDesktop: false,
+      isLargeDesktop: false,
+      isLandscape: false,
+    });
+
+    matchMedia.changeViewport(matchLargeDesktop);
+    expect(appSize).toEqual({
+      isPhone: false,
+      isTablet: false,
+      isDesktop: false,
+      isLargeDesktop: true,
+      isLandscape: false,
+    });
+
+    matchMedia.changeViewport(matchAnyDesktop);
+    expect(appSize).toEqual({
+      isPhone: false,
+      isTablet: false,
+      isDesktop: true,
+      isLargeDesktop: true,
       isLandscape: false,
     });
   });
