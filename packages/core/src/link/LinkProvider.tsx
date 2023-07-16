@@ -26,9 +26,9 @@ export function useLink(): CustomLinkComponent {
  */
 export interface LinkProviderProps {
   /**
-   * @defaultValue `Link`
+   * @defaultValue `useLink() ?? Link`
    */
-  link?: CustomLinkComponent;
+  value?: CustomLinkComponent;
   children: ReactNode;
 }
 
@@ -36,7 +36,8 @@ export interface LinkProviderProps {
  * @remarks \@since 6.0.0
  */
 export function LinkProvider(props: LinkProviderProps): ReactElement {
-  const { link = Link, children } = props;
+  const { value, children } = props;
+  const inherited = useLink();
 
-  return <Provider value={link}>{children}</Provider>;
+  return <Provider value={value ?? inherited}>{children}</Provider>;
 }

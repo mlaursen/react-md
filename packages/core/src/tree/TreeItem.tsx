@@ -182,10 +182,6 @@ export function TreeItem(props: TreeItemProps): ReactElement {
       onBlur,
       onClick(event) {
         onClick?.(event);
-        if (event.isPropagationStopped()) {
-          return;
-        }
-
         toggleTreeItemSelection(itemId);
         if (!isLeafNode && expansionMode !== "manual") {
           toggleTreeItemExpansion(itemId);
@@ -227,8 +223,10 @@ export function TreeItem(props: TreeItemProps): ReactElement {
     >
       <ContentComponent
         {...remaining}
-        aria-expanded={(!isLeafNode && expanded) || undefined}
-        aria-selected={selected || undefined}
+        // nodes with children should always apply the `aria-expanded` to show
+        // that it is expandable while leaf nodes should remain omitted
+        aria-expanded={isLeafNode ? undefined : expanded}
+        aria-selected={selected}
         aria-disabled={disabled || undefined}
         id={id}
         ref={contentRef}
@@ -257,7 +255,7 @@ export function TreeItem(props: TreeItemProps): ReactElement {
           secondaryTextProps={secondaryTextProps}
           leftAddon={
             <TreeItemExpander
-              left
+              isLeft
               itemId={itemId}
               addon={leftAddon}
               expanded={expanded}
@@ -294,7 +292,6 @@ export function TreeItem(props: TreeItemProps): ReactElement {
         {rippleContainerProps && <RippleContainer {...rippleContainerProps} />}
       </ContentComponent>
       <TreeGroup
-        aria-labelledby={groupProps?.["aria-label"] ? undefined : id}
         id={`${id}-group`}
         temporary={temporaryChildItems}
         disableTransition={disableTransition}

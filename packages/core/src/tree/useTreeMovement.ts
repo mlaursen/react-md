@@ -13,13 +13,33 @@ import type { NonNullMutableRef } from "../types";
 import type { TreeItemMetadataLookup } from "./TreeProvider";
 import type { TreeData, TreeItemNode } from "./types";
 import type { TreeExpansion } from "./useTreeExpansion";
-import type { RenderedTreeItemsMetadata } from "./useTreeItems";
+import type { TreeItemChildIds } from "./useTreeItems";
+
+/**
+ * This helps catch the edge case where the collapse transition has occurred for
+ * a tree item group, but the user uses the `ArrowDown` key before it has
+ * finished. So to do this:
+ *
+ * - find the parent group of the tree item
+ * - find the tree item that controls the group (the element before the group)
+ * - check if the `aria-expanded` state is `"false"` meaning it is considered
+ *   closed
+ *
+ * @internal
+ * @remarks \@since 6.0.0
+ */
+const isParentItemCollapsing = (item: HTMLElement): boolean =>
+  item
+    .closest("[role='group']")
+    ?.previousElementSibling?.getAttribute("aria-expanded") === "false";
 
 /**
  * @remarks \@since 6.0.0
  * @internal
  */
-const getTreeItemsOnly = (container: HTMLElement): readonly HTMLElement[] => {
+const getVisibleTreeItems = (
+  container: HTMLElement
+): readonly HTMLElement[] => {
   const items = [
     ...container.querySelectorAll<HTMLElement>('[role="treeitem"]'),
   ];
@@ -28,12 +48,8 @@ const getTreeItemsOnly = (container: HTMLElement): readonly HTMLElement[] => {
     (item) =>
       // do not include items that have a `hidden` parent group
       item.offsetParent &&
-      // this is a super edge case, but make sure that tree items that are
-      // currently in the collapse animation are not included as well
-      item
-        .closest("[role='group']")
-        ?.previousElementSibling?.closest("[role='treeitem']")
-        ?.getAttribute("aria-expanded") !== "false"
+      // do not include items that are about to become hidden
+      !isParentItemCollapsing(item)
   );
 };
 
@@ -43,11 +59,11 @@ const getTreeItemsOnly = (container: HTMLElement): readonly HTMLElement[] => {
  */
 interface TreeMovementOptions<T extends TreeItemNode> extends TreeExpansion {
   data: TreeData<T>;
-  metadata: RenderedTreeItemsMetadata;
   onClick: MouseEventHandler<HTMLUListElement> | undefined;
   onFocus: FocusEventHandler<HTMLUListElement> | undefined;
   onKeyDown: KeyboardEventHandler<HTMLUListElement> | undefined;
   selectedIds: ReadonlySet<string>;
+  treeItemChildIds: TreeItemChildIds;
 }
 
 /**
@@ -56,6 +72,10 @@ interface TreeMovementOptions<T extends TreeItemNode> extends TreeExpansion {
  */
 interface TreeMovement
   extends KeyboardMovementProviderImplementation<HTMLUListElement> {
+  /**
+   * This will be mutated by the `TreeItem` component and used to handle
+   * keyboard movement.
+   */
   metadataLookup: NonNullMutableRef<TreeItemMetadataLookup>;
 }
 
@@ -71,9 +91,9 @@ export function useTreeMovement<T extends TreeItemNode>(
     onFocus,
     onKeyDown,
     data,
-    metadata,
     expandedIds,
     selectedIds,
+    treeItemChildIds,
     toggleTreeItemExpansion,
     expandMultipleTreeItems,
   } = options;
@@ -96,9 +116,11 @@ export function useTreeMovement<T extends TreeItemNode>(
       const itemId = elementToItem[activeDescendantId];
       const item = data[itemId];
 
+      /* c8 ignore start */
       if (!item) {
         return;
       }
+      /* c8 ignore end */
 
       const disabled = disabledItems[itemId];
       const expanded = expandedIds.has(itemId);
@@ -112,7 +134,7 @@ export function useTreeMovement<T extends TreeItemNode>(
           } else if (item.parentId) {
             // do not flag for this case since setFocusIndex already does this
             const parentId = itemToElement[item.parentId];
-            const focusables = getTreeItemsOnly(event.currentTarget);
+            const focusables = getVisibleTreeItems(event.currentTarget);
             const index = focusables.findIndex(
               (element) => element.id === parentId
             );
@@ -127,7 +149,7 @@ export function useTreeMovement<T extends TreeItemNode>(
               toggleTreeItemExpansion(itemId);
             } else {
               // do not flag for this case since setFocusIndex already does this
-              const focusables = getTreeItemsOnly(event.currentTarget);
+              const focusables = getVisibleTreeItems(event.currentTarget);
               const index = getNextFocusableIndex({
                 loopable: false,
                 increment: true,
@@ -143,10 +165,17 @@ export function useTreeMovement<T extends TreeItemNode>(
           break;
         case "*": {
           flagged = true;
-          const itemIds = metadata.get(item.parentId);
+          const itemIds = treeItemChildIds.get(item.parentId);
           if (itemIds) {
-            expandMultipleTreeItems((prev) => new Set([...prev, ...itemIds]));
-            currentFocusIndex.current = -1;
+            const expandableIds = [...itemIds].filter(
+              (itemId) => expandable[itemId]
+            );
+            if (expandableIds.length) {
+              expandMultipleTreeItems(
+                (prev) => new Set([...prev, ...expandableIds])
+              );
+              currentFocusIndex.current = -1;
+            }
           }
           break;
         }
@@ -159,7 +188,7 @@ export function useTreeMovement<T extends TreeItemNode>(
     },
     searchable: true,
     tabIndexBehavior: "virtual",
-    getFocusableElements: getTreeItemsOnly,
+    getFocusableElements: getVisibleTreeItems,
     getDefaultFocusedIndex(options) {
       const { focusables } = options;
       const { elementToItem } = metadataLookup.current;

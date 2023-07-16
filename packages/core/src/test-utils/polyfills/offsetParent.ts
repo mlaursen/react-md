@@ -15,6 +15,8 @@ if (typeof window !== "undefined") {
       let element: ParentNode | null = this;
       while (
         element &&
+        // it'll almost always be an html element, unless using document fragments
+        !(element as HTMLElement).hidden &&
         (element as HTMLElement).style?.display?.toLowerCase() !== "none"
       ) {
         element = element.parentNode;

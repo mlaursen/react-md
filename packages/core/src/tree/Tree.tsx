@@ -258,7 +258,7 @@ export function Tree<T extends TreeItemNode>(
     ...remaining
   } = props;
   const treeId = useEnsuredId(id, "tree");
-  const { items, metadata } = useTreeItems({
+  const { items, treeItemChildIds } = useTreeItems({
     data,
     sort,
     rootId,
@@ -269,9 +269,9 @@ export function Tree<T extends TreeItemNode>(
     onFocus,
     onKeyDown,
     data,
-    metadata,
     expandedIds,
     selectedIds,
+    treeItemChildIds,
     toggleTreeItemExpansion,
     expandMultipleTreeItems,
   });
@@ -330,7 +330,7 @@ export function Tree<T extends TreeItemNode>(
       selectMultipleTreeItems={selectMultipleTreeItems}
       expandMultipleTreeItems={expandMultipleTreeItems}
     >
-      <LinkProvider link={linkComponent}>
+      <LinkProvider value={linkComponent}>
         <KeyboardMovementProvider value={movementContext}>
           <List
             {...remaining}

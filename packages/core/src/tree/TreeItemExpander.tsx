@@ -10,7 +10,7 @@ import { useTreeContext } from "./TreeProvider";
  */
 export interface TreeItemExpanderProps {
   /** @defaultValue `false` */
-  left?: boolean;
+  isLeft?: boolean;
   itemId: string;
   addon: ReactNode;
   disabled: boolean;
@@ -23,12 +23,10 @@ export interface TreeItemExpanderProps {
  * @internal
  * @remarks \@since 6.0.0 Updated to support the new `expansionMode` behavior.
  */
-export function TreeItemExpander(
-  props: TreeItemExpanderProps
-): ReactElement | null {
+export function TreeItemExpander(props: TreeItemExpanderProps): ReactElement {
   const {
     itemId,
-    left = false,
+    isLeft = false,
     addon,
     expanded,
     disabled,
@@ -44,7 +42,7 @@ export function TreeItemExpander(
   } = useTreeContext();
 
   const icon = useIcon("dropdown", expanderIcon);
-  if (isLeafNode || expanderLeft !== left) {
+  if (isLeafNode || expanderLeft !== isLeft) {
     if (isValidElement<{ className?: string }>(addon)) {
       return cloneElement(addon, { className });
     }

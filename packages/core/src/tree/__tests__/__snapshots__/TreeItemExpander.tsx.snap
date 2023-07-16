@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TreeItemExpander should force wrapping the icon in a span and move the click props to the span if the icon is not cloneable 1`] = `
+<div>
+  <span
+    class="rmd-icon-rotator rmd-icon-rotator--animate"
+  >
+    icon
+  </span>
+</div>
+`;

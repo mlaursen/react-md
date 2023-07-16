@@ -7,10 +7,14 @@ import type {
 } from "./types";
 
 /**
+ * A lookup to find all the child ids for a specific parent. This was added to
+ * support the `*` keyboard behavior of opening all tree items at the current
+ * level.
+ *
  * @remarks \@since 6.0.0
  * @internal
  */
-export type RenderedTreeItemsMetadata = Map<string | null, Set<string>>;
+export type TreeItemChildIds = Map<string | null, Set<string>>;
 
 /**
  * @remarks \@since 6.0.0
@@ -30,7 +34,7 @@ export interface BuildTreeOptions<T extends TreeItemNode> {
   sort: TreeItemSorter<T>;
   nodes: T[];
   parentId: string | null;
-  metadata: RenderedTreeItemsMetadata;
+  treeItemChildIds: TreeItemChildIds;
 }
 
 /**
@@ -39,13 +43,13 @@ export interface BuildTreeOptions<T extends TreeItemNode> {
  * will also recursively build the tree and _hopefully_ all items will be added.
  *
  * @internal
- * @remarks \@since 6.0.0 Updated to include the {@link RenderedTreeItemsMetadata}
+ * @remarks \@since 6.0.0 Updated to include the {@link TreeItemChildIds}
  */
 export function buildTree<T extends TreeItemNode>(
   options: BuildTreeOptions<T>
 ): readonly RenderableTreeItemNode<T>[] | undefined {
-  const { sort, nodes, parentId, metadata } = options;
-  const childIds = metadata.get(parentId) || new Set();
+  const { sort, nodes, parentId, treeItemChildIds } = options;
+  const childIds = treeItemChildIds.get(parentId) || new Set();
   const childItems: RenderableTreeItemNode<T>[] = [];
 
   // doing a "reverse" order filter/move so that the items array shrinks while
@@ -68,13 +72,13 @@ export function buildTree<T extends TreeItemNode>(
     return undefined;
   }
 
-  metadata.set(parentId, childIds);
+  treeItemChildIds.set(parentId, childIds);
   childItems.forEach((childItem) => {
     childItem.childItems = buildTree({
       sort,
       nodes,
       parentId: childItem.itemId,
-      metadata,
+      treeItemChildIds,
     });
   });
 
@@ -97,38 +101,38 @@ export interface TreeItemOptions<T extends TreeItemNode> {
  */
 interface TreeItems<T extends TreeItemNode> {
   items: readonly RenderableTreeItemNode<T>[];
-  metadata: RenderedTreeItemsMetadata;
+  treeItemChildIds: TreeItemChildIds;
 }
 
 /**
  * @internal
  * @remarks \@since 6.0.0 converted to use an object argument instead of
- * multiple arguments.
+ * multiple arguments. Also logs any orphaned items that do not have a parent
  */
 export function useTreeItems<T extends TreeItemNode>(
   options: TreeItemOptions<T>
 ): TreeItems<T> {
   const { data, sort, rootId } = options;
 
-  return useMemo(() => {
+  return useMemo<TreeItems<T>>(() => {
     const values = Object.values(data);
-    const metadata = new Map<string, Set<string>>();
+    const treeItemChildIds = new Map<string, Set<string>>();
     const items = buildTree<T>({
       sort,
       nodes: values,
       parentId: rootId,
-      metadata,
+      treeItemChildIds,
     });
 
     if (process.env.NODE_ENV !== "production" && values.length) {
       /* eslint-disable no-console */
-      console.warn(`The following tree items are orphaned without a parent:`);
+      console.warn("The following tree items are orphaned without a parent:");
       console.warn(values.slice());
     }
 
     return {
       items: items || [],
-      metadata,
+      treeItemChildIds,
     };
   }, [data, rootId, sort]);
 }
