@@ -17,13 +17,13 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   pageExtensions: ["ts", "tsx", "mdx"],
-  eslint: {
-    // I have already run lint before this step...
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
+  // eslint: {
+  //   // I have already run lint before this step...
+  //   ignoreDuringBuilds: true,
+  // },
+  // typescript: {
+  //   ignoreBuildErrors: true,
+  // },
   // experimental: {
   //   appDir: true,
   // },
