@@ -45,9 +45,14 @@ export function getIconsByCategory(
 ): IconsByCategory {
   const { iconType, iconFamily, iconCategory } = options;
 
-  let iconsByCategory = (
-    iconType === "icon" ? MATERIAL_ICONS : MATERIAL_SYMBOLS
-  )[iconFamily];
+  const icon = MATERIAL_ICONS[iconFamily];
+  const symbol = MATERIAL_SYMBOLS[iconFamily];
+  let iconsByCategory = iconType === "icon" ? icon : symbol;
+  // TODO: Revert this (?) once the swc minifier no longer considers this
+  // "dead code" for the `MATERIAL_SYMBOLS` and `MATERIAL_ICONS` constants.
+  // let iconsByCategory = (
+  //   iconType === "icon" ? MATERIAL_ICONS : MATERIAL_SYMBOLS
+  // )[iconFamily];
 
   if (iconCategory) {
     iconsByCategory = {
