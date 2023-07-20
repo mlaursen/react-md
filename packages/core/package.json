@@ -3,6 +3,7 @@
   "version": "6.0.0-alpha.0",
   "description": "The core components and functionality for react-md.",
   "type": "module",
+  "sass": "./dist/_core.scss",
   "types": "./types/index.d.ts",
   "exports": {
     ".": {
@@ -10,7 +11,10 @@
       "default": "./esm/index.js"
     },
     "./test-utils": "./esm/test-utils",
-    "./test-utils/*": "./esm/test-utils/*"
+    "./test-utils/*": "./esm/test-utils/*",
+    "./colors": {
+      "sass": "./dist/_colors.scss"
+    }
   },
   "sideEffects": [
     "dist/**/*",
