@@ -25,14 +25,14 @@ function getParser(
   return "typescript";
 }
 
-export function formatInNode(
+export async function formatInNode(
   code: string,
   parser?: BuiltInParserName,
   filepath?: string
-): string {
+): Promise<string> {
   const resolvedParser = getParser(code, parser, filepath);
   try {
-    return prettier.format(code, {
+    return await prettier.format(code, {
       filepath,
       parser: resolvedParser,
       proseWrap: resolvedParser === "markdown" ? "always" : undefined,

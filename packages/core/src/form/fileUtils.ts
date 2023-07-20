@@ -98,7 +98,10 @@ export class GenericFileError extends Error {
    * @param files - A list of files that caused the error.
    * @param reason - An optional reason for the error
    */
-  constructor(public files: readonly File[], public reason?: string) {
+  constructor(
+    public files: readonly File[],
+    public reason?: string
+  ) {
     super("Invalid files");
     this.key = nanoid();
     this.name = "GenericFileError";
@@ -118,7 +121,10 @@ export class TooManyFilesError extends GenericFileError {
    * limit defined.
    * @param limit - The max limit of files allowed.
    */
-  constructor(files: readonly File[], public limit: number) {
+  constructor(
+    files: readonly File[],
+    public limit: number
+  ) {
     super(files, "file limit");
     this.name = "TooManyFilesError";
   }
@@ -162,7 +168,10 @@ export class FileExtensionError extends GenericFileError {
    * @param files - The file that caused the error
    * @param extensions - The allowed list of file extensions
    */
-  constructor(files: readonly File[], public extensions: readonly string[]) {
+  constructor(
+    files: readonly File[],
+    public extensions: readonly string[]
+  ) {
     super(files, "extension");
     this.name = "FileExtensionError";
   }

@@ -68,15 +68,14 @@ export interface LinkProps
  * \@since 6.0.0 Removed the `flexCentered` prop since it is now the default
  * styles.
  */
-export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
-  props,
-  ref
-) {
-  const { className, flex, children, ...remaining } = props;
+export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
+  function Link(props, ref) {
+    const { className, flex, children, ...remaining } = props;
 
-  return (
-    <a {...remaining} ref={ref} className={link({ flex, className })}>
-      {children}
-    </a>
-  );
-});
+    return (
+      <a {...remaining} ref={ref} className={link({ flex, className })}>
+        {children}
+      </a>
+    );
+  }
+);

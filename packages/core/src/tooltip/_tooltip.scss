@@ -147,7 +147,9 @@ $var-lookup: (
       }
 
       &--enter {
-        transition: opacity $enter-duration, transform $enter-duration * 2;
+        transition:
+          opacity $enter-duration,
+          transform $enter-duration * 2;
         transition-timing-function: $enter-timing-function;
       }
 

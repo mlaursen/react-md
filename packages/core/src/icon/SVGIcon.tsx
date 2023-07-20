@@ -77,46 +77,45 @@ export interface SVGIconProps
  * The `SVGIcon` component is used to render inline SVG icons or SVG icons in a
  * sprite map as an icon.
  */
-export const SVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(function SVGIcon(
-  props,
-  ref
-) {
-  const {
-    "aria-hidden": ariaHidden = true,
-    focusable = "false",
-    use,
-    xmlns = use ? "http://www.w3.org/2000/svg" : undefined,
-    viewBox = "0 0 24 24",
-    dense = false,
-    className,
-    color,
-    inline,
-    children: propChildren,
-    ...remaining
-  } = props;
+export const SVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
+  function SVGIcon(props, ref) {
+    const {
+      "aria-hidden": ariaHidden = true,
+      focusable = "false",
+      use,
+      xmlns = use ? "http://www.w3.org/2000/svg" : undefined,
+      viewBox = "0 0 24 24",
+      dense = false,
+      className,
+      color,
+      inline,
+      children: propChildren,
+      ...remaining
+    } = props;
 
-  let children = propChildren;
-  if (!children && use) {
-    children = <use xlinkHref={use} />;
+    let children = propChildren;
+    if (!children && use) {
+      children = <use xlinkHref={use} />;
+    }
+
+    return (
+      <svg
+        {...remaining}
+        aria-hidden={ariaHidden}
+        ref={ref}
+        className={icon({
+          type: "svg",
+          dense,
+          color,
+          inline,
+          className,
+        })}
+        focusable={focusable}
+        xmlns={xmlns}
+        viewBox={viewBox}
+      >
+        {children}
+      </svg>
+    );
   }
-
-  return (
-    <svg
-      {...remaining}
-      aria-hidden={ariaHidden}
-      ref={ref}
-      className={icon({
-        type: "svg",
-        dense,
-        color,
-        inline,
-        className,
-      })}
-      focusable={focusable}
-      xmlns={xmlns}
-      viewBox={viewBox}
-    >
-      {children}
-    </svg>
-  );
-});
+);

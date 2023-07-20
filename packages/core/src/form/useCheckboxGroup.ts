@@ -91,7 +91,7 @@ export interface MenuItemCheckboxGroupImplementation<V extends string> {
 
 /** @remarks \@since 6.0.0 */
 export interface IndeterminateMenuItemCheckboxGroupImplementation<
-  V extends string
+  V extends string,
 > extends MenuItemCheckboxGroupImplementation<V> {
   getIndeterminateProps(): {
     "aria-checked": "mixed" | undefined;

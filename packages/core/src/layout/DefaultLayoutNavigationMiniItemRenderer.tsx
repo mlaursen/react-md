@@ -6,7 +6,7 @@ import { DefaultLayoutNavigationItemRenderer } from "./DefaultLayoutNavigationIt
 import type { LayoutNavigationItem } from "./types";
 
 export function DefaultMiniLayoutNavigationItemRenderer<
-  T extends TreeItemNode = LayoutNavigationItem
+  T extends TreeItemNode = LayoutNavigationItem,
 >(props: TreeItemRendererProps<T>): ReactElement | null {
   const { item: _item, ...remaining } = props;
   const item = props.item as LayoutNavigationItem;

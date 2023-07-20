@@ -252,143 +252,142 @@ export type DialogProps = LabelRequiredForA11y<BaseDialogProps>;
  * within once it becomes visible. You must manually add `autoFocus` to a
  * element instead.
  */
-export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
-  props,
-  ref
-) {
-  const {
-    id: propId,
-    role = "dialog",
-    type = "centered",
-    tabIndex = -1,
-    visible,
-    onRequestClose,
-    containerProps,
-    temporary = true,
-    className,
-    timeout = DEFAULT_DIALOG_TIMEOUT,
-    classNames = DEFAULT_DIALOG_CLASSNAMES,
-    disableTransition = false,
-    onEnter = noop,
-    onEntering = noop,
-    onEntered,
-    onExit = noop,
-    onExiting = noop,
-    onExited,
-    exitedHidden = true,
-    fixed = false,
-    modal = false,
-    disableOverlay = false,
-    overlayProps,
-    overlayHidden,
-    onKeyDown = noop,
-    isFocusTypeDisabled = noopBool,
-    hidden,
-    disablePortal: propDisablePortal,
-    disableScrollLock = false,
-    disableEscapeClose = modal,
-    disableFocusOutline = type === "full-page",
-    children,
-    ...remaining
-  } = props;
-  const id = useEnsuredId(propId, "dialog");
-
-  const ssr = useSsr();
-  const setChildVisible = useNestedDialogContext();
-  const { eventHandlers, transitionOptions } = useFocusContainer({
-    nodeRef: ref,
-    activate: visible,
-    onEntered,
-    onEntering,
-    onExiting,
-    onExited,
-    disableTransition,
-    onKeyDown(event) {
-      onKeyDown(event);
-      if (
-        event.isPropagationStopped() ||
-        modal ||
-        disableEscapeClose ||
-        event.key !== "Escape"
-      ) {
-        return;
-      }
-
-      // prevent parent dialogs from closing as well
-      event.stopPropagation();
-      onRequestClose();
-    },
-    isFocusTypeDisabled,
-  });
-  const { elementProps, rendered, disablePortal } = useCSSTransition({
-    transitionIn: visible,
-    timeout,
-    classNames,
-    className: dialog({
-      type,
-      fixed,
-      outline: !disableFocusOutline,
+export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
+  function Dialog(props, ref) {
+    const {
+      id: propId,
+      role = "dialog",
+      type = "centered",
+      tabIndex = -1,
+      visible,
+      onRequestClose,
+      containerProps,
+      temporary = true,
       className,
-    }),
-    appear: !disableTransition && !ssr,
-    enter: !disableTransition,
-    exit: !disableTransition,
-    onEnter(appearing) {
-      onEnter(appearing);
-      setChildVisible(type !== "full-page");
-    },
-    onExit() {
-      onExit();
-      setChildVisible(false);
-    },
-    temporary,
-    hidden,
-    exitedHidden,
-    disablePortal: propDisablePortal,
-    ...transitionOptions,
-  });
-  useScrollLock(!disableScrollLock && visible);
+      timeout = DEFAULT_DIALOG_TIMEOUT,
+      classNames = DEFAULT_DIALOG_CLASSNAMES,
+      disableTransition = false,
+      onEnter = noop,
+      onEntering = noop,
+      onEntered,
+      onExit = noop,
+      onExiting = noop,
+      onExited,
+      exitedHidden = true,
+      fixed = false,
+      modal = false,
+      disableOverlay = false,
+      overlayProps,
+      overlayHidden,
+      onKeyDown = noop,
+      isFocusTypeDisabled = noopBool,
+      hidden,
+      disablePortal: propDisablePortal,
+      disableScrollLock = false,
+      disableEscapeClose = modal,
+      disableFocusOutline = type === "full-page",
+      children,
+      ...remaining
+    } = props;
+    const id = useEnsuredId(propId, "dialog");
 
-  // this makes it so that as more non-full page dialogs become visible, the
-  // overlay does not become darker as more and more overlays are stacked upon
-  // each other. only the top-most overlay will have and active background
-  // color.
-  const [isChildVisible, setIsChildVisible] = useState(false);
+    const ssr = useSsr();
+    const setChildVisible = useNestedDialogContext();
+    const { eventHandlers, transitionOptions } = useFocusContainer({
+      nodeRef: ref,
+      activate: visible,
+      onEntered,
+      onEntering,
+      onExiting,
+      onExited,
+      disableTransition,
+      onKeyDown(event) {
+        onKeyDown(event);
+        if (
+          event.isPropagationStopped() ||
+          modal ||
+          disableEscapeClose ||
+          event.key !== "Escape"
+        ) {
+          return;
+        }
 
-  return (
-    <NestedDialogProvider value={setIsChildVisible}>
-      {!disableOverlay && (
-        <Overlay
-          visible={visible}
-          disableTransition={disableTransition}
-          temporary={temporary}
-          disablePortal={disablePortal}
-          {...overlayProps}
-          onClick={modal ? noop : onRequestClose}
-          clickable={!modal}
-          noOpacity={overlayHidden || isChildVisible}
-        />
-      )}
-      <Portal disabled={disablePortal}>
-        {rendered && (
-          <DialogContainer
-            hidden={elementProps.hidden}
-            {...containerProps}
-            enabled={type === "centered"}
-          >
-            <div
-              {...remaining}
-              {...elementProps}
-              {...eventHandlers}
-              id={id}
-              role={role}
-              tabIndex={tabIndex}
-            >
-              {children}
-            </div>
-          </DialogContainer>
+        // prevent parent dialogs from closing as well
+        event.stopPropagation();
+        onRequestClose();
+      },
+      isFocusTypeDisabled,
+    });
+    const { elementProps, rendered, disablePortal } = useCSSTransition({
+      transitionIn: visible,
+      timeout,
+      classNames,
+      className: dialog({
+        type,
+        fixed,
+        outline: !disableFocusOutline,
+        className,
+      }),
+      appear: !disableTransition && !ssr,
+      enter: !disableTransition,
+      exit: !disableTransition,
+      onEnter(appearing) {
+        onEnter(appearing);
+        setChildVisible(type !== "full-page");
+      },
+      onExit() {
+        onExit();
+        setChildVisible(false);
+      },
+      temporary,
+      hidden,
+      exitedHidden,
+      disablePortal: propDisablePortal,
+      ...transitionOptions,
+    });
+    useScrollLock(!disableScrollLock && visible);
+
+    // this makes it so that as more non-full page dialogs become visible, the
+    // overlay does not become darker as more and more overlays are stacked upon
+    // each other. only the top-most overlay will have and active background
+    // color.
+    const [isChildVisible, setIsChildVisible] = useState(false);
+
+    return (
+      <NestedDialogProvider value={setIsChildVisible}>
+        {!disableOverlay && (
+          <Overlay
+            visible={visible}
+            disableTransition={disableTransition}
+            temporary={temporary}
+            disablePortal={disablePortal}
+            {...overlayProps}
+            onClick={modal ? noop : onRequestClose}
+            clickable={!modal}
+            noOpacity={overlayHidden || isChildVisible}
+          />
         )}
-      </Portal>
-    </NestedDialogProvider>
-  );
-});
+        <Portal disabled={disablePortal}>
+          {rendered && (
+            <DialogContainer
+              hidden={elementProps.hidden}
+              {...containerProps}
+              enabled={type === "centered"}
+            >
+              <div
+                {...remaining}
+                {...elementProps}
+                {...eventHandlers}
+                id={id}
+                role={role}
+                tabIndex={tabIndex}
+              >
+                {children}
+              </div>
+            </DialogContainer>
+          )}
+        </Portal>
+      </NestedDialogProvider>
+    );
+  }
+);

@@ -13,11 +13,15 @@
   height: 350px;
   justify-content: center;
   padding: 20px;
-  transition: background-color 1s, border 1s;
+  transition:
+    background-color 1s,
+    border 1s;
   width: 350px;
 }
 
 .vertical {
   color: white;
-  font: 32px "Arial", sans-serif;
+  font:
+    32px "Arial",
+    sans-serif;
 }

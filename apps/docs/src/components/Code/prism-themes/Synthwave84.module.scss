@@ -10,7 +10,10 @@
   code[class*="language-"],
   pre[class*="language-"] {
     color: #f92aad;
-    text-shadow: 0 0 2px #100c0f, 0 0 5px #dc078e33, 0 0 10px #fff3;
+    text-shadow:
+      0 0 2px #100c0f,
+      0 0 5px #dc078e33,
+      0 0 10px #fff3;
     background: none;
     font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
     font-size: 1em;
@@ -76,7 +79,10 @@
   .token.property,
   .token.selector {
     color: #72f1b8;
-    text-shadow: 0 0 2px #100c0f, 0 0 10px #257c5575, 0 0 35px #21272475;
+    text-shadow:
+      0 0 2px #100c0f,
+      0 0 10px #257c5575,
+      0 0 35px #21272475;
   }
 
   .token.function-name {
@@ -87,20 +93,29 @@
   .token.selector .token.id,
   .token.function {
     color: #fdfdfd;
-    text-shadow: 0 0 2px #001716, 0 0 3px #03edf975, 0 0 5px #03edf975,
+    text-shadow:
+      0 0 2px #001716,
+      0 0 3px #03edf975,
+      0 0 5px #03edf975,
       0 0 8px #03edf975;
   }
 
   .token.class-name {
     color: #fff5f6;
-    text-shadow: 0 0 2px #000, 0 0 10px #fc1f2c75, 0 0 5px #fc1f2c75,
+    text-shadow:
+      0 0 2px #000,
+      0 0 10px #fc1f2c75,
+      0 0 5px #fc1f2c75,
       0 0 25px #fc1f2c75;
   }
 
   .token.constant,
   .token.symbol {
     color: #f92aad;
-    text-shadow: 0 0 2px #100c0f, 0 0 5px #dc078e33, 0 0 10px #fff3;
+    text-shadow:
+      0 0 2px #100c0f,
+      0 0 5px #dc078e33,
+      0 0 10px #fff3;
   }
 
   .token.important,
@@ -109,7 +124,10 @@
   .token.selector .token.class,
   .token.builtin {
     color: #f4eee4;
-    text-shadow: 0 0 2px #393a33, 0 0 8px #f39f0575, 0 0 2px #f39f0575;
+    text-shadow:
+      0 0 2px #393a33,
+      0 0 8px #f39f0575,
+      0 0 2px #f39f0575;
   }
 
   .token.string,

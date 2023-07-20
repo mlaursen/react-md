@@ -158,8 +158,10 @@ $option-selected-styles: (
   background-color: colors.$blue-900,
   color: colors.$white,
 ) !default;
-$option-padding-left: list.$item-horizontal-padding -
-  math.div(icon.$size - $option-selected-icon-size, 2) !default;
+$option-padding-left: list.$item-horizontal-padding - math.div(
+    icon.$size - $option-selected-icon-size,
+    2
+  ) !default;
 $option-selected-icon-spacing: $option-padding-left !default;
 
 $input-toggle-border-radius: 50% !default;

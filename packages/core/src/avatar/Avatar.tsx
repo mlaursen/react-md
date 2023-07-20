@@ -83,44 +83,43 @@ export interface AvatarProps extends HTMLAttributes<HTMLSpanElement> {
  * the avatar is not an image, different themes can be applied to make the
  * avatar more unique.
  */
-export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(function Avatar(
-  props,
-  ref
-) {
-  const {
-    className,
-    children,
-    src,
-    size = "avatar",
-    alt = "",
-    color = "",
-    imgProps,
-    referrerPolicy,
-    ...remaining
-  } = props;
+export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
+  function Avatar(props, ref) {
+    const {
+      className,
+      children,
+      src,
+      size = "avatar",
+      alt = "",
+      color = "",
+      imgProps,
+      referrerPolicy,
+      ...remaining
+    } = props;
 
-  let img;
-  if (src || imgProps) {
-    img = (
-      <img
-        src={src}
-        alt={alt}
-        referrerPolicy={referrerPolicy}
-        {...imgProps}
-        className={avatarImage({ className: imgProps?.className })}
-      />
+    let img;
+    if (src || imgProps) {
+      img = (
+        <img
+          src={src}
+          alt={alt}
+          referrerPolicy={referrerPolicy}
+          {...imgProps}
+          className={avatarImage({ className: imgProps?.className })}
+        />
+      );
+    }
+
+    return (
+      <span
+        {...remaining}
+        ref={ref}
+        role="presentation"
+        className={avatar({ color, size, className })}
+      >
+        {img}
+        {children}
+      </span>
     );
   }
-
-  return (
-    <span
-      {...remaining}
-      ref={ref}
-      role="presentation"
-      className={avatar({ color, size, className })}
-    >
-      {img}
-      {children}
-    </span>
-  );
-});
+);

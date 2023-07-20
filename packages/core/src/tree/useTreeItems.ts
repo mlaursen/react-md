@@ -21,7 +21,7 @@ export type TreeItemChildIds = Map<string | null, Set<string>>;
  * @internal
  */
 export type RenderableTreeItemNode<
-  T extends TreeItemNode = DefaultTreeItemNode
+  T extends TreeItemNode = DefaultTreeItemNode,
 > = T & {
   childItems?: readonly RenderableTreeItemNode<T>[];
 };

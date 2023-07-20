@@ -25,7 +25,7 @@ declare module "react" {
  * @remarks \@since 6.0.0
  */
 export interface WindowSplitterOptions<
-  E extends HTMLElement = HTMLButtonElement
+  E extends HTMLElement = HTMLButtonElement,
 > extends Omit<
     UncontrolledDraggableOptions<E>,
     "disableTouch" | keyof DraggableTouchEventHandlers<E>

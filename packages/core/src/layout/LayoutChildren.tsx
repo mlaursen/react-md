@@ -23,7 +23,7 @@ import { isMiniLayout } from "./utils";
  * @remarks \@since 2.7.0
  */
 export interface LayoutChildrenProps<
-  T extends TreeItemNode = LayoutNavigationItem
+  T extends TreeItemNode = LayoutNavigationItem,
 > extends FlattenedLayoutComponentConfiguration<T> {
   /**
    * The base id to use for everything within the layout component. The `id`

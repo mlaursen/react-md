@@ -70,104 +70,103 @@ export interface SwitchProps
  *
  * @remarks \@since 6.0.0 Added support for `FormMessage` behavior.
  */
-export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
-  props,
-  ref
-) {
-  const {
-    id: propId,
-    label,
-    labelProps,
-    style,
-    className,
-    containerProps,
-    ballProps,
-    ballStyle,
-    ballClassName,
-    trackProps,
-    trackStyle,
-    trackClassName,
-    messageProps,
-    messageContainerProps,
-    disableLabelGap = false,
-    error = false,
-    active = false,
-    stacked = false,
-    iconAfter = false,
-    disabled = false,
-    readOnly = false,
-    onChange = noop,
-    defaultChecked = false,
-    ...remaining
-  } = props;
-  const id = useEnsuredId(propId, "switch");
-  const [isChecked, setChecked] = useState(defaultChecked);
-  const checked = props.checked ?? isChecked;
+export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
+  function Switch(props, ref) {
+    const {
+      id: propId,
+      label,
+      labelProps,
+      style,
+      className,
+      containerProps,
+      ballProps,
+      ballStyle,
+      ballClassName,
+      trackProps,
+      trackStyle,
+      trackClassName,
+      messageProps,
+      messageContainerProps,
+      disableLabelGap = false,
+      error = false,
+      active = false,
+      stacked = false,
+      iconAfter = false,
+      disabled = false,
+      readOnly = false,
+      onChange = noop,
+      defaultChecked = false,
+      ...remaining
+    } = props;
+    const id = useEnsuredId(propId, "switch");
+    const [isChecked, setChecked] = useState(defaultChecked);
+    const checked = props.checked ?? isChecked;
 
-  return (
-    <FormMessageContainer
-      {...messageContainerProps}
-      messageProps={messageProps}
-    >
-      <Label
-        style={style}
-        {...labelProps}
-        className={cnb(className, labelProps?.className)}
-        gap={!disableLabelGap}
-        stacked={stacked}
-        reversed={!iconAfter}
-        active={active}
-        error={error}
-        disabled={disabled}
+    return (
+      <FormMessageContainer
+        {...messageContainerProps}
+        messageProps={messageProps}
       >
-        {label}
-        <div
-          {...containerProps}
-          className={cnb(
-            styles({ clickable: !disabled && !readOnly }),
-            containerProps?.className
-          )}
+        <Label
+          style={style}
+          {...labelProps}
+          className={cnb(className, labelProps?.className)}
+          gap={!disableLabelGap}
+          stacked={stacked}
+          reversed={!iconAfter}
+          active={active}
+          error={error}
+          disabled={disabled}
         >
-          <SwitchTrack
-            style={trackStyle}
-            {...trackProps}
-            className={cnb(trackClassName, trackProps?.className)}
-            disabled={disabled}
-            ballProps={ballProps}
-            ballStyle={ballStyle}
-            ballClassName={ballClassName}
+          {label}
+          <div
+            {...containerProps}
+            className={cnb(
+              styles({ clickable: !disabled && !readOnly }),
+              containerProps?.className
+            )}
           >
-            <input
-              {...remaining}
-              id={id}
-              ref={ref}
-              role="switch"
-              type="checkbox"
-              className={cnb(
-                "rmd-switch__input rmd-hidden-input",
-                disabled && "rmd-hidden-input--disabled"
-              )}
+            <SwitchTrack
+              style={trackStyle}
+              {...trackProps}
+              className={cnb(trackClassName, trackProps?.className)}
               disabled={disabled}
-              checked={checked}
-              onChange={(event) => {
-                // checkboxes do not natively support the readOnly attribute, so
-                // polyfill it in. can't use `disabled` since the checkbox's
-                // checked/unchecked state would then not be submitted in forms.
-                if (readOnly) {
-                  event.preventDefault();
-                  event.stopPropagation();
-                  return;
-                }
+              ballProps={ballProps}
+              ballStyle={ballStyle}
+              ballClassName={ballClassName}
+            >
+              <input
+                {...remaining}
+                id={id}
+                ref={ref}
+                role="switch"
+                type="checkbox"
+                className={cnb(
+                  "rmd-switch__input rmd-hidden-input",
+                  disabled && "rmd-hidden-input--disabled"
+                )}
+                disabled={disabled}
+                checked={checked}
+                onChange={(event) => {
+                  // checkboxes do not natively support the readOnly attribute, so
+                  // polyfill it in. can't use `disabled` since the checkbox's
+                  // checked/unchecked state would then not be submitted in forms.
+                  if (readOnly) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    return;
+                  }
 
-                onChange(event);
-                if (typeof props.checked === "undefined") {
-                  setChecked(event.currentTarget.checked);
-                }
-              }}
-            />
-          </SwitchTrack>
-        </div>
-      </Label>
-    </FormMessageContainer>
-  );
-});
+                  onChange(event);
+                  if (typeof props.checked === "undefined") {
+                    setChecked(event.currentTarget.checked);
+                  }
+                }}
+              />
+            </SwitchTrack>
+          </div>
+        </Label>
+      </FormMessageContainer>
+    );
+  }
+);

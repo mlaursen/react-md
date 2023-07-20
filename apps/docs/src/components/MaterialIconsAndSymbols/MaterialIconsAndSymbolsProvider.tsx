@@ -214,8 +214,7 @@ export function MaterialIconsAndSymbolsProvider({
       default:
         throw new Error("Unreachable");
     }
-  },
-  INITIAL_STATE);
+  }, INITIAL_STATE);
   const {
     search,
     iconType,

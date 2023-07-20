@@ -1,7 +1,8 @@
 import prettier from "prettier/standalone";
-import parserTypescript from "prettier/parser-typescript";
-import parserPostcss from "prettier/parser-postcss";
-import parserHtml from "prettier/parser-html";
+import typescriptPlugin from "prettier/plugins/typescript";
+import postcssPlugin from "prettier/plugins/postcss";
+import htmlPlugin from "prettier/plugins/html";
+import estreePlugin from "prettier/plugins/estree";
 
 export type PrettierFormatOptions = NonNullable<
   Parameters<typeof prettier.format>[1]
@@ -15,6 +16,6 @@ export const formatInBrowser: typeof prettier.format = (source, options) => {
     parser: "typescript",
     trailingComma: "es5",
     ...options,
-    plugins: [parserTypescript, parserPostcss, parserHtml],
+    plugins: [estreePlugin, typescriptPlugin, postcssPlugin, htmlPlugin],
   });
 };

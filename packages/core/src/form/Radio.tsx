@@ -20,9 +20,8 @@ import { InputToggle } from "./InputToggle";
  * );
  * ```
  */
-export const Radio = forwardRef<HTMLInputElement, RadioProps>(function Radio(
-  props,
-  ref
-) {
-  return <InputToggle {...props} ref={ref} type="radio" />;
-});
+export const Radio = forwardRef<HTMLInputElement, RadioProps>(
+  function Radio(props, ref) {
+    return <InputToggle {...props} ref={ref} type="radio" />;
+  }
+);

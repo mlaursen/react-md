@@ -15,7 +15,7 @@ const styles = bem("rmd-layout-mini-wrapper");
  * @remarks \@since 2.8.3
  */
 export interface MiniLayoutWrapperProps<
-  T extends TreeItemNode = LayoutNavigationItem
+  T extends TreeItemNode = LayoutNavigationItem,
 > extends LayoutNavigationProps<T> {
   /**
    * Boolean if the current layout is one of the `mini` types.
@@ -75,7 +75,7 @@ export interface MiniLayoutWrapperProps<
  * @remarks \@since 2.8.3
  */
 export function MiniLayoutWrapper<
-  T extends TreeItemNode = LayoutNavigationItem
+  T extends TreeItemNode = LayoutNavigationItem,
 >(props: MiniLayoutWrapperProps<T>): ReactElement {
   const {
     mini,

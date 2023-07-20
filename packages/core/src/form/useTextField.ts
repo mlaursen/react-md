@@ -37,12 +37,12 @@ const noop = (): void => {
  * \@since 6.0.0 Added the `onInvalid` handler
  */
 export type TextFieldChangeHandlers<
-  E extends HTMLInputElement | HTMLTextAreaElement
+  E extends HTMLInputElement | HTMLTextAreaElement,
 > = Pick<HTMLAttributes<E>, "onBlur" | "onChange" | "onInvalid">;
 
 /** @remarks \@since 6.0.0 */
 export interface ErrorChangeHandlerOptions<
-  E extends HTMLInputElement | HTMLTextAreaElement
+  E extends HTMLInputElement | HTMLTextAreaElement,
 > {
   /**
    * A ref containing the `TextField` or `TextArea` if you need access to that
@@ -91,7 +91,7 @@ export interface ErrorChangeHandlerOptions<
  * \@since 6.0.0 Changed to object argument.
  */
 export type ErrorChangeHandler<
-  E extends HTMLInputElement | HTMLTextAreaElement
+  E extends HTMLInputElement | HTMLTextAreaElement,
 > = (options: ErrorChangeHandlerOptions<E>) => void;
 
 /** @remarks \@since 2.5.6 */
@@ -132,7 +132,7 @@ export interface ProvidedFormMessageProps
  * @remarks \@since 2.5.0
  */
 export interface ProvidedTextFieldProps<
-  E extends HTMLInputElement | HTMLTextAreaElement
+  E extends HTMLInputElement | HTMLTextAreaElement,
 > extends TextFieldValidationOptions,
     TextFieldChangeHandlers<E>,
     Required<Pick<TextFieldProps, "id" | "name" | "value" | "error">>,
@@ -150,7 +150,7 @@ export interface ProvidedTextFieldProps<
  * @remarks \@since 2.5.0
  */
 export interface ProvidedTextFieldMessageProps<
-  E extends HTMLInputElement | HTMLTextAreaElement
+  E extends HTMLInputElement | HTMLTextAreaElement,
 > extends ProvidedTextFieldProps<E> {
   /**
    * These props will be defined as long as the `disableMessage` prop is not
@@ -161,7 +161,7 @@ export interface ProvidedTextFieldMessageProps<
 
 /** @remarks \@since 2.5.6 */
 export interface TextFieldHookOptions<
-  E extends HTMLInputElement | HTMLTextAreaElement
+  E extends HTMLInputElement | HTMLTextAreaElement,
 > extends TextFieldValidationOptions,
     TextFieldChangeHandlers<E> {
   /**
@@ -314,7 +314,7 @@ export interface TextFieldHookOptions<
 
 /** @remarks \@since 6.0.0 */
 export interface TextFieldImplementation<
-  E extends HTMLInputElement | HTMLTextAreaElement
+  E extends HTMLInputElement | HTMLTextAreaElement,
 > extends TextFieldHookState {
   fieldRef: RefObject<E>;
   reset(): void;
@@ -324,14 +324,14 @@ export interface TextFieldImplementation<
 
 /** @remarks \@since 6.0.0 */
 export interface TextFieldWithMessageImplementation<
-  E extends HTMLInputElement | HTMLTextAreaElement
+  E extends HTMLInputElement | HTMLTextAreaElement,
 > extends TextFieldImplementation<E> {
   fieldProps: ProvidedTextFieldMessageProps<E>;
 }
 
 /** @remarks \@since 6.0.0 */
 export interface ValidatedTextFieldImplementation<
-  E extends HTMLInputElement | HTMLTextAreaElement
+  E extends HTMLInputElement | HTMLTextAreaElement,
 > extends TextFieldImplementation<E> {
   fieldProps: ProvidedTextFieldProps<E> | ProvidedTextFieldMessageProps<E>;
 }

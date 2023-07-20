@@ -49,17 +49,16 @@ describe("ListItemLink", () => {
       );
     }
 
-    const Link = forwardRef<HTMLAnchorElement, Props>(function Link(
-      props,
-      ref
-    ) {
-      const { to, children, ...remaining } = props;
-      return (
-        <a ref={ref} href={to} {...remaining}>
-          {children}
-        </a>
-      );
-    });
+    const Link = forwardRef<HTMLAnchorElement, Props>(
+      function Link(props, ref) {
+        const { to, children, ...remaining } = props;
+        return (
+          <a ref={ref} href={to} {...remaining}>
+            {children}
+          </a>
+        );
+      }
+    );
 
     const { getByRole, container, rerender } = render(
       <List>

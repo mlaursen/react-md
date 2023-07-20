@@ -145,7 +145,7 @@ export interface FileUploadActions {
  */
 export interface FileUploadHookReturnValue<
   E extends HTMLElement = HTMLElement,
-  CustomError = never
+  CustomError = never,
 > extends FileUploadActions,
     Required<FileUploadHandlers<E>> {
   /** {@inheritDoc FileUploadState.errors} */

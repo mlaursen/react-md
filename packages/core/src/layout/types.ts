@@ -198,7 +198,7 @@ export interface LayoutNavigationItem extends DefaultTreeItemNode {
  * This will work amazingly with the provided `useLayoutNavigation` hook.
  */
 export type LayoutNavigationTree<
-  T extends TreeItemNode = LayoutNavigationItem
+  T extends TreeItemNode = LayoutNavigationItem,
 > = TreeData<T>;
 
 export interface BaseLayoutAppBarProps extends Omit<AppBarProps, "title"> {
@@ -442,7 +442,7 @@ export type LayoutNavigationSheetProps = Omit<
 >;
 
 export interface LayoutNavigationProps<
-  T extends TreeItemNode = LayoutNavigationItem
+  T extends TreeItemNode = LayoutNavigationItem,
 > extends LayoutNavigationSheetProps {
   /**
    * The id to use for the main navigation sheet element. When this is omitted,
@@ -565,7 +565,7 @@ export interface LayoutNavigationProps<
  * ```
  */
 export interface FlattenedLayoutComponentConfiguration<
-  T extends TreeItemNode = LayoutNavigationItem
+  T extends TreeItemNode = LayoutNavigationItem,
 > extends LayoutWithTitle,
     LayoutWithNavToggle {
   /**

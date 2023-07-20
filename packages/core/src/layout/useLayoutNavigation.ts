@@ -13,7 +13,7 @@ import { getTreeItemsFrom, useTreeExpansion } from "../tree";
 import type { LayoutNavigationItem, LayoutNavigationTree } from "./types";
 
 export interface LayoutNavigationState<
-  T extends TreeItemNode = LayoutNavigationItem
+  T extends TreeItemNode = LayoutNavigationItem,
 > extends TreeSelection,
     TreeExpansion {
   /**
@@ -67,7 +67,7 @@ const removeQueryParams = (pathname: string): string => {
 };
 
 export interface LayoutNavigationOptions<
-  T extends TreeItemNode = LayoutNavigationItem
+  T extends TreeItemNode = LayoutNavigationItem,
 > {
   /**
    * All the navigation items within your layout. This is used for determining
@@ -113,7 +113,7 @@ export interface LayoutNavigationOptions<
  * should be passed to the `Layout` component.
  */
 export function useLayoutNavigation<
-  T extends TreeItemNode = LayoutNavigationItem
+  T extends TreeItemNode = LayoutNavigationItem,
 >(options: LayoutNavigationOptions<T>): LayoutNavigationState<T> {
   const {
     navItems,

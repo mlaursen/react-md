@@ -59,7 +59,7 @@ export type UpdateTooltipPosition = (container: HTMLElement) => void;
  */
 export type TooltipPositionHookReturnValue = [
   SimplePosition,
-  UpdateTooltipPosition
+  UpdateTooltipPosition,
 ];
 
 /**

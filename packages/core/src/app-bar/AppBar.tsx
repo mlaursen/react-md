@@ -193,40 +193,39 @@ export interface AppBarProps
  * @remarks \@since 6.0.0 The `AppBar` was updated to use `gap` for spacing
  * instead of requiring the `AppBarNav` and `AppBarAction` components.
  */
-export const AppBar = forwardRef<HTMLDivElement, AppBarProps>(function AppBar(
-  props,
-  ref
-) {
-  const {
-    className,
-    height,
-    theme,
-    stacked,
-    position,
-    pagePosition,
-    scrollbarOffset,
-    disableElevation,
-    as: Component = position ? "header" : "div",
-    children,
-    ...remaining
-  } = props;
+export const AppBar = forwardRef<HTMLDivElement, AppBarProps>(
+  function AppBar(props, ref) {
+    const {
+      className,
+      height,
+      theme,
+      stacked,
+      position,
+      pagePosition,
+      scrollbarOffset,
+      disableElevation,
+      as: Component = position ? "header" : "div",
+      children,
+      ...remaining
+    } = props;
 
-  return (
-    <Component
-      {...remaining}
-      className={appBar({
-        theme,
-        position,
-        pagePosition,
-        disableElevation,
-        stacked,
-        height,
-        className,
-        scrollbarOffset,
-      })}
-      ref={ref}
-    >
-      {children}
-    </Component>
-  );
-});
+    return (
+      <Component
+        {...remaining}
+        className={appBar({
+          theme,
+          position,
+          pagePosition,
+          disableElevation,
+          stacked,
+          height,
+          className,
+          scrollbarOffset,
+        })}
+        ref={ref}
+      >
+        {children}
+      </Component>
+    );
+  }
+);

@@ -57,31 +57,30 @@ export interface CardProps
  *
  * @remarks \@since 6.0.0 Removed the deprecated `raiseable` prop
  */
-export const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
-  props,
-  ref
-) {
-  const {
-    children,
-    className,
-    bordered = false,
-    raisable = false,
-    fullWidth = false,
-    ...remaining
-  } = props;
+export const Card = forwardRef<HTMLDivElement, CardProps>(
+  function Card(props, ref) {
+    const {
+      children,
+      className,
+      bordered = false,
+      raisable = false,
+      fullWidth = false,
+      ...remaining
+    } = props;
 
-  return (
-    <div
-      {...remaining}
-      ref={ref}
-      className={card({
-        className,
-        bordered,
-        raisable,
-        fullWidth,
-      })}
-    >
-      {children}
-    </div>
-  );
-});
+    return (
+      <div
+        {...remaining}
+        ref={ref}
+        className={card({
+          className,
+          bordered,
+          raisable,
+          fullWidth,
+        })}
+      >
+        {children}
+      </div>
+    );
+  }
+);

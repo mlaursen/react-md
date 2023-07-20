@@ -16,7 +16,7 @@ export { default as userEvent } from "@testing-library/user-event";
 export interface ReactMDRenderOptions<
   Q extends Queries = typeof queries,
   Container extends Element | DocumentFragment = HTMLElement,
-  BaseElement extends Element | DocumentFragment = Container
+  BaseElement extends Element | DocumentFragment = Container,
 > extends RenderOptions<Q, Container, BaseElement> {
   rmdConfig?: Omit<CoreProvidersProps, "children">;
 }
@@ -24,7 +24,7 @@ export interface ReactMDRenderOptions<
 export function rmdRender<
   Q extends Queries = typeof queries,
   Container extends Element | DocumentFragment = HTMLElement,
-  BaseElement extends Element | DocumentFragment = Container
+  BaseElement extends Element | DocumentFragment = Container,
 >(
   ui: ReactElement,
   options: ReactMDRenderOptions<Q, Container, BaseElement> = {}

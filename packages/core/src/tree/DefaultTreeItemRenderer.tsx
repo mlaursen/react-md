@@ -6,7 +6,7 @@ import type { DefaultTreeItemNode, TreeItemNode } from "./types";
  * @remarks \@since 6.0.0
  */
 export interface TreeItemRendererProps<
-  T extends TreeItemNode = DefaultTreeItemNode
+  T extends TreeItemNode = DefaultTreeItemNode,
 > {
   item: T;
   depth: number;
@@ -17,7 +17,7 @@ export interface TreeItemRendererProps<
  * @remarks \@since 6.0.0
  */
 export type DefaultTreeItemRendererProps<
-  T extends TreeItemNode = DefaultTreeItemNode
+  T extends TreeItemNode = DefaultTreeItemNode,
 > = TreeItemRendererProps<T>;
 
 /**
@@ -31,7 +31,7 @@ export type DefaultTreeItemRendererProps<
  * @remarks \@since 6.0.0
  */
 export function DefaultTreeItemRenderer<
-  T extends TreeItemNode = DefaultTreeItemNode
+  T extends TreeItemNode = DefaultTreeItemNode,
 >(props: DefaultTreeItemRendererProps<T>): ReactElement {
   const { item: _item, ...remaining } = props;
   const item = props.item as DefaultTreeItemNode;

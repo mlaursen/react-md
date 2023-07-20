@@ -9,7 +9,7 @@ import { applyRef } from "./utils";
  */
 export type EnsuredRefs<E extends HTMLElement> = readonly [
   MutableRefObject<E | null>,
-  RefCallback<E | null>
+  RefCallback<E | null>,
 ];
 
 /**

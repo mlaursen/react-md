@@ -136,7 +136,7 @@ export class MaterialIconController {
     });
     const rawSvg = await response.text();
     const svgContents = await this._getSvgContents(rawSvg);
-    const contents = formatInNode(
+    const contents = await formatInNode(
       `${GENERATED_FILE_BANNER}
 
 import { forwardRef } from "react";
@@ -208,7 +208,7 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
       iconNameFixes,
     } = options;
 
-    const generatedMetadata = formatInNode(`${GENERATED_FILE_BANNER}
+    const generatedMetadata = await formatInNode(`${GENERATED_FILE_BANNER}
 
 import type { MaterialIconName, MaterialSymbolName } from "@react-md/core";
 
@@ -243,7 +243,7 @@ ${this._printTypeUnion("MaterialSymbolCategory", symbolCategories)}
     const { iconNames, iconFamilyTypes, symbolNames, symbolFamilyTypes } =
       options;
 
-    const generatedTypes = formatInNode(`${GENERATED_FILE_BANNER}
+    const generatedTypes = await formatInNode(`${GENERATED_FILE_BANNER}
 
 /** @remarks \\@since 6.0.0 */
 ${this._printTypeUnion("MaterialIconFamily", iconFamilyTypes)}

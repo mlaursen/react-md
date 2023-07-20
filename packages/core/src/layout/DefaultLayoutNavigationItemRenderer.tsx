@@ -7,7 +7,7 @@ import { DefaultTreeItemRenderer } from "../tree";
 import type { LayoutNavigationItem } from "./types";
 
 export function DefaultLayoutNavigationItemRenderer<
-  T extends TreeItemNode = LayoutNavigationItem
+  T extends TreeItemNode = LayoutNavigationItem,
 >(props: TreeItemRendererProps<T>): ReactElement {
   const item = props.item as LayoutNavigationItem;
   const { divider, subheader, itemId } = item;

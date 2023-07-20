@@ -95,7 +95,7 @@ const { Provider } = context;
  * @remarks \@since 6.0.0
  */
 export function useTreeContext<
-  T extends TreeItemNode = DefaultTreeItemNode
+  T extends TreeItemNode = DefaultTreeItemNode,
 >(): TreeContext<T> {
   const value = useContext(context);
   if (!value) {

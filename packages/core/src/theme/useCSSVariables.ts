@@ -6,7 +6,7 @@ import type { CSSVariableName, DefinedCSSVariableName } from "./types";
  * @remarks \@since 6.0.0
  */
 export interface CSSVariable<
-  Name extends CSSVariableName = DefinedCSSVariableName
+  Name extends CSSVariableName = DefinedCSSVariableName,
 > {
   name: Name;
   value: string | number;
@@ -16,7 +16,7 @@ export interface CSSVariable<
  * @remarks \@since 6.0.0
  */
 export type CSSVariablesProperties<
-  Name extends CSSVariableName = DefinedCSSVariableName
+  Name extends CSSVariableName = DefinedCSSVariableName,
 > = {
   [key in Name]?: string | number;
 };
@@ -25,7 +25,7 @@ export type CSSVariablesProperties<
  * @remarks \@since 6.0.0
  */
 export type ReadonlyCSSVariableList<
-  Name extends CSSVariableName = DefinedCSSVariableName
+  Name extends CSSVariableName = DefinedCSSVariableName,
 > = readonly Readonly<CSSVariable<Name>>[];
 
 /**

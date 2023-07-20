@@ -151,7 +151,7 @@ export interface TransitionCallbacks {
  * @remarks \@since 4.0.0
  */
 export interface PreconfiguredTransitionInDefaultedOptions<
-  E extends HTMLElement
+  E extends HTMLElement,
 > extends TransitionActions,
     TransitionCallbacks {
   /**
@@ -341,7 +341,7 @@ export type CSSTransitionClassNames =
  * @remarks \@since 4.0.0
  */
 export interface PreconfiguredCSSTransitionInDefaultedOptions<
-  E extends HTMLElement
+  E extends HTMLElement,
 > extends PreconfiguredTransitionInDefaultedOptions<E> {
   /**
    * An optional className to be merged with the transition classes.

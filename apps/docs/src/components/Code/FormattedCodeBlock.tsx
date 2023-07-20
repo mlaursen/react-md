@@ -1,6 +1,6 @@
 import type { BuiltInParserName } from "prettier";
 import type { ReactElement } from "react";
-import { useMemo } from "react";
+import { useEffect, useState } from "react";
 import type { PrettierFormatOptions } from "src/utils/browserFormat";
 import { formatInBrowser } from "src/utils/browserFormat";
 import type { CodeBlockProps } from "./CodeBlock";
@@ -50,27 +50,31 @@ export function FormattedCodeBlock(
       parser = "scss";
       break;
   }
+  const [code, setCode] = useState(children);
+  useEffect(() => {
+    const format = async (): Promise<void> => {
+      try {
+        const pretty = await formatInBrowser(children, {
+          ...options,
+          parser,
+        });
+        let formatted = pretty.trim();
+        if (
+          parser === "typescript" &&
+          stripTrailingSemi &&
+          formatted.endsWith(";")
+        ) {
+          formatted = formatted.slice(0, -1);
+        }
 
-  const code = useMemo(() => {
-    try {
-      const formatted = formatInBrowser(children, {
-        ...options,
-        parser,
-      }).trim();
-      if (
-        parser === "typescript" &&
-        stripTrailingSemi &&
-        formatted.endsWith(";")
-      ) {
-        return formatted.slice(0, -1);
+        setCode(formatted);
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e);
       }
+    };
 
-      return formatted;
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.error(e);
-      return children;
-    }
+    format();
   }, [children, options, parser, stripTrailingSemi]);
 
   return (

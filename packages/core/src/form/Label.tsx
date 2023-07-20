@@ -61,45 +61,44 @@ export function label(options: LabelClassNameOptions): string {
  * @remarks \@since 6.0.0 Updated to be usable externally and combines the
  * floating label styles instead of having separate components.
  */
-export const Label = forwardRef<HTMLLabelElement, LabelProps>(function Label(
-  props,
-  ref
-) {
-  const {
-    gap = false,
-    error = false,
-    dense = false,
-    active = false,
-    stacked = false,
-    reversed = false,
-    disabled = false,
-    floating = false,
-    inactive = false,
-    floatingActive = active,
-    className,
-    children,
-    ...remaining
-  } = props;
+export const Label = forwardRef<HTMLLabelElement, LabelProps>(
+  function Label(props, ref) {
+    const {
+      gap = false,
+      error = false,
+      dense = false,
+      active = false,
+      stacked = false,
+      reversed = false,
+      disabled = false,
+      floating = false,
+      inactive = false,
+      floatingActive = active,
+      className,
+      children,
+      ...remaining
+    } = props;
 
-  return (
-    <label
-      ref={ref}
-      {...remaining}
-      className={label({
-        gap,
-        error,
-        dense,
-        active,
-        stacked,
-        reversed,
-        disabled,
-        floating,
-        floatingActive,
-        inactive,
-        className,
-      })}
-    >
-      {children}
-    </label>
-  );
-});
+    return (
+      <label
+        ref={ref}
+        {...remaining}
+        className={label({
+          gap,
+          error,
+          dense,
+          active,
+          stacked,
+          reversed,
+          disabled,
+          floating,
+          floatingActive,
+          inactive,
+          className,
+        })}
+      >
+        {children}
+      </label>
+    );
+  }
+);

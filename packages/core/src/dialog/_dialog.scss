@@ -171,7 +171,9 @@ $var-lookup: (
       &--exit {
         opacity: 1;
         transform: translateY(0);
-        transition: transform $leave-duration, opacity $leave-duration;
+        transition:
+          transform $leave-duration,
+          opacity $leave-duration;
         transition-timing-function: $leave-timing-function;
       }
 

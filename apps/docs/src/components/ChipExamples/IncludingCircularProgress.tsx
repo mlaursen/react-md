@@ -15,12 +15,15 @@ export function IncludingCircularProgress(): ReactElement {
       return;
     }
 
-    const timeout = window.setTimeout(() => {
-      setState((prevState) => ({
-        loading: false,
-        enabled: !prevState.enabled,
-      }));
-    }, randomInt({ min: 3, max: 5 }) * 1000);
+    const timeout = window.setTimeout(
+      () => {
+        setState((prevState) => ({
+          loading: false,
+          enabled: !prevState.enabled,
+        }));
+      },
+      randomInt({ min: 3, max: 5 }) * 1000
+    );
 
     return () => {
       window.clearTimeout(timeout);

@@ -39,7 +39,9 @@
   code[class*="language-"] {
     background: black;
     color: white;
-    box-shadow: -0.3em 0 0 0.3em black, 0.3em 0 0 0.3em black;
+    box-shadow:
+      -0.3em 0 0 0.3em black,
+      0.3em 0 0 0.3em black;
   }
 
   /* Inline code */

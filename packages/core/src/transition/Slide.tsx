@@ -40,56 +40,55 @@ export interface SlideProps
  * @see {@link SlideContainer} for example usage.
  * @remarks \@since 6.0.0
  */
-export const Slide = forwardRef<HTMLDivElement, SlideProps>(function Slide(
-  props,
-  nodeRef
-) {
-  const {
-    active,
-    appear,
-    enter,
-    exit,
-    onEnter,
-    onEntering,
-    onEntered,
-    onExit,
-    onExiting,
-    onExited,
-    className,
-    children,
-    timeout = DEFAULT_SLIDE_TRANSITION_TIMEOUT,
-    temporary = false,
-    hidden,
-    exitedHidden = true,
-    ...remaining
-  } = props;
+export const Slide = forwardRef<HTMLDivElement, SlideProps>(
+  function Slide(props, nodeRef) {
+    const {
+      active,
+      appear,
+      enter,
+      exit,
+      onEnter,
+      onEntering,
+      onEntered,
+      onExit,
+      onExiting,
+      onExited,
+      className,
+      children,
+      timeout = DEFAULT_SLIDE_TRANSITION_TIMEOUT,
+      temporary = false,
+      hidden,
+      exitedHidden = true,
+      ...remaining
+    } = props;
 
-  const { rendered, elementProps } = useSlideTransition({
-    nodeRef,
-    appear,
-    enter,
-    exit,
-    onEnter,
-    onEntering,
-    onEntered,
-    onExit,
-    onExiting,
-    onExited,
-    className,
-    timeout,
-    temporary,
-    transitionIn: active,
-    hidden,
-    exitedHidden,
-  });
+    const { rendered, elementProps } = useSlideTransition({
+      nodeRef,
+      appear,
+      enter,
+      exit,
+      onEnter,
+      onEntering,
+      onEntered,
+      onExit,
+      onExiting,
+      onExited,
+      className,
+      timeout,
+      temporary,
+      transitionIn: active,
+      hidden,
+      exitedHidden,
+    });
 
-  if (!rendered) {
-    return null;
+    if (!rendered) {
+      return null;
+    }
+
+    return (
+      <div {...remaining} {...elementProps}>
+        {children}
+      </div>
+    );
   }
-
-  return (
-    <div {...remaining} {...elementProps}>
-      {children}
-    </div>
-  );
-});
+);

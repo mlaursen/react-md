@@ -6,7 +6,7 @@ import type { Dispatch, ReactElement, Ref, SetStateAction } from "react";
  */
 export type PropsWithRef<
   Props extends {},
-  Element extends HTMLElement
+  Element extends HTMLElement,
 > = Props & {
   /**
    * An optional ref that can be applied.

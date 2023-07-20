@@ -104,32 +104,31 @@ export interface ListProps extends HTMLAttributes<ListElement> {
  * }
  * ```
  */
-export const List = forwardRef<ListElement, ListProps>(function List(
-  props,
-  ref
-) {
-  const {
-    className,
-    children,
-    role = "none",
-    dense = false,
-    ordered = false,
-    horizontal = false,
-    ...remaining
-  } = props;
-  const Component = (ordered ? "ol" : "ul") as "ul";
-  return (
-    <Component
-      {...remaining}
-      ref={ref}
-      role={role}
-      className={list({
-        dense,
-        horizontal,
-        className,
-      })}
-    >
-      {children}
-    </Component>
-  );
-});
+export const List = forwardRef<ListElement, ListProps>(
+  function List(props, ref) {
+    const {
+      className,
+      children,
+      role = "none",
+      dense = false,
+      ordered = false,
+      horizontal = false,
+      ...remaining
+    } = props;
+    const Component = (ordered ? "ol" : "ul") as "ul";
+    return (
+      <Component
+        {...remaining}
+        ref={ref}
+        role={role}
+        className={list({
+          dense,
+          horizontal,
+          className,
+        })}
+      >
+        {children}
+      </Component>
+    );
+  }
+);

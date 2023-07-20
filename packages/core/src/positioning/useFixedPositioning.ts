@@ -40,7 +40,7 @@ export interface FixedPositioningTransitionOptions<E extends HTMLElement>
  */
 export interface FixedPositioningScrollData<
   FixedToElement extends HTMLElement,
-  FixedElement extends HTMLElement
+  FixedElement extends HTMLElement,
 > {
   fixedElement: FixedElement;
   fixedToElement: FixedToElement;
@@ -65,7 +65,7 @@ export interface FixedPositioningScrollData<
  */
 export type TransitionScrollCallback<
   FixedToElement extends HTMLElement,
-  FixedElement extends HTMLElement
+  FixedElement extends HTMLElement,
 > = (
   event: Event,
   data: Readonly<FixedPositioningScrollData<FixedToElement, FixedElement>>
@@ -78,7 +78,7 @@ export type TransitionScrollCallback<
  */
 export interface FixedPositioningOptions<
   FixedToElement extends HTMLElement,
-  FixedElement extends HTMLElement
+  FixedElement extends HTMLElement,
 > extends FixedPositioningTransitionOptions<FixedElement>,
     CalculateFixedPositionOptions {
   /**
@@ -203,7 +203,7 @@ export interface FixedPositioningHookReturnValue<E extends HTMLElement> {
  */
 export function useFixedPositioning<
   FixedToElement extends HTMLElement,
-  FixedElement extends HTMLElement
+  FixedElement extends HTMLElement,
 >(
   options: FixedPositioningOptions<FixedToElement, FixedElement>
 ): FixedPositioningHookReturnValue<FixedElement> {

@@ -171,8 +171,10 @@ $var-lookup: (
 
       @if not $disable-symbol {
         &--symbol {
-          font-variation-settings: "FILL" get-var(symbol-fill),
-            "wght" get-var(symbol-weight), "GRAD" get-var(symbol-grade),
+          font-variation-settings:
+            "FILL" get-var(symbol-fill),
+            "wght" get-var(symbol-weight),
+            "GRAD" get-var(symbol-grade),
             "opsz" get-var(symbol-optical-size);
         }
       }

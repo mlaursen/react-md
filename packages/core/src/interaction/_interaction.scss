@@ -337,7 +337,8 @@ $var-lookup: (
       transform: scale(0);
 
       &--animating {
-        transition: transform
+        transition:
+          transform
             $ripple-transform-duration
             transition.$deceleration-timing-function,
           opacity

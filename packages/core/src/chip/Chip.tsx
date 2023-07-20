@@ -193,99 +193,21 @@ export interface ChipProps extends ButtonHTMLAttributes<HTMLButtonElement> {
  * @remarks \@since 6.0.0 Renamed the `noninteractable` prop to
  * `noninteractive`.
  */
-export const Chip = forwardRef<HTMLButtonElement, ChipProps>(function Chip(
-  props,
-  ref
-) {
-  const {
-    "aria-pressed": ariaPressed,
-    theme = "solid",
-    className,
-    raisable = false,
-    disabled = false,
-    selected,
-    selectedThemed = false,
-    selectedIcon: propSelectedIcon,
-    selectedIconAfter = false,
-    noninteractive = false,
-    disableIconTransition = false,
-    children: propChildren,
-    onClick,
-    onKeyDown,
-    onKeyUp,
-    onMouseDown,
-    onMouseUp,
-    onMouseLeave,
-    onDragStart,
-    onTouchStart,
-    onTouchEnd,
-    onTouchMove,
-    leftAddon: propLeftAddon,
-    rightAddon: propRightAddon,
-    contentProps,
-    contentStyle,
-    contentClassName,
-    disableContentWrap = false,
-    ...remaining
-  } = props;
-
-  let buttonProps: ButtonHTMLAttributes<HTMLButtonElement> | undefined;
-  if (!noninteractive) {
-    buttonProps = {
-      "aria-pressed": ariaPressed ?? (!!selected || undefined),
-      type: "button",
-      disabled,
-    };
-  }
-
-  let content = propChildren;
-  if (!disableContentWrap) {
-    content = (
-      <span
-        style={contentStyle}
-        {...contentProps}
-        className={cnb(
-          chipContent({ className: contentClassName }),
-          contentProps?.className
-        )}
-      >
-        {propChildren}
-      </span>
-    );
-  }
-
-  let leftAddon = propLeftAddon;
-  let rightAddon = propRightAddon;
-  const selectedIcon = useIcon("selected", propSelectedIcon);
-  if (
-    !selectedThemed &&
-    typeof selected === "boolean" &&
-    typeof (selectedIconAfter ? propRightAddon : propLeftAddon) === "undefined"
-  ) {
-    if (
-      isValidElement<{ className?: string; hidden?: boolean }>(selectedIcon)
-    ) {
-      const clonedIcon = cloneElement(selectedIcon, {
-        className: cnb(
-          !disableIconTransition && chipIcon({ visible: selected })
-        ),
-        hidden: !selected && disableIconTransition,
-      });
-
-      if (selectedIconAfter) {
-        rightAddon = clonedIcon;
-      } else {
-        leftAddon = clonedIcon;
-      }
-    } else if (selectedIconAfter) {
-      rightAddon = selectedIcon;
-    } else {
-      leftAddon = selectedIcon;
-    }
-  }
-
-  const { pressed, pressedClassName, rippleContainerProps, handlers } =
-    useElementInteraction({
+export const Chip = forwardRef<HTMLButtonElement, ChipProps>(
+  function Chip(props, ref) {
+    const {
+      "aria-pressed": ariaPressed,
+      theme = "solid",
+      className,
+      raisable = false,
+      disabled = false,
+      selected,
+      selectedThemed = false,
+      selectedIcon: propSelectedIcon,
+      selectedIconAfter = false,
+      noninteractive = false,
+      disableIconTransition = false,
+      children: propChildren,
       onClick,
       onKeyDown,
       onKeyUp,
@@ -296,34 +218,113 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(function Chip(
       onTouchStart,
       onTouchEnd,
       onTouchMove,
-      disabled: disabled || noninteractive,
-    });
-  const children = useHigherContrastChildren(content);
-  const Component = noninteractive ? "span" : "button";
+      leftAddon: propLeftAddon,
+      rightAddon: propRightAddon,
+      contentProps,
+      contentStyle,
+      contentClassName,
+      disableContentWrap = false,
+      ...remaining
+    } = props;
 
-  return (
-    <Component
-      {...remaining}
-      {...buttonProps}
-      {...handlers}
-      className={chip({
-        className,
-        theme,
-        pressed: raisable && pressed,
+    let buttonProps: ButtonHTMLAttributes<HTMLButtonElement> | undefined;
+    if (!noninteractive) {
+      buttonProps = {
+        "aria-pressed": ariaPressed ?? (!!selected || undefined),
+        type: "button",
         disabled,
-        selected,
-        selectedThemed,
-        noninteractive,
-        pressedClassName,
-        leftAddon: !!leftAddon && (selectedIconAfter || selected !== false),
-        rightAddon: !!rightAddon && (!selectedIconAfter || selected !== false),
-      })}
-      ref={ref}
-    >
-      {leftAddon}
-      {children}
-      {rightAddon}
-      {rippleContainerProps && <RippleContainer {...rippleContainerProps} />}
-    </Component>
-  );
-});
+      };
+    }
+
+    let content = propChildren;
+    if (!disableContentWrap) {
+      content = (
+        <span
+          style={contentStyle}
+          {...contentProps}
+          className={cnb(
+            chipContent({ className: contentClassName }),
+            contentProps?.className
+          )}
+        >
+          {propChildren}
+        </span>
+      );
+    }
+
+    let leftAddon = propLeftAddon;
+    let rightAddon = propRightAddon;
+    const selectedIcon = useIcon("selected", propSelectedIcon);
+    if (
+      !selectedThemed &&
+      typeof selected === "boolean" &&
+      typeof (selectedIconAfter ? propRightAddon : propLeftAddon) ===
+        "undefined"
+    ) {
+      if (
+        isValidElement<{ className?: string; hidden?: boolean }>(selectedIcon)
+      ) {
+        const clonedIcon = cloneElement(selectedIcon, {
+          className: cnb(
+            !disableIconTransition && chipIcon({ visible: selected })
+          ),
+          hidden: !selected && disableIconTransition,
+        });
+
+        if (selectedIconAfter) {
+          rightAddon = clonedIcon;
+        } else {
+          leftAddon = clonedIcon;
+        }
+      } else if (selectedIconAfter) {
+        rightAddon = selectedIcon;
+      } else {
+        leftAddon = selectedIcon;
+      }
+    }
+
+    const { pressed, pressedClassName, rippleContainerProps, handlers } =
+      useElementInteraction({
+        onClick,
+        onKeyDown,
+        onKeyUp,
+        onMouseDown,
+        onMouseUp,
+        onMouseLeave,
+        onDragStart,
+        onTouchStart,
+        onTouchEnd,
+        onTouchMove,
+        disabled: disabled || noninteractive,
+      });
+    const children = useHigherContrastChildren(content);
+    const Component = noninteractive ? "span" : "button";
+
+    return (
+      <Component
+        {...remaining}
+        {...buttonProps}
+        {...handlers}
+        className={chip({
+          className,
+          theme,
+          pressed: raisable && pressed,
+          disabled,
+          selected,
+          selectedThemed,
+          noninteractive,
+          pressedClassName,
+          leftAddon: !!leftAddon && (selectedIconAfter || selected !== false),
+          rightAddon:
+            !!rightAddon && (!selectedIconAfter || selected !== false),
+        })}
+        ref={ref}
+      >
+        {leftAddon}
+        {children}
+        {rightAddon}
+        {rippleContainerProps && <RippleContainer {...rippleContainerProps} />}
+      </Component>
+    );
+  }
+);
