@@ -1,3 +1,4 @@
+"use client";
 import type { ReactElement, ReactNode } from "react";
 import { createContext, useContext, useEffect, useMemo } from "react";
 
@@ -168,6 +169,8 @@ export interface ColorSchemeProviderProps {
 }
 
 /**
+ * **Client Component**
+ *
  * @see {@link useColorScheme} for an example usage.
  * @remarks \@since 6.0.0
  */

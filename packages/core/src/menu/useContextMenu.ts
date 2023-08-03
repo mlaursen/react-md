@@ -1,3 +1,4 @@
+"use client";
 import type { MouseEvent, RefObject } from "react";
 import { useCallback, useRef, useState } from "react";
 import type { InitialCoords, PositionAnchor } from "../positioning";

@@ -1,3 +1,4 @@
+"use client";
 import type { ReactElement } from "react";
 import { useEffect, useMemo } from "react";
 import { usePageInactive } from "../usePageInactive";
@@ -25,6 +26,8 @@ export interface ToastRendererProps extends ConfigurableToastProps, ToastMeta {
 }
 
 /**
+ * **Client Component**
+ *
  * This is the default implementation for rendering toasts that will:
  *
  * - controls the visibility of the toast with the {@link useToast} hook

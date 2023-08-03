@@ -1,34 +1,10 @@
+"use client";
 import { cnb } from "cnbuilder";
-import type { HTMLAttributes, RefObject } from "react";
-import { createContext, forwardRef, useContext, useMemo } from "react";
+import type { HTMLAttributes } from "react";
+import { forwardRef, useMemo } from "react";
 import { useEnsuredRef } from "../useEnsuredRef";
-
-/**
- * @internal
- * @remarks \@since 6.0.0
- */
-export interface TableContainerContext {
-  exists: boolean;
-  containerRef: RefObject<HTMLDivElement>;
-}
-
-const context = createContext<Readonly<TableContainerContext>>({
-  exists: false,
-  containerRef: { current: null },
-});
-context.displayName = "TableContainer";
-const { Provider } = context;
-
-/**
- * This is used to implement the sticky header and footer intersection observer
- * behavior.
- *
- * @internal
- * @remarks \@since 6.0.0
- */
-export function useTableContainer(): Readonly<TableContainerContext> {
-  return useContext(context);
-}
+import type { TableContainerContext } from "./TableContainerProvider";
+import { TableContainerProvider } from "./TableContainerProvider";
 
 /**
  * @remarks \@since 6.0.0
@@ -40,6 +16,8 @@ export function tableContainer({ className }: { className?: string }): string {
 export type TableContainerProps = HTMLAttributes<HTMLDivElement>;
 
 /**
+ * **Client Component**
+ *
  * An extremely "useful" component that should be used with the `Table`
  * component if you want to make a responsive table within the page. If you
  * don't want to use this component, you can just apply `overflow: auto` to a
@@ -50,7 +28,7 @@ export const TableContainer = forwardRef<HTMLDivElement, TableContainerProps>(
     const { className, children, ...remaining } = props;
     const [nodeRef, refCallback] = useEnsuredRef(ref);
 
-    const value = useMemo(
+    const value = useMemo<TableContainerContext>(
       () => ({
         exists: true,
         containerRef: nodeRef,
@@ -59,7 +37,7 @@ export const TableContainer = forwardRef<HTMLDivElement, TableContainerProps>(
     );
 
     return (
-      <Provider value={value}>
+      <TableContainerProvider value={value}>
         <div
           {...remaining}
           ref={refCallback}
@@ -67,7 +45,7 @@ export const TableContainer = forwardRef<HTMLDivElement, TableContainerProps>(
         >
           {children}
         </div>
-      </Provider>
+      </TableContainerProvider>
     );
   }
 );

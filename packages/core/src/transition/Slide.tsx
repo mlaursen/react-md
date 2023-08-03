@@ -1,3 +1,4 @@
+"use client";
 import type { HTMLAttributes, ReactNode } from "react";
 import { forwardRef } from "react";
 import type {
@@ -34,6 +35,8 @@ export interface SlideProps
 }
 
 /**
+ * **Client Component**
+ *
  * A reasonable default for handling a slide transition using
  * {@link useSlideTransition}.
  *

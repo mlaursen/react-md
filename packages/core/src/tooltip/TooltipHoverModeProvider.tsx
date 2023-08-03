@@ -1,3 +1,4 @@
+"use client";
 import type { ReactElement, ReactNode } from "react";
 import { createContext, useContext } from "react";
 import type { HoverModeConfiguration, HoverModeContext } from "../hoverMode";
@@ -33,6 +34,8 @@ export interface TooltipHoverModeProviderProps
 }
 
 /**
+ * **Client Component**
+ *
  * @remarks \@since 6.0.0
  */
 export function TooltipHoverModeProvider(

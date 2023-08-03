@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes, ReactNode } from "react";
 import { forwardRef } from "react";
@@ -51,6 +52,9 @@ export interface InputToggleIconProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 /**
+ * **Client Component**
+ * This might be able to become a server component if I remove the useIcon hook
+ *
  * @remarks
  * \@since 2.8.0
  * \@since 6.0.0 Updated to use different icons for each checked state instead

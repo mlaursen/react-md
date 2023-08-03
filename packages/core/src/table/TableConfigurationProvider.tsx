@@ -1,3 +1,4 @@
+"use client";
 import { createContext, useContext } from "react";
 
 // interfaces that are "public" should be the full word `Configuration` while
@@ -126,5 +127,9 @@ export function useTableConfig(options: TableConfig): TableConfigContext {
   };
 }
 
-/** @internal */
+/**
+ * **Client Component**
+ *
+ * @internal
+ */
 export const { Provider: TableConfigProvider } = context;

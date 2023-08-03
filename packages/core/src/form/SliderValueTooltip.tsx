@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type { ReactElement, ReactNode } from "react";
 import type { TooltipProps } from "../tooltip";
@@ -35,6 +36,8 @@ export interface SliderValueTooltipProps extends TooltipProps {
 }
 
 /**
+ * **Client Component**
+ *
  * This component creates the "discrete" slider thumb value by rendering a
  * tooltip when needed.
  *

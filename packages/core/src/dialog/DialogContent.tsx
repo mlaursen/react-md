@@ -8,6 +8,8 @@ export interface DialogContentProps
     DialogContentClassNameOptions {}
 
 /**
+ * **Server Component**
+ *
  * Look at the `Dialog` or `FixedDialog` components for example usage.
  */
 export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(

@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type { ReactNode } from "react";
 import { forwardRef } from "react";
@@ -123,6 +124,8 @@ export interface PasswordProps
 }
 
 /**
+ * **Client Component**
+ *
  * @example
  * Simple Example
  * ```tsx

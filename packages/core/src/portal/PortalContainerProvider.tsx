@@ -1,3 +1,4 @@
+"use client";
 import type { ReactElement, ReactNode } from "react";
 import { createContext, useContext, useEffect, useState } from "react";
 
@@ -38,6 +39,8 @@ export interface PortalContainerProviderProps {
 }
 
 /**
+ * **Client Component**
+ *
  * This component allows for all child `Portal` components to render within the
  * same container element. If a custom `container` element is not provided, a
  * `<div id="rmd-portal-container"></div>` will be added as the last child to

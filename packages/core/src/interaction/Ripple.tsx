@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type { ReactElement } from "react";
 import type { CSSTransitionClassNames, TransitionTimeout } from "../transition";
@@ -28,6 +29,8 @@ export interface RippleProps extends RippleTransitionCallbacks {
 }
 
 /**
+ * **Client Component**
+ *
  * This component should only be used by the `RippleContainer` component.
  *
  * @internal

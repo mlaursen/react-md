@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import { forwardRef } from "react";
 import type { ListItemProps } from "../list";
@@ -21,6 +22,8 @@ export interface MenuItemProps extends Omit<ListItemProps, "role"> {
 }
 
 /**
+ * **Client Component**
+ *
  * This component is used as an "action" within a `Menu`/`DropdownMenu` that
  * implements some keyboard focus behavior. This component should generally have
  * an `onClick` event handler.

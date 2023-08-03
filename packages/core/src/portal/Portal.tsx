@@ -1,3 +1,4 @@
+"use client";
 import type { ReactElement, ReactNode } from "react";
 import { createPortal } from "react-dom";
 
@@ -15,6 +16,8 @@ export interface PortalProps {
 }
 
 /**
+ * **Client Component**
+ *
  * Portals are a great way to render temporary elements like dialogs, tooltips,
  * and menus at a different port of the DOM. This implementation will render
  * the `children` in the current {@link PortalContainer} element.

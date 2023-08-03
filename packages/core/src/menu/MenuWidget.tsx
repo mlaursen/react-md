@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useRef, useState } from "react";
@@ -51,6 +52,8 @@ export interface MenuWidgetProps
 }
 
 /**
+ * **Client Component**
+ *
  * This component was added to support the listbox role and the `useId()` hook.
  * If the `temporary` prop is set, the `MenuItem`'s ids will not be the same the
  * next time the menu opens, so the aria-activedescendant will point to a

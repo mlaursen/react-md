@@ -1,3 +1,4 @@
+"use client";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
 import type { MaterialSymbolName } from "./material";
@@ -33,6 +34,9 @@ export interface MaterialSymbolProps
 }
 
 /**
+ * **Client Component**
+ * Might be able to become a server component if I remove the useFontVariationSettings hook
+ *
  * @example
  * Simple Example
  * ```tsx

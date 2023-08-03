@@ -1,3 +1,4 @@
+"use client";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useState } from "react";
 import type { FocusContainerComponentProps } from "../focus";
@@ -201,6 +202,8 @@ export interface BaseDialogProps
 export type DialogProps = LabelRequiredForA11y<BaseDialogProps>;
 
 /**
+ * **Client Component**
+ *
  * @example
  * Simple Example
  * ```tsx

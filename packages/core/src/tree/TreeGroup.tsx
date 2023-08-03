@@ -1,3 +1,4 @@
+"use client";
 import type { CSSProperties, ReactNode } from "react";
 import { forwardRef } from "react";
 import type { ListProps } from "../list";
@@ -28,6 +29,8 @@ export interface TreeGroupProps extends OverridableTreeGroupProps {
 }
 
 /**
+ * **Client Component**
+ *
  * @internal
  * @remarks \@since 6.0.0 Removed the collapse options and is no longer a
  * "public" component.

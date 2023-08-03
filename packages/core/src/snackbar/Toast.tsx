@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type { AriaRole, HTMLAttributes, ReactElement, ReactNode } from "react";
 import { forwardRef, isValidElement } from "react";
@@ -190,6 +191,8 @@ export interface ToastProps extends ConfigurableToastProps {
 }
 
 /**
+ * **Client Component**
+ *
  * This component is just used for toast styling and does not implement any of
  * the visibility behavior.
  *

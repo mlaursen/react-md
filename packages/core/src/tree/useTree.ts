@@ -1,3 +1,4 @@
+"use client";
 import type { TreeItemDefaultIds } from "./types";
 import type { TreeExpansion } from "./useTreeExpansion";
 import { useTreeExpansion } from "./useTreeExpansion";

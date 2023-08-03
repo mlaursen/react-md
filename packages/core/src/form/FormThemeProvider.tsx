@@ -1,3 +1,4 @@
+"use client";
 import type { ReactElement, ReactNode } from "react";
 import { createContext, useContext, useMemo } from "react";
 import type { FormThemeOptions } from "./types";
@@ -44,6 +45,8 @@ export interface FormThemeProviderProps extends FormThemeOptions {
 }
 
 /**
+ * **Client Component**
+ *
  * Since you'll normally want all of your form components to use the same theme,
  * this is a simple way to provide the same theme to all components without
  * needing all the prop-drilling/copying.

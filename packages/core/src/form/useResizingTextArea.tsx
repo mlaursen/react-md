@@ -1,3 +1,4 @@
+"use client";
 import type { ChangeEventHandler, RefCallback, RefObject } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useResizeObserver } from "../useResizeObserver";

@@ -1,3 +1,4 @@
+"use client";
 import type { CSSProperties, Ref, RefCallback, RefObject } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { delegateEvent } from "../delegateEvent";

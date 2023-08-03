@@ -1,3 +1,4 @@
+"use client";
 import type { Ref, RefCallback } from "react";
 import { useEffect } from "react";
 import { useEnsuredRef } from "./useEnsuredRef";

@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type {
   CSSProperties,
@@ -146,6 +147,8 @@ export type MenuItemInputToggleProps =
   | (MenuItemSwitchProps & { type: "switch" });
 
 /**
+ * **Client Component**
+ *
  * This is a low-level component that should probably not be used externally and
  * instead the `MenuItemCheckbox`, `MenuItemRadio`, or `MenuItemSwitch` should
  * be used instead.

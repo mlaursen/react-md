@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type { ReactNode } from "react";
 import { forwardRef, Fragment } from "react";
@@ -102,6 +103,8 @@ export interface OptionProps extends MenuItemProps {
 }
 
 /**
+ * **Client Component**
+ *
  * This component is a wrapper around the {@link MenuItem} to implement custom
  * select option behavior.
  *

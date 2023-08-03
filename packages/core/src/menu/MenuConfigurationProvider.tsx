@@ -1,3 +1,4 @@
+"use client";
 import type { SheetPosition, SheetVerticalSize } from "../sheet";
 import type { ReactElement, ReactNode } from "react";
 import { createContext, useContext, useMemo } from "react";
@@ -135,6 +136,8 @@ export interface MenuConfigurationProviderProps extends MenuConfiguration {
 }
 
 /**
+ * **Client Component**
+ *
  * Note: This will always merge values with any parent
  * `MenuConfigurationProvider`s.
  *

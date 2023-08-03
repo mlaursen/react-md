@@ -46,6 +46,8 @@ export interface ListSubheaderProps
 }
 
 /**
+ * **Server Component**
+ *
  * The `ListSubheader` is a wrapper for the `<li>` element to apply subheader
  * typography styles and {@link ListItemText} layout.
  */

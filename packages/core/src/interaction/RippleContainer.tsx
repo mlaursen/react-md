@@ -9,6 +9,8 @@ export interface RippleContainerProps extends ProvidedRippleContainerProps {
 }
 
 /**
+ * **Server Component**
+ *
  * This component should generally only be used internally within `react-md`
  * unless you are implementing a custom component interaction with
  * `useElementInteraction`.

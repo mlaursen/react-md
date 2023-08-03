@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes, Ref, RefCallback } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";

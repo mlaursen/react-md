@@ -52,6 +52,11 @@ export interface LinearProgressProps
 
 const styles = bem("rmd-linear-progress");
 
+/**
+ * **Server Component**
+ *
+ *
+ */
 export const LinearProgress = forwardRef<HTMLSpanElement, LinearProgressProps>(
   function LinearProgress(props, ref) {
     const {

@@ -1,8 +1,11 @@
+"use client";
 import { forwardRef } from "react";
 import type { RadioProps } from "./InputToggle";
 import { InputToggle } from "./InputToggle";
 
 /**
+ * **Client Component**
+ *
  * You'll generally want to use the `useRadioGroup` hook along with this
  * component.
  *

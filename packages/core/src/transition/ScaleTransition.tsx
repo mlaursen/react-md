@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type { ReactElement } from "react";
 import { cloneElement, Children } from "react";
@@ -18,6 +19,8 @@ export interface ScaleTransitionProps<E extends HTMLElement>
     ScaleTransitionHookOptions<E> {}
 
 /**
+ * **Client Component**
+ *
  * A component implementation of the {@link useScaleTransition} hook that just
  * has some reasonable defaults and supports portalling the children. Since this
  * component uses the `React.cloneElement` to inject the `ref` and `className`

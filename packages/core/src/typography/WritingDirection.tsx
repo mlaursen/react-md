@@ -1,3 +1,4 @@
+"use client";
 import type { ReactElement } from "react";
 import {
   Children,
@@ -120,6 +121,8 @@ export const DEFAULT_WRITING_DIRECTION = (): Dir => {
 };
 
 /**
+ * **Client Component**
+ *
  * The `WritingDirection` component is used to handle the current writing
  * direction within your app as well as conditionally updating the writing
  * direction for small sections in your app. When this component is used for the

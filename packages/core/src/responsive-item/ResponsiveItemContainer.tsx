@@ -98,6 +98,8 @@ export interface ResponsiveItemContainerProps
     ResponsiveItemContainerClassNameOptions {}
 
 /**
+ * **Server Component**
+ *
  * @example
  * Image Example
  * ```tsx

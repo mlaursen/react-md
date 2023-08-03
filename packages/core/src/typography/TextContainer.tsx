@@ -72,6 +72,8 @@ export interface TextContainerProps
     TextContainerClassNameOptions {}
 
 /**
+ * **Server Component**
+ *
  * This component should be used to render text based content with an
  * appropriate max line length to optimize legibility.
  *

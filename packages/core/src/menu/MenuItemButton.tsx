@@ -1,3 +1,4 @@
+"use client";
 import { forwardRef, useEffect } from "react";
 import { useAppSize } from "../AppSizeProvider";
 import { useHoverMode } from "../hoverMode";
@@ -24,6 +25,8 @@ export interface MenuItemButtonProps
     MenuItemProps {}
 
 /**
+ * **Client Component**
+ *
  * This is just an internal component that handles rendering a submenu as a
  * menuitem for a `DropdownMenu` with a conditional dropdown icon.
  *

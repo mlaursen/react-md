@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type { MouseEventHandler, ReactElement, ReactNode } from "react";
 import { cloneElement, isValidElement } from "react";
@@ -20,6 +21,8 @@ export interface TreeItemExpanderProps {
 }
 
 /**
+ * **Client Component**
+ *
  * @internal
  * @remarks \@since 6.0.0 Updated to support the new `expansionMode` behavior.
  */

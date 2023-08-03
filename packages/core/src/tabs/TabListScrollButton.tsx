@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useCallback, useRef, useState } from "react";
@@ -40,6 +41,8 @@ export interface TabListScrollButtonProps extends BaseTabListScrollButtonProps {
 }
 
 /**
+ * **Client Component**
+ *
  * @internal
  * @remarks \@since 6.0.0
  */

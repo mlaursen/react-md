@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type {
   CSSProperties,
@@ -140,6 +141,8 @@ export interface TextAreaProps
 }
 
 /**
+ * **Client Component**
+ *
  * @example
  * Simple Example
  * ```tsx

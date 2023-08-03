@@ -13,6 +13,8 @@ export interface SelectValueProps extends Partial<OptionProps> {
 }
 
 /**
+ * **Server Component**
+ *
  * This component is used to render the current option.
  *
  * @remarks \@since 6.0.0

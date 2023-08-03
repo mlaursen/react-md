@@ -1,3 +1,4 @@
+"use client";
 import type { ReactElement, ReactNode } from "react";
 import { createContext, useContext, useMemo } from "react";
 import type { NonNullRef } from "../types";
@@ -115,6 +116,8 @@ export interface TreeProviderProps<T extends TreeItemNode = DefaultTreeItemNode>
 }
 
 /**
+ * **Client Component**
+ *
  * @internal
  * @remarks \@since 6.0.0
  */

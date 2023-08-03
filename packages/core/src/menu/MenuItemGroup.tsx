@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type { ReactNode } from "react";
 import { forwardRef } from "react";
@@ -14,6 +15,8 @@ export type MenuItemGroupProps = LabelRequiredForA11y<
 };
 
 /**
+ * **Client Component**
+ *
  * If a menu or menubar contains more than one group of menuitemradio elements,
  * or if the menu contains one group and other, unrelated menu items, authors
  * SHOULD nest each set of related menuitemradio elements in an element using

@@ -19,6 +19,8 @@ export interface CardProps
     CardClassNameOptions {}
 
 /**
+ * **Server Component**
+ *
  * @example
  * Simple Example
  * ```tsx

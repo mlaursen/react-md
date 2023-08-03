@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type {
   CSSProperties,
@@ -133,6 +134,9 @@ export interface TextFieldProps
 }
 
 /**
+ * **Client Component**
+ * This might be able to become a server component if I remove the useFormTheme hook
+ *
  * The structure for this component is:
  * @example
  * Component Structure

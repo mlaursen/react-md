@@ -1,12 +1,11 @@
+"use client";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
-import {
-  RippleContainer,
-  useElementInteraction,
-  useHigherContrastChildren,
-} from "../interaction";
-import { getListItemHeight } from "./getListItemHeight";
+import { RippleContainer } from "../interaction/RippleContainer";
+import { useElementInteraction } from "../interaction/useElementInteraction";
+import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren";
 import { ListItemChildren } from "./ListItemChildren";
+import { getListItemHeight } from "./getListItemHeight";
 import { listItem } from "./listItemStyles";
 import type { ListItemChildrenProps, ListItemHeight } from "./types";
 
@@ -74,6 +73,8 @@ export interface ListItemProps
 }
 
 /**
+ * **Client Component**
+ *
  * The `ListItem` is used to create a clickable/focusable button within a
  * `List` and removes the normal `<li>` styles.
  *

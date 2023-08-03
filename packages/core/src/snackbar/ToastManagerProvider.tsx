@@ -1,3 +1,4 @@
+"use client";
 import { nanoid } from "nanoid";
 import type { ReactElement, ReactNode } from "react";
 import {
@@ -644,6 +645,8 @@ export interface ToastManagerProviderProps {
 }
 
 /**
+ * **Client Component**
+ *
  * This component can be used to implement separate instances of toasts if
  * required in your app. This probably shouldn't be required for most apps with
  * the default {@link addToast}, {@link removeToast}, and {@link clearToasts}

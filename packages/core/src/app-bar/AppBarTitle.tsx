@@ -66,6 +66,8 @@ export interface AppBarTitleProps
 }
 
 /**
+ * **Server Component**
+ *
  * @example
  * Updating the Keyline
  * ```tsx

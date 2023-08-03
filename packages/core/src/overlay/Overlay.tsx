@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
@@ -98,6 +99,8 @@ export interface OverlayProps
 }
 
 /**
+ * **Client Component**
+ *
  * @example
  * Simple Example
  * ```tsx

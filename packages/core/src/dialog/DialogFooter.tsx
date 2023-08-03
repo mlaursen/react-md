@@ -8,6 +8,8 @@ export interface DialogFooterProps
     DialogFooterClassNameOptions {}
 
 /**
+ * **Server Component**
+ *
  * Look at the `Dialog` or `FixedDialog` components for example usage.
  */
 export const DialogFooter = forwardRef<HTMLDivElement, DialogFooterProps>(

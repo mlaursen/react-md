@@ -1,3 +1,4 @@
+"use client";
 import type { ChangeEventHandler, InputHTMLAttributes } from "react";
 import { forwardRef } from "react";
 import { useIcon } from "../icon";
@@ -48,6 +49,8 @@ export interface MenuItemFileInputProps
 }
 
 /**
+ * **Client Component**
+ *
  * A wrapper for the `<input type="file">` element that works within menus.
  *
  * @remarks

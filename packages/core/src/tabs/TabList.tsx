@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useEffect, useRef, useState } from "react";
@@ -161,6 +162,8 @@ export interface TabListProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 /**
+ * **Client Component**
+ *
  * @see {@link useTabs} for example usage.
  *
  * @remarks \@since 6.0.0

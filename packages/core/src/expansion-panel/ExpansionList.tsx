@@ -1,3 +1,4 @@
+"use client";
 import type { HTMLAttributes, ReactNode } from "react";
 import { forwardRef } from "react";
 import { KeyboardMovementProvider } from "../movement";
@@ -11,6 +12,8 @@ export interface ExpansionListProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 /**
+ * **Client Component**
+ *
  * This component is only used to implement the keyboard movement behavior for
  * the `ExpansionPanel` components.
  *

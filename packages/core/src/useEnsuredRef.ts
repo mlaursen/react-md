@@ -1,3 +1,4 @@
+"use client";
 import type { MutableRefObject, Ref, RefCallback } from "react";
 import { useCallback, useRef } from "react";
 

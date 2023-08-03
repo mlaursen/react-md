@@ -3,6 +3,8 @@ import type { CheckboxProps } from "./InputToggle";
 import { InputToggle } from "./InputToggle";
 
 /**
+ * **Client Component**
+ *
  * You'll generally want to use the `useCheckboxGroup` hook for managing the
  * checked state for groups of checkboxes and indeterminate checkbox behavior.
  *

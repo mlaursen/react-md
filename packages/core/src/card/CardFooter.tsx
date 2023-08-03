@@ -12,6 +12,8 @@ export interface CardFooterProps extends BoxProps {
 }
 
 /**
+ * **Server Component**
+ *
  * A simple wrapper around the {@link Box} component that applies additional
  * padding and applies `justify-content: flex-end;` by default.
  *

@@ -78,6 +78,8 @@ export interface AvatarProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 /**
+ * **Server Component**
+ *
  * An `Avatar` is generally used to represent objects or people within your app.
  * The avatar can consist of an image, an icon, or some text to display. When
  * the avatar is not an image, different themes can be applied to make the

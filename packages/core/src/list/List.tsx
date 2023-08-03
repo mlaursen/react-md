@@ -65,6 +65,8 @@ export interface ListProps extends HTMLAttributes<ListElement> {
 }
 
 /**
+ * **Server Component**
+ *
  * The `List` component is used to render a collection of clickable actions
  * vertically or horizontally and does not include the default `ol`/`ul` styles.
  *

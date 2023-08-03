@@ -1,3 +1,4 @@
+"use client";
 import { useEffect } from "react";
 import { delegateEvent } from "./delegateEvent";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

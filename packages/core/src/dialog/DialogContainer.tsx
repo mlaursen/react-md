@@ -11,6 +11,8 @@ export interface DialogContainerProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 /**
+ * **Server Component**
+ *
  * @remarks \@since 6.0.0
  * @internal
  */

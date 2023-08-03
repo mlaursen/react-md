@@ -1,6 +1,9 @@
+"use client";
 import { useScrollLock } from "./useScrollLock";
 
 /**
+ * **Client Component**
+ *
  * This is a convenience component that can be used within transitionable
  * components to ensure the scroll lock is active only while the element is
  * rendered.

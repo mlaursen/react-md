@@ -1,3 +1,4 @@
+"use client";
 import type { RefObject } from "react";
 import { useEffect, useMemo } from "react";
 import type { CSSVariableName, DefinedCSSVariableName } from "./types";

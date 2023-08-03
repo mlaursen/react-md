@@ -1,11 +1,10 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type { ButtonHTMLAttributes } from "react";
 import { forwardRef } from "react";
-import {
-  RippleContainer,
-  useElementInteraction,
-  useHigherContrastChildren,
-} from "../interaction";
+import { RippleContainer } from "../interaction/RippleContainer";
+import { useElementInteraction } from "../interaction/useElementInteraction";
+import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren";
 import type { PropsWithRef } from "../types";
 import { bem } from "../utils";
 import type {
@@ -171,6 +170,8 @@ export interface ButtonProps
 }
 
 /**
+ * **Client Component**
+ *
  * @example
  * Simple Example
  * ```tsx

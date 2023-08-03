@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type {
   CSSProperties,
@@ -304,6 +305,8 @@ export interface RadioInputToggleProps extends RadioProps {
 export type InputToggleProps = CheckboxInputToggleProps | RadioInputToggleProps;
 
 /**
+ * **Client Component**
+ *
  * @remarks \@since 6.0.0 Now supports the `FormMessage` behavior and requires
  * different icons for each checked state.
  */

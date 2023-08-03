@@ -1,3 +1,4 @@
+"use client";
 import type { ReactElement, ReactNode } from "react";
 import { createContext, useContext, useMemo } from "react";
 
@@ -201,6 +202,8 @@ export interface IconProviderProps extends ConfigurableIcons {
 }
 
 /**
+ * **Client Component**
+ *
  * The `IconProvider` component is used to override all the default icons within
  * `react-md` with a newly defined set of icons. This is super nice since you
  * won't need to create new component wrappers for all the components within

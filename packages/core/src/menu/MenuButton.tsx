@@ -1,3 +1,4 @@
+"use client";
 import { forwardRef } from "react";
 import { useAppSize } from "../AppSizeProvider";
 import type { ButtonProps } from "../button";
@@ -51,6 +52,8 @@ export interface BaseMenuButtonProps extends MenuButtonTextIconSpacingProps {
 export interface MenuButtonProps extends ButtonProps, BaseMenuButtonProps {}
 
 /**
+ * **Client Component**
+ *
  * An internal component that handles rendering a button for the `DropdownMenu`
  * while implementing the correct accessibility and keyboard movement.
  *

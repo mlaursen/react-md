@@ -1,3 +1,4 @@
+"use client";
 import type { Ref, RefObject } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { SlideDirection } from "../transition";

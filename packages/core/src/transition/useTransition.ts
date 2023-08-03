@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useReducer, useRef, useState } from "react";
 import { useSsr } from "../SsrProvider";
 import { useEnsuredRef } from "../useEnsuredRef";

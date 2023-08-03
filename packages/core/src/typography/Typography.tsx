@@ -328,6 +328,8 @@ export interface TypographyProps
 }
 
 /**
+ * **Server Component**
+ *
  * Render text with one of the material design typography styles applied and
  * optional styles like font-weight, font-style, text color, etc.
  *

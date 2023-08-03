@@ -1,3 +1,4 @@
+"use client";
 import type { CSSProperties, ReactElement, ReactNode } from "react";
 import { createContext, useContext, useMemo } from "react";
 import type { MaterialSymbolFamily } from "./material";
@@ -187,6 +188,8 @@ export interface MaterialSymbolsProviderProps
 }
 
 /**
+ * **Client Component**
+ *
  * @remarks \@since 6.0.0
  */
 export function MaterialSymbolsProvider(

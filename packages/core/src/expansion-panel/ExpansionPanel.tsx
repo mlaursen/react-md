@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type { CSSProperties, ReactNode } from "react";
 import { forwardRef } from "react";
@@ -191,6 +192,8 @@ export interface ExpansionPanelProps extends CardProps {
 }
 
 /**
+ * **Client Component**
+ *
  * @see `useExpansionPanels` for examples.
  * @remarks
  * \@since 6.0.0 The content will be persistent and invisible using `hidden`

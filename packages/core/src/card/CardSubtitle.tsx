@@ -19,6 +19,8 @@ export interface CardSubtitleProps extends TypographyProps {
 }
 
 /**
+ * **Server Component**
+ *
  * @remarks \@since 6.0.0 Extends the {@link Typography} component and removed the
  * `noWrap`/`disableSecondaryColor` props.
  */

@@ -1,3 +1,4 @@
+"use client";
 import type { Ref, RefCallback } from "react";
 import type {
   DraggableImplementation,

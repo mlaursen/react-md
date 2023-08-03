@@ -44,6 +44,9 @@ export interface TableCellContentProps
 const styles = bem("rmd-table-cell");
 
 /**
+ * **Server Component**
+ * This might actually be a client component.
+ *
  * This is mostly an internal component since it is automatically used within
  * the `TableCell` component but this will conditionally wrap the `children`
  * within an `UnstyledButton` to make a clickable cell. This is really to help

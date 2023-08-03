@@ -63,6 +63,8 @@ export interface TextFieldAddonProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 /**
+ * **Client Component**
+ *
  * This component is used to add an an icon before or after the text field with
  * correct styling.
  */

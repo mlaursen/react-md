@@ -1,3 +1,4 @@
+"use client";
 import type { RefObject } from "react";
 import { createContext, useContext } from "react";
 
@@ -27,6 +28,8 @@ const context = createContext<ListboxContext>({
 });
 
 /**
+ * **Client Component**
+ *
  * @internal
  * @remarks \@since 6.0.0
  */

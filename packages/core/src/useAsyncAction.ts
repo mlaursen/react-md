@@ -1,3 +1,4 @@
+"use client";
 import { useCallback, useState } from "react";
 import type { NonNullRef, UseStateSetter } from "./types";
 import { useUnmounted } from "./useUnmounted";

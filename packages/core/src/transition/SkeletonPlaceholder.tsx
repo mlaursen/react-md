@@ -1,3 +1,4 @@
+"use client";
 import type { HTMLAttributes, ReactElement, ReactNode } from "react";
 import type { SkeletonPlaceholderOptions } from "./useSkeletonPlaceholder";
 import { useSkeletonPlaceholder } from "./useSkeletonPlaceholder";
@@ -25,6 +26,8 @@ export interface SkeletonPlaceholderProps
 }
 
 /**
+ * **Client Component**
+ *
  * @example
  * Simple Example
  * ```tsx

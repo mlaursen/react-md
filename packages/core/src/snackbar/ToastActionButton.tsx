@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import { forwardRef } from "react";
 import type { ButtonProps, ButtonTheme } from "../button";
@@ -28,6 +29,8 @@ export interface ToastActionButtonProps extends ButtonProps {
 }
 
 /**
+ * **Client Component**
+ *
  * This button will automatically close the toast when clicked unless
  * `event.stopPropagation()` is called from the `onClick` prop.
  *

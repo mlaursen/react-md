@@ -1,3 +1,4 @@
+"use client";
 import type { ReactElement, ReactNode } from "react";
 import { createContext, useContext, useMemo } from "react";
 import type { ElementInteractionMode } from "./types";
@@ -37,6 +38,8 @@ export interface ElementInteractionProviderProps {
 }
 
 /**
+ * **Client Component**
+ *
  * Note: This is automatically included by the {@link CoreProviders}
  * @remarks \@since 6.0.9
  */

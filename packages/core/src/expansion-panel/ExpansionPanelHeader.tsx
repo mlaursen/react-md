@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type { ButtonHTMLAttributes, MouseEventHandler, ReactNode } from "react";
 import { forwardRef } from "react";
@@ -77,6 +78,10 @@ export interface ExpansionPanelHeaderProps
 }
 
 /**
+ * **Client Component**
+ * This might be able to become a server component if I remove the useIcon hook
+ *
+ *
  * This is mostly an internal component, but can also be used to implement a
  * custom header implementation if needed.
  *

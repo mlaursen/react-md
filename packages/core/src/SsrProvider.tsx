@@ -1,3 +1,4 @@
+"use client";
 import type { ReactElement, ReactNode } from "react";
 import { createContext, useContext, useEffect, useState } from "react";
 
@@ -23,6 +24,8 @@ export interface SsrProviderProps {
 }
 
 /**
+ * **Client Component**
+ *
  * @internal
  * @remarks \@since 6.0.0
  */

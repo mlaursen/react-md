@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
@@ -19,6 +20,9 @@ export interface FormMessageContainerProps
 }
 
 /**
+ * **Client Component**
+ * This might be able to become a server component if FormMessage removes the useFormTheme hook
+ *
  * @internal
  * @remarks \@since 2.5.0
  */

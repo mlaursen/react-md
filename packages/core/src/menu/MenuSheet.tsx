@@ -1,3 +1,4 @@
+"use client";
 import type { CSSProperties, ReactElement, ReactNode } from "react";
 import type { BaseSheetProps } from "../sheet";
 import { Sheet } from "../sheet";
@@ -65,6 +66,8 @@ export interface MenuSheetProps extends BaseSheetProps {
 }
 
 /**
+ * **Client Component**
+ *
  * Implements a `Menu` using the `Sheet` component that probably shouldn't
  * really be used externally.
  *

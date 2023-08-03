@@ -1,3 +1,4 @@
+"use client";
 import { forwardRef } from "react";
 import type { BaseDialogProps } from "../dialog";
 import { Dialog } from "../dialog";
@@ -54,45 +55,50 @@ export interface BaseSheetProps
 
 export type SheetProps = LabelRequiredForA11y<BaseSheetProps>;
 
-export const Sheet = forwardRef<HTMLDivElement, SheetProps>(
-  function Sheet(props, ref) {
-    const {
-      role = "dialog",
-      className,
-      position = "left",
-      horizontalSize = "media",
-      verticalSize = "recommended",
-      timeout = DEFAULT_SHEET_TIMEOUT,
-      classNames = DEFAULT_SHEET_CLASSNAMES,
-      visible,
-      temporary = true,
-      exitedHidden = true,
-      children,
-      ...remaining
-    } = props;
-    const { disableOverlay } = props;
+/**
+ * **Client Component**
+ *
+ */
+export const Sheet = forwardRef<HTMLDivElement, SheetProps>(function Sheet(
+  props,
+  ref
+) {
+  const {
+    role = "dialog",
+    className,
+    position = "left",
+    horizontalSize = "media",
+    verticalSize = "recommended",
+    timeout = DEFAULT_SHEET_TIMEOUT,
+    classNames = DEFAULT_SHEET_CLASSNAMES,
+    visible,
+    temporary = true,
+    exitedHidden = true,
+    children,
+    ...remaining
+  } = props;
+  const { disableOverlay } = props;
 
-    return (
-      <Dialog
-        {...remaining}
-        ref={ref}
-        role={role}
-        type="custom"
-        timeout={timeout}
-        classNames={classNames}
-        visible={visible}
-        temporary={temporary}
-        exitedHidden={exitedHidden}
-        className={sheet({
-          position,
-          horizontalSize,
-          verticalSize,
-          disableOverlay,
-          className,
-        })}
-      >
-        {children}
-      </Dialog>
-    );
-  }
-);
+  return (
+    <Dialog
+      {...remaining}
+      ref={ref}
+      role={role}
+      type="custom"
+      timeout={timeout}
+      classNames={classNames}
+      visible={visible}
+      temporary={temporary}
+      exitedHidden={exitedHidden}
+      className={sheet({
+        position,
+        horizontalSize,
+        verticalSize,
+        disableOverlay,
+        className,
+      })}
+    >
+      {children}
+    </Dialog>
+  );
+});

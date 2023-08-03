@@ -1,14 +1,13 @@
+"use client";
 import type { AnchorHTMLAttributes, HTMLAttributes } from "react";
 import { forwardRef } from "react";
-import {
-  RippleContainer,
-  useElementInteraction,
-  useHigherContrastChildren,
-} from "../interaction";
+import { RippleContainer } from "../interaction/RippleContainer";
+import { useElementInteraction } from "../interaction/useElementInteraction";
+import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren";
 import type { CustomLinkComponent } from "../link";
 import type { PropsWithRef } from "../types";
-import { getListItemHeight } from "./getListItemHeight";
 import { ListItemChildren } from "./ListItemChildren";
+import { getListItemHeight } from "./getListItemHeight";
 import type { ListItemClassNameOptions } from "./listItemStyles";
 import { listItem } from "./listItemStyles";
 import type { ListItemChildrenProps } from "./types";
@@ -44,6 +43,8 @@ export interface ListItemLinkProps
 }
 
 /**
+ * **Client Component**
+ *
  * The `ListItemLink` should be used to render links within the `List` component.
  */
 export const ListItemLink = forwardRef<HTMLAnchorElement, ListItemLinkProps>(

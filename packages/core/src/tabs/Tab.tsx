@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 import { forwardRef } from "react";
@@ -86,6 +87,8 @@ export interface TabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 /**
+ * **Client Component**
+ *
  * This component should usually be used with the `TabsList` component and
  * `useTabs` hook.
  *

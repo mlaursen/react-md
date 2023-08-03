@@ -1,3 +1,4 @@
+"use client";
 import type { ReactElement, ReactNode, RefObject } from "react";
 import { useCallback, useRef, useState } from "react";
 import { useUserInteractionMode } from "../interaction";
@@ -42,6 +43,8 @@ export type DropdownMenuProps = DropdownMenuButtonProps &
   DropdownMenuItemButtonProps;
 
 /**
+ * **Client Component**
+ *
  * @example
  * Simple Example
  * ```tsx

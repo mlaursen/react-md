@@ -1,3 +1,4 @@
+"use client";
 import type { ReactElement, ReactNode } from "react";
 import { createContext, useContext, useMemo } from "react";
 
@@ -170,6 +171,8 @@ export interface AppSizeProviderProps extends AppSizeQueries {
 }
 
 /**
+ * **Client Component**
+ *
  * This component should be mounted near the root of your app to determine the
  * current app size based on different media queries.
  */

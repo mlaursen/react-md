@@ -1,3 +1,4 @@
+"use client";
 import type { CSSProperties, Ref, RefCallback } from "react";
 import { useCallback, useState } from "react";
 import { applyRef } from "../utils";

@@ -1,3 +1,4 @@
+"use client";
 import type { ReactNode } from "react";
 import { Children } from "react";
 import { useElementInteractionContext } from "./ElementInteractionProvider";

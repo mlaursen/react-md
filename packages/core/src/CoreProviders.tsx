@@ -1,3 +1,4 @@
+"use client";
 import type { ReactElement, ReactNode } from "react";
 
 import type { AppSize, AppSizeQueries } from "./AppSizeProvider";
@@ -95,6 +96,8 @@ export interface CoreProvidersProps extends ReactMDCoreConfiguration {
 }
 
 /**
+ * **Client Component**
+ *
  * @remarks \@since 6.0.0
  */
 export function CoreProviders(props: CoreProvidersProps): ReactElement {

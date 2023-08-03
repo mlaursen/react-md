@@ -1,3 +1,4 @@
+"use client";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useSsr } from "./SsrProvider";
 import type { UseStateInitializer, UseStateSetter } from "./types";

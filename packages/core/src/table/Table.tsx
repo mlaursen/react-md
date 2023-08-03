@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type { TableHTMLAttributes } from "react";
 import { forwardRef, useMemo } from "react";
@@ -55,6 +56,8 @@ export interface TableProps
     TableConfiguration {}
 
 /**
+ * **Client Component**
+ *
  * @example
  * Responsive Example
  * ```tsx

@@ -77,6 +77,9 @@ export interface TableCheckboxProps
 }
 
 /**
+ * **Server Component**
+ * This might actually be a client component.
+ *
  * @example
  * Simple Example
  * ```tsx

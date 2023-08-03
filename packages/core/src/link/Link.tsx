@@ -41,6 +41,8 @@ export interface LinkProps
 }
 
 /**
+ * **Server Component**
+ *
  * @example
  * Simple Example
  * ```tsx

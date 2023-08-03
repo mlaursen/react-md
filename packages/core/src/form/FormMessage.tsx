@@ -1,3 +1,4 @@
+"use client";
 import type { CSSProperties } from "react";
 import { forwardRef } from "react";
 import { useEnsuredId } from "../useEnsuredId";
@@ -56,6 +57,9 @@ export interface FormMessageWithCounterProps
     FormMessageInputLengthCounterProps {}
 
 /**
+ * **Client Component**
+ * This might be able to become a server component if I remove the useFormTheme hook
+ *
  * The `FormMessage` component is used to create additional helper messages or
  * error messages and generally placed below the related `TextField`. If a
  * `length` (of the `value`) and `maxLength` are provided, a counter will also

@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type {
   ButtonHTMLAttributes,
@@ -270,6 +271,8 @@ export function tableCell(options: TableCellClassNameOptions): string {
 }
 
 /**
+ * **Client Component**
+ *
  * Creates a `<th>` or `<td>` cell with sensible styled defaults. You can create
  * a `<th>` element by enabling the `header` prop OR having a `TableCell` as a
  * child of the `TableHeader` component.

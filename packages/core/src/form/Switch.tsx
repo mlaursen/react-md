@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type { CSSProperties, HTMLAttributes, InputHTMLAttributes } from "react";
 import { forwardRef, useState } from "react";
@@ -45,6 +46,8 @@ export interface SwitchProps
 }
 
 /**
+ * **Client Component**
+ *
  * @example
  * Simple Example
  * ```tsx

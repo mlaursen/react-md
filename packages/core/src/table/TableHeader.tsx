@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useCallback, useMemo, useState } from "react";
@@ -12,7 +13,7 @@ import {
   TableConfigProvider,
   useTableConfig,
 } from "./TableConfigurationProvider";
-import { useTableContainer } from "./TableContainer";
+import { useTableContainer } from "./TableContainerProvider";
 import type { TableStickySectionProps } from "./types";
 
 const styles = bem("rmd-thead");
@@ -69,6 +70,9 @@ export const isTableHeaderStickyActive = (
 };
 
 /**
+ * **Client Component**
+ * TODO: Create separate useStickyTableHeader + StickyTableHeader component
+ *
  * Creates a `<thead>` element with some basic styles. This component will also
  * update the table configuration so that all the `TableCell` children will
  * automatically become `<th>` elements instead of the normal `<td>` as well as

@@ -1,3 +1,4 @@
+"use client";
 import type { ReactElement } from "react";
 import { Children, cloneElement } from "react";
 import { cnb } from "cnbuilder";
@@ -27,6 +28,8 @@ export interface CrossFadeProps<E extends HTMLElement>
 }
 
 /**
+ * **Client Component**
+ *
  * This is a component implementation of the {@link useCrossFadeTransition} hook
  * that implements the `temporary` behavior. Since this component uses the
  * `React.cloneElement` to inject the `ref` and `className` into the `children`,

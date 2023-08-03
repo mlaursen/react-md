@@ -41,6 +41,8 @@ export interface SrOnlyProps extends TypographyProps {
 }
 
 /**
+ * **Server Component**
+ *
  * @example
  * Simple Example
  * ```tsx

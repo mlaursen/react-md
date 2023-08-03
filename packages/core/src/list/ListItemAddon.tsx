@@ -19,6 +19,8 @@ export interface ListItemAddonProps
 }
 
 /**
+ * **Server Component**
+ *
  * The `ListItemAddon` is used to create an addon to the left or right of the
  * text/children of a `ListItem`.
  *

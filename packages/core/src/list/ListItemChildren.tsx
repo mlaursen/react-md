@@ -5,6 +5,8 @@ import { ListItemText } from "./ListItemText";
 import type { ListItemChildrenProps } from "./types";
 
 /**
+ * **Server Component**
+ *
  * The `ListItemChildren` component is used to create a styled list item that
  * can have optional addons to the left or right of the children in the form of
  * icons, avatars, or media. The `children` can be replaced by the `primaryText`

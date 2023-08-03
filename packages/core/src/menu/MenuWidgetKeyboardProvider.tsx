@@ -1,3 +1,4 @@
+"use client";
 import type { ReactElement, ReactNode } from "react";
 import type { KeyboardMovementContext } from "../movement";
 import { KeyboardMovementProvider } from "../movement";
@@ -13,6 +14,8 @@ export interface MenuWidgetKeyboardProviderProps {
 }
 
 /**
+ * **Client Component**
+ *
  * @remarks \@since 6.0.0
  * @internal
  */

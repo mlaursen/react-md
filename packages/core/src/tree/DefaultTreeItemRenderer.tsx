@@ -21,6 +21,8 @@ export type DefaultTreeItemRendererProps<
 > = TreeItemRendererProps<T>;
 
 /**
+ * **Client Component**
+ *
  * A reasonable default for rendering tree items that will extract all the
  * `ListItemChildrenProps` from the item and attempt to pass them into the
  * `TreeItem`.

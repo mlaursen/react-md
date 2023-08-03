@@ -25,6 +25,8 @@ export interface SliderTrackProps
 }
 
 /**
+ * **Server Component**
+ *
  * @internal
  * @remarks
  * \@since 2.5.0

@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type { ChangeEventHandler, HTMLAttributes, ReactNode } from "react";
 import { forwardRef, useEffect, useState } from "react";
@@ -138,6 +139,8 @@ export interface SliderThumbProps
 }
 
 /**
+ * **Client Component**
+ *
  * @internal
  * @remarks
  * \@since 2.5.0

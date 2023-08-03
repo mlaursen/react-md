@@ -56,6 +56,8 @@ export interface ResponsiveItemOverlayProps
     ResponsiveItemOverlayClassNameOptions {}
 
 /**
+ * **Server Component**
+ *
  * @example
  * Simple Example
  * ```tsx

@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
@@ -52,6 +53,8 @@ export interface TableRowProps
 }
 
 /**
+ * **Client Component**
+ *
  * Creates a `<tr>` element with some general styles that are inherited from the
  * base table configuration.
  */

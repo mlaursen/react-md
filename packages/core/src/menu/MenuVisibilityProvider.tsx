@@ -1,3 +1,4 @@
+"use client";
 import type { ReactElement, ReactNode } from "react";
 import { createContext, useContext, useMemo } from "react";
 import type { NonNullMutableRef, UseStateObject } from "../types";
@@ -65,6 +66,8 @@ export interface MenuVisibilityProviderProps extends MenuVisibilityContext {
 }
 
 /**
+ * **Client Component**
+ *
  * @internal
  * @remarks \@since 5.0.0
  */

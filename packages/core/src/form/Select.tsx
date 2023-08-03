@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type { ChangeEvent, ReactElement, ReactNode, Ref } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -165,6 +166,8 @@ export interface SelectProps<Value extends string>
 }
 
 /**
+ * **Client Component**
+ *
  * @remarks \@since 6.0.0 Rewritten with a new API.
  */
 export function Select<Value extends string>(

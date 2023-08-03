@@ -1,3 +1,4 @@
+"use client";
 import type { ReactNode } from "react";
 import { forwardRef } from "react";
 import type { ListElement, ListProps, ListSubheaderProps } from "../list";
@@ -33,6 +34,8 @@ export interface OptGroupProps extends Omit<ListProps, "role"> {
 }
 
 /**
+ * **Client Component**
+ *
  * This component is more of a "convenience component" to help enforce the
  * correct accessibility when creating an `<optgroup>` with the `Select`
  * component.

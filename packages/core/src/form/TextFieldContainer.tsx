@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
@@ -120,6 +121,9 @@ export interface TextFieldContainerProps
 }
 
 /**
+ * **Client Component**
+ * This might be able to become a server component if I remove the useFormTheme hook
+ *
  * This component is used to add the additional `TextField`, `TextArea`, and
  * `Select` theme styles.
  *

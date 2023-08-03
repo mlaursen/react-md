@@ -1,8 +1,11 @@
+"use client";
 import { forwardRef } from "react";
 import type { MenuItemSwitchProps } from "./MenuItemInputToggle";
 import { MenuItemInputToggle } from "./MenuItemInputToggle";
 
 /**
+ * **Client Component**
+ *
  * This is a simple wrapper for the {@link MenuItemInputToggle} component to
  * render it as a switch.
  *

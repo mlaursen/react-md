@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type {
   CSSProperties,
@@ -85,6 +86,9 @@ export interface NativeSelectProps
 }
 
 /**
+ * **Client Component**
+ * This might be able to become a server component if I remove useIcon and useFormTheme
+ *
  * This component is a wrapper for the native `<select>` field that applies the
  * same theming as `TextField` and `TextArea` components. This component might
  * not be used much since the `Select` offers more styling options.

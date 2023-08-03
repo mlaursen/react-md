@@ -14,6 +14,9 @@ export interface SwitchTrackProps extends HTMLAttributes<HTMLDivElement> {
   ballClassName?: string;
 }
 
+/**
+ * **Server Component**
+ */
 export const SwitchTrack = forwardRef<HTMLDivElement, SwitchTrackProps>(
   function SwitchTrack(props, ref) {
     const {

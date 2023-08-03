@@ -99,6 +99,8 @@ export interface TextIconSpacingProps {
 }
 
 /**
+ * **Server Component**
+ *
  * Note: This component **must** be rendered within a flex container unless the
  * {@link TextIconSpacingProps.forceIconWrap} is set to `true`.
  *

@@ -18,6 +18,8 @@ export interface FormMessageCounterProps
 }
 
 /**
+ * **Server Component**
+ *
  * This component can be used to create a "counter" within the
  * {@link FormMessage} component.
  *

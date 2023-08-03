@@ -1,3 +1,4 @@
+"use client";
 import type { ReactNode } from "react";
 import { forwardRef, useEffect, useRef } from "react";
 import type { LinkProps } from "./Link";
@@ -22,6 +23,8 @@ export interface SkipToMainContentProps
 }
 
 /**
+ * **Client Component**
+ *
  * @remarks \@since 6.0.0 Throws an error after rendering if no main element can
  * be found with the provided `mainId` in development mode. The previous
  * behavior would only log an error after being clicked.

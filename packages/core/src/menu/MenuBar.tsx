@@ -1,3 +1,4 @@
+"use client";
 import { forwardRef } from "react";
 import type { ListProps } from "../list";
 import { List } from "../list";
@@ -33,6 +34,8 @@ export interface MenuBarProps extends Omit<ListProps, "role"> {
 }
 
 /**
+ * **Client Component**
+ *
  * @example
  * Simple Example
  * ```tsx

@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type {
   InputHTMLAttributes,
@@ -85,6 +86,9 @@ export interface FileInputProps
 }
 
 /**
+ * **Client Component**
+ * This might be able to become a server component if I remove the useIcon hook
+ *
  * @example
  * Simple Example
  * ```tsx

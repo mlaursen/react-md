@@ -1,3 +1,4 @@
+"use client";
 import type { FocusEvent, KeyboardEvent, MouseEvent, TouchEvent } from "react";
 import { useCallback, useReducer, useRef } from "react";
 import { useElementInteractionContext } from "./ElementInteractionProvider";

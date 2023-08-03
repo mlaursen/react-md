@@ -171,6 +171,8 @@ export interface AppBarProps
 }
 
 /**
+ * **Server Component**
+ *
  * @example
  * Simple Example
  * ```tsx
@@ -190,7 +192,8 @@ export interface AppBarProps
  * }
  * ```
  *
- * @remarks \@since 6.0.0 The `AppBar` was updated to use `gap` for spacing
+ * @remarks
+ * \@since 6.0.0 The `AppBar` was updated to use `gap` for spacing
  * instead of requiring the `AppBarNav` and `AppBarAction` components.
  */
 export const AppBar = forwardRef<HTMLDivElement, AppBarProps>(

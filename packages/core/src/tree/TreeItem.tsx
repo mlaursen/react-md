@@ -1,3 +1,4 @@
+"use client";
 import type { HTMLAttributes, ReactElement, ReactNode, Ref } from "react";
 import { useEffect } from "react";
 import {
@@ -76,6 +77,7 @@ export interface TreeItemProps
 }
 
 /**
+ * **Client Component**
  *
  * @see {@link https://www.w3.org/WAI/ARIA/apg/patterns/treeview/}
  * @remarks

@@ -9,6 +9,8 @@ export interface NullSuspenseProps {
 }
 
 /**
+ * **Server Component**
+ *
  * This is just a convenience component to set the `fallback` to `null`.
  *
  * @example

@@ -1,3 +1,4 @@
+"use client";
 // Note: Uses function overloading so that the `getTooltipChildren` can be
 // inferred inline. If this is set to:
 //
@@ -231,6 +232,8 @@ export interface RangeSliderProps extends BaseSliderProps, RangeSliderState {
 }
 
 /**
+ * **Client Component**
+ *
  * @example
  * Simple Example
  * ```tsx

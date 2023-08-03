@@ -17,6 +17,8 @@ export interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
 }
 
 /**
+ * **Server Component**
+ *
  * This is probably one of the least useful components available as it doesn't
  * do much styling or logic. All this form component will do is add basic flex
  * behavior and prevent the default form submit behavior.

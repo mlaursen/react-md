@@ -1,3 +1,4 @@
+"use client";
 import type { ReactElement, ReactNode } from "react";
 import { useEffect, useState } from "react";
 import { useSsr } from "./SsrProvider";
@@ -8,6 +9,8 @@ export interface NoSsrProps {
 }
 
 /**
+ * **Client Component**
+ *
  * A small wrapper that can be used to render children client side only. The
  * main use-case are for components that rely on browser API to work correctly.
  *

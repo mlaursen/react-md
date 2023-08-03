@@ -1,3 +1,4 @@
+"use client";
 import type {
   ElementType,
   HTMLAttributes,
@@ -171,6 +172,8 @@ export interface TreeProps<T extends TreeItemNode>
 }
 
 /**
+ * **Client Component**
+ *
  * @example
  * Simple Tree
  * ```tsx

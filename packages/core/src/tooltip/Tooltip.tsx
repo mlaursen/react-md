@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
@@ -87,6 +88,8 @@ export interface TooltipProps
 }
 
 /**
+ * **Client Component**
+ *
  * This is the base tooltip component that can only be used to render a tooltip
  * with an animation when the visibility changes. If this component is used, you
  * will need to manually add all the event listeners and triggers to change the

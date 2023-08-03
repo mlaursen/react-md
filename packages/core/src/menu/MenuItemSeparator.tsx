@@ -1,3 +1,4 @@
+"use client";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
 import type { DividerProps, VerticalDividerProps } from "../divider";
@@ -11,6 +12,8 @@ export interface MenuItemSeparatorProps
     Pick<VerticalDividerProps, "maxHeight"> {}
 
 /**
+ * **Client Component**
+ *
  * This component renders a `<li role="separator">` with the divider styles. It
  * will also automatically render itself vertically instead of horizontally if
  * the menu is rendering horizontally.

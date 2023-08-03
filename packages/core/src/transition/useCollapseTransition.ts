@@ -1,3 +1,4 @@
+"use client";
 import type { CSSProperties } from "react";
 import { useState } from "react";
 import { cnb } from "cnbuilder";

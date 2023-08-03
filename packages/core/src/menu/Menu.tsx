@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type { CSSProperties, HTMLAttributes } from "react";
 import { forwardRef, useEffect, useRef } from "react";
@@ -238,6 +239,8 @@ export interface MenuProps
 }
 
 /**
+ * **Client Component**
+ *
  * This component should generally only be used to implement context menus with
  * the `useContextMenu` hook. Otherwise, the `DropdownMenu` component should be
  * used.

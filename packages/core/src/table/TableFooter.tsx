@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useCallback, useMemo, useState } from "react";
@@ -12,7 +13,7 @@ import {
   TableConfigProvider,
   useTableConfig,
 } from "./TableConfigurationProvider";
-import { useTableContainer } from "./TableContainer";
+import { useTableContainer } from "./TableContainerProvider";
 import type { TableStickySectionProps } from "./types";
 
 const styles = bem("rmd-tfoot");
@@ -35,6 +36,9 @@ export interface TableFooterProps
 }
 
 /**
+ * **Client Component**
+ * TODO: Create separate useStickyTableFooter + StickyTableFooter component
+ *
  * Creates a `<tfoot>` element with some basic styles. This component will
  * disable the hover effect and line wrapping by default, but the hover effect
  * and line-wrapping can be re-enabled if desired through the `hoverable` and

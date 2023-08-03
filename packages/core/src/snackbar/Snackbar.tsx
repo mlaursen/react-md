@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type { AriaRole, ComponentType, HTMLAttributes } from "react";
 import { forwardRef } from "react";
@@ -156,6 +157,8 @@ export interface SnackbarProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 /**
+ * **Client Component**
+ *
  * @example
  * Super SImple Example
  * ```tsx

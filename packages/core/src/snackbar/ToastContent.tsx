@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useCallback, useState } from "react";
@@ -71,6 +72,8 @@ export interface ToastContentProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 /**
+ * **Client Component**
+ *
  * @remarks \@since 6.0.0
  */
 export const ToastContent = forwardRef<HTMLDivElement, ToastContentProps>(

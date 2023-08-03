@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useMemo } from "react";
@@ -15,6 +16,8 @@ export interface TableBodyProps
     Omit<TableConfig, "header"> {}
 
 /**
+ * **Client Component**
+ *
  * Creates a `<tbody>` element that also allows for overriding all the child
  * `TableCell` components with additional styling behavior.
  */

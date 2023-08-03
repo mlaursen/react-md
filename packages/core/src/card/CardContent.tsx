@@ -13,6 +13,8 @@ export interface CardContentProps
     CardContentClassNameOptions {}
 
 /**
+ * **Server Component**
+ *
  * @remarks
  * \@since 6.0.0 Renamed `disableExtraPadding` to `disableLastChildPadding` and
  * removed the `disableParagraphMargin` prop.

@@ -1,3 +1,4 @@
+"use client";
 import type { ChangeEvent, DragEvent } from "react";
 import { useCallback, useEffect, useReducer } from "react";
 import { nanoid } from "nanoid";

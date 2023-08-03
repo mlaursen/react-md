@@ -104,6 +104,8 @@ export interface CircularProgressProps
 const styles = bem("rmd-circular-progress");
 
 /**
+ * **Server Component**
+ *
  * @example
  * Simple Example
  *

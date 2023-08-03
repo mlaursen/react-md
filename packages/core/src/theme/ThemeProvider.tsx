@@ -1,3 +1,4 @@
+"use client";
 import type { ReactElement, ReactNode } from "react";
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { useSsr } from "../SsrProvider";
@@ -262,6 +263,8 @@ export interface ThemeProviderProps {
 }
 
 /**
+ * **Client Component**
+ *
  * The `ThemeProvider` should be added to the root of your app but as a child of
  * the `CoreProviders`.
  *

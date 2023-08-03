@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
@@ -16,6 +17,8 @@ export interface MenuItemTextFieldProps extends TextFieldProps {
 }
 
 /**
+ * **Client Component**
+ *
  * This is a wrapper for the `TextField` component that can be used within
  * `Menu`s by updating the `onKeyDown` and `onClick` behavior.
  *

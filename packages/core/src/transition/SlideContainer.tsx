@@ -76,6 +76,9 @@ export interface SlideContainerProps
     SlideContainerClassNameOptions {}
 
 /**
+ * **Server Component**
+ * This is a server component, but generally relies on state so probably a client component.
+ *
  * @example
  * Simple Example
  * ```tsx

@@ -1,3 +1,4 @@
+"use client";
 import type { RefObject } from "react";
 import { forwardRef, useRef } from "react";
 import type {
@@ -44,6 +45,8 @@ export const DEFAULT_FIXED_DIALOG_CLASSNAMES: Readonly<CSSTransitionClassNamesOb
   };
 
 /**
+ * **Client Component**
+ *
  * @example
  * Simple Example
  * ```tsx
