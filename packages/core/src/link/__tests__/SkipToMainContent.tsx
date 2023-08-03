@@ -37,15 +37,21 @@ describe("SkipToMainContent", () => {
     expect(link).toMatchSnapshot();
   });
 
+  it("should automatically find the main element for convenience", () => {
+    expect(() =>
+      render(<SkipToMainContent />, { wrapper: MainIdWrapper })
+    ).not.toThrow();
+  });
+
   it("should throw an error if the mainId cannot be found", () => {
     // hide thrown error in test reports
     jest.spyOn(console, "error").mockImplementation(() => {});
     expect(() => render(<SkipToMainContent mainId="not-found" />)).toThrow(
-      'Unable to find a main element to focus with an id of "not-found".'
+      'Unable to find a main element to focus with an id of "not-found". There should be at least one <main> element or an element with role="main" on the page for accessibility.'
     );
   });
 
-  it('should throw an error if the mainId cannot be found and suggust the id for a main element or an element with role="main"', () => {
+  it('should throw an error if the mainId cannot be found and suggest the id for a main element or an element with role="main"', () => {
     // hide thrown error in test reports
     jest.spyOn(console, "error").mockImplementation(() => {});
     expect(() =>
@@ -56,7 +62,7 @@ describe("SkipToMainContent", () => {
         </>
       )
     ).toThrow(
-      'Unable to find a main element to focus with an id of "not-found".\nHowever, a "<main>" element was found with an id of "main-id". Should this be the "mainId" for the "SkipToMainContent" component?'
+      'Unable to find a main element to focus with an id of "not-found" but a main element was found with an id of "main-id".'
     );
   });
 
@@ -97,5 +103,26 @@ describe("SkipToMainContent", () => {
     );
     fireEvent.click(link);
     expect(document.activeElement).toBe(document.body);
+  });
+
+  it("should defer finding the main element to the click event in production", () => {
+    const { NODE_ENV } = process.env;
+    process.env.NODE_ENV = "production";
+
+    const querySelector = jest.spyOn(document, "querySelector");
+    const { getByRole } = render(<SkipToMainContent />, {
+      wrapper: MainIdWrapper,
+    });
+    expect(querySelector).not.toHaveBeenCalled();
+
+    const link = getByRole("link", { name: "Skip to main content" });
+    const main = getByRole("main");
+    expect(document.activeElement).toBe(document.body);
+
+    fireEvent.click(link);
+    expect(document.activeElement).toBe(main);
+    expect(querySelector).toHaveBeenCalledTimes(1);
+
+    process.env.NODE_ENV = NODE_ENV;
   });
 });
