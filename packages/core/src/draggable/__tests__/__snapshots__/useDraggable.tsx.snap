@@ -1,17 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`useDraggable should allow for the value to be controlled 1`] = `
-<button
-  aria-valuenow="20"
-  class="rmd-button rmd-button--text"
-  type="button"
->
-  <span>
-    Button
-  </span>
-</button>
-`;
-
 exports[`useDraggable should work correctly for keyboard events 1`] = `
 <button
   aria-valuenow="50"

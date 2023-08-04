@@ -14,8 +14,8 @@
 //
 
 import type { HTMLAttributes, ReactElement, ReactNode, Ref } from "react";
-import { useRef } from "react";
-import { useDraggable } from "../draggable";
+import { useRef, useState } from "react";
+import { useControlledDraggable } from "../draggable";
 import type { TooltipProps } from "../tooltip";
 import type {
   LabelRequiredForA11y,
@@ -399,6 +399,7 @@ export function Slider(
     };
   }
 
+  const [thumb1Dragging, setThumb1Dragging] = useState(false);
   const {
     onKeyDown: thumb1OnKeyDown,
     onMouseUp: thumb1OnMouseUp,
@@ -406,17 +407,17 @@ export function Slider(
     onMouseMove: thumb1OnMouseMove,
     onTouchStart: thumb1OnTouchStart,
     onTouchMove: thumb1OnTouchMove,
-    dragging: thumb1Dragging,
     dragPercentage: thumb1DragPercentage,
     draggableRef: thumb1DraggableRef,
-  } = useDraggable({
+  } = useControlledDraggable({
     ref: thumb1Ref,
     min,
     max: thumb1Max,
     rangeMax: max,
     step,
-    value: thumb1Value,
     setValue: setThumb1Value,
+    dragging: thumb1Dragging,
+    setDragging: setThumb1Dragging,
     disabled,
     vertical,
     withinOffsetParent: true,
@@ -449,6 +450,7 @@ export function Slider(
     },
   });
 
+  const [thumb2Dragging, setThumb2Dragging] = useState(false);
   const {
     onKeyDown: thumb2OnKeyDown,
     onMouseUp: thumb2OnMouseUp,
@@ -456,17 +458,17 @@ export function Slider(
     onMouseMove: thumb2OnMouseMove,
     onTouchStart: thumb2OnTouchStart,
     onTouchMove: thumb2OnTouchMove,
-    dragging: thumb2Dragging,
     dragPercentage: thumb2DragPercentage,
     draggableRef: thumb2DraggableRef,
-  } = useDraggable({
+  } = useControlledDraggable({
     ref: thumb2Ref,
     min: thumb2Min,
     max,
     rangeMin: min,
     step,
-    value: thumb2Value,
     setValue: setThumb2Value,
+    dragging: thumb2Dragging,
+    setDragging: setThumb2Dragging,
     vertical,
     disabled,
     withinOffsetParent: true,

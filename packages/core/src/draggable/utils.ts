@@ -245,3 +245,30 @@ export function getDraggableDefaultValue(
 
   return value;
 }
+
+/**
+ * @internal
+ * @remarks \@since 6.0.0
+ */
+export interface DeserializeDraggableValueOptions {
+  min: number;
+  max: number;
+  item: string;
+}
+
+/**
+ * @internal
+ * @remarks \@since 6.0.0
+ */
+export function deserializeDraggableValue(
+  options: DeserializeDraggableValueOptions
+): number {
+  const { item, min, max } = options;
+
+  const value = parseFloat(item);
+  if (Number.isNaN(item)) {
+    return min;
+  }
+
+  return Math.max(min, Math.min(max, value));
+}

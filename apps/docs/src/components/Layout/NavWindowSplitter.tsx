@@ -5,7 +5,7 @@ import {
   isToggleableLayout,
   useCSSVariables,
   useLayoutConfig,
-  useWindowSplitter,
+  useLocalStorageWindowSplitter,
   WindowSplitter,
 } from "@react-md/core";
 import { cnb } from "cnbuilder";
@@ -18,17 +18,17 @@ export function NavWindowSplitter(): ReactElement | null {
   const { layout, hideNav, visible } = useLayoutConfig();
   const toggleable = isToggleableLayout(layout);
   const fullHeight = isFullHeightLayout(layout) || toggleable;
-  const { value, splitterProps } = useWindowSplitter({
+  const { value, splitterProps } = useLocalStorageWindowSplitter({
     min: 96,
     max: 600,
     defaultValue: 256,
+    key: "navWidth",
     onKeyDown(event) {
       if (event.key === "Enter" && toggleable) {
         event.stopPropagation();
         hideNav();
       }
     },
-    localStorageKey: "navWidth",
   });
   useCSSVariables(
     useMemo(() => {

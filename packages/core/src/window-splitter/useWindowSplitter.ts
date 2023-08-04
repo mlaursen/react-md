@@ -1,26 +1,12 @@
 "use client";
-import type { Ref, RefCallback } from "react";
+import { useState } from "react";
+import { getDraggableDefaultValue } from "../draggable/utils";
+import type { UseStateInitializer, UseStateSetter } from "../types";
 import type {
-  DraggableImplementation,
-  DraggableKeyboardEventHandlers,
-  DraggableMouseEventHandlers,
-  DraggableTouchEventHandlers,
-  UncontrolledDraggableOptions,
-} from "../draggable";
-import { useDraggable } from "../draggable";
-import { useEnsuredId } from "../useEnsuredId";
-import { getPercentage } from "../utils";
-
-declare module "react" {
-  interface CSSProperties {
-    "--rmd-window-splitter-top"?: number | string;
-    "--rmd-window-splitter-right"?: number | string;
-    "--rmd-window-splitter-bottom"?: number | string;
-    "--rmd-window-splitter-left"?: number | string;
-    "--rmd-window-splitter-opacity"?: number | string;
-    "--rmd-window-splitter-position"?: number | string;
-  }
-}
+  ControlledWindowSplitterImplementation,
+  ControlledWindowSplitterOptions,
+} from "./useControlledWindowSplitter";
+import { useControlledWindowSplitter } from "./useControlledWindowSplitter";
 
 /**
  * @remarks \@since 6.0.0
@@ -28,46 +14,36 @@ declare module "react" {
 export interface WindowSplitterOptions<
   E extends HTMLElement = HTMLButtonElement,
 > extends Omit<
-    UncontrolledDraggableOptions<E>,
-    "disableTouch" | keyof DraggableTouchEventHandlers<E>
+    ControlledWindowSplitterOptions<E>,
+    "value" | "setValue" | "dragging" | "setDragging"
   > {
   /**
-   * An optional id to use for the window splitter.
-   *
-   * @defaultValue `"window-splitter-" + useId()`
+   * @defaultValue `Math.ceil((max - min) / 2)`
    */
-  id?: string;
-
-  /**
-   * An optional ref for the window splitter element. This will be merged into
-   * the {@link WindowSplitterWidgetProps.ref}.
-   */
-  ref?: Ref<E>;
-}
-
-/**
- * @remarks \@since 6.0.0
- */
-export interface WindowSplitterWidgetProps<E extends HTMLElement>
-  extends Required<DraggableMouseEventHandlers<E>>,
-    Required<DraggableKeyboardEventHandlers<E>> {
-  "aria-orientation": "vertical" | undefined;
-  "aria-valuenow": number;
-  "aria-valuemin": number;
-  "aria-valuemax": number;
-  id: string;
-  ref: RefCallback<E>;
-  role: "separator";
-  reversed: boolean;
-  dragging: boolean;
+  defaultValue?: UseStateInitializer<number>;
 }
 
 /**
  * @remarks \@since 6.0.0
  */
 export interface WindowSplitterImplementation<E extends HTMLElement>
-  extends DraggableImplementation<E> {
-  splitterProps: WindowSplitterWidgetProps<E>;
+  extends ControlledWindowSplitterImplementation<E> {
+  /**
+   * The current drag distance in pixels.
+   */
+  value: number;
+
+  /**
+   * This can be used to manually set the {@link value} if that is needed for
+   * some custom behavior.
+   */
+  setValue: UseStateSetter<number>;
+
+  /**
+   * This will be `true` when the user is dragging the element through mouse or
+   * touch.
+   */
+  dragging: boolean;
 }
 
 /**
@@ -127,45 +103,25 @@ export interface WindowSplitterImplementation<E extends HTMLElement>
 export function useWindowSplitter<E extends HTMLElement = HTMLButtonElement>(
   options: WindowSplitterOptions<E>
 ): WindowSplitterImplementation<E> {
-  const {
-    id: propId,
+  const { min, max, defaultValue, ...remaining } = options;
+  const [value, setValue] = useState(() =>
+    getDraggableDefaultValue({ min, max, defaultValue })
+  );
+  const [dragging, setDragging] = useState(false);
+  const splitter = useControlledWindowSplitter({
     min,
     max,
-    reversed = false,
-    vertical,
-    withinOffsetParent,
-  } = options;
-
-  const id = useEnsuredId(propId, "splitter");
-  const draggableImplementation = useDraggable(options);
-  const {
     value,
+    setValue,
     dragging,
-    draggableRef,
-    dragPercentage,
-    mouseEventHandlers,
-    keyboardEventHandlers,
-  } = draggableImplementation;
-
-  const percentage =
-    dragging && withinOffsetParent
-      ? dragPercentage
-      : getPercentage({ min, max, value });
+    setDragging,
+    ...remaining,
+  });
 
   return {
-    ...draggableImplementation,
-    splitterProps: {
-      "aria-orientation": vertical ? "vertical" : undefined,
-      "aria-valuenow": Math.ceil(percentage * 100),
-      "aria-valuemin": 0,
-      "aria-valuemax": 100,
-      id,
-      ref: draggableRef,
-      role: "separator",
-      dragging,
-      reversed,
-      ...mouseEventHandlers,
-      ...keyboardEventHandlers,
-    },
+    ...splitter,
+    value,
+    setValue,
+    dragging,
   };
 }

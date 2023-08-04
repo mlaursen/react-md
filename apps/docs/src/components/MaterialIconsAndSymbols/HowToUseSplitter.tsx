@@ -1,7 +1,7 @@
 import {
   useCSSVariables,
+  useLocalStorageWindowSplitter,
   useWindowSize,
-  useWindowSplitter,
   WindowSplitter,
 } from "@react-md/core";
 import type { ReactElement } from "react";
@@ -13,12 +13,12 @@ const min = 416;
 
 export function HowToUseSplitter(): ReactElement {
   const { width } = useWindowSize({ disableHeight: true });
-  const { value, splitterProps } = useWindowSplitter({
+  const { value, splitterProps } = useLocalStorageWindowSplitter({
     min,
     max: Math.max(600, width - width * 0.45),
+    key: "howToUseWidth",
     defaultValue: min,
     reversed: true,
-    localStorageKey: "howToUseWidth",
   });
 
   useCSSVariables(

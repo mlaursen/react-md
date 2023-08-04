@@ -3,7 +3,7 @@ import type {
   DraggableEventHandlers,
   DraggableMouseEventHandlers,
   DraggableTouchEventHandlers,
-  UncontrolledDraggableImplementation,
+  DraggableImplementation,
 } from "../draggable";
 import type { RenameKeysWithPrefix } from "../types";
 import type { ClientPositionEvent } from "../utils";
@@ -41,7 +41,7 @@ export const getJumpValue = (options: JumpOptions): number => {
  * @internal
  */
 type RequiredThumbProps = Pick<
-  UncontrolledDraggableImplementation<HTMLElement>,
+  DraggableImplementation<HTMLElement>,
   | "dragging"
   | keyof DraggableMouseEventHandlers<HTMLElement>
   | keyof DraggableTouchEventHandlers<HTMLElement>

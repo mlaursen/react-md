@@ -1,14 +1,14 @@
 import { cnb } from "cnbuilder";
 import type { ReactElement, Ref } from "react";
-import { createRef, useState } from "react";
+import { createRef } from "react";
 import { fireEvent, rmdRender } from "../../test-utils";
 
 import { Button } from "../../button";
 import { getPercentage } from "../../utils";
-import type { UncontrolledDraggableOptions } from "../useDraggable";
+import type { DraggableOptions } from "../useDraggable";
 import { useDraggable } from "../useDraggable";
 
-type TestProps = Partial<UncontrolledDraggableOptions<HTMLButtonElement>> & {
+type TestProps = Partial<DraggableOptions<HTMLButtonElement>> & {
   nodeRef?: Ref<HTMLButtonElement>;
 };
 
@@ -305,84 +305,6 @@ describe("useDraggable", () => {
     fireEvent.touchMove(button, touch);
     fireEvent.touchEnd(window);
     expect(button).toHaveAttribute("aria-valuenow", "50");
-  });
-
-  it("should allow for the value to be controlled", () => {
-    function Test(): ReactElement {
-      const [value, setValue] = useState(20);
-
-      const {
-        dragging,
-        draggableRef,
-        keyboardEventHandlers,
-        minimum,
-        maximum,
-        increment,
-        decrement,
-      } = useDraggable({
-        min: 0,
-        max: 100,
-        value,
-        setValue,
-      });
-
-      const percentage = getPercentage({ min: 0, max: 100, value });
-
-      return (
-        <>
-          <Button
-            aria-valuenow={Math.ceil(percentage * 100)}
-            ref={draggableRef}
-            {...keyboardEventHandlers}
-            className={cnb(dragging && "dragging")}
-          >
-            Button
-          </Button>
-          <Button onClick={minimum}>Minimum</Button>
-          <Button onClick={maximum}>Maximum</Button>
-          <Button onClick={increment}>Increment</Button>
-          <Button onClick={decrement}>Decrement</Button>
-        </>
-      );
-    }
-
-    const { getByRole } = rmdRender(<Test />);
-
-    const button = getByRole("button", { name: "Button" });
-    const minimum = getByRole("button", { name: "Minimum" });
-    const maximum = getByRole("button", { name: "Maximum" });
-    const increment = getByRole("button", { name: "Increment" });
-    const decrement = getByRole("button", { name: "Decrement" });
-    expect(button).toMatchSnapshot();
-    expect(button).toHaveAttribute("aria-valuenow", "20");
-
-    fireEvent.click(increment);
-    expect(button).toHaveAttribute("aria-valuenow", "21");
-
-    fireEvent.click(decrement);
-    expect(button).toHaveAttribute("aria-valuenow", "20");
-
-    fireEvent.click(minimum);
-    expect(button).toHaveAttribute("aria-valuenow", "0");
-    fireEvent.click(maximum);
-    expect(button).toHaveAttribute("aria-valuenow", "100");
-  });
-
-  it("should persist the value to local storage when a key is provided and the user is not dragging", () => {
-    const { getByRole } = rmdRender(<Test localStorageKey="test" />);
-
-    const button = getByRole("button");
-    expect(localStorage.getItem("test")).toBe("50");
-
-    fireEvent.mouseDown(button, { button: 0 });
-    fireEvent.mouseMove(button);
-    fireEvent.mouseMove(window, { clientX: 60 });
-    expect(button).toHaveAttribute("aria-valuenow", "60");
-    expect(localStorage.getItem("test")).toBe("50");
-
-    fireEvent.mouseUp(window, { clientX: 60 });
-    expect(button).toHaveAttribute("aria-valuenow", "60");
-    expect(localStorage.getItem("test")).toBe("60");
   });
 
   it("should support dragging when RTL is enabled", () => {
