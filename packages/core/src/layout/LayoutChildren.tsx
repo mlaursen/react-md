@@ -1,8 +1,8 @@
 import type { HTMLAttributes, ReactElement, ReactNode } from "react";
 import { useEffect, useState } from "react";
-import type { SkipToMainContentProps } from "../link";
-import { SkipToMainContent } from "../link";
-import type { TreeData, TreeItemNode } from "../tree";
+import type { SkipToMainContentProps } from "../link/SkipToMainContent";
+import { SkipToMainContent } from "../link/SkipToMainContent";
+import type { TreeData, TreeItemNode } from "../tree/types";
 import type { PropsWithRef } from "../types";
 import { LayoutAppBar } from "./LayoutAppBar";
 import type { LayoutMainProps } from "./LayoutMain";

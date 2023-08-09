@@ -1,6 +1,6 @@
 import { fireEvent, render } from "../../test-utils";
 
-import { Button } from "../../button";
+import { Button } from "../../button/Button";
 import { useMenuVisibility } from "../MenuVisibilityProvider";
 
 describe("MenuVisibilityProvider", () => {

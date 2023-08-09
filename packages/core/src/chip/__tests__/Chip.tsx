@@ -1,8 +1,8 @@
 import { createRef } from "react";
 import { fireEvent, render } from "../../test-utils";
 
-import { FontIcon } from "../../icon";
-import { ElementInteractionProvider } from "../../interaction";
+import { FontIcon } from "../../icon/FontIcon";
+import { ElementInteractionProvider } from "../../interaction/ElementInteractionProvider";
 import { Chip } from "../Chip";
 
 describe("Chip", () => {

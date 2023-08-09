@@ -3,7 +3,7 @@ import {
   BELOW_CENTER_ANCHOR,
   CENTER_LEFT_ANCHOR,
   CENTER_RIGHT_ANCHOR,
-} from "../../positioning";
+} from "../../positioning/constants";
 import { DEFAULT_TOOLTIP_THRESHOLD } from "../constants";
 import type { GetPositionOptions } from "../utils";
 import { getAnchor, getPosition } from "../utils";

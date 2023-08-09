@@ -1,7 +1,8 @@
 import type { ReactElement } from "react";
 import { rmdRender, userEvent, waitFor } from "../../test-utils";
 
-import { Slide, SlideContainer } from "../../transition";
+import { Slide } from "../../transition/Slide";
+import { SlideContainer } from "../../transition/SlideContainer";
 import { Tab } from "../Tab";
 import type { TabListProps } from "../TabList";
 import { TabList } from "../TabList";

@@ -3,19 +3,17 @@ import { cnb } from "cnbuilder";
 import type { CSSProperties, HTMLAttributes } from "react";
 import { forwardRef, useEffect, useRef } from "react";
 import { useAppSize } from "../AppSizeProvider";
-import { useFocusContainer } from "../focus";
-import { useUserInteractionMode } from "../interaction";
-import type { ListElement, ListProps } from "../list";
-import type { GetDefaultFocusedIndex } from "../movement";
-import { Portal } from "../portal";
-import type {
-  CalculateFixedPositionOptions,
-  FixedPositioningOptions,
-} from "../positioning";
-import { useFixedPositioning } from "../positioning";
-import { useScrollLock } from "../scroll";
-import type { ScaleTransitionHookOptions } from "../transition";
-import { useScaleTransition } from "../transition";
+import { useFocusContainer } from "../focus/useFocusContainer";
+import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider";
+import type { ListElement, ListProps } from "../list/List";
+import type { GetDefaultFocusedIndex } from "../movement/types";
+import { Portal } from "../portal/Portal";
+import type { CalculateFixedPositionOptions } from "../positioning/types";
+import type { FixedPositioningOptions } from "../positioning/useFixedPositioning";
+import { useFixedPositioning } from "../positioning/useFixedPositioning";
+import { useScrollLock } from "../scroll/useScrollLock";
+import type { ScaleTransitionHookOptions } from "../transition/useScaleTransition";
+import { useScaleTransition } from "../transition/useScaleTransition";
 import type { LabelRequiredForA11y, PropsWithRef } from "../types";
 import { useEnsuredId } from "../useEnsuredId";
 import type {

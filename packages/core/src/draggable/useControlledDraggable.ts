@@ -2,13 +2,15 @@
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes, Ref, RefCallback } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useUserInteractionMode } from "../interaction";
-import { useScrollLock } from "../scroll";
+import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider";
+import { useScrollLock } from "../scroll/useScrollLock";
 import type { NonNullRef, UseStateSetter } from "../types";
-import { useDir } from "../typography";
+import { useDir } from "../typography/WritingDirection";
 import { useEnsuredRef } from "../useEnsuredRef";
 import { useHtmlClassName } from "../useHtmlClassName";
-import { getRangeSteps, nearest, withinRange } from "../utils";
+import { getRangeSteps } from "../utils/getRangeSteps";
+import { nearest } from "../utils/nearest";
+import { withinRange } from "../utils/withinRange";
 import {
   isMouseDragStartEvent,
   isTouchDragStartEvent,

@@ -2,7 +2,7 @@
 import { cnb } from "cnbuilder";
 import type { TableHTMLAttributes } from "react";
 import { forwardRef, useMemo } from "react";
-import { bem } from "../utils";
+import { bem } from "../utils/bem";
 import type {
   TableConfigContext,
   TableConfiguration,

@@ -1,5 +1,5 @@
 import type { KeyboardEvent } from "react";
-import { loop } from "../utils";
+import { loop } from "../utils/loop";
 import type { FocusableIndexOptions, TabIndexBehavior } from "./types";
 
 /**

@@ -3,7 +3,7 @@ import type { ReactElement } from "react";
 import { useEffect } from "react";
 import { act, fireEvent, render } from "../test-utils";
 
-import { Button } from "../button";
+import { Button } from "../button/Button";
 import { SsrProvider } from "../SsrProvider";
 import type { LocalStorageDeserializer } from "../useLocalStorage";
 import { useLocalStorage } from "../useLocalStorage";

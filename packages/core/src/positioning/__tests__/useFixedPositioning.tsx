@@ -2,7 +2,7 @@ import type { ReactElement } from "react";
 import { useRef, useState } from "react";
 import { act, fireEvent, render } from "../../test-utils";
 
-import { useScaleTransition } from "../../transition";
+import { useScaleTransition } from "../../transition/useScaleTransition";
 import { TOP_INNER_RIGHT_ANCHOR } from "../constants";
 import type {
   FixedPositioningOptions,

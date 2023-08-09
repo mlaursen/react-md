@@ -1,5 +1,4 @@
 import type { ReactElement } from "react";
-
 import { ListItemAddon } from "./ListItemAddon";
 import { ListItemText } from "./ListItemText";
 import type { ListItemChildrenProps } from "./types";

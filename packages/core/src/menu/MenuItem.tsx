@@ -1,9 +1,9 @@
 "use client";
 import { cnb } from "cnbuilder";
 import { forwardRef } from "react";
-import type { ListItemProps } from "../list";
-import { ListItem } from "../list";
-import { useKeyboardMovementContext } from "../movement";
+import type { ListItemProps } from "../list/ListItem";
+import { ListItem } from "../list/ListItem";
+import { useKeyboardMovementContext } from "../movement/useKeyboardMovementProvider";
 import { useEnsuredId } from "../useEnsuredId";
 
 /**

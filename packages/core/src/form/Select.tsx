@@ -2,29 +2,31 @@
 import { cnb } from "cnbuilder";
 import type { ChangeEvent, ReactElement, ReactNode, Ref } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { IconRotator, useIcon } from "../icon";
-import type { MenuProps } from "../menu";
-import { Menu } from "../menu";
+import { useIcon } from "../icon/IconProvider";
+import { IconRotator } from "../icon/IconRotator";
+import type { MenuProps } from "../menu/Menu";
+import { Menu } from "../menu/Menu";
+import { findMatchIndex } from "../movement/findMatchIndex";
 import {
-  findMatchIndex,
-  isSearchableEvent,
   KeyboardMovementProvider,
   useKeyboardMovementProvider,
-} from "../movement";
-import { BELOW_CENTER_ANCHOR } from "../positioning";
+} from "../movement/useKeyboardMovementProvider";
+import { isSearchableEvent } from "../movement/utils";
+import { BELOW_CENTER_ANCHOR } from "../positioning/constants";
 import type {
   TransitionEnterHandler,
   TransitionExitHandler,
-} from "../transition";
+} from "../transition/types";
 import { useEnsuredId } from "../useEnsuredId";
 import { useEnsuredRef } from "../useEnsuredRef";
 import { useToggle } from "../useToggle";
-import { bem, loop } from "../utils";
+import { bem } from "../utils/bem";
+import { loop } from "../utils/loop";
 import { useFormTheme } from "./FormThemeProvider";
-import { extractOptionsFromChildren } from "./selectUtils";
 import { SelectValue } from "./SelectValue";
 import type { TextFieldProps } from "./TextField";
 import { TextField } from "./TextField";
+import { extractOptionsFromChildren } from "./selectUtils";
 import type { FormFieldOptions, UserAgentAutoCompleteProps } from "./types";
 import { ListboxProvider } from "./useListboxProvider";
 import { triggerManualChangeEvent, tryToSubmitRelatedForm } from "./utils";

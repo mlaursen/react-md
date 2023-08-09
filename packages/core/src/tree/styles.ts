@@ -1,7 +1,7 @@
 import { cnb } from "cnbuilder";
-import type { InternalListItemClassNameOptions } from "../list";
-import { listItem } from "../list";
-import { bem } from "../utils";
+import type { InternalListItemClassNameOptions } from "../list/listItemStyles";
+import { listItem } from "../list/listItemStyles";
+import { bem } from "../utils/bem";
 
 const treeStyles = bem("rmd-tree");
 const treeItemStyles = bem("rmd-tree-item");

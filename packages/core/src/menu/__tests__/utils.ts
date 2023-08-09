@@ -8,7 +8,7 @@ import {
   TOP_INNER_LEFT_ANCHOR,
   TOP_INNER_RIGHT_ANCHOR,
   TOP_RIGHT_ANCHOR,
-} from "../../positioning";
+} from "../../positioning/constants";
 
 import { getDefaultAnchor } from "../utils";
 

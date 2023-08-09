@@ -7,7 +7,7 @@ import {
   waitForElementToBeRemoved,
 } from "../../test-utils";
 
-import { Button } from "../../button";
+import { Button } from "../../button/Button";
 import { Tooltip } from "../Tooltip";
 import { TooltipHoverModeProvider } from "../TooltipHoverModeProvider";
 import { useTooltip } from "../useTooltip";

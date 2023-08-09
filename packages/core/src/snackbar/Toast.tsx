@@ -2,16 +2,16 @@
 import { cnb } from "cnbuilder";
 import type { AriaRole, HTMLAttributes, ReactElement, ReactNode } from "react";
 import { forwardRef, isValidElement } from "react";
-import type { ButtonProps } from "../button";
+import type { ButtonProps } from "../button/Button";
 import type {
   CSSTransitionClassNames,
   TransitionCallbacks,
   TransitionTimeout,
-} from "../transition";
-import { useScaleTransition } from "../transition";
+} from "../transition/types";
+import { useScaleTransition } from "../transition/useScaleTransition";
 import type { PropsWithRef } from "../types";
 import { useEnsuredId } from "../useEnsuredId";
-import { bem } from "../utils";
+import { bem } from "../utils/bem";
 import { ToastActionButton } from "./ToastActionButton";
 import { ToastCloseButton } from "./ToastCloseButton";
 import type { ToastContentProps } from "./ToastContent";

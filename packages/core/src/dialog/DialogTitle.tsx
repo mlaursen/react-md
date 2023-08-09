@@ -5,8 +5,8 @@ import type {
   TypographyMargin,
   TypographyProps,
   TypographyType,
-} from "../typography";
-import { Typography } from "../typography";
+} from "../typography/Typography";
+import { Typography } from "../typography/Typography";
 
 /**
  * @remarks \@since 6.0.0 Inherits the `TypographyProps` instead of

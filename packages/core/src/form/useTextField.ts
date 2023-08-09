@@ -7,7 +7,7 @@ import type {
   RefObject,
 } from "react";
 import { useCallback, useRef, useState } from "react";
-import { useIcon } from "../icon";
+import { useIcon } from "../icon/IconProvider";
 import type { UseStateInitializer, UseStateSetter } from "../types";
 import { useEnsuredId } from "../useEnsuredId";
 import { useEnsuredRef } from "../useEnsuredRef";

@@ -1,10 +1,10 @@
-import type { PositionAnchor, SimplePosition } from "../positioning";
 import {
   ABOVE_CENTER_ANCHOR,
   BELOW_CENTER_ANCHOR,
   CENTER_LEFT_ANCHOR,
   CENTER_RIGHT_ANCHOR,
-} from "../positioning";
+} from "../positioning/constants";
+import type { PositionAnchor, SimplePosition } from "../positioning/types";
 
 /** @internal */
 export function getAnchor(position: SimplePosition): PositionAnchor {

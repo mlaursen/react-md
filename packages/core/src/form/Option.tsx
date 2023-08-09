@@ -2,14 +2,18 @@
 import { cnb } from "cnbuilder";
 import type { ReactNode } from "react";
 import { forwardRef, Fragment } from "react";
-import type { TextIconSpacingProps } from "../icon";
-import { icon, TextIconSpacing, useIcon } from "../icon";
-import { getListItemHeight, ListItemText } from "../list";
-import type { MenuItemProps } from "../menu";
-import { MenuItem } from "../menu";
+import { useIcon } from "../icon/IconProvider";
+import { icon } from "../icon/styles";
+import {
+  TextIconSpacing,
+  type TextIconSpacingProps,
+} from "../icon/TextIconSpacing";
+import { getListItemHeight } from "../list/getListItemHeight";
+import { ListItemText } from "../list/ListItemText";
+import type { MenuItemProps } from "../menu/MenuItem";
+import { MenuItem } from "../menu/MenuItem";
 import { useEnsuredId } from "../useEnsuredId";
-import { bem } from "../utils";
-
+import { bem } from "../utils/bem";
 import { useListboxContext } from "./useListboxProvider";
 import { triggerManualChangeEvent } from "./utils";
 

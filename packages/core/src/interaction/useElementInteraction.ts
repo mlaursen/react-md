@@ -2,6 +2,7 @@
 import type { FocusEvent, KeyboardEvent, MouseEvent, TouchEvent } from "react";
 import { useCallback, useReducer, useRef } from "react";
 import { useElementInteractionContext } from "./ElementInteractionProvider";
+import { useUserInteractionMode } from "./UserInteractionModeProvider";
 import type {
   ElementInteractionHandlers,
   ElementInteractionState,
@@ -9,7 +10,6 @@ import type {
   RippleState,
   RippleStyle,
 } from "./types";
-import { useUserInteractionMode } from "./UserInteractionModeProvider";
 import { getRippleStyle, releaseRipple, updateRipplesState } from "./utils";
 
 /** @remarks \@since 6.0.0 */

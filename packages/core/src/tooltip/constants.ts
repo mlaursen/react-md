@@ -1,4 +1,7 @@
-import type { CSSTransitionClassNames, TransitionTimeout } from "../transition";
+import type {
+  CSSTransitionClassNames,
+  TransitionTimeout,
+} from "../transition/types";
 
 /** @remarks \@since 2.0.0 */
 export const DEFAULT_TOOLTIP_CLASSNAMES: Readonly<CSSTransitionClassNames> = {

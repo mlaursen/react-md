@@ -8,10 +8,11 @@ import type {
   ReactNode,
 } from "react";
 import { forwardRef, useState } from "react";
-import { RippleContainer, useElementInteraction } from "../interaction";
+import { RippleContainer } from "../interaction/RippleContainer";
+import { useElementInteraction } from "../interaction/useElementInteraction";
 import type { PropsWithRef } from "../types";
 import { useEnsuredId } from "../useEnsuredId";
-import { bem } from "../utils";
+import { bem } from "../utils/bem";
 import { FormMessageContainer } from "./FormMessageContainer";
 import { InputToggleIcon } from "./InputToggleIcon";
 import { Label } from "./Label";

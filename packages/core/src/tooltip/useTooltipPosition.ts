@@ -1,6 +1,6 @@
 "use client";
 import { useCallback, useState } from "react";
-import type { SimplePosition } from "../positioning";
+import type { SimplePosition } from "../positioning/types";
 import {
   DEFAULT_TOOLTIP_POSITION,
   DEFAULT_TOOLTIP_THRESHOLD,

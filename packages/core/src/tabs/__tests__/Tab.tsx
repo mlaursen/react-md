@@ -1,6 +1,6 @@
 import { render } from "../../test-utils";
 
-import { FontIcon } from "../../icon";
+import { FontIcon } from "../../icon/FontIcon";
 import type { TabProps } from "../Tab";
 import { Tab } from "../Tab";
 

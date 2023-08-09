@@ -2,12 +2,13 @@
 import { cnb } from "cnbuilder";
 import type { ButtonHTMLAttributes, MouseEventHandler, ReactNode } from "react";
 import { forwardRef } from "react";
-import { ButtonUnstyled } from "../button";
-import type { IconRotatorProps } from "../icon";
-import { IconRotator, useIcon } from "../icon";
+import { ButtonUnstyled } from "../button/ButtonUnstyled";
+import { useIcon } from "../icon/IconProvider";
+import type { IconRotatorProps } from "../icon/IconRotator";
+import { IconRotator } from "../icon/IconRotator";
 import type { PropsWithRef } from "../types";
-import type { TypographyProps, TypographyType } from "../typography";
-import { Typography } from "../typography";
+import type { TypographyProps, TypographyType } from "../typography/Typography";
+import { Typography } from "../typography/Typography";
 
 /**
  * @remarks \@since 6.0.0 Updated to include additional heading/Typography

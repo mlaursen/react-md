@@ -8,19 +8,19 @@ import {
   waitFor,
 } from "../../test-utils";
 
-import { Divider } from "../../divider";
+import { Divider } from "../../divider/Divider";
 import { FontIcon } from "../../icon/FontIcon";
-import { alphaNumericSort } from "../../utils";
+import { alphaNumericSort } from "../../utils/alphaNumericSort";
 import type { TreeItemRendererProps } from "../DefaultTreeItemRenderer";
 import { DefaultTreeItemRenderer } from "../DefaultTreeItemRenderer";
 import type { TreeProps } from "../Tree";
 import { Tree } from "../Tree";
+import { TreeItem } from "../TreeItem";
 import type { DefaultTreeItemNode, TreeData, TreeItemNode } from "../types";
 import type { TreeHookOptions } from "../useTree";
 import { useTree } from "../useTree";
 import type { TreeExpansion } from "../useTreeExpansion";
 import type { TreeSelection } from "../useTreeSelection";
-import { TreeItem } from "../TreeItem";
 
 interface Folder {
   name: string;

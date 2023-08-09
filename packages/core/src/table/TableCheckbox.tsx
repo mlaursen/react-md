@@ -1,7 +1,7 @@
 import type { TdHTMLAttributes } from "react";
 import { forwardRef } from "react";
-import type { CheckboxProps } from "../form";
-import { Checkbox } from "../form";
+import { Checkbox } from "../form/Checkbox";
+import type { CheckboxProps } from "../form/InputToggle";
 import type { PropsWithRef } from "../types";
 import { TableCell } from "./TableCell";
 

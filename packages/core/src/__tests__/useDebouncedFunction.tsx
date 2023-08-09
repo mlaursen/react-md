@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { act, fireEvent, render, userEvent, waitFor } from "../test-utils";
 
-import { TextField } from "../form";
+import { TextField } from "../form/TextField";
 import { useDebouncedFunction } from "../useDebouncedFunction";
 
 describe("useDebouncedFunction", () => {

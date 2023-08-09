@@ -1,15 +1,19 @@
 import type { CSSProperties, ElementType, ReactNode } from "react";
-import type { AppBarProps, AppBarTitleProps } from "../app-bar";
-import type { ButtonProps } from "../button";
-import type { SheetProps } from "../sheet";
-import type { CSSTransitionClassNames, TransitionTimeout } from "../transition";
+import type { AppBarProps } from "../app-bar/AppBar";
+import type { AppBarTitleProps } from "../app-bar/AppBarTitle";
+import type { ButtonProps } from "../button/Button";
+import type { SheetProps } from "../sheet/Sheet";
+import type {
+  CSSTransitionClassNames,
+  TransitionTimeout,
+} from "../transition/types";
+import type { TreeItemRendererProps } from "../tree/DefaultTreeItemRenderer";
+import type { TreeProps } from "../tree/Tree";
 import type {
   DefaultTreeItemNode,
   TreeData,
   TreeItemNode,
-  TreeItemRendererProps,
-  TreeProps,
-} from "../tree";
+} from "../tree/types";
 import type { PropsWithRef } from "../types";
 
 /**

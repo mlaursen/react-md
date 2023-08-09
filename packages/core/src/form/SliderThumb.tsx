@@ -2,10 +2,10 @@
 import { cnb } from "cnbuilder";
 import type { ChangeEventHandler, HTMLAttributes, ReactNode } from "react";
 import { forwardRef, useEffect, useState } from "react";
-import { useUserInteractionMode } from "../interaction";
-import type { TooltipProps } from "../tooltip";
+import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider";
+import type { TooltipProps } from "../tooltip/Tooltip";
 import type { LabelRequiredForA11y } from "../types";
-import { bem } from "../utils";
+import { bem } from "../utils/bem";
 import { SliderValueTooltip } from "./SliderValueTooltip";
 import type { SliderValueOptions } from "./useSlider";
 

@@ -3,8 +3,8 @@ import { createRef } from "react";
 import type { RenderResult } from "../../test-utils";
 import { rmdRender as baseRender, screen, userEvent } from "../../test-utils";
 
-import { FontIcon } from "../../icon";
-import { Typography } from "../../typography";
+import { FontIcon } from "../../icon/FontIcon";
+import { Typography } from "../../typography/Typography";
 import { Toast } from "../Toast";
 import { CurrentToastActionsProvider } from "../useCurrentToastActions";
 

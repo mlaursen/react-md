@@ -5,11 +5,9 @@ import type {
   MouseEventHandler,
 } from "react";
 import { useRef } from "react";
-import type { KeyboardMovementProviderImplementation } from "../movement";
-import {
-  getNextFocusableIndex,
-  useKeyboardMovementProvider,
-} from "../movement";
+import type { KeyboardMovementProviderImplementation } from "../movement/types";
+import { useKeyboardMovementProvider } from "../movement/useKeyboardMovementProvider";
+import { getNextFocusableIndex } from "../movement/utils";
 import type { NonNullMutableRef } from "../types";
 import type { TreeItemMetadataLookup } from "./TreeProvider";
 import type { TreeData, TreeItemNode } from "./types";

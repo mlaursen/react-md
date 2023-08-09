@@ -1,14 +1,14 @@
 import type { ReactElement } from "react";
-import type { TreeItemNode } from "../tree";
+import type { TreeItemNode } from "../tree/types";
+import type { LayoutChildrenProps } from "./LayoutChildren";
+import { LayoutChildren } from "./LayoutChildren";
+import { LayoutProvider } from "./LayoutProvider";
 import {
   DEFAULT_DESKTOP_LAYOUT,
   DEFAULT_LANDSCAPE_TABLET_LAYOUT,
   DEFAULT_PHONE_LAYOUT,
   DEFAULT_TABLET_LAYOUT,
 } from "./constants";
-import type { LayoutChildrenProps } from "./LayoutChildren";
-import { LayoutChildren } from "./LayoutChildren";
-import { LayoutProvider } from "./LayoutProvider";
 import type { LayoutConfiguration, LayoutNavigationItem } from "./types";
 
 export interface LayoutProps<T extends TreeItemNode = LayoutNavigationItem>

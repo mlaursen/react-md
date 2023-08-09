@@ -1,22 +1,19 @@
 "use client";
 import type { ReactElement, ReactNode } from "react";
-
 import type { AppSize, AppSizeQueries } from "./AppSizeProvider";
 import {
   AppSizeProvider,
   DEFAULT_APP_SIZE,
   DEFAULT_APP_SIZE_QUERIES,
 } from "./AppSizeProvider";
-import type { ConfigurableIcons } from "./icon";
-import { IconProvider } from "./icon";
-import type { ElementInteractionMode } from "./interaction";
-import {
-  ElementInteractionProvider,
-  UserInteractionModeProvider,
-} from "./interaction";
+import { SsrProvider } from "./SsrProvider";
+import type { ConfigurableIcons } from "./icon/IconProvider";
+import { IconProvider } from "./icon/IconProvider";
+import { ElementInteractionProvider } from "./interaction/ElementInteractionProvider";
+import { UserInteractionModeProvider } from "./interaction/UserInteractionModeProvider";
+import type { ElementInteractionMode } from "./interaction/types";
 import type { PortalContainer } from "./portal/PortalContainerProvider";
 import { PortalContainerProvider } from "./portal/PortalContainerProvider";
-import { SsrProvider } from "./SsrProvider";
 import type {
   ColorSchemeMode,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

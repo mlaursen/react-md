@@ -2,7 +2,7 @@
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes, ReactNode } from "react";
 import { forwardRef } from "react";
-import { useIcon } from "../icon";
+import { useIcon } from "../icon/IconProvider";
 import type { InputToggleSize } from "./InputToggle";
 import { inputToggle } from "./InputToggle";
 

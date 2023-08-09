@@ -1,12 +1,12 @@
-import type { ReactElement } from "react";
 import { cnb } from "cnbuilder";
+import type { ReactElement } from "react";
 import type {
   CustomTypographyComponent,
   TypographyProps,
   TypographyType,
-} from "../typography";
-import { Typography } from "../typography";
-import { bem } from "../utils";
+} from "../typography/Typography";
+import { Typography } from "../typography/Typography";
+import { bem } from "../utils/bem";
 
 const styles = bem("rmd-slider-mark-label");
 

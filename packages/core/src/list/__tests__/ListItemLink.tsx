@@ -2,7 +2,7 @@ import type { HTMLAttributes, ReactElement } from "react";
 import { forwardRef } from "react";
 import { render } from "../../test-utils";
 
-import { Link } from "../../link";
+import { Link } from "../../link/Link";
 import { List } from "../List";
 import { ListItemLink } from "../ListItemLink";
 

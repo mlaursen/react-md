@@ -7,10 +7,10 @@ import type {
   SelectHTMLAttributes,
 } from "react";
 import { forwardRef } from "react";
-import { useIcon } from "../icon";
+import { useIcon } from "../icon/IconProvider";
 import type { PropsWithRef } from "../types";
 import { useEnsuredId } from "../useEnsuredId";
-import { bem } from "../utils";
+import { bem } from "../utils/bem";
 import { FormMessageContainer } from "./FormMessageContainer";
 import { useFormTheme } from "./FormThemeProvider";
 import { Label } from "./Label";

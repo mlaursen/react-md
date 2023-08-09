@@ -1,15 +1,11 @@
 import { useEffect, useMemo } from "react";
-import type { CustomLinkComponent } from "../link";
-import { Link } from "../link";
-import type {
-  TreeData,
-  TreeExpansion,
-  TreeItemDefaultIds,
-  TreeItemNode,
-  TreeSelection,
-} from "../tree";
-import { getTreeItemsFrom, useTreeExpansion } from "../tree";
-
+import { Link } from "../link/Link";
+import type { CustomLinkComponent } from "../link/LinkProvider";
+import type { TreeData, TreeItemDefaultIds, TreeItemNode } from "../tree/types";
+import type { TreeExpansion } from "../tree/useTreeExpansion";
+import { useTreeExpansion } from "../tree/useTreeExpansion";
+import type { TreeSelection } from "../tree/useTreeSelection";
+import { getTreeItemsFrom } from "../tree/utils";
 import type { LayoutNavigationItem, LayoutNavigationTree } from "./types";
 
 export interface LayoutNavigationState<

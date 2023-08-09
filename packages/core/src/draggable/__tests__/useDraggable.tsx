@@ -3,8 +3,8 @@ import type { ReactElement, Ref } from "react";
 import { createRef } from "react";
 import { fireEvent, rmdRender } from "../../test-utils";
 
-import { Button } from "../../button";
-import { getPercentage } from "../../utils";
+import { Button } from "../../button/Button";
+import { getPercentage } from "../../utils/getPercentage";
 import type { DraggableOptions } from "../useDraggable";
 import { useDraggable } from "../useDraggable";
 

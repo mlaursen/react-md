@@ -1,6 +1,6 @@
 import { cnb } from "cnbuilder";
-import type { ThemeOrTextColor } from "../theme";
-import { bem } from "../utils";
+import type { ThemeOrTextColor } from "../theme/types";
+import { bem } from "../utils/bem";
 import type { MaterialIconFamily, MaterialSymbolFamily } from "./material";
 
 declare module "react" {

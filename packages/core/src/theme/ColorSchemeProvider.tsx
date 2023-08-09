@@ -1,7 +1,6 @@
 "use client";
 import type { ReactElement, ReactNode } from "react";
 import { createContext, useContext, useEffect, useMemo } from "react";
-
 import type { UseStateInitializer, UseStateSetter } from "../types";
 import { useLocalStorage } from "../useLocalStorage";
 import { useMediaQuery } from "../useMediaQuery";

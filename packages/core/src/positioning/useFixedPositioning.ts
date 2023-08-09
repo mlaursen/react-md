@@ -2,7 +2,7 @@
 import type { CSSProperties, Ref, RefCallback, RefObject } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { delegateEvent } from "../delegateEvent";
-import type { TransitionCallbacks } from "../transition";
+import type { TransitionCallbacks } from "../transition/types";
 import { useEnsuredRef } from "../useEnsuredRef";
 import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect";
 import { BELOW_CENTER_ANCHOR } from "./constants";

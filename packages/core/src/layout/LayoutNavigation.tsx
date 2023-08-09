@@ -1,8 +1,8 @@
 import { cnb } from "cnbuilder";
 import type { ReactElement } from "react";
-import { Sheet } from "../sheet";
-import type { TreeItemNode } from "../tree";
-import { bem } from "../utils";
+import { Sheet } from "../sheet/Sheet";
+import type { TreeItemNode } from "../tree/types";
+import { bem } from "../utils/bem";
 import { DefaultMiniLayoutNavigationItemRenderer } from "./DefaultLayoutNavigationMiniItemRenderer";
 import { LayoutNavigationHeader } from "./LayoutNavigationHeader";
 import { useLayoutConfig } from "./LayoutProvider";

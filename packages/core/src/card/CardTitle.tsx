@@ -1,6 +1,9 @@
 import { forwardRef } from "react";
-import type { TypographyHTMLElement, TypographyProps } from "../typography";
-import { Typography } from "../typography";
+import type {
+  TypographyHTMLElement,
+  TypographyProps,
+} from "../typography/Typography";
+import { Typography } from "../typography/Typography";
 import { cardTitle } from "./styles";
 
 /**

@@ -2,8 +2,8 @@ import type { FC, ReactElement, ReactNode } from "react";
 import { createRef } from "react";
 import { render, userEvent } from "../../test-utils";
 
-import { useCheckboxGroup } from "../../form";
-import { ElementInteractionProvider } from "../../interaction";
+import { useCheckboxGroup } from "../../form/useCheckboxGroup";
+import { ElementInteractionProvider } from "../../interaction/ElementInteractionProvider";
 import { Table } from "../Table";
 import { TableBody } from "../TableBody";
 import { TableCheckbox } from "../TableCheckbox";

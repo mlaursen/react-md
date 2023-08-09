@@ -2,7 +2,7 @@ import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
 import type { PropsWithRef } from "../types";
-import { bem } from "../utils";
+import { bem } from "../utils/bem";
 import { ListItemText } from "./ListItemText";
 
 const styles = bem("rmd-list-subheader");

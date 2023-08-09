@@ -2,13 +2,13 @@
 import { cnb } from "cnbuilder";
 import type { ReactNode } from "react";
 import { forwardRef } from "react";
-import type { ButtonProps } from "../button";
-import { Button } from "../button";
-import { useIcon } from "../icon";
+import type { ButtonProps } from "../button/Button";
+import { Button } from "../button/Button";
+import { useIcon } from "../icon/IconProvider";
 import type { PropsWithRef } from "../types";
 import { useEnsuredId } from "../useEnsuredId";
 import { useToggle } from "../useToggle";
-import { bem } from "../utils";
+import { bem } from "../utils/bem";
 import type { TextFieldProps } from "./TextField";
 import { TextField } from "./TextField";
 

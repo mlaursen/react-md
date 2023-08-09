@@ -2,8 +2,8 @@ import type { ReactElement } from "react";
 import { fireEvent, render } from "../../test-utils";
 
 import { AppSizeProvider } from "../../AppSizeProvider";
-import { Button } from "../../button";
-import { DropdownMenu } from "../../menu";
+import { Button } from "../../button/Button";
+import { DropdownMenu } from "../../menu/DropdownMenu";
 import { Checkbox } from "../Checkbox";
 import { Form } from "../Form";
 import { MenuItemCheckbox } from "../MenuItemCheckbox";

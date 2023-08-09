@@ -1,6 +1,5 @@
 "use client";
 import { forwardRef } from "react";
-
 import type { MenuItemCheckboxProps } from "./MenuItemInputToggle";
 import { MenuItemInputToggle } from "./MenuItemInputToggle";
 

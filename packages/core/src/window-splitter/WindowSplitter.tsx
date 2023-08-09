@@ -2,7 +2,7 @@ import { cnb } from "cnbuilder";
 import type { ButtonHTMLAttributes } from "react";
 import { forwardRef } from "react";
 import type { LabelRequiredForA11y } from "../types";
-import { bem } from "../utils";
+import { bem } from "../utils/bem";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { useWindowSplitter } from "./useWindowSplitter";

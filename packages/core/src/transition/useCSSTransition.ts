@@ -1,9 +1,9 @@
 "use client";
 import { cnb } from "cnbuilder";
 import type {
+  CSSTransitionElementProps,
   CSSTransitionHookOptions,
   CSSTransitionHookReturnValue,
-  CSSTransitionElementProps,
 } from "./types";
 import { useTransition } from "./useTransition";
 import { getTransitionClassNames } from "./utils";

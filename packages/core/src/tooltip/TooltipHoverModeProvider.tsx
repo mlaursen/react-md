@@ -1,8 +1,14 @@
 "use client";
 import type { ReactElement, ReactNode } from "react";
 import { createContext, useContext } from "react";
-import type { HoverModeConfiguration, HoverModeContext } from "../hoverMode";
-import { createHoverModeContext, useHoverModeProvider } from "../hoverMode";
+import type {
+  HoverModeConfiguration,
+  HoverModeContext,
+} from "../hoverMode/useHoverModeProvider";
+import {
+  createHoverModeContext,
+  useHoverModeProvider,
+} from "../hoverMode/useHoverModeProvider";
 import { DEFAULT_TOOLTIP_DELAY } from "./constants";
 
 /** @remarks \@since 6.0.0 */

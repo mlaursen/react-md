@@ -2,7 +2,8 @@
 import { cnb } from "cnbuilder";
 import type { MouseEventHandler, ReactElement, ReactNode } from "react";
 import { cloneElement, isValidElement } from "react";
-import { IconRotator, useIcon } from "../icon";
+import { useIcon } from "../icon/IconProvider";
+import { IconRotator } from "../icon/IconRotator";
 import { useTreeContext } from "./TreeProvider";
 
 /**

@@ -1,7 +1,6 @@
 "use client";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
-import type { MaterialSymbolName } from "./material";
 import type {
   MaterialSymbolCustomization,
   MaterialSymbolFill,
@@ -10,6 +9,7 @@ import type {
   MaterialSymbolWeight,
 } from "./MaterialSymbolsProvider";
 import { useFontVariationSettings } from "./MaterialSymbolsProvider";
+import type { MaterialSymbolName } from "./material";
 import type { MaterialSymbolClassNameOptions } from "./styles";
 import { icon } from "./styles";
 

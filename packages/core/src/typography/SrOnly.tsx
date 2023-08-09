@@ -1,7 +1,6 @@
 import { cnb } from "cnbuilder";
 import { forwardRef } from "react";
-
-import { bem } from "../utils";
+import { bem } from "../utils/bem";
 import type {
   CustomTypographyComponent,
   TypographyHTMLElement,

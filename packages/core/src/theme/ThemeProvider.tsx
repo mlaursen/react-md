@@ -3,6 +3,7 @@ import type { ReactElement, ReactNode } from "react";
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { useSsr } from "../SsrProvider";
 import type { UseStateSetter } from "../types";
+import { useColorScheme } from "./ColorSchemeProvider";
 import {
   black,
   blue500,
@@ -11,7 +12,6 @@ import {
   orangeAccent400,
   red500,
 } from "./colors";
-import { useColorScheme } from "./ColorSchemeProvider";
 import {
   backgroundColorVar,
   errorColorVar,

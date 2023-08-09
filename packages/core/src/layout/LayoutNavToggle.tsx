@@ -1,11 +1,11 @@
 import { cnb } from "cnbuilder";
 import { forwardRef } from "react";
-import { Button } from "../button";
-import { useIcon } from "../icon";
-import { DEFAULT_SHEET_TIMEOUT } from "../sheet";
-import { useCSSTransition } from "../transition";
-import { DEFAULT_LAYOUT_NAV_TOGGLE_CLASSNAMES } from "./constants";
+import { Button } from "../button/Button";
+import { useIcon } from "../icon/IconProvider";
+import { DEFAULT_SHEET_TIMEOUT } from "../sheet/Sheet";
+import { useCSSTransition } from "../transition/useCSSTransition";
 import { useLayoutConfig } from "./LayoutProvider";
+import { DEFAULT_LAYOUT_NAV_TOGGLE_CLASSNAMES } from "./constants";
 import type { LayoutNavToggleProps } from "./types";
 import { isTemporaryLayout, isToggleableLayout } from "./utils";
 

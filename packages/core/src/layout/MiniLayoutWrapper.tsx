@@ -1,8 +1,8 @@
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes, ReactElement, ReactNode } from "react";
-import type { TreeData, TreeItemNode } from "../tree";
+import type { TreeData, TreeItemNode } from "../tree/types";
 import type { PropsWithRef } from "../types";
-import { bem } from "../utils";
+import { bem } from "../utils/bem";
 import { LayoutNavigation } from "./LayoutNavigation";
 import { useLayoutConfig } from "./LayoutProvider";
 import type { LayoutNavigationItem, LayoutNavigationProps } from "./types";

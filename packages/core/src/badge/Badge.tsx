@@ -1,7 +1,7 @@
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes, ReactNode } from "react";
 import { forwardRef } from "react";
-import { bem } from "../utils";
+import { bem } from "../utils/bem";
 
 declare module "react" {
   interface CSSProperties {

@@ -15,23 +15,24 @@
 
 import type { HTMLAttributes, ReactElement, ReactNode, Ref } from "react";
 import { useRef, useState } from "react";
-import { useControlledDraggable } from "../draggable";
-import type { TooltipProps } from "../tooltip";
+import { useControlledDraggable } from "../draggable/useControlledDraggable";
+import type { TooltipProps } from "../tooltip/Tooltip";
 import type {
   LabelRequiredForA11y,
   PropsWithRef,
   UseStateSetter,
 } from "../types";
 import { useEnsuredId } from "../useEnsuredId";
-import { identity, withinRange } from "../utils";
+import { identity } from "../utils/identity";
+import { withinRange } from "../utils/withinRange";
 import type { SliderAddonProps } from "./SliderContainer";
 import { SliderContainer } from "./SliderContainer";
 import type { SliderThumbPresentation, SliderThumbProps } from "./SliderThumb";
 import { SliderThumb } from "./SliderThumb";
 import { SliderTrack } from "./SliderTrack";
-import { getJumpValue } from "./sliderUtils";
 import type { SliderMarksOptions } from "./SliderValueMarks";
 import { SliderValueMarks } from "./SliderValueMarks";
+import { getJumpValue } from "./sliderUtils";
 import type { RangeSliderState } from "./useRangeSlider";
 import type { SliderState, SliderValueOptions } from "./useSlider";
 

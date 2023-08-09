@@ -2,8 +2,8 @@ import type { ReactElement } from "react";
 import { fireEvent, render } from "../../test-utils";
 
 import { AppSizeProvider } from "../../AppSizeProvider";
-import { Button } from "../../button";
-import { DropdownMenu } from "../../menu";
+import { Button } from "../../button/Button";
+import { DropdownMenu } from "../../menu/DropdownMenu";
 import { Form } from "../Form";
 import { MenuItemRadio } from "../MenuItemRadio";
 import { Radio } from "../Radio";

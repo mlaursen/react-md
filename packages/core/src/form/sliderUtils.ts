@@ -3,11 +3,13 @@ import type {
   DraggableEventHandlers,
   DraggableMouseEventHandlers,
   DraggableTouchEventHandlers,
-  DraggableImplementation,
-} from "../draggable";
+} from "../draggable/useControlledDraggable";
+import type { DraggableImplementation } from "../draggable/useDraggable";
 import type { RenameKeysWithPrefix } from "../types";
-import type { ClientPositionEvent } from "../utils";
-import { getClientPosition, getPercentage, getRangeSteps } from "../utils";
+import type { ClientPositionEvent } from "../utils/getClientPosition";
+import { getClientPosition } from "../utils/getClientPosition";
+import { getPercentage } from "../utils/getPercentage";
+import { getRangeSteps } from "../utils/getRangeSteps";
 
 /**
  * @remarks \@since 6.0.0

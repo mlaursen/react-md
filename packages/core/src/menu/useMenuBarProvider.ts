@@ -1,7 +1,10 @@
 "use client";
 import { createContext, useContext, useMemo } from "react";
-import type { HoverModeContext } from "../hoverMode";
-import { createHoverModeContext, useHoverModeProvider } from "../hoverMode";
+import type { HoverModeContext } from "../hoverMode/useHoverModeProvider";
+import {
+  createHoverModeContext,
+  useHoverModeProvider,
+} from "../hoverMode/useHoverModeProvider";
 
 /**
  * @internal

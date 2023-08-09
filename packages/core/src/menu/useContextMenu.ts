@@ -1,8 +1,8 @@
 "use client";
 import type { MouseEvent, RefObject } from "react";
 import { useCallback, useRef, useState } from "react";
-import type { InitialCoords, PositionAnchor } from "../positioning";
-import { BELOW_INNER_LEFT_ANCHOR } from "../positioning";
+import { BELOW_INNER_LEFT_ANCHOR } from "../positioning/constants";
+import type { InitialCoords, PositionAnchor } from "../positioning/types";
 import type { UseStateObject } from "../types";
 
 /** @remarks \@since 6.0.0 */

@@ -1,9 +1,9 @@
 import { cnb } from "cnbuilder";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 import { forwardRef } from "react";
-import { ButtonUnstyled } from "../button";
-import { IconRotator } from "../icon";
-import { bem } from "../utils";
+import { ButtonUnstyled } from "../button/ButtonUnstyled";
+import { IconRotator } from "../icon/IconRotator";
+import { bem } from "../utils/bem";
 import type { TableCellHorizontalAlignment } from "./TableConfigurationProvider";
 
 export type SortOrder = "ascending" | "descending" | "none" | "other";

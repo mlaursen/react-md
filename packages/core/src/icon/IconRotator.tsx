@@ -1,7 +1,6 @@
 import { cnb } from "cnbuilder";
 import type { CSSProperties, HTMLAttributes, ReactNode } from "react";
 import { Children, cloneElement, forwardRef, isValidElement } from "react";
-
 import type { IconRotatorClassNameOptions } from "./styles";
 import { iconRotator } from "./styles";
 

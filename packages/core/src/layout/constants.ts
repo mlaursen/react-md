@@ -1,4 +1,4 @@
-import type { CSSTransitionClassNames } from "../transition";
+import type { CSSTransitionClassNames } from "../transition/types";
 import type {
   SupportedPhoneLayout,
   SupportedTabletLayout,

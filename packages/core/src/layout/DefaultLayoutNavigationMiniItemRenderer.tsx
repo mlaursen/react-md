@@ -1,7 +1,8 @@
 import type { ReactElement } from "react";
-import type { TreeItemNode, TreeItemRendererProps } from "../tree";
-import { TreeItem } from "../tree";
-import { SrOnly } from "../typography";
+import type { TreeItemRendererProps } from "../tree/DefaultTreeItemRenderer";
+import { TreeItem } from "../tree/TreeItem";
+import type { TreeItemNode } from "../tree/types";
+import { SrOnly } from "../typography/SrOnly";
 import { DefaultLayoutNavigationItemRenderer } from "./DefaultLayoutNavigationItemRenderer";
 import type { LayoutNavigationItem } from "./types";
 

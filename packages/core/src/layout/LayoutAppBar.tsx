@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { AppBar } from "../app-bar";
+import { AppBar } from "../app-bar/AppBar";
 import { LayoutAppBarTitle } from "./LayoutAppBarTitle";
 import { LayoutNavToggle } from "./LayoutNavToggle";
 import { useLayoutConfig } from "./LayoutProvider";

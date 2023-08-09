@@ -1,8 +1,8 @@
 "use client";
 import type { AriaAttributes, HTMLAttributes } from "react";
 import { forwardRef } from "react";
-import type { MaterialIconName } from "./material";
 import { useMaterialIconsFamily } from "./MaterialIconsProvider";
+import type { MaterialIconName } from "./material";
 import type { MaterialIconClassNameOptions } from "./styles";
 import { icon } from "./styles";
 

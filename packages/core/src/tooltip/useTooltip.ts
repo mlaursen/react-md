@@ -8,17 +8,16 @@ import type {
   TouchEvent,
 } from "react";
 import { useCallback, useEffect, useId, useRef } from "react";
-import { useHoverMode } from "../hoverMode";
-import type { UserInteractionMode } from "../interaction";
-import { useUserInteractionMode } from "../interaction";
-import type {
-  FixedPositioningTransitionCallbacks,
-  SimplePosition,
-} from "../positioning";
-import { useFixedPositioning } from "../positioning";
+import { useHoverMode } from "../hoverMode/useHoverMode";
+import type { UserInteractionMode } from "../interaction/UserInteractionModeProvider";
+import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider";
+import type { SimplePosition } from "../positioning/types";
+import type { FixedPositioningTransitionCallbacks } from "../positioning/useFixedPositioning";
+import { useFixedPositioning } from "../positioning/useFixedPositioning";
 import type { UseStateSetter } from "../types";
 import { usePageInactive } from "../usePageInactive";
-import { parseCssLengthUnit } from "../utils";
+import { parseCssLengthUnit } from "../utils/parseCssLengthUnit";
+import { useTooltipHoverMode } from "./TooltipHoverModeProvider";
 import {
   DEFAULT_TOOLTIP_DENSE_SPACING,
   DEFAULT_TOOLTIP_MARGIN,
@@ -27,7 +26,6 @@ import {
   DEFAULT_TOOLTIP_THRESHOLD,
   TOOLTIP_SPACING_VAR,
 } from "./constants";
-import { useTooltipHoverMode } from "./TooltipHoverModeProvider";
 import type { TooltipPositionHookOptions } from "./useTooltipPosition";
 import { useTooltipPosition } from "./useTooltipPosition";
 import { getAnchor } from "./utils";

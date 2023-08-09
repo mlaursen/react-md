@@ -1,8 +1,11 @@
 "use client";
 import { forwardRef } from "react";
-import type { BaseDialogProps } from "../dialog";
-import { Dialog } from "../dialog";
-import type { CSSTransitionClassNames, TransitionTimeout } from "../transition";
+import type { BaseDialogProps } from "../dialog/Dialog";
+import { Dialog } from "../dialog/Dialog";
+import type {
+  CSSTransitionClassNames,
+  TransitionTimeout,
+} from "../transition/types";
 import type { LabelRequiredForA11y } from "../types";
 import type { BaseSheetClassNameOptions } from "./styles";
 import { sheet } from "./styles";
@@ -59,46 +62,45 @@ export type SheetProps = LabelRequiredForA11y<BaseSheetProps>;
  * **Client Component**
  *
  */
-export const Sheet = forwardRef<HTMLDivElement, SheetProps>(function Sheet(
-  props,
-  ref
-) {
-  const {
-    role = "dialog",
-    className,
-    position = "left",
-    horizontalSize = "media",
-    verticalSize = "recommended",
-    timeout = DEFAULT_SHEET_TIMEOUT,
-    classNames = DEFAULT_SHEET_CLASSNAMES,
-    visible,
-    temporary = true,
-    exitedHidden = true,
-    children,
-    ...remaining
-  } = props;
-  const { disableOverlay } = props;
+export const Sheet = forwardRef<HTMLDivElement, SheetProps>(
+  function Sheet(props, ref) {
+    const {
+      role = "dialog",
+      className,
+      position = "left",
+      horizontalSize = "media",
+      verticalSize = "recommended",
+      timeout = DEFAULT_SHEET_TIMEOUT,
+      classNames = DEFAULT_SHEET_CLASSNAMES,
+      visible,
+      temporary = true,
+      exitedHidden = true,
+      children,
+      ...remaining
+    } = props;
+    const { disableOverlay } = props;
 
-  return (
-    <Dialog
-      {...remaining}
-      ref={ref}
-      role={role}
-      type="custom"
-      timeout={timeout}
-      classNames={classNames}
-      visible={visible}
-      temporary={temporary}
-      exitedHidden={exitedHidden}
-      className={sheet({
-        position,
-        horizontalSize,
-        verticalSize,
-        disableOverlay,
-        className,
-      })}
-    >
-      {children}
-    </Dialog>
-  );
-});
+    return (
+      <Dialog
+        {...remaining}
+        ref={ref}
+        role={role}
+        type="custom"
+        timeout={timeout}
+        classNames={classNames}
+        visible={visible}
+        temporary={temporary}
+        exitedHidden={exitedHidden}
+        className={sheet({
+          position,
+          horizontalSize,
+          verticalSize,
+          disableOverlay,
+          className,
+        })}
+      >
+        {children}
+      </Dialog>
+    );
+  }
+);

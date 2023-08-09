@@ -9,7 +9,7 @@ import {
 } from "../../test-utils";
 
 import type { ReactElement, ReactNode } from "react";
-import { Button } from "../../button";
+import { Button } from "../../button/Button";
 import type { SnackbarProps } from "../Snackbar";
 import { Snackbar } from "../Snackbar";
 import type { CreateToastOptions } from "../ToastManagerProvider";

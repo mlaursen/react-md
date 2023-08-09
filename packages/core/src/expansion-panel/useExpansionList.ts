@@ -4,8 +4,8 @@ import type {
   KeyboardEventHandler,
   MouseEventHandler,
 } from "react";
-import type { KeyboardMovementProviderImplementation } from "../movement";
-import { useKeyboardMovementProvider } from "../movement";
+import type { KeyboardMovementProviderImplementation } from "../movement/types";
+import { useKeyboardMovementProvider } from "../movement/useKeyboardMovementProvider";
 
 /**
  * @internal

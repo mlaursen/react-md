@@ -1,22 +1,21 @@
 "use client";
+import { nanoid } from "nanoid";
 import type { ChangeEvent, DragEvent } from "react";
 import { useCallback, useEffect, useReducer } from "react";
-import { nanoid } from "nanoid";
-
 import type {
   CompletedFileUploadStats,
   FileReaderResult,
   FileUploadHandlers,
   FileUploadStats,
   FileValidationError,
+  FileValidationOptions,
   FilesValidator,
   GetFileParser,
   ProcessingFileUploadStats,
-  FileValidationOptions,
 } from "./fileUtils";
 import {
-  getFileParser as defaultGetFileParser,
   FileAccessError,
+  getFileParser as defaultGetFileParser,
   isValidFileName as defaultIsValidFileName,
   validateFiles as defaultValidateFiles,
 } from "./fileUtils";

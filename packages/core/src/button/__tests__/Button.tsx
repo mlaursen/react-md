@@ -1,7 +1,7 @@
 import { createRef } from "react";
 import { fireEvent, render } from "../../test-utils";
 
-import { ElementInteractionProvider } from "../../interaction";
+import { ElementInteractionProvider } from "../../interaction/ElementInteractionProvider";
 import type { ButtonTheme, ButtonThemeType, ButtonType } from "../Button";
 import { Button, button } from "../Button";
 

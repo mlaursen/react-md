@@ -2,12 +2,14 @@
 import { cnb } from "cnbuilder";
 import type { CSSProperties, ReactNode } from "react";
 import { forwardRef } from "react";
-import type { CardContentProps, CardProps } from "../card";
-import { Card, CardContent } from "../card";
-import { useCollapseTransition } from "../transition";
+import type { CardProps } from "../card/Card";
+import { Card } from "../card/Card";
+import type { CardContentProps } from "../card/CardContent";
+import { CardContent } from "../card/CardContent";
+import { useCollapseTransition } from "../transition/useCollapseTransition";
 import type { PropsWithRef } from "../types";
 import { useEnsuredId } from "../useEnsuredId";
-import { bem } from "../utils";
+import { bem } from "../utils/bem";
 import type { ExpansionPanelHeaderProps } from "./ExpansionPanelHeader";
 import { ExpansionPanelHeader } from "./ExpansionPanelHeader";
 

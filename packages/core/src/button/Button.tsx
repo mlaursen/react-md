@@ -6,7 +6,7 @@ import { RippleContainer } from "../interaction/RippleContainer";
 import { useElementInteraction } from "../interaction/useElementInteraction";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren";
 import type { PropsWithRef } from "../types";
-import { bem } from "../utils";
+import { bem } from "../utils/bem";
 import type {
   FloatingActionButtonPosition,
   FloatingActionButtonProps,

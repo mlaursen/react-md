@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { ListItemChildrenProps } from "../list";
+import type { ListItemChildrenProps } from "../list/types";
 import type { UseStateInitializer } from "../types";
 
 /**

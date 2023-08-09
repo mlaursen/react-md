@@ -1,10 +1,10 @@
 "use client";
 import { cnb } from "cnbuilder";
 import { forwardRef } from "react";
-import type { ButtonProps, ButtonType } from "../button";
-import { Button } from "../button";
-import { useIcon } from "../icon";
-import { bem } from "../utils";
+import type { ButtonProps, ButtonType } from "../button/Button";
+import { Button } from "../button/Button";
+import { useIcon } from "../icon/IconProvider";
+import { bem } from "../utils/bem";
 import { useCurrentToastActions } from "./useCurrentToastActions";
 
 const styles = bem("rmd-toast-x");

@@ -1,7 +1,7 @@
 import { createRef } from "react";
 import { render } from "../../test-utils";
 
-import { Button } from "../../button";
+import { Button } from "../../button/Button";
 import { CardHeader } from "../CardHeader";
 import { CardSubtitle } from "../CardSubtitle";
 import { CardTitle } from "../CardTitle";

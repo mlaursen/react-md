@@ -3,7 +3,7 @@ import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useCallback, useState } from "react";
 import { useResizeObserver } from "../useResizeObserver";
-import { bem } from "../utils";
+import { bem } from "../utils/bem";
 
 const styles = bem("rmd-toast-content");
 

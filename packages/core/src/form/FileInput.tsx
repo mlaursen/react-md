@@ -9,12 +9,14 @@ import { forwardRef } from "react";
 import type {
   ButtonClassNameOptions,
   ButtonClassNameThemeOptions,
-} from "../button";
-import { button } from "../button";
-import { TextIconSpacing, useIcon } from "../icon";
-import { RippleContainer, useElementInteraction } from "../interaction";
+} from "../button/Button";
+import { button } from "../button/Button";
+import { useIcon } from "../icon/IconProvider";
+import { TextIconSpacing } from "../icon/TextIconSpacing";
+import { RippleContainer } from "../interaction/RippleContainer";
+import { useElementInteraction } from "../interaction/useElementInteraction";
 import type { PropsWithRef } from "../types";
-import { SrOnly } from "../typography";
+import { SrOnly } from "../typography/SrOnly";
 import { useEnsuredId } from "../useEnsuredId";
 
 /** @remarks \@since 6.0.0 */

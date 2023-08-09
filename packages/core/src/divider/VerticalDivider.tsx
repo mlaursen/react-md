@@ -1,6 +1,5 @@
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
-
 import { Divider } from "./Divider";
 import type { VerticalDividerHookOptions } from "./useVerticalDividerHeight";
 import { useVerticalDividerHeight } from "./useVerticalDividerHeight";

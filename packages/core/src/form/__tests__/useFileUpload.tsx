@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { act, fireEvent, render, userEvent } from "../../test-utils";
 
-import { ElementInteractionProvider } from "../../interaction";
+import { ElementInteractionProvider } from "../../interaction/ElementInteractionProvider";
 import { FileInput } from "../FileInput";
 import type { FileUploadOptions } from "../useFileUpload";
 import { useFileUpload } from "../useFileUpload";

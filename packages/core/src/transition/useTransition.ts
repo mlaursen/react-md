@@ -3,7 +3,6 @@ import { useEffect, useReducer, useRef, useState } from "react";
 import { useSsr } from "../SsrProvider";
 import { useEnsuredRef } from "../useEnsuredRef";
 import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect";
-
 import type {
   TransitionHookOptions,
   TransitionHookReturnValue,

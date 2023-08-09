@@ -2,13 +2,17 @@
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useCallback, useRef, useState } from "react";
-import type { ButtonClassNameThemeOptions, ButtonProps } from "../button";
-import { Button } from "../button";
-import { useIcon } from "../icon";
+import type {
+  ButtonClassNameThemeOptions,
+  ButtonProps,
+} from "../button/Button";
+import { Button } from "../button/Button";
+import { useIcon } from "../icon/IconProvider";
 import type { PropsWithRef } from "../types";
-import { useDir } from "../typography";
+import { useDir } from "../typography/WritingDirection";
 import { useIntersectionObserver } from "../useIntersectionObserver";
-import { applyRef, bem } from "../utils";
+import { applyRef } from "../utils/applyRef";
+import { bem } from "../utils/bem";
 import type { GetTabListScrollToOptions } from "./utils";
 import { getTabListScrollToOptions } from "./utils";
 

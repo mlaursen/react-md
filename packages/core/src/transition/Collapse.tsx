@@ -1,8 +1,7 @@
 "use client";
+import { cnb } from "cnbuilder";
 import type { ReactElement } from "react";
 import { Children, cloneElement } from "react";
-import { cnb } from "cnbuilder";
-
 import type {
   CollapseElementProps,
   CollapseTransitionHookOptions,

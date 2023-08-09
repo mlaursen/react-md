@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Children, isValidElement } from "react";
-import type { MenuItemProps } from "../menu";
+import type { MenuItemProps } from "../menu/MenuItem";
 
 /**
  * @internal

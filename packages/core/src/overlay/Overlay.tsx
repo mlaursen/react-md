@@ -2,15 +2,15 @@
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
-import { Portal } from "../portal";
 import { useSsr } from "../SsrProvider";
+import { Portal } from "../portal/Portal";
 import type {
   CSSTransitionClassNamesObject,
   CSSTransitionComponentProps,
   TransitionTimeout,
-} from "../transition";
-import { useCSSTransition } from "../transition";
-import { bem } from "../utils";
+} from "../transition/types";
+import { useCSSTransition } from "../transition/useCSSTransition";
+import { bem } from "../utils/bem";
 
 declare module "react" {
   interface CSSProperties {

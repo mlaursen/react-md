@@ -2,7 +2,8 @@ import { cnb } from "cnbuilder";
 import type { CSSProperties, HTMLAttributes } from "react";
 import { forwardRef, useMemo } from "react";
 import { useEnsuredId } from "../useEnsuredId";
-import { bem, getPercentage } from "../utils";
+import { bem } from "../utils/bem";
+import { getPercentage } from "../utils/getPercentage";
 import type { ProgressProps } from "./types";
 
 export interface CircularProgressProps

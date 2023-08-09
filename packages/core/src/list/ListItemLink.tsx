@@ -4,7 +4,7 @@ import { forwardRef } from "react";
 import { RippleContainer } from "../interaction/RippleContainer";
 import { useElementInteraction } from "../interaction/useElementInteraction";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren";
-import type { CustomLinkComponent } from "../link";
+import type { CustomLinkComponent } from "../link/LinkProvider";
 import type { PropsWithRef } from "../types";
 import { ListItemChildren } from "./ListItemChildren";
 import { getListItemHeight } from "./getListItemHeight";

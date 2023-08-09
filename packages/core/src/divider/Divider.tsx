@@ -1,6 +1,5 @@
 import type { ElementType, HTMLAttributes } from "react";
 import { forwardRef } from "react";
-
 import type { DividerClassNameOptions } from "./styles";
 import { divider } from "./styles";
 

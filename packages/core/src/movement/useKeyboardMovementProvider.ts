@@ -7,8 +7,8 @@ import {
   useRef,
   useState,
 } from "react";
-import { getFocusableElements as defaultGetFocusableElements } from "../focus";
-import { useUserInteractionMode } from "../interaction";
+import { getFocusableElements as defaultGetFocusableElements } from "../focus/utils";
+import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider";
 import { useDir } from "../typography/WritingDirection";
 import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect";
 import {

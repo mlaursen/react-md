@@ -2,7 +2,7 @@
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
-import { bem } from "../utils";
+import { bem } from "../utils/bem";
 import type { TableRowConfiguration } from "./TableConfigurationProvider";
 import { useTableConfig } from "./TableConfigurationProvider";
 

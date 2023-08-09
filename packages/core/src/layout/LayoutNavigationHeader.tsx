@@ -1,8 +1,9 @@
 import { cnb } from "cnbuilder";
 import type { ReactNode } from "react";
 import { forwardRef } from "react";
-import { AppBar, AppBarTitle } from "../app-bar";
-import { bem } from "../utils";
+import { AppBar } from "../app-bar/AppBar";
+import { AppBarTitle } from "../app-bar/AppBarTitle";
+import { bem } from "../utils/bem";
 import { LayoutCloseNavigationButton } from "./LayoutCloseNavigationButton";
 import { useLayoutConfig } from "./LayoutProvider";
 import type { LayoutNavigationHeaderProps } from "./types";

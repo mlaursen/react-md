@@ -9,7 +9,7 @@ import { forwardRef, useRef } from "react";
 import type { PropsWithRef } from "../types";
 import { useEnsuredId } from "../useEnsuredId";
 import { useEnsuredRef } from "../useEnsuredRef";
-import { bem } from "../utils";
+import { bem } from "../utils/bem";
 import { FormMessageContainer } from "./FormMessageContainer";
 import { useFormTheme } from "./FormThemeProvider";
 import { Label } from "./Label";

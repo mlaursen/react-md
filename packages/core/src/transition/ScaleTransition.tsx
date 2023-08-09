@@ -1,7 +1,7 @@
 "use client";
 import { cnb } from "cnbuilder";
 import type { ReactElement } from "react";
-import { cloneElement, Children } from "react";
+import { Children, cloneElement } from "react";
 import type { CSSTransitionComponentImplementation } from "./types";
 import type { ScaleTransitionHookOptions } from "./useScaleTransition";
 import { useScaleTransition } from "./useScaleTransition";

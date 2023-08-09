@@ -1,7 +1,6 @@
 import type { HTMLAttributes, ReactElement, ReactNode } from "react";
 import { Fragment } from "react";
-
-import { getPercentage } from "../utils";
+import { getPercentage } from "../utils/getPercentage";
 import type { RangeStepsOptions } from "../utils/getRangeSteps";
 import { getRangeSteps } from "../utils/getRangeSteps";
 import { SliderMark } from "./SliderMark";

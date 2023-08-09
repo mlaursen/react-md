@@ -2,10 +2,8 @@ import type { ReactElement, Ref } from "react";
 import { createRef } from "react";
 import { fireEvent, render, userEvent, waitFor } from "../../test-utils";
 
-import {
-  ElementInteractionProvider,
-  UserInteractionModeProvider,
-} from "../../interaction";
+import { ElementInteractionProvider } from "../../interaction/ElementInteractionProvider";
+import { UserInteractionModeProvider } from "../../interaction/UserInteractionModeProvider";
 import { List } from "../List";
 import type { ListItemProps } from "../ListItem";
 import { ListItem } from "../ListItem";

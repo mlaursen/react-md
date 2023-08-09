@@ -1,4 +1,4 @@
-import { getScrollbarWidth } from "../scroll";
+import { getScrollbarWidth } from "../scroll/getScrollbarWidth";
 import { BELOW_CENTER_ANCHOR } from "./constants";
 import { createHorizontalPosition } from "./createHorizontalPosition";
 import { createVerticalPosition } from "./createVerticalPosition";

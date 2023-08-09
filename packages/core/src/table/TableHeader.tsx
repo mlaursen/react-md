@@ -4,7 +4,7 @@ import type { HTMLAttributes } from "react";
 import { forwardRef, useCallback, useMemo, useState } from "react";
 import { useEnsuredRef } from "../useEnsuredRef";
 import { useIntersectionObserver } from "../useIntersectionObserver";
-import { bem } from "../utils";
+import { bem } from "../utils/bem";
 import type {
   TableCellConfig,
   TableConfigContext,

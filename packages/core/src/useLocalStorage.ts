@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useSsr } from "./SsrProvider";
 import type { UseStateInitializer, UseStateSetter } from "./types";
 import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect";
-import { identity } from "./utils";
+import { identity } from "./utils/identity";
 
 /** @remarks \@since 6.0.0 */
 export type LocalStorageSerializer<T> = (value: T) => string;

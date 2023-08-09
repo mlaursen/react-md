@@ -1,5 +1,4 @@
-import type { FloatingActionButtonPosition } from "../button";
-import type { PositionAnchor } from "../positioning";
+import type { FloatingActionButtonPosition } from "../button/FloatingActionButton";
 import {
   BELOW_CENTER_ANCHOR,
   BELOW_INNER_LEFT_ANCHOR,
@@ -9,7 +8,8 @@ import {
   TOP_INNER_LEFT_ANCHOR,
   TOP_INNER_RIGHT_ANCHOR,
   TOP_RIGHT_ANCHOR,
-} from "../positioning";
+} from "../positioning/constants";
+import type { PositionAnchor } from "../positioning/types";
 
 /**
  * @remarks \@since 5.0.0

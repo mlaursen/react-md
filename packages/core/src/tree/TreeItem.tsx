@@ -1,21 +1,19 @@
 "use client";
 import type { HTMLAttributes, ReactElement, ReactNode, Ref } from "react";
 import { useEffect } from "react";
-import {
-  RippleContainer,
-  useElementInteraction,
-  useHigherContrastChildren,
-} from "../interaction";
-import { useLink } from "../link";
-import { ListItemChildren } from "../list";
-import { useKeyboardMovementContext } from "../movement";
+import { RippleContainer } from "../interaction/RippleContainer";
+import { useElementInteraction } from "../interaction/useElementInteraction";
+import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren";
+import { useLink } from "../link/LinkProvider";
+import { ListItemChildren } from "../list/ListItemChildren";
+import { useKeyboardMovementContext } from "../movement/useKeyboardMovementProvider";
 import type { PropsWithRef } from "../types";
 import { useEnsuredId } from "../useEnsuredId";
-import { treeItem, treeItemContent, treeItemMedia } from "./styles";
 import type { OverridableTreeGroupProps } from "./TreeGroup";
 import { TreeGroup } from "./TreeGroup";
 import { TreeItemExpander } from "./TreeItemExpander";
 import { useTreeContext } from "./TreeProvider";
+import { treeItem, treeItemContent, treeItemMedia } from "./styles";
 import type { DefaultTreeItemNode } from "./types";
 
 /**

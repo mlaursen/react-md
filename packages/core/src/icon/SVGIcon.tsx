@@ -1,6 +1,5 @@
 import type { HTMLAttributes, ReactNode } from "react";
 import { forwardRef } from "react";
-
 import type { SVGIconClassNameOptions } from "./styles";
 import { icon } from "./styles";
 

@@ -6,12 +6,10 @@ import type {
   ReactNode,
 } from "react";
 import { cloneElement, forwardRef, isValidElement } from "react";
-import { useIcon } from "../icon";
-import {
-  RippleContainer,
-  useElementInteraction,
-  useHigherContrastChildren,
-} from "../interaction";
+import { useIcon } from "../icon/IconProvider";
+import { RippleContainer } from "../interaction/RippleContainer";
+import { useElementInteraction } from "../interaction/useElementInteraction";
+import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren";
 import type { PropsWithRef } from "../types";
 import { chip, chipContent, chipIcon } from "./styles";
 

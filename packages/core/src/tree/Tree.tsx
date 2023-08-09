@@ -7,13 +7,13 @@ import type {
   Ref,
 } from "react";
 import { useMemo } from "react";
-import type { CustomLinkComponent } from "../link";
-import { LinkProvider } from "../link";
-import { List } from "../list";
-import { KeyboardMovementProvider } from "../movement";
+import type { CustomLinkComponent } from "../link/LinkProvider";
+import { LinkProvider } from "../link/LinkProvider";
+import { List } from "../list/List";
+import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvider";
 import type { LabelRequiredForA11y } from "../types";
 import { useEnsuredId } from "../useEnsuredId";
-import { identity } from "../utils";
+import { identity } from "../utils/identity";
 import type { TreeItemRendererProps } from "./DefaultTreeItemRenderer";
 import { DefaultTreeItemRenderer } from "./DefaultTreeItemRenderer";
 import type { TreeExpansionMode } from "./TreeProvider";

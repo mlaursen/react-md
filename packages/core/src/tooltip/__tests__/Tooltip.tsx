@@ -7,9 +7,9 @@ import {
   waitFor,
 } from "../../test-utils";
 
-import { Button } from "../../button";
-import { FontIcon } from "../../icon";
-import { parseCssLengthUnit } from "../../utils";
+import { Button } from "../../button/Button";
+import { FontIcon } from "../../icon/FontIcon";
+import { parseCssLengthUnit } from "../../utils/parseCssLengthUnit";
 import {
   DEFAULT_TOOLTIP_DENSE_SPACING,
   DEFAULT_TOOLTIP_SPACING,

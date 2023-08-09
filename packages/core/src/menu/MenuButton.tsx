@@ -1,10 +1,12 @@
 "use client";
 import { forwardRef } from "react";
 import { useAppSize } from "../AppSizeProvider";
-import type { ButtonProps } from "../button";
-import { Button } from "../button";
-import type { IconRotatorProps, TextIconSpacingProps } from "../icon";
-import { IconRotator, useIcon } from "../icon";
+import type { ButtonProps } from "../button/Button";
+import { Button } from "../button/Button";
+import { useIcon } from "../icon/IconProvider";
+import type { IconRotatorProps } from "../icon/IconRotator";
+import { IconRotator } from "../icon/IconRotator";
+import type { TextIconSpacingProps } from "../icon/TextIconSpacing";
 import { useEnsuredId } from "../useEnsuredId";
 import { useMenuConfiguration } from "./MenuConfigurationProvider";
 import { useMenuVisibility } from "./MenuVisibilityProvider";

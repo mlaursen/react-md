@@ -1,9 +1,8 @@
 "use client";
+import { cnb } from "cnbuilder";
 import type { CSSProperties } from "react";
 import { useState } from "react";
-import { cnb } from "cnbuilder";
 import { useEnsuredRef } from "../useEnsuredRef";
-
 import type {
   CSSTransitionElementProps,
   CSSTransitionHookReturnValue,

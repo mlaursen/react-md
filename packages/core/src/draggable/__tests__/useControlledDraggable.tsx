@@ -3,8 +3,8 @@ import type { ReactElement } from "react";
 import { useState } from "react";
 import { fireEvent, rmdRender } from "../../test-utils";
 
-import { Button } from "../../button";
-import { getPercentage } from "../../utils";
+import { Button } from "../../button/Button";
+import { getPercentage } from "../../utils/getPercentage";
 import { useControlledDraggable } from "../useControlledDraggable";
 
 describe("useControlledDraggable", () => {

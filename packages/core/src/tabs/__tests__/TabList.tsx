@@ -13,7 +13,8 @@ import {
   DEFAULT_DESKTOP_MIN_WIDTH,
   DEFAULT_PHONE_MAX_WIDTH,
 } from "../../AppSizeProvider";
-import { Tooltip, useTooltip } from "../../tooltip";
+import { Tooltip } from "../../tooltip/Tooltip";
+import { useTooltip } from "../../tooltip/useTooltip";
 import { Tab } from "../Tab";
 import type { TabListProps } from "../TabList";
 import { TabList } from "../TabList";

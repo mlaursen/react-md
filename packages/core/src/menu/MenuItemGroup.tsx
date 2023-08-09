@@ -2,8 +2,8 @@
 import { cnb } from "cnbuilder";
 import type { ReactNode } from "react";
 import { forwardRef } from "react";
-import type { ListElement, ListProps } from "../list";
-import { List } from "../list";
+import type { ListElement, ListProps } from "../list/List";
+import { List } from "../list/List";
 import type { LabelRequiredForA11y } from "../types";
 import { useMenuConfiguration } from "./MenuConfigurationProvider";
 

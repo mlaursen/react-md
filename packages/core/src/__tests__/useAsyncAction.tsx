@@ -1,10 +1,10 @@
 import type { MouseEvent, ReactElement } from "react";
 import { act, rmdRender, userEvent, waitFor } from "../test-utils";
 
-import { box } from "../box";
-import type { ButtonProps } from "../button";
-import { Button } from "../button";
-import { CircularProgress } from "../progress";
+import { box } from "../box/styles";
+import type { ButtonProps } from "../button/Button";
+import { Button } from "../button/Button";
+import { CircularProgress } from "../progress/CircularProgress";
 import { useAsyncAction } from "../useAsyncAction";
 
 interface TestProps extends ButtonProps {

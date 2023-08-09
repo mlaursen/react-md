@@ -2,8 +2,7 @@
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
-import { bem } from "../utils";
-
+import { bem } from "../utils/bem";
 import { useFormTheme } from "./FormThemeProvider";
 import { TextFieldAddon } from "./TextFieldAddon";
 import type {

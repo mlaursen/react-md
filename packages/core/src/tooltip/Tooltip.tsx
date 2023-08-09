@@ -2,15 +2,15 @@
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
-import { Portal } from "../portal";
-import type { SimplePosition } from "../positioning";
+import { Portal } from "../portal/Portal";
+import type { SimplePosition } from "../positioning/types";
 import type {
   CSSTransitionComponentProps,
   TransitionActions,
-} from "../transition";
-import { useCSSTransition } from "../transition";
+} from "../transition/types";
+import { useCSSTransition } from "../transition/useCSSTransition";
 import { useEnsuredId } from "../useEnsuredId";
-import { bem } from "../utils";
+import { bem } from "../utils/bem";
 import {
   DEFAULT_TOOLTIP_CLASSNAMES,
   DEFAULT_TOOLTIP_POSITION,

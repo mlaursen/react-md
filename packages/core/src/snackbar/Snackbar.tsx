@@ -2,9 +2,9 @@
 import { cnb } from "cnbuilder";
 import type { AriaRole, ComponentType, HTMLAttributes } from "react";
 import { forwardRef } from "react";
-import { Portal } from "../portal";
+import { Portal } from "../portal/Portal";
 import { useEnsuredId } from "../useEnsuredId";
-import { bem } from "../utils";
+import { bem } from "../utils/bem";
 import type { ToastRendererProps } from "./DefaultToastRenderer";
 import { DefaultToastRenderer } from "./DefaultToastRenderer";
 import type { ConfigurableToastProps } from "./Toast";

@@ -4,7 +4,7 @@ import type { CSSProperties, HTMLAttributes, InputHTMLAttributes } from "react";
 import { forwardRef, useState } from "react";
 import type { PropsWithRef } from "../types";
 import { useEnsuredId } from "../useEnsuredId";
-import { bem } from "../utils";
+import { bem } from "../utils/bem";
 import { FormMessageContainer } from "./FormMessageContainer";
 import type { InputToggleLabelProps } from "./InputToggle";
 import { Label } from "./Label";

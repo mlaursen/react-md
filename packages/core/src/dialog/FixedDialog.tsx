@@ -1,13 +1,14 @@
 "use client";
 import type { RefObject } from "react";
 import { forwardRef, useRef } from "react";
+import { TOP_INNER_RIGHT_ANCHOR } from "../positioning/constants";
 import type {
   CalculateFixedPositionOptions,
   PositionAnchor,
-} from "../positioning";
-import { TOP_INNER_RIGHT_ANCHOR, useFixedPositioning } from "../positioning";
-import type { CSSTransitionClassNamesObject } from "../transition";
-import { SCALE_CLASSNAMES } from "../transition";
+} from "../positioning/types";
+import { useFixedPositioning } from "../positioning/useFixedPositioning";
+import type { CSSTransitionClassNamesObject } from "../transition/types";
+import { SCALE_CLASSNAMES } from "../transition/useScaleTransition";
 import type { LabelRequiredForA11y } from "../types";
 import type { BaseDialogProps } from "./Dialog";
 import { Dialog } from "./Dialog";

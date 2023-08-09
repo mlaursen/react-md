@@ -1,9 +1,9 @@
 "use client";
 import type { ChangeEventHandler, InputHTMLAttributes } from "react";
 import { forwardRef } from "react";
-import { useIcon } from "../icon";
-import type { MenuItemProps } from "../menu";
-import { MenuItem } from "../menu";
+import { useIcon } from "../icon/IconProvider";
+import type { MenuItemProps } from "../menu/MenuItem";
+import { MenuItem } from "../menu/MenuItem";
 import { useEnsuredId } from "../useEnsuredId";
 
 const noop = (): void => {

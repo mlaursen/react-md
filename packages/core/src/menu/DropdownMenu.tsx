@@ -1,8 +1,8 @@
 "use client";
 import type { ReactElement, ReactNode, RefObject } from "react";
 import { useCallback, useRef, useState } from "react";
-import { useUserInteractionMode } from "../interaction";
-import { getLastFocusableIndex } from "../movement";
+import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider";
+import { getLastFocusableIndex } from "../movement/utils";
 import { useEnsuredId } from "../useEnsuredId";
 import type { MenuConvenienceProps, MenuListConvenienceProps } from "./Menu";
 import { Menu } from "./Menu";

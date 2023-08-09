@@ -1,18 +1,18 @@
 "use client";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useState } from "react";
-import type { FocusContainerComponentProps } from "../focus";
-import { useFocusContainer } from "../focus";
-import { Overlay } from "../overlay";
-import { Portal } from "../portal";
-import { useScrollLock } from "../scroll";
 import { useSsr } from "../SsrProvider";
+import type { FocusContainerComponentProps } from "../focus/useFocusContainer";
+import { useFocusContainer } from "../focus/useFocusContainer";
+import { Overlay } from "../overlay/Overlay";
+import { Portal } from "../portal/Portal";
+import { useScrollLock } from "../scroll/useScrollLock";
 import type {
   CSSTransitionClassNames,
   CSSTransitionComponentProps,
   TransitionTimeout,
-} from "../transition";
-import { useCSSTransition } from "../transition";
+} from "../transition/types";
+import { useCSSTransition } from "../transition/useCSSTransition";
 import type { LabelRequiredForA11y } from "../types";
 import { useEnsuredId } from "../useEnsuredId";
 import { DialogContainer } from "./DialogContainer";

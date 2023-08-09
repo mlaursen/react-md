@@ -1,7 +1,7 @@
 "use client";
 import { useCallback, useRef, useState } from "react";
 import type { UseStateInitializer, UseStateSetter } from "../types";
-import { withinRange } from "../utils";
+import { withinRange } from "../utils/withinRange";
 import type {
   ProvidedTextFieldMessageProps,
   ProvidedTextFieldProps,

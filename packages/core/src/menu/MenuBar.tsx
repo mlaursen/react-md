@@ -1,11 +1,11 @@
 "use client";
 import { forwardRef } from "react";
-import type { ListProps } from "../list";
-import { List } from "../list";
+import type { ListProps } from "../list/List";
+import { List } from "../list/List";
 import {
   KeyboardMovementProvider,
   useKeyboardMovementProvider,
-} from "../movement";
+} from "../movement/useKeyboardMovementProvider";
 import { MenuBarProvider, useMenuBarProvider } from "./useMenuBarProvider";
 
 export interface MenuBarProps extends Omit<ListProps, "role"> {

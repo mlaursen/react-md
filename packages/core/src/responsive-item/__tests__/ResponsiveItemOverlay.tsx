@@ -2,7 +2,7 @@ import { createRef } from "react";
 import { render } from "../../test-utils";
 
 import type { PropsWithRef } from "../../types";
-import { Typography } from "../../typography";
+import { Typography } from "../../typography/Typography";
 import type {
   ResponsiveItemOverlayPosition,
   ResponsiveItemOverlayProps,

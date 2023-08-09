@@ -7,7 +7,7 @@ import type {
   ThHTMLAttributes,
 } from "react";
 import { forwardRef } from "react";
-import { useIcon } from "../icon";
+import { useIcon } from "../icon/IconProvider";
 import type { PropsWithRef } from "../types";
 import type { SortOrder } from "./TableCellContent";
 import { TableCellContent } from "./TableCellContent";

@@ -1,9 +1,10 @@
 "use client";
 import type { ReactNode } from "react";
 import { forwardRef } from "react";
-import type { ListElement, ListProps, ListSubheaderProps } from "../list";
-import { ListSubheader } from "../list";
-import { MenuItemGroup } from "../menu";
+import type { ListElement, ListProps } from "../list/List";
+import type { ListSubheaderProps } from "../list/ListSubheader";
+import { ListSubheader } from "../list/ListSubheader";
+import { MenuItemGroup } from "../menu/MenuItemGroup";
 import type { PropsWithRef } from "../types";
 import { useEnsuredId } from "../useEnsuredId";
 

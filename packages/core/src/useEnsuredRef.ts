@@ -1,8 +1,7 @@
 "use client";
 import type { MutableRefObject, Ref, RefCallback } from "react";
 import { useCallback, useRef } from "react";
-
-import { applyRef } from "./utils";
+import { applyRef } from "./utils/applyRef";
 
 /**
  * @remarks \@since 2.3.0

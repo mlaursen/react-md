@@ -14,9 +14,10 @@ import {
   DEFAULT_DESKTOP_MIN_WIDTH,
   DEFAULT_PHONE_MAX_WIDTH,
 } from "../../AppSizeProvider";
-import { Button } from "../../button";
-import { DialogFooter, DialogHeader } from "../../dialog";
-import { MaterialIcon } from "../../icon";
+import { Button } from "../../button/Button";
+import { DialogFooter } from "../../dialog/DialogFooter";
+import { DialogHeader } from "../../dialog/DialogHeader";
+import { MaterialIcon } from "../../icon/MaterialIcon";
 import { DropdownMenu } from "../DropdownMenu";
 import { MenuItem } from "../MenuItem";
 import { useMenuVisibility } from "../MenuVisibilityProvider";
