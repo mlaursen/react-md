@@ -92,7 +92,7 @@ export interface AppBarClassNameOptions {
   stacked?: boolean;
 
   /**
-   * @defaultValue `"normal"`
+   * @defaultValue `stacked ? "auto" : "normal"`
    * @see {@link AppBarHeight}
    */
   height?: AppBarHeight;
@@ -200,9 +200,9 @@ export const AppBar = forwardRef<HTMLDivElement, AppBarProps>(
   function AppBar(props, ref) {
     const {
       className,
-      height,
       theme,
       stacked,
+      height = stacked ? "auto" : "normal",
       position,
       pagePosition,
       scrollbarOffset,
