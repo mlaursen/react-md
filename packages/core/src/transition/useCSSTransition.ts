@@ -4,6 +4,8 @@ import type {
   CSSTransitionElementProps,
   CSSTransitionHookOptions,
   CSSTransitionHookReturnValue,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  TransitionHookOptions,
 } from "./types";
 import { useTransition } from "./useTransition";
 import { getTransitionClassNames } from "./utils";

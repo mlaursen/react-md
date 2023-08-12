@@ -1,6 +1,6 @@
 import type { MutableRefObject, ReactElement } from "react";
 import { useEffect, useState } from "react";
-import { act, fireEvent, render } from "../../test-utils";
+import { act, fireEvent, render, waitFor } from "../../test-utils";
 
 import type {
   TransitionHookOptions,
@@ -8,6 +8,8 @@ import type {
   TransitionTimeout,
 } from "../types";
 import { useTransition } from "../useTransition";
+import { useLocalStorage } from "../../useLocalStorage";
+import { SsrProvider, useSsr } from "../../SsrProvider";
 
 const createStageRef = (): MutableRefObject<TransitionStage[]> => ({
   current: [],
@@ -399,5 +401,60 @@ describe("useTransition", () => {
     expect(onExit).not.toHaveBeenCalled();
     expect(onExiting).not.toHaveBeenCalled();
     expect(onExited).toHaveBeenCalledTimes(1);
+  });
+
+  it("should skip the enter transition after rehydration if the client has a different stored state", async () => {
+    let isSsr: boolean | undefined;
+    const stages: TransitionStage[] = [];
+    function Test() {
+      const ssr = useSsr();
+      const { value: transitionIn } = useLocalStorage({
+        key: "expanded",
+        defaultValue: false,
+      });
+      const { ref, stage } = useTransition({
+        timeout: 1000,
+        transitionIn,
+      });
+      useEffect(() => {
+        stages.push(stage);
+      }, [stage]);
+      useEffect(() => {
+        isSsr = ssr;
+      }, [ssr]);
+
+      return <div ref={ref} />;
+    }
+
+    localStorage.setItem("expanded", "true");
+
+    const { unmount } = render(
+      <SsrProvider ssr>
+        {" "}
+        <Test />
+      </SsrProvider>
+    );
+
+    await waitFor(() => {
+      expect(isSsr).toBe(false);
+    });
+    expect(stages).toEqual(["exited", "entered"]);
+
+    unmount();
+    expect(stages).toEqual(["exited", "entered"]);
+
+    stages.length = 0;
+    expect(stages).toEqual([]);
+
+    localStorage.setItem("expanded", "false");
+    render(
+      <SsrProvider ssr>
+        <Test />
+      </SsrProvider>
+    );
+    await waitFor(() => {
+      expect(isSsr).toBe(false);
+    });
+    expect(stages).toEqual(["exited"]);
   });
 });

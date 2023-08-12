@@ -152,6 +152,8 @@ export function useTransition<E extends HTMLElement>(
   const { appearing, rendered, stage } = state;
 
   const isFirstRender = useRef(true);
+  const isRehydrateAppear = useRef(ssr && !transitionIn);
+  const defaultTransitionIn = useRef(transitionIn);
   useEffect(() => {
     const {
       timeout,
@@ -170,10 +172,22 @@ export function useTransition<E extends HTMLElement>(
       onExited = noop;
     }
 
+    // if the transitionIn did not change between initial render and rehydration,
+    // allow the enter transition to behave like normal.
+    if (
+      isRehydrateAppear.current &&
+      !ssr &&
+      !transitionIn &&
+      !defaultTransitionIn.current
+    ) {
+      isRehydrateAppear.current = false;
+    }
+
     // Cancel any exiting/exited transitions and instead immediately start the
     // enter transition
     if (transitionIn && stage.startsWith("exit")) {
-      dispatch("enter");
+      const nextStage = isRehydrateAppear.current ? "entered" : "enter";
+      dispatch(nextStage);
       return;
     }
 
@@ -239,7 +253,7 @@ export function useTransition<E extends HTMLElement>(
     return () => {
       window.clearTimeout(timer);
     };
-  }, [appearing, ref, stage, temporary, transitionIn]);
+  }, [appearing, ref, stage, ssr, temporary, transitionIn]);
 
   return {
     ref: refCallback,
