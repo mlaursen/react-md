@@ -36,12 +36,12 @@
   "dependencies": {
     "commander": "^11.0.0",
     "glob": "^10.3.3",
-    "inquirer": "^9.2.8",
+    "inquirer": "^9.2.10",
     "jscodeshift": "^0.15.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.22.9",
-    "@babel/preset-env": "^7.22.9",
+    "@babel/core": "^7.22.10",
+    "@babel/preset-env": "^7.22.10",
     "@types/glob": "^8.0.1",
     "@types/inquirer": "^9.0.3",
     "@types/jscodeshift": "^0.11.5",
