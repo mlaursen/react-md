@@ -17,8 +17,7 @@ npm install --save-dev \
   @testing-library/dom \
   @testing-library/jest-dom \
   @testing-library/react \
-  @testing-library/user-event \
-  @types/testing-library__jest-dom
+  @testing-library/user-event
 ```
 
 ```sh
@@ -29,8 +28,7 @@ yarn add -D \
   @testing-library/dom \
   @testing-library/jest-dom \
   @testing-library/react \
-  @testing-library/user-event \
-  @types/testing-library__jest-dom
+  @testing-library/user-event
 ```
 
 ```sh
@@ -41,8 +39,7 @@ pnpm add -D \
   @testing-library/dom \
   @testing-library/jest-dom \
   @testing-library/react \
-  @testing-library/user-event \
-  @types/testing-library__jest-dom
+  @testing-library/user-event
 ```
 
 ## Adding Polyfills
@@ -61,7 +58,7 @@ export default config;
 
 ```ts
 // jest.setup.ts
-import "@testing-library/jest-dom/extend-expect";
+import "@testing-library/jest-dom";
 
 // add all the polyfills
 import "@react-md/core/test-utils/polyfills";
