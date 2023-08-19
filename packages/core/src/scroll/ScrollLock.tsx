@@ -1,5 +1,5 @@
 "use client";
-import { useScrollLock } from "./useScrollLock";
+import { useScrollLock } from "./useScrollLock.js";
 
 /**
  * **Client Component**

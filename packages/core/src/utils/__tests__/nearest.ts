@@ -1,4 +1,5 @@
-import { nearest } from "../nearest";
+import { describe, expect, it } from "@jest/globals";
+import { nearest } from "../nearest.js";
 
 describe("nearest", () => {
   it("should round correctly", () => {

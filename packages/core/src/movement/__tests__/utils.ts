@@ -1,3 +1,4 @@
+import { afterEach, beforeEach, describe, expect, it } from "@jest/globals";
 import {
   getFirstFocusableIndex,
   getLastFocusableIndex,
@@ -7,7 +8,7 @@ import {
   isElementDisabled,
   isNotFocusable,
   recalculateFocusIndex,
-} from "../utils";
+} from "../utils.js";
 
 const button = document.createElement("button");
 button.id = "button-1";

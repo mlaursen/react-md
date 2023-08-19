@@ -1,4 +1,4 @@
-import type { PositionAnchor } from "./types";
+import type { PositionAnchor } from "./types.js";
 
 export const ABOVE_LEFT_ANCHOR: PositionAnchor = {
   x: "left",

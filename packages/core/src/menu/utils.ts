@@ -1,4 +1,4 @@
-import type { FloatingActionButtonPosition } from "../button/FloatingActionButton";
+import type { FloatingActionButtonPosition } from "../button/FloatingActionButton.js";
 import {
   BELOW_CENTER_ANCHOR,
   BELOW_INNER_LEFT_ANCHOR,
@@ -8,8 +8,8 @@ import {
   TOP_INNER_LEFT_ANCHOR,
   TOP_INNER_RIGHT_ANCHOR,
   TOP_RIGHT_ANCHOR,
-} from "../positioning/constants";
-import type { PositionAnchor } from "../positioning/types";
+} from "../positioning/constants.js";
+import type { PositionAnchor } from "../positioning/types.js";
 
 /**
  * @remarks \@since 5.0.0

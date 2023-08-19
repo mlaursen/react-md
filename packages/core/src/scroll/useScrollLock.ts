@@ -1,6 +1,6 @@
 "use client";
 import { useEffect } from "react";
-import { getScrollbarWidth } from "./getScrollbarWidth";
+import { getScrollbarWidth } from "./getScrollbarWidth.js";
 
 export const SCROLLBAR_SIZE_VAR = "--rmd-scrollbar-size";
 

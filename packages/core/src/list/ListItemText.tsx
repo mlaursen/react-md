@@ -1,7 +1,7 @@
 import type { HTMLAttributes, ReactNode } from "react";
 import { forwardRef } from "react";
-import type { PropsWithRef } from "../types";
-import { listItemText } from "./listItemStyles";
+import type { PropsWithRef } from "../types.js";
+import { listItemText } from "./listItemStyles.js";
 
 /**
  * @internal

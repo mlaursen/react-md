@@ -1,6 +1,7 @@
-import { render } from "../../test-utils";
+import { describe, expect, it } from "@jest/globals";
+import { render } from "../../test-utils/index.js";
 
-import { FontIcon } from "../FontIcon";
+import { FontIcon } from "../FontIcon.js";
 
 describe("FontIcon", () => {
   it("should render as an <i> element", () => {

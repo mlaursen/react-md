@@ -1,7 +1,8 @@
-import { fireEvent, render } from "../../test-utils";
+import { describe, expect, it, jest } from "@jest/globals";
+import { fireEvent, render } from "../../test-utils/index.js";
 
-import { TreeItemExpander } from "../TreeItemExpander";
-import { TreeProvider } from "../TreeProvider";
+import { TreeItemExpander } from "../TreeItemExpander.js";
+import { TreeProvider } from "../TreeProvider.js";
 
 describe("TreeItemExpander", () => {
   it("should throw an error if not wrapped in a TreeProvider", () => {

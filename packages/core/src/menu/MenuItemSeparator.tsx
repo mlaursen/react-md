@@ -1,11 +1,11 @@
 "use client";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
-import type { DividerProps } from "../divider/Divider";
-import type { VerticalDividerProps } from "../divider/VerticalDivider";
-import { divider } from "../divider/styles";
-import { useVerticalDividerHeight } from "../divider/useVerticalDividerHeight";
-import { useMenuConfiguration } from "./MenuConfigurationProvider";
+import type { DividerProps } from "../divider/Divider.js";
+import type { VerticalDividerProps } from "../divider/VerticalDivider.js";
+import { divider } from "../divider/styles.js";
+import { useVerticalDividerHeight } from "../divider/useVerticalDividerHeight.js";
+import { useMenuConfiguration } from "./MenuConfigurationProvider.js";
 
 /** @remarks \@since 5.0.0 */
 export interface MenuItemSeparatorProps

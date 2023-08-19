@@ -1,10 +1,10 @@
 import { cnb } from "cnbuilder";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 import { forwardRef } from "react";
-import { ButtonUnstyled } from "../button/ButtonUnstyled";
-import { IconRotator } from "../icon/IconRotator";
-import { bem } from "../utils/bem";
-import type { TableCellHorizontalAlignment } from "./TableConfigurationProvider";
+import { ButtonUnstyled } from "../button/ButtonUnstyled.js";
+import { IconRotator } from "../icon/IconRotator.js";
+import { bem } from "../utils/bem.js";
+import type { TableCellHorizontalAlignment } from "./TableConfigurationProvider.js";
 
 export type SortOrder = "ascending" | "descending" | "none" | "other";
 

@@ -1,9 +1,17 @@
+import {
+  afterEach,
+  beforeAll,
+  describe,
+  expect,
+  it,
+  jest,
+} from "@jest/globals";
 import type { ReactElement } from "react";
 import { useState } from "react";
-import { act, fireEvent, render } from "../../test-utils";
+import { act, fireEvent, render } from "../../test-utils/index.js";
 
-import type { ScaleTransitionHookOptions } from "../useScaleTransition";
-import { useScaleTransition } from "../useScaleTransition";
+import type { ScaleTransitionHookOptions } from "../useScaleTransition.js";
+import { useScaleTransition } from "../useScaleTransition.js";
 
 interface TestProps
   extends Omit<ScaleTransitionHookOptions<HTMLElement>, "transitionIn"> {

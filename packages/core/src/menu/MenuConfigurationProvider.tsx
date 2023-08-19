@@ -1,7 +1,7 @@
 "use client";
 import type { ReactElement, ReactNode } from "react";
 import { createContext, useContext, useMemo } from "react";
-import type { SheetPosition, SheetVerticalSize } from "../sheet/styles";
+import type { SheetPosition, SheetVerticalSize } from "../sheet/styles.js";
 
 /** @remarks \@since 5.0.0 */
 export interface MenuOrientationProps {

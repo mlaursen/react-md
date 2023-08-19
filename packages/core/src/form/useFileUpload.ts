@@ -12,13 +12,13 @@ import type {
   FilesValidator,
   GetFileParser,
   ProcessingFileUploadStats,
-} from "./fileUtils";
+} from "./fileUtils.js";
 import {
   FileAccessError,
   getFileParser as defaultGetFileParser,
   isValidFileName as defaultIsValidFileName,
   validateFiles as defaultValidateFiles,
-} from "./fileUtils";
+} from "./fileUtils.js";
 
 const noop = (): void => {
   // do nothing

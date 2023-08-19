@@ -2,12 +2,12 @@
 import { cnb } from "cnbuilder";
 import type { ChangeEventHandler, HTMLAttributes, ReactNode } from "react";
 import { forwardRef, useEffect, useState } from "react";
-import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider";
-import type { TooltipProps } from "../tooltip/Tooltip";
-import type { LabelRequiredForA11y } from "../types";
-import { bem } from "../utils/bem";
-import { SliderValueTooltip } from "./SliderValueTooltip";
-import type { SliderValueOptions } from "./useSlider";
+import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
+import type { TooltipProps } from "../tooltip/Tooltip.js";
+import type { LabelRequiredForA11y } from "../types.js";
+import { bem } from "../utils/bem.js";
+import { SliderValueTooltip } from "./SliderValueTooltip.js";
+import type { SliderValueOptions } from "./useSlider.js";
 
 const styles = bem("rmd-slider-thumb");
 

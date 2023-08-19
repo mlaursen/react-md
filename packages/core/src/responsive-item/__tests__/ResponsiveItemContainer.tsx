@@ -1,12 +1,13 @@
-import { render } from "../../test-utils";
+import { describe, expect, it } from "@jest/globals";
+import { render } from "../../test-utils/index.js";
 import { createRef } from "react";
 
-import type { PropsWithRef } from "../../types";
-import type { ResponsiveItemContainerProps } from "../ResponsiveItemContainer";
+import type { PropsWithRef } from "../../types.js";
+import type { ResponsiveItemContainerProps } from "../ResponsiveItemContainer.js";
 import {
   responsiveItemContainer,
   ResponsiveItemContainer,
-} from "../ResponsiveItemContainer";
+} from "../ResponsiveItemContainer.js";
 
 describe("ResponsiveItemContainer", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {

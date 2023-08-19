@@ -1,4 +1,4 @@
-import type { PositionAnchor } from "./types";
+import type { PositionAnchor } from "./types.js";
 
 /** @internal */
 export interface XCoordConfig {

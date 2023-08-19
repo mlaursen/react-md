@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, jest } from "@jest/globals";
 import {
   matchAnyDesktop,
   matchLargeDesktop,
@@ -5,10 +6,10 @@ import {
   matchTablet,
   render,
   spyOnMatchMedia,
-} from "../test-utils";
+} from "../test-utils/index.js";
 
-import type { AppSize } from "../AppSizeProvider";
-import { AppSizeProvider, useAppSize } from "../AppSizeProvider";
+import type { AppSize } from "../AppSizeProvider.js";
+import { AppSizeProvider, useAppSize } from "../AppSizeProvider.js";
 
 const matchMedia = spyOnMatchMedia();
 
@@ -26,7 +27,7 @@ describe("AppSizeProvider", () => {
   it("should throw an error if multiple AppSizeProviders are mounted", () => {
     const consoleError = jest.spyOn(console, "error");
     // hide React uncaught error message
-    consoleError.mockImplementation();
+    consoleError.mockImplementation(() => {});
 
     expect(() => {
       render(
@@ -47,7 +48,7 @@ describe("useAppSize", () => {
 
     const error = jest.spyOn(console, "error");
     // hide React uncaught error message
-    error.mockImplementation();
+    error.mockImplementation(() => {});
 
     expect(() => render(<Test />)).toThrow(
       "The `AppSizeProvider` has not been mounted."

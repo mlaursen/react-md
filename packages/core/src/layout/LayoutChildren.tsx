@@ -1,20 +1,20 @@
 import type { HTMLAttributes, ReactElement, ReactNode } from "react";
 import { useEffect, useState } from "react";
-import type { SkipToMainContentProps } from "../link/SkipToMainContent";
-import { SkipToMainContent } from "../link/SkipToMainContent";
-import type { TreeData, TreeItemNode } from "../tree/types";
-import type { PropsWithRef } from "../types";
-import { LayoutAppBar } from "./LayoutAppBar";
-import type { LayoutMainProps } from "./LayoutMain";
-import { LayoutMain } from "./LayoutMain";
-import { LayoutNavigation } from "./LayoutNavigation";
-import { useLayoutConfig } from "./LayoutProvider";
-import { MiniLayoutWrapper } from "./MiniLayoutWrapper";
+import type { SkipToMainContentProps } from "../link/SkipToMainContent.js";
+import { SkipToMainContent } from "../link/SkipToMainContent.js";
+import type { TreeData, TreeItemNode } from "../tree/types.js";
+import type { PropsWithRef } from "../types.js";
+import { LayoutAppBar } from "./LayoutAppBar.js";
+import type { LayoutMainProps } from "./LayoutMain.js";
+import { LayoutMain } from "./LayoutMain.js";
+import { LayoutNavigation } from "./LayoutNavigation.js";
+import { useLayoutConfig } from "./LayoutProvider.js";
+import { MiniLayoutWrapper } from "./MiniLayoutWrapper.js";
 import type {
   FlattenedLayoutComponentConfiguration,
   LayoutNavigationItem,
-} from "./types";
-import { isMiniLayout } from "./utils";
+} from "./types.js";
+import { isMiniLayout } from "./utils.js";
 
 /**
  * This used to just be the `LayoutProps` but was split up to help with mini

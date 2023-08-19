@@ -5,11 +5,11 @@ import { forwardRef, useMemo } from "react";
 import type {
   TableConfig,
   TableConfigContext,
-} from "./TableConfigurationProvider";
+} from "./TableConfigurationProvider.js";
 import {
   TableConfigProvider,
   useTableConfig,
-} from "./TableConfigurationProvider";
+} from "./TableConfigurationProvider.js";
 
 export interface TableBodyProps
   extends HTMLAttributes<HTMLTableSectionElement>,

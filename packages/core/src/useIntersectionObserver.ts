@@ -1,7 +1,7 @@
 "use client";
 import type { Ref, RefCallback, RefObject } from "react";
 import { useEffect } from "react";
-import { useEnsuredRef } from "./useEnsuredRef";
+import { useEnsuredRef } from "./useEnsuredRef.js";
 
 /** @remarks \@since 6.0.0 */
 export type IntersectionObserverRoot = IntersectionObserverInit["root"];

@@ -1,14 +1,14 @@
 "use client";
 import type { CSSProperties, Ref, RefCallback, RefObject } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { delegateEvent } from "../delegateEvent";
-import type { TransitionCallbacks } from "../transition/types";
-import { useEnsuredRef } from "../useEnsuredRef";
-import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect";
-import { BELOW_CENTER_ANCHOR } from "./constants";
-import { getFixedPosition } from "./getFixedPosition";
-import type { CalculateFixedPositionOptions } from "./types";
-import { isWithinViewport } from "./utils";
+import { delegateEvent } from "../delegateEvent.js";
+import type { TransitionCallbacks } from "../transition/types.js";
+import { useEnsuredRef } from "../useEnsuredRef.js";
+import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect.js";
+import { BELOW_CENTER_ANCHOR } from "./constants.js";
+import { getFixedPosition } from "./getFixedPosition.js";
+import type { CalculateFixedPositionOptions } from "./types.js";
+import { isWithinViewport } from "./utils.js";
 
 const noop = (): undefined => undefined;
 

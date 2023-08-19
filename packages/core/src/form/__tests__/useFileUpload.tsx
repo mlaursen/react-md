@@ -1,10 +1,11 @@
+import { beforeEach, describe, expect, it, jest } from "@jest/globals";
 import { useEffect } from "react";
-import { act, fireEvent, render, userEvent } from "../../test-utils";
+import { act, fireEvent, render, userEvent } from "../../test-utils/index.js";
 
-import { ElementInteractionProvider } from "../../interaction/ElementInteractionProvider";
-import { FileInput } from "../FileInput";
-import type { FileUploadOptions } from "../useFileUpload";
-import { useFileUpload } from "../useFileUpload";
+import { ElementInteractionProvider } from "../../interaction/ElementInteractionProvider.js";
+import { FileInput } from "../FileInput.js";
+import type { FileUploadOptions } from "../useFileUpload.js";
+import { useFileUpload } from "../useFileUpload.js";
 
 function createFile(name: string, bytes: number): File {
   const content = new Uint8Array(bytes);
@@ -47,7 +48,7 @@ class MockFileReader implements FileReader {
   readAsBinaryString = jest.fn();
 
   removeEventListener = jest.fn();
-  dispatchEvent = jest.fn();
+  dispatchEvent = jest.fn(() => false);
 
   addEventListener(
     name: "progress" | "load",

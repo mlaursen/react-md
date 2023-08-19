@@ -1,4 +1,4 @@
-import { black, white } from "./colors";
+import { black, white } from "./colors.js";
 
 const RGB_REGEX = /^rgb\(((\b([01]?\d\d?|2[0-4]\d|25[0-5])\b),?){3}\)$/;
 const SHORTHAND_REGEX = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;

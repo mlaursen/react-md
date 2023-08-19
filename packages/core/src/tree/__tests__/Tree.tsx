@@ -1,3 +1,4 @@
+import { describe, expect, it, jest } from "@jest/globals";
 import type { AnchorHTMLAttributes, ReactElement } from "react";
 import { createRef, forwardRef } from "react";
 import {
@@ -6,21 +7,21 @@ import {
   screen,
   userEvent,
   waitFor,
-} from "../../test-utils";
+} from "../../test-utils/index.js";
 
-import { Divider } from "../../divider/Divider";
-import { FontIcon } from "../../icon/FontIcon";
-import { alphaNumericSort } from "../../utils/alphaNumericSort";
-import type { TreeItemRendererProps } from "../DefaultTreeItemRenderer";
-import { DefaultTreeItemRenderer } from "../DefaultTreeItemRenderer";
-import type { TreeProps } from "../Tree";
-import { Tree } from "../Tree";
-import { TreeItem } from "../TreeItem";
-import type { DefaultTreeItemNode, TreeData, TreeItemNode } from "../types";
-import type { TreeHookOptions } from "../useTree";
-import { useTree } from "../useTree";
-import type { TreeExpansion } from "../useTreeExpansion";
-import type { TreeSelection } from "../useTreeSelection";
+import { Divider } from "../../divider/Divider.js";
+import { FontIcon } from "../../icon/FontIcon.js";
+import { alphaNumericSort } from "../../utils/alphaNumericSort.js";
+import type { TreeItemRendererProps } from "../DefaultTreeItemRenderer.js";
+import { DefaultTreeItemRenderer } from "../DefaultTreeItemRenderer.js";
+import type { TreeProps } from "../Tree.js";
+import { Tree } from "../Tree.js";
+import { TreeItem } from "../TreeItem.js";
+import type { DefaultTreeItemNode, TreeData, TreeItemNode } from "../types.js";
+import type { TreeHookOptions } from "../useTree.js";
+import { useTree } from "../useTree.js";
+import type { TreeExpansion } from "../useTreeExpansion.js";
+import type { TreeSelection } from "../useTreeSelection.js";
 
 interface Folder {
   name: string;

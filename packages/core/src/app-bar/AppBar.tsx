@@ -1,8 +1,8 @@
 import { cnb } from "cnbuilder";
 import type { ElementType, HTMLAttributes, Ref } from "react";
 import { forwardRef } from "react";
-import type { CssPosition } from "../types";
-import { bem } from "../utils/bem";
+import type { CssPosition } from "../types.js";
+import { bem } from "../utils/bem.js";
 
 declare module "react" {
   interface CSSProperties {

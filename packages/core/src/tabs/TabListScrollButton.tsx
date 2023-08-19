@@ -5,16 +5,16 @@ import { forwardRef, useCallback, useRef, useState } from "react";
 import type {
   ButtonClassNameThemeOptions,
   ButtonProps,
-} from "../button/Button";
-import { Button } from "../button/Button";
-import { useIcon } from "../icon/IconProvider";
-import type { PropsWithRef } from "../types";
-import { useDir } from "../typography/WritingDirection";
-import { useIntersectionObserver } from "../useIntersectionObserver";
-import { applyRef } from "../utils/applyRef";
-import { bem } from "../utils/bem";
-import type { GetTabListScrollToOptions } from "./utils";
-import { getTabListScrollToOptions } from "./utils";
+} from "../button/Button.js";
+import { Button } from "../button/Button.js";
+import { useIcon } from "../icon/IconProvider.js";
+import type { PropsWithRef } from "../types.js";
+import { useDir } from "../typography/WritingDirection.js";
+import { useIntersectionObserver } from "../useIntersectionObserver.js";
+import { applyRef } from "../utils/applyRef.js";
+import { bem } from "../utils/bem.js";
+import type { GetTabListScrollToOptions } from "./utils.js";
+import { getTabListScrollToOptions } from "./utils.js";
 
 const styles = bem("rmd-tablist-button");
 

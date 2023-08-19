@@ -1,11 +1,11 @@
 "use client";
 import type { ReactElement, ReactNode } from "react";
 import { createContext, useContext, useEffect, useMemo } from "react";
-import type { UseStateInitializer, UseStateSetter } from "../types";
-import { useLocalStorage } from "../useLocalStorage";
-import { useMediaQuery } from "../useMediaQuery";
-import { backgroundColorVar } from "./cssVars";
-import { getContrastRatio } from "./utils";
+import type { UseStateInitializer, UseStateSetter } from "../types.js";
+import { useLocalStorage } from "../useLocalStorage.js";
+import { useMediaQuery } from "../useMediaQuery.js";
+import { backgroundColorVar } from "./cssVars.js";
+import { getContrastRatio } from "./utils.js";
 
 /** @remarks \@since 6.0.0 */
 export type ColorScheme = "light" | "dark";

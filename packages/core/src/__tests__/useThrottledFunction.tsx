@@ -1,9 +1,16 @@
+import { describe, expect, it, jest } from "@jest/globals";
 import type { MutableRefObject, ReactElement } from "react";
 import { useEffect, useState } from "react";
-import { act, fireEvent, render, userEvent, waitFor } from "../test-utils";
+import {
+  act,
+  fireEvent,
+  render,
+  userEvent,
+  waitFor,
+} from "../test-utils/index.js";
 
-import { TextField } from "../form/TextField";
-import { useThrottledFunction } from "../useThrottledFunction";
+import { TextField } from "../form/TextField.js";
+import { useThrottledFunction } from "../useThrottledFunction.js";
 
 function SyncTest(): ReactElement {
   const [throttledValue, setThrottledValue] = useState("");

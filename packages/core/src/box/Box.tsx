@@ -1,7 +1,7 @@
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
-import type { BoxOptions } from "./styles";
-import { box } from "./styles";
+import type { BoxOptions } from "./styles.js";
+import { box } from "./styles.js";
 
 /**
  * @remarks \@since 6.0.0

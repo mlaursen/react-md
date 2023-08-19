@@ -1,4 +1,5 @@
-import { responsiveItem } from "../styles";
+import { describe, expect, it } from "@jest/globals";
+import { responsiveItem } from "../styles.js";
 
 describe("responsiveItem styles", () => {
   it("should return the correct class name", () => {

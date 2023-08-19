@@ -2,16 +2,16 @@
 import { cnb } from "cnbuilder";
 import type { CSSProperties, ReactNode } from "react";
 import { forwardRef } from "react";
-import type { CardProps } from "../card/Card";
-import { Card } from "../card/Card";
-import type { CardContentProps } from "../card/CardContent";
-import { CardContent } from "../card/CardContent";
-import { useCollapseTransition } from "../transition/useCollapseTransition";
-import type { PropsWithRef } from "../types";
-import { useEnsuredId } from "../useEnsuredId";
-import { bem } from "../utils/bem";
-import type { ExpansionPanelHeaderProps } from "./ExpansionPanelHeader";
-import { ExpansionPanelHeader } from "./ExpansionPanelHeader";
+import type { CardProps } from "../card/Card.js";
+import { Card } from "../card/Card.js";
+import type { CardContentProps } from "../card/CardContent.js";
+import { CardContent } from "../card/CardContent.js";
+import { useCollapseTransition } from "../transition/useCollapseTransition.js";
+import type { PropsWithRef } from "../types.js";
+import { useEnsuredId } from "../useEnsuredId.js";
+import { bem } from "../utils/bem.js";
+import type { ExpansionPanelHeaderProps } from "./ExpansionPanelHeader.js";
+import { ExpansionPanelHeader } from "./ExpansionPanelHeader.js";
 
 const styles = bem("rmd-expansion-panel");
 

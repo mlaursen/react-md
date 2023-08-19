@@ -1,13 +1,14 @@
+import { describe, expect, it } from "@jest/globals";
 import type { FC, ReactElement, ReactNode } from "react";
 import { createRef } from "react";
-import { render, userEvent } from "../../test-utils";
+import { render, userEvent } from "../../test-utils/index.js";
 
-import { useCheckboxGroup } from "../../form/useCheckboxGroup";
-import { ElementInteractionProvider } from "../../interaction/ElementInteractionProvider";
-import { Table } from "../Table";
-import { TableBody } from "../TableBody";
-import { TableCheckbox } from "../TableCheckbox";
-import { TableRow } from "../TableRow";
+import { useCheckboxGroup } from "../../form/useCheckboxGroup.js";
+import { ElementInteractionProvider } from "../../interaction/ElementInteractionProvider.js";
+import { Table } from "../Table.js";
+import { TableBody } from "../TableBody.js";
+import { TableCheckbox } from "../TableCheckbox.js";
+import { TableRow } from "../TableRow.js";
 
 const Wrapper: FC<{ children: ReactNode }> = ({ children }) => (
   <Table>

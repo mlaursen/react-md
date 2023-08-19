@@ -1,15 +1,16 @@
+import { beforeEach, describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { act, render } from "../../test-utils";
+import { act, render } from "../../test-utils/index.js";
 
-import type { PropsWithRef } from "../../types";
-import type { TableProps } from "../Table";
-import { Table, table } from "../Table";
-import { TableBody } from "../TableBody";
-import { TableCell } from "../TableCell";
-import { TableContainer } from "../TableContainer";
-import { TableFooter } from "../TableFooter";
-import { TableHeader } from "../TableHeader";
-import { TableRow } from "../TableRow";
+import type { PropsWithRef } from "../../types.js";
+import type { TableProps } from "../Table.js";
+import { Table, table } from "../Table.js";
+import { TableBody } from "../TableBody.js";
+import { TableCell } from "../TableCell.js";
+import { TableContainer } from "../TableContainer.js";
+import { TableFooter } from "../TableFooter.js";
+import { TableHeader } from "../TableHeader.js";
+import { TableRow } from "../TableRow.js";
 
 describe("Table", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {

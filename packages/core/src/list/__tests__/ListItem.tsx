@@ -1,12 +1,18 @@
+import { describe, expect, it, jest } from "@jest/globals";
 import type { ReactElement, Ref } from "react";
 import { createRef } from "react";
-import { fireEvent, render, userEvent, waitFor } from "../../test-utils";
+import {
+  fireEvent,
+  render,
+  userEvent,
+  waitFor,
+} from "../../test-utils/index.js";
 
-import { ElementInteractionProvider } from "../../interaction/ElementInteractionProvider";
-import { UserInteractionModeProvider } from "../../interaction/UserInteractionModeProvider";
-import { List } from "../List";
-import type { ListItemProps } from "../ListItem";
-import { ListItem } from "../ListItem";
+import { ElementInteractionProvider } from "../../interaction/ElementInteractionProvider.js";
+import { UserInteractionModeProvider } from "../../interaction/UserInteractionModeProvider.js";
+import { List } from "../List.js";
+import type { ListItemProps } from "../ListItem.js";
+import { ListItem } from "../ListItem.js";
 
 interface TestProps extends ListItemProps {
   nodeRef?: Ref<HTMLLIElement>;

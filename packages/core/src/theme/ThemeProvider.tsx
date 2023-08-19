@@ -1,9 +1,9 @@
 "use client";
 import type { ReactElement, ReactNode } from "react";
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import { useSsr } from "../SsrProvider";
-import type { UseStateSetter } from "../types";
-import { useColorScheme } from "./ColorSchemeProvider";
+import { useSsr } from "../SsrProvider.js";
+import type { UseStateSetter } from "../types.js";
+import { useColorScheme } from "./ColorSchemeProvider.js";
 import {
   black,
   blue500,
@@ -11,7 +11,7 @@ import {
   orangeAccent200,
   orangeAccent400,
   red500,
-} from "./colors";
+} from "./colors.js";
 import {
   backgroundColorVar,
   errorColorVar,
@@ -28,7 +28,7 @@ import {
   textPrimaryColorVar,
   textSecondaryColorVar,
   warningColorVar,
-} from "./cssVars";
+} from "./cssVars.js";
 
 declare module "react" {
   interface CSSProperties {

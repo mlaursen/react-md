@@ -1,9 +1,17 @@
+import {
+  afterEach,
+  beforeAll,
+  describe,
+  expect,
+  it,
+  jest,
+} from "@jest/globals";
 import type { ReactElement } from "react";
 import { useState } from "react";
-import { act, fireEvent, render } from "../../test-utils";
+import { act, fireEvent, render } from "../../test-utils/index.js";
 
-import type { CrossFadeProps } from "../CrossFade";
-import { CrossFade } from "../CrossFade";
+import type { CrossFadeProps } from "../CrossFade.js";
+import { CrossFade } from "../CrossFade.js";
 
 interface TestProps
   extends Omit<CrossFadeProps<HTMLElement>, "transitionIn" | "children"> {

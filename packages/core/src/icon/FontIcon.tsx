@@ -1,7 +1,7 @@
 import type { HTMLAttributes, ReactNode } from "react";
 import { forwardRef } from "react";
-import type { FontIconClassNameOptions } from "./styles";
-import { icon } from "./styles";
+import type { FontIconClassNameOptions } from "./styles.js";
+import { icon } from "./styles.js";
 
 export interface FontIconProps
   extends Omit<HTMLAttributes<HTMLElement>, "color">,

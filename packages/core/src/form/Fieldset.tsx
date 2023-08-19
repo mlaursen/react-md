@@ -1,7 +1,7 @@
 import { cnb } from "cnbuilder";
 import type { FieldsetHTMLAttributes } from "react";
 import { forwardRef } from "react";
-import { bem } from "../utils/bem";
+import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-fieldset");
 

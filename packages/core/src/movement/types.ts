@@ -6,7 +6,11 @@ import type {
   MouseEvent,
   MouseEventHandler,
 } from "react";
-import type { NonNullMutableRef, NonNullRef, UseStateSetter } from "../types";
+import type {
+  NonNullMutableRef,
+  NonNullRef,
+  UseStateSetter,
+} from "../types.js";
 
 /**
  * Set this to `"roving"` when:

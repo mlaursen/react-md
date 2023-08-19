@@ -2,20 +2,20 @@
 import { cnb } from "cnbuilder";
 import type { AriaRole, HTMLAttributes, ReactElement, ReactNode } from "react";
 import { forwardRef, isValidElement } from "react";
-import type { ButtonProps } from "../button/Button";
+import type { ButtonProps } from "../button/Button.js";
 import type {
   CSSTransitionClassNames,
   TransitionCallbacks,
   TransitionTimeout,
-} from "../transition/types";
-import { useScaleTransition } from "../transition/useScaleTransition";
-import type { PropsWithRef } from "../types";
-import { useEnsuredId } from "../useEnsuredId";
-import { bem } from "../utils/bem";
-import { ToastActionButton } from "./ToastActionButton";
-import { ToastCloseButton } from "./ToastCloseButton";
-import type { ToastContentProps } from "./ToastContent";
-import { ToastContent } from "./ToastContent";
+} from "../transition/types.js";
+import { useScaleTransition } from "../transition/useScaleTransition.js";
+import type { PropsWithRef } from "../types.js";
+import { useEnsuredId } from "../useEnsuredId.js";
+import { bem } from "../utils/bem.js";
+import { ToastActionButton } from "./ToastActionButton.js";
+import { ToastCloseButton } from "./ToastCloseButton.js";
+import type { ToastContentProps } from "./ToastContent.js";
+import { ToastContent } from "./ToastContent.js";
 
 declare module "react" {
   interface CSSProperties {

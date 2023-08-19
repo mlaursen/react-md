@@ -1,4 +1,4 @@
-import type { ListItemChildrenProps, ListItemHeight } from "./types";
+import type { ListItemChildrenProps, ListItemHeight } from "./types.js";
 
 /**
  * @remarks \@since 6.0.0

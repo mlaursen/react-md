@@ -2,34 +2,34 @@
 import { cnb } from "cnbuilder";
 import type { ChangeEvent, ReactElement, ReactNode, Ref } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useIcon } from "../icon/IconProvider";
-import { IconRotator } from "../icon/IconRotator";
-import type { MenuProps } from "../menu/Menu";
-import { Menu } from "../menu/Menu";
-import { findMatchIndex } from "../movement/findMatchIndex";
+import { useIcon } from "../icon/IconProvider.js";
+import { IconRotator } from "../icon/IconRotator.js";
+import type { MenuProps } from "../menu/Menu.js";
+import { Menu } from "../menu/Menu.js";
+import { findMatchIndex } from "../movement/findMatchIndex.js";
 import {
   KeyboardMovementProvider,
   useKeyboardMovementProvider,
-} from "../movement/useKeyboardMovementProvider";
-import { isSearchableEvent } from "../movement/utils";
-import { BELOW_CENTER_ANCHOR } from "../positioning/constants";
+} from "../movement/useKeyboardMovementProvider.js";
+import { isSearchableEvent } from "../movement/utils.js";
+import { BELOW_CENTER_ANCHOR } from "../positioning/constants.js";
 import type {
   TransitionEnterHandler,
   TransitionExitHandler,
-} from "../transition/types";
-import { useEnsuredId } from "../useEnsuredId";
-import { useEnsuredRef } from "../useEnsuredRef";
-import { useToggle } from "../useToggle";
-import { bem } from "../utils/bem";
-import { loop } from "../utils/loop";
-import { useFormTheme } from "./FormThemeProvider";
-import { SelectValue } from "./SelectValue";
-import type { TextFieldProps } from "./TextField";
-import { TextField } from "./TextField";
-import { extractOptionsFromChildren } from "./selectUtils";
-import type { FormFieldOptions, UserAgentAutoCompleteProps } from "./types";
-import { ListboxProvider } from "./useListboxProvider";
-import { triggerManualChangeEvent, tryToSubmitRelatedForm } from "./utils";
+} from "../transition/types.js";
+import { useEnsuredId } from "../useEnsuredId.js";
+import { useEnsuredRef } from "../useEnsuredRef.js";
+import { useToggle } from "../useToggle.js";
+import { bem } from "../utils/bem.js";
+import { loop } from "../utils/loop.js";
+import { useFormTheme } from "./FormThemeProvider.js";
+import { SelectValue } from "./SelectValue.js";
+import type { TextFieldProps } from "./TextField.js";
+import { TextField } from "./TextField.js";
+import { extractOptionsFromChildren } from "./selectUtils.js";
+import type { FormFieldOptions, UserAgentAutoCompleteProps } from "./types.js";
+import { ListboxProvider } from "./useListboxProvider.js";
+import { triggerManualChangeEvent, tryToSubmitRelatedForm } from "./utils.js";
 
 const styles = bem("rmd-select");
 const EMPTY_STRING = "" as const;

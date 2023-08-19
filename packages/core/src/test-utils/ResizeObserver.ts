@@ -1,4 +1,5 @@
-import { resizeObserverManager } from "../useResizeObserver";
+import { afterEach, jest } from "@jest/globals";
+import { resizeObserverManager } from "../useResizeObserver.js";
 
 /**
  * @remarks \@since 6.0.0

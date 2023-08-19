@@ -1,10 +1,11 @@
+import { describe, expect, it } from "@jest/globals";
 import type { HTMLAttributes, ReactElement } from "react";
 import { forwardRef } from "react";
-import { render } from "../../test-utils";
+import { render } from "../../test-utils/index.js";
 
-import { Link } from "../../link/Link";
-import { List } from "../List";
-import { ListItemLink } from "../ListItemLink";
+import { Link } from "../../link/Link.js";
+import { List } from "../List.js";
+import { ListItemLink } from "../ListItemLink.js";
 
 describe("ListItemLink", () => {
   it("should render as an <a> element by default", () => {

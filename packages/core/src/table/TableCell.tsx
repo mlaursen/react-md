@@ -7,16 +7,16 @@ import type {
   ThHTMLAttributes,
 } from "react";
 import { forwardRef } from "react";
-import { useIcon } from "../icon/IconProvider";
-import type { PropsWithRef } from "../types";
-import type { SortOrder } from "./TableCellContent";
-import { TableCellContent } from "./TableCellContent";
+import { useIcon } from "../icon/IconProvider.js";
+import type { PropsWithRef } from "../types.js";
+import type { SortOrder } from "./TableCellContent.js";
+import { TableCellContent } from "./TableCellContent.js";
 import type {
   TableCellConfig,
   TableCellHorizontalAlignment,
   TableCellVerticalAlignment,
-} from "./TableConfigurationProvider";
-import { useTableConfig } from "./TableConfigurationProvider";
+} from "./TableConfigurationProvider.js";
+import { useTableConfig } from "./TableConfigurationProvider.js";
 
 export type TableCellAttributes = Omit<
   | TdHTMLAttributes<HTMLTableCellElement>

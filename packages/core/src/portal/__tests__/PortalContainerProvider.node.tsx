@@ -1,8 +1,9 @@
 /** @jest-environment node */
+import { describe, expect, it } from "@jest/globals";
 import { renderToString } from "react-dom/server";
-import { Portal } from "../Portal";
+import { Portal } from "../Portal.js";
 
-import { PortalContainerProvider } from "../PortalContainerProvider";
+import { PortalContainerProvider } from "../PortalContainerProvider.js";
 
 describe("PortalContainerProvider", () => {
   it("should not render portals server side", () => {

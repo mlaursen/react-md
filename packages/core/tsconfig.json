@@ -6,7 +6,7 @@
     "noEmit": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "moduleResolution": "node16",
     "resolveJsonModule": true,
     "downlevelIteration": true,
     "noFallthroughCasesInSwitch": true,

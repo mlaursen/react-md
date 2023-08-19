@@ -1,4 +1,4 @@
-import type { KeyboardMovementConfig } from "./types";
+import type { KeyboardMovementConfig } from "./types.js";
 
 /**
  * Most custom keyboard functionality use these keys.

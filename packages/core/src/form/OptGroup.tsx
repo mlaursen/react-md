@@ -1,12 +1,12 @@
 "use client";
 import type { ReactNode } from "react";
 import { forwardRef } from "react";
-import type { ListElement, ListProps } from "../list/List";
-import type { ListSubheaderProps } from "../list/ListSubheader";
-import { ListSubheader } from "../list/ListSubheader";
-import { MenuItemGroup } from "../menu/MenuItemGroup";
-import type { PropsWithRef } from "../types";
-import { useEnsuredId } from "../useEnsuredId";
+import type { ListElement, ListProps } from "../list/List.js";
+import type { ListSubheaderProps } from "../list/ListSubheader.js";
+import { ListSubheader } from "../list/ListSubheader.js";
+import { MenuItemGroup } from "../menu/MenuItemGroup.js";
+import type { PropsWithRef } from "../types.js";
+import { useEnsuredId } from "../useEnsuredId.js";
 
 /** @remarks \@since 6.0.0 */
 export interface OptGroupProps extends Omit<ListProps, "role"> {

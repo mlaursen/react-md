@@ -2,19 +2,19 @@
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useCallback, useMemo, useState } from "react";
-import { useEnsuredRef } from "../useEnsuredRef";
-import { useIntersectionObserver } from "../useIntersectionObserver";
-import { bem } from "../utils/bem";
+import { useEnsuredRef } from "../useEnsuredRef.js";
+import { useIntersectionObserver } from "../useIntersectionObserver.js";
+import { bem } from "../utils/bem.js";
 import type {
   TableCellConfig,
   TableConfigContext,
-} from "./TableConfigurationProvider";
+} from "./TableConfigurationProvider.js";
 import {
   TableConfigProvider,
   useTableConfig,
-} from "./TableConfigurationProvider";
-import { useTableContainer } from "./TableContainerProvider";
-import type { TableStickySectionProps } from "./types";
+} from "./TableConfigurationProvider.js";
+import { useTableContainer } from "./TableContainerProvider.js";
+import type { TableStickySectionProps } from "./types.js";
 
 const styles = bem("rmd-tfoot");
 

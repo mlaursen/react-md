@@ -1,20 +1,20 @@
 import type { CSSProperties, ElementType, ReactNode } from "react";
-import type { AppBarProps } from "../app-bar/AppBar";
-import type { AppBarTitleProps } from "../app-bar/AppBarTitle";
-import type { ButtonProps } from "../button/Button";
-import type { SheetProps } from "../sheet/Sheet";
+import type { AppBarProps } from "../app-bar/AppBar.js";
+import type { AppBarTitleProps } from "../app-bar/AppBarTitle.js";
+import type { ButtonProps } from "../button/Button.js";
+import type { SheetProps } from "../sheet/Sheet.js";
 import type {
   CSSTransitionClassNames,
   TransitionTimeout,
-} from "../transition/types";
-import type { TreeItemRendererProps } from "../tree/DefaultTreeItemRenderer";
-import type { TreeProps } from "../tree/Tree";
+} from "../transition/types.js";
+import type { TreeItemRendererProps } from "../tree/DefaultTreeItemRenderer.js";
+import type { TreeProps } from "../tree/Tree.js";
 import type {
   DefaultTreeItemNode,
   TreeData,
   TreeItemNode,
-} from "../tree/types";
-import type { PropsWithRef } from "../types";
+} from "../tree/types.js";
+import type { PropsWithRef } from "../types.js";
 
 /**
  * Due to the limited screen size for phones, the layout only supports having

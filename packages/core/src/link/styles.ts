@@ -1,5 +1,5 @@
 import { cnb } from "cnbuilder";
-import { bem } from "../utils/bem";
+import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-link");
 

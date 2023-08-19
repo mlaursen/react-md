@@ -1,7 +1,7 @@
 "use client";
 import type { ChangeEventHandler, RefCallback, RefObject } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useResizeObserver } from "../useResizeObserver";
+import { useResizeObserver } from "../useResizeObserver.js";
 
 // this is the default of 1.5rem line-height in the styles
 const DEFAULT_LINE_HEIGHT = "24";

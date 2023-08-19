@@ -1,10 +1,10 @@
 import type { ReactElement } from "react";
-import { Divider } from "../divider/Divider";
-import { ListSubheader } from "../list/ListSubheader";
-import type { TreeItemRendererProps } from "../tree/DefaultTreeItemRenderer";
-import { DefaultTreeItemRenderer } from "../tree/DefaultTreeItemRenderer";
-import type { TreeItemNode } from "../tree/types";
-import type { LayoutNavigationItem } from "./types";
+import { Divider } from "../divider/Divider.js";
+import { ListSubheader } from "../list/ListSubheader.js";
+import type { TreeItemRendererProps } from "../tree/DefaultTreeItemRenderer.js";
+import { DefaultTreeItemRenderer } from "../tree/DefaultTreeItemRenderer.js";
+import type { TreeItemNode } from "../tree/types.js";
+import type { LayoutNavigationItem } from "./types.js";
 
 export function DefaultLayoutNavigationItemRenderer<
   T extends TreeItemNode = LayoutNavigationItem,

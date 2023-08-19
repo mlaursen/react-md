@@ -1,4 +1,4 @@
-import type { IntersectionObserverHookOptions } from "../useIntersectionObserver";
+import type { IntersectionObserverHookOptions } from "../useIntersectionObserver.js";
 
 /** @remarks \@since 6.0.0 */
 export type TableStickySectionOptions = Pick<

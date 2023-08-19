@@ -1,7 +1,7 @@
 "use client";
 import type { ReactNode } from "react";
 import { Children } from "react";
-import { useElementInteractionContext } from "./ElementInteractionProvider";
+import { useElementInteractionContext } from "./ElementInteractionProvider.js";
 
 /**
  * This hook is used to wrap any `number` and `string` children with a `<span>`

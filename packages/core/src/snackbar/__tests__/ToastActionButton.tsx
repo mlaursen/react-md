@@ -1,9 +1,15 @@
+import { describe, expect, it, jest } from "@jest/globals";
 import { createRef, type MouseEvent } from "react";
-import { render, rmdRender, screen, userEvent } from "../../test-utils";
+import {
+  render,
+  rmdRender,
+  screen,
+  userEvent,
+} from "../../test-utils/index.js";
 
-import { ToastActionButton } from "../ToastActionButton";
-import type { CurrentToastActions } from "../useCurrentToastActions";
-import { CurrentToastActionsProvider } from "../useCurrentToastActions";
+import { ToastActionButton } from "../ToastActionButton.js";
+import type { CurrentToastActions } from "../useCurrentToastActions.js";
+import { CurrentToastActionsProvider } from "../useCurrentToastActions.js";
 
 describe("ToastActionButton", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {

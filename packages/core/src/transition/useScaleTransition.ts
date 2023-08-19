@@ -5,8 +5,8 @@ import type {
   CSSTransitionHookReturnValue,
   PreconfiguredCSSTransitionOptions,
   TransitionTimeoutObject,
-} from "./types";
-import { useCSSTransition } from "./useCSSTransition";
+} from "./types.js";
+import { useCSSTransition } from "./useCSSTransition.js";
 
 /**
  * The default {@link CSSTransitionClassNames} for a horizontal scale

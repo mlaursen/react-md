@@ -7,22 +7,22 @@ import {
   useMemo,
   useState,
 } from "react";
-import { useAppSize } from "../AppSizeProvider";
-import type { CssPosition } from "../types";
-import { useEnsuredId } from "../useEnsuredId";
+import { useAppSize } from "../AppSizeProvider.js";
+import type { CssPosition } from "../types.js";
+import { useEnsuredId } from "../useEnsuredId.js";
 import {
   DEFAULT_DESKTOP_LAYOUT,
   DEFAULT_LANDSCAPE_TABLET_LAYOUT,
   DEFAULT_PHONE_LAYOUT,
   DEFAULT_TABLET_LAYOUT,
-} from "./constants";
-import type { LayoutConfiguration, SupportedWideLayout } from "./types";
+} from "./constants.js";
+import type { LayoutConfiguration, SupportedWideLayout } from "./types.js";
 import {
   getLayoutType,
   isMiniLayout,
   isPersistentLayout,
   isToggleableLayout,
-} from "./utils";
+} from "./utils.js";
 
 /** @internal */
 const noop = (): void => {

@@ -5,8 +5,8 @@ import { Children, cloneElement } from "react";
 import type {
   CSSTransitionComponentImplementation,
   CSSTransitionHookOptions,
-} from "./types";
-import { useCSSTransition } from "./useCSSTransition";
+} from "./types.js";
+import { useCSSTransition } from "./useCSSTransition.js";
 
 /**
  * @typeParam E - An HTMLElement type used for the ref required for the

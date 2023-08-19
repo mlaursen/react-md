@@ -4,12 +4,12 @@ import { createContext, useContext } from "react";
 import type {
   HoverModeConfiguration,
   HoverModeContext,
-} from "../hoverMode/useHoverModeProvider";
+} from "../hoverMode/useHoverModeProvider.js";
 import {
   createHoverModeContext,
   useHoverModeProvider,
-} from "../hoverMode/useHoverModeProvider";
-import { DEFAULT_TOOLTIP_DELAY } from "./constants";
+} from "../hoverMode/useHoverModeProvider.js";
+import { DEFAULT_TOOLTIP_DELAY } from "./constants.js";
 
 /** @remarks \@since 6.0.0 */
 export type TooltipHoverModeContext = HoverModeContext;

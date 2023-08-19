@@ -1,8 +1,9 @@
+import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { render } from "../../test-utils";
+import { render } from "../../test-utils/index.js";
 
-import { textContainer, TextContainer } from "../TextContainer";
-import { Typography } from "../Typography";
+import { textContainer, TextContainer } from "../TextContainer.js";
+import { Typography } from "../Typography.js";
 
 describe("TextContainer", () => {
   it("should render correctly and apply the correct class names", () => {

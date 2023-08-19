@@ -1,7 +1,7 @@
 import { cnb } from "cnbuilder";
-import type { ThemeOrTextColor } from "../theme/types";
-import { bem } from "../utils/bem";
-import type { MaterialIconFamily, MaterialSymbolFamily } from "./material";
+import type { ThemeOrTextColor } from "../theme/types.js";
+import { bem } from "../utils/bem.js";
+import type { MaterialIconFamily, MaterialSymbolFamily } from "./material.js";
 
 declare module "react" {
   interface CSSProperties {

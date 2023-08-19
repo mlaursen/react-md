@@ -1,10 +1,11 @@
-import type { CSSTransitionClassNamesObject } from "../types";
-import type { TransitionTimeoutOptions } from "../utils";
+import { describe, expect, it, jest } from "@jest/globals";
+import type { CSSTransitionClassNamesObject } from "../types.js";
+import type { TransitionTimeoutOptions } from "../utils.js";
 import {
   getElementSizing,
   getTransitionClassNames,
   getTransitionTimeout,
-} from "../utils";
+} from "../utils.js";
 
 describe("getTransitionTimeout", () => {
   it("should always return an object", () => {

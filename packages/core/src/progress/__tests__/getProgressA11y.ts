@@ -1,4 +1,5 @@
-import { getProgressA11y } from "../getProgressA11y";
+import { describe, expect, it } from "@jest/globals";
+import { getProgressA11y } from "../getProgressA11y.js";
 
 describe("getProgressA11y", () => {
   it("should return undefined if the progressing arg is false", () => {

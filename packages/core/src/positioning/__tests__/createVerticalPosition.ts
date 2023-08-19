@@ -1,11 +1,12 @@
+import { describe, expect, it } from "@jest/globals";
 import type {
   CreateVerticalPositionOptions,
   FixConfig,
-} from "../createVerticalPosition";
+} from "../createVerticalPosition.js";
 import {
   createAnchoredAbove,
   createVerticalPosition,
-} from "../createVerticalPosition";
+} from "../createVerticalPosition.js";
 
 const containerRect1: DOMRect = {
   left: 100,

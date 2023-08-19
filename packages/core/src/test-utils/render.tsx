@@ -6,12 +6,8 @@ import type {
 } from "@testing-library/react";
 import { render } from "@testing-library/react";
 import { Fragment, type ReactElement } from "react";
-import type { CoreProvidersProps } from "../CoreProviders";
-import { CoreProviders } from "../CoreProviders";
-
-export * from "@testing-library/react";
-export * from "@testing-library/user-event";
-export { default as userEvent } from "@testing-library/user-event";
+import type { CoreProvidersProps } from "../CoreProviders.js";
+import { CoreProviders } from "../CoreProviders.js";
 
 export interface ReactMDRenderOptions<
   Q extends Queries = typeof queries,

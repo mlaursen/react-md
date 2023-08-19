@@ -1,6 +1,7 @@
-import { render } from "../../test-utils";
+import { describe, expect, it } from "@jest/globals";
+import { render } from "../../test-utils/index.js";
 
-import { TextIconSpacing } from "../TextIconSpacing";
+import { TextIconSpacing } from "../TextIconSpacing.js";
 
 describe("TextIconSpacing", () => {
   it("should be able to render without any children or icon even though it's worthless", () => {

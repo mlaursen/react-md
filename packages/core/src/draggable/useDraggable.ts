@@ -1,12 +1,12 @@
 "use client";
 import { useState } from "react";
-import type { UseStateInitializer, UseStateSetter } from "../types";
+import type { UseStateInitializer, UseStateSetter } from "../types.js";
 import {
   useControlledDraggable,
   type BaseDraggableOptions,
   type ControlledDraggableImplementation,
-} from "./useControlledDraggable";
-import { getDraggableDefaultValue } from "./utils";
+} from "./useControlledDraggable.js";
+import { getDraggableDefaultValue } from "./utils.js";
 
 /**
  * @remarks \@since 6.0.0

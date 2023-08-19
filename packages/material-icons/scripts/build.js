@@ -38,6 +38,8 @@ const promises = components.map(async (name) => {
   });
 
   await writeFile(name.replace(".tsx", ".js"), code);
+  // I should be able to create a single .d.ts file in the future once esm is
+  // the standard
   await writeFile(name.replace(".tsx", ".d.ts"), TYPE_DEFINITION);
 });
 

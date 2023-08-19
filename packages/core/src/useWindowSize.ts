@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { useResizeListener } from "./useResizeListener";
+import { useResizeListener } from "./useResizeListener.js";
 
 /**
  * @remarks \@since 6.0.0

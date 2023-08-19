@@ -3,8 +3,8 @@ import {
   BELOW_CENTER_ANCHOR,
   CENTER_LEFT_ANCHOR,
   CENTER_RIGHT_ANCHOR,
-} from "../positioning/constants";
-import type { PositionAnchor, SimplePosition } from "../positioning/types";
+} from "../positioning/constants.js";
+import type { PositionAnchor, SimplePosition } from "../positioning/types.js";
 
 /** @internal */
 export function getAnchor(position: SimplePosition): PositionAnchor {

@@ -1,7 +1,7 @@
 import { cnb } from "cnbuilder";
 import type { ReactElement } from "react";
-import { bem } from "../utils/bem";
-import type { OptionProps } from "./Option";
+import { bem } from "../utils/bem.js";
+import type { OptionProps } from "./Option.js";
 
 const styles = bem("rmd-select-value");
 

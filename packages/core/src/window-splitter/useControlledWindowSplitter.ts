@@ -6,10 +6,10 @@ import type {
   DraggableKeyboardEventHandlers,
   DraggableMouseEventHandlers,
   DraggableTouchEventHandlers,
-} from "../draggable/useControlledDraggable";
-import { useControlledDraggable } from "../draggable/useControlledDraggable";
-import { useEnsuredId } from "../useEnsuredId";
-import { getPercentage } from "../utils/getPercentage";
+} from "../draggable/useControlledDraggable.js";
+import { useControlledDraggable } from "../draggable/useControlledDraggable.js";
+import { useEnsuredId } from "../useEnsuredId.js";
+import { getPercentage } from "../utils/getPercentage.js";
 
 declare module "react" {
   interface CSSProperties {
@@ -26,7 +26,7 @@ declare module "react" {
  * @remarks \@since 6.0.0
  */
 export interface ControlledWindowSplitterOptions<
-  E extends HTMLElement = HTMLButtonElement
+  E extends HTMLElement = HTMLButtonElement,
 > extends Omit<
     ControlledDraggableOptions<E>,
     keyof DraggableTouchEventHandlers<E>
@@ -111,7 +111,7 @@ export interface ControlledWindowSplitterImplementation<E extends HTMLElement>
  * @remarks \@since 6.0.0
  */
 export function useControlledWindowSplitter<
-  E extends HTMLElement = HTMLButtonElement
+  E extends HTMLElement = HTMLButtonElement,
 >(
   options: ControlledWindowSplitterOptions<E>
 ): ControlledWindowSplitterImplementation<E> {

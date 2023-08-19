@@ -1,8 +1,9 @@
+import { describe, expect, it } from "@jest/globals";
 import type { ReactElement } from "react";
-import { render } from "../test-utils";
+import { render } from "../test-utils/index.js";
 
-import { NoSsr } from "../NoSsr";
-import { SsrProvider, useSsr } from "../SsrProvider";
+import { NoSsr } from "../NoSsr.js";
+import { SsrProvider, useSsr } from "../SsrProvider.js";
 
 function Content(): ReactElement {
   return <p>Some Text</p>;

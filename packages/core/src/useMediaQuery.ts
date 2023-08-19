@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useSsr } from "./SsrProvider";
+import { useSsr } from "./SsrProvider.js";
 
 /**
  * @example

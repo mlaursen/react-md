@@ -1,7 +1,7 @@
 "use client";
 import { useCallback, useEffect, useRef } from "react";
-import type { AnyFunction } from "./types";
-import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect";
+import type { AnyFunction } from "./types.js";
+import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect.js";
 
 /**
  * @remarks \@since 6.0.0

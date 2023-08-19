@@ -1,5 +1,6 @@
-import type { TreeData } from "../types";
-import { getChildTreeItems, getTreeItemsFrom } from "../utils";
+import { describe, expect, it } from "@jest/globals";
+import type { TreeData } from "../types.js";
+import { getChildTreeItems, getTreeItemsFrom } from "../utils.js";
 
 const item1 = {
   itemId: "item-id-1",

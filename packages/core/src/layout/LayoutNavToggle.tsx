@@ -1,13 +1,13 @@
 import { cnb } from "cnbuilder";
 import { forwardRef } from "react";
-import { Button } from "../button/Button";
-import { useIcon } from "../icon/IconProvider";
-import { DEFAULT_SHEET_TIMEOUT } from "../sheet/Sheet";
-import { useCSSTransition } from "../transition/useCSSTransition";
-import { useLayoutConfig } from "./LayoutProvider";
-import { DEFAULT_LAYOUT_NAV_TOGGLE_CLASSNAMES } from "./constants";
-import type { LayoutNavToggleProps } from "./types";
-import { isTemporaryLayout, isToggleableLayout } from "./utils";
+import { Button } from "../button/Button.js";
+import { useIcon } from "../icon/IconProvider.js";
+import { DEFAULT_SHEET_TIMEOUT } from "../sheet/Sheet.js";
+import { useCSSTransition } from "../transition/useCSSTransition.js";
+import { useLayoutConfig } from "./LayoutProvider.js";
+import { DEFAULT_LAYOUT_NAV_TOGGLE_CLASSNAMES } from "./constants.js";
+import type { LayoutNavToggleProps } from "./types.js";
+import { isTemporaryLayout, isToggleableLayout } from "./utils.js";
 
 /**
  * This is the default implementation for the navigation toggle button within

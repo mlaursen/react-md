@@ -1,12 +1,12 @@
-import type { YCoordConfig } from "./utils";
+import type { YCoordConfig } from "./utils.js";
 import {
   getAboveCoord,
   getBelowCoord,
   getBottomCoord,
   getCenterYCoord,
   getTopCoord,
-} from "./utils";
-import type { FixedPositionOptions, VerticalPosition } from "./types";
+} from "./utils.js";
+import type { FixedPositionOptions, VerticalPosition } from "./types.js";
 
 /** @internal */
 interface YPosition {

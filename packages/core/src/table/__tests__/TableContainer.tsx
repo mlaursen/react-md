@@ -1,7 +1,8 @@
+import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { render } from "../../test-utils";
+import { render } from "../../test-utils/index.js";
 
-import { TableContainer } from "../TableContainer";
+import { TableContainer } from "../TableContainer.js";
 
 describe("TableContainer", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {

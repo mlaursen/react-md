@@ -5,10 +5,10 @@ import type {
   TransitionCallbacks,
   TransitionEnterHandler,
   TransitionExitHandler,
-} from "../transition/types";
-import { useEnsuredRef } from "../useEnsuredRef";
-import type { FocusElementWithinType } from "./utils";
-import { focusElementWithin, getFocusableElements } from "./utils";
+} from "../transition/types.js";
+import { useEnsuredRef } from "../useEnsuredRef.js";
+import type { FocusElementWithinType } from "./utils.js";
+import { focusElementWithin, getFocusableElements } from "./utils.js";
 
 const noop = (): void => {
   // do nothing

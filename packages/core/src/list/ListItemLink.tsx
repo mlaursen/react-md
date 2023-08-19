@@ -1,16 +1,16 @@
 "use client";
 import type { AnchorHTMLAttributes, HTMLAttributes } from "react";
 import { forwardRef } from "react";
-import { RippleContainer } from "../interaction/RippleContainer";
-import { useElementInteraction } from "../interaction/useElementInteraction";
-import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren";
-import type { CustomLinkComponent } from "../link/LinkProvider";
-import type { PropsWithRef } from "../types";
-import { ListItemChildren } from "./ListItemChildren";
-import { getListItemHeight } from "./getListItemHeight";
-import type { ListItemClassNameOptions } from "./listItemStyles";
-import { listItem } from "./listItemStyles";
-import type { ListItemChildrenProps } from "./types";
+import { RippleContainer } from "../interaction/RippleContainer.js";
+import { useElementInteraction } from "../interaction/useElementInteraction.js";
+import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
+import type { CustomLinkComponent } from "../link/LinkProvider.js";
+import type { PropsWithRef } from "../types.js";
+import { ListItemChildren } from "./ListItemChildren.js";
+import { getListItemHeight } from "./getListItemHeight.js";
+import type { ListItemClassNameOptions } from "./listItemStyles.js";
+import { listItem } from "./listItemStyles.js";
+import type { ListItemChildrenProps } from "./types.js";
 
 export interface ListItemLinkProps
   extends AnchorHTMLAttributes<HTMLAnchorElement>,

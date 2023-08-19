@@ -1,3 +1,4 @@
+import { describe, expect, it } from "@jest/globals";
 import {
   card,
   cardFooter,
@@ -5,7 +6,7 @@ import {
   cardHeaderContent,
   cardSubtitle,
   cardTitle,
-} from "../styles";
+} from "../styles.js";
 
 describe("card", () => {
   it("should be callable without any arguments", () => {

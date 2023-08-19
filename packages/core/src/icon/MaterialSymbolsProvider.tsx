@@ -1,7 +1,7 @@
 "use client";
 import type { CSSProperties, ReactElement, ReactNode } from "react";
 import { createContext, useContext, useMemo } from "react";
-import type { MaterialSymbolFamily } from "./material";
+import type { MaterialSymbolFamily } from "./material.js";
 
 /**
  * Fill gives you the ability to modify the default icon style. A single icon

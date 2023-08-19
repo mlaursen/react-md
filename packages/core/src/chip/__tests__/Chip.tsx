@@ -1,9 +1,10 @@
+import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { fireEvent, render } from "../../test-utils";
+import { fireEvent, render } from "../../test-utils/index.js";
 
-import { FontIcon } from "../../icon/FontIcon";
-import { ElementInteractionProvider } from "../../interaction/ElementInteractionProvider";
-import { Chip } from "../Chip";
+import { FontIcon } from "../../icon/FontIcon.js";
+import { ElementInteractionProvider } from "../../interaction/ElementInteractionProvider.js";
+import { Chip } from "../Chip.js";
 
 describe("Chip", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {

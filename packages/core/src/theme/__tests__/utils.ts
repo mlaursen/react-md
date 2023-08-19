@@ -1,4 +1,5 @@
-import { getLuminance, hexToRGB, isContrastCompliant } from "../utils";
+import { describe, expect, it } from "@jest/globals";
+import { getLuminance, hexToRGB, isContrastCompliant } from "../utils.js";
 
 describe("getLuminance", () => {
   it("should return 0 for black and 1 for white", () => {

@@ -1,17 +1,17 @@
 "use client";
 import { forwardRef, useEffect } from "react";
-import { useAppSize } from "../AppSizeProvider";
-import { useHoverMode } from "../hoverMode/useHoverMode";
-import { useIcon } from "../icon/IconProvider";
-import { IconRotator } from "../icon/IconRotator";
-import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider";
-import { useEnsuredId } from "../useEnsuredId";
-import type { BaseMenuButtonProps } from "./MenuButton";
-import { useMenuConfiguration } from "./MenuConfigurationProvider";
-import type { MenuItemProps } from "./MenuItem";
-import { MenuItem } from "./MenuItem";
-import { useMenuVisibility } from "./MenuVisibilityProvider";
-import { useMenuBarContext } from "./useMenuBarProvider";
+import { useAppSize } from "../AppSizeProvider.js";
+import { useHoverMode } from "../hoverMode/useHoverMode.js";
+import { useIcon } from "../icon/IconProvider.js";
+import { IconRotator } from "../icon/IconRotator.js";
+import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
+import { useEnsuredId } from "../useEnsuredId.js";
+import type { BaseMenuButtonProps } from "./MenuButton.js";
+import { useMenuConfiguration } from "./MenuConfigurationProvider.js";
+import type { MenuItemProps } from "./MenuItem.js";
+import { MenuItem } from "./MenuItem.js";
+import { useMenuVisibility } from "./MenuVisibilityProvider.js";
+import { useMenuBarContext } from "./useMenuBarProvider.js";
 
 const noop = (): void => {
   // do nothing

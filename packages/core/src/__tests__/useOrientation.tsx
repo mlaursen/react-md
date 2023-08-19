@@ -1,6 +1,7 @@
-import { act, render } from "../test-utils";
+import { describe, expect, it, jest } from "@jest/globals";
+import { act, render } from "../test-utils/index.js";
 
-import { useOrientation } from "../useOrientation";
+import { useOrientation } from "../useOrientation.js";
 
 describe("useOrientation", () => {
   it("should pull the orientation type from the screen if the ScreenOrientation API is available", () => {
@@ -8,7 +9,7 @@ describe("useOrientation", () => {
     expect(window.screen.orientation).toBeUndefined();
 
     let _listener: (() => void) | undefined;
-    const addEventListener = jest.fn((_type, listener) => {
+    const addEventListener = jest.fn((_type, listener: any) => {
       _listener = listener;
     });
     const removeEventListener = jest.fn();

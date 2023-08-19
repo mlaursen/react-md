@@ -1,10 +1,10 @@
 import type { KeyboardEvent, MouseEvent, TouchEvent } from "react";
-import { findSizingContainer } from "../positioning/utils";
+import { findSizingContainer } from "../positioning/utils.js";
 import type {
   ElementInteractionState,
   RippleState,
   RippleStyle,
-} from "./types";
+} from "./types.js";
 
 /** @internal */
 function calcHypotenuse(a: number, b: number): number {

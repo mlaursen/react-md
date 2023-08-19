@@ -1,12 +1,12 @@
 import { cnb } from "cnbuilder";
 import type { ReactNode } from "react";
 import { forwardRef } from "react";
-import { AppBar } from "../app-bar/AppBar";
-import { AppBarTitle } from "../app-bar/AppBarTitle";
-import { bem } from "../utils/bem";
-import { LayoutCloseNavigationButton } from "./LayoutCloseNavigationButton";
-import { useLayoutConfig } from "./LayoutProvider";
-import type { LayoutNavigationHeaderProps } from "./types";
+import { AppBar } from "../app-bar/AppBar.js";
+import { AppBarTitle } from "../app-bar/AppBarTitle.js";
+import { bem } from "../utils/bem.js";
+import { LayoutCloseNavigationButton } from "./LayoutCloseNavigationButton.js";
+import { useLayoutConfig } from "./LayoutProvider.js";
+import type { LayoutNavigationHeaderProps } from "./types.js";
 
 const styles = bem("rmd-layout-nav-header");
 

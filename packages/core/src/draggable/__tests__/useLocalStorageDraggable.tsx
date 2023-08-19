@@ -1,10 +1,11 @@
+import { describe, expect, it } from "@jest/globals";
 import { cnb } from "cnbuilder";
 import type { ReactElement } from "react";
-import { fireEvent, rmdRender } from "../../test-utils";
+import { fireEvent, rmdRender } from "../../test-utils/index.js";
 
-import { Button } from "../../button/Button";
-import { getPercentage } from "../../utils/getPercentage";
-import { useLocalStorageDraggable } from "../useLocalStorageDraggable";
+import { Button } from "../../button/Button.js";
+import { getPercentage } from "../../utils/getPercentage.js";
+import { useLocalStorageDraggable } from "../useLocalStorageDraggable.js";
 
 describe("useLocalStorageDraggable", () => {
   it("should persist the value to local storage when a key is provided and the user is not dragging", () => {

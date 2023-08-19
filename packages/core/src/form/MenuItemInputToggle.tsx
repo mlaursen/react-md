@@ -7,22 +7,22 @@ import type {
   ReactNode,
 } from "react";
 import { forwardRef } from "react";
-import { ListItem } from "../list/ListItem";
+import { ListItem } from "../list/ListItem.js";
 import type {
   ListItemAddonPosition,
   ListItemAddonType,
   ListItemHeight,
-} from "../list/types";
-import type { PropsWithRef } from "../types";
-import { useEnsuredId } from "../useEnsuredId";
-import { bem } from "../utils/bem";
+} from "../list/types.js";
+import type { PropsWithRef } from "../types.js";
+import { useEnsuredId } from "../useEnsuredId.js";
+import { bem } from "../utils/bem.js";
 import type {
   IndeterminateCheckboxProps,
   InputToggleIconProps,
   InputToggleSize,
-} from "./InputToggle";
-import { InputToggleIcon } from "./InputToggleIcon";
-import { SwitchTrack } from "./SwitchTrack";
+} from "./InputToggle.js";
+import { InputToggleIcon } from "./InputToggleIcon.js";
+import { SwitchTrack } from "./SwitchTrack.js";
 
 const noop = (): void => {
   // do nothing

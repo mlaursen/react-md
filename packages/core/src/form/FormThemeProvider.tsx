@@ -1,7 +1,7 @@
 "use client";
 import type { ReactElement, ReactNode } from "react";
 import { createContext, useContext, useMemo } from "react";
-import type { FormThemeOptions } from "./types";
+import type { FormThemeOptions } from "./types.js";
 
 export type FormThemeContext = Required<FormThemeOptions>;
 

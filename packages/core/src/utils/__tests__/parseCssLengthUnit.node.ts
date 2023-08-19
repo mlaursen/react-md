@@ -1,8 +1,6 @@
-/**
- * @jest-environment node
- */
-
-import { parseCssLengthUnit } from "../parseCssLengthUnit";
+/** @jest-environment node */
+import { describe, expect, it } from "@jest/globals";
+import { parseCssLengthUnit } from "../parseCssLengthUnit.js";
 
 describe("parseCssLengthUnit", () => {
   it("should return the correct value for numbers and px strings", () => {

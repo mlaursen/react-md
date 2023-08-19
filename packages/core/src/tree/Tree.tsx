@@ -7,24 +7,24 @@ import type {
   Ref,
 } from "react";
 import { useMemo } from "react";
-import type { CustomLinkComponent } from "../link/LinkProvider";
-import { LinkProvider } from "../link/LinkProvider";
-import { List } from "../list/List";
-import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvider";
-import type { LabelRequiredForA11y } from "../types";
-import { useEnsuredId } from "../useEnsuredId";
-import { identity } from "../utils/identity";
-import type { TreeItemRendererProps } from "./DefaultTreeItemRenderer";
-import { DefaultTreeItemRenderer } from "./DefaultTreeItemRenderer";
-import type { TreeExpansionMode } from "./TreeProvider";
-import { TreeProvider } from "./TreeProvider";
-import { tree } from "./styles";
-import type { TreeData, TreeItemNode, TreeItemSorter } from "./types";
-import type { TreeExpansion } from "./useTreeExpansion";
-import type { RenderableTreeItemNode } from "./useTreeItems";
-import { useTreeItems } from "./useTreeItems";
-import { useTreeMovement } from "./useTreeMovement";
-import type { TreeSelection } from "./useTreeSelection";
+import type { CustomLinkComponent } from "../link/LinkProvider.js";
+import { LinkProvider } from "../link/LinkProvider.js";
+import { List } from "../list/List.js";
+import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
+import type { LabelRequiredForA11y } from "../types.js";
+import { useEnsuredId } from "../useEnsuredId.js";
+import { identity } from "../utils/identity.js";
+import type { TreeItemRendererProps } from "./DefaultTreeItemRenderer.js";
+import { DefaultTreeItemRenderer } from "./DefaultTreeItemRenderer.js";
+import type { TreeExpansionMode } from "./TreeProvider.js";
+import { TreeProvider } from "./TreeProvider.js";
+import { tree } from "./styles.js";
+import type { TreeData, TreeItemNode, TreeItemSorter } from "./types.js";
+import type { TreeExpansion } from "./useTreeExpansion.js";
+import type { RenderableTreeItemNode } from "./useTreeItems.js";
+import { useTreeItems } from "./useTreeItems.js";
+import { useTreeMovement } from "./useTreeMovement.js";
+import type { TreeSelection } from "./useTreeSelection.js";
 
 declare module "react" {
   interface CSSProperties {

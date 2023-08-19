@@ -1,7 +1,8 @@
-import { fireEvent, render } from "../../test-utils";
+import { describe, expect, it } from "@jest/globals";
+import { fireEvent, render } from "../../test-utils/index.js";
 
-import { Button } from "../../button/Button";
-import { useMenuVisibility } from "../MenuVisibilityProvider";
+import { Button } from "../../button/Button.js";
+import { useMenuVisibility } from "../MenuVisibilityProvider.js";
 
 describe("MenuVisibilityProvider", () => {
   it("should throw an error if it has not been initialized correctly", () => {

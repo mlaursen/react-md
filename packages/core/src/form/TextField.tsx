@@ -7,14 +7,14 @@ import type {
   ReactNode,
 } from "react";
 import { forwardRef } from "react";
-import type { PropsWithRef } from "../types";
-import { useEnsuredId } from "../useEnsuredId";
-import { bem } from "../utils/bem";
-import { FormMessageContainer } from "./FormMessageContainer";
-import { useFormTheme } from "./FormThemeProvider";
-import { Label } from "./Label";
-import { TextFieldContainer } from "./TextFieldContainer";
-import type { FormFieldOptions, UserAgentAutoCompleteProps } from "./types";
+import type { PropsWithRef } from "../types.js";
+import { useEnsuredId } from "../useEnsuredId.js";
+import { bem } from "../utils/bem.js";
+import { FormMessageContainer } from "./FormMessageContainer.js";
+import { useFormTheme } from "./FormThemeProvider.js";
+import { Label } from "./Label.js";
+import { TextFieldContainer } from "./TextFieldContainer.js";
+import type { FormFieldOptions, UserAgentAutoCompleteProps } from "./types.js";
 
 const styles = bem("rmd-text-field");
 

@@ -2,20 +2,20 @@
 import { cnb } from "cnbuilder";
 import type { ReactNode } from "react";
 import { forwardRef, Fragment } from "react";
-import { useIcon } from "../icon/IconProvider";
-import { icon } from "../icon/styles";
+import { useIcon } from "../icon/IconProvider.js";
+import { icon } from "../icon/styles.js";
 import {
   TextIconSpacing,
   type TextIconSpacingProps,
-} from "../icon/TextIconSpacing";
-import { getListItemHeight } from "../list/getListItemHeight";
-import { ListItemText } from "../list/ListItemText";
-import type { MenuItemProps } from "../menu/MenuItem";
-import { MenuItem } from "../menu/MenuItem";
-import { useEnsuredId } from "../useEnsuredId";
-import { bem } from "../utils/bem";
-import { useListboxContext } from "./useListboxProvider";
-import { triggerManualChangeEvent } from "./utils";
+} from "../icon/TextIconSpacing.js";
+import { getListItemHeight } from "../list/getListItemHeight.js";
+import { ListItemText } from "../list/ListItemText.js";
+import type { MenuItemProps } from "../menu/MenuItem.js";
+import { MenuItem } from "../menu/MenuItem.js";
+import { useEnsuredId } from "../useEnsuredId.js";
+import { bem } from "../utils/bem.js";
+import { useListboxContext } from "./useListboxProvider.js";
+import { triggerManualChangeEvent } from "./utils.js";
 
 const noop = (): void => {
   // do nothing

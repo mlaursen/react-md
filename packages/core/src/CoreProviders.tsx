@@ -1,30 +1,30 @@
 "use client";
 import type { ReactElement, ReactNode } from "react";
-import type { AppSize, AppSizeQueries } from "./AppSizeProvider";
+import type { AppSize, AppSizeQueries } from "./AppSizeProvider.js";
 import {
   AppSizeProvider,
   DEFAULT_APP_SIZE,
   DEFAULT_APP_SIZE_QUERIES,
-} from "./AppSizeProvider";
-import { SsrProvider } from "./SsrProvider";
-import type { ConfigurableIcons } from "./icon/IconProvider";
-import { IconProvider } from "./icon/IconProvider";
-import { ElementInteractionProvider } from "./interaction/ElementInteractionProvider";
-import { UserInteractionModeProvider } from "./interaction/UserInteractionModeProvider";
-import type { ElementInteractionMode } from "./interaction/types";
-import type { PortalContainer } from "./portal/PortalContainerProvider";
-import { PortalContainerProvider } from "./portal/PortalContainerProvider";
+} from "./AppSizeProvider.js";
+import { SsrProvider } from "./SsrProvider.js";
+import type { ConfigurableIcons } from "./icon/IconProvider.js";
+import { IconProvider } from "./icon/IconProvider.js";
+import { ElementInteractionProvider } from "./interaction/ElementInteractionProvider.js";
+import { UserInteractionModeProvider } from "./interaction/UserInteractionModeProvider.js";
+import type { ElementInteractionMode } from "./interaction/types.js";
+import type { PortalContainer } from "./portal/PortalContainerProvider.js";
+import { PortalContainerProvider } from "./portal/PortalContainerProvider.js";
 import type {
   ColorSchemeMode,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ColorSchemeProviderProps,
-} from "./theme/ColorSchemeProvider";
-import { ColorSchemeProvider } from "./theme/ColorSchemeProvider";
-import type { DefaultDir } from "./typography/WritingDirection";
+} from "./theme/ColorSchemeProvider.js";
+import { ColorSchemeProvider } from "./theme/ColorSchemeProvider.js";
+import type { DefaultDir } from "./typography/WritingDirection.js";
 import {
   DEFAULT_WRITING_DIRECTION,
   WritingDirection,
-} from "./typography/WritingDirection";
+} from "./typography/WritingDirection.js";
 
 /** @remarks \@since 6.0.0 */
 export interface ReactMDCoreConfiguration {

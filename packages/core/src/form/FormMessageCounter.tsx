@@ -1,5 +1,5 @@
 import type { HTMLAttributes, ReactElement, ReactNode } from "react";
-import { formMessageCounter } from "./formMessageStyles";
+import { formMessageCounter } from "./formMessageStyles.js";
 
 /** @remarks \@since 2.9.0 */
 export interface FormMessageCounterProps

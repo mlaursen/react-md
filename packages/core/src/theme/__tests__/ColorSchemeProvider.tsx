@@ -1,9 +1,13 @@
+import { describe, expect, it, jest } from "@jest/globals";
 import type { ChangeEvent, ReactElement } from "react";
-import { render } from "../../test-utils";
+import { render } from "../../test-utils/index.js";
 
-import type { ColorScheme, SetColorSchemeMode } from "../ColorSchemeProvider";
-import { ColorSchemeProvider, useColorScheme } from "../ColorSchemeProvider";
-import { backgroundColorVar } from "../cssVars";
+import type {
+  ColorScheme,
+  SetColorSchemeMode,
+} from "../ColorSchemeProvider.js";
+import { ColorSchemeProvider, useColorScheme } from "../ColorSchemeProvider.js";
+import { backgroundColorVar } from "../cssVars.js";
 
 describe("ColorSchemeProvider", () => {
   it("should default to the light color scheme and allow the useColorScheme hook to change the values", () => {
@@ -154,7 +158,7 @@ describe("ColorSchemeProvider", () => {
     const addEventListener = jest.fn();
     const removeListener = jest.fn();
     const removeEventListener = jest.fn();
-    const dispatchEvent = jest.fn();
+    const dispatchEvent = jest.fn(() => false);
 
     const baseQueryList: Omit<MediaQueryList, "matches"> = {
       media: "",

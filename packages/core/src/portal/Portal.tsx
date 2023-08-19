@@ -2,7 +2,7 @@
 import type { ReactElement, ReactNode } from "react";
 import { createPortal } from "react-dom";
 
-import { usePortalContainer } from "./PortalContainerProvider";
+import { usePortalContainer } from "./PortalContainerProvider.js";
 
 export interface PortalProps {
   children: ReactNode;

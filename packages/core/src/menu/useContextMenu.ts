@@ -1,9 +1,9 @@
 "use client";
 import type { MouseEvent, RefObject } from "react";
 import { useCallback, useRef, useState } from "react";
-import { BELOW_INNER_LEFT_ANCHOR } from "../positioning/constants";
-import type { InitialCoords, PositionAnchor } from "../positioning/types";
-import type { UseStateObject } from "../types";
+import { BELOW_INNER_LEFT_ANCHOR } from "../positioning/constants.js";
+import type { InitialCoords, PositionAnchor } from "../positioning/types.js";
+import type { UseStateObject } from "../types.js";
 
 /** @remarks \@since 6.0.0 */
 export interface ContextMenuProps extends InitialCoords {

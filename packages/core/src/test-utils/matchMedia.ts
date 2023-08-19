@@ -1,10 +1,11 @@
+import { jest } from "@jest/globals";
 import { act } from "@testing-library/react";
 import {
   DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
   DEFAULT_DESKTOP_MIN_WIDTH,
   DEFAULT_PHONE_MAX_WIDTH,
   DEFAULT_TABLET_MIN_WIDTH,
-} from "../AppSizeProvider";
+} from "../AppSizeProvider.js";
 
 const noop = (): void => {
   // do nothing

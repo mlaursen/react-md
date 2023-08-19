@@ -1,7 +1,7 @@
 import type { HTMLAttributes, ReactNode } from "react";
 import { forwardRef } from "react";
-import type { PropsWithRef } from "../types";
-import { cardHeader, cardHeaderContent } from "./styles";
+import type { PropsWithRef } from "../types.js";
+import { cardHeader, cardHeaderContent } from "./styles.js";
 
 /**
  * @remarks

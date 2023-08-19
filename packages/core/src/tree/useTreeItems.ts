@@ -4,7 +4,7 @@ import type {
   TreeItemNode,
   TreeData,
   DefaultTreeItemNode,
-} from "./types";
+} from "./types.js";
 
 /**
  * A lookup to find all the child ids for a specific parent. This was added to

@@ -1,5 +1,6 @@
-import type { GetPercentageOptions } from "../getPercentage";
-import { getPercentage } from "../getPercentage";
+import { describe, expect, it } from "@jest/globals";
+import type { GetPercentageOptions } from "../getPercentage.js";
+import { getPercentage } from "../getPercentage.js";
 
 describe("getPercentage", () => {
   it("should throw a RangeError if the min is greater than the max", () => {

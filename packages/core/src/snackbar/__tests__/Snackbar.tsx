@@ -1,11 +1,15 @@
+import { describe, expect, it } from "@jest/globals";
 import type { ReactElement } from "react";
 import { createRef } from "react";
-import type { ReactMDRenderOptions, RenderResult } from "../../test-utils";
-import { rmdRender, screen } from "../../test-utils";
+import type {
+  ReactMDRenderOptions,
+  RenderResult,
+} from "../../test-utils/index.js";
+import { rmdRender, screen } from "../../test-utils/index.js";
 
-import type { SnackbarPosition } from "../Snackbar";
-import { Snackbar } from "../Snackbar";
-import { ToastManager, ToastManagerProvider } from "../ToastManagerProvider";
+import type { SnackbarPosition } from "../Snackbar.js";
+import { Snackbar } from "../Snackbar.js";
+import { ToastManager, ToastManagerProvider } from "../ToastManagerProvider.js";
 
 const render = (
   ui: ReactElement,

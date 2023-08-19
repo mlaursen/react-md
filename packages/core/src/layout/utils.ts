@@ -1,11 +1,11 @@
-import type { AppSize } from "../AppSizeProvider";
+import type { AppSize } from "../AppSizeProvider.js";
 import {
   DEFAULT_DESKTOP_LAYOUT,
   DEFAULT_LANDSCAPE_TABLET_LAYOUT,
   DEFAULT_PHONE_LAYOUT,
   DEFAULT_TABLET_LAYOUT,
-} from "./constants";
-import type { LayoutConfiguration, SupportedWideLayout } from "./types";
+} from "./constants.js";
+import type { LayoutConfiguration, SupportedWideLayout } from "./types.js";
 
 export interface GetLayoutOptions extends LayoutConfiguration {
   /**

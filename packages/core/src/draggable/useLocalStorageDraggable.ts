@@ -1,17 +1,20 @@
 "use client";
 import { useEffect, useState } from "react";
-import type { UseStateInitializer, UseStateSetter } from "../types";
+import type { UseStateInitializer, UseStateSetter } from "../types.js";
 import type {
   LocalStorageHookOptions,
   LocalStorageHookReturnValue,
-} from "../useLocalStorage";
-import { useLocalStorage } from "../useLocalStorage";
+} from "../useLocalStorage.js";
+import { useLocalStorage } from "../useLocalStorage.js";
 import type {
   BaseDraggableOptions,
   ControlledDraggableImplementation,
-} from "./useControlledDraggable";
-import { useControlledDraggable } from "./useControlledDraggable";
-import { deserializeDraggableValue, getDraggableDefaultValue } from "./utils";
+} from "./useControlledDraggable.js";
+import { useControlledDraggable } from "./useControlledDraggable.js";
+import {
+  deserializeDraggableValue,
+  getDraggableDefaultValue,
+} from "./utils.js";
 
 /**
  * @remarks \@since 6.0.0

@@ -1,7 +1,7 @@
 "use client";
 import type { ReactElement, ReactNode } from "react";
 import { useEffect, useState } from "react";
-import { useSsr } from "./SsrProvider";
+import { useSsr } from "./SsrProvider.js";
 
 /** @remarks \@since 6.0.0 */
 export interface NoSsrProps {

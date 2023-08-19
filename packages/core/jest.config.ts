@@ -18,6 +18,7 @@ const config: Config = {
               runtime: "automatic",
             },
           },
+          target: "es2021",
         },
       } satisfies SwcOptions,
     ],
@@ -25,6 +26,7 @@ const config: Config = {
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
   moduleNameMapper: {
     "\\.scss$": "identity-obj-proxy",
+    "^(\\.{1,2}/.*)\\.js$": "$1",
   },
 
   watchPlugins: [
@@ -55,6 +57,8 @@ const config: Config = {
     "!<rootDir>/src/**/index.ts",
     "!<rootDir>/src/**/types.ts",
   ],
+
+  extensionsToTreatAsEsm: [".ts", ".tsx"],
 };
 
 export default config;

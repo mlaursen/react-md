@@ -7,7 +7,7 @@ import {
   useMemo,
   useSyncExternalStore,
 } from "react";
-import type { ConfigurableToastProps } from "./Toast";
+import type { ConfigurableToastProps } from "./Toast.js";
 
 /**
  * @remarks \@since 6.0.0

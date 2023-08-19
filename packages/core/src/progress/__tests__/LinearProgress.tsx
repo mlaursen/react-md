@@ -1,6 +1,7 @@
-import { render } from "../../test-utils";
+import { describe, expect, it } from "@jest/globals";
+import { render } from "../../test-utils/index.js";
 
-import { LinearProgress } from "../LinearProgress";
+import { LinearProgress } from "../LinearProgress.js";
 
 describe("LinearProgress", () => {
   it("should render correctly", () => {

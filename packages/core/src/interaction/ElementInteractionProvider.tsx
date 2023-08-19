@@ -1,7 +1,7 @@
 "use client";
 import type { ReactElement, ReactNode } from "react";
 import { createContext, useContext, useMemo } from "react";
-import type { ElementInteractionMode } from "./types";
+import type { ElementInteractionMode } from "./types.js";
 
 export interface ElementInteractionContext {
   mode: ElementInteractionMode;

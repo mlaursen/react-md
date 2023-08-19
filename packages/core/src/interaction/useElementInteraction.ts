@@ -1,16 +1,16 @@
 "use client";
 import type { FocusEvent, KeyboardEvent, MouseEvent, TouchEvent } from "react";
 import { useCallback, useReducer, useRef } from "react";
-import { useElementInteractionContext } from "./ElementInteractionProvider";
-import { useUserInteractionMode } from "./UserInteractionModeProvider";
+import { useElementInteractionContext } from "./ElementInteractionProvider.js";
+import { useUserInteractionMode } from "./UserInteractionModeProvider.js";
 import type {
   ElementInteractionHandlers,
   ElementInteractionState,
   ProvidedRippleContainerProps,
   RippleState,
   RippleStyle,
-} from "./types";
-import { getRippleStyle, releaseRipple, updateRipplesState } from "./utils";
+} from "./types.js";
+import { getRippleStyle, releaseRipple, updateRipplesState } from "./utils.js";
 
 /** @remarks \@since 6.0.0 */
 export const PRESSED_CLASS_NAME = "rmd-pressed";

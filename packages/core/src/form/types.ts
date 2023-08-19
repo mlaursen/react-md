@@ -5,7 +5,7 @@ import type {
   LabelHTMLAttributes,
   ReactNode,
 } from "react";
-import type { PropsWithRef } from "../types";
+import type { PropsWithRef } from "../types.js";
 
 declare module "react" {
   interface CSSProperties {

@@ -4,37 +4,49 @@
   "description": "The core components and functionality for react-md.",
   "type": "module",
   "sass": "./dist/_core.scss",
-  "types": "./types/index.d.ts",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "sass": "./dist/_core.scss",
-      "default": "./esm/index.js"
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     },
-    "./test-utils": "./esm/test-utils",
-    "./test-utils/*": "./esm/test-utils/*",
+    "./test-utils": "./dist/test-utils/index.js",
+    "./test-utils/*": {
+      "require": "./dist/test-utils/*",
+      "default": "./dist/test-utils/*.js"
+    },
+    "./test-utils/polyfills": {
+      "require": "./dist/test-utils/polyfills",
+      "default": "./dist/test-utils/polyfills/index.js"
+    },
+    "./test-utils/polyfills/*": {
+      "require": "./dist/test-utils/polyfills/*",
+      "default": "./dist/test-utils/polyfills/*.js"
+    },
     "./colors": {
       "sass": "./dist/_colors.scss"
     }
   },
   "sideEffects": [
-    "dist/**/*",
-    "test-utils/polyfills"
+    "dist/**/*.scss",
+    "dist/test-utils/polyfills"
   ],
   "scripts": {
     "dev": "npm-run-all --parallel build-esm-watch build-scss-watch build-types-watch",
     "build": "npm-run-all build-esm build-scss build-types",
-    "build-esm": "swc src -d ./esm",
+    "build-esm": "swc src -d ./dist",
     "build-esm-watch": "pnpm run build-esm --watch",
     "build-types": "tsc -P tsconfig.types.json",
     "build-types-watch": "pnpm run build-types --watch",
     "build-scss": "node scripts/copySassFiles.js",
     "build-scss-watch": "pnpm run build-scss --watch",
-    "clean": "rm -rf .turbo esm dist node_modules",
+    "clean": "rm -rf .turbo dist node_modules",
     "typecheck": "tsc --noEmit",
     "lint-scripts": "eslint \"src/**/*.{ts,tsx,js,jsx,cjs,mjs}\"",
     "lint-styles": "stylelint \"src/**/*.{css,scss}\"",
     "lint": "npm-run-all lint-scripts lint-styles",
-    "test": "jest"
+    "test": "NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest"
   },
   "repository": {
     "type": "git",

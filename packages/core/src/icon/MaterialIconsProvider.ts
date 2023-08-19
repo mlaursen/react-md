@@ -1,6 +1,6 @@
 "use client";
 import { createContext, useContext } from "react";
-import type { MaterialIconFamily } from "./material";
+import type { MaterialIconFamily } from "./material.js";
 
 const context = createContext<MaterialIconFamily>("filled");
 context.displayName = "MaterialIcons";

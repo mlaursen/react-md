@@ -1,16 +1,17 @@
+import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { render } from "../../test-utils";
+import { render } from "../../test-utils/index.js";
 
-import type { PropsWithRef } from "../../types";
-import { Typography } from "../../typography/Typography";
+import type { PropsWithRef } from "../../types.js";
+import { Typography } from "../../typography/Typography.js";
 import type {
   ResponsiveItemOverlayPosition,
   ResponsiveItemOverlayProps,
-} from "../ResponsiveItemOverlay";
+} from "../ResponsiveItemOverlay.js";
 import {
   ResponsiveItemOverlay,
   responsiveItemOverlay,
-} from "../ResponsiveItemOverlay";
+} from "../ResponsiveItemOverlay.js";
 
 describe("ResponsiveItemOverlay", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {

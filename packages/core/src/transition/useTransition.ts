@@ -1,15 +1,15 @@
 "use client";
 import { useEffect, useReducer, useRef, useState } from "react";
-import { useSsr } from "../SsrProvider";
-import { useEnsuredRef } from "../useEnsuredRef";
-import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect";
+import { useSsr } from "../SsrProvider.js";
+import { useEnsuredRef } from "../useEnsuredRef.js";
+import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect.js";
 import type {
   TransitionHookOptions,
   TransitionHookReturnValue,
   TransitionStage,
   TransitionState,
-} from "./types";
-import { getTransitionTimeout } from "./utils";
+} from "./types.js";
+import { getTransitionTimeout } from "./utils.js";
 
 const INITIAL_STATE: TransitionState = {
   appearing: false,

@@ -6,8 +6,8 @@ import type {
   PreconfiguredCSSTransitionInDefaultedOptions,
   TransitionTimeout,
   TransitionTimeoutObject,
-} from "./types";
-import { useCSSTransition } from "./useCSSTransition";
+} from "./types.js";
+import { useCSSTransition } from "./useCSSTransition.js";
 
 /**
  * The default cross fade transition classes to use.

@@ -1,13 +1,13 @@
-import { getScrollbarWidth } from "../scroll/getScrollbarWidth";
-import { BELOW_CENTER_ANCHOR } from "./constants";
-import { createHorizontalPosition } from "./createHorizontalPosition";
-import { createVerticalPosition } from "./createVerticalPosition";
-import type { FixedPosition, FixedPositionOptions } from "./types";
+import { getScrollbarWidth } from "../scroll/getScrollbarWidth.js";
+import { BELOW_CENTER_ANCHOR } from "./constants.js";
+import { createHorizontalPosition } from "./createHorizontalPosition.js";
+import { createVerticalPosition } from "./createVerticalPosition.js";
+import type { FixedPosition, FixedPositionOptions } from "./types.js";
 import {
   findSizingContainer,
   getElementRect,
   getTransformOrigin,
-} from "./utils";
+} from "./utils.js";
 
 /**
  * This is used when there is no `container` element so that some styles can

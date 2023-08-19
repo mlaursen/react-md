@@ -1,12 +1,17 @@
+import { describe, expect, it, jest } from "@jest/globals";
 import type { ReactElement } from "react";
 import { createRef } from "react";
-import type { RenderResult } from "../../test-utils";
-import { rmdRender as baseRender, screen, userEvent } from "../../test-utils";
+import type { RenderResult } from "../../test-utils/index.js";
+import {
+  rmdRender as baseRender,
+  screen,
+  userEvent,
+} from "../../test-utils/index.js";
 
-import { FontIcon } from "../../icon/FontIcon";
-import { Typography } from "../../typography/Typography";
-import { Toast } from "../Toast";
-import { CurrentToastActionsProvider } from "../useCurrentToastActions";
+import { FontIcon } from "../../icon/FontIcon.js";
+import { Typography } from "../../typography/Typography.js";
+import { Toast } from "../Toast.js";
+import { CurrentToastActionsProvider } from "../useCurrentToastActions.js";
 
 const render = (ui: ReactElement): RenderResult =>
   baseRender(ui, {

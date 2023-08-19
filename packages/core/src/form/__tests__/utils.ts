@@ -1,4 +1,5 @@
-import type { FileUploadStats } from "../fileUtils";
+import { describe, expect, it } from "@jest/globals";
+import type { FileUploadStats } from "../fileUtils.js";
 import {
   FileAccessError,
   FileExtensionError,
@@ -12,7 +13,7 @@ import {
   isValidFileName,
   TooManyFilesError,
   validateFiles,
-} from "../fileUtils";
+} from "../fileUtils.js";
 
 function createFile(name: string, bytes: number): File {
   const content = new Uint8Array(bytes);

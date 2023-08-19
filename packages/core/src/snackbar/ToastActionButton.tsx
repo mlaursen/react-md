@@ -1,10 +1,10 @@
 "use client";
 import { cnb } from "cnbuilder";
 import { forwardRef } from "react";
-import type { ButtonProps, ButtonTheme } from "../button/Button";
-import { Button } from "../button/Button";
-import { bem } from "../utils/bem";
-import { useCurrentToastActions } from "./useCurrentToastActions";
+import type { ButtonProps, ButtonTheme } from "../button/Button.js";
+import { Button } from "../button/Button.js";
+import { bem } from "../utils/bem.js";
+import { useCurrentToastActions } from "./useCurrentToastActions.js";
 
 const styles = bem("rmd-toast-action");
 const noop = (): void => {

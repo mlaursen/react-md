@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
-import type { UseStateInitializer, UseStateSetter } from "../types";
-import { useEnsuredId } from "../useEnsuredId";
-import type { ExpansionPanelProps } from "./ExpansionPanel";
+import type { UseStateInitializer, UseStateSetter } from "../types.js";
+import { useEnsuredId } from "../useEnsuredId.js";
+import type { ExpansionPanelProps } from "./ExpansionPanel.js";
 
 /** @remarks \@since 6.0.0 */
 export interface ExpansionPanelHookOptions {

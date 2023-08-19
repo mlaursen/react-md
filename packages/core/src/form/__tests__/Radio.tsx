@@ -1,7 +1,8 @@
+import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { render } from "../../test-utils";
+import { render } from "../../test-utils/index.js";
 
-import { Radio } from "../Radio";
+import { Radio } from "../Radio.js";
 
 describe("Radio", () => {
   it("should apply the correct styles, HTMLAttributes, and allow a ref", () => {

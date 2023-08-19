@@ -1,4 +1,5 @@
-import { findMatchIndex, findMatchInRange } from "../findMatchIndex";
+import { describe, expect, it } from "@jest/globals";
+import { findMatchIndex, findMatchInRange } from "../findMatchIndex.js";
 
 const lorem = [
   "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",

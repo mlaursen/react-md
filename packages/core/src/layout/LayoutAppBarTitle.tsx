@@ -1,10 +1,10 @@
 import { cnb } from "cnbuilder";
 import { forwardRef } from "react";
-import type { AppBarTitleProps } from "../app-bar/AppBarTitle";
-import { AppBarTitle } from "../app-bar/AppBarTitle";
-import { bem } from "../utils/bem";
-import { useLayoutConfig } from "./LayoutProvider";
-import { isFullHeightLayout } from "./utils";
+import type { AppBarTitleProps } from "../app-bar/AppBarTitle.js";
+import { AppBarTitle } from "../app-bar/AppBarTitle.js";
+import { bem } from "../utils/bem.js";
+import { useLayoutConfig } from "./LayoutProvider.js";
+import { isFullHeightLayout } from "./utils.js";
 
 export type LayoutAppBarTitleProps = AppBarTitleProps;
 

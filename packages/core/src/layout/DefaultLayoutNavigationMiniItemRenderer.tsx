@@ -1,10 +1,10 @@
 import type { ReactElement } from "react";
-import type { TreeItemRendererProps } from "../tree/DefaultTreeItemRenderer";
-import { TreeItem } from "../tree/TreeItem";
-import type { TreeItemNode } from "../tree/types";
-import { SrOnly } from "../typography/SrOnly";
-import { DefaultLayoutNavigationItemRenderer } from "./DefaultLayoutNavigationItemRenderer";
-import type { LayoutNavigationItem } from "./types";
+import type { TreeItemRendererProps } from "../tree/DefaultTreeItemRenderer.js";
+import { TreeItem } from "../tree/TreeItem.js";
+import type { TreeItemNode } from "../tree/types.js";
+import { SrOnly } from "../typography/SrOnly.js";
+import { DefaultLayoutNavigationItemRenderer } from "./DefaultLayoutNavigationItemRenderer.js";
+import type { LayoutNavigationItem } from "./types.js";
 
 export function DefaultMiniLayoutNavigationItemRenderer<
   T extends TreeItemNode = LayoutNavigationItem,

@@ -1,10 +1,11 @@
+import { describe, expect, it } from "@jest/globals";
 import type { ReactElement, Ref } from "react";
 import { createRef } from "react";
-import { render } from "../../test-utils";
+import { render } from "../../test-utils/index.js";
 
-import { List } from "../List";
-import type { ListSubheaderProps } from "../ListSubheader";
-import { ListSubheader } from "../ListSubheader";
+import { List } from "../List.js";
+import type { ListSubheaderProps } from "../ListSubheader.js";
+import { ListSubheader } from "../ListSubheader.js";
 
 interface TestProps extends ListSubheaderProps {
   nodeRef?: Ref<HTMLLIElement>;

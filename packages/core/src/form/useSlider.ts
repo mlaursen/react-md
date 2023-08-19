@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import type { UseStateInitializer, UseStateSetter } from "../types";
-import { getRangeDefaultValue } from "../utils/getRangeDefaultValue";
+import type { UseStateInitializer, UseStateSetter } from "../types.js";
+import { getRangeDefaultValue } from "../utils/getRangeDefaultValue.js";
 
 /**
  * @remarks \@since 2.5.0

@@ -10,9 +10,7 @@
       "react": {
         "runtime": "automatic"
       }
-    }
-  },
-  "env": {
-    "targets": ["defaults"]
+    },
+    "target": "es2021"
   }
 }

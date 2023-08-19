@@ -1,11 +1,12 @@
+import { describe, expect, it } from "@jest/globals";
 import { cnb } from "cnbuilder";
 import type { ReactElement } from "react";
 import { useState } from "react";
-import { fireEvent, rmdRender } from "../../test-utils";
+import { fireEvent, rmdRender } from "../../test-utils/index.js";
 
-import { Button } from "../../button/Button";
-import { getPercentage } from "../../utils/getPercentage";
-import { useControlledDraggable } from "../useControlledDraggable";
+import { Button } from "../../button/Button.js";
+import { getPercentage } from "../../utils/getPercentage.js";
+import { useControlledDraggable } from "../useControlledDraggable.js";
 
 describe("useControlledDraggable", () => {
   it("should allow for the value to be controlled", () => {

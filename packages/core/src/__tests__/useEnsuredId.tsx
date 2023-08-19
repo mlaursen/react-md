@@ -1,7 +1,8 @@
+import { describe, expect, it } from "@jest/globals";
 import type { ReactElement } from "react";
-import { render } from "../test-utils";
+import { render } from "../test-utils/index.js";
 
-import { useEnsuredId } from "../useEnsuredId";
+import { useEnsuredId } from "../useEnsuredId.js";
 
 function Test(props: { id?: string }): ReactElement {
   return <div data-testid="test" id={useEnsuredId(props.id, "test")} />;

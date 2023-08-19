@@ -1,14 +1,22 @@
+import {
+  afterEach,
+  beforeAll,
+  describe,
+  expect,
+  it,
+  jest,
+} from "@jest/globals";
 import type { ReactElement } from "react";
 import { useRef, useState } from "react";
-import { act, fireEvent, render } from "../../test-utils";
+import { act, fireEvent, render } from "../../test-utils/index.js";
 
-import { useScaleTransition } from "../../transition/useScaleTransition";
-import { TOP_INNER_RIGHT_ANCHOR } from "../constants";
+import { useScaleTransition } from "../../transition/useScaleTransition.js";
+import { TOP_INNER_RIGHT_ANCHOR } from "../constants.js";
 import type {
   FixedPositioningOptions,
   FixedPositioningTransitionCallbacks,
-} from "../useFixedPositioning";
-import { useFixedPositioning } from "../useFixedPositioning";
+} from "../useFixedPositioning.js";
+import { useFixedPositioning } from "../useFixedPositioning.js";
 
 interface TestProps
   extends Omit<

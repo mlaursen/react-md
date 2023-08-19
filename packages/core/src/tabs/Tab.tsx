@@ -2,15 +2,15 @@
 import { cnb } from "cnbuilder";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 import { forwardRef } from "react";
-import { RippleContainer } from "../interaction/RippleContainer";
-import { useElementInteraction } from "../interaction/useElementInteraction";
-import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren";
-import { useKeyboardMovementContext } from "../movement/useKeyboardMovementProvider";
-import { useEnsuredId } from "../useEnsuredId";
-import { bem } from "../utils/bem";
+import { RippleContainer } from "../interaction/RippleContainer.js";
+import { useElementInteraction } from "../interaction/useElementInteraction.js";
+import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
+import { useKeyboardMovementContext } from "../movement/useKeyboardMovementProvider.js";
+import { useEnsuredId } from "../useEnsuredId.js";
+import { bem } from "../utils/bem.js";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { useTabs } from "./useTabs";
+import { useTabs } from "./useTabs.js";
 
 declare module "react" {
   interface CSSProperties {

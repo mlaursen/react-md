@@ -1,7 +1,7 @@
 "use client";
 import type { ReactElement, ReactNode } from "react";
 import { createContext, useContext, useMemo } from "react";
-import { FontIcon } from "./FontIcon";
+import { FontIcon } from "./FontIcon.js";
 
 /**
  * @remarks \@since 5.0.0 The `download` icon has been renamed to `upload`.

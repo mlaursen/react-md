@@ -1,7 +1,7 @@
 "use client";
 import { useCallback, useState } from "react";
-import type { UseStateSetter } from "../types";
-import type { TreeItemDefaultIds, TreeItemIdSet } from "./types";
+import type { UseStateSetter } from "../types.js";
+import type { TreeItemDefaultIds, TreeItemIdSet } from "./types.js";
 
 /**
  * @remarks \@since 6.0.0 Renamed from `TreeItemExpansion` and uses a Set

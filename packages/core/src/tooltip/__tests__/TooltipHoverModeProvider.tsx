@@ -1,3 +1,4 @@
+import { describe, expect, it } from "@jest/globals";
 import type { ReactElement } from "react";
 import {
   render,
@@ -5,12 +6,12 @@ import {
   userEvent,
   waitFor,
   waitForElementToBeRemoved,
-} from "../../test-utils";
+} from "../../test-utils/index.js";
 
-import { Button } from "../../button/Button";
-import { Tooltip } from "../Tooltip";
-import { TooltipHoverModeProvider } from "../TooltipHoverModeProvider";
-import { useTooltip } from "../useTooltip";
+import { Button } from "../../button/Button.js";
+import { Tooltip } from "../Tooltip.js";
+import { TooltipHoverModeProvider } from "../TooltipHoverModeProvider.js";
+import { useTooltip } from "../useTooltip.js";
 
 function TooltippedButton({ index }: { index: number }): ReactElement {
   const { elementProps, tooltipProps } = useTooltip({

@@ -2,9 +2,9 @@
 import type { ReactElement, ReactNode } from "react";
 import { createContext, useContext, useMemo } from "react";
 
-import { useSsr } from "./SsrProvider";
-import { useMediaQuery } from "./useMediaQuery";
-import { useOrientation } from "./useOrientation";
+import { useSsr } from "./SsrProvider.js";
+import { useMediaQuery } from "./useMediaQuery.js";
+import { useOrientation } from "./useOrientation.js";
 
 export type QuerySize = number | string;
 

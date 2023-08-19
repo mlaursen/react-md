@@ -1,7 +1,8 @@
+import { describe, expect, it } from "@jest/globals";
 import type { CSSProperties } from "react";
-import { render } from "../../test-utils";
+import { render } from "../../test-utils/index.js";
 
-import { CircularProgress } from "../CircularProgress";
+import { CircularProgress } from "../CircularProgress.js";
 
 describe("CircularProgress", () => {
   it("should render correctly", () => {

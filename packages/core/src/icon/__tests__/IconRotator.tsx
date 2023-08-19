@@ -1,9 +1,10 @@
+import { describe, expect, it } from "@jest/globals";
 import { cnb } from "cnbuilder";
-import { render } from "../../test-utils";
+import { render } from "../../test-utils/index.js";
 
-import { FontIcon } from "../FontIcon";
-import { IconRotator } from "../IconRotator";
-import { SVGIcon } from "../SVGIcon";
+import { FontIcon } from "../FontIcon.js";
+import { IconRotator } from "../IconRotator.js";
+import { SVGIcon } from "../SVGIcon.js";
 
 function Icon({ className }: { className?: string }) {
   return <i data-testid="icon" className={cnb("custom-icon", className)} />;

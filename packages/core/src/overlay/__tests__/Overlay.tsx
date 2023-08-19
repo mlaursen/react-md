@@ -1,11 +1,12 @@
+import { describe, expect, it, jest } from "@jest/globals";
 import type { ReactElement } from "react";
-import { fireEvent, render, waitFor, within } from "../../test-utils";
+import { fireEvent, render, waitFor, within } from "../../test-utils/index.js";
 
-import { Button } from "../../button/Button";
-import { SsrProvider } from "../../SsrProvider";
-import { useToggle } from "../../useToggle";
-import type { OverlayProps } from "../Overlay";
-import { Overlay } from "../Overlay";
+import { Button } from "../../button/Button.js";
+import { SsrProvider } from "../../SsrProvider.js";
+import { useToggle } from "../../useToggle.js";
+import type { OverlayProps } from "../Overlay.js";
+import { Overlay } from "../Overlay.js";
 
 interface TestProps {
   defaultVisible?: boolean;

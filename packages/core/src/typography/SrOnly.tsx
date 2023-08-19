@@ -1,12 +1,12 @@
 import { cnb } from "cnbuilder";
 import { forwardRef } from "react";
-import { bem } from "../utils/bem";
+import { bem } from "../utils/bem.js";
 import type {
   CustomTypographyComponent,
   TypographyHTMLElement,
   TypographyProps,
-} from "./Typography";
-import { Typography } from "./Typography";
+} from "./Typography.js";
+import { Typography } from "./Typography.js";
 
 const styles = bem("rmd-sr-only");
 

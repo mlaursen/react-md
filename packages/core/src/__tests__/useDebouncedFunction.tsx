@@ -1,8 +1,15 @@
+import { describe, expect, it, jest } from "@jest/globals";
 import { useState } from "react";
-import { act, fireEvent, render, userEvent, waitFor } from "../test-utils";
+import {
+  act,
+  fireEvent,
+  render,
+  userEvent,
+  waitFor,
+} from "../test-utils/index.js";
 
-import { TextField } from "../form/TextField";
-import { useDebouncedFunction } from "../useDebouncedFunction";
+import { TextField } from "../form/TextField.js";
+import { useDebouncedFunction } from "../useDebouncedFunction.js";
 
 describe("useDebouncedFunction", () => {
   it("should trigger a function once every X seconds and cleanup any pending timeouts on unmount", async () => {

@@ -1,10 +1,10 @@
 "use client";
 import type { ChangeEventHandler, InputHTMLAttributes } from "react";
 import { forwardRef } from "react";
-import { useIcon } from "../icon/IconProvider";
-import type { MenuItemProps } from "../menu/MenuItem";
-import { MenuItem } from "../menu/MenuItem";
-import { useEnsuredId } from "../useEnsuredId";
+import { useIcon } from "../icon/IconProvider.js";
+import type { MenuItemProps } from "../menu/MenuItem.js";
+import { MenuItem } from "../menu/MenuItem.js";
+import { useEnsuredId } from "../useEnsuredId.js";
 
 const noop = (): void => {
   // do nothing

@@ -1,8 +1,9 @@
+import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { render } from "../../test-utils";
+import { render } from "../../test-utils/index.js";
 
-import { Divider } from "../Divider";
-import { divider } from "../styles";
+import { Divider } from "../Divider.js";
+import { divider } from "../styles.js";
 
 describe("Divider", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {

@@ -2,14 +2,14 @@
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
-import { bem } from "../utils/bem";
-import { useFormTheme } from "./FormThemeProvider";
-import { TextFieldAddon } from "./TextFieldAddon";
+import { bem } from "../utils/bem.js";
+import { useFormTheme } from "./FormThemeProvider.js";
+import { TextFieldAddon } from "./TextFieldAddon.js";
 import type {
   FormComponentStates,
   FormThemeOptions,
   TextFieldContainerOptions,
-} from "./types";
+} from "./types.js";
 
 declare module "react" {
   interface CSSProperties {

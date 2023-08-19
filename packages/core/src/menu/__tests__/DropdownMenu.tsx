@@ -1,4 +1,6 @@
+import { describe, expect, it, jest } from "@jest/globals";
 import type { ReactElement } from "react";
+
 import {
   act,
   rmdRender,
@@ -7,20 +9,20 @@ import {
   waitFor,
   waitForElementToBeRemoved,
   within,
-} from "../../test-utils";
+} from "../../test-utils/index.js";
 
 import {
   DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
   DEFAULT_DESKTOP_MIN_WIDTH,
   DEFAULT_PHONE_MAX_WIDTH,
-} from "../../AppSizeProvider";
-import { Button } from "../../button/Button";
-import { DialogFooter } from "../../dialog/DialogFooter";
-import { DialogHeader } from "../../dialog/DialogHeader";
-import { MaterialIcon } from "../../icon/MaterialIcon";
-import { DropdownMenu } from "../DropdownMenu";
-import { MenuItem } from "../MenuItem";
-import { useMenuVisibility } from "../MenuVisibilityProvider";
+} from "../../AppSizeProvider.js";
+import { Button } from "../../button/Button.js";
+import { DialogFooter } from "../../dialog/DialogFooter.js";
+import { DialogHeader } from "../../dialog/DialogHeader.js";
+import { MaterialIcon } from "../../icon/MaterialIcon.js";
+import { DropdownMenu } from "../DropdownMenu.js";
+import { MenuItem } from "../MenuItem.js";
+import { useMenuVisibility } from "../MenuVisibilityProvider.js";
 
 describe("DropdownMenu", () => {
   it("should render as a button and toggle the visibility when clicked", async () => {

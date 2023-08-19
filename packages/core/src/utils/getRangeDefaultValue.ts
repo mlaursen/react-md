@@ -1,6 +1,6 @@
-import type { UseStateInitializer } from "../types";
-import { getRangeSteps } from "./getRangeSteps";
-import { nearest } from "./nearest";
+import type { UseStateInitializer } from "../types.js";
+import { getRangeSteps } from "./getRangeSteps.js";
+import { nearest } from "./nearest.js";
 
 /**
  * @internal

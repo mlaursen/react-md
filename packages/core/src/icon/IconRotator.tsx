@@ -1,8 +1,8 @@
 import { cnb } from "cnbuilder";
 import type { CSSProperties, HTMLAttributes, ReactNode } from "react";
 import { Children, cloneElement, forwardRef, isValidElement } from "react";
-import type { IconRotatorClassNameOptions } from "./styles";
-import { iconRotator } from "./styles";
+import type { IconRotatorClassNameOptions } from "./styles.js";
+import { iconRotator } from "./styles.js";
 
 /**
  * @remarks \@since 6.0.0 Removed `animate` prop and added `disableTransition`

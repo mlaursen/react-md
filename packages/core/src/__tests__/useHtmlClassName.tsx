@@ -1,6 +1,7 @@
-import { render } from "../test-utils";
+import { describe, expect, it } from "@jest/globals";
+import { render } from "../test-utils/index.js";
 
-import { useHtmlClassName } from "../useHtmlClassName";
+import { useHtmlClassName } from "../useHtmlClassName.js";
 
 describe("useHtmlClassName", () => {
   it("should apply and remove the class name to the html element", () => {

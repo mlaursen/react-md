@@ -6,9 +6,9 @@ import type {
   CSSTransitionHookReturnValue,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   TransitionHookOptions,
-} from "./types";
-import { useTransition } from "./useTransition";
-import { getTransitionClassNames } from "./utils";
+} from "./types.js";
+import { useTransition } from "./useTransition.js";
+import { getTransitionClassNames } from "./utils.js";
 
 /**
  * This hook is used to create CSS transitions for different components whenever

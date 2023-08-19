@@ -1,12 +1,13 @@
+import { describe, expect, it, jest } from "@jest/globals";
 import { cnb } from "cnbuilder";
 import type { ReactElement, Ref } from "react";
 import { createRef } from "react";
-import { fireEvent, rmdRender } from "../../test-utils";
+import { fireEvent, rmdRender } from "../../test-utils/index.js";
 
-import { Button } from "../../button/Button";
-import { getPercentage } from "../../utils/getPercentage";
-import type { DraggableOptions } from "../useDraggable";
-import { useDraggable } from "../useDraggable";
+import { Button } from "../../button/Button.js";
+import { getPercentage } from "../../utils/getPercentage.js";
+import type { DraggableOptions } from "../useDraggable.js";
+import { useDraggable } from "../useDraggable.js";
 
 type TestProps = Partial<DraggableOptions<HTMLButtonElement>> & {
   nodeRef?: Ref<HTMLButtonElement>;

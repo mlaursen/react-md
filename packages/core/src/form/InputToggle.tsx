@@ -8,18 +8,18 @@ import type {
   ReactNode,
 } from "react";
 import { forwardRef, useState } from "react";
-import { RippleContainer } from "../interaction/RippleContainer";
-import { useElementInteraction } from "../interaction/useElementInteraction";
-import type { PropsWithRef } from "../types";
-import { useEnsuredId } from "../useEnsuredId";
-import { bem } from "../utils/bem";
-import { FormMessageContainer } from "./FormMessageContainer";
-import { InputToggleIcon } from "./InputToggleIcon";
-import { Label } from "./Label";
+import { RippleContainer } from "../interaction/RippleContainer.js";
+import { useElementInteraction } from "../interaction/useElementInteraction.js";
+import type { PropsWithRef } from "../types.js";
+import { useEnsuredId } from "../useEnsuredId.js";
+import { bem } from "../utils/bem.js";
+import { FormMessageContainer } from "./FormMessageContainer.js";
+import { InputToggleIcon } from "./InputToggleIcon.js";
+import { Label } from "./Label.js";
 import type {
   FormComponentStates,
   FormMessageContainerExtension,
-} from "./types";
+} from "./types.js";
 
 const noop = (): void => {
   // do nothing

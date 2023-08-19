@@ -1,10 +1,10 @@
 import { cnb } from "cnbuilder";
-import { bem } from "../utils/bem";
+import { bem } from "../utils/bem.js";
 import type {
   ListItemAddonPosition,
   ListItemAddonType,
   ListItemHeight,
-} from "./types";
+} from "./types.js";
 
 const styles = bem("rmd-list-item");
 

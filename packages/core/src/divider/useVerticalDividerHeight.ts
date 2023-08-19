@@ -1,7 +1,7 @@
 "use client";
 import type { CSSProperties, Ref, RefCallback } from "react";
 import { useCallback, useState } from "react";
-import { applyRef } from "../utils/applyRef";
+import { applyRef } from "../utils/applyRef.js";
 
 /** @remarks \@since 5.0.0 */
 export interface VerticalDividerHookOptions<E extends HTMLElement> {

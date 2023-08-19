@@ -1,7 +1,7 @@
 import type { AnchorHTMLAttributes } from "react";
 import { forwardRef } from "react";
-import type { LinkClassNameOptions } from "./styles";
-import { link } from "./styles";
+import type { LinkClassNameOptions } from "./styles.js";
+import { link } from "./styles.js";
 
 declare module "react" {
   interface CSSProperties {

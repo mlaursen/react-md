@@ -15,26 +15,29 @@
 
 import type { HTMLAttributes, ReactElement, ReactNode, Ref } from "react";
 import { useRef, useState } from "react";
-import { useControlledDraggable } from "../draggable/useControlledDraggable";
-import type { TooltipProps } from "../tooltip/Tooltip";
+import { useControlledDraggable } from "../draggable/useControlledDraggable.js";
+import type { TooltipProps } from "../tooltip/Tooltip.js";
 import type {
   LabelRequiredForA11y,
   PropsWithRef,
   UseStateSetter,
-} from "../types";
-import { useEnsuredId } from "../useEnsuredId";
-import { identity } from "../utils/identity";
-import { withinRange } from "../utils/withinRange";
-import type { SliderAddonProps } from "./SliderContainer";
-import { SliderContainer } from "./SliderContainer";
-import type { SliderThumbPresentation, SliderThumbProps } from "./SliderThumb";
-import { SliderThumb } from "./SliderThumb";
-import { SliderTrack } from "./SliderTrack";
-import type { SliderMarksOptions } from "./SliderValueMarks";
-import { SliderValueMarks } from "./SliderValueMarks";
-import { getJumpValue } from "./sliderUtils";
-import type { RangeSliderState } from "./useRangeSlider";
-import type { SliderState, SliderValueOptions } from "./useSlider";
+} from "../types.js";
+import { useEnsuredId } from "../useEnsuredId.js";
+import { identity } from "../utils/identity.js";
+import { withinRange } from "../utils/withinRange.js";
+import type { SliderAddonProps } from "./SliderContainer.js";
+import { SliderContainer } from "./SliderContainer.js";
+import type {
+  SliderThumbPresentation,
+  SliderThumbProps,
+} from "./SliderThumb.js";
+import { SliderThumb } from "./SliderThumb.js";
+import { SliderTrack } from "./SliderTrack.js";
+import type { SliderMarksOptions } from "./SliderValueMarks.js";
+import { SliderValueMarks } from "./SliderValueMarks.js";
+import { getJumpValue } from "./sliderUtils.js";
+import type { RangeSliderState } from "./useRangeSlider.js";
+import type { SliderState, SliderValueOptions } from "./useSlider.js";
 
 declare module "react" {
   interface CSSProperties {

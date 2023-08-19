@@ -1,13 +1,14 @@
+import { describe, expect, it, jest } from "@jest/globals";
 import type { ReactElement } from "react";
-import { fireEvent, render } from "../../test-utils";
+import { fireEvent, render } from "../../test-utils/index.js";
 
-import { AppSizeProvider } from "../../AppSizeProvider";
-import { Button } from "../../button/Button";
-import { DropdownMenu } from "../../menu/DropdownMenu";
-import { Form } from "../Form";
-import { MenuItemRadio } from "../MenuItemRadio";
-import { Radio } from "../Radio";
-import { useRadioGroup } from "../useRadioGroup";
+import { AppSizeProvider } from "../../AppSizeProvider.js";
+import { Button } from "../../button/Button.js";
+import { DropdownMenu } from "../../menu/DropdownMenu.js";
+import { Form } from "../Form.js";
+import { MenuItemRadio } from "../MenuItemRadio.js";
+import { Radio } from "../Radio.js";
+import { useRadioGroup } from "../useRadioGroup.js";
 
 describe("useRadioGroup", () => {
   it("should not check any radio elements by default", () => {

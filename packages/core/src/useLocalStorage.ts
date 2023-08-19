@@ -1,9 +1,9 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useSsr } from "./SsrProvider";
-import type { UseStateInitializer, UseStateSetter } from "./types";
-import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect";
-import { identity } from "./utils/identity";
+import { useSsr } from "./SsrProvider.js";
+import type { UseStateInitializer, UseStateSetter } from "./types.js";
+import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect.js";
+import { identity } from "./utils/identity.js";
 
 /** @remarks \@since 6.0.0 */
 export type LocalStorageSerializer<T> = (value: T) => string;

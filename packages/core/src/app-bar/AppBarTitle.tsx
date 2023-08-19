@@ -1,8 +1,11 @@
 import { cnb } from "cnbuilder";
 import { forwardRef } from "react";
-import type { TypographyProps, TypographyType } from "../typography/Typography";
-import { Typography } from "../typography/Typography";
-import { bem } from "../utils/bem";
+import type {
+  TypographyProps,
+  TypographyType,
+} from "../typography/Typography.js";
+import { Typography } from "../typography/Typography.js";
+import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-app-bar-title");
 

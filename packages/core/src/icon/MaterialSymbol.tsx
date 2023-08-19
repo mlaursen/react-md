@@ -7,11 +7,11 @@ import type {
   MaterialSymbolGrade,
   MaterialSymbolOpticalSize,
   MaterialSymbolWeight,
-} from "./MaterialSymbolsProvider";
-import { useFontVariationSettings } from "./MaterialSymbolsProvider";
-import type { MaterialSymbolName } from "./material";
-import type { MaterialSymbolClassNameOptions } from "./styles";
-import { icon } from "./styles";
+} from "./MaterialSymbolsProvider.js";
+import { useFontVariationSettings } from "./MaterialSymbolsProvider.js";
+import type { MaterialSymbolName } from "./material.js";
+import type { MaterialSymbolClassNameOptions } from "./styles.js";
+import { icon } from "./styles.js";
 
 declare module "react" {
   interface CSSProperties {

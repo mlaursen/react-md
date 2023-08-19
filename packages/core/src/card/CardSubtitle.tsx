@@ -2,9 +2,9 @@ import { forwardRef } from "react";
 import type {
   TypographyHTMLElement,
   TypographyProps,
-} from "../typography/Typography";
-import { Typography } from "../typography/Typography";
-import { cardSubtitle } from "./styles";
+} from "../typography/Typography.js";
+import { Typography } from "../typography/Typography.js";
+import { cardSubtitle } from "./styles.js";
 
 /**
  * @remarks \@since 6.0.0 Extends the {@link TypographyProps} and removed the

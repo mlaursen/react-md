@@ -2,9 +2,9 @@
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useMemo } from "react";
-import { useEnsuredRef } from "../useEnsuredRef";
-import type { TableContainerContext } from "./TableContainerProvider";
-import { TableContainerProvider } from "./TableContainerProvider";
+import { useEnsuredRef } from "../useEnsuredRef.js";
+import type { TableContainerContext } from "./TableContainerProvider.js";
+import { TableContainerProvider } from "./TableContainerProvider.js";
 
 /**
  * @remarks \@since 6.0.0

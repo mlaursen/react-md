@@ -1,12 +1,13 @@
-import { compress, decompress } from "lz-string";
+import { afterEach, describe, expect, it } from "@jest/globals";
+import lzString from "lz-string";
 import type { ReactElement } from "react";
 import { useEffect } from "react";
-import { act, fireEvent, render } from "../test-utils";
+import { act, fireEvent, render } from "../test-utils/index.js";
 
-import { Button } from "../button/Button";
-import { SsrProvider } from "../SsrProvider";
-import type { LocalStorageDeserializer } from "../useLocalStorage";
-import { useLocalStorage } from "../useLocalStorage";
+import { Button } from "../button/Button.js";
+import { SsrProvider } from "../SsrProvider.js";
+import type { LocalStorageDeserializer } from "../useLocalStorage.js";
+import { useLocalStorage } from "../useLocalStorage.js";
 
 const TEST_KEY = "test-key";
 
@@ -157,8 +158,8 @@ describe("useLocalStorage", () => {
       const { value, setValue } = useLocalStorage<Value>({
         key: TEST_KEY,
         defaultValue,
-        serializer: (value) => compress(JSON.stringify(value)),
-        deserializer: (item) => JSON.parse(decompress(item)),
+        serializer: (value) => lzString.compress(JSON.stringify(value)),
+        deserializer: (item) => JSON.parse(lzString.decompress(item)),
       });
 
       return (
@@ -180,14 +181,14 @@ describe("useLocalStorage", () => {
     const button = getByRole("button", { name: "Button" });
     expect(value).toHaveTextContent(JSON.stringify(defaultValue));
     expect(localStorage.getItem(TEST_KEY)).toBe(
-      compress(JSON.stringify(defaultValue))
+      lzString.compress(JSON.stringify(defaultValue))
     );
 
     fireEvent.click(button);
     const nextValue: Value = { value: "next value!" };
     expect(value).toHaveTextContent(JSON.stringify(nextValue));
     expect(localStorage.getItem(TEST_KEY)).toBe(
-      compress(JSON.stringify(nextValue))
+      lzString.compress(JSON.stringify(nextValue))
     );
   });
 

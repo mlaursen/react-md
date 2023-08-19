@@ -1,11 +1,11 @@
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes, ReactElement, ReactNode } from "react";
-import type { TreeData, TreeItemNode } from "../tree/types";
-import type { PropsWithRef } from "../types";
-import { bem } from "../utils/bem";
-import { LayoutNavigation } from "./LayoutNavigation";
-import { useLayoutConfig } from "./LayoutProvider";
-import type { LayoutNavigationItem, LayoutNavigationProps } from "./types";
+import type { TreeData, TreeItemNode } from "../tree/types.js";
+import type { PropsWithRef } from "../types.js";
+import { bem } from "../utils/bem.js";
+import { LayoutNavigation } from "./LayoutNavigation.js";
+import { useLayoutConfig } from "./LayoutProvider.js";
+import type { LayoutNavigationItem, LayoutNavigationProps } from "./types.js";
 
 const styles = bem("rmd-layout-mini-wrapper");
 

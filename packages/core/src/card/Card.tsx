@@ -1,7 +1,7 @@
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
-import type { CardClassNameOptions } from "./styles";
-import { card } from "./styles";
+import type { CardClassNameOptions } from "./styles.js";
+import { card } from "./styles.js";
 
 declare module "react" {
   interface CSSProperties {

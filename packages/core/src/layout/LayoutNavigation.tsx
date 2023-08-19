@@ -1,18 +1,18 @@
 import { cnb } from "cnbuilder";
 import type { ReactElement } from "react";
-import { Sheet } from "../sheet/Sheet";
-import type { TreeItemNode } from "../tree/types";
-import { bem } from "../utils/bem";
-import { DefaultMiniLayoutNavigationItemRenderer } from "./DefaultLayoutNavigationMiniItemRenderer";
-import { LayoutNavigationHeader } from "./LayoutNavigationHeader";
-import { useLayoutConfig } from "./LayoutProvider";
-import { LayoutTree } from "./LayoutTree";
-import type { LayoutNavigationItem, LayoutNavigationProps } from "./types";
+import { Sheet } from "../sheet/Sheet.js";
+import type { TreeItemNode } from "../tree/types.js";
+import { bem } from "../utils/bem.js";
+import { DefaultMiniLayoutNavigationItemRenderer } from "./DefaultLayoutNavigationMiniItemRenderer.js";
+import { LayoutNavigationHeader } from "./LayoutNavigationHeader.js";
+import { useLayoutConfig } from "./LayoutProvider.js";
+import { LayoutTree } from "./LayoutTree.js";
+import type { LayoutNavigationItem, LayoutNavigationProps } from "./types.js";
 import {
   isPersistentLayout,
   isTemporaryLayout,
   isToggleableLayout,
-} from "./utils";
+} from "./utils.js";
 
 const styles = bem("rmd-layout-navigation");
 

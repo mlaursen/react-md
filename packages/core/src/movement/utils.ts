@@ -1,6 +1,6 @@
 import type { KeyboardEvent } from "react";
-import { loop } from "../utils/loop";
-import type { FocusableIndexOptions, TabIndexBehavior } from "./types";
+import { loop } from "../utils/loop.js";
+import type { FocusableIndexOptions, TabIndexBehavior } from "./types.js";
 
 /**
  * @remarks \@since 6.0.0

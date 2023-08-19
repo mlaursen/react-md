@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, jest } from "@jest/globals";
 import type { MouseEventHandler, ReactElement } from "react";
 import {
   act,
@@ -6,11 +7,11 @@ import {
   userEvent,
   waitFor,
   within,
-} from "../../test-utils";
+} from "../../test-utils/index.js";
 
-import { DropdownMenu } from "../DropdownMenu";
-import { MenuBar } from "../MenuBar";
-import { MenuItem } from "../MenuItem";
+import { DropdownMenu } from "../DropdownMenu.js";
+import { MenuBar } from "../MenuBar.js";
+import { MenuItem } from "../MenuItem.js";
 
 interface TestProps {
   hoverTimeout?: number;

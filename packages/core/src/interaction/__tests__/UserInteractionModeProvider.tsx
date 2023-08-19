@@ -1,10 +1,11 @@
+import { describe, expect, it, jest } from "@jest/globals";
 import type { ReactElement } from "react";
-import { fireEvent, render } from "../../test-utils";
+import { fireEvent, render } from "../../test-utils/index.js";
 
 import {
   UserInteractionModeProvider,
   useUserInteractionMode,
-} from "../UserInteractionModeProvider";
+} from "../UserInteractionModeProvider.js";
 
 describe("UserInteractionModeProvider", () => {
   it("should throw an error if multiple instances are mounted", () => {

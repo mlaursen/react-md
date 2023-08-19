@@ -1,9 +1,10 @@
+import { describe, expect, it, jest } from "@jest/globals";
 import { createRef } from "react";
-import { fireEvent, render } from "../../test-utils";
+import { fireEvent, render } from "../../test-utils/index.js";
 
-import { ElementInteractionProvider } from "../../interaction/ElementInteractionProvider";
-import type { ButtonTheme, ButtonThemeType, ButtonType } from "../Button";
-import { Button, button } from "../Button";
+import { ElementInteractionProvider } from "../../interaction/ElementInteractionProvider.js";
+import type { ButtonTheme, ButtonThemeType, ButtonType } from "../Button.js";
+import { Button, button } from "../Button.js";
 
 describe("Button", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {

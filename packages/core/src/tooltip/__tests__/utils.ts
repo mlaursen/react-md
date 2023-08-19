@@ -1,12 +1,13 @@
+import { describe, expect, it, jest } from "@jest/globals";
 import {
   ABOVE_CENTER_ANCHOR,
   BELOW_CENTER_ANCHOR,
   CENTER_LEFT_ANCHOR,
   CENTER_RIGHT_ANCHOR,
-} from "../../positioning/constants";
-import { DEFAULT_TOOLTIP_THRESHOLD } from "../constants";
-import type { GetPositionOptions } from "../utils";
-import { getAnchor, getPosition } from "../utils";
+} from "../../positioning/constants.js";
+import { DEFAULT_TOOLTIP_THRESHOLD } from "../constants.js";
+import type { GetPositionOptions } from "../utils.js";
+import { getAnchor, getPosition } from "../utils.js";
 
 describe("getAnchor", () => {
   it("should return the correct PositionAnchor based on the SimplePosition", () => {

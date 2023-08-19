@@ -2,16 +2,16 @@
 import { cnb } from "cnbuilder";
 import type { ButtonHTMLAttributes } from "react";
 import { forwardRef } from "react";
-import { RippleContainer } from "../interaction/RippleContainer";
-import { useElementInteraction } from "../interaction/useElementInteraction";
-import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren";
-import type { PropsWithRef } from "../types";
-import { bem } from "../utils/bem";
+import { RippleContainer } from "../interaction/RippleContainer.js";
+import { useElementInteraction } from "../interaction/useElementInteraction.js";
+import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
+import type { PropsWithRef } from "../types.js";
+import { bem } from "../utils/bem.js";
 import type {
   FloatingActionButtonPosition,
   FloatingActionButtonProps,
-} from "./FloatingActionButton";
-import { FloatingActionButton } from "./FloatingActionButton";
+} from "./FloatingActionButton.js";
+import { FloatingActionButton } from "./FloatingActionButton.js";
 
 declare module "react" {
   interface CSSProperties {

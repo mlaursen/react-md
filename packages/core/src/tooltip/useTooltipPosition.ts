@@ -1,11 +1,11 @@
 "use client";
 import { useCallback, useState } from "react";
-import type { SimplePosition } from "../positioning/types";
+import type { SimplePosition } from "../positioning/types.js";
 import {
   DEFAULT_TOOLTIP_POSITION,
   DEFAULT_TOOLTIP_THRESHOLD,
-} from "./constants";
-import { getPosition } from "./utils";
+} from "./constants.js";
+import { getPosition } from "./utils.js";
 
 /** @internal */
 const noop = (): void => {

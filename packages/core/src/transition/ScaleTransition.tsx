@@ -2,9 +2,9 @@
 import { cnb } from "cnbuilder";
 import type { ReactElement } from "react";
 import { Children, cloneElement } from "react";
-import type { CSSTransitionComponentImplementation } from "./types";
-import type { ScaleTransitionHookOptions } from "./useScaleTransition";
-import { useScaleTransition } from "./useScaleTransition";
+import type { CSSTransitionComponentImplementation } from "./types.js";
+import type { ScaleTransitionHookOptions } from "./useScaleTransition.js";
+import { useScaleTransition } from "./useScaleTransition.js";
 
 /**
  * @typeParam E - The HTMLElement type used or the ref required for the

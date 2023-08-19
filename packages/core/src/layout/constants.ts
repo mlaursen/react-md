@@ -1,9 +1,9 @@
-import type { CSSTransitionClassNames } from "../transition/types";
+import type { CSSTransitionClassNames } from "../transition/types.js";
 import type {
   SupportedPhoneLayout,
   SupportedTabletLayout,
   SupportedWideLayout,
-} from "./types";
+} from "./types.js";
 
 export const DEFAULT_PHONE_LAYOUT: SupportedPhoneLayout = "temporary";
 export const DEFAULT_TABLET_LAYOUT: SupportedTabletLayout = "toggleable";

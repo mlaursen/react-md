@@ -5,11 +5,11 @@ import type {
   CSSTransitionComponentProps,
   TransitionActions,
   TransitionTimeout,
-} from "./types";
+} from "./types.js";
 import {
   DEFAULT_SLIDE_TRANSITION_TIMEOUT,
   useSlideTransition,
-} from "./useSlideTransition";
+} from "./useSlideTransition.js";
 
 declare module "react" {
   interface CSSProperties {

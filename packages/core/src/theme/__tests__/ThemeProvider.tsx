@@ -1,13 +1,14 @@
-import { camelCase } from "lodash";
-import { render } from "../../test-utils";
+import { beforeEach, describe, expect, it, jest } from "@jest/globals";
+import lodash from "lodash";
+import { render } from "../../test-utils/index.js";
 
-import type { ConfigurableThemeColors } from "../ThemeProvider";
+import type { ConfigurableThemeColors } from "../ThemeProvider.js";
 import {
   DEFAULT_DARK_THEME,
   DEFAULT_LIGHT_THEME,
   ThemeProvider,
   useTheme,
-} from "../ThemeProvider";
+} from "../ThemeProvider.js";
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -22,7 +23,7 @@ describe("ThemeProvider", () => {
 
     const error = jest.spyOn(console, "error");
     // hide React uncaught error message
-    error.mockImplementation();
+    error.mockImplementation(() => {});
 
     expect(() => render(<Test />)).toThrow(
       "The `ThemeProvider` has not been initialized."
@@ -38,7 +39,7 @@ describe("ThemeProvider", () => {
       .mockReturnValue({
         ...defaultComputedStyle,
         getPropertyValue(property) {
-          const name = camelCase(
+          const name = lodash.camelCase(
             property.replace("--rmd-", "")
           ) as "backgroundColor";
           return DEFAULT_LIGHT_THEME[name] ?? "";

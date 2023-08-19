@@ -9,15 +9,15 @@ import { forwardRef } from "react";
 import type {
   ButtonClassNameOptions,
   ButtonClassNameThemeOptions,
-} from "../button/Button";
-import { button } from "../button/Button";
-import { useIcon } from "../icon/IconProvider";
-import { TextIconSpacing } from "../icon/TextIconSpacing";
-import { RippleContainer } from "../interaction/RippleContainer";
-import { useElementInteraction } from "../interaction/useElementInteraction";
-import type { PropsWithRef } from "../types";
-import { SrOnly } from "../typography/SrOnly";
-import { useEnsuredId } from "../useEnsuredId";
+} from "../button/Button.js";
+import { button } from "../button/Button.js";
+import { useIcon } from "../icon/IconProvider.js";
+import { TextIconSpacing } from "../icon/TextIconSpacing.js";
+import { RippleContainer } from "../interaction/RippleContainer.js";
+import { useElementInteraction } from "../interaction/useElementInteraction.js";
+import type { PropsWithRef } from "../types.js";
+import { SrOnly } from "../typography/SrOnly.js";
+import { useEnsuredId } from "../useEnsuredId.js";
 
 /** @remarks \@since 6.0.0 */
 export type FileInputLabelClassNameOptions = ButtonClassNameOptions;

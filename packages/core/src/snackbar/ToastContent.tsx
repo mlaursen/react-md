@@ -2,8 +2,8 @@
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useCallback, useState } from "react";
-import { useResizeObserver } from "../useResizeObserver";
-import { bem } from "../utils/bem";
+import { useResizeObserver } from "../useResizeObserver.js";
+import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-toast-content");
 

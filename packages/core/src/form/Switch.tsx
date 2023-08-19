@@ -2,17 +2,17 @@
 import { cnb } from "cnbuilder";
 import type { CSSProperties, HTMLAttributes, InputHTMLAttributes } from "react";
 import { forwardRef, useState } from "react";
-import type { PropsWithRef } from "../types";
-import { useEnsuredId } from "../useEnsuredId";
-import { bem } from "../utils/bem";
-import { FormMessageContainer } from "./FormMessageContainer";
-import type { InputToggleLabelProps } from "./InputToggle";
-import { Label } from "./Label";
-import { SwitchTrack } from "./SwitchTrack";
+import type { PropsWithRef } from "../types.js";
+import { useEnsuredId } from "../useEnsuredId.js";
+import { bem } from "../utils/bem.js";
+import { FormMessageContainer } from "./FormMessageContainer.js";
+import type { InputToggleLabelProps } from "./InputToggle.js";
+import { Label } from "./Label.js";
+import { SwitchTrack } from "./SwitchTrack.js";
 import type {
   FormComponentStates,
   FormMessageContainerExtension,
-} from "./types";
+} from "./types.js";
 
 declare module "react" {
   interface CSSProperties {

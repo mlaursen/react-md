@@ -2,16 +2,16 @@
 import { cnb } from "cnbuilder";
 import type { CSSProperties } from "react";
 import { useState } from "react";
-import { useEnsuredRef } from "../useEnsuredRef";
+import { useEnsuredRef } from "../useEnsuredRef.js";
 import type {
   CSSTransitionElementProps,
   CSSTransitionHookReturnValue,
   PreconfiguredCSSTransitionOptions,
   TransitionTimeout,
   TransitionTimeoutObject,
-} from "./types";
-import { useTransition } from "./useTransition";
-import { getElementSizing, getTransitionTimeout } from "./utils";
+} from "./types.js";
+import { useTransition } from "./useTransition.js";
+import { getElementSizing, getTransitionTimeout } from "./utils.js";
 
 const noop = (): void => {
   // do nothing

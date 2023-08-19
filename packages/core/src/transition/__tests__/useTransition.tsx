@@ -1,15 +1,23 @@
+import {
+  afterEach,
+  beforeAll,
+  describe,
+  expect,
+  it,
+  jest,
+} from "@jest/globals";
 import type { MutableRefObject, ReactElement } from "react";
 import { useEffect, useState } from "react";
-import { act, fireEvent, render, waitFor } from "../../test-utils";
+import { act, fireEvent, render, waitFor } from "../../test-utils/index.js";
 
 import type {
   TransitionHookOptions,
   TransitionStage,
   TransitionTimeout,
-} from "../types";
-import { useTransition } from "../useTransition";
-import { useLocalStorage } from "../../useLocalStorage";
-import { SsrProvider, useSsr } from "../../SsrProvider";
+} from "../types.js";
+import { useTransition } from "../useTransition.js";
+import { useLocalStorage } from "../../useLocalStorage.js";
+import { SsrProvider, useSsr } from "../../SsrProvider.js";
 
 const createStageRef = (): MutableRefObject<TransitionStage[]> => ({
   current: [],

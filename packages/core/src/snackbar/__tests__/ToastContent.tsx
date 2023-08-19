@@ -1,7 +1,8 @@
+import { describe, expect, it, jest } from "@jest/globals";
 import { createRef } from "react";
-import { render, screen, waitFor } from "../../test-utils";
+import { render, screen, waitFor } from "../../test-utils/index.js";
 
-import { ToastContent } from "../ToastContent";
+import { ToastContent } from "../ToastContent.js";
 
 describe("ToastContent", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {

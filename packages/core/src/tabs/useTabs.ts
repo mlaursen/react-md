@@ -1,9 +1,9 @@
 "use client";
 import type { Ref, RefObject } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { SlideDirection } from "../transition/SlideContainer";
-import type { UseStateInitializer, UseStateSetter } from "../types";
-import { useEnsuredId } from "../useEnsuredId";
+import type { SlideDirection } from "../transition/SlideContainer.js";
+import type { UseStateInitializer, UseStateSetter } from "../types.js";
+import { useEnsuredId } from "../useEnsuredId.js";
 
 const noop = (): void => {
   // do nothing

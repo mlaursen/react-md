@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, jest } from "@jest/globals";
 import type { ReactElement } from "react";
 import {
   act,
@@ -6,21 +7,21 @@ import {
   screen,
   userEvent,
   waitFor,
-} from "../../test-utils";
+} from "../../test-utils/index.js";
 
 import {
   DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
   DEFAULT_DESKTOP_MIN_WIDTH,
   DEFAULT_PHONE_MAX_WIDTH,
-} from "../../AppSizeProvider";
-import { Tooltip } from "../../tooltip/Tooltip";
-import { useTooltip } from "../../tooltip/useTooltip";
-import { Tab } from "../Tab";
-import type { TabListProps } from "../TabList";
-import { TabList } from "../TabList";
-import type { ProvidedTabListProps } from "../useTabs";
-import { useTabs } from "../useTabs";
-import type { TabListScrollToOptions } from "../utils";
+} from "../../AppSizeProvider.js";
+import { Tooltip } from "../../tooltip/Tooltip.js";
+import { useTooltip } from "../../tooltip/useTooltip.js";
+import { Tab } from "../Tab.js";
+import type { TabListProps } from "../TabList.js";
+import { TabList } from "../TabList.js";
+import type { ProvidedTabListProps } from "../useTabs.js";
+import { useTabs } from "../useTabs.js";
+import type { GetTabListScrollToOptions } from "../utils.js";
 
 // make it so the back button defaults to intersecting
 const getIntersectionRatio = jest.fn((target: Element): number =>
@@ -509,10 +510,7 @@ describe("TabList", () => {
   it("should support scrolling a custom distance with the getScrollToOptions prop", async () => {
     // just allow both buttons to always be enabled for this test
     getIntersectionRatio.mockReturnValue(0.5);
-    const getScrollToOptions = jest.fn<
-      ScrollToOptions | undefined,
-      [TabListScrollToOptions]
-    >(() => ({
+    const getScrollToOptions = jest.fn<GetTabListScrollToOptions>(() => ({
       top: 10,
       left: 200,
       behavior: "auto",

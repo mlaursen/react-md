@@ -1,2 +1,2 @@
-import "@testing-library/jest-dom";
-import "./src/test-utils/polyfills";
+import "@testing-library/jest-dom/jest-globals.js";
+import "./src/test-utils/polyfills/index.js";

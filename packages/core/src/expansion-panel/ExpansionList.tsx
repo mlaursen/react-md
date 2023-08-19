@@ -1,8 +1,8 @@
 "use client";
 import type { HTMLAttributes, ReactNode } from "react";
 import { forwardRef } from "react";
-import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvider";
-import { useExpansionList } from "./useExpansionList";
+import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
+import { useExpansionList } from "./useExpansionList.js";
 
 /**
  * @remarks \@since 6.0.0 No longer requires the `onKeyDown` prop.

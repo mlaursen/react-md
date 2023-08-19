@@ -1,4 +1,5 @@
-import { withinRange } from "../withinRange";
+import { describe, expect, it } from "@jest/globals";
+import { withinRange } from "../withinRange.js";
 
 describe("withinRange", () => {
   it("should return the value if the min or max values are undefined", () => {

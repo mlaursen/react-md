@@ -1,9 +1,10 @@
+import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { render } from "../../test-utils";
+import { render } from "../../test-utils/index.js";
 
-import type { PropsWithRef } from "../../types";
-import type { ListElement, ListProps } from "../List";
-import { List, list } from "../List";
+import type { PropsWithRef } from "../../types.js";
+import type { ListElement, ListProps } from "../List.js";
+import { List, list } from "../List.js";
 
 describe("List", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {

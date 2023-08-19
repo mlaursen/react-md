@@ -1,13 +1,13 @@
 "use client";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
-import { RippleContainer } from "../interaction/RippleContainer";
-import { useElementInteraction } from "../interaction/useElementInteraction";
-import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren";
-import { ListItemChildren } from "./ListItemChildren";
-import { getListItemHeight } from "./getListItemHeight";
-import { listItem } from "./listItemStyles";
-import type { ListItemChildrenProps, ListItemHeight } from "./types";
+import { RippleContainer } from "../interaction/RippleContainer.js";
+import { useElementInteraction } from "../interaction/useElementInteraction.js";
+import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
+import { ListItemChildren } from "./ListItemChildren.js";
+import { getListItemHeight } from "./getListItemHeight.js";
+import { listItem } from "./listItemStyles.js";
+import type { ListItemChildrenProps, ListItemHeight } from "./types.js";
 
 declare module "react" {
   interface CSSProperties {

@@ -4,7 +4,7 @@ import type {
   TransitionActions,
   TransitionTimeout,
   TransitionTimeoutObject,
-} from "./types";
+} from "./types.js";
 
 /**
  * @remarks \@since 4.0.0

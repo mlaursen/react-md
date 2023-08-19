@@ -2,18 +2,18 @@
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useRef, useState } from "react";
-import { List } from "../list/List";
-import type { GetDefaultFocusedIndex } from "../movement/types";
-import { useKeyboardMovementProvider } from "../movement/useKeyboardMovementProvider";
-import type { NonNullMutableRef } from "../types";
-import { bem } from "../utils/bem";
-import type { MenuListConvenienceProps } from "./Menu";
-import { MenuWidgetKeyboardProvider } from "./MenuWidgetKeyboardProvider";
+import { List } from "../list/List.js";
+import type { GetDefaultFocusedIndex } from "../movement/types.js";
+import { useKeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
+import type { NonNullMutableRef } from "../types.js";
+import { bem } from "../utils/bem.js";
+import type { MenuListConvenienceProps } from "./Menu.js";
+import { MenuWidgetKeyboardProvider } from "./MenuWidgetKeyboardProvider.js";
 import {
   MenuBarProvider,
   useMenuBarContext,
   useMenuBarProvider,
-} from "./useMenuBarProvider";
+} from "./useMenuBarProvider.js";
 
 const styles = bem("rmd-menu");
 const noop = (): void => {

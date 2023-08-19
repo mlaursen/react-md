@@ -1,4 +1,12 @@
-import type { RenderResult } from "../../test-utils";
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  jest,
+} from "@jest/globals";
+import type { RenderResult } from "../../test-utils/index.js";
 import {
   act,
   rmdRender,
@@ -6,13 +14,13 @@ import {
   userEvent,
   waitFor,
   within,
-} from "../../test-utils";
+} from "../../test-utils/index.js";
 
 import type { ReactElement, ReactNode } from "react";
-import { Button } from "../../button/Button";
-import type { SnackbarProps } from "../Snackbar";
-import { Snackbar } from "../Snackbar";
-import type { CreateToastOptions } from "../ToastManagerProvider";
+import { Button } from "../../button/Button.js";
+import type { SnackbarProps } from "../Snackbar.js";
+import { Snackbar } from "../Snackbar.js";
+import type { CreateToastOptions } from "../ToastManagerProvider.js";
 import {
   ToastManager,
   ToastManagerProvider,
@@ -22,7 +30,7 @@ import {
   removeToast,
   toastManager,
   useAddToast,
-} from "../ToastManagerProvider";
+} from "../ToastManagerProvider.js";
 
 const ENTER_CLASS_NAME = "rmd-scale-transition--enter";
 const LEAVE_CLASS_NAME = "rmd-scale-transition--exit";

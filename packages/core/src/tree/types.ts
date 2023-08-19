@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-import type { ListItemChildrenProps } from "../list/types";
-import type { UseStateInitializer } from "../types";
+import type { ListItemChildrenProps } from "../list/types.js";
+import type { UseStateInitializer } from "../types.js";
 
 /**
  * @remarks \@since 6.0.0 This was renamed from `TreeItemIds`

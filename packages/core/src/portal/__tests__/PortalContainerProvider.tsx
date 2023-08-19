@@ -1,10 +1,11 @@
-import { render } from "../../test-utils";
+import { describe, expect, it } from "@jest/globals";
+import { render } from "../../test-utils/index.js";
 
 import {
   PortalContainerProvider,
   PORTAL_CONTAINER_ID,
-} from "../PortalContainerProvider";
-import { Portal } from "../Portal";
+} from "../PortalContainerProvider.js";
+import { Portal } from "../Portal.js";
 
 describe("PortalContainerProvider", () => {
   it("should portal all child portals to a div that was created as the last child in the document.body", () => {

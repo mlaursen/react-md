@@ -4,9 +4,9 @@
   "compilerOptions": {
     "noEmit": false,
     "declaration": true,
-    "declarationDir": "./types",
+    "declarationDir": "./dist",
     "emitDeclarationOnly": true
   },
-  "include": ["src"],
+  "include": ["src/**.ts", "src/**.tsx"],
   "exclude": ["node_modules", "**/__tests__/**"]
 }

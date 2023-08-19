@@ -2,33 +2,33 @@
 import { cnb } from "cnbuilder";
 import type { CSSProperties, HTMLAttributes } from "react";
 import { forwardRef, useEffect, useRef } from "react";
-import { useAppSize } from "../AppSizeProvider";
-import { useFocusContainer } from "../focus/useFocusContainer";
-import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider";
-import type { ListElement, ListProps } from "../list/List";
-import type { GetDefaultFocusedIndex } from "../movement/types";
-import { Portal } from "../portal/Portal";
-import type { CalculateFixedPositionOptions } from "../positioning/types";
-import type { FixedPositioningOptions } from "../positioning/useFixedPositioning";
-import { useFixedPositioning } from "../positioning/useFixedPositioning";
-import { useScrollLock } from "../scroll/useScrollLock";
-import type { ScaleTransitionHookOptions } from "../transition/useScaleTransition";
-import { useScaleTransition } from "../transition/useScaleTransition";
-import type { LabelRequiredForA11y, PropsWithRef } from "../types";
-import { useEnsuredId } from "../useEnsuredId";
+import { useAppSize } from "../AppSizeProvider.js";
+import { useFocusContainer } from "../focus/useFocusContainer.js";
+import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
+import type { ListElement, ListProps } from "../list/List.js";
+import type { GetDefaultFocusedIndex } from "../movement/types.js";
+import { Portal } from "../portal/Portal.js";
+import type { CalculateFixedPositionOptions } from "../positioning/types.js";
+import type { FixedPositioningOptions } from "../positioning/useFixedPositioning.js";
+import { useFixedPositioning } from "../positioning/useFixedPositioning.js";
+import { useScrollLock } from "../scroll/useScrollLock.js";
+import type { ScaleTransitionHookOptions } from "../transition/useScaleTransition.js";
+import { useScaleTransition } from "../transition/useScaleTransition.js";
+import type { LabelRequiredForA11y, PropsWithRef } from "../types.js";
+import { useEnsuredId } from "../useEnsuredId.js";
 import type {
   MenuConfiguration,
   MenuOrientationProps,
-} from "./MenuConfigurationProvider";
+} from "./MenuConfigurationProvider.js";
 import {
   MenuConfigurationProvider,
   useMenuConfiguration,
-} from "./MenuConfigurationProvider";
-import type { MenuSheetConvenienceProps } from "./MenuSheet";
-import { MenuSheet } from "./MenuSheet";
-import { MenuWidget } from "./MenuWidget";
-import { useMenuBarContext } from "./useMenuBarProvider";
-import { getDefaultAnchor } from "./utils";
+} from "./MenuConfigurationProvider.js";
+import type { MenuSheetConvenienceProps } from "./MenuSheet.js";
+import { MenuSheet } from "./MenuSheet.js";
+import { MenuWidget } from "./MenuWidget.js";
+import { useMenuBarContext } from "./useMenuBarProvider.js";
+import { getDefaultAnchor } from "./utils.js";
 
 declare module "react" {
   interface CSSProperties {

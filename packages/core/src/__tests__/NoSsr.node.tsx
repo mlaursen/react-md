@@ -1,9 +1,10 @@
 /** @jest-environment node */
 
+import { describe, expect, it } from "@jest/globals";
 import { renderToString } from "react-dom/server";
 
-import { NoSsr } from "../NoSsr";
-import { SsrProvider } from "../SsrProvider";
+import { NoSsr } from "../NoSsr.js";
+import { SsrProvider } from "../SsrProvider.js";
 
 describe("NoSsr", () => {
   it("should not render anything initially in ssr mode", () => {

@@ -1,12 +1,12 @@
 "use client";
 import { useState } from "react";
-import { getDraggableDefaultValue } from "../draggable/utils";
-import type { UseStateInitializer, UseStateSetter } from "../types";
+import { getDraggableDefaultValue } from "../draggable/utils.js";
+import type { UseStateInitializer, UseStateSetter } from "../types.js";
 import type {
   ControlledWindowSplitterImplementation,
   ControlledWindowSplitterOptions,
-} from "./useControlledWindowSplitter";
-import { useControlledWindowSplitter } from "./useControlledWindowSplitter";
+} from "./useControlledWindowSplitter.js";
+import { useControlledWindowSplitter } from "./useControlledWindowSplitter.js";
 
 /**
  * @remarks \@since 6.0.0

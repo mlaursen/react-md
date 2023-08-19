@@ -5,8 +5,8 @@ import { Children, cloneElement } from "react";
 import type {
   CollapseElementProps,
   CollapseTransitionHookOptions,
-} from "./useCollapseTransition";
-import { useCollapseTransition } from "./useCollapseTransition";
+} from "./useCollapseTransition.js";
+import { useCollapseTransition } from "./useCollapseTransition.js";
 
 /**
  * @typeParam E - An HTMLElement type used for the ref required for the

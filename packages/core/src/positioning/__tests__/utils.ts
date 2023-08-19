@@ -1,3 +1,4 @@
+import { describe, expect, it, jest } from "@jest/globals";
 import {
   ABOVE_CENTER_ANCHOR,
   ABOVE_INNER_LEFT_ANCHOR,
@@ -24,7 +25,7 @@ import {
   TOP_INNER_RIGHT_ANCHOR,
   TOP_LEFT_ANCHOR,
   TOP_RIGHT_ANCHOR,
-} from "../constants";
+} from "../constants.js";
 import {
   findSizingContainer,
   getAboveCoord,
@@ -40,7 +41,7 @@ import {
   getTopCoord,
   getTransformOrigin,
   isWithinViewport,
-} from "../utils";
+} from "../utils.js";
 
 const containerRect1: DOMRect = {
   left: 100,

@@ -1,7 +1,7 @@
 "use client";
 import type { ForwardRefExoticComponent, ReactElement, ReactNode } from "react";
 import { createContext, useContext } from "react";
-import { Link } from "./Link";
+import { Link } from "./Link.js";
 
 /**
  * @remarks \@since 6.0.0

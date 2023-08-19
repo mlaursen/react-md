@@ -4,9 +4,9 @@ import type { ReactElement } from "react";
 import type {
   CSSTransitionClassNames,
   TransitionTimeout,
-} from "../transition/types";
-import { useCSSTransition } from "../transition/useCSSTransition";
-import type { RippleState, RippleTransitionCallbacks } from "./types";
+} from "../transition/types.js";
+import { useCSSTransition } from "../transition/useCSSTransition.js";
+import type { RippleState, RippleTransitionCallbacks } from "./types.js";
 
 /** @internal */
 export const DEFAULT_RIPPLE_CLASSNAMES: Readonly<CSSTransitionClassNames> = {

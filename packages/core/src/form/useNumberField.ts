@@ -1,7 +1,7 @@
 "use client";
 import { useCallback, useRef, useState } from "react";
-import type { UseStateInitializer, UseStateSetter } from "../types";
-import { withinRange } from "../utils/withinRange";
+import type { UseStateInitializer, UseStateSetter } from "../types.js";
+import { withinRange } from "../utils/withinRange.js";
 import type {
   ProvidedTextFieldMessageProps,
   ProvidedTextFieldProps,
@@ -9,8 +9,8 @@ import type {
   TextFieldHookState,
   TextFieldImplementation,
   ValidatedTextFieldImplementation,
-} from "./useTextField";
-import { useTextField } from "./useTextField";
+} from "./useTextField.js";
+import { useTextField } from "./useTextField.js";
 
 const noop = (): void => {
   // do nothing

@@ -1,12 +1,12 @@
-import type { XCoordConfig } from "./utils";
+import type { XCoordConfig } from "./utils.js";
 import {
   getCenterXCoord,
   getInnerLeftCoord,
   getInnerRightCoord,
   getLeftCoord,
   getRightCoord,
-} from "./utils";
-import type { FixedPositionOptions, HorizontalPosition } from "./types";
+} from "./utils.js";
+import type { FixedPositionOptions, HorizontalPosition } from "./types.js";
 
 /**
  * @internal

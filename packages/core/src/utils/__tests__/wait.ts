@@ -1,4 +1,5 @@
-import { wait } from "../wait";
+import { describe, expect, it } from "@jest/globals";
+import { wait } from "../wait.js";
 
 describe("wait", () => {
   it("should wait the duration and the resolve", async () => {

@@ -1,4 +1,4 @@
-import type { TreeItemNode, TreeData, DefaultTreeItemNode } from "./types";
+import type { TreeItemNode, TreeData, DefaultTreeItemNode } from "./types.js";
 
 /**
  * This will get all the items from the provided itemId up to the root of the

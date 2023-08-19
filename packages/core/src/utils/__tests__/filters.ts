@@ -1,4 +1,5 @@
-import { caseInsensitiveFilter, fuzzyFilter } from "../filters";
+import { describe, expect, it, jest } from "@jest/globals";
+import { caseInsensitiveFilter, fuzzyFilter } from "../filters.js";
 
 const FRUITS = ["Apple", "Banana", "Mango", "Orange"];
 

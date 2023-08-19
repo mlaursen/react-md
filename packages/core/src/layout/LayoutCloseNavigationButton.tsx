@@ -1,10 +1,10 @@
 import type { MouseEvent } from "react";
 import { forwardRef, useCallback } from "react";
-import { Button } from "../button/Button";
-import { useIcon } from "../icon/IconProvider";
-import { useLayoutConfig } from "./LayoutProvider";
-import type { LayoutCloseNavigationButtonProps } from "./types";
-import { isToggleableLayout } from "./utils";
+import { Button } from "../button/Button.js";
+import { useIcon } from "../icon/IconProvider.js";
+import { useLayoutConfig } from "./LayoutProvider.js";
+import type { LayoutCloseNavigationButtonProps } from "./types.js";
+import { isToggleableLayout } from "./utils.js";
 
 /**
  * The `LayoutCloseNavigationButton` is used to close the navigation panel for

@@ -3,6 +3,12 @@
   "version": "6.0.0-alpha.0",
   "description": "Material Design Icon components for react-md",
   "type": "module",
+  "exports": {
+    "./*": {
+      "types": "./*.d.ts",
+      "default": "./*.js"
+    }
+  },
   "sideEffects": false,
   "scripts": {
     "build": "node scripts/build.js",

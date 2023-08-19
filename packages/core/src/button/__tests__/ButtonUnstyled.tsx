@@ -1,7 +1,8 @@
+import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { render } from "../../test-utils";
+import { render } from "../../test-utils/index.js";
 
-import { buttonUnstyled, ButtonUnstyled } from "../ButtonUnstyled";
+import { buttonUnstyled, ButtonUnstyled } from "../ButtonUnstyled.js";
 
 describe("ButtonUnstyled", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {

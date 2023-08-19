@@ -7,13 +7,13 @@ import type {
   RefObject,
 } from "react";
 import { useCallback, useRef, useState } from "react";
-import { useIcon } from "../icon/IconProvider";
-import type { UseStateInitializer, UseStateSetter } from "../types";
-import { useEnsuredId } from "../useEnsuredId";
-import { useEnsuredRef } from "../useEnsuredRef";
-import type { FormMessageInputLengthCounterProps } from "./FormMessage";
-import type { TextFieldProps } from "./TextField";
-import type { FormMessageProps } from "./types";
+import { useIcon } from "../icon/IconProvider.js";
+import type { UseStateInitializer, UseStateSetter } from "../types.js";
+import { useEnsuredId } from "../useEnsuredId.js";
+import { useEnsuredRef } from "../useEnsuredRef.js";
+import type { FormMessageInputLengthCounterProps } from "./FormMessage.js";
+import type { TextFieldProps } from "./TextField.js";
+import type { FormMessageProps } from "./types.js";
 import type {
   ErrorMessageOptions,
   GetErrorIcon,
@@ -21,12 +21,12 @@ import type {
   IsErrored,
   TextFieldValidationOptions,
   TextFieldValidationType,
-} from "./validation";
+} from "./validation.js";
 import {
   defaultGetErrorIcon,
   defaultGetErrorMessage,
   defaultIsErrored,
-} from "./validation";
+} from "./validation.js";
 
 const noop = (): void => {
   // do nothing

@@ -1,9 +1,9 @@
 import { forwardRef } from "react";
-import { AppBar } from "../app-bar/AppBar";
-import { LayoutAppBarTitle } from "./LayoutAppBarTitle";
-import { LayoutNavToggle } from "./LayoutNavToggle";
-import { useLayoutConfig } from "./LayoutProvider";
-import type { LayoutAppBarProps } from "./types";
+import { AppBar } from "../app-bar/AppBar.js";
+import { LayoutAppBarTitle } from "./LayoutAppBarTitle.js";
+import { LayoutNavToggle } from "./LayoutNavToggle.js";
+import { useLayoutConfig } from "./LayoutProvider.js";
+import type { LayoutAppBarProps } from "./types.js";
 
 /**
  * This is the default implementation for an `AppBar` within the `Layout` that

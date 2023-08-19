@@ -1,6 +1,7 @@
+import { describe, expect, it, jest } from "@jest/globals";
 import { createRef } from "react";
 
-import { applyRef } from "../applyRef";
+import { applyRef } from "../applyRef.js";
 
 const instance = document.createElement("div");
 

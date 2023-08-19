@@ -1,7 +1,7 @@
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
-import type { DialogContentClassNameOptions } from "./styles";
-import { dialogContent } from "./styles";
+import type { DialogContentClassNameOptions } from "./styles.js";
+import { dialogContent } from "./styles.js";
 
 export interface DialogContentProps
   extends HTMLAttributes<HTMLDivElement>,

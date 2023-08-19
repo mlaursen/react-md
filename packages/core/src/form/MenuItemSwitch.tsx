@@ -1,7 +1,7 @@
 "use client";
 import { forwardRef } from "react";
-import type { MenuItemSwitchProps } from "./MenuItemInputToggle";
-import { MenuItemInputToggle } from "./MenuItemInputToggle";
+import type { MenuItemSwitchProps } from "./MenuItemInputToggle.js";
+import { MenuItemInputToggle } from "./MenuItemInputToggle.js";
 
 /**
  * **Client Component**

@@ -5,8 +5,8 @@ import type {
   CSSTransitionHookReturnValue,
   PreconfiguredCSSTransitionOptions,
   TransitionTimeout,
-} from "./types";
-import { useCSSTransition } from "./useCSSTransition";
+} from "./types.js";
+import { useCSSTransition } from "./useCSSTransition.js";
 
 /** @remarks \@since 6.0.0 */
 export const DEFAULT_SLIDE_TRANSITION_TIMEOUT: Readonly<TransitionTimeout> = 150;

@@ -8,16 +8,16 @@ import type {
   TouchEvent,
 } from "react";
 import { useCallback, useEffect, useId, useRef } from "react";
-import { useHoverMode } from "../hoverMode/useHoverMode";
-import type { UserInteractionMode } from "../interaction/UserInteractionModeProvider";
-import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider";
-import type { SimplePosition } from "../positioning/types";
-import type { FixedPositioningTransitionCallbacks } from "../positioning/useFixedPositioning";
-import { useFixedPositioning } from "../positioning/useFixedPositioning";
-import type { UseStateSetter } from "../types";
-import { usePageInactive } from "../usePageInactive";
-import { parseCssLengthUnit } from "../utils/parseCssLengthUnit";
-import { useTooltipHoverMode } from "./TooltipHoverModeProvider";
+import { useHoverMode } from "../hoverMode/useHoverMode.js";
+import type { UserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
+import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
+import type { SimplePosition } from "../positioning/types.js";
+import type { FixedPositioningTransitionCallbacks } from "../positioning/useFixedPositioning.js";
+import { useFixedPositioning } from "../positioning/useFixedPositioning.js";
+import type { UseStateSetter } from "../types.js";
+import { usePageInactive } from "../usePageInactive.js";
+import { parseCssLengthUnit } from "../utils/parseCssLengthUnit.js";
+import { useTooltipHoverMode } from "./TooltipHoverModeProvider.js";
 import {
   DEFAULT_TOOLTIP_DENSE_SPACING,
   DEFAULT_TOOLTIP_MARGIN,
@@ -25,10 +25,10 @@ import {
   DEFAULT_TOOLTIP_SPACING,
   DEFAULT_TOOLTIP_THRESHOLD,
   TOOLTIP_SPACING_VAR,
-} from "./constants";
-import type { TooltipPositionHookOptions } from "./useTooltipPosition";
-import { useTooltipPosition } from "./useTooltipPosition";
-import { getAnchor } from "./utils";
+} from "./constants.js";
+import type { TooltipPositionHookOptions } from "./useTooltipPosition.js";
+import { useTooltipPosition } from "./useTooltipPosition.js";
+import { getAnchor } from "./utils.js";
 
 declare module "react" {
   interface CSSProperties {

@@ -1,11 +1,11 @@
 import type { HTMLAttributes, ReactElement, ReactNode } from "react";
 import { Fragment } from "react";
-import { getPercentage } from "../utils/getPercentage";
-import type { RangeStepsOptions } from "../utils/getRangeSteps";
-import { getRangeSteps } from "../utils/getRangeSteps";
-import { SliderMark } from "./SliderMark";
-import type { CustomizableSliderMarkLabelProps } from "./SliderMarkLabel";
-import { SliderMarkLabel } from "./SliderMarkLabel";
+import { getPercentage } from "../utils/getPercentage.js";
+import type { RangeStepsOptions } from "../utils/getRangeSteps.js";
+import { getRangeSteps } from "../utils/getRangeSteps.js";
+import { SliderMark } from "./SliderMark.js";
+import type { CustomizableSliderMarkLabelProps } from "./SliderMarkLabel.js";
+import { SliderMarkLabel } from "./SliderMarkLabel.js";
 
 /**
  * @remarks \@since 6.0.0

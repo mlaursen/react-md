@@ -1,13 +1,13 @@
 import type { MouseEvent, RefObject, TouchEvent } from "react";
-import type { UseStateInitializer } from "../types";
+import type { UseStateInitializer } from "../types.js";
 import type {
   ClientPositionEvent,
   ClientPositionOptions,
-} from "../utils/getClientPosition";
-import { getClientPosition } from "../utils/getClientPosition";
-import { getRangeSteps } from "../utils/getRangeSteps";
-import { nearest } from "../utils/nearest";
-import { withinRange } from "../utils/withinRange";
+} from "../utils/getClientPosition.js";
+import { getClientPosition } from "../utils/getClientPosition.js";
+import { getRangeSteps } from "../utils/getRangeSteps.js";
+import { nearest } from "../utils/nearest.js";
+import { withinRange } from "../utils/withinRange.js";
 
 /**
  * @internal

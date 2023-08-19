@@ -1,8 +1,9 @@
+import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { render } from "../../test-utils";
+import { render } from "../../test-utils/index.js";
 
-import { fieldset, Fieldset } from "../Fieldset";
-import { Legend } from "../Legend";
+import { fieldset, Fieldset } from "../Fieldset.js";
+import { Legend } from "../Legend.js";
 
 describe("Fieldset", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {

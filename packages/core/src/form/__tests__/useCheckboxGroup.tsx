@@ -1,13 +1,14 @@
+import { describe, expect, it } from "@jest/globals";
 import type { ReactElement } from "react";
-import { fireEvent, render } from "../../test-utils";
+import { fireEvent, render } from "../../test-utils/index.js";
 
-import { AppSizeProvider } from "../../AppSizeProvider";
-import { Button } from "../../button/Button";
-import { DropdownMenu } from "../../menu/DropdownMenu";
-import { Checkbox } from "../Checkbox";
-import { Form } from "../Form";
-import { MenuItemCheckbox } from "../MenuItemCheckbox";
-import { useCheckboxGroup } from "../useCheckboxGroup";
+import { AppSizeProvider } from "../../AppSizeProvider.js";
+import { Button } from "../../button/Button.js";
+import { DropdownMenu } from "../../menu/DropdownMenu.js";
+import { Checkbox } from "../Checkbox.js";
+import { Form } from "../Form.js";
+import { MenuItemCheckbox } from "../MenuItemCheckbox.js";
+import { useCheckboxGroup } from "../useCheckboxGroup.js";
 
 describe("useCheckboxGroup", () => {
   it("should not behave as an indeterminate checkbox group and check any checkboxes by default", () => {

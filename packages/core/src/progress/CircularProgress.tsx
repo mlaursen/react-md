@@ -1,10 +1,10 @@
 import { cnb } from "cnbuilder";
 import type { CSSProperties, HTMLAttributes } from "react";
 import { forwardRef, useMemo } from "react";
-import { useEnsuredId } from "../useEnsuredId";
-import { bem } from "../utils/bem";
-import { getPercentage } from "../utils/getPercentage";
-import type { ProgressProps } from "./types";
+import { useEnsuredId } from "../useEnsuredId.js";
+import { bem } from "../utils/bem.js";
+import { getPercentage } from "../utils/getPercentage.js";
+import type { ProgressProps } from "./types.js";
 
 export interface CircularProgressProps
   extends Omit<HTMLAttributes<HTMLSpanElement>, "id">,

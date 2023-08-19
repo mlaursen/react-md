@@ -2,17 +2,17 @@
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useEffect, useRef, useState } from "react";
-import { useAppSize } from "../AppSizeProvider";
-import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvider";
-import type { UseStateSetter } from "../types";
-import { bem } from "../utils/bem";
-import type { BaseTabListScrollButtonProps } from "./TabListScrollButton";
-import { TabListScrollButton } from "./TabListScrollButton";
-import { useTabList } from "./useTabList";
-import type { GetTabListScrollToOptions } from "./utils";
+import { useAppSize } from "../AppSizeProvider.js";
+import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
+import type { UseStateSetter } from "../types.js";
+import { bem } from "../utils/bem.js";
+import type { BaseTabListScrollButtonProps } from "./TabListScrollButton.js";
+import { TabListScrollButton } from "./TabListScrollButton.js";
+import { useTabList } from "./useTabList.js";
+import type { GetTabListScrollToOptions } from "./utils.js";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { useTabs } from "./useTabs";
+import { useTabs } from "./useTabs.js";
 
 const styles = bem("rmd-tablist");
 

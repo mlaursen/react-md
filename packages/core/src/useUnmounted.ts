@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
-import type { NonNullRef } from "./types";
+import type { NonNullRef } from "./types.js";
 
 /**
  * @example

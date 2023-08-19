@@ -1,3 +1,4 @@
+import { afterEach, describe, expect, it, jest } from "@jest/globals";
 import type { ReactElement } from "react";
 import {
   act,
@@ -5,19 +6,19 @@ import {
   rmdRender,
   userEvent,
   waitFor,
-} from "../../test-utils";
+} from "../../test-utils/index.js";
 
-import { Button } from "../../button/Button";
-import { FontIcon } from "../../icon/FontIcon";
-import { parseCssLengthUnit } from "../../utils/parseCssLengthUnit";
+import { Button } from "../../button/Button.js";
+import { FontIcon } from "../../icon/FontIcon.js";
+import { parseCssLengthUnit } from "../../utils/parseCssLengthUnit.js";
 import {
   DEFAULT_TOOLTIP_DENSE_SPACING,
   DEFAULT_TOOLTIP_SPACING,
-} from "../constants";
-import type { TooltipProps } from "../Tooltip";
-import { Tooltip } from "../Tooltip";
-import type { TooltipHookOptions } from "../useTooltip";
-import { useTooltip } from "../useTooltip";
+} from "../constants.js";
+import type { TooltipProps } from "../Tooltip.js";
+import { Tooltip } from "../Tooltip.js";
+import type { TooltipHookOptions } from "../useTooltip.js";
+import { useTooltip } from "../useTooltip.js";
 
 interface TestProps extends TooltipHookOptions {
   tooltip?: Partial<TooltipProps>;
@@ -420,7 +421,7 @@ describe("Tooltip", () => {
       // @ts-expect-error
       () => ({
         getPropertyValue() {
-          return null;
+          return "";
         },
       })
     );

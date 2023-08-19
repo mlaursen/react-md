@@ -11,13 +11,13 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type {
   KeyboardMovementContext,
   KeyboardMovementProps,
-} from "../movement/types";
-import { useKeyboardMovementProvider } from "../movement/useKeyboardMovementProvider";
-import type { UseStateSetter } from "../types";
-import { useDir } from "../typography/WritingDirection";
-import { useEnsuredRef } from "../useEnsuredRef";
-import { useResizeObserver } from "../useResizeObserver";
-import { getTabRoleOnly, scrollTabIntoView } from "./utils";
+} from "../movement/types.js";
+import { useKeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
+import type { UseStateSetter } from "../types.js";
+import { useDir } from "../typography/WritingDirection.js";
+import { useEnsuredRef } from "../useEnsuredRef.js";
+import { useResizeObserver } from "../useResizeObserver.js";
+import { getTabRoleOnly, scrollTabIntoView } from "./utils.js";
 
 declare module "react" {
   interface CSSProperties {

@@ -1,4 +1,5 @@
-import { parseCssLengthUnit } from "../parseCssLengthUnit";
+import { describe, expect, it, jest } from "@jest/globals";
+import { parseCssLengthUnit } from "../parseCssLengthUnit.js";
 
 describe("parseCssLengthUnit", () => {
   it("should return the correct value for numbers and px strings", () => {

@@ -1,6 +1,7 @@
-import { render } from "../../test-utils";
+import { describe, expect, it } from "@jest/globals";
+import { render } from "../../test-utils/index.js";
 
-import { SVGIcon } from "../SVGIcon";
+import { SVGIcon } from "../SVGIcon.js";
 
 describe("SVGIcon", () => {
   it("should default to setting aria-hidden", () => {

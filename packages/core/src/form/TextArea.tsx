@@ -6,19 +6,19 @@ import type {
   TextareaHTMLAttributes,
 } from "react";
 import { forwardRef, useRef } from "react";
-import type { PropsWithRef } from "../types";
-import { useEnsuredId } from "../useEnsuredId";
-import { useEnsuredRef } from "../useEnsuredRef";
-import { bem } from "../utils/bem";
-import { FormMessageContainer } from "./FormMessageContainer";
-import { useFormTheme } from "./FormThemeProvider";
-import { Label } from "./Label";
-import type { TextFieldClassNameOptions } from "./TextField";
-import { textField } from "./TextField";
-import { TextFieldContainer } from "./TextFieldContainer";
-import type { FormFieldOptions } from "./types";
-import type { TextAreaResize } from "./useResizingTextArea";
-import { useResizingTextArea } from "./useResizingTextArea";
+import type { PropsWithRef } from "../types.js";
+import { useEnsuredId } from "../useEnsuredId.js";
+import { useEnsuredRef } from "../useEnsuredRef.js";
+import { bem } from "../utils/bem.js";
+import { FormMessageContainer } from "./FormMessageContainer.js";
+import { useFormTheme } from "./FormThemeProvider.js";
+import { Label } from "./Label.js";
+import type { TextFieldClassNameOptions } from "./TextField.js";
+import { textField } from "./TextField.js";
+import { TextFieldContainer } from "./TextFieldContainer.js";
+import type { FormFieldOptions } from "./types.js";
+import type { TextAreaResize } from "./useResizingTextArea.js";
+import { useResizingTextArea } from "./useResizingTextArea.js";
 
 const styles = bem("rmd-textarea");
 const containerStyles = bem("rmd-textarea-container");

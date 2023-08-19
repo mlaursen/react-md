@@ -21,10 +21,7 @@ coverage/
 /build
 
 # generated files
-/packages/*/cjs
-/packages/*/esm
 /packages/*/dist
-/packages/*/types
 /packages/material-icons/*Icon.js
 /packages/material-icons/*Icon.d.ts
 

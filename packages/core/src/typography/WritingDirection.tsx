@@ -10,7 +10,7 @@ import {
   useMemo,
   useState,
 } from "react";
-import type { UseStateInitializer } from "../types";
+import type { UseStateInitializer } from "../types.js";
 
 /**
  * Note: unlike the `dir` DOM attribute, the `"auto"` value is not supported.
@@ -139,7 +139,7 @@ export const DEFAULT_WRITING_DIRECTION = (): Dir => {
  * ```tsx
  * import { createRoot } from "react-dom/client";
  * import { WritingDirection } from "@react-md/core";
- * import App from "./App":
+ * import App from "./App.js":
  *
  * const container = document.getElementById("root");
  * const root = createRoot(container);
@@ -157,7 +157,7 @@ export const DEFAULT_WRITING_DIRECTION = (): Dir => {
  * import { createRoot } from "react-dom/client";
  * import { WritingDirection } from "@react-md/core";
  * import type { Dir } from "@react-md/core";
- * import App from "./App":
+ * import App from "./App.js":
  *
  * const container = document.getElementById("root");
  * const root = createRoot(container);

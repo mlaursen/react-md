@@ -1,4 +1,4 @@
-import type { TextExtractor } from "../types";
+import type { TextExtractor } from "../types.js";
 
 /** @internal */
 const identity =

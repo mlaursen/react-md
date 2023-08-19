@@ -1,4 +1,4 @@
-import type { TextExtractor } from "../types";
+import type { TextExtractor } from "../types.js";
 
 const identity = <T>(item: T): string => {
   if (typeof item === "string") {

@@ -1,11 +1,12 @@
+import { describe, expect, it, jest } from "@jest/globals";
 import type { MouseEvent, ReactElement } from "react";
-import { act, rmdRender, userEvent, waitFor } from "../test-utils";
+import { act, rmdRender, userEvent, waitFor } from "../test-utils/index.js";
 
-import { box } from "../box/styles";
-import type { ButtonProps } from "../button/Button";
-import { Button } from "../button/Button";
-import { CircularProgress } from "../progress/CircularProgress";
-import { useAsyncAction } from "../useAsyncAction";
+import { box } from "../box/styles.js";
+import type { ButtonProps } from "../button/Button.js";
+import { Button } from "../button/Button.js";
+import { CircularProgress } from "../progress/CircularProgress.js";
+import { useAsyncAction } from "../useAsyncAction.js";
 
 interface TestProps extends ButtonProps {
   onClick(event: MouseEvent<HTMLButtonElement>): Promise<void>;

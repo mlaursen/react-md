@@ -7,23 +7,23 @@ import {
   useRef,
   useState,
 } from "react";
-import { getFocusableElements as defaultGetFocusableElements } from "../focus/utils";
-import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider";
-import { useDir } from "../typography/WritingDirection";
-import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect";
+import { getFocusableElements as defaultGetFocusableElements } from "../focus/utils.js";
+import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
+import { useDir } from "../typography/WritingDirection.js";
+import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect.js";
 import {
   DEFAULT_KEYBOARD_MOVEMENT,
   DEFAULT_LTR_KEYBOARD_MOVEMENT,
   DEFAULT_RTL_KEYBOARD_MOVEMENT,
-} from "./constants";
-import { findMatchIndex } from "./findMatchIndex";
+} from "./constants.js";
+import { findMatchIndex } from "./findMatchIndex.js";
 import type {
   KeyboardMovementConfig,
   KeyboardMovementConfiguration,
   KeyboardMovementContext,
   KeyboardMovementProviderImplementation,
   KeyboardMovementProviderOptions,
-} from "./types";
+} from "./types.js";
 import {
   getFirstFocusableIndex,
   getLastFocusableIndex,
@@ -34,7 +34,7 @@ import {
   isNotFocusable,
   isSearchableEvent,
   recalculateFocusIndex,
-} from "./utils";
+} from "./utils.js";
 
 /**
  * @remarks \@since 5.0.0

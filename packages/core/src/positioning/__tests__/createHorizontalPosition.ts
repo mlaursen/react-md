@@ -1,4 +1,8 @@
-import type { EqualWidthOptions, FixConfig } from "../createHorizontalPosition";
+import { describe, expect, it } from "@jest/globals";
+import type {
+  EqualWidthOptions,
+  FixConfig,
+} from "../createHorizontalPosition.js";
 import {
   createAnchoredCenter,
   createAnchoredInnerLeft,
@@ -7,7 +11,7 @@ import {
   createAnchoredRight,
   createEqualWidth,
   createHorizontalPosition,
-} from "../createHorizontalPosition";
+} from "../createHorizontalPosition.js";
 
 import {
   getCenterXCoord,
@@ -15,7 +19,7 @@ import {
   getInnerRightCoord,
   getLeftCoord,
   getRightCoord,
-} from "../utils";
+} from "../utils.js";
 
 const containerRect1: DOMRect = {
   left: 100,

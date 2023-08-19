@@ -1,13 +1,13 @@
 "use client";
 import type { ReactElement } from "react";
 import { useEffect, useMemo } from "react";
-import { usePageInactive } from "../usePageInactive";
-import type { ConfigurableToastProps } from "./Toast";
-import { Toast } from "./Toast";
-import type { ToastMeta } from "./ToastManagerProvider";
-import { useToastManager } from "./ToastManagerProvider";
-import type { CurrentToastActions } from "./useCurrentToastActions";
-import { CurrentToastActionsProvider } from "./useCurrentToastActions";
+import { usePageInactive } from "../usePageInactive.js";
+import type { ConfigurableToastProps } from "./Toast.js";
+import { Toast } from "./Toast.js";
+import type { ToastMeta } from "./ToastManagerProvider.js";
+import { useToastManager } from "./ToastManagerProvider.js";
+import type { CurrentToastActions } from "./useCurrentToastActions.js";
+import { CurrentToastActionsProvider } from "./useCurrentToastActions.js";
 
 const noop = (): void => {
   // do nothing

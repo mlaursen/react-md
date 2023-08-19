@@ -1,7 +1,8 @@
+import { describe, expect, it } from "@jest/globals";
 import type { FC } from "react";
-import { fireEvent, render } from "../../test-utils";
+import { fireEvent, render } from "../../test-utils/index.js";
 
-import { useDir, WritingDirection } from "../WritingDirection";
+import { useDir, WritingDirection } from "../WritingDirection.js";
 
 const Child: FC = () => {
   const { dir, toggleDir } = useDir();

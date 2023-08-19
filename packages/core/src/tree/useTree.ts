@@ -1,9 +1,9 @@
 "use client";
-import type { TreeItemDefaultIds } from "./types";
-import type { TreeExpansion } from "./useTreeExpansion";
-import { useTreeExpansion } from "./useTreeExpansion";
-import type { TreeSelection } from "./useTreeSelection";
-import { useTreeSelection } from "./useTreeSelection";
+import type { TreeItemDefaultIds } from "./types.js";
+import type { TreeExpansion } from "./useTreeExpansion.js";
+import { useTreeExpansion } from "./useTreeExpansion.js";
+import type { TreeSelection } from "./useTreeSelection.js";
+import { useTreeSelection } from "./useTreeSelection.js";
 
 /**
  * @remarks \@since 6.0.0

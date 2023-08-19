@@ -1,7 +1,8 @@
-import { fireEvent, render } from "../test-utils";
+import { describe, expect, it } from "@jest/globals";
 import type { ReactElement } from "react";
+import { fireEvent, render } from "../test-utils/index.js";
 
-import { useToggle } from "../useToggle";
+import { useToggle } from "../useToggle.js";
 
 function Test(): ReactElement {
   const { toggle, toggled, enable, disable } = useToggle();

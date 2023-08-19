@@ -1,8 +1,8 @@
 "use client";
 import { useEffect } from "react";
-import { delegateEvent } from "./delegateEvent";
+import { delegateEvent } from "./delegateEvent.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { useResizeObserver } from "./useResizeObserver";
+import { useResizeObserver } from "./useResizeObserver.js";
 
 /**
  * @remarks \@since 6.0.0  Updated the API

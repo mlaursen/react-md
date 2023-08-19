@@ -1,8 +1,8 @@
 import { cnb } from "cnbuilder";
 import type { CSSProperties, HTMLAttributes } from "react";
 import { forwardRef } from "react";
-import type { PropsWithRef } from "../types";
-import { bem } from "../utils/bem";
+import type { PropsWithRef } from "../types.js";
+import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-switch");
 

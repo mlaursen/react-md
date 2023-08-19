@@ -1,11 +1,12 @@
+import { describe, expect, it, jest } from "@jest/globals";
 import type { CSSProperties, ReactElement, RefObject } from "react";
 import { useMemo, useRef, useState } from "react";
-import { fireEvent, render } from "../../test-utils";
+import { fireEvent, render } from "../../test-utils/index.js";
 
-import { textPrimaryColorVar } from "../cssVars";
-import type { CSSVariableName, DefinedCSSVariableName } from "../types";
-import type { ReadonlyCSSVariableList } from "../useCSSVariables";
-import { useCSSVariables } from "../useCSSVariables";
+import { textPrimaryColorVar } from "../cssVars.js";
+import type { CSSVariableName, DefinedCSSVariableName } from "../types.js";
+import type { ReadonlyCSSVariableList } from "../useCSSVariables.js";
+import { useCSSVariables } from "../useCSSVariables.js";
 
 declare module "react" {
   interface CSSProperties {

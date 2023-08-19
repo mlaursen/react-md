@@ -3,25 +3,25 @@ import { useEffect, useState } from "react";
 import {
   deserializeDraggableValue,
   getDraggableDefaultValue,
-} from "../draggable/utils";
+} from "../draggable/utils.js";
 import type {
   LocalStorageHookOptions,
   LocalStorageHookReturnValue,
-} from "../useLocalStorage";
-import { useLocalStorage } from "../useLocalStorage";
-import { useControlledWindowSplitter } from "./useControlledWindowSplitter";
+} from "../useLocalStorage.js";
+import { useLocalStorage } from "../useLocalStorage.js";
+import { useControlledWindowSplitter } from "./useControlledWindowSplitter.js";
 import type {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   useWindowSplitter,
   WindowSplitterImplementation,
   WindowSplitterOptions,
-} from "./useWindowSplitter";
+} from "./useWindowSplitter.js";
 
 /**
  * @remarks \@since 6.0.0
  */
 export interface LocalStorageWindowSplitterOptions<
-  E extends HTMLElement = HTMLButtonElement
+  E extends HTMLElement = HTMLButtonElement,
 > extends WindowSplitterOptions<E>,
     Pick<LocalStorageHookOptions<E>, "key" | "manual"> {}
 
@@ -29,7 +29,7 @@ export interface LocalStorageWindowSplitterOptions<
  * @remarks \@since 6.0.0
  */
 export interface LocalStorageWindowSplitterImplementation<
-  E extends HTMLElement = HTMLButtonElement
+  E extends HTMLElement = HTMLButtonElement,
 > extends WindowSplitterImplementation<E>,
     Pick<LocalStorageHookReturnValue<E>, "persist" | "remove"> {}
 
@@ -41,7 +41,7 @@ export interface LocalStorageWindowSplitterImplementation<
  * @remarks \@since 6.0.0
  */
 export function useLocalStorageWindowSplitter<
-  E extends HTMLElement = HTMLButtonElement
+  E extends HTMLElement = HTMLButtonElement,
 >(
   options: LocalStorageWindowSplitterOptions<E>
 ): LocalStorageWindowSplitterImplementation<E> {

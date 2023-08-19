@@ -1,8 +1,8 @@
 "use client";
 import type { MouseEvent } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { UseStateInitializer, UseStateSetter } from "../types";
-import type { SimpleHoverModeContext } from "./useHoverModeProvider";
+import type { UseStateInitializer, UseStateSetter } from "../types.js";
+import type { SimpleHoverModeContext } from "./useHoverModeProvider.js";
 
 /**
  * @remarks \@since 6.0.0

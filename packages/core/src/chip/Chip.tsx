@@ -6,12 +6,12 @@ import type {
   ReactNode,
 } from "react";
 import { cloneElement, forwardRef, isValidElement } from "react";
-import { useIcon } from "../icon/IconProvider";
-import { RippleContainer } from "../interaction/RippleContainer";
-import { useElementInteraction } from "../interaction/useElementInteraction";
-import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren";
-import type { PropsWithRef } from "../types";
-import { chip, chipContent, chipIcon } from "./styles";
+import { useIcon } from "../icon/IconProvider.js";
+import { RippleContainer } from "../interaction/RippleContainer.js";
+import { useElementInteraction } from "../interaction/useElementInteraction.js";
+import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
+import type { PropsWithRef } from "../types.js";
+import { chip, chipContent, chipIcon } from "./styles.js";
 
 declare module "react" {
   interface CSSProperties {

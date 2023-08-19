@@ -1,7 +1,7 @@
 "use client";
 import { useCallback, useState } from "react";
-import type { NonNullRef, UseStateSetter } from "./types";
-import { useUnmounted } from "./useUnmounted";
+import type { NonNullRef, UseStateSetter } from "./types.js";
+import { useUnmounted } from "./useUnmounted.js";
 
 /**
  * @remarks \@since 6.0.0

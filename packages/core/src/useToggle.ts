@@ -1,6 +1,6 @@
 "use client";
 import { useCallback, useState } from "react";
-import type { UseStateInitializer, UseStateSetter } from "./types";
+import type { UseStateInitializer, UseStateSetter } from "./types.js";
 
 /**
  * @remarks \@since 6.0.0

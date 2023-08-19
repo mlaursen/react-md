@@ -1,7 +1,7 @@
 import { cnb } from "cnbuilder";
 import type { ReactElement } from "react";
-import { Ripple } from "./Ripple";
-import type { ProvidedRippleContainerProps } from "./types";
+import { Ripple } from "./Ripple.js";
+import type { ProvidedRippleContainerProps } from "./types.js";
 
 /** @internal */
 export interface RippleContainerProps extends ProvidedRippleContainerProps {

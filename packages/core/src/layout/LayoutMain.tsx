@@ -1,17 +1,17 @@
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useRef } from "react";
-import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider";
-import { DEFAULT_SHEET_TIMEOUT } from "../sheet/Sheet";
+import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
+import { DEFAULT_SHEET_TIMEOUT } from "../sheet/Sheet.js";
 import type {
   CSSTransitionClassNames,
   TransitionTimeout,
-} from "../transition/types";
-import { useCSSTransition } from "../transition/useCSSTransition";
-import { bem } from "../utils/bem";
-import { useLayoutConfig } from "./LayoutProvider";
-import { DEFAULT_LAYOUT_MAIN_CLASSNAMES } from "./constants";
-import { isTemporaryLayout, isToggleableLayout } from "./utils";
+} from "../transition/types.js";
+import { useCSSTransition } from "../transition/useCSSTransition.js";
+import { bem } from "../utils/bem.js";
+import { useLayoutConfig } from "./LayoutProvider.js";
+import { DEFAULT_LAYOUT_MAIN_CLASSNAMES } from "./constants.js";
+import { isTemporaryLayout, isToggleableLayout } from "./utils.js";
 
 export interface LayoutMainProps extends HTMLAttributes<HTMLDivElement> {
   /**
