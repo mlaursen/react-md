@@ -1,0 +1,679 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useLayoutTree should automatically expand parent items if the pathname changed outside of clicking one of the navigation items 1`] = `
+<ul
+  aria-activedescendant=""
+  aria-label="Navigation"
+  class="rmd-list rmd-tree"
+  id="tree-:rg:"
+  role="tree"
+  tabindex="0"
+>
+  <li
+    class="rmd-tree-item"
+    role="none"
+  >
+    <a
+      aria-selected="true"
+      class="rmd-tree-item__content rmd-tree-item__content--link rmd-tree-item__content--selected rmd-list-item rmd-list-item--clickable"
+      href="/"
+      id="tree-item-:rh:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+      >
+        home
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Home
+        </span>
+      </span>
+    </a>
+  </li>
+  <li
+    class="rmd-tree-item"
+    role="none"
+  >
+    <a
+      aria-selected="false"
+      class="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-list-item--clickable"
+      href="/route-1"
+      id="tree-item-:ri:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+      >
+        tv
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Route 1
+        </span>
+      </span>
+    </a>
+  </li>
+  <li
+    class="rmd-tree-item"
+    role="none"
+  >
+    <a
+      aria-selected="false"
+      class="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-list-item--clickable"
+      href="/route-2"
+      id="tree-item-:rj:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+      >
+        apps
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Route 2
+        </span>
+      </span>
+    </a>
+  </li>
+  <li
+    class="rmd-tree-item rmd-tree-item--expander-right"
+    role="none"
+  >
+    <a
+      aria-expanded="false"
+      aria-selected="false"
+      class="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-list-item--clickable"
+      href="/route-3"
+      id="tree-item-:rk:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+      >
+        book
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Route 3
+        </span>
+      </span>
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+      >
+        arrow_drop_down
+      </span>
+    </a>
+    <ul
+      class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
+      hidden=""
+      id="tree-item-:rk:-group"
+      role="group"
+      style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: -1;"
+    >
+      <li
+        class="rmd-tree-item rmd-tree-item--expander-right"
+        role="none"
+      >
+        <a
+          aria-expanded="false"
+          aria-selected="false"
+          class="rmd-tree-item__content rmd-tree-item__content--link rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          href="/route-3/1"
+          id="tree-item-:rl:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Route 3-1
+            </span>
+          </span>
+          <span
+            aria-hidden="true"
+            class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+          >
+            arrow_drop_down
+          </span>
+        </a>
+        <ul
+          class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
+          hidden=""
+          id="tree-item-:rl:-group"
+          role="group"
+          style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 0;"
+        >
+          <li
+            class="rmd-tree-item rmd-tree-item--expander-right"
+            role="none"
+          >
+            <a
+              aria-expanded="false"
+              aria-selected="false"
+              class="rmd-tree-item__content rmd-tree-item__content--link rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+              href="/route-3/1/1"
+              id="tree-item-:rm:"
+              role="treeitem"
+              tabindex="-1"
+            >
+              <span
+                class="rmd-list-item__text"
+              >
+                <span>
+                  Route 3-1/1
+                </span>
+              </span>
+              <span
+                aria-hidden="true"
+                class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+              >
+                arrow_drop_down
+              </span>
+            </a>
+            <ul
+              class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
+              hidden=""
+              id="tree-item-:rm:-group"
+              role="group"
+              style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
+            >
+              <li
+                class="rmd-tree-item"
+                role="none"
+              >
+                <a
+                  aria-selected="false"
+                  class="rmd-tree-item__content rmd-tree-item__content--link rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+                  href="/route-3/1/1/1"
+                  id="tree-item-:rn:"
+                  role="treeitem"
+                  tabindex="-1"
+                >
+                  <span
+                    class="rmd-list-item__text"
+                  >
+                    <span>
+                      Route 3-1/1/1
+                    </span>
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+`;
+
+exports[`useLayoutTree should automatically expand parent items if the pathname changed outside of clicking one of the navigation items 2`] = `
+<ul
+  aria-activedescendant=""
+  aria-label="Navigation"
+  class="rmd-list rmd-tree"
+  id="tree-:rg:"
+  role="tree"
+  tabindex="0"
+>
+  <li
+    class="rmd-tree-item"
+    role="none"
+  >
+    <a
+      aria-selected="false"
+      class="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-list-item--clickable"
+      href="/"
+      id="tree-item-:rh:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+      >
+        home
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Home
+        </span>
+      </span>
+    </a>
+  </li>
+  <li
+    class="rmd-tree-item"
+    role="none"
+  >
+    <a
+      aria-selected="false"
+      class="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-list-item--clickable"
+      href="/route-1"
+      id="tree-item-:ri:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+      >
+        tv
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Route 1
+        </span>
+      </span>
+    </a>
+  </li>
+  <li
+    class="rmd-tree-item"
+    role="none"
+  >
+    <a
+      aria-selected="false"
+      class="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-list-item--clickable"
+      href="/route-2"
+      id="tree-item-:rj:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+      >
+        apps
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Route 2
+        </span>
+      </span>
+    </a>
+  </li>
+  <li
+    class="rmd-tree-item rmd-tree-item--expander-right"
+    role="none"
+  >
+    <a
+      aria-expanded="true"
+      aria-selected="false"
+      class="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-list-item--clickable"
+      href="/route-3"
+      id="tree-item-:rk:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+      >
+        book
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Route 3
+        </span>
+      </span>
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated rmd-icon--after rmd-list-item__addon"
+      >
+        arrow_drop_down
+      </span>
+    </a>
+    <ul
+      class="rmd-list rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow rmd-tree-group"
+      id="tree-item-:rk:-group"
+      role="group"
+      style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: -1; transition-duration: 250ms;"
+    >
+      <li
+        class="rmd-tree-item rmd-tree-item--expander-right"
+        role="none"
+      >
+        <a
+          aria-expanded="true"
+          aria-selected="false"
+          class="rmd-tree-item__content rmd-tree-item__content--link rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          href="/route-3/1"
+          id="tree-item-:rl:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Route 3-1
+            </span>
+          </span>
+          <span
+            aria-hidden="true"
+            class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated rmd-icon--after rmd-list-item__addon"
+          >
+            arrow_drop_down
+          </span>
+        </a>
+        <ul
+          class="rmd-list rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow rmd-tree-group"
+          id="tree-item-:rl:-group"
+          role="group"
+          style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 0; transition-duration: 250ms;"
+        >
+          <li
+            class="rmd-tree-item rmd-tree-item--expander-right"
+            role="none"
+          >
+            <a
+              aria-expanded="true"
+              aria-selected="true"
+              class="rmd-tree-item__content rmd-tree-item__content--link rmd-tree-item__content--padded rmd-tree-item__content--selected rmd-list-item rmd-list-item--clickable"
+              href="/route-3/1/1"
+              id="tree-item-:rm:"
+              role="treeitem"
+              tabindex="-1"
+            >
+              <span
+                class="rmd-list-item__text"
+              >
+                <span>
+                  Route 3-1/1
+                </span>
+              </span>
+              <span
+                aria-hidden="true"
+                class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated rmd-icon--after rmd-list-item__addon"
+              >
+                arrow_drop_down
+              </span>
+            </a>
+            <ul
+              class="rmd-list rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow rmd-tree-group"
+              id="tree-item-:rm:-group"
+              role="group"
+              style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1; transition-duration: 250ms;"
+            >
+              <li
+                class="rmd-tree-item"
+                role="none"
+              >
+                <a
+                  aria-selected="false"
+                  class="rmd-tree-item__content rmd-tree-item__content--link rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+                  href="/route-3/1/1/1"
+                  id="tree-item-:rn:"
+                  role="treeitem"
+                  tabindex="-1"
+                >
+                  <span
+                    class="rmd-list-item__text"
+                  >
+                    <span>
+                      Route 3-1/1/1
+                    </span>
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+`;
+
+exports[`useLayoutTree should default to expanding all parent items from the starting pathname 1`] = `
+<ul
+  aria-activedescendant=""
+  aria-label="Navigation"
+  class="rmd-list rmd-tree"
+  id="tree-:r8:"
+  role="tree"
+  tabindex="0"
+>
+  <li
+    class="rmd-tree-item"
+    role="none"
+  >
+    <a
+      aria-selected="false"
+      class="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-list-item--clickable"
+      href="/"
+      id="tree-item-:r9:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+      >
+        home
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Home
+        </span>
+      </span>
+    </a>
+  </li>
+  <li
+    class="rmd-tree-item"
+    role="none"
+  >
+    <a
+      aria-selected="false"
+      class="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-list-item--clickable"
+      href="/route-1"
+      id="tree-item-:ra:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+      >
+        tv
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Route 1
+        </span>
+      </span>
+    </a>
+  </li>
+  <li
+    class="rmd-tree-item"
+    role="none"
+  >
+    <a
+      aria-selected="false"
+      class="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-list-item--clickable"
+      href="/route-2"
+      id="tree-item-:rb:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+      >
+        apps
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Route 2
+        </span>
+      </span>
+    </a>
+  </li>
+  <li
+    class="rmd-tree-item rmd-tree-item--expander-right"
+    role="none"
+  >
+    <a
+      aria-expanded="true"
+      aria-selected="false"
+      class="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-list-item--clickable"
+      href="/route-3"
+      id="tree-item-:rc:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+      >
+        book
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Route 3
+        </span>
+      </span>
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated rmd-icon--after rmd-list-item__addon"
+      >
+        arrow_drop_down
+      </span>
+    </a>
+    <ul
+      class="rmd-list rmd-collapse rmd-tree-group"
+      id="tree-item-:rc:-group"
+      role="group"
+      style="--rmd-tree-depth: -1;"
+    >
+      <li
+        class="rmd-tree-item rmd-tree-item--expander-right"
+        role="none"
+      >
+        <a
+          aria-expanded="true"
+          aria-selected="false"
+          class="rmd-tree-item__content rmd-tree-item__content--link rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          href="/route-3/1"
+          id="tree-item-:rd:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Route 3-1
+            </span>
+          </span>
+          <span
+            aria-hidden="true"
+            class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated rmd-icon--after rmd-list-item__addon"
+          >
+            arrow_drop_down
+          </span>
+        </a>
+        <ul
+          class="rmd-list rmd-collapse rmd-tree-group"
+          id="tree-item-:rd:-group"
+          role="group"
+          style="--rmd-tree-depth: 0;"
+        >
+          <li
+            class="rmd-tree-item rmd-tree-item--expander-right"
+            role="none"
+          >
+            <a
+              aria-expanded="true"
+              aria-selected="false"
+              class="rmd-tree-item__content rmd-tree-item__content--link rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+              href="/route-3/1/1"
+              id="tree-item-:re:"
+              role="treeitem"
+              tabindex="-1"
+            >
+              <span
+                class="rmd-list-item__text"
+              >
+                <span>
+                  Route 3-1/1
+                </span>
+              </span>
+              <span
+                aria-hidden="true"
+                class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated rmd-icon--after rmd-list-item__addon"
+              >
+                arrow_drop_down
+              </span>
+            </a>
+            <ul
+              class="rmd-list rmd-collapse rmd-tree-group"
+              id="tree-item-:re:-group"
+              role="group"
+              style="--rmd-tree-depth: 1;"
+            >
+              <li
+                class="rmd-tree-item"
+                role="none"
+              >
+                <a
+                  aria-selected="true"
+                  class="rmd-tree-item__content rmd-tree-item__content--link rmd-tree-item__content--padded rmd-tree-item__content--selected rmd-list-item rmd-list-item--clickable"
+                  href="/route-3/1/1/1"
+                  id="tree-item-:rf:"
+                  role="treeitem"
+                  tabindex="-1"
+                >
+                  <span
+                    class="rmd-list-item__text"
+                  >
+                    <span>
+                      Route 3-1/1/1
+                    </span>
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+`;

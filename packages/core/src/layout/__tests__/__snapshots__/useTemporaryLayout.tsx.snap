@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useTemporaryLayout should allow you to create a temporary layout quickly 1`] = `
+<header
+  class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--elevated rmd-app-bar--scrollbar-offset"
+>
+  <button
+    aria-label="Navigation"
+    class="rmd-button rmd-button--icon"
+    type="button"
+  >
+    <span
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons"
+    >
+      menu
+    </span>
+  </button>
+  <h6
+    class="rmd-typography rmd-typography--headline-6 rmd-app-bar-title rmd-app-bar-title--no-wrap"
+  >
+    Hello, world!
+  </h6>
+</header>
+`;
+
+exports[`useTemporaryLayout should allow you to create a temporary layout quickly 2`] = `
+<main
+  class="rmd-layout-main rmd-layout-main--offset-v"
+  id="main-:r0:"
+>
+  Hello, world!
+</main>
+`;
+
+exports[`useTemporaryLayout should allow you to create a temporary layout quickly 3`] = `
+<div
+  aria-label="Navigation"
+  class="rmd-dialog rmd-dialog--outline rmd-sheet rmd-sheet--horizontal rmd-sheet--raised rmd-sheet--left rmd-sheet--media-width"
+  id="dialog-:r1:"
+  role="dialog"
+  tabindex="-1"
+>
+  <form>
+    <label
+      class="rmd-label rmd-label--gap rmd-label--reversed"
+    >
+      Home
+      <span
+        class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--active rmd-input-toggle--normal"
+      >
+        <span
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          radio_button_checked
+        </span>
+        <input
+          checked=""
+          class="rmd-hidden-input"
+          id="radio-:r2:"
+          name="pathname"
+          type="radio"
+          value="/"
+        />
+      </span>
+    </label>
+    <label
+      class="rmd-label rmd-label--gap rmd-label--reversed"
+    >
+      Route 1
+      <span
+        class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
+      >
+        <span
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          radio_button_unchecked
+        </span>
+        <input
+          class="rmd-hidden-input"
+          id="radio-:r3:"
+          name="pathname"
+          type="radio"
+          value="/1"
+        />
+      </span>
+    </label>
+    <label
+      class="rmd-label rmd-label--gap rmd-label--reversed"
+    >
+      Route 2
+      <span
+        class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
+      >
+        <span
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          radio_button_unchecked
+        </span>
+        <input
+          class="rmd-hidden-input"
+          id="radio-:r4:"
+          name="pathname"
+          type="radio"
+          value="/2"
+        />
+      </span>
+    </label>
+  </form>
+</div>
+`;
+
+exports[`useTemporaryLayout should not offset the main element for static app bar layouts 1`] = `
+<main
+  class="rmd-layout-main"
+  id="main-:r5:"
+>
+  Hello, world!
+</main>
+`;
+
+exports[`useTemporaryLayout should not offset the main element for static app bar layouts 2`] = `
+<main
+  class="rmd-layout-main rmd-layout-main--offset-v"
+  id="main-:r5:"
+>
+  Hello, world!
+</main>
+`;
+
+exports[`useTemporaryLayout should not offset the main element for static app bar layouts 3`] = `
+<main
+  class="rmd-layout-main rmd-layout-main--offset-v"
+  id="main-:r5:"
+>
+  Hello, world!
+</main>
+`;

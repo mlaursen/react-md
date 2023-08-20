@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Main should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+<main
+  class="rmd-layout-main"
+  id="main-:r0:"
+>
+  Hello, world!
+</main>
+`;
+
+exports[`Main should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+<main
+  class="rmd-layout-main custom-class-name"
+  id="main-:r0:"
+  style="color: white;"
+>
+  Hello, world!
+</main>
+`;
+
+exports[`Main should apply the correct styling, HTMLAttributes, and allow a ref 3`] = `
+<main
+  class="rmd-layout-main rmd-layout-main--offset-v rmd-layout-h--active"
+  id="main-:r0:"
+  style=""
+>
+  Hello, world!
+</main>
+`;
+
+exports[`Main styling utility class should be callable without any arguments 1`] = `"rmd-layout-main"`;

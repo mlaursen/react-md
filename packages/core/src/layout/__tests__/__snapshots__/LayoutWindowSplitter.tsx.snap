@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LayoutWindowSplitter should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+<button
+  aria-controls="does-not-exist"
+  aria-label="Resize Navigation"
+  aria-valuemax="100"
+  aria-valuemin="0"
+  aria-valuenow="32"
+  class="rmd-window-splitter rmd-window-splitter--h rmd-layout-splitter rmd-layout-splitter--responsive"
+  id="splitter-:r0:"
+  role="separator"
+  type="button"
+/>
+`;
+
+exports[`LayoutWindowSplitter should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+<button
+  aria-controls="does-not-exist"
+  aria-label="Resize Navigation"
+  aria-valuemax="100"
+  aria-valuemin="0"
+  aria-valuenow="32"
+  class="rmd-window-splitter rmd-window-splitter--h rmd-layout-splitter rmd-layout-splitter--responsive custom-class-name"
+  id="splitter-:r0:"
+  role="separator"
+  style="color: white;"
+  type="button"
+/>
+`;
+
+exports[`LayoutWindowSplitter should apply the correct styling, HTMLAttributes, and allow a ref 3`] = `
+<button
+  aria-controls="does-not-exist"
+  aria-labelledby="another-id"
+  aria-valuemax="100"
+  aria-valuemin="0"
+  aria-valuenow="32"
+  class="rmd-window-splitter rmd-window-splitter--h rmd-layout-splitter rmd-layout-splitter--responsive"
+  id="splitter-:r0:"
+  role="separator"
+  style=""
+  type="button"
+/>
+`;
+
+exports[`LayoutWindowSplitter should apply the correct styling, HTMLAttributes, and allow a ref 4`] = `
+<button
+  aria-controls="does-not-exist"
+  aria-label="Custom Label"
+  aria-valuemax="100"
+  aria-valuemin="0"
+  aria-valuenow="32"
+  class="rmd-window-splitter rmd-window-splitter--h rmd-layout-splitter rmd-layout-splitter--responsive"
+  id="splitter-:r0:"
+  role="separator"
+  style=""
+  type="button"
+/>
+`;

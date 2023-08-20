@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useExpandableLayout should allow you to create an expandable layout quickly 1`] = `
+<header
+  class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--elevated rmd-app-bar--scrollbar-offset"
+>
+  <button
+    aria-label="Navigation"
+    class="rmd-button rmd-button--icon"
+    type="button"
+  >
+    <span
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons"
+    >
+      menu
+    </span>
+  </button>
+  <h6
+    class="rmd-typography rmd-typography--headline-6 rmd-app-bar-title rmd-app-bar-title--no-wrap"
+  >
+    Hello, world!
+  </h6>
+</header>
+`;
+
+exports[`useExpandableLayout should allow you to create an expandable layout quickly 2`] = `
+<main
+  class="rmd-layout-main rmd-layout-main--offset-v"
+  id="main-:r3:"
+>
+  Hello, world!
+  <div
+    data-testid="layout"
+  >
+    desktop
+  </div>
+</main>
+`;
+
+exports[`useExpandableLayout should allow you to create an expandable layout quickly 3`] = `
+<nav
+  aria-label="Navigation"
+  class="rmd-layout-nav rmd-layout-nav--offset-v rmd-sheet rmd-sheet--horizontal rmd-sheet--left"
+>
+  <form>
+    <label
+      class="rmd-label rmd-label--gap rmd-label--reversed"
+    >
+      Home
+      <span
+        class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
+      >
+        <span
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          radio_button_unchecked
+        </span>
+        <input
+          checked=""
+          class="rmd-hidden-input"
+          id="radio-:r0:"
+          name="pathname"
+          type="radio"
+          value="/"
+        />
+      </span>
+    </label>
+    <label
+      class="rmd-label rmd-label--gap rmd-label--reversed"
+    >
+      Route 1
+      <span
+        class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
+      >
+        <span
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          radio_button_unchecked
+        </span>
+        <input
+          class="rmd-hidden-input"
+          id="radio-:r1:"
+          name="pathname"
+          type="radio"
+          value="/1"
+        />
+      </span>
+    </label>
+    <label
+      class="rmd-label rmd-label--gap rmd-label--reversed"
+    >
+      Route 2
+      <span
+        class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--active rmd-input-toggle--normal"
+      >
+        <span
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          radio_button_checked
+        </span>
+        <input
+          class="rmd-hidden-input"
+          id="radio-:r2:"
+          name="pathname"
+          type="radio"
+          value="/2"
+        />
+      </span>
+    </label>
+  </form>
+</nav>
+`;

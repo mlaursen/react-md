@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LayoutNav should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+<nav
+  aria-label="Navigation"
+  class="rmd-layout-nav rmd-sheet rmd-sheet--horizontal rmd-sheet--left"
+>
+  Content
+</nav>
+`;
+
+exports[`LayoutNav should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+<nav
+  aria-label="Navigation"
+  class="rmd-layout-nav rmd-sheet rmd-sheet--horizontal rmd-sheet--left custom-class-name"
+  style="color: white;"
+>
+  Content
+</nav>
+`;
+
+exports[`LayoutNav should apply the correct styling, HTMLAttributes, and allow a ref 3`] = `
+<div
+  class="rmd-layout-nav rmd-sheet rmd-sheet--horizontal rmd-sheet--left"
+  data-testid="div"
+>
+  Content
+</div>
+`;
+
+exports[`LayoutNav styling utility class should be callable without any arguments 1`] = `"rmd-layout-nav"`;

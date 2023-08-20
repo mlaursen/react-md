@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useResizableLayout should allow you to create a resizable layout quickly 1`] = `
+<header
+  class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--elevated rmd-app-bar--scrollbar-offset"
+>
+  <button
+    aria-label="Navigation"
+    class="rmd-button rmd-button--icon"
+    type="button"
+  >
+    <span
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons"
+    >
+      menu
+    </span>
+  </button>
+  <h6
+    class="rmd-typography rmd-typography--headline-6 rmd-app-bar-title rmd-app-bar-title--no-wrap"
+  >
+    Hello, world!
+  </h6>
+</header>
+`;
+
+exports[`useResizableLayout should allow you to create a resizable layout quickly 2`] = `
+<main
+  class="rmd-layout-main rmd-layout-main--offset-v"
+  id="main-:r5:"
+>
+  Hello, world!
+  <div
+    data-testid="layout"
+  >
+    desktop
+  </div>
+</main>
+`;
+
+exports[`useResizableLayout should allow you to create a resizable layout quickly 3`] = `
+<button
+  aria-controls="layout-nav-:r0:"
+  aria-label="Resize Navigation"
+  aria-valuemax="100"
+  aria-valuemin="0"
+  aria-valuenow="32"
+  class="rmd-window-splitter rmd-window-splitter--h rmd-layout-splitter rmd-layout-splitter--offset-v rmd-layout-splitter--responsive"
+  hidden=""
+  id="splitter-:r1:"
+  role="separator"
+  type="button"
+/>
+`;
+
+exports[`useResizableLayout should allow you to create a resizable layout quickly 4`] = `
+<button
+  aria-controls="layout-nav-:r0:"
+  aria-label="Resize Navigation"
+  aria-valuemax="100"
+  aria-valuemin="0"
+  aria-valuenow="32"
+  class="rmd-window-splitter rmd-window-splitter--h rmd-layout-splitter rmd-layout-splitter--offset-v rmd-layout-splitter--responsive"
+  id="splitter-:r1:"
+  role="separator"
+  type="button"
+/>
+`;
+
+exports[`useResizableLayout should allow you to create a resizable layout quickly 5`] = `
+<button
+  aria-controls="layout-nav-:r0:"
+  aria-label="Resize Navigation"
+  aria-valuemax="100"
+  aria-valuemin="0"
+  aria-valuenow="38"
+  class="rmd-window-splitter rmd-window-splitter--h rmd-layout-splitter rmd-layout-splitter--offset-v rmd-layout-splitter--responsive"
+  id="splitter-:r1:"
+  role="separator"
+  type="button"
+/>
+`;
+
+exports[`useResizableLayout should allow you to create a resizable layout quickly 6`] = `
+<button
+  aria-controls="layout-nav-:r0:"
+  aria-label="Resize Navigation"
+  aria-valuemax="100"
+  aria-valuemin="0"
+  aria-valuenow="0"
+  class="rmd-window-splitter rmd-window-splitter--h rmd-layout-splitter rmd-layout-splitter--offset-v rmd-layout-splitter--responsive"
+  id="splitter-:r1:"
+  role="separator"
+  type="button"
+/>
+`;

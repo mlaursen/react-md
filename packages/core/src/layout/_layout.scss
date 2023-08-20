@@ -1,41 +1,42 @@
 @use "sass:map";
 @use "../utils";
+@use "../media-queries";
 @use "../app-bar/app-bar";
-@use "../box-shadows";
-@use "../button/button";
-@use "../dialog/dialog";
-@use "../divider/divider";
+@use "../icon/icon";
 @use "../interaction/interaction";
+@use "../list/list";
 @use "../sheet/sheet";
+@use "../theme/colors";
 @use "../transition/transition";
+@use "../typography/typography";
+@use "../window-splitter/window-splitter";
 
-$disable-mini: false !default;
+$disable-everything: false !default;
+$disable-resizable: false !default;
+
+$main-focus-z-index: 999 !default;
+
+$header-height: app-bar.$height !default;
+
+$navigation-z-index: app-bar.$fixed-z-index !default;
+$navigation-static-width: sheet.$static-width !default;
+$navigation-container-name: nav !default;
+
+$navigation-breakpoint: tablet !default;
 
 $enter-duration: sheet.$enter-duration !default;
+$enter-timing-function: sheet.$enter-timing-function !default;
 $leave-duration: sheet.$leave-duration !default;
-
-$main-outline-color: interaction.get-var(focus-color) !default;
-$main-outline-width: interaction.get-var(focus-width) !default;
-$main-focused-z-index: 999 !default;
-$main-focus-shadow: inset 0 0 0 $main-outline-width $main-outline-color !default;
-
-$navigation-z-index: dialog.$z-index !default;
-$navigation-mini-z-index: app-bar.$fixed-z-index - 1 !default;
-$navigation-width: sheet.$static-width !default;
-$navigation-mini-width: 3.5rem !default;
+$leave-timing-function: sheet.$leave-timing-function !default;
 
 $var-lookup: (
-  nav-width: (
-    var: --rmd-layout-nav-width,
-    value: sheet.get-var(width, $navigation-width),
+  size: (
+    var: --rmd-layout-size,
+    value: $navigation-static-width,
   ),
-  mini-nav-width: (
-    var: --rmd-layout-mini-nav-width,
-    value: $navigation-mini-width,
-  ),
-  main-offset: (
-    var: --rmd-layout-main-offset,
-    value: var(--rmd-layout-nav-width, $navigation-width),
+  header-height: (
+    var: --rmd-layout-header-height,
+    value: $header-height,
   ),
 );
 
@@ -62,150 +63,92 @@ $var-lookup: (
 }
 
 @mixin styles {
-  // this is used for the title and main elements for animating their margin
-  // while the toggleable layout appears. it will use the same transition
-  // functions and time as the sheet so it all transitions together
-  .rmd-layout-transition {
-    &--enter {
-      transition: margin $enter-duration
-        transition.$deceleration-timing-function;
-    }
+  @if not $disable-everything {
+    .rmd-layout-main {
+      display: block;
+      outline: none;
 
-    &--exit {
-      transition: margin $leave-duration
-        transition.$acceleration-timing-function;
-    }
-  }
+      &::before {
+        @include utils.pseudo-element(
+          $fixed: true,
+          $z-index: $main-focus-z-index,
+          $inset: get-var(header-height) 0 interaction.get-var(focus-width)
+        );
+        @include interaction.focus-styles($box-shadow: true);
 
-  .rmd-layout-navigation {
-    // makes it so you can just set the `--rmd-layout-nav-width` to the window splitter size
-    @include use-var(width, nav-width);
+        opacity: 0;
+        transition: opacity
+          transition.$linear-duration
+          transition.$linear-timing-function;
+      }
 
-    z-index: $navigation-z-index;
+      &:focus::before {
+        opacity: 1;
+      }
 
-    &--floating {
-      background-color: transparent;
-      box-shadow: none;
-    }
-
-    &--header-offset {
-      @include app-bar.use-var(top, height);
-    }
-
-    @if not $disable-mini {
-      &--mini {
-        @include app-bar.use-var(top, height);
-        @include use-var(width, mini-nav-width);
-
-        z-index: $navigation-mini-z-index;
+      &--offset-v {
+        @include use-var(padding-top, header-height);
       }
     }
 
-    &--sticky {
-      overflow: visible;
-      position: initial;
-    }
-  }
+    /// I decided to go with an "SSR-first" approach by having the nav element
+    /// always be rendered, but use media queries to show it for tablets and
+    /// above. This makes it so there is less javascript to dynamically switch
+    /// between layout types as you resize the browser.
+    .rmd-layout-nav {
+      @include sheet.set-var(width, get-var(size));
+      @include media-queries.media($navigation-breakpoint) {
+        // use grid so that you can easily have a header + tree that fills the remaining space
+        display: grid;
+      }
 
-  .rmd-layout-nav {
-    overflow: auto;
+      container: $navigation-container-name;
+      display: none;
+      z-index: $navigation-z-index;
 
-    &--grow {
-      flex: 1 1 auto;
-      height: 100%;
-    }
-
-    &--sticky {
-      position: sticky;
-      top: 0;
-      will-change: transform;
-    }
-
-    &__mini-item {
-      justify-content: center;
-    }
-  }
-
-  .rmd-layout-tree {
-    height: auto;
-    overflow: visible;
-  }
-
-  .rmd-layout-title {
-    &--offset {
-      // use the nav-width so that you can use window splitters easily
-      $margin: calc(#{get-var(nav-width)} + #{app-bar.$keyline});
-
-      @include utils.auto-rtl(margin-left, $margin);
-    }
-  }
-
-  .rmd-layout-nav-toggle {
-    &--offset {
-      // $title-margin: app-bar.$rmd-app-bar-title-nav-margin -
-      //   ($rmd-app-bar-lr-margin * 2);
-      // $nav-size: rmd-layout-theme-var(nav-width);
-      // $icon-size: rmd-button-theme-var(icon-size);
-      // $distance: calc(#{$title-margin} + #{$nav-size} - #{$icon-size});
-      $distance: calc(#{get-var(nav-width)} - #{button.get-var(icon-size)});
-
-      @include utils.auto-rtl(margin-right, $distance);
-    }
-  }
-
-  .rmd-layout-nav-header {
-    &--bordered {
-      @include divider.style(bottom);
-    }
-  }
-
-  .rmd-layout-mini-wrapper {
-    display: grid;
-    grid-template-columns: get-var(mini-nav-width) 1fr;
-  }
-
-  .rmd-layout-main {
-    @include utils.keyboard-only {
-      @include box-shadows.box-shadow-transition(
-        none,
-        $main-focus-shadow,
-        "&:focus",
-        $pseudo-fixed: true,
-        $pseudo-z-index: $main-focused-z-index
-      );
-
-      &--nav-offset::before {
-        @include utils.auto-rtl(left, get-var(main-offset));
+      &--offset-v {
+        @include use-var(top, header-height);
       }
     }
 
-    // need to polyfill for IE11 even though not 100% supported
-    display: block;
-    height: 100%;
-    outline-style: none;
+    /// This class is used to transition when the nav expands/collapses on
+    /// larger screen sizes
+    .rmd-layout-h {
+      &--active {
+        @include media-queries.media($navigation-breakpoint) {
+          @include utils.auto-rtl(margin-left, get-var(size));
 
-    &--header-offset {
-      @include app-bar.use-var(padding-top, height);
-
-      @include utils.keyboard-only {
-        &::before {
-          @include app-bar.use-var(top, height);
+          &::before {
+            @include utils.auto-rtl(left, get-var(size));
+          }
         }
       }
+
+      &--enter {
+        transition: margin $enter-duration $enter-timing-function;
+      }
+
+      &--exit {
+        transition: margin $leave-duration $leave-timing-function;
+      }
     }
 
-    &--nav-offset {
-      @include utils.auto-rtl(margin-left, get-var(main-offset));
-    }
+    @if not $disable-resizable {
+      .rmd-layout-splitter {
+        @include window-splitter.set-var(position, get-var(size));
 
-    &--mini {
-      @include set-var(main-offset, get-var(mini-nav-width));
-    }
+        &--offset-v {
+          @include window-splitter.set-var(top, get-var(header-height));
+        }
 
-    &--mini-offset {
-      $distance: "#{get-var(nav-width)} - #{get-var(mini-nav-width)}";
+        &--responsive {
+          @include media-queries.media($navigation-breakpoint) {
+            display: inline-block;
+          }
 
-      @include set-var(main-offset, calc(#{$distance}));
+          display: none;
+        }
+      }
     }
   }
 }
