@@ -26,7 +26,8 @@
     },
     "./colors": {
       "sass": "./dist/_colors.scss"
-    }
+    },
+    "./package.json": "./package.json"
   },
   "sideEffects": [
     "dist/**/*.scss",
