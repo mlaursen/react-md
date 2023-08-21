@@ -163,7 +163,6 @@ $button-recommended-styles: map.merge(
     font-size: 0.875rem,
     line-height: 2.25rem,
     font-weight: map.get($font-weights, medium),
-    text-transform: uppercase,
     letter-spacing: get-letter-spacing(1.25, 0.875),
   )
 );
