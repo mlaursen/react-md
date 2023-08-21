@@ -550,7 +550,7 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
           {...sheetProps}
         >
           <Portal disabled={isSheet || (propDisablePortal ?? disablePortal)}>
-            {rendered && (
+            {(rendered || isSheet) && (
               <MenuWidget
                 {...remaining}
                 {...elementProps}
