@@ -128,6 +128,10 @@ export function useTransition<E extends HTMLElement>(
             appearing: false,
           };
         case "unmount":
+          if (state.stage === "exited" && !state.appearing && !state.rendered) {
+            return state;
+          }
+
           return {
             stage: "exited",
             rendered: false,
@@ -234,6 +238,8 @@ export function useTransition<E extends HTMLElement>(
     }
 
     if (stage === nextStage) {
+      // this is used to help catch changing the temporary prop.
+      // not sure if I should really support that though...
       if (stage === "exited" && temporary) {
         dispatch("unmount");
       }
@@ -241,19 +247,24 @@ export function useTransition<E extends HTMLElement>(
       return;
     }
 
+    // I used to rely on the `dispatch("unmount")` above, but it seems like
+    // there are some cases where re-rendering takes too long so the temporary
+    // element flashes
+    const dispatchStage =
+      temporary && nextStage === "exited" ? "unmount" : nextStage;
     if (duration <= 0) {
-      dispatch(nextStage);
+      dispatch(dispatchStage);
       return;
     }
 
     const timer = window.setTimeout(() => {
-      dispatch(nextStage);
+      dispatch(dispatchStage);
     }, duration);
 
     return () => {
       window.clearTimeout(timer);
     };
-  }, [appearing, ref, stage, ssr, temporary, transitionIn]);
+  }, [appearing, ref, ssr, stage, temporary, transitionIn]);
 
   return {
     ref: refCallback,
