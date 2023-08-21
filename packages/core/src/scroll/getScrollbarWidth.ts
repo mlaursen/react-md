@@ -6,7 +6,7 @@ let cache: number | undefined;
 export function getScrollbarWidth(force = false): number {
   /* istanbul ignore if */
   if (typeof window === "undefined") {
-    return -1;
+    return 0;
   }
 
   let value = cache;
