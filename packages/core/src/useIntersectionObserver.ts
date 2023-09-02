@@ -16,12 +16,7 @@ export type IntersectionObserverRootMargin =
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#intersection_observer_options}
  * @remarks \@since 6.0.0
  */
-export interface IntersectionObserverHookOptions<E extends HTMLElement> {
-  /**
-   * An optional ref to merge with the ref returned by this hook.
-   */
-  ref?: Ref<E>;
-
+export interface BaseIntersectionObserverHookOptions {
   /**
    * This is the same as the normal `root` for an IntersectionObserverInit, but
    * also supports refs.
@@ -49,7 +44,7 @@ export interface IntersectionObserverHookOptions<E extends HTMLElement> {
    * function Example() {
    *   const targetRef = useIntersectionObserver({
    *     threshold,
-   *     onUpdate: useCallback((entry) => {
+   *     onUpdate: useCallback(([entry]) => {
    *       // do something
    *     }, []),
    *   })
@@ -67,7 +62,7 @@ export interface IntersectionObserverHookOptions<E extends HTMLElement> {
    * function Example({ min, max }: ExampleProps): ReactElement {
    *   const targetRef = useIntersectionObserver({
    *     threshold: useMemo(() => [min, max], [min, max]),
-   *     onUpdate: useCallback((entry) => {
+   *     onUpdate: useCallback(([entry]) => {
    *       // do something
    *     }, []),
    *   });
@@ -122,7 +117,7 @@ export interface IntersectionObserverHookOptions<E extends HTMLElement> {
    *   getRootMargin: useCallback(() => {
    *     return `-${nodeRef.current.offsetHeight - 1}px 0px 0px`;
    *   }, []),
-   *   OnUpdate: useCallback(() => {
+   *   onUpdate: useCallback(() => {
    *     // do something
    *   }, []),
    * });
@@ -131,6 +126,18 @@ export interface IntersectionObserverHookOptions<E extends HTMLElement> {
    * Note: If this option is provided, {@link rootMargin} will be ignored.
    */
   getRootMargin?(): IntersectionObserverRootMargin;
+}
+
+/**
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#intersection_observer_options}
+ * @remarks \@since 6.0.0
+ */
+export interface IntersectionObserverHookOptions<E extends HTMLElement>
+  extends BaseIntersectionObserverHookOptions {
+  /**
+   * An optional ref to merge with the ref returned by this hook.
+   */
+  ref?: Ref<E>;
 
   /**
    * **Must be wrapped in `useCallback` to prevent re-creating the
@@ -145,17 +152,46 @@ export interface IntersectionObserverHookOptions<E extends HTMLElement> {
    *   const [intersecting, setIntersecting] = useState(false);
    *   const targetRef = useIntersectionObserver({
    *     threshold,
-   *     onUpdate: useCallback((entry) {
+   *     onUpdate: useCallback(([entry]) {
    *       setIntersecting(entry.isIntersecting);
    *     }, []),
    *   });
    *
    *   // implementation
    * }
-   *
    * ```
    */
-  onUpdate(entry: IntersectionObserverEntry): void;
+  onUpdate(entries: readonly IntersectionObserverEntry[]): void;
+
+  /**
+   * **Must be wrapped in `useCallback` to prevent re-creating the
+   * IntersectionObserver each render.**
+   *
+   * If this is defined, the {@link ref} will be ignored along with the returned
+   * ref.
+   *
+   * @example
+   * Watching Queried Elements
+   * ```tsx
+   * function Example(): ReactElement {
+   *   useIntersectionObserver({
+   *     onUpdate: useCallback((entries) => {
+   *       entries.forEach((entry) => {
+   *         // do stuff
+   *       });
+   *
+   *       setIntersectingIds(intersecting);
+   *     }, []),
+   *     getTargets: useCallback(() => {
+   *       return document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+   *     }, []),
+   *   }),
+   *
+   *   return <div {...props} />;
+   * }
+   * ```
+   */
+  getTargets?(): readonly Element[];
 }
 
 /**
@@ -186,7 +222,7 @@ export interface IntersectionObserverHookOptions<E extends HTMLElement> {
  *   const targetRef = useIntersectionObserver({
  *     threshold: thresholds,
  *     rootMargin: "0px",
- *     onUpdate: useCallback((entry) => {
+ *     onUpdate: useCallback(([entry]) => {
  *       const { intersectionRatio } = entry;
  *       setState((prevState) => {
  *         return {
@@ -229,6 +265,7 @@ export function useIntersectionObserver<E extends HTMLElement>(
     onUpdate,
     threshold,
     rootMargin,
+    getTargets,
     getThreshold,
     getRootMargin,
   } = options;
@@ -237,7 +274,14 @@ export function useIntersectionObserver<E extends HTMLElement>(
 
   useEffect(() => {
     const element = targetNodeRef.current;
-    if (disabled || !element) {
+    let targets: readonly Element[] = [];
+    if (getTargets) {
+      targets = getTargets();
+    } else if (element) {
+      targets = [element];
+    }
+
+    if (disabled || !targets.length) {
       return;
     }
 
@@ -254,10 +298,6 @@ export function useIntersectionObserver<E extends HTMLElement>(
       rootMargin: (getRootMargin || (() => rootMargin))(),
     };
 
-    const callback: IntersectionObserverCallback = ([entry]) => {
-      onUpdate(entry);
-    };
-
     // Just like the ResizeObserver, you can see performance improvements by
     // sharing a single intersection observer but I don't think it's worth the
     // effort to implement here since I'd need to:
@@ -266,8 +306,10 @@ export function useIntersectionObserver<E extends HTMLElement>(
     //   - if there isn't, create a new observer
     // - when cleaning up, check if there are any other existing callbacks
     //   - disconnect and remove the observer if there are none left
-    const observer = new IntersectionObserver(callback, options);
-    observer.observe(element);
+    const observer = new IntersectionObserver(onUpdate, options);
+    targets.forEach((target) => {
+      observer.observe(target);
+    });
 
     return () => {
       observer.disconnect();
@@ -275,6 +317,7 @@ export function useIntersectionObserver<E extends HTMLElement>(
   }, [
     disabled,
     getRootMargin,
+    getTargets,
     getThreshold,
     onUpdate,
     root,

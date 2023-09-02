@@ -141,7 +141,7 @@ export const TableHeader = forwardRef<
       return `-${topOffset}px 0px 0px`;
     }, [exists, theadRef]),
     onUpdate: useCallback(
-      (entry) => {
+      ([entry]) => {
         setStickyActive(isStickyActive(entry));
       },
       [isStickyActive]

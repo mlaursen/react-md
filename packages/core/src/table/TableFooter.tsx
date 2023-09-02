@@ -97,7 +97,7 @@ export const TableFooter = forwardRef<
       return `0px 0px -${topOffset}px 0px`;
     }, [exists, tfootRef]),
     onUpdate: useCallback(
-      (entry) => {
+      ([entry]) => {
         if (typeof isStickyActive === "function") {
           return isStickyActive(entry);
         }

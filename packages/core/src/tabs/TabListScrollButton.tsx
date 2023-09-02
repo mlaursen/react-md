@@ -80,7 +80,7 @@ export const TabListScrollButton = forwardRef<
   const [disabled, setDisabled] = useState(!forward);
   const nodeRef = useIntersectionObserver({
     root,
-    onUpdate: useCallback((entry) => {
+    onUpdate: useCallback(([entry]) => {
       setDisabled(entry.intersectionRatio === 1);
     }, []),
   });
