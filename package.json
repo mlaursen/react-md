@@ -16,12 +16,12 @@
   "devDependencies": {
     "@changesets/cli": "^2.26.2",
     "@mlaursen/eslint-config": "^2.4.0",
-    "eslint": "^8.47.0",
+    "eslint": "^8.48.0",
     "husky": "^8.0.3",
-    "lint-staged": "^14.0.0",
-    "prettier": "^3.0.2",
-    "turbo": "^1.10.12",
-    "typescript": "^5.1.6"
+    "lint-staged": "^14.0.1",
+    "prettier": "^3.0.3",
+    "turbo": "^1.10.13",
+    "typescript": "^5.2.2"
   },
   "engines": {
     "pnpm": ">=8",
