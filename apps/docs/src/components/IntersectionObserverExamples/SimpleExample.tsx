@@ -23,7 +23,7 @@ export function SimpleExample(): ReactElement {
   const targetRef = useIntersectionObserver({
     threshold: thresholds,
     rootMargin: "0px",
-    onUpdate: useCallback((entry) => {
+    onUpdate: useCallback(([entry]) => {
       const { intersectionRatio } = entry;
       setState((prevState) => {
         return {

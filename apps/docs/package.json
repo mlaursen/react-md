@@ -9,7 +9,7 @@
     "build": "next build",
     "build-static": "next build && next export",
     "start": "next start",
-    "clean": "rm -rf .turbo node_modules",
+    "clean": "rm -rf .turbo .next node_modules",
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{ts,tsx,js,jsx,cjs,mjs}\"",
     "test": "jest"

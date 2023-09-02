@@ -2,17 +2,13 @@
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
   "pipeline": {
-    "@react-md/codemod#build": {
-      "outputs": ["bin/**"]
-    },
-    "@react-md/core#build": {
-      "outputs": ["dist/**"]
-    },
     "@react-md/material-icons#build": {
+      "cache": false,
       "outputs": ["*.d.ts", "*.js"]
     },
-    "docs#build": {
-      "outputs": [".next/**", "!.next/cache/**"]
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", "types/**", ".next/**", "!.next/cache/**"]
     },
     "test": {
       "outputs": ["coverage/**"],

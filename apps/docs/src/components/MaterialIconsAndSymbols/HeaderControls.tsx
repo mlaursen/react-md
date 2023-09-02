@@ -39,7 +39,7 @@ export function HeaderControls(): ReactElement {
 
   const [returnToTopVisible, setReturnToTopVisible] = useState(false);
   const targetRef = useIntersectionObserver({
-    onUpdate: useCallback((entry) => {
+    onUpdate: useCallback(([entry]) => {
       setReturnToTopVisible(!entry.isIntersecting);
     }, []),
   });
