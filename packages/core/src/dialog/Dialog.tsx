@@ -10,6 +10,7 @@ import { useScrollLock } from "../scroll/useScrollLock.js";
 import type {
   CSSTransitionClassNames,
   CSSTransitionComponentProps,
+  TransitionActions,
   TransitionTimeout,
 } from "../transition/types.js";
 import { useCSSTransition } from "../transition/useCSSTransition.js";
@@ -63,6 +64,7 @@ const noopBool = (): boolean => false;
 export interface BaseDialogProps
   extends HTMLAttributes<HTMLDivElement>,
     CSSTransitionComponentProps,
+    TransitionActions,
     FocusContainerComponentProps {
   /**
    * @defaultValue `useEnsuredId('dialog')`
@@ -270,6 +272,9 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
       timeout = DEFAULT_DIALOG_TIMEOUT,
       classNames = DEFAULT_DIALOG_CLASSNAMES,
       disableTransition = false,
+      appear,
+      enter,
+      exit,
       onEnter = noop,
       onEntering = noop,
       onEntered,
@@ -331,9 +336,9 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
         outline: !disableFocusOutline,
         className,
       }),
-      appear: !disableTransition && !ssr,
-      enter: !disableTransition,
-      exit: !disableTransition,
+      appear: appear && !disableTransition && !ssr,
+      enter: enter && !disableTransition,
+      exit: exit && !disableTransition,
       onEnter(appearing) {
         onEnter(appearing);
         setChildVisible(type !== "full-page");

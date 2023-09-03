@@ -7,6 +7,7 @@ import { Portal } from "../portal/Portal.js";
 import type {
   CSSTransitionClassNamesObject,
   CSSTransitionComponentProps,
+  TransitionActions,
   TransitionTimeout,
 } from "../transition/types.js";
 import { useCSSTransition } from "../transition/useCSSTransition.js";
@@ -65,6 +66,7 @@ export const DEFAULT_OVERLAY_CLASSNAMES: Readonly<CSSTransitionClassNamesObject>
 export interface OverlayProps
   extends HTMLAttributes<HTMLSpanElement>,
     CSSTransitionComponentProps,
+    TransitionActions,
     OverlayClassNameOptions {
   /**
    * Set this to `true` for when the overlay should be visible. Toggling this
@@ -134,6 +136,9 @@ export const Overlay = forwardRef<HTMLSpanElement, OverlayProps>(
       timeout = DEFAULT_OVERLAY_TIMEOUT,
       classNames = DEFAULT_OVERLAY_CLASSNAMES,
       disableTransition = false,
+      appear,
+      enter,
+      exit,
       onEnter,
       onEntering,
       onEntered,
@@ -157,9 +162,9 @@ export const Overlay = forwardRef<HTMLSpanElement, OverlayProps>(
         clickable,
         className,
       }),
-      appear: !disableTransition && !ssr,
-      enter: !disableTransition,
-      exit: !disableTransition,
+      appear: appear && !disableTransition && !ssr,
+      enter: enter && !disableTransition,
+      exit: exit && !disableTransition,
       onEnter,
       onEntering,
       onEntered,
