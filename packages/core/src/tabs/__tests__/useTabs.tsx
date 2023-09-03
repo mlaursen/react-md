@@ -4,6 +4,7 @@ import { rmdRender, userEvent, waitFor } from "../../test-utils/index.js";
 
 import { Slide } from "../../transition/Slide.js";
 import { SlideContainer } from "../../transition/SlideContainer.js";
+import { isElementVisible } from "../../utils/isElementVisible.js";
 import { Tab } from "../Tab.js";
 import type { TabListProps } from "../TabList.js";
 import { TabList } from "../TabList.js";
@@ -62,10 +63,12 @@ describe("useTabs", () => {
     const tab2 = getByRole("tab", { name: "Tab 2" });
     const tab3 = getByRole("tab", { name: "Tab 3" });
     const panel1 = getByRole("tabpanel", { name: "Tab 1" });
+    const panel2 = getByRole("tabpanel", { name: "Tab 2" });
+    const panel3 = getByRole("tabpanel", { name: "Tab 3" });
 
-    // unable to get panel2 and panel3 since they do not have labels while hidden
-    expect(() => getByRole("tabpanel", { name: "Tab 2" })).toThrow();
-    expect(() => getByRole("tabpanel", { name: "Tab 3" })).toThrow();
+    expect(isElementVisible(panel1)).toBe(true);
+    expect(isElementVisible(panel2)).toBe(false);
+    expect(isElementVisible(panel3)).toBe(false);
 
     expect(tabList).toHaveAttribute("tabIndex", "0");
     expect(tab1).toHaveAttribute("aria-selected", "true");
@@ -97,7 +100,7 @@ describe("useTabs", () => {
 
     await user.keyboard("[Space]");
     await waitFor(() => {
-      expect(panel1).toHaveAttribute("hidden");
+      expect(isElementVisible(panel1)).toBe(false);
     });
     expect(tabList).toHaveAttribute("tabIndex", "-1");
     expect(tab1).toHaveAttribute("aria-selected", "false");
@@ -107,8 +110,9 @@ describe("useTabs", () => {
     expect(tab3).toHaveAttribute("aria-selected", "false");
     expect(tab3).toHaveAttribute("tabIndex", "-1");
 
-    const panel2 = getByRole("tabpanel", { name: "Tab 2" });
-    expect(() => getByRole("tabpanel", { name: "Tab 3" })).toThrow();
+    expect(isElementVisible(panel1)).toBe(false);
+    expect(isElementVisible(panel2)).toBe(true);
+    expect(isElementVisible(panel3)).toBe(false);
 
     await user.keyboard("[ArrowLeft]");
     expect(tabList).toHaveAttribute("tabIndex", "-1");
@@ -118,13 +122,15 @@ describe("useTabs", () => {
     expect(tab2).toHaveAttribute("tabIndex", "-1");
     expect(tab3).toHaveAttribute("aria-selected", "false");
     expect(tab3).toHaveAttribute("tabIndex", "-1");
-    expect(panel1).toHaveAttribute("hidden");
-    expect(panel2).not.toHaveAttribute("hidden");
+    expect(isElementVisible(panel1)).toBe(false);
+    expect(isElementVisible(panel2)).toBe(true);
+    expect(isElementVisible(panel3)).toBe(false);
 
     await user.keyboard("[End][Enter]");
     await waitFor(() => {
-      expect(panel1).toHaveAttribute("hidden");
-      expect(panel2).toHaveAttribute("hidden");
+      expect(isElementVisible(panel2)).toBe(false);
+      expect(isElementVisible(panel1)).toBe(false);
+      expect(isElementVisible(panel3)).toBe(true);
     });
 
     expect(tabList).toHaveAttribute("tabIndex", "-1");
@@ -135,7 +141,9 @@ describe("useTabs", () => {
     expect(tab3).toHaveAttribute("aria-selected", "true");
     expect(tab3).toHaveAttribute("tabIndex", "0");
 
-    const panel3 = getByRole("tabpanel", { name: "Tab 3" });
+    expect(isElementVisible(panel1)).toBe(false);
+    expect(isElementVisible(panel2)).toBe(false);
+    expect(isElementVisible(panel3)).toBe(true);
 
     // supports text wrapping wrapping
     await user.keyboard("[ArrowRight]");
@@ -158,9 +166,9 @@ describe("useTabs", () => {
 
     await user.keyboard("tt[Space]");
     await waitFor(() => {
-      expect(panel1).toHaveAttribute("hidden");
-      expect(panel2).not.toHaveAttribute("hidden");
-      expect(panel3).toHaveAttribute("hidden");
+      expect(isElementVisible(panel1)).toBe(false);
+      expect(isElementVisible(panel2)).toBe(true);
+      expect(isElementVisible(panel3)).toBe(false);
     });
     expect(tabList).toHaveAttribute("tabIndex", "-1");
     expect(tab1).toHaveAttribute("aria-selected", "false");

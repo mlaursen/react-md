@@ -198,7 +198,7 @@ export interface ExpansionPanelProps extends CardProps {
  *
  * @see `useExpansionPanels` for examples.
  * @remarks
- * \@since 6.0.0 The content will be persistent and invisible using `hidden`
+ * \@since 6.0.0 The content will be persistent and invisible using `display: none`
  * instead of unmounting and also animate the `margin-top` style.
  */
 export const ExpansionPanel = forwardRef<
@@ -235,7 +235,6 @@ export const ExpansionPanel = forwardRef<
     timeout: disableTransition ? 0 : undefined,
     temporary,
     transitionIn: expanded,
-    hidden: contentProps?.hidden,
   });
 
   let header = propHeader;

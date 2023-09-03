@@ -349,31 +349,9 @@ export interface PreconfiguredCSSTransitionInDefaultedOptions<
   className?: string;
 
   /**
-   * This is mostly internal only since it is used to merge the {@link exitedHidden}
-   * behavior with an optional hidden prop for a component.
-   *
-   * @example
-   * ```ts
-   * const hidden = Math.random() < 0.5; // pretend some logic
-   * const { elementProps } = useCSSTransition({
-   *   hidden,
-   *   timeout,
-   *   classNames,
-   *   exitedHidden: true,
-   *   // etc
-   * });
-   *
-   *
-   * return <div {...elementProps}>Content</div>;
-   * ```
-   * @remarks \@since 6.0.0
-   */
-  hidden?: boolean;
-
-  /**
    * When this is `true` and the {@link temporary} option is `false`, the
-   * element will gain an `hidden` attribute to hide it instead of conditionally
-   * rendering the element.
+   * element will gain a class name to hide it with `display: none` instead of
+   * conditionally rendering the element.
    *
    * @defaultValue `false`
    * @remarks \@since 6.0.0
@@ -535,16 +513,6 @@ export interface CSSTransitionElementProps<E extends HTMLElement> {
    * The current transition class name or `undefined`.
    */
   className: string | undefined;
-
-  /**
-   * This will only be `true` when:
-   * - {@link CSSTransitionHookOptions.exitedHidden} is `true`
-   * - {@link CSSTransitionHookOptions.temporary} is `false`
-   * - the {@link TransitionStage} is `"exited"`
-   *
-   * @remarks \@since 6.0.0
-   */
-  hidden?: boolean;
 }
 
 /**

@@ -79,8 +79,7 @@ exports[`Tree should handle multi-select tree behavior 1`] = `
       </span>
     </span>
     <ul
-      class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-      hidden=""
+      class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
       id="tree-item-:rc:-group"
       role="group"
       style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: -1;"
@@ -132,8 +131,7 @@ exports[`Tree should handle multi-select tree behavior 1`] = `
           </span>
         </span>
         <ul
-          class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-          hidden=""
+          class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
           id="tree-item-:re:-group"
           role="group"
           style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 0;"
@@ -165,8 +163,7 @@ exports[`Tree should handle multi-select tree behavior 1`] = `
               </span>
             </span>
             <ul
-              class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-              hidden=""
+              class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
               id="tree-item-:rf:-group"
               role="group"
               style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
@@ -296,7 +293,7 @@ exports[`Tree should handle multi-select tree behavior 2`] = `
       </span>
     </span>
     <ul
-      class="rmd-list rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow rmd-tree-group"
+      class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
       id="tree-item-:rc:-group"
       role="group"
       style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: -1; transition-duration: 250ms;"
@@ -348,8 +345,7 @@ exports[`Tree should handle multi-select tree behavior 2`] = `
           </span>
         </span>
         <ul
-          class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-          hidden=""
+          class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
           id="tree-item-:re:-group"
           role="group"
           style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 0;"
@@ -381,8 +377,7 @@ exports[`Tree should handle multi-select tree behavior 2`] = `
               </span>
             </span>
             <ul
-              class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-              hidden=""
+              class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
               id="tree-item-:rf:-group"
               role="group"
               style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
@@ -512,7 +507,7 @@ exports[`Tree should handle multi-select tree behavior 3`] = `
       </span>
     </span>
     <ul
-      class="rmd-list rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow rmd-tree-group"
+      class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
       id="tree-item-:rc:-group"
       role="group"
       style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: -1; transition-duration: 250ms;"
@@ -564,8 +559,7 @@ exports[`Tree should handle multi-select tree behavior 3`] = `
           </span>
         </span>
         <ul
-          class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-          hidden=""
+          class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
           id="tree-item-:re:-group"
           role="group"
           style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 0;"
@@ -597,8 +591,7 @@ exports[`Tree should handle multi-select tree behavior 3`] = `
               </span>
             </span>
             <ul
-              class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-              hidden=""
+              class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
               id="tree-item-:rf:-group"
               role="group"
               style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
@@ -728,7 +721,7 @@ exports[`Tree should handle multi-select tree behavior 4`] = `
       </span>
     </span>
     <ul
-      class="rmd-list rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow rmd-tree-group"
+      class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
       id="tree-item-:rc:-group"
       role="group"
       style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: -1; transition-duration: 250ms;"
@@ -780,8 +773,7 @@ exports[`Tree should handle multi-select tree behavior 4`] = `
           </span>
         </span>
         <ul
-          class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-          hidden=""
+          class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
           id="tree-item-:re:-group"
           role="group"
           style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 0;"
@@ -813,8 +805,7 @@ exports[`Tree should handle multi-select tree behavior 4`] = `
               </span>
             </span>
             <ul
-              class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-              hidden=""
+              class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
               id="tree-item-:rf:-group"
               role="group"
               style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
@@ -944,8 +935,7 @@ exports[`Tree should handle multi-select tree behavior 5`] = `
       </span>
     </span>
     <ul
-      class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-      hidden=""
+      class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
       id="tree-item-:rc:-group"
       role="group"
       style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: -1;"
@@ -997,8 +987,7 @@ exports[`Tree should handle multi-select tree behavior 5`] = `
           </span>
         </span>
         <ul
-          class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-          hidden=""
+          class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
           id="tree-item-:re:-group"
           role="group"
           style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 0;"
@@ -1030,8 +1019,7 @@ exports[`Tree should handle multi-select tree behavior 5`] = `
               </span>
             </span>
             <ul
-              class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-              hidden=""
+              class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
               id="tree-item-:rf:-group"
               role="group"
               style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
@@ -1161,8 +1149,7 @@ exports[`Tree should handle single select tree behavior 1`] = `
       </span>
     </span>
     <ul
-      class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-      hidden=""
+      class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
       id="tree-item-:r3:-group"
       role="group"
       style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: -1;"
@@ -1214,8 +1201,7 @@ exports[`Tree should handle single select tree behavior 1`] = `
           </span>
         </span>
         <ul
-          class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-          hidden=""
+          class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
           id="tree-item-:r5:-group"
           role="group"
           style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 0;"
@@ -1247,8 +1233,7 @@ exports[`Tree should handle single select tree behavior 1`] = `
               </span>
             </span>
             <ul
-              class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-              hidden=""
+              class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
               id="tree-item-:r6:-group"
               role="group"
               style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
@@ -1378,7 +1363,7 @@ exports[`Tree should handle single select tree behavior 2`] = `
       </span>
     </span>
     <ul
-      class="rmd-list rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow rmd-tree-group"
+      class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
       id="tree-item-:r3:-group"
       role="group"
       style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: -1; transition-duration: 250ms;"
@@ -1430,8 +1415,7 @@ exports[`Tree should handle single select tree behavior 2`] = `
           </span>
         </span>
         <ul
-          class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-          hidden=""
+          class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
           id="tree-item-:r5:-group"
           role="group"
           style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 0;"
@@ -1463,8 +1447,7 @@ exports[`Tree should handle single select tree behavior 2`] = `
               </span>
             </span>
             <ul
-              class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-              hidden=""
+              class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
               id="tree-item-:r6:-group"
               role="group"
               style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
@@ -1594,7 +1577,7 @@ exports[`Tree should handle single select tree behavior 3`] = `
       </span>
     </span>
     <ul
-      class="rmd-list rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow rmd-tree-group"
+      class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
       id="tree-item-:r3:-group"
       role="group"
       style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: -1; transition-duration: 250ms;"
@@ -1646,8 +1629,7 @@ exports[`Tree should handle single select tree behavior 3`] = `
           </span>
         </span>
         <ul
-          class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-          hidden=""
+          class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
           id="tree-item-:r5:-group"
           role="group"
           style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 0;"
@@ -1679,8 +1661,7 @@ exports[`Tree should handle single select tree behavior 3`] = `
               </span>
             </span>
             <ul
-              class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-              hidden=""
+              class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
               id="tree-item-:r6:-group"
               role="group"
               style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
@@ -1810,7 +1791,7 @@ exports[`Tree should handle single select tree behavior 4`] = `
       </span>
     </span>
     <ul
-      class="rmd-list rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow rmd-tree-group"
+      class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
       id="tree-item-:r3:-group"
       role="group"
       style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: -1; transition-duration: 250ms;"
@@ -1862,8 +1843,7 @@ exports[`Tree should handle single select tree behavior 4`] = `
           </span>
         </span>
         <ul
-          class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-          hidden=""
+          class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
           id="tree-item-:r5:-group"
           role="group"
           style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 0;"
@@ -1895,8 +1875,7 @@ exports[`Tree should handle single select tree behavior 4`] = `
               </span>
             </span>
             <ul
-              class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-              hidden=""
+              class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
               id="tree-item-:r6:-group"
               role="group"
               style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
@@ -2026,8 +2005,7 @@ exports[`Tree should handle single select tree behavior 5`] = `
       </span>
     </span>
     <ul
-      class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-      hidden=""
+      class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
       id="tree-item-:r3:-group"
       role="group"
       style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: -1;"
@@ -2079,8 +2057,7 @@ exports[`Tree should handle single select tree behavior 5`] = `
           </span>
         </span>
         <ul
-          class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-          hidden=""
+          class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
           id="tree-item-:r5:-group"
           role="group"
           style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 0;"
@@ -2112,8 +2089,7 @@ exports[`Tree should handle single select tree behavior 5`] = `
               </span>
             </span>
             <ul
-              class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-              hidden=""
+              class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
               id="tree-item-:r6:-group"
               role="group"
               style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
@@ -2397,7 +2373,7 @@ exports[`Tree should support conditionally rendering child trees by enabling tem
       </span>
     </span>
     <ul
-      class="rmd-list rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow rmd-tree-group"
+      class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
       id="tree-item-:r1r:-group"
       role="group"
       style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: -1; transition-duration: 250ms;"
@@ -2550,7 +2526,7 @@ exports[`Tree should support default selected and expanded ids 1`] = `
       </span>
     </span>
     <ul
-      class="rmd-list rmd-collapse rmd-tree-group"
+      class="rmd-list rmd-tree-group rmd-collapse"
       id="tree-item-:rl:-group"
       role="group"
       style="--rmd-tree-depth: -1;"
@@ -2602,8 +2578,7 @@ exports[`Tree should support default selected and expanded ids 1`] = `
           </span>
         </span>
         <ul
-          class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-          hidden=""
+          class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
           id="tree-item-:rn:-group"
           role="group"
           style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 0;"
@@ -2635,8 +2610,7 @@ exports[`Tree should support default selected and expanded ids 1`] = `
               </span>
             </span>
             <ul
-              class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-              hidden=""
+              class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
               id="tree-item-:ro:-group"
               role="group"
               style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
@@ -2766,7 +2740,7 @@ exports[`Tree should support default selected and expanded ids 2`] = `
       </span>
     </span>
     <ul
-      class="rmd-list rmd-collapse rmd-tree-group"
+      class="rmd-list rmd-tree-group rmd-collapse"
       id="tree-item-:ru:-group"
       role="group"
       style="--rmd-tree-depth: -1;"
@@ -2818,8 +2792,7 @@ exports[`Tree should support default selected and expanded ids 2`] = `
           </span>
         </span>
         <ul
-          class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-          hidden=""
+          class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
           id="tree-item-:r10:-group"
           role="group"
           style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 0;"
@@ -2851,8 +2824,7 @@ exports[`Tree should support default selected and expanded ids 2`] = `
               </span>
             </span>
             <ul
-              class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-              hidden=""
+              class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
               id="tree-item-:r11:-group"
               role="group"
               style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
@@ -2982,8 +2954,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
       </span>
     </span>
     <ul
-      class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-      hidden=""
+      class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
       id="tree-item-:r26:-group"
       role="group"
       style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: -1;"
@@ -3035,8 +3006,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
           </span>
         </span>
         <ul
-          class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-          hidden=""
+          class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
           id="tree-item-:r28:-group"
           role="group"
           style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 0;"
@@ -3068,8 +3038,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
               </span>
             </span>
             <ul
-              class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-              hidden=""
+              class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
               id="tree-item-:r29:-group"
               role="group"
               style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
@@ -3198,8 +3167,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
       </span>
     </span>
     <ul
-      class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-      hidden=""
+      class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
       id="tree-item-:r26:-group"
       role="group"
       style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: -1;"
@@ -3250,8 +3218,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
           </span>
         </span>
         <ul
-          class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-          hidden=""
+          class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
           id="tree-item-:r28:-group"
           role="group"
           style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 0;"
@@ -3282,8 +3249,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
               </span>
             </span>
             <ul
-              class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-              hidden=""
+              class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
               id="tree-item-:r29:-group"
               role="group"
               style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
@@ -3433,8 +3399,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
       </span>
     </span>
     <ul
-      class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-      hidden=""
+      class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
       id="tree-item-:r26:-group"
       role="group"
       style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: -1;"
@@ -3506,8 +3471,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
           </span>
         </span>
         <ul
-          class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-          hidden=""
+          class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
           id="tree-item-:r28:-group"
           role="group"
           style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 0;"
@@ -3549,8 +3513,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
               </span>
             </span>
             <ul
-              class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-              hidden=""
+              class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
               id="tree-item-:r29:-group"
               role="group"
               style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"

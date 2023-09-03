@@ -3,6 +3,7 @@ import { cnb } from "cnbuilder";
 import type { CSSProperties } from "react";
 import { useState } from "react";
 import { useEnsuredRef } from "../useEnsuredRef.js";
+import { collapse } from "./collapseStyles.js";
 import type {
   CSSTransitionElementProps,
   CSSTransitionHookReturnValue,
@@ -11,7 +12,11 @@ import type {
   TransitionTimeoutObject,
 } from "./types.js";
 import { useTransition } from "./useTransition.js";
-import { getElementSizing, getTransitionTimeout } from "./utils.js";
+import {
+  DISPLAY_NONE_CLASS,
+  getElementSizing,
+  getTransitionTimeout,
+} from "./utils.js";
 
 const noop = (): void => {
   // do nothing
@@ -118,13 +123,6 @@ export interface CollapseElementProps<E extends HTMLElement>
    * @see {@link CollapseTransitionHookOptions.style}
    */
   style: CSSProperties;
-
-  /**
-   * This will be set to true when the element is fully collapsed and the
-   * {@link CollapseTransitionHookOptions.temporary} is set to `false`. This
-   * should be applied as the `hidden` attribute to a DOM node.
-   */
-  hidden: boolean;
 }
 
 /**
@@ -163,7 +161,7 @@ export interface CollapseTransitionHookOptions<E extends HTMLElement>
  * @remarks \@since 4.0.0
  */
 export interface CollapseTransitionHookReturnValue<E extends HTMLElement>
-  extends Omit<CSSTransitionHookReturnValue<E>, "hidden">,
+  extends CSSTransitionHookReturnValue<E>,
     CollapseElementProps<E> {
   /**
    * This is just a convenience object so that you don't need to destructure as
@@ -429,20 +427,20 @@ export function useCollapseTransition<E extends HTMLElement>(
     style: { ...style, ...propStyle },
     className:
       cnb(
-        {
-          "rmd-collapse": collapsible,
-          "rmd-collapse--enter": entering,
-          "rmd-collapse--leave": exiting,
-          "rmd-collapse--no-overflow": !transitionIn || style,
-        },
-        className
+        className,
+        collapsible &&
+          collapse({
+            enter: entering,
+            leave: exiting,
+            disableOverflow: !transitionIn || !!style,
+          }),
+        !temporary &&
+          stage === "exited" &&
+          minHeight === 0 &&
+          minPaddingTop === 0 &&
+          minPaddingBottom === 0 &&
+          DISPLAY_NONE_CLASS
       ) || undefined,
-    hidden:
-      !temporary &&
-      stage === "exited" &&
-      minHeight === 0 &&
-      minPaddingTop === 0 &&
-      minPaddingBottom === 0,
   };
 
   return {

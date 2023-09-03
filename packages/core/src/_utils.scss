@@ -5,6 +5,7 @@
 
 $disable-rtl: false !default;
 $disable-validation: false !default;
+$disable-display-none-class: false !default;
 $temporary-element-z-index: 30 !default;
 
 $_swappable-positions: top right bottom left;

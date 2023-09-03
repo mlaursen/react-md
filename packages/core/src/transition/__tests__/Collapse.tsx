@@ -12,6 +12,7 @@ import { act, fireEvent, render } from "../../test-utils/index.js";
 
 import type { CollapseProps } from "../Collapse.js";
 import { Collapse } from "../Collapse.js";
+import { DISPLAY_NONE_CLASS } from "../utils.js";
 
 interface TestProps
   extends Omit<CollapseProps<HTMLElement>, "collapsed" | "children"> {
@@ -70,35 +71,35 @@ describe("useCollapseTransition", () => {
     expect(container).toMatchSnapshot();
   });
 
-  it("should apply the hidden attribute if the temporary behavior is disabled", () => {
+  it(`should apply the ${DISPLAY_NONE_CLASS} if the temporary behavior is disabled`, () => {
     const { container, getByRole, getByTestId } = render(
       <Test temporary={false} />
     );
     const toggle = getByRole("button");
     const element = getByTestId("element");
 
-    expect(element).toHaveAttribute("hidden");
+    expect(element).toHaveClass(DISPLAY_NONE_CLASS);
     expect(container).toMatchSnapshot();
 
     fireEvent.click(toggle);
-    expect(element).not.toHaveAttribute("hidden");
+    expect(element).not.toHaveClass(DISPLAY_NONE_CLASS);
     expect(container).toMatchSnapshot();
 
     act(() => {
       jest.runAllTimers();
     });
-    expect(element).not.toHaveAttribute("hidden");
+    expect(element).not.toHaveClass(DISPLAY_NONE_CLASS);
     expect(container).toMatchSnapshot();
 
     fireEvent.click(toggle);
-    expect(element).not.toHaveAttribute("hidden");
+    expect(element).not.toHaveClass(DISPLAY_NONE_CLASS);
     expect(container).toMatchSnapshot();
 
     act(() => {
       jest.runAllTimers();
     });
     expect(element).toBeInTheDocument();
-    expect(element).toHaveAttribute("hidden");
+    expect(element).toHaveClass(DISPLAY_NONE_CLASS);
     expect(container).toMatchSnapshot();
   });
 

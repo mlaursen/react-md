@@ -1,3 +1,4 @@
+import { DISPLAY_NONE_CLASS } from "../transition/utils.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import type { LayoutWindowSplitterProps } from "./LayoutWindowSplitter.js";
 import type {
@@ -142,8 +143,8 @@ export function useResizableLayout(
     windowSplitterProps: {
       ...splitterProps,
       "aria-controls": navId,
-      hidden: !expanded,
       appBarOffset: !fullHeightNav,
+      className: (!expanded && DISPLAY_NONE_CLASS) || undefined,
     },
   };
 }

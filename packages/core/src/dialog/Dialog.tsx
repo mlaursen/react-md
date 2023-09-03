@@ -1,4 +1,5 @@
 "use client";
+import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useState } from "react";
 import { useSsr } from "../SsrProvider.js";
@@ -14,6 +15,7 @@ import type {
   TransitionTimeout,
 } from "../transition/types.js";
 import { useCSSTransition } from "../transition/useCSSTransition.js";
+import { DISPLAY_NONE_CLASS } from "../transition/utils.js";
 import type { LabelRequiredForA11y } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { DialogContainer } from "./DialogContainer.js";
@@ -289,7 +291,6 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
       overlayHidden,
       onKeyDown = noop,
       isFocusTypeDisabled = noopBool,
-      hidden,
       disablePortal: propDisablePortal,
       disableScrollLock = false,
       disableEscapeClose = modal,
@@ -326,7 +327,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
       },
       isFocusTypeDisabled,
     });
-    const { elementProps, rendered, disablePortal } = useCSSTransition({
+    const { elementProps, stage, rendered, disablePortal } = useCSSTransition({
       transitionIn: visible,
       timeout,
       classNames,
@@ -348,7 +349,6 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
         setChildVisible(false);
       },
       temporary,
-      hidden,
       exitedHidden,
       disablePortal: propDisablePortal,
       ...transitionOptions,
@@ -378,8 +378,14 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
         <Portal disabled={disablePortal}>
           {rendered && (
             <DialogContainer
-              hidden={elementProps.hidden}
               {...containerProps}
+              className={cnb(
+                containerProps?.className,
+                !temporary &&
+                  exitedHidden &&
+                  stage === "exited" &&
+                  DISPLAY_NONE_CLASS
+              )}
               enabled={type === "centered"}
             >
               <div

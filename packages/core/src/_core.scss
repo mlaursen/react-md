@@ -66,6 +66,7 @@
 @use "menu/menu";
 @use "form/form";
 @use "layout/layout";
+@use "utils";
 
 @mixin css-reset {
   // setting everything to border-box for easier positioning and calculations
@@ -100,11 +101,10 @@
     cursor: pointer;
   }
 
-  // this is required since this _should_ be the default behavior, but if you've
-  // manually set a `display` value on an element, it will override this
-  // behavior.
-  [hidden] {
-    display: none !important;
+  @if not utils.$disable-display-none-class {
+    .rmd-display-none {
+      display: none !important;
+    }
   }
 }
 

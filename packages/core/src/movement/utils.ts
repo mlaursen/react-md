@@ -187,6 +187,7 @@ export function getSearchText(
   const cloned = element.cloneNode(true) as HTMLElement;
   cloned
     .querySelectorAll(
+      // Note: do not include DISPLAY_NONE_CLASS since it is presentational only
       ".rmd-icon--font,[aria-hidden=true],[hidden],[role=presentation]"
     )
     .forEach((element) => {

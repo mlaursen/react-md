@@ -115,7 +115,52 @@ exports[`Chip selectable chips should allow for a custom selectedIcon 6`] = `
 </button>
 `;
 
-exports[`Chip selectable chips should apply the hidden attribute if the disableIconTransition prop is enabled 1`] = `
+exports[`Chip selectable chips should apply the rmd-display-none attribute if the disableIconTransition prop is enabled 1`] = `
+<button
+  class="rmd-chip rmd-chip--solid"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons rmd-display-none"
+  >
+    check
+  </span>
+  <span
+    class="rmd-chip__content"
+  >
+    Chip
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Chip selectable chips should apply the rmd-display-none attribute if the disableIconTransition prop is enabled 2`] = `
+<button
+  aria-pressed="true"
+  class="rmd-chip rmd-chip--selected rmd-chip--solid rmd-chip--left-addon"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    check
+  </span>
+  <span
+    class="rmd-chip__content"
+  >
+    Chip
+  </span>
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Chip selectable chips should apply the rmd-display-none attribute if the disableIconTransition prop is enabled 3`] = `
 <button
   class="rmd-chip rmd-chip--solid"
   type="button"
@@ -126,15 +171,21 @@ exports[`Chip selectable chips should apply the hidden attribute if the disableI
     Chip
   </span>
   <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons rmd-display-none"
+  >
+    check
+  </span>
+  <span
     class="rmd-ripple-container"
   />
 </button>
 `;
 
-exports[`Chip selectable chips should apply the hidden attribute if the disableIconTransition prop is enabled 2`] = `
+exports[`Chip selectable chips should apply the rmd-display-none attribute if the disableIconTransition prop is enabled 4`] = `
 <button
   aria-pressed="true"
-  class="rmd-chip rmd-chip--themed rmd-chip--solid"
+  class="rmd-chip rmd-chip--selected rmd-chip--solid rmd-chip--right-addon"
   type="button"
 >
   <span
@@ -143,37 +194,10 @@ exports[`Chip selectable chips should apply the hidden attribute if the disableI
     Chip
   </span>
   <span
-    class="rmd-ripple-container"
-  />
-</button>
-`;
-
-exports[`Chip selectable chips should apply the hidden attribute if the disableIconTransition prop is enabled 3`] = `
-<button
-  class="rmd-chip rmd-chip--solid"
-  type="button"
->
-  <span
-    class="rmd-chip__content"
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
   >
-    Chip
-  </span>
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
-`;
-
-exports[`Chip selectable chips should apply the hidden attribute if the disableIconTransition prop is enabled 4`] = `
-<button
-  aria-pressed="true"
-  class="rmd-chip rmd-chip--themed rmd-chip--solid"
-  type="button"
->
-  <span
-    class="rmd-chip__content"
-  >
-    Chip
+    check
   </span>
   <span
     class="rmd-ripple-container"

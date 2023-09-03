@@ -4,6 +4,7 @@ import { fireEvent, render } from "../../test-utils/index.js";
 
 import { FontIcon } from "../../icon/FontIcon.js";
 import { ElementInteractionProvider } from "../../interaction/ElementInteractionProvider.js";
+import { DISPLAY_NONE_CLASS } from "../../transition/utils.js";
 import { Chip } from "../Chip.js";
 
 describe("Chip", () => {
@@ -274,11 +275,11 @@ describe("Chip", () => {
       expect(chip).toMatchSnapshot();
     });
 
-    it("should apply the hidden attribute if the disableIconTransition prop is enabled", () => {
+    it(`should apply the ${DISPLAY_NONE_CLASS} attribute if the disableIconTransition prop is enabled`, () => {
       const props = {
         selected: false,
         children: "Chip",
-        selectedThemed: true,
+        selectedThemed: false,
         disableIconTransition: true,
       } as const;
 

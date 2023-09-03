@@ -10,6 +10,7 @@ import { useIcon } from "../icon/IconProvider.js";
 import { RippleContainer } from "../interaction/RippleContainer.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
+import { DISPLAY_NONE_CLASS } from "../transition/utils.js";
 import type { PropsWithRef } from "../types.js";
 import { chip, chipContent, chipIcon } from "./styles.js";
 
@@ -85,7 +86,7 @@ export interface ChipProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
   /**
    * Set this to `true` if the {@link selectedIcon} should not animate and
-   * instead apply `hidden`.
+   * instead apply `display: none`
    *
    * @defaultValue `false`
    */
@@ -261,14 +262,12 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(
       typeof (selectedIconAfter ? propRightAddon : propLeftAddon) ===
         "undefined"
     ) {
-      if (
-        isValidElement<{ className?: string; hidden?: boolean }>(selectedIcon)
-      ) {
+      if (isValidElement<{ className?: string }>(selectedIcon)) {
         const clonedIcon = cloneElement(selectedIcon, {
           className: cnb(
-            !disableIconTransition && chipIcon({ visible: selected })
+            !disableIconTransition && chipIcon({ visible: selected }),
+            disableIconTransition && !selected && DISPLAY_NONE_CLASS
           ),
-          hidden: !selected && disableIconTransition,
         });
 
         if (selectedIconAfter) {

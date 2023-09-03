@@ -1,10 +1,12 @@
 import { describe, expect, it } from "@jest/globals";
 import type { AnchorHTMLAttributes, ReactElement, ReactNode } from "react";
 import { createContext, forwardRef, useContext, useState } from "react";
+
 import { FontIcon } from "../../icon/FontIcon.js";
 import { rmdRender, screen, userEvent } from "../../test-utils/index.js";
 import { Tree } from "../../tree/Tree.js";
 import type { TreeData } from "../../tree/types.js";
+import { isElementVisible } from "../../utils/isElementVisible.js";
 import { useLayoutTree } from "../useLayoutTree.js";
 
 const navItems = {
@@ -128,10 +130,12 @@ describe("useLayoutTree", () => {
     const route1 = screen.getByRole("treeitem", { name: "Route 1" });
     const route2 = screen.getByRole("treeitem", { name: "Route 2" });
     const route3 = screen.getByRole("treeitem", { name: "Route 3" });
+    const subRoute = screen.getByRole("treeitem", { name: "Route 3-1" });
     expect(home).toHaveAttribute("aria-selected", "true");
     expect(route1).toHaveAttribute("aria-selected", "false");
     expect(route2).toHaveAttribute("aria-selected", "false");
     expect(route3).toHaveAttribute("aria-selected", "false");
+    expect(isElementVisible(subRoute)).toBe(false);
 
     await user.click(route2);
     expect(home).toHaveAttribute("aria-selected", "false");
@@ -145,8 +149,7 @@ describe("useLayoutTree", () => {
     expect(route2).toHaveAttribute("aria-selected", "false");
     expect(route3).toHaveAttribute("aria-selected", "true");
 
-    const subRoute = screen.getByRole("treeitem", { name: "Route 3-1" });
-    expect(subRoute).toBeInTheDocument();
+    expect(isElementVisible(subRoute)).toBe(true);
   });
 
   it("should default to expanding all parent items from the starting pathname", () => {
@@ -183,17 +186,15 @@ describe("useLayoutTree", () => {
     rmdRender(<AnotherTest />, { wrapper: Wrapper });
 
     const tree = screen.getByRole("tree", { name: "Navigation" });
-    expect(() =>
-      screen.getByRole("treeitem", { name: route311.children })
-    ).toThrow();
+    const route311Item = screen.getByRole("treeitem", {
+      name: route311.children,
+    });
+    expect(isElementVisible(route311Item)).toBe(false);
     expect(tree).toMatchSnapshot();
 
     await user.click(screen.getByRole("link", { name: "Link" }));
 
-    const route311Item = screen.getByRole("treeitem", {
-      name: route311.children,
-    });
-    expect(route311Item).toBeInTheDocument();
+    expect(isElementVisible(route311Item)).toBe(true);
     expect(tree).toMatchSnapshot();
   });
 });

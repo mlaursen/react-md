@@ -2,8 +2,9 @@ import { describe, expect, it, jest } from "@jest/globals";
 import type { ReactElement } from "react";
 import { fireEvent, render, waitFor, within } from "../../test-utils/index.js";
 
-import { Button } from "../../button/Button.js";
 import { SsrProvider } from "../../SsrProvider.js";
+import { Button } from "../../button/Button.js";
+import { DISPLAY_NONE_CLASS } from "../../transition/utils.js";
 import { useToggle } from "../../useToggle.js";
 import type { OverlayProps } from "../Overlay.js";
 import { Overlay } from "../Overlay.js";
@@ -34,7 +35,7 @@ describe("Overlay", () => {
     expect(container).toMatchSnapshot();
   });
 
-  it("should suport rendering inline if it was visible by default and rendered through ssr", async () => {
+  it("should support rendering inline if it was visible by default and rendered through ssr", async () => {
     const { container, getByRole, getByTestId } = render(
       <Test defaultVisible />,
       {
@@ -83,7 +84,7 @@ describe("Overlay", () => {
     );
 
     const overlay = getByTestId("overlay");
-    expect(overlay).toHaveAttribute("hidden");
+    expect(overlay).toHaveClass(DISPLAY_NONE_CLASS);
     expect(overlay).toMatchSnapshot();
 
     expect(onEnter).not.toHaveBeenCalled();
@@ -102,7 +103,7 @@ describe("Overlay", () => {
       expect(onExiting).not.toHaveBeenCalled();
       expect(onExited).not.toHaveBeenCalled();
     });
-    expect(overlay).not.toHaveAttribute("hidden");
+    expect(overlay).not.toHaveClass(DISPLAY_NONE_CLASS);
     expect(overlay).toMatchSnapshot();
 
     rerender(<Overlay {...props} visible={false} />);
@@ -114,7 +115,7 @@ describe("Overlay", () => {
       expect(onExiting).toHaveBeenCalledTimes(1);
       expect(onExited).toHaveBeenCalledTimes(1);
     });
-    expect(overlay).toHaveAttribute("hidden");
+    expect(overlay).toHaveClass(DISPLAY_NONE_CLASS);
     expect(overlay).toMatchSnapshot();
   });
 

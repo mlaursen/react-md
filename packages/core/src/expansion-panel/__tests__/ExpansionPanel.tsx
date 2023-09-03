@@ -9,6 +9,7 @@ import {
   waitFor,
 } from "../../test-utils/index.js";
 
+import { isElementVisible } from "../../utils/isElementVisible.js";
 import { ExpansionList } from "../ExpansionList.js";
 import type { ExpansionPanelProps } from "../ExpansionPanel.js";
 import { ExpansionPanel } from "../ExpansionPanel.js";
@@ -55,10 +56,8 @@ describe("ExpansionPanel", () => {
     const panel2 = getByRole("button", { name: "Panel 2" });
     const panel3 = getByRole("button", { name: "Panel 3" });
 
-    const [panel1Contents, panel2Contents, panel3Contents] = getAllByRole(
-      "region",
-      { hidden: true }
-    );
+    const [panel1Contents, panel2Contents, panel3Contents] =
+      getAllByRole("region");
 
     expect(panel1).toHaveAttribute("aria-expanded", "false");
     expect(panel2).toHaveAttribute("aria-expanded", "false");
@@ -66,18 +65,18 @@ describe("ExpansionPanel", () => {
     expect(panel1Contents).toBeInTheDocument();
     expect(panel2Contents).toBeInTheDocument();
     expect(panel3Contents).toBeInTheDocument();
-    expect(panel1Contents).toHaveAttribute("hidden");
-    expect(panel2Contents).toHaveAttribute("hidden");
-    expect(panel3Contents).toHaveAttribute("hidden");
+    expect(isElementVisible(panel1Contents)).toBe(false);
+    expect(isElementVisible(panel2Contents)).toBe(false);
+    expect(isElementVisible(panel3Contents)).toBe(false);
     expect(container).toMatchSnapshot();
 
     fireEvent.click(panel1);
     expect(panel1).toHaveAttribute("aria-expanded", "true");
     expect(panel2).toHaveAttribute("aria-expanded", "false");
     expect(panel3).toHaveAttribute("aria-expanded", "false");
-    expect(panel1Contents).not.toHaveAttribute("hidden");
-    expect(panel2Contents).toHaveAttribute("hidden");
-    expect(panel3Contents).toHaveAttribute("hidden");
+    expect(isElementVisible(panel1Contents)).toBe(true);
+    expect(isElementVisible(panel2Contents)).toBe(false);
+    expect(isElementVisible(panel3Contents)).toBe(false);
 
     fireEvent.click(panel1);
     // have to wait because of the collapse transition
@@ -85,9 +84,9 @@ describe("ExpansionPanel", () => {
       expect(panel1).toHaveAttribute("aria-expanded", "false");
       expect(panel2).toHaveAttribute("aria-expanded", "false");
       expect(panel3).toHaveAttribute("aria-expanded", "false");
-      expect(panel1Contents).toHaveAttribute("hidden");
-      expect(panel2Contents).toHaveAttribute("hidden");
-      expect(panel3Contents).toHaveAttribute("hidden");
+      expect(isElementVisible(panel1Contents)).toBe(false);
+      expect(isElementVisible(panel2Contents)).toBe(false);
+      expect(isElementVisible(panel3Contents)).toBe(false);
     });
 
     fireEvent.click(panel2);
@@ -95,9 +94,9 @@ describe("ExpansionPanel", () => {
       expect(panel1).toHaveAttribute("aria-expanded", "false");
       expect(panel2).toHaveAttribute("aria-expanded", "true");
       expect(panel3).toHaveAttribute("aria-expanded", "false");
-      expect(panel1Contents).toHaveAttribute("hidden");
-      expect(panel2Contents).not.toHaveAttribute("hidden");
-      expect(panel3Contents).toHaveAttribute("hidden");
+      expect(isElementVisible(panel1Contents)).toBe(false);
+      expect(isElementVisible(panel2Contents)).toBe(true);
+      expect(isElementVisible(panel3Contents)).toBe(false);
     });
 
     fireEvent.click(panel3);
@@ -105,9 +104,9 @@ describe("ExpansionPanel", () => {
       expect(panel1).toHaveAttribute("aria-expanded", "false");
       expect(panel2).toHaveAttribute("aria-expanded", "false");
       expect(panel3).toHaveAttribute("aria-expanded", "true");
-      expect(panel1Contents).toHaveAttribute("hidden");
-      expect(panel2Contents).toHaveAttribute("hidden");
-      expect(panel3Contents).not.toHaveAttribute("hidden");
+      expect(isElementVisible(panel1Contents)).toBe(false);
+      expect(isElementVisible(panel2Contents)).toBe(false);
+      expect(isElementVisible(panel3Contents)).toBe(true);
     });
   });
 
@@ -219,7 +218,7 @@ describe("ExpansionPanel", () => {
     };
     const { getByRole, rerender } = render(<ExpansionPanel {...props} />);
 
-    const contentEl = getByRole("region", { hidden: true });
+    const contentEl = getByRole("region");
     expect(ref.current).toBeInstanceOf(HTMLDivElement);
     expect(ref.current).toBe(contentEl);
     expect(contentEl).toMatchSnapshot();
@@ -273,13 +272,13 @@ describe("ExpansionPanel", () => {
 
     const content1 = screen.getByRole("region", { name: "Panel 1" });
     await user.click(panel1);
-    expect(content1).toHaveAttribute("hidden");
+    expect(isElementVisible(content1)).toBe(false);
     expect(content1).not.toHaveClass("rmd-collapse--enter");
     expect(content1).not.toHaveClass("rmd-collapse--leave");
 
     rerender(<Test defaultExpandedIndex={0} />);
     await user.click(panel1);
-    expect(content1).not.toHaveAttribute("hidden");
+    expect(isElementVisible(content1)).toBe(true);
     expect(content1).toHaveClass("rmd-collapse--enter");
     expect(content1).not.toHaveClass("rmd-collapse--leave");
   });

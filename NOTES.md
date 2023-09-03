@@ -105,7 +105,7 @@ The main reason is that I don't think a user would actually install only one of 
 - add `useResizeObserver` hook
 - update `TableHeader` and `TableFooter` sticky behavior to include an "active" state.
 - add `useSlideTransition`, `SlideContainer`, and `Slide` as a public API. This used to be the `TabPanels` + `TabPanel` components.
-- `useCSSTransition` supports applying `hidden` when `temporary` is set to `false` by setting `exitedHidden: true`
+- `useCSSTransition` supports applying `display: none` when `temporary` is set to `false` by setting `exitedHidden: true`
 
 ## Bug Fixes
 

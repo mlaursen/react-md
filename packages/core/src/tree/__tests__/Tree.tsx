@@ -12,6 +12,7 @@ import {
 import { Divider } from "../../divider/Divider.js";
 import { FontIcon } from "../../icon/FontIcon.js";
 import { alphaNumericSort } from "../../utils/alphaNumericSort.js";
+import { isElementVisible } from "../../utils/isElementVisible.js";
 import type { TreeItemRendererProps } from "../DefaultTreeItemRenderer.js";
 import { DefaultTreeItemRenderer } from "../DefaultTreeItemRenderer.js";
 import type { TreeProps } from "../Tree.js";
@@ -174,7 +175,13 @@ describe("Tree", () => {
     const folder2 = screen.getByRole("treeitem", { name: "Folder 2" });
     expect(folder1).toHaveAttribute("aria-selected", "false");
     expect(folder2).toHaveAttribute("aria-selected", "false");
+    const groups = screen.getAllByRole("group");
+    expect(groups).toHaveLength(3);
+    const [subtree] = groups;
+    expect(isElementVisible(subtree)).toBe(false);
     expect(tree).toMatchSnapshot();
+
+    expect(isElementVisible(subtree)).toBe(false);
 
     await user.click(folder1);
     expect(folder1).toHaveAttribute("aria-selected", "true");
@@ -186,22 +193,21 @@ describe("Tree", () => {
     expect(tree).toMatchSnapshot();
 
     await waitFor(() => {
-      screen.getByRole("group");
+      expect(isElementVisible(subtree)).toBe(true);
     });
-    const subtree = screen.getByRole("group");
     expect(tree).toMatchSnapshot();
 
     await user.click(folder1);
     expect(folder1).toHaveAttribute("aria-selected", "true");
     expect(folder2).toHaveAttribute("aria-selected", "false");
-    expect(subtree).not.toHaveAttribute("hidden");
+    expect(isElementVisible(subtree)).toBe(true);
     expect(tree).toMatchSnapshot();
 
     await user.click(folder2);
     expect(folder1).toHaveAttribute("aria-selected", "false");
     expect(folder2).toHaveAttribute("aria-selected", "true");
     await waitFor(() => {
-      expect(subtree).toHaveAttribute("hidden");
+      expect(isElementVisible(subtree)).toBe(false);
     });
     expect(tree).toMatchSnapshot();
 
@@ -220,6 +226,10 @@ describe("Tree", () => {
     const folder2 = screen.getByRole("treeitem", { name: "Folder 2" });
     expect(folder1).toHaveAttribute("aria-selected", "false");
     expect(folder2).toHaveAttribute("aria-selected", "false");
+    const groups = screen.getAllByRole("group");
+    expect(groups).toHaveLength(3);
+    const [subtree] = groups;
+    expect(isElementVisible(subtree)).toBe(false);
     expect(tree).toMatchSnapshot();
 
     await user.click(folder1);
@@ -232,22 +242,21 @@ describe("Tree", () => {
     expect(tree).toMatchSnapshot();
 
     await waitFor(() => {
-      screen.getByRole("group");
+      expect(isElementVisible(subtree)).toBe(true);
     });
-    const subtree = screen.getByRole("group");
     expect(tree).toMatchSnapshot();
 
     await user.click(folder1);
     expect(folder1).toHaveAttribute("aria-selected", "false");
     expect(folder2).toHaveAttribute("aria-selected", "true");
-    expect(subtree).not.toHaveAttribute("hidden");
+    expect(isElementVisible(subtree)).toBe(true);
     expect(tree).toMatchSnapshot();
 
     await user.click(folder2);
     expect(folder1).toHaveAttribute("aria-selected", "false");
     expect(folder2).toHaveAttribute("aria-selected", "false");
     await waitFor(() => {
-      expect(subtree).toHaveAttribute("hidden");
+      expect(isElementVisible(subtree)).toBe(false);
     });
     expect(tree).toMatchSnapshot();
   });
@@ -373,12 +382,10 @@ describe("Tree", () => {
     expect(tree).toHaveAttribute("aria-activedescendant", apples.id);
 
     // make sure you can't move into closing tree items
-    expect(() =>
-      screen.getByRole("treeitem", { name: "Apple 1" })
-    ).not.toThrow();
+    expect(isElementVisible(apple1)).toBe(true);
     await user.keyboard("[ArrowDown]");
     await waitFor(() => {
-      expect(() => screen.getByRole("treeitem", { name: "Apple 1" })).toThrow();
+      expect(isElementVisible(apple1)).toBe(false);
     });
     expect(tree).toHaveAttribute("aria-activedescendant", grapes.id);
   });
@@ -519,7 +526,9 @@ describe("Tree", () => {
     const apples = screen.getByRole("treeitem", { name: "Apples" });
     const grapes = screen.getByRole("treeitem", { name: "Grapes" });
     const apricots = screen.getByRole("treeitem", { name: "Apricots" });
-    const items = screen.getAllByRole("treeitem");
+    const items = screen
+      .getAllByRole("treeitem")
+      .filter((item) => isElementVisible(item));
     expect(items).toEqual([apples, apricots, grapes, oranges]);
   });
 

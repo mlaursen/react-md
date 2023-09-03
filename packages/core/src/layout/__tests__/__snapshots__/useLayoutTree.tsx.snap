@@ -124,8 +124,7 @@ exports[`useLayoutTree should automatically expand parent items if the pathname 
       </span>
     </a>
     <ul
-      class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-      hidden=""
+      class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
       id="tree-item-:rk:-group"
       role="group"
       style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: -1;"
@@ -158,8 +157,7 @@ exports[`useLayoutTree should automatically expand parent items if the pathname 
           </span>
         </a>
         <ul
-          class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-          hidden=""
+          class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
           id="tree-item-:rl:-group"
           role="group"
           style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 0;"
@@ -192,8 +190,7 @@ exports[`useLayoutTree should automatically expand parent items if the pathname 
               </span>
             </a>
             <ul
-              class="rmd-list rmd-collapse rmd-collapse--no-overflow rmd-tree-group"
-              hidden=""
+              class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
               id="tree-item-:rm:-group"
               role="group"
               style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
@@ -352,7 +349,7 @@ exports[`useLayoutTree should automatically expand parent items if the pathname 
       </span>
     </a>
     <ul
-      class="rmd-list rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow rmd-tree-group"
+      class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
       id="tree-item-:rk:-group"
       role="group"
       style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: -1; transition-duration: 250ms;"
@@ -385,7 +382,7 @@ exports[`useLayoutTree should automatically expand parent items if the pathname 
           </span>
         </a>
         <ul
-          class="rmd-list rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow rmd-tree-group"
+          class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
           id="tree-item-:rl:-group"
           role="group"
           style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 0; transition-duration: 250ms;"
@@ -418,7 +415,7 @@ exports[`useLayoutTree should automatically expand parent items if the pathname 
               </span>
             </a>
             <ul
-              class="rmd-list rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow rmd-tree-group"
+              class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
               id="tree-item-:rm:-group"
               role="group"
               style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1; transition-duration: 250ms;"
@@ -577,7 +574,7 @@ exports[`useLayoutTree should default to expanding all parent items from the sta
       </span>
     </a>
     <ul
-      class="rmd-list rmd-collapse rmd-tree-group"
+      class="rmd-list rmd-tree-group rmd-collapse"
       id="tree-item-:rc:-group"
       role="group"
       style="--rmd-tree-depth: -1;"
@@ -610,7 +607,7 @@ exports[`useLayoutTree should default to expanding all parent items from the sta
           </span>
         </a>
         <ul
-          class="rmd-list rmd-collapse rmd-tree-group"
+          class="rmd-list rmd-tree-group rmd-collapse"
           id="tree-item-:rd:-group"
           role="group"
           style="--rmd-tree-depth: 0;"
@@ -643,7 +640,7 @@ exports[`useLayoutTree should default to expanding all parent items from the sta
               </span>
             </a>
             <ul
-              class="rmd-list rmd-collapse rmd-tree-group"
+              class="rmd-list rmd-tree-group rmd-collapse"
               id="tree-item-:re:-group"
               role="group"
               style="--rmd-tree-depth: 1;"

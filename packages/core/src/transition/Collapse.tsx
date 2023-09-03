@@ -19,10 +19,10 @@ import { useCollapseTransition } from "./useCollapseTransition.js";
 export interface CollapseProps<E extends HTMLElement>
   extends Omit<CollapseTransitionHookOptions<E>, "transitionIn"> {
   /**
-   * The child element that should have a `ref` and the `style`, `className` and
-   * `hidden` props cloned into using the `cloneElement` API. If the child is a
-   * custom component, you **must** use `React.forwardRef` and pass the `ref`
-   * and the other props for the transition to work correctly.
+   * The child element that should have a `ref` and the `style`/`className`
+   * props cloned into using the `cloneElement` API. If the child is a custom
+   * component, you **must** use `React.forwardRef` and pass the `ref` and the
+   * other props for the transition to work correctly.
    */
   children: ReactElement<CollapseElementProps<E>>;
 

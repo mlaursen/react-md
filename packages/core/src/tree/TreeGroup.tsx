@@ -41,7 +41,6 @@ export const TreeGroup = forwardRef<HTMLUListElement, TreeGroupProps>(
       className,
       collapsed,
       depth,
-      hidden,
       onClick,
       onMouseDown,
       children,
@@ -61,7 +60,6 @@ export const TreeGroup = forwardRef<HTMLUListElement, TreeGroupProps>(
     const { elementProps, rendered } = useCollapseTransition({
       style,
       nodeRef: ref,
-      hidden,
       enter: !disableTransition,
       exit: !disableTransition,
       transitionIn: !collapsed,

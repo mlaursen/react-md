@@ -108,8 +108,8 @@ export interface TreeProps<T extends TreeItemNode>
 
   /**
    * Set this to `true` if the collapsed tree items should be removed from the
-   * DOM instead of hidden using `hidden`. This _might_ improve performance for
-   * large trees.
+   * DOM instead of hidden using `display: none`. This _might_ improve
+   * performance for large trees.
    *
    * @defaultValue `false`
    */

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`useCollapseTransition should apply the hidden attribute if the temporary behavior is disabled 1`] = `
+exports[`useCollapseTransition should apply the rmd-display-none if the temporary behavior is disabled 1`] = `
 <div>
   <button
     type="button"
@@ -8,9 +8,8 @@ exports[`useCollapseTransition should apply the hidden attribute if the temporar
     Toggle
   </button>
   <div
-    class="rmd-collapse rmd-collapse--no-overflow"
+    class="rmd-collapse rmd-collapse--no-overflow rmd-display-none"
     data-testid="element"
-    hidden=""
     style="max-height: 0; padding-top: 0px; padding-bottom: 0px;"
   >
     This is some content.
@@ -18,7 +17,7 @@ exports[`useCollapseTransition should apply the hidden attribute if the temporar
 </div>
 `;
 
-exports[`useCollapseTransition should apply the hidden attribute if the temporary behavior is disabled 2`] = `
+exports[`useCollapseTransition should apply the rmd-display-none if the temporary behavior is disabled 2`] = `
 <div>
   <button
     type="button"
@@ -35,7 +34,7 @@ exports[`useCollapseTransition should apply the hidden attribute if the temporar
 </div>
 `;
 
-exports[`useCollapseTransition should apply the hidden attribute if the temporary behavior is disabled 3`] = `
+exports[`useCollapseTransition should apply the rmd-display-none if the temporary behavior is disabled 3`] = `
 <div>
   <button
     type="button"
@@ -52,7 +51,7 @@ exports[`useCollapseTransition should apply the hidden attribute if the temporar
 </div>
 `;
 
-exports[`useCollapseTransition should apply the hidden attribute if the temporary behavior is disabled 4`] = `
+exports[`useCollapseTransition should apply the rmd-display-none if the temporary behavior is disabled 4`] = `
 <div>
   <button
     type="button"
@@ -69,7 +68,7 @@ exports[`useCollapseTransition should apply the hidden attribute if the temporar
 </div>
 `;
 
-exports[`useCollapseTransition should apply the hidden attribute if the temporary behavior is disabled 5`] = `
+exports[`useCollapseTransition should apply the rmd-display-none if the temporary behavior is disabled 5`] = `
 <div>
   <button
     type="button"
@@ -77,9 +76,8 @@ exports[`useCollapseTransition should apply the hidden attribute if the temporar
     Toggle
   </button>
   <div
-    class="rmd-collapse rmd-collapse--no-overflow"
+    class="rmd-collapse rmd-collapse--no-overflow rmd-display-none"
     data-testid="element"
-    hidden=""
     style="padding-top: 0px; padding-bottom: 0px; max-height: 0;"
   >
     This is some content.

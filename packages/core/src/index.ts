@@ -281,6 +281,7 @@ export * from "./utils/getPercentage.js";
 export * from "./utils/getRangeDefaultValue.js";
 export * from "./utils/getRangeSteps.js";
 export * from "./utils/identity.js";
+export * from "./utils/isElementVisible.js";
 export * from "./utils/loop.js";
 export * from "./utils/nearest.js";
 export * from "./utils/parseCssLengthUnit.js";

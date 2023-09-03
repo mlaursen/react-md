@@ -8,7 +8,7 @@ import type {
   TransitionHookOptions,
 } from "./types.js";
 import { useTransition } from "./useTransition.js";
-import { getTransitionClassNames } from "./utils.js";
+import { DISPLAY_NONE_CLASS, getTransitionClassNames } from "./utils.js";
 
 /**
  * This hook is used to create CSS transitions for different components whenever
@@ -166,7 +166,6 @@ export function useCSSTransition<E extends HTMLElement>(
     exit = true,
     timeout,
     temporary = false,
-    hidden,
     exitedHidden = false,
     ...transitionOptions
   } = options;
@@ -197,12 +196,12 @@ export function useCSSTransition<E extends HTMLElement>(
 
   const elementProps: CSSTransitionElementProps<E> = {
     ref,
-    hidden: (!temporary && exitedHidden && stage === "exited") || hidden,
     className:
       cnb(
         // always apply the provided className first since it makes snapshot
         // tests easier to parse if dynamic classes come afterwards
         className,
+        !temporary && exitedHidden && stage === "exited" && DISPLAY_NONE_CLASS,
         appearing && isEnter && transitionClassNames.appear,
         appearing && isEntering && transitionClassNames.appearActive,
         appearing && isEntered && transitionClassNames.appearDone,

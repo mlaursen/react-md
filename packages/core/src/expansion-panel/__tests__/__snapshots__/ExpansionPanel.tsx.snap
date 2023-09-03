@@ -3,8 +3,7 @@
 exports[`ExpansionPanel should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <div
   aria-labelledby="expansion-panel-:rk:"
-  class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow"
-  hidden=""
+  class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow rmd-display-none"
   id="expansion-panel-:rk:-content"
   role="region"
   style="max-height: 0; padding-top: 0px; padding-bottom: 0px;"
@@ -16,8 +15,7 @@ exports[`ExpansionPanel should apply the correct styling, HTML attributes, and a
 exports[`ExpansionPanel should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <div
   aria-labelledby="expansion-panel-:rk:"
-  class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow"
-  hidden=""
+  class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow rmd-display-none"
   id="expansion-panel-:rk:-content"
   role="region"
   style="max-height: 0; padding-top: 0px; padding-bottom: 0px;"
@@ -50,8 +48,7 @@ exports[`ExpansionPanel should apply the correct styling, HTML attributes, and a
   </h6>
   <div
     aria-labelledby="expansion-panel-:rl:"
-    class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow"
-    hidden=""
+    class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow rmd-display-none"
     id="expansion-panel-:rl:-content"
     role="region"
     style="max-height: 0; padding-top: 0px; padding-bottom: 0px;"
@@ -86,8 +83,7 @@ exports[`ExpansionPanel should apply the correct styling, HTML attributes, and a
   </h6>
   <div
     aria-labelledby="expansion-panel-:rl:"
-    class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow"
-    hidden=""
+    class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow rmd-display-none"
     id="expansion-panel-:rl:-content"
     role="region"
     style="max-height: 0; padding-top: 0px; padding-bottom: 0px;"
@@ -124,8 +120,7 @@ exports[`ExpansionPanel should default to single expansion, allowing all panels 
       </h6>
       <div
         aria-labelledby="expansion-panel-:r0:-1"
-        class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow"
-        hidden=""
+        class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow rmd-display-none"
         id="expansion-panel-:r0:-1-content"
         role="region"
         style="max-height: 0; padding-top: 0px; padding-bottom: 0px;"
@@ -157,8 +152,7 @@ exports[`ExpansionPanel should default to single expansion, allowing all panels 
       </h6>
       <div
         aria-labelledby="expansion-panel-:r0:-2"
-        class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow"
-        hidden=""
+        class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow rmd-display-none"
         id="expansion-panel-:r0:-2-content"
         role="region"
         style="max-height: 0; padding-top: 0px; padding-bottom: 0px;"
@@ -190,8 +184,7 @@ exports[`ExpansionPanel should default to single expansion, allowing all panels 
       </h6>
       <div
         aria-labelledby="expansion-panel-:r0:-3"
-        class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow"
-        hidden=""
+        class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow rmd-display-none"
         id="expansion-panel-:r0:-3-content"
         role="region"
         style="max-height: 0; padding-top: 0px; padding-bottom: 0px;"

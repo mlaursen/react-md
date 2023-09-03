@@ -18,6 +18,7 @@ import {
   waitFor,
   within,
 } from "../../test-utils/index.js";
+import { isElementVisible } from "../../utils/isElementVisible.js";
 import { LayoutNav } from "../LayoutNav.js";
 import { Main } from "../Main.js";
 import type { ExpandableLayoutOptions } from "../useExpandableLayout.js";
@@ -99,16 +100,17 @@ describe("useExpandableLayout", () => {
     const appBar = screen.getByRole("banner");
     const main = screen.getByRole("main");
     const navToggle = screen.getByRole("button", { name: "Navigation" });
-    const nav = screen.getByRole("navigation", { hidden: true });
+    const nav = screen.getByRole("navigation", { name: "Navigation" });
 
     expect(layout).toHaveTextContent("desktop");
+    expect(isElementVisible(nav)).toBe(false);
     expect(nav).toHaveClass(OFFSCREEN_CLASS);
     expect(appBar).toMatchSnapshot();
     expect(main).toMatchSnapshot();
     expect(() => screen.getByRole("dialog")).toThrow();
 
     await user.click(navToggle);
-    expect(nav).not.toHaveAttribute("hidden");
+    expect(isElementVisible(nav)).toBe(true);
     expect(main).toHaveClass(ENTER_H_CLASS);
     await waitFor(() => {
       expect(nav).not.toHaveClass(OFFSCREEN_CLASS);
@@ -130,12 +132,15 @@ describe("useExpandableLayout", () => {
 
     const layout = screen.getByTestId("layout");
     const navToggle = screen.getByRole("button", { name: "Navigation" });
-    const expandableNav = screen.getByRole("navigation", { hidden: true });
+    const expandableNav = screen.getByRole("navigation", {
+      name: "Navigation",
+    });
 
     expect(layout).toHaveTextContent("desktop");
+    expect(isElementVisible(expandableNav)).toBe(false);
     await user.click(navToggle);
     await waitFor(() => {
-      expect(expandableNav).not.toHaveAttribute("hidden");
+      expect(isElementVisible(expandableNav)).toBe(true);
       expect(expandableNav).not.toHaveClass(OFFSCREEN_CLASS);
     });
 
@@ -180,7 +185,7 @@ describe("useExpandableLayout", () => {
     expect(temporaryNav).not.toBeInTheDocument();
 
     await user.click(screen.getByRole("radio", { name: "Home" }));
-    expect(expandableNav).not.toHaveAttribute("hidden");
+    expect(isElementVisible(expandableNav)).toBe(true);
 
     matchMediaSpy.changeViewport(matchPhone);
     expect(() => screen.getByRole("dialog")).toThrow();

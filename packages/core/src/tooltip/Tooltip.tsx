@@ -1,5 +1,4 @@
 "use client";
-import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
 import { Portal } from "../portal/Portal.js";
@@ -10,40 +9,12 @@ import type {
 } from "../transition/types.js";
 import { useCSSTransition } from "../transition/useCSSTransition.js";
 import { useEnsuredId } from "../useEnsuredId.js";
-import { bem } from "../utils/bem.js";
 import {
   DEFAULT_TOOLTIP_CLASSNAMES,
   DEFAULT_TOOLTIP_POSITION,
   DEFAULT_TOOLTIP_TIMEOUT,
 } from "./constants.js";
-
-const styles = bem("rmd-tooltip");
-
-/**
- * @remarks \@since 6.0.0
- */
-export interface TooltipClassNameOptions {
-  className?: string;
-  dense?: boolean;
-  position: SimplePosition;
-  disableLineWrap?: boolean;
-}
-
-/**
- * @remarks \@since 6.0.0
- */
-export function tooltip(options: TooltipClassNameOptions): string {
-  const { dense, position, className, disableLineWrap } = options;
-
-  return cnb(
-    styles({
-      dense,
-      [position]: true,
-      nowrap: disableLineWrap,
-    }),
-    className
-  );
-}
+import { tooltip } from "./tooltipStyles.js";
 
 /**
  * The base props for the `Tooltip` component. This can be extended when

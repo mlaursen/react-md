@@ -8,6 +8,7 @@ import { Form } from "../../form/Form.js";
 import { Radio } from "../../form/Radio.js";
 import { useRadioGroup } from "../../form/useRadioGroup.js";
 import { Sheet } from "../../sheet/Sheet.js";
+import { drag } from "../../test-utils/drag.js";
 import {
   rmdRender,
   screen,
@@ -15,13 +16,13 @@ import {
   waitFor,
 } from "../../test-utils/index.js";
 import { removeItemFromStorage } from "../../useLocalStorage.js";
+import { isElementVisible } from "../../utils/isElementVisible.js";
 import { LayoutNav } from "../LayoutNav.js";
 import { LayoutWindowSplitter } from "../LayoutWindowSplitter.js";
 import { Main } from "../Main.js";
 import { DEFAULT_HORIZONTAL_LAYOUT_TRANSITION_CLASSNAMES } from "../useHorizontalLayoutTransition.js";
 import type { ResizableLayoutOptions } from "../useResizableLayout.js";
 import { useResizableLayout } from "../useResizableLayout.js";
-import { drag } from "../../test-utils/drag.js";
 
 const OFFSCREEN_CLASS = "rmd-sheet--offscreen";
 const { enter: ENTER_H_CLASS, enterDone: ENTER_H_DONE_CLASS } =
@@ -105,26 +106,30 @@ describe("useResizableLayout", () => {
     const appBar = screen.getByRole("banner");
     const main = screen.getByRole("main");
     const navToggle = screen.getByRole("button", { name: "Navigation" });
-    const nav = screen.getByRole("navigation", { hidden: true });
-    const windowSplitter = screen.getByRole("separator", { hidden: true });
+    const nav = screen.getByRole("navigation", { name: "Navigation" });
+    const windowSplitter = screen.getByRole("separator", {
+      name: "Resize Navigation",
+    });
 
     expect(layout).toHaveTextContent("desktop");
+    expect(isElementVisible(nav)).toBe(false);
     expect(nav).toHaveClass(OFFSCREEN_CLASS);
     expect(appBar).toMatchSnapshot();
     expect(main).toMatchSnapshot();
+    expect(isElementVisible(windowSplitter)).toBe(false);
     expect(windowSplitter).toMatchSnapshot();
     expect(getSizeVar()).toBe("256px");
     expect(() => screen.getByRole("dialog")).toThrow();
 
     await user.click(navToggle);
-    expect(nav).not.toHaveAttribute("hidden");
+    expect(isElementVisible(nav)).toBe(true);
     expect(main).toHaveClass(ENTER_H_CLASS);
     await waitFor(() => {
       expect(nav).not.toHaveClass(OFFSCREEN_CLASS);
     });
     expect(main).toHaveClass(ENTER_H_DONE_CLASS);
 
-    expect(windowSplitter).not.toHaveAttribute("hidden");
+    expect(isElementVisible(windowSplitter)).toBe(true);
     expect(windowSplitter).toMatchSnapshot();
 
     jest.spyOn(windowSplitter, "getBoundingClientRect").mockReturnValue({
