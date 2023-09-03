@@ -19,6 +19,7 @@ const ensureParentDirectories = async (filePath) => {
 
 const cp = async (path, dest = replaceDist(path)) => {
   const isColors = path.endsWith("_colors.scss");
+  await ensureParentDirectories(dest);
   await copyFile(path, dest);
   if (isColors) {
     await copyFile(path, "dist/_colors.scss");
