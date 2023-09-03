@@ -10,7 +10,7 @@ const noop = (): void => {
   // do nothing
 };
 
-const getMainElement = (mainId: string | undefined): HTMLElement | null =>
+const getMainElement = (mainId: string): HTMLElement | null =>
   mainId
     ? document.getElementById(mainId)
     : document.querySelector<HTMLElement>('main,[role="main"]');
@@ -56,7 +56,7 @@ export const SkipToMainContent = forwardRef<
     id = "skip-to-main",
     className,
     children = "Skip to main content",
-    mainId,
+    mainId = "",
     onClick = noop,
     unstyled = false,
     ...remaining
