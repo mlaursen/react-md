@@ -14,3 +14,7 @@
     everything.theme-get-var(surface-color)
   );
 }
+
+.navigation {
+  @include everything.list-set-var(item-height, auto);
+}

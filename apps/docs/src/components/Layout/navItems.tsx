@@ -1,11 +1,11 @@
 import type {
-  LayoutNavigationItem,
-  LayoutNavigationTree,
+  DefaultTreeItemNode,
+  TreeData,
+  TreeItemNode,
 } from "@react-md/core";
-import HomeIcon from "@react-md/material-icons/HomeIcon";
 import FontDownloadIcon from "@react-md/material-icons/FontDownloadIcon";
+import HomeIcon from "@react-md/material-icons/HomeIcon";
 import type { ReactNode } from "react";
-
 import MaterialDesignIcon from "../MaterialDesignIcon";
 import ReactIcon from "../ReactIcon";
 
@@ -18,6 +18,25 @@ interface RouteOptions {
 
   routes?: RouteOptions[];
 }
+
+export interface LayoutNavigationItem extends DefaultTreeItemNode {
+  /**
+   * Boolean if the item is just a placeholder `Divider` element. None of the
+   * other props will be used.
+   */
+  divider?: boolean;
+
+  /**
+   * Boolean if the item is just a placeholder `ListSubheader` element. None of
+   * the other props will be used other than `children` with the default item
+   * renderer.
+   */
+  subheader?: boolean;
+}
+
+export type LayoutNavigationTree<
+  T extends TreeItemNode = LayoutNavigationItem,
+> = TreeData<T>;
 
 function createRoute(
   options: Omit<RouteOptions, "routes">

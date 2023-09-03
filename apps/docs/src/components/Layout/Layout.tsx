@@ -1,28 +1,26 @@
-import type { ListElement } from "@react-md/core";
 import {
-  Layout as RMDLayout,
+  AppBarTitle,
+  Button,
+  LayoutAppBar,
+  LayoutNav,
+  LayoutWindowSplitter,
+  Main,
   NoSsr,
   Sheet,
   Snackbar,
-  useLayoutNavigation,
+  useAppSize,
+  useResizableLayout,
   useTheme,
   useToggle,
 } from "@react-md/core";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import type { ReactElement, ReactNode } from "react";
-import { useCallback, useRef } from "react";
-import { UnstyledLink } from "src/components/UnstyledLink";
 import { AppToastRenderer } from "./AppToastRenderer";
 import styles from "./Layout.module.scss";
 import { MainActions } from "./MainActions";
-import { navItems } from "./navItems";
-import { NavWindowSplitter } from "./NavWindowSplitter";
+import { Navigation } from "./Navigation";
 import { WebsiteConfiguration } from "./WebsiteConfiguration";
-import {
-  useWebsiteConfigurationProvider,
-  WebsiteConfigurationProvider,
-} from "./WebsiteConfigurationProvider";
 
 export interface LayoutProps {
   title: string;
@@ -37,71 +35,43 @@ export default function Layout(props: LayoutProps): ReactElement {
     disable: hideConfiguration,
     toggled: configurationVisible,
   } = useToggle();
-  const treeRef = useRef<ListElement>(null);
-  const focus = useCallback(() => {
-    const instance = treeRef.current;
-    if (!instance) {
-      return;
-    }
-
-    instance.focus();
-    const activeItem = instance.querySelector<HTMLLIElement>(
-      '[aria-selected="true"]'
-    );
-
-    if (!activeItem) {
-      return;
-    }
-
-    activeItem.scrollIntoView({
-      block: "center",
-    });
-  }, []);
-  const context = useWebsiteConfigurationProvider();
-  const {
-    phoneLayout,
-    tabletLayout,
-    desktopLayout,
-    largeDesktopLayout,
-    landscapeTabletLayout,
-  } = context;
   const { primaryColor } = useTheme();
+  const {
+    appBarProps,
+    mainProps,
+    expandableNavProps,
+    navToggleProps,
+    temporaryNavProps,
+    windowSplitterProps,
+  } = useResizableLayout({
+    pathname,
+    defaultExpanded: true,
+    fullHeightNav: true,
+  });
+  const { isPhone } = useAppSize();
 
   return (
-    <WebsiteConfigurationProvider value={context}>
+    <>
       <Head>
         <meta name="theme-color" content={primaryColor} />
       </Head>
-      <RMDLayout
-        appBarProps={{
-          children: <MainActions showConfiguration={showConfiguration} />,
-        }}
-        title={title}
-        treeProps={{
-          ...useLayoutNavigation({
-            navItems,
-            pathname,
-            linkComponent: UnstyledLink,
-            defaultExpandedIds: ["/form", "/transition"],
-          }),
-          treeRef,
-        }}
-        navProps={{
-          onEnter: focus,
-          className: styles.nav,
-        }}
-        phoneLayout={phoneLayout}
-        tabletLayout={tabletLayout}
-        desktopLayout={desktopLayout}
-        largeDesktopLayout={largeDesktopLayout}
-        landscapeTabletLayout={landscapeTabletLayout}
-        defaultToggleableVisible
-      >
-        <NoSsr>
-          <NavWindowSplitter />
-        </NoSsr>
-        {children}
-      </RMDLayout>
+      <LayoutAppBar {...appBarProps}>
+        <Button {...navToggleProps} />
+        <AppBarTitle>{title}</AppBarTitle>
+        <MainActions showConfiguration={showConfiguration} />
+      </LayoutAppBar>
+      <LayoutNav {...expandableNavProps} className={styles.navigation}>
+        <Navigation pathname={pathname} />
+      </LayoutNav>
+      {isPhone && (
+        <Sheet {...temporaryNavProps}>
+          <Navigation pathname={pathname} />
+        </Sheet>
+      )}
+      <NoSsr>
+        <LayoutWindowSplitter {...windowSplitterProps} />
+      </NoSsr>
+      <Main {...mainProps}>{children}</Main>
       <Sheet
         aria-label="Configuration"
         visible={configurationVisible}
@@ -112,6 +82,6 @@ export default function Layout(props: LayoutProps): ReactElement {
         <WebsiteConfiguration />
       </Sheet>
       <Snackbar renderToast={AppToastRenderer} />
-    </WebsiteConfigurationProvider>
+    </>
   );
 }
