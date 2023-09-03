@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/swcrc.json",
-  "exclude": ["__tests__"],
+  "exclude": ["__tests__", "src/test-utils/drag.ts"],
   "jsc": {
     "parser": {
       "syntax": "typescript",
@@ -12,5 +12,6 @@
       }
     },
     "target": "es2021"
-  }
+  },
+  "sourceMaps": true
 }

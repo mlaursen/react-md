@@ -18,7 +18,7 @@ const config: Config = {
               runtime: "automatic",
             },
           },
-          target: "es2021",
+          target: "esnext",
         },
       } satisfies SwcOptions,
     ],
