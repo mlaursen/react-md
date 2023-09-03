@@ -35,3 +35,29 @@ $large-desktop-min-width: 80em !default;
     @content;
   }
 }
+
+@mixin media($type) {
+  @if $type == phone {
+    @include phone-media {
+      @content;
+    }
+  } @else if $type == tablet {
+    @include tablet-media {
+      @content;
+    }
+  } @else if $type == tablet-only {
+    @include tablet-only-media {
+      @content;
+    }
+  } @else if $type == desktop {
+    @include desktop-media {
+      @content;
+    }
+  } @else if $type == large-desktop {
+    @include large-desktop-media {
+      @content;
+    }
+  } @else {
+    @error "invalid media type: #{$type}";
+  }
+}
