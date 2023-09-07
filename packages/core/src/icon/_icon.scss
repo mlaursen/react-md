@@ -27,11 +27,7 @@ $disable-text-disabled-color: false !default;
 $light-theme-color: color.adjust(#000, $lightness: 46%) !default;
 $dark-theme-color: color.adjust(#fff, $lightness: -30%) !default;
 
-$color: if(
-  theme.$color-scheme == dark,
-  $dark-theme-color,
-  $light-theme-color
-) !default;
+$color: theme.get-default-color($light-theme-color, $dark-theme-color) !default;
 
 $size: 1.5rem !default;
 $dense-size: 1.25rem !default;

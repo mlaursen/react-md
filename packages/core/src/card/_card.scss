@@ -24,10 +24,9 @@ $dark-theme-background-color: if(
   map.get(theme.$dark-elevation-colors, $elevation)
 ) !default;
 
-$background-color: if(
-  theme.$color-scheme == dark,
-  $dark-theme-background-color,
-  $light-theme-background-color
+$background-color: theme.get-default-color(
+  $light-theme-background-color,
+  $dark-theme-background-color
 ) !default;
 $color: theme.theme-get-var(text-primary-color) !default;
 

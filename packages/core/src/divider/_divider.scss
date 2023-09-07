@@ -18,11 +18,7 @@ $vertical-spacing: auto 0.25rem !default;
 $light-theme-color: rgba(colors.$black, 0.12) !default;
 $dark-theme-color: rgba(colors.$white, 0.12) !default;
 
-$color: if(
-  theme.$color-scheme == dark,
-  $dark-theme-color,
-  $light-theme-color
-) !default;
+$color: theme.get-default-color($light-theme-color, $dark-theme-color) !default;
 
 $var-lookup: (
   size: (

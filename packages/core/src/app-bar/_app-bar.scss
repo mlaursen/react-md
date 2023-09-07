@@ -47,15 +47,13 @@ $dark-theme-surface-background-color: if(
 ) !default;
 $dark-theme-surface-color: #fff !default;
 
-$surface-background-color: if(
-  theme.$color-scheme == dark,
-  $dark-theme-surface-background-color,
-  $light-theme-surface-background-color
+$surface-background-color: theme.get-default-color(
+  $light-theme-surface-background-color,
+  $dark-theme-surface-background-color
 ) !default;
-$surface-color: if(
-  theme.$color-scheme == dark,
-  $dark-theme-surface-color,
-  $light-theme-surface-color
+$surface-color: theme.get-default-color(
+  $light-theme-surface-color,
+  $dark-theme-surface-color
 ) !default;
 
 $horizontal-padding: 0.25rem !default;

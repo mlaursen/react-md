@@ -67,20 +67,17 @@ $solid-dark-disabled-background-color: color.adjust(
   $lightness: 2%
 ) !default;
 $solid-dark-color: a11y.contrast-color($solid-dark-background-color) !default;
-$solid-background-color: if(
-  theme.$color-scheme == dark,
-  $solid-dark-background-color,
-  $solid-light-background-color
+$solid-background-color: theme.get-default-color(
+  $solid-light-background-color,
+  $solid-dark-background-color
 ) !default;
-$solid-disabled-background-color: if(
-  theme.$color-scheme == dark,
-  $solid-dark-disabled-background-color,
-  $solid-light-disabled-background-color
+$solid-disabled-background-color: theme.get-default-color(
+  $solid-light-disabled-background-color,
+  $solid-dark-disabled-background-color
 ) !default;
-$solid-color: if(
-  theme.$color-scheme == dark,
-  $solid-dark-color,
-  $solid-light-color
+$solid-color: theme.get-default-color(
+  $solid-light-color,
+  $solid-dark-color
 ) !default;
 $solid-raisable-box-shadow-z-value: 4 !default;
 $solid-raisable-transition-duration: transition.$linear-duration !default;
@@ -98,15 +95,13 @@ $outline-dark-background-color: if(
 $outline-dark-color: a11y.contrast-color(
   $outline-dark-background-color
 ) !default;
-$outline-background-color: if(
-  theme.$color-scheme == dark,
-  $outline-dark-background-color,
-  $outline-light-background-color
+$outline-background-color: theme.get-default-color(
+  $outline-light-background-color,
+  $outline-dark-background-color
 ) !default;
-$outline-color: if(
-  theme.$color-scheme == dark,
-  $outline-dark-color,
-  $outline-light-color
+$outline-color: theme.get-default-color(
+  $outline-light-color,
+  $outline-dark-color
 ) !default;
 $outline-raisable-box-shadow-z-value: 8 !default;
 $outline-raisable-transition-duration: transition.$linear-duration !default;

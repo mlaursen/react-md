@@ -39,26 +39,23 @@ $disable-cell-vertical-padding: false !default;
 // defaults to `null` so it just inherits the background color
 $light-theme-background-color: null !default;
 $dark-theme-background-color: null !default;
-$background-color: if(
-  theme.$color-scheme == dark,
-  $dark-theme-background-color,
-  $light-theme-background-color
+$background-color: theme.get-default-color(
+  $light-theme-background-color,
+  $dark-theme-background-color
 ) !default;
 $light-theme-border-color: #e0e0e0 !default;
 $dark-theme-border-color: #2f2f2f !default;
-$border-color: if(
-  theme.$color-scheme == dark,
-  $dark-theme-border-color,
-  $light-theme-border-color
+$border-color: theme.get-default-color(
+  $light-theme-border-color,
+  $dark-theme-border-color
 ) !default;
 $border-size: divider.$size !default;
 
 $light-theme-header-background-color: null !default;
 $dark-theme-header-background-color: null !default;
-$header-background-color: if(
-  theme.$color-scheme == dark,
-  $dark-theme-header-background-color,
-  $light-theme-header-background-color
+$header-background-color: theme.get-default-color(
+  $light-theme-header-background-color,
+  $dark-theme-header-background-color
 ) !default;
 
 $cell-typography: typography.$body-2-styles !default;

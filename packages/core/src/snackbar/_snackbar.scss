@@ -59,16 +59,11 @@ $dark-theme-background-color: if(
 ) !default;
 $dark-theme-color: a11y.contrast-color($dark-theme-background-color) !default;
 
-$background-color: if(
-  theme.$color-scheme == dark,
-  $dark-theme-background-color,
-  $light-theme-background-color
+$background-color: theme.get-default-color(
+  $light-theme-background-color,
+  $dark-theme-background-color
 ) !default;
-$color: if(
-  theme.$color-scheme == dark,
-  $dark-theme-color,
-  $light-theme-color
-) !default;
+$color: theme.get-default-color($light-theme-color, $dark-theme-color) !default;
 
 $var-lookup: (
   color: (

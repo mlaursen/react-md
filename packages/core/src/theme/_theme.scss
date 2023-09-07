@@ -61,35 +61,33 @@ $dark-theme-text-secondary-color: color.adjust(#fff, $lightness: -30%) !default;
 $dark-theme-text-hint-color: color.adjust(#fff, $lightness: -50%) !default;
 $dark-theme-text-disabled-color: color.adjust(#fff, $lightness: -50%) !default;
 
-$background-color: if(
-  $color-scheme == dark,
-  $dark-theme-background-color,
-  $light-theme-background-color
+@function get-default-color($light-color, $dark-color) {
+  @return if($color-scheme == dark, $dark-color, $light-color);
+}
+
+$background-color: get-default-color(
+  $light-theme-background-color,
+  $dark-theme-background-color
 ) !default;
-$surface-color: if(
-  $color-scheme == dark,
-  $dark-theme-surface-color,
-  $light-theme-surface-color
+$surface-color: get-default-color(
+  $light-theme-surface-color,
+  $dark-theme-surface-color
 ) !default;
-$text-primary-color: if(
-  $color-scheme == dark,
-  $dark-theme-text-primary-color,
-  $light-theme-text-primary-color
+$text-primary-color: get-default-color(
+  $light-theme-text-primary-color,
+  $dark-theme-text-primary-color
 ) !default;
-$text-secondary-color: if(
-  $color-scheme == dark,
-  $dark-theme-text-secondary-color,
-  $light-theme-text-secondary-color
+$text-secondary-color: get-default-color(
+  $light-theme-text-secondary-color,
+  $dark-theme-text-secondary-color
 ) !default;
-$text-hint-color: if(
-  $color-scheme == dark,
-  $dark-theme-text-hint-color,
-  $light-theme-text-hint-color
+$text-hint-color: get-default-color(
+  $light-theme-text-hint-color,
+  $dark-theme-text-hint-color
 ) !default;
-$text-disabled-color: if(
-  $color-scheme == dark,
-  $dark-theme-text-disabled-color,
-  $light-theme-text-disabled-color
+$text-disabled-color: get-default-color(
+  $light-theme-text-disabled-color,
+  $dark-theme-text-disabled-color
 ) !default;
 
 $dark-elevation-colors: (

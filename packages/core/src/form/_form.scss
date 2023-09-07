@@ -121,27 +121,24 @@ $text-field-addon-margin: icon.$spacing !default;
 
 $text-field-light-border-color: rgba(#000, 0.12) !default;
 $text-field-dark-border-color: rgba(#fff, 0.5) !default;
-$text-field-border-color: if(
-  theme.$color-scheme == dark,
-  $text-field-dark-border-color,
-  $text-field-light-border-color
+$text-field-border-color: theme.get-default-color(
+  $text-field-light-border-color,
+  $text-field-dark-border-color
 ) !default;
 
 $text-field-light-hover-border-color: rgba(#000, 0.87) !default;
 $text-field-dark-hover-border-color: rgba(#fff, 0.87) !default;
-$text-field-hover-border-color: if(
-  theme.$color-scheme == dark,
-  $text-field-dark-hover-border-color,
-  $text-field-light-hover-border-color
+$text-field-hover-border-color: theme.get-default-color(
+  $text-field-light-hover-border-color,
+  $text-field-dark-hover-border-color
 ) !default;
 
 $text-field-light-filled-background-color: colors.$grey-100 !default;
 $text-field-dark-filled-background-color: #424242 !default;
 // $text-field-dark-filled-background-color: core.$grey-700 !default;
-$text-field-filled-background-color: if(
-  theme.$color-scheme == dark,
-  $text-field-dark-filled-background-color,
-  $text-field-light-filled-background-color
+$text-field-filled-background-color: theme.get-default-color(
+  $text-field-light-filled-background-color,
+  $text-field-dark-filled-background-color
 ) !default;
 
 $textarea-addon-top: 1rem !default;
@@ -190,10 +187,9 @@ $switch-track-dark-background-color: if(
   $switch-track-light-theme-background-color,
   map.get(theme.$dark-elevation-colors, 24)
 ) !default;
-$switch-track-background-color: if(
-  theme.$color-scheme == dark,
-  $switch-track-dark-background-color,
-  $switch-track-light-background-color
+$switch-track-background-color: theme.get-default-color(
+  $switch-track-light-background-color,
+  $switch-track-dark-background-color
 ) !default;
 $switch-circular-progress-width: 12 !default;
 
@@ -219,30 +215,26 @@ $slider-mark-light-active-color: theme.theme-get-var(on-primary-color) !default;
 $slider-mark-dark-active-color: $slider-mark-light-active-color !default;
 $slider-mark-light-active-opacity: 0.38 !default;
 $slider-mark-dark-active-opacity: 0.38 !default;
-$slider-mark-active-color: if(
-  theme.$color-scheme == dar,
-  $slider-mark-dark-active-color,
-  $slider-mark-light-active-color
+$slider-mark-active-color: theme.get-default-color(
+  $slider-mark-light-active-color,
+  $slider-mark-dark-active-color
 ) !default;
-$slider-mark-active-opacity: if(
-  theme.$color-scheme == dark,
-  $slider-mark-dark-active-opacity,
-  $slider-mark-light-active-opacity
+$slider-mark-active-opacity: theme.get-default-color(
+  $slider-mark-light-active-opacity,
+  $slider-mark-dark-active-opacity
 ) !default;
 
 $slider-mark-light-inactive-color: colors.$black !default;
 $slider-mark-dark-inactive-color: colors.$white !default;
-$slider-mark-inactive-color: if(
-  theme.$color-scheme == dark,
-  $slider-mark-dark-inactive-color,
-  $slider-mark-light-inactive-color
+$slider-mark-inactive-color: theme.get-default-color(
+  $slider-mark-light-inactive-color,
+  $slider-mark-dark-inactive-color
 ) !default;
 $slider-mark-light-inactive-opacity: 1 !default;
 $slider-mark-dark-inactive-opacity: 0.8 !default;
-$slider-mark-inactive-opacity: if(
-  theme.$color-scheme == dark,
-  $slider-mark-dark-inactive-opacity,
-  $slider-mark-light-inactive-opacity
+$slider-mark-inactive-opacity: theme.get-default-color(
+  $slider-mark-light-inactive-opacity,
+  $slider-mark-dark-inactive-opacity
 ) !default;
 $slider-mark-inactive-z-index: 1 !default;
 $slider-mark-active-z-index: $slider-track-active-z-index + 1 !default;

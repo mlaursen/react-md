@@ -46,10 +46,9 @@ $dark-surface-ripple-background-color: rgba(
   $dark-surface-base-background-color,
   0.12
 ) !default;
-$ripple-background-color: if(
-  theme.$color-scheme == dark,
-  $dark-surface-ripple-background-color,
-  $light-surface-ripple-background-color
+$ripple-background-color: theme.get-default-color(
+  $light-surface-ripple-background-color,
+  $dark-surface-ripple-background-color
 ) !default;
 $ripple-transform-duration: 0.45s !default;
 $ripple-opacity-duration: 0.3s !default;
@@ -87,25 +86,21 @@ $dark-surface-selected-background-color: rgba(
   0.12
 ) !default;
 
-$hover-background-color: if(
-  theme.$color-scheme == dark,
-  $dark-surface-hover-background-color,
-  $light-surface-hover-background-color
+$hover-background-color: theme.get-default-color(
+  $light-surface-hover-background-color,
+  $dark-surface-hover-background-color
 ) !default;
-$focus-background-color: if(
-  theme.$color-scheme == dark,
-  $dark-surface-focus-background-color,
-  $light-surface-focus-background-color
+$focus-background-color: theme.get-default-color(
+  $light-surface-focus-background-color,
+  $dark-surface-focus-background-color
 ) !default;
-$press-background-color: if(
-  theme.$color-scheme == dark,
-  $dark-surface-press-background-color,
-  $light-surface-press-background-color
+$press-background-color: theme.get-default-color(
+  $light-surface-press-background-color,
+  $dark-surface-press-background-color
 ) !default;
-$selected-background-color: if(
-  theme.$color-scheme == dark,
-  $dark-surface-selected-background-color,
-  $light-surface-selected-background-color
+$selected-background-color: theme.get-default-color(
+  $light-surface-selected-background-color,
+  $dark-surface-selected-background-color
 ) !default;
 
 $var-lookup: (
