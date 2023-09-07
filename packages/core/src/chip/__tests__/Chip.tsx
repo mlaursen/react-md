@@ -1,11 +1,19 @@
 import { describe, expect, it } from "@jest/globals";
+import type { ReactElement } from "react";
 import { createRef } from "react";
-import { fireEvent, render } from "../../test-utils/index.js";
+import {
+  fireEvent,
+  render,
+  rmdRender,
+  screen,
+  userEvent,
+} from "../../test-utils/index.js";
 
 import { FontIcon } from "../../icon/FontIcon.js";
 import { ElementInteractionProvider } from "../../interaction/ElementInteractionProvider.js";
 import { DISPLAY_NONE_CLASS } from "../../transition/utils.js";
 import { Chip } from "../Chip.js";
+import { useToggle } from "../../useToggle.js";
 
 describe("Chip", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {
@@ -275,7 +283,7 @@ describe("Chip", () => {
       expect(chip).toMatchSnapshot();
     });
 
-    it(`should apply the ${DISPLAY_NONE_CLASS} attribute if the disableIconTransition prop is enabled`, () => {
+    it(`should apply ${DISPLAY_NONE_CLASS} to the icon if the disableIconTransition prop is enabled`, () => {
       const props = {
         selected: false,
         children: "Chip",
@@ -295,6 +303,29 @@ describe("Chip", () => {
 
       rerender(<Chip {...props} selected selectedIconAfter />);
       expect(chip).toMatchSnapshot();
+    });
+
+    it("should allow a className to only be applied while selected", async () => {
+      const user = userEvent.setup();
+      function Test(): ReactElement {
+        const { toggled, toggle } = useToggle();
+        return (
+          <Chip
+            selectedClassName="selected-class-name"
+            selected={toggled}
+            onClick={toggle}
+          >
+            Chip
+          </Chip>
+        );
+      }
+
+      rmdRender(<Test />);
+      const chip = screen.getByRole("button", { name: "Chip" });
+      expect(chip).not.toHaveClass("selected-class-name");
+
+      await user.click(chip);
+      expect(chip).toHaveClass("selected-class-name");
     });
   });
 });

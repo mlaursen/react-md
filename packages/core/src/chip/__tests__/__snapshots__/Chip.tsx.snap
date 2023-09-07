@@ -115,7 +115,7 @@ exports[`Chip selectable chips should allow for a custom selectedIcon 6`] = `
 </button>
 `;
 
-exports[`Chip selectable chips should apply the rmd-display-none attribute if the disableIconTransition prop is enabled 1`] = `
+exports[`Chip selectable chips should apply rmd-display-none to the icon if the disableIconTransition prop is enabled 1`] = `
 <button
   class="rmd-chip rmd-chip--solid"
   type="button"
@@ -137,7 +137,7 @@ exports[`Chip selectable chips should apply the rmd-display-none attribute if th
 </button>
 `;
 
-exports[`Chip selectable chips should apply the rmd-display-none attribute if the disableIconTransition prop is enabled 2`] = `
+exports[`Chip selectable chips should apply rmd-display-none to the icon if the disableIconTransition prop is enabled 2`] = `
 <button
   aria-pressed="true"
   class="rmd-chip rmd-chip--selected rmd-chip--solid rmd-chip--left-addon"
@@ -160,7 +160,7 @@ exports[`Chip selectable chips should apply the rmd-display-none attribute if th
 </button>
 `;
 
-exports[`Chip selectable chips should apply the rmd-display-none attribute if the disableIconTransition prop is enabled 3`] = `
+exports[`Chip selectable chips should apply rmd-display-none to the icon if the disableIconTransition prop is enabled 3`] = `
 <button
   class="rmd-chip rmd-chip--solid"
   type="button"
@@ -182,7 +182,7 @@ exports[`Chip selectable chips should apply the rmd-display-none attribute if th
 </button>
 `;
 
-exports[`Chip selectable chips should apply the rmd-display-none attribute if the disableIconTransition prop is enabled 4`] = `
+exports[`Chip selectable chips should apply rmd-display-none to the icon if the disableIconTransition prop is enabled 4`] = `
 <button
   aria-pressed="true"
   class="rmd-chip rmd-chip--selected rmd-chip--solid rmd-chip--right-addon"

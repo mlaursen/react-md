@@ -82,26 +82,33 @@ $solid-color: theme.get-default-color(
 $solid-raisable-box-shadow-z-value: 4 !default;
 $solid-raisable-transition-duration: transition.$linear-duration !default;
 
-$outline-box-shadow: inset 0 0 0 0.0625rem colors.$grey-300 !default;
+$outline-width: 0.0625rem !default;
+$outline-light-color: colors.$grey-300 !default;
 $outline-light-background-color: theme.$light-theme-surface-color !default;
-$outline-light-color: a11y.contrast-color(
+$outline-light-text-color: a11y.contrast-color(
   $outline-light-background-color
 ) !default;
+$outline-dark-color: $outline-light-color !default;
 $outline-dark-background-color: if(
   theme.$disable-dark-elevation,
   theme.$dark-theme-surface-color,
   map.get(theme.$dark-elevation-colors, 8)
 ) !default;
-$outline-dark-color: a11y.contrast-color(
+$outline-dark-text-color: a11y.contrast-color(
   $outline-dark-background-color
+) !default;
+
+$outline-color: theme.get-default-color(
+  $outline-light-color,
+  $outline-dark-color
 ) !default;
 $outline-background-color: theme.get-default-color(
   $outline-light-background-color,
   $outline-dark-background-color
 ) !default;
-$outline-color: theme.get-default-color(
-  $outline-light-color,
-  $outline-dark-color
+$outline-text-color: theme.get-default-color(
+  $outline-light-text-color,
+  $outline-dark-text-color
 ) !default;
 $outline-raisable-box-shadow-z-value: 8 !default;
 $outline-raisable-transition-duration: transition.$linear-duration !default;
@@ -127,13 +134,21 @@ $var-lookup: (
     var: --rmd-chip-theme-color,
     value: $theme-color,
   ),
+  outline-color: (
+    var: --rmd-chip-outline-color,
+    value: $outline-color,
+  ),
+  outline-width: (
+    var: --rmd-chip-outline-width,
+    value: $outline-width,
+  ),
   outline-background-color: (
     var: --rmd-chip-outline-background-color,
     value: $outline-background-color,
   ),
-  outline-color: (
-    var: --rmd-chip-outline-color,
-    value: $outline-color,
+  outline-text-color: (
+    var: --rmd-chip-outline-text-color,
+    value: $outline-text-color,
   ),
 );
 
@@ -166,8 +181,11 @@ $var-lookup: (
   }
 
   @if not $disable-outline-theme {
+    @if $outline-light-color != $outline-dark-color {
+      @include set-var(outline-color, $outline-light-color);
+    }
     @include set-var(outline-background-color, $outline-light-background-color);
-    @include set-var(outline-color, $outline-light-color);
+    @include set-var(outline-text-color, $outline-light-color);
   }
 }
 
@@ -178,8 +196,11 @@ $var-lookup: (
   }
 
   @if not $disable-outline-theme {
+    @if $outline-light-color != $outline-dark-color {
+      @include set-var(outline-color, $outline-dark-color);
+    }
     @include set-var(outline-background-color, $outline-dark-background-color);
-    @include set-var(outline-color, $outline-dark-color);
+    @include set-var(outline-text-color, $outline-dark-color);
   }
 }
 
@@ -244,6 +265,8 @@ $var-lookup: (
       @if not $disable-outline-theme {
         &--outline {
           @if not $disable-outline-raisable {
+            $outline-box-shadow: "inset 0 0 #{get-var(outline-width)} #{get-var(outline-color)}";
+
             @include box-shadows.box-shadow-transition(
               $start-shadow: $outline-box-shadow,
               $end-shadow:
@@ -255,7 +278,7 @@ $var-lookup: (
             );
           }
           @include use-var(background-color, outline-background-color);
-          @include use-var(color, outline-color);
+          @include use-var(color, outline-text-color);
         }
       }
 

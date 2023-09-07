@@ -69,6 +69,11 @@ export interface ChipProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   selectedThemed?: boolean;
 
   /**
+   * An optional className to provide only while {@link selected} is `true`.
+   */
+  selectedClassName?: string;
+
+  /**
    * This will be ignored if {@link selected} is `undefined`.
    *
    * @defaultValue `useIcon("selected")`
@@ -204,6 +209,7 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(
       disabled = false,
       selected,
       selectedThemed = false,
+      selectedClassName,
       selectedIcon: propSelectedIcon,
       selectedIconAfter = false,
       noninteractive = false,
@@ -304,6 +310,7 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(
           disabled,
           selected,
           selectedThemed,
+          selectedClassName,
           noninteractive,
           pressedClassName,
           leftAddon: !!leftAddon && (selectedIconAfter || selected !== false),
