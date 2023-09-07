@@ -47,9 +47,6 @@ yarn-error.log*
 # vercel
 .vercel
 
-# vim
-/.vim
-
 # updating icons
 generating.json
 material-metadata.json

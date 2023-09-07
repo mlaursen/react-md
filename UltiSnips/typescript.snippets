@@ -1,0 +1,78 @@
+global !p
+def upperfirst(t):
+	if len(t) < 2:
+		return '' if len(t) < 1 else t.capitalize()
+	return t[0].capitalize() + t[1:]
+def lowerdash(t):
+	return '-'.join([ w.lower() for w in re.findall('[a-z]+|[A-Z]+[a-z]*', t) ])
+def camelcase(t):
+	if len(t) < 1:
+		return t
+
+	s = re.sub(r"(_|-)+", " ", t).title().replace(" ", "")
+	return ''.join([ s[0].lower(), s[1:] ])
+endglobal
+
+snippet jtf "jest test file" b
+import { describe, expect, it } from "@jest/globals";
+import { rmdRender, screen, userEvent } from "../../test-utils/index.js";
+import { ${1:`!v expand('%:t:r')`} } from "../$1.js";
+
+describe("$1", () => {
+	it("should $2", async () => {
+		const user = userEvent.setup();
+
+		expect(true).toBe(true);
+	})
+})
+endsnippet
+
+snippet bct "base component test" b
+it("should apply the correct styling, HTMLAttributes, and allow a ref", () => {
+	const ref = createRef<HTML$1Element>();
+	const props = {
+		ref,
+		$2
+	} as const
+
+	const { rerender } = rmdRender(<${3:`!v expand('%:t:r')`} {...props} />);
+
+	const element = $0
+	expect(ref.current).toBeInstanceOf(HTML$1Element);
+	expect(ref.current).toBe(element);
+	expect(element).toMatchSnapshot();
+
+	rerender(<$3 {...props} style={{ color: "white" }} className="custom-class-name" />);
+	expect(element).toMatchSnapshot()
+})
+endsnippet
+
+snippet @r "@remarks \@since 6.0.0" w
+@remarks \@since 6.0.0
+endsnippet
+
+snippet @s "/** @remarks \@since 6.0.0 */" b
+/**
+ * @remarks \@since 6.0.0
+ */
+endsnippet
+
+snippet cnf "classnames file" b
+import { cnb } from "cnbuilder";
+import { bem } from "../utils/bem.js":
+
+const styles = bem("rmd-$1");
+
+/**
+ * @remarks \@since 6.0.0
+ */
+export interface `!p snip.rv=upperfirst(t[2])`ClassNameOptions {
+	className?: string;
+}
+
+export function ${2:`!p snip.rv=camelcase(t[1])`}(options: `!p snip.rv=upperfirst(t[2])`ClassNameOptions = {}): string {
+	const { className } = options;
+
+	return cnb(styles(), className);
+}
+endsnippet
