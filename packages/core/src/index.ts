@@ -13,6 +13,8 @@ export * from "./box/styles.js";
 export * from "./button/Button.js";
 export * from "./button/ButtonUnstyled.js";
 export * from "./button/FloatingActionButton.js";
+export * from "./button/buttonStyles.js";
+export * from "./button/buttonUnstyledStyles.js";
 export * from "./card/Card.js";
 export * from "./card/CardContent.js";
 export * from "./card/CardFooter.js";

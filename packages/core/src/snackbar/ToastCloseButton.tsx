@@ -1,8 +1,9 @@
 "use client";
 import { cnb } from "cnbuilder";
 import { forwardRef } from "react";
-import type { ButtonProps, ButtonType } from "../button/Button.js";
+import type { ButtonProps } from "../button/Button.js";
 import { Button } from "../button/Button.js";
+import type { ButtonType } from "../button/buttonStyles.js";
 import { useIcon } from "../icon/IconProvider.js";
 import { bem } from "../utils/bem.js";
 import { useCurrentToastActions } from "./useCurrentToastActions.js";

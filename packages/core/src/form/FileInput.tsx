@@ -9,8 +9,8 @@ import { forwardRef } from "react";
 import type {
   ButtonClassNameOptions,
   ButtonClassNameThemeOptions,
-} from "../button/Button.js";
-import { button } from "../button/Button.js";
+} from "../button/buttonStyles.js";
+import { button } from "../button/buttonStyles.js";
 import { useIcon } from "../icon/IconProvider.js";
 import { TextIconSpacing } from "../icon/TextIconSpacing.js";
 import { RippleContainer } from "../interaction/RippleContainer.js";

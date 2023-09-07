@@ -2,11 +2,9 @@
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useCallback, useRef, useState } from "react";
-import type {
-  ButtonClassNameThemeOptions,
-  ButtonProps,
-} from "../button/Button.js";
+import type { ButtonProps } from "../button/Button.js";
 import { Button } from "../button/Button.js";
+import type { ButtonClassNameThemeOptions } from "../button/buttonStyles.js";
 import { useIcon } from "../icon/IconProvider.js";
 import type { PropsWithRef } from "../types.js";
 import { useDir } from "../typography/WritingDirection.js";

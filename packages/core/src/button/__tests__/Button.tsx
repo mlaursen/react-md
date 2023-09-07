@@ -1,10 +1,13 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import { createRef } from "react";
-import { fireEvent, render } from "../../test-utils/index.js";
-
 import { ElementInteractionProvider } from "../../interaction/ElementInteractionProvider.js";
-import type { ButtonTheme, ButtonThemeType, ButtonType } from "../Button.js";
-import { Button, button } from "../Button.js";
+import { fireEvent, render } from "../../test-utils/index.js";
+import { Button } from "../Button.js";
+import type {
+  ButtonTheme,
+  ButtonThemeType,
+  ButtonType,
+} from "../buttonStyles.js";
 
 describe("Button", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {
@@ -160,12 +163,6 @@ describe("Button", () => {
       expect(ref.current).toBeInstanceOf(HTMLSpanElement);
       expect(ref.current).toBe(fab);
       expect(fab).toMatchSnapshot();
-    });
-  });
-
-  describe("styling utility class", () => {
-    it("should be callable without any arguments", () => {
-      expect(button()).toMatchSnapshot();
     });
   });
 });
