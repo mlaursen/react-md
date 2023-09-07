@@ -134,8 +134,7 @@
   @include table.use-dark-theme;
 }
 
-@mixin styles {
-  @include css-reset;
+@mixin _styles {
   @include typography.typography-styles;
   @include transition.transition-styles;
   @include interaction.styles;
@@ -182,5 +181,16 @@
         }
       }
     }
+  }
+}
+
+@mixin styles {
+  @include css-reset;
+  @if not utils.$disable-layer {
+    @layer rmd {
+      @include _styles;
+    }
+  } @else {
+    @include _styles;
   }
 }

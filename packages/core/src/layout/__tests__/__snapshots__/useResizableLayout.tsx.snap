@@ -26,7 +26,7 @@ exports[`useResizableLayout should allow you to create a resizable layout quickl
 
 exports[`useResizableLayout should allow you to create a resizable layout quickly 2`] = `
 <main
-  class="rmd-layout-main rmd-layout-main--offset-v"
+  class="rmd-layout-main rmd-layout-main--offset-v rmd-layout-h"
   id="main-:r5:"
 >
   Hello, world!

@@ -114,6 +114,8 @@ $var-lookup: (
     /// This class is used to transition when the nav expands/collapses on
     /// larger screen sizes
     .rmd-layout-h {
+      will-change: margin;
+
       &--active {
         @include media-queries.media($navigation-breakpoint) {
           @include utils.auto-rtl(margin-left, get-var(size));

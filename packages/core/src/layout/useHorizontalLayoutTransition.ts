@@ -1,4 +1,5 @@
 "use client";
+import { cnb } from "cnbuilder";
 import { DEFAULT_SHEET_TIMEOUT } from "../sheet/Sheet.js";
 import type {
   CSSTransitionClassNames,
@@ -82,5 +83,6 @@ export function useHorizontalLayoutTransition<
     timeout: DEFAULT_SHEET_TIMEOUT,
     classNames: DEFAULT_HORIZONTAL_LAYOUT_TRANSITION_CLASSNAMES,
     ...options,
+    className: cnb("rmd-layout-h", options.className),
   });
 }
