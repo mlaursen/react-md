@@ -7,7 +7,7 @@ exports[`Chip selectable chips should allow for a custom selectedIcon 1`] = `
 >
   <span
     aria-hidden="true"
-    class="rmd-icon rmd-icon--font material-icons rmd-chip__icon"
+    class="rmd-icon rmd-icon--font material-icons rmd-max-width-transition"
   >
     favorite
   </span>
@@ -30,7 +30,7 @@ exports[`Chip selectable chips should allow for a custom selectedIcon 2`] = `
 >
   <span
     aria-hidden="true"
-    class="rmd-icon rmd-icon--font material-icons rmd-chip__icon rmd-chip__icon--visible"
+    class="rmd-icon rmd-icon--font material-icons rmd-max-width-transition rmd-max-width-transition--visible"
   >
     favorite
   </span>
@@ -212,7 +212,7 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
 >
   <span
     aria-hidden="true"
-    class="rmd-icon rmd-icon--font material-icons rmd-chip__icon"
+    class="rmd-icon rmd-icon--font material-icons rmd-max-width-transition"
   >
     check
   </span>
@@ -235,7 +235,7 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
 >
   <span
     aria-hidden="true"
-    class="rmd-icon rmd-icon--font material-icons rmd-chip__icon rmd-chip__icon--visible"
+    class="rmd-icon rmd-icon--font material-icons rmd-max-width-transition rmd-max-width-transition--visible"
   >
     check
   </span>
@@ -313,7 +313,7 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
   </span>
   <span
     aria-hidden="true"
-    class="rmd-icon rmd-icon--font material-icons rmd-chip__icon"
+    class="rmd-icon rmd-icon--font material-icons rmd-max-width-transition"
   >
     check
   </span>
@@ -342,7 +342,7 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
   </span>
   <span
     aria-hidden="true"
-    class="rmd-icon rmd-icon--font material-icons rmd-chip__icon rmd-chip__icon--visible"
+    class="rmd-icon rmd-icon--font material-icons rmd-max-width-transition rmd-max-width-transition--visible"
   >
     check
   </span>
@@ -359,7 +359,7 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
 >
   <span
     aria-hidden="true"
-    class="rmd-icon rmd-icon--font material-icons rmd-chip__icon"
+    class="rmd-icon rmd-icon--font material-icons rmd-max-width-transition"
   >
     check
   </span>
@@ -388,7 +388,7 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
 >
   <span
     aria-hidden="true"
-    class="rmd-icon rmd-icon--font material-icons rmd-chip__icon rmd-chip__icon--visible"
+    class="rmd-icon rmd-icon--font material-icons rmd-max-width-transition rmd-max-width-transition--visible"
   >
     check
   </span>

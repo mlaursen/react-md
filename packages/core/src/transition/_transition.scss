@@ -11,6 +11,8 @@ $disable-scale-transition: $disable-everything !default;
 $disable-scale-y-transition: $disable-scale-transition !default;
 $disable-skeleton-placeholder: $disable-everything !default;
 $disable-slide-transition: $disable-everything !default;
+$disable-max-width-transition: $disable-everything !default;
+$disable-max-width-transition-gap: $disable-max-width-transition !default;
 
 $linear-duration: 0.15s !default;
 $enter-duration: 0.2s !default;
@@ -58,6 +60,10 @@ $skeleton-placeholder-animation-timing-function: ease-in-out !default;
 $slide-duration: $linear-duration !default;
 $slide-timing-function: $linear-timing-function !default;
 
+$max-width-transition-duration: $linear-duration !default;
+$max-width-transition-timing-function: $linear-timing-function !default;
+$max-width-transition-default: 100% !default;
+
 $transition-var-lookup: (
   skeleton-placeholder-background-color: (
     var: --rmd-skeleton-placeholder-background-color,
@@ -74,6 +80,14 @@ $transition-var-lookup: (
   slide-duration: (
     var: --rmd-slide-duration,
     value: $slide-duration,
+  ),
+  max-width: (
+    var: --rmd-max-width,
+    value: $max-width-transition-default,
+  ),
+  max-width-gap: (
+    var: --rmd-max-width-gap,
+    value: 0,
   ),
 );
 
@@ -310,5 +324,31 @@ $transition-var-lookup: (
 
   @if not $disable-slide-transition {
     @include slide-transition;
+  }
+
+  @if not $disable-max-width-transition {
+    .rmd-max-width-transition {
+      @if not $disable-max-width-transition-gap {
+        @include utils.auto-rtl(
+          margin-right,
+          utils.negate-var(transition-get-var(max-width-gap)),
+          0
+        );
+      }
+
+      max-width: 0;
+      overflow: hidden;
+      transition: max-width
+        $max-width-transition-duration
+        $max-width-transition-timing-function;
+      will-change: max-width;
+
+      &--visible {
+        @if not $disable-max-width-transition-gap {
+          @include utils.auto-rtl(margin-right, 0);
+        }
+        @include transition-use-var(max-width);
+      }
+    }
   }
 }

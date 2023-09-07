@@ -5,14 +5,14 @@ import type {
   HTMLAttributes,
   ReactNode,
 } from "react";
-import { cloneElement, forwardRef, isValidElement } from "react";
+import { forwardRef } from "react";
 import { useIcon } from "../icon/IconProvider.js";
 import { RippleContainer } from "../interaction/RippleContainer.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
-import { DISPLAY_NONE_CLASS } from "../transition/utils.js";
+import { useMaxWidthTransition } from "../transition/useMaxWidthTransition.js";
 import type { PropsWithRef } from "../types.js";
-import { chip, chipContent, chipIcon } from "./styles.js";
+import { chip, chipContent } from "./styles.js";
 
 declare module "react" {
   interface CSSProperties {
@@ -255,27 +255,20 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(
 
     let leftAddon = propLeftAddon;
     let rightAddon = propRightAddon;
-    const selectedIcon = useIcon("selected", propSelectedIcon);
-    if (
+    const selectedIconNode = useIcon("selected", propSelectedIcon);
+    const isTransitionable =
       !selectedThemed &&
       typeof selected === "boolean" &&
       typeof (selectedIconAfter ? propRightAddon : propLeftAddon) ===
-        "undefined"
-    ) {
-      if (isValidElement<{ className?: string }>(selectedIcon)) {
-        const clonedIcon = cloneElement(selectedIcon, {
-          className: cnb(
-            !disableIconTransition && chipIcon({ visible: selected }),
-            disableIconTransition && !selected && DISPLAY_NONE_CLASS
-          ),
-        });
-
-        if (selectedIconAfter) {
-          rightAddon = clonedIcon;
-        } else {
-          leftAddon = clonedIcon;
-        }
-      } else if (selectedIconAfter) {
+        "undefined";
+    const selectedIcon = useMaxWidthTransition({
+      element: selectedIconNode,
+      transitionIn: !!selected,
+      disabled: !isTransitionable,
+      disableTransition: disableIconTransition,
+    });
+    if (isTransitionable) {
+      if (selectedIconAfter) {
         rightAddon = selectedIcon;
       } else {
         leftAddon = selectedIcon;

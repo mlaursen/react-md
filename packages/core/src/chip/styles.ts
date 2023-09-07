@@ -112,20 +112,3 @@ export function chipContent(options: ChipContentClassNameOptions = {}): string {
 
   return cnb(styles("content"), className);
 }
-
-/**
- * @remarks \@since 6.0.0
- */
-export interface ChipIconClassNameOptions {
-  className?: string;
-  visible: boolean;
-}
-
-/**
- * @remarks \@since 6.0.0
- */
-export function chipIcon(options: ChipIconClassNameOptions): string {
-  const { className, visible } = options;
-
-  return cnb(styles("icon", { visible }), className);
-}

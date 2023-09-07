@@ -25,7 +25,7 @@ $disable-left-addon: false !default;
 $disable-right-addon: false !default;
 $disable-both-addons: $disable-left-addon and $disable-right-addon !default;
 $disable-selected-theme: false !default;
-$disable-selectable-icon-transition: false !default;
+$disable-selected-icon-transition: false !default;
 $disable-noninteractive: false !default;
 
 $gap: icon.$spacing !default;
@@ -207,6 +207,11 @@ $var-lookup: (
         @include progress.set-var(circular-size, $progress-size);
         @include progress.set-var(circular-stroke-width, $progress-width);
       }
+
+      @if not $disable-selected-icon-transition and $gap {
+        @include transition.transition-set-var(max-width, icon.get-var(size));
+        @include transition.transition-set-var(max-width-gap, $gap);
+      }
       @include interaction.surface(
         $disabled-selector: "&:disabled" +
           if($disable-noninteractive, "", ",&--noninteractive")
@@ -322,23 +327,6 @@ $var-lookup: (
           @include typography.text-overflow;
 
           flex: 1 1 auto;
-        }
-      }
-
-      @if not $disable-selectable-icon-transition {
-        &__icon {
-          @include utils.auto-rtl(margin-right, -$gap, 0);
-
-          max-width: 0;
-          overflow: hidden;
-          transition: max-width
-            $selected-transition-duration
-            $selected-transition-timing-function;
-
-          &--visible {
-            @include icon.use-var(max-width, size);
-            @include utils.auto-rtl(margin-right, 0);
-          }
         }
       }
     }

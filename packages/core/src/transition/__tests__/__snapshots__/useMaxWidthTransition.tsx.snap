@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useMaxWidthTransition should add the transition classes 1`] = `
+<span
+  aria-hidden="true"
+  class="rmd-icon rmd-icon--font material-icons rmd-max-width-transition custom-class-name"
+>
+  home
+</span>
+`;
+
+exports[`useMaxWidthTransition should add the transition classes 2`] = `
+<span
+  aria-hidden="true"
+  class="rmd-icon rmd-icon--font material-icons rmd-max-width-transition rmd-max-width-transition--visible custom-class-name"
+>
+  home
+</span>
+`;
+
+exports[`useMaxWidthTransition should return the element unchanged if the disabled option is true or the element is not a ReactElement 1`] = `
+<div
+  data-testid="icon-1"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    home
+  </span>
+</div>
+`;
+
+exports[`useMaxWidthTransition should return the element unchanged if the disabled option is true or the element is not a ReactElement 2`] = `
+<div
+  data-testid="icon-2"
+/>
+`;
+
+exports[`useMaxWidthTransition should return the element unchanged if the disabled option is true or the element is not a ReactElement 3`] = `
+<div
+  data-testid="icon-1"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    home
+  </span>
+</div>
+`;
+
+exports[`useMaxWidthTransition should return the element unchanged if the disabled option is true or the element is not a ReactElement 4`] = `
+<div
+  data-testid="icon-2"
+>
+  icon
+</div>
+`;
+
+exports[`useMaxWidthTransition should use the DISPLAY_NONE_CLASS when the transition is disabled 1`] = `
+<span
+  aria-hidden="true"
+  class="rmd-icon rmd-icon--font material-icons rmd-display-none custom-class-name"
+>
+  home
+</span>
+`;
