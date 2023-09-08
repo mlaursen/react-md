@@ -18,6 +18,7 @@ import {
   waitFor,
   within,
 } from "../../test-utils/index.js";
+import { matchTablet } from "../../test-utils/matchMedia.js";
 import { isElementVisible } from "../../utils/isElementVisible.js";
 import { LayoutNav } from "../LayoutNav.js";
 import { Main } from "../Main.js";
@@ -45,13 +46,14 @@ function Layout(props: LayoutProps) {
     name: "pathname",
   });
   const {
+    temporary,
     appBarProps,
     mainProps,
     navToggleProps,
     temporaryNavProps,
     expandableNavProps,
   } = useExpandableLayout({ pathname, ...options });
-  const { isPhone, isTablet, isLandscape, isDesktop } = useAppSize();
+  const { isTablet, isLandscape, isDesktop } = useAppSize();
   let layout: "phone" | "tablet" | "landscapeTablet" | "desktop" = "phone";
   if (isTablet) {
     layout = isLandscape ? "landscapeTablet" : "tablet";
@@ -73,7 +75,7 @@ function Layout(props: LayoutProps) {
           <Radio {...getRadioProps("/2")} label="Route 2" />
         </Form>
       </LayoutNav>
-      {isPhone && (
+      {temporary && (
         <Sheet {...temporaryNavProps}>
           {/* pretend like these are navigation items */}
           <Form>
@@ -231,5 +233,26 @@ describe("useExpandableLayout", () => {
       expect(appBar).not.toHaveClass(EXIT_H_CLASS);
       expect(main).not.toHaveClass(EXIT_H_CLASS);
     });
+  });
+
+  it("should allow the temporary layout to be used until desktop", () => {
+    const matchMediaSpy = spyOnMatchMedia(matchPhone);
+    rmdRender(<Layout temporaryUntil="desktop" defaultVisible />);
+
+    const layout = screen.getByTestId("layout");
+    const expandableNav = screen.getByRole("navigation", {
+      name: "Navigation",
+    });
+    const temporaryNav = screen.getByRole("dialog", { name: "Navigation" });
+
+    expect(layout).toHaveTextContent("phone");
+    expect(isElementVisible(expandableNav)).toBe(false);
+    expect(temporaryNav).toBeInTheDocument();
+
+    matchMediaSpy.changeViewport(matchTablet);
+    expect(temporaryNav).toBeInTheDocument();
+
+    matchMediaSpy.changeViewport(matchDesktop);
+    expect(temporaryNav).not.toBeInTheDocument();
   });
 });

@@ -38,6 +38,14 @@ export interface ExpandableLayoutOptions extends TemporaryLayoutOptions {
 
   /** @see {@link HorizontalLayoutTransitionOptions} */
   transitionProps?: Omit<HorizontalLayoutTransitionOptions, "transitionIn">;
+
+  /**
+   * Set this to `"desktop"` if you want to use the temporary navigation until
+   * the viewport is at least desktop width instead of tablet.
+   *
+   * @defaultValue `"tablet"`
+   */
+  temporaryUntil?: "tablet" | "desktop";
 }
 
 /**
@@ -66,6 +74,7 @@ export type ProvidedLayoutAppBarProps = ProvidedTemporaryLayoutAppBarProps &
  */
 export interface ExpandableLayoutImplementation
   extends TemporaryLayoutImplementation {
+  temporary: boolean;
   expanded: boolean;
   expandNavigation(): void;
   collapseNavigation(): void;
@@ -108,7 +117,7 @@ export interface ExpandableLayoutImplementation
  *   const { pathname } = useHistory();
  *
  *   const {
- *     isPhone,
+ *     temporary,
  *     appBarProps,
  *     expandableNavProps,
  *     mainProps,
@@ -126,7 +135,7 @@ export interface ExpandableLayoutImplementation
  *       <LayoutNav {...expandableNavProps}>
  *         <CustomNavigation />
  *       </LayoutNav>
- *       {isPhone && (
+ *       {temporary && (
  *         <Sheet {...temporaryNavProps}>
  *           <CustomNavigation />
  *         </Sheet>
@@ -147,6 +156,7 @@ export function useExpandableLayout(
     defaultExpanded = false,
     fullHeightNav = false,
     transitionProps,
+    temporaryUntil = "tablet",
     ...temporaryOptions
   } = options;
 
@@ -166,14 +176,16 @@ export function useExpandableLayout(
     disable: collapseNavigation,
     toggle: toggleNavigation,
   } = useToggle(defaultExpanded);
-  const { isPhone } = useAppSize();
   const { elementProps } = useHorizontalLayoutTransition({
     ...transitionProps,
     transitionIn: expanded,
   });
+  const { isPhone, isDesktop } = useAppSize();
+  const temporary = isPhone || (temporaryUntil === "desktop" && !isDesktop);
 
   return {
     visible,
+    temporary,
     hideTemporaryNav,
     showTemporaryNav,
     expanded,
@@ -196,7 +208,7 @@ export function useExpandableLayout(
     navToggleProps: {
       ...navToggleProps,
       onClick() {
-        if (isPhone) {
+        if (temporary) {
           showTemporaryNav();
         } else {
           toggleNavigation();
