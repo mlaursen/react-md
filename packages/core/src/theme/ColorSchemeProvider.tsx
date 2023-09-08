@@ -1,9 +1,9 @@
 "use client";
 import type { ReactElement, ReactNode } from "react";
 import { createContext, useContext, useEffect, useMemo } from "react";
+import { useMediaQuery } from "../media-queries/useMediaQuery.js";
 import type { UseStateInitializer, UseStateSetter } from "../types.js";
 import { useLocalStorage } from "../useLocalStorage.js";
-import { useMediaQuery } from "../useMediaQuery.js";
 import { backgroundColorVar } from "./cssVars.js";
 import { getContrastRatio } from "./utils.js";
 

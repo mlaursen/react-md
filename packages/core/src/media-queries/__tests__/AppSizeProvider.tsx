@@ -6,9 +6,9 @@ import {
   matchTablet,
   render,
   spyOnMatchMedia,
-} from "../test-utils/index.js";
+} from "../../test-utils/index.js";
 
-import type { AppSize } from "../AppSizeProvider.js";
+import type { AppSize } from "../appSize.js";
 import { AppSizeProvider, useAppSize } from "../AppSizeProvider.js";
 
 const matchMedia = spyOnMatchMedia();

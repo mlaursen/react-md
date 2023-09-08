@@ -1,10 +1,10 @@
 "use client";
 import { forwardRef, useEffect } from "react";
-import { useAppSize } from "../AppSizeProvider.js";
 import { useHoverMode } from "../hoverMode/useHoverMode.js";
 import { useIcon } from "../icon/IconProvider.js";
 import { IconRotator } from "../icon/IconRotator.js";
 import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
+import { useAppSize } from "../media-queries/AppSizeProvider.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import type { BaseMenuButtonProps } from "./MenuButton.js";
 import { useMenuConfiguration } from "./MenuConfigurationProvider.js";

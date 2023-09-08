@@ -13,7 +13,7 @@ import {
   DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
   DEFAULT_DESKTOP_MIN_WIDTH,
   DEFAULT_PHONE_MAX_WIDTH,
-} from "../../AppSizeProvider.js";
+} from "../../media-queries/appSize.js";
 import { Tooltip } from "../../tooltip/Tooltip.js";
 import { useTooltip } from "../../tooltip/useTooltip.js";
 import { Tab } from "../Tab.js";

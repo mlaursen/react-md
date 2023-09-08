@@ -5,7 +5,7 @@ import {
   DEFAULT_DESKTOP_MIN_WIDTH,
   DEFAULT_PHONE_MAX_WIDTH,
   DEFAULT_TABLET_MIN_WIDTH,
-} from "../AppSizeProvider.js";
+} from "../media-queries/appSize.js";
 
 const noop = (): void => {
   // do nothing

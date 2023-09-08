@@ -1,5 +1,5 @@
 "use client";
-import { useAppSize } from "../AppSizeProvider.js";
+import { useAppSize } from "../media-queries/AppSizeProvider.js";
 import type { CSSTransitionElementProps } from "../transition/types.js";
 import type { CssPosition, UseStateInitializer } from "../types.js";
 import { useToggle } from "../useToggle.js";

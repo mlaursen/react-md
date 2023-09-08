@@ -1,6 +1,6 @@
 @use "sass:math";
 @use "sass:map";
-@use "../media-queries";
+@use "../media-queries/media-queries";
 @use "../utils";
 
 $disable-sr-only: false !default;

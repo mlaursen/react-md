@@ -1,17 +1,17 @@
 "use client";
 import type { ReactElement, ReactNode } from "react";
-import type { AppSize, AppSizeQueries } from "./AppSizeProvider.js";
-import {
-  AppSizeProvider,
-  DEFAULT_APP_SIZE,
-  DEFAULT_APP_SIZE_QUERIES,
-} from "./AppSizeProvider.js";
 import { SsrProvider } from "./SsrProvider.js";
 import type { ConfigurableIcons } from "./icon/IconProvider.js";
 import { IconProvider } from "./icon/IconProvider.js";
 import { ElementInteractionProvider } from "./interaction/ElementInteractionProvider.js";
 import { UserInteractionModeProvider } from "./interaction/UserInteractionModeProvider.js";
 import type { ElementInteractionMode } from "./interaction/types.js";
+import { AppSizeProvider } from "./media-queries/AppSizeProvider.js";
+import type { AppSize, AppSizeQueries } from "./media-queries/appSize.js";
+import {
+  DEFAULT_APP_SIZE,
+  DEFAULT_APP_SIZE_QUERIES,
+} from "./media-queries/appSize.js";
 import type { PortalContainer } from "./portal/PortalContainerProvider.js";
 import { PortalContainerProvider } from "./portal/PortalContainerProvider.js";
 import type {

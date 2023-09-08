@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, jest } from "@jest/globals";
-import { matchPhone, render, spyOnMatchMedia } from "../test-utils/index.js";
+import { matchPhone, render, spyOnMatchMedia } from "../../test-utils/index.js";
 
-import { DEFAULT_DESKTOP_MIN_WIDTH } from "../AppSizeProvider.js";
+import { DEFAULT_DESKTOP_MIN_WIDTH } from "../appSize.js";
 import { useMediaQuery } from "../useMediaQuery.js";
 
 const matchMedia = spyOnMatchMedia();

@@ -1,12 +1,12 @@
 import { describe, expect, it } from "@jest/globals";
 import type { ReactNode } from "react";
-import { useAppSize } from "../../AppSizeProvider.js";
 import { AppBar } from "../../app-bar/AppBar.js";
 import { AppBarTitle } from "../../app-bar/AppBarTitle.js";
 import { Button } from "../../button/Button.js";
 import { Form } from "../../form/Form.js";
 import { Radio } from "../../form/Radio.js";
 import { useRadioGroup } from "../../form/useRadioGroup.js";
+import { useAppSize } from "../../media-queries/AppSizeProvider.js";
 import { Sheet } from "../../sheet/Sheet.js";
 import {
   matchDesktop,

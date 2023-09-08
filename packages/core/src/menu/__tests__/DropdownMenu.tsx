@@ -11,15 +11,15 @@ import {
   within,
 } from "../../test-utils/index.js";
 
-import {
-  DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
-  DEFAULT_DESKTOP_MIN_WIDTH,
-  DEFAULT_PHONE_MAX_WIDTH,
-} from "../../AppSizeProvider.js";
 import { Button } from "../../button/Button.js";
 import { DialogFooter } from "../../dialog/DialogFooter.js";
 import { DialogHeader } from "../../dialog/DialogHeader.js";
 import { MaterialIcon } from "../../icon/MaterialIcon.js";
+import {
+  DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
+  DEFAULT_DESKTOP_MIN_WIDTH,
+  DEFAULT_PHONE_MAX_WIDTH,
+} from "../../media-queries/appSize.js";
 import { DropdownMenu } from "../DropdownMenu.js";
 import { MenuItem } from "../MenuItem.js";
 import { useMenuVisibility } from "../MenuVisibilityProvider.js";

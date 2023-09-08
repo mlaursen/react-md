@@ -2,7 +2,7 @@
 import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useEffect, useRef, useState } from "react";
-import { useAppSize } from "../AppSizeProvider.js";
+import { useAppSize } from "../media-queries/AppSizeProvider.js";
 import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
 import type { UseStateSetter } from "../types.js";
 import { bem } from "../utils/bem.js";

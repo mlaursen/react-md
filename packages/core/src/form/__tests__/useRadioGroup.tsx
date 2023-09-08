@@ -2,8 +2,8 @@ import { describe, expect, it, jest } from "@jest/globals";
 import type { ReactElement } from "react";
 import { fireEvent, render } from "../../test-utils/index.js";
 
-import { AppSizeProvider } from "../../AppSizeProvider.js";
 import { Button } from "../../button/Button.js";
+import { AppSizeProvider } from "../../media-queries/AppSizeProvider.js";
 import { DropdownMenu } from "../../menu/DropdownMenu.js";
 import { Form } from "../Form.js";
 import { MenuItemRadio } from "../MenuItemRadio.js";

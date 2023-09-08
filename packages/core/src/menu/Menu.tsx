@@ -2,10 +2,10 @@
 import { cnb } from "cnbuilder";
 import type { CSSProperties, HTMLAttributes } from "react";
 import { forwardRef, useEffect, useRef } from "react";
-import { useAppSize } from "../AppSizeProvider.js";
 import { useFocusContainer } from "../focus/useFocusContainer.js";
 import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
 import type { ListElement, ListProps } from "../list/List.js";
+import { useAppSize } from "../media-queries/AppSizeProvider.js";
 import type { GetDefaultFocusedIndex } from "../movement/types.js";
 import { Portal } from "../portal/Portal.js";
 import type { CalculateFixedPositionOptions } from "../positioning/types.js";
