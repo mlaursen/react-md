@@ -1,0 +1,206 @@
+@use "sass:map";
+@use "sass:color";
+@use "../utils";
+@use "../icon/icon";
+@use "../interaction/interaction";
+@use "../typography/typography";
+@use "../theme/a11y";
+@use "../theme/colors";
+@use "../theme/theme";
+
+$disable-everything: false !default;
+
+$light-theme-color: colors.$black !default;
+$light-theme-outline-color: #79747e !default;
+$light-theme-selected-background-color: theme.get-swatch(
+  theme.$secondary-color,
+  700,
+  false,
+  color.adjust(theme.$secondary-color, $lightness: -20%)
+) !default;
+$light-theme-selected-color: a11y.contrast-color(
+  $light-theme-selected-background-color
+) !default;
+
+$dark-theme-color: colors.$white !default;
+$dark-theme-outline-color: #938f99 !default;
+$dark-theme-selected-background-color: theme.get-swatch(
+  theme.$secondary-color,
+  300,
+  false,
+  color.adjust(theme.$secondary-color, $lightness: 20%)
+) !default;
+$dark-theme-selected-color: a11y.contrast-color(
+  $dark-theme-selected-background-color
+) !default;
+
+$gap: icon.$spacing !default;
+$border-radius: 2.5rem !default;
+$min-height: 2.5rem !default;
+$min-width: 3rem !default;
+$horizontal-padding: 0.75rem !default;
+$vertical-padding: 0 !default;
+$outline-width: 0.0625rem !default;
+$outline-color: theme.get-default-color(
+  $light-theme-outline-color,
+  $dark-theme-outline-color
+) !default;
+$color: theme.get-default-color($light-theme-color, $dark-theme-color) !default;
+$selected-color: theme.get-default-color(
+  $light-theme-selected-color,
+  $dark-theme-selected-color
+) !default;
+$selected-background-color: theme.get-default-color(
+  $light-theme-selected-background-color,
+  $dark-theme-selected-background-color
+) !default;
+
+$typography-styles: typography.$button-styles !default;
+
+$var-lookup: (
+  outline-width: (
+    var: --rmd-segmented-button-outline-width,
+    value: $outline-width,
+  ),
+  outline-color: (
+    var: --rmd-segmented-button-outline-color,
+    value: $outline-color,
+  ),
+  color: (
+    var: --rmd-segmented-button-color,
+    value: currentcolor,
+  ),
+  selected-background-color: (
+    var: --rmd-segmented-button-selected-background-color,
+    value: $selected-background-color,
+  ),
+  selected-color: (
+    var: --rmd-segmented-button-selected-color,
+    value: $selected-color,
+  ),
+);
+
+@mixin use-light-theme {
+  @if not $disable-everything {
+    @if $light-theme-outline-color != $dark-theme-outline-color {
+      @include set-var(outline-color, $light-theme-outline-color);
+    }
+
+    @if $light-theme-selected-background-color !=
+      $dark-theme-selected-background-color
+    {
+      @include set-var(
+        selected-background-color,
+        $light-theme-selected-background-color
+      );
+    }
+
+    @if $light-theme-selected-color != $dark-theme-selected-color {
+      @include set-var(selected-color, $light-theme-selected-color);
+    }
+  }
+}
+
+@mixin use-dark-theme {
+  @if not $disable-everything {
+    @if $light-theme-outline-color != $dark-theme-outline-color {
+      @include set-var(outline-color, $dark-theme-outline-color);
+    }
+
+    @if $light-theme-selected-background-color !=
+      $dark-theme-selected-background-color
+    {
+      @include set-var(
+        selected-background-color,
+        $dark-theme-selected-background-color
+      );
+    }
+
+    @if $light-theme-selected-color != $dark-theme-selected-color {
+      @include set-var(selected-color, $dark-theme-selected-color);
+    }
+  }
+}
+
+@function get-var($name, $fallback: null) {
+  $found: utils.validate($var-lookup, $name, "segmented button var");
+  $var: map.get($found, var);
+  $value: if($fallback, $fallback, map.get($found, value));
+
+  @if $value {
+    @return var(#{$var}, #{$value});
+  }
+
+  @return var(#{$var});
+}
+
+@mixin set-var($name, $value) {
+  $var: map.get(
+    utils.validate($var-lookup, $name, "segmented button var"),
+    var
+  );
+
+  #{$var}: #{$value};
+}
+
+@mixin use-var($property, $name: $property, $fallback: null) {
+  #{$property}: get-var($name, $fallback);
+}
+
+@mixin styles {
+  @if not $disable-everything {
+    .rmd-segmented-button-container {
+      display: grid;
+      grid-auto-columns: 1fr;
+      grid-auto-flow: column;
+      width: 100%;
+    }
+
+    .rmd-segmented-button {
+      @include icon.set-var(color, currentcolor);
+      @include icon.set-var(size, 1.125rem);
+      @include interaction.surface;
+      @include utils.map-to-styles($typography-styles);
+
+      align-items: center;
+      background-color: transparent;
+      border: 0;
+      box-shadow: inset 0 0 0 get-var(outline-width) get-var(outline-color);
+      display: inline-flex;
+      gap: $gap;
+      justify-content: center;
+      min-height: $min-height;
+      min-width: $min-width;
+      padding: $vertical-padding $horizontal-padding;
+
+      &:first-child {
+        @include utils.rtl {
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: $border-radius;
+          border-top-left-radius: 0;
+          border-top-right-radius: $border-radius;
+        }
+
+        border-bottom-left-radius: $border-radius;
+        border-top-left-radius: $border-radius;
+      }
+
+      &:last-child {
+        @include utils.rtl {
+          border-bottom-left-radius: $border-radius;
+          border-bottom-right-radius: 0;
+          border-top-left-radius: $border-radius;
+          border-top-right-radius: 0;
+        }
+
+        border-bottom-right-radius: $border-radius;
+        border-top-right-radius: $border-radius;
+      }
+
+      &--selected {
+        @include use-var(background-color, selected-background-color);
+        @include use-var(color, selected-color);
+      }
+    }
+  }
+}

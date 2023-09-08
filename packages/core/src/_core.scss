@@ -34,11 +34,13 @@
 @forward "menu/menu" as menu-*;
 @forward "form/form" as form-*;
 @forward "layout/layout" as layout-*;
+@forward "segmented-button/segmented-button" as segmented-button-*;
 
 @use "avatar/avatar";
 @use "app-bar/app-bar";
 @use "box/box";
 @use "button/button";
+@use "segmented-button/segmented-button";
 @use "badge/badge";
 @use "card/card";
 @use "divider/divider";
@@ -119,6 +121,7 @@
   @include card.use-light-theme;
   @include form.use-light-theme;
   @include table.use-light-theme;
+  @include segmented-button.use-light-theme;
 }
 
 @mixin use-dark-theme {
@@ -132,6 +135,7 @@
   @include card.use-dark-theme;
   @include form.use-dark-theme;
   @include table.use-dark-theme;
+  @include segmented-button.use-dark-theme;
 }
 
 @mixin _styles {
@@ -166,6 +170,7 @@
   @include form.styles;
   @include layout.styles;
   @include snackbar.styles;
+  @include segmented-button.styles;
 
   @if not theme.$disable-default-root-theme {
     :root {

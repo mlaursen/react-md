@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SegmentedButton should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+<button
+  class="rmd-segmented-button"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons rmd-max-width-transition"
+  >
+    check
+  </span>
+  <span>
+    Button
+  </span>
+</button>
+`;
+
+exports[`SegmentedButton should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+<button
+  class="rmd-segmented-button custom-class-name"
+  style="color: white;"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons rmd-max-width-transition"
+  >
+    check
+  </span>
+  <span>
+    Button
+  </span>
+</button>
+`;
+
+exports[`SegmentedButton should apply the correct styling, HTMLAttributes, and allow a ref 3`] = `
+<button
+  aria-pressed="true"
+  class="rmd-segmented-button rmd-segmented-button--selected"
+  style=""
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons rmd-max-width-transition rmd-max-width-transition--visible"
+  >
+    check
+  </span>
+  <span>
+    Button
+  </span>
+</button>
+`;
+
+exports[`SegmentedButton should apply the correct styling, HTMLAttributes, and allow a ref 4`] = `
+<button
+  class="rmd-segmented-button"
+  style=""
+  type="button"
+>
+  <span>
+    Button
+  </span>
+</button>
+`;
+
+exports[`SegmentedButton should apply the correct styling, HTMLAttributes, and allow a ref 5`] = `
+<button
+  class="rmd-segmented-button"
+  style=""
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons rmd-display-none"
+  >
+    check
+  </span>
+  <span>
+    Button
+  </span>
+</button>
+`;
+
+exports[`SegmentedButton should support rendering left and right addons so the children can be text and elevated 1`] = `
+<button
+  class="rmd-segmented-button"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons rmd-max-width-transition"
+  >
+    check
+  </span>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    home
+  </span>
+  <span>
+    Content
+  </span>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    check
+  </span>
+</button>
+`;
+
+exports[`SegmentedButton styling utility class should be callable without any arguments 1`] = `"rmd-segmented-button"`;
