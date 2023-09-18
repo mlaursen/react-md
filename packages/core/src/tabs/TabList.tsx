@@ -4,7 +4,6 @@ import type { HTMLAttributes } from "react";
 import { forwardRef, useEffect, useRef, useState } from "react";
 import { useAppSize } from "../media-queries/AppSizeProvider.js";
 import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
-import type { UseStateSetter } from "../types.js";
 import { bem } from "../utils/bem.js";
 import type { BaseTabListScrollButtonProps } from "./TabListScrollButton.js";
 import { TabListScrollButton } from "./TabListScrollButton.js";
@@ -63,7 +62,7 @@ export function tabList(options: TabListClassNameOptions = {}): string {
  */
 export interface TabListProps extends HTMLAttributes<HTMLDivElement> {
   activeIndex: number;
-  setActiveIndex: UseStateSetter<number>;
+  setActiveIndex(nextActiveIndex: number): void;
 
   /**
    * @defaultValue `"left"`

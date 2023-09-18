@@ -11,8 +11,7 @@ import type { ReactElement } from "react";
 import styles from "./ControllingActiveIndex.module.scss";
 
 export function ControllingActiveIndex(): ReactElement {
-  const { getTabProps, getTabListProps, activeIndex, setActiveIndex } =
-    useTabs();
+  const { getTabProps, getTabListProps, activeTab, setActiveTab } = useTabs();
   return (
     <div className={styles.container}>
       <AppBar height="auto" theme="surface">
@@ -24,9 +23,9 @@ export function ControllingActiveIndex(): ReactElement {
           ))}
         </TabList>
       </AppBar>
-      <Typography>{`The current activeIndex is ${activeIndex}`}</Typography>
-      <Button onClick={() => setActiveIndex(0)}>Set 0</Button>
-      <Button onClick={() => setActiveIndex(1)}>Set 1</Button>
+      <Typography>{`The current activeTab is ${activeTab}`}</Typography>
+      <Button onClick={() => setActiveTab(0)}>Set 0</Button>
+      <Button onClick={() => setActiveTab(1)}>Set 1</Button>
     </div>
   );
 }

@@ -1,26 +1,18 @@
 "use client";
-import type { Ref, RefObject } from "react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import type { Dispatch, Ref, RefObject } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { SlideDirection } from "../transition/SlideContainer.js";
 import type { UseStateInitializer, UseStateSetter } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
+import { useEnsuredState } from "../useEnsuredState.js";
 
-const noop = (): void => {
-  // do nothing
-};
-
-/**
- * @remarks \@since 6.0.0
- */
-export interface TabsState {
-  direction: SlideDirection;
-  activeIndex: number;
-}
+const EMPTY_LIST = [] as const;
+const PANEL_PREFIX = "panel-";
 
 /**
  * @remarks \@since 6.0.0
  */
-export interface TabsHookOptions {
+export interface TabsHookOptions<TabValue extends string | number = number> {
   /**
    * This can be used to generate the ids for the different components within
    * the tab widget.
@@ -30,41 +22,46 @@ export interface TabsHookOptions {
   baseId?: string;
 
   /**
-   * Use this callback trigger an effect whenever the `activeIndex` changes.
-   * This should **not** be used to manually set the `activeIndex` in state
-   * yourself.
+   * Set this to `true` if changing active tabs should no longer attempt to
+   * scroll to the top of the tab panels container when using the
+   * {@link TabsImplementation.getTabPanelsProps}.
    *
-   * @example
-   * Main Example
-   * ```tsx
-   * const { elementProps, transitionTo } = useCrossFadeTransition();
-   * const { activeIndex, getTabProps, getTabListProps } = useTabs({
-   *   onActiveIndexChange() {
-   *     transitionTo("enter");
-   *   },
-   * });
-   * ```
-   *
-   * @defaultValue `() => {}`
-   */
-  onActiveIndexChange?(activeIndex: number): void;
-
-  /**
    * @defaultValue `false`
    */
   disableScrollFix?: boolean;
 
   /**
+   * Set this to an **ordered** list of tab values when:
+   * - using a `string` tab value
+   * - using a `number` tab value does not represent a tab index
+   *
+   * See the examples on the {@link useTabs} for usage.
+   */
+  tabs?: readonly TabValue[];
+
+  /**
+   * Provide this value and {@link setActiveTab} to control the active tab
+   * behavior.
+   */
+  activeTab?: TabValue;
+
+  /** @see {@link activeTab} */
+  setActiveTab?: Dispatch<TabValue>;
+
+  /**
+   * Set this to the default tab index when not controlling the active tab value
+   * through {@link activeTab} and {@link setActiveTab}.
+   *
    * @defaultValue `0`
    */
-  defaultActiveIndex?: UseStateInitializer<number>;
+  defaultActiveTab?: UseStateInitializer<TabValue>;
 }
 
 /**
  * @remarks \@since 6.0.0
  */
 export interface ProvidedTabProps {
-  "aria-controls": string | undefined;
+  "aria-controls": string;
   id: string;
   active: boolean;
 }
@@ -74,7 +71,7 @@ export interface ProvidedTabProps {
  */
 export interface ProvidedTabListProps {
   activeIndex: number;
-  setActiveIndex: UseStateSetter<number>;
+  setActiveIndex: Dispatch<number>;
 }
 
 /**
@@ -98,24 +95,35 @@ export interface ProvidedTabPanelsProps<E extends HTMLElement> {
 /**
  * @remarks \@since 6.0.0
  */
-export interface TabsHookReturnValue extends TabsState {
-  setActiveIndex: UseStateSetter<number>;
-  getTabProps(index: number): ProvidedTabProps;
+export interface TabsImplementation<TabValue extends string | number = number> {
+  direction: SlideDirection;
+  setDirection: UseStateSetter<SlideDirection>;
+  activeTab?: TabValue;
+  setActiveTab?(nextActiveTab: TabValue): void;
+  getTabProps(tabValue: TabValue): ProvidedTabProps;
   getTabListProps(): ProvidedTabListProps;
-  getTabPanelProps(index: number): ProvidedTabPanelProps;
+  getTabPanelProps(tabValue: TabValue): ProvidedTabPanelProps;
   getTabPanelsProps<E extends HTMLElement>(): ProvidedTabPanelsProps<E>;
 }
 
 /**
  * @example
- * Simple Example
+ * Super Simple
  * ```tsx
- * import { Slide, SlideContainer, Tab, TabList, useTabs } from "@react-md/core";
+ * import { TabList, Tab, SlideContainer, Slide, useTabs } from "@react-md/core";
  * import type { ReactElement } from "react";
  *
- * export function Example(): ReactElement {
- *   const { getTabProps, getTabListProps, getTabPanelProps, getTabPanelsProps } =
- *     useTabs();
+ * function Example(): ReactElement {
+ *   const {
+ *     activeTab,
+ *     setActiveTab,
+ *     direction,
+ *     setDirection,
+ *     getTabListProps,
+ *     getTabPanelProps,
+ *     getTabPanelsProps,
+ *     getTabProps,
+ *   } = useTabs();
  *
  *   return (
  *     <>
@@ -136,52 +144,304 @@ export interface TabsHookReturnValue extends TabsState {
  *
  * @remarks \@since 6.0.0
  */
-export function useTabs(options: TabsHookOptions = {}): TabsHookReturnValue {
+export function useTabs(): TabsImplementation<number> & {
+  activeTab: number;
+  setActiveTab: number;
+};
+/**
+ * The tab behavior can be controlled by providing the `activeTab` and
+ * `setActiveTab` options.
+ *
+ * @example
+ * Controlled
+ * ```tsx
+ * import { TabList, Tab, SlideContainer, Slide, useTabs } from "@react-md/core";
+ * import type { ReactElement } from "react";
+ * import { useState } from "react";
+ *
+ * function Example(): ReactElement {
+ *   const [activeTab, setActiveTab] = useState(1);
+ *
+ *   const {
+ *     direction,
+ *     setDirection,
+ *     getTabListProps,
+ *     getTabPanelProps,
+ *     getTabPanelsProps,
+ *     getTabProps,
+ *   } = useTabs({
+ *     activeTab,
+ *     setActiveTab,
+ *   });
+ *
+ *   return (
+ *     <>
+ *       <TabList {...getTabListProps()}>
+ *         <Tab {...getTabProps(0)}>Tab 1</Tab>
+ *         <Tab {...getTabProps(1)}>Tab 2</Tab>
+ *         <Tab {...getTabProps(2)}>Tab 3</Tab>
+ *       </TabList>
+ *       <SlideContainer {...getTabPanelsProps()}>
+ *         <Slide {...getTabPanelProps(0)}>Tab 1 Content</Slide>
+ *         <Slide {...getTabPanelProps(1)}>Tab 2 Content</Slide>
+ *         <Slide {...getTabPanelProps(2)}>Tab 3 Content</Slide>
+ *       </SlideContainer>
+ *     </>
+ *   );
+ * }
+ * ```
+ *
+ * @remarks \@since 6.0.0
+ */
+export function useTabs<TabValue extends number>(
+  options: TabsHookOptions<TabValue> & {
+    tabs?: readonly TabValue[];
+    activeTab: TabValue;
+    setActiveTab: Dispatch<TabValue>;
+    defaultActiveTab?: never;
+  }
+): TabsImplementation<TabValue> & { activeTab?: never; setActiveTab?: never };
+export function useTabs<TabValue extends number>(
+  options: TabsHookOptions<TabValue> & {
+    tabs?: readonly TabValue[];
+    activeTab?: never;
+    setActiveTab?: never;
+    defaultActiveTab?: UseStateInitializer<TabValue>;
+  }
+): TabsImplementation<TabValue> & {
+  activeTab: TabValue;
+  setActiveTab: Dispatch<TabValue>;
+};
+/**
+ * When using string values, the {@link TabsHookOptions.tabs} option **must** be
+ * provided to determine the correct active tab index.
+ *
+ * @example
+ * String Value Simple
+ * ```tsx
+ * import { TabList, Tab, SlideContainer, Slide, useTabs } from "@react-md/core";
+ * import type { ReactElement } from "react";
+ *
+ * const tabs = ["value-1", "value-2", "value-3"];
+ *
+ * function Example(): ReactElement {
+ *   const {
+ *     activeTab,
+ *     setActiveTab,
+ *     direction,
+ *     setDirection,
+ *     getTabListProps,
+ *     getTabPanelProps,
+ *     getTabPanelsProps,
+ *     getTabProps,
+ *   } = useTabs({ tabs });
+ *
+ *   return (
+ *     <>
+ *       <TabList {...getTabListProps()}>
+ *         {tabs.map((value) => (
+ *           <Tab key={value} {...getTabProps(value)}>{value}</Tab>
+ *         ))}
+ *       </TabList>
+ *       <SlideContainer {...getTabPanelsProps()}>
+ *        {tabs.map((value) => (
+ *          <Slide key={value}>{value} Content</Slide>
+ *        ))}
+ *       </SlideContainer>
+ *     </>
+ *   );
+ * }
+ * ```
+ *
+ * @remarks \@since 6.0.0
+ */
+export function useTabs<TabValue extends string>(
+  options: TabsHookOptions<TabValue> & {
+    tabs: readonly TabValue[];
+    activeTab?: never;
+    setActiveTab?: never;
+    defaultActiveTab?: UseStateInitializer<TabValue>;
+  }
+): TabsImplementation<TabValue> & {
+  activeTab: TabValue;
+  setActiveTab: Dispatch<TabValue>;
+};
+/**
+ * When using string values, the {@link TabsHookOptions.tabs} option **must** be
+ * provided to determine the correct active tab index.
+ *
+ * @example
+ * String Controlled Simple
+ * ```tsx
+ * import { TabList, Tab, SlideContainer, Slide, useTabs } from "@react-md/core";
+ * import type { ReactElement } from "react";
+ *
+ * const tabs = ["value-1", "value-2", "value-3"] as const;
+ *
+ * function Example(): ReactElement {
+ *   const [activeTab, setActiveTab] = useState(tabs[0]);
+ *
+ *   const {
+ *     direction,
+ *     setDirection,
+ *     getTabListProps,
+ *     getTabPanelProps,
+ *     getTabPanelsProps,
+ *     getTabProps,
+ *   } = useTabs({
+ *     tabs,
+ *     activeTab,
+ *     setActiveTab,
+ *   });
+ *
+ *   return (
+ *     <>
+ *       <TabList {...getTabListProps()}>
+ *         {tabs.map((value) => (
+ *           <Tab key={value} {...getTabProps(value)}>{value}</Tab>
+ *         ))}
+ *       </TabList>
+ *       <SlideContainer {...getTabPanelsProps()}>
+ *        {tabs.map((value) => (
+ *          <Slide key={value}>{value} Content</Slide>
+ *        ))}
+ *       </SlideContainer>
+ *     </>
+ *   );
+ * }
+ * ```
+ *
+ * @example
+ * Navigation Tabs
+ * ```tsx
+ * "use client";
+ * import {
+ *   RippleContainer,
+ *   Tab,
+ *   TabList,
+ *   useElementInteraction,
+ *   useEnsuredId,
+ *   useHigherContrastChildren,
+ *   useKeyboardMovementContext,
+ *   useTabs,
+ * } from "@react-md/core";
+ * import type { LinkProps } from "next/link";
+ * import Link from "next/link";
+ * import type { PropsWithChildren, ReactElement } from "react";
+ * import { usePathname } from "next/navigation";
+ *
+ * interface TabLinkProps extends LinkProps {
+ *   active: boolean;
+ * }
+ *
+ * function TabLink(props: LinkProps): ReactElement {
+ *   const {
+ *     id: propId,
+ *     children: propChildren,
+ *     active,
+ *     className,
+ *     ...remaining,
+ *   } = props;
+ *
+ *   const id = useEnsuredId(propId, "tab");
+ *   const { activeDescendantId } = useKeyboardMovementContext();
+ *   const { handlers, rippleContainerProps } = useElementInteraction(props);
+ *   const children = useHigherContrastChildren(propChildren);
+ *
+ *   return (
+ *     <Link
+ *       {...props}
+ *       {...handlers}
+ *       id={id}
+ *       aria-selected={active}
+ *       role="tab"
+ *       tabIndex={id === activeDescendantId ? 0 : -1}
+ *       className={tab({
+ *         className,
+ *         active,
+ *         // stacked,
+ *         // reversed,
+ *       })}
+ *     >
+ *       {children}
+ *       {rippleContainerProps && <RippleContainer {...rippleContainerProps} />}
+ *     </Link>
+ *   );
+ * }
+ *
+ * const noop = (): void => {
+ *  // do nothing
+ * };
+ *
+ * const PATHNAME_TABS = ["/", "/page-1", "/page-2"];
+ *
+ * function Layout({ children }: PropsWithChildren) {
+ *   const pathname = usePathname();
+ *   const { getTabListProps, getTabProps } = useTabs({
+ *     tabs: PATHNAME_TABS,
+ *     activeTab: pathname,
+ *     setActiveTab: noop,
+ *   });
+ *
+ *   return (
+ *     <>
+ *       <TabList {...getTabListProps()}>
+ *         <TabLink {...getTabProps("/")} href="/">Home</TabLink>
+ *         <TabLink {...getTabProps("/page-1")} href="/page-1">Page 1</TabLink>
+ *         <TabLink {...getTabProps("/page-2")} href="/page-2">Page 2</TabLink>
+ *       </TabList>
+ *       <main>{children}</main>
+ *     </>
+ *   );
+ * }
+ * ```
+ *
+ * @remarks \@since 6.0.0
+ */
+export function useTabs<TabValue extends string>(
+  options: TabsHookOptions<TabValue> & {
+    tabs: readonly TabValue[];
+    activeTab: TabValue;
+    setActiveTab: Dispatch<TabValue>;
+    defaultActiveTab?: never;
+  }
+): TabsImplementation<TabValue> & { activeTab?: never; setActiveTab?: never };
+/**
+ * This hook can be uncontrolled/controlled and supports strongly typing the tab
+ * values if needed. Check out the overloads for examples.
+ *
+ * @remarks \@since 6.0.0
+ */
+export function useTabs<TabValue extends string | number>(
+  options: TabsHookOptions<TabValue> = {}
+): TabsImplementation<TabValue> {
   const {
     baseId: propBaseId,
-    onActiveIndexChange = noop,
-    disableScrollFix = false,
-    defaultActiveIndex = 0,
+    disableScrollFix,
+    tabs = EMPTY_LIST,
+    activeTab: propActiveTab,
+    setActiveTab: propSetActiveTab,
+    defaultActiveTab,
   } = options;
+
   const baseId = useEnsuredId(propBaseId, "tab");
+  const [direction, setDirection] = useState<SlideDirection>("left");
 
-  const [state, setState] = useState<TabsState>(() => {
-    const activeIndex =
-      typeof defaultActiveIndex === "function"
-        ? defaultActiveIndex()
-        : defaultActiveIndex;
-
-    return {
-      direction: "left",
-      activeIndex,
-    };
+  const [activeTab, setActiveTab] = useEnsuredState({
+    value: propActiveTab,
+    setValue: propSetActiveTab,
+    defaultValue: defaultActiveTab ?? (0 as TabValue),
   });
-  const { direction, activeIndex } = state;
+
+  const getTabIndex = (tabValue: TabValue): number =>
+    typeof tabValue === "string" || tabs.length > 0
+      ? tabs.indexOf(tabValue)
+      : tabValue;
+  const getTabId = (tabValue: TabValue, prefix = ""): string =>
+    `${baseId}-${prefix}${getTabIndex(tabValue) + 1}`;
+
+  const activeIndex = getTabIndex(activeTab);
   const tabPanelsRef = useRef<HTMLElement>(null);
-
-  const getTabId = (index: number): string => `${baseId}-${index + 1}`;
-  const getTabPanelId = (index: number): string =>
-    `${baseId}-panel-${index + 1}`;
-  const setActiveIndex = useCallback<UseStateSetter<number>>(
-    (indexOrFunction) => {
-      setState(({ activeIndex }) => {
-        const nextActiveIndex =
-          typeof indexOrFunction === "function"
-            ? indexOrFunction(activeIndex)
-            : indexOrFunction;
-
-        if (nextActiveIndex !== activeIndex) {
-          onActiveIndexChange(nextActiveIndex);
-        }
-
-        return {
-          direction: activeIndex < nextActiveIndex ? "left" : "right",
-          activeIndex: nextActiveIndex,
-        };
-      });
-    },
-    [onActiveIndexChange]
-  );
   useEffect(() => {
     const container = tabPanelsRef.current;
     if (!container || disableScrollFix) {
@@ -189,30 +449,39 @@ export function useTabs(options: TabsHookOptions = {}): TabsHookReturnValue {
     }
 
     container.scrollTop = 0;
-  }, [disableScrollFix, activeIndex]);
+  }, [disableScrollFix, activeTab]);
 
   return {
-    ...state,
-    setActiveIndex,
-    getTabProps(index) {
+    activeTab,
+    setActiveTab,
+    direction,
+    setDirection,
+    getTabProps(tabValue) {
       return {
-        "aria-controls": getTabPanelId(index),
-        id: getTabId(index),
-        active: index === activeIndex,
+        "aria-controls": getTabId(tabValue, PANEL_PREFIX),
+        id: getTabId(tabValue),
+        active: tabValue === activeTab,
       };
     },
     getTabListProps() {
       return {
         activeIndex,
-        setActiveIndex,
+        setActiveIndex: (nextActiveIndex) => {
+          setDirection(activeIndex < nextActiveIndex ? "left" : "right");
+          if (typeof activeTab === "string" || tabs.length > 0) {
+            setActiveTab(tabs[nextActiveIndex]);
+          } else {
+            setActiveTab(nextActiveIndex as TabValue);
+          }
+        },
       };
     },
-    getTabPanelProps(index) {
+    getTabPanelProps(tabValue) {
       return {
-        "aria-labelledby": getTabId(index),
-        id: getTabPanelId(index),
+        "aria-labelledby": getTabId(tabValue),
+        id: getTabId(tabValue, PANEL_PREFIX),
         role: "tabpanel",
-        active: index === activeIndex,
+        active: tabValue === activeTab,
       };
     },
     getTabPanelsProps<E>() {

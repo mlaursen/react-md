@@ -11,7 +11,8 @@ import { TabList } from "../TabList.js";
 import type { TabsHookOptions } from "../useTabs.js";
 import { useTabs } from "../useTabs.js";
 
-type TestProps = TabsHookOptions & Pick<TabListProps, "activationMode">;
+type TestProps = Omit<TabsHookOptions, "activeTab" | "setActiveTab"> &
+  Pick<TabListProps, "activationMode">;
 
 function Test(props: TestProps): ReactElement {
   const { activationMode, ...options } = props;

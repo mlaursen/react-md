@@ -13,7 +13,6 @@ import type {
   KeyboardMovementProps,
 } from "../movement/types.js";
 import { useKeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
-import type { UseStateSetter } from "../types.js";
 import { useDir } from "../typography/WritingDirection.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
 import { useResizeObserver } from "../useResizeObserver.js";
@@ -44,7 +43,7 @@ export interface TabListHookOptions {
   ref: Ref<HTMLDivElement> | undefined;
   style: CSSProperties | undefined;
   activeIndex: number;
-  setActiveIndex: UseStateSetter<number>;
+  setActiveIndex(nextActiveIndex: number): void;
   scrollButtons: boolean;
   activationMode: "manual" | "automatic";
   vertical: boolean;
