@@ -3,6 +3,7 @@ import { cnb } from "cnbuilder";
 import type { CSSProperties } from "react";
 import { useState } from "react";
 import { useEnsuredRef } from "../useEnsuredRef.js";
+import { DISPLAY_NONE_CLASS } from "../utils/isElementVisible.js";
 import { collapse } from "./collapseStyles.js";
 import type {
   CSSTransitionElementProps,
@@ -12,11 +13,7 @@ import type {
   TransitionTimeoutObject,
 } from "./types.js";
 import { useTransition } from "./useTransition.js";
-import {
-  DISPLAY_NONE_CLASS,
-  getElementSizing,
-  getTransitionTimeout,
-} from "./utils.js";
+import { getElementSizing, getTransitionTimeout } from "./utils.js";
 
 const noop = (): void => {
   // do nothing

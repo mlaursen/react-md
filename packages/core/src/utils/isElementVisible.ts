@@ -1,4 +1,9 @@
-import { DISPLAY_NONE_CLASS } from "../transition/utils.js";
+/**
+ * Note: requires the `$disable-display-none-class` variable to remain `false`.
+ *
+ * @remarks \@since 6.0.0
+ */
+export const DISPLAY_NONE_CLASS = "rmd-display-none";
 
 /**
  * This is a small util to check if an element within react-md is visible by

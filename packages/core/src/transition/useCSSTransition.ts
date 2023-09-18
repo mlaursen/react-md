@@ -1,5 +1,6 @@
 "use client";
 import { cnb } from "cnbuilder";
+import { DISPLAY_NONE_CLASS } from "../utils/isElementVisible.js";
 import type {
   CSSTransitionElementProps,
   CSSTransitionHookOptions,
@@ -8,7 +9,7 @@ import type {
   TransitionHookOptions,
 } from "./types.js";
 import { useTransition } from "./useTransition.js";
-import { DISPLAY_NONE_CLASS, getTransitionClassNames } from "./utils.js";
+import { getTransitionClassNames } from "./utils.js";
 
 /**
  * This hook is used to create CSS transitions for different components whenever

@@ -15,9 +15,9 @@ import type {
   TransitionTimeout,
 } from "../transition/types.js";
 import { useCSSTransition } from "../transition/useCSSTransition.js";
-import { DISPLAY_NONE_CLASS } from "../transition/utils.js";
 import type { LabelRequiredForA11y } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
+import { DISPLAY_NONE_CLASS } from "../utils/isElementVisible.js";
 import { DialogContainer } from "./DialogContainer.js";
 import {
   NestedDialogProvider,

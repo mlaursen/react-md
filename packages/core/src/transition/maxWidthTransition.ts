@@ -1,6 +1,6 @@
 import { cnb } from "cnbuilder";
 import { bem } from "../utils/bem.js";
-import { DISPLAY_NONE_CLASS } from "./utils.js";
+import { DISPLAY_NONE_CLASS } from "../utils/isElementVisible.js";
 
 const styles = bem("rmd-max-width-transition");
 

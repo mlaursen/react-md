@@ -1,5 +1,5 @@
-import { DISPLAY_NONE_CLASS } from "../transition/utils.js";
 import { useEnsuredId } from "../useEnsuredId.js";
+import { DISPLAY_NONE_CLASS } from "../utils/isElementVisible.js";
 import type { LayoutWindowSplitterProps } from "./LayoutWindowSplitter.js";
 import type {
   ExpandableLayoutImplementation,

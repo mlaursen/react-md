@@ -7,13 +7,6 @@ import type {
 } from "./types.js";
 
 /**
- * Note: requires the `$disable-display-none-class` variable to remain `false`.
- *
- * @remarks \@since 6.0.0
- */
-export const DISPLAY_NONE_CLASS = "rmd-display-none";
-
-/**
  * @remarks \@since 4.0.0
  * @internal
  */

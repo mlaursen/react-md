@@ -4,8 +4,8 @@ import { fireEvent, render, waitFor, within } from "../../test-utils/index.js";
 
 import { SsrProvider } from "../../SsrProvider.js";
 import { Button } from "../../button/Button.js";
-import { DISPLAY_NONE_CLASS } from "../../transition/utils.js";
 import { useToggle } from "../../useToggle.js";
+import { DISPLAY_NONE_CLASS } from "../../utils/isElementVisible.js";
 import type { OverlayProps } from "../Overlay.js";
 import { Overlay } from "../Overlay.js";
 

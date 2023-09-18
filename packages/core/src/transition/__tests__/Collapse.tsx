@@ -10,9 +10,9 @@ import type { ReactElement } from "react";
 import { useState } from "react";
 import { act, fireEvent, render } from "../../test-utils/index.js";
 
+import { DISPLAY_NONE_CLASS } from "../../utils/isElementVisible.js";
 import type { CollapseProps } from "../Collapse.js";
 import { Collapse } from "../Collapse.js";
-import { DISPLAY_NONE_CLASS } from "../utils.js";
 
 interface TestProps
   extends Omit<CollapseProps<HTMLElement>, "collapsed" | "children"> {

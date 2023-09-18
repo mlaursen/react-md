@@ -11,9 +11,9 @@ import {
 
 import { FontIcon } from "../../icon/FontIcon.js";
 import { ElementInteractionProvider } from "../../interaction/ElementInteractionProvider.js";
-import { DISPLAY_NONE_CLASS } from "../../transition/utils.js";
-import { Chip } from "../Chip.js";
 import { useToggle } from "../../useToggle.js";
+import { DISPLAY_NONE_CLASS } from "../../utils/isElementVisible.js";
+import { Chip } from "../Chip.js";
 
 describe("Chip", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {

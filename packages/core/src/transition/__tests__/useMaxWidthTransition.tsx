@@ -4,8 +4,8 @@ import { Button } from "../../button/Button.js";
 import { FontIcon } from "../../icon/FontIcon.js";
 import { rmdRender, screen, userEvent } from "../../test-utils/index.js";
 import { useToggle } from "../../useToggle.js";
+import { DISPLAY_NONE_CLASS } from "../../utils/isElementVisible.js";
 import { useMaxWidthTransition } from "../useMaxWidthTransition.js";
-import { DISPLAY_NONE_CLASS } from "../utils.js";
 
 describe("useMaxWidthTransition", () => {
   it("should return the element unchanged if the disabled option is true or the element is not a ReactElement", async () => {
