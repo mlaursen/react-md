@@ -19,118 +19,149 @@ $blue: #268bd2;
 $cyan: #2aa198;
 $green: #859900;
 
-.container :global {
-  // this is _basically_ my current vim theme, but not as good since Prism
-  // doesn't have as many tokenizers without additional plugins and I'm too
-  // lazy to make it match 100%
-  code[class*="language-"],
-  pre[class*="language-"] {
-    direction: ltr;
-    font-family: "Source Code Pro", Consolas, Monaco, monospace;
-  }
-
-  pre[class*="language-"] {
-    background-color: $base-03;
-    color: $base-1;
-    hyphens: none;
-    margin: 0.5em 0;
-    min-height: calc(everything.button-get-var(text-min-height) + 0.5em);
-    overflow: auto;
-    padding: 1em;
-    white-space: pre;
-
-    &::selection,
-    *::selection {
-      background-color: $blue;
-      color: $base-3;
-    }
-  }
-
-  pre > code[class*="language-"] {
-    font-size: 1em;
-  }
-
-  .token {
-    position: relative;
-    z-index: 1;
-
-    &.comment,
-    &.doctype {
-      color: $base-01;
+@layer code {
+  .container :global {
+    // this is _basically_ my current vim theme, but not as good since Prism
+    // doesn't have as many tokenizers without additional plugins and I'm too
+    // lazy to make it match 100%
+    code[class*="language-"],
+    pre[class*="language-"] {
+      direction: ltr;
+      font-family: "Source Code Pro", Consolas, Monaco, monospace;
     }
 
-    &.keyword {
-      color: $green;
+    pre[class*="language-"] {
+      background-color: $base-03;
+      color: $base-1;
+      hyphens: none;
+      margin: 0.5em 0;
+      min-height: calc(everything.button-get-var(text-min-height) + 0.5em);
+      overflow: auto;
+      padding: 1em;
+      white-space: pre;
+
+      &::selection,
+      *::selection {
+        background-color: $blue;
+        color: $base-3;
+      }
     }
 
-    &.punctuation {
-      color: $base-01;
+    pre > code[class*="language-"] {
+      font-size: 1em;
     }
 
-    &.inserted,
-    &.string,
-    .language-tsx &.attr-value {
-      color: $cyan;
+    .token {
+      position: relative;
+      z-index: 1;
+
+      &.comment,
+      &.doctype {
+        color: $base-01;
+      }
+
+      &.inserted,
+      &.keyword {
+        color: $green;
+      }
+
+      &.punctuation {
+        color: $base-01;
+      }
+
+      &.string,
+      .language-tsx &.attr-value {
+        color: $cyan;
+      }
+
+      &.tag,
+      &.selector,
+      &.class-name {
+        color: $blue;
+      }
+
+      &.attr-name,
+      &.property,
+      &.builtin {
+        color: $yellow;
+      }
+
+      &.script,
+      &.interpolation {
+        color: $base-1;
+      }
+
+      &.deleted,
+      &.boolean,
+      &.number,
+      &.interpolation-punctuation {
+        color: $red;
+      }
+
+      &.important,
+      &.bold {
+        font-weight: everything.$font-weight-bold;
+      }
+
+      &.italic {
+        font-style: italic;
+      }
+
+      &.entity {
+        cursor: help;
+      }
     }
 
-    &.tag,
-    &.selector,
-    &.class-name {
+    .language-scss .token.function,
+    .language-scss .token.variable {
       color: $blue;
     }
 
-    &.attr-name,
-    &.property,
-    &.builtin {
-      color: $yellow;
-    }
-
-    &.script,
-    &.interpolation {
+    .language-ts .token + .class-name {
       color: $base-1;
     }
 
-    &.deleted,
-    &.boolean,
-    &.number,
-    &.interpolation-punctuation {
-      color: $red;
+    .language-tsx .function .maybe-class-name {
+      color: $blue;
     }
 
-    &.important,
-    &.bold {
-      font-weight: everything.$font-weight-bold;
+    .language-ts,
+    .language-tsx {
+      .token.number {
+        color: inherit;
+      }
+
+      .token.keyword.module {
+        color: $red;
+
+        + .keyword {
+          color: $blue;
+        }
+      }
+
+      .token.spread {
+        color: $base-1;
+
+        .token.punctuation {
+          color: $red;
+        }
+      }
     }
 
-    &.italic {
-      font-style: italic;
+    .language-scss .token.function {
+      color: $orange;
     }
 
-    &.entity {
-      cursor: help;
+    .language-sh .token.function,
+    .language-bash .token.function,
+    .language-shell .token.function {
+      color: $blue;
     }
-  }
 
-  .language-scss .token.function,
-  .language-scss .token.variable {
-    color: $blue;
-  }
-
-  .language-ts .token + .class-name {
-    color: $base-1;
-  }
-
-  .language-scss .token.function {
-    color: $orange;
-  }
-
-  .language-bash .token.function,
-  .language-shell .token.function {
-    color: $blue;
-  }
-
-  .language-bash .token.parameter,
-  .language-shell .token.parameter {
-    color: $orange;
+    .language-sh .token.function,
+    .language-bash .token.parameter,
+    .language-shell .token.parameter {
+      color: $orange;
+    }
   }
 }

@@ -99,9 +99,11 @@ await Promise.all(
     const originalCss = await readFile(filePath, "utf8");
     const css = format(
       `${GENERATED_FILE_BANNER}
-.container :global {
-${originalCss}
 
+@layer code {
+  .container :global {
+    ${originalCss}
+  }
 }`,
       "scss"
     );
