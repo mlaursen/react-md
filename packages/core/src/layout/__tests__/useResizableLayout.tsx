@@ -1,4 +1,4 @@
-import { describe, expect, it, jest } from "@jest/globals";
+import { afterEach, describe, expect, it, jest } from "@jest/globals";
 import type { ReactNode } from "react";
 import { AppBar } from "../../app-bar/AppBar.js";
 import { AppBarTitle } from "../../app-bar/AppBarTitle.js";
