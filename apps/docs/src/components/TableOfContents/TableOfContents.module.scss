@@ -1,0 +1,18 @@
+@use "everything";
+
+.container {
+  @include everything.layout-use-var(top, header-height);
+  @include everything.desktop-media {
+    display: block;
+  }
+  @include everything.rtl {
+    left: 0;
+    right: auto;
+  }
+
+  display: none;
+  padding: 1rem;
+  position: fixed;
+  right: everything.scrollbar-size();
+  width: var(--toc-width);
+}

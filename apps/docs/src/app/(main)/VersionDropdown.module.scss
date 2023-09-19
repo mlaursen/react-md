@@ -1,0 +1,7 @@
+@use "everything";
+
+@include everything.phone-media {
+  .dropdown {
+    display: none !important;
+  }
+}

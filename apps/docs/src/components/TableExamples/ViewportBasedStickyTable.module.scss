@@ -1,5 +1,0 @@
-@use "everything";
-
-.container {
-  @include everything.table-set-var(sticky-header, everything.$app-bar-height);
-}

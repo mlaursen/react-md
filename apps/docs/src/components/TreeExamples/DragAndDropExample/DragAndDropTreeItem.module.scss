@@ -1,7 +1,0 @@
-@use "everything";
-
-.droppable {
-  @include everything.interaction-outline(
-    $color: everything.interaction-get-var(focus-color)
-  );
-}

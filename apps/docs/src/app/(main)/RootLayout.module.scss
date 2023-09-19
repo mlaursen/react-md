@@ -1,0 +1,12 @@
+@use "everything";
+
+.navigation {
+  @include everything.list-set-var(item-height, auto);
+}
+
+.main {
+  @include everything.desktop-media {
+    display: grid;
+    grid-template-columns: 1fr var(--toc-width);
+  }
+}

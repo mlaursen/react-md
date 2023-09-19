@@ -1,40 +1,23 @@
-// import rehypePrism from "@mapbox/rehype-prism";
-// import mdx from "@next/mdx";
-
-// import mdxLineNumbers from "./scripts/mdxLineNumbers.mjs";
-
-// const withMDX = mdx({
-//   extension: /\.mdx?/,
-//   options: {
-//     remarkPlugins: [],
-//     rehypePlugins: [mdxLineNumbers, rehypePrism],
-//     providerImportSource: "@mdx-js/react",
-//   },
-// });
+import withMDX from "@next/mdx";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  pageExtensions: ["ts", "tsx", "mdx"],
-  // eslint: {
-  //   // I have already run lint before this step...
-  //   ignoreDuringBuilds: true,
-  // },
-  // typescript: {
-  //   ignoreBuildErrors: true,
-  // },
-  // experimental: {
-  //   appDir: true,
-  // },
+  pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
+  // https://github.com/vercel/next.js/issues/49314
   webpack(config) {
-    // config.module.rules.unshift({
-    //   test: /\.md$/,
-    //   use: 'raw-loader',
-    //   exclude: /node_modules/,
-    // });
-
-    return config;
+    return {
+      ...config,
+      resolve: {
+        ...config.resolve,
+        extensionAlias: {
+          ...config.resolve?.extensionAlias,
+          ".js": [".js", ".ts", ".tsx"],
+          ".jsx": [".jsx", ".tsx"],
+        },
+      },
+    };
   },
   async redirects() {
     return [
@@ -53,7 +36,22 @@ const nextConfig = {
   sassOptions: {
     additionalData: `$env: ${process.env.NODE_ENV};`,
   },
+  // transpilePackages: ["@react-md/core"],
+  // does not support mdx plugins
+  experimental: {
+    mdxRs: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
-export default nextConfig;
-// export default withMDX(nextConfig);
+export default withMDX({
+  options: {},
+  // experimental: {
+  //   mdxRs: true,
+  // },
+})(nextConfig);

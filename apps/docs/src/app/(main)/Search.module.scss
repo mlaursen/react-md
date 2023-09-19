@@ -1,0 +1,21 @@
+@use "everything";
+
+.button {
+  @include everything.button-set-var(
+    outline-color,
+    rgba(everything.$black, 0.32)
+  );
+  @include everything.button-set-var(outline-width, 0.125rem);
+  @include everything.button-set-var(text-horizontal-padding, 0.5rem);
+}
+
+.search {
+  @include everything.auto-rtl(margin-right, 1rem);
+}
+
+.shortcut {
+  background-color: everything.$grey-900;
+  border-radius: 0.25rem;
+  color: everything.$dark-theme-text-primary-color;
+  padding: 0.25rem 0.5rem;
+}

@@ -1,0 +1,38 @@
+@use "everything";
+
+$padding: calc(
+  everything.tree-get-var(depth) * 1.25rem +
+    everything.$list-item-horizontal-padding
+);
+
+.list {
+  list-style: none;
+  padding: 0;
+}
+
+.item {
+  @include everything.auto-rtl(padding-left, $padding, 0);
+}
+
+.button {
+  @include everything.interaction-surface($css-modules: true);
+
+  background-color: transparent;
+  border: 0;
+  display: flex;
+  font: inherit;
+  justify-content: space-between;
+  letter-spacing: inherit;
+  width: 100%;
+}
+
+.link {
+  @include everything.interaction-surface($css-modules: true);
+
+  color: currentcolor;
+  display: flex;
+  font: inherit;
+  letter-spacing: inherit;
+  text-decoration: none;
+  width: 100%;
+}

@@ -1,0 +1,14 @@
+@use "sass:map";
+@use "everything";
+
+.container {
+  color: var(--code-color);
+  font-family: var(--source-code-pro), Consolas, Monaco, monospace;
+  font-size: 1em;
+  white-space: pre-wrap;
+
+  &::before,
+  &::after {
+    content: "\`";
+  }
+}

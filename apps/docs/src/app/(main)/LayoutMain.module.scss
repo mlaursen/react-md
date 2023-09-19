@@ -1,0 +1,8 @@
+@use "everything";
+
+.container {
+  @include everything.desktop-media {
+    display: grid;
+    grid-template-columns: 1fr var(--toc-width);
+  }
+}

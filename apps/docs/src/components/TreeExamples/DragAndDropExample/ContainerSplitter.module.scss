@@ -1,7 +1,0 @@
-@use "everything";
-
-.splitter {
-  @include everything.phone-media {
-    display: none;
-  }
-}

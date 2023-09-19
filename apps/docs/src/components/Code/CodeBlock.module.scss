@@ -1,62 +1,26 @@
 @use "everything";
 
-$offset: 0.125rem;
+$spacing: 0.25rem;
 
 .container {
   position: relative;
 }
 
-.lineWrap {
-  pre[class*="language-"],
-  code[class*="language-"] {
-    overflow-wrap: anywhere !important;
-    white-space: pre-wrap !important;
-    word-break: break-all !important;
-  }
+.copy {
+  @include everything.auto-rtl(right, $spacing);
+  @include everything.button-set-var(icon-size, 2.5rem);
+  @include everything.icon-set-var(size, 1.25rem);
+
+  position: absolute;
+  top: $spacing;
+  z-index: 2;
 }
 
 .pre {
-  direction: left;
-  flex-shrink: 0;
+  direction: ltr;
+  padding: 1rem;
 
-  &.lineNumbers.lineNumbers {
-    padding-left: 3.5em;
+  &.lineNumbers {
+    padding-left: 3.5rem;
   }
-}
-
-.noOpacity {
-  opacity: 0;
-}
-
-.copy {
-  @include everything.button-set-var(icon-size, 2.5rem);
-  @include everything.icon-set-var(size, everything.$icon-dense-size);
-  @include everything.keyboard-only(true) {
-    &:focus {
-      opacity: 1;
-    }
-  }
-
-  position: absolute;
-  right: $offset;
-  // most themes have a 0.5em margin applied to the pre element
-  top: calc(0.5em + $offset);
-  transition: opacity everything.$linear-duration;
-  z-index: 2;
-
-  .pre:hover & {
-    opacity: 1;
-  }
-}
-
-.bgLight {
-  @include everything.interaction-use-light-surface;
-
-  color: everything.$black;
-}
-
-.bgDark {
-  @include everything.interaction-use-dark-surface;
-
-  color: everything.$white;
 }

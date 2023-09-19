@@ -1,0 +1,44 @@
+export const meta = {
+  title: "Installation",
+};
+
+# Installation
+
+Install `react-md` with one of the following commands.
+
+```sh npm
+npm install @react-md/core sass
+```
+
+# Generating the styles
+
+`react-md` relies on [Sass](https://sass-lang.com/) to generate the styles and the
+[@use rule](https://sass-lang.com/blog/the-module-system-is-launched/) for importing modules.
+
+You must generate the styles for `react-md` using Sass. Create an entry point like:
+
+```diff
++@use "react-md";
++
++@include react-md.styles;
+```
+
+> The default theme uses #9c27b0 and #ff9100 as the primary and secondary colors. You can
+> configure this by viewing the [color palette customization](/customization/color-palette) page.
+
+# Including Fonts
+
+`react-md` uses the [Roboto](https://fonts.google.com/specimen/Roboto) font by default.
+Add it to your project via Fontsource, the Google Fonts CDN, or Next.js's recommendation.
+
+```sh npm
+npm install @fontsource/roboto
+```
+
+```diff filename="app.scss"
++@use '@fontsource/roboto/300.css';
++@use '@fontsource/roboto/400.css';
++@use '@fontsource/roboto/500.css';
++@use '@fontsource/roboto/700.css';
+ @use "react-md";
+```
