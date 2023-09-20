@@ -1,5 +1,4 @@
 "use client";
-import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useCallback, useRef, useState } from "react";
 import type { ButtonProps } from "../button/Button.js";
@@ -10,11 +9,12 @@ import type { PropsWithRef } from "../types.js";
 import { useDir } from "../typography/WritingDirection.js";
 import { useIntersectionObserver } from "../useIntersectionObserver.js";
 import { applyRef } from "../utils/applyRef.js";
-import { bem } from "../utils/bem.js";
+import {
+  tabListScrollButton,
+  tabListScrollButtonContainer,
+} from "./tabListScrollButtonStyles.js";
 import type { GetTabListScrollToOptions } from "./utils.js";
 import { getTabListScrollToOptions } from "./utils.js";
-
-const styles = bem("rmd-tablist-button");
 
 /**
  * @internal
@@ -92,13 +92,7 @@ export const TabListScrollButton = forwardRef<
           applyRef(instance, ref);
           root.current = instance?.parentElement || null;
         }}
-        className={cnb(
-          styles({
-            left: !forward,
-            right: forward,
-          }),
-          className
-        )}
+        className={tabListScrollButtonContainer({ forward, className })}
       >
         <Button
           aria-label={ariaLabel || (iconButton ? type : undefined)}
@@ -107,7 +101,7 @@ export const TabListScrollButton = forwardRef<
           buttonType={buttonType}
           disabled={propDisabled || disabled}
           {...buttonProps}
-          className={cnb(styles("button"), buttonProps?.className)}
+          className={tabListScrollButton(buttonProps)}
           onClick={(event) => {
             buttonProps?.onClick?.(event);
             const container = root.current;

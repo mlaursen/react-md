@@ -1,61 +1,17 @@
 "use client";
-import { cnb } from "cnbuilder";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useEffect, useRef, useState } from "react";
 import { useAppSize } from "../media-queries/AppSizeProvider.js";
 import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
-import { bem } from "../utils/bem.js";
 import type { BaseTabListScrollButtonProps } from "./TabListScrollButton.js";
 import { TabListScrollButton } from "./TabListScrollButton.js";
+import type { TabsAlignment } from "./tabListStyles.js";
+import { tabList } from "./tabListStyles.js";
 import { useTabList } from "./useTabList.js";
 import type { GetTabListScrollToOptions } from "./utils.js";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { useTabs } from "./useTabs.js";
-
-const styles = bem("rmd-tablist");
-
-/**
- * The supported types of alignments for the tabs.
- */
-export type TabsAlignment = "left" | "center" | "right";
-
-/**
- * @remarks \@since 6.0.0
- */
-export interface TabListClassNameOptions {
-  className?: string;
-  align?: TabsAlignment;
-  animate?: boolean;
-  padded?: boolean;
-  vertical?: boolean;
-  scrollbar?: boolean;
-}
-
-/**
- * @remarks \@since 6.0.0
- */
-export function tabList(options: TabListClassNameOptions = {}): string {
-  const {
-    className,
-    align = "left",
-    padded,
-    vertical,
-    scrollbar,
-    animate = false,
-  } = options;
-
-  return cnb(
-    styles({
-      [align]: true,
-      padded,
-      vertical,
-      animate,
-      "no-scrollbar": !scrollbar,
-    }),
-    className
-  );
-}
+import type { useTabs } from "./useTabs.js";
 
 /**
  * @remarks \@since 6.0.0
@@ -208,6 +164,7 @@ export const TabList = forwardRef<HTMLDivElement, TabListProps>(
         setActiveIndex,
         activationMode,
         scrollButtons: showScrollButtons,
+        disableTransition,
       });
 
     const prevActiveIndex = useRef(activeIndex);
@@ -242,6 +199,7 @@ export const TabList = forwardRef<HTMLDivElement, TabListProps>(
             vertical,
             scrollbar,
             className,
+            indicator: !disableTransition,
           })}
         >
           {showScrollButtons && (

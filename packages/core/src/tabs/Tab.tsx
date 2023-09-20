@@ -1,5 +1,4 @@
 "use client";
-import { cnb } from "cnbuilder";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 import { forwardRef } from "react";
 import { RippleContainer } from "../interaction/RippleContainer.js";
@@ -7,56 +6,32 @@ import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
 import { useKeyboardMovementContext } from "../movement/useKeyboardMovementProvider.js";
 import { useEnsuredId } from "../useEnsuredId.js";
-import { bem } from "../utils/bem.js";
+import { tab } from "./tabStyles.js";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { useTabs } from "./useTabs.js";
-
-declare module "react" {
-  interface CSSProperties {
-    "--rmd-tab-color"?: string;
-    "--rmd-tab-active-color"?: string;
-    "--rmd-tab-inactive-color"?: string;
-    "--rmd-tab-disabled-color"?: string;
-  }
-}
-
-const styles = bem("rmd-tab");
-
-/**
- * @remarks \@since 6.0.0
- */
-export interface TabClassNameOptions {
-  className?: string;
-  active?: boolean;
-  stacked?: boolean;
-  reversed?: boolean;
-  disabled?: boolean;
-}
-
-/**
- * @remarks \@since 6.0.0
- */
-export function tab(options: TabClassNameOptions = {}): string {
-  const { className, active, stacked, reversed, disabled } = options;
-
-  return cnb(
-    styles({
-      active,
-      reversed: reversed && !stacked,
-      stacked,
-      "stacked-reversed": stacked && reversed,
-      disabled,
-    }),
-    className
-  );
-}
+import type { useTabs } from "./useTabs.js";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { TabListProps } from "./TabList.js";
 
 /**
  * @remarks \@since 6.0.0
  */
 export interface TabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  /**
+   * Set this to `true` if the tab is currently active.
+   *
+   * This is normally provided by the {@link useTabs} hook.
+   */
   active: boolean;
+
+  /**
+   * Set this to `true` if the {@link TabListProps.disableTransition} prop has
+   * also been set to `true` to disable an active indicator below the tab when
+   * {@link active} is `true`.
+   *
+   * @defaultValue `false`
+   */
+  activeIndicator?: boolean;
 
   /**
    * An optional icon to render with the with the {@link children}. The default
@@ -98,6 +73,7 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(
     const {
       id: propId,
       active,
+      activeIndicator,
       icon,
       iconAfter,
       stacked,
@@ -153,6 +129,7 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(
           stacked: !!icon && stacked,
           disabled,
           reversed: !!icon && iconAfter,
+          activeIndicator,
         })}
       >
         {icon}

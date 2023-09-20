@@ -50,6 +50,7 @@ export interface TabListHookOptions {
   onClick: MouseEventHandler<HTMLDivElement> | undefined;
   onFocus: FocusEventHandler<HTMLDivElement> | undefined;
   onKeyDown: KeyboardEventHandler<HTMLDivElement> | undefined;
+  disableTransition: boolean;
 }
 
 export interface TabListHookReturnValue {
@@ -89,6 +90,7 @@ export function useTabList(
     activationMode,
     vertical,
     setActiveIndex,
+    disableTransition,
   } = options;
 
   const isRTL = useDir().dir === "rtl";
@@ -105,6 +107,7 @@ export function useTabList(
   const [nodeRef, ref] = useEnsuredRef(propRef);
   const tabListRef = useResizeObserver({
     ref,
+    disabled: disableTransition,
     onUpdate: useCallback(
       (entry) => {
         // this is kind of hacky -- the styles should update when switching between
@@ -124,6 +127,7 @@ export function useTabList(
 
         setIndicatorStyles((prevStyles) => {
           if (
+            prevStyles &&
             prevStyles[TAB_WIDTH_VAR] === cssVars[TAB_WIDTH_VAR] &&
             prevStyles[TAB_OFFSET_VAR] === cssVars[TAB_OFFSET_VAR]
           ) {
@@ -192,7 +196,7 @@ export function useTabList(
       ref: tabListRef,
       style: {
         ...style,
-        ...indicatorStyles,
+        ...(disableTransition ? undefined : indicatorStyles),
       },
       ...movementProps,
     },

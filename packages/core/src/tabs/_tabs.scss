@@ -13,6 +13,7 @@ $disable-stacked: false !default;
 $disable-reversed: false !default;
 $disable-tablist-padded: false !default;
 $disable-tablist-vertical: false !default;
+$disable-indicator: false !default;
 $disable-tablist-indicator: false !default;
 $disable-tablist-hidden-scrollbar: false !default;
 $disable-tablist-scroll-button: false !default;
@@ -86,151 +87,173 @@ $var-lookup: (
   #{$property}: get-var($name, $fallback);
 }
 
-@mixin styles {
-  @if not $disable-everything {
-    .rmd-tablist {
-      display: flex;
-      // disable shrinking since tabs should normally be full width and this
-      // also fixes issues when placed within a flex column container
-      flex-shrink: 0;
-      flex-wrap: nowrap;
-      outline: none;
-      overflow-x: auto;
-      position: relative;
+@mixin indicator-styles {
+  .rmd-tab-indicator {
+    &::after {
+      @include use-var(background, indicator-background);
+
+      bottom: 0;
+      content: "";
+      height: $indicator-height;
+      pointer-events: none;
+      position: absolute;
       width: 100%;
+      z-index: 1;
+    }
 
-      @if not $disable-tablist-indicator {
-        &::after {
-          @include use-var(background, indicator-background);
-
-          bottom: 0;
-          content: "";
-          height: $indicator-height;
-          left: 0;
-          max-width: var(--rmd-tab-width, $min-width);
-          pointer-events: none;
-          position: absolute;
-          transform: translateX(var(--rmd-tab-offset, 0));
-          width: 100%;
-          z-index: 1;
-        }
-
-        @if not $disable-tablist-active-indicator-transition {
-          &--animate::after {
-            transition-duration: $transition-duration;
-            transition-property: transform, max-width;
-            transition-timing-function: $transition-timing-function;
-          }
-        }
-      }
-
-      @if not $disable-tablist-hidden-scrollbar {
-        &--no-scrollbar {
-          @include utils.hide-scrollbar;
-        }
-      }
-
-      @if not $disable-tablist-vertical {
-        &--vertical {
-          flex-direction: column;
-
-          @if not $disable-tablist-indicator {
-            &::after {
-              bottom: auto;
-              left: auto;
-              right: 0;
-              top: 0;
-              transform: translateY(var(--rmd-tab-offset, 0));
-            }
-          }
-        }
-      }
-
-      @if not $disable-tablist-padded {
-        &--padded {
-          @include utils.auto-rtl(padding-left, $tablist-padding-left);
-        }
-      }
-
-      &--center {
-        justify-content: center;
+    @if not $disable-tablist-indicator {
+      &--tablist::after {
+        left: 0;
+        max-width: var(--rmd-tab-width, $min-width);
+        transform: translateX(var(--rmd-tab-offset, 0));
       }
     }
 
-    @if not $disable-tablist-scroll-button {
-      .rmd-tablist-button {
-        align-items: center;
-        background-color: $tablist-scroller-background-color;
-        display: inline-flex;
-        flex-shrink: 0;
-        justify-content: center;
-        position: sticky;
-        z-index: $tablist-scroller-z-index;
+    @if not $disable-tablist-active-indicator-transition {
+      &--animate::after {
+        transition-duration: $transition-duration;
+        transition-property: transform, max-width;
+        transition-timing-function: $transition-timing-function;
+      }
+    }
+  }
+}
 
-        &--left {
-          @include utils.auto-rtl(left, 0);
-        }
+@mixin tablist-styles {
+  .rmd-tablist {
+    display: flex;
+    // disable shrinking since tabs should normally be full width and this
+    // also fixes issues when placed within a flex column container
+    flex-shrink: 0;
+    flex-wrap: nowrap;
+    outline: none;
+    overflow-x: auto;
+    position: relative;
+    width: 100%;
 
-        &--right {
-          @include utils.auto-rtl(right, 0);
-        }
+    @if not $disable-tablist-hidden-scrollbar {
+      &--no-scrollbar {
+        @include utils.hide-scrollbar;
+      }
+    }
 
-        &__button {
-          @include utils.rtl {
-            transform: rotate(180deg);
+    @if not $disable-tablist-vertical {
+      &--vertical {
+        flex-direction: column;
+
+        @if not $disable-tablist-indicator {
+          &::after {
+            bottom: auto;
+            left: auto;
+            right: 0;
+            top: 0;
+            transform: translateY(var(--rmd-tab-offset, 0));
           }
         }
       }
     }
 
-    .rmd-tab {
-      @include interaction.surface;
-      @include utils.map-to-styles($typography);
-      @include use-var(color);
-      @if not $disable-icon {
-        @include icon.set-var(color, currentcolor);
+    @if not $disable-tablist-padded {
+      &--padded {
+        @include utils.auto-rtl(padding-left, $tablist-padding-left);
       }
+    }
 
-      align-items: center;
-      background-color: transparent;
-      border-width: 0;
-      display: inline-flex;
-      flex: 1 1 auto;
-      gap: $gap;
-      height: $height;
+    &--center {
       justify-content: center;
-      max-width: $max-width;
-      min-width: $min-width;
-      padding: 0 $horizontal-padding;
-      transition: color $transition-duration $transition-timing-function;
+    }
+  }
+}
 
-      @if not $disable-stacked {
-        &--stacked {
-          flex-direction: column;
-          height: $stacked-height;
-          padding: $vertical-padding $horizontal-padding;
-        }
+@mixin tablist-button-styles {
+  .rmd-tablist-button {
+    align-items: center;
+    background-color: $tablist-scroller-background-color;
+    display: inline-flex;
+    flex-shrink: 0;
+    justify-content: center;
+    position: sticky;
+    z-index: $tablist-scroller-z-index;
 
-        @if not $disable-reversed {
-          &--stacked-reversed {
-            flex-direction: column-reverse;
-          }
-        }
+    &--left {
+      @include utils.auto-rtl(left, 0);
+    }
+
+    &--right {
+      @include utils.auto-rtl(right, 0);
+    }
+
+    &__button {
+      @include utils.rtl {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
+
+@mixin tab-styles {
+  .rmd-tab {
+    @include interaction.surface;
+    @include utils.map-to-styles($typography);
+    @include use-var(color);
+    @if not $disable-icon {
+      @include icon.set-var(color, currentcolor);
+    }
+
+    align-items: center;
+    background-color: transparent;
+    border-width: 0;
+    display: inline-flex;
+    flex: 1 1 auto;
+    gap: $gap;
+    height: $height;
+    justify-content: center;
+    max-width: $max-width;
+    min-width: $min-width;
+    padding: 0 $horizontal-padding;
+    transition: color $transition-duration $transition-timing-function;
+
+    @if not $disable-stacked {
+      &--stacked {
+        flex-direction: column;
+        height: $stacked-height;
+        padding: $vertical-padding $horizontal-padding;
       }
 
       @if not $disable-reversed {
-        &--reversed {
-          flex-direction: row-reverse;
+        &--stacked-reversed {
+          flex-direction: column-reverse;
         }
       }
+    }
 
-      &--active {
-        @include set-var(color, get-var(active-color));
+    @if not $disable-reversed {
+      &--reversed {
+        flex-direction: row-reverse;
       }
+    }
 
-      &--disabled {
-        @include set-var(color, get-var(disabled-color));
-      }
+    &--active {
+      @include set-var(color, get-var(active-color));
+    }
+
+    &--disabled {
+      @include set-var(color, get-var(disabled-color));
+    }
+  }
+}
+
+@mixin styles {
+  @if not $disable-everything {
+    @include tablist-styles;
+    @include tab-styles;
+
+    @if not $disable-indicator {
+      @include indicator-styles;
+    }
+
+    @if not $disable-tablist-scroll-button {
+      @include tablist-button-styles;
     }
   }
 }

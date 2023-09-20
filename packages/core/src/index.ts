@@ -212,6 +212,10 @@ export * from "./table/types.js";
 export * from "./tabs/Tab.js";
 export * from "./tabs/TabList.js";
 export * from "./tabs/TabListScrollButton.js";
+export * from "./tabs/tabIndicatorStyles.js";
+export * from "./tabs/tabListScrollButtonStyles.js";
+export * from "./tabs/tabListStyles.js";
+export * from "./tabs/tabStyles.js";
 export * from "./tabs/useTabs.js";
 export { getTabListScrollToOptions } from "./tabs/utils.js";
 export type {
