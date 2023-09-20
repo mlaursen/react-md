@@ -8,6 +8,10 @@
 /// ripple | press | both | null
 $mode: ripple !default;
 $disable-focus-background: false !default;
+$disable-ripple-inset-var: false !default;
+$disable-ripple-border-radius-var: false !default;
+$disable-surface-inset-var: false !default;
+$disable-surface-border-radius-var: false !default;
 
 $_disable-ripple: not
   list.index(
@@ -136,12 +140,51 @@ $var-lookup: (
     var: --rmd-focus-width,
     value: $focus-width,
   ),
+  ripple-inset: (
+    var: --rmd-ripple-inset,
+    value: 0,
+  ),
+  ripple-border-radius: (
+    var: --rmd-ripple-border-radius,
+    value: inherit,
+  ),
+  surface-inset: (
+    var: --rmd-surface-inset,
+    value: 0,
+  ),
+  surface-border-radius: (
+    var: --rmd-surface-border-radius,
+    value: inherit,
+  ),
 );
+
+@function _is-var-disabled($name) {
+  @if $name == ripple-inset {
+    @return $disable-ripple-inset-var;
+  }
+
+  @if $name == ripple-border-radius {
+    @return $disable-ripple-border-radius-var;
+  }
+
+  @if $name == surface-inset {
+    @return $disable-surface-inset-var;
+  }
+
+  @if $name == surface-border-radius {
+    @return $disable-surface-border-radius-var;
+  }
+
+  @return false;
+}
 
 @function get-var($name, $fallback: null) {
   $found: utils.validate($var-lookup, $name, "interaction var");
   $var: map.get($found, var);
   $value: if($fallback, $fallback, map.get($found, value));
+  @if _is-var-disabled($name) {
+    @return $value;
+  }
 
   @if $value {
     @return var(#{$var}, #{$value});
@@ -152,6 +195,9 @@ $var-lookup: (
 
 @mixin set-var($name, $value) {
   $var: map.get(utils.validate($var-lookup, $name, "interaction var"), var);
+  @if _is-var-disabled($name) {
+    @error '"#{$name}" is currently disabled and cannot be changed. Set "$disable-#{$name}-var" to `true` or remove it from the Sass module overrides.';
+  }
 
   #{$var}: #{$value};
 }
@@ -260,7 +306,10 @@ $var-lookup: (
   }
 
   &::before {
-    @include utils.pseudo-element;
+    @include utils.pseudo-element(
+      $inset: get-var(surface-inset),
+      $border-radius: get-var(surface-border-radius)
+    );
     @include outline($box-shadow);
     @if $hoverable {
       @include use-var(background-color);
@@ -316,8 +365,9 @@ $var-lookup: (
 @mixin styles {
   @if not $_disable-ripple {
     .rmd-ripple-container {
-      border-radius: inherit;
-      inset: 0;
+      @include use-var(border-radius, ripple-border-radius);
+      @include use-var(inset, ripple-inset);
+
       overflow: hidden;
       pointer-events: none;
       position: absolute;

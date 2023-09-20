@@ -3,6 +3,13 @@ import type { ReactElement } from "react";
 import { Ripple } from "./Ripple.js";
 import type { ProvidedRippleContainerProps } from "./types.js";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-ripple-inset"?: string | number;
+    "--rmd-ripple-border-radius"?: string | number;
+  }
+}
+
 /** @internal */
 export interface RippleContainerProps extends ProvidedRippleContainerProps {
   className?: string;

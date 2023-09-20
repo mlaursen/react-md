@@ -89,8 +89,13 @@ $_swappable-properties: text-align;
   }
 }
 
-@mixin pseudo-element($z-index: 0, $fixed: false, $inset: 0) {
-  border-radius: inherit;
+@mixin pseudo-element(
+  $z-index: 0,
+  $fixed: false,
+  $inset: 0,
+  $border-radius: inherit
+) {
+  border-radius: $border-radius;
   content: "";
   inset: $inset;
   pointer-events: none;

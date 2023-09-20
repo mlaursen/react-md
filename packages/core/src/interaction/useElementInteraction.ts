@@ -12,6 +12,13 @@ import type {
 } from "./types.js";
 import { getRippleStyle, releaseRipple, updateRipplesState } from "./utils.js";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-surface-inset"?: string | number;
+    "--rmd-surface-border-radius"?: string | number;
+  }
+}
+
 /** @remarks \@since 6.0.0 */
 export const PRESSED_CLASS_NAME = "rmd-pressed";
 
