@@ -121,7 +121,7 @@ $var-lookup: (
 
 @mixin tablist-styles {
   .rmd-tablist {
-    display: flex;
+    display: inline-flex;
     // disable shrinking since tabs should normally be full width and this
     // also fixes issues when placed within a flex column container
     flex-shrink: 0;
@@ -129,7 +129,11 @@ $var-lookup: (
     outline: none;
     overflow-x: auto;
     position: relative;
-    width: 100%;
+
+    &--full-width {
+      display: flex;
+      width: 100%;
+    }
 
     @if not $disable-tablist-hidden-scrollbar {
       &--no-scrollbar {

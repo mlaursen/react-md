@@ -16,6 +16,7 @@ export interface TabListClassNameOptions {
   className?: string;
   align?: TabsAlignment;
   animate?: boolean;
+  inline?: boolean;
   padded?: boolean;
   vertical?: boolean;
   scrollbar?: boolean;
@@ -30,6 +31,7 @@ export function tabList(options: TabListClassNameOptions = {}): string {
     className,
     align = "left",
     padded,
+    inline,
     vertical,
     scrollbar,
     animate = false,
@@ -41,6 +43,7 @@ export function tabList(options: TabListClassNameOptions = {}): string {
       [align]: true,
       padded,
       vertical,
+      "full-width": !inline,
       "no-scrollbar": !scrollbar,
     }),
     indicator && tabIndicator({ tablist: true, animate }),

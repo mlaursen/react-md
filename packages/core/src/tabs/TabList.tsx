@@ -36,6 +36,11 @@ export interface TabListProps extends HTMLAttributes<HTMLDivElement> {
   vertical?: boolean;
 
   /**
+   * @defaultValue `false`
+   */
+  inline?: boolean;
+
+  /**
    * Set this to `true` to show a scrollbar when the number of tabs cause
    * overflow.
    *
@@ -137,6 +142,7 @@ export const TabList = forwardRef<HTMLDivElement, TabListProps>(
       activationMode = "manual",
       align = "left",
       padded = false,
+      inline = false,
       vertical = false,
       scrollbar = false,
       scrollButtons = false,
@@ -195,11 +201,12 @@ export const TabList = forwardRef<HTMLDivElement, TabListProps>(
           className={tabList({
             align,
             padded,
+            inline,
             animate: !disableTransition && animate,
             vertical,
             scrollbar,
-            className,
             indicator: !disableTransition,
+            className,
           })}
         >
           {showScrollButtons && (
