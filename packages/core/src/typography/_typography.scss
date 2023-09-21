@@ -79,84 +79,132 @@ $headline-1-recommended-styles: (
   font-weight: map.get($font-weights, light),
   letter-spacing: get-letter-spacing(-1.5, 6),
 );
-$headline-1-styles: $headline-1-recommended-styles !default;
+$headline-1-custom-styles: () !default;
+$headline-1-styles: map.merge(
+  $headline-1-recommended-styles,
+  $headline-1-custom-styles
+) !default;
 $headline-2-recommended-styles: (
   font-size: 3.75rem,
   line-height: 3.75rem,
   font-weight: map.get($font-weights, light),
   letter-spacing: get-letter-spacing(-0.5, 3.75),
 );
-$headline-2-styles: $headline-2-recommended-styles !default;
+$headline-2-custom-styles: () !default;
+$headline-2-styles: map.merge(
+  $headline-2-recommended-styles,
+  $headline-2-custom-styles
+) !default;
 $headline-3-recommended-styles: (
   font-size: 3rem,
   line-height: 3.125rem,
   font-weight: map.get($font-weights, regular),
   letter-spacing: normal,
 );
-$headline-3-styles: $headline-3-recommended-styles !default;
+$headline-3-custom-styles: () !default;
+$headline-3-styles: map.merge(
+  $headline-3-recommended-styles,
+  $headline-3-custom-styles
+) !default;
 $headline-4-recommended-styles: (
   font-size: 2.125rem,
   line-height: 2.5rem,
   font-weight: map.get($font-weights, regular),
   letter-spacing: get-letter-spacing(0.25, 2.125),
 );
-$headline-4-styles: $headline-4-recommended-styles !default;
+$headline-4-custom-styles: () !default;
+$headline-4-styles: map.merge(
+  $headline-4-recommended-styles,
+  $headline-4-custom-styles
+) !default;
 $headline-5-recommended-styles: (
   font-size: 1.5rem,
   line-height: 2rem,
   font-weight: map.get($font-weights, regular),
   letter-spacing: normal,
 );
-$headline-5-styles: $headline-5-recommended-styles !default;
+$headline-5-custom-styles: () !default;
+$headline-5-styles: map.merge(
+  $headline-5-recommended-styles,
+  $headline-5-custom-styles
+) !default;
 $headline-6-recommended-styles: (
   font-size: 1.25rem,
   line-height: 2rem,
   font-weight: map.get($font-weights, medium),
   letter-spacing: get-letter-spacing(0.25, 1.25),
 );
-$headline-6-styles: $headline-6-recommended-styles !default;
+$headline-6-custom-styles: () !default;
+$headline-6-styles: map.merge(
+  $headline-6-recommended-styles,
+  $headline-6-custom-styles
+) !default;
 $subtitle-1-recommended-styles: (
   font-size: 1rem,
   line-height: 1.75rem,
   font-weight: map.get($font-weights, regular),
   letter-spacing: get-letter-spacing(0.15, 1),
 );
-$subtitle-1-styles: $subtitle-1-recommended-styles !default;
+$subtitle-1-custom-styles: () !default;
+$subtitle-1-styles: map.merge(
+  $subtitle-1-recommended-styles,
+  $subtitle-1-custom-styles
+) !default;
 $subtitle-2-recommended-styles: (
   font-size: 0.875rem,
   line-height: 1.375rem,
   font-weight: map.get($font-weights, medium),
   letter-spacing: get-letter-spacing(0.1, 0.875),
 );
-$subtitle-2-styles: $subtitle-2-recommended-styles !default;
+$subtitle-2-custom-styles: () !default;
+$subtitle-2-styles: map.merge(
+  $subtitle-2-recommended-styles,
+  $subtitle-2-custom-styles
+) !default;
 $body-1-recommended-styles: (
   font-size: 1rem,
   line-height: 1.5rem,
   font-weight: map.get($font-weights, regular),
   letter-spacing: get-letter-spacing(0.5, 0.875),
 );
-$body-1-styles: $body-1-recommended-styles !default;
+$body-1-custom-styles: () !default;
+$body-1-styles: map.merge(
+  $body-1-recommended-styles,
+  $body-1-custom-styles
+) !default;
 $body-2-recommended-styles: (
   font-size: 0.875rem,
   line-height: 1.25rem,
   font-weight: map.get($font-weights, regular),
   letter-spacing: get-letter-spacing(0.25, 0.875),
 );
-$body-2-styles: $body-2-recommended-styles !default;
+$body-2-custom-styles: () !default;
+$body-2-styles: map.merge(
+  $body-2-recommended-styles,
+  $body-2-custom-styles
+) !default;
 $caption-recommended-styles: (
   font-size: 0.75rem,
   line-height: 1.25rem,
   font-weight: map.get($font-weights, regular),
   letter-spacing: get-letter-spacing(0.4, 0.75),
 );
-$caption-styles: $caption-recommended-styles !default;
+$caption-custom-styles: () !default;
+$caption-styles: map.merge(
+  $caption-recommended-styles,
+  $caption-custom-styles
+) !default;
 $overline-recommended-styles: (
   font-size: 0.75rem,
   line-height: 2rem,
   font-weight: map.get($font-weights, medium),
   letter-spacing: get-letter-spacing(2, 0.75),
 );
-$overline-styles: $overline-recommended-styles !default;
+$overline-custom-styles: () !default;
+$overline-styles: map.merge(
+  $overline-recommended-styles,
+  $overline-custom-styles
+) !default;
 $button-recommended-styles: map.merge(
   $base-font-styles,
   (
@@ -166,7 +214,11 @@ $button-recommended-styles: map.merge(
     letter-spacing: get-letter-spacing(1.25, 0.875),
   )
 );
-$button-styles: $button-recommended-styles !default;
+$button-custom-styles: () !default;
+$button-styles: map.merge(
+  $button-recommended-styles,
+  $button-custom-styles
+) !default;
 
 /// The max length a line of text can be on mobile devices.
 /// @type Number
