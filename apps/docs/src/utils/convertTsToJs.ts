@@ -1,25 +1,23 @@
 import "server-only";
-import { transform } from "@babel/core";
+import { transform } from "sucrase";
 import { format } from "./format.js";
 
-export async function convertTsToJs(
-  code: string,
-  fileName: string
-): Promise<string> {
-  const result = transform(code, {
-    retainLines: true,
-    plugins: [
-      [
-        "@babel/plugin-transform-typescript",
-        { isTSX: fileName.endsWith(".tsx") },
-      ],
-    ],
-  });
+export async function convertTsToJs(code: string): Promise<string> {
+  const transformedCode = transform(code, {
+    transforms: ["typescript", "jsx"],
+    jsxRuntime: "preserve",
+    disableESTransforms: true,
+    production: process.env.NODE_ENV === "production",
+  }).code;
 
-  const transformedCode = result?.code;
-  if (typeof transformedCode !== "string" || !transformedCode) {
-    throw new Error("Unable to transform from ts to js");
+  // when there is no code, it is usually just an import statement or something that doesn't
+  if (!transformedCode) {
+    return code;
   }
 
-  return format(transformedCode.replace(/(>|,)\r?\n+/g, "$1\n"), "babel");
+  const formatted = await format(
+    transformedCode.replace(/(>|,)\r?\n+/g, "$1\n"),
+    "babel"
+  );
+  return formatted.trim();
 }

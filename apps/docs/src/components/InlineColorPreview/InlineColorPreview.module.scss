@@ -1,0 +1,48 @@
+@use "everything";
+
+.container {
+  $inline-size: 1em;
+  $display-size: 2.5em;
+  $outer-width: 0.25em;
+  $border-width: $outer-width + 0.0625em;
+
+  @include everything.auto-rtl(padding-left, 1.25em);
+
+  display: inline-block;
+  position: relative;
+
+  &::before,
+  &::after {
+    background-color: var(--color);
+    border-radius: 0.25em;
+    content: "";
+    display: inline-block;
+    height: $inline-size;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: $inline-size;
+  }
+
+  &::before {
+    left: 0.25em;
+  }
+
+  &::after {
+    box-shadow:
+      inset 0 0 0 $outer-width everything.$white,
+      inset 0 0 0 $border-width everything.$black;
+    height: $display-size;
+    left: 50%;
+    opacity: 0;
+    position: absolute;
+    top: -0.25em;
+    transform: translate3d(-50%, -100%, 0);
+    transition: opacity everything.$linear-duration;
+    width: $display-size;
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
+}

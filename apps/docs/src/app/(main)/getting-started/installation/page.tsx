@@ -1,7 +1,14 @@
 import { MarkdownPage } from "@/components/MarkdownPage/MarkdownPage.jsx";
+import { createTableOfContents } from "@/components/TableOfContents/createTableOfContents.js";
 import { type ReactElement } from "react";
-import * as props from "./README.mdx";
+import Markdown from "./README.mdx";
 
-export default function HomePage(): ReactElement {
-  return <MarkdownPage {...props} />;
+export default async function GettingStartedPage(): Promise<ReactElement> {
+  const toc = await createTableOfContents("./README.mdx", import.meta.url);
+
+  return (
+    <MarkdownPage toc={toc}>
+      <Markdown />
+    </MarkdownPage>
+  );
 }

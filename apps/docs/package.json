@@ -37,12 +37,14 @@
     "@react-md/core": "workspace:*",
     "@react-md/material-icons": "workspace:*",
     "cnbuilder": "^3.1.0",
+    "github-slugger": "^2.0.0",
     "js-cookie": "^3.0.5",
     "next": "^13.5.1",
     "prismjs": "^1.29.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "server-only": "^0.0.1"
+    "server-only": "^0.0.1",
+    "sucrase": "^3.34.0"
   },
   "devDependencies": {
     "@mdx-js/mdx": "^2.3.0",
@@ -51,6 +53,7 @@
     "@types/lodash": "^4.14.198",
     "@types/mdx": "^2.0.7",
     "@types/node": "^20.6.0",
+    "@types/prismjs": "^1.26.0",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
     "eslint": "^8.49.0",

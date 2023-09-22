@@ -2,10 +2,6 @@
 
 $spacing: 0.25rem;
 
-.container {
-  position: relative;
-}
-
 .copy {
   @include everything.auto-rtl(right, $spacing);
   @include everything.button-set-var(icon-size, 2.5rem);
@@ -16,6 +12,10 @@ $spacing: 0.25rem;
   z-index: 2;
 }
 
+.preContainer {
+  position: relative;
+}
+
 .pre {
   direction: ltr;
   padding: 1rem;
@@ -23,4 +23,8 @@ $spacing: 0.25rem;
   &.lineNumbers {
     padding-left: 3.5rem;
   }
+}
+
+.noMarginTop {
+  margin-top: 0;
 }

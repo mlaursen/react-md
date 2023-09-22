@@ -1,7 +1,7 @@
 import {
   PACKAGE_MANAGERS,
   usePackageManagerContext,
-} from "@/components/RootProviders/PackageManagerProvider.jsx";
+} from "@/providers/PackageManagerProvider.jsx";
 import { SegmentedButtonGroup } from "@/components/SegmentedButtonGroup.jsx";
 import { type ReactElement } from "react";
 

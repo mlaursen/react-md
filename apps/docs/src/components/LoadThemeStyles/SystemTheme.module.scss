@@ -1,21 +1,16 @@
 @use "everything";
+@use "themes";
 
 @if everything.$color-scheme == dark {
   @media (prefers-color-scheme: light) {
     .container {
-      @include everything.use-light-theme;
-
-      --code-color: #{everything.$pink-600};
-      --phone-app-bar-bg: #{everything.$grey-100};
+      @include themes.dark-theme;
     }
   }
 } @else {
   @media (prefers-color-scheme: dark) {
     .container {
-      @include everything.use-dark-theme;
-
-      --code-color: #{everything.$pink-400};
-      --phone-app-bar-bg: #{everything.$grey-900};
+      @include themes.dark-theme;
     }
   }
 }

@@ -13,6 +13,8 @@
     )
   );
 
+  margin-bottom: 0.5em;
+  margin-top: 1.25em;
   position: relative;
   scroll-margin-top: calc(0.5rem + everything.layout-get-var(header-height));
 

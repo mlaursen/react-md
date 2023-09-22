@@ -1,8 +1,5 @@
-@use "everything";
+@use "themes";
 
 .container {
-  @include everything.use-light-theme;
-
-  --code-color: #{everything.$pink-600};
-  --phone-app-bar-bg: #{everything.$grey-100};
+  @include themes.light-theme;
 }

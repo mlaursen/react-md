@@ -1,36 +1,40 @@
-import { type MDXProps } from "mdx/types.js";
-import { type ReactElement } from "react";
+import { type ReactElement, type ReactNode } from "react";
 import { TableOfContents } from "../TableOfContents/TableOfContents.jsx";
 import { type TableOfContentsItem } from "../TableOfContents/types.js";
 import styles from "./MarkdownPage.module.scss";
 
 export interface MarkdownPageProps {
   toc?: TableOfContentsItem[];
-  default(props: MDXProps): ReactElement;
+  children: ReactNode;
 }
 
 /**
  * @example
  * Main Usage
  * ```tsx
- * import type { ReactElement } from "react";
  * import { MarkdownPage } from "@/components/MarkdownPage/MarkdownPage.jsx";
- * import * as props from "./Whatever.mdx";
+ * import { createTableOfContents } from "@/components/TableOfContents/createTableOfContents.js";
+ * import { type ReactElement } from "react";
+ * import Markdown from "./README.mdx";
  *
- * export default WhateverPage(): ReactElement {
- *   return <MarkdownPage {...props} />;
+ * export default async function GettingStartedPage(): Promise<ReactElement> {
+ *   const toc = await createTableOfContents("./README.mdx", import.meta.url);
+ *
+ *   return (
+ *     <MarkdownPage toc={toc}>
+ *       <Markdown />
+ *     </MarkdownPage>
+ *   );
  * }
  * ```
  */
 export function MarkdownPage(props: MarkdownPageProps): ReactElement {
-  const { toc = [], default: Content } = props;
+  const { toc = [], children } = props;
   const isTocVisible = toc.length > 0;
 
   return (
     <>
-      <div className={styles.container}>
-        <Content />
-      </div>
+      <div className={styles.container}>{children}</div>
       {isTocVisible && <TableOfContents toc={toc} />}
     </>
   );

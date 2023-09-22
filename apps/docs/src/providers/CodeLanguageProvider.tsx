@@ -10,7 +10,10 @@ import {
   type ReactNode,
 } from "react";
 
-export type CodeLanguage = "js" | "ts";
+export type CodeLanguage = "ts" | "js";
+
+// I'm "Typescript First" (ha) for this
+export const CODE_LANGUAGES: readonly CodeLanguage[] = ["ts", "js"];
 
 export interface CodeLanguageContext {
   codeLanguage: CodeLanguage;

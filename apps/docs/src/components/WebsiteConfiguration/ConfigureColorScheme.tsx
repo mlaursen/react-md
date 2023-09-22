@@ -1,6 +1,4 @@
 import { SegmentedButtonGroup } from "@/components/SegmentedButtonGroup.jsx";
-import { COLOR_SCHEME_KEY } from "@/constants/cookies.js";
-import { setCookie } from "@/utils/clientCookies.js";
 import { useColorScheme, type ColorSchemeMode } from "@react-md/core";
 import DarkModeOutlinedIcon from "@react-md/material-icons/DarkModeOutlinedIcon";
 import DevicesOutlinedIcon from "@react-md/material-icons/DevicesOutlinedIcon";
@@ -22,10 +20,7 @@ export function ConfigureColorScheme(): ReactElement {
       label="Color Scheme"
       items={modes}
       value={colorSchemeMode}
-      setValue={(nextColorScheme) => {
-        setCookie(COLOR_SCHEME_KEY, nextColorScheme);
-        setColorSchemeMode(nextColorScheme);
-      }}
+      setValue={setColorSchemeMode}
       icon={ICONS}
       transform="capitalize"
     />

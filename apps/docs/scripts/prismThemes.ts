@@ -144,11 +144,11 @@ export type PrismTheme = typeof PRISM_THEMES[number];
 const loadThemeContent = await format(
   `${GENERATED_FILE_BANNER}
 
-import { usePrismThemeContext } from "@/components/RootProviders/PrismThemeProvider.jsx";
+import { usePrismThemeContext } from "@/providers/PrismThemeProvider.jsx";
 import { CircularProgress, Overlay } from "@react-md/core";
-import type { DynamicOptions } from "next/dynamic.js";
+import { type DynamicOptions } from "next/dynamic.js";
 import dynamic from "next/dynamic.js";
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 
 const options: DynamicOptions =  {
   loading: () => (

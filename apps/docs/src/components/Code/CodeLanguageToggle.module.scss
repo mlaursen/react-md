@@ -1,0 +1,10 @@
+@use "everything";
+
+.container {
+  @include everything.button-set-var(icon-size, 2rem);
+  @include everything.box-set-var(gap, 0.25rem);
+}
+
+.button {
+  @include everything.map-to-styles(everything.$button-styles);
+}

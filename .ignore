@@ -4,3 +4,5 @@ prev/
 /packages/*/types
 /packages/material-icons/*.d.ts
 /packages/material-icons/*.js
+
+.next/

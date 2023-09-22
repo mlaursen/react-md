@@ -1,0 +1,17 @@
+@use "everything";
+
+@mixin light-theme {
+  @include everything.use-light-theme;
+
+  --code-color: #{everything.$pink-600};
+  --preview-bg: #{everything.$white};
+  --phone-app-bar-bg: #{everything.$grey-100};
+}
+
+@mixin dark-theme {
+  @include everything.use-dark-theme;
+
+  --code-color: #{everything.$pink-400};
+  --preview-bg: #{everything.$dark-theme-background-color};
+  --phone-app-bar-bg: #{everything.$grey-900};
+}

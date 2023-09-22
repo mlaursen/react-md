@@ -1,7 +1,7 @@
 import "./layout.scss";
 
 import { LoadThemeStyles } from "@/components/LoadThemeStyles/LoadThemeStyles.jsx";
-import { RootProviders } from "@/components/RootProviders/RootProviders.jsx";
+import { RootProviders } from "@/providers/RootProviders.jsx";
 import { semver } from "@/utils/semver.js";
 import { cnb } from "cnbuilder";
 import { type Metadata } from "next";
@@ -37,13 +37,8 @@ export default async function MainRootLayout(
   );
   const headersInstance = headers();
   const isMac = !!headersInstance.get("user-agent")?.includes("Mac");
-  const {
-    defaultPrismTheme,
-    defaultCodeLanguage,
-    defaultPackageManager,
-    prismStyles,
-    themeStyles,
-  } = await getInitialState();
+  const { prismStyles, themeStyles, ...providerProps } =
+    await getInitialState();
 
   return (
     <html
@@ -57,11 +52,7 @@ export default async function MainRootLayout(
       )}
     >
       <body>
-        <RootProviders
-          defaultPrismTheme={defaultPrismTheme}
-          defaultCodeLanguage={defaultCodeLanguage}
-          defaultPackageManager={defaultPackageManager}
-        >
+        <RootProviders {...providerProps}>
           <LoadThemeStyles />
           <RootLayout
             isMac={isMac}

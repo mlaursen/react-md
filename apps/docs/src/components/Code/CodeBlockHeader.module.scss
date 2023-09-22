@@ -1,0 +1,18 @@
+@use "sass:map";
+@use "everything";
+
+.container {
+  @include everything.interaction-use-dark-surface;
+  @include everything.theme-set-var(
+    text-primary-color,
+    everything.$dark-theme-text-primary-color
+  );
+  @include everything.theme-set-var(
+    text-secondary-color,
+    everything.$dark-theme-text-secondary-color
+  );
+  @include everything.app-bar-set-var(
+    background-color,
+    map.get(everything.$dark-elevation-colors, 10)
+  );
+}

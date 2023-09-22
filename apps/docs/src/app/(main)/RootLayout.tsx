@@ -1,4 +1,5 @@
 "use client";
+import { WebsiteConfiguration } from "@/components/WebsiteConfiguration/WebsiteConfiguration.jsx";
 import {
   Button,
   LayoutAppBar,
@@ -10,7 +11,6 @@ import {
 import { cnb } from "cnbuilder";
 import { usePathname } from "next/navigation.js";
 import { type ReactElement, type ReactNode } from "react";
-import { Configuration } from "./Configuration.jsx";
 import { GithubLink } from "./GithubLink.jsx";
 import { Navigation } from "./Navigation.jsx";
 import styles from "./RootLayout.module.scss";
@@ -48,7 +48,7 @@ export function RootLayout(props: RootLayoutProps): ReactElement {
         <RootLayoutTitle {...titleProps} />
         <Search isMac={isMac} />
         <GithubLink />
-        <Configuration />
+        <WebsiteConfiguration />
       </LayoutAppBar>
       <LayoutNav {...expandableNavProps} className={styles.navigation}>
         <Navigation />

@@ -59,7 +59,7 @@ endsnippet
 
 snippet cnf "classnames file" b
 import { cnb } from "cnbuilder";
-import { bem } from "../utils/bem.js":
+import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-$1");
 
@@ -70,6 +70,9 @@ export interface `!p snip.rv=upperfirst(t[2])`ClassNameOptions {
 	className?: string;
 }
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export function ${2:`!p snip.rv=camelcase(t[1])`}(options: `!p snip.rv=upperfirst(t[2])`ClassNameOptions = {}): string {
 	const { className } = options;
 

@@ -1,7 +1,13 @@
+@use "everything";
+
 .container {
+  @include everything.tablet-media {
+    --hp: 4rem;
+  }
+
   margin: 0 auto;
   max-width: 105ch;
   overflow: hidden;
-  padding: 0 4rem;
+  padding: 0 var(--hp, 2rem) 2rem;
   width: 100%;
 }

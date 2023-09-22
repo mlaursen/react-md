@@ -1,0 +1,8 @@
+@use "everything";
+
+.container {
+  background-color: var(--preview-bg);
+  border: everything.$divider-size solid everything.divider-get-var(color);
+  border-bottom-width: 0;
+  border-radius: everything.$card-border-radius;
+}

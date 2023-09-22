@@ -1,4 +1,4 @@
-import type { cookies } from "next/headers.js";
+import { type cookies } from "next/headers.js";
 import "server-only";
 
 interface GetCookieOptions<V extends string> {
