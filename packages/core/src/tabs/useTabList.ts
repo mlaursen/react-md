@@ -13,7 +13,7 @@ import type {
   KeyboardMovementProps,
 } from "../movement/types.js";
 import { useKeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
-import { useDir } from "../typography/WritingDirection.js";
+import { useDir } from "../typography/WritingDirectionProvider.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
 import { useResizeObserver } from "../useResizeObserver.js";
 import { getTabRoleOnly, scrollTabIntoView } from "./utils.js";

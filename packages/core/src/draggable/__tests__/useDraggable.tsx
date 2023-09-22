@@ -4,6 +4,7 @@ import { createRef, type ReactElement, type Ref } from "react";
 import { fireEvent, rmdRender } from "../../test-utils/index.js";
 
 import { Button } from "../../button/Button.js";
+import { WritingDirectionProvider } from "../../typography/WritingDirectionProvider.js";
 import { getPercentage } from "../../utils/getPercentage.js";
 import { useDraggable, type DraggableOptions } from "../useDraggable.js";
 
@@ -308,9 +309,11 @@ describe("useDraggable", () => {
 
   it("should support dragging when RTL is enabled", () => {
     const { getByRole } = rmdRender(<Test />, {
-      rmdConfig: {
-        defaultDir: "rtl",
-      },
+      wrapper: ({ children }) => (
+        <WritingDirectionProvider defaultDir="rtl">
+          {children}
+        </WritingDirectionProvider>
+      ),
     });
 
     const button = getByRole("button");

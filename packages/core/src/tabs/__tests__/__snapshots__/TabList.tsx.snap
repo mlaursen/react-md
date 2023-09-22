@@ -3,7 +3,7 @@
 exports[`TabList should update the tab indicator styles based on the active index 1`] = `
 <div
   aria-orientation="horizontal"
-  class="rmd-tablist rmd-tablist--left rmd-tablist--no-scrollbar rmd-tab-indicator rmd-tab-indicator--tablist"
+  class="rmd-tablist rmd-tablist--left rmd-tablist--full-width rmd-tablist--no-scrollbar rmd-tab-indicator rmd-tab-indicator--tablist"
   role="tablist"
   style="--rmd-tab-width: 120px; --rmd-tab-offset: 0px;"
   tabindex="0"

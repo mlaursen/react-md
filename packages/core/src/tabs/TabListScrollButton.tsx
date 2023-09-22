@@ -10,7 +10,7 @@ import { Button, type ButtonProps } from "../button/Button.js";
 import { type ButtonClassNameThemeOptions } from "../button/buttonStyles.js";
 import { useIcon } from "../icon/IconProvider.js";
 import { type PropsWithRef } from "../types.js";
-import { useDir } from "../typography/WritingDirection.js";
+import { useDir } from "../typography/WritingDirectionProvider.js";
 import { useIntersectionObserver } from "../useIntersectionObserver.js";
 import { applyRef } from "../utils/applyRef.js";
 import {

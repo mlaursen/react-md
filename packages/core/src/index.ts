@@ -222,12 +222,16 @@ export type {
   GetTabListScrollToOptions,
   TabListScrollToOptions,
 } from "./tabs/utils.js";
-export * from "./theme/ColorSchemeProvider.js";
+export * from "./theme/LocalStorageColorSchemeProvider.js";
 export * from "./theme/ThemeProvider.js";
 export * from "./theme/colors.js";
 export * from "./theme/cssVars.js";
 export * from "./theme/types.js";
 export * from "./theme/useCSSVariables.js";
+export * from "./theme/useColorScheme.js";
+export * from "./theme/useColorSchemeMetaTag.js";
+export * from "./theme/useColorSchemeProvider.js";
+export * from "./theme/usePrefersColorScheme.js";
 export * from "./theme/utils.js";
 export * from "./tooltip/Tooltip.js";
 export * from "./tooltip/TooltipHoverModeProvider.js";
@@ -267,7 +271,7 @@ export * from "./types.js";
 export * from "./typography/SrOnly.js";
 export * from "./typography/TextContainer.js";
 export * from "./typography/Typography.js";
-export * from "./typography/WritingDirection.js";
+export * from "./typography/WritingDirectionProvider.js";
 export * from "./useAsyncAction.js";
 export * from "./useDebouncedFunction.js";
 export * from "./useDropzone.js";

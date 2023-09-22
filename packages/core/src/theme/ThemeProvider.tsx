@@ -10,7 +10,6 @@ import {
 } from "react";
 import { useSsr } from "../SsrProvider.js";
 import { type UseStateSetter } from "../types.js";
-import { useColorScheme } from "./ColorSchemeProvider.js";
 import {
   black,
   blue500,
@@ -36,6 +35,7 @@ import {
   textSecondaryColorVar,
   warningColorVar,
 } from "./cssVars.js";
+import { useColorScheme } from "./useColorScheme.js";
 
 declare module "react" {
   interface CSSProperties {
@@ -325,8 +325,12 @@ export interface ThemeProviderProps {
  * @example
  * Automatically Deriving the Theme
  * ```tsx
- * import { CoreProviders, ThemeProvider, } from "@react-md/core";
- * import type { ReactElement } from "react";
+ * import {
+ *   CoreProviders,
+ *   LocalStorageColorSchemeProvider,
+ *   ThemeProvider,
+ * } from "@react-md/core";
+ * import { type ReactElement } from "react";
  * import { createRoot } from "react-dom/client";
  *
  * import App from "./App";
@@ -335,9 +339,11 @@ export interface ThemeProviderProps {
  * const root = createRoot(container);
  * root.render(
  *   <CoreProviders>
- *     <ThemeProvider>
- *       <App />
- *     </ThemeProvider>
+ *     <LocalStorageColorSchemeProvider>
+ *       <ThemeProvider>
+ *         <App />
+ *       </ThemeProvider>
+ *     </LocalStorageColorSchemeProvider>
  *   </CoreProviders>
  * );
  * ```

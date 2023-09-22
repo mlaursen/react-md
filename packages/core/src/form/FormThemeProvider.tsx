@@ -55,6 +55,14 @@ export interface FormThemeProviderProps extends FormThemeOptions {
  * Since you'll normally want all of your form components to use the same theme,
  * this is a simple way to provide the same theme to all components without
  * needing all the prop-drilling/copying.
+ *
+ * @example
+ * Change Global Theme
+ * ```tsx
+ * <FormThemeProvider theme="filled" underlineDirection="center">
+ *   <RestOfTheApp />
+ * </FormThemeProvider>
+ * ```
  */
 export function FormThemeProvider(props: FormThemeProviderProps): ReactElement {
   const { theme = "outline", underlineDirection = "left", children } = props;

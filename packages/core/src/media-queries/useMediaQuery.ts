@@ -23,15 +23,15 @@ import { useSsr } from "../SsrProvider.js";
  * @remarks \@since 6.0.0
  */
 export function useMediaQuery(query: string, disabled = false): boolean {
+  const ssr = useSsr();
   const [matches, setMatches] = useState(() => {
-    if (typeof window === "undefined" || disabled) {
+    if (typeof window === "undefined" || disabled || ssr) {
       return false;
     }
 
     return window.matchMedia(query).matches;
   });
 
-  const ssr = useSsr();
   useEffect(() => {
     if (disabled || ssr) {
       return;

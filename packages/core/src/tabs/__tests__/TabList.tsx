@@ -16,6 +16,7 @@ import {
 } from "../../media-queries/appSize.js";
 import { Tooltip } from "../../tooltip/Tooltip.js";
 import { useTooltip } from "../../tooltip/useTooltip.js";
+import { WritingDirectionProvider } from "../../typography/WritingDirectionProvider.js";
 import { Tab } from "../Tab.js";
 import { TabList, type TabListProps } from "../TabList.js";
 import { useTabs, type ProvidedTabListProps } from "../useTabs.js";
@@ -429,9 +430,11 @@ describe("TabList", () => {
 
     const user = userEvent.setup();
     const { getByRole } = rmdRender(<Test scrollButtons />, {
-      rmdConfig: {
-        defaultDir: "rtl",
-      },
+      wrapper: ({ children }) => (
+        <WritingDirectionProvider defaultDir="rtl">
+          {children}
+        </WritingDirectionProvider>
+      ),
     });
     const tablist = getByRole("tablist");
     await waitFor(() => {

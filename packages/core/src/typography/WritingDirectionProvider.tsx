@@ -83,7 +83,7 @@ export function useDir(): Readonly<WritingDirectionContext> {
 }
 
 /** @remarks \@since 6.0.0 */
-export interface WritingDirectionProps {
+export interface WritingDirectionProviderProps {
   /**
    * A single ReactElement child. If the `WritingDirection` has a parent
    * `WritingDirection`, the child will have the `dir` prop cloned into this
@@ -197,7 +197,9 @@ export const DEFAULT_WRITING_DIRECTION = (): Dir => {
  *
  * @remarks \@since 6.0.0
  */
-export function WritingDirection(props: WritingDirectionProps): ReactElement {
+export function WritingDirectionProvider(
+  props: WritingDirectionProviderProps
+): ReactElement {
   const { children, defaultDir = DEFAULT_WRITING_DIRECTION } = props;
   const { root } = useContext(context);
   const [dir, setDir] = useState(defaultDir);

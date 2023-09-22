@@ -9,7 +9,7 @@ import {
 } from "react";
 import { getFocusableElements as defaultGetFocusableElements } from "../focus/utils.js";
 import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
-import { useDir } from "../typography/WritingDirection.js";
+import { useDir } from "../typography/WritingDirectionProvider.js";
 import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect.js";
 import {
   DEFAULT_KEYBOARD_MOVEMENT,

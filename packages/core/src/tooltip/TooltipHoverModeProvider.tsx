@@ -44,6 +44,29 @@ export interface TooltipHoverModeProviderProps
 /**
  * **Client Component**
  *
+ * Updates all tooltips that are rendered as a child anywhere in the React tree
+ * to immediately appear for a short duration once a tooltip has become visible.
+ * You can also use this provider to configure all tooltips' visibility delay to
+ * a new value.
+ *
+ * @example
+ * Configuration Example
+ * ```tsx
+ * <TooltipHoverModeProvider
+ *   // wait 3 seconds before displaying any tooltips
+ *   hoverTimeout={3000}
+ *
+ *   // wait 1 second before hiding any tooltips
+ *   leaveTimeout={1000}
+ *
+ *   // disable the hover mode functionality only if another tooltip has not
+ *   // been visible for 20 seconds
+ *   disableTimeout={20000}
+ * >
+ *   <RestOfTheApp />
+ * </TooltipHoverModeProvider>
+ * ```
+ *
  * @remarks \@since 6.0.0
  */
 export function TooltipHoverModeProvider(

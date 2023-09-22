@@ -5,7 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
 import { useScrollLock } from "../scroll/useScrollLock.js";
 import type { NonNullRef, UseStateSetter } from "../types.js";
-import { useDir } from "../typography/WritingDirection.js";
+import { useDir } from "../typography/WritingDirectionProvider.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
 import { useHtmlClassName } from "../useHtmlClassName.js";
 import { getRangeSteps } from "../utils/getRangeSteps.js";

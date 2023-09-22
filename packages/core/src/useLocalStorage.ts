@@ -86,7 +86,7 @@ export interface GetItemFromStorageOptions<T> {
   fallback: T;
 
   /** @see {@link LocalStorageHookOptions.deserializer} */
-  deserializer: LocalStorageDeserializer<T>;
+  deserializer?: LocalStorageDeserializer<T>;
 
   /** @defaultValue `localStorage` */
   storage?: Storage;
@@ -117,13 +117,11 @@ export interface GetItemFromStorageOptions<T> {
  * const item2 = getItemFromStorage({
  *   key: "anotherKey",
  *   fallback: -1,
- *   deserializer: JSON.parse,
  * });
  *
  * const item3 = getItemFromStorage({
  *   key: "anotherKey",
  *   fallback: -1,
- *   deserializer: JSON.parse,
  *   storage: sessionStorage,
  * });
  * ```
@@ -133,7 +131,12 @@ export interface GetItemFromStorageOptions<T> {
 export const getItemFromStorage = <T>(
   options: GetItemFromStorageOptions<T>
 ): T => {
-  const { key, fallback, deserializer, storage = localStorage } = options;
+  const {
+    key,
+    fallback,
+    storage = localStorage,
+    deserializer = JSON.parse,
+  } = options;
   if (!key) {
     return fallback;
   }
@@ -150,10 +153,11 @@ export const getItemFromStorage = <T>(
 export interface SetItemInStorageOptions<T> {
   key: string;
   value: T;
-  serializer: LocalStorageSerializer<T>;
-
   /** @defaultValue `localStorage` */
   storage?: Storage;
+
+  /** @see {@link LocalStorageHookOptions.serializer} */
+  serializer?: LocalStorageSerializer<T>;
 }
 
 /**
@@ -162,7 +166,7 @@ export interface SetItemInStorageOptions<T> {
  *
  * @example
  * ```ts
- * import { getItemFromStorage } from "@react-md/core";
+ * import { identity, getItemFromStorage } from "@react-md/core";
  *
  * const values = ["a", "b", "c", "d"] as const;
  *
@@ -170,19 +174,17 @@ export interface SetItemInStorageOptions<T> {
  *   key: "testKey",
  *   value: values[0],
  *   // store string value as-is
- *   serializer: (value) => value,
+ *   serializer: identity,
  * });
  *
  * setItemInStorage({
  *   key: "anotherKey",
  *   value: 100,
- *   serializer: JSON.stringify,
  * });
  *
  * setItemInStorage({
  *   key: "anotherKey",
  *   value: 100,
- *   serializer: JSON.stringify,
  *   storage: sessionStorage,
  * });
  * ```
@@ -192,7 +194,12 @@ export interface SetItemInStorageOptions<T> {
 export const setItemInStorage = <T>(
   options: SetItemInStorageOptions<T>
 ): void => {
-  const { key, value, serializer, storage = localStorage } = options;
+  const {
+    key,
+    value,
+    storage = localStorage,
+    serializer = JSON.stringify,
+  } = options;
   if (!key) {
     return;
   }

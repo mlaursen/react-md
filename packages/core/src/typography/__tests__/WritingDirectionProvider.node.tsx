@@ -2,9 +2,13 @@
 import { describe, expect, it } from "@jest/globals";
 import { renderToString } from "react-dom/server";
 
-import { WritingDirection, useDir, type Dir } from "../WritingDirection.js";
+import {
+  WritingDirectionProvider,
+  useDir,
+  type Dir,
+} from "../WritingDirectionProvider.js";
 
-describe("WritingDirection", () => {
+describe("WritingDirectionProvider", () => {
   it('should default to "ltr" for environments that do not have a document and not crash', () => {
     expect(typeof document).toBe("undefined");
     let dir: Dir | undefined;
@@ -14,9 +18,9 @@ describe("WritingDirection", () => {
     };
 
     renderToString(
-      <WritingDirection>
+      <WritingDirectionProvider>
         <Child />
-      </WritingDirection>
+      </WritingDirectionProvider>
     );
     expect(dir).toBe("ltr");
   });
