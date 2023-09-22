@@ -1,21 +1,22 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type { HTMLAttributes } from "react";
-import { forwardRef, useState } from "react";
+import { forwardRef, useState, type HTMLAttributes } from "react";
 import { useSsr } from "../SsrProvider.js";
-import type { FocusContainerComponentProps } from "../focus/useFocusContainer.js";
-import { useFocusContainer } from "../focus/useFocusContainer.js";
+import {
+  useFocusContainer,
+  type FocusContainerComponentProps,
+} from "../focus/useFocusContainer.js";
 import { Overlay } from "../overlay/Overlay.js";
 import { Portal } from "../portal/Portal.js";
 import { useScrollLock } from "../scroll/useScrollLock.js";
-import type {
-  CSSTransitionClassNames,
-  CSSTransitionComponentProps,
-  TransitionActions,
-  TransitionTimeout,
+import {
+  type CSSTransitionClassNames,
+  type CSSTransitionComponentProps,
+  type TransitionActions,
+  type TransitionTimeout,
 } from "../transition/types.js";
 import { useCSSTransition } from "../transition/useCSSTransition.js";
-import type { LabelRequiredForA11y } from "../types.js";
+import { type LabelRequiredForA11y } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { DISPLAY_NONE_CLASS } from "../utils/isElementVisible.js";
 import { DialogContainer } from "./DialogContainer.js";
@@ -23,8 +24,7 @@ import {
   NestedDialogProvider,
   useNestedDialogContext,
 } from "./NestedDialogProvider.js";
-import type { DialogType } from "./styles.js";
-import { dialog } from "./styles.js";
+import { dialog, type DialogType } from "./styles.js";
 
 declare module "react" {
   interface CSSProperties {

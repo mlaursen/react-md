@@ -1,10 +1,9 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type { HTMLAttributes } from "react";
-import { forwardRef } from "react";
-import type { PropsWithRef } from "../types.js";
+import { forwardRef, type HTMLAttributes } from "react";
+import { type PropsWithRef } from "../types.js";
 import { FormMessage } from "./FormMessage.js";
-import type { FormMessageProps } from "./types.js";
+import { type FormMessageProps } from "./types.js";
 
 /**
  * @remarks \@since 2.5.0

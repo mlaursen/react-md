@@ -1,25 +1,25 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type {
-  CSSProperties,
-  HTMLAttributes,
-  MouseEvent,
-  ReactNode,
+import {
+  forwardRef,
+  type CSSProperties,
+  type HTMLAttributes,
+  type MouseEvent,
+  type ReactNode,
 } from "react";
-import { forwardRef } from "react";
 import { ListItem } from "../list/ListItem.js";
-import type {
-  ListItemAddonPosition,
-  ListItemAddonType,
-  ListItemHeight,
+import {
+  type ListItemAddonPosition,
+  type ListItemAddonType,
+  type ListItemHeight,
 } from "../list/types.js";
-import type { PropsWithRef } from "../types.js";
+import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { bem } from "../utils/bem.js";
-import type {
-  IndeterminateCheckboxProps,
-  InputToggleIconProps,
-  InputToggleSize,
+import {
+  type IndeterminateCheckboxProps,
+  type InputToggleIconProps,
+  type InputToggleSize,
 } from "./InputToggle.js";
 import { InputToggleIcon } from "./InputToggleIcon.js";
 import { SwitchTrack } from "./SwitchTrack.js";

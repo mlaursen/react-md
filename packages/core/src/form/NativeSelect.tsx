@@ -1,21 +1,24 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type {
-  CSSProperties,
-  HTMLAttributes,
-  ReactNode,
-  SelectHTMLAttributes,
+import {
+  forwardRef,
+  type CSSProperties,
+  type HTMLAttributes,
+  type ReactNode,
+  type SelectHTMLAttributes,
 } from "react";
-import { forwardRef } from "react";
 import { useIcon } from "../icon/IconProvider.js";
-import type { PropsWithRef } from "../types.js";
+import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { bem } from "../utils/bem.js";
 import { FormMessageContainer } from "./FormMessageContainer.js";
 import { useFormTheme } from "./FormThemeProvider.js";
 import { Label } from "./Label.js";
 import { TextFieldContainer } from "./TextFieldContainer.js";
-import type { FormFieldOptions, UserAgentAutoCompleteProps } from "./types.js";
+import {
+  type FormFieldOptions,
+  type UserAgentAutoCompleteProps,
+} from "./types.js";
 
 const styles = bem("rmd-native-select");
 const containerStyles = bem("rmd-native-select-container");

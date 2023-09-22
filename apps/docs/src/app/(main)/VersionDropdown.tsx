@@ -1,8 +1,8 @@
-import type { SemVer } from "@/utils/semver.js";
+import { type SemVer } from "@/utils/semver.js";
 import { DropdownMenu, MenuItem, Typography } from "@react-md/core";
 import CheckIcon from "@react-md/material-icons/CheckIcon";
 import { cnb } from "cnbuilder";
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 import styles from "./VersionDropdown.module.scss";
 import { VersionMenuItem } from "./VersionMenuItem.jsx";
 

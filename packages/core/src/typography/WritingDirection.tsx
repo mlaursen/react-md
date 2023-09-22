@@ -1,5 +1,4 @@
 "use client";
-import type { ReactElement } from "react";
 import {
   Children,
   cloneElement,
@@ -9,8 +8,9 @@ import {
   useEffect,
   useMemo,
   useState,
+  type ReactElement,
 } from "react";
-import type { UseStateInitializer } from "../types.js";
+import { type UseStateInitializer } from "../types.js";
 
 /**
  * Note: unlike the `dir` DOM attribute, the `"auto"` value is not supported.

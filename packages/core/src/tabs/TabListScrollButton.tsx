@@ -1,11 +1,15 @@
 "use client";
-import type { HTMLAttributes } from "react";
-import { forwardRef, useCallback, useRef, useState } from "react";
-import type { ButtonProps } from "../button/Button.js";
-import { Button } from "../button/Button.js";
-import type { ButtonClassNameThemeOptions } from "../button/buttonStyles.js";
+import {
+  forwardRef,
+  useCallback,
+  useRef,
+  useState,
+  type HTMLAttributes,
+} from "react";
+import { Button, type ButtonProps } from "../button/Button.js";
+import { type ButtonClassNameThemeOptions } from "../button/buttonStyles.js";
 import { useIcon } from "../icon/IconProvider.js";
-import type { PropsWithRef } from "../types.js";
+import { type PropsWithRef } from "../types.js";
 import { useDir } from "../typography/WritingDirection.js";
 import { useIntersectionObserver } from "../useIntersectionObserver.js";
 import { applyRef } from "../utils/applyRef.js";
@@ -13,8 +17,10 @@ import {
   tabListScrollButton,
   tabListScrollButtonContainer,
 } from "./tabListScrollButtonStyles.js";
-import type { GetTabListScrollToOptions } from "./utils.js";
-import { getTabListScrollToOptions } from "./utils.js";
+import {
+  getTabListScrollToOptions,
+  type GetTabListScrollToOptions,
+} from "./utils.js";
 
 /**
  * @internal

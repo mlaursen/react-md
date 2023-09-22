@@ -1,11 +1,10 @@
 "use client";
-import type { HTMLAttributes } from "react";
-import { forwardRef } from "react";
+import { forwardRef, type HTMLAttributes } from "react";
 import { Portal } from "../portal/Portal.js";
-import type { SimplePosition } from "../positioning/types.js";
-import type {
-  CSSTransitionComponentProps,
-  TransitionActions,
+import { type SimplePosition } from "../positioning/types.js";
+import {
+  type CSSTransitionComponentProps,
+  type TransitionActions,
 } from "../transition/types.js";
 import { useCSSTransition } from "../transition/useCSSTransition.js";
 import { useEnsuredId } from "../useEnsuredId.js";

@@ -1,10 +1,8 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type { HTMLAttributes, ReactNode } from "react";
-import { forwardRef } from "react";
+import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
 import { useIcon } from "../icon/IconProvider.js";
-import type { InputToggleSize } from "./InputToggle.js";
-import { inputToggle } from "./InputToggle.js";
+import { inputToggle, type InputToggleSize } from "./InputToggle.js";
 
 /**
  * @remarks

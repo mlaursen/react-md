@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 "use client";
-import type { LinkUnstyledProps } from "@/components/LinkUnstyled.jsx";
-import { LinkUnstyled } from "@/components/LinkUnstyled.jsx";
+import {
+  LinkUnstyled,
+  type LinkUnstyledProps,
+} from "@/components/LinkUnstyled.jsx";
 import {
   Divider,
   IconRotator,
@@ -15,7 +17,7 @@ import {
 } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import { usePathname } from "next/navigation.js";
-import type { ReactElement, ReactNode } from "react";
+import { type ReactElement, type ReactNode } from "react";
 import styles from "./NavigationItemList.module.scss";
 
 export interface Route {

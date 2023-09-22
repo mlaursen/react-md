@@ -1,9 +1,8 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type { ReactElement, ReactNode } from "react";
-import type { TooltipProps } from "../tooltip/Tooltip.js";
-import { Tooltip } from "../tooltip/Tooltip.js";
-import type { CSSTransitionClassNames } from "../transition/types.js";
+import { type ReactElement, type ReactNode } from "react";
+import { Tooltip, type TooltipProps } from "../tooltip/Tooltip.js";
+import { type CSSTransitionClassNames } from "../transition/types.js";
 import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-slider-tooltip");

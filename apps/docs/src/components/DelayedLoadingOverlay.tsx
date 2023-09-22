@@ -1,7 +1,6 @@
 "use client";
 import { CircularProgress, Overlay } from "@react-md/core";
-import type { ReactElement } from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactElement } from "react";
 
 export function DelayedLoadingOverlay(): ReactElement {
   const [rendered, setRendered] = useState(false);

@@ -9,13 +9,15 @@ import {
 } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import { usePathname } from "next/navigation.js";
-import type { ReactElement, ReactNode } from "react";
+import { type ReactElement, type ReactNode } from "react";
 import { Configuration } from "./Configuration.jsx";
 import { GithubLink } from "./GithubLink.jsx";
 import { Navigation } from "./Navigation.jsx";
 import styles from "./RootLayout.module.scss";
-import type { RootLayoutTitleProps } from "./RootLayoutTitle.jsx";
-import { RootLayoutTitle } from "./RootLayoutTitle.jsx";
+import {
+  RootLayoutTitle,
+  type RootLayoutTitleProps,
+} from "./RootLayoutTitle.jsx";
 import { Search } from "./Search.jsx";
 
 export interface RootLayoutProps {

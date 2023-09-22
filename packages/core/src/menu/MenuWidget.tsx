@@ -1,13 +1,12 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type { HTMLAttributes } from "react";
-import { forwardRef, useRef, useState } from "react";
+import { forwardRef, useRef, useState, type HTMLAttributes } from "react";
 import { List } from "../list/List.js";
-import type { GetDefaultFocusedIndex } from "../movement/types.js";
+import { type GetDefaultFocusedIndex } from "../movement/types.js";
 import { useKeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
-import type { NonNullMutableRef } from "../types.js";
+import { type NonNullMutableRef } from "../types.js";
 import { bem } from "../utils/bem.js";
-import type { MenuListConvenienceProps } from "./Menu.js";
+import { type MenuListConvenienceProps } from "./Menu.js";
 import { MenuWidgetKeyboardProvider } from "./MenuWidgetKeyboardProvider.js";
 import {
   MenuBarProvider,

@@ -1,7 +1,14 @@
 "use client";
 import { useAppSize, useToggle } from "@react-md/core";
-import type { ReactElement, ReactNode } from "react";
-import { createContext, useContext, useEffect, useMemo, useRef } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  type ReactElement,
+  type ReactNode,
+} from "react";
 
 interface LayoutContext {
   staticNavExpanded: boolean;

@@ -6,10 +6,9 @@ import { IconRotator } from "../icon/IconRotator.js";
 import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
 import { useAppSize } from "../media-queries/AppSizeProvider.js";
 import { useEnsuredId } from "../useEnsuredId.js";
-import type { BaseMenuButtonProps } from "./MenuButton.js";
+import { type BaseMenuButtonProps } from "./MenuButton.js";
 import { useMenuConfiguration } from "./MenuConfigurationProvider.js";
-import type { MenuItemProps } from "./MenuItem.js";
-import { MenuItem } from "./MenuItem.js";
+import { MenuItem, type MenuItemProps } from "./MenuItem.js";
 import { useMenuVisibility } from "./MenuVisibilityProvider.js";
 import { useMenuBarContext } from "./useMenuBarProvider.js";
 

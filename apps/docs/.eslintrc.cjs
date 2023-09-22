@@ -12,7 +12,6 @@ module.exports = {
     // since I use random images from other services
     "@next/next/no-img-element": 0,
     "@next/next/no-html-link-for-pages": [1, "src/pages"],
-    "@typescript-eslint/consistent-type-imports": ["error"],
 
     // I only use this within dialogs which IS recommended
     "jsx-a11y/no-autofocus": 0,

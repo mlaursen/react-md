@@ -1,13 +1,14 @@
 "use client";
 import { nanoid } from "nanoid";
-import type { ReactElement, ReactNode } from "react";
 import {
   createContext,
   useContext,
   useMemo,
   useSyncExternalStore,
+  type ReactElement,
+  type ReactNode,
 } from "react";
-import type { ConfigurableToastProps } from "./Toast.js";
+import { type ConfigurableToastProps } from "./Toast.js";
 
 /**
  * @remarks \@since 6.0.0

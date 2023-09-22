@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, jest } from "@jest/globals";
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 import {
   act,
   fireEvent,
@@ -12,14 +12,12 @@ import { Button } from "../../button/Button.js";
 import { FontIcon } from "../../icon/FontIcon.js";
 import { isElementVisible } from "../../utils/isElementVisible.js";
 import { parseCssLengthUnit } from "../../utils/parseCssLengthUnit.js";
-import type { TooltipProps } from "../Tooltip.js";
-import { Tooltip } from "../Tooltip.js";
+import { Tooltip, type TooltipProps } from "../Tooltip.js";
 import {
   DEFAULT_TOOLTIP_DENSE_SPACING,
   DEFAULT_TOOLTIP_SPACING,
 } from "../constants.js";
-import type { TooltipHookOptions } from "../useTooltip.js";
-import { useTooltip } from "../useTooltip.js";
+import { useTooltip, type TooltipHookOptions } from "../useTooltip.js";
 
 interface TestProps extends TooltipHookOptions {
   tooltip?: Partial<TooltipProps>;

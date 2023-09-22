@@ -1,7 +1,6 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type { HTMLAttributes } from "react";
-import { forwardRef, useCallback, useState } from "react";
+import { forwardRef, useCallback, useState, type HTMLAttributes } from "react";
 import { useResizeObserver } from "../useResizeObserver.js";
 import { bem } from "../utils/bem.js";
 

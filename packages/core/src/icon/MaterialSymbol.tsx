@@ -1,17 +1,15 @@
 "use client";
-import type { HTMLAttributes } from "react";
-import { forwardRef } from "react";
-import type {
-  MaterialSymbolCustomization,
-  MaterialSymbolFill,
-  MaterialSymbolGrade,
-  MaterialSymbolOpticalSize,
-  MaterialSymbolWeight,
+import { forwardRef, type HTMLAttributes } from "react";
+import {
+  useFontVariationSettings,
+  type MaterialSymbolCustomization,
+  type MaterialSymbolFill,
+  type MaterialSymbolGrade,
+  type MaterialSymbolOpticalSize,
+  type MaterialSymbolWeight,
 } from "./MaterialSymbolsProvider.js";
-import { useFontVariationSettings } from "./MaterialSymbolsProvider.js";
-import type { MaterialSymbolName } from "./material.js";
-import type { MaterialSymbolClassNameOptions } from "./styles.js";
-import { icon } from "./styles.js";
+import { type MaterialSymbolName } from "./material.js";
+import { icon, type MaterialSymbolClassNameOptions } from "./styles.js";
 
 declare module "react" {
   interface CSSProperties {

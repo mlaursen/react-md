@@ -1,7 +1,6 @@
-import type { TypographyProps } from "@react-md/core";
-import { Typography } from "@react-md/core";
+import { Typography, type TypographyProps } from "@react-md/core";
 import { cnb } from "cnbuilder";
-import type { ReactElement, ReactNode } from "react";
+import { type ReactElement, type ReactNode } from "react";
 import { LinkUnstyled } from "../LinkUnstyled.jsx";
 import styles from "./LinkableHeading.module.scss";
 

@@ -1,16 +1,13 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type { ReactNode } from "react";
-import { forwardRef } from "react";
-import type { ButtonProps } from "../button/Button.js";
-import { Button } from "../button/Button.js";
+import { forwardRef, type ReactNode } from "react";
+import { Button, type ButtonProps } from "../button/Button.js";
 import { useIcon } from "../icon/IconProvider.js";
-import type { PropsWithRef } from "../types.js";
+import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { useToggle } from "../useToggle.js";
 import { bem } from "../utils/bem.js";
-import type { TextFieldProps } from "./TextField.js";
-import { TextField } from "./TextField.js";
+import { TextField, type TextFieldProps } from "./TextField.js";
 
 const styles = bem("rmd-password");
 

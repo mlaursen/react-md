@@ -1,12 +1,12 @@
 import { cnb } from "cnbuilder";
 import { forwardRef } from "react";
-import type {
-  CustomTypographyComponent,
-  TypographyMargin,
-  TypographyProps,
-  TypographyType,
+import {
+  Typography,
+  type CustomTypographyComponent,
+  type TypographyMargin,
+  type TypographyProps,
+  type TypographyType,
 } from "../typography/Typography.js";
-import { Typography } from "../typography/Typography.js";
 
 /**
  * @remarks \@since 6.0.0 Inherits the `TypographyProps` instead of

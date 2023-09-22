@@ -1,18 +1,16 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type { HTMLAttributes, ReactNode } from "react";
-import { forwardRef } from "react";
+import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
 import {
   DEFAULT_SHEET_CLASSNAMES,
   DEFAULT_SHEET_TIMEOUT,
 } from "../sheet/Sheet.js";
-import type { BaseSheetClassNameOptions } from "../sheet/styles.js";
-import { sheet } from "../sheet/styles.js";
-import type {
-  CSSTransitionClassNames,
-  TransitionActions,
-  TransitionCallbacks,
-  TransitionTimeout,
+import { sheet, type BaseSheetClassNameOptions } from "../sheet/styles.js";
+import {
+  type CSSTransitionClassNames,
+  type TransitionActions,
+  type TransitionCallbacks,
+  type TransitionTimeout,
 } from "../transition/types.js";
 import { useCSSTransition } from "../transition/useCSSTransition.js";
 import { layoutNav } from "./layoutNavStyles.js";

@@ -1,7 +1,9 @@
 "use client";
-import type { ReactElement } from "react";
-import type { NavigationItem } from "./NavigationItemList.jsx";
-import { NavigationItemList } from "./NavigationItemList.jsx";
+import { type ReactElement } from "react";
+import {
+  NavigationItemList,
+  type NavigationItem,
+} from "./NavigationItemList.jsx";
 
 const items: readonly NavigationItem[] = [
   {

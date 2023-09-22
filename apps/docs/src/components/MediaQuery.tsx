@@ -1,6 +1,6 @@
 "use client";
 import { useAppSize } from "@react-md/core";
-import type { ReactElement, ReactNode } from "react";
+import { type ReactElement, type ReactNode } from "react";
 
 export interface MediaQueryProps {
   is?: "phone" | "tablet" | "desktop" | "large-desktop";

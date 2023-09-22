@@ -1,14 +1,13 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type { HTMLAttributes } from "react";
-import { forwardRef } from "react";
+import { forwardRef, type HTMLAttributes } from "react";
 import { bem } from "../utils/bem.js";
 import { useFormTheme } from "./FormThemeProvider.js";
 import { TextFieldAddon } from "./TextFieldAddon.js";
-import type {
-  FormComponentStates,
-  FormThemeOptions,
-  TextFieldContainerOptions,
+import {
+  type FormComponentStates,
+  type FormThemeOptions,
+  type TextFieldContainerOptions,
 } from "./types.js";
 
 declare module "react" {

@@ -1,43 +1,36 @@
 "use client";
-// Note: Uses function overloading so that the `getTooltipChildren` can be
-// inferred inline. If this is set to:
-//
-// ```tsx
-// forwardRef<
-//   HTMLDivElement,
-//   LabelRequiredForA11y<SliderProps> | RangeSliderProps
-// >(...implementation...)
-// ```
-//
-// `value` would be implicitly `any` for the non-range slider since typescript
-// can't tell it is a non-range slider.
-//
-
-import type { HTMLAttributes, ReactElement, ReactNode, Ref } from "react";
-import { useRef, useState } from "react";
+import {
+  useRef,
+  useState,
+  type HTMLAttributes,
+  type ReactElement,
+  type ReactNode,
+  type Ref,
+} from "react";
 import { useControlledDraggable } from "../draggable/useControlledDraggable.js";
-import type { TooltipProps } from "../tooltip/Tooltip.js";
-import type {
-  LabelRequiredForA11y,
-  PropsWithRef,
-  UseStateSetter,
+import { type TooltipProps } from "../tooltip/Tooltip.js";
+import {
+  type LabelRequiredForA11y,
+  type PropsWithRef,
+  type UseStateSetter,
 } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { identity } from "../utils/identity.js";
 import { withinRange } from "../utils/withinRange.js";
-import type { SliderAddonProps } from "./SliderContainer.js";
-import { SliderContainer } from "./SliderContainer.js";
-import type {
-  SliderThumbPresentation,
-  SliderThumbProps,
+import { SliderContainer, type SliderAddonProps } from "./SliderContainer.js";
+import {
+  SliderThumb,
+  type SliderThumbPresentation,
+  type SliderThumbProps,
 } from "./SliderThumb.js";
-import { SliderThumb } from "./SliderThumb.js";
 import { SliderTrack } from "./SliderTrack.js";
-import type { SliderMarksOptions } from "./SliderValueMarks.js";
-import { SliderValueMarks } from "./SliderValueMarks.js";
+import {
+  SliderValueMarks,
+  type SliderMarksOptions,
+} from "./SliderValueMarks.js";
 import { getJumpValue } from "./sliderUtils.js";
-import type { RangeSliderState } from "./useRangeSlider.js";
-import type { SliderState, SliderValueOptions } from "./useSlider.js";
+import { type RangeSliderState } from "./useRangeSlider.js";
+import { type SliderState, type SliderValueOptions } from "./useSlider.js";
 
 declare module "react" {
   interface CSSProperties {

@@ -1,13 +1,14 @@
 import { afterEach, describe, expect, it } from "@jest/globals";
 import lzString from "lz-string";
-import type { ReactElement } from "react";
-import { useEffect } from "react";
+import { useEffect, type ReactElement } from "react";
 import { act, fireEvent, render } from "../test-utils/index.js";
 
 import { Button } from "../button/Button.js";
 import { SsrProvider } from "../SsrProvider.js";
-import type { LocalStorageDeserializer } from "../useLocalStorage.js";
-import { useLocalStorage } from "../useLocalStorage.js";
+import {
+  useLocalStorage,
+  type LocalStorageDeserializer,
+} from "../useLocalStorage.js";
 
 const TEST_KEY = "test-key";
 

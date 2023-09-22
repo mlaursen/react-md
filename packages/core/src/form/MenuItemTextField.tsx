@@ -1,10 +1,8 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type { HTMLAttributes } from "react";
-import { forwardRef } from "react";
-import type { PropsWithRef } from "../types.js";
-import type { TextFieldProps } from "./TextField.js";
-import { TextField } from "./TextField.js";
+import { forwardRef, type HTMLAttributes } from "react";
+import { type PropsWithRef } from "../types.js";
+import { TextField, type TextFieldProps } from "./TextField.js";
 
 /**
  * @remarks \@since 5.0.0

@@ -1,29 +1,31 @@
 "use client";
-import type { ReactElement, ReactNode } from "react";
+import { type ReactElement, type ReactNode } from "react";
 import { SsrProvider } from "./SsrProvider.js";
-import type { ConfigurableIcons } from "./icon/IconProvider.js";
-import { IconProvider } from "./icon/IconProvider.js";
+import { IconProvider, type ConfigurableIcons } from "./icon/IconProvider.js";
 import { ElementInteractionProvider } from "./interaction/ElementInteractionProvider.js";
 import { UserInteractionModeProvider } from "./interaction/UserInteractionModeProvider.js";
-import type { ElementInteractionMode } from "./interaction/types.js";
+import { type ElementInteractionMode } from "./interaction/types.js";
 import { AppSizeProvider } from "./media-queries/AppSizeProvider.js";
-import type { AppSize, AppSizeQueries } from "./media-queries/appSize.js";
 import {
   DEFAULT_APP_SIZE,
   DEFAULT_APP_SIZE_QUERIES,
+  type AppSize,
+  type AppSizeQueries,
 } from "./media-queries/appSize.js";
-import type { PortalContainer } from "./portal/PortalContainerProvider.js";
-import { PortalContainerProvider } from "./portal/PortalContainerProvider.js";
-import type {
-  ColorSchemeMode,
+import {
+  PortalContainerProvider,
+  type PortalContainer,
+} from "./portal/PortalContainerProvider.js";
+import {
+  ColorSchemeProvider,
+  type ColorSchemeMode,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  ColorSchemeProviderProps,
+  type ColorSchemeProviderProps,
 } from "./theme/ColorSchemeProvider.js";
-import { ColorSchemeProvider } from "./theme/ColorSchemeProvider.js";
-import type { DefaultDir } from "./typography/WritingDirection.js";
 import {
   DEFAULT_WRITING_DIRECTION,
   WritingDirection,
+  type DefaultDir,
 } from "./typography/WritingDirection.js";
 
 /** @remarks \@since 6.0.0 */

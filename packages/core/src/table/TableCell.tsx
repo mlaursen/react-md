@@ -1,22 +1,21 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type {
-  ButtonHTMLAttributes,
-  ReactNode,
-  TdHTMLAttributes,
-  ThHTMLAttributes,
+import {
+  forwardRef,
+  type ButtonHTMLAttributes,
+  type ReactNode,
+  type TdHTMLAttributes,
+  type ThHTMLAttributes,
 } from "react";
-import { forwardRef } from "react";
 import { useIcon } from "../icon/IconProvider.js";
-import type { PropsWithRef } from "../types.js";
-import type { SortOrder } from "./TableCellContent.js";
-import { TableCellContent } from "./TableCellContent.js";
-import type {
-  TableCellConfig,
-  TableCellHorizontalAlignment,
-  TableCellVerticalAlignment,
+import { type PropsWithRef } from "../types.js";
+import { TableCellContent, type SortOrder } from "./TableCellContent.js";
+import {
+  useTableConfig,
+  type TableCellConfig,
+  type TableCellHorizontalAlignment,
+  type TableCellVerticalAlignment,
 } from "./TableConfigurationProvider.js";
-import { useTableConfig } from "./TableConfigurationProvider.js";
 
 export type TableCellAttributes = Omit<
   | TdHTMLAttributes<HTMLTableCellElement>

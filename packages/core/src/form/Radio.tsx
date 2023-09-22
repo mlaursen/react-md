@@ -1,7 +1,6 @@
 "use client";
 import { forwardRef } from "react";
-import type { RadioProps } from "./InputToggle.js";
-import { InputToggle } from "./InputToggle.js";
+import { InputToggle, type RadioProps } from "./InputToggle.js";
 
 /**
  * **Client Component**

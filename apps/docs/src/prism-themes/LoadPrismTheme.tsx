@@ -2,9 +2,8 @@
 
 import { usePrismThemeContext } from "@/components/RootProviders/PrismThemeProvider.jsx";
 import { CircularProgress, Overlay } from "@react-md/core";
-import type { DynamicOptions } from "next/dynamic.js";
-import dynamic from "next/dynamic.js";
-import type { ReactElement } from "react";
+import dynamic, { type DynamicOptions } from "next/dynamic.js";
+import { type ReactElement } from "react";
 
 const options: DynamicOptions = {
   loading: () => (

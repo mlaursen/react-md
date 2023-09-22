@@ -2,9 +2,8 @@ import { beforeEach, describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
 import { act, render } from "../../test-utils/index.js";
 
-import type { PropsWithRef } from "../../types.js";
-import type { TableProps } from "../Table.js";
-import { Table, table } from "../Table.js";
+import { type PropsWithRef } from "../../types.js";
+import { Table, table, type TableProps } from "../Table.js";
 import { TableBody } from "../TableBody.js";
 import { TableCell } from "../TableCell.js";
 import { TableContainer } from "../TableContainer.js";

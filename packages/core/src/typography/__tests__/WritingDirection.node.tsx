@@ -2,8 +2,7 @@
 import { describe, expect, it } from "@jest/globals";
 import { renderToString } from "react-dom/server";
 
-import type { Dir } from "../WritingDirection.js";
-import { WritingDirection, useDir } from "../WritingDirection.js";
+import { WritingDirection, useDir, type Dir } from "../WritingDirection.js";
 
 describe("WritingDirection", () => {
   it('should default to "ltr" for environments that do not have a document and not crash', () => {

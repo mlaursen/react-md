@@ -1,21 +1,26 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type { AriaRole, HTMLAttributes, ReactElement, ReactNode } from "react";
-import { forwardRef, isValidElement } from "react";
-import type { ButtonProps } from "../button/Button.js";
-import type {
-  CSSTransitionClassNames,
-  TransitionCallbacks,
-  TransitionTimeout,
+import {
+  forwardRef,
+  isValidElement,
+  type AriaRole,
+  type HTMLAttributes,
+  type ReactElement,
+  type ReactNode,
+} from "react";
+import { type ButtonProps } from "../button/Button.js";
+import {
+  type CSSTransitionClassNames,
+  type TransitionCallbacks,
+  type TransitionTimeout,
 } from "../transition/types.js";
 import { useScaleTransition } from "../transition/useScaleTransition.js";
-import type { PropsWithRef } from "../types.js";
+import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { bem } from "../utils/bem.js";
 import { ToastActionButton } from "./ToastActionButton.js";
 import { ToastCloseButton } from "./ToastCloseButton.js";
-import type { ToastContentProps } from "./ToastContent.js";
-import { ToastContent } from "./ToastContent.js";
+import { ToastContent, type ToastContentProps } from "./ToastContent.js";
 
 declare module "react" {
   interface CSSProperties {

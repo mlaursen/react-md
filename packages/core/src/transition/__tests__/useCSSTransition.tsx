@@ -6,14 +6,13 @@ import {
   it,
   jest,
 } from "@jest/globals";
-import type { ReactElement } from "react";
-import { useState } from "react";
+import { useState, type ReactElement } from "react";
 import { act, fireEvent, render } from "../../test-utils/index.js";
 
-import type {
-  CSSTransitionClassNames,
-  CSSTransitionHookOptions,
-  TransitionTimeout,
+import {
+  type CSSTransitionClassNames,
+  type CSSTransitionHookOptions,
+  type TransitionTimeout,
 } from "../types.js";
 import { useCSSTransition } from "../useCSSTransition.js";
 

@@ -1,10 +1,11 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type { HTMLAttributes } from "react";
-import { forwardRef } from "react";
+import { forwardRef, type HTMLAttributes } from "react";
 import { bem } from "../utils/bem.js";
-import type { TableRowConfiguration } from "./TableConfigurationProvider.js";
-import { useTableConfig } from "./TableConfigurationProvider.js";
+import {
+  useTableConfig,
+  type TableRowConfiguration,
+} from "./TableConfigurationProvider.js";
 
 const styles = bem("rmd-tr");
 

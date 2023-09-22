@@ -1,7 +1,11 @@
 import { cnb } from "cnbuilder";
-import type { ElementType, HTMLAttributes, ReactElement } from "react";
-import { forwardRef } from "react";
-import type { ThemeOrTextColor } from "../theme/types.js";
+import {
+  forwardRef,
+  type ElementType,
+  type HTMLAttributes,
+  type ReactElement,
+} from "react";
+import { type ThemeOrTextColor } from "../theme/types.js";
 
 /**
  * A union of all the material design provided typography styles. When used with

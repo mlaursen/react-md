@@ -1,7 +1,7 @@
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 import { ListItemAddon } from "./ListItemAddon.js";
 import { ListItemText } from "./ListItemText.js";
-import type { ListItemChildrenProps } from "./types.js";
+import { type ListItemChildrenProps } from "./types.js";
 
 /**
  * **Server Component**

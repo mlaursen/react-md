@@ -1,11 +1,9 @@
 "use client";
 import { forwardRef } from "react";
-import type { ButtonProps } from "../button/Button.js";
-import { Button } from "../button/Button.js";
+import { Button, type ButtonProps } from "../button/Button.js";
 import { useIcon } from "../icon/IconProvider.js";
-import type { IconRotatorProps } from "../icon/IconRotator.js";
-import { IconRotator } from "../icon/IconRotator.js";
-import type { TextIconSpacingProps } from "../icon/TextIconSpacing.js";
+import { IconRotator, type IconRotatorProps } from "../icon/IconRotator.js";
+import { type TextIconSpacingProps } from "../icon/TextIconSpacing.js";
 import { useAppSize } from "../media-queries/AppSizeProvider.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { useMenuConfiguration } from "./MenuConfigurationProvider.js";

@@ -1,8 +1,9 @@
-import type { HTMLAttributes } from "react";
-import { forwardRef } from "react";
+import { forwardRef, type HTMLAttributes } from "react";
 import { Divider } from "./Divider.js";
-import type { VerticalDividerHookOptions } from "./useVerticalDividerHeight.js";
-import { useVerticalDividerHeight } from "./useVerticalDividerHeight.js";
+import {
+  useVerticalDividerHeight,
+  type VerticalDividerHookOptions,
+} from "./useVerticalDividerHeight.js";
 
 export interface VerticalDividerProps extends HTMLAttributes<HTMLDivElement> {
   /**

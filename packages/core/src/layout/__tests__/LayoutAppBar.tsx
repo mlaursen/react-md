@@ -1,6 +1,5 @@
 import { describe, expect, it, jest } from "@jest/globals";
-import type { ReactElement, Ref } from "react";
-import { createRef } from "react";
+import { createRef, type ReactElement, type Ref } from "react";
 import {
   act,
   cleanupResizeObserver,
@@ -8,8 +7,7 @@ import {
   screen,
   setupResizeObserverMock,
 } from "../../test-utils/index.js";
-import type { LayoutAppBarProps } from "../LayoutAppBar.js";
-import { LayoutAppBar } from "../LayoutAppBar.js";
+import { LayoutAppBar, type LayoutAppBarProps } from "../LayoutAppBar.js";
 import { Main } from "../Main.js";
 
 const getVar = () =>

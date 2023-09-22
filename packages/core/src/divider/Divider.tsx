@@ -1,7 +1,5 @@
-import type { ElementType, HTMLAttributes } from "react";
-import { forwardRef } from "react";
-import type { DividerClassNameOptions } from "./styles.js";
-import { divider } from "./styles.js";
+import { forwardRef, type ElementType, type HTMLAttributes } from "react";
+import { divider, type DividerClassNameOptions } from "./styles.js";
 
 declare module "react" {
   interface CSSProperties {

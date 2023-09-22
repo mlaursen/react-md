@@ -1,11 +1,16 @@
 "use client";
 import { forwardRef } from "react";
-import type { AppBarProps, CustomAppBarComponent } from "../app-bar/AppBar.js";
-import { AppBar } from "../app-bar/AppBar.js";
-import type { SkipToMainContentProps } from "../link/SkipToMainContent.js";
-import { SkipToMainContent } from "../link/SkipToMainContent.js";
+import {
+  AppBar,
+  type AppBarProps,
+  type CustomAppBarComponent,
+} from "../app-bar/AppBar.js";
+import {
+  SkipToMainContent,
+  type SkipToMainContentProps,
+} from "../link/SkipToMainContent.js";
 import { useCSSVariables } from "../theme/useCSSVariables.js";
-import type { CssPosition, PropsWithRef } from "../types.js";
+import { type CssPosition, type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { useLayoutAppBarHeight } from "./useLayoutAppBarHeight.js";
 

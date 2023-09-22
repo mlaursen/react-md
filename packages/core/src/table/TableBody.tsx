@@ -1,14 +1,11 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type { HTMLAttributes } from "react";
-import { forwardRef, useMemo } from "react";
-import type {
-  TableConfig,
-  TableConfigContext,
-} from "./TableConfigurationProvider.js";
+import { forwardRef, useMemo, type HTMLAttributes } from "react";
 import {
   TableConfigProvider,
   useTableConfig,
+  type TableConfig,
+  type TableConfigContext,
 } from "./TableConfigurationProvider.js";
 
 export interface TableBodyProps

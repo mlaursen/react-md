@@ -1,11 +1,18 @@
 import { describe, expect, it } from "@jest/globals";
-import type { AnchorHTMLAttributes, ReactElement, ReactNode } from "react";
-import { createContext, forwardRef, useContext, useState } from "react";
+import {
+  createContext,
+  forwardRef,
+  useContext,
+  useState,
+  type AnchorHTMLAttributes,
+  type ReactElement,
+  type ReactNode,
+} from "react";
 
 import { FontIcon } from "../../icon/FontIcon.js";
 import { rmdRender, screen, userEvent } from "../../test-utils/index.js";
 import { Tree } from "../../tree/Tree.js";
-import type { TreeData } from "../../tree/types.js";
+import { type TreeData } from "../../tree/types.js";
 import { isElementVisible } from "../../utils/isElementVisible.js";
 import { useLayoutTree } from "../useLayoutTree.js";
 

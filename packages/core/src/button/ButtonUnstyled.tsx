@@ -1,5 +1,4 @@
-import type { ButtonHTMLAttributes } from "react";
-import { forwardRef } from "react";
+import { forwardRef, type ButtonHTMLAttributes } from "react";
 import { buttonUnstyled } from "./buttonUnstyledStyles.js";
 
 /**

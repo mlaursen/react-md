@@ -3,7 +3,7 @@ import {
   usePackageManagerContext,
 } from "@/components/RootProviders/PackageManagerProvider.jsx";
 import { SegmentedButtonGroup } from "@/components/SegmentedButtonGroup.jsx";
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 
 export function ConfigurePackageManager(): ReactElement {
   const { packageManager, setPackageManager } = usePackageManagerContext();

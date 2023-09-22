@@ -1,7 +1,7 @@
 import { cnb } from "cnbuilder";
 import { forwardRef } from "react";
 import { bem } from "../utils/bem.js";
-import type { LabelClassNameOptions, LabelProps } from "./types.js";
+import { type LabelClassNameOptions, type LabelProps } from "./types.js";
 
 declare module "react" {
   interface CSSProperties {

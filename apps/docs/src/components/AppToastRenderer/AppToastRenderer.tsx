@@ -1,7 +1,12 @@
-import type { CreateToastOptions, ToastRendererProps } from "@react-md/core";
-import { DefaultToastRenderer, ToastContent, addToast } from "@react-md/core";
+import {
+  DefaultToastRenderer,
+  ToastContent,
+  addToast,
+  type CreateToastOptions,
+  type ToastRendererProps,
+} from "@react-md/core";
 import { cnb } from "cnbuilder";
-import type { ReactElement, ReactNode } from "react";
+import { type ReactElement, type ReactNode } from "react";
 
 import styles from "./AppToastRenderer.module.scss";
 

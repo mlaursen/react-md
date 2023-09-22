@@ -2,8 +2,7 @@ import { describe, expect, it } from "@jest/globals";
 import { render } from "../../test-utils/index.js";
 
 import { FontIcon } from "../../icon/FontIcon.js";
-import type { TabProps } from "../Tab.js";
-import { Tab } from "../Tab.js";
+import { Tab, type TabProps } from "../Tab.js";
 
 describe("Tab", () => {
   it("should support rendering an icon in different positions around the children", () => {

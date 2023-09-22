@@ -1,7 +1,9 @@
 "use client";
-import type { HTMLAttributes, ReactElement, ReactNode } from "react";
-import type { SkeletonPlaceholderOptions } from "./useSkeletonPlaceholder.js";
-import { useSkeletonPlaceholder } from "./useSkeletonPlaceholder.js";
+import { type HTMLAttributes, type ReactElement, type ReactNode } from "react";
+import {
+  useSkeletonPlaceholder,
+  type SkeletonPlaceholderOptions,
+} from "./useSkeletonPlaceholder.js";
 
 declare module "react" {
   interface CSSProperties {

@@ -1,18 +1,27 @@
 "use client";
-import type { ReactElement, ReactNode, RefObject } from "react";
-import { useCallback, useRef, useState } from "react";
+import {
+  useCallback,
+  useRef,
+  useState,
+  type ReactElement,
+  type ReactNode,
+  type RefObject,
+} from "react";
 import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
 import { getLastFocusableIndex } from "../movement/utils.js";
 import { useEnsuredId } from "../useEnsuredId.js";
-import type { MenuConvenienceProps, MenuListConvenienceProps } from "./Menu.js";
-import { Menu } from "./Menu.js";
-import type { MenuButtonProps } from "./MenuButton.js";
-import { MenuButton } from "./MenuButton.js";
-import type { MenuConfiguration } from "./MenuConfigurationProvider.js";
-import { MenuConfigurationProvider } from "./MenuConfigurationProvider.js";
-import type { MenuItemButtonProps } from "./MenuItemButton.js";
-import { MenuItemButton } from "./MenuItemButton.js";
-import type { MenuSheetConvenienceProps } from "./MenuSheet.js";
+import {
+  Menu,
+  type MenuConvenienceProps,
+  type MenuListConvenienceProps,
+} from "./Menu.js";
+import { MenuButton, type MenuButtonProps } from "./MenuButton.js";
+import {
+  MenuConfigurationProvider,
+  type MenuConfiguration,
+} from "./MenuConfigurationProvider.js";
+import { MenuItemButton, type MenuItemButtonProps } from "./MenuItemButton.js";
+import { type MenuSheetConvenienceProps } from "./MenuSheet.js";
 import { MenuVisibilityProvider } from "./MenuVisibilityProvider.js";
 import { useMenuBarContext } from "./useMenuBarProvider.js";
 

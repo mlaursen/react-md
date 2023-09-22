@@ -1,7 +1,12 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type { MouseEventHandler, ReactElement, ReactNode } from "react";
-import { cloneElement, isValidElement } from "react";
+import {
+  cloneElement,
+  isValidElement,
+  type MouseEventHandler,
+  type ReactElement,
+  type ReactNode,
+} from "react";
 import { useIcon } from "../icon/IconProvider.js";
 import { IconRotator } from "../icon/IconRotator.js";
 import { useTreeContext } from "./TreeProvider.js";

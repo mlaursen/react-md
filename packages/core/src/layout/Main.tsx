@@ -1,9 +1,13 @@
 "use client";
-import type { ElementType, HTMLAttributes, ReactNode, Ref } from "react";
-import { forwardRef } from "react";
+import {
+  forwardRef,
+  type ElementType,
+  type HTMLAttributes,
+  type ReactNode,
+  type Ref,
+} from "react";
 import { useEnsuredId } from "../useEnsuredId.js";
-import type { MainClassNameOptions } from "./mainStyles.js";
-import { main } from "./mainStyles.js";
+import { main, type MainClassNameOptions } from "./mainStyles.js";
 import { useMainTabIndex } from "./useMainTabIndex.js";
 
 /**

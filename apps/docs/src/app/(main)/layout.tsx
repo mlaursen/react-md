@@ -4,10 +4,10 @@ import { LoadThemeStyles } from "@/components/LoadThemeStyles/LoadThemeStyles.js
 import { RootProviders } from "@/components/RootProviders/RootProviders.jsx";
 import { semver } from "@/utils/semver.js";
 import { cnb } from "cnbuilder";
-import type { Metadata } from "next";
+import { type Metadata } from "next";
 import { Roboto_Flex, Source_Code_Pro } from "next/font/google";
 import { headers } from "next/headers.js";
-import type { PropsWithChildren, ReactElement } from "react";
+import { type PropsWithChildren, type ReactElement } from "react";
 import { RootLayout } from "./RootLayout.jsx";
 import { getInitialState } from "./utils.js";
 

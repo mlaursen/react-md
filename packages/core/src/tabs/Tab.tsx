@@ -1,6 +1,5 @@
 "use client";
-import type { ButtonHTMLAttributes, ReactNode } from "react";
-import { forwardRef } from "react";
+import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from "react";
 import { RippleContainer } from "../interaction/RippleContainer.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
@@ -9,9 +8,9 @@ import { useEnsuredId } from "../useEnsuredId.js";
 import { tab } from "./tabStyles.js";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type { useTabs } from "./useTabs.js";
+import { type useTabs } from "./useTabs.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type { TabListProps } from "./TabList.js";
+import { type TabListProps } from "./TabList.js";
 
 /**
  * @remarks \@since 6.0.0

@@ -1,6 +1,5 @@
 import { cnb } from "cnbuilder";
-import type { HTMLAttributes, ReactNode } from "react";
-import { forwardRef } from "react";
+import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
 import { bem } from "../utils/bem.js";
 
 declare module "react" {

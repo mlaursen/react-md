@@ -1,10 +1,9 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type { ReactElement } from "react";
-import { Children, cloneElement } from "react";
-import type {
-  CSSTransitionComponentImplementation,
-  CSSTransitionHookOptions,
+import { Children, cloneElement, type ReactElement } from "react";
+import {
+  type CSSTransitionComponentImplementation,
+  type CSSTransitionHookOptions,
 } from "./types.js";
 import { useCSSTransition } from "./useCSSTransition.js";
 

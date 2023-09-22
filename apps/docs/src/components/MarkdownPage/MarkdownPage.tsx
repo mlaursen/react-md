@@ -1,7 +1,7 @@
-import type { MDXProps } from "mdx/types.js";
-import type { ReactElement } from "react";
+import { type MDXProps } from "mdx/types.js";
+import { type ReactElement } from "react";
 import { TableOfContents } from "../TableOfContents/TableOfContents.jsx";
-import type { TableOfContentsItem } from "../TableOfContents/types.js";
+import { type TableOfContentsItem } from "../TableOfContents/types.js";
 import styles from "./MarkdownPage.module.scss";
 
 export interface MarkdownPageProps {

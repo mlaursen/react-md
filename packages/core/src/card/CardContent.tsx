@@ -1,7 +1,5 @@
-import type { HTMLAttributes } from "react";
-import { forwardRef } from "react";
-import type { CardContentClassNameOptions } from "./styles.js";
-import { cardContent } from "./styles.js";
+import { forwardRef, type HTMLAttributes } from "react";
+import { cardContent, type CardContentClassNameOptions } from "./styles.js";
 
 /**
  * @remarks

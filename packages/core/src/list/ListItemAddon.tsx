@@ -1,8 +1,12 @@
-import type { ReactElement, ReactNode } from "react";
-import type { TextIconSpacingProps } from "../icon/TextIconSpacing.js";
-import { TextIconSpacing } from "../icon/TextIconSpacing.js";
-import type { ListItemAddonClassNameOptions } from "./listItemStyles.js";
-import { listItemAddon } from "./listItemStyles.js";
+import { type ReactElement, type ReactNode } from "react";
+import {
+  TextIconSpacing,
+  type TextIconSpacingProps,
+} from "../icon/TextIconSpacing.js";
+import {
+  listItemAddon,
+  type ListItemAddonClassNameOptions,
+} from "./listItemStyles.js";
 
 export interface ListItemAddonProps
   extends Omit<TextIconSpacingProps, "icon" | "iconAfter" | "forceIconWrap">,

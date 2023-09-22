@@ -1,7 +1,9 @@
-import type { CodeLanguage } from "@/components/RootProviders/CodeLanguageProvider.jsx";
-import { useCodeLanguageContext } from "@/components/RootProviders/CodeLanguageProvider.jsx";
+import {
+  useCodeLanguageContext,
+  type CodeLanguage,
+} from "@/components/RootProviders/CodeLanguageProvider.jsx";
 import { SegmentedButtonGroup } from "@/components/SegmentedButtonGroup.jsx";
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 
 const languages: readonly CodeLanguage[] = ["js", "ts"];
 

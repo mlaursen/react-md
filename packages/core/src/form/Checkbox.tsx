@@ -1,6 +1,5 @@
 import { forwardRef } from "react";
-import type { CheckboxProps } from "./InputToggle.js";
-import { InputToggle } from "./InputToggle.js";
+import { InputToggle, type CheckboxProps } from "./InputToggle.js";
 
 /**
  * **Client Component**

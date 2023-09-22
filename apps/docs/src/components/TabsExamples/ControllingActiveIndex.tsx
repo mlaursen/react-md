@@ -6,7 +6,7 @@ import {
   Typography,
   useTabs,
 } from "@react-md/core";
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 
 import styles from "./ControllingActiveIndex.module.scss";
 

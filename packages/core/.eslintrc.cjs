@@ -7,9 +7,6 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: "module",
   },
-  rules: {
-    "@typescript-eslint/consistent-type-imports": ["error"],
-  },
   overrides: [
     {
       files: ["src/**/index.ts"],

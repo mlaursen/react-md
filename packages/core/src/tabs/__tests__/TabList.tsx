@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, jest } from "@jest/globals";
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 import {
   act,
   fireEvent,
@@ -17,11 +17,9 @@ import {
 import { Tooltip } from "../../tooltip/Tooltip.js";
 import { useTooltip } from "../../tooltip/useTooltip.js";
 import { Tab } from "../Tab.js";
-import type { TabListProps } from "../TabList.js";
-import { TabList } from "../TabList.js";
-import type { ProvidedTabListProps } from "../useTabs.js";
-import { useTabs } from "../useTabs.js";
-import type { GetTabListScrollToOptions } from "../utils.js";
+import { TabList, type TabListProps } from "../TabList.js";
+import { useTabs, type ProvidedTabListProps } from "../useTabs.js";
+import { type GetTabListScrollToOptions } from "../utils.js";
 
 // make it so the back button defaults to intersecting
 const getIntersectionRatio = jest.fn((target: Element): number =>

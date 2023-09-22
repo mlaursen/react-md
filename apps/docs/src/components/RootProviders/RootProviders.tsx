@@ -1,6 +1,6 @@
 "use client";
 import { rmdConfig } from "@/constants/rmdConfig.js";
-import type { PrismTheme } from "@/prism-themes/themes.js";
+import { type PrismTheme } from "@/prism-themes/themes.js";
 import {
   CoreProviders,
   MenuConfigurationProvider,
@@ -8,12 +8,16 @@ import {
   Snackbar,
   ThemeProvider,
 } from "@react-md/core";
-import type { ReactElement, ReactNode } from "react";
+import { type ReactElement, type ReactNode } from "react";
 import { AppToastRenderer } from "../AppToastRenderer/AppToastRenderer.jsx";
-import type { CodeLanguage } from "./CodeLanguageProvider.jsx";
-import { CodeLanguageProvider } from "./CodeLanguageProvider.jsx";
-import type { PackageManager } from "./PackageManagerProvider.jsx";
-import { PackageManagerProvider } from "./PackageManagerProvider.jsx";
+import {
+  CodeLanguageProvider,
+  type CodeLanguage,
+} from "./CodeLanguageProvider.jsx";
+import {
+  PackageManagerProvider,
+  type PackageManager,
+} from "./PackageManagerProvider.jsx";
 import { PrismThemeProvider } from "./PrismThemeProvider.jsx";
 
 export interface RootProvidersProps {

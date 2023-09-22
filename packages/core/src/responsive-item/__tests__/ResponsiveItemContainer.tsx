@@ -2,11 +2,11 @@ import { describe, expect, it } from "@jest/globals";
 import { render } from "../../test-utils/index.js";
 import { createRef } from "react";
 
-import type { PropsWithRef } from "../../types.js";
-import type { ResponsiveItemContainerProps } from "../ResponsiveItemContainer.js";
+import { type PropsWithRef } from "../../types.js";
 import {
   responsiveItemContainer,
   ResponsiveItemContainer,
+  type ResponsiveItemContainerProps,
 } from "../ResponsiveItemContainer.js";
 
 describe("ResponsiveItemContainer", () => {

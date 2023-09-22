@@ -1,8 +1,7 @@
 import { usePrismThemeContext } from "@/components/RootProviders/PrismThemeProvider.jsx";
 import { PRISM_THEMES } from "@/prism-themes/themes.js";
 import { Box, Option, Overlay, Select, Typography } from "@react-md/core";
-import type { ReactElement } from "react";
-import { useId } from "react";
+import { useId, type ReactElement } from "react";
 
 export function ConfigureCodeTheme(): ReactElement {
   const { prismTheme, setPrismTheme } = usePrismThemeContext();

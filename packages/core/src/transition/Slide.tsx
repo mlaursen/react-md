@@ -1,10 +1,9 @@
 "use client";
-import type { HTMLAttributes, ReactNode } from "react";
-import { forwardRef } from "react";
-import type {
-  CSSTransitionComponentProps,
-  TransitionActions,
-  TransitionTimeout,
+import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
+import {
+  type CSSTransitionComponentProps,
+  type TransitionActions,
+  type TransitionTimeout,
 } from "./types.js";
 import {
   DEFAULT_SLIDE_TRANSITION_TIMEOUT,

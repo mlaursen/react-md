@@ -1,11 +1,12 @@
 "use client";
-import type { ReactNode } from "react";
-import { forwardRef } from "react";
-import type { ListElement, ListProps } from "../list/List.js";
-import type { ListSubheaderProps } from "../list/ListSubheader.js";
-import { ListSubheader } from "../list/ListSubheader.js";
+import { forwardRef, type ReactNode } from "react";
+import { type ListElement, type ListProps } from "../list/List.js";
+import {
+  ListSubheader,
+  type ListSubheaderProps,
+} from "../list/ListSubheader.js";
 import { MenuItemGroup } from "../menu/MenuItemGroup.js";
-import type { PropsWithRef } from "../types.js";
+import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 
 /** @remarks \@since 6.0.0 */

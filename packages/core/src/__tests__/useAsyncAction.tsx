@@ -1,10 +1,9 @@
 import { describe, expect, it, jest } from "@jest/globals";
-import type { MouseEvent, ReactElement } from "react";
+import { type MouseEvent, type ReactElement } from "react";
 import { act, rmdRender, userEvent, waitFor } from "../test-utils/index.js";
 
 import { box } from "../box/styles.js";
-import type { ButtonProps } from "../button/Button.js";
-import { Button } from "../button/Button.js";
+import { Button, type ButtonProps } from "../button/Button.js";
 import { CircularProgress } from "../progress/CircularProgress.js";
 import { useAsyncAction } from "../useAsyncAction.js";
 

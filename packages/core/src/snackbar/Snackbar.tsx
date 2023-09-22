@@ -1,13 +1,19 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type { AriaRole, ComponentType, HTMLAttributes } from "react";
-import { forwardRef } from "react";
+import {
+  forwardRef,
+  type AriaRole,
+  type ComponentType,
+  type HTMLAttributes,
+} from "react";
 import { Portal } from "../portal/Portal.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { bem } from "../utils/bem.js";
-import type { ToastRendererProps } from "./DefaultToastRenderer.js";
-import { DefaultToastRenderer } from "./DefaultToastRenderer.js";
-import type { ConfigurableToastProps } from "./Toast.js";
+import {
+  DefaultToastRenderer,
+  type ToastRendererProps,
+} from "./DefaultToastRenderer.js";
+import { type ConfigurableToastProps } from "./Toast.js";
 import { useToastQueue } from "./ToastManagerProvider.js";
 
 const styles = bem("rmd-snackbar");

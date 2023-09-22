@@ -3,10 +3,10 @@ import { createRef } from "react";
 import { ElementInteractionProvider } from "../../interaction/ElementInteractionProvider.js";
 import { fireEvent, render } from "../../test-utils/index.js";
 import { Button } from "../Button.js";
-import type {
-  ButtonTheme,
-  ButtonThemeType,
-  ButtonType,
+import {
+  type ButtonTheme,
+  type ButtonThemeType,
+  type ButtonType,
 } from "../buttonStyles.js";
 
 describe("Button", () => {

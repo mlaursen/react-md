@@ -2,12 +2,12 @@ import { beforeEach, describe, expect, it, jest } from "@jest/globals";
 import lodash from "lodash";
 import { render } from "../../test-utils/index.js";
 
-import type { ConfigurableThemeColors } from "../ThemeProvider.js";
 import {
   DEFAULT_DARK_THEME,
   DEFAULT_LIGHT_THEME,
   ThemeProvider,
   useTheme,
+  type ConfigurableThemeColors,
 } from "../ThemeProvider.js";
 
 beforeEach(() => {

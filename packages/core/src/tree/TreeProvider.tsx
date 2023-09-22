@@ -1,10 +1,19 @@
 "use client";
-import type { ReactElement, ReactNode } from "react";
-import { createContext, useContext, useMemo } from "react";
-import type { NonNullRef } from "../types.js";
-import type { DefaultTreeItemNode, TreeData, TreeItemNode } from "./types.js";
-import type { TreeExpansion } from "./useTreeExpansion.js";
-import type { TreeSelection } from "./useTreeSelection.js";
+import {
+  createContext,
+  useContext,
+  useMemo,
+  type ReactElement,
+  type ReactNode,
+} from "react";
+import { type NonNullRef } from "../types.js";
+import {
+  type DefaultTreeItemNode,
+  type TreeData,
+  type TreeItemNode,
+} from "./types.js";
+import { type TreeExpansion } from "./useTreeExpansion.js";
+import { type TreeSelection } from "./useTreeSelection.js";
 
 /**
  * When this is set to `"auto"`, clicking on a tree item with a mouse or with

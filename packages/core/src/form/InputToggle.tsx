@@ -1,24 +1,25 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type {
-  CSSProperties,
-  HTMLAttributes,
-  InputHTMLAttributes,
-  LabelHTMLAttributes,
-  ReactNode,
+import {
+  forwardRef,
+  useState,
+  type CSSProperties,
+  type HTMLAttributes,
+  type InputHTMLAttributes,
+  type LabelHTMLAttributes,
+  type ReactNode,
 } from "react";
-import { forwardRef, useState } from "react";
 import { RippleContainer } from "../interaction/RippleContainer.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
-import type { PropsWithRef } from "../types.js";
+import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { bem } from "../utils/bem.js";
 import { FormMessageContainer } from "./FormMessageContainer.js";
 import { InputToggleIcon } from "./InputToggleIcon.js";
 import { Label } from "./Label.js";
-import type {
-  FormComponentStates,
-  FormMessageContainerExtension,
+import {
+  type FormComponentStates,
+  type FormMessageContainerExtension,
 } from "./types.js";
 
 const noop = (): void => {

@@ -1,6 +1,6 @@
-import type { SemVer } from "@/utils/semver.js";
+import { type SemVer } from "@/utils/semver.js";
 import { Typography, appBarTitle, box } from "@react-md/core";
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 import { VersionDropdown } from "./VersionDropdown.jsx";
 
 export interface RootLayoutTitleProps extends SemVer {

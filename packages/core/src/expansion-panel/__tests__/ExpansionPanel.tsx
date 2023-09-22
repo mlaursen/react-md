@@ -1,6 +1,5 @@
 import { describe, expect, it } from "@jest/globals";
-import type { ReactElement } from "react";
-import { createRef } from "react";
+import { createRef, type ReactElement } from "react";
 import {
   fireEvent,
   render,
@@ -11,10 +10,11 @@ import {
 
 import { isElementVisible } from "../../utils/isElementVisible.js";
 import { ExpansionList } from "../ExpansionList.js";
-import type { ExpansionPanelProps } from "../ExpansionPanel.js";
-import { ExpansionPanel } from "../ExpansionPanel.js";
-import type { ExpansionPanelHookOptions } from "../useExpansionPanels.js";
-import { useExpansionPanels } from "../useExpansionPanels.js";
+import { ExpansionPanel, type ExpansionPanelProps } from "../ExpansionPanel.js";
+import {
+  useExpansionPanels,
+  type ExpansionPanelHookOptions,
+} from "../useExpansionPanels.js";
 
 interface TestProps extends ExpansionPanelHookOptions {
   manualIds?: boolean;

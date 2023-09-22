@@ -1,8 +1,7 @@
 import { cnb } from "cnbuilder";
 import { forwardRef } from "react";
 import { srOnly } from "../typography/SrOnly.js";
-import type { TypographyProps } from "../typography/Typography.js";
-import { Typography } from "../typography/Typography.js";
+import { Typography, type TypographyProps } from "../typography/Typography.js";
 
 /**
  * @remarks \@since 6.0.0

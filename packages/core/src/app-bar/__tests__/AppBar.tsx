@@ -2,8 +2,12 @@ import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
 import { render } from "../../test-utils/index.js";
 
-import type { AppBarHeight, AppBarPosition } from "../AppBar.js";
-import { AppBar, appBar } from "../AppBar.js";
+import {
+  AppBar,
+  appBar,
+  type AppBarHeight,
+  type AppBarPosition,
+} from "../AppBar.js";
 import { AppBarTitle } from "../AppBarTitle.js";
 
 describe("AppBar", () => {

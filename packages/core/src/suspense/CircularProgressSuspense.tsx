@@ -1,7 +1,8 @@
-import type { ReactElement, ReactNode } from "react";
-import { Suspense } from "react";
-import type { CircularProgressProps } from "../progress/CircularProgress.js";
-import { CircularProgress } from "../progress/CircularProgress.js";
+import { Suspense, type ReactElement, type ReactNode } from "react";
+import {
+  CircularProgress,
+  type CircularProgressProps,
+} from "../progress/CircularProgress.js";
 
 /**
  * @remarks \@since 6.0.0

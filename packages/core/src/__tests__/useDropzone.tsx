@@ -1,10 +1,9 @@
 import { describe, expect, it, jest } from "@jest/globals";
-import type { ReactElement, ReactNode } from "react";
+import { type ReactElement, type ReactNode } from "react";
 import { cnb } from "cnbuilder";
 import { fireEvent, render } from "../test-utils/index.js";
 
-import type { DropzoneOptions } from "../useDropzone.js";
-import { useDropzone } from "../useDropzone.js";
+import { useDropzone, type DropzoneOptions } from "../useDropzone.js";
 
 function Test({
   children,

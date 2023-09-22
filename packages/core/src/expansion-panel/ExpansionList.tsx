@@ -1,6 +1,5 @@
 "use client";
-import type { HTMLAttributes, ReactNode } from "react";
-import { forwardRef } from "react";
+import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
 import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
 import { useExpansionList } from "./useExpansionList.js";
 

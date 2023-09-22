@@ -10,8 +10,10 @@ import {
   waitFor,
 } from "../test-utils/index.js";
 
-import type { ResizeObserverEntryCallback } from "../useResizeObserver.js";
-import { useResizeObserver } from "../useResizeObserver.js";
+import {
+  useResizeObserver,
+  type ResizeObserverEntryCallback,
+} from "../useResizeObserver.js";
 
 describe("useResizeObserver", () => {
   cleanupResizeObserver();

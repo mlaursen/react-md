@@ -1,12 +1,11 @@
 import { SegmentedButtonGroup } from "@/components/SegmentedButtonGroup.jsx";
 import { COLOR_SCHEME_KEY } from "@/constants/cookies.js";
 import { setCookie } from "@/utils/clientCookies.js";
-import type { ColorSchemeMode } from "@react-md/core";
-import { useColorScheme } from "@react-md/core";
+import { useColorScheme, type ColorSchemeMode } from "@react-md/core";
 import DarkModeOutlinedIcon from "@react-md/material-icons/DarkModeOutlinedIcon";
 import DevicesOutlinedIcon from "@react-md/material-icons/DevicesOutlinedIcon";
 import LightModeOutlinedIcon from "@react-md/material-icons/LightModeOutlinedIcon";
-import type { ReactElement, ReactNode } from "react";
+import { type ReactElement, type ReactNode } from "react";
 
 const modes: readonly ColorSchemeMode[] = ["light", "dark", "system"];
 

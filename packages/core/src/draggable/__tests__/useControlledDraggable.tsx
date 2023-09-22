@@ -1,7 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { cnb } from "cnbuilder";
-import type { ReactElement } from "react";
-import { useState } from "react";
+import { useState, type ReactElement } from "react";
 import { fireEvent, rmdRender } from "../../test-utils/index.js";
 
 import { Button } from "../../button/Button.js";

@@ -1,14 +1,13 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type { HTMLAttributes } from "react";
-import { forwardRef } from "react";
+import { forwardRef, type HTMLAttributes } from "react";
 import { useSsr } from "../SsrProvider.js";
 import { Portal } from "../portal/Portal.js";
-import type {
-  CSSTransitionClassNamesObject,
-  CSSTransitionComponentProps,
-  TransitionActions,
-  TransitionTimeout,
+import {
+  type CSSTransitionClassNamesObject,
+  type CSSTransitionComponentProps,
+  type TransitionActions,
+  type TransitionTimeout,
 } from "../transition/types.js";
 import { useCSSTransition } from "../transition/useCSSTransition.js";
 import { bem } from "../utils/bem.js";

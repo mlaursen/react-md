@@ -1,12 +1,11 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type { ReactElement } from "react";
-import { Children, cloneElement } from "react";
-import type {
-  CollapseElementProps,
-  CollapseTransitionHookOptions,
+import { Children, cloneElement, type ReactElement } from "react";
+import {
+  useCollapseTransition,
+  type CollapseElementProps,
+  type CollapseTransitionHookOptions,
 } from "./useCollapseTransition.js";
-import { useCollapseTransition } from "./useCollapseTransition.js";
 
 /**
  * @typeParam E - An HTMLElement type used for the ref required for the

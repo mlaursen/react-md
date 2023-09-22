@@ -1,8 +1,8 @@
 "use client";
-import type { SemVer } from "@/utils/semver.js";
+import { type SemVer } from "@/utils/semver.js";
 import { AppBar, AppBarTitle, Button, Sheet } from "@react-md/core";
 import MenuOutlinedIcon from "@react-md/material-icons/MenuOutlinedIcon";
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 import { useLayoutContext } from "./LayoutProvider.js";
 import { VersionDropdown } from "./VersionDropdown.jsx";
 

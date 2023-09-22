@@ -1,12 +1,12 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type { ReactElement } from "react";
-import type {
-  CSSTransitionClassNames,
-  TransitionTimeout,
+import { type ReactElement } from "react";
+import {
+  type CSSTransitionClassNames,
+  type TransitionTimeout,
 } from "../transition/types.js";
 import { useCSSTransition } from "../transition/useCSSTransition.js";
-import type { RippleState, RippleTransitionCallbacks } from "./types.js";
+import { type RippleState, type RippleTransitionCallbacks } from "./types.js";
 
 /** @internal */
 export const DEFAULT_RIPPLE_CLASSNAMES: Readonly<CSSTransitionClassNames> = {

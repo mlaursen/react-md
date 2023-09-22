@@ -1,5 +1,5 @@
 "use client";
-import type { ReactElement, ReactNode } from "react";
+import { type ReactElement, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 
 import { usePortalContainer } from "./PortalContainerProvider.js";

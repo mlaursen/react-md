@@ -1,6 +1,6 @@
 import { NullSuspense } from "@react-md/core";
 import { cnb } from "cnbuilder";
-import type { HTMLAttributes, ReactElement, ReactNode } from "react";
+import { type HTMLAttributes, type ReactElement, type ReactNode } from "react";
 import styles from "./CodeBlock.module.scss";
 import { CopyToClipboard } from "./CopyToClipboard.jsx";
 import { LineNumbers } from "./LineNumbers.jsx";

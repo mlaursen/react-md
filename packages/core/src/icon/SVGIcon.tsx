@@ -1,7 +1,5 @@
-import type { HTMLAttributes, ReactNode } from "react";
-import { forwardRef } from "react";
-import type { SVGIconClassNameOptions } from "./styles.js";
-import { icon } from "./styles.js";
+import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
+import { icon, type SVGIconClassNameOptions } from "./styles.js";
 
 export interface SVGIconProps
   extends Omit<HTMLAttributes<SVGSVGElement>, "color">,

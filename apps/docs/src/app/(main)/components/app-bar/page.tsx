@@ -8,7 +8,7 @@ import {
 import MenuIcon from "@react-md/material-icons/MenuIcon";
 import MoreVertIcon from "@react-md/material-icons/MoreVertIcon";
 import SearchIcon from "@react-md/material-icons/SearchIcon";
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 
 export default function AppBarPage(): ReactElement {
   return (

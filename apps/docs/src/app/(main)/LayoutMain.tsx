@@ -1,5 +1,5 @@
 import { Main } from "@react-md/core";
-import type { ReactElement, ReactNode } from "react";
+import { type ReactElement, type ReactNode } from "react";
 import styles from "./LayoutMain.module.scss";
 
 export interface LayoutMainProps {

@@ -3,7 +3,7 @@ import { LinkUnstyled } from "@/components/LinkUnstyled.jsx";
 import { GITHUB_URL } from "@/constants/env.js";
 import { GithubIcon } from "@/icons/GithubIcon.jsx";
 import { Tooltip, button, useTooltip } from "@react-md/core";
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 
 export function GithubLink(): ReactElement {
   const { tooltipProps, elementProps } = useTooltip();

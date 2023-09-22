@@ -1,21 +1,21 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type {
-  InputHTMLAttributes,
-  LabelHTMLAttributes,
-  ReactNode,
+import {
+  forwardRef,
+  type InputHTMLAttributes,
+  type LabelHTMLAttributes,
+  type ReactNode,
 } from "react";
-import { forwardRef } from "react";
-import type {
-  ButtonClassNameOptions,
-  ButtonClassNameThemeOptions,
+import {
+  button,
+  type ButtonClassNameOptions,
+  type ButtonClassNameThemeOptions,
 } from "../button/buttonStyles.js";
-import { button } from "../button/buttonStyles.js";
 import { useIcon } from "../icon/IconProvider.js";
 import { TextIconSpacing } from "../icon/TextIconSpacing.js";
 import { RippleContainer } from "../interaction/RippleContainer.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
-import type { PropsWithRef } from "../types.js";
+import { type PropsWithRef } from "../types.js";
 import { SrOnly } from "../typography/SrOnly.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 

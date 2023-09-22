@@ -1,8 +1,14 @@
 "use client";
 import { PACKAGE_MANAGER_KEY } from "@/constants/cookies.js";
 import { setCookie } from "@/utils/clientCookies.js";
-import type { ReactElement, ReactNode } from "react";
-import { createContext, useContext, useMemo, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useMemo,
+  useState,
+  type ReactElement,
+  type ReactNode,
+} from "react";
 
 export type PackageManager = "npm" | "yarn" | "pnpm";
 

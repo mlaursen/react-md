@@ -1,17 +1,20 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type { ButtonHTMLAttributes, MouseEventHandler, ReactNode } from "react";
-import { forwardRef } from "react";
+import {
+  forwardRef,
+  type ButtonHTMLAttributes,
+  type MouseEventHandler,
+  type ReactNode,
+} from "react";
 import { ButtonUnstyled } from "../button/ButtonUnstyled.js";
 import { useIcon } from "../icon/IconProvider.js";
-import type { IconRotatorProps } from "../icon/IconRotator.js";
-import { IconRotator } from "../icon/IconRotator.js";
-import type { PropsWithRef } from "../types.js";
-import type {
-  TypographyProps,
-  TypographyType,
+import { IconRotator, type IconRotatorProps } from "../icon/IconRotator.js";
+import { type PropsWithRef } from "../types.js";
+import {
+  Typography,
+  type TypographyProps,
+  type TypographyType,
 } from "../typography/Typography.js";
-import { Typography } from "../typography/Typography.js";
 
 /**
  * @remarks \@since 6.0.0 Updated to include additional heading/Typography

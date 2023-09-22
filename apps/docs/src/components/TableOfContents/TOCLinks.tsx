@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { typography } from "@react-md/core";
 import { cnb } from "cnbuilder";
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 import styles from "./TOCLinks.module.scss";
-import type { TableOfContentsItem } from "./types.js";
+import { type TableOfContentsItem } from "./types.js";
 
 export interface TOCLinksProps {
   items: TableOfContentsItem[];

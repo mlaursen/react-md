@@ -1,4 +1,4 @@
-import type { HTMLAttributes, ReactElement } from "react";
+import { type HTMLAttributes, type ReactElement } from "react";
 import { cnb } from "cnbuilder";
 
 import styles from "./Code.module.scss";

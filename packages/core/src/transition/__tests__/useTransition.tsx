@@ -6,14 +6,18 @@ import {
   it,
   jest,
 } from "@jest/globals";
-import type { MutableRefObject, ReactElement } from "react";
-import { useEffect, useState } from "react";
+import {
+  useEffect,
+  useState,
+  type MutableRefObject,
+  type ReactElement,
+} from "react";
 import { act, fireEvent, render, waitFor } from "../../test-utils/index.js";
 
-import type {
-  TransitionHookOptions,
-  TransitionStage,
-  TransitionTimeout,
+import {
+  type TransitionHookOptions,
+  type TransitionStage,
+  type TransitionTimeout,
 } from "../types.js";
 import { useTransition } from "../useTransition.js";
 import { useLocalStorage } from "../../useLocalStorage.js";

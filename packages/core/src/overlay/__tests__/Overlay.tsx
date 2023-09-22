@@ -1,13 +1,12 @@
 import { describe, expect, it, jest } from "@jest/globals";
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 import { fireEvent, render, waitFor, within } from "../../test-utils/index.js";
 
 import { SsrProvider } from "../../SsrProvider.js";
 import { Button } from "../../button/Button.js";
 import { useToggle } from "../../useToggle.js";
 import { DISPLAY_NONE_CLASS } from "../../utils/isElementVisible.js";
-import type { OverlayProps } from "../Overlay.js";
-import { Overlay } from "../Overlay.js";
+import { Overlay, type OverlayProps } from "../Overlay.js";
 
 interface TestProps {
   defaultVisible?: boolean;

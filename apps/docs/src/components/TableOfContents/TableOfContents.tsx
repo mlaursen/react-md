@@ -7,7 +7,7 @@ import {
 import { useCallback, useId, useRef, useState, type ReactElement } from "react";
 import { TOCLinks } from "./TOCLinks.jsx";
 import styles from "./TableOfContents.module.scss";
-import type { TableOfContentsItem } from "./types.js";
+import { type TableOfContentsItem } from "./types.js";
 
 function getHeadings(items: TableOfContentsItem[]): HTMLElement[] {
   const headings: HTMLElement[] = [];

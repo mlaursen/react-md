@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, jest } from "@jest/globals";
-import type { ReactNode } from "react";
+import { type ReactNode } from "react";
 import { AppBar } from "../../app-bar/AppBar.js";
 import { AppBarTitle } from "../../app-bar/AppBarTitle.js";
 import { Button } from "../../button/Button.js";
@@ -21,8 +21,10 @@ import { LayoutNav } from "../LayoutNav.js";
 import { LayoutWindowSplitter } from "../LayoutWindowSplitter.js";
 import { Main } from "../Main.js";
 import { DEFAULT_HORIZONTAL_LAYOUT_TRANSITION_CLASSNAMES } from "../useHorizontalLayoutTransition.js";
-import type { ResizableLayoutOptions } from "../useResizableLayout.js";
-import { useResizableLayout } from "../useResizableLayout.js";
+import {
+  useResizableLayout,
+  type ResizableLayoutOptions,
+} from "../useResizableLayout.js";
 
 const OFFSCREEN_CLASS = "rmd-sheet--offscreen";
 const { enter: ENTER_H_CLASS, enterDone: ENTER_H_DONE_CLASS } =

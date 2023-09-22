@@ -13,7 +13,7 @@ import {
 } from "@react-md/core";
 import MoreVertOutlinedIcon from "@react-md/material-icons/MoreVertOutlinedIcon";
 import Link from "next/link.js";
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 import styles from "./Configuration.module.scss";
 import { ConfigureCodeLanguage } from "./ConfigureCodeLanguage.jsx";
 import { ConfigureCodeTheme } from "./ConfigureCodeTheme.jsx";

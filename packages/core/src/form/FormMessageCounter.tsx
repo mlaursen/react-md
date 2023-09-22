@@ -1,4 +1,4 @@
-import type { HTMLAttributes, ReactElement, ReactNode } from "react";
+import { type HTMLAttributes, type ReactElement, type ReactNode } from "react";
 import { formMessageCounter } from "./formMessageStyles.js";
 
 /** @remarks \@since 2.9.0 */

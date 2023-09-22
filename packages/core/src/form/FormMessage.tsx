@@ -1,11 +1,10 @@
 "use client";
-import type { CSSProperties } from "react";
-import { forwardRef } from "react";
+import { forwardRef, type CSSProperties } from "react";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { FormMessageCounter } from "./FormMessageCounter.js";
 import { formMessage, formMessageText } from "./formMessageStyles.js";
 import { useFormTheme } from "./FormThemeProvider.js";
-import type { FormMessageProps } from "./types.js";
+import { type FormMessageProps } from "./types.js";
 
 /**
  * Props that are used to automatically add a counter for the remaining letters

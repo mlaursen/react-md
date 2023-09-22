@@ -1,11 +1,10 @@
 import { describe, expect, it, jest } from "@jest/globals";
-import type { ReactElement } from "react";
-import { createRef } from "react";
-import type { RenderResult } from "../../test-utils/index.js";
+import { createRef, type ReactElement } from "react";
 import {
   rmdRender as baseRender,
   screen,
   userEvent,
+  type RenderResult,
 } from "../../test-utils/index.js";
 
 import { FontIcon } from "../../icon/FontIcon.js";

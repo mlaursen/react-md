@@ -1,6 +1,6 @@
 import { layoutNav, sheet } from "@react-md/core";
 import { cnb } from "cnbuilder";
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 
 export interface NavigationDrawerProps {
   [key: string]: unknown;

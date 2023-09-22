@@ -1,7 +1,5 @@
-import type { LinkProps } from "next/link.js";
-import Link from "next/link.js";
-import type { AnchorHTMLAttributes } from "react";
-import { forwardRef } from "react";
+import Link, { type LinkProps } from "next/link.js";
+import { forwardRef, type AnchorHTMLAttributes } from "react";
 
 export interface LinkUnstyledProps
   extends Omit<

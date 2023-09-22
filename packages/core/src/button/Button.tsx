@@ -1,17 +1,15 @@
 "use client";
-import type { ButtonHTMLAttributes } from "react";
-import { forwardRef } from "react";
+import { forwardRef, type ButtonHTMLAttributes } from "react";
 import { RippleContainer } from "../interaction/RippleContainer.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
-import type { PropsWithRef } from "../types.js";
-import type {
-  FloatingActionButtonPosition,
-  FloatingActionButtonProps,
+import { type PropsWithRef } from "../types.js";
+import {
+  FloatingActionButton,
+  type FloatingActionButtonPosition,
+  type FloatingActionButtonProps,
 } from "./FloatingActionButton.js";
-import { FloatingActionButton } from "./FloatingActionButton.js";
-import type { ButtonClassNameThemeOptions } from "./buttonStyles.js";
-import { button } from "./buttonStyles.js";
+import { button, type ButtonClassNameThemeOptions } from "./buttonStyles.js";
 
 export interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,

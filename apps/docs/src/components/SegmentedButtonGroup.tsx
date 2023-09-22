@@ -1,12 +1,12 @@
-import type { TextTransform } from "@react-md/core";
 import {
   Box,
   SegmentedButton,
   SegmentedButtonContainer,
   Typography,
   typography,
+  type TextTransform,
 } from "@react-md/core";
-import type { ReactElement, ReactNode } from "react";
+import { type ReactElement, type ReactNode } from "react";
 
 const noop = (): ReactNode => undefined;
 

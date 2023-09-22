@@ -1,17 +1,17 @@
 import { cnb } from "cnbuilder";
-import type {
-  ButtonHTMLAttributes,
-  CSSProperties,
-  HTMLAttributes,
-  ReactNode,
+import {
+  forwardRef,
+  type ButtonHTMLAttributes,
+  type CSSProperties,
+  type HTMLAttributes,
+  type ReactNode,
 } from "react";
-import { forwardRef } from "react";
 import { useIcon } from "../icon/IconProvider.js";
 import { RippleContainer } from "../interaction/RippleContainer.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
 import { useMaxWidthTransition } from "../transition/useMaxWidthTransition.js";
-import type { PropsWithRef } from "../types.js";
+import { type PropsWithRef } from "../types.js";
 import { chip, chipContent } from "./styles.js";
 
 declare module "react" {

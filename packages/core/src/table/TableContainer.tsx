@@ -1,10 +1,11 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type { HTMLAttributes } from "react";
-import { forwardRef, useMemo } from "react";
+import { forwardRef, useMemo, type HTMLAttributes } from "react";
 import { useEnsuredRef } from "../useEnsuredRef.js";
-import type { TableContainerContext } from "./TableContainerProvider.js";
-import { TableContainerProvider } from "./TableContainerProvider.js";
+import {
+  TableContainerProvider,
+  type TableContainerContext,
+} from "./TableContainerProvider.js";
 
 /**
  * @remarks \@since 6.0.0

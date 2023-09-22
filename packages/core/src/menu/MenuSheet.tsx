@@ -1,9 +1,8 @@
 "use client";
-import type { CSSProperties, ReactElement, ReactNode } from "react";
-import type { BaseSheetProps } from "../sheet/Sheet.js";
-import { Sheet } from "../sheet/Sheet.js";
-import type { LabelRequiredForA11y, PropsWithRef } from "../types.js";
-import type { RenderMenuAsSheet } from "./MenuConfigurationProvider.js";
+import { type CSSProperties, type ReactElement, type ReactNode } from "react";
+import { Sheet, type BaseSheetProps } from "../sheet/Sheet.js";
+import { type LabelRequiredForA11y, type PropsWithRef } from "../types.js";
+import { type RenderMenuAsSheet } from "./MenuConfigurationProvider.js";
 
 const noop = (): void => {
   // do nothing

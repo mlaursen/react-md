@@ -1,13 +1,19 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type { ChangeEventHandler, HTMLAttributes, ReactNode } from "react";
-import { forwardRef, useEffect, useState } from "react";
+import {
+  forwardRef,
+  useEffect,
+  useState,
+  type ChangeEventHandler,
+  type HTMLAttributes,
+  type ReactNode,
+} from "react";
 import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
-import type { TooltipProps } from "../tooltip/Tooltip.js";
-import type { LabelRequiredForA11y } from "../types.js";
+import { type TooltipProps } from "../tooltip/Tooltip.js";
+import { type LabelRequiredForA11y } from "../types.js";
 import { bem } from "../utils/bem.js";
 import { SliderValueTooltip } from "./SliderValueTooltip.js";
-import type { SliderValueOptions } from "./useSlider.js";
+import { type SliderValueOptions } from "./useSlider.js";
 
 const styles = bem("rmd-slider-thumb");
 

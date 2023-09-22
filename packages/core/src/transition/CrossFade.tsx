@@ -1,10 +1,11 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type { ReactElement } from "react";
-import { Children, cloneElement } from "react";
-import type { CSSTransitionComponentImplementation } from "./types.js";
-import type { CrossFadeTransitionHookOptions } from "./useCrossFadeTransition.js";
-import { useCrossFadeTransition } from "./useCrossFadeTransition.js";
+import { Children, cloneElement, type ReactElement } from "react";
+import { type CSSTransitionComponentImplementation } from "./types.js";
+import {
+  useCrossFadeTransition,
+  type CrossFadeTransitionHookOptions,
+} from "./useCrossFadeTransition.js";
 
 /**
  * @typeParam E - An HTMLElement type used for the ref required for the

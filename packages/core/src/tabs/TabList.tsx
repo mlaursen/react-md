@@ -1,17 +1,23 @@
 "use client";
-import type { HTMLAttributes } from "react";
-import { forwardRef, useEffect, useRef, useState } from "react";
+import {
+  forwardRef,
+  useEffect,
+  useRef,
+  useState,
+  type HTMLAttributes,
+} from "react";
 import { useAppSize } from "../media-queries/AppSizeProvider.js";
 import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
-import type { BaseTabListScrollButtonProps } from "./TabListScrollButton.js";
-import { TabListScrollButton } from "./TabListScrollButton.js";
-import type { TabsAlignment } from "./tabListStyles.js";
-import { tabList } from "./tabListStyles.js";
+import {
+  TabListScrollButton,
+  type BaseTabListScrollButtonProps,
+} from "./TabListScrollButton.js";
+import { tabList, type TabsAlignment } from "./tabListStyles.js";
 import { useTabList } from "./useTabList.js";
-import type { GetTabListScrollToOptions } from "./utils.js";
+import { type GetTabListScrollToOptions } from "./utils.js";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type { useTabs } from "./useTabs.js";
+import { type useTabs } from "./useTabs.js";
 
 /**
  * @remarks \@since 6.0.0

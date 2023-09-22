@@ -2,15 +2,13 @@ import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
 import { render } from "../../test-utils/index.js";
 
-import type { PropsWithRef } from "../../types.js";
+import { type PropsWithRef } from "../../types.js";
 import { Typography } from "../../typography/Typography.js";
-import type {
-  ResponsiveItemOverlayPosition,
-  ResponsiveItemOverlayProps,
-} from "../ResponsiveItemOverlay.js";
 import {
   ResponsiveItemOverlay,
   responsiveItemOverlay,
+  type ResponsiveItemOverlayPosition,
+  type ResponsiveItemOverlayProps,
 } from "../ResponsiveItemOverlay.js";
 
 describe("ResponsiveItemOverlay", () => {

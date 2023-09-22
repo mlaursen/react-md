@@ -1,31 +1,37 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type { CSSProperties, HTMLAttributes } from "react";
-import { forwardRef, useEffect, useRef } from "react";
+import {
+  forwardRef,
+  useEffect,
+  useRef,
+  type CSSProperties,
+  type HTMLAttributes,
+} from "react";
 import { useFocusContainer } from "../focus/useFocusContainer.js";
 import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
-import type { ListElement, ListProps } from "../list/List.js";
+import { type ListElement, type ListProps } from "../list/List.js";
 import { useAppSize } from "../media-queries/AppSizeProvider.js";
-import type { GetDefaultFocusedIndex } from "../movement/types.js";
+import { type GetDefaultFocusedIndex } from "../movement/types.js";
 import { Portal } from "../portal/Portal.js";
-import type { CalculateFixedPositionOptions } from "../positioning/types.js";
-import type { FixedPositioningOptions } from "../positioning/useFixedPositioning.js";
-import { useFixedPositioning } from "../positioning/useFixedPositioning.js";
+import { type CalculateFixedPositionOptions } from "../positioning/types.js";
+import {
+  useFixedPositioning,
+  type FixedPositioningOptions,
+} from "../positioning/useFixedPositioning.js";
 import { useScrollLock } from "../scroll/useScrollLock.js";
-import type { ScaleTransitionHookOptions } from "../transition/useScaleTransition.js";
-import { useScaleTransition } from "../transition/useScaleTransition.js";
-import type { LabelRequiredForA11y, PropsWithRef } from "../types.js";
+import {
+  useScaleTransition,
+  type ScaleTransitionHookOptions,
+} from "../transition/useScaleTransition.js";
+import { type LabelRequiredForA11y, type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
-import type {
-  MenuConfiguration,
-  MenuOrientationProps,
-} from "./MenuConfigurationProvider.js";
 import {
   MenuConfigurationProvider,
   useMenuConfiguration,
+  type MenuConfiguration,
+  type MenuOrientationProps,
 } from "./MenuConfigurationProvider.js";
-import type { MenuSheetConvenienceProps } from "./MenuSheet.js";
-import { MenuSheet } from "./MenuSheet.js";
+import { MenuSheet, type MenuSheetConvenienceProps } from "./MenuSheet.js";
 import { MenuWidget } from "./MenuWidget.js";
 import { useMenuBarContext } from "./useMenuBarProvider.js";
 import { getDefaultAnchor } from "./utils.js";

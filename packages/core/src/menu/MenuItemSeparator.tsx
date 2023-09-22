@@ -1,8 +1,7 @@
 "use client";
-import type { HTMLAttributes } from "react";
-import { forwardRef } from "react";
-import type { DividerProps } from "../divider/Divider.js";
-import type { VerticalDividerProps } from "../divider/VerticalDivider.js";
+import { forwardRef, type HTMLAttributes } from "react";
+import { type DividerProps } from "../divider/Divider.js";
+import { type VerticalDividerProps } from "../divider/VerticalDivider.js";
 import { divider } from "../divider/styles.js";
 import { useVerticalDividerHeight } from "../divider/useVerticalDividerHeight.js";
 import { useMenuConfiguration } from "./MenuConfigurationProvider.js";

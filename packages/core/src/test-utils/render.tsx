@@ -1,13 +1,12 @@
-import type {
-  Queries,
-  RenderOptions,
-  RenderResult,
-  queries,
+import {
+  render,
+  type Queries,
+  type RenderOptions,
+  type RenderResult,
+  type queries,
 } from "@testing-library/react";
-import { render } from "@testing-library/react";
 import { Fragment, type ReactElement } from "react";
-import type { CoreProvidersProps } from "../CoreProviders.js";
-import { CoreProviders } from "../CoreProviders.js";
+import { CoreProviders, type CoreProvidersProps } from "../CoreProviders.js";
 
 export interface ReactMDRenderOptions<
   Q extends Queries = typeof queries,

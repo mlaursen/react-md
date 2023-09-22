@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, jest } from "@jest/globals";
-import type { MouseEventHandler, ReactElement } from "react";
+import { type MouseEventHandler, type ReactElement } from "react";
 import {
   act,
   fireEvent,

@@ -1,14 +1,11 @@
 import { cnb } from "cnbuilder";
-import type { HTMLAttributes } from "react";
-import { forwardRef } from "react";
+import { forwardRef, type HTMLAttributes } from "react";
 import { bem } from "../utils/bem.js";
-import type {
-  ClosestThumbEventHandlersOptions,
-  ThumbOffsetsOptions,
-} from "./sliderUtils.js";
 import {
   getClosestThumbEventHandlers,
   getThumbOffsets,
+  type ClosestThumbEventHandlersOptions,
+  type ThumbOffsetsOptions,
 } from "./sliderUtils.js";
 
 const styles = bem("rmd-slider-track");

@@ -1,6 +1,10 @@
 import { describe, expect, it, jest } from "@jest/globals";
-import type { MutableRefObject, ReactElement } from "react";
-import { useEffect, useState } from "react";
+import {
+  useEffect,
+  useState,
+  type MutableRefObject,
+  type ReactElement,
+} from "react";
 import {
   act,
   fireEvent,

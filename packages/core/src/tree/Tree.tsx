@@ -1,30 +1,36 @@
 "use client";
-import type {
-  ElementType,
-  HTMLAttributes,
-  ReactElement,
-  ReactNode,
-  Ref,
+import {
+  useMemo,
+  type ElementType,
+  type HTMLAttributes,
+  type ReactElement,
+  type ReactNode,
+  type Ref,
 } from "react";
-import { useMemo } from "react";
-import type { CustomLinkComponent } from "../link/LinkProvider.js";
-import { LinkProvider } from "../link/LinkProvider.js";
+import {
+  LinkProvider,
+  type CustomLinkComponent,
+} from "../link/LinkProvider.js";
 import { List } from "../list/List.js";
 import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
-import type { LabelRequiredForA11y } from "../types.js";
+import { type LabelRequiredForA11y } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { identity } from "../utils/identity.js";
-import type { TreeItemRendererProps } from "./DefaultTreeItemRenderer.js";
-import { DefaultTreeItemRenderer } from "./DefaultTreeItemRenderer.js";
-import type { TreeExpansionMode } from "./TreeProvider.js";
-import { TreeProvider } from "./TreeProvider.js";
+import {
+  DefaultTreeItemRenderer,
+  type TreeItemRendererProps,
+} from "./DefaultTreeItemRenderer.js";
+import { TreeProvider, type TreeExpansionMode } from "./TreeProvider.js";
 import { tree } from "./styles.js";
-import type { TreeData, TreeItemNode, TreeItemSorter } from "./types.js";
-import type { TreeExpansion } from "./useTreeExpansion.js";
-import type { RenderableTreeItemNode } from "./useTreeItems.js";
-import { useTreeItems } from "./useTreeItems.js";
+import {
+  type TreeData,
+  type TreeItemNode,
+  type TreeItemSorter,
+} from "./types.js";
+import { type TreeExpansion } from "./useTreeExpansion.js";
+import { useTreeItems, type RenderableTreeItemNode } from "./useTreeItems.js";
 import { useTreeMovement } from "./useTreeMovement.js";
-import type { TreeSelection } from "./useTreeSelection.js";
+import { type TreeSelection } from "./useTreeSelection.js";
 
 declare module "react" {
   interface CSSProperties {

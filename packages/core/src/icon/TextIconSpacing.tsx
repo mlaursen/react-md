@@ -1,6 +1,11 @@
 import { cnb } from "cnbuilder";
-import type { ReactElement, ReactNode } from "react";
-import { Children, cloneElement, isValidElement } from "react";
+import {
+  Children,
+  cloneElement,
+  isValidElement,
+  type ReactElement,
+  type ReactNode,
+} from "react";
 
 export interface TextIconSpacingProps {
   /**

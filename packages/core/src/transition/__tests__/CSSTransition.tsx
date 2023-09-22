@@ -6,13 +6,14 @@ import {
   it,
   jest,
 } from "@jest/globals";
-import type { ReactElement } from "react";
-import { useState } from "react";
+import { useState, type ReactElement } from "react";
 import { act, fireEvent, render } from "../../test-utils/index.js";
 
-import type { CSSTransitionProps } from "../CSSTransition.js";
-import { CSSTransition } from "../CSSTransition.js";
-import type { CSSTransitionClassNames, TransitionTimeout } from "../types.js";
+import { CSSTransition, type CSSTransitionProps } from "../CSSTransition.js";
+import {
+  type CSSTransitionClassNames,
+  type TransitionTimeout,
+} from "../types.js";
 
 interface TestProps
   extends Omit<

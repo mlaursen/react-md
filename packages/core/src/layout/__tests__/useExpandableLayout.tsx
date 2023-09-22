@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@jest/globals";
-import type { ReactNode } from "react";
+import { type ReactNode } from "react";
 import { AppBar } from "../../app-bar/AppBar.js";
 import { AppBarTitle } from "../../app-bar/AppBarTitle.js";
 import { Button } from "../../button/Button.js";
@@ -22,8 +22,10 @@ import { matchTablet } from "../../test-utils/matchMedia.js";
 import { isElementVisible } from "../../utils/isElementVisible.js";
 import { LayoutNav } from "../LayoutNav.js";
 import { Main } from "../Main.js";
-import type { ExpandableLayoutOptions } from "../useExpandableLayout.js";
-import { useExpandableLayout } from "../useExpandableLayout.js";
+import {
+  useExpandableLayout,
+  type ExpandableLayoutOptions,
+} from "../useExpandableLayout.js";
 import { DEFAULT_HORIZONTAL_LAYOUT_TRANSITION_CLASSNAMES } from "../useHorizontalLayoutTransition.js";
 
 const OFFSCREEN_CLASS = "rmd-sheet--offscreen";

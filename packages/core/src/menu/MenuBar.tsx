@@ -1,7 +1,6 @@
 "use client";
 import { forwardRef } from "react";
-import type { ListProps } from "../list/List.js";
-import { List } from "../list/List.js";
+import { List, type ListProps } from "../list/List.js";
 import {
   KeyboardMovementProvider,
   useKeyboardMovementProvider,

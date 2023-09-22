@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@jest/globals";
-import type { FC } from "react";
+import { type FC } from "react";
 import { fireEvent, render } from "../../test-utils/index.js";
 
 import { useDir, WritingDirection } from "../WritingDirection.js";

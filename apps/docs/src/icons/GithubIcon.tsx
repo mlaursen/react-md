@@ -1,6 +1,5 @@
-import type { ReactElement } from "react";
-import type { SVGIconProps } from "@react-md/core";
-import { SVGIcon } from "@react-md/core";
+import { type ReactElement } from "react";
+import { SVGIcon, type SVGIconProps } from "@react-md/core";
 
 export function GithubIcon(props: SVGIconProps): ReactElement {
   return (

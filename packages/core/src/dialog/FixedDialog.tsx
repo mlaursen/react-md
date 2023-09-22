@@ -1,17 +1,15 @@
 "use client";
-import type { RefObject } from "react";
-import { forwardRef, useRef } from "react";
+import { forwardRef, useRef, type RefObject } from "react";
 import { TOP_INNER_RIGHT_ANCHOR } from "../positioning/constants.js";
-import type {
-  CalculateFixedPositionOptions,
-  PositionAnchor,
+import {
+  type CalculateFixedPositionOptions,
+  type PositionAnchor,
 } from "../positioning/types.js";
 import { useFixedPositioning } from "../positioning/useFixedPositioning.js";
-import type { CSSTransitionClassNamesObject } from "../transition/types.js";
+import { type CSSTransitionClassNamesObject } from "../transition/types.js";
 import { SCALE_CLASSNAMES } from "../transition/useScaleTransition.js";
-import type { LabelRequiredForA11y } from "../types.js";
-import type { BaseDialogProps } from "./Dialog.js";
-import { Dialog } from "./Dialog.js";
+import { type LabelRequiredForA11y } from "../types.js";
+import { Dialog, type BaseDialogProps } from "./Dialog.js";
 
 export interface BaseFixedDialogProps extends Omit<BaseDialogProps, "type"> {
   anchor?: PositionAnchor;

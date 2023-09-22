@@ -1,12 +1,13 @@
 import { describe, expect, it, jest } from "@jest/globals";
-import type { ChangeEvent, ReactElement } from "react";
+import { type ChangeEvent, type ReactElement } from "react";
 import { render } from "../../test-utils/index.js";
 
-import type {
-  ColorScheme,
-  SetColorSchemeMode,
+import {
+  ColorSchemeProvider,
+  useColorScheme,
+  type ColorScheme,
+  type SetColorSchemeMode,
 } from "../ColorSchemeProvider.js";
-import { ColorSchemeProvider, useColorScheme } from "../ColorSchemeProvider.js";
 import { backgroundColorVar } from "../cssVars.js";
 
 describe("ColorSchemeProvider", () => {

@@ -1,11 +1,18 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type { ChangeEvent, ReactElement, ReactNode, Ref } from "react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ChangeEvent,
+  type ReactElement,
+  type ReactNode,
+  type Ref,
+} from "react";
 import { useIcon } from "../icon/IconProvider.js";
 import { IconRotator } from "../icon/IconRotator.js";
-import type { MenuProps } from "../menu/Menu.js";
-import { Menu } from "../menu/Menu.js";
+import { Menu, type MenuProps } from "../menu/Menu.js";
 import { findMatchIndex } from "../movement/findMatchIndex.js";
 import {
   KeyboardMovementProvider,
@@ -13,9 +20,9 @@ import {
 } from "../movement/useKeyboardMovementProvider.js";
 import { isSearchableEvent } from "../movement/utils.js";
 import { BELOW_CENTER_ANCHOR } from "../positioning/constants.js";
-import type {
-  TransitionEnterHandler,
-  TransitionExitHandler,
+import {
+  type TransitionEnterHandler,
+  type TransitionExitHandler,
 } from "../transition/types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
@@ -24,10 +31,12 @@ import { bem } from "../utils/bem.js";
 import { loop } from "../utils/loop.js";
 import { useFormTheme } from "./FormThemeProvider.js";
 import { SelectValue } from "./SelectValue.js";
-import type { TextFieldProps } from "./TextField.js";
-import { TextField } from "./TextField.js";
+import { TextField, type TextFieldProps } from "./TextField.js";
 import { extractOptionsFromChildren } from "./selectUtils.js";
-import type { FormFieldOptions, UserAgentAutoCompleteProps } from "./types.js";
+import {
+  type FormFieldOptions,
+  type UserAgentAutoCompleteProps,
+} from "./types.js";
 import { ListboxProvider } from "./useListboxProvider.js";
 import { triggerManualChangeEvent, tryToSubmitRelatedForm } from "./utils.js";
 

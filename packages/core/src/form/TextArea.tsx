@@ -1,24 +1,26 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type {
-  CSSProperties,
-  HTMLAttributes,
-  TextareaHTMLAttributes,
+import {
+  forwardRef,
+  useRef,
+  type CSSProperties,
+  type HTMLAttributes,
+  type TextareaHTMLAttributes,
 } from "react";
-import { forwardRef, useRef } from "react";
-import type { PropsWithRef } from "../types.js";
+import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
 import { bem } from "../utils/bem.js";
 import { FormMessageContainer } from "./FormMessageContainer.js";
 import { useFormTheme } from "./FormThemeProvider.js";
 import { Label } from "./Label.js";
-import type { TextFieldClassNameOptions } from "./TextField.js";
-import { textField } from "./TextField.js";
+import { textField, type TextFieldClassNameOptions } from "./TextField.js";
 import { TextFieldContainer } from "./TextFieldContainer.js";
-import type { FormFieldOptions } from "./types.js";
-import type { TextAreaResize } from "./useResizingTextArea.js";
-import { useResizingTextArea } from "./useResizingTextArea.js";
+import { type FormFieldOptions } from "./types.js";
+import {
+  useResizingTextArea,
+  type TextAreaResize,
+} from "./useResizingTextArea.js";
 
 const styles = bem("rmd-textarea");
 const containerStyles = bem("rmd-textarea-container");

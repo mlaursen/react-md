@@ -4,8 +4,7 @@ import { act, fireEvent, render, userEvent } from "../../test-utils/index.js";
 
 import { ElementInteractionProvider } from "../../interaction/ElementInteractionProvider.js";
 import { FileInput } from "../FileInput.js";
-import type { FileUploadOptions } from "../useFileUpload.js";
-import { useFileUpload } from "../useFileUpload.js";
+import { useFileUpload, type FileUploadOptions } from "../useFileUpload.js";
 
 function createFile(name: string, bytes: number): File {
   const content = new Uint8Array(bytes);

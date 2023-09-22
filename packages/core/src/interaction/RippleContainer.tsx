@@ -1,7 +1,7 @@
 import { cnb } from "cnbuilder";
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 import { Ripple } from "./Ripple.js";
-import type { ProvidedRippleContainerProps } from "./types.js";
+import { type ProvidedRippleContainerProps } from "./types.js";
 
 declare module "react" {
   interface CSSProperties {

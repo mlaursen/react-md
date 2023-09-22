@@ -1,17 +1,22 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type { CSSProperties, HTMLAttributes, InputHTMLAttributes } from "react";
-import { forwardRef, useState } from "react";
-import type { PropsWithRef } from "../types.js";
+import {
+  forwardRef,
+  useState,
+  type CSSProperties,
+  type HTMLAttributes,
+  type InputHTMLAttributes,
+} from "react";
+import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { bem } from "../utils/bem.js";
 import { FormMessageContainer } from "./FormMessageContainer.js";
-import type { InputToggleLabelProps } from "./InputToggle.js";
+import { type InputToggleLabelProps } from "./InputToggle.js";
 import { Label } from "./Label.js";
 import { SwitchTrack } from "./SwitchTrack.js";
-import type {
-  FormComponentStates,
-  FormMessageContainerExtension,
+import {
+  type FormComponentStates,
+  type FormMessageContainerExtension,
 } from "./types.js";
 
 declare module "react" {

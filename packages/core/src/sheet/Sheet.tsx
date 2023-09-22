@@ -1,14 +1,12 @@
 "use client";
 import { forwardRef } from "react";
-import type { BaseDialogProps } from "../dialog/Dialog.js";
-import { Dialog } from "../dialog/Dialog.js";
-import type {
-  CSSTransitionClassNames,
-  TransitionTimeout,
+import { Dialog, type BaseDialogProps } from "../dialog/Dialog.js";
+import {
+  type CSSTransitionClassNames,
+  type TransitionTimeout,
 } from "../transition/types.js";
-import type { LabelRequiredForA11y } from "../types.js";
-import type { BaseSheetClassNameOptions } from "./styles.js";
-import { sheet } from "./styles.js";
+import { type LabelRequiredForA11y } from "../types.js";
+import { sheet, type BaseSheetClassNameOptions } from "./styles.js";
 
 declare module "react" {
   interface CSSProperties {

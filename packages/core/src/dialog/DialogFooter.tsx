@@ -1,7 +1,5 @@
-import type { HTMLAttributes } from "react";
-import { forwardRef } from "react";
-import type { DialogFooterClassNameOptions } from "./styles.js";
-import { dialogFooter } from "./styles.js";
+import { forwardRef, type HTMLAttributes } from "react";
+import { dialogFooter, type DialogFooterClassNameOptions } from "./styles.js";
 
 export interface DialogFooterProps
   extends HTMLAttributes<HTMLDivElement>,

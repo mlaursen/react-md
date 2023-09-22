@@ -1,13 +1,12 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type { TableHTMLAttributes } from "react";
-import { forwardRef, useMemo } from "react";
+import { forwardRef, useMemo, type TableHTMLAttributes } from "react";
 import { bem } from "../utils/bem.js";
-import type {
-  TableConfigContext,
-  TableConfiguration,
+import {
+  TableConfigProvider,
+  type TableConfigContext,
+  type TableConfiguration,
 } from "./TableConfigurationProvider.js";
-import { TableConfigProvider } from "./TableConfigurationProvider.js";
 
 declare module "react" {
   interface CSSProperties {

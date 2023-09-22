@@ -1,7 +1,6 @@
 import { forwardRef } from "react";
-import type { BoxProps } from "../box/Box.js";
-import { Box } from "../box/Box.js";
-import type { BoxJustifyContent } from "../box/styles.js";
+import { Box, type BoxProps } from "../box/Box.js";
+import { type BoxJustifyContent } from "../box/styles.js";
 import { cardFooter } from "./styles.js";
 
 /** @remarks \@since 6.0.0 */

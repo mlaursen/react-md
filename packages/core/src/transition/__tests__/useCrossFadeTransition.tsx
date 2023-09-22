@@ -6,12 +6,13 @@ import {
   it,
   jest,
 } from "@jest/globals";
-import type { ReactElement } from "react";
-import { useState } from "react";
+import { useState, type ReactElement } from "react";
 import { act, fireEvent, render } from "../../test-utils/index.js";
 
-import type { CrossFadeTransitionHookOptions } from "../useCrossFadeTransition.js";
-import { useCrossFadeTransition } from "../useCrossFadeTransition.js";
+import {
+  useCrossFadeTransition,
+  type CrossFadeTransitionHookOptions,
+} from "../useCrossFadeTransition.js";
 
 interface TestProps
   extends Omit<CrossFadeTransitionHookOptions<HTMLElement>, "transitionIn"> {

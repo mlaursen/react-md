@@ -8,8 +8,10 @@ import {
 } from "../../test-utils/index.js";
 
 import { ToastActionButton } from "../ToastActionButton.js";
-import type { CurrentToastActions } from "../useCurrentToastActions.js";
-import { CurrentToastActionsProvider } from "../useCurrentToastActions.js";
+import {
+  CurrentToastActionsProvider,
+  type CurrentToastActions,
+} from "../useCurrentToastActions.js";
 
 describe("ToastActionButton", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {

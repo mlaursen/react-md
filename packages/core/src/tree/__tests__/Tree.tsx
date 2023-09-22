@@ -1,6 +1,10 @@
 import { describe, expect, it, jest } from "@jest/globals";
-import type { AnchorHTMLAttributes, ReactElement } from "react";
-import { createRef, forwardRef } from "react";
+import {
+  createRef,
+  forwardRef,
+  type AnchorHTMLAttributes,
+  type ReactElement,
+} from "react";
 import {
   fireEvent,
   rmdRender,
@@ -13,16 +17,20 @@ import { Divider } from "../../divider/Divider.js";
 import { FontIcon } from "../../icon/FontIcon.js";
 import { alphaNumericSort } from "../../utils/alphaNumericSort.js";
 import { isElementVisible } from "../../utils/isElementVisible.js";
-import type { TreeItemRendererProps } from "../DefaultTreeItemRenderer.js";
-import { DefaultTreeItemRenderer } from "../DefaultTreeItemRenderer.js";
-import type { TreeProps } from "../Tree.js";
-import { Tree } from "../Tree.js";
+import {
+  DefaultTreeItemRenderer,
+  type TreeItemRendererProps,
+} from "../DefaultTreeItemRenderer.js";
+import { Tree, type TreeProps } from "../Tree.js";
 import { TreeItem } from "../TreeItem.js";
-import type { DefaultTreeItemNode, TreeData, TreeItemNode } from "../types.js";
-import type { TreeHookOptions } from "../useTree.js";
-import { useTree } from "../useTree.js";
-import type { TreeExpansion } from "../useTreeExpansion.js";
-import type { TreeSelection } from "../useTreeSelection.js";
+import {
+  type DefaultTreeItemNode,
+  type TreeData,
+  type TreeItemNode,
+} from "../types.js";
+import { useTree, type TreeHookOptions } from "../useTree.js";
+import { type TreeExpansion } from "../useTreeExpansion.js";
+import { type TreeSelection } from "../useTreeSelection.js";
 
 interface Folder {
   name: string;

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@jest/globals";
-import type { ReactNode } from "react";
+import { type ReactNode } from "react";
 import { AppBar } from "../../app-bar/AppBar.js";
 import { AppBarTitle } from "../../app-bar/AppBarTitle.js";
 import { Button } from "../../button/Button.js";
@@ -14,8 +14,10 @@ import {
   waitFor,
 } from "../../test-utils/index.js";
 import { Main } from "../Main.js";
-import type { TemporaryLayoutOptions } from "../useTemporaryLayout.js";
-import { useTemporaryLayout } from "../useTemporaryLayout.js";
+import {
+  useTemporaryLayout,
+  type TemporaryLayoutOptions,
+} from "../useTemporaryLayout.js";
 
 interface LayoutProps extends Omit<TemporaryLayoutOptions, "pathname"> {
   children?: ReactNode;

@@ -1,5 +1,5 @@
 import { describe, expect, it, jest } from "@jest/globals";
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 import { fireEvent, render } from "../../test-utils/index.js";
 
 import { Button } from "../../button/Button.js";

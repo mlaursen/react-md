@@ -1,8 +1,7 @@
-import type { TdHTMLAttributes } from "react";
-import { forwardRef } from "react";
+import { forwardRef, type TdHTMLAttributes } from "react";
 import { Checkbox } from "../form/Checkbox.js";
-import type { CheckboxProps } from "../form/InputToggle.js";
-import type { PropsWithRef } from "../types.js";
+import { type CheckboxProps } from "../form/InputToggle.js";
+import { type PropsWithRef } from "../types.js";
 import { TableCell } from "./TableCell.js";
 
 const noop = (): void => {

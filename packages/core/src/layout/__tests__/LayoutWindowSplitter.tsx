@@ -1,11 +1,14 @@
 import { describe, expect, it } from "@jest/globals";
-import type { Ref } from "react";
-import { createRef } from "react";
+import { createRef, type Ref } from "react";
 import { rmdRender, screen } from "../../test-utils/index.js";
-import type { LayoutWindowSplitterProps } from "../LayoutWindowSplitter.js";
-import { LayoutWindowSplitter } from "../LayoutWindowSplitter.js";
-import type { ProvidedLayoutWindowSplitterProps } from "../useLayoutWindowSplitter.js";
-import { useLayoutWindowSplitter } from "../useLayoutWindowSplitter.js";
+import {
+  LayoutWindowSplitter,
+  type LayoutWindowSplitterProps,
+} from "../LayoutWindowSplitter.js";
+import {
+  useLayoutWindowSplitter,
+  type ProvidedLayoutWindowSplitterProps,
+} from "../useLayoutWindowSplitter.js";
 
 type TestProps = Omit<
   LayoutWindowSplitterProps,

@@ -1,6 +1,6 @@
-import type { ReactElement, ReactNode } from "react";
+import { type ReactElement, type ReactNode } from "react";
 import { TreeItem } from "./TreeItem.js";
-import type { DefaultTreeItemNode, TreeItemNode } from "./types.js";
+import { type DefaultTreeItemNode, type TreeItemNode } from "./types.js";
 
 /**
  * @remarks \@since 6.0.0

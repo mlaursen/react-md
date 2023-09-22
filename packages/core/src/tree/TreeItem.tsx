@@ -1,20 +1,24 @@
 "use client";
-import type { HTMLAttributes, ReactElement, ReactNode, Ref } from "react";
-import { useEffect } from "react";
+import {
+  useEffect,
+  type HTMLAttributes,
+  type ReactElement,
+  type ReactNode,
+  type Ref,
+} from "react";
 import { RippleContainer } from "../interaction/RippleContainer.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
 import { useLink } from "../link/LinkProvider.js";
 import { ListItemChildren } from "../list/ListItemChildren.js";
 import { useKeyboardMovementContext } from "../movement/useKeyboardMovementProvider.js";
-import type { PropsWithRef } from "../types.js";
+import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
-import type { OverridableTreeGroupProps } from "./TreeGroup.js";
-import { TreeGroup } from "./TreeGroup.js";
+import { TreeGroup, type OverridableTreeGroupProps } from "./TreeGroup.js";
 import { TreeItemExpander } from "./TreeItemExpander.js";
 import { useTreeContext } from "./TreeProvider.js";
 import { treeItem, treeItemContent, treeItemMedia } from "./styles.js";
-import type { DefaultTreeItemNode } from "./types.js";
+import { type DefaultTreeItemNode } from "./types.js";
 
 /**
  * @remarks \@since 6.0.0  Added the `groupProps` prop.

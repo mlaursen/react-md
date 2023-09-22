@@ -1,5 +1,4 @@
-import type { FormHTMLAttributes } from "react";
-import { forwardRef } from "react";
+import { forwardRef, type FormHTMLAttributes } from "react";
 
 const noop = (): void => {
   // do nothing

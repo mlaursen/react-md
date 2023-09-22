@@ -1,9 +1,15 @@
 "use client";
 import { CODE_THEME_KEY } from "@/constants/cookies.js";
-import type { PrismTheme } from "@/prism-themes/themes.js";
+import { type PrismTheme } from "@/prism-themes/themes.js";
 import { setCookie } from "@/utils/clientCookies.js";
-import type { ReactElement, ReactNode } from "react";
-import { createContext, useContext, useMemo, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useMemo,
+  useState,
+  type ReactElement,
+  type ReactNode,
+} from "react";
 
 export interface PrismThemeContext {
   prismTheme: PrismTheme;

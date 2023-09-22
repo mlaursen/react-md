@@ -2,7 +2,7 @@
 import { DISABLE_DEFAULT_SYSTEM_THEME } from "@/constants/rmdConfig.jsx";
 import { useColorScheme } from "@react-md/core";
 import dynamic from "next/dynamic.js";
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 
 const LightTheme = dynamic(() => import("./LightTheme.js"));
 const DarkTheme = dynamic(() => import("./DarkTheme.js"));

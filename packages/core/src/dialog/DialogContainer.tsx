@@ -1,5 +1,5 @@
 import { cnb } from "cnbuilder";
-import type { HTMLAttributes, ReactElement, ReactNode } from "react";
+import { type HTMLAttributes, type ReactElement, type ReactNode } from "react";
 
 /**
  * @remarks \@since 6.0.0

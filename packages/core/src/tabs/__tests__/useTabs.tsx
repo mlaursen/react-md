@@ -1,15 +1,13 @@
 import { describe, expect, it, jest } from "@jest/globals";
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 import { rmdRender, userEvent, waitFor } from "../../test-utils/index.js";
 
 import { Slide } from "../../transition/Slide.js";
 import { SlideContainer } from "../../transition/SlideContainer.js";
 import { isElementVisible } from "../../utils/isElementVisible.js";
 import { Tab } from "../Tab.js";
-import type { TabListProps } from "../TabList.js";
-import { TabList } from "../TabList.js";
-import type { TabsHookOptions } from "../useTabs.js";
-import { useTabs } from "../useTabs.js";
+import { TabList, type TabListProps } from "../TabList.js";
+import { useTabs, type TabsHookOptions } from "../useTabs.js";
 
 type TestProps = Omit<TabsHookOptions, "activeTab" | "setActiveTab"> &
   Pick<TabListProps, "activationMode">;
