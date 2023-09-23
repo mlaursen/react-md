@@ -7,8 +7,10 @@ import {
   type RenderResult,
 } from "../../test-utils/index.js";
 
-import { Snackbar, type SnackbarPosition } from "../Snackbar.js";
-import { ToastManager, ToastManagerProvider } from "../ToastManagerProvider.js";
+import { Snackbar } from "../Snackbar.js";
+import { ToastManager } from "../ToastManager.js";
+import { ToastManagerProvider } from "../ToastManagerProvider.js";
+import { type SnackbarPosition } from "../snackbarStyles.js";
 
 const render = (
   ui: ReactElement,

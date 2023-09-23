@@ -21,15 +21,14 @@ import { Button } from "../../button/Button.js";
 import { Snackbar, type SnackbarProps } from "../Snackbar.js";
 import {
   ToastManager,
-  ToastManagerProvider,
   addToast,
   clearToasts,
   popToast,
   removeToast,
   toastManager,
-  useAddToast,
   type CreateToastOptions,
-} from "../ToastManagerProvider.js";
+} from "../ToastManager.js";
+import { ToastManagerProvider, useAddToast } from "../ToastManagerProvider.js";
 
 const ENTER_CLASS_NAME = "rmd-scale-transition--enter";
 const LEAVE_CLASS_NAME = "rmd-scale-transition--exit";
