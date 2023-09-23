@@ -89,7 +89,7 @@ $var-lookup: (
   }
 }
 
-@mixin style($position) {
+@mixin border-style($position) {
   $property: "border-#{$position}";
 
   #{$property}: get-var(size) inset get-var(color);
@@ -119,7 +119,7 @@ $var-lookup: (
 
       @if not $disable-vertical {
         &--vertical {
-          @include style(left);
+          @include border-style(left);
           @include use-var(height, max-size);
           @include use-var(width, vertical-size);
           @include use-var(margin, vertical-spacing);

@@ -269,25 +269,22 @@ $typography-var-lookup: (
   #{$property}: typography-get-var($name, $fallback);
 }
 
+@mixin typography-text-container($fallback: null) {
+  @include typography-use-var(max-width, line-length, $fallback);
+  @include typography-use-var(padding, text-container-padding);
+
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+}
+
 @mixin typography-styles {
   @if not $disable-text-container {
-    @include media-queries.tablet-media {
-      .rmd-text-container {
+    .rmd-text-container {
+      @include media-queries.tablet-media {
         @include typography-set-var(line-length, $desktop-max-line-length);
       }
-    }
-
-    .rmd-text-container {
-      @include typography-use-var(
-        max-width,
-        line-length,
-        $mobile-max-line-length
-      );
-      @include typography-use-var(padding, text-container-padding);
-
-      display: block;
-      margin: 0 auto;
-      width: 100%;
+      @include typography-text-container($mobile-max-line-length);
     }
   }
 
@@ -381,6 +378,12 @@ $typography-var-lookup: (
     @each $font-style in $font-styles {
       &--#{$font-style} {
         font-style: $font-style;
+      }
+    }
+
+    @each $name, $font-weight in $font-weights {
+      &--#{$name} {
+        font-weight: $font-weight;
       }
     }
   }

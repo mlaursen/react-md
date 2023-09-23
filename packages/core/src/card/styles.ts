@@ -158,7 +158,7 @@ export interface CardContentClassNameOptions {
 /**
  * @remarks \@since 6.0.0
  */
-export function cardContent(options: CardContentClassNameOptions): string {
+export function cardContent(options: CardContentClassNameOptions = {}): string {
   const {
     className,
     disablePadding = false,
