@@ -1,5 +1,4 @@
 "use client";
-import { cnb } from "cnbuilder";
 import {
   forwardRef,
   isValidElement,
@@ -17,76 +16,10 @@ import {
 import { useScaleTransition } from "../transition/useScaleTransition.js";
 import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
-import { bem } from "../utils/bem.js";
 import { ToastActionButton } from "./ToastActionButton.js";
 import { ToastCloseButton } from "./ToastCloseButton.js";
 import { ToastContent, type ToastContentProps } from "./ToastContent.js";
-
-declare module "react" {
-  interface CSSProperties {
-    "--rmd-toast-color"?: string;
-    "--rmd-toast-background-color"?: string;
-    "--rmd-toast-offset"?: string | number;
-  }
-}
-
-const styles = bem("rmd-toast");
-
-/**
- * @remarks \@since 6.0.0
- */
-export type ToastTheme =
-  | "surface"
-  | "primary"
-  | "secondary"
-  | "warning"
-  | "error"
-  | "success";
-
-/** @remarks \@since 6.0.0 */
-export interface ToastClassNameOptions {
-  className?: string;
-  /** @defaultValue `"surface"` */
-  theme?: ToastTheme;
-  /** @defaultValue `false` */
-  action?: boolean;
-  /** @defaultValue `false` */
-  paused?: boolean;
-  /** @defaultValue `false` */
-  stacked?: boolean;
-  /** @defaultValue `false` */
-  reordered?: boolean;
-  /** @defaultValue `false` */
-  closeButton?: boolean;
-}
-
-/**
- * @remarks \@since 6.0.0
- */
-export function toast(options: ToastClassNameOptions = {}): string {
-  const {
-    className,
-    theme = "surface",
-    action,
-    paused,
-    stacked,
-    reordered,
-    closeButton,
-  } = options;
-
-  return cnb(
-    styles({
-      [theme]: true,
-      x: closeButton,
-      action,
-      paused,
-      "small-gap": closeButton && action,
-      stacked,
-      reordered: stacked && reordered,
-    }),
-    className
-  );
-}
+import { toast, type ToastTheme } from "./toastStyles.js";
 
 /**
  * @remarks \@since 6.0.0

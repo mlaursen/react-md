@@ -2,7 +2,8 @@
 import { useEffect, useMemo, type ReactElement } from "react";
 import { usePageInactive } from "../usePageInactive.js";
 import { Toast, type ConfigurableToastProps } from "./Toast.js";
-import { useToastManager, type ToastMeta } from "./ToastManagerProvider.js";
+import { type ToastMeta } from "./ToastManager.js";
+import { useToastManager } from "./ToastManagerProvider.js";
 import {
   CurrentToastActionsProvider,
   type CurrentToastActions,
