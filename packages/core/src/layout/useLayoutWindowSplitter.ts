@@ -1,28 +1,21 @@
 "use client";
-import type { UseStateInitializer } from "../types.js";
+import { type UncontrolledDraggableOptions } from "../draggable/useDraggable.js";
+import { type UseStateInitializer } from "../types.js";
 import { useWindowSize } from "../useWindowSize.js";
-import type { WindowSplitterWidgetProps } from "../window-splitter/useControlledWindowSplitter.js";
-import type {
-  LocalStorageWindowSplitterImplementation,
-  LocalStorageWindowSplitterOptions,
-} from "../window-splitter/useLocalStorageWindowSplitter.js";
-import { useLocalStorageWindowSplitter } from "../window-splitter/useLocalStorageWindowSplitter.js";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type { useResizableLayout } from "./useResizableLayout.js";
+import {
+  useWindowSplitter,
+  type WindowSplitterImplementation,
+  type WindowSplitterOptions,
+  type WindowSplitterWidgetProps,
+} from "../window-splitter/useWindowSplitter.js";
 
 /**
  * @remarks \@since 6.0.0
  */
 export interface LayoutWindowSplitterOptions
-  extends Omit<LocalStorageWindowSplitterOptions, "min" | "max" | "key"> {
+  extends Omit<WindowSplitterOptions, "min" | "max"> {
   /**
-   * @see {@link LocalStorageWindowSplitterImplementation.key}
-   * @defaultValue `"navWidth"`
-   */
-  key?: string;
-
-  /**
-   * @see {@link LocalStorageWindowSplitterOptions.min}
+   * @see {@link WindowSplitterOptions.min}
    * @defaultValue `96`
    */
   min?: number;
@@ -59,7 +52,7 @@ export interface LayoutWindowSplitterOptions
  */
 export interface ProvidedLayoutWindowSplitterProps
   extends WindowSplitterWidgetProps<HTMLButtonElement> {
-  /** @defaultValue {@link LocalStorageWindowSplitterImplementation.value} */
+  /** @defaultValue {@link WindowSplitterImplementation.value} */
   navWidth: number;
 }
 
@@ -67,7 +60,7 @@ export interface ProvidedLayoutWindowSplitterProps
  * @remarks \@since 6.0.0
  */
 export interface LayoutWindowSplitterImplementation
-  extends LocalStorageWindowSplitterImplementation {
+  extends WindowSplitterImplementation {
   splitterProps: ProvidedLayoutWindowSplitterProps;
 }
 
@@ -118,7 +111,6 @@ export function useLayoutWindowSplitter(
   options: LayoutWindowSplitterOptions = {}
 ): LayoutWindowSplitterImplementation {
   const {
-    key = "navWidth",
     min = 96,
     maxMinimum = 600,
     windowPercentage = 0.45,
@@ -126,12 +118,13 @@ export function useLayoutWindowSplitter(
     ...remaining
   } = options;
   const { width } = useWindowSize({ disableHeight: true });
-  const implementation = useLocalStorageWindowSplitter({
+  const implementation = useWindowSplitter({
     min,
     max: Math.max(maxMinimum, width * windowPercentage),
-    key,
     defaultValue,
-    ...remaining,
+    // type cast so it doesn't complain about defaultValue being provided with
+    // value. That's mostly for public api usage
+    ...(remaining as UncontrolledDraggableOptions),
   });
 
   return {

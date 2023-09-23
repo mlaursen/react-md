@@ -1,13 +1,15 @@
-import type { RefObject } from "react";
-import type {
-  DraggableEventHandlers,
-  DraggableMouseEventHandlers,
-  DraggableTouchEventHandlers,
-} from "../draggable/useControlledDraggable.js";
-import type { DraggableImplementation } from "../draggable/useDraggable.js";
-import type { RenameKeysWithPrefix } from "../types.js";
-import type { ClientPositionEvent } from "../utils/getClientPosition.js";
-import { getClientPosition } from "../utils/getClientPosition.js";
+import { type RefObject } from "react";
+import {
+  type DraggableEventHandlers,
+  type DraggableImplementation,
+  type DraggableMouseEventHandlers,
+  type DraggableTouchEventHandlers,
+} from "../draggable/useDraggable.js";
+import { type RenameKeysWithPrefix } from "../types.js";
+import {
+  getClientPosition,
+  type ClientPositionEvent,
+} from "../utils/getClientPosition.js";
 import { getPercentage } from "../utils/getPercentage.js";
 import { getRangeSteps } from "../utils/getRangeSteps.js";
 

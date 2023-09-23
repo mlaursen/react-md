@@ -1,10 +1,10 @@
 import { useEnsuredId } from "../useEnsuredId.js";
 import { DISPLAY_NONE_CLASS } from "../utils/isElementVisible.js";
-import type { LayoutWindowSplitterProps } from "./LayoutWindowSplitter.js";
-import type {
-  ExpandableLayoutImplementation,
-  ExpandableLayoutOptions,
-  ProvidedLayoutNavProps,
+import { type LayoutWindowSplitterProps } from "./LayoutWindowSplitter.js";
+import {
+  type ExpandableLayoutImplementation,
+  type ExpandableLayoutOptions,
+  type ProvidedLayoutNavProps,
 } from "./useExpandableLayout.js";
 import { useExpandableLayout } from "./useExpandableLayout.js";
 import {

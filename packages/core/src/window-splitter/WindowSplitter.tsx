@@ -4,7 +4,7 @@ import { type LabelRequiredForA11y } from "../types.js";
 import { bem } from "../utils/bem.js";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { useWindowSplitter } from "./useWindowSplitter.js";
+import { type useWindowSplitter } from "./useWindowSplitter.js";
 
 const styles = bem("rmd-window-splitter");
 

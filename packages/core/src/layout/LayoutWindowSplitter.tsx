@@ -6,7 +6,7 @@ import {
   WindowSplitter,
   type BaseWindowSplitterProps,
 } from "../window-splitter/WindowSplitter.js";
-import { type WindowSplitterWidgetProps } from "../window-splitter/useControlledWindowSplitter.js";
+import { type WindowSplitterWidgetProps } from "../window-splitter/useWindowSplitter.js";
 import {
   layoutWindowSplitter,
   type LayoutWindowSplitterClassNameOptions,

@@ -1,12 +1,24 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import { cnb } from "cnbuilder";
-import { createRef, type ReactElement, type Ref } from "react";
+import {
+  createRef,
+  useEffect,
+  useState,
+  type ReactElement,
+  type Ref,
+} from "react";
 import { fireEvent, rmdRender } from "../../test-utils/index.js";
 
 import { Button } from "../../button/Button.js";
 import { WritingDirectionProvider } from "../../typography/WritingDirectionProvider.js";
+import { useLocalStorage } from "../../useLocalStorage.js";
 import { getPercentage } from "../../utils/getPercentage.js";
-import { useDraggable, type DraggableOptions } from "../useDraggable.js";
+import {
+  useDraggable,
+  type ControlledValueDraggableOptions,
+  type DraggableOptions,
+} from "../useDraggable.js";
+import { deserializeDraggableValue } from "../utils.js";
 
 type TestProps = Partial<DraggableOptions<HTMLButtonElement>> & {
   nodeRef?: Ref<HTMLButtonElement>;
@@ -26,7 +38,10 @@ function Test(props: TestProps): ReactElement {
     min: 0,
     max: 100,
     ref: nodeRef,
-    ...options,
+    ...(options as Omit<
+      ControlledValueDraggableOptions<HTMLElement>,
+      "min" | "max" | "ref"
+    >),
   });
 
   const percentage =
@@ -392,6 +407,135 @@ describe("useDraggable", () => {
 
     rerender(<Test step={1} min={50} max={100} />);
     expect(button).toHaveAttribute("aria-valuenow", "50");
+  });
+
+  it("should allow for the value and dragging state to be controlled", () => {
+    function Test(): ReactElement {
+      const [value, setValue] = useState(20);
+      const [dragging, setDragging] = useState(false);
+
+      const {
+        draggableRef,
+        keyboardEventHandlers,
+        minimum,
+        maximum,
+        increment,
+        decrement,
+      } = useDraggable({
+        min: 0,
+        max: 100,
+        dragging,
+        value,
+        setValue,
+        setDragging,
+      });
+
+      const percentage = getPercentage({ min: 0, max: 100, value });
+
+      return (
+        <>
+          <Button
+            aria-valuenow={Math.ceil(percentage * 100)}
+            ref={draggableRef}
+            {...keyboardEventHandlers}
+            className={cnb(dragging && "dragging")}
+          >
+            Button
+          </Button>
+          <Button onClick={minimum}>Minimum</Button>
+          <Button onClick={maximum}>Maximum</Button>
+          <Button onClick={increment}>Increment</Button>
+          <Button onClick={decrement}>Decrement</Button>
+        </>
+      );
+    }
+
+    const { getByRole } = rmdRender(<Test />);
+
+    const button = getByRole("button", { name: "Button" });
+    const minimum = getByRole("button", { name: "Minimum" });
+    const maximum = getByRole("button", { name: "Maximum" });
+    const increment = getByRole("button", { name: "Increment" });
+    const decrement = getByRole("button", { name: "Decrement" });
+    expect(button).toMatchSnapshot();
+    expect(button).toHaveAttribute("aria-valuenow", "20");
+
+    fireEvent.click(increment);
+    expect(button).toHaveAttribute("aria-valuenow", "21");
+
+    fireEvent.click(decrement);
+    expect(button).toHaveAttribute("aria-valuenow", "20");
+
+    fireEvent.click(minimum);
+    expect(button).toHaveAttribute("aria-valuenow", "0");
+    fireEvent.click(maximum);
+    expect(button).toHaveAttribute("aria-valuenow", "100");
+  });
+
+  it("should allow the value to be controlled with the local storage hook and custom dragging state", () => {
+    function Test(): ReactElement {
+      const min = 0;
+      const max = 100;
+      const [dragging, setDragging] = useState(false);
+      const { value, setValue, persist } = useLocalStorage({
+        key: "test",
+        manual: dragging,
+        defaultValue: 50,
+        deserializer: (item) => deserializeDraggableValue({ min, max, item }),
+      });
+      const {
+        draggableRef,
+        draggedOnce,
+        mouseEventHandlers,
+        touchEventHandlers,
+        keyboardEventHandlers,
+      } = useDraggable({
+        min,
+        max,
+        value,
+        setValue,
+        dragging,
+        setDragging,
+      });
+
+      useEffect(() => {
+        if (!dragging && draggedOnce.current) {
+          persist();
+        }
+      }, [draggedOnce, dragging, persist]);
+
+      const percentage = getPercentage({ min, max, value });
+
+      return (
+        <>
+          <Button
+            aria-valuenow={Math.ceil(percentage * 100)}
+            ref={draggableRef}
+            {...mouseEventHandlers}
+            {...touchEventHandlers}
+            {...keyboardEventHandlers}
+            className={cnb(dragging && "dragging")}
+          >
+            Button
+          </Button>
+        </>
+      );
+    }
+
+    const { getByRole } = rmdRender(<Test />);
+
+    const button = getByRole("button");
+    expect(localStorage.getItem("test")).toBe("50");
+
+    fireEvent.mouseDown(button, { button: 0 });
+    fireEvent.mouseMove(button);
+    fireEvent.mouseMove(window, { clientX: 60 });
+    expect(button).toHaveAttribute("aria-valuenow", "60");
+    expect(localStorage.getItem("test")).toBe("50");
+
+    fireEvent.mouseUp(window, { clientX: 60 });
+    expect(button).toHaveAttribute("aria-valuenow", "60");
+    expect(localStorage.getItem("test")).toBe("60");
   });
 
   it.todo(

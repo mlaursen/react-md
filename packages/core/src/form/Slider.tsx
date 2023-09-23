@@ -7,7 +7,7 @@ import {
   type ReactNode,
   type Ref,
 } from "react";
-import { useControlledDraggable } from "../draggable/useControlledDraggable.js";
+import { useDraggable } from "../draggable/useDraggable.js";
 import { type TooltipProps } from "../tooltip/Tooltip.js";
 import {
   type LabelRequiredForA11y,
@@ -406,12 +406,13 @@ export function Slider(
     onTouchMove: thumb1OnTouchMove,
     dragPercentage: thumb1DragPercentage,
     draggableRef: thumb1DraggableRef,
-  } = useControlledDraggable({
+  } = useDraggable({
     ref: thumb1Ref,
     min,
     max: thumb1Max,
     rangeMax: max,
     step,
+    value: thumb1Value,
     setValue: setThumb1Value,
     dragging: thumb1Dragging,
     setDragging: setThumb1Dragging,
@@ -457,12 +458,13 @@ export function Slider(
     onTouchMove: thumb2OnTouchMove,
     dragPercentage: thumb2DragPercentage,
     draggableRef: thumb2DraggableRef,
-  } = useControlledDraggable({
+  } = useDraggable({
     ref: thumb2Ref,
     min: thumb2Min,
     max,
     rangeMin: min,
     step,
+    value: thumb2Value,
     setValue: setThumb2Value,
     dragging: thumb2Dragging,
     setDragging: setThumb2Dragging,
