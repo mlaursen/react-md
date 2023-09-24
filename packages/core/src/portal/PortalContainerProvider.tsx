@@ -22,7 +22,7 @@ const getPortalContainer = (): PortalContainer =>
   typeof window === "undefined" ? null : document.body;
 
 const context = createContext<PortalContainer>(getPortalContainer());
-context.displayName = "PortalNode";
+context.displayName = "PortalContainer";
 const { Provider } = context;
 
 /**

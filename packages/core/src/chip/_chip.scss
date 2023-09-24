@@ -185,7 +185,7 @@ $var-lookup: (
       @include set-var(outline-color, $outline-light-color);
     }
     @include set-var(outline-background-color, $outline-light-background-color);
-    @include set-var(outline-text-color, $outline-light-color);
+    @include set-var(outline-text-color, $outline-light-text-color);
   }
 }
 
@@ -200,7 +200,7 @@ $var-lookup: (
       @include set-var(outline-color, $outline-dark-color);
     }
     @include set-var(outline-background-color, $outline-dark-background-color);
-    @include set-var(outline-text-color, $outline-dark-color);
+    @include set-var(outline-text-color, $outline-dark-text-color);
   }
 }
 
@@ -265,7 +265,12 @@ $var-lookup: (
       @if not $disable-outline-theme {
         &--outline {
           @if not $disable-outline-raisable {
-            $outline-box-shadow: "inset 0 0 #{get-var(outline-width)} #{get-var(outline-color)}";
+            $outline-box-shadow: inset
+              0
+              0
+              0
+              #{get-var(outline-width)}
+              #{get-var(outline-color)};
 
             @include box-shadows.box-shadow-transition(
               $start-shadow: $outline-box-shadow,

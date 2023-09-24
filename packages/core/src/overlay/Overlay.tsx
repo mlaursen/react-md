@@ -1,72 +1,22 @@
 "use client";
-import { cnb } from "cnbuilder";
 import { forwardRef, type HTMLAttributes } from "react";
-import { useSsr } from "../SsrProvider.js";
 import { Portal } from "../portal/Portal.js";
+import { useSsr } from "../SsrProvider.js";
 import {
-  type CSSTransitionClassNamesObject,
   type CSSTransitionComponentProps,
   type TransitionActions,
-  type TransitionTimeout,
 } from "../transition/types.js";
 import { useCSSTransition } from "../transition/useCSSTransition.js";
-import { bem } from "../utils/bem.js";
-
-declare module "react" {
-  interface CSSProperties {
-    "--rmd-overlay-background-color"?: string;
-    "--rmd-overlay-z-index"?: number;
-  }
-}
-
-const styles = bem("rmd-overlay");
-
-/** @remarks \@since 6.0.0 */
-export interface OverlayClassNameOptions {
-  className?: string;
-
-  visible: boolean;
-
-  /** @defaultValue `false` */
-  clickable?: boolean;
-
-  /** @defaultValue `false` */
-  absolute?: boolean;
-}
-
-/**
- * @remarks \@since 6.0.0
- */
-export function overlay(options: OverlayClassNameOptions): string {
-  const { visible, absolute = false, clickable = false, className } = options;
-
-  return cnb(
-    styles({
-      visible,
-      clickable,
-      absolute,
-    }),
-    className
-  );
-}
-
-/** @remarks \@since 2.4.0 */
-export const DEFAULT_OVERLAY_TIMEOUT: TransitionTimeout = 150;
-
-/** @remarks \@since 2.4.0 */
-export const DEFAULT_OVERLAY_CLASSNAMES: Readonly<CSSTransitionClassNamesObject> =
-  {
-    appearActive: "rmd-overlay--active",
-    appearDone: "rmd-overlay--active",
-    enterActive: "rmd-overlay--active",
-    enterDone: "rmd-overlay--active",
-  };
+import {
+  DEFAULT_OVERLAY_CLASSNAMES,
+  DEFAULT_OVERLAY_TIMEOUT,
+  overlay,
+} from "./overlayStyles.js";
 
 export interface OverlayProps
   extends HTMLAttributes<HTMLSpanElement>,
     CSSTransitionComponentProps,
-    TransitionActions,
-    OverlayClassNameOptions {
+    TransitionActions {
   /**
    * Set this to `true` for when the overlay should be visible. Toggling this
    * value will trigger the enter/exit animation.
