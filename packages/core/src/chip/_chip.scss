@@ -298,7 +298,6 @@ $var-lookup: (
       }
 
       &--disabled {
-        @include theme.theme-use-var(color, text-disabled-color);
         @if not $disable-icon {
           @include icon.set-var(color, currentcolor);
         }

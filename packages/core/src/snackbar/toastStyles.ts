@@ -1,4 +1,5 @@
 import { cnb } from "cnbuilder";
+import { cssUtils, type BackgroundColor } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
 
 declare module "react" {
@@ -11,22 +12,11 @@ declare module "react" {
 
 const styles = bem("rmd-toast");
 
-/**
- * @remarks \@since 6.0.0
- */
-export type ToastTheme =
-  | "surface"
-  | "primary"
-  | "secondary"
-  | "warning"
-  | "error"
-  | "success";
-
 /** @remarks \@since 6.0.0 */
 export interface ToastClassNameOptions {
   className?: string;
   /** @defaultValue `"surface"` */
-  theme?: ToastTheme;
+  theme?: BackgroundColor;
   /** @defaultValue `false` */
   action?: boolean;
   /** @defaultValue `false` */
@@ -55,13 +45,16 @@ export function toast(options: ToastClassNameOptions = {}): string {
 
   return cnb(
     styles({
-      [theme]: true,
       x: closeButton,
       action,
       paused,
       "small-gap": closeButton && action,
       stacked,
       reordered: stacked && reordered,
+    }),
+    cssUtils({
+      backgroundColor:
+        theme !== "surface" && theme !== "current-color" ? theme : undefined,
     }),
     className
   );

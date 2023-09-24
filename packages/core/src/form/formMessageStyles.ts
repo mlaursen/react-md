@@ -1,4 +1,5 @@
 import { cnb } from "cnbuilder";
+import { cssUtils } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
 import type { FormMessageClassNameOptions } from "./types.js";
 
@@ -11,10 +12,8 @@ export function formMessage(options: FormMessageClassNameOptions = {}): string {
   const { className, error = false, theme = "none" } = options;
 
   return cnb(
-    styles({
-      error,
-      [theme]: theme !== "none",
-    }),
+    styles({ [theme]: theme !== "none" }),
+    cssUtils({ textColor: error ? "error" : "text-secondary" }),
     className
   );
 }

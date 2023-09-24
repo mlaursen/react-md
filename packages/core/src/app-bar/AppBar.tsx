@@ -5,6 +5,7 @@ import {
   type HTMLAttributes,
   type Ref,
 } from "react";
+import { cssUtils, type BackgroundColor } from "../cssUtils.js";
 import { type CssPosition } from "../types.js";
 import { bem } from "../utils/bem.js";
 
@@ -34,7 +35,7 @@ export type AppBarPosition = "top" | "bottom";
  * The default dark theme surface color also depends on the `$fixed-elevation`
  * value.
  */
-export type AppBarTheme = "clear" | "primary" | "secondary" | "surface";
+export type AppBarTheme = BackgroundColor | "clear";
 
 /**
  * - `"auto"` - the height will be determined by the height of the content
@@ -130,10 +131,12 @@ export function appBar(options: AppBarClassNameOptions = {}): string {
     scrollbarOffset = position === "fixed",
     disableElevation = false,
   } = options;
+  const surface = theme === "surface";
+  const clear = theme === "clear";
 
   return cnb(
     styles({
-      [theme]: theme !== "clear",
+      surface,
       [height]: height !== "normal",
       fixed: position !== "static",
       sticky: position === "sticky",
@@ -142,6 +145,9 @@ export function appBar(options: AppBarClassNameOptions = {}): string {
       elevated: position !== "static" && !disableElevation,
       "scrollbar-offset": scrollbarOffset,
       "static-scrollbar-offset": position === "static" && scrollbarOffset,
+    }),
+    cssUtils({
+      backgroundColor: !surface && !clear ? theme : undefined,
     }),
     className
   );

@@ -2,6 +2,7 @@
 @use "sass:list";
 @use "sass:map";
 @use "sass:string";
+@use "sass:meta";
 @use "colors";
 @use "a11y";
 
@@ -46,6 +47,10 @@ $error-color: colors.$red-500 !default;
 $on-error-color: a11y.contrast-color($error-color) !default;
 $success-color: colors.$green-a-700 !default;
 $on-success-color: a11y.contrast-color($success-color) !default;
+
+$outline-width: 0.0625em !default;
+$outline-color: currentcolor !default;
+$outline-grey-color: #999 !default;
 
 $light-theme-background-color: #fafafa !default;
 $light-theme-surface-color: #fff !default;
@@ -129,6 +134,10 @@ $theme-var-lookup: (
     var: --rmd-background-color,
     value: $background-color,
   ),
+  on-background-color: (
+    var: --rmd-on-background-color,
+    value: null,
+  ),
   surface-color: (
     var: --rmd-surface-color,
     value: $surface-color,
@@ -189,6 +198,18 @@ $theme-var-lookup: (
     var: --rmd-text-disabled-color,
     value: $text-disabled-color,
   ),
+  outline-width: (
+    var: --rmd-outline-width,
+    value: $outline-width,
+  ),
+  outline-color: (
+    var: --rmd-outline-color,
+    value: $outline-color,
+  ),
+  outline-grey-color: (
+    var: --rmd-outline-grey-color,
+    value: $outline-grey-color,
+  ),
 );
 
 @function theme-get-var($name, $fallback: null) {
@@ -215,8 +236,13 @@ $theme-var-lookup: (
   #{_dark-elevation-color($z-value)}: #{$value};
 }
 
-@mixin theme-set-var($name, $value) {
+@mixin theme-set-var($name, $value-or-theme-name) {
   $var: map.get(utils.validate($theme-var-lookup, $name, "theme var"), var);
+  $value: $value-or-theme-name;
+  @if map.has-key($theme-var-lookup, $value-or-theme-name) {
+    $name: $value-or-theme-name;
+    $value: theme-get-var($name);
+  }
 
   #{$var}: #{$value};
 }

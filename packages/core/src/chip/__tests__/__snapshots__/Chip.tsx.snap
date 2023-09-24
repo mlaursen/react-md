@@ -517,7 +517,7 @@ exports[`Chip should apply the correct styling, HTML attributes, and allow a ref
 
 exports[`Chip should apply the correct styling, HTML attributes, and allow a ref 3`] = `
 <button
-  class="rmd-chip rmd-chip--solid rmd-chip--disabled"
+  class="rmd-chip rmd-chip--solid rmd-chip--disabled rmd-text-disabled-color"
   disabled=""
   style=""
   type="button"
@@ -552,7 +552,7 @@ exports[`Chip should apply the correct styling, HTML attributes, and allow a ref
 
 exports[`Chip should apply the correct styling, HTML attributes, and allow a ref 5`] = `
 <button
-  class="rmd-chip rmd-chip--outline rmd-chip--disabled"
+  class="rmd-chip rmd-chip--outline rmd-chip--disabled rmd-text-disabled-color"
   disabled=""
   style=""
   type="button"

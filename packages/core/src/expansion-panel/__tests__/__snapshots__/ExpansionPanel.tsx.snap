@@ -30,7 +30,7 @@ exports[`ExpansionPanel should apply the correct styling, HTML attributes, and a
   id="expansion-panel-:rl:-container"
 >
   <h6
-    class="rmd-typography rmd-typography--subtitle-1 rmd-typography--no-margin rmd-expansion-panel__heading"
+    class="rmd-typography rmd-typography--subtitle-1 rmd-no-margin rmd-expansion-panel__heading"
   >
     <button
       aria-expanded="false"
@@ -65,7 +65,7 @@ exports[`ExpansionPanel should apply the correct styling, HTML attributes, and a
   style="color: white;"
 >
   <h6
-    class="rmd-typography rmd-typography--subtitle-1 rmd-typography--no-margin rmd-expansion-panel__heading"
+    class="rmd-typography rmd-typography--subtitle-1 rmd-no-margin rmd-expansion-panel__heading"
   >
     <button
       aria-expanded="false"
@@ -101,7 +101,7 @@ exports[`ExpansionPanel should default to single expansion, allowing all panels 
       id="expansion-panel-:r0:-1-container"
     >
       <h6
-        class="rmd-typography rmd-typography--subtitle-1 rmd-typography--no-margin rmd-expansion-panel__heading"
+        class="rmd-typography rmd-typography--subtitle-1 rmd-no-margin rmd-expansion-panel__heading"
       >
         <button
           aria-expanded="false"
@@ -133,7 +133,7 @@ exports[`ExpansionPanel should default to single expansion, allowing all panels 
       id="expansion-panel-:r0:-2-container"
     >
       <h6
-        class="rmd-typography rmd-typography--subtitle-1 rmd-typography--no-margin rmd-expansion-panel__heading"
+        class="rmd-typography rmd-typography--subtitle-1 rmd-no-margin rmd-expansion-panel__heading"
       >
         <button
           aria-expanded="false"
@@ -165,7 +165,7 @@ exports[`ExpansionPanel should default to single expansion, allowing all panels 
       id="expansion-panel-:r0:-3-container"
     >
       <h6
-        class="rmd-typography rmd-typography--subtitle-1 rmd-typography--no-margin rmd-expansion-panel__heading"
+        class="rmd-typography rmd-typography--subtitle-1 rmd-no-margin rmd-expansion-panel__heading"
       >
         <button
           aria-expanded="false"

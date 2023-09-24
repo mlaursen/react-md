@@ -257,15 +257,15 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
           />
           {label && (
             <Label
-              {...labelProps}
-              htmlFor={id}
-              style={labelProps?.style ?? labelStyle}
-              className={labelProps?.className ?? labelClassName}
               floating
               dense={dense}
               error={error}
               active={active}
               disabled={disabled}
+              {...labelProps}
+              htmlFor={id}
+              style={labelProps?.style ?? labelStyle}
+              className={labelProps?.className ?? labelClassName}
             >
               {label}
             </Label>

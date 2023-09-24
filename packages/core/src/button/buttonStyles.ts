@@ -1,4 +1,10 @@
 import { cnb } from "cnbuilder";
+import {
+  cssUtils,
+  type OutlineColor,
+  type TextColor,
+  type ThemeColor,
+} from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
 
 declare module "react" {
@@ -35,13 +41,7 @@ export type ButtonType = "text" | "icon" | "icon-square";
  * will update the general look and feel by updating the colors within the
  * button while the `ButtonThemeType` will update the borders or box shadow.
  */
-export type ButtonTheme =
-  | "clear"
-  | "primary"
-  | "secondary"
-  | "warning"
-  | "error"
-  | "disabled";
+export type ButtonTheme = ThemeColor | "clear" | "disabled";
 
 /**
  * When this is set to `"flat"`, the button will have no `background-color`,
@@ -118,6 +118,22 @@ export function button(options: ButtonClassNameOptions = {}): string {
   const outline = themeType === "outline";
   const contained = themeType === "contained";
   const clear = theme === "clear";
+  const isThemed = !disabled && !clear;
+
+  let textColor: ThemeColor | TextColor | undefined;
+  let outlineColor: OutlineColor | undefined;
+  let backgroundColor: ThemeColor | undefined;
+  if (isThemed && !contained) {
+    textColor = theme;
+  } else if (disabled) {
+    textColor = "text-disabled";
+  }
+  if (isThemed && contained) {
+    backgroundColor = theme;
+  }
+  if (outline) {
+    outlineColor = clear ? "greyscale" : theme;
+  }
 
   return cnb(
     styles({
@@ -126,13 +142,14 @@ export function button(options: ButtonClassNameOptions = {}): string {
       "icon-square": buttonType === "icon-square",
       disabled,
       contained: !disabled && contained,
-      outline,
       pressed: contained && pressed,
-      [theme]: !disabled && !clear && contained,
-      [`text-${theme}`]: !disabled && !clear && !contained,
-      [`outline-${theme}`]: !disabled && !clear && outline,
     }),
     pressedClassName,
+    cssUtils({
+      textColor,
+      outlineColor,
+      backgroundColor,
+    }),
     className
   );
 }

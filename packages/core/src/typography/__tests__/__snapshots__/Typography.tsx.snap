@@ -2,7 +2,7 @@
 
 exports[`Typography should be able to apply additional styles 1`] = `
 <p
-  class="rmd-typography rmd-typography--body-1 rmd-typography--no-margin-top rmd-typography--center rmd-typography--primary rmd-typography--overline-decoration rmd-typography--capitalize rmd-typography--semi-bold rmd-typography--italic"
+  class="rmd-typography rmd-typography--body-1 rmd-primary-color rmd-no-margin-top rmd-align-center rmd-overline rmd-capitalize rmd-italic rmd-semi-bold"
   data-testid="text"
 />
 `;

@@ -57,37 +57,46 @@ $ripple-background-color: theme.get-default-color(
 $ripple-transform-duration: 0.45s !default;
 $ripple-opacity-duration: 0.3s !default;
 
+$light-surface-hover-opacity: 0.08 !default;
+$light-surface-focus-opacity: 0.24 !default;
+$light-surface-press-opacity: 0.32 !default;
+$light-surface-selected-opacity: 0.16 !default;
 $light-surface-hover-background-color: rgba(
   $light-surface-base-background-color,
-  0.08
+  $light-surface-hover-opacity
 ) !default;
 $light-surface-focus-background-color: rgba(
   $light-surface-base-background-color,
-  0.24
+  $light-surface-focus-opacity
 ) !default;
 $light-surface-press-background-color: rgba(
   $light-surface-base-background-color,
-  0.32
+  $light-surface-press-opacity
 ) !default;
 $light-surface-selected-background-color: rgba(
   $light-surface-base-background-color,
-  0.16
+  $light-surface-selected-opacity
 ) !default;
+
+$dark-surface-hover-opacity: 0.1 !default;
+$dark-surface-focus-opacity: 0.12 !default;
+$dark-surface-press-opacity: 0.24 !default;
+$dark-surface-selected-opacity: 0.12 !default;
 $dark-surface-hover-background-color: rgba(
   $dark-surface-base-background-color,
-  0.1
+  $dark-surface-hover-opacity
 ) !default;
 $dark-surface-focus-background-color: rgba(
   $dark-surface-base-background-color,
-  0.12
+  $dark-surface-focus-opacity
 ) !default;
 $dark-surface-press-background-color: rgba(
   $dark-surface-base-background-color,
-  0.16
+  $dark-surface-press-opacity
 ) !default;
 $dark-surface-selected-background-color: rgba(
   $dark-surface-base-background-color,
-  0.12
+  $dark-surface-selected-opacity
 ) !default;
 
 $hover-background-color: theme.get-default-color(

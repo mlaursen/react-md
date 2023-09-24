@@ -6,7 +6,7 @@ exports[`ResponsiveItemOverlay should apply the correct styling, HTML attributes
     class="rmd-responsive-item-overlay rmd-responsive-item-overlay--bottom"
   >
     <h5
-      class="rmd-typography rmd-typography--headline-5 rmd-typography--no-margin"
+      class="rmd-typography rmd-typography--headline-5 rmd-no-margin"
     >
       Some description
     </h5>
@@ -20,7 +20,7 @@ exports[`ResponsiveItemOverlay should apply the correct styling, HTML attributes
     class="rmd-responsive-item-overlay rmd-responsive-item-overlay--bottom"
   >
     <h5
-      class="rmd-typography rmd-typography--headline-5 rmd-typography--no-margin"
+      class="rmd-typography rmd-typography--headline-5 rmd-no-margin"
     >
       Some description
     </h5>
@@ -35,7 +35,7 @@ exports[`ResponsiveItemOverlay should apply the correct styling, HTML attributes
     style="background-color: orange;"
   >
     <h5
-      class="rmd-typography rmd-typography--headline-5 rmd-typography--no-margin"
+      class="rmd-typography rmd-typography--headline-5 rmd-no-margin"
     >
       Some description
     </h5>
@@ -50,7 +50,7 @@ exports[`ResponsiveItemOverlay should apply the correct styling, HTML attributes
     style=""
   >
     <h5
-      class="rmd-typography rmd-typography--headline-5 rmd-typography--no-margin"
+      class="rmd-typography rmd-typography--headline-5 rmd-no-margin"
     >
       Some description
     </h5>
@@ -65,7 +65,7 @@ exports[`ResponsiveItemOverlay should apply the correct styling, HTML attributes
     style=""
   >
     <h5
-      class="rmd-typography rmd-typography--headline-5 rmd-typography--no-margin"
+      class="rmd-typography rmd-typography--headline-5 rmd-no-margin"
     >
       Some description
     </h5>
@@ -80,7 +80,7 @@ exports[`ResponsiveItemOverlay should apply the correct styling, HTML attributes
     style=""
   >
     <h5
-      class="rmd-typography rmd-typography--headline-5 rmd-typography--no-margin"
+      class="rmd-typography rmd-typography--headline-5 rmd-no-margin"
     >
       Some description
     </h5>
@@ -95,7 +95,7 @@ exports[`ResponsiveItemOverlay should apply the correct styling, HTML attributes
     style=""
   >
     <h5
-      class="rmd-typography rmd-typography--headline-5 rmd-typography--no-margin"
+      class="rmd-typography rmd-typography--headline-5 rmd-no-margin"
     >
       Some description
     </h5>
@@ -110,7 +110,7 @@ exports[`ResponsiveItemOverlay should apply the correct styling, HTML attributes
     style=""
   >
     <h5
-      class="rmd-typography rmd-typography--headline-5 rmd-typography--no-margin"
+      class="rmd-typography rmd-typography--headline-5 rmd-no-margin"
     >
       Some description
     </h5>
@@ -125,7 +125,7 @@ exports[`ResponsiveItemOverlay should apply the correct styling, HTML attributes
     style=""
   >
     <h5
-      class="rmd-typography rmd-typography--headline-5 rmd-typography--no-margin"
+      class="rmd-typography rmd-typography--headline-5 rmd-no-margin"
     >
       Some description
     </h5>
@@ -140,7 +140,7 @@ exports[`ResponsiveItemOverlay should apply the correct styling, HTML attributes
     style=""
   >
     <h5
-      class="rmd-typography rmd-typography--headline-5 rmd-typography--no-margin"
+      class="rmd-typography rmd-typography--headline-5 rmd-no-margin"
     >
       Some description
     </h5>

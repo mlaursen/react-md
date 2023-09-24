@@ -15,31 +15,6 @@ describe("TextContainer", () => {
 
     const container = getByTestId("container");
     expect(container).toHaveClass("rmd-text-container");
-    expect(container).toHaveClass("rmd-text-container--auto");
-    expect(container).not.toHaveClass("rmd-text-container--mobile");
-    expect(container).not.toHaveClass("rmd-text-container--desktop");
-    expect(container).toMatchSnapshot();
-
-    rerender(
-      <TextContainer data-testid="container" size="mobile">
-        <Typography>Content</Typography>
-      </TextContainer>
-    );
-    expect(container).toHaveClass("rmd-text-container");
-    expect(container).not.toHaveClass("rmd-text-container--auto");
-    expect(container).toHaveClass("rmd-text-container--mobile");
-    expect(container).not.toHaveClass("rmd-text-container--desktop");
-    expect(container).toMatchSnapshot();
-
-    rerender(
-      <TextContainer data-testid="container" size="desktop">
-        <Typography>Content</Typography>
-      </TextContainer>
-    );
-    expect(container).toHaveClass("rmd-text-container");
-    expect(container).not.toHaveClass("rmd-text-container--auto");
-    expect(container).toHaveClass("rmd-text-container--desktop");
-    expect(container).not.toHaveClass("rmd-text-container--mobile");
     expect(container).toMatchSnapshot();
 
     rerender(
@@ -49,9 +24,6 @@ describe("TextContainer", () => {
     );
 
     expect(container).toHaveClass("rmd-text-container");
-    expect(container).toHaveClass("rmd-text-container--auto");
-    expect(container).not.toHaveClass("rmd-text-container--mobile");
-    expect(container).not.toHaveClass("rmd-text-container--desktop");
     expect(container).toHaveClass("custom-1");
     expect(container).toHaveClass("custom-2");
     expect(container).toMatchSnapshot();

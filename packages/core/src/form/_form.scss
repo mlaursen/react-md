@@ -64,10 +64,8 @@ $disable-textarea-resizing-mask: $disable-textarea-resizing-rows !default;
 $disable-textarea-resize-horizontal: $disable-everything !default;
 $disable-textarea-resize-vertical: $disable-everything !default;
 
-$error-color: theme.theme-get-var(error-color) !default;
 $active-color: theme.theme-get-var(primary-color) !default;
 $focus-color: interaction.$focus-color !default;
-$disabled-color: theme.theme-get-var(text-disabled-color) !default;
 
 $label-gap: icon.$spacing !default;
 $label-font-size: 1em !default;
@@ -260,10 +258,6 @@ $_disable-text-field-container: $disable-text-field and $disable-password and
   $disable-textarea and $disable-select and $disable-native-select;
 
 $var-lookup: (
-  error-color: (
-    var: --rmd-form-error-color,
-    value: $error-color,
-  ),
   active-color: (
     var: --rmd-form-active-color,
     value: $active-color,
@@ -271,10 +265,6 @@ $var-lookup: (
   focus-color: (
     var: --rmd-form-focus-color,
     value: $focus-color,
-  ),
-  disabled-color: (
-    var: --rmd-form-disabled-color,
-    value: $disabled-color,
   ),
   floating-top: (
     var: --rmd-form-label-floating-top,
@@ -567,7 +557,6 @@ $var-lookup: (
 
   .rmd-form-message {
     @include utils.map-to-styles($message-typography-styles);
-    @include theme.theme-use-var(color, text-secondary-color);
 
     display: flex;
     margin: $message-margin-top 0 $message-margin-bottom;
@@ -596,10 +585,6 @@ $var-lookup: (
         padding-left: $text-field-underlined-padding;
         padding-right: $text-field-underlined-padding;
       }
-    }
-
-    &--error {
-      @include use-var(color, error-color);
     }
 
     &__message {
@@ -637,14 +622,6 @@ $var-lookup: (
       @include use-var(color, focus-color);
     }
 
-    &--error {
-      @include use-var(color, error-color);
-    }
-
-    &--disabled {
-      @include use-var(color, disabled-color);
-    }
-
     @if not $disable-floating-label {
       &--floating {
         @include utils.rtl {
@@ -669,10 +646,6 @@ $var-lookup: (
 
       &--floating-dense {
         @include set-var(floating-top, $label-floating-top-dense);
-      }
-
-      &--floating-inactive {
-        @include theme.theme-use-var(color, text-secondary-color);
       }
 
       $floating-active-selector: "&--floating-active";
@@ -771,26 +744,25 @@ $var-lookup: (
 
     &--error {
       @if not $disable-text-field-addon {
-        @include icon.set-var(color, get-var(error-color));
+        @include icon.set-var(color, currentcolor);
       }
-      @include set-var(active-color, get-var(error-color));
-      @include set-var(focus-color, get-var(error-color));
+      @include set-var(active-color, currentcolor);
+      @include set-var(focus-color, currentcolor);
 
       @if not
         $disable-text-field-underlined-theme or not
         $disable-text-field-outlined-theme
       {
-        @include set-var(text-border-color, get-var(error-color));
-        @include set-var(text-hover-border-color, get-var(error-color));
+        @include set-var(text-border-color, theme.theme-get-var(error-color));
+        @include set-var(
+          text-hover-border-color,
+          theme.theme-get-var(error-color)
+        );
       }
     }
 
     &--hoverable:hover {
       @include set-var(text-border-color, get-var(text-hover-border-color));
-    }
-
-    &--disabled {
-      @include icon.set-var(color, get-var(disabled-color));
     }
 
     @if not $disable-text-field-outlined-theme {
@@ -1314,10 +1286,6 @@ $var-lookup: (
 
     &--active {
       @include use-var(color, active-color);
-    }
-
-    &--disabled {
-      @include use-var(color, disabled-color);
     }
 
     @if $input-toggle-small-size {

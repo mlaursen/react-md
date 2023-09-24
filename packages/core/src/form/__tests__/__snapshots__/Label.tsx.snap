@@ -41,7 +41,7 @@ exports[`Label should apply the correct styling, HTML attributes, and allow a re
 
 exports[`Label should apply the correct styling, HTML attributes, and allow a ref 5`] = `
 <label
-  class="rmd-label rmd-label--active rmd-label--floating rmd-label--floating-active rmd-label--floating-inactive"
+  class="rmd-label rmd-label--active rmd-label--floating rmd-label--floating-active rmd-text-secondary-color"
   data-testid="label"
   style=""
 >
@@ -51,7 +51,7 @@ exports[`Label should apply the correct styling, HTML attributes, and allow a re
 
 exports[`Label should apply the correct styling, HTML attributes, and allow a ref 6`] = `
 <label
-  class="rmd-label rmd-label--active rmd-label--floating rmd-label--floating-inactive"
+  class="rmd-label rmd-label--active rmd-label--floating rmd-text-secondary-color"
   data-testid="label"
   style=""
 >

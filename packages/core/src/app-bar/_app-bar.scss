@@ -11,8 +11,6 @@
 $disable-everything: false !default;
 $disable-fixed: false !default;
 $disable-sticky: false !default;
-$disable-primary-theme: false !default;
-$disable-secondary-theme: false !default;
 $disable-surface-theme: $disable-everything !default;
 $disable-dense-theme: false !default;
 $disable-prominent-theme: false !default;
@@ -66,14 +64,6 @@ $var-lookup: (
   height: (
     var: --rmd-app-bar-height,
     value: $height,
-  ),
-  background-color: (
-    var: --rmd-app-bar-background-color,
-    value: null,
-  ),
-  color: (
-    var: --rmd-app-bar-color,
-    value: theme.theme-get-var(text-primary-color),
   ),
   surface-background-color: (
     var: --rmd-app-bar-surface-background-color,
@@ -138,8 +128,6 @@ $var-lookup: (
     }
 
     .rmd-app-bar {
-      @include use-var(background-color);
-      @include use-var(color);
       @include use-var(height);
 
       align-items: center;
@@ -215,36 +203,10 @@ $var-lookup: (
         }
       }
 
-      @if not $disable-primary-theme {
-        &--primary {
-          @if not $disable-primary-interaction-colors {
-            @include interaction.use-light-surface;
-          }
-          @include set-var(
-            background-color,
-            theme.theme-get-var(primary-color)
-          );
-          @include set-var(color, theme.theme-get-var(on-primary-color));
-        }
-      }
-
-      @if not $disable-secondary-theme {
-        &--secondary {
-          @if not $disable-secondary-interaction-colors {
-            @include interaction.use-light-surface;
-          }
-          @include set-var(
-            background-color,
-            theme.theme-get-var(secondary-color)
-          );
-          @include set-var(color, theme.theme-get-var(on-secondary-color));
-        }
-      }
-
       @if not $disable-surface-theme {
         &--surface {
-          @include set-var(background-color, get-var(surface-background-color));
-          @include set-var(color, get-var(surface-color));
+          @include use-var(background-color, surface-background-color);
+          @include use-var(color, surface-color);
         }
       }
 

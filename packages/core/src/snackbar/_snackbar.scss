@@ -17,11 +17,6 @@ $disable-top-right: $disable-top !default;
 $disable-top-left: $disable-top !default;
 $disable-bottom-left: $disable-bottom !default;
 $disable-bottom-right: $disable-bottom !default;
-$disable-primary-theme: false !default;
-$disable-secondary-theme: false !default;
-$disable-warning-theme: false !default;
-$disable-error-theme: false !default;
-$disable-success-theme: false !default;
 $disable-close-button: false !default;
 $disable-action-button: false !default;
 $disable-stacked: false !default;
@@ -167,41 +162,6 @@ $var-lookup: (
       @include media-queries.tablet-media {
         min-width: $min-width;
         width: auto;
-      }
-
-      @if not $disable-primary-theme {
-        &--primary {
-          @include theme.theme-use-var(background-color, primary-color);
-          @include theme.theme-use-var(color, on-primary-color);
-        }
-      }
-
-      @if not $disable-secondary-theme {
-        &--secondary {
-          @include theme.theme-use-var(background-color, secondary-color);
-          @include theme.theme-use-var(color, on-secondary-color);
-        }
-      }
-
-      @if not $disable-warning-theme {
-        &--warning {
-          @include theme.theme-use-var(background-color, warning-color);
-          @include theme.theme-use-var(color, on-warning-color);
-        }
-      }
-
-      @if not $disable-error-theme {
-        &--error {
-          @include theme.theme-use-var(background-color, error-color);
-          @include theme.theme-use-var(color, on-error-color);
-        }
-      }
-
-      @if not $disable-success-theme {
-        &--success {
-          @include theme.theme-use-var(background-color, success-color);
-          @include theme.theme-use-var(color, on-success-color);
-        }
       }
 
       @if not $disable-action-button {

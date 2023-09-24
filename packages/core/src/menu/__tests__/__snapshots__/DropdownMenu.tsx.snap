@@ -162,7 +162,7 @@ exports[`DropdownMenu should remove the dropdown icon when rendered as an icon b
 <button
   aria-haspopup="menu"
   aria-label="Options"
-  class="rmd-button rmd-button--icon rmd-button--contained rmd-button--secondary"
+  class="rmd-button rmd-button--icon rmd-button--contained rmd-background-container rmd-secondary-container"
   id="menubutton-:r1p:"
   type="button"
 >

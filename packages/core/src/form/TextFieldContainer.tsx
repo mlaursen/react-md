@@ -1,6 +1,7 @@
 "use client";
 import { cnb } from "cnbuilder";
 import { forwardRef, type HTMLAttributes } from "react";
+import { cssUtils, type TextColor, type ThemeColor } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
 import { useFormTheme } from "./FormThemeProvider.js";
 import { TextFieldAddon } from "./TextFieldAddon.js";
@@ -78,6 +79,13 @@ export function textFieldContainer(
   const isUnderlined = underline || filled;
   const isOutlineActive = outline && active;
 
+  let textColor: ThemeColor | TextColor | undefined;
+  if (disabled) {
+    textColor = "text-disabled";
+  } else if (error) {
+    textColor = "error";
+  }
+
   return cnb(
     styles({
       error,
@@ -101,6 +109,9 @@ export function textFieldContainer(
       [`underline-${underlineDirection}`]: isUnderlined,
       "underline-left-addon": isUnderlined && leftAddon,
       "underline-right-addon": isUnderlined && rightAddon,
+    }),
+    cssUtils({
+      textColor,
     }),
     className
   );

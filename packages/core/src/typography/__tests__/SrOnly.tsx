@@ -2,7 +2,7 @@ import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
 import { render } from "../../test-utils/index.js";
 
-import { srOnly, SrOnly } from "../SrOnly.js";
+import { SrOnly } from "../SrOnly.js";
 
 describe("SrOnly", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {
@@ -39,11 +39,5 @@ describe("SrOnly", () => {
     );
     expect(ref.current).toBeInstanceOf(HTMLHeadingElement);
     expect(container).toMatchSnapshot();
-  });
-
-  describe("styling utility class", () => {
-    it("should be callable without any arguments", () => {
-      expect(srOnly()).toMatchSnapshot();
-    });
   });
 });

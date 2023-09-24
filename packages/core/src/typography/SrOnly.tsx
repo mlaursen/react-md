@@ -1,31 +1,11 @@
-import { cnb } from "cnbuilder";
 import { forwardRef } from "react";
-import { bem } from "../utils/bem.js";
 import {
   Typography,
   type CustomTypographyComponent,
   type TypographyHTMLElement,
   type TypographyProps,
 } from "./Typography.js";
-
-const styles = bem("rmd-sr-only");
-
-/** @remarks \@since 6.0.0 */
-export interface SrOnlyClassNameOptions {
-  className?: string;
-
-  /** @defaultValue `false` */
-  focusable?: boolean;
-}
-
-/**
- * @remarks \@since 6.0.0
- */
-export function srOnly(options: SrOnlyClassNameOptions = {}): string {
-  const { className, focusable = false } = options;
-
-  return cnb(styles({ focusable }), className);
-}
+import { cssUtils } from "../cssUtils.js";
 
 export interface SrOnlyProps extends TypographyProps {
   /** @defaultValue `"span"` */
@@ -79,7 +59,10 @@ export const SrOnly = forwardRef<TypographyHTMLElement, SrOnlyProps>(
         as={as}
         ref={ref}
         tabIndex={tabIndex ?? (focusable ? 0 : undefined)}
-        className={srOnly({ focusable, className })}
+        className={cssUtils({
+          srOnly: focusable ? "focusable" : true,
+          className,
+        })}
       >
         {children}
       </Typography>

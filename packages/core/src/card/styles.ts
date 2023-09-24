@@ -1,5 +1,6 @@
 import { cnb } from "cnbuilder";
 import { bem } from "../utils/bem.js";
+import { cssUtils } from "../cssUtils.js";
 
 const cardStyles = bem("rmd-card");
 
@@ -169,8 +170,10 @@ export function cardContent(options: CardContentClassNameOptions = {}): string {
   return cnb(
     cardStyles("content", {
       padded: !disablePadding,
-      secondary: !disableSecondaryColor,
       "padding-bottom": !disableLastChildPadding,
+    }),
+    cssUtils({
+      textColor: !disableSecondaryColor ? "text-secondary" : undefined,
     }),
     className
   );

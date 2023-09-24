@@ -66,13 +66,13 @@ describe("Typography", () => {
     const { getByTestId } = render(
       <Typography
         data-testid="text"
-        align="center"
+        textAlign="center"
         margin="bottom"
-        decoration="overline"
+        textDecoration="overline"
         textColor="primary"
         fontStyle="italic"
-        weight="semi-bold"
-        transform="capitalize"
+        fontWeight="semi-bold"
+        textTransform="capitalize"
       />
     );
 

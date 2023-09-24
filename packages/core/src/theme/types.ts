@@ -1,41 +1,6 @@
 import type { CSSProperties } from "react";
 
 /**
- * - `primary -> $primary-color`
- * - `secondary -> $secondary-color`
- * - `warning -> $warning-color`
- * - `success -> $success-color`
- * - `error -> $error-color`
- *
- * @remarks \@since 6.0.0
- */
-export type ThemeColor =
-  | "primary"
-  | "secondary"
-  | "warning"
-  | "success"
-  | "error";
-
-/**
- * - `text-primary -> $text-primary-color`
- * - `text-secondary -> $text-secondary-color`
- * - `text-hint -> $text-hint-color`
- * - `text-disabled -> $text-disabled-color`
- *
- * @remarks \@since 6.0.0
- */
-export type TextColor =
-  | "text-primary"
-  | "text-secondary"
-  | "text-hint"
-  | "text-disabled";
-
-/**
- * @remarks \@since 6.0.0
- */
-export type ThemeOrTextColor = ThemeColor | TextColor;
-
-/**
  * @remarks \@since 6.0.0
  */
 export type CSSVariableName = `--${string}`;

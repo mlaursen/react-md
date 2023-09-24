@@ -5,7 +5,7 @@ import {
   type HTMLAttributes,
   type ReactElement,
 } from "react";
-import { type ThemeOrTextColor } from "../theme/types.js";
+import { cssUtils, type TextCssUtilsOptions } from "../cssUtils.js";
 
 /**
  * A union of all the material design provided typography styles. When used with
@@ -28,63 +28,8 @@ export type TypographyType =
   | "caption"
   | "overline";
 
-/**
- * The supported css `text-align` values.
- */
-export type TextAlign = "left" | "center" | "right";
-
-/**
- * The supported css `text-decoration` values.
- */
-export type TextDecoration = "underline" | "overline" | "line-through";
-
-/**
- * The supported css `text-transform` values.
- */
-export type TextTransform = "capitalize" | "uppercase" | "lowercase";
-
-/**
- * The supported css `font-weight` values.
- *
- * Note: You will need to ensure that you are using a web safe font for all the
- * font weights to work, use variable fonts, or load all font weights for your
- * custom font.
- *
- * @see {@link https://www.google.com/search?q=web+safe+fonts | Web Safe Fonts}
- * @see {@link https://www.google.com/search?q=variable+fonts | Variable FOnts}
- * @remarks \@since 6.0.0 This was `TextWeight` beforehand.
- */
-export type FontWeight =
-  | "thin"
-  | "light"
-  | "regular"
-  | "medium"
-  | "bold"
-  | "semi-bold"
-  | "black";
-
-/**
- * Since the typography within react-md tries to not modify base elements, the
- * default margin applied to heading tags (h1-h6) and paragraph (p) might have
- * large margin that you don't want applied when using this component. You can
- * disable:
- *
- * - only the top margin by setting this prop to `"bottom"`
- * - only the bottom margin by setting this prop to `"top"`
- * - top and bottom margin by setting this prop to `"none"`
- * - or keep the initial behavior: `"initial"`
- *
- * @remarks \@since 6.0.0
- */
-export type TypographyMargin = "initial" | "none" | "top" | "bottom";
-
-/**
- * The supported css `font-style` values.
- */
-export type FontStyle = "italic" | "oblique" | "normal";
-
 /** @remarks \@since 6.0.0 */
-export interface TypographyClassNameOptions {
+export interface TypographyClassNameOptions extends TextCssUtilsOptions {
   className?: string;
 
   /**
@@ -92,29 +37,6 @@ export interface TypographyClassNameOptions {
    * @defaultValue `"body-1"`
    */
   type?: TypographyType;
-
-  /** {@inheritDoc TextAlign} */
-  align?: TextAlign;
-  /** {@inheritDoc ThemeOrTextColor} */
-  textColor?: ThemeOrTextColor;
-  /** {@inheritDoc TextDecoration} */
-  decoration?: TextDecoration;
-  /** {@inheritDoc TextTransform} */
-  transform?: TextTransform;
-  /** {@inheritDoc FontWeight} */
-  weight?: FontWeight;
-  /** {@inheritDoc FontStyle} */
-  fontStyle?: FontStyle;
-  /**
-   * @see {@link TypographyMargin}
-   * @defaultValue `"initial"`
-   */
-  margin?: TypographyMargin;
-
-  /**
-   * @defaultValue `false`
-   */
-  disableLineWrap?: boolean;
 }
 
 /** @remarks \@since 6.0.0 */
@@ -217,38 +139,14 @@ export type NullableTypographyClassNameOptions = Omit<
 export function typography(
   options: NullableTypographyClassNameOptions = {}
 ): string {
-  const {
-    type = "body-1",
-    align,
-    textColor,
-    decoration,
-    transform,
-    weight,
-    fontStyle,
-    margin = "initial",
-    className,
-    disableLineWrap,
-  } = options;
+  const { type = "body-1" } = options;
 
   // using `&&` instead of `bem` since the latest version of typescript does not
   // support setting the same object key (empty string)
-  const p = "rmd-typography--";
   return cnb(
     "rmd-typography",
-    type && `${p}${type}`,
-    margin === "none" && `${p}no-margin`,
-    margin === "bottom" && `${p}no-margin-top`,
-    margin === "top" && `${p}no-margin-bottom`,
-    align && `${p}${align}`,
-    // TODO: Implement text colors
-    textColor && `${p}${textColor}`,
-    decoration === "overline" && `${p}overline-decoration`,
-    decoration && decoration !== "overline" && `${p}${decoration}`,
-    transform && `${p}${transform}`,
-    weight && `${p}${weight}`,
-    fontStyle && `${p}${fontStyle}`,
-    disableLineWrap && `${p}no-wrap`,
-    className
+    type && `rmd-typography--${type}`,
+    cssUtils(options)
   );
 }
 
@@ -376,18 +274,18 @@ export interface TypographyProps
 export const Typography = forwardRef<TypographyHTMLElement, TypographyProps>(
   function Typography(props, ref): ReactElement {
     const {
-      type = "body-1",
-      align,
-      textColor,
-      decoration,
-      transform,
-      weight,
-      fontStyle,
-      margin = "initial",
-      className,
       as,
-      children,
+      type = "body-1",
+      className,
+      margin,
+      fontStyle,
+      fontWeight,
+      textAlign,
+      textColor,
+      textDecoration,
+      textTransform,
       disableLineWrap,
+      children,
       ...remaining
     } = props;
 
@@ -398,13 +296,13 @@ export const Typography = forwardRef<TypographyHTMLElement, TypographyProps>(
         ref={ref}
         className={typography({
           type,
-          align,
-          textColor,
-          decoration,
-          transform,
-          weight,
-          fontStyle,
           margin,
+          fontStyle,
+          fontWeight,
+          textAlign,
+          textColor,
+          textDecoration,
+          textTransform,
           disableLineWrap,
           className,
         })}

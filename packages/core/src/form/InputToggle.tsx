@@ -9,6 +9,7 @@ import {
   type LabelHTMLAttributes,
   type ReactNode,
 } from "react";
+import { cssUtils } from "../cssUtils.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
@@ -93,12 +94,14 @@ export function inputToggle(options: InputToggleClassNameOptions): string {
     styles({
       em,
       active,
-      disabled,
       readonly: readOnly,
       small: size === "small",
       dense: size === "dense",
       normal: size === "normal",
       large: size === "large",
+    }),
+    cssUtils({
+      textColor: disabled ? "text-disabled" : undefined,
     }),
     className
   );

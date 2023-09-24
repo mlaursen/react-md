@@ -4,12 +4,7 @@
 @use "sass:list";
 
 $disable-rtl: false !default;
-/// this fixes issues around incorrect CSS order, but also causes transitions
-/// to be less performant in dev mode that cause layout shifts unless
-/// `will-change` has been added
-$disable-layer: false !default;
 $disable-validation: false !default;
-$disable-display-none-class: false !default;
 $temporary-element-z-index: 30 !default;
 
 $_swappable-positions: top right bottom left;

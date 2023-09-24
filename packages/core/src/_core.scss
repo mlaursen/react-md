@@ -1,3 +1,5 @@
+@use "sass:list" as sassList;
+
 @forward "utils";
 @forward "media-queries/media-queries";
 @forward "box/box" as box-*;
@@ -70,6 +72,41 @@
 @use "layout/layout";
 @use "utils";
 
+$_layer-order: (
+  typography,
+  transition,
+  interaction,
+  box,
+  icon,
+  divider,
+  button,
+  badge,
+  tabs,
+  chip,
+  progress,
+  responsive,
+  overlay,
+  card,
+  avatar,
+  link,
+  list,
+  tree,
+  dialog,
+  sheet,
+  tooltip,
+  table,
+  app-bar,
+  expansion-panel,
+  draggable,
+  window-splitter,
+  menu,
+  form,
+  layout,
+  snackbar,
+  segmented-button,
+  utils
+);
+
 @mixin css-reset {
   // setting everything to border-box for easier positioning and calculations
   *,
@@ -102,10 +139,110 @@
     // document. Without this, all the `onOutsideClick` behavior won't work.
     cursor: pointer;
   }
+}
 
-  @if not utils.$disable-display-none-class {
-    .rmd-display-none {
-      display: none !important;
+@mixin css-utils {
+  .rmd-display-none {
+    display: none !important;
+  }
+
+  .rmd-sr-only {
+    @include utils.sr-only(true);
+  }
+
+  .rmd-outline {
+    box-shadow: inset 0 0 0 theme.theme-get-var(outline-width)
+      theme.theme-get-var(outline-color);
+  }
+
+  .rmd-greyscale-outline {
+    @include theme.theme-set-var(outline-color, outline-grey-color);
+  }
+
+  .rmd-background-container {
+    @include theme.theme-use-var(background-color);
+    @include theme.theme-use-var(color, on-background-color, currentcolor);
+  }
+
+  @each $color in (primary, secondary, warning, success, error) {
+    $theme-name: $color + "-color";
+    $on-theme-name: "on-" + $theme-name;
+
+    .rmd-#{$color}-container {
+      @include theme.theme-set-var(background-color, $theme-name);
+      @include theme.theme-set-var(on-background-color, $on-theme-name);
+    }
+
+    .rmd-#{$color}-color {
+      @include theme.theme-use-var(color, $theme-name);
+    }
+
+    .rmd-#{$color}-outline {
+      @include theme.theme-set-var(outline-color, $theme-name);
+    }
+  }
+
+  @each $color in (primary, secondary, hint, disabled) {
+    .rmd-text-#{$color}-color {
+      @include theme.theme-use-var(color, text-#{$color}-color);
+    }
+  }
+
+  .rmd-light-surface {
+    @include interaction.use-light-surface;
+  }
+
+  .rmd-dark-surface {
+    @include interaction.use-dark-surface;
+  }
+
+  .rmd-no-margin {
+    margin: 0;
+  }
+
+  .rmd-no-margin-top {
+    margin-top: 0;
+  }
+
+  .rmd-no-margin-bottom {
+    margin-bottom: 0;
+  }
+
+  .rmd-centered {
+    margin: 0 auto;
+  }
+
+  .rmd-nowrap {
+    white-space: nowrap;
+  }
+
+  @each $alignment in typography.$text-alignments {
+    .rmd-align-#{$alignment} {
+      text-align: $alignment;
+    }
+  }
+
+  @each $decoration in typography.$text-decorations {
+    .rmd-#{$decoration} {
+      text-decoration: $decoration;
+    }
+  }
+
+  @each $transform in typography.$text-transforms {
+    .rmd-#{$transform} {
+      text-transform: $transform;
+    }
+  }
+
+  @each $font-style in typography.$font-styles {
+    .rmd-#{$font-style} {
+      font-style: $font-style;
+    }
+  }
+
+  @each $name, $font-weight in typography.$font-weights {
+    .rmd-weight-#{$name} {
+      font-weight: $font-weight;
     }
   }
 }
@@ -138,39 +275,128 @@
   @include segmented-button.use-dark-theme;
 }
 
-@mixin _styles {
-  @include typography.typography-styles;
-  @include transition.transition-styles;
-  @include interaction.styles;
+@mixin styles {
+  @include css-reset;
 
-  @include box.styles;
-  @include icon.styles;
-  @include divider.styles;
-  @include button.styles;
-  @include badge.styles;
-  @include tabs.styles;
-  @include chip.styles;
-  @include progress.styles;
-  @include responsive-item.styles;
-  @include overlay.styles;
-  @include card.styles;
-  @include avatar.styles;
-  @include link.styles;
-  @include list.styles;
-  @include tree.styles;
-  @include dialog.styles;
-  @include sheet.styles;
-  @include tooltip.styles;
-  @include table.styles;
-  @include app-bar.styles;
-  @include expansion-panel.styles;
-  @include draggable.styles;
-  @include window-splitter.styles;
-  @include menu.styles;
-  @include form.styles;
-  @include layout.styles;
-  @include snackbar.styles;
-  @include segmented-button.styles;
+  @layer #{$_layer-order};
+  @layer utils {
+    @include css-utils;
+  }
+
+  @layer app-bar {
+    @include app-bar.styles;
+  }
+  @layer avatar {
+    @include avatar.styles;
+  }
+  @layer badge {
+    @include badge.styles;
+  }
+  @layer box {
+    @include box.styles;
+  }
+  @layer button {
+    @include button.styles;
+  }
+  @layer card {
+    @include card.styles;
+  }
+  @layer chip {
+    @include chip.styles;
+  }
+
+  @layer dialog {
+    @include dialog.styles;
+  }
+  @layer divider {
+    @include divider.styles;
+  }
+  @layer draggable {
+    @include draggable.styles;
+  }
+  @layer expansion-panel {
+    @include expansion-panel.styles;
+  }
+
+  @layer form {
+    @include form.styles;
+  }
+
+  @layer icon {
+    @include icon.styles;
+  }
+
+  @layer interaction {
+    @include interaction.styles;
+  }
+
+  @layer layout {
+    @include layout.styles;
+  }
+
+  @layer link {
+    @include link.styles;
+  }
+
+  @layer list {
+    @include list.styles;
+  }
+
+  @layer menu {
+    @include menu.styles;
+  }
+
+  @layer overlay {
+    @include overlay.styles;
+  }
+
+  @layer progress {
+    @include progress.styles;
+  }
+
+  @layer responsive-item {
+    @include responsive-item.styles;
+  }
+
+  @layer segmented-button {
+    @include segmented-button.styles;
+  }
+
+  @layer sheet {
+    @include sheet.styles;
+  }
+
+  @layer snackbar {
+    @include snackbar.styles;
+  }
+
+  @layer table {
+    @include table.styles;
+  }
+
+  @layer tabs {
+    @include tabs.styles;
+  }
+
+  @layer tooltip {
+    @include tooltip.styles;
+  }
+
+  @layer transition {
+    @include transition.transition-styles;
+  }
+
+  @layer tree {
+    @include tree.styles;
+  }
+
+  @layer typography {
+    @include typography.typography-styles;
+  }
+
+  @layer window-splitter {
+    @include window-splitter.styles;
+  }
 
   @if not theme.$disable-default-root-theme {
     :root {
@@ -186,16 +412,5 @@
         }
       }
     }
-  }
-}
-
-@mixin styles {
-  @include css-reset;
-  @if not utils.$disable-layer {
-    @layer rmd {
-      @include _styles;
-    }
-  } @else {
-    @include _styles;
   }
 }

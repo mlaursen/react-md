@@ -1,5 +1,6 @@
 import { cnb } from "cnbuilder";
 import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
+import { cssUtils, type BackgroundColor } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
 
 declare module "react" {
@@ -14,9 +15,10 @@ declare module "react" {
 const styles = bem("rmd-badge");
 
 /**
- * @remarks \@since 6.0.0 Renamed `"default"` to `"greyscale"`
+ * @remarks \@since 6.0.0 Renamed `"default"` to `"greyscale"` and added all
+ * theme colors.
  */
-export type BadgeTheme = "primary" | "secondary" | "greyscale" | "clear";
+export type BadgeTheme = BackgroundColor | "greyscale" | "clear";
 
 export interface BadgeClassNameOptions {
   className?: string;
@@ -27,8 +29,14 @@ export interface BadgeClassNameOptions {
 
 export function badge(options: BadgeClassNameOptions = {}): string {
   const { className, theme = "greyscale" } = options;
+  const greyscale = theme === "greyscale";
+  const clear = theme === "clear";
 
-  return cnb(styles({ [theme]: theme !== "clear" }), className);
+  return cnb(
+    styles({ greyscale }),
+    cssUtils({ backgroundColor: !clear && !greyscale ? theme : undefined }),
+    className
+  );
 }
 
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {

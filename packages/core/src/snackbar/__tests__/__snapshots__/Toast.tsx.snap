@@ -2,7 +2,7 @@
 
 exports[`Toast should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <div
-  class="rmd-toast rmd-toast--surface rmd-scale-transition--enter rmd-scale-transition--enter-active"
+  class="rmd-toast rmd-scale-transition--enter rmd-scale-transition--enter-active"
   data-testid="toast"
   id="toast-:r0:"
 >
@@ -14,7 +14,7 @@ exports[`Toast should apply the correct styling, HTML attributes, and allow a re
 
 exports[`Toast should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <div
-  class="rmd-toast rmd-toast--surface custom-class-name rmd-scale-transition--enter rmd-scale-transition--enter-active"
+  class="rmd-toast custom-class-name rmd-scale-transition--enter rmd-scale-transition--enter-active"
   data-testid="toast"
   id="toast-:r0:"
   style="color: white;"
@@ -27,7 +27,7 @@ exports[`Toast should apply the correct styling, HTML attributes, and allow a re
 
 exports[`Toast should render any valid element within the ToastActionButton 1`] = `
 <button
-  class="rmd-button rmd-button--text rmd-button--text-secondary rmd-toast-action"
+  class="rmd-button rmd-button--text rmd-secondary-color rmd-toast-action"
   type="button"
 >
   <span>
@@ -39,7 +39,7 @@ exports[`Toast should render any valid element within the ToastActionButton 1`] 
 exports[`Toast should render any valid element within the ToastActionButton 2`] = `
 <button
   aria-label="New Action"
-  class="rmd-button rmd-button--icon rmd-button--text-secondary rmd-toast-action"
+  class="rmd-button rmd-button--icon rmd-secondary-color rmd-toast-action"
   type="button"
 >
   <span

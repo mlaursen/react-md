@@ -8,6 +8,7 @@ import {
   type ReactNode,
 } from "react";
 import { type ButtonProps } from "../button/Button.js";
+import { type BackgroundColor } from "../cssUtils.js";
 import {
   type CSSTransitionClassNames,
   type TransitionCallbacks,
@@ -19,7 +20,7 @@ import { useEnsuredId } from "../useEnsuredId.js";
 import { ToastActionButton } from "./ToastActionButton.js";
 import { ToastCloseButton } from "./ToastCloseButton.js";
 import { ToastContent, type ToastContentProps } from "./ToastContent.js";
-import { toast, type ToastTheme } from "./toastStyles.js";
+import { toast } from "./toastStyles.js";
 
 /**
  * @remarks \@since 6.0.0
@@ -44,7 +45,7 @@ export interface ConfigurableToastProps
   /**
    * @defaultValue `"surface"`
    */
-  theme?: ToastTheme;
+  theme?: BackgroundColor;
 
   /**
    * Set this to `true` to stack the content above the {@link action}. It is not

@@ -1,4 +1,5 @@
 import { cnb } from "cnbuilder";
+import { cssUtils } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-chip");
@@ -96,6 +97,7 @@ export function chip(options: ChipClassNameOptions = {}): string {
     }),
     selected && selectedClassName,
     pressedClassName,
+    cssUtils({ textColor: disabled ? "text-disabled" : undefined }),
     className
   );
 }

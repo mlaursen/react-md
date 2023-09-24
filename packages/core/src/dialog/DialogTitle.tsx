@@ -1,9 +1,9 @@
 import { cnb } from "cnbuilder";
 import { forwardRef } from "react";
+import { type Margin } from "../cssUtils.js";
 import {
   Typography,
   type CustomTypographyComponent,
-  type TypographyMargin,
   type TypographyProps,
   type TypographyType,
 } from "../typography/Typography.js";
@@ -20,7 +20,7 @@ export interface DialogTitleProps extends TypographyProps {
   type?: TypographyType;
 
   /** @defaultValue `"none"` */
-  margin?: TypographyMargin;
+  margin?: Margin;
 }
 
 /**

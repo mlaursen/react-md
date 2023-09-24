@@ -2,7 +2,7 @@
 
 exports[`CardContent should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <div
-  class="rmd-card__content rmd-card__content--padded rmd-card__content--secondary rmd-card__content--padding-bottom"
+  class="rmd-card__content rmd-card__content--padded rmd-card__content--padding-bottom rmd-text-secondary-color"
   data-testid="content"
 >
   Content
@@ -11,7 +11,7 @@ exports[`CardContent should apply the correct styling, HTML attributes, and allo
 
 exports[`CardContent should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <div
-  class="rmd-card__content rmd-card__content--padded rmd-card__content--secondary rmd-card__content--padding-bottom custom-class-name"
+  class="rmd-card__content rmd-card__content--padded rmd-card__content--padding-bottom rmd-text-secondary-color custom-class-name"
   data-testid="content"
   style="color: white;"
 >
@@ -21,7 +21,7 @@ exports[`CardContent should apply the correct styling, HTML attributes, and allo
 
 exports[`CardContent should apply the correct styling, HTML attributes, and allow a ref 3`] = `
 <div
-  class="rmd-card__content rmd-card__content--secondary rmd-card__content--padding-bottom"
+  class="rmd-card__content rmd-card__content--padding-bottom rmd-text-secondary-color"
   data-testid="content"
   style=""
 >
@@ -41,7 +41,7 @@ exports[`CardContent should apply the correct styling, HTML attributes, and allo
 
 exports[`CardContent should apply the correct styling, HTML attributes, and allow a ref 5`] = `
 <div
-  class="rmd-card__content rmd-card__content--padded rmd-card__content--secondary"
+  class="rmd-card__content rmd-card__content--padded rmd-text-secondary-color"
   data-testid="content"
   style=""
 >

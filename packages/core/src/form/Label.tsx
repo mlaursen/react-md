@@ -1,5 +1,6 @@
 import { cnb } from "cnbuilder";
 import { forwardRef } from "react";
+import { type TextColor, type ThemeColor, cssUtils } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
 import { type LabelClassNameOptions, type LabelProps } from "./types.js";
 
@@ -33,6 +34,13 @@ export function label(options: LabelClassNameOptions): string {
     floatingActive = active,
   } = options;
 
+  let textColor: TextColor | ThemeColor | undefined;
+  if (disabled) {
+    textColor = "text-disabled";
+  } else if (floating && inactive) {
+    textColor = "text-secondary";
+  }
+
   return cnb(
     labelStyles({
       gap,
@@ -46,7 +54,9 @@ export function label(options: LabelClassNameOptions): string {
       "stacked-reversed": stacked && reversed,
       "floating-dense": floating && dense,
       "floating-active": floating && floatingActive,
-      "floating-inactive": floating && inactive,
+    }),
+    cssUtils({
+      textColor,
     }),
     className
   );
