@@ -1,7 +1,6 @@
 "use client";
 import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from "react";
 import { useIcon } from "../icon/IconProvider.js";
-import { RippleContainer } from "../interaction/RippleContainer.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
 import { useMaxWidthTransition } from "../transition/useMaxWidthTransition.js";
@@ -139,21 +138,20 @@ export const SegmentedButton = forwardRef<
     disabled: disableSelectedIcon,
     disableTransition: disableSelectedTransition,
   });
-  const { pressedClassName, handlers, rippleContainerProps } =
-    useElementInteraction({
-      onBlur,
-      onClick,
-      onKeyDown,
-      onKeyUp,
-      onMouseDown,
-      onMouseUp,
-      onMouseLeave,
-      onDragStart,
-      onTouchStart,
-      onTouchEnd,
-      onTouchMove,
-      disabled,
-    });
+  const { pressedClassName, handlers, ripples } = useElementInteraction({
+    onBlur,
+    onClick,
+    onKeyDown,
+    onKeyUp,
+    onMouseDown,
+    onMouseUp,
+    onMouseLeave,
+    onDragStart,
+    onTouchStart,
+    onTouchEnd,
+    onTouchMove,
+    disabled,
+  });
 
   return (
     <button
@@ -174,7 +172,7 @@ export const SegmentedButton = forwardRef<
       {leftAddon}
       {children}
       {rightAddon}
-      {rippleContainerProps && <RippleContainer {...rippleContainerProps} />}
+      {ripples}
     </button>
   );
 });

@@ -4,7 +4,6 @@ import {
   type AnchorHTMLAttributes,
   type HTMLAttributes,
 } from "react";
-import { RippleContainer } from "../interaction/RippleContainer.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
 import { type CustomLinkComponent } from "../link/LinkProvider.js";
@@ -97,21 +96,20 @@ export const ListItemLink = forwardRef<HTMLAnchorElement, ListItemLinkProps>(
       ...remaining
     } = props;
 
-    const { pressedClassName, rippleContainerProps, handlers } =
-      useElementInteraction({
-        onBlur,
-        onClick,
-        onKeyDown,
-        onKeyUp,
-        onMouseDown,
-        onMouseUp,
-        onMouseLeave,
-        onDragStart,
-        onTouchStart,
-        onTouchEnd,
-        onTouchMove,
-        disabled,
-      });
+    const { pressedClassName, ripples, handlers } = useElementInteraction({
+      onBlur,
+      onClick,
+      onKeyDown,
+      onKeyUp,
+      onMouseDown,
+      onMouseUp,
+      onMouseLeave,
+      onDragStart,
+      onTouchStart,
+      onTouchEnd,
+      onTouchMove,
+      disabled,
+    });
     const children = useHigherContrastChildren(
       propChildren,
       !disableTextChildren
@@ -171,9 +169,7 @@ export const ListItemLink = forwardRef<HTMLAnchorElement, ListItemLinkProps>(
           >
             {children}
           </ListItemChildren>
-          {rippleContainerProps && (
-            <RippleContainer {...rippleContainerProps} />
-          )}
+          {ripples}
         </Link>
       </li>
     );

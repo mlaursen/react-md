@@ -345,7 +345,7 @@ export function useTabs<TabValue extends string>(
  *
  *   const id = useEnsuredId(propId, "tab");
  *   const { activeDescendantId } = useKeyboardMovementContext();
- *   const { handlers, rippleContainerProps } = useElementInteraction(props);
+ *   const { handlers, ripples } = useElementInteraction(props);
  *   const children = useHigherContrastChildren(propChildren);
  *
  *   return (
@@ -364,7 +364,7 @@ export function useTabs<TabValue extends string>(
  *       })}
  *     >
  *       {children}
- *       {rippleContainerProps && <RippleContainer {...rippleContainerProps} />}
+ *       {ripples}
  *     </Link>
  *   );
  * }

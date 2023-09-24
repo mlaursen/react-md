@@ -1,6 +1,6 @@
 import { cnb } from "cnbuilder";
 import { forwardRef } from "react";
-import { srOnly } from "../typography/SrOnly.js";
+import { cssUtils } from "../cssUtils.js";
 import { Typography, type TypographyProps } from "../typography/Typography.js";
 
 /**
@@ -22,19 +22,14 @@ export interface LegendProps extends TypographyProps {
  */
 export const Legend = forwardRef<HTMLLegendElement, LegendProps>(
   function Legend(props, ref) {
-    const {
-      srOnly: isSrOnly = false,
-      className,
-      children,
-      ...remaining
-    } = props;
+    const { srOnly = false, className, children, ...remaining } = props;
 
     return (
       <Typography
         {...remaining}
         as="legend"
         ref={ref}
-        className={cnb("rmd-legend", isSrOnly && srOnly(), className)}
+        className={cnb("rmd-legend", cssUtils({ srOnly }), className)}
       >
         {children}
       </Typography>

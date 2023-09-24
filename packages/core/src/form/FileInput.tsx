@@ -13,7 +13,6 @@ import {
 } from "../button/buttonStyles.js";
 import { useIcon } from "../icon/IconProvider.js";
 import { TextIconSpacing } from "../icon/TextIconSpacing.js";
-import { RippleContainer } from "../interaction/RippleContainer.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { type PropsWithRef } from "../types.js";
 import { SrOnly } from "../typography/SrOnly.js";
@@ -152,7 +151,7 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
       ...remaining
     } = props;
     const id = useEnsuredId(propId, "file-input");
-    const { pressed, pressedClassName, rippleContainerProps, handlers } =
+    const { pressed, pressedClassName, ripples, handlers } =
       useElementInteraction({
         ...labelProps,
         onClick(event) {
@@ -212,7 +211,7 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
           disabled={disabled}
           multiple={multiple}
         />
-        {rippleContainerProps && <RippleContainer {...rippleContainerProps} />}
+        {ripples}
       </label>
     );
   }

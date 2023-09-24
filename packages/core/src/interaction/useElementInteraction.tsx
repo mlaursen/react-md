@@ -1,12 +1,18 @@
 "use client";
-import type { FocusEvent, KeyboardEvent, MouseEvent, TouchEvent } from "react";
+import type {
+  FocusEvent,
+  KeyboardEvent,
+  MouseEvent,
+  ReactElement,
+  TouchEvent,
+} from "react";
 import { useCallback, useReducer, useRef } from "react";
 import { useElementInteractionContext } from "./ElementInteractionProvider.js";
+import { RippleContainer } from "./RippleContainer.js";
 import { useUserInteractionMode } from "./UserInteractionModeProvider.js";
 import type {
   ElementInteractionHandlers,
   ElementInteractionState,
-  ProvidedRippleContainerProps,
   RippleState,
   RippleStyle,
 } from "./types.js";
@@ -55,13 +61,10 @@ export interface ElementInteractionHookReturnValue<E extends HTMLElement> {
   pressedClassName: string | undefined;
 
   /**
-   * Props to pass to the {@link RippleContainer} when the
-   * {@link ElementInteractionMode} is set to `"ripple"`
-   *
-   * Note: this will be `undefined` if the {@link ElementInteractionMode} is set
-   * to `"none"` or `"press"`
+   * The ripple click/touch interaction. This will be `undefined` when the {@Link ElementInteractionMode}
+   * is set to `"none"` or `"press"`.
    */
-  rippleContainerProps?: Readonly<ProvidedRippleContainerProps>;
+  ripples?: ReactElement;
 }
 
 type ElementInteractionAction =
@@ -80,7 +83,7 @@ const noop = (): void => {
  * @example
  * Providing Element Interaction
  * ```tsx
- * import { useElementInteraction, RippleContainer } from "@react-md/core";
+ * import { useElementInteraction } from "@react-md/core";
  * import { cnb } from "cnbuilder";
  * import type { ReactElement } from "react";
  *
@@ -107,7 +110,7 @@ const noop = (): void => {
  *     ...remaining,
  *   } = props;
  *
- *   const { handlers, pressed, rippleContainerProps } =
+ *   const { handlers, pressed, ripples } =
  *     useElementInteraction({
  *       disabled,
  *       // pass remaining props so that if any event handlers were provided to
@@ -135,7 +138,7 @@ const noop = (): void => {
  *       tabIndex={disabled ? undefined : 0}
  *     >
  *       {children}
- *       {rippleContainerProps && <RippleContainer {...rippleContainerProps} />}
+ *       {ripples}
  *     </div>
  *   );
  * }
@@ -233,26 +236,28 @@ export function useElementInteraction<E extends HTMLElement>(
     },
     { pressed: false, ripples: [] }
   );
-  const { pressed, ripples } = state;
+  const { pressed } = state;
 
-  let rippleContainerProps: ProvidedRippleContainerProps | undefined;
+  let ripples: ReactElement | undefined;
   if (mode == "ripple") {
-    rippleContainerProps = {
-      ripples,
-      onEntered(ripple) {
-        dispatch({ type: "entered", ripple });
-      },
-      onExited(ripple) {
-        dispatch({ type: "exited", ripple });
-      },
-    };
+    ripples = (
+      <RippleContainer
+        ripples={state.ripples}
+        onEntered={(ripple) => {
+          dispatch({ type: "entered", ripple });
+        }}
+        onExited={(ripple) => {
+          dispatch({ type: "exited", ripple });
+        }}
+      />
+    );
   }
 
   return {
     pressed,
     pressedClassName:
       pressed && mode === "press" ? PRESSED_CLASS_NAME : undefined,
-    rippleContainerProps,
+    ripples,
     handlers: {
       onBlur: useCallback(
         (event: FocusEvent<E>) => {

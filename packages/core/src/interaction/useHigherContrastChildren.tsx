@@ -17,7 +17,6 @@ import { useElementInteractionContext } from "./ElementInteractionProvider.js";
  * Simple Example
  * ```tsx
  * import {
- *   RippleContainer,
  *   useElementInteraction,
  *   useHigherContrastChildren,
  * } from "@react-md/core";
@@ -38,7 +37,7 @@ import { useElementInteractionContext } from "./ElementInteractionProvider.js";
  *     onTouchMove,
  *     ...remaining
  *   } = props;
- *   const { pressedClassName, rippleContainerProps, handlers } =
+ *   const { pressedClassName, ripples, handlers } =
  *     useElementInteraction({
  *       disabled,
  *       onClick,
@@ -57,7 +56,7 @@ import { useElementInteractionContext } from "./ElementInteractionProvider.js";
  *   return (
  *     <button {...remaining} {...handlers} className={pressedClassName}>
  *       {children}
- *       <RippleContainer {...rippleContainerProps} />
+ *       {ripples}
  *     </button>
  *   );
  * }

@@ -170,6 +170,7 @@ const DEFAULT_ICONS: ConfiguredIcons = {
 };
 
 const context = createContext<ConfiguredIcons>(DEFAULT_ICONS);
+context.displayName = "Icon";
 const { Provider } = context;
 
 /**

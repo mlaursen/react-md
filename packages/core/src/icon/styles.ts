@@ -1,5 +1,5 @@
 import { cnb } from "cnbuilder";
-import type { ThemeOrTextColor } from "../theme/types.js";
+import type { TextColor, ThemeColor } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
 import type { MaterialIconFamily, MaterialSymbolFamily } from "./material.js";
 
@@ -34,7 +34,7 @@ export interface SVGIconClassNameOptions {
    * - `text-hint -> $text-hint-color`
    * - `text-disabled -> $text-disabled-color`
    */
-  color?: ThemeOrTextColor;
+  color?: ThemeColor | TextColor;
 
   /**
    * Boolean if the font icon should use the dense spec.

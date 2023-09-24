@@ -1,3 +1,4 @@
+"use client";
 import { cnb } from "cnbuilder";
 import {
   forwardRef,
@@ -7,7 +8,6 @@ import {
   type ReactNode,
 } from "react";
 import { useIcon } from "../icon/IconProvider.js";
-import { RippleContainer } from "../interaction/RippleContainer.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
 import { useMaxWidthTransition } from "../transition/useMaxWidthTransition.js";
@@ -281,7 +281,7 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(
       }
     }
 
-    const { pressed, pressedClassName, rippleContainerProps, handlers } =
+    const { pressed, pressedClassName, ripples, handlers } =
       useElementInteraction({
         onClick,
         onKeyDown,
@@ -322,7 +322,7 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(
         {leftAddon}
         {children}
         {rightAddon}
-        {rippleContainerProps && <RippleContainer {...rippleContainerProps} />}
+        {ripples}
       </Component>
     );
   }

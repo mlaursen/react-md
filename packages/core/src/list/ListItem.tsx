@@ -1,10 +1,9 @@
 "use client";
 import { forwardRef, type HTMLAttributes } from "react";
-import { RippleContainer } from "../interaction/RippleContainer.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
-import { ListItemChildren } from "./ListItemChildren.js";
 import { getListItemHeight } from "./getListItemHeight.js";
+import { ListItemChildren } from "./ListItemChildren.js";
 import { listItem } from "./listItemStyles.js";
 import { type ListItemChildrenProps, type ListItemHeight } from "./types.js";
 
@@ -186,21 +185,20 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
       tabIndex = disabled ? -1 : 0;
     }
 
-    const { pressedClassName, rippleContainerProps, handlers } =
-      useElementInteraction({
-        onBlur,
-        onClick,
-        onKeyDown,
-        onKeyUp,
-        onMouseDown,
-        onMouseUp,
-        onMouseLeave,
-        onDragStart,
-        onTouchStart,
-        onTouchEnd,
-        onTouchMove,
-        disabled: disabled || presentational,
-      });
+    const { pressedClassName, ripples, handlers } = useElementInteraction({
+      onBlur,
+      onClick,
+      onKeyDown,
+      onKeyUp,
+      onMouseDown,
+      onMouseUp,
+      onMouseLeave,
+      onDragStart,
+      onTouchStart,
+      onTouchEnd,
+      onTouchMove,
+      disabled: disabled || presentational,
+    });
     const children = useHigherContrastChildren(
       propChildren,
       !disableTextChildren
@@ -257,7 +255,7 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
         >
           {children}
         </ListItemChildren>
-        {rippleContainerProps && <RippleContainer {...rippleContainerProps} />}
+        {ripples}
       </li>
     );
   }

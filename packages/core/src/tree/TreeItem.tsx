@@ -6,7 +6,6 @@ import {
   type ReactNode,
   type Ref,
 } from "react";
-import { RippleContainer } from "../interaction/RippleContainer.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
 import { useLink } from "../link/LinkProvider.js";
@@ -181,7 +180,7 @@ export function TreeItem(props: TreeItemProps): ReactElement {
     };
   }, [id, metadataLookup, itemId, isLeafNode, disabled, depth]);
 
-  const { pressedClassName, rippleContainerProps, handlers } =
+  const { pressedClassName, ripples, handlers } =
     useElementInteraction<HTMLLIElement>({
       onBlur,
       onClick(event) {
@@ -293,7 +292,7 @@ export function TreeItem(props: TreeItemProps): ReactElement {
         >
           {children}
         </ListItemChildren>
-        {rippleContainerProps && <RippleContainer {...rippleContainerProps} />}
+        {ripples}
       </ContentComponent>
       <TreeGroup
         id={`${id}-group`}

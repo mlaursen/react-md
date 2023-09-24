@@ -1,6 +1,5 @@
 "use client";
 import { forwardRef, type ButtonHTMLAttributes } from "react";
-import { RippleContainer } from "../interaction/RippleContainer.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
 import { type PropsWithRef } from "../types.js";
@@ -143,7 +142,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       ...remaining
     } = props;
     const isThemeDisabled = theme === "disabled";
-    const { pressed, pressedClassName, rippleContainerProps, handlers } =
+    const { pressed, pressedClassName, ripples, handlers } =
       useElementInteraction({
         onBlur,
         onClick,
@@ -186,9 +185,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           })}
         >
           {children}
-          {rippleContainerProps && (
-            <RippleContainer {...rippleContainerProps} />
-          )}
+          {ripples}
         </button>
       </FloatingActionButton>
     );

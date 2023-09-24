@@ -1,6 +1,5 @@
 "use client";
 import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from "react";
-import { RippleContainer } from "../interaction/RippleContainer.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
 import { useKeyboardMovementContext } from "../movement/useKeyboardMovementProvider.js";
@@ -95,7 +94,7 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(
 
     const id = useEnsuredId(propId, "tab");
     const { activeDescendantId } = useKeyboardMovementContext();
-    const { rippleContainerProps, handlers } = useElementInteraction({
+    const { ripples, handlers } = useElementInteraction({
       onBlur,
       onClick,
       onKeyDown,
@@ -133,7 +132,7 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(
       >
         {icon}
         {children}
-        {rippleContainerProps && <RippleContainer {...rippleContainerProps} />}
+        {ripples}
       </button>
     );
   }

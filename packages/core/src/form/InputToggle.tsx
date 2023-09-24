@@ -9,7 +9,6 @@ import {
   type LabelHTMLAttributes,
   type ReactNode,
 } from "react";
-import { RippleContainer } from "../interaction/RippleContainer.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
@@ -355,21 +354,20 @@ export const InputToggle = forwardRef<HTMLInputElement, InputToggleProps>(
     const themeDisabled = disabled || readOnly;
 
     const id = useEnsuredId(propId, type);
-    const { pressedClassName, rippleContainerProps, handlers } =
-      useElementInteraction({
-        disabled: themeDisabled,
-        onBlur,
-        onClick,
-        onKeyDown,
-        onKeyUp,
-        onMouseDown,
-        onMouseLeave,
-        onDragStart,
-        onMouseUp,
-        onTouchEnd,
-        onTouchMove,
-        onTouchStart,
-      });
+    const { pressedClassName, ripples, handlers } = useElementInteraction({
+      disabled: themeDisabled,
+      onBlur,
+      onClick,
+      onKeyDown,
+      onKeyUp,
+      onMouseDown,
+      onMouseLeave,
+      onDragStart,
+      onMouseUp,
+      onTouchEnd,
+      onTouchMove,
+      onTouchStart,
+    });
 
     const [isChecked, setChecked] = useState(props.defaultChecked ?? false);
     const checked = props.checked ?? isChecked;
@@ -441,9 +439,7 @@ export const InputToggle = forwardRef<HTMLInputElement, InputToggleProps>(
                 themeDisabled && "rmd-hidden-input--disabled"
               )}
             />
-            {rippleContainerProps && (
-              <RippleContainer {...rippleContainerProps} />
-            )}
+            {ripples}
           </InputToggleIcon>
         </Label>
       </FormMessageContainer>
