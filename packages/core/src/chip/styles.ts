@@ -1,5 +1,5 @@
 import { cnb } from "cnbuilder";
-import { cssUtils } from "../cssUtils.js";
+import { type BackgroundColor, cssUtils } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-chip");
@@ -41,6 +41,8 @@ export interface ChipClassNameOptions {
   /** @defaultValue `"solid"` */
   theme?: "outline" | "solid";
 
+  backgroundColor?: BackgroundColor;
+
   /** @defaultValue `false` */
   disabled?: boolean;
 
@@ -80,6 +82,7 @@ export function chip(options: ChipClassNameOptions = {}): string {
     pressedClassName,
     leftAddon = false,
     rightAddon = false,
+    backgroundColor,
   } = options;
 
   return cnb(
@@ -97,7 +100,10 @@ export function chip(options: ChipClassNameOptions = {}): string {
     }),
     selected && selectedClassName,
     pressedClassName,
-    cssUtils({ textColor: disabled ? "text-disabled" : undefined }),
+    cssUtils({
+      textColor: disabled ? "text-disabled" : undefined,
+      backgroundColor,
+    }),
     className
   );
 }

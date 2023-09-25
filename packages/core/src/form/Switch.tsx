@@ -9,24 +9,15 @@ import {
 } from "react";
 import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
-import { bem } from "../utils/bem.js";
 import { FormMessageContainer } from "./FormMessageContainer.js";
 import { type InputToggleLabelProps } from "./InputToggle.js";
 import { Label } from "./Label.js";
 import { SwitchTrack } from "./SwitchTrack.js";
+import { switchStyles } from "./switchStyles.js";
 import {
   type FormComponentStates,
   type FormMessageContainerExtension,
 } from "./types.js";
-
-declare module "react" {
-  interface CSSProperties {
-    "--rmd-switch-track-background-color"?: string;
-    "--rmd-switch-ball-background-color"?: string;
-  }
-}
-
-const styles = bem("rmd-switch");
 
 const noop = (): void => {
   // do nothing
@@ -129,10 +120,10 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
           {label}
           <div
             {...containerProps}
-            className={cnb(
-              styles({ clickable: !disabled && !readOnly }),
-              containerProps?.className
-            )}
+            className={switchStyles({
+              clickable: !disabled && !readOnly,
+              className: containerProps?.className,
+            })}
           >
             <SwitchTrack
               style={trackStyle}

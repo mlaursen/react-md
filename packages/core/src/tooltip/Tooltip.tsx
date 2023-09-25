@@ -46,7 +46,7 @@ export interface TooltipProps
   disablePortal?: boolean;
 
   /**
-   * Set this to `true` to add `whitespace: nowrap` to the tooltip.
+   * Set this to `true` to add `white-space: nowrap` to the tooltip.
    *
    * This prop is useful for tooltips that are positioned near the edge of the
    * viewport with `"above"` or `"below"` so that the tooltip no longer aligns

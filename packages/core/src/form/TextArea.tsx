@@ -1,5 +1,4 @@
 "use client";
-import { cnb } from "cnbuilder";
 import {
   forwardRef,
   useRef,
@@ -10,74 +9,16 @@ import {
 import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
-import { bem } from "../utils/bem.js";
 import { FormMessageContainer } from "./FormMessageContainer.js";
 import { useFormTheme } from "./FormThemeProvider.js";
 import { Label } from "./Label.js";
-import { textField, type TextFieldClassNameOptions } from "./TextField.js";
 import { TextFieldContainer } from "./TextFieldContainer.js";
+import { textArea, textAreaContainer } from "./textAreaStyles.js";
 import { type FormFieldOptions } from "./types.js";
 import {
   useResizingTextArea,
   type TextAreaResize,
 } from "./useResizingTextArea.js";
-
-const styles = bem("rmd-textarea");
-const containerStyles = bem("rmd-textarea-container");
-
-declare module "react" {
-  interface CSSProperties {
-    "--rmd-form-textarea-height"?: string | number;
-    "--rmd-form-textarea-padding"?: string | number;
-  }
-}
-
-export interface TextAreaClassNameOptions extends TextFieldClassNameOptions {
-  className?: string;
-
-  /**
-   * This should not be used externally and is only used for creating the hidden
-   * textarea mask for the auto resizing behavior.
-   *
-   * @defaultValue `false`
-   */
-  mask?: boolean;
-
-  /**
-   * @see {@link TextAreaResize}
-   * @defaultValue `"auto"`
-   */
-  resize?: TextAreaResize;
-
-  /**
-   * Set this to `true` if the textarea should display a scrollbar.
-   *
-   * @defaultValue `false`
-   */
-  scrollable?: boolean;
-}
-
-export function textArea(options: TextAreaClassNameOptions = {}): string {
-  const {
-    className,
-    mask = false,
-    resize = "auto",
-    scrollable = false,
-    placeholderHidden = false,
-  } = options;
-
-  return cnb(
-    textField({ placeholderHidden }),
-    styles({
-      rh: resize === "horizontal",
-      rv: resize === "vertical",
-      rn: resize === "auto" || resize === "none",
-      mask,
-      scrollable: scrollable || resize === "none",
-    }),
-    className
-  );
-}
 
 export interface TextAreaProps
   extends FormFieldOptions,
@@ -265,13 +206,11 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       children = (
         <div
           {...resizeContainerProps}
-          className={cnb(
-            containerStyles("inner", {
-              animate: !disableTransition,
-              height: !!height,
-            }),
-            resizeContainerProps?.className
-          )}
+          className={textAreaContainer({
+            height: !!height,
+            animate: !disableTransition,
+            className: resizeContainerProps?.className,
+          })}
         >
           {area}
           {labelNode}
@@ -305,16 +244,14 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
             ...style,
             "--rmd-form-textarea-height": height,
           }}
-          className={cnb(
-            containerStyles({
-              animate: !disableTransition && resize == "auto",
-              cursor: !disabled,
-              height: !!height,
-              "underline-labelled":
-                !!label && (theme === "underline" || theme === "filled"),
-            }),
-            className
-          )}
+          className={textAreaContainer({
+            animate: !disableTransition && resize == "auto",
+            disabled,
+            height: !!height,
+            underlineLabelled:
+              !!label && (theme === "underline" || theme === "filled"),
+            className,
+          })}
           theme={theme}
           label={!!label}
           error={error}

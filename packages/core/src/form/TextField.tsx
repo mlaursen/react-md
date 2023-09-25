@@ -1,5 +1,4 @@
 "use client";
-import { cnb } from "cnbuilder";
 import {
   forwardRef,
   type CSSProperties,
@@ -9,46 +8,15 @@ import {
 } from "react";
 import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
-import { bem } from "../utils/bem.js";
 import { FormMessageContainer } from "./FormMessageContainer.js";
 import { useFormTheme } from "./FormThemeProvider.js";
 import { Label } from "./Label.js";
 import { TextFieldContainer } from "./TextFieldContainer.js";
+import { textField } from "./textFieldStyles.js";
 import {
   type FormFieldOptions,
   type UserAgentAutoCompleteProps,
 } from "./types.js";
-
-const styles = bem("rmd-text-field");
-
-/** @remarks \@since 6.0.0 */
-export interface TextFieldClassNameOptions {
-  className?: string;
-
-  /**
-   * Set this value to `true` when a text field has a floating label the text
-   * field is not focused or valued so that the placeholder is hidden by setting
-   * the opacity to 0. This makes it so the placeholder and label to not cover
-   * each other.
-   *
-   * @defaultValue `false`
-   */
-  placeholderHidden?: boolean;
-}
-
-/**
- * @remarks \@since 6.0.0
- */
-export function textField(options: TextFieldClassNameOptions = {}): string {
-  const { className, placeholderHidden = false } = options;
-
-  return cnb(
-    styles({
-      "placeholder-hidden": placeholderHidden,
-    }),
-    className
-  );
-}
 
 /**
  * These are all the "supported" input types for react-md so that they at least

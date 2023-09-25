@@ -1,15 +1,16 @@
 "use client";
-import { cnb } from "cnbuilder";
 import { forwardRef, type ReactNode } from "react";
 import { Button, type ButtonProps } from "../button/Button.js";
 import { useIcon } from "../icon/IconProvider.js";
 import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { useToggle } from "../useToggle.js";
-import { bem } from "../utils/bem.js";
+import {
+  password,
+  passwordInput,
+  passwordInputToggle,
+} from "./passwordStyles.js";
 import { TextField, type TextFieldProps } from "./TextField.js";
-
-const styles = bem("rmd-password");
 
 /**
  * @example
@@ -177,8 +178,8 @@ export const Password = forwardRef<HTMLInputElement, PasswordProps>(
         ref={ref}
         name={name}
         type={isPasswordVisible ? "text" : "password"}
-        className={cnb(styles({ offset: true }), className)}
-        inputClassName={cnb(styles("input", { offset: true }), inputClassName)}
+        className={password({ className })}
+        inputClassName={passwordInput({ className: inputClassName })}
         rightAddon={
           <Button
             id={`${id}-toggle`}
@@ -189,7 +190,9 @@ export const Password = forwardRef<HTMLInputElement, PasswordProps>(
             // be overridden. onClick can only stop default behavior with
             // `event.stopPropagation()`
             {...visibilityProps}
-            className={cnb(styles("toggle"), visibilityProps?.className)}
+            className={passwordInputToggle({
+              className: visibilityProps?.className,
+            })}
             onClick={(event) => {
               visibilityProps?.onClick?.(event);
               if (event.isPropagationStopped()) {

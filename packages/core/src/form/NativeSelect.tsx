@@ -1,5 +1,4 @@
 "use client";
-import { cnb } from "cnbuilder";
 import {
   forwardRef,
   type CSSProperties,
@@ -10,40 +9,15 @@ import {
 import { useIcon } from "../icon/IconProvider.js";
 import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
-import { bem } from "../utils/bem.js";
 import { FormMessageContainer } from "./FormMessageContainer.js";
 import { useFormTheme } from "./FormThemeProvider.js";
 import { Label } from "./Label.js";
 import { TextFieldContainer } from "./TextFieldContainer.js";
+import { nativeSelect, nativeSelectContainer } from "./nativeSelectStyles.js";
 import {
   type FormFieldOptions,
   type UserAgentAutoCompleteProps,
 } from "./types.js";
-
-const styles = bem("rmd-native-select");
-const containerStyles = bem("rmd-native-select-container");
-
-/** @remarks \@since 6.0.0 */
-export interface NativeSelectClassNameOptions {
-  className?: string;
-
-  /**
-   * Set to `true` if using a custom icon instead of the default `<select>`
-   * appearance.
-   *
-   * @defaultValue `false`
-   */
-  icon?: boolean;
-}
-
-/** @remarks \@since 6.0.0 */
-export function nativeSelect(
-  options: NativeSelectClassNameOptions = {}
-): string {
-  const { className, icon = false } = options;
-
-  return cnb(styles({ icon }), className);
-}
 
 export interface NativeSelectProps
   extends SelectHTMLAttributes<HTMLSelectElement>,
@@ -191,13 +165,11 @@ export const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
         <TextFieldContainer
           {...containerProps}
           style={style}
-          className={cnb(
-            containerStyles({
-              multi: multiple,
-              padded: multiple && label && !underlined,
-            }),
-            className
-          )}
+          className={nativeSelectContainer({
+            multiple,
+            padded: multiple && !!label && !underlined,
+            className,
+          })}
           theme={theme}
           label={!!label}
           error={error}
@@ -222,8 +194,8 @@ export const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
             disabled={disabled}
             style={selectStyle}
             className={nativeSelect({
-              className: selectClassName,
               icon: !!icon,
+              className: selectClassName,
             })}
           >
             {children}

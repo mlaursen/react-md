@@ -27,11 +27,11 @@ import {
 import { useEnsuredId } from "../useEnsuredId.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
 import { useToggle } from "../useToggle.js";
-import { bem } from "../utils/bem.js";
 import { loop } from "../utils/loop.js";
 import { useFormTheme } from "./FormThemeProvider.js";
 import { SelectValue } from "./SelectValue.js";
 import { TextField, type TextFieldProps } from "./TextField.js";
+import { select } from "./selectStyles.js";
 import { extractOptionsFromChildren } from "./selectUtils.js";
 import {
   type FormFieldOptions,
@@ -40,7 +40,6 @@ import {
 import { ListboxProvider } from "./useListboxProvider.js";
 import { triggerManualChangeEvent, tryToSubmitRelatedForm } from "./utils.js";
 
-const styles = bem("rmd-select");
 const EMPTY_STRING = "" as const;
 const noop = (): void => {
   // do nothing
@@ -468,14 +467,10 @@ export function Select<Value extends string>(
           leftAddon={leftAddon}
           rightAddon={rightAddon}
           className={cnb("rmd-select-container", className)}
-          inputClassName={cnb(
-            styles({
-              filled: theme === "filled",
-              outline: theme === "outline",
-              underline: theme === "underline",
-            }),
-            inputClassName
-          )}
+          inputClassName={select({
+            theme,
+            className: inputClassName,
+          })}
           onChange={(event) => {
             onChange(event as SelectChangeEvent<Value>);
             if (typeof value !== "undefined") {

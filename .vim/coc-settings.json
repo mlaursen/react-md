@@ -61,6 +61,6 @@
   ],
   "eslint.packageManager": "pnpm",
   "typescript.preferences.autoImportFileExcludePatterns": [
-    "**/core/**/index.ts"
+    "**/core/src/index.ts"
   ]
 }

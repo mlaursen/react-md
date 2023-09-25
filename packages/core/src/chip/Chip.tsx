@@ -7,6 +7,7 @@ import {
   type HTMLAttributes,
   type ReactNode,
 } from "react";
+import { type BackgroundColor } from "../cssUtils.js";
 import { useIcon } from "../icon/IconProvider.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
@@ -106,6 +107,13 @@ export interface ChipProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    * @defaultValue `false`
    */
   noninteractive?: boolean;
+
+  /**
+   * An optional background color theme to use.
+   *
+   * @remarks \@since 6.0.0
+   */
+  backgroundColor?: BackgroundColor;
 
   /**
    * An optional icon, avatar, circular progress, or custom component to render
@@ -212,6 +220,7 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(
       selectedClassName,
       selectedIcon: propSelectedIcon,
       selectedIconAfter = false,
+      backgroundColor,
       noninteractive = false,
       disableIconTransition = false,
       children: propChildren,
@@ -312,6 +321,7 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(
           selectedThemed,
           selectedClassName,
           noninteractive,
+          backgroundColor,
           pressedClassName,
           leftAddon: !!leftAddon && (selectedIconAfter || selected !== false),
           rightAddon:

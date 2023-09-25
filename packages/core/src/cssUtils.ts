@@ -102,11 +102,12 @@ export interface TextCssUtilsOptions {
   margin?: Margin;
 
   /**
-   * Set this to `true` to apply `white-space: nowrap`
+   * Set this to `"nowrap"` to only prevent line wrap behavior or `"ellipsis"`
+   * to also hide additional text with ellipsis.
    *
-   * @defaultValue `false`
+   * @defaultValue `"allow"`
    */
-  disableLineWrap?: boolean;
+  textOverflow?: "allow" | "nowrap" | "ellipsis";
 }
 
 /**
@@ -170,7 +171,7 @@ export function cssUtils(options: CssUtilsOptions): string {
     textAlign,
     textDecoration,
     textTransform,
-    disableLineWrap,
+    textOverflow,
   } = options;
 
   const isMarginTop = margin === "top";
@@ -196,11 +197,12 @@ export function cssUtils(options: CssUtilsOptions): string {
     textTransform && `rmd-${textTransform}`,
     fontStyle && `rmd-${fontStyle}`,
     fontWeight && `rmd-${fontWeight}`,
-    disableLineWrap && "rmd-nowrap",
     srOnly && "rmd-sr-only",
     srOnly === "focusable" && "rmd-sr-only--focusable",
     surface === "light" && "rmd-light-surface",
     surface === "dark" && "rmd-dark-surface",
+    textOverflow && textOverflow !== "allow" && "rmd-nowrap",
+    textOverflow === "ellipsis" && "rmd-ellipsis",
     className
   );
 }

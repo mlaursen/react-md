@@ -1,4 +1,5 @@
 import { cnb } from "cnbuilder";
+import { cssUtils } from "../cssUtils.js";
 import type { SimplePosition } from "../positioning/types.js";
 import { bem } from "../utils/bem.js";
 
@@ -24,8 +25,8 @@ export function tooltip(options: TooltipClassNameOptions): string {
     styles({
       dense,
       [position]: true,
-      nowrap: disableLineWrap,
     }),
+    cssUtils({ textOverflow: disableLineWrap ? "nowrap" : undefined }),
     className
   );
 }

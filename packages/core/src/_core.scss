@@ -216,6 +216,10 @@ $_layer-order: (
     white-space: nowrap;
   }
 
+  .rmd-ellipsis {
+    @include typography.text-overflow(null);
+  }
+
   @each $alignment in typography.$text-alignments {
     .rmd-align-#{$alignment} {
       text-align: $alignment;

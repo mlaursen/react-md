@@ -970,14 +970,10 @@ $var-lookup: (
 
 @mixin password-styles {
   .rmd-password {
-    &--offset {
-      @include set-var(text-padding-right, $password-visibility-toggle-spacing);
-    }
+    @include set-var(text-padding-right, $password-visibility-toggle-spacing);
 
     &__input {
-      &--offset {
-        @include utils.auto-rtl(margin-right, button.get-var(icon-size));
-      }
+      @include utils.auto-rtl(margin-right, button.get-var(icon-size));
     }
 
     &__toggle {

@@ -284,7 +284,7 @@ export const Typography = forwardRef<TypographyHTMLElement, TypographyProps>(
       textColor,
       textDecoration,
       textTransform,
-      disableLineWrap,
+      textOverflow,
       children,
       ...remaining
     } = props;
@@ -303,7 +303,7 @@ export const Typography = forwardRef<TypographyHTMLElement, TypographyProps>(
           textColor,
           textDecoration,
           textTransform,
-          disableLineWrap,
+          textOverflow,
           className,
         })}
       >

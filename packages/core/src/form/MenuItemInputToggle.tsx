@@ -19,10 +19,10 @@ import { bem } from "../utils/bem.js";
 import {
   type IndeterminateCheckboxProps,
   type InputToggleIconProps,
-  type InputToggleSize,
 } from "./InputToggle.js";
 import { InputToggleIcon } from "./InputToggleIcon.js";
 import { SwitchTrack } from "./SwitchTrack.js";
+import { type InputToggleSize } from "./inputToggleStyles.js";
 
 const noop = (): void => {
   // do nothing

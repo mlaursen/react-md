@@ -19,7 +19,7 @@ exports[`Badge should apply the correct styling, HTML attributes, and allow a re
 
 exports[`Badge should apply the correct styling, HTML attributes, and allow a ref 3`] = `
 <span
-  class="rmd-badge rmd-badge--primary"
+  class="rmd-badge rmd-background-container rmd-primary-container"
   style=""
 >
   3
@@ -28,7 +28,7 @@ exports[`Badge should apply the correct styling, HTML attributes, and allow a re
 
 exports[`Badge should apply the correct styling, HTML attributes, and allow a ref 4`] = `
 <span
-  class="rmd-badge rmd-badge--secondary"
+  class="rmd-badge rmd-background-container rmd-secondary-container"
   style=""
 >
   3

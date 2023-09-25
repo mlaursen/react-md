@@ -70,7 +70,7 @@ exports[`Button floating action buttons should default to a secondary themed con
   class="rmd-fab rmd-fab--tl"
 >
   <button
-    class="rmd-button rmd-button--text rmd-outline rmd-grey-outline"
+    class="rmd-button rmd-button--text rmd-outline rmd-greyscale-outline"
     type="button"
   >
     <span>
@@ -113,7 +113,7 @@ exports[`Button should allow for the different themes 2`] = `
 
 exports[`Button should allow for the different themes 3`] = `
 <button
-  class="rmd-button rmd-button--text rmd-outline rmd-grey-outline"
+  class="rmd-button rmd-button--text rmd-outline rmd-greyscale-outline"
   type="button"
 >
   <span>
@@ -325,7 +325,7 @@ exports[`Button should allow for the different themes 17`] = `
 exports[`Button should allow for the different themes 18`] = `
 <button
   aria-disabled="true"
-  class="rmd-button rmd-button--text rmd-button--disabled rmd-text-disabled-color rmd-outline rmd-grey-outline"
+  class="rmd-button rmd-button--text rmd-button--disabled rmd-text-disabled-color rmd-outline rmd-greyscale-outline"
   type="button"
 >
   <span>
@@ -368,7 +368,7 @@ exports[`Button should allow for the different themes 20`] = `
 
 exports[`Button should allow for the different themes 21`] = `
 <button
-  class="rmd-button rmd-button--icon rmd-outline rmd-grey-outline"
+  class="rmd-button rmd-button--icon rmd-outline rmd-greyscale-outline"
   type="button"
 >
   <span>
@@ -580,7 +580,7 @@ exports[`Button should allow for the different themes 35`] = `
 exports[`Button should allow for the different themes 36`] = `
 <button
   aria-disabled="true"
-  class="rmd-button rmd-button--icon rmd-button--disabled rmd-text-disabled-color rmd-outline rmd-grey-outline"
+  class="rmd-button rmd-button--icon rmd-button--disabled rmd-text-disabled-color rmd-outline rmd-greyscale-outline"
   type="button"
 >
   <span>

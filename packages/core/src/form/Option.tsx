@@ -11,31 +11,13 @@ import { getListItemHeight } from "../list/getListItemHeight.js";
 import { ListItemText } from "../list/ListItemText.js";
 import { MenuItem, type MenuItemProps } from "../menu/MenuItem.js";
 import { useEnsuredId } from "../useEnsuredId.js";
-import { bem } from "../utils/bem.js";
+import { option } from "./optionStyles.js";
 import { useListboxContext } from "./useListboxProvider.js";
 import { triggerManualChangeEvent } from "./utils.js";
 
 const noop = (): void => {
   // do nothing
 };
-
-const styles = bem("rmd-option");
-
-/** @remarks \@since 6.0.0 */
-export interface OptionClassNameOptions {
-  className?: string;
-  icon: boolean;
-  selected: boolean;
-}
-
-/**
- * @remarks \@since 6.0.0
- */
-export function option(options: OptionClassNameOptions): string {
-  const { icon, selected, className } = options;
-
-  return cnb(styles({ icon, selected }), className);
-}
 
 /**
  * This icon is used while the option is unselected so that the selected and
