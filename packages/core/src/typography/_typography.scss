@@ -60,7 +60,7 @@ $font-weights: (
 ) !default;
 
 $text-alignments: left center right !default;
-$text-decorations: underline overline line-through !default;
+$text-decorations: underline overline line-through none !default;
 $text-transforms: capitalize uppercase lowercase !default;
 $font-styles: normal italic oblique !default;
 

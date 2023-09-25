@@ -245,7 +245,7 @@ $_layer-order: (
   }
 
   @each $name, $font-weight in typography.$font-weights {
-    .rmd-weight-#{$name} {
+    .rmd-#{$name} {
       font-weight: $font-weight;
     }
   }

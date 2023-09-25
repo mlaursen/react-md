@@ -8,6 +8,7 @@ import {
   Divider,
   IconRotator,
   ListSubheader,
+  cssUtils,
   typography,
   useCollapseTransition,
   useElementInteraction,
@@ -123,13 +124,25 @@ function RenderRoute(props: RenderRouteProps): ReactElement {
 
 function NavigationItemLink(props: LinkUnstyledProps): ReactNode {
   const { children, href } = props;
+
   const { handlers, ripples } = useElementInteraction();
+  const pathname = usePathname();
+  const active = href === pathname;
+
   return (
     <li>
       <LinkUnstyled
         {...handlers}
         href={href}
-        className={cnb(styles.item, styles.link)}
+        className={cnb(
+          styles.item,
+          styles.link,
+          active && styles.active,
+          cssUtils({
+            fontWeight: active ? "bold" : undefined,
+            textDecoration: "none",
+          })
+        )}
       >
         {children}
         {ripples}
@@ -147,7 +160,9 @@ function NavigationItemGroup(props: {
   const { items, depth, hrefPrefix, children } = props;
   return (
     <>
-      <ListSubheader className={styles.item}>{children}</ListSubheader>
+      <ListSubheader className={cnb(styles.item, styles.subheader)}>
+        {children}
+      </ListSubheader>
       {items.map((item) => (
         <RenderRoute
           key={"key" in item ? item.key : item.href}

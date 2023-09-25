@@ -1,8 +1,7 @@
-import "server-only";
-
 import { type ReactElement } from "react";
-import { CodeBlock } from "./CodeBlock.js";
+import "server-only";
 import { InlineCode, type InlineCodeProps } from "../InlineCode.jsx";
+import { CodeBlock } from "./CodeBlock.js";
 import { PackageManagerCode } from "./PackageManagerCode.jsx";
 import { TypescriptCode } from "./TypescriptCode.jsx";
 import { highlightCode } from "./highlightCode.js";
@@ -54,9 +53,9 @@ export function HighlightedCodeBlock(
     lines = getLineCount(code);
   }
 
-  if (code.startsWith("npm")) {
-    const pnpm = code.replace(/npm/g, "pnpm").replace(/install/g, "add");
-    const yarn = pnpm.replace(/pnpm/g, "yarn");
+  if (/^np(m|x)/.test(code)) {
+    const pnpm = code.replace(/np(m|x)/g, "pnp$1").replace(/install/g, "add");
+    const yarn = pnpm.replace(/pnpm/g, "yarn").replace(/pnpx/g, "yarn dlx");
     return (
       <PackageManagerCode
         npm={highlightCode(code, "shell")}

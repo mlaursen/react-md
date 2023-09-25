@@ -41,7 +41,7 @@ export type OutlineColor = ThemeColor | "greyscale" | "current-color";
 export type BackgroundColor = ThemeColor | "surface" | "current-color";
 
 export type TextAlign = "left" | "center" | "right";
-export type TextDecoration = "underline" | "overline" | "line-through";
+export type TextDecoration = "underline" | "overline" | "line-through" | "none";
 export type TextTransform = "capitalize" | "uppercase" | "lowercase";
 export type FontStyle = "italic" | "oblique" | "normal";
 

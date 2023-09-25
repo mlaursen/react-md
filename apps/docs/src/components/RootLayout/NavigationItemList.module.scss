@@ -14,6 +14,10 @@ $padding: calc(
   @include everything.auto-rtl(padding-left, $padding, 0);
 }
 
+.item ~ .subheader {
+  margin-top: 0.75em;
+}
+
 .button {
   @include everything.interaction-surface($css-modules: true);
 
@@ -31,8 +35,22 @@ $padding: calc(
 
   color: currentcolor;
   display: flex;
-  font: inherit;
   letter-spacing: inherit;
-  text-decoration: none;
   width: 100%;
+
+  &::after {
+    @include everything.pseudo-element;
+    @include everything.interaction-use-var(
+      background-color,
+      selected-background-color
+    );
+
+    opacity: 0;
+  }
+}
+
+.active {
+  &::after {
+    opacity: 1;
+  }
 }
