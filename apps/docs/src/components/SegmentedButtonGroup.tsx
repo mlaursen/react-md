@@ -12,7 +12,7 @@ const noop = (): ReactNode => undefined;
 
 export interface SegmentedButtonGroupProps<V extends string> {
   label: ReactNode;
-  transform?: TextTransform;
+  textTransform?: TextTransform;
 
   icon?: Record<V, ReactNode> | ((item: V) => ReactNode);
   items: readonly V[];
@@ -23,7 +23,7 @@ export interface SegmentedButtonGroupProps<V extends string> {
 export function SegmentedButtonGroup<V extends string>(
   props: SegmentedButtonGroupProps<V>
 ): ReactElement {
-  const { label, items, value, setValue, icon = noop, transform } = props;
+  const { label, items, value, setValue, icon = noop, textTransform } = props;
   const getIcon = typeof icon === "function" ? icon : (item: V) => icon[item];
 
   return (
@@ -37,7 +37,7 @@ export function SegmentedButtonGroup<V extends string>(
             onClick={() => {
               setValue(item);
             }}
-            className={typography({ type: null, transform })}
+            className={typography({ type: null, textTransform })}
             leftAddon={getIcon(item)}
             disableSelectedIcon
           >

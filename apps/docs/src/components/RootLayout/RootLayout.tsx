@@ -1,4 +1,5 @@
 "use client";
+import { GithubLink } from "@/components/GithubLink.jsx";
 import { WebsiteConfiguration } from "@/components/WebsiteConfiguration/WebsiteConfiguration.jsx";
 import {
   Button,
@@ -11,7 +12,6 @@ import {
 import { cnb } from "cnbuilder";
 import { usePathname } from "next/navigation.js";
 import { type ReactElement, type ReactNode } from "react";
-import { GithubLink } from "./GithubLink.jsx";
 import { Navigation } from "./Navigation.jsx";
 import styles from "./RootLayout.module.scss";
 import {
@@ -58,7 +58,14 @@ export function RootLayout(props: RootLayoutProps): ReactElement {
           <Navigation />
         </Sheet>
       )}
-      <Main {...mainProps} className={cnb(styles.main, mainProps.className)}>
+      <Main
+        {...mainProps}
+        className={cnb(
+          styles.main,
+          pathname !== "/" && styles.mainGrid,
+          mainProps.className
+        )}
+      >
         {children}
       </Main>
     </>

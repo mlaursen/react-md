@@ -11,8 +11,7 @@
     text-secondary-color,
     everything.$dark-theme-text-secondary-color
   );
-  @include everything.app-bar-set-var(
-    background-color,
-    map.get(everything.$dark-elevation-colors, 10)
-  );
+  @include everything.theme-use-var(color, text-primary-color);
+
+  background-color: map.get(everything.$dark-elevation-colors, 10);
 }

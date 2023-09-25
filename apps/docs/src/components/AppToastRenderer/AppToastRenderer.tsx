@@ -1,37 +1,12 @@
+import { assertKnownToast } from "@/toasts.js";
 import {
   DefaultToastRenderer,
   ToastContent,
-  addToast,
-  type CreateToastOptions,
   type ToastRendererProps,
 } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import { type ReactElement, type ReactNode } from "react";
-
 import styles from "./AppToastRenderer.module.scss";
-
-const TOASTS = ["copied", "generating-icons"] as const;
-
-// use set for faster lookup
-const TOAST_IDS = new Set(TOASTS);
-
-export type ToastId = (typeof TOASTS)[number];
-
-function assertKnownToast(toastId: string): asserts toastId is ToastId {
-  if (!TOAST_IDS.has(toastId as ToastId)) {
-    throw new Error(`Unsupported toastId: ${toastId}`);
-  }
-}
-
-export function addAppToast(
-  options: CreateToastOptions & { toastId: ToastId }
-): void {
-  addToast({
-    ...options,
-    visibleTime:
-      options.toastId === "generating-icons" ? null : options.visibleTime,
-  });
-}
 
 const TOAST_MESSAGES: Record<string, ReactNode> = {
   copied: "Copied to clipboard!",

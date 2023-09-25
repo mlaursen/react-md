@@ -145,26 +145,15 @@ const loadThemeContent = await format(
   `${GENERATED_FILE_BANNER}
 
 import { usePrismThemeContext } from "@/providers/PrismThemeProvider.jsx";
-import { CircularProgress, Overlay } from "@react-md/core";
-import { type DynamicOptions } from "next/dynamic.js";
-import dynamic from "next/dynamic.js";
-import { type ReactElement } from "react";
-
-const options: DynamicOptions =  {
-  loading: () => (
-    <Overlay visible disableTransition>
-      <CircularProgress />
-    </Overlay>
-  ),
-};
+import { lazy, type ReactElement } from "react";
 
 ${Array.from(themeComponentLookup.values())
   .map(
     (component) =>
-      `const ${component} = dynamic(() => import("./${component}.jsx"), options);`
+      `const ${component} = lazy(() => import("./${component}.jsx"));`
   )
   .join("\n")}
-const VimSolarizedDark = dynamic(() => import("./VimSolarizedDark.jsx"), options);
+const VimSolarizedDark = lazy(() => import("./VimSolarizedDark.jsx"));
 
 export function LoadPrismTheme(): ReactElement {
   const { prismTheme } = usePrismThemeContext();

@@ -1,3 +1,4 @@
+import { contrastColor } from "@react-md/core";
 import {
   Children,
   isValidElement,
@@ -5,9 +6,7 @@ import {
   type ReactElement,
   type ReactNode,
 } from "react";
-
-import { contrastColor } from "@react-md/core";
-import { InlineCode } from "../Code/InlineCode.jsx";
+import { InlineCode } from "./InlineCode.jsx";
 import styles from "./InlineColorPreview.module.scss";
 
 // https://stackoverflow.com/a/1636354/744230

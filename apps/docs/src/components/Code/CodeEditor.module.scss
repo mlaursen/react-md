@@ -9,7 +9,7 @@
   color: inherit;
   font: inherit;
   height: 100%;
-  inset: 0;
+  left: 0;
   margin: 0;
   overflow: hidden;
   overflow-wrap: break-word;
@@ -18,8 +18,9 @@
   position: absolute;
   resize: none;
   tab-size: inherit;
+  top: 0;
   -webkit-text-fill-color: inherit;
-  white-space: pre-wrap;
+  white-space: pre;
   width: 100%;
   word-break: keep-all;
 }

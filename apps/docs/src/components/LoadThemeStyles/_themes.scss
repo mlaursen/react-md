@@ -5,6 +5,9 @@
 
   --code-color: #{everything.$pink-600};
   --preview-bg: #{everything.$white};
+  --on-bg-color: #{everything.$black};
+  --logo-shadow: #{everything.$black};
+  --logo-outline: #{everything.$grey-500};
   --phone-app-bar-bg: #{everything.$grey-100};
 }
 
@@ -13,5 +16,8 @@
 
   --code-color: #{everything.$pink-400};
   --preview-bg: #{everything.$dark-theme-background-color};
+  --on-bg-color: #{everything.$white};
+  --logo-shadow: #{everything.$white};
+  --logo-outline: #{everything.$white};
   --phone-app-bar-bg: #{everything.$grey-900};
 }

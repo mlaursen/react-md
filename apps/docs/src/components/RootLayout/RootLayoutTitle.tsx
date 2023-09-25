@@ -1,6 +1,8 @@
 import { type SemVer } from "@/utils/semver.js";
 import { Typography, appBarTitle, box } from "@react-md/core";
+import Link from "next/link.js";
 import { type ReactElement } from "react";
+import styles from "./RootLayoutTitle.module.scss";
 import { VersionDropdown } from "./VersionDropdown.jsx";
 
 export interface RootLayoutTitleProps extends SemVer {
@@ -15,9 +17,11 @@ export function RootLayoutTitle(props: RootLayoutTitleProps): ReactElement {
         className: box({ disablePadding: true }),
       })}
     >
-      <Typography type="headline-6" margin="none">
-        react-md
-      </Typography>
+      <Link href="/" className={styles.link}>
+        <Typography type="headline-6" margin="none">
+          react-md
+        </Typography>
+      </Link>
       <VersionDropdown isHiddenOnPhone {...props} />
     </div>
   );

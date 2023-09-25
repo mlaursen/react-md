@@ -1,0 +1,23 @@
+@use "everything";
+
+.container {
+  background-color: var(--preview-bg);
+  border: everything.$divider-size solid everything.divider-get-var(color);
+  border-radius: everything.$card-border-radius;
+  padding: 3rem;
+  position: relative;
+}
+
+.noBorderBottom {
+  border-bottom-width: 0;
+}
+
+.alert {
+  @include everything.theme-use-var(color, error-color);
+
+  bottom: 0;
+  left: 1rem;
+  position: absolute;
+  right: 1rem;
+  text-align: right;
+}

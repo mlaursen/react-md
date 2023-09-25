@@ -6,7 +6,6 @@ import {
   DialogContent,
   Divider,
   Form,
-  NullSuspense,
   Sheet,
   Tooltip,
   button,
@@ -16,6 +15,7 @@ import {
 import MoreVertOutlinedIcon from "@react-md/material-icons/MoreVertOutlinedIcon";
 import Link from "next/link.js";
 import { type ReactElement } from "react";
+import { CircularProgressOverlaySuspense } from "./CircularProgressOverlaySuspense.jsx";
 import { ConfigureCodeLanguage } from "./ConfigureCodeLanguage.jsx";
 import { ConfigureCodeTheme } from "./ConfigureCodeTheme.jsx";
 import { ConfigureColorScheme } from "./ConfigureColorScheme.jsx";
@@ -71,9 +71,9 @@ export function WebsiteConfiguration(): ReactElement {
           </Form>
         </DialogContent>
       </Sheet>
-      <NullSuspense>
+      <CircularProgressOverlaySuspense visible={toggled}>
         <LoadPrismTheme />
-      </NullSuspense>
+      </CircularProgressOverlaySuspense>
     </>
   );
 }

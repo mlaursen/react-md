@@ -1,20 +1,15 @@
 import "./layout.scss";
 
 import { LoadThemeStyles } from "@/components/LoadThemeStyles/LoadThemeStyles.jsx";
+import { RootLayout } from "@/components/RootLayout/RootLayout.jsx";
 import { RootProviders } from "@/providers/RootProviders.jsx";
 import { semver } from "@/utils/semver.js";
 import { cnb } from "cnbuilder";
-import { type Metadata } from "next";
 import { Roboto_Flex, Source_Code_Pro } from "next/font/google";
 import { headers } from "next/headers.js";
 import { type PropsWithChildren, type ReactElement } from "react";
-import { RootLayout } from "./RootLayout.jsx";
 import { getInitialState } from "./utils.js";
-
-export const metadata: Metadata = {
-  title: "react-md",
-  description: "",
-};
+export { metadata } from "@/constants/metadata.js";
 
 const roboto = Roboto_Flex({
   display: "swap",

@@ -1,9 +1,10 @@
-import Blockquote from "@/components/Blockquote/Blockquote.jsx";
+import { Blockquote } from "@/components/Blockquote.jsx";
 import { CodeLoader } from "@/components/Code/CodeLoader.jsx";
 import type { HighlightedCodeBlockProps } from "@/components/Code/HighlightedCodeBlock.jsx";
 import { HighlightedCodeBlock } from "@/components/Code/HighlightedCodeBlock.jsx";
-import { InlineColorPreview } from "@/components/InlineColorPreview/InlineColorPreview.jsx";
-import { LinkableHeading } from "@/components/LinkableHeading/LinkableHeading.jsx";
+import { InlineColorPreview } from "@/components/InlineColorPreview.jsx";
+import { LinkableHeading } from "@/components/LinkableHeading.jsx";
+import { getSluggedId } from "@/utils/getSluggedId.js";
 import { Typography, link } from "@react-md/core";
 import GithubSlugger from "github-slugger";
 import { type MDXComponents } from "mdx/types.js";
@@ -34,14 +35,6 @@ interface RedefinedComponents {
 type Components = Omit<MDXComponents, keyof RedefinedComponents> &
   RedefinedComponents;
 
-const getId = (slugger: GithubSlugger, children?: ReactNode): string => {
-  if (typeof children !== "string") {
-    throw new Error("Non-string headings are not supported");
-  }
-
-  return slugger.slug(children);
-};
-
 // This file allows you to provide custom React components
 // to be used in MDX files. You can import and use any
 // React component you want, including components from
@@ -56,42 +49,42 @@ export function useMDXComponents(components: MDXComponents): Components {
     h1: (props) => (
       <LinkableHeading
         {...props}
-        id={getId(slugger, props.children)}
+        id={getSluggedId(slugger, props.children)}
         level={2}
       />
     ),
     h2: (props) => (
       <LinkableHeading
         {...props}
-        id={getId(slugger, props.children)}
+        id={getSluggedId(slugger, props.children)}
         level={3}
       />
     ),
     h3: (props) => (
       <LinkableHeading
         {...props}
-        id={getId(slugger, props.children)}
+        id={getSluggedId(slugger, props.children)}
         level={4}
       />
     ),
     h4: (props) => (
       <LinkableHeading
         {...props}
-        id={getId(slugger, props.children)}
+        id={getSluggedId(slugger, props.children)}
         level={5}
       />
     ),
     h5: (props) => (
       <LinkableHeading
         {...props}
-        id={getId(slugger, props.children)}
+        id={getSluggedId(slugger, props.children)}
         level={6}
       />
     ),
     h6: (props) => (
       <LinkableHeading
         {...props}
-        id={getId(slugger, props.children)}
+        id={getSluggedId(slugger, props.children)}
         level={6}
       />
     ),

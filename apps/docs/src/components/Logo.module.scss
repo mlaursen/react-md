@@ -1,0 +1,18 @@
+@use "sass:map";
+@use "everything";
+
+.primary {
+  @include everything.theme-use-var(fill, primary-color);
+}
+
+.secondary {
+  @include everything.theme-use-var(fill, secondary-color);
+}
+
+.text {
+  @include everything.rtl {
+    transform: translateX(0.8em);
+  }
+
+  transform: translateX(-0.875em);
+}

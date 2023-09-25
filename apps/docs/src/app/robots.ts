@@ -5,7 +5,9 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
-      allow: "/",
+      // I don't want them to crawl this preview website
+      disallow: "/",
+      // allow: "/",
     },
     sitemap: `${BASE_URL}/sitemap.xml`,
   };

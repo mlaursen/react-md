@@ -1,7 +1,6 @@
 "use client";
-import { Typography } from "@react-md/core";
 import { type ReactElement } from "react";
-import styles from "./CodePreview.module.scss";
+import { CodePreviewContainer } from "./CodePreviewContainer.jsx";
 import {
   useDangerouslyRunnableCode,
   type RunnableCodeScope,
@@ -16,17 +15,9 @@ export function CodePreview(props: CodePreviewProps): ReactElement {
   const { code, scope } = props;
 
   const [element, error] = useDangerouslyRunnableCode({ code, scope });
-
   return (
-    <div className={styles.container}>
+    <CodePreviewContainer error={error?.message}>
       {element}
-      <div role="alert">
-        {error && (
-          <Typography type="caption" as="p">
-            {error?.message}
-          </Typography>
-        )}
-      </div>
-    </div>
+    </CodePreviewContainer>
   );
 }

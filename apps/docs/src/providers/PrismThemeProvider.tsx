@@ -17,6 +17,7 @@ export interface PrismThemeContext {
 }
 
 const context = createContext<PrismThemeContext | null>(null);
+context.displayName = "Prism";
 const { Provider } = context;
 
 export function usePrismThemeContext(): PrismThemeContext {

@@ -23,7 +23,7 @@ export function ConfigureOrientation(): ReactElement {
           toggleDir();
         }
       }}
-      transform="uppercase"
+      textTransform="uppercase"
     />
   );
 }

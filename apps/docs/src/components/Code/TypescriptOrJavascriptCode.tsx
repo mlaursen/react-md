@@ -11,12 +11,13 @@ export interface TypescriptOrJavascriptCodeProps {
   tsLines: number | undefined;
   jsHtml: string;
   jsLines: number | undefined;
+  containerClassName?: string;
 }
 
 export function TypescriptOrJavascriptCode(
   props: TypescriptOrJavascriptCodeProps
 ): ReactElement {
-  const { tsHtml, jsHtml, tsLines, jsLines } = props;
+  const { tsHtml, jsHtml, tsLines, jsLines, containerClassName } = props;
   const { codeLanguage } = useCodeLanguageContext();
   const className = `language-${codeLanguage}x`;
   const isTs = codeLanguage === "ts";
@@ -31,6 +32,7 @@ export function TypescriptOrJavascriptCode(
         </>
       }
       headerProps={{ className: styles.header }}
+      containerClassName={containerClassName}
     >
       <code
         className={className}

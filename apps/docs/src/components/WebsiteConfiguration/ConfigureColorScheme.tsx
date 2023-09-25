@@ -22,7 +22,7 @@ export function ConfigureColorScheme(): ReactElement {
       value={colorSchemeMode}
       setValue={setColorSchemeMode}
       icon={ICONS}
-      transform="capitalize"
+      textTransform="capitalize"
     />
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 import * as core from "@react-md/core";
-import {
+import React, {
   isValidElement,
   useMemo,
   useRef,
@@ -73,6 +73,7 @@ function createElement(
   const transformed = transformCode(code);
   const { default: _, import: __, ...remaining } = scope;
   const imports: Record<string, unknown> = {
+    react: React,
     "react/jsx-runtime": jsxRuntime,
     "@react-md/core": core,
     ...scope.import,

@@ -2,7 +2,7 @@ import "server-only";
 
 import { type ReactElement } from "react";
 import { CodeBlock } from "./CodeBlock.js";
-import { InlineCode, type InlineCodeProps } from "./InlineCode.jsx";
+import { InlineCode, type InlineCodeProps } from "../InlineCode.jsx";
 import { PackageManagerCode } from "./PackageManagerCode.jsx";
 import { TypescriptCode } from "./TypescriptCode.jsx";
 import { highlightCode } from "./highlightCode.js";
@@ -14,6 +14,7 @@ export interface HighlightedCodeBlockProps extends InlineCodeProps {
   lang?: string;
   fileName?: string;
   multiline?: boolean;
+  containerClassName?: string;
 }
 
 export function HighlightedCodeBlock(
@@ -24,6 +25,7 @@ export function HighlightedCodeBlock(
     lang: propLang,
     className = propLang ? `language-${propLang}` : "",
     multiline = !!propLang,
+    containerClassName,
     fileName,
     ...remaining
   } = props;
@@ -39,7 +41,7 @@ export function HighlightedCodeBlock(
   let lang = propLang ?? "markdown";
   let lines: number | undefined;
   if (!propLang && className) {
-    [, lang] = className.split("-");
+    [, lang] = className.match(/language-([a-z]+)/) || [];
   }
 
   let code = children;
@@ -65,11 +67,22 @@ export function HighlightedCodeBlock(
   }
 
   if (lang === "ts" || lang == "tsx") {
-    return <TypescriptCode code={code} fileName={fileName} />;
+    return (
+      <TypescriptCode
+        code={code}
+        fileName={fileName}
+        containerClassName={containerClassName}
+      />
+    );
   }
 
   return (
-    <CodeBlock lines={lines} className={className} fileName={fileName}>
+    <CodeBlock
+      lines={lines}
+      className={className}
+      fileName={fileName}
+      containerClassName={containerClassName}
+    >
       <code
         {...remaining}
         className={className}

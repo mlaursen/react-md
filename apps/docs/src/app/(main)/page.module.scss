@@ -1,0 +1,7 @@
+@use "everything";
+
+.divider {
+  @include everything.divider-set-var(spacing, 4rem);
+
+  width: calc(100% - 8rem);
+}

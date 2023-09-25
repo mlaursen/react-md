@@ -1,8 +1,8 @@
 "use client";
+import { addAppToast } from "@/toasts.js";
 import { Button, Tooltip, useTooltip, type ButtonProps } from "@react-md/core";
 import ContentCopyOutlinedIcon from "@react-md/material-icons/ContentCopyOutlinedIcon";
 import { type ReactElement } from "react";
-import { addAppToast } from "../AppToastRenderer/AppToastRenderer.jsx";
 
 export type CopyToClipboardProps = Omit<
   ButtonProps,

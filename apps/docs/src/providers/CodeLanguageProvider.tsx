@@ -21,6 +21,7 @@ export interface CodeLanguageContext {
 }
 
 const context = createContext<CodeLanguageContext | null>(null);
+context.displayName = "CodeLanguage";
 const { Provider } = context;
 
 export function useCodeLanguageContext(): CodeLanguageContext {

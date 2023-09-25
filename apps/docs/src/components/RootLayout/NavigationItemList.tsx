@@ -8,7 +8,6 @@ import {
   Divider,
   IconRotator,
   ListSubheader,
-  RippleContainer,
   typography,
   useCollapseTransition,
   useElementInteraction,
@@ -124,7 +123,7 @@ function RenderRoute(props: RenderRouteProps): ReactElement {
 
 function NavigationItemLink(props: LinkUnstyledProps): ReactNode {
   const { children, href } = props;
-  const { handlers, rippleContainerProps } = useElementInteraction();
+  const { handlers, ripples } = useElementInteraction();
   return (
     <li>
       <LinkUnstyled
@@ -133,7 +132,7 @@ function NavigationItemLink(props: LinkUnstyledProps): ReactNode {
         className={cnb(styles.item, styles.link)}
       >
         {children}
-        {rippleContainerProps && <RippleContainer {...rippleContainerProps} />}
+        {ripples}
       </LinkUnstyled>
     </li>
   );

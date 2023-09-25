@@ -3,7 +3,7 @@ import { cnb } from "cnbuilder";
 import { type HTMLAttributes, type ReactElement, type ReactNode } from "react";
 import styles from "./CodeBlock.module.scss";
 import { CodeBlockHeader } from "./CodeBlockHeader.jsx";
-import { CopyToClipboard } from "./CopyToClipboard.jsx";
+import { CopyToClipboard } from "../CopyToClipboard.jsx";
 import { LineNumbers } from "./LineNumbers.jsx";
 
 export interface CodeBlockProps extends HTMLAttributes<HTMLDivElement> {

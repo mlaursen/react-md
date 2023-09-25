@@ -1,5 +1,5 @@
 "use client";
-import { Button, Typography, srOnly, useAppSize } from "@react-md/core";
+import { Button, Typography, cssUtils, useAppSize } from "@react-md/core";
 import SearchIcon from "@react-md/material-icons/SearchIcon";
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
@@ -23,7 +23,7 @@ export function Search(props: SearchProps): ReactElement {
         <SearchIcon />
         <Typography
           as="span"
-          className={cnb(styles.search, isPhone && srOnly())}
+          className={cnb(styles.search, cssUtils({ srOnly: isPhone }))}
         >
           Search...
         </Typography>

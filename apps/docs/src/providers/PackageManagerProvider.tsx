@@ -24,6 +24,7 @@ export interface PackageManagerContext {
 }
 
 const context = createContext<PackageManagerContext | null>(null);
+context.displayName = "PackageManager";
 const { Provider } = context;
 
 export function usePackageManagerContext(): PackageManagerContext {

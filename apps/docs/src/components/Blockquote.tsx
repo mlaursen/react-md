@@ -3,7 +3,7 @@ import { cnb } from "cnbuilder";
 import { type HTMLAttributes, type ReactElement } from "react";
 import styles from "./Blockquote.module.scss";
 
-export default function Blockquote({
+export function Blockquote({
   className,
   children,
   ...props

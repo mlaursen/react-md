@@ -15,6 +15,13 @@ declare module "next/link.js" {
   export = Link_.default;
 }
 
+declare module "next/image.js" {
+  import Image_ from "next/dist/shared/lib/image-external.js";
+  export * from "next/dist/shared/lib/image-external.js";
+
+  export = Image_.default;
+}
+
 declare module "next/dynamic.js" {
   import dynamic_ from "next/dist/shared/lib/dynamic.js";
   export * from "next/dist/shared/lib/dynamic.js";
