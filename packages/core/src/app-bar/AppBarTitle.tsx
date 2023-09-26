@@ -1,5 +1,6 @@
 import { cnb } from "cnbuilder";
 import { forwardRef } from "react";
+import { type TextOverflow } from "../cssUtils.js";
 import {
   Typography,
   type TypographyProps,
@@ -30,13 +31,6 @@ export interface AppBarTitleClassNameOptions {
    * @see {@link AppBarTitleKeyline}
    */
   keyline?: AppBarTitleKeyline;
-
-  /**
-   * Set this to `true` if the children should be allowed to line wrap.
-   *
-   * @defaultValue `false`
-   */
-  lineWrap?: boolean;
 }
 
 /**
@@ -46,11 +40,10 @@ export interface AppBarTitleClassNameOptions {
  * @remarks \@since 6.0.0
  */
 export function appBarTitle(options: AppBarTitleClassNameOptions = {}): string {
-  const { className, keyline = "small", lineWrap = false } = options;
+  const { className, keyline = "small" } = options;
   return cnb(
     styles({
       keyline: keyline == "list",
-      "no-wrap": !lineWrap,
       "nav-keyline": keyline === "nav",
     }),
     className
@@ -66,6 +59,11 @@ export interface AppBarTitleProps
     AppBarTitleClassNameOptions {
   /** @defaultValue `"headline-6"` */
   type?: TypographyType;
+
+  /**
+   * @defaultValue `"ellipsis"`
+   */
+  textOverflow?: TextOverflow;
 }
 
 /**
@@ -99,9 +97,9 @@ export const AppBarTitle = forwardRef<HTMLHeadingElement, AppBarTitleProps>(
     const {
       type = "headline-6",
       keyline = "small",
-      lineWrap = false,
       children,
       className,
+      textOverflow = "ellipsis",
       ...remaining
     } = props;
     return (
@@ -111,9 +109,9 @@ export const AppBarTitle = forwardRef<HTMLHeadingElement, AppBarTitleProps>(
         type={type}
         className={appBarTitle({
           keyline,
-          lineWrap,
           className,
         })}
+        textOverflow={textOverflow}
       >
         {children}
       </Typography>

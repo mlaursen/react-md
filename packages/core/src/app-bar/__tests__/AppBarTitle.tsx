@@ -29,7 +29,7 @@ describe("AppBarTitle", () => {
     rerender(<AppBarTitle keyline="list">Title</AppBarTitle>);
     expect(title).toMatchSnapshot();
 
-    rerender(<AppBarTitle lineWrap>Title</AppBarTitle>);
+    rerender(<AppBarTitle textOverflow="allow">Title</AppBarTitle>);
     expect(title).toMatchSnapshot();
   });
 

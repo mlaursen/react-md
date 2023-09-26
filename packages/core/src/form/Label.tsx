@@ -37,6 +37,8 @@ export function label(options: LabelClassNameOptions): string {
   let textColor: TextColor | ThemeColor | undefined;
   if (disabled) {
     textColor = "text-disabled";
+  } else if (error) {
+    textColor = "error";
   } else if (floating && inactive) {
     textColor = "text-secondary";
   }

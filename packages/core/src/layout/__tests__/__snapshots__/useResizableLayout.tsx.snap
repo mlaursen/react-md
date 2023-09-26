@@ -17,7 +17,7 @@ exports[`useResizableLayout should allow you to create a resizable layout quickl
     </span>
   </button>
   <h6
-    class="rmd-typography rmd-typography--headline-6 rmd-app-bar-title rmd-app-bar-title--no-wrap"
+    class="rmd-typography rmd-typography--headline-6 rmd-nowrap rmd-ellipsis rmd-app-bar-title"
   >
     Hello, world!
   </h6>

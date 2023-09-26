@@ -460,7 +460,7 @@ exports[`useRadioGroup should support creating a required radio group 1`] = `
 <div>
   <form>
     <label
-      class="rmd-label rmd-label--gap rmd-label--error rmd-label--reversed"
+      class="rmd-label rmd-label--gap rmd-label--error rmd-label--reversed rmd-error-color"
     >
       First
       <span
@@ -486,7 +486,7 @@ exports[`useRadioGroup should support creating a required radio group 1`] = `
       </span>
     </label>
     <label
-      class="rmd-label rmd-label--gap rmd-label--error rmd-label--reversed"
+      class="rmd-label rmd-label--gap rmd-label--error rmd-label--reversed rmd-error-color"
     >
       Second
       <span
@@ -512,7 +512,7 @@ exports[`useRadioGroup should support creating a required radio group 1`] = `
       </span>
     </label>
     <label
-      class="rmd-label rmd-label--gap rmd-label--error rmd-label--reversed"
+      class="rmd-label rmd-label--gap rmd-label--error rmd-label--reversed rmd-error-color"
     >
       Third
       <span
@@ -538,7 +538,7 @@ exports[`useRadioGroup should support creating a required radio group 1`] = `
       </span>
     </label>
     <label
-      class="rmd-label rmd-label--gap rmd-label--error rmd-label--reversed"
+      class="rmd-label rmd-label--gap rmd-label--error rmd-label--reversed rmd-error-color"
     >
       Forth
       <span

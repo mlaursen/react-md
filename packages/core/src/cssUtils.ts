@@ -28,7 +28,8 @@ export type TextColor =
   | "text-primary"
   | "text-secondary"
   | "text-hint"
-  | "text-disabled";
+  | "text-disabled"
+  | `on-${ThemeColor}`;
 
 /**
  * @remarks \@since 6.0.0
@@ -80,6 +81,9 @@ export type FontWeight =
  */
 export type Margin = "none" | "top" | "bottom" | "centered";
 
+/** @remarks \@since 6.0.0 */
+export type TextOverflow = "allow" | "nowrap" | "ellipsis";
+
 export interface TextCssUtilsOptions {
   textColor?: ThemeColor | TextColor;
 
@@ -107,7 +111,7 @@ export interface TextCssUtilsOptions {
    *
    * @defaultValue `"allow"`
    */
-  textOverflow?: "allow" | "nowrap" | "ellipsis";
+  textOverflow?: TextOverflow;
 }
 
 /**

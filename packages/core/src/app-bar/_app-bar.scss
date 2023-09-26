@@ -250,10 +250,6 @@ $var-lookup: (
             $title-keyline - $horizontal-padding - $gap - button.$icon-size
           );
         }
-
-        &--no-wrap {
-          @include typography.text-overflow;
-        }
       }
     }
   }

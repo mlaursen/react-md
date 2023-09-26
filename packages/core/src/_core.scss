@@ -173,8 +173,12 @@ $_layer-order: (
       @include theme.theme-set-var(on-background-color, $on-theme-name);
     }
 
-    .rmd-#{$color}-color {
+    .rmd-#{$theme-name} {
       @include theme.theme-use-var(color, $theme-name);
+    }
+
+    .rmd-#{$on-theme-name} {
+      @include theme.theme-use-var(color, $on-theme-name);
     }
 
     .rmd-#{$color}-outline {
