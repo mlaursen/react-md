@@ -68,9 +68,6 @@ exports[`ToastCloseButton should apply the correct styling, HTML attributes, and
   >
     close
   </span>
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;
 
@@ -87,9 +84,6 @@ exports[`ToastCloseButton should apply the correct styling, HTML attributes, and
   >
     close
   </span>
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;
 
@@ -106,8 +100,5 @@ exports[`ToastCloseButton should apply the correct styling, HTML attributes, and
   >
     close
   </span>
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;

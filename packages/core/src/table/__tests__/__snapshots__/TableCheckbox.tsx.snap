@@ -24,9 +24,6 @@ exports[`TableCheckbox should apply the correct styling, HTML attributes, and al
         type="checkbox"
         value=""
       />
-      <span
-        class="rmd-ripple-container"
-      />
     </span>
   </label>
 </td>
@@ -57,9 +54,6 @@ exports[`TableCheckbox should apply the correct styling, HTML attributes, and al
         type="checkbox"
         value=""
       />
-      <span
-        class="rmd-ripple-container"
-      />
     </span>
   </label>
 </td>
@@ -89,9 +83,6 @@ exports[`TableCheckbox should handle the aria-label/aria-labelledby props correc
         type="checkbox"
         value=""
       />
-      <span
-        class="rmd-ripple-container"
-      />
     </span>
   </label>
 </td>
@@ -120,9 +111,6 @@ exports[`TableCheckbox should handle the aria-label/aria-labelledby props correc
         id="checkbox-:r2:"
         type="checkbox"
         value=""
-      />
-      <span
-        class="rmd-ripple-container"
       />
     </span>
   </label>

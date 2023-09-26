@@ -1,9 +1,7 @@
 "use client";
 import { type ReactElement, type ReactNode } from "react";
 import { SsrProvider } from "./SsrProvider.js";
-import { ElementInteractionProvider } from "./interaction/ElementInteractionProvider.js";
 import { UserInteractionModeProvider } from "./interaction/UserInteractionModeProvider.js";
-import { type ElementInteractionMode } from "./interaction/types.js";
 import { AppSizeProvider } from "./media-queries/AppSizeProvider.js";
 import {
   DEFAULT_APP_SIZE,
@@ -41,17 +39,6 @@ export interface ReactMDCoreConfiguration {
    */
   appSizeQueries?: Readonly<AppSizeQueries>;
 
-  /**
-   * @defaultValue `"ripple"`
-   */
-  elementInteractionMode?: ElementInteractionMode;
-
-  /**
-   * @see {@link ElementInteractionProviderProps.disableHigherContrast}
-   * @defaultValue `false`
-   */
-  disableHigherContrast?: boolean;
-
   /** @see {@link PortalContainerProvider} */
   portalContainer?: PortalContainer;
 
@@ -75,7 +62,6 @@ export interface CoreProvidersProps extends ReactMDCoreConfiguration {
  * - {@link SsrProvider}
  * - {@link PortalContainerProvider}
  * - {@link AppSizeProvider}
- * - {@link ElementInteractionProvider}
  * - {@link UserInteractionModeProvider}
  *
  * This does not include every provider within `react-md` to help decrease the
@@ -105,8 +91,6 @@ export function CoreProviders(props: CoreProvidersProps): ReactElement {
     ssr = false,
     ssrAppSize = DEFAULT_APP_SIZE,
     appSizeQueries = DEFAULT_APP_SIZE_QUERIES,
-    elementInteractionMode = "ripple",
-    disableHigherContrast = false,
     portalContainer,
     children,
   } = props;
@@ -115,12 +99,7 @@ export function CoreProviders(props: CoreProvidersProps): ReactElement {
       <PortalContainerProvider container={portalContainer}>
         <UserInteractionModeProvider>
           <AppSizeProvider {...appSizeQueries} ssrSize={ssrAppSize}>
-            <ElementInteractionProvider
-              mode={elementInteractionMode}
-              disableHigherContrast={disableHigherContrast}
-            >
-              {children}
-            </ElementInteractionProvider>
+            {children}
           </AppSizeProvider>
         </UserInteractionModeProvider>
       </PortalContainerProvider>

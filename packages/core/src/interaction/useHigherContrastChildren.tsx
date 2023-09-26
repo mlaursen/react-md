@@ -1,14 +1,13 @@
-"use client";
 import { Children, type ReactNode } from "react";
-import { useElementInteractionContext } from "./ElementInteractionProvider.js";
+import { INTERACTION_CONFIG } from "./config.js";
 
 /**
  * This hook is used to wrap any `number` and `string` children with a `<span>`
  * so that the ripple/hover/focus background colors do not cause the text to
  * become dimmed.
  *
- * If the {@link ElementInteractionProviderProps.disableHigherContrast} is set
- * to `true`, this hook will just return the `children` unmodified.
+ * If the {@link INTERACTION_CONFIG.higherContrast} is set to `false`, this hook
+ * will just return the `children` unmodified.
  *
  * Note: This should generally be used with the {@link useElementInteraction}
  * hook.
@@ -74,8 +73,7 @@ export function useHigherContrastChildren(
   propChildren: ReactNode,
   disable = false
 ): ReactNode {
-  const { higherContrast } = useElementInteractionContext();
-  if (!higherContrast || disable) {
+  if (!INTERACTION_CONFIG.higherContrast || disable) {
     return propChildren;
   }
 

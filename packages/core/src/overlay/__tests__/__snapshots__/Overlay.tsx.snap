@@ -46,9 +46,6 @@ exports[`Overlay should support rendering inline if it was visible by default an
     <span>
       Toggle
     </span>
-    <span
-      class="rmd-ripple-container"
-    />
   </button>
   <span
     class="rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-overlay--active"

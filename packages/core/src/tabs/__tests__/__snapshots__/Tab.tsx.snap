@@ -18,9 +18,6 @@ exports[`Tab should support rendering an icon in different positions around the 
   <span>
     Tab
   </span>
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;
 
@@ -42,9 +39,6 @@ exports[`Tab should support rendering an icon in different positions around the 
   <span>
     Tab
   </span>
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;
 
@@ -66,9 +60,6 @@ exports[`Tab should support rendering an icon in different positions around the 
   <span>
     Tab
   </span>
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;
 
@@ -90,8 +81,5 @@ exports[`Tab should support rendering an icon in different positions around the 
   <span>
     Tab
   </span>
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;

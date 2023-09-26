@@ -2,7 +2,6 @@ import { beforeEach, describe, expect, it, jest } from "@jest/globals";
 import { useEffect } from "react";
 import { act, fireEvent, render, userEvent } from "../../test-utils/index.js";
 
-import { ElementInteractionProvider } from "../../interaction/ElementInteractionProvider.js";
 import { FileInput } from "../FileInput.js";
 import { useFileUpload, type FileUploadOptions } from "../useFileUpload.js";
 
@@ -112,7 +111,7 @@ function SingleFileTest(props: FileUploadOptions<HTMLElement>) {
   const [stat] = stats;
 
   return (
-    <ElementInteractionProvider mode="none">
+    <>
       <FileInput id="file-input" onChange={onChange} icon={null}>
         Upload
       </FileInput>
@@ -135,7 +134,7 @@ function SingleFileTest(props: FileUploadOptions<HTMLElement>) {
       <button type="button" onClick={clearErrors}>
         Clear Errors
       </button>
-    </ElementInteractionProvider>
+    </>
   );
 }
 

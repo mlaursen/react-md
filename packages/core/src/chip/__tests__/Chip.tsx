@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@jest/globals";
+import { describe, expect, it, jest } from "@jest/globals";
 import { createRef, type ReactElement } from "react";
 import {
   fireEvent,
@@ -9,7 +9,7 @@ import {
 } from "../../test-utils/index.js";
 
 import { FontIcon } from "../../icon/FontIcon.js";
-import { ElementInteractionProvider } from "../../interaction/ElementInteractionProvider.js";
+import { INTERACTION_CONFIG } from "../../interaction/config.js";
 import { useToggle } from "../../useToggle.js";
 import { DISPLAY_NONE_CLASS } from "../../utils/isElementVisible.js";
 import { Chip } from "../Chip.js";
@@ -48,13 +48,10 @@ describe("Chip", () => {
   });
 
   it("should apply the pressed class name while raisable", () => {
-    const { getByRole, rerender } = render(<Chip raisable>Chip</Chip>, {
-      wrapper: ({ children }) => (
-        <ElementInteractionProvider mode="press">
-          {children}
-        </ElementInteractionProvider>
-      ),
-    });
+    const modeMock = jest
+      .spyOn(INTERACTION_CONFIG, "mode", "get")
+      .mockReturnValue("press");
+    const { getByRole, rerender } = render(<Chip raisable>Chip</Chip>);
     const chip = getByRole("button");
 
     fireEvent.mouseDown(chip);
@@ -73,6 +70,8 @@ describe("Chip", () => {
     fireEvent.mouseUp(chip);
     expect(chip).not.toHaveClass("rmd-chip--pressed");
     expect(chip).toMatchSnapshot();
+
+    modeMock.mockRestore();
   });
 
   it("should wrap the children in an additional span unless the disableContentWrap prop is enabled", () => {

@@ -16,9 +16,6 @@ exports[`Chip selectable chips should allow for a custom selectedIcon 1`] = `
   >
     Chip
   </span>
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;
 
@@ -39,9 +36,6 @@ exports[`Chip selectable chips should allow for a custom selectedIcon 2`] = `
   >
     Chip
   </span>
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;
 
@@ -56,9 +50,6 @@ exports[`Chip selectable chips should allow for a custom selectedIcon 3`] = `
   >
     Chip
   </span>
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;
 
@@ -74,9 +65,6 @@ exports[`Chip selectable chips should allow for a custom selectedIcon 4`] = `
   >
     Chip
   </span>
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;
 
@@ -91,9 +79,6 @@ exports[`Chip selectable chips should allow for a custom selectedIcon 5`] = `
     Chip
   </span>
   Text
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;
 
@@ -109,9 +94,6 @@ exports[`Chip selectable chips should allow for a custom selectedIcon 6`] = `
     Chip
   </span>
   Text
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;
 
@@ -131,9 +113,6 @@ exports[`Chip selectable chips should apply rmd-display-none to the icon if the 
   >
     Chip
   </span>
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;
 
@@ -154,9 +133,6 @@ exports[`Chip selectable chips should apply rmd-display-none to the icon if the 
   >
     Chip
   </span>
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;
 
@@ -176,9 +152,6 @@ exports[`Chip selectable chips should apply rmd-display-none to the icon if the 
   >
     check
   </span>
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;
 
@@ -199,9 +172,6 @@ exports[`Chip selectable chips should apply rmd-display-none to the icon if the 
   >
     check
   </span>
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;
 
@@ -221,9 +191,6 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
   >
     Chip
   </span>
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;
 
@@ -244,9 +211,6 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
   >
     Chip
   </span>
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;
 
@@ -266,9 +230,6 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
   >
     Chip
   </span>
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;
 
@@ -289,9 +250,6 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
   >
     Chip
   </span>
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;
 
@@ -317,9 +275,6 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
   >
     check
   </span>
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;
 
@@ -346,9 +301,6 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
   >
     check
   </span>
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;
 
@@ -374,9 +326,6 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
   >
     favorite
   </span>
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;
 
@@ -403,9 +352,6 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
   >
     favorite
   </span>
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;
 
@@ -425,9 +371,6 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
   >
     favorite
   </span>
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;
 
@@ -448,9 +391,6 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
   >
     favorite
   </span>
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;
 
@@ -476,9 +416,6 @@ exports[`Chip should allow for addons to appear before and after the children 1`
   >
     close
   </span>
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;
 
@@ -492,9 +429,6 @@ exports[`Chip should apply the correct styling, HTML attributes, and allow a ref
   >
     Chip
   </span>
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;
 
@@ -509,9 +443,6 @@ exports[`Chip should apply the correct styling, HTML attributes, and allow a ref
   >
     Chip
   </span>
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;
 
@@ -527,9 +458,6 @@ exports[`Chip should apply the correct styling, HTML attributes, and allow a ref
   >
     Chip
   </span>
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;
 
@@ -544,9 +472,6 @@ exports[`Chip should apply the correct styling, HTML attributes, and allow a ref
   >
     Chip
   </span>
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;
 
@@ -562,9 +487,6 @@ exports[`Chip should apply the correct styling, HTML attributes, and allow a ref
   >
     Chip
   </span>
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;
 
@@ -630,9 +552,6 @@ exports[`Chip should render as a span when the noninteractive prop is enabled 1`
   >
     Content
   </span>
-  <span
-    class="rmd-ripple-container"
-  />
 </span>
 `;
 
@@ -647,9 +566,6 @@ exports[`Chip should render as a span when the noninteractive prop is enabled 2`
   >
     Content
   </span>
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;
 
@@ -664,9 +580,6 @@ exports[`Chip should wrap the children in an additional span unless the disableC
   >
     Content
   </span>
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;
 
@@ -680,8 +593,5 @@ exports[`Chip should wrap the children in an additional span unless the disableC
   >
     Content
   </span>
-  <span
-    class="rmd-ripple-container"
-  />
 </button>
 `;

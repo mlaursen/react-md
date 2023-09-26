@@ -24,6 +24,7 @@
       "require": "./dist/test-utils/polyfills/*",
       "default": "./dist/test-utils/polyfills/*.js"
     },
+    "./test-utils/jest-setup": "./dist/test-utils/jest-setup.js*",
     "./colors": {
       "sass": "./dist/_colors.scss"
     },

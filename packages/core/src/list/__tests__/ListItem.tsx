@@ -7,8 +7,8 @@ import {
   waitFor,
 } from "../../test-utils/index.js";
 
-import { ElementInteractionProvider } from "../../interaction/ElementInteractionProvider.js";
 import { UserInteractionModeProvider } from "../../interaction/UserInteractionModeProvider.js";
+import { INTERACTION_CONFIG } from "../../interaction/config.js";
 import { List } from "../List.js";
 import { ListItem, type ListItemProps } from "../ListItem.js";
 
@@ -136,13 +136,10 @@ describe("ListItem", () => {
   });
 
   it("should wrap text children in span elements to enable higher contrast unless the higher contrast is disabled", () => {
-    const { getByRole, rerender } = render(<Test />, {
-      wrapper: ({ children }) => (
-        <ElementInteractionProvider disableHigherContrast>
-          {children}
-        </ElementInteractionProvider>
-      ),
-    });
+    const higherContrastMock = jest
+      .spyOn(INTERACTION_CONFIG, "higherContrast", "get")
+      .mockReturnValue(false);
+    const { getByRole, rerender } = render(<Test />);
     const item = getByRole("button", { name: "Item" });
     expect(item).toMatchSnapshot();
 
@@ -162,6 +159,8 @@ describe("ListItem", () => {
       </Test>
     );
     expect(item).toMatchSnapshot();
+
+    higherContrastMock.mockRestore();
   });
 
   it("should update the height based on the provided addons and render correctly", () => {

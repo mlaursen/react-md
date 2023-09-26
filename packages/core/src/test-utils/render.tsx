@@ -36,7 +36,7 @@ export function rmdRender<
     ...renderOptions,
     wrapper: function ReactMDTestWrapper(props) {
       return (
-        <CoreProviders elementInteractionMode="none" {...rmdConfig}>
+        <CoreProviders {...rmdConfig}>
           <Wrapper>{props.children}</Wrapper>
         </CoreProviders>
       );

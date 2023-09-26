@@ -7,9 +7,9 @@ import type {
   TouchEvent,
 } from "react";
 import { useCallback, useReducer, useRef } from "react";
-import { useElementInteractionContext } from "./ElementInteractionProvider.js";
 import { RippleContainer } from "./RippleContainer.js";
 import { useUserInteractionMode } from "./UserInteractionModeProvider.js";
+import { INTERACTION_CONFIG } from "./config.js";
 import type {
   ElementInteractionHandlers,
   ElementInteractionState,
@@ -169,10 +169,11 @@ export function useElementInteraction<E extends HTMLElement>(
     disabled = false,
   } = options;
 
+  const { mode } = INTERACTION_CONFIG;
+
   const holding = useRef(false);
   const disableClick = useRef(false);
   const userMode = useUserInteractionMode();
-  const { mode } = useElementInteractionContext();
   const isInteractionDisabled = disabled || mode === "none";
   const [state, dispatch] = useReducer(
     function reducer(

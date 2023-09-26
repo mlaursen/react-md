@@ -1,6 +1,6 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import { createRef } from "react";
-import { ElementInteractionProvider } from "../../interaction/ElementInteractionProvider.js";
+import { INTERACTION_CONFIG } from "../../interaction/config.js";
 import { fireEvent, render } from "../../test-utils/index.js";
 import { Button } from "../Button.js";
 import {
@@ -34,13 +34,10 @@ describe("Button", () => {
   });
 
   it("should wrap text children in span elements to enable higher contrast unless the higher contrast is disabled", () => {
-    const { getByRole, rerender } = render(<Button>Content</Button>, {
-      wrapper: ({ children }) => (
-        <ElementInteractionProvider disableHigherContrast>
-          {children}
-        </ElementInteractionProvider>
-      ),
-    });
+    const higherContrastMock = jest
+      .spyOn(INTERACTION_CONFIG, "higherContrast", "get")
+      .mockReturnValue(false);
+    const { getByRole, rerender } = render(<Button>Content</Button>);
 
     const button = getByRole("button", { name: "Content" });
     expect(button).toMatchSnapshot();
@@ -51,6 +48,8 @@ describe("Button", () => {
       </Button>
     );
     expect(button).toMatchSnapshot();
+
+    higherContrastMock.mockRestore();
   });
 
   it("should allow for the different themes", () => {

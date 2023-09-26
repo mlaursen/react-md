@@ -27,11 +27,7 @@ exports[`CardHeader should allow addons before and after the children 1`] = `
     aria-label="Expand"
     class="rmd-button rmd-button--icon"
     type="button"
-  >
-    <span
-      class="rmd-ripple-container"
-    />
-  </button>
+  />
 </div>
 `;
 

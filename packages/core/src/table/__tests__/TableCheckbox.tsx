@@ -3,7 +3,6 @@ import { createRef, type FC, type ReactElement, type ReactNode } from "react";
 import { render, userEvent } from "../../test-utils/index.js";
 
 import { useCheckboxGroup } from "../../form/useCheckboxGroup.js";
-import { ElementInteractionProvider } from "../../interaction/ElementInteractionProvider.js";
 import { Table } from "../Table.js";
 import { TableBody } from "../TableBody.js";
 import { TableCheckbox } from "../TableCheckbox.js";
@@ -59,13 +58,7 @@ describe("TableCheckbox", () => {
       );
     }
 
-    const { getByRole } = render(<Test />, {
-      wrapper: ({ children }) => (
-        <ElementInteractionProvider mode="none">
-          {children}
-        </ElementInteractionProvider>
-      ),
-    });
+    const { getByRole } = render(<Test />);
 
     const row = getByRole("row");
     const checkbox = getByRole("checkbox");

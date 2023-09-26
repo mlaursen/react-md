@@ -23,9 +23,6 @@ exports[`useRadioGroup should not check any radio elements by default 1`] = `
           type="radio"
           value="a"
         />
-        <span
-          class="rmd-ripple-container"
-        />
       </span>
     </label>
     <label
@@ -47,9 +44,6 @@ exports[`useRadioGroup should not check any radio elements by default 1`] = `
           name="example"
           type="radio"
           value="b"
-        />
-        <span
-          class="rmd-ripple-container"
         />
       </span>
     </label>
@@ -73,9 +67,6 @@ exports[`useRadioGroup should not check any radio elements by default 1`] = `
           type="radio"
           value="c"
         />
-        <span
-          class="rmd-ripple-container"
-        />
       </span>
     </label>
     <label
@@ -97,9 +88,6 @@ exports[`useRadioGroup should not check any radio elements by default 1`] = `
           name="example"
           type="radio"
           value="d"
-        />
-        <span
-          class="rmd-ripple-container"
         />
       </span>
     </label>
@@ -130,14 +118,6 @@ exports[`useRadioGroup should not check any radio elements by default 2`] = `
           type="radio"
           value="a"
         />
-        <span
-          class="rmd-ripple-container"
-        >
-          <span
-            class="rmd-ripple rmd-ripple--animating rmd-ripple--scaling"
-            style="left: 0px; top: 0px; height: 0px; width: 0px;"
-          />
-        </span>
       </span>
     </label>
     <label
@@ -159,9 +139,6 @@ exports[`useRadioGroup should not check any radio elements by default 2`] = `
           name="example"
           type="radio"
           value="b"
-        />
-        <span
-          class="rmd-ripple-container"
         />
       </span>
     </label>
@@ -185,9 +162,6 @@ exports[`useRadioGroup should not check any radio elements by default 2`] = `
           type="radio"
           value="c"
         />
-        <span
-          class="rmd-ripple-container"
-        />
       </span>
     </label>
     <label
@@ -209,9 +183,6 @@ exports[`useRadioGroup should not check any radio elements by default 2`] = `
           name="example"
           type="radio"
           value="d"
-        />
-        <span
-          class="rmd-ripple-container"
         />
       </span>
     </label>
@@ -242,18 +213,6 @@ exports[`useRadioGroup should not check any radio elements by default 3`] = `
           type="radio"
           value="a"
         />
-        <span
-          class="rmd-ripple-container"
-        >
-          <span
-            class="rmd-ripple rmd-ripple--animating rmd-ripple--scaling"
-            style="left: 0px; top: 0px; height: 0px; width: 0px;"
-          />
-          <span
-            class="rmd-ripple rmd-ripple--animating rmd-ripple--scaling"
-            style="left: 0px; top: 0px; height: 0px; width: 0px;"
-          />
-        </span>
       </span>
     </label>
     <label
@@ -275,9 +234,6 @@ exports[`useRadioGroup should not check any radio elements by default 3`] = `
           name="example"
           type="radio"
           value="b"
-        />
-        <span
-          class="rmd-ripple-container"
         />
       </span>
     </label>
@@ -301,9 +257,6 @@ exports[`useRadioGroup should not check any radio elements by default 3`] = `
           type="radio"
           value="c"
         />
-        <span
-          class="rmd-ripple-container"
-        />
       </span>
     </label>
     <label
@@ -325,9 +278,6 @@ exports[`useRadioGroup should not check any radio elements by default 3`] = `
           name="example"
           type="radio"
           value="d"
-        />
-        <span
-          class="rmd-ripple-container"
         />
       </span>
     </label>
@@ -358,18 +308,6 @@ exports[`useRadioGroup should not check any radio elements by default 4`] = `
           type="radio"
           value="a"
         />
-        <span
-          class="rmd-ripple-container"
-        >
-          <span
-            class="rmd-ripple rmd-ripple--animating rmd-ripple--scaling"
-            style="left: 0px; top: 0px; height: 0px; width: 0px;"
-          />
-          <span
-            class="rmd-ripple rmd-ripple--animating rmd-ripple--scaling"
-            style="left: 0px; top: 0px; height: 0px; width: 0px;"
-          />
-        </span>
       </span>
     </label>
     <label
@@ -391,9 +329,6 @@ exports[`useRadioGroup should not check any radio elements by default 4`] = `
           name="example"
           type="radio"
           value="b"
-        />
-        <span
-          class="rmd-ripple-container"
         />
       </span>
     </label>
@@ -417,14 +352,6 @@ exports[`useRadioGroup should not check any radio elements by default 4`] = `
           type="radio"
           value="c"
         />
-        <span
-          class="rmd-ripple-container"
-        >
-          <span
-            class="rmd-ripple rmd-ripple--animating rmd-ripple--scaling"
-            style="left: 0px; top: 0px; height: 0px; width: 0px;"
-          />
-        </span>
       </span>
     </label>
     <label
@@ -446,9 +373,6 @@ exports[`useRadioGroup should not check any radio elements by default 4`] = `
           name="example"
           type="radio"
           value="d"
-        />
-        <span
-          class="rmd-ripple-container"
         />
       </span>
     </label>
@@ -480,9 +404,6 @@ exports[`useRadioGroup should support creating a required radio group 1`] = `
           type="radio"
           value="a"
         />
-        <span
-          class="rmd-ripple-container"
-        />
       </span>
     </label>
     <label
@@ -505,9 +426,6 @@ exports[`useRadioGroup should support creating a required radio group 1`] = `
           required=""
           type="radio"
           value="b"
-        />
-        <span
-          class="rmd-ripple-container"
         />
       </span>
     </label>
@@ -532,9 +450,6 @@ exports[`useRadioGroup should support creating a required radio group 1`] = `
           type="radio"
           value="c"
         />
-        <span
-          class="rmd-ripple-container"
-        />
       </span>
     </label>
     <label
@@ -558,9 +473,6 @@ exports[`useRadioGroup should support creating a required radio group 1`] = `
           type="radio"
           value="d"
         />
-        <span
-          class="rmd-ripple-container"
-        />
       </span>
     </label>
     <button
@@ -569,14 +481,6 @@ exports[`useRadioGroup should support creating a required radio group 1`] = `
     >
       <span>
         Submit
-      </span>
-      <span
-        class="rmd-ripple-container"
-      >
-        <span
-          class="rmd-ripple rmd-ripple--animating rmd-ripple--scaling"
-          style="left: 0px; top: 0px; height: 0px; width: 0px;"
-        />
       </span>
     </button>
   </form>
@@ -607,14 +511,6 @@ exports[`useRadioGroup should support creating a required radio group 2`] = `
           type="radio"
           value="a"
         />
-        <span
-          class="rmd-ripple-container"
-        >
-          <span
-            class="rmd-ripple rmd-ripple--animating rmd-ripple--scaling"
-            style="left: 0px; top: 0px; height: 0px; width: 0px;"
-          />
-        </span>
       </span>
     </label>
     <label
@@ -637,9 +533,6 @@ exports[`useRadioGroup should support creating a required radio group 2`] = `
           required=""
           type="radio"
           value="b"
-        />
-        <span
-          class="rmd-ripple-container"
         />
       </span>
     </label>
@@ -664,9 +557,6 @@ exports[`useRadioGroup should support creating a required radio group 2`] = `
           type="radio"
           value="c"
         />
-        <span
-          class="rmd-ripple-container"
-        />
       </span>
     </label>
     <label
@@ -690,9 +580,6 @@ exports[`useRadioGroup should support creating a required radio group 2`] = `
           type="radio"
           value="d"
         />
-        <span
-          class="rmd-ripple-container"
-        />
       </span>
     </label>
     <button
@@ -701,14 +588,6 @@ exports[`useRadioGroup should support creating a required radio group 2`] = `
     >
       <span>
         Submit
-      </span>
-      <span
-        class="rmd-ripple-container"
-      >
-        <span
-          class="rmd-ripple rmd-ripple--animating rmd-ripple--scaling"
-          style="left: 0px; top: 0px; height: 0px; width: 0px;"
-        />
       </span>
     </button>
   </form>
@@ -750,9 +629,6 @@ exports[`useRadioGroup should support rendering within a menu 1`] = `
       >
         First
       </span>
-      <span
-        class="rmd-ripple-container"
-      />
     </li>
     <li
       aria-checked="false"
@@ -776,9 +652,6 @@ exports[`useRadioGroup should support rendering within a menu 1`] = `
       >
         Second
       </span>
-      <span
-        class="rmd-ripple-container"
-      />
     </li>
     <li
       aria-checked="true"
@@ -802,9 +675,6 @@ exports[`useRadioGroup should support rendering within a menu 1`] = `
       >
         Third
       </span>
-      <span
-        class="rmd-ripple-container"
-      />
     </li>
     <li
       aria-checked="false"
@@ -828,9 +698,6 @@ exports[`useRadioGroup should support rendering within a menu 1`] = `
       >
         Forth
       </span>
-      <span
-        class="rmd-ripple-container"
-      />
     </li>
   </ul>
 </div>

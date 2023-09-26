@@ -24,9 +24,6 @@ exports[`useCheckboxGroup should not behave as an indeterminate checkbox group a
           type="checkbox"
           value="a"
         />
-        <span
-          class="rmd-ripple-container"
-        />
       </span>
     </label>
     <label
@@ -50,9 +47,6 @@ exports[`useCheckboxGroup should not behave as an indeterminate checkbox group a
           type="checkbox"
           value="b"
         />
-        <span
-          class="rmd-ripple-container"
-        />
       </span>
     </label>
     <label
@@ -75,9 +69,6 @@ exports[`useCheckboxGroup should not behave as an indeterminate checkbox group a
           name="example"
           type="checkbox"
           value="c"
-        />
-        <span
-          class="rmd-ripple-container"
         />
       </span>
     </label>
@@ -108,9 +99,6 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 1`] = `
           name="example"
           type="checkbox"
         />
-        <span
-          class="rmd-ripple-container"
-        />
       </span>
     </label>
     <label
@@ -133,9 +121,6 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 1`] = `
           name="example"
           type="checkbox"
           value="a"
-        />
-        <span
-          class="rmd-ripple-container"
         />
       </span>
     </label>
@@ -160,9 +145,6 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 1`] = `
           type="checkbox"
           value="b"
         />
-        <span
-          class="rmd-ripple-container"
-        />
       </span>
     </label>
     <label
@@ -185,9 +167,6 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 1`] = `
           name="example"
           type="checkbox"
           value="c"
-        />
-        <span
-          class="rmd-ripple-container"
         />
       </span>
     </label>
@@ -218,14 +197,6 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 2`] = `
           name="example"
           type="checkbox"
         />
-        <span
-          class="rmd-ripple-container"
-        >
-          <span
-            class="rmd-ripple rmd-ripple--animating rmd-ripple--scaling"
-            style="left: 0px; top: 0px; height: 0px; width: 0px;"
-          />
-        </span>
       </span>
     </label>
     <label
@@ -248,9 +219,6 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 2`] = `
           name="example"
           type="checkbox"
           value="a"
-        />
-        <span
-          class="rmd-ripple-container"
         />
       </span>
     </label>
@@ -275,9 +243,6 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 2`] = `
           type="checkbox"
           value="b"
         />
-        <span
-          class="rmd-ripple-container"
-        />
       </span>
     </label>
     <label
@@ -300,9 +265,6 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 2`] = `
           name="example"
           type="checkbox"
           value="c"
-        />
-        <span
-          class="rmd-ripple-container"
         />
       </span>
     </label>
@@ -334,14 +296,6 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 3`] = `
           name="example"
           type="checkbox"
         />
-        <span
-          class="rmd-ripple-container"
-        >
-          <span
-            class="rmd-ripple rmd-ripple--animating rmd-ripple--scaling"
-            style="left: 0px; top: 0px; height: 0px; width: 0px;"
-          />
-        </span>
       </span>
     </label>
     <label
@@ -364,9 +318,6 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 3`] = `
           name="example"
           type="checkbox"
           value="a"
-        />
-        <span
-          class="rmd-ripple-container"
         />
       </span>
     </label>
@@ -391,9 +342,6 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 3`] = `
           type="checkbox"
           value="b"
         />
-        <span
-          class="rmd-ripple-container"
-        />
       </span>
     </label>
     <label
@@ -417,14 +365,6 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 3`] = `
           type="checkbox"
           value="c"
         />
-        <span
-          class="rmd-ripple-container"
-        >
-          <span
-            class="rmd-ripple rmd-ripple--animating rmd-ripple--scaling"
-            style="left: 0px; top: 0px; height: 0px; width: 0px;"
-          />
-        </span>
       </span>
     </label>
   </form>
@@ -466,9 +406,6 @@ exports[`useCheckboxGroup should support rendering a group of MenuItemCheckbox b
       >
         Indeterminate
       </span>
-      <span
-        class="rmd-ripple-container"
-      />
     </li>
     <li
       aria-checked="false"
@@ -492,9 +429,6 @@ exports[`useCheckboxGroup should support rendering a group of MenuItemCheckbox b
       >
         1
       </span>
-      <span
-        class="rmd-ripple-container"
-      />
     </li>
     <li
       aria-checked="false"
@@ -518,9 +452,6 @@ exports[`useCheckboxGroup should support rendering a group of MenuItemCheckbox b
       >
         3
       </span>
-      <span
-        class="rmd-ripple-container"
-      />
     </li>
     <li
       aria-checked="false"
@@ -544,9 +475,6 @@ exports[`useCheckboxGroup should support rendering a group of MenuItemCheckbox b
       >
         FIVE
       </span>
-      <span
-        class="rmd-ripple-container"
-      />
     </li>
   </ul>
 </div>
