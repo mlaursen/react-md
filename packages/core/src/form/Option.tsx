@@ -1,7 +1,7 @@
 "use client";
 import { cnb } from "cnbuilder";
 import { forwardRef, Fragment, type ReactNode } from "react";
-import { useIcon } from "../icon/IconProvider.js";
+import { getIcon } from "../icon/iconConfig.js";
 import { icon } from "../icon/styles.js";
 import {
   TextIconSpacing,
@@ -44,7 +44,7 @@ export interface OptionProps extends MenuItemProps {
   value: string | number;
 
   /**
-   * @defaultValue `useIcon("selected")`
+   * @defaultValue `getIcon("selected")`
    */
   selectedIcon?: ReactNode;
 
@@ -125,7 +125,7 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>(
     const id = useEnsuredId(propId, "option");
     const { inputRef, currentValue, disableSelectedIcon } = useListboxContext();
     const selected = value === currentValue;
-    const selectedIcon = useIcon(
+    const selectedIcon = getIcon(
       "selected",
       disableSelectedIcon ? null : propSelectedIcon
     );

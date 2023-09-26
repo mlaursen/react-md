@@ -7,7 +7,7 @@ import type {
   RefObject,
 } from "react";
 import { useCallback, useRef, useState } from "react";
-import { useIcon } from "../icon/IconProvider.js";
+import { getIcon } from "../icon/iconConfig.js";
 import type { UseStateInitializer, UseStateSetter } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
@@ -255,7 +255,7 @@ export interface TextFieldHookOptions<
   /**
    * An optional error icon used in the {@link getErrorIcon} option.
    *
-   * @defaultValue `useIcon("error")`
+   * @defaultValue `getIcon("error")`
    */
   errorIcon?: ReactNode;
 
@@ -611,7 +611,7 @@ export function useTextField<E extends HTMLInputElement | HTMLTextAreaElement>(
     ]
   );
 
-  const errorIcon = useIcon("error", propErrorIcon);
+  const errorIcon = getIcon("error", propErrorIcon);
   const fieldProps: ProvidedTextFieldProps<E> & {
     messageProps?: ProvidedFormMessageProps;
   } = {

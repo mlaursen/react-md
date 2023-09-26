@@ -3,7 +3,7 @@ import type { PropsWithChildren } from "react";
 import { useEffect } from "react";
 import type { AppBarProps } from "../app-bar/AppBar.js";
 import type { ButtonProps } from "../button/Button.js";
-import { useIcon } from "../icon/IconProvider.js";
+import { getIcon } from "../icon/iconConfig.js";
 import type { SheetProps } from "../sheet/Sheet.js";
 import type { CssPosition, UseStateInitializer } from "../types.js";
 import { useToggle } from "../useToggle.js";
@@ -127,7 +127,7 @@ export function useTemporaryLayout(
     appBarPosition = "fixed",
   } = options;
 
-  const menuIcon = useIcon("menu");
+  const menuIcon = getIcon("menu");
   const {
     toggled: visible,
     enable: showTemporaryNav,

@@ -1,7 +1,7 @@
 "use client";
 import { forwardRef, type ReactNode } from "react";
 import { Button, type ButtonProps } from "../button/Button.js";
-import { useIcon } from "../icon/IconProvider.js";
+import { getIcon } from "../icon/iconConfig.js";
 import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { useToggle } from "../useToggle.js";
@@ -170,7 +170,7 @@ export const Password = forwardRef<HTMLInputElement, PasswordProps>(
     }
 
     const id = useEnsuredId(propId, "password");
-    const visibilityIcon = useIcon("password", currentVisibilityIcon);
+    const visibilityIcon = getIcon("password", currentVisibilityIcon);
 
     return (
       <TextField

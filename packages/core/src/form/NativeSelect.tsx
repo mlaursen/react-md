@@ -6,7 +6,7 @@ import {
   type ReactNode,
   type SelectHTMLAttributes,
 } from "react";
-import { useIcon } from "../icon/IconProvider.js";
+import { getIcon } from "../icon/iconConfig.js";
 import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { FormMessageContainer } from "./FormMessageContainer.js";
@@ -29,7 +29,7 @@ export interface NativeSelectProps
    *
    * Set this to `null` if the browser's default icon should be used instead.
    *
-   * @defaultValue `useIcon("dropdown")`
+   * @defaultValue `getIcon("dropdown")`
    */
   icon?: ReactNode;
 
@@ -64,7 +64,7 @@ export interface NativeSelectProps
 
 /**
  * **Client Component**
- * This might be able to become a server component if I remove useIcon and useFormTheme
+ * This might be able to become a server component if I remove getIcon and useFormTheme
  *
  * This component is a wrapper for the native `<select>` field that applies the
  * same theming as `TextField` and `TextArea` components. This component might
@@ -149,7 +149,7 @@ export const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
       theme: propTheme,
       underlineDirection: propUnderlineDirection,
     });
-    const icon = useIcon("dropdown", propIcon);
+    const icon = getIcon("dropdown", propIcon);
     const underlined = theme === "underline" || theme === "filled";
 
     let rightAddon = propRightAddon;

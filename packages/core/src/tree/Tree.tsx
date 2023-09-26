@@ -101,7 +101,7 @@ export interface TreeProps<T extends TreeItemNode>
   expanderLeft?: boolean;
 
   /**
-   * @defaultValue `useIcon("expander")`
+   * @defaultValue `getIcon("expander")`
    */
   expanderIcon?: ReactNode;
 

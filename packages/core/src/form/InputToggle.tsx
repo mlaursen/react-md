@@ -37,17 +37,17 @@ export interface InputToggleIconProps {
 
   /**
    * The icon to use while unchecked. This defaults to the unchecked
-   * checkbox/radio icon from the `IconProvider`.
+   * checkbox/radio icon from the `ICON_CONFIG`.
    *
-   * @defaultValue `useIcon(props.type)`
+   * @defaultValue `getIcon(props.type)`
    */
   icon?: ReactNode;
 
   /**
    * The icon to use while unchecked. This defaults to the unchecked
-   * checkbox/radio icon from the `IconProvider`.
+   * checkbox/radio icon from the `ICON_CONFIG`.
    *
-   * @defaultValue `useIcon(``${props.type}Checked``)`
+   * @defaultValue `getIcon(``${props.type}Checked``)`
    */
   checkedIcon?: ReactNode;
 
@@ -190,7 +190,7 @@ export interface IndeterminateCheckboxProps {
    * The icon to display when the checkbox is checked and the
    * {@link indeterminate} prop is `true`.
    *
-   * @defaultValue `useIcon("checkboxIndeterminate")`
+   * @defaultValue `getIcon("checkboxIndeterminate")`
    * @remarks \@since 6.0.0
    */
   indeterminateIcon?: ReactNode;

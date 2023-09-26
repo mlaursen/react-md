@@ -7,7 +7,7 @@ import {
   type TdHTMLAttributes,
   type ThHTMLAttributes,
 } from "react";
-import { useIcon } from "../icon/IconProvider.js";
+import { getIcon } from "../icon/iconConfig.js";
 import { type PropsWithRef } from "../types.js";
 import { TableCellContent, type SortOrder } from "./TableCellContent.js";
 import {
@@ -305,7 +305,7 @@ export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
       ...remaining
     } = props;
 
-    const sortIcon = useIcon("sort", propSortIcon);
+    const sortIcon = getIcon("sort", propSortIcon);
     const isNoPadding = disablePadding ?? !!(sortIcon && sortOrder);
 
     // Note: unlike the other usages of `useTableConfig`, the `propHeader`

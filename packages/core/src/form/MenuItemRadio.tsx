@@ -4,13 +4,15 @@ import {
   MenuItemInputToggle,
   type MenuItemRadioProps,
 } from "./MenuItemInputToggle.js";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { type ICON_CONFIG } from "../icon/iconConfig.js";
 
 /**
  * **Client Component**
  *
  * This is a simple wrapper for the {@link MenuItemInputToggle} component to
  * render it as a radio and pulling the radio icon from the
- * {@link IconProvider}.
+ * {@link ICON_CONFIG}.
  *
  * If a menu or menubar contains more than one group of menuitemradio elements,
  * or if the menu contains one group and other, unrelated menu items, authors

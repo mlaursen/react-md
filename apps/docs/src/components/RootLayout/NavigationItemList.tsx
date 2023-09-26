@@ -12,7 +12,7 @@ import {
   typography,
   useCollapseTransition,
   useElementInteraction,
-  useIcon,
+  getIcon,
   useToggle,
 } from "@react-md/core";
 import { cnb } from "cnbuilder";
@@ -186,7 +186,7 @@ function NestedNavigationItem(props: NestedNavigationItemProps): ReactElement {
   const { toggled: collapsed, toggle } = useToggle(
     () => !pathname.includes(href)
   );
-  const dropdownIcon = useIcon("dropdown");
+  const dropdownIcon = getIcon("dropdown");
 
   return (
     <li>

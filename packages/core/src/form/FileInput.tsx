@@ -11,7 +11,7 @@ import {
   type ButtonClassNameOptions,
   type ButtonClassNameThemeOptions,
 } from "../button/buttonStyles.js";
-import { useIcon } from "../icon/IconProvider.js";
+import { getIcon } from "../icon/iconConfig.js";
 import { TextIconSpacing } from "../icon/TextIconSpacing.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { type PropsWithRef } from "../types.js";
@@ -45,7 +45,7 @@ export interface FileInputProps
   /**
    * An optional icon to display for the file input.
    *
-   * @defaultValue `useIcon("upload")`
+   * @defaultValue `getIcon("upload")`
    */
   icon?: ReactNode;
 
@@ -88,7 +88,7 @@ export interface FileInputProps
 
 /**
  * **Client Component**
- * This might be able to become a server component if I remove the useIcon hook
+ * This might be able to become a server component if I remove the getIcon hook
  *
  * @example
  * Simple Example
@@ -163,7 +163,7 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
         disabled,
       });
 
-    const icon = useIcon("upload", propIcon);
+    const icon = getIcon("upload", propIcon);
     let children = propChildren;
     if (typeof propChildren === "undefined") {
       children = <SrOnly>Upload</SrOnly>;

@@ -73,7 +73,7 @@ export interface ConfigurableToastProps
   actionButton?: ReactNode;
 
   /**
-   * @defaultValue `useIcon("close")`
+   * @defaultValue `getIcon("close")`
    */
   closeIcon?: ReactNode;
 

@@ -1,7 +1,6 @@
 "use client";
 import { type ReactElement, type ReactNode } from "react";
 import { SsrProvider } from "./SsrProvider.js";
-import { IconProvider, type ConfigurableIcons } from "./icon/IconProvider.js";
 import { ElementInteractionProvider } from "./interaction/ElementInteractionProvider.js";
 import { UserInteractionModeProvider } from "./interaction/UserInteractionModeProvider.js";
 import { type ElementInteractionMode } from "./interaction/types.js";
@@ -60,9 +59,6 @@ export interface ReactMDCoreConfiguration {
    * @defaultValue `false`
    */
   ssr?: boolean;
-
-  /** @see {@link ConfigurableIcons} for default values */
-  icons?: ConfigurableIcons;
 }
 
 /** @remarks \@since 6.0.0 */
@@ -80,7 +76,6 @@ export interface CoreProvidersProps extends ReactMDCoreConfiguration {
  * - {@link PortalContainerProvider}
  * - {@link AppSizeProvider}
  * - {@link ElementInteractionProvider}
- * - {@link IconProvider}
  * - {@link UserInteractionModeProvider}
  *
  * This does not include every provider within `react-md` to help decrease the
@@ -109,7 +104,6 @@ export function CoreProviders(props: CoreProvidersProps): ReactElement {
   const {
     ssr = false,
     ssrAppSize = DEFAULT_APP_SIZE,
-    icons,
     appSizeQueries = DEFAULT_APP_SIZE_QUERIES,
     elementInteractionMode = "ripple",
     disableHigherContrast = false,
@@ -125,7 +119,7 @@ export function CoreProviders(props: CoreProvidersProps): ReactElement {
               mode={elementInteractionMode}
               disableHigherContrast={disableHigherContrast}
             >
-              <IconProvider {...icons}>{children}</IconProvider>
+              {children}
             </ElementInteractionProvider>
           </AppSizeProvider>
         </UserInteractionModeProvider>

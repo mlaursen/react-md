@@ -1,4 +1,3 @@
-"use client";
 import { cnb } from "cnbuilder";
 import {
   forwardRef,
@@ -7,7 +6,7 @@ import {
   type ReactNode,
 } from "react";
 import { ButtonUnstyled } from "../button/ButtonUnstyled.js";
-import { useIcon } from "../icon/IconProvider.js";
+import { getIcon } from "../icon/iconConfig.js";
 import { IconRotator, type IconRotatorProps } from "../icon/IconRotator.js";
 import { type PropsWithRef } from "../types.js";
 import {
@@ -37,7 +36,7 @@ export interface ExpansionPanelHeaderProps
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
   /**
-   * @defaultValue `useIcon("expander")`
+   * @defaultValue `getIcon("expander")`
    */
   icon?: ReactNode;
 
@@ -85,12 +84,10 @@ export interface ExpansionPanelHeaderProps
 }
 
 /**
- * **Client Component**
- * This might be able to become a server component if I remove the useIcon hook
- *
- *
+ * **Server Component**
  * This is mostly an internal component, but can also be used to implement a
- * custom header implementation if needed.
+ * custom header implementation if needed. This might really be a client
+ * component in practice since the `onClick` prop must be provided.
  *
  * @example
  * Custom Header
@@ -157,7 +154,7 @@ export const ExpansionPanelHeader = forwardRef<
     ...remaining
   } = props;
 
-  const icon = useIcon("expander", propIcon);
+  const icon = getIcon("expander", propIcon);
 
   return (
     <Typography

@@ -3,7 +3,7 @@ import { cnb } from "cnbuilder";
 import { forwardRef } from "react";
 import { Button, type ButtonProps } from "../button/Button.js";
 import { type ButtonType } from "../button/buttonStyles.js";
-import { useIcon } from "../icon/IconProvider.js";
+import { getIcon } from "../icon/iconConfig.js";
 import { bem } from "../utils/bem.js";
 import { useCurrentToastActions } from "./useCurrentToastActions.js";
 
@@ -62,7 +62,7 @@ export const ToastCloseButton = forwardRef<
     ...remaining
   } = props;
 
-  const children = useIcon("close", propChildren);
+  const children = getIcon("close", propChildren);
   const { removeToast } = useCurrentToastActions();
 
   return (

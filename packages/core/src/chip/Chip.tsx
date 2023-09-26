@@ -8,7 +8,7 @@ import {
   type ReactNode,
 } from "react";
 import { type BackgroundColor } from "../cssUtils.js";
-import { useIcon } from "../icon/IconProvider.js";
+import { getIcon } from "../icon/iconConfig.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
 import { useMaxWidthTransition } from "../transition/useMaxWidthTransition.js";
@@ -77,7 +77,7 @@ export interface ChipProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * This will be ignored if {@link selected} is `undefined`.
    *
-   * @defaultValue `useIcon("selected")`
+   * @defaultValue `getIcon("selected")`
    */
   selectedIcon?: ReactNode;
 
@@ -270,7 +270,7 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(
 
     let leftAddon = propLeftAddon;
     let rightAddon = propRightAddon;
-    const selectedIconNode = useIcon("selected", propSelectedIcon);
+    const selectedIconNode = getIcon("selected", propSelectedIcon);
     const isTransitionable =
       !selectedThemed &&
       typeof selected === "boolean" &&

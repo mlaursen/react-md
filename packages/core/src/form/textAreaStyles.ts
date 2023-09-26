@@ -4,7 +4,7 @@ import {
   type TextFieldClassNameOptions,
   textField,
 } from "./textFieldStyles.js";
-import { type TextAreaResize } from "./useResizingTextArea.jsx";
+import { type TextAreaResize } from "./useResizingTextArea.js";
 
 declare module "react" {
   interface CSSProperties {

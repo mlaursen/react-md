@@ -8,7 +8,7 @@ import {
 } from "react";
 import { Button, type ButtonProps } from "../button/Button.js";
 import { type ButtonClassNameThemeOptions } from "../button/buttonStyles.js";
-import { useIcon } from "../icon/IconProvider.js";
+import { getIcon } from "../icon/iconConfig.js";
 import { type PropsWithRef } from "../types.js";
 import { useDir } from "../typography/WritingDirectionProvider.js";
 import { useIntersectionObserver } from "../useIntersectionObserver.js";
@@ -76,7 +76,7 @@ export const TabListScrollButton = forwardRef<
 
   const forward = type === "forward";
   const iconButton = buttonType === "icon";
-  const icon = useIcon(type);
+  const icon = getIcon(type);
   const children = propChildren || icon;
 
   const root = useRef<HTMLElement | null>(null);

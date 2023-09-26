@@ -1,6 +1,6 @@
 "use client";
 import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from "react";
-import { useIcon } from "../icon/IconProvider.js";
+import { getIcon } from "../icon/iconConfig.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
 import { useMaxWidthTransition } from "../transition/useMaxWidthTransition.js";
@@ -19,7 +19,7 @@ export interface SegmentedButtonProps
    */
   selected?: boolean;
 
-  /** @defaultValue `useIcon("selected")` */
+  /** @defaultValue `getIcon("selected")` */
   selectedIcon?: ReactNode;
 
   /**
@@ -131,7 +131,7 @@ export const SegmentedButton = forwardRef<
   } = props;
 
   const children = useHigherContrastChildren(propChildren);
-  const selectedIconNode = useIcon("selected", propSelectedIcon);
+  const selectedIconNode = getIcon("selected", propSelectedIcon);
   const selectedIcon = useMaxWidthTransition({
     element: selectedIconNode,
     transitionIn: !!selected,

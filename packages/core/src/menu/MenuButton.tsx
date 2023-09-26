@@ -1,7 +1,7 @@
 "use client";
 import { forwardRef } from "react";
 import { Button, type ButtonProps } from "../button/Button.js";
-import { useIcon } from "../icon/IconProvider.js";
+import { getIcon } from "../icon/iconConfig.js";
 import { IconRotator, type IconRotatorProps } from "../icon/IconRotator.js";
 import { type TextIconSpacingProps } from "../icon/TextIconSpacing.js";
 import { useAppSize } from "../media-queries/AppSizeProvider.js";
@@ -82,7 +82,7 @@ export const MenuButton = forwardRef<HTMLButtonElement, MenuButtonProps>(
     const isSheet =
       renderAsSheet === true || (renderAsSheet === "phone" && isPhone);
 
-    const dropdownIcon = useIcon("dropdown", propIcon);
+    const dropdownIcon = getIcon("dropdown", propIcon);
     let icon = propIcon;
     if (!disableDropdownIcon) {
       icon = (

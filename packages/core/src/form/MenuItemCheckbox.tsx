@@ -4,13 +4,15 @@ import {
   MenuItemInputToggle,
   type MenuItemCheckboxProps,
 } from "./MenuItemInputToggle.js";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { type ICON_CONFIG } from "../icon/iconConfig.js";
 
 /**
  * **Client Component**
  *
  * This is a simple wrapper for the {@link MenuItemInputToggle} component to
  * render it as a checkbox and pulling the checkbox icon from the
- * {@link IconProvider}.
+ * {@link ICON_CONFIG}.
  *
  * @example
  * Simple Example

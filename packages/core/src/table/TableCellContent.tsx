@@ -21,7 +21,7 @@ export interface TableCellContentProps
   sortOrder?: SortOrder;
 
   /**
-   * This should normally be the `useIcon("sort")`
+   * This should normally be the `getIcon("sort")`
    */
   icon?: ReactNode;
 

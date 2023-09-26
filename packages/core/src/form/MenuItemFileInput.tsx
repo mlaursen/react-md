@@ -4,7 +4,7 @@ import {
   type ChangeEventHandler,
   type InputHTMLAttributes,
 } from "react";
-import { useIcon } from "../icon/IconProvider.js";
+import { getIcon } from "../icon/iconConfig.js";
 import { MenuItem, type MenuItemProps } from "../menu/MenuItem.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 
@@ -78,7 +78,7 @@ export const MenuItemFileInput = forwardRef<
   } = props;
 
   const id = useEnsuredId(propId, "menu-item");
-  const leftAddon = useIcon("upload", propLeftAddon);
+  const leftAddon = getIcon("upload", propLeftAddon);
 
   return (
     <MenuItem

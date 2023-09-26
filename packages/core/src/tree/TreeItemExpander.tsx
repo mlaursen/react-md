@@ -7,7 +7,7 @@ import {
   type ReactElement,
   type ReactNode,
 } from "react";
-import { useIcon } from "../icon/IconProvider.js";
+import { getIcon } from "../icon/iconConfig.js";
 import { IconRotator } from "../icon/IconRotator.js";
 import { useTreeContext } from "./TreeProvider.js";
 
@@ -50,7 +50,7 @@ export function TreeItemExpander(props: TreeItemExpanderProps): ReactElement {
     toggleTreeItemExpansion,
   } = useTreeContext();
 
-  const icon = useIcon("dropdown", expanderIcon);
+  const icon = getIcon("dropdown", expanderIcon);
   if (isLeafNode || expanderLeft !== isLeft) {
     if (isValidElement<{ className?: string }>(addon)) {
       return cloneElement(addon, { className });

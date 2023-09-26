@@ -1,7 +1,7 @@
 "use client";
 import { cnb } from "cnbuilder";
 import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
-import { useIcon } from "../icon/IconProvider.js";
+import { getIcon } from "../icon/iconConfig.js";
 import { inputToggle, type InputToggleSize } from "./inputToggleStyles.js";
 
 /**
@@ -51,7 +51,7 @@ export interface InputToggleIconProps extends HTMLAttributes<HTMLSpanElement> {
 
 /**
  * **Client Component**
- * This might be able to become a server component if I remove the useIcon hook
+ * This might be able to become a server component if I remove the getIcon hook
  *
  * @remarks
  * \@since 2.8.0
@@ -78,9 +78,9 @@ export const InputToggleIcon = forwardRef<
     indeterminateIcon: propIndeterminateIcon,
     ...remaining
   } = props;
-  const uncheckedIcon = useIcon(type, propIcon);
-  const checkedIcon = useIcon(`${type}Checked`, propCheckedIcon);
-  const indeterminateIcon = useIcon(
+  const uncheckedIcon = getIcon(type, propIcon);
+  const checkedIcon = getIcon(`${type}Checked`, propCheckedIcon);
+  const indeterminateIcon = getIcon(
     "checkboxIndeterminate",
     propIndeterminateIcon
   );

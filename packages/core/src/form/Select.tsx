@@ -10,7 +10,7 @@ import {
   type ReactNode,
   type Ref,
 } from "react";
-import { useIcon } from "../icon/IconProvider.js";
+import { getIcon } from "../icon/iconConfig.js";
 import { IconRotator } from "../icon/IconRotator.js";
 import { Menu, type MenuProps } from "../menu/Menu.js";
 import { findMatchIndex } from "../movement/findMatchIndex.js";
@@ -117,7 +117,7 @@ export interface SelectProps<Value extends string>
   /**
    * Set this to a custom dropdown icon or `null` to not render a dropdown icon.
    *
-   * @defaultValue `useIcon("dropdown")`
+   * @defaultValue `getIcon("dropdown")`
    */
   icon?: ReactNode;
 
@@ -206,7 +206,7 @@ export function Select<Value extends string>(
 
   const id = useEnsuredId(propId, "select");
   const containerId = useEnsuredId(propContainerProps.id, "select-container");
-  const icon = useIcon("dropdown", propIcon);
+  const icon = getIcon("dropdown", propIcon);
   const { theme } = useFormTheme(props);
 
   const { toggled: visible, enable: show, disable: hide } = useToggle();

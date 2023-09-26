@@ -1,4 +1,4 @@
-import { type ReactMDCoreConfiguration } from "@react-md/core";
+import { type ReactMDCoreConfiguration, configureIcons } from "@react-md/core";
 import ArrowDropDownIcon from "@react-md/material-icons/ArrowDropDownIcon";
 import ArrowUpwardIcon from "@react-md/material-icons/ArrowUpwardIcon";
 import CheckBoxIcon from "@react-md/material-icons/CheckBoxIcon";
@@ -17,26 +17,27 @@ import RadioButtonCheckedIcon from "@react-md/material-icons/RadioButtonCheckedI
 import RadioButtonUncheckedIcon from "@react-md/material-icons/RadioButtonUncheckedIcon";
 import RemoveRedEyeIcon from "@react-md/material-icons/RemoveRedEyeIcon";
 
+configureIcons({
+  back: <KeyboardArrowLeftIcon />,
+  close: <CloseIcon />,
+  checkbox: <CheckBoxOutlineBlankIcon />,
+  checkboxChecked: <CheckBoxIcon />,
+  checkboxIndeterminate: <IndeterminateCheckBoxIcon />,
+  dropdown: <ArrowDropDownIcon />,
+  error: <ErrorOutlineIcon />,
+  expander: <KeyboardArrowDownIcon />,
+  forward: <KeyboardArrowRightIcon />,
+  menu: <MenuIcon />,
+  notification: <NotificationsIcon />,
+  password: <RemoveRedEyeIcon />,
+  radio: <RadioButtonUncheckedIcon />,
+  radioChecked: <RadioButtonCheckedIcon />,
+  selected: <CheckIcon />,
+  sort: <ArrowUpwardIcon />,
+  upload: <FileUploadIcon />,
+});
+
 export const rmdConfig: ReactMDCoreConfiguration = {
-  icons: {
-    back: <KeyboardArrowLeftIcon />,
-    close: <CloseIcon />,
-    checkbox: <CheckBoxOutlineBlankIcon />,
-    checkboxChecked: <CheckBoxIcon />,
-    checkboxIndeterminate: <IndeterminateCheckBoxIcon />,
-    dropdown: <ArrowDropDownIcon />,
-    error: <ErrorOutlineIcon />,
-    expander: <KeyboardArrowDownIcon />,
-    forward: <KeyboardArrowRightIcon />,
-    menu: <MenuIcon />,
-    notification: <NotificationsIcon />,
-    password: <RemoveRedEyeIcon />,
-    radio: <RadioButtonUncheckedIcon />,
-    radioChecked: <RadioButtonCheckedIcon />,
-    selected: <CheckIcon />,
-    sort: <ArrowUpwardIcon />,
-    upload: <FileUploadIcon />,
-  },
   ssr: true,
   colorSchemeMode: "system",
   colorSchemeModeKey: "colorScheme",

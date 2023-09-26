@@ -1,8 +1,8 @@
 "use client";
 import { forwardRef, useEffect } from "react";
 import { useHoverMode } from "../hoverMode/useHoverMode.js";
-import { useIcon } from "../icon/IconProvider.js";
 import { IconRotator } from "../icon/IconRotator.js";
+import { getIcon } from "../icon/iconConfig.js";
 import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
 import { useAppSize } from "../media-queries/AppSizeProvider.js";
 import { useEnsuredId } from "../useEnsuredId.js";
@@ -82,7 +82,7 @@ export const MenuItemButton = forwardRef<HTMLLIElement, MenuItemButtonProps>(
       setVisible(id === activeId);
     }, [activeId, defaultFocusIndex, id, menubar, setVisible]);
 
-    const dropdownIcon = useIcon(root ? "dropdown" : "forward");
+    const dropdownIcon = getIcon(root ? "dropdown" : "forward");
     let rightAddon = propRightAddon;
     if (!disableDropdownIcon) {
       rightAddon = (
