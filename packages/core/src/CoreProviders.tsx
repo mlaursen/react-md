@@ -28,6 +28,15 @@ import { type WritingDirectionProvider } from "./typography/WritingDirectionProv
 /** @remarks \@since 6.0.0 */
 export interface ReactMDCoreConfiguration {
   /**
+   * Set this to `true` if you are using SSR. This will update some hook
+   * behavior so that you will not have mismatched initial state between server
+   * and client and correctly rehydrate after initial render.
+   *
+   * @defaultValue `false`
+   */
+  ssr?: boolean;
+
+  /**
    * @defaultValue `DEFAULT_APP_SIZE`
    * @see {@link DEFAULT_APP_SIZE}
    */
@@ -41,11 +50,6 @@ export interface ReactMDCoreConfiguration {
 
   /** @see {@link PortalContainerProvider} */
   portalContainer?: PortalContainer;
-
-  /**
-   * @defaultValue `false`
-   */
-  ssr?: boolean;
 }
 
 /** @remarks \@since 6.0.0 */

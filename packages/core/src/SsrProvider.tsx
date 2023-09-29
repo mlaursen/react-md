@@ -13,7 +13,6 @@ const { Provider } = context;
 context.displayName = "Ssr";
 
 /**
- * @internal
  * @remarks \@since 6.0.0
  */
 export function useSsr(): boolean {
@@ -21,7 +20,6 @@ export function useSsr(): boolean {
 }
 
 /**
- * @internal
  * @remarks \@since 6.0.0
  */
 export interface SsrProviderProps {
@@ -32,7 +30,6 @@ export interface SsrProviderProps {
 /**
  * **Client Component**
  *
- * @internal
  * @remarks \@since 6.0.0
  */
 export function SsrProvider(props: SsrProviderProps): ReactElement {

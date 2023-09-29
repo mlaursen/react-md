@@ -194,10 +194,42 @@ $_layer-order: (
 
   .rmd-light-surface {
     @include interaction.use-light-surface;
+    @include theme.theme-set-var(
+      text-primary-color,
+      theme.$light-theme-text-primary-color
+    );
+    @include theme.theme-set-var(
+      text-secondary-color,
+      theme.$light-theme-text-secondary-color
+    );
+    @include theme.theme-set-var(
+      text-hint-color,
+      theme.$light-theme-text-hint-color
+    );
+    @include theme.theme-set-var(
+      text-disabled-color,
+      theme.$dark-theme-text-disabled-color
+    );
   }
 
   .rmd-dark-surface {
     @include interaction.use-dark-surface;
+    @include theme.theme-set-var(
+      text-primary-color,
+      theme.$dark-theme-text-primary-color
+    );
+    @include theme.theme-set-var(
+      text-secondary-color,
+      theme.$dark-theme-text-secondary-color
+    );
+    @include theme.theme-set-var(
+      text-hint-color,
+      theme.$dark-theme-text-hint-color
+    );
+    @include theme.theme-set-var(
+      text-disabled-color,
+      theme.$dark-theme-text-disabled-color
+    );
   }
 
   .rmd-no-margin {

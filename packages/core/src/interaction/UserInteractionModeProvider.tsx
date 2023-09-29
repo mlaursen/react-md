@@ -50,7 +50,8 @@ export interface UserInteractionModeProviderProps {
  * **Client Component**
  *
  * This component is used to determine how a user is interacting with your app
- * and applying the following class names to the `document.body`:
+ * to update component functionality and applying the following class names to
+ * the `document.body`:
  *
  * - `"mouse-mode"`
  * - `"keyboard-mode"`
