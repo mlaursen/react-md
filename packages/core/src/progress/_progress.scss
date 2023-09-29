@@ -1,6 +1,7 @@
 @use "sass:color";
 @use "sass:map";
 @use "../utils";
+@use "../theme/colors";
 @use "../theme/theme";
 @use "../transition/transition";
 
@@ -15,19 +16,22 @@ $disable-determinate: false !default;
 $disable-indeterminate: false !default;
 
 $color: theme.theme-get-var(primary-color) !default;
-$background-color: theme.get-swatch(
-  theme.$primary-color,
-  300,
-  false,
-  rgba(theme.$primary-color, 0.4)
-) !default;
+$background-color: color-mix(in srgb, currentcolor 66%, colors.$white) !default;
+// $background-color: theme.get-swatch(
+//   theme.$primary-color,
+//   300,
+//   false,
+//   rgba(theme.$primary-color, 0.4)
+// ) !default;
 
 $circular-size: 3rem !default;
-$circular-small-size: 1.5rem !default;
+$circular-dense-size: 1.5rem !default;
 $circular-stroke-width: 6 !default;
 $circular-dasharray: 187 !default;
-$circular-transition-duration: 0.1s !default;
+$circular-transition-duration: transition.$enter-duration !default;
 $circular-indeterminate-transition-duration: 2.4s !default;
+$circular-rotate-only-transition-duration: 1.2s !default;
+$circular-rotate-only-dashoffset: $circular-dasharray * 0.4 !default;
 $circular-start-offset: $circular-dasharray !default;
 $circular-end-offset: $circular-dasharray * 0.25 !default;
 $circular-rotate-styles: (
@@ -276,9 +280,9 @@ $var-lookup: (
       }
     }
 
-    @if $circular-small-size {
-      &--small {
-        @include set-var(circular-size, $circular-small-size);
+    @if $circular-dense-size {
+      &--dense {
+        @include set-var(circular-size, $circular-dense-size);
       }
     }
 
@@ -287,10 +291,8 @@ $var-lookup: (
       width: inherit;
 
       @if not $disable-determinate {
-        &--animate {
-          transition: transform
-            $circular-transition-duration
-            transition.$linear-timing-function;
+        &--determinate {
+          transform: rotate(-90deg);
         }
       }
 
@@ -298,6 +300,13 @@ $var-lookup: (
         &--indeterminate {
           animation: rmd-progress-rotate
             $circular-indeterminate-transition-duration
+            linear
+            infinite;
+        }
+
+        &--rotate-only {
+          animation: rmd-progress-rotate-only
+            $circular-rotate-only-transition-duration
             linear
             infinite;
         }
@@ -314,7 +323,7 @@ $var-lookup: (
 
       @if not $disable-determinate {
         &--animate {
-          transition: stroke-dasharray
+          transition: stroke-dashoffset
             $circular-transition-duration
             transition.$linear-timing-function;
         }
@@ -327,16 +336,32 @@ $var-lookup: (
             ease-in-out
             infinite;
         }
+
+        &--rotate-only {
+          animation: none;
+          stroke-dashoffset: $circular-rotate-only-dashoffset;
+        }
       }
     }
   }
 
-  @keyframes rmd-progress-rotate {
-    @include _animation($circular-rotate-styles);
+  @keyframes rmd-progress-rotate-only {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
   }
 
-  @keyframes rmd-circular-progress-size {
-    @include _animation($circular-dash-styles);
+  @if not $disable-indeterminate {
+    @keyframes rmd-progress-rotate {
+      @include _animation($circular-rotate-styles);
+    }
+
+    @keyframes rmd-circular-progress-size {
+      @include _animation($circular-dash-styles);
+    }
   }
 }
 

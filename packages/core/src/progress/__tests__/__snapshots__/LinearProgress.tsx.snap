@@ -1,179 +1,301 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LinearProgress should render correctly 1`] = `
-<div>
+exports[`LinearProgress should allow the transition to be disabled for determinate progress bars 1`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  aria-valuenow="30"
+  class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--determinate rmd-primary-color"
+  id="linear-progress-:r5:"
+  role="progressbar"
+>
   <span
-    aria-valuemax="100"
-    aria-valuemin="0"
-    class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--indeterminate"
-    id="linear-progress-:r0:"
-    role="progressbar"
-  >
-    <span
-      class="rmd-linear-progress__bar rmd-linear-progress__bar--horizontal rmd-linear-progress__bar--indeterminate"
-    />
-  </span>
-</div>
+    class="rmd-linear-progress__bar rmd-linear-progress__bar--horizontal rmd-linear-progress__bar--determinate"
+    style="width: 30%;"
+  />
+</span>
 `;
 
-exports[`LinearProgress should render correctly 2`] = `
-<div>
+exports[`LinearProgress should allow the transition to be disabled for determinate progress bars 2`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--indeterminate rmd-primary-color"
+  id="linear-progress-:r5:"
+  role="progressbar"
+>
   <span
-    aria-valuemax="100"
-    aria-valuemin="0"
-    class="rmd-linear-progress rmd-linear-progress--vertical rmd-linear-progress--indeterminate"
-    id="linear-progress-:r0:"
-    role="progressbar"
-    style="height: 240px;"
-  >
-    <span
-      class="rmd-linear-progress__bar rmd-linear-progress__bar--vertical rmd-linear-progress__bar--indeterminate rmd-linear-progress__bar--indeterminate-vertical"
-    />
-  </span>
-</div>
-`;
-
-exports[`LinearProgress should render correctly 3`] = `
-<div>
-  <span
-    aria-valuemax="100"
-    aria-valuemin="0"
-    class="rmd-linear-progress rmd-linear-progress--vertical rmd-linear-progress--indeterminate"
-    id="linear-progress-:r0:"
-    role="progressbar"
+    class="rmd-linear-progress__bar rmd-linear-progress__bar--horizontal rmd-linear-progress__bar--indeterminate"
     style=""
-  >
-    <span
-      class="rmd-linear-progress__bar rmd-linear-progress__bar--vertical rmd-linear-progress__bar--indeterminate rmd-linear-progress__bar--indeterminate-vertical"
-    />
-  </span>
-</div>
+  />
+</span>
 `;
 
-exports[`LinearProgress should render correctly 4`] = `
-<div>
+exports[`LinearProgress should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--indeterminate rmd-primary-color"
+  id="linear-progress-:r0:"
+  role="progressbar"
+>
   <span
-    aria-valuemax="100"
-    aria-valuemin="0"
-    class="rmd-linear-progress rmd-linear-progress--vertical rmd-linear-progress--indeterminate"
-    id="linear-progress-:r0:"
-    role="progressbar"
-    style="height: 300px;"
-  >
-    <span
-      class="rmd-linear-progress__bar rmd-linear-progress__bar--vertical rmd-linear-progress__bar--indeterminate rmd-linear-progress__bar--indeterminate-vertical"
-    />
-  </span>
-</div>
+    class="rmd-linear-progress__bar rmd-linear-progress__bar--horizontal rmd-linear-progress__bar--indeterminate"
+  />
+</span>
 `;
 
-exports[`LinearProgress should render correctly 5`] = `
-<div>
+exports[`LinearProgress should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--indeterminate rmd-primary-color custom-class-name"
+  id="linear-progress-:r0:"
+  role="progressbar"
+  style="color: white;"
+>
   <span
-    aria-valuemax="100"
-    aria-valuemin="0"
-    class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--indeterminate"
-    id="linear-progress-:r0:"
-    role="progressbar"
-    style=""
-  >
-    <span
-      class="rmd-linear-progress__bar rmd-linear-progress__bar--horizontal rmd-linear-progress__bar--horizontal-reverse rmd-linear-progress__bar--indeterminate rmd-linear-progress__bar--indeterminate-reverse"
-    />
-  </span>
-</div>
+    class="rmd-linear-progress__bar rmd-linear-progress__bar--horizontal rmd-linear-progress__bar--indeterminate"
+  />
+</span>
 `;
 
-exports[`LinearProgress should render correctly 6`] = `
-<div>
+exports[`LinearProgress should apply the correct styling, HTMLAttributes, and allow a ref 3`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--indeterminate rmd-primary-color"
+  id="linear-progress-:r0:"
+  role="progressbar"
+  style=""
+>
   <span
-    aria-valuemax="100"
-    aria-valuemin="0"
-    aria-valuenow="30"
-    class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--determinate"
-    id="linear-progress-:r0:"
-    role="progressbar"
-    style=""
-  >
-    <span
-      class="rmd-linear-progress__bar rmd-linear-progress__bar--horizontal rmd-linear-progress__bar--animate rmd-linear-progress__bar--determinate"
-      style="width: 30%;"
-    />
-  </span>
-</div>
+    class="rmd-linear-progress__bar rmd-linear-progress__bar--horizontal rmd-linear-progress__bar--indeterminate custom-bar-class-name"
+    style="color: orange;"
+  />
+</span>
 `;
 
-exports[`LinearProgress should render correctly 7`] = `
-<div>
+exports[`LinearProgress should be able to render as any of the theme colors 1`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--indeterminate rmd-primary-color"
+  id="linear-progress-:r6:"
+  role="progressbar"
+>
   <span
-    aria-valuemax="100"
-    aria-valuemin="0"
-    aria-valuenow="30"
-    class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--determinate"
-    id="linear-progress-:r0:"
-    role="progressbar"
-    style=""
-  >
-    <span
-      class="rmd-linear-progress__bar rmd-linear-progress__bar--horizontal rmd-linear-progress__bar--horizontal-reverse rmd-linear-progress__bar--animate rmd-linear-progress__bar--determinate rmd-linear-progress__bar--determinate-reverse"
-      style="width: 30%;"
-    />
-  </span>
-</div>
+    class="rmd-linear-progress__bar rmd-linear-progress__bar--horizontal rmd-linear-progress__bar--indeterminate"
+  />
+</span>
 `;
 
-exports[`LinearProgress should render correctly 8`] = `
-<div>
+exports[`LinearProgress should be able to render as any of the theme colors 2`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--indeterminate rmd-secondary-color"
+  id="linear-progress-:r6:"
+  role="progressbar"
+>
   <span
-    aria-valuemax="100"
-    aria-valuemin="0"
-    aria-valuenow="30"
-    class="rmd-linear-progress rmd-linear-progress--vertical rmd-linear-progress--determinate"
-    id="linear-progress-:r0:"
-    role="progressbar"
-    style="height: 240px;"
-  >
-    <span
-      class="rmd-linear-progress__bar rmd-linear-progress__bar--vertical rmd-linear-progress__bar--animate rmd-linear-progress__bar--determinate"
-      style="height: 30%;"
-    />
-  </span>
-</div>
+    class="rmd-linear-progress__bar rmd-linear-progress__bar--horizontal rmd-linear-progress__bar--indeterminate"
+  />
+</span>
 `;
 
-exports[`LinearProgress should render correctly 9`] = `
-<div>
+exports[`LinearProgress should be able to render as any of the theme colors 3`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--indeterminate rmd-warning-color"
+  id="linear-progress-:r6:"
+  role="progressbar"
+>
   <span
-    aria-valuemax="100"
-    aria-valuemin="0"
-    aria-valuenow="30"
-    class="rmd-linear-progress rmd-linear-progress--vertical rmd-linear-progress--determinate"
-    id="linear-progress-:r0:"
-    role="progressbar"
-    style="height: 240px;"
-  >
-    <span
-      class="rmd-linear-progress__bar rmd-linear-progress__bar--vertical rmd-linear-progress__bar--vertical-reverse rmd-linear-progress__bar--animate rmd-linear-progress__bar--determinate rmd-linear-progress__bar--determinate-vertical-reverse"
-      style="height: 30%;"
-    />
-  </span>
-</div>
+    class="rmd-linear-progress__bar rmd-linear-progress__bar--horizontal rmd-linear-progress__bar--indeterminate"
+  />
+</span>
 `;
 
-exports[`LinearProgress should render correctly 10`] = `
-<div>
+exports[`LinearProgress should be able to render as any of the theme colors 4`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--indeterminate rmd-success-color"
+  id="linear-progress-:r6:"
+  role="progressbar"
+>
   <span
-    aria-valuemax="100"
-    aria-valuemin="0"
-    class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--indeterminate"
-    id="custom-id"
-    role="progressbar"
-    style=""
-  >
-    <span
-      class="rmd-linear-progress__bar rmd-linear-progress__bar--horizontal rmd-linear-progress__bar--indeterminate"
-      style=""
-    />
-  </span>
-</div>
+    class="rmd-linear-progress__bar rmd-linear-progress__bar--horizontal rmd-linear-progress__bar--indeterminate"
+  />
+</span>
+`;
+
+exports[`LinearProgress should be able to render as any of the theme colors 5`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--indeterminate rmd-error-color"
+  id="linear-progress-:r6:"
+  role="progressbar"
+>
+  <span
+    class="rmd-linear-progress__bar rmd-linear-progress__bar--horizontal rmd-linear-progress__bar--indeterminate"
+  />
+</span>
+`;
+
+exports[`LinearProgress should be able to render as any of the theme colors 6`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--indeterminate"
+  id="linear-progress-:r6:"
+  role="progressbar"
+>
+  <span
+    class="rmd-linear-progress__bar rmd-linear-progress__bar--horizontal rmd-linear-progress__bar--indeterminate"
+  />
+</span>
+`;
+
+exports[`LinearProgress should be able to render vertically 1`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  class="rmd-linear-progress rmd-linear-progress--vertical rmd-linear-progress--indeterminate rmd-primary-color"
+  id="linear-progress-:r2:"
+  role="progressbar"
+  style="height: 240px;"
+>
+  <span
+    class="rmd-linear-progress__bar rmd-linear-progress__bar--vertical rmd-linear-progress__bar--indeterminate rmd-linear-progress__bar--indeterminate-vertical"
+  />
+</span>
+`;
+
+exports[`LinearProgress should be able to render vertically 2`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  class="rmd-linear-progress rmd-linear-progress--vertical rmd-linear-progress--indeterminate rmd-primary-color"
+  id="linear-progress-:r2:"
+  role="progressbar"
+  style=""
+>
+  <span
+    class="rmd-linear-progress__bar rmd-linear-progress__bar--vertical rmd-linear-progress__bar--indeterminate rmd-linear-progress__bar--indeterminate-vertical"
+  />
+</span>
+`;
+
+exports[`LinearProgress should be able to render vertically 3`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  class="rmd-linear-progress rmd-linear-progress--vertical rmd-linear-progress--indeterminate rmd-primary-color"
+  id="linear-progress-:r2:"
+  role="progressbar"
+  style="height: 500px;"
+>
+  <span
+    class="rmd-linear-progress__bar rmd-linear-progress__bar--vertical rmd-linear-progress__bar--indeterminate rmd-linear-progress__bar--indeterminate-vertical"
+  />
+</span>
+`;
+
+exports[`LinearProgress should be able to reverse the animation by enabling the reverse prop 1`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--indeterminate rmd-primary-color"
+  id="linear-progress-:r3:"
+  role="progressbar"
+>
+  <span
+    class="rmd-linear-progress__bar rmd-linear-progress__bar--horizontal rmd-linear-progress__bar--horizontal-reverse rmd-linear-progress__bar--indeterminate rmd-linear-progress__bar--indeterminate-reverse"
+  />
+</span>
+`;
+
+exports[`LinearProgress should be able to reverse the animation by enabling the reverse prop 2`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  class="rmd-linear-progress rmd-linear-progress--vertical rmd-linear-progress--indeterminate rmd-primary-color"
+  id="linear-progress-:r3:"
+  role="progressbar"
+  style="height: 240px;"
+>
+  <span
+    class="rmd-linear-progress__bar rmd-linear-progress__bar--vertical rmd-linear-progress__bar--vertical-reverse rmd-linear-progress__bar--indeterminate rmd-linear-progress__bar--indeterminate-vertical rmd-linear-progress__bar--indeterminate-vertical-reverse"
+  />
+</span>
+`;
+
+exports[`LinearProgress should be able to reverse the animation by enabling the reverse prop 3`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  aria-valuenow="50"
+  class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--determinate rmd-primary-color"
+  id="linear-progress-:r3:"
+  role="progressbar"
+  style=""
+>
+  <span
+    class="rmd-linear-progress__bar rmd-linear-progress__bar--horizontal rmd-linear-progress__bar--horizontal-reverse rmd-linear-progress__bar--animate rmd-linear-progress__bar--determinate rmd-linear-progress__bar--determinate-reverse"
+    style="width: 50%;"
+  />
+</span>
+`;
+
+exports[`LinearProgress should be able to reverse the animation by enabling the reverse prop 4`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  aria-valuenow="50"
+  class="rmd-linear-progress rmd-linear-progress--vertical rmd-linear-progress--determinate rmd-primary-color"
+  id="linear-progress-:r3:"
+  role="progressbar"
+  style="height: 240px;"
+>
+  <span
+    class="rmd-linear-progress__bar rmd-linear-progress__bar--vertical rmd-linear-progress__bar--vertical-reverse rmd-linear-progress__bar--animate rmd-linear-progress__bar--determinate rmd-linear-progress__bar--determinate-vertical-reverse"
+    style="height: 50%;"
+  />
+</span>
+`;
+
+exports[`LinearProgress should render as a determinate progress bar when the value is provided 1`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  aria-valuenow="30"
+  class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--determinate rmd-primary-color"
+  id="linear-progress-:r4:"
+  role="progressbar"
+>
+  <span
+    class="rmd-linear-progress__bar rmd-linear-progress__bar--horizontal rmd-linear-progress__bar--animate rmd-linear-progress__bar--determinate"
+    style="width: 30%;"
+  />
+</span>
+`;
+
+exports[`LinearProgress should render as a determinate progress bar when the value is provided 2`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  aria-valuenow="50"
+  class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--determinate rmd-primary-color"
+  id="linear-progress-:r4:"
+  role="progressbar"
+>
+  <span
+    class="rmd-linear-progress__bar rmd-linear-progress__bar--horizontal rmd-linear-progress__bar--animate rmd-linear-progress__bar--determinate"
+    style="width: 50%;"
+  />
+</span>
 `;

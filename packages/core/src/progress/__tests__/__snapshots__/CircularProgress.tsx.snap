@@ -1,17 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CircularProgress should merge the transform style if it exists 1`] = `
+exports[`CircularProgress should allow the animation to be simplified when the disableShrink prop is enabled 1`] = `
 <span
   aria-valuemax="100"
   aria-valuemin="0"
-  aria-valuenow="20"
-  class="rmd-circular-progress rmd-circular-progress--centered"
-  id="circular-progress-:r1:"
+  class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
+  id="circular-progress-:r6:"
   role="progressbar"
 >
   <svg
-    class="rmd-circular-progress__svg rmd-circular-progress__svg--animate rmd-circular-progress__svg--determinate"
-    style="transform: rotate(126deg);"
+    class="rmd-circular-progress__svg rmd-circular-progress__svg--rotate-only"
+    viewBox="0 0 66 66"
+  >
+    <circle
+      class="rmd-circular-progress__circle rmd-circular-progress__circle--rotate-only"
+      cx="33"
+      cy="33"
+      r="30"
+    />
+  </svg>
+</span>
+`;
+
+exports[`CircularProgress should allow the animation to be simplified when the disableShrink prop is enabled 2`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  aria-valuenow="100"
+  class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
+  id="circular-progress-:r6:"
+  role="progressbar"
+>
+  <svg
+    class="rmd-circular-progress__svg rmd-circular-progress__svg--determinate"
     viewBox="0 0 66 66"
   >
     <circle
@@ -19,42 +40,64 @@ exports[`CircularProgress should merge the transform style if it exists 1`] = `
       cx="33"
       cy="33"
       r="30"
-      style="stroke-dashoffset: 149.6;"
+      style="stroke-dashoffset: 0;"
     />
   </svg>
 </span>
 `;
 
-exports[`CircularProgress should merge the transform style if it exists 2`] = `
+exports[`CircularProgress should allow the transition to be disabled for determinate progress bars 1`] = `
 <span
   aria-valuemax="100"
   aria-valuemin="0"
-  aria-valuenow="20"
-  class="rmd-circular-progress rmd-circular-progress--centered"
-  id="circular-progress-:r1:"
+  aria-valuenow="30"
+  class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
+  id="circular-progress-:r5:"
   role="progressbar"
 >
   <svg
-    class="rmd-circular-progress__svg rmd-circular-progress__svg--animate rmd-circular-progress__svg--determinate"
-    style="transform: translateX(20px);"
+    class="rmd-circular-progress__svg rmd-circular-progress__svg--determinate"
     viewBox="0 0 66 66"
   >
     <circle
-      class="rmd-circular-progress__circle rmd-circular-progress__circle--animate rmd-circular-progress__circle--determinate"
+      class="rmd-circular-progress__circle rmd-circular-progress__circle--determinate"
       cx="33"
       cy="33"
       r="30"
-      style="stroke-dashoffset: 149.6;"
+      style="stroke-dashoffset: 130.9;"
     />
   </svg>
 </span>
 `;
 
-exports[`CircularProgress should render correctly 1`] = `
+exports[`CircularProgress should allow the transition to be disabled for determinate progress bars 2`] = `
 <span
   aria-valuemax="100"
   aria-valuemin="0"
-  class="rmd-circular-progress rmd-circular-progress--centered"
+  class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
+  id="circular-progress-:r5:"
+  role="progressbar"
+>
+  <svg
+    class="rmd-circular-progress__svg rmd-circular-progress__svg--indeterminate"
+    viewBox="0 0 66 66"
+  >
+    <circle
+      class="rmd-circular-progress__circle rmd-circular-progress__circle--indeterminate"
+      cx="33"
+      cy="33"
+      r="30"
+      style=""
+    />
+  </svg>
+</span>
+`;
+
+exports[`CircularProgress should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
   id="circular-progress-:r0:"
   role="progressbar"
 >
@@ -72,12 +115,238 @@ exports[`CircularProgress should render correctly 1`] = `
 </span>
 `;
 
-exports[`CircularProgress should render correctly 2`] = `
+exports[`CircularProgress should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color custom-class-name"
+  id="circular-progress-:r0:"
+  role="progressbar"
+  style="color: white;"
+>
+  <svg
+    class="rmd-circular-progress__svg rmd-circular-progress__svg--indeterminate"
+    viewBox="0 0 66 66"
+  >
+    <circle
+      class="rmd-circular-progress__circle rmd-circular-progress__circle--indeterminate"
+      cx="33"
+      cy="33"
+      r="30"
+    />
+  </svg>
+</span>
+`;
+
+exports[`CircularProgress should apply the correct styling, HTMLAttributes, and allow a ref 3`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
+  id="circular-progress-:r0:"
+  role="progressbar"
+  style=""
+>
+  <svg
+    class="rmd-circular-progress__svg rmd-circular-progress__svg--indeterminate custom-svg-class-name"
+    style="color: red;"
+    viewBox="0 0 66 66"
+  >
+    <circle
+      class="rmd-circular-progress__circle rmd-circular-progress__circle--indeterminate"
+      cx="33"
+      cy="33"
+      r="30"
+    />
+  </svg>
+</span>
+`;
+
+exports[`CircularProgress should apply the correct styling, HTMLAttributes, and allow a ref 4`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
+  id="circular-progress-:r0:"
+  role="progressbar"
+  style=""
+>
+  <svg
+    class="rmd-circular-progress__svg rmd-circular-progress__svg--indeterminate"
+    style=""
+    viewBox="0 0 66 66"
+  >
+    <circle
+      class="rmd-circular-progress__circle rmd-circular-progress__circle--indeterminate custom-circle-class-name"
+      cx="33"
+      cy="33"
+      r="30"
+      style="color: orange;"
+    />
+  </svg>
+</span>
+`;
+
+exports[`CircularProgress should be able to render as a dense size 1`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  class="rmd-circular-progress rmd-circular-progress--dense rmd-circular-progress--centered rmd-primary-color"
+  id="circular-progress-:r3:"
+  role="progressbar"
+>
+  <svg
+    class="rmd-circular-progress__svg rmd-circular-progress__svg--indeterminate"
+    viewBox="0 0 66 66"
+  >
+    <circle
+      class="rmd-circular-progress__circle rmd-circular-progress__circle--indeterminate"
+      cx="33"
+      cy="33"
+      r="30"
+    />
+  </svg>
+</span>
+`;
+
+exports[`CircularProgress should be able to render as a dense size 2`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  class="rmd-circular-progress rmd-circular-progress--dense rmd-primary-color"
+  id="circular-progress-:r3:"
+  role="progressbar"
+>
+  <svg
+    class="rmd-circular-progress__svg rmd-circular-progress__svg--indeterminate"
+    viewBox="0 0 66 66"
+  >
+    <circle
+      class="rmd-circular-progress__circle rmd-circular-progress__circle--indeterminate"
+      cx="33"
+      cy="33"
+      r="30"
+    />
+  </svg>
+</span>
+`;
+
+exports[`CircularProgress should be able to render as any of the theme colors 1`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
+  id="circular-progress-:r7:"
+  role="progressbar"
+>
+  <svg
+    class="rmd-circular-progress__svg rmd-circular-progress__svg--indeterminate"
+    viewBox="0 0 66 66"
+  >
+    <circle
+      class="rmd-circular-progress__circle rmd-circular-progress__circle--indeterminate"
+      cx="33"
+      cy="33"
+      r="30"
+    />
+  </svg>
+</span>
+`;
+
+exports[`CircularProgress should be able to render as any of the theme colors 2`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  class="rmd-circular-progress rmd-circular-progress--centered rmd-secondary-color"
+  id="circular-progress-:r7:"
+  role="progressbar"
+>
+  <svg
+    class="rmd-circular-progress__svg rmd-circular-progress__svg--indeterminate"
+    viewBox="0 0 66 66"
+  >
+    <circle
+      class="rmd-circular-progress__circle rmd-circular-progress__circle--indeterminate"
+      cx="33"
+      cy="33"
+      r="30"
+    />
+  </svg>
+</span>
+`;
+
+exports[`CircularProgress should be able to render as any of the theme colors 3`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  class="rmd-circular-progress rmd-circular-progress--centered rmd-warning-color"
+  id="circular-progress-:r7:"
+  role="progressbar"
+>
+  <svg
+    class="rmd-circular-progress__svg rmd-circular-progress__svg--indeterminate"
+    viewBox="0 0 66 66"
+  >
+    <circle
+      class="rmd-circular-progress__circle rmd-circular-progress__circle--indeterminate"
+      cx="33"
+      cy="33"
+      r="30"
+    />
+  </svg>
+</span>
+`;
+
+exports[`CircularProgress should be able to render as any of the theme colors 4`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  class="rmd-circular-progress rmd-circular-progress--centered rmd-success-color"
+  id="circular-progress-:r7:"
+  role="progressbar"
+>
+  <svg
+    class="rmd-circular-progress__svg rmd-circular-progress__svg--indeterminate"
+    viewBox="0 0 66 66"
+  >
+    <circle
+      class="rmd-circular-progress__circle rmd-circular-progress__circle--indeterminate"
+      cx="33"
+      cy="33"
+      r="30"
+    />
+  </svg>
+</span>
+`;
+
+exports[`CircularProgress should be able to render as any of the theme colors 5`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  class="rmd-circular-progress rmd-circular-progress--centered rmd-error-color"
+  id="circular-progress-:r7:"
+  role="progressbar"
+>
+  <svg
+    class="rmd-circular-progress__svg rmd-circular-progress__svg--indeterminate"
+    viewBox="0 0 66 66"
+  >
+    <circle
+      class="rmd-circular-progress__circle rmd-circular-progress__circle--indeterminate"
+      cx="33"
+      cy="33"
+      r="30"
+    />
+  </svg>
+</span>
+`;
+
+exports[`CircularProgress should be able to render as any of the theme colors 6`] = `
 <span
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered"
-  id="circular-progress-:r0:"
+  id="circular-progress-:r7:"
   role="progressbar"
 >
   <svg
@@ -94,55 +363,11 @@ exports[`CircularProgress should render correctly 2`] = `
 </span>
 `;
 
-exports[`CircularProgress should render correctly 3`] = `
+exports[`CircularProgress should default to being centered but can be removed by enabling the disableCentered prop 1`] = `
 <span
   aria-valuemax="100"
   aria-valuemin="0"
-  class="rmd-circular-progress"
-  id="circular-progress-:r0:"
-  role="progressbar"
->
-  <svg
-    class="rmd-circular-progress__svg rmd-circular-progress__svg--indeterminate"
-    viewBox="0 0 66 66"
-  >
-    <circle
-      class="rmd-circular-progress__circle rmd-circular-progress__circle--indeterminate"
-      cx="33"
-      cy="33"
-      r="30"
-    />
-  </svg>
-</span>
-`;
-
-exports[`CircularProgress should render correctly 4`] = `
-<span
-  aria-valuemax="100"
-  aria-valuemin="0"
-  class="rmd-circular-progress rmd-circular-progress--centered"
-  id="custom-id"
-  role="progressbar"
->
-  <svg
-    class="rmd-circular-progress__svg rmd-circular-progress__svg--indeterminate"
-    viewBox="0 0 66 66"
-  >
-    <circle
-      class="rmd-circular-progress__circle rmd-circular-progress__circle--indeterminate"
-      cx="33"
-      cy="33"
-      r="30"
-    />
-  </svg>
-</span>
-`;
-
-exports[`CircularProgress should support a small variant 1`] = `
-<span
-  aria-valuemax="100"
-  aria-valuemin="0"
-  class="rmd-circular-progress rmd-circular-progress--centered rmd-circular-progress--small"
+  class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
   id="circular-progress-:r2:"
   role="progressbar"
 >
@@ -160,11 +385,11 @@ exports[`CircularProgress should support a small variant 1`] = `
 </span>
 `;
 
-exports[`CircularProgress should support a small variant 2`] = `
+exports[`CircularProgress should default to being centered but can be removed by enabling the disableCentered prop 2`] = `
 <span
   aria-valuemax="100"
   aria-valuemin="0"
-  class="rmd-circular-progress rmd-circular-progress--small"
+  class="rmd-circular-progress rmd-primary-color"
   id="circular-progress-:r2:"
   role="progressbar"
 >
@@ -177,6 +402,76 @@ exports[`CircularProgress should support a small variant 2`] = `
       cx="33"
       cy="33"
       r="30"
+    />
+  </svg>
+</span>
+`;
+
+exports[`CircularProgress should render as a determinate progress bar when the value is provided 1`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  aria-valuenow="30"
+  class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
+  id="circular-progress-:r4:"
+  role="progressbar"
+>
+  <svg
+    class="rmd-circular-progress__svg rmd-circular-progress__svg--determinate"
+    viewBox="0 0 66 66"
+  >
+    <circle
+      class="rmd-circular-progress__circle rmd-circular-progress__circle--animate rmd-circular-progress__circle--determinate"
+      cx="33"
+      cy="33"
+      r="30"
+      style="stroke-dashoffset: 130.9;"
+    />
+  </svg>
+</span>
+`;
+
+exports[`CircularProgress should render as a determinate progress bar when the value is provided 2`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  aria-valuenow="50"
+  class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
+  id="circular-progress-:r4:"
+  role="progressbar"
+>
+  <svg
+    class="rmd-circular-progress__svg rmd-circular-progress__svg--determinate"
+    viewBox="0 0 66 66"
+  >
+    <circle
+      class="rmd-circular-progress__circle rmd-circular-progress__circle--animate rmd-circular-progress__circle--determinate"
+      cx="33"
+      cy="33"
+      r="30"
+      style="stroke-dashoffset: 93.5;"
+    />
+  </svg>
+</span>
+`;
+
+exports[`CircularProgress should support customizing the svg through the radio, center, and dashoffset props even though I don't know what they do 1`] = `
+<span
+  aria-valuemax="100"
+  aria-valuemin="0"
+  class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
+  id="circular-progress-:r8:"
+  role="progressbar"
+>
+  <svg
+    class="rmd-circular-progress__svg rmd-circular-progress__svg--indeterminate"
+    viewBox="0 0 66 66"
+  >
+    <circle
+      class="rmd-circular-progress__circle rmd-circular-progress__circle--indeterminate"
+      cx="20"
+      cy="20"
+      r="5"
     />
   </svg>
 </span>

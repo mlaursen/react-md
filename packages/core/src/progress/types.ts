@@ -1,3 +1,5 @@
+import { type ThemeColor } from "../cssUtils.js";
+
 declare module "react" {
   interface CSSProperties {
     "--rmd-progress-background-color"?: string;
@@ -9,7 +11,14 @@ declare module "react" {
 }
 
 /**
+ * @remarks \@since 6.0.0
+ */
+export type ProgressTheme = ThemeColor | "current-color";
+
+/**
  * The base progress props for both the linear and circular progress components.
+ *
+ * @remarks \@since 6.0.0 Added the `theme` prop.
  */
 export interface ProgressProps {
   /**
@@ -60,4 +69,10 @@ export interface ProgressProps {
    * `disableTransition`.
    */
   disableTransition?: boolean;
+
+  /**
+   * @defaultValue `"primary"`
+   * @remarks \@since 6.0.0
+   */
+  theme?: ProgressTheme;
 }

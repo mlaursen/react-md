@@ -5,11 +5,19 @@ import {
   type CSSProperties,
   type HTMLAttributes,
 } from "react";
+import { cssUtils } from "../cssUtils.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { bem } from "../utils/bem.js";
 import { getPercentage } from "../utils/getPercentage.js";
 import { type ProgressProps } from "./types.js";
 
+/**
+ * @remarks \@since 6.0.0
+ * Removed the `determinateRotateDegrees` prop since the determinate state no
+ * longer rotates while increasing value.
+ * Added the `disableShrink` prop.
+ * Renamed the `small` prop to `dense` to match other components.
+ */
 export interface CircularProgressProps
   extends Omit<HTMLAttributes<HTMLSpanElement>, "id">,
     ProgressProps {
@@ -75,21 +83,6 @@ export interface CircularProgressProps
   dashoffset?: number;
 
   /**
-   * The number of degrees a determinate circular progress should rotate while
-   * the {@link value} changes between the {@link min} and {@link max} values.
-   *
-   * If this prop is set to a number less than or equal to 0, there will be no
-   * rotation.
-   *
-   * Note: The default value is just 1 3/4 rotations which looked okay.
-   *
-   * @defaultValue `630`
-   * @remarks \@since 6.0.0 Renamed from `maxRotation` to
-   * `determinateRotateDegrees`
-   */
-  determinateRotateDegrees?: number;
-
-  /**
    * Boolean if the circular progress should be centered using left and right
    * margins.
    *
@@ -98,12 +91,24 @@ export interface CircularProgressProps
   disableCentered?: boolean;
 
   /**
-   * Boolean if the smaller size should be used instead.
+   * Set to `true` to render as a smaller size.
    *
    * @defaultValue `false`
-   * @remarks \@since 2.3.0
+   * @remarks
+   * \@since 2.3.0
+   * \@since 6.0.0 Renamed from `small`
    */
-  small?: boolean;
+  dense?: boolean;
+
+  /**
+   * Set this to `true` to update the indeterminate behavior to only rotate
+   * which will increase performance during CPU-intensive tasks or when many
+   * loading spinners are displayed at once on the page.
+   *
+   * @defaultValue `false`
+   * @remarks \@since 6.0.0
+   */
+  disableShrink?: boolean;
 }
 
 const styles = bem("rmd-circular-progress");
@@ -113,7 +118,17 @@ const styles = bem("rmd-circular-progress");
  *
  * @example
  * Simple Example
+ * ```tsx
+ * import { CircularProgress } from "@react-md/core":
+ * import { type ReactElement } from "react";
  *
+ * function Example(): ReactElement {
+ *   return <CircularProgress />
+ * }
+ * ```
+ *
+ * @remarks \@since 6.0.0 Updated the determinate circular progress to no longer
+ * rotate while increasing the value.
  */
 export const CircularProgress = forwardRef<
   HTMLSpanElement,
@@ -122,7 +137,7 @@ export const CircularProgress = forwardRef<
   const {
     id: propId,
     className,
-    svgStyle: propSvgStyle,
+    svgStyle,
     svgClassName,
     circleStyle: propCircleStyle,
     circleClassName,
@@ -132,11 +147,12 @@ export const CircularProgress = forwardRef<
     radius = 30,
     center = 33,
     viewBox = "0 0 66 66",
+    theme = "primary",
+    dense = false,
     dashoffset = 187,
-    disableTransition = false,
+    disableShrink = false,
     disableCentered = false,
-    determinateRotateDegrees = 630,
-    small = false,
+    disableTransition = false,
     ...remaining
   } = props;
 
@@ -145,24 +161,6 @@ export const CircularProgress = forwardRef<
   if (typeof value === "number") {
     progress = getPercentage({ min, max, value, validate: true });
   }
-
-  const svgStyle = useMemo<CSSProperties | undefined>(() => {
-    if (typeof progress !== "number") {
-      return propSvgStyle;
-    }
-
-    let transform = propSvgStyle?.transform;
-    if (determinateRotateDegrees > 0) {
-      const rotate = `rotate(${determinateRotateDegrees * progress}deg)`;
-      transform = `${rotate}${transform ? ` ${transform}` : ""}`;
-    }
-
-    return {
-      ...propSvgStyle,
-      WebkitTransform: transform,
-      transform,
-    };
-  }, [progress, determinateRotateDegrees, propSvgStyle]);
 
   const circleStyle = useMemo(() => {
     if (typeof progress !== "number") {
@@ -186,15 +184,19 @@ export const CircularProgress = forwardRef<
       aria-valuemin={min}
       aria-valuemax={max}
       aria-valuenow={value}
-      className={cnb(styles({ centered: !disableCentered, small }), className)}
+      className={cnb(
+        styles({ dense, centered: !disableCentered }),
+        theme !== "current-color" && cssUtils({ textColor: theme }),
+        className
+      )}
     >
       <svg
         style={svgStyle}
         className={cnb(
           styles("svg", {
-            animate: !disableTransition && determinate,
             determinate,
-            indeterminate,
+            indeterminate: indeterminate && !disableShrink,
+            "rotate-only": indeterminate && disableShrink,
           }),
           svgClassName
         )}
@@ -206,7 +208,8 @@ export const CircularProgress = forwardRef<
             styles("circle", {
               animate: !disableTransition && determinate,
               determinate,
-              indeterminate,
+              indeterminate: indeterminate && !disableShrink,
+              "rotate-only": indeterminate && disableShrink,
             }),
             circleClassName
           )}

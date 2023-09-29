@@ -1,58 +1,131 @@
 import { describe, expect, it } from "@jest/globals";
-import { type CSSProperties } from "react";
-import { render } from "../../test-utils/index.js";
+import { createRef } from "react";
+import { render, screen } from "../../test-utils/index.js";
 
 import { CircularProgress } from "../CircularProgress.js";
 
 describe("CircularProgress", () => {
-  it("should render correctly", () => {
-    const { getByRole, rerender } = render(<CircularProgress />);
+  it("should apply the correct styling, HTMLAttributes, and allow a ref", () => {
+    const ref = createRef<HTMLSpanElement>();
+    const props = {
+      ref,
+    } as const;
 
-    const progress = getByRole("progressbar");
-    expect(progress).toMatchSnapshot();
+    const { rerender } = render(<CircularProgress {...props} />);
 
-    rerender(<CircularProgress disableCentered={false} />);
+    const element = screen.getByRole("progressbar");
+
+    expect(ref.current).toBeInstanceOf(HTMLSpanElement);
+    expect(ref.current).toBe(element);
+    expect(element).toMatchSnapshot();
+
+    rerender(
+      <CircularProgress
+        {...props}
+        style={{ color: "white" }}
+        className="custom-class-name"
+      />
+    );
+    expect(element).toMatchSnapshot();
+
+    rerender(
+      <CircularProgress
+        {...props}
+        svgStyle={{ color: "red" }}
+        svgClassName="custom-svg-class-name"
+      />
+    );
+    expect(element).toMatchSnapshot();
+
+    rerender(
+      <CircularProgress
+        {...props}
+        circleStyle={{ color: "orange" }}
+        circleClassName="custom-circle-class-name"
+      />
+    );
+    expect(element).toMatchSnapshot();
+  });
+
+  it("should allow the id to be overridden", () => {
+    render(<CircularProgress id="custom-id" />);
+    const progress = screen.getByRole("progressbar");
+    expect(progress).toHaveAttribute("id", "custom-id");
+  });
+
+  it("should default to being centered but can be removed by enabling the disableCentered prop", () => {
+    const { rerender } = render(<CircularProgress />);
+    const progress = screen.getByRole("progressbar");
     expect(progress).toMatchSnapshot();
 
     rerender(<CircularProgress disableCentered />);
     expect(progress).toMatchSnapshot();
-
-    rerender(<CircularProgress id="custom-id" />);
-    expect(progress).toMatchSnapshot();
   });
 
-  it("should merge the transform style if it exists", () => {
-    const svgStyle: CSSProperties = {
-      WebkitTransform: "translateX(20px)",
-      transform: "translateX(20px)",
-    };
-
-    const { getByRole, rerender } = render(<CircularProgress value={20} />);
+  it("should be able to render as a dense size", () => {
+    const { getByRole, rerender } = render(<CircularProgress dense />);
     const progress = getByRole("progressbar");
     expect(progress).toMatchSnapshot();
 
-    rerender(<CircularProgress value={30} svgStyle={svgStyle} />);
+    rerender(<CircularProgress dense disableCentered />);
+    expect(progress).toMatchSnapshot();
+  });
 
-    rerender(
-      <CircularProgress
-        value={20}
-        svgStyle={svgStyle}
-        determinateRotateDegrees={-1}
-      />
+  it("should render as a determinate progress bar when the value is provided", () => {
+    const { rerender } = render(<CircularProgress value={30} />);
+    const progress = screen.getByRole("progressbar");
+    expect(progress).toHaveAttribute("aria-valuenow", "30");
+    expect(progress).toMatchSnapshot();
+
+    rerender(<CircularProgress value={50} />);
+    expect(progress).toHaveAttribute("aria-valuenow", "50");
+    expect(progress).toMatchSnapshot();
+  });
+
+  it("should allow the transition to be disabled for determinate progress bars", () => {
+    const { rerender } = render(
+      <CircularProgress value={30} disableTransition />
     );
+    const progress = screen.getByRole("progressbar");
+    expect(progress).toMatchSnapshot();
+
+    rerender(<CircularProgress disableTransition />);
     expect(progress).toMatchSnapshot();
   });
 
-  it("should support a small variant", () => {
-    const { getByRole, rerender } = render(<CircularProgress small />);
-    const progress = getByRole("progressbar");
-
-    expect(progress.className).toContain("rmd-circular-progress--small");
+  it("should allow the animation to be simplified when the disableShrink prop is enabled", () => {
+    const { rerender } = render(<CircularProgress disableShrink />);
+    const progress = screen.getByRole("progressbar");
     expect(progress).toMatchSnapshot();
 
-    rerender(<CircularProgress small disableCentered />);
+    rerender(<CircularProgress disableShrink value={100} />);
+    expect(progress).toMatchSnapshot();
+  });
 
-    expect(progress.className).toContain("rmd-circular-progress--small");
+  it("should be able to render as any of the theme colors", () => {
+    const { rerender } = render(<CircularProgress theme="primary" />);
+    const progress = screen.getByRole("progressbar");
+    expect(progress).toMatchSnapshot();
+
+    rerender(<CircularProgress theme="secondary" />);
+    expect(progress).toMatchSnapshot();
+
+    rerender(<CircularProgress theme="warning" />);
+    expect(progress).toMatchSnapshot();
+
+    rerender(<CircularProgress theme="success" />);
+    expect(progress).toMatchSnapshot();
+
+    rerender(<CircularProgress theme="error" />);
+    expect(progress).toMatchSnapshot();
+
+    rerender(<CircularProgress theme="current-color" />);
+    expect(progress).toMatchSnapshot();
+  });
+
+  it("should support customizing the svg through the radio, center, and dashoffset props even though I don't know what they do", () => {
+    render(<CircularProgress dashoffset={100} center={20} radius={5} />);
+    const progress = screen.getByRole("progressbar");
     expect(progress).toMatchSnapshot();
   });
 });

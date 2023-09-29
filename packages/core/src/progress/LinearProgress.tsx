@@ -5,11 +5,15 @@ import {
   type CSSProperties,
   type HTMLAttributes,
 } from "react";
+import { cssUtils } from "../cssUtils.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { bem } from "../utils/bem.js";
 import { getPercentage } from "../utils/getPercentage.js";
 import { type ProgressProps } from "./types.js";
 
+/**
+ * @remarks \@since 6.0.0 Added the `theme` prop
+ */
 export interface LinearProgressProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "id">,
     ProgressProps {
@@ -74,6 +78,7 @@ export const LinearProgress = forwardRef<HTMLSpanElement, LinearProgressProps>(
       max = 100,
       value,
       reverse = false,
+      theme = "primary",
       disableTransition = false,
       vertical = false,
       verticalHeight = 240,
@@ -127,6 +132,7 @@ export const LinearProgress = forwardRef<HTMLSpanElement, LinearProgressProps>(
             determinate,
             indeterminate,
           }),
+          theme !== "current-color" && cssUtils({ textColor: theme }),
           className
         )}
       >
