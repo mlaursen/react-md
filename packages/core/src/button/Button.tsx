@@ -142,6 +142,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       ...remaining
     } = props;
     const isThemeDisabled = theme === "disabled";
+    const ariaDisabled = props["aria-disabled"];
     const { pressed, pressedClassName, ripples, handlers } =
       useElementInteraction({
         onBlur,
@@ -155,7 +156,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         onTouchStart,
         onTouchEnd,
         onTouchMove,
-        disabled: disabled || isThemeDisabled,
+        disabled:
+          disabled ||
+          isThemeDisabled ||
+          (ariaDisabled && ariaDisabled !== "false"),
       });
 
     const children = useHigherContrastChildren(propChildren);
