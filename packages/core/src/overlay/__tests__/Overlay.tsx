@@ -1,6 +1,12 @@
 import { describe, expect, it, jest } from "@jest/globals";
-import { type ReactElement } from "react";
-import { fireEvent, render, waitFor, within } from "../../test-utils/index.js";
+import { createRef, type ReactElement } from "react";
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  within,
+} from "../../test-utils/index.js";
 
 import { SsrProvider } from "../../SsrProvider.js";
 import { Button } from "../../button/Button.js";
@@ -24,6 +30,31 @@ function Test({ defaultVisible = false }: TestProps): ReactElement {
 }
 
 describe("Overlay", () => {
+  it("should apply the correct styling, HTMLAttributes, and allow a ref", () => {
+    const ref = createRef<HTMLSpanElement>();
+    const props = {
+      "data-testid": "overlay",
+      ref,
+      visible: true,
+    } as const;
+
+    const { rerender } = render(<Overlay {...props} />);
+
+    const element = screen.getByTestId("overlay");
+    expect(ref.current).toBeInstanceOf(HTMLSpanElement);
+    expect(ref.current).toBe(element);
+    expect(element).toMatchSnapshot();
+
+    rerender(
+      <Overlay
+        {...props}
+        style={{ color: "white" }}
+        className="custom-class-name"
+      />
+    );
+    expect(element).toMatchSnapshot();
+  });
+
   it("should support rendering inline if disablePortal prop is true", () => {
     const { container, getByTestId } = render(
       <Overlay data-testid="overlay" visible disablePortal />
@@ -151,6 +182,15 @@ describe("Overlay", () => {
     });
 
     const overlay = getByTestId("overlay");
+    expect(overlay).toMatchSnapshot();
+  });
+
+  it("should support passing the box align/justify to the box class name utils", () => {
+    render(
+      <Overlay visible align="start" justify="end" data-testid="overlay" />
+    );
+    const overlay = screen.getByTestId("overlay");
+
     expect(overlay).toMatchSnapshot();
   });
 });

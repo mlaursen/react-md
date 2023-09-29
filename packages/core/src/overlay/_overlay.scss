@@ -48,10 +48,9 @@ $var-lookup: (
       @include use-var(background-color);
       @include use-var(z-index);
 
-      align-items: center;
-      display: flex;
+      border-radius: inherit;
+      box-shadow: inherit;
       inset: 0;
-      justify-content: center;
       opacity: 0;
       pointer-events: none;
       position: fixed;
@@ -66,6 +65,7 @@ $var-lookup: (
       }
 
       &--visible {
+        overflow: hidden;
         pointer-events: auto;
       }
 

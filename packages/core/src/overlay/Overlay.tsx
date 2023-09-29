@@ -1,5 +1,6 @@
 "use client";
 import { forwardRef, type HTMLAttributes } from "react";
+import { type BoxAlignItems, type BoxJustifyContent } from "../box/styles.js";
 import { Portal } from "../portal/Portal.js";
 import { useSsr } from "../SsrProvider.js";
 import {
@@ -13,10 +14,25 @@ import {
   overlay,
 } from "./overlayStyles.js";
 
+/**
+ * @remarks \@since 6.0.0 Added `align` and `justify` props.
+ */
 export interface OverlayProps
   extends HTMLAttributes<HTMLSpanElement>,
     CSSTransitionComponentProps,
     TransitionActions {
+  /**
+   * @defaultValue `"center"`
+   * @remarks \@since 6.0.0
+   */
+  align?: BoxAlignItems;
+
+  /**
+   * @defaultValue `"center"`
+   * @remarks \@since 6.0.0
+   */
+  justify?: BoxJustifyContent;
+
   /**
    * Set this to `true` for when the overlay should be visible. Toggling this
    * value will trigger the enter/exit animation.
@@ -85,6 +101,8 @@ export const Overlay = forwardRef<HTMLSpanElement, OverlayProps>(
       timeout = DEFAULT_OVERLAY_TIMEOUT,
       classNames = DEFAULT_OVERLAY_CLASSNAMES,
       disableTransition = false,
+      align = "center",
+      justify = "center",
       appear,
       enter,
       exit,
@@ -108,6 +126,8 @@ export const Overlay = forwardRef<HTMLSpanElement, OverlayProps>(
       className: overlay({
         visible,
         clickable,
+        align,
+        justify,
         className,
       }),
       appear: appear && !disableTransition && !ssr,

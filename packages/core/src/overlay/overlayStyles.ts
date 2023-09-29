@@ -1,5 +1,10 @@
 import { cnb } from "cnbuilder";
 import {
+  box,
+  type BoxAlignItems,
+  type BoxJustifyContent,
+} from "../box/styles.js";
+import {
   type CSSTransitionClassNamesObject,
   type TransitionTimeout,
 } from "../transition/types.js";
@@ -28,6 +33,11 @@ export interface OverlayClassNameOptions {
 
   /** @defaultValue `false` */
   absolute?: boolean;
+  /** @defaultValue `"center"` */
+  align?: BoxAlignItems;
+
+  /** @defaultValue `"center"` */
+  justify?: BoxJustifyContent;
 }
 
 /**
@@ -41,6 +51,8 @@ export function overlay(
     active,
     absolute = false,
     clickable = false,
+    align = "center",
+    justify = "center",
     className,
   } = options;
 
@@ -50,6 +62,11 @@ export function overlay(
       visible,
       clickable,
       absolute,
+    }),
+    box({
+      align,
+      justify,
+      disablePadding: true,
     }),
     className
   );
