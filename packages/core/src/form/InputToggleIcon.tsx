@@ -37,6 +37,9 @@ export interface InputToggleIconProps extends HTMLAttributes<HTMLSpanElement> {
   size?: InputToggleSize;
 
   /** @defaultValue `false` */
+  error?: boolean;
+
+  /** @defaultValue `false` */
   disabled?: boolean;
 
   /** @defaultValue `false` */
@@ -67,6 +70,7 @@ export const InputToggleIcon = forwardRef<
     type,
     size = "normal",
     icon: propIcon,
+    error,
     checked,
     children,
     disabled,
@@ -99,7 +103,7 @@ export const InputToggleIcon = forwardRef<
           em: !disableEm,
           size,
           type,
-          active: checked,
+          active: checked && !error,
           disabled,
           readOnly,
           className,

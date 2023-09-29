@@ -323,6 +323,7 @@ export const InputToggle = forwardRef<HTMLInputElement, InputToggleProps>(
               iconClassName,
               iconProps?.className
             )}
+            error={error}
             checked={checked}
             disabled={disabled}
             readOnly={readOnly}

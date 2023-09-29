@@ -70,7 +70,8 @@ export function inputToggle(options: InputToggleClassNameOptions): string {
     `rmd-${type}`,
     styles({
       em,
-      active,
+      active: active && !disabled,
+      disabled,
       readonly: readOnly,
       small: size === "small",
       dense: size === "dense",
