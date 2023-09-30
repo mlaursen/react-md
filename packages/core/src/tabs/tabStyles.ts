@@ -1,4 +1,5 @@
 import { cnb } from "cnbuilder";
+import { cssUtils } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
 import { tabIndicator } from "./tabIndicatorStyles.js";
 
@@ -41,6 +42,7 @@ export function tab(options: TabClassNameOptions = {}): string {
       disabled,
     }),
     active && activeIndicator && tabIndicator(),
+    cssUtils({ surface: true }),
     className
   );
 }

@@ -197,7 +197,6 @@ $var-lookup: (
 
 @mixin tab-styles {
   .rmd-tab {
-    @include interaction.surface;
     @include utils.map-to-styles($typography);
     @include use-var(color);
     @if not $disable-icon {

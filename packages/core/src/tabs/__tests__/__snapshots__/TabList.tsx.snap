@@ -11,7 +11,7 @@ exports[`TabList should update the tab indicator styles based on the active inde
   <button
     aria-controls="tab-:r0:-panel-1"
     aria-selected="true"
-    class="rmd-tab rmd-tab--active"
+    class="rmd-tab rmd-tab--active rmd-interaction-surface"
     id="tab-:r0:-1"
     role="tab"
     tabindex="-1"
@@ -24,7 +24,7 @@ exports[`TabList should update the tab indicator styles based on the active inde
   <button
     aria-controls="tab-:r0:-panel-2"
     aria-selected="false"
-    class="rmd-tab"
+    class="rmd-tab rmd-interaction-surface"
     id="tab-:r0:-2"
     role="tab"
     tabindex="-1"
@@ -37,7 +37,7 @@ exports[`TabList should update the tab indicator styles based on the active inde
   <button
     aria-controls="tab-:r0:-panel-3"
     aria-selected="false"
-    class="rmd-tab"
+    class="rmd-tab rmd-interaction-surface"
     id="tab-:r0:-3"
     role="tab"
     tabindex="-1"

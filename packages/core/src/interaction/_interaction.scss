@@ -292,6 +292,18 @@ $var-lookup: (
   }
 }
 
+@mixin surface-disabled($clickable: true, $hoverable: true) {
+  @if $clickable {
+    cursor: auto;
+  }
+
+  @if $hoverable {
+    &:hover::before {
+      @include set-var(background-color, transparent);
+    }
+  }
+}
+
 @mixin surface(
   $focus-selector: "&:focus",
   $disabled-selector: "&:disabled",
@@ -358,15 +370,7 @@ $var-lookup: (
 
   @if $disabled-selector {
     #{$disabled-selector} {
-      @if $clickable {
-        cursor: auto;
-      }
-
-      @if $hoverable {
-        &:hover::before {
-          @include set-var(background-color, transparent);
-        }
-      }
+      @include surface-disabled($clickable, $hoverable);
     }
   }
 }
@@ -408,5 +412,9 @@ $var-lookup: (
         opacity: 0;
       }
     }
+  }
+
+  .rmd-interaction-surface {
+    @include surface($disabled-selector: "&:disabled,&[aria-disabled='true']");
   }
 }

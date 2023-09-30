@@ -143,11 +143,26 @@ export interface CssUtilsOptions extends TextCssUtilsOptions {
   backgroundColor?: BackgroundColor;
 
   /**
+   * Set this to `true` if the element should act as an interaction surface
+   * which will:
+   * - display a pointer while hovered
+   * - increase the z-index of children to enable higher contrast when
+   *   `core.$interaction-disable-higher-contrast` is not `true`
+   * - add a `::before` pseudo element that will:
+   *   - gain the focus shadow while `:focus`-ed
+   *   - add a background-color while `:hover`-ed
+   *   - show no hover/focus styles while `:disabled` or `[aria-disabled="true"]`
+   *
+   * @defaultValue `false`
+   */
+  surface?: boolean;
+
+  /**
    * Set this to `"light"` or `"dark"` to update the hover, focus, press,
    * selected, and ripple colors for the surface type. `"light"` surfaces will
    * use `#000` while `"dark"` will use `#fff`.
    */
-  surface?: "light" | "dark";
+  surfaceColor?: "light" | "dark";
 }
 
 /**
@@ -169,6 +184,7 @@ export function cssUtils(options: CssUtilsOptions): string {
     outlineColor,
     backgroundColor,
     surface,
+    surfaceColor,
     margin,
     fontStyle,
     fontWeight,
@@ -203,10 +219,11 @@ export function cssUtils(options: CssUtilsOptions): string {
     fontWeight && `rmd-${fontWeight}`,
     srOnly && "rmd-sr-only",
     srOnly === "focusable" && "rmd-sr-only--focusable",
-    surface === "light" && "rmd-light-surface",
-    surface === "dark" && "rmd-dark-surface",
+    surfaceColor === "light" && "rmd-light-surface",
+    surfaceColor === "dark" && "rmd-dark-surface",
     textOverflow && textOverflow !== "allow" && "rmd-nowrap",
     textOverflow === "ellipsis" && "rmd-ellipsis",
+    surface && "rmd-interaction-surface",
     className
   );
 }

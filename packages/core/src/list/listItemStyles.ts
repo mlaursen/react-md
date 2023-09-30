@@ -1,4 +1,5 @@
 import { cnb } from "cnbuilder";
+import { cssUtils } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
 import type {
   ListItemAddonPosition,
@@ -80,12 +81,12 @@ export function listItem(
   return cnb(
     styles({
       link,
-      clickable,
       [height]: height !== "auto",
       "three-lines": threeLines,
       "disabled-color": disabled && !disabledOpacity,
       "disabled-opacity": disabled && disabledOpacity,
     }),
+    cssUtils({ surface: clickable }),
     pressedClassName,
     className
   );

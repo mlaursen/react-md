@@ -3,7 +3,7 @@
 exports[`useDraggable should allow for the value and dragging state to be controlled 1`] = `
 <button
   aria-valuenow="20"
-  class="rmd-button rmd-button--text"
+  class="rmd-button rmd-button--text rmd-interaction-surface"
   type="button"
 >
   <span>
@@ -15,7 +15,7 @@ exports[`useDraggable should allow for the value and dragging state to be contro
 exports[`useDraggable should work correctly for keyboard events 1`] = `
 <button
   aria-valuenow="50"
-  class="rmd-button rmd-button--text"
+  class="rmd-button rmd-button--text rmd-interaction-surface"
   type="button"
 >
   <span>
@@ -27,7 +27,7 @@ exports[`useDraggable should work correctly for keyboard events 1`] = `
 exports[`useDraggable should work correctly with mouse events 1`] = `
 <button
   aria-valuenow="50"
-  class="rmd-button rmd-button--text"
+  class="rmd-button rmd-button--text rmd-interaction-surface"
   type="button"
 >
   <span>
@@ -39,7 +39,7 @@ exports[`useDraggable should work correctly with mouse events 1`] = `
 exports[`useDraggable should work correctly with touch event handlers 1`] = `
 <button
   aria-valuenow="50"
-  class="rmd-button rmd-button--text"
+  class="rmd-button rmd-button--text rmd-interaction-surface"
   type="button"
 >
   <span>

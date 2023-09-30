@@ -6,7 +6,7 @@ exports[`useExpandableLayout should allow you to create an expandable layout qui
 >
   <button
     aria-label="Navigation"
-    class="rmd-button rmd-button--icon"
+    class="rmd-button rmd-button--icon rmd-interaction-surface"
     type="button"
   >
     <span

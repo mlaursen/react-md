@@ -1,4 +1,5 @@
 import { cnb } from "cnbuilder";
+import { cssUtils } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-segmented-button");
@@ -33,6 +34,7 @@ export function segmentedButton(
     styles({ selected }),
     selected && selectedClassName,
     pressedClassName,
+    cssUtils({ surface: true }),
     className
   );
 }

@@ -3,7 +3,7 @@
 exports[`Tab should support rendering an icon in different positions around the children 1`] = `
 <button
   aria-selected="false"
-  class="rmd-tab"
+  class="rmd-tab rmd-interaction-surface"
   id="tab-:r0:"
   role="tab"
   tabindex="-1"
@@ -24,7 +24,7 @@ exports[`Tab should support rendering an icon in different positions around the 
 exports[`Tab should support rendering an icon in different positions around the children 2`] = `
 <button
   aria-selected="false"
-  class="rmd-tab rmd-tab--stacked"
+  class="rmd-tab rmd-tab--stacked rmd-interaction-surface"
   id="tab-:r0:"
   role="tab"
   tabindex="-1"
@@ -45,7 +45,7 @@ exports[`Tab should support rendering an icon in different positions around the 
 exports[`Tab should support rendering an icon in different positions around the children 3`] = `
 <button
   aria-selected="false"
-  class="rmd-tab rmd-tab--reversed"
+  class="rmd-tab rmd-tab--reversed rmd-interaction-surface"
   id="tab-:r0:"
   role="tab"
   tabindex="-1"
@@ -66,7 +66,7 @@ exports[`Tab should support rendering an icon in different positions around the 
 exports[`Tab should support rendering an icon in different positions around the children 4`] = `
 <button
   aria-selected="false"
-  class="rmd-tab rmd-tab--stacked rmd-tab--stacked-reversed"
+  class="rmd-tab rmd-tab--stacked rmd-tab--stacked-reversed rmd-interaction-surface"
   id="tab-:r0:"
   role="tab"
   tabindex="-1"

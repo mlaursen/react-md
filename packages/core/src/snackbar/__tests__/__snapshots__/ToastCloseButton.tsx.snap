@@ -3,7 +3,7 @@
 exports[`ToastCloseButton should add an aria-label for text button types when an aria-labelledby has not been provided 1`] = `
 <button
   aria-label="Close"
-  class="rmd-button rmd-button--icon rmd-button--icon-square rmd-toast-x"
+  class="rmd-button rmd-button--icon rmd-button--icon-square rmd-interaction-surface rmd-toast-x"
   type="button"
 >
   <span
@@ -18,7 +18,7 @@ exports[`ToastCloseButton should add an aria-label for text button types when an
 exports[`ToastCloseButton should add an aria-label for text button types when an aria-labelledby has not been provided 2`] = `
 <button
   aria-label="Custom"
-  class="rmd-button rmd-button--icon rmd-button--icon-square rmd-toast-x"
+  class="rmd-button rmd-button--icon rmd-button--icon-square rmd-interaction-surface rmd-toast-x"
   type="button"
 >
   <span
@@ -33,7 +33,7 @@ exports[`ToastCloseButton should add an aria-label for text button types when an
 exports[`ToastCloseButton should add an aria-label for text button types when an aria-labelledby has not been provided 3`] = `
 <button
   aria-labelledby="custom-id"
-  class="rmd-button rmd-button--icon rmd-button--icon-square rmd-toast-x"
+  class="rmd-button rmd-button--icon rmd-button--icon-square rmd-interaction-surface rmd-toast-x"
   type="button"
 >
   <span
@@ -47,7 +47,7 @@ exports[`ToastCloseButton should add an aria-label for text button types when an
 
 exports[`ToastCloseButton should add an aria-label for text button types when an aria-labelledby has not been provided 4`] = `
 <button
-  class="rmd-button rmd-button--text rmd-toast-x"
+  class="rmd-button rmd-button--text rmd-interaction-surface rmd-toast-x"
   type="button"
 >
   <span>
@@ -59,7 +59,7 @@ exports[`ToastCloseButton should add an aria-label for text button types when an
 exports[`ToastCloseButton should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <button
   aria-label="Close"
-  class="rmd-button rmd-button--icon rmd-button--icon-square rmd-toast-x"
+  class="rmd-button rmd-button--icon rmd-button--icon-square rmd-interaction-surface rmd-toast-x"
   type="button"
 >
   <span
@@ -74,7 +74,7 @@ exports[`ToastCloseButton should apply the correct styling, HTML attributes, and
 exports[`ToastCloseButton should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <button
   aria-label="Close"
-  class="rmd-button rmd-button--icon rmd-button--icon-square rmd-toast-x custom-class-name"
+  class="rmd-button rmd-button--icon rmd-button--icon-square rmd-interaction-surface rmd-toast-x custom-class-name"
   style="color: white;"
   type="button"
 >
@@ -90,7 +90,7 @@ exports[`ToastCloseButton should apply the correct styling, HTML attributes, and
 exports[`ToastCloseButton should apply the correct styling, HTML attributes, and allow a ref 3`] = `
 <button
   aria-label="Close"
-  class="rmd-button rmd-button--icon rmd-button--icon-square rmd-toast-x rmd-toast-x--reordered"
+  class="rmd-button rmd-button--icon rmd-button--icon-square rmd-interaction-surface rmd-toast-x rmd-toast-x--reordered"
   style=""
   type="button"
 >

@@ -38,7 +38,7 @@ exports[`Tree should handle multi-select tree behavior 1`] = `
   >
     <span
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:rb:"
       role="treeitem"
       tabindex="-1"
@@ -59,7 +59,7 @@ exports[`Tree should handle multi-select tree behavior 1`] = `
     <span
       aria-expanded="false"
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:rc:"
       role="treeitem"
       tabindex="-1"
@@ -90,7 +90,7 @@ exports[`Tree should handle multi-select tree behavior 1`] = `
       >
         <span
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:rd:"
           role="treeitem"
           tabindex="-1"
@@ -111,7 +111,7 @@ exports[`Tree should handle multi-select tree behavior 1`] = `
         <span
           aria-expanded="false"
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:re:"
           role="treeitem"
           tabindex="-1"
@@ -143,7 +143,7 @@ exports[`Tree should handle multi-select tree behavior 1`] = `
             <span
               aria-expanded="false"
               aria-selected="false"
-              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
               id="tree-item-:rf:"
               role="treeitem"
               tabindex="-1"
@@ -174,7 +174,7 @@ exports[`Tree should handle multi-select tree behavior 1`] = `
               >
                 <span
                   aria-selected="false"
-                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
                   id="tree-item-:rg:"
                   role="treeitem"
                   tabindex="-1"
@@ -198,7 +198,7 @@ exports[`Tree should handle multi-select tree behavior 1`] = `
       >
         <span
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:rh:"
           role="treeitem"
           tabindex="-1"
@@ -220,7 +220,7 @@ exports[`Tree should handle multi-select tree behavior 1`] = `
   >
     <span
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:ri:"
       role="treeitem"
       tabindex="-1"
@@ -252,7 +252,7 @@ exports[`Tree should handle multi-select tree behavior 2`] = `
   >
     <span
       aria-selected="true"
-      class="rmd-tree-item__content rmd-tree-item__content--selected rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-tree-item__content--selected rmd-list-item rmd-interaction-surface"
       id="tree-item-:rb:"
       role="treeitem"
       tabindex="-1"
@@ -273,7 +273,7 @@ exports[`Tree should handle multi-select tree behavior 2`] = `
     <span
       aria-expanded="true"
       aria-selected="true"
-      class="rmd-tree-item__content rmd-tree-item__content--focused rmd-tree-item__content--selected rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-tree-item__content--focused rmd-tree-item__content--selected rmd-list-item rmd-interaction-surface"
       id="tree-item-:rc:"
       role="treeitem"
       tabindex="-1"
@@ -304,7 +304,7 @@ exports[`Tree should handle multi-select tree behavior 2`] = `
       >
         <span
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:rd:"
           role="treeitem"
           tabindex="-1"
@@ -325,7 +325,7 @@ exports[`Tree should handle multi-select tree behavior 2`] = `
         <span
           aria-expanded="false"
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:re:"
           role="treeitem"
           tabindex="-1"
@@ -357,7 +357,7 @@ exports[`Tree should handle multi-select tree behavior 2`] = `
             <span
               aria-expanded="false"
               aria-selected="false"
-              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
               id="tree-item-:rf:"
               role="treeitem"
               tabindex="-1"
@@ -388,7 +388,7 @@ exports[`Tree should handle multi-select tree behavior 2`] = `
               >
                 <span
                   aria-selected="false"
-                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
                   id="tree-item-:rg:"
                   role="treeitem"
                   tabindex="-1"
@@ -412,7 +412,7 @@ exports[`Tree should handle multi-select tree behavior 2`] = `
       >
         <span
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:rh:"
           role="treeitem"
           tabindex="-1"
@@ -434,7 +434,7 @@ exports[`Tree should handle multi-select tree behavior 2`] = `
   >
     <span
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:ri:"
       role="treeitem"
       tabindex="-1"
@@ -466,7 +466,7 @@ exports[`Tree should handle multi-select tree behavior 3`] = `
   >
     <span
       aria-selected="true"
-      class="rmd-tree-item__content rmd-tree-item__content--selected rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-tree-item__content--selected rmd-list-item rmd-interaction-surface"
       id="tree-item-:rb:"
       role="treeitem"
       tabindex="-1"
@@ -487,7 +487,7 @@ exports[`Tree should handle multi-select tree behavior 3`] = `
     <span
       aria-expanded="true"
       aria-selected="true"
-      class="rmd-tree-item__content rmd-tree-item__content--focused rmd-tree-item__content--selected rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-tree-item__content--focused rmd-tree-item__content--selected rmd-list-item rmd-interaction-surface"
       id="tree-item-:rc:"
       role="treeitem"
       tabindex="-1"
@@ -518,7 +518,7 @@ exports[`Tree should handle multi-select tree behavior 3`] = `
       >
         <span
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:rd:"
           role="treeitem"
           tabindex="-1"
@@ -539,7 +539,7 @@ exports[`Tree should handle multi-select tree behavior 3`] = `
         <span
           aria-expanded="false"
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:re:"
           role="treeitem"
           tabindex="-1"
@@ -571,7 +571,7 @@ exports[`Tree should handle multi-select tree behavior 3`] = `
             <span
               aria-expanded="false"
               aria-selected="false"
-              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
               id="tree-item-:rf:"
               role="treeitem"
               tabindex="-1"
@@ -602,7 +602,7 @@ exports[`Tree should handle multi-select tree behavior 3`] = `
               >
                 <span
                   aria-selected="false"
-                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
                   id="tree-item-:rg:"
                   role="treeitem"
                   tabindex="-1"
@@ -626,7 +626,7 @@ exports[`Tree should handle multi-select tree behavior 3`] = `
       >
         <span
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:rh:"
           role="treeitem"
           tabindex="-1"
@@ -648,7 +648,7 @@ exports[`Tree should handle multi-select tree behavior 3`] = `
   >
     <span
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:ri:"
       role="treeitem"
       tabindex="-1"
@@ -680,7 +680,7 @@ exports[`Tree should handle multi-select tree behavior 4`] = `
   >
     <span
       aria-selected="false"
-      class="rmd-tree-item__content rmd-tree-item__content--focused rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-tree-item__content--focused rmd-list-item rmd-interaction-surface"
       id="tree-item-:rb:"
       role="treeitem"
       tabindex="-1"
@@ -701,7 +701,7 @@ exports[`Tree should handle multi-select tree behavior 4`] = `
     <span
       aria-expanded="true"
       aria-selected="true"
-      class="rmd-tree-item__content rmd-tree-item__content--selected rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-tree-item__content--selected rmd-list-item rmd-interaction-surface"
       id="tree-item-:rc:"
       role="treeitem"
       tabindex="-1"
@@ -732,7 +732,7 @@ exports[`Tree should handle multi-select tree behavior 4`] = `
       >
         <span
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:rd:"
           role="treeitem"
           tabindex="-1"
@@ -753,7 +753,7 @@ exports[`Tree should handle multi-select tree behavior 4`] = `
         <span
           aria-expanded="false"
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:re:"
           role="treeitem"
           tabindex="-1"
@@ -785,7 +785,7 @@ exports[`Tree should handle multi-select tree behavior 4`] = `
             <span
               aria-expanded="false"
               aria-selected="false"
-              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
               id="tree-item-:rf:"
               role="treeitem"
               tabindex="-1"
@@ -816,7 +816,7 @@ exports[`Tree should handle multi-select tree behavior 4`] = `
               >
                 <span
                   aria-selected="false"
-                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
                   id="tree-item-:rg:"
                   role="treeitem"
                   tabindex="-1"
@@ -840,7 +840,7 @@ exports[`Tree should handle multi-select tree behavior 4`] = `
       >
         <span
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:rh:"
           role="treeitem"
           tabindex="-1"
@@ -862,7 +862,7 @@ exports[`Tree should handle multi-select tree behavior 4`] = `
   >
     <span
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:ri:"
       role="treeitem"
       tabindex="-1"
@@ -894,7 +894,7 @@ exports[`Tree should handle multi-select tree behavior 5`] = `
   >
     <span
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:rb:"
       role="treeitem"
       tabindex="-1"
@@ -915,7 +915,7 @@ exports[`Tree should handle multi-select tree behavior 5`] = `
     <span
       aria-expanded="false"
       aria-selected="false"
-      class="rmd-tree-item__content rmd-tree-item__content--focused rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-tree-item__content--focused rmd-list-item rmd-interaction-surface"
       id="tree-item-:rc:"
       role="treeitem"
       tabindex="-1"
@@ -946,7 +946,7 @@ exports[`Tree should handle multi-select tree behavior 5`] = `
       >
         <span
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:rd:"
           role="treeitem"
           tabindex="-1"
@@ -967,7 +967,7 @@ exports[`Tree should handle multi-select tree behavior 5`] = `
         <span
           aria-expanded="false"
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:re:"
           role="treeitem"
           tabindex="-1"
@@ -999,7 +999,7 @@ exports[`Tree should handle multi-select tree behavior 5`] = `
             <span
               aria-expanded="false"
               aria-selected="false"
-              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
               id="tree-item-:rf:"
               role="treeitem"
               tabindex="-1"
@@ -1030,7 +1030,7 @@ exports[`Tree should handle multi-select tree behavior 5`] = `
               >
                 <span
                   aria-selected="false"
-                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
                   id="tree-item-:rg:"
                   role="treeitem"
                   tabindex="-1"
@@ -1054,7 +1054,7 @@ exports[`Tree should handle multi-select tree behavior 5`] = `
       >
         <span
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:rh:"
           role="treeitem"
           tabindex="-1"
@@ -1076,7 +1076,7 @@ exports[`Tree should handle multi-select tree behavior 5`] = `
   >
     <span
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:ri:"
       role="treeitem"
       tabindex="-1"
@@ -1108,7 +1108,7 @@ exports[`Tree should handle single select tree behavior 1`] = `
   >
     <span
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:r2:"
       role="treeitem"
       tabindex="-1"
@@ -1129,7 +1129,7 @@ exports[`Tree should handle single select tree behavior 1`] = `
     <span
       aria-expanded="false"
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:r3:"
       role="treeitem"
       tabindex="-1"
@@ -1160,7 +1160,7 @@ exports[`Tree should handle single select tree behavior 1`] = `
       >
         <span
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:r4:"
           role="treeitem"
           tabindex="-1"
@@ -1181,7 +1181,7 @@ exports[`Tree should handle single select tree behavior 1`] = `
         <span
           aria-expanded="false"
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:r5:"
           role="treeitem"
           tabindex="-1"
@@ -1213,7 +1213,7 @@ exports[`Tree should handle single select tree behavior 1`] = `
             <span
               aria-expanded="false"
               aria-selected="false"
-              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
               id="tree-item-:r6:"
               role="treeitem"
               tabindex="-1"
@@ -1244,7 +1244,7 @@ exports[`Tree should handle single select tree behavior 1`] = `
               >
                 <span
                   aria-selected="false"
-                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
                   id="tree-item-:r7:"
                   role="treeitem"
                   tabindex="-1"
@@ -1268,7 +1268,7 @@ exports[`Tree should handle single select tree behavior 1`] = `
       >
         <span
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:r8:"
           role="treeitem"
           tabindex="-1"
@@ -1290,7 +1290,7 @@ exports[`Tree should handle single select tree behavior 1`] = `
   >
     <span
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:r9:"
       role="treeitem"
       tabindex="-1"
@@ -1322,7 +1322,7 @@ exports[`Tree should handle single select tree behavior 2`] = `
   >
     <span
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:r2:"
       role="treeitem"
       tabindex="-1"
@@ -1343,7 +1343,7 @@ exports[`Tree should handle single select tree behavior 2`] = `
     <span
       aria-expanded="true"
       aria-selected="true"
-      class="rmd-tree-item__content rmd-tree-item__content--focused rmd-tree-item__content--selected rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-tree-item__content--focused rmd-tree-item__content--selected rmd-list-item rmd-interaction-surface"
       id="tree-item-:r3:"
       role="treeitem"
       tabindex="-1"
@@ -1374,7 +1374,7 @@ exports[`Tree should handle single select tree behavior 2`] = `
       >
         <span
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:r4:"
           role="treeitem"
           tabindex="-1"
@@ -1395,7 +1395,7 @@ exports[`Tree should handle single select tree behavior 2`] = `
         <span
           aria-expanded="false"
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:r5:"
           role="treeitem"
           tabindex="-1"
@@ -1427,7 +1427,7 @@ exports[`Tree should handle single select tree behavior 2`] = `
             <span
               aria-expanded="false"
               aria-selected="false"
-              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
               id="tree-item-:r6:"
               role="treeitem"
               tabindex="-1"
@@ -1458,7 +1458,7 @@ exports[`Tree should handle single select tree behavior 2`] = `
               >
                 <span
                   aria-selected="false"
-                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
                   id="tree-item-:r7:"
                   role="treeitem"
                   tabindex="-1"
@@ -1482,7 +1482,7 @@ exports[`Tree should handle single select tree behavior 2`] = `
       >
         <span
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:r8:"
           role="treeitem"
           tabindex="-1"
@@ -1504,7 +1504,7 @@ exports[`Tree should handle single select tree behavior 2`] = `
   >
     <span
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:r9:"
       role="treeitem"
       tabindex="-1"
@@ -1536,7 +1536,7 @@ exports[`Tree should handle single select tree behavior 3`] = `
   >
     <span
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:r2:"
       role="treeitem"
       tabindex="-1"
@@ -1557,7 +1557,7 @@ exports[`Tree should handle single select tree behavior 3`] = `
     <span
       aria-expanded="true"
       aria-selected="true"
-      class="rmd-tree-item__content rmd-tree-item__content--focused rmd-tree-item__content--selected rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-tree-item__content--focused rmd-tree-item__content--selected rmd-list-item rmd-interaction-surface"
       id="tree-item-:r3:"
       role="treeitem"
       tabindex="-1"
@@ -1588,7 +1588,7 @@ exports[`Tree should handle single select tree behavior 3`] = `
       >
         <span
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:r4:"
           role="treeitem"
           tabindex="-1"
@@ -1609,7 +1609,7 @@ exports[`Tree should handle single select tree behavior 3`] = `
         <span
           aria-expanded="false"
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:r5:"
           role="treeitem"
           tabindex="-1"
@@ -1641,7 +1641,7 @@ exports[`Tree should handle single select tree behavior 3`] = `
             <span
               aria-expanded="false"
               aria-selected="false"
-              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
               id="tree-item-:r6:"
               role="treeitem"
               tabindex="-1"
@@ -1672,7 +1672,7 @@ exports[`Tree should handle single select tree behavior 3`] = `
               >
                 <span
                   aria-selected="false"
-                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
                   id="tree-item-:r7:"
                   role="treeitem"
                   tabindex="-1"
@@ -1696,7 +1696,7 @@ exports[`Tree should handle single select tree behavior 3`] = `
       >
         <span
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:r8:"
           role="treeitem"
           tabindex="-1"
@@ -1718,7 +1718,7 @@ exports[`Tree should handle single select tree behavior 3`] = `
   >
     <span
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:r9:"
       role="treeitem"
       tabindex="-1"
@@ -1750,7 +1750,7 @@ exports[`Tree should handle single select tree behavior 4`] = `
   >
     <span
       aria-selected="true"
-      class="rmd-tree-item__content rmd-tree-item__content--focused rmd-tree-item__content--selected rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-tree-item__content--focused rmd-tree-item__content--selected rmd-list-item rmd-interaction-surface"
       id="tree-item-:r2:"
       role="treeitem"
       tabindex="-1"
@@ -1771,7 +1771,7 @@ exports[`Tree should handle single select tree behavior 4`] = `
     <span
       aria-expanded="true"
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:r3:"
       role="treeitem"
       tabindex="-1"
@@ -1802,7 +1802,7 @@ exports[`Tree should handle single select tree behavior 4`] = `
       >
         <span
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:r4:"
           role="treeitem"
           tabindex="-1"
@@ -1823,7 +1823,7 @@ exports[`Tree should handle single select tree behavior 4`] = `
         <span
           aria-expanded="false"
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:r5:"
           role="treeitem"
           tabindex="-1"
@@ -1855,7 +1855,7 @@ exports[`Tree should handle single select tree behavior 4`] = `
             <span
               aria-expanded="false"
               aria-selected="false"
-              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
               id="tree-item-:r6:"
               role="treeitem"
               tabindex="-1"
@@ -1886,7 +1886,7 @@ exports[`Tree should handle single select tree behavior 4`] = `
               >
                 <span
                   aria-selected="false"
-                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
                   id="tree-item-:r7:"
                   role="treeitem"
                   tabindex="-1"
@@ -1910,7 +1910,7 @@ exports[`Tree should handle single select tree behavior 4`] = `
       >
         <span
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:r8:"
           role="treeitem"
           tabindex="-1"
@@ -1932,7 +1932,7 @@ exports[`Tree should handle single select tree behavior 4`] = `
   >
     <span
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:r9:"
       role="treeitem"
       tabindex="-1"
@@ -1964,7 +1964,7 @@ exports[`Tree should handle single select tree behavior 5`] = `
   >
     <span
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:r2:"
       role="treeitem"
       tabindex="-1"
@@ -1985,7 +1985,7 @@ exports[`Tree should handle single select tree behavior 5`] = `
     <span
       aria-expanded="false"
       aria-selected="true"
-      class="rmd-tree-item__content rmd-tree-item__content--focused rmd-tree-item__content--selected rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-tree-item__content--focused rmd-tree-item__content--selected rmd-list-item rmd-interaction-surface"
       id="tree-item-:r3:"
       role="treeitem"
       tabindex="-1"
@@ -2016,7 +2016,7 @@ exports[`Tree should handle single select tree behavior 5`] = `
       >
         <span
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:r4:"
           role="treeitem"
           tabindex="-1"
@@ -2037,7 +2037,7 @@ exports[`Tree should handle single select tree behavior 5`] = `
         <span
           aria-expanded="false"
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:r5:"
           role="treeitem"
           tabindex="-1"
@@ -2069,7 +2069,7 @@ exports[`Tree should handle single select tree behavior 5`] = `
             <span
               aria-expanded="false"
               aria-selected="false"
-              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
               id="tree-item-:r6:"
               role="treeitem"
               tabindex="-1"
@@ -2100,7 +2100,7 @@ exports[`Tree should handle single select tree behavior 5`] = `
               >
                 <span
                   aria-selected="false"
-                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
                   id="tree-item-:r7:"
                   role="treeitem"
                   tabindex="-1"
@@ -2124,7 +2124,7 @@ exports[`Tree should handle single select tree behavior 5`] = `
       >
         <span
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:r8:"
           role="treeitem"
           tabindex="-1"
@@ -2146,7 +2146,7 @@ exports[`Tree should handle single select tree behavior 5`] = `
   >
     <span
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:r9:"
       role="treeitem"
       tabindex="-1"
@@ -2178,7 +2178,7 @@ exports[`Tree should render the tree item as a link if the to or href exists on 
   >
     <a
       aria-selected="false"
-      class="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-interaction-surface"
       href="/path-1"
       id="tree-item-:r2p:"
       role="treeitem"
@@ -2199,7 +2199,7 @@ exports[`Tree should render the tree item as a link if the to or href exists on 
   >
     <a
       aria-selected="false"
-      class="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-interaction-surface"
       href="https://example.com"
       id="tree-item-:r2q:"
       role="treeitem"
@@ -2221,7 +2221,7 @@ exports[`Tree should render the tree item as a link if the to or href exists on 
     <span
       aria-disabled="true"
       aria-selected="false"
-      class="rmd-tree-item__content rmd-tree-item__content--disabled rmd-list-item rmd-list-item--clickable rmd-list-item--disabled-color"
+      class="rmd-tree-item__content rmd-tree-item__content--disabled rmd-list-item rmd-list-item--disabled-color rmd-interaction-surface"
       id="tree-item-:r2r:"
       role="treeitem"
       tabindex="-1"
@@ -2253,7 +2253,7 @@ exports[`Tree should support conditionally rendering child trees by enabling tem
   >
     <span
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:r1q:"
       role="treeitem"
       tabindex="-1"
@@ -2274,7 +2274,7 @@ exports[`Tree should support conditionally rendering child trees by enabling tem
     <span
       aria-expanded="false"
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:r1r:"
       role="treeitem"
       tabindex="-1"
@@ -2300,7 +2300,7 @@ exports[`Tree should support conditionally rendering child trees by enabling tem
   >
     <span
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:r1s:"
       role="treeitem"
       tabindex="-1"
@@ -2332,7 +2332,7 @@ exports[`Tree should support conditionally rendering child trees by enabling tem
   >
     <span
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:r1q:"
       role="treeitem"
       tabindex="-1"
@@ -2353,7 +2353,7 @@ exports[`Tree should support conditionally rendering child trees by enabling tem
     <span
       aria-expanded="true"
       aria-selected="true"
-      class="rmd-tree-item__content rmd-tree-item__content--focused rmd-tree-item__content--selected rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-tree-item__content--focused rmd-tree-item__content--selected rmd-list-item rmd-interaction-surface"
       id="tree-item-:r1r:"
       role="treeitem"
       tabindex="-1"
@@ -2384,7 +2384,7 @@ exports[`Tree should support conditionally rendering child trees by enabling tem
       >
         <span
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:r1t:"
           role="treeitem"
           tabindex="-1"
@@ -2405,7 +2405,7 @@ exports[`Tree should support conditionally rendering child trees by enabling tem
         <span
           aria-expanded="false"
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:r1u:"
           role="treeitem"
           tabindex="-1"
@@ -2431,7 +2431,7 @@ exports[`Tree should support conditionally rendering child trees by enabling tem
       >
         <span
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:r1v:"
           role="treeitem"
           tabindex="-1"
@@ -2453,7 +2453,7 @@ exports[`Tree should support conditionally rendering child trees by enabling tem
   >
     <span
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:r1s:"
       role="treeitem"
       tabindex="-1"
@@ -2485,7 +2485,7 @@ exports[`Tree should support default selected and expanded ids 1`] = `
   >
     <span
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:rk:"
       role="treeitem"
       tabindex="-1"
@@ -2506,7 +2506,7 @@ exports[`Tree should support default selected and expanded ids 1`] = `
     <span
       aria-expanded="true"
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:rl:"
       role="treeitem"
       tabindex="-1"
@@ -2537,7 +2537,7 @@ exports[`Tree should support default selected and expanded ids 1`] = `
       >
         <span
           aria-selected="true"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-tree-item__content--selected rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-tree-item__content--selected rmd-list-item rmd-interaction-surface"
           id="tree-item-:rm:"
           role="treeitem"
           tabindex="-1"
@@ -2558,7 +2558,7 @@ exports[`Tree should support default selected and expanded ids 1`] = `
         <span
           aria-expanded="false"
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:rn:"
           role="treeitem"
           tabindex="-1"
@@ -2590,7 +2590,7 @@ exports[`Tree should support default selected and expanded ids 1`] = `
             <span
               aria-expanded="false"
               aria-selected="false"
-              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
               id="tree-item-:ro:"
               role="treeitem"
               tabindex="-1"
@@ -2621,7 +2621,7 @@ exports[`Tree should support default selected and expanded ids 1`] = `
               >
                 <span
                   aria-selected="false"
-                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
                   id="tree-item-:rp:"
                   role="treeitem"
                   tabindex="-1"
@@ -2645,7 +2645,7 @@ exports[`Tree should support default selected and expanded ids 1`] = `
       >
         <span
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:rq:"
           role="treeitem"
           tabindex="-1"
@@ -2667,7 +2667,7 @@ exports[`Tree should support default selected and expanded ids 1`] = `
   >
     <span
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:rr:"
       role="treeitem"
       tabindex="-1"
@@ -2699,7 +2699,7 @@ exports[`Tree should support default selected and expanded ids 2`] = `
   >
     <span
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:rt:"
       role="treeitem"
       tabindex="-1"
@@ -2720,7 +2720,7 @@ exports[`Tree should support default selected and expanded ids 2`] = `
     <span
       aria-expanded="true"
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:ru:"
       role="treeitem"
       tabindex="-1"
@@ -2751,7 +2751,7 @@ exports[`Tree should support default selected and expanded ids 2`] = `
       >
         <span
           aria-selected="true"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-tree-item__content--selected rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-tree-item__content--selected rmd-list-item rmd-interaction-surface"
           id="tree-item-:rv:"
           role="treeitem"
           tabindex="-1"
@@ -2772,7 +2772,7 @@ exports[`Tree should support default selected and expanded ids 2`] = `
         <span
           aria-expanded="false"
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:r10:"
           role="treeitem"
           tabindex="-1"
@@ -2804,7 +2804,7 @@ exports[`Tree should support default selected and expanded ids 2`] = `
             <span
               aria-expanded="false"
               aria-selected="false"
-              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
               id="tree-item-:r11:"
               role="treeitem"
               tabindex="-1"
@@ -2835,7 +2835,7 @@ exports[`Tree should support default selected and expanded ids 2`] = `
               >
                 <span
                   aria-selected="false"
-                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
                   id="tree-item-:r12:"
                   role="treeitem"
                   tabindex="-1"
@@ -2859,7 +2859,7 @@ exports[`Tree should support default selected and expanded ids 2`] = `
       >
         <span
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:r13:"
           role="treeitem"
           tabindex="-1"
@@ -2881,7 +2881,7 @@ exports[`Tree should support default selected and expanded ids 2`] = `
   >
     <span
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:r14:"
       role="treeitem"
       tabindex="-1"
@@ -2913,7 +2913,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
   >
     <span
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:r25:"
       role="treeitem"
       tabindex="-1"
@@ -2934,7 +2934,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
     <span
       aria-expanded="false"
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:r26:"
       role="treeitem"
       tabindex="-1"
@@ -2965,7 +2965,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
       >
         <span
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:r27:"
           role="treeitem"
           tabindex="-1"
@@ -2986,7 +2986,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
         <span
           aria-expanded="false"
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:r28:"
           role="treeitem"
           tabindex="-1"
@@ -3018,7 +3018,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
             <span
               aria-expanded="false"
               aria-selected="false"
-              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
               id="tree-item-:r29:"
               role="treeitem"
               tabindex="-1"
@@ -3049,7 +3049,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
               >
                 <span
                   aria-selected="false"
-                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
                   id="tree-item-:r2a:"
                   role="treeitem"
                   tabindex="-1"
@@ -3073,7 +3073,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
       >
         <span
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:r2b:"
           role="treeitem"
           tabindex="-1"
@@ -3095,7 +3095,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
   >
     <span
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:r2c:"
       role="treeitem"
       tabindex="-1"
@@ -3127,7 +3127,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
   >
     <span
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:r25:"
       role="treeitem"
       tabindex="-1"
@@ -3148,7 +3148,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
     <span
       aria-expanded="false"
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:r26:"
       role="treeitem"
       tabindex="-1"
@@ -3178,7 +3178,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
       >
         <span
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:r27:"
           role="treeitem"
           tabindex="-1"
@@ -3199,7 +3199,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
         <span
           aria-expanded="false"
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:r28:"
           role="treeitem"
           tabindex="-1"
@@ -3230,7 +3230,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
             <span
               aria-expanded="false"
               aria-selected="false"
-              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
               id="tree-item-:r29:"
               role="treeitem"
               tabindex="-1"
@@ -3260,7 +3260,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
               >
                 <span
                   aria-selected="false"
-                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
                   id="tree-item-:r2a:"
                   role="treeitem"
                   tabindex="-1"
@@ -3284,7 +3284,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
       >
         <span
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:r2b:"
           role="treeitem"
           tabindex="-1"
@@ -3306,7 +3306,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
   >
     <span
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:r2c:"
       role="treeitem"
       tabindex="-1"
@@ -3338,7 +3338,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
   >
     <span
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:r25:"
       role="treeitem"
       tabindex="-1"
@@ -3369,7 +3369,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
     <span
       aria-expanded="false"
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:r26:"
       role="treeitem"
       tabindex="-1"
@@ -3410,7 +3410,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
       >
         <span
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:r27:"
           role="treeitem"
           tabindex="-1"
@@ -3441,7 +3441,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
         <span
           aria-expanded="false"
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:r28:"
           role="treeitem"
           tabindex="-1"
@@ -3483,7 +3483,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
             <span
               aria-expanded="false"
               aria-selected="false"
-              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+              class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
               id="tree-item-:r29:"
               role="treeitem"
               tabindex="-1"
@@ -3524,7 +3524,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
               >
                 <span
                   aria-selected="false"
-                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+                  class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
                   id="tree-item-:r2a:"
                   role="treeitem"
                   tabindex="-1"
@@ -3558,7 +3558,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
       >
         <span
           aria-selected="false"
-          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-list-item--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--padded rmd-list-item rmd-interaction-surface"
           id="tree-item-:r2b:"
           role="treeitem"
           tabindex="-1"
@@ -3590,7 +3590,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
   >
     <span
       aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-list-item--clickable"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
       id="tree-item-:r2c:"
       role="treeitem"
       tabindex="-1"

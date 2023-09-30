@@ -2,7 +2,7 @@
 
 exports[`SegmentedButton should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <button
-  class="rmd-segmented-button"
+  class="rmd-segmented-button rmd-interaction-surface"
   type="button"
 >
   <span
@@ -19,7 +19,7 @@ exports[`SegmentedButton should apply the correct styling, HTMLAttributes, and a
 
 exports[`SegmentedButton should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <button
-  class="rmd-segmented-button custom-class-name"
+  class="rmd-segmented-button rmd-interaction-surface custom-class-name"
   style="color: white;"
   type="button"
 >
@@ -38,7 +38,7 @@ exports[`SegmentedButton should apply the correct styling, HTMLAttributes, and a
 exports[`SegmentedButton should apply the correct styling, HTMLAttributes, and allow a ref 3`] = `
 <button
   aria-pressed="true"
-  class="rmd-segmented-button rmd-segmented-button--selected"
+  class="rmd-segmented-button rmd-segmented-button--selected rmd-interaction-surface"
   style=""
   type="button"
 >
@@ -56,7 +56,7 @@ exports[`SegmentedButton should apply the correct styling, HTMLAttributes, and a
 
 exports[`SegmentedButton should apply the correct styling, HTMLAttributes, and allow a ref 4`] = `
 <button
-  class="rmd-segmented-button"
+  class="rmd-segmented-button rmd-interaction-surface"
   style=""
   type="button"
 >
@@ -68,7 +68,7 @@ exports[`SegmentedButton should apply the correct styling, HTMLAttributes, and a
 
 exports[`SegmentedButton should apply the correct styling, HTMLAttributes, and allow a ref 5`] = `
 <button
-  class="rmd-segmented-button"
+  class="rmd-segmented-button rmd-interaction-surface"
   style=""
   type="button"
 >
@@ -86,7 +86,7 @@ exports[`SegmentedButton should apply the correct styling, HTMLAttributes, and a
 
 exports[`SegmentedButton should support rendering left and right addons so the children can be text and elevated 1`] = `
 <button
-  class="rmd-segmented-button"
+  class="rmd-segmented-button rmd-interaction-surface"
   type="button"
 >
   <span
@@ -113,4 +113,4 @@ exports[`SegmentedButton should support rendering left and right addons so the c
 </button>
 `;
 
-exports[`SegmentedButton styling utility class should be callable without any arguments 1`] = `"rmd-segmented-button"`;
+exports[`SegmentedButton styling utility class should be callable without any arguments 1`] = `"rmd-segmented-button rmd-interaction-surface"`;

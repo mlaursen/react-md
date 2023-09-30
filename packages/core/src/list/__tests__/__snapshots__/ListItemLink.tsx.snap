@@ -10,7 +10,7 @@ exports[`ListItemLink should allow for a custom link component using the as prop
       role="none"
     >
       <a
-        class="rmd-link rmd-list-item rmd-list-item--link rmd-list-item--clickable rmd-list-item--normal"
+        class="rmd-link rmd-list-item rmd-list-item--link rmd-list-item--normal rmd-interaction-surface"
         href="/link"
       >
         <span
@@ -34,7 +34,7 @@ exports[`ListItemLink should render as an <a> element by default 1`] = `
       role="none"
     >
       <a
-        class="rmd-list-item rmd-list-item--link rmd-list-item--clickable rmd-list-item--normal"
+        class="rmd-list-item rmd-list-item--link rmd-list-item--normal rmd-interaction-surface"
         href="/link"
       >
         <span
@@ -58,7 +58,7 @@ exports[`ListItemLink should support the to prop for routing libraries like reac
       role="none"
     >
       <a
-        class="rmd-list-item rmd-list-item--link rmd-list-item--clickable rmd-list-item--normal"
+        class="rmd-list-item rmd-list-item--link rmd-list-item--normal rmd-interaction-surface"
         href="/link"
       >
         <span

@@ -476,7 +476,7 @@ exports[`useRadioGroup should support creating a required radio group 1`] = `
       </span>
     </label>
     <button
-      class="rmd-button rmd-button--text"
+      class="rmd-button rmd-button--text rmd-interaction-surface"
       type="submit"
     >
       <span>
@@ -583,7 +583,7 @@ exports[`useRadioGroup should support creating a required radio group 2`] = `
       </span>
     </label>
     <button
-      class="rmd-button rmd-button--text"
+      class="rmd-button rmd-button--text rmd-interaction-surface"
       type="submit"
     >
       <span>
@@ -609,7 +609,7 @@ exports[`useRadioGroup should support rendering within a menu 1`] = `
   >
     <li
       aria-checked="false"
-      class="rmd-list-item rmd-list-item--clickable rmd-list-item--medium rmd-radio-menu-item rmd-menu-item-input-toggle"
+      class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-radio-menu-item rmd-menu-item-input-toggle"
       id="menu-item-:rj:"
       role="menuitemradio"
       tabindex="-1"
@@ -632,7 +632,7 @@ exports[`useRadioGroup should support rendering within a menu 1`] = `
     </li>
     <li
       aria-checked="false"
-      class="rmd-list-item rmd-list-item--clickable rmd-list-item--medium rmd-radio-menu-item rmd-menu-item-input-toggle"
+      class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-radio-menu-item rmd-menu-item-input-toggle"
       id="menu-item-:rk:"
       role="menuitemradio"
       tabindex="-1"
@@ -655,7 +655,7 @@ exports[`useRadioGroup should support rendering within a menu 1`] = `
     </li>
     <li
       aria-checked="true"
-      class="rmd-list-item rmd-list-item--clickable rmd-list-item--medium rmd-radio-menu-item rmd-menu-item-input-toggle"
+      class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-radio-menu-item rmd-menu-item-input-toggle"
       id="menu-item-:rl:"
       role="menuitemradio"
       tabindex="-1"
@@ -678,7 +678,7 @@ exports[`useRadioGroup should support rendering within a menu 1`] = `
     </li>
     <li
       aria-checked="false"
-      class="rmd-list-item rmd-list-item--clickable rmd-list-item--medium rmd-radio-menu-item rmd-menu-item-input-toggle"
+      class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-radio-menu-item rmd-menu-item-input-toggle"
       id="menu-item-:rm:"
       role="menuitemradio"
       tabindex="-1"

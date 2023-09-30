@@ -128,7 +128,7 @@ describe("Chip", () => {
     expect(chip).not.toHaveAttribute("aria-pressed");
     expect(chip).not.toHaveAttribute("type");
     expect(chip).not.toHaveAttribute("disabled");
-    expect(chip.className).toContain("rmd-chip--noninteractive");
+    expect(chip.className).not.toContain("rmd-interaction-surface");
     expect(chip).toMatchSnapshot();
 
     rerender(<Chip {...props} />);
@@ -136,7 +136,7 @@ describe("Chip", () => {
     expect(chip).toBeInstanceOf(HTMLButtonElement);
     expect(chip).toHaveAttribute("type", "button");
     expect(chip).not.toHaveAttribute("disabled");
-    expect(chip.className).not.toContain("rmd-chip--noninteractive");
+    expect(chip.className).toContain("rmd-interaction-surface");
     expect(chip).toMatchSnapshot();
   });
 

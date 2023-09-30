@@ -26,7 +26,6 @@ $disable-right-addon: false !default;
 $disable-both-addons: $disable-left-addon and $disable-right-addon !default;
 $disable-selected-theme: false !default;
 $disable-selected-icon-transition: false !default;
-$disable-noninteractive: false !default;
 
 $gap: icon.$spacing !default;
 $height: 2rem !default;
@@ -228,10 +227,6 @@ $var-lookup: (
         @include transition.transition-set-var(max-width, icon.get-var(size));
         @include transition.transition-set-var(max-width-gap, $gap);
       }
-      @include interaction.surface(
-        $disabled-selector: "&:disabled" +
-          if($disable-noninteractive, "", ",&--noninteractive")
-      );
       @include utils.map-to-styles($typography);
 
       align-items: center;

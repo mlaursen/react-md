@@ -25,7 +25,7 @@ exports[`CardHeader should allow addons before and after the children 1`] = `
   </div>
   <button
     aria-label="Expand"
-    class="rmd-button rmd-button--icon"
+    class="rmd-button rmd-button--icon rmd-interaction-surface"
     type="button"
   />
 </div>

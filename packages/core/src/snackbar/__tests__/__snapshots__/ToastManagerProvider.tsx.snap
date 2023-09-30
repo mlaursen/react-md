@@ -82,7 +82,7 @@ exports[`ToastManagerProvider toast queue should not trigger a timeout if the vi
     </div>
     <button
       aria-label="Close"
-      class="rmd-button rmd-button--icon rmd-button--icon-square rmd-toast-x"
+      class="rmd-button rmd-button--icon rmd-button--icon-square rmd-interaction-surface rmd-toast-x"
       type="button"
     >
       <span
@@ -114,7 +114,7 @@ exports[`ToastManagerProvider toast queue should not trigger a timeout if the vi
     </div>
     <button
       aria-label="Close"
-      class="rmd-button rmd-button--icon rmd-button--icon-square rmd-toast-x"
+      class="rmd-button rmd-button--icon rmd-button--icon-square rmd-interaction-surface rmd-toast-x"
       type="button"
     >
       <span

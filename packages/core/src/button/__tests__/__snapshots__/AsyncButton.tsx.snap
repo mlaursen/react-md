@@ -2,7 +2,7 @@
 
 exports[`AsyncButton should allow for custom children to be displayed only while loading 1`] = `
 <button
-  class="rmd-button rmd-button--text rmd-button--async"
+  class="rmd-button rmd-button--text rmd-interaction-surface rmd-button--async"
   type="button"
 >
   <span
@@ -26,7 +26,7 @@ exports[`AsyncButton should allow for custom children to be displayed only while
 exports[`AsyncButton should allow for custom children to be displayed only while loading 2`] = `
 <button
   aria-disabled="true"
-  class="rmd-button rmd-button--text rmd-button--async rmd-button--async-overlay"
+  class="rmd-button rmd-button--text rmd-interaction-surface rmd-button--async rmd-button--async-overlay"
   type="button"
 >
   <span
@@ -72,7 +72,7 @@ exports[`AsyncButton should allow for custom children to be displayed only while
 
 exports[`AsyncButton should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <button
-  class="rmd-button rmd-button--text rmd-button--async"
+  class="rmd-button rmd-button--text rmd-interaction-surface rmd-button--async"
   type="button"
 >
   <span>
@@ -83,7 +83,7 @@ exports[`AsyncButton should apply the correct styling, HTMLAttributes, and allow
 
 exports[`AsyncButton should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <button
-  class="rmd-button rmd-button--text rmd-button--async custom-class-name"
+  class="rmd-button rmd-button--text rmd-interaction-surface rmd-button--async custom-class-name"
   style="color: white;"
   type="button"
 >
@@ -95,7 +95,7 @@ exports[`AsyncButton should apply the correct styling, HTMLAttributes, and allow
 
 exports[`AsyncButton should be able to render a circular progress bar before or after and replacing the optional addon 1`] = `
 <button
-  class="rmd-button rmd-button--text rmd-button--async"
+  class="rmd-button rmd-button--text rmd-interaction-surface rmd-button--async"
   type="button"
 >
   <span
@@ -119,7 +119,7 @@ exports[`AsyncButton should be able to render a circular progress bar before or 
 exports[`AsyncButton should be able to render a circular progress bar before or after and replacing the optional addon 2`] = `
 <button
   aria-disabled="true"
-  class="rmd-button rmd-button--text rmd-button--async"
+  class="rmd-button rmd-button--text rmd-interaction-surface rmd-button--async"
   type="button"
 >
   <span
@@ -155,7 +155,7 @@ exports[`AsyncButton should be able to render a circular progress bar before or 
 
 exports[`AsyncButton should be able to render a circular progress bar before or after and replacing the optional addon 3`] = `
 <button
-  class="rmd-button rmd-button--text rmd-button--async"
+  class="rmd-button rmd-button--text rmd-interaction-surface rmd-button--async"
   type="button"
 >
   <span
@@ -179,7 +179,7 @@ exports[`AsyncButton should be able to render a circular progress bar before or 
 exports[`AsyncButton should be able to render a circular progress bar before or after and replacing the optional addon 4`] = `
 <button
   aria-disabled="true"
-  class="rmd-button rmd-button--text rmd-button--async"
+  class="rmd-button rmd-button--text rmd-interaction-surface rmd-button--async"
   type="button"
 >
   <span
@@ -215,7 +215,7 @@ exports[`AsyncButton should be able to render a circular progress bar before or 
 
 exports[`AsyncButton should default to using the same theme while loading but can use the disabled theme by enabling the loadingDisabledTheme prop 1`] = `
 <button
-  class="rmd-button rmd-button--text rmd-button--async"
+  class="rmd-button rmd-button--text rmd-interaction-surface rmd-button--async"
   type="button"
 >
   <span>
@@ -227,7 +227,7 @@ exports[`AsyncButton should default to using the same theme while loading but ca
 exports[`AsyncButton should default to using the same theme while loading but can use the disabled theme by enabling the loadingDisabledTheme prop 2`] = `
 <button
   aria-disabled="true"
-  class="rmd-button rmd-button--text rmd-button--disabled rmd-text-disabled-color rmd-button--async rmd-button--async-overlay"
+  class="rmd-button rmd-button--text rmd-button--disabled rmd-text-disabled-color rmd-interaction-surface rmd-button--async rmd-button--async-overlay"
   type="button"
 >
   <span>
@@ -261,7 +261,7 @@ exports[`AsyncButton should default to using the same theme while loading but ca
 
 exports[`AsyncButton should render a progressbar until the onClick's promise has been resolved if it returns a promise 1`] = `
 <button
-  class="rmd-button rmd-button--text rmd-button--async"
+  class="rmd-button rmd-button--text rmd-interaction-surface rmd-button--async"
   type="button"
 >
   <span>
@@ -273,7 +273,7 @@ exports[`AsyncButton should render a progressbar until the onClick's promise has
 exports[`AsyncButton should render a progressbar until the onClick's promise has been resolved if it returns a promise 2`] = `
 <button
   aria-disabled="true"
-  class="rmd-button rmd-button--text rmd-button--async rmd-button--async-overlay"
+  class="rmd-button rmd-button--text rmd-interaction-surface rmd-button--async rmd-button--async-overlay"
   type="button"
 >
   <span>
@@ -308,7 +308,7 @@ exports[`AsyncButton should render a progressbar until the onClick's promise has
 exports[`AsyncButton should should be able to render a linear progress bar above or below the content 1`] = `
 <button
   aria-disabled="true"
-  class="rmd-button rmd-button--text rmd-button--async"
+  class="rmd-button rmd-button--text rmd-interaction-surface rmd-button--async"
   type="button"
 >
   <span>
@@ -335,7 +335,7 @@ exports[`AsyncButton should should be able to render a linear progress bar above
 exports[`AsyncButton should should be able to render a linear progress bar above or below the content 2`] = `
 <button
   aria-disabled="true"
-  class="rmd-button rmd-button--text rmd-button--async"
+  class="rmd-button rmd-button--text rmd-interaction-surface rmd-button--async"
   type="button"
 >
   <span>
@@ -362,7 +362,7 @@ exports[`AsyncButton should should be able to render a linear progress bar above
 exports[`AsyncButton should use the current-color as the progress bar's color when not using the clear or disabled theme which should use the primary theme instead 1`] = `
 <button
   aria-disabled="true"
-  class="rmd-button rmd-button--icon rmd-button--contained rmd-background-container rmd-secondary-container rmd-button--async rmd-button--async-overlay"
+  class="rmd-button rmd-button--icon rmd-button--contained rmd-background-container rmd-secondary-container rmd-interaction-surface rmd-button--async rmd-button--async-overlay"
   type="button"
 >
   <span>

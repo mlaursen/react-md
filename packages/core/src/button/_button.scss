@@ -163,9 +163,6 @@ $var-lookup: (
         @include progress.set-var(circular-size, $circular-progress-size);
       }
 
-      @include interaction.surface(
-        $disabled-selector: "&:disabled,&[aria-disabled='true'],&--disabled"
-      );
       @include icon.set-var(color, currentcolor);
       @include icon.use-var(gap, spacing);
       @include use-var(background-color);

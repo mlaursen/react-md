@@ -6,7 +6,7 @@ exports[`useTemporaryLayout should allow you to create a temporary layout quickl
 >
   <button
     aria-label="Navigation"
-    class="rmd-button rmd-button--icon"
+    class="rmd-button rmd-button--icon rmd-interaction-surface"
     type="button"
   >
     <span

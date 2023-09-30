@@ -62,7 +62,7 @@ exports[`Overlay should support rendering inline if disablePortal prop is true 1
 exports[`Overlay should support rendering inline if it was visible by default and rendered through ssr 1`] = `
 <div>
   <button
-    class="rmd-button rmd-button--text"
+    class="rmd-button rmd-button--text rmd-interaction-surface"
     type="button"
   >
     <span>

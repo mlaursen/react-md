@@ -159,7 +159,6 @@ $var-lookup: (
     .rmd-segmented-button {
       @include icon.set-var(color, currentcolor);
       @include icon.set-var(size, 1.125rem);
-      @include interaction.surface;
       @include utils.map-to-styles($typography-styles);
 
       align-items: center;

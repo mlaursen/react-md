@@ -146,6 +146,7 @@ export function button(options: ButtonClassNameOptions = {}): string {
     }),
     pressedClassName,
     cssUtils({
+      surface: true,
       textColor,
       outlineColor,
       backgroundColor,

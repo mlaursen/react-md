@@ -92,7 +92,6 @@ export function chip(options: ChipClassNameOptions = {}): string {
       solid: theme === "solid",
       outline: theme === "outline",
       disabled,
-      noninteractive,
       "left-addon": leftAddon && !rightAddon,
       "right-addon": !leftAddon && rightAddon,
       surrounded: leftAddon && rightAddon,
@@ -101,6 +100,7 @@ export function chip(options: ChipClassNameOptions = {}): string {
     selected && selectedClassName,
     pressedClassName,
     cssUtils({
+      surface: !noninteractive,
       textColor: disabled ? "text-disabled" : undefined,
       backgroundColor,
     }),
