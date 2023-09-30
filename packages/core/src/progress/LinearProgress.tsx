@@ -64,7 +64,32 @@ const styles = bem("rmd-linear-progress");
 /**
  * **Server Component**
  *
+ * @example
+ * Indeterminate Example
+ * ```tsx
+ * import { LinearProgress } from "@react-md/core";
+ * import { type ReactElement } from "react";
  *
+ * function Example(): ReactElement {
+ *   return <LinearProgress />;
+ * }
+ * ```
+ *
+ * @example
+ * Determinate Example
+ * ```tsx
+ * import { LinearProgress } from "@react-md/core";
+ * import { useState, type ReactElement } from "react";
+ *
+ * function Example(): ReactElement {
+ *   // a number from 0 - 100
+ *   const [progress, setProgress] = useState(0);
+ *
+ *   return <LinearProgress value={progress} />;
+ * }
+ * ```
+ *
+ * @remarks \@since 6.0.0 Supports rendering as any of the theme colors.
  */
 export const LinearProgress = forwardRef<HTMLSpanElement, LinearProgressProps>(
   function LinearProgress(props, ref) {
