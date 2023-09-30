@@ -9,6 +9,7 @@ export * from "./avatar/styles.js";
 export * from "./badge/Badge.js";
 export * from "./box/Box.js";
 export * from "./box/styles.js";
+export * from "./button/AsyncButton.js";
 export * from "./button/Button.js";
 export * from "./button/ButtonUnstyled.js";
 export * from "./button/FloatingActionButton.js";

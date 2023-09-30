@@ -7,6 +7,7 @@
 @use "../box-shadows";
 @use "../interaction/interaction";
 @use "../progress/progress";
+@use "../overlay/overlay";
 @use "../typography/typography";
 
 $disable-everything: false !default;
@@ -20,6 +21,7 @@ $disable-contained-interaction-colors: interaction.$light-surface-base-backgroun
 $disable-floating: false !default;
 $disable-floating-absolute-position: false !default;
 $disable-circular-progress: progress.$disable-circular !default;
+$disable-async: $disable-circular-progress !default;
 $disable-unstyled-utility-class: false !default;
 
 $text-border-radius: 0.5rem !default;
@@ -162,7 +164,7 @@ $var-lookup: (
       }
 
       @include interaction.surface(
-        $disabled-selector: "&:disabled,&--disabled"
+        $disabled-selector: "&:disabled,&[aria-disabled='true'],&--disabled"
       );
       @include icon.set-var(color, currentcolor);
       @include icon.use-var(gap, spacing);
@@ -237,6 +239,20 @@ $var-lookup: (
             get-var(contained-background-color)
           );
           @include set-var(color, get-var(contained-color));
+        }
+      }
+
+      @if not $disable-async {
+        &--async {
+          @include overlay.set-var(background-color, transparent);
+          @include progress.set-var(color, currentcolor);
+          // @include progress.set-var(background-color, currentcolor);
+        }
+
+        &--async-overlay {
+          > * {
+            opacity: 0;
+          }
         }
       }
     }
