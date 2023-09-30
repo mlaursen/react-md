@@ -17,9 +17,9 @@ import {
   DEFAULT_TOOLTIP_DENSE_SPACING,
   DEFAULT_TOOLTIP_SPACING,
 } from "../constants.js";
-import { useTooltip, type TooltipHookOptions } from "../useTooltip.js";
+import { useTooltip, type TooltipOptions } from "../useTooltip.js";
 
-interface TestProps extends TooltipHookOptions {
+interface TestProps extends TooltipOptions {
   tooltip?: Partial<TooltipProps>;
 }
 

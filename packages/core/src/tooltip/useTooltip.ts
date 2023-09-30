@@ -114,9 +114,11 @@ export interface ProvidedTooltippedElementProps
  * @remarks
  * \@since 2.8.0
  * \@since 6.0.0 A major API change for the hover mode behavior and no longer
- * requires a `baseId`/`id` for the tooltip.
+ * requires a `baseId`/`id` for the tooltip. Also renamed from
+ * `TooltipHookOptions` to `TooltipOptions` to match other hook naming
+ * conventions.
  */
-export interface TooltipHookOptions
+export interface TooltipOptions
   extends FixedPositioningTransitionCallbacks,
     TooltippedElementEventHandlers,
     TooltipPositioningOptions,
@@ -234,9 +236,11 @@ export interface ProvidedTooltipProps
  * @remarks
  * \@since 2.8.0
  * \@since 6.0.0 No longer returns any properties from the hover mode provider
- * because of the major API change to hover mode.
+ * because of the major API change to hover mode.. Also renamed from
+ * `TooltipHookReturnValue` to `TooltipImplementation` to match other hook
+ * naming conventions.
  */
-export interface TooltipHookReturnValue {
+export interface TooltipImplementation {
   visible: boolean;
   setVisible: UseStateSetter<boolean>;
   animatedOnce: boolean;
@@ -293,8 +297,8 @@ export interface TooltipHookReturnValue {
  * stay visible
  */
 export function useTooltip(
-  options: TooltipHookOptions = {}
-): TooltipHookReturnValue {
+  options: TooltipOptions = {}
+): TooltipImplementation {
   const {
     id: propId,
     style: propStyle,
