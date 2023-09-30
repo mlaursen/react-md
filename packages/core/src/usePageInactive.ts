@@ -6,7 +6,7 @@ const noop = (): void => {
 };
 
 /**
- * WHen this is set to `"focus"`, the change handler will be fired whenever the
+ * When this is set to `"focus"`, the change handler will be fired whenever the
  * window gains or loses focus.
  *
  * When this is set to `visibility`, the change handler will be fired when the

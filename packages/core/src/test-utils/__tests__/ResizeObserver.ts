@@ -5,13 +5,13 @@ import {
   resizeObserverManager,
 } from "../../useResizeObserver.js";
 import {
-  cleanupResizeObserver,
+  cleanupResizeObserverAfterEach,
   createResizeObserverEntry,
   setupResizeObserverMock,
 } from "../ResizeObserver.js";
 
 describe("ResizeObserverMock", () => {
-  cleanupResizeObserver();
+  cleanupResizeObserverAfterEach();
 
   it("should throw an error when the resizeElement function is called for an element that is not being watched", () => {
     const baseRect = document.body.getBoundingClientRect();

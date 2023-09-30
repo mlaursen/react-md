@@ -248,6 +248,7 @@ export * from "./theme/utils.js";
 export * from "./tooltip/Tooltip.js";
 export * from "./tooltip/TooltipHoverModeProvider.js";
 export * from "./tooltip/constants.js";
+export * from "./tooltip/useOverflowTooltip.js";
 export * from "./tooltip/useTooltip.js";
 export * from "./transition/CSSTransition.js";
 export * from "./transition/Collapse.js";

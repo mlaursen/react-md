@@ -2,7 +2,7 @@ import { describe, expect, it, jest } from "@jest/globals";
 import { createRef, type ReactElement, type Ref } from "react";
 import {
   act,
-  cleanupResizeObserver,
+  cleanupResizeObserverAfterEach,
   rmdRender,
   screen,
   setupResizeObserverMock,
@@ -27,7 +27,7 @@ function Test(
   );
 }
 
-cleanupResizeObserver();
+cleanupResizeObserverAfterEach();
 
 describe("LayoutAppBar", () => {
   it("should apply the correct styling, HTMLAttributes, and allow a ref", () => {

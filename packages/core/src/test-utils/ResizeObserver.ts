@@ -85,7 +85,7 @@ export class ResizeObserverMock implements ResizeObserver {
    * ```tsx
    * import { useCallback, useState } from "react";
    * import {
-   *   cleanupResizeObserver,
+   *   cleanupResizeObserverAfterEach,
    *   render,
    *   screen,
    *   setupResizeObserverMock,
@@ -110,6 +110,8 @@ export class ResizeObserverMock implements ResizeObserver {
    *     </>
    *   );
    * }
+   *
+   * cleanupResizeObserverAfterEach();
    *
    * describe("ExampleComponent", () => {
    *   it("should do stuff", () => {
@@ -258,7 +260,7 @@ export const setupResizeObserverMock = (
  * @see {@link setupResizeObserverMock}
  * @remarks \@since 6.0.0
  */
-export function cleanupResizeObserver(restoreAllMocks = true): void {
+export function cleanupResizeObserverAfterEach(restoreAllMocks = true): void {
   afterEach(() => {
     resizeObserverManager.frame = 0;
     resizeObserverManager.subscriptions = new Map();

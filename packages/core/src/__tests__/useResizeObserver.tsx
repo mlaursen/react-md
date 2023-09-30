@@ -2,7 +2,7 @@ import { describe, expect, it, jest } from "@jest/globals";
 import { useEffect, type ReactElement } from "react";
 import {
   act,
-  cleanupResizeObserver,
+  cleanupResizeObserverAfterEach,
   createResizeObserverEntry,
   render,
   screen,
@@ -16,7 +16,7 @@ import {
 } from "../useResizeObserver.js";
 
 describe("useResizeObserver", () => {
-  cleanupResizeObserver();
+  cleanupResizeObserverAfterEach();
 
   it("should only create a single shared observer to improve performance", () => {
     const observe = jest.fn();
