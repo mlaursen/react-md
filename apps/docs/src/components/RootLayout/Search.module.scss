@@ -6,12 +6,15 @@
     rgba(everything.$black, 0.32)
   );
   @include everything.theme-set-var(outline-width, 0.125rem);
-  // @include everything.button-set-var(
-  //   outline-color,
-  //   rgba(everything.$black, 0.32)
-  // );
-  // @include everything.button-set-var(outline-width, 0.125rem);
   @include everything.button-set-var(text-horizontal-padding, 0.5rem);
+
+  @include everything.tablet-media {
+    outline: everything.theme-get-var(outline-width) solid
+      everything.theme-get-var(outline-color);
+    outline-offset: everything.negate-var(
+      everything.theme-get-var(outline-width)
+    );
+  }
 }
 
 .search {
@@ -19,8 +22,13 @@
 }
 
 .shortcut {
+  @include everything.tablet-media {
+    display: inline;
+  }
+
   background-color: everything.$grey-900;
   border-radius: 0.25rem;
+  display: none;
   color: everything.$dark-theme-text-primary-color;
   padding: 0.25rem 0.5rem;
 }
