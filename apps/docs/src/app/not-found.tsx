@@ -1,4 +1,4 @@
-import { Box, Divider, Typography, typography } from "@react-md/core";
+import { Box, Typography, typography } from "@react-md/core";
 import type { ReactElement } from "react";
 import NotFoundSVG from "./NotFoundSVG.jsx";
 

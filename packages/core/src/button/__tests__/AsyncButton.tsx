@@ -9,7 +9,7 @@ import {
   waitFor,
   within,
 } from "../../test-utils/index.js";
-import { AsyncButton, AsyncButtonProps } from "../AsyncButton.js";
+import { AsyncButton, type AsyncButtonProps } from "../AsyncButton.js";
 
 describe("AsyncButton", () => {
   it("should apply the correct styling, HTMLAttributes, and allow a ref", () => {
