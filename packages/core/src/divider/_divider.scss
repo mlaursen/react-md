@@ -92,7 +92,7 @@ $var-lookup: (
 @mixin border-style($position) {
   $property: "border-#{$position}";
 
-  #{$property}: get-var(size) inset get-var(color);
+  #{$property}: get-var(size) solid get-var(color);
 }
 
 @mixin styles {
@@ -105,7 +105,7 @@ $var-lookup: (
       @include use-var(margin, spacing);
       @include use-var(width);
 
-      border: get-var(size) inset get-var(color);
+      border: get-var(size) solid get-var(color);
       display: block;
       flex-shrink: 0;
 
