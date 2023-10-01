@@ -1,6 +1,6 @@
 "use client";
 import {
-  type ElementType,
+  type ComponentType,
   type HTMLAttributes,
   type ReactElement,
   type ReactNode,
@@ -165,7 +165,7 @@ export interface TreeProps<T extends TreeItemNode>
    * @see {@link DefaultTreeItemRenderer}
    * @defaultValue `DefaultTreeItemRenderer`
    */
-  renderer?: ElementType<RenderRecursiveItemsProps<T>>;
+  renderer?: ComponentType<RenderRecursiveItemsProps<T>>;
 
   /**
    * The link component to use for any tree item nodes that have a `to` or

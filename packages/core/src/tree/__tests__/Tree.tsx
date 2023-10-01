@@ -15,12 +15,10 @@ import {
 
 import { Divider } from "../../divider/Divider.js";
 import { FontIcon } from "../../icon/FontIcon.js";
+import { type RenderRecursiveItemsProps } from "../../utils/RenderRecursively.jsx";
 import { alphaNumericSort } from "../../utils/alphaNumericSort.js";
 import { isElementVisible } from "../../utils/isElementVisible.js";
-import {
-  DefaultTreeItemRenderer,
-  type TreeItemRendererProps,
-} from "../DefaultTreeItemRenderer.js";
+import { DefaultTreeItemRenderer } from "../DefaultTreeItemRenderer.js";
 import { Tree, type TreeProps } from "../Tree.js";
 import { TreeItem } from "../TreeItem.js";
 import {
@@ -629,7 +627,7 @@ describe("Tree", () => {
       },
     } satisfies TreeData<CustomNode>;
     function CustomRenderer(
-      props: TreeItemRendererProps<CustomNode>
+      props: RenderRecursiveItemsProps<CustomNode>
     ): ReactElement {
       const { item } = props;
       if (item.divider) {
@@ -676,13 +674,14 @@ describe("Tree", () => {
     const onTouchEnd = jest.fn();
     const onTouchMove = jest.fn();
     function CustomRenderer(
-      props: TreeItemRendererProps<Folder>
+      props: RenderRecursiveItemsProps<Folder>
     ): ReactElement {
-      const { item, ...remaining } = props;
+      const { item, parents, children } = props;
       return (
         <TreeItem
-          {...remaining}
           itemId={item.itemId}
+          depth={parents.length}
+          childItems={children}
           onClick={onClick}
           onKeyDown={onKeyDown}
           onKeyUp={onKeyUp}

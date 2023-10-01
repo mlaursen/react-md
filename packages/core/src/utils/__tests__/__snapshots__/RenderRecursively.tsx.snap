@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RenderRecursively should pass data down to each component and be strictly type-checked 1`] = `
+<div>
+  <ul
+    class="rmd-list"
+    role="none"
+    style="--rmd-tree-depth: 0;"
+  >
+    <li
+      class=""
+      data-testid="item-1"
+    >
+      Item 1
+    </li>
+    <ul
+      class="rmd-list"
+      role="none"
+    >
+      <ul
+        class="rmd-list"
+        role="none"
+        style="--rmd-tree-depth: 1;"
+      >
+        <li
+          class="active"
+          data-testid="item-1-1"
+        >
+          Item 1-1
+        </li>
+      </ul>
+      <hr
+        class="rmd-divider"
+        role="separator"
+      />
+      <ul
+        class="rmd-list"
+        role="none"
+        style="--rmd-tree-depth: 1;"
+      >
+        <li
+          class=""
+          data-testid="item-1-2"
+        >
+          Item 1-2
+        </li>
+        <ul
+          class="rmd-list"
+          role="none"
+        >
+          <ul
+            class="rmd-list"
+            role="none"
+            style="--rmd-tree-depth: 2;"
+          >
+            <li
+              class=""
+              data-testid="item-1-2-1"
+            >
+              Item 1-2-1
+            </li>
+          </ul>
+        </ul>
+      </ul>
+    </ul>
+  </ul>
+  <ul
+    class="rmd-list"
+    role="none"
+    style="--rmd-tree-depth: 0;"
+  >
+    <li
+      class=""
+      data-testid="item-2"
+    >
+      Item 2
+    </li>
+  </ul>
+</div>
+`;

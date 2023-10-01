@@ -1,4 +1,5 @@
-import { type ElementType, type ReactElement, type ReactNode } from "react";
+// TODO: Figure out how to strictly enforce the data
+import { type ComponentType, type ReactElement, type ReactNode } from "react";
 
 /**
  * @remarks \@since 6.0.0
@@ -10,17 +11,22 @@ export type RecursiveItem<T = Record<string, unknown>> = T & {
 /**
  * @remarks \@since 6.0.0
  */
-export interface RenderRecursiveItemsProps<T = Record<string, unknown>> {
+export interface RenderRecursiveItemsProps<
+  Item = Record<string, unknown>,
+  Data = unknown,
+> {
+  data?: Data;
+
   /**
    * The current item to render.
    */
-  item: RecursiveItem<T>;
+  item: RecursiveItem<Item>;
 
   /**
    * The list of parent items which can be used to determine the depth or "share
    * props" if the items contained props.
    */
-  parents: readonly RecursiveItem<T>[];
+  parents: readonly RecursiveItem<Item>[];
 
   /**
    * This will be provided if the {@link item} had child items and will be the
@@ -32,13 +38,17 @@ export interface RenderRecursiveItemsProps<T = Record<string, unknown>> {
 /**
  * @remarks \@since 6.0.0
  */
-export interface RenderRecursivelyProps<T = Record<string, unknown>> {
-  items: readonly RecursiveItem<T>[];
+export interface RenderRecursivelyProps<
+  Item = Record<string, unknown>,
+  Data = unknown,
+> {
+  data?: Data;
+  items: readonly RecursiveItem<Item>[];
 
   /**
    * The renderer for each item.
    */
-  render: ElementType<RenderRecursiveItemsProps<T>>;
+  render: ComponentType<RenderRecursiveItemsProps<Item, Data>>;
 
   /**
    * This should not be used for external users. This is used to build the
@@ -47,7 +57,7 @@ export interface RenderRecursivelyProps<T = Record<string, unknown>> {
    * @internal
    * @defaultValue `[]`
    */
-  parents?: readonly RecursiveItem<T>[];
+  parents?: readonly RecursiveItem<Item>[];
 
   /**
    * Gets a React `key` for a specific item. This should be provided if the
@@ -60,7 +70,7 @@ export interface RenderRecursivelyProps<T = Record<string, unknown>> {
    *
    * @defaultValue `() => ${parents.length}-${index}`.
    */
-  getItemKey?(item: RecursiveItem<T>): string;
+  getItemKey?(item: RecursiveItem<Item>): string;
 }
 
 /**
@@ -153,10 +163,10 @@ export interface RenderRecursivelyProps<T = Record<string, unknown>> {
  *
  * @remarks \@since 6.0.0
  */
-export function RenderRecursively<T>(
-  props: RenderRecursivelyProps<T>
+export function RenderRecursively<Item, Data>(
+  props: RenderRecursivelyProps<Item, Data>
 ): ReactElement {
-  const { items, render: Render, getItemKey, parents = [] } = props;
+  const { data, items, render: Render, getItemKey, parents = [] } = props;
 
   return (
     <>
@@ -166,6 +176,7 @@ export function RenderRecursively<T>(
         if (item.items?.length) {
           children = (
             <RenderRecursively
+              data={data}
               items={item.items}
               render={Render}
               getItemKey={getItemKey}
@@ -177,6 +188,8 @@ export function RenderRecursively<T>(
         return (
           <Render
             key={getItemKey ? getItemKey(item) : `${depth}-${index}`}
+            // typecast since it should be undefined in renderer as well?
+            data={data}
             item={item}
             parents={parents}
           >

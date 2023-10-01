@@ -39,7 +39,7 @@ function Test(props: TestProps): ReactElement {
     max: 100,
     ref: nodeRef,
     ...(options as Omit<
-      ControlledValueDraggableOptions<HTMLElement>,
+      ControlledValueDraggableOptions,
       "min" | "max" | "ref"
     >),
   });
