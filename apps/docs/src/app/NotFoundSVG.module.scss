@@ -1,0 +1,14 @@
+@use "everything";
+
+.svg {
+  @include everything.tablet-media {
+    margin-bottom: -6rem;
+  }
+
+  max-width: 80rem;
+  margin: 0 -8rem;
+}
+
+.oval {
+  @include everything.theme-use-var(fill, secondary-color);
+}
