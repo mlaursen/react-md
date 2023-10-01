@@ -1,6 +1,5 @@
 "use client";
 import {
-  useMemo,
   type ElementType,
   type HTMLAttributes,
   type ReactElement,
@@ -15,11 +14,12 @@ import { List } from "../list/List.js";
 import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
 import { type LabelRequiredForA11y } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
-import { identity } from "../utils/identity.js";
 import {
-  DefaultTreeItemRenderer,
-  type TreeItemRendererProps,
-} from "./DefaultTreeItemRenderer.js";
+  RenderRecursively,
+  type RenderRecursiveItemsProps,
+} from "../utils/RenderRecursively.js";
+import { identity } from "../utils/identity.js";
+import { DefaultTreeItemRenderer } from "./DefaultTreeItemRenderer.js";
 import { TreeProvider, type TreeExpansionMode } from "./TreeProvider.js";
 import { tree } from "./styles.js";
 import {
@@ -28,7 +28,7 @@ import {
   type TreeItemSorter,
 } from "./types.js";
 import { type TreeExpansion } from "./useTreeExpansion.js";
-import { useTreeItems, type RenderableTreeItemNode } from "./useTreeItems.js";
+import { useTreeItems } from "./useTreeItems.js";
 import { useTreeMovement } from "./useTreeMovement.js";
 import { type TreeSelection } from "./useTreeSelection.js";
 
@@ -165,7 +165,7 @@ export interface TreeProps<T extends TreeItemNode>
    * @see {@link DefaultTreeItemRenderer}
    * @defaultValue `DefaultTreeItemRenderer`
    */
-  renderer?: ElementType<TreeItemRendererProps<T>>;
+  renderer?: ElementType<RenderRecursiveItemsProps<T>>;
 
   /**
    * The link component to use for any tree item nodes that have a `to` or
@@ -285,42 +285,6 @@ export function Tree<T extends TreeItemNode>(
     expandMultipleTreeItems,
   });
 
-  const children = useMemo(() => {
-    interface Options<T extends TreeItemNode> {
-      depth: number;
-      items: readonly RenderableTreeItemNode<T>[];
-    }
-
-    const renderTreeItems = (options: Options<T>): ReactNode => {
-      const { depth, items } = options;
-
-      return items.map((item) => {
-        const { itemId, childItems } = item;
-        let children: ReactNode;
-        if (childItems) {
-          children = renderTreeItems({
-            items: childItems,
-            depth: depth + 1,
-          });
-        }
-
-        return (
-          <TreeItemRenderer
-            key={itemId}
-            item={item}
-            depth={depth}
-            childItems={children}
-          />
-        );
-      });
-    };
-
-    return renderTreeItems({
-      depth: 0,
-      items,
-    });
-  }, [TreeItemRenderer, items]);
-
   return (
     <TreeProvider
       data={data}
@@ -350,7 +314,11 @@ export function Tree<T extends TreeItemNode>(
             tabIndex={0}
             className={tree({ className })}
           >
-            {children}
+            <RenderRecursively
+              items={items}
+              getItemKey={(item) => item.itemId}
+              render={TreeItemRenderer}
+            />
           </List>
         </KeyboardMovementProvider>
       </LinkProvider>

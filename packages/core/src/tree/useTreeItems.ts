@@ -23,7 +23,7 @@ export type TreeItemChildIds = Map<string | null, Set<string>>;
 export type RenderableTreeItemNode<
   T extends TreeItemNode = DefaultTreeItemNode,
 > = T & {
-  childItems?: readonly RenderableTreeItemNode<T>[];
+  items?: readonly RenderableTreeItemNode<T>[];
 };
 
 /**
@@ -42,7 +42,6 @@ export interface BuildTreeOptions<T extends TreeItemNode> {
  * list of items by linking items together with the provided `parentId`. This
  * will also recursively build the tree and _hopefully_ all items will be added.
  *
- * @internal
  * @remarks \@since 6.0.0 Updated to include the {@link TreeItemChildIds}
  */
 export function buildTree<T extends TreeItemNode>(
@@ -74,7 +73,7 @@ export function buildTree<T extends TreeItemNode>(
 
   treeItemChildIds.set(parentId, childIds);
   childItems.forEach((childItem) => {
-    childItem.childItems = buildTree({
+    childItem.items = buildTree({
       sort,
       nodes,
       parentId: childItem.itemId,
@@ -87,7 +86,6 @@ export function buildTree<T extends TreeItemNode>(
 
 /**
  * @remarks \@since 6.0.0
- * @internal
  */
 export interface TreeItemOptions<T extends TreeItemNode> {
   data: TreeData<T>;
@@ -97,15 +95,16 @@ export interface TreeItemOptions<T extends TreeItemNode> {
 
 /**
  * @remarks \@since 6.0.0
- * @internal
  */
-interface TreeItems<T extends TreeItemNode> {
+export interface TreeItems<T extends TreeItemNode> {
   items: readonly RenderableTreeItemNode<T>[];
   treeItemChildIds: TreeItemChildIds;
 }
 
 /**
- * @internal
+ * This is mostly an internal hook, but can be used to build tree-like
+ * data structures without the need of the `Tree` component.
+ *
  * @remarks \@since 6.0.0 converted to use an object argument instead of
  * multiple arguments. Also logs any orphaned items that do not have a parent
  */
