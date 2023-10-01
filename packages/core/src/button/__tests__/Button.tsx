@@ -1,8 +1,10 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import { createRef } from "react";
+import { FontIcon } from "../../icon/FontIcon.js";
 import { INTERACTION_CONFIG } from "../../interaction/config.js";
-import { fireEvent, render } from "../../test-utils/index.js";
-import { Button } from "../Button.js";
+import { fireEvent, render, screen } from "../../test-utils/index.js";
+import { SrOnly } from "../../typography/SrOnly.js";
+import { Button, type ButtonProps } from "../Button.js";
 import {
   type ButtonTheme,
   type ButtonThemeType,
@@ -162,6 +164,35 @@ describe("Button", () => {
       expect(ref.current).toBeInstanceOf(HTMLSpanElement);
       expect(ref.current).toBe(fab);
       expect(fab).toMatchSnapshot();
+    });
+
+    it("should support the small and large icon button sizes which also defaults to the icon buttonType for convenience", () => {
+      const props: ButtonProps = {
+        iconSize: "small",
+        children: "Button",
+      };
+      const { rerender } = render(<Button {...props} />);
+      const button = screen.getByRole("button", { name: "Button" });
+
+      expect(button).toMatchSnapshot();
+
+      rerender(<Button {...props} iconSize="normal" />);
+      expect(button).toMatchSnapshot();
+
+      rerender(<Button {...props} iconSize="large" />);
+      expect(button).toMatchSnapshot();
+    });
+
+    it("should allow for responsive icon with label behavior by enabling the responsive prop and using the SrOnly component", () => {
+      render(
+        <Button responsive>
+          <FontIcon>favorite</FontIcon>
+          <SrOnly phoneOnly>Label</SrOnly>
+        </Button>
+      );
+      const button = screen.getByRole("button", { name: "Label" });
+
+      expect(button).toMatchSnapshot();
     });
   });
 });

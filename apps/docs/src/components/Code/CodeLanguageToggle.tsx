@@ -11,7 +11,7 @@ export function CodeLanguageToggle(): ReactElement {
   const { codeLanguage, setCodeLanguage } = useCodeLanguageContext();
 
   return (
-    <Box className={styles.container} disablePadding>
+    <Box className={styles.container} disablePadding align="stretch">
       {CODE_LANGUAGES.map((lang) => {
         const selected = codeLanguage === lang;
 

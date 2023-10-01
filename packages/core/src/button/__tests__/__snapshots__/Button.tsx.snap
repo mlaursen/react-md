@@ -13,6 +13,25 @@ exports[`Button floating action buttons should allow for custom props to be pass
 </span>
 `;
 
+exports[`Button floating action buttons should allow for responsive icon with label behavior by enabling the responsive prop and using the SrOnly component 1`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--responsive rmd-interaction-surface"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    favorite
+  </span>
+  <span
+    class="rmd-typography rmd-typography--body-1 rmd-phone-sr-only"
+  >
+    Label
+  </span>
+</button>
+`;
+
 exports[`Button floating action buttons should default to a secondary themed contained icon button if the floating behavior is enabled 1`] = `
 <span
   class="rmd-fab rmd-fab--br"
@@ -62,6 +81,39 @@ exports[`Button floating action buttons should default to a secondary themed con
     </span>
   </button>
 </span>
+`;
+
+exports[`Button floating action buttons should support the small and large icon button sizes which also defaults to the icon buttonType for convenience 1`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--small rmd-interaction-surface"
+  type="button"
+>
+  <span>
+    Button
+  </span>
+</button>
+`;
+
+exports[`Button floating action buttons should support the small and large icon button sizes which also defaults to the icon buttonType for convenience 2`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-interaction-surface"
+  type="button"
+>
+  <span>
+    Button
+  </span>
+</button>
+`;
+
+exports[`Button floating action buttons should support the small and large icon button sizes which also defaults to the icon buttonType for convenience 3`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--large rmd-interaction-surface"
+  type="button"
+>
+  <span>
+    Button
+  </span>
+</button>
 `;
 
 exports[`Button should allow for the different themes 1`] = `

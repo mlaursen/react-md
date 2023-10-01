@@ -68,6 +68,17 @@ To create an icon button, set the `buttonType` prop to `"icon"` or `"icon-square
 
 <CodeLoader source="./IconButton.tsx" importUrl={importUrl} editable />
 
+### Icon Sizes
+
+The icon button's size can be easily changed by updating the `font-size` to a
+new value which will automatically scale the padding with it. There are a few
+sizes by default: `small`, `normal` (default), and `large`.
+
+> !Warn! Using small icon buttons will be less accessible since there is a
+> smaller touch target.
+
+<CodeLoader source="./IconButtonSizes.tsx" importUrl={importUrl} editable />
+
 ## Button with Text and Icon
 
 Text and icons can both exist within a `Button` by just including them in the `children`. Each element
@@ -80,6 +91,15 @@ rendered in a button will automatically be separated using `gap` set to the `$ic
   importUrl={importUrl}
   editable
 />
+
+### Responsive Button
+
+A common pattern is to have a button be icon only on phones due to the limited screen size
+and then include a label as well once there is enough space. This can be done by enabling
+the `responsive` prop on the button and wrapping the label in the [SrOnly](/components/sr-only)
+component with the `phoneOnly` prop enabled:
+
+<CodeLoader source="./ResponsiveButton.tsx" importUrl={importUrl} editable />
 
 ## Floating Action Button
 
@@ -123,7 +143,7 @@ can be shown by setting the `loading` prop to `true`:
 
 The `AsyncButton` supports the following loading indicator behaviors out of the box:
 
-- `circular-overlay` (default) - Renders a circular loading indicator above the
+- `circular-overlay` (**default**) - Renders a circular loading indicator above the
   `children` and hides the rest of the content in the button
 - `circular-before` - renders a circular loading indicator before the `children`
 - `circular-after` - renders a circular loading indicator after the `children`

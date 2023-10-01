@@ -1,24 +1,29 @@
-import { AsyncButton, Box } from "@react-md/core";
+import { AsyncButton, Box, Switch } from "@react-md/core";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
-import { useState, type ReactElement, useEffect } from "react";
+import { useState, type ReactElement } from "react";
 
 export default function LoadingIndicatorTypes(): ReactElement {
   const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    const interval = window.setInterval(() => {
-      setLoading((prev) => !prev);
-    }, 5000);
-    return () => {
-      window.clearInterval(interval);
-    };
-  }, []);
 
   return (
-    <Box>
+    <Box stacked align="stretch">
+      <Switch
+        label="Loading?"
+        checked={loading}
+        onChange={(event) => setLoading(event.currentTarget.checked)}
+      />
+      <AsyncButton
+        loading={loading}
+        theme="secondary"
+        themeType="flat"
+        loadingType="circular-overlay"
+      >
+        Circular Overlay
+      </AsyncButton>
       <AsyncButton
         loading={loading}
         theme="clear"
-        themeType="flat"
+        themeType="outline"
         loadingType="linear-above"
       >
         Linear Above
@@ -33,7 +38,7 @@ export default function LoadingIndicatorTypes(): ReactElement {
       </AsyncButton>
       <AsyncButton
         loading={loading}
-        theme="secondary"
+        theme="primary"
         themeType="contained"
         loadingType="circular-before"
         beforeAddon={<FavoriteIcon />}

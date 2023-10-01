@@ -49,6 +49,7 @@
 @use "draggable/draggable";
 @use "expansion-panel/expansion-panel";
 @use "icon/icon";
+@use "media-queries/media-queries";
 @use "snackbar/snackbar";
 @use "interaction/interaction";
 @use "link/link";
@@ -150,9 +151,17 @@ $_layer-order: (
     @include utils.sr-only(true);
   }
 
+  .rmd-phone-sr-only {
+    @include media-queries.phone-media {
+      @include utils.sr-only;
+    }
+  }
+
   .rmd-outline {
-    box-shadow: inset 0 0 0 theme.theme-get-var(outline-width)
+    // inset box-shadow is faded on the lower right half? use outline instead
+    outline: theme.theme-get-var(outline-width) solid
       theme.theme-get-var(outline-color);
+    outline-offset: utils.negate-var(theme.theme-get-var(outline-width));
   }
 
   .rmd-greyscale-outline {

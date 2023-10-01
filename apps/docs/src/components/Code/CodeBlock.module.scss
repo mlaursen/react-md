@@ -30,8 +30,6 @@
   // Note: The height and positioning is set up in a way so that the copy button
   // can be visible in a single-line code example without displaying scrollbars
   @include everything.auto-rtl(right, 1rem);
-  @include everything.button-set-var(icon-size, 2.5rem);
-  @include everything.icon-set-var(size, 1.25rem);
 
   position: absolute;
   top: 0.25rem;

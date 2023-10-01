@@ -65,7 +65,10 @@ export function CodeBlock(props: CodeBlockProps): ReactElement {
           </div>
         </div>
         <NullSuspense>
-          <CopyToClipboard className={styles.copyToClipboard} />
+          <CopyToClipboard
+            className={styles.copyToClipboard}
+            iconSize="small"
+          />
         </NullSuspense>
       </div>
     </>

@@ -5,6 +5,7 @@
 @use "../theme/theme";
 @use "../icon/icon";
 @use "../box-shadows";
+@use "../media-queries/media-queries";
 @use "../interaction/interaction";
 @use "../progress/progress";
 @use "../overlay/overlay";
@@ -33,7 +34,11 @@ $text-icon-size: 1.125rem !default;
 
 $icon-border-radius: 50% !default;
 $icon-square-border-radius: $text-border-radius !default;
-$icon-size: 3rem !default;
+$icon-size: auto !default;
+$icon-small-size: icon.$size - 0.25rem !default;
+$icon-large-size: icon.$size + 0.25rem !default;
+$icon-font-size: icon.$size !default;
+$icon-padding: 0.5em !default;
 
 $contained-elevation: 2 !default;
 $contained-pressed-elevation: 4 !default;
@@ -108,6 +113,10 @@ $var-lookup: (
     var: --rmd-button-icon-size,
     value: $icon-size,
   ),
+  icon-font-size: (
+    var: --rmd-button-icon-font-size,
+    value: $icon-font-size,
+  ),
   icon-border-radius: (
     var: --rmd-button-icon-radius,
     value: $icon-border-radius,
@@ -156,6 +165,17 @@ $var-lookup: (
   display: inline-flex;
 }
 
+@mixin text-styles {
+  @include icon.set-var(size, $text-icon-size);
+  @include set-var(border-radius, $text-border-radius);
+  @include utils.map-to-styles(typography.$button-styles);
+  @include use-var(min-height, text-min-height);
+  @include use-var(min-width, text-min-width);
+
+  border: 0;
+  padding: get-var(text-vertical-padding) get-var(text-horizontal-padding);
+}
+
 @mixin styles {
   @if not $disable-everything {
     .rmd-button {
@@ -177,31 +197,46 @@ $var-lookup: (
 
       @if not $disable-text {
         &--text {
-          @include icon.set-var(size, $text-icon-size);
-          @include set-var(border-radius, $text-border-radius);
-          @include utils.map-to-styles(typography.$button-styles);
-          @include use-var(min-height, text-min-height);
-          @include use-var(min-width, text-min-width);
-
-          border: 0;
-          padding: get-var(text-vertical-padding)
-            get-var(text-horizontal-padding);
+          @include text-styles;
         }
       }
 
       @if not $disable-icon {
         &--icon {
+          @include icon.set-var(size, 1em);
           @include set-var(border-radius, get-var(icon-border-radius));
+          @include use-var(font-size, icon-font-size);
           @include use-var(height, icon-size);
           @include use-var(width, icon-size);
 
-          padding: 0;
+          padding: $icon-padding;
         }
 
         @if not $disable-icon-square {
           &--icon-square {
             @include set-var(icon-border-radius, $icon-square-border-radius);
           }
+        }
+
+        @if $icon-small-size {
+          &--small {
+            font-size: $icon-small-size;
+          }
+        }
+
+        @if $icon-large-size {
+          &--large {
+            font-size: $icon-large-size;
+          }
+        }
+      }
+
+      &--responsive {
+        @include media-queries.tablet-media {
+          @include text-styles;
+
+          height: auto;
+          width: auto;
         }
       }
 

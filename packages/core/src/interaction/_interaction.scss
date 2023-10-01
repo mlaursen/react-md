@@ -317,7 +317,7 @@ $var-lookup: (
   @if $clickable {
     cursor: pointer;
   }
-  outline: none;
+  outline: 0;
   position: relative;
 
   @if not $disable-higher-contrast and $higher-contrast {

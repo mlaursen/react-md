@@ -1,10 +1,12 @@
+@use "sass:map";
 @use "everything";
 
 .container {
-  @include everything.button-set-var(icon-size, 2rem);
   @include everything.box-set-var(gap, 0.25rem);
 }
 
 .button {
-  @include everything.map-to-styles(everything.$button-styles);
+  @include everything.button-set-var(icon-size, 2rem);
+
+  font-size: map.get(everything.$button-styles, font-size);
 }

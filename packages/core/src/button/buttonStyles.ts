@@ -79,6 +79,19 @@ export interface ButtonClassNameThemeOptions {
    * @defaultValue `"flat"`
    */
   themeType?: ButtonThemeType;
+
+  /**
+   * This will display the button as an icon button until the tablet breakpoint
+   * which will then display as a button with an icon.
+   *
+   * @defaultValue `false`
+   */
+  responsive?: boolean;
+
+  /**
+   * @defaultValue `"normal"`
+   */
+  iconSize?: "small" | "normal" | "large";
 }
 
 /**
@@ -104,8 +117,10 @@ export function button(options: ButtonClassNameOptions = {}): string {
   const {
     theme: propTheme = "clear",
     themeType = "flat",
+    iconSize,
     buttonType = "text",
     disabled: propDisabled = false,
+    responsive,
     pressed = false,
     pressedClassName,
     className,
@@ -113,7 +128,7 @@ export function button(options: ButtonClassNameOptions = {}): string {
 
   const theme = propTheme === "disabled" ? "clear" : propTheme;
   const disabled = propDisabled || propTheme === "disabled";
-  const text = buttonType === "text";
+  const text = buttonType === "text" && !responsive && !iconSize;
   const icon = !text;
   const outline = themeType === "outline";
   const contained = themeType === "contained";
@@ -143,6 +158,9 @@ export function button(options: ButtonClassNameOptions = {}): string {
       disabled,
       contained: !disabled && contained,
       pressed: contained && pressed,
+      responsive,
+      small: icon && iconSize === "small",
+      large: icon && iconSize === "large",
     }),
     pressedClassName,
     cssUtils({

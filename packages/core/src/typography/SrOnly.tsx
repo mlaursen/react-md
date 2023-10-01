@@ -12,6 +12,15 @@ export interface SrOnlyProps extends TypographyProps {
   as?: CustomTypographyComponent;
 
   /**
+   * Set this to `true` if the content should only be screen reader only text on
+   * phones. This is useful for only displaying an icon on phones when there is
+   * limited space and then displaying an icon and text on larger devices.
+   *
+   * @defaultValue `false`
+   */
+  phoneOnly?: boolean;
+
+  /**
    * Set this to `true` if the element should be keyboard focusable.
    *
    * @defaultValue `false`
@@ -47,6 +56,7 @@ export const SrOnly = forwardRef<TypographyHTMLElement, SrOnlyProps>(
     const {
       as = "span",
       className,
+      phoneOnly,
       focusable,
       children,
       tabIndex,
@@ -60,7 +70,7 @@ export const SrOnly = forwardRef<TypographyHTMLElement, SrOnlyProps>(
         ref={ref}
         tabIndex={tabIndex ?? (focusable ? 0 : undefined)}
         className={cssUtils({
-          srOnly: focusable ? "focusable" : true,
+          srOnly: focusable ? "focusable" : phoneOnly ? "phone" : true,
           className,
         })}
       >

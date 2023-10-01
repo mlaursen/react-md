@@ -1,19 +1,16 @@
-import { AsyncButton, Box } from "@react-md/core";
-import { useEffect, useState, type ReactElement } from "react";
+import { AsyncButton, Box, Switch } from "@react-md/core";
+import { useState, type ReactElement } from "react";
 
 export default function ManualLoadingState(): ReactElement {
   const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    const interval = window.setInterval(() => {
-      setLoading((prev) => !prev);
-    }, 5000);
-    return () => {
-      window.clearInterval(interval);
-    };
-  }, []);
 
   return (
-    <Box>
+    <Box stacked align="stretch">
+      <Switch
+        label="Loading?"
+        checked={loading}
+        onChange={(event) => setLoading(event.currentTarget.checked)}
+      />
       <AsyncButton loading={loading} theme="clear" themeType="flat">
         Button
       </AsyncButton>

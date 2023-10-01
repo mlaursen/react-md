@@ -123,11 +123,12 @@ export interface CssUtilsOptions extends TextCssUtilsOptions {
   /**
    * Set this to `true` to allow the content to only be visible for screen
    * readers. Set this to `"focusable"` to allow the content to be visible to
-   * screen readers and once focused.
+   * screen readers and once focused. Set this to `"phone"` to only render the
+   * the content as screen reader only text on phones.
    *
    * @defaultValue `false`
    */
-  srOnly?: boolean | "focusable";
+  srOnly?: boolean | "focusable" | "phone";
 
   /**
    * Set this to `"current-color"` to inherit the current text color or a
@@ -217,7 +218,8 @@ export function cssUtils(options: CssUtilsOptions): string {
     textTransform && `rmd-${textTransform}`,
     fontStyle && `rmd-${fontStyle}`,
     fontWeight && `rmd-${fontWeight}`,
-    srOnly && "rmd-sr-only",
+    srOnly && srOnly !== "phone" && "rmd-sr-only",
+    srOnly === "phone" && "rmd-phone-sr-only",
     srOnly === "focusable" && "rmd-sr-only--focusable",
     surfaceColor === "light" && "rmd-light-surface",
     surfaceColor === "dark" && "rmd-dark-surface",
