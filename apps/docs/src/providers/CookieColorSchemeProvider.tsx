@@ -5,6 +5,7 @@ import {
   ColorSchemeProvider,
   useColorSchemeProvider,
   type ColorSchemeMode,
+  type UseStateSetter,
 } from "@react-md/core";
 import {
   useCallback,
@@ -28,15 +29,19 @@ export function CookieColorSchemeProvider(
   );
   const value = useColorSchemeProvider({
     colorSchemeMode,
-    setColorSchemeMode: useCallback((nextOrFn) => {
-      setColorSchemeMode((prev) => {
-        const next = typeof nextOrFn === "function" ? nextOrFn(prev) : nextOrFn;
+    setColorSchemeMode: useCallback<UseStateSetter<ColorSchemeMode>>(
+      (nextOrFn) => {
+        setColorSchemeMode((prev) => {
+          const next =
+            typeof nextOrFn === "function" ? nextOrFn(prev) : nextOrFn;
 
-        setCookie(COLOR_SCHEME_KEY, next);
+          setCookie(COLOR_SCHEME_KEY, next);
 
-        return next;
-      });
-    }, []),
+          return next;
+        });
+      },
+      []
+    ),
   });
 
   return <ColorSchemeProvider value={value}>{children}</ColorSchemeProvider>;

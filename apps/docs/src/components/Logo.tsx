@@ -163,7 +163,7 @@ export default function Logo(props: LogoProps): ReactElement {
             x="103"
             y="103"
             className={cnb(
-              typography({ type: "headline-6", weight: "bold" }),
+              typography({ type: "headline-6", fontWeight: "bold" }),
               styles.text,
               styles.secondary
             )}

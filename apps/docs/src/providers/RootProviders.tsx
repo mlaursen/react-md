@@ -1,5 +1,5 @@
 "use client";
-import { type AppCookies } from "@/app/(main)/utils.js";
+import { type AppCookies } from "@/app/utils.js";
 import { AppToastRenderer } from "@/components/AppToastRenderer/AppToastRenderer.jsx";
 import { rmdConfig } from "@/constants/rmdConfig.js";
 import {
