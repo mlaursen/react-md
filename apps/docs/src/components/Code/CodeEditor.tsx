@@ -1,68 +1,62 @@
 "use client";
-import { useCodeLanguageContext } from "@/providers/CodeLanguageProvider.jsx";
 import { cnb } from "cnbuilder";
-import { useState, type ReactElement } from "react";
+import { type ReactElement } from "react";
+import { type RunnableCodeScope } from "../DangerouslyRunCode/utils.jsx";
 import { CodeBlock } from "./CodeBlock.jsx";
 import styles from "./CodeEditor.module.scss";
+import { CodeLanguageToggle } from "./CodeLanguageToggle.jsx";
 import { CodePreview } from "./CodePreview.jsx";
 import { highlightCode } from "./highlightCode.js";
-import { type RunnableCodeScope } from "./useDangerouslyRunnableCode.jsx";
-import { getLineCount } from "./utils.js";
+import { useCodeEditor } from "./useCodeEditor.js";
 
 export interface CodeEditorProps {
+  className: string;
   scope?: RunnableCodeScope;
   defaultCode: string;
+  previewCard?: boolean;
+  previewCardClassName?: string;
 }
 
 export function CodeEditor(props: CodeEditorProps): ReactElement {
-  const { scope, defaultCode } = props;
+  const { className, scope, defaultCode, previewCard, previewCardClassName } =
+    props;
+  const { code, textAreaProps } = useCodeEditor(defaultCode);
 
-  const [code, setCode] = useState(defaultCode);
-
-  const { codeLanguage } = useCodeLanguageContext();
-  const className = `language-${codeLanguage}x`;
   return (
     <>
-      <CodePreview code={code} scope={scope} />
+      <CodePreview
+        code={code}
+        scope={scope}
+        card={previewCard}
+        cardClassName={previewCardClassName}
+      />
       <CodeBlock
         className={className}
-        lines={getLineCount(code)}
         disableMarginTop
+        preProps={{
+          "aria-hidden": true,
+        }}
+        header={
+          <>
+            <CodeLanguageToggle />
+          </>
+        }
+        afterPreElement={
+          <textarea
+            {...textAreaProps}
+            aria-label="Code Editor"
+            className={styles.textArea}
+            autoCapitalize="none"
+            autoComplete="none"
+            autoCorrect="none"
+            spellCheck={false}
+          />
+        }
       >
         <code
-          aria-hidden
           className={cnb(className, styles.code)}
           dangerouslySetInnerHTML={{
             __html: highlightCode(code, "tsx") + "<br />",
-          }}
-        />
-        <textarea
-          value={code}
-          onChange={(event) => setCode(event.currentTarget.value)}
-          aria-label="Code Editor"
-          className={styles.textArea}
-          autoCapitalize="none"
-          autoComplete="none"
-          autoCorrect="none"
-          spellCheck={false}
-          onKeyDown={(event) => {
-            const { currentTarget } = event;
-            const { selectionStart, selectionEnd } = currentTarget;
-            switch (event.key) {
-              case "Tab": {
-                event.preventDefault();
-                event.stopPropagation();
-
-                const spaces = " ".repeat(2);
-                const prefix = currentTarget.value.substring(0, selectionStart);
-                const suffix = currentTarget.value.substring(selectionEnd);
-                currentTarget.value = `${prefix}${spaces}${suffix}`;
-
-                const position = prefix.length + spaces.length;
-                currentTarget.setSelectionRange(position, position);
-                break;
-              }
-            }
           }}
         />
       </CodeBlock>

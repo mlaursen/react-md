@@ -22,6 +22,12 @@ declare module "next/image.js" {
   export = Image_.default;
 }
 
+declare module "next/font/local" {
+  import localFont from "next/dist/compiled/@next/font/dist/local/index.js";
+
+  export = localFont.default;
+}
+
 declare module "next/dynamic.js" {
   import dynamic_ from "next/dist/shared/lib/dynamic.js";
   export * from "next/dist/shared/lib/dynamic.js";

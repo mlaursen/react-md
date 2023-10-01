@@ -8,23 +8,19 @@ import styles from "./TypescriptOrJavascriptCode.module.scss";
 
 export interface TypescriptOrJavascriptCodeProps {
   tsHtml: string;
-  tsLines: number | undefined;
   jsHtml: string;
-  jsLines: number | undefined;
-  containerClassName?: string;
 }
 
 export function TypescriptOrJavascriptCode(
   props: TypescriptOrJavascriptCodeProps
 ): ReactElement {
-  const { tsHtml, jsHtml, tsLines, jsLines, containerClassName } = props;
+  const { tsHtml, jsHtml } = props;
   const { codeLanguage } = useCodeLanguageContext();
   const className = `language-${codeLanguage}x`;
   const isTs = codeLanguage === "ts";
 
   return (
     <CodeBlock
-      lines={isTs ? tsLines : jsLines}
       className={cnb(className, styles.container)}
       header={
         <>
@@ -32,7 +28,6 @@ export function TypescriptOrJavascriptCode(
         </>
       }
       headerProps={{ className: styles.header }}
-      containerClassName={containerClassName}
     >
       <code
         className={className}

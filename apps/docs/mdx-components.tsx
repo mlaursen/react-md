@@ -4,11 +4,11 @@ import type { HighlightedCodeBlockProps } from "@/components/Code/HighlightedCod
 import { HighlightedCodeBlock } from "@/components/Code/HighlightedCodeBlock.jsx";
 import { InlineColorPreview } from "@/components/InlineColorPreview.jsx";
 import { LinkableHeading } from "@/components/LinkableHeading.jsx";
+import { MarkdownLink } from "@/components/MarkdownLink.jsx";
 import { getSluggedId } from "@/utils/getSluggedId.js";
-import { Typography, link } from "@react-md/core";
+import { Typography } from "@react-md/core";
 import GithubSlugger from "github-slugger";
 import { type MDXComponents } from "mdx/types.js";
-import Link from "next/link.js";
 import {
   cloneElement,
   isValidElement,
@@ -93,20 +93,15 @@ export function useMDXComponents(components: MDXComponents): Components {
         <InlineColorPreview>{props.children}</InlineColorPreview>
       </Typography>
     ),
-    a: (props) => <Link {...props} className={link()} />,
+    a: MarkdownLink,
     blockquote: (props) => <Blockquote {...props} />,
+    ul: (props) => <Typography type="body-1" as="ul" {...props} />,
     pre: (props) => {
       if (!isValidElement<HighlightedCodeBlockProps>(props.children)) {
         throw new Error("");
       }
 
       return cloneElement(props.children, { multiline: true });
-      // console.log("props:", props);
-      // const { packageManager, ...remaining } = props;
-      // if (packageManager) {
-      //   return <PackageManagerCode {...packageManager} />;
-      // }
-      // return <CodeBlock {...remaining} />;
     },
     code: HighlightedCodeBlock,
     CodeLoader,

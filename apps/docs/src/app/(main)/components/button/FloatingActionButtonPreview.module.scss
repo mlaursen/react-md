@@ -1,0 +1,15 @@
+.container {
+  --rmd-scrollbar-size: 0px;
+
+  height: 36.25rem;
+  max-width: 22.5rem;
+  position: relative;
+  width: 100%;
+
+  :global {
+    .rmd-fab {
+      position: absolute;
+      z-index: 1;
+    }
+  }
+}

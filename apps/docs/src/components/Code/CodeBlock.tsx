@@ -1,20 +1,18 @@
-import { AppBarTitle, NullSuspense } from "@react-md/core";
+import { AppBarTitle, NullSuspense, cssUtils } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import { type HTMLAttributes, type ReactElement, type ReactNode } from "react";
+import { CopyToClipboard } from "../CopyToClipboard.jsx";
 import styles from "./CodeBlock.module.scss";
 import { CodeBlockHeader } from "./CodeBlockHeader.jsx";
-import { CopyToClipboard } from "../CopyToClipboard.jsx";
-import { LineNumbers } from "./LineNumbers.jsx";
 
-export interface CodeBlockProps extends HTMLAttributes<HTMLDivElement> {
-  lines?: number;
+export interface CodeBlockProps {
   fileName?: string;
-  beforeAddon?: ReactNode;
-  afterAddon?: ReactNode;
+  className: string;
   children: ReactNode;
-  containerClassName?: string;
   header?: ReactNode;
   headerProps?: HTMLAttributes<HTMLDivElement>;
+  preProps?: HTMLAttributes<HTMLPreElement>;
+  afterPreElement?: ReactNode;
   disableMarginTop?: boolean;
 }
 
@@ -29,21 +27,18 @@ export interface CodeBlockProps extends HTMLAttributes<HTMLDivElement> {
 export function CodeBlock(props: CodeBlockProps): ReactElement {
   const {
     className,
-    lines,
-    containerClassName,
     children,
-    beforeAddon,
-    afterAddon,
     fileName,
     header,
     headerProps,
+    preProps,
+    afterPreElement,
     disableMarginTop,
-    ...remaining
   } = props;
   const isHeader = !!(header || fileName);
 
   return (
-    <div {...remaining} className={cnb(styles.container, containerClassName)}>
+    <>
       {isHeader && (
         <CodeBlockHeader {...headerProps}>
           {header}
@@ -54,24 +49,25 @@ export function CodeBlock(props: CodeBlockProps): ReactElement {
           )}
         </CodeBlockHeader>
       )}
-      {beforeAddon}
-      <div className={styles.preContainer}>
-        <pre
-          className={cnb(
-            styles.pre,
-            !!lines && styles.lineNumbers,
-            className,
-            (isHeader || disableMarginTop) && styles.noMarginTop
-          )}
-        >
-          <NullSuspense>
-            <CopyToClipboard className={styles.copy} />
-          </NullSuspense>
-          {lines && <LineNumbers lines={lines} />}
-          {children}
-        </pre>
+      <div
+        className={cnb(
+          styles.container,
+          (isHeader || disableMarginTop) && styles.noMarginTop,
+          cssUtils({ surfaceColor: "dark", textColor: "text-primary" })
+        )}
+      >
+        <div className={styles.scrollContainer}>
+          <div className={styles.codeContainer}>
+            <pre {...preProps} className={cnb(className, styles.pre)}>
+              {children}
+            </pre>
+            {afterPreElement}
+          </div>
+        </div>
+        <NullSuspense>
+          <CopyToClipboard className={styles.copyToClipboard} />
+        </NullSuspense>
       </div>
-      {afterAddon}
-    </div>
+    </>
   );
 }

@@ -22,7 +22,8 @@ export function CopyToClipboard(props: CopyToClipboardProps): ReactElement {
         aria-label="Copy"
         buttonType="icon"
         onClick={async (event) => {
-          const codeEl = event.currentTarget.nextElementSibling;
+          const codeEl =
+            event.currentTarget.parentElement?.querySelector("pre");
           if (!(codeEl instanceof HTMLElement)) {
             return;
           }

@@ -145,15 +145,16 @@ const loadThemeContent = await format(
   `${GENERATED_FILE_BANNER}
 
 import { usePrismThemeContext } from "@/providers/PrismThemeProvider.jsx";
-import { lazy, type ReactElement } from "react";
+import dynamic  from "next/dynamic.js";
+import { type ReactElement } from "react";
 
 ${Array.from(themeComponentLookup.values())
   .map(
     (component) =>
-      `const ${component} = lazy(() => import("./${component}.jsx"));`
+      `const ${component} = dynamic(() => import("./${component}.jsx"));`
   )
   .join("\n")}
-const VimSolarizedDark = lazy(() => import("./VimSolarizedDark.jsx"));
+const VimSolarizedDark = dynamic(() => import("./VimSolarizedDark.jsx"));
 
 export function LoadPrismTheme(): ReactElement {
   const { prismTheme } = usePrismThemeContext();

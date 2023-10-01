@@ -3,7 +3,7 @@ import { createTableOfContents } from "@/components/TableOfContents/createTableO
 import { type ReactElement } from "react";
 import Markdown from "./README.mdx";
 
-export default async function CreateALayoutPage(): Promise<ReactElement> {
+export default async function CheckboxPage(): Promise<ReactElement> {
   const toc = await createTableOfContents("./README.mdx", import.meta.url);
 
   return (

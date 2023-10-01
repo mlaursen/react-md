@@ -1,0 +1,120 @@
+# Checkbox
+
+[Checkboxes](https://m2.material.io/components/checkboxes#usage) allow users to
+select one or more items from a set and can turn an option on or off. Use
+checkboxes to:
+
+- Select one or more options from a list
+- Present a list containing sub-selections
+- Turn an item on or off in a desktop environment
+
+## Simple Checkbox
+
+A checkbox can be created using the `Checkbox` component.
+
+<CodeLoader
+  source="./SimpleCheckbox.tsx"
+  importUrl={import.meta.url}
+  editable
+/>
+
+## Checkbox Sizes
+
+The `Checkbox` has multiple sizes: `normal` (default), `small`, `dense`,
+and `large`. The size can also be set to `auto` which will update the checkbox
+to match the current font size.
+
+<CodeLoader source="./CheckboxSizes.tsx" importUrl={import.meta.url} editable />
+
+## Checkbox States
+
+The `Checkbox` also has different states that can be applied. The most common
+will be the `error` or `disabled` states but also supports `readOnly` and
+`active`.
+
+<CodeLoader
+  source="./CheckboxStates.tsx"
+  importUrl={import.meta.url}
+  editable
+/>
+
+## Controlling Checkboxes
+
+The `Checkbox` can be controlled by providing the `checked` prop and `onChange`
+like a native `<input type="checkbox">`:
+
+<CodeLoader
+  source="./ControllingCheckboxes.tsx"
+  importUrl={import.meta.url}
+  editable
+/>
+
+### Using the useCheckboxGroup Hook
+
+`react-md` provides a hook: `useCheckboxGroup` that can be used to handle the
+state of a checkbox group. The hook requires a `name` to be provided and an
+optional list of `defaultCheckedValues` returning an object containing:
+
+- `getCheckboxProps` - A function to generate the props for a checkbox based on
+  the checkbox's value.
+- `checkedValues` - A `ReadonlySet` of the current checked values in the group.
+- `setCheckedValues` - A `UseStateSetter` to manually control the
+  `checkedValues` state if needed.
+- `reset` - Resets the state to the `defaultCheckedValues` (an empty list by
+  default).
+
+<CodeLoader
+  source="./UsingTheUseCheckboxGroupHook.tsx"
+  importUrl={import.meta.url}
+  editable
+/>
+
+### Strictly Typed useCheckboxGroup
+
+For `Typescript` users, the `checkboxValues` will be strictly typed either by
+inferring the type from the `defaultCheckedValues` or by providing a
+type-parameter to the hook.
+
+<CodeLoader
+  source="./StrictlyTypedUseCheckboxGroup.tsx"
+  importUrl={import.meta.url}
+/>
+
+## Indeterminate Checkboxes
+
+[Indeterminate checkboxes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes) are
+when there is a third state where it's impossible to say whether the item is
+toggled on or off. The most common occupance is when there is a group of
+checkboxes where one checkbox can toggle all of them on or off.
+
+To create an indeterminate checkbox, enable the `indeterminate` prop and the
+indeterminate icon will display while checked.
+
+<CodeLoader
+  source="./IndeterminateCheckbox.tsx"
+  importUrl={import.meta.url}
+  editable
+/>
+
+### useCheckboxGroup Hook
+
+A group of checkboxes can be controlled by using the `useCheckboxGroup` hook
+with or without the indeterminate checkbox. The hook requires a `name` which
+will be applied to each checkbox and a list of available `values`.
+
+> !Info! The values will be strictly typed and inferred for `Typescript` users
+> based on the provided list of available `values`.
+
+<CodeLoader
+  source="./CheckboxGroupHook.tsx"
+  importUrl={import.meta.url}
+  editable
+/>
+
+## Custom Icons
+
+The `Checkbox` component will use the
+[checkbox](/customization/icon-config#checkbox),
+[checkboxChecked](/customization/icon-config#checkboxChecked), and
+[checkboxIndeterminate](/customization/icon-config#checkboxIndeterminate) icons
+from the `ICON_CONFIG` by default.

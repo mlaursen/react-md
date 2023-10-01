@@ -8,18 +8,19 @@
   border: 0;
   color: inherit;
   font: inherit;
+  font-family: var(--source-code-pro, "Source Code Pro"), Consolas, Monaco,
+    monospace;
   height: 100%;
   left: 0;
   margin: 0;
   overflow: hidden;
   overflow-wrap: break-word;
   padding: 1rem;
-  padding-left: 3.5rem;
   position: absolute;
   resize: none;
   tab-size: inherit;
   top: 0;
-  -webkit-text-fill-color: inherit;
+  -webkit-text-fill-color: transparent;
   white-space: pre;
   width: 100%;
   word-break: keep-all;

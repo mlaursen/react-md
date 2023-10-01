@@ -8,7 +8,7 @@ export interface LogoProps extends HTMLAttributes<SVGSVGElement> {
 }
 
 export default function Logo(props: LogoProps): ReactElement {
-  const { configurable, ...remaining } = props;
+  const { configurable, className, ...remaining } = props;
 
   const filter1Id = useId();
   const filter2Id = useId();
@@ -21,6 +21,7 @@ export default function Logo(props: LogoProps): ReactElement {
   return (
     <svg
       {...remaining}
+      className={cnb(styles.logo, className)}
       focusable="false"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       viewBox="0 0 206 206"

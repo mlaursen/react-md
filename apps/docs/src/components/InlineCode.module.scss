@@ -3,7 +3,8 @@
 
 .container {
   color: var(--code-color);
-  font-family: var(--source-code-pro), Consolas, Monaco, monospace;
+  font-family: var(--source-code-pro, "Source Code Pro"), Consolas, Monaco,
+    monospace;
   font-size: 1em;
   white-space: pre-wrap;
 

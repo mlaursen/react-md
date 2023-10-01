@@ -1,30 +1,38 @@
 @use "everything";
 
-$spacing: 0.25rem;
-
-.copy {
-  @include everything.auto-rtl(right, $spacing);
-  @include everything.button-set-var(icon-size, 2.5rem);
-  @include everything.icon-set-var(size, 1.25rem);
-
-  position: absolute;
-  top: $spacing;
-  z-index: 2;
-}
-
-.preContainer {
+.container {
   position: relative;
-}
-
-.pre {
-  direction: ltr;
-  padding: 1rem;
-
-  &.lineNumbers {
-    padding-left: 3.5rem;
-  }
+  margin: 2rem 0;
 }
 
 .noMarginTop {
   margin-top: 0;
+}
+
+.scrollContainer {
+  max-height: min(60vh, 50rem);
+  overflow: auto;
+}
+
+.codeContainer {
+  float: left;
+  min-width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.pre {
+  margin: 0;
+  white-space: pre;
+}
+
+.copyToClipboard {
+  // Note: The height and positioning is set up in a way so that the copy button
+  // can be visible in a single-line code example without displaying scrollbars
+  @include everything.auto-rtl(right, 1rem);
+  @include everything.button-set-var(icon-size, 2.5rem);
+  @include everything.icon-set-var(size, 1.25rem);
+
+  position: absolute;
+  top: 0.25rem;
 }

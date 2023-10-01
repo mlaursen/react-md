@@ -7,6 +7,7 @@ import {
   LayoutNav,
   Main,
   Sheet,
+  cssUtils,
   useExpandableLayout,
 } from "@react-md/core";
 import { cnb } from "cnbuilder";
@@ -43,7 +44,13 @@ export function RootLayout(props: RootLayoutProps): ReactElement {
   });
   return (
     <>
-      <LayoutAppBar {...appBarProps}>
+      <LayoutAppBar
+        {...appBarProps}
+        className={cnb(
+          appBarProps.className,
+          cssUtils({ surfaceColor: "light" })
+        )}
+      >
         <Button {...navToggleProps} />
         <RootLayoutTitle {...titleProps} />
         <Search isMac={isMac} />

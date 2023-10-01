@@ -27,13 +27,11 @@ export function LinkableHeading(props: LinkableHeadingProps): ReactElement {
       case 1:
       case 2:
       case 3:
+      case 4:
         type = `headline-${level + 2}` as "headline-2";
         break;
-      case 4:
-        type = "subtitle-1";
-        break;
       default:
-        type = "subtitle-2";
+        type = "headline-6";
     }
   }
 

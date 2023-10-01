@@ -27,7 +27,8 @@ $green: #859900;
     code[class*="language-"],
     pre[class*="language-"] {
       direction: ltr;
-      font-family: "Source Code Pro", Consolas, Monaco, monospace;
+      font-family: var(--source-code-pro, "Source Code Pro"), Consolas, Monaco,
+        monospace;
     }
 
     pre[class*="language-"] {

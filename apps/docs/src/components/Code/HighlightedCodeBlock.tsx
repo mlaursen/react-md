@@ -5,15 +5,12 @@ import { CodeBlock } from "./CodeBlock.js";
 import { PackageManagerCode } from "./PackageManagerCode.jsx";
 import { TypescriptCode } from "./TypescriptCode.jsx";
 import { highlightCode } from "./highlightCode.js";
-import { getLineCount } from "./utils.js";
-
-const NO_LINES_LANGUAGES = new Set(["markup", "markdown", "shell"]);
+import { parseCode } from "./utils.js";
 
 export interface HighlightedCodeBlockProps extends InlineCodeProps {
   lang?: string;
   fileName?: string;
   multiline?: boolean;
-  containerClassName?: string;
 }
 
 export function HighlightedCodeBlock(
@@ -24,8 +21,7 @@ export function HighlightedCodeBlock(
     lang: propLang,
     className = propLang ? `language-${propLang}` : "",
     multiline = !!propLang,
-    containerClassName,
-    fileName,
+    fileName: propFileName,
     ...remaining
   } = props;
 
@@ -38,20 +34,15 @@ export function HighlightedCodeBlock(
   }
 
   let lang = propLang ?? "markdown";
-  let lines: number | undefined;
   if (!propLang && className) {
     [, lang] = className.match(/language-([a-z]+)/) || [];
   }
 
-  let code = children;
-  if (lang === "diff") {
-    code = code.replace(/(\r?\n)+$/, "");
-  } else {
-    code = code.trim();
-  }
-  if (!NO_LINES_LANGUAGES.has(lang)) {
-    lines = getLineCount(code);
-  }
+  const { code, fileName } = parseCode({
+    code: children,
+    lang,
+    fileName: propFileName,
+  });
 
   if (/^np(m|x)/.test(code)) {
     const pnpm = code.replace(/np(m|x)/g, "pnp$1").replace(/install/g, "add");
@@ -66,22 +57,11 @@ export function HighlightedCodeBlock(
   }
 
   if (lang === "ts" || lang == "tsx") {
-    return (
-      <TypescriptCode
-        code={code}
-        fileName={fileName}
-        containerClassName={containerClassName}
-      />
-    );
+    return <TypescriptCode code={code} fileName={fileName} />;
   }
 
   return (
-    <CodeBlock
-      lines={lines}
-      className={className}
-      fileName={fileName}
-      containerClassName={containerClassName}
-    >
+    <CodeBlock className={className} fileName={fileName}>
       <code
         {...remaining}
         className={className}
