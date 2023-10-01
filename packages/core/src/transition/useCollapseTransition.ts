@@ -431,8 +431,7 @@ export function useCollapseTransition<E extends HTMLElement>(
             leave: exiting,
             disableOverflow: !transitionIn || !!style,
           }),
-        !temporary &&
-          stage === "exited" &&
+        stage === "exited" &&
           minHeight === 0 &&
           minPaddingTop === 0 &&
           minPaddingBottom === 0 &&

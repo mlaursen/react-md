@@ -7,7 +7,7 @@ import {
   jest,
 } from "@jest/globals";
 import { useState, type ReactElement } from "react";
-import { act, fireEvent, render } from "../../test-utils/index.js";
+import { act, fireEvent, render, screen } from "../../test-utils/index.js";
 
 import { DISPLAY_NONE_CLASS } from "../../utils/isElementVisible.js";
 import {
@@ -276,5 +276,37 @@ describe("useCollapseTransition", () => {
     expect(getElement).not.toThrow();
     expect(getElement().className).toBe("");
     expect(container).toMatchSnapshot();
+  });
+
+  it("should apply the DISPLAY_NONE_CLASS when exited and the minHeight, minPaddingTop, and minPaddingBottom are 0 in case I forget to use the rendered flag", () => {
+    function Test(): ReactElement {
+      const [transitionIn, setTransitionIn] = useState(false);
+      const { elementProps } = useCollapseTransition({
+        transitionIn,
+      });
+
+      return (
+        <>
+          <button type="button" onClick={() => setTransitionIn((p) => !p)}>
+            Toggle
+          </button>
+          <div {...elementProps} data-testid="element">
+            This is some content.
+          </div>
+          )
+        </>
+      );
+    }
+
+    render(<Test />);
+    const button = screen.getByRole("button", { name: "Toggle" });
+    const element = screen.getByTestId("element");
+    expect(element).toHaveClass(DISPLAY_NONE_CLASS);
+
+    fireEvent.click(button);
+    act(() => {
+      jest.runAllTimers();
+    });
+    expect(element).not.toHaveClass(DISPLAY_NONE_CLASS);
   });
 });
