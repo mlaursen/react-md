@@ -22,7 +22,8 @@ declare global {
   }
 }
 
-export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+export const BASE_URL =
+  process.env.NEXT_PUBLIC_VERCEL_URL || process.env.NEXT_PUBLIC_BASE_URL;
 export const GITHUB_URL = process.env.NEXT_PUBLIC_GITHUB_URL;
 
 const COMMIT_REF = process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF;

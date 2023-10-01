@@ -36,7 +36,7 @@ export function getAppCookies(): AppCookies {
     name: CODE_THEME_KEY,
     isValid: (value): value is PrismTheme =>
       PRISM_THEMES.includes(value as PrismTheme),
-    defaultValue: "default",
+    defaultValue: "vim-solarized-dark",
     instance,
   });
   const defaultCodeLanguage = getCookie({
