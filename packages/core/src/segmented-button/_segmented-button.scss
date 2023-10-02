@@ -153,10 +153,14 @@ $var-lookup: (
       display: grid;
       grid-auto-columns: 1fr;
       grid-auto-flow: column;
-      width: 100%;
+
+      &--full-width {
+        width: 100%;
+      }
     }
 
     .rmd-segmented-button {
+      @include theme.theme-use-var(color, text-primary-color);
       @include icon.set-var(color, currentcolor);
       @include icon.set-var(size, 1.125rem);
       @include utils.map-to-styles($typography-styles);

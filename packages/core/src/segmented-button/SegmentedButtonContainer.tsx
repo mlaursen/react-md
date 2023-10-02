@@ -1,11 +1,15 @@
 import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
-import { segmentedButtonContainerStyles } from "./segmentedButtonContainerStyles.js";
+import {
+  segmentedButtonContainerStyles,
+  type SegmentedButtonContainerClassNameOptions,
+} from "./segmentedButtonContainerStyles.js";
 
 /**
  * @remarks \@since 6.0.0
  */
 export interface SegmentedButtonContainerProps
-  extends HTMLAttributes<HTMLDivElement> {
+  extends HTMLAttributes<HTMLDivElement>,
+    SegmentedButtonContainerClassNameOptions {
   children: ReactNode;
 }
 
@@ -43,13 +47,16 @@ export const SegmentedButtonContainer = forwardRef<
   HTMLDivElement,
   SegmentedButtonContainerProps
 >(function SegmentedButtonContainer(props, ref) {
-  const { className, children, ...remaining } = props;
+  const { className, disableFullWidth, children, ...remaining } = props;
 
   return (
     <div
       {...remaining}
       ref={ref}
-      className={segmentedButtonContainerStyles({ className })}
+      className={segmentedButtonContainerStyles({
+        className,
+        disableFullWidth,
+      })}
     >
       {children}
     </div>

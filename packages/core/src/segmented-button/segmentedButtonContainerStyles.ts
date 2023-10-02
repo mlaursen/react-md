@@ -8,6 +8,9 @@ const styles = bem("rmd-segmented-button-container");
  */
 export interface SegmentedButtonContainerClassNameOptions {
   className?: string;
+
+  /** @defaultValue `false` */
+  disableFullWidth?: boolean;
 }
 
 /**
@@ -16,7 +19,7 @@ export interface SegmentedButtonContainerClassNameOptions {
 export function segmentedButtonContainerStyles(
   options: SegmentedButtonContainerClassNameOptions = {}
 ): string {
-  const { className } = options;
+  const { className, disableFullWidth } = options;
 
-  return cnb(styles(), className);
+  return cnb(styles({ "full-width": !disableFullWidth }), className);
 }

@@ -2,7 +2,7 @@
 
 exports[`SegmentedButtonContainer should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <div
-  class="rmd-segmented-button-container"
+  class="rmd-segmented-button-container rmd-segmented-button-container--full-width"
   data-testid="container"
 >
   Content
@@ -11,7 +11,7 @@ exports[`SegmentedButtonContainer should apply the correct styling, HTMLAttribut
 
 exports[`SegmentedButtonContainer should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <div
-  class="rmd-segmented-button-container custom-class-name"
+  class="rmd-segmented-button-container rmd-segmented-button-container--full-width custom-class-name"
   data-testid="container"
   style="color: white;"
 >
@@ -19,4 +19,4 @@ exports[`SegmentedButtonContainer should apply the correct styling, HTMLAttribut
 </div>
 `;
 
-exports[`SegmentedButtonContainer styling utility class should be callable without any arguments 1`] = `"rmd-segmented-button-container"`;
+exports[`SegmentedButtonContainer styling utility class should be callable without any arguments 1`] = `"rmd-segmented-button-container rmd-segmented-button-container--full-width"`;
