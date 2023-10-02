@@ -12,7 +12,7 @@ import { type NavigationItem } from "./navItems.js";
 export function RenderNavigationItem(
   props: RenderRecursiveItemsProps<NavigationItem>
 ): ReactElement | null {
-  const { item, children, parents } = props;
+  const { item, data, children, parents } = props;
   if ("type" in item) {
     if (item.type === "divider") {
       return <Divider />;
@@ -34,7 +34,11 @@ export function RenderNavigationItem(
 
   if (item.items) {
     return (
-      <CollapsibleNavigationItemGroup item={item} parents={[item, ...parents]}>
+      <CollapsibleNavigationItemGroup
+        data={data}
+        item={item}
+        parents={[item, ...parents]}
+      >
         {children}
       </CollapsibleNavigationItemGroup>
     );

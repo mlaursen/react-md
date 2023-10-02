@@ -2,8 +2,11 @@
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
+      // created by createEnv script
       NEXT_PUBLIC_BASE_URL: string;
       NEXT_PUBLIC_GITHUB_URL: string;
+      NEXT_PUBLIC_GITHUB_FILE_LINK: string;
+      NEXT_PUBLIC_RMD_VERSION: string;
 
       // https://vercel.com/docs/projects/environment-variables/system-environment-variables#framework-environment-variables
       NEXT_PUBLIC_VERCEL_ENV?: "production" | "preview" | "development";
@@ -22,12 +25,6 @@ declare global {
   }
 }
 
-export const BASE_URL =
-  process.env.NEXT_PUBLIC_VERCEL_URL || process.env.NEXT_PUBLIC_BASE_URL;
+export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 export const GITHUB_URL = process.env.NEXT_PUBLIC_GITHUB_URL;
-
-const COMMIT_REF = process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF;
-const COMMIT_SHA = process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA;
-const ref = COMMIT_SHA || COMMIT_REF || "next";
-
-export const GITHUB_LINK_URL = `${GITHUB_URL}/blob/${ref}`;
+export const GITHUB_LINK_URL = process.env.NEXT_PUBLIC_GITHUB_FILE_LINK;

@@ -2,16 +2,6 @@
 
 $tree-padding: calc(everything.tree-get-var(depth) * 1.125rem + 1rem);
 
-.list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.root {
-  margin-top: 0.75em;
-}
-
 .link {
   @include everything.theme-use-var(color, text-secondary-color);
   @include everything.interaction-surface(

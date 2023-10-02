@@ -1,12 +1,9 @@
 @use "everything";
 
 .svg {
-  @include everything.tablet-media {
-    margin-bottom: -6rem;
-  }
-
-  margin: 0 -8rem;
-  max-width: 80rem;
+  margin-top: 4rem;
+  max-width: 40rem;
+  width: 100%;
 }
 
 .oval {

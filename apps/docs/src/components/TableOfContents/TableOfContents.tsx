@@ -1,15 +1,17 @@
 "use client";
 import {
+  RenderRecursively,
   Typography,
   parseCssLengthUnit,
   useIntersectionObserver,
 } from "@react-md/core";
 import { useCallback, useId, useRef, useState, type ReactElement } from "react";
-import { TOCLinks } from "./TOCLinks.jsx";
+import { RenderTOCItem } from "./RenderTOCItem.jsx";
+import { TOCGroup } from "./TOCGroup.jsx";
 import styles from "./TableOfContents.module.scss";
 import { type TableOfContentsItem } from "./types.js";
 
-function getHeadings(items: TableOfContentsItem[]): HTMLElement[] {
+function getHeadings(items: readonly TableOfContentsItem[]): HTMLElement[] {
   const headings: HTMLElement[] = [];
   items.forEach((item) => {
     const heading = document.getElementById(item.id);
@@ -17,8 +19,8 @@ function getHeadings(items: TableOfContentsItem[]): HTMLElement[] {
       headings.push(heading);
     }
 
-    if (item.children) {
-      headings.push(...getHeadings(item.children));
+    if (item.items) {
+      headings.push(...getHeadings(item.items));
     }
   });
 
@@ -38,7 +40,7 @@ const getRootMargin = (): string => {
 };
 
 export interface TableOfContentsProps {
-  toc: TableOfContentsItem[];
+  toc: readonly TableOfContentsItem[];
 }
 
 export function TableOfContents(
@@ -91,7 +93,14 @@ export function TableOfContents(
       <Typography id={headingId} type="headline-5" margin="none">
         Table of Contents
       </Typography>
-      <TOCLinks root items={toc} activeId={activeId} />
+      <TOCGroup root>
+        <RenderRecursively
+          data={activeId}
+          items={toc}
+          render={RenderTOCItem}
+          getItemKey={(item) => item.id}
+        />
+      </TOCGroup>
     </nav>
   );
 }

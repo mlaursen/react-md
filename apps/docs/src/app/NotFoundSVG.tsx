@@ -9,8 +9,8 @@ export default function NotFoundSVG(
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
-      viewBox="0 0 1920 1080"
       className={styles.svg}
+      viewBox="371 171.1 1123.25 664.8"
     >
       <defs>
         <filter
@@ -127,7 +127,7 @@ export default function NotFoundSVG(
           />
         </filter>
         <filter
-          id="m"
+          id="n"
           width="200%"
           height="200%"
           x="-50%"
@@ -173,7 +173,7 @@ export default function NotFoundSVG(
           />
         </filter>
         <filter
-          id="p"
+          id="q"
           width="200%"
           height="200%"
           x="-50%"
@@ -222,8 +222,8 @@ export default function NotFoundSVG(
         <circle id="e" cx="743.5" cy="490.5" r="22.5" />
         <circle id="h" cx="28.5" cy="26.5" r="22.5" />
         <circle id="j" cx="1108.5" cy="659.5" r="22.5" />
-        <circle id="n" cx="978" cy="499" r="8" />
-        <circle id="q" cx="949" cy="515" r="8" />
+        <circle id="m" cx="978" cy="499" r="8" />
+        <circle id="p" cx="949" cy="515" r="8" />
         <linearGradient id="b" x1="82.093%" x2="51.806%" y1="75.079%" y2="100%">
           <stop
             offset="0%"
@@ -311,11 +311,11 @@ export default function NotFoundSVG(
         <text
           fill="var(--rmd-text-primary-color)"
           fontFamily="var(--roboto, Roboto), VarelaRound-Regular, Varela Round"
-          fontSize="525"
           fontWeight="500"
+          fontSize="525"
           letterSpacing="8.75"
         >
-          <tspan x="425" y="722">
+          <tspan x="372" y="722">
             4
           </tspan>
         </text>
@@ -330,12 +330,12 @@ export default function NotFoundSVG(
             4
           </tspan>
         </text>
-        <use xlinkHref="#n" fill="#000" filter="url(#m)" />
-        <use xlinkHref="#n" fill="#0B3F8E" />
-        <use xlinkHref="#n" fill="#000" filter="url(#o)" />
-        <use xlinkHref="#q" fill="#000" filter="url(#p)" />
-        <use xlinkHref="#q" fill="#0B3F8E" />
-        <use xlinkHref="#q" fill="#000" filter="url(#r)" />
+        <use xlinkHref="#m" fill="#000" filter="url(#n)" />
+        <use xlinkHref="#m" fill="#0B3F8E" />
+        <use xlinkHref="#m" fill="#000" filter="url(#o)" />
+        <use xlinkHref="#p" fill="#000" filter="url(#q)" />
+        <use xlinkHref="#p" fill="#0B3F8E" />
+        <use xlinkHref="#p" fill="#000" filter="url(#r)" />
         <use
           xlinkHref="#a"
           fill="#FC89B7"
@@ -350,7 +350,7 @@ export default function NotFoundSVG(
           stroke="#973F3D"
           strokeLinecap="square"
           strokeWidth="3"
-          d="m934.108 513.097 10.784-12.194M965.553 489.527l16.006-2.97"
+          d="m934.108 513.097 10.784-12.194m20.661-11.376 16.006-2.97"
         />
       </g>
     </svg>

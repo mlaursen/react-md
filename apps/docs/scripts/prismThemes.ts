@@ -2,9 +2,9 @@ import { globSync } from "glob";
 import { existsSync } from "node:fs";
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
-import { GENERATED_FILE_BANNER } from "./constants.js";
 import { format } from "../src/utils/format.js";
 import { pascalCase } from "../src/utils/strings.js";
+import { GENERATED_FILE_BANNER } from "./constants.js";
 
 const prismThemesFolder = resolve(process.cwd(), "src", "prism-themes");
 const themesPath = resolve(prismThemesFolder, "themes.ts");

@@ -4,7 +4,6 @@ import {
   type ExecSyncOptionsWithBufferEncoding,
   type ExecSyncOptionsWithStringEncoding,
 } from "node:child_process";
-import "server-only";
 
 export function loggedExecSync(command: string, options?: ExecOptions): Buffer;
 export function loggedExecSync(

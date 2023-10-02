@@ -102,6 +102,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.2.8
         version: 18.2.8
+      chokidar:
+        specifier: ^3.5.3
+        version: 3.5.3
       eslint:
         specifier: ^8.50.0
         version: 8.50.0
@@ -120,6 +123,9 @@ importers:
       prettier:
         specifier: ^3.0.3
         version: 3.0.3
+      pretty-ms:
+        specifier: ^8.0.0
+        version: 8.0.0
       prism-themes:
         specifier: ^1.9.0
         version: 1.9.0
@@ -8324,6 +8330,11 @@ packages:
       lines-and-columns: 1.2.4
     dev: true
 
+  /parse-ms@3.0.0:
+    resolution: {integrity: sha512-Tpb8Z7r7XbbtBTrM9UhpkzzaMrqA2VXMT3YChzYltwV3P3pM6t8wl7TvpMnSTosz1aQAdVib7kdoys7vYOPerw==}
+    engines: {node: '>=12'}
+    dev: true
+
   /parse5@7.1.2:
     resolution: {integrity: sha512-Czj1WaSVpaoj0wbhMzLmWD69anp2WH7FXMB9n1Sy8/ZFF9jolSQVMu1Ij5WIyGmcBmhk7EOndpO4mIpihVqAXw==}
     dependencies:
@@ -8568,6 +8579,13 @@ packages:
       '@jest/schemas': 29.6.3
       ansi-styles: 5.2.0
       react-is: 18.2.0
+    dev: true
+
+  /pretty-ms@8.0.0:
+    resolution: {integrity: sha512-ASJqOugUF1bbzI35STMBUpZqdfYKlJugy6JBziGi2EE+AL5JPJGSzvpeVXojxrr0ViUYoToUjb5kjSEGf7Y83Q==}
+    engines: {node: '>=14.16'}
+    dependencies:
+      parse-ms: 3.0.0
     dev: true
 
   /prism-themes@1.9.0:

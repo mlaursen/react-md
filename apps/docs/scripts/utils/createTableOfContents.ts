@@ -1,14 +1,15 @@
 import GithubSlugger from "github-slugger";
-import { readFile } from "node:fs/promises";
-import { type TableOfContentsItem } from "./types.js";
+import { readFile, writeFile } from "node:fs/promises";
+import { dirname, join } from "node:path";
+import { type TableOfContentsItem } from "../../src/components/TableOfContents/types.js";
+import { format } from "../../src/utils/format.js";
+import { GENERATED_FILE_BANNER } from "../constants.js";
 
 export async function createTableOfContents(
-  fileName: string,
-  importUrl: string
-): Promise<TableOfContentsItem[]> {
+  markdownPath: string
+): Promise<void> {
   const slugger = new GithubSlugger();
-  const url = new URL(fileName, importUrl);
-  const contents = await readFile(url, "utf8");
+  const contents = await readFile(markdownPath, "utf8");
   const headings = (
     contents.match(/^#{1,6}\s.+$/gm) || []
   ).map<TableOfContentsItem>((heading) => {
@@ -26,15 +27,15 @@ export async function createTableOfContents(
     id: "",
     depth: 0,
     value: "",
-    children: [],
+    items: [],
   };
 
   let previous = root;
   const parents: TableOfContentsItem[] = [];
   headings.forEach((heading) => {
     if (heading.depth > previous.depth) {
-      if (!previous.children) {
-        previous.children = [];
+      if (!previous.items) {
+        previous.items = [];
       }
 
       parents.push(previous);
@@ -45,9 +46,18 @@ export async function createTableOfContents(
     }
 
     const i = parents.length - 1;
-    parents[i].children = [...(parents[i].children ?? []), heading];
+    parents[i].items = [...(parents[i].items ?? []), heading];
     previous = heading;
   });
 
-  return root.children ?? [];
+  const tocPath = join(dirname(markdownPath), "toc.ts");
+  const formattedTocContents = await format(
+    `${GENERATED_FILE_BANNER}
+import { type TableOfContentsItem } from "@/components/TableOfContents/types.js";
+
+export const toc = ${JSON.stringify(
+      root.items ?? []
+    )} satisfies readonly TableOfContentsItem[]`
+  );
+  await writeFile(tocPath, formattedTocContents);
 }
