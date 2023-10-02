@@ -13,7 +13,7 @@
     "next-build": "next build",
     "watchers": "npm-run-all -p mdx-pages-watch next-dev",
     "dev": "npm-run-all create-env watchers",
-    "build": "npm-run-all create-env next-build",
+    "build": "npm-run-all create-env mdx-pages next-build",
     "start": "next start",
     "clean-static": "rm -rf .turbo .next node_modules",
     "clean": "npm-run-all clean-static mdx-pages-clean",
