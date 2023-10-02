@@ -1,9 +1,9 @@
-import { AsyncButton, Box, wait } from "@react-md/core";
-import type { ReactElement } from "react";
+import { AsyncButton, wait } from "@react-md/core";
+import { type ReactElement } from "react";
 
 export default function AsyncButtonPromise(): ReactElement {
   return (
-    <Box>
+    <>
       <AsyncButton onClick={() => wait(4000)}>Click Me</AsyncButton>
       <AsyncButton
         onClick={() => wait(4000)}
@@ -19,6 +19,6 @@ export default function AsyncButtonPromise(): ReactElement {
       >
         Click Me
       </AsyncButton>
-    </Box>
+    </>
   );
 }

@@ -1,4 +1,3 @@
-"use client";
 import { Box, Typography, type BoxProps } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import { useId, type ReactElement, type ReactNode } from "react";

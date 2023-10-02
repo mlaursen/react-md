@@ -12,11 +12,7 @@ checkboxes to:
 
 A checkbox can be created using the `Checkbox` component.
 
-<CodeLoader
-  source="./SimpleCheckbox.tsx"
-  importUrl={import.meta.url}
-  editable
-/>
+{{ "component": "./SimpleCheckbox.tsx" }}
 
 ## Checkbox Sizes
 
@@ -24,7 +20,7 @@ The `Checkbox` has multiple sizes: `normal` (default), `small`, `dense`,
 and `large`. The size can also be set to `auto` which will update the checkbox
 to match the current font size.
 
-<CodeLoader source="./CheckboxSizes.tsx" importUrl={import.meta.url} editable />
+{{ "component": "./CheckboxSizes.tsx" }}
 
 ## Checkbox States
 
@@ -32,22 +28,14 @@ The `Checkbox` also has different states that can be applied. The most common
 will be the `error` or `disabled` states but also supports `readOnly` and
 `active`.
 
-<CodeLoader
-  source="./CheckboxStates.tsx"
-  importUrl={import.meta.url}
-  editable
-/>
+{{ "component": "./CheckboxStates.tsx" }}
 
 ## Controlling Checkboxes
 
 The `Checkbox` can be controlled by providing the `checked` prop and `onChange`
 like a native `<input type="checkbox">`:
 
-<CodeLoader
-  source="./ControllingCheckboxes.tsx"
-  importUrl={import.meta.url}
-  editable
-/>
+{{ "component": "./ControllingCheckboxes.tsx" }}
 
 ### Using the useCheckboxGroup Hook
 
@@ -63,11 +51,7 @@ optional list of `defaultCheckedValues` returning an object containing:
 - `reset` - Resets the state to the `defaultCheckedValues` (an empty list by
   default).
 
-<CodeLoader
-  source="./UsingTheUseCheckboxGroupHook.tsx"
-  importUrl={import.meta.url}
-  editable
-/>
+{{ "component": "./UsingTheUseCheckboxGroupHook.tsx" }}
 
 ### Strictly Typed useCheckboxGroup
 
@@ -75,10 +59,7 @@ For `Typescript` users, the `checkboxValues` will be strictly typed either by
 inferring the type from the `defaultCheckedValues` or by providing a
 type-parameter to the hook.
 
-<CodeLoader
-  source="./StrictlyTypedUseCheckboxGroup.tsx"
-  importUrl={import.meta.url}
-/>
+{{ "component": "./StrictlyTypedUseCheckboxGroup.tsx" }}
 
 ## Indeterminate Checkboxes
 
@@ -90,11 +71,7 @@ checkboxes where one checkbox can toggle all of them on or off.
 To create an indeterminate checkbox, enable the `indeterminate` prop and the
 indeterminate icon will display while checked.
 
-<CodeLoader
-  source="./IndeterminateCheckbox.tsx"
-  importUrl={import.meta.url}
-  editable
-/>
+{{ "component": "./IndeterminateCheckbox.tsx" }}
 
 ### useCheckboxGroup Hook
 
@@ -105,11 +82,7 @@ will be applied to each checkbox and a list of available `values`.
 > !Info! The values will be strictly typed and inferred for `Typescript` users
 > based on the provided list of available `values`.
 
-<CodeLoader
-  source="./CheckboxGroupHook.tsx"
-  importUrl={import.meta.url}
-  editable
-/>
+{{ "component": "./CheckboxGroupHook.tsx" }}
 
 ## Custom Icons
 

@@ -1,4 +1,3 @@
-import "server-only";
 import { transform } from "sucrase";
 import { format } from "./format.js";
 

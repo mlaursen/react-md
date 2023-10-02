@@ -11,3 +11,4 @@
 
 src/app/**/toc.ts
 src/app/*/**/page.tsx
+src/app/*/**/demo-page.mdx

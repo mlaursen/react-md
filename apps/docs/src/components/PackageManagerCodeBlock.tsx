@@ -8,14 +8,15 @@ import { DISPLAY_NONE_CLASS, Tab, TabList, useTabs } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
 import { CodeBlock } from "./CodeBlock.jsx";
-import styles from "./PackageManagerCode.module.scss";
+import { CodeBlockHeader } from "./CodeBlockHeader.jsx";
+import styles from "./PackageManagerCodeBlock.module.scss";
 
 const CLASS_NAME = "language-sh";
 
-export type PackageManagerCodeProps = Record<PackageManager, string>;
+export type PackageManagerCodeBlockProps = Record<PackageManager, string>;
 
-export function PackageManagerCode(
-  props: PackageManagerCodeProps
+export function PackageManagerCodeBlock(
+  props: PackageManagerCodeBlockProps
 ): ReactElement {
   const { packageManager, setPackageManager } = usePackageManagerContext();
   const { getTabListProps, getTabProps, getTabPanelProps } = useTabs({
@@ -25,9 +26,8 @@ export function PackageManagerCode(
   });
 
   return (
-    <CodeBlock
-      className={CLASS_NAME}
-      header={
+    <>
+      <CodeBlockHeader>
         <TabList
           {...getTabListProps()}
           inline
@@ -45,23 +45,24 @@ export function PackageManagerCode(
             </Tab>
           ))}
         </TabList>
-      }
-    >
-      {PACKAGE_MANAGERS.map((name) => {
-        const { active, ...panelProps } = getTabPanelProps(name);
-        return (
-          <div
-            {...panelProps}
-            key={name}
-            className={cnb(!active && DISPLAY_NONE_CLASS)}
-          >
-            <code
-              className={CLASS_NAME}
-              dangerouslySetInnerHTML={{ __html: props[name] }}
-            />
-          </div>
-        );
-      })}
-    </CodeBlock>
+      </CodeBlockHeader>
+      <CodeBlock className={CLASS_NAME} disableMarginTop>
+        {PACKAGE_MANAGERS.map((name) => {
+          const { active, ...panelProps } = getTabPanelProps(name);
+          return (
+            <div
+              {...panelProps}
+              key={name}
+              className={cnb(!active && DISPLAY_NONE_CLASS)}
+            >
+              <code
+                className={CLASS_NAME}
+                dangerouslySetInnerHTML={{ __html: props[name] }}
+              />
+            </div>
+          );
+        })}
+      </CodeBlock>
+    </>
   );
 }

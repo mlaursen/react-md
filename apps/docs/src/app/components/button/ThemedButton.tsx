@@ -1,10 +1,10 @@
-import { Box, Button } from "@react-md/core";
+import { Button } from "@react-md/core";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 
 export default function ThemedButton(): ReactElement {
   return (
-    <Box>
+    <>
       <Button>Clear</Button>
       <Button theme="primary">Primary</Button>
       <Button theme="secondary">Secondary</Button>
@@ -20,6 +20,6 @@ export default function ThemedButton(): ReactElement {
         Error
       </Button>
       <Button disabled>Disabled</Button>
-    </Box>
+    </>
   );
 }

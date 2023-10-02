@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import { Button, Checkbox, Form, box, useCheckboxGroup } from "@react-md/core";
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 
 const themes = ["none", "underline", "filled", "outline"] as const;
 

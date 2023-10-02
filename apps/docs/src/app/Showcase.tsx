@@ -1,5 +1,4 @@
-import { CodePreviewContainer } from "@/components/Code/CodePreviewContainer.jsx";
-import CodeIcon from "@react-md/material-icons/CodeIcon";
+import { CodePreviewContainer } from "@/components/CodePreviewContainer.jsx";
 import Logo from "@/components/Logo.jsx";
 import {
   Box,
@@ -14,6 +13,7 @@ import {
   Typography,
   chip,
 } from "@react-md/core";
+import CodeIcon from "@react-md/material-icons/CodeIcon";
 import { type ReactElement } from "react";
 import styles from "./Showcase.module.scss";
 

@@ -1,10 +1,10 @@
-import { Box, Button, SrOnly } from "@react-md/core";
+import { Button, SrOnly } from "@react-md/core";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 
 export default function ResponsiveButton(): ReactElement {
   return (
-    <Box>
+    <>
       <Button responsive>
         <FavoriteIcon />
         <SrOnly phoneOnly>Favorite</SrOnly>
@@ -21,6 +21,6 @@ export default function ResponsiveButton(): ReactElement {
         <SrOnly phoneOnly>Favorite</SrOnly>
         <FavoriteIcon />
       </Button>
-    </Box>
+    </>
   );
 }

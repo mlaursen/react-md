@@ -1,10 +1,10 @@
-import { Box, Button } from "@react-md/core";
+import { Button } from "@react-md/core";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 
 export default function ButtonWithTextAndIcon(): ReactElement {
   return (
-    <Box>
+    <>
       <Button>
         <FavoriteIcon />
         Text
@@ -18,6 +18,6 @@ export default function ButtonWithTextAndIcon(): ReactElement {
         Text
         <FavoriteIcon />
       </Button>
-    </Box>
+    </>
   );
 }

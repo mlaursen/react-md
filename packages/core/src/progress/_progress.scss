@@ -314,10 +314,10 @@ $var-lookup: (
     }
 
     &__circle {
-      @include use-var(stroke, color);
       @include use-var(stroke-width, circular-stroke-width);
 
       fill: none;
+      stroke: currentcolor;
       stroke-dasharray: $circular-dasharray;
       stroke-linecap: round;
 

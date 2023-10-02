@@ -10,13 +10,13 @@ Buttons communicate actions that users can take. They are typically placed throu
 - Cards
 - Toolbars
 
-## Simple Button
+# Simple Button
 
 The `Button` comes in multiple theme types: `flat` (default), `outlined`, `contained`
 
-<CodeLoader source="./SimpleButton.tsx" importUrl={importUrl} editable />
+{{ "component": "./SimpleButton.tsx" }}
 
-### Text Button
+## Text Button
 
 [Text buttons](https://m2.material.io/components/buttons#text-button) are typically used for less-pronounced actions, including those located:
 
@@ -25,21 +25,21 @@ The `Button` comes in multiple theme types: `flat` (default), `outlined`, `conta
 
 In cards, text buttons help maintain an emphasis on card content.
 
-<CodeLoader source="./TextButton.tsx" importUrl={importUrl} editable />
+{{ "component": "./TextButton.tsx" }}
 
-### Outlined Button
+## Outlined Button
 
 [Outlined buttons](https://m2.material.io/components/buttons#outlined-button) are medium-emphasis buttons. They contain actions that are important, but aren’t the primary action in an app.
 
-<CodeLoader source="./OutlinedButton.tsx" importUrl={importUrl} editable />
+{{ "component": "./OutlinedButton.tsx" }}
 
-### Contained Button
+## Contained Button
 
 [Contained buttons](https://m2.material.io/components/buttons#contained-button) Contained buttons are high-emphasis, distinguished by their use of elevation and fill. They contain actions that are primary to your app.
 
-<CodeLoader source="./ContainedButton.tsx" importUrl={importUrl} editable />
+{{ "component": "./ContainedButton.tsx" }}
 
-## Themed Button
+# Themed Button
 
 The `Button` can also be themed with different theme colors:
 
@@ -54,9 +54,9 @@ The `Button` can also be themed with different theme colors:
 The `theme` will be applied as the text color for `flat` buttons, as the text color and border color
 for `outlined` buttons, and the background color for `contained` buttons.
 
-<CodeLoader source="./ThemedButton.tsx" importUrl={importUrl} editable />
+{{ "component": "./ThemedButton.tsx" }}
 
-## Icon Button
+# Icon Button
 
 An icon button can be used when space is limited like on mobile devices or when
 there are a lot of actions. Icon buttons support all the same theme behavior as
@@ -66,9 +66,9 @@ To create an icon button, set the `buttonType` prop to `"icon"` or `"icon-square
 
 > !Warn! Icon buttons **must** provide accessible text for screen readers through `aria-label`, `aria-labelledby`, or [SrOnly](/components/sr-only) text.
 
-<CodeLoader source="./IconButton.tsx" importUrl={importUrl} editable />
+{{ "component": "./IconButton.tsx" }}
 
-### Icon Sizes
+## Icon Sizes
 
 The icon button's size can be easily changed by updating the `font-size` to a
 new value which will automatically scale the padding with it. There are a few
@@ -77,31 +77,27 @@ sizes by default: `small`, `normal` (default), and `large`.
 > !Warn! Using small icon buttons will be less accessible since there is a
 > smaller touch target.
 
-<CodeLoader source="./IconButtonSizes.tsx" importUrl={importUrl} editable />
+{{ "component": "./IconButtonSizes.tsx" }}
 
-## Button with Text and Icon
+# Button with Text and Icon
 
 Text and icons can both exist within a `Button` by just including them in the `children`. Each element
 rendered in a button will automatically be separated using `gap` set to the `$icon-spacing` amount.
 
 > !Info! An `aria-label`, `aria-labelledby`, or `SrOnly` text is **not** needed for each icon in this sort of button since it is only presentational.
 
-<CodeLoader
-  source="./ButtonWithTextAndIcon.tsx"
-  importUrl={importUrl}
-  editable
-/>
+{{ "component": "./ButtonWithTextAndIcon.tsx" }}
 
-### Responsive Button
+## Responsive Button
 
 A common pattern is to have a button be icon only on phones due to the limited screen size
 and then include a label as well once there is enough space. This can be done by enabling
 the `responsive` prop on the button and wrapping the label in the [SrOnly](/components/sr-only)
 component with the `phoneOnly` prop enabled:
 
-<CodeLoader source="./ResponsiveButton.tsx" importUrl={importUrl} editable />
+{{ "component": "./ResponsiveButton.tsx" }}
 
-## Floating Action Button
+# Floating Action Button
 
 [Floating action buttons](https://m2.material.io/components/buttons-floating-action-button#usage)
 performs the primary, or most common, action on a screen. It appears in front
@@ -114,32 +110,24 @@ the button in that location within the screen by using `position: fixed`. When
 the floating prop is defined, the button default props will be updated with
 `theme="secondary"`, `themeType="contained"`, and `buttonType="icon"`.
 
-import floatingStyles from "./FloatingActionButtonPreview.module.scss";
+{{ "component": "./FloatingActionButton.tsx", "card": true, "phone": true }}
 
-<CodeLoader
-  source="./FloatingActionButton.tsx"
-  importUrl={importUrl}
-  editable
-  previewCard
-  previewCardClassName={floatingStyles.container}
-/>
-
-## Async Button
+# Async Button
 
 The `AsyncButton` can be used to display a loading indicator inside a button
 while an async task completes. If the `onClick` handler is an async function,
 the loading indicator will display until the promise resolves.
 
-<CodeLoader source="./AsyncButtonPromise.tsx" importUrl={importUrl} editable />
+{{ "component": "./AsyncButtonPromise.tsx" }}
 
-### Manual Pending State
+## Manual Pending State
 
 When the pending state is derived by a separate action, the loading indicator
 can be shown by setting the `loading` prop to `true`:
 
-<CodeLoader source="./ManualPendingState.tsx" importUrl={importUrl} editable />
+{{ "component": "./ManualPendingState.tsx" }}
 
-### Loading Indicator Types
+## Loading Indicator Types
 
 The `AsyncButton` supports the following loading indicator behaviors out of the box:
 
@@ -150,19 +138,11 @@ The `AsyncButton` supports the following loading indicator behaviors out of the 
 - `linear-above` - Renders a linear loading indicator above the `children`
 - `linear-below` - Renders a linear loading indicator below the `children`
 
-<CodeLoader
-  source="./LoadingIndicatorTypes.tsx"
-  importUrl={importUrl}
-  editable
-/>
+{{ "component": "./LoadingIndicatorTypes.tsx" }}
 
-### Custom Loading Children
+## Custom Loading Children
 
 If the `children` should be swapped out along with the loading indicator,
 provide that content through the `loadingChildren` prop.
 
-<CodeLoader
-  source="./CustomLoadingChildren.tsx"
-  importUrl={importUrl}
-  editable
-/>
+{{ "component": "./CustomLoadingChildren.tsx" }}

@@ -1,46 +1,32 @@
 "use client";
+import { highlightCode } from "@/utils/highlightCode.js";
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
+import { CodeBlock, type CodeBlockProps } from "../CodeBlock.jsx";
+import { RunnableCodePreview } from "../DangerouslyRunCode/RunnableCodePreview.jsx";
 import { type RunnableCodeScope } from "../DangerouslyRunCode/utils.jsx";
-import { CodeBlock } from "./CodeBlock.jsx";
 import styles from "./CodeEditor.module.scss";
-import { CodeLanguageToggle } from "./CodeLanguageToggle.jsx";
-import { CodePreview } from "./CodePreview.jsx";
-import { highlightCode } from "./highlightCode.js";
 import { useCodeEditor } from "./useCodeEditor.js";
+import { type RunnableCodePreviewOptions } from "../DangerouslyRunCode/RunnableCodePreviewContainer.jsx";
 
-export interface CodeEditorProps {
-  className: string;
+export interface CodeEditorProps extends Omit<CodeBlockProps, "className"> {
+  lang: string;
   scope?: RunnableCodeScope;
   defaultCode: string;
-  previewCard?: boolean;
-  previewCardClassName?: string;
+  preview: RunnableCodePreviewOptions;
 }
 
 export function CodeEditor(props: CodeEditorProps): ReactElement {
-  const { className, scope, defaultCode, previewCard, previewCardClassName } =
-    props;
+  const { defaultCode, lang, scope, children, preview, ...remaining } = props;
+  const className = `language-${lang}`;
   const { code, textAreaProps } = useCodeEditor(defaultCode);
-
   return (
     <>
-      <CodePreview
-        code={code}
-        scope={scope}
-        card={previewCard}
-        cardClassName={previewCardClassName}
-      />
+      <RunnableCodePreview code={code} scope={scope} {...preview} />
+      {children}
       <CodeBlock
+        {...remaining}
         className={className}
-        disableMarginTop
-        preProps={{
-          "aria-hidden": true,
-        }}
-        header={
-          <>
-            <CodeLanguageToggle />
-          </>
-        }
         afterPreElement={
           <textarea
             {...textAreaProps}
@@ -56,7 +42,7 @@ export function CodeEditor(props: CodeEditorProps): ReactElement {
         <code
           className={cnb(className, styles.code)}
           dangerouslySetInnerHTML={{
-            __html: highlightCode(code, "tsx") + "<br />",
+            __html: highlightCode(code, lang) + "<br />",
           }}
         />
       </CodeBlock>

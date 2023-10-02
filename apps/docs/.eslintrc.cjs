@@ -23,5 +23,13 @@ module.exports = {
         "@typescript-eslint/explicit-function-return-type": 0,
       },
     },
+    {
+      files: ["src/app/**/*.tsx"],
+      rules: {
+        // disable this rule so that the most important part of the demos can be
+        // shown first
+        "@typescript-eslint/no-use-before-define": 0,
+      },
+    },
   ],
 };

@@ -1,10 +1,10 @@
-import { Box, Button, SrOnly } from "@react-md/core";
+import { Button, SrOnly } from "@react-md/core";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 
 export default function IconButton(): ReactElement {
   return (
-    <Box>
+    <>
       <Button aria-label="Favorite" buttonType="icon">
         <FavoriteIcon />
       </Button>
@@ -39,6 +39,6 @@ export default function IconButton(): ReactElement {
       >
         <FavoriteIcon />
       </Button>
-    </Box>
+    </>
   );
 }

@@ -1,7 +1,6 @@
 import { AppBar } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import { type HTMLAttributes, type ReactElement } from "react";
-
 import styles from "./CodeBlockHeader.module.scss";
 
 export interface CodeBlockHeaderProps extends HTMLAttributes<HTMLDivElement> {}

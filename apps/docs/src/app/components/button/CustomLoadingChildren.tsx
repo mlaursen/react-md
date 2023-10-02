@@ -1,10 +1,10 @@
-import { AsyncButton, Box, wait } from "@react-md/core";
+import { AsyncButton, wait } from "@react-md/core";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 
 export default function CustomLoadingChildren(): ReactElement {
   return (
-    <Box>
+    <>
       <AsyncButton
         onClick={() => wait(4000)}
         loadingType="linear-below"
@@ -24,6 +24,6 @@ export default function CustomLoadingChildren(): ReactElement {
       >
         Click Me
       </AsyncButton>
-    </Box>
+    </>
   );
 }

@@ -1,7 +1,6 @@
 import { Blockquote } from "@/components/Blockquote.jsx";
-import { CodeLoader } from "@/components/Code/CodeLoader.jsx";
-import type { HighlightedCodeBlockProps } from "@/components/Code/HighlightedCodeBlock.jsx";
-import { HighlightedCodeBlock } from "@/components/Code/HighlightedCodeBlock.jsx";
+import type { HighlightedCodeBlockProps } from "@/components/HighlightedCodeBlock.jsx";
+import { HighlightedCodeBlock } from "@/components/HighlightedCodeBlock.jsx";
 import { InlineColorPreview } from "@/components/InlineColorPreview.jsx";
 import { LinkableHeading } from "@/components/LinkableHeading.jsx";
 import { MarkdownLink } from "@/components/MarkdownLink.jsx";
@@ -27,9 +26,7 @@ interface RedefinedComponents {
   h4(props: HeadingProps): ReactElement;
   h5(props: HeadingProps): ReactElement;
   h6(props: HeadingProps): ReactElement;
-  code(props: HighlightedCodeBlockProps): ReactElement;
-  CodeLoader: typeof CodeLoader;
-  CodeBlock: typeof HighlightedCodeBlock;
+  code(props: HighlightedCodeBlockProps): Promise<ReactElement>;
 }
 
 type Components = Omit<MDXComponents, keyof RedefinedComponents> &
@@ -98,13 +95,11 @@ export function useMDXComponents(components: MDXComponents): Components {
     ul: (props) => <Typography type="body-1" as="ul" {...props} />,
     pre: (props) => {
       if (!isValidElement<HighlightedCodeBlockProps>(props.children)) {
-        throw new Error("");
+        throw new Error("Invalid pre element");
       }
 
       return cloneElement(props.children, { multiline: true });
     },
     code: HighlightedCodeBlock,
-    CodeLoader,
-    CodeBlock: HighlightedCodeBlock,
   };
 }

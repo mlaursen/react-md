@@ -1,4 +1,4 @@
-import { HighlightedCodeBlock } from "@/components/Code/HighlightedCodeBlock.jsx";
+import { HighlightedCodeBlock } from "@/components/HighlightedCodeBlock.jsx";
 import { Link } from "@react-md/core";
 import type { ReactElement } from "react";
 import { Section } from "./Section.jsx";

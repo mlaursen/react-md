@@ -1,7 +1,19 @@
 import { CircularProgress, loop } from "@react-md/core";
-import { useState, type ReactElement, useEffect } from "react";
+import { useEffect, useState, type ReactElement } from "react";
 
-export default function CircularDeterminate(): ReactElement {
+export default function DeterminateCircularProgress(): ReactElement {
+  const progress = useProgress();
+  return (
+    <>
+      <CircularProgress value={10} />
+      <CircularProgress value={30} />
+      <CircularProgress value={70} />
+      <CircularProgress value={progress} />
+    </>
+  );
+}
+
+function useProgress(): number {
   const [progress, setProgress] = useState(0);
   useEffect(() => {
     const interval = window.setInterval(() => {
@@ -20,12 +32,6 @@ export default function CircularDeterminate(): ReactElement {
       window.clearInterval(interval);
     };
   }, []);
-  return (
-    <>
-      <CircularProgress value={10} />
-      <CircularProgress value={30} />
-      <CircularProgress value={70} />
-      <CircularProgress value={progress} />
-    </>
-  );
+
+  return progress;
 }
