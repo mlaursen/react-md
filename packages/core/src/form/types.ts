@@ -54,6 +54,25 @@ export interface FormThemeOptions {
   underlineDirection?: FormUnderlineDirection;
 }
 
+/**
+ * @remarks \@since 6.0.0
+ */
+export interface FormConfiguration extends Required<FormThemeOptions> {
+  /**
+   * Set this to `false` if the `$disable-uncontrolled-input-toggles` variable
+   * is set to `true` in the Sass configuration.
+   *
+   * Since the `checked` state only changes for the radio that has been clicked,
+   * the previously checked radio would also be shown as checked with no way of
+   * fixing it without controlling the radio component. When this flag is
+   * enabled, the checked icons and state are handled through css instead of
+   * `useState`.
+   *
+   * @defaultValue `true`
+   */
+  uncontrolledToggles: boolean;
+}
+
 export interface FormComponentStates {
   /** @defaultValue `false` */
   error?: boolean;

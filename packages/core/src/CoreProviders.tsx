@@ -15,7 +15,6 @@ import {
 } from "./portal/PortalContainerProvider.js";
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { type FormThemeProvider } from "./form/FormThemeProvider.js";
 import { type MenuConfigurationProvider } from "./menu/MenuConfigurationProvider.js";
 import { type Snackbar } from "./snackbar/Snackbar.js";
 import { type LocalStorageColorSchemeProvider } from "./theme/LocalStorageColorSchemeProvider.js";
@@ -80,8 +79,6 @@ export interface CoreProvidersProps extends ReactMDCoreConfiguration {
  *   rtl languages
  * - {@link ThemeProvider} - If you allow the user to dynamically configure the
  *   `react-md` theme
- * - {@link FormThemeProvider} - Of you want to change the global/local theme
- *   for form components
  * - {@link TooltipHoverModeProvider} - If you want tooltips to appear
  *   immediately for a time after another tooltip has become visible. You can
  *   also configure the global visible delay.

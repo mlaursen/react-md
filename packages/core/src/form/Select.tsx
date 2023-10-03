@@ -10,8 +10,8 @@ import {
   type ReactNode,
   type Ref,
 } from "react";
-import { getIcon } from "../icon/iconConfig.js";
 import { IconRotator } from "../icon/IconRotator.js";
+import { getIcon } from "../icon/iconConfig.js";
 import { Menu, type MenuProps } from "../menu/Menu.js";
 import { findMatchIndex } from "../movement/findMatchIndex.js";
 import {
@@ -28,9 +28,9 @@ import { useEnsuredId } from "../useEnsuredId.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
 import { useToggle } from "../useToggle.js";
 import { loop } from "../utils/loop.js";
-import { useFormTheme } from "./FormThemeProvider.js";
 import { SelectValue } from "./SelectValue.js";
 import { TextField, type TextFieldProps } from "./TextField.js";
+import { getFormConfig } from "./formConfig.js";
 import { select } from "./selectStyles.js";
 import { extractOptionsFromChildren } from "./selectUtils.js";
 import {
@@ -194,6 +194,7 @@ export function Select<Value extends string>(
     icon: propIcon,
     value,
     defaultValue,
+    theme: propTheme,
     onChange = noop,
     leftAddon,
     rightAddon: propRightAddon,
@@ -207,7 +208,7 @@ export function Select<Value extends string>(
   const id = useEnsuredId(propId, "select");
   const containerId = useEnsuredId(propContainerProps.id, "select-container");
   const icon = getIcon("dropdown", propIcon);
-  const { theme } = useFormTheme(props);
+  const theme = getFormConfig("theme", propTheme);
 
   const { toggled: visible, enable: show, disable: hide } = useToggle();
   const [inputRef, inputRefCallback] = useEnsuredRef(propInputRef);

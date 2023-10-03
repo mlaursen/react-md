@@ -10,9 +10,9 @@ import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
 import { FormMessageContainer } from "./FormMessageContainer.js";
-import { useFormTheme } from "./FormThemeProvider.js";
 import { Label } from "./Label.js";
 import { TextFieldContainer } from "./TextFieldContainer.js";
+import { getFormConfig } from "./formConfig.js";
 import { textArea, textAreaContainer } from "./textAreaStyles.js";
 import { type FormFieldOptions } from "./types.js";
 import {
@@ -137,10 +137,11 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
     } = props;
     const { disabled = false, readOnly = false, value, defaultValue } = props;
     const id = useEnsuredId(propId, "text-field");
-    const { theme, underlineDirection } = useFormTheme({
-      theme: propTheme,
-      underlineDirection: propUnderlineDirection,
-    });
+    const theme = getFormConfig("theme", propTheme);
+    const underlineDirection = getFormConfig(
+      "underlineDirection",
+      propUnderlineDirection
+    );
     const [areaRef, areaRefCallback] = useEnsuredRef(ref);
     const containerRef = useRef<HTMLDivElement>(null);
 

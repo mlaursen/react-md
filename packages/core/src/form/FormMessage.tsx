@@ -1,10 +1,9 @@
-"use client";
 import { forwardRef, type CSSProperties } from "react";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { FormMessageCounter } from "./FormMessageCounter.js";
 import { formMessage, formMessageText } from "./formMessageStyles.js";
-import { useFormTheme } from "./FormThemeProvider.js";
 import { type FormMessageProps } from "./types.js";
+import { getFormConfig } from "./formConfig.js";
 
 /**
  * Props that are used to automatically add a counter for the remaining letters
@@ -56,8 +55,7 @@ export interface FormMessageWithCounterProps
     FormMessageInputLengthCounterProps {}
 
 /**
- * **Client Component**
- * This might be able to become a server component if I remove the useFormTheme hook
+ * **Server Component**
  *
  * The `FormMessage` component is used to create additional helper messages or
  * error messages and generally placed below the related `TextField`. If a
@@ -88,7 +86,7 @@ export const FormMessage = forwardRef<
     ...remaining
   } = props;
   const id = useEnsuredId(propId, "form-message");
-  const { theme } = useFormTheme({ theme: propTheme });
+  const theme = getFormConfig("theme", propTheme);
 
   let message = children;
   if (!disableWrap && children) {

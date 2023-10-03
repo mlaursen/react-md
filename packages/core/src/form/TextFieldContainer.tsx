@@ -1,6 +1,6 @@
 "use client";
 import { forwardRef, type HTMLAttributes } from "react";
-import { useFormTheme } from "./FormThemeProvider.js";
+import { getFormConfig } from "./formConfig.js";
 import { TextFieldAddon } from "./TextFieldAddon.js";
 import { textFieldContainer } from "./TextFieldContainerStyles.js";
 import { type TextFieldContainerOptions } from "./types.js";
@@ -49,10 +49,11 @@ export const TextFieldContainer = forwardRef<
     underlineDirection: propUnderlineDirection,
     ...remaining
   } = props;
-  const { theme, underlineDirection } = useFormTheme({
-    theme: propTheme,
-    underlineDirection: propUnderlineDirection,
-  });
+  const theme = getFormConfig("theme", propTheme);
+  const underlineDirection = getFormConfig(
+    "underlineDirection",
+    propUnderlineDirection
+  );
 
   return (
     <div

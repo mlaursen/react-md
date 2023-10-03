@@ -9,9 +9,9 @@ import {
 import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { FormMessageContainer } from "./FormMessageContainer.js";
-import { useFormTheme } from "./FormThemeProvider.js";
 import { Label } from "./Label.js";
 import { TextFieldContainer } from "./TextFieldContainer.js";
+import { getFormConfig } from "./formConfig.js";
 import { textField } from "./textFieldStyles.js";
 import {
   type FormFieldOptions,
@@ -172,10 +172,11 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     } = props;
     const { disabled = false, readOnly = false } = props;
     const id = useEnsuredId(propId, "text-field");
-    const { theme, underlineDirection } = useFormTheme({
-      theme: propTheme,
-      underlineDirection: propUnderlineDirection,
-    });
+    const theme = getFormConfig("theme", propTheme);
+    const underlineDirection = getFormConfig(
+      "underlineDirection",
+      propUnderlineDirection
+    );
 
     let { placeholder = "" } = props;
     if (label && !placeholder) {

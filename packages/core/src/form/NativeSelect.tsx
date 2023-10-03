@@ -1,4 +1,3 @@
-"use client";
 import {
   forwardRef,
   type CSSProperties,
@@ -10,9 +9,9 @@ import { getIcon } from "../icon/iconConfig.js";
 import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { FormMessageContainer } from "./FormMessageContainer.js";
-import { useFormTheme } from "./FormThemeProvider.js";
 import { Label } from "./Label.js";
 import { TextFieldContainer } from "./TextFieldContainer.js";
+import { getFormConfig } from "./formConfig.js";
 import { nativeSelect, nativeSelectContainer } from "./nativeSelectStyles.js";
 import {
   type FormFieldOptions,
@@ -63,8 +62,7 @@ export interface NativeSelectProps
 }
 
 /**
- * **Client Component**
- * This might be able to become a server component if I remove getIcon and useFormTheme
+ * **Server Component**
  *
  * This component is a wrapper for the native `<select>` field that applies the
  * same theming as `TextField` and `TextArea` components. This component might
@@ -145,10 +143,11 @@ export const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
     } = props;
     const { disabled = false, readOnly = false, multiple = false } = props;
     const id = useEnsuredId(propId, "select");
-    const { theme, underlineDirection } = useFormTheme({
-      theme: propTheme,
-      underlineDirection: propUnderlineDirection,
-    });
+    const theme = getFormConfig("theme", propTheme);
+    const underlineDirection = getFormConfig(
+      "underlineDirection",
+      propUnderlineDirection
+    );
     const icon = getIcon("dropdown", propIcon);
     const underlined = theme === "underline" || theme === "filled";
 
