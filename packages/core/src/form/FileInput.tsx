@@ -147,6 +147,7 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
       themeType = "contained",
       buttonType = propChildren ? "text" : "icon",
       disabled = false,
+      iconSize,
       multiple = false,
       ...remaining
     } = props;
@@ -195,6 +196,7 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
           themeType,
           buttonType,
           disabled,
+          iconSize,
           pressed,
           pressedClassName,
           className: className || labelProps?.className,
@@ -205,7 +207,7 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
           {...remaining}
           id={id}
           ref={ref}
-          value={disableRepeatableFiles ? undefined : ""}
+          value={disableRepeatableFiles || !props.onChange ? undefined : ""}
           type="file"
           className="rmd-file-input"
           disabled={disabled}
