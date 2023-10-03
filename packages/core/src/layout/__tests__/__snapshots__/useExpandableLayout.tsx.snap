@@ -51,12 +51,6 @@ exports[`useExpandableLayout should allow you to create an expandable layout qui
       <span
         class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
       >
-        <span
-          aria-hidden="true"
-          class="rmd-icon rmd-icon--font material-icons"
-        >
-          radio_button_unchecked
-        </span>
         <input
           checked=""
           class="rmd-hidden-input"
@@ -65,6 +59,12 @@ exports[`useExpandableLayout should allow you to create an expandable layout qui
           type="radio"
           value="/"
         />
+        <span
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          radio_button_unchecked
+        </span>
       </span>
     </label>
     <label
@@ -74,12 +74,6 @@ exports[`useExpandableLayout should allow you to create an expandable layout qui
       <span
         class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
       >
-        <span
-          aria-hidden="true"
-          class="rmd-icon rmd-icon--font material-icons"
-        >
-          radio_button_unchecked
-        </span>
         <input
           class="rmd-hidden-input"
           id="radio-:r1:"
@@ -87,6 +81,12 @@ exports[`useExpandableLayout should allow you to create an expandable layout qui
           type="radio"
           value="/1"
         />
+        <span
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          radio_button_unchecked
+        </span>
       </span>
     </label>
     <label
@@ -96,12 +96,6 @@ exports[`useExpandableLayout should allow you to create an expandable layout qui
       <span
         class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--active rmd-input-toggle--normal"
       >
-        <span
-          aria-hidden="true"
-          class="rmd-icon rmd-icon--font material-icons"
-        >
-          radio_button_checked
-        </span>
         <input
           class="rmd-hidden-input"
           id="radio-:r2:"
@@ -109,6 +103,12 @@ exports[`useExpandableLayout should allow you to create an expandable layout qui
           type="radio"
           value="/2"
         />
+        <span
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          radio_button_checked
+        </span>
       </span>
     </label>
   </form>

@@ -37,6 +37,7 @@ $disable-native-select: $disable-everything !default;
 $disable-native-select-multiple: $disable-everything !default;
 $disable-checkbox: $disable-everything !default;
 $disable-radio: $disable-everything !default;
+$disable-uncontrolled-input-toggles: false !default;
 $disable-switch: $disable-everything !default;
 $disable-switch-circular-progress: progress.$disable-circular !default;
 $disable-menu-item-checkbox: $disable-checkbox !default;
@@ -1250,12 +1251,8 @@ $var-lookup: (
     width: 100%;
     z-index: 1;
 
-    &:hover {
+    &:not(:disabled):hover {
       cursor: pointer;
-    }
-
-    &--disabled:hover {
-      cursor: default;
     }
   }
 }
@@ -1264,7 +1261,7 @@ $var-lookup: (
   .rmd-input-toggle {
     @include interaction.surface(
       $focus-selector: "&:focus-within",
-      $disabled-selector: "&--disabled,&--readonly",
+      $disabled-selector: "&--disabled",
       $higher-contrast: false
     );
     @include icon.set-var(color, currentcolor);
@@ -1305,6 +1302,32 @@ $var-lookup: (
     @if $input-toggle-large-size {
       &--large {
         font-size: $input-toggle-large-size;
+      }
+    }
+
+    @if not $disable-uncontrolled-input-toggles {
+      &--uncontrolled {
+        $icon-color-selector: ".rmd-hidden-input:where(:checked:not(:disabled)) ~ .rmd-icon";
+        $unchecked-icon-selector: "~ :nth-child(-n + 1 of .rmd-icon)";
+        $checked-icon-selector: "~ :nth-child(n + 2 of .rmd-icon)";
+        // make sure the active color from the label also applies to the icon when
+        // checked
+        .rmd-label--active & #{$icon-color-selector} {
+          @include use-var(color, focus-color);
+        }
+
+        // make sure the error color applies to the icon when checked
+        &:where(:not(.rmd-error-color)) #{$icon-color-selector} {
+          @include use-var(color, active-color);
+        }
+
+        // when the input is checked, hide the first icon (unchecked state)
+        // when the input is not checked, hide the second icon (checked state)
+        .rmd-hidden-input:checked #{$unchecked-icon-selector},
+        .rmd-hidden-input:not(:checked) #{$checked-icon-selector} {
+          opacity: 0;
+          position: absolute;
+        }
       }
     }
   }

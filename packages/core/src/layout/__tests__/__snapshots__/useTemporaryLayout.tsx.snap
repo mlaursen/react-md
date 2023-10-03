@@ -49,12 +49,6 @@ exports[`useTemporaryLayout should allow you to create a temporary layout quickl
       <span
         class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--active rmd-input-toggle--normal"
       >
-        <span
-          aria-hidden="true"
-          class="rmd-icon rmd-icon--font material-icons"
-        >
-          radio_button_checked
-        </span>
         <input
           checked=""
           class="rmd-hidden-input"
@@ -63,6 +57,12 @@ exports[`useTemporaryLayout should allow you to create a temporary layout quickl
           type="radio"
           value="/"
         />
+        <span
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          radio_button_checked
+        </span>
       </span>
     </label>
     <label
@@ -72,12 +72,6 @@ exports[`useTemporaryLayout should allow you to create a temporary layout quickl
       <span
         class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
       >
-        <span
-          aria-hidden="true"
-          class="rmd-icon rmd-icon--font material-icons"
-        >
-          radio_button_unchecked
-        </span>
         <input
           class="rmd-hidden-input"
           id="radio-:r3:"
@@ -85,6 +79,12 @@ exports[`useTemporaryLayout should allow you to create a temporary layout quickl
           type="radio"
           value="/1"
         />
+        <span
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          radio_button_unchecked
+        </span>
       </span>
     </label>
     <label
@@ -94,12 +94,6 @@ exports[`useTemporaryLayout should allow you to create a temporary layout quickl
       <span
         class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
       >
-        <span
-          aria-hidden="true"
-          class="rmd-icon rmd-icon--font material-icons"
-        >
-          radio_button_unchecked
-        </span>
         <input
           class="rmd-hidden-input"
           id="radio-:r4:"
@@ -107,6 +101,12 @@ exports[`useTemporaryLayout should allow you to create a temporary layout quickl
           type="radio"
           value="/2"
         />
+        <span
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          radio_button_unchecked
+        </span>
       </span>
     </label>
   </form>

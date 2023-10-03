@@ -8,14 +8,8 @@ exports[`TableCheckbox should apply the correct styling, HTML attributes, and al
     class="rmd-label rmd-label--gap rmd-label--reversed"
   >
     <span
-      class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
+      class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal rmd-input-toggle--uncontrolled"
     >
-      <span
-        aria-hidden="true"
-        class="rmd-icon rmd-icon--font material-icons"
-      >
-        check_box_outline_blank
-      </span>
       <input
         aria-label="Select Row"
         autocomplete="off"
@@ -24,6 +18,18 @@ exports[`TableCheckbox should apply the correct styling, HTML attributes, and al
         type="checkbox"
         value=""
       />
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons"
+      >
+        check_box_outline_blank
+      </span>
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons"
+      >
+        check_box
+      </span>
     </span>
   </label>
 </td>
@@ -38,14 +44,8 @@ exports[`TableCheckbox should apply the correct styling, HTML attributes, and al
     class="rmd-label rmd-label--gap rmd-label--reversed"
   >
     <span
-      class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
+      class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal rmd-input-toggle--uncontrolled"
     >
-      <span
-        aria-hidden="true"
-        class="rmd-icon rmd-icon--font material-icons"
-      >
-        check_box_outline_blank
-      </span>
       <input
         aria-label="Select Row"
         autocomplete="off"
@@ -54,6 +54,18 @@ exports[`TableCheckbox should apply the correct styling, HTML attributes, and al
         type="checkbox"
         value=""
       />
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons"
+      >
+        check_box_outline_blank
+      </span>
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons"
+      >
+        check_box
+      </span>
     </span>
   </label>
 </td>
@@ -67,14 +79,8 @@ exports[`TableCheckbox should handle the aria-label/aria-labelledby props correc
     class="rmd-label rmd-label--gap rmd-label--reversed"
   >
     <span
-      class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
+      class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal rmd-input-toggle--uncontrolled"
     >
-      <span
-        aria-hidden="true"
-        class="rmd-icon rmd-icon--font material-icons"
-      >
-        check_box_outline_blank
-      </span>
       <input
         aria-label="Custom Label"
         autocomplete="off"
@@ -83,6 +89,18 @@ exports[`TableCheckbox should handle the aria-label/aria-labelledby props correc
         type="checkbox"
         value=""
       />
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons"
+      >
+        check_box_outline_blank
+      </span>
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons"
+      >
+        check_box
+      </span>
     </span>
   </label>
 </td>
@@ -96,14 +114,8 @@ exports[`TableCheckbox should handle the aria-label/aria-labelledby props correc
     class="rmd-label rmd-label--gap rmd-label--reversed"
   >
     <span
-      class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
+      class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal rmd-input-toggle--uncontrolled"
     >
-      <span
-        aria-hidden="true"
-        class="rmd-icon rmd-icon--font material-icons"
-      >
-        check_box_outline_blank
-      </span>
       <input
         aria-labelledby="another-id"
         autocomplete="off"
@@ -112,6 +124,18 @@ exports[`TableCheckbox should handle the aria-label/aria-labelledby props correc
         type="checkbox"
         value=""
       />
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons"
+      >
+        check_box_outline_blank
+      </span>
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons"
+      >
+        check_box
+      </span>
     </span>
   </label>
 </td>

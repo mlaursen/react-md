@@ -1,20 +1,24 @@
-"use client";
 import { cnb } from "cnbuilder";
 import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
 import { getIcon } from "../icon/iconConfig.js";
+import { FORM_CONFIG } from "./formConfig.js";
 import { inputToggle, type InputToggleSize } from "./inputToggleStyles.js";
 
 /**
  * @remarks
  * \@since 2.8.0
  * \@since 6.0.0 Removed the `circle` and `overlay` props since they are no
- * longer needed. Added the `icon`, `readOnly`, `disableEm`, `checkedIcon` and
+ * longer needed. Added the `icon`, `disableEm`, `checkedIcon` and
  * `indeterminateIcon` props.
  * @internal
  */
 export interface InputToggleIconProps extends HTMLAttributes<HTMLSpanElement> {
   type: "checkbox" | "radio";
-  checked: boolean;
+  /**
+   * Note: If this is `undefined` and the {@link FORM_CONFIG.uncontrolledToggles} is `false`,
+   * the icon state won't work.
+   */
+  checked?: boolean;
 
   /**
    * The icon to display while {@link checked} is `false`.
@@ -43,9 +47,6 @@ export interface InputToggleIconProps extends HTMLAttributes<HTMLSpanElement> {
   disabled?: boolean;
 
   /** @defaultValue `false` */
-  readOnly?: boolean;
-
-  /** @defaultValue `false` */
   disableEm?: boolean;
 
   /** @defaultValue `false` */
@@ -53,8 +54,7 @@ export interface InputToggleIconProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 /**
- * **Client Component**
- * This might be able to become a server component if I remove the getIcon hook
+ * **Server Component**
  *
  * @remarks
  * \@since 2.8.0
@@ -74,7 +74,6 @@ export const InputToggleIcon = forwardRef<
     checked,
     children,
     disabled,
-    readOnly,
     indeterminate,
     className,
     disableEm = false,
@@ -88,11 +87,25 @@ export const InputToggleIcon = forwardRef<
     "checkboxIndeterminate",
     propIndeterminateIcon
   );
-  const icon = checked
-    ? indeterminate
-      ? indeterminateIcon
-      : checkedIcon
-    : uncheckedIcon;
+
+  let icon: ReactNode;
+  let active = false;
+  const uncontrolled = typeof checked !== "boolean";
+  if (!uncontrolled || !FORM_CONFIG.uncontrolledToggles) {
+    active = !!checked && !error;
+    icon = checked
+      ? indeterminate
+        ? indeterminateIcon
+        : checkedIcon
+      : uncheckedIcon;
+  } else {
+    icon = (
+      <>
+        {uncheckedIcon}
+        {indeterminate ? indeterminateIcon : checkedIcon}
+      </>
+    );
+  }
 
   return (
     <span
@@ -103,15 +116,16 @@ export const InputToggleIcon = forwardRef<
           em: !disableEm,
           size,
           type,
-          active: checked && !error,
+          error,
+          active,
           disabled,
-          readOnly,
+          uncontrolled,
           className,
         })
       )}
     >
-      {icon}
       {children}
+      {icon}
     </span>
   );
 });

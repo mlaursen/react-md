@@ -2,7 +2,6 @@
 import { cnb } from "cnbuilder";
 import {
   forwardRef,
-  useState,
   type CSSProperties,
   type HTMLAttributes,
   type InputHTMLAttributes,
@@ -20,10 +19,6 @@ import {
   type FormComponentStates,
   type FormMessageContainerExtension,
 } from "./types.js";
-
-const noop = (): void => {
-  // do nothing
-};
 
 /**
  * @remarks \@since 6.0.0
@@ -257,7 +252,6 @@ export const InputToggle = forwardRef<HTMLInputElement, InputToggleProps>(
       iconProps,
       iconStyle,
       iconClassName,
-      onChange = noop,
       onBlur,
       onClick,
       onKeyDown,
@@ -271,12 +265,11 @@ export const InputToggle = forwardRef<HTMLInputElement, InputToggleProps>(
       onTouchStart,
       ...remaining
     } = props as CheckboxInputToggleProps;
-    const { disabled = false, readOnly = false } = props;
-    const themeDisabled = disabled || readOnly;
+    const { disabled = false, checked } = props;
 
     const id = useEnsuredId(propId, type);
     const { pressedClassName, ripples, handlers } = useElementInteraction({
-      disabled: themeDisabled,
+      disabled,
       onBlur,
       onClick,
       onKeyDown,
@@ -289,9 +282,6 @@ export const InputToggle = forwardRef<HTMLInputElement, InputToggleProps>(
       onTouchMove,
       onTouchStart,
     });
-
-    const [isChecked, setChecked] = useState(props.defaultChecked ?? false);
-    const checked = props.checked ?? isChecked;
 
     // set on the `remaining` object to bypass the eslint rule about
     // aria-checked not being valid for textbox role
@@ -326,7 +316,6 @@ export const InputToggle = forwardRef<HTMLInputElement, InputToggleProps>(
             error={error}
             checked={checked}
             disabled={disabled}
-            readOnly={readOnly}
             size={size}
             type={type}
             icon={icon}
@@ -341,24 +330,9 @@ export const InputToggle = forwardRef<HTMLInputElement, InputToggleProps>(
               id={id}
               ref={ref}
               type={type}
-              onChange={(event) => {
-                // checkboxes do not natively support the readOnly attribute, so
-                // polyfill it in. can't use `disabled` since the checkbox's
-                // checked/unchecked state would then not be submitted in forms.
-                if (type === "checkbox" && readOnly) {
-                  event.preventDefault();
-                  event.stopPropagation();
-                  return;
-                }
-
-                onChange(event);
-                if (typeof props.checked === "undefined") {
-                  setChecked(event.currentTarget.checked);
-                }
-              }}
               className={cnb(
                 "rmd-hidden-input",
-                themeDisabled && "rmd-hidden-input--disabled"
+                disabled && "rmd-hidden-input--disabled"
               )}
             />
             {ripples}

@@ -1,6 +1,7 @@
 import { cnb } from "cnbuilder";
 import { cssUtils } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
+import { type FormComponentStates } from "./types.js";
 
 const styles = bem("rmd-input-toggle");
 
@@ -20,7 +21,8 @@ const styles = bem("rmd-input-toggle");
 export type InputToggleSize = "auto" | "small" | "dense" | "normal" | "large";
 
 /** @remarks \@since 6.0.0 */
-export interface InputToggleClassNameOptions {
+export interface InputToggleClassNameOptions
+  extends Omit<FormComponentStates, "readOnly"> {
   className?: string;
   type: "checkbox" | "radio";
 
@@ -32,24 +34,12 @@ export interface InputToggleClassNameOptions {
   em?: boolean;
 
   /**
-   * Set this to `true` when the input toggle should gain the active colors.
-   * This should normally be when the input toggle is checked.
-   *
-   * @defaultValue `false`
-   */
-  active?: boolean;
-
-  /** @defaultValue `false` */
-  disabled?: boolean;
-
-  /** @defaultValue `false` */
-  readOnly?: boolean;
-
-  /**
    * @see {@link InputToggleSize}
    * @defaultValue `"auto"`
    */
   size?: InputToggleSize;
+
+  uncontrolled?: boolean;
 }
 
 /**
@@ -61,9 +51,10 @@ export function inputToggle(options: InputToggleClassNameOptions): string {
     em = true,
     type,
     size = "auto",
+    error,
     active = false,
     disabled = false,
-    readOnly = false,
+    uncontrolled,
   } = options;
 
   return cnb(
@@ -72,14 +63,14 @@ export function inputToggle(options: InputToggleClassNameOptions): string {
       em,
       active: active && !disabled,
       disabled,
-      readonly: readOnly,
       small: size === "small",
       dense: size === "dense",
       normal: size === "normal",
       large: size === "large",
+      uncontrolled,
     }),
     cssUtils({
-      textColor: disabled ? "text-disabled" : undefined,
+      textColor: disabled ? "text-disabled" : error ? "error" : undefined,
     }),
     className
   );

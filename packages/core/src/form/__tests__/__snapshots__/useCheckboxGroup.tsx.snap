@@ -10,12 +10,6 @@ exports[`useCheckboxGroup should not behave as an indeterminate checkbox group a
       <span
         class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
       >
-        <span
-          aria-hidden="true"
-          class="rmd-icon rmd-icon--font material-icons"
-        >
-          check_box_outline_blank
-        </span>
         <input
           autocomplete="off"
           class="rmd-hidden-input"
@@ -24,6 +18,12 @@ exports[`useCheckboxGroup should not behave as an indeterminate checkbox group a
           type="checkbox"
           value="a"
         />
+        <span
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box_outline_blank
+        </span>
       </span>
     </label>
     <label
@@ -33,12 +33,6 @@ exports[`useCheckboxGroup should not behave as an indeterminate checkbox group a
       <span
         class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
       >
-        <span
-          aria-hidden="true"
-          class="rmd-icon rmd-icon--font material-icons"
-        >
-          check_box_outline_blank
-        </span>
         <input
           autocomplete="off"
           class="rmd-hidden-input"
@@ -47,6 +41,12 @@ exports[`useCheckboxGroup should not behave as an indeterminate checkbox group a
           type="checkbox"
           value="b"
         />
+        <span
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box_outline_blank
+        </span>
       </span>
     </label>
     <label
@@ -56,12 +56,6 @@ exports[`useCheckboxGroup should not behave as an indeterminate checkbox group a
       <span
         class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
       >
-        <span
-          aria-hidden="true"
-          class="rmd-icon rmd-icon--font material-icons"
-        >
-          check_box_outline_blank
-        </span>
         <input
           autocomplete="off"
           class="rmd-hidden-input"
@@ -70,6 +64,12 @@ exports[`useCheckboxGroup should not behave as an indeterminate checkbox group a
           type="checkbox"
           value="c"
         />
+        <span
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box_outline_blank
+        </span>
       </span>
     </label>
   </form>
@@ -86,12 +86,6 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 1`] = `
       <span
         class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
       >
-        <span
-          aria-hidden="true"
-          class="rmd-icon rmd-icon--font material-icons"
-        >
-          check_box_outline_blank
-        </span>
         <input
           autocomplete="off"
           class="rmd-hidden-input"
@@ -99,6 +93,12 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 1`] = `
           name="example"
           type="checkbox"
         />
+        <span
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box_outline_blank
+        </span>
       </span>
     </label>
     <label
@@ -108,12 +108,6 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 1`] = `
       <span
         class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
       >
-        <span
-          aria-hidden="true"
-          class="rmd-icon rmd-icon--font material-icons"
-        >
-          check_box_outline_blank
-        </span>
         <input
           autocomplete="off"
           class="rmd-hidden-input"
@@ -122,6 +116,12 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 1`] = `
           type="checkbox"
           value="a"
         />
+        <span
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box_outline_blank
+        </span>
       </span>
     </label>
     <label
@@ -131,12 +131,6 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 1`] = `
       <span
         class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
       >
-        <span
-          aria-hidden="true"
-          class="rmd-icon rmd-icon--font material-icons"
-        >
-          check_box_outline_blank
-        </span>
         <input
           autocomplete="off"
           class="rmd-hidden-input"
@@ -145,6 +139,12 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 1`] = `
           type="checkbox"
           value="b"
         />
+        <span
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box_outline_blank
+        </span>
       </span>
     </label>
     <label
@@ -154,12 +154,6 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 1`] = `
       <span
         class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
       >
-        <span
-          aria-hidden="true"
-          class="rmd-icon rmd-icon--font material-icons"
-        >
-          check_box_outline_blank
-        </span>
         <input
           autocomplete="off"
           class="rmd-hidden-input"
@@ -168,6 +162,12 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 1`] = `
           type="checkbox"
           value="c"
         />
+        <span
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box_outline_blank
+        </span>
       </span>
     </label>
   </form>
@@ -184,12 +184,6 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 2`] = `
       <span
         class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--active rmd-input-toggle--normal"
       >
-        <span
-          aria-hidden="true"
-          class="rmd-icon rmd-icon--font material-icons"
-        >
-          check_box
-        </span>
         <input
           autocomplete="off"
           class="rmd-hidden-input"
@@ -197,6 +191,12 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 2`] = `
           name="example"
           type="checkbox"
         />
+        <span
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box
+        </span>
       </span>
     </label>
     <label
@@ -206,12 +206,6 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 2`] = `
       <span
         class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--active rmd-input-toggle--normal"
       >
-        <span
-          aria-hidden="true"
-          class="rmd-icon rmd-icon--font material-icons"
-        >
-          check_box
-        </span>
         <input
           autocomplete="off"
           class="rmd-hidden-input"
@@ -220,6 +214,12 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 2`] = `
           type="checkbox"
           value="a"
         />
+        <span
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box
+        </span>
       </span>
     </label>
     <label
@@ -229,12 +229,6 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 2`] = `
       <span
         class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--active rmd-input-toggle--normal"
       >
-        <span
-          aria-hidden="true"
-          class="rmd-icon rmd-icon--font material-icons"
-        >
-          check_box
-        </span>
         <input
           autocomplete="off"
           class="rmd-hidden-input"
@@ -243,6 +237,12 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 2`] = `
           type="checkbox"
           value="b"
         />
+        <span
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box
+        </span>
       </span>
     </label>
     <label
@@ -252,12 +252,6 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 2`] = `
       <span
         class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--active rmd-input-toggle--normal"
       >
-        <span
-          aria-hidden="true"
-          class="rmd-icon rmd-icon--font material-icons"
-        >
-          check_box
-        </span>
         <input
           autocomplete="off"
           class="rmd-hidden-input"
@@ -266,6 +260,12 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 2`] = `
           type="checkbox"
           value="c"
         />
+        <span
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box
+        </span>
       </span>
     </label>
   </form>
@@ -282,12 +282,6 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 3`] = `
       <span
         class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--active rmd-input-toggle--normal"
       >
-        <span
-          aria-hidden="true"
-          class="rmd-icon rmd-icon--font material-icons"
-        >
-          indeterminate_check_box
-        </span>
         <input
           aria-checked="mixed"
           autocomplete="off"
@@ -296,6 +290,12 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 3`] = `
           name="example"
           type="checkbox"
         />
+        <span
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          indeterminate_check_box
+        </span>
       </span>
     </label>
     <label
@@ -305,12 +305,6 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 3`] = `
       <span
         class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--active rmd-input-toggle--normal"
       >
-        <span
-          aria-hidden="true"
-          class="rmd-icon rmd-icon--font material-icons"
-        >
-          check_box
-        </span>
         <input
           autocomplete="off"
           class="rmd-hidden-input"
@@ -319,6 +313,12 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 3`] = `
           type="checkbox"
           value="a"
         />
+        <span
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box
+        </span>
       </span>
     </label>
     <label
@@ -328,12 +328,6 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 3`] = `
       <span
         class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--active rmd-input-toggle--normal"
       >
-        <span
-          aria-hidden="true"
-          class="rmd-icon rmd-icon--font material-icons"
-        >
-          check_box
-        </span>
         <input
           autocomplete="off"
           class="rmd-hidden-input"
@@ -342,6 +336,12 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 3`] = `
           type="checkbox"
           value="b"
         />
+        <span
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box
+        </span>
       </span>
     </label>
     <label
@@ -351,12 +351,6 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 3`] = `
       <span
         class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal"
       >
-        <span
-          aria-hidden="true"
-          class="rmd-icon rmd-icon--font material-icons"
-        >
-          check_box_outline_blank
-        </span>
         <input
           autocomplete="off"
           class="rmd-hidden-input"
@@ -365,6 +359,12 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 3`] = `
           type="checkbox"
           value="c"
         />
+        <span
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box_outline_blank
+        </span>
       </span>
     </label>
   </form>
