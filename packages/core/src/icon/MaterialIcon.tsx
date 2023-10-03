@@ -6,7 +6,7 @@ import { icon, type MaterialIconClassNameOptions } from "./styles.js";
 
 /** @remarks \@since 6.0.0 */
 export interface MaterialIconProps
-  extends Omit<HTMLAttributes<HTMLSpanElement>, "color">,
+  extends HTMLAttributes<HTMLSpanElement>,
     Partial<MaterialIconClassNameOptions> {
   /** @defaultValue `true` */
   "aria-hidden"?: AriaAttributes["aria-hidden"];
@@ -25,7 +25,7 @@ export const MaterialIcon = forwardRef<HTMLSpanElement, MaterialIconProps>(
       "aria-hidden": ariaHidden = true,
       name,
       family: propFamily,
-      color,
+      theme,
       dense,
       className,
       ...remaining
@@ -40,7 +40,7 @@ export const MaterialIcon = forwardRef<HTMLSpanElement, MaterialIconProps>(
         className={icon({
           type: "material",
           family,
-          color,
+          theme,
           dense,
           className,
         })}

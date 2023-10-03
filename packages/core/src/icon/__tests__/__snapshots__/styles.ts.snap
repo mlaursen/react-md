@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`icon styles should support rendering as all the theme colors 1`] = `"rmd-icon rmd-icon--primary rmd-icon--svg"`;
+
+exports[`icon styles should support rendering as all the theme colors 2`] = `"rmd-icon rmd-icon--secondary rmd-icon--svg"`;
+
+exports[`icon styles should support rendering as all the theme colors 3`] = `"rmd-icon rmd-icon--warning rmd-icon--svg"`;
+
+exports[`icon styles should support rendering as all the theme colors 4`] = `"rmd-icon rmd-icon--success rmd-icon--svg"`;
+
+exports[`icon styles should support rendering as all the theme colors 5`] = `"rmd-icon rmd-icon--error rmd-icon--svg"`;
+
+exports[`icon styles should support rendering as all the theme colors 6`] = `"rmd-icon rmd-icon--on-primary rmd-icon--svg"`;
+
+exports[`icon styles should support rendering as all the theme colors 7`] = `"rmd-icon rmd-icon--on-secondary rmd-icon--svg"`;
+
+exports[`icon styles should support rendering as all the theme colors 8`] = `"rmd-icon rmd-icon--on-warning rmd-icon--svg"`;
+
+exports[`icon styles should support rendering as all the theme colors 9`] = `"rmd-icon rmd-icon--on-success rmd-icon--svg"`;
+
+exports[`icon styles should support rendering as all the theme colors 10`] = `"rmd-icon rmd-icon--on-error rmd-icon--svg"`;
+
+exports[`icon styles should support rendering as all the theme colors 11`] = `"rmd-icon rmd-icon--text-primary rmd-icon--svg"`;
+
+exports[`icon styles should support rendering as all the theme colors 12`] = `"rmd-icon rmd-icon--text-secondary rmd-icon--svg"`;
+
+exports[`icon styles should support rendering as all the theme colors 13`] = `"rmd-icon rmd-icon--text-hint rmd-icon--svg"`;
+
+exports[`icon styles should support rendering as all the theme colors 14`] = `"rmd-icon rmd-icon--text-disabled rmd-icon--svg"`;

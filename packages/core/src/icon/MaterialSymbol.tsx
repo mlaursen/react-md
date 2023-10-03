@@ -1,5 +1,6 @@
 "use client";
 import { forwardRef, type HTMLAttributes } from "react";
+import { type MaterialSymbolName } from "./material.js";
 import {
   useFontVariationSettings,
   type MaterialSymbolCustomization,
@@ -8,7 +9,6 @@ import {
   type MaterialSymbolOpticalSize,
   type MaterialSymbolWeight,
 } from "./MaterialSymbolsProvider.js";
-import { type MaterialSymbolName } from "./material.js";
 import { icon, type MaterialSymbolClassNameOptions } from "./styles.js";
 
 declare module "react" {
@@ -24,7 +24,7 @@ declare module "react" {
  * @remarks \@since 6.0.0
  */
 export interface MaterialSymbolProps
-  extends Omit<HTMLAttributes<HTMLSpanElement>, "color">,
+  extends HTMLAttributes<HTMLSpanElement>,
     MaterialSymbolCustomization,
     Partial<MaterialSymbolClassNameOptions> {
   name: MaterialSymbolName;
@@ -72,7 +72,7 @@ export const MaterialSymbol = forwardRef<HTMLSpanElement, MaterialSymbolProps>(
       weight,
       grade,
       opticalSize,
-      color,
+      theme,
       dense,
       ...remaining
     } = props;
@@ -94,7 +94,7 @@ export const MaterialSymbol = forwardRef<HTMLSpanElement, MaterialSymbolProps>(
         className={icon({
           type: "symbol",
           family,
-          color,
+          theme,
           dense,
           className,
         })}

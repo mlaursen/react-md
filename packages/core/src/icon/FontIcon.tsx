@@ -2,7 +2,7 @@ import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
 import { icon, type FontIconClassNameOptions } from "./styles.js";
 
 export interface FontIconProps
-  extends Omit<HTMLAttributes<HTMLElement>, "color">,
+  extends HTMLAttributes<HTMLElement>,
     FontIconClassNameOptions {
   /**
    * Any children to render to create the font icon. This is required for
@@ -31,7 +31,7 @@ export const FontIcon = forwardRef<HTMLElement, FontIconProps>(
       children,
       "aria-hidden": ariaHidden = true,
       dense = false,
-      color,
+      theme,
       iconClassName = "material-icons",
       forceSize = false,
       forceFontSize = false,
@@ -46,7 +46,7 @@ export const FontIcon = forwardRef<HTMLElement, FontIconProps>(
         className={icon({
           type: "font",
           dense,
-          color,
+          theme,
           className,
           iconClassName,
           forceSize,

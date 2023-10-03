@@ -2,7 +2,7 @@ import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
 import { icon, type SVGIconClassNameOptions } from "./styles.js";
 
 export interface SVGIconProps
-  extends Omit<HTMLAttributes<SVGSVGElement>, "color">,
+  extends HTMLAttributes<SVGSVGElement>,
     SVGIconClassNameOptions {
   /**
    * Boolean if the SVG should gain the `focusable` attribute. This is disabled
@@ -86,7 +86,7 @@ export const SVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
       viewBox = "0 0 24 24",
       dense = false,
       className,
-      color,
+      theme,
       inline,
       children: propChildren,
       ...remaining
@@ -105,7 +105,7 @@ export const SVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
         className={icon({
           type: "svg",
           dense,
-          color,
+          theme,
           inline,
           className,
         })}

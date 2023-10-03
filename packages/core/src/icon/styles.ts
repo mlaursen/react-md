@@ -34,7 +34,7 @@ export interface SVGIconClassNameOptions {
    * - `text-hint -> $text-hint-color`
    * - `text-disabled -> $text-disabled-color`
    */
-  color?: ThemeColor | TextColor;
+  theme?: ThemeColor | TextColor;
 
   /**
    * Boolean if the font icon should use the dense spec.
@@ -113,7 +113,7 @@ export function icon(options: IconClassNameOptions): string {
   const {
     className,
     type,
-    color = "",
+    theme = "",
     family = "",
     dense = false,
     inline = false,
@@ -133,7 +133,7 @@ export function icon(options: IconClassNameOptions): string {
 
   return cnb(
     styles({
-      [color]: !!color,
+      [theme]: !!theme,
       svg: isSvg,
       font: isFont || isMaterial,
       symbol: isSymbol,
