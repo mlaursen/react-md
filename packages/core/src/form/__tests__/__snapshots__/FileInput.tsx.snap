@@ -1,0 +1,612 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FileInput should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+<label
+  class="rmd-file-input rmd-button rmd-button--icon rmd-button--contained rmd-background-container rmd-primary-container rmd-interaction-surface"
+  data-testid="label"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    file_upload
+  </span>
+  <span
+    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+  >
+    Upload
+  </span>
+  <input
+    class="rmd-hidden-input"
+    id="file-input-:r0:"
+    type="file"
+    value=""
+  />
+</label>
+`;
+
+exports[`FileInput should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+<label
+  class="rmd-file-input rmd-button rmd-button--icon rmd-button--contained rmd-background-container rmd-primary-container rmd-interaction-surface custom-class-name"
+  data-testid="label"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    file_upload
+  </span>
+  <span
+    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+  >
+    Upload
+  </span>
+  <input
+    class="rmd-hidden-input"
+    id="file-input-:r0:"
+    style="color: white;"
+    type="file"
+    value=""
+  />
+</label>
+`;
+
+exports[`FileInput should render as an icon button unless children are provided which will then render the icon and the text 1`] = `
+<label
+  class="rmd-file-input rmd-button rmd-button--icon rmd-button--contained rmd-background-container rmd-primary-container rmd-interaction-surface"
+  data-testid="label"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    file_upload
+  </span>
+  <span
+    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+  >
+    Upload
+  </span>
+  <input
+    class="rmd-hidden-input"
+    id="file-input-:r2:"
+    type="file"
+    value=""
+  />
+</label>
+`;
+
+exports[`FileInput should render as an icon button unless children are provided which will then render the icon and the text 2`] = `
+<label
+  class="rmd-file-input rmd-button rmd-button--icon rmd-button--icon-square rmd-button--contained rmd-background-container rmd-primary-container rmd-interaction-surface"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    file_upload
+  </span>
+  <span
+    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+  >
+    Upload
+  </span>
+  <input
+    class="rmd-hidden-input"
+    id="file-input-:r2:"
+    type="file"
+    value=""
+  />
+</label>
+`;
+
+exports[`FileInput should render as an icon button unless children are provided which will then render the icon and the text 3`] = `
+<label
+  class="rmd-file-input rmd-button rmd-button--text rmd-button--contained rmd-background-container rmd-primary-container rmd-interaction-surface"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    file_upload
+  </span>
+  Upload
+  <input
+    class="rmd-hidden-input"
+    id="file-input-:r2:"
+    type="file"
+    value=""
+  />
+</label>
+`;
+
+exports[`FileInput should render as an icon button unless children are provided which will then render the icon and the text 4`] = `
+<label
+  class="rmd-file-input rmd-button rmd-button--text rmd-button--contained rmd-background-container rmd-primary-container rmd-interaction-surface"
+>
+  Upload
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    file_upload
+  </span>
+  <input
+    class="rmd-hidden-input"
+    id="file-input-:r2:"
+    type="file"
+    value=""
+  />
+</label>
+`;
+
+exports[`FileInput should render as an icon button unless children are provided which will then render the icon and the text 5`] = `
+<label
+  class="rmd-file-input rmd-button rmd-button--text rmd-button--contained rmd-background-container rmd-primary-container rmd-interaction-surface"
+>
+  Upload
+  <input
+    class="rmd-hidden-input"
+    id="file-input-:r2:"
+    type="file"
+    value=""
+  />
+</label>
+`;
+
+exports[`FileInput should support all the  button themes 1`] = `
+<label
+  class="rmd-file-input rmd-button rmd-button--icon rmd-interaction-surface"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    file_upload
+  </span>
+  <span
+    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+  >
+    Upload
+  </span>
+  <input
+    class="rmd-hidden-input"
+    id="file-input-:r1:"
+    type="file"
+    value=""
+  />
+</label>
+`;
+
+exports[`FileInput should support all the  button themes 2`] = `
+<label
+  class="rmd-file-input rmd-button rmd-button--icon rmd-outline rmd-greyscale-outline rmd-interaction-surface"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    file_upload
+  </span>
+  <span
+    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+  >
+    Upload
+  </span>
+  <input
+    class="rmd-hidden-input"
+    id="file-input-:r1:"
+    type="file"
+    value=""
+  />
+</label>
+`;
+
+exports[`FileInput should support all the  button themes 3`] = `
+<label
+  class="rmd-file-input rmd-button rmd-button--icon rmd-button--contained rmd-interaction-surface"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    file_upload
+  </span>
+  <span
+    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+  >
+    Upload
+  </span>
+  <input
+    class="rmd-hidden-input"
+    id="file-input-:r1:"
+    type="file"
+    value=""
+  />
+</label>
+`;
+
+exports[`FileInput should support all the  button themes 4`] = `
+<label
+  class="rmd-file-input rmd-button rmd-button--icon rmd-primary-color rmd-interaction-surface"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    file_upload
+  </span>
+  <span
+    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+  >
+    Upload
+  </span>
+  <input
+    class="rmd-hidden-input"
+    id="file-input-:r1:"
+    type="file"
+    value=""
+  />
+</label>
+`;
+
+exports[`FileInput should support all the  button themes 5`] = `
+<label
+  class="rmd-file-input rmd-button rmd-button--icon rmd-primary-color rmd-outline rmd-primary-outline rmd-interaction-surface"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    file_upload
+  </span>
+  <span
+    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+  >
+    Upload
+  </span>
+  <input
+    class="rmd-hidden-input"
+    id="file-input-:r1:"
+    type="file"
+    value=""
+  />
+</label>
+`;
+
+exports[`FileInput should support all the  button themes 6`] = `
+<label
+  class="rmd-file-input rmd-button rmd-button--icon rmd-button--contained rmd-background-container rmd-primary-container rmd-interaction-surface"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    file_upload
+  </span>
+  <span
+    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+  >
+    Upload
+  </span>
+  <input
+    class="rmd-hidden-input"
+    id="file-input-:r1:"
+    type="file"
+    value=""
+  />
+</label>
+`;
+
+exports[`FileInput should support all the  button themes 7`] = `
+<label
+  class="rmd-file-input rmd-button rmd-button--icon rmd-secondary-color rmd-interaction-surface"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    file_upload
+  </span>
+  <span
+    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+  >
+    Upload
+  </span>
+  <input
+    class="rmd-hidden-input"
+    id="file-input-:r1:"
+    type="file"
+    value=""
+  />
+</label>
+`;
+
+exports[`FileInput should support all the  button themes 8`] = `
+<label
+  class="rmd-file-input rmd-button rmd-button--icon rmd-secondary-color rmd-outline rmd-secondary-outline rmd-interaction-surface"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    file_upload
+  </span>
+  <span
+    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+  >
+    Upload
+  </span>
+  <input
+    class="rmd-hidden-input"
+    id="file-input-:r1:"
+    type="file"
+    value=""
+  />
+</label>
+`;
+
+exports[`FileInput should support all the  button themes 9`] = `
+<label
+  class="rmd-file-input rmd-button rmd-button--icon rmd-button--contained rmd-background-container rmd-secondary-container rmd-interaction-surface"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    file_upload
+  </span>
+  <span
+    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+  >
+    Upload
+  </span>
+  <input
+    class="rmd-hidden-input"
+    id="file-input-:r1:"
+    type="file"
+    value=""
+  />
+</label>
+`;
+
+exports[`FileInput should support all the  button themes 10`] = `
+<label
+  class="rmd-file-input rmd-button rmd-button--icon rmd-warning-color rmd-interaction-surface"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    file_upload
+  </span>
+  <span
+    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+  >
+    Upload
+  </span>
+  <input
+    class="rmd-hidden-input"
+    id="file-input-:r1:"
+    type="file"
+    value=""
+  />
+</label>
+`;
+
+exports[`FileInput should support all the  button themes 11`] = `
+<label
+  class="rmd-file-input rmd-button rmd-button--icon rmd-warning-color rmd-outline rmd-warning-outline rmd-interaction-surface"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    file_upload
+  </span>
+  <span
+    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+  >
+    Upload
+  </span>
+  <input
+    class="rmd-hidden-input"
+    id="file-input-:r1:"
+    type="file"
+    value=""
+  />
+</label>
+`;
+
+exports[`FileInput should support all the  button themes 12`] = `
+<label
+  class="rmd-file-input rmd-button rmd-button--icon rmd-button--contained rmd-background-container rmd-warning-container rmd-interaction-surface"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    file_upload
+  </span>
+  <span
+    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+  >
+    Upload
+  </span>
+  <input
+    class="rmd-hidden-input"
+    id="file-input-:r1:"
+    type="file"
+    value=""
+  />
+</label>
+`;
+
+exports[`FileInput should support all the  button themes 13`] = `
+<label
+  class="rmd-file-input rmd-button rmd-button--icon rmd-error-color rmd-interaction-surface"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    file_upload
+  </span>
+  <span
+    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+  >
+    Upload
+  </span>
+  <input
+    class="rmd-hidden-input"
+    id="file-input-:r1:"
+    type="file"
+    value=""
+  />
+</label>
+`;
+
+exports[`FileInput should support all the  button themes 14`] = `
+<label
+  class="rmd-file-input rmd-button rmd-button--icon rmd-error-color rmd-outline rmd-error-outline rmd-interaction-surface"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    file_upload
+  </span>
+  <span
+    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+  >
+    Upload
+  </span>
+  <input
+    class="rmd-hidden-input"
+    id="file-input-:r1:"
+    type="file"
+    value=""
+  />
+</label>
+`;
+
+exports[`FileInput should support all the  button themes 15`] = `
+<label
+  class="rmd-file-input rmd-button rmd-button--icon rmd-button--contained rmd-background-container rmd-error-container rmd-interaction-surface"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    file_upload
+  </span>
+  <span
+    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+  >
+    Upload
+  </span>
+  <input
+    class="rmd-hidden-input"
+    id="file-input-:r1:"
+    type="file"
+    value=""
+  />
+</label>
+`;
+
+exports[`FileInput should support all the  button themes 16`] = `
+<label
+  class="rmd-file-input rmd-button rmd-button--icon rmd-button--disabled rmd-text-disabled-color rmd-interaction-surface"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    file_upload
+  </span>
+  <span
+    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+  >
+    Upload
+  </span>
+  <input
+    class="rmd-hidden-input"
+    id="file-input-:r1:"
+    type="file"
+    value=""
+  />
+</label>
+`;
+
+exports[`FileInput should support all the  button themes 17`] = `
+<label
+  class="rmd-file-input rmd-button rmd-button--icon rmd-button--disabled rmd-text-disabled-color rmd-outline rmd-greyscale-outline rmd-interaction-surface"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    file_upload
+  </span>
+  <span
+    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+  >
+    Upload
+  </span>
+  <input
+    class="rmd-hidden-input"
+    id="file-input-:r1:"
+    type="file"
+    value=""
+  />
+</label>
+`;
+
+exports[`FileInput should support all the  button themes 18`] = `
+<label
+  class="rmd-file-input rmd-button rmd-button--icon rmd-button--disabled rmd-text-disabled-color rmd-interaction-surface"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    file_upload
+  </span>
+  <span
+    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+  >
+    Upload
+  </span>
+  <input
+    class="rmd-hidden-input"
+    id="file-input-:r1:"
+    type="file"
+    value=""
+  />
+</label>
+`;
+
+exports[`FileInput should update the default SrOnly text to be phoneOnly when the responsive prop is enabled 1`] = `
+<label
+  class="rmd-file-input rmd-button rmd-button--icon rmd-button--contained rmd-button--responsive rmd-background-container rmd-primary-container rmd-interaction-surface"
+  data-testid="label"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    file_upload
+  </span>
+  <span
+    class="rmd-typography rmd-typography--body-1 rmd-phone-sr-only"
+  >
+    Upload
+  </span>
+  <input
+    class="rmd-hidden-input"
+    id="file-input-:r3:"
+    type="file"
+    value=""
+  />
+</label>
+`;

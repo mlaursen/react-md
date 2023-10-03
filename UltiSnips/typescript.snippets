@@ -47,6 +47,14 @@ it("should apply the correct styling, HTMLAttributes, and allow a ref", () => {
 })
 endsnippet
 
+snippet ue "user event test setup" b
+it("should $2", async () => {
+	const user = userEvent.setup();
+
+	expect(true).toBe(true);
+})
+endsnippet
+
 snippet @r "@remarks \@since 6.0.0" w
 @remarks \@since 6.0.0
 endsnippet

@@ -330,10 +330,7 @@ export const InputToggle = forwardRef<HTMLInputElement, InputToggleProps>(
               id={id}
               ref={ref}
               type={type}
-              className={cnb(
-                "rmd-hidden-input",
-                disabled && "rmd-hidden-input--disabled"
-              )}
+              className="rmd-hidden-input"
             />
             {ripples}
           </InputToggleIcon>

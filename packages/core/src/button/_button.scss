@@ -243,6 +243,8 @@ $var-lookup: (
       &:disabled,
       &--disabled {
         @include theme.theme-set-var(outline-color, currentcolor);
+        // this was added for the file input
+        @include interaction.surface-disabled($clickable: false);
       }
 
       @if not $disable-contained {

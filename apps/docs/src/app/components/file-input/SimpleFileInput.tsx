@@ -7,7 +7,9 @@ export default function SimpleFileInput(): ReactElement {
       <FileInput />
       <FileInput theme="secondary" buttonType="icon-square" />
       <FileInput theme="success" themeType="outline" iconSize="small" />
-      <FileInput>Content</FileInput>
+      <FileInput>Upload</FileInput>
+      <FileInput iconAfter>Upload</FileInput>
+      <FileInput disabled />
     </Form>
   );
 }

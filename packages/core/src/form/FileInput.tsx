@@ -12,28 +12,29 @@ import {
   type ButtonClassNameThemeOptions,
 } from "../button/buttonStyles.js";
 import { getIcon } from "../icon/iconConfig.js";
-import { TextIconSpacing } from "../icon/TextIconSpacing.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { type PropsWithRef } from "../types.js";
 import { SrOnly } from "../typography/SrOnly.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 
 /** @remarks \@since 6.0.0 */
-export type FileInputLabelClassNameOptions = ButtonClassNameOptions;
+export type FileInputClassNameOptions = ButtonClassNameOptions;
 
 /** @remarks \@since 6.0.0 */
-export function fileInputLabel(
-  options: FileInputLabelClassNameOptions = {}
-): string {
-  return cnb("rmd-file-input-label", button(options));
+export function fileInput(options: FileInputClassNameOptions = {}): string {
+  return cnb("rmd-file-input", button(options));
 }
 
 /** @remarks \@since 6.0.0 */
 export type FileInputHTMLAttributes = Omit<
   InputHTMLAttributes<HTMLInputElement>,
-  "type" | "defaultValue" | "value"
+  "type"
 >;
 
+/**
+ * @remarks \@since 6.0.0 Removed the `disableIconSpacing` prop since it is no
+ * longer required.
+ */
 export interface FileInputProps
   extends ButtonClassNameThemeOptions,
     FileInputHTMLAttributes {
@@ -57,18 +58,6 @@ export interface FileInputProps
   iconAfter?: boolean;
 
   /**
-   * Boolean if the children should not have some spacing between the icon and
-   * itself.  The default behavior is to use the `<TextIconSpacing>` component
-   * for text styled input buttons, but this can be disabled if you want to use
-   * a screen-reader only accessible label.
-   *
-   * Note: This will default to `false` if {@link children} are provided.
-   *
-   * @defaultValue `true`
-   */
-  disableIconSpacing?: boolean;
-
-  /**
    * Boolean if the file input should no longer allow the same file to be
    * selected multiple times and trigger the `onChange` each time it is
    * selected.
@@ -81,7 +70,7 @@ export interface FileInputProps
    * Children should generally be provided when the {@link buttonType} is
    * set to `"text"`. This defaults to a screen-reader only accessible text.
    *
-   * @defaultValue `<SrOnly>Upload</SrOnly>`
+   * @defaultValue `<SrOnly phoneOnly={responsive}>Upload</SrOnly>`
    */
   children?: ReactNode;
 }
@@ -131,6 +120,10 @@ export interface FileInputProps
  *   );
  * }
  * ```
+ *
+ * @remarks \@since 6.0.0 Added additional support for `iconSize` and
+ * `responsive`. Also removed the `disableIconSpacing` prop since it is no
+ * longer required.
  */
 export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
   function FileInput(props, ref) {
@@ -140,7 +133,7 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
       children: propChildren,
       icon: propIcon,
       iconAfter = false,
-      disableIconSpacing = typeof propChildren === "undefined",
+      // disableIconSpacing = typeof propChildren === "undefined",
       disableRepeatableFiles = false,
       labelProps,
       theme = "primary",
@@ -148,6 +141,7 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
       buttonType = propChildren ? "text" : "icon",
       disabled = false,
       iconSize,
+      responsive,
       multiple = false,
       ...remaining
     } = props;
@@ -167,49 +161,37 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
     const icon = getIcon("upload", propIcon);
     let children = propChildren;
     if (typeof propChildren === "undefined") {
-      children = <SrOnly>Upload</SrOnly>;
-    }
-
-    let content: ReactNode = icon;
-    if (disableIconSpacing || (children && !icon)) {
-      content = (
-        <>
-          {!iconAfter && icon}
-          {children}
-          {iconAfter && icon}
-        </>
-      );
-    } else if (children) {
-      content = (
-        <TextIconSpacing icon={icon} iconAfter={iconAfter}>
-          {children}
-        </TextIconSpacing>
-      );
+      children = <SrOnly phoneOnly={responsive}>Upload</SrOnly>;
     }
 
     return (
       <label
         {...labelProps}
         {...handlers}
-        className={fileInputLabel({
+        className={fileInput({
           theme,
           themeType,
           buttonType,
           disabled,
           iconSize,
           pressed,
+          responsive,
           pressedClassName,
           className: className || labelProps?.className,
         })}
       >
-        {content}
+        {!iconAfter && icon}
+        {children}
+        {iconAfter && icon}
         <input
           {...remaining}
           id={id}
           ref={ref}
-          value={disableRepeatableFiles || !props.onChange ? undefined : ""}
+          value={
+            disableRepeatableFiles || !props.onChange ? remaining.value : ""
+          }
           type="file"
-          className="rmd-file-input"
+          className="rmd-hidden-input"
           disabled={disabled}
           multiple={multiple}
         />

@@ -17,3 +17,35 @@ will be rendered as a primary themed text button with an upload icon before the
 > Check out the examples below to see how to control the value.
 
 {{ "component": "./SimpleFileInput.tsx" }}
+
+## Custom Icon
+
+The `FileInput` component will use the
+[upload](/customization/icon-config#upload) from the `ICON_CONFIG` by default.
+The icon can be configured globally by following the [customizing icons](/customization/icon-config)
+guide or adding the icon as the `icon` prop.
+
+{{ "component": "./CustomIcon.tsx" }}
+
+# Responsive File Input
+
+Just like a [responsive button](/components/button#responsive-button), a `FileInput`
+can be rendered as an icon only on phones and include a label on larger screens.
+
+{{ "component": "./ResponsiveFileInput.tsx" }}
+
+# Client Side Validation and Previews
+
+Check out the [useFileUpload](/hooks/use-file-upload) documentation for more
+information around how to implement client side file uploads to handle:
+
+- validation of file types
+- validation of file size (including total select size for multiple files)
+- previewing files
+
+## Controlled File Input
+
+If the `useFileUpload` is too complex for the current use case, the value can be
+controlled like normal input elements.
+
+{{ "component": "./ControlledFileInput.tsx" }}

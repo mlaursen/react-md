@@ -530,16 +530,7 @@ $var-lookup: (
 }
 
 @mixin file-input-styles {
-  .rmd-file-input {
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    width: 0.1px;
-    z-index: -1;
-  }
-
-  .rmd-file-input-label:focus-within::before {
+  .rmd-file-input:focus-within::before {
     @include utils.keyboard-only {
       @include interaction.focus-styles;
     }
