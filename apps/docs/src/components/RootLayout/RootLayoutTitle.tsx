@@ -1,5 +1,5 @@
 import { type SemVer } from "@/utils/semver.js";
-import { Typography, appBarTitle, box } from "@react-md/core";
+import { Typography, appBarTitle, box, link } from "@react-md/core";
 import Link from "next/link.js";
 import { type ReactElement } from "react";
 import styles from "./RootLayoutTitle.module.scss";
@@ -17,7 +17,7 @@ export function RootLayoutTitle(props: RootLayoutTitleProps): ReactElement {
         className: box({ disablePadding: true }),
       })}
     >
-      <Link href="/" className={styles.link}>
+      <Link href="/" className={link({ className: styles.link })}>
         <Typography type="headline-6" margin="none">
           react-md
         </Typography>

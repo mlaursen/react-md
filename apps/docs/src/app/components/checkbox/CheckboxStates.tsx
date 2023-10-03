@@ -6,7 +6,6 @@ export default function CheckboxStates(): ReactElement {
     <Form className={box()}>
       <Checkbox label="Normal" />
       <Checkbox label="Error" error />
-      <Checkbox label="Read Only" readOnly />
       <Checkbox label="Disabled" disabled />
       <Checkbox label="Active" active />
     </Form>

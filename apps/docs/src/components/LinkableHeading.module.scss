@@ -24,11 +24,9 @@
 }
 
 .link {
-  @include everything.theme-use-var(color, text-secondary-color);
   @include everything.auto-rtl(left, 0);
 
   color: inherit;
-  display: block;
   opacity: 0;
   position: absolute;
   text-decoration: none;

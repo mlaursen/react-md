@@ -1,4 +1,4 @@
-import { Typography, type TypographyProps } from "@react-md/core";
+import { link, Typography, type TypographyProps } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import { type ReactElement, type ReactNode } from "react";
 import { LinkUnstyled } from "./LinkUnstyled.js";
@@ -45,7 +45,7 @@ export function LinkableHeading(props: LinkableHeadingProps): ReactElement {
       <LinkUnstyled
         aria-label="Permalink"
         href={`#${id}`}
-        className={styles.link}
+        className={link({ className: styles.link })}
       />
       {children}
     </Typography>

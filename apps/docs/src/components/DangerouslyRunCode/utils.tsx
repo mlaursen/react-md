@@ -4,6 +4,9 @@
 "use client";
 import * as core from "@react-md/core";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
+import MoodBadOutlinedIcon from "@react-md/material-icons/MoodBadOutlinedIcon";
+import MoodOutlinedIcon from "@react-md/material-icons/MoodOutlinedIcon";
+import SocialDistanceOutlinedIcon from "@react-md/material-icons/SocialDistanceOutlinedIcon";
 import React, {
   isValidElement,
   type ComponentType,
@@ -69,6 +72,10 @@ function dangerouslyEvalCode(
     // down from server components to client components, so it might need to be a script. For now,
     // just add any imports that are required.
     "@react-md/material-icons/FavoriteIcon": FavoriteIcon,
+    "@react-md/material-icons/MoodBadOutlinedIcon": MoodBadOutlinedIcon,
+    "@react-md/material-icons/MoodOutlinedIcon": MoodOutlinedIcon,
+    "@react-md/material-icons/SocialDistanceOutlinedIcon":
+      SocialDistanceOutlinedIcon,
   };
   const functionScope: RunnableCodeScope = {
     // sucrase will transform all import statements into `require` to work in
