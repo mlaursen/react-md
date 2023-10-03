@@ -1,5 +1,5 @@
 import { cnb } from "cnbuilder";
-import type { TextColor, ThemeColor } from "../cssUtils.js";
+import { cssUtils, type TextColor, type ThemeColor } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
 import type { MaterialIconFamily, MaterialSymbolFamily } from "./material.js";
 
@@ -113,7 +113,7 @@ export function icon(options: IconClassNameOptions): string {
   const {
     className,
     type,
-    theme = "",
+    theme,
     family = "",
     dense = false,
     inline = false,
@@ -133,7 +133,6 @@ export function icon(options: IconClassNameOptions): string {
 
   return cnb(
     styles({
-      [theme]: !!theme,
       svg: isSvg,
       font: isFont || isMaterial,
       symbol: isSymbol,
@@ -147,6 +146,9 @@ export function icon(options: IconClassNameOptions): string {
       `material-icons${
         family === "filled" ? "" : `-${family === "rounded" ? "round" : family}`
       }`,
+    cssUtils({
+      textColor: theme,
+    }),
     iconClassName,
     className
   );

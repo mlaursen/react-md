@@ -14,15 +14,6 @@ $disable-spacing-after: false !default;
 $disable-spacing-above: false !default;
 $disable-spacing-below: false !default;
 $disable-rotator: false !default;
-$disable-primary-color: false !default;
-$disable-secondary-color: false !default;
-$disable-warning-color: false !default;
-$disable-error-color: false !default;
-$disable-success-color: false !default;
-$disable-text-primary-color: false !default;
-$disable-text-secondary-color: false !default;
-$disable-text-hint-color: false !default;
-$disable-text-disabled-color: false !default;
 
 $light-theme-color: color.adjust(#000, $lightness: 46%) !default;
 $dark-theme-color: color.adjust(#fff, $lightness: -30%) !default;
@@ -202,60 +193,6 @@ $var-lookup: (
       @if not $disable-spacing-below {
         &--below {
           @include use-var(margin-bottom, spacing);
-        }
-      }
-
-      @if not $disable-primary-color {
-        &--primary {
-          @include set-var(color, theme.theme-get-var(primary-color));
-        }
-      }
-
-      @if not $disable-secondary-color {
-        &--secondary {
-          @include set-var(color, theme.theme-get-var(secondary-color));
-        }
-      }
-
-      @if not $disable-warning-color {
-        &--warning {
-          @include set-var(color, theme.theme-get-var(warning-color));
-        }
-      }
-
-      @if not $disable-error-color {
-        &--error {
-          @include set-var(color, theme.theme-get-var(error-color));
-        }
-      }
-
-      @if not $disable-success-color {
-        &--success {
-          @include set-var(color, theme.theme-get-var(success-color));
-        }
-      }
-
-      @if not $disable-text-primary-color {
-        &--text-primary {
-          @include set-var(color, theme.theme-get-var(text-primary-color));
-        }
-      }
-
-      @if not $disable-text-secondary-color {
-        &--text-secondary {
-          @include set-var(color, theme.theme-get-var(text-secondary-color));
-        }
-      }
-
-      @if not $disable-text-hint-color {
-        &--text-hint {
-          @include set-var(color, theme.theme-get-var(text-hint-color));
-        }
-      }
-
-      @if not $disable-text-disabled-color {
-        &--text-disabled {
-          @include set-var(color, theme.theme-get-var(text-disabled-color));
         }
       }
 
