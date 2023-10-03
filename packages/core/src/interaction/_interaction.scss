@@ -7,6 +7,7 @@
 
 /// ripple | press | both | null
 $mode: ripple !default;
+$disable-outline-offset: false !default;
 $disable-focus-background: false !default;
 $disable-ripple-inset-var: false !default;
 $disable-ripple-border-radius-var: false !default;
@@ -265,7 +266,11 @@ $var-lookup: (
   }
 }
 
-@mixin outline($box-shadow: $focus-box-shadow, $color: transparent) {
+@mixin outline(
+  $box-shadow: $focus-box-shadow,
+  $color: transparent,
+  $outline-offset: not $disable-outline-offset
+) {
   // do not apply box shadow styles here. they will only be applied in the
   // `focus-styles` mixin to minimize bundle size and help with overriding the
   // focus color in specific surfaces
@@ -273,7 +278,9 @@ $var-lookup: (
     outline: $color solid get-var(focus-width);
     // adding an focus-offset makes it so it behaves the same way as an inset
     // box shadow
-    outline-offset: utils.negate-var(get-var(focus-width));
+    @if $outline-offset {
+      outline-offset: utils.negate-var(get-var(focus-width));
+    }
   }
 }
 

@@ -88,10 +88,10 @@ $var-lookup: (
       // nicely with block-like elements
       @include utils.keyboard-only {
         &:focus {
-          @include interaction.set-var(focus-color, interaction.$focus-color);
+          @include interaction.focus-styles($disable-background: true);
         }
       }
-      @include interaction.outline;
+      @include interaction.outline($outline-offset: false);
       @include use-var(color);
 
       transition: color $transition-duration;

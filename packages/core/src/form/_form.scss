@@ -541,11 +541,7 @@ $var-lookup: (
 
   .rmd-file-input-label:focus-within::before {
     @include utils.keyboard-only {
-      @include interaction.set-var(
-        background-color,
-        interaction-get-var(focus-background-color)
-      );
-      @include interaction.set-var(focus-color, interaction.$focus-color);
+      @include interaction.focus-styles;
     }
   }
 }
