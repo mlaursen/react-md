@@ -5,9 +5,9 @@ import { createTableOfContents } from "./createTableOfContents.js";
 
 const GENERATED_NAME = "demo-page.mdx";
 
-export async function createDemo(path: string): Promise<void> {
+export async function createDemo(path: string, watch: boolean): Promise<void> {
   const generated = path.replace(parse(path).base, GENERATED_NAME);
-  await createDemoMarkdown(path, generated);
+  await createDemoMarkdown(path, generated, watch);
   await createTableOfContents(generated);
   await createMarkdownPage(path, GENERATED_NAME);
 }

@@ -1,35 +1,49 @@
-import { type RunnableCodePreviewOptions } from "../../src/components/DangerouslyRunCode/RunnableCodePreviewContainer.js";
 import { readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
+import prettyMilliseconds from "pretty-ms";
+import { type RunnableCodePreviewOptions } from "../../src/components/DangerouslyRunCode/RunnableCodePreviewContainer.js";
+import { getDemoCode } from "./typescript.js";
 
-// const IMPORT_REGEX = /^import\(".\/([a-zA-Z0-9]+\.tsx)"\)$/gm;
-const IMPORT_REGEX = /^{{.+}}$/;
+const DEMO_JSON_REGEX = /^{{.+}}$/;
 
 interface FixOptions extends RunnableCodePreviewOptions {
+  watch: boolean;
   index: number;
   lines: string[];
   directory: string;
   importName: string;
 }
 
-async function fix(options: FixOptions): Promise<void> {
-  const { index, lines, directory, importName, card, phone } = options;
-  const tsCode = await readFile(join(directory, importName), "utf8");
+async function insertImportedCode(options: FixOptions): Promise<void> {
+  const { index, lines, watch, directory, importName, card, phone } = options;
+  const demoFilePath = join(directory, importName);
+  const start = Date.now();
+  if (watch) {
+    console.log(` ○ Compiling ${demoFilePath} ...`);
+  }
   const flags = ["preview", "editable", card && "card", phone && "phone"]
     .filter(Boolean)
     .join(" ");
 
   const formatted = `\`\`\`tsx
 // ${flags}
-${tsCode}
+${await getDemoCode(demoFilePath, directory)}
 \`\`\`
 `;
+
+  if (watch) {
+    const duration = Date.now() - start;
+    console.log(
+      ` ✓ Compiled ${demoFilePath} in ${prettyMilliseconds(duration)}`
+    );
+  }
   lines[index] = formatted;
 }
 
 export async function createDemoMarkdown(
   path: string,
-  outPath: string
+  outPath: string,
+  watch: boolean
 ): Promise<void> {
   const directory = dirname(path);
   const raw = await readFile(path, "utf8");
@@ -38,7 +52,7 @@ export async function createDemoMarkdown(
   const lines = raw.split("\n");
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
-    if (IMPORT_REGEX.test(line)) {
+    if (DEMO_JSON_REGEX.test(line)) {
       const { component, card, phone, ...others } = JSON.parse(
         line.substring(1, line.length - 1)
       );
@@ -48,13 +62,14 @@ export async function createDemoMarkdown(
       }
 
       promises.push(
-        fix({
+        insertImportedCode({
           lines,
           index: i,
           directory,
           importName: component,
           card: !!card,
           phone: !!phone,
+          watch,
         })
       );
     }

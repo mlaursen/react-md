@@ -37,7 +37,7 @@ await Promise.all(
     return update(file);
   })
 );
-await Promise.all(mdxDemos.map(async (path) => createDemo(path)));
+await Promise.all(mdxDemos.map(async (path) => createDemo(path, false)));
 
 const isProbablyDemoRelatedFile = (
   parsed: ParsedPath,
@@ -64,7 +64,9 @@ if (isWatch) {
 
     try {
       if (isMdxDemos || isProbablyDemoRelatedFile(parsed, maybeDemos)) {
-        await log("demos", isMdxDemos ? path : maybeDemos, createDemo);
+        await log("demos", isMdxDemos ? path : maybeDemos, (path) =>
+          createDemo(path, true)
+        );
       } else if (fileName === "README.mdx") {
         await log("markdown", path, update);
       }
