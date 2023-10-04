@@ -1,6 +1,7 @@
 @use "everything";
 
 .container {
+  @include everything.theme-set-var(background-color, var(--preview-bg));
   background-color: var(--preview-bg);
   border: everything.$divider-size solid everything.divider-get-var(color);
   border-radius: everything.$card-border-radius;
