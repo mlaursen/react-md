@@ -13,6 +13,15 @@
   --logo-shadow: #{core.$black};
   --logo-outline: #{core.$grey-500};
   --phone-app-bar-bg: #{core.$grey-100};
+  // TODO: Figure out good colors for these...
+  --info-bg: #{core.$light-blue-50};
+  --info-color: #{core.$blue-900};
+  --warning-bg: #{core.$yellow-700};
+  --warning-color: #{core.$black};
+  --error-bg: #{rgba(core.$red-700, 0.24)};
+  --error-color: #{core.$red-700};
+  --success-bg: #{rgba(core.$green-700, 0.24)};
+  --success-color: #{core.$green-700};
 }
 
 @mixin dark-theme($core) {
@@ -26,4 +35,13 @@
   --logo-shadow: #{core.$white};
   --logo-outline: #{core.$white};
   --phone-app-bar-bg: #{core.$grey-900};
+  // TODO: Figure out good colors for these...
+  --info-bg: #{rgba(core.$blue-900, 0.12)};
+  --info-color: #{core.$light-blue-200};
+  --warning-bg: #{rgba(core.$yellow-700, 0.24)};
+  --warning-color: #{core.$yellow-700};
+  --error-bg: #{rgba(core.$red-700, 0.24)};
+  --error-color: #{core.$red-700};
+  --success-bg: #{rgba(core.$green-700, 0.24)};
+  --success-color: #{core.$green-700};
 }

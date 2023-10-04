@@ -27,6 +27,7 @@ export function CodeEditor(props: CodeEditorProps): ReactElement {
       <CodeBlock
         {...remaining}
         className={className}
+        containerProps={{ className: styles.container }}
         afterPreElement={
           <textarea
             {...textAreaProps}

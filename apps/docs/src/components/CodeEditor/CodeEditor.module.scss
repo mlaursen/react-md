@@ -1,3 +1,11 @@
+@use "everything";
+
+.container:hover,
+.container > div:focus-within {
+  outline: everything.interaction-get-var(focus-color) solid
+    everything.interaction-get-var(focus-width);
+}
+
 .code {
   pointer-events: none;
   position: relative;
