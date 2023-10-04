@@ -18,9 +18,6 @@ async function insertImportedCode(options: FixOptions): Promise<void> {
   const { index, lines, watch, directory, importName, card, phone } = options;
   const demoFilePath = join(directory, importName);
   const start = Date.now();
-  if (watch) {
-    console.log(` ○ Compiling ${demoFilePath} ...`);
-  }
   const flags = ["preview", "editable", card && "card", phone && "phone"]
     .filter(Boolean)
     .join(" ");

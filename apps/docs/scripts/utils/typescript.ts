@@ -8,11 +8,6 @@ import {
 } from "ts-morph";
 import { format } from "../../src/utils/format.js";
 
-const project = new Project({
-  tsConfigFilePath: "./tsconfig.json",
-  skipAddingFilesFromTsConfig: true,
-});
-
 const getImportName = (imp: ImportDeclaration): string =>
   imp
     .getModuleSpecifier()
@@ -29,6 +24,7 @@ const getRealPath = (imp: ImportDeclaration, directory: string): string => {
 
 export interface MoveImportsIntoDemoFileOptions {
   demo: SourceFile;
+  project: Project;
   imports: readonly string[];
   importPath: string;
 }
@@ -36,7 +32,8 @@ export interface MoveImportsIntoDemoFileOptions {
 const moveImportsIntoDemoFile = (
   options: MoveImportsIntoDemoFileOptions
 ): void => {
-  const { demo, imports, importPath } = options;
+  const { demo, project, imports, importPath } = options;
+
   const sourceFile = project.getSourceFileOrThrow(importPath);
   for (const [name, declarations] of sourceFile.getExportedDeclarations()) {
     if (imports.includes(name)) {
@@ -64,6 +61,10 @@ export const getDemoCode = async (
   demoFilePath: string,
   directory: string
 ): Promise<string> => {
+  const project = new Project({
+    tsConfigFilePath: "./tsconfig.json",
+    skipAddingFilesFromTsConfig: true,
+  });
   project.addSourceFileAtPath(demoFilePath);
 
   const demo = project.getSourceFileOrThrow(demoFilePath);
@@ -79,6 +80,7 @@ export const getDemoCode = async (
       .map((identifier) => identifier.getText());
     moveImportsIntoDemoFile({
       demo,
+      project,
       imports: identifiers,
       importPath,
     });
