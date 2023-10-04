@@ -1,5 +1,5 @@
-@use "themes";
+@use "everything";
 
 .container {
-  @include themes.light-theme;
+  @include everything.light-theme(true);
 }

@@ -16,8 +16,7 @@ $is_production: $env == production;
         $is_production
       {
         @media (prefers-color-scheme: dark) {
-          @include everything.use-dark-theme;
-          --phone-app-bar-bg: #{everything.$grey-900};
+          @include everything.dark-theme(true);
         }
       }
     }
@@ -27,20 +26,16 @@ $is_production: $env == production;
       everything.$disable-default-system-theme
     {
       @media (prefers-color-scheme: dark) {
-        --code-color: #{everything.$pink-400};
-        --phone-app-bar-bg: #{everything.$grey-900};
+        @include everything.dark-theme(false);
       }
     }
 
-    --code-color: #{everything.get-default-color(
-        everything.$pink-600,
-        everything.$pink-400
-      )};
-    --phone-app-bar-bg: #{everything.get-default-color(
-        everything.$grey-100,
-        everything.$grey-900
-      )};
     --toc-width: 18rem;
+    @if everything.$color-scheme == light {
+      @include everything.light-theme(false);
+    } @else {
+      @include everything.dark-theme(false);
+    }
   }
 }
 

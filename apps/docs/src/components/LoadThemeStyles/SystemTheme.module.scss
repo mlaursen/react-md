@@ -1,16 +1,15 @@
 @use "everything";
-@use "themes";
 
 @if everything.$color-scheme == dark {
   @media (prefers-color-scheme: light) {
     .container {
-      @include themes.dark-theme;
+      @include everything.dark-theme(true);
     }
   }
 } @else {
   @media (prefers-color-scheme: dark) {
     .container {
-      @include themes.dark-theme;
+      @include everything.dark-theme(true);
     }
   }
 }
