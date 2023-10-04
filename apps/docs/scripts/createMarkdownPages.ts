@@ -3,9 +3,8 @@ import { glob } from "glob";
 import { existsSync } from "node:fs";
 import { rm } from "node:fs/promises";
 import { join, parse, type ParsedPath } from "node:path";
-import { createDemo } from "./utils/createDemo.js";
-import { createMarkdownPage } from "./utils/createMarkdownPage.js";
-import { createTableOfContents } from "./utils/createTableOfContents.js";
+import { createDemoMdx } from "./utils/createDemoMdx.js";
+import { createMdxPage } from "./utils/createMdxPage.js";
 import { log } from "./utils/log.js";
 
 const { argv } = process;
@@ -28,16 +27,14 @@ if (isClean) {
   }
 }
 
-async function update(file: string): Promise<void> {
-  await Promise.all([createTableOfContents(file), createMarkdownPage(file)]);
+async function createAll(): Promise<void> {
+  await Promise.all([
+    ...readmes.map((markdownPath) => createMdxPage(markdownPath)),
+    ...mdxDemos.map(async (demoPath) => createDemoMdx(demoPath, false)),
+  ]);
 }
 
-await Promise.all(
-  readmes.map(async (file) => {
-    return update(file);
-  })
-);
-await Promise.all(mdxDemos.map(async (path) => createDemo(path, false)));
+await log(createAll(), "Compiling mdx and demos", "Compiled");
 
 const isProbablyDemoRelatedFile = (
   parsed: ParsedPath,
@@ -64,14 +61,23 @@ if (isWatch) {
 
     try {
       if (isMdxDemos || isProbablyDemoRelatedFile(parsed, maybeDemos)) {
-        await log("demos", isMdxDemos ? path : maybeDemos, (path) =>
-          createDemo(path, true)
+        await log(
+          createDemoMdx(isMdxDemos ? path : maybeDemos, true),
+          `Compiling demos for ${path}`,
+          "Compiled demos"
         );
       } else if (fileName === "README.mdx") {
-        await log("markdown", path, update);
+        await log(
+          createMdxPage(path),
+          `Compiling markdown for ${path}`,
+          "Compiled markdown"
+        );
       }
     } catch (e) {
       console.error(e);
     }
+  });
+  watcher.on("ready", () => {
+    console.log(" ✓ Watching for markdown changes ... ");
   });
 }

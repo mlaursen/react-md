@@ -8,7 +8,14 @@ import {
 import { useDangerouslyRunnableCode } from "./useDangerouslyRunnableCode.jsx";
 import { type RunnableCodeScope } from "./utils.jsx";
 
-export interface RunnableCodePreviewProps extends RunnableCodePreviewOptions {
+export interface RunnableCodeOptions {}
+
+export interface RunnableCodeAndPreviewOptions
+  extends RunnableCodeOptions,
+    RunnableCodePreviewOptions {}
+
+export interface RunnableCodePreviewProps
+  extends RunnableCodeAndPreviewOptions {
   code: string;
   scope?: RunnableCodeScope;
 }
@@ -18,7 +25,10 @@ export function RunnableCodePreview(
 ): ReactElement {
   const { code, scope, ...previewProps } = props;
 
-  const { element, error } = useDangerouslyRunnableCode({ code, scope });
+  const { element, error } = useDangerouslyRunnableCode({
+    code,
+    scope,
+  });
   return (
     <CodePreviewContainer error={error?.message}>
       <RunnableCodePreviewContainer {...previewProps}>

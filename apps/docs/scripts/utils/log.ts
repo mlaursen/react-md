@@ -1,13 +1,21 @@
 import prettyMilliseconds from "pretty-ms";
 
-export async function log(
-  name: string,
-  path: string,
-  task: (path: string) => Promise<void>
-): Promise<void> {
-  console.log(` ○ Compiling ${name} for ${path} ...`);
+export async function log<Result>(
+  task: Promise<Result>,
+  startMessage: string,
+  endMessage: string
+): Promise<Result> {
+  if (!startMessage && !endMessage) {
+    return task;
+  }
+
+  if (startMessage) {
+    console.log(` ○ ${startMessage} ...`);
+  }
+
   const start = Date.now();
-  await task(path);
+  const result = await task;
   const duration = Date.now() - start;
-  console.log(` ✓ Compiled ${name} in ${prettyMilliseconds(duration)}`);
+  console.log(` ✓ ${endMessage} in ${prettyMilliseconds(duration)}`);
+  return result;
 }

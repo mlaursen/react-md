@@ -1,3 +1,4 @@
+import { type RunnableCodeAndPreviewOptions } from "@/components/DangerouslyRunCode/RunnableCodePreview.jsx";
 import { type RunnableCodePreviewOptions } from "@/components/DangerouslyRunCode/RunnableCodePreviewContainer.jsx";
 import { type PackageManagerCodeBlockProps } from "@/components/PackageManagerCodeBlock.js";
 import { type HighlightedTypescriptCode } from "@/components/TypescriptCode.js";
@@ -8,7 +9,7 @@ const NPM_CODE = /^np(m|x)/;
 const LANGUAGE_REGEX = /language-([a-z]+)/;
 const JSX_PROPERTY_REGEX = /([a-z][A-Za-z0-9]+)(="([^"]+)")?\s?/g;
 
-export interface CodeJsxProps extends RunnableCodePreviewOptions {
+export interface CodeJsxProps extends RunnableCodeAndPreviewOptions {
   preview?: boolean;
   editable?: boolean;
   fileName?: string;
@@ -26,23 +27,28 @@ interface ParsedCodeBlock
   lang: string;
   tsCode?: HighlightedTypescriptCode;
   packageManager?: PackageManagerCodeBlockProps;
-  previewOptions: Required<RunnableCodePreviewOptions>;
+  previewOptions: RunnableCodeAndPreviewOptions;
 }
 
 export async function parseCodeBlock(
   options: ParseCodeBlockOptions
 ): Promise<ParsedCodeBlock> {
-  const { className } = options;
-  let {
-    code,
-    fileName,
-    editable = false,
-    preview = editable,
-    card = false,
-    phone = false,
+  const {
+    className,
+    code: defaultCode,
+    lang: propLang,
+    fileName: defaultFileName,
+    editable: defaultEditable,
+    preview: defaultPreview = defaultEditable,
+    ...previewOptions
   } = options;
-  let lang = options.lang ?? "markdown";
-  if (!options.lang && className) {
+
+  let code = defaultCode;
+  let fileName = defaultFileName;
+  let editable = defaultEditable;
+  let preview = defaultPreview;
+  let lang = propLang ?? "markdown";
+  if (!propLang && className) {
     [, lang] = className.match(LANGUAGE_REGEX) || [];
   }
 
@@ -67,10 +73,8 @@ export async function parseCodeBlock(
           editable = true;
           break;
         case "card":
-          card = true;
-          break;
         case "phone":
-          phone = true;
+          previewOptions[name] = true;
           break;
         default:
           throw new Error(`Unsupported code property: ${name}`);
@@ -120,10 +124,7 @@ export async function parseCodeBlock(
     preview,
     editable,
     fileName,
-    previewOptions: {
-      phone,
-      card,
-    },
+    previewOptions,
     packageManager,
   };
 }
