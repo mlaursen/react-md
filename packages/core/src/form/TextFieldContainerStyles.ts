@@ -96,6 +96,9 @@ export function textFieldContainer(
       "outline-left": outline && leftAddon,
       "outline-right": outline && rightAddon,
       underline: isUnderlined,
+      "underline-placeholder": isUnderlined && !label,
+      "underline-placeholder-only":
+        isUnderlined && !label && !leftAddon && !rightAddon,
       "underline-labelled": isUnderlined && label,
       "underline-active": isUnderlined && active,
       [`underline-${underlineDirection}`]: isUnderlined,

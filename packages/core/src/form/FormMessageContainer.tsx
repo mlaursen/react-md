@@ -1,4 +1,3 @@
-"use client";
 import { cnb } from "cnbuilder";
 import { forwardRef, type HTMLAttributes } from "react";
 import { type PropsWithRef } from "../types.js";
@@ -19,10 +18,10 @@ export interface FormMessageContainerProps
 }
 
 /**
- * **Client Component**
- * This might be able to become a server component if FormMessage removes the useFormTheme hook
+ * **Server Component**
+ * Conditionally wraps the `children` in a `.rmd-form-message-container` wrapper
+ * and renders the {@link FormMessage} component.
  *
- * @internal
  * @remarks \@since 2.5.0
  */
 export const FormMessageContainer = forwardRef<

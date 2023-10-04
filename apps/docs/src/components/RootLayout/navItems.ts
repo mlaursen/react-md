@@ -101,10 +101,6 @@ export const navItems: readonly NavigationItem[] = [
             children: "NativeSelect",
           },
           {
-            href: "/password",
-            children: "Password",
-          },
-          {
             href: "/radio",
             children: "Radio",
           },

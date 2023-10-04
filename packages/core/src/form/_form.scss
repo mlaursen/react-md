@@ -112,9 +112,14 @@ $text-field-border-width-active: 2px !default;
 $text-field-filled-padding: 0.75rem !default;
 $text-field-outlined-padding: 1rem !default;
 $text-field-underlined-padding: null !default;
+// set this to null to remove this style
+$text-field-underlined-placeholder-height: 2.5rem !default;
+$text-field-underlined-placeholder-padding-top: 0.5rem !default;
+$text-field-underlined-placeholder-addon-padding-top: 0.25rem !default;
 // this is the default height of the label with line-height
 $text-field-underlined-label-padding-top: 1.5rem !default;
 $text-field-underlined-label-left-offset: icon.$spacing !default;
+$text-field-color-min-width: 5rem !default;
 
 $text-field-addon-margin: icon.$spacing !default;
 
@@ -851,6 +856,23 @@ $var-lookup: (
         }
       }
 
+      @if $text-field-underlined-placeholder-height {
+        &--underline-placeholder {
+          @include set-var(
+            text-padding-top,
+            $text-field-underlined-placeholder-addon-padding-top
+          );
+          height: $text-field-underlined-placeholder-height;
+        }
+
+        &--underline-placeholder-only {
+          @include set-var(
+            text-padding-top,
+            $text-field-underlined-placeholder-padding-top
+          );
+        }
+      }
+
       &--underline-labelled {
         @include set-var(
           text-padding-top,
@@ -926,6 +948,12 @@ $var-lookup: (
 @mixin text-field-styles {
   .rmd-text-field {
     @include _text-field-base-styles;
+
+    @if $text-field-color-min-width {
+      &[type="color"] {
+        min-width: $text-field-color-min-width;
+      }
+    }
 
     &::placeholder {
       @if not $disable-placeholder-ellipsis {
