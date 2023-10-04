@@ -165,8 +165,9 @@ export const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
           {...containerProps}
           style={style}
           className={nativeSelectContainer({
+            label: !!label,
             multiple,
-            padded: multiple && !!label && !underlined,
+            underlined,
             className,
           })}
           theme={theme}

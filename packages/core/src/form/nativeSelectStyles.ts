@@ -31,8 +31,9 @@ export function nativeSelect(
  */
 export interface NativeSelectContainerClassNameOptions {
   className?: string;
-  padded?: boolean;
+  label?: boolean;
   multiple?: boolean;
+  underlined?: boolean;
 }
 
 /**
@@ -41,7 +42,15 @@ export interface NativeSelectContainerClassNameOptions {
 export function nativeSelectContainer(
   options: NativeSelectContainerClassNameOptions = {}
 ): string {
-  const { className, padded, multiple } = options;
+  const { className, label, multiple, underlined } = options;
 
-  return cnb(containerStyles({ multi: multiple, padded }), className);
+  return cnb(
+    containerStyles({
+      multi: multiple,
+      padded: label && multiple && !underlined,
+      underline: multiple && underlined,
+      "underline-padded": label && multiple && underlined,
+    }),
+    className
+  );
 }

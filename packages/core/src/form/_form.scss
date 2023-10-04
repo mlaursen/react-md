@@ -147,6 +147,7 @@ $password-visibility-toggle-spacing: 0.25rem !default;
 
 $native-select-addon-top: 1rem !default;
 $native-select-multiple-padding: 0.75rem !default;
+$native-select-multiple-underline-padding: 1.5rem !default;
 
 $option-selected-icon-size: 1rem !default;
 $option-selected-styles: (
@@ -1165,12 +1166,6 @@ $var-lookup: (
 @mixin native-select-styles {
   @if not $disable-native-select-multiple {
     .rmd-native-select-container {
-      @if not $disable-text-field-outlined-theme {
-        &--outline {
-          @include set-var(text-padding-top, $native-select-multiple-padding);
-        }
-      }
-
       &--multi {
         @include set-var(addon-top, $native-select-addon-top);
         @include use-var(min-height, text-height);
@@ -1180,6 +1175,19 @@ $var-lookup: (
 
       &--padded {
         padding-top: $native-select-multiple-padding;
+      }
+
+      @if not
+        $disable-text-field-filled-theme or not
+        $disable-text-field-underlined-theme
+      {
+        &--underline {
+          @include set-var(text-padding-top, 0);
+        }
+
+        &--underline-padded {
+          padding-top: $native-select-multiple-underline-padding;
+        }
       }
     }
   }
