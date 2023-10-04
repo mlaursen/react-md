@@ -1,6 +1,8 @@
 "use client";
 import { LoadPrismTheme } from "@/prism-themes/LoadPrismTheme.jsx";
 import {
+  AppBar,
+  AppBarTitle,
   Box,
   Button,
   DialogContent,
@@ -12,6 +14,7 @@ import {
   useToggle,
   useTooltip,
 } from "@react-md/core";
+import CloseIcon from "@react-md/material-icons/CloseIcon";
 import MoreVertOutlinedIcon from "@react-md/material-icons/MoreVertOutlinedIcon";
 import Link from "next/link.js";
 import { type ReactElement } from "react";
@@ -47,6 +50,12 @@ export function WebsiteConfiguration(): ReactElement {
         className={styles.sheet}
         horizontalSize="none"
       >
+        <AppBar theme="clear">
+          <AppBarTitle>Configuration</AppBarTitle>
+          <Button aria-label="Close" onClick={disable} buttonType="icon">
+            <CloseIcon />
+          </Button>
+        </AppBar>
         <DialogContent>
           <Form>
             <Box align="stretch" stacked disablePadding>

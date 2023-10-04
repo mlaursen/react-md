@@ -5,4 +5,7 @@
     background-color,
     everything.theme-get-var(surface-color)
   );
+  @include everything.phone-media {
+    width: 100%;
+  }
 }
