@@ -38,6 +38,18 @@ export type FileInputHTMLAttributes = Omit<
 export interface FileInputProps
   extends ButtonClassNameThemeOptions,
     FileInputHTMLAttributes {
+  /**
+   * This is the label text for icon-only file inputs.
+   *
+   * @defaultValue `"Upload"`
+   */
+  srOnlyLabel?: ReactNode;
+
+  /**
+   * Any additional props to provide to the container `<label>` element since
+   * most props get passed to the `<input type="file">`. So this would be useful
+   * for inline style or click handlers.
+   */
   labelProps?: PropsWithRef<
     LabelHTMLAttributes<HTMLLabelElement>,
     HTMLLabelElement
@@ -133,7 +145,7 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
       children: propChildren,
       icon: propIcon,
       iconAfter = false,
-      // disableIconSpacing = typeof propChildren === "undefined",
+      srOnlyLabel = "Upload",
       disableRepeatableFiles = false,
       labelProps,
       theme = "primary",
@@ -160,8 +172,12 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
 
     const icon = getIcon("upload", propIcon);
     let children = propChildren;
-    if (typeof propChildren === "undefined") {
-      children = <SrOnly phoneOnly={responsive}>Upload</SrOnly>;
+    if (
+      typeof propChildren === "undefined" &&
+      !props["aria-label"] &&
+      !props["aria-labelledby"]
+    ) {
+      children = <SrOnly phoneOnly={responsive}>{srOnlyLabel}</SrOnly>;
     }
 
     return (
