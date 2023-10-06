@@ -1,5 +1,5 @@
 import { Box, Typography, typography } from "@react-md/core";
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 import NotFoundSVG from "./NotFoundSVG.jsx";
 
 export default function NotFound(): ReactElement {

@@ -1,3 +1,4 @@
+"use client";
 import { AsyncButton, wait } from "@react-md/core";
 import { type ReactElement } from "react";
 

@@ -3,7 +3,7 @@ import {
   ListSubheader,
   type RenderRecursiveItemsProps,
 } from "@react-md/core";
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 import { CollapsibleNavigationItemGroup } from "./CollapsibleNavigationItemGroup.jsx";
 import { NavigationItemLink } from "./NavigationItemLink.jsx";
 import { getHrefFromParents } from "./getHrefFromParents.js";

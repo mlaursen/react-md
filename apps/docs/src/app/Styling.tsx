@@ -1,6 +1,6 @@
 import { HighlightedCodeBlock } from "@/components/HighlightedCodeBlock.jsx";
 import { Link } from "@react-md/core";
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 import { Section } from "./Section.jsx";
 
 const code = ` @use "@react-md/core/colors";

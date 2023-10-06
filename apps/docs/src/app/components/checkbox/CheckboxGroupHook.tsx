@@ -4,15 +4,20 @@ import { Button, Checkbox, Form, box, useCheckboxGroup } from "@react-md/core";
 import { type ReactElement } from "react";
 
 const themes = ["none", "underline", "filled", "outline"] as const;
+type Theme = (typeof themes)[number];
 
 export default function CheckboxGroupHook(): ReactElement {
   const {
     getCheckboxProps,
     getIndeterminateProps,
     reset,
+
+    // a `ReadonlySet` of the current checked values
     checkedValues,
+
+    // a `UseStateSetter` to manually control the state if needed
     setCheckedValues,
-  } = useCheckboxGroup({
+  } = useCheckboxGroup<Theme>({
     name: "themes",
     values: themes,
     // This is optional. Defaults to no checked items

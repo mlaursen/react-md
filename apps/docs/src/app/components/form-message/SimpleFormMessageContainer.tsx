@@ -1,5 +1,5 @@
 import { Box, FormMessageContainer } from "@react-md/core";
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 
 export default function SimpleFormMessageContainer(): ReactElement {
   return (

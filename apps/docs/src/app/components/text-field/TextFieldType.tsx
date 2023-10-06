@@ -1,5 +1,5 @@
 import { Form, TextField, box } from "@react-md/core";
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 
 export default function TextFieldType(): ReactElement {
   return (

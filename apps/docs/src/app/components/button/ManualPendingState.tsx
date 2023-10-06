@@ -1,3 +1,4 @@
+"use client";
 import { AsyncButton, Box, Switch } from "@react-md/core";
 import { useState, type ReactElement } from "react";
 

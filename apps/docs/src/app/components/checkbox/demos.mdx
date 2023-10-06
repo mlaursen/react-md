@@ -48,26 +48,6 @@ like a native `<input type="checkbox">`:
 
 {{ "component": "./ControllingCheckboxes.tsx" }}
 
-## Using the useCheckboxGroup Hook
-
-`react-md` provides a hook: `useCheckboxGroup` that can be used to handle the
-state of a checkbox group. The hook requires a `name` to be provided and an
-optional list of `defaultCheckedValues` returning an object containing:
-
-- `getCheckboxProps` - A function to generate the props for a checkbox based on
-  the checkbox's value.
-- `checkedValues` - A `ReadonlySet` of the current checked values in the group.
-- `setCheckedValues` - A `UseStateSetter` to manually control the
-  `checkedValues` state if needed.
-- `reset` - Resets the state to the `defaultCheckedValues` (an empty list by
-  default).
-
-{{ "component": "./UsingTheUseCheckboxGroupHook.tsx" }}
-
-> !Info! The `checkedValues` and `getCheckboxProps` will be strictly typed for Typescript users.
-> The type will be derived from the `defaultCheckedValues` if provided, otherwise a typeparam can
-> provided to set the type.
-
 # Indeterminate Checkboxes
 
 [Indeterminate checkboxes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes) are
@@ -82,12 +62,23 @@ indeterminate icon will display while checked.
 
 ## useCheckboxGroup Hook
 
-A group of checkboxes can be controlled by using the `useCheckboxGroup` hook
-with or without the indeterminate checkbox. The hook requires a `name` which
-will be applied to each checkbox and a list of available `values`.
+`react-md` provides a hook: `useCheckboxGroup` that can be used to handle the
+state of a checkbox group with or without an indeterminate checkbox. The hook
+requires a `name` to be provided and an optional list of `defaultCheckedValues`
+returning an object containing:
 
-> !Info! The values will be strictly typed and inferred for `Typescript` users
-> based on the provided list of available `values`.
+- `getCheckboxProps` - A function to generate the props for a checkbox based on
+  the checkbox's value.
+- `checkedValues` - A `ReadonlySet` of the current checked values in the group.
+- `setCheckedValues` - A `UseStateSetter` to manually control the
+  `checkedValues` state if needed.
+- `reset` - Resets the state to the `defaultCheckedValues` (an empty list by
+  default).
+
+> !Info! The `checkedValues` and `getCheckboxProps` will be strictly typed for Typescript users.
+> The type will be derived from the `defaultCheckedValues` if provided,
+> otherwise a [type parameter](https://www.typescriptlang.org/docs/handbook/2/generics.html)
+> can provided to set the type.
 
 {{ "component": "./CheckboxGroupHook.tsx" }}
 

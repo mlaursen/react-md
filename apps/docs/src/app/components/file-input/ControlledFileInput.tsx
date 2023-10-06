@@ -1,3 +1,4 @@
+"use client";
 import { FileInput, Form, Typography, box } from "@react-md/core";
 import { useState, type ReactElement } from "react";
 

@@ -1,6 +1,8 @@
 import { Blockquote } from "@/components/Blockquote.jsx";
-import type { HighlightedCodeBlockProps } from "@/components/HighlightedCodeBlock.jsx";
-import { HighlightedCodeBlock } from "@/components/HighlightedCodeBlock.jsx";
+import {
+  HighlightedCodeBlock,
+  type HighlightedCodeBlockProps,
+} from "@/components/HighlightedCodeBlock.jsx";
 import { InlineColorPreview } from "@/components/InlineColorPreview.jsx";
 import { LinkableHeading } from "@/components/LinkableHeading.jsx";
 import { MarkdownLink } from "@/components/MarkdownLink.jsx";

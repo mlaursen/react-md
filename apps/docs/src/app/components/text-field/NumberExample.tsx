@@ -7,7 +7,7 @@ import {
   Typography,
   useNumberField,
 } from "@react-md/core";
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 
 export default function NumberExample(): ReactElement {
   const { value, error, errorMessage, fieldProps, fieldRef, reset, setState } =
