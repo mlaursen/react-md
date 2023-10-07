@@ -1,8 +1,8 @@
 import { cnb } from "cnbuilder";
 import { bem } from "../utils/bem.js";
 import {
-  type TextFieldClassNameOptions,
   textField,
+  type TextFieldClassNameOptions,
 } from "./textFieldStyles.js";
 import { type TextAreaResize } from "./useResizingTextArea.js";
 

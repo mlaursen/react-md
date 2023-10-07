@@ -1,6 +1,6 @@
 "use client";
 import { useCallback, useRef, useState } from "react";
-import type { UseStateInitializer, UseStateSetter } from "../types.js";
+import { type UseStateInitializer, type UseStateSetter } from "../types.js";
 
 const EMPTY_LIST = [] as const;
 

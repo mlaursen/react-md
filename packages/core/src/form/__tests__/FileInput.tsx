@@ -10,7 +10,7 @@ import { FileInput } from "../FileInput.js";
 const PROPS = {
   labelProps: {
     "data-testid": "label",
-  } as HTMLAttributes<HTMLLabellabel>,
+  } as HTMLAttributes<HTMLLabelElement>,
 } as const;
 
 describe("FileInput", () => {

@@ -1,11 +1,11 @@
-import type {
-  CSSProperties,
-  HTMLAttributes,
-  InputHTMLAttributes,
-  LabelHTMLAttributes,
-  ReactNode,
+import {
+  type CSSProperties,
+  type HTMLAttributes,
+  type InputHTMLAttributes,
+  type LabelHTMLAttributes,
+  type ReactNode,
 } from "react";
-import type { PropsWithRef } from "../types.js";
+import { type PropsWithRef } from "../types.js";
 
 declare module "react" {
   interface CSSProperties {
@@ -267,13 +267,75 @@ export interface FormMessageProps
   messageClassName?: string;
 }
 
+/**
+ * Props that are used to automatically add a counter for the remaining letters
+ * available for the text field. The counter will always be created to the right
+ * of the optional message.
+ *
+ * The counter is really a simple string of: `${length} / ${maxLength}`.
+ *
+ * If you need additional customization, it is recommended to create your own
+ * implementation such as:
+ *
+ * ```tsx
+ * <FormMessage>
+ *   {errorMessage}
+ *   <MyCounter {...props} />
+ * </FormMessage>
+ * ```
+ *
+ * Note: this should not be used alongside form-level messages.
+ *
+ * @remarks \@since 2.9.0 Renamed from `FormMessageCounterProps` to
+ * `FormMessageInputLengthCounterProps` since a `FormMessageCounter` component
+ * was added
+ */
+export interface FormMessageInputLengthCounterProps {
+  /**
+   * The current length of the value in the related text field.
+   */
+  length: number;
+
+  /**
+   * The max length allowed for the value in the related text field.
+   */
+  maxLength: number;
+
+  /**
+   * An optional style to apply to the counter wrapper element.
+   */
+  counterStyle?: CSSProperties;
+
+  /**
+   * An optional className to apply to the counter wrapper element.
+   */
+  counterClassName?: string;
+}
+
+export interface FormMessageWithCounterProps
+  extends FormMessageProps,
+    FormMessageInputLengthCounterProps {}
+
+/**
+ * @remarks \@since 6.0.0
+ */
+export interface FormMessageWithoutCounterProps extends FormMessageProps {
+  length?: never;
+  maxLength?: never;
+  counterStyle?: never;
+  counterClassName?: never;
+}
+
 export interface FormMessageContainerExtension {
   /**
    * If the extension doesn't actually want to render the `FormMessage`
    * component, these props are optional. It kind of eliminates the whole
    * purpose of this component though.
    */
-  messageProps?: PropsWithRef<FormMessageProps, HTMLDivElement>;
+  messageProps?: PropsWithRef<
+    FormMessageWithCounterProps | FormMessageWithoutCounterProps,
+    HTMLDivElement
+  >;
 
   /**
    * Any props (and an optional ref) to provide to the `<div>` surrounding the

@@ -1,31 +1,33 @@
 "use client";
-import type {
-  HTMLAttributes,
-  ReactNode,
-  Ref,
-  RefCallback,
-  RefObject,
+import {
+  useCallback,
+  useRef,
+  useState,
+  type HTMLAttributes,
+  type ReactNode,
+  type Ref,
+  type RefCallback,
+  type RefObject,
 } from "react";
-import { useCallback, useRef, useState } from "react";
 import { getIcon } from "../icon/iconConfig.js";
-import type { UseStateInitializer, UseStateSetter } from "../types.js";
+import { type UseStateInitializer, type UseStateSetter } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
-import type { FormMessageInputLengthCounterProps } from "./FormMessage.js";
-import type { TextFieldProps } from "./TextField.js";
-import type { FormMessageProps } from "./types.js";
-import type {
-  ErrorMessageOptions,
-  GetErrorIcon,
-  GetErrorMessage,
-  IsErrored,
-  TextFieldValidationOptions,
-  TextFieldValidationType,
-} from "./validation.js";
+import { type TextFieldProps } from "./TextField.js";
+import {
+  type FormMessageInputLengthCounterProps,
+  type FormMessageProps,
+} from "./types.js";
 import {
   defaultGetErrorIcon,
   defaultGetErrorMessage,
   defaultIsErrored,
+  type ErrorMessageOptions,
+  type GetErrorIcon,
+  type GetErrorMessage,
+  type IsErrored,
+  type TextFieldValidationOptions,
+  type TextFieldValidationType,
 } from "./validation.js";
 
 const noop = (): void => {

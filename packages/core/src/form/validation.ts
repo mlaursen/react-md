@@ -1,4 +1,4 @@
-import type { InputHTMLAttributes, ReactNode } from "react";
+import { type InputHTMLAttributes, type ReactNode } from "react";
 
 /**
  * @remarks \@since 2.5.6

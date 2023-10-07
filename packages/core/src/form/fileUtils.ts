@@ -1,5 +1,5 @@
-import type { ChangeEventHandler, DragEventHandler } from "react";
 import { nanoid } from "nanoid";
+import { type ChangeEventHandler, type DragEventHandler } from "react";
 
 /** @remarks \@since 2.9.0 */
 export interface BaseFileUploadStats {

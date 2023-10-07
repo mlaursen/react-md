@@ -1,58 +1,12 @@
-import { forwardRef, type CSSProperties } from "react";
+import { forwardRef } from "react";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { FormMessageCounter } from "./FormMessageCounter.js";
-import { formMessage, formMessageText } from "./formMessageStyles.js";
-import { type FormMessageProps } from "./types.js";
 import { getFormConfig } from "./formConfig.js";
-
-/**
- * Props that are used to automatically add a counter for the remaining letters
- * available for the text field. The counter will always be created to the right
- * of the optional message.
- *
- * The counter is really a simple string of: `${length} / ${maxLength}`.
- *
- * If you need additional customization, it is recommended to create your own
- * implementation such as:
- *
- * ```tsx
- * <FormMessage>
- *   {errorMessage}
- *   <MyCounter {...props} />
- * </FormMessage>
- * ```
- *
- * Note: this should not be used alongside form-level messages.
- *
- * @remarks \@since 2.9.0 Renamed from `FormMessageCounterProps` to
- * `FormMessageInputLengthCounterProps` since a `FormMessageCounter` component
- * was added
- */
-export interface FormMessageInputLengthCounterProps {
-  /**
-   * The current length of the value in the related text field.
-   */
-  length: number;
-
-  /**
-   * The max length allowed for the value in the related text field.
-   */
-  maxLength: number;
-
-  /**
-   * An optional style to apply to the counter wrapper element.
-   */
-  counterStyle?: CSSProperties;
-
-  /**
-   * An optional className to apply to the counter wrapper element.
-   */
-  counterClassName?: string;
-}
-
-export interface FormMessageWithCounterProps
-  extends FormMessageProps,
-    FormMessageInputLengthCounterProps {}
+import { formMessage, formMessageText } from "./formMessageStyles.js";
+import {
+  type FormMessageInputLengthCounterProps,
+  type FormMessageProps,
+} from "./types.js";
 
 /**
  * **Server Component**

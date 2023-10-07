@@ -1,7 +1,7 @@
 import { cnb } from "cnbuilder";
 import { cssUtils } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
-import type { FormMessageClassNameOptions } from "./types.js";
+import { type FormMessageClassNameOptions } from "./types.js";
 
 const styles = bem("rmd-form-message");
 

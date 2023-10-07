@@ -1,4 +1,4 @@
-import type { KeyboardEvent } from "react";
+import { type KeyboardEvent } from "react";
 
 /**
  * This util should be used to implement the native "Enter" keypress behavior
