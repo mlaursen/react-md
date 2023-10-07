@@ -333,7 +333,7 @@ export interface FormMessageContainerExtension {
    * purpose of this component though.
    */
   messageProps?: PropsWithRef<
-    FormMessageWithCounterProps | FormMessageWithoutCounterProps,
+    FormMessageProps & Partial<FormMessageInputLengthCounterProps>,
     HTMLDivElement
   >;
 
@@ -438,6 +438,24 @@ export interface LabelProps
   extends LabelHTMLAttributes<HTMLLabelElement>,
     LabelClassNameOptions {}
 
+/**
+ * @remarks \@since 6.0.0
+ */
+export interface ConfigurableTextFieldAddonProps
+  extends HTMLAttributes<HTMLSpanElement> {
+  /**
+   * Boolean if the addon should be presentational only and prevent pointer
+   * events.
+   *
+   * @defaultValue `false`
+   */
+  pointerEvents?: boolean;
+}
+
+/**
+ * @remarks \@since 6.0.0 Added support for `leftAddonProps` and
+ * `rightAddonProps`.
+ */
 export interface TextFieldContainerOptions
   extends FormThemeOptions,
     FormComponentStates {
@@ -471,6 +489,16 @@ export interface TextFieldContainerOptions
   leftAddon?: ReactNode;
 
   /**
+   * Any additional props to pass to the `<span>` surrounding the {@link leftAddon}.
+   *
+   * @remarks \@since 6.0.0
+   */
+  leftAddonProps?: PropsWithRef<
+    ConfigurableTextFieldAddonProps,
+    HTMLSpanElement
+  >;
+
+  /**
    * @see {@link TextFieldAddonProps.disabled}
    *
    * @defaultValue `false`
@@ -482,6 +510,16 @@ export interface TextFieldContainerOptions
    * `TextField` or `TextArea`.
    */
   rightAddon?: ReactNode;
+
+  /**
+   * Any additional props to pass to the `<span>` surrounding the {@link rightAddon}.
+   *
+   * @remarks \@since 6.0.0
+   */
+  rightAddonProps?: PropsWithRef<
+    ConfigurableTextFieldAddonProps,
+    HTMLSpanElement
+  >;
 
   /**
    * @see {@link TextFieldAddonProps.disabled}

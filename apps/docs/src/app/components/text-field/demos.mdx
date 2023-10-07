@@ -88,6 +88,86 @@ See more info at the [useNumberField documentation](/hooks/use-number-field).
 
 {{ "component": "./NumberExample.tsx" }}
 
+# Simple TextArea
+
+Use the `TextArea` component when multiple lines of text should be supported. It
+supports all the same theming, addons, help text, and error text as the
+`TextField` but renders in a `<textarea>` instead.
+
+The default behavior of the `TextArea` is to resize it's height based on the
+current amount of text.
+
+{{ "component": "./SimpleTextArea.tsx" }}
+
+## Setting Max Rows
+
+Since it might not be ideal to support an infinite editing height, the max
+number of rows to grow to can be specified by the `maxRows` prop.
+
+{{ "component": "./ResizingTextAreaMaxRows.tsx" }}
+
+## Disabling Resize Transition
+
+The textarea's height transition can be disabled by setting `disableTransition`.
+
+{{ "component": "./DisablingResizeTransition.tsx" }}
+
+## Other Resize Behavior
+
+The native [resize behavior](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#controlling_whether_a_textarea_is_resizable)
+is also supported by setting the `resize` prop to one of: `horizontal`,
+`vertical`, `both`, or `none`.
+
+{{ "component": "./OtherResizeBehavior.tsx" }}
+
 # Text Field Addon
 
+The `TextField` can render addons (normally icons) before and after the text of
+by using the `leftAddon`/`rightAddon` props. The addon will be placed above the
+`<input>` using absolute positioning and the `<input>` will gain additional
+`padding-left`/`padding-right` so the addons will not overlap with the text
+content.
+
 {{ "component": "./TextFieldAddon.tsx" }}
+
+## Non-icon Addons
+
+If an addon is not icon sized, additional styling will be required. Here are a
+few available options:
+
+1. Modify the `--rmd-form-text-padding-left`/`--rmd-form-text-padding-right` to
+   be the width of the addon plus some additional padding. This is the "best"
+   option if the addons should still be rendered above the `<input>` element
+   since it will also update the floating label position automatically
+2. Set `disableLeftAddonStyles`/`disableRightAddonStyles` to `true` to no longer
+   use absolute positioning and render the addon inline
+3. Add custom styles with `leftAddonProps`/`rightAddonProps` as needed
+
+{{ "component": "./NonIconAddons.tsx" }}
+
+# Help Text and Error Text
+
+The `TextField` component is wrapped in the
+[FormMessageContainer](/components/form-message#form-message-container) so additional
+hint or error messages can be displayed.
+
+{{ "component": "./HelpTextAndErrorText.tsx" }}
+
+## Text Field With Counter
+
+A text field can also render an inline counter using the `messageProps` by
+providing the current length of the value and a `maxLength`.
+
+{{ "component": "./TextFieldWithCounter.tsx" }}
+
+## Text Field Hook
+
+The `useTextField` hook can be used to control the value of a single text field
+to conditionally display help text, error text, error icons, and inline
+counters. The hook also supports simple validation using the
+[Constraint Validation API](https://developer.mozilla.org/en-US/docs/Web/HTML/Constraint_validation).
+
+Check out the [useTextField documentation](/hooks/use-text-field) for more
+information.
+
+{{ "component": "./TextFieldHookExample.tsx" }}

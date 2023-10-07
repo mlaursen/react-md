@@ -117,10 +117,6 @@ export const navItems: readonly NavigationItem[] = [
             children: "Switch",
           },
           {
-            href: "/text-area",
-            children: "TextArea",
-          },
-          {
             href: "/text-field",
             children: "TextField",
           },

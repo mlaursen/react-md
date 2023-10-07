@@ -2,7 +2,6 @@
 import {
   Avatar,
   Box,
-  Button,
   Form,
   Radio,
   TextField,
@@ -24,42 +23,23 @@ export default function TextFieldAddon(): ReactElement {
   return (
     <Form className={box({ stacked: true, align: "stretch" })}>
       <TextField
+        label="Label"
+        theme={theme}
+        placeholder="Placeholder"
         leftAddon={<FavoriteIcon />}
-        label="Label"
-        placeholder="Placeholder"
-        theme={theme}
       />
       <TextField
+        label="Label"
+        theme={theme}
+        placeholder="Placeholder"
         rightAddon={<FavoriteIcon />}
-        label="Label"
-        placeholder="Placeholder"
-        theme={theme}
       />
       <TextField
+        label="Label"
+        theme={theme}
+        placeholder="Placeholder"
         leftAddon={<FavoriteIcon />}
         rightAddon={<Avatar size="icon">A</Avatar>}
-        label="Label"
-        placeholder="Placeholder"
-        theme={theme}
-      />
-      <TextField
-        leftAddon={<FavoriteIcon />}
-        rightAddon={<Avatar>A</Avatar>}
-        disableRightAddonStyles
-        label="Label"
-        placeholder="Placeholder"
-        theme={theme}
-      />
-      <TextField
-        label="Label"
-        disableRightAddonStyles
-        rightAddon={
-          // iconSize is optional. It just makes it align with other icons when stacked
-          <Button aria-label="Favorite" buttonType="icon" iconSize="small">
-            <FavoriteIcon />
-          </Button>
-        }
-        theme={theme}
       />
       <Box stacked disablePadding align="start" fullWidth>
         <Typography>Form Theme</Typography>

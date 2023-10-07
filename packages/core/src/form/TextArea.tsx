@@ -1,4 +1,5 @@
 "use client";
+import { cnb } from "cnbuilder";
 import {
   forwardRef,
   useRef,
@@ -207,11 +208,11 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       children = (
         <div
           {...resizeContainerProps}
-          className={textAreaContainer({
-            height: !!height,
-            animate: !disableTransition,
-            className: resizeContainerProps?.className,
-          })}
+          className={cnb(
+            "rmd-textarea-container__inner",
+            !disableTransition && "rmd-textarea-container__inner--animate",
+            resizeContainerProps?.className
+          )}
         >
           {area}
           {labelNode}
@@ -268,6 +269,9 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
           disableLeftAddonStyles={disableLeftAddonStyles}
           disableRightAddonStyles={disableRightAddonStyles}
           onClick={(event) => {
+            // The textarea container adds padding-top when there is a label so
+            // that the label does not cover the text so this makes it so you
+            // can still click anywhere in the "box" to focus the textarea.
             if (!disabled && event.target === event.currentTarget) {
               areaRef.current?.focus();
             }

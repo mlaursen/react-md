@@ -1234,9 +1234,6 @@ $var-lookup: (
 
 @mixin text-field-addon-styles {
   .rmd-text-field-addon {
-    @include icon.use-var(height, size);
-    @include icon.use-var(width, size);
-
     @if not
       $disable-text-field-filled-theme or not
       $disable-text-field-underlined-theme

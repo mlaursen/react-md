@@ -42,8 +42,10 @@ export const TextFieldContainer = forwardRef<
     readOnly = false,
     disabled = false,
     leftAddon,
+    leftAddonProps,
     disableLeftAddonStyles = false,
     rightAddon,
+    rightAddonProps,
     disableRightAddonStyles = false,
     theme: propTheme,
     underlineDirection: propUnderlineDirection,
@@ -70,16 +72,20 @@ export const TextFieldContainer = forwardRef<
         readOnly,
         disabled,
         className,
-        leftAddon: !!leftAddon,
-        rightAddon: !!rightAddon,
+        leftAddon: !!leftAddon && !disableLeftAddonStyles,
+        rightAddon: !!rightAddon && !disableRightAddonStyles,
         underlineDirection,
       })}
     >
-      <TextFieldAddon disabled={disableLeftAddonStyles}>
+      <TextFieldAddon {...leftAddonProps} disabled={disableLeftAddonStyles}>
         {leftAddon}
       </TextFieldAddon>
       {children}
-      <TextFieldAddon disabled={disableRightAddonStyles} after>
+      <TextFieldAddon
+        {...rightAddonProps}
+        disabled={disableRightAddonStyles}
+        after
+      >
         {rightAddon}
       </TextFieldAddon>
     </div>

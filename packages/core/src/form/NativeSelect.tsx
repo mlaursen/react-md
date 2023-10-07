@@ -131,6 +131,8 @@ export const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
       stretch = false,
       leftAddon,
       rightAddon: propRightAddon,
+      leftAddonProps,
+      rightAddonProps,
       disableLeftAddonStyles = false,
       disableRightAddonStyles = false,
       theme: propTheme,
@@ -180,7 +182,9 @@ export const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
           readOnly={readOnly}
           disabled={disabled}
           leftAddon={leftAddon}
+          leftAddonProps={leftAddonProps}
           rightAddon={rightAddon}
+          rightAddonProps={rightAddonProps}
           underlineDirection={underlineDirection}
           disableLeftAddonStyles={disableLeftAddonStyles}
           disableRightAddonStyles={disableRightAddonStyles}

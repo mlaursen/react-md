@@ -1,6 +1,7 @@
 import { cnb } from "cnbuilder";
-import { forwardRef, type HTMLAttributes } from "react";
+import { forwardRef } from "react";
 import { bem } from "../utils/bem.js";
+import { type ConfigurableTextFieldAddonProps } from "./types.js";
 
 const styles = bem("rmd-text-field-addon");
 
@@ -38,7 +39,10 @@ export function textFieldAddon(
   );
 }
 
-export interface TextFieldAddonProps extends HTMLAttributes<HTMLSpanElement> {
+/**
+ * @remarks \@since 6.0.0 Split props into `ConfigurableTextFieldAddonProps`
+ */
+export interface TextFieldAddonProps extends ConfigurableTextFieldAddonProps {
   /**
    * @defaultValue `false`
    */
@@ -51,18 +55,10 @@ export interface TextFieldAddonProps extends HTMLAttributes<HTMLSpanElement> {
    * @defaultValue `false`
    */
   disabled?: boolean;
-
-  /**
-   * Boolean if the addon should be presentational only and prevent pointer
-   * events.
-   *
-   * @defaultValue `false`
-   */
-  pointerEvents?: boolean;
 }
 
 /**
- * **Client Component**
+ * **Server Component**
  *
  * This component is used to add an an icon before or after the text field with
  * correct styling.

@@ -1,4 +1,3 @@
-"use client";
 import {
   forwardRef,
   type CSSProperties,
@@ -105,8 +104,7 @@ export interface TextFieldProps
 }
 
 /**
- * **Client Component**
- * This might be able to become a server component if I remove the useFormTheme hook
+ * **Server Component**
  *
  * The structure for this component is:
  * @example
@@ -157,7 +155,9 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       inline = false,
       stretch = false,
       leftAddon,
+      leftAddonProps,
       rightAddon,
+      rightAddonProps,
       disableLeftAddonStyles = false,
       disableRightAddonStyles = false,
       inputStyle,
@@ -203,7 +203,9 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
           readOnly={readOnly}
           disabled={disabled}
           leftAddon={leftAddon}
+          leftAddonProps={leftAddonProps}
           rightAddon={rightAddon}
+          rightAddonProps={rightAddonProps}
           underlineDirection={underlineDirection}
           disableLeftAddonStyles={disableLeftAddonStyles}
           disableRightAddonStyles={disableRightAddonStyles}
