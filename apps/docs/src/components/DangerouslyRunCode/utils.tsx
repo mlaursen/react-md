@@ -7,6 +7,8 @@ import CloudUploadOutlinedIcon from "@react-md/material-icons/CloudUploadOutline
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import MoodBadOutlinedIcon from "@react-md/material-icons/MoodBadOutlinedIcon";
 import MoodOutlinedIcon from "@react-md/material-icons/MoodOutlinedIcon";
+import RadioButtonCheckedIcon from "@react-md/material-icons/RadioButtonCheckedIcon";
+import RadioButtonUncheckedIcon from "@react-md/material-icons/RadioButtonUncheckedIcon";
 import SocialDistanceOutlinedIcon from "@react-md/material-icons/SocialDistanceOutlinedIcon";
 import React, {
   isValidElement,
@@ -72,6 +74,9 @@ function dangerouslyEvalCode(
     // I need a way to figure out how to correctly pass the scope down here. I can't pass functions
     // down from server components to client components, so it might need to be a script. For now,
     // just add any imports that are required.
+    "@react-md/material-icons/RadioButtonCheckedIcon": RadioButtonCheckedIcon,
+    "@react-md/material-icons/RadioButtonUncheckedIcon":
+      RadioButtonUncheckedIcon,
     "@react-md/material-icons/CloudUploadOutlinedIcon": CloudUploadOutlinedIcon,
     "@react-md/material-icons/FavoriteIcon": FavoriteIcon,
     "@react-md/material-icons/MoodBadOutlinedIcon": MoodBadOutlinedIcon,

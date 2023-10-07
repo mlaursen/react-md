@@ -10,7 +10,11 @@
 }
 
 .scrollContainer {
-  max-height: min(60vh, 50rem);
+  @include everything.tablet-media {
+    max-height: min(60vh, 50rem);
+  }
+
+  max-height: 50rem;
   overflow: auto;
 }
 

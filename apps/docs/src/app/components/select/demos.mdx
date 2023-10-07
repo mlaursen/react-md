@@ -1,0 +1,112 @@
+# Select
+
+`Select` components allow users to select a single option from a popup list.
+This component mimics the API for a native `<select>` element but supports
+additional styling.
+
+> !Info! See the [AutoComplete](/components/autocomplete) component for
+> typeahead or fuzzy searching of options.
+
+# Simple Select
+
+A select can be created by using the `Select` and `Option` components together.
+Each option should have a unique `value` and some sort of text.
+
+{{ "component": "./SimpleSelect.tsx" }}
+
+## Select Theme
+
+Just like other form components, the `Select` supports multiple themes:
+`outline` (default), `filled`, or `underline`.
+
+{{ "component": "./SelectTheme.tsx" }}
+
+## Controlled Select
+
+The `value` for the select can be controlled by providing a `value` and
+`onChange` handler where the `value` should match one of the `Option`'s `value`s.
+
+> !Info! The `event.currentTarget.value` will be strongly typed for Typescript users.
+
+{{ "component": "./ControlledSelectExample.tsx" }}
+
+## Uncontrolled Select with a Default Value
+
+If the `Select` does not need to be controlled, a `defaultValue` can be provided
+instead.
+
+{{ "component": "./UncontrolledSelectExample.tsx" }}
+
+# Grouped Options
+
+Related options can be wrapped in an `OptGroup` to provide additional context
+for the options. The `OptGroup` must have a label for accessibility.
+
+{{ "component": "./SelectionGroupsExample.tsx" }}
+
+# Custom Dropdown Icon
+
+The `Select` component will use the
+[dropdown](/customization/icon-config#dropdown) icon from the `ICON_CONFIG` by
+default for the dropdown icon. The icon can be configured by using the `icon`
+prop if the icon should animate and rotate while opened or `rightAddon` prop
+for no rotation and animation.
+
+{{ "component": "./CustomDropdownIcon.tsx" }}
+
+# Select with Addons
+
+Just like the [TextField](/components/text-field), the `Select` supports
+rendering a `leftAddon`. It does not really support a `rightAddon` out of the
+box since that is normally the dropdown icon.
+
+{{ "component": "./SelectWithAddons.tsx" }}
+
+## Using Option Addons
+
+If an option provides the `leftAddon` prop, it will automatically be added as
+the `leftAddon` to the `Select` once it has been selected. This behavior can be
+disabled by setting `disableValueAddon` to `true`.
+
+{{ "component": "./UsingOptionAddons.tsx" }}
+
+# Removing Option Selected Icon
+
+The `Option` component will use the
+[selected](/customization/icon-config#selected) icon from the `ICON_CONFIG` by
+default to help show which option has been selected. This can be disabled by
+setting `disableSelectedIcon` to `true` on the `Select` component.
+
+{{ "component": "./RemovingOptionSelectedIconExample.tsx" }}
+
+## Adding an Unselected Icon
+
+An icon could also be added for the unselected state with the `unselectedIcon`
+prop on the `Option`.
+
+{{ "component": "./AddingAnUnselectedIcon.tsx" }}
+
+# Rendering within a Sheet
+
+Since the `Select` uses the [Menu](/components/menu) behind the scenes, the
+options can be rendered within a sheet on mobile or other screen sizes if
+needed.
+
+{{ "component": "./RenderingWithinASheet.tsx" }}
+
+# Accessibility
+
+The `Select` component implements everything for a [select only combobox](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/)
+which means:
+
+- `Space` will open the menu to show all the options and an option can be chosen
+  by `Enter` or `Space`
+- the `ArrowUp`, `ArrowDown`, `Home`, and `End` keys can be used to select a
+  value while the list is open or closed
+- the first match will be found when typing a letter or number and repeated
+  presses will loop through all options that start with that letter or number
+  - `Shift` + a letter will always select the first match`
+- the `Enter` key will submit the `<form>` while the list is closed like a
+  native `<select>`
+
+{{ "component": "./AccessibilityExample.tsx" }}

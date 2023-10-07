@@ -109,6 +109,10 @@ export const navItems: readonly NavigationItem[] = [
             children: "SegmentedButton",
           },
           {
+            href: "/select",
+            children: "Select",
+          },
+          {
             href: "/slider",
             children: "Slider",
           },

@@ -51,6 +51,15 @@ const moveImportsIntoDemoFile = (
             ],
             declarationKind: VariableDeclarationKind.Const,
           });
+        } else if (Node.isTypeAliasDeclaration(declaration)) {
+          declaration.setIsExported(false);
+          const text = declaration.getText();
+          demo.addTypeAlias({
+            name: declaration.getName(),
+            // I don't know how to do this better.
+            // `declaration.getType().getText()` would return the expanded value which I don't want
+            type: text.substring(text.indexOf("=") + 1),
+          });
         }
       });
     }
@@ -77,7 +86,7 @@ export const getDemoCode = async (
 
     const identifiers = imp
       .getNamedImports()
-      .map((identifier) => identifier.getText());
+      .map((identifier) => identifier.getText().replace("type ", ""));
     moveImportsIntoDemoFile({
       demo,
       project,
