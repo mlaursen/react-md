@@ -45,7 +45,7 @@ function BlockquoteThemeIcon({
   }
 }
 
-export interface BlockquoteProps extends HTMLAttributes<HTMLQuoteElement> {
+export interface BlockquoteProps extends HTMLAttributes<HTMLElement> {
   theme?: BlockquoteTheme;
 }
 
@@ -108,19 +108,34 @@ export function Blockquote(props: BlockquoteProps): ReactElement {
     children.push(child);
   });
 
+  if (theme) {
+    return (
+      <div
+        {...remaining}
+        className={cnb(
+          styles.blockquote,
+          styles.themed,
+          theme === "info" && styles.info,
+          theme === "warning" && styles.warning,
+          typography({ type: "subtitle-2" }),
+          className
+        )}
+      >
+        <BlockquoteThemeIcon theme={theme} />
+        {children}
+      </div>
+    );
+  }
+
   return (
     <blockquote
       {...remaining}
       className={cnb(
         styles.blockquote,
-        theme && styles.themed,
-        theme === "info" && styles.info,
-        theme === "warning" && styles.warning,
         typography({ type: "subtitle-2" }),
         className
       )}
     >
-      {theme && <BlockquoteThemeIcon theme={theme} />}
       {children}
     </blockquote>
   );

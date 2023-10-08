@@ -56,6 +56,9 @@ importers:
       js-cookie:
         specifier: ^3.0.5
         version: 3.0.5
+      marked:
+        specifier: ^9.1.0
+        version: 9.1.0
       next:
         specifier: ^13.5.4
         version: 13.5.4(react-dom@18.2.0)(react@18.2.0)(sass@1.69.0)
@@ -7456,6 +7459,12 @@ packages:
   /markdown-extensions@1.1.1:
     resolution: {integrity: sha512-WWC0ZuMzCyDHYCasEGs4IPvLyTGftYwh6wIEOULOF0HXcqZlhwRzrK0w2VUlxWA98xnvb/jszw4ZSkJ6ADpM6Q==}
     engines: {node: '>=0.10.0'}
+
+  /marked@9.1.0:
+    resolution: {integrity: sha512-VZjm0PM5DMv7WodqOUps3g6Q7dmxs9YGiFUZ7a2majzQTTCgX+6S6NAJHPvOhgFBzYz8s4QZKWWMfZKFmsfOgA==}
+    engines: {node: '>= 16'}
+    hasBin: true
+    dev: false
 
   /mathml-tag-names@2.1.3:
     resolution: {integrity: sha512-APMBEanjybaPzUrfqU0IMU5I0AswKMH7k8OTLs0vvV4KZpExkTkY87nR/zpbuTPj+gARop7aGUbl11pnDfW6xg==}

@@ -42,13 +42,11 @@ export interface TableCellConfiguration {
   vAlign?: TableCellVerticalAlignment;
 
   /**
-   * Set this to `true` to allow `TableCell` content to line wrap. Set this to
-   * `"padded"` to allow `TableCell` content to line wrap and add additional
-   * vertical padding.
+   * Set this to `true` to allow `TableCell` content to line wrap.
    *
    * @defaultValue `false`
    */
-  lineWrap?: boolean | "padded";
+  lineWrap?: boolean;
 }
 
 /**

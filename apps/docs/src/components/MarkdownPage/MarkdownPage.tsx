@@ -1,10 +1,11 @@
+import { cnb } from "cnbuilder";
 import { type ReactElement, type ReactNode } from "react";
 import { TableOfContents } from "../TableOfContents/TableOfContents.jsx";
 import { type TableOfContentsItem } from "../TableOfContents/types.js";
 import styles from "./MarkdownPage.module.scss";
 
 export interface MarkdownPageProps {
-  toc?: TableOfContentsItem[];
+  toc?: readonly TableOfContentsItem[];
   children: ReactNode;
 }
 
@@ -34,7 +35,9 @@ export function MarkdownPage(props: MarkdownPageProps): ReactElement {
 
   return (
     <>
-      <div className={styles.container}>{children}</div>
+      <div className={cnb(styles.container, !isTocVisible && styles.noToc)}>
+        {children}
+      </div>
       {isTocVisible && <TableOfContents toc={toc} />}
     </>
   );

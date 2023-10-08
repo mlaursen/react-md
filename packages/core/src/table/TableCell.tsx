@@ -106,15 +106,9 @@ export interface TableCellProps extends TableCellAttributes, TableCellOptions {
   sortIconRotated?: boolean;
 
   /**
-   * Boolean if cell should no longer have any padding since you want a child
-   * element to span the entire size of the cell instead. This is helpful when
-   * rendering clickable and focusable elements within a cell.
-   *
-   * This will be defaulted to `true` if the `"aria-sort"` prop has been
-   * provided and the `sortIcon` is not resoled as `null`. You can override this
-   * default behavior by manually setting this to `true` or `false`.
+   * @defaultValue `"horizontal"`
    */
-  disablePadding?: boolean;
+  padding?: "horizontal" | "vertical" | "none";
 
   /**
    * This can be used to apply styling or any other props to the
@@ -225,10 +219,12 @@ export interface TableCellClassNameOptions {
   vAlign?: TableCellVerticalAlignment;
 
   /** @defaultValue `true` */
-  lineWrap?: boolean | "padded";
+  lineWrap?: boolean;
 
-  /** @defaultValue `false` */
-  disablePadding?: boolean;
+  /**
+   * @defaultValue `"horizontal"`
+   */
+  padding?: "horizontal" | "vertical" | "none";
 }
 
 /**
@@ -243,7 +239,7 @@ export function tableCell(options: TableCellClassNameOptions): string {
     hAlign,
     vAlign,
     lineWrap = true,
-    disablePadding,
+    padding = "horizontal",
     isInTableHeader,
     className,
   } = options;
@@ -263,8 +259,8 @@ export function tableCell(options: TableCellClassNameOptions): string {
     hAlign && hAlign !== "left" && `${p}${hAlign}`,
     vAlign && vAlign !== "middle" && `${p}${vAlign}`,
     !lineWrap && `${p}no-wrap`,
-    !disablePadding && lineWrap === "padded" && `${p}padded`,
-    disablePadding && `${p}no-padding`,
+    padding === "vertical" && `${p}v-padding`,
+    padding === "none" && `${p}no-padding`,
     className
   );
 }
@@ -300,13 +296,12 @@ export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
       sortIcon: propSortIcon,
       sortIconAfter = false,
       sortIconRotated,
-      disablePadding,
+      padding = "horizontal",
       contentProps,
       ...remaining
     } = props;
 
     const sortIcon = getIcon("sort", propSortIcon);
-    const isNoPadding = disablePadding ?? !!(sortIcon && sortOrder);
 
     // Note: unlike the other usages of `useTableConfig`, the `propHeader`
     // is not provided. This is so that `TableCheckbox` components can still
@@ -344,7 +339,7 @@ export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
           hAlign,
           vAlign,
           lineWrap: !sortOrder && lineWrap,
-          disablePadding: isNoPadding,
+          padding: sortIcon && sortOrder ? "none" : padding,
           isInTableHeader: inheritedHeader,
         })}
         scope={scope}

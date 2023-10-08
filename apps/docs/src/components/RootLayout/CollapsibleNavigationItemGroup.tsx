@@ -1,5 +1,9 @@
 "use client";
 import {
+  type NavigationGroupItem,
+  type NavigationItem,
+} from "@/constants/navItems.js";
+import {
   Button,
   IconRotator,
   getIcon,
@@ -11,7 +15,6 @@ import { usePathname } from "next/navigation.js";
 import { type ReactElement } from "react";
 import { NavigationItemGroup } from "./NavigationItemGroup.jsx";
 import { getHrefFromParents } from "./getHrefFromParents.js";
-import { type NavigationGroupItem, type NavigationItem } from "./navItems.js";
 
 export function CollapsibleNavigationItemGroup(
   props: RenderRecursiveItemsProps<NavigationItem>

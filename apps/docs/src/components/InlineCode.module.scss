@@ -7,7 +7,9 @@
     monospace;
   font-size: 1em;
   white-space: pre-wrap;
+}
 
+.ticked {
   &::before,
   &::after {
     content: "\`";

@@ -44,6 +44,8 @@ export interface BoxOptions {
   className?: string;
 
   /**
+   * Set this to `true` to use `display: grid` instead of `display: flex`.
+   *
    * @defaultValue `false`
    */
   grid?: boolean;
@@ -57,11 +59,15 @@ export interface BoxOptions {
   fullWidth?: boolean;
 
   /**
+   * Set this to `true` to set `flex-wrap: nowrap`.
+   *
    * @defaultValue `false`
    */
   disableWrap?: boolean;
 
   /**
+   * Set this to `true` to disable the default padding.
+   *
    * @defaultValue `false`
    */
   disablePadding?: boolean;
@@ -103,14 +109,26 @@ export interface BoxOptions {
 
   /**
    * The default value is really `center` or whatever the `$default-align-items` is set to.
+   *
    * @defaultValue `""`
    */
   justify?: BoxJustifyContent;
 
-  /** @defaultValue `false` */
+  /**
+   * Set this to `true` to set `flex-direction: column` which will stack all
+   * items in the box.
+   *
+   * @defaultValue `false`
+   */
   stacked?: boolean;
 
-  /** @defaultValue `false` */
+  /**
+   * Set this to `true` to reverse the `flex-direction`. i.e.
+   * - `flex-direction: row-reverse`
+   * - `flex-direction: column-reverse`
+   *
+   * @defaultValue `false`
+   */
   reversed?: boolean;
 }
 

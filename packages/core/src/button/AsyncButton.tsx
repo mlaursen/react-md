@@ -91,6 +91,8 @@ export interface AsyncButtonProps extends ButtonProps {
 }
 
 /**
+ * **Client Component**
+ *
  * The async button can be used to render a loading indicator within a button
  * during an async task. The loading spinner can be shown either by enabling the
  * `loading` prop or returning a promise from the `onClick` event which will

@@ -83,6 +83,17 @@ export interface AvatarProps extends HTMLAttributes<HTMLSpanElement> {
  * The avatar can consist of an image, an icon, or some text to display. When
  * the avatar is not an image, different themes can be applied to make the
  * avatar more unique.
+ *
+ * @example
+ * Simple Example
+ * ```tsx
+ * import { Avatar } from "@react-md/core";
+ * import { type ReactElement } from "react";
+ *
+ * export function Example(): ReactElement {
+ *   return <Avatar src="/path-to-img.png" />;
+ * }
+ * ```
  */
 export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
   function Avatar(props, ref) {

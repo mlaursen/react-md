@@ -1,8 +1,8 @@
-import { type ReactNode } from "react";
+import { API_ROUTES } from "./apiRoutes.js";
 
 export interface NavigationRouteItem {
   href: string;
-  children: ReactNode;
+  children: string;
   items?: readonly NavigationItem[];
 }
 
@@ -14,13 +14,13 @@ export interface NavigationDividerItem {
 export interface NavigationSubheaderItem {
   key: string;
   type: "subheader";
-  children: ReactNode;
+  children: string;
 }
 
 export interface NavigationGroupItem {
   key: string;
   type: "group";
-  children: ReactNode;
+  children: string;
   items: readonly NavigationItem[];
 }
 
@@ -561,6 +561,7 @@ export const navItems: readonly NavigationItem[] = [
       },
     ],
   },
+  API_ROUTES,
   {
     href: "/testing",
     children: "Testing",

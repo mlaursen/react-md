@@ -362,6 +362,10 @@ $row-selected-styles: (
         }
       }
 
+      &--top {
+        vertical-align: top;
+      }
+
       @if not $disable-sticky-cell {
         &--sticky {
           position: sticky;
@@ -430,7 +434,7 @@ $row-selected-styles: (
       }
 
       @if not $disable-cell-vertical-padding {
-        &--padded {
+        &--v-padding {
           @include use-var(padding-bottom, cell-vertical-padding);
           @include use-var(padding-top, cell-vertical-padding);
         }

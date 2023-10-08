@@ -1,4 +1,4 @@
-import { type NavigationItem } from "./navItems.js";
+import { type NavigationItem } from "@/constants/navItems.js";
 
 export function getHrefFromParents(parents: readonly NavigationItem[]): string {
   return parents

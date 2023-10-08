@@ -1,3 +1,4 @@
+import { type NavigationItem } from "@/constants/navItems.js";
 import {
   Divider,
   ListSubheader,
@@ -7,7 +8,6 @@ import { type ReactElement } from "react";
 import { CollapsibleNavigationItemGroup } from "./CollapsibleNavigationItemGroup.jsx";
 import { NavigationItemLink } from "./NavigationItemLink.jsx";
 import { getHrefFromParents } from "./getHrefFromParents.js";
-import { type NavigationItem } from "./navItems.js";
 
 export function RenderNavigationItem(
   props: RenderRecursiveItemsProps<NavigationItem>
