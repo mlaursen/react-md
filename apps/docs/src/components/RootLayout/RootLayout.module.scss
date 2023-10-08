@@ -19,3 +19,7 @@
     grid-template-columns: 1fr var(--toc-width);
   }
 }
+
+.scrollable {
+  overflow: auto;
+}

@@ -2,6 +2,8 @@
 import { GithubLink } from "@/components/GithubLink.jsx";
 import { WebsiteConfiguration } from "@/components/WebsiteConfiguration/WebsiteConfiguration.jsx";
 import {
+  AppBar,
+  AppBarTitle,
   Button,
   LayoutAppBar,
   LayoutNav,
@@ -20,6 +22,7 @@ import {
   type RootLayoutTitleProps,
 } from "./RootLayoutTitle.jsx";
 import { Search } from "./Search.jsx";
+import { VersionDropdown } from "./VersionDropdown.jsx";
 
 export interface RootLayoutProps {
   isMac: boolean;
@@ -62,7 +65,11 @@ export function RootLayout(props: RootLayoutProps): ReactElement {
       </LayoutNav>
       {temporary && (
         <Sheet {...temporaryNavProps}>
-          <Navigation />
+          <AppBar theme="clear">
+            <AppBarTitle>react-md</AppBarTitle>
+            <VersionDropdown {...titleProps} />
+          </AppBar>
+          <Navigation className={styles.scrollable} />
         </Sheet>
       )}
       <Main
