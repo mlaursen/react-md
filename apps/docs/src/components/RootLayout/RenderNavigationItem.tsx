@@ -1,8 +1,11 @@
 import { type NavigationItem } from "@/constants/navItems.js";
 import {
+  Avatar,
   Divider,
   ListSubheader,
+  cssUtils,
   type RenderRecursiveItemsProps,
+  type ThemeColor,
 } from "@react-md/core";
 import { type ReactElement } from "react";
 import { CollapsibleNavigationItemGroup } from "./CollapsibleNavigationItemGroup.jsx";
@@ -44,8 +47,28 @@ export function RenderNavigationItem(
     );
   }
 
+  const { isClient } = item;
+  let leftAddon: ReactElement | undefined;
+  if (typeof isClient === "boolean") {
+    const theme: ThemeColor = isClient ? "warning" : "success";
+    leftAddon = (
+      <Avatar
+        size="icon"
+        className={cssUtils({
+          textColor: `on-${theme}`,
+          backgroundColor: theme,
+        })}
+      >
+        {isClient ? "C" : "S"}
+      </Avatar>
+    );
+  }
+
   return (
-    <NavigationItemLink href={`${getHrefFromParents(parents)}${item.href}`}>
+    <NavigationItemLink
+      href={`${getHrefFromParents(parents)}${item.href}`}
+      leftAddon={leftAddon}
+    >
       {item.children}
     </NavigationItemLink>
   );

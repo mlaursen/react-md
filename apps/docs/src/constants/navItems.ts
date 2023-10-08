@@ -3,6 +3,7 @@ import { API_ROUTES } from "./apiRoutes.js";
 export interface NavigationRouteItem {
   href: string;
   children: string;
+  isClient?: boolean;
   items?: readonly NavigationItem[];
 }
 

@@ -248,6 +248,7 @@ const apiRoutes = Object.entries(apiLookup).map<NavigationRouteItem>(
   ([_name, [doc]]) => ({
     href: `/${doc.id}`,
     children: doc.name,
+    isClient: doc.isClient,
   })
 );
 await writeFile(

@@ -8,12 +8,18 @@ import {
 } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import { usePathname } from "next/navigation.js";
-import { type ReactElement } from "react";
+import { type ReactNode, type ReactElement } from "react";
 import { LinkUnstyled, type LinkUnstyledProps } from "../LinkUnstyled.jsx";
 import styles from "./NavigationItemLink.module.scss";
 
-export function NavigationItemLink(props: LinkUnstyledProps): ReactElement {
-  const { href, children } = props;
+export interface NavigationItemLinkProps extends LinkUnstyledProps {
+  leftAddon?: ReactNode;
+}
+
+export function NavigationItemLink(
+  props: NavigationItemLinkProps
+): ReactElement {
+  const { href, children, leftAddon } = props;
 
   const pathname = usePathname();
   const active = href === pathname;
@@ -32,12 +38,14 @@ export function NavigationItemLink(props: LinkUnstyledProps): ReactElement {
           button(),
           styles.link,
           active && styles.active,
+          !!leftAddon && styles.addon,
           cssUtils({
             fontWeight: active ? "bold" : undefined,
             textDecoration: "none",
           })
         )}
       >
+        {leftAddon}
         <span ref={nodeRef} className={cssUtils({ textOverflow: "ellipsis" })}>
           {children}
         </span>
