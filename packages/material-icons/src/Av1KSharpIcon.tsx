@@ -4,13 +4,12 @@ import { forwardRef } from "react";
 import type { SVGIconProps } from "@react-md/core";
 import { SVGIcon } from "@react-md/core";
 
-export default forwardRef<SVGSVGElement, SVGIconProps>(function Av1KSharpIcon(
-  props,
-  ref
-) {
-  return (
-    <SVGIcon {...props} ref={ref}>
-      <path d="M21 3H3v18h18V3zM10 15H8.5v-4.5H7V9h3v6zm7 0h-1.75l-1.75-2.25V15H12V9h1.5v2.25L15.25 9H17l-2.25 3L17 15z" />
-    </SVGIcon>
-  );
-});
+export default forwardRef<SVGSVGElement, SVGIconProps>(
+  function Av1KSharpIcon(props, ref) {
+    return (
+      <SVGIcon {...props} ref={ref}>
+        <path d="M21 3H3v18h18V3zM10 15H8.5v-4.5H7V9h3v6zm7 0h-1.75l-1.75-2.25V15H12V9h1.5v2.25L15.25 9H17l-2.25 3L17 15z" />
+      </SVGIcon>
+    );
+  }
+);

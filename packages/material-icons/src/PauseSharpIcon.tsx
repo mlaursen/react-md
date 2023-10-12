@@ -4,13 +4,12 @@ import { forwardRef } from "react";
 import type { SVGIconProps } from "@react-md/core";
 import { SVGIcon } from "@react-md/core";
 
-export default forwardRef<SVGSVGElement, SVGIconProps>(function PauseSharpIcon(
-  props,
-  ref
-) {
-  return (
-    <SVGIcon {...props} ref={ref}>
-      <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-    </SVGIcon>
-  );
-});
+export default forwardRef<SVGSVGElement, SVGIconProps>(
+  function PauseSharpIcon(props, ref) {
+    return (
+      <SVGIcon {...props} ref={ref}>
+        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+      </SVGIcon>
+    );
+  }
+);
