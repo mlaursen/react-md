@@ -12,6 +12,9 @@ interface ParsedOptions
   extends Required<RunnableCodeOptions>,
     Required<RunnableCodePreviewOptions> {
   importName: string;
+  preview: boolean;
+  editable: boolean;
+  fileName: string;
 }
 
 interface FixOptions extends ParsedOptions {
@@ -22,11 +25,27 @@ interface FixOptions extends ParsedOptions {
 }
 
 async function insertImportedCode(options: FixOptions): Promise<void> {
-  const { index, lines, isLogged, directory, importName, card, phone } =
-    options;
+  const {
+    index,
+    lines,
+    isLogged,
+    directory,
+    importName,
+    card,
+    phone,
+    preview,
+    editable,
+    fileName,
+  } = options;
 
   const demoFilePath = join(directory, importName);
-  const flags = ["preview", "editable", card && "card", phone && "phone"]
+  const flags = [
+    preview && "preview",
+    editable && "editable",
+    card && "card",
+    phone && "phone",
+    fileName && `fileName="${fileName}"`,
+  ]
     .filter(Boolean)
     .join(" ");
   const demoCode = await log(
@@ -45,22 +64,46 @@ ${demoCode}
 }
 
 const parseOptions = (line: string): ParsedOptions => {
-  const { component, card, phone, ...others } = JSON.parse(
-    line.substring(1, line.length - 1)
-  );
+  const {
+    import: importFrom,
+    component,
+    card,
+    phone,
+    preview = true,
+    editable = true,
+    fileName = "",
+    ...others
+  } = JSON.parse(line.substring(1, line.length - 1));
 
   const keys = Object.keys(others);
   if (keys.length) {
     throw new Error(`Unsupported demo props: ${keys.join(", ")}`);
   }
 
+  assertString(fileName);
+  if (typeof importFrom === "string") {
+    return {
+      importName: importFrom,
+      card: false,
+      phone: false,
+      preview: false,
+      editable: false,
+      fileName,
+    };
+  }
+
   assertString(component);
   assertBoolean(card, false);
   assertBoolean(phone, false);
+  assertBoolean(preview, true);
+  assertBoolean(editable, true);
 
   return {
     card,
     phone,
+    fileName,
+    preview,
+    editable,
     importName: component,
   };
 };

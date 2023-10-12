@@ -11,8 +11,10 @@
   },
   "sideEffects": false,
   "scripts": {
+    "prepare-release": "npm-run-all clean-dist build",
     "build": "node scripts/build.js",
-    "clean": "rm -rf .turbo node_modules *Icon.d.ts *Icon.js"
+    "clean-dist": "rm-rf  *Icon.d.ts *Icon.js",
+    "clean": "rm -rf .turbo node_modules"
   },
   "repository": {
     "type": "git",

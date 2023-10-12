@@ -12,6 +12,8 @@
   ],
   "scripts": {
     "update-docs": "node updateDocs.cjs",
+    "prepare-release": "npm-run-all clean-dist build",
+    "clean-dist": "rm -rf bin",
     "clean": "rm -rf .turbo bin node_modules",
     "build": "tsc --project tsconfig.build.json"
   },

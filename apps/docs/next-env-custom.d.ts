@@ -35,6 +35,13 @@ declare module "next/dynamic.js" {
   export = dynamic_.default;
 }
 
+declare module "next/script.js" {
+  import Script_ from "next/dist/client/script.js";
+  export * from "next/dist/client/script.js";
+
+  export = Script_.default;
+}
+
 declare module "*.mdx" {
   import type { MDXProps } from "mdx/types";
   import type { TableOfContentsItem } from "@/components/TableOfContents/types.js";

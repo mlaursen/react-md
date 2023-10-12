@@ -258,7 +258,7 @@ import { type NavigationItem } from "./navItems.js";
 
 export const API_ROUTES: NavigationItem = {
   href: "/api",
-  children: "Component/Hook API",
+  children: "Component API",
   items: ${JSON.stringify(
     alphaNumericSort(apiRoutes, {
       extractor: (item) => item.children,

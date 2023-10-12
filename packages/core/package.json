@@ -36,6 +36,7 @@
   ],
   "scripts": {
     "dev": "npm-run-all --parallel build-esm-watch build-scss-watch build-types-watch",
+    "prepare-release": "npm-run-all clean-dist build",
     "build": "npm-run-all build-esm build-scss build-types",
     "build-esm": "swc src -d ./dist",
     "build-esm-watch": "pnpm run build-esm --watch",
@@ -43,6 +44,7 @@
     "build-types-watch": "pnpm run build-types --watch",
     "build-scss": "node scripts/copySassFiles.js",
     "build-scss-watch": "pnpm run build-scss --watch",
+    "clean-dist": "rm -rf dist",
     "clean": "rm -rf .turbo dist node_modules",
     "typecheck": "tsc --noEmit",
     "lint-scripts": "eslint \"src/**/*.{ts,tsx,js,jsx,cjs,mjs}\"",

@@ -20,7 +20,7 @@ $font-size: 1.5rem !default;
 $icon-sized-size: icon.get-var(size) !default;
 $icon-sized-font-size: 0.75rem !default;
 
-$colors: (
+$default-colors: (
   red: colors.$red-a-700 colors.$red-50,
   pink: colors.$pink-600 colors.$white,
   purple: colors.$purple-700 colors.$purple-100,
@@ -40,7 +40,9 @@ $colors: (
   brown: colors.$brown-500 colors.$brown-50,
   grey: colors.$grey-700 colors.$grey-100,
   blue-grey: colors.$blue-grey-700 colors.$blue-grey-50,
-) !default;
+);
+
+$colors: $default-colors !default;
 
 $var-lookup: (
   background-color: (

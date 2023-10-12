@@ -370,6 +370,7 @@ export const navItems: readonly NavigationItem[] = [
       },
     ],
   },
+  API_ROUTES,
   {
     href: "/hooks",
     children: "Hooks",
@@ -562,7 +563,6 @@ export const navItems: readonly NavigationItem[] = [
       },
     ],
   },
-  API_ROUTES,
   {
     href: "/testing",
     children: "Testing",

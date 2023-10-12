@@ -18,7 +18,9 @@ const mdxDemos = await glob(`src/app/**/${MDX_DEMOS}`);
 
 if (isClean) {
   const tocs = await glob("src/app/**/toc.ts");
-  const pages = await glob("src/app/*/**/page.tsx");
+  const pages = await glob("src/app/*/**/page.tsx", {
+    ignore: ["api/**"],
+  });
   const demos = await glob("src/app/**/demo-page.mdx");
   await Promise.all([...tocs, ...pages, ...demos].map((path) => rm(path)));
 

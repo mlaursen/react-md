@@ -68,23 +68,6 @@ export interface FontIconClassNameOptions extends SVGIconClassNameOptions {
    * @defaultValue `"material-icons"`
    */
   iconClassName?: string;
-
-  /**
-   * Either a boolean that will enforce the 24x24 size of the font icon or a
-   * number of the size to enforce. This is useful when using other font icon
-   * libraries that do not have a consistent size.
-   *
-   * @defaultValue `false`
-   */
-  forceSize?: boolean;
-
-  /**
-   * Boolean if the `forceSize` prop should also force the `font-size` instead
-   * of only `width` and `height`.
-   *
-   * @defaultValue `false`
-   */
-  forceFontSize?: boolean;
 }
 
 /** @remarks \@since 6.0.0 */
@@ -117,8 +100,6 @@ export function icon(options: IconClassNameOptions): string {
     family = "",
     dense = false,
     inline = false,
-    forceSize = false,
-    forceFontSize = false,
     iconClassName,
   } = options as FontIconClassNameOptions &
     SVGIconClassNameOptions & {
@@ -138,8 +119,6 @@ export function icon(options: IconClassNameOptions): string {
       symbol: isSymbol,
       vab: inline,
       dense,
-      "forced-font": forceFontSize,
-      "forced-size": forceSize,
     }),
     isSymbol && `material-symbols-${family}`,
     isMaterial &&

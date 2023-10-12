@@ -1,6 +1,6 @@
 import { forwardRef, type HTMLAttributes, type ImgHTMLAttributes } from "react";
 import { type PropsWithRef } from "../types.js";
-import { avatar, avatarImage } from "./styles.js";
+import { avatar, avatarImage, type AvatarClassNameOptions } from "./styles.js";
 
 declare module "react" {
   interface CSSProperties {
@@ -15,7 +15,9 @@ declare module "react" {
 
 export type AvatarImgAttributes = ImgHTMLAttributes<HTMLImageElement>;
 
-export interface AvatarProps extends HTMLAttributes<HTMLSpanElement> {
+export interface AvatarProps
+  extends HTMLAttributes<HTMLSpanElement>,
+    AvatarClassNameOptions {
   /**
    * This should be an image `src` attribute to create an avatar from. When this
    * prop is defined, you should not add any children to the avatar as the
@@ -58,22 +60,6 @@ export interface AvatarProps extends HTMLAttributes<HTMLSpanElement> {
    * @remarks \@since 2.2.0
    */
   imgProps?: PropsWithRef<AvatarImgAttributes, HTMLImageElement>;
-
-  /**
-   * An optional color to apply to the avatar. This will apply a className of
-   * `rmd-avatar--${color}`, so only the keys from the `$rmd-avatar-colors` Map
-   * are supported by default. It is recommended to create custom colors using
-   * the `rmd-avatar-theme-update-var` mixin with custom class names if the
-   * default colors aren't extensive enough.
-   *
-   * @defaultValue `""`
-   */
-  color?: string;
-
-  /**
-   * @defaultValue `"avatar"`
-   */
-  size?: "avatar" | "icon";
 }
 
 /**
@@ -101,9 +87,10 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
       className,
       children,
       src,
-      size = "avatar",
       alt = "",
+      size = "avatar",
       color = "",
+      theme,
       imgProps,
       referrerPolicy,
       ...remaining
@@ -127,7 +114,12 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
         {...remaining}
         ref={ref}
         role="presentation"
-        className={avatar({ color, size, className })}
+        className={avatar({
+          size,
+          color,
+          theme,
+          className,
+        })}
       >
         {img}
         {children}
