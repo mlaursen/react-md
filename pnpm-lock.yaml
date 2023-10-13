@@ -321,6 +321,12 @@ importers:
       glob:
         specifier: ^10.3.10
         version: 10.3.10
+      ts-node:
+        specifier: ^10.9.1
+        version: 10.9.1(@swc/core@1.3.92)(@types/node@20.8.3)(typescript@5.2.2)
+      typescript:
+        specifier: ^5.2.2
+        version: 5.2.2
 
 packages:
 
