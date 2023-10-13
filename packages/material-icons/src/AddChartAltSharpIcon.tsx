@@ -5,10 +5,10 @@ import type { SVGIconProps } from "@react-md/core";
 import { SVGIcon } from "@react-md/core";
 
 export default forwardRef<SVGSVGElement, SVGIconProps>(
-  function InsertChartOutlinedOutlinedIcon(props, ref) {
+  function AddChartAltSharpIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path d="M9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4zm2 2H5V5h14v14zm0-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />
+        <path d="M11 9h2v8h-2V9zm-2 8v-6H7v6h2zm10 2H5V5h6V3H3v18h18v-8h-2v6zm-4-6v4h2v-4h-2zm4-8V2h-2v3h-3v2h3v3h2V7h3V5h-3z" />
       </SVGIcon>
     );
   }

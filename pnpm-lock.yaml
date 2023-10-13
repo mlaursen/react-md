@@ -318,9 +318,30 @@ importers:
       '@swc/core':
         specifier: 1.3.92
         version: 1.3.92
+      '@types/lodash':
+        specifier: ^4.14.199
+        version: 4.14.199
+      '@types/node':
+        specifier: ^20.8.3
+        version: 20.8.3
+      '@types/react':
+        specifier: ^18.2.25
+        version: 18.2.25
       glob:
         specifier: ^10.3.10
         version: 10.3.10
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
+      prettier:
+        specifier: ^3.0.3
+        version: 3.0.3
+      pretty-ms:
+        specifier: ^8.0.0
+        version: 8.0.0
+      svgo:
+        specifier: ^3.0.2
+        version: 3.0.2
       ts-node:
         specifier: ^10.9.1
         version: 10.9.1(@swc/core@1.3.92)(@types/node@20.8.3)(typescript@5.2.2)
@@ -2891,7 +2912,7 @@ packages:
     resolution: {integrity: sha512-IO+MJPVhoqz+28h1qLAcBEH2+xHMK6MTyHJc7MTnnYb6wsoLR29POVGJ7LycmVXIqyy/4/2ShP5sUwTXuOwb/w==}
     dependencies:
       '@types/minimatch': 5.1.2
-      '@types/node': 20.7.1
+      '@types/node': 20.8.3
     dev: true
 
   /@types/graceful-fs@4.1.6:
@@ -2997,10 +3018,6 @@ packages:
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}
     dev: true
 
-  /@types/node@20.7.1:
-    resolution: {integrity: sha512-LT+OIXpp2kj4E2S/p91BMe+VgGX2+lfO+XTpfXhh+bCk2LkQtHZSub8ewFBMGP5ClysPjTDFa4sMI8Q3n4T0wg==}
-    dev: true
-
   /@types/node@20.8.3:
     resolution: {integrity: sha512-jxiZQFpb+NlH5kjW49vXxvxTjeeqlbsnTAdBTKpzEdPs9itay7MscYXz3Fo9VYFEsfQ6LJFitHad3faerLAjCw==}
 
@@ -3055,7 +3072,7 @@ packages:
   /@types/through@0.0.30:
     resolution: {integrity: sha512-FvnCJljyxhPM3gkRgWmxmDZyAQSiBQQWLI0A0VFL0K7W1oRUrPJSqNO0NvTnLkBcotdlp3lKvaT0JrnyRDkzOg==}
     dependencies:
-      '@types/node': 20.7.1
+      '@types/node': 20.8.3
     dev: true
 
   /@types/tough-cookie@4.0.3:

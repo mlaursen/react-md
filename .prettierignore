@@ -12,9 +12,7 @@ CHANGELOG.md
 **/CHANGELOG.md
 
 # these will be handled automatically with the material icons script
-packages/material-icons/**/*.ts
-packages/material-icons/**/*.tsx
-packages/material-icons/**/*.mjs
+packages/material-icons/src
 packages/material-icons/*.d.ts
 packages/material-icons/*.js
 packages/codemod/bin/

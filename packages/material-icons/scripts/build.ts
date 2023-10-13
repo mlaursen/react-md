@@ -15,6 +15,10 @@ const SRC_DIR = "src";
 const existing = await glob(["*Icon.d.ts", "*Icon.js"]);
 await Promise.all(existing.map((fileName) => rm(fileName)));
 
+if (process.argv.includes("--clean-only")) {
+  process.exit(0);
+}
+
 const components = await glob("*.tsx", {
   cwd: SRC_DIR,
 });

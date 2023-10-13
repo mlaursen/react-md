@@ -11,10 +11,9 @@ node_modules
 /public
 
 *.cjs
-packages/material-icons/**/*.ts
-packages/material-icons/**/*.tsx
-packages/material-icons/**/*.mjs
-packages/material-icons/**/*.cjs
+packages/material-icons/*.mjs
+packages/material-icons/*.cjs
+packages/material-icons/src/**
 packages/codemod/transforms/**/__testfixtures__
 
 /packages/*/esm

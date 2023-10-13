@@ -11,7 +11,7 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "forceConsistentCasingInFileNames": true,
-    "lib": ["esnext"]
+    "lib": ["esnext", "dom"]
   },
   "include": ["**/*.ts"],
   "exclude": ["node_modules"],

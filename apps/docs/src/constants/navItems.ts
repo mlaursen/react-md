@@ -161,7 +161,7 @@ export const navItems: readonly NavigationItem[] = [
             children: "IconRotator",
           },
           {
-            href: "/material-icons-symbols",
+            href: "/material-icons-and-symbols",
             children: "Material Icons/Symbols",
           },
           {

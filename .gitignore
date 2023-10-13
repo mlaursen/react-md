@@ -46,7 +46,3 @@ yarn-error.log*
 
 # vercel
 .vercel
-
-# updating icons
-generating.json
-material-metadata.json
