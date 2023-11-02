@@ -10,6 +10,7 @@ import type {
   TransitionState,
 } from "./types.js";
 import { getTransitionTimeout } from "./utils.js";
+import { TRANSITION_CONFIG } from "./config.js";
 
 const INITIAL_STATE: TransitionState = {
   appearing: false,
@@ -143,11 +144,11 @@ export function useTransition<E extends HTMLElement>(
     () => {
       let stage: TransitionStage = "exited";
       if (transitionIn) {
-        stage = appear ? "enter" : "entered";
+        stage = appear && !TRANSITION_CONFIG.disabled ? "enter" : "entered";
       }
 
       return {
-        appearing: appear && transitionIn,
+        appearing: appear && transitionIn && !TRANSITION_CONFIG.disabled,
         rendered: !temporary || transitionIn,
         stage,
       };
@@ -211,8 +212,12 @@ export function useTransition<E extends HTMLElement>(
     let nextStage: TransitionStage = stage;
     switch (stage) {
       case "enter":
-        onEnter(appearing);
-        nextStage = "entering";
+        if (TRANSITION_CONFIG.disabled) {
+          nextStage = "entered";
+        } else {
+          onEnter(appearing);
+          nextStage = "entering";
+        }
         break;
       case "entering":
         onEntering(appearing);
@@ -223,8 +228,12 @@ export function useTransition<E extends HTMLElement>(
         onEntered(appearing);
         break;
       case "exit":
-        onExit();
-        nextStage = "exiting";
+        if (TRANSITION_CONFIG.disabled) {
+          nextStage = "exited";
+        } else {
+          onExit();
+          nextStage = "exiting";
+        }
         break;
       case "exiting":
         onExiting();

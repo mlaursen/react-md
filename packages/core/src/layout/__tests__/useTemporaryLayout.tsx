@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@jest/globals";
+import { beforeEach, describe, expect, it } from "@jest/globals";
 import { type ReactNode } from "react";
 import { AppBar } from "../../app-bar/AppBar.js";
 import { AppBarTitle } from "../../app-bar/AppBarTitle.js";
@@ -13,6 +13,7 @@ import {
   userEvent,
   waitFor,
 } from "../../test-utils/index.js";
+import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { Main } from "../Main.js";
 import {
   useTemporaryLayout,
@@ -53,6 +54,10 @@ function Layout(props: LayoutProps) {
 }
 
 describe("useTemporaryLayout", () => {
+  beforeEach(() => {
+    TRANSITION_CONFIG.disabled = false;
+  });
+
   it("should allow you to create a temporary layout quickly", async () => {
     const user = userEvent.setup();
     rmdRender(<Layout />);

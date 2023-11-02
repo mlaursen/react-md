@@ -1,4 +1,4 @@
-import { describe, expect, it, jest } from "@jest/globals";
+import { beforeEach, describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement } from "react";
 
 import {
@@ -20,11 +20,16 @@ import {
   DEFAULT_DESKTOP_MIN_WIDTH,
   DEFAULT_PHONE_MAX_WIDTH,
 } from "../../media-queries/appSize.js";
+import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { DropdownMenu } from "../DropdownMenu.js";
 import { MenuItem } from "../MenuItem.js";
 import { useMenuVisibility } from "../MenuVisibilityProvider.js";
 
 describe("DropdownMenu", () => {
+  beforeEach(() => {
+    TRANSITION_CONFIG.disabled = false;
+  });
+
   it("should render as a button and toggle the visibility when clicked", async () => {
     const user = userEvent.setup();
     const onItem1Click = jest.fn();

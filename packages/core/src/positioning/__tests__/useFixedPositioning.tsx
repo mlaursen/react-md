@@ -1,6 +1,7 @@
 import {
   afterEach,
   beforeAll,
+  beforeEach,
   describe,
   expect,
   it,
@@ -9,6 +10,7 @@ import {
 import { useRef, useState, type ReactElement } from "react";
 import { act, fireEvent, render } from "../../test-utils/index.js";
 
+import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { useScaleTransition } from "../../transition/useScaleTransition.js";
 import { TOP_INNER_RIGHT_ANCHOR } from "../constants.js";
 import {
@@ -58,6 +60,10 @@ function Test({ defaultVisible = false, ...options }: TestProps): ReactElement {
 describe("useFixedPositioning", () => {
   beforeAll(() => {
     jest.useFakeTimers();
+  });
+
+  beforeEach(() => {
+    TRANSITION_CONFIG.disabled = false;
   });
 
   afterEach(() => {

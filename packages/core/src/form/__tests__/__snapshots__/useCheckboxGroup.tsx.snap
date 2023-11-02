@@ -374,7 +374,7 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 3`] = `
 exports[`useCheckboxGroup should support rendering a group of MenuItemCheckbox by enabling the \`menu\` option 1`] = `
 <div
   aria-labelledby="menubutton-:rd:"
-  class="rmd-menu rmd-menu--elevated rmd-scale-transition--enter rmd-scale-transition--y-enter rmd-scale-transition--enter-active rmd-scale-transition--y-enter-active"
+  class="rmd-menu rmd-menu--elevated"
   id="menu-:rf:"
   role="menu"
   style="position: fixed; transform-origin: 0 0; left: 16px; top: 0px;"

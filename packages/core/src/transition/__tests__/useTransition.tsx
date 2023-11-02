@@ -1,6 +1,7 @@
 import {
   afterEach,
   beforeAll,
+  beforeEach,
   describe,
   expect,
   it,
@@ -14,14 +15,15 @@ import {
 } from "react";
 import { act, fireEvent, render, waitFor } from "../../test-utils/index.js";
 
+import { SsrProvider, useSsr } from "../../SsrProvider.js";
+import { useLocalStorage } from "../../useLocalStorage.js";
+import { TRANSITION_CONFIG } from "../config.js";
 import {
   type TransitionHookOptions,
   type TransitionStage,
   type TransitionTimeout,
 } from "../types.js";
 import { useTransition } from "../useTransition.js";
-import { useLocalStorage } from "../../useLocalStorage.js";
-import { SsrProvider, useSsr } from "../../SsrProvider.js";
 
 const createStageRef = (): MutableRefObject<TransitionStage[]> => ({
   current: [],
@@ -69,6 +71,10 @@ function Test({
 describe("useTransition", () => {
   beforeAll(() => {
     jest.useFakeTimers();
+  });
+
+  beforeEach(() => {
+    TRANSITION_CONFIG.disabled = false;
   });
 
   afterEach(() => {
@@ -468,5 +474,50 @@ describe("useTransition", () => {
       expect(isSsr).toBe(false);
     });
     expect(stages).toEqual(["exited"]);
+  });
+
+  it("should skip transitions if the TRANSITION_CONFIG ha disabled set to true", () => {
+    jest.spyOn(TRANSITION_CONFIG, "disabled", "get").mockReturnValue(true);
+
+    const onEnter = jest.fn();
+    const onEntering = jest.fn();
+    const onEntered = jest.fn();
+    const onExit = jest.fn();
+    const onExiting = jest.fn();
+    const onExited = jest.fn();
+    const props: TestProps = {
+      onEnter,
+      onEntering,
+      onEntered,
+      onExit,
+      onExiting,
+      onExited,
+    };
+
+    const { getByRole } = render(<Test {...props} />);
+    const toggle = getByRole("button");
+
+    expect(onEnter).not.toHaveBeenCalled();
+    expect(onEntering).not.toHaveBeenCalled();
+    expect(onEntered).not.toHaveBeenCalled();
+    expect(onExit).not.toHaveBeenCalled();
+    expect(onExiting).not.toHaveBeenCalled();
+    expect(onExited).not.toHaveBeenCalled();
+
+    fireEvent.click(toggle);
+    expect(onEnter).not.toHaveBeenCalled();
+    expect(onEntering).not.toHaveBeenCalled();
+    expect(onEntered).toHaveBeenCalledTimes(1);
+    expect(onExit).not.toHaveBeenCalled();
+    expect(onExiting).not.toHaveBeenCalled();
+    expect(onExited).not.toHaveBeenCalled();
+
+    fireEvent.click(toggle);
+    expect(onEnter).not.toHaveBeenCalled();
+    expect(onEntering).not.toHaveBeenCalled();
+    expect(onEntered).toHaveBeenCalledTimes(1);
+    expect(onExit).not.toHaveBeenCalled();
+    expect(onExiting).not.toHaveBeenCalled();
+    expect(onExited).toHaveBeenCalledTimes(1);
   });
 });

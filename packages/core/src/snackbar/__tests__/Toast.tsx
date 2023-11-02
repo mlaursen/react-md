@@ -1,4 +1,4 @@
-import { describe, expect, it, jest } from "@jest/globals";
+import { beforeEach, describe, expect, it, jest } from "@jest/globals";
 import { createRef, type ReactElement } from "react";
 import {
   rmdRender as baseRender,
@@ -8,6 +8,7 @@ import {
 } from "../../test-utils/index.js";
 
 import { FontIcon } from "../../icon/FontIcon.js";
+import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { Typography } from "../../typography/Typography.js";
 import { Toast } from "../Toast.js";
 import { CurrentToastActionsProvider } from "../useCurrentToastActions.js";
@@ -30,6 +31,10 @@ const render = (ui: ReactElement): RenderResult =>
   });
 
 describe("Toast", () => {
+  beforeEach(() => {
+    TRANSITION_CONFIG.disabled = false;
+  });
+
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {
     const ref = createRef<HTMLDivElement>();
     const props = {

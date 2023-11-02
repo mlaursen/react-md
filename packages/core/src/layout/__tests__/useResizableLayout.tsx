@@ -1,4 +1,11 @@
-import { afterEach, describe, expect, it, jest } from "@jest/globals";
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  jest,
+} from "@jest/globals";
 import { type ReactNode } from "react";
 import { AppBar } from "../../app-bar/AppBar.js";
 import { AppBarTitle } from "../../app-bar/AppBarTitle.js";
@@ -15,6 +22,7 @@ import {
   userEvent,
   waitFor,
 } from "../../test-utils/index.js";
+import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { removeItemFromStorage } from "../../useLocalStorage.js";
 import { isElementVisible } from "../../utils/isElementVisible.js";
 import { LayoutNav } from "../LayoutNav.js";
@@ -96,6 +104,10 @@ function Layout(props: LayoutProps) {
 }
 
 describe("useResizableLayout", () => {
+  beforeEach(() => {
+    TRANSITION_CONFIG.disabled = false;
+  });
+
   afterEach(() => {
     removeItemFromStorage({ key: "navWidth" });
   });

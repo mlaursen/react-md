@@ -18,6 +18,7 @@ import {
 
 import { type ReactElement, type ReactNode } from "react";
 import { Button } from "../../button/Button.js";
+import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { Snackbar, type SnackbarProps } from "../Snackbar.js";
 import {
   ToastManager,
@@ -84,6 +85,10 @@ function SimpleTest(props: SimpleTestProps): ReactElement {
 
 describe("ToastManagerProvider", () => {
   describe("default toast manager", () => {
+    beforeEach(() => {
+      TRANSITION_CONFIG.disabled = false;
+    });
+
     afterEach(() => {
       toastManager.clearToasts(true);
     });
@@ -202,6 +207,7 @@ describe("ToastManagerProvider", () => {
   describe("toast queue", () => {
     beforeEach(() => {
       jest.useFakeTimers();
+      TRANSITION_CONFIG.disabled = false;
     });
 
     afterEach(() => {

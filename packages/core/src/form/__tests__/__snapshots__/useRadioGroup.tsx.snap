@@ -597,7 +597,7 @@ exports[`useRadioGroup should support creating a required radio group 2`] = `
 exports[`useRadioGroup should support rendering within a menu 1`] = `
 <div
   aria-labelledby="menubutton-:rg:"
-  class="rmd-menu rmd-menu--elevated rmd-scale-transition--enter rmd-scale-transition--y-enter rmd-scale-transition--enter-active rmd-scale-transition--y-enter-active"
+  class="rmd-menu rmd-menu--elevated"
   id="menu-:ri:"
   role="menu"
   style="position: fixed; transform-origin: 0 0; left: 16px; top: 0px;"

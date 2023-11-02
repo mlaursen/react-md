@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@jest/globals";
+import { beforeEach, describe, expect, it } from "@jest/globals";
 import { createRef, type ReactElement } from "react";
 import {
   fireEvent,
@@ -8,6 +8,7 @@ import {
   waitFor,
 } from "../../test-utils/index.js";
 
+import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { isElementVisible } from "../../utils/isElementVisible.js";
 import { ExpansionList } from "../ExpansionList.js";
 import { ExpansionPanel, type ExpansionPanelProps } from "../ExpansionPanel.js";
@@ -50,6 +51,10 @@ function Test(props: TestProps): ReactElement {
 }
 
 describe("ExpansionPanel", () => {
+  beforeEach(() => {
+    TRANSITION_CONFIG.disabled = false;
+  });
+
   it("should default to single expansion, allowing all panels to be closed, no expanded ids, and apply hidden while collapsed", async () => {
     const { container, getByRole, getAllByRole } = render(<Test />);
     const panel1 = getByRole("button", { name: "Panel 1" });

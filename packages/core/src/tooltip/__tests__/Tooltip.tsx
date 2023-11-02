@@ -1,4 +1,11 @@
-import { afterEach, describe, expect, it, jest } from "@jest/globals";
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  jest,
+} from "@jest/globals";
 import { type ReactElement } from "react";
 import {
   act,
@@ -10,6 +17,7 @@ import {
 
 import { Button } from "../../button/Button.js";
 import { FontIcon } from "../../icon/FontIcon.js";
+import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { isElementVisible } from "../../utils/isElementVisible.js";
 import { parseCssLengthUnit } from "../../utils/parseCssLengthUnit.js";
 import { Tooltip, type TooltipProps } from "../Tooltip.js";
@@ -53,6 +61,10 @@ function Test(props: TestProps): ReactElement {
 }
 
 describe("Tooltip", () => {
+  beforeEach(() => {
+    TRANSITION_CONFIG.disabled = false;
+  });
+
   afterEach(() => {
     jest.clearAllTimers();
     jest.useRealTimers();

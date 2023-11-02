@@ -9,6 +9,7 @@ import {
   within,
 } from "../../test-utils/index.js";
 
+import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { DropdownMenu } from "../DropdownMenu.js";
 import { MenuBar } from "../MenuBar.js";
 import { MenuItem } from "../MenuItem.js";
@@ -61,6 +62,7 @@ function Test(props: TestProps): ReactElement {
 describe("MenuBar", () => {
   beforeEach(() => {
     jest.useRealTimers();
+    TRANSITION_CONFIG.disabled = false;
   });
 
   it("should support a click-first hover mode behavior by default", async () => {

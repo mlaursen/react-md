@@ -1,6 +1,7 @@
 import {
   afterEach,
   beforeAll,
+  beforeEach,
   describe,
   expect,
   it,
@@ -11,6 +12,7 @@ import { act, fireEvent, render } from "../../test-utils/index.js";
 
 import { DISPLAY_NONE_CLASS } from "../../utils/isElementVisible.js";
 import { Collapse, type CollapseProps } from "../Collapse.js";
+import { TRANSITION_CONFIG } from "../config.js";
 
 interface TestProps
   extends Omit<CollapseProps<HTMLElement>, "collapsed" | "children"> {
@@ -35,6 +37,10 @@ function Test({ defaultCollapsed = true, ...props }: TestProps): ReactElement {
 describe("useCollapseTransition", () => {
   beforeAll(() => {
     jest.useFakeTimers();
+  });
+
+  beforeEach(() => {
+    TRANSITION_CONFIG.disabled = false;
   });
 
   afterEach(() => {

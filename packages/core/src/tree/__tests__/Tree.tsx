@@ -1,4 +1,4 @@
-import { describe, expect, it, jest } from "@jest/globals";
+import { beforeEach, describe, expect, it, jest } from "@jest/globals";
 import {
   createRef,
   forwardRef,
@@ -15,6 +15,7 @@ import {
 
 import { Divider } from "../../divider/Divider.js";
 import { FontIcon } from "../../icon/FontIcon.js";
+import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { type RenderRecursiveItemsProps } from "../../utils/RenderRecursively.jsx";
 import { alphaNumericSort } from "../../utils/alphaNumericSort.js";
 import { isElementVisible } from "../../utils/isElementVisible.js";
@@ -148,6 +149,10 @@ function Test(props: TestProps): ReactElement {
 }
 
 describe("Tree", () => {
+  beforeEach(() => {
+    TRANSITION_CONFIG.disabled = false;
+  });
+
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {
     const ref = createRef<HTMLUListElement>();
     const props = {

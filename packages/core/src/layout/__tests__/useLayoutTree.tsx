@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@jest/globals";
+import { beforeEach, describe, expect, it } from "@jest/globals";
 import {
   createContext,
   forwardRef,
@@ -11,6 +11,7 @@ import {
 
 import { FontIcon } from "../../icon/FontIcon.js";
 import { rmdRender, screen, userEvent } from "../../test-utils/index.js";
+import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { Tree } from "../../tree/Tree.js";
 import { type TreeData } from "../../tree/types.js";
 import { isElementVisible } from "../../utils/isElementVisible.js";
@@ -126,6 +127,10 @@ function Test() {
 }
 
 describe("useLayoutTree", () => {
+  beforeEach(() => {
+    TRANSITION_CONFIG.disabled = false;
+  });
+
   it("should allow you to create a layout tree quickly", async () => {
     const user = userEvent.setup();
     rmdRender(<Test />, { wrapper: Wrapper });

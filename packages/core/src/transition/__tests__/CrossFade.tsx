@@ -1,6 +1,7 @@
 import {
   afterEach,
   beforeAll,
+  beforeEach,
   describe,
   expect,
   it,
@@ -8,8 +9,8 @@ import {
 } from "@jest/globals";
 import { useState, type ReactElement } from "react";
 import { act, fireEvent, render } from "../../test-utils/index.js";
-
 import { CrossFade, type CrossFadeProps } from "../CrossFade.js";
+import { TRANSITION_CONFIG } from "../config.js";
 
 interface TestProps
   extends Omit<CrossFadeProps<HTMLElement>, "transitionIn" | "children"> {
@@ -36,6 +37,10 @@ function Test({
 describe("CrossFade", () => {
   beforeAll(() => {
     jest.useFakeTimers();
+  });
+
+  beforeEach(() => {
+    TRANSITION_CONFIG.disabled = false;
   });
 
   afterEach(() => {

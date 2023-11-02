@@ -1,6 +1,7 @@
 import {
   afterEach,
   beforeAll,
+  beforeEach,
   describe,
   expect,
   it,
@@ -10,6 +11,7 @@ import { useState, type ReactElement } from "react";
 import { act, fireEvent, render } from "../../test-utils/index.js";
 
 import { CSSTransition, type CSSTransitionProps } from "../CSSTransition.js";
+import { TRANSITION_CONFIG } from "../config.js";
 import {
   type CSSTransitionClassNames,
   type TransitionTimeout,
@@ -52,6 +54,10 @@ function Test({
 describe("CSSTransition", () => {
   beforeAll(() => {
     jest.useFakeTimers();
+  });
+
+  beforeEach(() => {
+    TRANSITION_CONFIG.disabled = false;
   });
 
   afterEach(() => {

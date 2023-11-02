@@ -1,6 +1,7 @@
 import {
   afterEach,
   beforeAll,
+  beforeEach,
   describe,
   expect,
   it,
@@ -13,6 +14,7 @@ import {
   ScaleTransition,
   type ScaleTransitionProps,
 } from "../ScaleTransition.js";
+import { TRANSITION_CONFIG } from "../config.js";
 
 interface TestProps
   extends Omit<ScaleTransitionProps<HTMLElement>, "transitionIn" | "children"> {
@@ -39,6 +41,10 @@ function Test({
 describe("ScaleTransition", () => {
   beforeAll(() => {
     jest.useFakeTimers();
+  });
+
+  beforeEach(() => {
+    TRANSITION_CONFIG.disabled = false;
   });
 
   afterEach(() => {

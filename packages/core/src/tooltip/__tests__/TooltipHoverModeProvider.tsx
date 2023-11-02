@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@jest/globals";
+import { beforeEach, describe, expect, it } from "@jest/globals";
 import { type ReactElement } from "react";
 import {
   render,
@@ -9,6 +9,7 @@ import {
 } from "../../test-utils/index.js";
 
 import { Button } from "../../button/Button.js";
+import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { Tooltip } from "../Tooltip.js";
 import { TooltipHoverModeProvider } from "../TooltipHoverModeProvider.js";
 import { useTooltip } from "../useTooltip.js";
@@ -40,6 +41,10 @@ function Test(): ReactElement {
 }
 
 describe("TooltipHoverModeProvider", () => {
+  beforeEach(() => {
+    TRANSITION_CONFIG.disabled = false;
+  });
+
   it("should support hover mode behavior", async () => {
     const user = userEvent.setup();
     render(<Test />);

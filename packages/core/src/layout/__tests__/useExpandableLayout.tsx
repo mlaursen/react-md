@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@jest/globals";
+import { beforeEach, describe, expect, it } from "@jest/globals";
 import { type ReactNode } from "react";
 import { AppBar } from "../../app-bar/AppBar.js";
 import { AppBarTitle } from "../../app-bar/AppBarTitle.js";
@@ -19,6 +19,7 @@ import {
   within,
 } from "../../test-utils/index.js";
 import { matchTablet } from "../../test-utils/matchMedia.js";
+import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { isElementVisible } from "../../utils/isElementVisible.js";
 import { LayoutNav } from "../LayoutNav.js";
 import { Main } from "../Main.js";
@@ -96,6 +97,10 @@ function Layout(props: LayoutProps) {
 }
 
 describe("useExpandableLayout", () => {
+  beforeEach(() => {
+    TRANSITION_CONFIG.disabled = false;
+  });
+
   it("should allow you to create an expandable layout quickly", async () => {
     const user = userEvent.setup();
     rmdRender(<Layout />);

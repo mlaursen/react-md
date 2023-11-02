@@ -252,6 +252,7 @@ export * from "./tooltip/useOverflowTooltip.js";
 export * from "./tooltip/useTooltip.js";
 export * from "./transition/CSSTransition.js";
 export * from "./transition/Collapse.js";
+export * from "./transition/config.js";
 export * from "./transition/CrossFade.js";
 export * from "./transition/ScaleTransition.js";
 export * from "./transition/SkeletonPlaceholder.js";
