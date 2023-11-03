@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { render } from "../../test-utils/index.js";
+import { render, screen } from "../../test-utils/index.js";
 
 import { Avatar } from "../Avatar.js";
 import { avatarImage } from "../styles.js";
@@ -13,8 +13,8 @@ describe("Avatar", () => {
       ref,
     } as const;
 
-    const { getByTestId, rerender } = render(<Avatar {...props} />);
-    const avatar = getByTestId("avatar");
+    const { rerender } = render(<Avatar {...props} />);
+    const avatar = screen.getByTestId("avatar");
     expect(ref.current).toBeInstanceOf(HTMLSpanElement);
     expect(ref.current).toBe(avatar);
     expect(avatar).toMatchSnapshot();
@@ -37,10 +37,10 @@ describe("Avatar", () => {
       "data-testid": "avatar",
       src: "/some-image.png",
     } as const;
-    const { getByTestId, getByRole, rerender } = render(<Avatar {...props} />);
+    const { rerender } = render(<Avatar {...props} />);
 
-    const avatar = getByTestId("avatar");
-    const img = getByRole("img");
+    const avatar = screen.getByTestId("avatar");
+    const img = screen.getByRole("img");
     expect(img).toHaveAttribute("src", props.src);
     expect(img).toHaveAttribute("alt", "");
     expect(avatar).toMatchSnapshot();

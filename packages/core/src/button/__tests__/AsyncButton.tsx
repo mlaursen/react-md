@@ -69,6 +69,8 @@ describe("AsyncButton", () => {
     });
     await waitFor(() => {
       expect(button).not.toHaveAttribute("aria-disabled");
+    });
+    await waitFor(() => {
       expect(button).not.toHaveAttribute("disabled");
     });
     expect(() => within(button).getByRole("progressbar")).toThrow();

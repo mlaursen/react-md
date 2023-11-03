@@ -63,8 +63,8 @@ describe("CircularProgress", () => {
   });
 
   it("should be able to render as a dense size", () => {
-    const { getByRole, rerender } = render(<CircularProgress dense />);
-    const progress = getByRole("progressbar");
+    const { rerender } = render(<CircularProgress dense />);
+    const progress = screen.getByRole("progressbar");
     expect(progress).toMatchSnapshot();
 
     rerender(<CircularProgress dense disableCentered />);

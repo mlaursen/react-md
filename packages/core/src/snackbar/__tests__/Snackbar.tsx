@@ -33,9 +33,9 @@ describe("Snackbar", () => {
       "aria-label": "Notifications",
       ref,
     } as const;
-    const { getByRole, rerender } = render(<Snackbar {...props} />);
+    const { rerender } = render(<Snackbar {...props} />);
 
-    const snackbar = getByRole("status", { name: "Notifications" });
+    const snackbar = screen.getByRole("status", { name: "Notifications" });
     expect(ref.current).toBeInstanceOf(HTMLDivElement);
     expect(ref.current).toBe(snackbar);
     expect(snackbar).toMatchSnapshot();

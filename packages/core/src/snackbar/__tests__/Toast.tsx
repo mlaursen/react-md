@@ -94,12 +94,12 @@ describe("Toast", () => {
   });
 
   it("should not be in the dom while not visible", () => {
-    const { getByTestId } = render(
+    render(
       <Toast data-testid="toast" visible={false}>
         Hello
       </Toast>
     );
 
-    expect(() => getByTestId("toast")).toThrow();
+    expect(() => screen.getByTestId("toast")).toThrow();
   });
 });

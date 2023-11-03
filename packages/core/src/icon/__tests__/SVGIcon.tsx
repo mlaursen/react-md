@@ -1,17 +1,17 @@
 import { describe, expect, it } from "@jest/globals";
-import { render } from "../../test-utils/index.js";
+import { render, screen } from "../../test-utils/index.js";
 
 import { SVGIcon } from "../SVGIcon.js";
 
 describe("SVGIcon", () => {
   it("should default to setting aria-hidden", () => {
-    const { getByTestId } = render(<SVGIcon data-testid="icon" />);
-    expect(getByTestId("icon").getAttribute("aria-hidden")).toBe("true");
+    render(<SVGIcon data-testid="icon" />);
+    expect(screen.getByTestId("icon").getAttribute("aria-hidden")).toBe("true");
   });
 
   it("should default to setting focusable false to fix IE bugs of custom focus", () => {
-    const { getByTestId } = render(<SVGIcon data-testid="icon" />);
-    expect(getByTestId("icon").getAttribute("focusable")).toBe("false");
+    render(<SVGIcon data-testid="icon" />);
+    expect(screen.getByTestId("icon").getAttribute("focusable")).toBe("false");
   });
 
   it("should render correctly", () => {
@@ -34,6 +34,7 @@ describe("SVGIcon", () => {
     const { container } = render(<SVGIcon use="#some-sprite" />);
     expect(container).toMatchSnapshot();
 
+    // eslint-disable-next-line testing-library/no-container
     expect(container.querySelector("use")).not.toBeNull();
   });
 });

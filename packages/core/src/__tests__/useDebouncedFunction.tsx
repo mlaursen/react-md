@@ -4,6 +4,7 @@ import {
   act,
   fireEvent,
   render,
+  screen,
   userEvent,
   waitFor,
 } from "../test-utils/index.js";
@@ -34,9 +35,9 @@ describe("useDebouncedFunction", () => {
       );
     }
 
-    const { getByRole, getByTestId, unmount } = render(<Test />);
-    const output = getByTestId("output");
-    const field = getByRole("textbox", { name: "Field" });
+    const { unmount } = render(<Test />);
+    const output = screen.getByTestId("output");
+    const field = screen.getByRole("textbox", { name: "Field" });
 
     expect(output).toHaveTextContent("");
     expect(field).toHaveValue("");
@@ -47,6 +48,8 @@ describe("useDebouncedFunction", () => {
 
     await waitFor(() => {
       expect(output).toHaveTextContent("Hello, world!");
+    });
+    await waitFor(() => {
       expect(field).toHaveValue("Hello, world!");
     });
     expect(fired).toHaveBeenCalledTimes(1);

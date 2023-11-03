@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@jest/globals";
-import { render } from "../../test-utils/index.js";
+import { render, screen } from "../../test-utils/index.js";
 
 import { TextIconSpacing } from "../TextIconSpacing.js";
 
@@ -19,41 +19,41 @@ describe("TextIconSpacing", () => {
   });
 
   it("should render the icon before the children by default", () => {
-    const { container, getByTestId } = render(
+    const { container } = render(
       <TextIconSpacing icon={<i data-testid="icon" />}>
         <span data-testid="span" />
       </TextIconSpacing>
     );
 
-    const icon = getByTestId("icon");
-    const span = getByTestId("span");
+    const icon = screen.getByTestId("icon");
+    const span = screen.getByTestId("span");
     expect(container).toMatchSnapshot();
     expect(container.firstChild).toBe(icon);
     expect(container.lastChild).toBe(span);
   });
 
   it("should render the icon after the children if the iconAfter prop is enabled", () => {
-    const { container, getByTestId } = render(
+    const { container } = render(
       <TextIconSpacing icon={<i data-testid="icon" />} iconAfter>
         <span data-testid="span" />
       </TextIconSpacing>
     );
 
-    const icon = getByTestId("icon");
-    const span = getByTestId("span");
+    const icon = screen.getByTestId("icon");
+    const span = screen.getByTestId("span");
     expect(container).toMatchSnapshot();
     expect(container.firstChild).toBe(span);
     expect(container.lastChild).toBe(icon);
   });
 
   it("should clone the default class names into the icon element", () => {
-    const { rerender, getByTestId } = render(
+    const { rerender } = render(
       <TextIconSpacing icon={<i data-testid="icon" />}>
         <span />
       </TextIconSpacing>
     );
 
-    let icon = getByTestId("icon");
+    let icon = screen.getByTestId("icon");
     expect(icon.className).toBe("rmd-icon--before");
 
     rerender(
@@ -61,7 +61,7 @@ describe("TextIconSpacing", () => {
         <span />
       </TextIconSpacing>
     );
-    icon = getByTestId("icon");
+    icon = screen.getByTestId("icon");
     expect(icon.className).toBe("rmd-icon--after");
   });
 
@@ -88,23 +88,21 @@ describe("TextIconSpacing", () => {
       children: <span>children</span>,
       flexReverse: true,
     };
-    const { container, getByTestId, rerender } = render(
-      <TextIconSpacing {...props} />
-    );
+    const { container, rerender } = render(<TextIconSpacing {...props} />);
     expect(container).toMatchSnapshot();
 
-    expect(getByTestId("icon").className).toContain("rmd-icon--after");
+    expect(screen.getByTestId("icon").className).toContain("rmd-icon--after");
 
     rerender(<TextIconSpacing {...props} iconAfter />);
     expect(container).toMatchSnapshot();
-    expect(getByTestId("icon").className).toContain("rmd-icon--before");
+    expect(screen.getByTestId("icon").className).toContain("rmd-icon--before");
 
     rerender(<TextIconSpacing {...props} stacked />);
     expect(container).toMatchSnapshot();
-    expect(getByTestId("icon").className).toContain("rmd-icon--below");
+    expect(screen.getByTestId("icon").className).toContain("rmd-icon--below");
 
     rerender(<TextIconSpacing {...props} stacked iconAfter />);
     expect(container).toMatchSnapshot();
-    expect(getByTestId("icon").className).toContain("rmd-icon--above");
+    expect(screen.getByTestId("icon").className).toContain("rmd-icon--above");
   });
 });

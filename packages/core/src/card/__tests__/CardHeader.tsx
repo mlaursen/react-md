@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { render } from "../../test-utils/index.js";
+import { render, screen } from "../../test-utils/index.js";
 
 import { Button } from "../../button/Button.js";
 import { CardHeader } from "../CardHeader.js";
@@ -15,9 +15,9 @@ describe("CardHeader", () => {
       ref,
       children: "Header",
     } as const;
-    const { getByTestId, rerender } = render(<CardHeader {...props} />);
+    const { rerender } = render(<CardHeader {...props} />);
 
-    const header = getByTestId("header");
+    const header = screen.getByTestId("header");
     expect(ref.current).toBeInstanceOf(HTMLElement);
     expect(ref.current).toBe(header);
     expect(header).toMatchSnapshot();
@@ -47,7 +47,7 @@ describe("CardHeader", () => {
   });
 
   it("should allow addons before and after the children", () => {
-    const { getByTestId } = render(
+    render(
       <CardHeader
         data-testid="header"
         beforeAddon={<img src="/some-image.png" alt="" />}
@@ -60,7 +60,7 @@ describe("CardHeader", () => {
       </CardHeader>
     );
 
-    const header = getByTestId("header");
+    const header = screen.getByTestId("header");
     expect(header).toMatchSnapshot();
   });
 });

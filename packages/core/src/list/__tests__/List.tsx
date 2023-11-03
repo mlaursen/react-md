@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { render } from "../../test-utils/index.js";
+import { render, screen } from "../../test-utils/index.js";
 
 import { type PropsWithRef } from "../../types.js";
 import { List, list, type ListElement, type ListProps } from "../List.js";
@@ -8,9 +8,9 @@ import { List, list, type ListElement, type ListProps } from "../List.js";
 describe("List", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {
     const ref = createRef<ListElement>();
-    const { getByRole, rerender } = render(<List ref={ref} />);
+    const { rerender } = render(<List ref={ref} />);
 
-    const unorderedList = getByRole("none");
+    const unorderedList = screen.getByRole("none");
     expect(ref.current).toBeInstanceOf(HTMLUListElement);
     expect(ref.current).toBe(unorderedList);
     expect(unorderedList).toMatchSnapshot();
@@ -33,7 +33,7 @@ describe("List", () => {
     rerender(<List ref={ref} ordered />);
     expect(unorderedList).not.toBeInTheDocument();
 
-    const orderedList = getByRole("none");
+    const orderedList = screen.getByRole("none");
     expect(ref.current).toBeInstanceOf(HTMLOListElement);
     expect(ref.current).toBe(orderedList);
     expect(orderedList).toMatchSnapshot();
@@ -44,10 +44,10 @@ describe("List", () => {
   });
 
   it("should allow the role to be overridden", () => {
-    const { getByRole } = render(<List role="menu" />);
+    render(<List role="menu" />);
 
-    expect(() => getByRole("none")).toThrow();
-    expect(() => getByRole("menu")).not.toThrow();
+    expect(() => screen.getByRole("none")).toThrow();
+    expect(() => screen.getByRole("menu")).not.toThrow();
   });
 
   describe("styling utility class", () => {

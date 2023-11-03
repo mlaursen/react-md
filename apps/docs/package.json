@@ -60,7 +60,7 @@
   },
   "devDependencies": {
     "@mdx-js/mdx": "^3.0.0",
-    "@mlaursen/eslint-config": "^3.0.0",
+    "@mlaursen/eslint-config": "^4.0.0",
     "@types/js-cookie": "^3.0.5",
     "@types/lodash": "^4.14.200",
     "@types/mdx": "^2.0.9",

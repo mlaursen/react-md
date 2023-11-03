@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { type ReactElement } from "react";
-import { render } from "../test-utils/index.js";
+import { render, screen } from "../test-utils/index.js";
 
 import { NoSsr } from "../NoSsr.js";
 import { SsrProvider, useSsr } from "../SsrProvider.js";
@@ -15,17 +15,17 @@ describe("NoSsr", () => {
       return <p>Some Text</p>;
     }
 
-    const { getByText } = render(
+    render(
       <NoSsr>
         <Content />
       </NoSsr>
     );
 
-    expect(() => getByText("Some Text")).not.toThrow();
+    expect(() => screen.getByText("Some Text")).not.toThrow();
   });
 
   it("should always render the children if ssr mode has not been initialized", () => {
-    const { getByText } = render(
+    render(
       <SsrProvider>
         <NoSsr>
           <Content />
@@ -33,7 +33,7 @@ describe("NoSsr", () => {
       </SsrProvider>
     );
 
-    expect(() => getByText("Some Text")).not.toThrow();
+    expect(() => screen.getByText("Some Text")).not.toThrow();
   });
 
   // I don't really know how to test this part

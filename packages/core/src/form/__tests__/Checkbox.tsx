@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { render } from "../../test-utils/index.js";
+import { render, screen } from "../../test-utils/index.js";
 
 import { Checkbox } from "../Checkbox.js";
 
@@ -12,9 +12,9 @@ describe("Checkbox", () => {
       label: "Checkbox",
     } as const;
 
-    const { getByRole, container, rerender } = render(<Checkbox {...props} />);
+    const { container, rerender } = render(<Checkbox {...props} />);
 
-    const checkbox = getByRole("checkbox", { name: "Checkbox" });
+    const checkbox = screen.getByRole("checkbox", { name: "Checkbox" });
     expect(ref.current).toBeInstanceOf(HTMLInputElement);
     expect(ref.current).toBe(checkbox);
     expect(container).toMatchSnapshot();
@@ -34,9 +34,9 @@ describe("Checkbox", () => {
 
   it("should disable autoComplete to fix a firefox bug", () => {
     // https://stackoverflow.com/questions/5985839/bug-with-firefox-disabled-attribute-of-input-not-resetting-when-refreshing
-    const { getByRole } = render(<Checkbox />);
+    render(<Checkbox />);
 
-    const checkbox = getByRole("checkbox");
+    const checkbox = screen.getByRole("checkbox");
     expect(checkbox).toHaveAttribute("autocomplete", "off");
   });
 });

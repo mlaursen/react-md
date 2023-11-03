@@ -1,17 +1,15 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { render } from "../../test-utils/index.js";
+import { render, screen } from "../../test-utils/index.js";
 
 import { appBarTitle, AppBarTitle } from "../AppBarTitle.js";
 
 describe("AppBarTitle", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {
     const ref = createRef<HTMLHeadingElement>();
-    const { getByRole, rerender } = render(
-      <AppBarTitle ref={ref}>Title</AppBarTitle>
-    );
+    const { rerender } = render(<AppBarTitle ref={ref}>Title</AppBarTitle>);
 
-    const title = getByRole("heading", { name: "Title" });
+    const title = screen.getByRole("heading", { name: "Title" });
     expect(ref.current).toBeInstanceOf(HTMLHeadingElement);
     expect(ref.current).toBe(title);
     expect(title).toMatchSnapshot();

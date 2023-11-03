@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { render } from "../../test-utils/index.js";
+import { render, screen } from "../../test-utils/index.js";
 
 import { Legend } from "../Legend.js";
 
@@ -12,9 +12,9 @@ describe("Legend", () => {
       ref,
       children: "Content",
     } as const;
-    const { getByTestId, rerender } = render(<Legend {...props} />);
+    const { rerender } = render(<Legend {...props} />);
 
-    const fieldset = getByTestId("fieldset");
+    const fieldset = screen.getByTestId("fieldset");
     expect(ref.current).toBeInstanceOf(HTMLLegendElement);
     expect(ref.current).toBe(fieldset);
     expect(fieldset).toMatchSnapshot();

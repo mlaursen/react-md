@@ -8,7 +8,7 @@ import {
   jest,
 } from "@jest/globals";
 import { useState, type ReactElement } from "react";
-import { act, fireEvent, render } from "../../test-utils/index.js";
+import { act, fireEvent, render, screen } from "../../test-utils/index.js";
 
 import { DISPLAY_NONE_CLASS } from "../../utils/isElementVisible.js";
 import { Collapse, type CollapseProps } from "../Collapse.js";
@@ -48,9 +48,9 @@ describe("useCollapseTransition", () => {
   });
 
   it("should default to not rendering the element when transitionIn is false", () => {
-    const { container, getByRole, getByTestId } = render(<Test />);
-    const getElement = (): HTMLElement => getByTestId("element");
-    const toggle = getByRole("button");
+    const { container } = render(<Test />);
+    const getElement = (): HTMLElement => screen.getByTestId("element");
+    const toggle = screen.getByRole("button");
 
     expect(getElement).toThrow();
 
@@ -76,11 +76,9 @@ describe("useCollapseTransition", () => {
   });
 
   it(`should apply the ${DISPLAY_NONE_CLASS} if the temporary behavior is disabled`, () => {
-    const { container, getByRole, getByTestId } = render(
-      <Test temporary={false} />
-    );
-    const toggle = getByRole("button");
-    const element = getByTestId("element");
+    const { container } = render(<Test temporary={false} />);
+    const toggle = screen.getByRole("button");
+    const element = screen.getByTestId("element");
 
     expect(element).toHaveClass(DISPLAY_NONE_CLASS);
     expect(container).toMatchSnapshot();
@@ -108,10 +106,10 @@ describe("useCollapseTransition", () => {
   });
 
   it("should default to not being temporary if the minHeight, minPaddingTop, or minPaddingBottom are not 0", () => {
-    const { container, getByTestId, rerender } = render(
+    const { container, rerender } = render(
       <Test key="first-test" minHeight={120} />
     );
-    const getElement = (): HTMLElement => getByTestId("element");
+    const getElement = (): HTMLElement => screen.getByTestId("element");
 
     expect(getElement).not.toThrow();
     expect(container).toMatchSnapshot();
@@ -138,10 +136,8 @@ describe("useCollapseTransition", () => {
   });
 
   it("should not apply any style if it mounts while collapsed is false", () => {
-    const { container, getByTestId } = render(
-      <Test defaultCollapsed={false} />
-    );
-    const element = getByTestId("element");
+    const { container } = render(<Test defaultCollapsed={false} />);
+    const element = screen.getByTestId("element");
     expect(element.style.minHeight).toBe("");
     expect(element.style.paddingBottom).toBe("");
     expect(element.style.paddingTop).toBe("");
@@ -164,8 +160,8 @@ describe("useCollapseTransition", () => {
       onExited,
     };
 
-    const { getByRole } = render(<Test {...props} />);
-    const toggle = getByRole("button");
+    render(<Test {...props} />);
+    const toggle = screen.getByRole("button");
 
     expect(onEnter).not.toHaveBeenCalled();
     expect(onEntering).not.toHaveBeenCalled();

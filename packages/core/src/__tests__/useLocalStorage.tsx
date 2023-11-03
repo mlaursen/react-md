@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it } from "@jest/globals";
 import lzString from "lz-string";
 import { useEffect, type ReactElement } from "react";
-import { act, fireEvent, render } from "../test-utils/index.js";
+import { act, fireEvent, render, screen } from "../test-utils/index.js";
 
 import { Button } from "../button/Button.js";
 import { SsrProvider } from "../SsrProvider.js";
@@ -78,8 +78,8 @@ describe("useLocalStorage", () => {
     }
 
     expect(localStorage.getItem(TEST_KEY)).toBe(null);
-    const { getByRole, getAllByRole, unmount } = render(<Test />);
-    const cells = getAllByRole("cell");
+    const { unmount } = render(<Test />);
+    const cells = screen.getAllByRole("cell");
     expect(cells).toHaveLength(5);
 
     const [a, b, c, d, e] = cells;
@@ -91,7 +91,7 @@ describe("useLocalStorage", () => {
 
     expect(localStorage.getItem(TEST_KEY)).toBe(JSON.stringify(defaultValue));
 
-    fireEvent.click(getByRole("button", { name: "Button" }));
+    fireEvent.click(screen.getByRole("button", { name: "Button" }));
     expect(a).toHaveTextContent("welcome");
     expect(b).toHaveTextContent("0");
     expect(c).toHaveTextContent("a");
@@ -138,11 +138,11 @@ describe("useLocalStorage", () => {
       );
     }
 
-    const { getByTestId, getByRole } = render(<Test />);
-    const value = getByTestId("value");
+    render(<Test />);
+    const value = screen.getByTestId("value");
     expect(value).toHaveTextContent("-1");
 
-    const shouldWork = getByRole("button", { name: "Should Work" });
+    const shouldWork = screen.getByRole("button", { name: "Should Work" });
     fireEvent.click(shouldWork);
     expect(value).toHaveTextContent("100");
     expect(localStorage.getItem(TEST_KEY)).toBe("100");
@@ -177,9 +177,9 @@ describe("useLocalStorage", () => {
       );
     }
 
-    const { getByRole, getByTestId } = render(<Test />);
-    const value = getByTestId("value");
-    const button = getByRole("button", { name: "Button" });
+    render(<Test />);
+    const value = screen.getByTestId("value");
+    const button = screen.getByRole("button", { name: "Button" });
     expect(value).toHaveTextContent(JSON.stringify(defaultValue));
     expect(localStorage.getItem(TEST_KEY)).toBe(
       lzString.compress(JSON.stringify(defaultValue))
@@ -264,8 +264,8 @@ describe("useLocalStorage", () => {
       return <div data-testid="value">{JSON.stringify(value)}</div>;
     }
 
-    const { getByTestId } = render(<Test />);
-    const value = getByTestId("value");
+    render(<Test />);
+    const value = screen.getByTestId("value");
     expect(value).toHaveTextContent(
       JSON.stringify({
         username: "existing username",
@@ -299,11 +299,11 @@ describe("useLocalStorage", () => {
       );
     }
 
-    const { getByRole, getByTestId } = render(<Test />);
-    const value = getByTestId("value");
-    const setValue = getByRole("button", { name: "Set Value" });
-    const remove = getByRole("button", { name: "Remove" });
-    const persist = getByRole("button", { name: "Persist" });
+    render(<Test />);
+    const value = screen.getByTestId("value");
+    const setValue = screen.getByRole("button", { name: "Set Value" });
+    const remove = screen.getByRole("button", { name: "Remove" });
+    const persist = screen.getByRole("button", { name: "Persist" });
 
     expect(value).toBeEmptyDOMElement();
     expect(localStorage.length).toBe(0);
@@ -330,8 +330,8 @@ describe("useLocalStorage", () => {
       return <div data-testid="value">{value}</div>;
     }
 
-    const { getByTestId } = render(<Test />);
-    const value = getByTestId("value");
+    render(<Test />);
+    const value = screen.getByTestId("value");
     expect(value).toBeEmptyDOMElement();
 
     act(() => {
@@ -364,13 +364,13 @@ describe("useLocalStorage", () => {
     }
 
     localStorage.setItem(TEST_KEY, "stored value");
-    const { getByTestId } = render(
+    render(
       <SsrProvider ssr>
         <Test />
       </SsrProvider>
     );
 
-    const value = getByTestId("value");
+    const value = screen.getByTestId("value");
     expect(initialValue).toBe("");
     expect(value).toHaveTextContent("stored value");
   });

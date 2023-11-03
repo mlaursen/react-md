@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { type ReactElement } from "react";
-import { fireEvent, render } from "../test-utils/index.js";
+import { fireEvent, render, screen } from "../test-utils/index.js";
 
 import { useToggle } from "../useToggle.js";
 
@@ -25,12 +25,12 @@ function Test(): ReactElement {
 
 describe("useToggle", () => {
   it("should work as expected with no arguments", () => {
-    const { getByRole, getByTestId } = render(<Test />);
+    render(<Test />);
 
-    const output = getByTestId("output");
-    const toggle = getByRole("button", { name: "Toggle" });
-    const enable = getByRole("button", { name: "Enable" });
-    const disable = getByRole("button", { name: "Disable" });
+    const output = screen.getByTestId("output");
+    const toggle = screen.getByRole("button", { name: "Toggle" });
+    const enable = screen.getByRole("button", { name: "Enable" });
+    const disable = screen.getByRole("button", { name: "Disable" });
     expect(output).toHaveTextContent("false");
 
     fireEvent.click(toggle);
@@ -57,9 +57,9 @@ describe("useToggle", () => {
       return <div data-testid="output">{`${toggled}`}</div>;
     }
 
-    const { getByTestId } = render(<Test />);
+    render(<Test />);
 
-    const output = getByTestId("output");
+    const output = screen.getByTestId("output");
     expect(output).toHaveTextContent("true");
   });
 
@@ -70,9 +70,9 @@ describe("useToggle", () => {
       return <div data-testid="output">{`${toggled}`}</div>;
     }
 
-    const { getByTestId } = render(<Test />);
+    render(<Test />);
 
-    const output = getByTestId("output");
+    const output = screen.getByTestId("output");
     expect(output).toHaveTextContent("true");
   });
 });

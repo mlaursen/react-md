@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { render } from "../../test-utils/index.js";
+import { render, screen } from "../../test-utils/index.js";
 
 import { Table } from "../Table.js";
 import { TableBody } from "../TableBody.js";
@@ -20,13 +20,13 @@ describe("TableBody", () => {
       ),
     } as const;
 
-    const { getByTestId, rerender } = render(
+    const { rerender } = render(
       <Table>
         <TableBody {...props} />
       </Table>
     );
 
-    const body = getByTestId("body");
+    const body = screen.getByTestId("body");
     expect(body).toMatchSnapshot();
 
     rerender(

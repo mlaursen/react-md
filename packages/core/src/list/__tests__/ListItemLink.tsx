@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { forwardRef, type HTMLAttributes, type ReactElement } from "react";
-import { render } from "../../test-utils/index.js";
+import { render, screen } from "../../test-utils/index.js";
 
 import { Link } from "../../link/Link.js";
 import { List } from "../List.js";
@@ -8,12 +8,12 @@ import { ListItemLink } from "../ListItemLink.js";
 
 describe("ListItemLink", () => {
   it("should render as an <a> element by default", () => {
-    const { getByRole, container } = render(
+    const { container } = render(
       <List>
         <ListItemLink href="/link">Hello</ListItemLink>
       </List>
     );
-    const link = getByRole("link", { name: "Hello" });
+    const link = screen.getByRole("link", { name: "Hello" });
     expect(link).toBeInstanceOf(HTMLAnchorElement);
     expect(link.parentElement).toBeInstanceOf(HTMLLIElement);
 
@@ -21,14 +21,14 @@ describe("ListItemLink", () => {
   });
 
   it("should allow for a custom link component using the as prop", () => {
-    const { getByRole, container } = render(
+    const { container } = render(
       <List>
         <ListItemLink as={Link} href="/link">
           Hello
         </ListItemLink>
       </List>
     );
-    const link = getByRole("link", { name: "Hello" });
+    const link = screen.getByRole("link", { name: "Hello" });
     expect(link).toBeInstanceOf(HTMLAnchorElement);
     expect(link.parentElement).toBeInstanceOf(HTMLLIElement);
 
@@ -60,7 +60,7 @@ describe("ListItemLink", () => {
       }
     );
 
-    const { getByRole, container, rerender } = render(
+    const { container, rerender } = render(
       <List>
         <ListItemLink
           // custom links **must** allow for a ref to be passed
@@ -80,7 +80,7 @@ describe("ListItemLink", () => {
         </ListItemLink>
       </List>
     );
-    const link = getByRole("link", { name: "Hello" });
+    const link = screen.getByRole("link", { name: "Hello" });
     expect(link).toBeInstanceOf(HTMLAnchorElement);
     expect(link.parentElement).toBeInstanceOf(HTMLLIElement);
 

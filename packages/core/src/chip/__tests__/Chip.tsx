@@ -21,9 +21,9 @@ describe("Chip", () => {
       ref,
       children: "Chip",
     } as const;
-    const { getByRole, rerender } = render(<Chip {...props} />);
+    const { rerender } = render(<Chip {...props} />);
 
-    const chip = getByRole("button", { name: "Chip" });
+    const chip = screen.getByRole("button", { name: "Chip" });
     expect(ref.current).toBeInstanceOf(HTMLButtonElement);
     expect(ref.current).toBe(chip);
     expect(chip).toMatchSnapshot();
@@ -51,8 +51,8 @@ describe("Chip", () => {
     const modeMock = jest
       .spyOn(INTERACTION_CONFIG, "mode", "get")
       .mockReturnValue("press");
-    const { getByRole, rerender } = render(<Chip raisable>Chip</Chip>);
-    const chip = getByRole("button");
+    const { rerender } = render(<Chip raisable>Chip</Chip>);
+    const chip = screen.getByRole("button");
 
     fireEvent.mouseDown(chip);
     expect(chip).toHaveClass("rmd-chip--pressed");
@@ -86,8 +86,8 @@ describe("Chip", () => {
       children: "Content",
     } as const;
 
-    const { getByRole, rerender } = render(<Chip {...props} />);
-    const chip = getByRole("button", { name: "Content" });
+    const { rerender } = render(<Chip {...props} />);
+    const chip = screen.getByRole("button", { name: "Content" });
 
     expect(ref.current).toBeInstanceOf(HTMLSpanElement);
     expect(ref.current).toBe(chip.firstElementChild);
@@ -99,7 +99,7 @@ describe("Chip", () => {
   });
 
   it("should allow for addons to appear before and after the children", () => {
-    const { getByRole } = render(
+    render(
       <Chip
         leftAddon={<FontIcon>favorite</FontIcon>}
         rightAddon={<FontIcon>close</FontIcon>}
@@ -108,7 +108,7 @@ describe("Chip", () => {
       </Chip>
     );
 
-    const chip = getByRole("button", { name: "Content" });
+    const chip = screen.getByRole("button", { name: "Content" });
     expect(chip).toMatchSnapshot();
   });
 
@@ -119,11 +119,9 @@ describe("Chip", () => {
       ref,
       children: "Content",
     } as const;
-    const { getByTestId, rerender } = render(
-      <Chip {...props} noninteractive />
-    );
+    const { rerender } = render(<Chip {...props} noninteractive />);
 
-    let chip = getByTestId("chip");
+    let chip = screen.getByTestId("chip");
     expect(chip).toBeInstanceOf(HTMLSpanElement);
     expect(chip).not.toHaveAttribute("aria-pressed");
     expect(chip).not.toHaveAttribute("type");
@@ -132,7 +130,7 @@ describe("Chip", () => {
     expect(chip).toMatchSnapshot();
 
     rerender(<Chip {...props} />);
-    chip = getByTestId("chip");
+    chip = screen.getByTestId("chip");
     expect(chip).toBeInstanceOf(HTMLButtonElement);
     expect(chip).toHaveAttribute("type", "button");
     expect(chip).not.toHaveAttribute("disabled");
@@ -142,12 +140,12 @@ describe("Chip", () => {
 
   describe("selectable chips", () => {
     it("should update the aria-pressed state based on the selected state for interactable chips", () => {
-      const { getByTestId, rerender } = render(
+      const { rerender } = render(
         <Chip data-testid="chip" selected={false}>
           Chip
         </Chip>
       );
-      const buttonChip = getByTestId("chip");
+      const buttonChip = screen.getByTestId("chip");
       expect(buttonChip).not.toHaveAttribute("aria-pressed");
 
       rerender(
@@ -163,7 +161,7 @@ describe("Chip", () => {
         </Chip>
       );
 
-      const spanChip = getByTestId("chip");
+      const spanChip = screen.getByTestId("chip");
       expect(spanChip).not.toHaveAttribute("aria-pressed", "true");
     });
 
@@ -173,8 +171,8 @@ describe("Chip", () => {
         children: "Chip",
       } as const;
 
-      const { getByRole, rerender } = render(<Chip {...props} />);
-      const chip = getByRole("button");
+      const { rerender } = render(<Chip {...props} />);
+      const chip = screen.getByRole("button");
       expect(chip).toMatchSnapshot();
 
       rerender(<Chip {...props} selected />);
@@ -236,13 +234,13 @@ describe("Chip", () => {
     });
 
     it("should allow for a custom selectedIcon", () => {
-      const { getByRole, rerender } = render(
+      const { rerender } = render(
         <Chip selected={false} selectedIcon={<FontIcon>favorite</FontIcon>}>
           Chip
         </Chip>
       );
 
-      const chip = getByRole("button");
+      const chip = screen.getByRole("button");
       expect(chip).toMatchSnapshot();
 
       rerender(
@@ -289,8 +287,8 @@ describe("Chip", () => {
         disableIconTransition: true,
       } as const;
 
-      const { getByRole, rerender } = render(<Chip {...props} />);
-      const chip = getByRole("button");
+      const { rerender } = render(<Chip {...props} />);
+      const chip = screen.getByRole("button");
       expect(chip).toMatchSnapshot();
 
       rerender(<Chip {...props} selected />);

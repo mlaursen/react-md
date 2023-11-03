@@ -9,6 +9,7 @@ describe("PortalContainerProvider", () => {
   it("should not render portals server side", () => {
     expect(typeof document).toBe("undefined");
 
+    // eslint-disable-next-line testing-library/render-result-naming-convention
     const result = renderToString(
       <PortalContainerProvider>
         <Portal>

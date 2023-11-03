@@ -1,6 +1,6 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement } from "react";
-import { fireEvent, render } from "../../test-utils/index.js";
+import { fireEvent, render, screen } from "../../test-utils/index.js";
 
 import {
   UserInteractionModeProvider,
@@ -103,13 +103,13 @@ describe("UserInteractionModeProvider", () => {
       return <span data-testid="mode">{mode}</span>;
     }
 
-    const { getByTestId } = render(
+    render(
       <UserInteractionModeProvider>
         <Test />
       </UserInteractionModeProvider>
     );
 
-    const mode = getByTestId("mode");
+    const mode = screen.getByTestId("mode");
     expect(mode.textContent).toBe("mouse");
 
     fireEvent.keyDown(window);

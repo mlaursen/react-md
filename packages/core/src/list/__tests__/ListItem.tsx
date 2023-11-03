@@ -3,6 +3,7 @@ import { createRef, type ReactElement, type Ref } from "react";
 import {
   fireEvent,
   render,
+  screen,
   userEvent,
   waitFor,
 } from "../../test-utils/index.js";
@@ -30,9 +31,9 @@ function Test(props: TestProps): ReactElement {
 describe("ListItem", () => {
   it("should apply the correct styling, HTMLAttributes, and allow a ref", () => {
     const nodeRef = createRef<HTMLLIElement>();
-    const { getByRole, rerender } = render(<Test nodeRef={nodeRef} />);
+    const { rerender } = render(<Test nodeRef={nodeRef} />);
 
-    const item = getByRole("button", { name: "Item" });
+    const item = screen.getByRole("button", { name: "Item" });
     expect(nodeRef.current).toBeInstanceOf(HTMLLIElement);
     expect(nodeRef.current).toBe(item);
     expect(item).toMatchSnapshot();
@@ -69,11 +70,11 @@ describe("ListItem", () => {
   it("should implement the correct click behavior", async () => {
     const onClick = jest.fn();
     const props: TestProps = { onClick };
-    const { getByRole, rerender } = render(<Test {...props} />, {
+    const { rerender } = render(<Test {...props} />, {
       wrapper: UserInteractionModeProvider,
     });
 
-    const item = getByRole("button", { name: "Item" });
+    const item = screen.getByRole("button", { name: "Item" });
     expect(item).toHaveProperty("tabIndex", 0);
     fireEvent.click(item);
     expect(onClick).toHaveBeenCalledTimes(1);
@@ -113,8 +114,8 @@ describe("ListItem", () => {
   });
 
   it("should wrap text children in span elements to enable higher contrast", () => {
-    const { getByRole, rerender } = render(<Test />);
-    const item = getByRole("button", { name: "Item" });
+    const { rerender } = render(<Test />);
+    const item = screen.getByRole("button", { name: "Item" });
     expect(item).toMatchSnapshot();
 
     rerender(<Test disableTextChildren />);
@@ -139,8 +140,8 @@ describe("ListItem", () => {
     const higherContrastMock = jest
       .spyOn(INTERACTION_CONFIG, "higherContrast", "get")
       .mockReturnValue(false);
-    const { getByRole, rerender } = render(<Test />);
-    const item = getByRole("button", { name: "Item" });
+    const { rerender } = render(<Test />);
+    const item = screen.getByRole("button", { name: "Item" });
     expect(item).toMatchSnapshot();
 
     rerender(<Test disableTextChildren />);
@@ -164,9 +165,9 @@ describe("ListItem", () => {
   });
 
   it("should update the height based on the provided addons and render correctly", () => {
-    const { getByRole, rerender } = render(<Test />);
+    const { rerender } = render(<Test />);
 
-    const item = getByRole("button", { name: "Item" });
+    const item = screen.getByRole("button", { name: "Item" });
     expect(item).toMatchSnapshot();
 
     rerender(<Test secondaryText="Secondary text!" />);
@@ -234,7 +235,7 @@ describe("ListItem", () => {
 
   it("should allow for custom props to be passed to the primary text wrapper", () => {
     const ref = createRef<HTMLSpanElement>();
-    const { getByRole } = render(
+    render(
       <Test
         textProps={{
           ref,
@@ -244,14 +245,14 @@ describe("ListItem", () => {
       />
     );
 
-    const item = getByRole("button", { name: "Item" });
+    const item = screen.getByRole("button", { name: "Item" });
     expect(ref.current).toBeInstanceOf(HTMLSpanElement);
     expect(item).toMatchSnapshot();
   });
 
   it("should allow for custom props to be passed to the secondary text wrapper", () => {
     const ref = createRef<HTMLSpanElement>();
-    const { getByRole } = render(
+    render(
       <Test
         secondaryText="Secondary Text!"
         secondaryTextProps={{
@@ -262,15 +263,15 @@ describe("ListItem", () => {
       />
     );
 
-    const item = getByRole("button", { name: /Item/ });
+    const item = screen.getByRole("button", { name: /Item/ });
     expect(ref.current).toBeInstanceOf(HTMLSpanElement);
     expect(item).toMatchSnapshot();
   });
 
   it("should not allow presentational items to be interactable", async () => {
-    const { getByRole } = render(<Test role="presentation" />);
+    render(<Test role="presentation" />);
 
-    const item = getByRole("presentation");
+    const item = screen.getByRole("presentation");
     expect(item).not.toHaveAttribute("tabIndex");
 
     await userEvent.click(item);

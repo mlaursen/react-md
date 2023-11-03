@@ -7,7 +7,7 @@ import {
   type ReactElement,
   type RefObject,
 } from "react";
-import { fireEvent, render } from "../../test-utils/index.js";
+import { fireEvent, render, screen } from "../../test-utils/index.js";
 
 import { textPrimaryColorVar } from "../cssVars.js";
 import { type CSSVariableName, type DefinedCSSVariableName } from "../types.js";
@@ -116,9 +116,9 @@ describe("useCSSVariables", () => {
       );
     }
 
-    const { getByTestId, getByRole } = render(<Test />);
-    const div = getByTestId("div");
-    const button = getByRole("button", { name: "Style" });
+    render(<Test />);
+    const div = screen.getByTestId("div");
+    const button = screen.getByRole("button", { name: "Style" });
 
     expect(div.style.getPropertyValue("--test")).toBe("100px");
     expect(div).toMatchSnapshot();

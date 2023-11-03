@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { type ReactElement } from "react";
-import { render } from "../test-utils/index.js";
+import { render, screen } from "../test-utils/index.js";
 
 import { useEnsuredId } from "../useEnsuredId.js";
 
@@ -10,15 +10,15 @@ function Test(props: { id?: string }): ReactElement {
 
 describe("useEnsuredId", () => {
   it("should return the propId if it is defined", () => {
-    const { getByTestId } = render(<Test id="my-test-id" />);
-    const test = getByTestId("test");
+    render(<Test id="my-test-id" />);
+    const test = screen.getByTestId("test");
 
     expect(test).toHaveAttribute("id", "my-test-id");
   });
 
   it("should return an auto-generated id with the component name prefixed", () => {
-    const { getByTestId } = render(<Test />);
-    const test = getByTestId("test");
+    render(<Test />);
+    const test = screen.getByTestId("test");
 
     expect(test.id).toMatch(/^test-.+$/);
   });

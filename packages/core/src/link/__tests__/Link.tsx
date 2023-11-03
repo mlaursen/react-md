@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
-import { render } from "../../test-utils/index.js";
 import { createRef } from "react";
+import { render, screen } from "../../test-utils/index.js";
 
 import { Link } from "../Link.js";
 
@@ -13,8 +13,8 @@ describe("Link", () => {
       children: "Content",
     } as const;
 
-    const { getByRole, rerender } = render(<Link {...props} />);
-    const link = getByRole("link", { name: "Content" });
+    const { rerender } = render(<Link {...props} />);
+    const link = screen.getByRole("link", { name: "Content" });
     expect(ref.current).toBeInstanceOf(HTMLAnchorElement);
     expect(ref.current).toBe(link);
     expect(link).toMatchSnapshot();

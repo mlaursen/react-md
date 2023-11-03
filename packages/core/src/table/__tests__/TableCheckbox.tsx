@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef, type FC, type ReactElement, type ReactNode } from "react";
-import { render, userEvent } from "../../test-utils/index.js";
+import { render, screen, userEvent } from "../../test-utils/index.js";
 
 import { useCheckboxGroup } from "../../form/useCheckboxGroup.js";
 import { Table } from "../Table.js";
@@ -19,11 +19,11 @@ const Wrapper: FC<{ children: ReactNode }> = ({ children }) => (
 describe("TableCheckbox", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {
     const ref = createRef<HTMLTableCellElement>();
-    const { getByRole, rerender } = render(<TableCheckbox ref={ref} />, {
+    const { rerender } = render(<TableCheckbox ref={ref} />, {
       wrapper: Wrapper,
     });
 
-    const cell = getByRole("cell", { name: "Select Row" });
+    const cell = screen.getByRole("cell", { name: "Select Row" });
     expect(ref.current).toBeInstanceOf(HTMLTableCellElement);
     expect(ref.current).toBe(cell);
     expect(cell).toMatchSnapshot();
@@ -58,10 +58,10 @@ describe("TableCheckbox", () => {
       );
     }
 
-    const { getByRole } = render(<Test />);
+    render(<Test />);
 
-    const row = getByRole("row");
-    const checkbox = getByRole("checkbox");
+    const row = screen.getByRole("row");
+    const checkbox = screen.getByRole("checkbox");
     expect(checkbox).not.toBeChecked();
     expect(row).not.toHaveClass("rmd-tr--selected");
 
@@ -75,12 +75,11 @@ describe("TableCheckbox", () => {
   });
 
   it("should handle the aria-label/aria-labelledby props correctly", () => {
-    const { getByRole, rerender } = render(
-      <TableCheckbox aria-label="Custom Label" />,
-      { wrapper: Wrapper }
-    );
+    const { rerender } = render(<TableCheckbox aria-label="Custom Label" />, {
+      wrapper: Wrapper,
+    });
 
-    const cell = getByRole("cell", { name: "Custom Label" });
+    const cell = screen.getByRole("cell", { name: "Custom Label" });
     expect(cell).toMatchSnapshot();
 
     rerender(<TableCheckbox aria-labelledby="another-id" />);

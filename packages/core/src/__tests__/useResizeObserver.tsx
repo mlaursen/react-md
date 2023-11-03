@@ -115,6 +115,8 @@ describe("useResizeObserver", () => {
 
     await waitFor(() => {
       expect(frameCalled).toHaveBeenCalled();
+    });
+    await waitFor(() => {
       expect(onUpdate).toHaveBeenCalledWith({
         target: div,
         contentRect,

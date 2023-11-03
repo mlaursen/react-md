@@ -70,7 +70,7 @@ exports[`IconRotator should work automatically with the SVGIcon component 2`] = 
 </div>
 `;
 
-exports[`IconRotator should wrapp the children with a span if the forceIconWrap prop is enabled 1`] = `
+exports[`IconRotator should wrap the children with a span if the forceIconWrap prop is enabled 1`] = `
 <div>
   <span
     class="rmd-icon-rotator rmd-icon-rotator--animate"
@@ -83,7 +83,7 @@ exports[`IconRotator should wrapp the children with a span if the forceIconWrap 
 </div>
 `;
 
-exports[`IconRotator should wrapp the children with a span if the forceIconWrap prop is enabled 2`] = `
+exports[`IconRotator should wrap the children with a span if the forceIconWrap prop is enabled 2`] = `
 <div>
   <span
     class="rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated"
@@ -96,7 +96,7 @@ exports[`IconRotator should wrapp the children with a span if the forceIconWrap 
 </div>
 `;
 
-exports[`IconRotator should wrapp the children with a span if the forceIconWrap prop is enabled 3`] = `
+exports[`IconRotator should wrap the children with a span if the forceIconWrap prop is enabled 3`] = `
 <div>
   <span
     class="rmd-icon-rotator rmd-icon-rotator--animate"
@@ -111,7 +111,7 @@ exports[`IconRotator should wrapp the children with a span if the forceIconWrap 
 </div>
 `;
 
-exports[`IconRotator should wrapp the children with a span if the forceIconWrap prop is enabled 4`] = `
+exports[`IconRotator should wrap the children with a span if the forceIconWrap prop is enabled 4`] = `
 <div>
   <span
     class="rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated"
@@ -126,7 +126,7 @@ exports[`IconRotator should wrapp the children with a span if the forceIconWrap 
 </div>
 `;
 
-exports[`IconRotator should wrapp the children with a span if the forceIconWrap prop is enabled 5`] = `
+exports[`IconRotator should wrap the children with a span if the forceIconWrap prop is enabled 5`] = `
 <div>
   <span
     class="rmd-icon-rotator rmd-icon-rotator--animate"
@@ -145,7 +145,7 @@ exports[`IconRotator should wrapp the children with a span if the forceIconWrap 
 </div>
 `;
 
-exports[`IconRotator should wrapp the children with a span if the forceIconWrap prop is enabled 6`] = `
+exports[`IconRotator should wrap the children with a span if the forceIconWrap prop is enabled 6`] = `
 <div>
   <span
     class="rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated"

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { type FC } from "react";
-import { fireEvent, render } from "../../test-utils/index.js";
+import { fireEvent, render, screen } from "../../test-utils/index.js";
 
 import {
   useDir,
@@ -54,7 +54,7 @@ describe("WritingDirectionProvider", () => {
   });
 
   it("should clone the dir into a child element", () => {
-    const { getByTestId } = render(
+    render(
       <WritingDirectionProvider defaultDir="ltr">
         <WritingDirectionProvider defaultDir="rtl">
           <span data-testid="span" />
@@ -62,18 +62,18 @@ describe("WritingDirectionProvider", () => {
       </WritingDirectionProvider>
     );
 
-    const span = getByTestId("span");
+    const span = screen.getByTestId("span");
     expect(span).toHaveAttribute("dir", "rtl");
   });
 
   it("should allow a child component to access and toggle the direction", () => {
-    const { getByRole } = render(
+    render(
       <WritingDirectionProvider>
         <Child />
       </WritingDirectionProvider>
     );
 
-    const button = getByRole("button");
+    const button = screen.getByRole("button");
     expect(document.documentElement).toHaveAttribute("dir", "ltr");
     expect(button).toHaveTextContent("ltr");
     fireEvent.click(button);
@@ -82,7 +82,7 @@ describe("WritingDirectionProvider", () => {
   });
 
   it("should toggle the correct parent with multiple Dir components", () => {
-    const { getByRole } = render(
+    render(
       <WritingDirectionProvider>
         <WritingDirectionProvider defaultDir="rtl">
           <Child />
@@ -90,7 +90,7 @@ describe("WritingDirectionProvider", () => {
       </WritingDirectionProvider>
     );
 
-    const button = getByRole("button");
+    const button = screen.getByRole("button");
     expect(document.documentElement).toHaveAttribute("dir", "ltr");
     expect(button).toHaveTextContent("rtl");
     fireEvent.click(button);

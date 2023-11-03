@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { render } from "../../test-utils/index.js";
+import { render, screen } from "../../test-utils/index.js";
 
 import { Card } from "../Card.js";
 
@@ -12,9 +12,9 @@ describe("Card", () => {
       ref,
       children: "Content",
     } as const;
-    const { getByTestId, rerender } = render(<Card {...props} />);
+    const { rerender } = render(<Card {...props} />);
 
-    const card = getByTestId("card");
+    const card = screen.getByTestId("card");
     expect(ref.current).toBeInstanceOf(HTMLDivElement);
     expect(ref.current).toBe(card);
     expect(card).toMatchSnapshot();

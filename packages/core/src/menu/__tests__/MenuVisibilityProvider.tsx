@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@jest/globals";
-import { fireEvent, render } from "../../test-utils/index.js";
+import { fireEvent, render, screen } from "../../test-utils/index.js";
 
 import { Button } from "../../button/Button.js";
 import { useMenuVisibility } from "../MenuVisibilityProvider.js";
@@ -24,8 +24,8 @@ describe("MenuVisibilityProvider", () => {
       );
     }
 
-    const { getByRole } = render(<Test />);
-    const button = getByRole("button", { name: "Button" });
+    render(<Test />);
+    const button = screen.getByRole("button", { name: "Button" });
     fireEvent.click(button);
     expect(error instanceof Error && error.message).toBe(
       '"MenuVisibilityProvider" must be a parent component'

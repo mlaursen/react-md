@@ -13,7 +13,13 @@ import {
   type MutableRefObject,
   type ReactElement,
 } from "react";
-import { act, fireEvent, render, waitFor } from "../../test-utils/index.js";
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from "../../test-utils/index.js";
 
 import { SsrProvider, useSsr } from "../../SsrProvider.js";
 import { useLocalStorage } from "../../useLocalStorage.js";
@@ -84,31 +90,39 @@ describe("useTransition", () => {
   it("should default to enabling enter and exit transitions and non-temporary", () => {
     const stageRef = createStageRef();
     const stages = stageRef.current;
-    const { getByRole, getByText } = render(<Test stageRef={stageRef} />);
-    const toggle = getByRole("button", { name: "Toggle" });
+    render(<Test stageRef={stageRef} />);
+    const toggle = screen.getByRole("button", { name: "Toggle" });
 
-    expect(() => getByText(`The current stage is: "exited"`)).not.toThrow();
-    expect(() => getByText("Appearing: false")).not.toThrow();
+    expect(() =>
+      screen.getByText(`The current stage is: "exited"`)
+    ).not.toThrow();
+    expect(() => screen.getByText("Appearing: false")).not.toThrow();
     expect(stages).toEqual(["exited"]);
 
     act(() => {
       jest.runAllTimers();
     });
-    expect(() => getByText(`The current stage is: "exited"`)).not.toThrow();
-    expect(() => getByText("Appearing: false")).not.toThrow();
+    expect(() =>
+      screen.getByText(`The current stage is: "exited"`)
+    ).not.toThrow();
+    expect(() => screen.getByText("Appearing: false")).not.toThrow();
 
     fireEvent.click(toggle);
     expect(stages).toEqual(["exited", "enter", "entering"]);
-    expect(() => getByText(`The current stage is: "entering"`)).not.toThrow();
-    expect(() => getByText("Appearing: false")).not.toThrow();
+    expect(() =>
+      screen.getByText(`The current stage is: "entering"`)
+    ).not.toThrow();
+    expect(() => screen.getByText("Appearing: false")).not.toThrow();
 
     act(() => {
       jest.runAllTimers();
     });
 
     expect(stages).toEqual(["exited", "enter", "entering", "entered"]);
-    expect(() => getByText(`The current stage is: "entered"`)).not.toThrow();
-    expect(() => getByText("Appearing: false")).not.toThrow();
+    expect(() =>
+      screen.getByText(`The current stage is: "entered"`)
+    ).not.toThrow();
+    expect(() => screen.getByText("Appearing: false")).not.toThrow();
 
     // Exit flow
     fireEvent.click(toggle);
@@ -120,8 +134,10 @@ describe("useTransition", () => {
       "exit",
       "exiting",
     ]);
-    expect(() => getByText(`The current stage is: "exiting"`)).not.toThrow();
-    expect(() => getByText("Appearing: false")).not.toThrow();
+    expect(() =>
+      screen.getByText(`The current stage is: "exiting"`)
+    ).not.toThrow();
+    expect(() => screen.getByText("Appearing: false")).not.toThrow();
 
     act(() => {
       jest.runAllTimers();
@@ -135,31 +151,33 @@ describe("useTransition", () => {
       "exiting",
       "exited",
     ]);
-    expect(() => getByText(`The current stage is: "exited"`)).not.toThrow();
-    expect(() => getByText("Appearing: false")).not.toThrow();
+    expect(() =>
+      screen.getByText(`The current stage is: "exited"`)
+    ).not.toThrow();
+    expect(() => screen.getByText("Appearing: false")).not.toThrow();
   });
 
   it("should mount and unmount the component if the temporary option is enabled", () => {
-    const { getByRole, getByText } = render(<Test temporary />);
+    render(<Test temporary />);
 
-    const toggle = getByRole("button");
-    expect(() => getByText(/^The current stage/)).toThrow();
+    const toggle = screen.getByRole("button");
+    expect(() => screen.getByText(/^The current stage/)).toThrow();
 
     fireEvent.click(toggle);
-    expect(() => getByText(/^The current stage/)).not.toThrow();
+    expect(() => screen.getByText(/^The current stage/)).not.toThrow();
 
     act(() => {
       jest.runAllTimers();
     });
-    expect(() => getByText(/^The current stage/)).not.toThrow();
+    expect(() => screen.getByText(/^The current stage/)).not.toThrow();
 
     fireEvent.click(toggle);
-    expect(() => getByText(/^The current stage/)).not.toThrow();
+    expect(() => screen.getByText(/^The current stage/)).not.toThrow();
 
     act(() => {
       jest.runAllTimers();
     });
-    expect(() => getByText(/^The current stage/)).toThrow();
+    expect(() => screen.getByText(/^The current stage/)).toThrow();
   });
 
   it("should trigger the callbacks at each stage", () => {
@@ -178,8 +196,8 @@ describe("useTransition", () => {
       onExited,
     };
 
-    const { getByRole } = render(<Test {...props} />);
-    const toggle = getByRole("button");
+    render(<Test {...props} />);
+    const toggle = screen.getByRole("button");
 
     expect(onEnter).not.toHaveBeenCalled();
     expect(onEntering).not.toHaveBeenCalled();
@@ -226,73 +244,89 @@ describe("useTransition", () => {
   });
 
   it("should handle non-temporary appear transitions correctly", () => {
-    const { getByText, getByRole, rerender } = render(<Test appear />);
-    expect(() => getByText('The current stage is: "exited"')).not.toThrow();
-    expect(() => getByText("Appearing: false")).not.toThrow();
+    const { rerender } = render(<Test appear />);
+    expect(() =>
+      screen.getByText('The current stage is: "exited"')
+    ).not.toThrow();
+    expect(() => screen.getByText("Appearing: false")).not.toThrow();
     act(() => {
       jest.runAllTimers();
     });
-    expect(() => getByText('The current stage is: "exited"')).not.toThrow();
-    expect(() => getByText("Appearing: false")).not.toThrow();
+    expect(() =>
+      screen.getByText('The current stage is: "exited"')
+    ).not.toThrow();
+    expect(() => screen.getByText("Appearing: false")).not.toThrow();
 
     rerender(<Test appear defaultTransitionIn key="new-key" />);
-    expect(() => getByText('The current stage is: "entering"')).not.toThrow();
-    expect(() => getByText("Appearing: true")).not.toThrow();
+    expect(() =>
+      screen.getByText('The current stage is: "entering"')
+    ).not.toThrow();
+    expect(() => screen.getByText("Appearing: true")).not.toThrow();
 
     act(() => {
       jest.runAllTimers();
     });
-    expect(() => getByText('The current stage is: "entered"')).not.toThrow();
-    expect(() => getByText("Appearing: true")).not.toThrow();
+    expect(() =>
+      screen.getByText('The current stage is: "entered"')
+    ).not.toThrow();
+    expect(() => screen.getByText("Appearing: true")).not.toThrow();
 
-    fireEvent.click(getByRole("button"));
-    expect(() => getByText('The current stage is: "exiting"')).not.toThrow();
-    expect(() => getByText("Appearing: false")).not.toThrow();
+    fireEvent.click(screen.getByRole("button"));
+    expect(() =>
+      screen.getByText('The current stage is: "exiting"')
+    ).not.toThrow();
+    expect(() => screen.getByText("Appearing: false")).not.toThrow();
 
     act(() => {
       jest.runAllTimers();
     });
-    expect(() => getByText('The current stage is: "exited"')).not.toThrow();
-    expect(() => getByText("Appearing: false")).not.toThrow();
+    expect(() =>
+      screen.getByText('The current stage is: "exited"')
+    ).not.toThrow();
+    expect(() => screen.getByText("Appearing: false")).not.toThrow();
   });
 
   it("should handle temporary appear transitions correctly", () => {
-    const { getByRole, getByText, rerender } = render(
-      <Test appear temporary />
-    );
-    expect(() => getByText(/^The current stage is/)).toThrow();
-    expect(() => getByText("Appearing: false")).not.toThrow();
+    const { rerender } = render(<Test appear temporary />);
+    expect(() => screen.getByText(/^The current stage is/)).toThrow();
+    expect(() => screen.getByText("Appearing: false")).not.toThrow();
     act(() => {
       jest.runAllTimers();
     });
-    expect(() => getByText(/^The current stage is/)).toThrow();
-    expect(() => getByText("Appearing: false")).not.toThrow();
+    expect(() => screen.getByText(/^The current stage is/)).toThrow();
+    expect(() => screen.getByText("Appearing: false")).not.toThrow();
 
     rerender(<Test appear temporary defaultTransitionIn key="new-key" />);
-    expect(() => getByText('The current stage is: "entering"')).not.toThrow();
-    expect(() => getByText("Appearing: true")).not.toThrow();
+    expect(() =>
+      screen.getByText('The current stage is: "entering"')
+    ).not.toThrow();
+    expect(() => screen.getByText("Appearing: true")).not.toThrow();
 
     act(() => {
       jest.runAllTimers();
     });
-    expect(() => getByText('The current stage is: "entered"')).not.toThrow();
-    expect(() => getByText("Appearing: true")).not.toThrow();
+    expect(() =>
+      screen.getByText('The current stage is: "entered"')
+    ).not.toThrow();
+    expect(() => screen.getByText("Appearing: true")).not.toThrow();
 
-    fireEvent.click(getByRole("button"));
-    expect(() => getByText('The current stage is: "exiting"')).not.toThrow();
-    expect(() => getByText("Appearing: false")).not.toThrow();
+    fireEvent.click(screen.getByRole("button"));
+    expect(() =>
+      screen.getByText('The current stage is: "exiting"')
+    ).not.toThrow();
+    expect(() => screen.getByText("Appearing: false")).not.toThrow();
 
     act(() => {
       jest.runAllTimers();
     });
-    expect(() => getByText(/^The current stage is/)).toThrow();
-    expect(() => getByText("Appearing: false")).not.toThrow();
+    expect(() => screen.getByText(/^The current stage is/)).toThrow();
+    expect(() => screen.getByText("Appearing: false")).not.toThrow();
   });
 
   it("should access the element's scrollTop attribute to trigger a reflow when the reflow option is enabled and the stage is not entered or exited", () => {
     const scrollTop = jest.spyOn(Element.prototype, "scrollTop", "get");
-    const { getByRole } = render(<Test reflow />);
-    const toggle = getByRole("button", { name: "Toggle" });
+    render(<Test reflow />);
+    const toggle = screen.getByRole("button", { name: "Toggle" });
 
     expect(scrollTop).not.toHaveBeenCalled();
 
@@ -314,25 +348,33 @@ describe("useTransition", () => {
   it("should cancel the timeouts and immediately switch to the new transition if a new transition starts before the previous has been completed", () => {
     const stageRef = createStageRef();
     const stages = stageRef.current;
-    const { getByRole, getByText } = render(<Test stageRef={stageRef} />);
-    const toggle = getByRole("button", { name: "Toggle" });
+    render(<Test stageRef={stageRef} />);
+    const toggle = screen.getByRole("button", { name: "Toggle" });
 
-    expect(() => getByText(`The current stage is: "exited"`)).not.toThrow();
+    expect(() =>
+      screen.getByText(`The current stage is: "exited"`)
+    ).not.toThrow();
     expect(stages).toEqual(["exited"]);
 
     fireEvent.click(toggle);
     expect(stages).toEqual(["exited", "enter", "entering"]);
-    expect(() => getByText(`The current stage is: "entering"`)).not.toThrow();
+    expect(() =>
+      screen.getByText(`The current stage is: "entering"`)
+    ).not.toThrow();
 
     act(() => {
       jest.advanceTimersByTime(300);
     });
     expect(stages).toEqual(["exited", "enter", "entering"]);
-    expect(() => getByText(`The current stage is: "entering"`)).not.toThrow();
+    expect(() =>
+      screen.getByText(`The current stage is: "entering"`)
+    ).not.toThrow();
 
     fireEvent.click(toggle);
     expect(stages).toEqual(["exited", "enter", "entering", "exit", "exiting"]);
-    expect(() => getByText(`The current stage is: "exiting"`)).not.toThrow();
+    expect(() =>
+      screen.getByText(`The current stage is: "exiting"`)
+    ).not.toThrow();
 
     act(() => {
       jest.runAllTimers();
@@ -345,7 +387,9 @@ describe("useTransition", () => {
       "exiting",
       "exited",
     ]);
-    expect(() => getByText(`The current stage is: "exited"`)).not.toThrow();
+    expect(() =>
+      screen.getByText(`The current stage is: "exited"`)
+    ).not.toThrow();
 
     fireEvent.click(toggle);
     act(() => {
@@ -374,7 +418,9 @@ describe("useTransition", () => {
       "entering",
       "entered",
     ]);
-    expect(() => getByText(`The current stage is: "entered"`)).not.toThrow();
+    expect(() =>
+      screen.getByText(`The current stage is: "entered"`)
+    ).not.toThrow();
   });
 
   it("should skip the enter, entering, exit, and exiting stages if the transition in disabled", () => {
@@ -394,8 +440,8 @@ describe("useTransition", () => {
       timeout: 0,
     };
 
-    const { getByRole } = render(<Test {...props} />);
-    const toggle = getByRole("button");
+    render(<Test {...props} />);
+    const toggle = screen.getByRole("button");
 
     expect(onEnter).not.toHaveBeenCalled();
     expect(onEntering).not.toHaveBeenCalled();
@@ -494,8 +540,8 @@ describe("useTransition", () => {
       onExited,
     };
 
-    const { getByRole } = render(<Test {...props} />);
-    const toggle = getByRole("button");
+    render(<Test {...props} />);
+    const toggle = screen.getByRole("button");
 
     expect(onEnter).not.toHaveBeenCalled();
     expect(onEntering).not.toHaveBeenCalled();

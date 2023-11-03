@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { act, render } from "../../test-utils/index.js";
+import { act, render, screen } from "../../test-utils/index.js";
 
 import { type PropsWithRef } from "../../types.js";
 import { Table, table, type TableProps } from "../Table.js";
@@ -51,8 +51,8 @@ describe("Table", () => {
       ),
     };
 
-    const { getByRole, rerender } = render(<Table {...props} />);
-    const table = getByRole("table");
+    const { rerender } = render(<Table {...props} />);
+    const table = screen.getByRole("table");
     expect(ref.current).toBeInstanceOf(HTMLTableElement);
     expect(ref.current).toBe(table);
     expect(table).toMatchSnapshot();

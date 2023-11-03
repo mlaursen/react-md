@@ -1,6 +1,11 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement } from "react";
-import { rmdRender, userEvent, waitFor } from "../../test-utils/index.js";
+import {
+  rmdRender,
+  screen,
+  userEvent,
+  waitFor,
+} from "../../test-utils/index.js";
 
 import { Slide } from "../../transition/Slide.js";
 import { SlideContainer } from "../../transition/SlideContainer.js";
@@ -36,13 +41,11 @@ function Test(props: TestProps): ReactElement {
 describe("useTabs", () => {
   it("should scroll to the top of the tab panels element unless disableScrollFix is true", async () => {
     const user = userEvent.setup();
-    const { getByRole, getByTestId, rerender } = rmdRender(
-      <Test disableScrollFix />
-    );
+    const { rerender } = rmdRender(<Test disableScrollFix />);
 
-    const panels = getByTestId("panels");
-    const tab1 = getByRole("tab", { name: "Tab 1" });
-    const tab2 = getByRole("tab", { name: "Tab 2" });
+    const panels = screen.getByTestId("panels");
+    const tab1 = screen.getByRole("tab", { name: "Tab 1" });
+    const tab2 = screen.getByRole("tab", { name: "Tab 2" });
 
     const scrollTop = jest.spyOn(panels, "scrollTop", "set");
 
@@ -56,14 +59,14 @@ describe("useTabs", () => {
 
   it("should move focus without selecting the next tab with keyboard movement when the activationMode is not automatic", async () => {
     const user = userEvent.setup();
-    const { getByRole } = rmdRender(<Test />);
-    const tabList = getByRole("tablist");
-    const tab1 = getByRole("tab", { name: "Tab 1" });
-    const tab2 = getByRole("tab", { name: "Tab 2" });
-    const tab3 = getByRole("tab", { name: "Tab 3" });
-    const panel1 = getByRole("tabpanel", { name: "Tab 1" });
-    const panel2 = getByRole("tabpanel", { name: "Tab 2" });
-    const panel3 = getByRole("tabpanel", { name: "Tab 3" });
+    rmdRender(<Test />);
+    const tabList = screen.getByRole("tablist");
+    const tab1 = screen.getByRole("tab", { name: "Tab 1" });
+    const tab2 = screen.getByRole("tab", { name: "Tab 2" });
+    const tab3 = screen.getByRole("tab", { name: "Tab 3" });
+    const panel1 = screen.getByRole("tabpanel", { name: "Tab 1" });
+    const panel2 = screen.getByRole("tabpanel", { name: "Tab 2" });
+    const panel3 = screen.getByRole("tabpanel", { name: "Tab 3" });
 
     expect(isElementVisible(panel1)).toBe(true);
     expect(isElementVisible(panel2)).toBe(false);
@@ -127,10 +130,10 @@ describe("useTabs", () => {
 
     await user.keyboard("[End][Enter]");
     await waitFor(() => {
-      expect(isElementVisible(panel2)).toBe(false);
-      expect(isElementVisible(panel1)).toBe(false);
       expect(isElementVisible(panel3)).toBe(true);
     });
+    expect(isElementVisible(panel2)).toBe(false);
+    expect(isElementVisible(panel1)).toBe(false);
 
     expect(tabList).toHaveAttribute("tabIndex", "-1");
     expect(tab1).toHaveAttribute("aria-selected", "false");
@@ -165,10 +168,10 @@ describe("useTabs", () => {
 
     await user.keyboard("tt[Space]");
     await waitFor(() => {
-      expect(isElementVisible(panel1)).toBe(false);
-      expect(isElementVisible(panel2)).toBe(true);
       expect(isElementVisible(panel3)).toBe(false);
     });
+    expect(isElementVisible(panel1)).toBe(false);
+    expect(isElementVisible(panel2)).toBe(true);
     expect(tabList).toHaveAttribute("tabIndex", "-1");
     expect(tab1).toHaveAttribute("aria-selected", "false");
     expect(tab1).toHaveAttribute("tabIndex", "-1");
@@ -180,11 +183,11 @@ describe("useTabs", () => {
 
   it("should focus and select next tab when the activationMode is set to automatic", async () => {
     const user = userEvent.setup();
-    const { getByRole } = rmdRender(<Test activationMode="automatic" />);
-    const tabList = getByRole("tablist");
-    const tab1 = getByRole("tab", { name: "Tab 1" });
-    const tab2 = getByRole("tab", { name: "Tab 2" });
-    const tab3 = getByRole("tab", { name: "Tab 3" });
+    rmdRender(<Test activationMode="automatic" />);
+    const tabList = screen.getByRole("tablist");
+    const tab1 = screen.getByRole("tab", { name: "Tab 1" });
+    const tab2 = screen.getByRole("tab", { name: "Tab 2" });
+    const tab3 = screen.getByRole("tab", { name: "Tab 3" });
 
     await user.tab();
     expect(document.activeElement).toBe(tab1);

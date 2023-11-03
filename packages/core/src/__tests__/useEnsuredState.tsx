@@ -1,7 +1,6 @@
 import { describe, expect, it, jest } from "@jest/globals";
-import { fireEvent } from "@testing-library/dom";
 import { type ReactElement } from "react";
-import { render, screen } from "../test-utils/index.js";
+import { fireEvent, render, screen } from "../test-utils/index.js";
 import { useEnsuredState } from "../useEnsuredState.js";
 import { useToggle } from "../useToggle.js";
 

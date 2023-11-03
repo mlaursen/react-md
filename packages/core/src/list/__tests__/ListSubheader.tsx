@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef, type ReactElement, type Ref } from "react";
-import { render } from "../../test-utils/index.js";
+import { render, screen } from "../../test-utils/index.js";
 
 import { List } from "../List.js";
 import { ListSubheader, type ListSubheaderProps } from "../ListSubheader.js";
@@ -23,9 +23,9 @@ function Test(props: TestProps): ReactElement {
 describe("ListSubheader", () => {
   it("should apply the correct styling, HTMLAttributes, and allow a ref", () => {
     const nodeRef = createRef<HTMLLIElement>();
-    const { getByRole, rerender } = render(<Test nodeRef={nodeRef} />);
+    const { rerender } = render(<Test nodeRef={nodeRef} />);
 
-    const item = getByRole("presentation");
+    const item = screen.getByRole("presentation");
     expect(nodeRef.current).toBeInstanceOf(HTMLLIElement);
     expect(nodeRef.current).toBe(item);
     expect(item).toMatchSnapshot();
@@ -64,7 +64,7 @@ describe("ListSubheader", () => {
 
   it("should allow for custom props to be passed to the text wrapper", () => {
     const ref = createRef<HTMLSpanElement>();
-    const { getByRole } = render(
+    render(
       <Test
         textProps={{
           ref,
@@ -74,7 +74,7 @@ describe("ListSubheader", () => {
       />
     );
 
-    const item = getByRole("presentation");
+    const item = screen.getByRole("presentation");
     expect(ref.current).toBeInstanceOf(HTMLSpanElement);
     expect(item).toMatchSnapshot();
   });

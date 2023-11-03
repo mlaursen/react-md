@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { render } from "../../test-utils/index.js";
+import { render, screen } from "../../test-utils/index.js";
 
 import { Radio } from "../Radio.js";
 
@@ -13,9 +13,9 @@ describe("Radio", () => {
       value: "a",
     } as const;
 
-    const { getByRole, container, rerender } = render(<Radio {...props} />);
+    const { container, rerender } = render(<Radio {...props} />);
 
-    const radio = getByRole("radio", { name: "Radio" });
+    const radio = screen.getByRole("radio", { name: "Radio" });
     expect(ref.current).toBeInstanceOf(HTMLInputElement);
     expect(ref.current).toBe(radio);
     expect(container).toMatchSnapshot();

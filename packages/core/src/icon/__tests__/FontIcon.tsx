@@ -1,29 +1,25 @@
 import { describe, expect, it } from "@jest/globals";
-import { render } from "../../test-utils/index.js";
+import { render, screen } from "../../test-utils/index.js";
 
 import { FontIcon } from "../FontIcon.js";
 
 describe("FontIcon", () => {
   it("should render as an <i> element", () => {
-    const { getByTestId } = render(
-      <FontIcon data-testid="icon">home</FontIcon>
-    );
-    expect(getByTestId("icon")).toBeInstanceOf(HTMLSpanElement);
+    render(<FontIcon data-testid="icon">home</FontIcon>);
+    expect(screen.getByTestId("icon")).toBeInstanceOf(HTMLSpanElement);
   });
 
   it("should render correctly", () => {
-    const { getByTestId, rerender } = render(
-      <FontIcon data-testid="icon">home</FontIcon>
-    );
-    const icon = getByTestId("icon");
+    const { rerender } = render(<FontIcon data-testid="icon">home</FontIcon>);
+    const icon = screen.getByTestId("icon");
     expect(icon).toMatchSnapshot();
 
     rerender(<FontIcon data-testid="icon" iconClassName="fa fa-github" />);
   });
 
   it("should apply the correct classNames", () => {
-    const { getByTestId, rerender } = render(<FontIcon data-testid="icon" />);
-    const icon = getByTestId("icon");
+    const { rerender } = render(<FontIcon data-testid="icon" />);
+    const icon = screen.getByTestId("icon");
     expect(icon.className).toBe("rmd-icon rmd-icon--font material-icons");
     expect(icon).toMatchSnapshot();
 

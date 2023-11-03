@@ -117,10 +117,10 @@ describe("TabList", () => {
       .mockReturnValue(120);
 
     const user = userEvent.setup();
-    const { getByRole } = rmdRender(<Test />);
-    const tablist = getByRole("tablist");
-    const tab1 = getByRole("tab", { name: "Tab 1" });
-    const tab2 = getByRole("tab", { name: "Tab 2" });
+    rmdRender(<Test />);
+    const tablist = screen.getByRole("tablist");
+    const tab1 = screen.getByRole("tab", { name: "Tab 1" });
+    const tab2 = screen.getByRole("tab", { name: "Tab 2" });
 
     // it should always start to 33.33% and then calculate the correct width
     // based on the number of tabs
@@ -132,6 +132,8 @@ describe("TabList", () => {
     // need to use waitFor since ResizeObserver uses requestAnimationFrame
     await waitFor(() => {
       expect(tablist.style.getPropertyValue("--rmd-tab-width")).toBe("120px");
+    });
+    await waitFor(() => {
       expect(tablist.style.getPropertyValue("--rmd-tab-offset")).toBe("0px");
     });
 
@@ -143,6 +145,8 @@ describe("TabList", () => {
     await user.click(tab2);
     await waitFor(() => {
       expect(tablist.style.getPropertyValue("--rmd-tab-width")).toBe("90px");
+    });
+    await waitFor(() => {
       expect(tablist.style.getPropertyValue("--rmd-tab-offset")).toBe("120px");
     });
 
@@ -152,6 +156,8 @@ describe("TabList", () => {
     await user.click(tab1);
     await waitFor(() => {
       expect(tablist.style.getPropertyValue("--rmd-tab-width")).toBe("90px");
+    });
+    await waitFor(() => {
       expect(tablist.style.getPropertyValue("--rmd-tab-offset")).toBe("120px");
     });
   });
@@ -176,10 +182,12 @@ describe("TabList", () => {
       });
 
     const user = userEvent.setup();
-    const { getByRole } = rmdRender(<Test scrollButtons />);
-    const tablist = getByRole("tablist");
+    rmdRender(<Test scrollButtons />);
+    const tablist = screen.getByRole("tablist");
     await waitFor(() => {
       expect(backObserver).toBeDefined();
+    });
+    await waitFor(() => {
       expect(forwardObserver).toBeDefined();
     });
 
@@ -192,8 +200,8 @@ describe("TabList", () => {
       .mockReturnValue(0);
     jest.spyOn(tablist, "scrollWidth", "get").mockReturnValue(100);
 
-    const back = getByRole("button", { name: "back" });
-    const forward = getByRole("button", { name: "forward" });
+    const back = screen.getByRole("button", { name: "back" });
+    const forward = screen.getByRole("button", { name: "forward" });
 
     expect(back).toBeDisabled();
     expect(forward).not.toBeDisabled();
@@ -269,10 +277,12 @@ describe("TabList", () => {
       });
 
     const user = userEvent.setup();
-    const { getByRole } = rmdRender(<Test scrollButtons vertical />);
-    const tablist = getByRole("tablist");
+    rmdRender(<Test scrollButtons vertical />);
+    const tablist = screen.getByRole("tablist");
     await waitFor(() => {
       expect(backObserver).toBeDefined();
+    });
+    await waitFor(() => {
       expect(forwardObserver).toBeDefined();
     });
 
@@ -286,8 +296,8 @@ describe("TabList", () => {
     jest.spyOn(tablist, "scrollHeight", "get").mockReturnValue(100);
     jest.spyOn(tablist, "scrollWidth", "get").mockReturnValue(40);
 
-    const back = getByRole("button", { name: "back" });
-    const forward = getByRole("button", { name: "forward" });
+    const back = screen.getByRole("button", { name: "back" });
+    const forward = screen.getByRole("button", { name: "forward" });
 
     expect(back).toBeDisabled();
     expect(forward).not.toBeDisabled();
@@ -344,7 +354,7 @@ describe("TabList", () => {
   });
 
   it("should support custom labels for the scroll buttons", () => {
-    const { getByRole } = rmdRender(
+    rmdRender(
       <Test
         scrollButtons
         backwardScrollButtonProps={{
@@ -356,8 +366,8 @@ describe("TabList", () => {
       />
     );
 
-    const back = getByRole("button", { name: "Scroll left" });
-    const forward = getByRole("button", { name: "Scroll right" });
+    const back = screen.getByRole("button", { name: "Scroll left" });
+    const forward = screen.getByRole("button", { name: "Scroll right" });
 
     expect(back).toBeInTheDocument();
     expect(forward).toBeInTheDocument();
@@ -384,10 +394,10 @@ describe("TabList", () => {
       },
     }));
 
-    const { getByRole, rerender } = rmdRender(<Test scrollButtons />);
+    const { rerender } = rmdRender(<Test scrollButtons />);
 
-    const back = getByRole("button", { name: "back" });
-    const forward = getByRole("button", { name: "forward" });
+    const back = screen.getByRole("button", { name: "back" });
+    const forward = screen.getByRole("button", { name: "forward" });
     expect(back).toBeInTheDocument();
     expect(forward).toBeInTheDocument();
 
@@ -405,8 +415,8 @@ describe("TabList", () => {
     expect(forward).not.toBeInTheDocument();
 
     rerender(<Test scrollButtons="allow-phone" />);
-    expect(getByRole("button", { name: "back" })).toBeInTheDocument();
-    expect(getByRole("button", { name: "forward" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "back" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "forward" })).toBeInTheDocument();
   });
 
   it("should support scrolling correctly in RTL mode", async () => {
@@ -429,16 +439,18 @@ describe("TabList", () => {
       });
 
     const user = userEvent.setup();
-    const { getByRole } = rmdRender(<Test scrollButtons />, {
+    rmdRender(<Test scrollButtons />, {
       wrapper: ({ children }) => (
         <WritingDirectionProvider defaultDir="rtl">
           {children}
         </WritingDirectionProvider>
       ),
     });
-    const tablist = getByRole("tablist");
+    const tablist = screen.getByRole("tablist");
     await waitFor(() => {
       expect(backObserver).toBeDefined();
+    });
+    await waitFor(() => {
       expect(forwardObserver).toBeDefined();
     });
 
@@ -451,8 +463,8 @@ describe("TabList", () => {
       .mockReturnValue(0);
     jest.spyOn(tablist, "scrollWidth", "get").mockReturnValue(100);
 
-    const back = getByRole("button", { name: "back" });
-    const forward = getByRole("button", { name: "forward" });
+    const back = screen.getByRole("button", { name: "back" });
+    const forward = screen.getByRole("button", { name: "forward" });
 
     expect(back).toBeDisabled();
     expect(forward).not.toBeDisabled();
@@ -517,15 +529,13 @@ describe("TabList", () => {
       behavior: "auto",
     }));
     const user = userEvent.setup();
-    const { getByRole } = rmdRender(
-      <Test scrollButtons getScrollToOptions={getScrollToOptions} />
-    );
-    const tablist = getByRole("tablist");
+    rmdRender(<Test scrollButtons getScrollToOptions={getScrollToOptions} />);
+    const tablist = screen.getByRole("tablist");
     tablist.scrollTo ??= jest.fn();
     const scrollTo = jest.spyOn(tablist, "scrollTo");
 
-    const back = getByRole("button", { name: "back" });
-    const forward = getByRole("button", { name: "forward" });
+    const back = screen.getByRole("button", { name: "back" });
+    const forward = screen.getByRole("button", { name: "forward" });
 
     await user.click(forward);
     expect(getScrollToOptions).toHaveBeenCalledWith({
@@ -562,8 +572,8 @@ describe("TabList", () => {
   });
 
   it("should support rendering scrollbars if the scrollbar prop is enabled", () => {
-    const { getByRole, rerender } = rmdRender(<Test />);
-    const tablist = getByRole("tablist");
+    const { rerender } = rmdRender(<Test />);
+    const tablist = screen.getByRole("tablist");
     expect(tablist).toHaveClass("rmd-tablist--no-scrollbar");
 
     rerender(<Test scrollbar />);
@@ -597,11 +607,11 @@ describe("TabList", () => {
       );
     }
 
-    const { getByRole } = rmdRender(<TooltipTest />);
-    const back = getByRole("button", { name: "back" });
-    const forward = getByRole("button", { name: "forward" });
+    rmdRender(<TooltipTest />);
+    const back = screen.getByRole("button", { name: "back" });
+    const forward = screen.getByRole("button", { name: "forward" });
 
-    expect(() => getByRole("tooltip")).toThrow();
+    expect(() => screen.getByRole("tooltip")).toThrow();
 
     fireEvent.mouseEnter(back);
     await waitFor(() => {
@@ -612,7 +622,7 @@ describe("TabList", () => {
 
     fireEvent.mouseLeave(back);
     await waitFor(() => {
-      expect(() => getByRole("tooltip")).toThrow();
+      expect(() => screen.getByRole("tooltip")).toThrow();
     });
 
     fireEvent.mouseEnter(forward);
@@ -624,7 +634,7 @@ describe("TabList", () => {
 
     fireEvent.mouseLeave(forward);
     await waitFor(() => {
-      expect(() => getByRole("tooltip")).toThrow();
+      expect(() => screen.getByRole("tooltip")).toThrow();
     });
   });
 });

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { render } from "../../test-utils/index.js";
+import { render, screen } from "../../test-utils/index.js";
 
 import { TableContainer } from "../TableContainer.js";
 
@@ -12,9 +12,9 @@ describe("TableContainer", () => {
       ref,
     } as const;
 
-    const { getByTestId, rerender } = render(<TableContainer {...props} />);
+    const { rerender } = render(<TableContainer {...props} />);
 
-    const container = getByTestId("container");
+    const container = screen.getByTestId("container");
     expect(ref.current).toBeInstanceOf(HTMLDivElement);
     expect(ref.current).toBe(container);
     expect(container).toMatchSnapshot();

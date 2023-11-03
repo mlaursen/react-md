@@ -1,6 +1,6 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement } from "react";
-import { fireEvent, render } from "../../test-utils/index.js";
+import { fireEvent, render, screen } from "../../test-utils/index.js";
 
 import { Button } from "../../button/Button.js";
 import { AppSizeProvider } from "../../media-queries/AppSizeProvider.js";
@@ -25,12 +25,12 @@ describe("useRadioGroup", () => {
       );
     }
 
-    const { getByRole, container } = render(<Test />);
+    const { container } = render(<Test />);
 
-    const radio1 = getByRole("radio", { name: "First" });
-    const radio2 = getByRole("radio", { name: "Second" });
-    const radio3 = getByRole("radio", { name: "Third" });
-    const radio4 = getByRole("radio", { name: "Forth" });
+    const radio1 = screen.getByRole("radio", { name: "First" });
+    const radio2 = screen.getByRole("radio", { name: "Second" });
+    const radio3 = screen.getByRole("radio", { name: "Third" });
+    const radio4 = screen.getByRole("radio", { name: "Forth" });
     expect(radio1).toHaveAttribute("value", "a");
     expect(radio2).toHaveAttribute("value", "b");
     expect(radio3).toHaveAttribute("value", "c");
@@ -83,11 +83,11 @@ describe("useRadioGroup", () => {
       );
     }
 
-    const { getByRole, container } = render(<Test />);
+    const { container } = render(<Test />);
     expect(onInvalid).not.toHaveBeenCalled();
 
-    const submit = getByRole("button", { name: "Submit" });
-    const radio1 = getByRole("radio", { name: "First" });
+    const submit = screen.getByRole("button", { name: "Submit" });
+    const radio1 = screen.getByRole("radio", { name: "First" });
 
     fireEvent.click(submit);
 
@@ -124,10 +124,10 @@ describe("useRadioGroup", () => {
       );
     }
 
-    const { getByRole } = render(<Test />);
+    render(<Test />);
 
-    const radio1 = getByRole("radio", { name: "First" });
-    const radio2 = getByRole("radio", { name: "Second" });
+    const radio1 = screen.getByRole("radio", { name: "First" });
+    const radio2 = screen.getByRole("radio", { name: "Second" });
     expect(onChange).not.toHaveBeenCalled();
     expect(radio1).toBeChecked();
     expect(radio2).not.toBeChecked();
@@ -161,12 +161,12 @@ describe("useRadioGroup", () => {
       );
     }
 
-    const { getByRole } = render(<Test />);
+    render(<Test />);
 
-    const radio1 = getByRole("radio", { name: "First" });
-    const radio2 = getByRole("radio", { name: "Second" });
-    const radio3 = getByRole("radio", { name: "Third" });
-    const radio4 = getByRole("radio", { name: "Forth" });
+    const radio1 = screen.getByRole("radio", { name: "First" });
+    const radio2 = screen.getByRole("radio", { name: "Second" });
+    const radio3 = screen.getByRole("radio", { name: "Third" });
+    const radio4 = screen.getByRole("radio", { name: "Forth" });
     expect(radio1).not.toBeChecked();
     expect(radio2).not.toBeChecked();
     expect(radio3).toBeChecked();
@@ -178,7 +178,7 @@ describe("useRadioGroup", () => {
     expect(radio3).not.toBeChecked();
     expect(radio4).not.toBeChecked();
 
-    fireEvent.click(getByRole("button", { name: "Reset" }));
+    fireEvent.click(screen.getByRole("button", { name: "Reset" }));
     expect(radio1).not.toBeChecked();
     expect(radio2).not.toBeChecked();
     expect(radio3).toBeChecked();
@@ -204,15 +204,15 @@ describe("useRadioGroup", () => {
       );
     }
 
-    const { getByRole } = render(<Test />, { wrapper: AppSizeProvider });
+    render(<Test />, { wrapper: AppSizeProvider });
 
-    fireEvent.click(getByRole("button", { name: "Toggle" }));
-    expect(getByRole("menu")).toMatchSnapshot();
+    fireEvent.click(screen.getByRole("button", { name: "Toggle" }));
+    expect(screen.getByRole("menu")).toMatchSnapshot();
 
-    const radio1 = getByRole("menuitemradio", { name: "First" });
-    const radio2 = getByRole("menuitemradio", { name: "Second" });
-    const radio3 = getByRole("menuitemradio", { name: "Third" });
-    const radio4 = getByRole("menuitemradio", { name: "Forth" });
+    const radio1 = screen.getByRole("menuitemradio", { name: "First" });
+    const radio2 = screen.getByRole("menuitemradio", { name: "Second" });
+    const radio3 = screen.getByRole("menuitemradio", { name: "Third" });
+    const radio4 = screen.getByRole("menuitemradio", { name: "Forth" });
     expect(radio1).not.toBeChecked();
     expect(radio2).not.toBeChecked();
     expect(radio3).toBeChecked();

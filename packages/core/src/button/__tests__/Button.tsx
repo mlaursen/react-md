@@ -18,9 +18,9 @@ describe("Button", () => {
       ref,
       children: "Content",
     } as const;
-    const { getByRole, rerender } = render(<Button {...props} />);
+    const { rerender } = render(<Button {...props} />);
 
-    const button = getByRole("button", { name: "Content" });
+    const button = screen.getByRole("button", { name: "Content" });
     expect(ref.current).toBeInstanceOf(HTMLButtonElement);
     expect(ref.current).toBe(button);
     expect(button).toMatchSnapshot();
@@ -39,9 +39,9 @@ describe("Button", () => {
     const higherContrastMock = jest
       .spyOn(INTERACTION_CONFIG, "higherContrast", "get")
       .mockReturnValue(false);
-    const { getByRole, rerender } = render(<Button>Content</Button>);
+    const { rerender } = render(<Button>Content</Button>);
 
-    const button = getByRole("button", { name: "Content" });
+    const button = screen.getByRole("button", { name: "Content" });
     expect(button).toMatchSnapshot();
 
     rerender(
@@ -70,8 +70,8 @@ describe("Button", () => {
       "contained",
     ];
 
-    const { getByRole, rerender } = render(<Button>Content</Button>);
-    const button = getByRole("button");
+    const { rerender } = render(<Button>Content</Button>);
+    const button = screen.getByRole("button");
     expect(button).toMatchSnapshot();
 
     buttonTypes.forEach((buttonType) => {
@@ -91,12 +91,12 @@ describe("Button", () => {
 
   it("should not fire the onClick event handler when the theme is set to disabled", () => {
     const onClick = jest.fn();
-    const { getByRole } = render(
+    render(
       <Button onClick={onClick} theme="disabled">
         Button
       </Button>
     );
-    const button = getByRole("button");
+    const button = screen.getByRole("button");
 
     fireEvent.click(button);
     expect(onClick).not.toHaveBeenCalled();
@@ -104,11 +104,11 @@ describe("Button", () => {
 
   describe("floating action buttons", () => {
     it("should default to a secondary themed contained icon button if the floating behavior is enabled", () => {
-      const { getByRole, rerender } = render(
+      const { rerender } = render(
         <Button aria-label="Button" floating="bottom-right" />
       );
 
-      const button = getByRole("button", { name: "Button" });
+      const button = screen.getByRole("button", { name: "Button" });
       expect(button).toHaveClass("rmd-button--icon");
       expect(button.parentElement).toHaveClass("rmd-fab");
       expect(button.parentElement).toMatchSnapshot();
@@ -147,7 +147,7 @@ describe("Button", () => {
 
     it("should allow for custom props to be passed to the wrapper span element", () => {
       const ref = createRef<HTMLSpanElement>();
-      const { getByRole } = render(
+      render(
         <Button
           aria-label="Button"
           floating="bottom-left"
@@ -159,7 +159,7 @@ describe("Button", () => {
         />
       );
 
-      const button = getByRole("button", { name: "Button" });
+      const button = screen.getByRole("button", { name: "Button" });
       const fab = button.parentElement;
       expect(ref.current).toBeInstanceOf(HTMLSpanElement);
       expect(ref.current).toBe(fab);

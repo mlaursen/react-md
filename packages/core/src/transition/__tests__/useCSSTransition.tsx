@@ -8,7 +8,7 @@ import {
   jest,
 } from "@jest/globals";
 import { useState, type ReactElement } from "react";
-import { act, fireEvent, render } from "../../test-utils/index.js";
+import { act, fireEvent, render, screen } from "../../test-utils/index.js";
 
 import { TRANSITION_CONFIG } from "../config.js";
 import {
@@ -85,45 +85,43 @@ describe("useCSSTransition", () => {
   });
 
   it("should apply the correct classNames at the different stages", () => {
-    const { getByRole, getByText, getByTestId } = render(
-      <Test appear defaultTransitionIn />
-    );
-    const toggle = getByRole("button", { name: "Toggle" });
-    const node = getByTestId("node");
+    render(<Test appear defaultTransitionIn />);
+    const toggle = screen.getByRole("button", { name: "Toggle" });
+    const node = screen.getByTestId("node");
 
     expect(node).toHaveTextContent('The current stage is: "entering"');
-    expect(() => getByText("Appearing: true")).not.toThrow();
+    expect(() => screen.getByText("Appearing: true")).not.toThrow();
     expect(node.className).toBe("appear appear-active");
 
     act(() => {
       jest.runAllTimers();
     });
     expect(node).toHaveTextContent('The current stage is: "entered"');
-    expect(() => getByText("Appearing: true")).not.toThrow();
+    expect(() => screen.getByText("Appearing: true")).not.toThrow();
     expect(node.className).toBe("appear-done");
 
     fireEvent.click(toggle);
     expect(node).toHaveTextContent('The current stage is: "exiting"');
-    expect(() => getByText("Appearing: false")).not.toThrow();
+    expect(() => screen.getByText("Appearing: false")).not.toThrow();
     expect(node.className).toBe("exit exit-active");
 
     act(() => {
       jest.runAllTimers();
     });
     expect(node).toHaveTextContent('The current stage is: "exited"');
-    expect(() => getByText("Appearing: false")).not.toThrow();
+    expect(() => screen.getByText("Appearing: false")).not.toThrow();
     expect(node.className).toBe("exit-done");
 
     fireEvent.click(toggle);
     expect(node).toHaveTextContent('The current stage is: "entering"');
-    expect(() => getByText("Appearing: false")).not.toThrow();
+    expect(() => screen.getByText("Appearing: false")).not.toThrow();
     expect(node.className).toBe("enter enter-active");
 
     act(() => {
       jest.runAllTimers();
     });
     expect(node).toHaveTextContent('The current stage is: "entered"');
-    expect(() => getByText("Appearing: false")).not.toThrow();
+    expect(() => screen.getByText("Appearing: false")).not.toThrow();
     expect(node.className).toBe("enter-done");
   });
 
@@ -143,8 +141,8 @@ describe("useCSSTransition", () => {
       onExited,
     };
 
-    const { getByRole } = render(<Test {...props} />);
-    const toggle = getByRole("button");
+    render(<Test {...props} />);
+    const toggle = screen.getByRole("button");
 
     expect(onEnter).not.toHaveBeenCalled();
     expect(onEntering).not.toHaveBeenCalled();

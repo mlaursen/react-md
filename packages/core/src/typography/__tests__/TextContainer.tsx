@@ -1,19 +1,19 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { render } from "../../test-utils/index.js";
+import { render, screen } from "../../test-utils/index.js";
 
 import { textContainer, TextContainer } from "../TextContainer.js";
 import { Typography } from "../Typography.js";
 
 describe("TextContainer", () => {
   it("should render correctly and apply the correct class names", () => {
-    const { getByTestId, rerender } = render(
+    const { rerender } = render(
       <TextContainer data-testid="container">
         <Typography>Content</Typography>
       </TextContainer>
     );
 
-    const container = getByTestId("container");
+    const container = screen.getByTestId("container");
     expect(container).toHaveClass("rmd-text-container");
     expect(container).toMatchSnapshot();
 

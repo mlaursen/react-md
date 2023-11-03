@@ -216,7 +216,9 @@ describe("ToastManagerProvider", () => {
     });
 
     const init = async (props?: SimpleTestProps) => {
+      // eslint-disable-next-line testing-library/await-async-events
       const user = userEvent.setup({ delay: null });
+      // eslint-disable-next-line testing-library/render-result-naming-convention
       const result = renderWithManager(<SimpleTest {...props} />);
       const button = screen.getByRole("button", { name: "Button" });
       const snackbar = screen.getByRole("status");

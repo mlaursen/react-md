@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { render } from "../../test-utils/index.js";
+import { render, screen } from "../../test-utils/index.js";
 
 import { Badge } from "../Badge.js";
 
@@ -11,9 +11,9 @@ describe("Badge", () => {
       ref,
       children: 3,
     } as const;
-    const { getByText, rerender } = render(<Badge {...props} />);
+    const { rerender } = render(<Badge {...props} />);
 
-    const badge = getByText("3");
+    const badge = screen.getByText("3");
     expect(ref.current).toBeInstanceOf(HTMLSpanElement);
     expect(ref.current).toBe(badge);
     expect(badge).toMatchSnapshot();

@@ -60,9 +60,9 @@ describe("useCollapseTransition", () => {
   });
 
   it("should default to not rendering the element when transitionIn is false", () => {
-    const { container, getByRole, getByTestId } = render(<Test />);
-    const getElement = (): HTMLElement => getByTestId("element");
-    const toggle = getByRole("button");
+    const { container } = render(<Test />);
+    const getElement = (): HTMLElement => screen.getByTestId("element");
+    const toggle = screen.getByRole("button");
 
     expect(getElement).toThrow();
 
@@ -88,11 +88,9 @@ describe("useCollapseTransition", () => {
   });
 
   it(`should apply the ${DISPLAY_NONE_CLASS} if the temporary behavior is disabled`, () => {
-    const { container, getByRole, getByTestId } = render(
-      <Test temporary={false} />
-    );
-    const toggle = getByRole("button");
-    const element = getByTestId("element");
+    const { container } = render(<Test temporary={false} />);
+    const toggle = screen.getByRole("button");
+    const element = screen.getByTestId("element");
 
     expect(element).toHaveClass(DISPLAY_NONE_CLASS);
     expect(container).toMatchSnapshot();
@@ -120,10 +118,10 @@ describe("useCollapseTransition", () => {
   });
 
   it("should default to not being temporary if the minHeight, minPaddingTop, or minPaddingBottom are not 0", () => {
-    const { container, getByTestId, rerender } = render(
+    const { container, rerender } = render(
       <Test key="first-test" minHeight={120} />
     );
-    const getElement = (): HTMLElement => getByTestId("element");
+    const getElement = (): HTMLElement => screen.getByTestId("element");
 
     expect(getElement).not.toThrow();
     expect(container).toMatchSnapshot();
@@ -150,8 +148,8 @@ describe("useCollapseTransition", () => {
   });
 
   it("should not apply any style if it mounts while transitionIn is true", () => {
-    const { container, getByTestId } = render(<Test defaultTransitionIn />);
-    const element = getByTestId("element");
+    const { container } = render(<Test defaultTransitionIn />);
+    const element = screen.getByTestId("element");
     expect(element.style.minHeight).toBe("");
     expect(element.style.paddingBottom).toBe("");
     expect(element.style.paddingTop).toBe("");
@@ -174,8 +172,8 @@ describe("useCollapseTransition", () => {
       onExited,
     };
 
-    const { getByRole } = render(<Test {...props} />);
-    const toggle = getByRole("button");
+    render(<Test {...props} />);
+    const toggle = screen.getByRole("button");
 
     expect(onEnter).not.toHaveBeenCalled();
     expect(onEntering).not.toHaveBeenCalled();
@@ -222,15 +220,15 @@ describe("useCollapseTransition", () => {
   });
 
   it("should apply the correct appear transitionDuration", () => {
-    const { container, getByRole, getByTestId } = render(
+    const { container } = render(
       <Test
         appear
         defaultTransitionIn
         timeout={{ appear: 100, enter: 250, exit: 200 }}
       />
     );
-    let element = getByTestId("element");
-    const toggle = getByRole("button");
+    let element = screen.getByTestId("element");
+    const toggle = screen.getByRole("button");
 
     expect(element.style.transitionDuration).toBe("100ms");
     expect(container).toMatchSnapshot();
@@ -252,7 +250,7 @@ describe("useCollapseTransition", () => {
     expect(container).toMatchSnapshot();
 
     fireEvent.click(toggle);
-    element = getByTestId("element");
+    element = screen.getByTestId("element");
     expect(element.style.transitionDuration).toBe("250ms");
     expect(container).toMatchSnapshot();
 
@@ -264,9 +262,9 @@ describe("useCollapseTransition", () => {
   });
 
   it("should not apply any class names if the timeout is disabled", () => {
-    const { container, getByRole, getByTestId } = render(<Test timeout={0} />);
-    const getElement = (): HTMLElement => getByTestId("element");
-    const toggle = getByRole("button");
+    const { container } = render(<Test timeout={0} />);
+    const getElement = (): HTMLElement => screen.getByTestId("element");
+    const toggle = screen.getByRole("button");
 
     expect(getElement).toThrow();
     expect(container).toMatchSnapshot();

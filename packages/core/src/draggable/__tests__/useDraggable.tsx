@@ -7,7 +7,7 @@ import {
   type ReactElement,
   type Ref,
 } from "react";
-import { fireEvent, rmdRender } from "../../test-utils/index.js";
+import { fireEvent, rmdRender, screen } from "../../test-utils/index.js";
 
 import { Button } from "../../button/Button.js";
 import { WritingDirectionProvider } from "../../typography/WritingDirectionProvider.js";
@@ -89,7 +89,7 @@ describe("useDraggable", () => {
     const onMouseMove = jest.fn();
     const onMouseUp = jest.fn();
 
-    const { getByRole } = rmdRender(
+    rmdRender(
       <Test
         onMouseUp={onMouseUp}
         onMouseDown={onMouseDown}
@@ -97,7 +97,7 @@ describe("useDraggable", () => {
       />
     );
 
-    const button = getByRole("button");
+    const button = screen.getByRole("button");
     expect(onMouseDown).not.toHaveBeenCalled();
     expect(onMouseMove).not.toHaveBeenCalled();
     expect(onMouseUp).not.toHaveBeenCalled();
@@ -175,9 +175,9 @@ describe("useDraggable", () => {
   });
 
   it("should not start dragging if any of meta keys are pressed", () => {
-    const { getByRole } = rmdRender(<Test />);
+    rmdRender(<Test />);
 
-    const button = getByRole("button");
+    const button = screen.getByRole("button");
     expect(button).toHaveAttribute("aria-valuenow", "50");
 
     fireEvent.mouseDown(button, { button: 1, clientX: 50 });
@@ -212,9 +212,9 @@ describe("useDraggable", () => {
 
     const onKeyDown = jest.fn();
 
-    const { getByRole } = rmdRender(<Test onKeyDown={onKeyDown} />);
+    rmdRender(<Test onKeyDown={onKeyDown} />);
 
-    const button = getByRole("button");
+    const button = screen.getByRole("button");
     expect(onKeyDown).not.toHaveBeenCalled();
     expect(button).toMatchSnapshot();
     expect(button).toHaveAttribute("aria-valuenow", "50");
@@ -261,11 +261,9 @@ describe("useDraggable", () => {
     const onTouchStart = jest.fn();
     const onTouchMove = jest.fn();
 
-    const { getByRole } = rmdRender(
-      <Test onTouchStart={onTouchStart} onTouchMove={onTouchMove} />
-    );
+    rmdRender(<Test onTouchStart={onTouchStart} onTouchMove={onTouchMove} />);
 
-    const button = getByRole("button");
+    const button = screen.getByRole("button");
     expect(onTouchStart).not.toHaveBeenCalled();
     expect(onTouchMove).not.toHaveBeenCalled();
     expect(button).toMatchSnapshot();
@@ -297,14 +295,14 @@ describe("useDraggable", () => {
 
   it("should allow a ref to be merged", () => {
     const ref = createRef<HTMLButtonElement>();
-    const { getByRole } = rmdRender(<Test nodeRef={ref} />);
-    const button = getByRole("button");
+    rmdRender(<Test nodeRef={ref} />);
+    const button = screen.getByRole("button");
     expect(ref.current).toBe(button);
   });
 
   it("should never trigger the event handlers when disabled", () => {
-    const { getByRole } = rmdRender(<Test disabled />);
-    const button = getByRole("button");
+    rmdRender(<Test disabled />);
+    const button = screen.getByRole("button");
     expect(button).toHaveAttribute("aria-valuenow", "50");
     fireEvent.mouseDown(button, { button: 0 });
     fireEvent.mouseMove(button);
@@ -323,7 +321,7 @@ describe("useDraggable", () => {
   });
 
   it("should support dragging when RTL is enabled", () => {
-    const { getByRole } = rmdRender(<Test />, {
+    rmdRender(<Test />, {
       wrapper: ({ children }) => (
         <WritingDirectionProvider defaultDir="rtl">
           {children}
@@ -331,7 +329,7 @@ describe("useDraggable", () => {
       ),
     });
 
-    const button = getByRole("button");
+    const button = screen.getByRole("button");
     expect(button).toHaveAttribute("aria-valuenow", "50");
     fireEvent.mouseDown(button, { button: 0 });
     fireEvent.mouseMove(button);
@@ -340,9 +338,9 @@ describe("useDraggable", () => {
   });
 
   it("should support vertical dragging", () => {
-    const { getByRole } = rmdRender(<Test vertical />);
+    rmdRender(<Test vertical />);
 
-    const button = getByRole("button");
+    const button = screen.getByRole("button");
     expect(button).toHaveAttribute("aria-valuenow", "50");
     fireEvent.mouseDown(button, { button: 0 });
     fireEvent.mouseMove(button);
@@ -354,11 +352,9 @@ describe("useDraggable", () => {
   });
 
   it("should allow the dragging class names to be disabled", () => {
-    const { rerender, getByRole } = rmdRender(
-      <Test disableDraggingClassName />
-    );
+    const { rerender } = rmdRender(<Test disableDraggingClassName />);
 
-    const button = getByRole("button");
+    const button = screen.getByRole("button");
     fireEvent.mouseDown(button, { button: 0 });
     fireEvent.mouseMove(button);
     fireEvent.mouseMove(window, { clientX: 60 });
@@ -372,21 +368,21 @@ describe("useDraggable", () => {
   });
 
   it("should allow the default value to be a function", () => {
-    const { getByRole } = rmdRender(<Test defaultValue={() => 0} />);
-    const button = getByRole("button");
+    rmdRender(<Test defaultValue={() => 0} />);
+    const button = screen.getByRole("button");
     expect(button).toHaveAttribute("aria-valuenow", "0");
   });
 
   it("should allow the default value to be a number", () => {
-    const { getByRole } = rmdRender(<Test defaultValue={12} />);
-    const button = getByRole("button");
+    rmdRender(<Test defaultValue={12} />);
+    const button = screen.getByRole("button");
     expect(button).toHaveAttribute("aria-valuenow", "12");
   });
 
   it("should allow for a custom increment step", () => {
-    const { getByRole } = rmdRender(<Test step={10} />);
+    rmdRender(<Test step={10} />);
 
-    const button = getByRole("button");
+    const button = screen.getByRole("button");
     expect(button).toHaveAttribute("aria-valuenow", "50");
 
     fireEvent.keyDown(button, { key: "ArrowRight" });
@@ -397,9 +393,9 @@ describe("useDraggable", () => {
   });
 
   it("should automatically update the value if the min, max, or step options change", () => {
-    const { getByRole, rerender } = rmdRender(<Test step={10} />);
+    const { rerender } = rmdRender(<Test step={10} />);
 
-    const button = getByRole("button");
+    const button = screen.getByRole("button");
     expect(button).toHaveAttribute("aria-valuenow", "50");
 
     rerender(<Test step={10} min={10} max={30} />);
@@ -450,13 +446,13 @@ describe("useDraggable", () => {
       );
     }
 
-    const { getByRole } = rmdRender(<Test />);
+    rmdRender(<Test />);
 
-    const button = getByRole("button", { name: "Button" });
-    const minimum = getByRole("button", { name: "Minimum" });
-    const maximum = getByRole("button", { name: "Maximum" });
-    const increment = getByRole("button", { name: "Increment" });
-    const decrement = getByRole("button", { name: "Decrement" });
+    const button = screen.getByRole("button", { name: "Button" });
+    const minimum = screen.getByRole("button", { name: "Minimum" });
+    const maximum = screen.getByRole("button", { name: "Maximum" });
+    const increment = screen.getByRole("button", { name: "Increment" });
+    const decrement = screen.getByRole("button", { name: "Decrement" });
     expect(button).toMatchSnapshot();
     expect(button).toHaveAttribute("aria-valuenow", "20");
 
@@ -522,9 +518,9 @@ describe("useDraggable", () => {
       );
     }
 
-    const { getByRole } = rmdRender(<Test />);
+    rmdRender(<Test />);
 
-    const button = getByRole("button");
+    const button = screen.getByRole("button");
     expect(localStorage.getItem("test")).toBe("50");
 
     fireEvent.mouseDown(button, { button: 0 });

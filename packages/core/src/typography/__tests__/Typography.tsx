@@ -1,13 +1,13 @@
 import { describe, expect, it } from "@jest/globals";
 import { type HTMLAttributes, type ReactElement } from "react";
-import { render } from "../../test-utils/index.js";
+import { render, screen } from "../../test-utils/index.js";
 
 import { typography, Typography, type TypographyType } from "../Typography.js";
 
 describe("Typography", () => {
   it("should default to rendering as a paragraph and body-1 styles", () => {
-    const { getByTestId } = render(<Typography data-testid="text" />);
-    const text = getByTestId("text");
+    render(<Typography data-testid="text" />);
+    const text = screen.getByTestId("text");
     expect(text.tagName).toBe("P");
     expect(text).toHaveClass("rmd-typography");
     expect(text).toHaveClass("rmd-typography--body-1");
@@ -29,10 +29,10 @@ describe("Typography", () => {
       { type: "overline", expected: "span" },
     ];
 
-    const { getByTestId, rerender } = render(<Typography data-testid="text" />);
+    const { rerender } = render(<Typography data-testid="text" />);
     tests.forEach(({ type, expected }) => {
       rerender(<Typography data-testid="text" type={type} />);
-      const text = getByTestId("text");
+      const text = screen.getByTestId("text");
       expect(text.tagName.toLowerCase()).toBe(expected);
       expect(text).toHaveClass("rmd-typography");
       expect(text).toHaveClass(`rmd-typography--${type}`);
@@ -44,7 +44,7 @@ describe("Typography", () => {
         <Typography type="caption" data-testid="text" />
       </table>
     );
-    const text = getByTestId("text");
+    const text = screen.getByTestId("text");
     expect(text.tagName).toBe("CAPTION");
     expect(text).toHaveClass("rmd-typography");
     expect(text).toHaveClass("rmd-typography--caption");
@@ -56,14 +56,12 @@ describe("Typography", () => {
       return <div {...props}>Custom!</div>;
     }
 
-    const { getByTestId } = render(
-      <Typography data-testid="text" as={Custom} />
-    );
-    expect(getByTestId("text")).toMatchSnapshot();
+    render(<Typography data-testid="text" as={Custom} />);
+    expect(screen.getByTestId("text")).toMatchSnapshot();
   });
 
   it("should be able to apply additional styles", () => {
-    const { getByTestId } = render(
+    render(
       <Typography
         data-testid="text"
         textAlign="center"
@@ -76,7 +74,7 @@ describe("Typography", () => {
       />
     );
 
-    expect(getByTestId("text")).toMatchSnapshot();
+    expect(screen.getByTestId("text")).toMatchSnapshot();
   });
 
   describe("styling utility class", () => {

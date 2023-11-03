@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { render } from "../../test-utils/index.js";
+import { render, screen } from "../../test-utils/index.js";
 
 import {
   AppBar,
@@ -19,8 +19,8 @@ describe("AppBar", () => {
       children: <AppBarTitle>My Title</AppBarTitle>,
     } as const;
 
-    const { getByTestId, rerender } = render(<AppBar {...props} />);
-    let appBar = getByTestId("app-bar");
+    const { rerender } = render(<AppBar {...props} />);
+    let appBar = screen.getByTestId("app-bar");
     expect(ref.current).toBeInstanceOf(HTMLDivElement);
     expect(ref.current).toBe(appBar);
     expect(appBar).toMatchSnapshot();
@@ -32,27 +32,27 @@ describe("AppBar", () => {
         className="custom-class-name"
       />
     );
-    appBar = getByTestId("app-bar");
+    appBar = screen.getByTestId("app-bar");
     expect(appBar).toMatchSnapshot();
 
     rerender(<AppBar {...props} position="fixed" />);
-    appBar = getByTestId("app-bar");
+    appBar = screen.getByTestId("app-bar");
     expect(appBar).toMatchSnapshot();
 
     rerender(<AppBar {...props} position="fixed" disableElevation />);
-    appBar = getByTestId("app-bar");
+    appBar = screen.getByTestId("app-bar");
     expect(appBar).toMatchSnapshot();
 
     rerender(<AppBar {...props} position="sticky" />);
-    appBar = getByTestId("app-bar");
+    appBar = screen.getByTestId("app-bar");
     expect(appBar).toMatchSnapshot();
 
     rerender(<AppBar {...props} position="sticky" disableElevation />);
-    appBar = getByTestId("app-bar");
+    appBar = screen.getByTestId("app-bar");
     expect(appBar).toMatchSnapshot();
 
     rerender(<AppBar {...props} stacked />);
-    appBar = getByTestId("app-bar");
+    appBar = screen.getByTestId("app-bar");
     expect(appBar).toMatchSnapshot();
   });
 
@@ -61,8 +61,8 @@ describe("AppBar", () => {
       "data-testid": "app-bar",
     } as const;
 
-    const { getByTestId, rerender } = render(<AppBar {...props} />);
-    const appBar = getByTestId("app-bar");
+    const { rerender } = render(<AppBar {...props} />);
+    const appBar = screen.getByTestId("app-bar");
     expect(appBar).toMatchSnapshot();
 
     rerender(<AppBar {...props} theme="secondary" />);
@@ -81,8 +81,8 @@ describe("AppBar", () => {
       "data-testid": "app-bar",
       position: "fixed",
     } as const;
-    const { getByTestId, rerender } = render(<AppBar {...props} />);
-    const appBar = getByTestId("app-bar");
+    const { rerender } = render(<AppBar {...props} />);
+    const appBar = screen.getByTestId("app-bar");
     expect(appBar).toMatchSnapshot();
 
     positions.forEach((position) => {
@@ -103,8 +103,8 @@ describe("AppBar", () => {
       "data-testid": "app-bar",
     } as const;
 
-    const { getByTestId, rerender } = render(<AppBar {...props} />);
-    const appBar = getByTestId("app-bar");
+    const { rerender } = render(<AppBar {...props} />);
+    const appBar = screen.getByTestId("app-bar");
     expect(appBar).toMatchSnapshot();
 
     heights.forEach((height) => {

@@ -1,6 +1,12 @@
 import { beforeEach, describe, expect, it, jest } from "@jest/globals";
 import { useEffect } from "react";
-import { act, fireEvent, render, userEvent } from "../../test-utils/index.js";
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  userEvent,
+} from "../../test-utils/index.js";
 
 import { FileInput } from "../FileInput.js";
 import { useFileUpload, type FileUploadOptions } from "../useFileUpload.js";
@@ -141,20 +147,18 @@ function SingleFileTest(props: FileUploadOptions<HTMLElement>) {
 describe("useFileUpload", () => {
   it("should work correctly for a single file upload flow and reset", async () => {
     const file = new File(["pretend-bytes"], "README.txt");
-    const { getAllByRole, getByLabelText, getByRole, getByTestId } = render(
-      <SingleFileTest />
-    );
-    const input = getByLabelText("Upload") as HTMLInputElement;
-    const status = getByTestId("status");
-    const fileName = getByTestId("fileName");
-    const progress = getByTestId("progress");
-    const result = getByTestId("result");
+    render(<SingleFileTest />);
+    const input = screen.getByLabelText("Upload") as HTMLInputElement;
+    const status = screen.getByTestId("status");
+    const fileName = screen.getByTestId("fileName");
+    const progress = screen.getByTestId("progress");
+    const result = screen.getByTestId("result");
 
     expect(status).toHaveTextContent("");
     expect(fileName).toHaveTextContent("");
     expect(progress).toHaveTextContent("");
     expect(result).toHaveTextContent("");
-    expect(() => getAllByRole("listitem")).toThrow();
+    expect(() => screen.getAllByRole("listitem")).toThrow();
 
     await userEvent.upload(input, file);
 
@@ -163,14 +167,14 @@ describe("useFileUpload", () => {
     expect(fileName).toHaveTextContent("README.txt");
     expect(progress).toHaveTextContent("0");
     expect(result).toHaveTextContent("");
-    expect(() => getAllByRole("listitem")).toThrow();
+    expect(() => screen.getAllByRole("listitem")).toThrow();
 
     mockFileReader.triggerProgressEvent(100, 1000);
     expect(status).toHaveTextContent("uploading");
     expect(fileName).toHaveTextContent("README.txt");
     expect(progress).toHaveTextContent("10");
     expect(result).toHaveTextContent("");
-    expect(() => getAllByRole("listitem")).toThrow();
+    expect(() => screen.getAllByRole("listitem")).toThrow();
 
     const content = "pretend-bytes";
     mockFileReader.triggerLoadEvent(content);
@@ -178,14 +182,14 @@ describe("useFileUpload", () => {
     expect(fileName).toHaveTextContent("README.txt");
     expect(progress).toHaveTextContent("100");
     expect(result).toHaveTextContent(content);
-    expect(() => getAllByRole("listitem")).toThrow();
+    expect(() => screen.getAllByRole("listitem")).toThrow();
 
-    fireEvent.click(getByRole("button", { name: "Reset" }));
+    fireEvent.click(screen.getByRole("button", { name: "Reset" }));
     expect(status).toHaveTextContent("");
     expect(fileName).toHaveTextContent("");
     expect(progress).toHaveTextContent("");
     expect(result).toHaveTextContent("");
-    expect(() => getAllByRole("listitem")).toThrow();
+    expect(() => screen.getAllByRole("listitem")).toThrow();
   });
 
   it("should not cause infinite rerenders if the reset function is added to a useEffect's dependency array", () => {
@@ -208,55 +212,57 @@ describe("useFileUpload", () => {
 
   it("should abort any FileReaders when the reset function is called", async () => {
     const file = new File(["pretend-bytes"], "README.txt");
-    const { getByLabelText, getByRole } = render(<SingleFileTest />);
-    const input = getByLabelText("Upload") as HTMLInputElement;
+    render(<SingleFileTest />);
+    const input = screen.getByLabelText("Upload") as HTMLInputElement;
 
     await userEvent.upload(input, file);
     expect(abort).not.toHaveBeenCalled();
-    fireEvent.click(getByRole("button", { name: "Reset" }));
+    fireEvent.click(screen.getByRole("button", { name: "Reset" }));
     expect(abort).toHaveBeenCalledTimes(1);
   });
 
   it("should allow for some default validation", async () => {
-    const { getByLabelText, getByRole, getByTestId } = render(
-      <SingleFileTest maxFileSize={1024} minFileSize={612} />
-    );
-    const input = getByLabelText("Upload") as HTMLInputElement;
-    const status = getByTestId("status");
-    const fileName = getByTestId("fileName");
-    const reset = getByRole("button", { name: "Reset" });
-    const clearErrors = getByRole("button", { name: "Clear Errors" });
+    render(<SingleFileTest maxFileSize={1024} minFileSize={612} />);
+    const input = screen.getByLabelText("Upload") as HTMLInputElement;
+    const status = screen.getByTestId("status");
+    const fileName = screen.getByTestId("fileName");
+    const reset = screen.getByRole("button", { name: "Reset" });
+    const clearErrors = screen.getByRole("button", { name: "Clear Errors" });
 
     const file1 = createFile("file1.txt", 32);
     expect(file1.size).toBe(32);
     await userEvent.upload(input, file1);
     expect(() =>
-      getByRole("listitem", { name: "FileSizeError" })
+      screen.getByRole("listitem", { name: "FileSizeError" })
     ).not.toThrow();
     expect(status).toHaveTextContent("");
     expect(fileName).toHaveTextContent("");
 
     fireEvent.click(reset);
-    expect(() => getByRole("listitem", { name: "FileSizeError" })).toThrow();
+    expect(() =>
+      screen.getByRole("listitem", { name: "FileSizeError" })
+    ).toThrow();
 
     const file2 = createFile("file2.txt", 2000);
     expect(file2.size).toBe(2000);
     await userEvent.upload(input, file2);
 
     expect(() =>
-      getByRole("listitem", { name: "FileSizeError" })
+      screen.getByRole("listitem", { name: "FileSizeError" })
     ).not.toThrow();
     expect(status).toHaveTextContent("");
     expect(fileName).toHaveTextContent("");
 
     fireEvent.click(reset);
-    expect(() => getByRole("listitem", { name: "FileSizeError" })).toThrow();
+    expect(() =>
+      screen.getByRole("listitem", { name: "FileSizeError" })
+    ).toThrow();
 
     const file3 = createFile("file3.txt", 800);
     expect(file3.size).toBe(800);
     await userEvent.upload(input, file3);
 
-    expect(() => getByRole("listitem")).toThrow();
+    expect(() => screen.getByRole("listitem")).toThrow();
     expect(status).toHaveTextContent("uploading");
     expect(fileName).toHaveTextContent(file3.name);
 
@@ -270,12 +276,14 @@ describe("useFileUpload", () => {
     expect(status).toHaveTextContent("complete");
     expect(fileName).toHaveTextContent(file3.name);
     expect(() =>
-      getByRole("listitem", { name: "FileSizeError" })
+      screen.getByRole("listitem", { name: "FileSizeError" })
     ).not.toThrow();
 
     fireEvent.click(clearErrors);
     expect(status).toHaveTextContent("complete");
     expect(fileName).toHaveTextContent(file3.name);
-    expect(() => getByRole("listitem", { name: "FileSizeError" })).toThrow();
+    expect(() =>
+      screen.getByRole("listitem", { name: "FileSizeError" })
+    ).toThrow();
   });
 });

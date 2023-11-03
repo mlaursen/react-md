@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { render } from "../../test-utils/index.js";
+import { render, screen } from "../../test-utils/index.js";
 
 import { Label } from "../Label.js";
 
@@ -12,9 +12,9 @@ describe("Label", () => {
       ref,
       children: "Label content",
     } as const;
-    const { getByTestId, rerender } = render(<Label {...props} />);
+    const { rerender } = render(<Label {...props} />);
 
-    const label = getByTestId("label");
+    const label = screen.getByTestId("label");
     expect(ref.current).toBeInstanceOf(HTMLLabelElement);
     expect(ref.current).toBe(label);
     expect(label).toMatchSnapshot();

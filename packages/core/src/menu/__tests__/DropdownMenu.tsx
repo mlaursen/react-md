@@ -1,9 +1,9 @@
 import { beforeEach, describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement } from "react";
-
 import {
   act,
   rmdRender,
+  screen,
   useImmediateRaf,
   userEvent,
   waitFor,
@@ -36,7 +36,7 @@ describe("DropdownMenu", () => {
     const onItem2Click = jest.fn();
     const onItem3Click = jest.fn();
 
-    const { getByRole, getByTestId, findByRole } = rmdRender(
+    rmdRender(
       <>
         <div data-testid="outside" />
         <DropdownMenu buttonChildren="Dropdown">
@@ -47,19 +47,19 @@ describe("DropdownMenu", () => {
       </>
     );
 
-    const button = await findByRole("button", { name: "Dropdown" });
+    const button = await screen.findByRole("button", { name: "Dropdown" });
     expect(button).toMatchSnapshot();
 
     await user.click(button);
 
-    const menu = await findByRole("menu", { name: "Dropdown" });
+    const menu = await screen.findByRole("menu", { name: "Dropdown" });
     await waitFor(() => {
       expect(menu).not.toHaveClass("rmd-scale-transition--enter");
     });
     expect(menu).toMatchSnapshot();
     expect(document.activeElement).toBe(menu);
 
-    await user.click(getByRole("menuitem", { name: "Item 2" }));
+    await user.click(screen.getByRole("menuitem", { name: "Item 2" }));
     await waitFor(() => {
       expect(menu).not.toBeInTheDocument();
     });
@@ -71,12 +71,12 @@ describe("DropdownMenu", () => {
 
     await user.click(button);
     await waitFor(() => {
-      expect(getByRole("menu", { name: "Dropdown" })).not.toHaveClass(
+      expect(screen.getByRole("menu", { name: "Dropdown" })).not.toHaveClass(
         "rmd-scale-transition--enter"
       );
     });
 
-    const outside = getByTestId("outside");
+    const outside = screen.getByTestId("outside");
     await userEvent.click(outside);
     await waitFor(() => {
       expect(menu).not.toBeInTheDocument();
@@ -93,7 +93,7 @@ describe("DropdownMenu", () => {
   it("should allow all transitions to be disabled with the disableTransition prop", async () => {
     const user = userEvent.setup();
 
-    const { getByRole, getByText } = rmdRender(
+    rmdRender(
       <DropdownMenu buttonChildren="Dropdown" disableTransition>
         <MenuItem>Item 1</MenuItem>
         <MenuItem>Item 2</MenuItem>
@@ -101,12 +101,12 @@ describe("DropdownMenu", () => {
       </DropdownMenu>
     );
 
-    const button = getByRole("button", { name: "Dropdown" });
-    const icon = getByText("arrow_drop_down");
+    const button = screen.getByRole("button", { name: "Dropdown" });
+    const icon = screen.getByText("arrow_drop_down");
     expect(icon).not.toHaveClass("rmd-icon-rotator--animate");
 
     await user.click(button);
-    const menu = getByRole("menu", { name: "Dropdown" });
+    const menu = screen.getByRole("menu", { name: "Dropdown" });
     expect(menu).not.toHaveClass("rmd-scale-transition--enter");
 
     await user.click(button);
@@ -117,7 +117,7 @@ describe("DropdownMenu", () => {
   // easier to not have to wait for the transitions to complete
   it("should allow for a custom id for the button and menu", async () => {
     const user = userEvent.setup();
-    const { getByRole } = rmdRender(
+    rmdRender(
       <DropdownMenu
         id="custom-button-id"
         menuProps={{ id: "custom-menu-id" }}
@@ -128,17 +128,17 @@ describe("DropdownMenu", () => {
       </DropdownMenu>
     );
 
-    const button = getByRole("button", { name: "Dropdown" });
+    const button = screen.getByRole("button", { name: "Dropdown" });
     expect(button).toHaveAttribute("id", "custom-button-id");
     await user.click(button);
 
-    const menu = getByRole("menu", { name: "Dropdown" });
+    const menu = screen.getByRole("menu", { name: "Dropdown" });
     expect(menu).toHaveAttribute("id", "custom-menu-id");
   });
 
   it("should allow for a custom aria-label instead of using the aria-labelledby", async () => {
     const user = userEvent.setup();
-    const { getByRole } = rmdRender(
+    rmdRender(
       <DropdownMenu
         menuProps={{ "aria-label": "Custom" }}
         buttonChildren="Dropdown"
@@ -148,16 +148,16 @@ describe("DropdownMenu", () => {
       </DropdownMenu>
     );
 
-    await user.click(getByRole("button", { name: "Dropdown" }));
+    await user.click(screen.getByRole("button", { name: "Dropdown" }));
 
-    const menu = getByRole("menu", { name: "Custom" });
+    const menu = screen.getByRole("menu", { name: "Custom" });
     expect(menu).not.toHaveAttribute("aria-labelledby");
     expect(menu).toHaveAttribute("aria-label", "Custom");
   });
 
   it("should implement the correct keyboard movement behavior", async () => {
     const user = userEvent.setup();
-    const { getByRole, getAllByRole } = rmdRender(
+    rmdRender(
       <DropdownMenu buttonChildren="Dropdown" disableTransition>
         <MenuItem>Item 1</MenuItem>
         <MenuItem>Another 1</MenuItem>
@@ -168,14 +168,14 @@ describe("DropdownMenu", () => {
       </DropdownMenu>
     );
 
-    const button = getByRole("button", { name: "Dropdown" });
+    const button = screen.getByRole("button", { name: "Dropdown" });
 
     await user.tab();
     expect(document.activeElement).toBe(button);
 
     await user.keyboard("{ArrowDown}");
-    let menu = getByRole("menu", { name: "Dropdown" });
-    let items = getAllByRole("menuitem");
+    let menu = screen.getByRole("menu", { name: "Dropdown" });
+    let items = screen.getAllByRole("menuitem");
     expect(document.activeElement).toBe(items[0]);
 
     await user.keyboard("{ArrowDown}");
@@ -204,23 +204,23 @@ describe("DropdownMenu", () => {
     });
 
     await user.keyboard("{ArrowUp}");
-    menu = getByRole("menu", { name: "Dropdown" });
-    items = getAllByRole("menuitem");
+    menu = screen.getByRole("menu", { name: "Dropdown" });
+    items = screen.getAllByRole("menuitem");
     expect(document.activeElement).toBe(items[5]);
   });
 
   it("should hide the menu when the page is resized when the closeOnResize prop is enabled", async () => {
     const raf = useImmediateRaf();
     const user = userEvent.setup();
-    const { getByRole, rerender } = rmdRender(
+    const { rerender } = rmdRender(
       <DropdownMenu buttonChildren="Dropdown" disableTransition>
         <MenuItem>Item</MenuItem>
       </DropdownMenu>
     );
 
-    await user.click(getByRole("button", { name: "Dropdown" }));
+    await user.click(screen.getByRole("button", { name: "Dropdown" }));
 
-    const menu = getByRole("menu", { name: "Dropdown" });
+    const menu = screen.getByRole("menu", { name: "Dropdown" });
 
     act(() => {
       window.dispatchEvent(new Event("resize"));
@@ -249,15 +249,15 @@ describe("DropdownMenu", () => {
   it("should hide the menu when the page is scrolled when the closeOnScroll prop is enabled or the menu button is scrolled out of the viewport", async () => {
     const raf = useImmediateRaf();
     const user = userEvent.setup();
-    const { getByRole, rerender } = rmdRender(
+    const { rerender } = rmdRender(
       <DropdownMenu buttonChildren="Dropdown" disableTransition>
         <MenuItem>Item</MenuItem>
       </DropdownMenu>
     );
 
-    await user.click(getByRole("button", { name: "Dropdown" }));
+    await user.click(screen.getByRole("button", { name: "Dropdown" }));
 
-    let menu = getByRole("menu", { name: "Dropdown" });
+    let menu = screen.getByRole("menu", { name: "Dropdown" });
     act(() => {
       window.dispatchEvent(new Event("scroll"));
     });
@@ -285,10 +285,10 @@ describe("DropdownMenu", () => {
       </DropdownMenu>
     );
 
-    const button = getByRole("button", { name: "Dropdown" });
+    const button = screen.getByRole("button", { name: "Dropdown" });
     await user.click(button);
 
-    menu = getByRole("menu", { name: "Dropdown" });
+    menu = screen.getByRole("menu", { name: "Dropdown" });
 
     // pretend the user scrolled the menu out of the viewport by scrolling down
     const baseRect = document.body.getBoundingClientRect();
@@ -363,7 +363,7 @@ describe("DropdownMenu", () => {
       );
     }
 
-    const { getByRole, findByRole } = rmdRender(
+    rmdRender(
       <DropdownMenu
         buttonChildren="Dropdown"
         renderAsSheet="phone"
@@ -376,15 +376,15 @@ describe("DropdownMenu", () => {
       </DropdownMenu>
     );
 
-    let button = getByRole("button", { name: "Dropdown" });
+    let button = screen.getByRole("button", { name: "Dropdown" });
     expect(button).toHaveAttribute("aria-haspopup", "menu");
     await user.click(button);
 
-    let menu = await findByRole("menu", { name: "Dropdown" });
+    let menu = await screen.findByRole("menu", { name: "Dropdown" });
     await waitFor(() => {
       expect(menu).not.toHaveClass("rmd-scale-transition--enter");
     });
-    expect(() => getByRole("dialog")).toThrow();
+    expect(() => screen.getByRole("dialog")).toThrow();
 
     await user.keyboard("{Escape}");
     await waitFor(() => {
@@ -402,25 +402,25 @@ describe("DropdownMenu", () => {
       });
     });
 
-    button = getByRole("button", { name: "Dropdown" });
+    button = screen.getByRole("button", { name: "Dropdown" });
     expect(button).toHaveAttribute("aria-haspopup", "dialog");
     await user.click(button);
-    const sheet = await findByRole("dialog", { name: "Dropdown" });
+    const sheet = await screen.findByRole("dialog", { name: "Dropdown" });
     await waitFor(() => {
       expect(sheet).not.toHaveClass("rmd-sheet--enter");
     });
     expect(() =>
       within(sheet).getByRole("menu", { name: "Dropdown" })
     ).not.toThrow();
-    menu = await findByRole("menu", { name: "Dropdown" });
+    menu = await screen.findByRole("menu", { name: "Dropdown" });
     expect(sheet).toMatchSnapshot();
     expect(document.activeElement).toBe(sheet);
 
-    const headerClose = getByRole("button", { name: "Header Close" });
-    const footerClose = getByRole("button", { name: "Footer Close" });
-    const item1 = getByRole("menuitem", { name: "Item 1" });
-    const item2 = getByRole("menuitem", { name: "Item 2" });
-    const item3 = getByRole("menuitem", { name: "Item 3" });
+    const headerClose = screen.getByRole("button", { name: "Header Close" });
+    const footerClose = screen.getByRole("button", { name: "Footer Close" });
+    const item1 = screen.getByRole("menuitem", { name: "Item 1" });
+    const item2 = screen.getByRole("menuitem", { name: "Item 2" });
+    const item3 = screen.getByRole("menuitem", { name: "Item 3" });
     await user.tab();
     expect(document.activeElement).toBe(headerClose);
 
@@ -453,14 +453,14 @@ describe("DropdownMenu", () => {
   });
 
   it("should remove the dropdown icon when rendered as an icon button", () => {
-    const { getByRole, rerender } = rmdRender(
+    const { rerender } = rmdRender(
       <DropdownMenu
         aria-label="Options"
         buttonType="icon"
         buttonChildren={<MaterialIcon name="more_vert" />}
       />
     );
-    let button = getByRole("button", { name: "Options" });
+    let button = screen.getByRole("button", { name: "Options" });
     expect(button).toMatchSnapshot();
 
     rerender(
@@ -470,18 +470,18 @@ describe("DropdownMenu", () => {
         buttonChildren={<MaterialIcon name="more_vert" />}
       />
     );
-    button = getByRole("button", { name: "Options" });
+    button = screen.getByRole("button", { name: "Options" });
     expect(button).toMatchSnapshot();
   });
 
   it("should allow for a custom dropdown icon before or after the children", () => {
-    const { getByRole, rerender } = rmdRender(
+    const { rerender } = rmdRender(
       <DropdownMenu
         buttonChildren="Dropdown"
         icon={<MaterialIcon name="favorite" />}
       />
     );
-    let button = getByRole("button", { name: "Dropdown" });
+    let button = screen.getByRole("button", { name: "Dropdown" });
     expect(button).toMatchSnapshot();
 
     rerender(
@@ -491,7 +491,7 @@ describe("DropdownMenu", () => {
         iconAfter={false}
       />
     );
-    button = getByRole("button", { name: "Dropdown" });
+    button = screen.getByRole("button", { name: "Dropdown" });
     expect(button).toMatchSnapshot();
 
     // this one isn't really useful since it would be better just to add it as
@@ -504,13 +504,13 @@ describe("DropdownMenu", () => {
         disableDropdownIcon
       />
     );
-    button = getByRole("button", { name: "Dropdown" });
+    button = screen.getByRole("button", { name: "Dropdown" });
     expect(button).toMatchSnapshot();
   });
 
   it("should render as a menuitem when a DropdownMenu is a child of another DropdownMenu", async () => {
     const user = userEvent.setup();
-    const { getByRole, findByRole } = rmdRender(
+    rmdRender(
       <DropdownMenu buttonChildren="Dropdown">
         <DropdownMenu buttonChildren="Nested Dropdown 1">
           <MenuItem>Nested Item 1</MenuItem>
@@ -525,13 +525,13 @@ describe("DropdownMenu", () => {
       </DropdownMenu>
     );
 
-    const button = getByRole("button", { name: "Dropdown" });
+    const button = screen.getByRole("button", { name: "Dropdown" });
     await user.click(button);
 
-    const nestedItem1 = await findByRole("menuitem", {
+    const nestedItem1 = await screen.findByRole("menuitem", {
       name: "Nested Dropdown 1",
     });
-    const nestedItem2 = await findByRole("menuitem", {
+    const nestedItem2 = await screen.findByRole("menuitem", {
       name: "Nested Dropdown 2",
     });
     expect(nestedItem1).toHaveAttribute("aria-haspopup", "menu");
@@ -543,7 +543,9 @@ describe("DropdownMenu", () => {
 
     await user.click(nestedItem1);
 
-    const nestedMenu1 = await findByRole("menu", { name: "Nested Dropdown 1" });
+    const nestedMenu1 = await screen.findByRole("menu", {
+      name: "Nested Dropdown 1",
+    });
     await waitFor(() => {
       expect(nestedMenu1).not.toHaveClass("rmd-scale-transition--enter");
     });
@@ -553,7 +555,7 @@ describe("DropdownMenu", () => {
     expect(document.activeElement).toBe(nestedItem1);
 
     await user.click(nestedItem2);
-    const nestedSheet = await findByRole("dialog", {
+    const nestedSheet = await screen.findByRole("dialog", {
       name: "Nested Dropdown 2",
     });
     await waitFor(() => {
@@ -566,7 +568,7 @@ describe("DropdownMenu", () => {
 
     await user.keyboard("{Tab}");
     await waitForElementToBeRemoved(
-      await findByRole("menu", { name: "Dropdown" })
+      await screen.findByRole("menu", { name: "Dropdown" })
     );
     expect(document.activeElement).toBe(button);
   });
@@ -574,7 +576,7 @@ describe("DropdownMenu", () => {
   it("should include disabled menu items for the keyboard movement", async () => {
     const onItemClick = jest.fn();
     const user = userEvent.setup();
-    const { getByRole } = rmdRender(
+    rmdRender(
       <DropdownMenu buttonChildren="Dropdown">
         <MenuItem disabled>Frozen yogurt</MenuItem>
         <MenuItem disabled onClick={onItemClick}>
@@ -587,14 +589,16 @@ describe("DropdownMenu", () => {
     await user.tab();
     await user.keyboard("{Enter}");
     await waitFor(() => {
-      expect(getByRole("menu", { name: "Dropdown" })).not.toHaveClass(
+      expect(screen.getByRole("menu", { name: "Dropdown" })).not.toHaveClass(
         "rmd-scale-transition--enter"
       );
     });
 
-    const frozenYogurt = getByRole("menuitem", { name: "Frozen yogurt" });
-    const iceCream = getByRole("menuitem", { name: "Ice cream" });
-    const eclair = getByRole("menuitem", { name: "Eclair" });
+    const frozenYogurt = screen.getByRole("menuitem", {
+      name: "Frozen yogurt",
+    });
+    const iceCream = screen.getByRole("menuitem", { name: "Ice cream" });
+    const eclair = screen.getByRole("menuitem", { name: "Eclair" });
     expect(frozenYogurt).toHaveAttribute("aria-disabled", "true");
     expect(iceCream).toHaveAttribute("aria-disabled", "true");
     expect(eclair).not.toHaveAttribute("aria-disabled");
@@ -614,10 +618,10 @@ describe("DropdownMenu", () => {
 
     await user.keyboard("{Tab}");
     await waitFor(() => {
-      expect(() => getByRole("menu")).toThrow();
+      expect(() => screen.getByRole("menu")).toThrow();
     });
     expect(document.activeElement).toBe(
-      getByRole("button", { name: "Dropdown" })
+      screen.getByRole("button", { name: "Dropdown" })
     );
   });
 });

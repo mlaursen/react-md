@@ -8,7 +8,7 @@ import {
   jest,
 } from "@jest/globals";
 import { useState, type ReactElement } from "react";
-import { act, fireEvent, render } from "../../test-utils/index.js";
+import { act, fireEvent, render, screen } from "../../test-utils/index.js";
 
 import { CSSTransition, type CSSTransitionProps } from "../CSSTransition.js";
 import { TRANSITION_CONFIG } from "../config.js";
@@ -65,9 +65,9 @@ describe("CSSTransition", () => {
   });
 
   it("should render correctly", () => {
-    const { container, getByRole, getByTestId, rerender } = render(<Test />);
-    const getElement = (): HTMLElement => getByTestId("element");
-    const toggle = getByRole("button");
+    const { container, rerender } = render(<Test />);
+    const getElement = (): HTMLElement => screen.getByTestId("element");
+    const toggle = screen.getByRole("button");
 
     expect(getElement).not.toThrow();
     expect(container).toMatchSnapshot();
@@ -133,8 +133,8 @@ describe("CSSTransition", () => {
       onExited,
     };
 
-    const { getByRole } = render(<Test {...props} />);
-    const toggle = getByRole("button");
+    render(<Test {...props} />);
+    const toggle = screen.getByRole("button");
 
     expect(onEnter).not.toHaveBeenCalled();
     expect(onEntering).not.toHaveBeenCalled();

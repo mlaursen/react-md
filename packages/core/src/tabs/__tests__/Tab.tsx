@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@jest/globals";
-import { render } from "../../test-utils/index.js";
+import { render, screen } from "../../test-utils/index.js";
 
 import { FontIcon } from "../../icon/FontIcon.js";
 import { Tab, type TabProps } from "../Tab.js";
@@ -12,8 +12,8 @@ describe("Tab", () => {
       children: "Tab",
     };
 
-    const { getByRole, rerender } = render(<Tab {...props} />);
-    const tab = getByRole("tab", { name: "Tab" });
+    const { rerender } = render(<Tab {...props} />);
+    const tab = screen.getByRole("tab", { name: "Tab" });
     expect(tab).toMatchSnapshot();
 
     rerender(<Tab {...props} stacked />);

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { cnb } from "cnbuilder";
-import { render } from "../../test-utils/index.js";
+import { render, screen } from "../../test-utils/index.js";
 
 import { FontIcon } from "../FontIcon.js";
 import { IconRotator } from "../IconRotator.js";
@@ -12,12 +12,12 @@ function Icon({ className }: { className?: string }) {
 
 describe("IconRotator", () => {
   it("should default to cloning the icon rotator class names into the child element", () => {
-    const { container, getByTestId, rerender } = render(
+    const { container, rerender } = render(
       <IconRotator data-testid="rotator" rotated={false}>
         <Icon />
       </IconRotator>
     );
-    const icon = getByTestId("icon");
+    const icon = screen.getByTestId("icon");
     expect(icon.className).toBe(
       "custom-icon rmd-icon-rotator rmd-icon-rotator--animate"
     );
@@ -70,7 +70,7 @@ describe("IconRotator", () => {
     expect(container).toMatchSnapshot();
   });
 
-  it("should wrapp the children with a span if the forceIconWrap prop is enabled", () => {
+  it("should wrap the children with a span if the forceIconWrap prop is enabled", () => {
     const { container, rerender } = render(
       <IconRotator rotated={false} forceIconWrap>
         <Icon />

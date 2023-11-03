@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { render } from "../../test-utils/index.js";
+import { render, screen } from "../../test-utils/index.js";
 
 import { CardTitle } from "../CardTitle.js";
 
@@ -11,9 +11,9 @@ describe("CardTitle", () => {
       ref,
       children: "Title",
     } as const;
-    const { getByRole, rerender } = render(<CardTitle {...props} />);
+    const { rerender } = render(<CardTitle {...props} />);
 
-    const subtitle = getByRole("heading", { name: "Title" });
+    const subtitle = screen.getByRole("heading", { name: "Title" });
     expect(ref.current).toBeInstanceOf(HTMLHeadingElement);
     expect(ref.current).toBe(subtitle);
     expect(subtitle).toMatchSnapshot();

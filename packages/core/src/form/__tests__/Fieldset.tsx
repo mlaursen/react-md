@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { render } from "../../test-utils/index.js";
+import { render, screen } from "../../test-utils/index.js";
 
 import { fieldset, Fieldset } from "../Fieldset.js";
 import { Legend } from "../Legend.js";
@@ -13,9 +13,9 @@ describe("Fieldset", () => {
       ref,
       children: <Legend>I am Legend</Legend>,
     } as const;
-    const { getByTestId, rerender } = render(<Fieldset {...props} />);
+    const { rerender } = render(<Fieldset {...props} />);
 
-    const fieldset = getByTestId("fieldset");
+    const fieldset = screen.getByTestId("fieldset");
     expect(ref.current).toBeInstanceOf(HTMLFieldSetElement);
     expect(ref.current).toBe(fieldset);
     expect(fieldset).toMatchSnapshot();

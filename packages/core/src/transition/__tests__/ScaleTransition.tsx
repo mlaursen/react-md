@@ -8,7 +8,7 @@ import {
   jest,
 } from "@jest/globals";
 import { useState, type ReactElement } from "react";
-import { act, fireEvent, render } from "../../test-utils/index.js";
+import { act, fireEvent, render, screen } from "../../test-utils/index.js";
 
 import {
   ScaleTransition,
@@ -52,9 +52,9 @@ describe("ScaleTransition", () => {
   });
 
   it("should default to using the horizontal transition", () => {
-    const { getByRole, getByTestId } = render(<Test />);
-    const getElement = (): HTMLElement => getByTestId("element");
-    const toggle = getByRole("button");
+    render(<Test />);
+    const getElement = (): HTMLElement => screen.getByTestId("element");
+    const toggle = screen.getByRole("button");
 
     expect(getElement).toThrow();
     expect(document.body).toMatchSnapshot();
@@ -81,9 +81,9 @@ describe("ScaleTransition", () => {
   });
 
   it("should render correctly for a vertical transition", () => {
-    const { getByRole, getByTestId } = render(<Test vertical />);
-    const getElement = (): HTMLElement => getByTestId("element");
-    const toggle = getByRole("button");
+    render(<Test vertical />);
+    const getElement = (): HTMLElement => screen.getByTestId("element");
+    const toggle = screen.getByRole("button");
 
     expect(getElement).toThrow();
     expect(document.body).toMatchSnapshot();
@@ -110,12 +110,10 @@ describe("ScaleTransition", () => {
   });
 
   it("should merge the className and allow to be rendered by default", () => {
-    const { getByRole, getByTestId } = render(
-      <Test className="custom-class" defaultTransitionIn />
-    );
+    render(<Test className="custom-class" defaultTransitionIn />);
 
-    const getElement = (): HTMLElement => getByTestId("element");
-    const toggle = getByRole("button");
+    const getElement = (): HTMLElement => screen.getByTestId("element");
+    const toggle = screen.getByRole("button");
 
     expect(getElement()).toHaveClass("custom-class");
     expect(document.body).toMatchSnapshot();
@@ -157,8 +155,8 @@ describe("ScaleTransition", () => {
       onExited,
     };
 
-    const { getByRole } = render(<Test {...props} />);
-    const toggle = getByRole("button");
+    render(<Test {...props} />);
+    const toggle = screen.getByRole("button");
 
     expect(onEnter).not.toHaveBeenCalled();
     expect(onEntering).not.toHaveBeenCalled();

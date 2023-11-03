@@ -1,6 +1,6 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import { createRef, type FC, type ReactNode } from "react";
-import { fireEvent, render } from "../../test-utils/index.js";
+import { fireEvent, render, screen } from "../../test-utils/index.js";
 
 import { SkipToMainContent } from "../SkipToMainContent.js";
 
@@ -18,11 +18,11 @@ describe("SkipToMainContent", () => {
       ref,
       mainId: "main-id",
     } as const;
-    const { getByRole, rerender } = render(<SkipToMainContent {...props} />, {
+    const { rerender } = render(<SkipToMainContent {...props} />, {
       wrapper: MainIdWrapper,
     });
 
-    const link = getByRole("link", { name: "Skip to main content" });
+    const link = screen.getByRole("link", { name: "Skip to main content" });
     expect(ref.current).toBeInstanceOf(HTMLAnchorElement);
     expect(ref.current).toBe(link);
     expect(link).toMatchSnapshot();
@@ -77,15 +77,12 @@ describe("SkipToMainContent", () => {
   });
 
   it("should focus the main element when clicked unless the provided onClick prop calls event.stopPropagation()", () => {
-    const { getByRole, rerender } = render(
-      <SkipToMainContent mainId="main-id" />,
-      {
-        wrapper: MainIdWrapper,
-      }
-    );
+    const { rerender } = render(<SkipToMainContent mainId="main-id" />, {
+      wrapper: MainIdWrapper,
+    });
 
-    const link = getByRole("link", { name: "Skip to main content" });
-    const main = getByRole("main");
+    const link = screen.getByRole("link", { name: "Skip to main content" });
+    const main = screen.getByRole("main");
     expect(document.activeElement).toBe(document.body);
 
     fireEvent.click(link);
@@ -110,13 +107,13 @@ describe("SkipToMainContent", () => {
     process.env.NODE_ENV = "production";
 
     const querySelector = jest.spyOn(document, "querySelector");
-    const { getByRole } = render(<SkipToMainContent />, {
+    render(<SkipToMainContent />, {
       wrapper: MainIdWrapper,
     });
     expect(querySelector).not.toHaveBeenCalled();
 
-    const link = getByRole("link", { name: "Skip to main content" });
-    const main = getByRole("main");
+    const link = screen.getByRole("link", { name: "Skip to main content" });
+    const main = screen.getByRole("main");
     expect(document.activeElement).toBe(document.body);
 
     fireEvent.click(link);

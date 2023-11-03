@@ -11,6 +11,7 @@ import {
   act,
   fireEvent,
   rmdRender,
+  screen,
   userEvent,
   waitFor,
 } from "../../test-utils/index.js";
@@ -72,9 +73,9 @@ describe("Tooltip", () => {
 
   it("should display the tooltip after hovering for 1s by default", () => {
     jest.useFakeTimers();
-    const { getByRole } = rmdRender(<Test />);
-    const button = getByRole("button", { name: "Button" });
-    const tooltip = getByRole("tooltip");
+    rmdRender(<Test />);
+    const button = screen.getByRole("button", { name: "Button" });
+    const tooltip = screen.getByRole("tooltip");
     expect(tooltip).toBeInTheDocument();
 
     fireEvent.mouseEnter(button);
@@ -100,9 +101,9 @@ describe("Tooltip", () => {
 
   it("should display the tooltip after focusing for 1s by default only in keyboard mode", () => {
     jest.useFakeTimers();
-    const { getByRole } = rmdRender(<Test />);
-    const button = getByRole("button", { name: "Button" });
-    const tooltip = getByRole("tooltip");
+    rmdRender(<Test />);
+    const button = screen.getByRole("button", { name: "Button" });
+    const tooltip = screen.getByRole("tooltip");
 
     expect(isElementVisible(tooltip)).toBe(false);
     fireEvent.focus(button);
@@ -144,9 +145,9 @@ describe("Tooltip", () => {
     // need to make sure that does not happen for tooltipped elements on mobile
     jest.useFakeTimers();
 
-    const { getByRole } = rmdRender(<Test />);
-    const button = getByRole("button", { name: "Button" });
-    const tooltip = getByRole("tooltip");
+    rmdRender(<Test />);
+    const button = screen.getByRole("button", { name: "Button" });
+    const tooltip = screen.getByRole("tooltip");
 
     fireEvent.touchStart(button);
     expect(isElementVisible(tooltip)).toBe(false);
@@ -207,11 +208,13 @@ describe("Tooltip", () => {
 
   it("should support controlling the visibility manually with the setVisible and hideTooltip returned functions", async () => {
     const user = userEvent.setup();
-    const { getByRole } = rmdRender(<Test />);
+    rmdRender(<Test />);
 
-    const button = getByRole("button", { name: "Button" });
-    const tooltip = getByRole("tooltip");
-    const toggleTooltip = getByRole("button", { name: "Toggle Tooltip" });
+    const button = screen.getByRole("button", { name: "Button" });
+    const tooltip = screen.getByRole("tooltip");
+    const toggleTooltip = screen.getByRole("button", {
+      name: "Toggle Tooltip",
+    });
     expect(tooltip).toBeInTheDocument();
     expect(button).not.toHaveAttribute("aria-describedby");
 
@@ -235,7 +238,7 @@ describe("Tooltip", () => {
       expect(tooltip).not.toHaveClass("rmd-tooltip--enter");
     });
 
-    await user.click(getByRole("button", { name: "Hide Tooltip" }));
+    await user.click(screen.getByRole("button", { name: "Hide Tooltip" }));
     await waitFor(() => {
       expect(isElementVisible(tooltip)).toBe(false);
     });
@@ -244,26 +247,28 @@ describe("Tooltip", () => {
 
   it("should support rendering the tooltip temporarily instead of using display: none", async () => {
     const user = userEvent.setup();
-    const { getByRole } = rmdRender(
-      <Test tooltip={{ temporary: true }} hoverTime={0} />
-    );
+    rmdRender(<Test tooltip={{ temporary: true }} hoverTime={0} />);
 
-    expect(() => getByRole("tooltip")).toThrow();
+    expect(() => screen.getByRole("tooltip")).toThrow();
 
     await user.tab();
     await waitFor(() => {
-      expect(() => getByRole("tooltip", { name: "Tooltip" })).not.toThrow();
+      expect(() =>
+        screen.getByRole("tooltip", { name: "Tooltip" })
+      ).not.toThrow();
     });
   });
 
   it("should close the tooltip whenever the escape key is pressed", async () => {
     const user = userEvent.setup();
-    const { getByRole } = rmdRender(<Test hoverTime={0} />);
-    const tooltip = getByRole("tooltip");
+    rmdRender(<Test hoverTime={0} />);
+    const tooltip = screen.getByRole("tooltip");
 
     await user.tab();
     await waitFor(() => {
       expect(isElementVisible(tooltip)).toBe(true);
+    });
+    await waitFor(() => {
       expect(tooltip).not.toHaveClass("rmd-tooltip--enter");
     });
 
@@ -275,12 +280,14 @@ describe("Tooltip", () => {
 
   it("should close the tooltip whenever the page is scrolled", async () => {
     const user = userEvent.setup();
-    const { getByRole } = rmdRender(<Test hoverTime={0} />);
-    const tooltip = getByRole("tooltip");
+    rmdRender(<Test hoverTime={0} />);
+    const tooltip = screen.getByRole("tooltip");
 
     await user.tab();
     await waitFor(() => {
       expect(isElementVisible(tooltip)).toBe(true);
+    });
+    await waitFor(() => {
       expect(tooltip).not.toHaveClass("rmd-tooltip--enter");
     });
 
@@ -292,9 +299,9 @@ describe("Tooltip", () => {
 
   it("should hide the tooltip when the page becomes inactive or blurs and not show the tooltip again on focus", async () => {
     const user = userEvent.setup();
-    const { getByRole } = rmdRender(<Test hoverTime={0} />);
-    const button = getByRole("button", { name: "Button" });
-    const tooltip = getByRole("tooltip");
+    rmdRender(<Test hoverTime={0} />);
+    const button = screen.getByRole("button", { name: "Button" });
+    const tooltip = screen.getByRole("tooltip");
 
     await user.tab();
     expect(isElementVisible(tooltip)).toBe(true);
@@ -342,9 +349,9 @@ describe("Tooltip", () => {
     expect(window.innerHeight).toBe(vh);
 
     const user = userEvent.setup();
-    const { getByRole } = rmdRender(<Test hoverTime={0} position="above" />);
-    const button = getByRole("button", { name: "Button" });
-    const tooltip = getByRole("tooltip");
+    rmdRender(<Test hoverTime={0} position="above" />);
+    const button = screen.getByRole("button", { name: "Button" });
+    const tooltip = screen.getByRole("tooltip");
 
     const baseRect = document.body.getBoundingClientRect();
     jest.spyOn(button, "getBoundingClientRect").mockReturnValue({
@@ -355,6 +362,8 @@ describe("Tooltip", () => {
     await user.tab();
     await waitFor(() => {
       expect(isElementVisible(tooltip)).toBe(true);
+    });
+    await waitFor(() => {
       expect(tooltip).toHaveClass("rmd-tooltip--above");
     });
 
@@ -374,9 +383,9 @@ describe("Tooltip", () => {
 
   it("should never display the tooltip if the disabled option is true", async () => {
     const user = userEvent.setup();
-    const { getByRole } = rmdRender(<Test hoverTime={0} disabled />);
-    const button = getByRole("button", { name: "Button" });
-    const tooltip = getByRole("tooltip");
+    rmdRender(<Test hoverTime={0} disabled />);
+    const button = screen.getByRole("button", { name: "Button" });
+    const tooltip = screen.getByRole("tooltip");
 
     await user.tab();
     expect(isElementVisible(tooltip)).toBe(false);
@@ -399,9 +408,9 @@ describe("Tooltip", () => {
 
   it("should automatically attempt to determine the spacing based on the computed style of the spacing custom property", async () => {
     const user = userEvent.setup();
-    const { getByRole, rerender } = rmdRender(<Test hoverTime={0} />);
-    const button = getByRole("button", { name: "Button" });
-    const tooltip = getByRole("tooltip");
+    const { rerender } = rmdRender(<Test hoverTime={0} />);
+    const button = screen.getByRole("button", { name: "Button" });
+    const tooltip = screen.getByRole("tooltip");
 
     const spacing = "0.825rem";
     const spacingPixels = parseCssLengthUnit({ value: spacing });
@@ -420,6 +429,8 @@ describe("Tooltip", () => {
     await user.hover(button);
     await waitFor(() => {
       expect(isElementVisible(tooltip)).toBe(true);
+    });
+    await waitFor(() => {
       expect(tooltip).not.toHaveClass("rmd-tooltip--enter");
     });
     expect(tooltip.style.top).toBe(`${spacingPixels}px`);
@@ -441,6 +452,8 @@ describe("Tooltip", () => {
     await user.hover(button);
     await waitFor(() => {
       expect(isElementVisible(tooltip)).toBe(true);
+    });
+    await waitFor(() => {
       expect(tooltip).not.toHaveClass("rmd-tooltip--enter");
     });
 
@@ -459,6 +472,8 @@ describe("Tooltip", () => {
     await user.hover(button);
     await waitFor(() => {
       expect(isElementVisible(tooltip)).toBe(true);
+    });
+    await waitFor(() => {
       expect(tooltip).not.toHaveClass("rmd-tooltip--enter");
     });
 

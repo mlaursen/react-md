@@ -61,25 +61,22 @@ describe("Overlay", () => {
   });
 
   it("should support rendering inline if disablePortal prop is true", () => {
-    const { container, getByTestId } = render(
+    const { container } = render(
       <Overlay data-testid="overlay" visible disablePortal />
     );
 
-    const overlay = getByTestId("overlay");
+    const overlay = screen.getByTestId("overlay");
     expect(container.firstElementChild).toBe(overlay);
     expect(container).toMatchSnapshot();
   });
 
   it("should support rendering inline if it was visible by default and rendered through ssr", async () => {
-    const { container, getByRole, getByTestId } = render(
-      <Test defaultVisible />,
-      {
-        wrapper: ({ children }) => <SsrProvider ssr>{children}</SsrProvider>,
-      }
-    );
+    const { container } = render(<Test defaultVisible />, {
+      wrapper: ({ children }) => <SsrProvider ssr>{children}</SsrProvider>,
+    });
 
-    const button = getByRole("button", { name: "Toggle" });
-    const overlay = getByTestId("overlay");
+    const button = screen.getByRole("button", { name: "Toggle" });
+    const overlay = screen.getByTestId("overlay");
     expect(button.nextElementSibling).toBe(overlay);
     expect(container).toMatchSnapshot();
 
@@ -90,7 +87,9 @@ describe("Overlay", () => {
 
     fireEvent.click(button);
     await waitFor(() => {
-      expect(() => getByTestId("overlay")).not.toThrow();
+      expect(() => screen.getByTestId("overlay")).not.toThrow();
+    });
+    await waitFor(() => {
       expect(() => within(container).getByTestId("overlay")).toThrow();
     });
   });
@@ -114,11 +113,9 @@ describe("Overlay", () => {
       temporary: false,
     };
 
-    const { getByTestId, rerender } = render(
-      <Overlay {...props} visible={false} />
-    );
+    const { rerender } = render(<Overlay {...props} visible={false} />);
 
-    const overlay = getByTestId("overlay");
+    const overlay = screen.getByTestId("overlay");
     expect(overlay).toHaveClass(DISPLAY_NONE_CLASS);
     expect(overlay).toMatchSnapshot();
 
@@ -131,25 +128,25 @@ describe("Overlay", () => {
 
     rerender(<Overlay {...props} visible />);
     await waitFor(() => {
-      expect(onEnter).toHaveBeenCalledTimes(1);
-      expect(onEntering).toHaveBeenCalledTimes(1);
       expect(onEntered).toHaveBeenCalledTimes(1);
-      expect(onExit).not.toHaveBeenCalled();
-      expect(onExiting).not.toHaveBeenCalled();
-      expect(onExited).not.toHaveBeenCalled();
     });
+    expect(onEnter).toHaveBeenCalledTimes(1);
+    expect(onEntering).toHaveBeenCalledTimes(1);
+    expect(onExit).not.toHaveBeenCalled();
+    expect(onExiting).not.toHaveBeenCalled();
+    expect(onExited).not.toHaveBeenCalled();
     expect(overlay).not.toHaveClass(DISPLAY_NONE_CLASS);
     expect(overlay).toMatchSnapshot();
 
     rerender(<Overlay {...props} visible={false} />);
     await waitFor(() => {
-      expect(onEnter).toHaveBeenCalledTimes(1);
-      expect(onEntering).toHaveBeenCalledTimes(1);
-      expect(onEntered).toHaveBeenCalledTimes(1);
-      expect(onExit).toHaveBeenCalledTimes(1);
-      expect(onExiting).toHaveBeenCalledTimes(1);
       expect(onExited).toHaveBeenCalledTimes(1);
     });
+    expect(onEnter).toHaveBeenCalledTimes(1);
+    expect(onEntering).toHaveBeenCalledTimes(1);
+    expect(onEntered).toHaveBeenCalledTimes(1);
+    expect(onExit).toHaveBeenCalledTimes(1);
+    expect(onExiting).toHaveBeenCalledTimes(1);
     expect(overlay).toHaveClass(DISPLAY_NONE_CLASS);
     expect(overlay).toMatchSnapshot();
   });
@@ -173,20 +170,20 @@ describe("Overlay", () => {
       onExited,
     } as const;
 
-    const { getByTestId, rerender } = render(<Overlay {...props} />);
-    expect(() => getByTestId("overlay")).toThrow();
+    const { rerender } = render(<Overlay {...props} />);
+    expect(() => screen.getByTestId("overlay")).toThrow();
 
     rerender(<Overlay {...props} visible />);
     await waitFor(() => {
-      expect(onEnter).not.toHaveBeenCalled();
-      expect(onEntering).not.toHaveBeenCalled();
       expect(onEntered).toHaveBeenCalledTimes(1);
-      expect(onExit).not.toHaveBeenCalled();
-      expect(onExiting).not.toHaveBeenCalled();
-      expect(onExited).not.toHaveBeenCalled();
     });
+    expect(onEnter).not.toHaveBeenCalled();
+    expect(onEntering).not.toHaveBeenCalled();
+    expect(onExit).not.toHaveBeenCalled();
+    expect(onExiting).not.toHaveBeenCalled();
+    expect(onExited).not.toHaveBeenCalled();
 
-    const overlay = getByTestId("overlay");
+    const overlay = screen.getByTestId("overlay");
     expect(overlay).toMatchSnapshot();
   });
 

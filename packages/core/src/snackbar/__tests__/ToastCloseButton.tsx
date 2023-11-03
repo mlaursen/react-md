@@ -26,13 +26,13 @@ describe("ToastCloseButton", () => {
       startRemoveTimeout: jest.fn(),
       resumeRemoveTimeout: jest.fn(),
     };
-    const { getByRole, rerender } = render(
+    const { rerender } = render(
       <CurrentToastActionsProvider value={actions}>
         <ToastCloseButton {...props} />
       </CurrentToastActionsProvider>
     );
 
-    const button = getByRole("button", { name: "Close" });
+    const button = screen.getByRole("button", { name: "Close" });
     expect(ref.current).toBeInstanceOf(HTMLButtonElement);
     expect(ref.current).toBe(button);
     expect(button).toMatchSnapshot();

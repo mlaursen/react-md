@@ -9,6 +9,7 @@ import {
   act,
   fireEvent,
   render,
+  screen,
   userEvent,
   waitFor,
 } from "../test-utils/index.js";
@@ -96,9 +97,9 @@ function AsyncTest(props: AsyncTestProps): ReactElement {
 describe("useThrottledFunction", () => {
   it("should throttle functions correctly by prevent setting state after unmounting and preventing stale closures during re-rendering", async () => {
     const user = userEvent.setup();
-    const { getByRole, getByTestId, unmount } = render(<SyncTest />);
-    const value = getByTestId("value");
-    const field = getByRole("textbox", { name: "Field" });
+    const { unmount } = render(<SyncTest />);
+    const value = screen.getByTestId("value");
+    const field = screen.getByRole("textbox", { name: "Field" });
     expect(value).toHaveTextContent("");
     expect(field).toHaveValue("");
 
@@ -108,6 +109,8 @@ describe("useThrottledFunction", () => {
 
     await waitFor(() => {
       expect(value).toHaveTextContent("Hello");
+    });
+    await waitFor(() => {
       expect(field).toHaveValue("Hello");
     });
 
@@ -127,15 +130,13 @@ describe("useThrottledFunction", () => {
 
     const unmounted = { current: false };
     const onUnmounted = jest.fn();
-    const { getByRole, getByTestId } = render(
-      <AsyncTest unmounted={unmounted} onUnmounted={onUnmounted} />
-    );
+    render(<AsyncTest unmounted={unmounted} onUnmounted={onUnmounted} />);
 
     act(() => {
       jest.runAllTimers();
     });
-    const value = getByTestId("value");
-    const field = getByRole("textbox", { name: "Field" });
+    const value = screen.getByTestId("value");
+    const field = screen.getByRole("textbox", { name: "Field" });
     expect(value).toHaveTextContent("");
     expect(field).toHaveValue("");
     expect(onUnmounted).not.toHaveBeenCalled();

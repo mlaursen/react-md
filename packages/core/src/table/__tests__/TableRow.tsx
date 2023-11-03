@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { render } from "../../test-utils/index.js";
+import { render, screen } from "../../test-utils/index.js";
 
 import { Table } from "../Table.js";
 import { TableBody } from "../TableBody.js";
@@ -16,7 +16,7 @@ describe("TableRow", () => {
       children: <TableCell>Content</TableCell>,
     } as const;
 
-    const { getByTestId, rerender } = render(
+    const { rerender } = render(
       <Table>
         <TableBody>
           <TableRow {...props} />
@@ -24,7 +24,7 @@ describe("TableRow", () => {
       </Table>
     );
 
-    const row = getByTestId("row");
+    const row = screen.getByTestId("row");
     expect(ref.current).toBeInstanceOf(HTMLTableRowElement);
     expect(ref.current).toBe(row);
     expect(row).toMatchSnapshot();

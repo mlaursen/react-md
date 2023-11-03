@@ -1,6 +1,12 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import { type MouseEvent, type ReactElement } from "react";
-import { act, rmdRender, userEvent, waitFor } from "../test-utils/index.js";
+import {
+  act,
+  rmdRender,
+  screen,
+  userEvent,
+  waitFor,
+} from "../test-utils/index.js";
 
 import { box } from "../box/styles.js";
 import { Button, type ButtonProps } from "../button/Button.js";
@@ -59,8 +65,8 @@ describe("useAsyncAction", () => {
         instance.addEventListener("resolve-promise", () => resolve());
       });
     });
-    const { getByRole, unmount } = rmdRender(<Test onClick={onClick} />);
-    const button = getByRole("button", { name: "Button" });
+    const { unmount } = rmdRender(<Test onClick={onClick} />);
+    const button = screen.getByRole("button", { name: "Button" });
 
     expect(button).not.toHaveAttribute("aria-disabled");
     await user.click(button);
@@ -74,6 +80,8 @@ describe("useAsyncAction", () => {
     });
     await waitFor(() => {
       expect(button).not.toHaveAttribute("aria-disabled");
+    });
+    await waitFor(() => {
       expect(button).not.toHaveAttribute("disabled");
     });
 
@@ -101,8 +109,8 @@ describe("useAsyncAction", () => {
       onClick,
     };
 
-    const { getByRole, rerender } = rmdRender(<Test {...props} disabled />);
-    const button = getByRole("button", { name: "Button" });
+    const { rerender } = rmdRender(<Test {...props} disabled />);
+    const button = screen.getByRole("button", { name: "Button" });
     expect(button).toBeDisabled();
 
     await user.click(button);

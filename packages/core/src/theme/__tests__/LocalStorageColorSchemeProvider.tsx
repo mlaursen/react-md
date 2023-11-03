@@ -56,15 +56,15 @@ function ControllableTest(): ReactElement {
 
 describe("LocalStorageColorSchemeProvider", () => {
   it("should default to the light color scheme and allow the useColorScheme hook to change the values", () => {
-    const { getByRole } = render(
+    render(
       <LocalStorageColorSchemeProvider>
         <ControllableTest />
       </LocalStorageColorSchemeProvider>
     );
 
-    const lightTheme = getByRole("checkbox", { name: "Light" });
-    const darkTheme = getByRole("checkbox", { name: "Dark" });
-    const systemTheme = getByRole("checkbox", { name: "System" });
+    const lightTheme = screen.getByRole("checkbox", { name: "Light" });
+    const darkTheme = screen.getByRole("checkbox", { name: "Dark" });
+    const systemTheme = screen.getByRole("checkbox", { name: "System" });
     expect(lightTheme).toBeChecked();
     expect(darkTheme).not.toBeChecked();
     expect(systemTheme).not.toBeChecked();

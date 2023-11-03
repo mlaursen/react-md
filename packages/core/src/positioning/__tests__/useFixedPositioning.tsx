@@ -8,7 +8,7 @@ import {
   jest,
 } from "@jest/globals";
 import { useRef, useState, type ReactElement } from "react";
-import { act, fireEvent, render } from "../../test-utils/index.js";
+import { act, fireEvent, render, screen } from "../../test-utils/index.js";
 
 import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { useScaleTransition } from "../../transition/useScaleTransition.js";
@@ -71,9 +71,9 @@ describe("useFixedPositioning", () => {
   });
 
   it("should default to fixing itself with the BELOW_CENTER_ANCHOR", () => {
-    const { container, getByRole, getByTestId } = render(<Test />);
-    const getElement = (): HTMLElement => getByTestId("element");
-    const button = getByRole("button");
+    const { container } = render(<Test />);
+    const getElement = (): HTMLElement => screen.getByTestId("element");
+    const button = screen.getByRole("button");
 
     expect(getElement).toThrow();
     expect(container).toMatchSnapshot();
@@ -100,8 +100,8 @@ describe("useFixedPositioning", () => {
 
   it("should detect if the fixed element is still visible in the viewport on scroll events", () => {
     const onScroll = jest.fn();
-    const { getByRole } = render(<Test onScroll={onScroll} />);
-    const toggle = getByRole("button");
+    render(<Test onScroll={onScroll} />);
+    const toggle = screen.getByRole("button");
 
     fireEvent.click(toggle);
     act(() => {
@@ -125,8 +125,8 @@ describe("useFixedPositioning", () => {
 
   it("should automatically update the style when the page is resized", () => {
     const onResize = jest.fn();
-    const { getByRole } = render(<Test onResize={onResize} />);
-    const toggle = getByRole("button");
+    render(<Test onResize={onResize} />);
+    const toggle = screen.getByRole("button");
 
     fireEvent.click(toggle);
     act(() => {
@@ -142,8 +142,8 @@ describe("useFixedPositioning", () => {
   });
 
   it("should update the style correctly based on the initialX and initialY so that it can be used for context menus", () => {
-    const { container, getByRole, rerender } = render(<Test />);
-    const toggle = getByRole("button");
+    const { container, rerender } = render(<Test />);
+    const toggle = screen.getByRole("button");
 
     fireEvent.click(toggle);
     act(() => {
@@ -167,8 +167,8 @@ describe("useFixedPositioning", () => {
       onExited,
     };
 
-    const { getByRole } = render(<Test {...props} />);
-    const toggle = getByRole("button");
+    render(<Test {...props} />);
+    const toggle = screen.getByRole("button");
 
     expect(onEnter).not.toHaveBeenCalled();
     expect(onEntering).not.toHaveBeenCalled();
@@ -205,10 +205,10 @@ describe("useFixedPositioning", () => {
   });
 
   it("should allow for configuring the fixed position", () => {
-    const { container, getByRole } = render(
+    const { container } = render(
       <Test transformOrigin anchor={TOP_INNER_RIGHT_ANCHOR} />
     );
-    const toggle = getByRole("button");
+    const toggle = screen.getByRole("button");
 
     fireEvent.click(toggle);
     act(() => {

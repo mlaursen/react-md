@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { type ReactElement } from "react";
-import { fireEvent, render } from "../../test-utils/index.js";
+import { fireEvent, render, screen } from "../../test-utils/index.js";
 
 import { Button } from "../../button/Button.js";
 import { AppSizeProvider } from "../../media-queries/AppSizeProvider.js";
@@ -13,11 +13,11 @@ import { useCheckboxGroup } from "../useCheckboxGroup.js";
 describe("useCheckboxGroup", () => {
   it("should not behave as an indeterminate checkbox group and check any checkboxes by default", () => {
     function Test(): ReactElement {
-      const checkboGroup = useCheckboxGroup({ name: "example" });
-      const { getCheckboxProps } = checkboGroup;
+      const checkboxGroup = useCheckboxGroup({ name: "example" });
+      const { getCheckboxProps } = checkboxGroup;
 
       // @ts-expect-error
-      checkboGroup.getIndeterminateProps;
+      checkboxGroup.getIndeterminateProps;
 
       return (
         <Form>
@@ -28,11 +28,11 @@ describe("useCheckboxGroup", () => {
       );
     }
 
-    const { getByRole, container } = render(<Test />);
+    const { container } = render(<Test />);
 
-    const checkbox1 = getByRole("checkbox", { name: "First" });
-    const checkbox2 = getByRole("checkbox", { name: "Second" });
-    const checkbox3 = getByRole("checkbox", { name: "Third" });
+    const checkbox1 = screen.getByRole("checkbox", { name: "First" });
+    const checkbox2 = screen.getByRole("checkbox", { name: "Second" });
+    const checkbox3 = screen.getByRole("checkbox", { name: "Third" });
 
     expect(checkbox1).toHaveAttribute("name", "example");
     expect(checkbox2).toHaveAttribute("name", "example");
@@ -81,11 +81,11 @@ describe("useCheckboxGroup", () => {
         </Form>
       );
     }
-    const { getByRole } = render(<Test defaultCheckedValues={["b", "c"]} />);
+    render(<Test defaultCheckedValues={["b", "c"]} />);
 
-    const checkbox1 = getByRole("checkbox", { name: "First" });
-    const checkbox2 = getByRole("checkbox", { name: "Second" });
-    const checkbox3 = getByRole("checkbox", { name: "Third" });
+    const checkbox1 = screen.getByRole("checkbox", { name: "First" });
+    const checkbox2 = screen.getByRole("checkbox", { name: "Second" });
+    const checkbox3 = screen.getByRole("checkbox", { name: "Third" });
 
     expect(checkbox1).not.toBeChecked();
     expect(checkbox2).toBeChecked();
@@ -112,13 +112,11 @@ describe("useCheckboxGroup", () => {
         </Form>
       );
     }
-    const { getByRole } = render(
-      <Test defaultCheckedValues={() => ["a", "c"]} />
-    );
+    render(<Test defaultCheckedValues={() => ["a", "c"]} />);
 
-    const checkbox1 = getByRole("checkbox", { name: "First" });
-    const checkbox2 = getByRole("checkbox", { name: "Second" });
-    const checkbox3 = getByRole("checkbox", { name: "Third" });
+    const checkbox1 = screen.getByRole("checkbox", { name: "First" });
+    const checkbox2 = screen.getByRole("checkbox", { name: "Second" });
+    const checkbox3 = screen.getByRole("checkbox", { name: "Third" });
     expect(checkbox1).toBeChecked();
     expect(checkbox2).not.toBeChecked();
     expect(checkbox3).toBeChecked();
@@ -130,7 +128,7 @@ describe("useCheckboxGroup", () => {
     expect(checkbox2).toBeChecked();
     expect(checkbox3).not.toBeChecked();
 
-    fireEvent.click(getByRole("button", { name: "Reset" }));
+    fireEvent.click(screen.getByRole("button", { name: "Reset" }));
     expect(checkbox1).toBeChecked();
     expect(checkbox2).not.toBeChecked();
     expect(checkbox3).toBeChecked();
@@ -140,8 +138,8 @@ describe("useCheckboxGroup", () => {
     const values = ["a", "b", "c"] as const;
 
     function Test(): ReactElement {
-      const checkboGroup = useCheckboxGroup({ name: "example", values });
-      const { getCheckboxProps, getIndeterminateProps } = checkboGroup;
+      const checkboxGroup = useCheckboxGroup({ name: "example", values });
+      const { getCheckboxProps, getIndeterminateProps } = checkboxGroup;
 
       // some additional type-only tests since `values` was defined as a const
       // of valid choices
@@ -166,12 +164,14 @@ describe("useCheckboxGroup", () => {
       );
     }
 
-    const { getByRole, container } = render(<Test />);
+    const { container } = render(<Test />);
 
-    const indeterminate = getByRole("checkbox", { name: "Indeterminate" });
-    const checkbox1 = getByRole("checkbox", { name: "A" });
-    const checkbox2 = getByRole("checkbox", { name: "B" });
-    const checkbox3 = getByRole("checkbox", { name: "C" });
+    const indeterminate = screen.getByRole("checkbox", {
+      name: "Indeterminate",
+    });
+    const checkbox1 = screen.getByRole("checkbox", { name: "A" });
+    const checkbox2 = screen.getByRole("checkbox", { name: "B" });
+    const checkbox3 = screen.getByRole("checkbox", { name: "C" });
 
     expect(indeterminate).not.toHaveAttribute("aria-checked");
     expect(indeterminate).not.toBeChecked();
@@ -259,17 +259,17 @@ describe("useCheckboxGroup", () => {
       );
     }
 
-    const { getByRole } = render(<Test />, { wrapper: AppSizeProvider });
+    render(<Test />, { wrapper: AppSizeProvider });
 
-    fireEvent.click(getByRole("button", { name: "Toggle" }));
-    expect(getByRole("menu")).toMatchSnapshot();
+    fireEvent.click(screen.getByRole("button", { name: "Toggle" }));
+    expect(screen.getByRole("menu")).toMatchSnapshot();
 
-    const indeterminate = getByRole("menuitemcheckbox", {
+    const indeterminate = screen.getByRole("menuitemcheckbox", {
       name: "Indeterminate",
     });
-    const checkbox1 = getByRole("menuitemcheckbox", { name: "1" });
-    const checkbox2 = getByRole("menuitemcheckbox", { name: "3" });
-    const checkbox3 = getByRole("menuitemcheckbox", { name: "FIVE" });
+    const checkbox1 = screen.getByRole("menuitemcheckbox", { name: "1" });
+    const checkbox2 = screen.getByRole("menuitemcheckbox", { name: "3" });
+    const checkbox3 = screen.getByRole("menuitemcheckbox", { name: "FIVE" });
 
     expect(indeterminate).toHaveAttribute("aria-checked", "false");
     expect(checkbox1).not.toBeChecked();

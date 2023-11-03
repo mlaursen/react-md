@@ -150,6 +150,8 @@ describe("useExpandableLayout", () => {
     await user.click(navToggle);
     await waitFor(() => {
       expect(isElementVisible(expandableNav)).toBe(true);
+    });
+    await waitFor(() => {
       expect(expandableNav).not.toHaveClass(OFFSCREEN_CLASS);
     });
 
@@ -226,6 +228,8 @@ describe("useExpandableLayout", () => {
     expect(main).toHaveClass(ENTER_H_CLASS);
     await waitFor(() => {
       expect(appBar).not.toHaveClass(ENTER_H_CLASS);
+    });
+    await waitFor(() => {
       expect(main).not.toHaveClass(ENTER_H_CLASS);
     });
     expect(appBar).toHaveClass(ENTER_H_DONE_CLASS);
@@ -238,6 +242,8 @@ describe("useExpandableLayout", () => {
     expect(main).toHaveClass(EXIT_H_CLASS);
     await waitFor(() => {
       expect(appBar).not.toHaveClass(EXIT_H_CLASS);
+    });
+    await waitFor(() => {
       expect(main).not.toHaveClass(EXIT_H_CLASS);
     });
   });

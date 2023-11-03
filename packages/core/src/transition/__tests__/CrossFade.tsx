@@ -8,7 +8,7 @@ import {
   jest,
 } from "@jest/globals";
 import { useState, type ReactElement } from "react";
-import { act, fireEvent, render } from "../../test-utils/index.js";
+import { act, fireEvent, render, screen } from "../../test-utils/index.js";
 import { CrossFade, type CrossFadeProps } from "../CrossFade.js";
 import { TRANSITION_CONFIG } from "../config.js";
 
@@ -48,12 +48,12 @@ describe("CrossFade", () => {
   });
 
   it("should default to using appear transitions", () => {
-    const { container, getByTestId, rerender } = render(
+    const { container, rerender } = render(
       <CrossFade>
         <div data-testid="element">This is some content.</div>
       </CrossFade>
     );
-    const getElement = (): HTMLElement => getByTestId("element");
+    const getElement = (): HTMLElement => screen.getByTestId("element");
 
     expect(getElement).not.toThrow();
     expect(container).toMatchSnapshot();
@@ -80,9 +80,9 @@ describe("CrossFade", () => {
   });
 
   it("should transition correctly when not appearing", () => {
-    const { container, getByRole, getByTestId } = render(<Test />);
-    const getElement = (): HTMLElement => getByTestId("element");
-    const toggle = getByRole("button");
+    const { container } = render(<Test />);
+    const getElement = (): HTMLElement => screen.getByTestId("element");
+    const toggle = screen.getByRole("button");
 
     expect(getElement).not.toThrow();
     expect(getElement().className).toBe("");
@@ -114,9 +114,9 @@ describe("CrossFade", () => {
   });
 
   it("should allow for temporary CSS Transition behavior", () => {
-    const { container, getByRole, getByTestId } = render(<Test temporary />);
-    const getElement = (): HTMLElement => getByTestId("element");
-    const toggle = getByRole("button");
+    const { container } = render(<Test temporary />);
+    const getElement = (): HTMLElement => screen.getByTestId("element");
+    const toggle = screen.getByRole("button");
 
     expect(getElement).toThrow();
     expect(container).toMatchSnapshot();
@@ -137,11 +137,9 @@ describe("CrossFade", () => {
   });
 
   it("should correctly merge the className prop", () => {
-    const { container, getByRole, getByTestId } = render(
-      <Test className="custom-class" />
-    );
-    const getElement = (): HTMLElement => getByTestId("element");
-    const toggle = getByRole("button");
+    const { container } = render(<Test className="custom-class" />);
+    const getElement = (): HTMLElement => screen.getByTestId("element");
+    const toggle = screen.getByRole("button");
 
     expect(getElement).not.toThrow();
     expect(getElement().className).toBe("custom-class");
@@ -190,8 +188,8 @@ describe("CrossFade", () => {
       onExited,
     };
 
-    const { getByRole } = render(<Test {...props} />);
-    const toggle = getByRole("button");
+    render(<Test {...props} />);
+    const toggle = screen.getByRole("button");
 
     expect(onEnter).not.toHaveBeenCalled();
     expect(onEntering).not.toHaveBeenCalled();

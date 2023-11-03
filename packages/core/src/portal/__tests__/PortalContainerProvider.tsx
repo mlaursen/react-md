@@ -1,15 +1,15 @@
 import { describe, expect, it } from "@jest/globals";
-import { render } from "../../test-utils/index.js";
+import { render, screen } from "../../test-utils/index.js";
 
-import {
-  PortalContainerProvider,
-  PORTAL_CONTAINER_ID,
-} from "../PortalContainerProvider.js";
 import { Portal } from "../Portal.js";
+import {
+  PORTAL_CONTAINER_ID,
+  PortalContainerProvider,
+} from "../PortalContainerProvider.js";
 
 describe("PortalContainerProvider", () => {
   it("should portal all child portals to a div that was created as the last child in the document.body", () => {
-    const { container, getByTestId, unmount } = render(
+    const { container, unmount } = render(
       <PortalContainerProvider>
         <Portal>
           <div data-testid="div-1" />
@@ -21,8 +21,8 @@ describe("PortalContainerProvider", () => {
     );
 
     const portalRoot = document.getElementById(PORTAL_CONTAINER_ID);
-    const div1 = getByTestId("div-1");
-    const div2 = getByTestId("div-2");
+    const div1 = screen.getByTestId("div-1");
+    const div2 = screen.getByTestId("div-2");
 
     expect(document.body).toContainElement(portalRoot);
     expect(portalRoot).toContainElement(div1);
@@ -40,7 +40,7 @@ describe("PortalContainerProvider", () => {
   it("should allow for a custom container element", () => {
     const container = document.createElement("div");
     document.body.appendChild(container);
-    const { getByTestId } = render(
+    render(
       <PortalContainerProvider container={container}>
         <Portal>
           <div data-testid="div-1" />
@@ -51,8 +51,8 @@ describe("PortalContainerProvider", () => {
       </PortalContainerProvider>
     );
 
-    const div1 = getByTestId("div-1");
-    const div2 = getByTestId("div-2");
+    const div1 = screen.getByTestId("div-1");
+    const div2 = screen.getByTestId("div-2");
     expect(document.getElementById(PORTAL_CONTAINER_ID)).toBe(null);
     expect(container).toContainElement(div1);
     expect(container).toContainElement(div2);

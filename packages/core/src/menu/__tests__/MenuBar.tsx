@@ -4,6 +4,7 @@ import {
   act,
   fireEvent,
   rmdRender,
+  screen,
   userEvent,
   waitFor,
   within,
@@ -67,54 +68,58 @@ describe("MenuBar", () => {
 
   it("should support a click-first hover mode behavior by default", async () => {
     const user = userEvent.setup();
-    const { getByRole } = rmdRender(<Test />);
+    rmdRender(<Test />);
 
-    const menubar = getByRole("menubar", { name: "Example" });
+    const menubar = screen.getByRole("menubar", { name: "Example" });
     const menubarItems = within(menubar).getAllByRole("menuitem");
     expect(menubarItems).toHaveLength(4);
     expect(menubar).toMatchSnapshot();
 
     await user.hover(menubarItems[0]);
-    expect(() => getByRole("menu")).toThrow();
+    expect(() => screen.getByRole("menu")).toThrow();
 
     await user.unhover(menubarItems[0]);
-    expect(() => getByRole("menu")).toThrow();
+    expect(() => screen.getByRole("menu")).toThrow();
 
     await user.click(menubarItems[1]);
     await waitFor(() => {
-      const menu = getByRole("menu", { name: "Style" });
+      const menu = screen.getByRole("menu", { name: "Style" });
       expect(menu).not.toHaveClass("rmd-scale-transition--enter");
     });
 
     await user.hover(menubarItems[2]);
     await waitFor(() => {
-      expect(() => getByRole("menu", { name: "Style" })).toThrow();
-      expect(() => getByRole("menu", { name: "Text Align" })).not.toThrow();
+      expect(() => screen.getByRole("menu", { name: "Style" })).toThrow();
+    });
+    await waitFor(() => {
+      expect(() =>
+        screen.getByRole("menu", { name: "Text Align" })
+      ).not.toThrow();
     });
 
     await user.click(document.body);
     await waitFor(() => {
-      expect(() => getByRole("menu")).toThrow();
+      expect(() => screen.getByRole("menu")).toThrow();
     });
   });
 
   it("should support immediate hover mode behavior by setting the hoverTimeout to 0", async () => {
     const user = userEvent.setup();
-    const { getByRole } = rmdRender(<Test hoverTimeout={0} />);
-    const item1 = getByRole("menuitem", { name: "Font" });
-    const item4 = getByRole("menuitem", { name: "Size" });
+    rmdRender(<Test hoverTimeout={0} />);
+    const item1 = screen.getByRole("menuitem", { name: "Font" });
+    const item4 = screen.getByRole("menuitem", { name: "Size" });
 
     await user.hover(item1);
     // added timeouts to these since it might fail when running in watch mode
     // with a lot of tests
     await waitFor(
       () => {
-        expect(() => getByRole("menu", { name: "Font" })).not.toThrow();
+        expect(() => screen.getByRole("menu", { name: "Font" })).not.toThrow();
       },
       { timeout: 10 }
     );
     await waitFor(() => {
-      expect(getByRole("menu", { name: "Font" })).not.toHaveClass(
+      expect(screen.getByRole("menu", { name: "Font" })).not.toHaveClass(
         "rmd-scale-transition--enter"
       );
     });
@@ -122,77 +127,79 @@ describe("MenuBar", () => {
     await user.hover(item4);
     await waitFor(
       () => {
-        expect(() => getByRole("menu", { name: "Size" })).not.toThrow();
+        expect(() => screen.getByRole("menu", { name: "Size" })).not.toThrow();
       },
       { timeout: 10 }
     );
     await user.click(document.body);
     await waitFor(() => {
-      expect(() => getByRole("menu")).toThrow();
+      expect(() => screen.getByRole("menu")).toThrow();
     });
   });
 
   it("should support a custom hover timeout to start the hover mode", () => {
     jest.useFakeTimers();
-    const { getByRole } = rmdRender(<Test hoverTimeout={1000} />);
+    rmdRender(<Test hoverTimeout={1000} />);
 
-    const font = getByRole("menuitem", { name: "Font" });
-    const style = getByRole("menuitem", { name: "Style" });
+    const font = screen.getByRole("menuitem", { name: "Font" });
+    const style = screen.getByRole("menuitem", { name: "Style" });
     fireEvent.mouseEnter(font);
-    expect(() => getByRole("menu")).toThrow();
+    expect(() => screen.getByRole("menu")).toThrow();
 
     act(() => {
       jest.advanceTimersByTime(800);
     });
-    expect(() => getByRole("menu")).toThrow();
+    expect(() => screen.getByRole("menu")).toThrow();
     act(() => {
       jest.advanceTimersByTime(200);
     });
-    expect(() => getByRole("menu")).not.toThrow();
+    expect(() => screen.getByRole("menu")).not.toThrow();
 
     act(() => {
       jest.runAllTimers();
     });
-    expect(() => getByRole("menu")).not.toThrow();
+    expect(() => screen.getByRole("menu")).not.toThrow();
 
     fireEvent.mouseLeave(font);
     act(() => {
       jest.runAllTimers();
     });
-    expect(() => getByRole("menu")).not.toThrow();
+    expect(() => screen.getByRole("menu")).not.toThrow();
 
     fireEvent.mouseEnter(style);
-    expect(() => getByRole("menu")).not.toThrow();
+    expect(() => screen.getByRole("menu")).not.toThrow();
     act(() => {
       jest.runAllTimers();
     });
-    expect(() => getByRole("menu")).not.toThrow();
+    expect(() => screen.getByRole("menu")).not.toThrow();
     // animates into the new menu
-    expect(() => getByRole("menuitem", { name: "Bold" })).not.toThrow();
+    expect(() => screen.getByRole("menuitem", { name: "Bold" })).not.toThrow();
   });
 
   it("should open nested dropdown menus immediately on hover", async () => {
     const user = userEvent.setup();
-    const { getByRole } = rmdRender(<Test />);
+    rmdRender(<Test />);
 
-    const menubar = getByRole("menubar", { name: "Example" });
+    const menubar = screen.getByRole("menubar", { name: "Example" });
     const menubarItems = within(menubar).getAllByRole("menuitem");
 
     await user.click(menubarItems[3]);
     await waitFor(() => {
-      const menu = getByRole("menu", { name: "Size" });
+      const menu = screen.getByRole("menu", { name: "Size" });
       expect(menu).not.toHaveClass("rmd-scale-transition--enter");
     });
 
-    await user.hover(getByRole("menuitem", { name: "Submenu" }));
+    await user.hover(screen.getByRole("menuitem", { name: "Submenu" }));
     await waitFor(() => {
-      expect(getByRole("menuitem", { name: "Item 1" })).toBeInTheDocument();
+      expect(
+        screen.getByRole("menuitem", { name: "Item 1" })
+      ).toBeInTheDocument();
     });
   });
 
   it("should support keyboard movement correctly", async () => {
     const user = userEvent.setup();
-    const { getByRole } = rmdRender(
+    rmdRender(
       <>
         <button>before</button>
         <Test />
@@ -200,10 +207,10 @@ describe("MenuBar", () => {
       </>
     );
 
-    const menubar = getByRole("menubar", { name: "Example" });
+    const menubar = screen.getByRole("menubar", { name: "Example" });
     const menubarItems = within(menubar).getAllByRole("menuitem");
-    const before = getByRole("button", { name: "before" });
-    const after = getByRole("button", { name: "after" });
+    const before = screen.getByRole("button", { name: "before" });
+    const after = screen.getByRole("button", { name: "after" });
 
     await user.tab();
     expect(document.activeElement).toBe(before);
@@ -242,24 +249,24 @@ describe("MenuBar", () => {
     });
 
     await user.keyboard("{Enter}");
-    const sizeMenu = getByRole("menu", { name: "Size" });
+    const sizeMenu = screen.getByRole("menu", { name: "Size" });
     await waitFor(() => {
       expect(sizeMenu).not.toHaveClass("rmd-scale-transition--enter");
     });
     expect(document.activeElement).toBe(
-      getByRole("menuitem", { name: "Normal" })
+      screen.getByRole("menuitem", { name: "Normal" })
     );
 
     await user.keyboard("{End}");
     expect(document.activeElement).toBe(
-      getByRole("menuitem", { name: "Submenu" })
+      screen.getByRole("menuitem", { name: "Submenu" })
     );
 
     // arrow right should open nested dropdown menus
     await user.keyboard("{ArrowRight}");
     await waitFor(() => {
       expect(document.activeElement).toBe(
-        getByRole("menuitem", { name: "Item 1" })
+        screen.getByRole("menuitem", { name: "Item 1" })
       );
     });
 
@@ -267,7 +274,7 @@ describe("MenuBar", () => {
     await user.keyboard("{ArrowLeft}");
     await waitFor(() => {
       expect(document.activeElement).toBe(
-        getByRole("menuitem", { name: "Submenu" })
+        screen.getByRole("menuitem", { name: "Submenu" })
       );
     });
 
@@ -275,7 +282,7 @@ describe("MenuBar", () => {
     await user.keyboard("{ArrowLeft}");
     await waitFor(() => {
       expect(document.activeElement).toBe(
-        getByRole("menuitem", { name: "Left" })
+        screen.getByRole("menuitem", { name: "Left" })
       );
     });
 
@@ -283,7 +290,7 @@ describe("MenuBar", () => {
     await user.keyboard("{ArrowRight}");
     await waitFor(() => {
       expect(document.activeElement).toBe(
-        getByRole("menuitem", { name: "Normal" })
+        screen.getByRole("menuitem", { name: "Normal" })
       );
     });
 
@@ -291,14 +298,14 @@ describe("MenuBar", () => {
     await user.keyboard("{ArrowRight}");
     await waitFor(() => {
       expect(document.activeElement).toBe(
-        getByRole("menuitem", { name: "Roboto" })
+        screen.getByRole("menuitem", { name: "Roboto" })
       );
     });
 
     await user.keyboard("{ArrowLeft}");
     await waitFor(() => {
       expect(document.activeElement).toBe(
-        getByRole("menuitem", { name: "Normal" })
+        screen.getByRole("menuitem", { name: "Normal" })
       );
     });
 
@@ -320,27 +327,27 @@ describe("MenuBar", () => {
 
   it("should refocus the top-level menuitem when the tab key is pressed", async () => {
     const user = userEvent.setup();
-    const { getByRole } = rmdRender(<Test />);
+    rmdRender(<Test />);
 
     await user.tab();
     await user.keyboard("[End][Space]");
     await waitFor(() => {
       expect(document.activeElement).toBe(
-        getByRole("menuitem", { name: "Normal" })
+        screen.getByRole("menuitem", { name: "Normal" })
       );
     });
 
     await user.keyboard("[End][Enter]");
     await waitFor(() => {
       expect(document.activeElement).toBe(
-        getByRole("menuitem", { name: "Item 1" })
+        screen.getByRole("menuitem", { name: "Item 1" })
       );
     });
 
     await user.tab();
     await waitFor(() => {
       expect(document.activeElement).toBe(
-        getByRole("menuitem", { name: "Size" })
+        screen.getByRole("menuitem", { name: "Size" })
       );
     });
   });
