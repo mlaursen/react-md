@@ -11,9 +11,14 @@ export async function createMarkdownPage(
 
   const contents = `${GENERATED_FILE_BANNER}
 import { MarkdownPage } from "@/components/MarkdownPage/MarkdownPage.jsx";
+import { type Metadata } from "next";
 import { type ReactElement } from "react";
 import Markdown from "./${markdownName}";
 import { toc } from "./toc.js";
+
+export const metadata: Metadata = {
+  title: \`\${toc[0].value} - react-md\`,
+}
 
 export default function GeneratedMarkdownPage(): ReactElement {
   return <MarkdownPage toc={toc}><Markdown /></MarkdownPage>;
