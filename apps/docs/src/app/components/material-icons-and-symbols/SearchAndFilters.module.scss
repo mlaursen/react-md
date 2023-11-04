@@ -1,0 +1,5 @@
+@use "everything";
+
+.appBar {
+  @include everything.layout-use-var(top, header-height);
+}

@@ -24,6 +24,12 @@ import {
 import { Search } from "./Search.jsx";
 import { VersionDropdown } from "./VersionDropdown.jsx";
 
+function isTableOfContentsRoute(pathname: string): boolean {
+  return (
+    pathname !== "/" && pathname !== "/components/material-icons-and-symbols"
+  );
+}
+
 export interface RootLayoutProps {
   isMac: boolean;
   titleProps: RootLayoutTitleProps;
@@ -60,7 +66,13 @@ export function RootLayout(props: RootLayoutProps): ReactElement {
         <GithubLink />
         <WebsiteConfiguration />
       </LayoutAppBar>
-      <LayoutNav {...expandableNavProps} className={styles.navigation}>
+      <LayoutNav
+        {...expandableNavProps}
+        className={cssUtils({
+          className: styles.navigation,
+          backgroundColor: "current-color",
+        })}
+      >
         <Navigation />
       </LayoutNav>
       {temporary && (
@@ -76,7 +88,7 @@ export function RootLayout(props: RootLayoutProps): ReactElement {
         {...mainProps}
         className={cnb(
           styles.main,
-          pathname !== "/" && styles.mainGrid,
+          isTableOfContentsRoute(pathname) && styles.mainGrid,
           mainProps.className
         )}
       >

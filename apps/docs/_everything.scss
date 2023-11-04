@@ -7,6 +7,10 @@
     @include core.use-light-theme;
   }
 
+  // Maybe add this one into core? Useful when you want a "transparent"
+  // background on any surface that actually has a background color so it can
+  // cover other elements
+  --background-color: #{core.$light-theme-background-color};
   --code-color: #{core.$pink-600};
   --preview-bg: #{core.$white};
   --on-bg-color: #{core.$black};
@@ -29,6 +33,7 @@
     @include core.use-dark-theme;
   }
 
+  --background-color: #{core.$dark-theme-background-color};
   --code-color: #{core.$pink-400};
   --preview-bg: #{core.$dark-theme-background-color};
   --on-bg-color: #{core.$white};

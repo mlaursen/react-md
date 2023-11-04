@@ -1,0 +1,12 @@
+@use "everything";
+
+.panel {
+  box-shadow: none;
+}
+
+.elevationFix {
+  @include everything.theme-set-var(
+    surface-color,
+    everything.get-dark-elevation-color(16)
+  );
+}

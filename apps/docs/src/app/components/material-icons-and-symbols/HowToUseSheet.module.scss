@@ -1,0 +1,5 @@
+@use "everything";
+
+.sheet {
+  @include everything.sheet-set-var(static-width, 26rem);
+}

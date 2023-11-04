@@ -1,0 +1,25 @@
+@use "everything";
+
+.sheet {
+  // note: should be the same value as layout size in ./FullScreenVirtualizedList.module.scss
+  @include everything.sheet-set-var(static-width, 20rem);
+  @include everything.desktop-media {
+    will-change: left, right, transform;
+  }
+}
+
+.offset {
+  @include everything.desktop-media {
+    @include everything.auto-rtl(left, everything.layout-get-var(size));
+  }
+}
+
+.enter {
+  transition: left everything.$layout-enter-duration
+    everything.$layout-enter-timing-function;
+}
+
+.exit {
+  transition: left everything.$layout-leave-duration
+    everything.$layout-leave-timing-function;
+}

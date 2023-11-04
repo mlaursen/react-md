@@ -1,0 +1,13 @@
+@use "everything";
+
+.header {
+  @include everything.icon-set-var(size, 2.25rem);
+
+  gap: 1rem;
+}
+
+.title {
+  @include everything.auto-rtl(margin-right, auto);
+
+  flex-grow: 0;
+}

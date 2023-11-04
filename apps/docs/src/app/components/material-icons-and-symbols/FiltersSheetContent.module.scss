@@ -1,0 +1,10 @@
+@use "everything";
+
+.title {
+  margin: 1em 0 0.5em;
+  padding: 0 1rem;
+}
+
+.darker {
+  @include everything.form-set-var(switch-track-background-color, #000);
+}

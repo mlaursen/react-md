@@ -1,0 +1,46 @@
+@use "everything";
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr var(--how-to-use-size, 0px);
+}
+
+@include everything.desktop-media {
+  .gridEnter {
+    transition: grid-template-columns everything.$sheet-enter-duration
+      everything.$sheet-enter-timing-function;
+  }
+
+  .gridExit {
+    transition: grid-template-columns everything.$sheet-leave-duration
+      everything.$sheet-leave-timing-function;
+  }
+
+  .gridOffset {
+    --how-to-use-size: 26rem;
+  }
+}
+
+.container {
+  @include everything.layout-set-var(size, 20rem);
+
+  overflow: hidden;
+}
+
+.empty {
+  text-align: center;
+}
+
+.dark :global(.material-icons-two-tone) {
+  color: rgba(everything.$black, 0.87);
+  filter: contrast(4) invert(1);
+}
+
+.system {
+  @media (prefers-color-scheme: dark) {
+    :global(.material-icons-two-tone) {
+      color: rgba(everything.$black, 0.87);
+      filter: contrast(4) invert(1);
+    }
+  }
+}

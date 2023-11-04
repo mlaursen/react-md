@@ -8,7 +8,7 @@ import { cnb } from "cnbuilder";
 import localFont from "next/font/local";
 import { headers } from "next/headers.js";
 import { type PropsWithChildren, type ReactElement } from "react";
-import { getInitialState } from "./utils.js";
+import { getInitialState } from "./utils/serverState.js";
 export { metadata } from "@/constants/metadata.js";
 
 const roboto = localFont({

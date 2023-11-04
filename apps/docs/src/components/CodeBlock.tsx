@@ -37,6 +37,12 @@ export interface CodeBlockProps {
    * block.
    */
   disableMarginTop?: boolean;
+
+  /**
+   * This is mostly for the material icon/symbols copy/paste code. Allow line
+   * wrapping there due to limited space and show all the code at once
+   */
+  lineWrap?: boolean;
 }
 
 /**
@@ -47,6 +53,7 @@ export function CodeBlock(props: CodeBlockProps): ReactElement {
     children,
     preProps,
     className,
+    lineWrap,
     containerProps,
     afterPreElement,
     disableMarginTop,
@@ -63,7 +70,10 @@ export function CodeBlock(props: CodeBlockProps): ReactElement {
     >
       <div className={styles.scrollContainer}>
         <div className={styles.codeContainer}>
-          <pre {...preProps} className={cnb(className, styles.pre)}>
+          <pre
+            {...preProps}
+            className={cnb(className, styles.pre, lineWrap && styles.lineWrap)}
+          >
             {children}
           </pre>
           {afterPreElement}

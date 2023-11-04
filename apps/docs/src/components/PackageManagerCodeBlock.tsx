@@ -13,11 +13,14 @@ import styles from "./PackageManagerCodeBlock.module.scss";
 
 const CLASS_NAME = "language-sh";
 
-export type PackageManagerCodeBlockProps = Record<PackageManager, string>;
+export type PackageManagerCodeBlockProps = Record<PackageManager, string> & {
+  lineWrap?: boolean;
+};
 
 export function PackageManagerCodeBlock(
   props: PackageManagerCodeBlockProps
 ): ReactElement {
+  const { lineWrap, ...managers } = props;
   const { packageManager, setPackageManager } = usePackageManagerContext();
   const { getTabListProps, getTabProps, getTabPanelProps } = useTabs({
     tabs: PACKAGE_MANAGERS,
@@ -46,7 +49,7 @@ export function PackageManagerCodeBlock(
           ))}
         </TabList>
       </CodeBlockHeader>
-      <CodeBlock className={CLASS_NAME} disableMarginTop>
+      <CodeBlock className={CLASS_NAME} disableMarginTop lineWrap={lineWrap}>
         {PACKAGE_MANAGERS.map((name) => {
           const { active, ...panelProps } = getTabPanelProps(name);
           return (
@@ -57,7 +60,7 @@ export function PackageManagerCodeBlock(
             >
               <code
                 className={CLASS_NAME}
-                dangerouslySetInnerHTML={{ __html: props[name] }}
+                dangerouslySetInnerHTML={{ __html: managers[name] }}
               />
             </div>
           );

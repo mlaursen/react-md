@@ -1,0 +1,10 @@
+@use "everything";
+
+.sheet {
+  @include everything.desktop-media {
+    top: calc(
+      everything.layout-get-var(header-height) +
+        everything.app-bar-get-var(height)
+    );
+  }
+}
