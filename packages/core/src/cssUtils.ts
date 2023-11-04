@@ -206,7 +206,9 @@ export function cssUtils(options: CssUtilsOptions): string {
     !backgroundColor && !isTextColor && textColor && `rmd-${textColor}-color`,
     !backgroundColor && isTextColor && `rmd-${textColor}-color`,
     backgroundColor && "rmd-background-container",
-    backgroundColor && `rmd-${backgroundColor}-container`,
+    backgroundColor &&
+      backgroundColor !== "current-color" &&
+      `rmd-${backgroundColor}-container`,
     outlineColor && "rmd-outline",
     outlineColor && `rmd-${outlineColor}-outline`,
     (isMarginTop || margin === "bottom") &&
