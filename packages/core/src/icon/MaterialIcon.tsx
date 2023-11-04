@@ -1,7 +1,6 @@
-"use client";
 import { forwardRef, type AriaAttributes, type HTMLAttributes } from "react";
-import { useMaterialIconsFamily } from "./MaterialIconsProvider.js";
 import { type MaterialIconName } from "./material.js";
+import { MATERIAL_CONFIG } from "./materialConfig.js";
 import { icon, type MaterialIconClassNameOptions } from "./styles.js";
 
 /** @remarks \@since 6.0.0 */
@@ -11,11 +10,11 @@ export interface MaterialIconProps
   /** @defaultValue `true` */
   "aria-hidden"?: AriaAttributes["aria-hidden"];
   name: MaterialIconName;
+  children?: never;
 }
 
 /**
- * **Client Component**
- * Might be able to become a server component if I remove the useMaterialIconsFamily hook
+ * **Server Component**
  *
  * @remarks \@since 6.0.0
  */
@@ -24,13 +23,12 @@ export const MaterialIcon = forwardRef<HTMLSpanElement, MaterialIconProps>(
     const {
       "aria-hidden": ariaHidden = true,
       name,
-      family: propFamily,
+      family = MATERIAL_CONFIG.iconFamily,
       theme,
       dense,
       className,
       ...remaining
     } = props;
-    const family = useMaterialIconsFamily(propFamily);
 
     return (
       <span

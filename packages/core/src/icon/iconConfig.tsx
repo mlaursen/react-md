@@ -141,6 +141,7 @@ export interface ConfigurableIcons {
 }
 
 export type ConfiguredIcons = Required<ConfigurableIcons>;
+
 /**
  * @remarks \@since 6.0.0
  */

@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MaterialIcon should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+<span
+  aria-hidden="true"
+  class="rmd-icon rmd-icon--font material-icons"
+  data-testid="icon"
+>
+  air
+</span>
+`;
+
+exports[`MaterialIcon should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+<span
+  aria-hidden="true"
+  class="rmd-icon rmd-icon--font material-icons custom-class-name"
+  data-testid="icon"
+  style="color: white;"
+>
+  air
+</span>
+`;
+
+exports[`MaterialIcon should support overriding the icon family through the MATERIAL_CONFIG 1`] = `
+<span
+  aria-hidden="true"
+  class="rmd-icon rmd-icon--font material-icons"
+  data-testid="icon"
+>
+  air
+</span>
+`;
+
+exports[`MaterialIcon should support overriding the icon family through the MATERIAL_CONFIG 2`] = `
+<span
+  aria-hidden="true"
+  class="rmd-icon rmd-icon--font material-icons-round"
+  data-testid="icon"
+>
+  air
+</span>
+`;
+
+exports[`MaterialIcon should support overriding the icon family through the MATERIAL_CONFIG 3`] = `
+<span
+  aria-hidden="true"
+  class="rmd-icon rmd-icon--font material-icons-two-tone"
+  data-testid="icon"
+>
+  air
+</span>
+`;
+
+exports[`MaterialIcon should support overriding the icon family through the family prop 1`] = `
+<span
+  aria-hidden="true"
+  class="rmd-icon rmd-icon--font material-icons"
+  data-testid="icon"
+>
+  air
+</span>
+`;
+
+exports[`MaterialIcon should support overriding the icon family through the family prop 2`] = `
+<span
+  aria-hidden="true"
+  class="rmd-icon rmd-icon--font material-icons-round"
+  data-testid="icon"
+>
+  air
+</span>
+`;
+
+exports[`MaterialIcon should support overriding the icon family through the family prop 3`] = `
+<span
+  aria-hidden="true"
+  class="rmd-icon rmd-icon--font material-icons-two-tone"
+  data-testid="icon"
+>
+  air
+</span>
+`;

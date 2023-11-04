@@ -1,13 +1,23 @@
-"use client";
+import { type CSSProperties } from "react";
 import {
-  createContext,
-  useContext,
-  useMemo,
-  type CSSProperties,
-  type ReactElement,
-  type ReactNode,
-} from "react";
-import { type MaterialSymbolFamily } from "./material.js";
+  type MaterialIconFamily,
+  type MaterialSymbolFamily,
+} from "./material.js";
+
+/**
+ * @remarks \@since 6.0.0
+ */
+export interface MaterialIconCustomization {
+  /**
+   * @defaultValue `"filled"`
+   */
+  iconFamily?: MaterialIconFamily;
+}
+
+/**
+ * @remarks \@since 6.0.0
+ */
+export type MaterialIconConfiguration = Required<MaterialIconCustomization>;
 
 /**
  * Fill gives you the ability to modify the default icon style. A single icon
@@ -129,7 +139,7 @@ export interface MaterialSymbolCustomization {
   /**
    * @defaultValue `"outlined"`
    */
-  family?: MaterialSymbolFamily;
+  symbolFamily?: MaterialSymbolFamily;
 }
 
 /**
@@ -137,44 +147,54 @@ export interface MaterialSymbolCustomization {
  */
 export type MaterialSymbolConfiguration = Required<MaterialSymbolCustomization>;
 
-const context = createContext<MaterialSymbolConfiguration>({
+/**
+ * @remarks \@since 6.0.0
+ */
+export interface MaterialConfiguration
+  extends MaterialIconConfiguration,
+    MaterialSymbolConfiguration {}
+
+/**
+ * @remarks \@since 6.0.0
+ */
+export const MATERIAL_CONFIG: MaterialConfiguration = {
   fill: 0,
   weight: 400,
   grade: 0,
   opticalSize: 24,
-  family: "outlined",
-});
-context.displayName = "MaterialSymbol";
-const { Provider } = context;
+  iconFamily: "filled",
+  symbolFamily: "outlined",
+};
 
 /**
  * @remarks \@since 6.0.0
  */
-export function useMaterialSymbolConfiguration(): MaterialSymbolConfiguration {
-  return useContext(context);
+export interface MaterialSymbolFontVariationSettings {
+  style?: CSSProperties;
+  family: MaterialSymbolFamily;
 }
 
 /**
  * @remarks \@since 6.0.0
+ * @internal
  */
-export function useFontVariationSettings(
+export function getFontVariationSettings(
   options: MaterialSymbolCustomization & { style?: CSSProperties }
-): { style?: CSSProperties; family: MaterialSymbolFamily } {
-  const configuration = useMaterialSymbolConfiguration();
+): MaterialSymbolFontVariationSettings {
   let { style } = options;
   const {
-    fill = configuration.fill,
-    grade = configuration.grade,
-    opticalSize = configuration.opticalSize,
-    weight = configuration.weight,
-    family = configuration.family,
+    fill = MATERIAL_CONFIG.fill,
+    grade = MATERIAL_CONFIG.grade,
+    opticalSize = MATERIAL_CONFIG.opticalSize,
+    weight = MATERIAL_CONFIG.weight,
+    symbolFamily = MATERIAL_CONFIG.symbolFamily,
   } = options;
   if (
     !style?.fontVariationSettings &&
-    (fill !== configuration.fill ||
-      grade !== configuration.grade ||
-      opticalSize !== configuration.opticalSize ||
-      weight !== configuration.weight)
+    (fill !== MATERIAL_CONFIG.fill ||
+      grade !== MATERIAL_CONFIG.grade ||
+      opticalSize !== MATERIAL_CONFIG.opticalSize ||
+      weight !== MATERIAL_CONFIG.weight)
   ) {
     style = {
       ...style,
@@ -182,43 +202,5 @@ export function useFontVariationSettings(
     };
   }
 
-  return { family, style };
-}
-
-/**
- * @remarks \@since 6.0.0
- */
-export interface MaterialSymbolsProviderProps
-  extends MaterialSymbolCustomization {
-  children: ReactNode;
-}
-
-/**
- * **Client Component**
- *
- * @remarks \@since 6.0.0
- */
-export function MaterialSymbolsProvider(
-  props: MaterialSymbolsProviderProps
-): ReactElement {
-  const {
-    fill = 0,
-    weight = 400,
-    grade = 0,
-    family: type = "outlined",
-    opticalSize = 48,
-    children,
-  } = props;
-  const value = useMemo<MaterialSymbolConfiguration>(
-    () => ({
-      fill,
-      weight,
-      grade,
-      family: type,
-      opticalSize,
-    }),
-    [fill, grade, opticalSize, type, weight]
-  );
-
-  return <Provider value={value}>{children}</Provider>;
+  return { family: symbolFamily, style };
 }

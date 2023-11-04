@@ -1,14 +1,13 @@
-"use client";
-import { forwardRef, type HTMLAttributes } from "react";
+import { forwardRef, type AriaAttributes, type HTMLAttributes } from "react";
 import { type MaterialSymbolName } from "./material.js";
 import {
-  useFontVariationSettings,
+  getFontVariationSettings,
   type MaterialSymbolCustomization,
   type MaterialSymbolFill,
   type MaterialSymbolGrade,
   type MaterialSymbolOpticalSize,
   type MaterialSymbolWeight,
-} from "./MaterialSymbolsProvider.js";
+} from "./materialConfig.js";
 import { icon, type MaterialSymbolClassNameOptions } from "./styles.js";
 
 declare module "react" {
@@ -27,13 +26,20 @@ export interface MaterialSymbolProps
   extends HTMLAttributes<HTMLSpanElement>,
     MaterialSymbolCustomization,
     Partial<MaterialSymbolClassNameOptions> {
+  /** @defaultValue `true` */
+  "aria-hidden"?: AriaAttributes["aria-hidden"];
   name: MaterialSymbolName;
   children?: never;
 }
 
 /**
- * **Client Component**
- * Might be able to become a server component if I remove the useFontVariationSettings hook
+ * **Server Component**
+ * This is a convenience component that provides autocomplete for all the
+ * available material symbols via the `name` prop.
+ *
+ * Note: You might notice IDE slowdowns for files that use this component since
+ * there are so many icons available. If it becomes an issue, just stop using
+ * this component and define the icons inline instead.
  *
  * @example
  * Simple Example
@@ -45,11 +51,11 @@ export interface MaterialSymbolProps
  * function Example(): ReactElement {
  *   return (
  *     <>
- *       <MaterialSymbol symbol="" />
- *       <MaterialSymbol symbol="" type="outline" />
+ *       <MaterialSymbol symbol="close" />
+ *       <MaterialSymbol symbol="tune" type="outline" />
  *
- *       <MaterialSymbol symbol="" type="round" />
- *       <MaterialSymbol symbol="" type="sharp" />
+ *       <MaterialSymbol symbol="add" type="round" />
+ *       <MaterialSymbol symbol="air" type="sharp" />
  *     </>
  *   );
  * }
@@ -67,7 +73,7 @@ export const MaterialSymbol = forwardRef<HTMLSpanElement, MaterialSymbolProps>(
       className,
       name: symbol,
       style: propStyle,
-      family: propFamily,
+      symbolFamily,
       fill,
       weight,
       grade,
@@ -76,13 +82,13 @@ export const MaterialSymbol = forwardRef<HTMLSpanElement, MaterialSymbolProps>(
       dense,
       ...remaining
     } = props;
-    const { style, family } = useFontVariationSettings({
+    const { style, family } = getFontVariationSettings({
       style: propStyle,
-      family: propFamily,
       fill,
       weight,
       grade,
       opticalSize,
+      symbolFamily,
     });
 
     return (
