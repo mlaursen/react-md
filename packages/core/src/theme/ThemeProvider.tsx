@@ -40,6 +40,8 @@ import { useColorScheme } from "./useColorScheme.js";
 declare module "react" {
   interface CSSProperties {
     "--rmd-background-color"?: string;
+    "--rmd-on-background-color"?: string;
+    "--rmd-surface-color"?: string;
     "--rmd-primary-color"?: string;
     "--rmd-on-primary-color"?: string;
     "--rmd-secondary-color"?: string;
@@ -54,6 +56,10 @@ declare module "react" {
     "--rmd-text-secondary-color"?: string;
     "--rmd-text-hint-color"?: string;
     "--rmd-text-disabled-color"?: string;
+
+    "--rmd-outline-width"?: string | number;
+    "--rmd-outline-color"?: string;
+    "--rmd-outline-grey-color"?: string;
   }
 }
 
