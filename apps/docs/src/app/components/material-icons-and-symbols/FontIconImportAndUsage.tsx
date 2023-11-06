@@ -8,7 +8,7 @@ import { TwoToneIconWarning } from "./TwoToneIconWarning.jsx";
 import { getFontStylesheet } from "./utils.js";
 
 export function FontIconImportAndUsage(): ReactElement {
-  const { iconFamily } = useMaterialIconsAndSymbols();
+  const { iconFamily, isFontFamilyChanged } = useMaterialIconsAndSymbols();
   const href = getFontStylesheet({
     iconType: "icon",
     iconFamily,
@@ -16,7 +16,7 @@ export function FontIconImportAndUsage(): ReactElement {
   return (
     <>
       <IconImportAndUsage />
-      <AdditionalChanges />
+      {isFontFamilyChanged && <AdditionalChanges />}
       {iconFamily === "two-tone" && <TwoToneIconWarning />}
       <Typography type="headline-5" margin="top">
         Stylesheet
