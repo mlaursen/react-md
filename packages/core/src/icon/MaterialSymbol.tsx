@@ -73,7 +73,7 @@ export const MaterialSymbol = forwardRef<HTMLSpanElement, MaterialSymbolProps>(
       className,
       name: symbol,
       style: propStyle,
-      symbolFamily,
+      family: propFamily,
       fill,
       weight,
       grade,
@@ -88,7 +88,7 @@ export const MaterialSymbol = forwardRef<HTMLSpanElement, MaterialSymbolProps>(
       weight,
       grade,
       opticalSize,
-      symbolFamily,
+      family: propFamily,
     });
 
     return (

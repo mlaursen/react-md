@@ -1,10 +1,10 @@
 import { Blockquote } from "@/components/Blockquote.jsx";
-import { Typography } from "@react-md/core";
+import { cssUtils } from "@react-md/core";
 import { type ReactElement } from "react";
 import { CopyCode } from "./CopyCode.jsx";
+import styles from "./TwoToneIconWarning.module.scss";
 
-const EXAMPLE_CODE = `
-@use "everything";
+const EXAMPLE_CODE = `@use "everything";
 
 @mixin _dark-two-tone {
   :global(.material-icons-two-tone) {
@@ -28,13 +28,18 @@ export function TwoToneIconWarning(): ReactElement {
   return (
     <>
       <Blockquote theme="warning">
-        <Typography>
+        <p>
           The two-tone icons do not support dark mode out of the box and require
           additional styling to work correctly. Here is an example for how you
           can add dark mode styles.
-        </Typography>
+        </p>
+        <CopyCode
+          lang="scss"
+          className={cssUtils({ fontStyle: "normal", className: styles.code })}
+        >
+          {EXAMPLE_CODE}
+        </CopyCode>
       </Blockquote>
-      <CopyCode lang="scss">{EXAMPLE_CODE}</CopyCode>
     </>
   );
 }

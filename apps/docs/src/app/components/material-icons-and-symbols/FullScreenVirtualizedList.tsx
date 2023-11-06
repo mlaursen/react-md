@@ -35,6 +35,7 @@ export function FullScreenVirtualizedList(): ReactElement {
     iconType,
     iconFamily,
     iconCategory,
+    selectedIconName,
   });
   const isEmpty = !list.length;
 

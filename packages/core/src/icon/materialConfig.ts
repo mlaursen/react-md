@@ -139,7 +139,7 @@ export interface MaterialSymbolCustomization {
   /**
    * @defaultValue `"outlined"`
    */
-  symbolFamily?: MaterialSymbolFamily;
+  family?: MaterialSymbolFamily;
 }
 
 /**
@@ -161,9 +161,9 @@ export const MATERIAL_CONFIG: MaterialConfiguration = {
   fill: 0,
   weight: 400,
   grade: 0,
-  opticalSize: 24,
+  opticalSize: 48,
   iconFamily: "filled",
-  symbolFamily: "outlined",
+  family: "outlined",
 };
 
 /**
@@ -187,7 +187,7 @@ export function getFontVariationSettings(
     grade = MATERIAL_CONFIG.grade,
     opticalSize = MATERIAL_CONFIG.opticalSize,
     weight = MATERIAL_CONFIG.weight,
-    symbolFamily = MATERIAL_CONFIG.symbolFamily,
+    family: symbolFamily = MATERIAL_CONFIG.family,
   } = options;
   if (
     !style?.fontVariationSettings &&

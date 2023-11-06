@@ -12,12 +12,12 @@ import {
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
 import styles from "./FilterSymbolCustomization.module.scss";
+import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";
 import {
   indexToMaterialGrade,
   indexToMaterialOpticalSize,
   indexToMaterialWeight,
-  useMaterialIconsAndSymbols,
-} from "./MaterialIconsAndSymbolsProvider.jsx";
+} from "./constants.js";
 
 const SHARED_PROPS = {
   marks: true,

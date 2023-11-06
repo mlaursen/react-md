@@ -10,7 +10,7 @@ describe("MaterialSymbol", () => {
     MATERIAL_CONFIG.weight = 400;
     MATERIAL_CONFIG.grade = 0;
     MATERIAL_CONFIG.opticalSize = 24;
-    MATERIAL_CONFIG.symbolFamily = "outlined";
+    MATERIAL_CONFIG.family = "outlined";
   });
 
   it("should apply the correct styling, HTMLAttributes, and allow a ref", () => {
@@ -50,7 +50,7 @@ describe("MaterialSymbol", () => {
 
     MATERIAL_CONFIG.fill = 1;
     MATERIAL_CONFIG.grade = -25;
-    MATERIAL_CONFIG.symbolFamily = "rounded";
+    MATERIAL_CONFIG.family = "rounded";
     MATERIAL_CONFIG.opticalSize = 48;
     MATERIAL_CONFIG.weight = 100;
 

@@ -19,7 +19,7 @@ export type IconCategoryFilter =
   | MaterialSymbolCategory
   | "";
 
-export interface MaterialIconsAndSymbolsState {
+export interface MaterialIconsAndSymbolsRef {
   search: string;
   iconType: MaterialIconType;
   iconFamily: MaterialIconFamily;
@@ -30,8 +30,12 @@ export interface MaterialIconsAndSymbolsState {
   symbolWeight: number;
   symbolOpticalSize: number;
 
-  filtersVisible: boolean;
   selectedIconName: MaterialIconAndSymbolName | null;
+}
+
+export interface MaterialIconsAndSymbolsState
+  extends MaterialIconsAndSymbolsRef {
+  filtersVisible: boolean;
 }
 
 export type MaterialIconsAndSymbolsAction =

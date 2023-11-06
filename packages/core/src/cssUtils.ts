@@ -84,6 +84,7 @@ export type Margin = "none" | "top" | "bottom" | "centered";
 /** @remarks \@since 6.0.0 */
 export type TextOverflow = "allow" | "nowrap" | "ellipsis";
 
+/** @remarks \@since 6.0.0 */
 export interface TextCssUtilsOptions {
   textColor?: ThemeColor | TextColor;
 

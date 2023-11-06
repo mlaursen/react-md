@@ -1,9 +1,9 @@
 import { highlightCode } from "@/utils/highlightCode.js";
 import { parseCodeBlock, type CodeJsxProps } from "@/utils/parseCodeBlock.js";
-import { AppBarTitle } from "@react-md/core";
 import { type ReactElement, type ReactNode } from "react";
 import "server-only";
 import { CodeBlock } from "./CodeBlock.jsx";
+import { CodeBlockFileName } from "./CodeBlockFileName.jsx";
 import { CodeBlockHeader } from "./CodeBlockHeader.jsx";
 import { RunnableCodePreview } from "./DangerouslyRunCode/RunnableCodePreview.jsx";
 import styles from "./HighlightedCodeBlock.module.scss";
@@ -73,11 +73,7 @@ export async function HighlightedCodeBlock(
     header = (
       <CodeBlockHeader className={styles.dense}>
         {tsCode && <ConfigureCodeLanguage disableLabel />}
-        {fileName && (
-          <AppBarTitle type="subtitle-2" as="span">
-            {fileName}
-          </AppBarTitle>
-        )}
+        {fileName && <CodeBlockFileName>{fileName}</CodeBlockFileName>}
       </CodeBlockHeader>
     );
   }

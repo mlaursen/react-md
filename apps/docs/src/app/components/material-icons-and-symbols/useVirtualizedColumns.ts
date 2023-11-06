@@ -1,9 +1,5 @@
 "use client";
-import {
-  getScrollbarWidth,
-  useCSSVariables,
-  useResizeObserver,
-} from "@react-md/core";
+import { useCSSVariables, useResizeObserver } from "@react-md/core";
 import {
   useCallback,
   useMemo,
@@ -11,9 +7,9 @@ import {
   type CSSProperties,
   type RefCallback,
 } from "react";
+import { SELECTED_ICON } from "./searchParams.js";
 
 const MIN_CELL_WIDTH = 160;
-const DEFAULT_WIDTH = 1080;
 
 interface VirtualizedColumns {
   columns: number;
@@ -23,22 +19,26 @@ interface VirtualizedColumns {
 }
 
 export function useVirtualizedColumns(): VirtualizedColumns {
-  const [{ containerWidth, rowWidth }, setSize] = useState({
-    containerWidth: DEFAULT_WIDTH,
-    rowWidth: DEFAULT_WIDTH,
+  const [containerWidth, setContainerWidth] = useState(() => {
+    let width = window.innerWidth - 32;
+    if (window.innerWidth > 1025) {
+      width -= 256;
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    if (params.has(SELECTED_ICON)) {
+      width -= 416;
+    }
+
+    return width;
   });
   const containerRef = useResizeObserver({
+    disableHeight: true,
     onUpdate: useCallback((entry) => {
-      const { height, width } = entry.contentRect;
-      const { scrollHeight } = entry.target;
-
-      setSize({
-        containerWidth: width,
-        rowWidth: width - (scrollHeight > height ? getScrollbarWidth() : 0),
-      });
+      setContainerWidth(entry.contentRect.width);
     }, []),
   });
-  const columns = Math.floor(rowWidth / MIN_CELL_WIDTH);
+  const columns = Math.floor(containerWidth / MIN_CELL_WIDTH);
   const containerStyle = useCSSVariables(
     useMemo(() => [{ name: "--rmd-box-columns", value: columns }], [columns]),
     true

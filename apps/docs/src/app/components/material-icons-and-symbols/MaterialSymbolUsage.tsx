@@ -1,17 +1,19 @@
 import { type ReactElement } from "react";
 import { IconImportAndUsage } from "./IconImportAndUsage.jsx";
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";
-import { MaterialSymbolAdditionalChanges } from "./MaterialSymbolAdditionalChanges.jsx";
+import { AdditionalChanges } from "./AdditionalChanges.jsx";
 
 export function MaterialSymbolUsage(): ReactElement {
-  const { isSymbolCustomizationChanged, isFontFamilyChanged } =
-    useMaterialIconsAndSymbols();
+  const {
+    isSymbolCustomizationChanged,
+    isFontFamilyChanged,
+    selectedIconName,
+  } = useMaterialIconsAndSymbols();
   return (
     <>
       <IconImportAndUsage />
-      {(isSymbolCustomizationChanged || isFontFamilyChanged) && (
-        <MaterialSymbolAdditionalChanges />
-      )}
+      {(isSymbolCustomizationChanged || isFontFamilyChanged) &&
+        selectedIconName && <AdditionalChanges icon={selectedIconName} />}
     </>
   );
 }

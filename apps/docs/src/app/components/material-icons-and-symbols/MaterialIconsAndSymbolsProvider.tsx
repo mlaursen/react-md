@@ -1,64 +1,36 @@
 "use client";
-import {
-  MaterialIconsProvider,
-  MaterialSymbolsProvider,
-  type MaterialSymbolFill,
-  type MaterialSymbolGrade,
-  type MaterialSymbolOpticalSize,
-  type MaterialSymbolWeight,
-} from "@react-md/core";
+import { usePathname, useRouter, useSearchParams } from "next/navigation.js";
 import {
   createContext,
   useContext,
+  useEffect,
   useMemo,
   useReducer,
+  useRef,
   type ReactElement,
   type ReactNode,
 } from "react";
 import {
+  DEFAULT_FILL,
+  DEFAULT_GRADE,
+  DEFAULT_OPTICAL_SIZE,
+  DEFAULT_WEIGHT,
+  INITIAL_STATE,
+  indexToMaterialFill,
+  indexToMaterialGrade,
+  indexToMaterialOpticalSize,
+  indexToMaterialWeight,
+} from "./constants.js";
+import {
   MATERIAL_ICON_FAMILY_TYPES,
   MATERIAL_SYMBOL_FAMILY_TYPES,
 } from "./metadata.js";
+import { getIconUrl, getInitialState } from "./searchParams.js";
 import {
   type MaterialIconsAndSymbolsAction,
   type MaterialIconsAndSymbolsContext,
   type MaterialIconsAndSymbolsState,
 } from "./types.js";
-
-export const DEFAULT_FILL = 0;
-export const DEFAULT_WEIGHT = 3;
-export const DEFAULT_GRADE = 1;
-export const DEFAULT_OPTICAL_SIZE = 3;
-const FILLS: readonly MaterialSymbolFill[] = [0, 1];
-const GRADES: readonly MaterialSymbolGrade[] = [-25, 0, 200];
-const WEIGHTS: readonly MaterialSymbolWeight[] = [
-  100, 200, 300, 400, 500, 600, 700,
-];
-const OPTICAL_SIZES: readonly MaterialSymbolOpticalSize[] = [20, 24, 40, 48];
-
-export const indexToMaterialFill = (index: number): MaterialSymbolFill =>
-  FILLS[index];
-export const indexToMaterialGrade = (index: number): MaterialSymbolGrade =>
-  GRADES[index];
-export const indexToMaterialWeight = (index: number): MaterialSymbolWeight =>
-  WEIGHTS[index];
-export const indexToMaterialOpticalSize = (
-  index: number
-): MaterialSymbolOpticalSize => OPTICAL_SIZES[index];
-
-const INITIAL_STATE: MaterialIconsAndSymbolsState = {
-  search: "",
-  iconType: "symbol",
-  iconFamily: "outlined",
-  iconCategory: "",
-  symbolFill: DEFAULT_FILL,
-  symbolWeight: DEFAULT_WEIGHT,
-  symbolGrade: DEFAULT_GRADE,
-  symbolOpticalSize: DEFAULT_OPTICAL_SIZE,
-
-  filtersVisible: false,
-  selectedIconName: null,
-};
 
 const context = createContext<MaterialIconsAndSymbolsContext | undefined>(
   undefined
@@ -83,96 +55,101 @@ export interface MaterialIconsAndSymbolsProviderProps {
 export function MaterialIconsAndSymbolsProvider({
   children,
 }: MaterialIconsAndSymbolsProviderProps): ReactElement {
-  const [state, dispatch] = useReducer(function reducer(
-    state: MaterialIconsAndSymbolsState,
-    action: MaterialIconsAndSymbolsAction
-  ) {
-    switch (action.type) {
-      case "setSearch":
-        return {
-          ...state,
-          search: action.payload,
-        };
-      case "setIconType": {
-        const iconType = action.payload;
-        let { iconFamily, iconCategory } = state;
-        const nextFamilyTypes =
-          iconType === "icon"
-            ? MATERIAL_ICON_FAMILY_TYPES
-            : MATERIAL_SYMBOL_FAMILY_TYPES;
-        if (!nextFamilyTypes.includes(iconFamily as "outlined")) {
-          iconFamily = "outlined";
-        }
-        if (iconCategory) {
-          iconCategory = "";
-        }
+  const searchParams = useSearchParams();
+  const [state, dispatch] = useReducer(
+    function reducer(
+      state: MaterialIconsAndSymbolsState,
+      action: MaterialIconsAndSymbolsAction
+    ) {
+      switch (action.type) {
+        case "setSearch":
+          return {
+            ...state,
+            search: action.payload,
+          };
+        case "setIconType": {
+          const iconType = action.payload;
+          let { iconFamily, iconCategory } = state;
+          const nextFamilyTypes =
+            iconType === "icon"
+              ? MATERIAL_ICON_FAMILY_TYPES
+              : MATERIAL_SYMBOL_FAMILY_TYPES;
+          if (!nextFamilyTypes.includes(iconFamily as "outlined")) {
+            iconFamily = "outlined";
+          }
+          if (iconCategory) {
+            iconCategory = "";
+          }
 
-        return {
-          ...state,
-          iconType,
-          iconFamily,
-          iconCategory,
-          selectedIconName: null,
-        };
+          return {
+            ...state,
+            iconType,
+            iconFamily,
+            iconCategory,
+            selectedIconName: null,
+          };
+        }
+        case "setIconFamily":
+          return {
+            ...state,
+            iconFamily: action.payload,
+          };
+        case "setIconCategory":
+          return {
+            ...state,
+            iconCategory: action.payload,
+          };
+        case "setFill":
+        case "setWeight":
+        case "setGrade":
+        case "setOpticalSize": {
+          const key = action.type.substring(3);
+          return {
+            ...state,
+            [`symbol${key}`]: action.payload,
+          };
+        }
+        case "reset":
+          return INITIAL_STATE;
+        case "resetFilters":
+          return {
+            ...state,
+            search: "",
+            iconCategory: "" as const,
+          };
+        case "resetSymbols":
+          return {
+            ...INITIAL_STATE,
+            search: state.search,
+            iconType: state.iconType,
+            filtersVisible: state.filtersVisible,
+          };
+        case "selectIcon":
+          return {
+            ...state,
+            filtersVisible: false,
+            selectedIconName: action.payload,
+          };
+        case "deselectIcon":
+          return {
+            ...state,
+            selectedIconName: null,
+          };
+        case "toggleFilters":
+          return {
+            ...state,
+            filtersVisible: !state.filtersVisible,
+            selectedIconName: state.filtersVisible
+              ? state.selectedIconName
+              : null,
+          };
+        default:
+          throw new Error("Unreachable");
       }
-      case "setIconFamily":
-        return {
-          ...state,
-          iconFamily: action.payload,
-        };
-      case "setIconCategory":
-        return {
-          ...state,
-          iconCategory: action.payload,
-        };
-      case "setFill":
-      case "setWeight":
-      case "setGrade":
-      case "setOpticalSize": {
-        const key = action.type.substring(3);
-        return {
-          ...state,
-          [`symbol${key}`]: action.payload,
-        };
-      }
-      case "reset":
-        return INITIAL_STATE;
-      case "resetFilters":
-        return {
-          ...state,
-          search: "",
-          iconCategory: "" as const,
-        };
-      case "resetSymbols":
-        return {
-          ...INITIAL_STATE,
-          search: state.search,
-          iconType: state.iconType,
-          filtersVisible: state.filtersVisible,
-        };
-      case "selectIcon":
-        return {
-          ...state,
-          filtersVisible: false,
-          selectedIconName: action.payload,
-        };
-      case "deselectIcon":
-        return {
-          ...state,
-          selectedIconName: null,
-        };
-      case "toggleFilters":
-        return {
-          ...state,
-          filtersVisible: !state.filtersVisible,
-          selectedIconName: state.filtersVisible
-            ? state.selectedIconName
-            : null,
-        };
-      default:
-        throw new Error("Unreachable");
-    }
-  }, INITIAL_STATE);
+    },
+    INITIAL_STATE,
+    (state) => getInitialState(state, searchParams)
+  );
   const {
     search,
     iconType,
@@ -276,18 +253,50 @@ export function MaterialIconsAndSymbolsProvider({
       symbolWeight,
     ]
   );
-  const symbolFamily =
-    iconFamily === "filled" || iconFamily === "two-tone"
-      ? "outlined"
-      : iconFamily;
 
-  return (
-    <Provider value={value}>
-      <MaterialSymbolsProvider family={symbolFamily}>
-        <MaterialIconsProvider value={iconFamily}>
-          {children}
-        </MaterialIconsProvider>
-      </MaterialSymbolsProvider>
-    </Provider>
-  );
+  const router = useRouter();
+  const pathname = usePathname();
+  useEffect(() => {
+    router.replace(
+      getIconUrl({
+        search,
+        iconCategory,
+        iconFamily,
+        iconType,
+        pathname,
+        selectedIconName,
+        symbolFill,
+        symbolGrade,
+        symbolOpticalSize,
+        symbolWeight,
+      }),
+      { scroll: false }
+    );
+  }, [
+    iconCategory,
+    iconFamily,
+    iconType,
+    pathname,
+    router,
+    search,
+    selectedIconName,
+    symbolFill,
+    symbolGrade,
+    symbolOpticalSize,
+    symbolWeight,
+  ]);
+
+  const isFirstRender = useRef(true);
+  useEffect(() => {
+    if (!isFirstRender.current) {
+      return;
+    }
+
+    isFirstRender.current = false;
+    if (!selectedIconName) {
+      dispatch({ type: "toggleFilters" });
+    }
+  }, [selectedIconName]);
+
+  return <Provider value={value}>{children}</Provider>;
 }

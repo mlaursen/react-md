@@ -4,6 +4,7 @@ import {
   Button,
   DEFAULT_SHEET_TIMEOUT,
   Sheet,
+  box,
   useAppSize,
   useCSSTransition,
 } from "@react-md/core";
@@ -83,8 +84,12 @@ export function FiltersSheet(props: FiltersSheetProps): ReactElement {
       disableOverlay={isDesktop}
       disableScrollLock={isDesktop}
     >
-      <AppBar theme="clear">
+      <AppBar
+        theme="clear"
+        className={box({ disablePadding: true, justify: "end" })}
+      >
         <Button
+          style={{ justifySelf: "flex-end" }}
           disabled={!isResettable}
           onClick={() => {
             dispatch({ type: "resetSymbols" });

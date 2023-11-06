@@ -1,4 +1,4 @@
-import { alphaNumericSort, delegateEvent, useSsr } from "@react-md/core";
+import { alphaNumericSort, delegateEvent } from "@react-md/core";
 import Fuse from "fuse.js";
 import lodash from "lodash";
 import {
@@ -15,6 +15,17 @@ import {
 import { type VirtualizedData } from "./RenderVirtualizedRow.jsx";
 import { type MaterialIconAndSymbolName } from "./metadata.js";
 import { getIconsByCategory, type IconsByCategoryOptions } from "./utils.js";
+
+const getRowHeight = (row: CategoryOrIconNames, isFirst: boolean): number => {
+  // if it's a category header
+  if (typeof row === "string") {
+    // the first category header needs less space since it isn't used to also
+    // visually separate groups
+    return isFirst ? 40 : 80;
+  }
+
+  return 160;
+};
 
 /**
  * I'm using the VariableSizeList instead of VariableSizeGrid because I want
@@ -37,6 +48,7 @@ export interface VirtualizedWindowProps
 interface Options extends IconsByCategoryOptions {
   search: string;
   columns: number;
+  selectedIconName: MaterialIconAndSymbolName | null;
 }
 
 interface Result {
@@ -45,7 +57,14 @@ interface Result {
 }
 
 export function useVirtualizedWindow(options: Options): Result {
-  const { iconType, iconFamily, iconCategory, search, columns } = options;
+  const {
+    iconType,
+    iconFamily,
+    iconCategory,
+    search,
+    columns,
+    selectedIconName,
+  } = options;
   const searchTerm = useDeferredValue(search.toLowerCase());
 
   const list = useMemo(() => {
@@ -83,16 +102,8 @@ export function useVirtualizedWindow(options: Options): Result {
 
     return available;
   }, [columns, iconCategory, iconFamily, iconType, searchTerm]);
-  const itemSize = (index: number): number => {
-    // if it's a category header
-    if (typeof list[index] === "string") {
-      // the first category header needs less space since it isn't used to also
-      // visually separate groups
-      return index === 0 ? 40 : 80;
-    }
-
-    return 160;
-  };
+  const itemSize = (index: number): number =>
+    getRowHeight(list[index], index === 0);
 
   const listRef = useRef<VariableSizeList>(null);
   const outerRef = useRef<HTMLDivElement>(null);
@@ -105,21 +116,23 @@ export function useVirtualizedWindow(options: Options): Result {
   );
 
   useEffect(() => {
-    const list = listRef.current;
+    const virtualizedList = listRef.current;
     const container = outerRef.current;
-    if (!container || !list) {
+    if (!container || !virtualizedList) {
       return;
     }
 
     const scrollCallback = (): void => {
       const scrollTop = window.scrollY - container.offsetTop;
 
-      list.scrollTo(scrollTop);
+      virtualizedList.scrollTo(scrollTop);
     };
 
     const scrollHandler = delegateEvent("scroll", window, true, {
       passive: true,
     });
+
+    scrollCallback();
 
     scrollHandler.add(scrollCallback);
     return () => {
@@ -127,20 +140,44 @@ export function useVirtualizedWindow(options: Options): Result {
     };
   }, []);
   useEffect(() => {
-    const list = listRef.current;
-    if (!list) {
+    const virtualizedList = listRef.current;
+    if (!virtualizedList) {
       return;
     }
 
-    list.resetAfterIndex(0);
+    virtualizedList.resetAfterIndex(0);
   }, [iconType, iconFamily, iconCategory, searchTerm, columns]);
-  const ssr = useSsr();
+  useEffect(() => {
+    const container = outerRef.current;
+    if (!selectedIconName || !container) {
+      return;
+    }
+
+    let offset = -(container.offsetTop + getRowHeight(list[0], true));
+    for (let i = 0; i < list.length; i++) {
+      const row = list[i];
+      offset += getRowHeight(row, i === 0);
+      if (typeof row !== "string" && row.includes(selectedIconName)) {
+        const viewportBottom = window.innerHeight - container.offsetTop - 48;
+        const selectedIconBottom = offset - window.scrollY + 160;
+        const difference = selectedIconBottom - viewportBottom;
+        if (difference > 0) {
+          window.scrollTo({
+            top: window.scrollY + difference,
+            behavior: "instant",
+          });
+        }
+
+        return;
+      }
+    }
+  }, [list, columns, selectedIconName]);
 
   return {
     list,
     listProps: {
       ref: listRef,
-      height: ssr ? 1920 : window.innerHeight,
+      height: window.innerHeight,
       outerRef,
       style: {
         height: "100%",
