@@ -40,6 +40,7 @@ $disable-radio: $disable-everything !default;
 $disable-uncontrolled-input-toggles: false !default;
 $disable-switch: $disable-everything !default;
 $disable-switch-circular-progress: progress.$disable-circular !default;
+$disable-switch-icon: false !default;
 $disable-menu-item-checkbox: $disable-checkbox !default;
 $disable-menu-item-radio: $disable-radio !default;
 $disable-menu-item-switch: $disable-switch !default;
@@ -196,7 +197,9 @@ $switch-track-background-color: theme.get-default-color(
   $switch-track-light-background-color,
   $switch-track-dark-background-color
 ) !default;
+$switch-icon-size: 1em !default;
 $switch-circular-progress-width: 12 !default;
+$switch-circular-progress-size: 1em !default;
 
 $menu-item-switch-spacing: calc(icon.$spacing + $switch-ball-size) !default;
 
@@ -1361,6 +1364,11 @@ $var-lookup: (
       cursor: pointer;
     }
 
+    &--current-color,
+    &--current-color .rmd-switch__input:checked + .rmd-switch__ball {
+      @include set-var(switch-ball-background-color, currentcolor);
+    }
+
     &__input {
       @include utils.keyboard-only {
         &:focus + .rmd-switch__ball::before {
@@ -1378,6 +1386,19 @@ $var-lookup: (
     }
 
     &__track {
+      @if not $disable-switch-circular-progress {
+        @include progress.set-var(
+          circular-stroke-width,
+          $switch-circular-progress-width
+        );
+        @include progress.set-var(
+          circular-size,
+          $switch-circular-progress-size
+        );
+      }
+      @if not $disable-switch-icon {
+        @include icon.set-var(size, $switch-icon-size);
+      }
       @include use-var(background-color, switch-track-background-color);
 
       border-radius: $switch-track-border-radius;
@@ -1389,16 +1410,6 @@ $var-lookup: (
 
       &--disabled {
         opacity: $switch-disabled-opacity;
-      }
-
-      @if not $disable-switch-circular-progress {
-        &--async {
-          @include progress.set-var(
-            circular-stroke-width,
-            $switch-circular-progress-width
-          );
-          @include progress.set-var(circular-size, $switch-ball-size);
-        }
       }
     }
 
@@ -1436,7 +1447,7 @@ $var-lookup: (
         position: absolute;
         top: 25%;
         width: $switch-ball-size;
-        z-index: 1;
+        z-index: 0;
       }
 
       $active-selector: ".rmd-switch__input:checked + &" +

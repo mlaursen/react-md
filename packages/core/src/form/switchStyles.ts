@@ -15,15 +15,15 @@ const styles = bem("rmd-switch");
  */
 export interface SwitchClassNameOptions {
   className?: string;
-
   clickable?: boolean;
+  currentColor?: boolean;
 }
 
 /**
  * @remarks \@since 6.0.0
  */
 export function switchStyles(options: SwitchClassNameOptions = {}): string {
-  const { className, clickable } = options;
+  const { className, clickable, currentColor } = options;
 
-  return cnb(styles({ clickable }), className);
+  return cnb(styles({ "current-color": currentColor, clickable }), className);
 }

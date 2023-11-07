@@ -1,5 +1,10 @@
 import { cnb } from "cnbuilder";
-import { forwardRef, type CSSProperties, type HTMLAttributes } from "react";
+import {
+  forwardRef,
+  type CSSProperties,
+  type HTMLAttributes,
+  type ReactNode,
+} from "react";
 import { type PropsWithRef } from "../types.js";
 import { bem } from "../utils/bem.js";
 
@@ -8,6 +13,7 @@ const styles = bem("rmd-switch");
 export interface SwitchTrackProps extends HTMLAttributes<HTMLDivElement> {
   active?: boolean;
   disabled?: boolean;
+  ballAddon?: ReactNode;
   ballProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>;
   ballStyle?: CSSProperties;
   ballClassName?: string;
@@ -21,6 +27,7 @@ export const SwitchTrack = forwardRef<HTMLDivElement, SwitchTrackProps>(
     const {
       style,
       className,
+      ballAddon,
       ballProps,
       ballStyle,
       ballClassName,
@@ -42,7 +49,10 @@ export const SwitchTrack = forwardRef<HTMLDivElement, SwitchTrackProps>(
           style={ballStyle}
           {...ballProps}
           className={cnb(styles("ball", { active }), ballClassName)}
-        />
+        >
+          {ballAddon}
+          {ballProps?.children}
+        </span>
       </div>
     );
   }

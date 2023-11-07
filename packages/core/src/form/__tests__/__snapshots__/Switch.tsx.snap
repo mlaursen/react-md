@@ -1,0 +1,427 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Switch should allow the switch to gain the error and active colors by enabling the current-color class 1`] = `
+<label
+  class="rmd-label rmd-label--gap rmd-label--active rmd-label--reversed"
+  data-testid="label"
+>
+  Switch
+  <div
+    class="rmd-switch rmd-switch--current-color rmd-switch--clickable"
+  >
+    <div
+      class="rmd-switch__track"
+    >
+      <input
+        class="rmd-switch__input rmd-hidden-input"
+        id="switch-:r1:"
+        role="switch"
+        type="checkbox"
+      />
+      <span
+        class="rmd-switch__ball"
+      />
+    </div>
+  </div>
+</label>
+`;
+
+exports[`Switch should allow the switch to gain the error and active colors by enabling the current-color class 2`] = `
+<label
+  class="rmd-label rmd-label--gap rmd-label--error rmd-label--reversed rmd-error-color"
+>
+  Switch
+  <div
+    class="rmd-switch rmd-switch--current-color rmd-switch--clickable"
+  >
+    <div
+      class="rmd-switch__track"
+    >
+      <input
+        class="rmd-switch__input rmd-hidden-input"
+        id="switch-:r1:"
+        role="switch"
+        type="checkbox"
+      />
+      <span
+        class="rmd-switch__ball"
+      />
+    </div>
+  </div>
+</label>
+`;
+
+exports[`Switch should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+<label
+  class="rmd-label rmd-label--gap rmd-label--reversed"
+  data-testid="label"
+>
+  Switch
+  <div
+    class="rmd-switch rmd-switch--clickable"
+  >
+    <div
+      class="rmd-switch__track"
+    >
+      <input
+        class="rmd-switch__input rmd-hidden-input"
+        id="switch-:r0:"
+        role="switch"
+        type="checkbox"
+      />
+      <span
+        class="rmd-switch__ball"
+      />
+    </div>
+  </div>
+</label>
+`;
+
+exports[`Switch should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+<label
+  class="rmd-label rmd-label--gap rmd-label--reversed custom-class-name"
+  data-testid="label"
+  style="color: white;"
+>
+  Switch
+  <div
+    class="rmd-switch rmd-switch--clickable"
+  >
+    <div
+      class="rmd-switch__track"
+    >
+      <input
+        class="rmd-switch__input rmd-hidden-input"
+        id="switch-:r0:"
+        role="switch"
+        type="checkbox"
+      />
+      <span
+        class="rmd-switch__ball"
+      />
+    </div>
+  </div>
+</label>
+`;
+
+exports[`Switch should apply the correct styling, HTMLAttributes, and allow a ref 3`] = `
+<label
+  class="rmd-label rmd-label--gap rmd-label--reversed"
+  data-testid="label"
+  style=""
+>
+  Switch
+  <div
+    class="rmd-switch rmd-switch--clickable container-class-name"
+    style="font-size: 3rem;"
+  >
+    <div
+      class="rmd-switch__track track-class-name track-props-class-name"
+      style="width: 10%;"
+    >
+      <input
+        class="rmd-switch__input rmd-hidden-input"
+        id="switch-:r0:"
+        role="switch"
+        type="checkbox"
+      />
+      <span
+        class="rmd-switch__ball ball-class-name"
+        style="background: orange;"
+      />
+    </div>
+  </div>
+</label>
+`;
+
+exports[`Switch should apply the correct styling, HTMLAttributes, and allow a ref 4`] = `
+<label
+  class="rmd-label rmd-label--gap rmd-label--reversed"
+  data-testid="label"
+  style=""
+>
+  Switch
+  <div
+    class="rmd-switch rmd-switch--clickable"
+    style=""
+  >
+    <div
+      class="rmd-switch__track"
+      style=""
+    >
+      <input
+        class="rmd-switch__input rmd-hidden-input"
+        id="custom-id"
+        role="switch"
+        type="checkbox"
+      />
+      <span
+        class="rmd-switch__ball"
+        style=""
+      />
+    </div>
+  </div>
+</label>
+`;
+
+exports[`Switch should merge any labelProps correctly 1`] = `
+<label
+  class="rmd-label rmd-label--gap rmd-label--reversed root-class-name test-class-name"
+  data-testid="label"
+  style="color: red;"
+>
+  Switch
+  <div
+    class="rmd-switch rmd-switch--clickable"
+  >
+    <div
+      class="rmd-switch__track"
+    >
+      <input
+        class="rmd-switch__input rmd-hidden-input"
+        id="switch-:r2:"
+        role="switch"
+        type="checkbox"
+      />
+      <span
+        class="rmd-switch__ball"
+      />
+    </div>
+  </div>
+</label>
+`;
+
+exports[`Switch should render correctly when disabled 1`] = `
+<label
+  class="rmd-label rmd-label--gap rmd-label--disabled rmd-label--reversed rmd-text-disabled-color"
+  data-testid="label"
+>
+  Switch
+  <div
+    class="rmd-switch"
+  >
+    <div
+      class="rmd-switch__track rmd-switch__track--disabled"
+    >
+      <input
+        class="rmd-switch__input rmd-hidden-input rmd-hidden-input--disabled"
+        disabled=""
+        id="switch-:r3:"
+        role="switch"
+        type="checkbox"
+      />
+      <span
+        class="rmd-switch__ball"
+      />
+    </div>
+  </div>
+</label>
+`;
+
+exports[`Switch should support rendering a CircularProgress by using the ballAddon prop 1`] = `
+<label
+  class="rmd-label rmd-label--gap rmd-label--reversed"
+  data-testid="label"
+>
+  Switch
+  <div
+    class="rmd-switch rmd-switch--clickable"
+  >
+    <div
+      class="rmd-switch__track"
+    >
+      <input
+        class="rmd-switch__input rmd-hidden-input"
+        id="switch-:r7:"
+        role="switch"
+        type="checkbox"
+      />
+      <span
+        class="rmd-switch__ball"
+      >
+        <span
+          aria-valuemax="100"
+          aria-valuemin="0"
+          class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
+          id="circular-progress-:r8:"
+          role="progressbar"
+        >
+          <svg
+            class="rmd-circular-progress__svg rmd-circular-progress__svg--indeterminate"
+            viewBox="0 0 66 66"
+          >
+            <circle
+              class="rmd-circular-progress__circle rmd-circular-progress__circle--indeterminate"
+              cx="33"
+              cy="33"
+              r="30"
+            />
+          </svg>
+        </span>
+      </span>
+    </div>
+  </div>
+</label>
+`;
+
+exports[`Switch should support rendering the form messages with the switch 1`] = `
+<div
+  class="rmd-form-message-container"
+  data-testid="container"
+>
+  <label
+    class="rmd-label rmd-label--gap rmd-label--reversed"
+  >
+    Label
+    <div
+      class="rmd-switch rmd-switch--clickable"
+    >
+      <div
+        class="rmd-switch__track"
+      >
+        <input
+          class="rmd-switch__input rmd-hidden-input"
+          id="switch-:r5:"
+          role="switch"
+          type="checkbox"
+        />
+        <span
+          class="rmd-switch__ball"
+        />
+      </div>
+    </div>
+  </label>
+  <div
+    aria-live="polite"
+    class="rmd-form-message rmd-form-message--outline rmd-text-secondary-color"
+    id="form-message-:r6:"
+  >
+    <p
+      class="rmd-form-message__message"
+      id="form-message-:r6:-message"
+    >
+      Help Text
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Switch should support rendering the form messages with the switch 2`] = `
+<div
+  class="rmd-form-message-container"
+  data-testid="container"
+>
+  <label
+    class="rmd-label rmd-label--gap rmd-label--error rmd-label--reversed rmd-error-color"
+  >
+    Label
+    <div
+      class="rmd-switch rmd-switch--current-color rmd-switch--clickable"
+    >
+      <div
+        class="rmd-switch__track"
+      >
+        <input
+          class="rmd-switch__input rmd-hidden-input"
+          id="switch-:r5:"
+          role="switch"
+          type="checkbox"
+        />
+        <span
+          class="rmd-switch__ball"
+        />
+      </div>
+    </div>
+  </label>
+  <div
+    aria-live="polite"
+    class="rmd-form-message rmd-form-message--outline rmd-error-color"
+    id="form-message-:r6:"
+  >
+    <p
+      class="rmd-form-message__message"
+      id="form-message-:r6:-message"
+    >
+      Error Text
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Switch should support rendering the label before and after as well as stacked 1`] = `
+<label
+  class="rmd-label rmd-label--gap"
+  data-testid="label"
+>
+  Switch
+  <div
+    class="rmd-switch rmd-switch--clickable"
+  >
+    <div
+      class="rmd-switch__track"
+    >
+      <input
+        class="rmd-switch__input rmd-hidden-input"
+        id="switch-:r4:"
+        role="switch"
+        type="checkbox"
+      />
+      <span
+        class="rmd-switch__ball"
+      />
+    </div>
+  </div>
+</label>
+`;
+
+exports[`Switch should support rendering the label before and after as well as stacked 2`] = `
+<label
+  class="rmd-label rmd-label--gap rmd-label--stacked-reversed"
+  data-testid="label"
+>
+  Switch
+  <div
+    class="rmd-switch rmd-switch--clickable"
+  >
+    <div
+      class="rmd-switch__track"
+    >
+      <input
+        class="rmd-switch__input rmd-hidden-input"
+        id="switch-:r4:"
+        role="switch"
+        type="checkbox"
+      />
+      <span
+        class="rmd-switch__ball"
+      />
+    </div>
+  </div>
+</label>
+`;
+
+exports[`Switch should support rendering the label before and after as well as stacked 3`] = `
+<label
+  class="rmd-label rmd-label--gap rmd-label--stacked"
+  data-testid="label"
+>
+  Switch
+  <div
+    class="rmd-switch rmd-switch--clickable"
+  >
+    <div
+      class="rmd-switch__track"
+    >
+      <input
+        class="rmd-switch__input rmd-hidden-input"
+        id="switch-:r4:"
+        role="switch"
+        type="checkbox"
+      />
+      <span
+        class="rmd-switch__ball"
+      />
+    </div>
+  </div>
+</label>
+`;

@@ -1,11 +1,10 @@
-"use client";
 import { cnb } from "cnbuilder";
 import {
   forwardRef,
-  useState,
   type CSSProperties,
   type HTMLAttributes,
   type InputHTMLAttributes,
+  type ReactNode,
 } from "react";
 import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
@@ -18,10 +17,6 @@ import {
   type FormComponentStates,
   type FormMessageContainerExtension,
 } from "./types.js";
-
-const noop = (): void => {
-  // do nothing
-};
 
 /**
  * @remarks \@since 6.0.0 Added `containerProps` and support for the
@@ -36,13 +31,14 @@ export interface SwitchProps
   trackProps?: PropsWithRef<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
   trackStyle?: CSSProperties;
   trackClassName?: string;
+  ballAddon?: ReactNode;
   ballProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>;
   ballStyle?: CSSProperties;
   ballClassName?: string;
 }
 
 /**
- * **Client Component**
+ * **Server Component**
  *
  * @example
  * Simple Example
@@ -81,6 +77,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
       ballProps,
       ballStyle,
       ballClassName,
+      ballAddon,
       trackProps,
       trackStyle,
       trackClassName,
@@ -93,13 +90,9 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
       iconAfter = false,
       disabled = false,
       readOnly = false,
-      onChange = noop,
-      defaultChecked = false,
       ...remaining
     } = props;
     const id = useEnsuredId(propId, "switch");
-    const [isChecked, setChecked] = useState(defaultChecked);
-    const checked = props.checked ?? isChecked;
 
     return (
       <FormMessageContainer
@@ -123,6 +116,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
             className={switchStyles({
               clickable: !disabled && !readOnly,
               className: containerProps?.className,
+              currentColor: active || error,
             })}
           >
             <SwitchTrack
@@ -130,6 +124,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
               {...trackProps}
               className={cnb(trackClassName, trackProps?.className)}
               disabled={disabled}
+              ballAddon={ballAddon}
               ballProps={ballProps}
               ballStyle={ballStyle}
               ballClassName={ballClassName}
@@ -145,22 +140,6 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
                   disabled && "rmd-hidden-input--disabled"
                 )}
                 disabled={disabled}
-                checked={checked}
-                onChange={(event) => {
-                  // checkboxes do not natively support the readOnly attribute, so
-                  // polyfill it in. can't use `disabled` since the checkbox's
-                  // checked/unchecked state would then not be submitted in forms.
-                  if (readOnly) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    return;
-                  }
-
-                  onChange(event);
-                  if (typeof props.checked === "undefined") {
-                    setChecked(event.currentTarget.checked);
-                  }
-                }}
               />
             </SwitchTrack>
           </div>
