@@ -1,16 +1,13 @@
 "use client";
 import { forwardRef, type HTMLAttributes } from "react";
 import { type DividerProps } from "../divider/Divider.js";
-import { type VerticalDividerProps } from "../divider/VerticalDivider.js";
 import { divider } from "../divider/styles.js";
-import { useVerticalDividerHeight } from "../divider/useVerticalDividerHeight.js";
 import { useMenuConfiguration } from "./MenuConfigurationProvider.js";
 
 /** @remarks \@since 5.0.0 */
 export interface MenuItemSeparatorProps
   extends HTMLAttributes<HTMLLIElement>,
-    Pick<DividerProps, "inset" | "vertical">,
-    Pick<VerticalDividerProps, "maxHeight"> {}
+    Pick<DividerProps, "inset" | "vertical"> {}
 
 /**
  * **Client Component**
@@ -26,9 +23,7 @@ export const MenuItemSeparator = forwardRef<
   MenuItemSeparatorProps
 >(function MenuItemSeparator(props, ref) {
   const {
-    style,
     className,
-    maxHeight,
     inset,
     vertical: propVertical,
     children,
@@ -37,17 +32,12 @@ export const MenuItemSeparator = forwardRef<
 
   const horizontal = useMenuConfiguration().horizontal;
   const vertical = propVertical ?? horizontal;
-  const heightProps = useVerticalDividerHeight({
-    ref,
-    style,
-    maxHeight: vertical ? maxHeight ?? 1 : 0,
-  });
 
   return (
     <li
       {...remaining}
-      {...heightProps}
       aria-orientation={vertical ? "vertical" : undefined}
+      ref={ref}
       role="separator"
       className={divider({ inset: inset && !vertical, vertical, className })}
     >
