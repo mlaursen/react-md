@@ -8,7 +8,7 @@ import {
 } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import { usePathname } from "next/navigation.js";
-import { type ReactNode, type ReactElement } from "react";
+import { useEffect, useRef, type ReactElement, type ReactNode } from "react";
 import { LinkUnstyled, type LinkUnstyledProps } from "../LinkUnstyled.jsx";
 import styles from "./NavigationItemLink.module.scss";
 
@@ -23,16 +23,27 @@ export function NavigationItemLink(
 
   const pathname = usePathname();
   const active = href === pathname;
+  const linkRef = useRef<HTMLAnchorElement>(null);
   const { handlers, ripples } = useElementInteraction();
   const { nodeRef, elementProps, tooltipProps } = useOverflowTooltip({
     ...handlers,
     defaultPosition: "right",
   });
+
+  useEffect(() => {
+    const link = linkRef.current;
+    if (!active || !link || document.activeElement === link) {
+      return;
+    }
+
+    link.scrollIntoView({ block: "center" });
+  }, [active]);
   return (
     <li>
       <LinkUnstyled
         {...handlers}
         {...elementProps}
+        ref={linkRef}
         href={href}
         className={cnb(
           button(),
