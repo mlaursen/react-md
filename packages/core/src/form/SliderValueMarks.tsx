@@ -159,7 +159,9 @@ export function SliderValueMarks(props: SliderValueMarksProps): ReactElement {
   let marks: readonly SliderValueMark[];
   if (typeof propMarks === "boolean") {
     const steps = getRangeSteps({ min, max, step }) + 1;
-    marks = Array.from({ length: steps }, (_, i) => ({ value: i * step }));
+    marks = Array.from({ length: steps }, (_, i) => ({
+      value: min + i * step,
+    }));
   } else {
     marks = propMarks;
   }

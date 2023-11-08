@@ -10,6 +10,8 @@ import MoodOutlinedIcon from "@react-md/material-icons/MoodOutlinedIcon";
 import RadioButtonCheckedIcon from "@react-md/material-icons/RadioButtonCheckedIcon";
 import RadioButtonUncheckedIcon from "@react-md/material-icons/RadioButtonUncheckedIcon";
 import SocialDistanceOutlinedIcon from "@react-md/material-icons/SocialDistanceOutlinedIcon";
+import VolumeOffOutlinedIcon from "@react-md/material-icons/VolumeOffOutlinedIcon";
+import VolumeUpOutlinedIcon from "@react-md/material-icons/VolumeUpOutlinedIcon";
 import React, {
   isValidElement,
   type ComponentType,
@@ -74,15 +76,17 @@ function dangerouslyEvalCode(
     // I need a way to figure out how to correctly pass the scope down here. I can't pass functions
     // down from server components to client components, so it might need to be a script. For now,
     // just add any imports that are required.
-    "@react-md/material-icons/RadioButtonCheckedIcon": RadioButtonCheckedIcon,
-    "@react-md/material-icons/RadioButtonUncheckedIcon":
-      RadioButtonUncheckedIcon,
     "@react-md/material-icons/CloudUploadOutlinedIcon": CloudUploadOutlinedIcon,
     "@react-md/material-icons/FavoriteIcon": FavoriteIcon,
     "@react-md/material-icons/MoodBadOutlinedIcon": MoodBadOutlinedIcon,
     "@react-md/material-icons/MoodOutlinedIcon": MoodOutlinedIcon,
+    "@react-md/material-icons/RadioButtonCheckedIcon": RadioButtonCheckedIcon,
+    "@react-md/material-icons/RadioButtonUncheckedIcon":
+      RadioButtonUncheckedIcon,
     "@react-md/material-icons/SocialDistanceOutlinedIcon":
       SocialDistanceOutlinedIcon,
+    "@react-md/material-icons/VolumeOffOutlinedIcon": VolumeOffOutlinedIcon,
+    "@react-md/material-icons/VolumeUpOutlinedIcon": VolumeUpOutlinedIcon,
   };
   const functionScope: RunnableCodeScope = {
     // sucrase will transform all import statements into `require` to work in

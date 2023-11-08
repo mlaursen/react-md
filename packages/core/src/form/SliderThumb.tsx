@@ -67,6 +67,11 @@ function sliderThumb(options: SliderThumbClassNameOptions): string {
 }
 
 /**
+ * @remarks \@since 6.0.0
+ */
+export type SliderTooltipVisibility = "auto" | "hover" | "always";
+
+/**
  * @remarks \@since 2.5.0
  */
 export interface SliderThumbPresentation {
@@ -118,7 +123,7 @@ export interface SliderThumbPresentation {
    *
    * @defaultValue `"auto"`
    */
-  tooltipVisibility?: "auto" | "hover" | "always";
+  tooltipVisibility?: SliderTooltipVisibility;
 }
 
 /**
@@ -141,7 +146,11 @@ export interface SliderThumbProps
   vertical: boolean;
   onChange: ChangeEventHandler<HTMLInputElement>;
   tooltipProps?: Partial<TooltipProps>;
-  getTooltipChildren(value: number, isMinValue: boolean): ReactNode;
+  getTooltipProps(
+    value: number,
+    isFirstThumb: boolean
+  ): Partial<TooltipProps> | void;
+  getTooltipChildren(value: number, isFirstThumb: boolean): ReactNode;
 }
 
 /**
@@ -178,6 +187,7 @@ export const SliderThumb = forwardRef<
     onMouseEnter = noop,
     onMouseLeave = noop,
     tooltipProps,
+    getTooltipProps,
     getTooltipChildren,
     disableSmoothDragging,
     tooltipVisibility = "auto",
@@ -185,6 +195,7 @@ export const SliderThumb = forwardRef<
   } = props;
   const { "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy } = props;
 
+  const isFirstThumb = index === 1;
   const mode = useUserInteractionMode();
   const keyboard = mode === "keyboard";
   const touch = mode === "touch";
@@ -311,9 +322,10 @@ export const SliderThumb = forwardRef<
             mouseVisible
           }
           {...tooltipProps}
+          {...getTooltipProps(value, isFirstThumb)}
           index={index}
         >
-          {getTooltipChildren(value, index === 1)}
+          {getTooltipChildren(value, isFirstThumb)}
         </SliderValueTooltip>
       )}
     </>

@@ -258,6 +258,7 @@ $slider-thumb-mask-scale: 0.8 !default;
 $slider-thumb-disabled-color: $slider-track-disabled-color !default;
 $slider-tooltip-caret-size: 0.3rem !default;
 $slider-tooltip-offset: -($slider-thumb-size + icon.$spacing) !default;
+$slider-tooltip-z-index: 0 !default;
 $slider-container-padding: $slider-thumb-size * 0.5 !default;
 $slider-container-addon-spacing: $slider-thumb-size !default;
 $slider-transition-duration: transition.$linear-duration !default;
@@ -1843,6 +1844,7 @@ $var-lookup: (
     .rmd-slider-tooltip {
       opacity: 1;
       position: absolute;
+      z-index: $slider-tooltip-z-index;
 
       // this is used to generate the triangle
       &::after {

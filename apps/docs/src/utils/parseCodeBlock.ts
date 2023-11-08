@@ -109,7 +109,7 @@ export async function parseCodeBlock(
   let tsCode: HighlightedTypescriptCode | undefined;
   if (lang === "ts" || lang === "tsx") {
     const jsCode = await convertTsToJs(code);
-    if (code !== jsCode) {
+    if (code !== jsCode && jsCode) {
       tsCode = {
         ts: editable ? code : highlightCode(code, "tsx"),
         js: editable ? jsCode : highlightCode(jsCode, "jsx"),

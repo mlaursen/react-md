@@ -119,6 +119,25 @@ export interface SliderProps extends BaseSliderProps, SliderState {
   thumbProps?: HTMLAttributes<HTMLSpanElement>;
 
   /**
+   * This can be used to update the discrete slider's tooltip props.
+   *
+   * @example
+   * Custom Styles
+   * ```tsx
+   * <Slider
+   *   {...slider}
+   *   discrete
+   *   getTooltipProps={(value) => ({
+   *     className: cssUtils({
+   *       backgroundColor: value < 30 ? "warning" : undefined,
+   *     }),
+   *   })}
+   * />
+   * ```
+   */
+  getTooltipProps?(value: number): Partial<TooltipProps>;
+
+  /**
    * This can be used to update the discrete slider's value tooltip.
    *
    * @example
@@ -202,18 +221,37 @@ export interface RangeSliderProps extends BaseSliderProps, RangeSliderState {
   maxThumbLabelledBy?: string;
 
   /**
+   * This can be used to update the discrete slider's tooltip props.
+   *
+   * @example
+   * Custom Styles
+   * ```tsx
+   * <Slider
+   *   {...slider}
+   *   discrete
+   *   getTooltipProps={(value, isFirstThumb) => ({
+   *     className: cssUtils({
+   *       backgroundColor: value < 30 && isFirstThumb ? "warning" : undefined,
+   *     }),
+   *   })}
+   * />
+   * ```
+   */
+  getTooltipProps?(value: number, isFirstThumb: boolean): Partial<TooltipProps>;
+
+  /**
    * This can be used to update the discrete slider's value tooltip.
    *
    * @example
    * More Value Information
    * ```tsx
    * <Slider
-   *   {...slider}
+   *   {...rangeSlider}
    *   discrete
-   *   getTooltipChildren={(value, isMinValue) => (
+   *   getTooltipChildren={(value, isFirstThumb) => (
    *     <TextIconSpacing
-   *       icon={isMinValue ? <FavoriteIcon /> : <CloseIcon /}
-   *       iconAfter={!isMinValue}
+   *       icon={isFirstThumb ? <FavoriteIcon /> : <CloseIcon /}
+   *       iconAfter={!isFirstValue}
    *     >
    *       {value}
    *     </TextIconSpacing>
@@ -225,7 +263,7 @@ export interface RangeSliderProps extends BaseSliderProps, RangeSliderState {
    *
    * @defaultValue `(value) => value`
    */
-  getTooltipChildren?(value: number, isMinValue: boolean): ReactNode;
+  getTooltipChildren?(value: number, isFirstThumb: boolean): ReactNode;
 }
 
 /**
@@ -333,6 +371,7 @@ export function Slider(
     getMarkProps = noop,
     getMarkLabelProps = noop,
     tooltipVisibility = "auto",
+    getTooltipProps = noop,
     getTooltipChildren = identity,
     disableSmoothDragging = !!marks,
     ...remaining
@@ -509,6 +548,7 @@ export function Slider(
     vertical,
     getValueText,
     tooltipProps,
+    getTooltipProps,
     getTooltipChildren,
     tooltipVisibility,
     disableSmoothDragging,
