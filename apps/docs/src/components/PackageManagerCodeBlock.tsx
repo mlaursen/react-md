@@ -49,23 +49,27 @@ export function PackageManagerCodeBlock(
           ))}
         </TabList>
       </CodeBlockHeader>
-      <CodeBlock className={CLASS_NAME} disableMarginTop lineWrap={lineWrap}>
-        {PACKAGE_MANAGERS.map((name) => {
-          const { active, ...panelProps } = getTabPanelProps(name);
-          return (
-            <div
-              {...panelProps}
-              key={name}
-              className={cnb(!active && DISPLAY_NONE_CLASS)}
+      {PACKAGE_MANAGERS.map((name) => {
+        const { active, ...panelProps } = getTabPanelProps(name);
+        return (
+          <div
+            {...panelProps}
+            key={name}
+            className={cnb(!active && DISPLAY_NONE_CLASS)}
+          >
+            <CodeBlock
+              className={CLASS_NAME}
+              disableMarginTop
+              lineWrap={lineWrap}
             >
               <code
                 className={CLASS_NAME}
                 dangerouslySetInnerHTML={{ __html: managers[name] }}
               />
-            </div>
-          );
-        })}
-      </CodeBlock>
+            </CodeBlock>
+          </div>
+        );
+      })}
     </>
   );
 }

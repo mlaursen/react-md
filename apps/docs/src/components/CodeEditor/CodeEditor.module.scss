@@ -14,19 +14,20 @@
 .textArea {
   background: none;
   border: 0;
+  border-left: var(--code-border-left);
   color: inherit;
-  font: inherit;
-  font-family: var(--source-code-pro, "Source Code Pro"), Consolas, Monaco,
-    monospace;
+  font-family: var(--code-font-family);
+  font-size: var(--code-font-size);
   height: 100%;
   left: 0;
-  margin: 0;
+  line-height: var(--code-line-height);
+  margin: var(--code-margin, 0);
   overflow: hidden;
   overflow-wrap: break-word;
-  padding: 1rem;
+  padding: var(--code-padding, 1rem);
   position: absolute;
   resize: none;
-  tab-size: inherit;
+  tab-size: var(--code-tab-size);
   -webkit-text-fill-color: transparent;
   top: 0;
   white-space: pre;

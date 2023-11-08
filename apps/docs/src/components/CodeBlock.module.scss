@@ -26,7 +26,7 @@
 }
 
 .pre {
-  margin: 0;
+  margin: var(--code-margin, 0);
   white-space: pre;
 }
 

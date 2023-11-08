@@ -1,8 +1,12 @@
 "use client";
+import { LIGHT_BG_THEMES } from "@/prism-themes/themes.js";
+import { usePrismThemeContext } from "@/providers/PrismThemeProvider.jsx";
 import { addAppToast } from "@/toasts.js";
 import { Button, Tooltip, useTooltip, type ButtonProps } from "@react-md/core";
 import ContentCopyOutlinedIcon from "@react-md/material-icons/ContentCopyOutlinedIcon";
+import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
+import styles from "./CopyToClipboard.module.scss";
 
 export type CopyToClipboardProps = Omit<
   ButtonProps,
@@ -10,14 +14,16 @@ export type CopyToClipboardProps = Omit<
 >;
 
 export function CopyToClipboard(props: CopyToClipboardProps): ReactElement {
+  const { className, ...remaining } = props;
   const { elementProps, tooltipProps } = useTooltip({
     hoverTime: 0,
     defaultPosition: "left",
   });
+  const { prismTheme } = usePrismThemeContext();
   return (
     <>
       <Button
-        {...props}
+        {...remaining}
         {...elementProps}
         aria-label="Copy"
         buttonType="icon"
@@ -32,6 +38,10 @@ export function CopyToClipboard(props: CopyToClipboardProps): ReactElement {
           await navigator.clipboard.writeText(code.trim());
           addAppToast({ toastId: "copied" });
         }}
+        className={cnb(
+          LIGHT_BG_THEMES.has(prismTheme) ? styles.light : styles.dark,
+          className
+        )}
       >
         <ContentCopyOutlinedIcon />
       </Button>

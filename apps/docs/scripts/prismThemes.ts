@@ -1,7 +1,12 @@
+import { alphaNumericSort } from "@react-md/core";
 import { globSync } from "glob";
 import { existsSync } from "node:fs";
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
+import postcss from "postcss";
+import postcssCombineDuplicatedSelectors from "postcss-combine-duplicated-selectors";
+import postcssRemovePrefixes from "postcss-remove-prefixes";
+import postcssSorting from "postcss-sorting";
 import { format } from "../src/utils/format.js";
 import { pascalCase } from "../src/utils/strings.js";
 import { GENERATED_FILE_BANNER } from "./constants.js";
@@ -70,11 +75,71 @@ const DARK_BG_THEMES = new Set([
   "vim-solarized-dark",
 ]);
 
+const INLINE_CODE_SELECTOR = ':not(pre) > code[class*="language-"]';
+const PREFIX_OR_EXTENSION_REGEXP =
+  /-moz|\.(highlight|diff-highlight|line-highlight|code-toolbar|command-line|rainbow-braces|prism-previewer|line-numbers)/;
+
 if (process.argv.includes("--clean") && existsSync(prismThemesFolder)) {
   await rm(prismThemesFolder, { recursive: true });
 }
 if (!existsSync(prismThemesFolder)) {
   await mkdir(prismThemesFolder);
+}
+
+async function transformCss(css: string): Promise<string> {
+  const result = await postcss(
+    // remove prefixes to make it easier to handle replacements
+    postcssRemovePrefixes(),
+    // sort everything alphabetically to make it easier for me to find
+    // properties
+    postcssSorting({
+      "properties-order": "alphabetical",
+    }),
+
+    postcssCombineDuplicatedSelectors()
+  )
+    .process(css)
+    .async();
+
+  return result.css;
+}
+
+async function getThemeCss(filePath: string): Promise<string> {
+  const themeCss = await readFile(filePath, "utf8");
+  return await transformCss(themeCss);
+}
+
+function isCssRuleSkipped(selector: string): boolean {
+  return [
+    // code block
+    'pre > code[class*="language-"]',
+  ].includes(selector);
+}
+
+function isCssRuleRemoved(selector: string): boolean {
+  return (
+    // remove browser prefixes that weren't caught by postcssRemovePrefixes
+    // and remove any selectors that were added for extensions that I don't use
+    PREFIX_OR_EXTENSION_REGEXP.test(selector) ||
+    selector === INLINE_CODE_SELECTOR
+  );
+}
+
+function isCodeBlockStyles(selector: string): boolean {
+  return 'pre[class*="language-"]' === selector;
+}
+
+function isLicenseCommentBlock(comment: string): boolean {
+  return /License|@author|Author:|by [A-Z]|theme for prism\.js/.test(comment);
+}
+
+function isNoLicenseTheme(theme: string): boolean {
+  return [
+    "material-dark",
+    "material-light",
+    "material-oceanic",
+    "vsc-dark-plus",
+  ].includes(theme);
 }
 
 await Promise.all(
@@ -95,13 +160,100 @@ await Promise.all(
       unknownTheme.add(name);
     }
 
-    const originalCss = await readFile(filePath, "utf8");
+    const themeCss = await getThemeCss(filePath);
+    const themeCssAst = postcss.parse(themeCss);
+    const properties = new Map<string, string>();
+
+    let license = "";
+    themeCssAst.walkComments((comment) => {
+      const commentString = comment.toString();
+      if (isLicenseCommentBlock(commentString)) {
+        if (license) {
+          throw new Error(`Already found an author for ${name}`);
+        }
+
+        license = commentString;
+      }
+
+      comment.remove();
+    });
+    if (!license && !isNoLicenseTheme(name)) {
+      throw new Error(`Missing license for ${name}`);
+    }
+
+    themeCssAst.walkAtRules((atRule) => {
+      if (atRule.toString().includes("@media print")) {
+        atRule.remove();
+      }
+    });
+    themeCssAst.walkRules((rule) => {
+      const { selector } = rule;
+      if (isCssRuleSkipped(selector)) {
+        return;
+      }
+
+      if (isCssRuleRemoved(selector)) {
+        rule.remove();
+        return;
+      }
+
+      if (selector.includes(INLINE_CODE_SELECTOR)) {
+        rule.selector = rule.selector
+          .replace(':not(pre) > code[class*="language-"],', "")
+          .replace(',\n:not(pre) > code[class*="language-"]', "");
+      }
+
+      const isCodeBlock = isCodeBlockStyles(selector);
+      const regexp = isCodeBlock
+        ? /padding|border-left/
+        : /font-size|font-family|line-height|tab-size/;
+      rule.walkDecls(regexp, (decl) => {
+        const { prop, value } = decl;
+        if (properties.has(prop) && properties.get(prop) !== value) {
+          console.log(themeName);
+          console.log(decl.toString());
+          return;
+        }
+
+        properties.set(prop, value);
+        decl.value = `var(--code-${prop})`;
+      });
+      if (name === "coy" && isCodeBlock) {
+        rule.walkDecls(/margin|margin-bottom/, (decl) => {
+          if (decl.prop === "margin-bottom") {
+            if (decl.value !== "1em") {
+              throw new Error("coy theme has changed margin");
+            }
+
+            decl.remove();
+          } else {
+            decl.value = `${decl.value} 1em`;
+            properties.set("margin", decl.value);
+          }
+        });
+      }
+    });
+
+    // i could just prepend ({ prop, value }), but it adds too many newlines
+    // between each declaration
+    const sortedProperties = alphaNumericSort([...properties.entries()], {
+      extractor: ([name]) => name,
+    })
+      .map(([prop, value]) => `--code-${prop}: ${value};`)
+      .join("\n");
+    themeCssAst.prepend(sortedProperties);
+
+    // run in through postcss again to combine duplicated selectors and other
+    // stuffs
+    const updatedCss = await transformCss(themeCssAst.toResult().toString());
     const css = await format(
       `${GENERATED_FILE_BANNER}
 
+${license}
+
 @layer code {
   .container :global {
-    ${originalCss}
+    ${updatedCss}
   }
 }`,
       "scss"
@@ -128,7 +280,10 @@ export default function ${title}(): null {
   })
 );
 
-const allThemes = ["vim-solarized-dark", ...defaultThemes, ...additionalThemes];
+const allThemes = [
+  "vim-solarized-dark",
+  ...alphaNumericSort([...defaultThemes, ...additionalThemes]),
+];
 
 const themesContent = await format(
   `${GENERATED_FILE_BANNER}

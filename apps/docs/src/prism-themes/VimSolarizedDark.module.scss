@@ -21,14 +21,16 @@ $green: #859900;
 
 @layer code {
   .container :global {
+    --code-font-family: var(--source-code-pro, "Source Code Pro"), Consolas,
+      Monaco, monospace;
+
     // this is _basically_ my current vim theme, but not as good since Prism
     // doesn't have as many tokenizers without additional plugins and I'm too
     // lazy to make it match 100%
     code[class*="language-"],
     pre[class*="language-"] {
       direction: ltr;
-      font-family: var(--source-code-pro, "Source Code Pro"), Consolas, Monaco,
-        monospace;
+      font-family: var(--code-font-family);
     }
 
     pre[class*="language-"] {

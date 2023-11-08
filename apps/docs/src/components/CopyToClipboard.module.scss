@@ -1,0 +1,15 @@
+@use "everything";
+
+.light {
+  @include everything.button-set-var(
+    color,
+    everything.$light-theme-text-primary-color
+  );
+}
+
+.dark {
+  @include everything.button-set-var(
+    color,
+    everything.$dark-theme-text-primary-color
+  );
+}

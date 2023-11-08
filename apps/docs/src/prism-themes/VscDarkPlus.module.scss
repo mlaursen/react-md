@@ -2,59 +2,43 @@
 
 @layer code {
   .container :global {
+    --code-font-family: Menlo, Monaco, Consolas, "Andale Mono", "Ubuntu Mono",
+      "Courier New", monospace;
+    --code-font-size: 13px;
+    --code-line-height: 1.5;
+    --code-padding: 1em;
+    --code-tab-size: 4;
+
     pre[class*="language-"],
     code[class*="language-"] {
       color: #d4d4d4;
-      font-size: 13px;
-      text-shadow: none;
-      font-family: Menlo, Monaco, Consolas, "Andale Mono", "Ubuntu Mono",
-        "Courier New", monospace;
       direction: ltr;
-      text-align: left;
-      white-space: pre;
-      word-spacing: normal;
-      word-break: normal;
-      line-height: 1.5;
-      -moz-tab-size: 4;
-      -o-tab-size: 4;
-      tab-size: 4;
-      -webkit-hyphens: none;
-      -moz-hyphens: none;
-      -ms-hyphens: none;
+      font-family: var(--code-font-family);
+      font-size: var(--code-font-size);
       hyphens: none;
+      line-height: var(--code-line-height);
+      tab-size: var(--code-tab-size);
+      text-align: left;
+      text-shadow: none;
+      white-space: pre;
+      word-break: normal;
+      word-spacing: normal;
     }
 
     pre[class*="language-"]::selection,
     code[class*="language-"]::selection,
     pre[class*="language-"] *::selection,
     code[class*="language-"] *::selection {
-      text-shadow: none;
       background: #264f78;
-    }
-
-    @media print {
-      pre[class*="language-"],
-      code[class*="language-"] {
-        text-shadow: none;
-      }
+      text-shadow: none;
     }
 
     pre[class*="language-"] {
-      padding: 1em;
+      background: #1e1e1e;
       margin: 0.5em 0;
       overflow: auto;
-      background: #1e1e1e;
+      padding: var(--code-padding);
     }
-
-    :not(pre) > code[class*="language-"] {
-      padding: 0.1em 0.3em;
-      border-radius: 0.3em;
-      color: #db4c69;
-      background: #1e1e1e;
-    }
-    /*********************************************************
-* Tokens
-*/
     .namespace {
       opacity: 0.7;
     }
@@ -233,9 +217,6 @@
     .token.namespace {
       color: #4ec9b0;
     }
-    /*********************************************************
-* Language Specific
-*/
 
     pre[class*="language-javascript"],
     code[class*="language-javascript"],
@@ -265,18 +246,9 @@
     .language-html .token.punctuation {
       color: #808080;
     }
-    /*********************************************************
-* Line highlighting
-*/
     pre[class*="language-"] > code[class*="language-"] {
       position: relative;
       z-index: 1;
-    }
-
-    .line-highlight.line-highlight {
-      background: #f7ebc6;
-      box-shadow: inset 5px 0 0 #f7d87c;
-      z-index: 0;
     }
   }
 }

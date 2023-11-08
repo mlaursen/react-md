@@ -72,7 +72,12 @@ export function CodeBlock(props: CodeBlockProps): ReactElement {
         <div className={styles.codeContainer}>
           <pre
             {...preProps}
-            className={cnb(className, styles.pre, lineWrap && styles.lineWrap)}
+            className={cnb(
+              className,
+              styles.pre,
+              lineWrap && styles.lineWrap,
+              preProps?.className
+            )}
           >
             {children}
           </pre>

@@ -80,7 +80,13 @@ export async function HighlightedCodeBlock(
 
   if (editable && tsCode) {
     return (
-      <TypescriptCodeEditor {...tsCode} preview={previewOptions}>
+      <TypescriptCodeEditor
+        // add the key so that changing the code in an mdx page will correctly
+        // update the preview in dev mode
+        key={tsCode.ts}
+        {...tsCode}
+        preview={previewOptions}
+      >
         {header}
       </TypescriptCodeEditor>
     );
@@ -88,7 +94,15 @@ export async function HighlightedCodeBlock(
 
   return (
     <>
-      {preview && <RunnableCodePreview code={code} {...previewOptions} />}
+      {preview && (
+        <RunnableCodePreview
+          // add the key so that changing the code in an mdx page will correctly
+          // update the preview in dev mode
+          key={code}
+          code={code}
+          {...previewOptions}
+        />
+      )}
       {header}
       {tsCode && <TypescriptCode {...tsCode} />}
       {!tsCode && (
