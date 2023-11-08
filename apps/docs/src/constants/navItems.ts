@@ -290,15 +290,11 @@ export const navItems: readonly NavigationItem[] = [
           },
           {
             href: "/core-providers",
-            children: "CoreProvider",
+            children: "CoreProviders",
           },
           {
-            href: "/ssr-providers",
+            href: "/ssr-provider",
             children: "SsrProvider",
-          },
-          {
-            href: "/form-theme-providers",
-            children: "FormThemeProvider",
           },
           {
             href: "/color-scheme-provider",
