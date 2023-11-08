@@ -8,7 +8,6 @@ import {
 } from "react";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
-import { useLink } from "../link/LinkProvider.js";
 import { ListItemChildren } from "../list/ListItemChildren.js";
 import { useKeyboardMovementContext } from "../movement/useKeyboardMovementProvider.js";
 import { type PropsWithRef } from "../types.js";
@@ -148,11 +147,12 @@ export function TreeItem(props: TreeItemProps): ReactElement {
   }
 
   const {
-    metadataLookup,
     expandedIds,
     selectedIds,
     expanderLeft,
     expansionMode,
+    metadataLookup,
+    linkComponent: Link,
     toggleTreeItemSelection,
     toggleTreeItemExpansion,
     disableTransition: contextDisableTransition,
@@ -203,7 +203,6 @@ export function TreeItem(props: TreeItemProps): ReactElement {
     });
 
   const isLink = !!(remaining.to || remaining.href);
-  const Link = useLink();
 
   // cheating a bit so there are type errors around the event handlers
   const ContentComponent = (isLink ? Link : "span") as "span";

@@ -16,7 +16,7 @@ import {
 import { Divider } from "../../divider/Divider.js";
 import { FontIcon } from "../../icon/FontIcon.js";
 import { TRANSITION_CONFIG } from "../../transition/config.js";
-import { type RenderRecursiveItemsProps } from "../../utils/RenderRecursively.jsx";
+import { type RenderRecursiveItemsProps } from "../../utils/RenderRecursively.js";
 import { alphaNumericSort } from "../../utils/alphaNumericSort.js";
 import { isElementVisible } from "../../utils/isElementVisible.js";
 import { DefaultTreeItemRenderer } from "../DefaultTreeItemRenderer.js";

@@ -1,4 +1,8 @@
-import { forwardRef, type AnchorHTMLAttributes } from "react";
+import {
+  forwardRef,
+  type AnchorHTMLAttributes,
+  type ForwardRefExoticComponent,
+} from "react";
 import { link, type LinkClassNameOptions } from "./styles.js";
 
 declare module "react" {
@@ -10,12 +14,19 @@ declare module "react" {
 }
 
 /**
+ * @remarks \@since 6.0.0
+ */
+export type CustomLinkComponent =
+  | ForwardRefExoticComponent<{ href: string }>
+  | ForwardRefExoticComponent<{ to: string }>
+  | "a";
+
+/**
  * @remarks
  * \@since 6.0.0 Removed the `preventMaliciousTarget` prop since browsers
  * default to `rel=noopener` after updating the {@link https://github.com/whatwg/html/issues/4078|spec}.
  * \@since 6.0.0 Removed the `component` prop since all you need for link
- * behavior is `className="rmd-link"` and the new `LinkProvider` handles custom
- * `Link` components throughout your app.
+ * behavior is `className="rmd-link"`.
  * \@since 6.0.0 The `href` prop is required.
  * \@since 6.0.0 Removed the `flexCentered` prop since it is now the default
  * styles.
@@ -62,8 +73,7 @@ export interface LinkProps
  * \@since 6.0.0 Removed the `preventMaliciousTarget` prop since browsers
  * default to `rel=noopener` after updating the {@link https://github.com/whatwg/html/issues/4078|spec}.
  * \@since 6.0.0 Removed the `component` prop since all you need for link
- * behavior is `className="rmd-link"` and the new `LinkProvider` handles custom
- * `Link` components throughout your app.
+ * behavior is `className="rmd-link"`.
  * \@since 6.0.0 The `href` prop is required.
  * \@since 6.0.0 Removed the `flexCentered` prop since it is now the default
  * styles.

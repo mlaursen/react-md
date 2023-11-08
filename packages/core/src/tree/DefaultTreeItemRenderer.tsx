@@ -1,5 +1,5 @@
 import { type ReactElement } from "react";
-import { type RenderRecursiveItemsProps } from "../utils/RenderRecursively.jsx";
+import { type RenderRecursiveItemsProps } from "../utils/RenderRecursively.js";
 import { TreeItem } from "./TreeItem.js";
 import { type DefaultTreeItemNode, type TreeItemNode } from "./types.js";
 

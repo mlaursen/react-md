@@ -6,10 +6,7 @@ import {
   type ReactNode,
   type Ref,
 } from "react";
-import {
-  LinkProvider,
-  type CustomLinkComponent,
-} from "../link/LinkProvider.js";
+import { type CustomLinkComponent } from "../link/Link.js";
 import { List } from "../list/List.js";
 import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
 import { type LabelRequiredForA11y } from "../types.js";
@@ -261,7 +258,7 @@ export function Tree<T extends TreeItemNode>(
     expansionMode = "auto",
     expanderIcon,
     expanderLeft = false,
-    linkComponent,
+    linkComponent = "a",
     disableTransition = false,
     temporaryChildItems = false,
     ...remaining
@@ -290,6 +287,7 @@ export function Tree<T extends TreeItemNode>(
       data={data}
       rootId={rootId}
       multiSelect={multiSelect}
+      linkComponent={linkComponent}
       selectedIds={selectedIds}
       expandedIds={expandedIds}
       expanderIcon={expanderIcon}
@@ -303,25 +301,23 @@ export function Tree<T extends TreeItemNode>(
       selectMultipleTreeItems={selectMultipleTreeItems}
       expandMultipleTreeItems={expandMultipleTreeItems}
     >
-      <LinkProvider value={linkComponent}>
-        <KeyboardMovementProvider value={movementContext}>
-          <List
-            {...remaining}
-            {...movementProps}
-            id={treeId}
-            ref={treeRef}
-            role="tree"
-            tabIndex={0}
-            className={tree({ className })}
-          >
-            <RenderRecursively
-              items={items}
-              getItemKey={(item) => item.itemId}
-              render={TreeItemRenderer}
-            />
-          </List>
-        </KeyboardMovementProvider>
-      </LinkProvider>
+      <KeyboardMovementProvider value={movementContext}>
+        <List
+          {...remaining}
+          {...movementProps}
+          id={treeId}
+          ref={treeRef}
+          role="tree"
+          tabIndex={0}
+          className={tree({ className })}
+        >
+          <RenderRecursively
+            items={items}
+            getItemKey={(item) => item.itemId}
+            render={TreeItemRenderer}
+          />
+        </List>
+      </KeyboardMovementProvider>
     </TreeProvider>
   );
 }

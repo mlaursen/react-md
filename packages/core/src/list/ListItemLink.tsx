@@ -6,7 +6,7 @@ import {
 } from "react";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
-import { type CustomLinkComponent } from "../link/LinkProvider.js";
+import { type CustomLinkComponent } from "../link/Link.js";
 import { type PropsWithRef } from "../types.js";
 import { ListItemChildren } from "./ListItemChildren.js";
 import { getListItemHeight } from "./getListItemHeight.js";

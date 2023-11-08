@@ -305,10 +305,6 @@ export const navItems: readonly NavigationItem[] = [
             children: "ColorSchemeProvider",
           },
           {
-            href: "/link-provider",
-            children: "LinkProvider",
-          },
-          {
             href: "/theme-provider",
             children: "ThemeProvider",
           },

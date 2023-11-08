@@ -6,6 +6,7 @@ import {
   type ReactElement,
   type ReactNode,
 } from "react";
+import { type CustomLinkComponent } from "../link/Link.js";
 import { type NonNullRef } from "../types.js";
 import {
   type DefaultTreeItemNode,
@@ -82,6 +83,8 @@ export interface TreeContext<T extends TreeItemNode = DefaultTreeItemNode>
   disableTransition: boolean;
   temporaryChildItems: boolean;
 
+  linkComponent: CustomLinkComponent;
+
   /** @internal */
   expanderLeft: boolean;
   /** @internal */
@@ -144,6 +147,7 @@ export function TreeProvider<T extends TreeItemNode = DefaultTreeItemNode>(
     metadataLookup,
     disableTransition,
     temporaryChildItems,
+    linkComponent,
     expandedIds,
     selectedIds,
     expandMultipleTreeItems,
@@ -162,6 +166,7 @@ export function TreeProvider<T extends TreeItemNode = DefaultTreeItemNode>(
       metadataLookup,
       disableTransition,
       temporaryChildItems,
+      linkComponent,
       expandedIds,
       selectedIds,
       expandMultipleTreeItems,
@@ -177,6 +182,7 @@ export function TreeProvider<T extends TreeItemNode = DefaultTreeItemNode>(
       expanderIcon,
       expanderLeft,
       expansionMode,
+      linkComponent,
       metadataLookup,
       multiSelect,
       rootId,

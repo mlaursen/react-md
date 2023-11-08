@@ -136,7 +136,6 @@ export * from "./layout/useMainTabIndex.js";
 export * from "./layout/useResizableLayout.js";
 export * from "./layout/useTemporaryLayout.js";
 export * from "./link/Link.js";
-export * from "./link/LinkProvider.js";
 export * from "./link/SkipToMainContent.js";
 export * from "./link/styles.js";
 export * from "./list/List.js";
