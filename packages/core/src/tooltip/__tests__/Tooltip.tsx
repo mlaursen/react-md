@@ -145,7 +145,7 @@ describe("Tooltip", () => {
     expect(tooltip).not.toBeInTheDocument();
   });
 
-  it("should show the tooltip after touching for the hoverTime or if the onContextMenu is called on mobile", () => {
+  it("should show the tooltip after touching for the hoverTimeout or if the onContextMenu is called on mobile", () => {
     // some mobile devices will trigger the context menu for long presses, so
     // need to make sure that does not happen for tooltipped elements on mobile
     jest.useFakeTimers();
@@ -246,7 +246,7 @@ describe("Tooltip", () => {
 
   it("should support rendering the tooltip using display: none instead of temporarily", async () => {
     const user = userEvent.setup();
-    rmdRender(<Test tooltip={{ temporary: false }} hoverTime={0} />);
+    rmdRender(<Test tooltip={{ temporary: false }} hoverTimeout={0} />);
     expect(() => screen.getByRole("tooltip")).not.toThrow();
 
     await user.tab();
@@ -259,7 +259,7 @@ describe("Tooltip", () => {
 
   it("should close the tooltip whenever the escape key is pressed", async () => {
     const user = userEvent.setup();
-    rmdRender(<Test hoverTime={0} />);
+    rmdRender(<Test hoverTimeout={0} />);
     expect(() => screen.getByRole("tooltip")).toThrow();
 
     await user.tab();
@@ -274,7 +274,7 @@ describe("Tooltip", () => {
 
   it("should close the tooltip whenever the page is scrolled", async () => {
     const user = userEvent.setup();
-    rmdRender(<Test hoverTime={0} />);
+    rmdRender(<Test hoverTimeout={0} />);
     expect(() => screen.getByRole("tooltip")).toThrow();
 
     await user.tab();
@@ -289,7 +289,7 @@ describe("Tooltip", () => {
 
   it("should hide the tooltip when the page becomes inactive or blurs and not show the tooltip again on focus", async () => {
     const user = userEvent.setup();
-    rmdRender(<Test hoverTime={0} />);
+    rmdRender(<Test hoverTimeout={0} />);
     const button = screen.getByRole("button", { name: "Button" });
     expect(() => screen.getByRole("tooltip")).toThrow();
 
@@ -335,7 +335,7 @@ describe("Tooltip", () => {
     expect(window.innerHeight).toBe(vh);
 
     const user = userEvent.setup();
-    rmdRender(<Test hoverTime={0} position="above" />);
+    rmdRender(<Test hoverTimeout={0} position="above" />);
     const button = screen.getByRole("button", { name: "Button" });
     expect(() => screen.getByRole("tooltip")).toThrow();
 
@@ -369,7 +369,7 @@ describe("Tooltip", () => {
 
   it("should never display the tooltip if the disabled option is true", async () => {
     const user = userEvent.setup();
-    rmdRender(<Test hoverTime={0} disabled />);
+    rmdRender(<Test hoverTimeout={0} disabled />);
     const button = screen.getByRole("button", { name: "Button" });
     expect(() => screen.getByRole("tooltip")).toThrow();
 
@@ -394,7 +394,7 @@ describe("Tooltip", () => {
 
   it("should automatically attempt to determine the spacing based on the computed style of the spacing custom property", async () => {
     const user = userEvent.setup();
-    const { rerender } = rmdRender(<Test hoverTime={0} />);
+    const { rerender } = rmdRender(<Test hoverTimeout={0} />);
     const button = screen.getByRole("button", { name: "Button" });
     expect(() => screen.getByRole("tooltip")).toThrow();
 
@@ -451,7 +451,7 @@ describe("Tooltip", () => {
     await user.unhover(button);
     await waitForElementToBeRemoved(tooltip);
 
-    rerender(<Test dense disableAutoSpacing hoverTime={0} />);
+    rerender(<Test dense disableAutoSpacing hoverTimeout={0} />);
     expect(() => screen.getByRole("tooltip")).toThrow();
     await user.hover(button);
     tooltip = await screen.findByRole("tooltip");

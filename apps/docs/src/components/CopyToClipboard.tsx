@@ -16,7 +16,7 @@ export type CopyToClipboardProps = Omit<
 export function CopyToClipboard(props: CopyToClipboardProps): ReactElement {
   const { className, ...remaining } = props;
   const { elementProps, tooltipProps } = useTooltip({
-    hoverTime: 0,
+    hoverTimeout: 0,
     defaultPosition: "left",
   });
   const { prismTheme } = usePrismThemeContext();

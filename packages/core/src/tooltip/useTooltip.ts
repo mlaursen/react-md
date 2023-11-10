@@ -204,7 +204,7 @@ export interface TooltipOptions
    *
    * @defaultValue `DEFAULT_TOOLTIP_DELAY`
    */
-  hoverTime?: number;
+  hoverTimeout?: number;
 
   /**
    * The amount of time to wait before triggering the exit animation for the
@@ -215,7 +215,7 @@ export interface TooltipOptions
    *
    * @defaultValue `0`
    */
-  leaveTime?: number;
+  leaveTimeout?: number;
 
   /**
    * Set this to `true` to only allow the tooltip to become visible when the
@@ -311,17 +311,17 @@ export interface TooltipImplementation {
  * element when the click or history update happens. this causes the tooltip to
  * stay visible
  */
-export function useTooltip(
-  options: TooltipOptions = {}
-): TooltipImplementation {
+export function useTooltip<
+  TooltipElement extends HTMLElement = HTMLSpanElement,
+>(options: TooltipOptions = {}): TooltipImplementation<TooltipElement> {
   const {
     id: propId,
     style: propStyle,
     disabled = false,
     describedBy,
     dense = false,
-    hoverTime,
-    leaveTime,
+    hoverTimeout,
+    leaveTimeout,
     vwMargin = DEFAULT_TOOLTIP_MARGIN,
     vhMargin = DEFAULT_TOOLTIP_MARGIN,
     spacing = DEFAULT_TOOLTIP_SPACING,
@@ -364,9 +364,9 @@ export function useTooltip(
     startHideFlow,
     clearVisibilityTimeout,
   } = useHoverMode({
-    hoverTime,
+    hoverTimeout,
     hoverTimeoutRef,
-    leaveTime,
+    leaveTimeout,
     leaveTimeoutRef,
     enableHoverMode,
     disableHoverMode,

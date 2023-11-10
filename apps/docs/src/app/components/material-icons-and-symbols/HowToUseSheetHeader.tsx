@@ -17,7 +17,7 @@ import { MaterialSymbolOrIcon } from "./MaterialSymbolOrIcon.jsx";
 export function HowToUseSheetHeader(): ReactElement {
   const { selectedIconName, deselectIcon } = useMaterialIconsAndSymbols();
   const { elementProps, tooltipProps } = useTooltip({
-    hoverTime: 0,
+    hoverTimeout: 0,
     overflowOnly: true,
   });
   const name = (selectedIconName || "").replace(/_/g, " ");

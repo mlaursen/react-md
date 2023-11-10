@@ -39,6 +39,24 @@ export function useTooltipHoverMode(): Readonly<TooltipHoverModeContext> {
 export interface TooltipHoverModeProviderProps
   extends Partial<HoverModeConfiguration> {
   children: ReactNode;
+
+  /**
+   * @see {@link HoverModeConfiguration.hoverTimeout}
+   * @defaultValue `1000`
+   */
+  hoverTimeout?: number;
+
+  /**
+   * @see {@link HoverModeConfiguration.leaveTimeout}
+   * @defaultValue `0`
+   */
+  leaveTimeout?: number;
+
+  /**
+   * @see {@link HoverModeConfiguration.disableTimeout}
+   * @defaultValue `1000`
+   */
+  disableTimeout?: number;
 }
 
 /**

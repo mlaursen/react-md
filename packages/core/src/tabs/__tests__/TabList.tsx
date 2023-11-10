@@ -585,10 +585,10 @@ describe("TabList", () => {
     getIntersectionRatio.mockReturnValue(0.5);
     function TooltipTest(): ReactElement {
       const forwardTooltip = useTooltip({
-        hoverTime: 0,
+        hoverTimeout: 0,
       });
       const backwardTooltip = useTooltip({
-        hoverTime: 0,
+        hoverTimeout: 0,
       });
       return (
         <>

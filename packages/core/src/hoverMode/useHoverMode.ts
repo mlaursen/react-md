@@ -14,12 +14,12 @@ export interface HoverModeConfigurationOptions extends SimpleHoverModeContext {
   /**
    * This can be used to override the `HoverModeContext`'s hover time.
    */
-  hoverTime?: number;
+  hoverTimeout?: number;
 
   /**
    * This can be used to override the `HoverModeContext`'s leave time.
    */
-  leaveTime?: number;
+  leaveTimeout?: number;
 }
 
 /**
@@ -84,9 +84,9 @@ export function useHoverMode(
 ): HoverModeImplementation {
   const {
     disabled,
-    hoverTime,
+    hoverTimeout: hoverTime,
     hoverTimeoutRef,
-    leaveTime,
+    leaveTimeout: leaveTime,
     leaveTimeoutRef,
     enableHoverMode,
     disableHoverMode,

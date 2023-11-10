@@ -17,8 +17,8 @@ import { useTooltip } from "../useTooltip.js";
 function TooltippedButton({ index }: { index: number }): ReactElement {
   const { elementProps, tooltipProps } = useTooltip({
     // make it so Button 3 always requires 1s of hovering
-    hoverTime: index === 2 ? 1000 : undefined,
-    leaveTime: index === 2 ? 1000 : undefined,
+    hoverTimeout: index === 2 ? 1000 : undefined,
+    leaveTimeout: index === 2 ? 1000 : undefined,
   });
 
   return (
