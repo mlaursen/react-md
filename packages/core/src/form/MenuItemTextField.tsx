@@ -12,6 +12,9 @@ export interface MenuItemTextFieldProps extends TextFieldProps {
    * Any additional props or a `ref` to apply to the surrounding `<li>` element.
    */
   liProps?: PropsWithRef<HTMLAttributes<HTMLLIElement>, HTMLLIElement>;
+
+  /** @defaultValue `true` */
+  stretch?: boolean;
 }
 
 /**

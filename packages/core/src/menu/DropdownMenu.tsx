@@ -2,14 +2,15 @@
 import {
   useCallback,
   useRef,
-  useState,
   type ReactElement,
   type ReactNode,
   type RefObject,
 } from "react";
 import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
 import { getLastFocusableIndex } from "../movement/utils.js";
+import { type UseStateSetter } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
+import { useEnsuredState } from "../useEnsuredState.js";
 import {
   Menu,
   type MenuConvenienceProps,
@@ -42,6 +43,14 @@ export interface DropdownMenuItemButtonProps
     BaseDropdownMenuProps {}
 
 /**
+ * @remarks \@since 6.0.0
+ */
+export interface DropdownMenuStateProps {
+  visible: boolean;
+  setVisible: UseStateSetter<boolean>;
+}
+
+/**
  * @remarks
  * \@since 5.0.0
  * \@since 6.0.0 Updated to use an `&` instead of `|` to allow autocompletion to
@@ -49,7 +58,8 @@ export interface DropdownMenuItemButtonProps
  * incorrect props.
  */
 export type DropdownMenuProps = DropdownMenuButtonProps &
-  DropdownMenuItemButtonProps;
+  DropdownMenuItemButtonProps &
+  (DropdownMenuStateProps | { visible?: never; setVisible?: never });
 
 /**
  * **Client Component**
@@ -118,6 +128,7 @@ export function DropdownMenu(props: DropdownMenuProps): ReactElement {
     buttonChildren,
     iconRotatorProps: propIconRotatorProps,
     disableTransition: propDisableTransition,
+    floating,
     anchor,
     vwMargin,
     vhMargin,
@@ -144,12 +155,18 @@ export function DropdownMenu(props: DropdownMenuProps): ReactElement {
     sheetProps,
     sheetStyle,
     sheetClassName,
+    visible: propVisible,
+    setVisible: propSetVisible,
     ...remaining
   } = props;
 
   const fixedTo = useRef<HTMLElement | HTMLButtonElement>(null);
   const defaultFocusIndex = useRef(0);
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useEnsuredState({
+    value: propVisible,
+    setValue: propSetVisible,
+    defaultValue: false,
+  });
   const { menubar, menuitem, activeIdRef, animatedOnceRef } =
     useMenuBarContext();
   const id = useEnsuredId(propId, `menu${menuitem ? "item" : "button"}`);
@@ -165,7 +182,7 @@ export function DropdownMenu(props: DropdownMenuProps): ReactElement {
 
   const onRequestClose = useCallback(() => {
     setVisible(false);
-  }, []);
+  }, [setVisible]);
 
   let iconRotatorProps = propIconRotatorProps;
   if (disableTransition) {
@@ -193,6 +210,7 @@ export function DropdownMenu(props: DropdownMenuProps): ReactElement {
         {...(remaining as DropdownMenuButtonProps)}
         id={id}
         ref={fixedTo as RefObject<HTMLButtonElement>}
+        floating={floating}
         iconRotatorProps={iconRotatorProps}
       >
         {buttonChildren}
@@ -227,6 +245,7 @@ export function DropdownMenu(props: DropdownMenuProps): ReactElement {
         disablePortal={disablePortal}
         disableElevation={disableElevation}
         disableTransition={disableTransition}
+        floating={floating}
         anchor={anchor}
         vwMargin={vwMargin}
         vhMargin={vhMargin}

@@ -11,6 +11,14 @@ const noop = (): void => {
 /**
  * @remarks \@since 6.0.0
  */
+export type MenuSheetConfigurableProps = Omit<
+  BaseSheetProps,
+  "visible" | "onRequestClose"
+>;
+
+/**
+ * @remarks \@since 6.0.0
+ */
 export interface MenuSheetConvenienceProps {
   /**
    * This can be used to apply additional props to the `Sheet` component when
@@ -28,11 +36,12 @@ export interface MenuSheetConvenienceProps {
    *       // custom inline style
    *     },
    *     className: "come-class-name",
+   *     horizontalSize: "touch",
    *   }}
    * />
    * ```
    */
-  sheetProps?: PropsWithRef<BaseSheetProps, HTMLDivElement>;
+  sheetProps?: PropsWithRef<MenuSheetConfigurableProps, HTMLDivElement>;
 
   /**
    * Convenience prop to apply custom style to the `Sheet` component when the

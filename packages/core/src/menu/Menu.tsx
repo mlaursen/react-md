@@ -7,6 +7,7 @@ import {
   type CSSProperties,
   type HTMLAttributes,
 } from "react";
+import { type FloatingActionButtonPosition } from "../button/FloatingActionButton.jsx";
 import { useFocusContainer } from "../focus/useFocusContainer.js";
 import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
 import { type ListElement, type ListProps } from "../list/List.js";
@@ -240,6 +241,14 @@ export interface MenuProps
    * sheet.
    */
   menuClassName?: string;
+
+  /**
+   * @internal
+   *
+   * This is only used to update the default anchor when the DropdownMenu's
+   * toggle is a floating action button.
+   */
+  floating?: FloatingActionButtonPosition;
 }
 
 /**
@@ -299,6 +308,7 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
       listClassName,
       visible,
       onRequestClose,
+      floating,
       anchor,
       closeOnResize = false,
       closeOnScroll = false,
@@ -447,6 +457,7 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
       anchor: getDefaultAnchor({
         anchor,
         menubar,
+        floating,
         menuitem: !root && menuitem,
         horizontal,
       }),

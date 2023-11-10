@@ -201,8 +201,6 @@ $switch-icon-size: 1em !default;
 $switch-circular-progress-width: 12 !default;
 $switch-circular-progress-size: 1em !default;
 
-$menu-item-switch-spacing: calc(icon.$spacing + $switch-ball-size) !default;
-
 $slider-size: 2rem !default;
 $slider-vertical-size: 15rem !default;
 $slider-track-color: theme.theme-get-var(primary-color) !default;
@@ -1245,6 +1243,10 @@ $var-lookup: (
       @include use-var(margin-top, addon-margin-top);
     }
 
+    // this makes it so that this container element is the same size as the
+    // child (normally icons). without this, icons would have a height of 30.5px
+    // and no longer be centered
+    display: inline-flex;
     position: absolute;
 
     // Note: Can't use `:first-child` and `:last-child` since
@@ -1483,15 +1485,10 @@ $var-lookup: (
     }
 
     @if not $disable-menu-item-switch {
-      // increase the spacing because the switch's ball extends past the
-      // container's width
-      @if $menu-item-switch-spacing and
-        $menu-item-switch-spacing !=
-        icon.$spacing
-      {
-        &--switch {
-          @include icon.set-var(spacing, $menu-item-switch-spacing);
-        }
+      // this makes it so that the spacing between the switch and the text
+      // aligns with other menu items/icons
+      &__track {
+        @include icon.set-var(size, $switch-track-width);
       }
 
       // decrease the ball size and remove the hover states since it's handled

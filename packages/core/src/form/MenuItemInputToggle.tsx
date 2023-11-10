@@ -204,8 +204,12 @@ export const MenuItemInputToggle = forwardRef<
       icon = (
         <SwitchTrack
           style={trackStyle}
-          className={trackClassName}
           {...trackProps}
+          className={cnb(
+            styles("track"),
+            trackClassName,
+            trackProps?.className
+          )}
           active={checked}
           ballProps={ballProps}
           ballStyle={ballStyle}
@@ -261,7 +265,6 @@ export const MenuItemInputToggle = forwardRef<
   return (
     <ListItem
       {...remaining}
-      aria-disabled={disabled || undefined}
       // I'm not actually sure if this is correct
       aria-checked={indeterminate && checked ? "mixed" : checked}
       id={id}
@@ -276,6 +279,7 @@ export const MenuItemInputToggle = forwardRef<
       }}
       ref={ref}
       className={menuItemInputToggle({ type, className })}
+      disabled={disabled}
       tabIndex={tabIndex}
       leftAddon={leftAddon}
       leftAddonType={leftAddonType}
