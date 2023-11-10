@@ -4,12 +4,16 @@ import type {
   CSSProperties,
   FocusEvent,
   MouseEvent,
+  MutableRefObject,
   Ref,
   RefObject,
   TouchEvent,
 } from "react";
 import { useCallback, useEffect, useId, useRef } from "react";
-import { useHoverMode } from "../hoverMode/useHoverMode.js";
+import {
+  useHoverMode,
+  type ControlledHoverModeImplementation,
+} from "../hoverMode/useHoverMode.js";
 import type { UserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
 import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
 import type { SimplePosition } from "../positioning/types.js";
@@ -232,10 +236,10 @@ export interface TooltipOptions
  * \@since 2.8.0
  * \@since 6.0.0 This was renamed from `TooltipHookProvidedTooltipProps`
  */
-export interface ProvidedTooltipProps
+export interface ProvidedTooltipProps<E extends HTMLElement = HTMLSpanElement>
   extends Required<FixedPositioningTransitionCallbacks> {
   id: string;
-  ref: Ref<HTMLSpanElement>;
+  ref: Ref<E>;
   dense: boolean;
   style: CSSProperties;
   visible: boolean;
@@ -250,12 +254,15 @@ export interface ProvidedTooltipProps
  * `TooltipHookReturnValue` to `TooltipImplementation` to match other hook
  * naming conventions.
  */
-export interface TooltipImplementation {
+export interface TooltipImplementation<
+  TooltipElement extends HTMLElement = HTMLSpanElement,
+> extends ControlledHoverModeImplementation {
   visible: boolean;
   setVisible: UseStateSetter<boolean>;
   animatedOnce: boolean;
+  initiatedBy: MutableRefObject<UserInteractionMode | null>;
   elementProps: ProvidedTooltippedElementProps;
-  tooltipProps: ProvidedTooltipProps;
+  tooltipProps: ProvidedTooltipProps<TooltipElement>;
 
   /**
    * This is a wrapper around the {@link setVisible} behavior that will also
@@ -429,7 +436,7 @@ export function useTooltip<
 
   const mode = useUserInteractionMode();
   const elementRef = useRef<HTMLElement | null>(null);
-  const tooltipRef = useRef<HTMLSpanElement>(null);
+  const tooltipRef = useRef<TooltipElement>(null);
   const overflowRef = useRef<HTMLElement>(null);
   const initiatedBy = useRef<UserInteractionMode | null>(null);
   const { ref, style, callbacks } = useFixedPositioning({
@@ -539,7 +546,11 @@ export function useTooltip<
     setVisible,
     hideTooltip,
     animatedOnce: animatedOnceRef.current,
+    initiatedBy,
     overflowRef,
+    startShowFlow,
+    startHideFlow,
+    clearVisibilityTimeout,
     tooltipProps: {
       id: tooltipId,
       ref,
