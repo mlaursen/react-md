@@ -28,6 +28,7 @@ describe("TreeItemExpander", () => {
       <TreeProvider
         temporaryChildItems={false}
         data={{}}
+        linkComponent="a"
         disableTransition={false}
         expandedIds={new Set()}
         expanderIcon="icon"

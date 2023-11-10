@@ -29,6 +29,7 @@ describe("TreeGroup", () => {
         <TreeProvider
           temporaryChildItems={false}
           data={{}}
+          linkComponent="a"
           disableTransition={false}
           expandedIds={new Set()}
           expanderIcon={null}
