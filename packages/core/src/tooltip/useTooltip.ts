@@ -289,6 +289,54 @@ export interface TooltipImplementation {
  * }
  * ```
  *
+ * @example
+ * Overflow-only Tooltips
+ * ```tsx
+ * import {
+ *   cssUtils,
+ *   Link,
+ *   Tooltip,
+ *   useTooltip,
+ *   type LinkProps,
+ * } from "@react-md/core";
+ * import { type ReactElement } from "react";
+ *
+ * function NavigationLink(props: LinkProps): ReactElement {
+ *   const { children, ...remaining } = props;
+ *
+ *   // using the `overflowRef` is optional and will default to the
+ *   // `event.currentTarget` when `null`
+ *   const { overflowRef, elementProps, tooltipProps } = useOverflowTooltip({
+ *     // just to pass any event handlers
+ *     ...remaining,
+ *     overflowOnly: true,
+ *   });
+ *
+ *   return (
+ *     <Link {...remaining} {...elementProps} style={{ width: "100%" }}>
+ *       <span ref={overflowRef} className={cssUtils({ textOverflow: "ellipsis" })}>
+ *         {children}
+ *       </span>
+ *       <Tooltip {...tooltipProps}>
+ *         {children}
+ *       </Tooltip>
+ *     </Link>
+ *   );
+ * }
+ *
+ * function Example(): ReactElement {
+ *   return (
+ *     <div style={{ width: "10rem", overflow: "auto" }}>
+ *       <NavigationLink href="/">Home</NavigationLink>
+ *       <NavigationLink href="/some-path">
+ *         Super long text that will be truncated with ellipsis and
+ *         have a tooltip appear
+ *       </NavigationLink>
+ *     </div>
+ *   );
+ * }
+ * ```
+ *
  * ## Inspecting Tooltip Styles
  *
  * Since tooltips will disappear on blur, mouseleave, etc, it is a bit hard to
