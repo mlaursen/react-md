@@ -4,7 +4,7 @@ import {
   button,
   cssUtils,
   useElementInteraction,
-  useOverflowTooltip,
+  useTooltip,
 } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import { usePathname } from "next/navigation.js";
@@ -25,9 +25,10 @@ export function NavigationItemLink(
   const active = href === pathname;
   const linkRef = useRef<HTMLAnchorElement>(null);
   const { handlers, ripples } = useElementInteraction();
-  const { nodeRef, elementProps, tooltipProps } = useOverflowTooltip({
+  const { elementProps, tooltipProps, overflowRef } = useTooltip({
     ...handlers,
     defaultPosition: "right",
+    overflowOnly: true,
   });
 
   useEffect(() => {
@@ -57,7 +58,10 @@ export function NavigationItemLink(
         )}
       >
         {leftAddon}
-        <span ref={nodeRef} className={cssUtils({ textOverflow: "ellipsis" })}>
+        <span
+          ref={overflowRef}
+          className={cssUtils({ textOverflow: "ellipsis" })}
+        >
           {children}
         </span>
         {ripples}

@@ -42,11 +42,17 @@ function Test(props: TestProps): ReactElement {
     hideTooltip,
     setVisible,
     visible,
+    overflowRef,
   } = useTooltip(options);
 
   return (
     <>
-      <Button {...elementProps}>Button</Button>
+      <Button {...elementProps}>
+        Button
+        {options.overflowOnly && (
+          <span ref={overflowRef} data-testid="resize-node" />
+        )}
+      </Button>
       <Tooltip {...tooltipProps} {...tooltip}>
         Tooltip
       </Tooltip>
@@ -460,5 +466,36 @@ describe("Tooltip", () => {
       value: DEFAULT_TOOLTIP_DENSE_SPACING,
     });
     expect(tooltip.style.top).toBe(`${denseSpacingPixels}px`);
+  });
+
+  it("should support displaying a tooltip only when the text is overflown", async () => {
+    const user = userEvent.setup();
+    rmdRender(<Test overflowOnly />);
+
+    const resizeNode = screen.getByTestId("resize-node");
+    const button = screen.getByRole("button", { name: "Button" });
+    expect(() => screen.getByRole("tooltip")).toThrow();
+
+    const rect = resizeNode.getBoundingClientRect();
+    jest.spyOn(resizeNode, "scrollWidth", "get").mockReturnValue(300);
+    const offsetWidth = jest
+      .spyOn(resizeNode, "offsetWidth", "get")
+      .mockReturnValue(300);
+    const getBoundingClientRect = jest
+      .spyOn(resizeNode, "getBoundingClientRect")
+      .mockReturnValue({ ...rect, width: 300 });
+
+    await user.hover(button);
+    expect(() => screen.getByRole("tooltip")).toThrow();
+
+    await user.unhover(button);
+    expect(() => screen.getByRole("tooltip")).toThrow();
+
+    offsetWidth.mockReturnValue(150);
+    getBoundingClientRect.mockReturnValue({ ...rect, width: 150 });
+    await user.hover(button);
+    await waitFor(() => {
+      expect(() => screen.getByRole("tooltip")).not.toThrow();
+    });
   });
 });

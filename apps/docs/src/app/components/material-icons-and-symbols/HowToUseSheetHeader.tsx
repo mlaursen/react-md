@@ -5,7 +5,7 @@ import {
   DialogTitle,
   Tooltip,
   cssUtils,
-  useOverflowTooltip,
+  useTooltip,
 } from "@react-md/core";
 import CloseOutlinedIcon from "@react-md/material-icons/CloseOutlinedIcon";
 import ShareOutlinedIcon from "@react-md/material-icons/ShareOutlinedIcon";
@@ -16,8 +16,9 @@ import { MaterialSymbolOrIcon } from "./MaterialSymbolOrIcon.jsx";
 
 export function HowToUseSheetHeader(): ReactElement {
   const { selectedIconName, deselectIcon } = useMaterialIconsAndSymbols();
-  const { elementProps, tooltipProps, nodeRef } = useOverflowTooltip({
+  const { elementProps, tooltipProps } = useTooltip({
     hoverTime: 0,
+    overflowOnly: true,
   });
   const name = (selectedIconName || "").replace(/_/g, " ");
 
@@ -26,7 +27,6 @@ export function HowToUseSheetHeader(): ReactElement {
       <MaterialSymbolOrIcon iconName={selectedIconName} />
       <DialogTitle
         {...elementProps}
-        ref={nodeRef}
         as="h4"
         type="headline-6"
         className={cssUtils({

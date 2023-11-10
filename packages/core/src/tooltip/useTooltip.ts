@@ -5,6 +5,7 @@ import type {
   FocusEvent,
   MouseEvent,
   Ref,
+  RefObject,
   TouchEvent,
 } from "react";
 import { useCallback, useEffect, useId, useRef } from "react";
@@ -215,6 +216,15 @@ export interface TooltipOptions
    * @defaultValue `0`
    */
   leaveTime?: number;
+
+  /**
+   * Set this to `true` to only allow the tooltip to become visible when the
+   * `event .currentTarget` or `overflowRef` has text overflow.
+   *
+   * @defaultValue `false`
+   * @remarks \@since 6.0.0
+   */
+  overflowOnly?: boolean;
 }
 
 /**
@@ -252,6 +262,11 @@ export interface TooltipImplementation {
    * clear any pending timeouts.
    */
   hideTooltip(): void;
+
+  /**
+   * @remarks \@since 6.0.0
+   */
+  overflowRef: RefObject<HTMLElement>;
 }
 
 /**
@@ -327,6 +342,7 @@ export function useTooltip(
     onEntering,
     onEntered = noop,
     onExited,
+    overflowOnly,
   } = options;
 
   const fallbackId = useId();
@@ -366,6 +382,7 @@ export function useTooltip(
   const mode = useUserInteractionMode();
   const elementRef = useRef<HTMLElement | null>(null);
   const tooltipRef = useRef<HTMLSpanElement>(null);
+  const overflowRef = useRef<HTMLElement>(null);
   const initiatedBy = useRef<UserInteractionMode | null>(null);
   const { ref, style, callbacks } = useFixedPositioning({
     nodeRef: tooltipRef,
@@ -460,11 +477,21 @@ export function useTooltip(
     },
   });
 
+  const isNotOverflown = (currentTarget: HTMLElement): boolean => {
+    if (!overflowOnly) {
+      return false;
+    }
+
+    const element = overflowRef.current || currentTarget;
+    return !element || element.offsetWidth >= element.scrollWidth;
+  };
+
   return {
     visible,
     setVisible,
     hideTooltip,
     animatedOnce: animatedOnceRef.current,
+    overflowRef,
     tooltipProps: {
       id: tooltipId,
       ref,
@@ -479,7 +506,12 @@ export function useTooltip(
       id,
       onMouseEnter(event) {
         onMouseEnter(event);
-        if (disabled || mode === "touch" || initiatedBy.current !== null) {
+        if (
+          disabled ||
+          mode === "touch" ||
+          initiatedBy.current !== null ||
+          isNotOverflown(event.currentTarget)
+        ) {
           return;
         }
 
@@ -514,7 +546,8 @@ export function useTooltip(
           disabled ||
           mode !== "keyboard" ||
           initiatedBy.current !== null ||
-          pageInactive.current
+          pageInactive.current ||
+          isNotOverflown(event.currentTarget)
         ) {
           pageInactive.current = false;
           return;
@@ -527,7 +560,11 @@ export function useTooltip(
       },
       onTouchStart(event) {
         onTouchStart(event);
-        if (disabled || initiatedBy.current !== null) {
+        if (
+          disabled ||
+          initiatedBy.current !== null ||
+          isNotOverflown(event.currentTarget)
+        ) {
           return;
         }
 
@@ -547,7 +584,11 @@ export function useTooltip(
       },
       onContextMenu(event) {
         onContextMenu(event);
-        if (disabled || initiatedBy.current !== "touch") {
+        if (
+          disabled ||
+          initiatedBy.current !== "touch" ||
+          isNotOverflown(event.currentTarget)
+        ) {
           return;
         }
 
