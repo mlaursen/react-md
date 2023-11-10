@@ -389,6 +389,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
               enabled={type === "centered"}
             >
               <div
+                aria-modal={modal || undefined}
                 {...remaining}
                 {...elementProps}
                 {...eventHandlers}
