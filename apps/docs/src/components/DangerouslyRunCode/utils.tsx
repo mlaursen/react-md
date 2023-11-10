@@ -3,8 +3,9 @@
 // and I wanted to understand why things were implemented the way they were
 "use client";
 import * as core from "@react-md/core";
-import CloudUploadOutlinedIcon from "@react-md/material-icons/CloudUploadOutlinedIcon";
+import CelebrationOutlinedIcon from "@react-md/material-icons/CelebrationOutlinedIcon";
 import CloseIcon from "@react-md/material-icons/CloseIcon";
+import CloudUploadOutlinedIcon from "@react-md/material-icons/CloudUploadOutlinedIcon";
 import ContentCopyOutlinedIcon from "@react-md/material-icons/ContentCopyOutlinedIcon";
 import ContentCutOutlinedIcon from "@react-md/material-icons/ContentCutOutlinedIcon";
 import ContentPasteOutlinedIcon from "@react-md/material-icons/ContentPasteOutlinedIcon";
@@ -82,6 +83,7 @@ function dangerouslyEvalCode(
     // I need a way to figure out how to correctly pass the scope down here. I can't pass functions
     // down from server components to client components, so it might need to be a script. For now,
     // just add any imports that are required.
+    "@react-md/material-icons/CelebrationOutlinedIcon": CelebrationOutlinedIcon,
     "@react-md/material-icons/CloseIcon": CloseIcon,
     "@react-md/material-icons/CloudUploadOutlinedIcon": CloudUploadOutlinedIcon,
     "@react-md/material-icons/ContentCopyOutlinedIcon": ContentCopyOutlinedIcon,

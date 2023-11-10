@@ -3,11 +3,11 @@
 // and I wanted to understand why things were implemented the way they were
 "use client";
 import {
+  useEffect,
   useRef,
   useState,
   type MutableRefObject,
   type ReactElement,
-  useEffect,
 } from "react";
 import {
   DangerouslyRunCode,
