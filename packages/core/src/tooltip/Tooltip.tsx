@@ -41,6 +41,12 @@ export interface TooltipProps
   position?: SimplePosition;
 
   /**
+   * @see {@link CSSTransitionComponentProps.temporary}
+   * @defaultValue `true`
+   */
+  temporary?: boolean;
+
+  /**
    * @defaultValue `false`
    */
   disablePortal?: boolean;
@@ -104,7 +110,7 @@ export const Tooltip = forwardRef<HTMLSpanElement, TooltipProps>(
       classNames = DEFAULT_TOOLTIP_CLASSNAMES,
       className,
       position = DEFAULT_TOOLTIP_POSITION,
-      temporary,
+      temporary = true,
       exitedHidden = !temporary,
       disableLineWrap,
       disablePortal: propDisablePortal,
