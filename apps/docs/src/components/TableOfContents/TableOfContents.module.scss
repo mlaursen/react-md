@@ -3,7 +3,9 @@
 .container {
   @include everything.layout-use-var(top, header-height);
   @include everything.desktop-media {
-    display: block;
+    display: grid;
+    max-height: calc(100dvh - everything.layout-get-var(header-height));
+    overflow: auto;
   }
   @include everything.rtl {
     left: 0;

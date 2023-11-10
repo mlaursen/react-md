@@ -1,3 +1,335 @@
 # Menu
 
-TODO
+A menu displays a list of choices on a temporary surface. They appear when users
+interact with a button, action, or other control.
+
+# Simple Example
+
+A menu can be created by using the `DropdownMenu` and `MenuItem` components. The
+`DropdownMenu` requires the `buttonChildren` prop to render text, icons, or
+other content in a button and the available `MenuItem`s as children.
+
+{{ "component": "./SimpleExample.tsx" }}
+
+## Menu Item Actions
+
+`MenuItem`s should normally provide an `onClick` event handler
+
+{{ "component": "./MenuItemActionExample.tsx" }}
+
+## Horizontal Menu
+
+A menu can be rendered horizontally instead of vertically by enabling the
+`horizontal` prop.
+
+{{ "component": "./HorizontalMenuExample.tsx" }}
+
+# Button Styling
+
+Most of the [Button](/components/button) props are available as top-level props
+on the `DropdownMenu`.
+
+{{ "component": "./ButtonStyling.tsx" }}
+
+## Icon Button
+
+An icon button can be rendered by setting the `buttonType` to `"icon"`. This
+will also remove the default dropdown icon within the button.
+
+> !Info! Remember to provide an `aria-label` or accessible text for screen
+> readers when using icon buttons.
+
+{{ "component": "./IconButtonExample.tsx" }}
+
+## Floating Action Button
+
+A menu can be rendered in a floating action button by providing the `floating`
+prop. Just like the `Button` component, the button will default to an icon
+button if the floating prop is defined instead of a text button.
+
+{{ "component": "./FloatingActionButtonExample.tsx", "card": true, "phone": true }}
+
+# Menu Item Addons
+
+A `MenuItem` can render addons just like the [ListItem](/components/list-item).
+
+{{ "component": "./MenuItemAddonsExample.tsx" }}
+
+# Configuring Menu Behavior
+
+> !Info! The `Menu` uses the `useFixedPositioning` hook to position itself
+> within the viewport. Check out the
+> [useFixedPositioning](/hooks/use-fixed-positioning) documentation page for
+> available options.
+
+## Controlling Menu Visibility
+
+If the menu's visibility must manually be controlled, provide the `visible` and
+`setVisible` props.
+
+{{ "component": "./ControllingMenuVisibility.tsx" }}
+
+## Prevent Scroll Example
+
+The default behavior is to reposition the `Menu` while the user scrolls the page
+until the menu is no longer in the viewport. Another approach is to prevent the
+user from scrolling the page while the menu is open. To enable this behavior,
+enable the `preventScroll` prop.
+
+{{ "component": "./PreventScrollExample.tsx" }}
+
+## Close On Resize Example
+
+The `Menu` will automatically reposition itself if the user resizes the browser.
+Another approach is to close the menu instead. Enable the `closeOnResize` prop
+to opt into this behavior.
+
+{{ "component": "./CloseOnResizeExample.tsx" }}
+
+## Disable Portal Example
+
+The `Menu` will use the [Portal](/components/portal) by default to help with
+positioning issues within the viewport and temporary elements like
+[Dialog](/components/dialog)s. The portal behavior can be disabled by enabling
+the `disablePortal` prop which will make the `Menu` render as the next element
+sibling of the menu toggle button.
+
+{{ "component": "./DisablePortalExample.tsx" }}
+
+## Disable Conditional Rendering Example
+
+The `Menu` will only be mounted while `visible` which means any internal state
+is reset each time the `Menu` is opened. Set the `temporary` prop to `false` if
+the `Menu` should remain mounted while not `visible` and be hidden using CSS
+instead.
+
+{{ "component": "./DisableConditionalRenderingExample.tsx" }}
+
+# Context Menu
+
+To override the default right click behavior and display a custom context menu,
+use the `useContextMenu` hook and the `Menu` component. The `useContextMenu`
+will provide the required props for the `Menu` component and automatically
+position it relative to the mouse.
+
+The context menu will also update the menu to have the following default props:
+
+- `anchor` - `BELOW_INNER_LEFT_ANCHOR`
+- `menuLabel` - `"Context Menu"`
+- `preventScroll` - `true`
+
+{{ "component": "./ContextMenuExample.tsx" }}
+
+# Nested Menus
+
+Nested dropdown menus can be created by adding a `DropdownMenu` as a child of
+another `DropdownMenu`. The `DropdownMenu` will render as a `MenuItemButton`
+instead of as a `MenuButton` and allow for all the correct keyboard behavior.
+
+{{ "component": "./NestedMenusExample.tsx" }}
+
+# Rendering in a Sheet
+
+It can sometimes be useful to render a `Menu` within a `Sheet` instead of a
+temporary popup element when on smaller viewports or dealing with large menu
+items.
+
+This can be configured on an app-level using the `MenuConfigurationProvider` or
+a specific `DropdownMenu`/`Menu` by providing a `renderAsSheet` prop. This can
+be set to `"phone"` to only render menus within sheets on the phone app size or
+supports `true`/`false` values if custom logic is required to render as a sheet
+instead.
+
+{{ "component": "./RenderingInASheet.tsx" }}
+
+## Sheet Options
+
+The `Sheet` can be configured further to support an optional header, an optional
+footer, the position within the viewport, and the vertical size. The optional
+header or footer components can be updated to control the visibility of the menu
+as well by using the `useMenuVisibility` hook which provides the `visible` state
+and `setVisible` function.
+
+> !Info! Check out the [Sheet](/components/sheet) for more sheet behavior and
+> styling.
+
+{{ "component": "./SheetOptionsExample.tsx" }}
+
+# Hoverable Menu
+
+The `DropdownMenu` can be updated to become visible after a specific hover
+timeout by wrapping a group of dropdown menus within the `MenuBar` component to
+and providing a `hoverTimeout` prop. When the `hoverTimeout` is set to `0`, the
+`DropdownMenu` will open immediately otherwise the `DropdownMenu` must be
+hovered for the duration in milliseconds.
+
+> !Warn! The `MenuBar` also provides special keyboard movement behavior so the
+> children should normally only be `DropdownMenu` components. Check out the
+> [MenuBar accessibility](#menubar) section for more info around the keyboard
+> movement behavior.
+
+{{ "component": "./HoverableMenuExample.tsx" }}
+
+## Click-first Hoverable Menu
+
+The `DropdownMenu` can also behave like the browser bookmarks toolbar where
+once a menu has been opened, all other menus within the group will immediately
+open once hovered. Omit the `hoverTimeout` prop or set it to `undefined` to use
+this functionality.
+
+{{ "component": "./ClickFirstHoverableMenu.tsx" }}
+
+# Additional MenuItem Components
+
+The following components have been provided to merge the functionality and
+accessibility into a `MenuItem`.
+
+- `MenuItemCheckbox`
+- `MenuItemRadio`
+- `MenuItemSwitch`
+- `MenuItemTextField`
+- `MenuItemFileInput`
+- `MenuItemSeparator`
+- `MenuItemGroup`
+
+These components will ensure the correct accessibility and keyboard movement
+within a `DropdownMenu`.
+
+> !Info! Enable the `preventMenuHideOnClick` if the menu should not close after
+> clicking the menu item.
+
+## MenuItemCheckbox Example
+
+The `MenuItemCheckbox` component can be used to render a checkbox within a
+`MenuItem` and is a controlled component requiring the `checked` and
+`onCheckedChange` props. It is recommended to use the
+[useCheckboxGroup](/hooks/use-checkbox-group) hook when multiple checkboxes are
+involved since it also supports indeterminate checkboxes.
+
+{{ "component": "./MenuItemCheckboxExample.tsx" }}
+
+## MenuItemRadio Example
+
+The `MenuItemRadio` component can be used to render a radio within a `MenuItem`
+and is a controlled component requiring the `checked` and `onCheckedChange`
+props. It is recommended to use the [useRadioGroup](/hooks/use-radio-group) hook
+to control the group of radios.
+
+{{ "component": "./MenuItemRadioExample.tsx" }}
+
+## MenuItemSwitch Example
+
+The `MenuItemSwitch` component can be used to render a `Switch` within a
+`MenuItem` and is a controlled component requiring the `checked` and
+`onCheckedChange` props. The state can be controlled by the
+[useCheckboxGroup](/hooks/use-checkbox-group) if desired.
+
+{{ "component": "./MenuItemSwitchExample.tsx" }}
+
+## MenuItemTextField Example
+
+The `MenuItemTextField` can be used to render a `TextField` within a `MenuItem`.
+This component will update the menu keyboard behavior so that the menu keyboard
+movement only occurs when there is no value within the text field.
+
+Like the normal `TextField`, this component defaults to uncontrolled but can be
+controlled by providing the `value` and `onChange` props.
+
+{{ "component": "./MenuItemTextFieldExample.tsx" }}
+
+## MenuItemFileInput Example
+
+The `MenuItemFileInput` can be used to render `FileInput` components within a
+`MenuItem`. The main difference is that the upload icon will be rendered as a
+`MenuItem` addon and a label should be provided within the `MenuItemFileInput`
+children.
+
+> !Info! This component works with the [useFileUpload](/hooks/use-file-upload)
+> hook and should be used for more complex file selection.
+
+{{ "component": "./MenuItemFileInputExample.tsx" }}
+
+## MenuItemSeparator and MenuItemGroup
+
+Use the `MenuItemGroup` and `MenuItemSeparator` when rendering the
+`MenuItemRadio` with other groups of `MenuItem`s.
+
+> See more at [https://www.w3.org/TR/wai-aria-1.1/#menuitemradio](https://www.w3.org/TR/wai-aria-1.1/#menuitemradio)
+
+{{ "component": "./MenuItemSeparatorAndGroupExample.tsx" }}
+
+## Form MenuItem with Addons
+
+The form menu item components can also render an addon like the `MenuItem` using
+`addon`, `addonType`, `addonPosition` props.
+
+In addition, if the icon checkbox, radio, or switch should be rendered after the
+text instead of before, the `iconAfter` prop can be enabled.
+
+{{ "component": "./FormMenuItemWithAddonsExample.tsx" }}
+
+# Menu within a Dialog
+
+Since menus use the [Portal](/components/portal) to render in a different part
+of the DOM and position within the viewport using
+[useFixedPositioning](/hooks/use-fixed-positioning), menus can be rendered in
+dialogs without causing any issues like scrollbars appearing or not being able
+to view all the menu items.
+
+{{ "component": "./MenuWithinADialog.tsx" }}
+
+# Accessibility
+
+The menu components implement the
+[menu](https://www.w3.org/WAI/ARIA/apg/patterns/menu/) and
+[menu button](https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/)
+specifications.
+
+## Keyboard Movement
+
+The following keyboard movement has been implemented:
+
+### Menu Button
+
+- `ArrowUp` - opens the menu and focuses the last menu item
+- `ArrowDown`/`Space`/`Enter` - opens the menu and focuses the first menu item
+
+### Menu Item Button
+
+- `ArrowRight` - opens the nested menu and moves focus to the first menu item in
+  the newly opened menu
+  - `ArrowDown` is used for horizontal menus
+- `ArrowLeft` - closes a nested dropdown menu (if exists) and moves focus back
+  into the parent menu
+  - `ArrowUp` is used for horizontal menus
+
+### Menu
+
+- `ArrowUp`/`ArrowDown` - moves the focus to the previous/next menu item and
+  loops
+  - `ArrowLeft`/`ArrowRight` will be used for horizontal menus
+- `Home`/`End` - moves focus to the first and last menu item
+- `Enter`/`Space` - clicks the current `MenuItem`
+- Typing a letter will find the focus the first menu item that starts with the
+  same letter. Pressing the same letter will continue to loop through matches.
+- Typing an uppercase letter will always focus the first menu item that starts
+  with the same letter.
+- `Escape` - Closes the **current** menu
+
+### MenuBar
+
+- While no dropdown menus are visible:
+  - `ArrowLeft`/`ArrowRight` will move focus to the previous/next dropdown menu
+    items
+  - `Home`/`End` - moves focus to the first and last dropdown menu item
+  - Typing a letter will find the focus the first menu item that starts with the
+    same letter. Pressing the same letter will continue to loop through matches.
+  - Typing an uppercase letter will always focus the first menu item that starts
+    with the same letter.
+  - `ArrowUp` - opens the menu and focuses the last menu item
+  - `ArrowDown`/`Space`/`Enter` - opens the menu and focuses the first menu item
+- While a dropdown menu is visible:
+  - `ArrowLeft`/`ArrowRight` will close the current dropdown menu, open the
+    previous/next dropdown menu, and move focus into the new dropdown menu on
+    the first item
+    - If a nested dropdown menu is focused, that behavior will be used instead
