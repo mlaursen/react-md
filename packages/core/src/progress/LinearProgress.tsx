@@ -15,7 +15,7 @@ import { type ProgressProps } from "./types.js";
  * @remarks \@since 6.0.0 Added the `theme` prop
  */
 export interface LinearProgressProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, "id">,
+  extends Omit<HTMLAttributes<HTMLDivElement>, "id" | "children">,
     ProgressProps {
   /**
    * An optional style to apply to the progress bar. This will be merged with
