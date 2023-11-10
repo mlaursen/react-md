@@ -1,4 +1,8 @@
 "use client";
+import {
+  MenuConfigurationProvider,
+  TooltipHoverModeProvider,
+} from "@react-md/core";
 import { type ReactElement } from "react";
 import { CodePreviewContainer } from "../CodePreviewContainer.jsx";
 import {
@@ -32,7 +36,11 @@ export function RunnableCodePreview(
   return (
     <CodePreviewContainer error={error?.message}>
       <RunnableCodePreviewContainer {...previewProps}>
-        {element}
+        <MenuConfigurationProvider renderAsSheet={false}>
+          <TooltipHoverModeProvider disableTimeout={0}>
+            {element}
+          </TooltipHoverModeProvider>
+        </MenuConfigurationProvider>
       </RunnableCodePreviewContainer>
     </CodePreviewContainer>
   );

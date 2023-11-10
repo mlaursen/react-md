@@ -1,6 +1,5 @@
 "use client";
 import { highlightCode } from "@/utils/highlightCode.js";
-import { MenuConfigurationProvider } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
 import { CodeBlock, type CodeBlockProps } from "../CodeBlock.jsx";
@@ -23,9 +22,7 @@ export function CodeEditor(props: CodeEditorProps): ReactElement {
   const { code, textAreaProps } = useCodeEditor(defaultCode);
   return (
     <>
-      <MenuConfigurationProvider renderAsSheet={false}>
-        <RunnableCodePreview code={code} scope={scope} {...preview} />
-      </MenuConfigurationProvider>
+      <RunnableCodePreview code={code} scope={scope} {...preview} />
       {children}
       <CodeBlock
         {...remaining}
