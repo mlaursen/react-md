@@ -1,5 +1,6 @@
 "use client";
 import { forwardRef, type HTMLAttributes } from "react";
+import { type TextOverflow } from "../cssUtils.js";
 import { Portal } from "../portal/Portal.js";
 import { type SimplePosition } from "../positioning/types.js";
 import {
@@ -52,15 +53,16 @@ export interface TooltipProps
   disablePortal?: boolean;
 
   /**
-   * Set this to `true` to add `white-space: nowrap` to the tooltip.
+   * Set this to `"nowrap"` for tooltips that are positioned near the edge of
+   * the viewport that have a position of `"above"` or `"below"` so that the
+   * tooltip no longer aligns to the center of the tooltipped element.
    *
-   * This prop is useful for tooltips that are positioned near the edge of the
-   * viewport with `"above"` or `"below"` so that the tooltip no longer aligns
-   * the center of the tooltip with the center of the tooltipped element.
+   * Set this to `"ellipsis"` if the tooltip should only show a single line of
+   * text and ellipsis once it has reached the max tooltip width.
    *
-   * @defaultValue `false`
+   * @defaultValue `"allow"`
    */
-  disableLineWrap?: boolean;
+  textOverflow?: TextOverflow;
 }
 
 /**
@@ -112,7 +114,7 @@ export const Tooltip = forwardRef<HTMLSpanElement, TooltipProps>(
       position = DEFAULT_TOOLTIP_POSITION,
       temporary = true,
       exitedHidden = !temporary,
-      disableLineWrap,
+      textOverflow,
       disablePortal: propDisablePortal,
       ...remaining
     } = props;
@@ -130,7 +132,7 @@ export const Tooltip = forwardRef<HTMLSpanElement, TooltipProps>(
         dense,
         position,
         className,
-        disableLineWrap,
+        textOverflow,
       }),
       onEnter,
       onEntering,

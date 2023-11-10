@@ -1,5 +1,5 @@
 import { cnb } from "cnbuilder";
-import { cssUtils } from "../cssUtils.js";
+import { cssUtils, type TextOverflow } from "../cssUtils.js";
 import type { SimplePosition } from "../positioning/types.js";
 import { bem } from "../utils/bem.js";
 
@@ -12,21 +12,21 @@ export interface TooltipClassNameOptions {
   className?: string;
   dense?: boolean;
   position: SimplePosition;
-  disableLineWrap?: boolean;
+  textOverflow?: TextOverflow;
 }
 
 /**
  * @remarks \@since 6.0.0
  */
 export function tooltip(options: TooltipClassNameOptions): string {
-  const { dense, position, className, disableLineWrap } = options;
+  const { dense, position, className, textOverflow } = options;
 
   return cnb(
     styles({
       dense,
       [position]: true,
     }),
-    cssUtils({ textOverflow: disableLineWrap ? "nowrap" : undefined }),
+    cssUtils({ textOverflow }),
     className
   );
 }

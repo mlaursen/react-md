@@ -62,7 +62,7 @@ export function SliderValueTooltip(
     <Tooltip
       dense
       disablePortal
-      disableLineWrap
+      textOverflow="nowrap"
       className={cnb(
         styles({ h: !vertical, v: vertical }),
         animate && "rmd-slider-thumb--animate",

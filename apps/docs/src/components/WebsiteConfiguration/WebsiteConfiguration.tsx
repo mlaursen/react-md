@@ -39,7 +39,7 @@ export function WebsiteConfiguration(): ReactElement {
       >
         <MoreVertOutlinedIcon />
       </Button>
-      <Tooltip {...tooltipProps} disableLineWrap>
+      <Tooltip {...tooltipProps} textOverflow="nowrap">
         Website Configuration
       </Tooltip>
       <Sheet

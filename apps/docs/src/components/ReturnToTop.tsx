@@ -40,7 +40,7 @@ export function ReturnToTop(): ReactElement {
       >
         <ArrowUpwardIcon />
       </Button>
-      <Tooltip {...tooltipProps} disableLineWrap>
+      <Tooltip {...tooltipProps} textOverflow="nowrap">
         Return to top
       </Tooltip>
     </>
