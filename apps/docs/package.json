@@ -23,8 +23,8 @@
     "clean": "rm -rf .turbo .next node_modules",
     "next-dev": "next dev",
     "next-build": "next build",
-    "dev": "npm-run-all create-env api-docs watch",
-    "build": "npm-run-all create-env api-docs mdx-pages scss-lookup next-build",
+    "dev": "npm-run-all create-env watch",
+    "build": "npm-run-all create-env next-build",
     "start": "next start"
   },
   "engines": {

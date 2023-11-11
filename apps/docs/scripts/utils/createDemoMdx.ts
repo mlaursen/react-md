@@ -4,12 +4,19 @@ import { createMdxPage } from "./createMdxPage.js";
 
 const DEMO_PAGE_MDX = "demo-page.mdx";
 
-export async function createDemoMdx(
-  demoPath: string,
-  isLogged: boolean
-): Promise<void> {
+interface Options {
+  demoPath: string;
+  isLogged: boolean;
+}
+
+export async function createDemoMdx(options: Options): Promise<void> {
+  const { demoPath, isLogged } = options;
   const demoPageMdxPath = demoPath.replace(parse(demoPath).base, DEMO_PAGE_MDX);
 
-  await createDemoMarkdown(demoPath, demoPageMdxPath, isLogged);
+  await createDemoMarkdown({
+    path: demoPath,
+    outPath: demoPageMdxPath,
+    isLogged,
+  });
   await createMdxPage(demoPath, DEMO_PAGE_MDX);
 }

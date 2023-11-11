@@ -7,6 +7,7 @@ import {
   type SourceFile,
 } from "ts-morph";
 import { format } from "../../src/utils/format.js";
+import { createScssModule } from "./createScssModules.js";
 
 const getImportName = (imp: ImportDeclaration): string =>
   imp
@@ -71,10 +72,16 @@ interface DemoCode {
   demoCode: string;
 }
 
+interface DemoCodeOptions {
+  directory: string;
+  demoFilePath: string;
+}
+
 export const getDemoCode = async (
-  demoFilePath: string,
-  directory: string
+  options: DemoCodeOptions
 ): Promise<DemoCode> => {
+  const { directory, demoFilePath } = options;
+
   const project = new Project({
     tsConfigFilePath: "./tsconfig.json",
     skipAddingFilesFromTsConfig: true,
@@ -107,6 +114,9 @@ export const getDemoCode = async (
 
     imp.remove();
   });
+  await Promise.all(
+    styles.map(async (scssModulePath) => createScssModule(scssModulePath))
+  );
 
   const demoCode = await format(demo.getFullText());
 

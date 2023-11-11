@@ -2,8 +2,13 @@ import { watch } from "chokidar";
 import { glob } from "glob";
 import { existsSync } from "node:fs";
 import { join, parse, type ParsedPath } from "node:path";
+import { scssModulesCache } from "./codeCache.js";
 import { createDemoMdx } from "./utils/createDemoMdx.js";
 import { createMdxPage } from "./utils/createMdxPage.js";
+import {
+  createScssModuleFile,
+  updateScssModule,
+} from "./utils/createScssModules.js";
 import { getScriptFlags } from "./utils/getScriptFlags.js";
 import { log } from "./utils/log.js";
 
@@ -18,8 +23,14 @@ const { isWatch } = getScriptFlags();
 async function createAll(): Promise<void> {
   await Promise.all([
     ...readmes.map((markdownPath) => createMdxPage(markdownPath)),
-    ...mdxDemos.map(async (demoPath) => createDemoMdx(demoPath, false)),
+    ...mdxDemos.map((demoPath) =>
+      createDemoMdx({
+        demoPath,
+        isLogged: false,
+      })
+    ),
   ]);
+  await createScssModuleFile();
 }
 
 await log(createAll(), "Compiling mdx and demos", "Compiled");
@@ -29,7 +40,10 @@ const isProbablyDemoRelatedFile = (
   demosPath: string
 ): boolean => {
   const { base, ext } = parsed;
-  if (["page.tsx", "toc.ts"].includes(base) || [".mdx", ".md"].includes(ext)) {
+  if (
+    ["page.tsx", "toc.ts"].includes(base) ||
+    [".mdx", ".md", ".scss"].includes(ext)
+  ) {
     return false;
   }
 
@@ -50,7 +64,10 @@ if (isWatch) {
     try {
       if (isMdxDemos || isProbablyDemoRelatedFile(parsed, maybeDemos)) {
         await log(
-          createDemoMdx(isMdxDemos ? path : maybeDemos, true),
+          createDemoMdx({
+            demoPath: isMdxDemos ? path : maybeDemos,
+            isLogged: true,
+          }),
           `Compiling demos for ${path}`,
           "Compiled demos"
         );
@@ -60,9 +77,20 @@ if (isWatch) {
           `Compiling markdown for ${path}`,
           "Compiled markdown"
         );
+      } else if (parsed.ext === ".scss") {
+        await log(
+          updateScssModule(path),
+          "Updating fake scss modules",
+          "Updated fake scss modules"
+        );
       }
     } catch (e) {
       console.error(e);
+    }
+  });
+  watcher.on("unlink", async (path) => {
+    if (path.endsWith(".module.scss")) {
+      scssModulesCache.delete(path);
     }
   });
   watcher.on("ready", () => {

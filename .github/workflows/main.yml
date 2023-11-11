@@ -30,6 +30,14 @@ jobs:
       - run: pnpm build --filter="./packages/*"
       - run: pnpm lint
       - run: pnpm typecheck
+
+      # # Check if there are uncommitted generated changes
+      # - run: pnpm --filter docs api-pages
+      # - run: pnpm --filter docs mdx-pages
+      # - run: pnpm --filter docs scss-lookup
+      # - run: pnpm --filter docs prism-themes
+      # - run: git diff --quiet
+
       - run: pnpm test -- -- --coverage
       - run: npx codecov -t ${{ secrets.CODECOV_TOKEN }}
 

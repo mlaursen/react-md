@@ -40,7 +40,7 @@ async function insertImportedCode(options: FixOptions): Promise<void> {
 
   const demoFilePath = join(directory, importName);
   const { styles, demoCode } = await log(
-    getDemoCode(demoFilePath, directory),
+    getDemoCode({ directory, demoFilePath }),
     "",
     isLogged ? `Compiled ${demoFilePath}` : ""
   );
@@ -51,9 +51,6 @@ async function insertImportedCode(options: FixOptions): Promise<void> {
     phone && "phone",
     fileName && `fileName="${fileName}"`,
     styles.length > 0 && `styles="${styles.join(",")}"`,
-    process.env.NODE_ENV !== "production" &&
-      styles.length &&
-      `hotReload="${Date.now()}"`,
   ]
     .filter(Boolean)
     .join(" ");
@@ -112,11 +109,17 @@ const parseOptions = (line: string): ParsedOptions => {
   };
 };
 
+interface CreateDemoMarkdownOptions {
+  path: string;
+  outPath: string;
+  isLogged: boolean;
+}
+
 export async function createDemoMarkdown(
-  path: string,
-  outPath: string,
-  isLogged: boolean
+  options: CreateDemoMarkdownOptions
 ): Promise<void> {
+  const { path, outPath, isLogged } = options;
+
   const directory = dirname(path);
   const raw = await readFile(path, "utf8");
 
