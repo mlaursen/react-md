@@ -6,6 +6,7 @@ import { CodeBlock } from "./CodeBlock.jsx";
 import { CodeBlockFileName } from "./CodeBlockFileName.jsx";
 import { CodeBlockHeader } from "./CodeBlockHeader.jsx";
 import { RunnableCodePreview } from "./DangerouslyRunCode/RunnableCodePreview.jsx";
+import { FullDemoEditor } from "./FullDemoEditor.jsx";
 import styles from "./HighlightedCodeBlock.module.scss";
 import { InlineCode, type InlineCodeProps } from "./InlineCode.js";
 import { PackageManagerCodeBlock } from "./PackageManagerCodeBlock.js";
@@ -51,12 +52,13 @@ export async function HighlightedCodeBlock(
   const {
     code,
     lang,
+    tsCode,
     fileName,
     preview,
     previewOptions,
     editable,
+    scssModules,
     packageManager,
-    tsCode,
   } = await parseCodeBlock({
     code: children,
     lang: propLang,
@@ -66,6 +68,16 @@ export async function HighlightedCodeBlock(
 
   if (packageManager) {
     return <PackageManagerCodeBlock {...packageManager} />;
+  }
+
+  if (tsCode && scssModules) {
+    return (
+      <FullDemoEditor
+        {...tsCode}
+        preview={previewOptions}
+        scssModules={scssModules}
+      />
+    );
   }
 
   let header: ReactNode;
@@ -114,6 +126,7 @@ export async function HighlightedCodeBlock(
           />
         </CodeBlock>
       )}
+      {scssModules?.map(({ css }) => <style key={css}>{css}</style>)}
     </>
   );
 }

@@ -26,6 +26,7 @@ import React, {
 } from "react";
 import * as jsxRuntime from "react/jsx-runtime";
 import { transform } from "sucrase";
+import { createFakeScssModules } from "../../utils/fakeScssModules.js";
 
 export type GlobalCodeScope = Record<string, unknown>;
 export type LocalCodeScope = Record<string, unknown>;
@@ -115,6 +116,12 @@ function dangerouslyEvalCode(
     // This unfortunately doesn't work well with RSC since functions can't be
     // passed to client components.
     require: (moduleName: string): unknown => {
+      if (moduleName.endsWith(".module.scss")) {
+        return createFakeScssModules(
+          moduleName.replace("./", "").replace(".module.scss", "")
+        );
+      }
+
       const mod = allImports[moduleName];
       if (!mod) {
         throw new Error(`Module not found: "${moduleName}"`);

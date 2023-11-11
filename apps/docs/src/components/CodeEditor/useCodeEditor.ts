@@ -1,10 +1,11 @@
 // https://github.com/react-simple-code-editor/react-simple-code-editor/blob/86129bb4394bdad0e5cc1a735b32ce747383325b/src/index.tsx
+import { type UseStateSetter } from "@react-md/core";
 import {
   useRef,
   useState,
   type ChangeEventHandler,
-  type KeyboardEventHandler,
   type KeyboardEvent,
+  type KeyboardEventHandler,
 } from "react";
 
 interface EditAction {
@@ -165,13 +166,19 @@ const handleWrappingCharacters = (options: HandleKeydownOptions): void => {
   });
 };
 
-export interface CodeEditorResult {
+export interface CodeEditorTextAreaProps {
+  value: string;
+  onChange: ChangeEventHandler<HTMLTextAreaElement>;
+  onKeyDown: KeyboardEventHandler<HTMLTextAreaElement>;
+}
+
+export interface CodeEditorProvidedProps {
   code: string;
-  textAreaProps: {
-    value: string;
-    onChange: ChangeEventHandler<HTMLTextAreaElement>;
-    onKeyDown: KeyboardEventHandler<HTMLTextAreaElement>;
-  };
+  textAreaProps: CodeEditorTextAreaProps;
+}
+
+export interface CodeEditorResult extends CodeEditorProvidedProps {
+  setCode: UseStateSetter<string>;
 }
 
 export function useCodeEditor(defaultCode: string): CodeEditorResult {
@@ -194,6 +201,7 @@ export function useCodeEditor(defaultCode: string): CodeEditorResult {
 
   return {
     code,
+    setCode,
     textAreaProps: {
       value: code,
       onChange(event) {

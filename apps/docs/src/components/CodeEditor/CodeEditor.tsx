@@ -1,28 +1,25 @@
-"use client";
 import { highlightCode } from "@/utils/highlightCode.js";
+import { type TextAreaProps } from "@react-md/core";
 import { cnb } from "cnbuilder";
-import { type ReactElement } from "react";
+import { type ReactElement, type ReactNode } from "react";
 import { CodeBlock, type CodeBlockProps } from "../CodeBlock.jsx";
-import { RunnableCodePreview } from "../DangerouslyRunCode/RunnableCodePreview.jsx";
-import { type RunnableCodePreviewOptions } from "../DangerouslyRunCode/RunnableCodePreviewContainer.jsx";
-import { type RunnableCodeScope } from "../DangerouslyRunCode/utils.jsx";
 import styles from "./CodeEditor.module.scss";
-import { useCodeEditor } from "./useCodeEditor.js";
+import { type CodeEditorTextAreaProps } from "./useCodeEditor.js";
 
-export interface CodeEditorProps extends Omit<CodeBlockProps, "className"> {
+export interface CodeEditorProps
+  extends Omit<CodeBlockProps, "className" | "children"> {
   lang: string;
-  scope?: RunnableCodeScope;
-  defaultCode: string;
-  preview: RunnableCodePreviewOptions;
+  code: string;
+  textAreaProps: TextAreaProps & CodeEditorTextAreaProps;
+  children?: ReactNode;
 }
 
 export function CodeEditor(props: CodeEditorProps): ReactElement {
-  const { defaultCode, lang, scope, children, preview, ...remaining } = props;
+  const { code, textAreaProps, lang, children, ...remaining } = props;
+
   const className = `language-${lang}`;
-  const { code, textAreaProps } = useCodeEditor(defaultCode);
   return (
     <>
-      <RunnableCodePreview code={code} scope={scope} {...preview} />
       {children}
       <CodeBlock
         {...remaining}

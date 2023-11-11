@@ -16,3 +16,4 @@ src/app/*/**/page.tsx
 src/app/*/**/demo-page.mdx
 src/constants/apiLookup.ts
 src/constants/apiRoutes.ts
+src/constants/scssLookup.ts

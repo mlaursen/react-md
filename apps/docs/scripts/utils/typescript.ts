@@ -66,10 +66,15 @@ const moveImportsIntoDemoFile = (
   }
 };
 
+interface DemoCode {
+  styles: readonly string[];
+  demoCode: string;
+}
+
 export const getDemoCode = async (
   demoFilePath: string,
   directory: string
-): Promise<string> => {
+): Promise<DemoCode> => {
   const project = new Project({
     tsConfigFilePath: "./tsconfig.json",
     skipAddingFilesFromTsConfig: true,
@@ -80,8 +85,14 @@ export const getDemoCode = async (
   const relativeImports = demo
     .getImportDeclarations()
     .filter((imp) => imp.isModuleSpecifierRelative() || isAliasImport(imp));
+  const styles: string[] = [];
   relativeImports.forEach((imp) => {
     const importPath = getRealPath(imp, directory);
+    if (importPath.endsWith(".scss")) {
+      styles.push(importPath);
+      return;
+    }
+
     project.addSourceFileAtPath(importPath);
 
     const identifiers = imp
@@ -97,5 +108,10 @@ export const getDemoCode = async (
     imp.remove();
   });
 
-  return await format(demo.getFullText());
+  const demoCode = await format(demo.getFullText());
+
+  return {
+    styles,
+    demoCode,
+  };
 };

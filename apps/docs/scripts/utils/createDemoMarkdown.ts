@@ -39,20 +39,21 @@ async function insertImportedCode(options: FixOptions): Promise<void> {
   } = options;
 
   const demoFilePath = join(directory, importName);
+  const { styles, demoCode } = await log(
+    getDemoCode(demoFilePath, directory),
+    "",
+    isLogged ? `Compiled ${demoFilePath}` : ""
+  );
   const flags = [
     preview && "preview",
     editable && "editable",
     card && "card",
     phone && "phone",
     fileName && `fileName="${fileName}"`,
+    styles.length > 0 && `styles="${styles.join(",")}"`,
   ]
     .filter(Boolean)
     .join(" ");
-  const demoCode = await log(
-    getDemoCode(demoFilePath, directory),
-    "",
-    isLogged ? `Compiled ${demoFilePath}` : ""
-  );
 
   const formatted = `\`\`\`tsx
 // ${flags}

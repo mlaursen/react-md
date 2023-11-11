@@ -43,6 +43,12 @@ export interface CodeBlockProps {
    * wrapping there due to limited space and show all the code at once
    */
   lineWrap?: boolean;
+
+  /**
+   * Any children that should be fixed within the code block even after
+   * scrolling the code. These elements should have `position: absolute`.
+   */
+  fixedChildren?: ReactNode;
 }
 
 /**
@@ -57,6 +63,7 @@ export function CodeBlock(props: CodeBlockProps): ReactElement {
     containerProps,
     afterPreElement,
     disableMarginTop,
+    fixedChildren: absolutePositionChildren,
   } = props;
   return (
     <div
@@ -87,6 +94,7 @@ export function CodeBlock(props: CodeBlockProps): ReactElement {
       <NullSuspense>
         <CopyToClipboard className={styles.copyToClipboard} iconSize="small" />
       </NullSuspense>
+      {absolutePositionChildren}
     </div>
   );
 }

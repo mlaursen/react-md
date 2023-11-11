@@ -15,6 +15,8 @@ const isWatch = argv.includes("--watch");
 const MDX_DEMOS = "demos.mdx";
 const readmes = await glob("src/app/**/README.mdx");
 const mdxDemos = await glob(`src/app/**/${MDX_DEMOS}`);
+// const readmes = [] as const;
+// const mdxDemos = [`src/app/components/dialog/${MDX_DEMOS}`];
 
 if (isClean) {
   const tocs = await glob("src/app/**/toc.ts");

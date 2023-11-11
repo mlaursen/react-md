@@ -2,8 +2,13 @@ import { type RunnableCodeAndPreviewOptions } from "@/components/DangerouslyRunC
 import { type RunnableCodePreviewOptions } from "@/components/DangerouslyRunCode/RunnableCodePreviewContainer.jsx";
 import { type PackageManagerCodeBlockProps } from "@/components/PackageManagerCodeBlock.js";
 import { type HighlightedTypescriptCode } from "@/components/TypescriptCode.js";
+import { compileScssModule } from "@/utils/compileScssModule.js";
 import { convertTsToJs } from "@/utils/convertTsToJs.js";
 import { highlightCode } from "@/utils/highlightCode.js";
+import { readFile } from "node:fs/promises";
+import { basename } from "node:path";
+import "server-only";
+import { type FakeScssModule } from "./fakeScssModules.js";
 
 const NPM_CODE = /^np(m|x)/;
 const LANGUAGE_REGEX = /language-([a-z]+)/;
@@ -26,6 +31,7 @@ interface ParsedCodeBlock
   code: string;
   lang: string;
   tsCode?: HighlightedTypescriptCode;
+  scssModules?: readonly FakeScssModule[];
   packageManager?: PackageManagerCodeBlockProps;
   previewOptions: RunnableCodeAndPreviewOptions;
 }
@@ -48,6 +54,7 @@ export async function parseCodeBlock(
   let editable = defaultEditable;
   let preview = defaultPreview;
   let lang = propLang ?? "markdown";
+  let scssModulesPaths: string[] | undefined;
   if (!propLang && className) {
     [, lang] = className.match(LANGUAGE_REGEX) || [];
   }
@@ -75,6 +82,9 @@ export async function parseCodeBlock(
         case "card":
         case "phone":
           previewOptions[name] = true;
+          break;
+        case "styles":
+          scssModulesPaths = value.split(",");
           break;
         default:
           throw new Error(`Unsupported code property: ${name}`);
@@ -117,6 +127,28 @@ export async function parseCodeBlock(
     }
   }
 
+  let scssModules: FakeScssModule[] | undefined;
+  if (scssModulesPaths) {
+    scssModules = await Promise.all(
+      scssModulesPaths.map<Promise<FakeScssModule>>(async (scssModulePath) => {
+        const fileName = basename(scssModulePath);
+        const baseName = fileName.replace(".module.scss", "");
+        const scss = await readFile(scssModulePath, "utf8");
+        const css = await compileScssModule({
+          scss,
+          baseName,
+        });
+
+        return {
+          css,
+          scss,
+          baseName,
+          fileName,
+        };
+      })
+    );
+  }
+
   return {
     code,
     lang,
@@ -124,6 +156,7 @@ export async function parseCodeBlock(
     preview,
     editable,
     fileName,
+    scssModules,
     previewOptions,
     packageManager,
   };
