@@ -3,14 +3,20 @@
 [![npm](https://img.shields.io/npm/v/react-md)](https://www.npmjs.com/package/react-md)
 [![downloads](https://img.shields.io/npm/dw/react-md)](https://www.npmjs.com/package/react-md)
 
-Create an accessible React application with the
-[material design specifications](https://material.io/design/) and SCSS.
+Create an accessible React application with the [material design specifications]
+and SCSS.
 
-## [Full Documentation (Preview)](https://next.react-md.dev)
+## [Installation]
+
+```sh
+npm install @react-md/core sass
+```
+
+## [Full Documentation (Preview)]
 
 ### Highlights/Features
 
-- Matches the accessibility guidelines from [www.w3.org](https://www.w3.org/TR/wai-aria-practices)
+- Matches the accessibility guidelines from [www.w3.org]
 - Low level customizable components
 - Easily themeable on a global and component level
 - Uses css variables for dynamic themes with fallbacks for older browsers
@@ -24,4 +30,7 @@ Please read the [contributing guidelines](./.github/CONTRIBUTING.md) if you
 would like to contribute.
 
 [typescript]: https://www.typescriptlang.org/
-[create-react-app]: https://facebook.github.io/create-react-app
+[www.w3.org]: https://www.w3.org/TR/wai-aria-practices
+[installation]: https://next.react-md.dev/getting-started/installation
+[full documentation (preview)]: https://next.react-md.dev
+[material design specifications]: https://material.io/design/
