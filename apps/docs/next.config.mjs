@@ -40,6 +40,7 @@ const nextConfig = {
   // does not support mdx plugins
   experimental: {
     mdxRs: true,
+    webpackBuildWorker: true,
   },
   typescript: {
     ignoreBuildErrors: true,

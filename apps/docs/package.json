@@ -17,7 +17,7 @@
     "next-build": "next build",
     "watchers": "npm-run-all -p mdx-pages-watch scss-lookup-watch next-dev",
     "dev": "npm-run-all create-env create-api-docs watchers",
-    "build": "npm-run-all create-env create-api-docs mdx-pages next-build",
+    "build": "npm-run-all create-env create-api-docs mdx-pages scss-lookup next-build",
     "start": "next start",
     "clean-static": "rm -rf .turbo .next node_modules",
     "clean": "npm-run-all mdx-pages-clean clean-static",
