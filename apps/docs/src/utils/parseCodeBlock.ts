@@ -86,6 +86,9 @@ export async function parseCodeBlock(
         case "styles":
           scssModulesPaths = value.split(",");
           break;
+        case "hotReload":
+          // this is used to force hot reloading when scss modules exist
+          break;
         default:
           throw new Error(`Unsupported code property: ${name}`);
       }

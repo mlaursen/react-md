@@ -73,6 +73,9 @@ export async function HighlightedCodeBlock(
   if (tsCode && scssModules) {
     return (
       <FullDemoEditor
+        // add the key so that changing the code in an mdx page will correctly
+        // update the preview in dev mode
+        key={tsCode.ts}
         {...tsCode}
         preview={previewOptions}
         scssModules={scssModules}

@@ -51,6 +51,9 @@ async function insertImportedCode(options: FixOptions): Promise<void> {
     phone && "phone",
     fileName && `fileName="${fileName}"`,
     styles.length > 0 && `styles="${styles.join(",")}"`,
+    process.env.NODE_ENV !== "production" &&
+      styles.length &&
+      `hotReload="${Date.now()}"`,
   ]
     .filter(Boolean)
     .join(" ");
