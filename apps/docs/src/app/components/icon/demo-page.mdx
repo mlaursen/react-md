@@ -1,0 +1,236 @@
+# Icon
+
+Icons can be used to represent actions and information in a condensed form. They
+should normally be accompanied with screenreader accessible text and/or a tooltip.
+
+> !Info! Check out the [material icons and symbols](/components/material-icons-and-symbols)
+> page to see all available icons from Material Design via the
+> `@react-md/material-icons` package.
+
+# Icon Theme
+
+The icon can use all the different theme colors through the `theme` prop.
+
+```tsx
+// preview editable
+import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
+import { type ReactElement } from "react";
+
+export default function IconTheme(): ReactElement {
+  return (
+    <>
+      <FavoriteIcon theme="primary" />
+      <FavoriteIcon theme="secondary" />
+      <FavoriteIcon theme="warning" />
+      <FavoriteIcon theme="success" />
+      <FavoriteIcon theme="error" />
+      <FavoriteIcon theme="text-primary" />
+      <FavoriteIcon theme="text-secondary" />
+      <FavoriteIcon theme="text-hint" />
+      <FavoriteIcon theme="text-disabled" />
+    </>
+  );
+}
+
+```
+
+
+# Icon Size
+
+The icon can be sized as: `normal` (default) or `dense` out of the box. Set `dense` to `true`
+to render at a slightly smaller size.
+
+The icon's size will also automatically scale to the current `font-size` when set directly
+or can be configured using the [icon-set-var](/sassdoc/icon#mixin-set-var) mixin:
+
+```scss
+@use "everything";
+
+.container {
+  @include everything.icon-set-var(size, 2rem);
+}
+```
+
+```tsx
+// preview editable
+import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
+import { type ReactElement } from "react";
+
+export default function IconSize(): ReactElement {
+  return (
+    <>
+      <FavoriteIcon dense />
+      <FavoriteIcon />
+      <FavoriteIcon style={{ fontSize: "2rem" }} />
+    </>
+  );
+}
+
+```
+
+
+# Custom Font Icons
+
+The `FontIcon` component can be used to render icons that have been created as web fonts. It
+defaults to Material Icons but can be configured by using the `iconClassName` prop.
+
+```tsx
+// preview editable
+import { FontIcon } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function FontAwesomeExample(): ReactElement {
+  return (
+    <>
+      <FontIcon iconClassName="fas fa-arrows-spin" />
+      <FontIcon iconClassName="far fa-star" theme="secondary" />
+    </>
+  );
+}
+
+```
+
+
+# Custom SVG Icons
+
+Custom SVG icons can be created by using the `SVGIcon` component and pasting the
+svg contents as `children`. Here is the `AbcIcon` from Material Icons for
+example:
+
+```tsx
+import { forwardRef } from "react";
+import type { SVGIconProps } from "@react-md/core";
+import { SVGIcon } from "@react-md/core";
+
+export default forwardRef<SVGSVGElement, SVGIconProps>(
+  function AbcIcon(props, ref) {
+    return (
+      <SVGIcon {...props} ref={ref}>
+        <path d="M21 11h-1.5v-.5h-2v3h2V13H21v1c0 .55-.45 1-1 1h-3c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1h3c.55 0 1 .45 1 1v1zM8 10v5H6.5v-1.5h-2V15H3v-5c0-.55.45-1 1-1h3c.55 0 1 .45 1 1zm-1.5.5h-2V12h2v-1.5zm7 1.5c.55 0 1 .45 1 1v1c0 .55-.45 1-1 1h-4V9h4c.55 0 1 .45 1 1v1c0 .55-.45 1-1 1zM11 10.5v.75h2v-.75h-2zm2 2.25h-2v.75h2v-.75z" />
+      </SVGIcon>
+    );
+  }
+);
+```
+
+## Creating Icons Programmatically
+
+Since icons might have specific branding for the company and provided as svgs
+from designers, they could also be created by running a script. The steps would
+normally be:
+
+- Download the raw `.svg`s that has been exported from some design program
+- Move the raw `.svg`s into a common folder that can be part of source control
+- Run the `.svg` through [svgo](https://github.com/svg/svgo) to minify and
+  optimize the icon
+- Extract the svg contents to create an icon component
+
+Here is an example that could be used but will need to be modified depending on
+the svg exports.
+
+```tsx
+// fileName="createIcons.ts"
+/* eslint-disable no-console */
+import lodash from "lodash";
+import { mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
+import { join } from "node:path";
+import { format } from "prettier";
+import { optimize } from "svgo";
+
+const SVGS_PATH = join("src", "svgs");
+const ICONS_PATH = join("src", "icons");
+
+const CLOSING_TAG_LENGTH = "</svg>".length;
+
+async function run(): Promise<void> {
+  await rm(ICONS_PATH, { recursive: true, force: true });
+  await mkdir(ICONS_PATH);
+
+  const svgs = await readdir(SVGS_PATH);
+  await Promise.all(
+    svgs.map(async (svgPath) => {
+      const iconName = svgPath.replace(".svg", "");
+      const componentName = lodash.upperFirst(
+        lodash.camelCase(svgPath.replace(".svg", "Icon")),
+      );
+      const outputPath = join(ICONS_PATH, `${componentName}.tsx`);
+
+      // get the raw svg contents and optimize it through svgo
+      const rawSvgContents = await readFile(svgPath, "utf8");
+      const optimized = optimize(rawSvgContents, {
+        path: svgPath,
+        multipass: true,
+        plugins: [
+          {
+            name: "preset-default",
+            params: {
+              overrides: {
+                removeUselessStrokeAndFill: {
+                  removeNone: true,
+                },
+              },
+            },
+          },
+          "prefixIds",
+          "removeDimensions",
+        ],
+      }).data;
+
+      const contentsStart = optimized.indexOf(">") + 1;
+      // extract the viewBox from the icon since it most likely won't display
+      // correctly otherwise
+      const [, viewBox] =
+        optimized
+          .substring(0, contentsStart)
+          .match(/viewBox="((\d+\s?){4})"/) || [];
+      if (!viewBox) {
+        console.error(`Unable to find a viewbox for: ${svgPath}`);
+        process.exit(1);
+      }
+
+      // remove the `<svg ...>` and `</svg>` from the optimized code to get the
+      // contents to render in the `<SVGIcon>`
+      const contents = optimized
+        .substring(contentsStart, CLOSING_TAG_LENGTH)
+        // convert _some_ inline styles for React
+        .replace(
+          /style="mix-blend-mode:([a-z]+)"/g,
+          "style={{ mixBlendMode: '$1' }}",
+        )
+        // converts kebab-cased properties and colon:cased poverties to
+        // camelCase for react
+        .replace(
+          /([a-z]+)[-:]([-:a-z]+)=/g,
+          (_match, prefix, suffix) =>
+            `${prefix}${lodash.upperFirst(lodash.camelCase(suffix))}`,
+        );
+
+      const iconCode = `import { SVGIcon, type SVGIcon } from "@react-md/core";
+import { forwardRef } from "react";
+
+export const ${componentName} = forwardRef<SVGSVGElement, SVGIconProps>(function ${componentName}(props, ref) {
+  return (
+    <SVGIcon
+      {...props}
+      ref={ref}
+      data-icon="${iconName}"
+      viewBox="${viewBox}"
+    >
+      ${contents}
+    </SVGIcon>
+  );
+})
+`;
+      const formattedIconCode = await format(iconCode, {
+        parser: "typescript",
+      });
+
+      await writeFile(outputPath, formattedIconCode);
+    }),
+  );
+}
+
+run();
+
+```
+

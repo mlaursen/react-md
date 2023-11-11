@@ -1,0 +1,306 @@
+# Dialog
+
+Dialogs inform users about a task and can contain critical information, require
+decisions, or involve multiple tasks.
+
+A dialog is a type of modal window that appears in front of app content to
+provide critical information or ask for a decision. Dialogs disable all app
+functionality when they appear, and remain on screen until confirmed, dismissed,
+or a required action has been taken.
+
+# Simple Example
+
+A dialog can be created using the `Dialog`, `DialogHeader`, `DialogTitle`,
+`DialogContent`, and `DialogFooter` components. The `Dialog` is a controlled
+component requiring a `visible` state, `onRequestClose` function to close the
+dialog, and either an `aria-label` or `aria-labelledby` for accessibility.
+
+A common pattern is to set the `aria-labelledby` to the `DialogTitle` since the
+title would normally describe the purpose of the dialog.
+
+```tsx
+// preview editable
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  Typography,
+  useToggle,
+} from "@react-md/core";
+import { useId, type ReactElement } from "react";
+
+export default function SimpleExample(): ReactElement {
+  const {
+    toggled: visible,
+    enable: showDialog,
+    disable: hideDialog,
+  } = useToggle(false);
+  const titleId = useId();
+
+  return (
+    <>
+      <Button onClick={showDialog}>Show</Button>
+      <Dialog
+        aria-labelledby={titleId}
+        visible={visible}
+        onRequestClose={hideDialog}
+      >
+        <DialogHeader>
+          <DialogTitle id={titleId}>Simple Dialog</DialogTitle>
+        </DialogHeader>
+        <DialogContent>
+          <Typography margin="bottom">
+            This is some text in a dialog.
+          </Typography>
+        </DialogContent>
+        <DialogFooter>
+          <Button onClick={hideDialog}>Close</Button>
+        </DialogFooter>
+      </Dialog>
+    </>
+  );
+}
+
+```
+
+
+## Full Page Dialog
+
+A dialog can span the entire viewport by setting the `type` to `"full-page"`.
+
+```tsx
+// preview editable
+import {
+  AppBar,
+  AppBarTitle,
+  Button,
+  Dialog,
+  DialogContent,
+  Typography,
+  useToggle,
+} from "@react-md/core";
+import CloseIcon from "@react-md/material-icons/CloseIcon";
+import { useId, type ReactElement } from "react";
+
+export default function FullPageDialogExample(): ReactElement {
+  const titleId = useId();
+  const {
+    toggled: visible,
+    enable: showDialog,
+    disable: hideDialog,
+  } = useToggle(false);
+
+  return (
+    <>
+      <Button onClick={showDialog}>Show</Button>
+      <Dialog
+        aria-labelledby={titleId}
+        type="full-page"
+        visible={visible}
+        onRequestClose={hideDialog}
+      >
+        <AppBar>
+          <Button aria-label="Close" onClick={hideDialog} buttonType="icon">
+            <CloseIcon />
+          </Button>
+          <AppBarTitle id={titleId}>Simple Full Page Dialog</AppBarTitle>
+        </AppBar>
+        <DialogContent>
+          <Typography margin="none">This is some text in a dialog.</Typography>
+        </DialogContent>
+      </Dialog>
+    </>
+  );
+}
+
+```
+
+
+# Modal Dialog
+
+The default behavior for the dialog is to allow the user to click the overlay to
+close the dialog. If the user should be forced to interact with the modal to
+close it, enable the `modal` prop.
+
+When the `modal` prop is enabled, the `role` should normally switch to an
+[alertdialog](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/alertdialog_role)
+to increase the accessibility. An `aria-describedby` should also be set on the
+dialog to describe the alert.
+
+```tsx
+// preview editable
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  Typography,
+  useToggle,
+} from "@react-md/core";
+import { useId, type ReactElement } from "react";
+
+export default function ModalDialogExample(): ReactElement {
+  const {
+    toggled: visible,
+    enable: showDialog,
+    disable: hideDialog,
+  } = useToggle(false);
+  const titleId = useId();
+  const descriptionId = useId();
+
+  return (
+    <>
+      <Button onClick={showDialog}>Show</Button>
+      <Dialog
+        aria-labelledby={titleId}
+        aria-describedby={descriptionId}
+        role="alertdialog"
+        modal
+        visible={visible}
+        onRequestClose={hideDialog}
+      >
+        <DialogHeader>
+          <DialogTitle id={titleId}>
+            Your session is about to expire
+          </DialogTitle>
+        </DialogHeader>
+        <DialogContent>
+          <Typography id={descriptionId} margin="none">
+            To extend your session, click the OK button
+          </Typography>
+        </DialogContent>
+        <DialogFooter>
+          <Button onClick={hideDialog}>OK</Button>
+        </DialogFooter>
+      </Dialog>
+    </>
+  );
+}
+
+```
+
+
+# Setting the Initial Focus
+
+When the dialog gains visibility, the current focus will move to the dialog
+itself and trap focus within the dialog. If another element in the dialog should
+gain focus instead, enable the `autoFocus` prop on that element.
+
+```tsx
+// preview editable
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  Typography,
+  useToggle,
+} from "@react-md/core";
+import { useId, type ReactElement } from "react";
+
+export default function SettingInitialFocusExample(): ReactElement {
+  const titleId = useId();
+  const {
+    toggled: visible,
+    enable: showDialog,
+    disable: hideDialog,
+  } = useToggle(false);
+
+  return (
+    <>
+      <Button onClick={showDialog}>Show</Button>
+      <Dialog
+        visible={visible}
+        onRequestClose={hideDialog}
+        aria-labelledby={titleId}
+      >
+        <DialogHeader>
+          <DialogTitle id={titleId}>Simple Dialog</DialogTitle>
+        </DialogHeader>
+        <DialogContent>
+          <Typography margin="bottom">
+            This is some text in a dialog.
+          </Typography>
+        </DialogContent>
+        <DialogFooter>
+          <Button autoFocus onClick={hideDialog}>
+            Close
+          </Button>
+        </DialogFooter>
+      </Dialog>
+    </>
+  );
+}
+
+```
+
+
+# Custom Transition
+
+The `Dialog` uses the [useCSSTransition](/hooks/use-css-transition) to handle
+the visibility transitions and can be customized by providing the `timeout` and
+`classNames` props.
+
+```tsx
+// preview editable styles="src/app/components/dialog/CustomTransitionExample.module.scss"
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  Typography,
+  useToggle,
+} from "@react-md/core";
+import { useId, type ReactElement } from "react";
+import styles from "./CustomTransitionExample.module.scss";
+
+export default function CustomTransitionExample(): ReactElement {
+  const {
+    toggled: visible,
+    enable: showDialog,
+    disable: hideDialog,
+  } = useToggle(false);
+  const titleId = useId();
+
+  return (
+    <>
+      <Button onClick={showDialog}>Show</Button>
+      <Dialog
+        aria-labelledby={titleId}
+        visible={visible}
+        onRequestClose={hideDialog}
+        className={styles.dialog}
+        classNames={{
+          enter: styles.enter,
+          enterActive: styles.enterActive,
+          exit: styles.exit,
+          exitActive: styles.exitActive,
+        }}
+      >
+        <DialogHeader>
+          <DialogTitle id={titleId}>Simple Dialog</DialogTitle>
+        </DialogHeader>
+        <DialogContent>
+          <Typography margin="bottom">
+            This is some text in a dialog.
+          </Typography>
+        </DialogContent>
+        <DialogFooter>
+          <Button onClick={hideDialog}>Close</Button>
+        </DialogFooter>
+      </Dialog>
+    </>
+  );
+}
+
+```
+

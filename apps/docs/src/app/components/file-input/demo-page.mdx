@@ -1,0 +1,148 @@
+# File Input
+
+A `FileInput` is used to prompt a user to select a single or multiple files which can be:
+
+- Previewed client side
+- Sent to the server for processing
+
+# Simple File Input
+
+A `FileInput` includes all the styles from the [Button component](/components/button)
+but defaults to a primary themed icon button with an accessible label of
+`Upload` and an upload icon. If `children` are passed to the `FileInput`, it
+will be rendered as a primary themed text button with an upload icon before the
+`children`.
+
+> !Warn! Unlike the native `<input type="file">`, the current selected file will not be shown.
+> Check out the examples below to see how to control the value.
+
+```tsx
+// preview editable
+import { FileInput, Form, box } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function SimpleFileInput(): ReactElement {
+  return (
+    <Form className={box()}>
+      <FileInput />
+      <FileInput theme="secondary" buttonType="icon-square" />
+      <FileInput theme="success" themeType="outline" iconSize="small" />
+      <FileInput>Upload</FileInput>
+      <FileInput iconAfter>Upload</FileInput>
+      <FileInput disabled />
+    </Form>
+  );
+}
+
+```
+
+
+## Custom Icon Label
+
+A custom label for the icon-only file input can be configured by providing one
+of: `srOnlyLabel`, `aria-label`, `aria-labelledby`.
+
+```tsx
+// preview editable
+import { FileInput, Form, SrOnly, box } from "@react-md/core";
+import { useId, type ReactElement } from "react";
+
+export default function CustomIconLabel(): ReactElement {
+  const labelId = useId();
+  return (
+    <Form className={box({ stacked: true })}>
+      <FileInput srOnlyLabel="Upload file" />
+      <FileInput aria-label="Upload SVG" accept="*.svg" />
+      <FileInput aria-labelledby={labelId} />
+      <SrOnly id={labelId}>Upload File</SrOnly>
+    </Form>
+  );
+}
+
+```
+
+
+## Custom Icon
+
+The `FileInput` component will use the
+[upload](/customization/icon-config#upload) from the `ICON_CONFIG` by default.
+The icon can be configured globally by following the [customizing icons](/customization/icon-config)
+guide or adding the icon as the `icon` prop.
+
+```tsx
+// preview editable
+import { FileInput, Form, box } from "@react-md/core";
+import CloudUploadOutlinedIcon from "@react-md/material-icons/CloudUploadOutlinedIcon";
+import { type ReactElement } from "react";
+
+export default function CustomIcon(): ReactElement {
+  return (
+    <Form className={box()}>
+      <FileInput icon={<CloudUploadOutlinedIcon />} />
+    </Form>
+  );
+}
+
+```
+
+
+# Responsive File Input
+
+Just like a [responsive button](/components/button#responsive-button), a `FileInput`
+can be rendered as an icon only on phones and include a label on larger screens.
+
+```tsx
+// preview editable
+import { FileInput, Form, box } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function ResponsiveFileInput(): ReactElement {
+  return (
+    <Form className={box()}>
+      <FileInput responsive />
+      <FileInput responsive iconAfter />
+    </Form>
+  );
+}
+
+```
+
+
+# Client Side Validation and Previews
+
+Check out the [useFileUpload](/hooks/use-file-upload) documentation for more
+information around how to implement client side file uploads to handle:
+
+- validation of file types
+- validation of file size (including total select size for multiple files)
+- previewing files
+
+## Controlled File Input
+
+If the `useFileUpload` is too complex for the current use case, the value can be
+controlled like normal input elements.
+
+```tsx
+// preview editable
+"use client";
+import { FileInput, Form, Typography, box } from "@react-md/core";
+import { useState, type ReactElement } from "react";
+
+export default function ControlledFileInput(): ReactElement {
+  const [value, setValue] = useState("");
+  return (
+    <Form className={box({ stacked: true, align: "start", fullWidth: true })}>
+      <FileInput
+        value={value}
+        onChange={(event) => setValue(event.currentTarget.value)}
+      />
+      <Typography margin="top">The current value is:</Typography>
+      <Typography as="code" margin="none">
+        {value || "No File Selected"}
+      </Typography>
+    </Form>
+  );
+}
+
+```
+

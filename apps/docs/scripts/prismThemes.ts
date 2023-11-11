@@ -1,5 +1,5 @@
 import { alphaNumericSort } from "@react-md/core";
-import { globSync } from "glob";
+import { glob, globSync } from "glob";
 import { existsSync } from "node:fs";
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
@@ -10,6 +10,7 @@ import postcssSorting from "postcss-sorting";
 import { format } from "../src/utils/format.js";
 import { pascalCase } from "../src/utils/strings.js";
 import { GENERATED_FILE_BANNER } from "./constants.js";
+import { getScriptFlags } from "./utils/getScriptFlags.js";
 
 const prismThemesFolder = resolve(process.cwd(), "src", "prism-themes");
 const themesPath = resolve(prismThemesFolder, "themes.ts");
@@ -79,8 +80,16 @@ const INLINE_CODE_SELECTOR = ':not(pre) > code[class*="language-"]';
 const PREFIX_OR_EXTENSION_REGEXP =
   /-moz|\.(highlight|diff-highlight|line-highlight|code-toolbar|command-line|rainbow-braces|prism-previewer|line-numbers)/;
 
-if (process.argv.includes("--clean") && existsSync(prismThemesFolder)) {
-  await rm(prismThemesFolder, { recursive: true });
+const { isClean, isCleanOnly } = getScriptFlags();
+if (isClean) {
+  const files = await glob(`${prismThemesFolder}/**/*`, {
+    ignore: ["**/VimSolarizedDark*"],
+  });
+  await Promise.all(files.map((file) => rm(file)));
+
+  if (isCleanOnly) {
+    process.exit(0);
+  }
 }
 if (!existsSync(prismThemesFolder)) {
   await mkdir(prismThemesFolder);

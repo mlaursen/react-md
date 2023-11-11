@@ -1,0 +1,800 @@
+# Slider
+
+Sliders allow users to view and select a value (or range) from the range along a
+bar. They’re ideal for adjusting settings such as volume and brightness, or for
+applying image filters.
+
+Sliders can use icons on both ends of the bar to represent a numeric or relative
+scale. The range of values or the nature of the values, such as volume change,
+can be communicated with icons.
+
+# Horizontal Slider
+
+The `Slider` is a fully controlled component requiring a `value` and a
+`setValue` function. `react-md` provides a hook to help implement this
+functionality for most use cases: `useSlider`.
+
+```tsx
+// preview editable
+"use client";
+import { Fieldset, Form, Legend, Slider, box, useSlider } from "@react-md/core";
+import { useId, type ReactElement } from "react";
+
+export default function HorizontalSlider(): ReactElement {
+  const legendId = useId();
+  const slider = useSlider();
+  // const { value, setValue, min, max, step } = slider;
+
+  return (
+    <Form className={box({ fullWidth: true })}>
+      <Fieldset fullWidth>
+        <Legend id={legendId}>Slider</Legend>
+        <Slider aria-labelledby={legendId} {...slider} />
+      </Fieldset>
+    </Form>
+  );
+}
+
+```
+
+
+## With Addons
+
+Icons or other components can be rendered inline with the `Slider` by passing
+them to the `beforeAddon` and `afterAddon` props.
+
+```tsx
+// preview editable
+"use client";
+import { Fieldset, Form, Legend, Slider, box, useSlider } from "@react-md/core";
+import VolumeOffOutlinedIcon from "@react-md/material-icons/VolumeOffOutlinedIcon";
+import VolumeUpOutlinedIcon from "@react-md/material-icons/VolumeUpOutlinedIcon";
+import { useId, type ReactElement } from "react";
+
+export default function HorizontalSliderWithAddons(): ReactElement {
+  const legendId = useId();
+  const slider = useSlider();
+  // const { value, setValue, min, max, step } = slider;
+
+  return (
+    <Form className={box({ fullWidth: true })}>
+      <Fieldset fullWidth>
+        <Legend id={legendId}>Volume</Legend>
+        <Slider
+          aria-labelledby={legendId}
+          {...slider}
+          beforeAddon={<VolumeOffOutlinedIcon />}
+          afterAddon={<VolumeUpOutlinedIcon />}
+        />
+      </Fieldset>
+    </Form>
+  );
+}
+
+```
+
+
+# Configuring useSlider
+
+The `useSlider` hook can configure the `min`, `max`, `step`, and `defaultValue`.
+
+```tsx
+// preview editable
+"use client";
+import {
+  Fieldset,
+  Form,
+  Legend,
+  Slider,
+  box,
+  // getRangeDefaultValue,
+  useSlider,
+} from "@react-md/core";
+import { useId, type ReactElement } from "react";
+
+// these are the defaults
+const min = 0;
+const max = 100;
+const step = 1;
+
+export default function ConfiguringUseSlider(): ReactElement {
+  const legendId = useId();
+  const slider = useSlider({
+    min,
+    max,
+    step,
+    defaultValue: 30,
+    // this is the default.. defaultValue
+    // defaultValue: () =>
+    //   getRangeDefaultValue({
+    //     min: 0,
+    //     max: 100,
+    //     step: 1,
+    //   }),
+  });
+  // const { value, setValue, min, max, step } = slider;
+
+  return (
+    <Form className={box({ fullWidth: true })}>
+      <Fieldset fullWidth>
+        <Legend id={legendId}>Slider</Legend>
+        <Slider aria-labelledby={legendId} {...slider} />
+      </Fieldset>
+    </Form>
+  );
+}
+
+```
+
+
+# Vertical Slider
+
+Set the `vertical` prop to `true` to render a `Slider` vertically instead of
+horizontally. The default height will be `$slider-vertical-size` (`15rem`) but
+can be configured by setting `--rmd-slider-vertical-size` or an inline `height`
+style.
+
+```tsx
+// preview editable
+"use client";
+import { Fieldset, Form, Legend, Slider, box, useSlider } from "@react-md/core";
+import { useId, type ReactElement } from "react";
+
+export default function VerticalSlider(): ReactElement {
+  const slider = useSlider();
+  const legendId = useId();
+
+  return (
+    <Form
+      className={box({ fullWidth: true })}
+      style={
+        {
+          // "--rmd-slider-vertical-size": "15rem",
+        }
+      }
+    >
+      <Fieldset fullWidth>
+        <Legend id={legendId}>Slider</Legend>
+        <Slider aria-labelledby={legendId} {...slider} vertical />
+      </Fieldset>
+    </Form>
+  );
+}
+
+```
+
+
+## With Addons
+
+Icons or other components can be rendered above or below the vertical `Slider`
+by passing them to the `beforeAddon` and `afterAddon` props.
+
+```tsx
+// preview editable
+"use client";
+import { Fieldset, Form, Legend, Slider, box, useSlider } from "@react-md/core";
+import VolumeOffOutlinedIcon from "@react-md/material-icons/VolumeOffOutlinedIcon";
+import VolumeUpOutlinedIcon from "@react-md/material-icons/VolumeUpOutlinedIcon";
+import { useId, type ReactElement } from "react";
+
+export default function VerticalSliderWithAddons(): ReactElement {
+  const legendId = useId();
+  const slider = useSlider();
+  // const { value, setValue, min, max, step } = slider;
+
+  return (
+    <Form className={box({ fullWidth: true })}>
+      <Fieldset fullWidth>
+        <Legend id={legendId}>Volume</Legend>
+        <Slider
+          aria-labelledby={legendId}
+          {...slider}
+          beforeAddon={<VolumeOffOutlinedIcon />}
+          afterAddon={<VolumeUpOutlinedIcon />}
+          vertical
+        />
+      </Fieldset>
+    </Form>
+  );
+}
+
+```
+
+
+# Slider States
+
+Unlike other form components, the `Slider` only supports a `disabled` state.
+
+```tsx
+// preview editable
+"use client";
+import { Fieldset, Form, Legend, Slider, box, useSlider } from "@react-md/core";
+import { useId, type ReactElement } from "react";
+
+export default function SliderStates(): ReactElement {
+  const legendId1 = useId();
+  const legendId2 = useId();
+  const slider = useSlider();
+  // const { value, setValue, min, max, step } = slider;
+
+  return (
+    <Form className={box({ fullWidth: true })}>
+      <Fieldset fullWidth>
+        <Legend id={legendId1}>Horizontal Slider</Legend>
+        <Slider aria-labelledby={legendId1} {...slider} disabled />
+      </Fieldset>
+      <Fieldset fullWidth>
+        <Legend id={legendId2}>Vertical Slider</Legend>
+        <Slider aria-labelledby={legendId2} {...slider} disabled vertical />
+      </Fieldset>
+    </Form>
+  );
+}
+
+```
+
+
+# Range Slider
+
+The `Slider` can support rendering with two thumbs that represent a range of
+values. The easiest way is to control the value with the `useRangeSlider` hook.
+
+```tsx
+// preview editable
+"use client";
+import {
+  Fieldset,
+  Form,
+  Legend,
+  Slider,
+  box,
+  useRangeSlider,
+} from "@react-md/core";
+import { useId, type ReactElement } from "react";
+
+export default function RangeSlider(): ReactElement {
+  const legendId = useId();
+  const slider = useRangeSlider();
+
+  // these are the defaults
+  // const min = 0;
+  // const max = 100;
+  // const step = 1;
+  // const slider = useRangeSlider({
+  //   min,
+  //   max,
+  //   step,
+  //   defaultValue: [min, max],
+  // });
+  // const { rangeValue, min, max, step, setRangeValue } = slider;
+  // const [minPrice, maxPrice] = rangeValue;
+
+  return (
+    <Form className={box({ fullWidth: true })}>
+      <Fieldset fullWidth>
+        <Legend id={legendId}>Slider</Legend>
+        <Slider aria-labelledby={legendId} {...slider} />
+      </Fieldset>
+    </Form>
+  );
+}
+
+```
+
+
+## Vertical Range Slider
+
+```tsx
+// preview editable
+"use client";
+import {
+  Fieldset,
+  Form,
+  Legend,
+  Slider,
+  box,
+  useRangeSlider,
+} from "@react-md/core";
+import { useId, type ReactElement } from "react";
+
+// these are the defaults
+const min = 0;
+const max = 100;
+const step = 1;
+export default function VerticalRangeSlider(): ReactElement {
+  const legendId = useId();
+
+  const slider = useRangeSlider({
+    min,
+    max,
+    step,
+    defaultValue: [20, 75],
+  });
+  // const { rangeValue, min, max, step, setRangeValue } = slider;
+  // const [minPrice, maxPrice] = rangeValue;
+
+  return (
+    <Form className={box({ fullWidth: true })}>
+      <Fieldset fullWidth>
+        <Legend id={legendId}>Slider</Legend>
+        <Slider aria-labelledby={legendId} {...slider} vertical />
+      </Fieldset>
+    </Form>
+  );
+}
+
+```
+
+
+# Discrete Slider
+
+The current value can be shown in a tooltip by enabling the `discrete` prop
+which only appears while dragging or focused by default. The tooltip visibility
+can be controlled by the `tooltipVisibility` prop as one of the following
+values:
+
+- `"auto"` (default) - only appears while dragging or focused
+- `"hover"` - also appears while hovering the thumb
+- `"always"` - always visible
+
+```tsx
+// preview editable
+"use client";
+import {
+  Divider,
+  Fieldset,
+  Form,
+  Legend,
+  Slider,
+  Typography,
+  box,
+  useRangeSlider,
+  useSlider,
+} from "@react-md/core";
+import { useId, type ReactElement } from "react";
+
+export default function DiscreteSlider(): ReactElement {
+  const legendId1 = useId();
+  const legendId2 = useId();
+  const legendId3 = useId();
+  const legendId4 = useId();
+  const legendId5 = useId();
+  const legendId6 = useId();
+
+  const slider = useSlider({ defaultValue: 30 });
+  const rangeSlider = useRangeSlider({ defaultValue: [30, 50] });
+
+  return (
+    <Form className={box({ fullWidth: true })}>
+      <Typography type="headline-5" margin="none">
+        Slider
+      </Typography>
+      <Fieldset fullWidth>
+        <Legend id={legendId1}>Auto</Legend>
+        <Slider
+          aria-labelledby={legendId1}
+          {...slider}
+          discrete
+          tooltipVisibility="auto"
+        />
+      </Fieldset>
+      <Fieldset fullWidth>
+        <Legend id={legendId2}>Hover</Legend>
+        <Slider
+          aria-labelledby={legendId2}
+          {...slider}
+          discrete
+          tooltipVisibility="hover"
+        />
+      </Fieldset>
+      <Fieldset fullWidth>
+        <Legend id={legendId3}>Always</Legend>
+        <Slider
+          aria-labelledby={legendId3}
+          {...slider}
+          discrete
+          tooltipVisibility="always"
+        />
+      </Fieldset>
+      <Divider />
+      <Typography type="headline-5" margin="none">
+        Range Slider
+      </Typography>
+      <Fieldset fullWidth>
+        <Legend id={legendId4}>Auto</Legend>
+        <Slider
+          aria-labelledby={legendId4}
+          {...rangeSlider}
+          discrete
+          tooltipVisibility="auto"
+        />
+      </Fieldset>
+      <Fieldset fullWidth>
+        <Legend id={legendId5}>Hover</Legend>
+        <Slider
+          aria-labelledby={legendId5}
+          {...rangeSlider}
+          discrete
+          tooltipVisibility="hover"
+        />
+      </Fieldset>
+      <Fieldset fullWidth>
+        <Legend id={legendId6}>Always</Legend>
+        <Slider
+          aria-labelledby={legendId6}
+          {...rangeSlider}
+          discrete
+          tooltipVisibility="always"
+        />
+      </Fieldset>
+    </Form>
+  );
+}
+
+```
+
+
+## Customizing the Discrete Slider Tooltip
+
+The discrete slider's tooltip props can be customized by using the `getTooltipProps`
+function and the children can be customized by the `getTooltipChildren`
+function.
+
+```tsx
+// preview editable
+"use client";
+import {
+  Fieldset,
+  Form,
+  Legend,
+  Slider,
+  box,
+  cssUtils,
+  useRangeSlider,
+  useSlider,
+} from "@react-md/core";
+import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
+import { useId, type ReactElement } from "react";
+
+const vertical = false;
+
+export default function CustomizingDiscreteSliderTooltip(): ReactElement {
+  const legendId1 = useId();
+  const legendId2 = useId();
+
+  const slider = useSlider({ min: 0, max: 10, defaultValue: 3 });
+  const rangeSlider = useRangeSlider({
+    min: 0,
+    max: 10,
+    defaultValue: [3, 5],
+  });
+
+  return (
+    <Form
+      className={box({
+        align: "stretch",
+        stacked: true,
+        fullWidth: true,
+      })}
+    >
+      <Fieldset fullWidth>
+        <Legend id={legendId1}>Slider</Legend>
+        <Slider
+          aria-labelledby={legendId1}
+          discrete
+          {...slider}
+          vertical={vertical}
+          tooltipVisibility="always"
+          getTooltipProps={(value) => ({
+            className: cssUtils({
+              backgroundColor:
+                value <= 3 ? "warning" : value >= 8 ? "error" : undefined,
+            }),
+          })}
+          getTooltipChildren={(value) => `${value}°`}
+        />
+      </Fieldset>
+      <Fieldset fullWidth>
+        <Legend id={legendId2}>Range Slider</Legend>
+        <Slider
+          aria-labelledby={legendId2}
+          discrete
+          {...rangeSlider}
+          vertical={vertical}
+          tooltipVisibility="always"
+          getTooltipChildren={(value, isFirstThumb) => (
+            <span
+              className={cssUtils({
+                className: box({
+                  disablePadding: true,
+                  reversed: !isFirstThumb,
+                  disableWrap: true,
+                }),
+                fontStyle: isFirstThumb ? "italic" : undefined,
+                fontWeight: isFirstThumb ? undefined : "bold",
+              })}
+            >
+              <FavoriteIcon />
+              {value}
+            </span>
+          )}
+        />
+      </Fieldset>
+    </Form>
+  );
+}
+
+```
+
+
+# Slider Marks
+
+Marks can be added to help show specific values within the `Slider` by using the
+`marks` prop. When set to `true`, a mark will be added for each step within the
+range.
+
+```tsx
+// preview editable
+"use client";
+import {
+  Fieldset,
+  Form,
+  Legend,
+  Slider,
+  box,
+  useRangeSlider,
+  useSlider,
+} from "@react-md/core";
+import { useId, type ReactElement } from "react";
+
+const vertical = false;
+
+export default function DiscreteSliderMarks(): ReactElement {
+  const legendId1 = useId();
+  const legendId2 = useId();
+  const slider = useSlider({ step: 10, defaultValue: 70 });
+  const rangeSlider = useRangeSlider({ step: 10, defaultValue: [40, 70] });
+
+  return (
+    <Form
+      style={{
+        "--rmd-box-gap": "3rem",
+        "--rmd-slider-vertical-size": "25rem",
+      }}
+      className={box({
+        align: "stretch",
+        stacked: true,
+        fullWidth: true,
+      })}
+    >
+      <Fieldset fullWidth>
+        <Legend id={legendId1}>Slider marks</Legend>
+        <Slider
+          aria-labelledby={legendId1}
+          discrete
+          {...slider}
+          marks
+          vertical={vertical}
+        />
+      </Fieldset>
+      <Fieldset fullWidth>
+        <Legend id={legendId2}>Range marks</Legend>
+        <Slider
+          aria-labelledby={legendId2}
+          discrete
+          {...rangeSlider}
+          marks
+          vertical={vertical}
+        />
+      </Fieldset>
+    </Form>
+  );
+}
+
+```
+
+
+## Customizing Slider Marks
+
+Marks can also be defined by providing a list of specific values within the
+range and an optional value for each mark. If marks need additional
+customization, the `getMarkLabelProps` can also be used.
+
+```tsx
+// preview editable
+"use client";
+import {
+  Fieldset,
+  Form,
+  Legend,
+  Slider,
+  box,
+  useRangeSlider,
+  useSlider,
+  type SliderValueMark,
+} from "@react-md/core";
+import { useId, type ReactElement } from "react";
+
+const marks: readonly SliderValueMark[] = [
+  { value: 0, label: `0°` },
+  { value: 10, label: `10°` },
+  { value: 20, label: `20°` },
+  { value: 30, label: `30°` },
+  { value: 40, label: `40°` },
+  { value: 50, label: `50°` },
+  { value: 60, label: `60°` },
+  { value: 70, label: `70°` },
+  { value: 80, label: `80°` },
+  { value: 90, label: `90°` },
+  { value: 100, label: `100°` },
+];
+
+const vertical = false;
+
+export default function CustomizingSliderMarks(): ReactElement {
+  const legendId1 = useId();
+  const legendId2 = useId();
+
+  const slider = useSlider({ step: 10, defaultValue: 70 });
+  const rangeSlider = useRangeSlider({ step: 10, defaultValue: [40, 70] });
+
+  return (
+    <Form
+      style={{
+        "--rmd-box-gap": "3rem",
+        "--rmd-slider-vertical-size": "25rem",
+      }}
+      className={box({
+        align: "stretch",
+        stacked: true,
+        fullWidth: true,
+      })}
+    >
+      <Fieldset fullWidth>
+        <Legend id={legendId1}>Custom marks</Legend>
+        <Slider
+          aria-labelledby={legendId1}
+          discrete
+          {...slider}
+          marks={marks}
+          vertical={vertical}
+          getTooltipChildren={(value) => `${value}°`}
+        />
+      </Fieldset>
+      <Fieldset fullWidth>
+        <Legend id={legendId2}>Range custom marks</Legend>
+        <Slider
+          aria-labelledby={legendId2}
+          discrete
+          {...rangeSlider}
+          marks
+          vertical={vertical}
+          getMarkLabelProps={({ value, offset: _offset, active: _active }) => {
+            if (value % 20 !== 0) {
+              return;
+            }
+
+            return {
+              children: `${value}°`,
+            };
+          }}
+        />
+      </Fieldset>
+    </Form>
+  );
+}
+
+```
+
+
+# Linked with a Text Field
+
+The `useSlider` hook is not required to control the state of a `Slider` and can
+be controlled as long as a `value` and `setValue` is provided. This allows the
+slider to be controlled alongside a `TextField` with the `useNumberField` hook
+or any other custom implementation.
+
+```tsx
+// preview editable
+"use client";
+import {
+  Form,
+  Slider,
+  TextField,
+  Typography,
+  box,
+  useNumberField,
+  type GetErrorMessage,
+} from "@react-md/core";
+import { useId, type ReactElement } from "react";
+
+const min = 0;
+const max = 255;
+const step = 1;
+const getErrorMessage: GetErrorMessage = (options) => {
+  const { validity } = options;
+  if (validity.rangeUnderflow || validity.rangeOverflow || validity.badInput) {
+    return `Must be a number between ${min} and ${max}.`;
+  }
+
+  return "";
+};
+
+export default function LinkedWithATextField(): ReactElement {
+  const { value, fieldProps, setState } = useNumberField({
+    min,
+    max,
+    name: "red",
+    defaultValue: 0,
+    getErrorMessage,
+  });
+  const labelId = useId();
+
+  return (
+    <Form className={box({ fullWidth: true })}>
+      <Slider
+        aria-labelledby={labelId}
+        style={{ alignItems: "flex-start" }}
+        min={min}
+        max={max}
+        step={step}
+        value={value}
+        setValue={(nextValue) => {
+          setState({
+            value:
+              typeof nextValue === "function" ? nextValue(value) : nextValue,
+            error: false,
+            errorMessage: "",
+          });
+        }}
+        beforeAddon={
+          <Typography
+            id={labelId}
+            as="span"
+            aria-label="Red"
+            style={{ lineHeight: "var(--rmd-slider-size, 2rem)" }}
+          >
+            R
+          </Typography>
+        }
+        afterAddon={
+          <TextField
+            {...fieldProps}
+            messageContainerProps={{
+              style: {
+                width: "15rem",
+              },
+            }}
+          />
+        }
+      />
+    </Form>
+  );
+}
+
+```
+
+
+# Accessibility
+
+The `Slider` follows the [slider](https://www.w3.org/WAI/ARIA/apg/patterns/slider/)
+and [range slider](https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/)
+guidelines. The single-thumb slider will required to be labelled with
+`aria-label` or `aria-labelledby` while the multi-thumb slider defaults to an
+`aria-label` of `"Min"` and `"Max"` which can be configured by the
+`minThumbLabel`/`minThumbLabelledBy` and `maxThumbLabel`/`maxThumbLabelledBy`
+props.
+
+In addition, the current slider value can be configured using
+[aria-valuetext](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-valuetext)
+to convert the value percentage into a human-readable text alternative using the
+`getValueText` prop.
+
+Once focused with a keyboard, the value can be updated by:
+
+- `ArrowUp` -> increase the value by the `step` amount
+- `ArrowDown` -> decrease the value by the `step` amount
+- `Home` -> set the value to the `min` amount
+- `End` -> set the value to the `max` amount
+- `PageUp` -> increase the value by the `jump` amount
+- `PageDown` -> decrease the value by the `jump` amount

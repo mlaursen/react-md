@@ -1,0 +1,45 @@
+# List
+
+Lists are continuous, vertical indexes of text or images that are normally interactable.
+
+# Simple List
+
+A list can be created using the `List` and `ListItem` components.
+
+```tsx
+// preview editable
+import { List, ListItem } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function SimpleListExample(): ReactElement {
+  return (
+    <List>
+      <ListItem>Item 1</ListItem>
+      <ListItem>Item 2</ListItem>
+      <ListItem>Item 3</ListItem>
+    </List>
+  );
+}
+
+```
+
+
+# Noninteractive List
+
+```tsx
+// preview editable
+import { List, ListItem } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function NoninteractiveListExample(): ReactElement {
+  return (
+    <List>
+      <ListItem presentational>Item 1</ListItem>
+      <ListItem presentational>Item 2</ListItem>
+      <ListItem presentational>Item 3</ListItem>
+    </List>
+  );
+}
+
+```
+

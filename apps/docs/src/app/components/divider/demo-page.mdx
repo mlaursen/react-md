@@ -1,0 +1,139 @@
+# Divider
+
+Dividers group and separate content within lists and page layouts. The divider
+is a thin rule, lightweight yet sufficient to distinguish content visually and
+spatially.
+
+# Simple Divider
+
+Create a divider using the `Divider` component.
+
+```tsx
+// preview editable
+import { Divider } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function SimpleDivider(): ReactElement {
+  return <Divider />;
+}
+
+```
+
+
+## Customizing Divider
+
+The color can be configured by the
+`react-md.$divider-light-theme-color`/`react-md.$divider-dark-theme-color`/`react-md.$divider-color`
+Sass variables or the `--rmd-divider-color` custom property. The default
+behavior will be to use the correct light or dark theme color.
+
+The height can be configured by the `react-md.$divider-size` Sass variable or
+`--rmd-divider-size` custom property.
+
+The spacing around the divider can be configured by the `react-md.$divider-spacing` Sass
+variable or the `--rmd-divider-spacing` custom property.
+
+```tsx
+// preview editable
+import { Divider, TextContainer, Typography } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function CustomizingDivider(): ReactElement {
+  return (
+    <TextContainer
+      style={{
+        // these two are the default values
+        "--rmd-divider-size": "0.0625rem",
+        "--rmd-divider-spacing": "0.25rem auto",
+
+        "--rmd-divider-color": "orange",
+      }}
+    >
+      <Typography>Here is some text to separate.</Typography>
+      <Divider />
+      <Typography>Second paragraph of text.</Typography>
+    </TextContainer>
+  );
+}
+
+```
+
+
+## Inset Divider
+
+Enable the `inset` prop to apply additional `margin-left` so it is inset with a
+list of items. The inset amount can be configured by the
+`react-md.$divider-inset` Sass variable or `--rmd-divider-inset` custom
+property.
+
+```tsx
+// preview editable
+import { Divider, List, ListItem } from "@react-md/core";
+import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
+import { type ReactElement } from "react";
+
+export default function InsetDivider(): ReactElement {
+  return (
+    <List
+      style={{
+        maxWidth: "30rem",
+        width: "100%",
+        // this is the default value
+        "--rmd-divider-inset": "4rem",
+      }}
+    >
+      <ListItem leftAddon={<FavoriteIcon />}>Item 1</ListItem>
+      <Divider />
+      <ListItem leftAddon={<FavoriteIcon />}>Item 2</ListItem>
+      <ListItem leftAddon={<FavoriteIcon />}>Item 3</ListItem>
+      <Divider inset />
+      <ListItem leftAddon={<FavoriteIcon />}>Item 4</ListItem>
+      <ListItem leftAddon={<FavoriteIcon />}>Item 5</ListItem>
+      <ListItem leftAddon={<FavoriteIcon />}>Item 6</ListItem>
+    </List>
+  );
+}
+
+```
+
+
+# Vertical Divider
+
+A divider can be rendered vertically instead of horizontally by enabling the
+`vertical` prop.
+
+The height will be set to `100%` but can be configured by setting the `height`
+through CSS or `--rmd-divider-max-size` custom property.
+
+The width can be configured by the `react-md.$divider-vertical-size` Sass
+variable or the `--rmd-divider-vertical-size` custom property.
+
+The margin can be configured by the `react-md.$divider-vertical-spacing` Sass
+variable or the `--rmd-divider-vertical-spacing` custom property.
+
+```tsx
+// preview editable
+import { AppBar, AppBarTitle, Divider } from "@react-md/core";
+import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
+import { type ReactElement } from "react";
+
+export default function VerticalDividerExample(): ReactElement {
+  return (
+    <AppBar
+      theme="surface"
+      style={{
+        // these are the defaults
+        "--rmd-divider-vertical-size": "0.125rem",
+        "--rmd-divider-vertical-spacing": "auto 0.25rem",
+        "--rmd-divider-max-size": "100%",
+      }}
+    >
+      <FavoriteIcon />
+      <Divider vertical />
+      <AppBarTitle>Title</AppBarTitle>
+    </AppBar>
+  );
+}
+
+```
+

@@ -1,0 +1,309 @@
+# Checkbox
+
+[Checkboxes](https://m2.material.io/components/checkboxes#usage) allow users to
+select one or more items from a set and can turn an option on or off. Use
+checkboxes to:
+
+- Select one or more options from a list
+- Present a list containing sub-selections
+- Turn an item on or off in a desktop environment
+
+# Simple Checkbox
+
+A checkbox can be created using the `Checkbox` component.
+
+```tsx
+// preview editable
+import { Checkbox, Form, box } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function SimpleCheckbox(): ReactElement {
+  return (
+    <Form className={box()}>
+      <Checkbox label="Label" />
+      <Checkbox label="Label" defaultChecked />
+      <Checkbox label="Disabled" disabled />
+    </Form>
+  );
+}
+
+```
+
+
+## Icon After Label
+
+The label can be placed before the checkbox icon by enabling the `iconAfter` prop.
+
+```tsx
+// preview editable
+import { Form, Checkbox, box } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function IconAfterLabel(): ReactElement {
+  return (
+    <Form className={box({ stacked: true, align: "start" })}>
+      <Checkbox value="b" name="iconAfter" label="Label" iconAfter />
+      <Checkbox value="a" name="iconAfter" label="Label" iconAfter />
+    </Form>
+  );
+}
+
+```
+
+
+## Stacked Checkbox
+
+The label can be stacked above or below the checkbox by enabling the `stacked` prop.
+
+```tsx
+// preview editable
+import { Form, Checkbox, box } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function StackedCheckbox(): ReactElement {
+  return (
+    <Form className={box({ stacked: true, align: "start" })}>
+      <Checkbox value="b" name="stacked" label="Label" stacked iconAfter />
+      <Checkbox value="a" name="stacked" label="Label" stacked />
+    </Form>
+  );
+}
+
+```
+
+
+# Checkbox Sizes
+
+The `Checkbox` has multiple sizes: `normal` (default), `small`, `dense`,
+and `large`. The size can also be set to `auto` which will update the checkbox
+to match the current font size.
+
+```tsx
+// preview editable
+import { Checkbox, Form, box } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function CheckboxSizes(): ReactElement {
+  return (
+    <Form className={box()}>
+      <Checkbox label="Small" size="small" />
+      <Checkbox label="Dense" size="dense" />
+      <Checkbox label="Normal" size="normal" />
+      <Checkbox label="Large" size="large" />
+      <Checkbox label="Auto" size="auto" style={{ fontSize: "3rem" }} />
+    </Form>
+  );
+}
+
+```
+
+
+# Checkbox States
+
+The `Checkbox` also has different states that can be applied. The most common
+will be the `error` or `disabled` states but also supports `active`.
+
+```tsx
+// preview editable
+import { Checkbox, Form, box } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function CheckboxStates(): ReactElement {
+  return (
+    <Form className={box()}>
+      <Checkbox label="Normal" />
+      <Checkbox label="Error" error />
+      <Checkbox label="Disabled" disabled />
+      <Checkbox label="Active" active />
+    </Form>
+  );
+}
+
+```
+
+
+# Controlling Checkboxes
+
+The `Checkbox` can be controlled by providing the `checked` prop and `onChange`
+like a native `<input type="checkbox">`:
+
+```tsx
+// preview editable
+"use client";
+import { Checkbox, Form, box } from "@react-md/core";
+import { useState, type ReactElement } from "react";
+
+export default function ControllingCheckboxes(): ReactElement {
+  const [checked, setChecked] = useState(false);
+  return (
+    <Form className={box()}>
+      <Checkbox
+        label="Label"
+        checked={checked}
+        onChange={(event) => setChecked(event.currentTarget.checked)}
+      />
+    </Form>
+  );
+}
+
+```
+
+
+# Indeterminate Checkboxes
+
+[Indeterminate checkboxes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes) are
+when there is a third state where it's impossible to say whether the item is
+toggled on or off. The most common occupance is when there is a group of
+checkboxes where one checkbox can toggle all of them on or off.
+
+To create an indeterminate checkbox, enable the `indeterminate` prop and the
+indeterminate icon will display while checked.
+
+```tsx
+// preview editable
+import { Checkbox, Form, box } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function IndeterminateCheckbox(): ReactElement {
+  return (
+    <Form className={box()}>
+      <Checkbox label="Label" indeterminate />
+      <Checkbox label="Label" indeterminate defaultChecked />
+    </Form>
+  );
+}
+
+```
+
+
+## useCheckboxGroup Hook
+
+`react-md` provides a hook: `useCheckboxGroup` that can be used to handle the
+state of a checkbox group with or without an indeterminate checkbox. The hook
+requires a `name` to be provided and an optional list of `defaultCheckedValues`
+returning an object containing:
+
+- `getCheckboxProps` - A function to generate the props for a checkbox based on
+  the checkbox's value.
+- `checkedValues` - A `ReadonlySet` of the current checked values in the group.
+- `setCheckedValues` - A `UseStateSetter` to manually control the
+  `checkedValues` state if needed.
+- `reset` - Resets the state to the `defaultCheckedValues` (an empty list by
+  default).
+
+> !Info! The `checkedValues` and `getCheckboxProps` will be strictly typed for Typescript users.
+> The type will be derived from the `defaultCheckedValues` if provided,
+> otherwise a [type parameter](https://www.typescriptlang.org/docs/handbook/2/generics.html)
+> can provided to set the type.
+
+```tsx
+// preview editable
+/* eslint-disable @typescript-eslint/no-unused-vars */
+"use client";
+import { Button, Checkbox, Form, box, useCheckboxGroup } from "@react-md/core";
+import { type ReactElement } from "react";
+
+const themes = ["none", "underline", "filled", "outline"] as const;
+type Theme = (typeof themes)[number];
+
+export default function CheckboxGroupHook(): ReactElement {
+  const {
+    getCheckboxProps,
+    getIndeterminateProps,
+    reset,
+
+    // a `ReadonlySet` of the current checked values
+    checkedValues,
+
+    // a `UseStateSetter` to manually control the state if needed
+    setCheckedValues,
+  } = useCheckboxGroup<Theme>({
+    name: "themes",
+    values: themes,
+    // This is optional. Defaults to no checked items
+    defaultCheckedValues: ["underline", "filled"],
+  });
+
+  return (
+    <Form className={box({ stacked: true, align: "start" })} onReset={reset}>
+      <Checkbox {...getIndeterminateProps()} label="All" />
+      {themes.map((theme) => (
+        <Checkbox {...getCheckboxProps(theme)} key={theme} label={theme} />
+      ))}
+      <Button type="reset">Reset</Button>
+    </Form>
+  );
+}
+
+```
+
+
+# Custom Icons
+
+The `Checkbox` component will use the
+[checkbox](/customization/icon-config#checkbox),
+[checkboxChecked](/customization/icon-config#checkboxChecked), and
+[checkboxIndeterminate](/customization/icon-config#checkboxIndeterminate) icons
+from the `ICON_CONFIG` by default.
+
+```tsx
+// preview editable
+import { Checkbox } from "@react-md/core";
+import MoodBadOutlinedIcon from "@react-md/material-icons/MoodBadOutlinedIcon";
+import MoodOutlinedIcon from "@react-md/material-icons/MoodOutlinedIcon";
+import SocialDistanceOutlinedIcon from "@react-md/material-icons/SocialDistanceOutlinedIcon";
+import { type ReactElement } from "react";
+
+export default function CustomIcons(): ReactElement {
+  return (
+    <Checkbox
+      label="Label"
+      indeterminate={false}
+      icon={<MoodBadOutlinedIcon theme="error" />}
+      checkedIcon={<MoodOutlinedIcon theme="success" />}
+      indeterminateIcon={<SocialDistanceOutlinedIcon theme="warning" />}
+    />
+  );
+}
+
+```
+
+
+# Checkbox with Messages
+
+The `Checkbox` component is wrapped in the
+[FormMessageContainer](/components/form-message#form-message-container) so additional
+hint or error messages can be displayed.
+
+```tsx
+// preview editable
+import { Form, Checkbox, box } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function CheckboxWithMessages(): ReactElement {
+  return (
+    <Form className={box({ stacked: true, align: "start" })}>
+      <Checkbox
+        label="Label"
+        name="messages"
+        messageProps={{
+          children: "Help text",
+        }}
+        value="a"
+      />
+      <Checkbox
+        label="Label"
+        name="messages"
+        error
+        messageProps={{
+          error: true,
+          children: "Error text",
+        }}
+        value="a"
+      />
+    </Form>
+  );
+}
+
+```
+

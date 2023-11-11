@@ -1,15 +1,13 @@
 import { watch } from "chokidar";
 import { glob } from "glob";
-import { readFile, rm, writeFile } from "node:fs/promises";
+import { readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { format } from "../src/utils/format.js";
 import { GENERATED_FILE_BANNER } from "./constants.js";
+import { getScriptFlags } from "./utils/getScriptFlags.js";
 import { log } from "./utils/log.js";
 
-const { argv } = process;
-const isCleanOnly = argv.includes("--clean-only");
-const isClean = argv.includes("--clean") || isCleanOnly;
-const isWatch = argv.includes("--watch");
+const { isWatch } = getScriptFlags();
 
 const SCSS_LOOKUP_PATH = join(
   process.cwd(),
@@ -17,14 +15,6 @@ const SCSS_LOOKUP_PATH = join(
   "constants",
   "scssLookup.ts"
 );
-
-if (isClean) {
-  await rm(SCSS_LOOKUP_PATH);
-
-  if (isCleanOnly) {
-    process.exit(0);
-  }
-}
 
 async function createScssLookup(): Promise<void> {
   const docsScss = await glob("*.scss");
@@ -50,11 +40,7 @@ export const SCSS_LOOKUP: Record<string, string> = ${JSON.stringify(lookup)}
 }
 
 async function update(): Promise<void> {
-  await log(
-    createScssLookup(),
-    "Creating stylesheets lookup",
-    "Created stylesheets lookup"
-  );
+  await log(createScssLookup(), "Creating scss lookup", "Created scss lookup");
 }
 
 await update();

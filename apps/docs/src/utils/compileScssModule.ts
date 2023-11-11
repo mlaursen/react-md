@@ -1,7 +1,7 @@
-import { SCSS_LOOKUP } from "@/constants/scssLookup.js";
 import postcss from "postcss";
 import selectorParser from "postcss-selector-parser";
 import { compileString } from "sass";
+import { SCSS_LOOKUP } from "../constants/scssLookup.js";
 import { getFakeScssModuleClassName } from "./fakeScssModules.js";
 
 const LOCAL_SCOPE = ":local";

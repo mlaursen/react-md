@@ -3,6 +3,7 @@ import GithubSlugger from "github-slugger";
 import { glob } from "glob";
 import lodash from "lodash";
 import { writeFile } from "node:fs/promises";
+import { join } from "node:path";
 import prettyMilliseconds from "pretty-ms";
 import {
   Node,
@@ -20,6 +21,10 @@ import {
 import { type NavigationRouteItem } from "../src/constants/navItems.js";
 import { format } from "../src/utils/format.js";
 import { GENERATED_FILE_BANNER } from "./constants.js";
+
+const constants = join(process.cwd(), "src", "constants");
+const API_LOOKUP_PATH = join(constants, "apiLookup.ts");
+const API_ROUTES_PATH = join(constants, "apiRoutes.ts");
 
 console.log("Creating the typescript project ... ");
 const start = Date.now();
@@ -236,7 +241,7 @@ await Promise.all(
 );
 
 await writeFile(
-  "src/constants/apiLookup.ts",
+  API_LOOKUP_PATH,
   await format(`${GENERATED_FILE_BANNER}
 import { type ApiLookup } from "@/components/ApiDocs/types.js";
 
@@ -252,7 +257,7 @@ const apiRoutes = Object.entries(apiLookup).map<NavigationRouteItem>(
   })
 );
 await writeFile(
-  "src/constants/apiRoutes.ts",
+  API_ROUTES_PATH,
   await format(`${GENERATED_FILE_BANNER}
 import { type NavigationItem } from "./navItems.js";
 

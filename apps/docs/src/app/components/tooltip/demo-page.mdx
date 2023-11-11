@@ -1,0 +1,507 @@
+# Tooltip
+
+Tooltips display informative text when users hover over, focus on, or tap an element.
+
+# Simple Example
+
+A tooltip can be created by using the `Tooltip` component and the `useTooltip`
+hook to handle controlling the visibility. The default behavior will be to show
+the tooltip after hovering/focusing/touching for 1 second.
+
+```tsx
+// preview editable
+"use client";
+import { Button, Tooltip, useTooltip } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function SimpleTooltipExample(): ReactElement {
+  const { elementProps, tooltipProps } = useTooltip();
+
+  return (
+    <>
+      <Button {...elementProps}>Button</Button>
+      <Tooltip {...tooltipProps}>Tooltip</Tooltip>
+    </>
+  );
+}
+
+```
+
+
+## Dense Tooltip
+
+The tooltip can be rendered with a smaller size and spacing from the tooltipped
+element by enabling the `dense` option.
+
+```tsx
+// preview editable
+"use client";
+import { Button, Tooltip, useTooltip } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function DenseTooltipExample(): ReactElement {
+  const { elementProps, tooltipProps } = useTooltip({
+    dense: true,
+  });
+
+  return (
+    <>
+      <Button {...elementProps}>Button</Button>
+      <Tooltip {...tooltipProps}>Tooltip</Tooltip>
+    </>
+  );
+}
+
+```
+
+
+## Long Text Tooltip
+
+Tooltips have a `max-width` set to `15rem` by default but can be configured by
+setting the `react-md.$tooltip-max-width` Sass variable or through CSS on the
+tooltip.
+
+```tsx
+// preview editable
+"use client";
+import { Button, Tooltip, useTooltip } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function LongTextTooltipExample(): ReactElement {
+  const { elementProps, tooltipProps } = useTooltip();
+
+  return (
+    <>
+      <Button {...elementProps}>Button</Button>
+      <Tooltip {...tooltipProps}>
+        Nam laoreet, felis ut commodo tristique, dui lorem iaculis metus, vitae
+        pharetra ipsum nulla sed mauris. Suspendisse ultrices vel dui id
+        posuere. Aenean pellentesque urna ac nisi elementum fringilla. Sed quis
+        vestibulum ex, in auctor lorem. Morbi a elit viverra, dignissim leo at,
+        accumsan ligula. Aliquam velit ligula, molestie a lorem ut, commodo
+        hendrerit est. Sed lobortis luctus orci quis ultricies. Nullam luctus
+        urna quis libero aliquet, non tincidunt augue sagittis. Duis eleifend
+        ultricies fermentum. Nulla volutpat tempor est, eget hendrerit nisi
+        sodales vitae.
+      </Tooltip>
+    </>
+  );
+}
+
+```
+
+
+# Tooltip Positioning
+
+The `Tooltip` will automatically attempt to render itself within the viewport
+either above or below the tooltipped element preferring below. The positioning
+can be configured by providing the `defaultPosition` option to the `useTooltip`
+hook as one of the following:
+
+- `"below"` (default) - renders the tooltip below the tooltipped element and
+  swaps to above if near the bottom of the viewport
+- `"above"` - renders the tooltip above the tooltipped element and swaps to
+  below if near the top of the viewport
+- `"left"` - renders the tooltip to the left of the tooltipped element and swaps
+  to the right if near the left edge of the viewport
+- `"right"` - renders the tooltip to the right of the tooltipped element and
+  swaps to the left if near the right edge of the viewport
+
+```tsx
+// preview editable
+"use client";
+import { Button, Tooltip, useTooltip } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function TooltipPositioningExample(): ReactElement {
+  const { elementProps, tooltipProps } = useTooltip({
+    // this is the default
+    defaultPosition: "below",
+    // defaultPosition: "above",
+    // defaultPosition: "left",
+    // defaultPosition: "right",
+  });
+
+  return (
+    <>
+      <Button {...elementProps}>Button</Button>
+      <Tooltip {...tooltipProps}>Tooltip</Tooltip>
+    </>
+  );
+}
+
+```
+
+
+## Forced Tooltip Position
+
+A specific position can be forced by setting the `position` option instead.
+
+```tsx
+// preview editable
+"use client";
+import { Button, Tooltip, useTooltip } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function ForcedTooltipPositionExample(): ReactElement {
+  const { elementProps, tooltipProps } = useTooltip({
+    // this is the default
+    position: "below",
+    // position: "above",
+    // position: "left",
+    // position: "right",
+  });
+
+  return (
+    <>
+      <Button {...elementProps}>Button</Button>
+      <Tooltip {...tooltipProps}>Tooltip</Tooltip>
+    </>
+  );
+}
+
+```
+
+
+# Enabling Hover Mode
+
+Tooltips can also be updated to have a "hover mode" so that subsequent tooltips
+are shown immediately instead of requiring the default delay. After no tooltips
+have been shown via mouse for a few seconds, the "hover mode" will be disabled
+and the initial hover delay will be used again. This feature can be enabled for
+all tooltips in the application or just a small group of tooltips by wrapping
+the components in the `TooltipHoverModeProvider`.
+
+```tsx
+// preview editable
+"use client";
+import {
+  Button,
+  Tooltip,
+  TooltipHoverModeProvider,
+  useTooltip,
+} from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function EnablingHoverModeExample(): ReactElement {
+  return (
+    <TooltipHoverModeProvider>
+      {Array.from({ length: 5 }, (_, i) => (
+        <TooltippedButton key={i} i={i + 1} />
+      ))}
+    </TooltipHoverModeProvider>
+  );
+}
+
+function TooltippedButton({ i }: { i: number }): ReactElement {
+  const { elementProps, tooltipProps } = useTooltip();
+
+  return (
+    <>
+      <Button {...elementProps}>Button {i}</Button>
+      <Tooltip {...tooltipProps}>Tooltip {i}</Tooltip>
+    </>
+  );
+}
+
+```
+
+
+# Configuring Tooltip Timeouts
+
+The timeouts for showing and hiding the tooltips can be configured globally
+using the `TooltipHoverModeProvider` or a tooltip-by-tooltip basis with the
+`useTooltip` hook which would override the `TooltipHoverModeProvider` value.
+
+- `hoverTimeout` - The amount of time to wait in milliseconds before showing the
+  tooltip. Defaults to `1000`
+- `leaveTimeout` - The amount of time to wait in milliseconds before hiding the
+  tooltip. Defaults to `0`
+- `disableTimeout` (`TooltipHoverModeProvider`) - The amount of time to wait in
+  milliseconds before disabling the hover mode functionality. Defaults to `1000`
+
+```tsx
+// preview editable
+"use client";
+import {
+  Button,
+  Tooltip,
+  TooltipHoverModeProvider,
+  useTooltip,
+} from "@react-md/core";
+import { type ReactElement, type ReactNode } from "react";
+
+export default function ConfiguringTooltipTimeoutsExample(): ReactElement {
+  return (
+    <TooltipHoverModeProvider
+      hoverTimeout={500}
+      leaveTimeout={300}
+      disableTimeout={10000}
+    >
+      {Array.from({ length: 5 }, (_, i) => (
+        <TooltippedButton key={i} tooltip={`Tooltip ${i + 1}`}>
+          {`Button ${i + 1}`}
+        </TooltippedButton>
+      ))}
+      <TooltippedButton
+        tooltip="Another tooltip"
+        leaveTimeout={1000}
+        hoverTimeout={1500}
+      >
+        Custom Timeout
+      </TooltippedButton>
+    </TooltipHoverModeProvider>
+  );
+}
+
+export interface TooltippedButtonProps {
+  tooltip: ReactNode;
+  children: ReactNode;
+  hoverTimeout?: number;
+  leaveTimeout?: number;
+}
+
+function TooltippedButton(props: TooltippedButtonProps): ReactElement {
+  const { tooltip, children, hoverTimeout, leaveTimeout } = props;
+
+  const { elementProps, tooltipProps } = useTooltip({
+    hoverTimeout,
+    leaveTimeout,
+  });
+
+  return (
+    <>
+      <Button {...elementProps}>{children}</Button>
+      <Tooltip {...tooltipProps}>{tooltip}</Tooltip>
+    </>
+  );
+}
+
+```
+
+
+# Overflow Only Tooltip
+
+The `useTooltip` hook also supports an `overflowOnly` option that will display
+the tooltip only while there is overflown content for the tooltipped element.
+
+```tsx
+// preview editable
+"use client";
+import { Box, Tooltip, cssUtils, useTooltip } from "@react-md/core";
+import { type CSSProperties, type ReactElement } from "react";
+
+const style: CSSProperties = {
+  width: "8rem",
+};
+
+export default function OverflowOnlyTooltipExample(): ReactElement {
+  const { elementProps, tooltipProps } = useTooltip({
+    overflowOnly: true,
+  });
+  return (
+    <Box stacked>
+      <div
+        {...elementProps}
+        style={style}
+        className={cssUtils({ textOverflow: "ellipsis" })}
+      >
+        No Overflow.
+      </div>
+      <div
+        {...elementProps}
+        style={style}
+        className={cssUtils({ textOverflow: "ellipsis" })}
+      >
+        There will be overflow here.
+      </div>
+      <Tooltip {...tooltipProps}>Tooltip!</Tooltip>
+    </Box>
+  );
+}
+
+```
+
+
+## Custom Overflow Element
+
+If the tooltipped element is a flex or grid container, a child element will most
+likely need to be updated to add the overflow styles. This would cause the
+tooltip to never appear since the tooltipped element is not considered overflown
+even though the child is truncated. In this case, add the `overflowRef` to the
+truncated element and the tooltip will correctly appear.
+
+> Try commenting out the `ref` or changing the `width` so there is no truncated
+> text in this example and hover the button.
+
+```tsx
+// preview editable
+"use client";
+import { Button, Tooltip, cssUtils, useTooltip } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function CustomOverflowElementExample(): ReactElement {
+  const { elementProps, tooltipProps, overflowRef } = useTooltip({
+    overflowOnly: true,
+  });
+
+  return (
+    <>
+      <Button {...elementProps} style={{ width: "2rem" }}>
+        <span
+          ref={overflowRef}
+          className={cssUtils({ textOverflow: "ellipsis" })}
+        >
+          Some long content
+        </span>
+      </Button>
+      <Tooltip {...tooltipProps}>Tooltip!</Tooltip>
+    </>
+  );
+}
+
+```
+
+
+# Custom Tooltip
+
+A `Tooltip` can be rendered without the `useTooltip` hook but will require some
+additional styling for the correct positioning to work.
+
+1. Enable the `disablePortal` prop so it renders inline
+2. Add styles for `position: absolute` positioning
+3. Wrap in a container element with `position: relative`
+4. Optionally set the `textOverflow` prop to `"nowrap"` so that the width is not
+   restricted to the wrapper element's width
+
+```tsx
+// preview editable
+import { Tooltip, cssUtils } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function CustomTooltipExample(): ReactElement {
+  return (
+    <div
+      style={{ position: "relative", width: "3em", height: "3em" }}
+      className={cssUtils({ backgroundColor: "success" })}
+    >
+      <Tooltip
+        visible
+        style={{
+          left: "50%",
+          top: "calc(100% + var(--rmd-tooltip-spacing, 1.5rem))",
+          position: "absolute",
+          transform: "translateX(-50%)",
+        }}
+        disablePortal
+        textOverflow="nowrap"
+      >
+        Always visible tooltip
+      </Tooltip>
+    </div>
+  );
+}
+
+```
+
+
+## Progressbar Tooltip Example
+
+This demo just showcases a possible use-case for the custom tooltip by rendering
+it with a progressbar to show the current progress.
+
+```tsx
+// preview editable
+"use client";
+import {
+  Button,
+  LinearProgress,
+  Tooltip,
+  box,
+  cssUtils,
+  loop,
+  useToggle,
+} from "@react-md/core";
+import CelebrationOutlinedIcon from "@react-md/material-icons/CelebrationOutlinedIcon";
+import { useEffect, useState, type ReactElement } from "react";
+
+export default function ProgressbarTooltipExample(): ReactElement {
+  const { value, toggle, toggled } = useIncrementingValue();
+
+  return (
+    <>
+      <Button onClick={toggle} theme="primary" themeType="contained">
+        {toggled ? "Stop" : "Start"}
+      </Button>
+      <div style={{ position: "relative", width: "100%" }}>
+        <LinearProgress value={value} />
+        <Tooltip
+          visible
+          style={{
+            position: "absolute",
+            left: `${value}%`,
+            top: "calc(100% + 1em)",
+            transform: "translateX(-50%)",
+            transition:
+              "left .15s cubic-bezier(0.4, 0, 0.6, 1), background-color .3s",
+            willChange: "left",
+          }}
+          className={box({
+            disableWrap: true,
+            disablePadding: true,
+            className: cssUtils({
+              backgroundColor:
+                value < 30 ? "warning" : value === 100 ? "success" : undefined,
+            }),
+          })}
+          disablePortal
+          textOverflow="nowrap"
+        >
+          {value}%
+          {value === 100 && <CelebrationOutlinedIcon theme="on-success" />}
+        </Tooltip>
+      </div>
+    </>
+  );
+}
+
+function useIncrementingValue(): {
+  value: number;
+  toggle(): void;
+  toggled: boolean;
+} {
+  const { toggled, toggle } = useToggle();
+  const [value, setValue] = useState(0);
+  useEffect(() => {
+    if (!toggled) {
+      return;
+    }
+
+    const timeout = window.setTimeout(
+      () => {
+        setValue(
+          loop({
+            value,
+            min: 0,
+            max: 100,
+            increment: true,
+          }),
+        );
+      },
+      value === 100 ? 5000 : 300,
+    );
+    return () => {
+      window.clearTimeout(timeout);
+    };
+  }, [toggled, value]);
+
+  return { value, toggle, toggled };
+}
+
+```
+
+
+# Accessibility
+
+Tooltips follow the [tooltip pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/)
+and the [tooltip role](https://w3c.github.io/aria/#tooltip).

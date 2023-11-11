@@ -1,0 +1,565 @@
+# Button
+
+Buttons communicate actions that users can take. They are typically placed throughout your UI, in places like:
+
+- Dialogs
+- Modal windows
+- Forms
+- Cards
+- Toolbars
+
+# Simple Button
+
+The `Button` comes in multiple theme types: `flat` (default), `outlined`, `contained`
+
+```tsx
+// preview editable
+import { Button } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function SimpleButton(): ReactElement {
+  return (
+    <>
+      <Button themeType="flat">Button</Button>
+      <Button themeType="outline">Button</Button>
+      <Button themeType="contained">Button</Button>
+    </>
+  );
+}
+
+```
+
+
+## Text Button
+
+[Text buttons](https://m2.material.io/components/buttons#text-button) are typically used for less-pronounced actions, including those located:
+
+- In Dialogs
+- In Cards
+
+In cards, text buttons help maintain an emphasis on card content.
+
+```tsx
+// preview editable
+import { Button } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function TextButton(): ReactElement {
+  return (
+    <>
+      <Button>Clear</Button>
+      <Button theme="primary">Primary</Button>
+      <Button theme="secondary">Secondary</Button>
+    </>
+  );
+}
+
+```
+
+
+## Outlined Button
+
+[Outlined buttons](https://m2.material.io/components/buttons#outlined-button) are medium-emphasis buttons. They contain actions that are important, but aren’t the primary action in an app.
+
+```tsx
+// preview editable
+import { Button } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function OutlinedButton(): ReactElement {
+  return (
+    <>
+      <Button themeType="outline">Clear</Button>
+      <Button themeType="outline" theme="primary">
+        Primary
+      </Button>
+      <Button themeType="outline" theme="secondary">
+        Secondary
+      </Button>
+    </>
+  );
+}
+
+```
+
+
+## Contained Button
+
+[Contained buttons](https://m2.material.io/components/buttons#contained-button) Contained buttons are high-emphasis, distinguished by their use of elevation and fill. They contain actions that are primary to your app.
+
+```tsx
+// preview editable
+import { Button } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function ContainedButton(): ReactElement {
+  return (
+    <>
+      <Button themeType="contained">Clear</Button>
+      <Button themeType="contained" theme="primary">
+        Primary
+      </Button>
+      <Button themeType="contained" theme="secondary">
+        Secondary
+      </Button>
+    </>
+  );
+}
+
+```
+
+
+# Themed Button
+
+The `Button` can also be themed with different theme colors:
+
+- `primary`
+- `secondary`
+- `warning`
+- `success`
+- `error`
+- `disabled`
+- `clear` (default)
+
+The `theme` will be applied as the text color for `flat` buttons, as the text color and border color
+for `outlined` buttons, and the background color for `contained` buttons.
+
+```tsx
+// preview editable
+import { Button } from "@react-md/core";
+import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
+import { type ReactElement } from "react";
+
+export default function ThemedButton(): ReactElement {
+  return (
+    <>
+      <Button>Clear</Button>
+      <Button theme="primary">Primary</Button>
+      <Button theme="secondary">Secondary</Button>
+      <Button theme="warning" themeType="outline">
+        Warning
+      </Button>
+      <Button theme="success" themeType="contained">
+        Success
+        <FavoriteIcon />
+      </Button>
+      <Button theme="error" themeType="contained">
+        <FavoriteIcon />
+        Error
+      </Button>
+      <Button disabled>Disabled</Button>
+    </>
+  );
+}
+
+```
+
+
+# Icon Button
+
+An icon button can be used when space is limited like on mobile devices or when
+there are a lot of actions. Icon buttons support all the same theme behavior as
+text buttons and can be rendered as a circle (default) or as a square.
+
+To create an icon button, set the `buttonType` prop to `"icon"` or `"icon-square"`.
+
+> !Warn! Icon buttons **must** provide accessible text for screen readers through `aria-label`, `aria-labelledby`, or [SrOnly](/components/sr-only) text.
+
+```tsx
+// preview editable
+import { Button, SrOnly } from "@react-md/core";
+import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
+import { type ReactElement } from "react";
+
+export default function IconButton(): ReactElement {
+  return (
+    <>
+      <Button aria-label="Favorite" buttonType="icon">
+        <FavoriteIcon />
+      </Button>
+      <Button theme="secondary" themeType="outline" buttonType="icon">
+        <SrOnly>Favorite</SrOnly>
+        <FavoriteIcon />
+      </Button>
+      <Button
+        aria-label="Favorite"
+        theme="primary"
+        themeType="contained"
+        buttonType="icon"
+      >
+        <FavoriteIcon />
+      </Button>
+      <Button aria-label="Favorite" buttonType="icon-square">
+        <FavoriteIcon />
+      </Button>
+      <Button
+        aria-label="Favorite"
+        theme="secondary"
+        themeType="outline"
+        buttonType="icon-square"
+      >
+        <FavoriteIcon />
+      </Button>
+      <Button
+        aria-label="Favorite"
+        theme="primary"
+        themeType="contained"
+        buttonType="icon-square"
+      >
+        <FavoriteIcon />
+      </Button>
+    </>
+  );
+}
+
+```
+
+
+## Icon Sizes
+
+The icon button's size can be easily changed by updating the `font-size` to a
+new value which will automatically scale the padding with it. There are a few
+sizes by default: `small`, `normal` (default), and `large`.
+
+> !Warn! Using small icon buttons will be less accessible since there is a
+> smaller touch target.
+
+```tsx
+// preview editable
+import { Button } from "@react-md/core";
+import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
+import { type ReactElement } from "react";
+
+export default function IconButtonSizes(): ReactElement {
+  return (
+    <>
+      <Button aria-label="Favorite" iconSize="small" buttonType="icon">
+        <FavoriteIcon />
+      </Button>
+      <Button aria-label="Favorite" iconSize="normal" buttonType="icon">
+        <FavoriteIcon />
+      </Button>
+      <Button aria-label="Favorite" iconSize="large" buttonType="icon">
+        <FavoriteIcon />
+      </Button>
+      <Button
+        aria-label="Favorite"
+        buttonType="icon"
+        style={{ fontSize: "2rem" }}
+      >
+        <FavoriteIcon />
+      </Button>
+    </>
+  );
+}
+
+```
+
+
+# Button with Text and Icon
+
+Text and icons can both exist within a `Button` by just including them in the `children`. Each element
+rendered in a button will automatically be separated using `gap` set to the `$icon-spacing` amount.
+
+> !Info! An `aria-label`, `aria-labelledby`, or `SrOnly` text is **not** needed for each icon in this sort of button since it is only presentational.
+
+```tsx
+// preview editable
+import { Button } from "@react-md/core";
+import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
+import { type ReactElement } from "react";
+
+export default function ButtonWithTextAndIcon(): ReactElement {
+  return (
+    <>
+      <Button>
+        <FavoriteIcon />
+        Text
+      </Button>
+      <Button theme="primary" themeType="outline">
+        Text
+        <FavoriteIcon />
+      </Button>
+      <Button theme="secondary" themeType="contained">
+        <FavoriteIcon />
+        Text
+        <FavoriteIcon />
+      </Button>
+    </>
+  );
+}
+
+```
+
+
+## Responsive Button
+
+A common pattern is to have a button be icon only on phones due to the limited screen size
+and then include a label as well once there is enough space. This can be done by enabling
+the `responsive` prop on the button and wrapping the label in the [SrOnly](/components/sr-only)
+component with the `phoneOnly` prop enabled:
+
+```tsx
+// preview editable
+import { Button, SrOnly } from "@react-md/core";
+import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
+import { type ReactElement } from "react";
+
+export default function ResponsiveButton(): ReactElement {
+  return (
+    <>
+      <Button responsive>
+        <FavoriteIcon />
+        <SrOnly phoneOnly>Favorite</SrOnly>
+      </Button>
+      <Button responsive buttonType="icon">
+        <FavoriteIcon />
+        <SrOnly phoneOnly>Favorite</SrOnly>
+      </Button>
+      <Button responsive buttonType="icon-square">
+        <FavoriteIcon />
+        <SrOnly phoneOnly>Favorite</SrOnly>
+      </Button>
+      <Button responsive buttonType="icon-square">
+        <SrOnly phoneOnly>Favorite</SrOnly>
+        <FavoriteIcon />
+      </Button>
+    </>
+  );
+}
+
+```
+
+
+# Floating Action Button
+
+[Floating action buttons](https://m2.material.io/components/buttons-floating-action-button#usage)
+performs the primary, or most common, action on a screen. It appears in front
+of all screen content, typically as a circular shape with an icon in its
+center.
+
+To create a floating action button, set the `floating` prop to one of:
+`top-left`, `top-right`, `bottom-left`, or `bottom-right` while will position
+the button in that location within the screen by using `position: fixed`. When
+the floating prop is defined, the button default props will be updated with
+`theme="secondary"`, `themeType="contained"`, and `buttonType="icon"`.
+
+```tsx
+// preview editable card phone
+import { Button } from "@react-md/core";
+import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
+import { type ReactElement } from "react";
+
+export default function FloatingActionButton(): ReactElement {
+  return (
+    <>
+      <Button aria-label="Favorite" floating="top-left">
+        <FavoriteIcon />
+      </Button>
+      <Button aria-label="Favorite" floating="top-right" theme="primary">
+        <FavoriteIcon />
+      </Button>
+      <Button floating="bottom-left" themeType="outline" buttonType="text">
+        Action
+      </Button>
+      <Button floating="bottom-right" themeType="flat" buttonType="text">
+        Action
+      </Button>
+    </>
+  );
+}
+
+```
+
+
+# Async Button
+
+The `AsyncButton` can be used to display a loading indicator inside a button
+while an async task completes. If the `onClick` handler is an async function,
+the loading indicator will display until the promise resolves.
+
+```tsx
+// preview editable
+"use client";
+import { AsyncButton, wait } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function AsyncButtonPromise(): ReactElement {
+  return (
+    <>
+      <AsyncButton onClick={() => wait(4000)}>Click Me</AsyncButton>
+      <AsyncButton
+        onClick={() => wait(4000)}
+        theme="primary"
+        themeType="outline"
+      >
+        Click Me
+      </AsyncButton>
+      <AsyncButton
+        onClick={() => wait(4000)}
+        theme="secondary"
+        themeType="contained"
+      >
+        Click Me
+      </AsyncButton>
+    </>
+  );
+}
+
+```
+
+
+## Manual Pending State
+
+When the pending state is derived by a separate action, the loading indicator
+can be shown by setting the `loading` prop to `true`:
+
+```tsx
+// preview editable
+"use client";
+import { AsyncButton, Box, Switch } from "@react-md/core";
+import { useState, type ReactElement } from "react";
+
+export default function ManualLoadingState(): ReactElement {
+  const [loading, setLoading] = useState(false);
+
+  return (
+    <Box stacked align="stretch">
+      <Switch
+        label="Loading?"
+        checked={loading}
+        onChange={(event) => setLoading(event.currentTarget.checked)}
+      />
+      <AsyncButton loading={loading} theme="clear" themeType="flat">
+        Button
+      </AsyncButton>
+      <AsyncButton loading={loading} theme="primary" themeType="outline">
+        Button
+      </AsyncButton>
+      <AsyncButton loading={loading} theme="secondary" themeType="contained">
+        Button
+      </AsyncButton>
+    </Box>
+  );
+}
+
+```
+
+
+## Loading Indicator Types
+
+The `AsyncButton` supports the following loading indicator behaviors out of the box:
+
+- `circular-overlay` (**default**) - Renders a circular loading indicator above the
+  `children` and hides the rest of the content in the button
+- `circular-before` - renders a circular loading indicator before the `children`
+- `circular-after` - renders a circular loading indicator after the `children`
+- `linear-above` - Renders a linear loading indicator above the `children`
+- `linear-below` - Renders a linear loading indicator below the `children`
+
+```tsx
+// preview editable
+"use client";
+import { AsyncButton, Box, Switch } from "@react-md/core";
+import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
+import { useState, type ReactElement } from "react";
+
+export default function LoadingIndicatorTypes(): ReactElement {
+  const [loading, setLoading] = useState(false);
+
+  return (
+    <Box stacked align="stretch">
+      <Switch
+        label="Loading?"
+        checked={loading}
+        onChange={(event) => setLoading(event.currentTarget.checked)}
+      />
+      <AsyncButton
+        loading={loading}
+        theme="secondary"
+        themeType="flat"
+        loadingType="circular-overlay"
+      >
+        Circular Overlay
+      </AsyncButton>
+      <AsyncButton
+        loading={loading}
+        theme="clear"
+        themeType="outline"
+        loadingType="linear-above"
+      >
+        Linear Above
+      </AsyncButton>
+      <AsyncButton
+        loading={loading}
+        theme="secondary"
+        themeType="outline"
+        loadingType="linear-below"
+      >
+        Linear Below
+      </AsyncButton>
+      <AsyncButton
+        loading={loading}
+        theme="primary"
+        themeType="contained"
+        loadingType="circular-before"
+        beforeAddon={<FavoriteIcon />}
+      >
+        Circular Before
+      </AsyncButton>
+      <AsyncButton
+        loading={loading}
+        theme="warning"
+        themeType="contained"
+        loadingType="circular-after"
+        afterAddon={<FavoriteIcon />}
+      >
+        Circular After
+      </AsyncButton>
+    </Box>
+  );
+}
+
+```
+
+
+## Custom Loading Children
+
+If the `children` should be swapped out along with the loading indicator,
+provide that content through the `loadingChildren` prop.
+
+```tsx
+// preview editable
+"use client";
+import { AsyncButton, wait } from "@react-md/core";
+import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
+import { type ReactElement } from "react";
+
+export default function CustomLoadingChildren(): ReactElement {
+  return (
+    <>
+      <AsyncButton
+        onClick={() => wait(4000)}
+        loadingType="linear-below"
+        loadingChildren="Loading..."
+        loadingDisabledTheme
+      >
+        Click Me
+      </AsyncButton>
+      <AsyncButton
+        onClick={() => wait(4000)}
+        theme="primary"
+        themeType="outline"
+        loadingType="circular-before"
+        loadingChildren="Loading..."
+        loadingDisabledTheme
+        beforeAddon={<FavoriteIcon />}
+      >
+        Click Me
+      </AsyncButton>
+    </>
+  );
+}
+
+```
+

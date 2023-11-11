@@ -1,0 +1,284 @@
+# Radio
+
+[Radio buttons](https://m2.material.io/components/radio-buttons#usage) allow users to select one option from a set.
+Use radio buttons to:
+
+- Select a single option from a list
+- Expose all available options
+
+If available options can be collapsed, consider using a [Select](/components/select) or [NativeSelect](/components/native-select) instead, as it uses less space.
+
+# Simple Radio
+
+A `Radio` should normally be placed within a `Form` and provide a `value`, `name`, and `label`.
+
+```tsx
+// preview editable
+import { Form, Radio, box } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function SimpleRadio(): ReactElement {
+  return (
+    <Form className={box()}>
+      <Radio value="a" name="choices" label="Value A" />
+      <Radio value="b" name="choices" label="Value B" />
+      <Radio value="c" name="choices" label="Value C" />
+    </Form>
+  );
+}
+
+```
+
+
+## Icon After Label
+
+The label can be placed before the radio icon by enabling the `iconAfter` prop.
+
+```tsx
+// preview editable
+import { Form, Radio, box } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function IconAfterLabel(): ReactElement {
+  return (
+    <Form className={box({ stacked: true, align: "start" })}>
+      <Radio value="b" name="iconAfter" label="Label" iconAfter />
+      <Radio value="a" name="iconAfter" label="Label" iconAfter />
+    </Form>
+  );
+}
+
+```
+
+
+## Stacked Radio
+
+The label can be stacked above or below the radio by enabling the `stacked` prop.
+
+```tsx
+// preview editable
+import { Form, Radio, box } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function StackedRadio(): ReactElement {
+  return (
+    <Form className={box({ stacked: true, align: "start" })}>
+      <Radio value="b" name="stacked" label="Label" stacked iconAfter />
+      <Radio value="a" name="stacked" label="Label" stacked />
+    </Form>
+  );
+}
+
+```
+
+
+# Radio Sizes
+
+The `Radio` has multiple sizes: `normal` (default), `small`, `dense`,
+and `large`. The size can also be set to `auto` which will update the checkbox
+to match the current font size.
+
+```tsx
+// preview editable
+import { Form, Radio, box } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function RadioSizes(): ReactElement {
+  return (
+    <Form className={box({ stacked: true })}>
+      <Radio label="Small" name="sizes" value="a" size="small" stacked />
+      <Radio label="Dense" name="sizes" value="b" size="dense" stacked />
+      <Radio label="Normal" name="sizes" value="c" size="normal" stacked />
+      <Radio label="Large" name="sizes" value="c" size="large" stacked />
+      <Radio
+        label="Auto"
+        name="sizes"
+        value="c"
+        size="auto"
+        style={{ fontSize: "1.75rem" }}
+        stacked
+      />
+    </Form>
+  );
+}
+
+```
+
+
+# Radio States
+
+The `Radio` also has different states that can be applied. The most common
+will be the `error` or `disabled` states but also supports `active`.
+
+```tsx
+// preview editable
+import { Form, Radio, box } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function RadioStates(): ReactElement {
+  return (
+    <Form className={box({ stacked: true })}>
+      <Radio value="a" name="states" stacked label="Normal" />
+      <Radio value="b" name="states" stacked label="Disabled" disabled />
+      <Radio value="c" name="states" stacked label="Error" error />
+      <Radio value="d" name="states" stacked label="Active" active />
+    </Form>
+  );
+}
+
+```
+
+
+# Controlling Radios
+
+The state for the radio group will generally be controlled so that something can
+be done with the selected value. `react-md` provides a helper hook: `useRadioGroup`
+to control the state.
+
+> !Info! Typescript users can strictly type the `value` and `getRadioProps` by
+> providing a [type parameter](https://www.typescriptlang.org/docs/handbook/2/generics.html)
+> or inferring the type from the `defaultValue` (if possible).
+
+```tsx
+// preview editable
+"use client";
+import { Form, Radio, Typography, box, useRadioGroup } from "@react-md/core";
+import { type ReactElement } from "react";
+
+type Value = "a" | "b" | "c" | "d";
+
+export default function ControllingRadios(): ReactElement {
+  const { getRadioProps, value } = useRadioGroup<Value>({
+    name: "radioGroup",
+    defaultValue: "a",
+  });
+
+  return (
+    <Form className={box({ stacked: true, align: "start" })}>
+      <Radio {...getRadioProps("a")} label="First" />
+      <Radio {...getRadioProps("b")} label="Second" />
+      <Radio {...getRadioProps("c")} label="Third" />
+      <Radio {...getRadioProps("d")} label="Forth" />
+      <Typography>
+        The current value is: <code>{value}</code>
+      </Typography>
+    </Form>
+  );
+}
+
+```
+
+
+## Required Radio Group
+
+In the rare case where a list of available options must be presented to the user
+without an option being selected by default, the `required` option can be
+enabled which will prevent form submission until one has been selected.
+
+```tsx
+// preview editable
+"use client";
+import { Box, Button, Form, Radio, box, useRadioGroup } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function RequiredRadioGroup(): ReactElement {
+  const { getRadioProps, reset } = useRadioGroup({
+    name: "requiredGroup",
+    required: true,
+  });
+  return (
+    <Form className={box({ stacked: true, align: "start" })} onReset={reset}>
+      <Radio {...getRadioProps("a")} label="First" />
+      <Radio {...getRadioProps("b")} label="Second" />
+      <Radio {...getRadioProps("c")} label="Third" />
+      <Radio {...getRadioProps("d")} label="Forth" />
+
+      <Box disablePadding>
+        <Button type="reset" theme="warning" themeType="outline">
+          Reset
+        </Button>
+        <Button type="submit" theme="primary" themeType="contained">
+          Submit
+        </Button>
+      </Box>
+    </Form>
+  );
+}
+
+```
+
+
+# Custom Icons
+
+The `Radio` component will use the
+[radio](/customization/icon-config#radio),
+[radioChecked](/customization/icon-config#radioChecked), and
+from the `ICON_CONFIG` by default.
+
+```tsx
+// preview editable
+import { Form, Radio, box } from "@react-md/core";
+import MoodBadOutlinedIcon from "@react-md/material-icons/MoodBadOutlinedIcon";
+import MoodOutlinedIcon from "@react-md/material-icons/MoodOutlinedIcon";
+import { type ReactElement } from "react";
+
+export default function CustomIcons(): ReactElement {
+  return (
+    <Form className={box({ stacked: true, align: "start" })}>
+      <Radio
+        label="Label"
+        name="custom"
+        icon={<MoodBadOutlinedIcon theme="error" />}
+        checkedIcon={<MoodOutlinedIcon theme="success" />}
+      />
+      <Radio
+        label="Label"
+        name="custom"
+        icon={<MoodBadOutlinedIcon theme="error" />}
+        checkedIcon={<MoodOutlinedIcon theme="success" />}
+      />
+    </Form>
+  );
+}
+
+```
+
+
+# Radio with Messages
+
+The `Radio` component is wrapped in the
+[FormMessageContainer](/components/form-message#form-message-container) so additional
+hint or error messages can be displayed.
+
+```tsx
+// preview editable
+import { Form, Radio, box } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function RadioWithMessages(): ReactElement {
+  return (
+    <Form className={box({ stacked: true, align: "start" })}>
+      <Radio
+        label="Label"
+        name="messages"
+        messageProps={{
+          children: "Help text",
+        }}
+        value="a"
+      />
+      <Radio
+        label="Label"
+        name="messages"
+        error
+        messageProps={{
+          error: true,
+          children: "Error text",
+        }}
+        value="a"
+      />
+    </Form>
+  );
+}
+
+```
+

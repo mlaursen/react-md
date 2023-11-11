@@ -28,9 +28,6 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm build --filter="./packages/*"
-      - run: pnpm --filter docs create-api-docs
-      - run: pnpm --filter docs mdx-pages
-      - run: pnpm --filter docs scss-lookup
       - run: pnpm lint
       - run: pnpm typecheck
       - run: pnpm test -- -- --coverage
