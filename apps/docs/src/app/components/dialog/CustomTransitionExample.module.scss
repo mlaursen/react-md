@@ -1,0 +1,25 @@
+@use "everything";
+
+.enter {
+  opacity: 0;
+}
+
+.enterActive {
+  opacity: 1;
+  transition: opacity everything.$enter-duration
+    everything.$deceleration-timing-function;
+}
+
+.exit {
+  opacity: 1;
+}
+
+.exitActive {
+  opacity: 0;
+  transition: opacity everything.$enter-duration
+    everything.$acceleration-timing-function;
+}
+
+.dialog {
+  width: 30rem;
+}
