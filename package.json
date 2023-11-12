@@ -8,6 +8,7 @@
     "clean": "turbo run clean && rm -rf node_modules",
     "test": "turbo run test",
     "typecheck": "turbo run typecheck",
+    "validate": "pnpm run lint && pnpm run typecheck",
     "format": "prettier --write .",
     "changeset": "changeset",
     "version-packages": "changeset version",
