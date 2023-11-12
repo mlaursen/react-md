@@ -11,6 +11,7 @@ import {
   type RunnableCodeAndPreviewOptions,
 } from "./DangerouslyRunCode/RunnableCodePreview.jsx";
 import styles from "./FullDemoEditor.module.scss";
+import { ResetDemo } from "./ResetDemo.jsx";
 import { ScssCodeEditor } from "./ScssCodeEditor.jsx";
 import { type HighlightedTypescriptCode } from "./TypescriptCode.jsx";
 import { ConfigureCodeLanguage } from "./WebsiteConfiguration/ConfigureCodeLanguage.jsx";
@@ -41,6 +42,7 @@ export function FullDemoEditor(props: FullDemoEditorProps): ReactElement {
       <Box align="start" stacked disablePadding className={styles.container}>
         <CodeBlockHeader>
           <ConfigureCodeLanguage disableLabel />
+          <ResetDemo />
         </CodeBlockHeader>
         <TabList {...getTabListProps()} inline>
           <Tab {...getTabProps("demo")}>{`Demo.${codeLanguage}x`}</Tab>

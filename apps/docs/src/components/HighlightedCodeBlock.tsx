@@ -10,6 +10,8 @@ import { FullDemoEditor } from "./FullDemoEditor.jsx";
 import styles from "./HighlightedCodeBlock.module.scss";
 import { InlineCode, type InlineCodeProps } from "./InlineCode.js";
 import { PackageManagerCodeBlock } from "./PackageManagerCodeBlock.js";
+import { ResetDemo } from "./ResetDemo.jsx";
+import { ResettableProvider } from "./ResettableProvider.jsx";
 import { TypescriptCode } from "./TypescriptCode.js";
 import { TypescriptCodeEditor } from "./TypescriptCodeEditor.jsx";
 import { ConfigureCodeLanguage } from "./WebsiteConfiguration/ConfigureCodeLanguage.jsx";
@@ -72,14 +74,16 @@ export async function HighlightedCodeBlock(
 
   if (tsCode && scssModules) {
     return (
-      <FullDemoEditor
-        // add the key so that changing the code in an mdx page will correctly
-        // update the preview in dev mode
-        key={tsCode.ts}
-        {...tsCode}
-        preview={previewOptions}
-        scssModules={scssModules}
-      />
+      <ResettableProvider>
+        <FullDemoEditor
+          // add the key so that changing the code in an mdx page will correctly
+          // update the preview in dev mode
+          key={tsCode.ts}
+          {...tsCode}
+          preview={previewOptions}
+          scssModules={scssModules}
+        />
+      </ResettableProvider>
     );
   }
 
@@ -89,21 +93,24 @@ export async function HighlightedCodeBlock(
       <CodeBlockHeader className={styles.dense}>
         {tsCode && <ConfigureCodeLanguage disableLabel />}
         {fileName && <CodeBlockFileName>{fileName}</CodeBlockFileName>}
+        {(preview || editable) && <ResetDemo />}
       </CodeBlockHeader>
     );
   }
 
   if (editable && tsCode) {
     return (
-      <TypescriptCodeEditor
-        // add the key so that changing the code in an mdx page will correctly
-        // update the preview in dev mode
-        key={tsCode.ts}
-        {...tsCode}
-        preview={previewOptions}
-      >
-        {header}
-      </TypescriptCodeEditor>
+      <ResettableProvider>
+        <TypescriptCodeEditor
+          // add the key so that changing the code in an mdx page will correctly
+          // update the preview in dev mode
+          key={tsCode.ts}
+          {...tsCode}
+          preview={previewOptions}
+        >
+          {header}
+        </TypescriptCodeEditor>
+      </ResettableProvider>
     );
   }
 
