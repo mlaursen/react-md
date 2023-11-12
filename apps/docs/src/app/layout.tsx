@@ -26,10 +26,8 @@ export default async function MainRootLayout(
   props: PropsWithChildren
 ): Promise<ReactElement> {
   const { children } = props;
-  const { version } = await import("@react-md/core/package.json").then(
-    (pkg) => pkg.default
-  );
   const headersInstance = headers();
+  const version = process.env.NEXT_PUBLIC_RMD_VERSION;
   const isMac = !!headersInstance.get("user-agent")?.includes("Mac");
   const { prismStyles, themeStyles, ...providerProps } =
     await getInitialState();

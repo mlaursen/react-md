@@ -6,6 +6,9 @@ import { type ReactElement } from "react";
 import styles from "./VersionDropdown.module.scss";
 import { VersionMenuItem } from "./VersionMenuItem.jsx";
 
+// I might just want to start @react-md/core at v6
+const MAJOR_VERSIONS_BEFORE = 5;
+
 export interface VersionDropdownProps extends SemVer {
   version: string;
   isHiddenOnPhone?: boolean;
@@ -15,7 +18,7 @@ export function VersionDropdown(props: VersionDropdownProps): ReactElement {
   const { version, major, minor, patch, alpha, isHiddenOnPhone } = props;
   const isAlphaPreview = alpha !== null;
   const isMajorPreview = minor === 0 && patch === 0 && isAlphaPreview;
-  const previousCount = major - 1;
+  const previousCount = MAJOR_VERSIONS_BEFORE + major - 1;
   return (
     <DropdownMenu
       className={cnb(isHiddenOnPhone && styles.dropdown)}
