@@ -3,4 +3,12 @@ import { type TableOfContentsItem } from "@/components/TableOfContents/types.js"
 
 export const toc = [
   { id: "link", depth: 1, value: "Link" },
+  { id: "simple-link", depth: 1, value: "Simple Link" },
+  { id: "link-with-icon", depth: 1, value: "Link with Icon" },
+  { id: "button-styled-link", depth: 1, value: "Button Styled Link" },
+  {
+    id: "third-party-routing-libraries",
+    depth: 1,
+    value: "Third-party Routing Libraries",
+  },
 ] satisfies readonly TableOfContentsItem[];

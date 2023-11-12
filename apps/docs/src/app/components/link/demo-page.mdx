@@ -1,3 +1,105 @@
 # Link
 
-TODO
+A `Link` navigates the user to a different url.
+
+# Simple Link
+
+```tsx
+// preview editable
+import { Link } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function SimpleLinkExample(): ReactElement {
+  return <Link href="https://react-md.dev">react-md.dev</Link>;
+}
+
+```
+
+
+# Link with Icon
+
+If a link contains an icon, it can be centered vertically by enabling the `flex`
+prop. Just note that links will no longer correctly line wrap while rendered
+within paragraphs of text if this is enabled.
+
+```tsx
+// preview editable
+import { Link } from "@react-md/core";
+import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
+import { type ReactElement } from "react";
+
+export default function LinkWithIconExample(): ReactElement {
+  return (
+    <Link href="#" flex>
+      <FavoriteIcon />
+      Favorite
+    </Link>
+  );
+}
+
+```
+
+
+# Button Styled Link
+
+To create a link that appears like a button, use the `button` styling utility
+function.
+
+```tsx
+// preview editable
+import { button, cssUtils } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function ButtonStyledLinkExample(): ReactElement {
+  return (
+    <a
+      href="https://react-md.dev"
+      className={button({
+        className: cssUtils({
+          textDecoration: "none",
+        }),
+        theme: "primary",
+        themeType: "outline",
+      })}
+    >
+      Link
+    </a>
+  );
+}
+
+```
+
+
+# Third-party Routing Libraries
+
+If your application uses [Next.js](https://nextjs.org/),
+[react-router](https://github.com/remix-run/react-router),
+[@reach/router](https://github.com/reach/router), or some other framework for
+routing, do not use the `Link` component from `react-md`. Instead, use the
+`link` styling utility function if the link styles are required.
+
+This example will show how to apply it to Next.js.
+
+```tsx
+// 
+import { link } from "@react-md/core";
+import Link from "next/link.js";
+import { type ReactElement } from "react";
+
+export default function ThirdPartyRoutingLibrariesExample(): ReactElement {
+  return (
+    <Link
+      href="https://nextjs.org"
+      className={link()}
+      // className={link({
+      //   flex: true,
+      //   className: "",
+      // })}
+    >
+      Next.js
+    </Link>
+  );
+}
+
+```
+
