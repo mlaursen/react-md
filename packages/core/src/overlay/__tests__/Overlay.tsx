@@ -102,7 +102,7 @@ describe("Overlay", () => {
     const onExiting = jest.fn();
     const onExited = jest.fn();
 
-    const props: Partial<OverlayProps> & { "data-testid": string } = {
+    const props: Partial<OverlayProps> = {
       "data-testid": "overlay",
       onEnter,
       onEntering,

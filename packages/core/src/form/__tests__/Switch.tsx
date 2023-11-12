@@ -1,16 +1,12 @@
 import { describe, expect, it } from "@jest/globals";
-import {
-  createRef,
-  type HTMLAttributes,
-  type LabelHTMLAttributes,
-} from "react";
+import { createRef } from "react";
 import { CircularProgress } from "../../progress/CircularProgress.js";
 import { rmdRender, screen } from "../../test-utils/index.js";
 import { Switch, type SwitchProps } from "../Switch.js";
 
 const labelProps = {
   "data-testid": "label",
-} as LabelHTMLAttributes<HTMLLabelElement>;
+};
 
 describe("Switch", () => {
   it("should apply the correct styling, HTMLAttributes, and allow a ref", () => {
@@ -121,7 +117,7 @@ describe("Switch", () => {
       },
       messageContainerProps: {
         "data-testid": "container",
-      } as HTMLAttributes<HTMLDivElement>,
+      },
     };
 
     const { rerender } = rmdRender(<Switch {...props} />);

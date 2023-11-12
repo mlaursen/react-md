@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@jest/globals";
-import { createRef, type HTMLAttributes } from "react";
+import { createRef } from "react";
 import {
   type ButtonTheme,
   type ButtonThemeType,
@@ -10,7 +10,7 @@ import { FileInput } from "../FileInput.js";
 const PROPS = {
   labelProps: {
     "data-testid": "label",
-  } as HTMLAttributes<HTMLLabelElement>,
+  },
 } as const;
 
 describe("FileInput", () => {

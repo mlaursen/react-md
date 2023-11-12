@@ -11,11 +11,6 @@
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
     },
-    "./test-utils": "./dist/test-utils/index.js",
-    "./test-utils/*": {
-      "require": "./dist/test-utils/*",
-      "default": "./dist/test-utils/*.js"
-    },
     "./test-utils/polyfills": {
       "require": "./dist/test-utils/polyfills",
       "default": "./dist/test-utils/polyfills/index.js"
@@ -24,7 +19,13 @@
       "require": "./dist/test-utils/polyfills/*",
       "default": "./dist/test-utils/polyfills/*.js"
     },
-    "./test-utils/jest-setup": "./dist/test-utils/jest-setup.js*",
+    "./test-utils/jest-setup": "./dist/test-utils/jest-setup.js",
+    "./test-utils/data-testid": "./dist/test-utils/data-testid.js",
+    "./test-utils": "./dist/test-utils/index.js",
+    "./test-utils/*": {
+      "require": "./dist/test-utils/*",
+      "default": "./dist/test-utils/*.js"
+    },
     "./colors": {
       "sass": "./dist/_colors.scss"
     },
