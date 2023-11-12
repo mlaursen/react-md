@@ -3,4 +3,24 @@ import { type TableOfContentsItem } from "@/components/TableOfContents/types.js"
 
 export const toc = [
   { id: "segmented-button", depth: 1, value: "Segmented Button" },
+  {
+    id: "simple-example",
+    depth: 1,
+    value: "Simple Example",
+    items: [
+      { id: "disable-full-width", depth: 2, value: "Disable Full Width" },
+    ],
+  },
+  {
+    id: "selected-icon",
+    depth: 1,
+    value: "Selected Icon",
+    items: [
+      {
+        id: "disable-selected-icon-transition",
+        depth: 2,
+        value: "Disable Selected Icon Transition",
+      },
+    ],
+  },
 ] satisfies readonly TableOfContentsItem[];
