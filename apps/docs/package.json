@@ -13,7 +13,7 @@
     "prism-themes": "pnpm run run-script scripts/prismThemes.ts",
     "watch-mdx-pages": "pnpm run mdx-pages -- --watch",
     "watch-scss-lookup": "pnpm run scss-lookup -- --watch",
-    "watch": "npm-run-all -p mdx-pages-watch scss-lookup-watch next-dev",
+    "watch": "npm-run-all -p watch-mdx-pages watch-scss-lookup next-dev",
     "typecheck-src": "tsc --noEmit",
     "typecheck-scripts": "tsc --noEmit -P scripts/tsconfig.json",
     "typecheck": "npm-run-all typecheck-src typecheck-scripts",

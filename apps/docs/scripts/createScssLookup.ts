@@ -6,6 +6,7 @@ import { format } from "../src/utils/format.js";
 import { GENERATED_FILE_BANNER } from "./constants.js";
 import { getScriptFlags } from "./utils/getScriptFlags.js";
 import { log } from "./utils/log.js";
+import { alphaNumericSort } from "@react-md/core";
 
 const { isWatch } = getScriptFlags();
 
@@ -30,11 +31,19 @@ async function createScssLookup(): Promise<void> {
     })
   );
 
+  const sortedKeyValuePairs = alphaNumericSort(Object.entries(lookup), {
+    extractor: ([name]) => name,
+  })
+    .map(([name, value]) => `"${name}": ${JSON.stringify(value)}`)
+    .join(",\n");
+
   await writeFile(
     SCSS_LOOKUP_PATH,
     await format(`${GENERATED_FILE_BANNER}
 
-export const SCSS_LOOKUP: Record<string, string> = ${JSON.stringify(lookup)}
+export const SCSS_LOOKUP: Record<string, string> = {
+  ${sortedKeyValuePairs}
+}
 `)
   );
 }
