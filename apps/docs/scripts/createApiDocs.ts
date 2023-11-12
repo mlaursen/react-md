@@ -21,6 +21,7 @@ import {
 import { type NavigationRouteItem } from "../src/constants/navItems.js";
 import { format } from "../src/utils/format.js";
 import { GENERATED_FILE_BANNER } from "./constants.js";
+import { printObjectAlphaNumerically } from "./utils/printObjectAlphaNumerically.js";
 
 const constants = join(process.cwd(), "src", "constants");
 const API_LOOKUP_PATH = join(constants, "apiLookup.ts");
@@ -31,6 +32,7 @@ const start = Date.now();
 const project = new Project({
   tsConfigFilePath: "../../packages/core/tsconfig.json",
 });
+project.removeSourceFile(project.getSourceFileOrThrow("data-testid.ts"));
 console.log(`Created in ${prettyMilliseconds(Date.now() - start)}`);
 
 // const hooks = ["../../packages/core/src/form/useTextField.ts"];
@@ -245,7 +247,7 @@ await writeFile(
   await format(`${GENERATED_FILE_BANNER}
 import { type ApiLookup } from "@/components/ApiDocs/types.js";
 
-export const API_LOOKUP: ApiLookup = ${JSON.stringify(apiLookup)};
+export const API_LOOKUP: ApiLookup = ${printObjectAlphaNumerically(apiLookup)};
 `)
 );
 

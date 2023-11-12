@@ -4,6 +4,7 @@ import { compileScssModule } from "../../src/utils/compileScssModule.js";
 import { format } from "../../src/utils/format.js";
 import { scssModulesCache } from "../codeCache.js";
 import { GENERATED_FILE_BANNER } from "../constants.js";
+import { printObjectAlphaNumerically } from "./printObjectAlphaNumerically.js";
 
 const SCSS_MODULES_PATH = "src/constants/scssModulesLookup.ts";
 
@@ -30,7 +31,9 @@ import "server-only";
 import { type FakeScssModule } from "../utils/fakeScssModules.js";
 
 export const SCSS_MODULES: Record<string, FakeScssModule> =
-  ${JSON.stringify(Object.fromEntries(scssModulesCache.entries()))};
+  ${printObjectAlphaNumerically(
+    Object.fromEntries(scssModulesCache.entries())
+  )};
 `);
 
   await writeFile(SCSS_MODULES_PATH, contents);

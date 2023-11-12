@@ -24,6 +24,7 @@
     "next-dev": "next dev",
     "next-build": "next build",
     "dev": "npm-run-all create-env watch",
+    "build-generated": "npm-run-all api-docs mdx-pages scss-lookup",
     "build": "npm-run-all create-env next-build",
     "start": "next start"
   },

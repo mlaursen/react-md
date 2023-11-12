@@ -2,173 +2,141 @@
 import { type ApiLookup } from "@/components/ApiDocs/types.js";
 
 export const API_LOOKUP: ApiLookup = {
-  Typography: [
+  AppBar: [
     {
-      id: "typography",
-      name: "Typography",
+      id: "app-bar",
+      name: "AppBar",
       props: [
         {
-          id: "typography-props-as",
+          id: "app-bar-props-as",
           name: "as",
-          type: "CustomTypographyComponent",
+          type: "CustomAppBarComponent",
           required: false,
-          description:
-            'The component to render as when the children are not a render function. If\nthis prop is omitted, the component will be determined by the `type` prop\nwhere:\n\n- `"headline-1" -> <h1>`\n- `"headline-2" -> <h2>`\n- `"headline-3" -> <h3>`\n- `"headline-4" -> <h4>`\n- `"headline-5" -> <h5>`\n- `"headline-6" -> <h6>`\n- `"subtitle-1" -> <h5>`\n- `"subtitle-2" -> <h6>`\n- `"body-1"     -> <p>`\n- `"body-2"     -> <p>`\n- `"caption"    -> <caption>`\n- `"overline"   -> <span>`',
+          description: "",
+          defaultValue: 'fixed ? "header" : "div"',
         },
         {
-          id: "typography-props-classname",
+          id: "app-bar-props-classname",
           name: "className",
           type: "string",
           required: false,
           description: "",
         },
         {
-          id: "typography-props-fontstyle",
-          name: "fontStyle",
-          type: "FontStyle",
+          id: "app-bar-props-disableelevation",
+          name: "disableElevation",
+          type: "boolean",
           required: false,
-          description: "",
+          description: "Set this to `true` to remove the box-shadow.",
+          defaultValue: "false",
         },
         {
-          id: "typography-props-fontweight",
-          name: "fontWeight",
-          type: "FontWeight",
+          id: "app-bar-props-height",
+          name: "height",
+          type: "AppBarHeight",
           required: false,
           description: "",
+          defaultValue: 'stacked ? "auto" : "normal"',
         },
         {
-          id: "typography-props-margin",
-          name: "margin",
-          type: "Margin",
+          id: "app-bar-props-pageposition",
+          name: "pagePosition",
+          type: "AppBarPosition",
           required: false,
           description:
-            "This can be used to remove margin from an element (usually typography\nelements since the browser applies default margin for those elements).",
+            'The position within the page to "fix" the `AppBar` when the `fixed` prop is\nenabled.',
+          defaultValue: '"top"',
         },
         {
-          id: "typography-props-textalign",
-          name: "textAlign",
-          type: "TextAlign",
+          id: "app-bar-props-position",
+          name: "position",
+          type: "CssPosition",
+          required: false,
+          description:
+            'Set this to `"fixed"` or `"sticky"` to set `position: fixed;` or\n`position: sticky;` to the app bar. The default position will be static and\ninline with other content.',
+          defaultValue: "'static'",
+        },
+        {
+          id: "app-bar-props-scrollbaroffset",
+          name: "scrollbarOffset",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` if the app bar's positioning and width should be\nchanged whenever the scrollbar is visible on the page. This defaults to\n`true` when the {@link position } prop is `true` so that once dialogs and menus\nbecome visible the contents in the app bar do not need to be repainted.",
+          defaultValue: 'position === "fixed"',
+        },
+        {
+          id: "app-bar-props-stacked",
+          name: "stacked",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` to update the `AppBar` to have `flex-direction: column`.\nThis is useful when nesting `AppBar`s.",
+          defaultValue: "false",
+        },
+        {
+          id: "app-bar-props-theme",
+          name: "theme",
+          type: "AppBarTheme",
+          required: false,
+          description: "The theme to apply to the `AppBar`.",
+          defaultValue: '"primary"',
+        },
+      ],
+      isClient: false,
+      examples: [
+        {
+          name: "Simple Example",
+          code: 'import { AppBar, AppBarTitle, Button } from "@react-md/core";\nimport MenuIcon from "@react-md/material-icons/MenuIcon";\nimport MoreVertIcon from "@react-md/material-icons/MoreVertIcon";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <AppBar>\n      <Button aria-label="Navigation"><MenuIcon /></Button>\n      <AppBarTitle>My Main Title</AppBarTitle>\n      <Button aria-label="Options"><MoreVertIcon /></Button>\n    </AppBar>\n  );\n}',
+          lang: "tsx",
+        },
+      ],
+      description: "",
+      extendedTypes: [{ name: "HTMLAttributes<HTMLDivElement>", href: "#" }],
+    },
+  ],
+  AppBarTitle: [
+    {
+      id: "app-bar-title",
+      name: "AppBarTitle",
+      props: [
+        {
+          id: "app-bar-title-props-classname",
+          name: "className",
+          type: "string",
           required: false,
           description: "",
         },
         {
-          id: "typography-props-textcolor",
-          name: "textColor",
-          type: "ThemeColor | TextColor",
+          id: "app-bar-title-props-keyline",
+          name: "keyline",
+          type: "AppBarTitleKeyline",
           required: false,
           description: "",
+          defaultValue: '"small"',
         },
         {
-          id: "typography-props-textdecoration",
-          name: "textDecoration",
-          type: "TextDecoration",
-          required: false,
-          description: "",
-        },
-        {
-          id: "typography-props-textoverflow",
+          id: "app-bar-title-props-textoverflow",
           name: "textOverflow",
           type: "TextOverflow",
           required: false,
-          description:
-            'Set this to `"nowrap"` to only prevent line wrap behavior or `"ellipsis"`\nto also hide additional text with ellipsis.',
-          defaultValue: '"allow"',
-        },
-        {
-          id: "typography-props-texttransform",
-          name: "textTransform",
-          type: "TextTransform",
-          required: false,
           description: "",
+          defaultValue: '"ellipsis"',
         },
         {
-          id: "typography-props-type",
+          id: "app-bar-title-props-type",
           name: "type",
           type: "TypographyType",
           required: false,
           description: "",
-          defaultValue: '"body-1"',
+          defaultValue: '"headline-6"',
         },
       ],
       isClient: false,
       examples: [
         {
-          name: "All Example",
-          code: 'import { Typography } from "@react-md/core":\n\nexport function Example() {\n  return (\n   <>\n     <Typography type="headline-1">Headline 1</Typography>\n     <Typography type="headline-2">Headline 2</Typography>\n     <Typography type="headline-3">Headline 3</Typography>\n     <Typography type="headline-4">Headline 4</Typography>\n     <Typography type="headline-5">Headline 5</Typography>\n     <Typography type="headline-6">Headline 6</Typography>\n     <Typography type="subtitle-1">Subtitle 1</Typography>\n     <Typography type="subtitle-2">Subtitle 2</Typography>\n     <Typography>\n       A paragraph of text.\n     </Typography>\n     <Typography type="body-1">\n       A paragraph of text.\n     </Typography>\n     <Typography type="body-2">\n       Another paragraph of text.\n     </Typography>\n     <Typography type="caption" component="h5">\n       Caption text\n     </Typography>\n     <Typography type="overline" component="h5">\n       Overline text\n     </Typography>\n   </>\n  ):\n}',
-          lang: "tsx",
-        },
-      ],
-      description:
-        "Render text with one of the material design typography styles applied and\noptional styles like font-weight, font-style, text color, etc.",
-      extendedTypes: [
-        { name: "HTMLAttributes<TypographyHTMLElement>", href: "#" },
-      ],
-    },
-  ],
-  TextContainer: [
-    {
-      id: "text-container",
-      name: "TextContainer",
-      props: [
-        {
-          id: "text-container-props-classname",
-          name: "className",
-          type: "string",
-          required: false,
-          description:
-            "An optional className to merge with typography text container styles.",
-        },
-      ],
-      isClient: false,
-      examples: [
-        {
-          name: "Simple Example",
-          code: 'import { TextContainer, Typography } from "@react-md/core";\n\nfunction Example() {\n  return (\n    <TextContainer>\n      <Typography type="headline-1">Heading</Typography>\n      <Typography>\n        Pretend this is a giant paragraph of text that wraps multiple lines.\n      </Typography>\n      <Typography>\n        Pretend this is another giant paragraph of text that wraps multiple\n        lines.\n      </Typography>\n    </TextContainer>\n  );\n}',
-          lang: "tsx",
-        },
-      ],
-      description:
-        "This component should be used to render text based content with an\nappropriate max line length to optimize legibility.",
-      extendedTypes: [{ name: "HTMLAttributes<HTMLDivElement>", href: "#" }],
-    },
-  ],
-  SrOnly: [
-    {
-      id: "sr-only",
-      name: "SrOnly",
-      props: [
-        {
-          id: "sr-only-props-as",
-          name: "as",
-          type: "CustomTypographyComponent",
-          required: false,
-          description: "",
-          defaultValue: '"span"',
-        },
-        {
-          id: "sr-only-props-focusable",
-          name: "focusable",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` if the element should be keyboard focusable.",
-          defaultValue: "false",
-        },
-        {
-          id: "sr-only-props-phoneonly",
-          name: "phoneOnly",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` if the content should only be screen reader only text on\nphones. This is useful for only displaying an icon on phones when there is\nlimited space and then displaying an icon and text on larger devices.",
-          defaultValue: "false",
-        },
-      ],
-      isClient: false,
-      examples: [
-        {
-          name: "Simple Example",
-          code: 'import { SrOnly } from "@react-md/core";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <>\n      <SrOnly>\n        I am only visible to screen readers.\n      </SrOnly>\n      <SrOnly focusable>\n        I am only visible to screen readers but can be focused.\n      </SrOnly>\n    </>\n  );\n}',
+          name: "Updating the Keyline",
+          code: 'import { AppBar, AppBarTitle } from "@react-md/core";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <AppBar>\n      <AppBarTitle keyline="nav">\n        Offset as if there was a nav button to the left\n      </AppBarTitle>\n    </AppBar>\n  );\n}',
           lang: "tsx",
         },
       ],
@@ -176,954 +144,196 @@ export const API_LOOKUP: ApiLookup = {
       extendedTypes: [{ name: "TypographyProps", href: "#" }],
     },
   ],
-  SlideContainer: [
+  AsyncButton: [
     {
-      id: "slide-container",
-      name: "SlideContainer",
+      id: "async-button",
+      name: "AsyncButton",
       props: [
         {
-          id: "slide-container-props-direction",
-          name: "direction",
-          type: "SlideDirection",
-          required: true,
-          description: "",
-        },
-        {
-          id: "slide-container-props-classname",
-          name: "className",
-          type: "string",
-          required: false,
-          description: "",
-        },
-      ],
-      isClient: false,
-      examples: [
-        {
-          name: "Simple Example",
-          code: 'import { SlideContainer, Slide } from "@react-md/core";\nimport type { ReactElement, ReactNode } from "react";\nimport { useState } from "react";\n\ninterface State {\n  direction: SlideDirection;\n  activeIndex: number;\n}\n\nfunction Example(): ReactElement {\n  const [state, setState] = useState<State>({\n    direction: "left",\n    activeIndex: 0,\n  });\n  const { direction, activeIndex } = state;\n\n  // when changing a slide, `direction` should be set to "left" if the\n  // previous `activeIndex` is less than the next index\n  //\n  // i.e.\n  // setState((prevState) => ({\n  //   direction: prevState.activeIndex < index ? "left" : "right",\n  //   activeIndex: index,\n  // }))\n\n  return (\n    <SlideContainer direction={direction}>\n      <Slide active={activeIndex === 0}>\n        Slide 1\n      </Slide>\n      <Slide active={activeIndex === 1}>\n        Slide 2\n      </Slide>\n      <Slide active={activeIndex === 2}>\n        Slide 3\n      </Slide>\n    </SlideContainer>\n  );\n}',
-          lang: "tsx",
-        },
-        {
-          name: "Persistent Slides",
-          code: 'import type { SlideDirection } from "@react-md/core";\nimport { SlideContainer, Slide } from "@react-md/core";\nimport type { ReactElement, ReactNode } from "react";\nimport { useState } from "react";\n\ninterface State {\n  direction: SlideDirection;\n  activeIndex: number;\n}\n\nfunction Example(): ReactElement {\n  const [state, setState] = useState<State>({\n    direction: "left",\n    activeIndex: 0,\n  });\n  const { direction, activeIndex } = state;\n\n  // when changing a slide, `direction` should be set to "left" if the\n  // previous `activeIndex` is less than the next index\n  //\n  // i.e.\n  // setState((prevState) => ({\n  //   direction: prevState.activeIndex < index ? "left" : "right",\n  //   activeIndex: index,\n  // }))\n\n  // enabling `persistent` makes it so that the `<Slide>` never unmounts so\n  // that state can be maintained while it is not active.\n  return (\n    <SlideContainer direction={direction}>\n      <Slide active={activeIndex === 0} persistent>\n        Slide 1\n      </Slide>\n      <Slide active={activeIndex === 1} persistent>\n        Slide 2\n      </Slide>\n      <Slide active={activeIndex === 2} persistent>\n        Slide 3\n      </Slide>\n    </SlideContainer>\n  );\n}',
-          lang: "tsx",
-        },
-      ],
-      description:
-        "This is a server component, but generally relies on state so probably a client component.",
-      extendedTypes: [{ name: "HTMLAttributes<HTMLDivElement>", href: "#" }],
-    },
-  ],
-  Slide: [
-    {
-      id: "slide",
-      name: "Slide",
-      props: [
-        {
-          id: "slide-props-active",
-          name: "active",
-          type: "boolean",
-          required: true,
-          description:
-            "Set this to `true` to animate this slide into view within a\n`SlideContainer`. When this switches from `true` to `false`, it will\nanimate out.",
-        },
-        {
-          id: "slide-props-children",
-          name: "children",
-          type: "ReactNode",
-          required: true,
-          description: "",
-        },
-        {
-          id: "slide-props-appear",
-          name: "appear",
-          type: "boolean",
-          required: false,
-          description:
-            "Boolean if the transition should occur immediately once the component\nmounts if the {@link TransitionOptions.transitionIn } is `true`",
-          defaultValue: "false",
-        },
-        {
-          id: "slide-props-enter",
-          name: "enter",
-          type: "boolean",
-          required: false,
-          description:
-            "Boolean if the transition should occur whenever the\n{@link TransitionOptions.transitionIn } is switch to `true` after the\ncomponent has been rendered in the DOM.",
-          defaultValue: "true",
-        },
-        {
-          id: "slide-props-exit",
-          name: "exit",
-          type: "boolean",
-          required: false,
-          description:
-            "Boolean if the transition should occur whenever the\n{@link TransitionOptions.transitionIn } is switch to `false` after the\ncomponent has been rendered in the DOM.",
-          defaultValue: "true",
-        },
-        {
-          id: "slide-props-timeout",
-          name: "timeout",
-          type: "TransitionTimeout",
-          required: false,
-          description: "",
-          defaultValue: "@link DEFAULT_SLIDE_TRANSITION_DURATION ",
-        },
-      ],
-      isClient: true,
-      examples: [],
-      description:
-        "A reasonable default for handling a slide transition using\n{@link useSlideTransition }.",
-      extendedTypes: [
-        { name: "HTMLAttributes<HTMLDivElement>", href: "#" },
-        { name: "CSSTransitionComponentProps", href: "#" },
-      ],
-    },
-  ],
-  Tooltip: [
-    {
-      id: "tooltip",
-      name: "Tooltip",
-      props: [
-        {
-          id: "tooltip-props-visible",
-          name: "visible",
-          type: "boolean",
-          required: true,
-          description: "",
-        },
-        {
-          id: "tooltip-props-appear",
-          name: "appear",
-          type: "boolean",
-          required: false,
-          description:
-            "Boolean if the transition should occur immediately once the component\nmounts if the {@link TransitionOptions.transitionIn } is `true`",
-          defaultValue: "false",
-        },
-        {
-          id: "tooltip-props-dense",
-          name: "dense",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
-        },
-        {
-          id: "tooltip-props-disableportal",
-          name: "disablePortal",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
-        },
-        {
-          id: "tooltip-props-enter",
-          name: "enter",
-          type: "boolean",
-          required: false,
-          description:
-            "Boolean if the transition should occur whenever the\n{@link TransitionOptions.transitionIn } is switch to `true` after the\ncomponent has been rendered in the DOM.",
-          defaultValue: "true",
-        },
-        {
-          id: "tooltip-props-exit",
-          name: "exit",
-          type: "boolean",
-          required: false,
-          description:
-            "Boolean if the transition should occur whenever the\n{@link TransitionOptions.transitionIn } is switch to `false` after the\ncomponent has been rendered in the DOM.",
-          defaultValue: "true",
-        },
-        {
-          id: "tooltip-props-position",
-          name: "position",
-          type: "SimplePosition",
-          required: false,
-          description: "",
-          defaultValue: "DEFAULT_TOOLTIP_POSITION",
-        },
-        {
-          id: "tooltip-props-temporary",
-          name: "temporary",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "true",
-        },
-        {
-          id: "tooltip-props-textoverflow",
-          name: "textOverflow",
-          type: "TextOverflow",
-          required: false,
-          description:
-            'Set this to `"nowrap"` for tooltips that are positioned near the edge of\nthe viewport that have a position of `"above"` or `"below"` so that the\ntooltip no longer aligns to the center of the tooltipped element.\n\nSet this to `"ellipsis"` if the tooltip should only show a single line of\ntext and ellipsis once it has reached the max tooltip width.',
-          defaultValue: '"allow"',
-        },
-      ],
-      isClient: true,
-      examples: [
-        {
-          name: "Simple Usage",
-          code: 'import { Button, useTooltip, Tooltip } from "@react-md/core";\n\nfunction Example() {\n  const { elementProps, tooltipProps } = useTooltip();\n\n  return (\n    <>\n      <Button {...elementProps}>Button</Button>\n      <Tooltip {...tooltipProps}>\n        Tooltip Content\n      </Tooltip>\n    </>\n  );\n}',
-          lang: "tsx",
-        },
-      ],
-      description:
-        "This is the base tooltip component that can only be used to render a tooltip\nwith an animation when the visibility changes. If this component is used, you\nwill need to manually add all the event listeners and triggers to change the\n`visible` prop.",
-      extendedTypes: [
-        { name: "HTMLAttributes<HTMLSpanElement>", href: "#" },
-        { name: "CSSTransitionComponentProps", href: "#" },
-      ],
-    },
-  ],
-  TabList: [
-    {
-      id: "tab-list",
-      name: "TabList",
-      props: [
-        {
-          id: "tab-list-props-activeindex",
-          name: "activeIndex",
-          type: "number",
-          required: true,
-          description: "",
-        },
-        {
-          id: "tab-list-props-activationmode",
-          name: "activationMode",
-          type: '"manual" | "automatic"',
-          required: false,
-          description: "",
-          defaultValue: '"manual"',
-        },
-        {
-          id: "tab-list-props-align",
-          name: "align",
-          type: "TabsAlignment",
-          required: false,
-          description: "",
-          defaultValue: '"left"',
-        },
-        {
-          id: "tab-list-props-backwardscrollbuttonprops",
-          name: "backwardScrollButtonProps",
-          type: "BaseTabListScrollButtonProps",
-          required: false,
-          description:
-            "Any additional props that should be passed to the scroll backward button.",
-        },
-        {
-          id: "tab-list-props-disabletransition",
-          name: "disableTransition",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` to disable the active tab indicator from animating\nwhen a new tab is selected.",
-          defaultValue: "false",
-        },
-        {
-          id: "tab-list-props-forwardscrollbuttonprops",
-          name: "forwardScrollButtonProps",
-          type: "BaseTabListScrollButtonProps",
-          required: false,
-          description:
-            "Any additional props that should be passed to the scroll forward button.",
-        },
-        {
-          id: "tab-list-props-getscrolltooptions",
-          name: "getScrollToOptions",
-          type: "GetTabListScrollToOptions",
-          required: false,
-          description:
-            "A convenience prop for the {@link BaseTabListScrollButtonProps.getScrollToOptions }\non {@link forwardScrollButtonProps } and {@link backwardScrollButtonProps }.",
-        },
-        {
-          id: "tab-list-props-inline",
-          name: "inline",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
-        },
-        {
-          id: "tab-list-props-padded",
-          name: "padded",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
-        },
-        {
-          id: "tab-list-props-scrollbar",
-          name: "scrollbar",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` to show a scrollbar when the number of tabs cause\noverflow.",
-          defaultValue: "false",
-        },
-        {
-          id: "tab-list-props-scrollbuttons",
-          name: "scrollButtons",
-          type: 'boolean | "allow-phone"',
-          required: false,
-          description:
-            'Set this to `true` to render buttons that can scroll forwards or backwards\nwithin the tab list if there is overflow **on desktop**. If you want to\ndisplay the scroll buttons on mobile as well, set this to `"allow-phone"` .',
-          defaultValue: "false",
-        },
-        {
-          id: "tab-list-props-transitionduration",
-          name: "transitionDuration",
-          type: "number",
-          required: false,
-          description:
-            "This should be equal to the `$tabs-transition-duration` variable.",
-          defaultValue: "150",
-        },
-        {
-          id: "tab-list-props-vertical",
-          name: "vertical",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
-        },
-      ],
-      isClient: true,
-      examples: [],
-      description: "",
-      extendedTypes: [{ name: "HTMLAttributes<HTMLDivElement>", href: "#" }],
-    },
-  ],
-  Tab: [
-    {
-      id: "tab",
-      name: "Tab",
-      props: [
-        {
-          id: "tab-props-active",
-          name: "active",
-          type: "boolean",
-          required: true,
-          description:
-            "Set this to `true` if the tab is currently active.\n\nThis is normally provided by the {@link useTabs } hook.",
-        },
-        {
-          id: "tab-props-activeindicator",
-          name: "activeIndicator",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` if the {@link TabListProps.disableTransition } prop has\nalso been set to `true` to disable an active indicator below the tab when\n{@link active } is `true`.",
-          defaultValue: "false",
-        },
-        {
-          id: "tab-props-icon",
-          name: "icon",
+          id: "async-button-props-afteraddon",
+          name: "afterAddon",
           type: "ReactNode",
           required: false,
           description:
-            "An optional icon to render with the with the {@link children }. The default\nbehavior will render this icon before the children.",
+            'This should be used when the {@link loadingType } is set to\n`"circular-after"`, an icon should appear before the other content in\nthe button, and the loading indicator should replace the icon.',
         },
         {
-          id: "tab-props-iconafter",
-          name: "iconAfter",
+          id: "async-button-props-beforeaddon",
+          name: "beforeAddon",
+          type: "ReactNode",
+          required: false,
+          description:
+            'This should be used when the {@link loadingType } is set to\n`"circular-before"`, an icon should appear before the other content in\nthe button, and the loading indicator should replace the icon.',
+        },
+        {
+          id: "async-button-props-loading",
+          name: "loading",
           type: "boolean",
           required: false,
           description:
-            "Set this to `true` to render the {@link icon } after the {@link children }.",
+            "Set this to `true` to manually display a loading spinner.",
           defaultValue: "false",
         },
         {
-          id: "tab-props-stacked",
-          name: "stacked",
-          type: "boolean",
+          id: "async-button-props-loadingchildren",
+          name: "loadingChildren",
+          type: "ReactNode",
           required: false,
           description:
-            "Set this to `true` to render the {@link icon } and {@link children } stacked\ninstead of horizontally.",
-          defaultValue: "false",
+            "Optional content to display instead of the default `children` while\nloading.",
         },
-      ],
-      isClient: true,
-      examples: [],
-      description:
-        "This component should usually be used with the `TabsList` component and\n`useTabs` hook.",
-      extendedTypes: [
-        { name: "ButtonHTMLAttributes<HTMLButtonElement>", href: "#" },
-      ],
-    },
-  ],
-  TableRow: [
-    {
-      id: "table-row",
-      name: "TableRow",
-      props: [
         {
-          id: "table-row-props-clickable",
-          name: "clickable",
+          id: "async-button-props-loadingdisabledtheme",
+          name: "loadingDisabledTheme",
           type: "boolean",
           required: false,
           description:
-            "Boolean if the row should be clickable and update the cursor while hovered\nto be a pointer.",
+            "Set this to `true` to use the `disabled` theme while loading.",
           defaultValue: "false",
         },
         {
-          id: "table-row-props-disableborders",
-          name: "disableBorders",
-          type: "boolean",
+          id: "async-button-props-loadingtype",
+          name: "loadingType",
+          type: "AsyncButtonLoadingType",
           required: false,
           description:
-            "Set to `true` if the rows in the `TableBody` should no longer have borders\napplied.",
-          defaultValue: "false",
-        },
-        {
-          id: "table-row-props-disablehover",
-          name: "disableHover",
-          type: "boolean",
-          required: false,
-          description:
-            "Set to `true` if rows should no longer change background color while\nhovered.",
-          defaultValue: "false",
-        },
-        {
-          id: "table-row-props-selected",
-          name: "selected",
-          type: "boolean",
-          required: false,
-          description:
-            "Boolean if the current row has been selected and should apply the selected\nbackground-color.",
-          defaultValue: "false",
-        },
-      ],
-      isClient: true,
-      examples: [],
-      description:
-        "Creates a `<tr>` element with some general styles that are inherited from the\nbase table configuration.",
-      extendedTypes: [
-        { name: "HTMLAttributes<HTMLTableRowElement>", href: "#" },
-      ],
-    },
-  ],
-  Table: [
-    {
-      id: "table",
-      name: "Table",
-      props: [
-        {
-          id: "table-props-dense",
-          name: "dense",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` to decrease the height of all cells within the table.",
-          defaultValue: "false",
-        },
-        {
-          id: "table-props-disableborders",
-          name: "disableBorders",
-          type: "boolean",
-          required: false,
-          description:
-            "Set to `true` if the rows in the `TableBody` should no longer have borders\napplied.",
-          defaultValue: "false",
-        },
-        {
-          id: "table-props-disablehover",
-          name: "disableHover",
-          type: "boolean",
-          required: false,
-          description:
-            "Set to `true` if rows should no longer change background color while\nhovered.",
-          defaultValue: "false",
-        },
-        {
-          id: "table-props-fullwidth",
-          name: "fullWidth",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` to allow the table to span the full width of the\ncontainer element instead of having the width be determined by the content\nwithin the table.",
-          defaultValue: "false",
-        },
-        {
-          id: "table-props-halign",
-          name: "hAlign",
-          type: "TableCellHorizontalAlignment",
-          required: false,
-          description: "",
-        },
-        {
-          id: "table-props-header",
-          name: "header",
-          type: "boolean",
-          required: false,
-          description:
-            'Boolean if all the `TableCell` components should be rendered as a `<th>`\ninstead of a `<td>`. This is really just a convenience prop for the\n`TableHeader` component so the user of `react-md` doesn\'t need to keep\nsetting the `type="th"` fot the `TableCell` if using the low-level\ncomponents.',
-        },
-        {
-          id: "table-props-linewrap",
-          name: "lineWrap",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` to allow `TableCell` content to line wrap.",
-          defaultValue: "false",
-        },
-        {
-          id: "table-props-valign",
-          name: "vAlign",
-          type: "TableCellVerticalAlignment",
-          required: false,
-          description: "",
+            '- `"circular-overlay"` - Covers and hides the button content with a\n  centered circular progress\n- `"circular-before"` - Renders a circular progress bar before the button\n  content which is useful when rendering an icon before the button text.\n  See {@link beforeAddon } as well.\n- `"circular-after"` - Renders a circular progress bar before the button\n  content which is useful when rendering an icon after the button text.\n  See {@link afterAddon } as well.\n- `"linear-above"` - Renders a linear progress bar at the top of the button\n  while still displaying the button contents. Usually looks good for\n  outlined buttons.\n- `"linear-below"` - Renders a linear progress bar at the bottom of the\n  button while still displaying the button contents. Usually looks good for\n  outlined buttons.',
+          defaultValue: '"circular-overlay"',
         },
       ],
       isClient: true,
       examples: [
         {
-          name: "Responsive Example",
-          code: 'import {\n  Table,\n  TableBody,\n  TableCell,\n  TableContainer,\n  TableHeader,\n  TableRow,\n} from "@react-md/core";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <TableContainer>\n      <Table>\n        <TableHeader>\n          <TableRow>\n            <TableCell>Header 1</TableCell>\n            <TableCell>Header 2</TableCell>\n            <TableCell>Header 3</TableCell>\n          </TableRow>\n        </TableHeader>\n        <TableBody>\n          <TableRow>\n            <TableCell>Row 1 Cell 1</TableCell>\n            <TableCell>Row 1 Cell 2</TableCell>\n            <TableCell>Row 1 Cell 3</TableCell>\n          </TableRow>\n          <TableRow>\n            <TableCell>Row 2 Cell 1</TableCell>\n            <TableCell>Row 2 Cell 2</TableCell>\n            <TableCell>Row 2 Cell 3</TableCell>\n          </TableRow>\n          <TableRow>\n            <TableCell>Row 3 Cell 1</TableCell>\n            <TableCell>Row 3 Cell 2</TableCell>\n            <TableCell>Row 3 Cell 3</TableCell>\n          </TableRow>\n        </TableBody>\n      </Table>\n    </TableContainer>\n  );\n}',
+          name: "Async onClick",
+          code: 'import { AsyncButton } from "@react-md/core";\nimport { useState, type ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  const [data, setData] = useState(null);\n  return (\n    <AsyncButton\n      type="submit"\n      onClick={async () => {\n        const response = await fetch("/my-api");\n        const json = await response.json();\n        setData(json);\n      }}\n    >\n      Submit\n    </AsyncButton>\n  );\n}',
+          lang: "tsx",
+        },
+        {
+          name: "Manual Loading State",
+          code: 'import { AsyncButton } from "@react-md/core";\nimport { useMutation } from "@tanstack/query";\nimport { useState, type ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  const { isLoading, mutate } = useMutation({\n    mutationFn: (newTodo) => fetch(\'/todos\', {\n      method: "POST",\n      body: JSON.stringify(newTodo),\n    }),\n  });\n\n  return (\n    <AsyncButton\n      type="submit"\n      loading={isLoading}\n      onClick={() => {\n        mutate({ id: Date.now(), title: "Create example" });\n      }}\n    >\n      Create Todo\n    </AsyncButton>\n  );\n}',
           lang: "tsx",
         },
       ],
-      description: "",
-      extendedTypes: [
-        { name: "TableHTMLAttributes<HTMLTableElement>", href: "#" },
-      ],
-    },
-  ],
-  ToastContent: [
-    {
-      id: "toast-content",
-      name: "ToastContent",
-      props: [
-        {
-          id: "toast-content-props-action",
-          name: "action",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
-        },
-        {
-          id: "toast-content-props-closebutton",
-          name: "closeButton",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
-        },
-        {
-          id: "toast-content-props-disablewrapper",
-          name: "disableWrapper",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` if you do not want to wrap the `children` in a `<div>`\nthat applies some toast layout styles. This should really only be used for\ncustom `Toast` implementations.",
-          defaultValue: "false",
-        },
-        {
-          id: "toast-content-props-multiline",
-          name: "multiline",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` if you know that the {@link children } span multiple\nlines. When this is omitted, a `ResizeObserver` will be used to\nautomatically detect multiline content.",
-        },
-        {
-          id: "toast-content-props-stacked",
-          name: "stacked",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
-        },
-      ],
-      isClient: true,
-      examples: [],
-      description: "",
-      extendedTypes: [{ name: "HTMLAttributes<HTMLDivElement>", href: "#" }],
-    },
-  ],
-  ToastCloseButton: [
-    {
-      id: "toast-close-button",
-      name: "ToastCloseButton",
-      props: [
-        {
-          id: "toast-close-button-props-aria-label",
-          name: '"aria-label"',
-          type: "string",
-          required: false,
-          description:
-            'Note: This default value will only be used if the {@link buttonType } is not\n`"text"` and an `aria-labelledby` is not provided.',
-          defaultValue: '"Close"',
-        },
-        {
-          id: "toast-close-button-props-buttontype",
-          name: "buttonType",
-          type: "ButtonType",
-          required: false,
-          description: "",
-          defaultValue: '"icon-square"',
-        },
-        {
-          id: "toast-close-button-props-reordered",
-          name: "reordered",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` when there is a close button visible and the content is\nstacked. This will update the styles so the button renders next to the\ncontent and above the action button.",
-          defaultValue: "false",
-        },
-      ],
-      isClient: true,
-      examples: [],
       description:
-        "This button will automatically close the toast when clicked unless\n`event.stopPropagation()` is called from the `onClick` prop.",
+        "The async button can be used to render a loading indicator within a button\nduring an async task. The loading spinner can be shown either by enabling the\n`loading` prop or returning a promise from the `onClick` event which will\ncontinue to show the loading indicator until the promise has been resolved.",
       extendedTypes: [{ name: "ButtonProps", href: "#" }],
     },
   ],
-  ToastActionButton: [
+  Avatar: [
     {
-      id: "toast-action-button",
-      name: "ToastActionButton",
+      id: "avatar",
+      name: "Avatar",
       props: [
         {
-          id: "toast-action-button-props-reordered",
-          name: "reordered",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` when there is a close button visible and the content is\nstacked. This will update the styles so the button renders in the bottom\nright below the content and close button.",
-          defaultValue: "false",
-        },
-        {
-          id: "toast-action-button-props-theme",
-          name: "theme",
-          type: "ButtonTheme",
-          required: false,
-          description: "",
-          defaultValue: '"secondary"',
-        },
-      ],
-      isClient: true,
-      examples: [],
-      description:
-        "This button will automatically close the toast when clicked unless\n`event.stopPropagation()` is called from the `onClick` prop.",
-      extendedTypes: [{ name: "ButtonProps", href: "#" }],
-    },
-  ],
-  Toast: [
-    {
-      id: "toast",
-      name: "Toast",
-      props: [
-        {
-          id: "toast-props-visible",
-          name: "visible",
-          type: "boolean",
-          required: true,
-          description: "",
-        },
-        {
-          id: "toast-props-paused",
-          name: "paused",
-          type: "boolean",
-          required: false,
-          description: "",
-        },
-      ],
-      isClient: true,
-      examples: [],
-      description:
-        "This component is just used for toast styling and does not implement any of\nthe visibility behavior.",
-      extendedTypes: [{ name: "ConfigurableToastProps", href: "#" }],
-    },
-  ],
-  Snackbar: [
-    {
-      id: "snackbar",
-      name: "Snackbar",
-      props: [
-        {
-          id: "snackbar-props-disableportal",
-          name: "disablePortal",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
-        },
-        {
-          id: "snackbar-props-id",
-          name: "id",
-          type: "string",
-          required: false,
-          description: "",
-          defaultValue: '"snackbar-" + useId()',
-        },
-        {
-          id: "snackbar-props-limit",
-          name: "limit",
-          type: "number",
-          required: false,
-          description:
-            "Set this to the number of toasts that can be visible within the snackbar at\nthe same time. Any toasts added after this value will be added into the\nqueue to be shown.",
-          defaultValue: "1",
-        },
-        {
-          id: "snackbar-props-position",
-          name: "position",
-          type: "SnackbarPosition",
-          required: false,
-          description: "",
-          defaultValue: '"bottom"',
-        },
-        {
-          id: "snackbar-props-rendertoast",
-          name: "renderToast",
-          type: "ComponentType<ToastRendererProps>",
-          required: false,
-          description:
-            "This can be used to create a custom toast implementation.",
-          defaultValue: "DefaultToastRenderer",
-        },
-        {
-          id: "snackbar-props-role",
-          name: "role",
-          type: "AriaRole",
-          required: false,
-          description: "",
-          defaultValue: '"status"',
-        },
-        {
-          id: "snackbar-props-toastdefaults",
-          name: "toastDefaults",
-          type: "ConfigurableToastProps",
-          required: false,
-          description:
-            "Optional props that should be passed to each `Toast` from the `Snackbar`.\nThis is a great way to enforce each toast having a close button, a custom\nclass name, theme, etc.",
-        },
-      ],
-      isClient: true,
-      examples: [
-        {
-          name: "Super SImple Example",
-          code: 'import { Button, Snackbar, addToast } from "@react-md/core";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <>\n      <Button\n        onClick={() => {\n          addToast({ children: "A new toast!" });\n        }}\n      >\n        Toast!\n      </Button>\n      <Snackbar />\n    </>\n  );\n}',
-          lang: "tsx",
-        },
-      ],
-      description: "",
-      extendedTypes: [{ name: "HTMLAttributes<HTMLDivElement>", href: "#" }],
-    },
-  ],
-  SegmentedButtonContainer: [
-    {
-      id: "segmented-button-container",
-      name: "SegmentedButtonContainer",
-      props: [
-        {
-          id: "segmented-button-container-props-children",
-          name: "children",
-          type: "ReactNode",
-          required: true,
-          description: "",
-        },
-        {
-          id: "segmented-button-container-props-classname",
-          name: "className",
-          type: "string",
-          required: false,
-          description: "",
-        },
-        {
-          id: "segmented-button-container-props-disablefullwidth",
-          name: "disableFullWidth",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
-        },
-      ],
-      isClient: false,
-      examples: [
-        {
-          name: "Without This Component",
-          code: 'import {\n  SegmentedButton,\n  segmentedButtonContainerStyles,\n} from "@react-md/core";\nimport type { ReactElement } from "react";\n\nimport { CustomWrapperComponent } from "./CustomWrapperComponent.jsx";\n\nfunction Example(): ReactElement {\n  return (\n    <CustomWrapperComponent className={segmentedButtonContainerStyles()}>\n      <SegmentedButton>One</SegmentedButton>\n      <SegmentedButton>Two</SegmentedButton>\n      <SegmentedButton>Three</SegmentedButton>\n    </CustomWrapperComponent>\n  );\n}',
-          lang: "tsx",
-        },
-      ],
-      description:
-        "Simple wrapper `div` to apply the segmented button container styles. You can\njust use the {@link segmentedButtonContainerStyles } util function instead.",
-      extendedTypes: [{ name: "HTMLAttributes<HTMLDivElement>", href: "#" }],
-    },
-  ],
-  SegmentedButton: [
-    {
-      id: "segmented-button",
-      name: "SegmentedButton",
-      props: [
-        {
-          id: "segmented-button-props-disableselectedicon",
-          name: "disableSelectedIcon",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` to not render the {@link selectedIcon } when\n{@link selected } is `true`.",
-          defaultValue: "false",
-        },
-        {
-          id: "segmented-button-props-disableselectedtransition",
-          name: "disableSelectedTransition",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` to disable the {@link selectedIcon } enter/exit\ntransition and instead just use `display: none`.",
-          defaultValue: "false",
-        },
-        {
-          id: "segmented-button-props-leftaddon",
-          name: "leftAddon",
-          type: "ReactNode",
-          required: false,
-          description:
-            "An optional addon to render before the {@link children } and after the\n{@link selectedIcon }. This is only useful when rendering text children so\nit can appear above the interaction states.",
-        },
-        {
-          id: "segmented-button-props-rightaddon",
-          name: "rightAddon",
-          type: "ReactNode",
-          required: false,
-          description:
-            "An optional addon to render after the {@link children }. This is only useful\nwhen rendering text children so it can appear above the interaction states.",
-        },
-        {
-          id: "segmented-button-props-selected",
-          name: "selected",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` to apply selected styles and an optional\n{@link selectedIcon }",
-          defaultValue: "false",
-        },
-        {
-          id: "segmented-button-props-selectedclassname",
-          name: "selectedClassName",
+          id: "avatar-props-alt",
+          name: "alt",
           type: "string",
           required: false,
           description:
-            "An optional className to apply when {@link selected } is `true`.",
-        },
-        {
-          id: "segmented-button-props-selectedicon",
-          name: "selectedIcon",
-          type: "ReactNode",
-          required: false,
-          description: "",
-          defaultValue: 'getIcon("selected")',
-        },
-      ],
-      isClient: true,
-      examples: [
-        {
-          name: "Simple Example",
-          code: 'import {\n  SegmentedButton,\n  SegmentedButtonContainer,\n} from "@react-md/core";\nimport type { ReactElement } from "react";\nimport { useState } from "react";\n\nfunction Example(): ReactElement {\n  const [value, setValue] = useState("a");\n  return (\n    <SegmentedButtonContainer>\n      <SegmentedButton\n        onClick={() => setValue("a")}\n        selected={value === "a"}\n      >\n        First\n      </SegmentedButton>\n      <SegmentedButton\n        onClick={() => setValue("b")}\n        selected={value === "b"}\n      >\n        Second\n      </SegmentedButton>\n      <SegmentedButton\n        onClick={() => setValue("c")}\n        selected={value === "c"}\n        disableSelectedIcon\n      >\n        Third\n      </SegmentedButton>\n    </SegmentedButtonContainer>\n  );\n}',
-          lang: "tsx",
-        },
-      ],
-      description: "",
-      extendedTypes: [
-        { name: "ButtonHTMLAttributes<HTMLButtonElement>", href: "#" },
-      ],
-    },
-  ],
-  ResponsiveItemOverlay: [
-    {
-      id: "responsive-item-overlay",
-      name: "ResponsiveItemOverlay",
-      props: [
-        {
-          id: "responsive-item-overlay-props-classname",
-          name: "className",
-          type: "string",
-          required: false,
-          description: "",
-        },
-        {
-          id: "responsive-item-overlay-props-position",
-          name: "position",
-          type: "ResponsiveItemOverlayPosition",
-          required: false,
-          description: "",
-          defaultValue: '"bottom"',
-        },
-      ],
-      isClient: false,
-      examples: [
-        {
-          name: "Simple Example",
-          code: 'import { ResponsiveItemContainer, ResponsiveItemOverlay } from "@react-md/core";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <ResponsiveItemContainer>\n      <img alt="" src="/some-image.png" />\n      <ResponsiveItemOverlay>\n        <Typography type="headline-5" margin="none">\n          This appears at the bottom by default.\n        </Typography>\n      </ResponsiveItemOverlay>\n    </ResponsiveItemContainer>\n  );\n}',
-          lang: "tsx",
-        },
-      ],
-      description: "",
-      extendedTypes: [{ name: "HTMLAttributes<HTMLSpanElement>", href: "#" }],
-    },
-  ],
-  ResponsiveItemContainer: [
-    {
-      id: "responsive-item-container",
-      name: "ResponsiveItemContainer",
-      props: [
-        {
-          id: "responsive-item-container-props-aspectratio",
-          name: "aspectRatio",
-          type: "`${number}-${number}`",
-          required: false,
-          description: "Set this to a custom aspect ratio to use.",
+            "An optional alt tag to display on the `<img>` when the `src` prop is also\napplied.\n\nFor accessibility and screen readers, you normally do not want to actually\nprovide this prop. This should only be used if the `Avatar` is not\naccompanied by some other component or main content as it will be extra\nnoise for screen readers.",
           defaultValue: '""',
         },
         {
-          id: "responsive-item-container-props-classname",
+          id: "avatar-props-classname",
           name: "className",
           type: "string",
           required: false,
           description: "",
         },
         {
-          id: "responsive-item-container-props-fullwidth",
-          name: "fullWidth",
-          type: "boolean",
+          id: "avatar-props-color",
+          name: "color",
+          type: "string",
           required: false,
           description:
-            "Set this to `true` if the container should gain the following styles:\n\n```scss\ndisplay: block;\nwidth: 100%;\n```",
-          defaultValue: "false",
+            "An optional color to apply to the avatar. This will apply a className of\n`rmd-avatar--${color}`, so only the keys from the `$rmd-avatar-colors` Map\nare supported by default. It is recommended to create custom colors using\nthe `rmd-avatar-theme-update-var` mixin with custom class names if the\ndefault colors aren't extensive enough.",
+          defaultValue: '""',
         },
         {
-          id: "responsive-item-container-props-responsive",
-          name: "responsive",
-          type: '"manual" | "auto" | "container"',
+          id: "avatar-props-imgprops",
+          name: "imgProps",
+          type: "PropsWithRef<AvatarImgAttributes, HTMLImageElement>",
           required: false,
           description:
-            'Set this to `"manual"` if you want to manually specify which elements are\nresponsive items using custom class names. You probably don\'t really want\nto use this.\n\nSet this to `"auto"` to automatically update all visual media that appear\nas a child in this component to a responsive item.\n\nSet this to `"container"` to automatically update all visual media that\nappear as a child in this component to be a responsive item that scales to\nthe container\'s dimensions.\n\nNote: The `"auto"` and `"container"` values use the\n`core.$responsive-item-selectors` value for their behavior.',
-          defaultValue: '"auto"',
+            "An optional object of image props and ref that can be used to create an\nimage within the `Avatar`. This can be useful to add a custom `style`\nor`className` to the `<img>` element if that additional customization is\nneeded.\n\nNote: The values in this object will override the `src`, `alt`, and\n`referrerPolicy` root level avatar props if they exist on this object.",
+        },
+        {
+          id: "avatar-props-referrerpolicy",
+          name: "referrerPolicy",
+          type: "HTMLAttributeReferrerPolicy",
+          required: false,
+          description:
+            "An optional `referrerPolicy` to provide to the `<img>` element if the `src`\nor `imgProps` props are provided.",
+        },
+        {
+          id: "avatar-props-size",
+          name: "size",
+          type: '"icon" | "avatar"',
+          required: false,
+          description: "",
+          defaultValue: '"avatar"',
+        },
+        {
+          id: "avatar-props-src",
+          name: "src",
+          type: "string",
+          required: false,
+          description:
+            "This should be an image `src` attribute to create an avatar from. When this\nprop is defined, you should not add any children to the avatar as the\npositioning will break.",
+        },
+        {
+          id: "avatar-props-theme",
+          name: "theme",
+          type: "ThemeColor",
+          required: false,
+          description:
+            "This can be used instead of {@link color } to set the background color to one of\nthe theme colors. This will also set the text color to either be `#000` or\n`#fff` automatically to enforce the correct aspect ratio.",
         },
       ],
       isClient: false,
       examples: [
         {
-          name: "Image Example",
-          code: 'import { ResponsiveItemContainer } from "@react-md/core";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <ResponsiveItemContainer>\n      <img alt="" src="/some-image.png" />\n    </ResponsiveItemContainer>\n  );\n}',
+          name: "Simple Example",
+          code: 'import { Avatar } from "@react-md/core";\nimport { type ReactElement } from "react";\n\nexport function Example(): ReactElement {\n  return <Avatar src="/path-to-img.png" />;\n}',
+          lang: "tsx",
+        },
+      ],
+      description:
+        "An `Avatar` is generally used to represent objects or people within your app.\nThe avatar can consist of an image, an icon, or some text to display. When\nthe avatar is not an image, different themes can be applied to make the\navatar more unique.",
+      extendedTypes: [{ name: "HTMLAttributes<HTMLSpanElement>", href: "#" }],
+    },
+  ],
+  Badge: [
+    {
+      id: "badge",
+      name: "Badge",
+      props: [
+        {
+          id: "badge-props-children",
+          name: "children",
+          type: "ReactNode",
+          required: true,
+          description: "",
+        },
+        {
+          id: "badge-props-theme",
+          name: "theme",
+          type: "BadgeTheme",
+          required: false,
+          description: "",
+          defaultValue: '""greyscale',
+        },
+      ],
+      isClient: false,
+      examples: [
+        {
+          name: "Simple Example",
+          code: 'import type { ReactElement } from "react";\nimport { Badge, Button, MaterialSymbol } from "@react-md/core";\n\nfunction Example(): ReactElement {\n  return (\n    <>\n      <Badge>3</Badge>\n      <Badge theme="primary">100</Badge>\n      <Badge theme="secondary">23</Badge>\n      <Badge theme="greyscale">18</Badge>\n      <Badge theme="clear">1</Badge>\n    </>\n  );\n}',
           lang: "tsx",
         },
         {
-          name: "Iframe Example",
-          code: 'import { ResponsiveItemContainer } from "@react-md/core";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <ResponsiveItemContainer>\n      <iframe\n        src="https://youtube.com/some-video-url"\n        title="Some YouTube video"\n        allowFullScreen\n      />\n    </ResponsiveItemContainer>\n  );\n}',
-          lang: "tsx",
-        },
-        {
-          name: "Forced Aspect Ratio",
-          code: 'import { ResponsiveItemContainer } from "@react-md/core";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <ResponsiveItemContainer aspectRatio="16-9">\n      <img alt="" src="/some-image.png" />\n    </ResponsiveItemContainer>\n  );\n}',
+          name: "Within Buttons Example",
+          code: 'import type { ReactElement } from "react";\nimport { Badge, Button, MaterialSymbol } from "@react-md/core";\n\nfunction Example(): ReactElement {\n  return (\n    <Button aria-label="Notifications" buttonType="icon">\n      <Badge>88</Badge>\n      <MaterialSymbol name="notifications" />\n    </Button>\n  );\n}',
           lang: "tsx",
         },
       ],
@@ -1131,54 +341,973 @@ export const API_LOOKUP: ApiLookup = {
       extendedTypes: [{ name: "HTMLAttributes<HTMLSpanElement>", href: "#" }],
     },
   ],
-  Overlay: [
+  Box: [
     {
-      id: "overlay",
-      name: "Overlay",
+      id: "box",
+      name: "Box",
       props: [
         {
-          id: "overlay-props-visible",
-          name: "visible",
-          type: "boolean",
-          required: true,
-          description:
-            "Set this to `true` for when the overlay should be visible. Toggling this\nvalue will trigger the enter/exit animation.",
-        },
-        {
-          id: "overlay-props-align",
+          id: "box-props-align",
           name: "align",
           type: "BoxAlignItems",
           required: false,
           description: "",
-          defaultValue: '"center"',
+          defaultValue: '""',
         },
         {
-          id: "overlay-props-appear",
-          name: "appear",
+          id: "box-props-classname",
+          name: "className",
+          type: "string",
+          required: false,
+          description: "",
+        },
+        {
+          id: "box-props-disablepadding",
+          name: "disablePadding",
+          type: "boolean",
+          required: false,
+          description: "Set this to `true` to disable the default padding.",
+          defaultValue: "false",
+        },
+        {
+          id: "box-props-disablewrap",
+          name: "disableWrap",
+          type: "boolean",
+          required: false,
+          description: "Set this to `true` to set `flex-wrap: nowrap`.",
+          defaultValue: "false",
+        },
+        {
+          id: "box-props-fullwidth",
+          name: "fullWidth",
           type: "boolean",
           required: false,
           description:
-            "Boolean if the transition should occur immediately once the component\nmounts if the {@link TransitionOptions.transitionIn } is `true`",
+            "Set this to `true` to apply `width: 100%`. This can be useful when using\nnested box layouts.",
           defaultValue: "false",
         },
         {
-          id: "overlay-props-clickable",
-          name: "clickable",
+          id: "box-props-grid",
+          name: "grid",
           type: "boolean",
           required: false,
-          description: "",
-          defaultValue: "!noOpacity",
+          description:
+            "Set this to `true` to use `display: grid` instead of `display: flex`.",
+          defaultValue: "false",
         },
         {
-          id: "overlay-props-disableportal",
-          name: "disablePortal",
+          id: "box-props-gridcolumns",
+          name: "gridColumns",
+          type: 'number | "fit" | "fill"',
+          required: false,
+          description: "",
+          defaultValue: '"fit"',
+        },
+        {
+          id: "box-props-gridname",
+          name: "gridName",
+          type: "string",
+          required: false,
+          description:
+            "This is a grid configuration\nThis should match one of the names in the `$grids` map. So for example:\n\n```scss",
+          defaultValue: '""',
+        },
+        {
+          id: "box-props-justify",
+          name: "justify",
+          type: "BoxJustifyContent",
+          required: false,
+          description:
+            "The default value is really `center` or whatever the `$default-align-items` is set to.",
+          defaultValue: '""',
+        },
+        {
+          id: "box-props-reversed",
+          name: "reversed",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` to reverse the `flex-direction`. i.e.\n- `flex-direction: row-reverse`\n- `flex-direction: column-reverse`",
+          defaultValue: "false",
+        },
+        {
+          id: "box-props-stacked",
+          name: "stacked",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` to set `flex-direction: column` which will stack all\nitems in the box.",
+          defaultValue: "false",
+        },
+      ],
+      isClient: false,
+      examples: [
+        {
+          name: "Default Styles",
+          code: '.box {\n  align-items: center;\n  display: flex;\n  flex-wrap: wrap;\n  gap: 1rem;\n  padding: 1rem;\n}\n```\n\n```tsx\nimport { Box } from "@react-md/core";\nimport type { ReactElement } from "react";\n\nexport default function Example(): ReactElement {\n  return (\n    <Box>\n      <div>Thing 1</div>\n      <div>Thing 2</div>\n      <div>Thing 3</div>\n      <div>Thing 4</div>\n      <div>Thing 5</div>\n    </Box>\n  ):\n}',
+          lang: "scss",
+        },
+        {
+          name: "Default Grid Styles",
+          code: '.box {\n  align-items: center;\n  display: grid;\n  grid-gap: 1rem;\n  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));\n  padding: 1rem;\n}\n```\n\n```tsx\nimport { Box } from "@react-md/core";\nimport type { ReactElement } from "react";\n\nexport default function Example(): ReactElement {\n  return (\n    <Box grid>\n      <div>Thing 1</div>\n      <div>Thing 2</div>\n      <div>Thing 3</div>\n      <div>Thing 4</div>\n      <div>Thing 5</div>\n    </Box>\n  ):\n}',
+          lang: "scss",
+        },
+        { name: "Custom Grid", code: "", lang: "scss" },
+      ],
+      description:
+        "The `Box` component is a wrapper around the CSS box model and should solve\nmost of your `flex` and `grid` layout requirements for responsive design.\nThere are pass-through props for all of the box module styling properties\navailable by default.",
+      extendedTypes: [{ name: "HTMLAttributes<HTMLDivElement>", href: "#" }],
+    },
+  ],
+  Button: [
+    {
+      id: "button",
+      name: "Button",
+      props: [
+        {
+          id: "button-props-buttontype",
+          name: "buttonType",
+          type: "ButtonType",
+          required: false,
+          description: "",
+          defaultValue: '"text"',
+        },
+        {
+          id: "button-props-classname",
+          name: "className",
+          type: "string",
+          required: false,
+          description: "",
+        },
+        {
+          id: "button-props-disabled",
+          name: "disabled",
           type: "boolean",
           required: false,
           description: "",
           defaultValue: "false",
         },
         {
-          id: "overlay-props-disabletransition",
+          id: "button-props-floating",
+          name: "floating",
+          type: "FloatingActionButtonPosition",
+          required: false,
+          description:
+            "The position within the viewport to display the button as a floating action\nbutton.",
+        },
+        {
+          id: "button-props-floatingprops",
+          name: "floatingProps",
+          type: "PropsWithRef<FloatingActionButtonProps, HTMLSpanElement>",
+          required: false,
+          description:
+            "Any additional props to provide the to `FAB` container element when the\n`floating` prop is provided",
+        },
+        {
+          id: "button-props-iconsize",
+          name: "iconSize",
+          type: '"small" | "normal" | "large"',
+          required: false,
+          description: "",
+          defaultValue: '"normal"',
+        },
+        {
+          id: "button-props-responsive",
+          name: "responsive",
+          type: "boolean",
+          required: false,
+          description:
+            "This will display the button as an icon button until the tablet breakpoint\nwhich will then display as a button with an icon.",
+          defaultValue: "false",
+        },
+        {
+          id: "button-props-theme",
+          name: "theme",
+          type: "ButtonTheme",
+          required: false,
+          description: "",
+          defaultValue: '"clear"',
+        },
+        {
+          id: "button-props-themetype",
+          name: "themeType",
+          type: "ButtonThemeType",
+          required: false,
+          description: "",
+          defaultValue: '"flat"',
+        },
+        {
+          id: "button-props-type",
+          name: "type",
+          type: '"button" | "reset" | "submit"',
+          required: false,
+          description: "",
+          defaultValue: '"button"',
+        },
+      ],
+      isClient: true,
+      examples: [
+        {
+          name: "Simple Example",
+          code: 'import { Button } from "@react-md/core";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <Button\n      onClick={(event) => {\n        // do something\n      }}\n    >\n      Content\n    </Button>\n  );\n}',
+          lang: "tsx",
+        },
+        {
+          name: "Theme Example",
+          code: 'import { Button } from "@react-md/core";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <Button\n      theme="primary"\n      themeType="contained"\n      onClick={(event) => {\n        // do something\n      }}\n    >\n      Content\n    </Button>\n  );\n}',
+          lang: "tsx",
+        },
+        {
+          name: "Icon Button Example",
+          code: 'import { Button } from "@react-md/core";\nimport { FavoriteSVGIcon } from "@react-md/material-icons";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <Button\n      theme="secondary"\n      themeType="outline"\n      buttonType="icon"\n      onClick={(event) => {\n        // do something\n      }}\n    >\n      <FavoriteSVGIcon />\n    </Button>\n  );\n}',
+          lang: "tsx",
+        },
+        {
+          name: "Text Button with icons",
+          code: 'import { Button } from "@react-md/core";\nimport { FavoriteSVGIcon } from "@react-md/material-icons";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <Button\n      onClick={(event) => {\n        // do something\n      }}\n    >\n      <FavoriteSVGIcon />\n      Content\n    </Button>\n  );\n}',
+          lang: "tsx",
+        },
+      ],
+      description: "",
+      extendedTypes: [
+        { name: "ButtonHTMLAttributes<HTMLButtonElement>", href: "#" },
+      ],
+    },
+  ],
+  Card: [
+    {
+      id: "card",
+      name: "Card",
+      props: [
+        {
+          id: "card-props-bordered",
+          name: "bordered",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` if the card should use apply an inset `border` instead\nof `box-shadow`.",
+          defaultValue: "false",
+        },
+        {
+          id: "card-props-classname",
+          name: "className",
+          type: "string",
+          required: false,
+          description: "",
+        },
+        {
+          id: "card-props-fullwidth",
+          name: "fullWidth",
+          type: "boolean",
+          required: false,
+          description:
+            "Update the card to have `display: block` and `width: 100%` instead of\n`display: inline-block`.",
+          defaultValue: "false",
+        },
+        {
+          id: "card-props-raisable",
+          name: "raisable",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` if the card should gain additional box shadow while\nhovered.",
+          defaultValue: "false",
+        },
+      ],
+      isClient: false,
+      examples: [
+        {
+          name: "Simple Example",
+          code: 'import {\n  Button,\n  Card,\n  CardContent,\n  CardFooter,\n  CardHeader,\n  CardTitle,\n  CardSubtitle,\n  Typography,\n} from "@react-md/core";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <Card>\n      <CardHeader>\n        <CardTitle>Main Title</CardTitle>\n        <CardSubtitle>A subtitle</CardSubtitle>\n      </CardHeader>\n      <CardContent>\n        <Typography margin="none">\n          Some paragraph of text.\n        </Typography>\n      </CardContent>\n      <CardFooter>\n        <Button>Action 1</Button>\n        <Button>Action 2</Button>\n      </CardFooter>\n    </Card>\n  );\n}',
+          lang: "tsx",
+        },
+      ],
+      description: "",
+      extendedTypes: [{ name: "HTMLAttributes<HTMLDivElement>", href: "#" }],
+    },
+  ],
+  CardContent: [
+    {
+      id: "card-content",
+      name: "CardContent",
+      props: [
+        {
+          id: "card-content-props-classname",
+          name: "className",
+          type: "string",
+          required: false,
+          description: "",
+        },
+        {
+          id: "card-content-props-disablelastchildpadding",
+          name: "disableLastChildPadding",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` to disable applying extra `padding-bottom` if the\n`CardContent` component is the last child.",
+          defaultValue: "false",
+        },
+        {
+          id: "card-content-props-disablepadding",
+          name: "disablePadding",
+          type: "boolean",
+          required: false,
+          description: "Set this to `true` to disable the card's padding.",
+          defaultValue: "false",
+        },
+        {
+          id: "card-content-props-disablesecondarycolor",
+          name: "disableSecondaryColor",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` to disable applying the `text-secondary-color`.",
+          defaultValue: "false",
+        },
+      ],
+      isClient: false,
+      examples: [],
+      description: "",
+      extendedTypes: [{ name: "HTMLAttributes<HTMLDivElement>", href: "#" }],
+    },
+  ],
+  CardFooter: [
+    {
+      id: "card-footer",
+      name: "CardFooter",
+      props: [
+        {
+          id: "card-footer-props-justify",
+          name: "justify",
+          type: "BoxJustifyContent",
+          required: false,
+          description: "",
+          defaultValue: '"flex-end"',
+        },
+      ],
+      isClient: false,
+      examples: [],
+      description:
+        "A simple wrapper around the {@link Box } component that applies additional\npadding and applies `justify-content: flex-end;` by default.",
+      extendedTypes: [{ name: "BoxProps", href: "#" }],
+    },
+  ],
+  CardHeader: [
+    {
+      id: "card-header",
+      name: "CardHeader",
+      props: [
+        {
+          id: "card-header-props-afteraddon",
+          name: "afterAddon",
+          type: "ReactNode",
+          required: false,
+          description:
+            "Any content to display after the children in the header. This could be an\nexpander icon button, visual media like an image or video, etc.",
+        },
+        {
+          id: "card-header-props-beforeaddon",
+          name: "beforeAddon",
+          type: "ReactNode",
+          required: false,
+          description:
+            "Any content to display before the children in the header. This could be an\nexpander icon button, visual media like an image or video, etc.",
+        },
+        {
+          id: "card-header-props-contentprops",
+          name: "contentProps",
+          type: "PropsWithRef<HTMLAttributes<HTMLDivElement>, HTMLDivElement>",
+          required: false,
+          description:
+            "Any props to pass to the `<div>` that surrounds the `children`. This is\ngenerally used to apply custom `style` or `className`.",
+        },
+      ],
+      isClient: false,
+      examples: [],
+      description: "",
+      extendedTypes: [{ name: "HTMLAttributes<HTMLDivElement>", href: "#" }],
+    },
+  ],
+  CardSubtitle: [
+    {
+      id: "card-subtitle",
+      name: "CardSubtitle",
+      props: [
+        {
+          id: "card-subtitle-props-as",
+          name: "as",
+          type: "CustomTypographyComponent",
+          required: false,
+          description: "",
+          defaultValue: '"h6"',
+        },
+        {
+          id: "card-subtitle-props-margin",
+          name: "margin",
+          type: "Margin",
+          required: false,
+          description: "",
+          defaultValue: '"none"',
+        },
+        {
+          id: "card-subtitle-props-type",
+          name: "type",
+          type: "TypographyType",
+          required: false,
+          description: "",
+          defaultValue: '"subtitle-2"',
+        },
+      ],
+      isClient: false,
+      examples: [],
+      description: "",
+      extendedTypes: [{ name: "TypographyProps", href: "#" }],
+    },
+  ],
+  CardTitle: [
+    {
+      id: "card-title",
+      name: "CardTitle",
+      props: [
+        {
+          id: "card-title-props-as",
+          name: "as",
+          type: "CustomTypographyComponent",
+          required: false,
+          description: "",
+          defaultValue: '"h5"',
+        },
+        {
+          id: "card-title-props-margin",
+          name: "margin",
+          type: "Margin",
+          required: false,
+          description: "",
+          defaultValue: "none",
+        },
+        {
+          id: "card-title-props-type",
+          name: "type",
+          type: "TypographyType",
+          required: false,
+          description: "",
+          defaultValue: '"headline-5"',
+        },
+      ],
+      isClient: false,
+      examples: [],
+      description: "",
+      extendedTypes: [{ name: "TypographyProps", href: "#" }],
+    },
+  ],
+  Chip: [
+    {
+      id: "chip",
+      name: "Chip",
+      props: [
+        {
+          id: "chip-props-backgroundcolor",
+          name: "backgroundColor",
+          type: "BackgroundColor",
+          required: false,
+          description: "An optional background color theme to use.",
+        },
+        {
+          id: "chip-props-contentclassname",
+          name: "contentClassName",
+          type: "string",
+          required: false,
+          description:
+            "This will be ignored if {@link disableContentWrap } is `true`.",
+        },
+        {
+          id: "chip-props-contentprops",
+          name: "contentProps",
+          type: "PropsWithRef<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>",
+          required: false,
+          description:
+            "This will be ignored if {@link disableContentWrap } is `true`.",
+        },
+        {
+          id: "chip-props-contentstyle",
+          name: "contentStyle",
+          type: "CSSProperties",
+          required: false,
+          description:
+            "This will be ignored if {@link disableContentWrap } is `true`.",
+        },
+        {
+          id: "chip-props-disablecontentwrap",
+          name: "disableContentWrap",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to true if the `children` should not be wrapped in a span to apply\nthe {@link chipContent } styles which allow for shrinking text and\ntruncating text with ellipsis.",
+          defaultValue: "false",
+        },
+        {
+          id: "chip-props-disabled",
+          name: "disabled",
+          type: "boolean",
+          required: false,
+          description: "",
+          defaultValue: "false",
+        },
+        {
+          id: "chip-props-disableicontransition",
+          name: "disableIconTransition",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` if the {@link selectedIcon } should not animate and\ninstead apply `display: none`",
+          defaultValue: "false",
+        },
+        {
+          id: "chip-props-leftaddon",
+          name: "leftAddon",
+          type: "ReactNode",
+          required: false,
+          description:
+            "An optional icon, avatar, circular progress, or custom component to render\nbefore the `children`. This will remove some of the leading horizontal\npadding on the chip as well.",
+        },
+        {
+          id: "chip-props-noninteractive",
+          name: "noninteractive",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` to render the chip as a `<span>` instead of a button.",
+          defaultValue: "false",
+        },
+        {
+          id: "chip-props-raisable",
+          name: "raisable",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` if the chip should gain additional box shadow while the\nuser is pressing down on the chip.",
+          defaultValue: "false",
+        },
+        {
+          id: "chip-props-rightaddon",
+          name: "rightAddon",
+          type: "ReactNode",
+          required: false,
+          description:
+            "An optional icon, avatar, circular progress, or custom component to render\nafter the `children`. This will remove some of the trailing horizontal\npadding on the chip as well.",
+        },
+        {
+          id: "chip-props-selected",
+          name: "selected",
+          type: "boolean",
+          required: false,
+          description:
+            "When this is a boolean, a selected icon will be displayed before the\n`children` and appear/disappear when `true`/`false`.",
+        },
+        {
+          id: "chip-props-selectedclassname",
+          name: "selectedClassName",
+          type: "string",
+          required: false,
+          description:
+            "An optional className to provide only while {@link selected } is `true`.",
+        },
+        {
+          id: "chip-props-selectedicon",
+          name: "selectedIcon",
+          type: "ReactNode",
+          required: false,
+          description:
+            "This will be ignored if {@link selected } is `undefined`.",
+          defaultValue: 'getIcon("selected")',
+        },
+        {
+          id: "chip-props-selectediconafter",
+          name: "selectedIconAfter",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` if the {@link selectedIcon } should display as the\n{@link rightAddon } instead of the {@link leftAddon }.",
+          defaultValue: "false",
+        },
+        {
+          id: "chip-props-selectedthemed",
+          name: "selectedThemed",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` if the chip should change background color while\n{@link selected } instead of displaying an icon. The default background\ncolor is a lighter swatch of the theme primary color.",
+          defaultValue: "false",
+        },
+        {
+          id: "chip-props-theme",
+          name: "theme",
+          type: '"outline" | "solid"',
+          required: false,
+          description: "",
+          defaultValue: '"solid"',
+        },
+      ],
+      isClient: false,
+      examples: [
+        {
+          name: "Simple Example",
+          code: 'import { Chip } from "@react-md/core";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return <Chip>Content</Chip>;\n}',
+          lang: "tsx",
+        },
+        {
+          name: "Outlined Example",
+          code: 'import { Chip } from "@react-md/core";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return <Chip theme="outline">Content</Chip>;\n}',
+          lang: "tsx",
+        },
+        {
+          name: "Addons Example",
+          code: 'import { Avatar, Chip } from "@react-md/core";\nimport AddCircleIcon from "@react-md/material-icons/AddCircleIcon";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <Chip\n      leftAddon={\n        <Avatar>\n          <img src="https://i.pravatar.cc/40?img=3" alt="" />\n        </Avatar>\n      }\n      rightAddon={<AddCircleIcon />}\n    >\n      Chip\n    </Chip>\n  );\n}',
+          lang: "tsx",
+        },
+      ],
+      description: "",
+      extendedTypes: [
+        { name: "ButtonHTMLAttributes<HTMLButtonElement>", href: "#" },
+      ],
+    },
+  ],
+  DialogContent: [
+    {
+      id: "dialog-content",
+      name: "DialogContent",
+      props: [
+        {
+          id: "dialog-content-props-classname",
+          name: "className",
+          type: "string",
+          required: false,
+          description: "",
+        },
+        {
+          id: "dialog-content-props-disablepadding",
+          name: "disablePadding",
+          type: "boolean",
+          required: false,
+          description: "",
+          defaultValue: "false",
+        },
+      ],
+      isClient: false,
+      examples: [],
+      description:
+        "Look at the `Dialog` or `FixedDialog` components for example usage.",
+      extendedTypes: [{ name: "HTMLAttributes<HTMLDivElement>", href: "#" }],
+    },
+  ],
+  DialogFooter: [
+    {
+      id: "dialog-footer",
+      name: "DialogFooter",
+      props: [
+        {
+          id: "dialog-footer-props-align",
+          name: "align",
+          type: "DialogFooterAlignment",
+          required: false,
+          description: "",
+          defaultValue: '"end"',
+        },
+        {
+          id: "dialog-footer-props-classname",
+          name: "className",
+          type: "string",
+          required: false,
+          description: "",
+        },
+      ],
+      isClient: false,
+      examples: [],
+      description:
+        "Look at the `Dialog` or `FixedDialog` components for example usage.",
+      extendedTypes: [{ name: "HTMLAttributes<HTMLDivElement>", href: "#" }],
+    },
+  ],
+  DialogTitle: [
+    {
+      id: "dialog-title",
+      name: "DialogTitle",
+      props: [
+        {
+          id: "dialog-title-props-as",
+          name: "as",
+          type: "CustomTypographyComponent",
+          required: false,
+          description: "",
+          defaultValue: '"h2"',
+        },
+        {
+          id: "dialog-title-props-margin",
+          name: "margin",
+          type: "Margin",
+          required: false,
+          description: "",
+          defaultValue: '"none"',
+        },
+        {
+          id: "dialog-title-props-type",
+          name: "type",
+          type: "TypographyType",
+          required: false,
+          description: "",
+          defaultValue: '"headline-4"',
+        },
+      ],
+      isClient: false,
+      examples: [],
+      description:
+        "Look at the `Dialog` or `FixedDialog` components for example usage.",
+      extendedTypes: [{ name: "TypographyProps", href: "#" }],
+    },
+  ],
+  Divider: [
+    {
+      id: "divider",
+      name: "Divider",
+      props: [
+        {
+          id: "divider-props-classname",
+          name: "className",
+          type: "string",
+          required: false,
+          description: "",
+        },
+        {
+          id: "divider-props-inset",
+          name: "inset",
+          type: "boolean",
+          required: false,
+          description:
+            'Boolean if the divider should appear inset instead of full width. This\nreally just applied a margin-left (or margin-right when dir="rtl").\n\nIf you want to create a divider that is centered, you most likely want to\nuse the `rmd-divider-theme-update-var` mixin instead to update the\n`max-size` of the divider.',
+          defaultValue: "false",
+        },
+        {
+          id: "divider-props-vertical",
+          name: "vertical",
+          type: "boolean",
+          required: false,
+          description:
+            "Boolean if the divider should be vertical instead of horizontal. This will\nchange the divider to be rendered as a `<div>` instead of an `<hr>`.\n\nNote: If your parent element of the divider does not have a static height\nset, you **must** manually set the height of the divider to a static\nnon-percentage number OR use the `VerticalDivider` component instead to\nautomagically create a valid percentage height.",
+          defaultValue: "false",
+        },
+      ],
+      isClient: false,
+      examples: [
+        {
+          name: "Simple Example",
+          code: 'import { Divider } from "@react-md/core";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return  <Divider />;\n}',
+          lang: "tsx",
+        },
+      ],
+      description: "",
+      extendedTypes: [{ name: "HTMLAttributes<DividerElement>", href: "#" }],
+    },
+  ],
+  ExpansionList: [
+    {
+      id: "expansion-list",
+      name: "ExpansionList",
+      props: [
+        {
+          id: "expansion-list-props-children",
+          name: "children",
+          type: "ReactNode",
+          required: true,
+          description: "",
+        },
+      ],
+      isClient: true,
+      examples: [],
+      description:
+        "This component is only used to implement the keyboard movement behavior for\nthe `ExpansionPanel` components.",
+      extendedTypes: [{ name: "HTMLAttributes<HTMLDivElement>", href: "#" }],
+    },
+  ],
+  ExpansionPanel: [
+    {
+      id: "expansion-panel",
+      name: "ExpansionPanel",
+      props: [
+        {
+          id: "expansion-panel-props-expanded",
+          name: "expanded",
+          type: "boolean",
+          required: true,
+          description:
+            "Set this to `true` if the {@link children } should be visible. This should\ngenerally be provided by the `useExpansionPanels` hook.",
+        },
+        {
+          id: "expansion-panel-props-contentclassname",
+          name: "contentClassName",
+          type: "string",
+          required: false,
+          description:
+            "Convenience prop to apply custom class name to the `CardContent` component.",
+        },
+        {
+          id: "expansion-panel-props-contentprops",
+          name: "contentProps",
+          type: 'PropsWithRef<Omit<CardContentProps, "role">, HTMLDivElement>',
+          required: false,
+          description:
+            "This can be used to apply additional props to the `CardContent` component\nif needed.\n\nNote: The `disableLastChildPadding` defaults to `true` in this\nimplementation.",
+        },
+        {
+          id: "expansion-panel-props-contentstyle",
+          name: "contentStyle",
+          type: "CSSProperties",
+          required: false,
+          description:
+            "Convenience prop to apply custom style to the `CardContent` component.",
+        },
+        {
+          id: "expansion-panel-props-disablecontentpadding",
+          name: "disableContentPadding",
+          type: "boolean",
+          required: false,
+          description: "",
+          defaultValue: "false",
+        },
+        {
+          id: "expansion-panel-props-disabled",
+          name: "disabled",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` to prevent the panel from toggling the {@link expanded }\nstate. This should generally be provided by the `useExpansionPanels` hook.",
+          defaultValue: "false",
+        },
+        {
+          id: "expansion-panel-props-disabletransition",
+          name: "disableTransition",
+          type: "boolean",
+          required: false,
+          description:
+            "Set to `true` to disable the collapse transition for the card content\nwhenever the {@link expanded } state changes.",
+          defaultValue: "false",
+        },
+        {
+          id: "expansion-panel-props-fullwidth",
+          name: "fullWidth",
+          type: "boolean",
+          required: false,
+          description: "",
+          defaultValue: "true",
+        },
+        {
+          id: "expansion-panel-props-header",
+          name: "header",
+          type: "ReactNode",
+          required: false,
+          description:
+            "This can be used to implement a custom header implementation, but it\nprobably shouldn't be needed.",
+        },
+        {
+          id: "expansion-panel-props-headerchildren",
+          name: "headerChildren",
+          type: "ReactNode",
+          required: false,
+          description:
+            "Content to display within the header of the expansion panel that toggles\nthe expanded state. THis should generally contain some accessible text\ndescribing the expansion panel's content.",
+        },
+        {
+          id: "expansion-panel-props-headerclassname",
+          name: "headerClassName",
+          type: "string",
+          required: false,
+          description:
+            "Convenience prop to apply custom class name to the `ExpansionPanelHeader`\ncomponent.",
+        },
+        {
+          id: "expansion-panel-props-headerprops",
+          name: "headerProps",
+          type: 'Omit<ExpansionPanelHeaderProps, "id" | "aria-disabled" | "onClick" | "expanded">',
+          required: false,
+          description:
+            "This can be used to apply additional props to the header element.\n\nNote: You can override the `style` and `className` using\n{@link headerStyle } and {@link headerClassName } instead for convenience.",
+        },
+        {
+          id: "expansion-panel-props-headerstyle",
+          name: "headerStyle",
+          type: "CSSProperties",
+          required: false,
+          description:
+            "Convenience prop to apply custom style to the `ExpansionPanelHeader`\ncomponent.",
+        },
+        {
+          id: "expansion-panel-props-temporary",
+          name: "temporary",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` to unmount the {@link children } when the\n{@link expanded } state is `false`.",
+          defaultValue: "false",
+        },
+      ],
+      isClient: true,
+      examples: [],
+      description: "",
+      extendedTypes: [{ name: "CardProps", href: "#" }],
+    },
+  ],
+  ExpansionPanelHeader: [
+    {
+      id: "expansion-panel-header",
+      name: "ExpansionPanelHeader",
+      props: [
+        {
+          id: "expansion-panel-header-props-expanded",
+          name: "expanded",
+          type: "boolean",
+          required: true,
+          description: "",
+        },
+        {
+          id: "expansion-panel-header-props-id",
+          name: "id",
+          type: "string",
+          required: true,
+          description: "",
+        },
+        {
+          id: "expansion-panel-header-props-onclick",
+          name: "onClick",
+          type: "MouseEventHandler<HTMLButtonElement>",
+          required: true,
+          description:
+            "This should be a function that toggles the expansion state for the parent\n`ExpansionPanel`.",
+        },
+        {
+          id: "expansion-panel-header-props-afterchildren",
+          name: "afterChildren",
+          type: "ReactNode",
+          required: false,
+          description:
+            "Any children to display **after** the button in the heading element.This\nshould really only be used if you need to add additional clickable elements\nwithin the header.",
+        },
+        {
+          id: "expansion-panel-header-props-as",
+          name: "as",
+          type: '"h1" | "h2" | "h3" | "h4" | "h5" | "h6"',
+          required: false,
+          description: "",
+          defaultValue: '"h3"',
+        },
+        {
+          id: "expansion-panel-header-props-beforechildren",
+          name: "beforeChildren",
+          type: "ReactNode",
+          required: false,
+          description:
+            "Any children to display **before** the button in the heading element. This\nshould really only be used if you need to add additional clickable elements\nwithin the header.",
+        },
+        {
+          id: "expansion-panel-header-props-disabletransition",
           name: "disableTransition",
           type: "boolean",
           required: false,
@@ -1186,452 +1315,261 @@ export const API_LOOKUP: ApiLookup = {
           defaultValue: "false",
         },
         {
-          id: "overlay-props-enter",
-          name: "enter",
-          type: "boolean",
+          id: "expansion-panel-header-props-headingprops",
+          name: "headingProps",
+          type: "PropsWithRef<TypographyProps, HTMLHeadingElement>",
           required: false,
           description:
-            "Boolean if the transition should occur whenever the\n{@link TransitionOptions.transitionIn } is switch to `true` after the\ncomponent has been rendered in the DOM.",
-          defaultValue: "true",
+            "Any additional props to provide to the heading element that wraps the\nexpansion panel button.",
         },
         {
-          id: "overlay-props-exit",
-          name: "exit",
-          type: "boolean",
-          required: false,
-          description:
-            "Boolean if the transition should occur whenever the\n{@link TransitionOptions.transitionIn } is switch to `false` after the\ncomponent has been rendered in the DOM.",
-          defaultValue: "true",
-        },
-        {
-          id: "overlay-props-justify",
-          name: "justify",
-          type: "BoxJustifyContent",
+          id: "expansion-panel-header-props-headingtype",
+          name: "headingType",
+          type: "TypographyType",
           required: false,
           description: "",
-          defaultValue: '"center"',
+          defaultValue: '"subtitle-1"',
         },
         {
-          id: "overlay-props-noopacity",
-          name: "noOpacity",
-          type: "boolean",
-          required: false,
-          description:
-            'Set this to `true` if the overlay should be rendered with an `opacity: 0`\nand disabling the animation. This is useful if you\'d like a "close on\noutside click" behavior.',
-          defaultValue: "false",
-        },
-      ],
-      isClient: true,
-      examples: [
-        {
-          name: "Simple Example",
-          code: 'import { Button, Overlay, useToggle } from "@react-md/core";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  const { toggle, disable, toggled: visible } = useToggle(false);\n\n  return (\n    <>\n      <Button onClick={toggle}>Toggle</Button>\n      <Overlay visible={visible} onClick={disable} />\n    </>\n  );\n}',
-          lang: "tsx",
-        },
-      ],
-      description: "",
-      extendedTypes: [
-        { name: "HTMLAttributes<HTMLSpanElement>", href: "#" },
-        { name: "CSSTransitionComponentProps", href: "#" },
-      ],
-    },
-  ],
-  ListSubheader: [
-    {
-      id: "list-subheader",
-      name: "ListSubheader",
-      props: [
-        {
-          id: "list-subheader-props-classname",
-          name: "className",
-          type: "string",
+          id: "expansion-panel-header-props-icon",
+          name: "icon",
+          type: "ReactNode",
           required: false,
           description: "",
+          defaultValue: 'getIcon("expander")',
         },
         {
-          id: "list-subheader-props-inset",
-          name: "inset",
-          type: "boolean",
-          required: false,
-          description:
-            "Boolean if the subheader should be inset to match the `ListItem` text\nkeyline.",
-          defaultValue: "false",
-        },
-        {
-          id: "list-subheader-props-role",
-          name: "role",
-          type: "AriaRole",
-          required: false,
-          description: "",
-          defaultValue: '"presentation"',
-        },
-        {
-          id: "list-subheader-props-textprops",
-          name: "textProps",
-          type: "PropsWithRef<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>",
+          id: "expansion-panel-header-props-iconrotatorprops",
+          name: "iconRotatorProps",
+          type: 'Omit<IconRotatorProps, "disableTransition" | "rotated">',
           required: false,
           description: "",
         },
       ],
       isClient: false,
-      examples: [],
+      examples: [
+        {
+          name: "Custom Header",
+          code: 'import type { ExpansionPanelProps } from "@react-md/core";\nimport {\n  ExpansionPanel,\n  ExpansionPanelHeader,\n} from "@react-md/core";\nimport type { ReactElement } from "react";\nconst { useId } from "react";\n\nexport type CustomExpansionPanelProps = ExpansionPanelProps & { id: string; };\n\nexport function CustomExpansionPanel(props: CustomExpansionPanelProps): ReactElement {\n  const {\n    id,\n    disabled,\n    onExpandClick,\n    expanded,\n    disableTransition,\n    headerChildren,\n  } = props;\n\n  return (\n    <ExpansionPanel\n      {...props}\n      header={(\n        <ExpansionPanelHeader\n          aria-disabled={disabled || undefined}\n          id={id}\n          onClick={onExpandClick}\n          expanded={expanded}\n          disableTransition={disableTransition}\n          // whatever props and any custom implementation\n        >\n          {headerChildren}\n        </ExpansionPanelHeader>\n      )}\n    />\n  );\n}',
+          lang: "tsx",
+        },
+      ],
       description:
-        "The `ListSubheader` is a wrapper for the `<li>` element to apply subheader\ntypography styles and {@link ListItemText } layout.",
-      extendedTypes: [{ name: "HTMLAttributes<HTMLLIElement>", href: "#" }],
+        "This is mostly an internal component, but can also be used to implement a\ncustom header implementation if needed. This might really be a client\ncomponent in practice since the `onClick` prop must be provided.",
+      extendedTypes: [
+        { name: "ButtonHTMLAttributes<HTMLButtonElement>", href: "#" },
+      ],
     },
   ],
-  ListItemLink: [
+  Fieldset: [
     {
-      id: "list-item-link",
-      name: "ListItemLink",
+      id: "fieldset",
+      name: "Fieldset",
       props: [
         {
-          id: "list-item-link-props-as",
-          name: "as",
-          type: "CustomLinkComponent",
+          id: "fieldset-props-browserstyles",
+          name: "browserStyles",
+          type: "boolean",
           required: false,
-          description: "",
-          defaultValue: '"a"',
+          description:
+            "Set this to `true` to enable the default browser styles for a fieldset.",
+          defaultValue: "false",
         },
         {
-          id: "list-item-link-props-classname",
+          id: "fieldset-props-classname",
           name: "className",
           type: "string",
           required: false,
           description: "",
         },
         {
-          id: "list-item-link-props-clickable",
-          name: "clickable",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `false` if the list item should not gain the interaction\nstates: hover, focus, press, etc. This is kind of like being disabled\nwithout the disabled styles being applied.",
-          defaultValue: "true",
-        },
-        {
-          id: "list-item-link-props-disabled",
-          name: "disabled",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
-        },
-        {
-          id: "list-item-link-props-disabledopacity",
-          name: "disabledOpacity",
-          type: "boolean",
-          required: false,
-          description:
-            "Note: This does nothing if the `disabled` prop is not enabled.",
-          defaultValue: "false",
-        },
-        {
-          id: "list-item-link-props-height",
-          name: "height",
-          type: "ListItemHeight",
-          required: false,
-          description: "",
-          defaultValue: '"auto"',
-        },
-        {
-          id: "list-item-link-props-href",
-          name: "href",
-          type: "string",
-          required: false,
-          description:
-            "The link's href. Either this or the {@link to } prop **should** be provided.",
-        },
-        {
-          id: "list-item-link-props-liprops",
-          name: "liProps",
-          type: "PropsWithRef<HTMLAttributes<HTMLLIElement>, HTMLLIElement>",
-          required: false,
-          description:
-            "Any additional props to provide the wrapping `<li>` element such as\n`style`, `className`, and `ref`.",
-        },
-        {
-          id: "list-item-link-props-tabindex",
-          name: "tabIndex",
-          type: "number",
-          required: false,
-          description: "",
-          defaultValue: "disabled ? -1 : undefined",
-        },
-        {
-          id: "list-item-link-props-threelines",
-          name: "threeLines",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
-        },
-        {
-          id: "list-item-link-props-to",
-          name: "to",
-          type: "string",
-          required: false,
-          description:
-            "This should only be used if the {@link as } {@link CustomLinkComponent }\naccepts a `to` prop instead of {@link href }.",
-        },
-      ],
-      isClient: true,
-      examples: [],
-      description:
-        "The `ListItemLink` should be used to render links within the `List` component.",
-      extendedTypes: [
-        { name: "AnchorHTMLAttributes<HTMLAnchorElement>", href: "#" },
-        { name: "ListItemChildrenProps", href: "#" },
-      ],
-    },
-  ],
-  ListItem: [
-    {
-      id: "list-item",
-      name: "ListItem",
-      props: [
-        {
-          id: "list-item-props-disabled",
-          name: "disabled",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
-        },
-        {
-          id: "list-item-props-disabledopacity",
-          name: "disabledOpacity",
-          type: "boolean",
-          required: false,
-          description:
-            "Note: This does nothing if the `disabled` prop is not enabled.",
-          defaultValue: "false",
-        },
-        {
-          id: "list-item-props-height",
-          name: "height",
-          type: "ListItemHeight",
-          required: false,
-          description: "",
-          defaultValue: '"auto"',
-        },
-        {
-          id: "list-item-props-presentational",
-          name: "presentational",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `false` if the list item should not gain the interaction\nstates: hover, focus, press, etc. This is kind of like being disabled\nwithout the disabled styles being applied.",
-          defaultValue: 'role === "presentation"',
-        },
-        {
-          id: "list-item-props-role",
-          name: "role",
-          type: "AriaRole",
-          required: false,
-          description: "",
-          defaultValue: '"button"',
-        },
-        {
-          id: "list-item-props-tabindex",
-          name: "tabIndex",
-          type: "number",
-          required: false,
-          description: "",
-          defaultValue: "disabled ? -1 : 0",
-        },
-        {
-          id: "list-item-props-threelines",
-          name: "threeLines",
+          id: "fieldset-props-fullwidth",
+          name: "fullWidth",
           type: "boolean",
           required: false,
           description: "",
           defaultValue: "false",
         },
       ],
-      isClient: true,
+      isClient: false,
       examples: [
         {
           name: "Simple Example",
-          code: 'import { List, ListItem } from "@react-md/core";\nimport type { ReactElement  } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <List>\n      <ListItem\n        onClick={() => {\n          // do something\n        }}\n      >\n        Item 1\n      </ListItem>\n      <ListItem\n        onClick={() => {\n          // do something\n        }}\n        secondaryText={<span>Some <strong>additional</strong> content.</span>}\n      >\n        Item 2\n      </ListItem>\n    </List>\n  );\n  );\n}',
-          lang: "tsx",
-        },
-        {
-          name: "Applying Addons Example",
-          code: 'import { List, ListItem } from "@react-md/core";\nimport FavoriteIcon from "@react-md/material-icons/FavoriteIcon";\nimport type { ReactElement  } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <List>\n      <ListItem leftAddon={<FavoriteIcon />}>\n        Item 1\n      </ListItem>\n      <ListItem rightAddon={<FavoriteIcon />}>\n        Item 2\n      </ListItem>\n      <ListItem\n        leftAddon={<FavoriteIcon />}\n        rightAddon={<img alt="" src="/some-image.png" />}\n        rightAddonType="media"\n      >\n        Item 3\n      </ListItem>\n    </List>\n  );\n  );\n}',
+          code: 'import { Form, Fieldset, Legend } from "@react-md/core";\n\nfunction Example(): ReactElement {\n  return (\n    <Form>\n      <Fieldset>\n        <Legend>Some Title</Legend>\n        // form components\n      </Fieldset>\n    </Form>\n  );\n}',
           lang: "tsx",
         },
       ],
-      description:
-        "The `ListItem` is used to create a clickable/focusable button within a\n`List` and removes the normal `<li>` styles.",
+      description: "",
       extendedTypes: [
-        { name: "HTMLAttributes<HTMLLIElement>", href: "#" },
-        { name: "ListItemChildrenProps", href: "#" },
+        { name: "FieldsetHTMLAttributes<HTMLFieldSetElement>", href: "#" },
       ],
     },
   ],
-  List: [
+  FontIcon: [
     {
-      id: "list",
-      name: "List",
+      id: "font-icon",
+      name: "FontIcon",
       props: [
         {
-          id: "list-props-dense",
+          id: "font-icon-props-children",
+          name: "children",
+          type: "ReactNode",
+          required: false,
+          description:
+            "Any children to render to create the font icon. This is required for\nmaterial-icons.",
+        },
+        {
+          id: "font-icon-props-classname",
+          name: "className",
+          type: "string",
+          required: false,
+          description: "",
+        },
+        {
+          id: "font-icon-props-dense",
           name: "dense",
           type: "boolean",
           required: false,
-          description:
-            "Set to `true` to decrease the amount of padding and font size within the\nlist.",
+          description: "Boolean if the font icon should use the dense spec.",
           defaultValue: "false",
         },
         {
-          id: "list-props-horizontal",
-          name: "horizontal",
+          id: "font-icon-props-iconclassname",
+          name: "iconClassName",
+          type: "string",
+          required: false,
+          description: "The font icon class name to use.",
+          defaultValue: '"material-icons"',
+        },
+        {
+          id: "font-icon-props-inline",
+          name: "inline",
           type: "boolean",
           required: false,
           description:
-            "Set this to `true` to render horizontally instead of vertically.",
+            "Set this to `true` if the icon should display inline with other text (like\na paragraph) by applying `vertical-align: bottom`.",
           defaultValue: "false",
         },
         {
-          id: "list-props-ordered",
-          name: "ordered",
-          type: "boolean",
+          id: "font-icon-props-theme",
+          name: "theme",
+          type: "ThemeColor | TextColor",
           required: false,
           description:
-            "Set this to `true` to render as `<ol>` instead of `<ul>` when the children\nare in a specific order. For example: steps within a recipe.",
-          defaultValue: "false",
-        },
-        {
-          id: "list-props-role",
-          name: "role",
-          type: "AriaRole",
-          required: false,
-          description: "",
-          defaultValue: '"none"',
+            "An optional theme color to apply to the icon. When this is `undefined`, the\ndefault icon color will be used instead.\n\n- `primary -> $primary-color`\n- `secondary -> $secondary-color`\n- `warning -> $warning-color`\n- `success -> $success-color`\n- `error -> $error-color`\n- `text-primary -> $text-primary-color`\n- `text-secondary -> $text-primary-color`\n- `text-hint -> $text-hint-color`\n- `text-disabled -> $text-disabled-color`",
         },
       ],
       isClient: false,
-      examples: [
-        {
-          name: "Simple Example",
-          code: 'import { List, ListItem, ListItemLink } from "@react-md/core";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <List>\n      <ListItem\n        onClick={() => {\n          // do something\n        }}\n      >\n        Item 1\n      </ListItem>\n      <ListItem\n        onClick={() => {\n          // do something\n        }}\n      >\n        Item 2\n      </ListItem>\n      <ListItem\n        onClick={() => {\n          // do something\n        }}\n      >\n        Item 3\n      </ListItem>\n      <ListItemLink href="/some-route">Link Example</ListItemLink>\n    </List>\n  );\n}',
-          lang: "tsx",
-        },
-      ],
+      examples: [],
       description:
-        "The `List` component is used to render a collection of clickable actions\nvertically or horizontally and does not include the default `ol`/`ul` styles.",
-      extendedTypes: [{ name: "HTMLAttributes<ListElement>", href: "#" }],
+        "The `FontIcon` component is used for rendering a font-icon library's icon.\nThe default is to use the `material-icons` library, but others can be used as\nwell.\n\nIf you are using another font icon library that does not always create icons\nwith a perfect 1:1 scale (such as font awesome), it is recommended to use the\n`forceSize` and `forceFontSize` props to fix the sizing issues.\n\n\\@remarks \\@since 6.0.0 Switched from `<i>` to `<span>` element and removed\nthe `forceSize`/`forceFontSize` props.",
+      extendedTypes: [{ name: "HTMLAttributes<HTMLElement>", href: "#" }],
     },
   ],
-  Link: [
+  Form: [
     {
-      id: "link",
-      name: "Link",
+      id: "form",
+      name: "Form",
       props: [
         {
-          id: "link-props-href",
-          name: "href",
-          type: "string",
-          required: true,
-          description: "All links **must** have a valid href.",
-        },
-        {
-          id: "link-props-classname",
-          name: "className",
-          type: "string",
-          required: false,
-          description: "",
-        },
-        {
-          id: "link-props-flex",
-          name: "flex",
+          id: "form-props-disablepreventdefault",
+          name: "disablePreventDefault",
           type: "boolean",
           required: false,
           description:
-            "Set this to `true` if your link contains icons that should be centered and\nspaced with additional text. This is not used by default so that links can\ncorrectly line wrap while rendered within paragraphs of text.",
-          defaultValue: "false",
-        },
-        {
-          id: "link-props-flex-1",
-          name: "flex",
-          type: "boolean",
-          required: false,
-          description: "",
+            "Boolean if the form should no longer prevent default submit behavior. If\nyou enable this prop you should honestly just use a `<form>` element\ninstead",
           defaultValue: "false",
         },
       ],
       isClient: false,
-      examples: [
-        {
-          name: "Simple Example",
-          code: 'import { Link, Typography } from "@react-md/core";\nimport type { ReactElement } from "react";\n\nfunction Element(): ReactElement {\n  return (\n    <Typography>\n      Here is a paragraph of text with a {" "}\n      <Link href="/some-url">link to some content</Link>.\n    </Typography>\n  );\n}',
-          lang: "tsx",
-        },
-      ],
-      description: "",
+      examples: [],
+      description:
+        "This is probably one of the least useful components available as it doesn't\ndo much styling or logic. All this form component will do is add basic flex\nbehavior and prevent the default form submit behavior.",
       extendedTypes: [
-        { name: "AnchorHTMLAttributes<HTMLAnchorElement>", href: "#" },
+        { name: "FormHTMLAttributes<HTMLFormElement>", href: "#" },
       ],
     },
   ],
-  Main: [
+  FormMessageContainer: [
     {
-      id: "main",
-      name: "Main",
+      id: "form-message-container",
+      name: "FormMessageContainer",
       props: [
         {
-          id: "main-props-children",
+          id: "form-message-container-props-messageprops",
+          name: "messageProps",
+          type: "PropsWithRef<FormMessageProps, HTMLDivElement>",
+          required: false,
+          description:
+            "If the extension doesn't actually want to render the `FormMessage`\ncomponent, these props are optional. It kind of eliminates the whole\npurpose of this component though.",
+        },
+      ],
+      isClient: false,
+      examples: [],
+      description:
+        "Conditionally wraps the `children` in a `.rmd-form-message-container` wrapper\nand renders the {@link FormMessage } component.",
+      extendedTypes: [{ name: "HTMLAttributes<HTMLDivElement>", href: "#" }],
+    },
+  ],
+  IconRotator: [
+    {
+      id: "icon-rotator",
+      name: "IconRotator",
+      props: [
+        {
+          id: "icon-rotator-props-children",
           name: "children",
           type: "ReactNode",
           required: true,
-          description: "",
-        },
-        {
-          id: "main-props-appbaroffset",
-          name: "appBarOffset",
-          type: "boolean",
-          required: false,
           description:
-            "Set this to `true` to apply `padding-top` equal to the height of the main\napp bar so that content is not covered.",
-          defaultValue: "false",
+            "The icon that should be rotated. If this is a valid React Element, the\nclass names will be cloned into that icon, otherwise the icon will be\nwrapped in a span with the correct class names applied.",
         },
+      ],
+      isClient: false,
+      examples: [],
+      description:
+        "The `IconRotator` is a simple component that is used to rotate an icon from a\none degrees to another.",
+      extendedTypes: [{ name: "IconRotatorBaseProps", href: "#" }],
+    },
+  ],
+  LayoutAppBar: [
+    {
+      id: "layout-app-bar",
+      name: "LayoutAppBar",
+      props: [
         {
-          id: "main-props-as",
+          id: "layout-app-bar-props-as",
           name: "as",
-          type: "CustomMainElement",
+          type: "CustomAppBarComponent",
           required: false,
           description: "",
-          defaultValue: '"main"',
+          defaultValue: '"header"',
         },
         {
-          id: "main-props-classname",
-          name: "className",
-          type: "string",
+          id: "layout-app-bar-props-position",
+          name: "position",
+          type: "CssPosition",
           required: false,
           description: "",
+          defaultValue: '"fixed"',
         },
         {
-          id: "main-props-navoffset",
-          name: "navOffset",
-          type: "boolean",
+          id: "layout-app-bar-props-skipprops",
+          name: "skipProps",
+          type: "PropsWithRef<SkipToMainContentProps, HTMLAnchorElement>",
           required: false,
           description:
-            "Set this to `true` to apply `margin-left` equal to the current navigation\nwidth. If you want this value to animate, use the `useMainClassName` hook\ninstead.",
-          defaultValue: "false",
+            "Any additional props to pass to the {@link SkipToMainContent } component.",
         },
       ],
       isClient: true,
       examples: [
-        {
-          name: "Styles Only",
-          code: 'import { main as mainStyles } from "@react-md/core":\n\nfunction MyCustomMainElement({ children }) {\n  return (\n    <main\n      className={mainStyles({\n        navOffset: true,\n        appBarOffset: true,\n      })}\n    >\n      {children}\n    </main>\n  );\n}',
-          lang: "tsx",
-        },
+        { name: "Static Height", code: "", lang: "scss" },
+        { name: "Media Query Height Changes", code: "", lang: "scss" },
       ],
       description:
-        "This component is really only used to dynamically set the `tabIndex` to `-1`\nwhile using a keyboard for the `SkipToMainContent` component's focus behavior\nto work correctly. If you don't need that functionality, use the {@link main }\nstyle utility instead.",
-      extendedTypes: [{ name: "HTMLAttributes<HTMLElement>", href: "#" }],
+        "This component is used to dynamically update the `--rmd-layout-header-offset`\nbased on the current height of this app bar. If you are concerned about\njavascript bundle size, it is recommended to configure this variable in SCSS\ninstead.",
+      extendedTypes: [{ name: "AppBarProps", href: "#" }],
     },
   ],
   LayoutNav: [
@@ -1811,44 +1749,1294 @@ export const API_LOOKUP: ApiLookup = {
       extendedTypes: [{ name: "HTMLAttributes<HTMLDivElement>", href: "#" }],
     },
   ],
-  LayoutAppBar: [
+  Legend: [
     {
-      id: "layout-app-bar",
-      name: "LayoutAppBar",
+      id: "legend",
+      name: "Legend",
       props: [
         {
-          id: "layout-app-bar-props-as",
-          name: "as",
-          type: "CustomAppBarComponent",
+          id: "legend-props-sronly",
+          name: "srOnly",
+          type: "boolean",
           required: false,
           description: "",
-          defaultValue: '"header"',
+          defaultValue: "false",
+        },
+      ],
+      isClient: false,
+      examples: [],
+      description: "This should be used within a `Fieldset` to apply a label.",
+      extendedTypes: [{ name: "TypographyProps", href: "#" }],
+    },
+  ],
+  Link: [
+    {
+      id: "link",
+      name: "Link",
+      props: [
+        {
+          id: "link-props-href",
+          name: "href",
+          type: "string",
+          required: true,
+          description: "All links **must** have a valid href.",
         },
         {
-          id: "layout-app-bar-props-position",
-          name: "position",
-          type: "CssPosition",
+          id: "link-props-classname",
+          name: "className",
+          type: "string",
           required: false,
           description: "",
-          defaultValue: '"fixed"',
         },
         {
-          id: "layout-app-bar-props-skipprops",
-          name: "skipProps",
-          type: "PropsWithRef<SkipToMainContentProps, HTMLAnchorElement>",
+          id: "link-props-flex",
+          name: "flex",
+          type: "boolean",
           required: false,
           description:
-            "Any additional props to pass to the {@link SkipToMainContent } component.",
+            "Set this to `true` if your link contains icons that should be centered and\nspaced with additional text. This is not used by default so that links can\ncorrectly line wrap while rendered within paragraphs of text.",
+          defaultValue: "false",
+        },
+        {
+          id: "link-props-flex-1",
+          name: "flex",
+          type: "boolean",
+          required: false,
+          description: "",
+          defaultValue: "false",
+        },
+      ],
+      isClient: false,
+      examples: [
+        {
+          name: "Simple Example",
+          code: 'import { Link, Typography } from "@react-md/core";\nimport type { ReactElement } from "react";\n\nfunction Element(): ReactElement {\n  return (\n    <Typography>\n      Here is a paragraph of text with a {" "}\n      <Link href="/some-url">link to some content</Link>.\n    </Typography>\n  );\n}',
+          lang: "tsx",
+        },
+      ],
+      description: "",
+      extendedTypes: [
+        { name: "AnchorHTMLAttributes<HTMLAnchorElement>", href: "#" },
+      ],
+    },
+  ],
+  List: [
+    {
+      id: "list",
+      name: "List",
+      props: [
+        {
+          id: "list-props-dense",
+          name: "dense",
+          type: "boolean",
+          required: false,
+          description:
+            "Set to `true` to decrease the amount of padding and font size within the\nlist.",
+          defaultValue: "false",
+        },
+        {
+          id: "list-props-horizontal",
+          name: "horizontal",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` to render horizontally instead of vertically.",
+          defaultValue: "false",
+        },
+        {
+          id: "list-props-ordered",
+          name: "ordered",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` to render as `<ol>` instead of `<ul>` when the children\nare in a specific order. For example: steps within a recipe.",
+          defaultValue: "false",
+        },
+        {
+          id: "list-props-role",
+          name: "role",
+          type: "AriaRole",
+          required: false,
+          description: "",
+          defaultValue: '"none"',
+        },
+      ],
+      isClient: false,
+      examples: [
+        {
+          name: "Simple Example",
+          code: 'import { List, ListItem, ListItemLink } from "@react-md/core";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <List>\n      <ListItem\n        onClick={() => {\n          // do something\n        }}\n      >\n        Item 1\n      </ListItem>\n      <ListItem\n        onClick={() => {\n          // do something\n        }}\n      >\n        Item 2\n      </ListItem>\n      <ListItem\n        onClick={() => {\n          // do something\n        }}\n      >\n        Item 3\n      </ListItem>\n      <ListItemLink href="/some-route">Link Example</ListItemLink>\n    </List>\n  );\n}',
+          lang: "tsx",
+        },
+      ],
+      description:
+        "The `List` component is used to render a collection of clickable actions\nvertically or horizontally and does not include the default `ol`/`ul` styles.",
+      extendedTypes: [{ name: "HTMLAttributes<ListElement>", href: "#" }],
+    },
+  ],
+  ListItem: [
+    {
+      id: "list-item",
+      name: "ListItem",
+      props: [
+        {
+          id: "list-item-props-disabled",
+          name: "disabled",
+          type: "boolean",
+          required: false,
+          description: "",
+          defaultValue: "false",
+        },
+        {
+          id: "list-item-props-disabledopacity",
+          name: "disabledOpacity",
+          type: "boolean",
+          required: false,
+          description:
+            "Note: This does nothing if the `disabled` prop is not enabled.",
+          defaultValue: "false",
+        },
+        {
+          id: "list-item-props-height",
+          name: "height",
+          type: "ListItemHeight",
+          required: false,
+          description: "",
+          defaultValue: '"auto"',
+        },
+        {
+          id: "list-item-props-presentational",
+          name: "presentational",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `false` if the list item should not gain the interaction\nstates: hover, focus, press, etc. This is kind of like being disabled\nwithout the disabled styles being applied.",
+          defaultValue: 'role === "presentation"',
+        },
+        {
+          id: "list-item-props-role",
+          name: "role",
+          type: "AriaRole",
+          required: false,
+          description: "",
+          defaultValue: '"button"',
+        },
+        {
+          id: "list-item-props-tabindex",
+          name: "tabIndex",
+          type: "number",
+          required: false,
+          description: "",
+          defaultValue: "disabled ? -1 : 0",
+        },
+        {
+          id: "list-item-props-threelines",
+          name: "threeLines",
+          type: "boolean",
+          required: false,
+          description: "",
+          defaultValue: "false",
         },
       ],
       isClient: true,
       examples: [
-        { name: "Static Height", code: "", lang: "scss" },
-        { name: "Media Query Height Changes", code: "", lang: "scss" },
+        {
+          name: "Simple Example",
+          code: 'import { List, ListItem } from "@react-md/core";\nimport type { ReactElement  } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <List>\n      <ListItem\n        onClick={() => {\n          // do something\n        }}\n      >\n        Item 1\n      </ListItem>\n      <ListItem\n        onClick={() => {\n          // do something\n        }}\n        secondaryText={<span>Some <strong>additional</strong> content.</span>}\n      >\n        Item 2\n      </ListItem>\n    </List>\n  );\n  );\n}',
+          lang: "tsx",
+        },
+        {
+          name: "Applying Addons Example",
+          code: 'import { List, ListItem } from "@react-md/core";\nimport FavoriteIcon from "@react-md/material-icons/FavoriteIcon";\nimport type { ReactElement  } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <List>\n      <ListItem leftAddon={<FavoriteIcon />}>\n        Item 1\n      </ListItem>\n      <ListItem rightAddon={<FavoriteIcon />}>\n        Item 2\n      </ListItem>\n      <ListItem\n        leftAddon={<FavoriteIcon />}\n        rightAddon={<img alt="" src="/some-image.png" />}\n        rightAddonType="media"\n      >\n        Item 3\n      </ListItem>\n    </List>\n  );\n  );\n}',
+          lang: "tsx",
+        },
       ],
       description:
-        "This component is used to dynamically update the `--rmd-layout-header-offset`\nbased on the current height of this app bar. If you are concerned about\njavascript bundle size, it is recommended to configure this variable in SCSS\ninstead.",
-      extendedTypes: [{ name: "AppBarProps", href: "#" }],
+        "The `ListItem` is used to create a clickable/focusable button within a\n`List` and removes the normal `<li>` styles.",
+      extendedTypes: [
+        { name: "HTMLAttributes<HTMLLIElement>", href: "#" },
+        { name: "ListItemChildrenProps", href: "#" },
+      ],
+    },
+  ],
+  ListItemLink: [
+    {
+      id: "list-item-link",
+      name: "ListItemLink",
+      props: [
+        {
+          id: "list-item-link-props-as",
+          name: "as",
+          type: "CustomLinkComponent",
+          required: false,
+          description: "",
+          defaultValue: '"a"',
+        },
+        {
+          id: "list-item-link-props-classname",
+          name: "className",
+          type: "string",
+          required: false,
+          description: "",
+        },
+        {
+          id: "list-item-link-props-clickable",
+          name: "clickable",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `false` if the list item should not gain the interaction\nstates: hover, focus, press, etc. This is kind of like being disabled\nwithout the disabled styles being applied.",
+          defaultValue: "true",
+        },
+        {
+          id: "list-item-link-props-disabled",
+          name: "disabled",
+          type: "boolean",
+          required: false,
+          description: "",
+          defaultValue: "false",
+        },
+        {
+          id: "list-item-link-props-disabledopacity",
+          name: "disabledOpacity",
+          type: "boolean",
+          required: false,
+          description:
+            "Note: This does nothing if the `disabled` prop is not enabled.",
+          defaultValue: "false",
+        },
+        {
+          id: "list-item-link-props-height",
+          name: "height",
+          type: "ListItemHeight",
+          required: false,
+          description: "",
+          defaultValue: '"auto"',
+        },
+        {
+          id: "list-item-link-props-href",
+          name: "href",
+          type: "string",
+          required: false,
+          description:
+            "The link's href. Either this or the {@link to } prop **should** be provided.",
+        },
+        {
+          id: "list-item-link-props-liprops",
+          name: "liProps",
+          type: "PropsWithRef<HTMLAttributes<HTMLLIElement>, HTMLLIElement>",
+          required: false,
+          description:
+            "Any additional props to provide the wrapping `<li>` element such as\n`style`, `className`, and `ref`.",
+        },
+        {
+          id: "list-item-link-props-tabindex",
+          name: "tabIndex",
+          type: "number",
+          required: false,
+          description: "",
+          defaultValue: "disabled ? -1 : undefined",
+        },
+        {
+          id: "list-item-link-props-threelines",
+          name: "threeLines",
+          type: "boolean",
+          required: false,
+          description: "",
+          defaultValue: "false",
+        },
+        {
+          id: "list-item-link-props-to",
+          name: "to",
+          type: "string",
+          required: false,
+          description:
+            "This should only be used if the {@link as } {@link CustomLinkComponent }\naccepts a `to` prop instead of {@link href }.",
+        },
+      ],
+      isClient: true,
+      examples: [],
+      description:
+        "The `ListItemLink` should be used to render links within the `List` component.",
+      extendedTypes: [
+        { name: "AnchorHTMLAttributes<HTMLAnchorElement>", href: "#" },
+        { name: "ListItemChildrenProps", href: "#" },
+      ],
+    },
+  ],
+  ListSubheader: [
+    {
+      id: "list-subheader",
+      name: "ListSubheader",
+      props: [
+        {
+          id: "list-subheader-props-classname",
+          name: "className",
+          type: "string",
+          required: false,
+          description: "",
+        },
+        {
+          id: "list-subheader-props-inset",
+          name: "inset",
+          type: "boolean",
+          required: false,
+          description:
+            "Boolean if the subheader should be inset to match the `ListItem` text\nkeyline.",
+          defaultValue: "false",
+        },
+        {
+          id: "list-subheader-props-role",
+          name: "role",
+          type: "AriaRole",
+          required: false,
+          description: "",
+          defaultValue: '"presentation"',
+        },
+        {
+          id: "list-subheader-props-textprops",
+          name: "textProps",
+          type: "PropsWithRef<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>",
+          required: false,
+          description: "",
+        },
+      ],
+      isClient: false,
+      examples: [],
+      description:
+        "The `ListSubheader` is a wrapper for the `<li>` element to apply subheader\ntypography styles and {@link ListItemText } layout.",
+      extendedTypes: [{ name: "HTMLAttributes<HTMLLIElement>", href: "#" }],
+    },
+  ],
+  Main: [
+    {
+      id: "main",
+      name: "Main",
+      props: [
+        {
+          id: "main-props-children",
+          name: "children",
+          type: "ReactNode",
+          required: true,
+          description: "",
+        },
+        {
+          id: "main-props-appbaroffset",
+          name: "appBarOffset",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` to apply `padding-top` equal to the height of the main\napp bar so that content is not covered.",
+          defaultValue: "false",
+        },
+        {
+          id: "main-props-as",
+          name: "as",
+          type: "CustomMainElement",
+          required: false,
+          description: "",
+          defaultValue: '"main"',
+        },
+        {
+          id: "main-props-classname",
+          name: "className",
+          type: "string",
+          required: false,
+          description: "",
+        },
+        {
+          id: "main-props-navoffset",
+          name: "navOffset",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` to apply `margin-left` equal to the current navigation\nwidth. If you want this value to animate, use the `useMainClassName` hook\ninstead.",
+          defaultValue: "false",
+        },
+      ],
+      isClient: true,
+      examples: [
+        {
+          name: "Styles Only",
+          code: 'import { main as mainStyles } from "@react-md/core":\n\nfunction MyCustomMainElement({ children }) {\n  return (\n    <main\n      className={mainStyles({\n        navOffset: true,\n        appBarOffset: true,\n      })}\n    >\n      {children}\n    </main>\n  );\n}',
+          lang: "tsx",
+        },
+      ],
+      description:
+        "This component is really only used to dynamically set the `tabIndex` to `-1`\nwhile using a keyboard for the `SkipToMainContent` component's focus behavior\nto work correctly. If you don't need that functionality, use the {@link main }\nstyle utility instead.",
+      extendedTypes: [{ name: "HTMLAttributes<HTMLElement>", href: "#" }],
+    },
+  ],
+  MenuItemTextField: [
+    {
+      id: "menu-item-text-field",
+      name: "MenuItemTextField",
+      props: [
+        {
+          id: "menu-item-text-field-props-liprops",
+          name: "liProps",
+          type: "PropsWithRef<HTMLAttributes<HTMLLIElement>, HTMLLIElement>",
+          required: false,
+          description:
+            "Any additional props or a `ref` to apply to the surrounding `<li>` element.",
+        },
+        {
+          id: "menu-item-text-field-props-stretch",
+          name: "stretch",
+          type: "boolean",
+          required: false,
+          description: "",
+          defaultValue: "true",
+        },
+      ],
+      isClient: true,
+      examples: [],
+      description:
+        "This is a wrapper for the `TextField` component that can be used within\n`Menu`s by updating the `onKeyDown` and `onClick` behavior.\n\nNote: This is **not** the `TextFieldWithMessage` since the message part is\nhard to style nicely within menus. You'd most likely want to use another menu\nfor displaying errors.",
+      extendedTypes: [{ name: "TextFieldProps", href: "#" }],
+    },
+  ],
+  NativeSelect: [
+    {
+      id: "native-select",
+      name: "NativeSelect",
+      props: [
+        {
+          id: "native-select-props-children",
+          name: "children",
+          type: "ReactNode",
+          required: true,
+          description:
+            'This should be a list of `<option>` elements for specific values within the\n`<select>`.\n\nCheck out the {@link NativeSelect } for examples around using "placeholder"\ntext and requiring a value to be selected.',
+        },
+        {
+          id: "native-select-props-active",
+          name: "active",
+          type: "boolean",
+          required: false,
+          description: "",
+          defaultValue: "false",
+        },
+        {
+          id: "native-select-props-containerprops",
+          name: "containerProps",
+          type: "PropsWithRef<HTMLAttributes<HTMLDivElement>, HTMLDivElement>",
+          required: false,
+          description:
+            "Optional props to provide to the {@link TextFieldContainer } component.\nThere probably isn't any real use for this prop other than if you need to\nadd a `ref` for some DOM behavior.",
+        },
+        {
+          id: "native-select-props-dense",
+          name: "dense",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` to enable the dense spec which reduces the height.",
+          defaultValue: "false",
+        },
+        {
+          id: "native-select-props-disabled",
+          name: "disabled",
+          type: "boolean",
+          required: false,
+          description: "",
+          defaultValue: "false",
+        },
+        {
+          id: "native-select-props-disableleftaddonstyles",
+          name: "disableLeftAddonStyles",
+          type: "boolean",
+          required: false,
+          description: "",
+          defaultValue: "false",
+        },
+        {
+          id: "native-select-props-disablerightaddonstyles",
+          name: "disableRightAddonStyles",
+          type: "boolean",
+          required: false,
+          description: "",
+          defaultValue: "false",
+        },
+        {
+          id: "native-select-props-error",
+          name: "error",
+          type: "boolean",
+          required: false,
+          description: "",
+          defaultValue: "false",
+        },
+        {
+          id: "native-select-props-icon",
+          name: "icon",
+          type: "ReactNode",
+          required: false,
+          description:
+            "A custom dropdown icon to use instead of the browser's default select\ndropdown icon.\n\nSet this to `null` if the browser's default icon should be used instead.",
+          defaultValue: 'getIcon("dropdown")',
+        },
+        {
+          id: "native-select-props-inline",
+          name: "inline",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` to change the style from `display: flex` to\n`display: inline-flex`.",
+          defaultValue: "false",
+        },
+        {
+          id: "native-select-props-label",
+          name: "label",
+          type: "ReactNode",
+          required: false,
+          description:
+            "An optional floating label to use with the text field. A label is generally\nrecommended for accessibility, but can be omitted if an `aria-label` or\n`aria-labelledby` is provided.",
+        },
+        {
+          id: "native-select-props-labelclassname",
+          name: "labelClassName",
+          type: "string",
+          required: false,
+          description:
+            'A convenience prop to apply a custom className to a label. This is\nequivalent to:\n\n```ts\nlabelProps={{\n  className: "some-class-name",\n}}\n```',
+        },
+        {
+          id: "native-select-props-labelprops",
+          name: "labelProps",
+          type: "PropsWithRef<LabelProps, HTMLLabelElement>",
+          required: false,
+          description:
+            "Any additional props and/or ref that should be passed to the `<label>`\nelement when a {@link label } is provided.",
+        },
+        {
+          id: "native-select-props-labelstyle",
+          name: "labelStyle",
+          type: "CSSProperties",
+          required: false,
+          description:
+            "A convenience prop to apply a custom style to a label. This is equivalent\nto:\n\n```ts\nlabelProps={{\n  style: // some style here\n}}\n```",
+        },
+        {
+          id: "native-select-props-leftaddon",
+          name: "leftAddon",
+          type: "ReactNode",
+          required: false,
+          description:
+            "This should generally be an icon or a button that will be placed before the\n`TextField` or `TextArea`.",
+        },
+        {
+          id: "native-select-props-leftaddonprops",
+          name: "leftAddonProps",
+          type: "PropsWithRef<ConfigurableTextFieldAddonProps, HTMLSpanElement>",
+          required: false,
+          description:
+            "Any additional props to pass to the `<span>` surrounding the {@link leftAddon }.",
+        },
+        {
+          id: "native-select-props-messagecontainerprops",
+          name: "messageContainerProps",
+          type: "PropsWithRef<HTMLAttributes<HTMLDivElement>, HTMLDivElement>",
+          required: false,
+          description:
+            "Any props (and an optional ref) to provide to the `<div>` surrounding the\nchildren and `FormMessage` component.\n\nNote: This will not be used if the `messageProps` are not provided since\nonly the `children` will be returned without the container.",
+        },
+        {
+          id: "native-select-props-messageprops",
+          name: "messageProps",
+          type: "PropsWithRef<FormMessageProps & Partial<FormMessageInputLengthCounterProps>, HTMLDivElement>",
+          required: false,
+          description:
+            "If the extension doesn't actually want to render the `FormMessage`\ncomponent, these props are optional. It kind of eliminates the whole\npurpose of this component though.",
+        },
+        {
+          id: "native-select-props-readonly",
+          name: "readOnly",
+          type: "boolean",
+          required: false,
+          description: "",
+          defaultValue: "false",
+        },
+        {
+          id: "native-select-props-rightaddon",
+          name: "rightAddon",
+          type: "ReactNode",
+          required: false,
+          description:
+            "This should generally be an icon or a button that will be placed after the\n`TextField` or `TextArea`.",
+        },
+        {
+          id: "native-select-props-rightaddonprops",
+          name: "rightAddonProps",
+          type: "PropsWithRef<ConfigurableTextFieldAddonProps, HTMLSpanElement>",
+          required: false,
+          description:
+            "Any additional props to pass to the `<span>` surrounding the {@link rightAddon }.",
+        },
+        {
+          id: "native-select-props-selectclassname",
+          name: "selectClassName",
+          type: "string",
+          required: false,
+          description:
+            "This applies custom className to the `<select>` element since the\n`className` prop is applied to the container element instead.",
+        },
+        {
+          id: "native-select-props-selectstyle",
+          name: "selectStyle",
+          type: "CSSProperties",
+          required: false,
+          description:
+            "This applies custom inline styles to the `<select>` element since the\n`style` prop is applied to the container element instead.",
+        },
+        {
+          id: "native-select-props-stretch",
+          name: "stretch",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` if this component should stretch to fill a flex or grid\ncontainer using `flex: 1 1 auto`.",
+          defaultValue: "false",
+        },
+        {
+          id: "native-select-props-theme",
+          name: "theme",
+          type: "FormTheme",
+          required: false,
+          description: "The current theme type.",
+          defaultValue: '"outline"',
+        },
+        {
+          id: "native-select-props-underlinedirection",
+          name: "underlineDirection",
+          type: "FormUnderlineDirection",
+          required: false,
+          description: "The current underline direction.",
+          defaultValue: '"left"',
+        },
+      ],
+      isClient: false,
+      examples: [
+        {
+          name: "Simple Example",
+          code: '<NativeSelect label="Label">\n  <option value="a">Value 1</option>\n  <option value="b">Value 2</option>\n  <option value="c">Value 3</option>\n  <option value="d">Value 4</option>\n</NativeSelect>',
+          lang: "tsx",
+        },
+        {
+          name: "Required Value Example",
+          code: 'function Example(): ReactElement {\n  // using `defaultValue=""` makes it so the first option selected by default\n  // and considered an "invalid" value since it is `disabled`\n  //\n  // a `name` must be set with `required` so that the form validation will\n  // fire if the value is still the empty string when the form is submitted\n  //\n  // the first `<option>` is kind of like placeholder text since it doesn\'t\n  // have a value and is disabled by default\n\n  return (\n    <NativeSelect\n      label="State"\n      name="state"\n      required\n      defaultValue=""\n    >\n      <option value="" disabled>Choose a state</option>\n      {states.map(({ name, code }) => (\n        <option key={code} value={code}>{name}</option>\n      ))}\n    </NativeSelect>\n  );\n}',
+          lang: "tsx",
+        },
+      ],
+      description:
+        "This component is a wrapper for the native `<select>` field that applies the\nsame theming as `TextField` and `TextArea` components. This component might\nnot be used much since the `Select` offers more styling options.",
+      extendedTypes: [
+        { name: "SelectHTMLAttributes<HTMLSelectElement>", href: "#" },
+        { name: "UserAgentAutoCompleteProps", href: "#" },
+      ],
+    },
+  ],
+  Option: [
+    {
+      id: "option",
+      name: "Option",
+      props: [
+        {
+          id: "option-props-value",
+          name: "value",
+          type: "string | number",
+          required: true,
+          description: "",
+        },
+        {
+          id: "option-props-role",
+          name: "role",
+          type: "string",
+          required: false,
+          description: "",
+          defaultValue: '"option"',
+        },
+        {
+          id: "option-props-selectedicon",
+          name: "selectedIcon",
+          type: "ReactNode",
+          required: false,
+          description: "",
+          defaultValue: 'getIcon("selected")',
+        },
+        {
+          id: "option-props-selectediconafter",
+          name: "selectedIconAfter",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` of the {@link selectedIcon }/{@link unselectedIcon }\nshould appear as the {@link rightAddon } instead of the {@link leftAddon }.",
+          defaultValue: "false",
+        },
+        {
+          id: "option-props-texticonspacingprops",
+          name: "textIconSpacingProps",
+          type: 'Omit<TextIconSpacingProps, "children" | "icon">',
+          required: false,
+          description:
+            "Since the `selectedIcon`/`unselectedIcon` are rendered as\n`leftAddon`/`rightAddon`, the provided `leftAddon`/`rightAddon` will be\nwrapped in the {@link TextIconSpacing } component to maintain the correct\nspacing. You can use this prop to provide any additional configuration to\nthe spacing.",
+        },
+        {
+          id: "option-props-unselectedicon",
+          name: "unselectedIcon",
+          type: "ReactNode",
+          required: false,
+          description: "",
+          defaultValue: '<span className="rmd-icon rmd-icon--svg" />',
+        },
+      ],
+      isClient: true,
+      examples: [],
+      description:
+        "This component is a wrapper around the {@link MenuItem } to implement custom\nselect option behavior.",
+      extendedTypes: [{ name: "MenuItemProps", href: "#" }],
+    },
+  ],
+  Overlay: [
+    {
+      id: "overlay",
+      name: "Overlay",
+      props: [
+        {
+          id: "overlay-props-visible",
+          name: "visible",
+          type: "boolean",
+          required: true,
+          description:
+            "Set this to `true` for when the overlay should be visible. Toggling this\nvalue will trigger the enter/exit animation.",
+        },
+        {
+          id: "overlay-props-align",
+          name: "align",
+          type: "BoxAlignItems",
+          required: false,
+          description: "",
+          defaultValue: '"center"',
+        },
+        {
+          id: "overlay-props-appear",
+          name: "appear",
+          type: "boolean",
+          required: false,
+          description:
+            "Boolean if the transition should occur immediately once the component\nmounts if the {@link TransitionOptions.transitionIn } is `true`",
+          defaultValue: "false",
+        },
+        {
+          id: "overlay-props-clickable",
+          name: "clickable",
+          type: "boolean",
+          required: false,
+          description: "",
+          defaultValue: "!noOpacity",
+        },
+        {
+          id: "overlay-props-disableportal",
+          name: "disablePortal",
+          type: "boolean",
+          required: false,
+          description: "",
+          defaultValue: "false",
+        },
+        {
+          id: "overlay-props-disabletransition",
+          name: "disableTransition",
+          type: "boolean",
+          required: false,
+          description: "",
+          defaultValue: "false",
+        },
+        {
+          id: "overlay-props-enter",
+          name: "enter",
+          type: "boolean",
+          required: false,
+          description:
+            "Boolean if the transition should occur whenever the\n{@link TransitionOptions.transitionIn } is switch to `true` after the\ncomponent has been rendered in the DOM.",
+          defaultValue: "true",
+        },
+        {
+          id: "overlay-props-exit",
+          name: "exit",
+          type: "boolean",
+          required: false,
+          description:
+            "Boolean if the transition should occur whenever the\n{@link TransitionOptions.transitionIn } is switch to `false` after the\ncomponent has been rendered in the DOM.",
+          defaultValue: "true",
+        },
+        {
+          id: "overlay-props-justify",
+          name: "justify",
+          type: "BoxJustifyContent",
+          required: false,
+          description: "",
+          defaultValue: '"center"',
+        },
+        {
+          id: "overlay-props-noopacity",
+          name: "noOpacity",
+          type: "boolean",
+          required: false,
+          description:
+            'Set this to `true` if the overlay should be rendered with an `opacity: 0`\nand disabling the animation. This is useful if you\'d like a "close on\noutside click" behavior.',
+          defaultValue: "false",
+        },
+      ],
+      isClient: true,
+      examples: [
+        {
+          name: "Simple Example",
+          code: 'import { Button, Overlay, useToggle } from "@react-md/core";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  const { toggle, disable, toggled: visible } = useToggle(false);\n\n  return (\n    <>\n      <Button onClick={toggle}>Toggle</Button>\n      <Overlay visible={visible} onClick={disable} />\n    </>\n  );\n}',
+          lang: "tsx",
+        },
+      ],
+      description: "",
+      extendedTypes: [
+        { name: "HTMLAttributes<HTMLSpanElement>", href: "#" },
+        { name: "CSSTransitionComponentProps", href: "#" },
+      ],
+    },
+  ],
+  ResponsiveItemContainer: [
+    {
+      id: "responsive-item-container",
+      name: "ResponsiveItemContainer",
+      props: [
+        {
+          id: "responsive-item-container-props-aspectratio",
+          name: "aspectRatio",
+          type: "`${number}-${number}`",
+          required: false,
+          description: "Set this to a custom aspect ratio to use.",
+          defaultValue: '""',
+        },
+        {
+          id: "responsive-item-container-props-classname",
+          name: "className",
+          type: "string",
+          required: false,
+          description: "",
+        },
+        {
+          id: "responsive-item-container-props-fullwidth",
+          name: "fullWidth",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` if the container should gain the following styles:\n\n```scss\ndisplay: block;\nwidth: 100%;\n```",
+          defaultValue: "false",
+        },
+        {
+          id: "responsive-item-container-props-responsive",
+          name: "responsive",
+          type: '"manual" | "auto" | "container"',
+          required: false,
+          description:
+            'Set this to `"manual"` if you want to manually specify which elements are\nresponsive items using custom class names. You probably don\'t really want\nto use this.\n\nSet this to `"auto"` to automatically update all visual media that appear\nas a child in this component to a responsive item.\n\nSet this to `"container"` to automatically update all visual media that\nappear as a child in this component to be a responsive item that scales to\nthe container\'s dimensions.\n\nNote: The `"auto"` and `"container"` values use the\n`core.$responsive-item-selectors` value for their behavior.',
+          defaultValue: '"auto"',
+        },
+      ],
+      isClient: false,
+      examples: [
+        {
+          name: "Image Example",
+          code: 'import { ResponsiveItemContainer } from "@react-md/core";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <ResponsiveItemContainer>\n      <img alt="" src="/some-image.png" />\n    </ResponsiveItemContainer>\n  );\n}',
+          lang: "tsx",
+        },
+        {
+          name: "Iframe Example",
+          code: 'import { ResponsiveItemContainer } from "@react-md/core";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <ResponsiveItemContainer>\n      <iframe\n        src="https://youtube.com/some-video-url"\n        title="Some YouTube video"\n        allowFullScreen\n      />\n    </ResponsiveItemContainer>\n  );\n}',
+          lang: "tsx",
+        },
+        {
+          name: "Forced Aspect Ratio",
+          code: 'import { ResponsiveItemContainer } from "@react-md/core";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <ResponsiveItemContainer aspectRatio="16-9">\n      <img alt="" src="/some-image.png" />\n    </ResponsiveItemContainer>\n  );\n}',
+          lang: "tsx",
+        },
+      ],
+      description: "",
+      extendedTypes: [{ name: "HTMLAttributes<HTMLSpanElement>", href: "#" }],
+    },
+  ],
+  ResponsiveItemOverlay: [
+    {
+      id: "responsive-item-overlay",
+      name: "ResponsiveItemOverlay",
+      props: [
+        {
+          id: "responsive-item-overlay-props-classname",
+          name: "className",
+          type: "string",
+          required: false,
+          description: "",
+        },
+        {
+          id: "responsive-item-overlay-props-position",
+          name: "position",
+          type: "ResponsiveItemOverlayPosition",
+          required: false,
+          description: "",
+          defaultValue: '"bottom"',
+        },
+      ],
+      isClient: false,
+      examples: [
+        {
+          name: "Simple Example",
+          code: 'import { ResponsiveItemContainer, ResponsiveItemOverlay } from "@react-md/core";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <ResponsiveItemContainer>\n      <img alt="" src="/some-image.png" />\n      <ResponsiveItemOverlay>\n        <Typography type="headline-5" margin="none">\n          This appears at the bottom by default.\n        </Typography>\n      </ResponsiveItemOverlay>\n    </ResponsiveItemContainer>\n  );\n}',
+          lang: "tsx",
+        },
+      ],
+      description: "",
+      extendedTypes: [{ name: "HTMLAttributes<HTMLSpanElement>", href: "#" }],
+    },
+  ],
+  SegmentedButton: [
+    {
+      id: "segmented-button",
+      name: "SegmentedButton",
+      props: [
+        {
+          id: "segmented-button-props-disableselectedicon",
+          name: "disableSelectedIcon",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` to not render the {@link selectedIcon } when\n{@link selected } is `true`.",
+          defaultValue: "false",
+        },
+        {
+          id: "segmented-button-props-disableselectedtransition",
+          name: "disableSelectedTransition",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` to disable the {@link selectedIcon } enter/exit\ntransition and instead just use `display: none`.",
+          defaultValue: "false",
+        },
+        {
+          id: "segmented-button-props-leftaddon",
+          name: "leftAddon",
+          type: "ReactNode",
+          required: false,
+          description:
+            "An optional addon to render before the {@link children } and after the\n{@link selectedIcon }. This is only useful when rendering text children so\nit can appear above the interaction states.",
+        },
+        {
+          id: "segmented-button-props-rightaddon",
+          name: "rightAddon",
+          type: "ReactNode",
+          required: false,
+          description:
+            "An optional addon to render after the {@link children }. This is only useful\nwhen rendering text children so it can appear above the interaction states.",
+        },
+        {
+          id: "segmented-button-props-selected",
+          name: "selected",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` to apply selected styles and an optional\n{@link selectedIcon }",
+          defaultValue: "false",
+        },
+        {
+          id: "segmented-button-props-selectedclassname",
+          name: "selectedClassName",
+          type: "string",
+          required: false,
+          description:
+            "An optional className to apply when {@link selected } is `true`.",
+        },
+        {
+          id: "segmented-button-props-selectedicon",
+          name: "selectedIcon",
+          type: "ReactNode",
+          required: false,
+          description: "",
+          defaultValue: 'getIcon("selected")',
+        },
+      ],
+      isClient: true,
+      examples: [
+        {
+          name: "Simple Example",
+          code: 'import {\n  SegmentedButton,\n  SegmentedButtonContainer,\n} from "@react-md/core";\nimport type { ReactElement } from "react";\nimport { useState } from "react";\n\nfunction Example(): ReactElement {\n  const [value, setValue] = useState("a");\n  return (\n    <SegmentedButtonContainer>\n      <SegmentedButton\n        onClick={() => setValue("a")}\n        selected={value === "a"}\n      >\n        First\n      </SegmentedButton>\n      <SegmentedButton\n        onClick={() => setValue("b")}\n        selected={value === "b"}\n      >\n        Second\n      </SegmentedButton>\n      <SegmentedButton\n        onClick={() => setValue("c")}\n        selected={value === "c"}\n        disableSelectedIcon\n      >\n        Third\n      </SegmentedButton>\n    </SegmentedButtonContainer>\n  );\n}',
+          lang: "tsx",
+        },
+      ],
+      description: "",
+      extendedTypes: [
+        { name: "ButtonHTMLAttributes<HTMLButtonElement>", href: "#" },
+      ],
+    },
+  ],
+  SegmentedButtonContainer: [
+    {
+      id: "segmented-button-container",
+      name: "SegmentedButtonContainer",
+      props: [
+        {
+          id: "segmented-button-container-props-children",
+          name: "children",
+          type: "ReactNode",
+          required: true,
+          description: "",
+        },
+        {
+          id: "segmented-button-container-props-classname",
+          name: "className",
+          type: "string",
+          required: false,
+          description: "",
+        },
+        {
+          id: "segmented-button-container-props-disablefullwidth",
+          name: "disableFullWidth",
+          type: "boolean",
+          required: false,
+          description: "",
+          defaultValue: "false",
+        },
+      ],
+      isClient: false,
+      examples: [
+        {
+          name: "Without This Component",
+          code: 'import {\n  SegmentedButton,\n  segmentedButtonContainerStyles,\n} from "@react-md/core";\nimport type { ReactElement } from "react";\n\nimport { CustomWrapperComponent } from "./CustomWrapperComponent.jsx";\n\nfunction Example(): ReactElement {\n  return (\n    <CustomWrapperComponent className={segmentedButtonContainerStyles()}>\n      <SegmentedButton>One</SegmentedButton>\n      <SegmentedButton>Two</SegmentedButton>\n      <SegmentedButton>Three</SegmentedButton>\n    </CustomWrapperComponent>\n  );\n}',
+          lang: "tsx",
+        },
+      ],
+      description:
+        "Simple wrapper `div` to apply the segmented button container styles. You can\njust use the {@link segmentedButtonContainerStyles } util function instead.",
+      extendedTypes: [{ name: "HTMLAttributes<HTMLDivElement>", href: "#" }],
+    },
+  ],
+  Slide: [
+    {
+      id: "slide",
+      name: "Slide",
+      props: [
+        {
+          id: "slide-props-active",
+          name: "active",
+          type: "boolean",
+          required: true,
+          description:
+            "Set this to `true` to animate this slide into view within a\n`SlideContainer`. When this switches from `true` to `false`, it will\nanimate out.",
+        },
+        {
+          id: "slide-props-children",
+          name: "children",
+          type: "ReactNode",
+          required: true,
+          description: "",
+        },
+        {
+          id: "slide-props-appear",
+          name: "appear",
+          type: "boolean",
+          required: false,
+          description:
+            "Boolean if the transition should occur immediately once the component\nmounts if the {@link TransitionOptions.transitionIn } is `true`",
+          defaultValue: "false",
+        },
+        {
+          id: "slide-props-enter",
+          name: "enter",
+          type: "boolean",
+          required: false,
+          description:
+            "Boolean if the transition should occur whenever the\n{@link TransitionOptions.transitionIn } is switch to `true` after the\ncomponent has been rendered in the DOM.",
+          defaultValue: "true",
+        },
+        {
+          id: "slide-props-exit",
+          name: "exit",
+          type: "boolean",
+          required: false,
+          description:
+            "Boolean if the transition should occur whenever the\n{@link TransitionOptions.transitionIn } is switch to `false` after the\ncomponent has been rendered in the DOM.",
+          defaultValue: "true",
+        },
+        {
+          id: "slide-props-timeout",
+          name: "timeout",
+          type: "TransitionTimeout",
+          required: false,
+          description: "",
+          defaultValue: "@link DEFAULT_SLIDE_TRANSITION_DURATION ",
+        },
+      ],
+      isClient: true,
+      examples: [],
+      description:
+        "A reasonable default for handling a slide transition using\n{@link useSlideTransition }.",
+      extendedTypes: [
+        { name: "HTMLAttributes<HTMLDivElement>", href: "#" },
+        { name: "CSSTransitionComponentProps", href: "#" },
+      ],
+    },
+  ],
+  SlideContainer: [
+    {
+      id: "slide-container",
+      name: "SlideContainer",
+      props: [
+        {
+          id: "slide-container-props-direction",
+          name: "direction",
+          type: "SlideDirection",
+          required: true,
+          description: "",
+        },
+        {
+          id: "slide-container-props-classname",
+          name: "className",
+          type: "string",
+          required: false,
+          description: "",
+        },
+      ],
+      isClient: false,
+      examples: [
+        {
+          name: "Simple Example",
+          code: 'import { SlideContainer, Slide } from "@react-md/core";\nimport type { ReactElement, ReactNode } from "react";\nimport { useState } from "react";\n\ninterface State {\n  direction: SlideDirection;\n  activeIndex: number;\n}\n\nfunction Example(): ReactElement {\n  const [state, setState] = useState<State>({\n    direction: "left",\n    activeIndex: 0,\n  });\n  const { direction, activeIndex } = state;\n\n  // when changing a slide, `direction` should be set to "left" if the\n  // previous `activeIndex` is less than the next index\n  //\n  // i.e.\n  // setState((prevState) => ({\n  //   direction: prevState.activeIndex < index ? "left" : "right",\n  //   activeIndex: index,\n  // }))\n\n  return (\n    <SlideContainer direction={direction}>\n      <Slide active={activeIndex === 0}>\n        Slide 1\n      </Slide>\n      <Slide active={activeIndex === 1}>\n        Slide 2\n      </Slide>\n      <Slide active={activeIndex === 2}>\n        Slide 3\n      </Slide>\n    </SlideContainer>\n  );\n}',
+          lang: "tsx",
+        },
+        {
+          name: "Persistent Slides",
+          code: 'import type { SlideDirection } from "@react-md/core";\nimport { SlideContainer, Slide } from "@react-md/core";\nimport type { ReactElement, ReactNode } from "react";\nimport { useState } from "react";\n\ninterface State {\n  direction: SlideDirection;\n  activeIndex: number;\n}\n\nfunction Example(): ReactElement {\n  const [state, setState] = useState<State>({\n    direction: "left",\n    activeIndex: 0,\n  });\n  const { direction, activeIndex } = state;\n\n  // when changing a slide, `direction` should be set to "left" if the\n  // previous `activeIndex` is less than the next index\n  //\n  // i.e.\n  // setState((prevState) => ({\n  //   direction: prevState.activeIndex < index ? "left" : "right",\n  //   activeIndex: index,\n  // }))\n\n  // enabling `persistent` makes it so that the `<Slide>` never unmounts so\n  // that state can be maintained while it is not active.\n  return (\n    <SlideContainer direction={direction}>\n      <Slide active={activeIndex === 0} persistent>\n        Slide 1\n      </Slide>\n      <Slide active={activeIndex === 1} persistent>\n        Slide 2\n      </Slide>\n      <Slide active={activeIndex === 2} persistent>\n        Slide 3\n      </Slide>\n    </SlideContainer>\n  );\n}',
+          lang: "tsx",
+        },
+      ],
+      description:
+        "This is a server component, but generally relies on state so probably a client component.",
+      extendedTypes: [{ name: "HTMLAttributes<HTMLDivElement>", href: "#" }],
+    },
+  ],
+  Snackbar: [
+    {
+      id: "snackbar",
+      name: "Snackbar",
+      props: [
+        {
+          id: "snackbar-props-disableportal",
+          name: "disablePortal",
+          type: "boolean",
+          required: false,
+          description: "",
+          defaultValue: "false",
+        },
+        {
+          id: "snackbar-props-id",
+          name: "id",
+          type: "string",
+          required: false,
+          description: "",
+          defaultValue: '"snackbar-" + useId()',
+        },
+        {
+          id: "snackbar-props-limit",
+          name: "limit",
+          type: "number",
+          required: false,
+          description:
+            "Set this to the number of toasts that can be visible within the snackbar at\nthe same time. Any toasts added after this value will be added into the\nqueue to be shown.",
+          defaultValue: "1",
+        },
+        {
+          id: "snackbar-props-position",
+          name: "position",
+          type: "SnackbarPosition",
+          required: false,
+          description: "",
+          defaultValue: '"bottom"',
+        },
+        {
+          id: "snackbar-props-rendertoast",
+          name: "renderToast",
+          type: "ComponentType<ToastRendererProps>",
+          required: false,
+          description:
+            "This can be used to create a custom toast implementation.",
+          defaultValue: "DefaultToastRenderer",
+        },
+        {
+          id: "snackbar-props-role",
+          name: "role",
+          type: "AriaRole",
+          required: false,
+          description: "",
+          defaultValue: '"status"',
+        },
+        {
+          id: "snackbar-props-toastdefaults",
+          name: "toastDefaults",
+          type: "ConfigurableToastProps",
+          required: false,
+          description:
+            "Optional props that should be passed to each `Toast` from the `Snackbar`.\nThis is a great way to enforce each toast having a close button, a custom\nclass name, theme, etc.",
+        },
+      ],
+      isClient: true,
+      examples: [
+        {
+          name: "Super SImple Example",
+          code: 'import { Button, Snackbar, addToast } from "@react-md/core";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <>\n      <Button\n        onClick={() => {\n          addToast({ children: "A new toast!" });\n        }}\n      >\n        Toast!\n      </Button>\n      <Snackbar />\n    </>\n  );\n}',
+          lang: "tsx",
+        },
+      ],
+      description: "",
+      extendedTypes: [{ name: "HTMLAttributes<HTMLDivElement>", href: "#" }],
+    },
+  ],
+  SrOnly: [
+    {
+      id: "sr-only",
+      name: "SrOnly",
+      props: [
+        {
+          id: "sr-only-props-as",
+          name: "as",
+          type: "CustomTypographyComponent",
+          required: false,
+          description: "",
+          defaultValue: '"span"',
+        },
+        {
+          id: "sr-only-props-focusable",
+          name: "focusable",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` if the element should be keyboard focusable.",
+          defaultValue: "false",
+        },
+        {
+          id: "sr-only-props-phoneonly",
+          name: "phoneOnly",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` if the content should only be screen reader only text on\nphones. This is useful for only displaying an icon on phones when there is\nlimited space and then displaying an icon and text on larger devices.",
+          defaultValue: "false",
+        },
+      ],
+      isClient: false,
+      examples: [
+        {
+          name: "Simple Example",
+          code: 'import { SrOnly } from "@react-md/core";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <>\n      <SrOnly>\n        I am only visible to screen readers.\n      </SrOnly>\n      <SrOnly focusable>\n        I am only visible to screen readers but can be focused.\n      </SrOnly>\n    </>\n  );\n}',
+          lang: "tsx",
+        },
+      ],
+      description: "",
+      extendedTypes: [{ name: "TypographyProps", href: "#" }],
     },
   ],
   SVGIcon: [
@@ -1939,116 +3127,498 @@ export const API_LOOKUP: ApiLookup = {
       extendedTypes: [{ name: "HTMLAttributes<SVGSVGElement>", href: "#" }],
     },
   ],
-  IconRotator: [
+  Switch: [
     {
-      id: "icon-rotator",
-      name: "IconRotator",
+      id: "switch",
+      name: "Switch",
       props: [
         {
-          id: "icon-rotator-props-children",
-          name: "children",
-          type: "ReactNode",
-          required: true,
-          description:
-            "The icon that should be rotated. If this is a valid React Element, the\nclass names will be cloned into that icon, otherwise the icon will be\nwrapped in a span with the correct class names applied.",
-        },
-      ],
-      isClient: false,
-      examples: [],
-      description:
-        "The `IconRotator` is a simple component that is used to rotate an icon from a\none degrees to another.",
-      extendedTypes: [{ name: "IconRotatorBaseProps", href: "#" }],
-    },
-  ],
-  FontIcon: [
-    {
-      id: "font-icon",
-      name: "FontIcon",
-      props: [
-        {
-          id: "font-icon-props-children",
-          name: "children",
-          type: "ReactNode",
-          required: false,
-          description:
-            "Any children to render to create the font icon. This is required for\nmaterial-icons.",
-        },
-        {
-          id: "font-icon-props-classname",
-          name: "className",
-          type: "string",
-          required: false,
-          description: "",
-        },
-        {
-          id: "font-icon-props-dense",
-          name: "dense",
-          type: "boolean",
-          required: false,
-          description: "Boolean if the font icon should use the dense spec.",
-          defaultValue: "false",
-        },
-        {
-          id: "font-icon-props-iconclassname",
-          name: "iconClassName",
-          type: "string",
-          required: false,
-          description: "The font icon class name to use.",
-          defaultValue: '"material-icons"',
-        },
-        {
-          id: "font-icon-props-inline",
-          name: "inline",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` if the icon should display inline with other text (like\na paragraph) by applying `vertical-align: bottom`.",
-          defaultValue: "false",
-        },
-        {
-          id: "font-icon-props-theme",
-          name: "theme",
-          type: "ThemeColor | TextColor",
-          required: false,
-          description:
-            "An optional theme color to apply to the icon. When this is `undefined`, the\ndefault icon color will be used instead.\n\n- `primary -> $primary-color`\n- `secondary -> $secondary-color`\n- `warning -> $warning-color`\n- `success -> $success-color`\n- `error -> $error-color`\n- `text-primary -> $text-primary-color`\n- `text-secondary -> $text-primary-color`\n- `text-hint -> $text-hint-color`\n- `text-disabled -> $text-disabled-color`",
-        },
-      ],
-      isClient: false,
-      examples: [],
-      description:
-        "The `FontIcon` component is used for rendering a font-icon library's icon.\nThe default is to use the `material-icons` library, but others can be used as\nwell.\n\nIf you are using another font icon library that does not always create icons\nwith a perfect 1:1 scale (such as font awesome), it is recommended to use the\n`forceSize` and `forceFontSize` props to fix the sizing issues.\n\n\\@remarks \\@since 6.0.0 Switched from `<i>` to `<span>` element and removed\nthe `forceSize`/`forceFontSize` props.",
-      extendedTypes: [{ name: "HTMLAttributes<HTMLElement>", href: "#" }],
-    },
-  ],
-  TextFieldAddon: [
-    {
-      id: "text-field-addon",
-      name: "TextFieldAddon",
-      props: [
-        {
-          id: "text-field-addon-props-after",
-          name: "after",
+          id: "switch-props-active",
+          name: "active",
           type: "boolean",
           required: false,
           description: "",
           defaultValue: "false",
         },
         {
-          id: "text-field-addon-props-disabled",
+          id: "switch-props-balladdon",
+          name: "ballAddon",
+          type: "ReactNode",
+          required: false,
+          description: "",
+        },
+        {
+          id: "switch-props-ballclassname",
+          name: "ballClassName",
+          type: "string",
+          required: false,
+          description: "",
+        },
+        {
+          id: "switch-props-ballprops",
+          name: "ballProps",
+          type: "PropsWithRef<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>",
+          required: false,
+          description: "",
+        },
+        {
+          id: "switch-props-ballstyle",
+          name: "ballStyle",
+          type: "CSSProperties",
+          required: false,
+          description: "",
+        },
+        {
+          id: "switch-props-containerprops",
+          name: "containerProps",
+          type: "PropsWithRef<HTMLAttributes<HTMLDivElement>, HTMLDivElement>",
+          required: false,
+          description: "",
+        },
+        {
+          id: "switch-props-disabled",
           name: "disabled",
           type: "boolean",
           required: false,
-          description:
-            "Set this to `true` if the addon should not be wrapped in a `<span>` with some\nadditional styles.",
+          description: "",
           defaultValue: "false",
+        },
+        {
+          id: "switch-props-error",
+          name: "error",
+          type: "boolean",
+          required: false,
+          description: "",
+          defaultValue: "false",
+        },
+        {
+          id: "switch-props-messagecontainerprops",
+          name: "messageContainerProps",
+          type: "PropsWithRef<HTMLAttributes<HTMLDivElement>, HTMLDivElement>",
+          required: false,
+          description:
+            "Any props (and an optional ref) to provide to the `<div>` surrounding the\nchildren and `FormMessage` component.\n\nNote: This will not be used if the `messageProps` are not provided since\nonly the `children` will be returned without the container.",
+        },
+        {
+          id: "switch-props-messageprops",
+          name: "messageProps",
+          type: "PropsWithRef<FormMessageProps & Partial<FormMessageInputLengthCounterProps>, HTMLDivElement>",
+          required: false,
+          description:
+            "If the extension doesn't actually want to render the `FormMessage`\ncomponent, these props are optional. It kind of eliminates the whole\npurpose of this component though.",
+        },
+        {
+          id: "switch-props-readonly",
+          name: "readOnly",
+          type: "boolean",
+          required: false,
+          description: "",
+          defaultValue: "false",
+        },
+        {
+          id: "switch-props-trackclassname",
+          name: "trackClassName",
+          type: "string",
+          required: false,
+          description: "",
+        },
+        {
+          id: "switch-props-trackprops",
+          name: "trackProps",
+          type: "PropsWithRef<HTMLAttributes<HTMLDivElement>, HTMLDivElement>",
+          required: false,
+          description: "",
+        },
+        {
+          id: "switch-props-trackstyle",
+          name: "trackStyle",
+          type: "CSSProperties",
+          required: false,
+          description: "",
+        },
+      ],
+      isClient: false,
+      examples: [
+        {
+          name: "Simple Example",
+          code: 'import { Form, Switch } from "@react-md/core";\nimport type { ReactElement } from "react";\nimport { useState } from "react";\n\nfunction Example(): ReactElement {\n  const [checked, setChecked] = useState(false);\n\n  return (\n    <Form>\n      <Switch\n        label="Label"\n        name="enabled"\n        checked={checked}\n        onChange={(event) => setChecked(event.currentTarget.checked)}\n      />\n    </Form>\n  );\n}',
+          lang: "tsx",
+        },
+      ],
+      description: "",
+      extendedTypes: [
+        { name: "InputHTMLAttributes<HTMLInputElement>", href: "#" },
+        { name: "InputToggleLabelProps", href: "#" },
+      ],
+    },
+  ],
+  SwitchTrack: [
+    {
+      id: "switch-track",
+      name: "SwitchTrack",
+      props: [
+        {
+          id: "switch-track-props-active",
+          name: "active",
+          type: "boolean",
+          required: false,
+          description: "",
+        },
+        {
+          id: "switch-track-props-balladdon",
+          name: "ballAddon",
+          type: "ReactNode",
+          required: false,
+          description: "",
+        },
+        {
+          id: "switch-track-props-ballclassname",
+          name: "ballClassName",
+          type: "string",
+          required: false,
+          description: "",
+        },
+        {
+          id: "switch-track-props-ballprops",
+          name: "ballProps",
+          type: "PropsWithRef<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>",
+          required: false,
+          description: "",
+        },
+        {
+          id: "switch-track-props-ballstyle",
+          name: "ballStyle",
+          type: "CSSProperties",
+          required: false,
+          description: "",
+        },
+        {
+          id: "switch-track-props-disabled",
+          name: "disabled",
+          type: "boolean",
+          required: false,
+          description: "",
         },
       ],
       isClient: false,
       examples: [],
+      description: "",
+      extendedTypes: [{ name: "HTMLAttributes<HTMLDivElement>", href: "#" }],
+    },
+  ],
+  Tab: [
+    {
+      id: "tab",
+      name: "Tab",
+      props: [
+        {
+          id: "tab-props-active",
+          name: "active",
+          type: "boolean",
+          required: true,
+          description:
+            "Set this to `true` if the tab is currently active.\n\nThis is normally provided by the {@link useTabs } hook.",
+        },
+        {
+          id: "tab-props-activeindicator",
+          name: "activeIndicator",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` if the {@link TabListProps.disableTransition } prop has\nalso been set to `true` to disable an active indicator below the tab when\n{@link active } is `true`.",
+          defaultValue: "false",
+        },
+        {
+          id: "tab-props-icon",
+          name: "icon",
+          type: "ReactNode",
+          required: false,
+          description:
+            "An optional icon to render with the with the {@link children }. The default\nbehavior will render this icon before the children.",
+        },
+        {
+          id: "tab-props-iconafter",
+          name: "iconAfter",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` to render the {@link icon } after the {@link children }.",
+          defaultValue: "false",
+        },
+        {
+          id: "tab-props-stacked",
+          name: "stacked",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` to render the {@link icon } and {@link children } stacked\ninstead of horizontally.",
+          defaultValue: "false",
+        },
+      ],
+      isClient: true,
+      examples: [],
       description:
-        "This component is used to add an an icon before or after the text field with\ncorrect styling.",
-      extendedTypes: [{ name: "ConfigurableTextFieldAddonProps", href: "#" }],
+        "This component should usually be used with the `TabsList` component and\n`useTabs` hook.",
+      extendedTypes: [
+        { name: "ButtonHTMLAttributes<HTMLButtonElement>", href: "#" },
+      ],
+    },
+  ],
+  Table: [
+    {
+      id: "table",
+      name: "Table",
+      props: [
+        {
+          id: "table-props-dense",
+          name: "dense",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` to decrease the height of all cells within the table.",
+          defaultValue: "false",
+        },
+        {
+          id: "table-props-disableborders",
+          name: "disableBorders",
+          type: "boolean",
+          required: false,
+          description:
+            "Set to `true` if the rows in the `TableBody` should no longer have borders\napplied.",
+          defaultValue: "false",
+        },
+        {
+          id: "table-props-disablehover",
+          name: "disableHover",
+          type: "boolean",
+          required: false,
+          description:
+            "Set to `true` if rows should no longer change background color while\nhovered.",
+          defaultValue: "false",
+        },
+        {
+          id: "table-props-fullwidth",
+          name: "fullWidth",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` to allow the table to span the full width of the\ncontainer element instead of having the width be determined by the content\nwithin the table.",
+          defaultValue: "false",
+        },
+        {
+          id: "table-props-halign",
+          name: "hAlign",
+          type: "TableCellHorizontalAlignment",
+          required: false,
+          description: "",
+        },
+        {
+          id: "table-props-header",
+          name: "header",
+          type: "boolean",
+          required: false,
+          description:
+            'Boolean if all the `TableCell` components should be rendered as a `<th>`\ninstead of a `<td>`. This is really just a convenience prop for the\n`TableHeader` component so the user of `react-md` doesn\'t need to keep\nsetting the `type="th"` fot the `TableCell` if using the low-level\ncomponents.',
+        },
+        {
+          id: "table-props-linewrap",
+          name: "lineWrap",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` to allow `TableCell` content to line wrap.",
+          defaultValue: "false",
+        },
+        {
+          id: "table-props-valign",
+          name: "vAlign",
+          type: "TableCellVerticalAlignment",
+          required: false,
+          description: "",
+        },
+      ],
+      isClient: true,
+      examples: [
+        {
+          name: "Responsive Example",
+          code: 'import {\n  Table,\n  TableBody,\n  TableCell,\n  TableContainer,\n  TableHeader,\n  TableRow,\n} from "@react-md/core";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <TableContainer>\n      <Table>\n        <TableHeader>\n          <TableRow>\n            <TableCell>Header 1</TableCell>\n            <TableCell>Header 2</TableCell>\n            <TableCell>Header 3</TableCell>\n          </TableRow>\n        </TableHeader>\n        <TableBody>\n          <TableRow>\n            <TableCell>Row 1 Cell 1</TableCell>\n            <TableCell>Row 1 Cell 2</TableCell>\n            <TableCell>Row 1 Cell 3</TableCell>\n          </TableRow>\n          <TableRow>\n            <TableCell>Row 2 Cell 1</TableCell>\n            <TableCell>Row 2 Cell 2</TableCell>\n            <TableCell>Row 2 Cell 3</TableCell>\n          </TableRow>\n          <TableRow>\n            <TableCell>Row 3 Cell 1</TableCell>\n            <TableCell>Row 3 Cell 2</TableCell>\n            <TableCell>Row 3 Cell 3</TableCell>\n          </TableRow>\n        </TableBody>\n      </Table>\n    </TableContainer>\n  );\n}',
+          lang: "tsx",
+        },
+      ],
+      description: "",
+      extendedTypes: [
+        { name: "TableHTMLAttributes<HTMLTableElement>", href: "#" },
+      ],
+    },
+  ],
+  TableRow: [
+    {
+      id: "table-row",
+      name: "TableRow",
+      props: [
+        {
+          id: "table-row-props-clickable",
+          name: "clickable",
+          type: "boolean",
+          required: false,
+          description:
+            "Boolean if the row should be clickable and update the cursor while hovered\nto be a pointer.",
+          defaultValue: "false",
+        },
+        {
+          id: "table-row-props-disableborders",
+          name: "disableBorders",
+          type: "boolean",
+          required: false,
+          description:
+            "Set to `true` if the rows in the `TableBody` should no longer have borders\napplied.",
+          defaultValue: "false",
+        },
+        {
+          id: "table-row-props-disablehover",
+          name: "disableHover",
+          type: "boolean",
+          required: false,
+          description:
+            "Set to `true` if rows should no longer change background color while\nhovered.",
+          defaultValue: "false",
+        },
+        {
+          id: "table-row-props-selected",
+          name: "selected",
+          type: "boolean",
+          required: false,
+          description:
+            "Boolean if the current row has been selected and should apply the selected\nbackground-color.",
+          defaultValue: "false",
+        },
+      ],
+      isClient: true,
+      examples: [],
+      description:
+        "Creates a `<tr>` element with some general styles that are inherited from the\nbase table configuration.",
+      extendedTypes: [
+        { name: "HTMLAttributes<HTMLTableRowElement>", href: "#" },
+      ],
+    },
+  ],
+  TabList: [
+    {
+      id: "tab-list",
+      name: "TabList",
+      props: [
+        {
+          id: "tab-list-props-activeindex",
+          name: "activeIndex",
+          type: "number",
+          required: true,
+          description: "",
+        },
+        {
+          id: "tab-list-props-activationmode",
+          name: "activationMode",
+          type: '"manual" | "automatic"',
+          required: false,
+          description: "",
+          defaultValue: '"manual"',
+        },
+        {
+          id: "tab-list-props-align",
+          name: "align",
+          type: "TabsAlignment",
+          required: false,
+          description: "",
+          defaultValue: '"left"',
+        },
+        {
+          id: "tab-list-props-backwardscrollbuttonprops",
+          name: "backwardScrollButtonProps",
+          type: "BaseTabListScrollButtonProps",
+          required: false,
+          description:
+            "Any additional props that should be passed to the scroll backward button.",
+        },
+        {
+          id: "tab-list-props-disabletransition",
+          name: "disableTransition",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` to disable the active tab indicator from animating\nwhen a new tab is selected.",
+          defaultValue: "false",
+        },
+        {
+          id: "tab-list-props-forwardscrollbuttonprops",
+          name: "forwardScrollButtonProps",
+          type: "BaseTabListScrollButtonProps",
+          required: false,
+          description:
+            "Any additional props that should be passed to the scroll forward button.",
+        },
+        {
+          id: "tab-list-props-getscrolltooptions",
+          name: "getScrollToOptions",
+          type: "GetTabListScrollToOptions",
+          required: false,
+          description:
+            "A convenience prop for the {@link BaseTabListScrollButtonProps.getScrollToOptions }\non {@link forwardScrollButtonProps } and {@link backwardScrollButtonProps }.",
+        },
+        {
+          id: "tab-list-props-inline",
+          name: "inline",
+          type: "boolean",
+          required: false,
+          description: "",
+          defaultValue: "false",
+        },
+        {
+          id: "tab-list-props-padded",
+          name: "padded",
+          type: "boolean",
+          required: false,
+          description: "",
+          defaultValue: "false",
+        },
+        {
+          id: "tab-list-props-scrollbar",
+          name: "scrollbar",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` to show a scrollbar when the number of tabs cause\noverflow.",
+          defaultValue: "false",
+        },
+        {
+          id: "tab-list-props-scrollbuttons",
+          name: "scrollButtons",
+          type: 'boolean | "allow-phone"',
+          required: false,
+          description:
+            'Set this to `true` to render buttons that can scroll forwards or backwards\nwithin the tab list if there is overflow **on desktop**. If you want to\ndisplay the scroll buttons on mobile as well, set this to `"allow-phone"` .',
+          defaultValue: "false",
+        },
+        {
+          id: "tab-list-props-transitionduration",
+          name: "transitionDuration",
+          type: "number",
+          required: false,
+          description:
+            "This should be equal to the `$tabs-transition-duration` variable.",
+          defaultValue: "150",
+        },
+        {
+          id: "tab-list-props-vertical",
+          name: "vertical",
+          type: "boolean",
+          required: false,
+          description: "",
+          defaultValue: "false",
+        },
+      ],
+      isClient: true,
+      examples: [],
+      description: "",
+      extendedTypes: [{ name: "HTMLAttributes<HTMLDivElement>", href: "#" }],
     },
   ],
   TextArea: [
@@ -2309,1980 +3879,410 @@ export const API_LOOKUP: ApiLookup = {
       ],
     },
   ],
-  SwitchTrack: [
+  TextContainer: [
     {
-      id: "switch-track",
-      name: "SwitchTrack",
+      id: "text-container",
+      name: "TextContainer",
       props: [
         {
-          id: "switch-track-props-active",
-          name: "active",
-          type: "boolean",
-          required: false,
-          description: "",
-        },
-        {
-          id: "switch-track-props-balladdon",
-          name: "ballAddon",
-          type: "ReactNode",
-          required: false,
-          description: "",
-        },
-        {
-          id: "switch-track-props-ballclassname",
-          name: "ballClassName",
-          type: "string",
-          required: false,
-          description: "",
-        },
-        {
-          id: "switch-track-props-ballprops",
-          name: "ballProps",
-          type: "PropsWithRef<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>",
-          required: false,
-          description: "",
-        },
-        {
-          id: "switch-track-props-ballstyle",
-          name: "ballStyle",
-          type: "CSSProperties",
-          required: false,
-          description: "",
-        },
-        {
-          id: "switch-track-props-disabled",
-          name: "disabled",
-          type: "boolean",
-          required: false,
-          description: "",
-        },
-      ],
-      isClient: false,
-      examples: [],
-      description: "",
-      extendedTypes: [{ name: "HTMLAttributes<HTMLDivElement>", href: "#" }],
-    },
-  ],
-  Switch: [
-    {
-      id: "switch",
-      name: "Switch",
-      props: [
-        {
-          id: "switch-props-active",
-          name: "active",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
-        },
-        {
-          id: "switch-props-balladdon",
-          name: "ballAddon",
-          type: "ReactNode",
-          required: false,
-          description: "",
-        },
-        {
-          id: "switch-props-ballclassname",
-          name: "ballClassName",
-          type: "string",
-          required: false,
-          description: "",
-        },
-        {
-          id: "switch-props-ballprops",
-          name: "ballProps",
-          type: "PropsWithRef<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>",
-          required: false,
-          description: "",
-        },
-        {
-          id: "switch-props-ballstyle",
-          name: "ballStyle",
-          type: "CSSProperties",
-          required: false,
-          description: "",
-        },
-        {
-          id: "switch-props-containerprops",
-          name: "containerProps",
-          type: "PropsWithRef<HTMLAttributes<HTMLDivElement>, HTMLDivElement>",
-          required: false,
-          description: "",
-        },
-        {
-          id: "switch-props-disabled",
-          name: "disabled",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
-        },
-        {
-          id: "switch-props-error",
-          name: "error",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
-        },
-        {
-          id: "switch-props-messagecontainerprops",
-          name: "messageContainerProps",
-          type: "PropsWithRef<HTMLAttributes<HTMLDivElement>, HTMLDivElement>",
-          required: false,
-          description:
-            "Any props (and an optional ref) to provide to the `<div>` surrounding the\nchildren and `FormMessage` component.\n\nNote: This will not be used if the `messageProps` are not provided since\nonly the `children` will be returned without the container.",
-        },
-        {
-          id: "switch-props-messageprops",
-          name: "messageProps",
-          type: "PropsWithRef<FormMessageProps & Partial<FormMessageInputLengthCounterProps>, HTMLDivElement>",
-          required: false,
-          description:
-            "If the extension doesn't actually want to render the `FormMessage`\ncomponent, these props are optional. It kind of eliminates the whole\npurpose of this component though.",
-        },
-        {
-          id: "switch-props-readonly",
-          name: "readOnly",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
-        },
-        {
-          id: "switch-props-trackclassname",
-          name: "trackClassName",
-          type: "string",
-          required: false,
-          description: "",
-        },
-        {
-          id: "switch-props-trackprops",
-          name: "trackProps",
-          type: "PropsWithRef<HTMLAttributes<HTMLDivElement>, HTMLDivElement>",
-          required: false,
-          description: "",
-        },
-        {
-          id: "switch-props-trackstyle",
-          name: "trackStyle",
-          type: "CSSProperties",
-          required: false,
-          description: "",
-        },
-      ],
-      isClient: false,
-      examples: [
-        {
-          name: "Simple Example",
-          code: 'import { Form, Switch } from "@react-md/core";\nimport type { ReactElement } from "react";\nimport { useState } from "react";\n\nfunction Example(): ReactElement {\n  const [checked, setChecked] = useState(false);\n\n  return (\n    <Form>\n      <Switch\n        label="Label"\n        name="enabled"\n        checked={checked}\n        onChange={(event) => setChecked(event.currentTarget.checked)}\n      />\n    </Form>\n  );\n}',
-          lang: "tsx",
-        },
-      ],
-      description: "",
-      extendedTypes: [
-        { name: "InputHTMLAttributes<HTMLInputElement>", href: "#" },
-        { name: "InputToggleLabelProps", href: "#" },
-      ],
-    },
-  ],
-  Option: [
-    {
-      id: "option",
-      name: "Option",
-      props: [
-        {
-          id: "option-props-value",
-          name: "value",
-          type: "string | number",
-          required: true,
-          description: "",
-        },
-        {
-          id: "option-props-role",
-          name: "role",
-          type: "string",
-          required: false,
-          description: "",
-          defaultValue: '"option"',
-        },
-        {
-          id: "option-props-selectedicon",
-          name: "selectedIcon",
-          type: "ReactNode",
-          required: false,
-          description: "",
-          defaultValue: 'getIcon("selected")',
-        },
-        {
-          id: "option-props-selectediconafter",
-          name: "selectedIconAfter",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` of the {@link selectedIcon }/{@link unselectedIcon }\nshould appear as the {@link rightAddon } instead of the {@link leftAddon }.",
-          defaultValue: "false",
-        },
-        {
-          id: "option-props-texticonspacingprops",
-          name: "textIconSpacingProps",
-          type: 'Omit<TextIconSpacingProps, "children" | "icon">',
-          required: false,
-          description:
-            "Since the `selectedIcon`/`unselectedIcon` are rendered as\n`leftAddon`/`rightAddon`, the provided `leftAddon`/`rightAddon` will be\nwrapped in the {@link TextIconSpacing } component to maintain the correct\nspacing. You can use this prop to provide any additional configuration to\nthe spacing.",
-        },
-        {
-          id: "option-props-unselectedicon",
-          name: "unselectedIcon",
-          type: "ReactNode",
-          required: false,
-          description: "",
-          defaultValue: '<span className="rmd-icon rmd-icon--svg" />',
-        },
-      ],
-      isClient: true,
-      examples: [],
-      description:
-        "This component is a wrapper around the {@link MenuItem } to implement custom\nselect option behavior.",
-      extendedTypes: [{ name: "MenuItemProps", href: "#" }],
-    },
-  ],
-  NativeSelect: [
-    {
-      id: "native-select",
-      name: "NativeSelect",
-      props: [
-        {
-          id: "native-select-props-children",
-          name: "children",
-          type: "ReactNode",
-          required: true,
-          description:
-            'This should be a list of `<option>` elements for specific values within the\n`<select>`.\n\nCheck out the {@link NativeSelect } for examples around using "placeholder"\ntext and requiring a value to be selected.',
-        },
-        {
-          id: "native-select-props-active",
-          name: "active",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
-        },
-        {
-          id: "native-select-props-containerprops",
-          name: "containerProps",
-          type: "PropsWithRef<HTMLAttributes<HTMLDivElement>, HTMLDivElement>",
-          required: false,
-          description:
-            "Optional props to provide to the {@link TextFieldContainer } component.\nThere probably isn't any real use for this prop other than if you need to\nadd a `ref` for some DOM behavior.",
-        },
-        {
-          id: "native-select-props-dense",
-          name: "dense",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` to enable the dense spec which reduces the height.",
-          defaultValue: "false",
-        },
-        {
-          id: "native-select-props-disabled",
-          name: "disabled",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
-        },
-        {
-          id: "native-select-props-disableleftaddonstyles",
-          name: "disableLeftAddonStyles",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
-        },
-        {
-          id: "native-select-props-disablerightaddonstyles",
-          name: "disableRightAddonStyles",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
-        },
-        {
-          id: "native-select-props-error",
-          name: "error",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
-        },
-        {
-          id: "native-select-props-icon",
-          name: "icon",
-          type: "ReactNode",
-          required: false,
-          description:
-            "A custom dropdown icon to use instead of the browser's default select\ndropdown icon.\n\nSet this to `null` if the browser's default icon should be used instead.",
-          defaultValue: 'getIcon("dropdown")',
-        },
-        {
-          id: "native-select-props-inline",
-          name: "inline",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` to change the style from `display: flex` to\n`display: inline-flex`.",
-          defaultValue: "false",
-        },
-        {
-          id: "native-select-props-label",
-          name: "label",
-          type: "ReactNode",
-          required: false,
-          description:
-            "An optional floating label to use with the text field. A label is generally\nrecommended for accessibility, but can be omitted if an `aria-label` or\n`aria-labelledby` is provided.",
-        },
-        {
-          id: "native-select-props-labelclassname",
-          name: "labelClassName",
-          type: "string",
-          required: false,
-          description:
-            'A convenience prop to apply a custom className to a label. This is\nequivalent to:\n\n```ts\nlabelProps={{\n  className: "some-class-name",\n}}\n```',
-        },
-        {
-          id: "native-select-props-labelprops",
-          name: "labelProps",
-          type: "PropsWithRef<LabelProps, HTMLLabelElement>",
-          required: false,
-          description:
-            "Any additional props and/or ref that should be passed to the `<label>`\nelement when a {@link label } is provided.",
-        },
-        {
-          id: "native-select-props-labelstyle",
-          name: "labelStyle",
-          type: "CSSProperties",
-          required: false,
-          description:
-            "A convenience prop to apply a custom style to a label. This is equivalent\nto:\n\n```ts\nlabelProps={{\n  style: // some style here\n}}\n```",
-        },
-        {
-          id: "native-select-props-leftaddon",
-          name: "leftAddon",
-          type: "ReactNode",
-          required: false,
-          description:
-            "This should generally be an icon or a button that will be placed before the\n`TextField` or `TextArea`.",
-        },
-        {
-          id: "native-select-props-leftaddonprops",
-          name: "leftAddonProps",
-          type: "PropsWithRef<ConfigurableTextFieldAddonProps, HTMLSpanElement>",
-          required: false,
-          description:
-            "Any additional props to pass to the `<span>` surrounding the {@link leftAddon }.",
-        },
-        {
-          id: "native-select-props-messagecontainerprops",
-          name: "messageContainerProps",
-          type: "PropsWithRef<HTMLAttributes<HTMLDivElement>, HTMLDivElement>",
-          required: false,
-          description:
-            "Any props (and an optional ref) to provide to the `<div>` surrounding the\nchildren and `FormMessage` component.\n\nNote: This will not be used if the `messageProps` are not provided since\nonly the `children` will be returned without the container.",
-        },
-        {
-          id: "native-select-props-messageprops",
-          name: "messageProps",
-          type: "PropsWithRef<FormMessageProps & Partial<FormMessageInputLengthCounterProps>, HTMLDivElement>",
-          required: false,
-          description:
-            "If the extension doesn't actually want to render the `FormMessage`\ncomponent, these props are optional. It kind of eliminates the whole\npurpose of this component though.",
-        },
-        {
-          id: "native-select-props-readonly",
-          name: "readOnly",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
-        },
-        {
-          id: "native-select-props-rightaddon",
-          name: "rightAddon",
-          type: "ReactNode",
-          required: false,
-          description:
-            "This should generally be an icon or a button that will be placed after the\n`TextField` or `TextArea`.",
-        },
-        {
-          id: "native-select-props-rightaddonprops",
-          name: "rightAddonProps",
-          type: "PropsWithRef<ConfigurableTextFieldAddonProps, HTMLSpanElement>",
-          required: false,
-          description:
-            "Any additional props to pass to the `<span>` surrounding the {@link rightAddon }.",
-        },
-        {
-          id: "native-select-props-selectclassname",
-          name: "selectClassName",
-          type: "string",
-          required: false,
-          description:
-            "This applies custom className to the `<select>` element since the\n`className` prop is applied to the container element instead.",
-        },
-        {
-          id: "native-select-props-selectstyle",
-          name: "selectStyle",
-          type: "CSSProperties",
-          required: false,
-          description:
-            "This applies custom inline styles to the `<select>` element since the\n`style` prop is applied to the container element instead.",
-        },
-        {
-          id: "native-select-props-stretch",
-          name: "stretch",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` if this component should stretch to fill a flex or grid\ncontainer using `flex: 1 1 auto`.",
-          defaultValue: "false",
-        },
-        {
-          id: "native-select-props-theme",
-          name: "theme",
-          type: "FormTheme",
-          required: false,
-          description: "The current theme type.",
-          defaultValue: '"outline"',
-        },
-        {
-          id: "native-select-props-underlinedirection",
-          name: "underlineDirection",
-          type: "FormUnderlineDirection",
-          required: false,
-          description: "The current underline direction.",
-          defaultValue: '"left"',
-        },
-      ],
-      isClient: false,
-      examples: [
-        {
-          name: "Simple Example",
-          code: '<NativeSelect label="Label">\n  <option value="a">Value 1</option>\n  <option value="b">Value 2</option>\n  <option value="c">Value 3</option>\n  <option value="d">Value 4</option>\n</NativeSelect>',
-          lang: "tsx",
-        },
-        {
-          name: "Required Value Example",
-          code: 'function Example(): ReactElement {\n  // using `defaultValue=""` makes it so the first option selected by default\n  // and considered an "invalid" value since it is `disabled`\n  //\n  // a `name` must be set with `required` so that the form validation will\n  // fire if the value is still the empty string when the form is submitted\n  //\n  // the first `<option>` is kind of like placeholder text since it doesn\'t\n  // have a value and is disabled by default\n\n  return (\n    <NativeSelect\n      label="State"\n      name="state"\n      required\n      defaultValue=""\n    >\n      <option value="" disabled>Choose a state</option>\n      {states.map(({ name, code }) => (\n        <option key={code} value={code}>{name}</option>\n      ))}\n    </NativeSelect>\n  );\n}',
-          lang: "tsx",
-        },
-      ],
-      description:
-        "This component is a wrapper for the native `<select>` field that applies the\nsame theming as `TextField` and `TextArea` components. This component might\nnot be used much since the `Select` offers more styling options.",
-      extendedTypes: [
-        { name: "SelectHTMLAttributes<HTMLSelectElement>", href: "#" },
-        { name: "UserAgentAutoCompleteProps", href: "#" },
-      ],
-    },
-  ],
-  MenuItemTextField: [
-    {
-      id: "menu-item-text-field",
-      name: "MenuItemTextField",
-      props: [
-        {
-          id: "menu-item-text-field-props-liprops",
-          name: "liProps",
-          type: "PropsWithRef<HTMLAttributes<HTMLLIElement>, HTMLLIElement>",
-          required: false,
-          description:
-            "Any additional props or a `ref` to apply to the surrounding `<li>` element.",
-        },
-        {
-          id: "menu-item-text-field-props-stretch",
-          name: "stretch",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "true",
-        },
-      ],
-      isClient: true,
-      examples: [],
-      description:
-        "This is a wrapper for the `TextField` component that can be used within\n`Menu`s by updating the `onKeyDown` and `onClick` behavior.\n\nNote: This is **not** the `TextFieldWithMessage` since the message part is\nhard to style nicely within menus. You'd most likely want to use another menu\nfor displaying errors.",
-      extendedTypes: [{ name: "TextFieldProps", href: "#" }],
-    },
-  ],
-  Legend: [
-    {
-      id: "legend",
-      name: "Legend",
-      props: [
-        {
-          id: "legend-props-sronly",
-          name: "srOnly",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
-        },
-      ],
-      isClient: false,
-      examples: [],
-      description: "This should be used within a `Fieldset` to apply a label.",
-      extendedTypes: [{ name: "TypographyProps", href: "#" }],
-    },
-  ],
-  FormMessageContainer: [
-    {
-      id: "form-message-container",
-      name: "FormMessageContainer",
-      props: [
-        {
-          id: "form-message-container-props-messageprops",
-          name: "messageProps",
-          type: "PropsWithRef<FormMessageProps, HTMLDivElement>",
-          required: false,
-          description:
-            "If the extension doesn't actually want to render the `FormMessage`\ncomponent, these props are optional. It kind of eliminates the whole\npurpose of this component though.",
-        },
-      ],
-      isClient: false,
-      examples: [],
-      description:
-        "Conditionally wraps the `children` in a `.rmd-form-message-container` wrapper\nand renders the {@link FormMessage } component.",
-      extendedTypes: [{ name: "HTMLAttributes<HTMLDivElement>", href: "#" }],
-    },
-  ],
-  Form: [
-    {
-      id: "form",
-      name: "Form",
-      props: [
-        {
-          id: "form-props-disablepreventdefault",
-          name: "disablePreventDefault",
-          type: "boolean",
-          required: false,
-          description:
-            "Boolean if the form should no longer prevent default submit behavior. If\nyou enable this prop you should honestly just use a `<form>` element\ninstead",
-          defaultValue: "false",
-        },
-      ],
-      isClient: false,
-      examples: [],
-      description:
-        "This is probably one of the least useful components available as it doesn't\ndo much styling or logic. All this form component will do is add basic flex\nbehavior and prevent the default form submit behavior.",
-      extendedTypes: [
-        { name: "FormHTMLAttributes<HTMLFormElement>", href: "#" },
-      ],
-    },
-  ],
-  Fieldset: [
-    {
-      id: "fieldset",
-      name: "Fieldset",
-      props: [
-        {
-          id: "fieldset-props-browserstyles",
-          name: "browserStyles",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` to enable the default browser styles for a fieldset.",
-          defaultValue: "false",
-        },
-        {
-          id: "fieldset-props-classname",
+          id: "text-container-props-classname",
           name: "className",
           type: "string",
           required: false,
-          description: "",
-        },
-        {
-          id: "fieldset-props-fullwidth",
-          name: "fullWidth",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
+          description:
+            "An optional className to merge with typography text container styles.",
         },
       ],
       isClient: false,
       examples: [
         {
           name: "Simple Example",
-          code: 'import { Form, Fieldset, Legend } from "@react-md/core";\n\nfunction Example(): ReactElement {\n  return (\n    <Form>\n      <Fieldset>\n        <Legend>Some Title</Legend>\n        // form components\n      </Fieldset>\n    </Form>\n  );\n}',
-          lang: "tsx",
-        },
-      ],
-      description: "",
-      extendedTypes: [
-        { name: "FieldsetHTMLAttributes<HTMLFieldSetElement>", href: "#" },
-      ],
-    },
-  ],
-  ExpansionPanelHeader: [
-    {
-      id: "expansion-panel-header",
-      name: "ExpansionPanelHeader",
-      props: [
-        {
-          id: "expansion-panel-header-props-expanded",
-          name: "expanded",
-          type: "boolean",
-          required: true,
-          description: "",
-        },
-        {
-          id: "expansion-panel-header-props-id",
-          name: "id",
-          type: "string",
-          required: true,
-          description: "",
-        },
-        {
-          id: "expansion-panel-header-props-onclick",
-          name: "onClick",
-          type: "MouseEventHandler<HTMLButtonElement>",
-          required: true,
-          description:
-            "This should be a function that toggles the expansion state for the parent\n`ExpansionPanel`.",
-        },
-        {
-          id: "expansion-panel-header-props-afterchildren",
-          name: "afterChildren",
-          type: "ReactNode",
-          required: false,
-          description:
-            "Any children to display **after** the button in the heading element.This\nshould really only be used if you need to add additional clickable elements\nwithin the header.",
-        },
-        {
-          id: "expansion-panel-header-props-as",
-          name: "as",
-          type: '"h1" | "h2" | "h3" | "h4" | "h5" | "h6"',
-          required: false,
-          description: "",
-          defaultValue: '"h3"',
-        },
-        {
-          id: "expansion-panel-header-props-beforechildren",
-          name: "beforeChildren",
-          type: "ReactNode",
-          required: false,
-          description:
-            "Any children to display **before** the button in the heading element. This\nshould really only be used if you need to add additional clickable elements\nwithin the header.",
-        },
-        {
-          id: "expansion-panel-header-props-disabletransition",
-          name: "disableTransition",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
-        },
-        {
-          id: "expansion-panel-header-props-headingprops",
-          name: "headingProps",
-          type: "PropsWithRef<TypographyProps, HTMLHeadingElement>",
-          required: false,
-          description:
-            "Any additional props to provide to the heading element that wraps the\nexpansion panel button.",
-        },
-        {
-          id: "expansion-panel-header-props-headingtype",
-          name: "headingType",
-          type: "TypographyType",
-          required: false,
-          description: "",
-          defaultValue: '"subtitle-1"',
-        },
-        {
-          id: "expansion-panel-header-props-icon",
-          name: "icon",
-          type: "ReactNode",
-          required: false,
-          description: "",
-          defaultValue: 'getIcon("expander")',
-        },
-        {
-          id: "expansion-panel-header-props-iconrotatorprops",
-          name: "iconRotatorProps",
-          type: 'Omit<IconRotatorProps, "disableTransition" | "rotated">',
-          required: false,
-          description: "",
-        },
-      ],
-      isClient: false,
-      examples: [
-        {
-          name: "Custom Header",
-          code: 'import type { ExpansionPanelProps } from "@react-md/core";\nimport {\n  ExpansionPanel,\n  ExpansionPanelHeader,\n} from "@react-md/core";\nimport type { ReactElement } from "react";\nconst { useId } from "react";\n\nexport type CustomExpansionPanelProps = ExpansionPanelProps & { id: string; };\n\nexport function CustomExpansionPanel(props: CustomExpansionPanelProps): ReactElement {\n  const {\n    id,\n    disabled,\n    onExpandClick,\n    expanded,\n    disableTransition,\n    headerChildren,\n  } = props;\n\n  return (\n    <ExpansionPanel\n      {...props}\n      header={(\n        <ExpansionPanelHeader\n          aria-disabled={disabled || undefined}\n          id={id}\n          onClick={onExpandClick}\n          expanded={expanded}\n          disableTransition={disableTransition}\n          // whatever props and any custom implementation\n        >\n          {headerChildren}\n        </ExpansionPanelHeader>\n      )}\n    />\n  );\n}',
+          code: 'import { TextContainer, Typography } from "@react-md/core";\n\nfunction Example() {\n  return (\n    <TextContainer>\n      <Typography type="headline-1">Heading</Typography>\n      <Typography>\n        Pretend this is a giant paragraph of text that wraps multiple lines.\n      </Typography>\n      <Typography>\n        Pretend this is another giant paragraph of text that wraps multiple\n        lines.\n      </Typography>\n    </TextContainer>\n  );\n}',
           lang: "tsx",
         },
       ],
       description:
-        "This is mostly an internal component, but can also be used to implement a\ncustom header implementation if needed. This might really be a client\ncomponent in practice since the `onClick` prop must be provided.",
-      extendedTypes: [
-        { name: "ButtonHTMLAttributes<HTMLButtonElement>", href: "#" },
-      ],
+        "This component should be used to render text based content with an\nappropriate max line length to optimize legibility.",
+      extendedTypes: [{ name: "HTMLAttributes<HTMLDivElement>", href: "#" }],
     },
   ],
-  ExpansionPanel: [
+  TextFieldAddon: [
     {
-      id: "expansion-panel",
-      name: "ExpansionPanel",
+      id: "text-field-addon",
+      name: "TextFieldAddon",
       props: [
         {
-          id: "expansion-panel-props-expanded",
-          name: "expanded",
-          type: "boolean",
-          required: true,
-          description:
-            "Set this to `true` if the {@link children } should be visible. This should\ngenerally be provided by the `useExpansionPanels` hook.",
-        },
-        {
-          id: "expansion-panel-props-contentclassname",
-          name: "contentClassName",
-          type: "string",
-          required: false,
-          description:
-            "Convenience prop to apply custom class name to the `CardContent` component.",
-        },
-        {
-          id: "expansion-panel-props-contentprops",
-          name: "contentProps",
-          type: 'PropsWithRef<Omit<CardContentProps, "role">, HTMLDivElement>',
-          required: false,
-          description:
-            "This can be used to apply additional props to the `CardContent` component\nif needed.\n\nNote: The `disableLastChildPadding` defaults to `true` in this\nimplementation.",
-        },
-        {
-          id: "expansion-panel-props-contentstyle",
-          name: "contentStyle",
-          type: "CSSProperties",
-          required: false,
-          description:
-            "Convenience prop to apply custom style to the `CardContent` component.",
-        },
-        {
-          id: "expansion-panel-props-disablecontentpadding",
-          name: "disableContentPadding",
+          id: "text-field-addon-props-after",
+          name: "after",
           type: "boolean",
           required: false,
           description: "",
           defaultValue: "false",
         },
         {
-          id: "expansion-panel-props-disabled",
+          id: "text-field-addon-props-disabled",
           name: "disabled",
           type: "boolean",
           required: false,
           description:
-            "Set this to `true` to prevent the panel from toggling the {@link expanded }\nstate. This should generally be provided by the `useExpansionPanels` hook.",
-          defaultValue: "false",
-        },
-        {
-          id: "expansion-panel-props-disabletransition",
-          name: "disableTransition",
-          type: "boolean",
-          required: false,
-          description:
-            "Set to `true` to disable the collapse transition for the card content\nwhenever the {@link expanded } state changes.",
-          defaultValue: "false",
-        },
-        {
-          id: "expansion-panel-props-fullwidth",
-          name: "fullWidth",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "true",
-        },
-        {
-          id: "expansion-panel-props-header",
-          name: "header",
-          type: "ReactNode",
-          required: false,
-          description:
-            "This can be used to implement a custom header implementation, but it\nprobably shouldn't be needed.",
-        },
-        {
-          id: "expansion-panel-props-headerchildren",
-          name: "headerChildren",
-          type: "ReactNode",
-          required: false,
-          description:
-            "Content to display within the header of the expansion panel that toggles\nthe expanded state. THis should generally contain some accessible text\ndescribing the expansion panel's content.",
-        },
-        {
-          id: "expansion-panel-props-headerclassname",
-          name: "headerClassName",
-          type: "string",
-          required: false,
-          description:
-            "Convenience prop to apply custom class name to the `ExpansionPanelHeader`\ncomponent.",
-        },
-        {
-          id: "expansion-panel-props-headerprops",
-          name: "headerProps",
-          type: 'Omit<ExpansionPanelHeaderProps, "id" | "aria-disabled" | "onClick" | "expanded">',
-          required: false,
-          description:
-            "This can be used to apply additional props to the header element.\n\nNote: You can override the `style` and `className` using\n{@link headerStyle } and {@link headerClassName } instead for convenience.",
-        },
-        {
-          id: "expansion-panel-props-headerstyle",
-          name: "headerStyle",
-          type: "CSSProperties",
-          required: false,
-          description:
-            "Convenience prop to apply custom style to the `ExpansionPanelHeader`\ncomponent.",
-        },
-        {
-          id: "expansion-panel-props-temporary",
-          name: "temporary",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` to unmount the {@link children } when the\n{@link expanded } state is `false`.",
+            "Set this to `true` if the addon should not be wrapped in a `<span>` with some\nadditional styles.",
           defaultValue: "false",
         },
       ],
-      isClient: true,
+      isClient: false,
       examples: [],
-      description: "",
-      extendedTypes: [{ name: "CardProps", href: "#" }],
+      description:
+        "This component is used to add an an icon before or after the text field with\ncorrect styling.",
+      extendedTypes: [{ name: "ConfigurableTextFieldAddonProps", href: "#" }],
     },
   ],
-  ExpansionList: [
+  Toast: [
     {
-      id: "expansion-list",
-      name: "ExpansionList",
+      id: "toast",
+      name: "Toast",
       props: [
         {
-          id: "expansion-list-props-children",
-          name: "children",
-          type: "ReactNode",
+          id: "toast-props-visible",
+          name: "visible",
+          type: "boolean",
           required: true,
+          description: "",
+        },
+        {
+          id: "toast-props-paused",
+          name: "paused",
+          type: "boolean",
+          required: false,
           description: "",
         },
       ],
       isClient: true,
       examples: [],
       description:
-        "This component is only used to implement the keyboard movement behavior for\nthe `ExpansionPanel` components.",
-      extendedTypes: [{ name: "HTMLAttributes<HTMLDivElement>", href: "#" }],
+        "This component is just used for toast styling and does not implement any of\nthe visibility behavior.",
+      extendedTypes: [{ name: "ConfigurableToastProps", href: "#" }],
     },
   ],
-  Divider: [
+  ToastActionButton: [
     {
-      id: "divider",
-      name: "Divider",
+      id: "toast-action-button",
+      name: "ToastActionButton",
       props: [
         {
-          id: "divider-props-classname",
-          name: "className",
-          type: "string",
-          required: false,
-          description: "",
-        },
-        {
-          id: "divider-props-inset",
-          name: "inset",
+          id: "toast-action-button-props-reordered",
+          name: "reordered",
           type: "boolean",
           required: false,
           description:
-            'Boolean if the divider should appear inset instead of full width. This\nreally just applied a margin-left (or margin-right when dir="rtl").\n\nIf you want to create a divider that is centered, you most likely want to\nuse the `rmd-divider-theme-update-var` mixin instead to update the\n`max-size` of the divider.',
+            "Set this to `true` when there is a close button visible and the content is\nstacked. This will update the styles so the button renders in the bottom\nright below the content and close button.",
           defaultValue: "false",
         },
         {
-          id: "divider-props-vertical",
-          name: "vertical",
-          type: "boolean",
-          required: false,
-          description:
-            "Boolean if the divider should be vertical instead of horizontal. This will\nchange the divider to be rendered as a `<div>` instead of an `<hr>`.\n\nNote: If your parent element of the divider does not have a static height\nset, you **must** manually set the height of the divider to a static\nnon-percentage number OR use the `VerticalDivider` component instead to\nautomagically create a valid percentage height.",
-          defaultValue: "false",
-        },
-      ],
-      isClient: false,
-      examples: [
-        {
-          name: "Simple Example",
-          code: 'import { Divider } from "@react-md/core";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return  <Divider />;\n}',
-          lang: "tsx",
-        },
-      ],
-      description: "",
-      extendedTypes: [{ name: "HTMLAttributes<DividerElement>", href: "#" }],
-    },
-  ],
-  DialogTitle: [
-    {
-      id: "dialog-title",
-      name: "DialogTitle",
-      props: [
-        {
-          id: "dialog-title-props-as",
-          name: "as",
-          type: "CustomTypographyComponent",
-          required: false,
-          description: "",
-          defaultValue: '"h2"',
-        },
-        {
-          id: "dialog-title-props-margin",
-          name: "margin",
-          type: "Margin",
-          required: false,
-          description: "",
-          defaultValue: '"none"',
-        },
-        {
-          id: "dialog-title-props-type",
-          name: "type",
-          type: "TypographyType",
-          required: false,
-          description: "",
-          defaultValue: '"headline-4"',
-        },
-      ],
-      isClient: false,
-      examples: [],
-      description:
-        "Look at the `Dialog` or `FixedDialog` components for example usage.",
-      extendedTypes: [{ name: "TypographyProps", href: "#" }],
-    },
-  ],
-  DialogFooter: [
-    {
-      id: "dialog-footer",
-      name: "DialogFooter",
-      props: [
-        {
-          id: "dialog-footer-props-align",
-          name: "align",
-          type: "DialogFooterAlignment",
-          required: false,
-          description: "",
-          defaultValue: '"end"',
-        },
-        {
-          id: "dialog-footer-props-classname",
-          name: "className",
-          type: "string",
-          required: false,
-          description: "",
-        },
-      ],
-      isClient: false,
-      examples: [],
-      description:
-        "Look at the `Dialog` or `FixedDialog` components for example usage.",
-      extendedTypes: [{ name: "HTMLAttributes<HTMLDivElement>", href: "#" }],
-    },
-  ],
-  DialogContent: [
-    {
-      id: "dialog-content",
-      name: "DialogContent",
-      props: [
-        {
-          id: "dialog-content-props-classname",
-          name: "className",
-          type: "string",
-          required: false,
-          description: "",
-        },
-        {
-          id: "dialog-content-props-disablepadding",
-          name: "disablePadding",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
-        },
-      ],
-      isClient: false,
-      examples: [],
-      description:
-        "Look at the `Dialog` or `FixedDialog` components for example usage.",
-      extendedTypes: [{ name: "HTMLAttributes<HTMLDivElement>", href: "#" }],
-    },
-  ],
-  Chip: [
-    {
-      id: "chip",
-      name: "Chip",
-      props: [
-        {
-          id: "chip-props-backgroundcolor",
-          name: "backgroundColor",
-          type: "BackgroundColor",
-          required: false,
-          description: "An optional background color theme to use.",
-        },
-        {
-          id: "chip-props-contentclassname",
-          name: "contentClassName",
-          type: "string",
-          required: false,
-          description:
-            "This will be ignored if {@link disableContentWrap } is `true`.",
-        },
-        {
-          id: "chip-props-contentprops",
-          name: "contentProps",
-          type: "PropsWithRef<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>",
-          required: false,
-          description:
-            "This will be ignored if {@link disableContentWrap } is `true`.",
-        },
-        {
-          id: "chip-props-contentstyle",
-          name: "contentStyle",
-          type: "CSSProperties",
-          required: false,
-          description:
-            "This will be ignored if {@link disableContentWrap } is `true`.",
-        },
-        {
-          id: "chip-props-disablecontentwrap",
-          name: "disableContentWrap",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to true if the `children` should not be wrapped in a span to apply\nthe {@link chipContent } styles which allow for shrinking text and\ntruncating text with ellipsis.",
-          defaultValue: "false",
-        },
-        {
-          id: "chip-props-disabled",
-          name: "disabled",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
-        },
-        {
-          id: "chip-props-disableicontransition",
-          name: "disableIconTransition",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` if the {@link selectedIcon } should not animate and\ninstead apply `display: none`",
-          defaultValue: "false",
-        },
-        {
-          id: "chip-props-leftaddon",
-          name: "leftAddon",
-          type: "ReactNode",
-          required: false,
-          description:
-            "An optional icon, avatar, circular progress, or custom component to render\nbefore the `children`. This will remove some of the leading horizontal\npadding on the chip as well.",
-        },
-        {
-          id: "chip-props-noninteractive",
-          name: "noninteractive",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` to render the chip as a `<span>` instead of a button.",
-          defaultValue: "false",
-        },
-        {
-          id: "chip-props-raisable",
-          name: "raisable",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` if the chip should gain additional box shadow while the\nuser is pressing down on the chip.",
-          defaultValue: "false",
-        },
-        {
-          id: "chip-props-rightaddon",
-          name: "rightAddon",
-          type: "ReactNode",
-          required: false,
-          description:
-            "An optional icon, avatar, circular progress, or custom component to render\nafter the `children`. This will remove some of the trailing horizontal\npadding on the chip as well.",
-        },
-        {
-          id: "chip-props-selected",
-          name: "selected",
-          type: "boolean",
-          required: false,
-          description:
-            "When this is a boolean, a selected icon will be displayed before the\n`children` and appear/disappear when `true`/`false`.",
-        },
-        {
-          id: "chip-props-selectedclassname",
-          name: "selectedClassName",
-          type: "string",
-          required: false,
-          description:
-            "An optional className to provide only while {@link selected } is `true`.",
-        },
-        {
-          id: "chip-props-selectedicon",
-          name: "selectedIcon",
-          type: "ReactNode",
-          required: false,
-          description:
-            "This will be ignored if {@link selected } is `undefined`.",
-          defaultValue: 'getIcon("selected")',
-        },
-        {
-          id: "chip-props-selectediconafter",
-          name: "selectedIconAfter",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` if the {@link selectedIcon } should display as the\n{@link rightAddon } instead of the {@link leftAddon }.",
-          defaultValue: "false",
-        },
-        {
-          id: "chip-props-selectedthemed",
-          name: "selectedThemed",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` if the chip should change background color while\n{@link selected } instead of displaying an icon. The default background\ncolor is a lighter swatch of the theme primary color.",
-          defaultValue: "false",
-        },
-        {
-          id: "chip-props-theme",
-          name: "theme",
-          type: '"outline" | "solid"',
-          required: false,
-          description: "",
-          defaultValue: '"solid"',
-        },
-      ],
-      isClient: false,
-      examples: [
-        {
-          name: "Simple Example",
-          code: 'import { Chip } from "@react-md/core";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return <Chip>Content</Chip>;\n}',
-          lang: "tsx",
-        },
-        {
-          name: "Outlined Example",
-          code: 'import { Chip } from "@react-md/core";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return <Chip theme="outline">Content</Chip>;\n}',
-          lang: "tsx",
-        },
-        {
-          name: "Addons Example",
-          code: 'import { Avatar, Chip } from "@react-md/core";\nimport AddCircleIcon from "@react-md/material-icons/AddCircleIcon";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <Chip\n      leftAddon={\n        <Avatar>\n          <img src="https://i.pravatar.cc/40?img=3" alt="" />\n        </Avatar>\n      }\n      rightAddon={<AddCircleIcon />}\n    >\n      Chip\n    </Chip>\n  );\n}',
-          lang: "tsx",
-        },
-      ],
-      description: "",
-      extendedTypes: [
-        { name: "ButtonHTMLAttributes<HTMLButtonElement>", href: "#" },
-      ],
-    },
-  ],
-  CardTitle: [
-    {
-      id: "card-title",
-      name: "CardTitle",
-      props: [
-        {
-          id: "card-title-props-as",
-          name: "as",
-          type: "CustomTypographyComponent",
-          required: false,
-          description: "",
-          defaultValue: '"h5"',
-        },
-        {
-          id: "card-title-props-margin",
-          name: "margin",
-          type: "Margin",
-          required: false,
-          description: "",
-          defaultValue: "none",
-        },
-        {
-          id: "card-title-props-type",
-          name: "type",
-          type: "TypographyType",
-          required: false,
-          description: "",
-          defaultValue: '"headline-5"',
-        },
-      ],
-      isClient: false,
-      examples: [],
-      description: "",
-      extendedTypes: [{ name: "TypographyProps", href: "#" }],
-    },
-  ],
-  CardSubtitle: [
-    {
-      id: "card-subtitle",
-      name: "CardSubtitle",
-      props: [
-        {
-          id: "card-subtitle-props-as",
-          name: "as",
-          type: "CustomTypographyComponent",
-          required: false,
-          description: "",
-          defaultValue: '"h6"',
-        },
-        {
-          id: "card-subtitle-props-margin",
-          name: "margin",
-          type: "Margin",
-          required: false,
-          description: "",
-          defaultValue: '"none"',
-        },
-        {
-          id: "card-subtitle-props-type",
-          name: "type",
-          type: "TypographyType",
-          required: false,
-          description: "",
-          defaultValue: '"subtitle-2"',
-        },
-      ],
-      isClient: false,
-      examples: [],
-      description: "",
-      extendedTypes: [{ name: "TypographyProps", href: "#" }],
-    },
-  ],
-  CardHeader: [
-    {
-      id: "card-header",
-      name: "CardHeader",
-      props: [
-        {
-          id: "card-header-props-afteraddon",
-          name: "afterAddon",
-          type: "ReactNode",
-          required: false,
-          description:
-            "Any content to display after the children in the header. This could be an\nexpander icon button, visual media like an image or video, etc.",
-        },
-        {
-          id: "card-header-props-beforeaddon",
-          name: "beforeAddon",
-          type: "ReactNode",
-          required: false,
-          description:
-            "Any content to display before the children in the header. This could be an\nexpander icon button, visual media like an image or video, etc.",
-        },
-        {
-          id: "card-header-props-contentprops",
-          name: "contentProps",
-          type: "PropsWithRef<HTMLAttributes<HTMLDivElement>, HTMLDivElement>",
-          required: false,
-          description:
-            "Any props to pass to the `<div>` that surrounds the `children`. This is\ngenerally used to apply custom `style` or `className`.",
-        },
-      ],
-      isClient: false,
-      examples: [],
-      description: "",
-      extendedTypes: [{ name: "HTMLAttributes<HTMLDivElement>", href: "#" }],
-    },
-  ],
-  CardFooter: [
-    {
-      id: "card-footer",
-      name: "CardFooter",
-      props: [
-        {
-          id: "card-footer-props-justify",
-          name: "justify",
-          type: "BoxJustifyContent",
-          required: false,
-          description: "",
-          defaultValue: '"flex-end"',
-        },
-      ],
-      isClient: false,
-      examples: [],
-      description:
-        "A simple wrapper around the {@link Box } component that applies additional\npadding and applies `justify-content: flex-end;` by default.",
-      extendedTypes: [{ name: "BoxProps", href: "#" }],
-    },
-  ],
-  CardContent: [
-    {
-      id: "card-content",
-      name: "CardContent",
-      props: [
-        {
-          id: "card-content-props-classname",
-          name: "className",
-          type: "string",
-          required: false,
-          description: "",
-        },
-        {
-          id: "card-content-props-disablelastchildpadding",
-          name: "disableLastChildPadding",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` to disable applying extra `padding-bottom` if the\n`CardContent` component is the last child.",
-          defaultValue: "false",
-        },
-        {
-          id: "card-content-props-disablepadding",
-          name: "disablePadding",
-          type: "boolean",
-          required: false,
-          description: "Set this to `true` to disable the card's padding.",
-          defaultValue: "false",
-        },
-        {
-          id: "card-content-props-disablesecondarycolor",
-          name: "disableSecondaryColor",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` to disable applying the `text-secondary-color`.",
-          defaultValue: "false",
-        },
-      ],
-      isClient: false,
-      examples: [],
-      description: "",
-      extendedTypes: [{ name: "HTMLAttributes<HTMLDivElement>", href: "#" }],
-    },
-  ],
-  Card: [
-    {
-      id: "card",
-      name: "Card",
-      props: [
-        {
-          id: "card-props-bordered",
-          name: "bordered",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` if the card should use apply an inset `border` instead\nof `box-shadow`.",
-          defaultValue: "false",
-        },
-        {
-          id: "card-props-classname",
-          name: "className",
-          type: "string",
-          required: false,
-          description: "",
-        },
-        {
-          id: "card-props-fullwidth",
-          name: "fullWidth",
-          type: "boolean",
-          required: false,
-          description:
-            "Update the card to have `display: block` and `width: 100%` instead of\n`display: inline-block`.",
-          defaultValue: "false",
-        },
-        {
-          id: "card-props-raisable",
-          name: "raisable",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` if the card should gain additional box shadow while\nhovered.",
-          defaultValue: "false",
-        },
-      ],
-      isClient: false,
-      examples: [
-        {
-          name: "Simple Example",
-          code: 'import {\n  Button,\n  Card,\n  CardContent,\n  CardFooter,\n  CardHeader,\n  CardTitle,\n  CardSubtitle,\n  Typography,\n} from "@react-md/core";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <Card>\n      <CardHeader>\n        <CardTitle>Main Title</CardTitle>\n        <CardSubtitle>A subtitle</CardSubtitle>\n      </CardHeader>\n      <CardContent>\n        <Typography margin="none">\n          Some paragraph of text.\n        </Typography>\n      </CardContent>\n      <CardFooter>\n        <Button>Action 1</Button>\n        <Button>Action 2</Button>\n      </CardFooter>\n    </Card>\n  );\n}',
-          lang: "tsx",
-        },
-      ],
-      description: "",
-      extendedTypes: [{ name: "HTMLAttributes<HTMLDivElement>", href: "#" }],
-    },
-  ],
-  Box: [
-    {
-      id: "box",
-      name: "Box",
-      props: [
-        {
-          id: "box-props-align",
-          name: "align",
-          type: "BoxAlignItems",
-          required: false,
-          description: "",
-          defaultValue: '""',
-        },
-        {
-          id: "box-props-classname",
-          name: "className",
-          type: "string",
-          required: false,
-          description: "",
-        },
-        {
-          id: "box-props-disablepadding",
-          name: "disablePadding",
-          type: "boolean",
-          required: false,
-          description: "Set this to `true` to disable the default padding.",
-          defaultValue: "false",
-        },
-        {
-          id: "box-props-disablewrap",
-          name: "disableWrap",
-          type: "boolean",
-          required: false,
-          description: "Set this to `true` to set `flex-wrap: nowrap`.",
-          defaultValue: "false",
-        },
-        {
-          id: "box-props-fullwidth",
-          name: "fullWidth",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` to apply `width: 100%`. This can be useful when using\nnested box layouts.",
-          defaultValue: "false",
-        },
-        {
-          id: "box-props-grid",
-          name: "grid",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` to use `display: grid` instead of `display: flex`.",
-          defaultValue: "false",
-        },
-        {
-          id: "box-props-gridcolumns",
-          name: "gridColumns",
-          type: 'number | "fit" | "fill"',
-          required: false,
-          description: "",
-          defaultValue: '"fit"',
-        },
-        {
-          id: "box-props-gridname",
-          name: "gridName",
-          type: "string",
-          required: false,
-          description:
-            "This is a grid configuration\nThis should match one of the names in the `$grids` map. So for example:\n\n```scss",
-          defaultValue: '""',
-        },
-        {
-          id: "box-props-justify",
-          name: "justify",
-          type: "BoxJustifyContent",
-          required: false,
-          description:
-            "The default value is really `center` or whatever the `$default-align-items` is set to.",
-          defaultValue: '""',
-        },
-        {
-          id: "box-props-reversed",
-          name: "reversed",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` to reverse the `flex-direction`. i.e.\n- `flex-direction: row-reverse`\n- `flex-direction: column-reverse`",
-          defaultValue: "false",
-        },
-        {
-          id: "box-props-stacked",
-          name: "stacked",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` to set `flex-direction: column` which will stack all\nitems in the box.",
-          defaultValue: "false",
-        },
-      ],
-      isClient: false,
-      examples: [
-        {
-          name: "Default Styles",
-          code: '.box {\n  align-items: center;\n  display: flex;\n  flex-wrap: wrap;\n  gap: 1rem;\n  padding: 1rem;\n}\n```\n\n```tsx\nimport { Box } from "@react-md/core";\nimport type { ReactElement } from "react";\n\nexport default function Example(): ReactElement {\n  return (\n    <Box>\n      <div>Thing 1</div>\n      <div>Thing 2</div>\n      <div>Thing 3</div>\n      <div>Thing 4</div>\n      <div>Thing 5</div>\n    </Box>\n  ):\n}',
-          lang: "scss",
-        },
-        {
-          name: "Default Grid Styles",
-          code: '.box {\n  align-items: center;\n  display: grid;\n  grid-gap: 1rem;\n  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));\n  padding: 1rem;\n}\n```\n\n```tsx\nimport { Box } from "@react-md/core";\nimport type { ReactElement } from "react";\n\nexport default function Example(): ReactElement {\n  return (\n    <Box grid>\n      <div>Thing 1</div>\n      <div>Thing 2</div>\n      <div>Thing 3</div>\n      <div>Thing 4</div>\n      <div>Thing 5</div>\n    </Box>\n  ):\n}',
-          lang: "scss",
-        },
-        { name: "Custom Grid", code: "", lang: "scss" },
-      ],
-      description:
-        "The `Box` component is a wrapper around the CSS box model and should solve\nmost of your `flex` and `grid` layout requirements for responsive design.\nThere are pass-through props for all of the box module styling properties\navailable by default.",
-      extendedTypes: [{ name: "HTMLAttributes<HTMLDivElement>", href: "#" }],
-    },
-  ],
-  Button: [
-    {
-      id: "button",
-      name: "Button",
-      props: [
-        {
-          id: "button-props-buttontype",
-          name: "buttonType",
-          type: "ButtonType",
-          required: false,
-          description: "",
-          defaultValue: '"text"',
-        },
-        {
-          id: "button-props-classname",
-          name: "className",
-          type: "string",
-          required: false,
-          description: "",
-        },
-        {
-          id: "button-props-disabled",
-          name: "disabled",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
-        },
-        {
-          id: "button-props-floating",
-          name: "floating",
-          type: "FloatingActionButtonPosition",
-          required: false,
-          description:
-            "The position within the viewport to display the button as a floating action\nbutton.",
-        },
-        {
-          id: "button-props-floatingprops",
-          name: "floatingProps",
-          type: "PropsWithRef<FloatingActionButtonProps, HTMLSpanElement>",
-          required: false,
-          description:
-            "Any additional props to provide the to `FAB` container element when the\n`floating` prop is provided",
-        },
-        {
-          id: "button-props-iconsize",
-          name: "iconSize",
-          type: '"small" | "normal" | "large"',
-          required: false,
-          description: "",
-          defaultValue: '"normal"',
-        },
-        {
-          id: "button-props-responsive",
-          name: "responsive",
-          type: "boolean",
-          required: false,
-          description:
-            "This will display the button as an icon button until the tablet breakpoint\nwhich will then display as a button with an icon.",
-          defaultValue: "false",
-        },
-        {
-          id: "button-props-theme",
+          id: "toast-action-button-props-theme",
           name: "theme",
           type: "ButtonTheme",
           required: false,
           description: "",
-          defaultValue: '"clear"',
-        },
-        {
-          id: "button-props-themetype",
-          name: "themeType",
-          type: "ButtonThemeType",
-          required: false,
-          description: "",
-          defaultValue: '"flat"',
-        },
-        {
-          id: "button-props-type",
-          name: "type",
-          type: '"button" | "reset" | "submit"',
-          required: false,
-          description: "",
-          defaultValue: '"button"',
+          defaultValue: '"secondary"',
         },
       ],
       isClient: true,
-      examples: [
-        {
-          name: "Simple Example",
-          code: 'import { Button } from "@react-md/core";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <Button\n      onClick={(event) => {\n        // do something\n      }}\n    >\n      Content\n    </Button>\n  );\n}',
-          lang: "tsx",
-        },
-        {
-          name: "Theme Example",
-          code: 'import { Button } from "@react-md/core";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <Button\n      theme="primary"\n      themeType="contained"\n      onClick={(event) => {\n        // do something\n      }}\n    >\n      Content\n    </Button>\n  );\n}',
-          lang: "tsx",
-        },
-        {
-          name: "Icon Button Example",
-          code: 'import { Button } from "@react-md/core";\nimport { FavoriteSVGIcon } from "@react-md/material-icons";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <Button\n      theme="secondary"\n      themeType="outline"\n      buttonType="icon"\n      onClick={(event) => {\n        // do something\n      }}\n    >\n      <FavoriteSVGIcon />\n    </Button>\n  );\n}',
-          lang: "tsx",
-        },
-        {
-          name: "Text Button with icons",
-          code: 'import { Button } from "@react-md/core";\nimport { FavoriteSVGIcon } from "@react-md/material-icons";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <Button\n      onClick={(event) => {\n        // do something\n      }}\n    >\n      <FavoriteSVGIcon />\n      Content\n    </Button>\n  );\n}',
-          lang: "tsx",
-        },
-      ],
-      description: "",
-      extendedTypes: [
-        { name: "ButtonHTMLAttributes<HTMLButtonElement>", href: "#" },
-      ],
-    },
-  ],
-  AsyncButton: [
-    {
-      id: "async-button",
-      name: "AsyncButton",
-      props: [
-        {
-          id: "async-button-props-afteraddon",
-          name: "afterAddon",
-          type: "ReactNode",
-          required: false,
-          description:
-            'This should be used when the {@link loadingType } is set to\n`"circular-after"`, an icon should appear before the other content in\nthe button, and the loading indicator should replace the icon.',
-        },
-        {
-          id: "async-button-props-beforeaddon",
-          name: "beforeAddon",
-          type: "ReactNode",
-          required: false,
-          description:
-            'This should be used when the {@link loadingType } is set to\n`"circular-before"`, an icon should appear before the other content in\nthe button, and the loading indicator should replace the icon.',
-        },
-        {
-          id: "async-button-props-loading",
-          name: "loading",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` to manually display a loading spinner.",
-          defaultValue: "false",
-        },
-        {
-          id: "async-button-props-loadingchildren",
-          name: "loadingChildren",
-          type: "ReactNode",
-          required: false,
-          description:
-            "Optional content to display instead of the default `children` while\nloading.",
-        },
-        {
-          id: "async-button-props-loadingdisabledtheme",
-          name: "loadingDisabledTheme",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` to use the `disabled` theme while loading.",
-          defaultValue: "false",
-        },
-        {
-          id: "async-button-props-loadingtype",
-          name: "loadingType",
-          type: "AsyncButtonLoadingType",
-          required: false,
-          description:
-            '- `"circular-overlay"` - Covers and hides the button content with a\n  centered circular progress\n- `"circular-before"` - Renders a circular progress bar before the button\n  content which is useful when rendering an icon before the button text.\n  See {@link beforeAddon } as well.\n- `"circular-after"` - Renders a circular progress bar before the button\n  content which is useful when rendering an icon after the button text.\n  See {@link afterAddon } as well.\n- `"linear-above"` - Renders a linear progress bar at the top of the button\n  while still displaying the button contents. Usually looks good for\n  outlined buttons.\n- `"linear-below"` - Renders a linear progress bar at the bottom of the\n  button while still displaying the button contents. Usually looks good for\n  outlined buttons.',
-          defaultValue: '"circular-overlay"',
-        },
-      ],
-      isClient: true,
-      examples: [
-        {
-          name: "Async onClick",
-          code: 'import { AsyncButton } from "@react-md/core";\nimport { useState, type ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  const [data, setData] = useState(null);\n  return (\n    <AsyncButton\n      type="submit"\n      onClick={async () => {\n        const response = await fetch("/my-api");\n        const json = await response.json();\n        setData(json);\n      }}\n    >\n      Submit\n    </AsyncButton>\n  );\n}',
-          lang: "tsx",
-        },
-        {
-          name: "Manual Loading State",
-          code: 'import { AsyncButton } from "@react-md/core";\nimport { useMutation } from "@tanstack/query";\nimport { useState, type ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  const { isLoading, mutate } = useMutation({\n    mutationFn: (newTodo) => fetch(\'/todos\', {\n      method: "POST",\n      body: JSON.stringify(newTodo),\n    }),\n  });\n\n  return (\n    <AsyncButton\n      type="submit"\n      loading={isLoading}\n      onClick={() => {\n        mutate({ id: Date.now(), title: "Create example" });\n      }}\n    >\n      Create Todo\n    </AsyncButton>\n  );\n}',
-          lang: "tsx",
-        },
-      ],
+      examples: [],
       description:
-        "The async button can be used to render a loading indicator within a button\nduring an async task. The loading spinner can be shown either by enabling the\n`loading` prop or returning a promise from the `onClick` event which will\ncontinue to show the loading indicator until the promise has been resolved.",
+        "This button will automatically close the toast when clicked unless\n`event.stopPropagation()` is called from the `onClick` prop.",
       extendedTypes: [{ name: "ButtonProps", href: "#" }],
     },
   ],
-  Badge: [
+  ToastCloseButton: [
     {
-      id: "badge",
-      name: "Badge",
+      id: "toast-close-button",
+      name: "ToastCloseButton",
       props: [
         {
-          id: "badge-props-children",
-          name: "children",
-          type: "ReactNode",
+          id: "toast-close-button-props-aria-label",
+          name: '"aria-label"',
+          type: "string",
+          required: false,
+          description:
+            'Note: This default value will only be used if the {@link buttonType } is not\n`"text"` and an `aria-labelledby` is not provided.',
+          defaultValue: '"Close"',
+        },
+        {
+          id: "toast-close-button-props-buttontype",
+          name: "buttonType",
+          type: "ButtonType",
+          required: false,
+          description: "",
+          defaultValue: '"icon-square"',
+        },
+        {
+          id: "toast-close-button-props-reordered",
+          name: "reordered",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` when there is a close button visible and the content is\nstacked. This will update the styles so the button renders next to the\ncontent and above the action button.",
+          defaultValue: "false",
+        },
+      ],
+      isClient: true,
+      examples: [],
+      description:
+        "This button will automatically close the toast when clicked unless\n`event.stopPropagation()` is called from the `onClick` prop.",
+      extendedTypes: [{ name: "ButtonProps", href: "#" }],
+    },
+  ],
+  ToastContent: [
+    {
+      id: "toast-content",
+      name: "ToastContent",
+      props: [
+        {
+          id: "toast-content-props-action",
+          name: "action",
+          type: "boolean",
+          required: false,
+          description: "",
+          defaultValue: "false",
+        },
+        {
+          id: "toast-content-props-closebutton",
+          name: "closeButton",
+          type: "boolean",
+          required: false,
+          description: "",
+          defaultValue: "false",
+        },
+        {
+          id: "toast-content-props-disablewrapper",
+          name: "disableWrapper",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` if you do not want to wrap the `children` in a `<div>`\nthat applies some toast layout styles. This should really only be used for\ncustom `Toast` implementations.",
+          defaultValue: "false",
+        },
+        {
+          id: "toast-content-props-multiline",
+          name: "multiline",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` if you know that the {@link children } span multiple\nlines. When this is omitted, a `ResizeObserver` will be used to\nautomatically detect multiline content.",
+        },
+        {
+          id: "toast-content-props-stacked",
+          name: "stacked",
+          type: "boolean",
+          required: false,
+          description: "",
+          defaultValue: "false",
+        },
+      ],
+      isClient: true,
+      examples: [],
+      description: "",
+      extendedTypes: [{ name: "HTMLAttributes<HTMLDivElement>", href: "#" }],
+    },
+  ],
+  Tooltip: [
+    {
+      id: "tooltip",
+      name: "Tooltip",
+      props: [
+        {
+          id: "tooltip-props-visible",
+          name: "visible",
+          type: "boolean",
           required: true,
           description: "",
         },
         {
-          id: "badge-props-theme",
-          name: "theme",
-          type: "BadgeTheme",
+          id: "tooltip-props-appear",
+          name: "appear",
+          type: "boolean",
+          required: false,
+          description:
+            "Boolean if the transition should occur immediately once the component\nmounts if the {@link TransitionOptions.transitionIn } is `true`",
+          defaultValue: "false",
+        },
+        {
+          id: "tooltip-props-dense",
+          name: "dense",
+          type: "boolean",
           required: false,
           description: "",
-          defaultValue: '""greyscale',
+          defaultValue: "false",
+        },
+        {
+          id: "tooltip-props-disableportal",
+          name: "disablePortal",
+          type: "boolean",
+          required: false,
+          description: "",
+          defaultValue: "false",
+        },
+        {
+          id: "tooltip-props-enter",
+          name: "enter",
+          type: "boolean",
+          required: false,
+          description:
+            "Boolean if the transition should occur whenever the\n{@link TransitionOptions.transitionIn } is switch to `true` after the\ncomponent has been rendered in the DOM.",
+          defaultValue: "true",
+        },
+        {
+          id: "tooltip-props-exit",
+          name: "exit",
+          type: "boolean",
+          required: false,
+          description:
+            "Boolean if the transition should occur whenever the\n{@link TransitionOptions.transitionIn } is switch to `false` after the\ncomponent has been rendered in the DOM.",
+          defaultValue: "true",
+        },
+        {
+          id: "tooltip-props-position",
+          name: "position",
+          type: "SimplePosition",
+          required: false,
+          description: "",
+          defaultValue: "DEFAULT_TOOLTIP_POSITION",
+        },
+        {
+          id: "tooltip-props-temporary",
+          name: "temporary",
+          type: "boolean",
+          required: false,
+          description: "",
+          defaultValue: "true",
+        },
+        {
+          id: "tooltip-props-textoverflow",
+          name: "textOverflow",
+          type: "TextOverflow",
+          required: false,
+          description:
+            'Set this to `"nowrap"` for tooltips that are positioned near the edge of\nthe viewport that have a position of `"above"` or `"below"` so that the\ntooltip no longer aligns to the center of the tooltipped element.\n\nSet this to `"ellipsis"` if the tooltip should only show a single line of\ntext and ellipsis once it has reached the max tooltip width.',
+          defaultValue: '"allow"',
         },
       ],
-      isClient: false,
+      isClient: true,
       examples: [
         {
-          name: "Simple Example",
-          code: 'import type { ReactElement } from "react";\nimport { Badge, Button, MaterialSymbol } from "@react-md/core";\n\nfunction Example(): ReactElement {\n  return (\n    <>\n      <Badge>3</Badge>\n      <Badge theme="primary">100</Badge>\n      <Badge theme="secondary">23</Badge>\n      <Badge theme="greyscale">18</Badge>\n      <Badge theme="clear">1</Badge>\n    </>\n  );\n}',
-          lang: "tsx",
-        },
-        {
-          name: "Within Buttons Example",
-          code: 'import type { ReactElement } from "react";\nimport { Badge, Button, MaterialSymbol } from "@react-md/core";\n\nfunction Example(): ReactElement {\n  return (\n    <Button aria-label="Notifications" buttonType="icon">\n      <Badge>88</Badge>\n      <MaterialSymbol name="notifications" />\n    </Button>\n  );\n}',
-          lang: "tsx",
-        },
-      ],
-      description: "",
-      extendedTypes: [{ name: "HTMLAttributes<HTMLSpanElement>", href: "#" }],
-    },
-  ],
-  Avatar: [
-    {
-      id: "avatar",
-      name: "Avatar",
-      props: [
-        {
-          id: "avatar-props-alt",
-          name: "alt",
-          type: "string",
-          required: false,
-          description:
-            "An optional alt tag to display on the `<img>` when the `src` prop is also\napplied.\n\nFor accessibility and screen readers, you normally do not want to actually\nprovide this prop. This should only be used if the `Avatar` is not\naccompanied by some other component or main content as it will be extra\nnoise for screen readers.",
-          defaultValue: '""',
-        },
-        {
-          id: "avatar-props-classname",
-          name: "className",
-          type: "string",
-          required: false,
-          description: "",
-        },
-        {
-          id: "avatar-props-color",
-          name: "color",
-          type: "string",
-          required: false,
-          description:
-            "An optional color to apply to the avatar. This will apply a className of\n`rmd-avatar--${color}`, so only the keys from the `$rmd-avatar-colors` Map\nare supported by default. It is recommended to create custom colors using\nthe `rmd-avatar-theme-update-var` mixin with custom class names if the\ndefault colors aren't extensive enough.",
-          defaultValue: '""',
-        },
-        {
-          id: "avatar-props-imgprops",
-          name: "imgProps",
-          type: "PropsWithRef<AvatarImgAttributes, HTMLImageElement>",
-          required: false,
-          description:
-            "An optional object of image props and ref that can be used to create an\nimage within the `Avatar`. This can be useful to add a custom `style`\nor`className` to the `<img>` element if that additional customization is\nneeded.\n\nNote: The values in this object will override the `src`, `alt`, and\n`referrerPolicy` root level avatar props if they exist on this object.",
-        },
-        {
-          id: "avatar-props-referrerpolicy",
-          name: "referrerPolicy",
-          type: "HTMLAttributeReferrerPolicy",
-          required: false,
-          description:
-            "An optional `referrerPolicy` to provide to the `<img>` element if the `src`\nor `imgProps` props are provided.",
-        },
-        {
-          id: "avatar-props-size",
-          name: "size",
-          type: '"icon" | "avatar"',
-          required: false,
-          description: "",
-          defaultValue: '"avatar"',
-        },
-        {
-          id: "avatar-props-src",
-          name: "src",
-          type: "string",
-          required: false,
-          description:
-            "This should be an image `src` attribute to create an avatar from. When this\nprop is defined, you should not add any children to the avatar as the\npositioning will break.",
-        },
-        {
-          id: "avatar-props-theme",
-          name: "theme",
-          type: "ThemeColor",
-          required: false,
-          description:
-            "This can be used instead of {@link color } to set the background color to one of\nthe theme colors. This will also set the text color to either be `#000` or\n`#fff` automatically to enforce the correct aspect ratio.",
-        },
-      ],
-      isClient: false,
-      examples: [
-        {
-          name: "Simple Example",
-          code: 'import { Avatar } from "@react-md/core";\nimport { type ReactElement } from "react";\n\nexport function Example(): ReactElement {\n  return <Avatar src="/path-to-img.png" />;\n}',
+          name: "Simple Usage",
+          code: 'import { Button, useTooltip, Tooltip } from "@react-md/core";\n\nfunction Example() {\n  const { elementProps, tooltipProps } = useTooltip();\n\n  return (\n    <>\n      <Button {...elementProps}>Button</Button>\n      <Tooltip {...tooltipProps}>\n        Tooltip Content\n      </Tooltip>\n    </>\n  );\n}',
           lang: "tsx",
         },
       ],
       description:
-        "An `Avatar` is generally used to represent objects or people within your app.\nThe avatar can consist of an image, an icon, or some text to display. When\nthe avatar is not an image, different themes can be applied to make the\navatar more unique.",
-      extendedTypes: [{ name: "HTMLAttributes<HTMLSpanElement>", href: "#" }],
+        "This is the base tooltip component that can only be used to render a tooltip\nwith an animation when the visibility changes. If this component is used, you\nwill need to manually add all the event listeners and triggers to change the\n`visible` prop.",
+      extendedTypes: [
+        { name: "HTMLAttributes<HTMLSpanElement>", href: "#" },
+        { name: "CSSTransitionComponentProps", href: "#" },
+      ],
     },
   ],
-  AppBarTitle: [
+  Typography: [
     {
-      id: "app-bar-title",
-      name: "AppBarTitle",
+      id: "typography",
+      name: "Typography",
       props: [
         {
-          id: "app-bar-title-props-classname",
+          id: "typography-props-as",
+          name: "as",
+          type: "CustomTypographyComponent",
+          required: false,
+          description:
+            'The component to render as when the children are not a render function. If\nthis prop is omitted, the component will be determined by the `type` prop\nwhere:\n\n- `"headline-1" -> <h1>`\n- `"headline-2" -> <h2>`\n- `"headline-3" -> <h3>`\n- `"headline-4" -> <h4>`\n- `"headline-5" -> <h5>`\n- `"headline-6" -> <h6>`\n- `"subtitle-1" -> <h5>`\n- `"subtitle-2" -> <h6>`\n- `"body-1"     -> <p>`\n- `"body-2"     -> <p>`\n- `"caption"    -> <caption>`\n- `"overline"   -> <span>`',
+        },
+        {
+          id: "typography-props-classname",
           name: "className",
           type: "string",
           required: false,
           description: "",
         },
         {
-          id: "app-bar-title-props-keyline",
-          name: "keyline",
-          type: "AppBarTitleKeyline",
+          id: "typography-props-fontstyle",
+          name: "fontStyle",
+          type: "FontStyle",
           required: false,
           description: "",
-          defaultValue: '"small"',
         },
         {
-          id: "app-bar-title-props-textoverflow",
+          id: "typography-props-fontweight",
+          name: "fontWeight",
+          type: "FontWeight",
+          required: false,
+          description: "",
+        },
+        {
+          id: "typography-props-margin",
+          name: "margin",
+          type: "Margin",
+          required: false,
+          description:
+            "This can be used to remove margin from an element (usually typography\nelements since the browser applies default margin for those elements).",
+        },
+        {
+          id: "typography-props-textalign",
+          name: "textAlign",
+          type: "TextAlign",
+          required: false,
+          description: "",
+        },
+        {
+          id: "typography-props-textcolor",
+          name: "textColor",
+          type: "ThemeColor | TextColor",
+          required: false,
+          description: "",
+        },
+        {
+          id: "typography-props-textdecoration",
+          name: "textDecoration",
+          type: "TextDecoration",
+          required: false,
+          description: "",
+        },
+        {
+          id: "typography-props-textoverflow",
           name: "textOverflow",
           type: "TextOverflow",
           required: false,
-          description: "",
-          defaultValue: '"ellipsis"',
+          description:
+            'Set this to `"nowrap"` to only prevent line wrap behavior or `"ellipsis"`\nto also hide additional text with ellipsis.',
+          defaultValue: '"allow"',
         },
         {
-          id: "app-bar-title-props-type",
+          id: "typography-props-texttransform",
+          name: "textTransform",
+          type: "TextTransform",
+          required: false,
+          description: "",
+        },
+        {
+          id: "typography-props-type",
           name: "type",
           type: "TypographyType",
           required: false,
           description: "",
-          defaultValue: '"headline-6"',
+          defaultValue: '"body-1"',
         },
       ],
       isClient: false,
       examples: [
         {
-          name: "Updating the Keyline",
-          code: 'import { AppBar, AppBarTitle } from "@react-md/core";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <AppBar>\n      <AppBarTitle keyline="nav">\n        Offset as if there was a nav button to the left\n      </AppBarTitle>\n    </AppBar>\n  );\n}',
+          name: "All Example",
+          code: 'import { Typography } from "@react-md/core":\n\nexport function Example() {\n  return (\n   <>\n     <Typography type="headline-1">Headline 1</Typography>\n     <Typography type="headline-2">Headline 2</Typography>\n     <Typography type="headline-3">Headline 3</Typography>\n     <Typography type="headline-4">Headline 4</Typography>\n     <Typography type="headline-5">Headline 5</Typography>\n     <Typography type="headline-6">Headline 6</Typography>\n     <Typography type="subtitle-1">Subtitle 1</Typography>\n     <Typography type="subtitle-2">Subtitle 2</Typography>\n     <Typography>\n       A paragraph of text.\n     </Typography>\n     <Typography type="body-1">\n       A paragraph of text.\n     </Typography>\n     <Typography type="body-2">\n       Another paragraph of text.\n     </Typography>\n     <Typography type="caption" component="h5">\n       Caption text\n     </Typography>\n     <Typography type="overline" component="h5">\n       Overline text\n     </Typography>\n   </>\n  ):\n}',
           lang: "tsx",
         },
       ],
-      description: "",
-      extendedTypes: [{ name: "TypographyProps", href: "#" }],
-    },
-  ],
-  AppBar: [
-    {
-      id: "app-bar",
-      name: "AppBar",
-      props: [
-        {
-          id: "app-bar-props-as",
-          name: "as",
-          type: "CustomAppBarComponent",
-          required: false,
-          description: "",
-          defaultValue: 'fixed ? "header" : "div"',
-        },
-        {
-          id: "app-bar-props-classname",
-          name: "className",
-          type: "string",
-          required: false,
-          description: "",
-        },
-        {
-          id: "app-bar-props-disableelevation",
-          name: "disableElevation",
-          type: "boolean",
-          required: false,
-          description: "Set this to `true` to remove the box-shadow.",
-          defaultValue: "false",
-        },
-        {
-          id: "app-bar-props-height",
-          name: "height",
-          type: "AppBarHeight",
-          required: false,
-          description: "",
-          defaultValue: 'stacked ? "auto" : "normal"',
-        },
-        {
-          id: "app-bar-props-pageposition",
-          name: "pagePosition",
-          type: "AppBarPosition",
-          required: false,
-          description:
-            'The position within the page to "fix" the `AppBar` when the `fixed` prop is\nenabled.',
-          defaultValue: '"top"',
-        },
-        {
-          id: "app-bar-props-position",
-          name: "position",
-          type: "CssPosition",
-          required: false,
-          description:
-            'Set this to `"fixed"` or `"sticky"` to set `position: fixed;` or\n`position: sticky;` to the app bar. The default position will be static and\ninline with other content.',
-          defaultValue: "'static'",
-        },
-        {
-          id: "app-bar-props-scrollbaroffset",
-          name: "scrollbarOffset",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` if the app bar's positioning and width should be\nchanged whenever the scrollbar is visible on the page. This defaults to\n`true` when the {@link position } prop is `true` so that once dialogs and menus\nbecome visible the contents in the app bar do not need to be repainted.",
-          defaultValue: 'position === "fixed"',
-        },
-        {
-          id: "app-bar-props-stacked",
-          name: "stacked",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` to update the `AppBar` to have `flex-direction: column`.\nThis is useful when nesting `AppBar`s.",
-          defaultValue: "false",
-        },
-        {
-          id: "app-bar-props-theme",
-          name: "theme",
-          type: "AppBarTheme",
-          required: false,
-          description: "The theme to apply to the `AppBar`.",
-          defaultValue: '"primary"',
-        },
+      description:
+        "Render text with one of the material design typography styles applied and\noptional styles like font-weight, font-style, text color, etc.",
+      extendedTypes: [
+        { name: "HTMLAttributes<TypographyHTMLElement>", href: "#" },
       ],
-      isClient: false,
-      examples: [
-        {
-          name: "Simple Example",
-          code: 'import { AppBar, AppBarTitle, Button } from "@react-md/core";\nimport MenuIcon from "@react-md/material-icons/MenuIcon";\nimport MoreVertIcon from "@react-md/material-icons/MoreVertIcon";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <AppBar>\n      <Button aria-label="Navigation"><MenuIcon /></Button>\n      <AppBarTitle>My Main Title</AppBarTitle>\n      <Button aria-label="Options"><MoreVertIcon /></Button>\n    </AppBar>\n  );\n}',
-          lang: "tsx",
-        },
-      ],
-      description: "",
-      extendedTypes: [{ name: "HTMLAttributes<HTMLDivElement>", href: "#" }],
     },
   ],
 };
