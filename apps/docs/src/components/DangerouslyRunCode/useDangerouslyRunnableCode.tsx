@@ -15,6 +15,14 @@ import {
 } from "./DangerouslyRunCode.jsx";
 import { type DangerouslyRunCodeOptions } from "./utils.jsx";
 
+const checkDefaultExport = (code: string): Error | null => {
+  if (!code.includes("export default")) {
+    return new Error("Missing default export for the demo");
+  }
+
+  return null;
+};
+
 export interface UpdateOptions extends DangerouslyRunCodeOptions {
   setState(nextState: DangerouslyRunCodeResult): void;
   elementRef: MutableRefObject<ReactElement | null>;
@@ -44,7 +52,7 @@ export function useDangerouslyRunnableCode(
       />
     );
 
-    return { element, error: null };
+    return { element, error: checkDefaultExport(code) };
   });
 
   const firstRender = useRef(true);
@@ -71,7 +79,7 @@ export function useDangerouslyRunnableCode(
       />
     );
     setState({
-      error: null,
+      error: checkDefaultExport(code),
       element,
     });
   }, [code, scope]);
