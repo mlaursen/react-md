@@ -1,6 +1,7 @@
 "use client";
 import type { KeyboardEventHandler, Ref, RefObject } from "react";
 import { useEffect, useRef } from "react";
+import { TRANSITION_CONFIG } from "../transition/config.js";
 import type {
   TransitionCallbacks,
   TransitionEnterHandler,
@@ -116,26 +117,26 @@ export interface FocusContainerImplementation<E extends HTMLElement> {
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {
- *   const { toggled, toggle } = useToggle(false);
+ *   const { toggled, enable, disable } = useToggle(false);
  *
  *   const { eventHandlers, transitionOptions } = useFocusContainer({
- *     activate: visible,
+ *     activate: toggled,
  *   });
  *   const { elementProps, rendered } = useScaleTransition({
- *     transitionIn: visible,
+ *     transitionIn: toggled,
  *     temporary: true,
  *     ...transitionOptions,
  *   });
  *
  *   return (
  *     <>
- *       <Button onClick={toggle}>Toggle</Button>
+ *       <Button onClick={enable}>Toggle</Button>
  *       {rendered && (
  *         <div {...eventHandlers} {...elementProps}>
- *           <Button>Button 1</Button>
- *           <Button>Button 2</Button>
- *           <Button>Button 3</Button>
- *           <Button>Button 4</Button>
+ *           <Button onClick={disable}>Button 1</Button>
+ *           <Button onClick={disable}>Button 2</Button>
+ *           <Button onClick={disable}>Button 3</Button>
+ *           <Button onClick={disable}>Button 4</Button>
  *         </div>
  *       )}
  *     </>
@@ -206,9 +207,15 @@ export function useFocusContainer<E extends HTMLElement>(
     transitionOptions: {
       nodeRef: refCallback,
       onEntering: handleMountFocus(onEntering, false),
-      onEntered: handleMountFocus(onEntered, !disableTransition),
+      onEntered: handleMountFocus(
+        onEntered,
+        !disableTransition && !TRANSITION_CONFIG.disabled
+      ),
       onExiting: handleUnmountFocus(onExiting, false),
-      onExited: handleUnmountFocus(onExited, !disableTransition),
+      onExited: handleUnmountFocus(
+        onExited,
+        !disableTransition && !TRANSITION_CONFIG.disabled
+      ),
     },
     eventHandlers: {
       onKeyDown(event) {
