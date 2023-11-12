@@ -23,7 +23,6 @@ $disable-outline-theme: $disable-everything !default;
 $disable-outline-raisable: false !default;
 $disable-left-addon: false !default;
 $disable-right-addon: false !default;
-$disable-both-addons: $disable-left-addon and $disable-right-addon !default;
 $disable-selected-theme: false !default;
 $disable-selected-icon-transition: false !default;
 
@@ -320,21 +319,6 @@ $var-lookup: (
             padding-right,
             $addon-right-padding,
             $horizontal-padding
-          );
-        }
-      }
-
-      @if not $disable-both-addons {
-        &--surrounded {
-          @include utils.auto-rtl(
-            padding-left,
-            $addon-left-padding,
-            $addon-right-padding
-          );
-          @include utils.auto-rtl(
-            padding-right,
-            $addon-right-padding,
-            $addon-left-padding
           );
         }
       }

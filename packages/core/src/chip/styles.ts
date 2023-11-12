@@ -52,7 +52,7 @@ export interface ChipClassNameOptions {
   /** @defaultValue `false` */
   selectedThemed?: boolean;
 
-  /** @defaultValue `false` */
+  /** @defaultValue `true` */
   noninteractive?: boolean;
 
   /** @defaultValue `false` */
@@ -78,7 +78,7 @@ export function chip(options: ChipClassNameOptions = {}): string {
     selected = false,
     selectedThemed = false,
     selectedClassName,
-    noninteractive = false,
+    noninteractive = true,
     pressedClassName,
     leftAddon = false,
     rightAddon = false,
@@ -92,9 +92,8 @@ export function chip(options: ChipClassNameOptions = {}): string {
       solid: theme === "solid",
       outline: theme === "outline",
       disabled,
-      "left-addon": leftAddon && !rightAddon,
-      "right-addon": !leftAddon && rightAddon,
-      surrounded: leftAddon && rightAddon,
+      "left-addon": leftAddon,
+      "right-addon": rightAddon,
       pressed,
     }),
     selected && selectedClassName,
