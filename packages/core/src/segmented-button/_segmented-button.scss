@@ -4,11 +4,13 @@
 @use "../icon/icon";
 @use "../interaction/interaction";
 @use "../typography/typography";
+@use "../transition/transition";
 @use "../theme/a11y";
 @use "../theme/colors";
 @use "../theme/theme";
 
 $disable-everything: false !default;
+$disable-selected-icon: false !default;
 
 $light-theme-color: colors.$black !default;
 $light-theme-outline-color: #79747e !default;
@@ -201,6 +203,9 @@ $var-lookup: (
       }
 
       &--selected {
+        @if not $disable-selected-icon {
+          @include transition.transition-set-var(max-width, icon.get-var(size));
+        }
         @include use-var(background-color, selected-background-color);
         @include use-var(color, selected-color);
       }
