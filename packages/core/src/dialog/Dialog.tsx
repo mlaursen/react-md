@@ -263,7 +263,9 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
   function Dialog(props, ref) {
     const {
       id: propId,
-      role = "dialog",
+      fixed = false,
+      modal = false,
+      role = modal ? "alertdialog" : "dialog",
       type = "centered",
       tabIndex = -1,
       visible,
@@ -284,8 +286,6 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
       onExiting = noop,
       onExited,
       exitedHidden = true,
-      fixed = false,
-      modal = false,
       disableOverlay = false,
       overlayProps,
       overlayHidden,

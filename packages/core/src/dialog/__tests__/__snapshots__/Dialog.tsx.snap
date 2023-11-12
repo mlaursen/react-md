@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dialog should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+<div
+  aria-label="Dialog"
+  class="rmd-dialog rmd-dialog--outline rmd-dialog--centered"
+  id="dialog-:r0:"
+  role="dialog"
+  tabindex="-1"
+/>
+`;
+
+exports[`Dialog should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+<div
+  aria-label="Dialog"
+  class="rmd-dialog rmd-dialog--outline rmd-dialog--centered custom-class-name"
+  id="dialog-:r0:"
+  role="dialog"
+  style="color: white;"
+  tabindex="-1"
+/>
+`;
+
+exports[`Dialog should be able to render as a full-page dialog by setting the type prop to full-page 1`] = `
+<div
+  class="rmd-dialog-container"
+  data-testid="container"
+>
+  <div
+    aria-label="Dialog"
+    class="rmd-dialog rmd-dialog--outline rmd-dialog--centered"
+    id="dialog-:ra:"
+    role="dialog"
+    tabindex="-1"
+  >
+    <button
+      class="rmd-button rmd-button--text rmd-interaction-surface"
+      type="button"
+    >
+      <span>
+        Close
+      </span>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Dialog should be able to render as a full-page dialog by setting the type prop to full-page 2`] = `
+<div
+  aria-label="Dialog"
+  class="rmd-dialog rmd-dialog--outline rmd-dialog--centered"
+  id="dialog-:ra:"
+  role="dialog"
+  tabindex="-1"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-interaction-surface"
+    type="button"
+  >
+    <span>
+      Close
+    </span>
+  </button>
+</div>
+`;
+
+exports[`Dialog should be able to render as a modal with the correct accessibility 1`] = `
+<span
+  class="rmd-overlay rmd-overlay--visible rmd-box rmd-box--wrap rmd-box--align-center rmd-box--justify-center rmd-overlay--active"
+  data-testid="overlay"
+/>
+`;
+
+exports[`Dialog should enable the noOpacity prop on parent dialog overlay elements so the screen does not get darker as more dialogs are visible 1`] = `"rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-box rmd-box--wrap rmd-box--align-center rmd-box--justify-center rmd-overlay--active"`;
+
+exports[`Dialog should enable the noOpacity prop on parent dialog overlay elements so the screen does not get darker as more dialogs are visible 2`] = `"rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-box rmd-box--wrap rmd-box--align-center rmd-box--justify-center rmd-overlay--active"`;
+
+exports[`Dialog should enable the noOpacity prop on parent dialog overlay elements so the screen does not get darker as more dialogs are visible 3`] = `"rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-box rmd-box--wrap rmd-box--align-center rmd-box--justify-center rmd-overlay--active"`;
+
+exports[`Dialog should enable the noOpacity prop on parent dialog overlay elements so the screen does not get darker as more dialogs are visible 4`] = `"rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-box rmd-box--wrap rmd-box--align-center rmd-box--justify-center rmd-overlay--active"`;
+
+exports[`Dialog should enable the noOpacity prop on parent dialog overlay elements so the screen does not get darker as more dialogs are visible 5`] = `"rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-box rmd-box--wrap rmd-box--align-center rmd-box--justify-center rmd-overlay--active"`;
+
+exports[`dialog class name utility should be callable with no arguments 1`] = `"rmd-dialog rmd-dialog--centered"`;

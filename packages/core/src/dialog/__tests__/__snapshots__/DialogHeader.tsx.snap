@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DialogHeader should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+<div
+  class="rmd-dialog__header"
+  data-testid="header"
+/>
+`;
+
+exports[`DialogHeader should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+<div
+  class="rmd-dialog__header custom-class-name"
+  data-testid="header"
+  style="color: white;"
+/>
+`;
+
+exports[`dialogHeader class name utility should be callable with no arguments 1`] = `"rmd-dialog__header"`;

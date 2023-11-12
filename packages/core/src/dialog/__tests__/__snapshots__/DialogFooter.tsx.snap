@@ -1,0 +1,186 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DialogFooter should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+<footer
+  class="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end"
+  data-testid="footer"
+/>
+`;
+
+exports[`DialogFooter should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+<footer
+  class="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end custom-class-name"
+  data-testid="footer"
+  style="color: white;"
+/>
+`;
+
+exports[`DialogFooter should support different alignments 1`] = `
+<footer
+  class="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end"
+  data-testid="footer"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-interaction-surface"
+    type="button"
+  >
+    <span>
+      Button 1
+    </span>
+  </button>
+  <button
+    class="rmd-button rmd-button--text rmd-interaction-surface"
+    type="button"
+  >
+    <span>
+      Button 2
+    </span>
+  </button>
+</footer>
+`;
+
+exports[`DialogFooter should support different alignments 2`] = `
+<footer
+  class="rmd-dialog__footer"
+  data-testid="footer"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-interaction-surface"
+    type="button"
+  >
+    <span>
+      Button 1
+    </span>
+  </button>
+  <button
+    class="rmd-button rmd-button--text rmd-interaction-surface"
+    type="button"
+  >
+    <span>
+      Button 2
+    </span>
+  </button>
+</footer>
+`;
+
+exports[`DialogFooter should support different alignments 3`] = `
+<footer
+  class="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--start"
+  data-testid="footer"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-interaction-surface"
+    type="button"
+  >
+    <span>
+      Button 1
+    </span>
+  </button>
+  <button
+    class="rmd-button rmd-button--text rmd-interaction-surface"
+    type="button"
+  >
+    <span>
+      Button 2
+    </span>
+  </button>
+</footer>
+`;
+
+exports[`DialogFooter should support different alignments 4`] = `
+<footer
+  class="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end"
+  data-testid="footer"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-interaction-surface"
+    type="button"
+  >
+    <span>
+      Button 1
+    </span>
+  </button>
+  <button
+    class="rmd-button rmd-button--text rmd-interaction-surface"
+    type="button"
+  >
+    <span>
+      Button 2
+    </span>
+  </button>
+</footer>
+`;
+
+exports[`DialogFooter should support different alignments 5`] = `
+<footer
+  class="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--between"
+  data-testid="footer"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-interaction-surface"
+    type="button"
+  >
+    <span>
+      Button 1
+    </span>
+  </button>
+  <button
+    class="rmd-button rmd-button--text rmd-interaction-surface"
+    type="button"
+  >
+    <span>
+      Button 2
+    </span>
+  </button>
+</footer>
+`;
+
+exports[`DialogFooter should support different alignments 6`] = `
+<footer
+  class="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--flex-v rmd-dialog__footer--start"
+  data-testid="footer"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-interaction-surface"
+    type="button"
+  >
+    <span>
+      Button 1
+    </span>
+  </button>
+  <button
+    class="rmd-button rmd-button--text rmd-interaction-surface"
+    type="button"
+  >
+    <span>
+      Button 2
+    </span>
+  </button>
+</footer>
+`;
+
+exports[`DialogFooter should support different alignments 7`] = `
+<footer
+  class="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--flex-v rmd-dialog__footer--end"
+  data-testid="footer"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-interaction-surface"
+    type="button"
+  >
+    <span>
+      Button 1
+    </span>
+  </button>
+  <button
+    class="rmd-button rmd-button--text rmd-interaction-surface"
+    type="button"
+  >
+    <span>
+      Button 2
+    </span>
+  </button>
+</footer>
+`;
+
+exports[`dialogFooter class name utility should be callable with no arguments 1`] = `"rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end"`;
