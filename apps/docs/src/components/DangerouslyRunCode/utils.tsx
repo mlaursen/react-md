@@ -4,6 +4,8 @@
 "use client";
 import * as core from "@react-md/core";
 import CelebrationOutlinedIcon from "@react-md/material-icons/CelebrationOutlinedIcon";
+import ChevronLeftIcon from "@react-md/material-icons/ChevronLeftIcon";
+import ChevronRightIcon from "@react-md/material-icons/ChevronRightIcon";
 import CloseIcon from "@react-md/material-icons/CloseIcon";
 import CloudUploadOutlinedIcon from "@react-md/material-icons/CloudUploadOutlinedIcon";
 import ContentCopyOutlinedIcon from "@react-md/material-icons/ContentCopyOutlinedIcon";
@@ -13,6 +15,8 @@ import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import MoodBadOutlinedIcon from "@react-md/material-icons/MoodBadOutlinedIcon";
 import MoodOutlinedIcon from "@react-md/material-icons/MoodOutlinedIcon";
 import MoreVertOutlinedIcon from "@react-md/material-icons/MoreVertOutlinedIcon";
+import PauseIcon from "@react-md/material-icons/PauseIcon";
+import PlayArrowIcon from "@react-md/material-icons/PlayArrowIcon";
 import RadioButtonCheckedIcon from "@react-md/material-icons/RadioButtonCheckedIcon";
 import RadioButtonUncheckedIcon from "@react-md/material-icons/RadioButtonUncheckedIcon";
 import SearchIcon from "@react-md/material-icons/SearchIcon";
@@ -76,6 +80,7 @@ function dangerouslyEvalCode(
   options: Required<DangerouslyRunCodeOptions>
 ): void {
   const { default: _, import: imports = {}, ...scope } = options.scope;
+  // prettier-ignore
   const allImports: LocalCodeScope = {
     ...imports,
     react: React,
@@ -85,22 +90,23 @@ function dangerouslyEvalCode(
     // down from server components to client components, so it might need to be a script. For now,
     // just add any imports that are required.
     "@react-md/material-icons/CelebrationOutlinedIcon": CelebrationOutlinedIcon,
+    "@react-md/material-icons/ChevronLeftIcon": ChevronLeftIcon,
+    "@react-md/material-icons/ChevronRightIcon": ChevronRightIcon,
     "@react-md/material-icons/CloseIcon": CloseIcon,
     "@react-md/material-icons/CloudUploadOutlinedIcon": CloudUploadOutlinedIcon,
     "@react-md/material-icons/ContentCopyOutlinedIcon": ContentCopyOutlinedIcon,
     "@react-md/material-icons/ContentCutOutlinedIcon": ContentCutOutlinedIcon,
-    "@react-md/material-icons/ContentPasteOutlinedIcon":
-      ContentPasteOutlinedIcon,
+    "@react-md/material-icons/ContentPasteOutlinedIcon": ContentPasteOutlinedIcon,
     "@react-md/material-icons/FavoriteIcon": FavoriteIcon,
     "@react-md/material-icons/MoodBadOutlinedIcon": MoodBadOutlinedIcon,
     "@react-md/material-icons/MoodOutlinedIcon": MoodOutlinedIcon,
     "@react-md/material-icons/MoreVertOutlinedIcon": MoreVertOutlinedIcon,
+    "@react-md/material-icons/PauseIcon": PauseIcon,
+    "@react-md/material-icons/PlayArrowIcon": PlayArrowIcon,
     "@react-md/material-icons/RadioButtonCheckedIcon": RadioButtonCheckedIcon,
-    "@react-md/material-icons/RadioButtonUncheckedIcon":
-      RadioButtonUncheckedIcon,
+    "@react-md/material-icons/RadioButtonUncheckedIcon": RadioButtonUncheckedIcon,
     "@react-md/material-icons/SearchIcon": SearchIcon,
-    "@react-md/material-icons/SocialDistanceOutlinedIcon":
-      SocialDistanceOutlinedIcon,
+    "@react-md/material-icons/SocialDistanceOutlinedIcon": SocialDistanceOutlinedIcon,
     "@react-md/material-icons/VolumeOffOutlinedIcon": VolumeOffOutlinedIcon,
     "@react-md/material-icons/VolumeUpOutlinedIcon": VolumeUpOutlinedIcon,
   };
@@ -163,7 +169,7 @@ export function dangerouslyCreateElement(
 
   const result = fileExports.default;
   if (!result) {
-    return null;
+    throw new Error("Missing default export for the demo");
   }
 
   if (isValidElement(result)) {

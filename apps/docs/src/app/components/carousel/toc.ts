@@ -3,4 +3,5 @@ import { type TableOfContentsItem } from "@/components/TableOfContents/types.js"
 
 export const toc = [
   { id: "carousel", depth: 1, value: "Carousel" },
+  { id: "carousel-example", depth: 1, value: "Carousel Example" },
 ] satisfies readonly TableOfContentsItem[];

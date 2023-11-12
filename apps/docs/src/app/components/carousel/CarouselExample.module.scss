@@ -1,0 +1,64 @@
+@use "everything";
+
+.card {
+  @include everything.button-set-var(color, everything.$white);
+
+  max-width: 42rem;
+}
+
+.container {
+  position: relative;
+}
+
+.control {
+  border-radius: 0;
+  bottom: 0;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 5rem;
+
+  &:nth-of-type(2) {
+    right: 0;
+  }
+}
+
+.slide {
+  @include everything.transition-set-var(slide-duration, 0.5s);
+
+  height: 22.5rem;
+  overflow: hidden;
+}
+
+.overlay {
+  padding-bottom: 4rem;
+}
+
+.indicators {
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  gap: 0.25rem;
+  justify-content: center;
+  left: 0;
+  padding: 1rem;
+  padding-bottom: 0.25rem;
+  position: absolute;
+  right: 0;
+}
+
+.tablist {
+  gap: 0.25rem;
+  width: auto;
+}
+
+.indicator {
+  background-color: rgba(everything.$white, 0.54);
+  height: 0.75rem;
+  min-width: 3rem;
+  width: 3rem;
+
+  &[aria-selected="true"] {
+    background-color: everything.$white;
+  }
+}
