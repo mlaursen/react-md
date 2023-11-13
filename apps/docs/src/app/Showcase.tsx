@@ -25,7 +25,7 @@ export function Showcase(): ReactElement {
           <CardHeader
             beforeAddon={<Logo configurable className={styles.logo} />}
             afterAddon={
-              <Button buttonType="icon">
+              <Button buttonType="icon" aria-label="Code">
                 <CodeIcon />
               </Button>
             }
@@ -73,7 +73,7 @@ export function Showcase(): ReactElement {
                 </Button>
               </Box>
               <Box disablePadding disableWrap>
-                <LinearProgress value={55} />
+                <LinearProgress aria-label="Example progress" value={55} />
                 <Typography>55%</Typography>
               </Box>
             </Box>

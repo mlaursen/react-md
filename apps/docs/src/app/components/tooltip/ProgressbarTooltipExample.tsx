@@ -20,7 +20,7 @@ export default function ProgressbarTooltipExample(): ReactElement {
         {toggled ? "Stop" : "Start"}
       </Button>
       <div style={{ position: "relative", width: "100%" }}>
-        <LinearProgress value={value} />
+        <LinearProgress aria-label="Example" value={value} />
         <Tooltip
           visible
           style={{

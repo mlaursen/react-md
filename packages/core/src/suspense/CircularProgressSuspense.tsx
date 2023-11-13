@@ -8,6 +8,10 @@ import {
  * @remarks \@since 6.0.0
  */
 export interface CircularProgressSuspenseProps extends CircularProgressProps {
+  /**
+   * @defaultValue `"Loading"`
+   */
+  "aria-label"?: string;
   children: ReactNode;
 }
 
@@ -40,9 +44,22 @@ export interface CircularProgressSuspenseProps extends CircularProgressProps {
 export function CircularProgressSuspense(
   props: CircularProgressSuspenseProps
 ): ReactElement {
-  const { children, ...progressProps } = props;
+  const {
+    children,
+    "aria-labelledby": ariaLabelledBy,
+    "aria-label": ariaLabel = ariaLabelledBy ? undefined : "Loading",
+    ...progressProps
+  } = props;
   return (
-    <Suspense fallback={<CircularProgress {...progressProps} />}>
+    <Suspense
+      fallback={
+        <CircularProgress
+          aria-label={ariaLabel as string}
+          aria-labelledby={ariaLabelledBy}
+          {...progressProps}
+        />
+      }
+    >
       {children}
     </Suspense>
   );

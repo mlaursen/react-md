@@ -6,6 +6,7 @@ import {
   type HTMLAttributes,
 } from "react";
 import { cssUtils } from "../cssUtils.js";
+import { type LabelRequiredForA11y } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { bem } from "../utils/bem.js";
 import { getPercentage } from "../utils/getPercentage.js";
@@ -123,7 +124,7 @@ const styles = bem("rmd-circular-progress");
  * import { type ReactElement } from "react";
  *
  * function Example(): ReactElement {
- *   return <CircularProgress />;
+ *   return <CircularProgress aria-label="Loading" />;
  * }
  * ```
  *
@@ -137,16 +138,16 @@ const styles = bem("rmd-circular-progress");
  *   // a number from 0 - 100
  *   const [progress, setProgress] = useState(0);
  *
- *   return <CircularProgress value={progress} />;
+ *   return <CircularProgress aria-label="File upload" value={progress} />;
  * }
  * ```
  *
  * @remarks \@since 6.0.0 Updated the determinate circular progress to no longer
- * rotate while increasing the value.
+ * rotate while increasing the value and require a label for accessibility.
  */
 export const CircularProgress = forwardRef<
   HTMLSpanElement,
-  CircularProgressProps
+  LabelRequiredForA11y<CircularProgressProps>
 >(function CircularProgress(props, ref) {
   const {
     id: propId,

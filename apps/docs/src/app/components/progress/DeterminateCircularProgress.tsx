@@ -5,10 +5,10 @@ export default function DeterminateCircularProgress(): ReactElement {
   const progress = useProgress();
   return (
     <>
-      <CircularProgress value={10} />
-      <CircularProgress value={30} />
-      <CircularProgress value={70} />
-      <CircularProgress value={progress} />
+      <CircularProgress aria-label="Example" value={10} />
+      <CircularProgress aria-label="Example" value={30} />
+      <CircularProgress aria-label="Example" value={70} />
+      <CircularProgress aria-label="Example" value={progress} />
     </>
   );
 }

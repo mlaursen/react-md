@@ -91,7 +91,12 @@ export function ScssCodeEditor(props: ScssCodeEditorProps): ReactElement {
         disableMarginTop
         fixedChildren={
           <>
-            {compiling && <LinearProgress className={styles.progress} />}
+            {compiling && (
+              <LinearProgress
+                aria-label="Compiling SCSS"
+                className={styles.progress}
+              />
+            )}
             {error && (
               <pre
                 className={cssUtils({

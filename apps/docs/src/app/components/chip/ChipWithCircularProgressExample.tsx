@@ -9,7 +9,7 @@ export default function ChipWithCircularProgressExample(): ReactElement {
 
   let addon = enabled ? <BrightnessHighIcon /> : <BrightnessLowIcon />;
   if (loading) {
-    addon = <CircularProgress disableCentered />;
+    addon = <CircularProgress aria-label="Loading" disableCentered />;
   }
   return (
     <>

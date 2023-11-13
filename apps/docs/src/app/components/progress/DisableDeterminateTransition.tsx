@@ -13,8 +13,12 @@ export default function DisableDeterminateTransition(): ReactElement {
 
   return (
     <Box stacked align="start" fullWidth>
-      <CircularProgress value={progress} disableTransition />
-      <LinearProgress value={progress} disableTransition />
+      <CircularProgress
+        aria-label="Example"
+        value={progress}
+        disableTransition
+      />
+      <LinearProgress aria-label="Example" value={progress} disableTransition />
 
       <Switch label="Run" checked={running} onChange={toggle} />
       <Button onClick={restart}>Restart</Button>

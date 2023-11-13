@@ -6,6 +6,7 @@ import {
   type HTMLAttributes,
 } from "react";
 import { cssUtils } from "../cssUtils.js";
+import { type LabelRequiredForA11y } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { bem } from "../utils/bem.js";
 import { getPercentage } from "../utils/getPercentage.js";
@@ -15,7 +16,7 @@ import { type ProgressProps } from "./types.js";
  * @remarks \@since 6.0.0 Added the `theme` prop
  */
 export interface LinearProgressProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, "id" | "children">,
+  extends Omit<HTMLAttributes<HTMLSpanElement>, "id" | "children">,
     ProgressProps {
   /**
    * An optional style to apply to the progress bar. This will be merged with
@@ -71,7 +72,7 @@ const styles = bem("rmd-linear-progress");
  * import { type ReactElement } from "react";
  *
  * function Example(): ReactElement {
- *   return <LinearProgress />;
+ *   return <LinearProgress aria-label="Loading" />;
  * }
  * ```
  *
@@ -85,105 +86,106 @@ const styles = bem("rmd-linear-progress");
  *   // a number from 0 - 100
  *   const [progress, setProgress] = useState(0);
  *
- *   return <LinearProgress value={progress} />;
+ *   return <LinearProgress aria-label="File upload" value={progress} />;
  * }
  * ```
  *
- * @remarks \@since 6.0.0 Supports rendering as any of the theme colors.
+ * @remarks \@since 6.0.0 Supports rendering as any of the theme colors and
+ * requires a label for accessibility.
  */
-export const LinearProgress = forwardRef<HTMLSpanElement, LinearProgressProps>(
-  function LinearProgress(props, ref) {
-    const {
-      id: propId,
-      style: propStyle,
-      className,
-      barStyle: propBarStyle,
-      barClassName,
-      min = 0,
-      max = 100,
-      value,
-      reverse = false,
-      theme = "primary",
-      disableTransition = false,
-      vertical = false,
-      verticalHeight = 240,
-      ...remaining
-    } = props;
+export const LinearProgress = forwardRef<
+  HTMLSpanElement,
+  LabelRequiredForA11y<LinearProgressProps>
+>(function LinearProgress(props, ref) {
+  const {
+    id: propId,
+    style: propStyle,
+    className,
+    barStyle: propBarStyle,
+    barClassName,
+    min = 0,
+    max = 100,
+    value,
+    reverse = false,
+    theme = "primary",
+    disableTransition = false,
+    vertical = false,
+    verticalHeight = 240,
+    ...remaining
+  } = props;
 
-    const id = useEnsuredId(propId, "linear-progress");
-    const style = useMemo(() => {
-      if (!vertical || verticalHeight === null) {
-        return propStyle;
-      }
-
-      return {
-        ...propStyle,
-        height: verticalHeight,
-      };
-    }, [propStyle, vertical, verticalHeight]);
-
-    let progress: number | undefined;
-    if (typeof value === "number") {
-      progress = getPercentage({ min, max, value, validate: true });
+  const id = useEnsuredId(propId, "linear-progress");
+  const style = useMemo(() => {
+    if (!vertical || verticalHeight === null) {
+      return propStyle;
     }
-    const barStyle = useMemo(() => {
-      if (typeof progress !== "number") {
-        return propBarStyle;
-      }
 
-      const key = vertical ? "height" : "width";
-      return {
-        ...propBarStyle,
-        [key]: `${progress * 100}%`,
-      };
-    }, [progress, propBarStyle, vertical]);
+    return {
+      ...propStyle,
+      height: verticalHeight,
+    };
+  }, [propStyle, vertical, verticalHeight]);
 
-    const determinate = typeof progress === "number";
-    const indeterminate = !determinate;
-    return (
+  let progress: number | undefined;
+  if (typeof value === "number") {
+    progress = getPercentage({ min, max, value, validate: true });
+  }
+  const barStyle = useMemo(() => {
+    if (typeof progress !== "number") {
+      return propBarStyle;
+    }
+
+    const key = vertical ? "height" : "width";
+    return {
+      ...propBarStyle,
+      [key]: `${progress * 100}%`,
+    };
+  }, [progress, propBarStyle, vertical]);
+
+  const determinate = typeof progress === "number";
+  const indeterminate = !determinate;
+  return (
+    <span
+      {...remaining}
+      id={id}
+      ref={ref}
+      style={style}
+      role="progressbar"
+      aria-valuemin={min}
+      aria-valuemax={max}
+      aria-valuenow={value}
+      className={cnb(
+        styles({
+          vertical,
+          horizontal: !vertical,
+          determinate,
+          indeterminate,
+        }),
+        theme !== "current-color" && cssUtils({ textColor: theme }),
+        className
+      )}
+    >
       <span
-        {...remaining}
-        id={id}
-        ref={ref}
-        style={style}
-        role="progressbar"
-        aria-valuemin={min}
-        aria-valuemax={max}
-        aria-valuenow={value}
+        style={barStyle}
         className={cnb(
-          styles({
+          styles("bar", {
             vertical,
+            "vertical-reverse": vertical && reverse,
             horizontal: !vertical,
+            "horizontal-reverse": !vertical && reverse,
+            animate: !disableTransition && determinate,
             determinate,
             indeterminate,
+            "determinate-reverse": determinate && reverse && !vertical,
+            "determinate-vertical-reverse": determinate && reverse && vertical,
+            "indeterminate-reverse": indeterminate && reverse && !vertical,
+            "indeterminate-vertical": indeterminate && vertical,
+            "indeterminate-vertical-reverse":
+              indeterminate && reverse && vertical,
           }),
-          theme !== "current-color" && cssUtils({ textColor: theme }),
-          className
+          barClassName
         )}
-      >
-        <span
-          style={barStyle}
-          className={cnb(
-            styles("bar", {
-              vertical,
-              "vertical-reverse": vertical && reverse,
-              horizontal: !vertical,
-              "horizontal-reverse": !vertical && reverse,
-              animate: !disableTransition && determinate,
-              determinate,
-              indeterminate,
-              "determinate-reverse": determinate && reverse && !vertical,
-              "determinate-vertical-reverse":
-                determinate && reverse && vertical,
-              "indeterminate-reverse": indeterminate && reverse && !vertical,
-              "indeterminate-vertical": indeterminate && vertical,
-              "indeterminate-vertical-reverse":
-                indeterminate && reverse && vertical,
-            }),
-            barClassName
-          )}
-        />
-      </span>
-    );
-  }
-);
+      />
+    </span>
+  );
+});

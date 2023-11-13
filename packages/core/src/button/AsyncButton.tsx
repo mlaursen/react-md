@@ -3,10 +3,18 @@ import { cnb } from "cnbuilder";
 import { forwardRef, type MouseEvent, type ReactNode } from "react";
 import { type BoxAlignItems } from "../box/styles.js";
 import { overlay } from "../overlay/overlayStyles.js";
-import { CircularProgress } from "../progress/CircularProgress.js";
-import { LinearProgress } from "../progress/LinearProgress.js";
+import {
+  CircularProgress,
+  type CircularProgressProps,
+} from "../progress/CircularProgress.js";
+import {
+  LinearProgress,
+  type LinearProgressProps,
+} from "../progress/LinearProgress.js";
 import { type ProgressTheme } from "../progress/types.js";
+import { type PropsWithRef } from "../types.js";
 import { useAsyncAction } from "../useAsyncAction.js";
+import { useEnsuredId } from "../useEnsuredId.js";
 import { Button, type ButtonProps } from "./Button.js";
 
 const noop = (): void => {
@@ -27,6 +35,12 @@ export type AsyncButtonLoadingType =
  * @remarks \@since 6.0.0
  */
 export interface AsyncButtonProps extends ButtonProps {
+  /**
+   * @see {@link progressAriaLabelledBy}
+   * @defaultValue `"async-button" + useId()`
+   */
+  id?: string;
+
   /**
    * When this is defined and returns a `Promise`, the loading indicator will
    * display until the promise has resolved.
@@ -88,6 +102,31 @@ export interface AsyncButtonProps extends ButtonProps {
    * the button, and the loading indicator should replace the icon.
    */
   afterAddon?: ReactNode;
+
+  /**
+   * An optional label to provide to the progressbar.
+   *
+   * @see {@link progressAriaLabelledBy}
+   */
+  progressAriaLabel?: string;
+
+  /**
+   * @see {@link id}
+   * @defaultValue `id`
+   */
+  progressAriaLabelledBy?: string;
+
+  /**
+   * Any additional props to pass to the `CircularProgress` bar when the
+   * {@link loadingType} is one of the circular types.
+   */
+  linearProgressProps?: PropsWithRef<LinearProgressProps, HTMLDivElement>;
+
+  /**
+   * Any additional props to pass to the `LinearProgress` bar when the
+   * {@link loadingType} is one of the linear types.
+   */
+  circularProgressProps?: PropsWithRef<CircularProgressProps, HTMLSpanElement>;
 }
 
 /**
@@ -155,6 +194,7 @@ export interface AsyncButtonProps extends ButtonProps {
 export const AsyncButton = forwardRef<HTMLButtonElement, AsyncButtonProps>(
   function AsyncButton(props, ref) {
     const {
+      id: propId,
       onClick = noop,
       children,
       floating = null,
@@ -169,8 +209,13 @@ export const AsyncButton = forwardRef<HTMLButtonElement, AsyncButtonProps>(
       loadingDisabledTheme = false,
       afterAddon: propAfterAddon,
       beforeAddon: propBeforeAddon,
+      linearProgressProps,
+      circularProgressProps,
+      progressAriaLabel,
+      progressAriaLabelledBy: propProgressAriaLabelledBy,
       ...remaining
     } = props;
+    const id = useEnsuredId(propId, "async-button");
     const { handleAsync, pending } = useAsyncAction({ disabled });
     const loading = pending || propLoading;
 
@@ -179,10 +224,31 @@ export const AsyncButton = forwardRef<HTMLButtonElement, AsyncButtonProps>(
       progressTheme = "primary";
     }
 
+    let progressAriaLabelledBy = propProgressAriaLabelledBy;
+    if (
+      !progressAriaLabel &&
+      !linearProgressProps?.["aria-label"] &&
+      !linearProgressProps?.["aria-labelledby"] &&
+      !circularProgressProps?.["aria-label"] &&
+      !circularProgressProps?.["aria-labelledby"]
+    ) {
+      progressAriaLabelledBy = id;
+    }
+
     const progress = loadingType.includes("linear") ? (
-      <LinearProgress theme={progressTheme} />
+      <LinearProgress
+        aria-label={progressAriaLabel}
+        aria-labelledby={progressAriaLabelledBy as string}
+        {...linearProgressProps}
+        theme={progressTheme}
+      />
     ) : (
-      <CircularProgress theme={progressTheme} />
+      <CircularProgress
+        aria-label={progressAriaLabel}
+        aria-labelledby={progressAriaLabelledBy as string}
+        {...circularProgressProps}
+        theme={progressTheme}
+      />
     );
 
     let afterAddon = propAfterAddon;
@@ -228,6 +294,7 @@ export const AsyncButton = forwardRef<HTMLButtonElement, AsyncButtonProps>(
       <Button
         {...remaining}
         aria-disabled={loading || undefined}
+        id={id}
         ref={ref}
         disabled={disabled}
         floating={floating}

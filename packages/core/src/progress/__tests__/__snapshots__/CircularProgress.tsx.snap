@@ -2,6 +2,7 @@
 
 exports[`CircularProgress should allow the animation to be simplified when the disableShrink prop is enabled 1`] = `
 <span
+  aria-label="Progressbar"
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
@@ -24,6 +25,7 @@ exports[`CircularProgress should allow the animation to be simplified when the d
 
 exports[`CircularProgress should allow the animation to be simplified when the disableShrink prop is enabled 2`] = `
 <span
+  aria-label="Progressbar"
   aria-valuemax="100"
   aria-valuemin="0"
   aria-valuenow="100"
@@ -48,6 +50,7 @@ exports[`CircularProgress should allow the animation to be simplified when the d
 
 exports[`CircularProgress should allow the transition to be disabled for determinate progress bars 1`] = `
 <span
+  aria-label="Progressbar"
   aria-valuemax="100"
   aria-valuemin="0"
   aria-valuenow="30"
@@ -72,6 +75,7 @@ exports[`CircularProgress should allow the transition to be disabled for determi
 
 exports[`CircularProgress should allow the transition to be disabled for determinate progress bars 2`] = `
 <span
+  aria-label="Progressbar"
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
@@ -95,6 +99,7 @@ exports[`CircularProgress should allow the transition to be disabled for determi
 
 exports[`CircularProgress should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <span
+  aria-label="Progressbar"
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
@@ -117,6 +122,7 @@ exports[`CircularProgress should apply the correct styling, HTMLAttributes, and 
 
 exports[`CircularProgress should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <span
+  aria-label="Progressbar"
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color custom-class-name"
@@ -140,6 +146,7 @@ exports[`CircularProgress should apply the correct styling, HTMLAttributes, and 
 
 exports[`CircularProgress should apply the correct styling, HTMLAttributes, and allow a ref 3`] = `
 <span
+  aria-label="Progressbar"
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
@@ -164,6 +171,7 @@ exports[`CircularProgress should apply the correct styling, HTMLAttributes, and 
 
 exports[`CircularProgress should apply the correct styling, HTMLAttributes, and allow a ref 4`] = `
 <span
+  aria-label="Progressbar"
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
@@ -189,6 +197,7 @@ exports[`CircularProgress should apply the correct styling, HTMLAttributes, and 
 
 exports[`CircularProgress should be able to render as a dense size 1`] = `
 <span
+  aria-label="Progressbar"
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--dense rmd-circular-progress--centered rmd-primary-color"
@@ -211,6 +220,7 @@ exports[`CircularProgress should be able to render as a dense size 1`] = `
 
 exports[`CircularProgress should be able to render as a dense size 2`] = `
 <span
+  aria-label="Progressbar"
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--dense rmd-primary-color"
@@ -233,6 +243,7 @@ exports[`CircularProgress should be able to render as a dense size 2`] = `
 
 exports[`CircularProgress should be able to render as any of the theme colors 1`] = `
 <span
+  aria-label="Progressbar"
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
@@ -255,6 +266,7 @@ exports[`CircularProgress should be able to render as any of the theme colors 1`
 
 exports[`CircularProgress should be able to render as any of the theme colors 2`] = `
 <span
+  aria-label="Progressbar"
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-secondary-color"
@@ -277,6 +289,7 @@ exports[`CircularProgress should be able to render as any of the theme colors 2`
 
 exports[`CircularProgress should be able to render as any of the theme colors 3`] = `
 <span
+  aria-label="Progressbar"
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-warning-color"
@@ -299,6 +312,7 @@ exports[`CircularProgress should be able to render as any of the theme colors 3`
 
 exports[`CircularProgress should be able to render as any of the theme colors 4`] = `
 <span
+  aria-label="Progressbar"
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-success-color"
@@ -321,6 +335,7 @@ exports[`CircularProgress should be able to render as any of the theme colors 4`
 
 exports[`CircularProgress should be able to render as any of the theme colors 5`] = `
 <span
+  aria-label="Progressbar"
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-error-color"
@@ -343,6 +358,7 @@ exports[`CircularProgress should be able to render as any of the theme colors 5`
 
 exports[`CircularProgress should be able to render as any of the theme colors 6`] = `
 <span
+  aria-label="Progressbar"
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered"
@@ -365,6 +381,7 @@ exports[`CircularProgress should be able to render as any of the theme colors 6`
 
 exports[`CircularProgress should default to being centered but can be removed by enabling the disableCentered prop 1`] = `
 <span
+  aria-label="Progressbar"
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
@@ -387,6 +404,7 @@ exports[`CircularProgress should default to being centered but can be removed by
 
 exports[`CircularProgress should default to being centered but can be removed by enabling the disableCentered prop 2`] = `
 <span
+  aria-label="Progressbar"
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-primary-color"
@@ -409,6 +427,7 @@ exports[`CircularProgress should default to being centered but can be removed by
 
 exports[`CircularProgress should render as a determinate progress bar when the value is provided 1`] = `
 <span
+  aria-label="Progressbar"
   aria-valuemax="100"
   aria-valuemin="0"
   aria-valuenow="30"
@@ -433,6 +452,7 @@ exports[`CircularProgress should render as a determinate progress bar when the v
 
 exports[`CircularProgress should render as a determinate progress bar when the value is provided 2`] = `
 <span
+  aria-label="Progressbar"
   aria-valuemax="100"
   aria-valuemin="0"
   aria-valuenow="50"
@@ -457,6 +477,7 @@ exports[`CircularProgress should render as a determinate progress bar when the v
 
 exports[`CircularProgress should support customizing the svg through the radio, center, and dashoffset props even though I don't know what they do 1`] = `
 <span
+  aria-label="Progressbar"
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"

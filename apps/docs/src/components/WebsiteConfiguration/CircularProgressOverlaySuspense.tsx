@@ -14,7 +14,7 @@ export function CircularProgressOverlaySuspense(
     <Suspense
       fallback={
         <Overlay visible={visible} disableTransition>
-          <CircularProgress />
+          <CircularProgress aria-label="LOading" />
         </Overlay>
       }
     >

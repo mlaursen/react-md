@@ -6,12 +6,13 @@ export default function CircularProgressTheme(): ReactElement {
   const value = checked ? undefined : 30;
   return (
     <>
-      <CircularProgress value={value} theme="primary" />
-      <CircularProgress value={value} theme="secondary" />
-      <CircularProgress value={value} theme="warning" />
-      <CircularProgress value={value} theme="success" />
-      <CircularProgress value={value} theme="error" />
+      <CircularProgress aria-label="Example" value={value} theme="primary" />
+      <CircularProgress aria-label="Example" value={value} theme="secondary" />
+      <CircularProgress aria-label="Example" value={value} theme="warning" />
+      <CircularProgress aria-label="Example" value={value} theme="success" />
+      <CircularProgress aria-label="Example" value={value} theme="error" />
       <CircularProgress
+        aria-label="Example"
         value={checked ? undefined : 30}
         theme="current-color"
       />

@@ -8,16 +8,18 @@ import {
   useAsyncAction,
   wait,
 } from "@react-md/core";
-import { useState, type ReactElement } from "react";
+import { useState, type ReactElement, useId } from "react";
 
 export default function SwitchWithCircularProgress(): ReactElement {
+  const id = useId();
   const [checked, setChecked] = useState(false);
   const { handleAsync, pending } = useAsyncAction();
   return (
     <Form className={box()}>
       <Switch
+        id={id}
         label="Label"
-        ballAddon={pending && <CircularProgress />}
+        ballAddon={pending && <CircularProgress aria-labelledby={id} />}
         checked={checked}
         onChange={handleAsync(async (event) => {
           const nextChecked = event.currentTarget.checked;

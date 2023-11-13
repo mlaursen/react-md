@@ -8,12 +8,13 @@ describe("CircularProgress", () => {
   it("should apply the correct styling, HTMLAttributes, and allow a ref", () => {
     const ref = createRef<HTMLSpanElement>();
     const props = {
+      "aria-label": "Progressbar",
       ref,
     } as const;
 
     const { rerender } = render(<CircularProgress {...props} />);
 
-    const element = screen.getByRole("progressbar");
+    const element = screen.getByRole("progressbar", { name: "Progressbar" });
 
     expect(ref.current).toBeInstanceOf(HTMLSpanElement);
     expect(ref.current).toBe(element);
@@ -48,84 +49,105 @@ describe("CircularProgress", () => {
   });
 
   it("should allow the id to be overridden", () => {
-    render(<CircularProgress id="custom-id" />);
-    const progress = screen.getByRole("progressbar");
+    render(<CircularProgress id="custom-id" aria-label="Progressbar" />);
+    const progress = screen.getByRole("progressbar", { name: "Progressbar" });
     expect(progress).toHaveAttribute("id", "custom-id");
   });
 
   it("should default to being centered but can be removed by enabling the disableCentered prop", () => {
-    const { rerender } = render(<CircularProgress />);
-    const progress = screen.getByRole("progressbar");
+    const { rerender } = render(<CircularProgress aria-label="Progressbar" />);
+    const progress = screen.getByRole("progressbar", { name: "Progressbar" });
     expect(progress).toMatchSnapshot();
 
-    rerender(<CircularProgress disableCentered />);
+    rerender(<CircularProgress aria-label="Progressbar" disableCentered />);
     expect(progress).toMatchSnapshot();
   });
 
   it("should be able to render as a dense size", () => {
-    const { rerender } = render(<CircularProgress dense />);
-    const progress = screen.getByRole("progressbar");
+    const { rerender } = render(
+      <CircularProgress aria-label="Progressbar" dense />
+    );
+    const progress = screen.getByRole("progressbar", { name: "Progressbar" });
     expect(progress).toMatchSnapshot();
 
-    rerender(<CircularProgress dense disableCentered />);
+    rerender(
+      <CircularProgress aria-label="Progressbar" dense disableCentered />
+    );
     expect(progress).toMatchSnapshot();
   });
 
   it("should render as a determinate progress bar when the value is provided", () => {
-    const { rerender } = render(<CircularProgress value={30} />);
-    const progress = screen.getByRole("progressbar");
+    const { rerender } = render(
+      <CircularProgress aria-label="Progressbar" value={30} />
+    );
+    const progress = screen.getByRole("progressbar", { name: "Progressbar" });
     expect(progress).toHaveAttribute("aria-valuenow", "30");
     expect(progress).toMatchSnapshot();
 
-    rerender(<CircularProgress value={50} />);
+    rerender(<CircularProgress aria-label="Progressbar" value={50} />);
     expect(progress).toHaveAttribute("aria-valuenow", "50");
     expect(progress).toMatchSnapshot();
   });
 
   it("should allow the transition to be disabled for determinate progress bars", () => {
     const { rerender } = render(
-      <CircularProgress value={30} disableTransition />
+      <CircularProgress aria-label="Progressbar" value={30} disableTransition />
     );
-    const progress = screen.getByRole("progressbar");
+    const progress = screen.getByRole("progressbar", { name: "Progressbar" });
     expect(progress).toMatchSnapshot();
 
-    rerender(<CircularProgress disableTransition />);
+    rerender(<CircularProgress aria-label="Progressbar" disableTransition />);
     expect(progress).toMatchSnapshot();
   });
 
   it("should allow the animation to be simplified when the disableShrink prop is enabled", () => {
-    const { rerender } = render(<CircularProgress disableShrink />);
-    const progress = screen.getByRole("progressbar");
+    const { rerender } = render(
+      <CircularProgress aria-label="Progressbar" disableShrink />
+    );
+    const progress = screen.getByRole("progressbar", { name: "Progressbar" });
     expect(progress).toMatchSnapshot();
 
-    rerender(<CircularProgress disableShrink value={100} />);
+    rerender(
+      <CircularProgress aria-label="Progressbar" disableShrink value={100} />
+    );
     expect(progress).toMatchSnapshot();
   });
 
   it("should be able to render as any of the theme colors", () => {
-    const { rerender } = render(<CircularProgress theme="primary" />);
-    const progress = screen.getByRole("progressbar");
+    const { rerender } = render(
+      <CircularProgress aria-label="Progressbar" theme="primary" />
+    );
+    const progress = screen.getByRole("progressbar", { name: "Progressbar" });
     expect(progress).toMatchSnapshot();
 
-    rerender(<CircularProgress theme="secondary" />);
+    rerender(<CircularProgress aria-label="Progressbar" theme="secondary" />);
     expect(progress).toMatchSnapshot();
 
-    rerender(<CircularProgress theme="warning" />);
+    rerender(<CircularProgress aria-label="Progressbar" theme="warning" />);
     expect(progress).toMatchSnapshot();
 
-    rerender(<CircularProgress theme="success" />);
+    rerender(<CircularProgress aria-label="Progressbar" theme="success" />);
     expect(progress).toMatchSnapshot();
 
-    rerender(<CircularProgress theme="error" />);
+    rerender(<CircularProgress aria-label="Progressbar" theme="error" />);
     expect(progress).toMatchSnapshot();
 
-    rerender(<CircularProgress theme="current-color" />);
+    rerender(
+      <CircularProgress aria-label="Progressbar" theme="current-color" />
+    );
     expect(progress).toMatchSnapshot();
   });
 
   it("should support customizing the svg through the radio, center, and dashoffset props even though I don't know what they do", () => {
-    render(<CircularProgress dashoffset={100} center={20} radius={5} />);
-    const progress = screen.getByRole("progressbar");
+    render(
+      <CircularProgress
+        aria-label="Progressbar"
+        dashoffset={100}
+        center={20}
+        radius={5}
+      />
+    );
+    const progress = screen.getByRole("progressbar", { name: "Progressbar" });
     expect(progress).toMatchSnapshot();
   });
 });

@@ -141,7 +141,7 @@ describe("Switch", () => {
       <Switch
         label="Switch"
         labelProps={labelProps}
-        ballAddon={<CircularProgress />}
+        ballAddon={<CircularProgress aria-label="Loading" />}
       />
     );
 

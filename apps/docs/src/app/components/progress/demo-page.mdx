@@ -6,6 +6,15 @@ submitting a form, or saving updates. They communicate an app’s state and
 indicate available actions, such as whether users can navigate away from the
 current screen.
 
+> !Info! All progressbar components require an `aria-label` or `aria-labelledby`
+> for accessibility. The label will probably be `"Loading"` for most use cases,
+> but could also be things like:
+>
+> - An `id` of a `Dialog` title
+> - An `id` of a `Button`
+> - An `id` of a heading element
+> - etc
+
 # Circular Progress
 
 Circular progress indicators display progress by animating an indicator along an
@@ -21,7 +30,7 @@ import { CircularProgress } from "@react-md/core";
 import { type ReactElement } from "react";
 
 export default function SimpleCircularProgress(): ReactElement {
-  return <CircularProgress />;
+  return <CircularProgress aria-label="Example" />;
 }
 
 ```
@@ -43,10 +52,10 @@ export default function DeterminateCircularProgress(): ReactElement {
   const progress = useProgress();
   return (
     <>
-      <CircularProgress value={10} />
-      <CircularProgress value={30} />
-      <CircularProgress value={70} />
-      <CircularProgress value={progress} />
+      <CircularProgress aria-label="Example" value={10} />
+      <CircularProgress aria-label="Example" value={30} />
+      <CircularProgress aria-label="Example" value={70} />
+      <CircularProgress aria-label="Example" value={progress} />
     </>
   );
 }
@@ -87,7 +96,7 @@ import { CircularProgress } from "@react-md/core";
 import { type ReactElement } from "react";
 
 export default function CircularProgressSizes(): ReactElement {
-  return <CircularProgress dense />;
+  return <CircularProgress aria-label="Example" dense />;
 }
 
 ```
@@ -107,12 +116,13 @@ export default function CircularProgressTheme(): ReactElement {
   const value = checked ? undefined : 30;
   return (
     <>
-      <CircularProgress value={value} theme="primary" />
-      <CircularProgress value={value} theme="secondary" />
-      <CircularProgress value={value} theme="warning" />
-      <CircularProgress value={value} theme="success" />
-      <CircularProgress value={value} theme="error" />
+      <CircularProgress aria-label="Example" value={value} theme="primary" />
+      <CircularProgress aria-label="Example" value={value} theme="secondary" />
+      <CircularProgress aria-label="Example" value={value} theme="warning" />
+      <CircularProgress aria-label="Example" value={value} theme="success" />
+      <CircularProgress aria-label="Example" value={value} theme="error" />
       <CircularProgress
+        aria-label="Example"
         value={checked ? undefined : 30}
         theme="current-color"
       />
@@ -145,7 +155,7 @@ import { CircularProgress } from "@react-md/core";
 import { type ReactElement } from "react";
 
 export default function PerformanceConcerns(): ReactElement {
-  return <CircularProgress disableShrink />;
+  return <CircularProgress aria-label="Example" disableShrink />;
 }
 
 ```
@@ -166,7 +176,7 @@ import { LinearProgress } from "@react-md/core";
 import { type ReactElement } from "react";
 
 export default function SimpleLinearProgress(): ReactElement {
-  return <LinearProgress />;
+  return <LinearProgress aria-label="Example" />;
 }
 
 ```
@@ -188,12 +198,16 @@ export default function LinearProgressTheme(): ReactElement {
   const value = checked ? undefined : 30;
   return (
     <>
-      <LinearProgress value={value} theme="primary" />
-      <LinearProgress value={value} theme="secondary" />
-      <LinearProgress value={value} theme="warning" />
-      <LinearProgress value={value} theme="success" />
-      <LinearProgress value={value} theme="error" />
-      <LinearProgress value={checked ? undefined : 30} theme="current-color" />
+      <LinearProgress aria-label="Example" value={value} theme="primary" />
+      <LinearProgress aria-label="Example" value={value} theme="secondary" />
+      <LinearProgress aria-label="Example" value={value} theme="warning" />
+      <LinearProgress aria-label="Example" value={value} theme="success" />
+      <LinearProgress aria-label="Example" value={value} theme="error" />
+      <LinearProgress
+        aria-label="Example"
+        value={checked ? undefined : 30}
+        theme="current-color"
+      />
       <Box disablePadding fullWidth>
         <Switch
           label="Run"
@@ -231,8 +245,12 @@ export default function DisableDeterminateTransition(): ReactElement {
 
   return (
     <Box stacked align="start" fullWidth>
-      <CircularProgress value={progress} disableTransition />
-      <LinearProgress value={progress} disableTransition />
+      <CircularProgress
+        aria-label="Example"
+        value={progress}
+        disableTransition
+      />
+      <LinearProgress aria-label="Example" value={progress} disableTransition />
 
       <Switch label="Run" checked={running} onChange={toggle} />
       <Button onClick={restart}>Restart</Button>

@@ -47,7 +47,7 @@ function Test(props: TestProps): ReactElement {
             disablePadding: true,
           })}
         >
-          <CircularProgress />
+          <CircularProgress aria-label="Loading" />
         </span>
       )}
     </Button>

@@ -6,6 +6,15 @@ submitting a form, or saving updates. They communicate an app’s state and
 indicate available actions, such as whether users can navigate away from the
 current screen.
 
+> !Info! All progressbar components require an `aria-label` or `aria-labelledby`
+> for accessibility. The label will probably be `"Loading"` for most use cases,
+> but could also be things like:
+>
+> - An `id` of a `Dialog` title
+> - An `id` of a `Button`
+> - An `id` of a heading element
+> - etc
+
 # Circular Progress
 
 Circular progress indicators display progress by animating an indicator along an

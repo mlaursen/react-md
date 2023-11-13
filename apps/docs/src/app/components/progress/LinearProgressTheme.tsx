@@ -6,12 +6,16 @@ export default function LinearProgressTheme(): ReactElement {
   const value = checked ? undefined : 30;
   return (
     <>
-      <LinearProgress value={value} theme="primary" />
-      <LinearProgress value={value} theme="secondary" />
-      <LinearProgress value={value} theme="warning" />
-      <LinearProgress value={value} theme="success" />
-      <LinearProgress value={value} theme="error" />
-      <LinearProgress value={checked ? undefined : 30} theme="current-color" />
+      <LinearProgress aria-label="Example" value={value} theme="primary" />
+      <LinearProgress aria-label="Example" value={value} theme="secondary" />
+      <LinearProgress aria-label="Example" value={value} theme="warning" />
+      <LinearProgress aria-label="Example" value={value} theme="success" />
+      <LinearProgress aria-label="Example" value={value} theme="error" />
+      <LinearProgress
+        aria-label="Example"
+        value={checked ? undefined : 30}
+        theme="current-color"
+      />
       <Box disablePadding fullWidth>
         <Switch
           label="Run"
