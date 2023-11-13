@@ -69,7 +69,7 @@ export interface BaseDialogProps
     TransitionActions,
     FocusContainerComponentProps {
   /**
-   * @defaultValue `useEnsuredId('dialog')`
+   * @defaultValue `"dialog-" + useId()`
    */
   id?: string;
 

@@ -25,7 +25,7 @@ export function CollapsibleNavigationItemGroup(
     () => !pathname.includes(getHrefFromParents(parents))
   );
 
-  const { elementProps } = useCollapseTransition({
+  const { rendered, elementProps } = useCollapseTransition({
     transitionIn: !collapsed,
   });
 
@@ -35,9 +35,11 @@ export function CollapsibleNavigationItemGroup(
         {(item as NavigationGroupItem).children}
         <IconRotator rotated={!collapsed}>{getIcon("dropdown")}</IconRotator>
       </Button>
-      <NavigationItemGroup depth={parents.length} {...elementProps}>
-        {children}
-      </NavigationItemGroup>
+      {rendered && (
+        <NavigationItemGroup depth={parents.length} {...elementProps}>
+          {children}
+        </NavigationItemGroup>
+      )}
     </li>
   );
 }

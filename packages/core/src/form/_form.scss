@@ -79,7 +79,7 @@ $label-typography: map.merge(
 ) !default;
 $label-floating-top: 1rem !default;
 $label-floating-top-dense: 0.9rem !default;
-$label-floating-font-size: 0.75em !default;
+$label-floating-scale: 0.75 !default;
 $label-floating-padding: 0.25rem !default;
 
 $message-typography-styles: map.merge(
@@ -606,7 +606,7 @@ $var-lookup: (
     align-items: center;
     display: inline-flex;
     transition-duration: transition.$linear-duration;
-    transition-property: background-color, color, font-size, transform;
+    transition-property: background-color, transform;
 
     $active-selector: "&--active";
     @if not $_disable-text-field-container {
@@ -637,7 +637,6 @@ $var-lookup: (
         position: absolute;
         top: 0;
         transform: translate(get-var(text-padding-left), get-var(floating-top));
-        will-change: font-size, transform;
       }
 
       &--floating-dense {
@@ -662,19 +661,17 @@ $var-lookup: (
 
       #{$floating-active-selector} {
         @include utils.rtl {
-          transform: translate(
-            utils.negate-var(get-var(label-left-offset)),
-            get-var(label-top-offset)
-          );
+          transform: scale($label-floating-scale)
+            translate(
+              utils.negate-var(get-var(label-left-offset)),
+              get-var(label-top-offset)
+            );
         }
         @include use-var(background-color, label-active-background-color);
         @include use-var(padding, label-active-padding);
 
-        font-size: $label-floating-font-size;
-        transform: translate(
-          get-var(label-left-offset),
-          get-var(label-top-offset)
-        );
+        transform: scale($label-floating-scale)
+          translate(get-var(label-left-offset), get-var(label-top-offset));
         z-index: 1;
       }
     }
