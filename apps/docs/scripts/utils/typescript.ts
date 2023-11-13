@@ -61,6 +61,31 @@ const moveImportsIntoDemoFile = (
             // `declaration.getType().getText()` would return the expanded value which I don't want
             type: text.substring(text.indexOf("=") + 1),
           });
+        } else if (Node.isInterfaceDeclaration(declaration)) {
+          declaration.setIsExported(false);
+          demo.addInterface({
+            name: declaration.getName(),
+            extends: declaration
+              .getExtends()
+              .map((extendedType) => extendedType.getText()),
+            properties: declaration.getProperties().map((property) => ({
+              name: property.getName(),
+              isReadonly: property.isReadonly(),
+              type: property.getType().getText(),
+              initializer: property.getInitializer()?.getText(),
+            })),
+            methods: declaration.getMethods().map((method) => ({
+              name: method.getName(),
+              parameters: method.getParameters().map((parameter) => ({
+                name: parameter.getName(),
+              })),
+              returnType: method.getReturnType().getText(),
+              typeParameters: method.getTypeParameters().map((typeParam) => ({
+                name: typeParam.getName(),
+                default: typeParam.getDefault()?.getText(),
+              })),
+            })),
+          });
         }
       });
     }
