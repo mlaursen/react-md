@@ -7,6 +7,7 @@ import {
   type TdHTMLAttributes,
   type ThHTMLAttributes,
 } from "react";
+import { cssUtils } from "../cssUtils.js";
 import { getIcon } from "../icon/iconConfig.js";
 import { type PropsWithRef } from "../types.js";
 import { TableCellContent, type SortOrder } from "./TableCellContent.js";
@@ -256,11 +257,13 @@ export function tableCell(options: TableCellClassNameOptions): string {
     sticky && (!isInTableHeader || checkbox) && `${p}sticky-cell`,
     sticky && isInTableHeader && `${p}sticky-header`,
     sticky && isInTableHeader && checkbox && `${p}header-cell`,
-    hAlign && hAlign !== "left" && `${p}${hAlign}`,
     vAlign && vAlign !== "middle" && `${p}${vAlign}`,
     !lineWrap && `${p}no-wrap`,
     padding === "vertical" && `${p}v-padding`,
     padding === "none" && `${p}no-padding`,
+    cssUtils({
+      textAlign: hAlign,
+    }),
     className
   );
 }

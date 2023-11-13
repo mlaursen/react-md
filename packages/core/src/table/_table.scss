@@ -12,9 +12,6 @@ $disable-everything: false !default;
 $disable-container: false !default;
 $disable-dense: false !default;
 $disable-full-width: false !default;
-$disable-cell-header-align-left: false !default;
-$disable-cell-align-center: false !default;
-$disable-cell-align-right: false !default;
 $disable-cell-align-top: false !default;
 $disable-cell-align-bottom: false !default;
 $disable-bordered: false !default;
@@ -353,17 +350,18 @@ $row-selected-styles: (
         @if $cell-color != $cell-header-color {
           @include set-var(cell-color, $cell-header-color);
         }
-        @if not $disable-cell-header-align-left {
-          @include utils.rtl {
-            text-align: right;
-          }
+      }
 
-          text-align: left;
+      @if not $disable-cell-align-top {
+        &--top {
+          vertical-align: top;
         }
       }
 
-      &--top {
-        vertical-align: top;
+      @if not $disable-cell-align-bottom {
+        &--bottom {
+          vertical-align: bottom;
+        }
       }
 
       @if not $disable-sticky-cell {

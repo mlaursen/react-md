@@ -2,7 +2,7 @@
 
 exports[`TableCheckbox should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <td
-  class="rmd-table-cell rmd-table-cell--checkbox rmd-table-cell--no-wrap"
+  class="rmd-table-cell rmd-table-cell--checkbox rmd-table-cell--no-wrap rmd-align-left"
 >
   <label
     class="rmd-label rmd-label--gap rmd-label--reversed"
@@ -37,7 +37,7 @@ exports[`TableCheckbox should apply the correct styling, HTML attributes, and al
 
 exports[`TableCheckbox should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <td
-  class="rmd-table-cell rmd-table-cell--checkbox rmd-table-cell--no-wrap custom-class-name"
+  class="rmd-table-cell rmd-table-cell--checkbox rmd-table-cell--no-wrap rmd-align-left custom-class-name"
   style="pointer-events: none;"
 >
   <label
@@ -73,7 +73,7 @@ exports[`TableCheckbox should apply the correct styling, HTML attributes, and al
 
 exports[`TableCheckbox should handle the aria-label/aria-labelledby props correctly 1`] = `
 <td
-  class="rmd-table-cell rmd-table-cell--checkbox rmd-table-cell--no-wrap"
+  class="rmd-table-cell rmd-table-cell--checkbox rmd-table-cell--no-wrap rmd-align-left"
 >
   <label
     class="rmd-label rmd-label--gap rmd-label--reversed"
@@ -108,7 +108,7 @@ exports[`TableCheckbox should handle the aria-label/aria-labelledby props correc
 
 exports[`TableCheckbox should handle the aria-label/aria-labelledby props correctly 2`] = `
 <td
-  class="rmd-table-cell rmd-table-cell--checkbox rmd-table-cell--no-wrap"
+  class="rmd-table-cell rmd-table-cell--checkbox rmd-table-cell--no-wrap rmd-align-left"
 >
   <label
     class="rmd-label rmd-label--gap rmd-label--reversed"

@@ -9,7 +9,7 @@ exports[`TableBody should apply the correct styling, HTML attributes, and allow 
     class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
   >
     <td
-      class="rmd-table-cell rmd-table-cell--no-wrap"
+      class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
     >
       Cell 1
     </td>
@@ -27,7 +27,7 @@ exports[`TableBody should apply the correct styling, HTML attributes, and allow 
     class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
   >
     <td
-      class="rmd-table-cell rmd-table-cell--no-wrap"
+      class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
     >
       Cell 1
     </td>
@@ -45,7 +45,7 @@ exports[`TableBody should apply the correct styling, HTML attributes, and allow 
     class="rmd-tr"
   >
     <td
-      class="rmd-table-cell rmd-table-cell--no-wrap"
+      class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
     >
       Cell 1
     </td>

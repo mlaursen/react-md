@@ -11,19 +11,19 @@ exports[`Table should apply the correct styling, HTML attributes, and allow a re
       class="rmd-tr rmd-tr--bordered"
     >
       <th
-        class="rmd-table-cell rmd-table-cell--header rmd-table-cell--no-wrap"
+        class="rmd-table-cell rmd-table-cell--header rmd-table-cell--no-wrap rmd-align-left"
         scope="col"
       >
         Header 1
       </th>
       <th
-        class="rmd-table-cell rmd-table-cell--header rmd-table-cell--no-wrap"
+        class="rmd-table-cell rmd-table-cell--header rmd-table-cell--no-wrap rmd-align-left"
         scope="col"
       >
         Header 2
       </th>
       <th
-        class="rmd-table-cell rmd-table-cell--header rmd-table-cell--no-wrap"
+        class="rmd-table-cell rmd-table-cell--header rmd-table-cell--no-wrap rmd-align-left"
         scope="col"
       >
         Header 3
@@ -37,17 +37,17 @@ exports[`Table should apply the correct styling, HTML attributes, and allow a re
       class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
     >
       <td
-        class="rmd-table-cell rmd-table-cell--no-wrap"
+        class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
       >
         Row 1 Cell 1
       </td>
       <td
-        class="rmd-table-cell rmd-table-cell--no-wrap"
+        class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
       >
         Row 1 Cell 2
       </td>
       <td
-        class="rmd-table-cell rmd-table-cell--no-wrap"
+        class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
       >
         Row 1 Cell 3
       </td>
@@ -56,17 +56,17 @@ exports[`Table should apply the correct styling, HTML attributes, and allow a re
       class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
     >
       <td
-        class="rmd-table-cell rmd-table-cell--no-wrap"
+        class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
       >
         Row 2 Cell 1
       </td>
       <td
-        class="rmd-table-cell rmd-table-cell--no-wrap"
+        class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
       >
         Row 2 Cell 2
       </td>
       <td
-        class="rmd-table-cell rmd-table-cell--no-wrap"
+        class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
       >
         Row 2 Cell 3
       </td>
@@ -75,17 +75,17 @@ exports[`Table should apply the correct styling, HTML attributes, and allow a re
       class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
     >
       <td
-        class="rmd-table-cell rmd-table-cell--no-wrap"
+        class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
       >
         Row 3 Cell 1
       </td>
       <td
-        class="rmd-table-cell rmd-table-cell--no-wrap"
+        class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
       >
         Row 3 Cell 2
       </td>
       <td
-        class="rmd-table-cell rmd-table-cell--no-wrap"
+        class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
       >
         Row 3 Cell 3
       </td>
@@ -98,7 +98,7 @@ exports[`Table should apply the correct styling, HTML attributes, and allow a re
       class="rmd-tr rmd-tr--bordered"
     >
       <td
-        class="rmd-table-cell rmd-table-cell--no-wrap"
+        class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         colspan="3"
       >
         Footer Cell
@@ -120,19 +120,19 @@ exports[`Table should apply the correct styling, HTML attributes, and allow a re
       class="rmd-tr"
     >
       <th
-        class="rmd-table-cell rmd-table-cell--header rmd-table-cell--no-wrap"
+        class="rmd-table-cell rmd-table-cell--header rmd-table-cell--no-wrap rmd-align-left"
         scope="col"
       >
         Header 1
       </th>
       <th
-        class="rmd-table-cell rmd-table-cell--header rmd-table-cell--no-wrap"
+        class="rmd-table-cell rmd-table-cell--header rmd-table-cell--no-wrap rmd-align-left"
         scope="col"
       >
         Header 2
       </th>
       <th
-        class="rmd-table-cell rmd-table-cell--header rmd-table-cell--no-wrap"
+        class="rmd-table-cell rmd-table-cell--header rmd-table-cell--no-wrap rmd-align-left"
         scope="col"
       >
         Header 3
@@ -146,17 +146,17 @@ exports[`Table should apply the correct styling, HTML attributes, and allow a re
       class="rmd-tr"
     >
       <td
-        class="rmd-table-cell rmd-table-cell--no-wrap"
+        class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
       >
         Row 1 Cell 1
       </td>
       <td
-        class="rmd-table-cell rmd-table-cell--no-wrap"
+        class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
       >
         Row 1 Cell 2
       </td>
       <td
-        class="rmd-table-cell rmd-table-cell--no-wrap"
+        class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
       >
         Row 1 Cell 3
       </td>
@@ -165,17 +165,17 @@ exports[`Table should apply the correct styling, HTML attributes, and allow a re
       class="rmd-tr"
     >
       <td
-        class="rmd-table-cell rmd-table-cell--no-wrap"
+        class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
       >
         Row 2 Cell 1
       </td>
       <td
-        class="rmd-table-cell rmd-table-cell--no-wrap"
+        class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
       >
         Row 2 Cell 2
       </td>
       <td
-        class="rmd-table-cell rmd-table-cell--no-wrap"
+        class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
       >
         Row 2 Cell 3
       </td>
@@ -184,17 +184,17 @@ exports[`Table should apply the correct styling, HTML attributes, and allow a re
       class="rmd-tr"
     >
       <td
-        class="rmd-table-cell rmd-table-cell--no-wrap"
+        class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
       >
         Row 3 Cell 1
       </td>
       <td
-        class="rmd-table-cell rmd-table-cell--no-wrap"
+        class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
       >
         Row 3 Cell 2
       </td>
       <td
-        class="rmd-table-cell rmd-table-cell--no-wrap"
+        class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
       >
         Row 3 Cell 3
       </td>
@@ -207,7 +207,7 @@ exports[`Table should apply the correct styling, HTML attributes, and allow a re
       class="rmd-tr"
     >
       <td
-        class="rmd-table-cell rmd-table-cell--no-wrap"
+        class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         colspan="3"
       >
         Footer Cell
@@ -229,19 +229,19 @@ exports[`Table should apply the correct styling, HTML attributes, and allow a re
       class="rmd-tr rmd-tr--bordered"
     >
       <th
-        class="rmd-table-cell rmd-table-cell--header"
+        class="rmd-table-cell rmd-table-cell--header rmd-align-left"
         scope="col"
       >
         Header 1
       </th>
       <th
-        class="rmd-table-cell rmd-table-cell--header"
+        class="rmd-table-cell rmd-table-cell--header rmd-align-left"
         scope="col"
       >
         Header 2
       </th>
       <th
-        class="rmd-table-cell rmd-table-cell--header"
+        class="rmd-table-cell rmd-table-cell--header rmd-align-left"
         scope="col"
       >
         Header 3
@@ -255,17 +255,17 @@ exports[`Table should apply the correct styling, HTML attributes, and allow a re
       class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
     >
       <td
-        class="rmd-table-cell"
+        class="rmd-table-cell rmd-align-left"
       >
         Row 1 Cell 1
       </td>
       <td
-        class="rmd-table-cell"
+        class="rmd-table-cell rmd-align-left"
       >
         Row 1 Cell 2
       </td>
       <td
-        class="rmd-table-cell"
+        class="rmd-table-cell rmd-align-left"
       >
         Row 1 Cell 3
       </td>
@@ -274,17 +274,17 @@ exports[`Table should apply the correct styling, HTML attributes, and allow a re
       class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
     >
       <td
-        class="rmd-table-cell"
+        class="rmd-table-cell rmd-align-left"
       >
         Row 2 Cell 1
       </td>
       <td
-        class="rmd-table-cell"
+        class="rmd-table-cell rmd-align-left"
       >
         Row 2 Cell 2
       </td>
       <td
-        class="rmd-table-cell"
+        class="rmd-table-cell rmd-align-left"
       >
         Row 2 Cell 3
       </td>
@@ -293,17 +293,17 @@ exports[`Table should apply the correct styling, HTML attributes, and allow a re
       class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
     >
       <td
-        class="rmd-table-cell"
+        class="rmd-table-cell rmd-align-left"
       >
         Row 3 Cell 1
       </td>
       <td
-        class="rmd-table-cell"
+        class="rmd-table-cell rmd-align-left"
       >
         Row 3 Cell 2
       </td>
       <td
-        class="rmd-table-cell"
+        class="rmd-table-cell rmd-align-left"
       >
         Row 3 Cell 3
       </td>
@@ -316,7 +316,7 @@ exports[`Table should apply the correct styling, HTML attributes, and allow a re
       class="rmd-tr rmd-tr--bordered"
     >
       <td
-        class="rmd-table-cell"
+        class="rmd-table-cell rmd-align-left"
         colspan="3"
       >
         Footer Cell
@@ -338,7 +338,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 1
         </td>
@@ -347,7 +347,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 2
         </td>
@@ -356,7 +356,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 3
         </td>
@@ -365,7 +365,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 4
         </td>
@@ -374,7 +374,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 5
         </td>
@@ -383,7 +383,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 6
         </td>
@@ -392,7 +392,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 7
         </td>
@@ -401,7 +401,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 8
         </td>
@@ -410,7 +410,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 9
         </td>
@@ -419,7 +419,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 10
         </td>
@@ -428,7 +428,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 11
         </td>
@@ -437,7 +437,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 12
         </td>
@@ -446,7 +446,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 13
         </td>
@@ -455,7 +455,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 14
         </td>
@@ -464,7 +464,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 15
         </td>
@@ -473,7 +473,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 16
         </td>
@@ -482,7 +482,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 17
         </td>
@@ -491,7 +491,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 18
         </td>
@@ -500,7 +500,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 19
         </td>
@@ -509,7 +509,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 20
         </td>
@@ -522,7 +522,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Footer Cell
         </td>
@@ -544,7 +544,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 1
         </td>
@@ -553,7 +553,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 2
         </td>
@@ -562,7 +562,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 3
         </td>
@@ -571,7 +571,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 4
         </td>
@@ -580,7 +580,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 5
         </td>
@@ -589,7 +589,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 6
         </td>
@@ -598,7 +598,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 7
         </td>
@@ -607,7 +607,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 8
         </td>
@@ -616,7 +616,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 9
         </td>
@@ -625,7 +625,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 10
         </td>
@@ -634,7 +634,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 11
         </td>
@@ -643,7 +643,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 12
         </td>
@@ -652,7 +652,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 13
         </td>
@@ -661,7 +661,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 14
         </td>
@@ -670,7 +670,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 15
         </td>
@@ -679,7 +679,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 16
         </td>
@@ -688,7 +688,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 17
         </td>
@@ -697,7 +697,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 18
         </td>
@@ -706,7 +706,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 19
         </td>
@@ -715,7 +715,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 20
         </td>
@@ -728,7 +728,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Footer Cell
         </td>
@@ -750,7 +750,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 1
         </td>
@@ -759,7 +759,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 2
         </td>
@@ -768,7 +768,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 3
         </td>
@@ -777,7 +777,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 4
         </td>
@@ -786,7 +786,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 5
         </td>
@@ -795,7 +795,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 6
         </td>
@@ -804,7 +804,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 7
         </td>
@@ -813,7 +813,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 8
         </td>
@@ -822,7 +822,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 9
         </td>
@@ -831,7 +831,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 10
         </td>
@@ -840,7 +840,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 11
         </td>
@@ -849,7 +849,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 12
         </td>
@@ -858,7 +858,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 13
         </td>
@@ -867,7 +867,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 14
         </td>
@@ -876,7 +876,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 15
         </td>
@@ -885,7 +885,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 16
         </td>
@@ -894,7 +894,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 17
         </td>
@@ -903,7 +903,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 18
         </td>
@@ -912,7 +912,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 19
         </td>
@@ -921,7 +921,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 20
         </td>
@@ -934,7 +934,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
         class="rmd-tr rmd-tr--bordered"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Footer Cell
         </td>
@@ -959,7 +959,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 1
           </td>
@@ -968,7 +968,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 2
           </td>
@@ -977,7 +977,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 3
           </td>
@@ -986,7 +986,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 4
           </td>
@@ -995,7 +995,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 5
           </td>
@@ -1004,7 +1004,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 6
           </td>
@@ -1013,7 +1013,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 7
           </td>
@@ -1022,7 +1022,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 8
           </td>
@@ -1031,7 +1031,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 9
           </td>
@@ -1040,7 +1040,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 10
           </td>
@@ -1049,7 +1049,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 11
           </td>
@@ -1058,7 +1058,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 12
           </td>
@@ -1067,7 +1067,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 13
           </td>
@@ -1076,7 +1076,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 14
           </td>
@@ -1085,7 +1085,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 15
           </td>
@@ -1094,7 +1094,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 16
           </td>
@@ -1103,7 +1103,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 17
           </td>
@@ -1112,7 +1112,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 18
           </td>
@@ -1121,7 +1121,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 19
           </td>
@@ -1130,7 +1130,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 20
           </td>
@@ -1146,7 +1146,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Footer Cell
           </td>
@@ -1172,7 +1172,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 1
           </td>
@@ -1181,7 +1181,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 2
           </td>
@@ -1190,7 +1190,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 3
           </td>
@@ -1199,7 +1199,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 4
           </td>
@@ -1208,7 +1208,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 5
           </td>
@@ -1217,7 +1217,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 6
           </td>
@@ -1226,7 +1226,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 7
           </td>
@@ -1235,7 +1235,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 8
           </td>
@@ -1244,7 +1244,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 9
           </td>
@@ -1253,7 +1253,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 10
           </td>
@@ -1262,7 +1262,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 11
           </td>
@@ -1271,7 +1271,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 12
           </td>
@@ -1280,7 +1280,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 13
           </td>
@@ -1289,7 +1289,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 14
           </td>
@@ -1298,7 +1298,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 15
           </td>
@@ -1307,7 +1307,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 16
           </td>
@@ -1316,7 +1316,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 17
           </td>
@@ -1325,7 +1325,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 18
           </td>
@@ -1334,7 +1334,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 19
           </td>
@@ -1343,7 +1343,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 20
           </td>
@@ -1359,7 +1359,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Footer Cell
           </td>
@@ -1385,7 +1385,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 1
           </td>
@@ -1394,7 +1394,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 2
           </td>
@@ -1403,7 +1403,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 3
           </td>
@@ -1412,7 +1412,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 4
           </td>
@@ -1421,7 +1421,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 5
           </td>
@@ -1430,7 +1430,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 6
           </td>
@@ -1439,7 +1439,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 7
           </td>
@@ -1448,7 +1448,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 8
           </td>
@@ -1457,7 +1457,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 9
           </td>
@@ -1466,7 +1466,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 10
           </td>
@@ -1475,7 +1475,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 11
           </td>
@@ -1484,7 +1484,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 12
           </td>
@@ -1493,7 +1493,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 13
           </td>
@@ -1502,7 +1502,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 14
           </td>
@@ -1511,7 +1511,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 15
           </td>
@@ -1520,7 +1520,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 16
           </td>
@@ -1529,7 +1529,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 17
           </td>
@@ -1538,7 +1538,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 18
           </td>
@@ -1547,7 +1547,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 19
           </td>
@@ -1556,7 +1556,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 20
           </td>
@@ -1572,7 +1572,7 @@ exports[`Table sticky table behavior TableFooter should use an intersection obse
           class="rmd-tr rmd-tr--bordered"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Footer Cell
           </td>
@@ -1595,7 +1595,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered"
       >
         <th
-          class="rmd-table-cell rmd-table-cell--header rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--header rmd-table-cell--no-wrap rmd-align-left"
           scope="col"
         >
           Header Cell
@@ -1609,7 +1609,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 1
         </td>
@@ -1618,7 +1618,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 2
         </td>
@@ -1627,7 +1627,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 3
         </td>
@@ -1636,7 +1636,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 4
         </td>
@@ -1645,7 +1645,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 5
         </td>
@@ -1654,7 +1654,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 6
         </td>
@@ -1663,7 +1663,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 7
         </td>
@@ -1672,7 +1672,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 8
         </td>
@@ -1681,7 +1681,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 9
         </td>
@@ -1690,7 +1690,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 10
         </td>
@@ -1699,7 +1699,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 11
         </td>
@@ -1708,7 +1708,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 12
         </td>
@@ -1717,7 +1717,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 13
         </td>
@@ -1726,7 +1726,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 14
         </td>
@@ -1735,7 +1735,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 15
         </td>
@@ -1744,7 +1744,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 16
         </td>
@@ -1753,7 +1753,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 17
         </td>
@@ -1762,7 +1762,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 18
         </td>
@@ -1771,7 +1771,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 19
         </td>
@@ -1780,7 +1780,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 20
         </td>
@@ -1802,7 +1802,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered"
       >
         <th
-          class="rmd-table-cell rmd-table-cell--header rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--header rmd-table-cell--no-wrap rmd-align-left"
           scope="col"
         >
           Header Cell
@@ -1816,7 +1816,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 1
         </td>
@@ -1825,7 +1825,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 2
         </td>
@@ -1834,7 +1834,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 3
         </td>
@@ -1843,7 +1843,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 4
         </td>
@@ -1852,7 +1852,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 5
         </td>
@@ -1861,7 +1861,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 6
         </td>
@@ -1870,7 +1870,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 7
         </td>
@@ -1879,7 +1879,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 8
         </td>
@@ -1888,7 +1888,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 9
         </td>
@@ -1897,7 +1897,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 10
         </td>
@@ -1906,7 +1906,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 11
         </td>
@@ -1915,7 +1915,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 12
         </td>
@@ -1924,7 +1924,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 13
         </td>
@@ -1933,7 +1933,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 14
         </td>
@@ -1942,7 +1942,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 15
         </td>
@@ -1951,7 +1951,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 16
         </td>
@@ -1960,7 +1960,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 17
         </td>
@@ -1969,7 +1969,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 18
         </td>
@@ -1978,7 +1978,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 19
         </td>
@@ -1987,7 +1987,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
         class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
       >
         <td
-          class="rmd-table-cell rmd-table-cell--no-wrap"
+          class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
         >
           Row 20
         </td>
@@ -2012,7 +2012,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered"
         >
           <th
-            class="rmd-table-cell rmd-table-cell--header rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--header rmd-table-cell--no-wrap rmd-align-left"
             scope="col"
           >
             Header Cell
@@ -2029,7 +2029,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 1
           </td>
@@ -2038,7 +2038,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 2
           </td>
@@ -2047,7 +2047,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 3
           </td>
@@ -2056,7 +2056,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 4
           </td>
@@ -2065,7 +2065,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 5
           </td>
@@ -2074,7 +2074,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 6
           </td>
@@ -2083,7 +2083,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 7
           </td>
@@ -2092,7 +2092,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 8
           </td>
@@ -2101,7 +2101,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 9
           </td>
@@ -2110,7 +2110,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 10
           </td>
@@ -2119,7 +2119,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 11
           </td>
@@ -2128,7 +2128,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 12
           </td>
@@ -2137,7 +2137,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 13
           </td>
@@ -2146,7 +2146,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 14
           </td>
@@ -2155,7 +2155,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 15
           </td>
@@ -2164,7 +2164,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 16
           </td>
@@ -2173,7 +2173,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 17
           </td>
@@ -2182,7 +2182,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 18
           </td>
@@ -2191,7 +2191,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 19
           </td>
@@ -2200,7 +2200,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 20
           </td>
@@ -2226,7 +2226,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered"
         >
           <th
-            class="rmd-table-cell rmd-table-cell--header rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--header rmd-table-cell--no-wrap rmd-align-left"
             scope="col"
           >
             Header Cell
@@ -2243,7 +2243,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 1
           </td>
@@ -2252,7 +2252,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 2
           </td>
@@ -2261,7 +2261,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 3
           </td>
@@ -2270,7 +2270,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 4
           </td>
@@ -2279,7 +2279,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 5
           </td>
@@ -2288,7 +2288,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 6
           </td>
@@ -2297,7 +2297,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 7
           </td>
@@ -2306,7 +2306,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 8
           </td>
@@ -2315,7 +2315,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 9
           </td>
@@ -2324,7 +2324,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 10
           </td>
@@ -2333,7 +2333,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 11
           </td>
@@ -2342,7 +2342,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 12
           </td>
@@ -2351,7 +2351,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 13
           </td>
@@ -2360,7 +2360,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 14
           </td>
@@ -2369,7 +2369,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 15
           </td>
@@ -2378,7 +2378,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 16
           </td>
@@ -2387,7 +2387,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 17
           </td>
@@ -2396,7 +2396,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 18
           </td>
@@ -2405,7 +2405,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 19
           </td>
@@ -2414,7 +2414,7 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
           class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
         >
           <td
-            class="rmd-table-cell rmd-table-cell--no-wrap"
+            class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
           >
             Row 20
           </td>
