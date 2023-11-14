@@ -60,7 +60,7 @@ export interface TableCellOptions extends TableCellConfig {
    * @internal
    * @defaultValue `false`
    */
-  checkbox?: boolean;
+  inputToggle?: boolean;
 }
 
 /**
@@ -214,7 +214,7 @@ export interface TableCellClassNameOptions {
   sticky?: boolean;
 
   /** @defaultValue `false` */
-  checkbox?: boolean;
+  inputToggle?: boolean;
 
   hAlign?: TableCellHorizontalAlignment;
   vAlign?: TableCellVerticalAlignment;
@@ -236,7 +236,7 @@ export function tableCell(options: TableCellClassNameOptions): string {
     grow,
     sticky,
     header,
-    checkbox,
+    inputToggle,
     hAlign,
     vAlign,
     lineWrap = true,
@@ -253,10 +253,10 @@ export function tableCell(options: TableCellClassNameOptions): string {
     grow && `${p}grow`,
     header && `${p}header`,
     sticky && `${p}sticky`,
-    checkbox && `${p}checkbox`,
-    sticky && (!isInTableHeader || checkbox) && `${p}sticky-cell`,
+    inputToggle && `${p}input-toggle`,
+    sticky && (!isInTableHeader || inputToggle) && `${p}sticky-cell`,
     sticky && isInTableHeader && `${p}sticky-header`,
-    sticky && isInTableHeader && checkbox && `${p}header-cell`,
+    sticky && isInTableHeader && inputToggle && `${p}header-cell`,
     vAlign && vAlign !== "middle" && `${p}${vAlign}`,
     !lineWrap && `${p}no-wrap`,
     padding === "vertical" && `${p}v-padding`,
@@ -275,9 +275,9 @@ export function tableCell(options: TableCellClassNameOptions): string {
  * a `<th>` element by enabling the `header` prop OR having a `TableCell` as a
  * child of the `TableHeader` component.
  *
- * Note: If you have a checkbox column in the `TableHeader` without any labels,
- * you will need to manually set the `header={false}` prop for that cell since
- * it is invalid to have a `<th>` without any readable content for screen
+ * Note: If you have a checkbox/radio column in the `TableHeader` without any
+ * labels, you will need to manually set the `header={false}` prop for that cell
+ * since it is invalid to have a `<th>` without any readable content for screen
  * readers.
  */
 export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
@@ -291,7 +291,7 @@ export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
       vAlign: propVAlign,
       header: propHeader,
       lineWrap: propDisableLineWrap,
-      checkbox,
+      inputToggle,
       children,
       beforeChildren,
       afterChildren,
@@ -338,7 +338,7 @@ export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
           grow,
           header,
           sticky,
-          checkbox,
+          inputToggle,
           hAlign,
           vAlign,
           lineWrap: !sortOrder && lineWrap,

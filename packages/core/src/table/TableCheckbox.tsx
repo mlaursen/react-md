@@ -82,7 +82,6 @@ export interface TableCheckboxProps
  * @example
  * Simple Example
  * ```tsx
- * import { useCheckboxGroup } from "@react-md/core";
  * import {
  *   Table,
  *   TableBody,
@@ -91,8 +90,9 @@ export interface TableCheckboxProps
  *   TableContainer,
  *   TableHeader,
  *   TableRow,
+ *   useCheckboxGroup
  * } from "@react-md/core";
- * import type { ReactElement } from "react";
+ * import { type ReactElement } from "react";
  *
  * const rows = [
  *   { name: "Frozen Yogurt", type: "Ice Cream" },
@@ -179,7 +179,7 @@ export const TableCheckbox = forwardRef<
       {...remaining}
       ref={ref}
       header={false}
-      checkbox
+      inputToggle
       onClick={(event) => {
         event.stopPropagation();
         onClick(event);

@@ -215,6 +215,7 @@ export * from "./table/TableContainer.js";
 export * from "./table/TableContainerProvider.js";
 export * from "./table/TableFooter.js";
 export * from "./table/TableHeader.js";
+export * from "./table/TableRadio.js";
 export * from "./table/TableRow.js";
 export * from "./table/types.js";
 export * from "./tabs/Tab.js";

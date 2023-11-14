@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TableCheckbox should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`TableRadio should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <td
   class="rmd-table-cell rmd-table-cell--input-toggle rmd-table-cell--no-wrap rmd-align-left"
 >
@@ -8,34 +8,33 @@ exports[`TableCheckbox should apply the correct styling, HTML attributes, and al
     class="rmd-label rmd-label--gap rmd-label--reversed"
   >
     <span
-      class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal rmd-input-toggle--uncontrolled"
+      class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal rmd-input-toggle--uncontrolled"
     >
       <input
         aria-label="Select Row"
-        autocomplete="off"
         class="rmd-hidden-input"
-        id="checkbox-:r0:"
-        type="checkbox"
+        id="radio-:r0:"
+        type="radio"
         value=""
       />
       <span
         aria-hidden="true"
         class="rmd-icon rmd-icon--font material-icons"
       >
-        check_box_outline_blank
+        radio_button_unchecked
       </span>
       <span
         aria-hidden="true"
         class="rmd-icon rmd-icon--font material-icons"
       >
-        check_box
+        radio_button_checked
       </span>
     </span>
   </label>
 </td>
 `;
 
-exports[`TableCheckbox should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`TableRadio should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <td
   class="rmd-table-cell rmd-table-cell--input-toggle rmd-table-cell--no-wrap rmd-align-left custom-class-name"
   style="pointer-events: none;"
@@ -44,34 +43,33 @@ exports[`TableCheckbox should apply the correct styling, HTML attributes, and al
     class="rmd-label rmd-label--gap rmd-label--reversed"
   >
     <span
-      class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal rmd-input-toggle--uncontrolled"
+      class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal rmd-input-toggle--uncontrolled"
     >
       <input
         aria-label="Select Row"
-        autocomplete="off"
         class="rmd-hidden-input"
-        id="checkbox-:r0:"
-        type="checkbox"
+        id="radio-:r0:"
+        type="radio"
         value=""
       />
       <span
         aria-hidden="true"
         class="rmd-icon rmd-icon--font material-icons"
       >
-        check_box_outline_blank
+        radio_button_unchecked
       </span>
       <span
         aria-hidden="true"
         class="rmd-icon rmd-icon--font material-icons"
       >
-        check_box
+        radio_button_checked
       </span>
     </span>
   </label>
 </td>
 `;
 
-exports[`TableCheckbox should handle the aria-label/aria-labelledby props correctly 1`] = `
+exports[`TableRadio should handle the aria-label/aria-labelledby props correctly 1`] = `
 <td
   class="rmd-table-cell rmd-table-cell--input-toggle rmd-table-cell--no-wrap rmd-align-left"
 >
@@ -79,34 +77,33 @@ exports[`TableCheckbox should handle the aria-label/aria-labelledby props correc
     class="rmd-label rmd-label--gap rmd-label--reversed"
   >
     <span
-      class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal rmd-input-toggle--uncontrolled"
+      class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal rmd-input-toggle--uncontrolled"
     >
       <input
         aria-label="Custom Label"
-        autocomplete="off"
         class="rmd-hidden-input"
-        id="checkbox-:r2:"
-        type="checkbox"
+        id="radio-:r3:"
+        type="radio"
         value=""
       />
       <span
         aria-hidden="true"
         class="rmd-icon rmd-icon--font material-icons"
       >
-        check_box_outline_blank
+        radio_button_unchecked
       </span>
       <span
         aria-hidden="true"
         class="rmd-icon rmd-icon--font material-icons"
       >
-        check_box
+        radio_button_checked
       </span>
     </span>
   </label>
 </td>
 `;
 
-exports[`TableCheckbox should handle the aria-label/aria-labelledby props correctly 2`] = `
+exports[`TableRadio should handle the aria-label/aria-labelledby props correctly 2`] = `
 <td
   class="rmd-table-cell rmd-table-cell--input-toggle rmd-table-cell--no-wrap rmd-align-left"
 >
@@ -114,27 +111,26 @@ exports[`TableCheckbox should handle the aria-label/aria-labelledby props correc
     class="rmd-label rmd-label--gap rmd-label--reversed"
   >
     <span
-      class="rmd-checkbox rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal rmd-input-toggle--uncontrolled"
+      class="rmd-radio rmd-input-toggle rmd-input-toggle--em rmd-input-toggle--normal rmd-input-toggle--uncontrolled"
     >
       <input
         aria-labelledby="another-id"
-        autocomplete="off"
         class="rmd-hidden-input"
-        id="checkbox-:r2:"
-        type="checkbox"
+        id="radio-:r3:"
+        type="radio"
         value=""
       />
       <span
         aria-hidden="true"
         class="rmd-icon rmd-icon--font material-icons"
       >
-        check_box_outline_blank
+        radio_button_unchecked
       </span>
       <span
         aria-hidden="true"
         class="rmd-icon rmd-icon--font material-icons"
       >
-        check_box
+        radio_button_checked
       </span>
     </span>
   </label>

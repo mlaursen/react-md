@@ -25,7 +25,7 @@ $disable-sticky: false !default;
 $disable-sticky-cell: $disable-sticky !default;
 $disable-sticky-header: $disable-sticky !default;
 $disable-sticky-footer: $disable-sticky !default;
-$disable-checkbox: false !default;
+$disable-input-toggle: false !default;
 $disable-cell-no-wrap: false !default;
 $disable-cell-grow: false !default;
 $disable-cell-no-padding: false !default;
@@ -69,7 +69,7 @@ $cell-header-height: 3.5rem !default;
 $cell-header-dense-height: 2.125rem !default;
 $cell-horizontal-padding: 1rem !default;
 $cell-vertical-padding: 0.375rem !default;
-$cell-checkbox-horizontal-padding: 0.5rem !default;
+$cell-input-toggle-horizontal-padding: 0.5rem !default;
 $cell-content-gap: icon.$spacing !default;
 
 $sticky-cell-position: 0 !default;
@@ -386,11 +386,11 @@ $row-selected-styles: (
               transition.$linear-timing-function;
 
             .rmd-tr--hoverable:hover & {
-              @include use-var(background-color, hover-color);
+              @include utils.map-to-styles($row-hover-styles);
             }
 
             .rmd-tr--selected & {
-              @include use-var(background-color, selected-color);
+              @include utils.map-to-styles($row-selected-styles);
             }
           }
         }
@@ -403,18 +403,18 @@ $row-selected-styles: (
           }
         }
 
-        @if not $disable-checkbox and not $disable-sticky-header {
+        @if not $disable-input-toggle and not $disable-sticky-header {
           &--sticky-header-cell {
             z-index: $sticky-header-cell-z-index;
           }
         }
       }
 
-      @if not $disable-checkbox {
-        &--checkbox {
+      @if not $disable-input-toggle {
+        &--input-toggle {
           @include set-var(
             cell-horizontal-padding,
-            $cell-checkbox-horizontal-padding
+            $cell-input-toggle-horizontal-padding
           );
         }
       }
