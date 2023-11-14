@@ -34,21 +34,14 @@ The spacing around the divider can be configured by the `core.$divider-spacing` 
 variable or the `--rmd-divider-spacing` custom property.
 
 ```tsx
-// preview editable
+// preview editable styles="src/app/components/divider/CustomizingDivider.module.scss"
 import { Divider, TextContainer, Typography } from "@react-md/core";
 import { type ReactElement } from "react";
+import styles from "./CustomizingDivider.module.scss";
 
 export default function CustomizingDivider(): ReactElement {
   return (
-    <TextContainer
-      style={{
-        // these two are the default values
-        "--rmd-divider-size": "0.0625rem",
-        "--rmd-divider-spacing": "0.25rem auto",
-
-        "--rmd-divider-color": "orange",
-      }}
-    >
+    <TextContainer className={styles.container}>
       <Typography>Here is some text to separate.</Typography>
       <Divider />
       <Typography>Second paragraph of text.</Typography>
@@ -67,21 +60,15 @@ list of items. The inset amount can be configured by the
 property.
 
 ```tsx
-// preview editable
+// preview editable styles="src/app/components/divider/InsetDivider.module.scss"
 import { Divider, List, ListItem } from "@react-md/core";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import { type ReactElement } from "react";
+import styles from "./InsetDivider.module.scss";
 
 export default function InsetDivider(): ReactElement {
   return (
-    <List
-      style={{
-        maxWidth: "30rem",
-        width: "100%",
-        // this is the default value
-        "--rmd-divider-inset": "4rem",
-      }}
-    >
+    <List className={styles.list}>
       <ListItem leftAddon={<FavoriteIcon />}>Item 1</ListItem>
       <Divider />
       <ListItem leftAddon={<FavoriteIcon />}>Item 2</ListItem>
@@ -112,22 +99,15 @@ The margin can be configured by the `core.$divider-vertical-spacing` Sass
 variable or the `--rmd-divider-vertical-spacing` custom property.
 
 ```tsx
-// preview editable
+// preview editable styles="src/app/components/divider/VerticalDivider.module.scss"
 import { AppBar, AppBarTitle, Divider } from "@react-md/core";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import { type ReactElement } from "react";
+import styles from "./VerticalDivider.module.scss";
 
 export default function VerticalDividerExample(): ReactElement {
   return (
-    <AppBar
-      theme="surface"
-      style={{
-        // these are the defaults
-        "--rmd-divider-vertical-size": "0.125rem",
-        "--rmd-divider-vertical-spacing": "auto 0.25rem",
-        "--rmd-divider-max-size": "100%",
-      }}
-    >
+    <AppBar theme="surface" className={styles.container}>
       <FavoriteIcon />
       <Divider vertical />
       <AppBarTitle>Title</AppBarTitle>

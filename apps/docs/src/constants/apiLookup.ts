@@ -166,6 +166,30 @@ export const API_LOOKUP: ApiLookup = {
             'This should be used when the {@link loadingType } is set to\n`"circular-before"`, an icon should appear before the other content in\nthe button, and the loading indicator should replace the icon.',
         },
         {
+          id: "async-button-props-circularprogressprops",
+          name: "circularProgressProps",
+          type: "PropsWithRef<CircularProgressProps, HTMLSpanElement>",
+          required: false,
+          description:
+            "Any additional props to pass to the `LinearProgress` bar when the\n{@link loadingType } is one of the linear types.",
+        },
+        {
+          id: "async-button-props-id",
+          name: "id",
+          type: "string",
+          required: false,
+          description: "",
+          defaultValue: '"async-button" + useId()',
+        },
+        {
+          id: "async-button-props-linearprogressprops",
+          name: "linearProgressProps",
+          type: "PropsWithRef<LinearProgressProps, HTMLDivElement>",
+          required: false,
+          description:
+            "Any additional props to pass to the `CircularProgress` bar when the\n{@link loadingType } is one of the circular types.",
+        },
+        {
           id: "async-button-props-loading",
           name: "loading",
           type: "boolean",
@@ -199,6 +223,21 @@ export const API_LOOKUP: ApiLookup = {
           description:
             '- `"circular-overlay"` - Covers and hides the button content with a\n  centered circular progress\n- `"circular-before"` - Renders a circular progress bar before the button\n  content which is useful when rendering an icon before the button text.\n  See {@link beforeAddon } as well.\n- `"circular-after"` - Renders a circular progress bar before the button\n  content which is useful when rendering an icon after the button text.\n  See {@link afterAddon } as well.\n- `"linear-above"` - Renders a linear progress bar at the top of the button\n  while still displaying the button contents. Usually looks good for\n  outlined buttons.\n- `"linear-below"` - Renders a linear progress bar at the bottom of the\n  button while still displaying the button contents. Usually looks good for\n  outlined buttons.',
           defaultValue: '"circular-overlay"',
+        },
+        {
+          id: "async-button-props-progressarialabel",
+          name: "progressAriaLabel",
+          type: "string",
+          required: false,
+          description: "An optional label to provide to the progressbar.",
+        },
+        {
+          id: "async-button-props-progressarialabelledby",
+          name: "progressAriaLabelledBy",
+          type: "string",
+          required: false,
+          description: "",
+          defaultValue: "id",
         },
       ],
       isClient: true,

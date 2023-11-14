@@ -1,0 +1,16 @@
+@use "everything";
+
+.avatarField {
+  @include everything.form-set-var(
+    text-padding-left,
+    calc(everything.avatar-get-var(size) + 1.5rem)
+  );
+  @include everything.form-set-var(
+    text-padding-right,
+    calc(everything.avatar-get-var(size) + 1rem)
+  );
+}
+
+.buttonField {
+  @include everything.form-set-var(text-padding-right, 4rem);
+}

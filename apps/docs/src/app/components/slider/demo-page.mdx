@@ -534,7 +534,7 @@ Marks can be added to help show specific values within the `Slider` by using the
 range.
 
 ```tsx
-// preview editable
+// preview editable styles="src/app/components/slider/SliderMarks.module.scss"
 "use client";
 import {
   Fieldset,
@@ -546,10 +546,11 @@ import {
   useSlider,
 } from "@react-md/core";
 import { useId, type ReactElement } from "react";
+import styles from "./SliderMarks.module.scss";
 
 const vertical = false;
 
-export default function DiscreteSliderMarks(): ReactElement {
+export default function SliderMarks(): ReactElement {
   const legendId1 = useId();
   const legendId2 = useId();
   const slider = useSlider({ step: 10, defaultValue: 70 });
@@ -557,14 +558,11 @@ export default function DiscreteSliderMarks(): ReactElement {
 
   return (
     <Form
-      style={{
-        "--rmd-box-gap": "3rem",
-        "--rmd-slider-vertical-size": "25rem",
-      }}
       className={box({
         align: "stretch",
         stacked: true,
         fullWidth: true,
+        className: styles.form,
       })}
     >
       <Fieldset fullWidth>
@@ -601,7 +599,7 @@ range and an optional value for each mark. If marks need additional
 customization, the `getMarkLabelProps` can also be used.
 
 ```tsx
-// preview editable
+// preview editable styles="src/app/components/slider/CustomizingSliderMarks.module.scss"
 "use client";
 import {
   Fieldset,
@@ -614,6 +612,7 @@ import {
   type SliderValueMark,
 } from "@react-md/core";
 import { useId, type ReactElement } from "react";
+import styles from "./CustomizingSliderMarks.module.scss";
 
 const marks: readonly SliderValueMark[] = [
   { value: 0, label: `0°` },
@@ -640,14 +639,11 @@ export default function CustomizingSliderMarks(): ReactElement {
 
   return (
     <Form
-      style={{
-        "--rmd-box-gap": "3rem",
-        "--rmd-slider-vertical-size": "25rem",
-      }}
       className={box({
         align: "stretch",
         stacked: true,
         fullWidth: true,
+        className: styles.form,
       })}
     >
       <Fieldset fullWidth>
@@ -695,7 +691,7 @@ slider to be controlled alongside a `TextField` with the `useNumberField` hook
 or any other custom implementation.
 
 ```tsx
-// preview editable
+// preview editable styles="src/app/components/slider/LinkedWithATextField.module.scss"
 "use client";
 import {
   Form,
@@ -707,6 +703,7 @@ import {
   type GetErrorMessage,
 } from "@react-md/core";
 import { useId, type ReactElement } from "react";
+import styles from "./LinkedWithATextField.module.scss";
 
 const min = 0;
 const max = 255;
@@ -734,7 +731,7 @@ export default function LinkedWithATextField(): ReactElement {
     <Form className={box({ fullWidth: true })}>
       <Slider
         aria-labelledby={labelId}
-        style={{ alignItems: "flex-start" }}
+        className={styles.slider}
         min={min}
         max={max}
         step={step}
@@ -752,7 +749,7 @@ export default function LinkedWithATextField(): ReactElement {
             id={labelId}
             as="span"
             aria-label="Red"
-            style={{ lineHeight: "var(--rmd-slider-size, 2rem)" }}
+            className={styles.label}
           >
             R
           </Typography>
@@ -761,9 +758,7 @@ export default function LinkedWithATextField(): ReactElement {
           <TextField
             {...fieldProps}
             messageContainerProps={{
-              style: {
-                width: "15rem",
-              },
+              className: styles.container,
             }}
           />
         }

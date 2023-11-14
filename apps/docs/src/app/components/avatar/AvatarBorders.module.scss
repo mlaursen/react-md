@@ -1,0 +1,9 @@
+@use "everything";
+
+.box {
+  @include everything.avatar-set-var(border-color, currentcolor);
+}
+
+.red {
+  @include everything.avatar-set-var(border-color, everything.$red-900);
+}

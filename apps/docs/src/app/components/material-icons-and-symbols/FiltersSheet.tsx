@@ -89,11 +89,11 @@ export function FiltersSheet(props: FiltersSheetProps): ReactElement {
         className={box({ disablePadding: true, justify: "end" })}
       >
         <Button
-          style={{ justifySelf: "flex-end" }}
           disabled={!isResettable}
           onClick={() => {
             dispatch({ type: "resetSymbols" });
           }}
+          className={styles.button}
         >
           <RefreshOutlinedIcon />
           Reset all

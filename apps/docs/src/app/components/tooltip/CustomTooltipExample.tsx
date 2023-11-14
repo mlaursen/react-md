@@ -1,20 +1,18 @@
 import { Tooltip, cssUtils } from "@react-md/core";
 import { type ReactElement } from "react";
+import styles from "./CustomTooltipExample.module.scss";
 
 export default function CustomTooltipExample(): ReactElement {
   return (
     <div
-      style={{ position: "relative", width: "3em", height: "3em" }}
-      className={cssUtils({ backgroundColor: "success" })}
+      className={cssUtils({
+        backgroundColor: "success",
+        className: styles.container,
+      })}
     >
       <Tooltip
         visible
-        style={{
-          left: "50%",
-          top: "calc(100% + var(--rmd-tooltip-spacing, 1.5rem))",
-          position: "absolute",
-          transform: "translateX(-50%)",
-        }}
+        className={styles.tooltip}
         disablePortal
         textOverflow="nowrap"
       >

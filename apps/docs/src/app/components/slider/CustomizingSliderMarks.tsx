@@ -10,6 +10,7 @@ import {
   type SliderValueMark,
 } from "@react-md/core";
 import { useId, type ReactElement } from "react";
+import styles from "./CustomizingSliderMarks.module.scss";
 
 const marks: readonly SliderValueMark[] = [
   { value: 0, label: `0°` },
@@ -36,14 +37,11 @@ export default function CustomizingSliderMarks(): ReactElement {
 
   return (
     <Form
-      style={{
-        "--rmd-box-gap": "3rem",
-        "--rmd-slider-vertical-size": "25rem",
-      }}
       className={box({
         align: "stretch",
         stacked: true,
         fullWidth: true,
+        className: styles.form,
       })}
     >
       <Fieldset fullWidth>

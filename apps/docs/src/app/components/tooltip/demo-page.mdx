@@ -375,24 +375,22 @@ additional styling for the correct positioning to work.
    restricted to the wrapper element's width
 
 ```tsx
-// preview editable
+// preview editable styles="src/app/components/tooltip/CustomTooltipExample.module.scss"
 import { Tooltip, cssUtils } from "@react-md/core";
 import { type ReactElement } from "react";
+import styles from "./CustomTooltipExample.module.scss";
 
 export default function CustomTooltipExample(): ReactElement {
   return (
     <div
-      style={{ position: "relative", width: "3em", height: "3em" }}
-      className={cssUtils({ backgroundColor: "success" })}
+      className={cssUtils({
+        backgroundColor: "success",
+        className: styles.container,
+      })}
     >
       <Tooltip
         visible
-        style={{
-          left: "50%",
-          top: "calc(100% + var(--rmd-tooltip-spacing, 1.5rem))",
-          position: "absolute",
-          transform: "translateX(-50%)",
-        }}
+        className={styles.tooltip}
         disablePortal
         textOverflow="nowrap"
       >
@@ -411,7 +409,7 @@ This demo just showcases a possible use-case for the custom tooltip by rendering
 it with a progressbar to show the current progress.
 
 ```tsx
-// preview editable
+// preview editable styles="src/app/components/tooltip/ProgressbarTooltipExample.module.scss"
 "use client";
 import {
   Button,
@@ -424,6 +422,7 @@ import {
 } from "@react-md/core";
 import CelebrationOutlinedIcon from "@react-md/material-icons/CelebrationOutlinedIcon";
 import { useEffect, useState, type ReactElement } from "react";
+import styles from "./ProgressbarTooltipExample.module.scss";
 
 export default function ProgressbarTooltipExample(): ReactElement {
   const { value, toggle, toggled } = useIncrementingValue();
@@ -433,25 +432,17 @@ export default function ProgressbarTooltipExample(): ReactElement {
       <Button onClick={toggle} theme="primary" themeType="contained">
         {toggled ? "Stop" : "Start"}
       </Button>
-      <div style={{ position: "relative", width: "100%" }}>
+      <div style={{ "--offset": `${value}%` }} className={styles.container}>
         <LinearProgress aria-label="Example" value={value} />
         <Tooltip
           visible
-          style={{
-            position: "absolute",
-            left: `${value}%`,
-            top: "calc(100% + 1em)",
-            transform: "translateX(-50%)",
-            transition:
-              "left .15s cubic-bezier(0.4, 0, 0.6, 1), background-color .3s",
-            willChange: "left",
-          }}
           className={box({
             disableWrap: true,
             disablePadding: true,
             className: cssUtils({
               backgroundColor:
                 value < 30 ? "warning" : value === 100 ? "success" : undefined,
+              className: styles.tooltip,
             }),
           })}
           disablePortal
@@ -496,6 +487,12 @@ function useIncrementingValue(): {
   }, [toggled, value]);
 
   return { value, toggle, toggled };
+}
+
+declare module "react" {
+  interface CSSProperties {
+    "--offset"?: string;
+  }
 }
 
 ```

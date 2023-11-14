@@ -1,0 +1,11 @@
+@use "everything";
+
+.avatar1 {
+  @include everything.avatar-set-var(background-color, everything.$black);
+  @include everything.avatar-set-var(color, everything.$red-500);
+}
+
+.avatar2 {
+  background-color: everything.$orange-100;
+  color: everything.$black;
+}

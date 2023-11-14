@@ -1,0 +1,6 @@
+@use "everything";
+
+.form {
+  @include everything.box-set-var(gap, 3rem);
+  @include everything.form-set-var(slider-vertical-size, 25rem);
+}

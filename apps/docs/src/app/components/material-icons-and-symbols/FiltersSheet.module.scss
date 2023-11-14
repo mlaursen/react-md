@@ -23,3 +23,7 @@
   transition: left everything.$layout-leave-duration
     everything.$layout-leave-timing-function;
 }
+
+.button {
+  justify-self: flex-end;
+}

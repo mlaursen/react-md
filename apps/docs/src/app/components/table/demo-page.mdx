@@ -150,7 +150,7 @@ If a table should be scrollable, wrap it in a `TableContainer`. The
 ```
 
 ```tsx
-// preview editable
+// preview editable styles="src/app/components/table/ScrollableTableExample.module.scss"
 import {
   Table,
   TableBody,
@@ -160,13 +160,14 @@ import {
   TableRow,
 } from "@react-md/core";
 import { type ReactElement } from "react";
+import styles from "./ScrollableTableExample.module.scss";
 
 const rows = 20;
 const columns = 20;
 
 export default function ScrollableTableExample(): ReactElement {
   return (
-    <TableContainer style={{ maxHeight: "20rem" }}>
+    <TableContainer className={styles.container}>
       <Table>
         <TableHeader>
           <TableRow>

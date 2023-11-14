@@ -1,0 +1,9 @@
+@use "everything";
+
+.container {
+  // these two are the default values
+  @include everything.divider-set-var(size, everything.$divider-size);
+  @include everything.divider-set-var(spacing, everything.$divider-spacing);
+
+  @include everything.divider-set-var(color, everything.$orange-300);
+}

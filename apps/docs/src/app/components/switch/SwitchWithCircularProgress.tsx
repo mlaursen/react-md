@@ -8,7 +8,9 @@ import {
   useAsyncAction,
   wait,
 } from "@react-md/core";
+import { cnb } from "cnbuilder";
 import { useState, type ReactElement, useId } from "react";
+import styles from "./SwitchWithCircularProgress.module.scss";
 
 export default function SwitchWithCircularProgress(): ReactElement {
   const id = useId();
@@ -31,11 +33,7 @@ export default function SwitchWithCircularProgress(): ReactElement {
             setChecked(!nextChecked);
           }
         })}
-        ballStyle={{
-          // set the background color to the inactive color so that the circular
-          // progress bar will be visible while checked
-          "--rmd-switch-ball-background-color": pending ? "#f2f2f2" : undefined,
-        }}
+        ballClassName={cnb(pending && styles.pending)}
       />
     </Form>
   );

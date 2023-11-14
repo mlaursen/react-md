@@ -9,10 +9,11 @@ import {
   useSlider,
 } from "@react-md/core";
 import { useId, type ReactElement } from "react";
+import styles from "./SliderMarks.module.scss";
 
 const vertical = false;
 
-export default function DiscreteSliderMarks(): ReactElement {
+export default function SliderMarks(): ReactElement {
   const legendId1 = useId();
   const legendId2 = useId();
   const slider = useSlider({ step: 10, defaultValue: 70 });
@@ -20,14 +21,11 @@ export default function DiscreteSliderMarks(): ReactElement {
 
   return (
     <Form
-      style={{
-        "--rmd-box-gap": "3rem",
-        "--rmd-slider-vertical-size": "25rem",
-      }}
       className={box({
         align: "stretch",
         stacked: true,
         fullWidth: true,
+        className: styles.form,
       })}
     >
       <Fieldset fullWidth>

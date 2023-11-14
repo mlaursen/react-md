@@ -1,0 +1,13 @@
+@use "everything";
+
+.slider {
+  align-items: flex-start;
+}
+
+.container {
+  width: 15rem;
+}
+
+.label {
+  @include everything.form-use-var(line-height, slider-size);
+}

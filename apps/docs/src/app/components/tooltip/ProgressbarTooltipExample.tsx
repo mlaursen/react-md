@@ -10,6 +10,7 @@ import {
 } from "@react-md/core";
 import CelebrationOutlinedIcon from "@react-md/material-icons/CelebrationOutlinedIcon";
 import { useEffect, useState, type ReactElement } from "react";
+import styles from "./ProgressbarTooltipExample.module.scss";
 
 export default function ProgressbarTooltipExample(): ReactElement {
   const { value, toggle, toggled } = useIncrementingValue();
@@ -19,25 +20,17 @@ export default function ProgressbarTooltipExample(): ReactElement {
       <Button onClick={toggle} theme="primary" themeType="contained">
         {toggled ? "Stop" : "Start"}
       </Button>
-      <div style={{ position: "relative", width: "100%" }}>
+      <div style={{ "--offset": `${value}%` }} className={styles.container}>
         <LinearProgress aria-label="Example" value={value} />
         <Tooltip
           visible
-          style={{
-            position: "absolute",
-            left: `${value}%`,
-            top: "calc(100% + 1em)",
-            transform: "translateX(-50%)",
-            transition:
-              "left .15s cubic-bezier(0.4, 0, 0.6, 1), background-color .3s",
-            willChange: "left",
-          }}
           className={box({
             disableWrap: true,
             disablePadding: true,
             className: cssUtils({
               backgroundColor:
                 value < 30 ? "warning" : value === 100 ? "success" : undefined,
+              className: styles.tooltip,
             }),
           })}
           disablePortal
@@ -82,4 +75,10 @@ function useIncrementingValue(): {
   }, [toggled, value]);
 
   return { value, toggle, toggled };
+}
+
+declare module "react" {
+  interface CSSProperties {
+    "--offset"?: string;
+  }
 }

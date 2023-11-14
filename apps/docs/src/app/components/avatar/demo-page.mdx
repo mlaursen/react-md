@@ -106,29 +106,16 @@ a custom class.
 > and must be manually checked.
 
 ```tsx
-// preview editable
-import { Avatar, black, orange100, red500 } from "@react-md/core";
+// preview editable styles="src/app/components/avatar/CustomAvatarColors.module.scss"
+import { Avatar } from "@react-md/core";
 import { type ReactElement } from "react";
+import styles from "./CustomAvatarColors.module.scss";
 
 export default function CustomAvatarColors(): ReactElement {
   return (
     <>
-      <Avatar
-        style={{
-          "--rmd-avatar-color": red500,
-          "--rmd-avatar-background-color": black,
-        }}
-      >
-        C
-      </Avatar>
-      <Avatar
-        style={{
-          color: black,
-          backgroundColor: orange100,
-        }}
-      >
-        C
-      </Avatar>
+      <Avatar className={styles.avatar1}>C</Avatar>
+      <Avatar className={styles.avatar2}>C</Avatar>
     </>
   );
 }
@@ -146,18 +133,19 @@ Avatars do not have a border-color by default but can easily be added by:
 - adding a custom class
 
 ```tsx
-// preview editable
-import { Avatar, Box, red900 } from "@react-md/core";
+// preview editable styles="src/app/components/avatar/AvatarBorders.module.scss"
+import { Avatar, Box } from "@react-md/core";
 import { type ReactElement } from "react";
+import styles from "./AvatarBorders.module.scss";
 
 export default function AvatarBorders(): ReactElement {
   return (
-    <Box style={{ "--rmd-avatar-border-color": "currentcolor" }}>
+    <Box className={styles.box}>
       <Avatar src="https://i.pravatar.cc/48?img=44" color="orange" />
       <Avatar color="blue">H</Avatar>
       <Avatar color="deep-orange">D</Avatar>
       <Avatar color="purple">A</Avatar>
-      <Avatar theme="error" style={{ "--rmd-avatar-border-color": red900 }}>
+      <Avatar theme="error" className={styles.red}>
         A
       </Avatar>
     </Box>

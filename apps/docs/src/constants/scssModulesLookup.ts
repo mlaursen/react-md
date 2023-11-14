@@ -3,6 +3,18 @@ import "server-only";
 import { type FakeScssModule } from "../utils/fakeScssModules.js";
 
 export const SCSS_MODULES: Record<string, FakeScssModule> = {
+  "src/app/components/avatar/AvatarBorders.module.scss": {
+    css: ".AvatarBorders_box__QXZhd {\n  --rmd-avatar-border-color: currentcolor;\n}\n\n.AvatarBorders_red__QXZhd {\n  --rmd-avatar-border-color: #b71c1c;\n}",
+    scss: '@use "everything";\n\n.box {\n  @include everything.avatar-set-var(border-color, currentcolor);\n}\n\n.red {\n  @include everything.avatar-set-var(border-color, everything.$red-900);\n}\n',
+    baseName: "AvatarBorders",
+    fileName: "AvatarBorders.module.scss",
+  },
+  "src/app/components/avatar/CustomAvatarColors.module.scss": {
+    css: ".CustomAvatarColors_avatar1__Q3Vzd {\n  --rmd-avatar-background-color: #000;\n  --rmd-avatar-color: #f44336;\n}\n\n.CustomAvatarColors_avatar2__Q3Vzd {\n  background-color: #fff0b2;\n  color: #000;\n}",
+    scss: '@use "everything";\n\n.avatar1 {\n  @include everything.avatar-set-var(background-color, everything.$black);\n  @include everything.avatar-set-var(color, everything.$red-500);\n}\n\n.avatar2 {\n  background-color: everything.$orange-100;\n  color: everything.$black;\n}\n',
+    baseName: "CustomAvatarColors",
+    fileName: "CustomAvatarColors.module.scss",
+  },
   "src/app/components/carousel/CarouselExample.module.scss": {
     css: ".CarouselExample_card__Q2Fyb {\n  --rmd-button-color: #fff;\n  max-width: 42rem;\n}\n\n.CarouselExample_container__Q2Fyb {\n  position: relative;\n}\n\n.CarouselExample_control__Q2Fyb {\n  border-radius: 0;\n  bottom: 0;\n  height: 100%;\n  position: absolute;\n  top: 0;\n  width: 5rem;\n}\n.CarouselExample_control__Q2Fyb:nth-of-type(2) {\n  right: 0;\n}\n\n.CarouselExample_slide__Q2Fyb {\n  --rmd-slide-duration: 0.5s;\n  height: 22.5rem;\n  overflow: hidden;\n}\n\n.CarouselExample_overlay__Q2Fyb {\n  padding-bottom: 4rem;\n}\n\n.CarouselExample_indicators__Q2Fyb {\n  align-items: center;\n  bottom: 0;\n  display: flex;\n  gap: 0.25rem;\n  justify-content: center;\n  left: 0;\n  padding: 1rem;\n  padding-bottom: 0.25rem;\n  position: absolute;\n  right: 0;\n}\n\n.CarouselExample_tablist__Q2Fyb {\n  gap: 0.25rem;\n  width: auto;\n}\n\n.CarouselExample_indicator__Q2Fyb {\n  background-color: rgba(255, 255, 255, 0.54);\n  height: 0.75rem;\n  min-width: 3rem;\n  width: 3rem;\n}\n.CarouselExample_indicator__Q2Fyb[aria-selected=true] {\n  background-color: #fff;\n}",
     scss: '@use "everything";\n\n.card {\n  @include everything.button-set-var(color, everything.$white);\n\n  max-width: 42rem;\n}\n\n.container {\n  position: relative;\n}\n\n.control {\n  border-radius: 0;\n  bottom: 0;\n  height: 100%;\n  position: absolute;\n  top: 0;\n  width: 5rem;\n\n  &:nth-of-type(2) {\n    right: 0;\n  }\n}\n\n.slide {\n  @include everything.transition-set-var(slide-duration, 0.5s);\n\n  height: 22.5rem;\n  overflow: hidden;\n}\n\n.overlay {\n  padding-bottom: 4rem;\n}\n\n.indicators {\n  align-items: center;\n  bottom: 0;\n  display: flex;\n  gap: 0.25rem;\n  justify-content: center;\n  left: 0;\n  padding: 1rem;\n  padding-bottom: 0.25rem;\n  position: absolute;\n  right: 0;\n}\n\n.tablist {\n  gap: 0.25rem;\n  width: auto;\n}\n\n.indicator {\n  background-color: rgba(everything.$white, 0.54);\n  height: 0.75rem;\n  min-width: 3rem;\n  width: 3rem;\n\n  &[aria-selected="true"] {\n    background-color: everything.$white;\n  }\n}\n',
@@ -15,11 +27,59 @@ export const SCSS_MODULES: Record<string, FakeScssModule> = {
     baseName: "CustomTransitionExample",
     fileName: "CustomTransitionExample.module.scss",
   },
+  "src/app/components/divider/CustomizingDivider.module.scss": {
+    css: ".CustomizingDivider_container__Q3Vzd {\n  --rmd-divider-size: 0.0625rem;\n  --rmd-divider-spacing: 0.25rem auto;\n  --rmd-divider-color: #ffb74d;\n}",
+    scss: '@use "everything";\n\n.container {\n  // these two are the default values\n  @include everything.divider-set-var(size, everything.$divider-size);\n  @include everything.divider-set-var(spacing, everything.$divider-spacing);\n\n  @include everything.divider-set-var(color, everything.$orange-300);\n}\n',
+    baseName: "CustomizingDivider",
+    fileName: "CustomizingDivider.module.scss",
+  },
+  "src/app/components/divider/InsetDivider.module.scss": {
+    css: ".InsetDivider_list__SW5zZ {\n  max-width: 30rem;\n  width: 100%;\n}",
+    scss: '@use "everything";\n\n.list {\n  // @include everything.divider-set-var(inset, 4rem);\n\n  max-width: 30rem;\n  width: 100%;\n}\n',
+    baseName: "InsetDivider",
+    fileName: "InsetDivider.module.scss",
+  },
+  "src/app/components/divider/VerticalDivider.module.scss": {
+    css: ".VerticalDivider_container__VmVyd {\n  --rmd-divider-vertical-size: 0.125rem;\n  --rmd-divider-vertical-spacing: auto 0.25rem;\n  --rmd-divider-max-size: 100%;\n}",
+    scss: '@use "everything";\n\n.container {\n  // just to show the defaults\n  @include everything.divider-set-var(\n    vertical-size,\n    everything.$divider-vertical-size\n  );\n  @include everything.divider-set-var(\n    vertical-spacing,\n    everything.$divider-vertical-spacing\n  );\n  @include everything.divider-set-var(max-size, everything.$divider-max-size);\n}\n',
+    baseName: "VerticalDivider",
+    fileName: "VerticalDivider.module.scss",
+  },
+  "src/app/components/slider/CustomizingSliderMarks.module.scss": {
+    css: ".CustomizingSliderMarks_form__Q3Vzd {\n  --rmd-box-gap: 3rem;\n  --rmd-slider-vertical-size: 25rem;\n}",
+    scss: '@use "everything";\n\n.form {\n  @include everything.box-set-var(gap, 3rem);\n  @include everything.form-set-var(slider-vertical-size, 25rem);\n}\n',
+    baseName: "CustomizingSliderMarks",
+    fileName: "CustomizingSliderMarks.module.scss",
+  },
+  "src/app/components/slider/LinkedWithATextField.module.scss": {
+    css: ".LinkedWithATextField_slider__TGlua {\n  align-items: flex-start;\n}\n\n.LinkedWithATextField_container__TGlua {\n  width: 15rem;\n}\n\n.LinkedWithATextField_label__TGlua {\n  line-height: var(--rmd-slider-size, 2rem);\n}",
+    scss: '@use "everything";\n\n.slider {\n  align-items: flex-start;\n}\n\n.container {\n  width: 15rem;\n}\n\n.label {\n  @include everything.form-use-var(line-height, slider-size);\n}\n',
+    baseName: "LinkedWithATextField",
+    fileName: "LinkedWithATextField.module.scss",
+  },
+  "src/app/components/slider/SliderMarks.module.scss": {
+    css: ".SliderMarks_form__U2xpZ {\n  --rmd-box-gap: 3rem;\n  --rmd-slider-vertical-size: 25rem;\n}",
+    scss: '@use "everything";\n\n.form {\n  @include everything.box-set-var(gap, 3rem);\n  @include everything.form-set-var(slider-vertical-size, 25rem);\n}\n',
+    baseName: "SliderMarks",
+    fileName: "SliderMarks.module.scss",
+  },
+  "src/app/components/switch/SwitchWithCircularProgress.module.scss": {
+    css: ".SwitchWithCircularProgress_pending__U3dpd {\n  --rmd-switch-ball-background-color: #f2f2f2;\n}",
+    scss: '@use "everything";\n\n.pending {\n  // set the background color to the inactive color so that the circular\n  // progress bar will be visible while checked\n  @include everything.form-set-var(\n    switch-ball-background-color,\n    everything.$form-switch-ball-background-color\n  );\n}\n',
+    baseName: "SwitchWithCircularProgress",
+    fileName: "SwitchWithCircularProgress.module.scss",
+  },
   "src/app/components/table/ContainerBasedStickyTableExample.module.scss": {
     css: ".ContainerBasedStickyTableExample_container__Q29ud {\n  margin: 0 4rem;\n  max-height: 20rem;\n  width: 100%;\n}",
     scss: ".container {\n  margin: 0 4rem;\n  max-height: 20rem;\n  width: 100%;\n}\n",
     baseName: "ContainerBasedStickyTableExample",
     fileName: "ContainerBasedStickyTableExample.module.scss",
+  },
+  "src/app/components/table/ScrollableTableExample.module.scss": {
+    css: ".ScrollableTableExample_container__U2Nyb {\n  max-height: 20rem;\n}",
+    scss: ".container {\n  max-height: 20rem;\n}\n",
+    baseName: "ScrollableTableExample",
+    fileName: "ScrollableTableExample.module.scss",
   },
   "src/app/components/table/StickyColumnsExample.module.scss": {
     css: ".StickyColumnsExample_container__U3RpY {\n  max-height: 25rem;\n}\n\n.StickyColumnsExample_sticky__U3RpY {\n  --rmd-table-sticky-cell: 4rem;\n}",
@@ -38,5 +98,23 @@ export const SCSS_MODULES: Record<string, FakeScssModule> = {
     scss: '@use "everything";\n\n.container {\n  @include everything.table-set-var(\n    sticky-header,\n    everything.layout-get-var(header-height)\n  );\n}\n',
     baseName: "ViewportBasedStickyTableExample",
     fileName: "ViewportBasedStickyTableExample.module.scss",
+  },
+  "src/app/components/text-field/NonIconAddons.module.scss": {
+    css: ".NonIconAddons_avatarField__Tm9uS {\n  --rmd-form-text-padding-left: calc(var(--rmd-avatar-size, 2.5rem) + 1.5rem);\n  --rmd-form-text-padding-right: calc(var(--rmd-avatar-size, 2.5rem) + 1rem);\n}\n\n.NonIconAddons_buttonField__Tm9uS {\n  --rmd-form-text-padding-right: 4rem;\n}",
+    scss: '@use "everything";\n\n.avatarField {\n  @include everything.form-set-var(\n    text-padding-left,\n    calc(everything.avatar-get-var(size) + 1.5rem)\n  );\n  @include everything.form-set-var(\n    text-padding-right,\n    calc(everything.avatar-get-var(size) + 1rem)\n  );\n}\n\n.buttonField {\n  @include everything.form-set-var(text-padding-right, 4rem);\n}\n',
+    baseName: "NonIconAddons",
+    fileName: "NonIconAddons.module.scss",
+  },
+  "src/app/components/tooltip/CustomTooltipExample.module.scss": {
+    css: ".CustomTooltipExample_container__Q3Vzd {\n  height: 3em;\n  position: relative;\n  width: 3em;\n}\n\n.CustomTooltipExample_tooltip__Q3Vzd {\n  left: 50%;\n  position: absolute;\n  top: calc(100% + var(--rmd-tooltip-spacing, 1.5rem));\n  transform: translateX(-50%);\n}",
+    scss: '@use "everything";\n\n.container {\n  height: 3em;\n  position: relative;\n  width: 3em;\n}\n\n.tooltip {\n  left: 50%;\n  position: absolute;\n  top: calc(100% + everything.tooltip-get-var(spacing));\n  transform: translateX(-50%);\n}\n',
+    baseName: "CustomTooltipExample",
+    fileName: "CustomTooltipExample.module.scss",
+  },
+  "src/app/components/tooltip/ProgressbarTooltipExample.module.scss": {
+    css: ".ProgressbarTooltipExample_container__UHJvZ {\n  position: relative;\n  width: 100%;\n}\n\n.ProgressbarTooltipExample_tooltip__UHJvZ {\n  left: var(--offset, 0%);\n  position: absolute;\n  top: calc(100% + 1em);\n  transform: translateX(-50%);\n  transition: left 0.15s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s;\n  will-change: left, right;\n}\n[dir=rtl] .ProgressbarTooltipExample_tooltip__UHJvZ {\n  left: auto;\n  right: var(--offset, 0%);\n}",
+    scss: '@use "everything";\n\n.container {\n  position: relative;\n  width: 100%;\n}\n\n.tooltip {\n  @include everything.auto-rtl(left, var(--offset, 0%));\n\n  position: absolute;\n  top: calc(100% + 1em);\n  transform: translateX(-50%);\n  transition:\n    left everything.$linear-duration everything.$linear-timing-function,\n    background-color 0.3s;\n  will-change: left, right;\n}\n',
+    baseName: "ProgressbarTooltipExample",
+    fileName: "ProgressbarTooltipExample.module.scss",
   },
 };

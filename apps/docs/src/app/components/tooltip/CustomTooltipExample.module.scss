@@ -1,0 +1,14 @@
+@use "everything";
+
+.container {
+  height: 3em;
+  position: relative;
+  width: 3em;
+}
+
+.tooltip {
+  left: 50%;
+  position: absolute;
+  top: calc(100% + everything.tooltip-get-var(spacing));
+  transform: translateX(-50%);
+}

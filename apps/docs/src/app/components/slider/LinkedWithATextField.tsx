@@ -9,6 +9,7 @@ import {
   type GetErrorMessage,
 } from "@react-md/core";
 import { useId, type ReactElement } from "react";
+import styles from "./LinkedWithATextField.module.scss";
 
 const min = 0;
 const max = 255;
@@ -36,7 +37,7 @@ export default function LinkedWithATextField(): ReactElement {
     <Form className={box({ fullWidth: true })}>
       <Slider
         aria-labelledby={labelId}
-        style={{ alignItems: "flex-start" }}
+        className={styles.slider}
         min={min}
         max={max}
         step={step}
@@ -54,7 +55,7 @@ export default function LinkedWithATextField(): ReactElement {
             id={labelId}
             as="span"
             aria-label="Red"
-            style={{ lineHeight: "var(--rmd-slider-size, 2rem)" }}
+            className={styles.label}
           >
             R
           </Typography>
@@ -63,9 +64,7 @@ export default function LinkedWithATextField(): ReactElement {
           <TextField
             {...fieldProps}
             messageContainerProps={{
-              style: {
-                width: "15rem",
-              },
+              className: styles.container,
             }}
           />
         }

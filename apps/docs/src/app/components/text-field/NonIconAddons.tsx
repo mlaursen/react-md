@@ -14,6 +14,7 @@ import {
 } from "@react-md/core";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import { type ReactElement } from "react";
+import styles from "./NonIconAddons.module.scss";
 
 export default function NonIconAddons(): ReactElement {
   const { value: theme, getRadioProps } = useRadioGroup<FormTheme>({
@@ -24,26 +25,19 @@ export default function NonIconAddons(): ReactElement {
   return (
     <Form className={box({ stacked: true, align: "stretch" })}>
       <TextField
-        style={{
-          "--rmd-form-text-padding-left":
-            "calc(var(--rmd-avatar-size, 2.5rem) + 1.5rem)",
-          "--rmd-form-text-padding-right":
-            "calc(var(--rmd-avatar-size, 2.5rem) + 1rem)",
-        }}
         label="Label"
         theme={theme}
         placeholder="Placeholder"
+        className={styles.avatarField}
         leftAddon={<Avatar>B</Avatar>}
         rightAddon={<Avatar>A</Avatar>}
         defaultValue="Here's some long default text to show padding"
       />
       <TextField
-        style={{
-          "--rmd-form-text-padding-right": "4rem",
-        }}
         label="Label"
         theme={theme}
         placeholder="Placeholder"
+        className={styles.buttonField}
         rightAddon={
           <Button aria-label="Favorite" buttonType="icon" iconSize="small">
             <FavoriteIcon />
@@ -55,12 +49,10 @@ export default function NonIconAddons(): ReactElement {
         defaultValue="Here's some long default text to show padding"
       />
       <TextField
-        style={{
-          "--rmd-form-text-padding-right": "4rem",
-        }}
         label="Label"
         theme={theme}
         placeholder="Placeholder"
+        className={styles.buttonField}
         rightAddon={
           <Button aria-label="Favorite" buttonType="icon">
             <FavoriteIcon />

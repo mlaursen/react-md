@@ -7,13 +7,14 @@ import {
   TableRow,
 } from "@react-md/core";
 import { type ReactElement } from "react";
+import styles from "./ScrollableTableExample.module.scss";
 
 const rows = 20;
 const columns = 20;
 
 export default function ScrollableTableExample(): ReactElement {
   return (
-    <TableContainer style={{ maxHeight: "20rem" }}>
+    <TableContainer className={styles.container}>
       <Table>
         <TableHeader>
           <TableRow>
