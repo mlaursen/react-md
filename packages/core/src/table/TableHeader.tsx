@@ -1,5 +1,4 @@
 "use client";
-import { cnb } from "cnbuilder";
 import {
   forwardRef,
   useCallback,
@@ -9,7 +8,6 @@ import {
 } from "react";
 import { useEnsuredRef } from "../useEnsuredRef.js";
 import { useIntersectionObserver } from "../useIntersectionObserver.js";
-import { bem } from "../utils/bem.js";
 import {
   TableConfigProvider,
   useTableConfig,
@@ -17,31 +15,8 @@ import {
   type TableConfigContext,
 } from "./TableConfigurationProvider.js";
 import { useTableContainer } from "./TableContainerProvider.js";
+import { tableHeader } from "./tableHeaderStyles.js";
 import { type TableStickySectionProps } from "./types.js";
-
-const styles = bem("rmd-thead");
-
-/** @remarks \@since 6.0.0 */
-export interface TableHeaderClassNameOptions {
-  className?: string;
-  dense?: boolean;
-  sticky?: boolean;
-  stickyActive?: boolean;
-}
-
-/** @remarks \@since 6.0.0 */
-export function tableHeader(options: TableHeaderClassNameOptions = {}): string {
-  const { dense, sticky, stickyActive, className } = options;
-
-  return cnb(
-    styles({
-      dense,
-      sticky,
-      "sticky-active": stickyActive,
-    }),
-    className
-  );
-}
 
 /**
  * @remarks \@since 6.0.0 Added support for "sticky-active" state.

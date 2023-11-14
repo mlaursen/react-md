@@ -54,5 +54,3 @@ exports[`TableRow should apply the correct styling, HTML attributes, and allow a
   </td>
 </tr>
 `;
-
-exports[`TableRow styling utility class should be callable without any arguments 1`] = `"rmd-tr rmd-tr--bordered rmd-tr--hoverable"`;

@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`tableRow should be callable without any arguments 1`] = `"rmd-tr rmd-tr--bordered rmd-tr--hoverable"`;

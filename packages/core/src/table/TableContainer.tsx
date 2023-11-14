@@ -1,18 +1,11 @@
 "use client";
-import { cnb } from "cnbuilder";
 import { forwardRef, useMemo, type HTMLAttributes } from "react";
 import { useEnsuredRef } from "../useEnsuredRef.js";
 import {
   TableContainerProvider,
   type TableContainerContext,
 } from "./TableContainerProvider.js";
-
-/**
- * @remarks \@since 6.0.0
- */
-export function tableContainer({ className }: { className?: string }): string {
-  return cnb("rmd-table-container", className);
-}
+import { tableContainer } from "./tableContainerStyles.js";
 
 export type TableContainerProps = HTMLAttributes<HTMLDivElement>;
 

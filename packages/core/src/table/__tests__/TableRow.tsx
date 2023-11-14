@@ -5,7 +5,7 @@ import { render, screen } from "../../test-utils/index.js";
 import { Table } from "../Table.js";
 import { TableBody } from "../TableBody.js";
 import { TableCell } from "../TableCell.js";
-import { tableRow, TableRow } from "../TableRow.js";
+import { TableRow } from "../TableRow.js";
 
 describe("TableRow", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {
@@ -59,11 +59,5 @@ describe("TableRow", () => {
       </Table>
     );
     expect(row).toMatchSnapshot();
-  });
-
-  describe("styling utility class", () => {
-    it("should be callable without any arguments", () => {
-      expect(tableRow()).toMatchSnapshot();
-    });
   });
 });

@@ -3,7 +3,7 @@ import { createRef } from "react";
 import { act, render, screen } from "../../test-utils/index.js";
 
 import { type PropsWithRef } from "../../types.js";
-import { Table, table, type TableProps } from "../Table.js";
+import { Table, type TableProps } from "../Table.js";
 import { TableBody } from "../TableBody.js";
 import { TableCell } from "../TableCell.js";
 import { TableContainer } from "../TableContainer.js";
@@ -71,12 +71,6 @@ describe("Table", () => {
 
     rerender(<Table {...props} dense lineWrap />);
     expect(table).toMatchSnapshot();
-  });
-
-  describe("styling utility class", () => {
-    it("should be callable without any arguments", () => {
-      expect(table()).toMatchSnapshot();
-    });
   });
 
   // NOTE: This might be one I should only test with cypress/playwright because

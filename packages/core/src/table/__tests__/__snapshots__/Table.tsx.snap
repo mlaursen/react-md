@@ -2424,5 +2424,3 @@ exports[`Table sticky table behavior TableHeader should use an intersection obse
   </div>
 </div>
 `;
-
-exports[`Table styling utility class should be callable without any arguments 1`] = `"rmd-table"`;

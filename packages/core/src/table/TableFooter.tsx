@@ -1,5 +1,4 @@
 "use client";
-import { cnb } from "cnbuilder";
 import {
   forwardRef,
   useCallback,
@@ -9,7 +8,6 @@ import {
 } from "react";
 import { useEnsuredRef } from "../useEnsuredRef.js";
 import { useIntersectionObserver } from "../useIntersectionObserver.js";
-import { bem } from "../utils/bem.js";
 import {
   TableConfigProvider,
   useTableConfig,
@@ -17,9 +15,8 @@ import {
   type TableConfigContext,
 } from "./TableConfigurationProvider.js";
 import { useTableContainer } from "./TableContainerProvider.js";
+import { tableFooter } from "./tableFooterStyles.js";
 import { type TableStickySectionProps } from "./types.js";
-
-const styles = bem("rmd-tfoot");
 
 /**
  * @remarks \@since 6.0.0 Added support for "sticky-active" state.
@@ -129,13 +126,7 @@ export const TableFooter = forwardRef<
       <tfoot
         {...remaining}
         ref={exists ? tfootRefCallback : targetRef}
-        className={cnb(
-          styles({
-            sticky,
-            "sticky-active": stickyActive,
-          }),
-          className
-        )}
+        className={tableFooter({ className, sticky, stickyActive })}
       >
         {children}
       </tfoot>
