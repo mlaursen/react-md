@@ -6,6 +6,29 @@ export type TableStickySectionOptions = Pick<
   "disabled" | "getThreshold" | "getRootMargin"
 >;
 
+/**
+ * This **should be wrapped in `useCallback`** to increase performance.
+ *
+ * The default behavior is to enable the "active" state for sticky headers is:
+ *
+ * - if the `TableHeader` is within a `TableContainer`, add a hidden `<tbody>`
+ *   after the `<thead>` and enable the active state once 1px overlaps with
+ *   the container.
+ * - otherwise, assume the `TableHeader` is fixed within the viewport and
+ *   parse the `top` CSS style as `px`. enable the active state once 1px
+ *   overlaps with this value AND the `TableHeader` exists within the
+ *   viewport.
+ *   - Note: This really only works with `px` and `rem` units.
+ *
+ * @see {@link TableStickySectionProps.stickyOptions} for an example usage with custom threshold and
+ * margin.
+ * @remarks \@since 6.0.0
+ */
+export type IsStickyTableSectionActive = (
+  entry: IntersectionObserverEntry,
+  isInTableContainer: boolean
+) => boolean;
+
 /** @remarks \@since 6.0.0 */
 export interface TableStickySectionProps {
   /**
@@ -50,25 +73,12 @@ export interface TableStickySectionProps {
   stickyOptions?: TableStickySectionOptions;
 
   /**
-   * This **should be wrapped in `useCallback`** to increase performance.
-   *
-   * The default behavior is to enable the "active" state for sticky headers is:
-   *
-   * - if the `TableHeader` is within a `TableContainer`, add a hidden `<tbody>`
-   *   after the `<thead>` and enable the active state once 1px overlaps with
-   *   the container.
-   * - otherwise, assume the `TableHeader` is fixed within the viewport and
-   *   parse the `top` CSS style as `px`. enable the active state once 1px
-   *   overlaps with this value AND the `TableHeader` exists within the
-   *   viewport.
-   *   - Note: This really only works with `px` and `rem` units.
-   *
-   *
+   * @see {@link IsStickyTableSectionActive} for a description.
    * @see {@link stickyOptions} for an example usage with custom threshold and
    * margin.
    * @remarks \@since 6.0.0
    */
-  isStickyActive?(entry: IntersectionObserverEntry): boolean;
+  isStickyActive?: IsStickyTableSectionActive;
 
   /**
    * Set this to `true` when the {@link sticky} prop is `true` to disable the

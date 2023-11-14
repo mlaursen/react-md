@@ -16,7 +16,22 @@ import {
 } from "./TableConfigurationProvider.js";
 import { useTableContainer } from "./TableContainerProvider.js";
 import { tableHeader } from "./tableHeaderStyles.js";
-import { type TableStickySectionProps } from "./types.js";
+import {
+  type IsStickyTableSectionActive,
+  type TableStickySectionProps,
+} from "./types.js";
+
+/**
+ * @remarks \@since 6.0.0
+ */
+export const isTableHeaderStickyActive: IsStickyTableSectionActive = (
+  entry
+) => {
+  return (
+    entry.intersectionRatio < 1 &&
+    entry.boundingClientRect.bottom <= window.innerHeight
+  );
+};
 
 /**
  * @remarks \@since 6.0.0 Added support for "sticky-active" state.
@@ -33,19 +48,10 @@ export interface TableHeaderProps
    * @defaultValue `false`
    */
   hoverable?: boolean;
-}
 
-/**
- * @remarks \@since 6.0.0
- */
-export const isTableHeaderStickyActive = (
-  entry: IntersectionObserverEntry
-): boolean => {
-  return (
-    entry.intersectionRatio < 1 &&
-    entry.boundingClientRect.bottom <= window.innerHeight
-  );
-};
+  /** @defaultValue {@link isTableHeaderStickyActive} */
+  isStickyActive?: IsStickyTableSectionActive;
+}
 
 /**
  * **Client Component**
@@ -120,9 +126,9 @@ export const TableHeader = forwardRef<
     }, [exists, theadRef]),
     onUpdate: useCallback(
       ([entry]) => {
-        setStickyActive(isStickyActive(entry));
+        setStickyActive(isStickyActive(entry, exists));
       },
-      [isStickyActive]
+      [exists, isStickyActive]
     ),
     // allow the user defined sticky options to override the default behavior
     ...stickyOptions,

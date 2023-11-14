@@ -16,8 +16,25 @@ import {
 } from "./TableConfigurationProvider.js";
 import { useTableContainer } from "./TableContainerProvider.js";
 import { tableFooter } from "./tableFooterStyles.js";
-import { type TableStickySectionProps } from "./types.js";
+import {
+  type IsStickyTableSectionActive,
+  type TableStickySectionProps,
+} from "./types.js";
 
+/**
+ * @remarks \@since 6.0.0
+ */
+export const isTableFooterStickyActive: IsStickyTableSectionActive = (
+  entry,
+  isInTableContainer
+) => {
+  const { intersectionRatio, boundingClientRect, isIntersecting } = entry;
+  if (isInTableContainer) {
+    return !isIntersecting;
+  }
+
+  return intersectionRatio < 1 && boundingClientRect.top >= 0;
+};
 /**
  * @remarks \@since 6.0.0 Added support for "sticky-active" state.
  */
@@ -33,6 +50,9 @@ export interface TableFooterProps
    * @defaultValue `false`
    */
   hoverable?: boolean;
+
+  /** @defaultValue {@link isTableFooterStickyActive} */
+  isStickyActive?: IsStickyTableSectionActive;
 }
 
 /**
@@ -55,7 +75,7 @@ export const TableFooter = forwardRef<
     children,
     sticky = false,
     stickyOptions,
-    isStickyActive,
+    isStickyActive = isTableFooterStickyActive,
     disableStickyStyles = false,
     ...remaining
   } = props;
@@ -98,17 +118,7 @@ export const TableFooter = forwardRef<
     }, [exists, tfootRef]),
     onUpdate: useCallback(
       ([entry]) => {
-        if (typeof isStickyActive === "function") {
-          return isStickyActive(entry);
-        }
-
-        const { intersectionRatio, boundingClientRect, isIntersecting } = entry;
-        if (exists) {
-          setStickyActive(!isIntersecting);
-          return;
-        }
-
-        setStickyActive(intersectionRatio < 1 && boundingClientRect.top >= 0);
+        setStickyActive(isStickyActive(entry, exists));
       },
       [exists, isStickyActive]
     ),
