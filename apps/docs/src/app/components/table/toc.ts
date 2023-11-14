@@ -49,19 +49,25 @@ export const toc = [
     value: "Sticky Tables",
     items: [
       {
-        id: "viewport-based-sticky-table",
-        depth: 2,
-        value: "Viewport Based Sticky Table",
-      },
-      {
         id: "container-based-sticky-table",
         depth: 2,
         value: "Container Based Sticky Table",
       },
       {
+        id: "viewport-based-sticky-table",
+        depth: 2,
+        value: "Viewport Based Sticky Table",
+      },
+      {
         id: "sticky-columns-example",
         depth: 2,
         value: "Sticky Columns Example",
+      },
+      { id: "sticky-active-styles", depth: 2, value: "Sticky Active Styles" },
+      {
+        id: "disable-sticky-active-styles",
+        depth: 2,
+        value: "Disable Sticky Active Styles",
       },
     ],
   },

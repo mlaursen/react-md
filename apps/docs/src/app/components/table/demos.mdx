@@ -127,14 +127,66 @@ The sort icon can also be placed after the children by enabling the
 
 # Sticky Tables
 
-## Viewport Based Sticky Table
-
-{{ "component": "./ViewportBasedStickyTableExample.tsx" }}
+Tables within `react-md` can be updated to have sticky headers, footers, and
+columns by using
+[sticky positioning](https://developer.mozilla.org/en-US/docs/Web/CSS/position#sticky_positioning).
+When an element has `position: sticky` set, it will be fixed within the
+**closest scroll container** based on the `top`, `right`, `bottom`, and `left`
+properties. If there are no parent elements that have `overflow: auto` or
+`overflow: scroll`, the sticky elements can be positioned relative to the
+entire document.
 
 ## Container Based Sticky Table
 
+To create a sticky `TableHeader` or `TableFooter`, enable the `sticky` prop
+which will add `top: 0` and `bottom: 0` as the sticky positioning. This will
+make it so the header and footer are stuck to the top and bottom of the
+`TableContainer` component.
+
 {{ "component": "./ContainerBasedStickyTableExample.tsx" }}
+
+## Viewport Based Sticky Table
+
+To create a sticky `TableHeader` and `TableFooter` relative to the viewport, do
+not wrap the `Table` with the `TableContainer` and ensure no parent elements
+have `overflow: auto` set. If there is a fixed header in the app, the header
+will also need to update it's position so it is stuck below that header. This
+can be done by updating the `--rmd-table-sticky-header` custom property or
+setting the `top` style.
+
+{{ "component": "./ViewportBasedStickyTableExample.tsx" }}
 
 ## Sticky Columns Example
 
+A column of `TableCell` can also become sticky horizontally by enabling the
+`sticky` prop on each `TableCell` in that column. It defaults to using `left: 0`
+(`right: 0` when RTL) but can be configured by the `--rmd-table-sticky-cell`
+custom property.
+
+This example will showcase a sticky checkbox cell followed by a sticky row
+header cell with sticky headers and footers.
+
 {{ "component": "./StickyColumnsExample.tsx" }}
+
+## Sticky Active Styles
+
+When the `TableHeader`/`TableFooter` have the `sticky` prop enabled, some magic
+happens behind the scenes to automatically raise the elevation for the
+`TableHeader`/`TableFooter` when covering rows of content by scroll position.
+These styles can be configured globally by the
+`core.$table-sticky-header-inactive-styles`,
+`core.$table-sticky-header-active-styles`,
+`core.$table-sticky-footer-inactive-styles`, and
+`core.$table-sticky-footer-active-styles` Sass variables.
+
+If the styles should not be configured globally, provide a custom
+`stickyActiveClassName` and optionally `className` to override the styling.
+
+{{ "component": "./StickyActiveStylesExample.tsx" }}
+
+## Disable Sticky Active Styles
+
+The sticky active styles can also be disabled by enabling the
+`disableStickyStyles`.
+
+{{ "component": "./DisableStickyActiveStylesExample.tsx" }}

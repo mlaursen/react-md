@@ -19,7 +19,7 @@ export function tableFooter(options: TableFooterClassNameOptions = {}): string {
   return cnb(
     styles({
       sticky,
-      "sticky-active": !stickyActiveClassName && stickyActive,
+      "sticky-active": stickyActive,
     }),
     stickyActive && stickyActiveClassName,
     className

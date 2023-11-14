@@ -95,6 +95,7 @@ export function ScssCodeEditor(props: ScssCodeEditorProps): ReactElement {
               <LinearProgress
                 aria-label="Compiling SCSS"
                 className={styles.progress}
+                theme="current-color"
               />
             )}
             {error && (

@@ -1,8 +1,13 @@
 @use "everything";
 
 .progress {
-  bottom: 0;
+  @include everything.progress-set-var(
+    color,
+    everything.interaction-get-var(focus-color)
+  );
+  color: everything.$interaction-focus-color;
   position: absolute;
+  top: 0;
 }
 
 .tooltip {

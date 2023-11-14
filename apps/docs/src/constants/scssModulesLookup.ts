@@ -70,16 +70,28 @@ export const SCSS_MODULES: Record<string, FakeScssModule> = {
     fileName: "SwitchWithCircularProgress.module.scss",
   },
   "src/app/components/table/ContainerBasedStickyTableExample.module.scss": {
-    css: ".ContainerBasedStickyTableExample_container__Q29ud {\n  margin: 0 4rem;\n  max-height: 20rem;\n  width: 100%;\n}",
-    scss: ".container {\n  margin: 0 4rem;\n  max-height: 20rem;\n  width: 100%;\n}\n",
+    css: ".ContainerBasedStickyTableExample_container__Q29ud {\n  max-height: 20rem;\n  width: 100%;\n}",
+    scss: ".container {\n  max-height: 20rem;\n  width: 100%;\n}\n",
     baseName: "ContainerBasedStickyTableExample",
     fileName: "ContainerBasedStickyTableExample.module.scss",
+  },
+  "src/app/components/table/DisableStickyActiveStylesExample.module.scss": {
+    css: ".DisableStickyActiveStylesExample_container__RGlzY {\n  max-height: 20rem;\n  width: 100%;\n}",
+    scss: ".container {\n  max-height: 20rem;\n  width: 100%;\n}\n",
+    baseName: "DisableStickyActiveStylesExample",
+    fileName: "DisableStickyActiveStylesExample.module.scss",
   },
   "src/app/components/table/ScrollableTableExample.module.scss": {
     css: ".ScrollableTableExample_container__U2Nyb {\n  max-height: 20rem;\n}",
     scss: ".container {\n  max-height: 20rem;\n}\n",
     baseName: "ScrollableTableExample",
     fileName: "ScrollableTableExample.module.scss",
+  },
+  "src/app/components/table/StickyActiveStylesExample.module.scss": {
+    css: ".StickyActiveStylesExample_container__U3RpY {\n  max-height: 20rem;\n  width: 100%;\n}\n\n.StickyActiveStylesExample_active__U3RpY {\n  --rmd-table-cell-color: currentcolor;\n}",
+    scss: '@use "everything";\n\n.container {\n  max-height: 20rem;\n  width: 100%;\n}\n\n.active {\n  @include everything.table-set-var(cell-color, currentcolor);\n}\n',
+    baseName: "StickyActiveStylesExample",
+    fileName: "StickyActiveStylesExample.module.scss",
   },
   "src/app/components/table/StickyColumnsExample.module.scss": {
     css: ".StickyColumnsExample_container__U3RpY {\n  max-height: 25rem;\n}\n\n.StickyColumnsExample_sticky__U3RpY {\n  --rmd-table-sticky-cell: 4rem;\n}",

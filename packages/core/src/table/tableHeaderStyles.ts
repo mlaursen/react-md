@@ -21,7 +21,7 @@ export function tableHeader(options: TableHeaderClassNameOptions = {}): string {
     styles({
       dense,
       sticky,
-      "sticky-active": !stickyActiveClassName && stickyActive,
+      "sticky-active": stickyActive,
     }),
     stickyActive && stickyActiveClassName,
     className

@@ -1,0 +1,10 @@
+@use "everything";
+
+.container {
+  max-height: 20rem;
+  width: 100%;
+}
+
+.active {
+  @include everything.table-set-var(cell-color, currentcolor);
+}
