@@ -6,10 +6,11 @@ import { join } from "node:path";
 import { format } from "../src/utils/format.js";
 import { GENERATED_FILE_BANNER } from "./constants.js";
 import { getScriptFlags } from "./utils/getScriptFlags.js";
+import { isRebasing } from "./utils/isRebasing.js";
 import { log } from "./utils/log.js";
 import { printObjectAlphaNumerically } from "./utils/printObjectAlphaNumerically.js";
 
-const { isWatch } = getScriptFlags();
+const { isWatch, isWatchOnly } = getScriptFlags();
 
 const SCSS_LOOKUP_PATH = join(
   process.cwd(),
@@ -17,7 +18,8 @@ const SCSS_LOOKUP_PATH = join(
   "constants",
   "scssLookup.ts"
 );
-const CORE_SCSS_PATTERN = "node_modules/@react-md/core/dist/**/*.scss";
+const CORE_DIST = "node_modules/@react-md/core/dist";
+const CORE_SCSS_PATTERN = `${CORE_DIST}/**/*.scss`;
 
 async function createScssLookup(): Promise<void> {
   const docsScss = await glob("*.scss");
@@ -27,7 +29,7 @@ async function createScssLookup(): Promise<void> {
     [...docsScss, ...reactMdScss].map(async (scssPath) => {
       const contents = await readFile(scssPath, "utf8");
       const name = scssPath
-        .replace("node_modules/@react-md/core/dist", "@react-md")
+        .replace(CORE_DIST, "@react-md")
         .replace(/_([a-z0-9-]+)\.scss$/, "$1");
       lookup[name] = contents;
     })
@@ -49,12 +51,18 @@ async function update(): Promise<void> {
 }
 const debouncedUpdate = lodash.debounce(update, 500);
 
-await update();
+if (!isWatchOnly) {
+  await update();
+}
 
 if (isWatch) {
   const watcher = watch(CORE_SCSS_PATTERN, { persistent: true });
 
   watcher.on("change", async () => {
+    if (isRebasing()) {
+      return;
+    }
+
     try {
       await debouncedUpdate();
     } catch (e) {

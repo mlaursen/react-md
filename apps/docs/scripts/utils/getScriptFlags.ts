@@ -2,17 +2,20 @@ export interface ScriptFlags {
   isClean: boolean;
   isCleanOnly: boolean;
   isWatch: boolean;
+  isWatchOnly: boolean;
 }
 
 export function getScriptFlags(): ScriptFlags {
   const { argv } = process;
   const isCleanOnly = argv.includes("--clean-only");
-  const isClean = argv.includes("--clean") || isCleanOnly;
-  const isWatch = argv.includes("--watch");
+  const isClean = isCleanOnly || argv.includes("--clean");
+  const isWatchOnly = argv.includes("--watch-only");
+  const isWatch = isWatchOnly || argv.includes("--watch");
 
   return {
     isClean,
     isCleanOnly,
     isWatch,
+    isWatchOnly,
   };
 }

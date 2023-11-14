@@ -5,6 +5,7 @@ import { type RunnableCodePreviewOptions } from "../../src/components/Dangerousl
 import { assertBoolean, assertString } from "../../src/utils/assertions.js";
 import { log } from "./log.js";
 import { getDemoCode } from "./typescript.js";
+import { format } from "../../src/utils/format.js";
 
 const DEMO_JSON_REGEX = /^{{.+}}$/;
 
@@ -141,6 +142,6 @@ export async function createDemoMarkdown(
   }
 
   await Promise.all(promises);
-  const content = lines.join("\n");
+  const content = await format(lines.join("\n"), "mdx");
   await writeFile(outPath, content, "utf8");
 }

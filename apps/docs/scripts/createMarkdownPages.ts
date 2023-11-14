@@ -10,6 +10,7 @@ import {
   updateScssModule,
 } from "./utils/createScssModules.js";
 import { getScriptFlags } from "./utils/getScriptFlags.js";
+import { isRebasing } from "./utils/isRebasing.js";
 import { log } from "./utils/log.js";
 
 const MDX_DEMOS = "demos.mdx";
@@ -18,7 +19,7 @@ const mdxDemos = await glob(`src/app/**/${MDX_DEMOS}`);
 // const readmes = [] as const;
 // const mdxDemos = [`src/app/components/dialog/${MDX_DEMOS}`];
 
-const { isWatch } = getScriptFlags();
+const { isWatch, isWatchOnly } = getScriptFlags();
 
 async function createAll(): Promise<void> {
   await Promise.all([
@@ -33,7 +34,9 @@ async function createAll(): Promise<void> {
   await createScssModuleFile();
 }
 
-await log(createAll(), "Compiling mdx and demos", "Compiled");
+if (!isWatchOnly) {
+  await log(createAll(), "Compiling mdx and demos", "Compiled");
+}
 
 const isProbablyDemoRelatedFile = (
   parsed: ParsedPath,
@@ -56,6 +59,10 @@ if (isWatch) {
   });
 
   watcher.on("change", async (path) => {
+    if (isRebasing()) {
+      return;
+    }
+
     const parsed = parse(path);
     const fileName = parsed.base;
     const maybeDemos = join(parsed.dir, MDX_DEMOS);
@@ -89,6 +96,10 @@ if (isWatch) {
     }
   });
   watcher.on("unlink", async (path) => {
+    if (isRebasing()) {
+      return;
+    }
+
     if (path.endsWith(".module.scss")) {
       scssModulesCache.delete(path);
     }

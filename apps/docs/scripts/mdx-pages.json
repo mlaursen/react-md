@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json.schemastore.org/nodemon.json",
+  "watch": ["scripts/**/*.ts", "src/constants/scssLookup.ts"],
+  "exec": "pnpm run mdx-pages -- --watch",
+  "ext": "*.ts,*.tsx"
+}
