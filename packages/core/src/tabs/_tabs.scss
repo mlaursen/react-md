@@ -126,6 +126,8 @@ $var-lookup: (
     // also fixes issues when placed within a flex column container
     flex-shrink: 0;
     flex-wrap: nowrap;
+    // make sure it can enable scrollbars in flex/grid containers
+    max-width: 100%;
     outline: none;
     overflow-x: auto;
     position: relative;
