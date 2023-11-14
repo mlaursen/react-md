@@ -73,6 +73,14 @@ export interface TableStickySectionProps {
   stickyOptions?: TableStickySectionOptions;
 
   /**
+   * An optional className to use when the sticky section is covering other rows
+   * (`active`). When this is defined, the default
+   * `rmd-thead--sticky-active`/`rmd-tfoot--sticky-active` will no longer be
+   * applied.
+   */
+  stickyActiveClassName?: string;
+
+  /**
    * @see {@link IsStickyTableSectionActive} for a description.
    * @see {@link stickyOptions} for an example usage with custom threshold and
    * margin.

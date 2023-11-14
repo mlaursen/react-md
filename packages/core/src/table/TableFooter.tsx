@@ -77,6 +77,7 @@ export const TableFooter = forwardRef<
     stickyOptions,
     isStickyActive = isTableFooterStickyActive,
     disableStickyStyles = false,
+    stickyActiveClassName,
     ...remaining
   } = props;
 
@@ -136,7 +137,12 @@ export const TableFooter = forwardRef<
       <tfoot
         {...remaining}
         ref={exists ? tfootRefCallback : targetRef}
-        className={tableFooter({ className, sticky, stickyActive })}
+        className={tableFooter({
+          className,
+          sticky,
+          stickyActive,
+          stickyActiveClassName,
+        })}
       >
         {children}
       </tfoot>

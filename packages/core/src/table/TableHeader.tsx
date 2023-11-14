@@ -77,6 +77,7 @@ export const TableHeader = forwardRef<
     stickyOptions,
     isStickyActive = isTableHeaderStickyActive,
     disableStickyStyles = false,
+    stickyActiveClassName,
     ...remaining
   } = props;
 
@@ -140,10 +141,11 @@ export const TableHeader = forwardRef<
         {...remaining}
         ref={exists ? theadRefCallback : targetRef}
         className={tableHeader({
+          className,
           dense,
           sticky,
           stickyActive,
-          className,
+          stickyActiveClassName,
         })}
       >
         {children}

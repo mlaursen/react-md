@@ -10,15 +10,18 @@ export interface TableFooterClassNameOptions {
   className?: string;
   sticky?: boolean;
   stickyActive?: boolean;
+  stickyActiveClassName?: string;
 }
 
 export function tableFooter(options: TableFooterClassNameOptions = {}): string {
-  const { className, sticky, stickyActive } = options;
+  const { className, sticky, stickyActive, stickyActiveClassName } = options;
+
   return cnb(
     styles({
       sticky,
-      "sticky-active": stickyActive,
+      "sticky-active": !stickyActiveClassName && stickyActive,
     }),
+    stickyActive && stickyActiveClassName,
     className
   );
 }
