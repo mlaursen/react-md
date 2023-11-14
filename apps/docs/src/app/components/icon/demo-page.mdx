@@ -31,9 +31,7 @@ export default function IconTheme(): ReactElement {
     </>
   );
 }
-
 ```
-
 
 # Icon Size
 
@@ -65,9 +63,7 @@ export default function IconSize(): ReactElement {
     </>
   );
 }
-
 ```
-
 
 # Custom Font Icons
 
@@ -87,9 +83,7 @@ export default function FontAwesomeExample(): ReactElement {
     </>
   );
 }
-
 ```
-
 
 # Custom SVG Icons
 
@@ -151,7 +145,7 @@ async function run(): Promise<void> {
     svgs.map(async (svgPath) => {
       const iconName = svgPath.replace(".svg", "");
       const componentName = lodash.upperFirst(
-        lodash.camelCase(svgPath.replace(".svg", "Icon")),
+        lodash.camelCase(svgPath.replace(".svg", "Icon"))
       );
       const outputPath = join(ICONS_PATH, `${componentName}.tsx`);
 
@@ -195,14 +189,14 @@ async function run(): Promise<void> {
         // convert _some_ inline styles for React
         .replace(
           /style="mix-blend-mode:([a-z]+)"/g,
-          "style={{ mixBlendMode: '$1' }}",
+          "style={{ mixBlendMode: '$1' }}"
         )
         // converts kebab-cased properties and colon:cased poverties to
         // camelCase for react
         .replace(
           /([a-z]+)[-:]([-:a-z]+)=/g,
           (_match, prefix, suffix) =>
-            `${prefix}${lodash.upperFirst(lodash.camelCase(suffix))}`,
+            `${prefix}${lodash.upperFirst(lodash.camelCase(suffix))}`
         );
 
       const iconCode = `import { SVGIcon, type SVGIcon } from "@react-md/core";
@@ -226,11 +220,9 @@ export const ${componentName} = forwardRef<SVGSVGElement, SVGIconProps>(function
       });
 
       await writeFile(outputPath, formattedIconCode);
-    }),
+    })
   );
 }
 
 run();
-
 ```
-

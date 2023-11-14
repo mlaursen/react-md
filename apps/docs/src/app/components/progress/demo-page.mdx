@@ -32,9 +32,7 @@ import { type ReactElement } from "react";
 export default function SimpleCircularProgress(): ReactElement {
   return <CircularProgress aria-label="Example" />;
 }
-
 ```
-
 
 ## Determinate Circular Progress
 
@@ -71,7 +69,7 @@ function useProgress(): number {
             max: 10,
             value: prev / 10,
             increment: true,
-          }) * 10,
+          }) * 10
       );
     }, 1000);
 
@@ -82,9 +80,7 @@ function useProgress(): number {
 
   return progress;
 }
-
 ```
-
 
 ## Circular Progress Sizes
 
@@ -98,9 +94,7 @@ import { type ReactElement } from "react";
 export default function CircularProgressSizes(): ReactElement {
   return <CircularProgress aria-label="Example" dense />;
 }
-
 ```
-
 
 ## Circular Progress Theme
 
@@ -136,9 +130,7 @@ export default function CircularProgressTheme(): ReactElement {
     </>
   );
 }
-
 ```
-
 
 ## Performance Concerns
 
@@ -157,9 +149,7 @@ import { type ReactElement } from "react";
 export default function PerformanceConcerns(): ReactElement {
   return <CircularProgress aria-label="Example" disableShrink />;
 }
-
 ```
-
 
 # Linear Progress
 
@@ -178,9 +168,7 @@ import { type ReactElement } from "react";
 export default function SimpleLinearProgress(): ReactElement {
   return <LinearProgress aria-label="Example" />;
 }
-
 ```
-
 
 ## Linear Progress Theme
 
@@ -218,9 +206,7 @@ export default function LinearProgressTheme(): ReactElement {
     </>
   );
 }
-
 ```
-
 
 # Disable Determinate Transition
 
@@ -298,9 +284,7 @@ function useProgress(): ProgressControls {
     progress,
   };
 }
-
 ```
-
 
 # Within Buttons
 

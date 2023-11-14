@@ -136,8 +136,8 @@ export function getFontStylesheet(
       familyName === "Rounded"
         ? "Round"
         : familyName === "Filled"
-        ? ""
-        : familyName;
+          ? ""
+          : familyName;
   } else {
     specs = `:opsz,wght,FILL,GRAD@${opticalSize},${weight},${fill},${grade}`;
   }

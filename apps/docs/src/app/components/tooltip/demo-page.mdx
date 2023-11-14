@@ -24,9 +24,7 @@ export default function SimpleTooltipExample(): ReactElement {
     </>
   );
 }
-
 ```
-
 
 ## Dense Tooltip
 
@@ -51,9 +49,7 @@ export default function DenseTooltipExample(): ReactElement {
     </>
   );
 }
-
 ```
-
 
 ## Long Text Tooltip
 
@@ -87,9 +83,7 @@ export default function LongTextTooltipExample(): ReactElement {
     </>
   );
 }
-
 ```
-
 
 # Tooltip Positioning
 
@@ -129,9 +123,7 @@ export default function TooltipPositioningExample(): ReactElement {
     </>
   );
 }
-
 ```
-
 
 ## Forced Tooltip Position
 
@@ -159,9 +151,7 @@ export default function ForcedTooltipPositionExample(): ReactElement {
     </>
   );
 }
-
 ```
-
 
 # Enabling Hover Mode
 
@@ -203,9 +193,7 @@ function TooltippedButton({ i }: { i: number }): ReactElement {
     </>
   );
 }
-
 ```
-
 
 # Configuring Tooltip Timeouts
 
@@ -276,9 +264,7 @@ function TooltippedButton(props: TooltippedButtonProps): ReactElement {
     </>
   );
 }
-
 ```
-
 
 # Overflow Only Tooltip
 
@@ -319,9 +305,7 @@ export default function OverflowOnlyTooltipExample(): ReactElement {
     </Box>
   );
 }
-
 ```
-
 
 ## Custom Overflow Element
 
@@ -359,9 +343,7 @@ export default function CustomOverflowElementExample(): ReactElement {
     </>
   );
 }
-
 ```
-
 
 # Custom Tooltip
 
@@ -399,9 +381,7 @@ export default function CustomTooltipExample(): ReactElement {
     </div>
   );
 }
-
 ```
-
 
 ## Progressbar Tooltip Example
 
@@ -476,10 +456,10 @@ function useIncrementingValue(): {
             min: 0,
             max: 100,
             increment: true,
-          }),
+          })
         );
       },
-      value === 100 ? 5000 : 300,
+      value === 100 ? 5000 : 300
     );
     return () => {
       window.clearTimeout(timeout);
@@ -494,9 +474,7 @@ declare module "react" {
     "--offset"?: string;
   }
 }
-
 ```
-
 
 # Accessibility
 
