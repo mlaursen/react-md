@@ -15,4 +15,28 @@ export const SCSS_MODULES: Record<string, FakeScssModule> = {
     baseName: "CustomTransitionExample",
     fileName: "CustomTransitionExample.module.scss",
   },
+  "src/app/components/table/ContainerBasedStickyTableExample.module.scss": {
+    css: ".ContainerBasedStickyTableExample_container__Q29ud {\n  margin: 0 4rem;\n  max-height: 20rem;\n  width: 100%;\n}",
+    scss: ".container {\n  margin: 0 4rem;\n  max-height: 20rem;\n  width: 100%;\n}\n",
+    baseName: "ContainerBasedStickyTableExample",
+    fileName: "ContainerBasedStickyTableExample.module.scss",
+  },
+  "src/app/components/table/StickyColumnsExample.module.scss": {
+    css: ".StickyColumnsExample_container__U3RpY {\n  max-height: 25rem;\n}\n\n.StickyColumnsExample_sticky__U3RpY {\n  --rmd-table-sticky-cell: 4rem;\n}",
+    scss: '@use "everything";\n\n.container {\n  max-height: 25rem;\n}\n\n.sticky {\n  // if you don\'t need auto-RTL support, you could just set the `left` value\n  // instead of using the mixin and updating the css variable\n  // @include everything.table-set-var(sticky-cell, 4rem);\n  @include everything.table-set-var(\n    sticky-cell,\n    calc(\n      everything.$table-cell-input-toggle-horizontal-padding * 2 +\n        everything.$form-input-toggle-normal-size * 2\n    )\n  );\n}\n',
+    baseName: "StickyColumnsExample",
+    fileName: "StickyColumnsExample.module.scss",
+  },
+  "src/app/components/table/UpdatingSelectedRowColorExample.module.scss": {
+    css: ".UpdatingSelectedRowColorExample_selected__VXBkY {\n  --rmd-table-cell-color: currentcolor;\n}\n .mouse-mode  .UpdatingSelectedRowColorExample_selected__VXBkY:hover {\n  background-color: color-mix(in srgb, var(--rmd-primary-color, #009688) 80%, var(--rmd-on-primary-color, #000));\n}",
+    scss: '@use "everything";\n\n.selected {\n  @include everything.mouse-only(true) {\n    &:hover {\n      background-color: color-mix(\n        in srgb,\n        everything.theme-get-var(primary-color) 80%,\n        everything.theme-get-var(on-primary-color)\n      );\n    }\n  }\n\n  @include everything.table-set-var(cell-color, currentcolor);\n}\n',
+    baseName: "UpdatingSelectedRowColorExample",
+    fileName: "UpdatingSelectedRowColorExample.module.scss",
+  },
+  "src/app/components/table/ViewportBasedStickyTableExample.module.scss": {
+    css: ".ViewportBasedStickyTableExample_container__Vmlld {\n  --rmd-table-sticky-header: var(--rmd-layout-header-height, 3.5rem);\n}",
+    scss: '@use "everything";\n\n.container {\n  @include everything.table-set-var(\n    sticky-header,\n    everything.layout-get-var(header-height)\n  );\n}\n',
+    baseName: "ViewportBasedStickyTableExample",
+    fileName: "ViewportBasedStickyTableExample.module.scss",
+  },
 };

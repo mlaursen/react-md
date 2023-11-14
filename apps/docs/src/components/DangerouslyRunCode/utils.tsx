@@ -26,6 +26,7 @@ import SearchIcon from "@react-md/material-icons/SearchIcon";
 import SocialDistanceOutlinedIcon from "@react-md/material-icons/SocialDistanceOutlinedIcon";
 import VolumeOffOutlinedIcon from "@react-md/material-icons/VolumeOffOutlinedIcon";
 import VolumeUpOutlinedIcon from "@react-md/material-icons/VolumeUpOutlinedIcon";
+import * as cnbuilder from "cnbuilder";
 import React, {
   isValidElement,
   type ComponentType,
@@ -89,6 +90,7 @@ function dangerouslyEvalCode(
     react: React,
     "react/jsx-runtime": jsxRuntime,
     "@react-md/core": core,
+    cnbuilder,
     // I need a way to figure out how to correctly pass the scope down here. I can't pass functions
     // down from server components to client components, so it might need to be a script. For now,
     // just add any imports that are required.

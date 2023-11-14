@@ -10,7 +10,11 @@ import {
 import { cssUtils } from "../cssUtils.js";
 import { getIcon } from "../icon/iconConfig.js";
 import { type PropsWithRef } from "../types.js";
-import { TableCellContent, type SortOrder } from "./TableCellContent.js";
+import {
+  TableCellContent,
+  type SortOrder,
+  type TableCellContentsIconRotatorProps,
+} from "./TableCellContent.js";
 import {
   useTableConfig,
   type TableCellConfig,
@@ -122,6 +126,14 @@ export interface TableCellProps extends TableCellAttributes, TableCellOptions {
     ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
   >;
+
+  /**
+   * Any additional props to pass to the `IconRotator` when the `aria-sort` prop
+   * has been provided.
+   *
+   * @remarks \@since 6.0.0
+   */
+  iconRotatorProps?: TableCellContentsIconRotatorProps;
 
   /**
    * Since providing an `aria-sort` prop will wrap the `children` in an
@@ -299,6 +311,7 @@ export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
       sortIcon: propSortIcon,
       sortIconAfter = false,
       sortIconRotated,
+      iconRotatorProps,
       padding = "horizontal",
       contentProps,
       ...remaining
@@ -352,6 +365,7 @@ export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
           {...contentProps}
           icon={sortIcon}
           iconAfter={sortIconAfter}
+          iconRotatorProps={iconRotatorProps}
           sortOrder={sortOrder}
           hAlign={hAlign}
           rotated={sortIconRotated}

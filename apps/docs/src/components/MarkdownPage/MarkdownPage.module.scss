@@ -7,7 +7,7 @@
 
   margin: 0 auto;
   max-width: 105ch;
-  overflow: hidden;
+  min-width: 0;
   padding: 0 var(--hp, 2rem) 2rem;
   width: 100%;
 }

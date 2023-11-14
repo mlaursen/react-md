@@ -1,0 +1,8 @@
+@use "everything";
+
+.container {
+  @include everything.table-set-var(
+    sticky-header,
+    everything.layout-get-var(header-height)
+  );
+}

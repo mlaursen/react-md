@@ -1,11 +1,19 @@
 import { cnb } from "cnbuilder";
 import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from "react";
 import { ButtonUnstyled } from "../button/ButtonUnstyled.js";
-import { IconRotator } from "../icon/IconRotator.js";
+import { IconRotator, type IconRotatorProps } from "../icon/IconRotator.js";
 import { bem } from "../utils/bem.js";
 import { type TableCellHorizontalAlignment } from "./TableConfigurationProvider.js";
 
 export type SortOrder = "ascending" | "descending" | "none" | "other";
+
+/**
+ * @remarks \@since 6.0.0
+ */
+export type TableCellContentsIconRotatorProps = Omit<
+  IconRotatorProps,
+  "children" | "rotated"
+>;
 
 /**
  * @remarks \@since 6.0.0 Extends the `ButtonHTMLAttributes` so the extra props
@@ -32,6 +40,11 @@ export interface TableCellContentProps
    * Boolean if the icon should be rotated.
    */
   rotated?: boolean;
+
+  /**
+   * Any additional props to pass to the `IconRotator`.
+   */
+  iconRotatorProps?: TableCellContentsIconRotatorProps;
 
   /**
    * @remarks \@since 4.0.3
@@ -66,6 +79,7 @@ export const TableCellContent = forwardRef<
     rotated: propRotated,
     hAlign = "left",
     iconAfter,
+    iconRotatorProps,
     ...remaining
   } = props;
   if (!sortOrder || propIcon === null) {
@@ -76,7 +90,11 @@ export const TableCellContent = forwardRef<
   if (sortOrder !== "none") {
     const rotated = propRotated ?? sortOrder === "descending";
 
-    icon = <IconRotator rotated={rotated}>{propIcon}</IconRotator>;
+    icon = (
+      <IconRotator {...iconRotatorProps} rotated={rotated}>
+        {propIcon}
+      </IconRotator>
+    );
   }
 
   return (
