@@ -1,12 +1,8 @@
+import { type RunnableCodePreviewOptions } from "@/types/code.js";
 import { Card } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import { type ReactElement, type ReactNode } from "react";
 import styles from "./RunnableCodePreviewContainer.module.scss";
-
-export interface RunnableCodePreviewOptions {
-  card?: boolean;
-  phone?: boolean;
-}
 
 export interface RunnableCodePreviewContainerProps
   extends RunnableCodePreviewOptions {

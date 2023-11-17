@@ -1,25 +1,16 @@
 "use client";
+import { type RunnableCodePreviewOptions } from "@/types/code.js";
 import {
   MenuConfigurationProvider,
   TooltipHoverModeProvider,
 } from "@react-md/core";
 import { type ReactElement } from "react";
 import { CodePreviewContainer } from "../CodePreviewContainer.jsx";
-import {
-  RunnableCodePreviewContainer,
-  type RunnableCodePreviewOptions,
-} from "./RunnableCodePreviewContainer.jsx";
+import { RunnableCodePreviewContainer } from "./RunnableCodePreviewContainer.jsx";
 import { useDangerouslyRunnableCode } from "./useDangerouslyRunnableCode.jsx";
 import { type RunnableCodeScope } from "./utils.jsx";
 
-export interface RunnableCodeOptions {}
-
-export interface RunnableCodeAndPreviewOptions
-  extends RunnableCodeOptions,
-    RunnableCodePreviewOptions {}
-
-export interface RunnableCodePreviewProps
-  extends RunnableCodeAndPreviewOptions {
+export interface RunnableCodePreviewProps extends RunnableCodePreviewOptions {
   code: string;
   scope?: RunnableCodeScope;
 }

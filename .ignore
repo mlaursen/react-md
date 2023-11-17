@@ -9,3 +9,10 @@ prev/
 /packages/material-icons/src/*.tsx
 
 .next/
+
+toc.ts
+demo-page.mdx
+apiLookup.ts
+scssLookup.ts
+scssModulesLookup.ts
+apiRoutes.ts

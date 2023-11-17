@@ -1,15 +1,13 @@
 "use client";
 import { useCodeLanguageContext } from "@/providers/CodeLanguageProvider.jsx";
+import { type RunnableCodePreviewOptions } from "@/types/code.js";
 import { type FakeScssModule } from "@/utils/fakeScssModules.js";
 import { Box, Slide, Tab, TabList, useTabs } from "@react-md/core";
 import { useEffect, type ReactElement } from "react";
 import { CodeBlockHeader } from "./CodeBlockHeader.jsx";
 import { CodeEditor } from "./CodeEditor/CodeEditor.jsx";
 import { useCodeEditor } from "./CodeEditor/useCodeEditor.js";
-import {
-  RunnableCodePreview,
-  type RunnableCodeAndPreviewOptions,
-} from "./DangerouslyRunCode/RunnableCodePreview.jsx";
+import { RunnableCodePreview } from "./DangerouslyRunCode/RunnableCodePreview.jsx";
 import styles from "./FullDemoEditor.module.scss";
 import { ResetDemo } from "./ResetDemo.jsx";
 import { ScssCodeEditor } from "./ScssCodeEditor.jsx";
@@ -17,7 +15,7 @@ import { type HighlightedTypescriptCode } from "./TypescriptCode.jsx";
 import { ConfigureCodeLanguage } from "./WebsiteConfiguration/ConfigureCodeLanguage.jsx";
 
 export interface FullDemoEditorProps extends HighlightedTypescriptCode {
-  preview: RunnableCodeAndPreviewOptions;
+  preview: RunnableCodePreviewOptions;
   scssModules: readonly FakeScssModule[];
 }
 

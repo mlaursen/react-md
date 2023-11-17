@@ -1,17 +1,14 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
-import { type RunnableCodeOptions } from "../../src/components/DangerouslyRunCode/RunnableCodePreview.js";
-import { type RunnableCodePreviewOptions } from "../../src/components/DangerouslyRunCode/RunnableCodePreviewContainer.js";
+import { type CodeJsxProps } from "../../src/types/code.js";
 import { assertBoolean, assertString } from "../../src/utils/assertions.js";
+import { format } from "../../src/utils/format.js";
 import { log } from "./log.js";
 import { getDemoCode } from "./typescript.js";
-import { format } from "../../src/utils/format.js";
 
 const DEMO_JSON_REGEX = /^{{.+}}$/;
 
-interface ParsedOptions
-  extends Required<RunnableCodeOptions>,
-    Required<RunnableCodePreviewOptions> {
+interface ParsedOptions extends Required<CodeJsxProps> {
   importName: string;
   preview: boolean;
   editable: boolean;

@@ -1,5 +1,5 @@
 import { highlightCode } from "@/utils/highlightCode.js";
-import { parseCodeBlock, type CodeJsxProps } from "@/utils/parseCodeBlock.js";
+import { parseCodeBlock } from "@/utils/parseCodeBlock.js";
 import { type ReactElement, type ReactNode } from "react";
 import "server-only";
 import { CodeBlock } from "./CodeBlock.jsx";
@@ -16,10 +16,9 @@ import { TypescriptCode } from "./TypescriptCode.js";
 import { TypescriptCodeEditor } from "./TypescriptCodeEditor.jsx";
 import { ConfigureCodeLanguage } from "./WebsiteConfiguration/ConfigureCodeLanguage.jsx";
 
-export interface HighlightedCodeBlockProps
-  extends InlineCodeProps,
-    CodeJsxProps {
+export interface HighlightedCodeBlockProps extends InlineCodeProps {
   lang?: string;
+  fileName?: string;
   multiline?: boolean;
 }
 

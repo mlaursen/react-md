@@ -1,8 +1,10 @@
-import { type RunnableCodeAndPreviewOptions } from "@/components/DangerouslyRunCode/RunnableCodePreview.jsx";
-import { type RunnableCodePreviewOptions } from "@/components/DangerouslyRunCode/RunnableCodePreviewContainer.jsx";
 import { type PackageManagerCodeBlockProps } from "@/components/PackageManagerCodeBlock.js";
 import { type HighlightedTypescriptCode } from "@/components/TypescriptCode.js";
 import { SCSS_MODULES } from "@/constants/scssModulesLookup.js";
+import {
+  type CodeJsxProps,
+  type RunnableCodePreviewOptions,
+} from "@/types/code.js";
 import { convertTsToJs } from "@/utils/convertTsToJs.js";
 import { highlightCode } from "@/utils/highlightCode.js";
 import "server-only";
@@ -11,12 +13,6 @@ import { type FakeScssModule } from "./fakeScssModules.js";
 const NPM_CODE = /^np(m|x)/;
 const LANGUAGE_REGEX = /language-([a-z]+)/;
 const JSX_PROPERTY_REGEX = /([a-z][A-Za-z0-9]+)(="([^"]+)")?\s?/g;
-
-export interface CodeJsxProps extends RunnableCodeAndPreviewOptions {
-  preview?: boolean;
-  editable?: boolean;
-  fileName?: string;
-}
 
 interface ParseCodeBlockOptions extends CodeJsxProps {
   code: string;
@@ -31,7 +27,7 @@ interface ParsedCodeBlock
   tsCode?: HighlightedTypescriptCode;
   scssModules?: readonly FakeScssModule[];
   packageManager?: PackageManagerCodeBlockProps;
-  previewOptions: RunnableCodeAndPreviewOptions;
+  previewOptions: RunnableCodePreviewOptions;
 }
 
 export async function parseCodeBlock(
