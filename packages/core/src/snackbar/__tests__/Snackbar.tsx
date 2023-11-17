@@ -16,12 +16,13 @@ const render = (
   ui: ReactElement,
   options?: ReactMDRenderOptions
 ): RenderResult => {
+  const manager = new ToastManager();
+  manager.addToast({ children: "Toast" });
+
   return rmdRender(ui, {
     ...options,
     wrapper: ({ children }) => (
-      <ToastManagerProvider manager={new ToastManager()}>
-        {children}
-      </ToastManagerProvider>
+      <ToastManagerProvider manager={manager}>{children}</ToastManagerProvider>
     ),
   });
 };
@@ -30,12 +31,12 @@ describe("Snackbar", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {
     const ref = createRef<HTMLDivElement>();
     const props = {
-      "aria-label": "Notifications",
+      "data-testid": "snackbar",
       ref,
     } as const;
     const { rerender } = render(<Snackbar {...props} />);
 
-    const snackbar = screen.getByRole("status", { name: "Notifications" });
+    const snackbar = screen.getByTestId("snackbar");
     expect(ref.current).toBeInstanceOf(HTMLDivElement);
     expect(ref.current).toBe(snackbar);
     expect(snackbar).toMatchSnapshot();
@@ -60,8 +61,8 @@ describe("Snackbar", () => {
       "top-right",
     ];
 
-    const { rerender } = render(<Snackbar />);
-    const snackbar = screen.getByRole("status");
+    const { rerender } = render(<Snackbar data-testid="snackbar" />);
+    const snackbar = screen.getByTestId("snackbar");
     expect(snackbar).toMatchSnapshot();
 
     positions.forEach((position) => {
@@ -72,13 +73,13 @@ describe("Snackbar", () => {
   });
 
   it("should allow the portal behavior to be disabled", () => {
-    const { container, rerender } = render(<Snackbar />);
-    let snackbar = screen.getByRole("status");
+    const { container, rerender } = render(<Snackbar data-testid="snackbar" />);
+    let snackbar = screen.getByTestId("snackbar");
     expect(container).not.toContainElement(snackbar);
     expect(snackbar).toBeInTheDocument();
 
-    rerender(<Snackbar disablePortal />);
-    snackbar = screen.getByRole("status");
+    rerender(<Snackbar data-testid="snackbar" disablePortal />);
+    snackbar = screen.getByTestId("snackbar");
     expect(container).toContainElement(snackbar);
   });
 });

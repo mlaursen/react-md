@@ -61,7 +61,7 @@ export function DefaultToastRenderer(props: ToastRendererProps): ReactElement {
   } = props;
   const {
     closeButtonProps,
-    closeButton = !!closeButtonProps,
+    closeButton = !!closeButtonProps || !!remaining.closeButtonProps,
     onEntered: defaultEntered = noop,
     onExited: defaultExited = noop,
     onMouseEnter: defaultMouseEnter = noop,

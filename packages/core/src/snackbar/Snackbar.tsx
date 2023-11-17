@@ -1,10 +1,5 @@
 "use client";
-import {
-  forwardRef,
-  type AriaRole,
-  type ComponentType,
-  type HTMLAttributes,
-} from "react";
+import { forwardRef, type ComponentType, type HTMLAttributes } from "react";
 import { Portal } from "../portal/Portal.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import {
@@ -23,9 +18,6 @@ export interface SnackbarProps extends HTMLAttributes<HTMLDivElement> {
    * @defaultValue `"snackbar-" + useId()`
    */
   id?: string;
-
-  /** @defaultValue `"status"` */
-  role?: AriaRole;
 
   /**
    * Set this to the number of toasts that can be visible within the snackbar at
@@ -154,7 +146,6 @@ export const Snackbar = forwardRef<HTMLDivElement, SnackbarProps>(
   function Snackbar(props, ref) {
     const {
       id: propId,
-      role = "status",
       className,
       limit = 1,
       position = "bottom",
@@ -168,21 +159,22 @@ export const Snackbar = forwardRef<HTMLDivElement, SnackbarProps>(
 
     return (
       <Portal disabled={disablePortal}>
-        <div
-          {...remaining}
-          id={id}
-          ref={ref}
-          role={role}
-          className={snackbar({ position, className })}
-        >
-          {queue.map((toast) => (
-            <RenderToast
-              {...toast}
-              key={toast.toastId}
-              toastDefaults={toastDefaults}
-            />
-          ))}
-        </div>
+        {queue.length > 0 && (
+          <div
+            {...remaining}
+            id={id}
+            ref={ref}
+            className={snackbar({ position, className })}
+          >
+            {queue.map((toast) => (
+              <RenderToast
+                {...toast}
+                key={toast.toastId}
+                toastDefaults={toastDefaults}
+              />
+            ))}
+          </div>
+        )}
       </Portal>
     );
   }

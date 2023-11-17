@@ -38,7 +38,7 @@ export interface ConfigurableToastProps
   /**
    * Note: This is set while creating the toast.
    *
-   * @defaultValue `visibleTime === null ? "alert" : undefined`
+   * @defaultValue `visibleTime === null ? "alert" : "status"`
    */
   role?: AriaRole;
 
@@ -149,7 +149,7 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(
       actionButton: propActionButton,
       paused,
       visible,
-      closeIcon,
+      closeIcon: propCloseIcon,
       closeButtonProps,
       closeButton = !!closeButtonProps,
       contentProps,
@@ -188,6 +188,11 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(
           {buttonChildren}
         </ToastActionButton>
       );
+    }
+
+    let closeIcon = propCloseIcon;
+    if (typeof closeButtonProps?.children !== "undefined") {
+      closeIcon = closeButtonProps.children;
     }
 
     const action = !!actionButton;

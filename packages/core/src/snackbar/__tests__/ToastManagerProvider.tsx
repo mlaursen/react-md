@@ -78,7 +78,7 @@ function SimpleTest(props: SimpleTestProps): ReactElement {
         Button
       </Button>
       {children}
-      <Snackbar {...snackbar} />
+      <Snackbar data-testid="snackbar" {...snackbar} />
     </>
   );
 }
@@ -101,21 +101,18 @@ describe("ToastManagerProvider", () => {
             <Button onClick={() => addToast({ children: "Hello, world!" })}>
               Button
             </Button>
-            <Snackbar />
+            <Snackbar data-testid="snackbar" />
           </>
         );
       }
 
       rmdRender(<Test />);
       const button = screen.getByRole("button", { name: "Button" });
-      const snackbar = screen.getByRole("status");
-      expect(snackbar).toBeInTheDocument();
+      expect(() => screen.getByTestId("snackbar")).toThrow();
 
       await user.click(button);
-      const message = snackbar.firstElementChild;
-      if (!message) {
-        throw new Error();
-      }
+      const snackbar = await screen.findByTestId("snackbar");
+      const message = await screen.findByRole("status");
 
       expect(snackbar).toMatchSnapshot();
 
@@ -126,20 +123,14 @@ describe("ToastManagerProvider", () => {
     });
 
     it("should allow toasts to be added outside of a react component (like redux)", async () => {
-      rmdRender(<Snackbar />);
-      const snackbar = screen.getByRole("status");
-      expect(snackbar).toBeInTheDocument();
-      expect(snackbar).toBeEmptyDOMElement();
+      rmdRender(<Snackbar data-testid="snackbar" />);
 
       act(() => {
         addToast({ toastId: "toast-id", children: "Fired outside of react!" });
       });
 
-      let toast = screen.getByText("Fired outside of react!");
+      let toast = await screen.findByRole("status");
       expect(toast).toBeInTheDocument();
-      await waitFor(() => {
-        expect(toast.parentElement).not.toHaveClass(ENTER_CLASS_NAME);
-      });
 
       act(() => {
         popToast();
@@ -150,8 +141,7 @@ describe("ToastManagerProvider", () => {
         addToast({ toastId: "toast-id", children: "Fired outside of react!" });
         addToast({ toastId: "toast-id-2", children: "Second toast" });
       });
-      toast = screen.getByText("Fired outside of react!");
-      expect(toast).toBeInTheDocument();
+      toast = await screen.findByRole("status");
 
       act(() => {
         removeToast("invalid-toast-id", false);
@@ -170,7 +160,7 @@ describe("ToastManagerProvider", () => {
         addToast({ children: "Toast" });
         clearToasts();
       });
-      expect(snackbar).toBeEmptyDOMElement();
+      expect(() => screen.getByTestId("snackbar")).toThrow();
     });
 
     it("should not add a toast to another toast manager", async () => {
@@ -185,21 +175,20 @@ describe("ToastManagerProvider", () => {
             <Button onClick={() => addToast({ children: "Global" })}>
               Global
             </Button>
-            <Snackbar />
+            <Snackbar data-testid="snackbar" />
           </>
         );
       }
 
       renderWithManager(<Test />);
-      const snackbar = screen.getByRole("status");
       const scopedAdd = screen.getByRole("button", { name: "Scoped" });
       const globalAdd = screen.getByRole("button", { name: "Global" });
 
       await user.click(globalAdd);
-      expect(snackbar).toBeEmptyDOMElement();
+      expect(() => screen.getByTestId("snackbar")).toThrow();
 
       await user.click(scopedAdd);
-      expect(snackbar).not.toBeEmptyDOMElement();
+      const snackbar = await screen.findByTestId("snackbar");
       expect(within(snackbar).getByText("Scoped")).toBeInTheDocument();
     });
   });
@@ -221,15 +210,10 @@ describe("ToastManagerProvider", () => {
       // eslint-disable-next-line testing-library/render-result-naming-convention
       const result = renderWithManager(<SimpleTest {...props} />);
       const button = screen.getByRole("button", { name: "Button" });
-      const snackbar = screen.getByRole("status");
-      expect(snackbar).toBeEmptyDOMElement();
 
       await user.click(button);
-      expect(snackbar).not.toBeEmptyDOMElement();
-      const message = snackbar.firstElementChild;
-      if (!message) {
-        throw new Error();
-      }
+      const snackbar = await screen.findByTestId("snackbar");
+      const message = await screen.findByRole("status");
 
       act(() => {
         jest.runOnlyPendingTimers();
@@ -331,15 +315,9 @@ describe("ToastManagerProvider", () => {
       const user = userEvent.setup({ delay: null });
       renderWithManager(<SimpleTest toast={{ toastId: "same-toast-id" }} />);
       const button = screen.getByRole("button", { name: "Button" });
-      const snackbar = screen.getByRole("status");
-      expect(snackbar).toBeEmptyDOMElement();
 
       await user.click(button);
-      expect(snackbar).not.toBeEmptyDOMElement();
-      const message = snackbar.firstElementChild;
-      if (!message) {
-        throw new Error();
-      }
+      const message = await screen.findByRole("status");
 
       act(() => {
         jest.runOnlyPendingTimers();
@@ -456,7 +434,7 @@ describe("ToastManagerProvider", () => {
           </>
         );
       }
-      const { user, message, snackbar } = await init({
+      const { user, message } = await init({
         children: <Children />,
       });
       act(() => {
@@ -474,8 +452,8 @@ describe("ToastManagerProvider", () => {
 
       const testFullFlow = async (button: HTMLElement): Promise<void> => {
         await user.click(button);
-        expect(snackbar).not.toBeEmptyDOMElement();
-        const nextMessage = snackbar.firstElementChild;
+        const snackbar = await screen.findByTestId("snackbar");
+        const nextMessage = within(snackbar).getByRole("status");
         expect(nextMessage).toHaveClass(ENTER_CLASS_NAME);
         act(() => {
           jest.runOnlyPendingTimers();
@@ -746,17 +724,17 @@ describe("ToastManagerProvider", () => {
             >
               Alert
             </Button>
-            <Snackbar />
+            <Snackbar data-testid="snackbar" />
           </>
         );
       }
 
       renderWithManager(<Test />);
-      const snackbar = screen.getByRole("status");
       const button = screen.getByRole("button", { name: "Alert" });
 
       await user.click(button);
 
+      const snackbar = screen.getByTestId("snackbar");
       const alert = screen.getByRole("alert");
       expect(snackbar).toMatchSnapshot();
 

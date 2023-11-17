@@ -304,7 +304,7 @@ export class ToastManager {
     const {
       toastId = nanoid(),
       visibleTime = DEFAULT_TOAST_VISIBLE_TIME,
-      role = visibleTime === null ? "alert" : undefined,
+      role = visibleTime === null ? "alert" : "status",
       priority = "normal",
       duplicates = "restart",
     } = toast;

@@ -2,75 +2,175 @@
 
 exports[`Snackbar should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <div
-  aria-label="Notifications"
   class="rmd-snackbar rmd-snackbar--bottom"
+  data-testid="snackbar"
   id="snackbar-:r0:"
-  role="status"
-/>
+>
+  <div
+    class="rmd-toast"
+    id="toast-:r1:"
+    role="status"
+  >
+    <div
+      class="rmd-toast-content"
+    >
+      Toast
+    </div>
+  </div>
+</div>
 `;
 
 exports[`Snackbar should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <div
-  aria-label="Notifications"
   class="rmd-snackbar rmd-snackbar--bottom custom-class-name"
+  data-testid="snackbar"
   id="snackbar-:r0:"
-  role="status"
   style="color: white;"
-/>
+>
+  <div
+    class="rmd-toast"
+    id="toast-:r1:"
+    role="status"
+  >
+    <div
+      class="rmd-toast-content"
+    >
+      Toast
+    </div>
+  </div>
+</div>
 `;
 
 exports[`Snackbar should support different positions within the viewport 1`] = `
 <div
   class="rmd-snackbar rmd-snackbar--bottom"
-  id="snackbar-:r1:"
-  role="status"
-/>
+  data-testid="snackbar"
+  id="snackbar-:r2:"
+>
+  <div
+    class="rmd-toast"
+    id="toast-:r3:"
+    role="status"
+  >
+    <div
+      class="rmd-toast-content"
+    >
+      Toast
+    </div>
+  </div>
+</div>
 `;
 
 exports[`Snackbar should support different positions within the viewport 2`] = `
 <div
   class="rmd-snackbar rmd-snackbar--bottom"
-  id="snackbar-:r1:"
-  role="status"
-/>
+  id="snackbar-:r2:"
+>
+  <div
+    class="rmd-toast"
+    id="toast-:r3:"
+    role="status"
+  >
+    <div
+      class="rmd-toast-content"
+    >
+      Toast
+    </div>
+  </div>
+</div>
 `;
 
 exports[`Snackbar should support different positions within the viewport 3`] = `
 <div
   class="rmd-snackbar rmd-snackbar--bottom rmd-snackbar--start"
-  id="snackbar-:r1:"
-  role="status"
-/>
+  id="snackbar-:r2:"
+>
+  <div
+    class="rmd-toast"
+    id="toast-:r3:"
+    role="status"
+  >
+    <div
+      class="rmd-toast-content"
+    >
+      Toast
+    </div>
+  </div>
+</div>
 `;
 
 exports[`Snackbar should support different positions within the viewport 4`] = `
 <div
   class="rmd-snackbar rmd-snackbar--bottom rmd-snackbar--end"
-  id="snackbar-:r1:"
-  role="status"
-/>
+  id="snackbar-:r2:"
+>
+  <div
+    class="rmd-toast"
+    id="toast-:r3:"
+    role="status"
+  >
+    <div
+      class="rmd-toast-content"
+    >
+      Toast
+    </div>
+  </div>
+</div>
 `;
 
 exports[`Snackbar should support different positions within the viewport 5`] = `
 <div
   class="rmd-snackbar rmd-snackbar--top"
-  id="snackbar-:r1:"
-  role="status"
-/>
+  id="snackbar-:r2:"
+>
+  <div
+    class="rmd-toast"
+    id="toast-:r3:"
+    role="status"
+  >
+    <div
+      class="rmd-toast-content"
+    >
+      Toast
+    </div>
+  </div>
+</div>
 `;
 
 exports[`Snackbar should support different positions within the viewport 6`] = `
 <div
   class="rmd-snackbar rmd-snackbar--top rmd-snackbar--start"
-  id="snackbar-:r1:"
-  role="status"
-/>
+  id="snackbar-:r2:"
+>
+  <div
+    class="rmd-toast"
+    id="toast-:r3:"
+    role="status"
+  >
+    <div
+      class="rmd-toast-content"
+    >
+      Toast
+    </div>
+  </div>
+</div>
 `;
 
 exports[`Snackbar should support different positions within the viewport 7`] = `
 <div
   class="rmd-snackbar rmd-snackbar--top rmd-snackbar--end"
-  id="snackbar-:r1:"
-  role="status"
-/>
+  id="snackbar-:r2:"
+>
+  <div
+    class="rmd-toast"
+    id="toast-:r3:"
+    role="status"
+  >
+    <div
+      class="rmd-toast-content"
+    >
+      Toast
+    </div>
+  </div>
+</div>
 `;
