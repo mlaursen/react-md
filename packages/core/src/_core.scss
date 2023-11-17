@@ -312,6 +312,7 @@ $_layer-order: (
   @include form.use-light-theme;
   @include table.use-light-theme;
   @include segmented-button.use-light-theme;
+  @include badge.use-light-theme;
 }
 
 @mixin use-dark-theme {
@@ -326,6 +327,7 @@ $_layer-order: (
   @include form.use-dark-theme;
   @include table.use-dark-theme;
   @include segmented-button.use-dark-theme;
+  @include badge.use-dark-theme;
 }
 
 @mixin styles {

@@ -82,6 +82,31 @@ $var-lookup: (
   ),
 );
 
+@function get-var($name, $fallback: null) {
+  $found: utils.validate($var-lookup, $name, "segmented button var");
+  $var: map.get($found, var);
+  $value: if($fallback, $fallback, map.get($found, value));
+
+  @if $value {
+    @return var(#{$var}, #{$value});
+  }
+
+  @return var(#{$var});
+}
+
+@mixin set-var($name, $value) {
+  $var: map.get(
+    utils.validate($var-lookup, $name, "segmented button var"),
+    var
+  );
+
+  #{$var}: #{$value};
+}
+
+@mixin use-var($property, $name: $property, $fallback: null) {
+  #{$property}: get-var($name, $fallback);
+}
+
 @mixin use-light-theme {
   @if not $disable-everything {
     @if $light-theme-outline-color != $dark-theme-outline-color {
@@ -122,31 +147,6 @@ $var-lookup: (
       @include set-var(selected-color, $dark-theme-selected-color);
     }
   }
-}
-
-@function get-var($name, $fallback: null) {
-  $found: utils.validate($var-lookup, $name, "segmented button var");
-  $var: map.get($found, var);
-  $value: if($fallback, $fallback, map.get($found, value));
-
-  @if $value {
-    @return var(#{$var}, #{$value});
-  }
-
-  @return var(#{$var});
-}
-
-@mixin set-var($name, $value) {
-  $var: map.get(
-    utils.validate($var-lookup, $name, "segmented button var"),
-    var
-  );
-
-  #{$var}: #{$value};
-}
-
-@mixin use-var($property, $name: $property, $fallback: null) {
-  #{$property}: get-var($name, $fallback);
 }
 
 @mixin styles {

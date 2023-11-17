@@ -22,10 +22,32 @@ $typography: map.merge(
   )
 ) !default;
 
-$greyscale-background-color: rgba(colors.$black, 0.2) !default;
-$greyscale-color: a11y.contrast-color($greyscale-background-color) !default;
+$light-theme-greyscale-background-color: #ccc !default;
+$light-theme-greyscale-color: a11y.contrast-color(
+  $light-theme-greyscale-background-color
+) !default;
+$dark-theme-greyscale-background-color: colors.$grey-700 !default;
+$dark-theme-greyscale-color: a11y.contrast-color(
+  $dark-theme-greyscale-background-color
+) !default;
+$greyscale-background-color: theme.get-default-color(
+  $light-theme-greyscale-background-color,
+  $dark-theme-greyscale-background-color
+) !default;
+$greyscale-color: theme.get-default-color(
+  $light-theme-greyscale-color,
+  $dark-theme-greyscale-color
+) !default;
 
 $var-lookup: (
+  greyscale-background-color: (
+    var: --rmd-badge-greyscale-background-color,
+    value: $greyscale-background-color,
+  ),
+  greyscale-color: (
+    var: --rmd-badge-greyscale-color,
+    value: $greyscale-color,
+  ),
   size: (
     var: --rmd-badge-size,
     value: $size,
@@ -66,6 +88,35 @@ $var-lookup: (
   #{$property}: get-var($name, $fallback);
 }
 
+@mixin use-light-theme {
+  @if $light-theme-greyscale-background-color !=
+    $dark-theme-greyscale-background-color
+  {
+    @include set-var(
+      greyscale-background-color,
+      $light-theme-greyscale-background-color
+    );
+  }
+  @if $light-theme-greyscale-color != $dark-theme-greyscale-color {
+    @include set-var(greyscale-color, $light-theme-greyscale-color);
+  }
+}
+
+@mixin use-dark-theme {
+  @if $light-theme-greyscale-background-color !=
+    $dark-theme-greyscale-background-color
+  {
+    @include set-var(
+      greyscale-background-color,
+      $dark-theme-greyscale-background-color
+    );
+  }
+
+  @if $light-theme-greyscale-color != $dark-theme-greyscale-color {
+    @include set-var(greyscale-color, $dark-theme-greyscale-color);
+  }
+}
+
 @mixin styles {
   @if not $disable-everything {
     .rmd-badge {
@@ -84,22 +135,8 @@ $var-lookup: (
 
       @if not $disable-greyscale-theme {
         &--greyscale {
-          background-color: $greyscale-background-color;
-          color: $greyscale-color;
-        }
-      }
-
-      @if not $disable-primary-theme {
-        &--primary {
-          @include theme.theme-use-var(background-color, primary-color);
-          @include theme.theme-use-var(color, on-primary-color);
-        }
-      }
-
-      @if not $disable-secondary-theme {
-        &--secondary {
-          @include theme.theme-use-var(background-color, secondary-color);
-          @include theme.theme-use-var(color, on-secondary-color);
+          @include use-var(background-color, greyscale-background-color);
+          @include use-var(color, greyscale-color);
         }
       }
     }
