@@ -1,13 +1,15 @@
 "use client";
 import { type AppCookies } from "@/app/utils/serverState.js";
 import { AppToastRenderer } from "@/components/AppToastRenderer/AppToastRenderer.jsx";
-import { rmdConfig } from "@/constants/rmdConfig.js";
+import { rmdConfig } from "@/constants/rmdConfig.jsx";
+import { appToastManager } from "@/toasts.js";
 import {
   CoreProviders,
   MenuConfigurationProvider,
   NullSuspense,
   Snackbar,
   ThemeProvider,
+  ToastManagerProvider,
   TooltipHoverModeProvider,
   WritingDirectionProvider,
 } from "@react-md/core";
@@ -45,12 +47,14 @@ export function RootProviders(props: RootProvidersProps): ReactElement {
                   <CodeLanguageProvider
                     defaultCodeLanguage={defaultCodeLanguage}
                   >
-                    <TooltipHoverModeProvider>
-                      {children}
-                    </TooltipHoverModeProvider>
-                    <NullSuspense>
-                      <Snackbar renderToast={AppToastRenderer} />
-                    </NullSuspense>
+                    <ToastManagerProvider manager={appToastManager}>
+                      <TooltipHoverModeProvider>
+                        {children}
+                      </TooltipHoverModeProvider>
+                      <NullSuspense>
+                        <Snackbar renderToast={AppToastRenderer} />
+                      </NullSuspense>
+                    </ToastManagerProvider>
                   </CodeLanguageProvider>
                 </PackageManagerProvider>
               </PrismThemeProvider>

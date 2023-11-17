@@ -1,4 +1,6 @@
-import { type CreateToastOptions, addToast } from "@react-md/core";
+import { type CreateToastOptions, ToastManager } from "@react-md/core";
+
+export const appToastManager = new ToastManager();
 
 const TOASTS = ["copied", "generating-icons"] as const;
 
@@ -16,7 +18,7 @@ export function assertKnownToast(toastId: string): asserts toastId is ToastId {
 export function addAppToast(
   options: CreateToastOptions & { toastId: ToastId }
 ): void {
-  addToast({
+  appToastManager.addToast({
     ...options,
     visibleTime:
       options.toastId === "generating-icons" ? null : options.visibleTime,
