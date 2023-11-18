@@ -117,6 +117,8 @@ export function Blockquote(props: BlockquoteProps): ReactElement {
           styles.themed,
           theme === "info" && styles.info,
           theme === "warning" && styles.warning,
+          theme === "success" && styles.success,
+          theme === "error" && styles.error,
           typography({ type: "subtitle-2" }),
           className
         )}

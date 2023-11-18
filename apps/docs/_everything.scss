@@ -24,8 +24,8 @@
   --warning-color: #{core.$black};
   --error-bg: #{rgba(core.$red-700, 0.24)};
   --error-color: #{core.$red-700};
-  --success-bg: #{rgba(core.$green-700, 0.24)};
-  --success-color: #{core.$green-700};
+  --success-bg: #{core.$green-a-100};
+  --success-color: #{core.$green-900};
 }
 
 @mixin dark-theme($core) {
@@ -47,6 +47,6 @@
   --warning-color: #{core.$yellow-700};
   --error-bg: #{rgba(core.$red-700, 0.24)};
   --error-color: #{core.$red-700};
-  --success-bg: #{rgba(core.$green-700, 0.24)};
-  --success-color: #{core.$green-700};
+  --success-bg: #{core.$green-900};
+  --success-color: #{core.$light-green-a-100};
 }
