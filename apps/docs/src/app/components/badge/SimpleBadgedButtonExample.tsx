@@ -1,12 +1,3 @@
-# Badge
-
-Badges show notifications, counts, or status information on navigation items and
-icons.
-
-# Simple Badged Button
-
-```tsx
-// preview editable
 import { Badge, Button, SrOnly } from "@react-md/core";
 import NotificationsOutlinedIcon from "@react-md/material-icons/NotificationsOutlinedIcon";
 import { type ReactElement } from "react";
@@ -20,4 +11,3 @@ export default function SimpleBadgedButtonExample(): ReactElement {
     </Button>
   );
 }
-```

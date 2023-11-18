@@ -18,6 +18,7 @@ import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import MoodBadOutlinedIcon from "@react-md/material-icons/MoodBadOutlinedIcon";
 import MoodOutlinedIcon from "@react-md/material-icons/MoodOutlinedIcon";
 import MoreVertOutlinedIcon from "@react-md/material-icons/MoreVertOutlinedIcon";
+import NotificationsOutlinedIcon from "@react-md/material-icons/NotificationsOutlinedIcon";
 import PauseIcon from "@react-md/material-icons/PauseIcon";
 import PlayArrowIcon from "@react-md/material-icons/PlayArrowIcon";
 import RadioButtonCheckedIcon from "@react-md/material-icons/RadioButtonCheckedIcon";
@@ -109,6 +110,7 @@ function dangerouslyEvalCode(
     "@react-md/material-icons/MoodBadOutlinedIcon": MoodBadOutlinedIcon,
     "@react-md/material-icons/MoodOutlinedIcon": MoodOutlinedIcon,
     "@react-md/material-icons/MoreVertOutlinedIcon": MoreVertOutlinedIcon,
+    "@react-md/material-icons/NotificationsOutlinedIcon": NotificationsOutlinedIcon,
     "@react-md/material-icons/PauseIcon": PauseIcon,
     "@react-md/material-icons/PlayArrowIcon": PlayArrowIcon,
     "@react-md/material-icons/RadioButtonCheckedIcon": RadioButtonCheckedIcon,
