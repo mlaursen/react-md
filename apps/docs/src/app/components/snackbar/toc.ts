@@ -3,4 +3,51 @@ import { type TableOfContentsItem } from "@/components/TableOfContents/types.js"
 
 export const toc = [
   { id: "snackbar", depth: 1, value: "Snackbar" },
+  { id: "initialize-snackbar", depth: 1, value: "Initialize Snackbar" },
+  {
+    id: "simple-toast",
+    depth: 1,
+    value: "Simple Toast",
+    items: [
+      { id: "multiple-lines", depth: 2, value: "Multiple Lines" },
+      { id: "toast-theme", depth: 2, value: "Toast Theme" },
+      {
+        id: "custom-toast-visible-time",
+        depth: 2,
+        value: "Custom Toast Visible Time",
+      },
+      { id: "toast-position", depth: 2, value: "Toast Position" },
+    ],
+  },
+  {
+    id: "add-a-close-button",
+    depth: 1,
+    value: "Add a Close Button",
+    items: [
+      { id: "close-button-props", depth: 2, value: "Close Button Props" },
+    ],
+  },
+  {
+    id: "actionable-toasts",
+    depth: 1,
+    value: "Actionable Toasts",
+    items: [
+      {
+        id: "action-and-close-button",
+        depth: 2,
+        value: "Action and Close Button",
+      },
+      { id: "require-an-action", depth: 2, value: "Require an action" },
+      { id: "custom-action-button", depth: 2, value: "Custom Action Button" },
+    ],
+  },
+  { id: "custom-toast-manager", depth: 1, value: "Custom Toast Manager" },
+  {
+    id: "preventing-duplicate-toasts",
+    depth: 1,
+    value: "Preventing Duplicate Toasts",
+  },
+  { id: "multiple-visible-toasts", depth: 1, value: "Multiple Visible Toasts" },
+  { id: "custom-toast-renderer", depth: 1, value: "Custom Toast Renderer" },
+  { id: "toast-priority", depth: 1, value: "Toast Priority" },
 ] satisfies readonly TableOfContentsItem[];

@@ -63,6 +63,18 @@ export const SCSS_MODULES: Record<string, FakeScssModule> = {
     baseName: "SliderMarks",
     fileName: "SliderMarks.module.scss",
   },
+  "src/app/components/snackbar/MultipleVisibleToastsExample.module.scss": {
+    css: ".MultipleVisibleToastsExample_toast__TXVsd {\n  position: relative;\n  transform-origin: right;\n}\n[dir=rtl] .MultipleVisibleToastsExample_toast__TXVsd {\n  transform-origin: left;\n}\n\n.MultipleVisibleToastsExample_progress__TXVsd {\n  --rmd-progress-color: var(--rmd-secondary-color);\n  background-color: #fff;\n  bottom: 0;\n  left: 0;\n  position: absolute;\n  right: 0;\n}\n\n@keyframes countdown {\n  0% {\n    width: 100%;\n  }\n  100% {\n    width: 0%;\n  }\n}\n.MultipleVisibleToastsExample_countdown__TXVsd {\n  will-change: width;\n}\n.MultipleVisibleToastsExample_countdown__TXVsd::before {\n  animation: none;\n}\n.MultipleVisibleToastsExample_countdown__TXVsd::after {\n  animation: 5s linear 0.2s countdown;\n}\n.rmd-toast--paused  .MultipleVisibleToastsExample_countdown__TXVsd::after {\n  animation-play-state: paused;\n}",
+    scss: '@use "everything";\n\n.toast {\n  @include everything.rtl {\n    transform-origin: left;\n  }\n\n  position: relative;\n  transform-origin: right;\n}\n\n.progress {\n  @include everything.progress-set-var(\n    color,\n    everything.theme-get-var(secondary-color)\n  );\n\n  background-color: everything.$white;\n  bottom: 0;\n  left: 0;\n  position: absolute;\n  right: 0;\n}\n\n@keyframes countdown {\n  0% {\n    width: 100%;\n  }\n\n  100% {\n    width: 0%;\n  }\n}\n\n.countdown {\n  will-change: width;\n\n  &::before {\n    animation: none;\n  }\n\n  &::after {\n    animation: 5s linear everything.$scale-transition-enter-duration countdown;\n  }\n\n  :global(.rmd-toast--paused) :local &::after {\n    animation-play-state: paused;\n  }\n}\n',
+    baseName: "MultipleVisibleToastsExample",
+    fileName: "MultipleVisibleToastsExample.module.scss",
+  },
+  "src/app/components/snackbar/ToastPriorityExample.module.scss": {
+    css: ".ToastPriorityExample_form__VG9hc {\n  max-width: 30rem;\n  width: 100%;\n}\n\n.ToastPriorityExample_code__VG9hc {\n  height: 100%;\n}\n\n.ToastPriorityExample_block__VG9hc {\n  height: 80rem;\n}",
+    scss: ".form {\n  max-width: 30rem;\n  width: 100%;\n}\n\n.code {\n  height: 100%;\n}\n\n.block {\n  height: 80rem;\n}\n",
+    baseName: "ToastPriorityExample",
+    fileName: "ToastPriorityExample.module.scss",
+  },
   "src/app/components/switch/SwitchWithCircularProgress.module.scss": {
     css: ".SwitchWithCircularProgress_pending__U3dpd {\n  --rmd-switch-ball-background-color: #f2f2f2;\n}",
     scss: '@use "everything";\n\n.pending {\n  // set the background color to the inactive color so that the circular\n  // progress bar will be visible while checked\n  @include everything.form-set-var(\n    switch-ball-background-color,\n    everything.$form-switch-ball-background-color\n  );\n}\n',

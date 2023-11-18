@@ -3006,14 +3006,6 @@ export const API_LOOKUP: ApiLookup = {
           defaultValue: "DefaultToastRenderer",
         },
         {
-          id: "snackbar-props-role",
-          name: "role",
-          type: "AriaRole",
-          required: false,
-          description: "",
-          defaultValue: '"status"',
-        },
-        {
           id: "snackbar-props-toastdefaults",
           name: "toastDefaults",
           type: "ConfigurableToastProps",

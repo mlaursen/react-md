@@ -1,3 +1,770 @@
 # Snackbar
 
-TODO
+Snackbars provide brief messages about app processes at the bottom of the
+screen.
+
+# Initialize Snackbar
+
+An application should normally have a single `Snackbar` added near the root of
+the application.
+
+```diff
+-import { CoreProviders } from "@react-md/core";
++import { CoreProviders, Snackbar } from "@react-md/core";
+ import rmdConfig from "./rmdConfig.jsx";
+
+
+ return (
+   <CoreProviders {...rmdConfig}>
+     {children}
++    <Snackbar />
+   </CoreProviders>
+ );
+```
+
+# Simple Toast
+
+Once the `Snackbar` component has been included in the application, toasts
+can be added by using the `addToast` function. Simple messages can be created
+by providing the `children` as the toast content.
+
+The default behavior for toasts:
+
+- Add a toast to the end of the queue
+- Once a toast becomes visible, show it for 5 seconds
+  - Pause the timeout if the user hovers the toast
+  - Pause the timeout if the user blurs the window
+- Hide the toast and display the next toast in the queue
+
+```tsx
+// preview editable
+"use client";
+import { Button, addToast } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function SimpleToastExample(): ReactElement {
+  return (
+    <Button
+      onClick={() => {
+        addToast({ children: "Hello, world!" });
+      }}
+    >
+      Add Toast
+    </Button>
+  );
+}
+```
+
+## Multiple Lines
+
+The `children` for the toast can also be any renderable element and span
+multiple lines.
+
+```tsx
+// preview editable
+"use client";
+import { Button, addToast } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function MultipleLinesToastExample(): ReactElement {
+  return (
+    <Button
+      onClick={() => {
+        addToast({
+          children: (
+            <>
+              <p>This a toast that has multiple lines.</p>
+              <p>Pretty exciting.</p>
+            </>
+          ),
+        });
+      }}
+    >
+      Add Toast
+    </Button>
+  );
+}
+```
+
+## Toast Theme
+
+The `Toast` supports all the theme colors by setting the `theme`.
+
+```tsx
+// preview editable
+"use client";
+import { Button, addToast } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function ToastThemeExample(): ReactElement {
+  return (
+    <>
+      <Button
+        onClick={() => {
+          addToast({ children: "Surface Theme (Default)", theme: "surface" });
+        }}
+        themeType="contained"
+      >
+        Surface
+      </Button>
+      <Button
+        onClick={() => {
+          addToast({ children: "Primary Theme", theme: "primary" });
+        }}
+        theme="primary"
+        themeType="contained"
+      >
+        Primary
+      </Button>
+      <Button
+        onClick={() => {
+          addToast({ children: "Secondary Theme", theme: "secondary" });
+        }}
+        theme="secondary"
+        themeType="contained"
+      >
+        Secondary
+      </Button>
+      <Button
+        onClick={() => {
+          addToast({ children: "Success Theme", theme: "success" });
+        }}
+        theme="success"
+        themeType="contained"
+      >
+        Success
+      </Button>
+      <Button
+        onClick={() => {
+          addToast({ children: "Warning Theme", theme: "warning" });
+        }}
+        theme="warning"
+        themeType="contained"
+      >
+        Warning
+      </Button>
+      <Button
+        onClick={() => {
+          addToast({ children: "Error Theme", theme: "error" });
+        }}
+        theme="error"
+        themeType="contained"
+      >
+        Error
+      </Button>
+    </>
+  );
+}
+```
+
+## Custom Toast Visible Time
+
+If the default duration of 5 seconds does not work for a specific toast, set the
+`visibleTime` to a duration in milliseconds to wait before hiding the toast.
+
+```tsx
+// preview editable
+"use client";
+import { Button, addToast } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function CustomToastVisibleTimeExample(): ReactElement {
+  return (
+    <Button
+      onClick={() => {
+        addToast({
+          children: "Wait 3 seconds instead of 5",
+          visibleTime: 3000,
+        });
+      }}
+    >
+      Toast!
+    </Button>
+  );
+}
+```
+
+## Toast Position
+
+# Add a Close Button
+
+If a toast should be able to be dismissed early, a close button can be added by
+adding `closeButton: true` when creating the toast. The close button will
+default to having an `aria-label="Close"` and using the
+[close](/customization/icon-config#close) icon.
+
+```tsx
+// preview editable
+"use client";
+import { Button, addToast } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function AddACloseButtonExample(): ReactElement {
+  return (
+    <Button
+      onClick={() => {
+        addToast({ children: "Message.", closeButton: true });
+      }}
+    >
+      Toast!
+    </Button>
+  );
+}
+```
+
+## Close Button Props
+
+If custom props are required for the close button, provide `closeButtonProps`
+instead.
+
+```tsx
+// preview editable
+"use client";
+import { Button, addToast } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function CloseButtonPropsExample(): ReactElement {
+  return (
+    <Button
+      onClick={() => {
+        addToast({
+          children: "Message.",
+          closeButtonProps: {
+            theme: "warning",
+            themeType: "outline",
+            buttonType: "text",
+            children: "Close",
+          },
+        });
+      }}
+    >
+      Toast!
+    </Button>
+  );
+}
+```
+
+# Actionable Toasts
+
+A toast can be updated to have an action button appear to the right of the
+message by providing an `action` object. It should normally have a simple
+`onClick` event handler and `children` to display in the button.
+
+```tsx
+// preview editable
+"use client";
+import { Button, addToast } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function ActionableToastExample(): ReactElement {
+  return (
+    <Button
+      onClick={() => {
+        addToast({
+          children: "This toast has an optional action",
+          action: {
+            children: "Undo",
+            onClick: () => {
+              // do something
+            },
+          },
+        });
+      }}
+    >
+      Toast!
+    </Button>
+  );
+}
+```
+
+## Action and Close Button
+
+Both an action and close button can be displayed together.
+
+```tsx
+// preview editable
+"use client";
+import { Button, addToast } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function ActionAndCloseButtonExample(): ReactElement {
+  return (
+    <Button
+      onClick={() => {
+        addToast({
+          children: "Message.",
+          closeButton: true,
+          action: {
+            onClick: () => {
+              // do something,
+            },
+            children: "Undo",
+          },
+        });
+      }}
+    >
+      Toast!
+    </Button>
+  );
+}
+```
+
+## Require an action
+
+If an action **must** be clicked to hide the toast, set the `visibleTime` to
+`null`.
+
+```tsx
+// preview editable
+"use client";
+import { Button, addToast } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function RequireAnActionExample(): ReactElement {
+  return (
+    <Button
+      onClick={() => {
+        addToast({
+          children: "Message",
+          action: {
+            children: "Must click",
+            onClick: () => {
+              // do something
+            },
+          },
+          visibleTime: null,
+        });
+      }}
+    >
+      Toast!
+    </Button>
+  );
+}
+```
+
+## Custom Action Button
+
+If the action is complex and requires additional behavior, provide an
+`actionButton` instead.
+
+```tsx
+// preview editable
+"use client";
+import {
+  AsyncButton,
+  Button,
+  addToast,
+  useCurrentToastActions,
+  wait,
+} from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function CustomActionButtonExample(): ReactElement {
+  return (
+    <Button
+      onClick={() =>
+        addToast({
+          children: "Something happened.",
+          actionButton: <ActionButton />,
+          visibleTime: null,
+        })
+      }
+    >
+      Toast!
+    </Button>
+  );
+}
+
+function ActionButton(): ReactElement {
+  const { removeToast } = useCurrentToastActions();
+  return (
+    <AsyncButton
+      onClick={async () => {
+        await wait(5000);
+        removeToast(true);
+      }}
+      theme="secondary"
+    >
+      Undo
+    </AsyncButton>
+  );
+}
+```
+
+# Custom Toast Manager
+
+If multiple `Snackbar` need to be mounted at the same time, create a new
+`ToastManager` and wrap the React tree with the `ToastManagerProvider`. Now
+toasts should be created by calling `manager.addToast` or the `addToast`
+returned by `useAddToast`.
+
+This example will give a quick example and show how the `Snackbar` can be
+updated to have `toastDefaults`.
+
+> !Info! Check out the [custom toast renderer example](#custom-toast-renderer)
+> to see a real use case for the custom toast manager.
+
+```tsx
+// preview editable
+"use client";
+import {
+  Button,
+  Snackbar,
+  ToastManager,
+  ToastManagerProvider,
+  addToast,
+  useAddToast,
+} from "@react-md/core";
+import { type ReactElement } from "react";
+
+const manager = new ToastManager();
+
+export default function CustomToastManagerExample(): ReactElement {
+  return (
+    <ToastManagerProvider manager={manager}>
+      <Content />
+      <Snackbar
+        toastDefaults={{
+          theme: "secondary",
+          closeButton: true,
+        }}
+      />
+    </ToastManagerProvider>
+  );
+}
+
+function Content(): ReactElement {
+  const currentAddToast = useAddToast();
+
+  return (
+    <>
+      <Button
+        onClick={() => {
+          currentAddToast({ children: "Context initiated toast." });
+        }}
+      >
+        Context Toast
+      </Button>
+      <Button
+        onClick={() => {
+          manager.addToast({ children: "Manager initiated toast." });
+        }}
+      >
+        Manager Toast
+      </Button>
+      <Button
+        onClick={() => {
+          addToast({ children: "Global toast.", closeButton: true });
+        }}
+      >
+        Global Toast
+      </Button>
+    </>
+  );
+}
+```
+
+# Preventing Duplicate Toasts
+
+The default behavior allows multiple toasts with the same content to be added
+into the queue because each toast gets a unique `toastId` generated by
+[nanoid](https://github.com/ai/nanoid) when added into the queue. Since this
+might not be ideal, toast timers can automatically restart if the same content
+is added into the queue. Manually set the `toastId` when adding a toast to
+enable this feature.
+
+> !Info! Check out the [custom toast renderer example](#custom-toast-renderer)
+> for another use case for manually setting the `toastId`.
+
+> !Success! This feature does not require a custom toast manager to work outside
+> of these demos. The custom toast manager was only added to support multiple
+> `Snackbar` examples.
+
+```tsx
+// preview editable
+"use client";
+import {
+  AsyncButton,
+  SCALE_TIMEOUT,
+  Snackbar,
+  ToastManager,
+  ToastManagerProvider,
+  type UseStateSetter,
+} from "@react-md/core";
+import { useEffect, useState, type ReactElement } from "react";
+
+const TOAST_ID = "toast-id-1";
+const manager = new ToastManager();
+
+export default function PreventingDuplicateToastsExample(): ReactElement {
+  const [running, setRunning] = useMultipleToasts();
+  return (
+    <ToastManagerProvider manager={manager}>
+      <AsyncButton
+        loading={running}
+        onClick={() => {
+          setRunning(true);
+          manager.addToast({
+            toastId: TOAST_ID,
+            children: "Message 1",
+          });
+        }}
+      >
+        Toast!
+      </AsyncButton>
+      <Snackbar
+        toastDefaults={{
+          children: <ActiveTime />,
+          closeButton: true,
+          onExited: () => {
+            setRunning(false);
+          },
+        }}
+      />
+    </ToastManagerProvider>
+  );
+}
+
+function useMultipleToasts(): [
+  running: boolean,
+  setRunning: UseStateSetter<boolean>,
+] {
+  const [running, setRunning] = useState(false);
+  useEffect(() => {
+    if (!running) {
+      return;
+    }
+
+    let timeout = window.setTimeout(() => {
+      manager.addToast({
+        toastId: TOAST_ID,
+        children: "This will replace the content!",
+      });
+
+      timeout = window.setTimeout(() => {
+        // this will just reset the time
+        manager.addToast({ toastId: TOAST_ID });
+
+        timeout = window.setTimeout(() => {
+          manager.addToast({
+            toastId: TOAST_ID,
+            children: "Replacing again, but no restart",
+            duplicates: "update",
+          });
+        }, 3000);
+      }, 3000);
+    }, 3000);
+
+    return () => {
+      window.clearTimeout(timeout);
+    };
+  }, [running]);
+
+  return [running, setRunning];
+}
+
+function ActiveTime(): ReactElement {
+  const [time, setTime] = useState(0);
+
+  useEffect(() => {
+    let interval: number | undefined;
+    const timeout = window.setTimeout(() => {
+      interval = window.setInterval(() => {
+        setTime((prevTime) => prevTime + 1);
+      }, 1000);
+    }, SCALE_TIMEOUT.enter);
+
+    return () => {
+      window.clearTimeout(timeout);
+      window.clearInterval(interval);
+    };
+  }, []);
+
+  return <div>{`Visible for ${time} seconds`}</div>;
+}
+```
+
+# Multiple Visible Toasts
+
+> !Success! This feature does not require a custom toast manager to work outside
+> of these demos. The custom toast manager was only added to support multiple
+> `Snackbar` examples.
+
+```tsx
+// preview editable styles="src/app/components/snackbar/MultipleVisibleToastsExample.module.scss"
+"use client";
+import {
+  Button,
+  LinearProgress,
+  Snackbar,
+  ToastManager,
+  ToastManagerProvider,
+} from "@react-md/core";
+import { useRef, type ReactElement } from "react";
+import styles from "./MultipleVisibleToastsExample.module.scss";
+
+const manager = new ToastManager();
+const { addToast } = manager;
+
+export default function MultipleVisibleToastsExample(): ReactElement {
+  const count = useRef(0);
+  return (
+    <ToastManagerProvider manager={manager}>
+      <Button
+        onClick={() => {
+          count.current = 1;
+          addToast({ children: "Hello, world!" });
+        }}
+      >
+        Toast!
+      </Button>
+      <Snackbar
+        limit={5}
+        position="top-right"
+        toastDefaults={{
+          className: styles.toast,
+          closeButton: true,
+          onEntered: () => {
+            if (count.current < 5) {
+              count.current += 1;
+              addToast({ children: "Hello, World!" });
+            }
+          },
+          children: <Countdown />,
+          action: "Dismiss",
+        }}
+      />
+    </ToastManagerProvider>
+  );
+}
+
+function Countdown(): ReactElement {
+  return (
+    <LinearProgress
+      aria-label="Visible time"
+      className={styles.progress}
+      barClassName={styles.countdown}
+    />
+  );
+}
+```
+
+# Custom Toast Renderer
+
+# Toast Priority
+
+```tsx
+// preview editable styles="src/app/components/snackbar/ToastPriorityExample.module.scss"
+"use client";
+import {
+  AsyncButton,
+  Box,
+  Form,
+  Radio,
+  Snackbar,
+  ToastManager,
+  ToastManagerProvider,
+  useAddToast,
+  useRadioGroup,
+  useRemoveToast,
+  useToastQueue,
+  wait,
+  type ToastPriority,
+} from "@react-md/core";
+import { type ReactElement } from "react";
+import styles from "./ToastPriorityExample.module.scss";
+
+const manager = new ToastManager();
+
+export default function ToastPriorityExample(): ReactElement {
+  return (
+    <ToastManagerProvider manager={manager}>
+      <Content />
+    </ToastManagerProvider>
+  );
+}
+
+function Content(): ReactElement {
+  const queue = useToastQueue();
+  const addToast = useAddToast();
+  const removeToast = useRemoveToast();
+  const { value, getRadioProps } = useRadioGroup<ToastPriority>({
+    name: "toastFlow",
+    defaultValue: "immediate",
+  });
+
+  const addNextFlow = async (): Promise<void> => {
+    addToast({ children: "Hello, world! (1)" });
+    addToast({ children: "Hello, world! (2)" });
+
+    await wait(3000);
+    addToast({
+      theme: "error",
+      toastId: "500",
+      children: "Internal Server Error",
+      priority: "next",
+    });
+  };
+
+  const addImmediateOrReplace = async (replace: boolean): Promise<void> => {
+    const priority = replace ? "replace" : "immediate";
+    await wait(2000);
+    addToast({
+      toastId: "offline",
+      children: "Offline",
+      theme: "error",
+      priority,
+      visibleTime: null,
+      closeButton: false,
+    });
+    addToast({
+      theme: "error",
+      toastId: "500",
+      children: "Internal Server Error",
+    });
+    addToast({
+      theme: "error",
+      toastId: "500",
+      children: "Internal Server Error",
+    });
+    addToast({
+      theme: "error",
+      toastId: "500",
+      children: "Internal Server Error",
+    });
+
+    await wait(8000);
+    removeToast("offline", true);
+  };
+
+  return (
+    <Form className={styles.form}>
+      <Box stacked align="flex-start">
+        <Radio {...getRadioProps("next")} label="Next" />
+        <Radio {...getRadioProps("replace")} label="Replace" />
+        <Radio {...getRadioProps("immediate")} label="Immediate" />
+      </Box>
+      <AsyncButton
+        type="submit"
+        loading={queue.length > 0}
+        onClick={async () => {
+          addToast({ children: "Hello, world!" });
+
+          if (value === "next") {
+            return addNextFlow();
+          }
+
+          return addImmediateOrReplace(value === "replace");
+        }}
+        theme="primary"
+      >
+        Start Example
+      </AsyncButton>
+      <Snackbar />
+      <pre className={styles.block}>
+        <code className={styles.code}>{JSON.stringify(queue, null, 2)}</code>
+      </pre>
+    </Form>
+  );
+}
+```
