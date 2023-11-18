@@ -72,77 +72,35 @@ $floating-positions: (
   ),
 ) !default;
 
-$var-lookup: (
-  background-color: (
-    var: --rmd-button-background-color,
-    value: transparent,
-  ),
-  color: (
-    var: --rmd-button-color,
-    value: null,
-  ),
-  border-radius: (
-    var: --rmd-button-border-radius,
-    value: null,
-  ),
-  contained-background-color: (
-    var: --rmd-button-contained-background-color,
-    value: $clear-contained-background-color,
-  ),
-  contained-color: (
-    var: --rmd-button-contained-color,
-    value: $clear-contained-color,
-  ),
-  text-horizontal-padding: (
-    var: --rmd-button-text-horizontal-padding,
-    value: $text-horizontal-padding,
-  ),
-  text-vertical-padding: (
-    var: --rmd-button-text-vertical-padding,
-    value: $text-vertical-padding,
-  ),
-  text-min-height: (
-    var: --rmd-button-text-min-height,
-    value: $text-min-height,
-  ),
-  text-min-width: (
-    var: --rmd-button-text-min-width,
-    value: $text-min-width,
-  ),
-  icon-size: (
-    var: --rmd-button-icon-size,
-    value: $icon-size,
-  ),
-  icon-font-size: (
-    var: --rmd-button-icon-font-size,
-    value: $icon-font-size,
-  ),
-  icon-border-radius: (
-    var: --rmd-button-icon-radius,
-    value: $icon-border-radius,
-  ),
-  fab-offset: (
-    var: --rmd-fab-offset,
-    value: utils.scrollbar-size(),
-  ),
+$variables: (
+  background-color,
+  color,
+  border-radius,
+  contained-background-color,
+  contained-color,
+  text-horizontal-padding,
+  text-vertical-padding,
+  text-min-height,
+  text-min-width,
+  icon-size,
+  icon-font-size,
+  icon-border-radius,
+  fab-offset
 );
 
 @function get-var($name, $fallback: null) {
-  $found: utils.validate($var-lookup, $name, "button var");
-  $var: map.get($found, var);
-  $value: if($fallback, $fallback, map.get($found, value));
-
-  @if $value {
-    @return var(#{$var}, #{$value});
+  $var: utils.get-var-name($variables, $name, "button");
+  @if $fallback {
+    @return var(#{$var}, #{$fallback});
   }
 
   @return var(#{$var});
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(utils.validate($var-lookup, $name, "button var"), var);
-
-  #{$var}: #{$value};
+  @if $value {
+    #{utils.get-var-name($variables, $name, "button")}: #{$value};
+  }
 }
 
 @mixin use-var($property, $name: $property, $fallback: null) {
@@ -174,6 +132,36 @@ $var-lookup: (
 
   border: 0;
   padding: get-var(text-vertical-padding) get-var(text-horizontal-padding);
+}
+
+@mixin variables {
+  @if not $disable-everything {
+    @include set-var(background-color, transparent);
+    @if not $disable-contained {
+      @include set-var(
+        contained-background-color,
+        $clear-contained-background-color
+      );
+      @include set-var(contained-color, $clear-contained-color);
+    }
+
+    @if not $disable-text {
+      @include set-var(text-horizontal-padding, $text-horizontal-padding);
+      @include set-var(text-vertical-padding, $text-vertical-padding);
+      @include set-var(text-min-height, $text-min-height);
+      @include set-var(text-min-width, $text-min-width);
+    }
+
+    @if not $disable-icon {
+      @include set-var(icon-size, $icon-size);
+      @include set-var(icon-font-size, $icon-font-size);
+      @include set-var(icon-border-radius, $icon-border-radius);
+    }
+
+    @if not $disable-floating {
+      @include set-var(fab-offset, utils.scrollbar-size());
+    }
+  }
 }
 
 @mixin styles {

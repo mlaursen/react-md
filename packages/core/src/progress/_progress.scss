@@ -206,45 +206,27 @@ $linear-vertical-reverse-short-styles: (
   ),
 ) !default;
 
-$var-lookup: (
-  background-color: (
-    var: --rmd-progress-background-color,
-    value: $background-color,
-  ),
-  color: (
-    var: --rmd-progress-color,
-    value: $color,
-  ),
-  circular-size: (
-    var: --rmd-progress-circular-size,
-    value: $circular-size,
-  ),
-  circular-stroke-width: (
-    var: --rmd-progress-circular-width,
-    value: $circular-stroke-width,
-  ),
-  linear-size: (
-    var: --rmd-progress-linear-size,
-    value: $linear-size,
-  ),
+$variables: (
+  background-color,
+  color,
+  circular-size,
+  circular-stroke-width,
+  linear-size
 );
 
 @function get-var($name, $fallback: null) {
-  $found: utils.validate($var-lookup, $name, "progress var");
-  $var: map.get($found, var);
-  $value: if($fallback, $fallback, map.get($found, value));
-
-  @if $value {
-    @return var(#{$var}, #{$value});
+  $var: utils.get-var-name($variables, $name, "progress");
+  @if $fallback {
+    @return var(#{$var}, #{$fallback});
   }
 
   @return var(#{$var});
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(utils.validate($var-lookup, $name, "progress var"), var);
-
-  #{$var}: #{$value};
+  @if $value {
+    #{utils.get-var-name($variables, $name, "progress")}: #{$value};
+  }
 }
 
 @mixin use-var($property, $name: $property, $fallback: null) {
@@ -563,6 +545,19 @@ $var-lookup: (
         @include _animation($linear-vertical-reverse-short-styles);
       }
     }
+  }
+}
+
+@mixin variables {
+  @if not $disable-circular {
+    @include set-var(circular-size, $circular-size);
+    @include set-var(circular-stroke-width, $circular-stroke-width);
+  }
+
+  @if not $disable-linear {
+    @include set-var(background-color, $background-color);
+    @include set-var(color, $color);
+    @include set-var(linear-size, $linear-size);
   }
 }
 

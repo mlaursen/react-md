@@ -29,37 +29,21 @@ $skip-to-main-active-styles: (
   outline: 0.25rem dashed #000,
 ) !default;
 
-$var-lookup: (
-  color: (
-    var: --rmd-link-color,
-    value: $color,
-  ),
-  visited-color: (
-    var: --rmd-link-visited-color,
-    value: $visited-color,
-  ),
-  hover-color: (
-    var: --rmd-link-hover-color,
-    value: $hover-color,
-  ),
-);
+$variables: (color, visited-color, hover-color);
 
 @function get-var($name, $fallback: null) {
-  $found: utils.validate($var-lookup, $name, "link var");
-  $var: map.get($found, var);
-  $value: if($fallback, $fallback, map.get($found, value));
-
-  @if $value {
-    @return var(#{$var}, #{$value});
+  $var: utils.get-var-name($variables, $name, "link");
+  @if $fallback {
+    @return var(#{$var}, #{$fallback});
   }
 
   @return var(#{$var});
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(utils.validate($var-lookup, $name, "link var"), var);
-
-  #{$var}: #{$value};
+  @if $value {
+    #{utils.get-var-name($variables, $name, "link")}: #{$value};
+  }
 }
 
 @mixin use-var($property, $name: $property, $fallback: null) {
@@ -78,6 +62,14 @@ $var-lookup: (
   $property: "border-#{$position}";
 
   #{$property}: get-var(size) inset get-var(color);
+}
+
+@mixin variables {
+  @if not $disable-everything {
+    @include set-var(color, $color);
+    @include set-var(visited-color, $visited-color);
+    @include set-var(hover-color, $hover-color);
+  }
 }
 
 @mixin styles {

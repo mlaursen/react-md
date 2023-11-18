@@ -266,169 +266,58 @@ $slider-transition-timing-function: transition.$linear-timing-function !default;
 $_disable-text-field-container: $disable-text-field and $disable-password and
   $disable-textarea and $disable-select and $disable-native-select;
 
-$var-lookup: (
-  active-color: (
-    var: --rmd-form-active-color,
-    value: $active-color,
-  ),
-  focus-color: (
-    var: --rmd-form-focus-color,
-    value: $focus-color,
-  ),
-  floating-top: (
-    var: --rmd-form-label-floating-top,
-    value: $label-floating-top,
-  ),
-  label-left-offset: (
-    var: --rmd-form-label-left-offset,
-    value: 0px,
-  ),
-  label-top-offset: (
-    var: --rmd-form-label-top-offset,
-    value: 0px,
-  ),
-  label-active-padding: (
-    var: --rmd-form-label-active-padding,
-    value: 0px,
-  ),
-  label-active-background-color: (
-    var: --rmd-form-label-active-background-color,
-    value: transparent,
-  ),
-  text-height: (
-    var: --rmd-form-text-height,
-    value: $text-field-height,
-  ),
-  text-padding-left: (
-    var: --rmd-form-text-padding-left,
-    value: 0px,
-  ),
-  text-padding-right: (
-    var: --rmd-form-text-padding-right,
-    value: 0px,
-  ),
-  text-padding-top: (
-    var: --rmd-form-text-padding-top,
-    value: 0px,
-  ),
-  text-border-color: (
-    var: --rmd-form-text-border-color,
-    value: $text-field-border-color,
-  ),
-  text-hover-border-color: (
-    var: --rmd-form-text-hover-border-color,
-    value: $text-field-hover-border-color,
-  ),
-  text-filled-color: (
-    var: --rmd-form-text-filled-color,
-    value: $text-field-filled-background-color,
-  ),
-  textarea-height: (
-    var: --rmd-form-textarea-height,
-    value: 0px,
-  ),
-  textarea-padding: (
-    var: --rmd-form-textarea-padding,
-    value: $textarea-vertical-padding,
-  ),
-  addon-top: (
-    var: --rmd-form-addon-top,
-    value: auto,
-  ),
-  addon-margin-top: (
-    var: --rmd-form-addon-margin-top,
-    value: 0px,
-  ),
-  switch-track-background-color: (
-    var: --rmd-switch-track-background-color,
-    value: $switch-track-background-color,
-  ),
-  switch-ball-background-color: (
-    var: --rmd-switch-ball-background-color,
-    value: $switch-ball-background-color,
-  ),
-  slider-color: (
-    var: --rmd-slider-color,
-    value: $slider-track-color,
-  ),
-  slider-active-color: (
-    var: --rmd-slider-active-color,
-    value: $slider-track-active-color,
-  ),
-  slider-inactive-color: (
-    var: --rmd-slider-inactive-color,
-    value: $slider-track-inactive-color,
-  ),
-  slider-size: (
-    var: --rmd-slider-size,
-    value: $slider-size,
-  ),
-  slider-active-size: (
-    var: --rmd-slider-active-size,
-    value: $slider-track-active-size,
-  ),
-  slider-inactive-size: (
-    var: --rmd-slider-inactive-size,
-    value: $slider-track-inactive-size,
-  ),
-  slider-vertical-size: (
-    var: --rmd-slider-vertical-size,
-    value: $slider-vertical-size,
-  ),
-  slider-offset-1: (
-    var: --rmd-slider-offset-1,
-    value: 0,
-  ),
-  slider-offset-2: (
-    var: --rmd-slider-offset-2,
-    value: 0,
-  ),
-  slider-tooltip-scale: (
-    var: --rmd-slider-tooltip-scale,
-    value: 1,
-  ),
-  slider-tooltip-translate: (
-    var: --rmd-slider-tooltip-translate,
-    value: -50%,
-  ),
-  slider-mark-offset: (
-    var: --rmd-slider-mark-offset,
-    value: 0%,
-  ),
-  slider-mark-active-color: (
-    var: --rmd-slider-mark-active-color,
-    value: $slider-mark-active-color,
-  ),
-  slider-mark-active-opacity: (
-    var: --rmd-slider-mark-active-opacity,
-    value: $slider-mark-active-opacity,
-  ),
-  slider-mark-inactive-color: (
-    var: --rmd-slider-mark-inactive-color,
-    value: $slider-mark-inactive-color,
-  ),
-  slider-mark-inactive-opacity: (
-    var: --rmd-slider-mark-inactive-opacity,
-    value: $slider-mark-inactive-opacity,
-  ),
+$variables: (
+  active-color,
+  focus-color,
+  addon-top,
+  addon-margin-top,
+  label-floating-top,
+  label-left-offset,
+  label-top-offset,
+  label-active-padding,
+  label-active-background-color,
+  text-field-height,
+  text-field-padding-left,
+  text-field-padding-right,
+  text-field-padding-top,
+  text-field-border-color,
+  text-field-hover-border-color,
+  text-field-filled-color,
+  textarea-height,
+  textarea-padding,
+  switch-track-background-color,
+  switch-ball-background-color,
+  slider-color,
+  slider-active-color,
+  slider-inactive-color,
+  slider-size,
+  slider-active-size,
+  slider-inactive-size,
+  slider-vertical-size,
+  slider-offset-1,
+  slider-offset-2,
+  slider-tooltip-scale,
+  slider-tooltip-translate,
+  slider-mark-offset,
+  slider-mark-active-color,
+  slider-mark-active-opacity,
+  slider-mark-inactive-color,
+  slider-mark-inactive-opacity
 );
 
 @function get-var($name, $fallback: null) {
-  $found: utils.validate($var-lookup, $name, "form var");
-  $var: map.get($found, var);
-  $value: if($fallback, $fallback, map.get($found, value));
-
-  @if $value {
-    @return var(#{$var}, #{$value});
+  $var: utils.get-var-name($variables, $name, "form");
+  @if $fallback {
+    @return var(#{$var}, #{$fallback});
   }
 
   @return var(#{$var});
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(utils.validate($var-lookup, $name, "form var"), var);
-
-  #{$var}: #{$value};
+  @if $value {
+    #{utils.get-var-name($variables, $name, "form")}: #{$value};
+  }
 }
 
 @mixin use-var($property, $name: $property, $fallback: null) {
@@ -437,13 +326,13 @@ $var-lookup: (
 
 @mixin use-light-theme {
   @if not $disable-everything {
-    @include set-var(text-border-color, $text-field-light-border-color);
+    @include set-var(text-field-border-color, $text-field-light-border-color);
     @include set-var(
-      text-hover-border-color,
+      text-field-hover-border-color,
       $text-field-light-hover-border-color
     );
     @include set-var(
-      text-filled-color,
+      text-field-filled-color,
       $text-field-light-filled-background-color
     );
     @if not $disable-switch {
@@ -488,13 +377,13 @@ $var-lookup: (
 
 @mixin use-dark-theme {
   @if not $disable-everything {
-    @include set-var(text-border-color, $text-field-dark-border-color);
+    @include set-var(text-field-border-color, $text-field-dark-border-color);
     @include set-var(
-      text-hover-border-color,
+      text-field-hover-border-color,
       $text-field-dark-hover-border-color
     );
     @include set-var(
-      text-filled-color,
+      text-field-filled-color,
       $text-field-dark-filled-background-color
     );
     @if not $disable-switch {
@@ -624,8 +513,8 @@ $var-lookup: (
           left: auto;
           right: 0;
           transform: translate(
-            utils.negate-var(get-var(text-padding-left)),
-            get-var(floating-top)
+            utils.negate-var(get-var(text-field-padding-left)),
+            get-var(label-floating-top)
           );
         }
 
@@ -636,11 +525,14 @@ $var-lookup: (
         pointer-events: none;
         position: absolute;
         top: 0;
-        transform: translate(get-var(text-padding-left), get-var(floating-top));
+        transform: translate(
+          get-var(text-field-padding-left),
+          get-var(label-floating-top)
+        );
       }
 
       &--floating-dense {
-        @include set-var(floating-top, $label-floating-top-dense);
+        @include set-var(label-floating-top, $label-floating-top-dense);
       }
 
       $floating-active-selector: "&--floating-active";
@@ -706,7 +598,7 @@ $var-lookup: (
 
 @mixin text-field-container-styles {
   .rmd-text-field-container {
-    @include use-var(height, text-height);
+    @include use-var(height, text-field-height);
 
     align-items: center;
     display: flex;
@@ -714,11 +606,11 @@ $var-lookup: (
 
     @if not $disable-text-field-container-dense {
       &--dense {
-        @include set-var(text-height, $text-field-dense-height);
+        @include set-var(text-field-height, $text-field-dense-height);
       }
 
       &--dense-label {
-        @include set-var(text-height, $text-field-label-dense-height);
+        @include set-var(text-field-height, $text-field-label-dense-height);
       }
     }
 
@@ -732,7 +624,7 @@ $var-lookup: (
     }
 
     &--label {
-      @include set-var(text-height, $text-field-label-height);
+      @include set-var(text-field-height, $text-field-label-height);
     }
 
     &--error {
@@ -746,22 +638,31 @@ $var-lookup: (
         $disable-text-field-underlined-theme or not
         $disable-text-field-outlined-theme
       {
-        @include set-var(text-border-color, theme.theme-get-var(error-color));
         @include set-var(
-          text-hover-border-color,
+          text-field-border-color,
+          theme.theme-get-var(error-color)
+        );
+        @include set-var(
+          text-field-hover-border-color,
           theme.theme-get-var(error-color)
         );
       }
     }
 
     &--hoverable:hover {
-      @include set-var(text-border-color, get-var(text-hover-border-color));
+      @include set-var(
+        text-field-border-color,
+        get-var(text-field-hover-border-color)
+      );
     }
 
     @if not $disable-text-field-outlined-theme {
       &--outline {
-        @include set-var(text-padding-left, $text-field-outlined-padding);
-        @include set-var(text-padding-right, $text-field-outlined-padding);
+        @include set-var(text-field-padding-left, $text-field-outlined-padding);
+        @include set-var(
+          text-field-padding-right,
+          $text-field-outlined-padding
+        );
         @include set-var(
           label-left-offset,
           $text-field-outlined-padding - $label-floating-padding
@@ -772,7 +673,7 @@ $var-lookup: (
           label-active-background-color,
           theme.theme-get-var(background-color)
         );
-        @include use-var(border-color, text-border-color);
+        @include use-var(border-color, text-field-border-color);
 
         border-radius: $text-field-border-radius;
         border-style: solid;
@@ -803,22 +704,22 @@ $var-lookup: (
             $text-field-spacing}
         );
 
-        @include set-var(text-padding-left, $distance);
+        @include set-var(text-field-padding-left, $distance);
       }
 
       &--outline-right {
         $distance: calc(#{icon.get-var(size)} + #{$text-field-spacing * 2});
 
-        @include set-var(text-padding-right, $distance);
+        @include set-var(text-field-padding-right, $distance);
       }
     }
 
     @if not $disable-text-field-filled-theme {
       &--filled {
-        @include set-var(text-padding-left, $text-field-filled-padding);
-        @include set-var(text-padding-right, $text-field-filled-padding);
+        @include set-var(text-field-padding-left, $text-field-filled-padding);
+        @include set-var(text-field-padding-right, $text-field-filled-padding);
         @include set-var(label-left-offset, $text-field-filled-padding);
-        @include use-var(background-color, text-filled-color);
+        @include use-var(background-color, text-field-filled-color);
       }
     }
 
@@ -828,14 +729,20 @@ $var-lookup: (
       $disable-text-field-filled-theme
     {
       &--underline {
-        @include use-var(border-color, text-border-color);
+        @include use-var(border-color, text-field-border-color);
 
         border-bottom-style: solid;
         border-bottom-width: $text-field-border-width;
 
         @if $text-field-underlined-padding {
-          @include set-var(text-padding-left, $text-field-underlined-padding);
-          @include set-var(text-padding-right, $text-field-underlined-padding);
+          @include set-var(
+            text-field-padding-left,
+            $text-field-underlined-padding
+          );
+          @include set-var(
+            text-field-padding-right,
+            $text-field-underlined-padding
+          );
         }
 
         &::after {
@@ -858,7 +765,7 @@ $var-lookup: (
       @if $text-field-underlined-placeholder-height {
         &--underline-placeholder {
           @include set-var(
-            text-padding-top,
+            text-field-padding-top,
             $text-field-underlined-placeholder-addon-padding-top
           );
           height: $text-field-underlined-placeholder-height;
@@ -866,7 +773,7 @@ $var-lookup: (
 
         &--underline-placeholder-only {
           @include set-var(
-            text-padding-top,
+            text-field-padding-top,
             $text-field-underlined-placeholder-padding-top
           );
         }
@@ -874,7 +781,7 @@ $var-lookup: (
 
       &--underline-labelled {
         @include set-var(
-          text-padding-top,
+          text-field-padding-top,
           $text-field-underlined-label-padding-top
         );
         @include set-var(addon-margin-top, $text-field-addon-margin);
@@ -910,11 +817,11 @@ $var-lookup: (
         }
 
         &--underline-left-addon {
-          @include set-var(text-padding-left, calc(#{$addon-offset}));
+          @include set-var(text-field-padding-left, calc(#{$addon-offset}));
         }
 
         &--underline-right-addon {
-          @include set-var(text-padding-right, calc(#{$addon-offset}));
+          @include set-var(text-field-padding-right, calc(#{$addon-offset}));
         }
       }
     }
@@ -924,12 +831,12 @@ $var-lookup: (
 @mixin _text-field-base-styles {
   @include utils.map-to-styles($text-field-typography);
   @include utils.rtl {
-    @include use-var(padding-left, text-padding-right);
-    @include use-var(padding-right, text-padding-left);
+    @include use-var(padding-left, text-field-padding-right);
+    @include use-var(padding-right, text-field-padding-left);
   }
-  @include use-var(padding-left, text-padding-left);
-  @include use-var(padding-right, text-padding-right);
-  @include use-var(padding-top, text-padding-top);
+  @include use-var(padding-left, text-field-padding-left);
+  @include use-var(padding-right, text-field-padding-right);
+  @include use-var(padding-top, text-field-padding-top);
 
   background-color: transparent;
   border-width: 0;
@@ -986,7 +893,10 @@ $var-lookup: (
 
 @mixin password-styles {
   .rmd-password {
-    @include set-var(text-padding-right, $password-visibility-toggle-spacing);
+    @include set-var(
+      text-field-padding-right,
+      $password-visibility-toggle-spacing
+    );
 
     &__input {
       @include utils.auto-rtl(margin-right, button.get-var(icon-size));
@@ -1007,7 +917,7 @@ $var-lookup: (
     height: auto;
     max-width: 100%;
     padding-top: calc(
-      #{get-var(text-padding-top)} + #{get-var(textarea-padding)}
+      #{get-var(text-field-padding-top)} + #{get-var(textarea-padding)}
     );
 
     &--cursor:hover {
@@ -1024,7 +934,7 @@ $var-lookup: (
       &--underline-labelled {
         @include set-var(textarea-padding, 0px);
         @include set-var(
-          floating-top,
+          label-floating-top,
           $text-field-underlined-label-padding-top
         );
       }
@@ -1033,7 +943,7 @@ $var-lookup: (
     @if not $disable-textarea-resizing-rows {
       &--height {
         height: calc(
-          #{get-var(text-padding-top)} +
+          #{get-var(text-field-padding-top)} +
             #{get-var(textarea-padding)} +
             #{get-var(textarea-height)}
         );
@@ -1061,8 +971,8 @@ $var-lookup: (
 
 @mixin textarea-styles {
   .rmd-textarea {
-    @include set-var(text-padding-top, 0px);
-    @include use-var(min-height, text-height);
+    @include set-var(text-field-padding-top, 0px);
+    @include use-var(min-height, text-field-height);
 
     height: get-var(textarea-height, 100%);
 
@@ -1132,7 +1042,7 @@ $var-lookup: (
     @if not $disable-text-field-underlined-theme {
       &--underline {
         @include utils.rtl {
-          @include use-var(padding-right, text-padding-left);
+          @include use-var(padding-right, text-field-padding-left);
 
           padding-left: 0;
         }
@@ -1144,7 +1054,7 @@ $var-lookup: (
     @if not $disable-text-field-outlined-theme {
       &--outline {
         @include utils.rtl {
-          @include use-var(padding-right, text-padding-left);
+          @include use-var(padding-right, text-field-padding-left);
 
           padding-left: $text-field-outlined-padding;
         }
@@ -1156,7 +1066,7 @@ $var-lookup: (
     @if not $disable-text-field-filled-theme {
       &--filled {
         @include utils.rtl {
-          @include use-var(padding-right, text-padding-left);
+          @include use-var(padding-right, text-field-padding-left);
 
           padding-left: $text-field-filled-padding;
         }
@@ -1195,7 +1105,7 @@ $var-lookup: (
     .rmd-native-select-container {
       &--multi {
         @include set-var(addon-top, $native-select-addon-top);
-        @include use-var(min-height, text-height);
+        @include use-var(min-height, text-field-height);
 
         height: auto;
       }
@@ -1209,7 +1119,7 @@ $var-lookup: (
         $disable-text-field-underlined-theme
       {
         &--underline {
-          @include set-var(text-padding-top, 0);
+          @include set-var(text-field-padding-top, 0);
         }
 
         &--underline-padded {
@@ -1978,6 +1888,93 @@ $var-lookup: (
           top: get-var(slider-mark-offset);
           transform: translateY(-50%);
         }
+      }
+    }
+  }
+}
+
+@mixin variables {
+  @if not $disable-everything {
+    @include set-var(active-color, $active-color);
+    @include set-var(focus-color, $focus-color);
+
+    @if not $disable-label and not $disable-floating-label {
+      @include set-var(label-floating-top, $label-floating-top);
+      @include set-var(label-left-offset, 0px);
+      @include set-var(label-top-offset, 0px);
+      @include set-var(label-active-padding, 0px);
+      @include set-var(label-active-background-color, transparent);
+    }
+
+    @if not $disable-text-field {
+      @include set-var(text-field-height, $text-field-height);
+      @include set-var(text-field-padding-left, 0px);
+      @include set-var(text-field-padding-right, 0px);
+      @include set-var(text-field-padding-top, 0px);
+      @include set-var(text-field-border-color, $text-field-border-color);
+      @include set-var(
+        text-field-hover-border-color,
+        $text-field-hover-border-color
+      );
+
+      @include set-var(
+        text-field-filled-color,
+        $text-field-filled-background-color
+      );
+    }
+
+    @if not $disable-textarea {
+      @include set-var(textarea-height, $text-field-height);
+      @include set-var(textarea-padding, $textarea-vertical-padding);
+    }
+
+    @if not $disable-text-field-addon {
+      @include set-var(addon-top, auto);
+      @include set-var(addon-margin-top, 0px);
+    }
+
+    @if not $disable-switch {
+      @include set-var(
+        switch-track-background-color,
+        $switch-track-background-color
+      );
+      @include set-var(
+        switch-ball-background-color,
+        $switch-ball-background-color
+      );
+    }
+
+    @if not $disable-slider {
+      @include set-var(slider-color, $slider-track-color);
+      @include set-var(slider-active-color, $slider-track-active-color);
+      @include set-var(slider-inactive-color, $slider-track-inactive-color);
+      @include set-var(slider-size, $slider-size);
+      @include set-var(slider-active-size, $slider-track-active-size);
+      @include set-var(slider-inactive-size, $slider-track-inactive-size);
+      @if not $disable-discrete-slider {
+        @include set-var(slider-tooltip-scale, 1);
+        @include set-var(slider-tooltip-translate, -50%);
+
+        @if not $disable-discrete-slider-marks {
+          @include set-var(slider-mark-offset, 0%);
+          @include set-var(slider-mark-active-color, $slider-mark-active-color);
+          @include set-var(
+            slider-mark-active-opacity,
+            $slider-mark-active-opacity
+          );
+          @include set-var(
+            slider-mark-inactive-color,
+            $slider-mark-inactive-color
+          );
+          @include set-var(
+            slider-mark-inactive-opacity,
+            $slider-mark-inactive-opacity
+          );
+        }
+      }
+
+      @if not $disable-vertical-slider {
+        @include set-var(slider-vertical-size, $slider-vertical-size);
       }
     }
   }

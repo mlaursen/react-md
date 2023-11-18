@@ -6,11 +6,11 @@ import { type LabelClassNameOptions, type LabelProps } from "./types.js";
 
 declare module "react" {
   interface CSSProperties {
-    "--rmd-form-label-floating-top"?: string | number;
-    "--rmd-form-label-left-offset"?: string | number;
-    "--rmd-form-label-top-offset"?: string | number;
-    "--rmd-form-label-active-padding"?: string | number;
-    "--rmd-form-label-active-background-color"?: string;
+    "--rmd-label-floating-top"?: string | number;
+    "--rmd-label-left-offset"?: string | number;
+    "--rmd-label-top-offset"?: string | number;
+    "--rmd-label-active-padding"?: string | number;
+    "--rmd-label-active-background-color"?: string;
   }
 }
 

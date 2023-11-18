@@ -330,6 +330,37 @@ $_layer-order: (
   @include badge.use-dark-theme;
 }
 
+@mixin variables {
+  @include theme.theme-variables;
+  @include app-bar.variables;
+  @include avatar.variables;
+  @include badge.variables;
+  @include box.variables;
+  @include button.variables;
+  @include card.variables;
+  @include chip.variables;
+  @include dialog.variables;
+  @include divider.variables;
+  @include form.variables;
+  @include icon.variables;
+  @include interaction.variables;
+  @include layout.variables;
+  @include link.variables;
+  @include list.variables;
+  @include menu.variables;
+  @include overlay.variables;
+  @include progress.variables;
+  @include segmented-button.variables;
+  @include sheet.variables;
+  @include snackbar.variables;
+  @include table.variables;
+  @include tabs.variables;
+  @include tooltip.variables;
+  @include transition.transition-variables;
+  @include tree.variables;
+  @include typography.typography-variables;
+}
+
 @mixin styles {
   @include css-reset;
 
@@ -455,7 +486,7 @@ $_layer-order: (
 
   @if not theme.$disable-default-root-theme {
     :root {
-      @include theme.colors;
+      @include variables;
 
       @if not
         theme.$disable-default-system-theme and

@@ -30,61 +30,43 @@ $touch-max-height: calc(100% - #{$touch-margin}) !default;
 $recommended-min-height: 3.5rem !default;
 $recommended-max-height: 50% !default;
 
-$var-lookup: (
-  height: (
-    var: --rmd-sheet-height,
-    value: null,
-  ),
-  width: (
-    var: --rmd-sheet-width,
-    value: null,
-  ),
-  max-height: (
-    var: --rmd-sheet-max-height,
-    value: null,
-  ),
-  touch-width: (
-    var: --rmd-sheet-touch-width,
-    value: $touch-width,
-  ),
-  touch-max-height: (
-    var: --rmd-sheet-touch-max-height,
-    value: $touch-max-height,
-  ),
-  static-width: (
-    var: --rmd-sheet-static-width,
-    value: $static-width,
-  ),
-  transform-offscreen: (
-    var: --rmd-sheet-transform-offscreen,
-    value: null,
-  ),
-  z-index: (
-    var: --rmd-sheet-z-index,
-    value: $z-index,
-  ),
+$variables: (
+  height,
+  width,
+  max-height,
+  touch-width,
+  touch-max-height,
+  static-width,
+  transform-offscreen,
+  z-index
 );
 
 @function get-var($name, $fallback: null) {
-  $found: utils.validate($var-lookup, $name, "sheet var");
-  $var: map.get($found, var);
-  $value: if($fallback, $fallback, map.get($found, value));
-
-  @if $value {
-    @return var(#{$var}, #{$value});
+  $var: utils.get-var-name($variables, $name, "sheet");
+  @if $fallback {
+    @return var(#{$var}, #{$fallback});
   }
 
   @return var(#{$var});
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(utils.validate($var-lookup, $name, "sheet var"), var);
-
-  #{$var}: #{$value};
+  @if $value {
+    #{utils.get-var-name($variables, $name, "sheet")}: #{$value};
+  }
 }
 
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
+}
+
+@mixin variables {
+  @if not $disable-everything {
+    @include set-var(touch-width, $touch-width);
+    @include set-var(touch-max-height, $touch-max-height);
+    @include set-var(static-width, $static-width);
+    @include set-var(z-index, $z-index);
+  }
 }
 
 @mixin styles {

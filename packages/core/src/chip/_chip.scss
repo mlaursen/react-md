@@ -111,61 +111,31 @@ $outline-text-color: theme.get-default-color(
 $outline-raisable-box-shadow-z-value: 8 !default;
 $outline-raisable-transition-duration: transition.$linear-duration !default;
 
-$var-lookup: (
-  solid-background-color: (
-    var: --rmd-chip-solid-background-color,
-    value: $solid-background-color,
-  ),
-  solid-disabled-background-color: (
-    var: --rmd-chip-solid-disabled-background-color,
-    value: $solid-disabled-background-color,
-  ),
-  solid-color: (
-    var: --rmd-chip-solid-color,
-    value: $solid-color,
-  ),
-  theme-background-color: (
-    var: --rmd-chip-theme-background-color,
-    value: $theme-background-color,
-  ),
-  theme-color: (
-    var: --rmd-chip-theme-color,
-    value: $theme-color,
-  ),
-  outline-color: (
-    var: --rmd-chip-outline-color,
-    value: $outline-color,
-  ),
-  outline-width: (
-    var: --rmd-chip-outline-width,
-    value: $outline-width,
-  ),
-  outline-background-color: (
-    var: --rmd-chip-outline-background-color,
-    value: $outline-background-color,
-  ),
-  outline-text-color: (
-    var: --rmd-chip-outline-text-color,
-    value: $outline-text-color,
-  ),
+$variables: (
+  solid-background-color,
+  solid-disabled-background-color,
+  solid-color,
+  theme-background-color,
+  theme-color,
+  outline-color,
+  outline-width,
+  outline-background-color,
+  outline-text-color
 );
 
 @function get-var($name, $fallback: null) {
-  $found: utils.validate($var-lookup, $name, "chip var");
-  $var: map.get($found, var);
-  $value: if($fallback, $fallback, map.get($found, value));
-
-  @if $value {
-    @return var(#{$var}, #{$value});
+  $var: utils.get-var-name($variables, $name, "chip");
+  @if $fallback {
+    @return var(#{$var}, #{$fallback});
   }
 
   @return var(#{$var});
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(utils.validate($var-lookup, $name, "chip var"), var);
-
-  #{$var}: #{$value};
+  @if $value {
+    #{utils.get-var-name($variables, $name, "chip")}: #{$value};
+  }
 }
 
 @mixin use-var($property, $name: $property, $fallback: null) {
@@ -199,6 +169,23 @@ $var-lookup: (
     }
     @include set-var(outline-background-color, $outline-dark-background-color);
     @include set-var(outline-text-color, $outline-dark-text-color);
+  }
+}
+
+@mixin variables {
+  @if not $disable-everything {
+    @include set-var(solid-background-color, $solid-background-color);
+    @include set-var(
+      solid-disabled-background-color,
+      $solid-disabled-background-color
+    );
+    @include set-var(solid-color, $solid-color);
+    @include set-var(theme-background-color, $theme-background-color);
+    @include set-var(theme-color, $theme-color);
+    @include set-var(outline-color, $outline-color);
+    @include set-var(outline-width, $outline-width);
+    @include set-var(outline-background-color, $outline-background-color);
+    @include set-var(outline-text-color, $outline-text-color);
   }
 }
 

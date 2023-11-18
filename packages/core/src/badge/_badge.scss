@@ -39,49 +39,28 @@ $greyscale-color: theme.get-default-color(
   $dark-theme-greyscale-color
 ) !default;
 
-$var-lookup: (
-  greyscale-background-color: (
-    var: --rmd-badge-greyscale-background-color,
-    value: $greyscale-background-color,
-  ),
-  greyscale-color: (
-    var: --rmd-badge-greyscale-color,
-    value: $greyscale-color,
-  ),
-  size: (
-    var: --rmd-badge-size,
-    value: $size,
-  ),
-  offset: (
-    var: --rmd-badge-offset,
-    value: 0,
-  ),
-  offset-top: (
-    var: --rmd-badge-offset-top,
-    value: var(--rmd-badge-offset, $offset-top),
-  ),
-  offset-right: (
-    var: --rmd-badge-offset-right,
-    value: var(--rmd-badge-offset, $offset-right),
-  ),
+$variables: (
+  greyscale-background-color,
+  greyscale-color,
+  size,
+  offset,
+  offset-top,
+  offset-right
 );
 
 @function get-var($name, $fallback: null) {
-  $found: utils.validate($var-lookup, $name, "badge var");
-  $var: map.get($found, var);
-  $value: if($fallback, $fallback, map.get($found, value));
-
-  @if $value {
-    @return var(#{$var}, #{$value});
+  $var: utils.get-var-name($variables, $name, "badge");
+  @if $fallback {
+    @return var(#{$var}, #{$fallback});
   }
 
   @return var(#{$var});
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(utils.validate($var-lookup, $name, "badge var"), var);
-
-  #{$var}: #{$value};
+  @if $value {
+    #{utils.get-var-name($variables, $name, "badge")}: #{$value};
+  }
 }
 
 @mixin use-var($property, $name: $property, $fallback: null) {
@@ -114,6 +93,17 @@ $var-lookup: (
 
   @if $light-theme-greyscale-color != $dark-theme-greyscale-color {
     @include set-var(greyscale-color, $dark-theme-greyscale-color);
+  }
+}
+
+@mixin variables {
+  @if not $disable-everything {
+    @include set-var(greyscale-background-color, $greyscale-background-color);
+    @include set-var(greyscale-color, $greyscale-color);
+    @include set-var(size, $size);
+    @include set-var(offset, 0);
+    @include set-var(offset-top, get-var(offset));
+    @include set-var(offset-right, get-var(offset));
   }
 }
 

@@ -59,48 +59,27 @@ $selected-background-color: theme.get-default-color(
 
 $typography-styles: typography.$button-styles !default;
 
-$var-lookup: (
-  outline-width: (
-    var: --rmd-segmented-button-outline-width,
-    value: $outline-width,
-  ),
-  outline-color: (
-    var: --rmd-segmented-button-outline-color,
-    value: $outline-color,
-  ),
-  color: (
-    var: --rmd-segmented-button-color,
-    value: currentcolor,
-  ),
-  selected-background-color: (
-    var: --rmd-segmented-button-selected-background-color,
-    value: $selected-background-color,
-  ),
-  selected-color: (
-    var: --rmd-segmented-button-selected-color,
-    value: $selected-color,
-  ),
+$variables: (
+  outline-width,
+  outline-color,
+  color,
+  selected-background-color,
+  selected-color
 );
 
 @function get-var($name, $fallback: null) {
-  $found: utils.validate($var-lookup, $name, "segmented button var");
-  $var: map.get($found, var);
-  $value: if($fallback, $fallback, map.get($found, value));
-
-  @if $value {
-    @return var(#{$var}, #{$value});
+  $var: utils.get-var-name($variables, $name, "segmented-button");
+  @if $fallback {
+    @return var(#{$var}, #{$fallback});
   }
 
   @return var(#{$var});
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(
-    utils.validate($var-lookup, $name, "segmented button var"),
-    var
-  );
-
-  #{$var}: #{$value};
+  @if $value {
+    #{utils.get-var-name($variables, $name, "segmented-button")}: #{$value};
+  }
 }
 
 @mixin use-var($property, $name: $property, $fallback: null) {
@@ -146,6 +125,16 @@ $var-lookup: (
     @if $light-theme-selected-color != $dark-theme-selected-color {
       @include set-var(selected-color, $dark-theme-selected-color);
     }
+  }
+}
+
+@mixin variables {
+  @if not $disable-everything {
+    @include set-var(outline-width, $outline-width);
+    @include set-var(outline-color, $outline-color);
+    @include set-var(color, currentcolor);
+    @include set-var(selected-background-color, $selected-background-color);
+    @include set-var(selected-color, $selected-color);
   }
 }
 

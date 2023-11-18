@@ -7,6 +7,10 @@
 
 $disable-everything: false !default;
 $disable-fixed: false !default;
+$disable-header: false !default;
+$disable-title: false !default;
+$disable-content: false !default;
+$disable-footer: false !default;
 $disable-focus-outline: false !default;
 $disable-footer-flex-vertical: false !default;
 $disable-footer-flex-start: false !default;
@@ -36,69 +40,59 @@ $content-padding: 1.5rem !default;
 
 $footer-padding: 0.5rem !default;
 
-$var-lookup: (
-  background-color: (
-    var: --rmd-dialog-background-color,
-    value: $background-color,
-  ),
-  color: (
-    var: --rmd-dialog-color,
-    value: $color,
-  ),
-  min-width: (
-    var: --rmd-dialog-min-width,
-    value: $min-width,
-  ),
-  horizontal-margin: (
-    var: --rmd-dialog-h-margin,
-    value: $horizontal-margin,
-  ),
-  vertical-margin: (
-    var: --rmd-dialog-v-margin,
-    value: $vertical-margin,
-  ),
-  z-index: (
-    var: --rmd-dialog-z-index,
-    value: $z-index,
-  ),
-  header-padding: (
-    var: --rmd-dialog-header-padding,
-    value: $header-padding,
-  ),
-  header-padding-bottom: (
-    var: --rmd-dialog-header-padding-bottom,
-    value: $header-padding-bottom,
-  ),
-  content-padding: (
-    var: --rmd-dialog-content-padding,
-    value: $content-padding,
-  ),
-  footer-padding: (
-    var: --rmd-dialog-footer-padding,
-    value: $footer-padding,
-  ),
+$variables: (
+  background-color,
+  color,
+  min-width,
+  horizontal-margin,
+  vertical-margin,
+  z-index,
+  header-padding,
+  header-padding-bottom,
+  content-padding,
+  footer-padding
 );
 
 @function get-var($name, $fallback: null) {
-  $found: utils.validate($var-lookup, $name, "dialog var");
-  $var: map.get($found, var);
-  $value: if($fallback, $fallback, map.get($found, value));
-
-  @if $value {
-    @return var(#{$var}, #{$value});
+  $var: utils.get-var-name($variables, $name, "dialog");
+  @if $fallback {
+    @return var(#{$var}, #{$fallback});
   }
 
   @return var(#{$var});
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(utils.validate($var-lookup, $name, "dialog var"), var);
-
-  #{$var}: #{$value};
+  @if $value {
+    #{utils.get-var-name($variables, $name, "dialog")}: #{$value};
+  }
 }
 
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
+}
+
+@mixin variables {
+  @if not $disable-everything {
+    @include set-var(background-color, $background-color);
+    @include set-var(color, $color);
+    @include set-var(min-width, $min-width);
+    @include set-var(horizontal-margin, $horizontal-margin);
+    @include set-var(vertical-margin, $vertical-margin);
+    @include set-var(z-index, $z-index);
+
+    @if not $disable-header {
+      @include set-var(header-padding, $header-padding);
+      @include set-var(header-padding-bottom, $header-padding-bottom);
+    }
+
+    @if not $disable-content {
+      @include set-var(content-padding, $content-padding);
+    }
+    @if not $disable-footer {
+      @include set-var(footer-padding, $footer-padding);
+    }
+  }
 }
 
 @mixin styles {
@@ -188,66 +182,74 @@ $var-lookup: (
         }
       }
 
-      &__header {
-        @include use-var(padding, header-padding);
-        @include use-var(padding-bottom, header-padding-bottom);
+      @if not $disable-header {
+        &__header {
+          @include use-var(padding, header-padding);
+          @include use-var(padding-bottom, header-padding-bottom);
 
-        align-items: center;
-        display: flex;
-        flex: 0 0 auto;
-      }
-
-      &__title {
-        // this makes it so it's easy to add a close button after the title
-        flex: 1 1 auto;
-      }
-
-      &__content {
-        flex: 1 1 auto;
-        overflow: auto;
-
-        &--padded {
-          @include use-var(padding, content-padding);
+          align-items: center;
+          display: flex;
+          flex: 0 0 auto;
         }
       }
 
-      &__footer {
-        @include use-var(padding, footer-padding);
+      @if not $disable-title {
+        &__title {
+          // this makes it so it's easy to add a close button after the title
+          flex: 1 1 auto;
+        }
+      }
 
-        flex: 0 0 auto;
+      @if not $disable-content {
+        &__content {
+          flex: 1 1 auto;
+          overflow: auto;
 
-        @if not
-          $disable-footer-flex-vertical or not
-          $disable-footer-flex-start or not
-          $disable-footer-space-between or not
-          $disable-footer-flex-end
-        {
-          &--flex {
-            display: flex;
+          &--padded {
+            @include use-var(padding, content-padding);
           }
         }
+      }
 
-        @if not $disable-footer-flex-vertical {
-          &--flex-v {
-            flex-direction: column;
+      @if not $disable-footer {
+        &__footer {
+          @include use-var(padding, footer-padding);
+
+          flex: 0 0 auto;
+
+          @if not
+            $disable-footer-flex-vertical or not
+            $disable-footer-flex-start or not
+            $disable-footer-space-between or not
+            $disable-footer-flex-end
+          {
+            &--flex {
+              display: flex;
+            }
           }
-        }
 
-        @if not $disable-footer-flex-start {
-          &--start {
-            justify-content: flex-start;
+          @if not $disable-footer-flex-vertical {
+            &--flex-v {
+              flex-direction: column;
+            }
           }
-        }
 
-        @if not $disable-footer-space-between {
-          &--between {
-            justify-content: space-between;
+          @if not $disable-footer-flex-start {
+            &--start {
+              justify-content: flex-start;
+            }
           }
-        }
 
-        @if not $disable-footer-flex-end {
-          &--end {
-            justify-content: flex-end;
+          @if not $disable-footer-space-between {
+            &--between {
+              justify-content: space-between;
+            }
+          }
+
+          @if not $disable-footer-flex-end {
+            &--end {
+              justify-content: flex-end;
+            }
           }
         }
       }

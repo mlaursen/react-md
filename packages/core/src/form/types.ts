@@ -9,10 +9,8 @@ import { type PropsWithRef } from "../types.js";
 
 declare module "react" {
   interface CSSProperties {
-    "--rmd-form-error-color"?: string;
     "--rmd-form-active-color"?: string;
     "--rmd-form-focus-color"?: string;
-    "--rmd-form-disabled-color"?: string;
   }
 }
 

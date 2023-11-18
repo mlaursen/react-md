@@ -60,37 +60,21 @@ $vertical-padding: 0 !default;
 $keyline: 1rem !default;
 $title-keyline: 4.5rem !default;
 
-$var-lookup: (
-  height: (
-    var: --rmd-app-bar-height,
-    value: $height,
-  ),
-  surface-background-color: (
-    var: --rmd-app-bar-surface-background-color,
-    value: $surface-background-color,
-  ),
-  surface-color: (
-    var: --rmd-app-bar-surface-color,
-    value: $surface-color,
-  ),
-);
+$variables: (height, surface-background-color, surface-color);
 
 @function get-var($name, $fallback: null) {
-  $found: utils.validate($var-lookup, $name, "app-bar var");
-  $var: map.get($found, var);
-  $value: if($fallback, $fallback, map.get($found, value));
-
-  @if $value {
-    @return var(#{$var}, #{$value});
+  $var: utils.get-var-name($variables, $name, "app-bar");
+  @if $fallback {
+    @return var(#{$var}, #{$fallback});
   }
 
   @return var(#{$var});
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(utils.validate($var-lookup, $name, "app-bar var"), var);
-
-  #{$var}: #{$value};
+  @if $value {
+    #{utils.get-var-name($variables, $name, "app-bar")}: #{$value};
+  }
 }
 
 @mixin use-var($property, $name: $property, $fallback: null) {
@@ -119,6 +103,14 @@ $var-lookup: (
 
 @mixin dense {
   @include set-var(height, $dense-height);
+}
+
+@mixin variables {
+  @if not $disable-everything {
+    @include set-var(height, $height);
+    @include set-var(surface-background-color, $surface-background-color);
+    @include set-var(surface-color, $surface-color);
+  }
 }
 
 @mixin styles {

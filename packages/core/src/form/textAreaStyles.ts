@@ -8,8 +8,8 @@ import { type TextAreaResize } from "./useResizingTextArea.js";
 
 declare module "react" {
   interface CSSProperties {
-    "--rmd-form-textarea-height"?: string | number;
-    "--rmd-form-textarea-padding"?: string | number;
+    "--rmd-textarea-height"?: string | number;
+    "--rmd-textarea-padding"?: string | number;
   }
 }
 

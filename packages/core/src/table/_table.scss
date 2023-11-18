@@ -108,85 +108,37 @@ $sticky-footer-active-styles: $sticky-header-active-styles !default;
 $row-hover-color: interaction.get-var(hover-background-color) !default;
 $row-selected-color: interaction.get-var(selected-background-color) !default;
 
-$var-lookup: (
-  background-color: (
-    var: --rmd-table-background-color,
-    value: $background-color,
-  ),
-  border-size: (
-    var: --rmd-table-border-size,
-    value: $border-size,
-  ),
-  border-color: (
-    var: --rmd-table-border-color,
-    value: $border-color,
-  ),
-  header-background-color: (
-    var: --rmd-table-header-background-color,
-    value: $header-background-color,
-  ),
-  cell-color: (
-    var: --rmd-table-cell-color,
-    value: $cell-color,
-  ),
-  cell-height: (
-    var: --rmd-table-cell-height,
-    value: $cell-height,
-  ),
-  cell-horizontal-padding: (
-    var: --rmd-table-cell-horizontal-padding,
-    value: $cell-horizontal-padding,
-  ),
-  cell-vertical-padding: (
-    var: --rmd-table-cell-vertical-padding,
-    value: $cell-vertical-padding,
-  ),
-  header-cell-height: (
-    var: --rmd-table-header-cell-height,
-    value: $cell-header-height,
-  ),
-  hover-color: (
-    var: --rmd-table-hover-color,
-    value: $row-hover-color,
-  ),
-  selected-color: (
-    var: --rmd-table-selected-color,
-    value: $row-selected-color,
-  ),
-  sticky-cell: (
-    var: --rmd-table-sticky-cell,
-    value: $sticky-cell-position,
-  ),
-  sticky-header: (
-    var: --rmd-table-sticky-header,
-    value: $sticky-header-position,
-  ),
-  sticky-footer: (
-    var: --rmd-table-sticky-footer,
-    value: $sticky-footer-position,
-  ),
-  sticky-background-color: (
-    var: --rmd-table-sticky-background-color,
-    value: $sticky-background-color,
-  ),
+$variables: (
+  background-color,
+  border-size,
+  border-color,
+  header-background-color,
+  cell-color,
+  cell-height,
+  cell-horizontal-padding,
+  cell-vertical-padding,
+  header-cell-height,
+  hover-color,
+  selected-color,
+  sticky-cell,
+  sticky-header,
+  sticky-footer,
+  sticky-background-color
 );
 
 @function get-var($name, $fallback: null) {
-  $found: utils.validate($var-lookup, $name, "table var");
-  $var: map.get($found, var);
-  $value: if($fallback, $fallback, map.get($found, value));
-
-  @if $value {
-    @return var(#{$var}, #{$value});
+  $var: utils.get-var-name($variables, $name, "table");
+  @if $fallback {
+    @return var(#{$var}, #{$fallback});
   }
 
   @return var(#{$var});
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(utils.validate($var-lookup, $name, "table var"), var);
-
-  #{$var}: #{$value};
+  @if $value {
+    #{utils.get-var-name($variables, $name, "table")}: #{$value};
+  }
 }
 
 @mixin use-var($property, $name: $property, $fallback: null) {
@@ -223,6 +175,39 @@ $row-selected-styles: (
 
     @if $dark-theme-header-background-color {
       @include set-var(header-color, $dark-theme-header-background-color);
+    }
+  }
+}
+
+@mixin variables {
+  @if not $disable-everything {
+    @include set-var(background-color, $background-color);
+    @include set-var(header-background-color, $header-background-color);
+    @include set-var(cell-color, $cell-color);
+    @include set-var(cell-height, $cell-height);
+    @include set-var(cell-horizontal-padding, $cell-horizontal-padding);
+    @include set-var(cell-vertical-padding, $cell-vertical-padding);
+    @include set-var(header-cell-height, $cell-header-height);
+    @include set-var(selected-color, $row-selected-color);
+
+    @if not $disable-bordered {
+      @include set-var(border-size, $border-size);
+      @include set-var(border-color, $border-color);
+    }
+    @if not $disable-hoverable {
+      @include set-var(hover-color, $row-hover-color);
+    }
+    @if not $disable-sticky-cell {
+      @include set-var(sticky-cell, $sticky-cell-position);
+    }
+    @if not $disable-sticky-header {
+      @include set-var(sticky-header, $sticky-header-position);
+    }
+    @if not $disable-sticky-footer {
+      @include set-var(sticky-footer, $sticky-footer-position);
+    }
+    @if not $disable-sticky-header or not $disable-sticky-footer {
+      @include set-var(sticky-background-color, $sticky-background-color);
     }
   }
 }

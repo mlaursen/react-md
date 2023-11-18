@@ -33,41 +33,21 @@ $item-min-size: 8rem !default;
 /// ```
 $grids: () !default;
 
-$var-lookup: (
-  gap: (
-    var: --rmd-box-gap,
-    value: $gap,
-  ),
-  padding: (
-    var: --rmd-box-padding,
-    value: $padding,
-  ),
-  min-size: (
-    var: --rmd-box-item-min-size,
-    value: $item-min-size,
-  ),
-  columns: (
-    var: --rmd-box-columns,
-    value: auto-fit,
-  ),
-);
+$variables: (gap, padding, item-min-size, columns);
 
 @function get-var($name, $fallback: null) {
-  $found: utils.validate($var-lookup, $name, "box var");
-  $var: map.get($found, var);
-  $value: if($fallback, $fallback, map.get($found, value));
-
-  @if $value {
-    @return var(#{$var}, #{$value});
+  $var: utils.get-var-name($variables, $name, "box");
+  @if $fallback {
+    @return var(#{$var}, #{$fallback});
   }
 
   @return var(#{$var});
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(utils.validate($var-lookup, $name, "box var"), var);
-
-  #{$var}: #{$value};
+  @if $value {
+    #{utils.get-var-name($variables, $name, "box")}: #{$value};
+  }
 }
 
 @mixin use-var($property, $name: $property, $fallback: null) {
@@ -91,6 +71,15 @@ $var-lookup: (
 @mixin custom-grid-class($selector, $min: null, $padding: null, $gap: null) {
   #{$selector} {
     @include custom-grid($min, $padding, $gap);
+  }
+}
+
+@mixin variables {
+  @if not $disable-everything {
+    @include set-var(gap, $gap);
+    @include set-var(padding, $padding);
+    @include set-var(item-min-size, $item-min-size);
+    @include set-var(columns, auto-fit);
   }
 }
 
@@ -149,7 +138,7 @@ $var-lookup: (
           display: grid;
           grid-template-columns: repeat(
             get-var(columns),
-            minmax(get-var(min-size), 1fr)
+            minmax(get-var(item-min-size), 1fr)
           );
         }
 
@@ -159,7 +148,7 @@ $var-lookup: (
 
         @if not $disable-grid-columns {
           &--grid-columns {
-            @include set-var(min-size, 0);
+            @include set-var(item-min-size, 0);
           }
         }
 

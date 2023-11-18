@@ -1,5 +1,4 @@
 @use "sass:color";
-@use "sass:map";
 @use "../theme/theme";
 @use "../transition/transition";
 @use "../utils";
@@ -47,61 +46,31 @@ $rotate-from: 0deg !default;
 $rotate-to: 180deg !default;
 $rotate-duration: transition.$linear-duration !default;
 
-$var-lookup: (
-  color: (
-    var: --rmd-icon-color,
-    value: $color,
-  ),
-  size: (
-    var: --rmd-icon-size,
-    value: $size,
-  ),
-  spacing: (
-    var: --rmd-icon-spacing,
-    value: $spacing,
-  ),
-  rotate-from: (
-    var: --rmd-icon-rotate-from,
-    value: $rotate-from,
-  ),
-  rotate-to: (
-    var: --rmd-icon-rotate-to,
-    value: $rotate-to,
-  ),
-  symbol-fill: (
-    var: --rmd-symbol-fill,
-    value: $symbol-fill,
-  ),
-  symbol-grade: (
-    var: --rmd-symbol-grad,
-    value: $symbol-grade,
-  ),
-  symbol-weight: (
-    var: --rmd-symbol-wght,
-    value: $symbol-weight,
-  ),
-  symbol-optical-size: (
-    var: --rmd-symbol-opsz,
-    value: $symbol-optical-size,
-  ),
+$variables: (
+  color,
+  size,
+  spacing,
+  rotate-from,
+  rotate-to,
+  symbol-fill,
+  symbol-grade,
+  symbol-weight,
+  symbol-optical-size
 );
 
 @function get-var($name, $fallback: null) {
-  $found: utils.validate($var-lookup, $name, "icon var");
-  $var: map.get($found, var);
-  $value: if($fallback, $fallback, map.get($found, value));
-
-  @if $value {
-    @return var(#{$var}, #{$value});
+  $var: utils.get-var-name($variables, $name, "icon");
+  @if $fallback {
+    @return var(#{$var}, #{$fallback});
   }
 
   @return var(#{$var});
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(utils.validate($var-lookup, $name, "icon var"), var);
-
-  #{$var}: #{$value};
+  @if $value {
+    #{utils.get-var-name($variables, $name, "icon")}: #{$value};
+  }
 }
 
 @mixin use-var($property, $name: $property, $fallback: null) {
@@ -123,6 +92,21 @@ $var-lookup: (
 @mixin dense {
   @if $dense-size {
     @include set-var(size, $dense-size);
+  }
+}
+
+@mixin variables {
+  @if not $disable-font or not $disable-svg or not $disable-symbol {
+    @include set-var(color, $color);
+    @include set-var(size, $size);
+    @include set-var(spacing, $spacing);
+  }
+
+  @if not $disable-symbol {
+    @include set-var(symbol-fill, $symbol-fill);
+    @include set-var(symbol-grade, $symbol-grade);
+    @include set-var(symbol-weight, $symbol-weight);
+    @include set-var(symbol-optical-size, $symbol-optical-size);
   }
 }
 

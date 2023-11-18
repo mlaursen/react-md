@@ -9,7 +9,6 @@ declare module "react" {
     "--rmd-divider-spacing"?: string | number;
     "--rmd-divider-vertical-spacing"?: string | number;
     "--rmd-divider-inset"?: string | number;
-    "--rmd-divider-width"?: string | number;
     "--rmd-divider-max-size"?: string | number;
   }
 }

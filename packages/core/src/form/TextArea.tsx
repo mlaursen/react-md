@@ -244,7 +244,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
           ref={containerRef}
           style={{
             ...style,
-            "--rmd-form-textarea-height": height,
+            "--rmd-textarea-height": height,
           }}
           className={textAreaContainer({
             animate: !disableTransition && resize == "auto",

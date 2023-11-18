@@ -64,52 +64,28 @@ $max-width-transition-duration: $linear-duration !default;
 $max-width-transition-timing-function: $linear-timing-function !default;
 $max-width-transition-default: 100% !default;
 
-$transition-var-lookup: (
-  skeleton-placeholder-background-color: (
-    var: --rmd-skeleton-placeholder-background-color,
-    value: $skeleton-placeholder-background-color,
-  ),
-  skeleton-placeholder-height: (
-    var: --rmd-skeleton-placeholder-height,
-    value: $skeleton-placeholder-height,
-  ),
-  skeleton-placeholder-width: (
-    var: --rmd-skeleton-placeholder-width,
-    value: null,
-  ),
-  slide-duration: (
-    var: --rmd-slide-duration,
-    value: $slide-duration,
-  ),
-  max-width: (
-    var: --rmd-max-width,
-    value: $max-width-transition-default,
-  ),
-  max-width-gap: (
-    var: --rmd-max-width-gap,
-    value: 0,
-  ),
+$transition-variables: (
+  skeleton-placeholder-background-color,
+  skeleton-placeholder-height,
+  skeleton-placeholder-width,
+  slide-duration,
+  max-width,
+  max-width-gap
 );
 
 @function transition-get-var($name, $fallback: null) {
-  $found: utils.validate($transition-var-lookup, $name, "transition var");
-  $var: map.get($found, var);
-  $value: if($fallback, $fallback, map.get($found, value));
-
-  @if $value {
-    @return var(#{$var}, #{$value});
+  $var: utils.get-var-name($transition-variables, $name, "transition");
+  @if $fallback {
+    @return var(#{$var}, #{$fallback});
   }
 
   @return var(#{$var});
 }
 
 @mixin transition-set-var($name, $value) {
-  $var: map.get(
-    utils.validate($transition-var-lookup, $name, "transition var"),
-    var
-  );
-
-  #{$var}: #{$value};
+  @if $value {
+    #{utils.get-var-name($transition-variables, $name, "transition")}: #{$value};
+  }
 }
 
 @mixin transition-use-var($property, $name: $property, $fallback: null) {
@@ -297,6 +273,31 @@ $transition-var-lookup: (
 
     &--exit-active {
       transform: translate3d(var(--p2-end), 0, 0);
+    }
+  }
+}
+
+@mixin transition-variables {
+  @if not $disable-skeleton-placeholder {
+    @include transition-set-var(
+      skeleton-placeholder-background-color,
+      $skeleton-placeholder-background-color
+    );
+    @include transition-set-var(
+      skeleton-placeholder-height,
+      $skeleton-placeholder-height
+    );
+  }
+
+  @if not $disable-slide-transition {
+    @include transition-set-var(slide-duration, $slide-duration);
+  }
+
+  @if not $disable-max-width-transition {
+    @include transition-set-var(max-width, $max-width-transition-default);
+
+    @if not $disable-max-width-transition-gap {
+      @include transition-set-var(max-width-gap, 0);
     }
   }
 }

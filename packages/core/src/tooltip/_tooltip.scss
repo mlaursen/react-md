@@ -45,43 +45,34 @@ $leave-duration: transition.$linear-duration !default;
 $leave-timing-function: transition.$acceleration-timing-function !default;
 $transition-distance: 0.5rem !default;
 
-$var-lookup: (
-  background-color: (
-    var: --rmd-tooltip-background-color,
-    value: $background-color,
-  ),
-  color: (
-    var: --rmd-tooltip-color,
-    value: $color,
-  ),
-  spacing: (
-    // this is only added so you can safely do:
-    // @include react-md.tooltip-set-var(spacing, $custom-spacing);
-    var: --rmd-tooltip-spacing,
-    value: $spacing,
-  ),
-);
+$variables: (background-color, color, spacing);
 
 @function get-var($name, $fallback: null) {
-  $found: utils.validate($var-lookup, $name, "tooltip var");
-  $var: map.get($found, var);
-  $value: if($fallback, $fallback, map.get($found, value));
-
-  @if $value {
-    @return var(#{$var}, #{$value});
+  $var: utils.get-var-name($variables, $name, "tooltip");
+  @if $fallback {
+    @return var(#{$var}, #{$fallback});
   }
 
   @return var(#{$var});
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(utils.validate($var-lookup, $name, "tooltip var"), var);
-
-  #{$var}: #{$value};
+  @if $value {
+    #{utils.get-var-name($variables, $name, "tooltip")}: #{$value};
+  }
 }
 
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
+}
+
+@mixin variables {
+  @if not $disable-everything {
+    @include set-var(background-color, $background-color);
+    @include set-var(color, $color);
+
+    // do not include spacing
+  }
 }
 
 @mixin styles {

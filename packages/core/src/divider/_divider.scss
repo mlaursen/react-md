@@ -20,57 +20,29 @@ $dark-theme-color: rgba(colors.$white, 0.12) !default;
 
 $color: theme.get-default-color($light-theme-color, $dark-theme-color) !default;
 
-$var-lookup: (
-  size: (
-    var: --rmd-divider-size,
-    value: $size,
-  ),
-  vertical-size: (
-    var: --rmd-divider-vertical-size,
-    value: $vertical-size,
-  ),
-  color: (
-    var: --rmd-divider-color,
-    value: $color,
-  ),
-  spacing: (
-    var: --rmd-divider-spacing,
-    value: $spacing,
-  ),
-  vertical-spacing: (
-    var: --rmd-divider-vertical-spacing,
-    value: $vertical-spacing,
-  ),
-  inset: (
-    var: --rmd-divider-inset,
-    value: $inset,
-  ),
-  width: (
-    var: --rmd-divider-width,
-    value: $max-size,
-  ),
-  max-size: (
-    var: --rmd-divider-max-size,
-    value: $max-size,
-  ),
+$variables: (
+  size,
+  vertical-size,
+  color,
+  spacing,
+  vertical-spacing,
+  inset,
+  max-size
 );
 
 @function get-var($name, $fallback: null) {
-  $found: utils.validate($var-lookup, $name, "divider var");
-  $var: map.get($found, var);
-  $value: if($fallback, $fallback, map.get($found, value));
-
-  @if $value {
-    @return var(#{$var}, #{$value});
+  $var: utils.get-var-name($variables, $name, "divider");
+  @if $fallback {
+    @return var(#{$var}, #{$fallback});
   }
 
   @return var(#{$var});
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(utils.validate($var-lookup, $name, "divider var"), var);
-
-  #{$var}: #{$value};
+  @if $value {
+    #{utils.get-var-name($variables, $name, "divider")}: #{$value};
+  }
 }
 
 @mixin use-var($property, $name: $property, $fallback: null) {
@@ -95,6 +67,24 @@ $var-lookup: (
   #{$property}: get-var(size) solid get-var(color);
 }
 
+@mixin variables {
+  @if not $disable-everything {
+    @include set-var(size, $size);
+    @include set-var(color, $color);
+    @include set-var(spacing, $spacing);
+    @include set-var(max-size, $max-size);
+
+    @if not $disable-inset {
+      @include set-var(inset, $inset);
+    }
+
+    @if not $disable-vertical {
+      @include set-var(vertical-size, $vertical-size);
+      @include set-var(vertical-spacing, $vertical-spacing);
+    }
+  }
+}
+
 @mixin styles {
   @if not $disable-everything {
     @include theme.default-system-theme {
@@ -103,7 +93,7 @@ $var-lookup: (
 
     .rmd-divider {
       @include use-var(margin, spacing);
-      @include use-var(width);
+      @include use-var(width, max-size);
 
       border: get-var(size) solid get-var(color);
       display: block;

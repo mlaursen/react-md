@@ -129,96 +129,34 @@ $_validated_color_scheme: utils.validate(
   "$color-scheme"
 );
 
-$theme-var-lookup: (
-  background-color: (
-    var: --rmd-background-color,
-    value: $background-color,
-  ),
-  on-background-color: (
-    var: --rmd-on-background-color,
-    value: null,
-  ),
-  surface-color: (
-    var: --rmd-surface-color,
-    value: $surface-color,
-  ),
-  primary-color: (
-    var: --rmd-primary-color,
-    value: $primary-color,
-  ),
-  on-primary-color: (
-    var: --rmd-on-primary-color,
-    value: $on-primary-color,
-  ),
-  secondary-color: (
-    var: --rmd-secondary-color,
-    value: $secondary-color,
-  ),
-  on-secondary-color: (
-    var: --rmd-on-secondary-color,
-    value: $on-secondary-color,
-  ),
-  warning-color: (
-    var: --rmd-warning-color,
-    value: $warning-color,
-  ),
-  on-warning-color: (
-    var: --rmd-on-warning-color,
-    value: $on-warning-color,
-  ),
-  error-color: (
-    var: --rmd-error-color,
-    value: $error-color,
-  ),
-  on-error-color: (
-    var: --rmd-on-error-color,
-    value: $on-error-color,
-  ),
-  success-color: (
-    var: --rmd-success-color,
-    value: $success-color,
-  ),
-  on-success-color: (
-    var: --rmd-on-success-color,
-    value: $on-success-color,
-  ),
-  text-primary-color: (
-    var: --rmd-text-primary-color,
-    value: $text-primary-color,
-  ),
-  text-secondary-color: (
-    var: --rmd-text-secondary-color,
-    value: $text-secondary-color,
-  ),
-  text-hint-color: (
-    var: --rmd-text-hint-color,
-    value: $text-hint-color,
-  ),
-  text-disabled-color: (
-    var: --rmd-text-disabled-color,
-    value: $text-disabled-color,
-  ),
-  outline-width: (
-    var: --rmd-outline-width,
-    value: $outline-width,
-  ),
-  outline-color: (
-    var: --rmd-outline-color,
-    value: $outline-color,
-  ),
-  outline-grey-color: (
-    var: --rmd-outline-grey-color,
-    value: $outline-grey-color,
-  ),
+$theme-variables: (
+  background-color,
+  on-background-color,
+  surface-color,
+  primary-color,
+  on-primary-color,
+  secondary-color,
+  on-secondary-color,
+  warning-color,
+  on-warning-color,
+  success-color,
+  on-success-color,
+  error-color,
+  on-error-color,
+  text-primary-color,
+  text-secondary-color,
+  text-hint-color,
+  text-disabled-color,
+  outline-width,
+  outline-color,
+  outline-grey-color
 );
 
 @function theme-get-var($name, $fallback: null) {
-  $found: utils.validate($theme-var-lookup, $name, "theme var");
-  $var: map.get($found, var);
-  $value: if($fallback, $fallback, map.get($found, value));
+  $var: utils.get-var-name($theme-variables, $name, "theme");
 
-  @if $value {
-    @return var(#{$var}, #{$value});
+  @if $fallback {
+    @return var(#{$var}, #{$fallback});
   }
 
   @return var(#{$var});
@@ -237,9 +175,9 @@ $theme-var-lookup: (
 }
 
 @mixin theme-set-var($name, $value-or-theme-name) {
-  $var: map.get(utils.validate($theme-var-lookup, $name, "theme var"), var);
+  $var: utils.get-var-name($theme-variables, $name, "theme");
   $value: $value-or-theme-name;
-  @if map.has-key($theme-var-lookup, $value-or-theme-name) {
+  @if list.index($theme-variables, $value-or-theme-name) {
     $name: $value-or-theme-name;
     $value: theme-get-var($name);
   }
@@ -291,7 +229,7 @@ $theme-var-lookup: (
   }
 }
 
-@mixin colors {
+@mixin theme-variables {
   @include theme-set-var(background-color, $background-color);
   @if $disable-dark-elevation {
     @include theme-set-var(surface-color, $surface-color);
@@ -317,6 +255,10 @@ $theme-var-lookup: (
       @include set-dark-elevation-color($z-value, $background-color);
     }
   }
+
+  @include theme-set-var(outline-width, $outline-width);
+  @include theme-set-var(outline-color, $outline-color);
+  @include theme-set-var(outline-grey-color, $outline-grey-color);
 }
 
 @mixin create-surface($z-value, $disable-colors: $disable-dark-elevation) {

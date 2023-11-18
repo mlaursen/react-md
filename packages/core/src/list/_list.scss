@@ -60,77 +60,35 @@ $item-media-large-size: 6.25rem !default;
 
 $item-keyline: 4.5rem !default;
 
-$var-lookup: (
-  horizontal-padding: (
-    var: --rmd-list-padding-h,
-    value: $horizontal-padding,
-  ),
-  vertical-padding: (
-    var: --rmd-list-padding-v,
-    value: $vertical-padding,
-  ),
-  item-keyline: (
-    var: --rmd-list-item-keyline,
-    value: $item-keyline,
-  ),
-  item-horizontal-padding: (
-    var: --rmd-list-item-padding-h,
-    value: $item-horizontal-padding,
-  ),
-  item-vertical-padding: (
-    var: --rmd-list-item-padding-v,
-    value: $item-vertical-padding,
-  ),
-  item-height: (
-    var: --rmd-list-item-height,
-    value: $item-height,
-  ),
-  item-medium-height: (
-    var: --rmd-list-item-medium-height,
-    value: $item-medium-height,
-  ),
-  item-large-height: (
-    var: --rmd-list-item-large-height,
-    value: $item-large-height,
-  ),
-  item-extra-large-height: (
-    var: --rmd-list-item-extra-large-height,
-    value: $item-extra-large-height,
-  ),
-  item-three-line-height: (
-    var: --rmd-list-item-three-line-height,
-    value: $item-three-line-height,
-  ),
-  item-media-size: (
-    var: --rmd-list-item-media-size,
-    value: $item-media-size,
-  ),
-  item-media-spacing: (
-    var: --rmd-list-item-media-spacing,
-    value: $item-media-spacing,
-  ),
-  text-three-line-height: (
-    var: --rmd-list-item-text-three-line-height,
-    value: $item-secondary-text-three-line-max-height,
-  ),
+$variables: (
+  horizontal-padding,
+  vertical-padding,
+  item-keyline,
+  item-horizontal-padding,
+  item-vertical-padding,
+  item-height,
+  item-medium-height,
+  item-large-height,
+  item-extra-large-height,
+  item-three-line-height,
+  item-media-size,
+  item-media-spacing,
+  item-text-three-line-height
 );
 
 @function get-var($name, $fallback: null) {
-  $found: utils.validate($var-lookup, $name, "list var");
-  $var: map.get($found, var);
-  $value: if($fallback, $fallback, map.get($found, value));
-
-  @if $value {
-    @return var(#{$var}, #{$value});
+  $var: utils.get-var-name($variables, $name, "list");
+  @if $fallback {
+    @return var(#{$var}, #{$fallback});
   }
 
   @return var(#{$var});
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(utils.validate($var-lookup, $name, "list var"), var);
-
-  #{$var}: #{$value};
+  @if $value {
+    #{utils.get-var-name($variables, $name, "list")}: #{$value};
+  }
 }
 
 @mixin use-var($property, $name: $property, $fallback: null) {
@@ -145,6 +103,38 @@ $var-lookup: (
     spacing,
     calc(#{$keyline} - #{$padding} - #{$subtract})
   );
+}
+
+@mixin variables {
+  @if not $disable-everything {
+    @include set-var(horizontal-padding, $horizontal-padding);
+    @include set-var(vertical-padding, $vertical-padding);
+    @include set-var(item-horizontal-padding, $item-horizontal-padding);
+    @include set-var(item-vertical-padding, $item-vertical-padding);
+
+    @include set-var(item-height, $item-height);
+    @if not $disable-medium-height {
+      @include set-var(item-medium-height, $item-medium-height);
+    }
+    @if not $disable-large-height {
+      @include set-var(item-large-height, $item-large-height);
+    }
+    @if not $disable-extra-large-height {
+      @include set-var(item-extra-large-height, $item-extra-large-height);
+    }
+    @if not $disable-three-line-height {
+      @include set-var(item-three-line-height, $item-three-line-height);
+      @include set-var(
+        item-text-three-line-height,
+        $item-secondary-text-three-line-max-height
+      );
+    }
+
+    @if not $disable-item-media {
+      @include set-var(item-media-size, $item-media-size);
+      @include set-var(item-media-spacing, $item-media-spacing);
+    }
+  }
 }
 
 @mixin styles {
@@ -243,7 +233,7 @@ $var-lookup: (
 
         &--clamped {
           @include typography.line-clamp;
-          @include use-var(max-height, text-three-line-height);
+          @include use-var(max-height, item-text-three-line-height);
 
           line-height: $item-secondary-text-line-height;
           white-space: normal;

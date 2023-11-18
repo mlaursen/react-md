@@ -2,15 +2,15 @@
 
 .avatarField {
   @include everything.form-set-var(
-    text-padding-left,
+    text-field-padding-left,
     calc(everything.avatar-get-var(size) + 1.5rem)
   );
   @include everything.form-set-var(
-    text-padding-right,
+    text-field-padding-right,
     calc(everything.avatar-get-var(size) + 1rem)
   );
 }
 
 .buttonField {
-  @include everything.form-set-var(text-padding-right, 4rem);
+  @include everything.form-set-var(text-field-padding-right, 4rem);
 }

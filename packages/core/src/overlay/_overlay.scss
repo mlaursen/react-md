@@ -9,37 +9,32 @@ $z-index: utils.$temporary-element-z-index !default;
 $transition-duration: transition.$linear-duration !default;
 $transition-timing-function: transition.$linear-timing-function !default;
 
-$var-lookup: (
-  background-color: (
-    var: --rmd-overlay-background-color,
-    value: $background-color,
-  ),
-  z-index: (
-    var: --rmd-overlay-z-index,
-    value: $z-index,
-  ),
-);
+$variables: (background-color, z-index);
 
 @function get-var($name, $fallback: null) {
-  $found: utils.validate($var-lookup, $name, "overlay var");
-  $var: map.get($found, var);
-  $value: if($fallback, $fallback, map.get($found, value));
-
-  @if $value {
-    @return var(#{$var}, #{$value});
+  $var: utils.get-var-name($variables, $name, "overlay");
+  @if $fallback {
+    @return var(#{$var}, #{$fallback});
   }
 
   @return var(#{$var});
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(utils.validate($var-lookup, $name, "overlay var"), var);
-
-  #{$var}: #{$value};
+  @if $value {
+    #{utils.get-var-name($variables, $name, "overlay")}: #{$value};
+  }
 }
 
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
+}
+
+@mixin variables {
+  @if not $disable-everything {
+    @include set-var(background-color, $background-color);
+    @include set-var(z-index, $z-index);
+  }
 }
 
 @mixin styles {

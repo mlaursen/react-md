@@ -6,6 +6,7 @@
 @use "../typography/typography";
 @use "../interaction/interaction";
 
+$disable-everything: false !default;
 $disable-expander-left: false !default;
 $disable-expander-left-as-media: false !default;
 $disable-expander-left-as-media-offset: false !default;
@@ -22,153 +23,145 @@ $selected-styles: (
   font-weight: typography.$font-weight-bold,
 ) !default;
 
-$var-lookup: (
-  depth: (
-    var: --rmd-tree-depth,
-    value: -1,
-  ),
-  item-padding: (
-    var: --rmd-tree-item-padding,
-    value: 0,
-  ),
-  padding-base: (
-    var: --rmd-tree-item-padding-base,
-    value: $padding-base,
-  ),
-  padding-incrementor: (
-    var: --rmd-tree-item-padding-incrementor,
-    value: $padding-incrementor,
-  ),
-);
+$variables: (depth, item-padding, item-padding-base, item-padding-incrementor);
 
 @function get-var($name, $fallback: null) {
-  $found: utils.validate($var-lookup, $name, "tree var");
-  $var: map.get($found, var);
-  $value: if($fallback, $fallback, map.get($found, value));
-
-  @if $value {
-    @return var(#{$var}, #{$value});
+  $var: utils.get-var-name($variables, $name, "tree");
+  @if $fallback {
+    @return var(#{$var}, #{$fallback});
   }
 
   @return var(#{$var});
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(utils.validate($var-lookup, $name, "tree var"), var);
-
-  #{$var}: #{$value};
+  @if $value {
+    #{utils.get-var-name($variables, $name, "tree")}: #{$value};
+  }
 }
 
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
 }
 
-@mixin styles {
-  .rmd-tree {
-    display: block;
-    height: 100%;
-    outline-style: none;
-    overflow: auto;
-    // this is mostly for firefox. moving the mouse even 1px while clicking will
-    // select the current item and all items to the tree root
-    user-select: none;
-    width: 100%;
+@mixin variables {
+  @if not $disable-everything {
+    @include set-var(depth, -1);
+    @include set-var(item-padding, 0);
+    @include set-var(item-padding-base, $padding-base);
+    @include set-var(item-padding-incrementor, $padding-incrementor);
   }
+}
 
-  .rmd-tree-item {
-    @include icon.set-var(rotate-from, $expander-right-from);
-    @include icon.set-var(rotate-to, $expander-right-to);
-    @include set-var(
-      item-padding,
-      calc(
-        get-var(depth) * get-var(padding-incrementor) + get-var(padding-base)
-      )
-    );
-
-    list-style: none;
-
-    @if not $disable-expander-left {
-      &--expander-left {
-        @include icon.set-var(rotate-from, $expander-left-from);
-        @include icon.set-var(rotate-to, $expander-left-to);
-      }
+@mixin styles {
+  @if not $disable-everything {
+    .rmd-tree {
+      display: block;
+      height: 100%;
+      outline-style: none;
+      overflow: auto;
+      // this is mostly for firefox. moving the mouse even 1px while clicking will
+      // select the current item and all items to the tree root
+      user-select: none;
+      width: 100%;
     }
 
-    &__content {
-      &--disabled {
-        cursor: auto;
+    .rmd-tree-item {
+      @include icon.set-var(rotate-from, $expander-right-from);
+      @include icon.set-var(rotate-to, $expander-right-to);
+      @include set-var(
+        item-padding,
+        calc(
+          get-var(depth) * get-var(item-padding-incrementor) +
+            get-var(item-padding-base)
+        )
+      );
 
-        &:hover::before {
-          @include interaction.set-var(background-color, transparent);
+      list-style: none;
+
+      @if not $disable-expander-left {
+        &--expander-left {
+          @include icon.set-var(rotate-from, $expander-left-from);
+          @include icon.set-var(rotate-to, $expander-left-to);
         }
       }
 
-      &--link {
-        color: inherit;
-        text-decoration: none;
-      }
+      &__content {
+        &--disabled {
+          cursor: auto;
 
-      &--padded {
-        @include utils.auto-rtl(
-          padding-left,
-          get-var(item-padding),
-          list.get-var(item-horizontal-padding)
-        );
-      }
-
-      &--focused::before {
-        .rmd-tree:focus-within & {
-          @include utils.keyboard-only {
-            @include interaction.focus-styles;
+          &:hover::before {
+            @include interaction.set-var(background-color, transparent);
           }
         }
-      }
 
-      @if $selected-styles {
-        &--selected {
-          @if not $disable-selected-background-color {
-            @include interaction.set-var(
-              background-color,
-              interaction.get-var(selected-background-color)
-            );
+        &--link {
+          color: inherit;
+          text-decoration: none;
+        }
 
-            @include utils.touch-only {
-              &:hover::before {
-                @include interaction.set-var(
-                  background-color,
-                  interaction.get-var(selected-background-color)
-                );
-              }
+        &--padded {
+          @include utils.auto-rtl(
+            padding-left,
+            get-var(item-padding),
+            list.get-var(item-horizontal-padding)
+          );
+        }
+
+        &--focused::before {
+          .rmd-tree:focus-within & {
+            @include utils.keyboard-only {
+              @include interaction.focus-styles;
             }
           }
-          @include utils.map-to-styles($selected-styles);
+        }
+
+        @if $selected-styles {
+          &--selected {
+            @if not $disable-selected-background-color {
+              @include interaction.set-var(
+                background-color,
+                interaction.get-var(selected-background-color)
+              );
+
+              @include utils.touch-only {
+                &:hover::before {
+                  @include interaction.set-var(
+                    background-color,
+                    interaction.get-var(selected-background-color)
+                  );
+                }
+              }
+            }
+            @include utils.map-to-styles($selected-styles);
+          }
         }
       }
-    }
 
-    @if not $disable-expander-left-as-media {
-      &__media {
-        align-items: center;
-        display: flex;
-        justify-content: space-between;
+      @if not $disable-expander-left-as-media {
+        &__media {
+          align-items: center;
+          display: flex;
+          justify-content: space-between;
 
-        @if not $disable-expander-left-as-media-offset {
-          &--single {
-            justify-content: flex-end;
+          @if not $disable-expander-left-as-media-offset {
+            &--single {
+              justify-content: flex-end;
+            }
           }
         }
       }
     }
-  }
 
-  .rmd-tree-group {
-    background-color: inherit;
-    color: inherit;
-    font-size: inherit;
-    line-height: inherit;
+    .rmd-tree-group {
+      background-color: inherit;
+      color: inherit;
+      font-size: inherit;
+      line-height: inherit;
 
-    // remove the list padding to make it more condensed
-    padding-bottom: 0;
-    padding-top: 0;
+      // remove the list padding to make it more condensed
+      padding-bottom: 0;
+      padding-top: 0;
+    }
   }
 }

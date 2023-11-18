@@ -222,36 +222,21 @@ $button-styles: map.merge(
 $text-container-padding: 1rem !default;
 $text-line-length: 65ch !default;
 
-$typography-var-lookup: (
-  line-length: (
-    var: --rmd-line-length,
-    value: $text-line-length,
-  ),
-  text-container-padding: (
-    var: --rmd-text-container-padding,
-    value: $text-container-padding,
-  ),
-);
+$typography-variables: (line-length, text-container-padding);
 
 @function typography-get-var($name, $fallback: null) {
-  $found: utils.validate($typography-var-lookup, $name, "typography var");
-  $var: map.get($found, var);
-  $value: if($fallback, $fallback, map.get($found, value));
-
-  @if $value {
-    @return var(#{$var}, #{$value});
+  $var: utils.get-var-name($typography-variables, $name, "typography");
+  @if $fallback {
+    @return var(#{$var}, #{$fallback});
   }
 
   @return var(#{$var});
 }
 
 @mixin typography-set-var($name, $value) {
-  $var: map.get(
-    utils.validate($typography-var-lookup, $name, "typography var"),
-    var
-  );
-
-  #{$var}: #{$value};
+  @if $value {
+    #{utils.get-var-name($typography-variables, $name, "typography")}: #{$value};
+  }
 }
 
 @mixin typography-use-var($property, $name: $property, $fallback: null) {
@@ -337,6 +322,16 @@ $typography-var-lookup: (
   -webkit-box-orient: vertical;
   -webkit-line-clamp: $lines;
   display: -webkit-box;
+}
+
+@mixin typography-variables {
+  @if not $disable-text-container {
+    @include typography-set-var(line-length, $text-line-length);
+    @include typography-set-var(
+      text-container-padding,
+      $text-container-padding
+    );
+  }
 }
 
 @mixin typography-styles {

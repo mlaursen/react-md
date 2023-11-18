@@ -117,55 +117,19 @@ $selected-background-color: theme.get-default-color(
   $dark-surface-selected-background-color
 ) !default;
 
-$var-lookup: (
-  ripple-background-color: (
-    var: --rmd-ripple-background-color,
-    value: $ripple-background-color,
-  ),
-  background-color: (
-    var: --rmd-interaction-background-color,
-    value: null,
-  ),
-  hover-background-color: (
-    var: --rmd-hover-background-color,
-    value: $hover-background-color,
-  ),
-  focus-background-color: (
-    var: --rmd-focus-background-color,
-    value: $focus-background-color,
-  ),
-  press-background-color: (
-    var: --rmd-press-background-color,
-    value: $press-background-color,
-  ),
-  selected-background-color: (
-    var: --rmd-selected-background-color,
-    value: $selected-background-color,
-  ),
-  focus-color: (
-    var: --rmd-focus-color,
-    value: $focus-color,
-  ),
-  focus-width: (
-    var: --rmd-focus-width,
-    value: $focus-width,
-  ),
-  ripple-inset: (
-    var: --rmd-ripple-inset,
-    value: 0,
-  ),
-  ripple-border-radius: (
-    var: --rmd-ripple-border-radius,
-    value: inherit,
-  ),
-  surface-inset: (
-    var: --rmd-surface-inset,
-    value: 0,
-  ),
-  surface-border-radius: (
-    var: --rmd-surface-border-radius,
-    value: inherit,
-  ),
+$variables: (
+  background-color,
+  hover-background-color,
+  focus-background-color,
+  press-background-color,
+  selected-background-color,
+  focus-color,
+  focus-width,
+  ripple-inset,
+  ripple-border-radius,
+  ripple-background-color,
+  surface-inset,
+  surface-border-radius
 );
 
 @function _is-var-disabled($name) {
@@ -189,27 +153,35 @@ $var-lookup: (
 }
 
 @function get-var($name, $fallback: null) {
-  $found: utils.validate($var-lookup, $name, "interaction var");
-  $var: map.get($found, var);
-  $value: if($fallback, $fallback, map.get($found, value));
-  @if _is-var-disabled($name) {
-    @return $value;
+  // cannot set a custom property to `inherit` for some reason. It will not be parsed.
+  @if not
+    $fallback and
+    ($name == ripple-border-radius or $name == surface-border-radius)
+  {
+    $fallback: inherit;
   }
 
-  @if $value {
-    @return var(#{$var}, #{$value});
+  @if _is-var-disabled($name) {
+    @return $fallback;
+  }
+
+  $var: utils.get-var-name($variables, $name, "interaction");
+
+  @if $fallback {
+    @return var(#{$var}, #{$fallback});
   }
 
   @return var(#{$var});
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(utils.validate($var-lookup, $name, "interaction var"), var);
   @if _is-var-disabled($name) {
     @error '"#{$name}" is currently disabled and cannot be changed. Set "$disable-#{$name}-var" to `true` or remove it from the Sass module overrides.';
   }
 
-  #{$var}: #{$value};
+  @if $value {
+    #{utils.get-var-name($variables, $name, "interaction")}: #{$value};
+  }
 }
 
 @mixin use-var($property, $name: $property, $fallback: null) {
@@ -379,6 +351,24 @@ $var-lookup: (
     #{$disabled-selector} {
       @include surface-disabled($clickable, $hoverable);
     }
+  }
+}
+
+@mixin variables {
+  @include set-var(focus-color, $focus-color);
+  @include set-var(focus-width, $focus-width);
+  @include set-var(hover-background-color, $hover-background-color);
+  @include set-var(focus-background-color, $focus-background-color);
+  @include set-var(press-background-color, $press-background-color);
+  @include set-var(selected-background-color, $selected-background-color);
+
+  @if not $_disable-ripple {
+    @include set-var(ripple-background-color, $ripple-background-color);
+    @include set-var(ripple-inset, 0);
+  }
+
+  @if not $disable-surface-inset-var {
+    @include set-var(surface-inset, 0);
   }
 }
 

@@ -9,43 +9,17 @@ $disable-vertical: false !default;
 $disable-reversed: false !default;
 $disable-absolute-position: false !default;
 
-$window-splitter-size: 1rem !default;
-$window-splitter-background-size: 0.25rem !default;
-$window-splitter-background-color: interaction.get-var(focus-color) !default;
-$window-splitter-z-index: 30 !default;
+$size: 1rem !default;
+$background-size: 0.25rem !default;
+$background-color: interaction.get-var(focus-color) !default;
+$z-index: 30 !default;
 
-$var-lookup: (
-  top: (
-    var: --rmd-window-splitter-top,
-    value: 0,
-  ),
-  right: (
-    var: --rmd-window-splitter-right,
-    value: 0,
-  ),
-  bottom: (
-    var: --rmd-window-splitter-bottom,
-    value: 0,
-  ),
-  left: (
-    var: --rmd-window-splitter-left,
-    value: 0,
-  ),
-  opacity: (
-    var: --rmd-window-splitter-opacity,
-    value: 0,
-  ),
-  position: (
-    var: --rmd-window-splitter-position,
-    value: 0,
-  ),
-);
+$variables: (top, right, bottom, left, opacity, position);
 
 @function get-var($name, $fallback: null) {
-  $found: utils.validate($var-lookup, $name, "window-splitter var");
-  $var: map.get($found, var);
-  $value: if($fallback, $fallback, map.get($found, value));
-
+  $var: utils.get-var-name($variables, $name, "window-splitter");
+  // window-splitter variables don't make much sense to set globally
+  $value: if($fallback, $fallback, 0);
   @if $value {
     @return var(#{$var}, #{$value});
   }
@@ -54,9 +28,9 @@ $var-lookup: (
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(utils.validate($var-lookup, $name, "window-splitter var"), var);
-
-  #{$var}: #{$value};
+  @if $value {
+    #{utils.get-var-name($variables, $name, "window-splitter")}: #{$value};
+  }
 }
 
 @mixin use-var($property, $name: $property, $fallback: null) {
@@ -74,10 +48,10 @@ $var-lookup: (
       padding: 0;
       position: fixed;
       transition: opacity transition.$linear-duration;
-      z-index: $window-splitter-z-index;
+      z-index: $z-index;
 
       &::after {
-        background-color: $window-splitter-background-color;
+        background-color: $background-color;
         content: "";
         inset: 0;
         position: absolute;
@@ -106,10 +80,10 @@ $var-lookup: (
           @include use-var(top);
 
           cursor: col-resize;
-          width: $window-splitter-size;
+          width: $size;
 
           &::after {
-            width: $window-splitter-background-size;
+            width: $background-size;
           }
         }
 
@@ -133,11 +107,11 @@ $var-lookup: (
           @include use-var(top, position);
 
           cursor: row-resize;
-          height: $window-splitter-size;
+          height: $size;
           width: 100%;
 
           &::after {
-            height: $window-splitter-background-size;
+            height: $background-size;
           }
         }
 
@@ -148,7 +122,7 @@ $var-lookup: (
             top: auto;
 
             &::after {
-              top: calc(100% - $window-splitter-background-size);
+              top: calc(100% - $background-size);
             }
           }
         }

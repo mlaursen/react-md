@@ -60,41 +60,33 @@ $background-color: theme.get-default-color(
 ) !default;
 $color: theme.get-default-color($light-theme-color, $dark-theme-color) !default;
 
-$var-lookup: (
-  color: (
-    var: --rmd-toast-color,
-    value: $color,
-  ),
-  background-color: (
-    var: --rmd-toast-background-color,
-    value: $background-color,
-  ),
-  offset: (
-    var: --rmd-snackbar-offset,
-    value: 0,
-  ),
-);
+$variables: (background-color, color, offset);
 
 @function get-var($name, $fallback: null) {
-  $found: utils.validate($var-lookup, $name, "alert var");
-  $var: map.get($found, var);
-  $value: if($fallback, $fallback, map.get($found, value));
-
-  @if $value {
-    @return var(#{$var}, #{$value});
+  $var: utils.get-var-name($variables, $name, "snackbar");
+  @if $fallback {
+    @return var(#{$var}, #{$fallback});
   }
 
   @return var(#{$var});
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(utils.validate($var-lookup, $name, "alert var"), var);
-
-  #{$var}: #{$value};
+  @if $value {
+    #{utils.get-var-name($variables, $name, "snackbar")}: #{$value};
+  }
 }
 
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
+}
+
+@mixin variables {
+  @if not $disable-everything {
+    @include set-var(background-color, $background-color);
+    @include set-var(color, $color);
+    @include set-var(offset, 0);
+  }
 }
 
 @mixin styles {

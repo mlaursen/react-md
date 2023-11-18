@@ -64,6 +64,63 @@ $_swappable-properties: text-align;
   @return if($is-list, $key-or-value, map.get($list-or-map, $key-or-value));
 }
 
+@function get-var-name($variables, $name, $group) {
+  @if $group == icon {
+    @if $name == symbol-grade {
+      @return --rmd-symbol-grad;
+    }
+    @if $name == symbol-weight {
+      @return --rmd-symbol-wght;
+    }
+    @if $name == optical-size {
+      @return --rmd-symbol-opsz;
+    }
+  }
+  @if $group == name and $name == fab-offset {
+    @return --rmd-fab-offset;
+  }
+
+  @if $group == form {
+    @if $name ==
+      addon-top or
+      $name ==
+      addon-margin-top or
+      $name ==
+      active-color or
+      $name ==
+      focus-color
+    {
+      @return --rmd-form-#{$name};
+    }
+  }
+  @if $group == interaction and $name == background-color {
+    @return --rmd-interaction-#{$name};
+  }
+
+  @if $group == list {
+    $updated: str-replace(
+      str-replace($name, "horizontal-padding", "padding-h"),
+      "vertical-padding",
+      "padding-v"
+    );
+    @if $updated != $name {
+      @return --rmd-list-#{$name};
+    }
+  }
+
+  @if $group == snackbar and $name != offset {
+    @return --rmd-toast-#{$name};
+  }
+
+  $prefix: "";
+  @if not list.index((theme, form, interaction, transition, typography), $group)
+  {
+    $prefix: $group + "-";
+  }
+
+  @return "--rmd-" + $prefix + validate($variables, $name, $group + " var");
+}
+
 @mixin map-to-styles($map) {
   @each $property, $value in $map {
     @if meta.type-of($value) == map {

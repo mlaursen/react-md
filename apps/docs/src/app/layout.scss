@@ -8,7 +8,7 @@ $is_production: $env == production;
 @layer theme {
   :root {
     @if everything.$disable-default-root-theme {
-      @include everything.colors;
+      @include everything.variables;
 
       @if everything.$color-scheme ==
         system and

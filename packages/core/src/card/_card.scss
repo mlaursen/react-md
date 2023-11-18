@@ -44,37 +44,21 @@ $content-padding-bottom: 1.5rem !default;
 
 $footer-padding: 0.5rem !default;
 
-$var-lookup: (
-  background-color: (
-    var: --rmd-card-background-color,
-    value: $background-color,
-  ),
-  color: (
-    var: --rmd-card-color,
-    value: $color,
-  ),
-  secondary-color: (
-    var: --rmd-card-secondary-color,
-    value: null,
-  ),
-);
+$variables: (background-color, color, secondary-color);
 
 @function get-var($name, $fallback: null) {
-  $found: utils.validate($var-lookup, $name, "card var");
-  $var: map.get($found, var);
-  $value: if($fallback, $fallback, map.get($found, value));
-
-  @if $value {
-    @return var(#{$var}, #{$value});
+  $var: utils.get-var-name($variables, $name, "card");
+  @if $fallback {
+    @return var(#{$var}, #{$fallback});
   }
 
   @return var(#{$var});
 }
 
 @mixin set-var($name, $value) {
-  $var: map.get(utils.validate($var-lookup, $name, "card var"), var);
-
-  #{$var}: #{$value};
+  @if $value {
+    #{utils.get-var-name($variables, $name, "card")}: #{$value};
+  }
 }
 
 @mixin use-var($property, $name: $property, $fallback: null) {
@@ -90,6 +74,13 @@ $var-lookup: (
 @mixin use-dark-theme {
   @if not $disable-everything {
     @include set-var(background-color, $dark-theme-background-color);
+  }
+}
+
+@mixin variables {
+  @if not $disable-everything {
+    @include set-var(background-color, $background-color);
+    @include set-var(color, $color);
   }
 }
 
