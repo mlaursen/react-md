@@ -5,9 +5,8 @@ import {
   COLOR_SCHEME_KEY,
   PACKAGE_MANAGER_KEY,
 } from "@/constants/cookies.js";
+import { PRISM_THEMES, type PrismTheme } from "@/constants/prismThemes.js";
 import { DISABLE_DEFAULT_SYSTEM_THEME } from "@/constants/rmdConfig.jsx";
-import fallbackPrismStyles from "@/prism-themes/VimSolarizedDark.module.scss";
-import { PRISM_THEMES, type PrismTheme } from "@/prism-themes/themes.js";
 import { type CodeLanguage } from "@/providers/CodeLanguageProvider.jsx";
 import { type PackageManager } from "@/providers/PackageManagerProvider.jsx";
 import { getCookie } from "@/utils/serverCookies.js";
@@ -61,7 +60,7 @@ export function getAppCookies(): AppCookies {
   };
 }
 
-export type CSSModulesImport = typeof fallbackPrismStyles;
+export type CSSModulesImport = typeof fallbackThemeStyles;
 
 async function loadStyles(
   load: Promise<{ default: CSSModulesImport }>,
@@ -79,7 +78,6 @@ async function loadStyles(
 }
 
 export interface InitialAppState extends AppCookies {
-  prismStyles: CSSModulesImport;
   themeStyles: CSSModulesImport;
 }
 
@@ -90,11 +88,6 @@ export async function getInitialState(): Promise<InitialAppState> {
     defaultPackageManager,
     defaultColorSchemeMode,
   } = getAppCookies();
-  const prismName = pascalCase(defaultPrismTheme);
-  const prismStyles = await loadStyles(
-    import(`@/prism-themes/${prismName}.module.scss`),
-    fallbackPrismStyles
-  );
 
   let themeStyles: CSSModulesImport = {};
   if (defaultColorSchemeMode !== "system" || DISABLE_DEFAULT_SYSTEM_THEME) {
@@ -110,7 +103,6 @@ export async function getInitialState(): Promise<InitialAppState> {
     defaultCodeLanguage,
     defaultPackageManager,
     defaultColorSchemeMode,
-    prismStyles,
     themeStyles,
   };
 }

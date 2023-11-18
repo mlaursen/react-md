@@ -1,5 +1,6 @@
 import { alphaNumericSort } from "@react-md/core";
 import { glob, globSync } from "glob";
+import { createHash } from "node:crypto";
 import { existsSync } from "node:fs";
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
@@ -8,13 +9,19 @@ import postcssCombineDuplicatedSelectors from "postcss-combine-duplicated-select
 import postcssRemovePrefixes from "postcss-remove-prefixes";
 import postcssSorting from "postcss-sorting";
 import { format } from "../src/utils/format.js";
-import { pascalCase } from "../src/utils/strings.js";
 import { GENERATED_FILE_BANNER } from "./constants.js";
+import { compileScss } from "./utils/compileScss.js";
 import { getScriptFlags } from "./utils/getScriptFlags.js";
 
-const prismThemesFolder = resolve(process.cwd(), "src", "prism-themes");
-const themesPath = resolve(prismThemesFolder, "themes.ts");
-const loadThemePath = resolve(prismThemesFolder, "LoadPrismTheme.tsx");
+const prismThemesFolder = resolve(process.cwd(), "src", "constants");
+const themesPath = resolve(prismThemesFolder, "prismThemes.ts");
+const prismThemesOutFolder = resolve(process.cwd(), "public", "prism-themes");
+const VIM_SOLARIZED_DARK = "vim-solarized-dark";
+const VIM_SOLARIZED_DARK_SCSS = resolve(
+  process.cwd(),
+  "scripts",
+  `${VIM_SOLARIZED_DARK}.scss`
+);
 
 const files = globSync("node_modules/prism@(js|-themes)/themes/*.css", {
   ignore: "**/*.min.css",
@@ -22,7 +29,7 @@ const files = globSync("node_modules/prism@(js|-themes)/themes/*.css", {
 
 const defaultThemes = ["default"];
 const additionalThemes: string[] = [];
-const themeComponentLookup = new Map<string, string>();
+const cssNameLookup = new Map<string, string>();
 const unknownTheme = new Set<string>();
 
 const LIGHT_BG_THEMES = new Set([
@@ -73,7 +80,7 @@ const DARK_BG_THEMES = new Set([
   "xonokai",
   "z-touch",
   // my custom theme
-  "vim-solarized-dark",
+  VIM_SOLARIZED_DARK,
 ]);
 
 const INLINE_CODE_SELECTOR = ':not(pre) > code[class*="language-"]';
@@ -82,17 +89,28 @@ const PREFIX_OR_EXTENSION_REGEXP =
 
 const { isClean, isCleanOnly } = getScriptFlags();
 if (isClean) {
-  const files = await glob(`${prismThemesFolder}/**/*`, {
-    ignore: ["**/VimSolarizedDark*"],
-  });
+  const files = await glob(`${prismThemesOutFolder}/**/*`);
   await Promise.all(files.map((file) => rm(file)));
 
   if (isCleanOnly) {
     process.exit(0);
   }
 }
-if (!existsSync(prismThemesFolder)) {
-  await mkdir(prismThemesFolder);
+if (!existsSync(prismThemesOutFolder)) {
+  await mkdir(prismThemesOutFolder, { recursive: true });
+}
+
+async function writeCss(themeName: string, contents: string): Promise<void> {
+  const contentHashName = createHash("sha256")
+    .update(contents, "utf8")
+    .digest("hex")
+    .substring(0, 16);
+  cssNameLookup.set(themeName, contentHashName);
+
+  await writeFile(
+    join(prismThemesOutFolder, `${contentHashName}.min.css`),
+    contents
+  );
 }
 
 async function transformCss(css: string): Promise<string> {
@@ -163,8 +181,6 @@ await Promise.all(
     }
 
     const name = themeName || "default";
-    const title = pascalCase(name);
-    themeComponentLookup.set(name, title);
     if (!LIGHT_BG_THEMES.has(name) && !DARK_BG_THEMES.has(name)) {
       unknownTheme.add(name);
     }
@@ -250,96 +266,51 @@ await Promise.all(
     })
       .map(([prop, value]) => `--code-${prop}: ${value};`)
       .join("\n");
-    themeCssAst.prepend(sortedProperties);
+    themeCssAst.prepend(`:root {
+  ${sortedProperties}
+}`);
 
     // run in through postcss again to combine duplicated selectors and other
     // stuffs
     const updatedCss = await transformCss(themeCssAst.toResult().toString());
-    const css = await format(
-      `${GENERATED_FILE_BANNER}
-
-${license}
+    const css = await compileScss(
+      `${license}
 
 @layer code {
-  .container :global {
-    ${updatedCss}
-  }
-}`,
-      "scss"
-    );
-    const component = await format(
-      `${GENERATED_FILE_BANNER}
-
-import { useHtmlClassName } from "@react-md/core";
-import styles from "./${title}.module.scss"
-
-export default function ${title}(): null {
-  useHtmlClassName(styles.container);
-
-  return null;
-}
-`,
-      "typescript"
+  ${updatedCss}
+}`
     );
 
-    await Promise.all([
-      writeFile(join(prismThemesFolder, `${title}.module.scss`), css),
-      writeFile(join(prismThemesFolder, `${title}.tsx`), component),
-    ]);
+    await writeCss(name, css);
   })
 );
 
+await writeCss(
+  VIM_SOLARIZED_DARK,
+  await compileScss(await readFile(VIM_SOLARIZED_DARK_SCSS, "utf8"))
+);
+
 const allThemes = [
-  "vim-solarized-dark",
+  VIM_SOLARIZED_DARK,
   ...alphaNumericSort([...defaultThemes, ...additionalThemes]),
 ];
 
+const sortedPrismCssMap = alphaNumericSort([...cssNameLookup.entries()], {
+  extractor: ([name]) => name,
+});
 const themesContent = await format(
   `${GENERATED_FILE_BANNER}
 
 export const PRISM_THEMES = ${JSON.stringify(allThemes)} as const;
 export const LIGHT_BG_THEMES = new Set(${JSON.stringify([...LIGHT_BG_THEMES])});
+export const PRISM_CSS_MAP = new Map(${JSON.stringify(sortedPrismCssMap)})
 
 export type PrismTheme = typeof PRISM_THEMES[number];
 `,
   "typescript"
 );
 
-const loadThemeContent = await format(
-  `${GENERATED_FILE_BANNER}
-
-import { usePrismThemeContext } from "@/providers/PrismThemeProvider.jsx";
-import dynamic  from "next/dynamic.js";
-import { type ReactElement } from "react";
-
-${Array.from(themeComponentLookup.values())
-  .map(
-    (component) =>
-      `const ${component} = dynamic(() => import("./${component}.jsx"));`
-  )
-  .join("\n")}
-const VimSolarizedDark = dynamic(() => import("./VimSolarizedDark.jsx"));
-
-export function LoadPrismTheme(): ReactElement {
-  const { prismTheme } = usePrismThemeContext();
-
-  return (
-    <>
-${Array.from(themeComponentLookup.entries())
-  .map(([name, component]) => `{prismTheme === "${name}" && <${component} />}`)
-  .join("\n")}
-{prismTheme === "vim-solarized-dark" && <VimSolarizedDark />}
-    </>
-  )
-}
-`,
-  "typescript"
-);
-
-await Promise.all([
-  writeFile(themesPath, themesContent),
-  writeFile(loadThemePath, loadThemeContent),
-]);
+await writeFile(themesPath, themesContent);
 
 if (unknownTheme.size) {
   console.error(

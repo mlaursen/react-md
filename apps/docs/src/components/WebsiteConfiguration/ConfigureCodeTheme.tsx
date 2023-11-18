@@ -1,5 +1,5 @@
+import { PRISM_THEMES } from "@/constants/prismThemes.js";
 import { usePrismThemeContext } from "@/providers/PrismThemeProvider.jsx";
-import { PRISM_THEMES } from "@/prism-themes/themes.js";
 import { Box, Option, Overlay, Select, Typography } from "@react-md/core";
 import { useId, type ReactElement } from "react";
 

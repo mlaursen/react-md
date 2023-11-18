@@ -3,6 +3,7 @@ import "./layout.scss";
 import { LoadThemeStyles } from "@/components/LoadThemeStyles/LoadThemeStyles.jsx";
 import { RootLayout } from "@/components/RootLayout/RootLayout.jsx";
 import { RootProviders } from "@/providers/RootProviders.jsx";
+import { PRISM_THEMES_ID, getPrismThemeHref } from "@/utils/prismThemes.js";
 import { semver } from "@/utils/semver.js";
 import { cnb } from "cnbuilder";
 import localFont from "next/font/local";
@@ -29,8 +30,8 @@ export default async function MainRootLayout(
   const headersInstance = headers();
   const version = process.env.NEXT_PUBLIC_RMD_VERSION;
   const isMac = !!headersInstance.get("user-agent")?.includes("Mac");
-  const { prismStyles, themeStyles, ...providerProps } =
-    await getInitialState();
+  const { themeStyles, ...providerProps } = await getInitialState();
+  const { defaultPrismTheme } = providerProps;
 
   return (
     <html
@@ -39,10 +40,16 @@ export default async function MainRootLayout(
       className={cnb(
         roboto.variable,
         sourceCodePro.variable,
-        themeStyles.container,
-        prismStyles.container
+        themeStyles.container
       )}
     >
+      <head>
+        <link
+          id={PRISM_THEMES_ID}
+          rel="stylesheet"
+          href={getPrismThemeHref(defaultPrismTheme)}
+        />
+      </head>
       <body>
         <RootProviders {...providerProps}>
           <LoadThemeStyles />

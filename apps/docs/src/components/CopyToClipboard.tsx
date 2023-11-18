@@ -1,5 +1,5 @@
 "use client";
-import { LIGHT_BG_THEMES } from "@/prism-themes/themes.js";
+import { LIGHT_BG_THEMES } from "@/constants/prismThemes.js";
 import { usePrismThemeContext } from "@/providers/PrismThemeProvider.jsx";
 import { addAppToast } from "@/toasts.js";
 import { Button, Tooltip, useTooltip, type ButtonProps } from "@react-md/core";

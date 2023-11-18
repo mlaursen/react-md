@@ -1,0 +1,170 @@
+@use "everything";
+@use "sass:map";
+
+$base-03: #002b36;
+$base-02: #073642;
+$base-01: #586e75;
+$base-00: #657b83;
+$base-0: #839496;
+$base-1: #93a1a1;
+$base-2: #eee8d5;
+$base-3: #fdf6e3;
+
+$yellow: #b58900;
+$orange: #cb4b16;
+$red: #d30102;
+$magenta: #d33682;
+$violet: #6c71c4;
+$blue: #268bd2;
+$cyan: #2aa198;
+$green: #859900;
+
+@layer code {
+  :root {
+    --code-font-family: var(--source-code-pro, "Source Code Pro"), Consolas,
+      Monaco, monospace;
+  }
+
+  // this is _basically_ my current vim theme, but not as good since Prism
+  // doesn't have as many tokenizers without additional plugins and I'm too
+  // lazy to make it match 100%
+  code[class*="language-"],
+  pre[class*="language-"] {
+    direction: ltr;
+    font-family: var(--code-font-family);
+  }
+
+  pre[class*="language-"] {
+    background-color: $base-03;
+    color: $base-1;
+    hyphens: none;
+    margin: 0.5em 0;
+    min-height: calc(everything.button-get-var(text-min-height) + 0.5em);
+    overflow: auto;
+    padding: 1em;
+    white-space: pre;
+
+    &::selection,
+    *::selection {
+      background-color: $blue;
+      color: $base-3;
+    }
+  }
+
+  pre > code[class*="language-"] {
+    font-size: 1em;
+  }
+
+  .token {
+    position: relative;
+    z-index: 1;
+
+    &.comment,
+    &.doctype {
+      color: $base-01;
+    }
+
+    &.inserted,
+    &.keyword {
+      color: $green;
+    }
+
+    &.punctuation {
+      color: $base-01;
+    }
+
+    &.string,
+    .language-tsx &.attr-value {
+      color: $cyan;
+    }
+
+    &.tag,
+    &.selector,
+    &.class-name {
+      color: $blue;
+    }
+
+    &.attr-name,
+    &.property,
+    &.builtin {
+      color: $yellow;
+    }
+
+    &.script,
+    &.interpolation {
+      color: $base-1;
+    }
+
+    &.deleted,
+    &.boolean,
+    &.number,
+    &.interpolation-punctuation {
+      color: $red;
+    }
+
+    &.important,
+    &.bold {
+      font-weight: everything.$font-weight-bold;
+    }
+
+    &.italic {
+      font-style: italic;
+    }
+
+    &.entity {
+      cursor: help;
+    }
+  }
+
+  .language-scss .token.function,
+  .language-scss .token.variable {
+    color: $blue;
+  }
+
+  .language-ts .token + .class-name {
+    color: $base-1;
+  }
+
+  .language-tsx .function .maybe-class-name {
+    color: $blue;
+  }
+
+  .language-ts,
+  .language-tsx {
+    .token.number {
+      color: inherit;
+    }
+
+    .token.keyword.module {
+      color: $red;
+
+      + .keyword {
+        color: $blue;
+      }
+    }
+
+    .token.spread {
+      color: $base-1;
+
+      .token.punctuation {
+        color: $red;
+      }
+    }
+  }
+
+  .language-scss .token.function {
+    color: $orange;
+  }
+
+  .language-sh .token.function,
+  .language-bash .token.function,
+  .language-shell .token.function {
+    color: $blue;
+  }
+
+  .language-sh .token.function,
+  .language-bash .token.parameter,
+  .language-shell .token.parameter {
+    color: $orange;
+  }
+}
