@@ -1,6 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
 import { render, screen } from "../../test-utils/index.js";
 
+import { useRef, type ReactElement } from "react";
 import { Portal } from "../Portal.js";
 import {
   PORTAL_CONTAINER_ID,
@@ -57,5 +58,27 @@ describe("PortalContainerProvider", () => {
     expect(container).toContainElement(div1);
     expect(container).toContainElement(div2);
     document.body.removeChild(container);
+  });
+
+  it("should allow for a ref container", () => {
+    function Test(): ReactElement {
+      const portalContainer = useRef<HTMLDivElement>(null);
+      return (
+        <PortalContainerProvider container={portalContainer}>
+          <div data-testid="container" ref={portalContainer} />
+          <Portal>
+            <div data-testid="portal">
+              This will always be rendered in the portalContainer
+            </div>
+          </Portal>
+        </PortalContainerProvider>
+      );
+    }
+
+    render(<Test />);
+    const container = screen.getByTestId("container");
+    const portal = screen.getByTestId("portal");
+    expect(document.getElementById(PORTAL_CONTAINER_ID)).toBe(null);
+    expect(container).toContainElement(portal);
   });
 });

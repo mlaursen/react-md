@@ -6,6 +6,7 @@ import {
   useState,
   type ReactElement,
   type ReactNode,
+  type RefObject,
 } from "react";
 
 /**
@@ -40,7 +41,7 @@ export interface PortalContainerProviderProps {
    * `<div id="rmd-portal-container"></div>` will be added as the last child to
    * the `document.body` and be used as the container element.
    */
-  container?: PortalContainer;
+  container?: PortalContainer | RefObject<PortalContainer>;
   children: ReactNode;
 }
 
@@ -61,6 +62,11 @@ export function PortalContainerProvider(
   const { container, children } = props;
   const [value, setValue] = useState<PortalContainer>(portalContainer);
   useEffect(() => {
+    if (container && "current" in container) {
+      setValue(container.current);
+      return;
+    }
+
     if (typeof container !== "undefined") {
       return;
     }
@@ -82,5 +88,7 @@ export function PortalContainerProvider(
     };
   }, [container]);
 
-  return <Provider value={container ?? value}>{children}</Provider>;
+  const containerValue =
+    (container && "current" in container) || !container ? value : container;
+  return <Provider value={containerValue}>{children}</Provider>;
 }
