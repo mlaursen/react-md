@@ -6,6 +6,7 @@ import styles from "./AdditionalChanges.module.scss";
 import { AdditionalChangesPanels } from "./AdditionalChangesPanels.js";
 import { MaterialConfigChanges } from "./MaterialConfigChanges.js";
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";
+import { isMaterialIconType } from "./searchParams.js";
 
 export interface AdditionalChangesProps {
   isSvg?: boolean;
@@ -17,8 +18,9 @@ export function AdditionalChanges(
   const { isSvg } = props;
 
   const { iconType } = useMaterialIconsAndSymbols();
-  const configDescription =
-    iconType === "icon" ? "icon family" : "symbol customizations";
+  const configDescription = isMaterialIconType(iconType)
+    ? "icon family"
+    : "symbol customizations";
 
   return (
     <>

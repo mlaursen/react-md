@@ -1,22 +1,16 @@
 import { type ReactElement } from "react";
 import { CopyCode } from "./CopyCode.jsx";
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";
-import { getMaterialIconComponentName } from "./utils.js";
 
 export function IconImportAndUsage(): ReactElement | null {
-  const { iconFamily, selectedIconName, iconType } =
-    useMaterialIconsAndSymbols();
+  const { selectedIconName, iconType } = useMaterialIconsAndSymbols();
   if (!selectedIconName) {
     return null;
   }
 
-  const importCode = `import { Material${
-    iconType === "symbol" ? "Symbol" : "Icon"
-  } } from "@react-md/core"`;
-  const usageCode = `<${getMaterialIconComponentName({
-    iconName: selectedIconName,
-    iconFamily,
-  })} name="${selectedIconName}" />`;
+  const component = `Material${iconType === "symbol" ? "Symbol" : "Icon"}`;
+  const importCode = `import { Material${component} } from "@react-md/core"`;
+  const usageCode = `<${component} name="${selectedIconName}" />`;
 
   return (
     <>

@@ -12,6 +12,7 @@ import {
   MATERIAL_ICON_CATEGORIES,
   MATERIAL_SYMBOL_CATEGORIES,
 } from "./metadata.js";
+import { isMaterialIconType } from "./searchParams.js";
 
 export function FilterCategoryPanel(
   props: ProvidedExpansionPanelProps
@@ -19,8 +20,9 @@ export function FilterCategoryPanel(
   const { isDesktop } = useAppSize();
   const { iconType, iconCategory, setIconCategory } =
     useMaterialIconsAndSymbols();
-  const iconCategories =
-    iconType === "icon" ? MATERIAL_ICON_CATEGORIES : MATERIAL_SYMBOL_CATEGORIES;
+  const iconCategories = isMaterialIconType(iconType)
+    ? MATERIAL_ICON_CATEGORIES
+    : MATERIAL_SYMBOL_CATEGORIES;
 
   return (
     <FilterPanel

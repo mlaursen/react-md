@@ -11,9 +11,9 @@ import {
   MATERIAL_SYMBOLS,
   type IconsByCategory,
   type MaterialIconAndSymbolName,
-  type MaterialIconType,
 } from "./metadata.js";
-import { type IconCategoryFilter } from "./types.js";
+import { isMaterialIconType } from "./searchParams.js";
+import { type IconCategoryFilter, type IconType } from "./types.js";
 
 export function getCategoryName(category: string): string {
   if (category.includes("&")) {
@@ -37,13 +37,13 @@ export function getCategoryName(category: string): string {
 
 export function isMaterialSymbol(
   iconName: MaterialIconAndSymbolName,
-  iconType: MaterialIconType
+  iconType: IconType
 ): iconName is MaterialSymbolName {
   return iconType === "symbol";
 }
 
 export interface IconsByCategoryOptions {
-  iconType: MaterialIconType;
+  iconType: IconType;
   iconFamily: MaterialIconFamily;
   iconCategory: IconCategoryFilter;
 }
@@ -55,7 +55,7 @@ export function getIconsByCategory(
 
   const icon = MATERIAL_ICONS[iconFamily];
   const symbol = MATERIAL_SYMBOLS[iconFamily];
-  let iconsByCategory = iconType === "icon" ? icon : symbol;
+  let iconsByCategory = isMaterialIconType(iconType) ? icon : symbol;
   // TODO: Revert this (?) once the swc minifier no longer considers this
   // "dead code" for the `MATERIAL_SYMBOLS` and `MATERIAL_ICONS` constants.
   // let iconsByCategory = (
@@ -105,7 +105,7 @@ export function getMaterialIconComponentName(
 type DefinedSpecs = Omit<MaterialSymbolConfiguration, "family">;
 
 interface FontStylesheetOptions {
-  iconType: MaterialIconType;
+  iconType: IconType;
   iconFamily: MaterialIconFamily;
 }
 
@@ -131,7 +131,7 @@ export function getFontStylesheet(
     .map((part) => lodash.upperFirst(part))
     .join("+");
 
-  if (iconType === "icon") {
+  if (isMaterialIconType(iconType)) {
     familyName =
       familyName === "Rounded"
         ? "Round"
@@ -142,9 +142,8 @@ export function getFontStylesheet(
     specs = `:opsz,wght,FILL,GRAD@${opticalSize},${weight},${fill},${grade}`;
   }
 
-  const suffix = `${lodash.upperFirst(iconType)}s${
-    familyName ? `+${familyName}` : ""
-  }${specs}`;
+  const name = lodash.upperFirst(iconType.split("-")[0]);
+  const suffix = `${name}s${familyName ? `+${familyName}` : ""}${specs}`;
 
   return `https://fonts.googleapis.com/css2?family=Material+${suffix}`;
 }

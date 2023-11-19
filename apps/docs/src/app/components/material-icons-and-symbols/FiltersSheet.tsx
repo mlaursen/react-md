@@ -24,7 +24,7 @@ export function FiltersSheet(props: FiltersSheetProps): ReactElement {
   const { className } = props;
 
   const titleId = useId();
-  const { filtersVisible, toggleFilters, isResettable, dispatch } =
+  const { filtersVisible, toggleFilters, isResettable, resetSymbols } =
     useMaterialIconsAndSymbols();
 
   // I use temporary layout until desktop
@@ -90,9 +90,7 @@ export function FiltersSheet(props: FiltersSheetProps): ReactElement {
       >
         <Button
           disabled={!isResettable}
-          onClick={() => {
-            dispatch({ type: "resetSymbols" });
-          }}
+          onClick={resetSymbols}
           className={styles.button}
         >
           <RefreshOutlinedIcon />

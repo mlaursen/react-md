@@ -25,7 +25,11 @@ import {
   MATERIAL_ICON_FAMILY_TYPES,
   MATERIAL_SYMBOL_FAMILY_TYPES,
 } from "./metadata.js";
-import { getIconUrl, getInitialState } from "./searchParams.js";
+import {
+  getIconUrl,
+  getInitialState,
+  isMaterialIconType,
+} from "./searchParams.js";
 import {
   type MaterialIconsAndSymbolsAction,
   type MaterialIconsAndSymbolsContext,
@@ -70,10 +74,9 @@ export function MaterialIconsAndSymbolsProvider({
         case "setIconType": {
           const iconType = action.payload;
           let { iconFamily, iconCategory } = state;
-          const nextFamilyTypes =
-            iconType === "icon"
-              ? MATERIAL_ICON_FAMILY_TYPES
-              : MATERIAL_SYMBOL_FAMILY_TYPES;
+          const nextFamilyTypes = isMaterialIconType(iconType)
+            ? MATERIAL_ICON_FAMILY_TYPES
+            : MATERIAL_SYMBOL_FAMILY_TYPES;
           if (!nextFamilyTypes.includes(iconFamily as "outlined")) {
             iconFamily = "outlined";
           }
@@ -143,6 +146,11 @@ export function MaterialIconsAndSymbolsProvider({
               ? state.selectedIconName
               : null,
           };
+        case "changeSvgToFont":
+          return {
+            ...state,
+            iconType: "icon-font" as const,
+          };
         default:
           throw new Error("Unreachable");
       }
@@ -177,7 +185,6 @@ export function MaterialIconsAndSymbolsProvider({
       iconType,
       iconFamily,
       iconCategory,
-      dispatch,
       fill: indexToMaterialFill(symbolFill),
       weight: indexToMaterialWeight(symbolWeight),
       grade: indexToMaterialGrade(symbolGrade),
@@ -200,6 +207,12 @@ export function MaterialIconsAndSymbolsProvider({
       },
       deselectIcon() {
         dispatch({ type: "deselectIcon" });
+      },
+      resetSymbols() {
+        dispatch({ type: "resetSymbols" });
+      },
+      resetFilters() {
+        dispatch({ type: "resetFilters" });
       },
       setFill(value) {
         const payload = typeof value === "number" ? value : value(symbolFill);
@@ -232,6 +245,9 @@ export function MaterialIconsAndSymbolsProvider({
       },
       setIconCategory(iconCategory) {
         dispatch({ type: "setIconCategory", payload: iconCategory });
+      },
+      changeSvgToFont() {
+        dispatch({ type: "changeSvgToFont" });
       },
     }),
     [

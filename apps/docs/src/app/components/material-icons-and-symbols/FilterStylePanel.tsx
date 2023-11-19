@@ -12,6 +12,7 @@ import {
   MATERIAL_ICON_FAMILY_TYPES,
   MATERIAL_SYMBOL_FAMILY_TYPES,
 } from "./metadata.js";
+import { isMaterialIconType } from "./searchParams.js";
 
 export function FilterStylePanel(
   props: ProvidedExpansionPanelProps
@@ -19,10 +20,9 @@ export function FilterStylePanel(
   const { iconType, iconFamily, setIconType, setIconFamily } =
     useMaterialIconsAndSymbols();
 
-  const iconFamilies =
-    iconType === "icon"
-      ? MATERIAL_ICON_FAMILY_TYPES
-      : MATERIAL_SYMBOL_FAMILY_TYPES;
+  const iconFamilies = isMaterialIconType(iconType)
+    ? MATERIAL_ICON_FAMILY_TYPES
+    : MATERIAL_SYMBOL_FAMILY_TYPES;
 
   return (
     <FilterPanel {...props} icon={<StyleOutlinedIcon />} name="Style">
@@ -32,7 +32,8 @@ export function FilterStylePanel(
         onChange={(event) => setIconType(event.currentTarget.value)}
       >
         <Option value="symbol">Material Symbols</Option>
-        <Option value="icon">Material Icons</Option>
+        <Option value="icon">Material Icons (SVG)</Option>
+        <Option value="icon-font">Material Icons (Font)</Option>
       </Select>
       <Select
         label="Icon Family"

@@ -6,7 +6,6 @@ import {
   type MaterialSymbolWeight,
   type UseStateSetter,
 } from "@react-md/core";
-import { type Dispatch } from "react";
 import {
   type MaterialIconAndSymbolName,
   type MaterialIconCategory,
@@ -19,9 +18,11 @@ export type IconCategoryFilter =
   | MaterialSymbolCategory
   | "";
 
+export type IconType = MaterialIconType | "icon-font";
+
 export interface MaterialIconsAndSymbolsRef {
   search: string;
-  iconType: MaterialIconType;
+  iconType: IconType;
   iconFamily: MaterialIconFamily;
   iconCategory: IconCategoryFilter;
 
@@ -40,7 +41,7 @@ export interface MaterialIconsAndSymbolsState
 
 export type MaterialIconsAndSymbolsAction =
   | { type: "setSearch"; payload: string }
-  | { type: "setIconType"; payload: MaterialIconType }
+  | { type: "setIconType"; payload: IconType }
   | { type: "setIconFamily"; payload: MaterialIconFamily }
   | { type: "setIconCategory"; payload: IconCategoryFilter }
   | {
@@ -49,7 +50,8 @@ export type MaterialIconsAndSymbolsAction =
         | "resetFilters"
         | "resetSymbols"
         | "toggleFilters"
-        | "deselectIcon";
+        | "deselectIcon"
+        | "changeSvgToFont";
     }
   | { type: "selectIcon"; payload: MaterialIconAndSymbolName }
   | {
@@ -63,10 +65,11 @@ export interface MaterialIconsAndSymbolsContext
   weight: MaterialSymbolWeight;
   grade: MaterialSymbolGrade;
   opticalSize: MaterialSymbolOpticalSize;
-  dispatch: Dispatch<MaterialIconsAndSymbolsAction>;
   selectIcon(name: MaterialIconAndSymbolName): void;
   deselectIcon(): void;
   toggleFilters(): void;
+  resetSymbols(): void;
+  resetFilters(): void;
   isFillChanged: boolean;
   isGradeChanged: boolean;
   isWeightChanged: boolean;
@@ -79,7 +82,8 @@ export interface MaterialIconsAndSymbolsContext
   isSymbolCustomizationChanged: boolean;
   isResettable: boolean;
   setSearch(search: string): void;
-  setIconType(iconType: MaterialIconType): void;
+  setIconType(iconType: IconType): void;
   setIconFamily(iconFamily: MaterialIconFamily): void;
   setIconCategory(iconCategory: IconCategoryFilter): void;
+  changeSvgToFont(): void;
 }

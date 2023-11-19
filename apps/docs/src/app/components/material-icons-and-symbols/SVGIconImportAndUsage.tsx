@@ -3,17 +3,22 @@ import { PackageManagerCodeBlock } from "@/components/PackageManagerCodeBlock.js
 import { highlightCode } from "@/utils/highlightCode.js";
 import { Typography } from "@react-md/core";
 import { cnb } from "cnbuilder";
+import Link from "next/link.js";
+import { usePathname } from "next/navigation.js";
 import { type ReactElement } from "react";
 import { AdditionalChanges } from "./AdditionalChanges.jsx";
 import { CopyCode } from "./CopyCode.js";
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";
 import styles from "./SVGIconImportAndUsage.module.scss";
 import { TwoToneIconWarning } from "./TwoToneIconWarning.jsx";
+import { getIconUrl } from "./searchParams.js";
 import { getMaterialIconComponentName } from "./utils.js";
 
 export function SVGIconImportAndUsage(): ReactElement | null {
-  const { selectedIconName, iconFamily, isFontFamilyChanged } =
-    useMaterialIconsAndSymbols();
+  const pathname = usePathname();
+  const context = useMaterialIconsAndSymbols();
+  const { selectedIconName, iconFamily, isFontFamilyChanged, changeSvgToFont } =
+    context;
   if (!selectedIconName) {
     return null;
   }
@@ -32,7 +37,7 @@ export function SVGIconImportAndUsage(): ReactElement | null {
         margin="top"
         className={cnb(styles.heading, styles.noMarginTop)}
       >
-        Import and usage
+        SVG Icon import and usage
       </Typography>
       <CopyCode>{importCode}</CopyCode>
       <CopyCode>{usageCode}</CopyCode>
@@ -43,7 +48,18 @@ export function SVGIconImportAndUsage(): ReactElement | null {
       <Blockquote theme="info">
         <Typography>
           If you use a lot of icons in your app, you might be able to reduce
-          your bundle size and dependencies by using the font icons instead.
+          your bundle size and dependencies by using the{" "}
+          <Link
+            onClick={changeSvgToFont}
+            href={getIconUrl({
+              ...context,
+              pathname,
+              iconType: "icon-font",
+            })}
+          >
+            font icons
+          </Link>{" "}
+          instead.
         </Typography>
       </Blockquote>
       <PackageManagerCodeBlock

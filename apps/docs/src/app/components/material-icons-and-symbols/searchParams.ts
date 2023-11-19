@@ -1,13 +1,19 @@
-import { type MaterialIconFamily } from "@react-md/core";
+import {
+  type MaterialIconFamily,
+  type MaterialSymbolFill,
+  type MaterialSymbolGrade,
+  type MaterialSymbolOpticalSize,
+  type MaterialSymbolWeight,
+} from "@react-md/core";
 import { INITIAL_STATE } from "./constants.js";
 import {
   MATERIAL_ICONS,
   MATERIAL_SYMBOLS,
   type MaterialIconAndSymbolName,
-  type MaterialIconType,
 } from "./metadata.js";
 import {
   type IconCategoryFilter,
+  type IconType,
   type MaterialIconsAndSymbolsRef,
   type MaterialIconsAndSymbolsState,
 } from "./types.js";
@@ -22,46 +28,57 @@ export const SYMBOL_GRADE = "GRAD";
 export const SYMBOL_WEIGHT = "wght";
 export const SYMBOL_OPTICAL_SIZE = "opsz";
 
-export function isValidIconType(
+type NumberToString<N> = N extends number ? `${N}` : never;
+
+export function isMaterialIconType(
   iconType: unknown
-): iconType is MaterialIconType {
-  return iconType === "icon" || iconType === "symbol";
+): iconType is "icon" | "icon-font" {
+  return iconType === "icon" || iconType === "icon-font";
+}
+
+export function isValidIconType(iconType: unknown): iconType is IconType {
+  return isMaterialIconType(iconType) || iconType === "symbol";
 }
 
 export function isValidIconFamily(
   iconFamily: unknown,
-  iconType: MaterialIconType
+  iconType: IconType
 ): iconFamily is MaterialIconFamily {
   return (
     typeof iconFamily === "string" &&
-    ((iconType === "icon" && ["two-tone", "filled"].includes(iconFamily)) ||
+    ((isMaterialIconType(iconType) &&
+      ["two-tone", "filled"].includes(iconFamily)) ||
       ["outlined", "rounded", "sharp"].includes(iconFamily))
   );
 }
 
 export function isValidIconCategory(
   iconCategory: unknown,
-  iconType: MaterialIconType,
+  iconType: IconType,
   iconFamily: MaterialIconFamily
 ): iconCategory is IconCategoryFilter {
   if (typeof iconCategory !== "string" || !iconCategory) {
     return false;
   }
 
-  const icons = iconType === "icon" ? MATERIAL_ICONS : MATERIAL_SYMBOLS;
+  const icons = isMaterialIconType(iconType)
+    ? MATERIAL_ICONS
+    : MATERIAL_SYMBOLS;
   const categories = icons[iconFamily];
   return Object.keys(categories).includes(iconCategory);
 }
 
 export function isValidSelectedIconName(
   name: unknown,
-  iconType: MaterialIconType
+  iconType: IconType
 ): name is MaterialIconAndSymbolName {
   if (typeof name !== "string" || !name) {
     return false;
   }
 
-  const namesRecord = iconType === "icon" ? MATERIAL_ICONS : MATERIAL_SYMBOLS;
+  const namesRecord = isMaterialIconType(iconType)
+    ? MATERIAL_ICONS
+    : MATERIAL_SYMBOLS;
   const names = Object.values(namesRecord);
   for (const iconFamilyNamesRecord of names) {
     const iconFamilyNames = Object.values(iconFamilyNamesRecord);
@@ -79,28 +96,21 @@ export function isValidSelectedIconName(
 
 export function isValidSymbolGrade(
   grade: unknown
-): grade is "-25" | "0" | "200" {
+): grade is NumberToString<MaterialSymbolGrade> {
   return (
     typeof grade === "string" && !grade && ["-25", "0", "200"].includes(grade)
   );
 }
 
-export function isValidSymbolFill(fill: unknown): fill is "0" | "1" {
+export function isValidSymbolFill(
+  fill: unknown
+): fill is NumberToString<MaterialSymbolFill> {
   return fill === "0" || fill === "1";
 }
 
 export function isValidSymbolWeight(
   weight: unknown
-): weight is
-  | "100"
-  | "200"
-  | "300"
-  | "400"
-  | "500"
-  | "600"
-  | "700"
-  | "800"
-  | "900" {
+): weight is NumberToString<MaterialSymbolWeight> {
   return (
     typeof weight === "string" &&
     !!weight &&
@@ -112,7 +122,7 @@ export function isValidSymbolWeight(
 
 export function isValidSymbolOpticalSize(
   opticalSize: unknown
-): opticalSize is "20" | "24" | "40" | "48" {
+): opticalSize is NumberToString<MaterialSymbolOpticalSize> {
   return (
     typeof opticalSize === "string" &&
     !!opticalSize &&
