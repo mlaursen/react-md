@@ -3,4 +3,11 @@ import { type TableOfContentsItem } from "@/components/TableOfContents/types.js"
 
 export const toc = [
   { id: "overlay", depth: 1, value: "Overlay" },
+  {
+    id: "simple-overlay",
+    depth: 1,
+    value: "Simple Overlay",
+    items: [{ id: "invisible-overlay", depth: 2, value: "Invisible Overlay" }],
+  },
+  { id: "overlay-with-content", depth: 1, value: "Overlay with Content" },
 ] satisfies readonly TableOfContentsItem[];
