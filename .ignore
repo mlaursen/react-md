@@ -1,4 +1,3 @@
-prev/
 /packages/*/esm
 /packages/*/dist
 /packages/*/types

@@ -1,6 +1,0 @@
-src/**/__tests__
-src/**/*.scss
-tsconfig.json
-tsconfig.*.json
-*tsbuildinfo
-CHANGELOG.md

@@ -1,8 +1,0 @@
-@use 'react-md' as *;
-
-.container {
-  @include rmd-table-theme-update-var(
-    sticky-header,
-    rmd-app-bar-theme-var(height)
-  );
-}

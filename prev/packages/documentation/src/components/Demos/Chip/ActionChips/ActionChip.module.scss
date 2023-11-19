@@ -1,9 +1,0 @@
-@use 'react-md' as *;
-
-.chip {
-  margin: 0.25rem;
-}
-
-.yellow {
-  @include rmd-icon-theme-update-var(color, $rmd-yellow-300);
-}

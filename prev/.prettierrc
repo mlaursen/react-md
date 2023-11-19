@@ -1,9 +1,0 @@
-printWidth: 80
-trailingComma: es5
-overrides:
-  - files: "*.{js,jsx,scss}"
-    options:
-      singleQuote: true
-  - files: "*.md"
-    options:
-      proseWrap: always
