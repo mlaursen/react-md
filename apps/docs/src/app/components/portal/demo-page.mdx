@@ -1,3 +1,93 @@
 # Portal
 
-TODO
+A `Portal` lets you render some children into a different part of the DOM. The
+`Portal` component is a simple wrapper around the
+[createPortal](https://react.dev/reference/react-dom/createPortal) that renders
+everything in the `document.body` or a `<div id="rmd-portal-container" />`.
+
+> !Warn! This is mostly an internal component for `react-md` and doesn't have
+> many use-cases other than rendering all elements into a specific container
+> element.
+
+# Simple Example
+
+When the app is wrapped in the `CoreProviders` or `PortalContainerProvider`, all
+portalled elements will be rendered within a `<div id="rmd-portal-container" />`
+which is usually the last element within the `document.body`.
+
+```tsx
+// preview editable
+"use client";
+import { Button, Portal, black, useToggle } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function SimplePortalExample(): ReactElement {
+  const { toggled, toggle } = useToggle();
+  return (
+    <>
+      <Button onClick={toggle}>Toggle Portal</Button>
+      {toggled && (
+        <Portal>
+          <span
+            style={{
+              position: "fixed",
+              top: "50%",
+              left: "50%",
+              backgroundColor: black,
+              padding: "3rem",
+              zIndex: 100,
+              transform: "translate(-50%, -50%)",
+            }}
+          >
+            This is rendered out of the normal react tree
+          </span>
+        </Portal>
+      )}
+    </>
+  );
+}
+```
+
+# Custom Portal Container
+
+If the portal location needs to be changed for `react-md` components for some
+reason, wrap that portion of the app in the `PortalContainerProvider` that sets
+the specific DOM node to render into.
+
+```tsx
+// preview editable
+"use client";
+import {
+  Box,
+  Button,
+  Portal,
+  PortalContainerProvider,
+  useToggle,
+} from "@react-md/core";
+import { useRef, type ReactElement } from "react";
+
+export default function CustomPortalContainer(): ReactElement {
+  const { toggled, toggle } = useToggle();
+  const portalContainer = useRef<HTMLDivElement>(null);
+  // the container could also be a result of:
+  // - `document.getElementById`
+  // - `document.querySelector`
+  // - `document.body`
+  // - etc.
+  //
+  // It just needs to be an `Element` or `DocumentFragment` for `createPortal`
+  // to work
+
+  return (
+    <PortalContainerProvider container={portalContainer}>
+      <Box stacked disablePadding>
+        <Button onClick={toggle}>Toggle</Button>
+        <div ref={portalContainer} />
+      </Box>
+      {toggled && (
+        <Portal>This will always be rendered in the portalContainer</Portal>
+      )}
+    </PortalContainerProvider>
+  );
+}
+```

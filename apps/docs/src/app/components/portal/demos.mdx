@@ -1,3 +1,26 @@
 # Portal
 
-TODO
+A `Portal` lets you render some children into a different part of the DOM. The
+`Portal` component is a simple wrapper around the
+[createPortal](https://react.dev/reference/react-dom/createPortal) that renders
+everything in the `document.body` or a `<div id="rmd-portal-container" />`.
+
+> !Warn! This is mostly an internal component for `react-md` and doesn't have
+> many use-cases other than rendering all elements into a specific container
+> element.
+
+# Simple Example
+
+When the app is wrapped in the `CoreProviders` or `PortalContainerProvider`, all
+portalled elements will be rendered within a `<div id="rmd-portal-container" />`
+which is usually the last element within the `document.body`.
+
+{{ "component": "./SimplePortalExample.tsx" }}
+
+# Custom Portal Container
+
+If the portal location needs to be changed for `react-md` components for some
+reason, wrap that portion of the app in the `PortalContainerProvider` that sets
+the specific DOM node to render into.
+
+{{ "component": "./CustomPortalContainer.tsx" }}
