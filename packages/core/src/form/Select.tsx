@@ -411,7 +411,7 @@ export function Select<Value extends string>(
   const { onEntering, onEntered, onExiting, onExited, disableTransition } =
     menuProps;
   const handleMounting =
-    (callback: TransitionEnterHandler | undefined = noop, skipped = false) =>
+    (callback: TransitionEnterHandler | undefined = noop, skipped: boolean) =>
     (appearing: boolean) => {
       callback(appearing);
 
@@ -509,6 +509,14 @@ export function Select<Value extends string>(
           onEntered={handleMounting(onEntered, !disableTransition)}
           onExiting={handleUnmounting(onExiting, false)}
           onExited={handleUnmounting(onExited, !disableTransition)}
+          sheetProps={{
+            ...menuProps.sheetProps,
+            onEntering: handleMounting(menuProps.sheetProps?.onEntering, false),
+            onEntered: handleMounting(
+              menuProps.sheetProps?.onEntered,
+              !disableTransition
+            ),
+          }}
         >
           {children}
         </Menu>
