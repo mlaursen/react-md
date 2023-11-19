@@ -52,9 +52,9 @@ async function insertImportedCode(options: FixOptions): Promise<void> {
   ]
     .filter(Boolean)
     .join(" ");
+  const comment = flags ? `\n// ${flags}` : "";
 
-  const formatted = `\`\`\`tsx
-// ${flags}
+  const formatted = `\`\`\`tsx${comment}
 ${demoCode}
 \`\`\`
 `;
