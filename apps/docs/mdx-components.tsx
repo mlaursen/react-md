@@ -96,6 +96,7 @@ export function useMDXComponents(components: MDXComponents): Components {
     a: MarkdownLink,
     blockquote: (props) => <Blockquote {...props} />,
     ul: (props) => <Typography type="body-1" as="ul" {...props} />,
+    ol: (props) => <Typography type="body-1" as="ol" {...props} />,
     pre: (props) => {
       if (!isValidElement<HighlightedCodeBlockProps>(props.children)) {
         throw new Error("Invalid pre element");

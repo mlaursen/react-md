@@ -5,4 +5,29 @@ icons.
 
 # Simple Badged Button
 
+The most common use-case is to render a `Badge` in a `Button` to display a
+number of notifications the user should view. The badge will default to the
+top-right of the button.
+
 {{ "component": "./SimpleBadgedButtonExample.tsx" }}
+
+# Badge Themes
+
+The `Badge` can be themed with the normal theme colors using the `theme` prop.
+
+{{ "component": "./BadgeThemesExample.tsx" }}
+
+# Badge Position
+
+The `Badge` is positioned by using `position: absolute` within a
+`position: relative` container and can be configured in a few ways:
+
+1. Change the `$badge-offset` variable which will apply to both `top` and `right`
+2. Change the `$badge-offset-top` and/or `$badge-offset-right` to only change
+   one value
+3. Use the `badge-set-var` mixin to change the `offset` variable which will
+   apply to both the `top` and `right`
+4. Use the `badge-set-var` mixin to change the `offset-top` and/or
+   `offset-right` variables which will only change one value
+
+{{ "component": "./BadgePositionExample.tsx" }}

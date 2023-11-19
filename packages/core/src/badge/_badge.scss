@@ -12,8 +12,9 @@ $disable-secondary-theme: false !default;
 
 $size: 1.5rem !default;
 $font-size: 0.625rem !default;
-$offset-top: 0 !default;
-$offset-right: 0 !default;
+$offset: 0 !default;
+$offset-top: $offset !default;
+$offset-right: $offset !default;
 $border-radius: 50% !default;
 $typography: map.merge(
   map.remove(typography.$body-1-styles, line-height, font-size),
@@ -101,9 +102,13 @@ $variables: (
     @include set-var(greyscale-background-color, $greyscale-background-color);
     @include set-var(greyscale-color, $greyscale-color);
     @include set-var(size, $size);
-    @include set-var(offset, 0);
-    @include set-var(offset-top, get-var(offset));
-    @include set-var(offset-right, get-var(offset));
+    @include set-var(offset, $offset);
+    @if $offset!= $offset-top {
+      @include set-var(offset-top, $offset-top);
+    }
+    @if $offset != $offset-right {
+      @include set-var(offset-right, $offset-right);
+    }
   }
 }
 
@@ -113,8 +118,8 @@ $variables: (
       @include utils.map-to-styles($typography);
       @include use-var(height, size);
       @include use-var(width, size);
-      @include utils.auto-rtl(right, get-var(offset-right));
-      @include use-var(top, offset-top);
+      @include utils.auto-rtl(right, get-var(offset-right, get-var(offset)));
+      @include use-var(top, offset-top, get-var(offset));
 
       align-items: center;
       border-radius: $border-radius;

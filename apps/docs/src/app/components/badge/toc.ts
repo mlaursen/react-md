@@ -4,4 +4,6 @@ import { type TableOfContentsItem } from "@/components/TableOfContents/types.js"
 export const toc = [
   { id: "badge", depth: 1, value: "Badge" },
   { id: "simple-badged-button", depth: 1, value: "Simple Badged Button" },
+  { id: "badge-themes", depth: 1, value: "Badge Themes" },
+  { id: "badge-position", depth: 1, value: "Badge Position" },
 ] satisfies readonly TableOfContentsItem[];
