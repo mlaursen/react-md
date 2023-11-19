@@ -1,22 +1,26 @@
 @use "everything";
 
-.navigation {
-  @include everything.divider-set-var(size, 2px);
-  @include everything.divider-border-style(right);
-  @include everything.list-set-var(item-height, auto);
+@include everything.css-order-workaround {
+  .navigation {
+    @include everything.divider-set-var(size, 2px);
+    @include everything.divider-border-style(right);
+    @include everything.list-set-var(item-height, auto);
 
-  background-color: var(--background-color);
-  box-shadow: none;
+    background-color: var(--background-color);
+    box-shadow: none;
+  }
 }
 
 .main {
   padding-bottom: 4rem;
 }
 
-.mainGrid {
-  @include everything.desktop-media {
-    display: grid;
-    grid-template-columns: 1fr var(--toc-width);
+@include everything.css-order-workaround {
+  .mainGrid {
+    @include everything.desktop-media {
+      display: grid;
+      grid-template-columns: 1fr var(--toc-width);
+    }
   }
 }
 

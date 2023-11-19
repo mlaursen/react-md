@@ -1,19 +1,21 @@
 @use "everything";
 
-.button {
-  @include everything.theme-set-var(
-    outline-color,
-    rgba(everything.$black, 0.32)
-  );
-  @include everything.theme-set-var(outline-width, 0.125rem);
-  @include everything.button-set-var(text-horizontal-padding, 0.5rem);
-
-  @include everything.tablet-media {
-    outline: everything.theme-get-var(outline-width) solid
-      everything.theme-get-var(outline-color);
-    outline-offset: everything.negate-var(
-      everything.theme-get-var(outline-width)
+@include everything.css-order-workaround {
+  .button {
+    @include everything.theme-set-var(
+      outline-color,
+      rgba(everything.$black, 0.32)
     );
+    @include everything.theme-set-var(outline-width, 0.125rem);
+    @include everything.button-set-var(text-horizontal-padding, 0.5rem);
+
+    @include everything.tablet-media {
+      outline: everything.theme-get-var(outline-width) solid
+        everything.theme-get-var(outline-color);
+      outline-offset: everything.negate-var(
+        everything.theme-get-var(outline-width)
+      );
+    }
   }
 }
 

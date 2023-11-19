@@ -3,6 +3,8 @@
 @forward "@react-md/core" with (
   $color-scheme: system,
   $font-family: var(--roboto, Roboto, sans-serif),
+  // layers cause performance issues on mobile firefox :/
+  $disable-layer: true,
   // $color-scheme: light,
   // $color-scheme: dark,
   // disabled since it makes debugging a bit easier by having all the css

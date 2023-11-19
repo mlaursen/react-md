@@ -50,3 +50,22 @@
   --success-bg: #{core.$green-900};
   --success-color: #{core.$light-green-a-100};
 }
+
+$is-production: true;
+
+// The Nextjs css order is not guaranteed so overriding styles might not always
+// work correctly without additional specificity. Using layers would be ideal,
+// but there are apparently performance issues on mobile firefox when using
+// layers.
+//
+// This mixin will just increase the specificity of any content by having a
+// parent selector of `html`
+@mixin css-order-workaround {
+  @if not core.$disable-layer or $is-production {
+    @content;
+  } @else {
+    html {
+      @content;
+    }
+  }
+}
