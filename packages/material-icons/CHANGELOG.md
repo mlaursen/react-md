@@ -1,5 +1,18 @@
 # @react-md/material-icons
 
+## 6.0.0-next.2
+
+### Major Changes
+
+- Updated custom properties to require a defined value instead of always providing a fallback. This decreases the bundle size by a good amount.
+
+  Also updated the `Snackbar` so that it no longer has a `role="status"` to fix accessibility. Instead, each toast will have `role="status"` or `role="alert"`.
+
+### Patch Changes
+
+- Updated dependencies
+  - @react-md/core@1.0.0-next.2
+
 ## 6.0.0-next.1
 
 ### Major Changes

@@ -22,6 +22,9 @@
     "clean": {
       "cache": false
     },
+    "clean-dist": {
+      "cache": false
+    },
     "typecheck": {}
   }
 }
