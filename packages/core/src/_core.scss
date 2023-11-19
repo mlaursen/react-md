@@ -73,41 +73,45 @@
 @use "layout/layout";
 @use "utils";
 
-$disable-layer: false !default;
-
-$_layer-order: (
-  typography,
-  transition,
-  interaction,
-  box,
-  icon,
-  divider,
-  button,
-  badge,
-  tabs,
-  chip,
-  progress,
-  responsive,
-  overlay,
-  card,
-  avatar,
-  link,
-  list,
-  tree,
-  dialog,
-  sheet,
-  tooltip,
-  table,
-  app-bar,
-  expansion-panel,
-  draggable,
-  window-splitter,
-  menu,
-  form,
-  layout,
-  snackbar,
-  segmented-button,
-  utils
+$disable-transition-layer: false !default;
+$_layer-start: (typography);
+@if not $disable-transition-layer {
+  $_layer-start: sassList.append($_layer-start, transition);
+}
+$_layer-order: sassList.join(
+  $_layer-start,
+  (
+    interaction,
+    box,
+    icon,
+    divider,
+    button,
+    badge,
+    tabs,
+    chip,
+    progress,
+    responsive,
+    overlay,
+    card,
+    avatar,
+    link,
+    list,
+    tree,
+    dialog,
+    sheet,
+    tooltip,
+    table,
+    app-bar,
+    expansion-panel,
+    draggable,
+    window-splitter,
+    menu,
+    form,
+    layout,
+    snackbar,
+    segmented-button,
+    utils
+  )
 );
 
 @mixin css-reset {
@@ -365,160 +369,130 @@ $_layer-order: (
 
 @mixin styles {
   @include css-reset;
+  @if $disable-transition-layer {
+    @include transition.transition-styles;
+  }
 
-  @if not $disable-layer {
-    @layer #{$_layer-order};
-    @layer utils {
-      @include css-utils;
-    }
+  @layer #{$_layer-order};
+  @layer utils {
+    @include css-utils;
+  }
 
-    @layer app-bar {
-      @include app-bar.styles;
-    }
-    @layer avatar {
-      @include avatar.styles;
-    }
-    @layer badge {
-      @include badge.styles;
-    }
-    @layer box {
-      @include box.styles;
-    }
-    @layer button {
-      @include button.styles;
-    }
-    @layer card {
-      @include card.styles;
-    }
-    @layer chip {
-      @include chip.styles;
-    }
+  @layer app-bar {
+    @include app-bar.styles;
+  }
+  @layer avatar {
+    @include avatar.styles;
+  }
+  @layer badge {
+    @include badge.styles;
+  }
+  @layer box {
+    @include box.styles;
+  }
+  @layer button {
+    @include button.styles;
+  }
+  @layer card {
+    @include card.styles;
+  }
+  @layer chip {
+    @include chip.styles;
+  }
 
-    @layer dialog {
-      @include dialog.styles;
-    }
-    @layer divider {
-      @include divider.styles;
-    }
-    @layer draggable {
-      @include draggable.styles;
-    }
-    @layer expansion-panel {
-      @include expansion-panel.styles;
-    }
+  @layer dialog {
+    @include dialog.styles;
+  }
+  @layer divider {
+    @include divider.styles;
+  }
+  @layer draggable {
+    @include draggable.styles;
+  }
+  @layer expansion-panel {
+    @include expansion-panel.styles;
+  }
 
-    @layer form {
-      @include form.styles;
-    }
+  @layer form {
+    @include form.styles;
+  }
 
-    @layer icon {
-      @include icon.styles;
-    }
+  @layer icon {
+    @include icon.styles;
+  }
 
-    @layer interaction {
-      @include interaction.styles;
-    }
+  @layer interaction {
+    @include interaction.styles;
+  }
 
-    @layer layout {
-      @include layout.styles;
-    }
+  @layer layout {
+    @include layout.styles;
+  }
 
-    @layer link {
-      @include link.styles;
-    }
+  @layer link {
+    @include link.styles;
+  }
 
-    @layer list {
-      @include list.styles;
-    }
+  @layer list {
+    @include list.styles;
+  }
 
-    @layer menu {
-      @include menu.styles;
-    }
+  @layer menu {
+    @include menu.styles;
+  }
 
-    @layer overlay {
-      @include overlay.styles;
-    }
+  @layer overlay {
+    @include overlay.styles;
+  }
 
-    @layer progress {
-      @include progress.styles;
-    }
+  @layer progress {
+    @include progress.styles;
+  }
 
-    @layer responsive-item {
-      @include responsive-item.styles;
-    }
+  @layer responsive-item {
+    @include responsive-item.styles;
+  }
 
-    @layer segmented-button {
-      @include segmented-button.styles;
-    }
+  @layer segmented-button {
+    @include segmented-button.styles;
+  }
 
-    @layer sheet {
-      @include sheet.styles;
-    }
+  @layer sheet {
+    @include sheet.styles;
+  }
 
-    @layer snackbar {
-      @include snackbar.styles;
-    }
+  @layer snackbar {
+    @include snackbar.styles;
+  }
 
-    @layer table {
-      @include table.styles;
-    }
+  @layer table {
+    @include table.styles;
+  }
 
-    @layer tabs {
-      @include tabs.styles;
-    }
+  @layer tabs {
+    @include tabs.styles;
+  }
 
-    @layer tooltip {
-      @include tooltip.styles;
-    }
+  @layer tooltip {
+    @include tooltip.styles;
+  }
 
+  @if not $disable-transition-layer {
     @layer transition {
       @include transition.transition-styles;
     }
+  }
 
-    @layer tree {
-      @include tree.styles;
-    }
-
-    @layer typography {
-      @include typography.typography-styles;
-    }
-
-    @layer window-splitter {
-      @include window-splitter.styles;
-    }
-  } @else {
-    @include typography.typography-styles;
-    @include transition.transition-styles;
-    @include interaction.styles;
-    @include box.styles;
-    @include icon.styles;
-    @include divider.styles;
-    @include button.styles;
-    @include badge.styles;
-    @include tabs.styles;
-    @include chip.styles;
-    @include progress.styles;
-    @include responsive-item.styles;
-    @include overlay.styles;
-    @include card.styles;
-    @include avatar.styles;
-    @include link.styles;
-    @include list.styles;
+  @layer tree {
     @include tree.styles;
-    @include dialog.styles;
-    @include sheet.styles;
-    @include tooltip.styles;
-    @include table.styles;
-    @include app-bar.styles;
-    @include expansion-panel.styles;
-    @include draggable.styles;
+  }
+
+  @layer typography {
+    @include typography.typography-styles;
+  }
+
+  @layer window-splitter {
     @include window-splitter.styles;
-    @include menu.styles;
-    @include form.styles;
-    @include layout.styles;
-    @include snackbar.styles;
-    @include segmented-button.styles;
-    @include css-utils;
   }
 
   @if not theme.$disable-default-root-theme {
