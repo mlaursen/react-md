@@ -12,9 +12,10 @@ npm install @react-md/core sass
 importing modules. Create a top-level `.scss` file to include all the styles:
 
 ```diff
-+@use "react-md";
+// fileName="app.scss"
++@use "@react-md/core";
 +
-+@include react-md.styles;
++@include core.styles;
 ```
 
 > The default theme uses #2196f3 and #ff9100 as the primary and secondary
@@ -42,7 +43,9 @@ Include styles:
 +@use '@fontsource/roboto/400.css';
 +@use '@fontsource/roboto/500.css';
 +@use '@fontsource/roboto/700.css';
- @use "@react-md/react-md";
+ @use "@react-md/core";
+
+ @include core.styles;
 ```
 
 ## Google Fonts CDN

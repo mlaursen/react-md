@@ -7,7 +7,7 @@ import { InlineColorPreview } from "@/components/InlineColorPreview.jsx";
 import { LinkableHeading } from "@/components/LinkableHeading.jsx";
 import { MarkdownLink } from "@/components/MarkdownLink.jsx";
 import { getSluggedId } from "@/utils/getSluggedId.js";
-import { Typography } from "@react-md/core";
+import { Divider, Typography } from "@react-md/core";
 import GithubSlugger from "github-slugger";
 import { type MDXComponents } from "mdx/types.js";
 import {
@@ -29,6 +29,7 @@ interface RedefinedComponents {
   h5(props: HeadingProps): ReactElement;
   h6(props: HeadingProps): ReactElement;
   code(props: HighlightedCodeBlockProps): Promise<ReactElement>;
+  hr(props: Record<string, never>): ReactElement;
 }
 
 type Components = Omit<MDXComponents, keyof RedefinedComponents> &
@@ -103,5 +104,6 @@ export function useMDXComponents(components: MDXComponents): Components {
       return cloneElement(props.children, { multiline: true });
     },
     code: HighlightedCodeBlock,
+    hr: () => <Divider />,
   };
 }

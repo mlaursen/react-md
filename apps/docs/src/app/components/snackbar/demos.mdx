@@ -58,8 +58,6 @@ If the default duration of 5 seconds does not work for a specific toast, set the
 
 {{ "component": "./CustomToastVisibleTimeExample.tsx" }}
 
-## Toast Position
-
 # Add a Close Button
 
 If a toast should be able to be dismissed early, a close button can be added by
@@ -104,6 +102,13 @@ If the action is complex and requires additional behavior, provide an
 
 {{ "component": "./CustomActionButtonExample.tsx" }}
 
+## Stacked Toasts
+
+If the action should be below the toast content instead of inline, enable the
+`stacked` option when creating a toast.
+
+{{ "component": "./StackedToastExample.tsx" }}
+
 # Custom Toast Manager
 
 If multiple `Snackbar` need to be mounted at the same time, create a new
@@ -119,6 +124,12 @@ updated to have `toastDefaults`.
 
 {{ "component": "./CustomToastManagerExample.tsx" }}
 
+---
+
+> !Success! The following demos and features do not require a custom
+> `ToastManager` to work outside of this documentation site unless specifically
+> stated.
+
 # Preventing Duplicate Toasts
 
 The default behavior allows multiple toasts with the same content to be added
@@ -131,22 +142,71 @@ enable this feature.
 > !Info! Check out the [custom toast renderer example](#custom-toast-renderer)
 > for another use case for manually setting the `toastId`.
 
-> !Success! This feature does not require a custom toast manager to work outside
-> of these demos. The custom toast manager was only added to support multiple
-> `Snackbar` examples.
-
 {{ "component": "./PreventingDuplicateToastsExample.tsx" }}
 
 # Multiple Visible Toasts
 
-> !Success! This feature does not require a custom toast manager to work outside
-> of these demos. The custom toast manager was only added to support multiple
-> `Snackbar` examples.
+The `Snackbar` can be configured to display more than one toast at a time by
+setting the `limit` prop.
 
 {{ "component": "./MultipleVisibleToastsExample.tsx" }}
 
-# Custom Toast Renderer
+# Snackbar Position
+
+Set the `position` prop on the `Snackbar` to update the position within the
+viewport to one of the following: `"bottom"` (default), `"bottom-left"`,
+`"bottom-right"`, `"top"`, `"top-left"`, or `"top-right"`.
+
+{{ "component": "./SnackbarPositionExample.tsx" }}
 
 # Toast Priority
 
+The default toast queue priority is first-in-first-out so that new toasts are
+always added to the end of the queue. However, there are cases where a new toast
+needs to be shown immediately to the user since some event happened that causes
+the application to no longer work. A few examples are losing internet connection
+or API requests failing.
+
+To change the insert order for a new toast, include the `priority` option which
+can be set to one of the following:
+
+- `"normal"` (default) - the toast will be added to the end of the queue
+- `"next"` - the toast will be inserted next-in-line in the queue, waiting for
+  the current visible toast to exit before being shown. If the toast does not
+  support duplicates, the existing toast will be moved instead and merged with
+  the toast.
+- `"replace"` - if there is a currently visible toast, it will start the leave
+  transition and display the newly added toast instead.
+- `"immediate"` - the same behavior as `"replace"` except that if there was a
+  currently visible toast, the toast will be shown again once the `"immediate"`
+  toast is hidden.
+
+This example will try to show this behavior while logging the current toast
+queue.
+
 {{ "component": "./ToastPriorityExample.tsx" }}
+
+# Custom Toast Renderer
+
+> !Warn! It is recommended to only look at this example for complex applications
+> since it requires building most of the toast functionality manually and using
+> some low-level components.
+
+If the toasts in the application require additional business logic or a
+combination of complex components, it is recommended to create a custom toast
+renderer with an optional toast manager. Using both together is recommended
+since it is possible to enforce only known toasts by creating a custom toast
+manager and handle those specific toasts in the renderer.
+
+This example will showcase how to create a toast system that:
+
+- Enforces specific toast ids throughout the application
+- Use specific themes, layouts, and timeouts based on the unique toast id
+- Use the `DefaultToastRenderer` to implement rendering a toast will the normal
+  visibility behavior
+- Add custom toast content with the `ToastContent` component
+- Add custom content in the toast based on specific `toastId`
+- Modify the toast visibility behavior with
+  `useCurrentToastActions`/`useRemoveToast` hooks
+
+{{ "component": "./CustomToastRendererExample.tsx" }}

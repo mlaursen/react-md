@@ -15,7 +15,8 @@ export const DEFAULT_TOAST_VISIBLE_TIME = 5000;
  * - `"replace"` - if there is a currently visible toast, it will start the
  *   leave transition and display the newly added toast instead.
  * - `"immediate"` - the same behavior as `"replace"` except that if there was a
- *   currently visible toast, it will be shown once the newly added toast again.
+ *   currently visible toast, the toast will be shown again once the `"immediate"`
+ *   toast is hidden.
  *
  * @remarks \@since 6.0.0 Renamed from `MessagePriority` to `ToastPriority`
  */

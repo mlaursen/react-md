@@ -1,8 +1,8 @@
 "use client";
+import { type RunnableCodePreviewOptions } from "@/types/code.js";
 import { type ReactElement } from "react";
 import { type CodeBlockProps } from "../CodeBlock.js";
 import { RunnableCodePreview } from "../DangerouslyRunCode/RunnableCodePreview.js";
-import { type RunnableCodePreviewOptions } from "../DangerouslyRunCode/RunnableCodePreviewContainer.js";
 import { type RunnableCodeScope } from "../DangerouslyRunCode/utils.js";
 import { CodeEditor } from "./CodeEditor.jsx";
 import { useCodeEditor } from "./useCodeEditor.js";

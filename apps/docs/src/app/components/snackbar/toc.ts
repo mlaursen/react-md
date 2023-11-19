@@ -16,7 +16,6 @@ export const toc = [
         depth: 2,
         value: "Custom Toast Visible Time",
       },
-      { id: "toast-position", depth: 2, value: "Toast Position" },
     ],
   },
   {
@@ -39,6 +38,7 @@ export const toc = [
       },
       { id: "require-an-action", depth: 2, value: "Require an action" },
       { id: "custom-action-button", depth: 2, value: "Custom Action Button" },
+      { id: "stacked-toasts", depth: 2, value: "Stacked Toasts" },
     ],
   },
   { id: "custom-toast-manager", depth: 1, value: "Custom Toast Manager" },
@@ -48,6 +48,7 @@ export const toc = [
     value: "Preventing Duplicate Toasts",
   },
   { id: "multiple-visible-toasts", depth: 1, value: "Multiple Visible Toasts" },
-  { id: "custom-toast-renderer", depth: 1, value: "Custom Toast Renderer" },
+  { id: "snackbar-position", depth: 1, value: "Snackbar Position" },
   { id: "toast-priority", depth: 1, value: "Toast Priority" },
+  { id: "custom-toast-renderer", depth: 1, value: "Custom Toast Renderer" },
 ] satisfies readonly TableOfContentsItem[];
