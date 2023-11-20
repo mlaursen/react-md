@@ -2144,11 +2144,12 @@
   integrity sha512-ZTaqn/qSqUuAq1YwvOFQfVW1AR/oQJlLSZVustdjwI+GZ8kr0MSHBj0tsXPW1EqHubx50gtBEjbPGsdZwQwCjQ==
 
 "@types/prompts@^2.0.14":
-  version "2.0.14"
-  resolved "https://registry.yarnpkg.com/@types/prompts/-/prompts-2.0.14.tgz#10cb8899844bb0771cabe57c1becaaaca9a3b521"
-  integrity sha512-HZBd99fKxRWpYCErtm2/yxUZv6/PBI9J7N4TNFffl5JbrYMHBwF25DjQGTW3b3jmXq+9P6/8fCIb2ee57BFfYA==
+  version "2.4.8"
+  resolved "https://registry.yarnpkg.com/@types/prompts/-/prompts-2.4.8.tgz#76857c7a1e2a169353422bae468cd16d24b59f56"
+  integrity sha512-fPOEzviubkEVCiLduO45h+zFHB0RZX8tFt3C783sO5cT7fUXf3EEECpD26djtYdh4Isa9Z9tasMQuZnYPtvYzw==
   dependencies:
     "@types/node" "*"
+    kleur "^3.0.3"
 
 "@types/prop-types@*":
   version "15.7.3"
