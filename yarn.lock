@@ -2182,12 +2182,12 @@
     "@types/react" "*"
 
 "@types/react-virtualized@^9.21.21":
-  version "9.21.21"
-  resolved "https://registry.yarnpkg.com/@types/react-virtualized/-/react-virtualized-9.21.21.tgz#65c96f25314f0fb3d40536929dc78112753b49e1"
-  integrity sha512-Exx6I7p4Qn+BBA1SRyj/UwQlZ0I0Pq7g7uhAp0QQ4JWzZunqEqNBGTmCmMmS/3N9wFgAGWuBD16ap7k8Y14VPA==
+  version "9.21.27"
+  resolved "https://registry.yarnpkg.com/@types/react-virtualized/-/react-virtualized-9.21.27.tgz#80e64a2ca5a37fc29c4276fc226161cb8a399d0f"
+  integrity sha512-DVAmqFXw4vKXLYHBMJKKt8+0t+O550uV2KT81aXRSztj7ieBSxIXL1X1cupwReb3Oux1RUfvmhEcRB2Jr6Z0Yw==
   dependencies:
     "@types/prop-types" "*"
-    "@types/react" "^17"
+    "@types/react" "*"
 
 "@types/react@*", "@types/react@>=16.9.0", "@types/react@^17", "@types/react@^17.0.43":
   version "17.0.44"
@@ -10961,9 +10961,9 @@ react-test-renderer@^17.0.2:
     scheduler "^0.20.2"
 
 react-virtualized@^9.22.3:
-  version "9.22.3"
-  resolved "https://registry.yarnpkg.com/react-virtualized/-/react-virtualized-9.22.3.tgz#f430f16beb0a42db420dbd4d340403c0de334421"
-  integrity sha512-MKovKMxWTcwPSxE1kK1HcheQTWfuCxAuBoSTf2gwyMM21NdX/PXUhnoP8Uc5dRKd+nKm8v41R36OellhdCpkrw==
+  version "9.22.5"
+  resolved "https://registry.yarnpkg.com/react-virtualized/-/react-virtualized-9.22.5.tgz#bfb96fed519de378b50d8c0064b92994b3b91620"
+  integrity sha512-YqQMRzlVANBv1L/7r63OHa2b0ZsAaDp1UhVNEdUaXI8A5u6hTpA5NYtUueLH2rFuY/27mTGIBl7ZhqFKzw18YQ==
   dependencies:
     "@babel/runtime" "^7.7.2"
     clsx "^1.0.4"
