@@ -103,7 +103,7 @@ $variables: (
     @include set-var(greyscale-color, $greyscale-color);
     @include set-var(size, $size);
     @include set-var(offset, $offset);
-    @if $offset!= $offset-top {
+    @if $offset != $offset-top {
       @include set-var(offset-top, $offset-top);
     }
     @if $offset != $offset-right {
