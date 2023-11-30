@@ -20,8 +20,16 @@ $disable-footer-flex-end: false !default;
 $elevation: 16 !default;
 $z-index: utils.$temporary-element-z-index !default;
 
-$background-color: theme.theme-get-var(surface-color) !default;
-$color: theme.theme-get-var(text-primary-color) !default;
+$background-color: if(
+  theme.$disable-dark-elevation,
+  theme.theme-get-var(surface-color),
+  null
+) !default;
+$color: if(
+  theme.$disable-dark-elevation,
+  theme.theme-get-var(text-primary-color),
+  null
+) !default;
 
 $min-width: 17.5rem !default;
 $horizontal-margin: 2.5rem !default;
@@ -41,8 +49,6 @@ $content-padding: 1.5rem !default;
 $footer-padding: 0.5rem !default;
 
 $variables: (
-  background-color,
-  color,
   min-width,
   horizontal-margin,
   vertical-margin,
@@ -55,6 +61,7 @@ $variables: (
 
 @function get-var($name, $fallback: null) {
   $var: utils.get-var-name($variables, $name, "dialog");
+
   @if $fallback {
     @return var(#{$var}, #{$fallback});
   }
@@ -74,8 +81,6 @@ $variables: (
 
 @mixin variables {
   @if not $disable-everything {
-    @include set-var(background-color, $background-color);
-    @include set-var(color, $color);
     @include set-var(min-width, $min-width);
     @include set-var(horizontal-margin, $horizontal-margin);
     @include set-var(vertical-margin, $vertical-margin);
@@ -114,9 +119,9 @@ $variables: (
 
     .rmd-dialog {
       @include box-shadows.box-shadow($elevation);
-      @include use-var(background-color);
-      @include use-var(color);
 
+      background-color: $background-color;
+      color: $color;
       display: flex;
       flex-direction: column;
       max-height: 100%;
