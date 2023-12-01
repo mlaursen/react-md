@@ -1,3 +1,92 @@
 # Text Icon Spacing
 
-TODO
+The `TextIconSpacing` component can be used to add spacing between icons and
+other components when a flex/grid container's `gap` property does not work.
+
+# Simple Example
+
+Provide an `icon` prop of the icon component to be separated with other content.
+
+```tsx
+// preview editable
+import { TextIconSpacing, Typography } from "@react-md/core";
+import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
+import { type ReactElement } from "react";
+
+export default function SimpleTextIconSpacingExample(): ReactElement {
+  return (
+    <Typography>
+      <TextIconSpacing icon={<FavoriteIcon inline />}>
+        Some additional text to display.
+      </TextIconSpacing>
+    </Typography>
+  );
+}
+```
+
+## Icon After Example
+
+Enable the `iconAfter` prop to render the `icon` after the `children`.
+
+```tsx
+// preview editable
+import { TextIconSpacing, Typography } from "@react-md/core";
+import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
+import { type ReactElement } from "react";
+
+export default function IconAfterTextIconSpacingExample(): ReactElement {
+  return (
+    <Typography>
+      <TextIconSpacing icon={<FavoriteIcon inline />} iconAfter>
+        Some additional text to display.
+      </TextIconSpacing>
+    </Typography>
+  );
+}
+```
+
+## Stacked Example
+
+If the `TextIconSpacing` component is within a flex-column or grid container,
+enable the `stacked` prop to apply the margin on the bottom instead of
+left/right.
+
+```tsx
+// preview editable
+import { TextIconSpacing, Typography } from "@react-md/core";
+import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
+import { type ReactElement } from "react";
+
+export default function StackedTextIconSpacingExample(): ReactElement {
+  return (
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <TextIconSpacing icon={<FavoriteIcon />} stacked>
+        <Typography margin="none">Some additional text to display.</Typography>
+      </TextIconSpacing>
+    </div>
+  );
+}
+```
+
+# Customizing Spacing
+
+The spacing can be modified by changing the `core.$icon-spacing` Sas variable or
+the `--rmd-icon-spacing` custom property using the `core.icon-set-var` mixin.
+
+```tsx
+// preview editable styles="src/app/components/text-icon-spacing/CustomizingSpacingExample.module.scss"
+import { TextIconSpacing, Typography } from "@react-md/core";
+import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
+import { type ReactElement } from "react";
+import styles from "./CustomizingSpacingExample.module.scss";
+
+export default function CustomizingSpacingExample(): ReactElement {
+  return (
+    <div className={styles.container}>
+      <TextIconSpacing icon={<FavoriteIcon />}>
+        <Typography margin="none">Text to display</Typography>
+      </TextIconSpacing>
+    </div>
+  );
+}
+```

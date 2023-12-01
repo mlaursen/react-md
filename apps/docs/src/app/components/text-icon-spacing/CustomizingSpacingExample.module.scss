@@ -1,0 +1,8 @@
+@use "everything";
+
+.container {
+  @include everything.icon-set-var(spacing, 1rem);
+
+  align-items: center;
+  display: flex;
+}

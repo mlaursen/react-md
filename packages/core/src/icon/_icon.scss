@@ -170,13 +170,13 @@ $variables: (
 
       @if not $disable-spacing-above {
         &--above {
-          @include use-var(margin-top, spacing);
+          @include use-var(margin-bottom, spacing);
         }
       }
 
       @if not $disable-spacing-below {
         &--below {
-          @include use-var(margin-bottom, spacing);
+          @include use-var(margin-top, spacing);
         }
       }
 
