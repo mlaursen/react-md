@@ -1,3 +1,20 @@
 # Icon Rotator
 
-TODO
+Use the `IconRotator` component to rotate icons or other components using a
+simple `transform` transition.
+
+# Simple Example
+
+The default behavior will be to rotate from `0deg` to `180deg` when the
+`rotated` prop is `true`.
+
+{{ "component": "./SimpleExample.tsx" }}
+
+# Custom Rotation
+
+The rotation can be changed by updating the `core.$icon-rotate-from` and
+`core.$icon-rotate-to` Sass variables or updating the `--rmd-icon-rotate-from`
+and `--rmd-icon-rotate-to` custom properties using the `core.icon-set-var`
+mixin.
+
+{{ "component": "./CustomRotationExample.tsx" }}

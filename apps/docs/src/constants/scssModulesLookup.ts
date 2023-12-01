@@ -3,11 +3,10 @@ import "server-only";
 import { type FakeScssModule } from "../utils/fakeScssModules.js";
 
 export const SCSS_MODULES: Record<string, FakeScssModule> = {
-  "src/app/components/text-icon-spacing/CustomizingSpacingExample.module.scss":
-    {
-      css: ".CustomizingSpacingExample_container__Q3Vzd {\n  --rmd-icon-spacing: 1rem;\n  align-items: center;\n  display: flex;\n}",
-      scss: '@use "everything";\n\n.container {\n  @include everything.icon-set-var(spacing, 1rem);\n\n  align-items: center;\n  display: flex;\n}\n',
-      baseName: "CustomizingSpacingExample",
-      fileName: "CustomizingSpacingExample.module.scss",
-    },
+  "src/app/components/icon-rotator/CustomRotationExample.module.scss": {
+    css: ".CustomRotationExample_container__Q3Vzd {\n  --rmd-icon-rotate-from: 33deg;\n  --rmd-icon-rotate-to: 103deg;\n}",
+    scss: '@use "everything";\n\n.container {\n  @include everything.icon-set-var(rotate-from, 33deg);\n  @include everything.icon-set-var(rotate-to, 103deg);\n}\n',
+    baseName: "CustomRotationExample",
+    fileName: "CustomRotationExample.module.scss",
+  },
 };

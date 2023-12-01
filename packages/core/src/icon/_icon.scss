@@ -108,6 +108,11 @@ $variables: (
     @include set-var(symbol-weight, $symbol-weight);
     @include set-var(symbol-optical-size, $symbol-optical-size);
   }
+
+  @if not $disable-rotator {
+    @include set-var(rotate-from, $rotate-from);
+    @include set-var(rotate-to, $rotate-to);
+  }
 }
 
 @mixin styles {

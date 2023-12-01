@@ -50,7 +50,6 @@ export interface IconRotatorProps extends IconRotatorBaseProps {
 export const IconRotator = forwardRef<HTMLSpanElement, IconRotatorProps>(
   function IconRotator(props, ref) {
     const {
-      style,
       className: propClassName,
       rotated,
       children,
@@ -72,7 +71,7 @@ export const IconRotator = forwardRef<HTMLSpanElement, IconRotatorProps>(
     }
 
     return (
-      <span {...remaining} style={style} className={className} ref={ref}>
+      <span {...remaining} ref={ref} className={className}>
         {children}
       </span>
     );
