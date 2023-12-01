@@ -1,3 +1,246 @@
 # Typography
 
-TODO
+The `Typography` component is used to render text with the correct typography style.
+
+## Headline 1
+
+Set the `type` to `headline-1` to render as a `h1` element with the corresponding typography.
+
+```tsx
+// preview editable
+import { Typography } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function Headline1Example(): ReactElement {
+  return <Typography type="headline-1">Hello</Typography>;
+}
+```
+
+## Headline 2
+
+Set the `type` to `headline-2` to render as a `h2` element with the corresponding typography.
+
+```tsx
+// preview editable
+import { Typography } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function Headline2Example(): ReactElement {
+  return <Typography type="headline-2">Hello</Typography>;
+}
+```
+
+## Headline 3
+
+Set the `type` to `headline-3` to render as a `h3` element with the corresponding typography.
+
+```tsx
+// preview editable
+import { Typography } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function Headline3Example(): ReactElement {
+  return <Typography type="headline-3">Hello</Typography>;
+}
+```
+
+## Headline 4
+
+Set the `type` to `headline-4` to render as a `h4` element with the corresponding typography.
+
+```tsx
+// preview editable
+import { Typography } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function Headline4Example(): ReactElement {
+  return <Typography type="headline-4">Hello</Typography>;
+}
+```
+
+## Headline 5
+
+Set the `type` to `headline-5` to render as a `h5` element with the corresponding typography.
+
+```tsx
+// preview editable
+import { Typography } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function Headline5Example(): ReactElement {
+  return <Typography type="headline-5">Hello</Typography>;
+}
+```
+
+## Headline 6
+
+Set the `type` to `headline-6` to render as a `h6` element with the corresponding typography.
+
+```tsx
+// preview editable
+import { Typography } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function Headline6Example(): ReactElement {
+  return <Typography type="headline-6">Hello</Typography>;
+}
+```
+
+## Subtitle 1
+
+Set the `type` to `subtitle-1` to render as a `h6` element with the corresponding typography.
+
+```tsx
+// preview editable
+import { Typography } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function Subtitle1Example(): ReactElement {
+  return <Typography type="subtitle-1">Hello</Typography>;
+}
+```
+
+## Subtitle 2
+
+Set the `type` to `subtitle-2` to render as a `h6` element with the corresponding typography.
+
+```tsx
+// preview editable
+import { Typography } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function Subtitle2Example(): ReactElement {
+  return <Typography type="subtitle-2">Hello</Typography>;
+}
+```
+
+## Body 1
+
+Set the `type` to `body-1` to render as a `p` element with the corresponding typography.
+
+```tsx
+// preview editable
+import { Typography } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function Body1Example(): ReactElement {
+  return <Typography type="body-1">Hello</Typography>;
+}
+```
+
+## Body 2
+
+Set the `type` to `body-2` to render as a `p` element with the corresponding typography.
+
+```tsx
+// preview editable
+import { Typography } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function Body2Example(): ReactElement {
+  return <Typography type="body-2">Hello</Typography>;
+}
+```
+
+## Caption
+
+Set the `type` to `caption` to render as a `caption` element with the corresponding typography.
+
+```tsx
+// preview editable
+import { Table, Typography } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function CaptionExample(): ReactElement {
+  return (
+    <Table>
+      <Typography type="caption">Hello</Typography>
+    </Table>
+  );
+}
+```
+
+## Overline
+
+Set the `type` to `overline` to render as a `span` element with the corresponding typography.
+
+```tsx
+// preview editable
+import { Typography } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function OverlineExample(): ReactElement {
+  return <Typography type="overline">Hello</Typography>;
+}
+```
+
+# Custom Typography Element
+
+The typography styles can also be applied to other elements by using the `as`
+prop or using the `typography` class name utility function.
+
+```tsx
+// preview editable
+import { Box, Typography, typography } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function CustomTypographyElement(): ReactElement {
+  return (
+    <Box stacked>
+      <Typography type="headline-1" as="p">
+        Paragraph
+      </Typography>
+      <div className={typography({ type: "headline-3" })}>Div</div>
+    </Box>
+  );
+}
+```
+
+# Customizing Typography
+
+The default typography can be configured by overriding the different typography
+Sass variables when `@forward`ing or `@use`ing `@react-md/core`.
+
+```tsx
+// preview editable styles="src/app/components/typography/CustomizingTypographyExample.module.scss"
+import { Typography } from "@react-md/core";
+import { type ReactElement } from "react";
+import styles from "./CustomizingTypographyExample.module.scss";
+
+export default function CustomizingTypographyExample(): ReactElement {
+  return (
+    <div className={styles.container}>
+      <Typography type="headline-1" as="p">
+        headline-1
+      </Typography>
+      <Typography type="headline-2" as="p">
+        headline-2
+      </Typography>
+      <Typography type="headline-3" as="p">
+        headline-3
+      </Typography>
+      <Typography type="headline-4" as="p">
+        headline-4
+      </Typography>
+      <Typography type="headline-5" as="p">
+        headline-5
+      </Typography>
+      <Typography type="headline-6" as="p">
+        headline-6
+      </Typography>
+      <Typography type="subtitle-1" as="p">
+        subtitle-1
+      </Typography>
+      <Typography type="subtitle-2" as="p">
+        subtitle-2
+      </Typography>
+      <Typography type="caption" as="p">
+        caption
+      </Typography>
+      <Typography type="overline" as="p">
+        overline
+      </Typography>
+    </div>
+  );
+}
+```

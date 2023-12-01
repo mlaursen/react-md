@@ -66,10 +66,15 @@ $font-styles: normal italic oblique !default;
 
 /// The base styles for typography.
 /// @type Map
-$base-font-styles: (
+$base-recommended-font-styles: (
   font-family: $font-family,
   -moz-osx-font-smoothing: grayscale,
   -webkit-font-smoothing: antialiased,
+);
+$base-custom-font-styles: () !default;
+$base-font-styles: map.merge(
+  $base-recommended-font-styles,
+  $base-custom-font-styles
 );
 
 $headline-1-recommended-styles: (
