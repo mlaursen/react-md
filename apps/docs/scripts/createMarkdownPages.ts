@@ -19,7 +19,7 @@ const mdxDemos = await glob(`src/app/**/${MDX_DEMOS}`);
 // const readmes = [] as const;
 // const mdxDemos = [`src/app/components/dialog/${MDX_DEMOS}`];
 
-const { isWatch, isWatchOnly } = getScriptFlags();
+const { isWatch } = getScriptFlags();
 
 async function createAll(): Promise<void> {
   await Promise.all([
@@ -34,9 +34,8 @@ async function createAll(): Promise<void> {
   await createScssModuleFile();
 }
 
-if (!isWatchOnly) {
-  await log(createAll(), "Compiling mdx and demos", "Compiled");
-}
+// have to create all since it'll cause the scssModulesLookup to be out of sync and remove stuff in watch mode
+await log(createAll(), "Compiling mdx and demos", "Compiled");
 
 const isProbablyDemoRelatedFile = (
   parsed: ParsedPath,
