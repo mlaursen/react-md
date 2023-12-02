@@ -20,6 +20,7 @@ const styles = bem("rmd-tab");
 export interface TabClassNameOptions {
   className?: string;
   active?: boolean;
+  isLink?: boolean;
   activeIndicator?: boolean;
   stacked?: boolean;
   reversed?: boolean;
@@ -30,8 +31,15 @@ export interface TabClassNameOptions {
  * @remarks \@since 6.0.0
  */
 export function tab(options: TabClassNameOptions = {}): string {
-  const { className, active, activeIndicator, stacked, reversed, disabled } =
-    options;
+  const {
+    className,
+    active,
+    isLink,
+    activeIndicator,
+    stacked,
+    reversed,
+    disabled,
+  } = options;
 
   return cnb(
     styles({
@@ -42,7 +50,7 @@ export function tab(options: TabClassNameOptions = {}): string {
       disabled,
     }),
     active && activeIndicator && tabIndicator(),
-    cssUtils({ surface: true }),
+    cssUtils({ surface: true, textDecoration: isLink ? "none" : undefined }),
     className
   );
 }

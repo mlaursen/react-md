@@ -1,7 +1,13 @@
 "use client";
-import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from "react";
+import {
+  type AnchorHTMLAttributes,
+  type ButtonHTMLAttributes,
+  type ReactElement,
+  type ReactNode,
+} from "react";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
+import { type CustomLinkComponent } from "../link/Link.js";
 import { useKeyboardMovementContext } from "../movement/useKeyboardMovementProvider.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { tab } from "./tabStyles.js";
@@ -14,7 +20,7 @@ import { type TabListProps } from "./TabList.js";
 /**
  * @remarks \@since 6.0.0
  */
-export interface TabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface BaseTabProps {
   /**
    * Set this to `true` if the tab is currently active.
    *
@@ -57,6 +63,26 @@ export interface TabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 /**
+ * @remarks \@since 6.0.0
+ */
+export interface TabButtonProps
+  extends BaseTabProps,
+    ButtonHTMLAttributes<HTMLButtonElement> {
+  as?: "button";
+}
+
+export interface TabLinkProps
+  extends BaseTabProps,
+    AnchorHTMLAttributes<HTMLAnchorElement> {
+  as: CustomLinkComponent;
+}
+
+/**
+ * @remarks \@since 6.0.0
+ */
+export type TabProps = TabButtonProps | TabLinkProps;
+
+/**
  * **Client Component**
  *
  * This component should usually be used with the `TabsList` component and
@@ -66,74 +92,78 @@ export interface TabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
  *
  * @remarks \@since 6.0.0
  */
-export const Tab = forwardRef<HTMLButtonElement, TabProps>(
-  function Tab(props, ref) {
-    const {
-      id: propId,
-      active,
-      activeIndicator,
-      icon,
-      iconAfter,
-      stacked,
-      className,
-      children: propChildren,
-      onBlur,
-      onClick,
-      onKeyDown,
-      onKeyUp,
-      onMouseDown,
-      onMouseUp,
-      onMouseLeave,
-      onDragStart,
-      onTouchStart,
-      onTouchEnd,
-      onTouchMove,
-      ...remaining
-    } = props;
-    const { disabled } = props;
+export function Tab(props: TabProps): ReactElement {
+  const {
+    id: propId,
+    as: Component = "button",
+    active,
+    activeIndicator,
+    icon,
+    iconAfter,
+    stacked,
+    className,
+    children: propChildren,
+    onBlur,
+    onClick,
+    onKeyDown,
+    onKeyUp,
+    onMouseDown,
+    onMouseUp,
+    onMouseLeave,
+    onDragStart,
+    onTouchStart,
+    onTouchEnd,
+    onTouchMove,
+    ...remaining
+  } = props as TabButtonProps;
+  const { disabled } = props as TabButtonProps;
 
-    const id = useEnsuredId(propId, "tab");
-    const { activeDescendantId } = useKeyboardMovementContext();
-    const { ripples, handlers } = useElementInteraction({
-      onBlur,
-      onClick,
-      onKeyDown,
-      onKeyUp,
-      onMouseDown,
-      onMouseUp,
-      onMouseLeave,
-      onDragStart,
-      onTouchStart,
-      onTouchEnd,
-      onTouchMove,
-      disabled,
-    });
+  const id = useEnsuredId(propId, "tab");
+  const { activeDescendantId } = useKeyboardMovementContext();
+  const { ripples, handlers } = useElementInteraction({
+    onBlur,
+    onClick,
+    onKeyDown,
+    onKeyUp,
+    onMouseDown,
+    onMouseUp,
+    onMouseLeave,
+    onDragStart,
+    onTouchStart,
+    onTouchEnd,
+    onTouchMove,
+    disabled,
+  });
 
-    const children = useHigherContrastChildren(propChildren);
-
-    return (
-      <button
-        {...remaining}
-        {...handlers}
-        aria-selected={active}
-        id={id}
-        ref={ref}
-        role="tab"
-        type="button"
-        tabIndex={id === activeDescendantId ? 0 : -1}
-        className={tab({
-          className,
-          active,
-          stacked: !!icon && stacked,
-          disabled,
-          reversed: !!icon && iconAfter,
-          activeIndicator,
-        })}
-      >
-        {icon}
-        {children}
-        {ripples}
-      </button>
-    );
+  const isLink = Component !== "button";
+  const children = useHigherContrastChildren(propChildren);
+  let buttonOnlyProps: Record<string, unknown> | undefined;
+  if (!isLink) {
+    buttonOnlyProps = { type: "button" };
   }
-);
+
+  return (
+    <Component
+      {...remaining}
+      {...buttonOnlyProps}
+      {...handlers}
+      aria-selected={active}
+      id={id}
+      role="tab"
+      tabIndex={id === activeDescendantId ? 0 : -1}
+      className={tab({
+        className,
+        active,
+        isLink,
+        stacked: !!icon && stacked,
+        disabled,
+        reversed: !!icon && iconAfter,
+        activeIndicator,
+      })}
+    >
+      {icon}
+      {children}
+      {ripples}
+    </Component>
+  );
+}
