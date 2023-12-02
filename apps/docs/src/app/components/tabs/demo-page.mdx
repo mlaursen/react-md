@@ -1,3 +1,649 @@
 # Tabs
 
-TODO
+Tabs organize content across different screens, data sets, and other
+interactions.
+
+# Simple Example
+
+Tabs can be created by using the following components and hooks:
+
+- `useTabs` - Manages the state for the active tab content and provides
+  additional accessibility props required for a tab widget
+- `TabList` - Contains all the `Tab` components
+- `Tab - A button that should show specific content while active
+- `SliderContainer`/`Slide` - Used to animate the active tab content into view
+
+```tsx
+// preview editable
+"use client";
+import { Slide, SlideContainer, Tab, TabList, useTabs } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function SimpleExample(): ReactElement {
+  const { getTabProps, getTabListProps, getTabPanelProps, getTabPanelsProps } =
+    useTabs();
+
+  return (
+    <>
+      <TabList {...getTabListProps()}>
+        <Tab {...getTabProps(0)}>Tab 1</Tab>
+        <Tab {...getTabProps(1)}>Tab 2</Tab>
+        <Tab {...getTabProps(2)}>Tab 3</Tab>
+      </TabList>
+      <SlideContainer {...getTabPanelsProps()}>
+        <Slide {...getTabPanelProps(0)}>Tab 1 Content</Slide>
+        <Slide {...getTabPanelProps(1)}>Tab 2 Content</Slide>
+        <Slide {...getTabPanelProps(2)}>Tab 3 Content</Slide>
+      </SlideContainer>
+    </>
+  );
+}
+```
+
+## With Icons
+
+The `Tab` component can also render an icon to the left, right, above, or below
+the content by using the `icon`, `iconAfter`, and `stacked` props.
+
+```tsx
+// preview editable
+"use client";
+import { Tab, TabList, useTabs } from "@react-md/core";
+import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
+import SocialDistanceOutlinedIcon from "@react-md/material-icons/SocialDistanceOutlinedIcon";
+import { type ReactElement } from "react";
+
+export default function WithIconsExample(): ReactElement {
+  const { getTabListProps, getTabProps } = useTabs();
+  return (
+    <>
+      <TabList {...getTabListProps()}>
+        <Tab icon={<FavoriteIcon />} {...getTabProps(0)}>
+          Tab 1
+        </Tab>
+        <Tab
+          icon={<SocialDistanceOutlinedIcon />}
+          iconAfter
+          {...getTabProps(1)}
+        >
+          Tab 2
+        </Tab>
+      </TabList>
+      <TabList {...getTabListProps()}>
+        <Tab icon={<FavoriteIcon />} stacked {...getTabProps(0)}>
+          Tab 1
+        </Tab>
+        <Tab
+          icon={<SocialDistanceOutlinedIcon />}
+          iconAfter
+          stacked
+          {...getTabProps(1)}
+        >
+          Tab 2
+        </Tab>
+      </TabList>
+    </>
+  );
+}
+```
+
+# Controlling the Active Tab
+
+If the active tab index needs to be controlled externally, the `activeTab` and
+`setActiveTab` returned values can be used.
+
+```tsx
+// preview editable
+"use client";
+import {
+  AppBar,
+  Button,
+  Tab,
+  TabList,
+  Typography,
+  useTabs,
+} from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function ControllingTheActiveTabExample(): ReactElement {
+  const { getTabProps, getTabListProps, activeTab, setActiveTab } = useTabs();
+
+  return (
+    <>
+      <AppBar height="auto" theme="surface">
+        <TabList {...getTabListProps()}>
+          {Array.from({ length: 4 }, (_, i) => (
+            <Tab key={i} {...getTabProps(i)}>
+              {`Tab ${i + 1}`}
+            </Tab>
+          ))}
+        </TabList>
+      </AppBar>
+      <Typography>{`The current activeIndex is ${activeTab}`}</Typography>
+      <Button onClick={() => setActiveTab(0)}>Set 0</Button>
+      <Button onClick={() => setActiveTab(1)}>Set 1</Button>
+    </>
+  );
+}
+```
+
+## Custom Active Tab Index
+
+For more complex flows, the `activeTab` can be controlled by providing the
+`activeTab` and `setActiveTab` options to the `useTabs` hook.
+
+```tsx
+// preview editable
+"use client";
+import {
+  AppBar,
+  Button,
+  Tab,
+  TabList,
+  Typography,
+  useTabs,
+} from "@react-md/core";
+import { useState, type ReactElement } from "react";
+
+export default function CustomActiveTabIndexExample(): ReactElement {
+  const [activeTab, setActiveTab] = useState(0);
+  const { getTabProps, getTabListProps } = useTabs({
+    activeTab,
+    setActiveTab,
+  });
+
+  return (
+    <>
+      <AppBar height="auto" theme="surface">
+        <TabList {...getTabListProps()}>
+          {Array.from({ length: 4 }, (_, i) => (
+            <Tab key={i} {...getTabProps(i)}>
+              {`Tab ${i + 1}`}
+            </Tab>
+          ))}
+        </TabList>
+      </AppBar>
+      <Typography>{`The current activeIndex is ${activeTab}`}</Typography>
+      <Button onClick={() => setActiveTab(0)}>Set 0</Button>
+      <Button onClick={() => setActiveTab(1)}>Set 1</Button>
+    </>
+  );
+}
+```
+
+## Custom Active Tab
+
+If the active tab should be derived from a string value instead of an index, an
+ordered list of available tab values need to be provided to the hook so the
+keyboard movement behavior can work correctly.
+
+```tsx
+// preview editable
+"use client";
+import {
+  AppBar,
+  Button,
+  Tab,
+  TabList,
+  Typography,
+  useTabs,
+} from "@react-md/core";
+import { useState, type ReactElement } from "react";
+
+const tabs = ["tab-1", "tab-2", "tab-3", "tab-4"];
+
+export default function CustomActiveTabExample(): ReactElement {
+  const [activeTab, setActiveTab] = useState(tabs[0]);
+  const { getTabProps, getTabListProps } = useTabs({
+    tabs,
+    activeTab,
+    setActiveTab,
+  });
+
+  return (
+    <>
+      <AppBar height="auto" theme="surface">
+        <TabList {...getTabListProps()}>
+          {tabs.map((tab, i) => (
+            <Tab key={i} {...getTabProps(tab)}>
+              {`Tab ${i + 1}`}
+            </Tab>
+          ))}
+        </TabList>
+      </AppBar>
+      <Typography>{`The current activeTab is ${activeTab}`}</Typography>
+      <Button onClick={() => setActiveTab("tab-1")}>Set 1</Button>
+      <Button onClick={() => setActiveTab("tab-2")}>Set 2</Button>
+    </>
+  );
+}
+```
+
+# Link Tab Example
+
+Tabs can also be rendered as links by setting the `as` prop to `"a"` or a custom
+link component.
+
+This example shows how the active tab could be derived from the current
+`window.location.hash`, but most real world examples would be based on
+`pathname` or search parameters.
+
+```tsx
+// preview editable
+"use client";
+import { Tab, TabList, useTabs } from "@react-md/core";
+import { useEffect, useState, type ReactElement } from "react";
+
+export default function LinkTabExample(): ReactElement {
+  const activeTab = useActiveTab();
+  const { getTabListProps, getTabProps } = useTabs({
+    tabs,
+    activeTab,
+    setActiveTab: noop,
+  });
+  return (
+    <>
+      <TabList {...getTabListProps()}>
+        {tabs.map((tab) => (
+          <Tab key={tab} {...getTabProps(tab)} as="a" href={`#${tab}`}>
+            {tab}
+          </Tab>
+        ))}
+      </TabList>
+    </>
+  );
+}
+
+const tabs = ["tab-1", "tab-2", "tab-3"] as const;
+type ValidTab = (typeof tabs)[number];
+
+const noop = (): void => {
+  // do nothing
+};
+
+function isValidTab(hash: string): hash is ValidTab {
+  return tabs.includes(hash as ValidTab);
+}
+
+function useActiveTab(): ValidTab {
+  const [activeTab, setActiveTab] = useState<ValidTab>(tabs[0]);
+  useEffect(() => {
+    const updateHash = (): void => {
+      const hash = decodeURIComponent(window.location.hash.substring(1));
+      const nextActiveTab = isValidTab(hash) ? hash : tabs[0];
+      setActiveTab(nextActiveTab);
+    };
+    updateHash();
+
+    window.addEventListener("hashchange", updateHash);
+    return () => {
+      window.removeEventListener("hashchange", updateHash);
+    };
+  }, []);
+
+  return activeTab;
+}
+```
+
+# Scrollable Tabs
+
+When there are overflow issues due to rendering a lot of tabs, the overflown
+tabs will be hidden by default. The user can scroll the hidden tabs into view
+by hovering the `TabList` and either:
+
+- `Shift + Mouse Wheel` on Windows
+- Two-finger scroll on Mac
+- Touch scroll on touch devices
+- [Keyboard behavior](#keyboard-movement)
+
+Since most users might not know how to scroll horizontally, scroll buttons can
+be enabled instead that will scroll 1/10th the distance on each click.
+
+```tsx
+// preview editable
+"use client";
+import { Tab, TabList, useTabs } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function ScrollableTabsExample(): ReactElement {
+  const { getTabProps, getTabListProps } = useTabs();
+
+  return (
+    <>
+      <TabList {...getTabListProps()} scrollButtons>
+        {tabs.map((name, i) => (
+          <Tab key={name} {...getTabProps(i)}>
+            {name}
+          </Tab>
+        ))}
+      </TabList>
+    </>
+  );
+}
+
+const tabs = Array.from({ length: 20 }, (_, i) => `Tab ${i + 1}`);
+```
+
+## Scrollable Tabs with Scrollbar
+
+A scrollbar could also be shown with or without the scroll buttons by enabling
+the `scrollbar` prop.
+
+```tsx
+// preview editable
+"use client";
+import { Tab, TabList, useTabs } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function ScrollableTabsWithScrollbarExample(): ReactElement {
+  const { getTabProps, getTabListProps } = useTabs();
+  return (
+    <>
+      <TabList {...getTabListProps()} scrollButtons scrollbar>
+        {tabs.map((name, i) => (
+          <Tab key={name} {...getTabProps(i)}>
+            {name}
+          </Tab>
+        ))}
+      </TabList>
+    </>
+  );
+}
+
+const tabs = Array.from({ length: 20 }, (_, i) => `Tab ${i + 1}`);
+```
+
+## Custom Scroll Behavior
+
+The scroll distance can be configured by providing the `getScrollToOptions` to
+the `TabList` component.
+
+```tsx
+// preview editable
+"use client";
+import {
+  Tab,
+  TabList,
+  // getTabListScrollToOptions,
+  useTabs,
+} from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function CustomScrollBehaviorExample(): ReactElement {
+  const { getTabProps, getTabListProps } = useTabs();
+
+  return (
+    <>
+      <TabList
+        {...getTabListProps()}
+        scrollButtons
+        disableTransition={disableTransition}
+        forwardScrollButtonProps={{
+          disableTransition,
+        }}
+        backwardScrollButtonProps={{
+          disableTransition,
+        }}
+        getScrollToOptions={(options) => {
+          // the default implementation
+          // return getTabListScrollToOptions(options);
+
+          // or define custom behavior
+          // Disclaimer: this is the default implementation
+          const { isRTL, animate, vertical, increment, container } = options;
+          const { scrollLeft, scrollTop, scrollWidth, scrollHeight } =
+            container;
+          const currentScroll = vertical ? scrollTop : scrollLeft;
+          const scrollDistance = vertical ? scrollHeight : scrollWidth;
+          const amount = (scrollDistance / 10) * (increment ? 1 : -1);
+          const distance =
+            currentScroll + amount * (vertical || !isRTL ? 1 : -1);
+
+          return {
+            left: vertical ? undefined : distance,
+            top: vertical ? distance : undefined,
+            behavior: animate ? "smooth" : "instant",
+          };
+        }}
+      >
+        {tabs.map((name, i) => (
+          <Tab
+            key={name}
+            {...getTabProps(i)}
+            activeIndicator={disableTransition}
+          >
+            {name}
+          </Tab>
+        ))}
+      </TabList>
+    </>
+  );
+}
+
+const tabs = Array.from({ length: 20 }, (_, i) => `Tab ${i + 1}`);
+const disableTransition = true;
+```
+
+# Vertical Tabs
+
+Tabs can be rendered vertically instead of horizontally by enabling the
+`vertical` prop on the `TabList` component.
+
+```tsx
+// preview editable styles="src/app/components/tabs/VerticalTabsExample.module.scss"
+"use client";
+import { Slide, SlideContainer, Tab, TabList, useTabs } from "@react-md/core";
+import { type ReactElement } from "react";
+import styles from "./VerticalTabsExample.module.scss";
+
+export default function VerticalTabsExample(): ReactElement {
+  const { getTabProps, getTabListProps, getTabPanelProps, getTabPanelsProps } =
+    useTabs();
+
+  return (
+    <div className={styles.container}>
+      <TabList {...getTabListProps()} vertical>
+        <Tab {...getTabProps(0)}>Tab 1</Tab>
+        <Tab {...getTabProps(1)}>Tab 2</Tab>
+        <Tab {...getTabProps(2)}>Tab 3</Tab>
+      </TabList>
+      <SlideContainer {...getTabPanelsProps()}>
+        <Slide {...getTabPanelProps(0)}>Tab 1 Content</Slide>
+        <Slide {...getTabPanelProps(1)}>Tab 2 Content</Slide>
+        <Slide {...getTabPanelProps(2)}>Tab 3 Content</Slide>
+      </SlideContainer>
+    </div>
+  );
+}
+```
+
+# Disable Active Tab Transition
+
+The active tab indicator transition can be disabled by setting
+`disableTransition` to `true` on the `TabList` component and enabling the
+`activeIndicator` prop on each `Tab`.
+
+```tsx
+// preview editable
+"use client";
+import { Tab, TabList, useTabs } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function DisableActiveTabTransitionExample(): ReactElement {
+  const { getTabProps, getTabListProps } = useTabs();
+
+  return (
+    <div>
+      <TabList {...getTabListProps()} disableTransition>
+        <Tab {...getTabProps(0)} activeIndicator>
+          Tab 1
+        </Tab>
+        <Tab {...getTabProps(1)} activeIndicator>
+          Tab 2
+        </Tab>
+        <Tab {...getTabProps(2)} activeIndicator>
+          Tab 3
+        </Tab>
+      </TabList>
+    </div>
+  );
+}
+```
+
+## Disable Vertical Active Tab Transition
+
+If the tabs are rendered vertically, the `verticalActiveIndicator` prop must
+also be enabled on each `Tab` for the correct styles to apply.
+
+```tsx
+// preview editable
+"use client";
+import { Tab, TabList, useTabs } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function DisableVerticalActiveTabTransitionExample(): ReactElement {
+  const { getTabProps, getTabListProps } = useTabs();
+
+  return (
+    <div>
+      <TabList {...getTabListProps()} vertical disableTransition>
+        <Tab {...getTabProps(0)} activeIndicator verticalActiveIndicator>
+          Tab 1
+        </Tab>
+        <Tab {...getTabProps(1)} activeIndicator verticalActiveIndicator>
+          Tab 2
+        </Tab>
+        <Tab {...getTabProps(2)} activeIndicator verticalActiveIndicator>
+          Tab 3
+        </Tab>
+      </TabList>
+    </div>
+  );
+}
+```
+
+# Custom Tab Panels
+
+The `SlideContainer` and `Slide` components are not required for rendering the
+different tab panels, but it will make it easier to use since most of the
+required functionality has already been defined.
+
+> !Info! Check out the [Slide demos](/components/slide) to see how to disable
+> the transition or temporarily render each tab panel instead of hiding with
+> `display: none`.
+
+Here is a small example for creating custom tab panels without the
+`SlideContainer` and `Slide` components.
+
+```tsx
+// preview editable
+"use client";
+import {
+  DISPLAY_NONE_CLASS,
+  Tab,
+  TabList,
+  useTabs,
+  type ProvidedTabPanelProps,
+  type ProvidedTabPanelsProps,
+} from "@react-md/core";
+import { cnb } from "cnbuilder";
+import { forwardRef, type ReactElement, type ReactNode } from "react";
+
+export default function CustomTabPanelsExample(): ReactElement {
+  const { getTabProps, getTabListProps, getTabPanelProps, getTabPanelsProps } =
+    useTabs();
+
+  return (
+    <>
+      <TabList {...getTabListProps()}>
+        <Tab {...getTabProps(0)}>Tab 1</Tab>
+        <Tab {...getTabProps(1)}>Tab 2</Tab>
+        <Tab {...getTabProps(2)}>Tab 3</Tab>
+      </TabList>
+      <TabPanels {...getTabPanelsProps()}>
+        <TabPanel {...getTabPanelProps(0)}>Tab 1 Content</TabPanel>
+        <TabPanel {...getTabPanelProps(1)}>Tab 2 Content</TabPanel>
+        <TabPanel {...getTabPanelProps(2)}>Tab 3 Content</TabPanel>
+      </TabPanels>
+    </>
+  );
+}
+
+interface TabPanelsProps
+  extends Omit<ProvidedTabPanelsProps<HTMLDivElement>, "ref"> {
+  children: ReactNode;
+}
+
+// must forward ref so that switching tabs scrolls to the top
+const TabPanels = forwardRef<HTMLDivElement, TabPanelsProps>(
+  function TabPanels(props, ref) {
+    const { children } = props;
+    return <div ref={ref}>{children}</div>;
+  },
+);
+
+interface TabPanelProps extends ProvidedTabPanelProps {
+  children: ReactNode;
+}
+
+function TabPanel(props: TabPanelProps): ReactElement {
+  const { active, children, ...remaining } = props;
+  return (
+    <div {...remaining} className={cnb(!active && DISPLAY_NONE_CLASS)}>
+      {children}
+    </div>
+  );
+}
+```
+
+# Accessibility
+
+The tab components and hooks implement the
+[tabs pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/).
+
+## Keyboard Movement
+
+- Using `Tab` and `Shift+Tab` will only focus the active tab
+- Once a tab has been focused, `ArrowLeft` and `ArrowRight` can be used to
+  focus another tab
+  - Use `ArrowUp` and `ArrowDown` for vertical tabs
+- Pressing `Enter` or `Space` will select the focused tab
+- `Home` - Move focus to the first tab
+- `End` - Move focus to the last tab
+
+## Activation Mode
+
+When navigating between tabs with a keyboard, tabs must be activated manually by
+pressing `Space` or `Enter`. An alternative approach is to automatically select
+a tab once focused with a keyboard by setting `activationMode="automatic"`.
+
+```tsx
+// preview editable
+"use client";
+import { Tab, TabList, useTabs } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function ActivationModeExample(): ReactElement {
+  const { getTabProps, getTabListProps } = useTabs();
+
+  return (
+    <TabList
+      {...getTabListProps()}
+      activationMode="automatic"
+      // it's recommended to disable the transition for the active indicator and
+      // enable active indicators on each tab when tabs are selected immediately
+      disableTransition
+    >
+      <Tab {...getTabProps(0)} activeIndicator>
+        Tab 1
+      </Tab>
+      <Tab {...getTabProps(1)} activeIndicator>
+        Tab 2
+      </Tab>
+      <Tab {...getTabProps(2)} activeIndicator>
+        Tab 3
+      </Tab>
+    </TabList>
+  );
+}
+```

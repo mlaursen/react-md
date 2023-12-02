@@ -3,4 +3,64 @@ import { type TableOfContentsItem } from "@/components/TableOfContents/types.js"
 
 export const toc = [
   { id: "tabs", depth: 1, value: "Tabs" },
+  {
+    id: "simple-example",
+    depth: 1,
+    value: "Simple Example",
+    items: [{ id: "with-icons", depth: 2, value: "With Icons" }],
+  },
+  {
+    id: "controlling-the-active-tab",
+    depth: 1,
+    value: "Controlling the Active Tab",
+    items: [
+      {
+        id: "custom-active-tab-index",
+        depth: 2,
+        value: "Custom Active Tab Index",
+      },
+      { id: "custom-active-tab", depth: 2, value: "Custom Active Tab" },
+    ],
+  },
+  { id: "link-tab-example", depth: 1, value: "Link Tab Example" },
+  {
+    id: "scrollable-tabs",
+    depth: 1,
+    value: "Scrollable Tabs",
+    items: [
+      {
+        id: "scrollable-tabs-with-scrollbar",
+        depth: 2,
+        value: "Scrollable Tabs with Scrollbar",
+      },
+      {
+        id: "custom-scroll-behavior",
+        depth: 2,
+        value: "Custom Scroll Behavior",
+      },
+    ],
+  },
+  { id: "vertical-tabs", depth: 1, value: "Vertical Tabs" },
+  {
+    id: "disable-active-tab-transition",
+    depth: 1,
+    value: "Disable Active Tab Transition",
+    items: [
+      {
+        id: "disable-vertical-active-tab-transition",
+        depth: 2,
+        value: "Disable Vertical Active Tab Transition",
+      },
+    ],
+  },
+  { id: "custom-tab-panels", depth: 1, value: "Custom Tab Panels" },
+  {
+    id: "accessibility",
+    depth: 1,
+    value: "Accessibility",
+    items: [
+      { id: "keyboard-movement", depth: 2, value: "Keyboard Movement" },
+      { id: "activation-mode", depth: 2, value: "Activation Mode" },
+    ],
+  },
 ] satisfies readonly TableOfContentsItem[];

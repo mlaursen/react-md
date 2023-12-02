@@ -335,6 +335,10 @@ export const navItems: readonly NavigationItem[] = [
             href: "/scale-transition",
             children: "ScaleTransition",
           },
+          {
+            href: "/slide",
+            children: "Slide",
+          },
         ],
       },
       {

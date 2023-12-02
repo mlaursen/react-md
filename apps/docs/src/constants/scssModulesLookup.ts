@@ -149,6 +149,12 @@ export const SCSS_MODULES: Record<string, FakeScssModule> = {
     baseName: "ViewportBasedStickyTableExample",
     fileName: "ViewportBasedStickyTableExample.module.scss",
   },
+  "src/app/components/tabs/VerticalTabsExample.module.scss": {
+    css: ".VerticalTabsExample_container__VmVyd {\n  display: grid;\n  gap: 1rem;\n  grid-template-columns: min-content 1fr;\n  width: 100%;\n}",
+    scss: ".container {\n  display: grid;\n  gap: 1rem;\n  grid-template-columns: min-content 1fr;\n  width: 100%;\n}\n",
+    baseName: "VerticalTabsExample",
+    fileName: "VerticalTabsExample.module.scss",
+  },
   "src/app/components/text-field/NonIconAddons.module.scss": {
     css: ".NonIconAddons_avatarField__Tm9uS {\n  --rmd-text-field-padding-left: calc(var(--rmd-avatar-size) + 1.5rem);\n  --rmd-text-field-padding-right: calc(var(--rmd-avatar-size) + 1rem);\n}\n\n.NonIconAddons_buttonField__Tm9uS {\n  --rmd-text-field-padding-right: 4rem;\n}",
     scss: '@use "everything";\n\n.avatarField {\n  @include everything.form-set-var(\n    text-field-padding-left,\n    calc(everything.avatar-get-var(size) + 1.5rem)\n  );\n  @include everything.form-set-var(\n    text-field-padding-right,\n    calc(everything.avatar-get-var(size) + 1rem)\n  );\n}\n\n.buttonField {\n  @include everything.form-set-var(text-field-padding-right, 4rem);\n}\n',
