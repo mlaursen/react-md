@@ -16,7 +16,7 @@ declare module "react" {
 export type AvatarImgAttributes = ImgHTMLAttributes<HTMLImageElement>;
 
 export interface AvatarProps
-  extends HTMLAttributes<HTMLSpanElement>,
+  extends Omit<HTMLAttributes<HTMLSpanElement>, "color">,
     AvatarClassNameOptions {
   /**
    * This should be an image `src` attribute to create an avatar from. When this
