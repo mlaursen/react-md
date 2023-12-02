@@ -63,12 +63,6 @@ export const SCSS_MODULES: Record<string, FakeScssModule> = {
     baseName: "AddingSecondaryTextExample",
     fileName: "AddingSecondaryTextExample.module.scss",
   },
-  "src/app/components/list/ListItemChildrenExample.module.scss": {
-    css: ".ListItemChildrenExample_list__TGlzd {\n  list-style-position: outside;\n}",
-    scss: ".list {\n  list-style-position: outside;\n  // li::marker {\n  //   text-align: center;\n  // }\n}\n",
-    baseName: "ListItemChildrenExample",
-    fileName: "ListItemChildrenExample.module.scss",
-  },
   "src/app/components/list/MultipleLinesOfSecondaryTextExample.module.scss": {
     css: ".MultipleLinesOfSecondaryTextExample_container__TXVsd {\n  max-width: 15rem;\n}",
     scss: ".container {\n  max-width: 15rem;\n}\n",
@@ -172,6 +166,12 @@ export const SCSS_MODULES: Record<string, FakeScssModule> = {
     scss: ".container {\n  display: grid;\n  gap: 1rem;\n  grid-template-columns: min-content 1fr;\n  width: 100%;\n}\n",
     baseName: "VerticalTabsExample",
     fileName: "VerticalTabsExample.module.scss",
+  },
+  "src/app/components/text-container/SimpleExample.module.scss": {
+    css: "",
+    scss: '@use "everything";\n\n.container {\n  // these are the defaults. uncomment and change the values to see how the demo\n  // changes\n  // @include everything.typography-set-var(\n  //   line-length,\n  //   everything.$text-line-length\n  // );\n  // @include everything.typography-set-var(\n  //   text-container-padding,\n  //   everything.$text-container-padding\n  // );\n}\n',
+    baseName: "SimpleExample",
+    fileName: "SimpleExample.module.scss",
   },
   "src/app/components/text-field/NonIconAddons.module.scss": {
     css: ".NonIconAddons_avatarField__Tm9uS {\n  --rmd-text-field-padding-left: calc(var(--rmd-avatar-size) + 1.5rem);\n  --rmd-text-field-padding-right: calc(var(--rmd-avatar-size) + 1rem);\n}\n\n.NonIconAddons_buttonField__Tm9uS {\n  --rmd-text-field-padding-right: 4rem;\n}",

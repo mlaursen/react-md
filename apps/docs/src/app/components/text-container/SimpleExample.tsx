@@ -1,19 +1,3 @@
-# Text Container
-
-The `TextContainer` is a simple wrapper component for rendering paragraphs of
-text at an optimal max-width for readability. The `max-width` and `padding` will
-default to `65ch` and `1rem` respectively but can be configured by changing the
-`core.$text-line-length` and `core.$text-container-padding` Sass variables or
-the `--rmd-line-length` and `--rmd-text-container-padding` custom properties
-using `@include core.typography-set-var(line-length, $new-value)` and `@include
-core.typography-set-var(text-container-padding, $new-value)`.
-
-# Simple Example
-
-Wrap the text content in the `TextContainer` component.
-
-```tsx
-// preview editable styles="src/app/components/text-container/SimpleExample.module.scss"
 import { TextContainer, Typography } from "@react-md/core";
 import { type ReactElement } from "react";
 import styles from "./SimpleExample.module.scss";
@@ -81,4 +65,3 @@ export default function SimpleExample(): ReactElement {
     </TextContainer>
   );
 }
-```

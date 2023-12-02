@@ -225,7 +225,9 @@ $button-styles: map.merge(
 ) !default;
 
 $text-container-padding: 1rem !default;
-$text-line-length: 65ch !default;
+// since everything has `box-sizing: border-box`, make sure the width is 65
+// characters + left and right padding so the text is _really_ 65ch
+$text-line-length: calc(65ch + $text-container-padding * 2) !default;
 
 $typography-variables: (line-length, text-container-padding);
 
