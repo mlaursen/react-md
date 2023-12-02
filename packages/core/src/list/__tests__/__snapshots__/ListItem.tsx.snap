@@ -280,7 +280,7 @@ exports[`ListItem should update the height based on the provided addons and rend
 
 exports[`ListItem should update the height based on the provided addons and render correctly 9`] = `
 <li
-  class="rmd-list-item rmd-list-item--extra-large rmd-list-item--three-lines rmd-interaction-surface"
+  class="rmd-list-item rmd-list-item--extra-large rmd-list-item--multiline rmd-interaction-surface"
   role="button"
   tabindex="0"
 >

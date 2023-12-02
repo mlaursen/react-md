@@ -17,14 +17,15 @@ $disable-item-media-large: false !default;
 $disable-medium-height: false !default;
 $disable-large-height: false !default;
 $disable-extra-large-height: false !default;
-$disable-three-line-height: false !default;
+$disable-multiline-clamp: false !default;
+$disable-multiline-height: true !default;
 $disable-item-link-styles: false !default;
 
 $disable-subheader: false !default;
 $disable-subheader-inset: false !default;
 
 $item-secondary-text-line-height: 1.42857 !default;
-$item-secondary-text-three-line-max-height: 3rem !default;
+$item-secondary-text-multiline-max-height: 3rem !default;
 
 $vertical-padding: 0.5rem !default;
 $dense-vertical-padding: 0.25rem !default;
@@ -51,8 +52,9 @@ $item-large-height: 4rem !default;
 $item-dense-large-height: 3.5rem !default;
 $item-extra-large-height: 4.5rem !default;
 $item-dense-extra-large-height: 4rem !default;
-$item-three-line-height: 5.5rem !default;
-$item-dense-three-line-height: 5rem !default;
+$item-multiline-clamp: 2 !default;
+$item-multiline-height: 5.5rem !default;
+$item-dense-multiline-height: 5rem !default;
 
 $item-media-spacing: 1rem !default;
 $item-media-size: 3.5rem !default;
@@ -70,10 +72,11 @@ $variables: (
   item-medium-height,
   item-large-height,
   item-extra-large-height,
-  item-three-line-height,
+  item-multiline-height,
   item-media-size,
   item-media-spacing,
-  item-text-three-line-height
+  item-text-multiline-height,
+  item-multiline-clamp
 );
 
 @function get-var($name, $fallback: null) {
@@ -111,6 +114,7 @@ $variables: (
     @include set-var(vertical-padding, $vertical-padding);
     @include set-var(item-horizontal-padding, $item-horizontal-padding);
     @include set-var(item-vertical-padding, $item-vertical-padding);
+    @include set-var(item-keyline, $item-keyline);
 
     @include set-var(item-height, $item-height);
     @if not $disable-medium-height {
@@ -122,11 +126,14 @@ $variables: (
     @if not $disable-extra-large-height {
       @include set-var(item-extra-large-height, $item-extra-large-height);
     }
-    @if not $disable-three-line-height {
-      @include set-var(item-three-line-height, $item-three-line-height);
+    @if not $disable-multiline-clamp {
+      @include set-var(item-multiline-clamp, $item-multiline-clamp);
+    }
+    @if not $disable-multiline-height {
+      @include set-var(item-multiline-height, $item-multiline-height);
       @include set-var(
-        item-text-three-line-height,
-        $item-secondary-text-three-line-max-height
+        item-text-multiline-height,
+        $item-secondary-text-multiline-max-height
       );
     }
 
@@ -212,9 +219,9 @@ $variables: (
         }
       }
 
-      @if not $disable-three-line-height {
-        &--three-lines {
-          @include set-var(item-height, get-var(item-three-line-height));
+      @if not $disable-multiline-height {
+        &--multiline {
+          @include set-var(item-height, get-var(item-multiline-height));
         }
       }
 
@@ -231,12 +238,16 @@ $variables: (
           @include theme.theme-use-var(color, text-secondary-color);
         }
 
-        &--clamped {
-          @include typography.line-clamp;
-          @include use-var(max-height, item-text-three-line-height);
+        @if not $disable-multiline-clamp {
+          &--clamped {
+            @include typography.line-clamp(get-var(item-multiline-clamp));
+            @if not $disable-multiline-height {
+              @include use-var(max-height, item-text-multiline-height);
+            }
 
-          line-height: $item-secondary-text-line-height;
-          white-space: normal;
+            line-height: $item-secondary-text-line-height;
+            white-space: normal;
+          }
         }
       }
 

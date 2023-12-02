@@ -16,13 +16,18 @@ declare module "react" {
     "--rmd-list-item-medium-height"?: string | number;
     "--rmd-list-item-large-height"?: string | number;
     "--rmd-list-item-extra-large-height"?: string | number;
-    "--rmd-list-item-three-line-height"?: string | number;
+    "--rmd-list-item-multiline-clamp"?: string | number;
+    "--rmd-list-item-multiline-height"?: string | number;
     "--rmd-list-item-media-size"?: string | number;
     "--rmd-list-item-media-spacing"?: string | number;
-    "--rmd-list-item-text-three-line-height"?: string | number;
+    "--rmd-list-item-text-multiline-height"?: string | number;
   }
 }
 
+/**
+ * @remarks \@since 6.0.0 Renamed `threeLines` to `multiline` since it can
+ * support more than three lines of text.
+ */
 export interface ListItemProps
   extends HTMLAttributes<HTMLLIElement>,
     ListItemChildrenProps {
@@ -45,7 +50,7 @@ export interface ListItemProps
   /**
    * @defaultValue `false`
    */
-  threeLines?: boolean;
+  multiline?: boolean;
 
   /**
    * @defaultValue `false`
@@ -148,18 +153,19 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
       disableTextChildren = false,
       height: propHeight = "auto",
       leftAddon,
-      leftAddonType = "icon",
-      leftAddonPosition = "middle",
+      leftAddonType,
+      leftAddonPosition,
       leftAddonClassName,
       leftAddonForceWrap,
       rightAddon,
-      rightAddonType = "icon",
-      rightAddonPosition = "middle",
+      rightAddonType,
+      rightAddonPosition,
       rightAddonClassName,
       rightAddonForceWrap,
-      disableLeftAddonCenteredMedia = false,
-      disableRightAddonCenteredMedia = false,
-      threeLines = false,
+      disableLeftAddonSpacing,
+      disableLeftAddonCenteredMedia,
+      disableRightAddonCenteredMedia,
+      multiline = false,
       disabled = false,
       disabledOpacity = false,
       role = "button",
@@ -226,13 +232,13 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
           height,
           disabled,
           disabledOpacity,
-          threeLines,
+          multiline,
           clickable: !presentational,
           pressedClassName,
         })}
       >
         <ListItemChildren
-          threeLines={threeLines}
+          multiline={multiline}
           textClassName={textClassName}
           secondaryTextClassName={secondaryTextClassName}
           disableTextChildren={disableTextChildren}
@@ -250,6 +256,7 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
           rightAddonPosition={rightAddonPosition}
           rightAddonClassName={rightAddonClassName}
           rightAddonForceWrap={rightAddonForceWrap}
+          disableLeftAddonSpacing={disableLeftAddonSpacing}
           disableLeftAddonCenteredMedia={disableLeftAddonCenteredMedia}
           disableRightAddonCenteredMedia={disableRightAddonCenteredMedia}
         >

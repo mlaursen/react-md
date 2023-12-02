@@ -21,7 +21,7 @@ export interface ListItemClassNameOptions {
   /**
    * @defaultValue `false`
    */
-  threeLines?: boolean;
+  multiline?: boolean;
 
   /**
    * @defaultValue `false`
@@ -72,7 +72,7 @@ export function listItem(
     link = false,
     height = "auto",
     clickable = true,
-    threeLines = false,
+    multiline = false,
     disabled = false,
     disabledOpacity = false,
     pressedClassName,
@@ -82,7 +82,7 @@ export function listItem(
     styles({
       link,
       [height]: height !== "auto",
-      "three-lines": threeLines,
+      multiline,
       "disabled-color": disabled && !disabledOpacity,
       "disabled-opacity": disabled && disabledOpacity,
     }),
@@ -162,6 +162,15 @@ export interface ListItemAddonClassNameOptions {
    * @remarks \@since 6.0.0
    */
   disableCenteredMedia?: boolean;
+
+  /**
+   * Set this to `true` to disable the additional spacing applied to the addons
+   * that appear before the `children` and the normal `--rmd-text-icon-spacing`
+   * value is used instead.
+   *
+   * @defaultValue `false`
+   */
+  disableBeforeSpacing?: boolean;
 }
 
 /**
@@ -177,6 +186,7 @@ export function listItemAddon(
     className,
     addonAfter = false,
     disableCenteredMedia = false,
+    disableBeforeSpacing = false,
   } = options;
 
   const isMedia = type === "media" || type === "large-media";
@@ -185,8 +195,8 @@ export function listItemAddon(
   return cnb(
     styles("addon", {
       [position]: position !== "middle",
-      before: !addonAfter,
-      "avatar-before": !addonAfter && isAvatar,
+      before: !disableBeforeSpacing && !addonAfter,
+      "avatar-before": !disableBeforeSpacing && !addonAfter && isAvatar,
       media: isMedia,
       "media-large": type === "large-media",
       "media-centered": isMedia && !disableCenteredMedia,

@@ -41,7 +41,7 @@ import { type ListItemChildrenProps } from "./types.js";
  */
 export function ListItemChildren(props: ListItemChildrenProps): ReactElement {
   const {
-    threeLines,
+    multiline,
     textProps,
     textClassName,
     secondaryTextClassName,
@@ -54,6 +54,7 @@ export function ListItemChildren(props: ListItemChildrenProps): ReactElement {
     leftAddonPosition = "middle",
     leftAddonClassName,
     leftAddonForceWrap,
+    disableLeftAddonSpacing,
     disableLeftAddonCenteredMedia,
     rightAddon,
     rightAddonType = "icon",
@@ -75,7 +76,7 @@ export function ListItemChildren(props: ListItemChildrenProps): ReactElement {
         className={textClassName}
         secondaryText={secondaryText}
         secondaryTextProps={secondaryTextProps}
-        secondaryTextClamped={threeLines}
+        secondaryTextClamped={multiline}
         secondaryTextClassName={secondaryTextClassName}
       >
         {(!disableTextChildren && children) || primaryText}
@@ -90,6 +91,7 @@ export function ListItemChildren(props: ListItemChildrenProps): ReactElement {
       position={leftAddonPosition}
       className={leftAddonClassName}
       forceAddonWrap={leftAddonForceWrap}
+      disableBeforeSpacing={disableLeftAddonSpacing}
       disableCenteredMedia={disableLeftAddonCenteredMedia}
     >
       {children}

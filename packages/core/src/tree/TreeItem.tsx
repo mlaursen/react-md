@@ -117,7 +117,7 @@ export function TreeItem(props: TreeItemProps): ReactElement {
     secondaryText,
     secondaryTextProps,
     secondaryTextClassName,
-    threeLines,
+    multiline,
     childItems,
     contentClassName,
     temporaryChildItems,
@@ -247,7 +247,7 @@ export function TreeItem(props: TreeItemProps): ReactElement {
         })}
       >
         <ListItemChildren
-          threeLines={threeLines}
+          multiline={multiline}
           textClassName={textClassName}
           secondaryTextClassName={secondaryTextClassName}
           disableTextChildren={disableTextChildren}

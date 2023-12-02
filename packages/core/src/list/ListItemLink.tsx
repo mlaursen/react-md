@@ -76,7 +76,7 @@ export const ListItemLink = forwardRef<HTMLAnchorElement, ListItemLinkProps>(
       rightAddonForceWrap,
       disableLeftAddonCenteredMedia = false,
       disableRightAddonCenteredMedia = false,
-      threeLines = false,
+      multiline = false,
       disabled = false,
       disabledOpacity = false,
       onBlur,
@@ -137,7 +137,7 @@ export const ListItemLink = forwardRef<HTMLAnchorElement, ListItemLinkProps>(
             height,
             disabled,
             disabledOpacity,
-            threeLines,
+            multiline,
             pressedClassName,
           })}
           // TODO: Figure out a better type for the CustomLinkComponent to fix this
@@ -146,7 +146,7 @@ export const ListItemLink = forwardRef<HTMLAnchorElement, ListItemLinkProps>(
           tabIndex={tabIndex}
         >
           <ListItemChildren
-            threeLines={threeLines}
+            multiline={multiline}
             textClassName={textClassName}
             secondaryTextClassName={secondaryTextClassName}
             disableTextChildren={disableTextChildren}

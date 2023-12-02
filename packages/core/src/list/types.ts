@@ -1,5 +1,5 @@
-import type { HTMLAttributes, ReactNode } from "react";
-import type { PropsWithRef } from "../types.js";
+import { type HTMLAttributes, type ReactNode } from "react";
+import { type PropsWithRef } from "../types.js";
 
 /**
  * The height to apply to the list item.
@@ -60,6 +60,15 @@ export interface ListItemChildrenAddonProps {
    * @remarks \@since 6.0.0
    */
   leftAddonForceWrap?: boolean;
+
+  /**
+   * Set this to `true` to disable the additional spacing applied to the addons
+   * that appear before the `children` and the normal `--rmd-text-icon-spacing`
+   * value is used instead.
+   *
+   * @defaultValue `false`
+   */
+  disableLeftAddonSpacing?: boolean;
 
   /**
    * An optional addon to display to the right of the `primaryText` or
@@ -196,10 +205,12 @@ export interface ListItemChildrenProps extends ListItemChildrenAddonProps {
 
   /**
    * Set this to `true` to allow the {@link secondaryText} to span multiple
-   * lines and use the CSS clamp after two lines of text are visible.
+   * lines and use the CSS clamp after two lines of text are visible. The number
+   * of lines can be configured by `core.$list-item-multiline-clamp` or
+   * `@include core.list-set-var(item-multiline-clamp, $new-value)`.
    *
    * @see {@link https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-line-clamp}
    * @defaultValue `false`
    */
-  threeLines?: boolean;
+  multiline?: boolean;
 }

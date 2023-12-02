@@ -96,7 +96,7 @@ export interface BaseMenuItemInputToggleProps
   height?: ListItemHeight;
 
   /** @defaultValue `false` */
-  threeLines?: boolean;
+  multiline?: boolean;
 
   /** @defaultValue `false` */
   disableTextChildren?: boolean;

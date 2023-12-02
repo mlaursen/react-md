@@ -35,11 +35,12 @@ export function ListItemAddon(props: ListItemAddonProps): ReactElement {
     className,
     children,
     addon,
-    addonAfter = false,
+    addonAfter,
     type = "icon",
-    position = "middle",
+    position,
     forceAddonWrap,
-    disableCenteredMedia = false,
+    disableCenteredMedia,
+    disableBeforeSpacing,
     ...remaining
   } = props;
 
@@ -55,6 +56,7 @@ export function ListItemAddon(props: ListItemAddonProps): ReactElement {
         position,
         className,
         addonAfter,
+        disableBeforeSpacing,
         disableCenteredMedia,
       })}
       iconAfter={addonAfter}

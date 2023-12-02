@@ -227,7 +227,7 @@ describe("ListItem", () => {
         rightAddonType="icon"
         rightAddonPosition="bottom"
         secondaryText="Secondary Text!"
-        threeLines
+        multiline
       />
     );
     expect(item).toMatchSnapshot();
