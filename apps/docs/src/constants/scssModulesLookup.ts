@@ -57,6 +57,24 @@ export const SCSS_MODULES: Record<string, FakeScssModule> = {
     baseName: "CustomRotationExample",
     fileName: "CustomRotationExample.module.scss",
   },
+  "src/app/components/list/AddingSecondaryTextExample.module.scss": {
+    css: ".AddingSecondaryTextExample_container__QWRka {\n  max-width: 15rem;\n}",
+    scss: ".container {\n  max-width: 15rem;\n}\n",
+    baseName: "AddingSecondaryTextExample",
+    fileName: "AddingSecondaryTextExample.module.scss",
+  },
+  "src/app/components/list/ListItemChildrenExample.module.scss": {
+    css: ".ListItemChildrenExample_list__TGlzd {\n  list-style-position: outside;\n}",
+    scss: ".list {\n  list-style-position: outside;\n  // li::marker {\n  //   text-align: center;\n  // }\n}\n",
+    baseName: "ListItemChildrenExample",
+    fileName: "ListItemChildrenExample.module.scss",
+  },
+  "src/app/components/list/MultipleLinesOfSecondaryTextExample.module.scss": {
+    css: ".MultipleLinesOfSecondaryTextExample_container__TXVsd {\n  max-width: 15rem;\n}",
+    scss: ".container {\n  max-width: 15rem;\n}\n",
+    baseName: "MultipleLinesOfSecondaryTextExample",
+    fileName: "MultipleLinesOfSecondaryTextExample.module.scss",
+  },
   "src/app/components/skeleton-placeholder/ConfiguringTheHeightExample.module.scss":
     {
       css: ".ConfiguringTheHeightExample_container__Q29uZ {\n  --rmd-skeleton-placeholder-height: 3rem;\n}",

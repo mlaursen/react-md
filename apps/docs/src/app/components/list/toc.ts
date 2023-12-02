@@ -3,6 +3,50 @@ import { type TableOfContentsItem } from "@/components/TableOfContents/types.js"
 
 export const toc = [
   { id: "list", depth: 1, value: "List" },
-  { id: "simple-list", depth: 1, value: "Simple List" },
-  { id: "noninteractive-list", depth: 1, value: "Noninteractive List" },
+  {
+    id: "simple-list",
+    depth: 1,
+    value: "Simple List",
+    items: [
+      { id: "adding-click-handlers", depth: 2, value: "Adding Click Handlers" },
+    ],
+  },
+  {
+    id: "different-sizes",
+    depth: 1,
+    value: "Different Sizes",
+    items: [
+      { id: "adding-secondary-text", depth: 2, value: "Adding Secondary Text" },
+      {
+        id: "multiple-lines-of-secondary-text",
+        depth: 2,
+        value: "Multiple Lines of Secondary Text",
+      },
+    ],
+  },
+  {
+    id: "list-item-addons",
+    depth: 1,
+    value: "List Item Addons",
+    items: [
+      {
+        id: "disabling-left-addon-spacing",
+        depth: 2,
+        value: "Disabling Left Addon Spacing",
+      },
+      { id: "avatar-addons", depth: 2, value: "Avatar Addons" },
+      { id: "media-addons", depth: 2, value: "Media Addons" },
+      { id: "large-media-addons", depth: 2, value: "Large Media Addons" },
+    ],
+  },
+  { id: "disabled-list-item", depth: 1, value: "Disabled List Item" },
+  {
+    id: "noninteractive-list",
+    depth: 1,
+    value: "Noninteractive List",
+    items: [
+      { id: "default-list-styles", depth: 2, value: "Default List Styles" },
+      { id: "list-item-children", depth: 2, value: "List Item Children" },
+    ],
+  },
 ] satisfies readonly TableOfContentsItem[];

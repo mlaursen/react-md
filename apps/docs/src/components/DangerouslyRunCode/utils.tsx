@@ -15,6 +15,8 @@ import ContentCopyOutlinedIcon from "@react-md/material-icons/ContentCopyOutline
 import ContentCutOutlinedIcon from "@react-md/material-icons/ContentCutOutlinedIcon";
 import ContentPasteOutlinedIcon from "@react-md/material-icons/ContentPasteOutlinedIcon";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
+import FolderIcon from "@react-md/material-icons/FolderIcon";
+import InfoOutlineIcon from "@react-md/material-icons/InfoOutlineIcon";
 import MoodBadOutlinedIcon from "@react-md/material-icons/MoodBadOutlinedIcon";
 import MoodOutlinedIcon from "@react-md/material-icons/MoodOutlinedIcon";
 import MoreVertOutlinedIcon from "@react-md/material-icons/MoreVertOutlinedIcon";
@@ -25,6 +27,7 @@ import RadioButtonCheckedIcon from "@react-md/material-icons/RadioButtonCheckedI
 import RadioButtonUncheckedIcon from "@react-md/material-icons/RadioButtonUncheckedIcon";
 import SearchIcon from "@react-md/material-icons/SearchIcon";
 import SocialDistanceOutlinedIcon from "@react-md/material-icons/SocialDistanceOutlinedIcon";
+import StarIcon from "@react-md/material-icons/StarIcon";
 import VolumeOffOutlinedIcon from "@react-md/material-icons/VolumeOffOutlinedIcon";
 import VolumeUpOutlinedIcon from "@react-md/material-icons/VolumeUpOutlinedIcon";
 import * as cnbuilder from "cnbuilder";
@@ -107,6 +110,8 @@ function dangerouslyEvalCode(
     "@react-md/material-icons/ContentCutOutlinedIcon": ContentCutOutlinedIcon,
     "@react-md/material-icons/ContentPasteOutlinedIcon": ContentPasteOutlinedIcon,
     "@react-md/material-icons/FavoriteIcon": FavoriteIcon,
+    "@react-md/material-icons/FolderIcon": FolderIcon,
+    "@react-md/material-icons/InfoOutlineIcon": InfoOutlineIcon,
     "@react-md/material-icons/MoodBadOutlinedIcon": MoodBadOutlinedIcon,
     "@react-md/material-icons/MoodOutlinedIcon": MoodOutlinedIcon,
     "@react-md/material-icons/MoreVertOutlinedIcon": MoreVertOutlinedIcon,
@@ -117,6 +122,7 @@ function dangerouslyEvalCode(
     "@react-md/material-icons/RadioButtonUncheckedIcon": RadioButtonUncheckedIcon,
     "@react-md/material-icons/SearchIcon": SearchIcon,
     "@react-md/material-icons/SocialDistanceOutlinedIcon": SocialDistanceOutlinedIcon,
+    "@react-md/material-icons/StarIcon": StarIcon,
     "@react-md/material-icons/VolumeOffOutlinedIcon": VolumeOffOutlinedIcon,
     "@react-md/material-icons/VolumeUpOutlinedIcon": VolumeUpOutlinedIcon,
   };
