@@ -57,6 +57,20 @@ export const SCSS_MODULES: Record<string, FakeScssModule> = {
     baseName: "CustomRotationExample",
     fileName: "CustomRotationExample.module.scss",
   },
+  "src/app/components/skeleton-placeholder/ConfiguringTheHeightExample.module.scss":
+    {
+      css: ".ConfiguringTheHeightExample_container__Q29uZ {\n  --rmd-skeleton-placeholder-height: 3rem;\n}",
+      scss: '@use "everything";\n\n.container {\n  @include everything.transition-set-var(skeleton-placeholder-height, 3rem);\n}\n',
+      baseName: "ConfiguringTheHeightExample",
+      fileName: "ConfiguringTheHeightExample.module.scss",
+    },
+  "src/app/components/skeleton-placeholder/ReplacingContentExample.module.scss":
+    {
+      css: ".ReplacingContentExample_container__UmVwb {\n  border: var(--rmd-divider-size) solid var(--rmd-divider-color);\n  max-width: 40rem;\n  padding: 1rem;\n  width: 100%;\n}\n\n.ReplacingContentExample_content__UmVwb {\n  overflow: hidden;\n}",
+      scss: '@use "everything";\n\n.container {\n  @include everything.divider-border-style;\n\n  max-width: 40rem;\n  padding: 1rem;\n  width: 100%;\n}\n\n.content {\n  overflow: hidden;\n}\n',
+      baseName: "ReplacingContentExample",
+      fileName: "ReplacingContentExample.module.scss",
+    },
   "src/app/components/slider/CustomizingSliderMarks.module.scss": {
     css: ".CustomizingSliderMarks_form__Q3Vzd {\n  --rmd-box-gap: 3rem;\n  --rmd-slider-vertical-size: 25rem;\n}",
     scss: '@use "everything";\n\n.form {\n  @include everything.box-set-var(gap, 3rem);\n  @include everything.form-set-var(slider-vertical-size, 25rem);\n}\n',

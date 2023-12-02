@@ -263,11 +263,13 @@ export function useSkeletonPlaceholder(
 
   let width = propWidth;
   let animationDelay = propDelay;
-  if (!isDefinedDelay) {
-    ({ animationDelay } = randomStyles);
-  }
-  if (!isDefinedWidth) {
-    ({ width } = randomStyles);
+  if (!disabled) {
+    if (!isDefinedDelay) {
+      ({ animationDelay } = randomStyles);
+    }
+    if (!isDefinedWidth) {
+      ({ width } = randomStyles);
+    }
   }
 
   let style: CSSProperties | undefined = propStyle;

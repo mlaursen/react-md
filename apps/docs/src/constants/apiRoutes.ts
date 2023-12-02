@@ -72,6 +72,11 @@ export const API_ROUTES: NavigationItem = {
       children: "SegmentedButtonContainer",
       isClient: false,
     },
+    {
+      href: "/skeleton-placeholder",
+      children: "SkeletonPlaceholder",
+      isClient: true,
+    },
     { href: "/slide", children: "Slide", isClient: true },
     { href: "/slide-container", children: "SlideContainer", isClient: false },
     { href: "/snackbar", children: "Snackbar", isClient: true },

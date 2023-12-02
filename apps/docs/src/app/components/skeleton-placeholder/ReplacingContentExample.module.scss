@@ -1,0 +1,13 @@
+@use "everything";
+
+.container {
+  @include everything.divider-border-style;
+
+  max-width: 40rem;
+  padding: 1rem;
+  width: 100%;
+}
+
+.content {
+  overflow: hidden;
+}

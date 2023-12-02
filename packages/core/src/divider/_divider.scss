@@ -61,8 +61,8 @@ $variables: (
   }
 }
 
-@mixin border-style($position) {
-  $property: "border-#{$position}";
+@mixin border-style($position: null) {
+  $property: if(not $position, border, "border-#{$position}");
 
   #{$property}: get-var(size) solid get-var(color);
 }

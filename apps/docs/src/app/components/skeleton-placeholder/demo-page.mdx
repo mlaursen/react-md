@@ -1,3 +1,205 @@
 # Skeleton Placeholder
 
-TODO
+The `SkeletonPlaceholder` component is a great way to show that content is
+loading instead of using a [circular or linear progress bar](/components/progress).
+
+# Simple Example
+
+The `SkeletonPlaceholder` component will default to a height of `1.125em` and
+use a random width between `40%` and `85%` of the container.
+
+> !Info! Click the "Reset Demo" button to see the random width behavior in action.
+
+```tsx
+// preview editable
+"use client";
+import { SkeletonPlaceholder } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function SimpleExample(): ReactElement {
+  return <SkeletonPlaceholder />;
+}
+```
+
+## Custom Min and Max Width
+
+The random width can be customized by configuring the `minPercentage` and
+`maxPercentage` props.
+
+```tsx
+// preview editable
+"use client";
+import { type ReactElement } from "react";
+import { SkeletonPlaceholder } from "@react-md/core";
+
+export default function CustomMinAndMaxWidthExample(): ReactElement {
+  return <SkeletonPlaceholder minPercentage={20} maxPercentage={95} />;
+}
+```
+
+## Static Width
+
+If a random width should not be used, provide a `width` instead.
+
+```tsx
+// preview editable
+"use client";
+import { Box, SkeletonPlaceholder } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function StaticWidthExample(): ReactElement {
+  return (
+    <Box align="start" stacked fullWidth>
+      <SkeletonPlaceholder width="40%" />
+    </Box>
+  );
+}
+```
+
+## Configuring the Height
+
+The height for the skeleton placeholder can be configured globally by changing
+the `core.$skeleton-placeholder-height` Sass variable, providing a `height`
+prop, or setting the `--rmd-skeleton-placeholder-height` custom property with
+`core.transition-set-var` mixin.
+
+```tsx
+// preview editable styles="src/app/components/skeleton-placeholder/ConfiguringTheHeightExample.module.scss"
+"use client";
+import { Box, SkeletonPlaceholder } from "@react-md/core";
+import { type ReactElement } from "react";
+import styles from "./ConfiguringTheHeightExample.module.scss";
+
+export default function ConfiguringTheHeightExample(): ReactElement {
+  return (
+    <>
+      <Box
+        align="start"
+        stacked
+        fullWidth
+        disablePadding
+        className={styles.container}
+      >
+        <SkeletonPlaceholder />
+        <SkeletonPlaceholder style={{ animationDelay: "0.15s" }} />
+        <SkeletonPlaceholder style={{ animationDelay: "0.25s" }} />
+      </Box>
+      <Box disablePadding fullWidth>
+        <SkeletonPlaceholder height="3rem" width="3rem" />
+        <SkeletonPlaceholder height="3rem" width="3rem" />
+        <SkeletonPlaceholder height="3rem" width="3rem" />
+        <SkeletonPlaceholder height="3rem" width="3rem" />
+      </Box>
+    </>
+  );
+}
+```
+
+# Using the Hook
+
+If the skeleton placeholder animation needs to be applied to a different
+element, the `useSkeletonPlaceholder` hook can be used instead.
+
+```tsx
+// preview editable
+"use client";
+import { useSkeletonPlaceholder } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function UsingTheHookExample(): ReactElement {
+  const { style, className } = useSkeletonPlaceholder();
+  return <div style={style} className={className} />;
+}
+```
+
+## Replacing Content
+
+```tsx
+// preview editable styles="src/app/components/skeleton-placeholder/ReplacingContentExample.module.scss"
+"use client";
+import { randomInt, useSkeletonPlaceholder, useToggle } from "@react-md/core";
+import { useEffect, type ReactElement } from "react";
+import styles from "./ReplacingContentExample.module.scss";
+
+export default function ReplacingContentExample(): ReactElement {
+  const disabled = useDisabled();
+  const skeleton = useSkeletonPlaceholder({
+    disabled,
+    // style: {},
+    className: styles.content,
+
+    // height,
+    // width,
+
+    // If a static delay should be applied instead of a randomly generated one,
+    // set this value to an `animation-delay` value. Should normally be a
+    // negative duration or 0.
+    // delay: "-200ms",
+    // delay: "0s",
+    // delay: "-0.15s",
+
+    // When `delay` is not provided, the delay is a random n umber between these
+    // two values. The defaults are shown below
+    // minDelay: 0,
+    // maxDelay: 400,
+
+    minPercentage: 20,
+    maxPercentage: 40,
+  });
+
+  return (
+    <div className={styles.container}>
+      <div {...skeleton}>This is some content!</div>
+    </div>
+  );
+}
+
+function useDisabled(): boolean {
+  const { toggled, toggle } = useToggle();
+  useEffect(() => {
+    const duration = randomInt({ min: 5, max: 8 }) * 1000;
+    const timeout = window.setTimeout(toggle, duration);
+
+    return () => {
+      window.clearTimeout(timeout);
+    };
+  }, [toggle, toggled]);
+
+  return toggled;
+}
+```
+
+# Ssr Only
+
+A skeleton layout can be created without any client-side javascript by using the
+`skeletonPlaceholder` class name utility function and
+`randomSkeletonPlaceholder` function. Since this is a `"server-only"` component,
+there will be no rehydration required for the random values.
+
+Try navigating to the
+[ssr only example page](/components/skeleton-placeholder/ssr-only) and reloading
+a few times to see this code in action.
+
+```tsx
+import {
+  Box,
+  randomSkeletonPlaceholder,
+  skeletonPlaceholder,
+} from "@react-md/core";
+import { type ReactElement } from "react";
+import "server-only";
+
+export default function SsrOnlyExample(): ReactElement {
+  return (
+    <Box grid>
+      {Array.from({ length: 20 }, (_, i) => (
+        <div
+          key={i}
+          style={randomSkeletonPlaceholder()}
+          className={skeletonPlaceholder()}
+        />
+      ))}
+    </Box>
+  );
+}
+```
