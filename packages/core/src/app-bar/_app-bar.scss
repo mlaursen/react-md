@@ -59,6 +59,9 @@ $vertical-padding: 0 !default;
 
 $keyline: 1rem !default;
 $title-keyline: 4.5rem !default;
+// 3rem is the icon-button's default size. can't use the variables since it's
+// based on font-size now and `em`
+$nav-keyline: $title-keyline - $horizontal-padding - $gap - 3rem !default;
 
 $variables: (height, surface-background-color, surface-color);
 
@@ -237,10 +240,7 @@ $variables: (height, surface-background-color, surface-color);
         }
 
         &--nav-keyline {
-          @include utils.auto-rtl(
-            margin-left,
-            $title-keyline - $horizontal-padding - $gap - button.$icon-size
-          );
+          @include utils.auto-rtl(margin-left, $nav-keyline);
         }
       }
     }
