@@ -8,8 +8,9 @@ const styles = bem("rmd-tab-indicator");
  */
 export interface TabIndicatorClassNameOptions {
   className?: string;
-  tablist?: boolean;
   animate?: boolean;
+  tablist?: boolean;
+  vertical?: boolean;
 }
 
 /**
@@ -18,7 +19,16 @@ export interface TabIndicatorClassNameOptions {
 export function tabIndicator(
   options: TabIndicatorClassNameOptions = {}
 ): string {
-  const { className, tablist, animate } = options;
+  const { className, vertical, tablist, animate } = options;
 
-  return cnb(styles({ tablist, animate }), className);
+  return cnb(
+    styles({
+      animate,
+      h: !vertical,
+      v: vertical,
+      "tablist-h": tablist && !vertical,
+      "tablist-v": tablist && vertical,
+    }),
+    className
+  );
 }

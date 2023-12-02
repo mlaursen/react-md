@@ -38,6 +38,14 @@ export interface BaseTabProps {
   activeIndicator?: boolean;
 
   /**
+   * Set this to `true` when rendering the tabs vertically and
+   * {@link activeIndicator} has been enabled.
+   *
+   * @defaultValue !false
+   */
+  verticalActiveIndicator?: boolean;
+
+  /**
    * An optional icon to render with the with the {@link children}. The default
    * behavior will render this icon before the children.
    *
@@ -98,6 +106,7 @@ export function Tab(props: TabProps): ReactElement {
     as: Component = "button",
     active,
     activeIndicator,
+    verticalActiveIndicator,
     icon,
     iconAfter,
     stacked,
@@ -159,6 +168,7 @@ export function Tab(props: TabProps): ReactElement {
         disabled,
         reversed: !!icon && iconAfter,
         activeIndicator,
+        verticalActiveIndicator,
       })}
     >
       {icon}

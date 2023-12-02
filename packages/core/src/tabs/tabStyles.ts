@@ -22,6 +22,7 @@ export interface TabClassNameOptions {
   active?: boolean;
   isLink?: boolean;
   activeIndicator?: boolean;
+  verticalActiveIndicator?: boolean;
   stacked?: boolean;
   reversed?: boolean;
   disabled?: boolean;
@@ -35,10 +36,11 @@ export function tab(options: TabClassNameOptions = {}): string {
     className,
     active,
     isLink,
-    activeIndicator,
     stacked,
     reversed,
     disabled,
+    activeIndicator,
+    verticalActiveIndicator,
   } = options;
 
   return cnb(
@@ -49,7 +51,9 @@ export function tab(options: TabClassNameOptions = {}): string {
       "stacked-reversed": stacked && reversed,
       disabled,
     }),
-    active && activeIndicator && tabIndicator(),
+    active &&
+      activeIndicator &&
+      tabIndicator({ vertical: verticalActiveIndicator }),
     cssUtils({ surface: true, textDecoration: isLink ? "none" : undefined }),
     className
   );

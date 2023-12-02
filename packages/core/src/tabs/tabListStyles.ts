@@ -46,7 +46,7 @@ export function tabList(options: TabListClassNameOptions = {}): string {
       "full-width": !inline,
       "no-scrollbar": !scrollbar,
     }),
-    indicator && tabIndicator({ tablist: true, animate }),
+    indicator && tabIndicator({ tablist: true, animate, vertical }),
     className
   );
 }

@@ -20,20 +20,20 @@ import { getTabRoleOnly, scrollTabIntoView } from "./utils.js";
 
 declare module "react" {
   interface CSSProperties {
-    "--rmd-tab-width"?: string;
+    "--rmd-tab-size"?: string;
     "--rmd-tab-offset"?: string | number;
     "--rmd-tab-indicator-background"?: string;
   }
 }
 
-const TAB_WIDTH_VAR = "--rmd-tab-width";
+const TAB_SIZE_VAR = "--rmd-tab-size";
 const TAB_OFFSET_VAR = "--rmd-tab-offset";
 
 const noop = (): void => {
   // do nothing
 };
 
-export type TabWidthVar = typeof TAB_WIDTH_VAR;
+export type TabWidthVar = typeof TAB_SIZE_VAR;
 export type TabOffsetVar = typeof TAB_OFFSET_VAR;
 
 export type IndicatorCSSProperties = CSSProperties &
@@ -99,7 +99,7 @@ export function useTabList(
     useState<IndicatorCSSProperties>(() => {
       const tabWidth = `${100 / 3}%`;
       return {
-        [TAB_WIDTH_VAR]: tabWidth,
+        [TAB_SIZE_VAR]: tabWidth,
         [TAB_OFFSET_VAR]: "0px",
       };
     });
@@ -120,15 +120,17 @@ export function useTabList(
           return;
         }
 
+        const size = vertical ? activeTab.offsetHeight : activeTab.offsetWidth;
+        const offset = vertical ? activeTab.offsetTop : activeTab.offsetLeft;
         const cssVars: IndicatorCSSProperties = {
-          [TAB_WIDTH_VAR]: `${activeTab.offsetWidth}px`,
-          [TAB_OFFSET_VAR]: `${activeTab.offsetLeft}px`,
+          [TAB_SIZE_VAR]: `${size}px`,
+          [TAB_OFFSET_VAR]: `${offset}px`,
         };
 
         setIndicatorStyles((prevStyles) => {
           if (
             prevStyles &&
-            prevStyles[TAB_WIDTH_VAR] === cssVars[TAB_WIDTH_VAR] &&
+            prevStyles[TAB_SIZE_VAR] === cssVars[TAB_SIZE_VAR] &&
             prevStyles[TAB_OFFSET_VAR] === cssVars[TAB_OFFSET_VAR]
           ) {
             return prevStyles;
@@ -137,7 +139,7 @@ export function useTabList(
           return cssVars;
         });
       },
-      [activeIndex, isRTL]
+      [activeIndex, isRTL, vertical]
     ),
   });
   const forwardRef = useRef<HTMLDivElement>(null);

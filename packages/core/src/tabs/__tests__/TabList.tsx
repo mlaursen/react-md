@@ -124,14 +124,14 @@ describe("TabList", () => {
 
     // it should always start to 33.33% and then calculate the correct width
     // based on the number of tabs
-    expect(tablist.style.getPropertyValue("--rmd-tab-width")).toBe(
+    expect(tablist.style.getPropertyValue("--rmd-tab-size")).toBe(
       `${100 / 3}%`
     );
     expect(tablist.style.getPropertyValue("--rmd-tab-offset")).toBe("0px");
 
     // need to use waitFor since ResizeObserver uses requestAnimationFrame
     await waitFor(() => {
-      expect(tablist.style.getPropertyValue("--rmd-tab-width")).toBe("120px");
+      expect(tablist.style.getPropertyValue("--rmd-tab-size")).toBe("120px");
     });
     await waitFor(() => {
       expect(tablist.style.getPropertyValue("--rmd-tab-offset")).toBe("0px");
@@ -144,7 +144,7 @@ describe("TabList", () => {
 
     await user.click(tab2);
     await waitFor(() => {
-      expect(tablist.style.getPropertyValue("--rmd-tab-width")).toBe("90px");
+      expect(tablist.style.getPropertyValue("--rmd-tab-size")).toBe("90px");
     });
     await waitFor(() => {
       expect(tablist.style.getPropertyValue("--rmd-tab-offset")).toBe("120px");
@@ -155,7 +155,7 @@ describe("TabList", () => {
 
     await user.click(tab1);
     await waitFor(() => {
-      expect(tablist.style.getPropertyValue("--rmd-tab-width")).toBe("90px");
+      expect(tablist.style.getPropertyValue("--rmd-tab-size")).toBe("90px");
     });
     await waitFor(() => {
       expect(tablist.style.getPropertyValue("--rmd-tab-offset")).toBe("120px");
