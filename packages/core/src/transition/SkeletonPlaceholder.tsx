@@ -1,5 +1,10 @@
 "use client";
-import { type HTMLAttributes, type ReactElement, type ReactNode } from "react";
+import {
+  forwardRef,
+  type HTMLAttributes,
+  type ReactElement,
+  type ReactNode,
+} from "react";
 import {
   useSkeletonPlaceholder,
   type SkeletonPlaceholderOptions,
@@ -132,9 +137,10 @@ export interface SkeletonPlaceholderProps
  *
  * @remarks \@since 6.0.0
  */
-export function SkeletonPlaceholder(
-  props: SkeletonPlaceholderProps
-): ReactElement {
+export const SkeletonPlaceholder = forwardRef<
+  HTMLDivElement,
+  SkeletonPlaceholderProps
+>(function SkeletonPlaceholder(props, ref): ReactElement {
   const {
     style,
     className,
@@ -142,6 +148,9 @@ export function SkeletonPlaceholder(
     width,
     children,
     disabled = !!children,
+    delay,
+    minDelay,
+    maxDelay,
     minPercentage,
     maxPercentage,
     ...remaining
@@ -152,13 +161,16 @@ export function SkeletonPlaceholder(
     className,
     height,
     width,
+    delay,
+    minDelay,
+    maxDelay,
     minPercentage,
     maxPercentage,
   });
 
   return (
-    <div {...remaining} {...skeleton}>
+    <div {...remaining} ref={ref} {...skeleton}>
       {children}
     </div>
   );
-}
+});

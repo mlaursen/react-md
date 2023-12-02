@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SkeletonPlaceholder should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+<div
+  class="rmd-skeleton-placeholder"
+  data-testid="placeholder"
+  style="animation-delay: 0ms;"
+/>
+`;
+
+exports[`SkeletonPlaceholder should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+<div
+  class="custom-class-name rmd-skeleton-placeholder"
+  data-testid="placeholder"
+  style="animation-delay: 0ms; color: white;"
+/>
+`;
+
+exports[`SkeletonPlaceholder should support disabling the random values by enabling the disabled prop 1`] = `
+<div
+  class=""
+  data-testid="placeholder"
+/>
+`;

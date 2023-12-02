@@ -32,6 +32,7 @@ $scale-y-transition-enter-duration: $enter-duration !default;
 $scale-y-transition-leave-duration: $leave-duration !default;
 
 $skeleton-placeholder-height: 1.125em !default;
+$skeleton-placeholder-width: 43% !default;
 $skeleton-placeholder-border-radius: 0.25rem !default;
 $skeleton-placeholder-light-background-color: #000 !default;
 $skeleton-placeholder-dark-background-color: colors.$grey-300 !default;
@@ -217,6 +218,10 @@ $transition-variables: (
       $skeleton-placeholder-animation-timing-function infinite;
     border-radius: $skeleton-placeholder-border-radius;
     color: transparent;
+
+    // this was added so that at least _something_ renders on SSR. It would be
+    // nice to have SSR-safe random numbers for this.
+    width: $skeleton-placeholder-width;
   }
 
   @include keyframes(rmd-skeleton-placeholder) {

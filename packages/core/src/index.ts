@@ -260,6 +260,7 @@ export * from "./transition/Slide.js";
 export * from "./transition/SlideContainer.js";
 export * from "./transition/config.js";
 export * from "./transition/maxWidthTransition.js";
+export * from "./transition/skeletonPlaceholderUtils.js";
 export * from "./transition/types.js";
 export * from "./transition/useCSSTransition.js";
 export * from "./transition/useCarousel.js";

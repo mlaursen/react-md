@@ -1,23 +1,28 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type { CSSProperties } from "react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import { useSsr } from "../SsrProvider.js";
-import { bem } from "../utils/bem.js";
-import { randomInt } from "../utils/randomInt.js";
-
-export const skeletonPlaceholder = bem("rmd-skeleton-placeholder");
+import {
+  randomSkeletonPlaceholder,
+  skeletonPlaceholder,
+  type SkeletonPlaceholderRandomOptions,
+} from "./skeletonPlaceholderUtils.js";
 
 /** @remarks \@since 6.0.0 */
-export interface SkeletonPlaceholderOptions {
+export interface SkeletonPlaceholderOptions
+  extends SkeletonPlaceholderRandomOptions {
   style?: CSSProperties;
   className?: string;
 
-  /** @defaultValue `40` */
-  minPercentage?: number;
-
-  /** @defaultValue `85` */
-  maxPercentage?: number;
+  /**
+   * Set this to a custom `animation-delay` value (should be in milliseconds).
+   *
+   * @example
+   * ```ts
+   * delay="200ms"
+   * ```
+   */
+  delay?: string;
 
   /**
    * Set this value tp a number or length unit string to set the height with
@@ -209,63 +214,71 @@ export function useSkeletonPlaceholder(
     height,
     width: propWidth,
     disabled = false,
-    minPercentage = 40,
-    maxPercentage = 85,
+    delay: propDelay,
+    minDelay,
+    maxDelay,
+    minPercentage,
+    maxPercentage,
   } = options;
   const ssr = useSsr();
 
-  const [randomPercentage, setRandomPercentage] = useState<string | undefined>(
-    () => {
-      if (
-        typeof window === "undefined" ||
-        ssr ||
-        typeof propWidth !== "undefined"
-      ) {
-        return;
-      }
-
-      return `${randomInt({ min: minPercentage, max: maxPercentage })}%`;
+  const isDefinedWidth = typeof propWidth !== "undefined";
+  const isDefinedDelay = typeof propDelay !== "undefined";
+  const [randomStyles, setRandomStyles] = useState<CSSProperties>(() => {
+    if (typeof window === "undefined" || ssr || disabled) {
+      return {};
     }
-  );
+
+    return randomSkeletonPlaceholder({
+      minDelay,
+      maxDelay,
+      minPercentage,
+      maxPercentage,
+    });
+  });
 
   useEffect(() => {
-    if (!ssr || disabled || typeof propWidth !== "undefined") {
+    if (!ssr || disabled || (isDefinedDelay && isDefinedWidth)) {
       return;
     }
 
-    setRandomPercentage(
-      `${randomInt({ min: minPercentage, max: maxPercentage })}%`
+    setRandomStyles(
+      randomSkeletonPlaceholder({
+        minDelay,
+        maxDelay,
+        minPercentage,
+        maxPercentage,
+      })
     );
-  }, [disabled, maxPercentage, minPercentage, propWidth, ssr]);
-
-  const width = useMemo(() => {
-    if (disabled || typeof propWidth !== "undefined") {
-      return propWidth;
-    }
-
-    if (ssr) {
-      return randomPercentage;
-    }
-
-    return `${randomInt({ min: minPercentage, max: maxPercentage })}%`;
   }, [
     disabled,
+    isDefinedDelay,
+    isDefinedWidth,
+    maxDelay,
     maxPercentage,
+    minDelay,
     minPercentage,
-    propWidth,
-    randomPercentage,
     ssr,
   ]);
 
+  let width = propWidth;
+  let animationDelay = propDelay;
+  if (!isDefinedDelay) {
+    ({ animationDelay } = randomStyles);
+  }
+  if (!isDefinedWidth) {
+    ({ width } = randomStyles);
+  }
+
   let style: CSSProperties | undefined = propStyle;
-  if (
-    (typeof width !== "undefined" && width !== "") ||
-    typeof height !== "undefined"
-  ) {
+  if (!!width || !!animationDelay || typeof height !== "undefined") {
     style = {
       ...style,
       height: height ?? style?.height,
       width: width ?? style?.width,
+      // Note: not including MozAnimationDelay and WebkitAnimationDelay since
+      // they weren't applied when they were set. Probably no longer required?
+      animationDelay: animationDelay ?? style?.animationDelay,
     };
   }
 
