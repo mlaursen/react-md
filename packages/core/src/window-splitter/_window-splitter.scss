@@ -41,6 +41,9 @@ $variables: (top, right, bottom, left, opacity, position);
   @if not $disable-everything {
     .rmd-window-splitter {
       @include use-var(opacity);
+      @include utils.mouse-hover {
+        @include set-var(opacity, 1);
+      }
 
       background-color: transparent;
       border: 0;
@@ -57,19 +60,9 @@ $variables: (top, right, bottom, left, opacity, position);
         position: absolute;
       }
 
-      &:hover {
-        @include set-var(opacity, 1);
-      }
-
       @include utils.keyboard-only {
         &:focus {
           @include set-var(opacity, 1);
-        }
-      }
-
-      @include utils.touch-only {
-        &:hover {
-          @include set-var(opacity, 0);
         }
       }
 

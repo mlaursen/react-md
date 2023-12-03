@@ -1618,13 +1618,6 @@ $variables: (
         transform: scale($slider-thumb-focus-scale);
       }
     }
-    @include utils.touch-only {
-      &:hover::after,
-      &--active:after,
-      &--active:hover::after {
-        transform: none;
-      }
-    }
 
     border-radius: $slider-thumb-border-radius;
     height: $slider-thumb-size;
@@ -1642,13 +1635,12 @@ $variables: (
         $slider-transition-timing-function;
     }
 
-    &:hover::after {
-      transform: scale($slider-thumb-focus-scale);
-    }
-
-    &--active::after,
-    &--active:hover::after {
-      transform: scale($slider-thumb-active-scale);
+    @include utils.mouse-hover(false) {
+      &:hover::after,
+      &--active::after,
+      &--active:hover::after {
+        transform: scale($slider-thumb-active-scale);
+      }
     }
 
     &--animate {

@@ -330,13 +330,9 @@ $variables: (
   }
 
   @if $hoverable {
-    &:hover::before {
-      @include set-var(background-color, get-var(hover-background-color));
-    }
-
-    @include utils.touch-only {
-      &:hover::before {
-        @include set-var(background-color, transparent);
+    @include utils.mouse-hover {
+      &::before {
+        @include set-var(background-color, get-var(hover-background-color));
       }
     }
 

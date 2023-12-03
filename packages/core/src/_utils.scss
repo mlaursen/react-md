@@ -314,3 +314,15 @@ $_swappable-properties: text-align;
     @content;
   }
 }
+
+@mixin mouse-hover($wrap-in-hover: true) {
+  @media (hover: hover) and (pointer: fine) {
+    @if $wrap-in-hover {
+      &:hover {
+        @content;
+      }
+    } @else {
+      @content;
+    }
+  }
+}
