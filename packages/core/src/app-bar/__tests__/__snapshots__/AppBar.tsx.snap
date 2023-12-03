@@ -72,21 +72,21 @@ exports[`AppBar should allow for different theme colors 4`] = `
 
 exports[`AppBar should allow the app bar to be fixed to the top or bottom of the page 1`] = `
 <header
-  class="rmd-app-bar rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--elevated rmd-app-bar--scrollbar-offset rmd-background-container rmd-primary-container"
+  class="rmd-app-bar rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--elevated rmd-app-bar--scrollbar-offset rmd-background-container rmd-primary-container rmd-full-width"
   data-testid="app-bar"
 />
 `;
 
 exports[`AppBar should allow the app bar to be fixed to the top or bottom of the page 2`] = `
 <header
-  class="rmd-app-bar rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--elevated rmd-app-bar--scrollbar-offset rmd-background-container rmd-primary-container"
+  class="rmd-app-bar rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--elevated rmd-app-bar--scrollbar-offset rmd-background-container rmd-primary-container rmd-full-width"
   data-testid="app-bar"
 />
 `;
 
 exports[`AppBar should allow the app bar to be fixed to the top or bottom of the page 3`] = `
 <header
-  class="rmd-app-bar rmd-app-bar--fixed rmd-app-bar--bottom rmd-app-bar--elevated rmd-app-bar--scrollbar-offset rmd-background-container rmd-primary-container"
+  class="rmd-app-bar rmd-app-bar--fixed rmd-app-bar--bottom rmd-app-bar--elevated rmd-app-bar--scrollbar-offset rmd-background-container rmd-primary-container rmd-full-width"
   data-testid="app-bar"
 />
 `;
@@ -120,7 +120,7 @@ exports[`AppBar should apply the correct styling, HTML attributes, and allow a r
 
 exports[`AppBar should apply the correct styling, HTML attributes, and allow a ref 3`] = `
 <header
-  class="rmd-app-bar rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--elevated rmd-app-bar--scrollbar-offset rmd-background-container rmd-primary-container"
+  class="rmd-app-bar rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--elevated rmd-app-bar--scrollbar-offset rmd-background-container rmd-primary-container rmd-full-width"
   data-testid="app-bar"
 >
   <h6
@@ -133,7 +133,7 @@ exports[`AppBar should apply the correct styling, HTML attributes, and allow a r
 
 exports[`AppBar should apply the correct styling, HTML attributes, and allow a ref 4`] = `
 <header
-  class="rmd-app-bar rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--scrollbar-offset rmd-background-container rmd-primary-container"
+  class="rmd-app-bar rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--scrollbar-offset rmd-background-container rmd-primary-container rmd-full-width"
   data-testid="app-bar"
 >
   <h6
@@ -146,7 +146,7 @@ exports[`AppBar should apply the correct styling, HTML attributes, and allow a r
 
 exports[`AppBar should apply the correct styling, HTML attributes, and allow a ref 5`] = `
 <header
-  class="rmd-app-bar rmd-app-bar--fixed rmd-app-bar--sticky rmd-app-bar--top rmd-app-bar--elevated rmd-background-container rmd-primary-container"
+  class="rmd-app-bar rmd-app-bar--fixed rmd-app-bar--sticky rmd-app-bar--top rmd-app-bar--elevated rmd-background-container rmd-primary-container rmd-full-width"
   data-testid="app-bar"
 >
   <h6
@@ -159,7 +159,7 @@ exports[`AppBar should apply the correct styling, HTML attributes, and allow a r
 
 exports[`AppBar should apply the correct styling, HTML attributes, and allow a ref 6`] = `
 <header
-  class="rmd-app-bar rmd-app-bar--fixed rmd-app-bar--sticky rmd-app-bar--top rmd-background-container rmd-primary-container"
+  class="rmd-app-bar rmd-app-bar--fixed rmd-app-bar--sticky rmd-app-bar--top rmd-background-container rmd-primary-container rmd-full-width"
   data-testid="app-bar"
 >
   <h6

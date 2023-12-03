@@ -1,4 +1,5 @@
 import { cnb } from "cnbuilder";
+import { cssUtils } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-box");
@@ -157,7 +158,6 @@ export function box(options: BoxOptions = {}): string {
       column: stacked && !reversed,
       reverse: !stacked && reversed,
       "column-reverse": stacked && reversed,
-      "full-width": fullWidth,
       grid,
       "grid-fill": gridColumns === "fill",
       "grid-columns": typeof gridColumns === "number",
@@ -174,6 +174,7 @@ export function box(options: BoxOptions = {}): string {
       "justify-between": justify === "space-between",
       "justify-evenly": justify === "space-evenly",
     }),
+    cssUtils({ fullWidth }),
     className
   );
 }

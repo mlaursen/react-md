@@ -1,3 +1,4 @@
+import { cssUtils } from "@react-md/core";
 import { type HTMLAttributes, type ReactElement } from "react";
 import styles from "./NotFoundSVG.module.scss";
 
@@ -9,7 +10,7 @@ export default function NotFoundSVG(
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
-      className={styles.svg}
+      className={cssUtils({ className: styles.svg, fullWidth: true })}
       viewBox="371 171.1 1123.25 664.8"
     >
       <defs>

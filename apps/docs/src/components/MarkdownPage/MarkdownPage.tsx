@@ -1,4 +1,4 @@
-import { Snackbar, ToastManagerProvider } from "@react-md/core";
+import { Snackbar, ToastManagerProvider, cssUtils } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import { type ReactElement, type ReactNode } from "react";
 import { TableOfContents } from "../TableOfContents/TableOfContents.jsx";
@@ -36,7 +36,13 @@ export function MarkdownPage(props: MarkdownPageProps): ReactElement {
 
   return (
     <>
-      <div className={cnb(styles.container, !isTocVisible && styles.noToc)}>
+      <div
+        className={cnb(
+          styles.container,
+          cssUtils({ fullWidth: true }),
+          !isTocVisible && styles.noToc
+        )}
+      >
         <ToastManagerProvider>
           {children}
           <Snackbar />

@@ -7,6 +7,7 @@ import {
   type ClosestThumbEventHandlersOptions,
   type ThumbOffsetsOptions,
 } from "./sliderUtils.js";
+import { cssUtils } from "../cssUtils.js";
 
 const styles = bem("rmd-slider-track");
 
@@ -95,6 +96,7 @@ export const SliderTrack = forwardRef<HTMLSpanElement, SliderTrackProps>(
             v1: vertical && !isRangeSlider,
             v2: vertical && isRangeSlider,
           }),
+          cssUtils({ fullWidth: !vertical }),
           className
         )}
         {...getClosestThumbEventHandlers({

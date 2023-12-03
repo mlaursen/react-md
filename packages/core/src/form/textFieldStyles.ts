@@ -1,4 +1,5 @@
 import { cnb } from "cnbuilder";
+import { cssUtils } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-text-field");
@@ -28,6 +29,7 @@ export function textField(options: TextFieldClassNameOptions = {}): string {
     styles({
       "placeholder-hidden": placeholderHidden,
     }),
+    cssUtils({ fullWidth: true }),
     className
   );
 }

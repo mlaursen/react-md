@@ -1,5 +1,5 @@
 import { highlightCode } from "@/utils/highlightCode.js";
-import { type TextAreaProps } from "@react-md/core";
+import { cssUtils, type TextAreaProps } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import { type ReactElement, type ReactNode } from "react";
 import { CodeBlock, type CodeBlockProps } from "../CodeBlock.jsx";
@@ -29,7 +29,10 @@ export function CodeEditor(props: CodeEditorProps): ReactElement {
           <textarea
             {...textAreaProps}
             aria-label="Code Editor"
-            className={styles.textArea}
+            className={cssUtils({
+              className: styles.textArea,
+              fullWidth: true,
+            })}
             autoCapitalize="none"
             autoComplete="none"
             autoCorrect="none"

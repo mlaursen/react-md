@@ -6,13 +6,16 @@ import {
   TableFooter,
   TableHeader,
   TableRow,
+  cssUtils,
 } from "@react-md/core";
 import { type ReactElement } from "react";
 import styles from "./DisableStickyActiveStylesExample.module.scss";
 
 export default function DisableStickyActiveStylesExample(): ReactElement {
   return (
-    <TableContainer className={styles.container}>
+    <TableContainer
+      className={cssUtils({ className: styles.container, fullWidth: true })}
+    >
       <Table fullWidth>
         <TableHeader sticky disableStickyStyles>
           <TableRow>

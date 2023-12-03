@@ -1,5 +1,10 @@
 "use client";
-import { randomInt, useSkeletonPlaceholder, useToggle } from "@react-md/core";
+import {
+  cssUtils,
+  randomInt,
+  useSkeletonPlaceholder,
+  useToggle,
+} from "@react-md/core";
 import { useEffect, type ReactElement } from "react";
 import styles from "./ReplacingContentExample.module.scss";
 
@@ -30,7 +35,7 @@ export default function ReplacingContentExample(): ReactElement {
   });
 
   return (
-    <div className={styles.container}>
+    <div className={cssUtils({ className: styles.container, fullWidth: true })}>
       <div {...skeleton}>This is some content!</div>
     </div>
   );

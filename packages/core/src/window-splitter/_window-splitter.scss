@@ -107,7 +107,6 @@ $variables: (top, right, bottom, left, opacity, position);
 
           cursor: row-resize;
           height: $size;
-          width: 100%;
 
           &::after {
             height: $background-size;

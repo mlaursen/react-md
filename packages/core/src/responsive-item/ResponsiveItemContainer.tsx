@@ -1,5 +1,6 @@
 import { cnb } from "cnbuilder";
 import { forwardRef, type HTMLAttributes } from "react";
+import { cssUtils } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-responsive-item-container");
@@ -9,12 +10,7 @@ export interface ResponsiveItemContainerClassNameOptions {
   className?: string;
 
   /**
-   * Set this to `true` if the container should gain the following styles:
-   *
-   * ```scss
-   * display: block;
-   * width: 100%;
-   * ```
+   * Set this to `true` to add `width: 100%`.
    *
    * @defaultValue `false`
    */
@@ -76,8 +72,8 @@ export function responsiveItemContainer(
       "auto-scale": responsive === "container",
       "aspect-ratio": aspectRatio,
       [aspectRatio]: aspectRatio,
-      "full-width": fullWidth,
     }),
+    cssUtils({ fullWidth }),
     className
   );
 }

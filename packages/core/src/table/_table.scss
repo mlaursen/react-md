@@ -11,7 +11,6 @@
 $disable-everything: false !default;
 $disable-container: false !default;
 $disable-dense: false !default;
-$disable-full-width: false !default;
 $disable-cell-align-top: false !default;
 $disable-cell-align-bottom: false !default;
 $disable-bordered: false !default;
@@ -27,7 +26,6 @@ $disable-sticky-header: $disable-sticky !default;
 $disable-sticky-footer: $disable-sticky !default;
 $disable-input-toggle: false !default;
 $disable-cell-no-wrap: false !default;
-$disable-cell-grow: false !default;
 $disable-cell-no-padding: false !default;
 $disable-cell-sort: false !default;
 $disable-cell-grow: false !default;
@@ -230,12 +228,6 @@ $row-selected-styles: (
       // cell, so border-spacing seems better.
       border-spacing: 0;
       max-width: 100%;
-
-      @if not $disable-full-width {
-        &--full-width {
-          width: 100%;
-        }
-      }
     }
 
     .rmd-thead {
@@ -404,12 +396,6 @@ $row-selected-styles: (
         }
       }
 
-      @if not $disable-cell-grow {
-        &--grow {
-          width: 100%;
-        }
-      }
-
       @if not $disable-cell-no-wrap {
         &--no-wrap {
           @include typography.text-overflow;
@@ -437,7 +423,6 @@ $row-selected-styles: (
           font: inherit;
           gap: $cell-content-gap;
           height: 100%;
-          width: 100%;
         }
       }
     }

@@ -21,7 +21,7 @@ export default function SimpleNativeSelect(): ReactElement {
         fullWidth: true,
       })}
     >
-      <NativeSelect label="Label" stretch>
+      <NativeSelect label="Label">
         <option>Option 1</option>
         <option>Option 2</option>
         <option>Option 3</option>
@@ -59,25 +59,25 @@ export default function NativeSelectTheme(): ReactElement {
         fullWidth: true,
       })}
     >
-      <NativeSelect label="Label" stretch theme="none">
+      <NativeSelect label="Label" theme="none">
         <option>Option 1</option>
         <option>Option 2</option>
         <option>Option 3</option>
         <option>Option 4</option>
       </NativeSelect>
-      <NativeSelect label="Label" stretch theme="underline">
+      <NativeSelect label="Label" theme="underline">
         <option>Option 1</option>
         <option>Option 2</option>
         <option>Option 3</option>
         <option>Option 4</option>
       </NativeSelect>
-      <NativeSelect label="Label" stretch theme="filled">
+      <NativeSelect label="Label" theme="filled">
         <option>Option 1</option>
         <option>Option 2</option>
         <option>Option 3</option>
         <option>Option 4</option>
       </NativeSelect>
-      <NativeSelect label="Label" stretch theme="outline">
+      <NativeSelect label="Label" theme="outline">
         <option>Option 1</option>
         <option>Option 2</option>
         <option>Option 3</option>
@@ -111,13 +111,7 @@ export default function RequiredNativeSelect(): ReactElement {
         fullWidth: true,
       })}
     >
-      <NativeSelect
-        label="Label"
-        stretch
-        name="choice"
-        required
-        defaultValue=""
-      >
+      <NativeSelect label="Label" name="choice" required defaultValue="">
         <option value="" disabled hidden />
         <option>Option 1</option>
         <option>Option 2</option>
@@ -154,7 +148,6 @@ export default function RequiredWithAPlaceholder(): ReactElement {
     >
       <NativeSelect
         label="Label"
-        stretch
         name="choice"
         required
         defaultValue=""
@@ -204,7 +197,6 @@ export default function HelpAndErrorText(): ReactElement {
     >
       <NativeSelect
         label="Label"
-        stretch
         messageProps={{
           children: "This is some help text.",
         }}
@@ -216,7 +208,6 @@ export default function HelpAndErrorText(): ReactElement {
       </NativeSelect>
       <NativeSelect
         label="Label"
-        stretch
         error
         messageProps={{
           error: true,

@@ -9,7 +9,6 @@ $disable-item: false !default;
 $disable-scale-to-container: false !default;
 $disable-auto: false !default;
 $disable-auto-scale: false !default;
-$disable-full-width: false !default;
 $disable-overlay: false !default;
 $disable-overlay-top: false !default;
 $disable-overlay-right: false !default;
@@ -99,13 +98,6 @@ $disable-aspect-ratios: not list.length(map.keys($aspect-ratios)) !default;
               }
             }
           }
-        }
-      }
-
-      @if not $disable-full-width {
-        &--full-width {
-          display: block;
-          width: 100%;
         }
       }
 

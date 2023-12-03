@@ -99,10 +99,6 @@ $variables: (gap, padding, item-min-size, columns);
         flex-wrap: wrap;
       }
 
-      &--full-width {
-        width: 100%;
-      }
-
       @if not $disable-stacked {
         &--column {
           flex-direction: column;

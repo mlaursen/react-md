@@ -1,4 +1,5 @@
 import { cnb } from "cnbuilder";
+import { cssUtils } from "../cssUtils.js";
 import type { InternalListItemClassNameOptions } from "../list/listItemStyles.js";
 import { listItem } from "../list/listItemStyles.js";
 import { bem } from "../utils/bem.js";
@@ -21,7 +22,7 @@ export interface TreeClassNameOptions {
 export function tree(options: TreeClassNameOptions = {}): string {
   const { className } = options;
 
-  return cnb(treeStyles(), className);
+  return cnb(treeStyles(), cssUtils({ fullWidth: true }), className);
 }
 
 /** @remarks \@since 6.0.0 */

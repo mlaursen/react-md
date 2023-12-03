@@ -1,5 +1,6 @@
 import { cnb } from "cnbuilder";
 import { forwardRef, type HTMLAttributes } from "react";
+import { cssUtils } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-slide-container");
@@ -66,7 +67,11 @@ export function slideContainer(
 ): string {
   const { className, direction } = options;
 
-  return cnb(styles({ [direction]: true }), className);
+  return cnb(
+    styles({ [direction]: true }),
+    cssUtils({ fullWidth: true }),
+    className
+  );
 }
 
 /** @remarks \@since 6.0.0 */

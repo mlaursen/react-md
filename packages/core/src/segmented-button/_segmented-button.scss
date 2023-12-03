@@ -144,10 +144,6 @@ $variables: (
       display: grid;
       grid-auto-columns: 1fr;
       grid-auto-flow: column;
-
-      &--full-width {
-        width: 100%;
-      }
     }
 
     .rmd-segmented-button {

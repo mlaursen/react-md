@@ -110,7 +110,7 @@ exports[`Table should apply the correct styling, HTML attributes, and allow a re
 
 exports[`Table should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <table
-  class="rmd-table rmd-table--full-width custom-class-name"
+  class="rmd-table rmd-full-width custom-class-name"
   style="background-color: orange;"
 >
   <thead

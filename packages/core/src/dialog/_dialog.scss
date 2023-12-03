@@ -141,7 +141,6 @@ $variables: (
         inset: 0;
         overflow: auto;
         position: fixed;
-        width: 100%;
       }
 
       @if not $disable-focus-outline {

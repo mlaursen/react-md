@@ -6,13 +6,16 @@ import {
   TableFooter,
   TableHeader,
   TableRow,
+  cssUtils,
 } from "@react-md/core";
 import { type ReactElement } from "react";
 import styles from "./ContainerBasedStickyTableExample.module.scss";
 
 export default function ContainerBasedStickyTableExample(): ReactElement {
   return (
-    <TableContainer className={styles.container}>
+    <TableContainer
+      className={cssUtils({ className: styles.container, fullWidth: true })}
+    >
       <Table fullWidth>
         <TableHeader sticky>
           <TableRow>

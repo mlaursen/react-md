@@ -236,7 +236,6 @@ $transition-variables: (
     flex-wrap: nowrap;
     height: 100%;
     overflow: hidden auto;
-    width: 100%;
 
     &--left {
       --p1-start: 0;
@@ -256,7 +255,6 @@ $transition-variables: (
   .rmd-slide {
     flex: 1 0 auto;
     height: 100%;
-    width: 100%;
     will-change: transform;
 
     &--animate {

@@ -10,13 +10,7 @@ export default function RequiredNativeSelect(): ReactElement {
         fullWidth: true,
       })}
     >
-      <NativeSelect
-        label="Label"
-        stretch
-        name="choice"
-        required
-        defaultValue=""
-      >
+      <NativeSelect label="Label" name="choice" required defaultValue="">
         <option value="" disabled hidden />
         <option>Option 1</option>
         <option>Option 2</option>

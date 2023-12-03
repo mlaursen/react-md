@@ -7,6 +7,7 @@ import {
   Snackbar,
   ToastManager,
   ToastManagerProvider,
+  cssUtils,
   useAddToast,
   useRadioGroup,
   useRemoveToast,
@@ -81,7 +82,7 @@ function Content(): ReactElement {
   };
 
   return (
-    <Form className={styles.form}>
+    <Form className={cssUtils({ className: styles.form, fullWidth: true })}>
       <Box stacked align="flex-start">
         <Radio {...getRadioProps("next")} label="Next" />
         <Radio {...getRadioProps("replace")} label="Replace" />

@@ -6,8 +6,9 @@ import {
   type ReactNode,
 } from "react";
 import { ButtonUnstyled } from "../button/ButtonUnstyled.js";
-import { getIcon } from "../icon/iconConfig.js";
+import { cssUtils } from "../cssUtils.js";
 import { IconRotator, type IconRotatorProps } from "../icon/IconRotator.js";
+import { getIcon } from "../icon/iconConfig.js";
 import { type PropsWithRef } from "../types.js";
 import {
   Typography,
@@ -169,7 +170,11 @@ export const ExpansionPanelHeader = forwardRef<
         {...remaining}
         aria-expanded={expanded}
         id={id}
-        className={cnb("rmd-expansion-panel__button", className)}
+        className={cnb(
+          "rmd-expansion-panel__button",
+          cssUtils({ fullWidth: true }),
+          className
+        )}
       >
         {children}
         {icon && (

@@ -4,7 +4,7 @@ exports[`Tree should apply the correct styling, HTML attributes, and allow a ref
 <ul
   aria-activedescendant=""
   aria-label="Tree"
-  class="rmd-list rmd-tree"
+  class="rmd-list rmd-tree rmd-full-width"
   id="tree-:r0:"
   role="tree"
   tabindex="0"
@@ -15,7 +15,7 @@ exports[`Tree should apply the correct styling, HTML attributes, and allow a ref
 <ul
   aria-activedescendant=""
   aria-label="Tree"
-  class="rmd-list rmd-tree custom-class-name"
+  class="rmd-list rmd-tree rmd-full-width custom-class-name"
   id="tree-:r0:"
   role="tree"
   style="color: white;"
@@ -27,7 +27,7 @@ exports[`Tree should handle multi-select tree behavior 1`] = `
 <ul
   aria-activedescendant=""
   aria-label="Tree"
-  class="rmd-list rmd-tree"
+  class="rmd-list rmd-tree rmd-full-width"
   id="tree-:ra:"
   role="tree"
   tabindex="0"
@@ -241,7 +241,7 @@ exports[`Tree should handle multi-select tree behavior 2`] = `
 <ul
   aria-activedescendant="tree-item-:rc:"
   aria-label="Tree"
-  class="rmd-list rmd-tree"
+  class="rmd-list rmd-tree rmd-full-width"
   id="tree-:ra:"
   role="tree"
   tabindex="0"
@@ -455,7 +455,7 @@ exports[`Tree should handle multi-select tree behavior 3`] = `
 <ul
   aria-activedescendant="tree-item-:rc:"
   aria-label="Tree"
-  class="rmd-list rmd-tree"
+  class="rmd-list rmd-tree rmd-full-width"
   id="tree-:ra:"
   role="tree"
   tabindex="0"
@@ -669,7 +669,7 @@ exports[`Tree should handle multi-select tree behavior 4`] = `
 <ul
   aria-activedescendant="tree-item-:rb:"
   aria-label="Tree"
-  class="rmd-list rmd-tree"
+  class="rmd-list rmd-tree rmd-full-width"
   id="tree-:ra:"
   role="tree"
   tabindex="0"
@@ -883,7 +883,7 @@ exports[`Tree should handle multi-select tree behavior 5`] = `
 <ul
   aria-activedescendant="tree-item-:rc:"
   aria-label="Tree"
-  class="rmd-list rmd-tree"
+  class="rmd-list rmd-tree rmd-full-width"
   id="tree-:ra:"
   role="tree"
   tabindex="0"
@@ -1097,7 +1097,7 @@ exports[`Tree should handle single select tree behavior 1`] = `
 <ul
   aria-activedescendant=""
   aria-label="Tree"
-  class="rmd-list rmd-tree"
+  class="rmd-list rmd-tree rmd-full-width"
   id="tree-:r1:"
   role="tree"
   tabindex="0"
@@ -1311,7 +1311,7 @@ exports[`Tree should handle single select tree behavior 2`] = `
 <ul
   aria-activedescendant="tree-item-:r3:"
   aria-label="Tree"
-  class="rmd-list rmd-tree"
+  class="rmd-list rmd-tree rmd-full-width"
   id="tree-:r1:"
   role="tree"
   tabindex="0"
@@ -1525,7 +1525,7 @@ exports[`Tree should handle single select tree behavior 3`] = `
 <ul
   aria-activedescendant="tree-item-:r3:"
   aria-label="Tree"
-  class="rmd-list rmd-tree"
+  class="rmd-list rmd-tree rmd-full-width"
   id="tree-:r1:"
   role="tree"
   tabindex="0"
@@ -1739,7 +1739,7 @@ exports[`Tree should handle single select tree behavior 4`] = `
 <ul
   aria-activedescendant="tree-item-:r2:"
   aria-label="Tree"
-  class="rmd-list rmd-tree"
+  class="rmd-list rmd-tree rmd-full-width"
   id="tree-:r1:"
   role="tree"
   tabindex="0"
@@ -1953,7 +1953,7 @@ exports[`Tree should handle single select tree behavior 5`] = `
 <ul
   aria-activedescendant="tree-item-:r3:"
   aria-label="Tree"
-  class="rmd-list rmd-tree"
+  class="rmd-list rmd-tree rmd-full-width"
   id="tree-:r1:"
   role="tree"
   tabindex="0"
@@ -2167,7 +2167,7 @@ exports[`Tree should render the tree item as a link if the to or href exists on 
 <ul
   aria-activedescendant=""
   aria-label="Tree"
-  class="rmd-list rmd-tree"
+  class="rmd-list rmd-tree rmd-full-width"
   id="tree-:r2o:"
   role="tree"
   tabindex="0"
@@ -2242,7 +2242,7 @@ exports[`Tree should support conditionally rendering child trees by enabling tem
 <ul
   aria-activedescendant=""
   aria-label="Tree"
-  class="rmd-list rmd-tree"
+  class="rmd-list rmd-tree rmd-full-width"
   id="tree-:r1p:"
   role="tree"
   tabindex="0"
@@ -2321,7 +2321,7 @@ exports[`Tree should support conditionally rendering child trees by enabling tem
 <ul
   aria-activedescendant="tree-item-:r1r:"
   aria-label="Tree"
-  class="rmd-list rmd-tree"
+  class="rmd-list rmd-tree rmd-full-width"
   id="tree-:r1p:"
   role="tree"
   tabindex="0"
@@ -2474,7 +2474,7 @@ exports[`Tree should support default selected and expanded ids 1`] = `
 <ul
   aria-activedescendant=""
   aria-label="Tree"
-  class="rmd-list rmd-tree"
+  class="rmd-list rmd-tree rmd-full-width"
   id="tree-:rj:"
   role="tree"
   tabindex="0"
@@ -2688,7 +2688,7 @@ exports[`Tree should support default selected and expanded ids 2`] = `
 <ul
   aria-activedescendant=""
   aria-label="Tree"
-  class="rmd-list rmd-tree"
+  class="rmd-list rmd-tree rmd-full-width"
   id="tree-:rs:"
   role="tree"
   tabindex="0"
@@ -2902,7 +2902,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
 <ul
   aria-activedescendant=""
   aria-label="Tree"
-  class="rmd-list rmd-tree"
+  class="rmd-list rmd-tree rmd-full-width"
   id="tree-:r24:"
   role="tree"
   tabindex="0"
@@ -3116,7 +3116,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
 <ul
   aria-activedescendant=""
   aria-label="Tree"
-  class="rmd-list rmd-tree"
+  class="rmd-list rmd-tree rmd-full-width"
   id="tree-:r24:"
   role="tree"
   tabindex="0"
@@ -3327,7 +3327,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
 <ul
   aria-activedescendant=""
   aria-label="Tree"
-  class="rmd-list rmd-tree"
+  class="rmd-list rmd-tree rmd-full-width"
   id="tree-:r24:"
   role="tree"
   tabindex="0"

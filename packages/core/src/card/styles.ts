@@ -25,8 +25,7 @@ export interface CardClassNameOptions {
   raisable?: boolean;
 
   /**
-   * Update the card to have `display: block` and `width: 100%` instead of
-   * `display: inline-block`.
+   * Set this to `true` to add `width: 100%`.
    *
    * @defaultValue `false`
    */
@@ -49,8 +48,8 @@ export function card(options: CardClassNameOptions = {}): string {
       bordered,
       shadowed: !bordered,
       raisable: !bordered && raisable,
-      "full-width": fullWidth,
     }),
+    cssUtils({ fullWidth }),
     className
   );
 }

@@ -1,5 +1,6 @@
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
+import { cssUtils } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
 import { type OptionProps } from "./Option.js";
 
@@ -31,7 +32,7 @@ export function SelectValue(props: SelectValueProps): ReactElement {
   }
 
   return (
-    <div className={cnb(styles())}>
+    <div className={cnb(styles(), cssUtils({ fullWidth: true }))}>
       {!disableAddon && leftAddon}
       {children}
     </div>
