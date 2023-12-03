@@ -8,7 +8,6 @@
 $disable-everything: false !default;
 $disable-menu-item: false !default;
 $disable-menu-item-group: false !default;
-$disable-focus-outline: false !default;
 $disable-elevation-colors: theme.$disable-dark-elevation !default;
 
 $elevation: 8 !default;
@@ -45,19 +44,6 @@ $variables: (background-color, color, min-width, spacing);
   .rmd-menu {
     outline: none;
     overflow: auto;
-
-    @if not $disable-focus-outline {
-      @include utils.keyboard-only {
-        &--outline:focus {
-          // Note: Do not use the `interaction-outline` mixin +
-          // `interaction.set-var(interaction.$focus-color)` like normal focus
-          // elements since it'll make all focusable children update with the
-          // outline color as well
-          outline: interaction.get-var(focus-color) solid
-            interaction.get-var(focus-width);
-        }
-      }
-    }
 
     &--elevated {
       @include box-shadows.box-shadow(
