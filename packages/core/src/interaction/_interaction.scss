@@ -284,7 +284,8 @@ $variables: (
 }
 
 @mixin surface(
-  $focus-selector: "&:focus",
+  $focus-selector: "&:focus" + if(utils.$disable-focus-visible, "", "-visible"),
+  $keyboard-only-focus: utils.$disable-focus-visible,
   $disabled-selector: "&:disabled",
   $clickable: true,
   $hoverable: true,
@@ -322,7 +323,13 @@ $variables: (
   }
 
   @if $focus-selector {
-    @include utils.keyboard-only($css-modules) {
+    @if $keyboard-only-focus {
+      @include utils.keyboard-only($css-modules) {
+        #{$focus-selector + "::before"} {
+          @include focus-styles($box-shadow, $disable-background);
+        }
+      }
+    } @else {
       #{$focus-selector + "::before"} {
         @include focus-styles($box-shadow, $disable-background);
       }

@@ -5,6 +5,16 @@
 
 $disable-rtl: false !default;
 $disable-validation: false !default;
+// :has css selectors will arrive in firefox 121 so the browsers I support will
+// also support it by the time of the react-md release. allowing this to be
+// disabled just to be safe though
+$disable-has-selectors: false !default;
+// I'm reducing the required CSS for `:focus` styles by switching to
+// `:focus-visible` instead of `.keyboard-only .some-selector:focus` but there
+// are some things I don't like as much when switching from mouse to keyboard.
+// Defaulting to `:focus-visible`, but allowing the keyboard-only styles as well
+// if users are more familiar with it
+$disable-focus-visible: false !default;
 $temporary-element-z-index: 30 !default;
 
 $_swappable-positions: top right bottom left;

@@ -109,8 +109,17 @@ $variables: (depth, item-padding, item-padding-base, item-padding-incrementor);
         }
 
         &--focused::before {
-          .rmd-tree:focus-within & {
-            @include utils.keyboard-only {
+          // Note: Clicking an item and then using the keyboard to move focus
+          // will **not** show the focus outline so might not be ideal. the tree
+          // must be re-focused after a `Tab` keypress for it to appear again
+          @if utils.$disable-focus-visible {
+            .rmd-tree:focus-within & {
+              @include utils.keyboard-only {
+                @include interaction.focus-styles;
+              }
+            }
+          } @else {
+            .rmd-tree:focus-visible & {
               @include interaction.focus-styles;
             }
           }

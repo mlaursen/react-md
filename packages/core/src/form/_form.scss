@@ -427,8 +427,14 @@ $variables: (
 }
 
 @mixin file-input-styles {
-  .rmd-file-input:focus-within::before {
-    @include utils.keyboard-only {
+  @if utils.$disable-has-selectors or utils.$disable-focus-visible {
+    .rmd-file-input:focus-within::before {
+      @include utils.keyboard-only {
+        @include interaction.focus-styles;
+      }
+    }
+  } @else {
+    .rmd-file-input:has(:focus-visible)::before {
       @include interaction.focus-styles;
     }
   }
@@ -1193,7 +1199,14 @@ $variables: (
 @mixin input-toggle-styles {
   .rmd-input-toggle {
     @include interaction.surface(
-      $focus-selector: "&:focus-within",
+      $focus-selector:
+        if(
+          utils.$disable-has-selectors or utils.$disable-focus-visible,
+          "&:focus-within",
+          "&:has(:focus-visible)"
+        ),
+      $keyboard-only-focus: utils.$disable-has-selectors or
+        utils.$disable-focus-visible,
       $disabled-selector: "&--disabled",
       $higher-contrast: false
     );
@@ -1280,8 +1293,14 @@ $variables: (
     }
 
     &__input {
-      @include utils.keyboard-only {
-        &:focus + .rmd-switch__ball::before {
+      @if utils.$disable-focus-visible {
+        @include utils.keyboard-only {
+          &:focus + .rmd-switch__ball::before {
+            @include interaction.focus-styles;
+          }
+        }
+      } @else {
+        &:focus-visible + .rmd-switch__ball::before {
           @include interaction.focus-styles;
         }
       }
@@ -1613,11 +1632,6 @@ $variables: (
       background-color,
       if($slider-track-color, slider-color, slider-active-color)
     );
-    @include utils.keyboard-only {
-      &:focus::after {
-        transform: scale($slider-thumb-focus-scale);
-      }
-    }
 
     border-radius: $slider-thumb-border-radius;
     height: $slider-thumb-size;
@@ -1633,6 +1647,18 @@ $variables: (
       opacity: $slider-thumb-bubble-opacity;
       transition: transform $slider-transition-duration
         $slider-transition-timing-function;
+    }
+
+    @if utils.$disable-focus-visible {
+      @include utils.keyboard-only {
+        &:focus::after {
+          transform: scale($slider-thumb-focus-scale);
+        }
+      }
+    } @else {
+      &:focus-visible::after {
+        transform: scale($slider-thumb-focus-scale);
+      }
     }
 
     @include utils.mouse-hover(false) {

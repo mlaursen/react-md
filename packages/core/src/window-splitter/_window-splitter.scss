@@ -60,8 +60,14 @@ $variables: (top, right, bottom, left, opacity, position);
         position: absolute;
       }
 
-      @include utils.keyboard-only {
-        &:focus {
+      @if utils.$disable-focus-visible {
+        @include utils.keyboard-only {
+          &:focus {
+            @include set-var(opacity, 1);
+          }
+        }
+      } @else {
+        &:focus-visible {
           @include set-var(opacity, 1);
         }
       }

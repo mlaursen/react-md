@@ -145,13 +145,21 @@ $variables: (
       }
 
       @if not $disable-focus-outline {
-        @include utils.keyboard-only {
-          &--outline:focus {
-            // Note: Do not use the `interaction-outline` mixin +
-            // `interaction.set-var(interaction.$focus-color)` like normal focus
-            // elements since it'll make all focusable children update with the
-            // outline color as well
-            outline: interaction.get-var(focus-color) solid
+        // Note: Do not use the `interaction-outline` mixin +
+        // `interaction.set-var(interaction.$focus-color)` like normal focus
+        // elements since it'll make all focusable children update with the
+        // outline color as well
+        @if utils.$disable-focus-visible {
+          @include utils.keyboard-only {
+            &--outline:focus {
+              outline: interaction.get-var(focus-color) solid
+                interaction.get-var(focus-width);
+            }
+          }
+        } @else {
+          &--outline:focus-visible {
+            outline: interaction.get-var(focus-color)
+              solid
               interaction.get-var(focus-width);
           }
         }
