@@ -5,7 +5,6 @@ import { bem } from "../utils/bem.js";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { type useWindowSplitter } from "./useWindowSplitter.js";
-import { cssUtils } from "../cssUtils.js";
 
 const styles = bem("rmd-window-splitter");
 
@@ -42,9 +41,6 @@ export function windowSplitter(
       vr: vertical && reversed,
       a: disableFixed,
       dragging,
-    }),
-    cssUtils({
-      fullWidth: vertical,
     }),
     className
   );

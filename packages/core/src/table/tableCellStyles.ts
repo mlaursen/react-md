@@ -64,6 +64,7 @@ export function tableCell(options: TableCellClassNameOptions): string {
   const p = "rmd-table-cell--";
   return cnb(
     "rmd-table-cell",
+    grow && `${p}grow`,
     header && `${p}header`,
     sticky && `${p}sticky`,
     inputToggle && `${p}input-toggle`,
@@ -76,7 +77,6 @@ export function tableCell(options: TableCellClassNameOptions): string {
     padding === "none" && `${p}no-padding`,
     cssUtils({
       textAlign: hAlign,
-      fullWidth: grow,
     }),
     className
   );

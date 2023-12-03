@@ -16,7 +16,7 @@ exports[`ResponsiveItemContainer should apply the correct styling, HTML attribut
 exports[`ResponsiveItemContainer should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <div>
   <span
-    class="rmd-responsive-item-container rmd-responsive-item-container--auto rmd-full-width"
+    class="rmd-responsive-item-container rmd-responsive-item-container--auto rmd-responsive-item-container--full-width"
   >
     <img
       alt=""

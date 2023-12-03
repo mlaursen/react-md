@@ -31,7 +31,7 @@ exports[`Card should apply the correct styling, HTML attributes, and allow a ref
 
 exports[`Card should apply the correct styling, HTML attributes, and allow a ref 4`] = `
 <div
-  class="rmd-card rmd-card--shadowed rmd-full-width"
+  class="rmd-card rmd-card--shadowed rmd-card--full-width"
   data-testid="card"
   style=""
 >

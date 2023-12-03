@@ -148,7 +148,6 @@ export function appBar(options: AppBarClassNameOptions = {}): string {
     }),
     cssUtils({
       backgroundColor: !surface && !clear ? theme : undefined,
-      fullWidth: position !== "static",
     }),
     className
   );

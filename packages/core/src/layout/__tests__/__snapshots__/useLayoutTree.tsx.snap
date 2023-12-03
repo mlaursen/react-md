@@ -4,7 +4,7 @@ exports[`useLayoutTree should automatically expand parent items if the pathname 
 <ul
   aria-activedescendant=""
   aria-label="Navigation"
-  class="rmd-list rmd-tree rmd-full-width"
+  class="rmd-list rmd-tree"
   id="tree-:rg:"
   role="tree"
   tabindex="0"
@@ -229,7 +229,7 @@ exports[`useLayoutTree should automatically expand parent items if the pathname 
 <ul
   aria-activedescendant=""
   aria-label="Navigation"
-  class="rmd-list rmd-tree rmd-full-width"
+  class="rmd-list rmd-tree"
   id="tree-:rg:"
   role="tree"
   tabindex="0"
@@ -454,7 +454,7 @@ exports[`useLayoutTree should default to expanding all parent items from the sta
 <ul
   aria-activedescendant=""
   aria-label="Navigation"
-  class="rmd-list rmd-tree rmd-full-width"
+  class="rmd-list rmd-tree"
   id="tree-:r8:"
   role="tree"
   tabindex="0"

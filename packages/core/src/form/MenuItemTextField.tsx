@@ -12,6 +12,9 @@ export interface MenuItemTextFieldProps extends TextFieldProps {
    * Any additional props or a `ref` to apply to the surrounding `<li>` element.
    */
   liProps?: PropsWithRef<HTMLAttributes<HTMLLIElement>, HTMLLIElement>;
+
+  /** @defaultValue `true` */
+  stretch?: boolean;
 }
 
 /**
@@ -30,7 +33,7 @@ export const MenuItemTextField = forwardRef<
   HTMLInputElement,
   MenuItemTextFieldProps
 >(function MenuItemTextField(props, ref) {
-  const { liProps, onKeyDown, ...remaining } = props;
+  const { liProps, onKeyDown, stretch = true, ...remaining } = props;
   return (
     <li
       role="none"
@@ -44,6 +47,7 @@ export const MenuItemTextField = forwardRef<
       <TextField
         {...remaining}
         ref={ref}
+        stretch={stretch}
         onKeyDown={(event) => {
           onKeyDown?.(event);
           switch (event.key) {

@@ -1,5 +1,4 @@
 import { cnb } from "cnbuilder";
-import { cssUtils } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-native-select");
@@ -24,7 +23,7 @@ export function nativeSelect(
 ): string {
   const { className, icon = false } = options;
 
-  return cnb(styles({ icon }), cssUtils({ fullWidth: true }), className);
+  return cnb(styles({ icon }), className);
 }
 
 /**

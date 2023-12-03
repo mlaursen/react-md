@@ -473,6 +473,14 @@ export interface TextFieldContainerOptions
   inline?: boolean;
 
   /**
+   * Set this to `true` if this component should stretch to fill a flex or grid
+   * container using `flex: 1 1 auto`.
+   *
+   * @defaultValue `false`
+   */
+  stretch?: boolean;
+
+  /**
    * This should generally be an icon or a button that will be placed before the
    * `TextField` or `TextArea`.
    */

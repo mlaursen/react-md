@@ -165,13 +165,6 @@ export interface CssUtilsOptions extends TextCssUtilsOptions {
    * use `#000` while `"dark"` will use `#fff`.
    */
   surfaceColor?: "light" | "dark";
-
-  /**
-   * Set this to `true` to add `width: 100%;`
-   *
-   * @defaultValue `false`
-   */
-  fullWidth?: boolean;
 }
 
 /**
@@ -195,7 +188,6 @@ export function cssUtils(options: CssUtilsOptions): string {
     surface,
     surfaceColor,
     margin,
-    fullWidth,
     fontStyle,
     fontWeight,
     textAlign,
@@ -237,7 +229,6 @@ export function cssUtils(options: CssUtilsOptions): string {
     textOverflow && textOverflow !== "allow" && "rmd-nowrap",
     textOverflow === "ellipsis" && "rmd-ellipsis",
     surface && "rmd-interaction-surface",
-    fullWidth && "rmd-full-width",
     className
   );
 }

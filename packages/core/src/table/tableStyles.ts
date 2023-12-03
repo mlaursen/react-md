@@ -1,5 +1,4 @@
 import { cnb } from "cnbuilder";
-import { cssUtils } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-table");
@@ -19,7 +18,7 @@ export interface TableClassNameOptions {
  * @remarks \@since 6.0.0
  */
 export function table(options: TableClassNameOptions = {}): string {
-  const { dense, fullWidth, className } = options;
+  const { dense = false, fullWidth = false, className } = options;
 
-  return cnb(styles({ dense }), cssUtils({ fullWidth }), className);
+  return cnb(styles({ dense, "full-width": fullWidth }), className);
 }

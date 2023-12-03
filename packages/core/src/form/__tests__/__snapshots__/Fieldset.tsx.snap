@@ -43,7 +43,7 @@ exports[`Fieldset should apply the correct styling, HTML attributes, and allow a
 
 exports[`Fieldset should apply the correct styling, HTML attributes, and allow a ref 4`] = `
 <fieldset
-  class="rmd-fieldset rmd-fieldset--unstyled rmd-full-width"
+  class="rmd-fieldset rmd-fieldset--unstyled rmd-fieldset--full-width"
   data-testid="fieldset"
   style=""
 >

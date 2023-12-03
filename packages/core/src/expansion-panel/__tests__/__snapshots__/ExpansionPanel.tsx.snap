@@ -26,7 +26,7 @@ exports[`ExpansionPanel should apply the correct styling, HTML attributes, and a
 
 exports[`ExpansionPanel should apply the correct styling, HTML attributes, and allow a ref on the content element 1`] = `
 <div
-  class="rmd-card rmd-card--shadowed rmd-full-width rmd-expansion-panel rmd-expansion-panel--animate"
+  class="rmd-card rmd-card--shadowed rmd-card--full-width rmd-expansion-panel rmd-expansion-panel--animate"
   id="expansion-panel-:rl:-container"
 >
   <h6
@@ -34,7 +34,7 @@ exports[`ExpansionPanel should apply the correct styling, HTML attributes, and a
   >
     <button
       aria-expanded="false"
-      class="rmd-button-unstyled rmd-expansion-panel__button rmd-full-width"
+      class="rmd-button-unstyled rmd-expansion-panel__button"
       id="expansion-panel-:rl:"
       type="button"
     >
@@ -60,7 +60,7 @@ exports[`ExpansionPanel should apply the correct styling, HTML attributes, and a
 
 exports[`ExpansionPanel should apply the correct styling, HTML attributes, and allow a ref on the content element 2`] = `
 <div
-  class="rmd-card rmd-card--shadowed rmd-full-width rmd-expansion-panel rmd-expansion-panel--animate custom-class-name"
+  class="rmd-card rmd-card--shadowed rmd-card--full-width rmd-expansion-panel rmd-expansion-panel--animate custom-class-name"
   id="expansion-panel-:rl:-container"
   style="color: white;"
 >
@@ -69,7 +69,7 @@ exports[`ExpansionPanel should apply the correct styling, HTML attributes, and a
   >
     <button
       aria-expanded="false"
-      class="rmd-button-unstyled rmd-expansion-panel__button rmd-full-width"
+      class="rmd-button-unstyled rmd-expansion-panel__button"
       id="expansion-panel-:rl:"
       type="button"
     >
@@ -97,7 +97,7 @@ exports[`ExpansionPanel should default to single expansion, allowing all panels 
 <div>
   <div>
     <div
-      class="rmd-card rmd-card--shadowed rmd-full-width rmd-expansion-panel rmd-expansion-panel--animate"
+      class="rmd-card rmd-card--shadowed rmd-card--full-width rmd-expansion-panel rmd-expansion-panel--animate"
       id="expansion-panel-:r0:-1-container"
     >
       <h6
@@ -105,7 +105,7 @@ exports[`ExpansionPanel should default to single expansion, allowing all panels 
       >
         <button
           aria-expanded="false"
-          class="rmd-button-unstyled rmd-expansion-panel__button rmd-full-width"
+          class="rmd-button-unstyled rmd-expansion-panel__button"
           id="expansion-panel-:r0:-1"
           type="button"
         >
@@ -129,7 +129,7 @@ exports[`ExpansionPanel should default to single expansion, allowing all panels 
       </div>
     </div>
     <div
-      class="rmd-card rmd-card--shadowed rmd-full-width rmd-expansion-panel rmd-expansion-panel--animate"
+      class="rmd-card rmd-card--shadowed rmd-card--full-width rmd-expansion-panel rmd-expansion-panel--animate"
       id="expansion-panel-:r0:-2-container"
     >
       <h6
@@ -137,7 +137,7 @@ exports[`ExpansionPanel should default to single expansion, allowing all panels 
       >
         <button
           aria-expanded="false"
-          class="rmd-button-unstyled rmd-expansion-panel__button rmd-full-width"
+          class="rmd-button-unstyled rmd-expansion-panel__button"
           id="expansion-panel-:r0:-2"
           type="button"
         >
@@ -161,7 +161,7 @@ exports[`ExpansionPanel should default to single expansion, allowing all panels 
       </div>
     </div>
     <div
-      class="rmd-card rmd-card--shadowed rmd-full-width rmd-expansion-panel rmd-expansion-panel--animate"
+      class="rmd-card rmd-card--shadowed rmd-card--full-width rmd-expansion-panel rmd-expansion-panel--animate"
       id="expansion-panel-:r0:-3-container"
     >
       <h6
@@ -169,7 +169,7 @@ exports[`ExpansionPanel should default to single expansion, allowing all panels 
       >
         <button
           aria-expanded="false"
-          class="rmd-button-unstyled rmd-expansion-panel__button rmd-full-width"
+          class="rmd-button-unstyled rmd-expansion-panel__button"
           id="expansion-panel-:r0:-3"
           type="button"
         >

@@ -1,7 +1,6 @@
 import { cnb } from "cnbuilder";
 import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from "react";
 import { ButtonUnstyled } from "../button/ButtonUnstyled.js";
-import { cssUtils } from "../cssUtils.js";
 import { IconRotator, type IconRotatorProps } from "../icon/IconRotator.js";
 import { bem } from "../utils/bem.js";
 import { type TableCellHorizontalAlignment } from "./TableConfigurationProvider.js";
@@ -107,7 +106,6 @@ export const TableCellContent = forwardRef<
         styles("content", {
           [hAlign]: hAlign !== "left",
         }),
-        cssUtils({ fullWidth: true }),
         className
       )}
     >

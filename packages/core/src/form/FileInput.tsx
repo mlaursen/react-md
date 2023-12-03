@@ -11,7 +11,6 @@ import {
   type ButtonClassNameOptions,
   type ButtonClassNameThemeOptions,
 } from "../button/buttonStyles.js";
-import { cssUtils } from "../cssUtils.js";
 import { getIcon } from "../icon/iconConfig.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { type PropsWithRef } from "../types.js";
@@ -208,7 +207,7 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
             disableRepeatableFiles || !props.onChange ? remaining.value : ""
           }
           type="file"
-          className={cnb("rmd-hidden-input", cssUtils({ fullWidth: true }))}
+          className="rmd-hidden-input"
           disabled={disabled}
           multiple={multiple}
         />

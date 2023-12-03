@@ -161,10 +161,7 @@ export const LinearProgress = forwardRef<
           determinate,
           indeterminate,
         }),
-        cssUtils({
-          textColor: theme !== "current-color" ? theme : undefined,
-          fullWidth: true,
-        }),
+        theme !== "current-color" && cssUtils({ textColor: theme }),
         className
       )}
     >

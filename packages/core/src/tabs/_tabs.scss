@@ -136,6 +136,11 @@ $variables: (
     overflow-x: auto;
     position: relative;
 
+    &--full-width {
+      display: flex;
+      width: 100%;
+    }
+
     @if not $disable-tablist-hidden-scrollbar {
       &--no-scrollbar {
         @include utils.hide-scrollbar;

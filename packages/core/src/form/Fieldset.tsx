@@ -1,7 +1,6 @@
 import { cnb } from "cnbuilder";
 import { forwardRef, type FieldsetHTMLAttributes } from "react";
 import { bem } from "../utils/bem.js";
-import { cssUtils } from "../cssUtils.js";
 
 const styles = bem("rmd-fieldset");
 
@@ -30,8 +29,7 @@ export function fieldset(options: FieldsetClassNameOptions = {}): string {
   const { className, fullWidth, browserStyles = false } = options;
 
   return cnb(
-    styles({ unstyled: !browserStyles }),
-    cssUtils({ fullWidth }),
+    styles({ unstyled: !browserStyles, "full-width": fullWidth }),
     className
   );
 }

@@ -1,6 +1,5 @@
 import { cnb } from "cnbuilder";
 import { forwardRef, type HTMLAttributes } from "react";
-import { cssUtils } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
 
 declare module "react" {
@@ -51,7 +50,7 @@ export function textContainer(
 ): string {
   const { className } = options;
 
-  return cnb(styles(), cssUtils({ fullWidth: true }), className);
+  return cnb(styles(), className);
 }
 
 /**

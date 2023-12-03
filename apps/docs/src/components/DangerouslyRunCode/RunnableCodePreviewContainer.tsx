@@ -1,5 +1,5 @@
 import { type RunnableCodePreviewOptions } from "@/types/code.js";
-import { Card, cssUtils } from "@react-md/core";
+import { Card } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import { type ReactElement, type ReactNode } from "react";
 import styles from "./RunnableCodePreviewContainer.module.scss";
@@ -17,14 +17,5 @@ export function RunnableCodePreviewContainer(
     return <>{children}</>;
   }
 
-  return (
-    <Card
-      className={cnb(
-        phone && styles.phone,
-        phone && cssUtils({ fullWidth: true })
-      )}
-    >
-      {children}
-    </Card>
-  );
+  return <Card className={cnb(phone && styles.phone)}>{children}</Card>;
 }

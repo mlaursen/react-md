@@ -13,6 +13,7 @@ export default function HelpAndErrorText(): ReactElement {
     >
       <NativeSelect
         label="Label"
+        stretch
         messageProps={{
           children: "This is some help text.",
         }}
@@ -24,6 +25,7 @@ export default function HelpAndErrorText(): ReactElement {
       </NativeSelect>
       <NativeSelect
         label="Label"
+        stretch
         error
         messageProps={{
           error: true,

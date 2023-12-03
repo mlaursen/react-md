@@ -20,7 +20,6 @@ import {
   useResizingTextArea,
   type TextAreaResize,
 } from "./useResizingTextArea.js";
-import { cssUtils } from "../cssUtils.js";
 
 export interface TextAreaProps
   extends FormFieldOptions,
@@ -122,6 +121,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       error = false,
       active = false,
       inline: propInline = false,
+      stretch = false,
       leftAddon,
       rightAddon,
       disableLeftAddonStyles = false,
@@ -211,7 +211,6 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
           className={cnb(
             "rmd-textarea-container__inner",
             !disableTransition && "rmd-textarea-container__inner--animate",
-            cssUtils({ fullWidth: true }),
             resizeContainerProps?.className
           )}
         >
@@ -261,6 +260,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
           dense={dense}
           inline={inline}
           active={active}
+          stretch={stretch}
           readOnly={readOnly}
           disabled={disabled}
           leftAddon={leftAddon}

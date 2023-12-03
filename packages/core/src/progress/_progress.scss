@@ -488,6 +488,8 @@ $variables: (
     @if not $disable-linear-horizontal {
       &--horizontal {
         @include use-var(height, linear-size);
+
+        width: 100%;
       }
     }
 

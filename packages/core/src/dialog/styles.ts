@@ -1,5 +1,4 @@
 import { cnb } from "cnbuilder";
-import { cssUtils } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-dialog");
@@ -34,16 +33,14 @@ export function dialog(options: DialogClassNameOptions = {}): string {
     outline = type === "full-page",
     className,
   } = options;
-  const isFullPage = type === "full-page";
 
   return cnb(
     styles({
       fixed,
       outline,
       centered: type === "centered",
-      "full-page": isFullPage,
+      "full-page": type === "full-page",
     }),
-    cssUtils({ fullWidth: isFullPage }),
     className
   );
 }

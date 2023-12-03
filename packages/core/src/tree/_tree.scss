@@ -63,6 +63,7 @@ $variables: (depth, item-padding, item-padding-base, item-padding-incrementor);
       // this is mostly for firefox. moving the mouse even 1px while clicking will
       // select the current item and all items to the tree root
       user-select: none;
+      width: 100%;
     }
 
     .rmd-tree-item {

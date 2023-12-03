@@ -2,7 +2,7 @@ import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
 import { render, screen } from "../../test-utils/index.js";
 import { SegmentedButtonContainer } from "../SegmentedButtonContainer.js";
-import { segmentedButtonContainer } from "../segmentedButtonContainerStyles.js";
+import { segmentedButtonContainerStyles } from "../segmentedButtonContainerStyles.js";
 
 describe("SegmentedButtonContainer", () => {
   it("should apply the correct styling, HTMLAttributes, and allow a ref", () => {
@@ -32,7 +32,7 @@ describe("SegmentedButtonContainer", () => {
 
   describe("styling utility class", () => {
     it("should be callable without any arguments", () => {
-      expect(segmentedButtonContainer()).toMatchSnapshot();
+      expect(segmentedButtonContainerStyles()).toMatchSnapshot();
     });
   });
 });

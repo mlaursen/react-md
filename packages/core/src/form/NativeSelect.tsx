@@ -128,6 +128,7 @@ export const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
       error = false,
       active = false,
       inline = false,
+      stretch = false,
       leftAddon,
       rightAddon: propRightAddon,
       leftAddonProps,
@@ -177,6 +178,7 @@ export const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
           dense={dense}
           inline={inline}
           active={active}
+          stretch={stretch}
           readOnly={readOnly}
           disabled={disabled}
           leftAddon={leftAddon}

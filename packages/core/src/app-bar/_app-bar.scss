@@ -134,6 +134,7 @@ $variables: (height, surface-background-color, surface-color);
       flex: 0 0 auto;
       gap: $gap;
       padding: $vertical-padding $horizontal-padding;
+      width: 100%;
 
       @if not $disable-fixed or not $disable-sticky {
         &--fixed {

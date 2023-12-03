@@ -1,5 +1,4 @@
 import { cnb } from "cnbuilder";
-import { cssUtils } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-segmented-button-container");
@@ -17,10 +16,10 @@ export interface SegmentedButtonContainerClassNameOptions {
 /**
  * @remarks \@since 6.0.0
  */
-export function segmentedButtonContainer(
+export function segmentedButtonContainerStyles(
   options: SegmentedButtonContainerClassNameOptions = {}
 ): string {
   const { className, disableFullWidth } = options;
 
-  return cnb(styles(), cssUtils({ fullWidth: !disableFullWidth }), className);
+  return cnb(styles({ "full-width": !disableFullWidth }), className);
 }

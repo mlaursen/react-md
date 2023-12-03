@@ -20,10 +20,7 @@ export default function ProgressbarTooltipExample(): ReactElement {
       <Button onClick={toggle} theme="primary" themeType="contained">
         {toggled ? "Stop" : "Start"}
       </Button>
-      <div
-        style={{ "--offset": `${value}%` }}
-        className={cssUtils({ className: styles.container, fullWidth: true })}
-      >
+      <div style={{ "--offset": `${value}%` }} className={styles.container}>
         <LinearProgress aria-label="Example" value={value} />
         <Tooltip
           visible

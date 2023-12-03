@@ -32,6 +32,9 @@ export interface TextFieldContainerClassNameOptions
   inline?: boolean;
 
   /** @defaultValue `false` */
+  stretch?: boolean;
+
+  /** @defaultValue `false` */
   label?: boolean;
 
   /** @defaultValue `false` */
@@ -55,6 +58,7 @@ export function textFieldContainer(
     label = false,
     active = false,
     inline = false,
+    stretch = false,
     readOnly = false,
     disabled = false,
     leftAddon = false,
@@ -78,6 +82,7 @@ export function textFieldContainer(
     styles({
       error,
       inline,
+      stretch,
       filled,
       outline,
       disabled: disabled || readOnly,
@@ -100,7 +105,7 @@ export function textFieldContainer(
       "underline-left-addon": isUnderlined && leftAddon,
       "underline-right-addon": isUnderlined && rightAddon,
     }),
-    cssUtils({ textColor, fullWidth: !inline }),
+    cssUtils({ textColor }),
     className
   );
 }

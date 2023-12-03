@@ -1,5 +1,4 @@
 import { cnb } from "cnbuilder";
-import { cssUtils } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
 import { tabIndicator } from "./tabIndicatorStyles.js";
 
@@ -44,10 +43,10 @@ export function tabList(options: TabListClassNameOptions = {}): string {
       [align]: true,
       padded,
       vertical,
+      "full-width": !inline,
       "no-scrollbar": !scrollbar,
     }),
     indicator && tabIndicator({ tablist: true, animate, vertical }),
-    cssUtils({ fullWidth: !inline }),
     className
   );
 }

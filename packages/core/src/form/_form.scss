@@ -608,7 +608,6 @@ $variables: (
 
     align-items: center;
     display: flex;
-    flex: 1 1 auto;
     position: relative;
 
     @if not $disable-text-field-container-dense {
@@ -623,6 +622,11 @@ $variables: (
 
     &--inline {
       display: inline-flex;
+    }
+
+    &--stretch {
+      flex: 1 1 auto;
+      width: 100%;
     }
 
     &--label {
@@ -846,6 +850,7 @@ $variables: (
   flex: 1 1 auto;
   height: 100%;
   outline: none;
+  width: 100%;
 
   &[disabled] {
     @include theme.theme-use-var(color, text-disabled-color);
@@ -958,6 +963,7 @@ $variables: (
 
       &__inner {
         height: get-var(textarea-height, 100%);
+        width: 100%;
 
         &--animate {
           transition: height
@@ -1181,6 +1187,7 @@ $variables: (
     margin: 0;
     opacity: 0;
     position: absolute;
+    width: 100%;
     z-index: 1;
 
     &:not(:disabled):hover {
@@ -1444,12 +1451,12 @@ $variables: (
     @include icon.use-var(gap, spacing);
 
     align-items: center;
-    display: inline-flex;
 
     @if not $disable-horizontal-slider {
-      // no styles required
-      // &--h {
-      // }
+      &--h {
+        display: flex;
+        width: 100%;
+      }
 
       &--pad-left {
         padding-left: $slider-container-padding;
@@ -1462,6 +1469,7 @@ $variables: (
 
     @if not $disable-vertical-slider {
       &--v {
+        display: inline-flex;
         flex-direction: column-reverse;
       }
 
@@ -1541,6 +1549,7 @@ $variables: (
 
         align-items: center;
         display: flex;
+        width: 100%;
 
         &::before {
           @include use-var(height, slider-inactive-size);
@@ -1996,13 +2005,16 @@ $variables: (
 
   @if not $disable-fieldset {
     .rmd-fieldset {
-      flex: 1 1 auto;
-
       &--unstyled {
         border: 0;
         margin: 0;
         min-width: 0; // just so it can shrink correctly in flex or grid
         padding: 0;
+      }
+
+      &--full-width {
+        flex: 1 1 auto;
+        width: 100%;
       }
     }
   }

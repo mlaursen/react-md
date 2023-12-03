@@ -17,7 +17,7 @@ exports[`FileInput should apply the correct styling, HTMLAttributes, and allow a
     Upload
   </span>
   <input
-    class="rmd-hidden-input rmd-full-width"
+    class="rmd-hidden-input"
     id="file-input-:r0:"
     type="file"
     value=""
@@ -42,7 +42,7 @@ exports[`FileInput should apply the correct styling, HTMLAttributes, and allow a
     Upload
   </span>
   <input
-    class="rmd-hidden-input rmd-full-width"
+    class="rmd-hidden-input"
     id="file-input-:r0:"
     style="color: white;"
     type="file"
@@ -68,7 +68,7 @@ exports[`FileInput should render as an icon button unless children are provided 
     Upload
   </span>
   <input
-    class="rmd-hidden-input rmd-full-width"
+    class="rmd-hidden-input"
     id="file-input-:r2:"
     type="file"
     value=""
@@ -92,7 +92,7 @@ exports[`FileInput should render as an icon button unless children are provided 
     Upload
   </span>
   <input
-    class="rmd-hidden-input rmd-full-width"
+    class="rmd-hidden-input"
     id="file-input-:r2:"
     type="file"
     value=""
@@ -112,7 +112,7 @@ exports[`FileInput should render as an icon button unless children are provided 
   </span>
   Upload
   <input
-    class="rmd-hidden-input rmd-full-width"
+    class="rmd-hidden-input"
     id="file-input-:r2:"
     type="file"
     value=""
@@ -132,7 +132,7 @@ exports[`FileInput should render as an icon button unless children are provided 
     file_upload
   </span>
   <input
-    class="rmd-hidden-input rmd-full-width"
+    class="rmd-hidden-input"
     id="file-input-:r2:"
     type="file"
     value=""
@@ -146,7 +146,7 @@ exports[`FileInput should render as an icon button unless children are provided 
 >
   Upload
   <input
-    class="rmd-hidden-input rmd-full-width"
+    class="rmd-hidden-input"
     id="file-input-:r2:"
     type="file"
     value=""
@@ -170,7 +170,7 @@ exports[`FileInput should support all the  button themes 1`] = `
     Upload
   </span>
   <input
-    class="rmd-hidden-input rmd-full-width"
+    class="rmd-hidden-input"
     id="file-input-:r1:"
     type="file"
     value=""
@@ -194,7 +194,7 @@ exports[`FileInput should support all the  button themes 2`] = `
     Upload
   </span>
   <input
-    class="rmd-hidden-input rmd-full-width"
+    class="rmd-hidden-input"
     id="file-input-:r1:"
     type="file"
     value=""
@@ -218,7 +218,7 @@ exports[`FileInput should support all the  button themes 3`] = `
     Upload
   </span>
   <input
-    class="rmd-hidden-input rmd-full-width"
+    class="rmd-hidden-input"
     id="file-input-:r1:"
     type="file"
     value=""
@@ -242,7 +242,7 @@ exports[`FileInput should support all the  button themes 4`] = `
     Upload
   </span>
   <input
-    class="rmd-hidden-input rmd-full-width"
+    class="rmd-hidden-input"
     id="file-input-:r1:"
     type="file"
     value=""
@@ -266,7 +266,7 @@ exports[`FileInput should support all the  button themes 5`] = `
     Upload
   </span>
   <input
-    class="rmd-hidden-input rmd-full-width"
+    class="rmd-hidden-input"
     id="file-input-:r1:"
     type="file"
     value=""
@@ -290,7 +290,7 @@ exports[`FileInput should support all the  button themes 6`] = `
     Upload
   </span>
   <input
-    class="rmd-hidden-input rmd-full-width"
+    class="rmd-hidden-input"
     id="file-input-:r1:"
     type="file"
     value=""
@@ -314,7 +314,7 @@ exports[`FileInput should support all the  button themes 7`] = `
     Upload
   </span>
   <input
-    class="rmd-hidden-input rmd-full-width"
+    class="rmd-hidden-input"
     id="file-input-:r1:"
     type="file"
     value=""
@@ -338,7 +338,7 @@ exports[`FileInput should support all the  button themes 8`] = `
     Upload
   </span>
   <input
-    class="rmd-hidden-input rmd-full-width"
+    class="rmd-hidden-input"
     id="file-input-:r1:"
     type="file"
     value=""
@@ -362,7 +362,7 @@ exports[`FileInput should support all the  button themes 9`] = `
     Upload
   </span>
   <input
-    class="rmd-hidden-input rmd-full-width"
+    class="rmd-hidden-input"
     id="file-input-:r1:"
     type="file"
     value=""
@@ -386,7 +386,7 @@ exports[`FileInput should support all the  button themes 10`] = `
     Upload
   </span>
   <input
-    class="rmd-hidden-input rmd-full-width"
+    class="rmd-hidden-input"
     id="file-input-:r1:"
     type="file"
     value=""
@@ -410,7 +410,7 @@ exports[`FileInput should support all the  button themes 11`] = `
     Upload
   </span>
   <input
-    class="rmd-hidden-input rmd-full-width"
+    class="rmd-hidden-input"
     id="file-input-:r1:"
     type="file"
     value=""
@@ -434,7 +434,7 @@ exports[`FileInput should support all the  button themes 12`] = `
     Upload
   </span>
   <input
-    class="rmd-hidden-input rmd-full-width"
+    class="rmd-hidden-input"
     id="file-input-:r1:"
     type="file"
     value=""
@@ -458,7 +458,7 @@ exports[`FileInput should support all the  button themes 13`] = `
     Upload
   </span>
   <input
-    class="rmd-hidden-input rmd-full-width"
+    class="rmd-hidden-input"
     id="file-input-:r1:"
     type="file"
     value=""
@@ -482,7 +482,7 @@ exports[`FileInput should support all the  button themes 14`] = `
     Upload
   </span>
   <input
-    class="rmd-hidden-input rmd-full-width"
+    class="rmd-hidden-input"
     id="file-input-:r1:"
     type="file"
     value=""
@@ -506,7 +506,7 @@ exports[`FileInput should support all the  button themes 15`] = `
     Upload
   </span>
   <input
-    class="rmd-hidden-input rmd-full-width"
+    class="rmd-hidden-input"
     id="file-input-:r1:"
     type="file"
     value=""
@@ -530,7 +530,7 @@ exports[`FileInput should support all the  button themes 16`] = `
     Upload
   </span>
   <input
-    class="rmd-hidden-input rmd-full-width"
+    class="rmd-hidden-input"
     id="file-input-:r1:"
     type="file"
     value=""
@@ -554,7 +554,7 @@ exports[`FileInput should support all the  button themes 17`] = `
     Upload
   </span>
   <input
-    class="rmd-hidden-input rmd-full-width"
+    class="rmd-hidden-input"
     id="file-input-:r1:"
     type="file"
     value=""
@@ -578,7 +578,7 @@ exports[`FileInput should support all the  button themes 18`] = `
     Upload
   </span>
   <input
-    class="rmd-hidden-input rmd-full-width"
+    class="rmd-hidden-input"
     id="file-input-:r1:"
     type="file"
     value=""
@@ -603,7 +603,7 @@ exports[`FileInput should update the default SrOnly text to be phoneOnly when th
     Upload
   </span>
   <input
-    class="rmd-hidden-input rmd-full-width"
+    class="rmd-hidden-input"
     id="file-input-:r3:"
     type="file"
     value=""

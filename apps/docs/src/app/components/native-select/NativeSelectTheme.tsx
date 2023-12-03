@@ -10,25 +10,25 @@ export default function NativeSelectTheme(): ReactElement {
         fullWidth: true,
       })}
     >
-      <NativeSelect label="Label" theme="none">
+      <NativeSelect label="Label" stretch theme="none">
         <option>Option 1</option>
         <option>Option 2</option>
         <option>Option 3</option>
         <option>Option 4</option>
       </NativeSelect>
-      <NativeSelect label="Label" theme="underline">
+      <NativeSelect label="Label" stretch theme="underline">
         <option>Option 1</option>
         <option>Option 2</option>
         <option>Option 3</option>
         <option>Option 4</option>
       </NativeSelect>
-      <NativeSelect label="Label" theme="filled">
+      <NativeSelect label="Label" stretch theme="filled">
         <option>Option 1</option>
         <option>Option 2</option>
         <option>Option 3</option>
         <option>Option 4</option>
       </NativeSelect>
-      <NativeSelect label="Label" theme="outline">
+      <NativeSelect label="Label" stretch theme="outline">
         <option>Option 1</option>
         <option>Option 2</option>
         <option>Option 3</option>

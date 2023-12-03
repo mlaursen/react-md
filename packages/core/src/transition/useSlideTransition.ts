@@ -1,6 +1,5 @@
 "use client";
 import { cnb } from "cnbuilder";
-import { cssUtils } from "../cssUtils.js";
 import type {
   CSSTransitionClassNames,
   CSSTransitionHookReturnValue,
@@ -106,7 +105,7 @@ export function useSlideTransition<E extends HTMLElement>(
   return useCSSTransition({
     ...transitionOptions,
     timeout,
-    className: cnb("rmd-slide", cssUtils({ fullWidth: true }), className),
+    className: cnb("rmd-slide", className),
     classNames: DEFAULT_SLIDE_TRANSITION_CLASSNAMES,
     temporary,
     exitedHidden,

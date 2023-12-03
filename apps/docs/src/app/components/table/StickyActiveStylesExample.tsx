@@ -15,9 +15,7 @@ import styles from "./StickyActiveStylesExample.module.scss";
 
 export default function StickyActiveStylesExample(): ReactElement {
   return (
-    <TableContainer
-      className={cssUtils({ className: styles.container, fullWidth: true })}
-    >
+    <TableContainer className={styles.container}>
       <Table fullWidth>
         <TableHeader
           sticky
