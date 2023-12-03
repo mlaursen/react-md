@@ -2,6 +2,7 @@
 @use "../transition/transition";
 @use "../icon/icon";
 @use "../button/button";
+@use "../theme/theme";
 
 $disable-everything: false !default;
 $disable-margin-top-transition: false !default;
@@ -11,6 +12,9 @@ $spacing: 1rem !default;
 $button-spacing: icon.$spacing !default;
 $rotate-from: icon.$rotate-from !default;
 $rotate-to: icon.$rotate-to !default;
+
+$box-shadow-overlay-height: 10px !default;
+$box-shadow-overlay-bottom: -6px !default;
 
 @mixin styles {
   @if not $disable-everything {
@@ -28,23 +32,28 @@ $rotate-to: icon.$rotate-to !default;
         }
       }
 
-      // once firefox supports the `:has` selector, I can handle most of this in CSS instead of javascript:
-      // &:where(:not(.rmd-expansion-panel--expanded)):has(+ .rmd-expansion-panel) {
-      //   border-bottom-left-radius: 0;
-      //   border-bottom-right-radius: 0;
-      //   position: relative;
+      @if not utils.$disable-has-selectors {
+        // this makes it so that the box-shadow between closed panels is not
+        // visible by covering it in a small overlay of the current
+        // background-color
+        &:where(:not(.rmd-expansion-panel--expanded)):has(
+            + .rmd-expansion-panel
+          ) {
+          position: relative;
 
-      //   &::after {
-      //     background: #fff;
-      //     bottom: -5px;
-      //     content: "";
-      //     height: 8px;
-      //     left: 0;
-      //     position: absolute;
-      //     right: 0;
-      //     z-index: 1;
-      //   }
-      // }
+          &::after {
+            @include theme.theme-use-var(background-color);
+
+            bottom: $box-shadow-overlay-bottom;
+            content: "";
+            height: $box-shadow-overlay-height;
+            left: 0;
+            position: absolute;
+            right: 0;
+            z-index: 1;
+          }
+        }
+      }
     }
 
     // .rmd-expansion-panel__header {
