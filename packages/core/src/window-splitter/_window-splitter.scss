@@ -44,6 +44,14 @@ $variables: (top, right, bottom, left, opacity, position);
       @include utils.mouse-hover {
         @include set-var(opacity, 1);
       }
+      @include utils.keyboard-only {
+        // Do not use `:focus-visible` here since since it'll still be active
+        // after dragging with a mouse until the user clicks something else. The
+        // `--dragging` state handles that part
+        &:focus {
+          @include set-var(opacity, 1);
+        }
+      }
 
       background-color: transparent;
       border: 0;
@@ -58,18 +66,6 @@ $variables: (top, right, bottom, left, opacity, position);
         content: "";
         inset: 0;
         position: absolute;
-      }
-
-      @if utils.$disable-focus-visible {
-        @include utils.keyboard-only {
-          &:focus {
-            @include set-var(opacity, 1);
-          }
-        }
-      } @else {
-        &:focus-visible {
-          @include set-var(opacity, 1);
-        }
       }
 
       @if not $disable-horizontal {
