@@ -1,17 +1,17 @@
 "use client";
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import { useSsr } from "./SsrProvider.js";
 import { type ElementSize } from "./types.js";
-import { useResizeListener } from "./useResizeListener.js";
+import {
+  useResizeListener,
+  type ResizeListenerOptions,
+} from "./useResizeListener.js";
 
 /**
  * @remarks \@since 6.0.0
  */
-export interface WindowSizeOptions extends AddEventListenerOptions {
-  /**
-   * @defaultValue `true`
-   */
-  throttle?: boolean;
-
+export interface WindowSizeOptions
+  extends Omit<ResizeListenerOptions, "disabled" | "onUpdate"> {
   /**
    * Set this to `true` to ignore resize events that only updated the height.
    * The hook can be disabled by setting this and {@link disableWidth} to
@@ -66,8 +66,9 @@ export function useWindowSize(options: WindowSizeOptions = {}): ElementSize {
     disableHeight,
   } = options;
 
+  const ssr = useSsr();
   const [size, setSize] = useState(() => {
-    if (typeof window === "undefined") {
+    if (typeof window === "undefined" || ssr) {
       return {
         height: Infinity,
         width: Infinity,
@@ -87,7 +88,7 @@ export function useWindowSize(options: WindowSizeOptions = {}): ElementSize {
     passive,
     throttle,
     disabled: disableHeight && disableWidth,
-    onUpdate() {
+    onUpdate: useCallback(() => {
       setSize((prevSize) => {
         const nextSize: ElementSize = {
           height: window.innerHeight,
@@ -101,7 +102,7 @@ export function useWindowSize(options: WindowSizeOptions = {}): ElementSize {
 
         return isHeightChange || isWidthChange ? nextSize : prevSize;
       });
-    },
+    }, [disableHeight, disableWidth]),
   });
 
   return size;

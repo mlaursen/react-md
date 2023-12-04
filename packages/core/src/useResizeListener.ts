@@ -25,7 +25,7 @@ export interface ResizeListenerOptions extends AddEventListenerOptions {
 
   /**
    * This function will be called whenever the resize event is fired on the
-   * `window`.
+   * `window`. This should be wrapped in `useCallback`.
    */
   onUpdate(event: Event): void;
 }
@@ -93,6 +93,8 @@ export function useResizeListener(options: ResizeListenerOptions): void {
       passive,
     });
     eventHandler.add(onUpdate);
+
+    window.dispatchEvent(new Event("resize"));
     return () => {
       eventHandler.remove(onUpdate);
     };
