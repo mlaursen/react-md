@@ -292,6 +292,7 @@ export * from "./typography/WritingDirectionProvider.js";
 export * from "./useAsyncAction.js";
 export * from "./useDebouncedFunction.js";
 export * from "./useDropzone.js";
+export * from "./useElementSize.js";
 export * from "./useEnsuredId.js";
 export * from "./useEnsuredRef.js";
 export * from "./useHtmlClassName.js";

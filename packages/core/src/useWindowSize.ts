@@ -1,14 +1,7 @@
 "use client";
 import { useState } from "react";
+import { type ElementSize } from "./types.js";
 import { useResizeListener } from "./useResizeListener.js";
-
-/**
- * @remarks \@since 6.0.0
- */
-export interface WindowSize {
-  height: number;
-  width: number;
-}
 
 /**
  * @remarks \@since 6.0.0
@@ -62,7 +55,7 @@ export interface WindowSizeOptions extends AddEventListenerOptions {
  *
  * @remarks \@since 6.0.0
  */
-export function useWindowSize(options: WindowSizeOptions = {}): WindowSize {
+export function useWindowSize(options: WindowSizeOptions = {}): ElementSize {
   const {
     once,
     signal,
@@ -76,8 +69,8 @@ export function useWindowSize(options: WindowSizeOptions = {}): WindowSize {
   const [size, setSize] = useState(() => {
     if (typeof window === "undefined") {
       return {
-        height: 0,
-        width: 0,
+        height: Infinity,
+        width: Infinity,
       };
     }
 
@@ -96,7 +89,7 @@ export function useWindowSize(options: WindowSizeOptions = {}): WindowSize {
     disabled: disableHeight && disableWidth,
     onUpdate() {
       setSize((prevSize) => {
-        const nextSize: WindowSize = {
+        const nextSize: ElementSize = {
           height: window.innerHeight,
           width: window.innerWidth,
         };

@@ -1,9 +1,9 @@
 "use client";
 import type { Ref, RefCallback } from "react";
-import { useCallback, useMemo, useState } from "react";
+import { useMemo } from "react";
 import type { DefinedCSSVariableName } from "../theme/types.js";
 import type { CSSVariable } from "../theme/useCSSVariables.js";
-import { useResizeObserver } from "../useResizeObserver.js";
+import { useElementSize } from "../useElementSize.js";
 
 declare module "react" {
   interface CSSProperties {
@@ -74,16 +74,12 @@ export interface LayoutAppBarHeightResult {
 export function useLayoutAppBarHeight(
   ref?: Ref<HTMLDivElement>
 ): LayoutAppBarHeightResult {
-  const [height, setHeight] = useState<number | undefined>();
-  const targetRef = useResizeObserver({
+  const { height, elementRef } = useElementSize({
     ref,
-    onUpdate: useCallback((entry) => {
-      setHeight(entry.borderBoxSize[0].blockSize);
-    }, []),
     disableWidth: true,
   });
   const variables = useMemo<CSSVariable<DefinedCSSVariableName>[]>(() => {
-    if (typeof height !== "number") {
+    if (height === Infinity) {
       return [];
     }
 
@@ -93,6 +89,6 @@ export function useLayoutAppBarHeight(
   return {
     height,
     variables,
-    appBarRef: targetRef,
+    appBarRef: elementRef,
   };
 }

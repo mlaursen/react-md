@@ -1,7 +1,9 @@
 "use client";
-import type { Ref, RefCallback } from "react";
-import { useEffect } from "react";
+import { useEffect, type Ref, type RefCallback } from "react";
 import { useEnsuredRef } from "./useEnsuredRef.js";
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { type useElementSize } from "./useElementSize.js";
 
 /**
  * @remarks \@since 6.0.0
@@ -189,48 +191,9 @@ export interface ResizeObserverHookOptions<E extends HTMLElement> {
 }
 
 /**
- * @example
- * Simple Example
- * ```tsx
- * import { useResizeObserver } from "@react-md/core";
- * import type { ReactElement } from "react";
- * import { useState } from "react";
- *
- * interface Size {
- *   height: number;
- *   width: number;
- * }
- *
- * function Example(): ReactElement {
- *   const [{ height, width }, setSize] = useState<Size>({
- *     height: 0,
- *     width: 0,
- *   });
- *   const targetRef = useResizeObserver({
- *     onResize: useCallback((entry) => {
- *       const { height, width } = entry.borderBox;
- *       setSize({ height, width });
- *     }, []),
- *   });
- *
- *   return (
- *     <div ref={targetRef}>
- *       <table>
- *         <tbody>
- *           <tr>
- *             <th scope="col">Height:</th>
- *             <td>{height}</td>
- *           </tr>
- *           <tr>
- *             <th scope="col">Width:</th>
- *             <td>{width}</td>
- *           </tr>
- *         </tbody>
- *       </table>
- *     </div>
- *   );
- * }
- * ```
+ * The resize observer is used to track the size changes of a specific element.
+ * For most cases you can use the {@link useElementSize} instead, but this hook
+ * can be used for more complex behavior with the {@link ResizeObserverEntry}.
  *
  * @remarks
  * \@since 2.3.0

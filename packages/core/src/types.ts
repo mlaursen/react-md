@@ -174,3 +174,11 @@ export type CssPosition = "fixed" | "sticky" | "static";
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type AnyFunction = (...args: any[]) => any | void;
+
+/**
+ * @remarks \@since 6.0.0
+ */
+export interface ElementSize {
+  height: number;
+  width: number;
+}
