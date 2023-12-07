@@ -3,4 +3,14 @@ import { type TableOfContentsItem } from "@/components/TableOfContents/types.js"
 
 export const toc = [
   { id: "sheet", depth: 1, value: "Sheet" },
+  {
+    id: "simple-example",
+    depth: 1,
+    value: "Simple Example",
+    items: [
+      { id: "sheet-positions", depth: 2, value: "Sheet Positions" },
+      { id: "horizontal-size", depth: 2, value: "Horizontal Size" },
+      { id: "vertical-size", depth: 2, value: "Vertical Size" },
+    ],
+  },
 ] satisfies readonly TableOfContentsItem[];
