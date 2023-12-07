@@ -10,7 +10,6 @@ import type {
 } from "../draggable/useDraggable.js";
 import { useDraggable } from "../draggable/useDraggable.js";
 import { useEnsuredId } from "../useEnsuredId.js";
-import { getPercentage } from "../utils/getPercentage.js";
 
 declare module "react" {
   interface CSSProperties {
@@ -76,9 +75,7 @@ export interface WindowSplitterImplementation<
 }
 
 /**
- * You are most likely looking for the `useWindowSplitter` or
- * `useLocalStorageWindowSplitter` hooks instead since this is a low-level hook
- * to implement those two versions.
+ * Used to control the state for the `WindowSplitter` component.
  *
  * @example
  * Custom Implementation
@@ -113,14 +110,7 @@ export interface WindowSplitterImplementation<
 export function useWindowSplitter<E extends HTMLElement = HTMLButtonElement>(
   options: WindowSplitterOptions<E>
 ): WindowSplitterImplementation<E> {
-  const {
-    id: propId,
-    min,
-    max,
-    reversed = false,
-    vertical,
-    withinOffsetParent,
-  } = options;
+  const { id: propId, reversed = false, vertical, defaultValue } = options;
 
   const id = useEnsuredId(propId, "splitter");
   const draggableImplementation = useDraggable(options);
@@ -128,15 +118,9 @@ export function useWindowSplitter<E extends HTMLElement = HTMLButtonElement>(
     value,
     dragging,
     draggableRef,
-    dragPercentage,
     mouseEventHandlers,
     keyboardEventHandlers,
   } = draggableImplementation;
-
-  const percentage =
-    dragging && withinOffsetParent
-      ? dragPercentage
-      : getPercentage({ min, max, value });
 
   return {
     ...draggableImplementation,

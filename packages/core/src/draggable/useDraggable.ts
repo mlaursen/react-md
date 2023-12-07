@@ -13,6 +13,7 @@ import { useDir } from "../typography/WritingDirectionProvider.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
 import { useEnsuredState } from "../useEnsuredState.js";
 import { useHtmlClassName } from "../useHtmlClassName.js";
+import { getPercentage } from "../utils/getPercentage.js";
 import { getRangeDefaultValue } from "../utils/getRangeDefaultValue.js";
 import { getRangeSteps } from "../utils/getRangeSteps.js";
 import { nearest } from "../utils/nearest.js";
@@ -293,6 +294,18 @@ export interface DraggableImplementation<E extends HTMLElement = HTMLElement>
   decrement(): void;
 
   /**
+   * THe current percentage the `value` is within the range.
+   *
+   * ```ts
+   * const percentage =
+   *   dragging && withinOffsetParent
+   *     ? : dragPercentage
+   *     : getPercentage({ min, max, value });
+   * ```
+   */
+  percentage: number;
+
+  /**
    * A ref that **Must** be passed to the element that should be draggable.
    */
   draggableRef: RefCallback<E>;
@@ -301,29 +314,7 @@ export interface DraggableImplementation<E extends HTMLElement = HTMLElement>
    * This value will only update while dragging with a mouse or touch and should
    * be used for the positioning styles while dragging.
    *
-   * @example
-   * Inline Styles
-   * ```ts
-   * import { getPercentage, useDraggable } from "@react-md/core";
-   *
-   * const min = 120;
-   * const max = 256;
-   * const { value, dragging, dragPercentage } = useDraggable({
-   *   min,
-   *   max,
-   *   defaultValue: min,
-   * });
-   *
-   * const percentage = dragging
-   *   ? dragPercentage
-   *   : getPercentage({ min, max, value });
-   *
-   * const style: CSSProperties = {
-   *   left: `${percentage * 100}%`<>
-   * };
-   *
-   * // do stuff
-   * ```
+   * Note: The {@Link percentage} will use this value while dragging.
    */
   dragPercentage: number;
 
@@ -399,6 +390,10 @@ export function useDraggable<E extends HTMLElement>(
   });
 
   const isRTL = useDir().dir === "rtl";
+  const percentage =
+    dragging && withinOffsetParent
+      ? dragPercentage
+      : getPercentage({ min, max, value });
   const maximum = useCallback(() => {
     setValue(max);
   }, [max, setValue]);
@@ -767,6 +762,7 @@ export function useDraggable<E extends HTMLElement>(
     decrement,
     draggedOnce,
     draggableRef: ref,
+    percentage,
     dragPercentage,
     touchEventHandlers,
     mouseEventHandlers,
