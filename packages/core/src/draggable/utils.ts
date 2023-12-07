@@ -65,6 +65,8 @@ interface RelativeDragPositionOptions extends DragPositionOptions {
   min: number;
   max: number;
   step: number;
+  rangeMin: number;
+  rangeMax: number;
 }
 
 /**
@@ -81,7 +83,8 @@ interface RelativeDragPosition {
 export const getRelativeDragPosition = (
   options: RelativeDragPositionOptions
 ): RelativeDragPosition => {
-  const { min, max, step, isRTL, vertical, container } = options;
+  const { min, max, rangeMin, rangeMax, step, isRTL, vertical, container } =
+    options;
 
   const { height, width, left, top } = container.getBoundingClientRect();
   const containerSize = vertical ? height : width;
@@ -97,9 +100,9 @@ export const getRelativeDragPosition = (
     dragPercentage = 1 - dragPercentage;
   }
 
-  const range = max - min;
-  const steps = getRangeSteps({ min, max, step });
-  const value = dragPercentage * range + min;
+  const range = rangeMax - rangeMin;
+  const steps = getRangeSteps({ min: rangeMin, max: rangeMax, step });
+  const value = dragPercentage * range + rangeMin;
   const nextValue = nearest({
     min,
     max,
@@ -122,8 +125,6 @@ interface UpdateDragPositionOptions
   event: ClientPositionEvent;
   nodeRef: RefObject<HTMLElement>;
   focus?: boolean;
-  rangeMin: number;
-  rangeMax: number;
   isDragStart: boolean;
   setValue(value: number): void;
   setDragging(dragging: boolean): void;
@@ -196,8 +197,10 @@ export const updateDragPosition = (
   }
 
   const { value, dragPercentage } = getRelativeDragPosition({
-    min: rangeMin,
-    max: rangeMax,
+    min,
+    max,
+    rangeMin,
+    rangeMax,
     step,
     event,
     isRTL,
