@@ -36,7 +36,7 @@ export function nearest(options: NearestOptions): number {
   const step = range / steps;
   const decimals = Number.isInteger(step)
     ? range % steps
-    : step.toString().split(".")[1].length;
+    : `${step}`.split(".")[1].length;
 
   return Math.min(
     max,

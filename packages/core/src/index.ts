@@ -313,6 +313,7 @@ export * from "./utils/applyRef.js";
 export * from "./utils/bem.js";
 export * from "./utils/filters.js";
 export * from "./utils/getClientPosition.js";
+export * from "./utils/getMiddleOfRange.js";
 export * from "./utils/getPercentage.js";
 export * from "./utils/getRangeDefaultValue.js";
 export * from "./utils/getRangeSteps.js";

@@ -13,11 +13,11 @@ import { useDir } from "../typography/WritingDirectionProvider.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
 import { useEnsuredState } from "../useEnsuredState.js";
 import { useHtmlClassName } from "../useHtmlClassName.js";
+import { getRangeDefaultValue } from "../utils/getRangeDefaultValue.js";
 import { getRangeSteps } from "../utils/getRangeSteps.js";
 import { nearest } from "../utils/nearest.js";
 import { withinRange } from "../utils/withinRange.js";
 import {
-  getDraggableDefaultValue,
   isMouseDragStartEvent,
   isTouchDragStartEvent,
   updateDragPosition,
@@ -385,7 +385,12 @@ export function useDraggable<E extends HTMLElement>(
   const [value, setValue] = useEnsuredState({
     value: propValue,
     setValue: propSetValue,
-    defaultValue: () => getDraggableDefaultValue({ min, max, defaultValue }),
+    defaultValue: getRangeDefaultValue({
+      min,
+      max,
+      step: 1,
+      defaultValue,
+    }),
   });
   const [dragging, setDragging] = useEnsuredState({
     value: propDragging,

@@ -17,8 +17,8 @@ export interface RangeStepsOptions {
  * \@since 6.0.0 Converted to using an object instead of multiple arguments and
  * renamed from `getSteps` to `getRangeSteps`.
  */
-export const getRangeSteps = (options: RangeStepsOptions): number => {
+export function getRangeSteps(options: RangeStepsOptions): number {
   const { min, max, step } = options;
 
   return Math.abs(max - min) / step;
-};
+}

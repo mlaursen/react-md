@@ -1,10 +1,9 @@
-import type { MouseEvent, RefObject, TouchEvent } from "react";
-import type { UseStateInitializer } from "../types.js";
-import type {
-  ClientPositionEvent,
-  ClientPositionOptions,
+import { type MouseEvent, type RefObject, type TouchEvent } from "react";
+import {
+  getClientPosition,
+  type ClientPositionEvent,
+  type ClientPositionOptions,
 } from "../utils/getClientPosition.js";
-import { getClientPosition } from "../utils/getClientPosition.js";
 import { getRangeSteps } from "../utils/getRangeSteps.js";
 import { nearest } from "../utils/nearest.js";
 import { withinRange } from "../utils/withinRange.js";
@@ -210,42 +209,6 @@ export const updateDragPosition = (
   setValue(value);
   setDragPercentage(dragPercentage);
 };
-
-/**
- * @internal
- */
-export interface DraggableDefaultValueOptions {
-  min: number;
-  max: number;
-  defaultValue: UseStateInitializer<number> | undefined;
-}
-
-/**
- * @internal
- */
-export function getDraggableDefaultValue(
-  options: DraggableDefaultValueOptions
-): number {
-  const { min, max, defaultValue } = options;
-
-  let value: number;
-  if (typeof defaultValue === "function") {
-    value = defaultValue();
-  } else if (typeof defaultValue === "undefined") {
-    value = Math.ceil((max - min) / 2);
-  } else {
-    value = defaultValue;
-  }
-
-  if (value < min || value > max) {
-    // TODO: Determine if this should just be a `Math.min(Math.max(min, value), max)` instead
-    throw new Error(
-      "useDraggable default value must be between the min and max values"
-    );
-  }
-
-  return value;
-}
 
 /**
  * @internal
