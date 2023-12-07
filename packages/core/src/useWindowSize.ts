@@ -13,6 +13,20 @@ import {
 export interface WindowSizeOptions
   extends Omit<ResizeListenerOptions, "disabled" | "onUpdate"> {
   /**
+   * The default value to use in SSR environments for the window's height.
+   *
+   * @defaultValue `0`
+   */
+  ssrHeight?: number;
+
+  /**
+   * The default value to use in SSR environments for the window's width.
+   *
+   * @defaultValue `0`
+   */
+  ssrWidth?: number;
+
+  /**
    * Set this to `true` to ignore resize events that only updated the height.
    * The hook can be disabled by setting this and {@link disableWidth} to
    * `true`.
@@ -62,6 +76,8 @@ export function useWindowSize(options: WindowSizeOptions = {}): ElementSize {
     capture,
     passive,
     throttle,
+    ssrHeight = 0,
+    ssrWidth = 0,
     disableWidth,
     disableHeight,
   } = options;
@@ -70,8 +86,8 @@ export function useWindowSize(options: WindowSizeOptions = {}): ElementSize {
   const [size, setSize] = useState(() => {
     if (typeof window === "undefined" || ssr) {
       return {
-        height: Infinity,
-        width: Infinity,
+        height: ssrHeight,
+        width: ssrWidth,
       };
     }
 

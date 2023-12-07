@@ -79,7 +79,7 @@ export function useLayoutAppBarHeight(
     disableWidth: true,
   });
   const variables = useMemo<CSSVariable<DefinedCSSVariableName>[]>(() => {
-    if (height === Infinity) {
+    if (Number.isNaN(height)) {
       return [];
     }
 

@@ -42,7 +42,7 @@ beforeEach(() => {
 });
 
 describe("useWindowSize", () => {
-  it("should default to Infinity when in ssr mode", async () => {
+  it("should default to 0 when in ssr mode", async () => {
     // disable throttle so don't need to await the throttled hydration
     const initialRef = createRef<ElementSize | null>();
     render(
@@ -52,8 +52,35 @@ describe("useWindowSize", () => {
     );
 
     expect(initialRef.current).toEqual({
-      height: Infinity,
-      width: Infinity,
+      height: 0,
+      width: 0,
+    });
+
+    const height = screen.getByTestId("height");
+    const width = screen.getByTestId("width");
+    await waitFor(() => {
+      expect(getValue(height)).toBe(HEIGHT);
+    });
+    expect(getValue(width)).toBe(WIDTH);
+  });
+
+  it("should allow custom ssr default values in ssr mode", async () => {
+    const initialRef = createRef<ElementSize | null>();
+    const ssrHeight = 1080;
+    const ssrWidth = 1920;
+    render(
+      <SsrProvider ssr>
+        <Test
+          initialRef={initialRef}
+          ssrHeight={ssrHeight}
+          ssrWidth={ssrWidth}
+        />
+      </SsrProvider>
+    );
+
+    expect(initialRef.current).toEqual({
+      height: ssrHeight,
+      width: ssrWidth,
     });
 
     const height = screen.getByTestId("height");

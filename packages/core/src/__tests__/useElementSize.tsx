@@ -39,7 +39,7 @@ const renderMain = (options: ElementSizeOptions<HTMLElement> = {}) => {
 };
 
 describe("useElementSize", () => {
-  it("should default to a height and width of Infinity", async () => {
+  it("should default to a height and width of 0", async () => {
     const elementSize: MutableRefObject<ElementSize | null> = {
       current: null,
     };
@@ -58,8 +58,8 @@ describe("useElementSize", () => {
 
     render(<Test />);
     expect(elementSize.current).toEqual({
-      height: Infinity,
-      width: Infinity,
+      height: 0,
+      width: 0,
     });
   });
 

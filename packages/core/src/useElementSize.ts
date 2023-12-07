@@ -11,7 +11,7 @@ import {
  */
 export interface ElementSizeOptions<E extends HTMLElement>
   extends Omit<ResizeObserverHookOptions<E>, "onUpdate"> {
-  /** @defaultValue `{ height: Infinity, width: Infinity }` */
+  /** @defaultValue `{ height: 0, width: 0 }` */
   defaultValue?: UseStateInitializer<ElementSize>;
 }
 
@@ -58,8 +58,8 @@ export function useElementSize<E extends HTMLElement>(
 
     return (
       defaultValue ?? {
-        height: Infinity,
-        width: Infinity,
+        height: 0,
+        width: 0,
       }
     );
   });
