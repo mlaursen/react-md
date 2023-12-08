@@ -258,90 +258,6 @@ export const API_LOOKUP: ApiLookup = {
       extendedTypes: [{ name: "ButtonProps", href: "#" }],
     },
   ],
-  Avatar: [
-    {
-      id: "avatar",
-      name: "Avatar",
-      props: [
-        {
-          id: "avatar-props-alt",
-          name: "alt",
-          type: "string",
-          required: false,
-          description:
-            "An optional alt tag to display on the `<img>` when the `src` prop is also\napplied.\n\nFor accessibility and screen readers, you normally do not want to actually\nprovide this prop. This should only be used if the `Avatar` is not\naccompanied by some other component or main content as it will be extra\nnoise for screen readers.",
-          defaultValue: '""',
-        },
-        {
-          id: "avatar-props-classname",
-          name: "className",
-          type: "string",
-          required: false,
-          description: "",
-        },
-        {
-          id: "avatar-props-color",
-          name: "color",
-          type: "string",
-          required: false,
-          description:
-            "An optional color to apply to the avatar. This will apply a className of\n`rmd-avatar--${color}`, so only the keys from the `$rmd-avatar-colors` Map\nare supported by default. It is recommended to create custom colors using\nthe `rmd-avatar-theme-update-var` mixin with custom class names if the\ndefault colors aren't extensive enough.",
-          defaultValue: '""',
-        },
-        {
-          id: "avatar-props-imgprops",
-          name: "imgProps",
-          type: "PropsWithRef<AvatarImgAttributes, HTMLImageElement>",
-          required: false,
-          description:
-            "An optional object of image props and ref that can be used to create an\nimage within the `Avatar`. This can be useful to add a custom `style`\nor`className` to the `<img>` element if that additional customization is\nneeded.\n\nNote: The values in this object will override the `src`, `alt`, and\n`referrerPolicy` root level avatar props if they exist on this object.",
-        },
-        {
-          id: "avatar-props-referrerpolicy",
-          name: "referrerPolicy",
-          type: "HTMLAttributeReferrerPolicy",
-          required: false,
-          description:
-            "An optional `referrerPolicy` to provide to the `<img>` element if the `src`\nor `imgProps` props are provided.",
-        },
-        {
-          id: "avatar-props-size",
-          name: "size",
-          type: '"icon" | "avatar"',
-          required: false,
-          description: "",
-          defaultValue: '"avatar"',
-        },
-        {
-          id: "avatar-props-src",
-          name: "src",
-          type: "string",
-          required: false,
-          description:
-            "This should be an image `src` attribute to create an avatar from. When this\nprop is defined, you should not add any children to the avatar as the\npositioning will break.",
-        },
-        {
-          id: "avatar-props-theme",
-          name: "theme",
-          type: "ThemeColor",
-          required: false,
-          description:
-            "This can be used instead of {@link color } to set the background color to one of\nthe theme colors. This will also set the text color to either be `#000` or\n`#fff` automatically to enforce the correct aspect ratio.",
-        },
-      ],
-      isClient: false,
-      examples: [
-        {
-          name: "Simple Example",
-          code: 'import { Avatar } from "@react-md/core";\nimport { type ReactElement } from "react";\n\nexport function Example(): ReactElement {\n  return <Avatar src="/path-to-img.png" />;\n}',
-          lang: "tsx",
-        },
-      ],
-      description:
-        "An `Avatar` is generally used to represent objects or people within your app.\nThe avatar can consist of an image, an icon, or some text to display. When\nthe avatar is not an image, different themes can be applied to make the\navatar more unique.",
-      extendedTypes: [{ name: "HTMLAttributes<HTMLSpanElement>", href: "#" }],
-    },
-  ],
   Badge: [
     {
       id: "badge",
@@ -1944,6 +1860,14 @@ export const API_LOOKUP: ApiLookup = {
           defaultValue: '"auto"',
         },
         {
+          id: "list-item-props-multiline",
+          name: "multiline",
+          type: "boolean",
+          required: false,
+          description: "",
+          defaultValue: "false",
+        },
+        {
           id: "list-item-props-presentational",
           name: "presentational",
           type: "boolean",
@@ -1967,14 +1891,6 @@ export const API_LOOKUP: ApiLookup = {
           required: false,
           description: "",
           defaultValue: "disabled ? -1 : 0",
-        },
-        {
-          id: "list-item-props-threelines",
-          name: "threeLines",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
         },
       ],
       isClient: true,
@@ -2069,20 +1985,20 @@ export const API_LOOKUP: ApiLookup = {
             "Any additional props to provide the wrapping `<li>` element such as\n`style`, `className`, and `ref`.",
         },
         {
+          id: "list-item-link-props-multiline",
+          name: "multiline",
+          type: "boolean",
+          required: false,
+          description: "",
+          defaultValue: "false",
+        },
+        {
           id: "list-item-link-props-tabindex",
           name: "tabIndex",
           type: "number",
           required: false,
           description: "",
           defaultValue: "disabled ? -1 : undefined",
-        },
-        {
-          id: "list-item-link-props-threelines",
-          name: "threeLines",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
         },
         {
           id: "list-item-link-props-to",
@@ -3457,64 +3373,6 @@ export const API_LOOKUP: ApiLookup = {
       examples: [],
       description: "",
       extendedTypes: [{ name: "HTMLAttributes<HTMLDivElement>", href: "#" }],
-    },
-  ],
-  Tab: [
-    {
-      id: "tab",
-      name: "Tab",
-      props: [
-        {
-          id: "tab-props-active",
-          name: "active",
-          type: "boolean",
-          required: true,
-          description:
-            "Set this to `true` if the tab is currently active.\n\nThis is normally provided by the {@link useTabs } hook.",
-        },
-        {
-          id: "tab-props-activeindicator",
-          name: "activeIndicator",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` if the {@link TabListProps.disableTransition } prop has\nalso been set to `true` to disable an active indicator below the tab when\n{@link active } is `true`.",
-          defaultValue: "false",
-        },
-        {
-          id: "tab-props-icon",
-          name: "icon",
-          type: "ReactNode",
-          required: false,
-          description:
-            "An optional icon to render with the with the {@link children }. The default\nbehavior will render this icon before the children.",
-        },
-        {
-          id: "tab-props-iconafter",
-          name: "iconAfter",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` to render the {@link icon } after the {@link children }.",
-          defaultValue: "false",
-        },
-        {
-          id: "tab-props-stacked",
-          name: "stacked",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` to render the {@link icon } and {@link children } stacked\ninstead of horizontally.",
-          defaultValue: "false",
-        },
-      ],
-      isClient: true,
-      examples: [],
-      description:
-        "This component should usually be used with the `TabsList` component and\n`useTabs` hook.",
-      extendedTypes: [
-        { name: "ButtonHTMLAttributes<HTMLButtonElement>", href: "#" },
-      ],
     },
   ],
   Table: [
