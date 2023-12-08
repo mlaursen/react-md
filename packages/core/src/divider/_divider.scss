@@ -7,9 +7,8 @@ $disable-everything: false !default;
 $disable-vertical: false !default;
 $disable-inset: false !default;
 
-$size: 0.0625rem !default;
-// this is doubled since the `hr` element applies the size for border top and bottom
-$vertical-size: $size * 2 !default;
+$size: 0.0625em !default;
+$border-size: $size * 2 !default;
 $max-size: 100% !default;
 $inset: 4rem !default;
 $spacing: 0.25rem auto !default;
@@ -22,7 +21,7 @@ $color: theme.get-default-color($light-theme-color, $dark-theme-color) !default;
 
 $variables: (
   size,
-  vertical-size,
+  border-size,
   color,
   spacing,
   vertical-spacing,
@@ -63,13 +62,15 @@ $variables: (
 
 @mixin border-style($position: null) {
   $property: if(not $position, border, "border-#{$position}");
+  $var-name: if(not $position, size, border-size);
 
-  #{$property}: get-var(size) solid get-var(color);
+  #{$property}: get-var($var-name) solid get-var(color);
 }
 
 @mixin variables {
   @if not $disable-everything {
     @include set-var(size, $size);
+    @include set-var(border-size, $border-size);
     @include set-var(color, $color);
     @include set-var(spacing, $spacing);
     @include set-var(max-size, $max-size);
@@ -79,7 +80,6 @@ $variables: (
     }
 
     @if not $disable-vertical {
-      @include set-var(vertical-size, $vertical-size);
       @include set-var(vertical-spacing, $vertical-spacing);
     }
   }
@@ -111,10 +111,9 @@ $variables: (
         &--vertical {
           @include border-style(left);
           @include use-var(height, max-size);
-          @include use-var(width, vertical-size);
+          @include use-var(width, size);
           @include use-var(margin, vertical-spacing);
 
-          border-bottom: 0;
           display: inline-block;
         }
       }

@@ -3,10 +3,6 @@
 .container {
   // just to show the defaults
   @include everything.divider-set-var(
-    vertical-size,
-    everything.$divider-vertical-size
-  );
-  @include everything.divider-set-var(
     vertical-spacing,
     everything.$divider-vertical-spacing
   );

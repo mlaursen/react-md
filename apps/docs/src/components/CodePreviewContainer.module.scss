@@ -2,8 +2,9 @@
 
 .container {
   @include everything.theme-set-var(background-color, var(--preview-bg));
+  @include everything.divider-border-style;
+
   background-color: var(--preview-bg);
-  border: everything.$divider-size solid everything.divider-get-var(color);
   border-radius: everything.$card-border-radius;
   padding: 3rem;
   position: relative;

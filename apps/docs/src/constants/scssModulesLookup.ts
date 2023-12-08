@@ -34,7 +34,7 @@ export const SCSS_MODULES: Record<string, FakeScssModule> = {
     fileName: "CustomTransitionExample.module.scss",
   },
   "src/app/components/divider/CustomizingDivider.module.scss": {
-    css: ".CustomizingDivider_container__Q3Vzd {\n  --rmd-divider-size: 0.0625rem;\n  --rmd-divider-spacing: 0.25rem auto;\n  --rmd-divider-color: #ffb74d;\n}",
+    css: ".CustomizingDivider_container__Q3Vzd {\n  --rmd-divider-size: 0.0625em;\n  --rmd-divider-spacing: 0.25rem auto;\n  --rmd-divider-color: #ffb74d;\n}",
     scss: '@use "everything";\n\n.container {\n  // these two are the default values\n  @include everything.divider-set-var(size, everything.$divider-size);\n  @include everything.divider-set-var(spacing, everything.$divider-spacing);\n\n  @include everything.divider-set-var(color, everything.$orange-300);\n}\n',
     baseName: "CustomizingDivider",
     fileName: "CustomizingDivider.module.scss",
@@ -46,8 +46,8 @@ export const SCSS_MODULES: Record<string, FakeScssModule> = {
     fileName: "InsetDivider.module.scss",
   },
   "src/app/components/divider/VerticalDivider.module.scss": {
-    css: ".VerticalDivider_container__VmVyd {\n  --rmd-divider-vertical-size: 0.125rem;\n  --rmd-divider-vertical-spacing: auto 0.25rem;\n  --rmd-divider-max-size: 100%;\n}",
-    scss: '@use "everything";\n\n.container {\n  // just to show the defaults\n  @include everything.divider-set-var(\n    vertical-size,\n    everything.$divider-vertical-size\n  );\n  @include everything.divider-set-var(\n    vertical-spacing,\n    everything.$divider-vertical-spacing\n  );\n  @include everything.divider-set-var(max-size, everything.$divider-max-size);\n}\n',
+    css: ".VerticalDivider_container__VmVyd {\n  --rmd-divider-vertical-spacing: auto 0.25rem;\n  --rmd-divider-max-size: 100%;\n}",
+    scss: '@use "everything";\n\n.container {\n  // just to show the defaults\n  @include everything.divider-set-var(\n    vertical-spacing,\n    everything.$divider-vertical-spacing\n  );\n  @include everything.divider-set-var(max-size, everything.$divider-max-size);\n}\n',
     baseName: "VerticalDivider",
     fileName: "VerticalDivider.module.scss",
   },
