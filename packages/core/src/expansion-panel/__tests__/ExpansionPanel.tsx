@@ -156,7 +156,7 @@ describe("ExpansionPanel", () => {
 
   it("should support preventing all the panels from being closed", async () => {
     const user = userEvent.setup();
-    render(<Test multiple preventAllClosed />);
+    render(<Test multiple preventAllCollapsed />);
     const panel1 = screen.getByRole("button", { name: "Panel 1" });
     const panel2 = screen.getByRole("button", { name: "Panel 2" });
     const panel3 = screen.getByRole("button", { name: "Panel 3" });
@@ -174,7 +174,7 @@ describe("ExpansionPanel", () => {
 
   it("should handle keyboard movement correctly", async () => {
     const user = userEvent.setup();
-    render(<Test preventAllClosed />);
+    render(<Test preventAllCollapsed />);
     const panel1 = screen.getByRole("button", { name: "Panel 1" });
     const panel2 = screen.getByRole("button", { name: "Panel 2" });
     const panel3 = screen.getByRole("button", { name: "Panel 3" });

@@ -26,7 +26,7 @@ export interface ExpansionPanelHookOptions {
    *
    * @defaultValue `false`
    */
-  preventAllClosed?: boolean;
+  preventAllCollapsed?: boolean;
 
   /**
    * This is a convenience option to disable the expansion transition for all
@@ -37,7 +37,7 @@ export interface ExpansionPanelHookOptions {
   disableTransition?: boolean;
 
   /**
-   * @defaultValue `preventAllClosed ? ["expansion-panel-" + useId() + "-1"] : []`
+   * @defaultValue `preventAllCollapsed ? ["expansion-panel-" + useId() + "-1"] : []`
    */
   defaultExpandedIds?: UseStateInitializer<string[]>;
 
@@ -71,13 +71,12 @@ export interface ExpansionPanelHookOptions {
 /** @remarks \@since 6.0.0 */
 export type ProvidedExpansionPanelProps = Pick<
   Required<ExpansionPanelProps>,
-  | "id"
   | "disabled"
   | "expanded"
   | "onExpandClick"
   | "disableTransition"
   | "disableContentPadding"
->;
+> & { id?: string };
 
 /**
  * @param indexOrPanelId - This should either be a DOM id to use for the panel
@@ -207,7 +206,7 @@ export function useExpansionPanels(
   const {
     baseId: propBaseId,
     multiple = false,
-    preventAllClosed = false,
+    preventAllCollapsed = false,
     disableTransition = false,
     defaultExpandedIds,
     defaultExpandedIndex,
@@ -219,7 +218,7 @@ export function useExpansionPanels(
   const [expandedIds, setExpandedIds] = useState<ReadonlySet<string>>(() => {
     if (typeof defaultExpandedIds === "undefined") {
       const initialList: string[] = [];
-      if (typeof defaultExpandedIndex === "number" || preventAllClosed) {
+      if (typeof defaultExpandedIndex === "number" || preventAllCollapsed) {
         initialList.push(createId(defaultExpandedIndex ?? 0));
       }
 
@@ -237,13 +236,18 @@ export function useExpansionPanels(
     expandedIds,
     setExpandedIds,
     getPanelProps(indexOrPanelId) {
-      const id =
-        typeof indexOrPanelId === "string"
-          ? indexOrPanelId
-          : createId(indexOrPanelId);
+      let id: string | undefined;
+      let panelId: string;
+      if (typeof indexOrPanelId === "number") {
+        id = createId(indexOrPanelId);
+        panelId = id;
+      } else {
+        panelId = indexOrPanelId;
+      }
 
-      const expanded = expandedIds.has(id);
-      const disabled = expanded && preventAllClosed && expandedIds.size === 1;
+      const expanded = expandedIds.has(panelId);
+      const disabled =
+        expanded && preventAllCollapsed && expandedIds.size === 1;
       return {
         id,
         disabled,
@@ -254,16 +258,16 @@ export function useExpansionPanels(
           }
 
           setExpandedIds((prevIds) => {
-            const expanded = prevIds.has(id);
+            const expanded = prevIds.has(panelId);
             if (!multiple) {
-              return new Set(expanded ? [] : [id]);
+              return new Set(expanded ? [] : [panelId]);
             }
 
             const nextIds = new Set(prevIds);
             if (expanded) {
-              nextIds.delete(id);
+              nextIds.delete(panelId);
             } else {
-              nextIds.add(id);
+              nextIds.add(panelId);
             }
 
             return nextIds;

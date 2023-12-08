@@ -1,3 +1,66 @@
 # Expansion Panel
 
-TODO
+An expansion panel enables content to be either collapsed (hidden) or expanded
+(visible) following the
+[disclosure pattern](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/).
+
+# Simple Example
+
+An `ExpansionPanel` is a required component requiring an `expanded` state and
+`onExpandClick` function to toggle the expanded state. The children will be
+dynamically shown whenever `expanded` is `true`. The toggle button's children
+can be defined using the `headerChildren` prop.
+
+{{ "component": "./SimpleExample.tsx" }}
+
+# Expansion Panel Group
+
+If multiple `ExpansionPanel`s should be used together in a group, wrap them in
+the `ExpansionList` component to add additional keyboard accessibility. The
+`useExpansionPanels` hook can also be used to control the expanded state for
+each panel.
+
+The `useExpansionPanels` hook will default to allowing only one panel to be
+visible at a time and all panels collapsed. Check out the following examples for
+additional `useExpansionPanels` options.
+
+{{ "component": "./ExpansionPanelGroupExample.tsx" }}
+
+## Multiple Expanded Panels
+
+If multiple panels should be able to be expanded at the same time, enable the
+`multiple` option. This demo will also show how the `defaultExpandedIndex` can
+be used to expand a single panel by default.
+
+{{ "component": "./MultipleExpandedPanelsExample.tsx" }}
+
+## Prevent All Panels Collapsed
+
+The `preventAllCollapsed` option can be used to ensure at least one panel is
+always expanded and defaults to expanding the first panel.
+
+{{ "component": "./PreventAllPanelsCollapsedExample.tsx" }}
+
+## String-based Panel Props
+
+If the expansion panel should be identified by a unique id instead of an index,
+that unique id can be passed to `getPanelProps` instead. This also allows for
+specific panels to be expanded by default.
+
+{{ "component": "./StringBasedPanelPropsExample.tsx" }}
+
+# Disable Transition
+
+The collapse transition can be disabled by enabling the `disableTransition`
+prop.
+
+{{ "component": "./DisableTransitionExample.tsx" }}
+
+## Temporary Contents
+
+The `ExpansionPanel` will hide collapsed content by using `display: none` but
+can dynamically render it instead by enabling the `temporary` prop. Dynamically
+rendering can be helpful if the children's state should reset each time it
+becomes visible.
+
+{{ "component": "./TemporaryContentsExample.tsx" }}

@@ -3,4 +3,35 @@ import { type TableOfContentsItem } from "@/components/TableOfContents/types.js"
 
 export const toc = [
   { id: "expansion-panel", depth: 1, value: "Expansion Panel" },
+  { id: "simple-example", depth: 1, value: "Simple Example" },
+  {
+    id: "expansion-panel-group",
+    depth: 1,
+    value: "Expansion Panel Group",
+    items: [
+      {
+        id: "multiple-expanded-panels",
+        depth: 2,
+        value: "Multiple Expanded Panels",
+      },
+      {
+        id: "prevent-all-panels-collapsed",
+        depth: 2,
+        value: "Prevent All Panels Collapsed",
+      },
+      {
+        id: "string-based-panel-props",
+        depth: 2,
+        value: "String-based Panel Props",
+      },
+    ],
+  },
+  {
+    id: "disable-transition",
+    depth: 1,
+    value: "Disable Transition",
+    items: [
+      { id: "temporary-contents", depth: 2, value: "Temporary Contents" },
+    ],
+  },
 ] satisfies readonly TableOfContentsItem[];
