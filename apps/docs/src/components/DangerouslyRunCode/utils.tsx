@@ -14,14 +14,17 @@ import CloudUploadOutlinedIcon from "@react-md/material-icons/CloudUploadOutline
 import ContentCopyOutlinedIcon from "@react-md/material-icons/ContentCopyOutlinedIcon";
 import ContentCutOutlinedIcon from "@react-md/material-icons/ContentCutOutlinedIcon";
 import ContentPasteOutlinedIcon from "@react-md/material-icons/ContentPasteOutlinedIcon";
+import EmailIcon from "@react-md/material-icons/EmailIcon";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import FolderIcon from "@react-md/material-icons/FolderIcon";
 import InfoOutlineIcon from "@react-md/material-icons/InfoOutlineIcon";
+import KeyboardArrowDownIcon from "@react-md/material-icons/KeyboardArrowDownIcon";
 import MoodBadOutlinedIcon from "@react-md/material-icons/MoodBadOutlinedIcon";
 import MoodOutlinedIcon from "@react-md/material-icons/MoodOutlinedIcon";
 import MoreVertOutlinedIcon from "@react-md/material-icons/MoreVertOutlinedIcon";
 import NotificationsOutlinedIcon from "@react-md/material-icons/NotificationsOutlinedIcon";
 import PauseIcon from "@react-md/material-icons/PauseIcon";
+import PhoneIcon from "@react-md/material-icons/PhoneIcon";
 import PlayArrowIcon from "@react-md/material-icons/PlayArrowIcon";
 import RadioButtonCheckedIcon from "@react-md/material-icons/RadioButtonCheckedIcon";
 import RadioButtonUncheckedIcon from "@react-md/material-icons/RadioButtonUncheckedIcon";
@@ -109,14 +112,17 @@ function dangerouslyEvalCode(
     "@react-md/material-icons/ContentCopyOutlinedIcon": ContentCopyOutlinedIcon,
     "@react-md/material-icons/ContentCutOutlinedIcon": ContentCutOutlinedIcon,
     "@react-md/material-icons/ContentPasteOutlinedIcon": ContentPasteOutlinedIcon,
+    "@react-md/material-icons/EmailIcon": EmailIcon,
     "@react-md/material-icons/FavoriteIcon": FavoriteIcon,
     "@react-md/material-icons/FolderIcon": FolderIcon,
     "@react-md/material-icons/InfoOutlineIcon": InfoOutlineIcon,
+    "@react-md/material-icons/KeyboardArrowDownIcon": KeyboardArrowDownIcon,
     "@react-md/material-icons/MoodBadOutlinedIcon": MoodBadOutlinedIcon,
     "@react-md/material-icons/MoodOutlinedIcon": MoodOutlinedIcon,
     "@react-md/material-icons/MoreVertOutlinedIcon": MoreVertOutlinedIcon,
     "@react-md/material-icons/NotificationsOutlinedIcon": NotificationsOutlinedIcon,
     "@react-md/material-icons/PauseIcon": PauseIcon,
+    "@react-md/material-icons/PhoneIcon": PhoneIcon,
     "@react-md/material-icons/PlayArrowIcon": PlayArrowIcon,
     "@react-md/material-icons/RadioButtonCheckedIcon": RadioButtonCheckedIcon,
     "@react-md/material-icons/RadioButtonUncheckedIcon": RadioButtonUncheckedIcon,

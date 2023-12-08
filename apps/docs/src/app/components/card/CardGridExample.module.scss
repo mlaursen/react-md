@@ -1,0 +1,5 @@
+@use "everything";
+
+.container {
+  @include everything.box-set-var(item-min-size, 10rem);
+}

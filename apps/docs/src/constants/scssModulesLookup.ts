@@ -21,6 +21,18 @@ export const SCSS_MODULES: Record<string, FakeScssModule> = {
     baseName: "BadgePositionExample",
     fileName: "BadgePositionExample.module.scss",
   },
+  "src/app/components/card/CardGridExample.module.scss": {
+    css: ".CardGridExample_container__Q2FyZ {\n  --rmd-box-item-min-size: 10rem;\n}",
+    scss: '@use "everything";\n\n.container {\n  @include everything.box-set-var(item-min-size, 10rem);\n}\n',
+    baseName: "CardGridExample",
+    fileName: "CardGridExample.module.scss",
+  },
+  "src/app/components/card/ExpandableCardExample.module.scss": {
+    css: ".ExpandableCardExample_card__RXhwY {\n  max-width: 20rem;\n}",
+    scss: ".card {\n  max-width: 20rem;\n}\n",
+    baseName: "ExpandableCardExample",
+    fileName: "ExpandableCardExample.module.scss",
+  },
   "src/app/components/carousel/CarouselExample.module.scss": {
     css: ".CarouselExample_card__Q2Fyb {\n  --rmd-button-color: #fff;\n  max-width: 42rem;\n}\n\n.CarouselExample_container__Q2Fyb {\n  position: relative;\n}\n\n.CarouselExample_control__Q2Fyb {\n  border-radius: 0;\n  bottom: 0;\n  height: 100%;\n  position: absolute;\n  top: 0;\n  width: 5rem;\n}\n.CarouselExample_control__Q2Fyb:nth-of-type(2) {\n  right: 0;\n}\n\n.CarouselExample_slide__Q2Fyb {\n  --rmd-slide-duration: 0.5s;\n  height: 22.5rem;\n  overflow: hidden;\n}\n\n.CarouselExample_overlay__Q2Fyb {\n  padding-bottom: 4rem;\n}\n\n.CarouselExample_indicators__Q2Fyb {\n  align-items: center;\n  bottom: 0;\n  display: flex;\n  gap: 0.25rem;\n  justify-content: center;\n  left: 0;\n  padding: 1rem;\n  padding-bottom: 0.25rem;\n  position: absolute;\n  right: 0;\n}\n\n.CarouselExample_tablist__Q2Fyb {\n  gap: 0.25rem;\n  width: auto;\n}\n\n.CarouselExample_indicator__Q2Fyb {\n  background-color: rgba(255, 255, 255, 0.54);\n  height: 0.75rem;\n  min-width: 3rem;\n  width: 3rem;\n}\n.CarouselExample_indicator__Q2Fyb[aria-selected=true] {\n  background-color: #fff;\n}",
     scss: '@use "everything";\n\n.card {\n  @include everything.button-set-var(color, everything.$white);\n\n  max-width: 42rem;\n}\n\n.container {\n  position: relative;\n}\n\n.control {\n  border-radius: 0;\n  bottom: 0;\n  height: 100%;\n  position: absolute;\n  top: 0;\n  width: 5rem;\n\n  &:nth-of-type(2) {\n    right: 0;\n  }\n}\n\n.slide {\n  @include everything.transition-set-var(slide-duration, 0.5s);\n\n  height: 22.5rem;\n  overflow: hidden;\n}\n\n.overlay {\n  padding-bottom: 4rem;\n}\n\n.indicators {\n  align-items: center;\n  bottom: 0;\n  display: flex;\n  gap: 0.25rem;\n  justify-content: center;\n  left: 0;\n  padding: 1rem;\n  padding-bottom: 0.25rem;\n  position: absolute;\n  right: 0;\n}\n\n.tablist {\n  gap: 0.25rem;\n  width: auto;\n}\n\n.indicator {\n  background-color: rgba(everything.$white, 0.54);\n  height: 0.75rem;\n  min-width: 3rem;\n  width: 3rem;\n\n  &[aria-selected="true"] {\n    background-color: everything.$white;\n  }\n}\n',

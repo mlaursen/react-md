@@ -41,6 +41,10 @@ export const navItems: readonly NavigationItem[] = [
         children: "Installation",
       },
       {
+        href: "/layout",
+        children: "Layout",
+      },
+      {
         href: "/example-projects",
         children: "Example projects",
       },
