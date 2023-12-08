@@ -19,6 +19,7 @@ import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import FolderIcon from "@react-md/material-icons/FolderIcon";
 import InfoOutlineIcon from "@react-md/material-icons/InfoOutlineIcon";
 import KeyboardArrowDownIcon from "@react-md/material-icons/KeyboardArrowDownIcon";
+import MenuIcon from "@react-md/material-icons/MenuIcon";
 import MoodBadOutlinedIcon from "@react-md/material-icons/MoodBadOutlinedIcon";
 import MoodOutlinedIcon from "@react-md/material-icons/MoodOutlinedIcon";
 import MoreVertOutlinedIcon from "@react-md/material-icons/MoreVertOutlinedIcon";
@@ -117,6 +118,7 @@ function dangerouslyEvalCode(
     "@react-md/material-icons/FolderIcon": FolderIcon,
     "@react-md/material-icons/InfoOutlineIcon": InfoOutlineIcon,
     "@react-md/material-icons/KeyboardArrowDownIcon": KeyboardArrowDownIcon,
+    "@react-md/material-icons/MenuIcon": MenuIcon,
     "@react-md/material-icons/MoodBadOutlinedIcon": MoodBadOutlinedIcon,
     "@react-md/material-icons/MoodOutlinedIcon": MoodOutlinedIcon,
     "@react-md/material-icons/MoreVertOutlinedIcon": MoreVertOutlinedIcon,

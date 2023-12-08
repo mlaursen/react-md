@@ -75,6 +75,7 @@ export async function parseCodeBlock(
           break;
         case "card":
         case "phone":
+        case "transparent":
           previewOptions[name] = true;
           break;
         case "styles":

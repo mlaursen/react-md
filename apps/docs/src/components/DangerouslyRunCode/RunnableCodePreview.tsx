@@ -1,5 +1,8 @@
 "use client";
-import { type RunnableCodePreviewOptions } from "@/types/code.js";
+import {
+  type RunnableCodePreviewContainerOptions,
+  type RunnableCodePreviewOptions,
+} from "@/types/code.js";
 import {
   MenuConfigurationProvider,
   TooltipHoverModeProvider,
@@ -10,7 +13,9 @@ import { RunnableCodePreviewContainer } from "./RunnableCodePreviewContainer.jsx
 import { useDangerouslyRunnableCode } from "./useDangerouslyRunnableCode.jsx";
 import { type RunnableCodeScope } from "./utils.jsx";
 
-export interface RunnableCodePreviewProps extends RunnableCodePreviewOptions {
+export interface RunnableCodePreviewProps
+  extends RunnableCodePreviewOptions,
+    RunnableCodePreviewContainerOptions {
   code: string;
   scope?: RunnableCodeScope;
 }
@@ -18,14 +23,14 @@ export interface RunnableCodePreviewProps extends RunnableCodePreviewOptions {
 export function RunnableCodePreview(
   props: RunnableCodePreviewProps
 ): ReactElement {
-  const { code, scope, ...previewProps } = props;
+  const { code, scope, transparent, ...previewProps } = props;
 
   const { element, error } = useDangerouslyRunnableCode({
     code,
     scope,
   });
   return (
-    <CodePreviewContainer error={error?.message}>
+    <CodePreviewContainer error={error?.message} transparent={transparent}>
       <RunnableCodePreviewContainer {...previewProps}>
         <MenuConfigurationProvider renderAsSheet={false}>
           <TooltipHoverModeProvider disableTimeout={0}>

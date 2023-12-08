@@ -3,4 +3,17 @@ import { type TableOfContentsItem } from "@/components/TableOfContents/types.js"
 
 export const toc = [
   { id: "app-bar", depth: 1, value: "App Bar" },
+  {
+    id: "simple-example",
+    depth: 1,
+    value: "Simple Example",
+    items: [{ id: "app-bar-themes", depth: 2, value: "App Bar Themes" }],
+  },
+  {
+    id: "app-bar-heights",
+    depth: 1,
+    value: "App Bar Heights",
+    items: [{ id: "stacked-app-bars", depth: 2, value: "Stacked App Bars" }],
+  },
+  { id: "app-bar-title-keyline", depth: 1, value: "App Bar Title Keyline" },
 ] satisfies readonly TableOfContentsItem[];

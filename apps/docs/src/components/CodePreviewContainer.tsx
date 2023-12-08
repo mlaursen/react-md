@@ -6,6 +6,7 @@ import styles from "./CodePreviewContainer.module.scss";
 export interface CodePreviewContainerProps extends BoxProps {
   error?: ReactNode;
   children: ReactNode;
+  transparent?: boolean;
   borderBottom?: boolean;
 }
 
@@ -18,6 +19,7 @@ export function CodePreviewContainer(
     className,
     justify = "center",
     borderBottom = false,
+    transparent,
     ...remaining
   } = props;
   const id = useId();
@@ -29,6 +31,7 @@ export function CodePreviewContainer(
       className={cnb(
         styles.container,
         !borderBottom && styles.noBorderBottom,
+        transparent && styles.transparent,
         className
       )}
     >

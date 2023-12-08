@@ -34,6 +34,7 @@ async function insertImportedCode(options: FixOptions): Promise<void> {
     preview,
     editable,
     fileName,
+    transparent,
   } = options;
 
   const demoFilePath = join(directory, importName);
@@ -47,6 +48,7 @@ async function insertImportedCode(options: FixOptions): Promise<void> {
     editable && "editable",
     card && "card",
     phone && "phone",
+    transparent && "transparent",
     fileName && `fileName="${fileName}"`,
     styles.length > 0 && `styles="${styles.join(",")}"`,
   ]
@@ -70,6 +72,7 @@ const parseOptions = (line: string): ParsedOptions => {
     phone,
     preview = true,
     editable = true,
+    transparent,
     fileName = "",
     ...others
   } = JSON.parse(line.substring(1, line.length - 1));
@@ -87,6 +90,7 @@ const parseOptions = (line: string): ParsedOptions => {
       phone: false,
       preview: false,
       editable: false,
+      transparent: false,
       fileName,
     };
   }
@@ -96,6 +100,7 @@ const parseOptions = (line: string): ParsedOptions => {
   assertBoolean(phone, false);
   assertBoolean(preview, true);
   assertBoolean(editable, true);
+  assertBoolean(transparent, false);
 
   return {
     card,
@@ -104,6 +109,7 @@ const parseOptions = (line: string): ParsedOptions => {
     preview,
     editable,
     importName: component,
+    transparent,
   };
 };
 

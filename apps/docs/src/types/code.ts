@@ -3,7 +3,13 @@ export interface RunnableCodePreviewOptions {
   phone?: boolean;
 }
 
-export interface CodeJsxProps extends RunnableCodePreviewOptions {
+export interface RunnableCodePreviewContainerOptions {
+  transparent?: boolean;
+}
+
+export interface CodeJsxProps
+  extends RunnableCodePreviewOptions,
+    RunnableCodePreviewContainerOptions {
   preview?: boolean;
   editable?: boolean;
   fileName?: string;
