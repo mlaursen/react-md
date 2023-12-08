@@ -68,7 +68,9 @@ $font-styles: normal italic oblique !default;
 /// @type Map
 $base-recommended-font-styles: (
   font-family: $font-family,
+  overflow: inherit,
   overflow-wrap: break-word,
+  text-overflow: inherit,
   -moz-osx-font-smoothing: grayscale,
   -webkit-font-smoothing: antialiased,
 );
