@@ -117,6 +117,7 @@ export function useWindowSplitter<E extends HTMLElement = HTMLButtonElement>(
   const {
     value,
     dragging,
+    percentage,
     draggableRef,
     mouseEventHandlers,
     keyboardEventHandlers,
