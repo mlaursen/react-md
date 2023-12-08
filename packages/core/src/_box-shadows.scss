@@ -168,8 +168,16 @@ $box-shadow-3-layers: (
       }
     }
 
-    #{$active-string} {
-      opacity: 1;
+    @if $active-selectors == "&:hover" {
+      @include utils.mouse-hover {
+        #{$active-string} {
+          opacity: 1;
+        }
+      }
+    } @else {
+      #{$active-string} {
+        opacity: 1;
+      }
     }
   }
 }
@@ -179,6 +187,7 @@ $box-shadow-3-layers: (
   $end-z-value,
   $active-selectors,
   $pseudo-before: true,
+  $pseudo-z-index: 0,
   $duration: transition.$linear-duration,
   $color: $box-shadow-color,
   $opacity-boost: 0,
@@ -201,6 +210,7 @@ $box-shadow-3-layers: (
     $active-selectors,
     $duration,
     $pseudo-before,
+    $pseudo-z-index,
     $position-relative: $position-relative
   );
 }

@@ -99,14 +99,12 @@ $variables: (background-color, color, secondary-color);
       max-width: 100%;
 
       @if not $disable-raisable {
-        @include utils.mouse-only {
-          &--raisable {
-            @include box-shadows.elevation-transition(
-              $raisable-start-elevation,
-              $raisable-end-elevation,
-              "&:hover"
-            );
-          }
+        &--raisable {
+          @include box-shadows.elevation-transition(
+            $raisable-start-elevation,
+            $raisable-end-elevation,
+            "&:hover"
+          );
         }
       }
 
