@@ -1,14 +1,14 @@
 "use client";
-import type { Ref, RefCallback } from "react";
-import type {
-  BaseDraggableOptions,
-  DraggableImplementation,
-  DraggableKeyboardEventHandlers,
-  DraggableMouseEventHandlers,
-  DraggableStateOptions,
-  DraggableTouchEventHandlers,
+import { type Ref, type RefCallback } from "react";
+import {
+  useDraggable,
+  type BaseDraggableOptions,
+  type DraggableImplementation,
+  type DraggableKeyboardEventHandlers,
+  type DraggableMouseEventHandlers,
+  type DraggableStateOptions,
+  type DraggableTouchEventHandlers,
 } from "../draggable/useDraggable.js";
-import { useDraggable } from "../draggable/useDraggable.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 
 declare module "react" {
@@ -110,12 +110,11 @@ export interface WindowSplitterImplementation<
 export function useWindowSplitter<E extends HTMLElement = HTMLButtonElement>(
   options: WindowSplitterOptions<E>
 ): WindowSplitterImplementation<E> {
-  const { id: propId, reversed = false, vertical, defaultValue } = options;
+  const { id: propId, reversed = false, vertical } = options;
 
   const id = useEnsuredId(propId, "splitter");
   const draggableImplementation = useDraggable(options);
   const {
-    value,
     dragging,
     percentage,
     draggableRef,

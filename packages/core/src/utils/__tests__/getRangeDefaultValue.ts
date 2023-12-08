@@ -1,7 +1,5 @@
 import { describe, expect, it } from "@jest/globals";
-import { rmdRender, screen, userEvent } from "../../test-utils/index.js";
 import { getRangeDefaultValue } from "../getRangeDefaultValue.js";
-import { UseStateInitializer } from "../../types.js";
 
 describe("getRangeDefaultValue", () => {
   it("should return the default value if it is defined", async () => {
