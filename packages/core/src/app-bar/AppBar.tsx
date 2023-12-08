@@ -5,7 +5,13 @@ import {
   type HTMLAttributes,
   type Ref,
 } from "react";
-import { cssUtils, type BackgroundColor } from "../cssUtils.js";
+import { box, type BoxOptions } from "../box/styles.js";
+import {
+  cssUtils,
+  type BackgroundColor,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  type CssUtilsOptions,
+} from "../cssUtils.js";
 import { type CssPosition } from "../types.js";
 import { bem } from "../utils/bem.js";
 
@@ -52,7 +58,7 @@ export type AppBarHeight =
   | "prominent-dense";
 
 /** @remarks \@since 6.0.0 */
-export interface AppBarClassNameOptions {
+export interface AppBarClassNameOptions extends Omit<BoxOptions, "fullWidth"> {
   className?: string;
 
   /**
@@ -88,19 +94,13 @@ export interface AppBarClassNameOptions {
   theme?: AppBarTheme;
 
   /**
-   * Set this to `true` to update the `AppBar` to have `flex-direction: column`.
-   * This is useful when nesting `AppBar`s.
-   *
-   * @remarks \@since 6.0.0
-   * @defaultValue `false`
-   */
-  stacked?: boolean;
-
-  /**
    * @defaultValue `stacked ? "auto" : "normal"`
    * @see {@link AppBarHeight}
    */
   height?: AppBarHeight;
+
+  /** @see {@link CssUtilsOptions.surfaceColor} */
+  surfaceColor?: "light" | "dark";
 
   /**
    * Set this to `true` if the app bar's positioning and width should be
@@ -123,13 +123,22 @@ export interface AppBarClassNameOptions {
 export function appBar(options: AppBarClassNameOptions = {}): string {
   const {
     className,
-    height = "normal",
     theme = "primary",
-    stacked = false,
+    stacked,
+    height = stacked ? "auto" : "normal",
     position = "static",
     pagePosition = "top",
     scrollbarOffset = position === "fixed",
-    disableElevation = false,
+    align,
+    grid,
+    gridColumns,
+    gridName,
+    justify,
+    reversed,
+    surfaceColor,
+    disableWrap = true,
+    disablePadding,
+    disableElevation,
   } = options;
   const surface = theme === "surface";
   const clear = theme === "clear";
@@ -139,15 +148,28 @@ export function appBar(options: AppBarClassNameOptions = {}): string {
       surface,
       [height]: height !== "normal",
       fixed: position !== "static",
-      sticky: position === "sticky",
       stacked,
+      sticky: position === "sticky",
       [pagePosition]: position !== "static",
       elevated: position !== "static" && !disableElevation,
       "scrollbar-offset": scrollbarOffset,
       "static-scrollbar-offset": position === "static" && scrollbarOffset,
     }),
+    box({
+      align,
+      stacked,
+      fullWidth: true,
+      grid,
+      gridColumns,
+      gridName,
+      justify,
+      reversed,
+      disableWrap,
+      disablePadding,
+    }),
     cssUtils({
       backgroundColor: !surface && !clear ? theme : undefined,
+      surfaceColor,
     }),
     className
   );
@@ -212,9 +234,18 @@ export const AppBar = forwardRef<HTMLDivElement, AppBarProps>(
       className,
       theme,
       stacked,
-      height = stacked ? "auto" : "normal",
+      height,
+      align,
+      grid,
+      gridName,
+      justify,
+      reversed,
+      gridColumns,
+      disableWrap,
+      disablePadding,
       position,
       pagePosition,
+      surfaceColor,
       scrollbarOffset,
       disableElevation,
       as: Component = position ? "header" : "div",
@@ -226,14 +257,23 @@ export const AppBar = forwardRef<HTMLDivElement, AppBarProps>(
       <Component
         {...remaining}
         className={appBar({
+          className,
           theme,
           position,
           pagePosition,
           disableElevation,
-          stacked,
-          height,
-          className,
           scrollbarOffset,
+          height,
+          grid,
+          gridName,
+          gridColumns,
+          align,
+          stacked,
+          justify,
+          reversed,
+          surfaceColor,
+          disableWrap,
+          disablePadding,
         })}
         ref={ref}
       >

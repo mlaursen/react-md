@@ -1,6 +1,7 @@
 @use "sass:map";
 
 @use "../utils";
+@use "../box/box";
 @use "../box-shadows";
 @use "../interaction/interaction";
 @use "../theme/a11y";
@@ -124,17 +125,14 @@ $variables: (height, surface-background-color, surface-color);
 
     .rmd-app-bar {
       @include use-var(height);
+      @include box.set-var(gap, $gap);
+      @include box.set-var(padding, $vertical-padding $horizontal-padding);
 
-      align-items: center;
-      display: flex;
       // since app bars can appear a lot in full page dialogs, setting these flex
       // values allows it be be a direct replacement of the `DialogHeader`
       // component without all the offsets and additional styles needed for fixed
       // app bars.
       flex: 0 0 auto;
-      gap: $gap;
-      padding: $vertical-padding $horizontal-padding;
-      width: 100%;
 
       @if not $disable-fixed or not $disable-sticky {
         &--fixed {

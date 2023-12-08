@@ -2,7 +2,7 @@
 
 exports[`useExpandableLayout should allow you to create an expandable layout quickly 1`] = `
 <header
-  class="rmd-app-bar rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--elevated rmd-app-bar--scrollbar-offset rmd-background-container rmd-primary-container"
+  class="rmd-app-bar rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--elevated rmd-app-bar--scrollbar-offset rmd-box rmd-box--padded rmd-box--full-width rmd-background-container rmd-primary-container"
 >
   <button
     aria-label="Navigation"
