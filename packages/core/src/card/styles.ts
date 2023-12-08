@@ -125,7 +125,11 @@ export function cardSubtitle(
 ): string {
   const { className } = options;
 
-  return cnb(cardStyles("subtitle"), className);
+  return cnb(
+    cardStyles("subtitle"),
+    cssUtils({ textColor: "text-secondary" }),
+    className
+  );
 }
 
 /** @remarks \@since 6.0.0 */
@@ -162,9 +166,9 @@ export interface CardContentClassNameOptions {
 export function cardContent(options: CardContentClassNameOptions = {}): string {
   const {
     className,
-    disablePadding = false,
-    disableSecondaryColor = false,
-    disableLastChildPadding = false,
+    disablePadding,
+    disableSecondaryColor,
+    disableLastChildPadding,
   } = options;
 
   return cnb(

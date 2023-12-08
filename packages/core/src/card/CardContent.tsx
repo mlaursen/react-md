@@ -22,9 +22,9 @@ export const CardContent = forwardRef<HTMLDivElement, CardContentProps>(
     const {
       children,
       className,
-      disablePadding = false,
-      disableSecondaryColor = false,
-      disableLastChildPadding = false,
+      disablePadding,
+      disableSecondaryColor,
+      disableLastChildPadding,
       ...remaining
     } = props;
 

@@ -18,7 +18,7 @@ exports[`CardHeader should allow addons before and after the children 1`] = `
       Elizabeth Park
     </h5>
     <h6
-      class="rmd-typography rmd-typography--subtitle-2 rmd-no-margin rmd-card__subtitle"
+      class="rmd-typography rmd-typography--subtitle-2 rmd-no-margin rmd-card__subtitle rmd-text-secondary-color"
     >
       Work contact
     </h6>
