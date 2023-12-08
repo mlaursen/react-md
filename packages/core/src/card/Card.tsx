@@ -62,9 +62,10 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
     const {
       children,
       className,
-      bordered = false,
-      raisable = false,
-      fullWidth = false,
+      bordered,
+      raisable,
+      fullWidth,
+      interactable,
       ...remaining
     } = props;
 
@@ -77,6 +78,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
           bordered,
           raisable,
           fullWidth,
+          interactable,
         })}
       >
         {children}

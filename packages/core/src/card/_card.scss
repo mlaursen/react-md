@@ -4,12 +4,14 @@
 @use "../box-shadows";
 @use "../typography/typography";
 @use "../divider/divider";
+@use "../interaction/interaction";
 
 $disable-everything: false !default;
 $disable-bordered: false !default;
 $disable-shadowed: false !default;
 $disable-raisable: false !default;
 $disable-full-width: false !default;
+$disable-clickable: false !default;
 $disable-content-secondary-color: false !default;
 $disable-content-last-child-padding: false !default;
 
@@ -124,6 +126,12 @@ $variables: (background-color, color, secondary-color);
         &--full-width {
           display: block;
           width: 100%;
+        }
+      }
+
+      @if not $disable-clickable {
+        &--clickable {
+          @include interaction.surface;
         }
       }
 

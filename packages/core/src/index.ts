@@ -21,6 +21,7 @@ export * from "./card/CardFooter.js";
 export * from "./card/CardHeader.js";
 export * from "./card/CardSubtitle.js";
 export * from "./card/CardTitle.js";
+export * from "./card/ClickableCard.js";
 export * from "./card/styles.js";
 export * from "./chip/Chip.js";
 export * from "./chip/styles.js";

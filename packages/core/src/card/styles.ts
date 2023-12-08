@@ -31,24 +31,29 @@ export interface CardClassNameOptions {
    * @defaultValue `false`
    */
   fullWidth?: boolean;
+
+  /**
+   * Set this to `true` if the card should gain the pointer cursor while
+   * hovering and other interaction styles and not using the `ClickableCard`
+   * component.
+   *
+   * @defaultValue `false`
+   */
+  interactable?: boolean;
 }
 
 /**
  * @remarks \@since 6.0.0
  */
 export function card(options: CardClassNameOptions = {}): string {
-  const {
-    className,
-    bordered = false,
-    raisable = false,
-    fullWidth = false,
-  } = options;
+  const { className, bordered, raisable, fullWidth, interactable } = options;
 
   return cnb(
     cardStyles({
       bordered,
       shadowed: !bordered,
       raisable: !bordered && raisable,
+      interactable,
       "full-width": fullWidth,
     }),
     className
