@@ -7,7 +7,7 @@ import {
   type CSSProperties,
   type HTMLAttributes,
 } from "react";
-import { type FloatingActionButtonPosition } from "../button/FloatingActionButton.jsx";
+import { type FloatingActionButtonPosition } from "../button/FloatingActionButton.js";
 import { useFocusContainer } from "../focus/useFocusContainer.js";
 import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
 import { type ListElement, type ListProps } from "../list/List.js";
