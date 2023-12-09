@@ -3,8 +3,6 @@
 @forward "@react-md/core" with (
   $color-scheme: system,
   $font-family: var(--roboto, Roboto, sans-serif),
-  // transitions in a layer cause performance issues on mobile firefox. I think.
-  $disable-transition-layer: true,
   // $color-scheme: light,
   // $color-scheme: dark,
   // disabled since it makes debugging a bit easier by having all the css

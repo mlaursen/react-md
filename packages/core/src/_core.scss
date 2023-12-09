@@ -73,45 +73,39 @@
 @use "layout/layout";
 @use "utils";
 
-$disable-transition-layer: false !default;
-$_layer-start: (typography);
-@if not $disable-transition-layer {
-  $_layer-start: sassList.append($_layer-start, transition);
-}
-$_layer-order: sassList.join(
-  $_layer-start,
-  (
-    interaction,
-    box,
-    icon,
-    divider,
-    button,
-    badge,
-    tabs,
-    chip,
-    progress,
-    responsive,
-    overlay,
-    card,
-    avatar,
-    link,
-    list,
-    tree,
-    dialog,
-    sheet,
-    tooltip,
-    table,
-    app-bar,
-    expansion-panel,
-    draggable,
-    window-splitter,
-    menu,
-    form,
-    layout,
-    snackbar,
-    segmented-button,
-    utils
-  )
+$_layer-order: (
+  typography,
+  transition,
+  interaction,
+  box,
+  icon,
+  divider,
+  button,
+  badge,
+  tabs,
+  chip,
+  progress,
+  responsive,
+  overlay,
+  card,
+  avatar,
+  link,
+  list,
+  tree,
+  dialog,
+  sheet,
+  tooltip,
+  table,
+  app-bar,
+  expansion-panel,
+  draggable,
+  window-splitter,
+  menu,
+  form,
+  layout,
+  snackbar,
+  segmented-button,
+  utils
 );
 
 @mixin css-reset {
@@ -369,9 +363,6 @@ $_layer-order: sassList.join(
 
 @mixin styles {
   @include css-reset;
-  @if $disable-transition-layer {
-    @include transition.transition-styles;
-  }
 
   @layer #{$_layer-order};
   @layer utils {
@@ -477,10 +468,8 @@ $_layer-order: sassList.join(
     @include tooltip.styles;
   }
 
-  @if not $disable-transition-layer {
-    @layer transition {
-      @include transition.transition-styles;
-    }
+  @layer transition {
+    @include transition.transition-styles;
   }
 
   @layer tree {
