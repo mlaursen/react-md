@@ -1,3 +1,21 @@
+Title: react-md 5.1.6
+
+Date: 12/11/2023
+
+Summary:
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/chip:** add overflow to support font icons (da44bbd), closes #1432
+- **select:** port fixed positioning fixes back from v6.0.0 (feb9ec6), closes
+  #1461
+
+##### Documentation<!-- no-margin -->
+
+- **react-md.dev:** update blog to include additional releases (b305882)
+
+---
+
 Title: react-md 5.1.5
 
 Date: 05/09/2023

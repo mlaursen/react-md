@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.6](https://github.com/mlaursen/react-md/compare/v5.1.5...v5.1.6) (2023-12-11)
+
+
+### Bug Fixes
+
+* **@react-md/chip:** add overflow to support font icons ([da44bbd](https://github.com/mlaursen/react-md/commit/da44bbd8de1de8b1d50d6a0cc35cffa7906a58c2)), closes [#1432](https://github.com/mlaursen/react-md/issues/1432)
+
+
+
+
+
+
 ## [5.1.3](https://github.com/mlaursen/react-md/compare/v5.1.2...v5.1.3) (2022-05-07)
 
 
