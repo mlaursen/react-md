@@ -170,6 +170,7 @@
     @include rmd-transition(standard);
 
     max-width: 0;
+    overflow: hidden;
     transition: max-width $rmd-transition-standard-time;
 
     &--visible {
