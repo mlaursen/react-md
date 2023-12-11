@@ -160,6 +160,8 @@ export interface CalculateFixedPositionOptions extends InitialCoords {
    * @defaultValue `false`
    * @remarks \@since 5.0.0 This will always be `true` if the
    * {@link FixedPositionOptions.container} is `null`.
+   * \@remarks \@since 5.1.6 Allow this to be `false` while the `container` is
+   * null. I can't figure out why I prevented that.
    */
   disableSwapping?: boolean;
 

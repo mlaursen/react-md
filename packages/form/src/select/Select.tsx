@@ -4,7 +4,11 @@ import cn from "classnames";
 import { useIcon } from "@react-md/icon";
 import type { ListElement } from "@react-md/list";
 import { useFixedPositioning } from "@react-md/transition";
-import type { PositionAnchor, PositionWidth } from "@react-md/utils";
+import type {
+  CalculateFixedPositionOptions,
+  PositionAnchor,
+  PositionWidth,
+} from "@react-md/utils";
 import {
   BELOW_CENTER_ANCHOR,
   bem,
@@ -154,6 +158,20 @@ export interface SelectProps
    * `@react-md/icon` package.
    */
   rightChildren?: ReactNode;
+
+  /**
+   * Used to add any additional fixed positioning behavior.
+   * @example
+   * ```tsx
+   * positionOptions={{
+   *   preventOverlap: true,
+   *   disableSwapping: true,
+   * }}
+   * ```
+   *
+   * @remarks \@since 5.1.6
+   */
+  positionOptions?: CalculateFixedPositionOptions;
 }
 
 const block = bem("rmd-select");
@@ -196,6 +214,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
     isRightAddon = true,
     underlineDirection: propUnderlineDirection,
     listboxWidth = "equal",
+    positionOptions,
     portal = true,
     portalInto,
     portalIntoId,
@@ -293,6 +312,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
     onResize: closeOnResize ? hide : undefined,
     transformOrigin: true,
     width: listboxWidth,
+    ...positionOptions,
     onEntering() {
       // can't do onEnter since the positioning styles haven't been applied to the
       // dom node at this time. this means the list is the last element in the DOM

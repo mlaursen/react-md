@@ -1,3 +1,4 @@
+/** @internal */
 export interface XCoordConfig {
   xMargin: number;
   elWidth: number;
@@ -5,6 +6,7 @@ export interface XCoordConfig {
   containerRect: DOMRect;
 }
 
+/** @internal */
 export interface YCoordConfig {
   yMargin: number;
   elHeight: number;
@@ -20,6 +22,7 @@ type Top = number;
  * (outer) left of the container element. So the right bounds of the fixed
  * element will be equal to the left bounds of the container element (before the
  * xMargin is applied).
+ *
  * @internal
  */
 export function getLeftCoord({
@@ -35,6 +38,7 @@ export function getLeftCoord({
  * Creates the `left` style value for an element that should be fixed to the
  * inner-left of the container element. So the left bounds of both the container
  * and fixed elements will overlap (before the xMargin is applied)
+ *
  * @internal
  */
 export function getInnerLeftCoord({
@@ -52,6 +56,7 @@ export function getInnerLeftCoord({
  *
  * Note: Unlike all the other horizontal positioning logic, the center position
  * does not use the xMargin.
+ *
  * @internal
  */
 export function getCenterXCoord({
@@ -68,6 +73,7 @@ export function getCenterXCoord({
  * Creates the `left` style value for an element that should be fixed to the
  * inner-right of the container element. So the right bounds for both the
  * container and fixed elements will overlap (before the xMargin is applied).
+ *
  * @internal
  */
 export function getInnerRightCoord({
@@ -86,6 +92,7 @@ export function getInnerRightCoord({
  * (outer) right of the container element. So the left bounds of the fixed
  * element will overlap with the right bounds of the container element (before
  * the xMargin is applied).
+ *
  * @internal
  */
 export function getRightCoord({
@@ -100,6 +107,7 @@ export function getRightCoord({
  * Creates the `top` style value for an element that should be fixed above the
  * container element. So the bottom bounds of the fixed element will overlap
  * with the top bounds of the container element (before the yMargin is applied).
+ *
  * @internal
  */
 export function getAboveCoord({
@@ -115,6 +123,7 @@ export function getAboveCoord({
  * Creates the `top` style value for an element that should be fixed to the top
  * of the container element. So the top bounds for both the container and fixed
  * elements will overlap (before the yMargin is applied).
+ *
  * @internal
  */
 export function getTopCoord({
@@ -133,15 +142,20 @@ export function getTopCoord({
  *
  * Note: Unlike all the other vertical positioning logic, the center position
  * does not use the yMargin.
+ *
+ * @internal
  */
 export function getCenterYCoord({
+  yMargin,
   elHeight,
   initialY,
   containerRect,
 }: YCoordConfig): Top {
   const containerCenter = containerRect.height / 2;
   const elementCenter = elHeight / 2;
-  return (initialY ?? containerRect.top + containerCenter) - elementCenter;
+  return (
+    (initialY ?? containerRect.top + containerCenter + yMargin) - elementCenter
+  );
 }
 
 /**
@@ -149,6 +163,7 @@ export function getCenterYCoord({
  * bottom of the container element. So the top bounds of the fixed element
  * should overlap the bottom bounds of the container element (before the yMargin
  * is applied).
+ *
  * @internal
  */
 export function getBottomCoord({
@@ -166,6 +181,7 @@ export function getBottomCoord({
  * Creates the `top` style value for an element that should be fixed to the
  * bottom of the container element. So the bottom bounds of both the container
  * and fixed elements should overlap (before the yMargin is applied).
+ *
  * @internal
  */
 export function getBelowCoord({

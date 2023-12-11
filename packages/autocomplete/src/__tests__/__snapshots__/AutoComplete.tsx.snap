@@ -5,7 +5,7 @@ exports[`AutoComplete should be able to render content before and after the matc
   class="rmd-list rmd-listbox rmd-listbox--temporary rmd-transition--scale-y-enter rmd-transition--scale-y-enter-active"
   id="autocomplete-listbox"
   role="listbox"
-  style="left: 0px; top: 0px; width: 0px; position: fixed; transform-origin: 50% 0;"
+  style="position: fixed; transform-origin: 50% 0; left: 0px; top: 0px; width: 0px;"
 >
   <div>
     Before Results
@@ -76,7 +76,7 @@ exports[`AutoComplete should be able to render content before and after the matc
   class="rmd-list rmd-listbox rmd-listbox--temporary rmd-transition--scale-y-enter rmd-transition--scale-y-enter-active"
   id="autocomplete-listbox"
   role="listbox"
-  style="left: 0px; top: 0px; width: 0px; position: fixed; transform-origin: 50% 0;"
+  style="position: fixed; transform-origin: 50% 0; left: 0px; top: 0px; width: 0px;"
 >
   <div>
     Before Results
@@ -147,7 +147,7 @@ exports[`AutoComplete should be able to render content before and after the matc
   class="rmd-list rmd-listbox rmd-listbox--temporary rmd-transition--scale-y-enter rmd-transition--scale-y-enter-active"
   id="autocomplete-listbox"
   role="listbox"
-  style="left: 0px; top: 0px; width: 0px; position: fixed; transform-origin: 50% 0;"
+  style="position: fixed; transform-origin: 50% 0; left: 0px; top: 0px; width: 0px;"
 >
   <div>
     Before Results
@@ -238,7 +238,7 @@ exports[`AutoComplete should handle a normal filter flow 1`] = `
     class="rmd-list rmd-listbox rmd-listbox--temporary rmd-transition--scale-y-enter rmd-transition--scale-y-enter-active"
     id="autocomplete-listbox"
     role="listbox"
-    style="left: 0px; top: 0px; width: 0px; position: fixed; transform-origin: 50% 0;"
+    style="position: fixed; transform-origin: 50% 0; left: 0px; top: 0px; width: 0px;"
   >
     <li
       class="rmd-list-item rmd-list-item--clickable rmd-option"

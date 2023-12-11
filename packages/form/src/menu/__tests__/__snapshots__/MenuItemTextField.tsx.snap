@@ -6,7 +6,7 @@ exports[`MenuItemTextField should not change the menu's keyboard focus behavior 
   class="rmd-menu rmd-menu--elevated"
   id="dropdown-menu-menu"
   role="menu"
-  style="left: 16px; top: 0px; position: fixed; transform-origin: 0 0;"
+  style="position: fixed; transform-origin: 0 0; left: 16px; top: 0px;"
   tabindex="-1"
 >
   <ul

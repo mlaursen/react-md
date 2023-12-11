@@ -6,21 +6,18 @@ import {
   getCenterYCoord,
   getTopCoord,
 } from "./getCoord";
-import { getViewportSize } from "./getViewportSize";
 import type { FixedPositionOptions, VerticalPosition } from "./types";
 
-/**
- * @internal
- */
+/** @internal */
 interface YPosition {
   top: number;
   bottom?: number;
   actualY: VerticalPosition;
+  /** @remarks \@since 5.1.6 */
+  transformOriginY?: number;
 }
 
-/**
- * @internal
- */
+/** @internal */
 export interface FixConfig extends YCoordConfig {
   vhMargin: number;
   screenBottom: number;
@@ -29,10 +26,8 @@ export interface FixConfig extends YCoordConfig {
   disableVHBounds: boolean;
 }
 
-/**
- * @internal
- */
-interface Options
+/** @internal */
+export interface CreateVerticalPositionOptions
   extends Required<
     Pick<
       FixedPositionOptions,
@@ -76,7 +71,7 @@ export function createAnchoredAbove(config: FixConfig): YPosition {
 
   if (disableVHBounds) {
     // can't actually allow a top value as a negative number since browsers
-    // won't scroll upwards pas the normal page top
+    // won't scroll upwards past the normal page top
     return { actualY, top: Math.max(0, top) };
   }
 
@@ -102,7 +97,7 @@ export function createAnchoredAbove(config: FixConfig): YPosition {
     actualY === "above" &&
     top + elHeight > containerRect.top
   ) {
-    bottom = window.innerHeight - containerRect.top + yMargin;
+    bottom = screenBottom - containerRect.top + yMargin;
   }
 
   return { actualY, top, bottom };
@@ -235,13 +230,13 @@ export function createAnchoredBelow(config: FixConfig): YPosition {
       top: Math.max(vhMargin, availableTop - elHeight),
       // this makes it so that the bottom of the fixed element is the top of the container
       // element. this ensures that it won't ever overlap the container element
-      bottom: getViewportSize("height") - availableTop,
+      bottom: window.innerHeight - availableTop,
     };
   }
 
   const swappedTop = getAboveCoord(config);
   if (disableSwapping || swappedTop < vhMargin) {
-    top = Math.max(top, screenBottom - elHeight);
+    top = Math.min(top, screenBottom - elHeight);
   } else {
     actualY = "above";
     top = swappedTop;
@@ -255,18 +250,22 @@ export function createAnchoredBelow(config: FixConfig): YPosition {
  *
  * @internal
  */
-export function createVerticalPosition({
-  y,
-  vh,
-  vhMargin,
-  yMargin,
-  elHeight,
-  initialY,
-  containerRect,
-  disableSwapping,
-  preventOverlap,
-  disableVHBounds,
-}: Options): YPosition {
+export function createVerticalPosition(
+  options: CreateVerticalPositionOptions
+): YPosition {
+  const {
+    y,
+    vh,
+    vhMargin,
+    yMargin,
+    elHeight,
+    initialY,
+    containerRect,
+    disableSwapping,
+    preventOverlap,
+    disableVHBounds,
+  } = options;
+
   if (!disableVHBounds && !preventOverlap && elHeight > vh - vhMargin * 2) {
     // the element is too big to be displayed in the viewport, so just span the
     // full viewport excluding margins
@@ -274,6 +273,7 @@ export function createVerticalPosition({
       top: vhMargin,
       bottom: vhMargin,
       actualY: "center",
+      transformOriginY: containerRect.top,
     };
   }
 

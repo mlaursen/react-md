@@ -112,7 +112,7 @@ exports[`MenuBar hover mode should allow for a click-first hover mode 1`] = `
     class="rmd-menu rmd-menu--elevated"
     id="menu-1-menu"
     role="menu"
-    style="left: 16px; top: 0px; position: fixed; transform-origin: 0 0;"
+    style="position: fixed; transform-origin: 0 0; left: 16px; top: 0px;"
     tabindex="-1"
   >
     <ul
@@ -273,7 +273,7 @@ exports[`MenuBar hover mode should allow for a click-first hover mode 2`] = `
     class="rmd-menu rmd-menu--elevated"
     id="menu-1-menu"
     role="menu"
-    style="left: 16px; top: 0px; position: fixed; transform-origin: 0 0;"
+    style="position: fixed; transform-origin: 0 0; left: 16px; top: 0px;"
     tabindex="-1"
   >
     <ul
@@ -434,7 +434,7 @@ exports[`MenuBar hover mode should allow for a click-first hover mode 3`] = `
     class="rmd-menu rmd-menu--elevated"
     id="menu-2-menu"
     role="menu"
-    style="left: 16px; top: 0px; position: fixed; transform-origin: 0 0;"
+    style="position: fixed; transform-origin: 0 0; left: 16px; top: 0px;"
     tabindex="-1"
   >
     <ul
@@ -581,7 +581,7 @@ exports[`MenuBar hover mode should allow for a click-first hover mode 4`] = `
     class="rmd-menu rmd-menu--elevated"
     id="menu-2-menu"
     role="menu"
-    style="left: 16px; top: 0px; position: fixed; transform-origin: 0 0;"
+    style="position: fixed; transform-origin: 0 0; left: 16px; top: 0px;"
     tabindex="-1"
   >
     <ul
@@ -728,7 +728,7 @@ exports[`MenuBar hover mode should allow for an immediate hover mode by setting 
     class="rmd-menu rmd-menu--elevated rmd-transition--scale-y-enter rmd-transition--scale-y-enter-active"
     id="menu-1-menu"
     role="menu"
-    style="left: 16px; top: 0px; position: fixed; transform-origin: 0 0;"
+    style="position: fixed; transform-origin: 0 0; left: 16px; top: 0px;"
     tabindex="-1"
   >
     <ul
@@ -889,7 +889,7 @@ exports[`MenuBar hover mode should allow for an immediate hover mode by setting 
     class="rmd-menu rmd-menu--elevated"
     id="menu-1-menu"
     role="menu"
-    style="left: 16px; top: 0px; position: fixed; transform-origin: 0 0;"
+    style="position: fixed; transform-origin: 0 0; left: 16px; top: 0px;"
     tabindex="-1"
   >
     <ul
@@ -1050,7 +1050,7 @@ exports[`MenuBar hover mode should allow for an immediate hover mode by setting 
     class="rmd-menu rmd-menu--elevated"
     id="menu-4-menu"
     role="menu"
-    style="left: 16px; top: 0px; position: fixed; transform-origin: 0 0;"
+    style="position: fixed; transform-origin: 0 0; left: 16px; top: 0px;"
     tabindex="-1"
   >
     <ul
@@ -1219,7 +1219,7 @@ exports[`MenuBar hover mode should allow for an immediate hover mode by setting 
     class="rmd-menu rmd-menu--elevated"
     id="menu-4-menu"
     role="menu"
-    style="left: 16px; top: 0px; position: fixed; transform-origin: 0 0;"
+    style="position: fixed; transform-origin: 0 0; left: 16px; top: 0px;"
     tabindex="-1"
   >
     <ul
@@ -1388,7 +1388,7 @@ exports[`MenuBar hover mode should allow for an immediate hover mode by setting 
     class="rmd-menu rmd-menu--elevated"
     id="menu-4-menu"
     role="menu"
-    style="left: 16px; top: 0px; position: fixed; transform-origin: 0 0;"
+    style="position: fixed; transform-origin: 0 0; left: 16px; top: 0px;"
     tabindex="-1"
   >
     <ul
@@ -1453,7 +1453,7 @@ exports[`MenuBar hover mode should allow for an immediate hover mode by setting 
     class="rmd-menu rmd-menu--elevated"
     id="submenu-1-menu"
     role="menu"
-    style="left: 0px; top: 16px; position: fixed; transform-origin: 0 50%;"
+    style="position: fixed; transform-origin: 0 50%; left: 0px; top: 16px;"
     tabindex="-1"
   >
     <ul
@@ -1628,7 +1628,7 @@ exports[`MenuBar hover mode should allow for an immediate hover mode by setting 
     class="rmd-menu rmd-menu--elevated"
     id="menu-4-menu"
     role="menu"
-    style="left: 16px; top: 0px; position: fixed; transform-origin: 0 0;"
+    style="position: fixed; transform-origin: 0 0; left: 16px; top: 0px;"
     tabindex="-1"
   >
     <ul
@@ -1693,7 +1693,7 @@ exports[`MenuBar hover mode should allow for an immediate hover mode by setting 
     class="rmd-menu rmd-menu--elevated"
     id="submenu-1-menu"
     role="menu"
-    style="left: 0px; top: 16px; position: fixed; transform-origin: 0 50%;"
+    style="position: fixed; transform-origin: 0 50%; left: 0px; top: 16px;"
     tabindex="-1"
   >
     <ul

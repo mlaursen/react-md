@@ -1,4 +1,4 @@
-import type { FixConfig } from "../createHorizontalPosition";
+import type { EqualWidthOptions, FixConfig } from "../createHorizontalPosition";
 import {
   createAnchoredCenter,
   createAnchoredInnerLeft,
@@ -8,7 +8,6 @@ import {
   createEqualWidth,
   createHorizontalPosition,
 } from "../createHorizontalPosition";
-
 import {
   getCenterXCoord,
   getInnerLeftCoord,
@@ -570,9 +569,8 @@ describe("createAnchoredRight", () => {
 });
 
 describe("createEqualWidth", () => {
-  const options1 = {
+  const options1: EqualWidthOptions = {
     x: "center",
-    vw: 1000,
     vwMargin: 0,
     xMargin: 0,
     elWidth: 200,
@@ -587,11 +585,16 @@ describe("createEqualWidth", () => {
       y: 0,
       toJSON() {},
     },
+    screenRight: 1000,
     isMinWidth: false,
-  } as const;
-  const options2 = { ...options1, vwMargin: 16 };
-  const options3 = { ...options1, xMargin: 5 };
-  const options4 = { ...options2, xMargin: 5 };
+  };
+  const options2: EqualWidthOptions = {
+    ...options1,
+    screenRight: 984,
+    vwMargin: 16,
+  };
+  const options3: EqualWidthOptions = { ...options1, xMargin: 5 };
+  const options4: EqualWidthOptions = { ...options2, xMargin: 5 };
 
   it("should return the width of the container element along with the left value", () => {
     expect(createEqualWidth(options1)).toEqual({
@@ -650,26 +653,26 @@ describe("createEqualWidth", () => {
     const opt4 = { ...opt2, xMargin: 5 };
 
     expect(createEqualWidth(opt1)).toEqual({
-      left: 300,
-      minWidth: 400,
+      left: opt1.vwMargin,
+      minWidth: opt1.elWidth,
       right: 0,
       actualX: "center",
     });
     expect(createEqualWidth(opt2)).toEqual({
-      left: 300,
-      minWidth: 400,
+      left: opt2.vwMargin,
+      minWidth: opt1.elWidth,
       right: 16,
       actualX: "center",
     });
     expect(createEqualWidth(opt3)).toEqual({
-      left: 305,
-      minWidth: 390,
+      left: opt3.vwMargin,
+      minWidth: opt3.elWidth,
       right: 0,
       actualX: "center",
     });
     expect(createEqualWidth(opt4)).toEqual({
-      left: 305,
-      minWidth: 390,
+      left: opt4.vwMargin,
+      minWidth: opt4.elWidth,
       right: 16,
       actualX: "center",
     });
@@ -709,8 +712,8 @@ describe("createHorizontalPosition", () => {
       width: "min",
     } as const;
     expect(createHorizontalPosition(minWidthOptions)).toEqual({
-      left: containerRect1.left,
-      minWidth: containerRect1.width,
+      left: 90,
+      minWidth: 120,
       actualX: "inner-left",
     });
 

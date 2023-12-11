@@ -1,10 +1,10 @@
+import { scrollbarSize } from "../layout/scrollbarSize";
 import { BELOW_CENTER_ANCHOR } from "./constants";
 import { createHorizontalPosition } from "./createHorizontalPosition";
 import { createVerticalPosition } from "./createVerticalPosition";
 import { findSizingContainer } from "./findSizingContainer";
 import { getElementRect } from "./getElementRect";
 import { getTransformOrigin } from "./getTransformOrigin";
-import { getViewportSize } from "./getViewportSize";
 import type { FixedPosition, FixedPositionOptions } from "./types";
 
 /**
@@ -56,35 +56,29 @@ const FALLBACK_DOM_RECT: DOMRect = {
  * next flow:
  *
  * First, check the horizontal sizes and make sure that the element is still
- * within the viewport with the provided viewwidth margin. If it isn't, first
+ * within the viewport with the provided view width margin. If it isn't, first
  * try to swap only to a `right` style instead of left to see if that fixes it,
  * otherwise keep both the `left` and `right` styles.
  */
-export function getFixedPosition({
-  container,
-  element,
-  anchor = BELOW_CENTER_ANCHOR,
-  initialX,
-  initialY,
-  vwMargin = 16,
-  vhMargin = 16,
-  xMargin = 0,
-  yMargin = 0,
-  width: widthType = "auto",
-  preventOverlap = false,
-  transformOrigin = false,
-  disableSwapping: propDisableSwapping = false,
-  disableVHBounds = false,
-}: FixedPositionOptions): FixedPosition {
-  container = findSizingContainer(container);
+export function getFixedPosition(options: FixedPositionOptions): FixedPosition {
+  const {
+    element,
+    anchor = BELOW_CENTER_ANCHOR,
+    initialX,
+    vwMargin = 16,
+    vhMargin = 16,
+    xMargin = 0,
+    yMargin = 0,
+    width: widthType = "auto",
+    preventOverlap = false,
+    transformOrigin = false,
+    disableSwapping = false,
+    disableVHBounds = false,
+  } = options;
+  let { initialY } = options;
+  const container = findSizingContainer(options.container);
 
   if (process.env.NODE_ENV !== "production") {
-    if (widthType !== "auto" && anchor.x !== "center") {
-      throw new Error(
-        'Unable to use a calculated width when the horizontal anchor is not `"center"`.'
-      );
-    }
-
     if (preventOverlap && anchor.y !== "above" && anchor.y !== "below") {
       throw new Error(
         'Unable to prevent overlap when the vertical anchor is not `"above"` or `"below"`'
@@ -96,22 +90,41 @@ export function getFixedPosition({
     return {
       actualX: anchor.x,
       actualY: anchor.y,
+      style: {
+        left: initialX,
+        top: initialY,
+        position: disableVHBounds ? "absolute" : "fixed",
+        transformOrigin: transformOrigin
+          ? getTransformOrigin({ x: anchor.x, y: anchor.y })
+          : undefined,
+      },
     };
   }
 
   const containerRect = container?.getBoundingClientRect() ?? FALLBACK_DOM_RECT;
-  const vh = getViewportSize("height");
-  const vw = getViewportSize("width");
+  const vh = window.innerHeight;
+  const vw = window.innerWidth;
 
-  const { height, width: elWidth } = getElementRect(element);
+  const { minWidth: elMinWidth } = element.style;
+  // Note: This makes it "min-content" or "min-container-width"
+  if (widthType === "min") {
+    element.style.overflow = "visible";
+    element.style.minWidth = "";
+  }
+  const elementRect = getElementRect(element);
+  const { height } = elementRect;
+  let elWidth = elementRect.width;
+  if (widthType === "min") {
+    elWidth += scrollbarSize();
+    element.style.overflow = "";
+    element.style.minWidth = elMinWidth;
+  }
   if (disableVHBounds) {
     const dialog = element.closest("[role='dialog']");
     if (!dialog) {
       initialY = (initialY ?? 0) + window.scrollY;
     }
   }
-
-  const disableSwapping = propDisableSwapping || !container;
 
   const { left, right, width, minWidth, actualX } = createHorizontalPosition({
     x: anchor.x,
@@ -124,7 +137,7 @@ export function getFixedPosition({
     containerRect,
     disableSwapping,
   });
-  const { top, bottom, actualY } = createVerticalPosition({
+  const { top, bottom, actualY, transformOriginY } = createVerticalPosition({
     y: anchor.y,
     vh,
     vhMargin,
@@ -149,7 +162,11 @@ export function getFixedPosition({
       minWidth,
       position: disableVHBounds ? "absolute" : "fixed",
       transformOrigin: transformOrigin
-        ? getTransformOrigin({ x: actualX, y: actualY })
+        ? getTransformOrigin({
+            x: actualX,
+            y: actualY,
+            transformOriginY,
+          })
         : undefined,
     },
   };

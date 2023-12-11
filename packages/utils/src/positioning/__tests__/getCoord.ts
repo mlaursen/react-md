@@ -726,14 +726,14 @@ describe("getCenterYCoord", () => {
         elHeight: 100,
         containerRect: containerRect1,
       })
-    ).toBe(75);
+    ).toBe(83);
     expect(
       getCenterYCoord({
         yMargin: 8,
         elHeight: 50,
         containerRect: containerRect1,
       })
-    ).toBe(100);
+    ).toBe(108);
 
     expect(
       getCenterYCoord({
@@ -755,14 +755,14 @@ describe("getCenterYCoord", () => {
         elHeight: 100,
         containerRect: containerRect2,
       })
-    ).toBe(75);
+    ).toBe(83);
     expect(
       getCenterYCoord({
         yMargin: 8,
         elHeight: 50,
         containerRect: containerRect2,
       })
-    ).toBe(100);
+    ).toBe(108);
   });
 
   it("should use the initialY instead of any of the container element sizing when provided and ignoring margin", () => {

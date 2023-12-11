@@ -31,7 +31,7 @@ export interface FixConfig extends XCoordConfig {
 /**
  * @internal
  */
-interface Options
+export interface CreateHorizontalPositionOptions
   extends Required<
     Pick<
       FixedPositionOptions,
@@ -199,44 +199,54 @@ export function createAnchoredRight(config: FixConfig): XPosition {
   return { actualX, left };
 }
 
-interface EqualWidthOptions
+export interface EqualWidthOptions
   extends Pick<
-    Options,
-    | "x"
-    | "vw"
-    | "elWidth"
-    | "xMargin"
-    | "vwMargin"
-    | "containerRect"
-    | "initialX"
+    CreateHorizontalPositionOptions,
+    "x" | "elWidth" | "xMargin" | "vwMargin" | "containerRect" | "initialX"
   > {
+  screenRight: number;
   isMinWidth: boolean;
 }
 
 /**
  * @internal
  */
-export function createEqualWidth({
-  x,
-  vw,
-  elWidth,
-  xMargin,
-  vwMargin,
-  initialX,
-  containerRect,
-  isMinWidth,
-}: EqualWidthOptions): XPosition {
-  const left = initialX ?? containerRect.left + xMargin;
+export function createEqualWidth(options: EqualWidthOptions): XPosition {
+  const {
+    x,
+    elWidth,
+    xMargin,
+    vwMargin,
+    initialX,
+    containerRect,
+    screenRight,
+    isMinWidth,
+  } = options;
+
+  let left = initialX ?? containerRect.left + xMargin;
 
   let width: number | undefined = containerRect.width - xMargin * 2;
   let minWidth: number | undefined;
   let right: number | undefined;
   if (isMinWidth) {
     minWidth = width;
+    // if the fixed element has a width greater than the element it is fixed to,
+    // update the width to be the fixed element's width. since the "min-width"
+    // option is only possible for horizontally centered elements, need to then
+    // update the `left` position again.
+    if (elWidth > width) {
+      left -= (elWidth - width) / 2;
+      minWidth = elWidth;
+    }
+
     width = undefined;
-    if (left + elWidth > vw - vwMargin) {
+    const elRight = left + elWidth;
+    if (elRight > screenRight) {
+      left -= elRight - screenRight;
       right = vwMargin;
     }
+
+    left = Math.max(vwMargin, left);
   }
 
   // going to assume that the container element is visible in the DOM and just
@@ -255,26 +265,31 @@ export function createEqualWidth({
  * options.
  * @internal
  */
-export function createHorizontalPosition({
-  x,
-  vw,
-  vwMargin,
-  xMargin,
-  width,
-  elWidth,
-  initialX,
-  containerRect,
-  disableSwapping,
-}: Options): XPosition {
+export function createHorizontalPosition(
+  options: CreateHorizontalPositionOptions
+): XPosition {
+  const {
+    x,
+    vw,
+    vwMargin,
+    xMargin,
+    width,
+    elWidth,
+    initialX,
+    containerRect,
+    disableSwapping,
+  } = options;
+
+  const screenRight = vw - vwMargin;
   if (width === "min" || width === "equal") {
     return createEqualWidth({
       x,
-      vw,
       vwMargin,
       xMargin,
       elWidth,
       initialX,
       containerRect,
+      screenRight,
       isMinWidth: width === "min",
     });
   }
@@ -295,7 +310,7 @@ export function createHorizontalPosition({
     xMargin,
     elWidth,
     initialX,
-    screenRight: vw - vwMargin,
+    screenRight,
     containerRect,
     disableSwapping,
   };

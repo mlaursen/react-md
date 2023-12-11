@@ -6,7 +6,7 @@ exports[`MenuItemFileInput should call the onClick handlers correctly 1`] = `
   class="rmd-menu rmd-menu--elevated"
   id="dropdown-menu-menu"
   role="menu"
-  style="left: 16px; top: 0px; position: fixed; transform-origin: 0 0;"
+  style="position: fixed; transform-origin: 0 0; left: 16px; top: 0px;"
   tabindex="-1"
 >
   <ul
@@ -50,7 +50,7 @@ exports[`MenuItemFileInput should work correctly 1`] = `
   class="rmd-menu rmd-menu--elevated"
   id="dropdown-menu-menu"
   role="menu"
-  style="left: 16px; top: 0px; position: fixed; transform-origin: 0 0;"
+  style="position: fixed; transform-origin: 0 0; left: 16px; top: 0px;"
   tabindex="-1"
 >
   <ul

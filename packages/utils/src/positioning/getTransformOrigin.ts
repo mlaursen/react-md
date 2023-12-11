@@ -1,18 +1,28 @@
 import type { PositionAnchor } from "./types";
 
 /**
+ * @remarks \@since 5.1.6
+ * @internal
+ */
+export interface TransformOriginOptions extends PositionAnchor {
+  transformOriginY?: number;
+}
+
+/**
  * This is a simple util that'll generate a css `transform-origin` string so
  * that the fixed element can animate from the correct point based on the
  * provided anchor.
  *
- * @param anchor - The anchor that should be used to create the transform origin
+ * @param options - The anchor that should be used to create the transform origin
  * for.
  * @returns the transform origin string
  * @internal
  */
-export function getTransformOrigin(anchor: PositionAnchor): string {
+export function getTransformOrigin(options: TransformOriginOptions): string {
+  const { transformOriginY: yPosition } = options;
+
   let x = "0";
-  switch (anchor.x) {
+  switch (options.x) {
     case "right":
     case "inner-left":
       x = "0";
@@ -29,20 +39,24 @@ export function getTransformOrigin(anchor: PositionAnchor): string {
   }
 
   let y = "0";
-  switch (anchor.y) {
-    case "above":
-    case "bottom":
-      y = "100%";
-      break;
-    case "center":
-      y = "50%";
-      break;
-    case "below":
-    case "top":
-      y = "0";
-      break;
-    default:
-      y = "0";
+  if (typeof yPosition === "number") {
+    y = `${yPosition}px`;
+  } else {
+    switch (options.y) {
+      case "above":
+      case "bottom":
+        y = "100%";
+        break;
+      case "center":
+        y = "50%";
+        break;
+      case "below":
+      case "top":
+        y = "0";
+        break;
+      default:
+        y = "0";
+    }
   }
 
   return `${x} ${y}`;

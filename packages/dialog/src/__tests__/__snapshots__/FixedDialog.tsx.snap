@@ -20,6 +20,7 @@ exports[`FixedDialog should disable the overlay and scroll lock behavior by defa
     class="rmd-dialog rmd-dialog--fixed"
     id="dialog"
     role="dialog"
+    style="position: fixed; transform-origin: 100% 0;"
     tabindex="-1"
   />
 </body>
