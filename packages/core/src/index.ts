@@ -13,6 +13,7 @@ export * from "./button/AsyncButton.js";
 export * from "./button/Button.js";
 export * from "./button/ButtonUnstyled.js";
 export * from "./button/FloatingActionButton.js";
+export * from "./button/TooltippedButton.js";
 export * from "./button/buttonStyles.js";
 export * from "./button/buttonUnstyledStyles.js";
 export * from "./card/Card.js";

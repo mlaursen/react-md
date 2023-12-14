@@ -96,21 +96,23 @@ export interface TooltipPositioningOptions {
  * \@since 2.8.0
  * \@since 6.0.0 Removed the `TooltipTouchEventHandlers` and
  * `TooltipKeyboardEventHandlers` types, removed the need for the `onKeyDown`
- * event, and infer element typeparam while calling instead of at hook level.
+ * event.
  */
-export interface TooltippedElementEventHandlers {
-  onBlur?<E extends HTMLElement>(event: FocusEvent<E>): void;
-  onFocus?<E extends HTMLElement>(event: FocusEvent<E>): void;
-  onMouseEnter?<E extends HTMLElement>(event: MouseEvent<E>): void;
-  onMouseLeave?<E extends HTMLElement>(event: MouseEvent<E>): void;
-  onTouchStart?<E extends HTMLElement>(event: TouchEvent<E>): void;
-  onTouchEnd?<E extends HTMLElement>(event: TouchEvent<E>): void;
-  onContextMenu?<E extends HTMLElement>(event: MouseEvent<E>): void;
+export interface TooltippedElementEventHandlers<
+  E extends HTMLElement = HTMLButtonElement,
+> {
+  onBlur?(event: FocusEvent<E>): void;
+  onFocus?(event: FocusEvent<E>): void;
+  onMouseEnter?(event: MouseEvent<E>): void;
+  onMouseLeave?(event: MouseEvent<E>): void;
+  onTouchStart?(event: TouchEvent<E>): void;
+  onTouchEnd?(event: TouchEvent<E>): void;
+  onContextMenu?(event: MouseEvent<E>): void;
 }
 
 /** @remarks \@since 2.8.0 */
-export interface ProvidedTooltippedElementProps
-  extends Required<TooltippedElementEventHandlers> {
+export interface ProvidedTooltippedElementProps<E extends HTMLElement>
+  extends Required<TooltippedElementEventHandlers<E>> {
   "aria-describedby": string | undefined;
   id: string;
 }
@@ -123,9 +125,10 @@ export interface ProvidedTooltippedElementProps
  * `TooltipHookOptions` to `TooltipOptions` to match other hook naming
  * conventions.
  */
-export interface TooltipOptions
-  extends FixedPositioningTransitionCallbacks,
-    TooltippedElementEventHandlers,
+export interface TooltipOptions<
+  TooltippedElement extends HTMLElement = HTMLButtonElement,
+> extends FixedPositioningTransitionCallbacks,
+    TooltippedElementEventHandlers<TooltippedElement>,
     TooltipPositioningOptions,
     TooltipPositionHookOptions {
   /**
@@ -255,13 +258,14 @@ export interface ProvidedTooltipProps<E extends HTMLElement = HTMLSpanElement>
  * naming conventions.
  */
 export interface TooltipImplementation<
+  TooltippedElement extends HTMLElement = HTMLButtonElement,
   TooltipElement extends HTMLElement = HTMLSpanElement,
 > extends ControlledHoverModeImplementation {
   visible: boolean;
   setVisible: UseStateSetter<boolean>;
   animatedOnce: boolean;
   initiatedBy: MutableRefObject<UserInteractionMode | null>;
-  elementProps: ProvidedTooltippedElementProps;
+  elementProps: ProvidedTooltippedElementProps<TooltippedElement>;
   tooltipProps: ProvidedTooltipProps<TooltipElement>;
 
   /**
@@ -367,8 +371,11 @@ export interface TooltipImplementation<
  * stay visible
  */
 export function useTooltip<
+  TooltippedElement extends HTMLElement = HTMLButtonElement,
   TooltipElement extends HTMLElement = HTMLSpanElement,
->(options: TooltipOptions = {}): TooltipImplementation<TooltipElement> {
+>(
+  options: TooltipOptions<TooltippedElement> = {}
+): TooltipImplementation<TooltippedElement, TooltipElement> {
   const {
     id: propId,
     style: propStyle,
