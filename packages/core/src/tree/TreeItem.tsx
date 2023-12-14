@@ -237,7 +237,6 @@ export function TreeItem(props: TreeItemProps): ReactElement {
         {...handlers}
         className={treeItemContent({
           link: isLink,
-          padded: depth > 0,
           focused,
           selected,
           disabled,
@@ -298,7 +297,7 @@ export function TreeItem(props: TreeItemProps): ReactElement {
         temporary={temporaryChildItems}
         disableTransition={disableTransition}
         {...groupProps}
-        depth={depth - 1}
+        depth={depth + 1}
         collapsed={isLeafNode || !expanded}
       >
         {childItems}

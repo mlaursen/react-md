@@ -67,13 +67,6 @@ export interface TreeItemContentClassNameOptions
   link?: boolean;
 
   /**
-   *
-   *
-   * @defaultValue `false`
-   */
-  padded?: boolean;
-
-  /**
    * Set this to `true` when the tree item is the current keyboard focus with
    * `aria-activedescendant`. This will apply the focus styles only while the
    * parent tree component is focused and the user is in keyboard mode.
@@ -101,7 +94,6 @@ export function treeItemContent(
   const {
     className,
     link = false,
-    padded = false,
     focused,
     selected,
     disabled = false,
@@ -111,7 +103,6 @@ export function treeItemContent(
   return cnb(
     treeItemStyles("content", {
       link,
-      padded,
       focused,
       selected,
       disabled,

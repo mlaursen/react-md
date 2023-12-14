@@ -12,8 +12,8 @@ $disable-expander-left-as-media: false !default;
 $disable-expander-left-as-media-offset: false !default;
 $disable-selected-background-color: false !default;
 
-$padding-incrementor: list.$item-horizontal-padding * 1.5 !default;
-$padding-base: list.get-var(item-keyline) !default;
+$item-padding-base: list.$item-horizontal-padding !default;
+$item-padding-incrementor: list.$item-horizontal-padding * 1.5 !default;
 $expander-right-from: icon.$rotate-from !default;
 $expander-right-to: 90deg !default;
 $expander-left-from: 0deg !default;
@@ -44,12 +44,18 @@ $variables: (depth, item-padding, item-padding-base, item-padding-incrementor);
   #{$property}: get-var($name, $fallback);
 }
 
+// must be defined after the `get-var` function
+$item-padding: calc(
+  get-var(depth) * get-var(item-padding-incrementor) +
+    get-var(item-padding-base)
+) !default;
+
 @mixin variables {
   @if not $disable-everything {
-    @include set-var(depth, -1);
+    @include set-var(depth, 0);
     @include set-var(item-padding, 0);
-    @include set-var(item-padding-base, $padding-base);
-    @include set-var(item-padding-incrementor, $padding-incrementor);
+    @include set-var(item-padding-base, $item-padding-base);
+    @include set-var(item-padding-incrementor, $item-padding-incrementor);
   }
 }
 
@@ -69,13 +75,7 @@ $variables: (depth, item-padding, item-padding-base, item-padding-incrementor);
     .rmd-tree-item {
       @include icon.set-var(rotate-from, $expander-right-from);
       @include icon.set-var(rotate-to, $expander-right-to);
-      @include set-var(
-        item-padding,
-        calc(
-          get-var(depth) * get-var(item-padding-incrementor) +
-            get-var(item-padding-base)
-        )
-      );
+      @include set-var(item-padding, $item-padding);
 
       list-style: none;
 
@@ -87,6 +87,12 @@ $variables: (depth, item-padding, item-padding-base, item-padding-incrementor);
       }
 
       &__content {
+        @include utils.auto-rtl(
+          padding-left,
+          get-var(item-padding),
+          list.get-var(item-horizontal-padding)
+        );
+
         &--disabled {
           cursor: auto;
 
@@ -98,14 +104,6 @@ $variables: (depth, item-padding, item-padding-base, item-padding-incrementor);
         &--link {
           color: inherit;
           text-decoration: none;
-        }
-
-        &--padded {
-          @include utils.auto-rtl(
-            padding-left,
-            get-var(item-padding),
-            list.get-var(item-horizontal-padding)
-          );
         }
 
         &--focused::before {
