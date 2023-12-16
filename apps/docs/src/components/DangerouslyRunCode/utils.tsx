@@ -17,6 +17,7 @@ import ContentPasteOutlinedIcon from "@react-md/material-icons/ContentPasteOutli
 import EmailIcon from "@react-md/material-icons/EmailIcon";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import FolderIcon from "@react-md/material-icons/FolderIcon";
+import FolderOpenIcon from "@react-md/material-icons/FolderOpenIcon";
 import InfoOutlineIcon from "@react-md/material-icons/InfoOutlineIcon";
 import KeyboardArrowDownIcon from "@react-md/material-icons/KeyboardArrowDownIcon";
 import MenuIcon from "@react-md/material-icons/MenuIcon";
@@ -116,6 +117,7 @@ function dangerouslyEvalCode(
     "@react-md/material-icons/EmailIcon": EmailIcon,
     "@react-md/material-icons/FavoriteIcon": FavoriteIcon,
     "@react-md/material-icons/FolderIcon": FolderIcon,
+    "@react-md/material-icons/FolderOpenIcon": FolderOpenIcon,
     "@react-md/material-icons/InfoOutlineIcon": InfoOutlineIcon,
     "@react-md/material-icons/KeyboardArrowDownIcon": KeyboardArrowDownIcon,
     "@react-md/material-icons/MenuIcon": MenuIcon,

@@ -1,3 +1,584 @@
 # Tree
 
-TODO
+A tree represents a hierarchical list of items that might have child items that
+can be expanded, collapsed, or selected.
+
+# Single Select Tree
+
+A tree can be created by using the `Tree` component, the `useTree` hook to
+control the state, and a set of `data`. The `data` must follow the following
+type:
+
+```ts
+interface TreeItemNode {
+  itemId: string;
+  parentId: string | null;
+}
+
+type TreeData = Record<string, TreeItemNode>;
+```
+
+The following example will show how to create a single-select tree.
+
+```tsx
+// preview editable
+"use client";
+import { Tree, useTree } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function SingleSelectTreeExample(): ReactElement {
+  const tree = useTree();
+
+  return <Tree {...tree} data={folders} aria-label="Tree" />;
+}
+
+const folders = {
+  "folder-1": {
+    name: "Folder 1",
+    itemId: "folder-1",
+    parentId: null,
+  },
+  "folder-2": {
+    name: "Folder 2",
+    itemId: "folder-2",
+    parentId: null,
+  },
+  "folder-3": {
+    name: "Folder 3",
+    itemId: "folder-3",
+    parentId: null,
+  },
+  "folder-2-1": {
+    name: "Folder 2 Child 1",
+    itemId: "folder-2-1",
+    parentId: "folder-2",
+  },
+  "folder-2-2": {
+    name: "Folder 2 Child 2",
+    itemId: "folder-2-2",
+    parentId: "folder-2",
+  },
+  "folder-2-3": {
+    name: "Folder 2 Child 3",
+    itemId: "folder-2-3",
+    parentId: "folder-2",
+  },
+  "folder-2-2-1": {
+    name: "Folder 2 Child 2 Child 1",
+    itemId: "folder-2-2-1",
+    parentId: "folder-2-2",
+  },
+  "folder-2-2-1-1": {
+    name: "Folder 2 Child 2 Child 1 Child 1",
+    itemId: "folder-2-2-1-1",
+    parentId: "folder-2-2-1",
+  },
+};
+```
+
+## Multiselect Tree
+
+Multiple items within the tree can be selectable by enabling the `multiSelect`
+option on the `useTree` hook.
+
+```tsx
+// preview editable
+"use client";
+import { Tree, useTree } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function MultiSelectTreeExample(): ReactElement {
+  const tree = useTree({
+    multiSelect: true,
+  });
+
+  return <Tree {...tree} data={folders} aria-label="Tree" />;
+}
+
+const folders = {
+  "folder-1": {
+    name: "Folder 1",
+    itemId: "folder-1",
+    parentId: null,
+  },
+  "folder-2": {
+    name: "Folder 2",
+    itemId: "folder-2",
+    parentId: null,
+  },
+  "folder-3": {
+    name: "Folder 3",
+    itemId: "folder-3",
+    parentId: null,
+  },
+  "folder-2-1": {
+    name: "Folder 2 Child 1",
+    itemId: "folder-2-1",
+    parentId: "folder-2",
+  },
+  "folder-2-2": {
+    name: "Folder 2 Child 2",
+    itemId: "folder-2-2",
+    parentId: "folder-2",
+  },
+  "folder-2-3": {
+    name: "Folder 2 Child 3",
+    itemId: "folder-2-3",
+    parentId: "folder-2",
+  },
+  "folder-2-2-1": {
+    name: "Folder 2 Child 2 Child 1",
+    itemId: "folder-2-2-1",
+    parentId: "folder-2-2",
+  },
+  "folder-2-2-1-1": {
+    name: "Folder 2 Child 2 Child 1 Child 1",
+    itemId: "folder-2-2-1-1",
+    parentId: "folder-2-2-1",
+  },
+};
+```
+
+# Customizations
+
+## Expansion Mode
+
+When an expandable tree item is clicked, the default behavior is to select it
+and toggle the expansion of child items. An alternative approach would be to
+only toggle the expansion of child items by clicking on an icon and toggle the
+selection by clicking anywhere else in the tree item. To enable this behavior,
+set the `expansionMode` prop to `"manual"` instead of `"auto"` (default).
+
+```tsx
+// preview editable
+"use client";
+import { Tree, useTree } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function ExpansionModeExample(): ReactElement {
+  const tree = useTree();
+
+  return (
+    <Tree {...tree} data={folders} aria-label="Tree" expansionMode="manual" />
+  );
+}
+
+const folders = {
+  "folder-1": {
+    name: "Folder 1",
+    itemId: "folder-1",
+    parentId: null,
+  },
+  "folder-2": {
+    name: "Folder 2",
+    itemId: "folder-2",
+    parentId: null,
+  },
+  "folder-3": {
+    name: "Folder 3",
+    itemId: "folder-3",
+    parentId: null,
+  },
+  "folder-2-1": {
+    name: "Folder 2 Child 1",
+    itemId: "folder-2-1",
+    parentId: "folder-2",
+  },
+  "folder-2-2": {
+    name: "Folder 2 Child 2",
+    itemId: "folder-2-2",
+    parentId: "folder-2",
+  },
+  "folder-2-3": {
+    name: "Folder 2 Child 3",
+    itemId: "folder-2-3",
+    parentId: "folder-2",
+  },
+  "folder-2-2-1": {
+    name: "Folder 2 Child 2 Child 1",
+    itemId: "folder-2-2-1",
+    parentId: "folder-2-2",
+  },
+  "folder-2-2-1-1": {
+    name: "Folder 2 Child 2 Child 1 Child 1",
+    itemId: "folder-2-2-1-1",
+    parentId: "folder-2-2-1",
+  },
+};
+```
+
+## Expander Icon
+
+The `TreeItem` component will use the
+[expander](/customization/icon-config#expander) icon from the `ICON_CONFIG` by
+default but can be overridden by setting the `expanderIcon` prop on the `Tree`
+component.
+
+> !Info! Check out the [icon rotator custom rotation](/components/icon-rotator#custom-rotation)
+> example to change the rotation while collapsed and expanded.
+
+```tsx
+// preview editable
+"use client";
+import { Tree, useTree } from "@react-md/core";
+import KeyboardArrowDownIcon from "@react-md/material-icons/KeyboardArrowDownIcon";
+import { type ReactElement } from "react";
+
+export default function ExpanderIconExample(): ReactElement {
+  const tree = useTree();
+
+  return (
+    <Tree
+      {...tree}
+      data={folders}
+      aria-label="Tree"
+      expanderIcon={<KeyboardArrowDownIcon />}
+    />
+  );
+}
+
+const folders = {
+  "folder-1": {
+    name: "Folder 1",
+    itemId: "folder-1",
+    parentId: null,
+  },
+  "folder-2": {
+    name: "Folder 2",
+    itemId: "folder-2",
+    parentId: null,
+  },
+  "folder-3": {
+    name: "Folder 3",
+    itemId: "folder-3",
+    parentId: null,
+  },
+  "folder-2-1": {
+    name: "Folder 2 Child 1",
+    itemId: "folder-2-1",
+    parentId: "folder-2",
+  },
+  "folder-2-2": {
+    name: "Folder 2 Child 2",
+    itemId: "folder-2-2",
+    parentId: "folder-2",
+  },
+  "folder-2-3": {
+    name: "Folder 2 Child 3",
+    itemId: "folder-2-3",
+    parentId: "folder-2",
+  },
+  "folder-2-2-1": {
+    name: "Folder 2 Child 2 Child 1",
+    itemId: "folder-2-2-1",
+    parentId: "folder-2-2",
+  },
+  "folder-2-2-1-1": {
+    name: "Folder 2 Child 2 Child 1 Child 1",
+    itemId: "folder-2-2-1-1",
+    parentId: "folder-2-2-1",
+  },
+};
+```
+
+## Expander Icon Position
+
+The expander icon defaults to rendering at the right of each `TreeItem` but can
+be set to the left by enabling the `expanderLeft` prop.
+
+```tsx
+// preview editable
+"use client";
+import { Tree, useTree, type TreeData } from "@react-md/core";
+import FolderIcon from "@react-md/material-icons/FolderIcon";
+import { useMemo, type ReactElement, type ReactNode } from "react";
+
+type CustomTreeData = TreeData<Folder & { leftAddon?: ReactNode }>;
+
+export default function ExpanderIconPositionExample(): ReactElement {
+  const tree = useTree();
+  const data = useMemo(
+    () =>
+      Object.entries(folders).reduce<CustomTreeData>(
+        (updated, [folderId, folder]) => {
+          updated[folderId] = {
+            ...folder,
+            leftAddon: <FolderIcon />,
+          };
+          return updated;
+        },
+        {},
+      ),
+    [],
+  );
+
+  return <Tree {...tree} data={data} aria-label="Tree" expanderLeft />;
+}
+
+interface Folder {
+  name: string;
+  itemId: string;
+  parentId: string | null;
+}
+
+const folders = {
+  "folder-1": {
+    name: "Folder 1",
+    itemId: "folder-1",
+    parentId: null,
+  },
+  "folder-2": {
+    name: "Folder 2",
+    itemId: "folder-2",
+    parentId: null,
+  },
+  "folder-3": {
+    name: "Folder 3",
+    itemId: "folder-3",
+    parentId: null,
+  },
+  "folder-2-1": {
+    name: "Folder 2 Child 1",
+    itemId: "folder-2-1",
+    parentId: "folder-2",
+  },
+  "folder-2-2": {
+    name: "Folder 2 Child 2",
+    itemId: "folder-2-2",
+    parentId: "folder-2",
+  },
+  "folder-2-3": {
+    name: "Folder 2 Child 3",
+    itemId: "folder-2-3",
+    parentId: "folder-2",
+  },
+  "folder-2-2-1": {
+    name: "Folder 2 Child 2 Child 1",
+    itemId: "folder-2-2-1",
+    parentId: "folder-2-2",
+  },
+  "folder-2-2-1-1": {
+    name: "Folder 2 Child 2 Child 1 Child 1",
+    itemId: "folder-2-2-1-1",
+    parentId: "folder-2-2-1",
+  },
+};
+```
+
+## Decreasing Spacing
+
+The `padding-left` for each tree item increases the deeper within the tree it
+is rendered by using:
+
+```scss
+--rmd-tree-item-padding: calc(
+  var(--rmd-tree-depth) * var(--rmd-tree-item-padding-incrementor) + var(--rmd-tree-item-padding-base)
+);
+
+padding-left: var(--rmd-tree-item-padding):
+```
+
+This means the padding can be configured globally by overriding
+`core.$tree-item-padding-incrementor` and `core.$tree-item-padding-base` or
+setting the custom properties using `core.tree-set-var` mixin. The example below will
+showcase using the mixin.
+
+```tsx
+// preview editable styles="src/app/components/tree/DecreasingSpacingExample.module.scss"
+"use client";
+import { Tree, useTree } from "@react-md/core";
+import { type ReactElement } from "react";
+import styles from "./DecreasingSpacingExample.module.scss";
+
+export default function DecreasingSpacingExample(): ReactElement {
+  const tree = useTree();
+
+  return (
+    <Tree {...tree} data={folders} aria-label="Tree" className={styles.tree} />
+  );
+}
+
+const folders = {
+  "folder-1": {
+    name: "Folder 1",
+    itemId: "folder-1",
+    parentId: null,
+  },
+  "folder-2": {
+    name: "Folder 2",
+    itemId: "folder-2",
+    parentId: null,
+  },
+  "folder-3": {
+    name: "Folder 3",
+    itemId: "folder-3",
+    parentId: null,
+  },
+  "folder-2-1": {
+    name: "Folder 2 Child 1",
+    itemId: "folder-2-1",
+    parentId: "folder-2",
+  },
+  "folder-2-2": {
+    name: "Folder 2 Child 2",
+    itemId: "folder-2-2",
+    parentId: "folder-2",
+  },
+  "folder-2-3": {
+    name: "Folder 2 Child 3",
+    itemId: "folder-2-3",
+    parentId: "folder-2",
+  },
+  "folder-2-2-1": {
+    name: "Folder 2 Child 2 Child 1",
+    itemId: "folder-2-2-1",
+    parentId: "folder-2-2",
+  },
+  "folder-2-2-1-1": {
+    name: "Folder 2 Child 2 Child 1 Child 1",
+    itemId: "folder-2-2-1-1",
+    parentId: "folder-2-2-1",
+  },
+};
+```
+
+# Custom Tree Item Renderer
+
+```tsx
+// preview editable styles="src/app/components/tree/CustomTreeItemRendererExample.module.scss"
+"use client";
+import {
+  Tree,
+  TreeItem,
+  // useKeyboardMovementContext,
+  useTree,
+  useTreeContext,
+  type RenderRecursiveItemsProps,
+  type TreeData,
+} from "@react-md/core";
+import FolderIcon from "@react-md/material-icons/FolderIcon";
+import FolderOpenIcon from "@react-md/material-icons/FolderOpenIcon";
+import { cnb } from "cnbuilder";
+import { useId, type ReactElement } from "react";
+import styles from "./CustomTreeItemRendererExample.module.scss";
+
+export default function CustomTreeItemRendererExample(): ReactElement {
+  const tree = useTree();
+
+  return (
+    <Tree
+      {...tree}
+      data={folders}
+      aria-label="Tree"
+      renderer={CustomTreeItem}
+      expanderLeft
+      expansionMode="manual"
+    />
+  );
+}
+
+function CustomTreeItem(
+  props: RenderRecursiveItemsProps<Folder, TreeData<Folder>>,
+): ReactElement {
+  const {
+    item,
+    // data,
+    parents,
+    children: childItems,
+  } = props;
+  const id = useId();
+  const { itemId, name } = item;
+  const {
+    expandedIds,
+    selectedIds,
+
+    // these commented out values are all available in the tree context
+    //
+    // data,
+    // rootId,
+    // expanderIcon,
+    // expanderLeft,
+    // toggleTreeItemExpansion,
+    // toggleTreeItemSelection,
+    // selectMultipleTreeItems,
+    // expandMultipleTreeItems,
+    // expansionMode,
+    // metadataLookup,
+    // multiSelect,
+    // linkComponent,
+    // disableTransition,
+    // temporaryChildItems,
+  } = useTreeContext();
+
+  // if you want to add custom keyboard focus styles, you could check for focus
+  // state like this:
+  //
+  // const { activeDescendantId } = useKeyboardMovementContext();
+  // const focused = id === activeDescendantId;
+
+  const expanded = expandedIds.has(itemId);
+  const selected = selectedIds.has(itemId);
+
+  return (
+    <TreeItem
+      id={id}
+      depth={parents.length}
+      itemId={itemId}
+      leftAddon={expanded ? <FolderOpenIcon /> : <FolderIcon />}
+      childItems={childItems}
+      className={cnb(selected && styles.selected)}
+    >
+      {name}
+    </TreeItem>
+  );
+}
+
+interface Folder {
+  name: string;
+  itemId: string;
+  parentId: string | null;
+}
+
+const folders = {
+  "folder-1": {
+    name: "Folder 1",
+    itemId: "folder-1",
+    parentId: null,
+  },
+  "folder-2": {
+    name: "Folder 2",
+    itemId: "folder-2",
+    parentId: null,
+  },
+  "folder-3": {
+    name: "Folder 3",
+    itemId: "folder-3",
+    parentId: null,
+  },
+  "folder-2-1": {
+    name: "Folder 2 Child 1",
+    itemId: "folder-2-1",
+    parentId: "folder-2",
+  },
+  "folder-2-2": {
+    name: "Folder 2 Child 2",
+    itemId: "folder-2-2",
+    parentId: "folder-2",
+  },
+  "folder-2-3": {
+    name: "Folder 2 Child 3",
+    itemId: "folder-2-3",
+    parentId: "folder-2",
+  },
+  "folder-2-2-1": {
+    name: "Folder 2 Child 2 Child 1",
+    itemId: "folder-2-2-1",
+    parentId: "folder-2-2",
+  },
+  "folder-2-2-1-1": {
+    name: "Folder 2 Child 2 Child 1 Child 1",
+    itemId: "folder-2-2-1-1",
+    parentId: "folder-2-2-1",
+  },
+};
+```

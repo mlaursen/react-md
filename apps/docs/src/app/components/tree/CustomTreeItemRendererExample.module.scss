@@ -1,0 +1,5 @@
+@use "everything";
+
+.selected {
+  @include everything.icon-set-var(color, currentcolor);
+}

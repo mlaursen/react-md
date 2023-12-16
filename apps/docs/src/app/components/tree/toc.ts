@@ -3,4 +3,30 @@ import { type TableOfContentsItem } from "@/components/TableOfContents/types.js"
 
 export const toc = [
   { id: "tree", depth: 1, value: "Tree" },
+  {
+    id: "single-select-tree",
+    depth: 1,
+    value: "Single Select Tree",
+    items: [{ id: "multiselect-tree", depth: 2, value: "Multiselect Tree" }],
+  },
+  {
+    id: "customizations",
+    depth: 1,
+    value: "Customizations",
+    items: [
+      { id: "expansion-mode", depth: 2, value: "Expansion Mode" },
+      { id: "expander-icon", depth: 2, value: "Expander Icon" },
+      {
+        id: "expander-icon-position",
+        depth: 2,
+        value: "Expander Icon Position",
+      },
+      { id: "decreasing-spacing", depth: 2, value: "Decreasing Spacing" },
+    ],
+  },
+  {
+    id: "custom-tree-item-renderer",
+    depth: 1,
+    value: "Custom Tree Item Renderer",
+  },
 ] satisfies readonly TableOfContentsItem[];

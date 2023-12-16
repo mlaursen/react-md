@@ -122,11 +122,15 @@ export interface TreeProps<T extends TreeItemNode>
    * @example
    * Custom Tree Item Renderer
    * ```tsx
-   * import type { TreeItemRendererProps } from "@react-md/core";
-   * import { TreeItem, useKeyboardMovementContext, useTreeContext } from "@react-md/core";
+   * import {
+   *   TreeItem,
+   *   useKeyboardMovementContext,
+   *   useTreeContext,
+   *   type RenderRecursiveItemsProps,
+   * } from "@react-md/core";
    * import FolderIcon from "@react-md/material-icons/FolderIcon";
    * import FolderOpenIcon from "@react-md/material-icons/FolderOpenIcon";
-   * import type { ReactElement } from "react";
+   * import { type ReactElement } from "react";
    *
    * export function CustomTreeItem(props: TreeItemRendererProps): ReactElement {
    *   const { item, ...remaining  } = props;
@@ -162,7 +166,7 @@ export interface TreeProps<T extends TreeItemNode>
    * @see {@link DefaultTreeItemRenderer}
    * @defaultValue `DefaultTreeItemRenderer`
    */
-  renderer?: ComponentType<RenderRecursiveItemsProps<T>>;
+  renderer?: ComponentType<RenderRecursiveItemsProps<T, TreeData<T>>>;
 
   /**
    * The link component to use for any tree item nodes that have a `to` or

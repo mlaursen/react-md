@@ -1,0 +1,9 @@
+@use "everything";
+
+.tree {
+  // uncomment the next two lines if you want to see the default values in the
+  // compiled CSS
+  // @include everything.tree-set-var(item-padding-base, everything.$tree-item-padding-base);
+  // @include everything.tree-set-var(item-padding-incrementor, everything.$tree-item-padding-incrementor);
+  @include everything.tree-set-var(item-padding-incrementor, 1rem);
+}
