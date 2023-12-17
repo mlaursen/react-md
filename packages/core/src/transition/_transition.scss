@@ -4,14 +4,14 @@
 @use "../theme/colors";
 @use "../theme/theme";
 
-$disable-everything: false !default;
-$disable-collapse-transition: $disable-everything !default;
-$disable-cross-fade-transition: $disable-everything !default;
-$disable-scale-transition: $disable-everything !default;
+$disable-transitions: false !default;
+$disable-collapse-transition: $disable-transitions !default;
+$disable-cross-fade-transition: $disable-transitions !default;
+$disable-scale-transition: $disable-transitions !default;
 $disable-scale-y-transition: $disable-scale-transition !default;
-$disable-skeleton-placeholder: $disable-everything !default;
-$disable-slide-transition: $disable-everything !default;
-$disable-max-width-transition: $disable-everything !default;
+$disable-skeleton-placeholder: $disable-transitions !default;
+$disable-slide-transition: $disable-transitions !default;
+$disable-max-width-transition: $disable-transitions !default;
 $disable-max-width-transition-gap: $disable-max-width-transition !default;
 
 $linear-duration: 0.15s !default;

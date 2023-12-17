@@ -5,7 +5,6 @@ export const API_ROUTES: NavigationItem = {
   href: "/api",
   children: "Component API",
   items: [
-    { href: "/app-bar", children: "AppBar", isClient: false },
     { href: "/app-bar-title", children: "AppBarTitle", isClient: false },
     { href: "/async-button", children: "AsyncButton", isClient: true },
     { href: "/badge", children: "Badge", isClient: false },
@@ -18,6 +17,7 @@ export const API_ROUTES: NavigationItem = {
     { href: "/card-subtitle", children: "CardSubtitle", isClient: false },
     { href: "/card-title", children: "CardTitle", isClient: false },
     { href: "/chip", children: "Chip", isClient: false },
+    { href: "/clickable-card", children: "ClickableCard", isClient: false },
     { href: "/dialog-content", children: "DialogContent", isClient: false },
     { href: "/dialog-footer", children: "DialogFooter", isClient: false },
     { href: "/dialog-title", children: "DialogTitle", isClient: false },
@@ -102,6 +102,11 @@ export const API_ROUTES: NavigationItem = {
     },
     { href: "/toast-content", children: "ToastContent", isClient: true },
     { href: "/tooltip", children: "Tooltip", isClient: true },
+    {
+      href: "/tooltipped-button",
+      children: "TooltippedButton",
+      isClient: true,
+    },
     { href: "/typography", children: "Typography", isClient: false },
   ],
 };

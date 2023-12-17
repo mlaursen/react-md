@@ -2,99 +2,6 @@
 import { type ApiLookup } from "@/components/ApiDocs/types.js";
 
 export const API_LOOKUP: ApiLookup = {
-  AppBar: [
-    {
-      id: "app-bar",
-      name: "AppBar",
-      props: [
-        {
-          id: "app-bar-props-as",
-          name: "as",
-          type: "CustomAppBarComponent",
-          required: false,
-          description: "",
-          defaultValue: 'fixed ? "header" : "div"',
-        },
-        {
-          id: "app-bar-props-classname",
-          name: "className",
-          type: "string",
-          required: false,
-          description: "",
-        },
-        {
-          id: "app-bar-props-disableelevation",
-          name: "disableElevation",
-          type: "boolean",
-          required: false,
-          description: "Set this to `true` to remove the box-shadow.",
-          defaultValue: "false",
-        },
-        {
-          id: "app-bar-props-height",
-          name: "height",
-          type: "AppBarHeight",
-          required: false,
-          description: "",
-          defaultValue: 'stacked ? "auto" : "normal"',
-        },
-        {
-          id: "app-bar-props-pageposition",
-          name: "pagePosition",
-          type: "AppBarPosition",
-          required: false,
-          description:
-            'The position within the page to "fix" the `AppBar` when the `fixed` prop is\nenabled.',
-          defaultValue: '"top"',
-        },
-        {
-          id: "app-bar-props-position",
-          name: "position",
-          type: "CssPosition",
-          required: false,
-          description:
-            'Set this to `"fixed"` or `"sticky"` to set `position: fixed;` or\n`position: sticky;` to the app bar. The default position will be static and\ninline with other content.',
-          defaultValue: "'static'",
-        },
-        {
-          id: "app-bar-props-scrollbaroffset",
-          name: "scrollbarOffset",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` if the app bar's positioning and width should be\nchanged whenever the scrollbar is visible on the page. This defaults to\n`true` when the {@link position } prop is `true` so that once dialogs and menus\nbecome visible the contents in the app bar do not need to be repainted.",
-          defaultValue: 'position === "fixed"',
-        },
-        {
-          id: "app-bar-props-stacked",
-          name: "stacked",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` to update the `AppBar` to have `flex-direction: column`.\nThis is useful when nesting `AppBar`s.",
-          defaultValue: "false",
-        },
-        {
-          id: "app-bar-props-theme",
-          name: "theme",
-          type: "AppBarTheme",
-          required: false,
-          description: "The theme to apply to the `AppBar`.",
-          defaultValue: '"primary"',
-        },
-      ],
-      isClient: false,
-      examples: [
-        {
-          name: "Simple Example",
-          code: 'import { AppBar, AppBarTitle, Button } from "@react-md/core";\nimport MenuIcon from "@react-md/material-icons/MenuIcon";\nimport MoreVertIcon from "@react-md/material-icons/MoreVertIcon";\nimport type { ReactElement } from "react";\n\nfunction Example(): ReactElement {\n  return (\n    <AppBar>\n      <Button aria-label="Navigation"><MenuIcon /></Button>\n      <AppBarTitle>My Main Title</AppBarTitle>\n      <Button aria-label="Options"><MoreVertIcon /></Button>\n    </AppBar>\n  );\n}',
-          lang: "tsx",
-        },
-      ],
-      description: "",
-      extendedTypes: [{ name: "HTMLAttributes<HTMLDivElement>", href: "#" }],
-    },
-  ],
   AppBarTitle: [
     {
       id: "app-bar-title",
@@ -560,6 +467,15 @@ export const API_LOOKUP: ApiLookup = {
           defaultValue: "false",
         },
         {
+          id: "card-props-interactable",
+          name: "interactable",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` if the card should gain the pointer cursor while\nhovering and other interaction styles and not using the `ClickableCard`\ncomponent.",
+          defaultValue: "false",
+        },
+        {
           id: "card-props-raisable",
           name: "raisable",
           type: "boolean",
@@ -925,6 +841,41 @@ export const API_LOOKUP: ApiLookup = {
       extendedTypes: [
         { name: "ButtonHTMLAttributes<HTMLButtonElement>", href: "#" },
       ],
+    },
+  ],
+  ClickableCard: [
+    {
+      id: "clickable-card",
+      name: "ClickableCard",
+      props: [
+        {
+          id: "clickable-card-props-onclick",
+          name: "onClick",
+          type: "MouseEventHandler<HTMLDivElement>",
+          required: true,
+          description: "",
+        },
+        {
+          id: "clickable-card-props-disabled",
+          name: "disabled",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` to disable all click events.\n\nNote: Any disabled styling will need to be manually applied.",
+          defaultValue: "false",
+        },
+      ],
+      isClient: false,
+      examples: [
+        {
+          name: "SImple Example",
+          code: 'import { CardContent, ClickableCard } from "@react-md/core";\nimport { type ReactElement } from "react";\n\nexport default function ClickableCardExample(): ReactElement {\n  return (\n    <ClickableCard\n      onClick={() => {\n        // do something\n      }}\n    >\n      <CardContent>Wow</CardContent>\n    </ClickableCard>\n  );\n}',
+          lang: "tsx",
+        },
+      ],
+      description:
+        "A Small wrapper around the `Card` component that is clickable and has the\nelement interaction enabled (ripples).",
+      extendedTypes: [{ name: "CardProps", href: "#" }],
     },
   ],
   DialogContent: [
@@ -4191,6 +4142,57 @@ export const API_LOOKUP: ApiLookup = {
         { name: "HTMLAttributes<HTMLSpanElement>", href: "#" },
         { name: "CSSTransitionComponentProps", href: "#" },
       ],
+    },
+  ],
+  TooltippedButton: [
+    {
+      id: "tooltipped-button",
+      name: "TooltippedButton",
+      props: [
+        {
+          id: "tooltipped-button-props-buttontype",
+          name: "buttonType",
+          type: "ButtonType",
+          required: false,
+          description: "",
+          defaultValue: '"icon"',
+        },
+        {
+          id: "tooltipped-button-props-tooltip",
+          name: "tooltip",
+          type: "ReactNode",
+          required: false,
+          description:
+            "The tooltip children to render. When this is falsey, the tooltip event\nlisteners will not be enabled and the tooltip will never display.",
+        },
+        {
+          id: "tooltipped-button-props-tooltipoptions",
+          name: "tooltipOptions",
+          type: "Omit<TooltipOptions<HTMLButtonElement>, keyof TooltippedElementEventHandlers<HTMLButtonElement>>",
+          required: false,
+          description:
+            'Any additional tooltip options to pass to {@link useTooltip }. The most\ncommon options would be:\n\n```ts\ntooltipOptions={{\n  overflowOnly: true,\n\n  // whatever values you want for these\n  hoverTimeout: 0,\n  leaveTimeout: 150,\n  defaultPosition: "left",\n}}\n```',
+        },
+        {
+          id: "tooltipped-button-props-tooltipprops",
+          name: "tooltipProps",
+          type: "Omit<TooltipProps, keyof ProvidedTooltipProps<HTMLSpanElement>>",
+          required: false,
+          description:
+            "Any additional props to pass to the `Tooltip` component (normally styling\nprops).",
+        },
+      ],
+      isClient: true,
+      examples: [
+        {
+          name: "```tsx",
+          code: 'import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";\n\nexport default function Example(): ReactElement {\n  return (\n    <TooltippedButton tooltip="I am a tooltip!" aria-label="Favorite">\n      <FavoriteIcon />\n    </TooltippedButton>\n  );\n}',
+          lang: 'import { TooltippedButton } from "@react-md/core";',
+        },
+      ],
+      description:
+        "A simple wrapper around the `Button` and `Tooltip` components to dynamically\nadd tooltips to buttons. The `buttonType` will default to `icon` instead of\n`text`.",
+      extendedTypes: [{ name: "ButtonProps", href: "#" }],
     },
   ],
   Typography: [
