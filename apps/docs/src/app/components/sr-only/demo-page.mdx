@@ -1,3 +1,44 @@
 # Sr Only
 
-TODO
+The `SrOnly` component can be used to render accessible labels that are only
+visible to screen readers by default.
+
+# Simple Example
+
+The most common usage for the `SrOnly` component is to add text to an icon
+button when a label cannot be provided by the `aria-label`.
+
+> !Info! Check out the [Responsive Button](/components/button#responsive-button)
+> demo to see how to switch from an icon button to a text button based on media
+> queries.
+
+```tsx
+// preview editable
+import { Button, SrOnly } from "@react-md/core";
+import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
+import { type ReactElement } from "react";
+
+export default function SimpleExample(): ReactElement {
+  return (
+    <Button buttonType="icon">
+      <SrOnly>Example Text</SrOnly>
+      <FavoriteIcon />
+    </Button>
+  );
+}
+```
+
+## Visible while Focused
+
+The text can also become visible while focused if needed by enabling the
+`focusable` prop. Tab into the next demo to see the text.
+
+```tsx
+// preview editable
+import { SrOnly } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function VisibleWhileFocusedExample(): ReactElement {
+  return <SrOnly focusable>This should appear while focused!</SrOnly>;
+}
+```

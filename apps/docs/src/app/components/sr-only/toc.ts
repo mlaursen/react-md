@@ -3,4 +3,12 @@ import { type TableOfContentsItem } from "@/components/TableOfContents/types.js"
 
 export const toc = [
   { id: "sr-only", depth: 1, value: "Sr Only" },
+  {
+    id: "simple-example",
+    depth: 1,
+    value: "Simple Example",
+    items: [
+      { id: "visible-while-focused", depth: 2, value: "Visible while Focused" },
+    ],
+  },
 ] satisfies readonly TableOfContentsItem[];
