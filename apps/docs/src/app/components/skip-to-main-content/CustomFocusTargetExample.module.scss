@@ -1,0 +1,43 @@
+@use "everything";
+
+.link {
+  @include everything.theme-use-var(color, text-primary-color);
+}
+
+// The `main` focus styles use `position: fixed` by default so need to update
+// the `top` value to be the dialog header's height which defaults to 5.75rem
+// with padding
+.content {
+  @include everything.layout-set-var(header-height, 5.75rem);
+}
+
+// An alternative would be to just set the `DialogContent` to have position
+// relative and update the focus styles to be absolute positioned with no inset
+// .content {
+//   position: relative;
+
+//   &::before {
+//     inset: 0;
+//     position: absolute;
+//   }
+// }
+
+// If you don't want to use the `main` class name utility for focus styles,
+// here's a small example of adding focus styles
+// .content {
+//   outline: none;
+//   position: relative;
+
+//   &::before {
+//     @include everything.pseudo-element;
+//     @include everything.interaction-outline(
+//       $color: everything.interaction-get-var(focus-color)
+//     );
+
+//     opacity: 0;
+//   }
+
+//   &:focus-visible::before {
+//     opacity: 1;
+//   }
+// }

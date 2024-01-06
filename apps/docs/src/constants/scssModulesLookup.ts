@@ -95,6 +95,20 @@ export const SCSS_MODULES: Record<string, FakeScssModule> = {
       baseName: "ReplacingContentExample",
       fileName: "ReplacingContentExample.module.scss",
     },
+  "src/app/components/skip-to-main-content/CustomFocusTargetExample.module.scss":
+    {
+      css: ".CustomFocusTargetExample_link__Q3Vzd {\n  color: var(--rmd-text-primary-color);\n}\n\n.CustomFocusTargetExample_content__Q3Vzd {\n  --rmd-layout-header-height: 5.75rem;\n}",
+      scss: "@use \"everything\";\n\n.link {\n  @include everything.theme-use-var(color, text-primary-color);\n}\n\n// The `main` focus styles use `position: fixed` by default so need to update\n// the `top` value to be the dialog header's height which defaults to 5.75rem\n// with padding\n.content {\n  @include everything.layout-set-var(header-height, 5.75rem);\n}\n\n// An alternative would be to just set the `DialogContent` to have position\n// relative and update the focus styles to be absolute positioned with no inset\n// .content {\n//   position: relative;\n\n//   &::before {\n//     inset: 0;\n//     position: absolute;\n//   }\n// }\n\n// If you don't want to use the `main` class name utility for focus styles,\n// here's a small example of adding focus styles\n// .content {\n//   outline: none;\n//   position: relative;\n\n//   &::before {\n//     @include everything.pseudo-element;\n//     @include everything.interaction-outline(\n//       $color: everything.interaction-get-var(focus-color)\n//     );\n\n//     opacity: 0;\n//   }\n\n//   &:focus-visible::before {\n//     opacity: 1;\n//   }\n// }\n",
+      baseName: "CustomFocusTargetExample",
+      fileName: "CustomFocusTargetExample.module.scss",
+    },
+  "src/app/components/skip-to-main-content/CustomLinkStylesExample.module.scss":
+    {
+      css: ".CustomLinkStylesExample_link__Q3Vzd {\n  clip: auto;\n  clip-path: none;\n  height: auto;\n  margin: auto;\n  overflow: visible;\n  white-space: normal;\n  width: auto;\n}\n.CustomLinkStylesExample_link__Q3Vzd:focus-visible {\n  clip: auto;\n}",
+      scss: ".link {\n  clip: auto;\n  clip-path: none;\n  height: auto;\n  margin: auto;\n  overflow: visible;\n  white-space: normal;\n  width: auto;\n\n  &:focus-visible {\n    clip: auto;\n  }\n}\n",
+      baseName: "CustomLinkStylesExample",
+      fileName: "CustomLinkStylesExample.module.scss",
+    },
   "src/app/components/slider/CustomizingSliderMarks.module.scss": {
     css: ".CustomizingSliderMarks_form__Q3Vzd {\n  --rmd-box-gap: 3rem;\n  --rmd-slider-vertical-size: 25rem;\n}",
     scss: '@use "everything";\n\n.form {\n  @include everything.box-set-var(gap, 3rem);\n  @include everything.form-set-var(slider-vertical-size, 25rem);\n}\n',

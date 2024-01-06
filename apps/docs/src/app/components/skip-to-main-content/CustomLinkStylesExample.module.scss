@@ -1,0 +1,13 @@
+.link {
+  clip: auto;
+  clip-path: none;
+  height: auto;
+  margin: auto;
+  overflow: visible;
+  white-space: normal;
+  width: auto;
+
+  &:focus-visible {
+    clip: auto;
+  }
+}

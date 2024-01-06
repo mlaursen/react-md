@@ -3,4 +3,13 @@ import { type TableOfContentsItem } from "@/components/TableOfContents/types.js"
 
 export const toc = [
   { id: "skip-to-main-content", depth: 1, value: "Skip to Main Content" },
+  {
+    id: "simple-example",
+    depth: 1,
+    value: "Simple Example",
+    items: [
+      { id: "custom-focus-target", depth: 2, value: "Custom Focus Target" },
+      { id: "custom-link-styles", depth: 2, value: "Custom Link Styles" },
+    ],
+  },
 ] satisfies readonly TableOfContentsItem[];

@@ -111,7 +111,10 @@ export function ScssCodeEditor(props: ScssCodeEditorProps): ReactElement {
           </>
         }
       />
-      <style>{compiledCss}</style>
+      {/* Need to use dangerouslySetInnerHTML so that `content: ""` works
+          correctly. It would be changed to `content: &quot;&quot;;` otherwise
+      */}
+      <style dangerouslySetInnerHTML={{ __html: compiledCss }} />
     </>
   );
 }

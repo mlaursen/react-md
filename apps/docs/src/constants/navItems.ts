@@ -235,10 +235,6 @@ export const navItems: readonly NavigationItem[] = [
             children: "Link",
           },
           {
-            href: "/skip-to-main-content",
-            children: "SkipToMainContent",
-          },
-          {
             href: "/menu",
             children: "Menu",
           },
@@ -357,6 +353,10 @@ export const navItems: readonly NavigationItem[] = [
           {
             href: "/portal",
             children: "Portal",
+          },
+          {
+            href: "/skip-to-main-content",
+            children: "SkipToMainContent",
           },
           {
             href: "/suspense",
