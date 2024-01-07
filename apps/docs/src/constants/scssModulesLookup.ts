@@ -39,6 +39,12 @@ export const SCSS_MODULES: Record<string, FakeScssModule> = {
     baseName: "CarouselExample",
     fileName: "CarouselExample.module.scss",
   },
+  "src/app/components/collapse/PartialCollapseExample.module.scss": {
+    css: ".PartialCollapseExample_overflow__UGFyd {\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 3;\n  display: -webkit-box;\n  max-height: 6rem;\n  text-overflow: ellipsis;\n}",
+    scss: '@use "everything";\n\n.overflow {\n  @include everything.line-clamp(3);\n\n  max-height: 6rem;\n  text-overflow: ellipsis;\n}\n',
+    baseName: "PartialCollapseExample",
+    fileName: "PartialCollapseExample.module.scss",
+  },
   "src/app/components/dialog/CustomTransitionExample.module.scss": {
     css: ".CustomTransitionExample_enter__Q3Vzd {\n  opacity: 0;\n}\n\n.CustomTransitionExample_enterActive__Q3Vzd {\n  opacity: 1;\n  transition: opacity 0.2s cubic-bezier(0, 0, 0.2, 1);\n}\n\n.CustomTransitionExample_exit__Q3Vzd {\n  opacity: 1;\n}\n\n.CustomTransitionExample_exitActive__Q3Vzd {\n  opacity: 0;\n  transition: opacity 0.2s cubic-bezier(0.4, 0, 1, 1);\n}\n\n.CustomTransitionExample_dialog__Q3Vzd {\n  width: 30rem;\n}",
     scss: '@use "everything";\n\n.enter {\n  opacity: 0;\n}\n\n.enterActive {\n  opacity: 1;\n  transition: opacity everything.$enter-duration\n    everything.$deceleration-timing-function;\n}\n\n.exit {\n  opacity: 1;\n}\n\n.exitActive {\n  opacity: 0;\n  transition: opacity everything.$enter-duration\n    everything.$acceleration-timing-function;\n}\n\n.dialog {\n  width: 30rem;\n}\n',

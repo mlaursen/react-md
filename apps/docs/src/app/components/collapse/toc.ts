@@ -3,4 +3,18 @@ import { type TableOfContentsItem } from "@/components/TableOfContents/types.js"
 
 export const toc = [
   { id: "collapse", depth: 1, value: "Collapse" },
+  {
+    id: "simple-collapse-example",
+    depth: 1,
+    value: "Simple Collapse Example",
+    items: [
+      {
+        id: "simple-usecollapsetransition-example",
+        depth: 2,
+        value: "Simple useCollapseTransition Example",
+      },
+    ],
+  },
+  { id: "partial-collapse", depth: 1, value: "Partial Collapse" },
+  { id: "disable-transition", depth: 1, value: "Disable Transition" },
 ] satisfies readonly TableOfContentsItem[];

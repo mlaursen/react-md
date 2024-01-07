@@ -1,0 +1,8 @@
+@use "everything";
+
+.overflow {
+  @include everything.line-clamp(3);
+
+  max-height: 6rem;
+  text-overflow: ellipsis;
+}
