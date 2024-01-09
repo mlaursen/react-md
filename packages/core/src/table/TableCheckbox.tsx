@@ -1,3 +1,4 @@
+"use client";
 import { forwardRef, type TdHTMLAttributes } from "react";
 import { Checkbox } from "../form/Checkbox.js";
 import { type CheckboxProps } from "../form/InputToggle.js";
@@ -76,8 +77,9 @@ export interface TableCheckboxProps
 }
 
 /**
- * **Server Component**
- * This might actually be a client component.
+ * **Client Component**
+ * The `TableCheckbox` is used to render a `Checkbox` within a `TableCell` by applying
+ * some minimal styles.
  *
  * @example
  * Simple Example

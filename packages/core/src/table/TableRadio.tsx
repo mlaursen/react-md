@@ -1,3 +1,4 @@
+"use client";
 import { forwardRef, type TdHTMLAttributes } from "react";
 import { type RadioProps } from "../form/InputToggle.js";
 import { Radio } from "../form/Radio.js";
@@ -70,8 +71,9 @@ export interface TableRadioProps
 }
 
 /**
- * **Server Component**
- * This might actually be a client component.
+ * **Client Component**
+ * The `TableRadio` is used to render a `Radio` within a `TableCell` by applying
+ * some minimal styles.
  *
  * @example
  * Simple Example
