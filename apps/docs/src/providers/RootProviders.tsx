@@ -1,8 +1,8 @@
 "use client";
-import { type AppCookies } from "@/app/utils/serverState.js";
 import { AppToastRenderer } from "@/components/AppToastRenderer.jsx";
 import { rmdConfig } from "@/constants/rmdConfig.jsx";
 import { appToastManager } from "@/toasts.js";
+import { type AppCookies } from "@/utils/serverState.js";
 import {
   CoreProviders,
   MenuConfigurationProvider,

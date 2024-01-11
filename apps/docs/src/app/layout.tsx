@@ -5,11 +5,11 @@ import { RootLayout } from "@/components/RootLayout/RootLayout.jsx";
 import { RootProviders } from "@/providers/RootProviders.jsx";
 import { PRISM_THEMES_ID, getPrismThemeHref } from "@/utils/prismThemes.js";
 import { semver } from "@/utils/semver.js";
+import { getInitialState } from "@/utils/serverState.js";
 import { cnb } from "cnbuilder";
 import localFont from "next/font/local";
 import { headers } from "next/headers.js";
 import { type PropsWithChildren, type ReactElement } from "react";
-import { getInitialState } from "./utils/serverState.js";
 export { metadata } from "@/constants/metadata.js";
 
 const roboto = localFont({
