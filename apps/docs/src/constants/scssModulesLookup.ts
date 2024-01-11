@@ -58,12 +58,6 @@ export const SCSS_MODULES: Record<string, FakeScssModule> = {
       baseName: "CSSOnlyAppearTransitionExample",
       fileName: "CSSOnlyAppearTransitionExample.module.scss",
     },
-  "src/app/components/css-transition/NewItemExample.module.scss": {
-    css: ".NewItemExample_newItem__TmV3S {\n  animation: appear 2s;\n}\n\n@keyframes appear {\n  from {\n    background-color: #00c853;\n  }\n  to {\n    background-color: transparent;\n  }\n}\n.NewItemExample_list__TmV3S {\n  max-height: 10rem;\n  overflow: auto;\n}",
-    scss: '@use "everything";\n\n.newItem {\n  animation: appear 2s;\n}\n\n@keyframes appear {\n  from {\n    background-color: everything.$success-color;\n  }\n\n  to {\n    background-color: transparent;\n  }\n}\n\n.list {\n  max-height: 10rem;\n  overflow: auto;\n}\n',
-    baseName: "NewItemExample",
-    fileName: "NewItemExample.module.scss",
-  },
   "src/app/components/css-transition/SimpleCSSTransitionExample.module.scss": {
     css: ".SimpleCSSTransitionExample_enter__U2ltc {\n  color: #1b5e20;\n}\n\n.SimpleCSSTransitionExample_enterActive__U2ltc {\n  color: #c8e6c9;\n  transition: color 2s cubic-bezier(0, 0, 0.2, 1);\n}\n\n.SimpleCSSTransitionExample_enterDone__U2ltc {\n  color: #c8e6c9;\n}\n\n.SimpleCSSTransitionExample_exit__U2ltc {\n  color: #d32f2f;\n}\n\n.SimpleCSSTransitionExample_exitActive__U2ltc {\n  color: #e57373;\n  transition: color 1.5s cubic-bezier(0.4, 0, 1, 1);\n}\n\n.SimpleCSSTransitionExample_exitDone__U2ltc {\n  color: #e57373;\n}",
     scss: '@use "everything";\n\n.enter {\n  color: everything.$green-900;\n}\n\n.enterActive {\n  color: everything.$green-100;\n  transition: color 2s everything.$deceleration-timing-function;\n}\n\n.enterDone {\n  // optional\n  color: everything.$green-100;\n}\n\n.exit {\n  color: everything.$red-700;\n}\n\n.exitActive {\n  color: everything.$red-300;\n  transition: color 1.5s everything.$acceleration-timing-function;\n}\n\n.exitDone {\n  // optional\n  color: everything.$red-300;\n}\n',
