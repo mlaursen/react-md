@@ -1,0 +1,13 @@
+.item {
+  animation: appear 0.15s;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

@@ -45,6 +45,45 @@ export const SCSS_MODULES: Record<string, FakeScssModule> = {
     baseName: "PartialCollapseExample",
     fileName: "PartialCollapseExample.module.scss",
   },
+  "src/app/components/css-transition/AppearTransitionExample.module.scss": {
+    css: ".AppearTransitionExample_enter__QXBwZ {\n  opacity: 0;\n}\n\n.AppearTransitionExample_enterActive__QXBwZ {\n  opacity: 1;\n  transition: opacity 0.15s;\n}",
+    scss: ".enter {\n  opacity: 0;\n}\n\n.enterActive {\n  opacity: 1;\n  transition: opacity 0.15s;\n}\n",
+    baseName: "AppearTransitionExample",
+    fileName: "AppearTransitionExample.module.scss",
+  },
+  "src/app/components/css-transition/CSSOnlyAppearTransitionExample.module.scss":
+    {
+      css: ".CSSOnlyAppearTransitionExample_item__Q1NTT {\n  animation: appear 0.15s;\n}\n\n@keyframes appear {\n  from {\n    opacity: 0;\n  }\n  to {\n    opacity: 1;\n  }\n}",
+      scss: ".item {\n  animation: appear 0.15s;\n}\n\n@keyframes appear {\n  from {\n    opacity: 0;\n  }\n\n  to {\n    opacity: 1;\n  }\n}\n",
+      baseName: "CSSOnlyAppearTransitionExample",
+      fileName: "CSSOnlyAppearTransitionExample.module.scss",
+    },
+  "src/app/components/css-transition/NewItemExample.module.scss": {
+    css: ".NewItemExample_newItem__TmV3S {\n  animation: appear 2s;\n}\n\n@keyframes appear {\n  from {\n    background-color: #00c853;\n  }\n  to {\n    background-color: transparent;\n  }\n}\n.NewItemExample_list__TmV3S {\n  max-height: 10rem;\n  overflow: auto;\n}",
+    scss: '@use "everything";\n\n.newItem {\n  animation: appear 2s;\n}\n\n@keyframes appear {\n  from {\n    background-color: everything.$success-color;\n  }\n\n  to {\n    background-color: transparent;\n  }\n}\n\n.list {\n  max-height: 10rem;\n  overflow: auto;\n}\n',
+    baseName: "NewItemExample",
+    fileName: "NewItemExample.module.scss",
+  },
+  "src/app/components/css-transition/SimpleCSSTransitionExample.module.scss": {
+    css: ".SimpleCSSTransitionExample_enter__U2ltc {\n  color: #1b5e20;\n}\n\n.SimpleCSSTransitionExample_enterActive__U2ltc {\n  color: #c8e6c9;\n  transition: color 2s cubic-bezier(0, 0, 0.2, 1);\n}\n\n.SimpleCSSTransitionExample_enterDone__U2ltc {\n  color: #c8e6c9;\n}\n\n.SimpleCSSTransitionExample_exit__U2ltc {\n  color: #d32f2f;\n}\n\n.SimpleCSSTransitionExample_exitActive__U2ltc {\n  color: #e57373;\n  transition: color 1.5s cubic-bezier(0.4, 0, 1, 1);\n}\n\n.SimpleCSSTransitionExample_exitDone__U2ltc {\n  color: #e57373;\n}",
+    scss: '@use "everything";\n\n.enter {\n  color: everything.$green-900;\n}\n\n.enterActive {\n  color: everything.$green-100;\n  transition: color 2s everything.$deceleration-timing-function;\n}\n\n.enterDone {\n  // optional\n  color: everything.$green-100;\n}\n\n.exit {\n  color: everything.$red-700;\n}\n\n.exitActive {\n  color: everything.$red-300;\n  transition: color 1.5s everything.$acceleration-timing-function;\n}\n\n.exitDone {\n  // optional\n  color: everything.$red-300;\n}\n',
+    baseName: "SimpleCSSTransitionExample",
+    fileName: "SimpleCSSTransitionExample.module.scss",
+  },
+  "src/app/components/css-transition/SimpleUseCSSTransitionExample.module.scss":
+    {
+      css: ".SimpleUseCSSTransitionExample_enter__U2ltc {\n  color: #1b5e20;\n}\n\n.SimpleUseCSSTransitionExample_enterActive__U2ltc {\n  color: #c8e6c9;\n  transition: color 2s cubic-bezier(0, 0, 0.2, 1);\n}\n\n.SimpleUseCSSTransitionExample_enterDone__U2ltc {\n  color: #c8e6c9;\n}\n\n.SimpleUseCSSTransitionExample_exit__U2ltc {\n  color: #d32f2f;\n}\n\n.SimpleUseCSSTransitionExample_exitActive__U2ltc {\n  color: #e57373;\n  transition: color 1.5s cubic-bezier(0.4, 0, 1, 1);\n}\n\n.SimpleUseCSSTransitionExample_exitDone__U2ltc {\n  color: #e57373;\n}",
+      scss: '@use "everything";\n\n.enter {\n  color: everything.$green-900;\n}\n\n.enterActive {\n  color: everything.$green-100;\n  transition: color 2s everything.$deceleration-timing-function;\n}\n\n.enterDone {\n  // optional\n  color: everything.$green-100;\n}\n\n.exit {\n  color: everything.$red-700;\n}\n\n.exitActive {\n  color: everything.$red-300;\n  transition: color 1.5s everything.$acceleration-timing-function;\n}\n\n.exitDone {\n  // optional\n  color: everything.$red-300;\n}\n',
+      baseName: "SimpleUseCSSTransitionExample",
+      fileName: "SimpleUseCSSTransitionExample.module.scss",
+    },
+  "src/app/components/css-transition/TemporaryElementsTransitionsExample.module.scss":
+    {
+      css: ".TemporaryElementsTransitionsExample_enter__VGVtc {\n  opacity: 0;\n}\n\n.TemporaryElementsTransitionsExample_enterActive__VGVtc {\n  opacity: 1;\n  transition: opacity 0.15s;\n}\n\n.TemporaryElementsTransitionsExample_exit__VGVtc {\n  opacity: 1;\n}\n\n.TemporaryElementsTransitionsExample_exitActive__VGVtc {\n  opacity: 0;\n  transition: opacity 0.15s;\n}",
+      scss: ".enter {\n  opacity: 0;\n}\n\n.enterActive {\n  opacity: 1;\n  transition: opacity 0.15s;\n}\n\n.exit {\n  opacity: 1;\n}\n\n.exitActive {\n  opacity: 0;\n  transition: opacity 0.15s;\n}\n",
+      baseName: "TemporaryElementsTransitionsExample",
+      fileName: "TemporaryElementsTransitionsExample.module.scss",
+    },
   "src/app/components/dialog/CustomTransitionExample.module.scss": {
     css: ".CustomTransitionExample_enter__Q3Vzd {\n  opacity: 0;\n}\n\n.CustomTransitionExample_enterActive__Q3Vzd {\n  opacity: 1;\n  transition: opacity 0.2s cubic-bezier(0, 0, 0.2, 1);\n}\n\n.CustomTransitionExample_exit__Q3Vzd {\n  opacity: 1;\n}\n\n.CustomTransitionExample_exitActive__Q3Vzd {\n  opacity: 0;\n  transition: opacity 0.2s cubic-bezier(0.4, 0, 1, 1);\n}\n\n.CustomTransitionExample_dialog__Q3Vzd {\n  width: 30rem;\n}",
     scss: '@use "everything";\n\n.enter {\n  opacity: 0;\n}\n\n.enterActive {\n  opacity: 1;\n  transition: opacity everything.$enter-duration\n    everything.$deceleration-timing-function;\n}\n\n.exit {\n  opacity: 1;\n}\n\n.exitActive {\n  opacity: 0;\n  transition: opacity everything.$enter-duration\n    everything.$acceleration-timing-function;\n}\n\n.dialog {\n  width: 30rem;\n}\n',

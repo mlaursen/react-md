@@ -1,0 +1,29 @@
+@use "everything";
+
+.enter {
+  color: everything.$green-900;
+}
+
+.enterActive {
+  color: everything.$green-100;
+  transition: color 2s everything.$deceleration-timing-function;
+}
+
+.enterDone {
+  // optional
+  color: everything.$green-100;
+}
+
+.exit {
+  color: everything.$red-700;
+}
+
+.exitActive {
+  color: everything.$red-300;
+  transition: color 1.5s everything.$acceleration-timing-function;
+}
+
+.exitDone {
+  // optional
+  color: everything.$red-300;
+}

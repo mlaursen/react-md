@@ -3,4 +3,36 @@ import { type TableOfContentsItem } from "@/components/TableOfContents/types.js"
 
 export const toc = [
   { id: "css-transition", depth: 1, value: "CSS Transition" },
+  {
+    id: "simple-csstransition-example",
+    depth: 1,
+    value: "Simple CSSTransition Example",
+    items: [
+      {
+        id: "simple-usecsstransition-example",
+        depth: 2,
+        value: "Simple useCSSTransition Example",
+      },
+    ],
+  },
+  {
+    id: "temporary-elements-transitions",
+    depth: 1,
+    value: "Temporary Elements Transitions",
+    items: [
+      { id: "display-none-example", depth: 2, value: "Display None Example" },
+    ],
+  },
+  {
+    id: "appear-transition",
+    depth: 1,
+    value: "Appear Transition",
+    items: [
+      {
+        id: "css-only-appear-transition",
+        depth: 2,
+        value: "CSS-Only Appear Transition",
+      },
+    ],
+  },
 ] satisfies readonly TableOfContentsItem[];
