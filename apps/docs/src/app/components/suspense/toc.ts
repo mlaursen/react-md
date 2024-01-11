@@ -3,4 +3,10 @@ import { type TableOfContentsItem } from "@/components/TableOfContents/types.js"
 
 export const toc = [
   { id: "suspense", depth: 1, value: "Suspense" },
+  {
+    id: "circular-progress-suspense",
+    depth: 1,
+    value: "Circular Progress Suspense",
+  },
+  { id: "null-suspense", depth: 1, value: "Null Suspense" },
 ] satisfies readonly TableOfContentsItem[];
