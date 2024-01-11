@@ -7,39 +7,44 @@
 "use client";
 import {
   useMemo,
-  useState,
+  useRef,
   type MutableRefObject,
   type ReactElement,
 } from "react";
 import {
-  DangerouslyRunCode,
-  type DangerouslyRunCodeResult,
-} from "./DangerouslyRunCode.jsx";
-import { type DangerouslyRunCodeOptions } from "./utils.jsx";
+  dangerouslyCreateElement,
+  type DangerouslyRunCodeOptions,
+} from "./utils.jsx";
 
 export interface UpdateOptions extends DangerouslyRunCodeOptions {
   setState(nextState: DangerouslyRunCodeResult): void;
   elementRef: MutableRefObject<ReactElement | null>;
 }
 
+export interface DangerouslyRunCodeResult {
+  error: Error | null;
+  element: ReactElement | null;
+}
+
 export function useDangerouslyRunnableCode(
   options: DangerouslyRunCodeOptions
 ): DangerouslyRunCodeResult {
   const { code, scope } = options;
+  const elementRef = useRef<ReactElement | null>(null);
 
-  const [error, setError] = useState<Error | null>(null);
-  const element = useMemo(
-    () => (
-      <DangerouslyRunCode
-        code={code}
-        scope={scope}
-        onRendered={(error) => {
-          setError(error);
-        }}
-      />
-    ),
-    [code, scope]
-  );
+  return useMemo(() => {
+    let error: Error | null = null;
+    let element: ReactElement | null = elementRef.current;
+    try {
+      element = dangerouslyCreateElement({ code, scope });
+      elementRef.current = element;
+    } catch (e) {
+      error = e as Error;
+    }
 
-  return { element, error };
+    return {
+      error,
+      element,
+    };
+  }, [code, scope]);
 }
