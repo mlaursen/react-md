@@ -7,7 +7,7 @@ const style: CSSProperties = {
 };
 
 export default function OverflowOnlyTooltipExample(): ReactElement {
-  const { elementProps, tooltipProps } = useTooltip({
+  const { elementProps, tooltipProps } = useTooltip<HTMLDivElement>({
     overflowOnly: true,
   });
   return (

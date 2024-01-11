@@ -6,7 +6,7 @@ import { type ReactElement } from "react";
 import { LinkUnstyled } from "./LinkUnstyled.jsx";
 
 export function GithubLink(): ReactElement {
-  const { tooltipProps, elementProps } = useTooltip();
+  const { tooltipProps, elementProps } = useTooltip<HTMLAnchorElement>();
   return (
     <>
       <LinkUnstyled

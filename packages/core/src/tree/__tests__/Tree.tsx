@@ -632,7 +632,7 @@ describe("Tree", () => {
       },
     } satisfies TreeData<CustomNode>;
     function CustomRenderer(
-      props: RenderRecursiveItemsProps<CustomNode>
+      props: RenderRecursiveItemsProps<CustomNode, TreeData<CustomNode>>
     ): ReactElement {
       const { item } = props;
       if (item.divider) {
