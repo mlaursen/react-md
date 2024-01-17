@@ -128,7 +128,7 @@ exec("git add .changeset");
 const changeset = await getCurrentChangeset();
 const version = await getReleaseVersion();
 
-exec('git commit -m "build(version)": version packages');
+exec('git commit -m "build(version): version packages"');
 exec("pnpm changeset publish");
 exec("git push --follow-tags");
 
