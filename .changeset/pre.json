@@ -7,5 +7,10 @@
     "@react-md/core": "1.0.0-next.0",
     "@react-md/material-icons": "6.0.0-next.0"
   },
-  "changesets": ["gentle-gifts-arrive", "sharp-months-draw", "tidy-tips-sort"]
+  "changesets": [
+    "gentle-gifts-arrive",
+    "orange-toes-share",
+    "sharp-months-draw",
+    "tidy-tips-sort"
+  ]
 }
