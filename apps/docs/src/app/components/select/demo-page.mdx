@@ -520,7 +520,7 @@ export default function UsingOptionAddons(): ReactElement {
 }
 ```
 
-# Removing Option Selected Icon
+## Removing Option Selected Icon
 
 The `Option` component will use the
 [selected](/customization/icon-config#selected) icon from the `ICON_CONFIG` by
@@ -540,6 +540,38 @@ export default function RemovingOptionSelectedIconExample(): ReactElement {
         <Option value="b">Option 2</Option>
         <Option value="c">Option 3</Option>
         <Option value="d">Option 4</Option>
+      </Select>
+    </Form>
+  );
+}
+```
+
+## Selected Icon After
+
+The selected icon can be rendered after the `children` by enabling the
+`selectedIconAfter` prop on each option.
+
+```tsx
+// preview editable
+import { Form, Option, Select } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function SelectedIconAfterExample(): ReactElement {
+  return (
+    <Form>
+      <Select label="Label">
+        <Option value="a" selectedIconAfter>
+          Option 1
+        </Option>
+        <Option value="b" selectedIconAfter>
+          Option 2
+        </Option>
+        <Option value="c" selectedIconAfter>
+          Option 3
+        </Option>
+        <Option value="d" selectedIconAfter>
+          Option 4
+        </Option>
       </Select>
     </Form>
   );
@@ -596,11 +628,59 @@ export default function AddingAnUnselectedIcon(): ReactElement {
 }
 ```
 
-# Rendering within a Sheet
+# Menu Options
 
-Since the `Select` uses the [Menu](/components/menu) behind the scenes, the
-options can be rendered within a sheet on mobile or other screen sizes if
-needed.
+The `Select` uses the [Menu](/components/menu) behind the scenes and can pass
+additional props via the `menuProps`.
+
+The example below will showcase how the select's menu can be updated to use
+`equal` width instead of `min` and preventing the menu from overlapping the
+input. Try changing the `width` value and the long-text `Option` props to see
+how the menu behaves.
+
+```tsx
+// preview editable
+import { Form, Option, Select } from "@react-md/core";
+import { type ReactElement } from "react";
+
+export default function MenuOptionsExample(): ReactElement {
+  return (
+    <Form>
+      <Select
+        label="Label"
+        menuProps={{
+          // this is the default
+          // width: "min",
+          // width: "auto",
+          width: "equal",
+          preventOverlap: true,
+        }}
+      >
+        <Option value="a">Option 1</Option>
+        <Option value="b" height="auto" disableTextChildren>
+          Donec sed pulvinar mauris. Mauris pretium placerat tellus, ut
+          sollicitudin leo vestibulum eget. Proin ullamcorper metus congue nunc
+          semper ullamcorper. Curabitur vel nisl tortor. Cras ultricies a ex sed
+          aliquam. Pellentesque ultricies tortor cursus enim dapibus molestie.
+          Cras auctor nisi eu augue iaculis sagittis. Etiam posuere augue vitae
+          lobortis sollicitudin. Mauris placerat neque at nisl vehicula, in
+          pulvinar felis consectetur. Ut accumsan faucibus ultricies. In
+          pharetra faucibus iaculis.
+        </Option>
+        <Option value="c">Option 3</Option>
+        <Option value="d">Option 4</Option>
+      </Select>
+    </Form>
+  );
+}
+```
+
+## Rendering in a Sheet
+
+The options can be rendered within a sheet on mobile or other screen sizes if
+needed. Check out the
+[Rendering in a Sheet](http://localhost:3000/components/menu#rendering-in-a-sheet)
+menu documentation for more information.
 
 ```tsx
 // preview editable

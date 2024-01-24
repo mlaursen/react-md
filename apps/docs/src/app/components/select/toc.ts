@@ -25,13 +25,12 @@ export const toc = [
     value: "Select with Addons",
     items: [
       { id: "using-option-addons", depth: 2, value: "Using Option Addons" },
-    ],
-  },
-  {
-    id: "removing-option-selected-icon",
-    depth: 1,
-    value: "Removing Option Selected Icon",
-    items: [
+      {
+        id: "removing-option-selected-icon",
+        depth: 2,
+        value: "Removing Option Selected Icon",
+      },
+      { id: "selected-icon-after", depth: 2, value: "Selected Icon After" },
       {
         id: "adding-an-unselected-icon",
         depth: 2,
@@ -40,9 +39,12 @@ export const toc = [
     ],
   },
   {
-    id: "rendering-within-a-sheet",
+    id: "menu-options",
     depth: 1,
-    value: "Rendering within a Sheet",
+    value: "Menu Options",
+    items: [
+      { id: "rendering-in-a-sheet", depth: 2, value: "Rendering in a Sheet" },
+    ],
   },
   { id: "accessibility", depth: 1, value: "Accessibility" },
 ] satisfies readonly TableOfContentsItem[];

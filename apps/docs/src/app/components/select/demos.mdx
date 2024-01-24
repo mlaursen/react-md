@@ -70,7 +70,7 @@ disabled by setting `disableValueAddon` to `true`.
 
 {{ "component": "./UsingOptionAddons.tsx" }}
 
-# Removing Option Selected Icon
+## Removing Option Selected Icon
 
 The `Option` component will use the
 [selected](/customization/icon-config#selected) icon from the `ICON_CONFIG` by
@@ -79,6 +79,13 @@ setting `disableSelectedIcon` to `true` on the `Select` component.
 
 {{ "component": "./RemovingOptionSelectedIconExample.tsx" }}
 
+## Selected Icon After
+
+The selected icon can be rendered after the `children` by enabling the
+`selectedIconAfter` prop on each option.
+
+{{ "component": "./SelectedIconAfterExample.tsx" }}
+
 ## Adding an Unselected Icon
 
 An icon could also be added for the unselected state with the `unselectedIcon`
@@ -86,11 +93,24 @@ prop on the `Option`.
 
 {{ "component": "./AddingAnUnselectedIcon.tsx" }}
 
-# Rendering within a Sheet
+# Menu Options
 
-Since the `Select` uses the [Menu](/components/menu) behind the scenes, the
-options can be rendered within a sheet on mobile or other screen sizes if
-needed.
+The `Select` uses the [Menu](/components/menu) behind the scenes and can pass
+additional props via the `menuProps`.
+
+The example below will showcase how the select's menu can be updated to use
+`equal` width instead of `min` and preventing the menu from overlapping the
+input. Try changing the `width` value and the long-text `Option` props to see
+how the menu behaves.
+
+{{ "component": "./MenuOptionsExample.tsx" }}
+
+## Rendering in a Sheet
+
+The options can be rendered within a sheet on mobile or other screen sizes if
+needed. Check out the
+[Rendering in a Sheet](http://localhost:3000/components/menu#rendering-in-a-sheet)
+menu documentation for more information.
 
 {{ "component": "./RenderingWithinASheet.tsx" }}
 
