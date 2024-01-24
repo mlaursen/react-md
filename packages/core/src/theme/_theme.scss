@@ -30,7 +30,7 @@ $color-scheme: light !default;
 ///
 /// If this is set to `false`, all surfaces will mimic the light theme and have
 /// a single surface color.
-$disable-dark-elevation: false !default;
+$disable-dark-elevation: $color-scheme == light !default;
 
 /// This value should be set to `false` if you do not want the initial bundle to
 /// include the `@media (prefers-color-scheme: dark)` styles.
