@@ -1,5 +1,13 @@
 # @react-md/material-icons
 
+## 6.0.0-next.4
+
+### Patch Changes
+
+- Fixed Sass variable issues and other CSS tweaks.
+- Updated dependencies
+  - @react-md/core@1.0.0-next.4
+
 ## 6.0.0-next.3
 
 ### Patch Changes

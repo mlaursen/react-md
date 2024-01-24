@@ -1,5 +1,11 @@
 # @react-md/codemod
 
+## 6.0.0-next.4
+
+### Patch Changes
+
+- Fixed Sass variable issues and other CSS tweaks.
+
 ## 6.0.0-next.3
 
 ### Patch Changes
