@@ -1,5 +1,11 @@
 # @react-md/core
 
+## 1.0.0-next.5
+
+### Patch Changes
+
+- Fixed compile output directory by reverting to @swc/cli@0.1.63
+
 ## 1.0.0-next.4
 
 ### Patch Changes
