@@ -6,7 +6,7 @@ import { type PropsWithRef } from "../types.js";
  *
  * Conversions:
  *
- * - height !== "auto" -&gt; height
+ * - height !== undefined && height !== "auto" -&gt; height
  * - secondaryText or left/right addon is media/media-large  -&gt; "extra-large"
  * - left/right addon is avatar -&gt; "large"
  * - left/right addon is icon -&gt; "medium"

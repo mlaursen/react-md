@@ -151,7 +151,7 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
       secondaryText,
       secondaryTextProps,
       disableTextChildren = false,
-      height: propHeight = "auto",
+      height: propHeight,
       leftAddon,
       leftAddonType,
       leftAddonPosition,

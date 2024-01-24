@@ -15,7 +15,6 @@ export interface ListItemHeightOptions
   > {
   /**
    * @see {@link ListItemHeight}
-   * @defaultValue `"auto"`
    */
   height?: ListItemHeight;
 }
@@ -31,7 +30,7 @@ export function getListItemHeight(
   options: ListItemHeightOptions = {}
 ): ListItemHeight {
   const {
-    height = "auto",
+    height,
     leftAddon,
     leftAddonType = "icon",
     rightAddon,
@@ -39,7 +38,7 @@ export function getListItemHeight(
     secondaryText,
   } = options;
 
-  if (height !== "auto") {
+  if (height) {
     return height;
   }
 

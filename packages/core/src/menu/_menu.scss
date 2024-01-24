@@ -65,8 +65,6 @@ $variables: (background-color, color, min-width, spacing);
   .rmd-menu-item {
     @include icon.set-var(spacing, get-var(spacing));
 
-    height: var(--rmd-list-item-height);
-
     &--focused {
       // can't use `:focus-visible` here since this is mostly for virtual
       // keyboard movement for comboboxes. the focus is on the button or textbox

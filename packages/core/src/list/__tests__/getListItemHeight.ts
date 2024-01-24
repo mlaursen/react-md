@@ -2,12 +2,12 @@ import { describe, expect, it } from "@jest/globals";
 import { getListItemHeight } from "../getListItemHeight.js";
 
 describe("getListItemHeight", () => {
-  it('should return "normal" if no addons are provided when the height is omitted or set to "auto"', () => {
+  it('should return "normal" if no addons are provided when the height is omitted', () => {
     expect(getListItemHeight({})).toBe("normal");
-    expect(getListItemHeight({ height: "auto" })).toBe("normal");
   });
 
   it("should return the height if it was provided", () => {
+    expect(getListItemHeight({ height: "auto" })).toBe("auto");
     expect(getListItemHeight({ height: "normal" })).toBe("normal");
     expect(getListItemHeight({ height: "normal", leftAddon: "Addon" })).toBe(
       "normal"
