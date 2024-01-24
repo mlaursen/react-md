@@ -190,7 +190,7 @@ $switch-track-horizontal-padding: 0.875em !default;
 $switch-track-light-background-color: colors.$grey-400 !default;
 $switch-track-dark-background-color: if(
   theme.$disable-dark-elevation,
-  $switch-track-light-theme-background-color,
+  $switch-track-light-background-color,
   map.get(theme.$dark-elevation-colors, 24)
 ) !default;
 $switch-track-background-color: theme.get-default-color(
