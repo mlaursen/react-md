@@ -189,6 +189,18 @@ $theme-variables: (
   #{$property}: theme-get-var($name, $fallback);
 }
 
+@mixin use-light-theme-elevation-colors {
+  @each $z-value, $background-color in $dark-elevation-colors {
+    @include set-dark-elevation-color($z-value, $light-theme-surface-color);
+  }
+}
+
+@mixin use-dark-theme-elevation-colors {
+  @each $z-value, $background-color in $dark-elevation-colors {
+    @include set-dark-elevation-color($z-value, $background-color);
+  }
+}
+
 @mixin use-light-theme-colors {
   @include theme-set-var(background-color, $light-theme-background-color);
   @if $disable-dark-elevation {
@@ -203,9 +215,7 @@ $theme-variables: (
   @include theme-set-var(text-disabled-color, $light-theme-text-disabled-color);
 
   @if not $disable-dark-elevation and $color-scheme != light {
-    @each $z-value, $background-color in $dark-elevation-colors {
-      @include set-dark-elevation-color($z-value, $light-theme-surface-color);
-    }
+    @include use-light-theme-elevation-colors;
   }
 }
 
@@ -223,9 +233,7 @@ $theme-variables: (
   @include theme-set-var(text-disabled-color, $dark-theme-text-disabled-color);
 
   @if not $disable-dark-elevation {
-    @each $z-value, $background-color in $dark-elevation-colors {
-      @include set-dark-elevation-color($z-value, $background-color);
-    }
+    @include use-dark-theme-elevation-colors;
   }
 }
 
@@ -250,9 +258,11 @@ $theme-variables: (
   @include theme-set-var(text-hint-color, $text-hint-color);
   @include theme-set-var(text-disabled-color, $text-disabled-color);
 
-  @if not $disable-dark-elevation and $color-scheme == dark {
-    @each $z-value, $background-color in $dark-elevation-colors {
-      @include set-dark-elevation-color($z-value, $background-color);
+  @if not $disable-dark-elevation {
+    @if $color-scheme == dark {
+      @include use-dark-theme-elevation-colors;
+    } @else if $color-scheme == light {
+      @include use-light-theme-elevation-colors;
     }
   }
 
