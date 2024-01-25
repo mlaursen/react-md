@@ -117,7 +117,7 @@ $variables: (
 
 @mixin styles {
   // shouldn't really use react-md without icons though...
-  @if not $disable-font or not $disable-svg and not $disable-symbol {
+  @if not $disable-font or not $disable-svg or not $disable-symbol {
     @include theme.default-system-theme {
       @include use-dark-theme;
     }
