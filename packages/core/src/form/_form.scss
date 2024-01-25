@@ -564,12 +564,16 @@ $variables: (
               utils.negate-var(get-var(label-left-offset)),
               get-var(label-top-offset)
             );
+          transform-origin: 100% 0;
         }
         @include use-var(background-color, label-active-background-color);
         @include use-var(padding, label-active-padding);
 
         transform: scale($label-floating-scale)
           translate(get-var(label-left-offset), get-var(label-top-offset));
+        // need to add the `transform-origin` because of the scaling applied.
+        // it'll change the position based on the size of the label otherwise
+        transform-origin: 0 0;
         z-index: 1;
       }
     }
@@ -604,6 +608,7 @@ $variables: (
 
 @mixin text-field-container-styles {
   .rmd-text-field-container {
+    @include set-var(label-left-offset, get-var(text-field-padding-left));
     @include use-var(height, text-field-height);
 
     align-items: center;
@@ -669,10 +674,6 @@ $variables: (
           text-field-padding-right,
           $text-field-outlined-padding
         );
-        @include set-var(
-          label-left-offset,
-          $text-field-outlined-padding - $label-floating-padding
-        );
         @include set-var(label-top-offset, -50%);
         @include set-var(label-active-padding, 0 $label-floating-padding);
         @include set-var(
@@ -724,7 +725,6 @@ $variables: (
       &--filled {
         @include set-var(text-field-padding-left, $text-field-filled-padding);
         @include set-var(text-field-padding-right, $text-field-filled-padding);
-        @include set-var(label-left-offset, $text-field-filled-padding);
         @include use-var(background-color, text-field-filled-color);
       }
     }
