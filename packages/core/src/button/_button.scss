@@ -164,160 +164,162 @@ $variables: (
   }
 }
 
-@mixin styles {
+@mixin styles($disable-layer: false) {
   @if not $disable-everything {
-    .rmd-button {
-      @if not $disable-circular-progress {
-        @include progress.set-var(circular-size, $circular-progress-size);
-      }
-
-      @include icon.set-var(color, currentcolor);
-      @include icon.use-var(gap, spacing);
-      @include use-var(background-color);
-      @include use-var(color);
-      @include use-var(border-radius);
-
-      align-items: center;
-      border-width: 0;
-      display: inline-flex;
-      flex-shrink: 0;
-      justify-content: center;
-
-      @if not $disable-text {
-        &--text {
-          @include text-styles;
-        }
-      }
-
-      @if not $disable-icon {
-        &--icon {
-          @include icon.set-var(size, 1em);
-          @include set-var(border-radius, get-var(icon-border-radius));
-          @include use-var(font-size, icon-font-size);
-          @include use-var(height, icon-size);
-          @include use-var(width, icon-size);
-
-          padding: $icon-padding;
+    @include utils.optional-layer(button, $disable-layer) {
+      .rmd-button {
+        @if not $disable-circular-progress {
+          @include progress.set-var(circular-size, $circular-progress-size);
         }
 
-        @if not $disable-icon-square {
-          &--icon-square {
-            @include set-var(icon-border-radius, $icon-square-border-radius);
+        @include icon.set-var(color, currentcolor);
+        @include icon.use-var(gap, spacing);
+        @include use-var(background-color);
+        @include use-var(color);
+        @include use-var(border-radius);
+
+        align-items: center;
+        border-width: 0;
+        display: inline-flex;
+        flex-shrink: 0;
+        justify-content: center;
+
+        @if not $disable-text {
+          &--text {
+            @include text-styles;
           }
         }
 
-        @if $icon-small-size {
-          &--small {
-            font-size: $icon-small-size;
+        @if not $disable-icon {
+          &--icon {
+            @include icon.set-var(size, 1em);
+            @include set-var(border-radius, get-var(icon-border-radius));
+            @include use-var(font-size, icon-font-size);
+            @include use-var(height, icon-size);
+            @include use-var(width, icon-size);
+
+            padding: $icon-padding;
+          }
+
+          @if not $disable-icon-square {
+            &--icon-square {
+              @include set-var(icon-border-radius, $icon-square-border-radius);
+            }
+          }
+
+          @if $icon-small-size {
+            &--small {
+              font-size: $icon-small-size;
+            }
+          }
+
+          @if $icon-large-size {
+            &--large {
+              font-size: $icon-large-size;
+            }
           }
         }
 
-        @if $icon-large-size {
-          &--large {
-            font-size: $icon-large-size;
+        &--responsive {
+          @include media-queries.tablet-media {
+            @include text-styles;
+
+            height: auto;
+            width: auto;
+          }
+        }
+
+        &:disabled,
+        &--disabled {
+          @include theme.theme-set-var(outline-color, currentcolor);
+          // this was added for the file input
+          @include interaction.surface-disabled($clickable: false);
+        }
+
+        @if not $disable-contained {
+          &--contained {
+            @include box-shadows.elevation-transition(
+              $contained-elevation,
+              if(
+                $disable-contained-pressed-elevation,
+                null,
+                $contained-pressed-elevation
+              ),
+              "&.rmd-button--pressed",
+              $pseudo-before: false,
+              $position-relative: false
+            );
+
+            // contained buttons should _normally_ always force dark background
+            // colors for the interaction states This means use the default light
+            // theme since it is based off of the root background color
+            @if not $disable-contained-interaction-colors {
+              @include interaction.use-light-surface;
+            }
+
+            @include set-var(
+              background-color,
+              get-var(contained-background-color)
+            );
+            @include set-var(color, get-var(contained-color));
+          }
+        }
+
+        @if not $disable-async {
+          &--async {
+            @include overlay.set-var(background-color, transparent);
+            @include progress.set-var(color, currentcolor);
+            // @include progress.set-var(background-color, currentcolor);
+          }
+
+          &--async-overlay {
+            > * {
+              opacity: 0;
+            }
           }
         }
       }
 
-      &--responsive {
-        @include media-queries.tablet-media {
-          @include text-styles;
-
-          height: auto;
-          width: auto;
+      @if not $disable-unstyled-utility-class {
+        .rmd-button-unstyled {
+          @include unstyled;
         }
       }
 
-      &:disabled,
-      &--disabled {
-        @include theme.theme-set-var(outline-color, currentcolor);
-        // this was added for the file input
-        @include interaction.surface-disabled($clickable: false);
-      }
+      @if not $disable-floating {
+        .rmd-fab {
+          position: fixed;
+          z-index: $floating-z-index;
 
-      @if not $disable-contained {
-        &--contained {
-          @include box-shadows.elevation-transition(
-            $contained-elevation,
-            if(
-              $disable-contained-pressed-elevation,
-              null,
-              $contained-pressed-elevation
-            ),
-            "&.rmd-button--pressed",
-            $pseudo-before: false,
-            $position-relative: false
-          );
+          @if not $disable-floating-absolute-position {
+            &--absolute {
+              @include set-var(fab-offset, 0px);
 
-          // contained buttons should _normally_ always force dark background
-          // colors for the interaction states This means use the default light
-          // theme since it is based off of the root background color
-          @if not $disable-contained-interaction-colors {
-            @include interaction.use-light-surface;
+              position: absolute;
+              z-index: $floating-absolute-z-index;
+            }
           }
 
-          @include set-var(
-            background-color,
-            get-var(contained-background-color)
-          );
-          @include set-var(color, get-var(contained-color));
-        }
-      }
+          @each $suffix, $styles in $floating-positions {
+            &--#{$suffix} {
+              @each $property, $value in $styles {
+                @if $property == left {
+                  @include utils.rtl {
+                    left: auto;
+                    right: calc(#{$value} + #{get-var(fab-offset)});
+                  }
 
-      @if not $disable-async {
-        &--async {
-          @include overlay.set-var(background-color, transparent);
-          @include progress.set-var(color, currentcolor);
-          // @include progress.set-var(background-color, currentcolor);
-        }
-
-        &--async-overlay {
-          > * {
-            opacity: 0;
-          }
-        }
-      }
-    }
-
-    @if not $disable-unstyled-utility-class {
-      .rmd-button-unstyled {
-        @include unstyled;
-      }
-    }
-
-    @if not $disable-floating {
-      .rmd-fab {
-        position: fixed;
-        z-index: $floating-z-index;
-
-        @if not $disable-floating-absolute-position {
-          &--absolute {
-            @include set-var(fab-offset, 0px);
-
-            position: absolute;
-            z-index: $floating-absolute-z-index;
-          }
-        }
-
-        @each $suffix, $styles in $floating-positions {
-          &--#{$suffix} {
-            @each $property, $value in $styles {
-              @if $property == left {
-                @include utils.rtl {
-                  left: auto;
-                  right: calc(#{$value} + #{get-var(fab-offset)});
-                }
-
-                left: $value;
-              } @else if $property == right {
-                @include utils.rtl {
                   left: $value;
-                  right: auto;
-                }
+                } @else if $property == right {
+                  @include utils.rtl {
+                    left: $value;
+                    right: auto;
+                  }
 
-                right: calc(#{$value} + #{get-var(fab-offset)});
-              } @else {
-                #{$property}: #{$value};
+                  right: calc(#{$value} + #{get-var(fab-offset)});
+                } @else {
+                  #{$property}: #{$value};
+                }
               }
             }
           }

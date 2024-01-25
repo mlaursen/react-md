@@ -307,53 +307,58 @@ $transition-variables: (
   }
 }
 
-@mixin transition-styles {
-  @if not $disable-collapse-transition {
-    @include collapse-transition;
-  }
+@mixin transition-styles($disable-layer: false) {
+  @include utils.optional-layer(
+    transition,
+    $disable-layer or $disable-transitions
+  ) {
+    @if not $disable-collapse-transition {
+      @include collapse-transition;
+    }
 
-  @if not $disable-cross-fade-transition {
-    @include cross-fade-transition;
-  }
+    @if not $disable-cross-fade-transition {
+      @include cross-fade-transition;
+    }
 
-  @if not $disable-scale-transition or not $disable-scale-y-transition {
-    @include scale-transition;
-  }
+    @if not $disable-scale-transition or not $disable-scale-y-transition {
+      @include scale-transition;
+    }
 
-  @if not $disable-scale-y-transition {
-    @include scale-y-transition;
-  }
+    @if not $disable-scale-y-transition {
+      @include scale-y-transition;
+    }
 
-  @if not $disable-skeleton-placeholder {
-    @include skeleton-placeholder-animation;
-  }
+    @if not $disable-skeleton-placeholder {
+      @include skeleton-placeholder-animation;
+    }
 
-  @if not $disable-slide-transition {
-    @include slide-transition;
-  }
+    @if not $disable-slide-transition {
+      @include slide-transition;
+    }
 
-  @if not $disable-max-width-transition {
-    .rmd-max-width-transition {
-      @if not $disable-max-width-transition-gap {
-        @include utils.auto-rtl(
-          margin-right,
-          utils.negate-var(transition-get-var(max-width-gap)),
-          0
-        );
-      }
-
-      max-width: 0;
-      overflow: hidden;
-      transition: max-width
-        $max-width-transition-duration
-        $max-width-transition-timing-function;
-      will-change: max-width;
-
-      &--visible {
+    @if not $disable-max-width-transition {
+      .rmd-max-width-transition {
         @if not $disable-max-width-transition-gap {
-          @include utils.auto-rtl(margin-right, 0);
+          @include utils.auto-rtl(
+            margin-right,
+            utils.negate-var(transition-get-var(max-width-gap)),
+            0
+          );
         }
-        @include transition-use-var(max-width);
+
+        max-width: 0;
+        overflow: hidden;
+        transition: max-width
+          $max-width-transition-duration
+          $max-width-transition-timing-function;
+        will-change: max-width;
+
+        &--visible {
+          @if not $disable-max-width-transition-gap {
+            @include utils.auto-rtl(margin-right, 0);
+          }
+          @include transition-use-var(max-width);
+        }
       }
     }
   }

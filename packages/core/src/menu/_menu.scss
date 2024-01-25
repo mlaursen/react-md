@@ -98,16 +98,18 @@ $variables: (background-color, color, min-width, spacing);
   }
 }
 
-@mixin styles {
+@mixin styles($disable-layer: false) {
   @if not $disable-everything {
-    @include menu-styles;
+    @include utils.optional-layer(menu, $disable-layer) {
+      @include menu-styles;
 
-    @if not $disable-menu-item {
-      @include menu-item-styles;
-    }
+      @if not $disable-menu-item {
+        @include menu-item-styles;
+      }
 
-    @if not $disable-menu-item-group {
-      @include menu-item-group-styles;
+      @if not $disable-menu-item-group {
+        @include menu-item-group-styles;
+      }
     }
   }
 }

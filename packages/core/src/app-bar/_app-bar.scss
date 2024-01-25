@@ -117,128 +117,130 @@ $variables: (height, surface-background-color, surface-color);
   }
 }
 
-@mixin styles {
+@mixin styles($disable-layer: false) {
   @if not $disable-everything {
-    @include theme.default-system-theme {
-      @include use-dark-theme;
-    }
+    @include utils.optional-layer(app-bar, $disable-layer) {
+      @include theme.default-system-theme {
+        @include use-dark-theme;
+      }
 
-    .rmd-app-bar {
-      @include use-var(height);
-      @include box.set-var(gap, $gap);
-      @include box.set-var(padding, $vertical-padding $horizontal-padding);
+      .rmd-app-bar {
+        @include use-var(height);
+        @include box.set-var(gap, $gap);
+        @include box.set-var(padding, $vertical-padding $horizontal-padding);
 
-      // since app bars can appear a lot in full page dialogs, setting these flex
-      // values allows it be be a direct replacement of the `DialogHeader`
-      // component without all the offsets and additional styles needed for fixed
-      // app bars.
-      flex: 0 0 auto;
+        // since app bars can appear a lot in full page dialogs, setting these flex
+        // values allows it be be a direct replacement of the `DialogHeader`
+        // component without all the offsets and additional styles needed for fixed
+        // app bars.
+        flex: 0 0 auto;
 
-      @if not $disable-fixed or not $disable-sticky {
-        &--fixed {
-          left: 0;
-          position: fixed;
-          // Note: right and width were added to support the main navigation
-          // behavior with toggleable full-height navigation
-          right: 0;
-          width: auto;
-          z-index: $fixed-z-index;
+        @if not $disable-fixed or not $disable-sticky {
+          &--fixed {
+            left: 0;
+            position: fixed;
+            // Note: right and width were added to support the main navigation
+            // behavior with toggleable full-height navigation
+            right: 0;
+            width: auto;
+            z-index: $fixed-z-index;
+          }
+
+          @if $fixed-elevation and $fixed-elevation != 0 {
+            &--elevated {
+              @include box-shadows.box-shadow(
+                $fixed-elevation,
+                $disable-colors: true
+              );
+            }
+          }
+
+          @each $position in $fixed-positions {
+            &--#{$position} {
+              #{$position}: 0;
+            }
+          }
+
+          @if not $disable-sticky {
+            &--sticky {
+              position: sticky;
+            }
+          }
         }
 
-        @if $fixed-elevation and $fixed-elevation != 0 {
-          &--elevated {
-            @include box-shadows.box-shadow(
-              $fixed-elevation,
-              $disable-colors: true
+        &--auto {
+          // do not set variable so that child AppBar can maintain their height as needed
+          height: auto;
+        }
+
+        &--stacked {
+          flex-direction: column;
+          gap: 0;
+          padding: 0;
+        }
+
+        @if not $disable-dense-theme {
+          &--dense {
+            @include set-var(height, $dense-height);
+          }
+        }
+
+        @if not $disable-prominent-theme {
+          &--prominent {
+            @include set-var(height, $prominent-height);
+          }
+        }
+
+        @if not $disable-prominent-dense-theme {
+          &--prominent-dense {
+            @include set-var(height, $prominent-dense-height);
+          }
+        }
+
+        @if not $disable-surface-theme {
+          &--surface {
+            @include use-var(background-color, surface-background-color);
+            @include use-var(color, surface-color);
+          }
+        }
+
+        @if not $disable-scrollbar-offset {
+          &--scrollbar-offset {
+            @include utils.rtl {
+              margin-right: calc(-1 * #{utils.scrollbar-size()});
+            }
+
+            padding-right: calc(
+              #{$horizontal-padding} + #{utils.scrollbar-size()}
             );
           }
-        }
 
-        @each $position in $fixed-positions {
-          &--#{$position} {
-            #{$position}: 0;
-          }
-        }
-
-        @if not $disable-sticky {
-          &--sticky {
-            position: sticky;
+          @if not $disable-static-scrollbar-offset {
+            &--static-scrollbar-offset {
+              width: calc(100% + utils.scrollbar-size());
+            }
           }
         }
       }
 
-      &--auto {
-        // do not set variable so that child AppBar can maintain their height as needed
-        height: auto;
-      }
+      @if not $disable-title {
+        .rmd-app-bar-title {
+          @include utils.auto-rtl(margin-left, $keyline - $horizontal-padding);
 
-      &--stacked {
-        flex-direction: column;
-        gap: 0;
-        padding: 0;
-      }
+          flex: 1 1 auto;
+          margin-bottom: 0;
+          margin-top: 0;
 
-      @if not $disable-dense-theme {
-        &--dense {
-          @include set-var(height, $dense-height);
-        }
-      }
-
-      @if not $disable-prominent-theme {
-        &--prominent {
-          @include set-var(height, $prominent-height);
-        }
-      }
-
-      @if not $disable-prominent-dense-theme {
-        &--prominent-dense {
-          @include set-var(height, $prominent-dense-height);
-        }
-      }
-
-      @if not $disable-surface-theme {
-        &--surface {
-          @include use-var(background-color, surface-background-color);
-          @include use-var(color, surface-color);
-        }
-      }
-
-      @if not $disable-scrollbar-offset {
-        &--scrollbar-offset {
-          @include utils.rtl {
-            margin-right: calc(-1 * #{utils.scrollbar-size()});
+          &--keyline {
+            @include utils.auto-rtl(
+              margin-left,
+              $title-keyline - $horizontal-padding
+            );
           }
 
-          padding-right: calc(
-            #{$horizontal-padding} + #{utils.scrollbar-size()}
-          );
-        }
-
-        @if not $disable-static-scrollbar-offset {
-          &--static-scrollbar-offset {
-            width: calc(100% + utils.scrollbar-size());
+          &--nav-keyline {
+            @include utils.auto-rtl(margin-left, $nav-keyline);
           }
-        }
-      }
-    }
-
-    @if not $disable-title {
-      .rmd-app-bar-title {
-        @include utils.auto-rtl(margin-left, $keyline - $horizontal-padding);
-
-        flex: 1 1 auto;
-        margin-bottom: 0;
-        margin-top: 0;
-
-        &--keyline {
-          @include utils.auto-rtl(
-            margin-left,
-            $title-keyline - $horizontal-padding
-          );
-        }
-
-        &--nav-keyline {
-          @include utils.auto-rtl(margin-left, $nav-keyline);
         }
       }
     }

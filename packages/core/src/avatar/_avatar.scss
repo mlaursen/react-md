@@ -93,61 +93,63 @@ $variables: (
   }
 }
 
-@mixin styles {
+@mixin styles($disable-layer: false) {
   @if not $disable-everything {
-    .rmd-avatar {
-      @if not $disable-icon {
-        @include icon.set-var(color, currentcolor);
-      }
-      @include utils.map-to-styles(typography.$base-font-styles);
-      @include use-var(background-color);
-      @include use-var(border-radius);
-      @include use-var(color);
-      @include use-var(font-size);
-      @include use-var(height, size);
-      @include use-var(width, size);
-
-      align-items: center;
-      border: 1px solid get-var(border-color);
-      display: inline-flex;
-      flex-shrink: 0;
-      justify-content: center;
-      line-height: $line-height;
-      overflow: hidden;
-
-      @if not $disable-icon-size {
-        &--icon {
-          @include set-var(size, $icon-sized-size);
-
-          font-size: $icon-sized-font-size;
+    @include utils.optional-layer(avatar, $disable-layer) {
+      .rmd-avatar {
+        @if not $disable-icon {
+          @include icon.set-var(color, currentcolor);
         }
-      }
+        @include utils.map-to-styles(typography.$base-font-styles);
+        @include use-var(background-color);
+        @include use-var(border-radius);
+        @include use-var(color);
+        @include use-var(font-size);
+        @include use-var(height, size);
+        @include use-var(width, size);
 
-      @if not $disable-image {
-        &__image {
-          height: 100%;
-          width: auto;
-        }
-      }
+        align-items: center;
+        border: 1px solid get-var(border-color);
+        display: inline-flex;
+        flex-shrink: 0;
+        justify-content: center;
+        line-height: $line-height;
+        overflow: hidden;
 
-      @if not $disable-auto-image {
-        img {
-          height: 100%;
-          width: auto;
-        }
-      }
+        @if not $disable-icon-size {
+          &--icon {
+            @include set-var(size, $icon-sized-size);
 
-      @each $name, $values in $colors {
-        @if length($values) != 2 {
-          @error 'Unable to create an avatar color because the list of values is not of length 2. The first value should be the background-color and the second should be the text color. "#{$values}"';
+            font-size: $icon-sized-font-size;
+          }
         }
 
-        @include custom-color(
-          "&--#{$name}",
-          nth($values, 2),
-          nth($values, 1),
-          true
-        );
+        @if not $disable-image {
+          &__image {
+            height: 100%;
+            width: auto;
+          }
+        }
+
+        @if not $disable-auto-image {
+          img {
+            height: 100%;
+            width: auto;
+          }
+        }
+
+        @each $name, $values in $colors {
+          @if length($values) != 2 {
+            @error 'Unable to create an avatar color because the list of values is not of length 2. The first value should be the background-color and the second should be the text color. "#{$values}"';
+          }
+
+          @include custom-color(
+            "&--#{$name}",
+            nth($values, 2),
+            nth($values, 1),
+            true
+          );
+        }
       }
     }
   }

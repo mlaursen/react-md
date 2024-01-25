@@ -57,93 +57,94 @@ $variables: (size, header-height);
   }
 }
 
-@mixin styles {
+@mixin styles($disable-layer: false) {
   @if not $disable-everything {
-    .rmd-layout-main {
-      display: block;
-      outline: none;
+    @include utils.optional-layer(layout, $disable-layer) {
+      .rmd-layout-main {
+        display: block;
+        outline: none;
 
-      &::before {
-        @include utils.pseudo-element(
-          $fixed: true,
-          $z-index: $main-focus-z-index,
-          $inset: get-var(header-height) 0 interaction.get-var(focus-width)
-        );
-        @include interaction.focus-styles($box-shadow: true);
+        &::before {
+          @include utils.pseudo-element(
+            $fixed: true,
+            $z-index: $main-focus-z-index,
+            $inset: get-var(header-height) 0 interaction.get-var(focus-width)
+          );
+          @include interaction.focus-styles($box-shadow: true);
 
-        opacity: 0;
-        transition: opacity
-          transition.$linear-duration
-          transition.$linear-timing-function;
-      }
-
-      &:focus::before {
-        opacity: 1;
-      }
-
-      &--offset-v {
-        @include use-var(padding-top, header-height);
-      }
-    }
-
-    /// I decided to go with an "SSR-first" approach by having the nav element
-    /// always be rendered, but use media queries to show it for tablets and
-    /// above. This makes it so there is less javascript to dynamically switch
-    /// between layout types as you resize the browser.
-    .rmd-layout-nav {
-      @include sheet.set-var(width, get-var(size));
-      @include media-queries.media($navigation-breakpoint) {
-        // use grid so that you can easily have a header + tree that fills the remaining space
-        display: grid;
-      }
-
-      container: $navigation-container-name;
-      display: none;
-      z-index: $navigation-z-index;
-
-      &--offset-v {
-        @include use-var(top, header-height);
-      }
-    }
-
-    /// This class is used to transition when the nav expands/collapses on
-    /// larger screen sizes
-    .rmd-layout-h {
-      will-change: margin;
-
-      &--active {
-        @include media-queries.media($navigation-breakpoint) {
-          @include utils.auto-rtl(margin-left, get-var(size));
-
-          &::before {
-            @include utils.auto-rtl(left, get-var(size));
-          }
+          opacity: 0;
+          transition: opacity transition.$linear-duration
+            transition.$linear-timing-function;
         }
-      }
 
-      &--enter {
-        transition: margin $enter-duration $enter-timing-function;
-      }
-
-      &--exit {
-        transition: margin $leave-duration $leave-timing-function;
-      }
-    }
-
-    @if not $disable-resizable {
-      .rmd-layout-splitter {
-        @include window-splitter.set-var(position, get-var(size));
+        &:focus::before {
+          opacity: 1;
+        }
 
         &--offset-v {
-          @include window-splitter.set-var(top, get-var(header-height));
+          @include use-var(padding-top, header-height);
+        }
+      }
+
+      /// I decided to go with an "SSR-first" approach by having the nav element
+      /// always be rendered, but use media queries to show it for tablets and
+      /// above. This makes it so there is less javascript to dynamically switch
+      /// between layout types as you resize the browser.
+      .rmd-layout-nav {
+        @include sheet.set-var(width, get-var(size));
+        @include media-queries.media($navigation-breakpoint) {
+          // use grid so that you can easily have a header + tree that fills the remaining space
+          display: grid;
         }
 
-        &--responsive {
+        container: $navigation-container-name;
+        display: none;
+        z-index: $navigation-z-index;
+
+        &--offset-v {
+          @include use-var(top, header-height);
+        }
+      }
+
+      /// This class is used to transition when the nav expands/collapses on
+      /// larger screen sizes
+      .rmd-layout-h {
+        will-change: margin;
+
+        &--active {
           @include media-queries.media($navigation-breakpoint) {
-            display: inline-block;
+            @include utils.auto-rtl(margin-left, get-var(size));
+
+            &::before {
+              @include utils.auto-rtl(left, get-var(size));
+            }
+          }
+        }
+
+        &--enter {
+          transition: margin $enter-duration $enter-timing-function;
+        }
+
+        &--exit {
+          transition: margin $leave-duration $leave-timing-function;
+        }
+      }
+
+      @if not $disable-resizable {
+        .rmd-layout-splitter {
+          @include window-splitter.set-var(position, get-var(size));
+
+          &--offset-v {
+            @include window-splitter.set-var(top, get-var(header-height));
           }
 
-          display: none;
+          &--responsive {
+            @include media-queries.media($navigation-breakpoint) {
+              display: inline-block;
+            }
+
+            display: none;
+          }
         }
       }
     }

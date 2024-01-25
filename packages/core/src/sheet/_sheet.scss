@@ -69,118 +69,120 @@ $variables: (
   }
 }
 
-@mixin styles {
+@mixin styles($disable-layer: false) {
   @if not $disable-everything {
-    .rmd-sheet {
-      @include box-shadows.box-shadow($elevation);
-      @include use-var(height);
-      @include use-var(max-height);
-      @include use-var(width);
-      @include use-var(z-index);
+    @include utils.optional-layer(sheet, $disable-layer) {
+      .rmd-sheet {
+        @include box-shadows.box-shadow($elevation);
+        @include use-var(height);
+        @include use-var(max-height);
+        @include use-var(width);
+        @include use-var(z-index);
 
-      overflow: auto;
-      position: fixed;
+        overflow: auto;
+        position: fixed;
 
-      @if not $disable-position-left or not $disable-position-right {
-        &--horizontal {
-          bottom: 0;
-          top: 0;
-        }
-      }
-
-      @if not $disable-position-bottom or not $disable-position-top {
-        &--vertical {
-          left: 0;
-          right: 0;
-        }
-      }
-
-      &--raised {
-        @include set-var(z-index, $raised-z-index);
-        @include box-shadows.box-shadow($raised-elevation);
-      }
-
-      @if not $disable-position-left {
-        &--left {
-          @include utils.auto-rtl(left, 0) {
-            @include set-var(transform-offscreen, translate3d(100%, 0, 0));
+        @if not $disable-position-left or not $disable-position-right {
+          &--horizontal {
+            bottom: 0;
+            top: 0;
           }
-          @include set-var(transform-offscreen, translate3d(-100%, 0, 0));
         }
-      }
 
-      @if not $disable-position-right {
-        &--right {
-          @include utils.auto-rtl(right, 0) {
+        @if not $disable-position-bottom or not $disable-position-top {
+          &--vertical {
+            left: 0;
+            right: 0;
+          }
+        }
+
+        &--raised {
+          @include set-var(z-index, $raised-z-index);
+          @include box-shadows.box-shadow($raised-elevation);
+        }
+
+        @if not $disable-position-left {
+          &--left {
+            @include utils.auto-rtl(left, 0) {
+              @include set-var(transform-offscreen, translate3d(100%, 0, 0));
+            }
             @include set-var(transform-offscreen, translate3d(-100%, 0, 0));
           }
-          @include set-var(transform-offscreen, translate3d(100%, 0, 0));
         }
-      }
 
-      @if not $disable-position-bottom {
-        &--bottom {
-          @include set-var(transform-offscreen, translate3d(0, 100%, 0));
-
-          bottom: 0;
+        @if not $disable-position-right {
+          &--right {
+            @include utils.auto-rtl(right, 0) {
+              @include set-var(transform-offscreen, translate3d(-100%, 0, 0));
+            }
+            @include set-var(transform-offscreen, translate3d(100%, 0, 0));
+          }
         }
-      }
 
-      @if not $disable-position-top {
-        &--top {
-          @include set-var(transform-offscreen, translate3d(0, -100%, 0));
+        @if not $disable-position-bottom {
+          &--bottom {
+            @include set-var(transform-offscreen, translate3d(0, 100%, 0));
 
-          top: 0;
+            bottom: 0;
+          }
         }
-      }
 
-      &--touch-width {
-        @include set-var(width, get-var(touch-width));
-      }
+        @if not $disable-position-top {
+          &--top {
+            @include set-var(transform-offscreen, translate3d(0, -100%, 0));
 
-      &--static-width {
-        @include set-var(width, get-var(static-width));
-      }
+            top: 0;
+          }
+        }
 
-      &--media-width {
-        @include media-queries.tablet-media {
+        &--touch-width {
+          @include set-var(width, get-var(touch-width));
+        }
+
+        &--static-width {
           @include set-var(width, get-var(static-width));
         }
 
-        @include set-var(width, get-var(touch-width));
-      }
+        &--media-width {
+          @include media-queries.tablet-media {
+            @include set-var(width, get-var(static-width));
+          }
 
-      &--viewport-height {
-        @include set-var(max-height, $max-height);
-      }
+          @include set-var(width, get-var(touch-width));
+        }
 
-      &--touchable-height {
-        @include set-var(max-height, get-var(touch-max-height));
-      }
+        &--viewport-height {
+          @include set-var(max-height, $max-height);
+        }
 
-      &--recommended-height {
-        max-height: $recommended-max-height;
-        min-height: $recommended-min-height;
-      }
+        &--touchable-height {
+          @include set-var(max-height, get-var(touch-max-height));
+        }
 
-      &--offscreen {
-        @include use-var(transform, transform-offscreen);
-      }
+        &--recommended-height {
+          max-height: $recommended-max-height;
+          min-height: $recommended-min-height;
+        }
 
-      &--hidden {
-        box-shadow: none;
-      }
+        &--offscreen {
+          @include use-var(transform, transform-offscreen);
+        }
 
-      &--visible {
-        transform: translate3d(0, 0, 0);
-      }
+        &--hidden {
+          box-shadow: none;
+        }
 
-      &--enter {
-        transition: transform $enter-duration $enter-timing-function;
-      }
+        &--visible {
+          transform: translate3d(0, 0, 0);
+        }
 
-      &--exit {
-        transition: transform $leave-duration $leave-timing-function;
+        &--enter {
+          transition: transform $enter-duration $enter-timing-function;
+        }
+
+        &--exit {
+          transition: transform $leave-duration $leave-timing-function;
+        }
       }
     }
   }

@@ -426,7 +426,7 @@ $variables: (
   }
 }
 
-@mixin file-input-styles {
+@mixin file-input-styles($disable-layer: false) {
   @if utils.$disable-has-selectors or utils.$disable-focus-visible {
     .rmd-file-input:focus-within::before {
       @include utils.keyboard-only {
@@ -440,394 +440,408 @@ $variables: (
   }
 }
 
-@mixin form-message-styles {
-  .rmd-form-message-container {
-    display: flex;
-    flex-direction: column;
-  }
+@mixin form-message-styles($disable-layer: false) {
+  @include utils.optional-layer(form, $disable-layer) {
+    .rmd-form-message-container {
+      display: flex;
+      flex-direction: column;
+    }
 
-  .rmd-form-message {
-    @include utils.map-to-styles($message-typography-styles);
+    .rmd-form-message {
+      @include utils.map-to-styles($message-typography-styles);
 
-    display: flex;
-    margin: $message-margin-top 0 $message-margin-bottom;
-    min-height: $message-min-height;
+      display: flex;
+      margin: $message-margin-top 0 $message-margin-bottom;
+      min-height: $message-min-height;
 
-    @if not $disable-text-field-filled-theme and $text-field-filled-padding {
-      &--filled {
-        padding-left: $text-field-filled-padding;
-        padding-right: $text-field-filled-padding;
+      @if not $disable-text-field-filled-theme and $text-field-filled-padding {
+        &--filled {
+          padding-left: $text-field-filled-padding;
+          padding-right: $text-field-filled-padding;
+        }
       }
-    }
 
-    @if not $disable-text-field-outlined-theme and $text-field-outlined-padding
-    {
-      &--outline {
-        padding-left: $text-field-outlined-padding;
-        padding-right: $text-field-outlined-padding;
+      @if not
+        $disable-text-field-outlined-theme and
+        $text-field-outlined-padding
+      {
+        &--outline {
+          padding-left: $text-field-outlined-padding;
+          padding-right: $text-field-outlined-padding;
+        }
       }
-    }
 
-    @if not
-      $disable-text-field-underlined-theme and
-      $text-field-underlined-padding
-    {
-      &--underline {
-        padding-left: $text-field-underlined-padding;
-        padding-right: $text-field-underlined-padding;
+      @if not
+        $disable-text-field-underlined-theme and
+        $text-field-underlined-padding
+      {
+        &--underline {
+          padding-left: $text-field-underlined-padding;
+          padding-right: $text-field-underlined-padding;
+        }
       }
-    }
 
-    &__message {
-      margin: 0;
-    }
+      &__message {
+        margin: 0;
+      }
 
-    @if not $disable-text-field-counter {
-      &__counter {
-        @include utils.auto-rtl(margin-left, auto);
-        @include utils.auto-rtl(padding-left, $message-counter-spacing);
+      @if not $disable-text-field-counter {
+        &__counter {
+          @include utils.auto-rtl(margin-left, auto);
+          @include utils.auto-rtl(padding-left, $message-counter-spacing);
 
-        flex-shrink: 0;
-        white-space: nowrap;
+          flex-shrink: 0;
+          white-space: nowrap;
+        }
       }
     }
   }
 }
 
-@mixin label-styles {
-  .rmd-label {
-    @include utils.map-to-styles($label-typography);
+@mixin label-styles($disable-layer: false) {
+  @include utils.optional-layer(form, $disable-layer) {
+    .rmd-label {
+      @include utils.map-to-styles($label-typography);
 
-    align-items: center;
-    display: inline-flex;
-    transition-duration: transition.$linear-duration;
-    transition-property: background-color, transform;
+      align-items: center;
+      display: inline-flex;
+      transition-duration: transition.$linear-duration;
+      transition-property: background-color, transform;
 
-    $active-selector: "&--active";
-    @if not $_disable-text-field-container {
-      $active-selector: $active-selector +
-        ", .rmd-text-field-container:focus-within &";
-    }
+      $active-selector: "&--active";
+      @if not $_disable-text-field-container {
+        $active-selector: $active-selector +
+          ", .rmd-text-field-container:focus-within &";
+      }
 
-    #{$active-selector} {
-      @include use-var(color, focus-color);
-    }
+      #{$active-selector} {
+        @include use-var(color, focus-color);
+      }
 
-    @if not $disable-floating-label {
-      &--floating {
-        @include utils.rtl {
-          left: auto;
-          right: 0;
+      @if not $disable-floating-label {
+        &--floating {
+          @include utils.rtl {
+            left: auto;
+            right: 0;
+            transform: translate(
+              utils.negate-var(get-var(text-field-padding-left)),
+              get-var(label-floating-top)
+            );
+          }
+
+          left: 0;
+          // disable pointer events for floating labels so that the input behind
+          // is clicked instead. this prevents double click events for the Select
+          // component
+          pointer-events: none;
+          position: absolute;
+          top: 0;
           transform: translate(
-            utils.negate-var(get-var(text-field-padding-left)),
+            get-var(text-field-padding-left),
             get-var(label-floating-top)
           );
         }
 
-        left: 0;
-        // disable pointer events for floating labels so that the input behind
-        // is clicked instead. this prevents double click events for the Select
-        // component
-        pointer-events: none;
-        position: absolute;
-        top: 0;
-        transform: translate(
-          get-var(text-field-padding-left),
-          get-var(label-floating-top)
-        );
-      }
-
-      &--floating-dense {
-        @include set-var(label-floating-top, $label-floating-top-dense);
-      }
-
-      $floating-active-selector: "&--floating-active";
-      @if not
-        $disable-text-field or not
-        $disable-password or not
-        $disable-textarea
-      {
-        $floating-active-selector: $floating-active-selector +
-          ", .rmd-text-field-container:focus-within &--floating" +
-          ", .rmd-text-field:not(:placeholder-shown) + &--floating";
-      }
-      @if not $disable-native-select {
-        $floating-active-selector: $floating-active-selector +
-          ", .rmd-native-select[multiple] + &--floating" +
-          ", .rmd-native-select:not(:invalid) + &--floating";
-      }
-
-      #{$floating-active-selector} {
-        @include utils.rtl {
-          transform: scale($label-floating-scale)
-            translate(
-              utils.negate-var(get-var(label-left-offset)),
-              get-var(label-top-offset)
-            );
-          transform-origin: 100% 0;
+        &--floating-dense {
+          @include set-var(label-floating-top, $label-floating-top-dense);
         }
-        @include use-var(background-color, label-active-background-color);
-        @include use-var(padding, label-active-padding);
 
-        transform: scale($label-floating-scale)
-          translate(get-var(label-left-offset), get-var(label-top-offset));
-        // need to add the `transform-origin` because of the scaling applied.
-        // it'll change the position based on the size of the label otherwise
-        transform-origin: 0 0;
-        z-index: 1;
+        $floating-active-selector: "&--floating-active";
+        @if not
+          $disable-text-field or not
+          $disable-password or not
+          $disable-textarea
+        {
+          $floating-active-selector: $floating-active-selector +
+            ", .rmd-text-field-container:focus-within &--floating" +
+            ", .rmd-text-field:not(:placeholder-shown) + &--floating";
+        }
+        @if not $disable-native-select {
+          $floating-active-selector: $floating-active-selector +
+            ", .rmd-native-select[multiple] + &--floating" +
+            ", .rmd-native-select:not(:invalid) + &--floating";
+        }
+
+        #{$floating-active-selector} {
+          @include utils.rtl {
+            transform: scale($label-floating-scale)
+              translate(
+                utils.negate-var(get-var(label-left-offset)),
+                get-var(label-top-offset)
+              );
+            transform-origin: 100% 0;
+          }
+          @include use-var(background-color, label-active-background-color);
+          @include use-var(padding, label-active-padding);
+
+          transform: scale($label-floating-scale)
+            translate(get-var(label-left-offset), get-var(label-top-offset));
+          // need to add the `transform-origin` because of the scaling applied.
+          // it'll change the position based on the size of the label otherwise
+          transform-origin: 0 0;
+          z-index: 1;
+        }
       }
-    }
 
-    @if not $disable-label-gap {
-      &--gap {
-        gap: $label-gap;
+      @if not $disable-label-gap {
+        &--gap {
+          gap: $label-gap;
+        }
       }
-    }
 
-    @if not $disable-label-reversed {
-      &--reversed {
-        flex-direction: row-reverse;
-        // this makes it so the content is at the starting edge
-        justify-content: flex-end;
+      @if not $disable-label-reversed {
+        &--reversed {
+          flex-direction: row-reverse;
+          // this makes it so the content is at the starting edge
+          justify-content: flex-end;
+        }
       }
-    }
 
-    @if not $disable-label-stacked {
-      &--stacked {
-        flex-direction: column;
+      @if not $disable-label-stacked {
+        &--stacked {
+          flex-direction: column;
+        }
       }
-    }
 
-    @if not $disable-label-stacked-reversed {
-      &--stacked-reversed {
-        flex-direction: column-reverse;
+      @if not $disable-label-stacked-reversed {
+        &--stacked-reversed {
+          flex-direction: column-reverse;
+        }
       }
     }
   }
 }
 
-@mixin text-field-container-styles {
-  .rmd-text-field-container {
-    @include set-var(label-left-offset, get-var(text-field-padding-left));
-    @include use-var(height, text-field-height);
+@mixin text-field-container-styles($disable-layer: false) {
+  @include utils.optional-layer(form, $disable-layer) {
+    .rmd-text-field-container {
+      @include set-var(label-left-offset, get-var(text-field-padding-left));
+      @include use-var(height, text-field-height);
 
-    align-items: center;
-    display: flex;
-    position: relative;
+      align-items: center;
+      display: flex;
+      position: relative;
 
-    @if not $disable-text-field-container-dense {
-      &--dense {
-        @include set-var(text-field-height, $text-field-dense-height);
-      }
+      @if not $disable-text-field-container-dense {
+        &--dense {
+          @include set-var(text-field-height, $text-field-dense-height);
+        }
 
-      &--dense-label {
-        @include set-var(text-field-height, $text-field-label-dense-height);
-      }
-    }
-
-    &--inline {
-      display: inline-flex;
-    }
-
-    &--stretch {
-      flex: 1 1 auto;
-      width: 100%;
-    }
-
-    &--label {
-      @include set-var(text-field-height, $text-field-label-height);
-    }
-
-    &--error {
-      @if not $disable-text-field-addon {
-        @include icon.set-var(color, currentcolor);
-      }
-      @include set-var(active-color, currentcolor);
-      @include set-var(focus-color, currentcolor);
-
-      @if not
-        $disable-text-field-underlined-theme or not
-        $disable-text-field-outlined-theme
-      {
-        @include set-var(
-          text-field-border-color,
-          theme.theme-get-var(error-color)
-        );
-        @include set-var(
-          text-field-hover-border-color,
-          theme.theme-get-var(error-color)
-        );
-      }
-    }
-
-    &--hoverable:hover {
-      @include set-var(
-        text-field-border-color,
-        get-var(text-field-hover-border-color)
-      );
-    }
-
-    @if not $disable-text-field-outlined-theme {
-      &--outline {
-        @include set-var(text-field-padding-left, $text-field-outlined-padding);
-        @include set-var(
-          text-field-padding-right,
-          $text-field-outlined-padding
-        );
-        @include set-var(label-top-offset, -50%);
-        @include set-var(label-active-padding, 0 $label-floating-padding);
-        @include set-var(
-          label-active-background-color,
-          theme.theme-get-var(background-color)
-        );
-        @include use-var(border-color, text-field-border-color);
-
-        border-radius: $text-field-border-radius;
-        border-style: solid;
-        border-width: $text-field-border-width;
-
-        &::after {
-          @include utils.pseudo-element;
-
-          box-shadow: 0
-            0
-            0
-            $text-field-border-width-active
-            get-var(focus-color);
-          opacity: 0;
-          transition: opacity transition.$linear-duration;
+        &--dense-label {
+          @include set-var(text-field-height, $text-field-label-dense-height);
         }
       }
 
-      &--outline:focus-within::after,
-      &--outline-active::after {
-        opacity: 1;
+      &--inline {
+        display: inline-flex;
       }
 
-      &--outline-left {
-        $distance: calc(
-          #{icon.get-var(size)} +
-            #{$text-field-outlined-padding +
-            $text-field-spacing}
+      &--stretch {
+        flex: 1 1 auto;
+        width: 100%;
+      }
+
+      &--label {
+        @include set-var(text-field-height, $text-field-label-height);
+      }
+
+      &--error {
+        @if not $disable-text-field-addon {
+          @include icon.set-var(color, currentcolor);
+        }
+        @include set-var(active-color, currentcolor);
+        @include set-var(focus-color, currentcolor);
+
+        @if not
+          $disable-text-field-underlined-theme or not
+          $disable-text-field-outlined-theme
+        {
+          @include set-var(
+            text-field-border-color,
+            theme.theme-get-var(error-color)
+          );
+          @include set-var(
+            text-field-hover-border-color,
+            theme.theme-get-var(error-color)
+          );
+        }
+      }
+
+      &--hoverable:hover {
+        @include set-var(
+          text-field-border-color,
+          get-var(text-field-hover-border-color)
         );
-
-        @include set-var(text-field-padding-left, $distance);
       }
 
-      &--outline-right {
-        $distance: calc(#{icon.get-var(size)} + #{$text-field-spacing * 2});
-
-        @include set-var(text-field-padding-right, $distance);
-      }
-    }
-
-    @if not $disable-text-field-filled-theme {
-      &--filled {
-        @include set-var(text-field-padding-left, $text-field-filled-padding);
-        @include set-var(text-field-padding-right, $text-field-filled-padding);
-        @include use-var(background-color, text-field-filled-color);
-      }
-    }
-
-    // the filled theme uses the same styles as underline
-    @if not
-      $disable-text-field-underlined-theme or not
-      $disable-text-field-filled-theme
-    {
-      &--underline {
-        @include use-var(border-color, text-field-border-color);
-
-        border-bottom-style: solid;
-        border-bottom-width: $text-field-border-width;
-
-        @if $text-field-underlined-padding {
+      @if not $disable-text-field-outlined-theme {
+        &--outline {
           @include set-var(
             text-field-padding-left,
-            $text-field-underlined-padding
+            $text-field-outlined-padding
           );
           @include set-var(
             text-field-padding-right,
-            $text-field-underlined-padding
+            $text-field-outlined-padding
           );
+          @include set-var(label-top-offset, -50%);
+          @include set-var(label-active-padding, 0 $label-floating-padding);
+          @include set-var(
+            label-active-background-color,
+            theme.theme-get-var(background-color)
+          );
+          @include use-var(border-color, text-field-border-color);
+
+          border-radius: $text-field-border-radius;
+          border-style: solid;
+          border-width: $text-field-border-width;
+
+          &::after {
+            @include utils.pseudo-element;
+
+            box-shadow: 0
+              0
+              0
+              $text-field-border-width-active
+              get-var(focus-color);
+            opacity: 0;
+            transition: opacity transition.$linear-duration;
+          }
         }
 
-        &::after {
-          @include use-var(background-color, focus-color);
+        &--outline:focus-within::after,
+        &--outline-active::after {
+          opacity: 1;
+        }
 
-          bottom: -$text-field-border-width;
-          content: "";
-          height: $text-field-border-width-active;
-          left: 0;
-          position: absolute;
-          right: 0;
-          transform: scale(0);
-          transition: transform
-            transition.$linear-duration
-            transition.$linear-timing-function;
-          z-index: 1;
+        &--outline-left {
+          $distance: calc(
+            #{icon.get-var(size)} +
+              #{$text-field-outlined-padding +
+              $text-field-spacing}
+          );
+
+          @include set-var(text-field-padding-left, $distance);
+        }
+
+        &--outline-right {
+          $distance: calc(#{icon.get-var(size)} + #{$text-field-spacing * 2});
+
+          @include set-var(text-field-padding-right, $distance);
         }
       }
 
-      @if $text-field-underlined-placeholder-height {
-        &--underline-placeholder {
+      @if not $disable-text-field-filled-theme {
+        &--filled {
+          @include set-var(text-field-padding-left, $text-field-filled-padding);
+          @include set-var(
+            text-field-padding-right,
+            $text-field-filled-padding
+          );
+          @include use-var(background-color, text-field-filled-color);
+        }
+      }
+
+      // the filled theme uses the same styles as underline
+      @if not
+        $disable-text-field-underlined-theme or not
+        $disable-text-field-filled-theme
+      {
+        &--underline {
+          @include use-var(border-color, text-field-border-color);
+
+          border-bottom-style: solid;
+          border-bottom-width: $text-field-border-width;
+
+          @if $text-field-underlined-padding {
+            @include set-var(
+              text-field-padding-left,
+              $text-field-underlined-padding
+            );
+            @include set-var(
+              text-field-padding-right,
+              $text-field-underlined-padding
+            );
+          }
+
+          &::after {
+            @include use-var(background-color, focus-color);
+
+            bottom: -$text-field-border-width;
+            content: "";
+            height: $text-field-border-width-active;
+            left: 0;
+            position: absolute;
+            right: 0;
+            transform: scale(0);
+            transition: transform
+              transition.$linear-duration
+              transition.$linear-timing-function;
+            z-index: 1;
+          }
+        }
+
+        @if $text-field-underlined-placeholder-height {
+          &--underline-placeholder {
+            @include set-var(
+              text-field-padding-top,
+              $text-field-underlined-placeholder-addon-padding-top
+            );
+            height: $text-field-underlined-placeholder-height;
+          }
+
+          &--underline-placeholder-only {
+            @include set-var(
+              text-field-padding-top,
+              $text-field-underlined-placeholder-padding-top
+            );
+          }
+        }
+
+        &--underline-labelled {
           @include set-var(
             text-field-padding-top,
-            $text-field-underlined-placeholder-addon-padding-top
+            $text-field-underlined-label-padding-top
           );
-          height: $text-field-underlined-placeholder-height;
+          @include set-var(addon-margin-top, $text-field-addon-margin);
         }
 
-        &--underline-placeholder-only {
-          @include set-var(
-            text-field-padding-top,
-            $text-field-underlined-placeholder-padding-top
-          );
-        }
-      }
-
-      &--underline-labelled {
-        @include set-var(
-          text-field-padding-top,
-          $text-field-underlined-label-padding-top
-        );
-        @include set-var(addon-margin-top, $text-field-addon-margin);
-      }
-
-      @if not $disable-text-field-underline-left {
-        &--underline-left::after {
-          transform-origin: left;
-        }
-      }
-
-      @if not $disable-text-field-underline-center {
-        &--underline-center::after {
-          transform-origin: center;
-        }
-      }
-
-      @if not $disable-text-field-underline-right {
-        &--underline-right::after {
-          transform-origin: right;
-        }
-      }
-
-      &:focus-within::after,
-      &--underline-active::after {
-        transform: scale(1);
-      }
-
-      @if not $disable-text-field-addon {
-        $addon-offset: "#{icon.get-var(size)} + #{$text-field-underlined-label-left-offset * 2}";
-        @if $text-field-underlined-padding {
-          $addon-offset: "#{$addon-offset} + #{$text-field-underlined-padding}";
+        @if not $disable-text-field-underline-left {
+          &--underline-left::after {
+            transform-origin: left;
+          }
         }
 
-        &--underline-left-addon {
-          @include set-var(text-field-padding-left, calc(#{$addon-offset}));
+        @if not $disable-text-field-underline-center {
+          &--underline-center::after {
+            transform-origin: center;
+          }
         }
 
-        &--underline-right-addon {
-          @include set-var(text-field-padding-right, calc(#{$addon-offset}));
+        @if not $disable-text-field-underline-right {
+          &--underline-right::after {
+            transform-origin: right;
+          }
+        }
+
+        &:focus-within::after,
+        &--underline-active::after {
+          transform: scale(1);
+        }
+
+        @if not $disable-text-field-addon {
+          $addon-offset: "#{icon.get-var(size)} + #{$text-field-underlined-label-left-offset * 2}";
+          @if $text-field-underlined-padding {
+            $addon-offset: "#{$addon-offset} + #{$text-field-underlined-padding}";
+          }
+
+          &--underline-left-addon {
+            @include set-var(text-field-padding-left, calc(#{$addon-offset}));
+          }
+
+          &--underline-right-addon {
+            @include set-var(text-field-padding-right, calc(#{$addon-offset}));
+          }
         }
       }
     }
@@ -857,1054 +871,1080 @@ $variables: (
   }
 }
 
-@mixin text-field-styles {
-  .rmd-text-field {
-    @include _text-field-base-styles;
+@mixin text-field-styles($disable-layer: false) {
+  @include utils.optional-layer(form, $disable-layer) {
+    .rmd-text-field {
+      @include _text-field-base-styles;
 
-    @if $text-field-color-min-width {
-      &[type="color"] {
-        min-width: $text-field-color-min-width;
-      }
-    }
-
-    &::placeholder {
-      @if not $disable-placeholder-ellipsis {
-        @include typography.text-overflow;
-      }
-
-      @include theme.theme-use-var(color, text-secondary-color);
-      // want to gain the same font styles as the input/textarea itself,
-      // just apply different colors as needed instead. Can't just do font: inherit
-      // since it'll break the styles in firefox.
-      font-family: inherit;
-      font-size: inherit;
-      font-weight: inherit;
-
-      // fix firefox setting opacity to 0.54 by default
-      opacity: 1;
-
-      // Note: doesn't look like firefox applies css transitions to placeholder text?
-      transition: opacity transition.$linear-duration;
-    }
-
-    &[disabled]::placeholder {
-      color: inherit;
-    }
-
-    &--placeholder-hidden:not(:focus)::placeholder {
-      opacity: 0;
-    }
-  }
-}
-
-@mixin password-styles {
-  .rmd-password {
-    @include set-var(
-      text-field-padding-right,
-      $password-visibility-toggle-spacing
-    );
-
-    &__input {
-      @include utils.auto-rtl(margin-right, button.get-var(icon-size));
-    }
-
-    &__toggle {
-      @include utils.auto-rtl(right, 0);
-
-      position: absolute;
-    }
-  }
-}
-
-@mixin textarea-container-styles {
-  .rmd-textarea-container {
-    @include set-var(addon-top, $textarea-addon-top);
-
-    height: auto;
-    max-width: 100%;
-    padding-top: calc(
-      #{get-var(text-field-padding-top)} + #{get-var(textarea-padding)}
-    );
-
-    &--cursor:hover {
-      // need to add this cursor back since the textarea container adds padding to
-      // itself instead of the textarea so it loses this cursor. the container
-      // element will still focus the textarea when clicked
-      cursor: text;
-    }
-
-    @if not
-      $disable-text-field-filled-theme or not
-      $disable-text-field-underlined-theme
-    {
-      &--underline-labelled {
-        @include set-var(textarea-padding, 0px);
-        @include set-var(
-          label-floating-top,
-          $text-field-underlined-label-padding-top
-        );
-      }
-    }
-
-    @if not $disable-textarea-resizing-rows {
-      &--height {
-        height: calc(
-          #{get-var(text-field-padding-top)} +
-            #{get-var(textarea-padding)} +
-            #{get-var(textarea-height)}
-        );
-      }
-
-      &--animate {
-        transition: height
-          transition.$linear-duration
-          transition.$linear-timing-function;
-      }
-
-      &__inner {
-        height: get-var(textarea-height, 100%);
-        width: 100%;
-
-        &--animate {
-          transition: height
-            transition.$linear-duration
-            transition.$linear-timing-function;
+      @if $text-field-color-min-width {
+        &[type="color"] {
+          min-width: $text-field-color-min-width;
         }
       }
-    }
-  }
-}
 
-@mixin textarea-styles {
-  .rmd-textarea {
-    @include set-var(text-field-padding-top, 0px);
-    @include use-var(min-height, text-field-height);
+      &::placeholder {
+        @if not $disable-placeholder-ellipsis {
+          @include typography.text-overflow;
+        }
 
-    height: get-var(textarea-height, 100%);
+        @include theme.theme-use-var(color, text-secondary-color);
+        // want to gain the same font styles as the input/textarea itself,
+        // just apply different colors as needed instead. Can't just do font: inherit
+        // since it'll break the styles in firefox.
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: inherit;
 
-    @if not $disable-textarea-resize-horizontal {
-      &--rh {
-        resize: horizontal;
+        // fix firefox setting opacity to 0.54 by default
+        opacity: 1;
+
+        // Note: doesn't look like firefox applies css transitions to placeholder text?
+        transition: opacity transition.$linear-duration;
       }
-    }
 
-    @if not $disable-textarea-resize-vertical {
-      &--rv {
-        resize: vertical;
+      &[disabled]::placeholder {
+        color: inherit;
       }
-    }
 
-    &--rn {
-      overflow: hidden;
-      resize: none;
-    }
-
-    // only want the textarea to be scrollable if there's a limit on the rows
-    // since it'll flash the scrollbar on most OS during the height transition
-    &--scrollable {
-      overflow: auto;
-    }
-
-    @if not $disable-textarea-resizing-mask {
-      &--mask {
-        height: auto;
-        left: 0;
+      &--placeholder-hidden:not(:focus)::placeholder {
         opacity: 0;
-        overflow: hidden;
-        pointer-events: none;
+      }
+    }
+  }
+}
+
+@mixin password-styles($disable-layer: false) {
+  @include utils.optional-layer(form, $disable-layer) {
+    .rmd-password {
+      @include set-var(
+        text-field-padding-right,
+        $password-visibility-toggle-spacing
+      );
+
+      &__input {
+        @include utils.auto-rtl(margin-right, button.get-var(icon-size));
+      }
+
+      &__toggle {
+        @include utils.auto-rtl(right, 0);
+
         position: absolute;
-        right: 0;
-        z-index: -1;
       }
     }
   }
 }
 
-@mixin select-styles {
-  .rmd-select-container {
-    outline-style: none;
-  }
+@mixin textarea-container-styles($disable-layer: false) {
+  @include utils.optional-layer(form, $disable-layer) {
+    .rmd-textarea-container {
+      @include set-var(addon-top, $textarea-addon-top);
 
-  .rmd-select-value {
-    @include _text-field-base-styles;
+      height: auto;
+      max-width: 100%;
+      padding-top: calc(
+        #{get-var(text-field-padding-top)} + #{get-var(textarea-padding)}
+      );
 
-    align-items: center;
-    display: flex;
-    gap: 0.5rem;
-    position: absolute;
-    white-space: nowrap;
-
-    &__v {
-      @include typography.text-overflow;
-    }
-  }
-
-  .rmd-select {
-    opacity: 0;
-    pointer-events: none;
-
-    // ALl these additional overrides are provided so that the select will have
-    // the same sizing as a text field with the same props provided.
-    @if not $disable-text-field-underlined-theme {
-      &--underline {
-        @include utils.rtl {
-          @include use-var(padding-right, text-field-padding-left);
-
-          padding-left: 0;
-        }
-
-        padding-right: 0;
-      }
-    }
-
-    @if not $disable-text-field-outlined-theme {
-      &--outline {
-        @include utils.rtl {
-          @include use-var(padding-right, text-field-padding-left);
-
-          padding-left: $text-field-outlined-padding;
-        }
-
-        padding-right: $text-field-outlined-padding;
-      }
-    }
-
-    @if not $disable-text-field-filled-theme {
-      &--filled {
-        @include utils.rtl {
-          @include use-var(padding-right, text-field-padding-left);
-
-          padding-left: $text-field-filled-padding;
-        }
-
-        padding-right: $text-field-filled-padding;
-      }
-    }
-  }
-}
-
-@mixin option-styles {
-  .rmd-option {
-    &--icon {
-      @include utils.rtl {
-        @include list.use-var(padding-left, item-horizontal-padding);
-
-        padding-right: $option-padding-left;
-      }
-
-      padding-left: $option-padding-left;
-    }
-
-    &--selected {
-      @include utils.map-to-styles($option-selected-styles);
-    }
-
-    &__icon {
-      @include icon.set-var(spacing, $option-selected-icon-spacing);
-      @include icon.set-var(size, $option-selected-icon-size);
-    }
-  }
-}
-
-@mixin native-select-styles {
-  @if not $disable-native-select-multiple {
-    .rmd-native-select-container {
-      &--multi {
-        @include set-var(addon-top, $native-select-addon-top);
-        @include use-var(min-height, text-field-height);
-
-        height: auto;
-      }
-
-      &--padded {
-        padding-top: $native-select-multiple-padding;
+      &--cursor:hover {
+        // need to add this cursor back since the textarea container adds padding to
+        // itself instead of the textarea so it loses this cursor. the container
+        // element will still focus the textarea when clicked
+        cursor: text;
       }
 
       @if not
         $disable-text-field-filled-theme or not
         $disable-text-field-underlined-theme
       {
-        &--underline {
-          @include set-var(text-field-padding-top, 0);
-        }
-
-        &--underline-padded {
-          padding-top: $native-select-multiple-underline-padding;
-        }
-      }
-    }
-  }
-
-  .rmd-native-select {
-    @include _text-field-base-styles;
-    @include typography.text-overflow;
-
-    appearance: none;
-
-    &[multiple] {
-      overflow: auto;
-    }
-  }
-}
-
-@mixin text-field-addon-styles {
-  .rmd-text-field-addon {
-    @if not
-      $disable-text-field-filled-theme or not
-      $disable-text-field-underlined-theme
-    {
-      @include use-var(margin-top, addon-margin-top);
-    }
-
-    // this makes it so that this container element is the same size as the
-    // child (normally icons). without this, icons would have a height of 30.5px
-    // and no longer be centered
-    display: inline-flex;
-    position: absolute;
-
-    // Note: Can't use `:first-child` and `:last-child` since
-    // password/autocomplete managers might add another element into the
-    // `.rmd-text-field-container` which would prevent these styles from being
-    // applied
-    &--before {
-      @include utils.auto-rtl(left, get-var(label-left-offset));
-    }
-
-    &--after {
-      @include utils.auto-rtl(right, $text-field-spacing);
-    }
-
-    &--presentational {
-      pointer-events: none;
-    }
-  }
-}
-
-@mixin hidden-input-styles {
-  .rmd-hidden-input {
-    height: 100%;
-    inset: 0;
-    margin: 0;
-    opacity: 0;
-    position: absolute;
-    width: 100%;
-    z-index: 1;
-
-    &:not(:disabled):hover {
-      cursor: pointer;
-    }
-  }
-}
-
-@mixin input-toggle-styles {
-  .rmd-input-toggle {
-    @include interaction.surface(
-      $focus-selector:
-        if(
-          utils.$disable-has-selectors or utils.$disable-focus-visible,
-          "&:focus-within",
-          "&:has(:focus-visible)"
-        ),
-      $keyboard-only-focus: utils.$disable-has-selectors or
-        utils.$disable-focus-visible,
-      $disabled-selector: "&--disabled",
-      $higher-contrast: false
-    );
-    @include icon.set-var(color, currentcolor);
-
-    align-items: center;
-    border-radius: $input-toggle-border-radius;
-    display: inline-flex;
-    flex-shrink: 0;
-    justify-content: center;
-    padding: $input-toggle-padding;
-
-    &--em {
-      @include icon.set-var(size, 1em);
-    }
-
-    &--active {
-      @include use-var(color, active-color);
-    }
-
-    @if $input-toggle-small-size {
-      &--small {
-        font-size: $input-toggle-small-size;
-      }
-    }
-
-    @if $input-toggle-dense-size {
-      &--dense {
-        font-size: $input-toggle-dense-size;
-      }
-    }
-
-    @if $input-toggle-normal-size {
-      &--normal {
-        font-size: $input-toggle-normal-size;
-      }
-    }
-
-    @if $input-toggle-large-size {
-      &--large {
-        font-size: $input-toggle-large-size;
-      }
-    }
-
-    @if not $disable-uncontrolled-input-toggles {
-      &--uncontrolled {
-        $icon-color-selector: ".rmd-hidden-input:where(:checked:not(:disabled)) ~ .rmd-icon";
-        $unchecked-icon-selector: "~ :nth-child(-n + 1 of .rmd-icon)";
-        $checked-icon-selector: "~ :nth-child(n + 2 of .rmd-icon)";
-        // make sure the active color from the label also applies to the icon when
-        // checked
-        .rmd-label--active & #{$icon-color-selector} {
-          @include use-var(color, focus-color);
-        }
-
-        // make sure the error color applies to the icon when checked
-        &:where(:not(.rmd-error-color)) #{$icon-color-selector} {
-          @include use-var(color, active-color);
-        }
-
-        // when the input is checked, hide the first icon (unchecked state)
-        // when the input is not checked, hide the second icon (checked state)
-        .rmd-hidden-input:checked #{$unchecked-icon-selector},
-        .rmd-hidden-input:not(:checked) #{$checked-icon-selector} {
-          opacity: 0;
-          position: absolute;
+        &--underline-labelled {
+          @include set-var(textarea-padding, 0px);
+          @include set-var(
+            label-floating-top,
+            $text-field-underlined-label-padding-top
+          );
         }
       }
-    }
-  }
-}
 
-@mixin switch-styles {
-  .rmd-switch {
-    padding: $switch-track-vertical-padding $switch-track-horizontal-padding;
+      @if not $disable-textarea-resizing-rows {
+        &--height {
+          height: calc(
+            #{get-var(text-field-padding-top)} +
+              #{get-var(textarea-padding)} +
+              #{get-var(textarea-height)}
+          );
+        }
 
-    &--clickable:hover {
-      cursor: pointer;
-    }
+        &--animate {
+          transition: height
+            transition.$linear-duration
+            transition.$linear-timing-function;
+        }
 
-    &--current-color,
-    &--current-color .rmd-switch__input:checked + .rmd-switch__ball {
-      @include set-var(switch-ball-background-color, currentcolor);
-    }
+        &__inner {
+          height: get-var(textarea-height, 100%);
+          width: 100%;
 
-    &__input {
-      @if utils.$disable-focus-visible {
-        @include utils.keyboard-only {
-          &:focus + .rmd-switch__ball::before {
-            @include interaction.focus-styles;
+          &--animate {
+            transition: height
+              transition.$linear-duration
+              transition.$linear-timing-function;
           }
         }
-      } @else {
-        &:focus-visible + .rmd-switch__ball::before {
-          @include interaction.focus-styles;
+      }
+    }
+  }
+}
+
+@mixin textarea-styles($disable-layer: false) {
+  @include utils.optional-layer(form, $disable-layer) {
+    .rmd-textarea {
+      @include set-var(text-field-padding-top, 0px);
+      @include use-var(min-height, text-field-height);
+
+      height: get-var(textarea-height, 100%);
+
+      @if not $disable-textarea-resize-horizontal {
+        &--rh {
+          resize: horizontal;
         }
       }
 
-      &:disabled + .rmd-switch__ball {
-        cursor: auto;
+      @if not $disable-textarea-resize-vertical {
+        &--rv {
+          resize: vertical;
+        }
+      }
 
-        &:hover::before {
-          @include interaction.set-var(background-color, transparent);
+      &--rn {
+        overflow: hidden;
+        resize: none;
+      }
+
+      // only want the textarea to be scrollable if there's a limit on the rows
+      // since it'll flash the scrollbar on most OS during the height transition
+      &--scrollable {
+        overflow: auto;
+      }
+
+      @if not $disable-textarea-resizing-mask {
+        &--mask {
+          height: auto;
+          left: 0;
+          opacity: 0;
+          overflow: hidden;
+          pointer-events: none;
+          position: absolute;
+          right: 0;
+          z-index: -1;
         }
       }
     }
+  }
+}
 
-    &__track {
-      @if not $disable-switch-circular-progress {
-        @include progress.set-var(
-          circular-stroke-width,
-          $switch-circular-progress-width
-        );
-        @include progress.set-var(
-          circular-size,
-          $switch-circular-progress-size
-        );
-      }
-      @if not $disable-switch-icon {
-        @include icon.set-var(size, $switch-icon-size);
-      }
-      @include use-var(background-color, switch-track-background-color);
-
-      border-radius: $switch-track-border-radius;
-      height: $switch-track-height;
-      position: relative;
-      transition: background-color transition.$linear-duration
-        transition.$linear-timing-function;
-      width: $switch-track-width;
-
-      &--disabled {
-        opacity: $switch-disabled-opacity;
-      }
+@mixin select-styles($disable-layer: false) {
+  @include utils.optional-layer(form, $disable-layer) {
+    .rmd-select-container {
+      outline-style: none;
     }
 
-    &__ball {
-      // The focus and disabled states are handled by the `.rmd-switch__input`'s
-      // :focus and :disabled' states instead.
-      @include interaction.surface(
-        $focus-selector: null,
-        $disabled-selector: null,
-        $clickable: false
-      );
-      @include utils.auto-rtl(left, calc(-50% + #{$switch-ball-offset}));
+    .rmd-select-value {
+      @include _text-field-base-styles;
 
       align-items: center;
-      border-radius: $switch-ball-border-radius;
       display: flex;
-      height: $switch-ball-size * 2;
-      justify-content: center;
-      top: calc(-50% - #{$switch-ball-size - $switch-track-height});
-      transition-duration: transition.$linear-duration;
-      transition-property: background-color, transform;
-      transition-timing-function: transition.$linear-timing-function;
-      width: $switch-ball-size * 2;
-      z-index: 1;
-
-      &::after {
-        @include use-var(background-color, switch-ball-background-color);
-
-        border-radius: inherit;
-        box-shadow: box-shadows.box-shadow(1);
-        content: "";
-        height: $switch-ball-size;
-        left: 25%;
-        pointer-events: none;
-        position: absolute;
-        top: 25%;
-        width: $switch-ball-size;
-        z-index: 0;
-      }
-
-      $active-selector: ".rmd-switch__input:checked + &" +
-        if($disable-menu-item-switch, "", ", &--active");
-
-      #{$active-selector} {
-        $offset: $switch-ball-size + $switch-ball-offset;
-
-        @include utils.rtl {
-          transform: translateX(-$offset);
-        }
-        @include set-var(switch-ball-background-color, get-var(active-color));
-
-        transform: translateX($offset);
-      }
-    }
-  }
-}
-
-@mixin menu-item-input-toggle-styles {
-  .rmd-menu-item-input-toggle {
-    @if not $disable-menu-item-radio or not $disable-menu-item-switch {
-      &__icon {
-        // remove the padding since the icon isn't the click target anymore.
-        padding: 0;
-
-        // disable the hover states since it's handled by the ListItem instead
-        &::before {
-          content: none;
-        }
-      }
-    }
-
-    @if not $disable-menu-item-switch {
-      // this makes it so that the spacing between the switch and the text
-      // aligns with other menu items/icons
-      &__track {
-        @include icon.set-var(size, $switch-track-width);
-      }
-
-      // decrease the ball size and remove the hover states since it's handled
-      // by the ListItem instead. without decreasing the ball size, horizontal
-      // scrollbars will appear when the switch is checked
-      &__ball {
-        @include utils.auto-rtl(left, -$switch-ball-offset);
-
-        height: $switch-ball-size;
-        top: calc(50% - $switch-ball-size * 0.5);
-        width: $switch-ball-size;
-
-        &::before {
-          content: none;
-        }
-
-        &::after {
-          inset: 0;
-        }
-      }
-    }
-  }
-}
-
-@mixin slider-styles {
-  .rmd-slider-container {
-    @if $slider-container-addon-spacing and
-      $slider-container-addon-spacing !=
-      icon.$spacing
-    {
-      @include icon.set-var(spacing, $slider-container-addon-spacing);
-    }
-
-    @include icon.use-var(gap, spacing);
-
-    align-items: center;
-
-    @if not $disable-horizontal-slider {
-      &--h {
-        display: flex;
-        width: 100%;
-      }
-
-      &--pad-left {
-        padding-left: $slider-container-padding;
-      }
-
-      &--pad-right {
-        padding-right: $slider-container-padding;
-      }
-    }
-
-    @if not $disable-vertical-slider {
-      &--v {
-        display: inline-flex;
-        flex-direction: column-reverse;
-      }
-
-      &--pad-top {
-        padding-top: $slider-container-padding;
-      }
-
-      &--pad-bottom {
-        padding-bottom: $slider-container-padding;
-      }
-    }
-  }
-
-  .rmd-slider-track {
-    position: relative;
-
-    &::before,
-    &::after {
-      @if $slider-track-color {
-        @include use-var(background-color, slider-color);
-      }
-
-      content: "";
-      pointer-events: none;
+      gap: 0.5rem;
       position: absolute;
-    }
+      white-space: nowrap;
 
-    &::before {
-      @if not $slider-track-color {
-        @include use-var(background-color, slider-inactive-color);
-      }
-
-      opacity: $slider-track-inactive-opacity;
-      z-index: $slider-track-inactive-z-index;
-    }
-
-    &::after {
-      @if not $slider-track-color {
-        @include use-var(background-color, slider-active-color);
-      }
-
-      opacity: $slider-track-active-opacity;
-      z-index: $slider-track-active-z-index;
-    }
-
-    &--hoverable:hover {
-      cursor: pointer;
-    }
-
-    &--animate::after {
-      transition-duration: $slider-transition-duration;
-      transition-timing-function: $slider-transition-timing-function;
-    }
-
-    @if $slider-track-color {
-      &--disabled {
-        @include set-var(slider-color, $slider-track-disabled-color);
-
-        @if $slider-track-inactive-opacity {
-          &::before {
-            opacity: 1;
-          }
-        }
-
-        &::after {
-          @include set-var(slider-active-size, 0px);
-          @if $slider-track-active-opacity {
-            opacity: 1;
-          }
-        }
+      &__v {
+        @include typography.text-overflow;
       }
     }
 
-    @if not $disable-horizontal-slider {
-      &--h {
-        @include use-var(height, slider-size);
-
-        align-items: center;
-        display: flex;
-        width: 100%;
-
-        &::before {
-          @include use-var(height, slider-inactive-size);
-
-          width: 100%;
-        }
-
-        &::after {
-          @include use-var(height, slider-active-size);
-        }
-      }
-
-      &--h1::after {
-        @include utils.auto-rtl(left, 0);
-        @include use-var(max-width, slider-offset-1);
-
-        transition-property: max-width;
-        width: 100%;
-      }
-
-      @if not $disable-range-slider {
-        &--h2::after {
-          @include utils.rtl {
-            left: calc(100% - get-var(slider-offset-2));
-            right: get-var(slider-offset-1);
-          }
-
-          left: get-var(slider-offset-1);
-          right: calc(100% - get-var(slider-offset-2));
-          transition-property: left, right;
-          will-change: left, right;
-        }
-      }
-    }
-
-    @if not $disable-vertical-slider {
-      &--v {
-        @include use-var(height, slider-vertical-size);
-        @include use-var(width, slider-size);
-
-        display: inline-flex;
-        justify-content: center;
-
-        &::before {
-          @include use-var(width, slider-inactive-size);
-
-          height: 100%;
-        }
-
-        &::after {
-          @include use-var(width, slider-active-size);
-
-          bottom: 0;
-        }
-      }
-
-      // one thumb track horizontal styles
-      &--v1::after {
-        @include use-var(max-height, slider-offset-1);
-
-        height: 100%;
-        transition-property: max-height;
-      }
-
-      @if not $disable-range-slider {
-        // two thumb track horizontal styles
-        &--v2::after {
-          @include use-var(bottom, slider-offset-1);
-
-          top: calc(100% - #{get-var(slider-offset-2)});
-          transition-property: bottom, top;
-          will-change: bottom, top;
-        }
-      }
-    }
-  }
-
-  .rmd-slider-thumb {
-    @include use-var(
-      background-color,
-      if($slider-track-color, slider-color, slider-active-color)
-    );
-
-    border-radius: $slider-thumb-border-radius;
-    height: $slider-thumb-size;
-    outline-style: none;
-    position: absolute;
-    width: $slider-thumb-size;
-    z-index: $slider-thumb-z-index;
-
-    &::after {
-      @include utils.pseudo-element($z-index: null);
-
-      background-color: inherit;
-      opacity: $slider-thumb-bubble-opacity;
-      transition: transform $slider-transition-duration
-        $slider-transition-timing-function;
-    }
-
-    @if utils.$disable-focus-visible {
-      @include utils.keyboard-only {
-        &:focus::after {
-          transform: scale($slider-thumb-focus-scale);
-        }
-      }
-    } @else {
-      &:focus-visible::after {
-        transform: scale($slider-thumb-focus-scale);
-      }
-    }
-
-    @include utils.mouse-hover(false) {
-      &:hover::after,
-      &--active::after,
-      &--active:hover::after {
-        transform: scale($slider-thumb-active-scale);
-      }
-    }
-
-    &--animate {
-      transition-duration: $slider-transition-duration;
-      transition-timing-function: $slider-transition-timing-function;
-    }
-
-    &--disabled {
-      background-color: $slider-thumb-disabled-color;
-
-      // prevent hover effects like the "bubble"
-      pointer-events: none;
-    }
-
-    &--mask {
-      @include theme.theme-use-var(background-color);
-
-      border-radius: 0;
-    }
-
-    @if not $disable-horizontal-slider {
-      &--h {
-        @include utils.rtl {
-          transform: translateX(50%);
-          transition-property: right;
-        }
-
-        transform: translateX(-50%);
-        transition-property: left;
-      }
-
-      &--h1 {
-        @include utils.auto-rtl(left, get-var(slider-offset-1));
-      }
-
-      @if not $disable-range-slider {
-        &--h2 {
-          @include utils.auto-rtl(left, get-var(slider-offset-2));
-        }
-      }
-
-      &--disabled-h {
-        @include utils.rtl {
-          transform: translateX(50%) scale($slider-thumb-disabled-scale);
-        }
-
-        transform: translateX(-50%) scale($slider-thumb-disabled-scale);
-      }
-
-      &--mask-h {
-        @include utils.rtl {
-          transform: translateX(50%) scale($slider-thumb-mask-scale);
-        }
-
-        transform: translateX(-50%) scale($slider-thumb-mask-scale);
-      }
-    }
-
-    @if not $disable-vertical-slider {
-      &--v {
-        // want the thumb to be aligned so that the center is at the current value.
-        // without this transformation, the thumb's bottom side would be aligned
-        // with the current value
-        transform: translateY(50%);
-        transition-property: bottom;
-      }
-
-      &--v1 {
-        @include use-var(bottom, slider-offset-1);
-      }
-
-      @if not $disable-range-slider {
-        &--v2 {
-          @include use-var(bottom, slider-offset-2);
-        }
-      }
-
-      &--disabled-v {
-        transform: translateY(50%) scale($slider-thumb-disabled-scale);
-      }
-
-      &--mask-v {
-        transform: translateY(50%) scale($slider-thumb-mask-scale);
-      }
-    }
-
-    &__input {
-      appearance: none;
-      height: 0;
+    .rmd-select {
       opacity: 0;
       pointer-events: none;
-      width: 0;
-    }
-  }
 
-  @if not $disable-discrete-slider {
-    .rmd-slider-tooltip {
-      opacity: 1;
-      position: absolute;
-      z-index: $slider-tooltip-z-index;
-
-      // this is used to generate the triangle
-      &::after {
-        border: $slider-tooltip-caret-size solid transparent;
-        content: "";
-        position: absolute;
-      }
-
-      &--animate {
-        transition: transform
-          $slider-transition-duration
-          $slider-transition-timing-function;
-      }
-
-      @if not $disable-horizontal-slider {
-        &--h {
+      // ALl these additional overrides are provided so that the select will have
+      // the same sizing as a text field with the same props provided.
+      @if not $disable-text-field-underlined-theme {
+        &--underline {
           @include utils.rtl {
-            @include set-var(slider-tooltip-translate, 50%);
+            @include use-var(padding-right, text-field-padding-left);
+
+            padding-left: 0;
           }
 
-          top: $slider-tooltip-offset;
-          transform: translateX(get-var(slider-tooltip-translate))
-            scale(get-var(slider-tooltip-scale));
-
-          &::after {
-            @include tooltip.use-var(border-top-color, background-color);
-
-            left: 50%;
-            top: 100%;
-            transform: translateX(get-var(slider-tooltip-translate));
-          }
-        }
-
-        &--h-off {
-          @include set-var(slider-tooltip-scale, 0);
-        }
-
-        // have to "duplicate" these styles since the `--h-off` would override the
-        // `--h` styles due to css order.
-        &--h-on {
-          @include set-var(slider-tooltip-scale, 1);
+          padding-right: 0;
         }
       }
 
-      @if not $disable-vertical-slider {
-        &--v {
-          // going to force rendering always to the left even in RTL languages
-          left: $slider-tooltip-offset;
-          transform: translateY(50%) scale(1);
+      @if not $disable-text-field-outlined-theme {
+        &--outline {
+          @include utils.rtl {
+            @include use-var(padding-right, text-field-padding-left);
 
-          &::after {
-            @include tooltip.use-var(border-left-color, background-color);
-
-            left: 100%;
-            top: 50%;
-            transform: translateY(-50%);
+            padding-left: $text-field-outlined-padding;
           }
-        }
 
-        &--v-off {
-          transform: translateY(50%) scale(0);
+          padding-right: $text-field-outlined-padding;
         }
+      }
 
-        // have to "duplicate" these styles since the `--v-off` would override the
-        // `--v` styles due to css order.
-        &--v-on {
-          transform: translateY(50%) scale(1);
+      @if not $disable-text-field-filled-theme {
+        &--filled {
+          @include utils.rtl {
+            @include use-var(padding-right, text-field-padding-left);
+
+            padding-left: $text-field-filled-padding;
+          }
+
+          padding-right: $text-field-filled-padding;
         }
       }
     }
   }
+}
 
-  @if not $disable-discrete-slider-marks {
-    .rmd-slider-mark {
-      border-radius: $slider-mark-border-radius;
+@mixin option-styles($disable-layer: false) {
+  @include utils.optional-layer(form, $disable-layer) {
+    .rmd-option {
+      &--icon {
+        @include utils.rtl {
+          @include list.use-var(padding-left, item-horizontal-padding);
+
+          padding-right: $option-padding-left;
+        }
+
+        padding-left: $option-padding-left;
+      }
+
+      &--selected {
+        @include utils.map-to-styles($option-selected-styles);
+      }
+
+      &__icon {
+        @include icon.set-var(spacing, $option-selected-icon-spacing);
+        @include icon.set-var(size, $option-selected-icon-size);
+      }
+    }
+  }
+}
+
+@mixin native-select-styles($disable-layer: false) {
+  @include utils.optional-layer(form, $disable-layer) {
+    @if not $disable-native-select-multiple {
+      .rmd-native-select-container {
+        &--multi {
+          @include set-var(addon-top, $native-select-addon-top);
+          @include use-var(min-height, text-field-height);
+
+          height: auto;
+        }
+
+        &--padded {
+          padding-top: $native-select-multiple-padding;
+        }
+
+        @if not
+          $disable-text-field-filled-theme or not
+          $disable-text-field-underlined-theme
+        {
+          &--underline {
+            @include set-var(text-field-padding-top, 0);
+          }
+
+          &--underline-padded {
+            padding-top: $native-select-multiple-underline-padding;
+          }
+        }
+      }
+    }
+
+    .rmd-native-select {
+      @include _text-field-base-styles;
+      @include typography.text-overflow;
+
+      appearance: none;
+
+      &[multiple] {
+        overflow: auto;
+      }
+    }
+  }
+}
+
+@mixin text-field-addon-styles($disable-layer: false) {
+  @include utils.optional-layer(form, $disable-layer) {
+    .rmd-text-field-addon {
+      @if not
+        $disable-text-field-filled-theme or not
+        $disable-text-field-underlined-theme
+      {
+        @include use-var(margin-top, addon-margin-top);
+      }
+
+      // this makes it so that this container element is the same size as the
+      // child (normally icons). without this, icons would have a height of 30.5px
+      // and no longer be centered
+      display: inline-flex;
       position: absolute;
 
-      &--inactive {
-        @include use-var(background-color, slider-mark-inactive-color);
-        @include use-var(opacity, slider-mark-inactive-opacity);
+      // Note: Can't use `:first-child` and `:last-child` since
+      // password/autocomplete managers might add another element into the
+      // `.rmd-text-field-container` which would prevent these styles from being
+      // applied
+      &--before {
+        @include utils.auto-rtl(left, get-var(label-left-offset));
+      }
 
-        z-index: $slider-mark-inactive-z-index;
+      &--after {
+        @include utils.auto-rtl(right, $text-field-spacing);
+      }
+
+      &--presentational {
+        pointer-events: none;
+      }
+    }
+  }
+}
+
+@mixin hidden-input-styles($disable-layer: false) {
+  @include utils.optional-layer(form, $disable-layer) {
+    .rmd-hidden-input {
+      height: 100%;
+      inset: 0;
+      margin: 0;
+      opacity: 0;
+      position: absolute;
+      width: 100%;
+      z-index: 1;
+
+      &:not(:disabled):hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+@mixin input-toggle-styles($disable-layer: false) {
+  @include utils.optional-layer(form, $disable-layer) {
+    .rmd-input-toggle {
+      @include interaction.surface(
+        $focus-selector:
+          if(
+            utils.$disable-has-selectors or utils.$disable-focus-visible,
+            "&:focus-within",
+            "&:has(:focus-visible)"
+          ),
+        $keyboard-only-focus: utils.$disable-has-selectors or
+          utils.$disable-focus-visible,
+        $disabled-selector: "&--disabled",
+        $higher-contrast: false
+      );
+      @include icon.set-var(color, currentcolor);
+
+      align-items: center;
+      border-radius: $input-toggle-border-radius;
+      display: inline-flex;
+      flex-shrink: 0;
+      justify-content: center;
+      padding: $input-toggle-padding;
+
+      &--em {
+        @include icon.set-var(size, 1em);
       }
 
       &--active {
-        @include use-var(background-color, slider-mark-active-color);
-        @include use-var(opacity, slider-mark-active-opacity);
-
-        z-index: $slider-mark-active-z-index;
+        @include use-var(color, active-color);
       }
 
-      @if not $disable-horizontal-slider {
-        &--h {
-          @include utils.auto-rtl(left, get-var(slider-mark-offset));
-
-          height: $slider-mark-height;
-          top: 50%;
-          transform: translateY(-50%);
-          width: $slider-mark-width;
+      @if $input-toggle-small-size {
+        &--small {
+          font-size: $input-toggle-small-size;
         }
       }
 
-      @if not $disable-vertical-slider {
-        &--v {
-          bottom: get-var(slider-mark-offset);
-          height: $slider-mark-width;
-          transform: translateY(50%);
-          width: $slider-mark-height;
+      @if $input-toggle-dense-size {
+        &--dense {
+          font-size: $input-toggle-dense-size;
+        }
+      }
+
+      @if $input-toggle-normal-size {
+        &--normal {
+          font-size: $input-toggle-normal-size;
+        }
+      }
+
+      @if $input-toggle-large-size {
+        &--large {
+          font-size: $input-toggle-large-size;
+        }
+      }
+
+      @if not $disable-uncontrolled-input-toggles {
+        &--uncontrolled {
+          $icon-color-selector: ".rmd-hidden-input:where(:checked:not(:disabled)) ~ .rmd-icon";
+          $unchecked-icon-selector: "~ :nth-child(-n + 1 of .rmd-icon)";
+          $checked-icon-selector: "~ :nth-child(n + 2 of .rmd-icon)";
+          // make sure the active color from the label also applies to the icon when
+          // checked
+          .rmd-label--active & #{$icon-color-selector} {
+            @include use-var(color, focus-color);
+          }
+
+          // make sure the error color applies to the icon when checked
+          &:where(:not(.rmd-error-color)) #{$icon-color-selector} {
+            @include use-var(color, active-color);
+          }
+
+          // when the input is checked, hide the first icon (unchecked state)
+          // when the input is not checked, hide the second icon (checked state)
+          .rmd-hidden-input:checked #{$unchecked-icon-selector},
+          .rmd-hidden-input:not(:checked) #{$checked-icon-selector} {
+            opacity: 0;
+            position: absolute;
+          }
         }
       }
     }
   }
+}
 
-  @if not $disable-discrete-slider-marks-labels {
-    .rmd-slider-mark-label {
-      position: absolute;
+@mixin switch-styles($disable-layer: false) {
+  @include utils.optional-layer(form, $disable-layer) {
+    .rmd-switch {
+      padding: $switch-track-vertical-padding $switch-track-horizontal-padding;
+
+      &--clickable:hover {
+        cursor: pointer;
+      }
+
+      &--current-color,
+      &--current-color .rmd-switch__input:checked + .rmd-switch__ball {
+        @include set-var(switch-ball-background-color, currentcolor);
+      }
+
+      &__input {
+        @if utils.$disable-focus-visible {
+          @include utils.keyboard-only {
+            &:focus + .rmd-switch__ball::before {
+              @include interaction.focus-styles;
+            }
+          }
+        } @else {
+          &:focus-visible + .rmd-switch__ball::before {
+            @include interaction.focus-styles;
+          }
+        }
+
+        &:disabled + .rmd-switch__ball {
+          cursor: auto;
+
+          &:hover::before {
+            @include interaction.set-var(background-color, transparent);
+          }
+        }
+      }
+
+      &__track {
+        @if not $disable-switch-circular-progress {
+          @include progress.set-var(
+            circular-stroke-width,
+            $switch-circular-progress-width
+          );
+          @include progress.set-var(
+            circular-size,
+            $switch-circular-progress-size
+          );
+        }
+        @if not $disable-switch-icon {
+          @include icon.set-var(size, $switch-icon-size);
+        }
+        @include use-var(background-color, switch-track-background-color);
+
+        border-radius: $switch-track-border-radius;
+        height: $switch-track-height;
+        position: relative;
+        transition: background-color transition.$linear-duration
+          transition.$linear-timing-function;
+        width: $switch-track-width;
+
+        &--disabled {
+          opacity: $switch-disabled-opacity;
+        }
+      }
+
+      &__ball {
+        // The focus and disabled states are handled by the `.rmd-switch__input`'s
+        // :focus and :disabled' states instead.
+        @include interaction.surface(
+          $focus-selector: null,
+          $disabled-selector: null,
+          $clickable: false
+        );
+        @include utils.auto-rtl(left, calc(-50% + #{$switch-ball-offset}));
+
+        align-items: center;
+        border-radius: $switch-ball-border-radius;
+        display: flex;
+        height: $switch-ball-size * 2;
+        justify-content: center;
+        top: calc(-50% - #{$switch-ball-size - $switch-track-height});
+        transition-duration: transition.$linear-duration;
+        transition-property: background-color, transform;
+        transition-timing-function: transition.$linear-timing-function;
+        width: $switch-ball-size * 2;
+        z-index: 1;
+
+        &::after {
+          @include use-var(background-color, switch-ball-background-color);
+
+          border-radius: inherit;
+          box-shadow: box-shadows.box-shadow(1);
+          content: "";
+          height: $switch-ball-size;
+          left: 25%;
+          pointer-events: none;
+          position: absolute;
+          top: 25%;
+          width: $switch-ball-size;
+          z-index: 0;
+        }
+
+        $active-selector: ".rmd-switch__input:checked + &" +
+          if($disable-menu-item-switch, "", ", &--active");
+
+        #{$active-selector} {
+          $offset: $switch-ball-size + $switch-ball-offset;
+
+          @include utils.rtl {
+            transform: translateX(-$offset);
+          }
+          @include set-var(switch-ball-background-color, get-var(active-color));
+
+          transform: translateX($offset);
+        }
+      }
+    }
+  }
+}
+
+@mixin menu-item-input-toggle-styles($disable-layer: false) {
+  @include utils.optional-layer(form, $disable-layer) {
+    .rmd-menu-item-input-toggle {
+      @if not $disable-menu-item-radio or not $disable-menu-item-switch {
+        &__icon {
+          // remove the padding since the icon isn't the click target anymore.
+          padding: 0;
+
+          // disable the hover states since it's handled by the ListItem instead
+          &::before {
+            content: none;
+          }
+        }
+      }
+
+      @if not $disable-menu-item-switch {
+        // this makes it so that the spacing between the switch and the text
+        // aligns with other menu items/icons
+        &__track {
+          @include icon.set-var(size, $switch-track-width);
+        }
+
+        // decrease the ball size and remove the hover states since it's handled
+        // by the ListItem instead. without decreasing the ball size, horizontal
+        // scrollbars will appear when the switch is checked
+        &__ball {
+          @include utils.auto-rtl(left, -$switch-ball-offset);
+
+          height: $switch-ball-size;
+          top: calc(50% - $switch-ball-size * 0.5);
+          width: $switch-ball-size;
+
+          &::before {
+            content: none;
+          }
+
+          &::after {
+            inset: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin slider-styles($disable-layer: false) {
+  @include utils.optional-layer(form, $disable-layer) {
+    .rmd-slider-container {
+      @if $slider-container-addon-spacing and
+        $slider-container-addon-spacing !=
+        icon.$spacing
+      {
+        @include icon.set-var(spacing, $slider-container-addon-spacing);
+      }
+
+      @include icon.use-var(gap, spacing);
+
+      align-items: center;
 
       @if not $disable-horizontal-slider {
         &--h {
-          @include utils.rtl {
-            @include use-var(right, slider-mark-offset);
+          display: flex;
+          width: 100%;
+        }
 
-            left: auto;
-            transform: translateX(50%);
-          }
-          @include use-var(left, slider-mark-offset);
+        &--pad-left {
+          padding-left: $slider-container-padding;
+        }
 
-          top: 100%;
-          transform: translateX(-50%);
+        &--pad-right {
+          padding-right: $slider-container-padding;
         }
       }
 
       @if not $disable-vertical-slider {
         &--v {
-          @include utils.auto-rtl(left, 100%);
+          display: inline-flex;
+          flex-direction: column-reverse;
+        }
 
-          top: get-var(slider-mark-offset);
-          transform: translateY(-50%);
+        &--pad-top {
+          padding-top: $slider-container-padding;
+        }
+
+        &--pad-bottom {
+          padding-bottom: $slider-container-padding;
+        }
+      }
+    }
+
+    .rmd-slider-track {
+      position: relative;
+
+      &::before,
+      &::after {
+        @if $slider-track-color {
+          @include use-var(background-color, slider-color);
+        }
+
+        content: "";
+        pointer-events: none;
+        position: absolute;
+      }
+
+      &::before {
+        @if not $slider-track-color {
+          @include use-var(background-color, slider-inactive-color);
+        }
+
+        opacity: $slider-track-inactive-opacity;
+        z-index: $slider-track-inactive-z-index;
+      }
+
+      &::after {
+        @if not $slider-track-color {
+          @include use-var(background-color, slider-active-color);
+        }
+
+        opacity: $slider-track-active-opacity;
+        z-index: $slider-track-active-z-index;
+      }
+
+      &--hoverable:hover {
+        cursor: pointer;
+      }
+
+      &--animate::after {
+        transition-duration: $slider-transition-duration;
+        transition-timing-function: $slider-transition-timing-function;
+      }
+
+      @if $slider-track-color {
+        &--disabled {
+          @include set-var(slider-color, $slider-track-disabled-color);
+
+          @if $slider-track-inactive-opacity {
+            &::before {
+              opacity: 1;
+            }
+          }
+
+          &::after {
+            @include set-var(slider-active-size, 0px);
+            @if $slider-track-active-opacity {
+              opacity: 1;
+            }
+          }
+        }
+      }
+
+      @if not $disable-horizontal-slider {
+        &--h {
+          @include use-var(height, slider-size);
+
+          align-items: center;
+          display: flex;
+          width: 100%;
+
+          &::before {
+            @include use-var(height, slider-inactive-size);
+
+            width: 100%;
+          }
+
+          &::after {
+            @include use-var(height, slider-active-size);
+          }
+        }
+
+        &--h1::after {
+          @include utils.auto-rtl(left, 0);
+          @include use-var(max-width, slider-offset-1);
+
+          transition-property: max-width;
+          width: 100%;
+        }
+
+        @if not $disable-range-slider {
+          &--h2::after {
+            @include utils.rtl {
+              left: calc(100% - get-var(slider-offset-2));
+              right: get-var(slider-offset-1);
+            }
+
+            left: get-var(slider-offset-1);
+            right: calc(100% - get-var(slider-offset-2));
+            transition-property: left, right;
+            will-change: left, right;
+          }
+        }
+      }
+
+      @if not $disable-vertical-slider {
+        &--v {
+          @include use-var(height, slider-vertical-size);
+          @include use-var(width, slider-size);
+
+          display: inline-flex;
+          justify-content: center;
+
+          &::before {
+            @include use-var(width, slider-inactive-size);
+
+            height: 100%;
+          }
+
+          &::after {
+            @include use-var(width, slider-active-size);
+
+            bottom: 0;
+          }
+        }
+
+        // one thumb track horizontal styles
+        &--v1::after {
+          @include use-var(max-height, slider-offset-1);
+
+          height: 100%;
+          transition-property: max-height;
+        }
+
+        @if not $disable-range-slider {
+          // two thumb track horizontal styles
+          &--v2::after {
+            @include use-var(bottom, slider-offset-1);
+
+            top: calc(100% - #{get-var(slider-offset-2)});
+            transition-property: bottom, top;
+            will-change: bottom, top;
+          }
+        }
+      }
+    }
+
+    .rmd-slider-thumb {
+      @include use-var(
+        background-color,
+        if($slider-track-color, slider-color, slider-active-color)
+      );
+
+      border-radius: $slider-thumb-border-radius;
+      height: $slider-thumb-size;
+      outline-style: none;
+      position: absolute;
+      width: $slider-thumb-size;
+      z-index: $slider-thumb-z-index;
+
+      &::after {
+        @include utils.pseudo-element($z-index: null);
+
+        background-color: inherit;
+        opacity: $slider-thumb-bubble-opacity;
+        transition: transform $slider-transition-duration
+          $slider-transition-timing-function;
+      }
+
+      @if utils.$disable-focus-visible {
+        @include utils.keyboard-only {
+          &:focus::after {
+            transform: scale($slider-thumb-focus-scale);
+          }
+        }
+      } @else {
+        &:focus-visible::after {
+          transform: scale($slider-thumb-focus-scale);
+        }
+      }
+
+      @include utils.mouse-hover(false) {
+        &:hover::after,
+        &--active::after,
+        &--active:hover::after {
+          transform: scale($slider-thumb-active-scale);
+        }
+      }
+
+      &--animate {
+        transition-duration: $slider-transition-duration;
+        transition-timing-function: $slider-transition-timing-function;
+      }
+
+      &--disabled {
+        background-color: $slider-thumb-disabled-color;
+
+        // prevent hover effects like the "bubble"
+        pointer-events: none;
+      }
+
+      &--mask {
+        @include theme.theme-use-var(background-color);
+
+        border-radius: 0;
+      }
+
+      @if not $disable-horizontal-slider {
+        &--h {
+          @include utils.rtl {
+            transform: translateX(50%);
+            transition-property: right;
+          }
+
+          transform: translateX(-50%);
+          transition-property: left;
+        }
+
+        &--h1 {
+          @include utils.auto-rtl(left, get-var(slider-offset-1));
+        }
+
+        @if not $disable-range-slider {
+          &--h2 {
+            @include utils.auto-rtl(left, get-var(slider-offset-2));
+          }
+        }
+
+        &--disabled-h {
+          @include utils.rtl {
+            transform: translateX(50%) scale($slider-thumb-disabled-scale);
+          }
+
+          transform: translateX(-50%) scale($slider-thumb-disabled-scale);
+        }
+
+        &--mask-h {
+          @include utils.rtl {
+            transform: translateX(50%) scale($slider-thumb-mask-scale);
+          }
+
+          transform: translateX(-50%) scale($slider-thumb-mask-scale);
+        }
+      }
+
+      @if not $disable-vertical-slider {
+        &--v {
+          // want the thumb to be aligned so that the center is at the current value.
+          // without this transformation, the thumb's bottom side would be aligned
+          // with the current value
+          transform: translateY(50%);
+          transition-property: bottom;
+        }
+
+        &--v1 {
+          @include use-var(bottom, slider-offset-1);
+        }
+
+        @if not $disable-range-slider {
+          &--v2 {
+            @include use-var(bottom, slider-offset-2);
+          }
+        }
+
+        &--disabled-v {
+          transform: translateY(50%) scale($slider-thumb-disabled-scale);
+        }
+
+        &--mask-v {
+          transform: translateY(50%) scale($slider-thumb-mask-scale);
+        }
+      }
+
+      &__input {
+        appearance: none;
+        height: 0;
+        opacity: 0;
+        pointer-events: none;
+        width: 0;
+      }
+    }
+
+    @if not $disable-discrete-slider {
+      .rmd-slider-tooltip {
+        opacity: 1;
+        position: absolute;
+        z-index: $slider-tooltip-z-index;
+
+        // this is used to generate the triangle
+        &::after {
+          border: $slider-tooltip-caret-size solid transparent;
+          content: "";
+          position: absolute;
+        }
+
+        &--animate {
+          transition: transform
+            $slider-transition-duration
+            $slider-transition-timing-function;
+        }
+
+        @if not $disable-horizontal-slider {
+          &--h {
+            @include utils.rtl {
+              @include set-var(slider-tooltip-translate, 50%);
+            }
+
+            top: $slider-tooltip-offset;
+            transform: translateX(get-var(slider-tooltip-translate))
+              scale(get-var(slider-tooltip-scale));
+
+            &::after {
+              @include tooltip.use-var(border-top-color, background-color);
+
+              left: 50%;
+              top: 100%;
+              transform: translateX(get-var(slider-tooltip-translate));
+            }
+          }
+
+          &--h-off {
+            @include set-var(slider-tooltip-scale, 0);
+          }
+
+          // have to "duplicate" these styles since the `--h-off` would override the
+          // `--h` styles due to css order.
+          &--h-on {
+            @include set-var(slider-tooltip-scale, 1);
+          }
+        }
+
+        @if not $disable-vertical-slider {
+          &--v {
+            // going to force rendering always to the left even in RTL languages
+            left: $slider-tooltip-offset;
+            transform: translateY(50%) scale(1);
+
+            &::after {
+              @include tooltip.use-var(border-left-color, background-color);
+
+              left: 100%;
+              top: 50%;
+              transform: translateY(-50%);
+            }
+          }
+
+          &--v-off {
+            transform: translateY(50%) scale(0);
+          }
+
+          // have to "duplicate" these styles since the `--v-off` would override the
+          // `--v` styles due to css order.
+          &--v-on {
+            transform: translateY(50%) scale(1);
+          }
+        }
+      }
+    }
+
+    @if not $disable-discrete-slider-marks {
+      .rmd-slider-mark {
+        border-radius: $slider-mark-border-radius;
+        position: absolute;
+
+        &--inactive {
+          @include use-var(background-color, slider-mark-inactive-color);
+          @include use-var(opacity, slider-mark-inactive-opacity);
+
+          z-index: $slider-mark-inactive-z-index;
+        }
+
+        &--active {
+          @include use-var(background-color, slider-mark-active-color);
+          @include use-var(opacity, slider-mark-active-opacity);
+
+          z-index: $slider-mark-active-z-index;
+        }
+
+        @if not $disable-horizontal-slider {
+          &--h {
+            @include utils.auto-rtl(left, get-var(slider-mark-offset));
+
+            height: $slider-mark-height;
+            top: 50%;
+            transform: translateY(-50%);
+            width: $slider-mark-width;
+          }
+        }
+
+        @if not $disable-vertical-slider {
+          &--v {
+            bottom: get-var(slider-mark-offset);
+            height: $slider-mark-width;
+            transform: translateY(50%);
+            width: $slider-mark-height;
+          }
+        }
+      }
+    }
+
+    @if not $disable-discrete-slider-marks-labels {
+      .rmd-slider-mark-label {
+        position: absolute;
+
+        @if not $disable-horizontal-slider {
+          &--h {
+            @include utils.rtl {
+              @include use-var(right, slider-mark-offset);
+
+              left: auto;
+              transform: translateX(50%);
+            }
+            @include use-var(left, slider-mark-offset);
+
+            top: 100%;
+            transform: translateX(-50%);
+          }
+        }
+
+        @if not $disable-vertical-slider {
+          &--v {
+            @include utils.auto-rtl(left, 100%);
+
+            top: get-var(slider-mark-offset);
+            transform: translateY(-50%);
+          }
         }
       }
     }
@@ -1998,91 +2038,99 @@ $variables: (
   }
 }
 
-@mixin styles {
-  @include theme.default-system-theme {
-    @include use-dark-theme;
-  }
+@mixin styles($disable-layer: false) {
+  @if not $disable-everything {
+    @include utils.optional-layer(form, $disable-layer) {
+    }
 
-  @if not $disable-fieldset {
-    .rmd-fieldset {
-      &--unstyled {
-        border: 0;
-        margin: 0;
-        min-width: 0; // just so it can shrink correctly in flex or grid
-        padding: 0;
-      }
+    @include theme.default-system-theme {
+      @include use-dark-theme;
+    }
 
-      &--full-width {
-        flex: 1 1 auto;
-        width: 100%;
+    @if not $disable-fieldset {
+      .rmd-fieldset {
+        &--unstyled {
+          border: 0;
+          margin: 0;
+          min-width: 0; // just so it can shrink correctly in flex or grid
+          padding: 0;
+        }
+
+        &--full-width {
+          flex: 1 1 auto;
+          width: 100%;
+        }
       }
     }
-  }
 
-  @if not $disable-label {
-    @include label-styles;
-  }
+    @if not $disable-label {
+      @include label-styles(true);
+    }
 
-  @if not $disable-file-input {
-    @include file-input-styles;
-  }
+    @if not $disable-file-input {
+      @include file-input-styles(true);
+    }
 
-  @if not $disable-message {
-    @include form-message-styles;
-  }
+    @if not $disable-message {
+      @include form-message-styles(true);
+    }
 
-  @if not $_disable-text-field-container {
-    @include text-field-container-styles;
-  }
+    @if not $_disable-text-field-container {
+      @include text-field-container-styles(true);
+    }
 
-  @if not $disable-text-field or not $disable-password or not $disable-textarea
-  {
-    @include text-field-styles;
-  }
+    @if not
+      $disable-text-field or not
+      $disable-password or not
+      $disable-textarea
+    {
+      @include text-field-styles(true);
+    }
 
-  @if not $disable-password {
-    @include password-styles;
-  }
+    @if not $disable-password {
+      @include password-styles(true);
+    }
 
-  @if not $disable-textarea {
-    @include textarea-container-styles;
-    @include textarea-styles;
-  }
+    @if not $disable-textarea {
+      @include textarea-container-styles(true);
+      @include textarea-styles(true);
+    }
 
-  @if not $disable-select {
-    @include select-styles;
-  }
+    @if not $disable-select {
+      @include select-styles(true);
+    }
 
-  @if not $disable-option {
-    @include option-styles;
-  }
+    @if not $disable-option {
+      @include option-styles(true);
+    }
 
-  @if not $disable-native-select {
-    @include native-select-styles;
-  }
+    @if not $disable-native-select {
+      @include native-select-styles(true);
+    }
 
-  @if not $disable-text-field-addon {
-    @include text-field-addon-styles;
-  }
+    @if not $disable-text-field-addon {
+      @include text-field-addon-styles(true);
+    }
 
-  @if not $disable-checkbox or not $disable-radio or not $disable-switch {
-    @include hidden-input-styles;
-    @include input-toggle-styles;
-  }
+    @if not $disable-checkbox or not $disable-radio or not $disable-switch {
+      @include hidden-input-styles(true);
+      @include input-toggle-styles(true);
+    }
 
-  @if not $disable-switch {
-    @include switch-styles;
-  }
+    @if not $disable-switch {
+      @include switch-styles(true);
+    }
 
-  @if not
-    $disable-menu-item-checkbox or not
-    $disable-menu-item-radio or not
-    $disable-menu-item-switch
-  {
-    @include menu-item-input-toggle-styles;
-  }
+    @if not
+      $disable-menu-item-checkbox or not
+      $disable-menu-item-radio or not
+      $disable-menu-item-switch
+    {
+      @include menu-item-input-toggle-styles(true);
+    }
 
-  @if not $disable-slider {
-    @include slider-styles;
+    @if not $disable-slider {
+      @include slider-styles(true);
+    }
   }
 }

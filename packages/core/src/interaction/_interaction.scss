@@ -375,46 +375,50 @@ $variables: (
   }
 }
 
-@mixin styles {
-  @if not $_disable-ripple {
-    .rmd-ripple-container {
-      @include use-var(border-radius, ripple-border-radius);
-      @include use-var(inset, ripple-inset);
+@mixin styles($disable-layer: false) {
+  @include utils.optional-layer(interaction, $disable-layer) {
+    @if not $_disable-ripple {
+      .rmd-ripple-container {
+        @include use-var(border-radius, ripple-border-radius);
+        @include use-var(inset, ripple-inset);
 
-      overflow: hidden;
-      pointer-events: none;
-      position: absolute;
-      z-index: 0 !important;
+        overflow: hidden;
+        pointer-events: none;
+        position: absolute;
+        z-index: 0 !important;
+      }
+
+      .rmd-ripple {
+        @include use-var(background-color, ripple-background-color);
+
+        border-radius: 50%;
+        position: absolute;
+        transform: scale(0);
+
+        &--animating {
+          transition:
+            transform
+              $ripple-transform-duration
+              transition.$deceleration-timing-function,
+            opacity
+              $ripple-opacity-duration
+              transition.$acceleration-timing-function;
+        }
+
+        &--scaling {
+          transform: scale(1);
+        }
+
+        &--fading {
+          opacity: 0;
+        }
+      }
     }
 
-    .rmd-ripple {
-      @include use-var(background-color, ripple-background-color);
-
-      border-radius: 50%;
-      position: absolute;
-      transform: scale(0);
-
-      &--animating {
-        transition:
-          transform
-            $ripple-transform-duration
-            transition.$deceleration-timing-function,
-          opacity
-            $ripple-opacity-duration
-            transition.$acceleration-timing-function;
-      }
-
-      &--scaling {
-        transform: scale(1);
-      }
-
-      &--fading {
-        opacity: 0;
-      }
+    .rmd-interaction-surface {
+      @include surface(
+        $disabled-selector: "&:disabled,&[aria-disabled='true']"
+      );
     }
-  }
-
-  .rmd-interaction-surface {
-    @include surface($disabled-selector: "&:disabled,&[aria-disabled='true']");
   }
 }

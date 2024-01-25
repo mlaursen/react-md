@@ -212,232 +212,234 @@ $row-selected-styles: (
   }
 }
 
-@mixin styles {
+@mixin styles($disable-layer: false) {
   @if not $disable-everything {
-    @if not $disable-container {
-      .rmd-table-container {
+    @include utils.optional-layer(table, $disable-layer) {
+      @if not $disable-container {
+        .rmd-table-container {
+          max-width: 100%;
+          overflow: auto;
+        }
+      }
+
+      .rmd-table {
+        @include use-var(background-color);
+
+        // NOTE: Switched from `border-collapse: collapse` to `border-spacing: 0`
+        // since enabling sticky headers removed the borders for some reason in
+        // firefox. all I really wanted was the spacing to be removed from each
+        // cell, so border-spacing seems better.
+        border-spacing: 0;
         max-width: 100%;
-        overflow: auto;
-      }
-    }
 
-    .rmd-table {
-      @include use-var(background-color);
-
-      // NOTE: Switched from `border-collapse: collapse` to `border-spacing: 0`
-      // since enabling sticky headers removed the borders for some reason in
-      // firefox. all I really wanted was the spacing to be removed from each
-      // cell, so border-spacing seems better.
-      border-spacing: 0;
-      max-width: 100%;
-
-      @if not $disable-full-width {
-        &--full-width {
-          width: 100%;
-        }
-      }
-    }
-
-    .rmd-thead {
-      @include use-var(background-color, header-background-color);
-      @if $cell-height != $cell-header-height {
-        @include set-var(cell-height, $cell-header-height);
-      }
-
-      @if not $disable-dense and $cell-dense-height {
-        &--dense {
-          @include set-var(cell-height, $cell-header-dense-height);
-        }
-      }
-
-      @if not $disable-sticky-header {
-        &--sticky {
-          @include use-var(background-color, sticky-background-color);
-          @include use-var(top, sticky-header);
-          @include utils.map-to-styles($sticky-header-inactive-styles);
-
-          position: sticky;
-          z-index: $sticky-header-z-index;
-        }
-
-        &--sticky-active {
-          @include utils.map-to-styles($sticky-header-active-styles);
-        }
-      }
-    }
-
-    .rmd-tfoot {
-      @if not $disable-sticky-footer {
-        &--sticky {
-          @include use-var(background-color, sticky-background-color);
-          @include use-var(bottom, sticky-footer);
-          @include utils.map-to-styles($sticky-footer-inactive-styles);
-
-          position: sticky;
-          z-index: $sticky-footer-z-index;
-        }
-
-        &--sticky-active {
-          @include utils.map-to-styles($sticky-footer-active-styles);
-        }
-      }
-    }
-
-    .rmd-tr {
-      @if not $disable-clickable {
-        &--clickable:hover {
-          cursor: pointer;
-        }
-      }
-
-      @if not $disable-selected {
-        &--selected {
-          @include utils.map-to-styles($row-selected-styles);
-        }
-      }
-
-      @if not $disable-bordered {
-        &--bordered {
-          border-bottom: get-var(border-size) solid get-var(border-color);
-
-          @if not $disable-bordered-except-last {
-            &:last-child {
-              border-bottom-width: 0;
-            }
+        @if not $disable-full-width {
+          &--full-width {
+            width: 100%;
           }
         }
       }
 
-      @if not $disable-hoverable {
-        &--hoverable {
-          @include utils.mouse-only {
-            transition: background transition.$linear-duration
-              transition.$linear-timing-function;
-
-            &:hover {
-              @include utils.map-to-styles($row-hover-styles);
-            }
-          }
-        }
-      }
-    }
-
-    .rmd-table-cell {
-      @include utils.map-to-styles($cell-typography);
-      @include use-var(color, cell-color);
-      @include use-var(height, cell-height);
-
-      border: inherit;
-      padding: 0 get-var(cell-horizontal-padding);
-
-      &--header {
-        @include utils.map-to-styles($cell-header-typography);
-        @if $cell-color != $cell-header-color {
-          @include set-var(cell-color, $cell-header-color);
-        }
-      }
-
-      @if not $disable-cell-align-top {
-        &--top {
-          vertical-align: top;
-        }
-      }
-
-      @if not $disable-cell-align-bottom {
-        &--bottom {
-          vertical-align: bottom;
-        }
-      }
-
-      @if not $disable-sticky-cell {
-        &--sticky {
-          position: sticky;
-          will-change: transform;
+      .rmd-thead {
+        @include use-var(background-color, header-background-color);
+        @if $cell-height != $cell-header-height {
+          @include set-var(cell-height, $cell-header-height);
         }
 
-        &--sticky-cell {
-          @include utils.auto-rtl(left, get-var(sticky-cell));
-          @include theme.theme-use-var(background-color);
-
-          transition: background-color transition.$linear-duration;
-          z-index: $sticky-cell-z-index;
-
-          &::after {
-            @include utils.pseudo-element;
-
-            background-color: transparent;
-            transition: background
-              transition.$linear-duration
-              transition.$linear-timing-function;
-
-            .rmd-tr--hoverable:hover & {
-              @include utils.map-to-styles($row-hover-styles);
-            }
-
-            .rmd-tr--selected & {
-              @include utils.map-to-styles($row-selected-styles);
-            }
+        @if not $disable-dense and $cell-dense-height {
+          &--dense {
+            @include set-var(cell-height, $cell-header-dense-height);
           }
         }
 
         @if not $disable-sticky-header {
-          &--sticky-header {
+          &--sticky {
+            @include use-var(background-color, sticky-background-color);
             @include use-var(top, sticky-header);
+            @include utils.map-to-styles($sticky-header-inactive-styles);
 
+            position: sticky;
             z-index: $sticky-header-z-index;
           }
-        }
 
-        @if not $disable-input-toggle and not $disable-sticky-header {
-          &--sticky-header-cell {
-            z-index: $sticky-header-cell-z-index;
+          &--sticky-active {
+            @include utils.map-to-styles($sticky-header-active-styles);
           }
         }
       }
 
-      @if not $disable-input-toggle {
-        &--input-toggle {
-          @include set-var(
-            cell-horizontal-padding,
-            $cell-input-toggle-horizontal-padding
-          );
+      .rmd-tfoot {
+        @if not $disable-sticky-footer {
+          &--sticky {
+            @include use-var(background-color, sticky-background-color);
+            @include use-var(bottom, sticky-footer);
+            @include utils.map-to-styles($sticky-footer-inactive-styles);
+
+            position: sticky;
+            z-index: $sticky-footer-z-index;
+          }
+
+          &--sticky-active {
+            @include utils.map-to-styles($sticky-footer-active-styles);
+          }
         }
       }
 
-      @if not $disable-cell-grow {
-        &--grow {
-          width: 100%;
+      .rmd-tr {
+        @if not $disable-clickable {
+          &--clickable:hover {
+            cursor: pointer;
+          }
+        }
+
+        @if not $disable-selected {
+          &--selected {
+            @include utils.map-to-styles($row-selected-styles);
+          }
+        }
+
+        @if not $disable-bordered {
+          &--bordered {
+            border-bottom: get-var(border-size) solid get-var(border-color);
+
+            @if not $disable-bordered-except-last {
+              &:last-child {
+                border-bottom-width: 0;
+              }
+            }
+          }
+        }
+
+        @if not $disable-hoverable {
+          &--hoverable {
+            @include utils.mouse-only {
+              transition: background transition.$linear-duration
+                transition.$linear-timing-function;
+
+              &:hover {
+                @include utils.map-to-styles($row-hover-styles);
+              }
+            }
+          }
         }
       }
 
-      @if not $disable-cell-no-wrap {
-        &--no-wrap {
-          @include typography.text-overflow;
-        }
-      }
+      .rmd-table-cell {
+        @include utils.map-to-styles($cell-typography);
+        @include use-var(color, cell-color);
+        @include use-var(height, cell-height);
 
-      @if not $disable-cell-vertical-padding {
-        &--v-padding {
-          @include use-var(padding-bottom, cell-vertical-padding);
-          @include use-var(padding-top, cell-vertical-padding);
-        }
-      }
+        border: inherit;
+        padding: 0 get-var(cell-horizontal-padding);
 
-      @if not $disable-cell-sort {
-        &--no-padding {
-          padding: 0;
+        &--header {
+          @include utils.map-to-styles($cell-header-typography);
+          @if $cell-color != $cell-header-color {
+            @include set-var(cell-color, $cell-header-color);
+          }
         }
 
-        &__content {
-          @include use-var(padding-left, cell-horizontal-padding);
-          @include use-var(padding-right, cell-horizontal-padding);
+        @if not $disable-cell-align-top {
+          &--top {
+            vertical-align: top;
+          }
+        }
 
-          align-items: center;
-          color: inherit;
-          font: inherit;
-          gap: $cell-content-gap;
-          height: 100%;
-          width: 100%;
+        @if not $disable-cell-align-bottom {
+          &--bottom {
+            vertical-align: bottom;
+          }
+        }
+
+        @if not $disable-sticky-cell {
+          &--sticky {
+            position: sticky;
+            will-change: transform;
+          }
+
+          &--sticky-cell {
+            @include utils.auto-rtl(left, get-var(sticky-cell));
+            @include theme.theme-use-var(background-color);
+
+            transition: background-color transition.$linear-duration;
+            z-index: $sticky-cell-z-index;
+
+            &::after {
+              @include utils.pseudo-element;
+
+              background-color: transparent;
+              transition: background
+                transition.$linear-duration
+                transition.$linear-timing-function;
+
+              .rmd-tr--hoverable:hover & {
+                @include utils.map-to-styles($row-hover-styles);
+              }
+
+              .rmd-tr--selected & {
+                @include utils.map-to-styles($row-selected-styles);
+              }
+            }
+          }
+
+          @if not $disable-sticky-header {
+            &--sticky-header {
+              @include use-var(top, sticky-header);
+
+              z-index: $sticky-header-z-index;
+            }
+          }
+
+          @if not $disable-input-toggle and not $disable-sticky-header {
+            &--sticky-header-cell {
+              z-index: $sticky-header-cell-z-index;
+            }
+          }
+        }
+
+        @if not $disable-input-toggle {
+          &--input-toggle {
+            @include set-var(
+              cell-horizontal-padding,
+              $cell-input-toggle-horizontal-padding
+            );
+          }
+        }
+
+        @if not $disable-cell-grow {
+          &--grow {
+            width: 100%;
+          }
+        }
+
+        @if not $disable-cell-no-wrap {
+          &--no-wrap {
+            @include typography.text-overflow;
+          }
+        }
+
+        @if not $disable-cell-vertical-padding {
+          &--v-padding {
+            @include use-var(padding-bottom, cell-vertical-padding);
+            @include use-var(padding-top, cell-vertical-padding);
+          }
+        }
+
+        @if not $disable-cell-sort {
+          &--no-padding {
+            padding: 0;
+          }
+
+          &__content {
+            @include use-var(padding-left, cell-horizontal-padding);
+            @include use-var(padding-right, cell-horizontal-padding);
+
+            align-items: center;
+            color: inherit;
+            font: inherit;
+            gap: $cell-content-gap;
+            height: 100%;
+            width: 100%;
+          }
         }
       }
     }

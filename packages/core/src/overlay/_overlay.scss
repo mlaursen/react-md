@@ -37,35 +37,37 @@ $variables: (background-color, z-index);
   }
 }
 
-@mixin styles {
+@mixin styles($disable-layer: false) {
   @if not $disable-everything {
-    .rmd-overlay {
-      @include use-var(background-color);
-      @include use-var(z-index);
+    @include utils.optional-layer(overlay, $disable-layer) {
+      .rmd-overlay {
+        @include use-var(background-color);
+        @include use-var(z-index);
 
-      border-radius: inherit;
-      box-shadow: inherit;
-      inset: 0;
-      opacity: 0;
-      pointer-events: none;
-      position: fixed;
-      transition: opacity $transition-duration $transition-timing-function;
+        border-radius: inherit;
+        box-shadow: inherit;
+        inset: 0;
+        opacity: 0;
+        pointer-events: none;
+        position: fixed;
+        transition: opacity $transition-duration $transition-timing-function;
 
-      &--active {
-        opacity: 1;
-      }
+        &--active {
+          opacity: 1;
+        }
 
-      &--clickable {
-        cursor: pointer;
-      }
+        &--clickable {
+          cursor: pointer;
+        }
 
-      &--visible {
-        overflow: hidden;
-        pointer-events: auto;
-      }
+        &--visible {
+          overflow: hidden;
+          pointer-events: auto;
+        }
 
-      &--absolute {
-        position: absolute;
+        &--absolute {
+          position: absolute;
+        }
       }
     }
   }

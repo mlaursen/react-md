@@ -85,36 +85,38 @@ $variables: (
   }
 }
 
-@mixin styles {
+@mixin styles($disable-layer: false) {
   @if not $disable-everything {
-    @include theme.default-system-theme {
-      @include use-dark-theme;
-    }
-
-    .rmd-divider {
-      @include use-var(margin, spacing);
-      @include use-var(width, max-size);
-
-      border: get-var(size) solid get-var(color);
-      display: block;
-      flex-shrink: 0;
-
-      @if not $disable-inset {
-        &--inset {
-          @include utils.auto-rtl(margin-left, get-var(inset), auto);
-
-          width: calc(get-var(max-size) - get-var(inset));
-        }
+    @include utils.optional-layer(divider, $disable-layer) {
+      @include theme.default-system-theme {
+        @include use-dark-theme;
       }
 
-      @if not $disable-vertical {
-        &--vertical {
-          @include border-style(left);
-          @include use-var(height, max-size);
-          @include use-var(width, size);
-          @include use-var(margin, vertical-spacing);
+      .rmd-divider {
+        @include use-var(margin, spacing);
+        @include use-var(width, max-size);
 
-          display: inline-block;
+        border: get-var(size) solid get-var(color);
+        display: block;
+        flex-shrink: 0;
+
+        @if not $disable-inset {
+          &--inset {
+            @include utils.auto-rtl(margin-left, get-var(inset), auto);
+
+            width: calc(get-var(max-size) - get-var(inset));
+          }
+        }
+
+        @if not $disable-vertical {
+          &--vertical {
+            @include border-style(left);
+            @include use-var(height, max-size);
+            @include use-var(width, size);
+            @include use-var(margin, vertical-spacing);
+
+            display: inline-block;
+          }
         }
       }
     }

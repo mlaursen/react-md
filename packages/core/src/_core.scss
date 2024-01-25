@@ -140,160 +140,162 @@ $_layer-order: (
   }
 }
 
-@mixin css-utils {
-  .rmd-display-none {
-    display: none !important;
-  }
-
-  .rmd-sr-only {
-    @include utils.sr-only(true);
-  }
-
-  .rmd-phone-sr-only {
-    @include media-queries.phone-media {
-      @include utils.sr-only;
-    }
-  }
-
-  .rmd-outline {
-    // inset box-shadow is faded on the lower right half? use outline instead
-    outline: theme.theme-get-var(outline-width) solid
-      theme.theme-get-var(outline-color);
-    outline-offset: utils.negate-var(theme.theme-get-var(outline-width));
-  }
-
-  .rmd-greyscale-outline {
-    @include theme.theme-set-var(outline-color, outline-grey-color);
-  }
-
-  .rmd-background-container {
-    @include theme.theme-use-var(background-color);
-    @include theme.theme-use-var(color, on-background-color, currentcolor);
-  }
-
-  @each $color in (primary, secondary, warning, success, error) {
-    $theme-name: $color + "-color";
-    $on-theme-name: "on-" + $theme-name;
-
-    .rmd-#{$color}-container {
-      @include theme.theme-set-var(background-color, $theme-name);
-      @include theme.theme-set-var(on-background-color, $on-theme-name);
+@mixin css-utils($disable-layer: false) {
+  @include utils.optional-layer(utils, $disable-layer) {
+    .rmd-display-none {
+      display: none !important;
     }
 
-    .rmd-#{$theme-name} {
-      @include theme.theme-use-var(color, $theme-name);
+    .rmd-sr-only {
+      @include utils.sr-only(true);
     }
 
-    .rmd-#{$on-theme-name} {
-      @include theme.theme-use-var(color, $on-theme-name);
-    }
-
-    .rmd-#{$color}-outline {
-      @include theme.theme-set-var(outline-color, $theme-name);
-    }
-  }
-
-  @each $color in (primary, secondary, hint, disabled) {
-    .rmd-text-#{$color}-color {
-      @include theme.theme-use-var(color, text-#{$color}-color);
-    }
-  }
-
-  .rmd-light-surface {
-    @include interaction.use-light-surface;
-    @include theme.theme-set-var(
-      text-primary-color,
-      theme.$light-theme-text-primary-color
-    );
-    @include theme.theme-set-var(
-      text-secondary-color,
-      theme.$light-theme-text-secondary-color
-    );
-    @include theme.theme-set-var(
-      text-hint-color,
-      theme.$light-theme-text-hint-color
-    );
-    @include theme.theme-set-var(
-      text-disabled-color,
-      theme.$dark-theme-text-disabled-color
-    );
-  }
-
-  .rmd-dark-surface {
-    @include interaction.use-dark-surface;
-    @include theme.theme-set-var(
-      text-primary-color,
-      theme.$dark-theme-text-primary-color
-    );
-    @include theme.theme-set-var(
-      text-secondary-color,
-      theme.$dark-theme-text-secondary-color
-    );
-    @include theme.theme-set-var(
-      text-hint-color,
-      theme.$dark-theme-text-hint-color
-    );
-    @include theme.theme-set-var(
-      text-disabled-color,
-      theme.$dark-theme-text-disabled-color
-    );
-  }
-
-  .rmd-no-margin {
-    margin: 0;
-  }
-
-  .rmd-no-margin-top {
-    margin-top: 0;
-  }
-
-  .rmd-no-margin-bottom {
-    margin-bottom: 0;
-  }
-
-  .rmd-centered {
-    margin: 0 auto;
-  }
-
-  .rmd-nowrap {
-    white-space: nowrap;
-  }
-
-  .rmd-ellipsis {
-    @include typography.text-overflow(null);
-  }
-
-  @each $alignment in typography.$text-alignments {
-    .rmd-align-#{$alignment} {
-      @if $alignment != center {
-        @include utils.auto-rtl(text-align, $alignment);
-      } @else {
-        text-align: $alignment;
+    .rmd-phone-sr-only {
+      @include media-queries.phone-media {
+        @include utils.sr-only;
       }
     }
-  }
 
-  @each $decoration in typography.$text-decorations {
-    .rmd-#{$decoration} {
-      text-decoration: $decoration;
+    .rmd-outline {
+      // inset box-shadow is faded on the lower right half? use outline instead
+      outline: theme.theme-get-var(outline-width) solid
+        theme.theme-get-var(outline-color);
+      outline-offset: utils.negate-var(theme.theme-get-var(outline-width));
     }
-  }
 
-  @each $transform in typography.$text-transforms {
-    .rmd-#{$transform} {
-      text-transform: $transform;
+    .rmd-greyscale-outline {
+      @include theme.theme-set-var(outline-color, outline-grey-color);
     }
-  }
 
-  @each $font-style in typography.$font-styles {
-    .rmd-#{$font-style} {
-      font-style: $font-style;
+    .rmd-background-container {
+      @include theme.theme-use-var(background-color);
+      @include theme.theme-use-var(color, on-background-color, currentcolor);
     }
-  }
 
-  @each $name, $font-weight in typography.$font-weights {
-    .rmd-#{$name} {
-      font-weight: $font-weight;
+    @each $color in (primary, secondary, warning, success, error) {
+      $theme-name: $color + "-color";
+      $on-theme-name: "on-" + $theme-name;
+
+      .rmd-#{$color}-container {
+        @include theme.theme-set-var(background-color, $theme-name);
+        @include theme.theme-set-var(on-background-color, $on-theme-name);
+      }
+
+      .rmd-#{$theme-name} {
+        @include theme.theme-use-var(color, $theme-name);
+      }
+
+      .rmd-#{$on-theme-name} {
+        @include theme.theme-use-var(color, $on-theme-name);
+      }
+
+      .rmd-#{$color}-outline {
+        @include theme.theme-set-var(outline-color, $theme-name);
+      }
+    }
+
+    @each $color in (primary, secondary, hint, disabled) {
+      .rmd-text-#{$color}-color {
+        @include theme.theme-use-var(color, text-#{$color}-color);
+      }
+    }
+
+    .rmd-light-surface {
+      @include interaction.use-light-surface;
+      @include theme.theme-set-var(
+        text-primary-color,
+        theme.$light-theme-text-primary-color
+      );
+      @include theme.theme-set-var(
+        text-secondary-color,
+        theme.$light-theme-text-secondary-color
+      );
+      @include theme.theme-set-var(
+        text-hint-color,
+        theme.$light-theme-text-hint-color
+      );
+      @include theme.theme-set-var(
+        text-disabled-color,
+        theme.$dark-theme-text-disabled-color
+      );
+    }
+
+    .rmd-dark-surface {
+      @include interaction.use-dark-surface;
+      @include theme.theme-set-var(
+        text-primary-color,
+        theme.$dark-theme-text-primary-color
+      );
+      @include theme.theme-set-var(
+        text-secondary-color,
+        theme.$dark-theme-text-secondary-color
+      );
+      @include theme.theme-set-var(
+        text-hint-color,
+        theme.$dark-theme-text-hint-color
+      );
+      @include theme.theme-set-var(
+        text-disabled-color,
+        theme.$dark-theme-text-disabled-color
+      );
+    }
+
+    .rmd-no-margin {
+      margin: 0;
+    }
+
+    .rmd-no-margin-top {
+      margin-top: 0;
+    }
+
+    .rmd-no-margin-bottom {
+      margin-bottom: 0;
+    }
+
+    .rmd-centered {
+      margin: 0 auto;
+    }
+
+    .rmd-nowrap {
+      white-space: nowrap;
+    }
+
+    .rmd-ellipsis {
+      @include typography.text-overflow(null);
+    }
+
+    @each $alignment in typography.$text-alignments {
+      .rmd-align-#{$alignment} {
+        @if $alignment != center {
+          @include utils.auto-rtl(text-align, $alignment);
+        } @else {
+          text-align: $alignment;
+        }
+      }
+    }
+
+    @each $decoration in typography.$text-decorations {
+      .rmd-#{$decoration} {
+        text-decoration: $decoration;
+      }
+    }
+
+    @each $transform in typography.$text-transforms {
+      .rmd-#{$transform} {
+        text-transform: $transform;
+      }
+    }
+
+    @each $font-style in typography.$font-styles {
+      .rmd-#{$font-style} {
+        font-style: $font-style;
+      }
+    }
+
+    @each $name, $font-weight in typography.$font-weights {
+      .rmd-#{$name} {
+        font-weight: $font-weight;
+      }
     }
   }
 }
@@ -363,124 +365,39 @@ $_layer-order: (
   @include css-reset;
 
   @layer #{$_layer-order};
-  @layer utils {
-    @include css-utils;
-  }
+  @include css-utils;
 
-  @layer app-bar {
-    @include app-bar.styles;
-  }
-  @layer avatar {
-    @include avatar.styles;
-  }
-  @layer badge {
-    @include badge.styles;
-  }
-  @layer box {
-    @include box.styles;
-  }
-  @layer button {
-    @include button.styles;
-  }
-  @layer card {
-    @include card.styles;
-  }
-  @layer chip {
-    @include chip.styles;
-  }
-
-  @layer dialog {
-    @include dialog.styles;
-  }
-  @layer divider {
-    @include divider.styles;
-  }
-  @layer draggable {
-    @include draggable.styles;
-  }
-  @layer expansion-panel {
-    @include expansion-panel.styles;
-  }
-
-  @layer form {
-    @include form.styles;
-  }
-
-  @layer icon {
-    @include icon.styles;
-  }
-
-  @layer interaction {
-    @include interaction.styles;
-  }
-
-  @layer layout {
-    @include layout.styles;
-  }
-
-  @layer link {
-    @include link.styles;
-  }
-
-  @layer list {
-    @include list.styles;
-  }
-
-  @layer menu {
-    @include menu.styles;
-  }
-
-  @layer overlay {
-    @include overlay.styles;
-  }
-
-  @layer progress {
-    @include progress.styles;
-  }
-
-  @layer responsive-item {
-    @include responsive-item.styles;
-  }
-
-  @layer segmented-button {
-    @include segmented-button.styles;
-  }
-
-  @layer sheet {
-    @include sheet.styles;
-  }
-
-  @layer snackbar {
-    @include snackbar.styles;
-  }
-
-  @layer table {
-    @include table.styles;
-  }
-
-  @layer tabs {
-    @include tabs.styles;
-  }
-
-  @layer tooltip {
-    @include tooltip.styles;
-  }
-
-  @layer transition {
-    @include transition.transition-styles;
-  }
-
-  @layer tree {
-    @include tree.styles;
-  }
-
-  @layer typography {
-    @include typography.typography-styles;
-  }
-
-  @layer window-splitter {
-    @include window-splitter.styles;
-  }
+  @include app-bar.styles;
+  @include avatar.styles;
+  @include badge.styles;
+  @include box.styles;
+  @include button.styles;
+  @include card.styles;
+  @include chip.styles;
+  @include dialog.styles;
+  @include divider.styles;
+  @include draggable.styles;
+  @include expansion-panel.styles;
+  @include form.styles;
+  @include icon.styles;
+  @include interaction.styles;
+  @include layout.styles;
+  @include link.styles;
+  @include list.styles;
+  @include menu.styles;
+  @include overlay.styles;
+  @include progress.styles;
+  @include responsive-item.styles;
+  @include segmented-button.styles;
+  @include sheet.styles;
+  @include snackbar.styles;
+  @include table.styles;
+  @include tabs.styles;
+  @include tooltip.styles;
+  @include transition.transition-styles;
+  @include tree.styles;
+  @include typography.typography-styles;
+  @include window-splitter.styles;
 
   @if not theme.$disable-default-root-theme {
     :root {

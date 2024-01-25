@@ -59,116 +59,118 @@ $item-padding: calc(
   }
 }
 
-@mixin styles {
+@mixin styles($disable-layer: false) {
   @if not $disable-everything {
-    .rmd-tree {
-      display: block;
-      height: 100%;
-      outline-style: none;
-      overflow: auto;
-      // this is mostly for firefox. moving the mouse even 1px while clicking will
-      // select the current item and all items to the tree root
-      user-select: none;
-      width: 100%;
-    }
-
-    .rmd-tree-item {
-      @include icon.set-var(rotate-from, $expander-right-from);
-      @include icon.set-var(rotate-to, $expander-right-to);
-      @include set-var(item-padding, $item-padding);
-
-      list-style: none;
-
-      @if not $disable-expander-left {
-        &--expander-left {
-          @include icon.set-var(rotate-from, $expander-left-from);
-          @include icon.set-var(rotate-to, $expander-left-to);
-        }
+    @include utils.optional-layer(tree, $disable-layer) {
+      .rmd-tree {
+        display: block;
+        height: 100%;
+        outline-style: none;
+        overflow: auto;
+        // this is mostly for firefox. moving the mouse even 1px while clicking will
+        // select the current item and all items to the tree root
+        user-select: none;
+        width: 100%;
       }
 
-      &__content {
-        @include utils.auto-rtl(
-          padding-left,
-          get-var(item-padding),
-          list.get-var(item-horizontal-padding)
-        );
+      .rmd-tree-item {
+        @include icon.set-var(rotate-from, $expander-right-from);
+        @include icon.set-var(rotate-to, $expander-right-to);
+        @include set-var(item-padding, $item-padding);
 
-        &--disabled {
-          cursor: auto;
+        list-style: none;
 
-          &:hover::before {
-            @include interaction.set-var(background-color, transparent);
+        @if not $disable-expander-left {
+          &--expander-left {
+            @include icon.set-var(rotate-from, $expander-left-from);
+            @include icon.set-var(rotate-to, $expander-left-to);
           }
         }
 
-        &--link {
-          color: inherit;
-          text-decoration: none;
-        }
+        &__content {
+          @include utils.auto-rtl(
+            padding-left,
+            get-var(item-padding),
+            list.get-var(item-horizontal-padding)
+          );
 
-        &--focused::before {
-          // Note: Clicking an item and then using the keyboard to move focus
-          // will **not** show the focus outline so might not be ideal. the tree
-          // must be re-focused after a `Tab` keypress for it to appear again
-          @if utils.$disable-focus-visible {
-            .rmd-tree:focus-within & {
-              @include utils.keyboard-only {
+          &--disabled {
+            cursor: auto;
+
+            &:hover::before {
+              @include interaction.set-var(background-color, transparent);
+            }
+          }
+
+          &--link {
+            color: inherit;
+            text-decoration: none;
+          }
+
+          &--focused::before {
+            // Note: Clicking an item and then using the keyboard to move focus
+            // will **not** show the focus outline so might not be ideal. the tree
+            // must be re-focused after a `Tab` keypress for it to appear again
+            @if utils.$disable-focus-visible {
+              .rmd-tree:focus-within & {
+                @include utils.keyboard-only {
+                  @include interaction.focus-styles;
+                }
+              }
+            } @else {
+              .rmd-tree:focus-visible & {
                 @include interaction.focus-styles;
               }
             }
-          } @else {
-            .rmd-tree:focus-visible & {
-              @include interaction.focus-styles;
-            }
           }
-        }
 
-        @if $selected-styles {
-          &--selected {
-            @if not $disable-selected-background-color {
-              @include interaction.set-var(
-                background-color,
-                interaction.get-var(selected-background-color)
-              );
+          @if $selected-styles {
+            &--selected {
+              @if not $disable-selected-background-color {
+                @include interaction.set-var(
+                  background-color,
+                  interaction.get-var(selected-background-color)
+                );
 
-              @include utils.touch-only {
-                &:hover::before {
-                  @include interaction.set-var(
-                    background-color,
-                    interaction.get-var(selected-background-color)
-                  );
+                @include utils.touch-only {
+                  &:hover::before {
+                    @include interaction.set-var(
+                      background-color,
+                      interaction.get-var(selected-background-color)
+                    );
+                  }
                 }
               }
+              @include utils.map-to-styles($selected-styles);
             }
-            @include utils.map-to-styles($selected-styles);
+          }
+        }
+
+        @if not $disable-expander-left-as-media {
+          &__media {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+
+            @if not $disable-expander-left-as-media-offset {
+              &--single {
+                justify-content: flex-end;
+              }
+            }
           }
         }
       }
 
-      @if not $disable-expander-left-as-media {
-        &__media {
-          align-items: center;
-          display: flex;
-          justify-content: space-between;
+      .rmd-tree-group {
+        background-color: inherit;
+        color: inherit;
+        font-size: inherit;
+        line-height: inherit;
 
-          @if not $disable-expander-left-as-media-offset {
-            &--single {
-              justify-content: flex-end;
-            }
-          }
-        }
+        // remove the list padding to make it more condensed
+        padding-bottom: 0;
+        padding-top: 0;
       }
-    }
-
-    .rmd-tree-group {
-      background-color: inherit;
-      color: inherit;
-      font-size: inherit;
-      line-height: inherit;
-
-      // remove the list padding to make it more condensed
-      padding-bottom: 0;
-      padding-top: 0;
     }
   }
 }

@@ -37,104 +37,106 @@ $variables: (top, right, bottom, left, opacity, position);
   #{$property}: get-var($name, $fallback);
 }
 
-@mixin styles {
+@mixin styles($disable-layer: false) {
   @if not $disable-everything {
-    .rmd-window-splitter {
-      @include use-var(opacity);
-      @include utils.mouse-hover {
-        @include set-var(opacity, 1);
-      }
-      @include utils.keyboard-only {
-        // Do not use `:focus-visible` here since since it'll still be active
-        // after dragging with a mouse until the user clicks something else. The
-        // `--dragging` state handles that part
-        &:focus {
+    @include utils.optional-layer(window-splitter, $disable-layer) {
+      .rmd-window-splitter {
+        @include use-var(opacity);
+        @include utils.mouse-hover {
           @include set-var(opacity, 1);
         }
-      }
-
-      background-color: transparent;
-      border: 0;
-      outline-style: none;
-      padding: 0;
-      position: fixed;
-      transition: opacity transition.$linear-duration;
-      z-index: $z-index;
-
-      &::after {
-        background-color: $background-color;
-        content: "";
-        inset: 0;
-        position: absolute;
-      }
-
-      @if not $disable-horizontal {
-        &--h {
-          @include utils.auto-rtl(left, get-var(position));
-          @include use-var(bottom);
-          @include use-var(top);
-
-          cursor: col-resize;
-          width: $size;
-
-          &::after {
-            width: $background-size;
+        @include utils.keyboard-only {
+          // Do not use `:focus-visible` here since since it'll still be active
+          // after dragging with a mouse until the user clicks something else. The
+          // `--dragging` state handles that part
+          &:focus {
+            @include set-var(opacity, 1);
           }
         }
 
-        @if not $disable-reversed {
-          &--hr {
-            @include utils.auto-rtl(right, get-var(position));
+        background-color: transparent;
+        border: 0;
+        outline-style: none;
+        padding: 0;
+        position: fixed;
+        transition: opacity transition.$linear-duration;
+        z-index: $z-index;
 
-            left: auto;
-
-            &::after {
-              @include utils.auto-rtl(margin-left, auto);
-            }
-          }
-        }
-      }
-
-      @if not $disable-vertical {
-        &--v {
-          @include use-var(left);
-          @include use-var(right);
-          @include use-var(top, position);
-
-          cursor: row-resize;
-          height: $size;
-          width: 100%;
-
-          &::after {
-            height: $background-size;
-          }
-        }
-
-        @if not $disable-reversed {
-          &--vr {
-            @include use-var(bottom, position);
-
-            top: auto;
-
-            &::after {
-              top: calc(100% - $background-size);
-            }
-          }
-        }
-      }
-
-      @if not $disable-absolute-position {
-        &--a {
+        &::after {
+          background-color: $background-color;
+          content: "";
+          inset: 0;
           position: absolute;
         }
-      }
 
-      &--dragging {
-        @include set-var(opacity, 1);
+        @if not $disable-horizontal {
+          &--h {
+            @include utils.auto-rtl(left, get-var(position));
+            @include use-var(bottom);
+            @include use-var(top);
 
-        // set to important so that the `.rmd-dragging` styles do not affect
-        // window splitter
-        pointer-events: auto !important;
+            cursor: col-resize;
+            width: $size;
+
+            &::after {
+              width: $background-size;
+            }
+          }
+
+          @if not $disable-reversed {
+            &--hr {
+              @include utils.auto-rtl(right, get-var(position));
+
+              left: auto;
+
+              &::after {
+                @include utils.auto-rtl(margin-left, auto);
+              }
+            }
+          }
+        }
+
+        @if not $disable-vertical {
+          &--v {
+            @include use-var(left);
+            @include use-var(right);
+            @include use-var(top, position);
+
+            cursor: row-resize;
+            height: $size;
+            width: 100%;
+
+            &::after {
+              height: $background-size;
+            }
+          }
+
+          @if not $disable-reversed {
+            &--vr {
+              @include use-var(bottom, position);
+
+              top: auto;
+
+              &::after {
+                top: calc(100% - $background-size);
+              }
+            }
+          }
+        }
+
+        @if not $disable-absolute-position {
+          &--a {
+            position: absolute;
+          }
+        }
+
+        &--dragging {
+          @include set-var(opacity, 1);
+
+          // set to important so that the `.rmd-dragging` styles do not affect
+          // window splitter
+          pointer-events: auto !important;
+        }
       }
     }
   }

@@ -144,174 +144,176 @@ $variables: (
   }
 }
 
-@mixin styles {
+@mixin styles($disable-layer: false) {
   @if not $disable-everything {
-    .rmd-list {
-      @include utils.map-to-styles($typography-styles);
-      @include divider.set-var(inset, get-var(item-keyline));
+    @include utils.optional-layer(list, $disable-layer) {
+      .rmd-list {
+        @include utils.map-to-styles($typography-styles);
+        @include divider.set-var(inset, get-var(item-keyline));
 
-      list-style: none;
-      margin: 0;
-      padding: get-var(vertical-padding) get-var(horizontal-padding);
+        list-style: none;
+        margin: 0;
+        padding: get-var(vertical-padding) get-var(horizontal-padding);
 
-      @if not $disable-horizontal {
-        &--horizontal {
-          display: flex;
-          flex-wrap: nowrap;
-          max-width: 100%;
-          overflow: auto;
-          padding: get-var(horizontal-padding) get-var(vertical-padding);
-        }
-      }
-    }
-
-    .rmd-list-item {
-      @include use-var(min-height, item-height);
-
-      align-items: center;
-      display: flex;
-      padding: get-var(item-vertical-padding) get-var(item-horizontal-padding);
-
-      &--clickable {
-        @include interaction.surface(
-          $disabled-selector: '&[aria-disabled="true"]'
-        );
-      }
-
-      @if not $disable-item-link-styles {
-        &--link {
-          color: inherit;
-          text-decoration: none;
-        }
-      }
-
-      @if not $disable-item-disabled-color {
-        &--disabled-color {
-          @include theme.theme-set-var(
-            text-secondary-color,
-            theme.theme-get-var(text-disabled-color)
-          );
-          @include theme.theme-use-var(color, text-disabled-color);
-        }
-      }
-
-      @if not $disable-item-disabled-opacity {
-        &--disabled-opacity {
-          opacity: $item-disabled-opacity;
-        }
-      }
-
-      @if not $disable-medium-height {
-        &--medium {
-          @include set-var(item-height, get-var(item-medium-height));
-        }
-      }
-
-      @if not $disable-large-height {
-        &--large {
-          @include set-var(item-height, get-var(item-large-height));
-        }
-      }
-
-      @if not $disable-extra-large-height {
-        &--extra-large {
-          @include set-var(item-height, get-var(item-extra-large-height));
-        }
-      }
-
-      @if not $disable-multiline-height {
-        &--multiline {
-          @include set-var(item-height, get-var(item-multiline-height));
-        }
-      }
-
-      &__text {
-        @include typography.text-overflow;
-        @include utils.rtl {
-          margin-left: auto;
-        }
-
-        display: block;
-        flex-grow: 1;
-
-        &--secondary {
-          @include theme.theme-use-var(color, text-secondary-color);
-        }
-
-        @if not $disable-multiline-clamp {
-          &--clamped {
-            @include typography.line-clamp(get-var(item-multiline-clamp));
-            @if not $disable-multiline-height {
-              @include use-var(max-height, item-text-multiline-height);
-            }
-
-            line-height: $item-secondary-text-line-height;
-            white-space: normal;
-          }
-        }
-      }
-
-      &__addon {
-        flex-shrink: 0;
-
-        &--top {
-          align-self: flex-start;
-        }
-
-        &--bottom {
-          align-self: flex-end;
-        }
-
-        &--before {
-          @include _addon-spacing(icon.get-var(size));
-        }
-
-        @if not $disable-item-avatar {
-          &--avatar-before {
-            @include _addon-spacing(avatar.get-var(size));
-          }
-        }
-
-        @if not $disable-item-media {
-          &--media {
-            @include icon.set-var(spacing, get-var(item-media-spacing));
-            @include use-var(width, item-media-size);
-          }
-
-          &--media-centered {
-            align-items: center;
+        @if not $disable-horizontal {
+          &--horizontal {
             display: flex;
-            justify-content: center;
-          }
-
-          @if not $disable-item-media-large {
-            &--media-large {
-              @include set-var(item-media-size, $item-media-large-size);
-            }
+            flex-wrap: nowrap;
+            max-width: 100%;
+            overflow: auto;
+            padding: get-var(horizontal-padding) get-var(vertical-padding);
           }
         }
       }
-    }
 
-    @if not $disable-subheader {
-      .rmd-list-subheader {
-        @include utils.map-to-styles(typography.$subtitle-2-styles);
-        @include theme.theme-use-var(color, text-secondary-color);
-        @include use-var(height, item-height);
+      .rmd-list-item {
+        @include use-var(min-height, item-height);
 
         align-items: center;
         display: flex;
-        padding: get-var(item-vertical-padding)
-          get-var(item-horizontal-padding);
+        padding: get-var(item-vertical-padding) get-var(item-horizontal-padding);
 
-        @if not $disable-subheader-inset {
-          &--inset {
-            @include utils.rtl {
-              @include use-var(padding-left, item-horizontal-padding);
-              @include use-var(padding-right, item-keyline);
+        &--clickable {
+          @include interaction.surface(
+            $disabled-selector: '&[aria-disabled="true"]'
+          );
+        }
+
+        @if not $disable-item-link-styles {
+          &--link {
+            color: inherit;
+            text-decoration: none;
+          }
+        }
+
+        @if not $disable-item-disabled-color {
+          &--disabled-color {
+            @include theme.theme-set-var(
+              text-secondary-color,
+              theme.theme-get-var(text-disabled-color)
+            );
+            @include theme.theme-use-var(color, text-disabled-color);
+          }
+        }
+
+        @if not $disable-item-disabled-opacity {
+          &--disabled-opacity {
+            opacity: $item-disabled-opacity;
+          }
+        }
+
+        @if not $disable-medium-height {
+          &--medium {
+            @include set-var(item-height, get-var(item-medium-height));
+          }
+        }
+
+        @if not $disable-large-height {
+          &--large {
+            @include set-var(item-height, get-var(item-large-height));
+          }
+        }
+
+        @if not $disable-extra-large-height {
+          &--extra-large {
+            @include set-var(item-height, get-var(item-extra-large-height));
+          }
+        }
+
+        @if not $disable-multiline-height {
+          &--multiline {
+            @include set-var(item-height, get-var(item-multiline-height));
+          }
+        }
+
+        &__text {
+          @include typography.text-overflow;
+          @include utils.rtl {
+            margin-left: auto;
+          }
+
+          display: block;
+          flex-grow: 1;
+
+          &--secondary {
+            @include theme.theme-use-var(color, text-secondary-color);
+          }
+
+          @if not $disable-multiline-clamp {
+            &--clamped {
+              @include typography.line-clamp(get-var(item-multiline-clamp));
+              @if not $disable-multiline-height {
+                @include use-var(max-height, item-text-multiline-height);
+              }
+
+              line-height: $item-secondary-text-line-height;
+              white-space: normal;
+            }
+          }
+        }
+
+        &__addon {
+          flex-shrink: 0;
+
+          &--top {
+            align-self: flex-start;
+          }
+
+          &--bottom {
+            align-self: flex-end;
+          }
+
+          &--before {
+            @include _addon-spacing(icon.get-var(size));
+          }
+
+          @if not $disable-item-avatar {
+            &--avatar-before {
+              @include _addon-spacing(avatar.get-var(size));
+            }
+          }
+
+          @if not $disable-item-media {
+            &--media {
+              @include icon.set-var(spacing, get-var(item-media-spacing));
+              @include use-var(width, item-media-size);
             }
 
-            @include use-var(padding-left, item-keyline);
+            &--media-centered {
+              align-items: center;
+              display: flex;
+              justify-content: center;
+            }
+
+            @if not $disable-item-media-large {
+              &--media-large {
+                @include set-var(item-media-size, $item-media-large-size);
+              }
+            }
+          }
+        }
+      }
+
+      @if not $disable-subheader {
+        .rmd-list-subheader {
+          @include utils.map-to-styles(typography.$subtitle-2-styles);
+          @include theme.theme-use-var(color, text-secondary-color);
+          @include use-var(height, item-height);
+
+          align-items: center;
+          display: flex;
+          padding: get-var(item-vertical-padding)
+            get-var(item-horizontal-padding);
+
+          @if not $disable-subheader-inset {
+            &--inset {
+              @include utils.rtl {
+                @include use-var(padding-left, item-horizontal-padding);
+                @include use-var(padding-right, item-keyline);
+              }
+
+              @include use-var(padding-left, item-keyline);
+            }
           }
         }
       }

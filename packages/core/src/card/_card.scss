@@ -86,100 +86,102 @@ $variables: (background-color, color, secondary-color);
   }
 }
 
-@mixin styles {
+@mixin styles($disable-layer: false) {
   @if not $disable-everything {
-    @include theme.default-system-theme {
-      @include use-dark-theme;
-    }
-
-    .rmd-card {
-      @include use-var(background-color);
-      @include use-var(color);
-
-      border-radius: $border-radius;
-      display: inline-block;
-      max-width: 100%;
-
-      @if not $disable-raisable {
-        &--raisable {
-          @include box-shadows.elevation-transition(
-            $raisable-start-elevation,
-            $raisable-end-elevation,
-            "&:hover"
-          );
-        }
+    @include utils.optional-layer(card, $disable-layer) {
+      @include theme.default-system-theme {
+        @include use-dark-theme;
       }
 
-      @if not $disable-shadowed {
-        &--shadowed {
-          @include box-shadows.box-shadow($elevation);
-        }
-      }
+      .rmd-card {
+        @include use-var(background-color);
+        @include use-var(color);
 
-      @if not $disable-bordered {
-        &--bordered {
-          border: $border-width inset $border-color;
-        }
-      }
+        border-radius: $border-radius;
+        display: inline-block;
+        max-width: 100%;
 
-      @if not $disable-full-width {
-        &--full-width {
-          display: block;
-          width: 100%;
-        }
-      }
-
-      @if not $disable-clickable {
-        &--clickable {
-          @include interaction.surface;
-        }
-      }
-
-      &__header {
-        align-items: center;
-        column-gap: $header-spacing;
-        display: flex;
-        padding: $header-padding-top $header-padding $header-padding;
-      }
-
-      &__header-content {
-        @include typography.text-overflow;
-
-        flex: 1 1 auto;
-        min-width: 0;
-      }
-
-      // does not require custom styles
-      // &__title {
-      // }
-
-      // does not require custom styles
-      // &__subtitle {
-      // }
-
-      &__content {
-        @if not $disable-content-secondary-color {
-          &--secondary {
-            @include theme.theme-use-var(color, text-secondary-color);
+        @if not $disable-raisable {
+          &--raisable {
+            @include box-shadows.elevation-transition(
+              $raisable-start-elevation,
+              $raisable-end-elevation,
+              "&:hover"
+            );
           }
         }
 
-        @if $content-padding {
-          &--padded {
-            padding: $content-padding;
+        @if not $disable-shadowed {
+          &--shadowed {
+            @include box-shadows.box-shadow($elevation);
           }
         }
 
-        @if not $disable-content-last-child-padding {
-          &--padded-bottom:last-child {
-            padding-bottom: $content-padding-bottom;
+        @if not $disable-bordered {
+          &--bordered {
+            border: $border-width inset $border-color;
           }
         }
-      }
 
-      @if $footer-padding {
-        &__footer {
-          padding: $footer-padding;
+        @if not $disable-full-width {
+          &--full-width {
+            display: block;
+            width: 100%;
+          }
+        }
+
+        @if not $disable-clickable {
+          &--clickable {
+            @include interaction.surface;
+          }
+        }
+
+        &__header {
+          align-items: center;
+          column-gap: $header-spacing;
+          display: flex;
+          padding: $header-padding-top $header-padding $header-padding;
+        }
+
+        &__header-content {
+          @include typography.text-overflow;
+
+          flex: 1 1 auto;
+          min-width: 0;
+        }
+
+        // does not require custom styles
+        // &__title {
+        // }
+
+        // does not require custom styles
+        // &__subtitle {
+        // }
+
+        &__content {
+          @if not $disable-content-secondary-color {
+            &--secondary {
+              @include theme.theme-use-var(color, text-secondary-color);
+            }
+          }
+
+          @if $content-padding {
+            &--padded {
+              padding: $content-padding;
+            }
+          }
+
+          @if not $disable-content-last-child-padding {
+            &--padded-bottom:last-child {
+              padding-bottom: $content-padding-bottom;
+            }
+          }
+        }
+
+        @if $footer-padding {
+          &__footer {
+            padding: $footer-padding;
+          }
         }
       }
     }

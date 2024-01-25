@@ -255,17 +255,19 @@ $variables: (
   }
 }
 
-@mixin styles {
+@mixin styles($disable-layer: false) {
   @if not $disable-everything {
-    @include tablist-styles;
-    @include tab-styles;
+    @include utils.optional-layer(tabs, $disable-layer) {
+      @include tablist-styles;
+      @include tab-styles;
 
-    @if not $disable-indicator {
-      @include indicator-styles;
-    }
+      @if not $disable-indicator {
+        @include indicator-styles;
+      }
 
-    @if not $disable-tablist-scroll-button {
-      @include tablist-button-styles;
+      @if not $disable-tablist-scroll-button {
+        @include tablist-button-styles;
+      }
     }
   }
 }

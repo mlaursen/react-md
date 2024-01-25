@@ -83,82 +83,84 @@ $variables: (gap, padding, item-min-size, columns);
   }
 }
 
-@mixin styles {
+@mixin styles($disable-layer: false) {
   @if not $disable-everything {
-    .rmd-box {
-      @include use-var(gap, gap);
+    @include utils.optional-layer(box, $disable-layer) {
+      .rmd-box {
+        @include use-var(gap, gap);
 
-      align-items: $default-align-items;
-      display: flex;
+        align-items: $default-align-items;
+        display: flex;
 
-      &--padded {
-        @include use-var(padding);
-      }
-
-      &--wrap {
-        flex-wrap: wrap;
-      }
-
-      &--full-width {
-        width: 100%;
-      }
-
-      @if not $disable-stacked {
-        &--column {
-          flex-direction: column;
+        &--padded {
+          @include use-var(padding);
         }
-      }
 
-      @if not $disable-reversed {
-        &--reverse {
-          flex-direction: row-reverse;
+        &--wrap {
+          flex-wrap: wrap;
+        }
+
+        &--full-width {
+          width: 100%;
         }
 
         @if not $disable-stacked {
-          &--column-reverse {
-            flex-direction: column-reverse;
-          }
-        }
-      }
-
-      @each $value in $align-items {
-        &--align-#{$value} {
-          align-items: $value;
-        }
-      }
-
-      @each $value in $justify-content {
-        &--justify-#{utils.str-replace($value, "space-", "")} {
-          justify-content: $value;
-        }
-      }
-
-      @if not $disable-grid {
-        &--grid {
-          display: grid;
-          grid-template-columns: repeat(
-            get-var(columns),
-            minmax(get-var(item-min-size), 1fr)
-          );
-        }
-
-        &--grid-fill {
-          @include set-var(columns, auto-fill);
-        }
-
-        @if not $disable-grid-columns {
-          &--grid-columns {
-            @include set-var(item-min-size, 0);
+          &--column {
+            flex-direction: column;
           }
         }
 
-        @each $name, $values in $grids {
-          @include custom-grid-class(
-            "&--#{$name}",
-            $min: map.get($values, min),
-            $gap: map.get($values, gap),
-            $padding: map.get($values, padding)
-          );
+        @if not $disable-reversed {
+          &--reverse {
+            flex-direction: row-reverse;
+          }
+
+          @if not $disable-stacked {
+            &--column-reverse {
+              flex-direction: column-reverse;
+            }
+          }
+        }
+
+        @each $value in $align-items {
+          &--align-#{$value} {
+            align-items: $value;
+          }
+        }
+
+        @each $value in $justify-content {
+          &--justify-#{utils.str-replace($value, "space-", "")} {
+            justify-content: $value;
+          }
+        }
+
+        @if not $disable-grid {
+          &--grid {
+            display: grid;
+            grid-template-columns: repeat(
+              get-var(columns),
+              minmax(get-var(item-min-size), 1fr)
+            );
+          }
+
+          &--grid-fill {
+            @include set-var(columns, auto-fill);
+          }
+
+          @if not $disable-grid-columns {
+            &--grid-columns {
+              @include set-var(item-min-size, 0);
+            }
+          }
+
+          @each $name, $values in $grids {
+            @include custom-grid-class(
+              "&--#{$name}",
+              $min: map.get($values, min),
+              $gap: map.get($values, gap),
+              $padding: map.get($values, padding)
+            );
+          }
         }
       }
     }

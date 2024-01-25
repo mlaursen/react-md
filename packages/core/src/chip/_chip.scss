@@ -189,132 +189,134 @@ $variables: (
   }
 }
 
-@mixin styles {
+@mixin styles($disable-layer: false) {
   @if not $disable-everything {
-    @include theme.default-system-theme {
-      @include use-dark-theme;
-    }
-
-    .rmd-chip {
-      @if not $disable-icon {
-        @include icon.set-var(size, $icon-size);
+    @include utils.optional-layer(chip, $disable-layer) {
+      @include theme.default-system-theme {
+        @include use-dark-theme;
       }
 
-      @if not $disable-avatar {
-        @include avatar.set-var(size, $avatar-size);
-      }
-
-      @if not $disable-progress {
-        @include progress.set-var(circular-size, $progress-size);
-        @include progress.set-var(circular-stroke-width, $progress-width);
-      }
-
-      @if not $disable-selected-icon-transition and $gap {
-        @include transition.transition-set-var(max-width, icon.get-var(size));
-        @include transition.transition-set-var(max-width-gap, $gap);
-      }
-      @include utils.map-to-styles($typography);
-
-      align-items: center;
-      border-radius: $border-radius;
-      border-width: 0;
-      display: inline-flex;
-      flex-shrink: 0;
-      gap: $gap;
-      height: $height;
-      justify-content: center;
-      max-width: 100%;
-      padding: $vertical-padding $horizontal-padding;
-
-      @if not $disable-solid-theme {
-        &--solid {
-          @if not $disable-solid-raisable {
-            @include box-shadows.elevation-transition(
-              $start-z-value: 0,
-              $end-z-value: $solid-raisable-box-shadow-z-value,
-              $duration: $solid-raisable-transition-duration,
-              $active-selectors: "&.rmd-chip--pressed",
-              $pseudo-before: false,
-              $position-relative: false
-            );
-          }
-          @include use-var(background-color, solid-background-color);
-          @include use-var(color, solid-color);
+      .rmd-chip {
+        @if not $disable-icon {
+          @include icon.set-var(size, $icon-size);
         }
-      }
 
-      @if not $disable-outline-theme {
-        &--outline {
-          @if not $disable-outline-raisable {
-            $outline-box-shadow: inset
-              0
-              0
-              0
-              #{get-var(outline-width)}
-              #{get-var(outline-color)};
-
-            @include box-shadows.box-shadow-transition(
-              $start-shadow: $outline-box-shadow,
-              $end-shadow:
-                box-shadows.box-shadow($outline-raisable-box-shadow-z-value),
-              $duration: $outline-raisable-transition-duration,
-              $active-selectors: "&.rmd-chip--pressed",
-              $pseudo-before: false,
-              $position-relative: false
-            );
-          }
-          @include use-var(background-color, outline-background-color);
-          @include use-var(color, outline-text-color);
+        @if not $disable-avatar {
+          @include avatar.set-var(size, $avatar-size);
         }
-      }
 
-      @if not $disable-selected-theme {
-        &--themed {
-          @include use-var(background-color, theme-background-color);
-          @include use-var(color, theme-color);
+        @if not $disable-progress {
+          @include progress.set-var(circular-size, $progress-size);
+          @include progress.set-var(circular-stroke-width, $progress-width);
+        }
+
+        @if not $disable-selected-icon-transition and $gap {
+          @include transition.transition-set-var(max-width, icon.get-var(size));
+          @include transition.transition-set-var(max-width-gap, $gap);
+        }
+        @include utils.map-to-styles($typography);
+
+        align-items: center;
+        border-radius: $border-radius;
+        border-width: 0;
+        display: inline-flex;
+        flex-shrink: 0;
+        gap: $gap;
+        height: $height;
+        justify-content: center;
+        max-width: 100%;
+        padding: $vertical-padding $horizontal-padding;
+
+        @if not $disable-solid-theme {
+          &--solid {
+            @if not $disable-solid-raisable {
+              @include box-shadows.elevation-transition(
+                $start-z-value: 0,
+                $end-z-value: $solid-raisable-box-shadow-z-value,
+                $duration: $solid-raisable-transition-duration,
+                $active-selectors: "&.rmd-chip--pressed",
+                $pseudo-before: false,
+                $position-relative: false
+              );
+            }
+            @include use-var(background-color, solid-background-color);
+            @include use-var(color, solid-color);
+          }
+        }
+
+        @if not $disable-outline-theme {
+          &--outline {
+            @if not $disable-outline-raisable {
+              $outline-box-shadow: inset
+                0
+                0
+                0
+                #{get-var(outline-width)}
+                #{get-var(outline-color)};
+
+              @include box-shadows.box-shadow-transition(
+                $start-shadow: $outline-box-shadow,
+                $end-shadow:
+                  box-shadows.box-shadow($outline-raisable-box-shadow-z-value),
+                $duration: $outline-raisable-transition-duration,
+                $active-selectors: "&.rmd-chip--pressed",
+                $pseudo-before: false,
+                $position-relative: false
+              );
+            }
+            @include use-var(background-color, outline-background-color);
+            @include use-var(color, outline-text-color);
+          }
+        }
+
+        @if not $disable-selected-theme {
+          &--themed {
+            @include use-var(background-color, theme-background-color);
+            @include use-var(color, theme-color);
+            @if not $disable-icon {
+              @include icon.set-var(color, currentcolor);
+            }
+          }
+        }
+
+        &--disabled {
           @if not $disable-icon {
             @include icon.set-var(color, currentcolor);
           }
         }
-      }
 
-      &--disabled {
-        @if not $disable-icon {
-          @include icon.set-var(color, currentcolor);
+        @if not $disable-solid-theme {
+          &--solid-disabled {
+            @include use-var(background-color, solid-disabled-background-color);
+          }
         }
-      }
 
-      @if not $disable-solid-theme {
-        &--solid-disabled {
-          @include use-var(background-color, solid-disabled-background-color);
+        @if not $disable-left-addon {
+          &--left-addon {
+            @include utils.auto-rtl(
+              padding-left,
+              $addon-left-padding,
+              $horizontal-padding
+            );
+          }
         }
-      }
 
-      @if not $disable-left-addon {
-        &--left-addon {
-          @include utils.auto-rtl(
-            padding-left,
-            $addon-left-padding,
-            $horizontal-padding
-          );
+        @if not $disable-right-addon {
+          &--right-addon {
+            @include utils.auto-rtl(
+              padding-right,
+              $addon-right-padding,
+              $horizontal-padding
+            );
+          }
         }
-      }
 
-      @if not $disable-right-addon {
-        &--right-addon {
-          @include utils.auto-rtl(
-            padding-right,
-            $addon-right-padding,
-            $horizontal-padding
-          );
-        }
-      }
+        @if not $disable-content {
+          &__content {
+            @include typography.text-overflow;
 
-      @if not $disable-content {
-        &__content {
-          @include typography.text-overflow;
-
-          flex: 1 1 auto;
+            flex: 1 1 auto;
+          }
         }
       }
     }

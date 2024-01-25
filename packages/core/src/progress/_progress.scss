@@ -561,12 +561,17 @@ $variables: (
   }
 }
 
-@mixin styles {
-  @if not $disable-circular {
-    @include _circular-progress;
-  }
+@mixin styles($disable-layer: false) {
+  @include utils.optional-layer(
+    overlay,
+    $disable-layer or ($disable-circular and $disable-linear)
+  ) {
+    @if not $disable-circular {
+      @include _circular-progress;
+    }
 
-  @if not $disable-linear {
-    @include _linear-progress;
+    @if not $disable-linear {
+      @include _linear-progress;
+    }
   }
 }

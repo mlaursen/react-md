@@ -336,3 +336,13 @@ $_swappable-properties: text-align;
     }
   }
 }
+
+@mixin optional-layer($name, $disabled) {
+  @if $disabled {
+    @content;
+  } @else {
+    @layer #{$name} {
+      @content;
+    }
+  }
+}

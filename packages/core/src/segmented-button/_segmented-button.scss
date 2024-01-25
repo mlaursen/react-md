@@ -138,65 +138,70 @@ $variables: (
   }
 }
 
-@mixin styles {
+@mixin styles($disable-layer: false) {
   @if not $disable-everything {
-    .rmd-segmented-button-container {
-      display: grid;
-      grid-auto-columns: 1fr;
-      grid-auto-flow: column;
+    @include utils.optional-layer(segmented-button, $disable-layer) {
+      .rmd-segmented-button-container {
+        display: grid;
+        grid-auto-columns: 1fr;
+        grid-auto-flow: column;
 
-      &--full-width {
-        width: 100%;
+        &--full-width {
+          width: 100%;
+        }
       }
-    }
 
-    .rmd-segmented-button {
-      @include theme.theme-use-var(color, text-primary-color);
-      @include icon.set-var(color, currentcolor);
-      @include icon.set-var(size, 1.125rem);
-      @include utils.map-to-styles($typography-styles);
+      .rmd-segmented-button {
+        @include theme.theme-use-var(color, text-primary-color);
+        @include icon.set-var(color, currentcolor);
+        @include icon.set-var(size, 1.125rem);
+        @include utils.map-to-styles($typography-styles);
 
-      align-items: center;
-      background-color: transparent;
-      border: 0;
-      box-shadow: inset 0 0 0 get-var(outline-width) get-var(outline-color);
-      display: inline-flex;
-      gap: $gap;
-      justify-content: center;
-      min-height: $min-height;
-      min-width: $min-width;
-      padding: $vertical-padding $horizontal-padding;
+        align-items: center;
+        background-color: transparent;
+        border: 0;
+        box-shadow: inset 0 0 0 get-var(outline-width) get-var(outline-color);
+        display: inline-flex;
+        gap: $gap;
+        justify-content: center;
+        min-height: $min-height;
+        min-width: $min-width;
+        padding: $vertical-padding $horizontal-padding;
 
-      &:first-child {
-        @include utils.rtl {
-          border-bottom-left-radius: 0;
+        &:first-child {
+          @include utils.rtl {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: $border-radius;
+            border-top-left-radius: 0;
+            border-top-right-radius: $border-radius;
+          }
+
+          border-bottom-left-radius: $border-radius;
+          border-top-left-radius: $border-radius;
+        }
+
+        &:last-child {
+          @include utils.rtl {
+            border-bottom-left-radius: $border-radius;
+            border-bottom-right-radius: 0;
+            border-top-left-radius: $border-radius;
+            border-top-right-radius: 0;
+          }
+
           border-bottom-right-radius: $border-radius;
-          border-top-left-radius: 0;
           border-top-right-radius: $border-radius;
         }
 
-        border-bottom-left-radius: $border-radius;
-        border-top-left-radius: $border-radius;
-      }
-
-      &:last-child {
-        @include utils.rtl {
-          border-bottom-left-radius: $border-radius;
-          border-bottom-right-radius: 0;
-          border-top-left-radius: $border-radius;
-          border-top-right-radius: 0;
+        &--selected {
+          @if not $disable-selected-icon {
+            @include transition.transition-set-var(
+              max-width,
+              icon.get-var(size)
+            );
+          }
+          @include use-var(background-color, selected-background-color);
+          @include use-var(color, selected-color);
         }
-
-        border-bottom-right-radius: $border-radius;
-        border-top-right-radius: $border-radius;
-      }
-
-      &--selected {
-        @if not $disable-selected-icon {
-          @include transition.transition-set-var(max-width, icon.get-var(size));
-        }
-        @include use-var(background-color, selected-background-color);
-        @include use-var(color, selected-color);
       }
     }
   }

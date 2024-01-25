@@ -100,168 +100,170 @@ $variables: (
   }
 }
 
-@mixin styles {
+@mixin styles($disable-layer: false) {
   @if not $disable-everything {
-    .rmd-dialog-container {
-      @include use-var(z-index);
-
-      align-items: center;
-      display: flex;
-      inset: 0;
-      justify-content: center;
-      margin: get-var(vertical-margin) get-var(horizontal-margin);
-      margin-right: calc(
-        #{get-var(horizontal-margin)} + #{utils.scrollbar-size()}
-      );
-      pointer-events: none;
-      position: fixed;
-    }
-
-    .rmd-dialog {
-      @include box-shadows.box-shadow($elevation);
-
-      background-color: $background-color;
-      color: $color;
-      display: flex;
-      flex-direction: column;
-      max-height: 100%;
-      max-width: 100%;
-      outline: none;
-
-      &--centered {
-        @include use-var(min-width);
-
-        pointer-events: auto;
-      }
-
-      &--full-page {
+    @include utils.optional-layer(dialog, $disable-layer) {
+      .rmd-dialog-container {
         @include use-var(z-index);
 
-        height: 100%;
+        align-items: center;
+        display: flex;
         inset: 0;
-        overflow: auto;
+        justify-content: center;
+        margin: get-var(vertical-margin) get-var(horizontal-margin);
+        margin-right: calc(
+          #{get-var(horizontal-margin)} + #{utils.scrollbar-size()}
+        );
+        pointer-events: none;
         position: fixed;
-        width: 100%;
       }
 
-      @if not $disable-focus-outline {
-        // Note: Do not use the `interaction-outline` mixin +
-        // `interaction.set-var(interaction.$focus-color)` like normal focus
-        // elements since it'll make all focusable children update with the
-        // outline color as well
-        @if utils.$disable-focus-visible {
-          @include utils.keyboard-only {
-            &--outline:focus {
-              outline: interaction.get-var(focus-color) solid
+      .rmd-dialog {
+        @include box-shadows.box-shadow($elevation);
+
+        background-color: $background-color;
+        color: $color;
+        display: flex;
+        flex-direction: column;
+        max-height: 100%;
+        max-width: 100%;
+        outline: none;
+
+        &--centered {
+          @include use-var(min-width);
+
+          pointer-events: auto;
+        }
+
+        &--full-page {
+          @include use-var(z-index);
+
+          height: 100%;
+          inset: 0;
+          overflow: auto;
+          position: fixed;
+          width: 100%;
+        }
+
+        @if not $disable-focus-outline {
+          // Note: Do not use the `interaction-outline` mixin +
+          // `interaction.set-var(interaction.$focus-color)` like normal focus
+          // elements since it'll make all focusable children update with the
+          // outline color as well
+          @if utils.$disable-focus-visible {
+            @include utils.keyboard-only {
+              &--outline:focus {
+                outline: interaction.get-var(focus-color) solid
+                  interaction.get-var(focus-width);
+              }
+            }
+          } @else {
+            &--outline:focus-visible {
+              outline: interaction.get-var(focus-color)
+                solid
                 interaction.get-var(focus-width);
             }
           }
-        } @else {
-          &--outline:focus-visible {
-            outline: interaction.get-var(focus-color)
-              solid
-              interaction.get-var(focus-width);
+        }
+
+        &--enter {
+          transform: translateY($transition-distance);
+        }
+
+        &--enter-active {
+          transform: translateY(0);
+          transition: transform $enter-duration;
+          transition-timing-function: $enter-timing-function;
+        }
+
+        &--exit {
+          opacity: 1;
+          transform: translateY(0);
+          transition:
+            transform $leave-duration,
+            opacity $leave-duration;
+          transition-timing-function: $leave-timing-function;
+        }
+
+        &--exit-active {
+          opacity: 0;
+          transform: translateY($transition-distance);
+        }
+
+        @if not $disable-fixed {
+          &--fixed {
+            @include use-var(z-index);
           }
         }
-      }
 
-      &--enter {
-        transform: translateY($transition-distance);
-      }
+        @if not $disable-header {
+          &__header {
+            @include use-var(padding, header-padding);
+            @include use-var(padding-bottom, header-padding-bottom);
 
-      &--enter-active {
-        transform: translateY(0);
-        transition: transform $enter-duration;
-        transition-timing-function: $enter-timing-function;
-      }
-
-      &--exit {
-        opacity: 1;
-        transform: translateY(0);
-        transition:
-          transform $leave-duration,
-          opacity $leave-duration;
-        transition-timing-function: $leave-timing-function;
-      }
-
-      &--exit-active {
-        opacity: 0;
-        transform: translateY($transition-distance);
-      }
-
-      @if not $disable-fixed {
-        &--fixed {
-          @include use-var(z-index);
-        }
-      }
-
-      @if not $disable-header {
-        &__header {
-          @include use-var(padding, header-padding);
-          @include use-var(padding-bottom, header-padding-bottom);
-
-          align-items: center;
-          display: flex;
-          flex: 0 0 auto;
-        }
-      }
-
-      @if not $disable-title {
-        &__title {
-          // this makes it so it's easy to add a close button after the title
-          flex: 1 1 auto;
-        }
-      }
-
-      @if not $disable-content {
-        &__content {
-          flex: 1 1 auto;
-          overflow: auto;
-
-          &--padded {
-            @include use-var(padding, content-padding);
+            align-items: center;
+            display: flex;
+            flex: 0 0 auto;
           }
         }
-      }
 
-      @if not $disable-footer {
-        &__footer {
-          @include use-var(padding, footer-padding);
+        @if not $disable-title {
+          &__title {
+            // this makes it so it's easy to add a close button after the title
+            flex: 1 1 auto;
+          }
+        }
 
-          flex: 0 0 auto;
+        @if not $disable-content {
+          &__content {
+            flex: 1 1 auto;
+            overflow: auto;
 
-          @if not
-            $disable-footer-flex-vertical or not
-            $disable-footer-flex-start or not
-            $disable-footer-space-between or not
-            $disable-footer-flex-end
-          {
-            &--flex {
-              display: flex;
+            &--padded {
+              @include use-var(padding, content-padding);
             }
           }
+        }
 
-          @if not $disable-footer-flex-vertical {
-            &--flex-v {
-              flex-direction: column;
+        @if not $disable-footer {
+          &__footer {
+            @include use-var(padding, footer-padding);
+
+            flex: 0 0 auto;
+
+            @if not
+              $disable-footer-flex-vertical or not
+              $disable-footer-flex-start or not
+              $disable-footer-space-between or not
+              $disable-footer-flex-end
+            {
+              &--flex {
+                display: flex;
+              }
             }
-          }
 
-          @if not $disable-footer-flex-start {
-            &--start {
-              justify-content: flex-start;
+            @if not $disable-footer-flex-vertical {
+              &--flex-v {
+                flex-direction: column;
+              }
             }
-          }
 
-          @if not $disable-footer-space-between {
-            &--between {
-              justify-content: space-between;
+            @if not $disable-footer-flex-start {
+              &--start {
+                justify-content: flex-start;
+              }
             }
-          }
 
-          @if not $disable-footer-flex-end {
-            &--end {
-              justify-content: flex-end;
+            @if not $disable-footer-space-between {
+              &--between {
+                justify-content: space-between;
+              }
+            }
+
+            @if not $disable-footer-flex-end {
+              &--end {
+                justify-content: flex-end;
+              }
             }
           }
         }

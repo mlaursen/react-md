@@ -16,86 +16,88 @@ $rotate-to: icon.$rotate-to !default;
 $box-shadow-overlay-height: 10px !default;
 $box-shadow-overlay-bottom: -6px !default;
 
-@mixin styles {
+@mixin styles($disable-layer: false) {
   @if not $disable-everything {
-    // does not require custom styles
-    .rmd-expansion-panel {
-      @if not $disable-margin-top-transition and $spacing {
-        &--animate {
-          transition: margin-top transition.$linear-duration;
+    @include utils.optional-layer(expansion-panel, $disable-layer) {
+      // does not require custom styles
+      .rmd-expansion-panel {
+        @if not $disable-margin-top-transition and $spacing {
+          &--animate {
+            transition: margin-top transition.$linear-duration;
+          }
         }
-      }
 
-      @if $spacing {
-        &--expanded + .rmd-expansion-panel {
-          margin-top: $spacing;
+        @if $spacing {
+          &--expanded + .rmd-expansion-panel {
+            margin-top: $spacing;
+          }
         }
-      }
 
-      @if not utils.$disable-has-selectors {
-        // this makes it so that the box-shadow between closed panels is not
-        // visible by covering it in a small overlay of the current
-        // background-color
-        &:where(:not(.rmd-expansion-panel--expanded)):has(
-            + .rmd-expansion-panel
-          ) {
-          position: relative;
+        @if not utils.$disable-has-selectors {
+          // this makes it so that the box-shadow between closed panels is not
+          // visible by covering it in a small overlay of the current
+          // background-color
+          &:where(:not(.rmd-expansion-panel--expanded)):has(
+              + .rmd-expansion-panel
+            ) {
+            position: relative;
 
-          &::after {
-            @include theme.theme-use-var(background-color);
+            &::after {
+              @include theme.theme-use-var(background-color);
 
-            bottom: $box-shadow-overlay-bottom;
-            content: "";
-            height: $box-shadow-overlay-height;
-            left: 0;
-            position: absolute;
-            right: 0;
-            z-index: 1;
+              bottom: $box-shadow-overlay-bottom;
+              content: "";
+              height: $box-shadow-overlay-height;
+              left: 0;
+              position: absolute;
+              right: 0;
+              z-index: 1;
+            }
           }
         }
       }
-    }
 
-    // .rmd-expansion-panel__header {
-    // }
+      // .rmd-expansion-panel__header {
+      // }
 
-    .rmd-expansion-panel__button {
-      @if $rotate-from != icon.$rotate-from {
-        @include icon.set-var(rotate-from, $rotate-from);
-      }
+      .rmd-expansion-panel__button {
+        @if $rotate-from != icon.$rotate-from {
+          @include icon.set-var(rotate-from, $rotate-from);
+        }
 
-      @if $rotate-to != icon.$rotate-to {
-        @include icon.set-var(rotate-to, $rotate-to);
-      }
+        @if $rotate-to != icon.$rotate-to {
+          @include icon.set-var(rotate-to, $rotate-to);
+        }
 
-      @if button.$disable-unstyled-utility-class {
-        @include button.unstyled;
-      }
-      @include utils.auto-rtl(text-align, left);
+        @if button.$disable-unstyled-utility-class {
+          @include button.unstyled;
+        }
+        @include utils.auto-rtl(text-align, left);
 
-      align-items: center;
-      color: inherit;
-      font: inherit;
-      gap: $button-spacing;
-      justify-content: space-between;
-      letter-spacing: inherit;
-      padding: $padding;
-      width: 100%;
+        align-items: center;
+        color: inherit;
+        font: inherit;
+        gap: $button-spacing;
+        justify-content: space-between;
+        letter-spacing: inherit;
+        padding: $padding;
+        width: 100%;
 
-      &[aria-disabled="true"] {
-        cursor: auto;
-      }
+        &[aria-disabled="true"] {
+          cursor: auto;
+        }
 
-      // need to raise the focus outline z-index so it is above the box-shadow
-      @if not utils.$disable-has-selectors {
-        @if not utils.$disable-focus-visible {
-          &::before {
-            z-index: 2;
-          }
-        } @else {
-          @include utils.keyboard-only {
+        // need to raise the focus outline z-index so it is above the box-shadow
+        @if not utils.$disable-has-selectors {
+          @if not utils.$disable-focus-visible {
             &::before {
               z-index: 2;
+            }
+          } @else {
+            @include utils.keyboard-only {
+              &::before {
+                z-index: 2;
+              }
             }
           }
         }

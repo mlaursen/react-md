@@ -72,72 +72,74 @@ $variables: (color, visited-color, hover-color);
   }
 }
 
-@mixin styles {
+@mixin styles($disable-layer: false) {
   @if not $disable-everything {
-    .rmd-link {
-      @include interaction.outline($outline-offset: false);
-      @include use-var(color);
+    @include utils.optional-layer(link, $disable-layer) {
+      .rmd-link {
+        @include interaction.outline($outline-offset: false);
+        @include use-var(color);
 
-      transition: color $transition-duration;
+        transition: color $transition-duration;
 
-      &:visited {
-        @include set-var(color, get-var(visited-color));
-      }
+        &:visited {
+          @include set-var(color, get-var(visited-color));
+        }
 
-      &:hover {
-        @include set-var(color, get-var(hover-color));
-      }
+        &:hover {
+          @include set-var(color, get-var(hover-color));
+        }
 
-      // can't use the normal @include interaction.surface since links are
-      // rendered inline and the `::before`/`::after` pseudo selectors only work
-      // nicely with block-like elements
-      @if utils.$disable-focus-visible {
-        @include utils.keyboard-only {
-          &:focus {
+        // can't use the normal @include interaction.surface since links are
+        // rendered inline and the `::before`/`::after` pseudo selectors only work
+        // nicely with block-like elements
+        @if utils.$disable-focus-visible {
+          @include utils.keyboard-only {
+            &:focus {
+              @include interaction.focus-styles($disable-background: true);
+            }
+          }
+        } @else {
+          &:focus-visible {
             @include interaction.focus-styles($disable-background: true);
           }
         }
-      } @else {
-        &:focus-visible {
-          @include interaction.focus-styles($disable-background: true);
-        }
-      }
 
-      @if not $disable-flex {
-        &--flex {
-          @include icon.use-var(gap, spacing);
+        @if not $disable-flex {
+          &--flex {
+            @include icon.use-var(gap, spacing);
 
-          align-items: center;
-          display: inline-flex;
-        }
-      }
-
-      @if not $disable-skip-to-main {
-        &--skip {
-          @include utils.map-to-styles(
-            map.remove(
-              typography.$headline-6-styles,
-              font-size,
-              font-weight,
-              letter-spacing
-            )
-          );
-          @include utils.sr-only(true, null);
+            align-items: center;
+            display: inline-flex;
+          }
         }
 
-        &--skip-styled {
-          @include utils.map-to-styles($skip-to-main-styles);
+        @if not $disable-skip-to-main {
+          &--skip {
+            @include utils.map-to-styles(
+              map.remove(
+                typography.$headline-6-styles,
+                font-size,
+                font-weight,
+                letter-spacing
+              )
+            );
+            @include utils.sr-only(true, null);
+          }
 
-          @if utils.$disable-focus-visible {
-            @include utils.keyboard-only {
-              &:focus,
-              &:active {
+          &--skip-styled {
+            @include utils.map-to-styles($skip-to-main-styles);
+
+            @if utils.$disable-focus-visible {
+              @include utils.keyboard-only {
+                &:focus,
+                &:active {
+                  @include utils.map-to-styles($skip-to-main-active-styles);
+                }
+              }
+            } @else {
+              &:focus-visible {
                 @include utils.map-to-styles($skip-to-main-active-styles);
               }
-            }
-          } @else {
-            &:focus-visible {
-              @include utils.map-to-styles($skip-to-main-active-styles);
             }
           }
         }

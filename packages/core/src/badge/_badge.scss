@@ -112,26 +112,28 @@ $variables: (
   }
 }
 
-@mixin styles {
+@mixin styles($disable-layer: false) {
   @if not $disable-everything {
-    .rmd-badge {
-      @include utils.map-to-styles($typography);
-      @include use-var(height, size);
-      @include use-var(width, size);
-      @include utils.auto-rtl(right, get-var(offset-right, get-var(offset)));
-      @include use-var(top, offset-top, get-var(offset));
+    @include utils.optional-layer(badge, $disable-layer) {
+      .rmd-badge {
+        @include utils.map-to-styles($typography);
+        @include use-var(height, size);
+        @include use-var(width, size);
+        @include utils.auto-rtl(right, get-var(offset-right, get-var(offset)));
+        @include use-var(top, offset-top, get-var(offset));
 
-      align-items: center;
-      border-radius: $border-radius;
-      display: inline-flex;
-      justify-content: center;
-      pointer-events: none; // badges are _kind_ of presentational and shouldn't trigger mouse events
-      position: absolute;
+        align-items: center;
+        border-radius: $border-radius;
+        display: inline-flex;
+        justify-content: center;
+        pointer-events: none; // badges are _kind_ of presentational and shouldn't trigger mouse events
+        position: absolute;
 
-      @if not $disable-greyscale-theme {
-        &--greyscale {
-          @include use-var(background-color, greyscale-background-color);
-          @include use-var(color, greyscale-color);
+        @if not $disable-greyscale-theme {
+          &--greyscale {
+            @include use-var(background-color, greyscale-background-color);
+            @include use-var(color, greyscale-color);
+          }
         }
       }
     }

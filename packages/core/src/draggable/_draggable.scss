@@ -1,23 +1,27 @@
+@use "../utils";
+
 $disable-everything: false !default;
 $disable-horizontal: false !default;
 $disable-vertical: false !default;
 
-@mixin styles {
+@mixin styles($disable-layer: false) {
   @if not $disable-everything {
-    .rmd-dragging {
-      * {
-        pointer-events: none;
-      }
-
-      @if not $disable-horizontal {
-        &--h {
-          cursor: col-resize;
+    @include utils.optional-layer(draggable, $disable-layer) {
+      .rmd-dragging {
+        * {
+          pointer-events: none;
         }
-      }
 
-      @if not $disable-vertical {
-        &--v {
-          cursor: row-resize;
+        @if not $disable-horizontal {
+          &--h {
+            cursor: col-resize;
+          }
+        }
+
+        @if not $disable-vertical {
+          &--v {
+            cursor: row-resize;
+          }
         }
       }
     }

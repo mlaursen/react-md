@@ -75,78 +75,80 @@ $variables: (background-color, color, spacing);
   }
 }
 
-@mixin styles {
+@mixin styles($disable-layer: false) {
   @if not $disable-everything {
-    .rmd-tooltip {
-      @include utils.map-to-styles($typography);
-      @include use-var(background-color);
-      @include use-var(color);
+    @include utils.optional-layer(tooltip, $disable-layer) {
+      .rmd-tooltip {
+        @include utils.map-to-styles($typography);
+        @include use-var(background-color);
+        @include use-var(color);
 
-      border-radius: $border-radius;
-      max-width: $max-width;
-      min-height: $min-height;
-      opacity: 0;
-      overflow: hidden;
-      overflow-wrap: anywhere;
-      padding: $vertical-padding $horizontal-padding;
-      pointer-events: none;
-      position: fixed;
-      text-transform: none;
-      user-select: none;
-      z-index: $z-index;
-
-      @if not $disable-dense {
-        &--dense {
-          @include utils.map-to-styles($dense-typography);
-          @include set-var(spacing, $dense-spacing);
-
-          min-height: $dense-min-height;
-          padding: $dense-vertical-padding $dense-horizontal-padding;
-        }
-      }
-
-      @if not $disable-above {
-        &--above {
-          transform: translateY(-$transition-distance);
-        }
-      }
-
-      @if not $disable-below {
-        &--below {
-          transform: translateY($transition-distance);
-        }
-      }
-
-      @if not $disable-left {
-        &--left {
-          transform: translateX(-$transition-distance);
-        }
-      }
-
-      @if not $disable-right {
-        &--right {
-          transform: translateX($transition-distance);
-        }
-      }
-
-      &--visible {
-        opacity: 1;
-        transform: none;
-      }
-
-      &--enter {
-        transition:
-          opacity $enter-duration,
-          transform $enter-duration * 2;
-        transition-timing-function: $enter-timing-function;
-      }
-
-      &--exit {
-        transition: opacity $leave-duration $leave-timing-function;
-      }
-
-      &--exit-active {
+        border-radius: $border-radius;
+        max-width: $max-width;
+        min-height: $min-height;
         opacity: 0;
+        overflow: hidden;
+        overflow-wrap: anywhere;
+        padding: $vertical-padding $horizontal-padding;
+        pointer-events: none;
+        position: fixed;
+        text-transform: none;
+        user-select: none;
+        z-index: $z-index;
+
+        @if not $disable-dense {
+          &--dense {
+            @include utils.map-to-styles($dense-typography);
+            @include set-var(spacing, $dense-spacing);
+
+            min-height: $dense-min-height;
+            padding: $dense-vertical-padding $dense-horizontal-padding;
+          }
+        }
+
+        @if not $disable-above {
+          &--above {
+            transform: translateY(-$transition-distance);
+          }
+        }
+
+        @if not $disable-below {
+          &--below {
+            transform: translateY($transition-distance);
+          }
+        }
+
+        @if not $disable-left {
+          &--left {
+            transform: translateX(-$transition-distance);
+          }
+        }
+
+        @if not $disable-right {
+          &--right {
+            transform: translateX($transition-distance);
+          }
+        }
+
+        &--visible {
+          opacity: 1;
+          transform: none;
+        }
+
+        &--enter {
+          transition:
+            opacity $enter-duration,
+            transform $enter-duration * 2;
+          transition-timing-function: $enter-timing-function;
+        }
+
+        &--exit {
+          transition: opacity $leave-duration $leave-timing-function;
+        }
+
+        &--exit-active {
+          opacity: 0;
+        }
       }
     }
   }

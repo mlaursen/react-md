@@ -253,69 +253,76 @@ $typography-variables: (line-length, text-container-padding);
   #{$property}: typography-get-var($name, $fallback);
 }
 
-@mixin typography-text-container-styles($disabled: $disable-text-container) {
+@mixin typography-text-container-styles(
+  $disabled: $disable-text-container,
+  $disable-layer: false
+) {
   @if not $disabled {
-    .rmd-text-container {
-      @include typography-use-var(max-width, line-length);
-      @include typography-use-var(padding, text-container-padding);
+    @include utils.optional-layer(typography, $disable-layer) {
+      .rmd-text-container {
+        @include typography-use-var(max-width, line-length);
+        @include typography-use-var(padding, text-container-padding);
 
-      display: block;
-      margin: 0 auto;
-      width: 100%;
+        display: block;
+        margin: 0 auto;
+        width: 100%;
+      }
     }
   }
 }
 
-@mixin typography-base-styles {
-  .rmd-typography {
-    @include utils.map-to-styles($base-font-styles);
+@mixin typography-base-styles($disable-layer: false) {
+  @include utils.optional-layer(typography, $disable-layer) {
+    .rmd-typography {
+      @include utils.map-to-styles($base-font-styles);
 
-    &--headline-1 {
-      @include utils.map-to-styles($headline-1-styles);
-    }
+      &--headline-1 {
+        @include utils.map-to-styles($headline-1-styles);
+      }
 
-    &--headline-2 {
-      @include utils.map-to-styles($headline-2-styles);
-    }
+      &--headline-2 {
+        @include utils.map-to-styles($headline-2-styles);
+      }
 
-    &--headline-3 {
-      @include utils.map-to-styles($headline-3-styles);
-    }
+      &--headline-3 {
+        @include utils.map-to-styles($headline-3-styles);
+      }
 
-    &--headline-4 {
-      @include utils.map-to-styles($headline-4-styles);
-    }
+      &--headline-4 {
+        @include utils.map-to-styles($headline-4-styles);
+      }
 
-    &--headline-5 {
-      @include utils.map-to-styles($headline-5-styles);
-    }
+      &--headline-5 {
+        @include utils.map-to-styles($headline-5-styles);
+      }
 
-    &--headline-6 {
-      @include utils.map-to-styles($headline-6-styles);
-    }
+      &--headline-6 {
+        @include utils.map-to-styles($headline-6-styles);
+      }
 
-    &--subtitle-1 {
-      @include utils.map-to-styles($subtitle-1-styles);
-    }
+      &--subtitle-1 {
+        @include utils.map-to-styles($subtitle-1-styles);
+      }
 
-    &--subtitle-2 {
-      @include utils.map-to-styles($subtitle-2-styles);
-    }
+      &--subtitle-2 {
+        @include utils.map-to-styles($subtitle-2-styles);
+      }
 
-    &--body-1 {
-      @include utils.map-to-styles($body-1-styles);
-    }
+      &--body-1 {
+        @include utils.map-to-styles($body-1-styles);
+      }
 
-    &--body-2 {
-      @include utils.map-to-styles($body-2-styles);
-    }
+      &--body-2 {
+        @include utils.map-to-styles($body-2-styles);
+      }
 
-    &--caption {
-      @include utils.map-to-styles($caption-styles);
-    }
+      &--caption {
+        @include utils.map-to-styles($caption-styles);
+      }
 
-    &--overline {
-      @include utils.map-to-styles($overline-styles);
+      &--overline {
+        @include utils.map-to-styles($overline-styles);
+      }
     }
   }
 }
@@ -344,7 +351,9 @@ $typography-variables: (line-length, text-container-padding);
   }
 }
 
-@mixin typography-styles {
-  @include typography-text-container-styles;
-  @include typography-base-styles;
+@mixin typography-styles($disable-layer: false) {
+  @include utils.optional-layer(typography, $disable-layer) {
+    @include typography-text-container-styles($disable-layer: true);
+    @include typography-base-styles(true);
+  }
 }
