@@ -11,12 +11,12 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "forceConsistentCasingInFileNames": true,
-    "lib": ["esnext"]
+    "lib": ["esnext"],
   },
   "include": ["**/*.ts"],
   "exclude": ["node_modules"],
   "ts-node": {
     "esm": true,
-    "transpileOnly": true
-  }
+    "transpileOnly": true,
+  },
 }

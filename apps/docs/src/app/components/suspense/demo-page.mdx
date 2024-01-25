@@ -245,7 +245,7 @@ export default function NullSuspenseExample(): ReactElement {
 
 function fakeImport<P>(
   Component: FC<P>,
-  delay: number,
+  delay: number
 ): Promise<{ default: FC<P> }> {
   return new Promise((resolve) => {
     window.setTimeout(() => {
@@ -265,11 +265,11 @@ function fakeImport<P>(
  */
 export function useFakeLazyImport<P = Record<string, unknown>>(
   Component: FC<P>,
-  delay = 200,
+  delay = 200
 ): LazyExoticComponent<FC<P>> {
   return useMemo(
     () => lazy(() => fakeImport(Component, delay)),
-    [Component, delay],
+    [Component, delay]
   );
 }
 ```

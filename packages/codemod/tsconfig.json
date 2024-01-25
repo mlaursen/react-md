@@ -13,8 +13,8 @@
     "noFallthroughCasesInSwitch": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": ["esnext"]
+    "lib": ["esnext"],
   },
   "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "**/__testfixtures__/**"]
+  "exclude": ["node_modules", "**/__testfixtures__/**"],
 }
