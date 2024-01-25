@@ -27,6 +27,7 @@ jobs:
           node-version: 18.18.2
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - run: pnpm check-format
       - run: pnpm build --filter="./packages/*"
       - run: pnpm lint
       - run: pnpm typecheck

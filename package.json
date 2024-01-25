@@ -13,6 +13,7 @@
     "typecheck": "turbo run typecheck",
     "validate": "pnpm run lint && pnpm run typecheck",
     "format": "prettier --write .",
+    "check-format": "prettier --check .",
     "changeset": "changeset",
     "run-script": "ts-node -P scripts/tsconfig.json",
     "release": "pnpm run run-script scripts/release.ts"
