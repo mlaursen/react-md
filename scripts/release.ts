@@ -77,10 +77,13 @@ async function getCurrentChangeset(disableAuto?: boolean): Promise<string> {
     const changesetNames = await readdir(".changeset");
     changesetName = await rawlist({
       message: "Select the changeset path",
-      choices: changesetNames.map((changeset) => ({
-        value: changeset,
-      })),
+      choices: changesetNames
+        .filter((changeset) => changeset.endsWith(".md"))
+        .map((changeset) => ({
+          value: changeset,
+        })),
     });
+    changesetName = join(".changeset", changesetName);
   }
 
   return await readFile(changesetName, "utf8");
@@ -114,8 +117,11 @@ if (isPreRelease) {
 }
 
 if (!isContinue1) {
-  exec("pnpm changeset");
-  exec("pnpm changeset version");
+  console.log(`Run the following commands in another terminal since I don't know how to get it to work in this script.
+
+pnpm changeset
+pnpm changeset version
+`);
 }
 
 if (!(await confirm({ message: "Continue the release?" }))) {
@@ -129,11 +135,15 @@ const changeset = await getCurrentChangeset();
 const version = await getReleaseVersion();
 
 exec('git commit -m "build(version): version packages"');
-exec("pnpm changeset publish");
+console.log(`Run the following command in another terminal since I don't know how to get it to work in this script.
+
+pnpm changeset publish
+`);
+await confirm({ message: "Have the packages been published?" });
 exec("git push --follow-tags");
 
 await createRelease({
   body: changeset,
   version,
-  prerelease: isPreRelease,
+  prerelease: isPreRelease || version.includes("-next"),
 });
