@@ -2041,96 +2041,95 @@ $variables: (
 @mixin styles($disable-layer: false) {
   @if not $disable-everything {
     @include utils.optional-layer(form, $disable-layer) {
-    }
+      @include theme.default-system-theme {
+        @include use-dark-theme;
+      }
 
-    @include theme.default-system-theme {
-      @include use-dark-theme;
-    }
+      @if not $disable-fieldset {
+        .rmd-fieldset {
+          &--unstyled {
+            border: 0;
+            margin: 0;
+            min-width: 0; // just so it can shrink correctly in flex or grid
+            padding: 0;
+          }
 
-    @if not $disable-fieldset {
-      .rmd-fieldset {
-        &--unstyled {
-          border: 0;
-          margin: 0;
-          min-width: 0; // just so it can shrink correctly in flex or grid
-          padding: 0;
-        }
-
-        &--full-width {
-          flex: 1 1 auto;
-          width: 100%;
+          &--full-width {
+            flex: 1 1 auto;
+            width: 100%;
+          }
         }
       }
-    }
 
-    @if not $disable-label {
-      @include label-styles(true);
-    }
+      @if not $disable-label {
+        @include label-styles(true);
+      }
 
-    @if not $disable-file-input {
-      @include file-input-styles(true);
-    }
+      @if not $disable-file-input {
+        @include file-input-styles(true);
+      }
 
-    @if not $disable-message {
-      @include form-message-styles(true);
-    }
+      @if not $disable-message {
+        @include form-message-styles(true);
+      }
 
-    @if not $_disable-text-field-container {
-      @include text-field-container-styles(true);
-    }
+      @if not $_disable-text-field-container {
+        @include text-field-container-styles(true);
+      }
 
-    @if not
-      $disable-text-field or not
-      $disable-password or not
-      $disable-textarea
-    {
-      @include text-field-styles(true);
-    }
+      @if not
+        $disable-text-field or not
+        $disable-password or not
+        $disable-textarea
+      {
+        @include text-field-styles(true);
+      }
 
-    @if not $disable-password {
-      @include password-styles(true);
-    }
+      @if not $disable-password {
+        @include password-styles(true);
+      }
 
-    @if not $disable-textarea {
-      @include textarea-container-styles(true);
-      @include textarea-styles(true);
-    }
+      @if not $disable-textarea {
+        @include textarea-container-styles(true);
+        @include textarea-styles(true);
+      }
 
-    @if not $disable-select {
-      @include select-styles(true);
-    }
+      @if not $disable-select {
+        @include select-styles(true);
+      }
 
-    @if not $disable-option {
-      @include option-styles(true);
-    }
+      @if not $disable-option {
+        @include option-styles(true);
+      }
 
-    @if not $disable-native-select {
-      @include native-select-styles(true);
-    }
+      @if not $disable-native-select {
+        @include native-select-styles(true);
+      }
 
-    @if not $disable-text-field-addon {
-      @include text-field-addon-styles(true);
-    }
+      @if not $disable-text-field-addon {
+        @include text-field-addon-styles(true);
+      }
 
-    @if not $disable-checkbox or not $disable-radio or not $disable-switch {
-      @include hidden-input-styles(true);
-      @include input-toggle-styles(true);
-    }
+      @if not $disable-checkbox or not $disable-radio or not $disable-switch {
+        @include hidden-input-styles(true);
+        @include input-toggle-styles(true);
+      }
 
-    @if not $disable-switch {
-      @include switch-styles(true);
-    }
+      @if not $disable-switch {
+        @include switch-styles(true);
+      }
 
-    @if not
-      $disable-menu-item-checkbox or not
-      $disable-menu-item-radio or not
-      $disable-menu-item-switch
-    {
-      @include menu-item-input-toggle-styles(true);
-    }
+      @if not
+        $disable-menu-item-checkbox or not
+        $disable-menu-item-radio or not
+        $disable-menu-item-switch
+      {
+        @include menu-item-input-toggle-styles(true);
+      }
 
-    @if not $disable-slider {
-      @include slider-styles(true);
+      @if not $disable-slider {
+        @include slider-styles(true);
+      }
     }
   }
 }
