@@ -31,7 +31,7 @@ export const API_ROUTES: NavigationItem = {
     },
     { href: "/fieldset", children: "Fieldset", isClient: false },
     { href: "/font-icon", children: "FontIcon", isClient: false },
-    { href: "/form", children: "Form", isClient: false },
+    { href: "/form", children: "Form", isClient: true },
     {
       href: "/form-message-container",
       children: "FormMessageContainer",

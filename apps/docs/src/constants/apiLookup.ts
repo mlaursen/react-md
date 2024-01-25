@@ -1387,7 +1387,7 @@ export const API_LOOKUP: ApiLookup = {
           defaultValue: "false",
         },
       ],
-      isClient: false,
+      isClient: true,
       examples: [],
       description:
         "This is probably one of the least useful components available as it doesn't\ndo much styling or logic. All this form component will do is add basic flex\nbehavior and prevent the default form submit behavior.",

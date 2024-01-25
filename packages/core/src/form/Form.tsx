@@ -1,3 +1,4 @@
+"use client";
 import { forwardRef, type FormHTMLAttributes } from "react";
 
 const noop = (): void => {
@@ -16,7 +17,7 @@ export interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
 }
 
 /**
- * **Server Component**
+ * **Client Component**
  *
  * This is probably one of the least useful components available as it doesn't
  * do much styling or logic. All this form component will do is add basic flex
