@@ -63,7 +63,7 @@ async function createRelease(options: CreateReleaseOptions): Promise<void> {
 async function getCurrentChangeset(disableAuto?: boolean): Promise<string> {
   let changesetName = "";
   if (!disableAuto) {
-    changesetName = execSync("git diff --name-only @{upstream} .changeset")
+    changesetName = execSync("git diff --name-only @{upstream} .changeset/*.md")
       .toString()
       .trim();
   }

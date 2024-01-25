@@ -1,5 +1,11 @@
 # @react-md/core
 
+## 1.0.0-next.6
+
+### Patch Changes
+
+- Fixed missing use client directives, styling issues in labels and expansion panels, and removing unused layers.
+
 ## 1.0.0-next.5
 
 ### Patch Changes
