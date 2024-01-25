@@ -85,6 +85,21 @@ $box-shadow-overlay-bottom: -6px !default;
       &[aria-disabled="true"] {
         cursor: auto;
       }
+
+      // need to raise the focus outline z-index so it is above the box-shadow
+      @if not utils.$disable-has-selectors {
+        @if not utils.$disable-focus-visible {
+          &::before {
+            z-index: 2;
+          }
+        } @else {
+          @include utils.keyboard-only {
+            &::before {
+              z-index: 2;
+            }
+          }
+        }
+      }
     }
   }
 }
