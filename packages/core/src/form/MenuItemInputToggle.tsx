@@ -179,45 +179,43 @@ export const MenuItemInputToggle = forwardRef<
   const id = useEnsuredId(propId, "menu-item");
 
   let icon = propIcon;
-  if (typeof propIcon === "undefined") {
-    if (type === "switch") {
-      icon = (
-        <SwitchTrack
-          style={trackStyle}
-          {...trackProps}
-          className={cnb(
-            menuItemInputToggleTrack(),
-            trackClassName,
-            trackProps?.className
-          )}
-          active={checked}
-          ballProps={ballProps}
-          ballStyle={ballStyle}
-          ballClassName={cnb(menuItemInputToggleBall(), ballClassName)}
-        />
-      );
-    } else {
-      icon = (
-        <InputToggleIcon
-          style={iconStyle}
-          disableEm
-          {...iconProps}
-          className={cnb(
-            menuItemInputToggleIcon(),
-            iconClassName,
-            iconProps?.className
-          )}
-          size={size}
-          type={type}
-          checked={checked}
-          disabled={disabled}
-          icon={propIcon}
-          checkedIcon={checkedIcon}
-          indeterminate={indeterminate}
-          indeterminateIcon={indeterminateIcon}
-        />
-      );
-    }
+  if (type === "switch") {
+    icon = (
+      <SwitchTrack
+        style={trackStyle}
+        {...trackProps}
+        className={cnb(
+          menuItemInputToggleTrack(),
+          trackClassName,
+          trackProps?.className
+        )}
+        active={checked}
+        ballProps={ballProps}
+        ballStyle={ballStyle}
+        ballClassName={cnb(menuItemInputToggleBall(), ballClassName)}
+      />
+    );
+  } else {
+    icon = (
+      <InputToggleIcon
+        style={iconStyle}
+        disableEm
+        {...iconProps}
+        className={cnb(
+          menuItemInputToggleIcon(),
+          iconClassName,
+          iconProps?.className
+        )}
+        size={size}
+        type={type}
+        checked={checked}
+        disabled={disabled}
+        icon={propIcon}
+        checkedIcon={checkedIcon}
+        indeterminate={indeterminate}
+        indeterminateIcon={indeterminateIcon}
+      />
+    );
   }
 
   let leftAddon: ReactNode;
