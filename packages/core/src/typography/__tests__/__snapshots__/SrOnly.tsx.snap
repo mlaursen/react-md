@@ -3,7 +3,7 @@
 exports[`SrOnly should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <div>
   <span
-    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+    class="rmd-sr-only"
   >
     Some content
   </span>
@@ -13,7 +13,7 @@ exports[`SrOnly should apply the correct styling, HTML attributes, and allow a r
 exports[`SrOnly should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <div>
   <span
-    class="rmd-typography rmd-typography--body-1 rmd-sr-only custom-class-name"
+    class="rmd-sr-only custom-class-name"
     style="opacity: 0.3;"
   >
     Some content
@@ -24,7 +24,7 @@ exports[`SrOnly should apply the correct styling, HTML attributes, and allow a r
 exports[`SrOnly should apply the correct styling, HTML attributes, and allow a ref 3`] = `
 <div>
   <span
-    class="rmd-typography rmd-typography--body-1 rmd-sr-only rmd-sr-only--focusable"
+    class="rmd-sr-only rmd-sr-only--focusable"
     style=""
     tabindex="0"
   >
@@ -36,7 +36,7 @@ exports[`SrOnly should apply the correct styling, HTML attributes, and allow a r
 exports[`SrOnly should apply the correct styling, HTML attributes, and allow a ref 4`] = `
 <div>
   <span
-    class="rmd-typography rmd-typography--body-1 rmd-sr-only rmd-sr-only--focusable"
+    class="rmd-sr-only rmd-sr-only--focusable"
     style=""
     tabindex="-1"
   >
@@ -48,7 +48,7 @@ exports[`SrOnly should apply the correct styling, HTML attributes, and allow a r
 exports[`SrOnly should apply the correct styling, HTML attributes, and allow a ref 5`] = `
 <div>
   <h4
-    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+    class="rmd-sr-only"
   >
     Some content
   </h4>

@@ -12,7 +12,7 @@ exports[`FileInput should apply the correct styling, HTMLAttributes, and allow a
     file_upload
   </span>
   <span
-    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+    class="rmd-sr-only"
   >
     Upload
   </span>
@@ -37,7 +37,7 @@ exports[`FileInput should apply the correct styling, HTMLAttributes, and allow a
     file_upload
   </span>
   <span
-    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+    class="rmd-sr-only"
   >
     Upload
   </span>
@@ -63,7 +63,7 @@ exports[`FileInput should render as an icon button unless children are provided 
     file_upload
   </span>
   <span
-    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+    class="rmd-sr-only"
   >
     Upload
   </span>
@@ -87,7 +87,7 @@ exports[`FileInput should render as an icon button unless children are provided 
     file_upload
   </span>
   <span
-    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+    class="rmd-sr-only"
   >
     Upload
   </span>
@@ -165,7 +165,7 @@ exports[`FileInput should support all the  button themes 1`] = `
     file_upload
   </span>
   <span
-    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+    class="rmd-sr-only"
   >
     Upload
   </span>
@@ -189,7 +189,7 @@ exports[`FileInput should support all the  button themes 2`] = `
     file_upload
   </span>
   <span
-    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+    class="rmd-sr-only"
   >
     Upload
   </span>
@@ -213,7 +213,7 @@ exports[`FileInput should support all the  button themes 3`] = `
     file_upload
   </span>
   <span
-    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+    class="rmd-sr-only"
   >
     Upload
   </span>
@@ -237,7 +237,7 @@ exports[`FileInput should support all the  button themes 4`] = `
     file_upload
   </span>
   <span
-    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+    class="rmd-sr-only"
   >
     Upload
   </span>
@@ -261,7 +261,7 @@ exports[`FileInput should support all the  button themes 5`] = `
     file_upload
   </span>
   <span
-    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+    class="rmd-sr-only"
   >
     Upload
   </span>
@@ -285,7 +285,7 @@ exports[`FileInput should support all the  button themes 6`] = `
     file_upload
   </span>
   <span
-    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+    class="rmd-sr-only"
   >
     Upload
   </span>
@@ -309,7 +309,7 @@ exports[`FileInput should support all the  button themes 7`] = `
     file_upload
   </span>
   <span
-    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+    class="rmd-sr-only"
   >
     Upload
   </span>
@@ -333,7 +333,7 @@ exports[`FileInput should support all the  button themes 8`] = `
     file_upload
   </span>
   <span
-    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+    class="rmd-sr-only"
   >
     Upload
   </span>
@@ -357,7 +357,7 @@ exports[`FileInput should support all the  button themes 9`] = `
     file_upload
   </span>
   <span
-    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+    class="rmd-sr-only"
   >
     Upload
   </span>
@@ -381,7 +381,7 @@ exports[`FileInput should support all the  button themes 10`] = `
     file_upload
   </span>
   <span
-    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+    class="rmd-sr-only"
   >
     Upload
   </span>
@@ -405,7 +405,7 @@ exports[`FileInput should support all the  button themes 11`] = `
     file_upload
   </span>
   <span
-    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+    class="rmd-sr-only"
   >
     Upload
   </span>
@@ -429,7 +429,7 @@ exports[`FileInput should support all the  button themes 12`] = `
     file_upload
   </span>
   <span
-    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+    class="rmd-sr-only"
   >
     Upload
   </span>
@@ -453,7 +453,7 @@ exports[`FileInput should support all the  button themes 13`] = `
     file_upload
   </span>
   <span
-    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+    class="rmd-sr-only"
   >
     Upload
   </span>
@@ -477,7 +477,7 @@ exports[`FileInput should support all the  button themes 14`] = `
     file_upload
   </span>
   <span
-    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+    class="rmd-sr-only"
   >
     Upload
   </span>
@@ -501,7 +501,7 @@ exports[`FileInput should support all the  button themes 15`] = `
     file_upload
   </span>
   <span
-    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+    class="rmd-sr-only"
   >
     Upload
   </span>
@@ -525,7 +525,7 @@ exports[`FileInput should support all the  button themes 16`] = `
     file_upload
   </span>
   <span
-    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+    class="rmd-sr-only"
   >
     Upload
   </span>
@@ -549,7 +549,7 @@ exports[`FileInput should support all the  button themes 17`] = `
     file_upload
   </span>
   <span
-    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+    class="rmd-sr-only"
   >
     Upload
   </span>
@@ -573,7 +573,7 @@ exports[`FileInput should support all the  button themes 18`] = `
     file_upload
   </span>
   <span
-    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+    class="rmd-sr-only"
   >
     Upload
   </span>
@@ -598,7 +598,7 @@ exports[`FileInput should update the default SrOnly text to be phoneOnly when th
     file_upload
   </span>
   <span
-    class="rmd-typography rmd-typography--body-1 rmd-phone-sr-only"
+    class="rmd-phone-sr-only"
   >
     Upload
   </span>

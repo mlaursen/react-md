@@ -1,13 +1,11 @@
-import { forwardRef } from "react";
+import { forwardRef, type ElementType, type HTMLAttributes } from "react";
+import { cssUtils } from "../cssUtils.js";
 import {
-  Typography,
   type CustomTypographyComponent,
   type TypographyHTMLElement,
-  type TypographyProps,
 } from "./Typography.js";
-import { cssUtils } from "../cssUtils.js";
 
-export interface SrOnlyProps extends TypographyProps {
+export interface SrOnlyProps extends HTMLAttributes<TypographyHTMLElement> {
   /** @defaultValue `"span"` */
   as?: CustomTypographyComponent;
 
@@ -54,7 +52,7 @@ export interface SrOnlyProps extends TypographyProps {
 export const SrOnly = forwardRef<TypographyHTMLElement, SrOnlyProps>(
   function SrOnly(props, ref) {
     const {
-      as = "span",
+      as: AsComponent = "span",
       className,
       phoneOnly,
       focusable,
@@ -63,10 +61,12 @@ export const SrOnly = forwardRef<TypographyHTMLElement, SrOnlyProps>(
       ...remaining
     } = props;
 
+    // do some type-casting so ref works
+    const Component = AsComponent as ElementType;
+
     return (
-      <Typography
+      <Component
         {...remaining}
-        as={as}
         ref={ref}
         tabIndex={tabIndex ?? (focusable ? 0 : undefined)}
         className={cssUtils({
@@ -75,7 +75,7 @@ export const SrOnly = forwardRef<TypographyHTMLElement, SrOnlyProps>(
         })}
       >
         {children}
-      </Typography>
+      </Component>
     );
   }
 );

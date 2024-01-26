@@ -62,24 +62,24 @@ export type NullableTypographyClassNameOptions = Omit<
  * @example
  * Simple Example
  * ```ts
- * import { getTypographyClassName } from "@react-md/core";
+ * import { typography } from "@react-md/core";
  *
  * function Example() {
  *   return (
  *     <>
- *       <h1 className={getTypographyClassName({ type: "headline-1" })} />
- *       <h2 className={getTypographyClassName({ type: "headline-2" })} />
- *       <h3 className={getTypographyClassName({ type: "headline-3" })} />
- *       <h4 className={getTypographyClassName({ type: "headline-4" })} />
- *       <h5 className={getTypographyClassName({ type: "headline-5" })} />
- *       <h6 className={getTypographyClassName({ type: "headline-6" })} />
- *       <h5 className={getTypographyClassName({ type: "subtitle-1" })} />
- *       <h6 className={getTypographyClassName({ type: "subtitle-2" })} />
- *       <p className={getTypographyClassName()} />
- *       <p className={getTypographyClassName({ type "body-1" })} />
- *       <p className={getTypographyClassName({ type "body-1" })} />
- *       <caption className={getTypographyClassName({ type: "caption" })} />
- *       <span className={getTypographyClassName({ type: "overline" })} />
+ *       <h1 className={typography({ type: "headline-1" })} />
+ *       <h2 className={typography({ type: "headline-2" })} />
+ *       <h3 className={typography({ type: "headline-3" })} />
+ *       <h4 className={typography({ type: "headline-4" })} />
+ *       <h5 className={typography({ type: "headline-5" })} />
+ *       <h6 className={typography({ type: "headline-6" })} />
+ *       <h5 className={typography({ type: "subtitle-1" })} />
+ *       <h6 className={typography({ type: "subtitle-2" })} />
+ *       <p className={typography()} />
+ *       <p className={typography({ type "body-1" })} />
+ *       <p className={typography({ type "body-1" })} />
+ *       <caption className={typography({ type: "caption" })} />
+ *       <span className={typography({ type: "overline" })} />
  *     </>
  *   );
  * }
@@ -88,14 +88,14 @@ export type NullableTypographyClassNameOptions = Omit<
  * @example
  * Applying Additional Styles
  * ```ts
- * import { getTypography } from "@react-md/core";
+ * import { typography } from "@react-md/core";
  *
  * function Example() {
  *   return (
  *     <>
  *       <h1
  *         // only maintain the default margin-bottom
- *         className={getTypographyClassName({
+ *         className={typography({
  *           type: "headline-1",
  *           margin: "bottom",
  *         })}
@@ -103,7 +103,7 @@ export type NullableTypographyClassNameOptions = Omit<
  *
  *       <h2
  *         // remove all default margin
- *         className={getTypographyClassName({
+ *         className={typography({
  *           type: "headline-2",
  *           margin: "none",
  *         })}
@@ -111,7 +111,7 @@ export type NullableTypographyClassNameOptions = Omit<
  *
  *       <h3
  *         // only maintain the default margin-top
- *         className={getTypographyClassName({
+ *         className={typography({
  *           type: "headline-3",
  *           margin: "top",
  *         })}
@@ -119,7 +119,7 @@ export type NullableTypographyClassNameOptions = Omit<
  *
  *       <p
  *         // center the text, set to bold, and only maintain default margin-bottom
- *         className={getTypographyClassName({
+ *         className={typography({
  *           type "subtitle-1",
  *           align: "center",
  *           margin: "bottom",

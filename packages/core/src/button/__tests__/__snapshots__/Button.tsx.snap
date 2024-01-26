@@ -25,7 +25,7 @@ exports[`Button floating action buttons should allow for responsive icon with la
     favorite
   </span>
   <span
-    class="rmd-typography rmd-typography--body-1 rmd-phone-sr-only"
+    class="rmd-phone-sr-only"
   >
     Label
   </span>
