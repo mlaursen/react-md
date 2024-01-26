@@ -11,6 +11,7 @@ import { ListItem } from "../list/ListItem.js";
 import {
   type ListItemAddonPosition,
   type ListItemAddonType,
+  type ListItemChildrenTextProps,
   type ListItemHeight,
 } from "../list/types.js";
 import { type PropsWithRef } from "../types.js";
@@ -60,7 +61,8 @@ export type MenuItemInputToggleCheckedCallback = (
 /** @remarks \@since 2.8.0 */
 export interface BaseMenuItemInputToggleProps
   extends HTMLAttributes<HTMLLIElement>,
-    InputToggleIconProps {
+    InputToggleIconProps,
+    ListItemChildrenTextProps {
   checked: boolean;
   onCheckedChange: MenuItemInputToggleCheckedCallback;
 
@@ -94,12 +96,6 @@ export interface BaseMenuItemInputToggleProps
 
   /** @defaultValue `"auto"` */
   height?: ListItemHeight;
-
-  /** @defaultValue `false` */
-  multiline?: boolean;
-
-  /** @defaultValue `false` */
-  disableTextChildren?: boolean;
 
   /** @defaultValue `false` */
   iconAfter?: boolean;

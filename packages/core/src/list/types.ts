@@ -138,7 +138,14 @@ export interface ListItemChildrenAddonProps {
   disableRightAddonCenteredMedia?: boolean;
 }
 
-export interface ListItemChildrenProps extends ListItemChildrenAddonProps {
+/**
+ * Note: This interface was added since there are components that replace the
+ * {@link ListItemChildrenAddonProps} with renamed versions but should still
+ * support everything for rendering text.
+ *
+ * @remarks \@since 6.0.0
+ */
+export interface ListItemChildrenTextProps {
   /**
    * The main content to display. When the `textChildren` prop is enabled and
    * there is child content, it will be treated as primary text and update the
@@ -214,3 +221,7 @@ export interface ListItemChildrenProps extends ListItemChildrenAddonProps {
    */
   multiline?: boolean;
 }
+
+export interface ListItemChildrenProps
+  extends ListItemChildrenTextProps,
+    ListItemChildrenAddonProps {}
