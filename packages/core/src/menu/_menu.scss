@@ -44,6 +44,7 @@ $variables: (background-color, color, min-width, spacing);
   .rmd-menu {
     outline: none;
     overflow: auto;
+    overflow-wrap: anywhere;
 
     &--elevated {
       @include box-shadows.box-shadow(
