@@ -16,7 +16,6 @@ import {
 } from "../list/types.js";
 import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
-import { bem } from "../utils/bem.js";
 import {
   type IndeterminateCheckboxProps,
   type InputToggleIconProps,
@@ -24,31 +23,16 @@ import {
 import { InputToggleIcon } from "./InputToggleIcon.js";
 import { SwitchTrack } from "./SwitchTrack.js";
 import { type InputToggleSize } from "./inputToggleStyles.js";
+import {
+  menuItemInputToggle,
+  menuItemInputToggleBall,
+  menuItemInputToggleIcon,
+  menuItemInputToggleTrack,
+} from "./menuItemInputToggleStyles.js";
 
 const noop = (): void => {
   // do nothing
 };
-const styles = bem("rmd-menu-item-input-toggle");
-
-/** @remarks \@since 6.0.0 */
-export interface MenuItemInputToggleClassNameOptions {
-  className?: string;
-  type: "radio" | "checkbox" | "switch";
-}
-
-/**
- * @remarks \@since 6.0.0
- */
-export function menuItemInputToggle(
-  options: MenuItemInputToggleClassNameOptions
-): string {
-  const { className, type } = options;
-  return cnb(
-    `rmd-${type}-menu-item`,
-    styles({ switch: type === "switch" }),
-    className
-  );
-}
 
 /**
  * @remarks \@since 6.0.0
@@ -202,14 +186,14 @@ export const MenuItemInputToggle = forwardRef<
           style={trackStyle}
           {...trackProps}
           className={cnb(
-            styles("track"),
+            menuItemInputToggleTrack(),
             trackClassName,
             trackProps?.className
           )}
           active={checked}
           ballProps={ballProps}
           ballStyle={ballStyle}
-          ballClassName={cnb(styles("ball"), ballClassName)}
+          ballClassName={cnb(menuItemInputToggleBall(), ballClassName)}
         />
       );
     } else {
@@ -218,7 +202,11 @@ export const MenuItemInputToggle = forwardRef<
           style={iconStyle}
           disableEm
           {...iconProps}
-          className={cnb(styles("icon"), iconClassName, iconProps?.className)}
+          className={cnb(
+            menuItemInputToggleIcon(),
+            iconClassName,
+            iconProps?.className
+          )}
           size={size}
           type={type}
           checked={checked}
