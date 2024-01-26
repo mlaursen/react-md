@@ -271,6 +271,7 @@ $variables: (
   focus-color,
   addon-top,
   addon-margin-top,
+  addon-left-offset,
   label-floating-top,
   label-left-offset,
   label-top-offset,
@@ -331,10 +332,12 @@ $variables: (
       text-field-hover-border-color,
       $text-field-light-hover-border-color
     );
-    @include set-var(
-      text-field-filled-color,
-      $text-field-light-filled-background-color
-    );
+    @if not $disable-text-field-filled-theme {
+      @include set-var(
+        text-field-filled-color,
+        $text-field-light-filled-background-color
+      );
+    }
     @if not $disable-switch {
       @include set-var(
         switch-track-background-color,
@@ -382,10 +385,12 @@ $variables: (
       text-field-hover-border-color,
       $text-field-dark-hover-border-color
     );
-    @include set-var(
-      text-field-filled-color,
-      $text-field-dark-filled-background-color
-    );
+    @if not $disable-text-field-filled-theme {
+      @include set-var(
+        text-field-filled-color,
+        $text-field-dark-filled-background-color
+      );
+    }
     @if not $disable-switch {
       @include set-var(
         switch-track-background-color,
@@ -615,7 +620,6 @@ $variables: (
 @mixin text-field-container-styles($disable-layer: false) {
   @include utils.optional-layer(form, $disable-layer) {
     .rmd-text-field-container {
-      @include set-var(label-left-offset, get-var(text-field-padding-left));
       @include use-var(height, text-field-height);
 
       align-items: center;
@@ -684,13 +688,20 @@ $variables: (
             text-field-padding-right,
             $text-field-outlined-padding
           );
-          @include set-var(label-top-offset, -50%);
-          @include set-var(label-active-padding, 0 $label-floating-padding);
-          @include set-var(
-            label-active-background-color,
-            theme.theme-get-var(background-color)
-          );
           @include use-var(border-color, text-field-border-color);
+          @if not $disable-text-field-addon {
+            @include set-var(addon-left-offset, $text-field-outlined-padding);
+          }
+
+          @if not $disable-floating-label {
+            @include set-var(label-left-offset, $text-field-outlined-padding);
+            @include set-var(label-top-offset, -50%);
+            @include set-var(label-active-padding, 0 $label-floating-padding);
+            @include set-var(
+              label-active-background-color,
+              theme.theme-get-var(background-color)
+            );
+          }
 
           border-radius: $text-field-border-radius;
           border-style: solid;
@@ -738,6 +749,17 @@ $variables: (
             text-field-padding-right,
             $text-field-filled-padding
           );
+          @if not $disable-floating-label {
+            @include set-var(
+              label-left-offset,
+              $text-field-filled-padding + $label-floating-padding
+            );
+          }
+
+          @if not $disable-text-field-addon {
+            @include set-var(addon-left-offset, $text-field-filled-padding);
+          }
+
           @include use-var(background-color, text-field-filled-color);
         }
       }
@@ -1196,7 +1218,7 @@ $variables: (
       // `.rmd-text-field-container` which would prevent these styles from being
       // applied
       &--before {
-        @include utils.auto-rtl(left, get-var(label-left-offset));
+        @include utils.auto-rtl(left, get-var(addon-left-offset));
       }
 
       &--after {
@@ -1989,6 +2011,7 @@ $variables: (
     @if not $disable-text-field-addon {
       @include set-var(addon-top, auto);
       @include set-var(addon-margin-top, 0px);
+      @include set-var(addon-left-offset, 0px);
     }
 
     @if not $disable-switch {
