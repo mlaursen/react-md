@@ -41,6 +41,10 @@ const context = createContext<MaterialIconsAndSymbolsContext | undefined>(
 );
 const { Provider } = context;
 
+const scrollToTop = (): void => {
+  window.scrollTo({ top: 0, behavior: "instant" });
+};
+
 export function useMaterialIconsAndSymbols(): MaterialIconsAndSymbolsContext {
   const value = useContext(context);
   if (!value) {
@@ -236,15 +240,22 @@ export function MaterialIconsAndSymbolsProvider({
       },
       setSearch(search) {
         dispatch({ type: "setSearch", payload: search });
+        scrollToTop();
       },
-      setIconType(iconType) {
-        dispatch({ type: "setIconType", payload: iconType });
+      setIconType(nextIconType) {
+        dispatch({ type: "setIconType", payload: nextIconType });
+        // only scroll back to the top when switching to or from material
+        // symbols since the SVG and Font Icons should have the same results
+        if (nextIconType === "symbol" || iconType === "symbol") {
+          scrollToTop();
+        }
       },
       setIconFamily(iconFamily) {
         dispatch({ type: "setIconFamily", payload: iconFamily });
       },
       setIconCategory(iconCategory) {
         dispatch({ type: "setIconCategory", payload: iconCategory });
+        scrollToTop();
       },
       changeSvgToFont() {
         dispatch({ type: "changeSvgToFont" });

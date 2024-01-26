@@ -29,6 +29,7 @@ export function FilterStylePanel(
       <Select
         label="Icon Type"
         value={iconType}
+        stretch
         onChange={(event) => setIconType(event.currentTarget.value)}
       >
         <Option value="symbol">Material Symbols</Option>
@@ -38,6 +39,7 @@ export function FilterStylePanel(
       <Select
         label="Icon Family"
         value={iconFamily}
+        stretch
         onChange={(event) => setIconFamily(event.currentTarget.value)}
         className={cssUtils({ textTransform: "capitalize" })}
       >
