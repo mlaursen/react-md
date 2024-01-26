@@ -42,8 +42,8 @@
     "jscodeshift": "^0.15.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.23.7",
-    "@babel/preset-env": "^7.23.8",
+    "@babel/core": "^7.23.9",
+    "@babel/preset-env": "^7.23.9",
     "@types/glob": "^8.0.1",
     "@types/inquirer": "^9.0.7",
     "@types/jscodeshift": "^0.11.11",
