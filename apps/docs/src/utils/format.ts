@@ -36,6 +36,7 @@ export function format(
       filepath,
       parser: resolvedParser,
       proseWrap: resolvedParser === "markdown" ? "always" : undefined,
+      trailingComma: "es5",
     });
   } catch (e) {
     // eslint-disable-next-line no-console
