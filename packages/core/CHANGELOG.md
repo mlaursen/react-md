@@ -1,5 +1,11 @@
 # @react-md/core
 
+## 1.0.0-next.8
+
+### Patch Changes
+
+- Fixed a bunch of styling issues, being unable to disable styles, being unable to remove styles, and missing types for the MenuItemInputToggle components.
+
 ## 1.0.0-next.7
 
 ### Patch Changes
