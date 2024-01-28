@@ -13,6 +13,7 @@
 @forward "icon/icon" as icon-*;
 @forward "divider/divider" as divider-*;
 @forward "progress/progress" as progress-*;
+@forward "overlay/overlay" as overlay-*;
 @forward "button/button" as button-*;
 @forward "badge/badge" as badge-*;
 @forward "tabs/tabs" as tabs-*;
@@ -21,7 +22,6 @@
 @forward "table/table" as table-*;
 @forward "app-bar/app-bar" as app-bar-*;
 @forward "responsive-item/responsive-item" as responsive-item-*;
-@forward "overlay/overlay" as overlay-*;
 @forward "card/card" as card-*;
 @forward "link/link" as link-*;
 @forward "list/list" as list-*;
@@ -361,53 +361,59 @@ $_layer-order: (
   @include typography.typography-variables;
 }
 
-@mixin styles {
-  @include css-reset;
+@mixin styles(
+  $disable-layer: false,
+  $disable-layer-order: $disable-layer,
+  $disable-reset: false,
+  $disable-css-utils: false
+) {
+  @if not $disable-layer-order {
+    @layer #{$_layer-order};
+  }
+  @if not $disable-reset {
+    @include css-reset;
+  }
+  @if not $disable-css-utils {
+    @include css-utils($disable-layer);
+  }
 
-  @layer #{$_layer-order};
-  @include css-utils;
-
-  @include app-bar.styles;
-  @include avatar.styles;
-  @include badge.styles;
-  @include box.styles;
-  @include button.styles;
-  @include card.styles;
-  @include chip.styles;
-  @include dialog.styles;
-  @include divider.styles;
-  @include draggable.styles;
-  @include expansion-panel.styles;
-  @include form.styles;
-  @include icon.styles;
-  @include interaction.styles;
-  @include layout.styles;
-  @include link.styles;
-  @include list.styles;
-  @include menu.styles;
-  @include overlay.styles;
-  @include progress.styles;
-  @include responsive-item.styles;
-  @include segmented-button.styles;
-  @include sheet.styles;
-  @include snackbar.styles;
-  @include table.styles;
-  @include tabs.styles;
-  @include tooltip.styles;
-  @include transition.transition-styles;
-  @include tree.styles;
-  @include typography.typography-styles;
-  @include window-splitter.styles;
+  @include app-bar.styles($disable-layer);
+  @include avatar.styles($disable-layer);
+  @include badge.styles($disable-layer);
+  @include box.styles($disable-layer);
+  @include button.styles($disable-layer);
+  @include card.styles($disable-layer);
+  @include chip.styles($disable-layer);
+  @include dialog.styles($disable-layer);
+  @include divider.styles($disable-layer);
+  @include draggable.styles($disable-layer);
+  @include expansion-panel.styles($disable-layer);
+  @include form.styles($disable-layer);
+  @include icon.styles($disable-layer);
+  @include interaction.styles($disable-layer);
+  @include layout.styles($disable-layer);
+  @include link.styles($disable-layer);
+  @include list.styles($disable-layer);
+  @include menu.styles($disable-layer);
+  @include overlay.styles($disable-layer);
+  @include progress.styles($disable-layer);
+  @include responsive-item.styles($disable-layer);
+  @include segmented-button.styles($disable-layer);
+  @include sheet.styles($disable-layer);
+  @include snackbar.styles($disable-layer);
+  @include table.styles($disable-layer);
+  @include tabs.styles($disable-layer);
+  @include tooltip.styles($disable-layer);
+  @include transition.transition-styles($disable-layer);
+  @include tree.styles($disable-layer);
+  @include typography.typography-styles($disable-layer);
+  @include window-splitter.styles($disable-layer);
 
   @if not theme.$disable-default-root-theme {
     :root {
       @include variables;
 
-      @if not
-        theme.$disable-default-system-theme and
-        theme.$color-scheme ==
-        system
-      {
+      @if theme.$color-scheme == system {
         @media (prefers-color-scheme: dark) {
           @include use-dark-theme;
         }

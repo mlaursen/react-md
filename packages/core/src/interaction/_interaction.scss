@@ -5,19 +5,20 @@
 @use "../theme/theme";
 @use "../transition/transition";
 
-/// ripple | press | both | null
+/// ripple | press | both | none
 $mode: ripple !default;
+$disable-surface: false !default;
 $disable-outline-offset: false !default;
 $disable-focus-background: false !default;
 $disable-ripple-inset-var: false !default;
 $disable-ripple-border-radius-var: false !default;
-$disable-surface-inset-var: false !default;
-$disable-surface-border-radius-var: false !default;
+$disable-surface-inset-var: $disable-surface !default;
+$disable-surface-border-radius-var: $disable-surface !default;
 
 $_disable-ripple: not
   list.index(
     (ripple, both),
-    utils.validate((ripple, press, both, null), $mode, "interaction mode")
+    utils.validate((ripple, press, both, none), $mode, "interaction mode")
   );
 
 $pressed-class-name: "rmd-pressed";
@@ -189,22 +190,25 @@ $variables: (
 }
 
 @mixin use-light-surface {
-  @include set-var(
-    hover-background-color,
-    $light-surface-hover-background-color
-  );
-  @include set-var(
-    focus-background-color,
-    $light-surface-focus-background-color
-  );
-  @include set-var(
-    press-background-color,
-    $light-surface-press-background-color
-  );
-  @include set-var(
-    selected-background-color,
-    $light-surface-selected-background-color
-  );
+  @if not $disable-surface {
+    @include set-var(
+      hover-background-color,
+      $light-surface-hover-background-color
+    );
+    @include set-var(
+      focus-background-color,
+      $light-surface-focus-background-color
+    );
+    @include set-var(
+      press-background-color,
+      $light-surface-press-background-color
+    );
+    @include set-var(
+      selected-background-color,
+      $light-surface-selected-background-color
+    );
+  }
+
   @if not $_disable-ripple {
     @include set-var(
       ripple-background-color,
@@ -214,22 +218,25 @@ $variables: (
 }
 
 @mixin use-dark-surface {
-  @include set-var(
-    hover-background-color,
-    $dark-surface-hover-background-color
-  );
-  @include set-var(
-    focus-background-color,
-    $dark-surface-focus-background-color
-  );
-  @include set-var(
-    press-background-color,
-    $dark-surface-press-background-color
-  );
-  @include set-var(
-    selected-background-color,
-    $dark-surface-selected-background-color
-  );
+  @if not $disable-surface {
+    @include set-var(
+      hover-background-color,
+      $dark-surface-hover-background-color
+    );
+    @include set-var(
+      focus-background-color,
+      $dark-surface-focus-background-color
+    );
+    @include set-var(
+      press-background-color,
+      $dark-surface-press-background-color
+    );
+    @include set-var(
+      selected-background-color,
+      $dark-surface-selected-background-color
+    );
+  }
+
   @if not $_disable-ripple {
     @include set-var(
       ripple-background-color,
@@ -360,10 +367,13 @@ $variables: (
 @mixin variables {
   @include set-var(focus-color, $focus-color);
   @include set-var(focus-width, $focus-width);
-  @include set-var(hover-background-color, $hover-background-color);
-  @include set-var(focus-background-color, $focus-background-color);
-  @include set-var(press-background-color, $press-background-color);
-  @include set-var(selected-background-color, $selected-background-color);
+
+  @if not $disable-surface {
+    @include set-var(hover-background-color, $hover-background-color);
+    @include set-var(focus-background-color, $focus-background-color);
+    @include set-var(press-background-color, $press-background-color);
+    @include set-var(selected-background-color, $selected-background-color);
+  }
 
   @if not $_disable-ripple {
     @include set-var(ripple-background-color, $ripple-background-color);
@@ -415,10 +425,12 @@ $variables: (
       }
     }
 
-    .rmd-interaction-surface {
-      @include surface(
-        $disabled-selector: "&:disabled,&[aria-disabled='true']"
-      );
+    @if not $disable-surface {
+      .rmd-interaction-surface {
+        @include surface(
+          $disabled-selector: "&:disabled,&[aria-disabled='true']"
+        );
+      }
     }
   }
 }

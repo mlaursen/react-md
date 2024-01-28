@@ -4,6 +4,18 @@
 @use "../utils";
 
 $disable-text-container: false !default;
+$disable-headline-1: false !default;
+$disable-headline-2: false !default;
+$disable-headline-3: false !default;
+$disable-headline-4: false !default;
+$disable-headline-5: false !default;
+$disable-headline-6: false !default;
+$disable-subtitle-1: false !default;
+$disable-subtitle-2: false !default;
+$disable-body-1: false !default;
+$disable-body-2: false !default;
+$disable-caption: false !default;
+$disable-overline: false !default;
 
 /// A small utility function to get the letter spacing based on tracking and
 /// font-size
@@ -280,52 +292,76 @@ $typography-variables: (line-length, text-container-padding);
     .rmd-typography {
       @include utils.map-to-styles($base-font-styles);
 
-      &--headline-1 {
-        @include utils.map-to-styles($headline-1-styles);
+      @if not $disable-headline-1 {
+        &--headline-1 {
+          @include utils.map-to-styles($headline-1-styles);
+        }
       }
 
-      &--headline-2 {
-        @include utils.map-to-styles($headline-2-styles);
+      @if not $disable-headline-2 {
+        &--headline-2 {
+          @include utils.map-to-styles($headline-2-styles);
+        }
       }
 
-      &--headline-3 {
-        @include utils.map-to-styles($headline-3-styles);
+      @if not $disable-headline-3 {
+        &--headline-3 {
+          @include utils.map-to-styles($headline-3-styles);
+        }
       }
 
-      &--headline-4 {
-        @include utils.map-to-styles($headline-4-styles);
+      @if not $disable-headline-4 {
+        &--headline-4 {
+          @include utils.map-to-styles($headline-4-styles);
+        }
       }
 
-      &--headline-5 {
-        @include utils.map-to-styles($headline-5-styles);
+      @if not $disable-headline-5 {
+        &--headline-5 {
+          @include utils.map-to-styles($headline-5-styles);
+        }
       }
 
-      &--headline-6 {
-        @include utils.map-to-styles($headline-6-styles);
+      @if not $disable-headline-6 {
+        &--headline-6 {
+          @include utils.map-to-styles($headline-6-styles);
+        }
       }
 
-      &--subtitle-1 {
-        @include utils.map-to-styles($subtitle-1-styles);
+      @if not $disable-subtitle-1 {
+        &--subtitle-1 {
+          @include utils.map-to-styles($subtitle-1-styles);
+        }
       }
 
-      &--subtitle-2 {
-        @include utils.map-to-styles($subtitle-2-styles);
+      @if not $disable-subtitle-2 {
+        &--subtitle-2 {
+          @include utils.map-to-styles($subtitle-2-styles);
+        }
       }
 
-      &--body-1 {
-        @include utils.map-to-styles($body-1-styles);
+      @if not $disable-body-1 {
+        &--body-1 {
+          @include utils.map-to-styles($body-1-styles);
+        }
       }
 
-      &--body-2 {
-        @include utils.map-to-styles($body-2-styles);
+      @if not $disable-body-2 {
+        &--body-2 {
+          @include utils.map-to-styles($body-2-styles);
+        }
       }
 
-      &--caption {
-        @include utils.map-to-styles($caption-styles);
+      @if not $disable-caption {
+        &--caption {
+          @include utils.map-to-styles($caption-styles);
+        }
       }
 
-      &--overline {
-        @include utils.map-to-styles($overline-styles);
+      @if not $disable-overline {
+        &--overline {
+          @include utils.map-to-styles($overline-styles);
+        }
       }
     }
   }

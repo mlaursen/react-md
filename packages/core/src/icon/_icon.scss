@@ -58,6 +58,9 @@ $variables: (
   symbol-optical-size
 );
 
+// shouldn't really use react-md without icons though...
+$_disable-icons: $disable-font and $disable-svg and $disable-symbol;
+
 @function get-var($name, $fallback: null) {
   $var: utils.get-var-name($variables, $name, "icon");
   @if $fallback {
@@ -78,13 +81,13 @@ $variables: (
 }
 
 @mixin use-light-theme {
-  @if not $disable-font or not $disable-svg {
+  @if not $_disable-icons {
     @include set-var(color, $light-theme-color);
   }
 }
 
 @mixin use-dark-theme {
-  @if not $disable-font or not $disable-svg {
+  @if not $_disable-icons {
     @include set-var(color, $dark-theme-color);
   }
 }
@@ -96,7 +99,7 @@ $variables: (
 }
 
 @mixin variables {
-  @if not $disable-font or not $disable-svg or not $disable-symbol {
+  @if not $_disable-icons {
     @include set-var(color, $color);
     @include set-var(size, $size);
     @include set-var(spacing, $spacing);
@@ -116,8 +119,7 @@ $variables: (
 }
 
 @mixin styles($disable-layer: false) {
-  // shouldn't really use react-md without icons though...
-  @if not $disable-font or not $disable-svg or not $disable-symbol {
+  @if not $_disable-icons {
     @include utils.optional-layer(icon, $disable-layer) {
       @include theme.default-system-theme {
         @include use-dark-theme;

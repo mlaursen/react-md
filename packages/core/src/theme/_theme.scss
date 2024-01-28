@@ -37,6 +37,25 @@ $disable-dark-elevation: $color-scheme == light !default;
 $disable-default-system-theme: false !default;
 $disable-default-root-theme: false !default;
 
+// this should only be used if your application does not use menu, dialog,
+// sheet, card, expansion-panel, select, app-bar (theme="surface")
+$disable-surface-color: false !default;
+$disable-primary-color: false !default;
+$disable-on-primary-color: $disable-primary-color !default;
+$disable-secondary-color: false !default;
+$disable-on-secondary-color: $disable-secondary-color !default;
+$disable-warning-color: false !default;
+$disable-on-warning-color: $disable-warning-color !default;
+$disable-error-color: false !default;
+$disable-on-error-color: $disable-error-color !default;
+$disable-success-color: false !default;
+$disable-on-success-color: $disable-success-color !default;
+$disable-outline-grey-color: false !default;
+$disable-text-primary-color: false !default;
+$disable-text-secondary-color: false !default;
+$disable-text-hint-color: false !default;
+$disable-text-disabled-color: false !default;
+
 $primary-color: colors.$blue-500 !default;
 $on-primary-color: a11y.contrast-color($primary-color) !default;
 $secondary-color: colors.$orange-a-400 !default;
@@ -152,7 +171,79 @@ $theme-variables: (
   outline-grey-color
 );
 
+@function _is-var-disabled($name) {
+  @if $name == surface-color {
+    @return $disable-surface-color;
+  }
+
+  @if $name == primary-color {
+    @return $disable-primary-color;
+  }
+
+  @if $name == on-primary-color {
+    @return $disable-on-primary-color;
+  }
+
+  @if $name == secondary-color {
+    @return $disable-secondary-color;
+  }
+
+  @if $name == on-secondary-color {
+    @return $disable-on-secondary-color;
+  }
+
+  @if $name == warning-color {
+    @return $disable-warning-color;
+  }
+
+  @if $name == on-warning-color {
+    @return $disable-on-warning-color;
+  }
+
+  @if $name == error-color {
+    @return $disable-error-color;
+  }
+
+  @if $name == on-error-color {
+    @return $disable-on-error-color;
+  }
+
+  @if $name == success-color {
+    @return $disable-success-color;
+  }
+
+  @if $name == on-success-color {
+    @return $disable-on-success-color;
+  }
+
+  @if $name == text-primary-color {
+    @return $disable-text-primary-color;
+  }
+
+  @if $name == text-secondary-color {
+    @return $disable-text-secondary-color;
+  }
+
+  @if $name == text-hint-color {
+    @return $disable-text-hint-color;
+  }
+
+  @if $name == text-disabled-color {
+    @return $disable-text-disabled-color;
+  }
+
+  @if $name == outline-grey-color {
+    @return $disable-outline-grey-color;
+  }
+
+  @return false;
+}
+
 @function theme-get-var($name, $fallback: null) {
+  @if _is-var-disabled($name) {
+    @return $fallback;
+  }
+
   $var: utils.get-var-name($theme-variables, $name, "theme");
 
   @if $fallback {
@@ -175,6 +266,10 @@ $theme-variables: (
 }
 
 @mixin theme-set-var($name, $value-or-theme-name) {
+  @if _is-var-disabled($name) {
+    @error '"#{$name}" is currently disabled and cannot be changed. Set "$disable-#{$name}-var" to `true` or remove it from the Sass module overrides.';
+  }
+
   $var: utils.get-var-name($theme-variables, $name, "theme");
   $value: $value-or-theme-name;
   @if list.index($theme-variables, $value-or-theme-name) {
@@ -186,6 +281,10 @@ $theme-variables: (
 }
 
 @mixin theme-use-var($property, $name: $property, $fallback: null) {
+  @if _is-var-disabled($name) {
+    @error '"#{$name}" is currently disabled and cannot be changed. Set "$disable-#{$name}-var" to `true` or remove it from the Sass module overrides.';
+  }
+
   #{$property}: theme-get-var($name, $fallback);
 }
 
@@ -203,16 +302,27 @@ $theme-variables: (
 
 @mixin use-light-theme-colors {
   @include theme-set-var(background-color, $light-theme-background-color);
-  @if $disable-dark-elevation {
+  @if $disable-dark-elevation and not $disable-surface-color {
     @include theme-set-var(surface-color, $light-theme-surface-color);
   }
-  @include theme-set-var(text-primary-color, $light-theme-text-primary-color);
-  @include theme-set-var(
-    text-secondary-color,
-    $light-theme-text-secondary-color
-  );
-  @include theme-set-var(text-hint-color, $light-theme-text-hint-color);
-  @include theme-set-var(text-disabled-color, $light-theme-text-disabled-color);
+  @if not $disable-text-primary-color {
+    @include theme-set-var(text-primary-color, $light-theme-text-primary-color);
+  }
+  @if not $disable-text-secondary-color {
+    @include theme-set-var(
+      text-secondary-color,
+      $light-theme-text-secondary-color
+    );
+  }
+  @if not $disable-text-hint-color {
+    @include theme-set-var(text-hint-color, $light-theme-text-hint-color);
+  }
+  @if not $disable-text-disabled-color {
+    @include theme-set-var(
+      text-disabled-color,
+      $light-theme-text-disabled-color
+    );
+  }
 
   @if not $disable-dark-elevation and $color-scheme != light {
     @include use-light-theme-elevation-colors;
@@ -221,16 +331,27 @@ $theme-variables: (
 
 @mixin use-dark-theme-colors {
   @include theme-set-var(background-color, $dark-theme-background-color);
-  @if $disable-dark-elevation {
+  @if $disable-dark-elevation and not $disable-surface-color {
     @include theme-set-var(surface-color, $dark-theme-surface-color);
   }
-  @include theme-set-var(text-primary-color, $dark-theme-text-primary-color);
-  @include theme-set-var(
-    text-secondary-color,
-    $dark-theme-text-secondary-color
-  );
-  @include theme-set-var(text-hint-color, $dark-theme-text-hint-color);
-  @include theme-set-var(text-disabled-color, $dark-theme-text-disabled-color);
+  @if not $disable-text-primary-color {
+    @include theme-set-var(text-primary-color, $dark-theme-text-primary-color);
+  }
+  @if not $disable-text-secondary-color {
+    @include theme-set-var(
+      text-secondary-color,
+      $dark-theme-text-secondary-color
+    );
+  }
+  @if not $disable-text-hint-color {
+    @include theme-set-var(text-hint-color, $dark-theme-text-hint-color);
+  }
+  @if not $disable-text-disabled-color {
+    @include theme-set-var(
+      text-disabled-color,
+      $dark-theme-text-disabled-color
+    );
+  }
 
   @if not $disable-dark-elevation {
     @include use-dark-theme-elevation-colors;
@@ -239,24 +360,52 @@ $theme-variables: (
 
 @mixin theme-variables {
   @include theme-set-var(background-color, $background-color);
-  @if $disable-dark-elevation {
+  @if $disable-dark-elevation and not $disable-surface-color {
     @include theme-set-var(surface-color, $surface-color);
   }
 
-  @include theme-set-var(primary-color, $primary-color);
-  @include theme-set-var(on-primary-color, $on-primary-color);
-  @include theme-set-var(secondary-color, $secondary-color);
-  @include theme-set-var(on-secondary-color, $on-secondary-color);
-  @include theme-set-var(warning-color, $warning-color);
-  @include theme-set-var(on-warning-color, $on-warning-color);
-  @include theme-set-var(error-color, $error-color);
-  @include theme-set-var(on-error-color, $on-error-color);
-  @include theme-set-var(success-color, $success-color);
-  @include theme-set-var(on-success-color, $on-success-color);
-  @include theme-set-var(text-primary-color, $text-primary-color);
-  @include theme-set-var(text-secondary-color, $text-secondary-color);
-  @include theme-set-var(text-hint-color, $text-hint-color);
-  @include theme-set-var(text-disabled-color, $text-disabled-color);
+  @if not $disable-primary-color {
+    @include theme-set-var(primary-color, $primary-color);
+  }
+  @if not $disable-on-primary-color {
+    @include theme-set-var(on-primary-color, $on-primary-color);
+  }
+  @if not $disable-secondary-color {
+    @include theme-set-var(secondary-color, $secondary-color);
+  }
+  @if not $disable-on-secondary-color {
+    @include theme-set-var(on-secondary-color, $on-secondary-color);
+  }
+  @if not $disable-warning-color {
+    @include theme-set-var(warning-color, $warning-color);
+  }
+  @if not $disable-on-warning-color {
+    @include theme-set-var(on-warning-color, $on-warning-color);
+  }
+  @if not $disable-error-color {
+    @include theme-set-var(error-color, $error-color);
+  }
+  @if not $disable-on-error-color {
+    @include theme-set-var(on-error-color, $on-error-color);
+  }
+  @if not $disable-success-color {
+    @include theme-set-var(success-color, $success-color);
+  }
+  @if not $disable-on-success-color {
+    @include theme-set-var(on-success-color, $on-success-color);
+  }
+  @if not $disable-text-primary-color {
+    @include theme-set-var(text-primary-color, $text-primary-color);
+  }
+  @if not $disable-text-secondary-color {
+    @include theme-set-var(text-secondary-color, $text-secondary-color);
+  }
+  @if not $disable-text-hint-color {
+    @include theme-set-var(text-hint-color, $text-hint-color);
+  }
+  @if not $disable-text-disabled-color {
+    @include theme-set-var(text-disabled-color, $text-disabled-color);
+  }
 
   @if not $disable-dark-elevation {
     @if $color-scheme == dark {
@@ -268,7 +417,9 @@ $theme-variables: (
 
   @include theme-set-var(outline-width, $outline-width);
   @include theme-set-var(outline-color, $outline-color);
-  @include theme-set-var(outline-grey-color, $outline-grey-color);
+  @if not $disable-outline-grey-color {
+    @include theme-set-var(outline-grey-color, $outline-grey-color);
+  }
 }
 
 @mixin create-surface($z-value, $disable-colors: $disable-dark-elevation) {
@@ -278,7 +429,9 @@ $theme-variables: (
   @if not $disable-colors {
     @include theme-set-var(background-color, theme-get-var(surface-color));
     @include theme-use-var(background-color);
-    @include theme-use-var(color, text-primary-color);
+    @if not $disable-text-primary-color {
+      @include theme-use-var(color, text-primary-color);
+    }
   }
 }
 
@@ -351,7 +504,12 @@ $theme-variables: (
 }
 
 @mixin default-system-theme {
-  @if not $disable-default-system-theme and $color-scheme == system {
+  @if not
+    $disable-default-system-theme and
+    $disable-default-root-theme and
+    $color-scheme ==
+    system
+  {
     @media (prefers-color-scheme: dark) {
       :root {
         @content;

@@ -69,31 +69,35 @@ $variables: (
 }
 
 @mixin use-light-theme {
-  @if $light-theme-greyscale-background-color !=
-    $dark-theme-greyscale-background-color
-  {
-    @include set-var(
-      greyscale-background-color,
-      $light-theme-greyscale-background-color
-    );
-  }
-  @if $light-theme-greyscale-color != $dark-theme-greyscale-color {
-    @include set-var(greyscale-color, $light-theme-greyscale-color);
+  @if not $disable-everything {
+    @if $light-theme-greyscale-background-color !=
+      $dark-theme-greyscale-background-color
+    {
+      @include set-var(
+        greyscale-background-color,
+        $light-theme-greyscale-background-color
+      );
+    }
+    @if $light-theme-greyscale-color != $dark-theme-greyscale-color {
+      @include set-var(greyscale-color, $light-theme-greyscale-color);
+    }
   }
 }
 
 @mixin use-dark-theme {
-  @if $light-theme-greyscale-background-color !=
-    $dark-theme-greyscale-background-color
-  {
-    @include set-var(
-      greyscale-background-color,
+  @if not $disable-everything {
+    @if $light-theme-greyscale-background-color !=
       $dark-theme-greyscale-background-color
-    );
-  }
+    {
+      @include set-var(
+        greyscale-background-color,
+        $dark-theme-greyscale-background-color
+      );
+    }
 
-  @if $light-theme-greyscale-color != $dark-theme-greyscale-color {
-    @include set-var(greyscale-color, $dark-theme-greyscale-color);
+    @if $light-theme-greyscale-color != $dark-theme-greyscale-color {
+      @include set-var(greyscale-color, $dark-theme-greyscale-color);
+    }
   }
 }
 
