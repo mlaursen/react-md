@@ -56,6 +56,10 @@ const config: Config = {
     // able to remove this one I start testing the documentation site
     "!<rootDir>/src/**/index.ts",
     "!<rootDir>/src/**/types.ts",
+    // it's hard to verify these since they probably only occur when trying to
+    // use react-dom/server in jsdom?
+    "!<rootDir>/src/test-utils/polyfills/TextEncoder.ts",
+    "!<rootDir>/src/test-utils/polyfills/TextDecoder.ts",
   ],
 
   extensionsToTreatAsEsm: [".ts", ".tsx"],
