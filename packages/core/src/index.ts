@@ -1,6 +1,7 @@
 export { nanoid } from "nanoid";
 export * from "./CoreProviders.js";
 export * from "./NoSsr.js";
+export * from "./RootHtml.js";
 export * from "./SsrProvider.js";
 export * from "./app-bar/AppBar.js";
 export * from "./app-bar/AppBarTitle.js";

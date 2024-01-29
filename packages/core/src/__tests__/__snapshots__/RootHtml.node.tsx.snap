@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RootHtml should allow a custom bodyClassName 1`] = `
+<RootHtml
+  bodyClassName="body-class-name"
+/>
+`;
+
+exports[`RootHtml should allow the body className to be set through bodyProps when the bodyClassName prop is not provided 1`] = `"<html dir="ltr" lang="en"><body class="custom-body-class"></body></html>"`;
+
+exports[`RootHtml should allow the body className to be set through bodyProps when the bodyClassName prop is not provided 2`] = `"<html dir="ltr" lang="en"><body class="body-class"></body></html>"`;
+
+exports[`RootHtml should allow the dir and lang to be overwritten 1`] = `"<html dir="rtl" lang="ar"><body></body></html>"`;
+
+exports[`RootHtml should allow the dir to be overwritten 1`] = `"<html dir="rtl" lang="en"><body></body></html>"`;
+
+exports[`RootHtml should allow the lang to be overwritten 1`] = `"<html dir="ltr" lang="da"><body></body></html>"`;
+
+exports[`RootHtml should render the html and body elements with the default props 1`] = `"<html dir="ltr" lang="en"><body></body></html>"`;
