@@ -28,6 +28,10 @@ declare module "next/font/local" {
   export = localFont.default;
 }
 
+declare module "next/font/google" {
+  export * from "next/dist/compiled/@next/font/dist/google/index.js";
+}
+
 declare module "next/dynamic.js" {
   import dynamic_ from "next/dist/shared/lib/dynamic.js";
   export * from "next/dist/shared/lib/dynamic.js";
