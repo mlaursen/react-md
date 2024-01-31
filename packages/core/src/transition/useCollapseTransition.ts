@@ -22,21 +22,6 @@ const noop = (): void => {
 /**
  * @remarks \@since 2.0.0
  */
-export const DEFAULT_COLLAPSE_MIN_HEIGHT = 0;
-
-/**
- * @remarks \@since 2.0.0
- */
-export const DEFAULT_COLLAPSE_MIN_PADDING_TOP = 0;
-
-/**
- * @remarks \@since 2.0.0
- */
-export const DEFAULT_COLLAPSE_MIN_PADDING_BOTTOM = 0;
-
-/**
- * @remarks \@since 2.0.0
- */
 export const DEFAULT_COLLAPSE_TIMEOUT: Readonly<TransitionTimeoutObject> = {
   enter: 250,
   exit: 200,
@@ -58,8 +43,7 @@ export interface CollapseConfigurationStyle {
    * are all set to `0` (default), the child will be removed from the DOM while
    * collapsed.
    *
-   * @see {@link DEFAULT_COLLAPSE_MIN_HEIGHT}
-   * @defaultValue `DEFAULT_COLLAPSE_MIN_HEIGHT`
+   * @defaultValue `0`
    */
   minHeight?: number | string;
 
@@ -72,8 +56,7 @@ export interface CollapseConfigurationStyle {
    * are all set to `0` (default), the child will be removed from the DOM while
    * collapsed.
    *
-   * @see {@link DEFAULT_COLLAPSE_MIN_PADDING_TOP}
-   * @defaultValue `DEFAULT_COLLAPSE_MIN_PADDING_TOP`
+   * @defaultValue `0`
    */
   minPaddingTop?: number | string;
 
@@ -86,8 +69,7 @@ export interface CollapseConfigurationStyle {
    * are all set to `0` (default), the child will be removed from the DOM while
    * collapsed.
    *
-   * @see {@link DEFAULT_COLLAPSE_MIN_PADDING_BOTTOM}
-   * @defaultValue `DEFAULT_COLLAPSE_MIN_PADDING_BOTTOM`
+   * @defaultValue `0`
    */
   minPaddingBottom?: number | string;
 }
@@ -307,9 +289,9 @@ export function useCollapseTransition<E extends HTMLElement>(
     className,
     transitionIn,
     timeout = DEFAULT_COLLAPSE_TIMEOUT,
-    minHeight = DEFAULT_COLLAPSE_MIN_HEIGHT,
-    minPaddingTop = DEFAULT_COLLAPSE_MIN_PADDING_TOP,
-    minPaddingBottom = DEFAULT_COLLAPSE_MIN_PADDING_BOTTOM,
+    minHeight = 0,
+    minPaddingTop = 0,
+    minPaddingBottom = 0,
     temporary = minHeight === 0 &&
       minPaddingTop === 0 &&
       minPaddingBottom === 0,
