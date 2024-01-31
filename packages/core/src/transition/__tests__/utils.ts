@@ -175,6 +175,31 @@ describe("getElementSizing", () => {
     expect(getComputedStyle).toHaveBeenCalledWith(clone);
     expect(removeChild).toHaveBeenCalledWith(clone);
   });
+
+  it("should add the paddingTop and paddingBottom to the maxHeight when `box-sizing: content-box` has been set", () => {
+    const scrollHeight = 1000;
+    const paddingTop = 20;
+    const paddingBottom = 16;
+    const container = document.createElement("div");
+    const element = document.createElement("div");
+    const clone = document.createElement("div");
+    container.appendChild(element);
+
+    jest.spyOn(clone, "scrollHeight", "get").mockReturnValue(scrollHeight);
+    jest.spyOn(element, "cloneNode").mockReturnValue(clone);
+    jest.spyOn(window, "getComputedStyle").mockReturnValue({
+      ...document.body.style,
+      paddingTop: "20px",
+      paddingBottom: "16px",
+      boxSizing: "content-box",
+    });
+
+    expect(getElementSizing(element)).toEqual({
+      maxHeight: scrollHeight + paddingTop + paddingBottom,
+      paddingTop,
+      paddingBottom,
+    });
+  });
 });
 
 describe("getTransitionClassNames", () => {

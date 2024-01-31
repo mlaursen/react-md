@@ -57,9 +57,9 @@ export interface CollapseSizing {
  * @internal
  */
 export function getElementSizing(element: HTMLElement | null): CollapseSizing {
-  let maxHeight;
-  let paddingTop;
-  let paddingBottom;
+  let maxHeight: number | undefined;
+  let paddingTop: number | undefined;
+  let paddingBottom: number | undefined;
   if (element) {
     // clone the element so that the total height and padding can be calculated
     // without being affected by the collapse transition inline styles
@@ -74,14 +74,19 @@ export function getElementSizing(element: HTMLElement | null): CollapseSizing {
     container.appendChild(cloned);
     maxHeight = cloned.scrollHeight;
     const style = window.getComputedStyle(cloned);
+    const isContentBox = style.boxSizing === "content-box";
     if (style.paddingTop) {
       paddingTop = parseFloat(style.paddingTop);
-      maxHeight + paddingTop;
+      if (isContentBox) {
+        maxHeight += paddingTop;
+      }
     }
 
     if (style.paddingBottom) {
       paddingBottom = parseFloat(style.paddingBottom);
-      maxHeight + paddingBottom;
+      if (isContentBox) {
+        maxHeight += paddingBottom;
+      }
     }
     container.removeChild(cloned);
   }
