@@ -1,7 +1,6 @@
 "use client";
 import { cnb } from "cnbuilder";
 import {
-  useEffect,
   useMemo,
   useRef,
   useState,
@@ -39,6 +38,7 @@ import {
 } from "./types.js";
 import { ListboxProvider } from "./useListboxProvider.js";
 import { triggerManualChangeEvent, tryToSubmitRelatedForm } from "./utils.js";
+import { useFormReset } from "./useFormReset.js";
 
 const EMPTY_STRING = "" as const;
 const noop = (): void => {
@@ -224,31 +224,11 @@ export function Select<Value extends string>(
     return typeof value !== "undefined" ? value : EMPTY_STRING;
   });
   const initialValue = useRef(currentValue);
-
-  useEffect(() => {
-    const select = inputRef.current;
-    if (!select) {
-      return;
-    }
-
-    const formElement =
-      select.closest<HTMLFormElement>("form") ||
-      (form && document.getElementById(form)) ||
-      null;
-
-    if (!formElement) {
-      return;
-    }
-
-    const handleReset = (): void => {
-      triggerManualChangeEvent(select, initialValue.current);
-    };
-
-    formElement.addEventListener("reset", handleReset);
-    return () => {
-      formElement.removeEventListener("reset", handleReset);
-    };
-  }, [form, inputRef]);
+  useFormReset({
+    form,
+    elementRef: inputRef,
+    defaultValue: initialValue.current,
+  });
 
   const { options, searchValues, currentOption, currentIndex } =
     extractOptionsFromChildren(
