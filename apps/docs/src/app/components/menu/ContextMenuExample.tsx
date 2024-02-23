@@ -26,11 +26,7 @@ export default function ContextMenuExample(): ReactElement {
 
   return (
     <>
-      <TextArea
-        id="simple-context-menu-area"
-        onContextMenu={onContextMenu}
-        placeholder="Right click me!"
-      />
+      <TextArea onContextMenu={onContextMenu} placeholder="Right click me!" />
       <Menu {...menuProps}>
         <MenuItem leftAddon={<ContentCutOutlinedIcon />}>Cut</MenuItem>
         <MenuItem leftAddon={<ContentCopyOutlinedIcon />}>Copy</MenuItem>

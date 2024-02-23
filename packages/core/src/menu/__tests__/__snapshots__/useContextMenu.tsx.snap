@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useContextMenu should work as expected 1`] = `
+<div
+  aria-label="Context Menu"
+  class="rmd-menu rmd-menu--elevated"
+  id="menu-:r0:"
+  role="menu"
+  style="left: 300px; top: 600px; position: fixed; transform-origin: 0 0;"
+  tabindex="-1"
+>
+  <ul
+    class="rmd-list"
+    role="none"
+  >
+    <li
+      class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item"
+      id="menuitem-:r1:"
+      role="menuitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        Cut
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item"
+      id="menuitem-:r2:"
+      role="menuitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        Copy
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item"
+      id="menuitem-:r3:"
+      role="menuitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        Paste
+      </span>
+    </li>
+  </ul>
+</div>
+`;

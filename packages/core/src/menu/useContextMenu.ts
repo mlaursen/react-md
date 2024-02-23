@@ -71,15 +71,15 @@ const noop = (): void => {
  *   const { menuProps, onContextMenu } = useContextMenu();
  *
  *   return (
- *     <div onContextMenu={onContextMenu}>
- *       <textarea />
+ *     <>
+ *       <textarea onContextMenu={onContextMenu} />
  *       <Menu {...menuProps}>
  *         <MenuItem>Cut</MenuItem>
  *         <MenuItem>Copy</MenuItem>
  *         <MenuItem>Paste</MenuItem>
  *         <MenuItem>Undo</MenuItem>
  *       </Menu>
- *     </div>
+ *     </>
  *   );
  * }
  * ```

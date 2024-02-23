@@ -85,35 +85,3 @@ exports[`useFixedPositioning should default to fixing itself with the BELOW_CENT
   </button>
 </div>
 `;
-
-exports[`useFixedPositioning should update the style correctly based on the initialX and initialY so that it can be used for context menus 1`] = `
-<div>
-  <button
-    type="button"
-  >
-    Toggle
-  </button>
-  <div
-    data-testid="element"
-    style="position: fixed; left: 16px; top: 0px;"
-  >
-    Some content.
-  </div>
-</div>
-`;
-
-exports[`useFixedPositioning should update the style correctly based on the initialX and initialY so that it can be used for context menus 2`] = `
-<div>
-  <button
-    type="button"
-  >
-    Toggle
-  </button>
-  <div
-    data-testid="element"
-    style="position: fixed; left: 30px; top: 40px;"
-  >
-    Some content.
-  </div>
-</div>
-`;

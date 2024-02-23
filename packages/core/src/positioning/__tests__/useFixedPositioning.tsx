@@ -141,20 +141,6 @@ describe("useFixedPositioning", () => {
     expect(onResize).toHaveBeenCalled();
   });
 
-  it("should update the style correctly based on the initialX and initialY so that it can be used for context menus", () => {
-    const { container, rerender } = render(<Test />);
-    const toggle = screen.getByRole("button");
-
-    fireEvent.click(toggle);
-    act(() => {
-      jest.runAllTimers();
-    });
-    expect(container).toMatchSnapshot();
-
-    rerender(<Test initialX={30} initialY={40} />);
-    expect(container).toMatchSnapshot();
-  });
-
   it("should correctly call the transition callbacks", () => {
     const onEnter = jest.fn();
     const onEntering = jest.fn();
