@@ -59,8 +59,7 @@ export const DEFAULT_FIXED_DIALOG_CLASSNAMES: Readonly<CSSTransitionClassNamesOb
  *   Typography,
  *   useToggle,
  * } from "@react-md/core";
- * import { useRef } from "react";
- * import type { ReactElement } from "react";
+ * import { useId, useRef, type ReactElement } from "react";
  *
  * function Example(): ReactElement {
  *   const {
@@ -68,18 +67,20 @@ export const DEFAULT_FIXED_DIALOG_CLASSNAMES: Readonly<CSSTransitionClassNamesOb
  *     disable: onRequestClose,
  *     toggled: visible,
  *   } = useToggle(false);
+ *   const titleId = useId();
  *   const fixedTo = useRef<HTMLButtonElement>(null)
  *
  *   return (
  *     <>
  *       <Button ref={fixedTo} onClick={toggle}>Toggle</Button>
  *       <FixedDialog
- *         aria-labelledby="dialog-title"
+ *         aria-labelledby={titleId}
+ *         fixedTo={fixedTo}
  *         visible={visible}
  *         onRequestClose={onRequestClose}
  *       >
  *         <DialogHeader>
- *           <DialogTitle id="dialog-title">Simple Dialog</DialogTitle>
+ *           <DialogTitle id={titleId}>Simple Dialog</DialogTitle>
  *         </DialogHeader>
  *         <DialogContent>
  *           <Typography margin="none">This is some text in a dialog.</Typography>

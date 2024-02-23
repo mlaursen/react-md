@@ -39,6 +39,23 @@ dialog to describe the alert.
 
 {{ "component": "./ModalDialogExample.tsx" }}
 
+# Fixed Dialog
+
+If a dialog should be positioned relative to another element, use the
+`FixedDialog` component. The `FixedDialog` component maintains the same API as
+the `Dialog` component with a few changes:
+
+- a new `fixedTo` ref prop is required to position itself to another element
+  - the default anchor is set to `TOP_INNER_RIGHT_ANCHOR`
+- the CSS transition defaults to using a scale transition
+- the overlay is hidden by default
+- the page is scrollable while the dialog is visible by default
+  - the dialog will automatically hide if the user scrolls the dialog out of
+    view
+  - the `fixedTo` element is not re-focused for this flow
+
+{{ "component": "./FixedDialogExample.tsx" }}
+
 # Setting the Initial Focus
 
 When the dialog gains visibility, the current focus will move to the dialog

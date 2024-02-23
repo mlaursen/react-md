@@ -10,6 +10,7 @@ export const toc = [
     items: [{ id: "full-page-dialog", depth: 2, value: "Full Page Dialog" }],
   },
   { id: "modal-dialog", depth: 1, value: "Modal Dialog" },
+  { id: "fixed-dialog", depth: 1, value: "Fixed Dialog" },
   {
     id: "setting-the-initial-focus",
     depth: 1,
