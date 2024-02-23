@@ -380,12 +380,6 @@ export function useFixedPositioning<
     };
   }, [active, fixedTo, onResize, onScroll, ref, updateStyle]);
 
-  useEffect(() => {
-    if (!ref.current || !ref.current.hidden) {
-      updateStyle();
-    }
-  }, [ref, updateStyle]);
-
   const callbacks: Required<FixedPositioningTransitionCallbacks> = {
     onEnter(appearing) {
       onEnter(appearing);

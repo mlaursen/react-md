@@ -26,6 +26,7 @@ import {
 } from "../transition/useScaleTransition.js";
 import { type LabelRequiredForA11y, type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
+import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect.js";
 import {
   MenuConfigurationProvider,
   useMenuConfiguration,
@@ -449,7 +450,7 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
       },
     });
 
-    const { ref, style, callbacks } = useFixedPositioning({
+    const { ref, style, callbacks, updateStyle } = useFixedPositioning({
       ...transitionOptions,
       onEnter,
       style: isSheet ? propStyle : menuStyle,
@@ -539,6 +540,13 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
         window.removeEventListener("click", callback);
       };
     }, [disableHoverMode, role, visible]);
+    useIsomorphicLayoutEffect(() => {
+      if (!visible) {
+        return;
+      }
+
+      updateStyle();
+    }, [updateStyle, children, visible]);
 
     return (
       <MenuConfigurationProvider
