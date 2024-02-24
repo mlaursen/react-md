@@ -1,14 +1,16 @@
 import { cnb } from "cnbuilder";
-import { type ReactElement } from "react";
+import { type HTMLAttributes, type ReactElement } from "react";
 import { bem } from "../utils/bem.js";
 import { type OptionProps } from "./Option.js";
 
-const styles = bem("rmd-select-value");
+const styles = bem("rmd-selected-option");
 
 /**
  * @remarks \@since 6.0.0
+ * @internal
  */
-export interface SelectValueProps extends Partial<OptionProps> {
+export interface SelectedOptionProps extends HTMLAttributes<HTMLDivElement> {
+  option: OptionProps | undefined;
   disableAddon: boolean;
 }
 
@@ -20,10 +22,10 @@ export interface SelectValueProps extends Partial<OptionProps> {
  * @remarks \@since 6.0.0
  * @internal
  */
-export function SelectValue(props: SelectValueProps): ReactElement {
-  const { leftAddon, disableAddon, children: propChildren } = props;
+export function SelectedOption(props: SelectedOptionProps): ReactElement {
+  const { disableAddon, option, className, ...remaining } = props;
 
-  let children = propChildren;
+  let children = option?.children;
   // when the children are a string or number, wrap it in additional span so
   // that overflow can be ellipsis-ed
   if (typeof children === "string" || typeof children === "number") {
@@ -31,8 +33,8 @@ export function SelectValue(props: SelectValueProps): ReactElement {
   }
 
   return (
-    <div className={cnb(styles())}>
-      {!disableAddon && leftAddon}
+    <div {...remaining} className={cnb(styles(), className)}>
+      {!disableAddon && option?.leftAddon}
       {children}
     </div>
   );

@@ -476,7 +476,7 @@ export default function SelectWithAddons(): ReactElement {
 
 If an option provides the `leftAddon` prop, it will automatically be added as
 the `leftAddon` to the `Select` once it has been selected. This behavior can be
-disabled by setting `disableValueAddon` to `true`.
+disabled by setting `disableOptionAddon` to `true`.
 
 ```tsx
 // preview editable
@@ -501,7 +501,7 @@ export default function UsingOptionAddons(): ReactElement {
           Option 4
         </Option>
       </Select>
-      <Select label="Disable Addon" disableValueAddon>
+      <Select label="Disable Addon" disableOptionAddon>
         <Option value="a" leftAddon={<Avatar size="icon">1</Avatar>}>
           Option 1
         </Option>

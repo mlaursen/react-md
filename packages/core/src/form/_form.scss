@@ -1070,7 +1070,7 @@ $variables: (
       outline-style: none;
     }
 
-    .rmd-select-value {
+    .rmd-selected-option {
       @include _text-field-base-styles;
 
       align-items: center;

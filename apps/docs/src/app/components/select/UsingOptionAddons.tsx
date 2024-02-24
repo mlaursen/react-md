@@ -19,7 +19,7 @@ export default function UsingOptionAddons(): ReactElement {
           Option 4
         </Option>
       </Select>
-      <Select label="Disable Addon" disableValueAddon>
+      <Select label="Disable Addon" disableOptionAddon>
         <Option value="a" leftAddon={<Avatar size="icon">1</Avatar>}>
           Option 1
         </Option>

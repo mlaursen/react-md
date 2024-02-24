@@ -1,0 +1,490 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Select should allow for the OptGroup to be used 1`] = `
+<div
+  aria-labelledby="select-label-:r1l:"
+  class="rmd-menu rmd-menu--elevated"
+  id="menu-:r1o:"
+  role="listbox"
+  style="position: fixed; transform-origin: 50% 0; left: 16px; top: 0px; min-width: 0;"
+  tabindex="-1"
+>
+  <ul
+    class="rmd-list"
+    role="none"
+  >
+    <ul
+      aria-labelledby="optgroup-:r1p:"
+      class="rmd-list rmd-menu-item-group"
+      role="group"
+    >
+      <li
+        class="rmd-list-subheader"
+        id="optgroup-:r1p:"
+        role="presentation"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          A
+        </span>
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-menu-item--focused rmd-option rmd-option--icon"
+        id="option-:r1q:"
+        role="option"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon rmd-icon rmd-icon--svg"
+        />
+        <span
+          class="rmd-list-item__text"
+        >
+          Apple
+        </span>
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
+        id="option-:r1s:"
+        role="option"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon rmd-icon rmd-icon--svg"
+        />
+        <span
+          class="rmd-list-item__text"
+        >
+          Apricot
+        </span>
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
+        id="option-:r1u:"
+        role="option"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon rmd-icon rmd-icon--svg"
+        />
+        <span
+          class="rmd-list-item__text"
+        >
+          Avocado
+        </span>
+      </li>
+    </ul>
+    <ul
+      aria-labelledby="optgroup-:r20:"
+      class="rmd-list rmd-menu-item-group"
+      role="group"
+    >
+      <li
+        class="rmd-list-subheader"
+        id="optgroup-:r20:"
+        role="presentation"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          B
+        </span>
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
+        id="option-:r21:"
+        role="option"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon rmd-icon rmd-icon--svg"
+        />
+        <span
+          class="rmd-list-item__text"
+        >
+          Blueberry
+        </span>
+      </li>
+    </ul>
+    <ul
+      aria-labelledby="optgroup-:r23:"
+      class="rmd-list rmd-menu-item-group"
+      role="group"
+    >
+      <li
+        class="rmd-list-subheader"
+        id="optgroup-:r23:"
+        role="presentation"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          <span>
+            C
+          </span>
+        </span>
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
+        id="option-:r24:"
+        role="option"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon rmd-icon rmd-icon--svg"
+        />
+        <span
+          class="rmd-list-item__text"
+        >
+          Cranberry
+        </span>
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
+        id="option-:r26:"
+        role="option"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon rmd-icon rmd-icon--svg"
+        />
+        <span
+          class="rmd-list-item__text"
+        >
+          Currant
+        </span>
+      </li>
+    </ul>
+  </ul>
+</div>
+`;
+
+exports[`Select should allow the selected icon to appear after the option instead of before 1`] = `
+<li
+  aria-selected="true"
+  class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-menu-item--focused rmd-option rmd-option--icon rmd-option--selected"
+  id="option-:r2q:"
+  role="option"
+  tabindex="-1"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon"
+  >
+    check
+  </span>
+  <span
+    class="rmd-list-item__text"
+  >
+    Option 1
+  </span>
+</li>
+`;
+
+exports[`Select should allow the selected icon to appear after the option instead of before 2`] = `
+<li
+  aria-selected="true"
+  class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-menu-item--focused rmd-option rmd-option--icon rmd-option--selected"
+  id="option-:r2q:"
+  role="option"
+  tabindex="-1"
+>
+  <span
+    class="rmd-list-item__text"
+  >
+    Option 1
+  </span>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons rmd-icon--after rmd-list-item__addon rmd-option__icon"
+  >
+    check
+  </span>
+</li>
+`;
+
+exports[`Select should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+<div
+  aria-activedescendant=""
+  aria-expanded="false"
+  aria-haspopup="listbox"
+  aria-labelledby="select-label-:r1:"
+  class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-text-field-container--outline-right rmd-select-container"
+  role="combobox"
+  tabindex="0"
+>
+  <div
+    class="rmd-selected-option"
+    data-testid="selected"
+  />
+  <input
+    aria-hidden="true"
+    class="rmd-text-field rmd-text-field--placeholder-hidden rmd-select rmd-select--outline"
+    id="select-:r0:"
+    placeholder=" "
+    tabindex="-1"
+    type="text"
+    value=""
+  />
+  <label
+    class="rmd-label rmd-label--floating"
+    for="select-:r0:"
+    id="select-label-:r1:"
+  >
+    Select
+  </label>
+  <span
+    class="rmd-text-field-addon rmd-text-field-addon--after rmd-text-field-addon--presentational"
+  >
+    <span
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate"
+    >
+      arrow_drop_down
+    </span>
+  </span>
+</div>
+`;
+
+exports[`Select should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+<div
+  aria-activedescendant=""
+  aria-expanded="false"
+  aria-haspopup="listbox"
+  aria-labelledby="select-label-:r1:"
+  class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-text-field-container--outline-right rmd-select-container custom-class-name"
+  role="combobox"
+  style="color: white;"
+  tabindex="0"
+>
+  <div
+    class="rmd-selected-option"
+    data-testid="selected"
+  />
+  <input
+    aria-hidden="true"
+    class="rmd-text-field rmd-text-field--placeholder-hidden rmd-select rmd-select--outline"
+    id="select-:r0:"
+    placeholder=" "
+    tabindex="-1"
+    type="text"
+    value=""
+  />
+  <label
+    class="rmd-label rmd-label--floating"
+    for="select-:r0:"
+    id="select-label-:r1:"
+  >
+    Select
+  </label>
+  <span
+    class="rmd-text-field-addon rmd-text-field-addon--after rmd-text-field-addon--presentational"
+  >
+    <span
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate"
+    >
+      arrow_drop_down
+    </span>
+  </span>
+</div>
+`;
+
+exports[`Select should automatically pull options from the children and update when selected 1`] = `
+<div
+  aria-labelledby="select-label-:r6:"
+  class="rmd-menu rmd-menu--elevated"
+  id="menu-:r9:"
+  role="listbox"
+  style="position: fixed; transform-origin: 50% 0; left: 16px; top: 0px; min-width: 0;"
+  tabindex="-1"
+>
+  <ul
+    class="rmd-list"
+    role="none"
+  >
+    <li
+      class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-menu-item--focused rmd-option rmd-option--icon"
+      id="option-:ra:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon rmd-icon rmd-icon--svg"
+      />
+      <span
+        class="rmd-list-item__text"
+      >
+        Option 1
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
+      id="option-:rc:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon rmd-icon rmd-icon--svg"
+      />
+      <span
+        class="rmd-list-item__text"
+      >
+        Option 2
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
+      id="option-:re:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon rmd-icon rmd-icon--svg"
+      />
+      <span
+        class="rmd-list-item__text"
+      >
+        Option 3
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
+      id="option-:rg:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon rmd-icon rmd-icon--svg"
+      />
+      <span
+        class="rmd-list-item__text"
+      >
+        Option 4
+      </span>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`Select should automatically pull options from the children and update when selected 2`] = `
+<div
+  aria-labelledby="select-label-:r6:"
+  class="rmd-menu rmd-menu--elevated"
+  id="menu-:r9:"
+  role="listbox"
+  style="position: fixed; transform-origin: 50% 0; left: 16px; top: 0px; min-width: 0;"
+  tabindex="-1"
+>
+  <ul
+    class="rmd-list"
+    role="none"
+  >
+    <li
+      aria-selected="true"
+      class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-menu-item--focused rmd-option rmd-option--icon rmd-option--selected"
+      id="option-:ri:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon"
+      >
+        check
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        Option 1
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
+      id="option-:rk:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon rmd-icon rmd-icon--svg"
+      />
+      <span
+        class="rmd-list-item__text"
+      >
+        Option 2
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
+      id="option-:rm:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon rmd-icon rmd-icon--svg"
+      />
+      <span
+        class="rmd-list-item__text"
+      >
+        Option 3
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
+      id="option-:ro:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon rmd-icon rmd-icon--svg"
+      />
+      <span
+        class="rmd-list-item__text"
+      >
+        Option 4
+      </span>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`Select should include the leftAddon of the selected option unless disableOptionAddon is true 1`] = `
+<div
+  class="rmd-selected-option"
+  data-testid="selected"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-avatar rmd-avatar--icon"
+    data-testid="avatar"
+  >
+    A
+  </span>
+  <span
+    class="rmd-selected-option__v"
+  >
+    Avatar
+  </span>
+</div>
+`;
+
+exports[`Select should include the leftAddon of the selected option unless disableOptionAddon is true 2`] = `
+<div
+  class="rmd-selected-option"
+  data-testid="selected"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+    data-testid="icon"
+  >
+    favorite
+  </span>
+  <span
+    class="rmd-selected-option__v"
+  >
+    Icon
+  </span>
+</div>
+`;

@@ -273,16 +273,16 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
     }, []);
   }
 
+  let tabIndex: number | undefined;
+  if (tabIndexBehavior) {
+    tabIndex = tabIndexBehavior === "roving" && activeDescendantId ? -1 : 0;
+  }
+
   return {
     movementProps: {
       "aria-activedescendant":
         tabIndexBehavior === "virtual" ? activeDescendantId : undefined,
-      tabIndex:
-        tabIndexBehavior === "roving"
-          ? activeDescendantId
-            ? -1
-            : 0
-          : undefined,
+      tabIndex,
 
       // Note: This used to be on the `onFocus` event, but this causes issues in
       // Chromium browsers for drag and drop behavior

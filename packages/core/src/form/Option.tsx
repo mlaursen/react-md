@@ -108,7 +108,7 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>(
       className,
       selectedIcon: propSelectedIcon,
       unselectedIcon: propUnselectedIcon,
-      selectedIconAfter = false,
+      selectedIconAfter: propSelectedIconAfter,
       textIconSpacingProps,
       leftAddon: propLeftAddon,
       leftAddonType,
@@ -123,7 +123,13 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>(
     } = props;
 
     const id = useEnsuredId(propId, "option");
-    const { inputRef, currentValue, disableSelectedIcon } = useListboxContext();
+    const {
+      inputRef,
+      currentValue,
+      disableSelectedIcon,
+      selectedIconAfter: contextSelectedIconAfter,
+    } = useListboxContext();
+    const selectedIconAfter = propSelectedIconAfter ?? contextSelectedIconAfter;
     const selected = value === currentValue;
     const selectedIcon = getIcon(
       "selected",

@@ -5,6 +5,7 @@ import {
   useRef,
   useState,
   type ChangeEvent,
+  type HTMLAttributes,
   type ReactElement,
   type ReactNode,
   type Ref,
@@ -12,13 +13,12 @@ import {
 import { IconRotator } from "../icon/IconRotator.js";
 import { getIcon } from "../icon/iconConfig.js";
 import { Menu, type MenuProps } from "../menu/Menu.js";
-import { findMatchIndex } from "../movement/findMatchIndex.js";
 import {
   KeyboardMovementProvider,
   useKeyboardMovementProvider,
 } from "../movement/useKeyboardMovementProvider.js";
-import { isSearchableEvent } from "../movement/utils.js";
 import { BELOW_CENTER_ANCHOR } from "../positioning/constants.js";
+import { TRANSITION_CONFIG } from "../transition/config.js";
 import {
   type TransitionEnterHandler,
   type TransitionExitHandler,
@@ -26,8 +26,7 @@ import {
 import { useEnsuredId } from "../useEnsuredId.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
 import { useToggle } from "../useToggle.js";
-import { loop } from "../utils/loop.js";
-import { SelectValue } from "./SelectValue.js";
+import { SelectedOption } from "./SelectedOption.js";
 import { TextField, type TextFieldProps } from "./TextField.js";
 import { getFormConfig } from "./formConfig.js";
 import { select } from "./selectStyles.js";
@@ -36,9 +35,9 @@ import {
   type FormFieldOptions,
   type UserAgentAutoCompleteProps,
 } from "./types.js";
-import { ListboxProvider } from "./useListboxProvider.js";
-import { triggerManualChangeEvent, tryToSubmitRelatedForm } from "./utils.js";
 import { useFormReset } from "./useFormReset.js";
+import { type ListboxContext, ListboxProvider } from "./useListboxProvider.js";
+import { tryToSubmitRelatedForm } from "./utils.js";
 
 const EMPTY_STRING = "" as const;
 const noop = (): void => {
@@ -102,7 +101,7 @@ export type SelectChangeEvent<Value extends string> =
 /**
  * @remarks \@since 6.0.0 Rewritten with a new API.
  */
-export interface SelectProps<Value extends string>
+export interface SelectProps<Value extends string = string>
   extends Omit<TextFieldProps, "placeholder" | "type" | "onChange">,
     UserAgentAutoCompleteProps,
     FormFieldOptions {
@@ -152,12 +151,20 @@ export interface SelectProps<Value extends string>
   menuProps?: Omit<MenuProps, "visible" | "onRequestClose" | "fixedTo">;
 
   /**
-   * Set this to `true` to update all the `Option` components to no longer
-   * render an icon while selected.
+   * Any additional props to pass to the div that contains the current visible
+   * option.
+   */
+  selectedOptionProps?: HTMLAttributes<HTMLDivElement>;
+
+  /**
+   * Set this to `true` if all the `Option` components should display the
+   * selected icon after the children instead of before.
+   *
+   * @see {@link disableSelectedIcon} to remove the selected icon instead.
    *
    * @defaultValue `false`
    */
-  disableSelectedIcon?: boolean;
+  selectedIconAfter?: boolean;
 
   /**
    * Set this to `true` to prevent the current option from rendering the
@@ -165,7 +172,15 @@ export interface SelectProps<Value extends string>
    *
    * @defaultValue `false`
    */
-  disableValueAddon?: boolean;
+  disableOptionAddon?: boolean;
+
+  /**
+   * Set this to `true` to update all the `Option` components to no longer
+   * render an icon while selected.
+   *
+   * @defaultValue `false`
+   */
+  disableSelectedIcon?: boolean;
 
   /**
    * This should be the available `Option`s for the select to choose from. It
@@ -178,19 +193,49 @@ export interface SelectProps<Value extends string>
 /**
  * **Client Component**
  *
+ * @example
+ * Testing
+ * ```tsx
+ * rmdRender(
+ *   <Select label="Select" selectedOptionProps={{ "data-testid": "selected" }}>
+ *     <Option value="a">Option 1</Option>
+ *     <Option value="b">Option 2</Option>
+ *     <Option value="c">Option 3</Option>
+ *     <Option value="d">Option 4</Option>
+ *   </Select>
+ * );
+ *
+ * const user = userEvent.setup();
+ * const select = screen.getByRole("combobox", { name: "Select" });
+ * const selected = screen.getByTestId("selected")
+ * const selectInput = screen.getByRole("textbox", { hidden: true });
+ * expect(selected).toHaveTextContent("");
+ * expect(selectInput).toHaveValue("");
+ *
+ * await user.click(select);
+ * await user.click(screen.getByRole("option"), { name: "Option 2" });
+ *
+ * expect(selected).toHaveTextContent("Option 2");
+ * expect(selectInput).toHaveValue("b");
+ * ```
+ *
  * @remarks \@since 6.0.0 Rewritten with a new API.
  */
 export function Select<Value extends string>(
   props: SelectProps<Value>
 ): ReactElement {
   const {
+    "aria-label": ariaLabel,
+    "aria-labelledby": ariaLabelledBy,
     id: propId,
     className,
     active = false,
     inputRef: propInputRef,
     inputClassName,
     menuProps = {},
+    labelProps = {},
     containerProps: propContainerProps = {},
+    selectedOptionProps,
     icon: propIcon,
     value,
     defaultValue,
@@ -198,19 +243,22 @@ export function Select<Value extends string>(
     onChange = noop,
     leftAddon,
     rightAddon: propRightAddon,
-    disableValueAddon = false,
+    selectedIconAfter = false,
+    disableOptionAddon = false,
     disableSelectedIcon = false,
     children,
     ...remaining
   } = props;
-  const { disabled = false, form } = props;
+  const { form, label, disabled = false } = props;
 
   const id = useEnsuredId(propId, "select");
+  const labelId = useEnsuredId(labelProps.id, "select-label");
   const containerId = useEnsuredId(propContainerProps.id, "select-container");
   const icon = getIcon("dropdown", propIcon);
   const theme = getFormConfig("theme", propTheme);
 
   const { toggled: visible, enable: show, disable: hide } = useToggle();
+  const focusLast = useRef(false);
   const [inputRef, inputRefCallback] = useEnsuredRef(propInputRef);
   const [containerRef, containerRefCallback] = useEnsuredRef(
     propContainerProps.ref
@@ -230,30 +278,30 @@ export function Select<Value extends string>(
     defaultValue: initialValue.current,
   });
 
-  const { options, searchValues, currentOption, currentIndex } =
-    extractOptionsFromChildren(
-      children,
-      typeof value === "undefined" ? currentValue : value
-    );
-  const totalOptions = options.length - 1;
+  const { options, currentOption } = extractOptionsFromChildren(
+    children,
+    typeof value === "undefined" ? currentValue : value
+  );
 
   let rightAddon = propRightAddon;
   if (typeof rightAddon === "undefined" && icon) {
     rightAddon = <IconRotator rotated={visible}>{icon}</IconRotator>;
   }
 
-  const listboxContext = useMemo(
+  const listboxContext = useMemo<ListboxContext>(
     () => ({
       inputRef,
       currentValue: typeof value === "undefined" ? currentValue : value,
+      selectedIconAfter,
       disableSelectedIcon,
     }),
-    [currentValue, disableSelectedIcon, inputRef, value]
+    [currentValue, disableSelectedIcon, inputRef, selectedIconAfter, value]
   );
 
   // TODO: Need to update this to support editable listboxes where these props
   // would go to the input element instead of the container
   const a11yProps = {
+    "aria-disabled": disabled || undefined,
     "aria-haspopup": "listbox",
     "aria-expanded": visible,
     role: "combobox",
@@ -289,69 +337,18 @@ export function Select<Value extends string>(
         return;
       }
 
-      if (isSearchableEvent(event)) {
-        event.stopPropagation();
-
-        const nextIndex = findMatchIndex({
-          value: event.key,
-          values: searchValues,
-          startIndex: event.shiftKey ? -1 : currentIndex,
-        });
-
-        if (nextIndex !== -1) {
-          triggerManualChangeEvent(inputRef.current, options[nextIndex].value);
-        }
-        return;
-      }
-
       switch (event.key) {
         case " ":
+        case "ArrowUp":
+        case "ArrowDown":
           event.preventDefault();
           event.stopPropagation();
+          focusLast.current = event.key === "ArrowUp";
           show();
           break;
         case "Enter":
           tryToSubmitRelatedForm(event, form);
           break;
-        case "Home":
-          event.preventDefault();
-          event.stopPropagation();
-          if (currentIndex !== 0) {
-            triggerManualChangeEvent(inputRef.current, options[0].value);
-          }
-          break;
-        case "End":
-          event.preventDefault();
-          event.stopPropagation();
-          if (currentIndex !== totalOptions) {
-            triggerManualChangeEvent(
-              inputRef.current,
-              options[totalOptions].value
-            );
-          }
-          break;
-        case "ArrowDown":
-        case "ArrowUp": {
-          event.preventDefault();
-          event.stopPropagation();
-
-          const increment = event.key === "ArrowDown";
-          if (currentIndex === -1 && !increment) {
-            // this matches the native select behavior where it will do
-            // nothing if there is no current value
-            return;
-          }
-
-          const nextIndex = loop({
-            max: totalOptions,
-            value: currentIndex,
-            minmax: true,
-            increment,
-          });
-
-          triggerManualChangeEvent(inputRef.current, options[nextIndex].value);
-          break;
-        }
       }
     },
     loopable: false,
@@ -359,29 +356,20 @@ export function Select<Value extends string>(
     programmatic: true,
     includeDisabled: false,
     tabIndexBehavior: "virtual",
-    getDefaultFocusedIndex(focusOptions) {
-      if (typeof menuProps.getDefaultFocusedIndex === "function") {
-        return menuProps.getDefaultFocusedIndex(focusOptions);
-      }
-
-      const val = typeof value === "undefined" ? currentValue : value;
-      return options.findIndex((option) => option.value === val);
-    },
     getFocusableElements() {
       const menu = menuRef.current;
       if (!menu) {
         return [];
       }
 
-      return [
-        ...menu.querySelectorAll<HTMLLIElement>(
-          '[role="option"]:not([aria-disabled])'
-        ),
-      ];
+      return getNonDisabledOptions(menu);
     },
   });
 
   const containerProps: Required<SelectProps<Value>>["containerProps"] = {
+    "aria-labelledby":
+      ariaLabelledBy ?? (!ariaLabel && label ? labelId : undefined),
+    "aria-label": ariaLabel,
     ...propContainerProps,
     ...movementProps,
     ...a11yProps,
@@ -396,7 +384,7 @@ export function Select<Value extends string>(
       callback(appearing);
 
       const menu = menuRef.current;
-      if (!menu || skipped) {
+      if (!menu || (skipped && !TRANSITION_CONFIG.disabled)) {
         return;
       }
 
@@ -407,13 +395,25 @@ export function Select<Value extends string>(
       // focused until the first keyboard event that would move focus
       const val = typeof value === "undefined" ? currentValue : value;
       const focusables = getNonDisabledOptions(menu);
-      const index = Math.max(
-        0,
-        options.findIndex((option) => option.value === val)
-      );
-      focusables[index].scrollIntoView({ block: "nearest" });
+      let index: number;
+      if (focusLast.current && !val) {
+        index = options.length - 1;
+      } else {
+        index = Math.max(
+          0,
+          options.findIndex((option) => option.value === val)
+        );
+      }
+      focusLast.current = false;
       currentFocusIndex.current = index;
-      setActiveDescendantId(focusables[index]?.id || "");
+
+      const option = focusables[index];
+      // this should only be possible if no valid children were provided
+      if (!option) {
+        return;
+      }
+      option.scrollIntoView({ block: "nearest" });
+      setActiveDescendantId(option.id || "");
     };
 
   const handleUnmounting =
@@ -421,7 +421,7 @@ export function Select<Value extends string>(
     (): void => {
       callback();
 
-      if (!skipped) {
+      if (!skipped || TRANSITION_CONFIG.disabled) {
         // since the menu is unmounted or set to hidden while not visible, need
         // to clear the aria-activedescendant and current focus index when
         // hiding
@@ -439,6 +439,10 @@ export function Select<Value extends string>(
           id={id}
           ref={inputRefCallback}
           containerProps={containerProps}
+          labelProps={{
+            ...labelProps,
+            id: labelId,
+          }}
           type="text"
           tabIndex={-1}
           theme={theme}
@@ -473,10 +477,14 @@ export function Select<Value extends string>(
             );
           }}
         >
-          <SelectValue disableAddon={disableValueAddon} {...currentOption} />
+          <SelectedOption
+            option={currentOption}
+            disableAddon={disableOptionAddon}
+            {...selectedOptionProps}
+          />
         </TextField>
         <Menu
-          aria-labelledby={containerId}
+          aria-labelledby={label ? labelId : containerId}
           anchor={BELOW_CENTER_ANCHOR}
           role="listbox"
           width="min"
