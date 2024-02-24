@@ -1,4 +1,9 @@
-import { forwardRef, type HTMLAttributes, type ImgHTMLAttributes } from "react";
+import {
+  forwardRef,
+  type HTMLAttributes,
+  type ImgHTMLAttributes,
+  type ReactNode,
+} from "react";
 import { type PropsWithRef } from "../types.js";
 import { avatar, avatarImage, type AvatarClassNameOptions } from "./styles.js";
 
@@ -15,9 +20,21 @@ declare module "react" {
 
 export type AvatarImgAttributes = ImgHTMLAttributes<HTMLImageElement>;
 
+/**
+ * @remarks \@since 6.0.0 `aria-hidden` is set to `true` by default and removed
+ * the `role="presentation"`.
+ */
 export interface AvatarProps
   extends Omit<HTMLAttributes<HTMLSpanElement>, "color">,
     AvatarClassNameOptions {
+  /**
+   * Since avatars are normally presentational data, they are hidden from screen
+   * readers by default.
+   *
+   * @defaultValue `true`
+   */
+  "aria-hidden"?: HTMLAttributes<HTMLSpanElement>["aria-hidden"];
+
   /**
    * This should be an image `src` attribute to create an avatar from. When this
    * prop is defined, you should not add any children to the avatar as the
@@ -80,10 +97,14 @@ export interface AvatarProps
  *   return <Avatar src="/path-to-img.png" />;
  * }
  * ```
+ *
+ * @remarks \@since 6.0.0 `aria-hidden` is set to `true` by default and removed
+ * the `role="presentation"`.
  */
 export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
   function Avatar(props, ref) {
     const {
+      "aria-hidden": ariaHidden = true,
       className,
       children,
       src,
@@ -96,7 +117,7 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
       ...remaining
     } = props;
 
-    let img;
+    let img: ReactNode;
     if (src || imgProps) {
       img = (
         <img
@@ -112,8 +133,8 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
     return (
       <span
         {...remaining}
+        aria-hidden={ariaHidden}
         ref={ref}
-        role="presentation"
         className={avatar({
           size,
           color,
