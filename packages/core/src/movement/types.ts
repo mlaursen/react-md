@@ -31,6 +31,27 @@ import type {
 export type TabIndexBehavior = "roving" | "virtual";
 
 /**
+ * This should be used for specific widgets that should not include all
+ * focusable elements and instead only specific elements.
+ *
+ * @example
+ * ```ts
+ * const getExpansionPanelsOnly: GetFocusableElements = (container) =>
+ *   [...container.querySelectorAll(".rmd-expansion-panel__button")];
+ *
+ * const getTreeItemsOnly: GetFocusableElements = (container) =>
+ *   [...container.querySelectorAll("[role='treeitem']")];
+ * ```
+ *
+ * @defaultValue `getFocusableElements`
+ * @see the default `getFocusableElements` function.
+ */
+export type GetFocusableElements = (
+  container: HTMLElement,
+  programmatic: boolean
+) => readonly HTMLElement[];
+
+/**
  * @remarks \@since 5.0.0
  */
 export interface KeyboardMovementConfiguration {
@@ -154,7 +175,15 @@ export type GetDefaultFocusedIndex = (options: FocusableIndexOptions) => number;
  * @remarks \@since 6.0.0
  * @internal
  */
-export interface FocusChangeEvent {
+export type ExtendKeyDown<E extends HTMLElement> = (
+  movementData: KeyboardMovementExtensionData<E>
+) => void;
+
+/**
+ * @remarks \@since 6.0.0
+ * @internal
+ */
+export interface KeyboardMovementFocusChangeEvent {
   index: number;
   element: HTMLElement;
 }
@@ -163,8 +192,8 @@ export interface FocusChangeEvent {
  * @remarks \@since 6.0.0
  * @internal
  */
-export type KeyboardMovementFocusChangeEvent = (
-  event: FocusChangeEvent
+export type KeyboardMovementFocusChangeEventHandler = (
+  event: KeyboardMovementFocusChangeEvent
 ) => void;
 
 /**
@@ -196,12 +225,12 @@ export interface KeyboardMovementProviderOptions<E extends HTMLElement>
   /**
    * This is used to implement custom keyboard movement for the `keydown` event.
    */
-  extendKeyDown?(movementData: KeyboardMovementExtensionData<E>): void;
+  extendKeyDown?: ExtendKeyDown<E>;
 
   /**
    * Triggered whenever the focus changes.
    */
-  onFocusChange?: KeyboardMovementFocusChangeEvent;
+  onFocusChange?: KeyboardMovementFocusChangeEventHandler;
 
   /**
    * From what I've understood so far, programmatically focusable elements
@@ -212,26 +241,8 @@ export interface KeyboardMovementProviderOptions<E extends HTMLElement>
    */
   programmatic?: boolean;
 
-  /**
-   * This should be used for specific widgets that should not include all
-   * focusable elements and instead only specific elements.
-   *
-   * @example
-   * ```ts
-   * const getExpansionPanelsOnly = (container: HTMLElement): readonly HTMLElement[] =>
-   *   container.querySelectorAll(".rmd-expansion-panel__button");
-   *
-   * const getTreeItemsOnly = (container: HTMLElement): readonly HTMLElement[] =>
-   *   container.querySelectorAll("[role='treeitem']");
-   * ```
-   *
-   * @defaultValue `getFocusableElements`
-   * @see the default `getFocusableElements` function.
-   */
-  getFocusableElements?(
-    container: HTMLElement,
-    programmatic: boolean
-  ): readonly HTMLElement[];
+  /** @see {@link GetFocusableElements} */
+  getFocusableElements?: GetFocusableElements;
 
   /**
    * This can be used to set the initial focus index whenever the container
