@@ -6,6 +6,7 @@ import {
   useState,
   type ChangeEvent,
   type HTMLAttributes,
+  type InputHTMLAttributes,
   type ReactElement,
   type ReactNode,
   type Ref,
@@ -13,44 +14,38 @@ import {
 import { IconRotator } from "../icon/IconRotator.js";
 import { getIcon } from "../icon/iconConfig.js";
 import { Menu, type MenuProps } from "../menu/Menu.js";
-import {
-  KeyboardMovementProvider,
-  useKeyboardMovementProvider,
-} from "../movement/useKeyboardMovementProvider.js";
+import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
 import { BELOW_CENTER_ANCHOR } from "../positioning/constants.js";
 import { TRANSITION_CONFIG } from "../transition/config.js";
 import {
   type TransitionEnterHandler,
   type TransitionExitHandler,
 } from "../transition/types.js";
+import {
+  type LabelA11y,
+  type PropsWithRef,
+  type RequireAtLeastOne,
+} from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
-import { useToggle } from "../useToggle.js";
+import { label as labelStyles } from "./Label.js";
 import { SelectedOption } from "./SelectedOption.js";
-import { TextField, type TextFieldProps } from "./TextField.js";
+import {
+  TextFieldContainer,
+  type TextFieldContainerProps,
+} from "./TextFieldContainer.js";
 import { getFormConfig } from "./formConfig.js";
 import { select } from "./selectStyles.js";
 import { extractOptionsFromChildren } from "./selectUtils.js";
-import {
-  type FormFieldOptions,
-  type UserAgentAutoCompleteProps,
-} from "./types.js";
+import { textField } from "./textFieldStyles.js";
+import { getNonDisabledOptions, useCombobox } from "./useCombobox.js";
 import { useFormReset } from "./useFormReset.js";
-import { type ListboxContext, ListboxProvider } from "./useListboxProvider.js";
-import { tryToSubmitRelatedForm } from "./utils.js";
+import { ListboxProvider, type ListboxContext } from "./useListboxProvider.js";
 
 const EMPTY_STRING = "" as const;
 const noop = (): void => {
   // do nothing
 };
-
-const getNonDisabledOptions = (
-  container: HTMLElement
-): readonly HTMLElement[] => [
-  ...container.querySelectorAll<HTMLLIElement>(
-    '[role="option"]:not([aria-disabled])'
-  ),
-];
 
 /**
  * This is a convenience type for casting the `event.currentTarget.value` of a
@@ -101,17 +96,19 @@ export type SelectChangeEvent<Value extends string> =
 /**
  * @remarks \@since 6.0.0 Rewritten with a new API.
  */
-export interface SelectProps<Value extends string = string>
-  extends Omit<TextFieldProps, "placeholder" | "type" | "onChange">,
-    UserAgentAutoCompleteProps,
-    FormFieldOptions {
+export interface SelectProps<Value extends string>
+  extends Omit<TextFieldContainerProps, "label">,
+    Pick<InputHTMLAttributes<HTMLInputElement>, "form" | "required" | "name"> {
   /**
-   * An optional ref to pass to the hidden `<input type="text" />` element that
-   * stores the current value. This is really only useful if you'd like to keep
-   * this component uncontrolled and access the value through
-   * `inputRef.current.value`.
+   * @defaultValue `"select-" + useId()`
    */
-  inputRef?: Ref<HTMLInputElement>;
+  id?: string;
+
+  /**
+   * Optional placeholder text or element to render while no options have been
+   * selected.
+   */
+  placeholder?: ReactNode;
 
   /**
    * Set this to a custom dropdown icon or `null` to not render a dropdown icon.
@@ -138,13 +135,38 @@ export interface SelectProps<Value extends string = string>
   onChange?(event: SelectChangeEvent<Value>): void;
 
   /**
+   * An optional floating label to display like other form fields.
+   */
+  label?: ReactNode;
+
+  /**
+   * Optional props to pass to the `<span>` that surrounds the {@link label}
+   */
+  labelProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>;
+
+  /**
+   * An optional ref to pass to the hidden `<input type="text" />` element that
+   * stores the current value. This is really only useful if you'd like to keep
+   * this component uncontrolled and access the value through
+   * `inputRef.current.value`.
+   */
+  inputRef?: Ref<HTMLInputElement>;
+  inputProps?: InputHTMLAttributes<HTMLInputElement>;
+
+  /**
+   * A ref for the container `<div>` element.
+   */
+  containerRef?: Ref<HTMLDivElement>;
+
+  /**
    * Any additional props to provide to the `Menu` component that renders all
    * the `Option`s.
    *
    * The menu will always have these default values unless explicity
    * overwritten by this prop:
    *
-   * - `aria-labelledby={containerId}`
+   * - `aria-labelledby={label ? labelId : id}` -- this will be undefined if
+   *   `aria-label` is provided
    * - `anchor={BELOW_CENTER_ANCHOR}`
    * - `width="min"`
    */
@@ -193,6 +215,10 @@ export interface SelectProps<Value extends string = string>
 /**
  * **Client Component**
  *
+ * !Warning! This component does not allow most password managers/autofill
+ * utilities to pre-populate this field correctly. A `NativeSelect` should be
+ * used instead.
+ *
  * @example
  * Testing
  * ```tsx
@@ -222,159 +248,110 @@ export interface SelectProps<Value extends string = string>
  * @remarks \@since 6.0.0 Rewritten with a new API.
  */
 export function Select<Value extends string>(
-  props: SelectProps<Value>
+  props: RequireAtLeastOne<SelectProps<Value>, "label" | keyof LabelA11y>
 ): ReactElement {
   const {
-    "aria-label": ariaLabel,
-    "aria-labelledby": ariaLabelledBy,
-    id: propId,
+    id,
+    form,
+    name,
     className,
-    active = false,
+    onClick,
+    onFocus,
+    onKeyDown,
     inputRef: propInputRef,
-    inputClassName,
+    inputProps,
+    containerRef,
+    placeholder,
     menuProps = {},
+    label,
     labelProps = {},
-    containerProps: propContainerProps = {},
     selectedOptionProps,
     icon: propIcon,
     value,
     defaultValue,
     theme: propTheme,
     onChange = noop,
-    leftAddon,
     rightAddon: propRightAddon,
+    active = false,
+    required,
     selectedIconAfter = false,
     disableOptionAddon = false,
     disableSelectedIcon = false,
     children,
     ...remaining
   } = props;
-  const { form, label, disabled = false } = props;
+  const { dense, error, disabled } = props;
 
-  const id = useEnsuredId(propId, "select");
-  const labelId = useEnsuredId(labelProps.id, "select-label");
-  const containerId = useEnsuredId(propContainerProps.id, "select-container");
-  const icon = getIcon("dropdown", propIcon);
-  const theme = getFormConfig("theme", propTheme);
+  const comboboxId = useEnsuredId(id, "select");
+  const inputId = useEnsuredId(inputProps?.id, "select-value");
+  const selectLabelId = useEnsuredId(labelProps.id, "select-label");
+  const labelId = label ? selectLabelId : undefined;
+  const {
+    movementContext,
+    popupRef,
+    popupProps,
+    comboboxRef,
+    comboboxProps,
+    currentFocusIndex,
+    focusLast,
+    hide,
+    setActiveDescendantId,
+    visible,
+  } = useCombobox({
+    form,
+    onClick,
+    onFocus,
+    onKeyDown,
+    disabled,
+    popupId: menuProps.id,
+    popupRef: menuProps.nodeRef,
+    comboboxId,
+    comboboxRef: containerRef,
+    autocomplete: "select",
+  });
 
-  const { toggled: visible, enable: show, disable: hide } = useToggle();
-  const focusLast = useRef(false);
   const [inputRef, inputRefCallback] = useEnsuredRef(propInputRef);
-  const [containerRef, containerRefCallback] = useEnsuredRef(
-    propContainerProps.ref
-  );
-  const [menuRef, menuRefCallback] = useEnsuredRef(menuProps.nodeRef);
-  const [currentValue, setCurrentValue] = useState(() => {
+  const [localValue, setLocalValue] = useState(() => {
     if (typeof defaultValue !== "undefined") {
       return defaultValue;
     }
 
     return typeof value !== "undefined" ? value : EMPTY_STRING;
   });
+  const currentValue = typeof value === "undefined" ? localValue : value;
   const initialValue = useRef(currentValue);
   useFormReset({
     form,
     elementRef: inputRef,
     defaultValue: initialValue.current,
   });
-
-  const { options, currentOption } = extractOptionsFromChildren(
-    children,
-    typeof value === "undefined" ? currentValue : value
+  const listboxContext = useMemo<ListboxContext>(
+    () => ({
+      inputRef,
+      currentValue,
+      selectedIconAfter,
+      disableSelectedIcon,
+    }),
+    [currentValue, disableSelectedIcon, inputRef, selectedIconAfter]
   );
 
+  const icon = getIcon("dropdown", propIcon);
+  const theme = getFormConfig("theme", propTheme);
   let rightAddon = propRightAddon;
   if (typeof rightAddon === "undefined" && icon) {
     rightAddon = <IconRotator rotated={visible}>{icon}</IconRotator>;
   }
 
-  const listboxContext = useMemo<ListboxContext>(
-    () => ({
-      inputRef,
-      currentValue: typeof value === "undefined" ? currentValue : value,
-      selectedIconAfter,
-      disableSelectedIcon,
-    }),
-    [currentValue, disableSelectedIcon, inputRef, selectedIconAfter, value]
+  let listboxLabelledBy = menuProps["aria-labelledby"];
+  const listboxLabel = menuProps["aria-label"];
+  if (!listboxLabel && !listboxLabelledBy) {
+    listboxLabelledBy = labelId || comboboxId;
+  }
+
+  const { options, currentOption } = extractOptionsFromChildren(
+    children,
+    currentValue
   );
-
-  // TODO: Need to update this to support editable listboxes where these props
-  // would go to the input element instead of the container
-  const a11yProps = {
-    "aria-disabled": disabled || undefined,
-    "aria-haspopup": "listbox",
-    "aria-expanded": visible,
-    role: "combobox",
-    tabIndex: disabled ? -1 : 0,
-  } as const;
-  const {
-    movementProps,
-    movementContext,
-    currentFocusIndex,
-    setActiveDescendantId,
-  } = useKeyboardMovementProvider<HTMLDivElement>({
-    onFocus: propContainerProps.onFocus,
-    onClick(event) {
-      propContainerProps.onClick?.(event);
-      if (disabled) {
-        return;
-      }
-
-      show();
-    },
-    onKeyDown(event) {
-      propContainerProps.onKeyDown?.(event);
-      if (disabled) {
-        return;
-      }
-
-      if (visible) {
-        if (event.key === "Escape" || event.key === "Tab") {
-          event.stopPropagation();
-          hide();
-        }
-
-        return;
-      }
-
-      switch (event.key) {
-        case " ":
-        case "ArrowUp":
-        case "ArrowDown":
-          event.preventDefault();
-          event.stopPropagation();
-          focusLast.current = event.key === "ArrowUp";
-          show();
-          break;
-        case "Enter":
-          tryToSubmitRelatedForm(event, form);
-          break;
-      }
-    },
-    loopable: false,
-    searchable: true,
-    programmatic: true,
-    includeDisabled: false,
-    tabIndexBehavior: "virtual",
-    getFocusableElements() {
-      const menu = menuRef.current;
-      if (!menu) {
-        return [];
-      }
-
-      return getNonDisabledOptions(menu);
-    },
-  });
-
-  const containerProps: Required<SelectProps<Value>>["containerProps"] = {
-    "aria-labelledby":
-      ariaLabelledBy ?? (!ariaLabel && label ? labelId : undefined),
-    "aria-label": ariaLabel,
-    ...propContainerProps,
-    ...movementProps,
-    ...a11yProps,
-    ref: containerRefCallback,
-  };
 
   const { onEntering, onEntered, onExiting, onExited, disableTransition } =
     menuProps;
@@ -383,7 +360,7 @@ export function Select<Value extends string>(
     (appearing: boolean) => {
       callback(appearing);
 
-      const menu = menuRef.current;
+      const menu = popupRef.current;
       if (!menu || (skipped && !TRANSITION_CONFIG.disabled)) {
         return;
       }
@@ -393,15 +370,14 @@ export function Select<Value extends string>(
       // widget, the focus index and active descendant must manually be updated
       // whenever the menu becomes visible. Without this, no items will be
       // focused until the first keyboard event that would move focus
-      const val = typeof value === "undefined" ? currentValue : value;
       const focusables = getNonDisabledOptions(menu);
       let index: number;
-      if (focusLast.current && !val) {
+      if (focusLast.current && !currentValue) {
         index = options.length - 1;
       } else {
         index = Math.max(
           0,
-          options.findIndex((option) => option.value === val)
+          options.findIndex((option) => option.value === currentValue)
         );
       }
       focusLast.current = false;
@@ -433,65 +409,79 @@ export function Select<Value extends string>(
   return (
     <ListboxProvider value={listboxContext}>
       <KeyboardMovementProvider value={movementContext}>
-        <TextField
+        <TextFieldContainer
+          aria-labelledby={labelId}
           {...remaining}
-          aria-hidden
-          id={id}
-          ref={inputRefCallback}
-          containerProps={containerProps}
-          labelProps={{
-            ...labelProps,
-            id: labelId,
-          }}
-          type="text"
-          tabIndex={-1}
+          {...comboboxProps}
+          label={!!label}
           theme={theme}
-          value={value}
-          defaultValue={defaultValue}
           active={active || visible}
-          leftAddon={leftAddon}
-          rightAddon={rightAddon}
           className={cnb("rmd-select-container", className)}
-          inputClassName={select({
-            theme,
-            className: inputClassName,
-          })}
-          onChange={(event) => {
-            onChange(event as SelectChangeEvent<Value>);
-            if (typeof value !== "undefined") {
-              return;
-            }
-
-            const nextValue = event.currentTarget.value;
-            const valueAsNumber = parseFloat(nextValue);
-            const nextOption = options.find(
-              (option) =>
-                // need to compare both here since
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-expect-error
-                option.value === nextValue || option.value === valueAsNumber
-            );
-
-            setCurrentValue(
-              nextOption ? nextOption.value : initialValue.current
-            );
-          }}
+          rightAddon={rightAddon}
         >
           <SelectedOption
             option={currentOption}
+            placeholder={placeholder}
             disableAddon={disableOptionAddon}
             {...selectedOptionProps}
           />
-        </TextField>
+          <input
+            {...inputProps}
+            aria-hidden
+            id={inputId}
+            ref={inputRefCallback}
+            name={name}
+            type="text"
+            value={value}
+            tabIndex={-1}
+            disabled={disabled}
+            required={required}
+            placeholder=" "
+            defaultValue={defaultValue}
+            className={cnb(select({ theme }), textField())}
+            onChange={(event) => {
+              onChange(event as SelectChangeEvent<Value>);
+              if (typeof value !== "undefined") {
+                return;
+              }
+
+              const nextValue = event.currentTarget.value;
+              const nextOption = options.find(
+                (option) => option.value === nextValue
+              );
+
+              setLocalValue(
+                nextOption ? nextOption.value : initialValue.current
+              );
+            }}
+          />
+          {label && (
+            <span
+              {...labelProps}
+              id={labelId}
+              className={labelStyles({
+                dense,
+                error,
+                disabled,
+                active: active || visible,
+                floating: true,
+                floatingActive: !!placeholder || !!currentOption,
+                className: labelProps.className,
+              })}
+            >
+              {label}
+            </span>
+          )}
+        </TextFieldContainer>
         <Menu
-          aria-labelledby={label ? labelId : containerId}
           anchor={BELOW_CENTER_ANCHOR}
-          role="listbox"
           width="min"
           {...menuProps}
-          ref={menuRefCallback}
+          aria-label={listboxLabel}
+          aria-labelledby={listboxLabelledBy as string}
+          {...popupProps}
           visible={visible}
-          fixedTo={containerRef}
+          fixedTo={comboboxRef}
           onRequestClose={hide}
           onEntering={handleMounting(onEntering, false)}
           onEntered={handleMounting(onEntered, !disableTransition)}
@@ -502,6 +492,10 @@ export function Select<Value extends string>(
             onEntering: handleMounting(menuProps.sheetProps?.onEntering, false),
             onEntered: handleMounting(
               menuProps.sheetProps?.onEntered,
+              !disableTransition
+            ),
+            onExited: handleUnmounting(
+              menuProps.sheetProps?.onExited,
               !disableTransition
             ),
           }}

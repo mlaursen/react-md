@@ -198,6 +198,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
     onFocus = noop,
     onKeyDown = noop,
     loopable = false,
+    disabled,
     searchable = false,
     horizontal = false,
     includeDisabled = false,
@@ -275,7 +276,10 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
 
   let tabIndex: number | undefined;
   if (tabIndexBehavior) {
-    tabIndex = tabIndexBehavior === "roving" && activeDescendantId ? -1 : 0;
+    tabIndex =
+      disabled || (tabIndexBehavior === "roving" && activeDescendantId)
+        ? -1
+        : 0;
   }
 
   return {
@@ -288,6 +292,9 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
       // Chromium browsers for drag and drop behavior
       onClick(event) {
         onClick(event);
+        if (disabled) {
+          return;
+        }
 
         // This makes it so you can click an element with a mouse and then
         // keyboard navigate from that element instead of the last keyboard focus
@@ -392,6 +399,10 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
       },
       onKeyDown(event) {
         onKeyDown(event);
+        if (disabled) {
+          return;
+        }
+
         const { currentTarget } = event;
 
         const setFocusIndex = (

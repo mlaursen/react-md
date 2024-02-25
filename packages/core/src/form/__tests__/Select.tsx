@@ -13,11 +13,11 @@ import {
   waitForElementToBeRemoved,
   within,
 } from "../../test-utils/index.js";
+import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { Form } from "../Form.js";
 import { OptGroup } from "../OptGroup.js";
 import { Option } from "../Option.js";
 import { Select, type SelectProps } from "../Select.js";
-import { TRANSITION_CONFIG } from "../../transition/config.js";
 
 function Test<Value extends string = string>(
   props: Partial<SelectProps<Value>>

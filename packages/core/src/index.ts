@@ -97,6 +97,7 @@ export * from "./form/switchStyles.js";
 export * from "./form/textFieldStyles.js";
 export * from "./form/types.js";
 export * from "./form/useCheckboxGroup.js";
+export * from "./form/useCombobox.js";
 export * from "./form/useFileUpload.js";
 export * from "./form/useFormReset.js";
 export * from "./form/useListboxProvider.js";

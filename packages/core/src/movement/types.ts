@@ -222,6 +222,9 @@ export interface KeyboardMovementProviderOptions<E extends HTMLElement>
   onFocus?(event: FocusEvent<E>): void;
   onKeyDown?(event: KeyboardEvent<E>): void;
 
+  /** @defaultValue `false` */
+  disabled?: boolean;
+
   /**
    * This is used to implement custom keyboard movement for the `keydown` event.
    */
