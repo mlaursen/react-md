@@ -207,6 +207,7 @@ exports[`Select should allow the selected icon to appear after the option instea
 exports[`Select should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <div
   aria-activedescendant=""
+  aria-controls="combobox-popup-:r3:"
   aria-expanded="false"
   aria-haspopup="listbox"
   aria-labelledby="select-label-:r2:"
@@ -216,7 +217,7 @@ exports[`Select should apply the correct styling, HTMLAttributes, and allow a re
   tabindex="0"
 >
   <div
-    class="rmd-selected-option"
+    class="rmd-box rmd-box--wrap rmd-selected-option rmd-text-field"
     data-testid="selected"
   />
   <input
@@ -250,6 +251,7 @@ exports[`Select should apply the correct styling, HTMLAttributes, and allow a re
 exports[`Select should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <div
   aria-activedescendant=""
+  aria-controls="combobox-popup-:r3:"
   aria-expanded="false"
   aria-haspopup="listbox"
   aria-labelledby="select-label-:r2:"
@@ -260,7 +262,7 @@ exports[`Select should apply the correct styling, HTMLAttributes, and allow a re
   tabindex="0"
 >
   <div
-    class="rmd-selected-option"
+    class="rmd-box rmd-box--wrap rmd-selected-option rmd-text-field"
     data-testid="selected"
   />
   <input
@@ -451,7 +453,7 @@ exports[`Select should automatically pull options from the children and update w
 
 exports[`Select should include the leftAddon of the selected option unless disableOptionAddon is true 1`] = `
 <div
-  class="rmd-selected-option"
+  class="rmd-box rmd-box--wrap rmd-selected-option rmd-text-field"
   data-testid="selected"
 >
   <span
@@ -462,7 +464,7 @@ exports[`Select should include the leftAddon of the selected option unless disab
     A
   </span>
   <span
-    class="rmd-selected-option__v"
+    class="rmd-nowrap rmd-ellipsis"
   >
     Avatar
   </span>
@@ -471,7 +473,7 @@ exports[`Select should include the leftAddon of the selected option unless disab
 
 exports[`Select should include the leftAddon of the selected option unless disableOptionAddon is true 2`] = `
 <div
-  class="rmd-selected-option"
+  class="rmd-box rmd-box--wrap rmd-selected-option rmd-text-field"
   data-testid="selected"
 >
   <span
@@ -482,7 +484,7 @@ exports[`Select should include the leftAddon of the selected option unless disab
     favorite
   </span>
   <span
-    class="rmd-selected-option__v"
+    class="rmd-nowrap rmd-ellipsis"
   >
     Icon
   </span>

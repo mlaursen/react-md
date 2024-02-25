@@ -1,7 +1,6 @@
 "use client";
 import {
   useRef,
-  type AriaAttributes,
   type FocusEventHandler,
   type KeyboardEventHandler,
   type MouseEventHandler,
@@ -12,10 +11,11 @@ import {
 import {
   type GetDefaultFocusedIndex,
   type GetFocusableElements,
+  type KeyboardMovementExtensionData,
   type KeyboardMovementProviderImplementation,
+  type KeyboardMovementProviderOptions,
 } from "../movement/types.js";
 import { useKeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
-import { isSearchableEvent } from "../movement/utils.js";
 import {
   type NonNullMutableRef,
   type UseStateInitializer,
@@ -49,10 +49,45 @@ export type SupportedComboboxPopup = "listbox" | "grid" | "dialog";
 /**
  * @remarks \@since 6.0.0
  */
+export interface ComboboxKeyboardMovementData<
+  E extends HTMLElement = HTMLInputElement,
+> extends KeyboardMovementExtensionData<E> {
+  show(): void;
+  hide(): void;
+  visible: boolean;
+  focusLast: NonNullMutableRef<boolean>;
+}
+
+/**
+ * @remarks \@since 6.0.0
+ */
+export type ExtendComboboxKeyDown<E extends HTMLElement = HTMLInputElement> = (
+  movementData: ComboboxKeyboardMovementData<E>
+) => void;
+
+/**
+ * @remarks \@since 6.0.0
+ */
+export type ComboboxKeyboardMovementOptions<
+  ComboboxEl extends HTMLElement = HTMLInputElement,
+> = Pick<
+  KeyboardMovementProviderOptions<ComboboxEl>,
+  | "onClick"
+  | "onFocus"
+  | "onKeyDown"
+  | "disabled"
+  | "loopable"
+  | "searchable"
+  | "isNegativeOneAllowed"
+>;
+
+/**
+ * @remarks \@since 6.0.0
+ */
 export interface ComboboxOptions<
   ComboboxEl extends HTMLElement = HTMLInputElement,
   PopupEl extends HTMLElement = HTMLElement,
-> {
+> extends ComboboxKeyboardMovementOptions<ComboboxEl> {
   /**
    * This is the {@link InputHTMLAttributes.form} attribute and is used to
    * attempt submitting a form when the enter key is pressed.
@@ -77,36 +112,11 @@ export interface ComboboxOptions<
   popup?: "listbox" | "grid" | "dialog";
 
   /**
-   * Used to determine the keyboard completion behavior with the {@link popup}
-   * type:
-   *
-   * - `"none"` - applies `aria-autocomplete="none"` and focusing options does
-   *   not update the value automatically. the user must select an option with
-   *   enter
-   * - `"list"` - applies `aria-autocomplete="list"` and focusing options
-   *   immediately updates the value
-   * - `"both"` - applies `aria-autocomplete="both"`, focusing options
-   *   immediately updates the value, and typing will attempt to autocomplete
-   *   the rest of the match inline using selection ranges
-   * - `"select"` - acts as a `<select>` element and is **not editable**.
-   *
-   * @defaultValue `"list"`
-   */
-  autocomplete?: "none" | "list" | "both" | "select";
-
-  onClick?: MouseEventHandler<ComboboxEl>;
-  onFocus?: FocusEventHandler<ComboboxEl>;
-  onKeyDown?: KeyboardEventHandler<ComboboxEl>;
-
-  /**
-   * @defaultValue `false`
-   */
-  disabled?: boolean;
-
-  /**
    * @defaultValue `false`
    */
   defaultVisible?: UseStateInitializer<boolean>;
+
+  extendKeyDown?: ExtendComboboxKeyDown<ComboboxEl>;
 
   /**
    * @defaultValue {@link getNonDisabledOptions}
@@ -122,10 +132,10 @@ export interface ComboboxOptions<
 export interface ComboboxWidgetProps<
   ComboboxEl extends HTMLElement = HTMLInputElement,
 > {
+  "aria-controls": string;
   "aria-disabled": true | undefined;
-  "aria-haspopup": SupportedComboboxPopup;
   "aria-expanded": boolean;
-  "aria-autocomplete"?: AriaAttributes["aria-autocomplete"];
+  "aria-haspopup": SupportedComboboxPopup;
   id: string;
   ref: RefCallback<ComboboxEl>;
   role: "combobox";
@@ -174,21 +184,23 @@ export function useCombobox<
 ): ComboboxImplementation<ComboboxEl, PopupEl> {
   const {
     form,
-    autocomplete = "list",
     popup = "listbox",
     onClick = noop,
     onFocus,
     onKeyDown,
-    disabled = false,
+    searchable,
+    isNegativeOneAllowed,
+    loopable,
+    disabled,
     comboboxId: propComboboxId,
     comboboxRef: propComboboxRef,
     popupId: propPopupId,
     popupRef: propPopupRef,
     defaultVisible = false,
+    extendKeyDown = noop,
     getFocusableElements = getNonDisabledOptions,
     getDefaultFocusedIndex,
   } = options;
-  const isSelect = autocomplete === "select";
 
   const {
     toggled: visible,
@@ -208,6 +220,7 @@ export function useCombobox<
     setActiveDescendantId,
   } = useKeyboardMovementProvider<ComboboxEl>({
     onFocus,
+    onKeyDown,
     onClick(event) {
       onClick(event);
       if (disabled) {
@@ -217,15 +230,16 @@ export function useCombobox<
       show();
     },
     extendKeyDown(movementData) {
-      const { event, currentFocusIndex, setActiveDescendantId } = movementData;
-      const resetFocus = (): void => {
-        currentFocusIndex.current = -1;
-        setActiveDescendantId("");
-      };
-
-      if (!visible && !isSelect && isSearchableEvent(event)) {
-        show();
-        resetFocus();
+      extendKeyDown({
+        ...movementData,
+        show,
+        hide,
+        visible,
+        focusLast,
+      });
+      const { event } = movementData;
+      if (event.isPropagationStopped()) {
+        return;
       }
 
       if (visible) {
@@ -238,21 +252,6 @@ export function useCombobox<
           case "Enter":
             event.preventDefault();
             break;
-          default:
-          case "Home":
-          case "End":
-            // do not jump to start and end of listbox and instead use native
-            // input typing
-            if (!isSelect) {
-              event.stopPropagation();
-              resetFocus();
-            }
-            break;
-          case "ArrowLeft":
-          case "ArrowRight":
-            if (!isSelect) {
-              resetFocus();
-            }
         }
 
         // while visible, always use the default keyboard movement behavior
@@ -260,14 +259,11 @@ export function useCombobox<
       }
 
       switch (event.key) {
-        case " ":
-        case "Home":
-        case "End":
         case "ArrowUp":
         case "ArrowDown":
           event.preventDefault();
           event.stopPropagation();
-          focusLast.current = event.key === "End" || event.key === "ArrowUp";
+          focusLast.current = event.key === "ArrowUp";
           show();
           break;
         case "Enter":
@@ -275,10 +271,9 @@ export function useCombobox<
           break;
       }
     },
-    onKeyDown,
     disabled,
-    loopable: false,
-    searchable: isSelect,
+    loopable,
+    searchable,
     programmatic: true,
     includeDisabled: false,
     tabIndexBehavior: "virtual",
@@ -290,6 +285,7 @@ export function useCombobox<
 
       return getFocusableElements(popup || container, programmatic);
     },
+    isNegativeOneAllowed,
     getDefaultFocusedIndex,
   });
 
@@ -308,10 +304,10 @@ export function useCombobox<
     comboboxRef,
     comboboxProps: {
       ...movementProps,
+      "aria-controls": popupId,
       "aria-disabled": disabled || undefined,
-      "aria-haspopup": popup,
       "aria-expanded": visible,
-      "aria-autocomplete": (!isSelect && autocomplete) || undefined,
+      "aria-haspopup": popup,
       id: comboboxId,
       ref: comboboxRefCallback,
       role: "combobox",

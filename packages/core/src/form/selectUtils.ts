@@ -53,7 +53,7 @@ function getLabelFromChildren(children: ReactNode): string {
  * @remarks \@since 6.0.0
  */
 interface ExtractedOptions<Value extends string | number> {
-  options: readonly SelectOption<Value>[];
+  options: readonly Value[];
   currentOption: SelectOption<Value> | undefined;
 }
 
@@ -67,7 +67,7 @@ export function extractOptionsFromChildren<Value extends string | number>(
 ): ExtractedOptions<Value> {
   let currentOption: SelectOption<Value> | undefined;
 
-  const options: SelectOption<Value>[] = [];
+  const options: Value[] = [];
   const searchValues: string[] = [];
   Children.forEach(children, (child) => {
     if (!isValidElement<SelectOption<Value>>(child)) {
@@ -84,7 +84,7 @@ export function extractOptionsFromChildren<Value extends string | number>(
       }
 
       if (!disabled) {
-        options.push(child.props);
+        options.push(child.props.value);
         searchValues.push(getLabelFromChildren(children));
       }
     } else if (children) {

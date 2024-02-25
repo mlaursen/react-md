@@ -212,6 +212,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
     jumpToLastKeys: propJumpToLastKeys,
     getFocusableElements = defaultGetFocusableElements,
     getDefaultFocusedIndex = returnNegative1,
+    isNegativeOneAllowed = false,
   } = options;
 
   const isRTL = useDir().dir === "rtl";
@@ -360,7 +361,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
         // This allows my custom `getDefaultFocusedIndex` implementations to
         // have a nice fallback without having to re-implement the "focus
         // first" behavior
-        if (defaultFocusIndex === -1) {
+        if (!isNegativeOneAllowed && defaultFocusIndex === -1) {
           if (tabIndexBehavior === "virtual") {
             // virtual keyboard navigation **must** always focus at least one element
             defaultFocusIndex = getVirtualFocusDefaultIndex({
@@ -450,7 +451,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
         // TODO: Figure this part out. This is currently required for the tree
         // movement when the asterisk key is pressed. There might be other cases
         // as well.
-        if (currentFocusIndex.current === -1) {
+        if (!isNegativeOneAllowed && currentFocusIndex.current === -1) {
           currentFocusIndex.current = recalculateFocusIndex({
             focusables: getFocusableElements(currentTarget, programmatic),
             includeDisabled,

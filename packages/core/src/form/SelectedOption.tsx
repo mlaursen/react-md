@@ -1,15 +1,15 @@
 import { cnb } from "cnbuilder";
-import { type HTMLAttributes, type ReactElement, type ReactNode } from "react";
-import { bem } from "../utils/bem.js";
+import { type ReactElement, type ReactNode } from "react";
+import { Box, type BoxProps } from "../box/Box.js";
+import { cssUtils } from "../cssUtils.js";
 import { type OptionProps } from "./Option.js";
-
-const styles = bem("rmd-selected-option");
+import { textField } from "./textFieldStyles.js";
 
 /**
  * @remarks \@since 6.0.0
  * @internal
  */
-export interface SelectedOptionProps extends HTMLAttributes<HTMLDivElement> {
+export interface SelectedOptionProps extends BoxProps {
   option: OptionProps | undefined;
   placeholder?: ReactNode;
   disableAddon: boolean;
@@ -24,19 +24,32 @@ export interface SelectedOptionProps extends HTMLAttributes<HTMLDivElement> {
  * @internal
  */
 export function SelectedOption(props: SelectedOptionProps): ReactElement {
-  const { disableAddon, option, className, placeholder, ...remaining } = props;
+  const {
+    disableAddon,
+    option,
+    className,
+    disablePadding = true,
+    placeholder,
+    ...remaining
+  } = props;
 
   let children = option?.children || placeholder;
   // when the children are a string or number, wrap it in additional span so
   // that overflow can be ellipsis-ed
   if (typeof children === "string" || typeof children === "number") {
-    children = <span className={styles("v")}>{children}</span>;
+    children = (
+      <span className={cssUtils({ textOverflow: "ellipsis" })}>{children}</span>
+    );
   }
 
   return (
-    <div {...remaining} className={cnb(styles(), className)}>
+    <Box
+      {...remaining}
+      className={cnb("rmd-selected-option", textField(), className)}
+      disablePadding={disablePadding}
+    >
       {!disableAddon && option?.leftAddon}
       {children}
-    </div>
+    </Box>
   );
 }

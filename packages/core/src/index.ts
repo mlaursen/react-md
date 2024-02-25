@@ -104,6 +104,7 @@ export * from "./form/useListboxProvider.js";
 export * from "./form/useNumberField.js";
 export * from "./form/useRadioGroup.js";
 export * from "./form/useRangeSlider.js";
+export * from "./form/useSelectCombobox.js";
 export * from "./form/useSlider.js";
 export * from "./form/useTextField.js";
 export * from "./form/utils.js";

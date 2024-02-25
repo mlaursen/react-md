@@ -1071,22 +1071,11 @@ $variables: (
     }
 
     .rmd-selected-option {
-      @include _text-field-base-styles;
-
-      align-items: center;
-      display: flex;
-      gap: 0.5rem;
       position: absolute;
-      white-space: nowrap;
-
-      &__v {
-        @include typography.text-overflow;
-      }
     }
 
     .rmd-select {
       opacity: 0;
-      pointer-events: none;
 
       // ALl these additional overrides are provided so that the select will have
       // the same sizing as a text field with the same props provided.

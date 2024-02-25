@@ -252,6 +252,16 @@ export interface KeyboardMovementProviderOptions<E extends HTMLElement>
    * element is first focused or the focus index is `-1` on other focus events.
    */
   getDefaultFocusedIndex?: GetDefaultFocusedIndex;
+
+  /**
+   * This was added to support editable combobox behavior. As the user types or
+   * uses native input keyboard behavior, the focus index should be reset to
+   * `-1` so that the next "ArrowDown" event focuses the first option again
+   * instead of the last selected one.
+   *
+   * @defaultValue `false`
+   */
+  isNegativeOneAllowed?: boolean;
 }
 
 /**
