@@ -1,18 +1,5 @@
-import type { TextExtractor } from "../types.js";
-
-const identity = <T>(item: T): string => {
-  if (typeof item === "string") {
-    return item;
-  }
-
-  if (process.env.NODE_ENV !== "production") {
-    throw new Error(
-      "A `TextExtractor` must be provided to `alphaNumericSort` for lists that do not contain strings"
-    );
-  }
-
-  return "";
-};
+import { defaultExtractor } from "../searching/utils.js";
+import { type TextExtractor } from "../types.js";
 
 /**
  * The default `Intl.Collator` that should be used for sorting large lists.
@@ -131,7 +118,7 @@ export function alphaNumericSort<T>(
 ): readonly T[] {
   const {
     compare = DEFAULT_COLLATOR.compare,
-    extractor = identity,
+    extractor = defaultExtractor("alphaNumericSort"),
     descending = false,
   } = options;
 

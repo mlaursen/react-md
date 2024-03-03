@@ -90,6 +90,10 @@ export const navItems: readonly NavigationItem[] = [
         children: "Inputs",
         items: [
           {
+            href: "/autocomplete",
+            children: "AutoComplete",
+          },
+          {
             href: "/button",
             children: "Button",
           },
@@ -601,12 +605,12 @@ export const navItems: readonly NavigationItem[] = [
             children: "alphaNumericSort",
           },
           {
-            href: "/fuzzy-filter",
-            children: "fuzzyFilter",
+            href: "/fuzzy-search",
+            children: "fuzzySearch",
           },
           {
-            href: "/case-insensitive-filter",
-            children: "caseInsensitiveFilter",
+            href: "/case-insensitive-search",
+            children: "caseInsensitiveSearch",
           },
           {
             href: "/loop",
