@@ -1,7 +1,121 @@
-import type { TextExtractor } from "../types.js";
+import { type TextExtractor } from "../types.js";
+
+/**
+ * @remarks \@since 6.0.0
+ */
+export function toSearchQuery(
+  s: string,
+  whitespace: "trim" | "ignore" | "keep" = "keep"
+): string {
+  let q = s.toLowerCase();
+  if (whitespace === "ignore") {
+    q = q.replace(/\s/g, "");
+  } else if (whitespace === "trim") {
+    q = q.trim();
+  }
+
+  return q;
+}
+
+/**
+ * @remarks \@since 6.0.0
+ */
+export interface CaseInsensitiveMatchOptions {
+  /**
+   * The current search query.
+   */
+  query: string;
+
+  /**
+   * The current value to compare against.
+   */
+  value: string;
+
+  /**
+   * @see {@link CaseInsensitiveOptions.startsWith}
+   * @defaultValue `false`
+   */
+  startsWith?: boolean;
+}
+
+/**
+ * @example
+ * ```ts
+ * const fruits = ["Banana", "Grape", "Apple", "Orange"];
+ *
+ * fruits.find((fruit) => caseInsensitiveMatch({
+ *   query: "ap",
+ *   value: fruit,
+ * }))
+ * // ["Grape"]
+ *
+ * fruits.find((fruit) => caseInsensitiveMatch({
+ *   query: "ap",
+ *   value: fruit,
+ *   startsWith: true,
+ * }))
+ * // ["Apple"]
+ * ```
+ *
+ * @see {@link caseInsensitiveFilter}
+ * @remarks \@since 6.0.0
+ */
+export function caseInsensitiveMatch(
+  options: CaseInsensitiveMatchOptions
+): boolean {
+  const { query, value, startsWith } = options;
+  const matchIndex = value.indexOf(query);
+  if (startsWith) {
+    return matchIndex === 0;
+  }
+
+  return matchIndex !== -1;
+}
+
+/**
+ * @example
+ * ```tsx
+ * import { createFuzzyRegExp, toSearchQuery } from "@react-md/core":
+ * import { useDeferredValue, useMemo, useState, type ReactElement } from "react";
+ *
+ * function Example(): ReactElement {
+ *   const [value, setValue] = useState("");
+ *   const deferredValue = useDeferredValue(value)
+ *
+ *   const match = useMemo(() => {
+ *     const query = toSearchQuery(deferredValue);
+ *     if (!query) {
+ *       return;
+ *     }
+ *
+ *     const fuzzyRegExp = createFuzzyRegExp(query);
+ *     return options.find(option => fuzzyRegExp.test(option.label)):
+ *   }, [options])
+ *
+ *   if (match) {
+ *     // do something
+ *   }
+ * }
+ *
+ * ```
+ *
+ * @remarks \@since 6.0.0
+ * @see {@link fuzzyFilter}
+ */
+export function createFuzzyRegExp(query: string): RegExp {
+  return new RegExp(
+    query
+      .split("")
+      .join("\\w*")
+      .replace(/(\(|\||\)|\\(?!w\*)|\[|\|-|\.|\^|\+|\$|\?|^(?!w)\*)/g, "\\$1")
+      // Couldn't get the matching of two '*' working, so replace them here..
+      .replace(/\*\*/g, "*\\*"),
+    "i"
+  );
+}
 
 /** @internal */
-const identity =
+const defaultExtractor =
   <T>(name: string) =>
   (item: T): string => {
     if (typeof item === "string") {
@@ -12,6 +126,11 @@ const identity =
       `A \`TextExtractor\` must be provided to \`${name}\` for lists that do not contain strings`
     );
   };
+
+/**
+ * @remarks \@since 6.0.0
+ */
+export type WhitespaceFilter = "ignore" | "trim" | "keep";
 
 /**
  * @remarks \@since 6.0.0
@@ -33,7 +152,7 @@ export interface BaseFilterOptions<T> {
   /**
    * @defaultValue `"keep"`
    */
-  whitespace?: "ignore" | "trim" | "keep";
+  whitespace?: WhitespaceFilter;
 }
 
 /**
@@ -49,37 +168,19 @@ export interface FilterOptions<T> extends BaseFilterOptions<T> {
  * @internal
  * @remarks \@since 6.0.0
  */
-const toSearchString = (
-  s: string,
-  whitespace: "trim" | "ignore" | "keep"
-): string => {
-  let q = s.toLowerCase();
-  if (whitespace === "ignore") {
-    q = q.replace(/\s/g, "");
-  } else if (whitespace === "trim") {
-    q = q.trim();
-  }
-
-  return q;
-};
-
-/**
- * @internal
- * @remarks \@since 6.0.0
- */
 function filter<T>(options: FilterOptions<T>): readonly T[] {
   const { list, query, filter, extractor, whitespace = "keep" } = options;
   if (!list.length) {
     return list;
   }
 
-  const q = toSearchString(query, whitespace);
+  const q = toSearchQuery(query, whitespace);
   if (!q) {
     return list;
   }
 
   return list.filter((item) =>
-    filter(q, toSearchString(extractor(item), whitespace))
+    filter(q, toSearchQuery(extractor(item), whitespace))
   );
 }
 
@@ -186,7 +287,7 @@ export function caseInsensitiveFilter<T>(
   const {
     list,
     query,
-    extractor = identity("caseInsensitiveFilter"),
+    extractor = defaultExtractor("caseInsensitiveFilter"),
     startsWith,
     whitespace,
   } = options;
@@ -197,12 +298,11 @@ export function caseInsensitiveFilter<T>(
     extractor,
     whitespace,
     filter(q, value) {
-      const matchIndex = value.indexOf(q);
-      if (startsWith) {
-        return matchIndex === 0;
-      }
-
-      return matchIndex !== -1;
+      return caseInsensitiveMatch({
+        query: q,
+        value,
+        startsWith,
+      });
     },
   });
 }
@@ -288,10 +388,14 @@ export function fuzzyFilter<T>(options: FuzzyFilterOptions<T>): readonly T[] {
   const {
     list,
     query,
-    extractor = identity("fuzzyFilter"),
+    extractor = defaultExtractor("fuzzyFilter"),
     whitespace,
   } = options;
 
+  // lazy initialize the RegExp since the base `filter` function will modify the
+  // query and never call the filter function if:
+  // - there is no query
+  // - the list is empty
   let regexp: RegExp;
   return filter({
     list,
@@ -299,22 +403,9 @@ export function fuzzyFilter<T>(options: FuzzyFilterOptions<T>): readonly T[] {
     extractor,
     whitespace,
     filter(query, value) {
-      if (!regexp) {
-        regexp = new RegExp(
-          `${query}`
-            .split("")
-            .join("\\w*")
-            .replace(
-              /(\(|\||\)|\\(?!w\*)|\[|\|-|\.|\^|\+|\$|\?|^(?!w)\*)/g,
-              "\\$1"
-            )
-            // Couldn't get the matching of two '*' working, so replace them here..
-            .replace(/\*\*/g, "*\\*"),
-          "i"
-        );
-      }
-
-      return value.length > 0 && regexp.test(value);
+      return (
+        value.length > 0 && (regexp ??= createFuzzyRegExp(query)).test(value)
+      );
     },
   });
 }
