@@ -8,6 +8,8 @@ import {
   type RefCallback,
   type RefObject,
 } from "react";
+import { type MenuProps } from "../menu/Menu.js";
+import { type MenuSheetConfigurableProps } from "../menu/MenuSheet.js";
 import {
   type GetDefaultFocusedIndex,
   type GetFocusableElements,
@@ -16,6 +18,17 @@ import {
   type KeyboardMovementProviderOptions,
 } from "../movement/types.js";
 import { useKeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
+import { BELOW_CENTER_ANCHOR } from "../positioning/constants.js";
+import {
+  type PositionAnchor,
+  type PositionWidth,
+} from "../positioning/types.js";
+import { TRANSITION_CONFIG } from "../transition/config.js";
+import {
+  type TransitionCallbacks,
+  type TransitionEnterHandler,
+  type TransitionExitHandler,
+} from "../transition/types.js";
 import {
   type NonNullMutableRef,
   type UseStateInitializer,
@@ -78,13 +91,14 @@ export type ComboboxKeyboardMovementOptions<
   | "disabled"
   | "loopable"
   | "searchable"
+  | "onFocusChange"
   | "isNegativeOneAllowed"
 >;
 
 /**
  * @remarks \@since 6.0.0
  */
-export interface ComboboxOptions<
+export interface BaseComboboxOptions<
   ComboboxEl extends HTMLElement = HTMLInputElement,
   PopupEl extends HTMLElement = HTMLElement,
 > extends ComboboxKeyboardMovementOptions<ComboboxEl> {
@@ -129,6 +143,20 @@ export interface ComboboxOptions<
 /**
  * @remarks \@since 6.0.0
  */
+export interface ComboboxOptions<
+  ComboboxEl extends HTMLElement = HTMLInputElement,
+  PopupEl extends HTMLElement = HTMLElement,
+> extends BaseComboboxOptions<ComboboxEl, PopupEl> {
+  getEnterDefaultFocusedIndex(options: {
+    focusLast: boolean;
+    focusables: readonly HTMLElement[];
+    currentFocusIndex: number;
+  }): number;
+}
+
+/**
+ * @remarks \@since 6.0.0
+ */
 export interface ComboboxWidgetProps<
   ComboboxEl extends HTMLElement = HTMLInputElement,
 > {
@@ -158,6 +186,43 @@ export interface ComboboxWidgetPopupProps<
 /**
  * @remarks \@since 6.0.0
  */
+export type ComboboxTransitionCallbacks = Pick<
+  TransitionCallbacks,
+  "onEntering" | "onEntered" | "onExiting" | "onExited"
+>;
+
+/**
+ * @remarks \@since 6.0.0
+ */
+export interface ComboboxTransitionOptions extends ComboboxTransitionCallbacks {
+  disableTransition?: boolean;
+}
+
+/**
+ * @remarks \@since 6.0.0
+ */
+export interface ComboboxMenuProps<
+  ComboboxEl extends HTMLElement = HTMLInputElement,
+> extends Required<ComboboxTransitionCallbacks>,
+    ComboboxWidgetPopupProps {
+  visible: boolean;
+  onRequestClose(): void;
+
+  /** @defaultValue `"min"` */
+  width: PositionWidth;
+
+  /** @defaultValue `BELOW_CENTER_ANCHOR` */
+  anchor: PositionAnchor;
+
+  fixedTo: RefObject<ComboboxEl>;
+
+  sheetProps: MenuSheetConfigurableProps &
+    Required<ComboboxTransitionCallbacks>;
+}
+
+/**
+ * @remarks \@since 6.0.0
+ */
 export interface ComboboxImplementation<
   ComboboxEl extends HTMLElement = HTMLInputElement,
   PopupEl extends HTMLElement = HTMLElement,
@@ -171,6 +236,18 @@ export interface ComboboxImplementation<
   popupProps: ComboboxWidgetPopupProps<PopupEl>;
   comboboxRef: RefObject<ComboboxEl>;
   comboboxProps: ComboboxWidgetProps<ComboboxEl>;
+
+  /**
+   * Since the combobox usually uses the `Menu` as a popup element, this is a
+   * helper util to create the required props and merge any additional props
+   * with reasonable defaults.
+   */
+  getMenuProps(
+    props?: Partial<Omit<MenuProps, "fixedTo" | "visible" | "onRequestClose">>
+  ): Partial<MenuProps> & ComboboxMenuProps<ComboboxEl>;
+  getTransitionCallbacks(
+    options: ComboboxTransitionOptions
+  ): Required<ComboboxTransitionCallbacks>;
 }
 
 /**
@@ -197,8 +274,10 @@ export function useCombobox<
     popupId: propPopupId,
     popupRef: propPopupRef,
     defaultVisible = false,
+    onFocusChange = noop,
     extendKeyDown = noop,
     getFocusableElements = getNonDisabledOptions,
+    getEnterDefaultFocusedIndex,
     getDefaultFocusedIndex,
   } = options;
 
@@ -274,6 +353,7 @@ export function useCombobox<
     disabled,
     loopable,
     searchable,
+    onFocusChange,
     programmatic: true,
     includeDisabled: false,
     tabIndexBehavior: "virtual",
@@ -288,6 +368,73 @@ export function useCombobox<
     isNegativeOneAllowed,
     getDefaultFocusedIndex,
   });
+  const getTransitionCallbacks = (
+    options: ComboboxTransitionOptions = {}
+  ): Required<ComboboxTransitionCallbacks> => {
+    const { onEntered, onEntering, onExiting, onExited, disableTransition } =
+      options;
+
+    const handleEntering =
+      (callback: TransitionEnterHandler = noop, skipped: boolean) =>
+      (appearing: boolean) => {
+        callback(appearing);
+
+        const popup = popupRef.current;
+        if (!popup || skipped) {
+          return;
+        }
+
+        const focusables = getFocusableElements(popup, true);
+        const index = getEnterDefaultFocusedIndex({
+          focusLast: focusLast.current,
+          focusables,
+          currentFocusIndex: currentFocusIndex.current,
+        });
+        focusLast.current = false;
+        currentFocusIndex.current = index;
+
+        const option = focusables[index];
+        if (!option) {
+          return;
+        }
+
+        onFocusChange({
+          index,
+          element: option,
+        });
+        option.scrollIntoView({ block: "nearest" });
+        setActiveDescendantId(option.id || "");
+      };
+    const handleExiting =
+      (callback: TransitionExitHandler = noop, skipped: boolean) =>
+      (): void => {
+        callback();
+
+        if (!skipped) {
+          // since the menu is unmounted or set to hidden while not visible, need
+          // to clear the aria-activedescendant and current focus index when
+          // hiding
+          currentFocusIndex.current = -1;
+          setActiveDescendantId("");
+        }
+      };
+
+    const isTransitionCompleteSkipped =
+      !disableTransition && !TRANSITION_CONFIG.disabled;
+
+    return {
+      onEntering: handleEntering(onEntering, false),
+      onEntered: handleEntering(onEntered, isTransitionCompleteSkipped),
+      onExiting: handleExiting(onExiting, false),
+      onExited: handleExiting(onExited, isTransitionCompleteSkipped),
+    };
+  };
+
+  const popupProps: ComboboxWidgetPopupProps<PopupEl> = {
+    id: popupId,
+    ref: popupRefCallback,
+    role: popup,
+  };
 
   return {
     show,
@@ -296,11 +443,7 @@ export function useCombobox<
     setVisible,
     focusLast,
     popupRef,
-    popupProps: {
-      id: popupId,
-      ref: popupRefCallback,
-      role: popup,
-    },
+    popupProps,
     comboboxRef,
     comboboxProps: {
       ...movementProps,
@@ -316,5 +459,27 @@ export function useCombobox<
     movementContext,
     currentFocusIndex,
     setActiveDescendantId,
+    getTransitionCallbacks,
+    getMenuProps(props = {}) {
+      const { sheetProps, disableTransition } = props;
+      return {
+        anchor: BELOW_CENTER_ANCHOR,
+        width: "min",
+        ...props,
+        ...popupProps,
+        fixedTo: comboboxRef,
+        visible,
+        onRequestClose: hide,
+        ...getTransitionCallbacks(props),
+        sheetProps: {
+          ...sheetProps,
+          ...getTransitionCallbacks({
+            ...sheetProps,
+            disableTransition:
+              sheetProps?.disableTransition ?? disableTransition,
+          }),
+        },
+      };
+    },
   };
 }

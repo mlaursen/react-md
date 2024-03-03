@@ -16,7 +16,6 @@ import { IconRotator } from "../icon/IconRotator.js";
 import { getIcon } from "../icon/iconConfig.js";
 import { Menu, type MenuProps } from "../menu/Menu.js";
 import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
-import { BELOW_CENTER_ANCHOR } from "../positioning/constants.js";
 import {
   type LabelA11y,
   type PropsWithRef,
@@ -34,10 +33,10 @@ import { getFormConfig } from "./formConfig.js";
 import { select } from "./selectStyles.js";
 import { extractOptionsFromChildren } from "./selectUtils.js";
 import { textField } from "./textFieldStyles.js";
+import { type UserAgentAutoCompleteProps } from "./types.js";
 import { useFormReset } from "./useFormReset.js";
 import { ListboxProvider, type ListboxContext } from "./useListboxProvider.js";
 import { useSelectCombobox } from "./useSelectCombobox.js";
-import { UserAgentAutoCompleteProps } from "./types.js";
 
 const EMPTY_STRING = "" as const;
 const noop = (): void => {
@@ -322,28 +321,20 @@ export function Select<Value extends string>(
     currentValue
   );
 
-  const {
-    hide,
-    visible,
-    popupProps,
-    comboboxRef,
-    comboboxProps,
-    movementContext,
-    handleMounting,
-    handleUnmounting,
-  } = useSelectCombobox({
-    form,
-    value: currentValue,
-    values: options,
-    onClick,
-    onFocus,
-    onKeyDown,
-    disabled,
-    popupId: menuProps.id,
-    popupRef: menuProps.nodeRef,
-    comboboxId,
-    comboboxRef: containerRef,
-  });
+  const { visible, comboboxProps, movementContext, getMenuProps } =
+    useSelectCombobox({
+      form,
+      value: currentValue,
+      values: options,
+      onClick,
+      onFocus,
+      onKeyDown,
+      disabled,
+      popupId: menuProps.id,
+      popupRef: menuProps.nodeRef,
+      comboboxId,
+      comboboxRef: containerRef,
+    });
 
   const [inputRef, inputRefCallback] = useEnsuredRef(propInputRef);
   useFormReset({
@@ -373,9 +364,6 @@ export function Select<Value extends string>(
   if (!listboxLabel && !listboxLabelledBy) {
     listboxLabelledBy = labelId || comboboxId;
   }
-
-  const { onEntering, onEntered, onExiting, onExited, disableTransition } =
-    menuProps;
 
   return (
     <ListboxProvider value={listboxContext}>
@@ -442,31 +430,9 @@ export function Select<Value extends string>(
           )}
         </TextFieldContainer>
         <Menu
-          anchor={BELOW_CENTER_ANCHOR}
-          width="min"
-          {...menuProps}
+          {...getMenuProps(menuProps)}
           aria-label={listboxLabel}
           aria-labelledby={listboxLabelledBy as string}
-          {...popupProps}
-          visible={visible}
-          fixedTo={comboboxRef}
-          onRequestClose={hide}
-          onEntering={handleMounting(onEntering, false)}
-          onEntered={handleMounting(onEntered, !disableTransition)}
-          onExiting={handleUnmounting(onExiting, false)}
-          onExited={handleUnmounting(onExited, !disableTransition)}
-          sheetProps={{
-            ...menuProps.sheetProps,
-            onEntering: handleMounting(menuProps.sheetProps?.onEntering, false),
-            onEntered: handleMounting(
-              menuProps.sheetProps?.onEntered,
-              !disableTransition
-            ),
-            onExited: handleUnmounting(
-              menuProps.sheetProps?.onExited,
-              !disableTransition
-            ),
-          }}
         >
           {children}
         </Menu>
