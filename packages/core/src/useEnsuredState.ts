@@ -9,7 +9,7 @@ import type { UseStateInitializer, UseStateSetter } from "./types.js";
  */
 export interface EnsuredStateOptions<
   V,
-  Setter extends Dispatch<V> | UseStateSetter<V>,
+  Setter extends Dispatch<V> | UseStateSetter<V> = UseStateSetter<V>,
 > {
   value?: V;
   setValue?: Setter;
