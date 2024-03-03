@@ -90,7 +90,7 @@ export interface FormComponentStates {
  * @see https://html.spec.whatwg.org/multipage/forms.html#autofill
  * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values
  */
-export type AutoCompleteValue =
+export type AutocompleteValue =
   | "off"
   | "on"
   | "name"
@@ -149,11 +149,11 @@ export type AutoCompleteValue =
 /**
  * @remarks \@since 6.0.0
  */
-export interface UserAgentAutoCompleteProps {
+export interface UserAgentAutocompleteProps {
   /**
    * Set this to enable additional autocompletion suggestions for a user for
    * different form fields. Using this prop will update the
-   * {@link UserAgentAutoCompleteProps.name} and {@link autoComplete} to default to
+   * {@link UserAgentAutocompleteProps.name} and {@link autoComplete} to default to
    * this value.
    *
    * @example
@@ -182,11 +182,11 @@ export interface UserAgentAutoCompleteProps {
    *
    * @see https://html.spec.whatwg.org/multipage/forms.html#autofill
    * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values
-   * @see {@link AutoCompleteValue}
+   * @see {@link AutocompleteValue}
    * @see {@link autoComplete}
-   * @see {@link UserAgentAutoCompleteProps.name}
+   * @see {@link UserAgentAutocompleteProps.name}
    */
-  autoCompleteValue?: AutoCompleteValue;
+  autoCompleteValue?: AutocompleteValue;
 
   /**
    * @see {@link autoCompleteValue}

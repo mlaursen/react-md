@@ -15,12 +15,12 @@ import { getFormConfig } from "./formConfig.js";
 import { nativeSelect, nativeSelectContainer } from "./nativeSelectStyles.js";
 import {
   type FormFieldOptions,
-  type UserAgentAutoCompleteProps,
+  type UserAgentAutocompleteProps,
 } from "./types.js";
 
 export interface NativeSelectProps
   extends SelectHTMLAttributes<HTMLSelectElement>,
-    UserAgentAutoCompleteProps,
+    UserAgentAutocompleteProps,
     FormFieldOptions {
   /**
    * A custom dropdown icon to use instead of the browser's default select

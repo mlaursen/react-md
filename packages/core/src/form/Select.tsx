@@ -33,7 +33,7 @@ import { getFormConfig } from "./formConfig.js";
 import { select } from "./selectStyles.js";
 import { extractOptionsFromChildren } from "./selectUtils.js";
 import { textField } from "./textFieldStyles.js";
-import { type UserAgentAutoCompleteProps } from "./types.js";
+import { type UserAgentAutocompleteProps } from "./types.js";
 import { useFormReset } from "./useFormReset.js";
 import { ListboxProvider, type ListboxContext } from "./useListboxProvider.js";
 import { useSelectCombobox } from "./useSelectCombobox.js";
@@ -95,7 +95,7 @@ export type SelectChangeEvent<Value extends string> =
 export interface SelectProps<Value extends string>
   extends Omit<TextFieldContainerProps, "label">,
     Pick<InputHTMLAttributes<HTMLInputElement>, "form" | "required">,
-    UserAgentAutoCompleteProps {
+    UserAgentAutocompleteProps {
   /**
    * @defaultValue `"select-" + useId()`
    */

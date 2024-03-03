@@ -14,7 +14,7 @@ import { getFormConfig } from "./formConfig.js";
 import { textField } from "./textFieldStyles.js";
 import {
   type FormFieldOptions,
-  type UserAgentAutoCompleteProps,
+  type UserAgentAutocompleteProps,
 } from "./types.js";
 
 /**
@@ -54,7 +54,7 @@ export type TextFieldInputAttributes = Omit<
  */
 export interface TextFieldProps
   extends TextFieldInputAttributes,
-    UserAgentAutoCompleteProps,
+    UserAgentAutocompleteProps,
     FormFieldOptions {
   /**
    * @defaultValue `"text-field-" + useId()`

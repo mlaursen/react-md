@@ -54,10 +54,13 @@ export function tryToSubmitRelatedForm<E extends HTMLElement>(
  * @internal
  * @remarks \@since 6.0.0
  */
-export type ChangeableHTMLElement =
-  | HTMLInputElement
-  | HTMLTextAreaElement
-  | HTMLSelectElement;
+export type EditableHTMLElement = HTMLInputElement | HTMLTextAreaElement;
+
+/**
+ * @internal
+ * @remarks \@since 6.0.0
+ */
+export type ChangeableHTMLElement = EditableHTMLElement | HTMLSelectElement;
 
 /**
  * @internal
