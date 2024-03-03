@@ -1,6 +1,6 @@
-import type { KeyboardEvent } from "react";
+import { type KeyboardEvent } from "react";
 import { loop } from "../utils/loop.js";
-import type { FocusableIndexOptions, TabIndexBehavior } from "./types.js";
+import { type FocusableIndexOptions, type TabIndexBehavior } from "./types.js";
 
 /**
  * @remarks \@since 6.0.0
@@ -259,4 +259,12 @@ export function isSearchableEvent(event: KeyboardEvent): boolean {
     !ctrlKey &&
     !metaKey
   );
+}
+
+/**
+ * @remarks \@since 6.0.0
+ * @internal
+ */
+export function isTypeEvent(event: KeyboardEvent): boolean {
+  return isSearchableEvent(event) || ["Backspace", " "].includes(event.key);
 }

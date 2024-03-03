@@ -60,6 +60,16 @@ export type ChangeableHTMLElement =
   | HTMLSelectElement;
 
 /**
+ * @internal
+ * @remarks \@since 6.0.0
+ */
+export function isChangeableHTMLElement(
+  element: Element | null
+): element is ChangeableHTMLElement {
+  return !!element && "value" in element;
+}
+
+/**
  * This is used to trigger a change event for a form element.
  *
  * @internal
