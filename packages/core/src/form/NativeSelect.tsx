@@ -18,8 +18,11 @@ import {
   type UserAgentAutocompleteProps,
 } from "./types.js";
 
+/**
+ * @remarks \@since 6.0.0 Added support for {@link UserAgentAutocompleteProps}
+ */
 export interface NativeSelectProps
-  extends SelectHTMLAttributes<HTMLSelectElement>,
+  extends Omit<SelectHTMLAttributes<HTMLSelectElement>, "autoComplete">,
     UserAgentAutocompleteProps,
     FormFieldOptions {
   /**
