@@ -1075,9 +1075,15 @@ $variables: (
     }
 
     .rmd-select {
+      // disable pointer events on touch devices so the soft keyboard does not
+      // appear when clicking the select
+      @media (hover: none) and (pointer: course) {
+        pointer-events: none;
+      }
+
       opacity: 0;
 
-      // ALl these additional overrides are provided so that the select will have
+      // All these additional overrides are provided so that the select will have
       // the same sizing as a text field with the same props provided.
       @if not $disable-text-field-underlined-theme {
         &--underline {
