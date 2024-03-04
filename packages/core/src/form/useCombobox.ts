@@ -321,6 +321,7 @@ export function useCombobox<
     movementProps,
     movementContext,
     currentFocusIndex,
+    activeDescendantId,
     setActiveDescendantId,
   } = useKeyboardMovementProvider<ComboboxEl>({
     onFocus,
@@ -406,6 +407,16 @@ export function useCombobox<
 
         const popup = popupRef.current;
         if (!popup || skipped) {
+          // Chrome does not trigger the scrollIntoView behavior correctly while
+          // using a scale transition, so need to trigger this on the entered
+          // flow to really make sure the item is in view.
+          // An alternative would be to implement a custom scrollIntoView
+          // behavior again like the previous versions of react-md, but this is
+          // less lines of code
+          const activeOption = document.getElementById(activeDescendantId);
+          if (activeOption) {
+            activeOption.scrollIntoView({ block: "nearest" });
+          }
           return;
         }
 
@@ -427,6 +438,7 @@ export function useCombobox<
           index,
           element: option,
         });
+
         option.scrollIntoView({ block: "nearest" });
         setActiveDescendantId(option.id || "");
       };
@@ -483,6 +495,7 @@ export function useCombobox<
     movementProps,
     movementContext,
     currentFocusIndex,
+    activeDescendantId,
     setActiveDescendantId,
     getTransitionCallbacks,
     getMenuProps(props = {}) {

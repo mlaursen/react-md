@@ -541,6 +541,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
     },
     movementContext,
     currentFocusIndex,
+    activeDescendantId,
     setActiveDescendantId,
   };
 }

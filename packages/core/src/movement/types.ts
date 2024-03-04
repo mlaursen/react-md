@@ -298,5 +298,6 @@ export interface KeyboardMovementProviderImplementation<E extends HTMLElement> {
   movementProps: Readonly<KeyboardMovementProps<E>>;
   movementContext: Readonly<KeyboardMovementContext>;
   currentFocusIndex: NonNullMutableRef<number>;
+  activeDescendantId: string;
   setActiveDescendantId: UseStateSetter<string>;
 }
