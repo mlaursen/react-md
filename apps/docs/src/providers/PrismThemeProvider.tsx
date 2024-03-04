@@ -63,23 +63,34 @@ export function PrismThemeProvider(
       return;
     }
 
-    // when changing between themes, clone the current stylesheet as a fallback
-    // until the new stylesheet has loaded. without this, there will be a few
-    // layout changes with theme -> unstyled -> new theme for slower connections
-    const cloned = stylesheet.cloneNode() as HTMLLinkElement;
-    cloned.id = `${PRISM_THEMES_ID}-fallback`;
-    stylesheet.after(cloned);
-
+    // make the prism theme transition nicer by preventing layout shifts by
+    // preserving the current theme styles until the next stylesheet has been
+    // loaded. so:
+    // - update the current stylesheet's id to have `-fallback` suffix
+    // - create the next stylesheet link
+    // - add a load event that removes the previous stylesheet from the dom so
+    //   only the latest stylesheet is active
+    // - insert the next stylesheet after the current stylesheet to begin the
+    //   transition
+    //
+    // Note: I used to do create a clone of the current stylesheet to use as a
+    // fallback until the new stylesheet was loaded, but it doesn't look like
+    // chrome fires the onload event again when the href changes
     let loaded = false;
-    stylesheet.href = nextHref;
-    stylesheet.onload = () => {
+    const nextStylesheet = document.createElement("link");
+    nextStylesheet.id = PRISM_THEMES_ID;
+    nextStylesheet.rel = "stylesheet";
+    nextStylesheet.href = nextHref;
+    nextStylesheet.onload = () => {
       loaded = true;
-      cloned.remove();
+      stylesheet.remove();
     };
+    stylesheet.id = `${PRISM_THEMES_ID}-fallback`;
+    stylesheet.after(nextStylesheet);
 
     return () => {
       if (!loaded) {
-        cloned.remove();
+        stylesheet.remove();
       }
     };
   }, [prismTheme]);
