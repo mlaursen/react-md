@@ -11,17 +11,17 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "forceConsistentCasingInFileNames": true,
-    "lib": ["esnext"],
+    "lib": ["esnext"]
   },
   "include": [
     "**/*.ts",
     "*.mjs",
     "../next-env.d.ts",
-    "../next-env-custom.d.ts",
+    "../next-env-custom.d.ts"
   ],
   "exclude": ["node_modules"],
   "ts-node": {
     "esm": true,
-    "transpileOnly": true,
-  },
+    "transpileOnly": true
+  }
 }
