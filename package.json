@@ -1,4 +1,5 @@
 {
+  "name": "project-root",
   "type": "module",
   "private": true,
   "scripts": {

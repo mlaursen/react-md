@@ -201,10 +201,21 @@ export interface ComboboxTransitionOptions extends ComboboxTransitionCallbacks {
 /**
  * @remarks \@since 6.0.0
  */
-export interface ComboboxMenuProps<
+export type ConfigurableComboboxMenuProps = Partial<
+  Omit<
+    MenuProps,
+    "fixedTo" | "visible" | "onRequestClose" | keyof ComboboxWidgetPopupProps
+  >
+>;
+
+/**
+ * @remarks \@since 6.0.0
+ */
+export interface ProvidedComboboxMenuProps<
   ComboboxEl extends HTMLElement = HTMLInputElement,
+  PopupEl extends HTMLElement = HTMLDivElement,
 > extends Required<ComboboxTransitionCallbacks>,
-    ComboboxWidgetPopupProps {
+    ComboboxWidgetPopupProps<PopupEl> {
   visible: boolean;
   onRequestClose(): void;
 
@@ -223,6 +234,27 @@ export interface ComboboxMenuProps<
 /**
  * @remarks \@since 6.0.0
  */
+export interface ComboboxMenuProps<
+  ComboboxEl extends HTMLElement = HTMLInputElement,
+  PopupEl extends HTMLElement = HTMLDivElement,
+> extends Omit<ConfigurableComboboxMenuProps, keyof ProvidedComboboxMenuProps>,
+    ProvidedComboboxMenuProps<ComboboxEl, PopupEl> {}
+
+/**
+ * Since the combobox usually uses the `Menu` as a popup element, this is a
+ * helper util to create the required props and merge any additional props
+ * with reasonable defaults.
+ */
+export type ComboboxGetMenuProps<
+  ComboboxEl extends HTMLElement = HTMLInputElement,
+  PopupEl extends HTMLElement = HTMLDivElement,
+> = (
+  props?: ConfigurableComboboxMenuProps
+) => ComboboxMenuProps<ComboboxEl, PopupEl>;
+
+/**
+ * @remarks \@since 6.0.0
+ */
 export interface ComboboxImplementation<
   ComboboxEl extends HTMLElement = HTMLInputElement,
   PopupEl extends HTMLElement = HTMLElement,
@@ -237,14 +269,7 @@ export interface ComboboxImplementation<
   comboboxRef: RefObject<ComboboxEl>;
   comboboxProps: ComboboxWidgetProps<ComboboxEl>;
 
-  /**
-   * Since the combobox usually uses the `Menu` as a popup element, this is a
-   * helper util to create the required props and merge any additional props
-   * with reasonable defaults.
-   */
-  getMenuProps(
-    props?: Partial<Omit<MenuProps, "fixedTo" | "visible" | "onRequestClose">>
-  ): Partial<MenuProps> & ComboboxMenuProps<ComboboxEl>;
+  getMenuProps: ComboboxGetMenuProps<ComboboxEl, PopupEl>;
   getTransitionCallbacks(
     options: ComboboxTransitionOptions
   ): Required<ComboboxTransitionCallbacks>;

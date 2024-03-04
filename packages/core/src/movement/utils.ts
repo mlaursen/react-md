@@ -266,5 +266,7 @@ export function isSearchableEvent(event: KeyboardEvent): boolean {
  * @internal
  */
 export function isTypeEvent(event: KeyboardEvent): boolean {
-  return isSearchableEvent(event) || ["Backspace", " "].includes(event.key);
+  return (
+    isSearchableEvent(event) || ["Backspace", "Delete", " "].includes(event.key)
+  );
 }
