@@ -19,13 +19,14 @@ const exec = (command: string): void => {
 interface CreateReleaseOptions {
   body: string;
   version: string;
+  override?: boolean;
   prerelease: boolean;
 }
 
 async function createRelease(options: CreateReleaseOptions): Promise<void> {
-  const { version, body, prerelease } = options;
+  const { version, body, override, prerelease } = options;
 
-  dotenv.config({ path: ".env.local" });
+  dotenv.config({ path: ".env.local", override });
   const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
   try {
     const response = await octokit.request(
@@ -33,7 +34,7 @@ async function createRelease(options: CreateReleaseOptions): Promise<void> {
       {
         owner: "mlaursen",
         repo: "react-md",
-        tag_name: `v${version}`,
+        tag_name: `@react-md/core/v${version}`,
         body,
         prerelease,
       }
@@ -56,7 +57,7 @@ async function createRelease(options: CreateReleaseOptions): Promise<void> {
       process.exit(1);
     }
 
-    return createRelease(options);
+    return createRelease({ ...options, override: true });
   }
 }
 
