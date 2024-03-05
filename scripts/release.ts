@@ -96,14 +96,14 @@ async function getReleaseVersion(): Promise<string> {
 
   if (
     await confirm({
-      message: `Is "${version}" the current github release version?`,
+      message: `Is "${version}" the next github release version?`,
     })
   ) {
     return version;
   }
 
   return await input({
-    message: "Input the current release version for Github",
+    message: "Input the next release version for Github",
   });
 }
 

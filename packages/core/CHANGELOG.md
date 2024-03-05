@@ -1,5 +1,14 @@
 # @react-md/core
 
+## 1.0.0-next.9
+
+### Patch Changes
+
+- Added a RootHtml component for Next.js apps and a lot of changes to the Select
+  component. The Select _should_ be able to be autofilled by the browser and
+  password managers now if I remember correctly. There's also a lot of work into
+  getting started with the new Autocomplete API.
+
 ## 1.0.0-next.8
 
 ### Patch Changes
