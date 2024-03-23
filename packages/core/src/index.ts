@@ -167,6 +167,7 @@ export * from "./menu/MenuButton.js";
 export * from "./menu/MenuConfigurationProvider.js";
 export * from "./menu/MenuItem.js";
 export * from "./menu/MenuItemButton.js";
+export * from "./menu/MenuItemCircularProgress.js";
 export * from "./menu/MenuItemGroup.js";
 export * from "./menu/MenuItemSeparator.js";
 export * from "./menu/MenuSheet.js";
