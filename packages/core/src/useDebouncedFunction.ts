@@ -1,14 +1,14 @@
 "use client";
-import { useCallback, useEffect, useRef } from "react";
-import type { AnyFunction } from "./types.js";
+import { useEffect, useMemo, useRef } from "react";
+import { type AnyFunction } from "./types.js";
 import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect.js";
 
 /**
  * @remarks \@since 6.0.0
  */
-export type DebouncedFunction<F extends AnyFunction> = (
+export type DebouncedFunction<F extends AnyFunction> = ((
   ...args: Parameters<F>
-) => void;
+) => void) & { cancel(): void };
 
 /**
  * Creates a function that will only be called if it has not been called again
@@ -103,13 +103,15 @@ export function useDebouncedFunction<F extends AnyFunction>(
     };
   }, []);
 
-  return useCallback(
-    (...args) => {
+  return useMemo(() => {
+    const debounced: DebouncedFunction<F> = (...args) => {
       window.clearTimeout(timeout.current);
       timeout.current = window.setTimeout(() => {
         funcRef.current(...args);
       }, wait);
-    },
-    [wait]
-  );
+    };
+    debounced.cancel = () => window.clearTimeout(timeout.current);
+
+    return debounced;
+  }, [wait]);
 }
