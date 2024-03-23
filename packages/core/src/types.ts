@@ -178,6 +178,11 @@ export type AnyFunction = (...args: any[]) => any | void;
 /**
  * @remarks \@since 6.0.0
  */
+export type CancelableFunction<F extends AnyFunction> = F & { cancel(): void };
+
+/**
+ * @remarks \@since 6.0.0
+ */
 export interface ElementSize {
   height: number;
   width: number;

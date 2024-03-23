@@ -1,14 +1,14 @@
 "use client";
 import { useEffect, useMemo, useRef } from "react";
-import { type AnyFunction } from "./types.js";
+import { type CancelableFunction, type AnyFunction } from "./types.js";
 import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect.js";
 
 /**
  * @remarks \@since 6.0.0
  */
-export type DebouncedFunction<F extends AnyFunction> = ((
-  ...args: Parameters<F>
-) => void) & { cancel(): void };
+export type DebouncedFunction<F extends AnyFunction> = CancelableFunction<
+  (...args: Parameters<F>) => void
+>;
 
 /**
  * Creates a function that will only be called if it has not been called again

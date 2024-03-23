@@ -1,14 +1,14 @@
 "use client";
-import { useCallback, useEffect, useRef } from "react";
-import type { AnyFunction } from "./types.js";
+import { useEffect, useMemo, useRef } from "react";
+import { type AnyFunction, type CancelableFunction } from "./types.js";
 import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect.js";
 
 /**
  * @remarks \@since 6.0.0
  */
-export type ThrottledFunction<F extends AnyFunction> = (
-  ...args: Parameters<F>
-) => ReturnType<F>;
+export type ThrottledFunction<F extends AnyFunction> = CancelableFunction<
+  (...args: Parameters<F>) => ReturnType<F>
+>;
 
 /**
  * Creates a function that will only be called once every X milliseconds.
@@ -106,8 +106,8 @@ export function useThrottledFunction<F extends AnyFunction>(
     };
   }, []);
 
-  return useCallback(
-    (...nextArgs) => {
+  return useMemo(() => {
+    const throttled: ThrottledFunction<F> = (...nextArgs) => {
       args.current = nextArgs;
 
       const now = Date.now();
@@ -125,7 +125,9 @@ export function useThrottledFunction<F extends AnyFunction>(
       }
 
       return result.current as ReturnType<F>;
-    },
-    [wait]
-  );
+    };
+    throttled.cancel = () => window.clearTimeout(timeout.current);
+
+    return throttled;
+  }, [wait]);
 }

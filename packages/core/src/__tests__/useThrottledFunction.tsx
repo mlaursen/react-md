@@ -14,6 +14,7 @@ import {
   waitFor,
 } from "../test-utils/index.js";
 
+import { Button } from "../button/Button.js";
 import { TextField } from "../form/TextField.js";
 import { useThrottledFunction } from "../useThrottledFunction.js";
 
@@ -168,5 +169,58 @@ describe("useThrottledFunction", () => {
     });
     expect(value).toHaveTextContent("");
     expect(field).toHaveValue("Hello");
+  });
+
+  it("should allow the timeout to be cancelled", async () => {
+    jest.useFakeTimers();
+    const user = userEvent.setup({ delay: null });
+    const fired = jest.fn();
+
+    function Test() {
+      const [value, setValue] = useState("");
+      const handleChange = useThrottledFunction((value: string) => {
+        fired(value);
+        setValue(value);
+      }, 500);
+
+      return (
+        <>
+          <div data-testid="output">{value}</div>
+          <TextField
+            label="Field"
+            onChange={(event) => handleChange(event.currentTarget.value)}
+          />
+          <Button
+            onClick={() => {
+              handleChange.cancel();
+            }}
+          >
+            Cancel
+          </Button>
+        </>
+      );
+    }
+
+    render(<Test />);
+    const field = screen.getByRole("textbox", { name: "Field" });
+    const output = screen.getByTestId("output");
+    const cancel = screen.getByRole("button", { name: "Cancel" });
+
+    expect(output).toHaveTextContent("");
+    expect(field).toHaveValue("");
+
+    await user.type(field, "Hello, world!");
+    expect(fired).toHaveBeenCalledWith("H");
+    expect(output).toHaveTextContent("H");
+    expect(field).toHaveValue("Hello, world!");
+
+    await user.click(cancel);
+    act(() => {
+      jest.runAllTimers();
+    });
+
+    expect(fired).toHaveBeenCalledTimes(1);
+    expect(output).toHaveTextContent("H");
+    expect(field).toHaveValue("Hello, world!");
   });
 });
