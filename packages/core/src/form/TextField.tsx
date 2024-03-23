@@ -10,7 +10,6 @@ import { useEnsuredId } from "../useEnsuredId.js";
 import { FormMessageContainer } from "./FormMessageContainer.js";
 import { Label } from "./Label.js";
 import { TextFieldContainer } from "./TextFieldContainer.js";
-import { getFormConfig } from "./formConfig.js";
 import { textField } from "./textFieldStyles.js";
 import {
   type FormFieldOptions,
@@ -149,34 +148,29 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       autoCompleteValue,
       autoComplete = autoCompleteValue,
       name = autoCompleteValue,
-      dense = false,
-      error = false,
-      active = false,
-      inline = false,
-      stretch = false,
+      dense,
+      error,
+      active,
+      inline,
+      stretch,
       leftAddon,
       leftAddonProps,
       rightAddon,
       rightAddonProps,
-      disableLeftAddonStyles = false,
-      disableRightAddonStyles = false,
+      disableLeftAddonStyles,
+      disableRightAddonStyles,
       inputStyle,
       inputClassName,
-      theme: propTheme,
-      underlineDirection: propUnderlineDirection,
+      theme,
+      underlineDirection,
       messageProps,
       messageContainerProps,
       containerProps,
       children,
       ...remaining
     } = props;
-    const { disabled = false, readOnly = false } = props;
+    const { disabled, readOnly } = props;
     const id = useEnsuredId(propId, "text-field");
-    const theme = getFormConfig("theme", propTheme);
-    const underlineDirection = getFormConfig(
-      "underlineDirection",
-      propUnderlineDirection
-    );
 
     let { placeholder = "" } = props;
     if (label && !placeholder) {
@@ -187,7 +181,13 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     return (
       <FormMessageContainer
         {...messageContainerProps}
-        messageProps={messageProps}
+        messageProps={
+          messageProps && {
+            error,
+            theme,
+            ...messageProps,
+          }
+        }
       >
         <TextFieldContainer
           {...containerProps}
