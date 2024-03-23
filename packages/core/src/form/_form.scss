@@ -535,10 +535,6 @@ $variables: (
           }
 
           left: 0;
-          // disable pointer events for floating labels so that the input behind
-          // is clicked instead. this prevents double click events for the Select
-          // component
-          pointer-events: none;
           position: absolute;
           top: 0;
           transform: translate(
