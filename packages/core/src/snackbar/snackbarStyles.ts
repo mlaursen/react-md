@@ -20,6 +20,7 @@ export type SnackbarPosition =
 /** @remarks \@since 6.0.0 */
 export interface SnackbarClassNameOptions {
   className?: string;
+  absolute?: boolean;
   position: SnackbarPosition;
 }
 
@@ -27,12 +28,13 @@ export interface SnackbarClassNameOptions {
  * @remarks \@since 6.0.0
  */
 export function snackbar(options: SnackbarClassNameOptions): string {
-  const { className, position } = options;
+  const { className, absolute, position } = options;
   const top =
     position === "top" || position === "top-left" || position === "top-right";
 
   return cnb(
     styles({
+      absolute,
       top,
       bottom: !top,
       start: position === "top-left" || position === "bottom-left",

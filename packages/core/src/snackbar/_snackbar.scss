@@ -11,6 +11,7 @@
 @use "../transition/transition";
 
 $disable-everything: false !default;
+$disable-absolute: false !default;
 $disable-top: false !default;
 $disable-bottom: false !default;
 $disable-top-right: $disable-top !default;
@@ -103,6 +104,12 @@ $variables: (background-color, color, offset);
         position: fixed;
         right: 0;
         z-index: $z-index;
+
+        @if not $disable-absolute {
+          &--absolute {
+            position: absolute;
+          }
+        }
 
         @if not
           $disable-top or not

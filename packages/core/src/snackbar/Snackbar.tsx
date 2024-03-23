@@ -14,9 +14,7 @@ import { snackbar, type SnackbarPosition } from "./snackbarStyles.js";
  * @remarks \@since 6.0.0 The `id` prop is optional
  */
 export interface SnackbarProps extends HTMLAttributes<HTMLDivElement> {
-  /**
-   * @defaultValue `"snackbar-" + useId()`
-   */
+  /** @defaultValue `"snackbar-" + useId()` */
   id?: string;
 
   /**
@@ -29,13 +27,18 @@ export interface SnackbarProps extends HTMLAttributes<HTMLDivElement> {
   limit?: number;
 
   /**
-   * @defaultValue `"bottom"`
-   */
-  position?: SnackbarPosition;
-
-  /**
+   * Set this to `true` if the snackbar should use absolute positioning so it
+   * can be fixed within a `position: relative` container instead of the entire
+   * viewport.
+   *
    * @defaultValue `false`
    */
+  absolute?: boolean;
+
+  /** @defaultValue `"bottom"` */
+  position?: SnackbarPosition;
+
+  /** @defaultValue `false` */
   disablePortal?: boolean;
 
   /**
@@ -148,6 +151,7 @@ export const Snackbar = forwardRef<HTMLDivElement, SnackbarProps>(
       id: propId,
       className,
       limit = 1,
+      absolute,
       position = "bottom",
       renderToast: RenderToast = DefaultToastRenderer,
       disablePortal,
@@ -164,7 +168,7 @@ export const Snackbar = forwardRef<HTMLDivElement, SnackbarProps>(
             {...remaining}
             id={id}
             ref={ref}
-            className={snackbar({ position, className })}
+            className={snackbar({ absolute, position, className })}
           >
             {queue.map((toast) => (
               <RenderToast
