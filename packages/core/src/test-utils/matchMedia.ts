@@ -149,7 +149,7 @@ export function spyOnMatchMedia(
         if (typeof listener !== "function" || type !== "change") {
           return;
         }
-        /* c8 ignore end */
+        /* c8 ignore stop */
 
         listeners.set(query, listener);
       },
@@ -161,7 +161,7 @@ export function spyOnMatchMedia(
         if (typeof listener !== "function" || type !== "change") {
           return;
         }
-        /* c8 ignore end */
+        /* c8 ignore stop */
 
         listeners.delete(query);
       },

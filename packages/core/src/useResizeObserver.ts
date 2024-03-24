@@ -107,7 +107,7 @@ export class ResizeObserverManager {
       if (!targetSubscriptions) {
         continue;
       }
-      /* c8 ignore end */
+      /* c8 ignore stop */
 
       const entries = targetSubscriptions.values();
       for (const subscription of entries) {

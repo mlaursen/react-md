@@ -119,7 +119,7 @@ export function useTreeMovement<T extends TreeItemNode>(
       if (!item) {
         return;
       }
-      /* c8 ignore end */
+      /* c8 ignore stop */
 
       const disabled = disabledItems[itemId];
       const expanded = expandedIds.has(itemId);
