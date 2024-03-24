@@ -47,7 +47,6 @@ export function search<T>(
   }
 
   const fn = type === "search" ? "find" : "filter";
-
   return list[fn]((item) =>
     filter(q, toSearchQuery(extractor(item), whitespace))
   );

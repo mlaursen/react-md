@@ -201,6 +201,7 @@ export * from "./searching/caseInsensitive.js";
 export * from "./searching/fuzzy.js";
 export * from "./searching/toSearchQuery.js";
 export * from "./searching/types.js";
+export * from "./searching/useFuzzyMatch.js";
 export * from "./searching/utils.js";
 export * from "./segmented-button/SegmentedButton.js";
 export * from "./segmented-button/SegmentedButtonContainer.js";
