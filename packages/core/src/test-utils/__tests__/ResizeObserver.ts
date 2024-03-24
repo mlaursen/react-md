@@ -149,7 +149,7 @@ describe("ResizeObserverMock", () => {
   it("should support animation frames to mimic real behavior", async () => {
     const raf = jest.spyOn(window, "requestAnimationFrame");
     const manager = new ResizeObserverManager();
-    setupResizeObserverMock(true, manager);
+    setupResizeObserverMock({ raf: true, manager });
     expect(raf).not.toHaveBeenCalled();
 
     const element = document.createElement("div");

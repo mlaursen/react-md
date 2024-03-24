@@ -1,5 +1,8 @@
 import { afterEach, jest } from "@jest/globals";
-import { resizeObserverManager } from "../useResizeObserver.js";
+import {
+  resizeObserverManager,
+  type ResizeObserverManager,
+} from "../useResizeObserver.js";
 
 /**
  * @remarks \@since 6.0.0
@@ -83,33 +86,12 @@ export class ResizeObserverMock implements ResizeObserver {
    * @example
    * Main Usage
    * ```tsx
-   * import { useCallback, useState } from "react";
    * import {
    *   cleanupResizeObserverAfterEach,
-   *   render,
-   *   screen,
    *   setupResizeObserverMock,
    * } from "@react-md/core/test-utils";
    * import { useResizeObserver } from "@react-md/core";
-   *
-   * function ExampleComponent() {
-   *   const [size, setSize] = useState({ height: 0, width: 0 });
-   *   const ref = useResizeObserver({
-   *     onUpdate: useCallback((entry) => {
-   *       setSize({
-   *         height: entry.contentRect.height,
-   *         width: entry.contentRect.width,
-   *       });
-   *     });
-   *   });
-   *
-   *   return (
-   *     <>
-   *       <div data-testid="size">{JSON.stringify(size)}</div>
-   *       <div data-testid="resize-target" ref={ref} />
-   *     </>
-   *   );
-   * }
+   * import { ExampleComponent } from "../ExampleComponent.js";
    *
    * cleanupResizeObserverAfterEach();
    *
@@ -118,30 +100,13 @@ export class ResizeObserverMock implements ResizeObserver {
    *     const observer = setupResizeObserverMock();
    *     render(<ExampleComponent />)
    *
-   *     const size = screen.getByTestId("size");
    *     const resizeTarget = screen.getByTestId("resize-target")
-   *
-   *     // jsdom sets all element sizes to 0 by default
-   *     expect(size).toHaveTextContent(JSON.stringify({ height: 0, width: 0 }));
    *
    *     // you can trigger with a custom change
    *     act(() => {
    *       observer.resizeElement(resizeTarget, { height: 100, width: 100 });
    *     });
-   *     expect(size).toHaveTextContent(JSON.stringify({ height: 100, width: 100 }));
-   *
-   *     // or you can mock the `getBoundingClientRect` result
-   *     jest.spyOn(resizeTarget, "getBoundingClientRect")
-   *       .mockReturnValue({
-   *         ...document.body.getBoundingClientRect(),
-   *         height: 200,
-   *         width: 200,
-   *       }):
-   *
-   *     act(() => {
-   *       observer.resizeElement(resizeTarget);
-   *     });
-   *     expect(size).toHaveTextContent(JSON.stringify({ height: 200, width: 200 }));
+   *     // expect resize changes
    *   });
    * })
    * ```
@@ -225,23 +190,105 @@ export class ResizeObserverMock implements ResizeObserver {
 }
 
 /**
+ * @remarks \@since 6.0.0
+ */
+export interface SetupResizeObserverMockOptions {
+  /**
+   * Set this to `true` to mimic the real `ResizeObserver` behavior where the
+   * updates occur after an animation frame instead of invoking immediately.
+   *
+   * Keeping this as `false` is recommended since this option was only added to
+   * make testing this function itself easier.
+   *
+   * @defaultValue `false`
+   */
+  raf?: boolean;
+
+  /**
+   * Keeping this as the `resizeObserverManager` is recommended since this
+   * option was only added to make testing this function easier itself.
+   *
+   * @defaultValue `resizeObserverManager`
+   */
+  manager?: ResizeObserverManager;
+}
+
+/**
  * Initializes the `ResizeObserverMock` to be used for tests.
  *
- * @see {@link ResizeObserverMock.resizeElement} for example usage.
+ * @example
+ * Main Usage
+ * ```tsx
+ * import { useCallback, useState } from "react";
+ * import {
+ *   cleanupResizeObserverAfterEach,
+ *   render,
+ *   screen,
+ *   setupResizeObserverMock,
+ * } from "@react-md/core/test-utils";
+ * import { useResizeObserver } from "@react-md/core";
  *
- * @param raf - set this to `true` to mimic the real ResizeObserver behavior
- * where the updates occur after an animation frame instead of invoking
- * immediately
- * @param manager - a custom {@link resizeObserverManager} to use for your
- * tests. You most likely should **not** use this option since it was added to
- * help testing this function itself.
+ * function ExampleComponent() {
+ *   const [size, setSize] = useState({ height: 0, width: 0 });
+ *   const ref = useResizeObserver({
+ *     onUpdate: useCallback((entry) => {
+ *       setSize({
+ *         height: entry.contentRect.height,
+ *         width: entry.contentRect.width,
+ *       });
+ *     });
+ *   });
+ *
+ *   return (
+ *     <>
+ *       <div data-testid="size">{JSON.stringify(size)}</div>
+ *       <div data-testid="resize-target" ref={ref} />
+ *     </>
+ *   );
+ * }
+ *
+ * cleanupResizeObserverAfterEach();
+ *
+ * describe("ExampleComponent", () => {
+ *   it("should do stuff", () => {
+ *     const observer = setupResizeObserverMock();
+ *     render(<ExampleComponent />)
+ *
+ *     const size = screen.getByTestId("size");
+ *     const resizeTarget = screen.getByTestId("resize-target")
+ *
+ *     // jsdom sets all element sizes to 0 by default
+ *     expect(size).toHaveTextContent(JSON.stringify({ height: 0, width: 0 }));
+ *
+ *     // you can trigger with a custom change
+ *     act(() => {
+ *       observer.resizeElement(resizeTarget, { height: 100, width: 100 });
+ *     });
+ *     expect(size).toHaveTextContent(JSON.stringify({ height: 100, width: 100 }));
+ *
+ *     // or you can mock the `getBoundingClientRect` result
+ *     jest.spyOn(resizeTarget, "getBoundingClientRect")
+ *       .mockReturnValue({
+ *         ...document.body.getBoundingClientRect(),
+ *         height: 200,
+ *         width: 200,
+ *       }):
+ *
+ *     act(() => {
+ *       observer.resizeElement(resizeTarget);
+ *     });
+ *     expect(size).toHaveTextContent(JSON.stringify({ height: 200, width: 200 }));
+ *   });
+ * })
+ * ```
  *
  * @remarks \@since 6.0.0
  */
-export const setupResizeObserverMock = (
-  raf = false,
-  manager = resizeObserverManager
-): ResizeObserverMock => {
+export function setupResizeObserverMock(
+  options: SetupResizeObserverMockOptions = {}
+): ResizeObserverMock {
+  const { raf, manager = resizeObserverManager } = options;
+
   const resizeObserver = new ResizeObserverMock((entries) => {
     if (raf) {
       window.cancelAnimationFrame(manager.frame);
@@ -254,7 +301,7 @@ export const setupResizeObserverMock = (
   });
   manager.sharedObserver = resizeObserver;
   return resizeObserver;
-};
+}
 
 /**
  * @see {@link setupResizeObserverMock}
