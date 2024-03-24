@@ -1,0 +1,548 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextArea resizing behavior should update the height as the user types 1`] = `
+<div
+  class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-textarea-container rmd-textarea-container--height rmd-textarea-container--cursor"
+  data-testid="container"
+  style="--rmd-textarea-height: 56px;"
+>
+  <div
+    class="rmd-textarea-container__inner"
+  >
+    <textarea
+      class="rmd-text-field rmd-text-field--placeholder-hidden rmd-textarea rmd-textarea--rn"
+      id="text-area-:rf:"
+      placeholder=" "
+      rows="2"
+    />
+    <label
+      class="rmd-label rmd-label--floating"
+      for="text-area-:rf:"
+    >
+      Label
+    </label>
+    <textarea
+      aria-hidden="true"
+      class="rmd-text-field rmd-textarea rmd-textarea--rn rmd-textarea--mask"
+      id="text-area-:rf:-mask"
+      readonly=""
+      rows="2"
+      tabindex="-1"
+    />
+  </div>
+</div>
+`;
+
+exports[`TextArea resizing behavior should update the height as the user types 2`] = `
+<div
+  class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-textarea-container rmd-textarea-container--height rmd-textarea-container--animate rmd-textarea-container--cursor"
+  data-testid="container"
+  style="--rmd-textarea-height: 72px;"
+>
+  <div
+    class="rmd-textarea-container__inner rmd-textarea-container__inner--animate"
+  >
+    <textarea
+      class="rmd-text-field rmd-text-field--placeholder-hidden rmd-textarea rmd-textarea--rn"
+      id="text-area-:rf:"
+      placeholder=" "
+      rows="2"
+    />
+    <label
+      class="rmd-label rmd-label--floating"
+      for="text-area-:rf:"
+    >
+      Label
+    </label>
+    <textarea
+      aria-hidden="true"
+      class="rmd-text-field rmd-textarea rmd-textarea--rn rmd-textarea--mask"
+      id="text-area-:rf:-mask"
+      readonly=""
+      rows="2"
+      tabindex="-1"
+    />
+  </div>
+</div>
+`;
+
+exports[`TextArea should allow for addons before and after the input 1`] = `
+<div
+  class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-text-field-container--outline-left rmd-text-field-container--outline-right rmd-textarea-container rmd-textarea-container--cursor"
+  data-testid="container"
+>
+  <span
+    class="rmd-text-field-addon rmd-text-field-addon--before rmd-text-field-addon--presentational"
+  >
+    <span
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons"
+      data-testid="favorite"
+    >
+      favorite
+    </span>
+  </span>
+  <div
+    class="rmd-textarea-container__inner"
+  >
+    <textarea
+      class="rmd-text-field rmd-text-field--placeholder-hidden rmd-textarea rmd-textarea--rn"
+      id="text-area-:ra:"
+      placeholder=" "
+      rows="2"
+    />
+    <label
+      class="rmd-label rmd-label--floating"
+      for="text-area-:ra:"
+    >
+      Area
+    </label>
+    <textarea
+      aria-hidden="true"
+      class="rmd-text-field rmd-textarea rmd-textarea--rn rmd-textarea--mask"
+      id="text-area-:ra:-mask"
+      readonly=""
+      rows="2"
+      tabindex="-1"
+    />
+  </div>
+  <span
+    class="rmd-text-field-addon rmd-text-field-addon--after rmd-text-field-addon--presentational"
+  >
+    <span
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons"
+      data-testid="close"
+    >
+      close
+    </span>
+  </span>
+</div>
+`;
+
+exports[`TextArea should allow the active state to be controlled programmatically instead of with css only by using the active prop 1`] = `
+<div
+  class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-textarea-container rmd-textarea-container--cursor"
+  data-testid="container"
+>
+  <div
+    class="rmd-textarea-container__inner"
+  >
+    <textarea
+      class="rmd-text-field rmd-textarea rmd-textarea--rn"
+      id="text-area-:r4:"
+      placeholder=""
+      rows="2"
+    />
+    <textarea
+      aria-hidden="true"
+      class="rmd-text-field rmd-textarea rmd-textarea--rn rmd-textarea--mask"
+      id="text-area-:r4:-mask"
+      readonly=""
+      rows="2"
+      tabindex="-1"
+    />
+  </div>
+</div>
+`;
+
+exports[`TextArea should allow the active state to be controlled programmatically instead of with css only by using the active prop 2`] = `
+<div
+  class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--outline-active rmd-textarea-container rmd-textarea-container--cursor"
+  data-testid="container"
+>
+  <div
+    class="rmd-textarea-container__inner"
+  >
+    <textarea
+      class="rmd-text-field rmd-textarea rmd-textarea--rn"
+      id="text-area-:r4:"
+      placeholder=""
+      rows="2"
+    />
+    <textarea
+      aria-hidden="true"
+      class="rmd-text-field rmd-textarea rmd-textarea--rn rmd-textarea--mask"
+      id="text-area-:r4:-mask"
+      readonly=""
+      rows="2"
+      tabindex="-1"
+    />
+  </div>
+</div>
+`;
+
+exports[`TextArea should allow the active state to be controlled programmatically instead of with css only by using the active prop 3`] = `
+<div
+  class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-textarea-container rmd-textarea-container--cursor"
+  data-testid="container"
+>
+  <div
+    class="rmd-textarea-container__inner"
+  >
+    <textarea
+      class="rmd-text-field rmd-text-field--placeholder-hidden rmd-textarea rmd-textarea--rn"
+      id="text-area-:r4:"
+      placeholder=" "
+      rows="2"
+    />
+    <label
+      class="rmd-label rmd-label--floating"
+      for="text-area-:r4:"
+    >
+      Label
+    </label>
+    <textarea
+      aria-hidden="true"
+      class="rmd-text-field rmd-textarea rmd-textarea--rn rmd-textarea--mask"
+      id="text-area-:r4:-mask"
+      readonly=""
+      rows="2"
+      tabindex="-1"
+    />
+  </div>
+</div>
+`;
+
+exports[`TextArea should allow the active state to be controlled programmatically instead of with css only by using the active prop 4`] = `
+<div
+  class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--label rmd-text-field-container--outline-active rmd-textarea-container rmd-textarea-container--cursor"
+  data-testid="container"
+>
+  <div
+    class="rmd-textarea-container__inner"
+  >
+    <textarea
+      class="rmd-text-field rmd-textarea rmd-textarea--rn"
+      id="text-area-:r4:"
+      placeholder=" "
+      rows="2"
+    />
+    <label
+      class="rmd-label rmd-label--active rmd-label--floating rmd-label--floating-active"
+      for="text-area-:r4:"
+    >
+      Label
+    </label>
+    <textarea
+      aria-hidden="true"
+      class="rmd-text-field rmd-textarea rmd-textarea--rn rmd-textarea--mask"
+      id="text-area-:r4:-mask"
+      readonly=""
+      rows="2"
+      tabindex="-1"
+    />
+  </div>
+</div>
+`;
+
+exports[`TextArea should allow the label to by styled by labelProps or the labelStyle/labelClassName 1`] = `
+<label
+  class="rmd-label rmd-label--floating label-props-class-name"
+  data-testid="label"
+  for="text-area-:rb:"
+  style="background: orange;"
+>
+  Label
+</label>
+`;
+
+exports[`TextArea should allow the label to by styled by labelProps or the labelStyle/labelClassName 2`] = `
+<label
+  class="rmd-label rmd-label--floating label-class-name"
+  data-testid="label"
+  for="text-area-:rb:"
+  style="color: red;"
+>
+  Label
+</label>
+`;
+
+exports[`TextArea should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<textarea
+  class="rmd-text-field rmd-text-field--placeholder-hidden rmd-textarea rmd-textarea--rn"
+  id="text-area-:r0:"
+  placeholder=" "
+  rows="2"
+/>
+`;
+
+exports[`TextArea should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<textarea
+  class="rmd-text-field rmd-text-field--placeholder-hidden rmd-textarea rmd-textarea--rn"
+  id="text-area-:r0:"
+  placeholder=" "
+  rows="2"
+/>
+`;
+
+exports[`TextArea should automatically merge the error and theme props when messageProps have been defined 1`] = `
+<div
+  class="rmd-form-message-container"
+  data-testid="message-container"
+>
+  <div
+    class="rmd-text-field-container rmd-text-field-container--error rmd-text-field-container--filled rmd-text-field-container--hoverable rmd-text-field-container--label rmd-text-field-container--underline rmd-text-field-container--underline-labelled rmd-text-field-container--underline-left rmd-error-color rmd-textarea-container rmd-textarea-container--cursor rmd-textarea-container--underline-labelled"
+  >
+    <div
+      class="rmd-textarea-container__inner"
+    >
+      <textarea
+        class="rmd-text-field rmd-text-field--placeholder-hidden rmd-textarea rmd-textarea--rn"
+        id="text-area-:r7:"
+        placeholder=" "
+        rows="2"
+      />
+      <label
+        class="rmd-label rmd-label--error rmd-label--floating rmd-error-color"
+        for="text-area-:r7:"
+      >
+        Area
+      </label>
+      <textarea
+        aria-hidden="true"
+        class="rmd-text-field rmd-textarea rmd-textarea--rn rmd-textarea--mask"
+        id="text-area-:r7:-mask"
+        readonly=""
+        rows="2"
+        tabindex="-1"
+      />
+    </div>
+  </div>
+  <div
+    aria-live="polite"
+    class="rmd-form-message rmd-form-message--outline rmd-text-secondary-color"
+    id="form-message-:r8:"
+  >
+    <p
+      class="rmd-form-message__message"
+      id="form-message-:r8:-message"
+    >
+      Help Text
+    </p>
+  </div>
+</div>
+`;
+
+exports[`TextArea should render the FormMessageContainer when the messageProps have been defined 1`] = `
+<div
+  class="rmd-form-message-container"
+  data-testid="message-container"
+>
+  <div
+    class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-textarea-container rmd-textarea-container--cursor"
+  >
+    <div
+      class="rmd-textarea-container__inner"
+    >
+      <textarea
+        class="rmd-text-field rmd-text-field--placeholder-hidden rmd-textarea rmd-textarea--rn"
+        id="text-area-:r5:"
+        placeholder=" "
+        rows="2"
+      />
+      <label
+        class="rmd-label rmd-label--floating"
+        for="text-area-:r5:"
+      >
+        Area
+      </label>
+      <textarea
+        aria-hidden="true"
+        class="rmd-text-field rmd-textarea rmd-textarea--rn rmd-textarea--mask"
+        id="text-area-:r5:-mask"
+        readonly=""
+        rows="2"
+        tabindex="-1"
+      />
+    </div>
+  </div>
+  <div
+    aria-live="polite"
+    class="rmd-form-message rmd-form-message--outline rmd-text-secondary-color"
+    id="form-message-:r6:"
+  >
+    <p
+      class="rmd-form-message__message"
+      id="form-message-:r6:-message"
+    >
+      Help text
+    </p>
+  </div>
+</div>
+`;
+
+exports[`TextArea should support an error state 1`] = `
+<div
+  class="rmd-text-field-container rmd-text-field-container--error rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-text-field-container--outline-error rmd-error-color rmd-textarea-container rmd-textarea-container--cursor"
+  data-testid="container"
+>
+  <div
+    class="rmd-textarea-container__inner"
+  >
+    <textarea
+      class="rmd-text-field rmd-text-field--placeholder-hidden rmd-textarea rmd-textarea--rn"
+      id="text-area-:r3:"
+      placeholder=" "
+      rows="2"
+    />
+    <label
+      class="rmd-label rmd-label--error rmd-label--floating rmd-error-color"
+      for="text-area-:r3:"
+    >
+      Label
+    </label>
+    <textarea
+      aria-hidden="true"
+      class="rmd-text-field rmd-textarea rmd-textarea--rn rmd-textarea--mask"
+      id="text-area-:r3:-mask"
+      readonly=""
+      rows="2"
+      tabindex="-1"
+    />
+  </div>
+</div>
+`;
+
+exports[`TextArea should support the disabled state 1`] = `
+<div
+  class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--disabled rmd-text-field-container--label rmd-text-disabled-color rmd-textarea-container"
+  data-testid="container"
+>
+  <div
+    class="rmd-textarea-container__inner"
+  >
+    <textarea
+      class="rmd-text-field rmd-text-field--placeholder-hidden rmd-textarea rmd-textarea--rn"
+      disabled=""
+      id="text-area-:r2:"
+      placeholder=" "
+      rows="2"
+    />
+    <label
+      class="rmd-label rmd-label--disabled rmd-label--floating rmd-text-disabled-color"
+      for="text-area-:r2:"
+    >
+      Label
+    </label>
+    <textarea
+      aria-hidden="true"
+      class="rmd-text-field rmd-textarea rmd-textarea--rn rmd-textarea--mask"
+      id="text-area-:r2:-mask"
+      readonly=""
+      rows="2"
+      tabindex="-1"
+    />
+  </div>
+</div>
+`;
+
+exports[`TextArea should support the readOnly state 1`] = `
+<div
+  class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--disabled rmd-text-field-container--hoverable rmd-textarea-container rmd-textarea-container--cursor"
+  data-testid="container"
+>
+  <div
+    class="rmd-textarea-container__inner"
+  >
+    <textarea
+      class="rmd-text-field rmd-textarea rmd-textarea--rn"
+      id="text-area-:r1:"
+      placeholder=""
+      readonly=""
+      rows="2"
+    />
+    <textarea
+      aria-hidden="true"
+      class="rmd-text-field rmd-textarea rmd-textarea--rn rmd-textarea--mask"
+      id="text-area-:r1:-mask"
+      readonly=""
+      rows="2"
+      tabindex="-1"
+    />
+  </div>
+</div>
+`;
+
+exports[`TextArea should support the the native browser resize behavior 1`] = `
+<div
+  class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-textarea-container rmd-textarea-container--cursor"
+  data-testid="container"
+>
+  <textarea
+    class="rmd-text-field rmd-textarea rmd-textarea--rn rmd-textarea--scrollable"
+    id="text-area-:rc:"
+    placeholder=""
+    rows="2"
+  />
+</div>
+`;
+
+exports[`TextArea should support the the native browser resize behavior 2`] = `
+<div
+  class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-textarea-container rmd-textarea-container--cursor"
+  data-testid="container"
+>
+  <textarea
+    class="rmd-text-field rmd-textarea rmd-textarea--rv"
+    id="text-area-:rc:"
+    placeholder=""
+    rows="2"
+  />
+</div>
+`;
+
+exports[`TextArea should support the the native browser resize behavior 3`] = `
+<div
+  class="rmd-text-field-container rmd-text-field-container--inline rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-textarea-container rmd-textarea-container--cursor"
+  data-testid="container"
+>
+  <textarea
+    class="rmd-text-field rmd-textarea rmd-textarea--rh"
+    id="text-area-:rc:"
+    placeholder=""
+    rows="2"
+  />
+</div>
+`;
+
+exports[`TextArea should support the the native browser resize behavior 4`] = `
+<div
+  class="rmd-text-field-container rmd-text-field-container--inline rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-textarea-container rmd-textarea-container--cursor"
+  data-testid="container"
+>
+  <textarea
+    class="rmd-text-field rmd-textarea"
+    id="text-area-:rc:"
+    placeholder=""
+    rows="2"
+  />
+</div>
+`;
+
+exports[`TextArea should support the the native browser resize behavior 5`] = `
+<div
+  class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-textarea-container rmd-textarea-container--cursor"
+  data-testid="container"
+>
+  <div
+    class="rmd-textarea-container__inner"
+    data-testid="resize-container"
+  >
+    <textarea
+      class="rmd-text-field rmd-textarea rmd-textarea--rn"
+      id="text-area-:rc:"
+      placeholder=""
+      rows="2"
+    />
+    <textarea
+      aria-hidden="true"
+      class="rmd-text-field rmd-textarea rmd-textarea--rn rmd-textarea--mask"
+      id="text-area-:rc:-mask"
+      readonly=""
+      rows="2"
+      tabindex="-1"
+    />
+  </div>
+</div>
+`;

@@ -1,8 +1,6 @@
 "use client";
-import { cnb } from "cnbuilder";
 import {
   forwardRef,
-  useRef,
   type CSSProperties,
   type HTMLAttributes,
   type TextareaHTMLAttributes,
@@ -12,6 +10,7 @@ import { useEnsuredId } from "../useEnsuredId.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
 import { FormMessageContainer } from "./FormMessageContainer.js";
 import { Label } from "./Label.js";
+import { ResizingTextAreaWrapper } from "./ResizingTextAreaWrapper.js";
 import { TextFieldContainer } from "./TextFieldContainer.js";
 import { getFormConfig } from "./formConfig.js";
 import { textArea, textAreaContainer } from "./textAreaStyles.js";
@@ -21,9 +20,15 @@ import {
   type TextAreaResize,
 } from "./useResizingTextArea.js";
 
+/**
+ * @remarks \@since 6.0.0 Added `containerProps`.
+ */
 export interface TextAreaProps
   extends FormFieldOptions,
     TextareaHTMLAttributes<HTMLTextAreaElement> {
+  /** @defaultValue `"text-area-" + useId()` */
+  id?: string;
+
   /**
    * Optional placeholder text to display in the text field.
    *
@@ -82,6 +87,13 @@ export interface TextAreaProps
     HTMLAttributes<HTMLDivElement>,
     HTMLDivElement
   >;
+
+  /**
+   * Optional props to provide to the {@link TextFieldContainer} component.
+   * There probably isn't any real use for this prop other than if you need to
+   * add a `ref` for some DOM behavior.
+   */
+  containerProps?: PropsWithRef<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 }
 
 /**
@@ -130,27 +142,35 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       underlineDirection: propUnderlineDirection,
       messageProps,
       messageContainerProps,
+      containerProps,
       rows = 2,
       maxRows = -1,
       onChange: propOnChange,
-      disableTransition = false,
+      disableTransition: propDisableTransition,
       ...remaining
     } = props;
     const { disabled = false, readOnly = false, value, defaultValue } = props;
-    const id = useEnsuredId(propId, "text-field");
+    const id = useEnsuredId(propId, "text-area");
     const theme = getFormConfig("theme", propTheme);
     const underlineDirection = getFormConfig(
       "underlineDirection",
       propUnderlineDirection
     );
     const [areaRef, areaRefCallback] = useEnsuredRef(ref);
-    const containerRef = useRef<HTMLDivElement>(null);
 
-    const { maskRef, height, onChange, scrollable } = useResizingTextArea({
+    const {
+      maskRef,
+      containerRef,
+      height,
+      onChange,
+      scrollable,
+      disableTransition,
+    } = useResizingTextArea({
       maxRows,
       resize,
       onChange: propOnChange,
-      containerRef,
+      containerRef: containerProps?.ref,
+      disableTransition: propDisableTransition,
     });
 
     let { placeholder = "" } = props;
@@ -171,6 +191,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
         rows={rows}
         disabled={disabled}
         onChange={onChange}
+        placeholder={placeholder}
         style={areaStyle}
         className={textArea({
           resize,
@@ -206,32 +227,18 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
 
     if (resize === "auto") {
       children = (
-        <div
+        <ResizingTextAreaWrapper
           {...resizeContainerProps}
-          className={cnb(
-            "rmd-textarea-container__inner",
-            !disableTransition && "rmd-textarea-container__inner--animate",
-            resizeContainerProps?.className
-          )}
+          maskId={`${id}-mask`}
+          maskRef={maskRef}
+          rows={rows}
+          areaStyle={areaStyle}
+          areaClassName={areaClassName}
+          defaultValue={value ?? defaultValue}
+          disableTransition={disableTransition}
         >
-          {area}
-          {labelNode}
-          <textarea
-            aria-hidden
-            id={`${id}-mask`}
-            ref={maskRef}
-            defaultValue={value ?? defaultValue}
-            readOnly
-            tabIndex={-1}
-            rows={rows}
-            style={areaStyle}
-            className={textArea({
-              mask: true,
-              resize,
-              className: areaClassName,
-            })}
-          />
-        </div>
+          {children}
+        </ResizingTextAreaWrapper>
       );
     }
 
@@ -241,6 +248,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
         messageProps={messageProps}
       >
         <TextFieldContainer
+          {...containerProps}
           ref={containerRef}
           style={{
             ...style,

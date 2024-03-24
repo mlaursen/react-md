@@ -5,13 +5,14 @@ import {
   useRef,
   useState,
   type ChangeEventHandler,
+  type Ref,
   type RefCallback,
-  type RefObject,
 } from "react";
+import { useEnsuredRef } from "../useEnsuredRef.js";
 import { useResizeObserver } from "../useResizeObserver.js";
 
 // this is the default of 1.5rem line-height in the styles
-const DEFAULT_LINE_HEIGHT = "24";
+const DEFAULT_LINE_HEIGHT = 24;
 
 const noop = (): void => {
   // do nothing
@@ -46,63 +47,100 @@ export interface ResizingTextAreaOptions {
   resize: TextAreaResize;
   maxRows: number;
   onChange: ChangeEventHandler<HTMLTextAreaElement> | undefined;
-  containerRef: RefObject<HTMLDivElement>;
+  containerRef?: Ref<HTMLDivElement>;
+  disableTransition: boolean | undefined;
 }
 
 /** @internal */
 export interface ResizingTextAreaReturnValue {
   height: string | undefined;
   maskRef: RefCallback<HTMLTextAreaElement>;
+  containerRef: RefCallback<HTMLDivElement>;
   onChange: ChangeEventHandler<HTMLTextAreaElement>;
   scrollable: boolean;
+  disableTransition: boolean;
 }
 
 /** @internal */
 export function useResizingTextArea(
   options: ResizingTextAreaOptions
 ): ResizingTextAreaReturnValue {
-  const { maxRows, resize, onChange = noop, containerRef } = options;
+  const {
+    maxRows,
+    resize,
+    onChange = noop,
+    containerRef: propContainerRef,
+    disableTransition,
+  } = options;
 
   const maskRef = useRef<HTMLTextAreaElement>(null);
+  const [containerRef, containerRefCallback] = useEnsuredRef(propContainerRef);
   const [height, setHeight] = useState<number>();
-  const [scrollable, setScrollable] = useState(false);
   useEffect(() => {
     if (resize !== "auto") {
       setHeight(undefined);
     }
   }, [resize]);
 
+  // Since access to the DOM is required to calculate the current height of the
+  // textarea, do not enable the height transition until it has been calculated
+  // once.
+  const isHeightSet = useRef(true);
+  useEffect(() => {
+    isHeightSet.current = !height;
+  }, [height]);
+
+  // Do not enable the scrollbar until the max height has been reached since
+  // it'll flash as the user types on OS that display scrollbars.
+  //
+  // Note: This does cause an infinite loop issue on browsers that display OS
+  // when rendered in a flex/grid container and a "fluid" width since:
+  // - the width changes when the overflow changes to `auto`
+  // - the resize observer triggers since there was a width change
+  // - the number of rows imght change because of this width change
+  // - it might no longer be at the max height, so remove the scrollbar
+  // - restart
+  const [isMaxHeightReached, setMaxHeightReached] = useState(false);
   const updateHeight = useCallback(() => {
     const mask = maskRef.current;
     const container = containerRef.current;
+    /* c8 ignore start */
     if (!mask || !container) {
       return;
     }
+    /* c8 ignore stop */
 
     const containerStyles = window.getComputedStyle(container);
-    const borderHeight =
-      parseFloat(containerStyles.borderTopWidth) +
-      parseFloat(containerStyles.borderBottomWidth);
-    let nextHeight = mask.scrollHeight + borderHeight;
-    /* istanbul ignore if */
-    if (maxRows > 0) {
-      const lineHeight = parseFloat(
-        window.getComputedStyle(mask).lineHeight || DEFAULT_LINE_HEIGHT
-      );
-      const maxHeight = maxRows * lineHeight;
-      nextHeight = Math.min(maxHeight, nextHeight);
-
-      // only want the textarea to be scrollable if there's a limit on the rows
-      // since it'll flash the scrollbar on most OS during the height transition
-      if (nextHeight === maxHeight && !scrollable) {
-        setScrollable(true);
-      } else if (nextHeight !== maxHeight && scrollable) {
-        setScrollable(false);
-      }
+    const isBorderBox = containerStyles.boxSizing === "border-box";
+    let borderHeight = 0;
+    if (isBorderBox) {
+      borderHeight =
+        parseFloat(containerStyles.borderTopWidth) +
+        parseFloat(containerStyles.borderBottomWidth);
     }
 
-    setHeight(nextHeight + 2);
-  }, [containerRef, maxRows, scrollable]);
+    let nextHeight = mask.scrollHeight + borderHeight;
+    if (maxRows > 0) {
+      nextHeight -= borderHeight;
+      const maskStyles = window.getComputedStyle(mask);
+      // in tests, this is `"normal"` by default instead of a number
+      let lineHeight = parseFloat(maskStyles.lineHeight);
+      if (Number.isNaN(lineHeight)) {
+        lineHeight = DEFAULT_LINE_HEIGHT;
+      }
+
+      const maxHeight = maxRows * lineHeight;
+      nextHeight = Math.min(maxHeight, nextHeight);
+      setMaxHeightReached(nextHeight === maxHeight);
+      nextHeight += borderHeight;
+    }
+
+    // This just makes snapshots look nicer since `nextHeight` will be 0 in
+    // tests unless the user mocks out all the DOM properties
+    if (nextHeight) {
+      setHeight(nextHeight);
+    }
+  }, [containerRef, maxRows]);
 
   const maskRefCallback = useResizeObserver({
     ref: maskRef,
@@ -113,11 +151,14 @@ export function useResizingTextArea(
   return {
     height: typeof height === "number" ? `${height}px` : undefined,
     maskRef: maskRefCallback,
-    scrollable,
+    containerRef: containerRefCallback,
+    scrollable: maxRows > 0 && isMaxHeightReached,
+    disableTransition: disableTransition || isHeightSet.current,
     onChange(event) {
-      const mask = maskRef.current;
       onChange(event);
-      if (event.isPropagationStopped() || !mask || resize !== "auto") {
+
+      const mask = maskRef.current;
+      if (!mask || resize !== "auto") {
         return;
       }
 
