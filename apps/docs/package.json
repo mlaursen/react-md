@@ -29,8 +29,8 @@
     "start": "next start"
   },
   "engines": {
-    "pnpm": ">=8",
-    "node": "^18"
+    "node": "18.18.2",
+    "pnpm": "8.15.5"
   },
   "engineStrict": true,
   "repository": {
@@ -101,5 +101,9 @@
     "ts-morph": "^22.0.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.3"
+  },
+  "volta": {
+    "node": "18.18.2",
+    "pnpm": "8.15.5"
   }
 }

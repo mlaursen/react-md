@@ -36,8 +36,8 @@
     "typescript": "^5.4.3"
   },
   "engines": {
-    "pnpm": ">=8",
-    "node": "^18"
+    "node": "18.18.2",
+    "pnpm": "8.15.5"
   },
   "engineStrict": true,
   "packageManager": "pnpm@8.15.2",
@@ -48,6 +48,6 @@
   },
   "volta": {
     "node": "18.18.2",
-    "pnpm": "8.15.4"
+    "pnpm": "8.15.5"
   }
 }
