@@ -3,12 +3,14 @@ import {
   Children,
   cloneElement,
   createContext,
+  isValidElement,
   useCallback,
   useContext,
   useEffect,
   useMemo,
   useState,
   type ReactElement,
+  type ReactNode,
 } from "react";
 import { type UseStateInitializer } from "../types.js";
 
@@ -89,7 +91,7 @@ export interface WritingDirectionProviderProps {
    * `WritingDirection`, the child will have the `dir` prop cloned into this
    * element.
    */
-  children: ReactElement<{ dir?: Dir }>;
+  children: ReactElement<{ dir?: Dir }> | ReactNode;
 
   /**
    * The default writing direction for your app or a subtree. To change the
@@ -224,7 +226,7 @@ export function WritingDirectionProvider(
     [dir, toggleDir]
   );
   let child = Children.only(children);
-  if (!root) {
+  if (!root && isValidElement<{ dir: Dir }>(child)) {
     child = cloneElement(child, { dir });
   }
 
