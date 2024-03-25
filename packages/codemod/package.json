@@ -51,9 +51,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "volta": {
-    "node": "18.18.2",
-    "pnpm": "8.15.5"
   }
 }
