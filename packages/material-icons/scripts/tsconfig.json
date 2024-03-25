@@ -14,9 +14,5 @@
     "lib": ["esnext", "dom"]
   },
   "include": ["**/*.ts"],
-  "exclude": ["node_modules"],
-  "ts-node": {
-    "esm": true,
-    "transpileOnly": true
-  }
+  "exclude": ["node_modules"]
 }

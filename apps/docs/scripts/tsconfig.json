@@ -19,9 +19,5 @@
     "../next-env.d.ts",
     "../next-env-custom.d.ts"
   ],
-  "exclude": ["node_modules"],
-  "ts-node": {
-    "esm": true,
-    "transpileOnly": true
-  }
+  "exclude": ["node_modules"]
 }

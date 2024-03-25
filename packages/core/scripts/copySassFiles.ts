@@ -1,23 +1,23 @@
 /* eslint-disable no-console */
 // this is a temp file before I write the "combine everything" stuffs
-import { glob } from "glob";
 import chokidar from "chokidar";
-import { copyFile, mkdir, rm } from "node:fs/promises";
+import { glob } from "glob";
 import { existsSync } from "node:fs";
+import { copyFile, mkdir, rm } from "node:fs/promises";
 import { dirname } from "node:path";
 
 let log = false;
 const pattern = "src/**/*.scss";
 
-const replaceDist = (path) => path.replace("src", "dist");
-const ensureParentDirectories = async (filePath) => {
+const replaceDist = (path: string): string => path.replace("src", "dist");
+const ensureParentDirectories = async (filePath: string): Promise<void> => {
   const folder = dirname(filePath);
   if (!existsSync(folder)) {
     await mkdir(folder, { recursive: true });
   }
 };
 
-const cp = async (path, dest = replaceDist(path)) => {
+const cp = async (path: string, dest = replaceDist(path)): Promise<void> => {
   const isColors = path.endsWith("_colors.scss");
   await ensureParentDirectories(dest);
   await copyFile(path, dest);
