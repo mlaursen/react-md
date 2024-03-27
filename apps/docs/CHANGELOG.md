@@ -1,5 +1,13 @@
 # docs
 
+## 6.0.0-next.11
+
+### Patch Changes
+
+- Updated dependencies
+  - @react-md/material-icons@6.0.0-next.11
+  - @react-md/core@1.0.0-next.11
+
 ## 6.0.0-next.10
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @react-md/core
 
+## 1.0.0-next.11
+
+### Patch Changes
+
+- Experimental support for package.json exports and updated material icons.
+
 ## 1.0.0-next.10
 
 ### Minor Changes
