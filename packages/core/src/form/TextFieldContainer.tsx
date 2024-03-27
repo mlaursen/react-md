@@ -1,8 +1,8 @@
 "use client";
 import { forwardRef, type HTMLAttributes } from "react";
-import { getFormConfig } from "./formConfig.js";
 import { TextFieldAddon } from "./TextFieldAddon.js";
-import { textFieldContainer } from "./TextFieldContainerStyles.js";
+import { getFormConfig } from "./formConfig.js";
+import { textFieldContainer } from "./textFieldContainerStyles.js";
 import { type TextFieldContainerOptions } from "./types.js";
 
 export interface TextFieldContainerProps

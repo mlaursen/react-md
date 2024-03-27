@@ -84,7 +84,7 @@ export * from "./form/TextArea.js";
 export * from "./form/TextField.js";
 export * from "./form/TextFieldAddon.js";
 export * from "./form/TextFieldContainer.js";
-export * from "./form/TextFieldContainerStyles.js";
+export * from "./form/textFieldContainerStyles.js";
 export * from "./form/fileUtils.js";
 export * from "./form/formConfig.js";
 export * from "./form/formMessageStyles.js";
