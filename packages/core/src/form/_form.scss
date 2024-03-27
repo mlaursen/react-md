@@ -1073,7 +1073,7 @@ $variables: (
     .rmd-select {
       // disable pointer events on touch devices so the soft keyboard does not
       // appear when clicking the select
-      @media (hover: none) and (pointer: course) {
+      @media (hover: none) and (pointer: coarse) {
         pointer-events: none;
       }
 
