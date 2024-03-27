@@ -51,8 +51,8 @@ export async function createIconComponent(
     `${GENERATED_FILE_BANNER}
 
 import { forwardRef } from "react";
-import type { SVGIconProps} from "@react-md/core";
-import { SVGIcon } from "@react-md/core";
+import { type SVGIconProps} from "@react-md/core/SVGIcon";
+import { SVGIcon } from "@react-md/core/SVGIcon";
 
 export default forwardRef<SVGSVGElement, SVGIconProps>(
   function ${componentName}(props, ref) {
