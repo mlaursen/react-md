@@ -34,7 +34,7 @@ async function createRelease(options: CreateReleaseOptions): Promise<void> {
       {
         owner: "mlaursen",
         repo: "react-md",
-        tag_name: `@react-md/core/v${version}`,
+        tag_name: `@react-md/core@v${version}`,
         body,
         prerelease,
       }
