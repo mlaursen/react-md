@@ -311,7 +311,7 @@ $row-selected-styles: (
 
         @if not $disable-hoverable {
           &--hoverable {
-            @include utils.mouse-only {
+            @include utils.mouse-hover(false) {
               transition: background transition.$linear-duration
                 transition.$linear-timing-function;
 
