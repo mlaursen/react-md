@@ -38,17 +38,17 @@
     "cnbuilder": "^3.1.0"
   },
   "devDependencies": {
-    "@swc/core": "1.4.8",
+    "@swc/core": "1.4.12",
     "@types/lodash": "^4.17.0",
-    "@types/node": "^20.11.30",
-    "@types/react": "^18.2.69",
-    "glob": "^10.3.10",
+    "@types/node": "^20.12.5",
+    "@types/react": "^18.2.74",
+    "glob": "^10.3.12",
     "lodash": "^4.17.21",
     "prettier": "^3.2.5",
     "pretty-ms": "^9.0.0",
     "svgo": "^3.2.0",
-    "tsx": "^4.7.1",
-    "typescript": "^5.4.3"
+    "tsx": "^4.7.2",
+    "typescript": "^5.4.4"
   },
   "peerDependencies": {
     "react": ">= 18",
