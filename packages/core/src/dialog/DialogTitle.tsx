@@ -5,8 +5,8 @@ import {
   Typography,
   type CustomTypographyComponent,
   type TypographyProps,
-  type TypographyType,
 } from "../typography/Typography.js";
+import { type TypographyType } from "../typography/typographyStyles.js";
 
 /**
  * @remarks \@since 6.0.0 Inherits the `TypographyProps` instead of

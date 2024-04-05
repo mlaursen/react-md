@@ -330,6 +330,8 @@
     "./SrOnly": "./dist/typography/SrOnly.js",
     "./TextContainer": "./dist/typography/TextContainer.js",
     "./Typography": "./dist/typography/Typography.js",
+    "./textContainerStyles": "./dist/typography/textContainerStyles.js",
+    "./typographyStyles": "./dist/typography/typographyStyles.js",
     "./WritingDirectionProvider": "./dist/typography/WritingDirectionProvider.js",
     "./useAsyncAction": "./dist/useAsyncAction.js",
     "./useDebouncedFunction": "./dist/useDebouncedFunction.js",

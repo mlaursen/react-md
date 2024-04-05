@@ -4,8 +4,8 @@ import {
   Typography,
   type CustomTypographyComponent,
   type TypographyProps,
-  type TypographyType,
 } from "../typography/Typography.js";
+import { type TypographyType } from "../typography/typographyStyles.js";
 import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-slider-mark-label");

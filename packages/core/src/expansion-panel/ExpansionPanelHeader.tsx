@@ -6,14 +6,11 @@ import {
   type ReactNode,
 } from "react";
 import { ButtonUnstyled } from "../button/ButtonUnstyled.js";
-import { getIcon } from "../icon/iconConfig.js";
 import { IconRotator, type IconRotatorProps } from "../icon/IconRotator.js";
+import { getIcon } from "../icon/iconConfig.js";
 import { type PropsWithRef } from "../types.js";
-import {
-  Typography,
-  type TypographyProps,
-  type TypographyType,
-} from "../typography/Typography.js";
+import { Typography, type TypographyProps } from "../typography/Typography.js";
+import { type TypographyType } from "../typography/typographyStyles.js";
 
 /**
  * @remarks \@since 6.0.0 Updated to include additional heading/Typography
