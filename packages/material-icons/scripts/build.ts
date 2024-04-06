@@ -4,7 +4,7 @@ import { rm, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 
 const TYPE_DEFINITION = `/// <reference types="react" />
-import { SVGIconProps } from "@react-md/core/SVGIcon";
+import { SVGIconProps } from "@react-md/core/icon/SVGIcon";
 declare const _default: import("react").ForwardRefExoticComponent<SVGIconProps & import("react").RefAttributes<SVGSVGElement>>;
 export default _default;
 `;
