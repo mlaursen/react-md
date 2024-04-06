@@ -1,5 +1,11 @@
 # @react-md/core
 
+## 1.0.0-next.12
+
+### Patch Changes
+
+- Trying a different way to handle package.json exports.
+
 ## 1.0.0-next.11
 
 ### Patch Changes
