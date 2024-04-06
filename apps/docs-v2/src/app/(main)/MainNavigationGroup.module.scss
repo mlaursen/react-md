@@ -1,0 +1,42 @@
+@use "everything";
+
+$horizontal-padding: 0.25rem;
+$increasing-padding: calc(
+  everything.tree-get-var(depth) * 0.75rem + $horizontal-padding
+);
+
+.container {
+  min-width: 0;
+
+  li {
+    @include everything.rtl {
+      padding-left: $horizontal-padding;
+      padding-right: $increasing-padding;
+    }
+
+    padding-left: $increasing-padding;
+    padding-right: $horizontal-padding;
+  }
+
+  li[role="presentation"] {
+    @include everything.auto-rtl(
+      padding-left,
+      calc($increasing-padding + everything.$button-text-horizontal-padding),
+      0
+    );
+  }
+
+  .container {
+    padding: 0;
+  }
+
+  a,
+  button {
+    border-radius: 3rem;
+    font-size: inherit;
+    justify-content: space-between;
+    letter-spacing: inherit;
+    line-height: initial;
+    width: 100%;
+  }
+}

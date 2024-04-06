@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "noEmit": true,
+    "jsx": "preserve",
+    "strict": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "downlevelIteration": true,
+    "resolveJsonModule": true,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["esnext"]
+  },
+  "include": [
+    "**/*.ts",
+    "*.mjs",
+    "../next-env.d.ts",
+    "../next-env-custom.d.ts"
+  ],
+  "exclude": ["node_modules"]
+}

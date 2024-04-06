@@ -1,0 +1,11 @@
+@use "everything";
+
+.svg {
+  margin-top: 4rem;
+  max-width: 40rem;
+  width: 100%;
+}
+
+.oval {
+  @include everything.theme-use-var(fill, secondary-color);
+}

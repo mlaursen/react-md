@@ -1,0 +1,10 @@
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# editors
+/.vscode
+/.vim

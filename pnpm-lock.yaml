@@ -223,6 +223,79 @@ importers:
         specifier: ^5.4.4
         version: 5.4.4
 
+  apps/docs-v2:
+    dependencies:
+      '@react-md/core':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@react-md/material-icons':
+        specifier: workspace:*
+        version: link:../../packages/material-icons
+      cnbuilder:
+        specifier: ^3.1.0
+        version: 3.1.0
+      next:
+        specifier: ^14.1.4
+        version: 14.1.4(react-dom@18.2.0)(react@18.2.0)(sass@1.74.1)
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      server-only:
+        specifier: ^0.0.1
+        version: 0.0.1
+    devDependencies:
+      '@mlaursen/eslint-config':
+        specifier: ^4.1.1
+        version: 4.1.1(eslint@8.57.0)(typescript@5.4.4)
+      '@types/node':
+        specifier: ^20.11.30
+        version: 20.12.5
+      '@types/react':
+        specifier: ^18.2.69
+        version: 18.2.74
+      '@types/react-dom':
+        specifier: ^18.2.22
+        version: 18.2.24
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
+      eslint-config-next:
+        specifier: ^14.1.4
+        version: 14.1.4(eslint@8.57.0)(typescript@5.4.4)
+      npm-run-all:
+        specifier: ^4.1.5
+        version: 4.1.5
+      prettier:
+        specifier: ^3.2.5
+        version: 3.2.5
+      sass:
+        specifier: ^1.72.0
+        version: 1.74.1
+      stylelint:
+        specifier: ^16.3.0
+        version: 16.3.1(typescript@5.4.4)
+      stylelint-config-prettier-scss:
+        specifier: ^1.0.0
+        version: 1.0.0(stylelint@16.3.1)
+      stylelint-config-recommended-scss:
+        specifier: ^14.0.0
+        version: 14.0.0(postcss@8.4.38)(stylelint@16.3.1)
+      stylelint-order:
+        specifier: ^6.0.4
+        version: 6.0.4(stylelint@16.3.1)
+      stylelint-scss:
+        specifier: ^6.2.1
+        version: 6.2.1(stylelint@16.3.1)
+      tsx:
+        specifier: ^4.7.2
+        version: 4.7.2
+      typescript:
+        specifier: ^5.4.4
+        version: 5.4.4
+
   packages/code:
     dependencies:
       '@react-md/core':

@@ -1,0 +1,65 @@
+{
+  "name": "docs-v2",
+  "type": "module",
+  "private": true,
+  "version": "0.0.1",
+  "description": "The documentation site for react-md",
+  "scripts": {
+    "run-script": "tsx --tsconfig scripts/tsconfig.json",
+    "create-env": "pnpm run run-script scripts/createEnv.ts",
+    "typecheck-src": "tsc --noEmit",
+    "typecheck-scripts": "tsc --noEmit -P scripts/tsconfig.json",
+    "typecheck": "npm-run-all typecheck-src typecheck-scripts",
+    "lint-scripts": "eslint \"**/*.{ts,tsx,js,jsx,cjs,mjs}\"",
+    "lint-styles": "stylelint \"src/**/*.{css,scss}\"",
+    "lint": "npm-run-all lint-scripts lint-styles",
+    "clean": "rm -rf .turbo .next node_modules",
+    "next-dev": "next dev",
+    "next-build": "next build",
+    "dev": "npm-run-all create-env next-dev",
+    "build": "npm-run-all create-env next-build",
+    "start": "next start"
+  },
+  "engines": {
+    "pnpm": ">=8",
+    "node": "^18"
+  },
+  "engineStrict": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mlaursen/react-md.git"
+  },
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mlaursen/react-md/issues"
+  },
+  "homepage": "https://react-md.dev",
+  "dependencies": {
+    "@react-md/core": "workspace:*",
+    "@react-md/material-icons": "workspace:*",
+    "cnbuilder": "^3.1.0",
+    "next": "^14.1.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "server-only": "^0.0.1"
+  },
+  "devDependencies": {
+    "@mlaursen/eslint-config": "^4.1.1",
+    "@types/node": "^20.11.30",
+    "@types/react": "^18.2.69",
+    "@types/react-dom": "^18.2.22",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^14.1.4",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^3.2.5",
+    "sass": "^1.72.0",
+    "stylelint": "^16.3.0",
+    "stylelint-config-prettier-scss": "^1.0.0",
+    "stylelint-config-recommended-scss": "^14.0.0",
+    "stylelint-order": "^6.0.4",
+    "stylelint-scss": "^6.2.1",
+    "tsx": "^4.7.2",
+    "typescript": "^5.4.4"
+  }
+}

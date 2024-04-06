@@ -1,0 +1,11 @@
+node_modules
+/coverage
+
+/.next/
+/out/
+.eslintrc.cjs
+
+/__mocks__
+
+next-env.d.ts
+next-env-custom.d.ts

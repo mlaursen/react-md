@@ -1,0 +1,46 @@
+@forward "overrides";
+
+@use "@react-md/core";
+
+@mixin light-theme($core) {
+  @if $core {
+    @include core.use-light-theme;
+  }
+
+  // Maybe add this one into core? Useful when you want a "transparent"
+  // background on any surface that actually has a background color so it can
+  // cover other elements
+  --background-color: #{core.$light-theme-background-color};
+  --logo-shadow: #{core.$black};
+  --logo-outline: #{core.$grey-500};
+  --phone-app-bar-bg: #{core.$grey-100};
+  // TODO: Figure out good colors for these...
+  --info-bg: #{core.$light-blue-50};
+  --info-color: #{core.$blue-900};
+  --warning-bg: #{core.$yellow-700};
+  --warning-color: #{core.$black};
+  --error-bg: #{rgba(core.$red-700, 0.24)};
+  --error-color: #{core.$red-700};
+  --success-bg: #{core.$green-a-100};
+  --success-color: #{core.$green-900};
+}
+
+@mixin dark-theme($core) {
+  @if $core {
+    @include core.use-dark-theme;
+  }
+
+  --background-color: #{core.$dark-theme-background-color};
+  --logo-shadow: #{core.$white};
+  --logo-outline: #{core.$white};
+  --phone-app-bar-bg: #{core.$grey-900};
+  // TODO: Figure out good colors for these...
+  --info-bg: #{rgba(core.$blue-900, 0.12)};
+  --info-color: #{core.$light-blue-200};
+  --warning-bg: #{rgba(core.$yellow-700, 0.24)};
+  --warning-color: #{core.$yellow-700};
+  --error-bg: #{rgba(core.$red-700, 0.24)};
+  --error-color: #{core.$red-700};
+  --success-bg: #{core.$green-900};
+  --success-color: #{core.$light-green-a-100};
+}
