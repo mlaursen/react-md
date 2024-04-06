@@ -134,8 +134,12 @@ $color-preview-border-width: $color-preview-outer-width + 0.0625em;
     &__actions {
       inset: 0.25rem 0 auto;
       padding-block: 0;
+      pointer-events: none;
       position: absolute;
-      // top: 0.25rem;
+
+      > * {
+        pointer-events: auto;
+      }
     }
 
     &__copy {
