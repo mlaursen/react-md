@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json.schemastore.org/swcrc.json",
+  "exclude": ["__tests__", "src/test-utils/drag.ts"],
+  "jsc": {
+    "parser": {
+      "syntax": "typescript",
+      "tsx": true
+    },
+    "transform": {
+      "react": {
+        "runtime": "automatic"
+      }
+    },
+    "target": "es2021"
+  },
+  "sourceMaps": true
+}
+

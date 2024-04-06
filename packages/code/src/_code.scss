@@ -1,0 +1,249 @@
+@use "sass:map";
+@use "@react-md/core";
+
+$max-height: 50rem !default;
+$color-preview-inline-size: 1em;
+$color-preview-display-size: 2.5em;
+$color-preview-outer-width: 0.25em;
+$color-preview-border-width: $color-preview-outer-width + 0.0625em;
+
+@mixin styles {
+  .code-block {
+    margin: 2rem 0;
+    position: relative;
+    width: 100%;
+
+    &--no-tm {
+      margin-top: 0;
+    }
+
+    &__scroll-container {
+      @include core.interaction-outline($outline-offset: false);
+      @include core.tablet-media {
+        --code-max-height: min(60vh, #{$max-height});
+      }
+
+      max-height: var(--code-max-height, $max-height);
+      overflow: auto;
+
+      &:focus-visible,
+      &:has(:focus-visible) {
+        @include core.interaction-focus-styles($disable-background: true);
+      }
+    }
+
+    &__pre-container {
+      float: left;
+      min-width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+
+    &__pre {
+      margin: var(--code-margin, 0);
+      white-space: pre;
+
+      &--wrap {
+        overflow-wrap: anywhere;
+        white-space: pre-wrap;
+        word-break: break-all;
+      }
+    }
+  }
+
+  .code-preview {
+    @include core.theme-set-var(background-color, var(--code-preview-bg));
+    @include core.divider-border-style;
+
+    background-color: var(--code-preview-bg);
+    border-radius: var(--code-preview-border-radius, core.$card-border-radius);
+    padding: 3rem;
+    position: relative;
+
+    &--no-bb {
+      border-bottom-width: 0;
+    }
+
+    &--transparent {
+      --code-preview-bg: transparent;
+    }
+
+    &__error {
+      bottom: 0;
+      left: 1rem;
+      position: absolute;
+      right: 1rem;
+      white-space: pre;
+    }
+  }
+
+  .code-editor {
+    &__code {
+      pointer-events: none;
+      position: relative;
+    }
+
+    &__scroll-container {
+      @include core.mouse-hover {
+        @include core.interaction-focus-styles($disable-background: true);
+      }
+    }
+
+    &__textarea {
+      background: none;
+      border: 0;
+      border-left: var(--code-border-left);
+      color: inherit;
+      font-family: var(--code-font-family);
+      font-size: var(--code-font-size);
+      height: 100%;
+      left: 0;
+      line-height: var(--code-line-height);
+      margin: var(--code-margin, 0);
+      overflow: hidden;
+      overflow-wrap: break-word;
+      padding: var(--code-padding, 1rem);
+      position: absolute;
+      resize: none;
+      tab-size: var(--code-tab-size);
+      -webkit-text-fill-color: transparent;
+      top: 0;
+      white-space: pre;
+      width: 100%;
+      word-break: keep-all;
+    }
+
+    &__message {
+      @include core.tooltip-use-var(background-color);
+      @include core.tooltip-use-var(color);
+      @include core.interaction-outline;
+
+      border-radius: core.$tooltip-border-radius;
+      left: 50%;
+      padding: 0.25rem 0.5rem;
+      position: absolute;
+      top: 0.5rem;
+      transform: translateX(-50%);
+      z-index: 2;
+
+      &:focus-visible {
+        @include core.interaction-focus-styles;
+      }
+    }
+
+    &__actions {
+      inset: 0.25rem 0 auto;
+      padding-block: 0;
+      position: absolute;
+      // top: 0.25rem;
+    }
+
+    &__copy {
+      // copy to clipboard doesn't make much sense on phones
+      @include core.phone-media {
+        display: none;
+      }
+
+      // Note: The height and positioning is set up in a way so that the copy button
+      // can be visible in a single-line code example without displaying scrollbars
+      @include core.auto-rtl(right, 1rem);
+
+      position: absolute;
+      top: 0.25rem;
+    }
+
+    &__progress {
+      @include core.progress-set-var(
+        color,
+        core.interaction-get-var(focus-color)
+      );
+      color: core.$interaction-focus-color;
+      position: absolute;
+      top: 0;
+    }
+  }
+
+  .code-editor-app-bar {
+    @include core.interaction-use-dark-surface;
+    @include core.theme-set-var(
+      text-primary-color,
+      core.$dark-theme-text-primary-color
+    );
+    @include core.theme-set-var(
+      text-secondary-color,
+      core.$dark-theme-text-secondary-color
+    );
+    @include core.theme-use-var(color, text-primary-color);
+
+    background-color: map.get(core.$dark-elevation-colors, 10);
+  }
+
+  .inline-code {
+    color: var(--code-color);
+    font-family: var(--code-inline-font-family);
+    font-size: 1em;
+    white-space: pre-wrap;
+
+    &--ticked {
+      &::before,
+      &::after {
+        content: "\`";
+      }
+    }
+  }
+
+  .color-preview {
+    @include core.auto-rtl(padding-left, 1.25em);
+
+    display: inline-block;
+    position: relative;
+
+    &::before,
+    &::after {
+      background: var(--color-preview);
+      border-radius: 0.25em;
+      content: "";
+      display: inline-block;
+      height: $color-preview-inline-size;
+      pointer-events: none;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: $color-preview-inline-size;
+      z-index: 2;
+    }
+
+    &::before {
+      left: 0.25em;
+    }
+
+    &::after {
+      box-shadow:
+        inset 0 0 0 $color-preview-outer-width core.$white,
+        inset 0 0 0 $color-preview-border-width core.$black;
+      height: var(--color-preview-size, $color-preview-display-size);
+      left: 50%;
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+      top: -0.25em;
+      transform: translate3d(-50%, -100%, 0);
+      transition: opacity core.$linear-duration;
+      width: var(--color-preview-size, $color-preview-display-size);
+    }
+
+    &:hover::after {
+      opacity: 1;
+    }
+  }
+}
+
+@mixin use-light-theme {
+  --code-color: #{core.$pink-600};
+  --code-preview-bg: #{core.$white};
+}
+
+@mixin use-dark-theme {
+  --code-color: #{core.$pink-400};
+  --code-preview-bg: #{core.$dark-theme-background-color};
+}

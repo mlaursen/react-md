@@ -1,0 +1,99 @@
+{
+  "name": "@react-md/code",
+  "private": true,
+  "version": "0.0.1-next.0",
+  "description": "The core components and functionality for react-md.",
+  "type": "module",
+  "sass": "./dist/_code.scss",
+  "exports": {
+    ".": {
+      "sass": "./dist/_code.scss"
+    },
+    "./*": "./dist/*.js",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "dev": "pnpm run watch",
+    "watch": "npm-run-all --parallel build-esm-watch build-scss-watch build-types-watch",
+    "build": "npm-run-all build-esm build-types build-scss",
+    "build-esm": "swc -d ./dist --strip-leading-paths src",
+    "build-esm-watch": "pnpm run build-esm --watch",
+    "build-types": "tsc -P tsconfig.types.json",
+    "build-types-watch": "pnpm run build-types --watch",
+    "build-scss": "cp -f src/_code.scss dist/_code.scss",
+    "build-scss-watch": "chokidar \"src/*.scss\" -c \"pnpm run build-scss\"",
+    "clean-dist": "rm -rf dist",
+    "clean": "rm -rf .turbo dist node_modules",
+    "typecheck": "tsc --noEmit",
+    "lint-scripts": "eslint \"src/**/*.{ts,tsx,js,jsx,cjs,mjs}\"",
+    "lint-styles": "stylelint \"src/**/*.{css,scss}\"",
+    "lint": "npm-run-all lint-scripts lint-styles",
+    "test": "NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest"
+  },
+  "engines": {
+    "pnpm": ">=8",
+    "node": ">=18"
+  },
+  "engineStrict": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mlaursen/react-md.git"
+  },
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mlaursen/react-md/issues"
+  },
+  "homepage": "https://react-md.dev",
+  "dependencies": {
+    "@react-md/core": "workspace:*",
+    "@react-md/material-icons": "workspace:*",
+    "client-only": "^0.0.1",
+    "cnbuilder": "^3.1.0",
+    "prettier": "^3.2.4",
+    "prismjs": "^1.29.0",
+    "server-only": "^0.0.1",
+    "sucrase": "^3.35.0"
+  },
+  "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "@jest/types": "^29.6.3",
+    "@swc/cli": "^0.3.2",
+    "@swc/core": "1.4.12",
+    "@swc/jest": "^0.2.31",
+    "@testing-library/dom": "^9.3.4",
+    "@testing-library/jest-dom": "^6.3.0",
+    "@testing-library/react": "^14.1.2",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/node": "^20.11.28",
+    "@types/prismjs": "^1.26.3",
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "chokidar-cli": "^3.0.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "jest-watch-typeahead": "^2.2.2",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.33",
+    "postcss-selector-parser": "^6.0.16",
+    "sass": "^1.72.0",
+    "stylelint": "^16.2.0",
+    "stylelint-config-prettier-scss": "^1.0.0",
+    "stylelint-config-recommended-scss": "^14.0.0",
+    "stylelint-order": "^6.0.4",
+    "stylelint-scss": "^6.2.1",
+    "typescript": "^5.4.2"
+  },
+  "peerDependencies": {
+    "react": ">= 18",
+    "react-dom": ">= 18"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": false
+    },
+    "react-dom": {
+      "optional": false
+    }
+  }
+}
