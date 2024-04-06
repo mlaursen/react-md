@@ -1,4 +1,4 @@
-import { MaterialIconFamily } from "@react-md/core";
+import { type MaterialIconFamily } from "@react-md/core/icon/material";
 import lodash from "lodash";
 import { writeFile } from "node:fs/promises";
 import { join } from "node:path";

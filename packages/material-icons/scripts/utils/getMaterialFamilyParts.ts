@@ -1,4 +1,4 @@
-import { type MaterialIconFamily } from "@react-md/core";
+import { type MaterialIconFamily } from "@react-md/core/icon/material";
 import { type MaterialIconType } from "./converters.js";
 
 export interface MaterialFamilyParts {

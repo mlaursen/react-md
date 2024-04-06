@@ -1,4 +1,4 @@
-import { wait } from "@react-md/core";
+import { wait } from "@react-md/core/utils/wait";
 import { glob } from "glob";
 import lodash from "lodash";
 import { execSync } from "node:child_process";
