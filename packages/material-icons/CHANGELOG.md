@@ -1,5 +1,11 @@
 # @react-md/material-icons
 
+## 6.0.0-next.13
+
+### Patch Changes
+
+- Fixed the SVGIcon import path from @react-md/core after trying new package.json exports.
+
 ## 6.0.0-next.12
 
 ### Patch Changes
