@@ -13,6 +13,7 @@
   "scripts": {
     "run-script": "tsx --tsconfig scripts/tsconfig.json",
     "update-icons": "pnpm run run-script scripts/updateMaterialIcons.ts",
+    "typecheck": "tsc --noEmit",
     "build": "pnpm run run-script scripts/build.ts",
     "clean": "rm -rf .turbo node_modules *Icon.d.ts *Icon.js"
   },
