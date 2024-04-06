@@ -4,7 +4,7 @@ import {
   useAppSize,
   useColorScheme,
   useExpansionPanels,
-} from "@react-md/core";
+} from "react-md";
 import { cnb } from "cnbuilder";
 import { useId, type ReactElement } from "react";
 import { FilterCategoryPanel } from "./FilterCategoryPanel.jsx";

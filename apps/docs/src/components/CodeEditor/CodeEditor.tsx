@@ -1,5 +1,5 @@
 import { highlightCode } from "@/utils/highlightCode.js";
-import { type TextAreaProps } from "@react-md/core";
+import { type TextAreaProps } from "react-md";
 import { cnb } from "cnbuilder";
 import { type ReactElement, type ReactNode } from "react";
 import { CodeBlock, type CodeBlockProps } from "../CodeBlock.jsx";

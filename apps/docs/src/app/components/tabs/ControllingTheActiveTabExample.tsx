@@ -1,12 +1,5 @@
 "use client";
-import {
-  AppBar,
-  Button,
-  Tab,
-  TabList,
-  Typography,
-  useTabs,
-} from "@react-md/core";
+import { AppBar, Button, Tab, TabList, Typography, useTabs } from "react-md";
 import { type ReactElement } from "react";
 
 export default function ControllingTheActiveTabExample(): ReactElement {

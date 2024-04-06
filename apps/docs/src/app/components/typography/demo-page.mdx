@@ -8,7 +8,7 @@ Set the `type` to `headline-1` to render as a `h1` element with the correspondin
 
 ```tsx
 // preview editable
-import { Typography } from "@react-md/core";
+import { Typography } from "react-md";
 import { type ReactElement } from "react";
 
 export default function Headline1Example(): ReactElement {
@@ -22,7 +22,7 @@ Set the `type` to `headline-2` to render as a `h2` element with the correspondin
 
 ```tsx
 // preview editable
-import { Typography } from "@react-md/core";
+import { Typography } from "react-md";
 import { type ReactElement } from "react";
 
 export default function Headline2Example(): ReactElement {
@@ -36,7 +36,7 @@ Set the `type` to `headline-3` to render as a `h3` element with the correspondin
 
 ```tsx
 // preview editable
-import { Typography } from "@react-md/core";
+import { Typography } from "react-md";
 import { type ReactElement } from "react";
 
 export default function Headline3Example(): ReactElement {
@@ -50,7 +50,7 @@ Set the `type` to `headline-4` to render as a `h4` element with the correspondin
 
 ```tsx
 // preview editable
-import { Typography } from "@react-md/core";
+import { Typography } from "react-md";
 import { type ReactElement } from "react";
 
 export default function Headline4Example(): ReactElement {
@@ -64,7 +64,7 @@ Set the `type` to `headline-5` to render as a `h5` element with the correspondin
 
 ```tsx
 // preview editable
-import { Typography } from "@react-md/core";
+import { Typography } from "react-md";
 import { type ReactElement } from "react";
 
 export default function Headline5Example(): ReactElement {
@@ -78,7 +78,7 @@ Set the `type` to `headline-6` to render as a `h6` element with the correspondin
 
 ```tsx
 // preview editable
-import { Typography } from "@react-md/core";
+import { Typography } from "react-md";
 import { type ReactElement } from "react";
 
 export default function Headline6Example(): ReactElement {
@@ -92,7 +92,7 @@ Set the `type` to `subtitle-1` to render as a `h6` element with the correspondin
 
 ```tsx
 // preview editable
-import { Typography } from "@react-md/core";
+import { Typography } from "react-md";
 import { type ReactElement } from "react";
 
 export default function Subtitle1Example(): ReactElement {
@@ -106,7 +106,7 @@ Set the `type` to `subtitle-2` to render as a `h6` element with the correspondin
 
 ```tsx
 // preview editable
-import { Typography } from "@react-md/core";
+import { Typography } from "react-md";
 import { type ReactElement } from "react";
 
 export default function Subtitle2Example(): ReactElement {
@@ -120,7 +120,7 @@ Set the `type` to `body-1` to render as a `p` element with the corresponding typ
 
 ```tsx
 // preview editable
-import { Typography } from "@react-md/core";
+import { Typography } from "react-md";
 import { type ReactElement } from "react";
 
 export default function Body1Example(): ReactElement {
@@ -134,7 +134,7 @@ Set the `type` to `body-2` to render as a `p` element with the corresponding typ
 
 ```tsx
 // preview editable
-import { Typography } from "@react-md/core";
+import { Typography } from "react-md";
 import { type ReactElement } from "react";
 
 export default function Body2Example(): ReactElement {
@@ -148,7 +148,7 @@ Set the `type` to `caption` to render as a `caption` element with the correspond
 
 ```tsx
 // preview editable
-import { Table, Typography } from "@react-md/core";
+import { Table, Typography } from "react-md";
 import { type ReactElement } from "react";
 
 export default function CaptionExample(): ReactElement {
@@ -166,7 +166,7 @@ Set the `type` to `overline` to render as a `span` element with the correspondin
 
 ```tsx
 // preview editable
-import { Typography } from "@react-md/core";
+import { Typography } from "react-md";
 import { type ReactElement } from "react";
 
 export default function OverlineExample(): ReactElement {
@@ -181,7 +181,7 @@ prop or using the `typography` class name utility function.
 
 ```tsx
 // preview editable
-import { Box, Typography, typography } from "@react-md/core";
+import { Box, Typography, typography } from "react-md";
 import { type ReactElement } from "react";
 
 export default function CustomTypographyElement(): ReactElement {
@@ -199,11 +199,11 @@ export default function CustomTypographyElement(): ReactElement {
 # Customizing Typography
 
 The default typography can be configured by overriding the different typography
-Sass variables when `@forward`ing or `@use`ing `@react-md/core`.
+Sass variables when `@forward`ing or `@use`ing `react-md`.
 
 ```tsx
 // preview editable styles="src/app/components/typography/CustomizingTypographyExample.module.scss"
-import { Typography } from "@react-md/core";
+import { Typography } from "react-md";
 import { type ReactElement } from "react";
 import styles from "./CustomizingTypographyExample.module.scss";
 

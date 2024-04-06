@@ -6,7 +6,7 @@ import {
   DialogContent,
   Typography,
   useToggle,
-} from "@react-md/core";
+} from "react-md";
 import CloseIcon from "@react-md/material-icons/CloseIcon";
 import { useId, type ReactElement } from "react";
 

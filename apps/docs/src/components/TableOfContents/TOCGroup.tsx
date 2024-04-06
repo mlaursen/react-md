@@ -1,4 +1,4 @@
-import { List, typography } from "@react-md/core";
+import { List, typography } from "react-md";
 import { cnb } from "cnbuilder";
 import { type ReactElement, type ReactNode } from "react";
 

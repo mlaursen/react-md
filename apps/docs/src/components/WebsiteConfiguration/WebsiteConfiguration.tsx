@@ -12,7 +12,7 @@ import {
   button,
   useToggle,
   useTooltip,
-} from "@react-md/core";
+} from "react-md";
 import CloseIcon from "@react-md/material-icons/CloseIcon";
 import MoreVertOutlinedIcon from "@react-md/material-icons/MoreVertOutlinedIcon";
 import Link from "next/link.js";

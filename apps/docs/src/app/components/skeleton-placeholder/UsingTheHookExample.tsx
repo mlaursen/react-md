@@ -1,5 +1,5 @@
 "use client";
-import { useSkeletonPlaceholder } from "@react-md/core";
+import { useSkeletonPlaceholder } from "react-md";
 import { type ReactElement } from "react";
 
 export default function UsingTheHookExample(): ReactElement {

@@ -1,5 +1,5 @@
 "use client";
-import { cssUtils, useIntersectionObserver } from "@react-md/core";
+import { cssUtils, useIntersectionObserver } from "react-md";
 import { cnb } from "cnbuilder";
 import {
   useCallback,

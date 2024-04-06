@@ -3,10 +3,7 @@ import {
   type RunnableCodePreviewContainerOptions,
   type RunnableCodePreviewOptions,
 } from "@/types/code.js";
-import {
-  MenuConfigurationProvider,
-  TooltipHoverModeProvider,
-} from "@react-md/core";
+import { MenuConfigurationProvider, TooltipHoverModeProvider } from "react-md";
 import { type ReactElement } from "react";
 import { CodePreviewContainer } from "../CodePreviewContainer.jsx";
 import { RunnableCodePreviewContainer } from "./RunnableCodePreviewContainer.jsx";

@@ -6,7 +6,7 @@ import {
   Tooltip,
   cssUtils,
   useTooltip,
-} from "@react-md/core";
+} from "react-md";
 import CloseOutlinedIcon from "@react-md/material-icons/CloseOutlinedIcon";
 import ShareOutlinedIcon from "@react-md/material-icons/ShareOutlinedIcon";
 import { type ReactElement } from "react";

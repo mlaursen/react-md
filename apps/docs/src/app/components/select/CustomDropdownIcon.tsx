@@ -1,4 +1,4 @@
-import { Form, Option, Select, box } from "@react-md/core";
+import { Form, Option, Select, box } from "react-md";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import { type ReactElement } from "react";
 

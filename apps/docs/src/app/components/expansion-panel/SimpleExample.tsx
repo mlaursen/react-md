@@ -1,5 +1,5 @@
 "use client";
-import { ExpansionPanel, useToggle } from "@react-md/core";
+import { ExpansionPanel, useToggle } from "react-md";
 import { type ReactElement } from "react";
 
 export default function SimpleExample(): ReactElement {

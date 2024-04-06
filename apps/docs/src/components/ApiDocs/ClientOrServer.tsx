@@ -1,4 +1,4 @@
-import { Typography } from "@react-md/core";
+import { Typography } from "react-md";
 import { type ReactElement } from "react";
 
 export interface ClientOrServerProps {

@@ -1,7 +1,7 @@
 import { ButtonStyledLink } from "@/components/ButtonStyledLink.jsx";
 import Logo from "@/components/Logo.jsx";
 import { DEFAULT_TITLE } from "@/constants/metadata.js";
-import { Box, TextContainer, Typography } from "@react-md/core";
+import { Box, TextContainer, Typography } from "react-md";
 import { type ReactElement } from "react";
 import styles from "./Banner.module.scss";
 import { BannerContainer } from "./BannerContainer.jsx";

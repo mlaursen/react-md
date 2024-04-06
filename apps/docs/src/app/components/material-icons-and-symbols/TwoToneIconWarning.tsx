@@ -1,5 +1,5 @@
 import { Blockquote } from "@/components/Blockquote.jsx";
-import { cssUtils } from "@react-md/core";
+import { cssUtils } from "react-md";
 import { type ReactElement } from "react";
 import { CopyCode } from "./CopyCode.jsx";
 import styles from "./TwoToneIconWarning.module.scss";

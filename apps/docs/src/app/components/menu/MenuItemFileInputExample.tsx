@@ -1,4 +1,4 @@
-import { DropdownMenu, MenuItemFileInput, useFileUpload } from "@react-md/core";
+import { DropdownMenu, MenuItemFileInput, useFileUpload } from "react-md";
 import { useState, type ReactElement } from "react";
 
 const extensions = [

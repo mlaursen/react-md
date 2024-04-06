@@ -6,7 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
   useToggle,
-} from "@react-md/core";
+} from "react-md";
 import { type ReactElement } from "react";
 
 export default function ClickableCardExample(): ReactElement {

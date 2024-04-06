@@ -1,5 +1,5 @@
 "use client";
-import { Form, TextField } from "@react-md/core";
+import { Form, TextField } from "react-md";
 import { useState, type ReactElement } from "react";
 
 const maxLength = 30;

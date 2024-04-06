@@ -3,7 +3,7 @@ import {
   cssUtils,
   useAppSize,
   type ProvidedExpansionPanelProps,
-} from "@react-md/core";
+} from "react-md";
 import CategoryOutlinedIcon from "@react-md/material-icons/CategoryOutlinedIcon";
 import { type ReactElement } from "react";
 import { FilterPanel } from "./FilterPanel.jsx";

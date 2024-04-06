@@ -1,4 +1,4 @@
-import { Link } from "@react-md/core";
+import { Link } from "react-md";
 import { type ReactElement } from "react";
 import { Section } from "./Section.jsx";
 import { Showcase } from "./Showcase.jsx";

@@ -10,7 +10,7 @@ import {
   TabList,
   Typography,
   useCarousel,
-} from "@react-md/core";
+} from "react-md";
 import ChevronLeftIcon from "@react-md/material-icons/ChevronLeftIcon";
 import ChevronRightIcon from "@react-md/material-icons/ChevronRightIcon";
 import PauseIcon from "@react-md/material-icons/PauseIcon";

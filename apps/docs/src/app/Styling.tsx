@@ -1,9 +1,9 @@
 import { HighlightedCodeBlock } from "@/components/HighlightedCodeBlock.jsx";
-import { Link } from "@react-md/core";
+import { Link } from "react-md";
 import { type ReactElement } from "react";
 import { Section } from "./Section.jsx";
 
-const code = ` @use "@react-md/core/colors";
+const code = `@use "@react-md/core/colors";
 @use "@react-md/core" with (
   $color-scheme: system,
   $primary-color: colors.$teal-500,

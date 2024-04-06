@@ -6,7 +6,7 @@ import {
   ToastManagerProvider,
   addToast,
   useAddToast,
-} from "@react-md/core";
+} from "react-md";
 import { type ReactElement } from "react";
 
 const manager = new ToastManager();

@@ -1,4 +1,4 @@
-import { contrastColor } from "@react-md/core";
+import { contrastColor } from "react-md";
 import {
   Children,
   isValidElement,

@@ -1,5 +1,5 @@
 "use client";
-import { Sheet, useAppSize } from "@react-md/core";
+import { Sheet, useAppSize } from "react-md";
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
 import styles from "./HowToUseSheet.module.scss";

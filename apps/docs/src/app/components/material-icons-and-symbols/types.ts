@@ -5,7 +5,7 @@ import {
   type MaterialSymbolOpticalSize,
   type MaterialSymbolWeight,
   type UseStateSetter,
-} from "@react-md/core";
+} from "react-md";
 import {
   type MaterialIconAndSymbolName,
   type MaterialIconCategory,

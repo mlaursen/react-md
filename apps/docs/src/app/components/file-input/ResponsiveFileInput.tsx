@@ -1,4 +1,4 @@
-import { FileInput, Form, box } from "@react-md/core";
+import { FileInput, Form, box } from "react-md";
 import { type ReactElement } from "react";
 
 export default function ResponsiveFileInput(): ReactElement {

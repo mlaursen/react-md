@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Switch } from "@react-md/core";
+import { Box, CircularProgress, Switch } from "react-md";
 import { useState, type ReactElement } from "react";
 
 export default function CircularProgressTheme(): ReactElement {

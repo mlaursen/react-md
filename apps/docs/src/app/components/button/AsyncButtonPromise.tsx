@@ -1,5 +1,5 @@
 "use client";
-import { AsyncButton, wait } from "@react-md/core";
+import { AsyncButton, wait } from "react-md";
 import { type ReactElement } from "react";
 
 export default function AsyncButtonPromise(): ReactElement {

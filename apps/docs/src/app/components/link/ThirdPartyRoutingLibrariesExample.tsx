@@ -1,4 +1,4 @@
-import { link } from "@react-md/core";
+import { link } from "react-md";
 import Link from "next/link.js";
 import { type ReactElement } from "react";
 

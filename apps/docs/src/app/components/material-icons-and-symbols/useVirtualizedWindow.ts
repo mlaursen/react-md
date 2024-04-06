@@ -1,4 +1,4 @@
-import { alphaNumericSort, delegateEvent } from "@react-md/core";
+import { alphaNumericSort, delegateEvent } from "react-md";
 import Fuse from "fuse.js";
 import lodash from "lodash";
 import {

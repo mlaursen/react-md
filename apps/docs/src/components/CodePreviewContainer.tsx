@@ -1,4 +1,4 @@
-import { Box, Typography, type BoxProps } from "@react-md/core";
+import { Box, Typography, type BoxProps } from "react-md";
 import { cnb } from "cnbuilder";
 import { useId, type ReactElement, type ReactNode } from "react";
 import styles from "./CodePreviewContainer.module.scss";

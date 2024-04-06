@@ -1,5 +1,5 @@
 "use client";
-import { Tab, TabList, useTabs } from "@react-md/core";
+import { Tab, TabList, useTabs } from "react-md";
 import { type ReactElement } from "react";
 
 export default function DisableVerticalActiveTabTransitionExample(): ReactElement {

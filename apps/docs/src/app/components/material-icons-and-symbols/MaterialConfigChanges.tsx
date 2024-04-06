@@ -38,7 +38,7 @@ export function MaterialConfigChanges(): ReactElement {
     changes.push([`${iconType}Family`, iconFamily]);
   }
 
-  const code = `import { MATERIAL_CONFIG } from "@react-md/core";
+  const code = `import { MATERIAL_CONFIG } from "react-md";
 
 ${changes
   .map(([name, value]) => {

@@ -7,7 +7,7 @@ import {
   cssUtils,
   loop,
   useToggle,
-} from "@react-md/core";
+} from "react-md";
 import CelebrationOutlinedIcon from "@react-md/material-icons/CelebrationOutlinedIcon";
 import { useEffect, useState, type ReactElement } from "react";
 import styles from "./ProgressbarTooltipExample.module.scss";

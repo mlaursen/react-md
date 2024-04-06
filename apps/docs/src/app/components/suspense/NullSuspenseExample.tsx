@@ -8,7 +8,7 @@ import {
   CardTitle,
   NullSuspense,
   useToggle,
-} from "@react-md/core";
+} from "react-md";
 import {
   lazy,
   useMemo,

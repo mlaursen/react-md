@@ -1,4 +1,4 @@
-import { Form, OptGroup, Option, Select, typography } from "@react-md/core";
+import { Form, OptGroup, Option, Select, typography } from "react-md";
 import { type ReactElement } from "react";
 
 export default function SelectionGroupsExample(): ReactElement {

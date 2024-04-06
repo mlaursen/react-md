@@ -1,4 +1,4 @@
-import { Form, Option, Select, box } from "@react-md/core";
+import { Form, Option, Select, box } from "react-md";
 import { type ReactElement } from "react";
 
 export default function SelectTheme(): ReactElement {

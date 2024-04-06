@@ -1,5 +1,5 @@
 "use client";
-import { SegmentedButton, SegmentedButtonContainer } from "@react-md/core";
+import { SegmentedButton, SegmentedButtonContainer } from "react-md";
 import { useState, type ReactElement } from "react";
 
 export default function DisableSelectedIconTransitionExample(): ReactElement {

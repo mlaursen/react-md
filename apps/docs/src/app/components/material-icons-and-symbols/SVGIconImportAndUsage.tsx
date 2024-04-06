@@ -1,7 +1,7 @@
 import { Blockquote } from "@/components/Blockquote.jsx";
 import { PackageManagerCodeBlock } from "@/components/PackageManagerCodeBlock.jsx";
 import { highlightCode } from "@/utils/highlightCode.js";
-import { Typography } from "@react-md/core";
+import { Typography } from "react-md";
 import { cnb } from "cnbuilder";
 import Link from "next/link.js";
 import { usePathname } from "next/navigation.js";

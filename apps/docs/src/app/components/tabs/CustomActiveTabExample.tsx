@@ -1,12 +1,5 @@
 "use client";
-import {
-  AppBar,
-  Button,
-  Tab,
-  TabList,
-  Typography,
-  useTabs,
-} from "@react-md/core";
+import { AppBar, Button, Tab, TabList, Typography, useTabs } from "react-md";
 import { useState, type ReactElement } from "react";
 
 const tabs = ["tab-1", "tab-2", "tab-3", "tab-4"];

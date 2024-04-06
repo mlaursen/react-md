@@ -1,4 +1,4 @@
-import { DEFAULT_COLLATOR, alphaNumericSort } from "@react-md/core";
+import { DEFAULT_COLLATOR, alphaNumericSort } from "react-md";
 import GithubSlugger from "github-slugger";
 import { glob } from "glob";
 import lodash from "lodash";

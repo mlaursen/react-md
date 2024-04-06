@@ -6,7 +6,7 @@ import {
   useToggle,
   type SortOrder,
   TableContainer,
-} from "@react-md/core";
+} from "react-md";
 import ChevronLeftIcon from "@react-md/material-icons/ChevronLeftIcon";
 import { type ReactElement } from "react";
 

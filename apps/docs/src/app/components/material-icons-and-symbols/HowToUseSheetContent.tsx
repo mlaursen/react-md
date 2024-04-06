@@ -6,7 +6,7 @@ import {
   TabList,
   dialogContent,
   useTabs,
-} from "@react-md/core";
+} from "react-md";
 import { type ReactElement } from "react";
 import { FontIconImportAndUsage } from "./FontIconImportAndUsage.jsx";
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";

@@ -1,0 +1,108 @@
+{
+  "name": "react-md",
+  "version": "6.0.0-next.0",
+  "description": "This is the full react-md library bundled together for convenience.",
+  "type": "module",
+  "sass": "./dist/_react-md.scss",
+  "exports": {
+    ".": {
+      "sass": "./dist/_react-md.scss",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./colors": {
+      "sass": "./dist/_colors.scss"
+    },
+    "./package.json": "./package.json"
+  },
+  "sideEffects": [
+    "dist/**/*.scss",
+    "dist/test-utils/polyfills"
+  ],
+  "scripts": {
+    "run-script": "tsx --tsconfig scripts/tsconfig.json",
+    "dev": "npm-run-all --parallel build-esm-watch build-scss-watch build-types-watch",
+    "prepare-release": "npm-run-all clean-dist build",
+    "build": "npm-run-all build-esm build-scss build-types",
+    "build-esm": "swc -d ./dist --strip-leading-paths src",
+    "build-esm-watch": "pnpm run build-esm --watch",
+    "build-types": "tsc -P tsconfig.types.json",
+    "build-types-watch": "pnpm run build-types --watch",
+    "build-scss": "pnpm run run-script scripts/copySassFiles.ts",
+    "build-scss-watch": "pnpm run build-scss --watch",
+    "clean-dist": "rm -rf dist",
+    "clean": "rm -rf .turbo dist node_modules",
+    "typecheck": "tsc --noEmit",
+    "test": "NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest"
+  },
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mlaursen/react-md.git",
+    "directory": "packages/react-md"
+  },
+  "bugs": {
+    "url": "https://github.com/mlaursen/react-md/issues"
+  },
+  "homepage": "https://react-md.dev",
+  "keywords": [
+    "react-md",
+    "material design",
+    "react",
+    "component",
+    "components"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@react-md/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@swc/cli": "^0.3.12",
+    "@swc/core": "1.4.12",
+    "@types/node": "^20.12.5",
+    "chokidar": "^3.6.0",
+    "glob": "^10.3.12",
+    "npm-run-all": "^4.1.5",
+    "tsx": "^4.7.2",
+    "typescript": "^5.4.4"
+  },
+  "peerDependencies": {
+    "@jest/globals": "^29.7.0",
+    "@jest/types": "^29.6.3",
+    "@testing-library/dom": "^9.3.4",
+    "@testing-library/jest-dom": "^6.3.0",
+    "@testing-library/react": "^14.1.2",
+    "@testing-library/user-event": "^14.5.2",
+    "react": ">= 18",
+    "react-dom": ">= 18"
+  },
+  "peerDependenciesMeta": {
+    "@jest/globals": {
+      "optional": true
+    },
+    "@jest/types": {
+      "optional": true
+    },
+    "@testing-library/dom": {
+      "optional": true
+    },
+    "@testing-library/jest-dom": {
+      "optional": true
+    },
+    "@testing-library/react": {
+      "optional": true
+    },
+    "@testing-library/user-event": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

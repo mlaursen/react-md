@@ -4,7 +4,7 @@ import {
   Typography,
   parseCssLengthUnit,
   useIntersectionObserver,
-} from "@react-md/core";
+} from "react-md";
 import { useCallback, useId, useRef, useState, type ReactElement } from "react";
 import { RenderTOCItem } from "./RenderTOCItem.jsx";
 import { TOCGroup } from "./TOCGroup.jsx";

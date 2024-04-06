@@ -1,4 +1,4 @@
-import { AppBar, AppBarTitle, Divider } from "@react-md/core";
+import { AppBar, AppBarTitle, Divider } from "react-md";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import { type ReactElement } from "react";
 import styles from "./VerticalDivider.module.scss";

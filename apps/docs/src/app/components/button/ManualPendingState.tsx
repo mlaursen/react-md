@@ -1,5 +1,5 @@
 "use client";
-import { AsyncButton, Box, Switch } from "@react-md/core";
+import { AsyncButton, Box, Switch } from "react-md";
 import { useState, type ReactElement } from "react";
 
 export default function ManualLoadingState(): ReactElement {

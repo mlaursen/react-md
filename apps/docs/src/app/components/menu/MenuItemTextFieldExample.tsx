@@ -3,7 +3,7 @@ import {
   MenuItem,
   MenuItemSeparator,
   MenuItemTextField,
-} from "@react-md/core";
+} from "react-md";
 import SearchIcon from "@react-md/material-icons/SearchIcon";
 import { type ReactElement } from "react";
 

@@ -1,4 +1,4 @@
-import { CircularProgress, loop } from "@react-md/core";
+import { CircularProgress, loop } from "react-md";
 import { useEffect, useState, type ReactElement } from "react";
 
 export default function DeterminateCircularProgress(): ReactElement {

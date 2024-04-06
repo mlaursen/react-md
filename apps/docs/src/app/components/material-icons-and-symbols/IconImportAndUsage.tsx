@@ -9,7 +9,7 @@ export function IconImportAndUsage(): ReactElement | null {
   }
 
   const component = `Material${iconType === "symbol" ? "Symbol" : "Icon"}`;
-  const importCode = `import { Material${component} } from "@react-md/core"`;
+  const importCode = `import { Material${component} } from "react-md"`;
   const usageCode = `<${component} name="${selectedIconName}" />`;
 
   return (

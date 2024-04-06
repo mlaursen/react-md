@@ -1,4 +1,4 @@
-import { Divider } from "@react-md/core";
+import { Divider } from "react-md";
 import { type ReactElement } from "react";
 
 export default function SimpleDivider(): ReactElement {

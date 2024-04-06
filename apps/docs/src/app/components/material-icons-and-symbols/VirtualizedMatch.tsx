@@ -4,7 +4,7 @@ import {
   cssUtils,
   useColorScheme,
   type ButtonProps,
-} from "@react-md/core";
+} from "react-md";
 import { cnb } from "cnbuilder";
 import { type ReactElement, type ReactNode } from "react";
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";

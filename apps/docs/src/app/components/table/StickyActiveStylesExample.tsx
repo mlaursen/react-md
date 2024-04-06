@@ -9,7 +9,7 @@ import {
   isTableHeaderStickyActive,
   isTableFooterStickyActive,
   cssUtils,
-} from "@react-md/core";
+} from "react-md";
 import { type ReactElement } from "react";
 import styles from "./StickyActiveStylesExample.module.scss";
 

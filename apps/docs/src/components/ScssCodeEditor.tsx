@@ -1,6 +1,6 @@
 "use client";
 import { type FakeScssModule } from "@/utils/fakeScssModules.js";
-import { LinearProgress, cssUtils } from "@react-md/core";
+import { LinearProgress, cssUtils } from "react-md";
 import { useEffect, useState, type ReactElement } from "react";
 import { type CodeBlockProps } from "./CodeBlock.jsx";
 import { CodeEditor } from "./CodeEditor/CodeEditor.jsx";

@@ -7,7 +7,7 @@ import {
   Typography,
   useCollapseTransition,
   useToggle,
-} from "@react-md/core";
+} from "react-md";
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
 import styles from "./PartialCollapseExample.module.scss";

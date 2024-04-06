@@ -1,4 +1,4 @@
-import { AppBar, AppBarTitle } from "@react-md/core";
+import { AppBar, AppBarTitle } from "react-md";
 import { type ReactElement } from "react";
 
 export default function AppBarThemesExample(): ReactElement {

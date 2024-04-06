@@ -1,11 +1,5 @@
 "use client";
-import {
-  AppBar,
-  Button,
-  DISPLAY_NONE_CLASS,
-  TextField,
-  icon,
-} from "@react-md/core";
+import { AppBar, Button, DISPLAY_NONE_CLASS, TextField, icon } from "react-md";
 import CloseOutlinedIcon from "@react-md/material-icons/CloseOutlinedIcon";
 import SearchOutlinedIcon from "@react-md/material-icons/SearchOutlinedIcon";
 import TuneOutlinedIcon from "@react-md/material-icons/TuneOutlinedIcon";

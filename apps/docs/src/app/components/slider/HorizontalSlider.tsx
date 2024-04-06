@@ -1,5 +1,5 @@
 "use client";
-import { Fieldset, Form, Legend, Slider, box, useSlider } from "@react-md/core";
+import { Fieldset, Form, Legend, Slider, box, useSlider } from "react-md";
 import { useId, type ReactElement } from "react";
 
 export default function HorizontalSlider(): ReactElement {

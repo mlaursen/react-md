@@ -6,7 +6,7 @@ import {
   Collapse,
   Typography,
   useToggle,
-} from "@react-md/core";
+} from "react-md";
 import { type ReactElement } from "react";
 
 export default function SimpleCollapseExample(): ReactElement {

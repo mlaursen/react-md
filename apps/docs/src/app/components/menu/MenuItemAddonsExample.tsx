@@ -1,4 +1,4 @@
-import { Avatar, DropdownMenu, MenuItem } from "@react-md/core";
+import { Avatar, DropdownMenu, MenuItem } from "react-md";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import { type ReactElement } from "react";
 

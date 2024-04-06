@@ -1,5 +1,5 @@
 "use client";
-import { Box, DropdownMenu, MenuItem, Typography } from "@react-md/core";
+import { Box, DropdownMenu, MenuItem, Typography } from "react-md";
 import { useState, type ReactElement } from "react";
 
 export default function MenuitemActionExample(): ReactElement {

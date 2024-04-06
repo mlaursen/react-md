@@ -1,5 +1,5 @@
 import { type SemVer } from "@/utils/semver.js";
-import { Typography, appBarTitle, box } from "@react-md/core";
+import { Typography, appBarTitle, box } from "react-md";
 import Link from "next/link.js";
 import { type ReactElement } from "react";
 import styles from "./RootLayoutTitle.module.scss";

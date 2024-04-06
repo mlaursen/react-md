@@ -1,5 +1,5 @@
 import { states } from "@/constants/states.js";
-import { Avatar, Form, Option, Select } from "@react-md/core";
+import { Avatar, Form, Option, Select } from "react-md";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import { type ReactElement } from "react";
 

@@ -1,4 +1,4 @@
-import { Box, LinearProgress, Switch } from "@react-md/core";
+import { Box, LinearProgress, Switch } from "react-md";
 import { useState, type ReactElement } from "react";
 
 export default function LinearProgressTheme(): ReactElement {

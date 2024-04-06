@@ -1,4 +1,4 @@
-import { Divider } from "@react-md/core";
+import { Divider } from "react-md";
 import { type ReactElement } from "react";
 import { Banner } from "./Banner.jsx";
 import { ComponentsAndHooks } from "./ComponentsAndHooks.jsx";

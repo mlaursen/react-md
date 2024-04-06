@@ -1,4 +1,4 @@
-import { Button, SrOnly } from "@react-md/core";
+import { Button, SrOnly } from "react-md";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import { type ReactElement } from "react";
 

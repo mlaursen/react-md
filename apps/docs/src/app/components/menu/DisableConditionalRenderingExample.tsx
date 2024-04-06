@@ -1,5 +1,5 @@
 "use client";
-import { DropdownMenu, ListItem, MenuItem } from "@react-md/core";
+import { DropdownMenu, ListItem, MenuItem } from "react-md";
 import { useState, type ReactElement } from "react";
 
 export default function DisableConditionalRenderingExample(): ReactElement {

@@ -1,8 +1,4 @@
-import {
-  Box,
-  randomSkeletonPlaceholder,
-  skeletonPlaceholder,
-} from "@react-md/core";
+import { Box, randomSkeletonPlaceholder, skeletonPlaceholder } from "react-md";
 import { type ReactElement } from "react";
 import "server-only";
 

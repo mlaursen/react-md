@@ -11,7 +11,7 @@ import {
   Typography,
   useToggle,
   type SheetVerticalSize,
-} from "@react-md/core";
+} from "react-md";
 import CloseIcon from "@react-md/material-icons/CloseIcon";
 import { useState, type ReactElement } from "react";
 

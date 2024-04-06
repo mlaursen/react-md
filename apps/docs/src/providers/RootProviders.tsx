@@ -12,7 +12,7 @@ import {
   ToastManagerProvider,
   TooltipHoverModeProvider,
   WritingDirectionProvider,
-} from "@react-md/core";
+} from "react-md";
 import { type ReactElement, type ReactNode } from "react";
 import { CodeLanguageProvider } from "./CodeLanguageProvider.jsx";
 import { CookieColorSchemeProvider } from "./CookieColorSchemeProvider.jsx";

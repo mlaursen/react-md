@@ -1,4 +1,4 @@
-import { Chip, chip } from "@react-md/core";
+import { Chip, chip } from "react-md";
 import { type ReactElement } from "react";
 
 export default function PresentationalChipsExample(): ReactElement {

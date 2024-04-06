@@ -5,7 +5,7 @@ import {
   TableRow,
   cssUtils,
   type UseStateSetter,
-} from "@react-md/core";
+} from "react-md";
 import { cnb } from "cnbuilder";
 import { useState, type ReactElement } from "react";
 import styles from "./UpdatingSelectedRowColorExample.module.scss";

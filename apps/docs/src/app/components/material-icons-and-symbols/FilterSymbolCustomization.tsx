@@ -8,7 +8,7 @@ import {
   Switch,
   Typography,
   type SliderProps,
-} from "@react-md/core";
+} from "react-md";
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
 import styles from "./FilterSymbolCustomization.module.scss";

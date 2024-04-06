@@ -73,7 +73,7 @@ async function run(): Promise<void> {
             `${prefix}${lodash.upperFirst(lodash.camelCase(suffix))}`
         );
 
-      const iconCode = `import { SVGIcon, type SVGIcon } from "@react-md/core";
+      const iconCode = `import { SVGIcon, type SVGIcon } from "react-md";
 import { forwardRef } from "react";
 
 export const ${componentName} = forwardRef<SVGSVGElement, SVGIconProps>(function ${componentName}(props, ref) {

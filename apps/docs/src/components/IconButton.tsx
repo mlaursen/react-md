@@ -5,7 +5,7 @@ import {
   useTooltip,
   type ButtonProps,
   type TooltipOptions,
-} from "@react-md/core";
+} from "react-md";
 import { type ReactElement, type ReactNode } from "react";
 
 export interface IconButtonProps extends ButtonProps {

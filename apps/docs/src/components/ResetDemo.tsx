@@ -1,7 +1,7 @@
 "use client";
 import { useResettableContext } from "@/utils/useResettable.jsx";
 import RefreshOutlinedIcon from "@react-md/material-icons/RefreshOutlinedIcon";
-import { Button, Tooltip, useTooltip } from "@react-md/core";
+import { Button, Tooltip, useTooltip } from "react-md";
 import { type ReactElement } from "react";
 
 export function ResetDemo(): ReactElement {

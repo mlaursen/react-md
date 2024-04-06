@@ -1,5 +1,5 @@
 "use client";
-import { Box, Tooltip, cssUtils, useTooltip } from "@react-md/core";
+import { Box, Tooltip, cssUtils, useTooltip } from "react-md";
 import { type CSSProperties, type ReactElement } from "react";
 
 const style: CSSProperties = {

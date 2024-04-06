@@ -1,4 +1,4 @@
-import { FileInput, Form, SrOnly, box } from "@react-md/core";
+import { FileInput, Form, SrOnly, box } from "react-md";
 import { useId, type ReactElement } from "react";
 
 export default function CustomIconLabel(): ReactElement {

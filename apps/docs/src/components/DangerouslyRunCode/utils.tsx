@@ -2,7 +2,7 @@
 // This is pretty much everything from there except using the new JSX transform
 // and I wanted to understand why things were implemented the way they were
 "use client";
-import * as core from "@react-md/core";
+import * as core from "react-md";
 import BrightnessHighIcon from "@react-md/material-icons/BrightnessHighIcon";
 import BrightnessLowIcon from "@react-md/material-icons/BrightnessLowIcon";
 import CancelOutlinedIcon from "@react-md/material-icons/CancelOutlinedIcon";
@@ -98,7 +98,7 @@ function dangerouslyEvalCode(
     ...imports,
     react: React,
     "react/jsx-runtime": jsxRuntime,
-    "@react-md/core": core,
+    "react-md": core,
     cnbuilder,
     // I need a way to figure out how to correctly pass the scope down here. I can't pass functions
     // down from server components to client components, so it might need to be a script. For now,

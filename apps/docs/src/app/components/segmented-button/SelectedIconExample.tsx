@@ -1,5 +1,5 @@
 "use client";
-import { SegmentedButton, SegmentedButtonContainer } from "@react-md/core";
+import { SegmentedButton, SegmentedButtonContainer } from "react-md";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import { useState, type ReactElement } from "react";
 

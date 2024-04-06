@@ -7,7 +7,7 @@ import {
   useCSSTransition,
   useIntersectionObserver,
   useTooltip,
-} from "@react-md/core";
+} from "react-md";
 import ArrowUpwardIcon from "@react-md/material-icons/ArrowUpwardIcon";
 import { useCallback, useState, type ReactElement } from "react";
 

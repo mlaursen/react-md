@@ -7,7 +7,7 @@ import {
   box,
   useAppSize,
   useCSSTransition,
-} from "@react-md/core";
+} from "react-md";
 import CloseOutlinedIcon from "@react-md/material-icons/CloseOutlinedIcon";
 import RefreshOutlinedIcon from "@react-md/material-icons/RefreshOutlinedIcon";
 import { cnb } from "cnbuilder";

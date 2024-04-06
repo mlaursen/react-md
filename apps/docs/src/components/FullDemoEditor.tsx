@@ -2,7 +2,7 @@
 import { useCodeLanguageContext } from "@/providers/CodeLanguageProvider.jsx";
 import { type RunnableCodePreviewOptions } from "@/types/code.js";
 import { type FakeScssModule } from "@/utils/fakeScssModules.js";
-import { Box, Slide, Tab, TabList, useTabs } from "@react-md/core";
+import { Box, Slide, Tab, TabList, useTabs } from "react-md";
 import { useEffect, type ReactElement } from "react";
 import { CodeBlockHeader } from "./CodeBlockHeader.jsx";
 import { CodeEditor } from "./CodeEditor/CodeEditor.jsx";

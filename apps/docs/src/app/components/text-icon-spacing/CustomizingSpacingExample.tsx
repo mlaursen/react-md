@@ -1,4 +1,4 @@
-import { TextIconSpacing, Typography } from "@react-md/core";
+import { TextIconSpacing, Typography } from "react-md";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import { type ReactElement } from "react";
 import styles from "./CustomizingSpacingExample.module.scss";

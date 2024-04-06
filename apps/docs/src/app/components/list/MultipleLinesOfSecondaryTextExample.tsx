@@ -1,4 +1,4 @@
-import { List, ListItem } from "@react-md/core";
+import { List, ListItem } from "react-md";
 import { type ReactElement } from "react";
 import styles from "./MultipleLinesOfSecondaryTextExample.module.scss";
 

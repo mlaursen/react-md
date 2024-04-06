@@ -1,4 +1,4 @@
-import { Divider, TextContainer, Typography } from "@react-md/core";
+import { Divider, TextContainer, Typography } from "react-md";
 import { type ReactElement } from "react";
 import styles from "./CustomizingDivider.module.scss";
 

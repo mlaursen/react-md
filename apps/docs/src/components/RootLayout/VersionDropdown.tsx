@@ -1,12 +1,12 @@
 import { type SemVer } from "@/utils/semver.js";
-import { DropdownMenu, MenuItem, Typography } from "@react-md/core";
+import { DropdownMenu, MenuItem, Typography } from "react-md";
 import CheckIcon from "@react-md/material-icons/CheckIcon";
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
 import styles from "./VersionDropdown.module.scss";
 import { VersionMenuItem } from "./VersionMenuItem.jsx";
 
-// I might just want to start @react-md/core at v6
+// I might just want to start react-md at v6
 const MAJOR_VERSIONS_BEFORE = 5;
 
 export interface VersionDropdownProps extends SemVer {

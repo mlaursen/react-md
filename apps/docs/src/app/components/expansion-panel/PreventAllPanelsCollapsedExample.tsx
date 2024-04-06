@@ -1,9 +1,5 @@
 "use client";
-import {
-  ExpansionList,
-  ExpansionPanel,
-  useExpansionPanels,
-} from "@react-md/core";
+import { ExpansionList, ExpansionPanel, useExpansionPanels } from "react-md";
 import { type ReactElement } from "react";
 
 export default function PreventAllPanelsCollapsedExample(): ReactElement {

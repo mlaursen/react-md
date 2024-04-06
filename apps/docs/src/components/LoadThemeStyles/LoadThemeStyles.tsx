@@ -1,6 +1,6 @@
 "use client";
 import { DISABLE_DEFAULT_SYSTEM_THEME } from "@/constants/rmdConfig.jsx";
-import { useColorScheme } from "@react-md/core";
+import { useColorScheme } from "react-md";
 import dynamic from "next/dynamic.js";
 import { type ReactElement } from "react";
 

@@ -1,5 +1,5 @@
 import { states } from "@/constants/states.js";
-import { Form, Option, Select } from "@react-md/core";
+import { Form, Option, Select } from "react-md";
 import { type ReactElement } from "react";
 
 export default function AccessibilityExample(): ReactElement {

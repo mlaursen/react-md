@@ -1,4 +1,4 @@
-import { DropdownMenu, MenuItem } from "@react-md/core";
+import { DropdownMenu, MenuItem } from "react-md";
 import MoreVertOutlinedIcon from "@react-md/material-icons/MoreVertOutlinedIcon";
 import { type ReactElement } from "react";
 

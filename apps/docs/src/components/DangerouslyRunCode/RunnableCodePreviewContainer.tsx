@@ -1,5 +1,5 @@
 import { type RunnableCodePreviewOptions } from "@/types/code.js";
-import { Card } from "@react-md/core";
+import { Card } from "react-md";
 import { cnb } from "cnbuilder";
 import { type ReactElement, type ReactNode } from "react";
 import styles from "./RunnableCodePreviewContainer.module.scss";

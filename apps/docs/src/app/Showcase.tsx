@@ -12,7 +12,7 @@ import {
   TextField,
   Typography,
   chip,
-} from "@react-md/core";
+} from "react-md";
 import CodeIcon from "@react-md/material-icons/CodeIcon";
 import { type ReactElement } from "react";
 import styles from "./Showcase.module.scss";

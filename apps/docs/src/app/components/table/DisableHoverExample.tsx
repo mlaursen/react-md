@@ -1,4 +1,4 @@
-import { Table, TableBody, TableCell, TableRow } from "@react-md/core";
+import { Table, TableBody, TableCell, TableRow } from "react-md";
 import { type ReactElement } from "react";
 
 export default function DisableHoverExample(): ReactElement {

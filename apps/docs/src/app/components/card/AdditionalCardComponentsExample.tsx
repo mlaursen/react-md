@@ -7,7 +7,7 @@ import {
   CardSubtitle,
   CardTitle,
   Typography,
-} from "@react-md/core";
+} from "react-md";
 import { type ReactElement } from "react";
 
 export default function AdditionalCardComponentsExample(): ReactElement {

@@ -1,5 +1,5 @@
 "use client";
-import { Button, Portal, black, useToggle } from "@react-md/core";
+import { Button, Portal, black, useToggle } from "react-md";
 import { type ReactElement } from "react";
 
 export default function SimplePortalExample(): ReactElement {

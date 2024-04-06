@@ -3,7 +3,7 @@ import {
   DefaultToastRenderer,
   ToastContent,
   type ToastRendererProps,
-} from "@react-md/core";
+} from "react-md";
 import { type ReactElement, type ReactNode } from "react";
 
 const TOAST_MESSAGES: Record<string, ReactNode> = {

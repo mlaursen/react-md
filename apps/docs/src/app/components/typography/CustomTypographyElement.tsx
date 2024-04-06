@@ -1,4 +1,4 @@
-import { Box, Typography, typography } from "@react-md/core";
+import { Box, Typography, typography } from "react-md";
 import { type ReactElement } from "react";
 
 export default function CustomTypographyElement(): ReactElement {

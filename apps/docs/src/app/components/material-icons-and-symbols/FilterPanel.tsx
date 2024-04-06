@@ -5,7 +5,7 @@ import {
   useAppSize,
   useColorScheme,
   type ProvidedExpansionPanelProps,
-} from "@react-md/core";
+} from "react-md";
 import { cnb } from "cnbuilder";
 import { type ReactElement, type ReactNode } from "react";
 import styles from "./FilterPanel.module.scss";

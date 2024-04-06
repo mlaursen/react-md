@@ -1,5 +1,5 @@
 "use client";
-import { FileInput, Form, Typography, box } from "@react-md/core";
+import { FileInput, Form, Typography, box } from "react-md";
 import { useState, type ReactElement } from "react";
 
 export default function ControlledFileInput(): ReactElement {

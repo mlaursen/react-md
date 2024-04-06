@@ -10,7 +10,7 @@ A chip can be created by using the `Chip` component and should normally have a
 ```tsx
 // preview editable
 "use client";
-import { Chip } from "@react-md/core";
+import { Chip } from "react-md";
 import { type ReactElement } from "react";
 
 export default function SimpleChipExample(): ReactElement {
@@ -32,7 +32,7 @@ The chip supports two themes: `"solid"` (default) and `"outline"`.
 
 ```tsx
 // preview editable
-import { Chip } from "@react-md/core";
+import { Chip } from "react-md";
 import { type ReactElement } from "react";
 
 export default function ChipThemesExample(): ReactElement {
@@ -52,7 +52,7 @@ styles and prevent click event handlers from working.
 
 ```tsx
 // preview editable
-import { Chip } from "@react-md/core";
+import { Chip } from "react-md";
 import { type ReactElement } from "react";
 
 export default function DisabledChipExample(): ReactElement {
@@ -81,7 +81,7 @@ update the chip styles slightly.
 
 ```tsx
 // preview editable
-import { Avatar, Chip } from "@react-md/core";
+import { Avatar, Chip } from "react-md";
 import CancelOutlinedIcon from "@react-md/material-icons/CancelOutlinedIcon";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import { type ReactElement } from "react";
@@ -118,7 +118,7 @@ This is configurable by the `core.$chip-progress-size` and
 ```tsx
 // preview editable
 "use client";
-import { Chip, CircularProgress, randomInt } from "@react-md/core";
+import { Chip, CircularProgress, randomInt } from "react-md";
 import BrightnessHighIcon from "@react-md/material-icons/BrightnessHighIcon";
 import BrightnessLowIcon from "@react-md/material-icons/BrightnessLowIcon";
 import { useEffect, useState, type ReactElement } from "react";
@@ -197,7 +197,7 @@ selected before the `children` by default.
 ```tsx
 // preview editable
 "use client";
-import { Chip, useToggle } from "@react-md/core";
+import { Chip, useToggle } from "react-md";
 import { type ReactElement } from "react";
 
 export default function SelectableChipExample(): ReactElement {
@@ -224,7 +224,7 @@ Enable the `selectedIconAfter` prop if the selected icon should appear after the
 ```tsx
 // preview editable
 "use client";
-import { Chip, useToggle } from "@react-md/core";
+import { Chip, useToggle } from "react-md";
 import { type ReactElement } from "react";
 
 export default function SelectedIconAfterExample(): ReactElement {
@@ -258,7 +258,7 @@ default. The icon can also be changed on a single component by providing the
 ```tsx
 // preview editable
 "use client";
-import { Chip, useToggle } from "@react-md/core";
+import { Chip, useToggle } from "react-md";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import { type ReactElement } from "react";
 
@@ -281,7 +281,7 @@ icon while selected by enabling the `selectedThemed` prop.
 ```tsx
 // preview editable
 "use client";
-import { Chip, useToggle } from "@react-md/core";
+import { Chip, useToggle } from "react-md";
 import { type ReactElement } from "react";
 
 export default function ThemedSelectedStateExample(): ReactElement {
@@ -311,7 +311,7 @@ or use the `chip` styling utility function.
 
 ```tsx
 // preview editable
-import { Chip, chip } from "@react-md/core";
+import { Chip, chip } from "react-md";
 import { type ReactElement } from "react";
 
 export default function PresentationalChipsExample(): ReactElement {

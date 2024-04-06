@@ -1,4 +1,4 @@
-import { Badge, Button, SrOnly } from "@react-md/core";
+import { Badge, Button, SrOnly } from "react-md";
 import NotificationsOutlinedIcon from "@react-md/material-icons/NotificationsOutlinedIcon";
 import { type ReactElement } from "react";
 

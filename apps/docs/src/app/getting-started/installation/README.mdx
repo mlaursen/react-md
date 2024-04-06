@@ -3,7 +3,7 @@
 Install `react-md` with one of the following commands.
 
 ```sh npm
-npm install @react-md/core sass
+npm install react-md sass
 ```
 
 # Generating the styles
@@ -13,9 +13,9 @@ importing modules. Create a top-level `.scss` file to include all the styles:
 
 ```diff
 // fileName="app.scss"
-+@use "@react-md/core";
++@use "react-md";
 +
-+@include core.styles;
++@include react-md.styles;
 ```
 
 > The default theme uses #2196f3 and #ff9100 as the primary and secondary
@@ -43,9 +43,9 @@ Include styles:
 +@use '@fontsource/roboto/400.css';
 +@use '@fontsource/roboto/500.css';
 +@use '@fontsource/roboto/700.css';
- @use "@react-md/core";
+ @use "react-md";
 
- @include core.styles;
+ @include react-md.styles;
 ```
 
 ## Google Fonts CDN
@@ -76,7 +76,7 @@ root of your app:
 
 ```diff
 // fileName="src/index.tsx"
-+import { CoreProviders } from "@react-md/core";
++import { CoreProviders } from "react-md";
  import { createRoot } from "react-dom/client"
 
  import App from "./App.jsx";
@@ -131,7 +131,7 @@ provide SVG icons.
 
 ```tsx
 // fileName="src/rmdConfig.tsx"
-import { configureIcons } from "@react-md/core";
+import { configureIcons } from "react-md";
 import ArrowDropDownIcon from "@react-md/material-icons/ArrowDropDownIcon";
 import ArrowUpwardIcon from "@react-md/material-icons/ArrowUpwardIcon";
 import CheckBoxIcon from "@react-md/material-icons/CheckBoxIcon";
@@ -177,7 +177,7 @@ This file should just be imported anywhere within the application to take effect
 
 ```diff
 // fileName="src/index.tsx"
- import { CoreProviders } from "@react-md/core";
+ import { CoreProviders } from "react-md";
  import { createRoot } from "react-dom/client"
 
 +import "./rmdConfig.jsx";

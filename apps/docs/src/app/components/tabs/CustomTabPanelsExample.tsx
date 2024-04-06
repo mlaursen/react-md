@@ -6,7 +6,7 @@ import {
   useTabs,
   type ProvidedTabPanelProps,
   type ProvidedTabPanelsProps,
-} from "@react-md/core";
+} from "react-md";
 import { cnb } from "cnbuilder";
 import { forwardRef, type ReactElement, type ReactNode } from "react";
 

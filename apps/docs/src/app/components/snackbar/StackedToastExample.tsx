@@ -1,5 +1,5 @@
 "use client";
-import { Button, addToast } from "@react-md/core";
+import { Button, addToast } from "react-md";
 import { type ReactElement } from "react";
 
 export default function StackedToastExample(): ReactElement {

@@ -1,4 +1,4 @@
-import { AppBar, AppBarTitle, Button } from "@react-md/core";
+import { AppBar, AppBarTitle, Button } from "react-md";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import { type ReactElement } from "react";
 

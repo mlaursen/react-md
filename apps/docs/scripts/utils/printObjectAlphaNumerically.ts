@@ -1,4 +1,4 @@
-import { alphaNumericSort } from "@react-md/core";
+import { alphaNumericSort } from "react-md";
 
 export function printObjectAlphaNumerically(
   obj: Record<string, unknown>

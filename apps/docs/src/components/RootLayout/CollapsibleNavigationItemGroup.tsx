@@ -10,7 +10,7 @@ import {
   useCollapseTransition,
   useToggle,
   type RenderRecursiveItemsProps,
-} from "@react-md/core";
+} from "react-md";
 import { usePathname } from "next/navigation.js";
 import { type ReactElement } from "react";
 import { NavigationItemGroup } from "./NavigationItemGroup.jsx";

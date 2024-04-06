@@ -1,4 +1,4 @@
-import { Box, Typography, box } from "@react-md/core";
+import { Box, Typography, box } from "react-md";
 import { type ReactElement } from "react";
 import { type ListChildComponentProps } from "react-window";
 import { MaterialSymbolOrIcon } from "./MaterialSymbolOrIcon.jsx";

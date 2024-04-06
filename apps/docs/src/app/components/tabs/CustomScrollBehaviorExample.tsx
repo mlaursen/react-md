@@ -4,7 +4,7 @@ import {
   TabList,
   // getTabListScrollToOptions,
   useTabs,
-} from "@react-md/core";
+} from "react-md";
 import { type ReactElement } from "react";
 
 export default function CustomScrollBehaviorExample(): ReactElement {

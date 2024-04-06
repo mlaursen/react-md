@@ -1,5 +1,5 @@
 "use client";
-import { Form, Switch, box } from "@react-md/core";
+import { Form, Switch, box } from "react-md";
 import { useState, type ReactElement } from "react";
 
 export default function ControllingSwitches(): ReactElement {

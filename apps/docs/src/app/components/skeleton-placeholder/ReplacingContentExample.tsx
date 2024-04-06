@@ -1,5 +1,5 @@
 "use client";
-import { randomInt, useSkeletonPlaceholder, useToggle } from "@react-md/core";
+import { randomInt, useSkeletonPlaceholder, useToggle } from "react-md";
 import { useEffect, type ReactElement } from "react";
 import styles from "./ReplacingContentExample.module.scss";
 

@@ -7,7 +7,7 @@ import {
   SkipToMainContent,
   main,
   useToggle,
-} from "@react-md/core";
+} from "react-md";
 import CloseIcon from "@react-md/material-icons/CloseIcon";
 import { useId, type ReactElement } from "react";
 import styles from "./CustomFocusTargetExample.module.scss";

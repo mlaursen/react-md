@@ -1,4 +1,4 @@
-import { List, ListItem } from "@react-md/core";
+import { List, ListItem } from "react-md";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import VolumeOffOutlinedIcon from "@react-md/material-icons/VolumeOffOutlinedIcon";
 import VolumeUpOutlinedIcon from "@react-md/material-icons/VolumeUpOutlinedIcon";

@@ -1,4 +1,4 @@
-import { CircularProgress } from "@react-md/core";
+import { CircularProgress } from "react-md";
 import { type ReactElement } from "react";
 
 export default function CircularProgressSizes(): ReactElement {

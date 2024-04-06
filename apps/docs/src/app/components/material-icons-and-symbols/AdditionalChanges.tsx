@@ -1,6 +1,6 @@
 import { Blockquote } from "@/components/Blockquote.jsx";
 import { InlineCode } from "@/components/InlineCode.jsx";
-import { cssUtils } from "@react-md/core";
+import { cssUtils } from "react-md";
 import type { ReactElement } from "react";
 import styles from "./AdditionalChanges.module.scss";
 import { AdditionalChangesPanels } from "./AdditionalChangesPanels.js";

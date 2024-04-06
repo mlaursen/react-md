@@ -1,5 +1,5 @@
 "use client";
-import { Box, Button, IconRotator, useToggle } from "@react-md/core";
+import { Box, Button, IconRotator, useToggle } from "react-md";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import { type ReactElement } from "react";
 

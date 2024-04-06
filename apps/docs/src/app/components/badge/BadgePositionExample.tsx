@@ -1,4 +1,4 @@
-import { Badge, Button } from "@react-md/core";
+import { Badge, Button } from "react-md";
 import { type ReactElement } from "react";
 import styles from "./BadgePositionExample.module.scss";
 

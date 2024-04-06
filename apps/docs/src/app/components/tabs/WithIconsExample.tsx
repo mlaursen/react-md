@@ -1,5 +1,5 @@
 "use client";
-import { Tab, TabList, useTabs } from "@react-md/core";
+import { Tab, TabList, useTabs } from "react-md";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import SocialDistanceOutlinedIcon from "@react-md/material-icons/SocialDistanceOutlinedIcon";
 import { type ReactElement } from "react";

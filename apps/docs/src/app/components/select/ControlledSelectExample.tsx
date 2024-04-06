@@ -1,6 +1,6 @@
 "use client";
 import { states, type StateAbbreviation } from "@/constants/states.js";
-import { Form, Option, Select } from "@react-md/core";
+import { Form, Option, Select } from "react-md";
 import { useState, type ReactElement } from "react";
 
 export default function ControlledSelectExample(): ReactElement {

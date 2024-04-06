@@ -1,5 +1,5 @@
 import { RandomEmoji } from "@/components/RandomEmoji.jsx";
-import { Button, Typography } from "@react-md/core";
+import { Button, Typography } from "react-md";
 import type { ReactElement } from "react";
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";
 

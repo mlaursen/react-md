@@ -1,4 +1,4 @@
-import { alphaNumericSort } from "@react-md/core";
+import { alphaNumericSort } from "react-md";
 import { glob, globSync } from "glob";
 import { createHash } from "node:crypto";
 import { existsSync } from "node:fs";

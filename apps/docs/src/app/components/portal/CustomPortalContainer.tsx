@@ -5,7 +5,7 @@ import {
   Portal,
   PortalContainerProvider,
   useToggle,
-} from "@react-md/core";
+} from "react-md";
 import { useRef, type ReactElement } from "react";
 
 export default function CustomPortalContainer(): ReactElement {

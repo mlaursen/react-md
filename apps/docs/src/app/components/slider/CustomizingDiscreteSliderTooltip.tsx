@@ -8,7 +8,7 @@ import {
   cssUtils,
   useRangeSlider,
   useSlider,
-} from "@react-md/core";
+} from "react-md";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import { useId, type ReactElement } from "react";
 

@@ -3,7 +3,7 @@ import {
   type MaterialIconFamily,
   type MaterialSymbolConfiguration,
   type MaterialSymbolName,
-} from "@react-md/core";
+} from "react-md";
 import lodash from "lodash";
 import {
   ICON_NAME_FIXES,

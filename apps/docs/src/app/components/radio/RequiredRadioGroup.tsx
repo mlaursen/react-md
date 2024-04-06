@@ -1,5 +1,5 @@
 "use client";
-import { Box, Button, Form, Radio, box, useRadioGroup } from "@react-md/core";
+import { Box, Button, Form, Radio, box, useRadioGroup } from "react-md";
 import { type ReactElement } from "react";
 
 export default function RequiredRadioGroup(): ReactElement {

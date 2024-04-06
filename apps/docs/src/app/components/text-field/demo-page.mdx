@@ -16,7 +16,7 @@ but placeholder only text fields are also supported.
 
 ```tsx
 // preview editable
-import { Form, TextField, box } from "@react-md/core";
+import { Form, TextField, box } from "react-md";
 import { type ReactElement } from "react";
 
 export default function OutlinedTextField(): ReactElement {
@@ -36,7 +36,7 @@ them stand out when surrounded by other content and components.
 
 ```tsx
 // preview editable
-import { Form, TextField, box } from "@react-md/core";
+import { Form, TextField, box } from "react-md";
 import { type ReactElement } from "react";
 
 export default function FilledTextField(): ReactElement {
@@ -72,7 +72,7 @@ prominent editing.
 
 ```tsx
 // preview editable
-import { Form, TextField, box } from "@react-md/core";
+import { Form, TextField, box } from "react-md";
 import { type ReactElement } from "react";
 
 export default function UnderlinedTextField(): ReactElement {
@@ -110,7 +110,7 @@ only text fields.
 
 ```tsx
 // preview editable
-import { Form, TextField, box } from "@react-md/core";
+import { Form, TextField, box } from "react-md";
 import { type ReactElement } from "react";
 
 export default function NoThemeTextField(): ReactElement {
@@ -149,7 +149,7 @@ import {
   type FormTheme,
   typography,
   Typography,
-} from "@react-md/core";
+} from "react-md";
 import { type ReactElement } from "react";
 
 export default function TextFieldState(): ReactElement {
@@ -195,7 +195,7 @@ to support these types other than attempting to display them correctly.
 
 ```tsx
 // preview editable
-import { Form, TextField, box } from "@react-md/core";
+import { Form, TextField, box } from "react-md";
 import { type ReactElement } from "react";
 
 export default function TextFieldType(): ReactElement {
@@ -225,7 +225,7 @@ password.
 
 ```tsx
 // preview editable
-import { Form, Password, box } from "@react-md/core";
+import { Form, Password, box } from "react-md";
 import { type ReactElement } from "react";
 
 export default function PasswordExample(): ReactElement {
@@ -262,13 +262,7 @@ See more info at the [useNumberField documentation](/hooks/use-number-field).
 // preview editable
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
-import {
-  Button,
-  Form,
-  TextField,
-  Typography,
-  useNumberField,
-} from "@react-md/core";
+import { Button, Form, TextField, Typography, useNumberField } from "react-md";
 import { type ReactElement } from "react";
 
 export default function NumberExample(): ReactElement {
@@ -301,7 +295,7 @@ current amount of text.
 
 ```tsx
 // preview editable
-import { Form, TextArea, box } from "@react-md/core";
+import { Form, TextArea, box } from "react-md";
 import { type ReactElement } from "react";
 
 export default function SimpleTextArea(): ReactElement {
@@ -322,7 +316,7 @@ number of rows to grow to can be specified by the `maxRows` prop.
 
 ```tsx
 // preview editable
-import { Form, TextArea, box } from "@react-md/core";
+import { Form, TextArea, box } from "react-md";
 import { type ReactElement } from "react";
 
 export default function ResizingTextAreaMaxRows(): ReactElement {
@@ -364,7 +358,7 @@ The textarea's height transition can be disabled by setting `disableTransition`.
 
 ```tsx
 // preview editable
-import { Form, TextArea, box } from "@react-md/core";
+import { Form, TextArea, box } from "react-md";
 import { type ReactElement } from "react";
 
 export default function DisablingResizeTransition(): ReactElement {
@@ -389,7 +383,7 @@ is also supported by setting the `resize` prop to one of: `horizontal`,
 
 ```tsx
 // preview editable
-import { Form, TextArea, box } from "@react-md/core";
+import { Form, TextArea, box } from "react-md";
 import { type ReactElement } from "react";
 
 export default function OtherResizeBehavior(): ReactElement {
@@ -441,7 +435,7 @@ import {
   typography,
   useRadioGroup,
   type FormTheme,
-} from "@react-md/core";
+} from "react-md";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import { type ReactElement } from "react";
 
@@ -518,7 +512,7 @@ import {
   typography,
   useRadioGroup,
   type FormTheme,
-} from "@react-md/core";
+} from "react-md";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import { type ReactElement } from "react";
 import styles from "./NonIconAddons.module.scss";
@@ -608,7 +602,7 @@ hint or error messages can be displayed.
 
 ```tsx
 // preview editable
-import { Form, TextField, box } from "@react-md/core";
+import { Form, TextField, box } from "react-md";
 import { type ReactElement } from "react";
 
 export default function HelpTextAndErrorText(): ReactElement {
@@ -643,7 +637,7 @@ providing the current length of the value and a `maxLength`.
 ```tsx
 // preview editable
 "use client";
-import { Form, TextField } from "@react-md/core";
+import { Form, TextField } from "react-md";
 import { useState, type ReactElement } from "react";
 
 const maxLength = 30;
@@ -695,7 +689,7 @@ import {
   defaultGetErrorIcon,
   defaultGetErrorMessage,
   useTextField,
-} from "@react-md/core";
+} from "react-md";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import { type ReactElement } from "react";
 

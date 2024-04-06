@@ -1,4 +1,4 @@
-import { typography } from "@react-md/core";
+import { typography } from "react-md";
 import CheckCircleOutlinedIcon from "@react-md/material-icons/CheckCircleOutlinedIcon";
 import ErrorOutlineOutlinedIcon from "@react-md/material-icons/ErrorOutlineOutlinedIcon";
 import InfoOutlinedIcon from "@react-md/material-icons/InfoOutlinedIcon";

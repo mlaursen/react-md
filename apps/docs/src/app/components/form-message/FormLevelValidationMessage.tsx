@@ -7,7 +7,7 @@ import {
   Radio,
   box,
   useRadioGroup,
-} from "@react-md/core";
+} from "react-md";
 import { useState, type ReactElement } from "react";
 
 export default function FormLevelValidationMessage(): ReactElement {

@@ -5,7 +5,7 @@ import {
   TableFooter,
   TableHeader,
   TableRow,
-} from "@react-md/core";
+} from "react-md";
 import { type ReactElement } from "react";
 import styles from "./ViewportBasedStickyTableExample.module.scss";
 

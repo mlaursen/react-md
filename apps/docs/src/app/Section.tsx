@@ -1,5 +1,5 @@
 import { LinkableHeading } from "@/components/LinkableHeading.jsx";
-import { TextContainer, Typography } from "@react-md/core";
+import { TextContainer, Typography } from "react-md";
 import { type ReactElement, type ReactNode } from "react";
 import styles from "./Section.module.scss";
 

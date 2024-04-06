@@ -8,7 +8,7 @@ import {
   TableHeader,
   TableRow,
   useCheckboxGroup,
-} from "@react-md/core";
+} from "react-md";
 import type { ReactElement } from "react";
 
 import styles from "./StickyColumnsExample.module.scss";

@@ -4,12 +4,9 @@
   "description": "The core components and functionality for react-md.",
   "type": "module",
   "sass": "./dist/_core.scss",
-  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "sass": "./dist/_core.scss",
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
+      "sass": "./dist/_core.scss"
     },
     "./test-utils/polyfills": {
       "require": "./dist/test-utils/polyfills",
@@ -54,6 +51,7 @@
     "lint": "npm-run-all lint-scripts lint-styles",
     "test": "NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest"
   },
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mlaursen/react-md.git",

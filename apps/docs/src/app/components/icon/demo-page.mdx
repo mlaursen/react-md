@@ -72,7 +72,7 @@ defaults to Material Icons but can be configured by using the `iconClassName` pr
 
 ```tsx
 // preview editable
-import { FontIcon } from "@react-md/core";
+import { FontIcon } from "react-md";
 import { type ReactElement } from "react";
 
 export default function FontAwesomeExample(): ReactElement {
@@ -93,8 +93,8 @@ example:
 
 ```tsx
 import { forwardRef } from "react";
-import type { SVGIconProps } from "@react-md/core";
-import { SVGIcon } from "@react-md/core";
+import type { SVGIconProps } from "react-md";
+import { SVGIcon } from "react-md";
 
 export default forwardRef<SVGSVGElement, SVGIconProps>(
   function AbcIcon(props, ref) {
@@ -199,7 +199,7 @@ async function run(): Promise<void> {
             `${prefix}${lodash.upperFirst(lodash.camelCase(suffix))}`
         );
 
-      const iconCode = `import { SVGIcon, type SVGIcon } from "@react-md/core";
+      const iconCode = `import { SVGIcon, type SVGIcon } from "react-md";
 import { forwardRef } from "react";
 
 export const ${componentName} = forwardRef<SVGSVGElement, SVGIconProps>(function ${componentName}(props, ref) {

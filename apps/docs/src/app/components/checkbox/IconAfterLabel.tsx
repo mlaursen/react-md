@@ -1,4 +1,4 @@
-import { Form, Checkbox, box } from "@react-md/core";
+import { Form, Checkbox, box } from "react-md";
 import { type ReactElement } from "react";
 
 export default function IconAfterLabel(): ReactElement {

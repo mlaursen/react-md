@@ -1,4 +1,4 @@
-import { Link } from "@react-md/core";
+import { Link } from "react-md";
 import { type ReactElement } from "react";
 
 export default function SimpleLinkExample(): ReactElement {

@@ -1,5 +1,5 @@
 // https://github.com/react-simple-code-editor/react-simple-code-editor/blob/86129bb4394bdad0e5cc1a735b32ce747383325b/src/index.tsx
-import { type UseStateSetter } from "@react-md/core";
+import { type UseStateSetter } from "react-md";
 import {
   useRef,
   useState,

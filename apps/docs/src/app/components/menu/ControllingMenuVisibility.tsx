@@ -1,4 +1,4 @@
-import { Button, DropdownMenu, MenuItem } from "@react-md/core";
+import { Button, DropdownMenu, MenuItem } from "react-md";
 import { useState, type ReactElement } from "react";
 
 export default function ControllingMenuVisibility(): ReactElement {

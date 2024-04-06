@@ -260,7 +260,7 @@ export const API_LOOKUP: ApiLookup = {
         {
           id: "box-props-gridcolumns",
           name: "gridColumns",
-          type: 'number | "fit" | "fill"',
+          type: 'number | "fill" | "fit"',
           required: false,
           description: "",
           defaultValue: '"fit"',
@@ -2073,6 +2073,83 @@ export const API_LOOKUP: ApiLookup = {
       extendedTypes: [{ name: "HTMLAttributes<HTMLElement>", href: "#" }],
     },
   ],
+  MenuItemCircularProgress: [
+    {
+      id: "menu-item-circular-progress",
+      name: "MenuItemCircularProgress",
+      props: [
+        {
+          id: "menu-item-circular-progress-props-aria-label",
+          name: '"aria-label"',
+          type: "string",
+          required: false,
+          description: "",
+          defaultValue: '"Loading"',
+        },
+        {
+          id: "menu-item-circular-progress-props-dense",
+          name: "dense",
+          type: "boolean",
+          required: false,
+          description: "",
+          defaultValue: "true",
+        },
+        {
+          id: "menu-item-circular-progress-props-height",
+          name: "height",
+          type: "ListItemHeight",
+          required: false,
+          description: "",
+        },
+        {
+          id: "menu-item-circular-progress-props-leftaddon",
+          name: "leftAddon",
+          type: "ReactNode",
+          required: false,
+          description: "",
+        },
+        {
+          id: "menu-item-circular-progress-props-liprops",
+          name: "liProps",
+          type: "HTMLAttributes<HTMLLIElement>",
+          required: false,
+          description: "",
+        },
+        {
+          id: "menu-item-circular-progress-props-listitemchildrenprops",
+          name: "listItemChildrenProps",
+          type: "ListItemChildrenProps",
+          required: false,
+          description: "",
+        },
+        {
+          id: "menu-item-circular-progress-props-rightaddon",
+          name: "rightAddon",
+          type: "ReactNode",
+          required: false,
+          description: "",
+        },
+        {
+          id: "menu-item-circular-progress-props-role",
+          name: "role",
+          type: "string",
+          required: false,
+          description: "",
+          defaultValue: '"none"',
+        },
+      ],
+      isClient: false,
+      examples: [
+        {
+          name: "Simple Example",
+          code: '"use client";\nimport {\n  DropdownMenu,\n  MenuItem,\n  MenuItemCircularProgress,\n  useAsyncAction,\n} from "@react-md/core";\n\nfunction Example() {\n  const { handleAsync, pending } = useAsyncAction();\n  const [visible, setVisible] = useState(false);\n\n  return (\n    <DropdownMenu buttonChildren="Options" visible={visible} setVisible={setVisible}>\n      {pending && <MenuItemCircularProgress />}\n      <MenuItem\n        onClick={handleAsync(async (event) => {\n          // prevent menu from closing until action completes\n          event.stopPropagation()\n\n          // do something async\n          await ...\n\n          // close menu once completed\n          setVisible(false)\n        })}\n      >\n        Some Action\n      </MenuItem>\n    </DropdownMenu>\n  )\n}',
+          lang: "tsx",
+        },
+      ],
+      description: "",
+      extendedTypes: [{ name: "CircularProgressProps", href: "#" }],
+    },
+  ],
   MenuItemTextField: [
     {
       id: "menu-item-text-field",
@@ -2100,245 +2177,6 @@ export const API_LOOKUP: ApiLookup = {
       description:
         "This is a wrapper for the `TextField` component that can be used within\n`Menu`s by updating the `onKeyDown` and `onClick` behavior.\n\nNote: This is **not** the `TextFieldWithMessage` since the message part is\nhard to style nicely within menus. You'd most likely want to use another menu\nfor displaying errors.",
       extendedTypes: [{ name: "TextFieldProps", href: "#" }],
-    },
-  ],
-  NativeSelect: [
-    {
-      id: "native-select",
-      name: "NativeSelect",
-      props: [
-        {
-          id: "native-select-props-children",
-          name: "children",
-          type: "ReactNode",
-          required: true,
-          description:
-            'This should be a list of `<option>` elements for specific values within the\n`<select>`.\n\nCheck out the {@link NativeSelect } for examples around using "placeholder"\ntext and requiring a value to be selected.',
-        },
-        {
-          id: "native-select-props-active",
-          name: "active",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
-        },
-        {
-          id: "native-select-props-containerprops",
-          name: "containerProps",
-          type: "PropsWithRef<HTMLAttributes<HTMLDivElement>, HTMLDivElement>",
-          required: false,
-          description:
-            "Optional props to provide to the {@link TextFieldContainer } component.\nThere probably isn't any real use for this prop other than if you need to\nadd a `ref` for some DOM behavior.",
-        },
-        {
-          id: "native-select-props-dense",
-          name: "dense",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` to enable the dense spec which reduces the height.",
-          defaultValue: "false",
-        },
-        {
-          id: "native-select-props-disabled",
-          name: "disabled",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
-        },
-        {
-          id: "native-select-props-disableleftaddonstyles",
-          name: "disableLeftAddonStyles",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
-        },
-        {
-          id: "native-select-props-disablerightaddonstyles",
-          name: "disableRightAddonStyles",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
-        },
-        {
-          id: "native-select-props-error",
-          name: "error",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
-        },
-        {
-          id: "native-select-props-icon",
-          name: "icon",
-          type: "ReactNode",
-          required: false,
-          description:
-            "A custom dropdown icon to use instead of the browser's default select\ndropdown icon.\n\nSet this to `null` if the browser's default icon should be used instead.",
-          defaultValue: 'getIcon("dropdown")',
-        },
-        {
-          id: "native-select-props-inline",
-          name: "inline",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` to change the style from `display: flex` to\n`display: inline-flex`.",
-          defaultValue: "false",
-        },
-        {
-          id: "native-select-props-label",
-          name: "label",
-          type: "ReactNode",
-          required: false,
-          description:
-            "An optional floating label to use with the text field. A label is generally\nrecommended for accessibility, but can be omitted if an `aria-label` or\n`aria-labelledby` is provided.",
-        },
-        {
-          id: "native-select-props-labelclassname",
-          name: "labelClassName",
-          type: "string",
-          required: false,
-          description:
-            'A convenience prop to apply a custom className to a label. This is\nequivalent to:\n\n```ts\nlabelProps={{\n  className: "some-class-name",\n}}\n```',
-        },
-        {
-          id: "native-select-props-labelprops",
-          name: "labelProps",
-          type: "PropsWithRef<LabelProps, HTMLLabelElement>",
-          required: false,
-          description:
-            "Any additional props and/or ref that should be passed to the `<label>`\nelement when a {@link label } is provided.",
-        },
-        {
-          id: "native-select-props-labelstyle",
-          name: "labelStyle",
-          type: "CSSProperties",
-          required: false,
-          description:
-            "A convenience prop to apply a custom style to a label. This is equivalent\nto:\n\n```ts\nlabelProps={{\n  style: // some style here\n}}\n```",
-        },
-        {
-          id: "native-select-props-leftaddon",
-          name: "leftAddon",
-          type: "ReactNode",
-          required: false,
-          description:
-            "This should generally be an icon or a button that will be placed before the\n`TextField` or `TextArea`.",
-        },
-        {
-          id: "native-select-props-leftaddonprops",
-          name: "leftAddonProps",
-          type: "PropsWithRef<ConfigurableTextFieldAddonProps, HTMLSpanElement>",
-          required: false,
-          description:
-            "Any additional props to pass to the `<span>` surrounding the {@link leftAddon }.",
-        },
-        {
-          id: "native-select-props-messagecontainerprops",
-          name: "messageContainerProps",
-          type: "PropsWithRef<HTMLAttributes<HTMLDivElement>, HTMLDivElement>",
-          required: false,
-          description:
-            "Any props (and an optional ref) to provide to the `<div>` surrounding the\nchildren and `FormMessage` component.\n\nNote: This will not be used if the `messageProps` are not provided since\nonly the `children` will be returned without the container.",
-        },
-        {
-          id: "native-select-props-messageprops",
-          name: "messageProps",
-          type: "PropsWithRef<FormMessageProps & Partial<FormMessageInputLengthCounterProps>, HTMLDivElement>",
-          required: false,
-          description:
-            "If the extension doesn't actually want to render the `FormMessage`\ncomponent, these props are optional. It kind of eliminates the whole\npurpose of this component though.",
-        },
-        {
-          id: "native-select-props-readonly",
-          name: "readOnly",
-          type: "boolean",
-          required: false,
-          description: "",
-          defaultValue: "false",
-        },
-        {
-          id: "native-select-props-rightaddon",
-          name: "rightAddon",
-          type: "ReactNode",
-          required: false,
-          description:
-            "This should generally be an icon or a button that will be placed after the\n`TextField` or `TextArea`.",
-        },
-        {
-          id: "native-select-props-rightaddonprops",
-          name: "rightAddonProps",
-          type: "PropsWithRef<ConfigurableTextFieldAddonProps, HTMLSpanElement>",
-          required: false,
-          description:
-            "Any additional props to pass to the `<span>` surrounding the {@link rightAddon }.",
-        },
-        {
-          id: "native-select-props-selectclassname",
-          name: "selectClassName",
-          type: "string",
-          required: false,
-          description:
-            "This applies custom className to the `<select>` element since the\n`className` prop is applied to the container element instead.",
-        },
-        {
-          id: "native-select-props-selectstyle",
-          name: "selectStyle",
-          type: "CSSProperties",
-          required: false,
-          description:
-            "This applies custom inline styles to the `<select>` element since the\n`style` prop is applied to the container element instead.",
-        },
-        {
-          id: "native-select-props-stretch",
-          name: "stretch",
-          type: "boolean",
-          required: false,
-          description:
-            "Set this to `true` if this component should stretch to fill a flex or grid\ncontainer using `flex: 1 1 auto`.",
-          defaultValue: "false",
-        },
-        {
-          id: "native-select-props-theme",
-          name: "theme",
-          type: "FormTheme",
-          required: false,
-          description: "The current theme type.",
-          defaultValue: '"outline"',
-        },
-        {
-          id: "native-select-props-underlinedirection",
-          name: "underlineDirection",
-          type: "FormUnderlineDirection",
-          required: false,
-          description: "The current underline direction.",
-          defaultValue: '"left"',
-        },
-      ],
-      isClient: false,
-      examples: [
-        {
-          name: "Simple Example",
-          code: '<NativeSelect label="Label">\n  <option value="a">Value 1</option>\n  <option value="b">Value 2</option>\n  <option value="c">Value 3</option>\n  <option value="d">Value 4</option>\n</NativeSelect>',
-          lang: "tsx",
-        },
-        {
-          name: "Required Value Example",
-          code: 'function Example(): ReactElement {\n  // using `defaultValue=""` makes it so the first option selected by default\n  // and considered an "invalid" value since it is `disabled`\n  //\n  // a `name` must be set with `required` so that the form validation will\n  // fire if the value is still the empty string when the form is submitted\n  //\n  // the first `<option>` is kind of like placeholder text since it doesn\'t\n  // have a value and is disabled by default\n\n  return (\n    <NativeSelect\n      label="State"\n      name="state"\n      required\n      defaultValue=""\n    >\n      <option value="" disabled>Choose a state</option>\n      {states.map(({ name, code }) => (\n        <option key={code} value={code}>{name}</option>\n      ))}\n    </NativeSelect>\n  );\n}',
-          lang: "tsx",
-        },
-      ],
-      description:
-        "This component is a wrapper for the native `<select>` field that applies the\nsame theming as `TextField` and `TextArea` components. This component might\nnot be used much since the `Select` offers more styling options.",
-      extendedTypes: [
-        { name: "SelectHTMLAttributes<HTMLSelectElement>", href: "#" },
-        { name: "UserAgentAutoCompleteProps", href: "#" },
-      ],
     },
   ],
   Option: [
@@ -2953,6 +2791,15 @@ export const API_LOOKUP: ApiLookup = {
       name: "Snackbar",
       props: [
         {
+          id: "snackbar-props-absolute",
+          name: "absolute",
+          type: "boolean",
+          required: false,
+          description:
+            "Set this to `true` if the snackbar should use absolute positioning so it\ncan be fixed within a `position: relative` container instead of the entire\nviewport.",
+          defaultValue: "false",
+        },
+        {
           id: "snackbar-props-disableportal",
           name: "disablePortal",
           type: "boolean",
@@ -3056,7 +2903,9 @@ export const API_LOOKUP: ApiLookup = {
         },
       ],
       description: "",
-      extendedTypes: [{ name: "TypographyProps", href: "#" }],
+      extendedTypes: [
+        { name: "HTMLAttributes<TypographyHTMLElement>", href: "#" },
+      ],
     },
   ],
   SVGIcon: [
@@ -3613,6 +3462,14 @@ export const API_LOOKUP: ApiLookup = {
             "An optional style to apply to the textarea element. The base `style` prop\nis applied to the surrounding `div` instead.",
         },
         {
+          id: "text-area-props-containerprops",
+          name: "containerProps",
+          type: "PropsWithRef<HTMLAttributes<HTMLDivElement>, HTMLDivElement>",
+          required: false,
+          description:
+            "Optional props to provide to the {@link TextFieldContainer } component.\nThere probably isn't any real use for this prop other than if you need to\nadd a `ref` for some DOM behavior.",
+        },
+        {
           id: "text-area-props-dense",
           name: "dense",
           type: "boolean",
@@ -3661,6 +3518,14 @@ export const API_LOOKUP: ApiLookup = {
           required: false,
           description: "",
           defaultValue: "false",
+        },
+        {
+          id: "text-area-props-id",
+          name: "id",
+          type: "string",
+          required: false,
+          description: "",
+          defaultValue: '"text-area-" + useId()',
         },
         {
           id: "text-area-props-inline",

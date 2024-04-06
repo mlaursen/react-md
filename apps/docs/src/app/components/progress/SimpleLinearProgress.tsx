@@ -1,4 +1,4 @@
-import { LinearProgress } from "@react-md/core";
+import { LinearProgress } from "react-md";
 import { type ReactElement } from "react";
 
 export default function SimpleLinearProgress(): ReactElement {

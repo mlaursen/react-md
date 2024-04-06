@@ -1,4 +1,4 @@
-import { AppBarTitle, type AppBarTitleProps } from "@react-md/core";
+import { AppBarTitle, type AppBarTitleProps } from "react-md";
 import { type ReactElement } from "react";
 
 export function CodeBlockFileName(props: AppBarTitleProps): ReactElement {

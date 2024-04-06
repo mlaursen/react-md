@@ -1,4 +1,4 @@
-import { Avatar, Box } from "@react-md/core";
+import { Avatar, Box } from "react-md";
 import { type ReactElement } from "react";
 import styles from "./AvatarBorders.module.scss";
 

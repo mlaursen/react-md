@@ -1,4 +1,4 @@
-import { type CreateToastOptions, ToastManager } from "@react-md/core";
+import { type CreateToastOptions, ToastManager } from "react-md";
 
 export const appToastManager = new ToastManager();
 

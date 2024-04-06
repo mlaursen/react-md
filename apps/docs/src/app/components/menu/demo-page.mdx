@@ -11,7 +11,7 @@ other content in a button and the available `MenuItem`s as children.
 
 ```tsx
 // preview editable
-import { DropdownMenu, MenuItem } from "@react-md/core";
+import { DropdownMenu, MenuItem } from "react-md";
 import { type ReactElement } from "react";
 
 export default function SimpleExample(): ReactElement {
@@ -32,7 +32,7 @@ export default function SimpleExample(): ReactElement {
 ```tsx
 // preview editable
 "use client";
-import { Box, DropdownMenu, MenuItem, Typography } from "@react-md/core";
+import { Box, DropdownMenu, MenuItem, Typography } from "react-md";
 import { useState, type ReactElement } from "react";
 
 export default function MenuitemActionExample(): ReactElement {
@@ -59,7 +59,7 @@ A menu can be rendered horizontally instead of vertically by enabling the
 
 ```tsx
 // preview editable
-import { DropdownMenu, MenuItem } from "@react-md/core";
+import { DropdownMenu, MenuItem } from "react-md";
 import { type ReactElement } from "react";
 
 export default function HorizontalMenuExample(): ReactElement {
@@ -80,7 +80,7 @@ on the `DropdownMenu`.
 
 ```tsx
 // preview editable
-import { DropdownMenu, MenuItem } from "@react-md/core";
+import { DropdownMenu, MenuItem } from "react-md";
 import MoreVertOutlinedIcon from "@react-md/material-icons/MoreVertOutlinedIcon";
 import { type ReactElement } from "react";
 
@@ -122,7 +122,7 @@ will also remove the default dropdown icon within the button.
 
 ```tsx
 // preview editable
-import { DropdownMenu, MenuItem } from "@react-md/core";
+import { DropdownMenu, MenuItem } from "react-md";
 import MoreVertOutlinedIcon from "@react-md/material-icons/MoreVertOutlinedIcon";
 import { type ReactElement } from "react";
 
@@ -149,7 +149,7 @@ button if the floating prop is defined instead of a text button.
 
 ```tsx
 // preview editable card phone
-import { DropdownMenu, MenuItem } from "@react-md/core";
+import { DropdownMenu, MenuItem } from "react-md";
 import MoreVertOutlinedIcon from "@react-md/material-icons/MoreVertOutlinedIcon";
 import { type ReactElement } from "react";
 
@@ -185,7 +185,7 @@ A `MenuItem` can render addons just like the [ListItem](/components/list-item).
 
 ```tsx
 // preview editable
-import { Avatar, DropdownMenu, MenuItem } from "@react-md/core";
+import { Avatar, DropdownMenu, MenuItem } from "react-md";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import { type ReactElement } from "react";
 
@@ -215,7 +215,7 @@ If the menu's visibility must manually be controlled, provide the `visible` and
 
 ```tsx
 // preview editable
-import { Button, DropdownMenu, MenuItem } from "@react-md/core";
+import { Button, DropdownMenu, MenuItem } from "react-md";
 import { useState, type ReactElement } from "react";
 
 export default function ControllingMenuVisibility(): ReactElement {
@@ -246,7 +246,7 @@ enable the `preventScroll` prop.
 
 ```tsx
 // preview editable
-import { DropdownMenu, MenuItem } from "@react-md/core";
+import { DropdownMenu, MenuItem } from "react-md";
 import { type ReactElement } from "react";
 
 export default function PreventScrollExample(): ReactElement {
@@ -268,7 +268,7 @@ to opt into this behavior.
 
 ```tsx
 // preview editable
-import { DropdownMenu, MenuItem } from "@react-md/core";
+import { DropdownMenu, MenuItem } from "react-md";
 import { type ReactElement } from "react";
 
 export default function CloseOnResizeExample(): ReactElement {
@@ -292,7 +292,7 @@ sibling of the menu toggle button.
 
 ```tsx
 // preview editable
-import { DropdownMenu, MenuItem } from "@react-md/core";
+import { DropdownMenu, MenuItem } from "react-md";
 import { type ReactElement } from "react";
 
 export default function DisablePortalExample(): ReactElement {
@@ -316,7 +316,7 @@ instead.
 ```tsx
 // preview editable
 "use client";
-import { DropdownMenu, ListItem, MenuItem } from "@react-md/core";
+import { DropdownMenu, ListItem, MenuItem } from "react-md";
 import { useState, type ReactElement } from "react";
 
 export default function DisableConditionalRenderingExample(): ReactElement {
@@ -362,7 +362,7 @@ import {
   MenuItem,
   TextArea,
   useContextMenu,
-} from "@react-md/core";
+} from "react-md";
 import ContentCopyOutlinedIcon from "@react-md/material-icons/ContentCopyOutlinedIcon";
 import ContentCutOutlinedIcon from "@react-md/material-icons/ContentCutOutlinedIcon";
 import ContentPasteOutlinedIcon from "@react-md/material-icons/ContentPasteOutlinedIcon";
@@ -402,7 +402,7 @@ instead of as a `MenuButton` and allow for all the correct keyboard behavior.
 
 ```tsx
 // preview editable
-import { Box, DropdownMenu, MenuItem, Switch } from "@react-md/core";
+import { Box, DropdownMenu, MenuItem, Switch } from "react-md";
 import { useState, type ReactElement } from "react";
 
 export default function NestedMenusExample(): ReactElement {
@@ -445,11 +445,7 @@ instead.
 
 ```tsx
 // preview editable
-import {
-  DropdownMenu,
-  MenuConfigurationProvider,
-  MenuItem,
-} from "@react-md/core";
+import { DropdownMenu, MenuConfigurationProvider, MenuItem } from "react-md";
 import { type ReactElement } from "react";
 
 export default function RenderingInASheet(): ReactElement {
@@ -496,7 +492,7 @@ import {
   MenuConfigurationProvider,
   MenuItem,
   useMenuVisibility,
-} from "@react-md/core";
+} from "react-md";
 import CloseIcon from "@react-md/material-icons/CloseIcon";
 import { type ReactElement } from "react";
 
@@ -582,7 +578,7 @@ hovered for the duration in milliseconds.
 
 ```tsx
 // preview editable
-import { DropdownMenu, MenuBar, MenuItem } from "@react-md/core";
+import { DropdownMenu, MenuBar, MenuItem } from "react-md";
 import type { ReactElement, ReactNode } from "react";
 
 export default function HoverableMenuExample(): ReactElement {
@@ -649,7 +645,7 @@ this functionality.
 
 ```tsx
 // preview editable
-import { DropdownMenu, MenuBar, MenuItem } from "@react-md/core";
+import { DropdownMenu, MenuBar, MenuItem } from "react-md";
 import type { ReactElement, ReactNode } from "react";
 
 export default function ClickFirstHoverableMenu(): ReactElement {
@@ -742,7 +738,7 @@ import {
   MenuItemCheckbox,
   MenuItemSeparator,
   useCheckboxGroup,
-} from "@react-md/core";
+} from "react-md";
 import { useState, type ReactElement } from "react";
 
 const values = ["a", "b", "c", "d"] as const;
@@ -812,7 +808,7 @@ import {
   Typography,
   useRadioGroup,
   type TextDecoration,
-} from "@react-md/core";
+} from "react-md";
 import { type ReactElement } from "react";
 
 const decorations = [
@@ -868,7 +864,7 @@ The `MenuItemSwitch` component can be used to render a `Switch` within a
 ```tsx
 // preview editable
 "use client";
-import { DropdownMenu, MenuItemSwitch, useCheckboxGroup } from "@react-md/core";
+import { DropdownMenu, MenuItemSwitch, useCheckboxGroup } from "react-md";
 import { useState, type ReactElement } from "react";
 
 export default function MenuItemSwitchExample(): ReactElement {
@@ -909,7 +905,7 @@ import {
   MenuItem,
   MenuItemSeparator,
   MenuItemTextField,
-} from "@react-md/core";
+} from "react-md";
 import SearchIcon from "@react-md/material-icons/SearchIcon";
 import { type ReactElement } from "react";
 
@@ -943,7 +939,7 @@ children.
 
 ```tsx
 // preview editable
-import { DropdownMenu, MenuItemFileInput, useFileUpload } from "@react-md/core";
+import { DropdownMenu, MenuItemFileInput, useFileUpload } from "react-md";
 import { useState, type ReactElement } from "react";
 
 const extensions = [
@@ -1015,7 +1011,7 @@ import {
   MenuItemRadio,
   MenuItemSeparator,
   useRadioGroup,
-} from "@react-md/core";
+} from "react-md";
 import { type ReactElement } from "react";
 
 export default function MenuItemSeparatorAndGroupExample(): ReactElement {
@@ -1056,7 +1052,7 @@ import {
   MenuItemRadio,
   MenuItemSwitch,
   useCheckboxGroup,
-} from "@react-md/core";
+} from "react-md";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import { type ReactElement } from "react";
 
@@ -1113,7 +1109,7 @@ import {
   MenuItem,
   Typography,
   useToggle,
-} from "@react-md/core";
+} from "react-md";
 import { type ReactElement } from "react";
 
 export default function MenuWithinADialog(): ReactElement {

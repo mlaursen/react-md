@@ -1,4 +1,4 @@
-import { Form, Option, Select } from "@react-md/core";
+import { Form, Option, Select } from "react-md";
 import RadioButtonCheckedIcon from "@react-md/material-icons/RadioButtonCheckedIcon";
 import RadioButtonUncheckedIcon from "@react-md/material-icons/RadioButtonUncheckedIcon";
 import { type ReactElement } from "react";

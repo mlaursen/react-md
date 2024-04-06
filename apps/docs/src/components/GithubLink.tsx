@@ -1,7 +1,7 @@
 "use client";
 import { GITHUB_URL } from "@/constants/env.js";
 import { GithubIcon } from "@/icons/GithubIcon.jsx";
-import { Tooltip, button, useTooltip } from "@react-md/core";
+import { Tooltip, button, useTooltip } from "react-md";
 import { type ReactElement } from "react";
 import { LinkUnstyled } from "./LinkUnstyled.jsx";
 

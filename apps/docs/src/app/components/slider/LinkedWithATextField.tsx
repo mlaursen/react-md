@@ -7,7 +7,7 @@ import {
   box,
   useNumberField,
   type GetErrorMessage,
-} from "@react-md/core";
+} from "react-md";
 import { useId, type ReactElement } from "react";
 import styles from "./LinkedWithATextField.module.scss";
 

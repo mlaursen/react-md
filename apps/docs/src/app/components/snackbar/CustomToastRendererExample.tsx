@@ -12,7 +12,7 @@ import {
   type BackgroundColor,
   type ToastRendererProps,
   useCurrentToastActions,
-} from "@react-md/core";
+} from "react-md";
 import { type ReactElement } from "react";
 
 export default function CustomToastRendererExample(): ReactElement {

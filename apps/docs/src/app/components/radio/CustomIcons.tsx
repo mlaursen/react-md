@@ -1,4 +1,4 @@
-import { Form, Radio, box } from "@react-md/core";
+import { Form, Radio, box } from "react-md";
 import MoodBadOutlinedIcon from "@react-md/material-icons/MoodBadOutlinedIcon";
 import MoodOutlinedIcon from "@react-md/material-icons/MoodOutlinedIcon";
 import { type ReactElement } from "react";

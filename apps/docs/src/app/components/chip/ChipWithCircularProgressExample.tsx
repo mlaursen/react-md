@@ -1,5 +1,5 @@
 "use client";
-import { Chip, CircularProgress, randomInt } from "@react-md/core";
+import { Chip, CircularProgress, randomInt } from "react-md";
 import BrightnessHighIcon from "@react-md/material-icons/BrightnessHighIcon";
 import BrightnessLowIcon from "@react-md/material-icons/BrightnessLowIcon";
 import { useEffect, useState, type ReactElement } from "react";

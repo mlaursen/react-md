@@ -1,4 +1,4 @@
-import { Snackbar, ToastManagerProvider } from "@react-md/core";
+import { Snackbar, ToastManagerProvider } from "react-md";
 import { cnb } from "cnbuilder";
 import { type ReactElement, type ReactNode } from "react";
 import { TableOfContents } from "../TableOfContents/TableOfContents.jsx";

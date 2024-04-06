@@ -1,4 +1,4 @@
-import { Badge } from "@react-md/core";
+import { Badge } from "react-md";
 import { type CSSProperties, type ReactElement } from "react";
 
 export default function BadgeThemesExample(): ReactElement {

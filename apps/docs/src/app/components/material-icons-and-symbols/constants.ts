@@ -3,7 +3,7 @@ import {
   type MaterialSymbolGrade,
   type MaterialSymbolOpticalSize,
   type MaterialSymbolWeight,
-} from "@react-md/core";
+} from "react-md";
 import { type MaterialIconsAndSymbolsState } from "./types.js";
 
 export const DEFAULT_FILL = 0;

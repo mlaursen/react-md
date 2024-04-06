@@ -1,4 +1,4 @@
-import { Button } from "@react-md/core";
+import { Button } from "react-md";
 import { type ReactElement } from "react";
 
 export default function SimpleButton(): ReactElement {

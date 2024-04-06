@@ -7,7 +7,6 @@ import { InlineColorPreview } from "@/components/InlineColorPreview.jsx";
 import { LinkableHeading } from "@/components/LinkableHeading.jsx";
 import { MarkdownLink } from "@/components/MarkdownLink.jsx";
 import { getSluggedId } from "@/utils/getSluggedId.js";
-import { Divider, Typography } from "@react-md/core";
 import GithubSlugger from "github-slugger";
 import { type MDXComponents } from "mdx/types.js";
 import {
@@ -16,6 +15,7 @@ import {
   type ReactElement,
   type ReactNode,
 } from "react";
+import { Divider, Typography } from "react-md";
 
 interface HeadingProps {
   id: string;

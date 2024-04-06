@@ -16,7 +16,7 @@ Tabs can be created by using the following components and hooks:
 ```tsx
 // preview editable
 "use client";
-import { Slide, SlideContainer, Tab, TabList, useTabs } from "@react-md/core";
+import { Slide, SlideContainer, Tab, TabList, useTabs } from "react-md";
 import { type ReactElement } from "react";
 
 export default function SimpleExample(): ReactElement {
@@ -48,7 +48,7 @@ the content by using the `icon`, `iconAfter`, and `stacked` props.
 ```tsx
 // preview editable
 "use client";
-import { Tab, TabList, useTabs } from "@react-md/core";
+import { Tab, TabList, useTabs } from "react-md";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import SocialDistanceOutlinedIcon from "@react-md/material-icons/SocialDistanceOutlinedIcon";
 import { type ReactElement } from "react";
@@ -95,14 +95,7 @@ If the active tab index needs to be controlled externally, the `activeTab` and
 ```tsx
 // preview editable
 "use client";
-import {
-  AppBar,
-  Button,
-  Tab,
-  TabList,
-  Typography,
-  useTabs,
-} from "@react-md/core";
+import { AppBar, Button, Tab, TabList, Typography, useTabs } from "react-md";
 import { type ReactElement } from "react";
 
 export default function ControllingTheActiveTabExample(): ReactElement {
@@ -135,14 +128,7 @@ For more complex flows, the `activeTab` can be controlled by providing the
 ```tsx
 // preview editable
 "use client";
-import {
-  AppBar,
-  Button,
-  Tab,
-  TabList,
-  Typography,
-  useTabs,
-} from "@react-md/core";
+import { AppBar, Button, Tab, TabList, Typography, useTabs } from "react-md";
 import { useState, type ReactElement } from "react";
 
 export default function CustomActiveTabIndexExample(): ReactElement {
@@ -180,14 +166,7 @@ keyboard movement behavior can work correctly.
 ```tsx
 // preview editable
 "use client";
-import {
-  AppBar,
-  Button,
-  Tab,
-  TabList,
-  Typography,
-  useTabs,
-} from "@react-md/core";
+import { AppBar, Button, Tab, TabList, Typography, useTabs } from "react-md";
 import { useState, type ReactElement } from "react";
 
 const tabs = ["tab-1", "tab-2", "tab-3", "tab-4"];
@@ -231,7 +210,7 @@ This example shows how the active tab could be derived from the current
 ```tsx
 // preview editable
 "use client";
-import { Tab, TabList, useTabs } from "@react-md/core";
+import { Tab, TabList, useTabs } from "react-md";
 import { useEffect, useState, type ReactElement } from "react";
 
 export default function LinkTabExample(): ReactElement {
@@ -302,7 +281,7 @@ be enabled instead that will scroll 1/10th the distance on each click.
 ```tsx
 // preview editable
 "use client";
-import { Tab, TabList, useTabs } from "@react-md/core";
+import { Tab, TabList, useTabs } from "react-md";
 import { type ReactElement } from "react";
 
 export default function ScrollableTabsExample(): ReactElement {
@@ -332,7 +311,7 @@ the `scrollbar` prop.
 ```tsx
 // preview editable
 "use client";
-import { Tab, TabList, useTabs } from "@react-md/core";
+import { Tab, TabList, useTabs } from "react-md";
 import { type ReactElement } from "react";
 
 export default function ScrollableTabsWithScrollbarExample(): ReactElement {
@@ -366,7 +345,7 @@ import {
   TabList,
   // getTabListScrollToOptions,
   useTabs,
-} from "@react-md/core";
+} from "react-md";
 import { type ReactElement } from "react";
 
 export default function CustomScrollBehaviorExample(): ReactElement {
@@ -432,7 +411,7 @@ Tabs can be rendered vertically instead of horizontally by enabling the
 ```tsx
 // preview editable styles="src/app/components/tabs/VerticalTabsExample.module.scss"
 "use client";
-import { Slide, SlideContainer, Tab, TabList, useTabs } from "@react-md/core";
+import { Slide, SlideContainer, Tab, TabList, useTabs } from "react-md";
 import { type ReactElement } from "react";
 import styles from "./VerticalTabsExample.module.scss";
 
@@ -466,7 +445,7 @@ The active tab indicator transition can be disabled by setting
 ```tsx
 // preview editable
 "use client";
-import { Tab, TabList, useTabs } from "@react-md/core";
+import { Tab, TabList, useTabs } from "react-md";
 import { type ReactElement } from "react";
 
 export default function DisableActiveTabTransitionExample(): ReactElement {
@@ -498,7 +477,7 @@ also be enabled on each `Tab` for the correct styles to apply.
 ```tsx
 // preview editable
 "use client";
-import { Tab, TabList, useTabs } from "@react-md/core";
+import { Tab, TabList, useTabs } from "react-md";
 import { type ReactElement } from "react";
 
 export default function DisableVerticalActiveTabTransitionExample(): ReactElement {
@@ -545,7 +524,7 @@ import {
   useTabs,
   type ProvidedTabPanelProps,
   type ProvidedTabPanelsProps,
-} from "@react-md/core";
+} from "react-md";
 import { cnb } from "cnbuilder";
 import { forwardRef, type ReactElement, type ReactNode } from "react";
 
@@ -620,7 +599,7 @@ a tab once focused with a keyboard by setting `activationMode="automatic"`.
 ```tsx
 // preview editable
 "use client";
-import { Tab, TabList, useTabs } from "@react-md/core";
+import { Tab, TabList, useTabs } from "react-md";
 import { type ReactElement } from "react";
 
 export default function ActivationModeExample(): ReactElement {

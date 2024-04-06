@@ -1,4 +1,4 @@
-import { Avatar, Chip } from "@react-md/core";
+import { Avatar, Chip } from "react-md";
 import CancelOutlinedIcon from "@react-md/material-icons/CancelOutlinedIcon";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import { type ReactElement } from "react";

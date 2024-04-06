@@ -1,5 +1,5 @@
 import { type TableOfContentsItem } from "@/components/TableOfContents/types.js";
-import { Box, Divider, Typography, box, chip, link } from "@react-md/core";
+import { Box, Divider, Typography, box, chip, link } from "react-md";
 import Link from "next/link.js";
 import { Fragment, type ReactElement } from "react";
 import { InlineCode } from "../InlineCode.jsx";

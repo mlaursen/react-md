@@ -4,7 +4,7 @@ import {
   usePackageManagerContext,
   type PackageManager,
 } from "@/providers/PackageManagerProvider.jsx";
-import { DISPLAY_NONE_CLASS, Tab, TabList, useTabs } from "@react-md/core";
+import { DISPLAY_NONE_CLASS, Tab, TabList, useTabs } from "react-md";
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
 import { CodeBlock } from "./CodeBlock.jsx";

@@ -1,6 +1,6 @@
 "use client";
 import { folders, type Folder } from "@/constants/folders.js";
-import { Tree, useTree, type TreeData } from "@react-md/core";
+import { Tree, useTree, type TreeData } from "react-md";
 import FolderIcon from "@react-md/material-icons/FolderIcon";
 import { useMemo, type ReactElement, type ReactNode } from "react";
 

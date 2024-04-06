@@ -1,4 +1,4 @@
-import { List, type ListProps } from "@react-md/core";
+import { List, type ListProps } from "react-md";
 import { cnb } from "cnbuilder";
 import { forwardRef } from "react";
 import styles from "./NavigationItemGroup.module.scss";

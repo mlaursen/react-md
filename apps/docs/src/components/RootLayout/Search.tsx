@@ -1,4 +1,4 @@
-import { Button, SrOnly, Typography } from "@react-md/core";
+import { Button, SrOnly, Typography } from "react-md";
 import SearchIcon from "@react-md/material-icons/SearchIcon";
 import { type ReactElement } from "react";
 import styles from "./Search.module.scss";

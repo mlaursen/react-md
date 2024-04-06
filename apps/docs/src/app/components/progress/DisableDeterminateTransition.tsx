@@ -5,7 +5,7 @@ import {
   CircularProgress,
   LinearProgress,
   Switch,
-} from "@react-md/core";
+} from "react-md";
 import { useEffect, useState, type ReactElement } from "react";
 
 export default function DisableDeterminateTransition(): ReactElement {

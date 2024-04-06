@@ -9,7 +9,7 @@ import {
   type FormTheme,
   typography,
   Typography,
-} from "@react-md/core";
+} from "react-md";
 import { type ReactElement } from "react";
 
 export default function TextFieldState(): ReactElement {

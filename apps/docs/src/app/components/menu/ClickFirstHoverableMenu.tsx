@@ -1,4 +1,4 @@
-import { DropdownMenu, MenuBar, MenuItem } from "@react-md/core";
+import { DropdownMenu, MenuBar, MenuItem } from "react-md";
 import type { ReactElement, ReactNode } from "react";
 
 export default function ClickFirstHoverableMenu(): ReactElement {

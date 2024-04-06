@@ -1,5 +1,5 @@
 "use client";
-import { useCSSVariables, useResizeObserver } from "@react-md/core";
+import { useCSSVariables, useResizeObserver } from "react-md";
 import {
   useCallback,
   useMemo,

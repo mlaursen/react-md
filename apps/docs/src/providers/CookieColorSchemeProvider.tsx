@@ -6,7 +6,7 @@ import {
   useColorSchemeProvider,
   type ColorSchemeMode,
   type UseStateSetter,
-} from "@react-md/core";
+} from "react-md";
 import {
   useCallback,
   useState,

@@ -7,7 +7,7 @@ import {
   box,
   // getRangeDefaultValue,
   useSlider,
-} from "@react-md/core";
+} from "react-md";
 import { useId, type ReactElement } from "react";
 
 // these are the defaults

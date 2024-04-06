@@ -3,7 +3,7 @@ import {
   Select,
   cssUtils,
   type ProvidedExpansionPanelProps,
-} from "@react-md/core";
+} from "react-md";
 import StyleOutlinedIcon from "@react-md/material-icons/StyleOutlinedIcon";
 import { type ReactElement } from "react";
 import { FilterPanel } from "./FilterPanel.jsx";

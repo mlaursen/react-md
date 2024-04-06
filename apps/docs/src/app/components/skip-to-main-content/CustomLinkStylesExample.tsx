@@ -1,4 +1,4 @@
-import { SkipToMainContent } from "@react-md/core";
+import { SkipToMainContent } from "react-md";
 import { type ReactElement } from "react";
 import styles from "./CustomLinkStylesExample.module.scss";
 

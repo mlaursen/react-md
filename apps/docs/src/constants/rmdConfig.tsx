@@ -1,5 +1,5 @@
 "use client";
-import { configureIcons, type ReactMDCoreConfiguration } from "@react-md/core";
+import { configureIcons, type ReactMDCoreConfiguration } from "react-md";
 import ArrowDropDownIcon from "@react-md/material-icons/ArrowDropDownIcon";
 import ArrowUpwardIcon from "@react-md/material-icons/ArrowUpwardIcon";
 import CheckBoxIcon from "@react-md/material-icons/CheckBoxIcon";

@@ -1,4 +1,4 @@
-import { button, type ButtonClassNameThemeOptions } from "@react-md/core";
+import { button, type ButtonClassNameThemeOptions } from "react-md";
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
 import styles from "./ButtonStyledLink.module.scss";

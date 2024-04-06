@@ -1,12 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
-import {
-  Button,
-  Form,
-  TextField,
-  Typography,
-  useNumberField,
-} from "@react-md/core";
+import { Button, Form, TextField, Typography, useNumberField } from "react-md";
 import { type ReactElement } from "react";
 
 export default function NumberExample(): ReactElement {

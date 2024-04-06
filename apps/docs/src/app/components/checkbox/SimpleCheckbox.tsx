@@ -1,4 +1,4 @@
-import { Checkbox, Form, box } from "@react-md/core";
+import { Checkbox, Form, box } from "react-md";
 import { type ReactElement } from "react";
 
 export default function SimpleCheckbox(): ReactElement {

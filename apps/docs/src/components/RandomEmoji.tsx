@@ -1,5 +1,5 @@
 "use client";
-import { randomInt } from "@react-md/core";
+import { randomInt } from "react-md";
 import { useRef, type ReactElement } from "react";
 
 import styles from "./RandomEmoji.module.scss";

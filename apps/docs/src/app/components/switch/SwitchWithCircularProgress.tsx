@@ -7,7 +7,7 @@ import {
   randomInt,
   useAsyncAction,
   wait,
-} from "@react-md/core";
+} from "react-md";
 import { cnb } from "cnbuilder";
 import { useState, type ReactElement, useId } from "react";
 import styles from "./SwitchWithCircularProgress.module.scss";

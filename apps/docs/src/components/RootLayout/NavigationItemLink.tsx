@@ -5,7 +5,7 @@ import {
   cssUtils,
   useElementInteraction,
   useTooltip,
-} from "@react-md/core";
+} from "react-md";
 import { cnb } from "cnbuilder";
 import { usePathname } from "next/navigation.js";
 import { useEffect, useRef, type ReactElement, type ReactNode } from "react";

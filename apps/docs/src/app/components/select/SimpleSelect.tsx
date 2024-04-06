@@ -1,4 +1,4 @@
-import { Form, Option, Select } from "@react-md/core";
+import { Form, Option, Select } from "react-md";
 import { type ReactElement } from "react";
 
 export default function SimpleSelect(): ReactElement {

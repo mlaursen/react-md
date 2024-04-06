@@ -1,4 +1,4 @@
-import { AppBar, SkipToMainContent } from "@react-md/core";
+import { AppBar, SkipToMainContent } from "react-md";
 import { type ReactElement } from "react";
 
 export default function SimpleSkipToMainContentExample(): ReactElement {

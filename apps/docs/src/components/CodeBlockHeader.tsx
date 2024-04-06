@@ -1,4 +1,4 @@
-import { AppBar, type AppBarProps } from "@react-md/core";
+import { AppBar, type AppBarProps } from "react-md";
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
 import styles from "./CodeBlockHeader.module.scss";

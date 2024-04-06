@@ -1,5 +1,5 @@
 "use client";
-import { Fieldset, Form, Legend, Slider, box, useSlider } from "@react-md/core";
+import { Fieldset, Form, Legend, Slider, box, useSlider } from "react-md";
 import VolumeOffOutlinedIcon from "@react-md/material-icons/VolumeOffOutlinedIcon";
 import VolumeUpOutlinedIcon from "@react-md/material-icons/VolumeUpOutlinedIcon";
 import { useId, type ReactElement } from "react";

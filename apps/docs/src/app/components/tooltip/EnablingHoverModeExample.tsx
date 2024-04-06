@@ -4,7 +4,7 @@ import {
   Tooltip,
   TooltipHoverModeProvider,
   useTooltip,
-} from "@react-md/core";
+} from "react-md";
 import { type ReactElement } from "react";
 
 export default function EnablingHoverModeExample(): ReactElement {

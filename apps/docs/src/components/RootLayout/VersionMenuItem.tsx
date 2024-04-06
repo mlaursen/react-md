@@ -1,5 +1,5 @@
 "use client";
-import { ListItemLink } from "@react-md/core";
+import { ListItemLink } from "react-md";
 import { type ReactElement } from "react";
 
 export interface VersionMenuItemProps {

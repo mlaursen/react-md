@@ -1,4 +1,4 @@
-import { DropdownMenu, MenuItem } from "@react-md/core";
+import { DropdownMenu, MenuItem } from "react-md";
 import { type ReactElement } from "react";
 
 export default function DisablePortalExample(): ReactElement {

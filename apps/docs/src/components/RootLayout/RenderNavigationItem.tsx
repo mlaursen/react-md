@@ -6,7 +6,7 @@ import {
   cssUtils,
   type RenderRecursiveItemsProps,
   type ThemeColor,
-} from "@react-md/core";
+} from "react-md";
 import { type ReactElement } from "react";
 import { CollapsibleNavigationItemGroup } from "./CollapsibleNavigationItemGroup.jsx";
 import { NavigationItemLink } from "./NavigationItemLink.jsx";

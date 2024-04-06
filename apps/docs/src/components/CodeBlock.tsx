@@ -1,4 +1,4 @@
-import { NullSuspense, cssUtils } from "@react-md/core";
+import { NullSuspense, cssUtils } from "react-md";
 import { cnb } from "cnbuilder";
 import { type HTMLAttributes, type ReactElement, type ReactNode } from "react";
 import styles from "./CodeBlock.module.scss";

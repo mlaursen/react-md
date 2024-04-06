@@ -5,7 +5,7 @@ import {
   Typography,
   cssUtils,
   useExpansionPanels,
-} from "@react-md/core";
+} from "react-md";
 import type { ReactElement } from "react";
 import styles from "./AdditionalChangesPanels.module.scss";
 import { CopyCode } from "./CopyCode.jsx";
@@ -83,7 +83,7 @@ function getEverythingScss(context: MaterialIconsAndSymbolsContext): string {
     changes.push(`$icon-symbol-optical-size: ${opticalSize}`);
   }
 
-  return `@forward "@react-md/core" with (
+  return `@forward "react-md" with (
   ${changes.join(",\n  ")}
 );
 `;

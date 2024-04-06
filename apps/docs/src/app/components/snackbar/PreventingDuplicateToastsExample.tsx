@@ -6,7 +6,7 @@ import {
   ToastManager,
   ToastManagerProvider,
   type UseStateSetter,
-} from "@react-md/core";
+} from "react-md";
 import { useEffect, useState, type ReactElement } from "react";
 
 const TOAST_ID = "toast-id-1";

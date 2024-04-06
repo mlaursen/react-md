@@ -13,7 +13,7 @@ import {
   useToastQueue,
   wait,
   type ToastPriority,
-} from "@react-md/core";
+} from "react-md";
 import { type ReactElement } from "react";
 import styles from "./ToastPriorityExample.module.scss";
 

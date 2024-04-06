@@ -1,5 +1,5 @@
 "use client";
-import { Box, Button, CSSTransition, List, ListItem } from "@react-md/core";
+import { Box, Button, CSSTransition, List, ListItem } from "react-md";
 import { useState, type ReactElement } from "react";
 import styles from "./AppearTransitionExample.module.scss";
 

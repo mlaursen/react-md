@@ -1,4 +1,4 @@
-import { Box, ListItemChildren } from "@react-md/core";
+import { Box, ListItemChildren } from "react-md";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import InfoOutlineIcon from "@react-md/material-icons/InfoOutlineIcon";
 import { type ReactElement } from "react";

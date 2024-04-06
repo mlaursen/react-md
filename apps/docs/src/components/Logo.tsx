@@ -1,4 +1,4 @@
-import { typography } from "@react-md/core";
+import { typography } from "react-md";
 import { cnb } from "cnbuilder";
 import { useId, type HTMLAttributes, type ReactElement } from "react";
 import styles from "./Logo.module.scss";

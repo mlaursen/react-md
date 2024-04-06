@@ -1,5 +1,5 @@
 "use client";
-import { Checkbox, Form, box } from "@react-md/core";
+import { Checkbox, Form, box } from "react-md";
 import { useState, type ReactElement } from "react";
 
 export default function ControllingCheckboxes(): ReactElement {

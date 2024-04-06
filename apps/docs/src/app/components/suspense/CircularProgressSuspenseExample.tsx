@@ -6,7 +6,7 @@ import {
   Typography,
   useToggle,
   wait,
-} from "@react-md/core";
+} from "react-md";
 import { use, type ReactElement } from "react";
 
 // Note: This is a copy of the suspense codesandbox provided by react:

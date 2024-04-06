@@ -1,4 +1,4 @@
-import { SrOnly } from "@react-md/core";
+import { SrOnly } from "react-md";
 import { type ReactElement } from "react";
 
 export default function VisibleWhileFocusedExample(): ReactElement {

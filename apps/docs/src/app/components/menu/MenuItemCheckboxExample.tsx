@@ -4,7 +4,7 @@ import {
   MenuItemCheckbox,
   MenuItemSeparator,
   useCheckboxGroup,
-} from "@react-md/core";
+} from "react-md";
 import { useState, type ReactElement } from "react";
 
 const values = ["a", "b", "c", "d"] as const;

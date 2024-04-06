@@ -1,5 +1,5 @@
 "use client";
-import { getDerivedTheme, useHtmlClassName, useTheme } from "@react-md/core";
+import { getDerivedTheme, useHtmlClassName, useTheme } from "react-md";
 import { useEffect } from "react";
 
 import styles from "./LightTheme.module.scss";

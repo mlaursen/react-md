@@ -4,7 +4,7 @@ import {
   typography,
   type SegmentedButtonContainerProps,
   type TextTransform,
-} from "@react-md/core";
+} from "react-md";
 import { type ReactElement, type ReactNode } from "react";
 
 const noop = (): ReactNode => undefined;

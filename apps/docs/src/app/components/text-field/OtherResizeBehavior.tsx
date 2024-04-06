@@ -1,4 +1,4 @@
-import { Form, TextArea, box } from "@react-md/core";
+import { Form, TextArea, box } from "react-md";
 import { type ReactElement } from "react";
 
 export default function OtherResizeBehavior(): ReactElement {

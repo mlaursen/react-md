@@ -13,7 +13,7 @@ use a random width between `40%` and `85%` of the container.
 ```tsx
 // preview editable
 "use client";
-import { SkeletonPlaceholder } from "@react-md/core";
+import { SkeletonPlaceholder } from "react-md";
 import { type ReactElement } from "react";
 
 export default function SimpleExample(): ReactElement {
@@ -30,7 +30,7 @@ The random width can be customized by configuring the `minPercentage` and
 // preview editable
 "use client";
 import { type ReactElement } from "react";
-import { SkeletonPlaceholder } from "@react-md/core";
+import { SkeletonPlaceholder } from "react-md";
 
 export default function CustomMinAndMaxWidthExample(): ReactElement {
   return <SkeletonPlaceholder minPercentage={20} maxPercentage={95} />;
@@ -44,7 +44,7 @@ If a random width should not be used, provide a `width` instead.
 ```tsx
 // preview editable
 "use client";
-import { Box, SkeletonPlaceholder } from "@react-md/core";
+import { Box, SkeletonPlaceholder } from "react-md";
 import { type ReactElement } from "react";
 
 export default function StaticWidthExample(): ReactElement {
@@ -66,7 +66,7 @@ prop, or setting the `--rmd-skeleton-placeholder-height` custom property with
 ```tsx
 // preview editable styles="src/app/components/skeleton-placeholder/ConfiguringTheHeightExample.module.scss"
 "use client";
-import { Box, SkeletonPlaceholder } from "@react-md/core";
+import { Box, SkeletonPlaceholder } from "react-md";
 import { type ReactElement } from "react";
 import styles from "./ConfiguringTheHeightExample.module.scss";
 
@@ -103,7 +103,7 @@ element, the `useSkeletonPlaceholder` hook can be used instead.
 ```tsx
 // preview editable
 "use client";
-import { useSkeletonPlaceholder } from "@react-md/core";
+import { useSkeletonPlaceholder } from "react-md";
 import { type ReactElement } from "react";
 
 export default function UsingTheHookExample(): ReactElement {
@@ -117,7 +117,7 @@ export default function UsingTheHookExample(): ReactElement {
 ```tsx
 // preview editable styles="src/app/components/skeleton-placeholder/ReplacingContentExample.module.scss"
 "use client";
-import { randomInt, useSkeletonPlaceholder, useToggle } from "@react-md/core";
+import { randomInt, useSkeletonPlaceholder, useToggle } from "react-md";
 import { useEffect, type ReactElement } from "react";
 import styles from "./ReplacingContentExample.module.scss";
 
@@ -181,11 +181,7 @@ Try navigating to the
 a few times to see this code in action.
 
 ```tsx
-import {
-  Box,
-  randomSkeletonPlaceholder,
-  skeletonPlaceholder,
-} from "@react-md/core";
+import { Box, randomSkeletonPlaceholder, skeletonPlaceholder } from "react-md";
 import { type ReactElement } from "react";
 import "server-only";
 

@@ -1,5 +1,5 @@
 import { SegmentedButtonGroup } from "@/components/SegmentedButtonGroup.jsx";
-import { useDir, type Dir } from "@react-md/core";
+import { useDir, type Dir } from "react-md";
 import FormatTextdirectionLToROutlinedIcon from "@react-md/material-icons/FormatTextdirectionLToROutlinedIcon";
 import FormatTextdirectionRToLOutlinedIcon from "@react-md/material-icons/FormatTextdirectionRToLOutlinedIcon";
 import { type ReactElement, type ReactNode } from "react";

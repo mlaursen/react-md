@@ -1,5 +1,5 @@
 import inlineCodeStyles from "@/components/InlineCode.module.scss";
-import { link, typography } from "@react-md/core";
+import { link, typography } from "react-md";
 import { marked } from "marked";
 import { type HTMLAttributes, type ReactElement } from "react";
 import "server-only";

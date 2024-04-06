@@ -1,4 +1,4 @@
-import { TextContainer, Typography } from "@react-md/core";
+import { TextContainer, Typography } from "react-md";
 import { type ReactElement } from "react";
 import styles from "./SimpleExample.module.scss";
 

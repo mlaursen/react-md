@@ -1,4 +1,4 @@
-import { Card, CardContent, Typography } from "@react-md/core";
+import { Card, CardContent, Typography } from "react-md";
 import { type ReactElement } from "react";
 
 export default function RaisableExample(): ReactElement {

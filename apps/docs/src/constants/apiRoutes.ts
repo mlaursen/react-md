@@ -48,11 +48,15 @@ export const API_ROUTES: NavigationItem = {
     { href: "/list-subheader", children: "ListSubheader", isClient: false },
     { href: "/main", children: "Main", isClient: true },
     {
+      href: "/menu-item-circular-progress",
+      children: "MenuItemCircularProgress",
+      isClient: false,
+    },
+    {
       href: "/menu-item-text-field",
       children: "MenuItemTextField",
       isClient: true,
     },
-    { href: "/native-select", children: "NativeSelect", isClient: false },
     { href: "/option", children: "Option", isClient: true },
     { href: "/overlay", children: "Overlay", isClient: true },
     {

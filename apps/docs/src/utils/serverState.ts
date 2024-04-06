@@ -11,7 +11,7 @@ import { type CodeLanguage } from "@/providers/CodeLanguageProvider.jsx";
 import { type PackageManager } from "@/providers/PackageManagerProvider.jsx";
 import { getCookie } from "@/utils/serverCookies.js";
 import { pascalCase } from "@/utils/strings.js";
-import { type ColorSchemeMode } from "@react-md/core";
+import { type ColorSchemeMode } from "react-md";
 import { cookies } from "next/headers.js";
 import "server-only";
 

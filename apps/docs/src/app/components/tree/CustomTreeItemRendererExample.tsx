@@ -8,7 +8,7 @@ import {
   useTreeContext,
   type RenderRecursiveItemsProps,
   type TreeData,
-} from "@react-md/core";
+} from "react-md";
 import FolderIcon from "@react-md/material-icons/FolderIcon";
 import FolderOpenIcon from "@react-md/material-icons/FolderOpenIcon";
 import { cnb } from "cnbuilder";

@@ -1,11 +1,5 @@
 "use client";
-import {
-  Box,
-  Button,
-  cssUtils,
-  useCSSTransition,
-  useToggle,
-} from "@react-md/core";
+import { Box, Button, cssUtils, useCSSTransition, useToggle } from "react-md";
 import { type ReactElement } from "react";
 import styles from "./SimpleUseCSSTransitionExample.module.scss";
 

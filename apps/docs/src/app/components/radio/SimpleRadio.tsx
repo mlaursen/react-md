@@ -1,4 +1,4 @@
-import { Form, Radio, box } from "@react-md/core";
+import { Form, Radio, box } from "react-md";
 import { type ReactElement } from "react";
 
 export default function SimpleRadio(): ReactElement {

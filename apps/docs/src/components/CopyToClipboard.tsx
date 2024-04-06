@@ -2,7 +2,7 @@
 import { LIGHT_BG_THEMES } from "@/constants/prismThemes.js";
 import { usePrismThemeContext } from "@/providers/PrismThemeProvider.jsx";
 import { addAppToast } from "@/toasts.js";
-import { Button, Tooltip, useTooltip, type ButtonProps } from "@react-md/core";
+import { Button, Tooltip, useTooltip, type ButtonProps } from "react-md";
 import ContentCopyOutlinedIcon from "@react-md/material-icons/ContentCopyOutlinedIcon";
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";

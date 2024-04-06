@@ -37,13 +37,7 @@ The transitionable component **must** accept a `ref` and a `className`.
 ```tsx
 // preview editable styles="src/app/components/css-transition/SimpleCSSTransitionExample.module.scss"
 "use client";
-import {
-  Box,
-  Button,
-  CSSTransition,
-  cssUtils,
-  useToggle,
-} from "@react-md/core";
+import { Box, Button, CSSTransition, cssUtils, useToggle } from "react-md";
 import { type ReactElement } from "react";
 import styles from "./SimpleCSSTransitionExample.module.scss";
 
@@ -90,13 +84,7 @@ of the `CSSTransition` component.
 ```tsx
 // preview editable styles="src/app/components/css-transition/SimpleUseCSSTransitionExample.module.scss"
 "use client";
-import {
-  Box,
-  Button,
-  cssUtils,
-  useCSSTransition,
-  useToggle,
-} from "@react-md/core";
+import { Box, Button, cssUtils, useCSSTransition, useToggle } from "react-md";
 import { type ReactElement } from "react";
 import styles from "./SimpleUseCSSTransitionExample.module.scss";
 
@@ -140,7 +128,7 @@ the `CSSTransition` component or `useCSSTransition` hook to enable this feature.
 ```tsx
 // preview editable styles="src/app/components/css-transition/TemporaryElementsTransitionsExample.module.scss"
 "use client";
-import { Box, Button, useCSSTransition, useToggle } from "@react-md/core";
+import { Box, Button, useCSSTransition, useToggle } from "react-md";
 import { type ReactElement } from "react";
 import styles from "./TemporaryElementsTransitionsExample.module.scss";
 
@@ -179,7 +167,7 @@ will not reset since it is never unmounted.
 ```tsx
 // preview editable styles="src/app/components/css-transition/TemporaryElementsTransitionsExample.module.scss"
 "use client";
-import { Box, Button, useCSSTransition, useToggle } from "@react-md/core";
+import { Box, Button, useCSSTransition, useToggle } from "react-md";
 import { type ReactElement } from "react";
 import styles from "./TemporaryElementsTransitionsExample.module.scss";
 
@@ -216,7 +204,7 @@ all the same styles and timeouts as the `enter` stages.
 ```tsx
 // preview editable styles="src/app/components/css-transition/AppearTransitionExample.module.scss"
 "use client";
-import { Box, Button, CSSTransition, List, ListItem } from "@react-md/core";
+import { Box, Button, CSSTransition, List, ListItem } from "react-md";
 import { useState, type ReactElement } from "react";
 import styles from "./AppearTransitionExample.module.scss";
 
@@ -268,7 +256,7 @@ the same example as above but using css instead of the `useCSSTransition` hook.
 ```tsx
 // preview editable styles="src/app/components/css-transition/CSSOnlyAppearTransitionExample.module.scss"
 "use client";
-import { Box, Button, List, ListItem } from "@react-md/core";
+import { Box, Button, List, ListItem } from "react-md";
 import { useState, type ReactElement } from "react";
 import styles from "./CSSOnlyAppearTransitionExample.module.scss";
 

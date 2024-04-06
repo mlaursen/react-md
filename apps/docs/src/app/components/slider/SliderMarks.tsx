@@ -7,7 +7,7 @@ import {
   box,
   useRangeSlider,
   useSlider,
-} from "@react-md/core";
+} from "react-md";
 import { useId, type ReactElement } from "react";
 import styles from "./SliderMarks.module.scss";
 

@@ -1,4 +1,4 @@
-import { Box, Button, Form, NativeSelect, box } from "@react-md/core";
+import { Box, Button, Form, NativeSelect, box } from "react-md";
 import { type ReactElement } from "react";
 
 export default function RequiredNativeSelect(): ReactElement {

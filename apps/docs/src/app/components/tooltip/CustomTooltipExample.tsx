@@ -1,4 +1,4 @@
-import { Tooltip, cssUtils } from "@react-md/core";
+import { Tooltip, cssUtils } from "react-md";
 import { type ReactElement } from "react";
 import styles from "./CustomTooltipExample.module.scss";
 

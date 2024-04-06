@@ -5,7 +5,7 @@ import {
   CardHeader,
   CardSubtitle,
   CardTitle,
-} from "@react-md/core";
+} from "react-md";
 import CloseIcon from "@react-md/material-icons/CloseIcon";
 import { type ReactElement } from "react";
 

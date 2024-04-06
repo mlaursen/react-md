@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRadio,
   TableRow,
-} from "@react-md/core";
+} from "react-md";
 import { useState, type ReactElement } from "react";
 
 export default function TableRadioExample(): ReactElement {

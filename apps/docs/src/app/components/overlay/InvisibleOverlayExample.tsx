@@ -1,5 +1,5 @@
 "use client";
-import { DropdownMenu, MenuItem, Overlay } from "@react-md/core";
+import { DropdownMenu, MenuItem, Overlay } from "react-md";
 import { useState, type ReactElement } from "react";
 
 // Try clicking on an item in the `TableOfContents` with and without the overlay

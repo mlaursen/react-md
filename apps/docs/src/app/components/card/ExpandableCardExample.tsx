@@ -11,7 +11,7 @@ import {
   ListItem,
   ResponsiveItemContainer,
   useToggle,
-} from "@react-md/core";
+} from "react-md";
 import EmailIcon from "@react-md/material-icons/EmailIcon";
 import KeyboardArrowDownIcon from "@react-md/material-icons/KeyboardArrowDownIcon";
 import PhoneIcon from "@react-md/material-icons/PhoneIcon";

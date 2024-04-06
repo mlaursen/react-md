@@ -11,7 +11,7 @@ import {
   Sheet,
   cssUtils,
   useExpandableLayout,
-} from "@react-md/core";
+} from "react-md";
 import { cnb } from "cnbuilder";
 import { usePathname } from "next/navigation.js";
 import { type ReactElement, type ReactNode } from "react";

@@ -1,5 +1,5 @@
 "use client";
-import { Button, Overlay, useToggle } from "@react-md/core";
+import { Button, Overlay, useToggle } from "react-md";
 import { type ReactElement } from "react";
 
 export default function SimpleOverlayExample(): ReactElement {

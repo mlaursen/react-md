@@ -7,7 +7,7 @@ import {
   Collapse,
   Typography,
   useToggle,
-} from "@react-md/core";
+} from "react-md";
 
 export default function DisableTransitionExample(): ReactElement {
   const { toggled, toggle } = useToggle(true);

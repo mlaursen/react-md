@@ -6,7 +6,7 @@ import {
   List,
   ListItem,
   type AppBarTitleKeyline,
-} from "@react-md/core";
+} from "react-md";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import MenuIcon from "@react-md/material-icons/MenuIcon";
 import MoreVertOutlinedIcon from "@react-md/material-icons/MoreVertOutlinedIcon";

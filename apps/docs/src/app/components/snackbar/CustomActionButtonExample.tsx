@@ -5,7 +5,7 @@ import {
   addToast,
   useCurrentToastActions,
   wait,
-} from "@react-md/core";
+} from "react-md";
 import { type ReactElement } from "react";
 
 export default function CustomActionButtonExample(): ReactElement {

@@ -1,4 +1,4 @@
-import { Table, Typography } from "@react-md/core";
+import { Table, Typography } from "react-md";
 import { type ReactElement } from "react";
 
 export default function CaptionExample(): ReactElement {

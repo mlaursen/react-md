@@ -1,4 +1,4 @@
-import { type RenderRecursiveItemsProps } from "@react-md/core";
+import { type RenderRecursiveItemsProps } from "react-md";
 import { type ReactElement } from "react";
 import styles from "./RenderTOCItem.module.scss";
 import { TOCGroup } from "./TOCGroup.jsx";

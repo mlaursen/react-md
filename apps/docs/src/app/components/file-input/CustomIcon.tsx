@@ -1,4 +1,4 @@
-import { FileInput, Form, box } from "@react-md/core";
+import { FileInput, Form, box } from "react-md";
 import CloudUploadOutlinedIcon from "@react-md/material-icons/CloudUploadOutlinedIcon";
 import { type ReactElement } from "react";
 

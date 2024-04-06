@@ -5,7 +5,7 @@ import {
   useColorScheme,
   useHorizontalLayoutTransition,
   useHtmlClassName,
-} from "@react-md/core";
+} from "react-md";
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
 import { VariableSizeList } from "react-window";

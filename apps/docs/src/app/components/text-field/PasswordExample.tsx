@@ -1,4 +1,4 @@
-import { Form, Password, box } from "@react-md/core";
+import { Form, Password, box } from "react-md";
 import { type ReactElement } from "react";
 
 export default function PasswordExample(): ReactElement {

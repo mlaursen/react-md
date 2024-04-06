@@ -1,6 +1,6 @@
 import { PRISM_THEMES } from "@/constants/prismThemes.js";
 import { usePrismThemeContext } from "@/providers/PrismThemeProvider.jsx";
-import { Box, Option, Overlay, Select, Typography } from "@react-md/core";
+import { Box, Option, Overlay, Select, Typography } from "react-md";
 import { useId, type ReactElement } from "react";
 
 export function ConfigureCodeTheme(): ReactElement {

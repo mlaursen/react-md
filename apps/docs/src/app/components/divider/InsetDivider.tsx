@@ -1,4 +1,4 @@
-import { Divider, List, ListItem } from "@react-md/core";
+import { Divider, List, ListItem } from "react-md";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import { type ReactElement } from "react";
 import styles from "./InsetDivider.module.scss";

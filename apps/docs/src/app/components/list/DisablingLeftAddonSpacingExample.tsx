@@ -5,7 +5,7 @@ import {
   ICON_CONFIG,
   List,
   ListItem,
-} from "@react-md/core";
+} from "react-md";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import VolumeUpOutlinedIcon from "@react-md/material-icons/VolumeUpOutlinedIcon";
 import { type ReactElement } from "react";

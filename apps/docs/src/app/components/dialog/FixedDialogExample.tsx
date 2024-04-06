@@ -8,7 +8,7 @@ import {
   FixedDialog,
   Typography,
   useToggle,
-} from "@react-md/core";
+} from "react-md";
 import { useId, useRef, type ReactElement } from "react";
 
 export default function FixedDialogExample(): ReactElement {

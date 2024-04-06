@@ -7,7 +7,7 @@ import {
   DialogTitle,
   Typography,
   useToggle,
-} from "@react-md/core";
+} from "react-md";
 import { useId, type ReactElement } from "react";
 import styles from "./CustomTransitionExample.module.scss";
 

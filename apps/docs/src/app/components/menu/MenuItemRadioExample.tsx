@@ -5,7 +5,7 @@ import {
   Typography,
   useRadioGroup,
   type TextDecoration,
-} from "@react-md/core";
+} from "react-md";
 import { type ReactElement } from "react";
 
 const decorations = [

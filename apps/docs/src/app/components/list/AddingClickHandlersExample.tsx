@@ -1,5 +1,5 @@
 "use client";
-import { List, ListItem } from "@react-md/core";
+import { List, ListItem } from "react-md";
 import { type ReactElement } from "react";
 
 export default function AddingClickHandlersExample(): ReactElement {

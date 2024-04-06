@@ -1,6 +1,6 @@
 "use client";
 import { folders } from "@/constants/folders.js";
-import { Tree, useTree } from "@react-md/core";
+import { Tree, useTree } from "react-md";
 import { type ReactElement } from "react";
 
 export default function MultiSelectTreeExample(): ReactElement {

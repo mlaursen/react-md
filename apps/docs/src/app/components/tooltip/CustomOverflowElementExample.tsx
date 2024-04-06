@@ -1,5 +1,5 @@
 "use client";
-import { Button, Tooltip, cssUtils, useTooltip } from "@react-md/core";
+import { Button, Tooltip, cssUtils, useTooltip } from "react-md";
 import { type ReactElement } from "react";
 
 export default function CustomOverflowElementExample(): ReactElement {

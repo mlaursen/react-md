@@ -14,7 +14,7 @@ import {
   TableRow,
   cssUtils,
   type SortOrder,
-} from "@react-md/core";
+} from "react-md";
 import { useState, type ReactElement } from "react";
 
 export default function SortableColumnsExample(): ReactElement {

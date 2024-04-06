@@ -1,4 +1,4 @@
-import { link, Typography, type TypographyProps } from "@react-md/core";
+import { link, Typography, type TypographyProps } from "react-md";
 import { cnb } from "cnbuilder";
 import { type ReactElement, type ReactNode } from "react";
 import { LinkUnstyled } from "./LinkUnstyled.js";

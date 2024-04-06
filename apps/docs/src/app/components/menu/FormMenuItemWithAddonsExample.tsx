@@ -5,7 +5,7 @@ import {
   MenuItemRadio,
   MenuItemSwitch,
   useCheckboxGroup,
-} from "@react-md/core";
+} from "react-md";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import { type ReactElement } from "react";
 

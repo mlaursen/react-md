@@ -1,5 +1,5 @@
 "use client";
-import { Form, Radio, Typography, box, useRadioGroup } from "@react-md/core";
+import { Form, Radio, Typography, box, useRadioGroup } from "react-md";
 import { type ReactElement } from "react";
 
 type Value = "a" | "b" | "c" | "d";

@@ -4,7 +4,7 @@ import {
   Tooltip,
   TooltipHoverModeProvider,
   useTooltip,
-} from "@react-md/core";
+} from "react-md";
 import { type ReactElement, type ReactNode } from "react";
 
 export default function ConfiguringTooltipTimeoutsExample(): ReactElement {

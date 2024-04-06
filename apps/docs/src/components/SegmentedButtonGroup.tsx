@@ -1,4 +1,4 @@
-import { Box, Typography } from "@react-md/core";
+import { Box, Typography } from "react-md";
 import { type ReactElement, type ReactNode } from "react";
 import {
   SegmentedButtons,

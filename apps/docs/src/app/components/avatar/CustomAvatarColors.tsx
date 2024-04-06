@@ -1,4 +1,4 @@
-import { Avatar } from "@react-md/core";
+import { Avatar } from "react-md";
 import { type ReactElement } from "react";
 import styles from "./CustomAvatarColors.module.scss";
 

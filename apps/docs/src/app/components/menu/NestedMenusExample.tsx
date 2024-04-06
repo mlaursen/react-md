@@ -1,4 +1,4 @@
-import { Box, DropdownMenu, MenuItem, Switch } from "@react-md/core";
+import { Box, DropdownMenu, MenuItem, Switch } from "react-md";
 import { useState, type ReactElement } from "react";
 
 export default function NestedMenusExample(): ReactElement {

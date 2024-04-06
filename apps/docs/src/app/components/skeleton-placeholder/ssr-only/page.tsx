@@ -1,4 +1,4 @@
-import { Box, link, typography } from "@react-md/core";
+import { Box, link, typography } from "react-md";
 import Link from "next/link.js";
 import { type ReactElement } from "react";
 import "server-only";

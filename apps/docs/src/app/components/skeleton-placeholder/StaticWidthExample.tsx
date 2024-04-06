@@ -1,5 +1,5 @@
 "use client";
-import { Box, SkeletonPlaceholder } from "@react-md/core";
+import { Box, SkeletonPlaceholder } from "react-md";
 import { type ReactElement } from "react";
 
 export default function StaticWidthExample(): ReactElement {

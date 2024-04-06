@@ -1,5 +1,5 @@
 "use client";
-import { Slide, SlideContainer, Tab, TabList, useTabs } from "@react-md/core";
+import { Slide, SlideContainer, Tab, TabList, useTabs } from "react-md";
 import { type ReactElement } from "react";
 import styles from "./VerticalTabsExample.module.scss";
 

@@ -5,7 +5,7 @@ import {
   Snackbar,
   ToastManager,
   ToastManagerProvider,
-} from "@react-md/core";
+} from "react-md";
 import { useRef, type ReactElement } from "react";
 import styles from "./MultipleVisibleToastsExample.module.scss";
 

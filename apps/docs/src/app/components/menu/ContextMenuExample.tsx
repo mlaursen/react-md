@@ -5,7 +5,7 @@ import {
   MenuItem,
   TextArea,
   useContextMenu,
-} from "@react-md/core";
+} from "react-md";
 import ContentCopyOutlinedIcon from "@react-md/material-icons/ContentCopyOutlinedIcon";
 import ContentCutOutlinedIcon from "@react-md/material-icons/ContentCutOutlinedIcon";
 import ContentPasteOutlinedIcon from "@react-md/material-icons/ContentPasteOutlinedIcon";

@@ -7,7 +7,7 @@ import {
   ScrollLock,
   cssUtils,
   useToggle,
-} from "@react-md/core";
+} from "react-md";
 import { type ReactElement } from "react";
 
 export default function OverlayWithContentExample(): ReactElement {
