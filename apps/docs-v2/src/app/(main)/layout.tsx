@@ -1,10 +1,10 @@
+import { MainLayout } from "@/components/MainLayout/MainLayout.jsx";
 import { RootProviders } from "@/components/RootProviders.jsx";
 import { PRISM_THEMES_ID, getPrismThemeHref } from "@/utils/prismThemes.js";
 import { RootHtml } from "@react-md/core/RootHtml";
 import { cnb } from "cnbuilder";
 import { Roboto_Flex, Source_Code_Pro } from "next/font/google";
 import { type PropsWithChildren, type ReactElement } from "react";
-import { MainLayout } from "./MainLayout.jsx";
 import "./layout.scss";
 export { metadata } from "@/constants/metadata.js";
 
