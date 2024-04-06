@@ -32,8 +32,7 @@
     "build-scss-watch": "pnpm run build-scss --watch",
     "clean-dist": "rm -rf dist",
     "clean": "rm -rf .turbo dist node_modules",
-    "typecheck": "tsc --noEmit",
-    "test": "NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest"
+    "typecheck": "tsc --noEmit"
   },
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "repository": {
