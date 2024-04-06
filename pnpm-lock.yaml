@@ -237,6 +237,9 @@ importers:
       cnbuilder:
         specifier: ^3.1.0
         version: 3.1.0
+      js-cookie:
+        specifier: ^3.0.5
+        version: 3.0.5
       next:
         specifier: ^14.1.4
         version: 14.1.4(react-dom@18.2.0)(react@18.2.0)(sass@1.74.1)
@@ -253,6 +256,9 @@ importers:
       '@mlaursen/eslint-config':
         specifier: ^4.1.1
         version: 4.1.1(eslint@8.57.0)(typescript@5.4.4)
+      '@types/js-cookie':
+        specifier: ^3.0.6
+        version: 3.0.6
       '@types/node':
         specifier: ^20.11.30
         version: 20.12.5

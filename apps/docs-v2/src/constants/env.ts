@@ -28,3 +28,4 @@ declare global {
 export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 export const GITHUB_URL = process.env.NEXT_PUBLIC_GITHUB_URL;
 export const GITHUB_LINK_URL = process.env.NEXT_PUBLIC_GITHUB_FILE_LINK;
+export const RMD_VERSION = process.env.NEXT_PUBLIC_RMD_VERSION;

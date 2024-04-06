@@ -13,6 +13,10 @@ import { usePathname } from "next/navigation.js";
 import { type ReactElement, type ReactNode } from "react";
 import styles from "./MainLayout.module.scss";
 import { MainNavigation } from "./MainNavigation.jsx";
+import { MainTitle } from "./MainTitle.jsx";
+import { VersionDropdown } from "./VersionDropdown.jsx";
+import { GithubLink } from "../GithubLink.jsx";
+import { WebsiteConfiguration } from "./WebsiteConfiguration.jsx";
 
 const isTableOfContentsRoute = (pathname: string): boolean =>
   pathname !== "/" && pathname !== "/components/material-icons-and-symbols";
@@ -21,7 +25,9 @@ export interface MainLayoutProps {
   children: ReactNode;
 }
 
-export function MainLayout({ children }: MainLayoutProps): ReactElement {
+export function MainLayout(props: MainLayoutProps): ReactElement {
+  const { children } = props;
+
   const pathname = usePathname();
   const {
     temporary,
@@ -46,6 +52,9 @@ export function MainLayout({ children }: MainLayoutProps): ReactElement {
         )}
       >
         <Button {...navToggleProps} />
+        <MainTitle />
+        <GithubLink />
+        <WebsiteConfiguration />
       </LayoutAppBar>
       <LayoutNav
         {...expandableNavProps}
@@ -60,6 +69,7 @@ export function MainLayout({ children }: MainLayoutProps): ReactElement {
         <Sheet {...temporaryNavProps}>
           <AppBar theme="clear">
             <AppBarTitle>react-md</AppBarTitle>
+            <VersionDropdown />
           </AppBar>
           <MainNavigation className={styles.scrollable} />
         </Sheet>

@@ -11,11 +11,11 @@ import { MainNavigationGroup } from "./MainNavigationGroup.jsx";
 import { getHrefFromParents } from "./getHrefFromParents.js";
 import { type NavigationGroupItem, type NavigationItem } from "./navItems.js";
 
-export function CollapsibleMainNavigationGroup({
-  item,
-  parents,
-  children,
-}: RenderRecursiveItemsProps<NavigationItem>): ReactElement {
+export function CollapsibleMainNavigationGroup(
+  props: RenderRecursiveItemsProps<NavigationItem>
+): ReactElement {
+  const { item, parents, children } = props;
+
   const pathname = usePathname();
   const { toggled: collapsed, toggle } = useToggle(
     () => !pathname.includes(getHrefFromParents(parents))

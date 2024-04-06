@@ -1,0 +1,12 @@
+.container {
+  gap: 0;
+}
+
+.link {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

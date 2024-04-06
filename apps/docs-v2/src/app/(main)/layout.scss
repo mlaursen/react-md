@@ -43,3 +43,10 @@ $is_production: true or $env == production;
 html {
   scroll-behavior: smooth;
 }
+
+// global utility classes
+@include everything.phone-media {
+  .display-none-phone {
+    display: none !important;
+  }
+}

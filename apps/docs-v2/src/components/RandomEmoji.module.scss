@@ -1,0 +1,11 @@
+@use "everything";
+
+.container {
+  @include everything.theme-use-var(color, text-secondary-color);
+  @include everything.tablet-media {
+    font-size: 12.5rem;
+  }
+
+  font-family: Helvetica, sans-serif;
+  font-size: 6rem;
+}

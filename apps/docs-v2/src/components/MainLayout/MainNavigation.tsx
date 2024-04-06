@@ -8,9 +8,9 @@ export interface MainNavigationProps {
   className?: string;
 }
 
-export function MainNavigation({
-  className,
-}: MainNavigationProps): ReactElement {
+export function MainNavigation(props: MainNavigationProps): ReactElement {
+  const { className } = props;
+
   return (
     <MainNavigationGroup depth={0} className={className}>
       <RenderRecursively items={navItems} render={RenderMainNavigationItem} />

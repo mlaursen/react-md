@@ -41,3 +41,6 @@ configureIcons({
 export const rmdConfig: ReactMDCoreConfiguration = {
   ssr: true,
 };
+
+export const DISABLE_DEFAULT_SYSTEM_THEME =
+  process.env.NODE_ENV !== "production";

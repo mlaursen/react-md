@@ -17,9 +17,11 @@ export interface HomePageBannerContainerProps {
   children: ReactNode;
 }
 
-export function HomePageBannerContainer({
-  children,
-}: HomePageBannerContainerProps): ReactElement {
+export function HomePageBannerContainer(
+  props: HomePageBannerContainerProps
+): ReactElement {
+  const { children } = props;
+
   const header = useRef<HTMLElement | null>(null);
   useEffect(() => {
     const appBar = document.querySelector<HTMLElement>(`.rmd-app-bar--fixed`);

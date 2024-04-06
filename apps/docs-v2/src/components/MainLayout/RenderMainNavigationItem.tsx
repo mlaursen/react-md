@@ -9,12 +9,11 @@ import { MainNavigationLink } from "./MainNavigationLink.jsx";
 import { getHrefFromParents } from "./getHrefFromParents.js";
 import { type NavigationItem } from "./navItems.js";
 
-export function RenderMainNavigationItem({
-  item,
-  data,
-  children,
-  parents,
-}: RenderRecursiveItemsProps<NavigationItem>): ReactElement {
+export function RenderMainNavigationItem(
+  props: RenderRecursiveItemsProps<NavigationItem>
+): ReactElement {
+  const { item, data, children, parents } = props;
+
   if ("type" in item) {
     if (item.type === "divider") {
       return <Divider />;

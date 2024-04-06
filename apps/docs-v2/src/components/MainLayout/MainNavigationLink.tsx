@@ -17,11 +17,11 @@ export interface MainNavigationLinkProps extends LinkUnstyledProps {
   leftAddon?: ReactNode;
 }
 
-export function MainNavigationLink({
-  href,
-  children,
-  leftAddon,
-}: MainNavigationLinkProps): ReactElement {
+export function MainNavigationLink(
+  props: MainNavigationLinkProps
+): ReactElement {
+  const { href, children, leftAddon } = props;
+
   const pathname = usePathname();
   const active = href === pathname;
   const linkRef = useRef<HTMLAnchorElement>(null);
