@@ -1,7 +1,7 @@
 import {
-  CategoriesByFamilyType,
-  CategoriesByFamilyTypeMap,
-  MaterialComponentMetadata,
+  type CategoriesByFamilyType,
+  type CategoriesByFamilyTypeMap,
+  type MaterialComponentMetadata,
   categoriesMapToObject,
   getSortedCategories,
 } from "./converters.js";

@@ -3,7 +3,7 @@ import { join } from "node:path";
 import { GENERATED_FILE_BANNER } from "../constants.js";
 import { printConst, printTypeUnion } from "./converters.js";
 import { format } from "./format.js";
-import { MaterialIconAndSymbolMetadata } from "./getMaterialMetadata.js";
+import { type MaterialIconAndSymbolMetadata } from "./getMaterialMetadata.js";
 
 export async function createDocsMetadataFile(
   metadata: MaterialIconAndSymbolMetadata,

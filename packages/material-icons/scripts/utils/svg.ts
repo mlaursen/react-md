@@ -1,6 +1,6 @@
 import lodash from "lodash";
 import { optimize } from "svgo";
-import { MaterialComponentMetadata } from "./converters.js";
+import { type MaterialComponentMetadata } from "./converters.js";
 
 const END_SVG = "</svg>";
 

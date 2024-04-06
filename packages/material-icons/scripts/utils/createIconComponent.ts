@@ -3,7 +3,7 @@ import lodash from "lodash";
 import { writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { GENERATED_FILE_BANNER } from "../constants.js";
-import { MaterialComponentMetadata } from "./converters.js";
+import { type MaterialComponentMetadata } from "./converters.js";
 import { format } from "./format.js";
 import { getSvgIconChildren } from "./svg.js";
 
@@ -37,7 +37,12 @@ interface CreateIconComponentOptions extends MaterialComponentMetadata {
 export async function createIconComponent(
   options: CreateIconComponentOptions
 ): Promise<void> {
-  const { created, materialIconsSrc, iconNameFixes, ...metadata } = options;
+  const {
+    created,
+    materialIconsSrc,
+    iconNameFixes: _iconNameFixes,
+    ...metadata
+  } = options;
   const componentName = getMaterialIconComponentName(options);
   const fileName = `${componentName}.tsx`;
   if (created.has(fileName)) {
