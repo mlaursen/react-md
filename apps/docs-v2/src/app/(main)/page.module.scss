@@ -1,0 +1,9 @@
+@use "everything";
+
+.divider {
+  @include everything.tablet-media {
+    @include everything.divider-set-var(spacing, 4rem);
+
+    width: calc(100% - 8rem);
+  }
+}

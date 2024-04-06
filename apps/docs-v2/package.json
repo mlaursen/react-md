@@ -36,6 +36,7 @@
   },
   "homepage": "https://react-md.dev",
   "dependencies": {
+    "@react-md/code": "workspace:*",
     "@react-md/core": "workspace:*",
     "@react-md/material-icons": "workspace:*",
     "cnbuilder": "^3.1.0",

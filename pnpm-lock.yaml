@@ -225,6 +225,9 @@ importers:
 
   apps/docs-v2:
     dependencies:
+      '@react-md/code':
+        specifier: workspace:*
+        version: link:../../packages/code
       '@react-md/core':
         specifier: workspace:*
         version: link:../../packages/core

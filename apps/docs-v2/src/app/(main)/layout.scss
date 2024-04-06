@@ -1,6 +1,7 @@
 @use "everything";
 
 @include everything.styles;
+@include everything.code-styles;
 
 // See the next.config.mjs to see how the `$env` gets defined
 $is_production: true or $env == production;

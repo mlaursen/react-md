@@ -1,0 +1,48 @@
+@use "everything";
+
+.container {
+  --spacing: 1em;
+
+  @include everything.touch-only($css-modules: true) {
+    --spacing: 0;
+  }
+  @include everything.auto-rtl-group(
+    (
+      margin-left: everything.negate-var(var(--spacing)),
+      padding-left: var(--spacing),
+    )
+  );
+
+  margin-bottom: 0.5em;
+  margin-top: 1.25em;
+  position: relative;
+  scroll-margin-top: calc(0.5rem + everything.layout-get-var(header-height));
+
+  &:hover .link {
+    opacity: 1;
+  }
+}
+
+.link {
+  @include everything.auto-rtl(left, 0);
+
+  color: inherit;
+  opacity: 0;
+  position: absolute;
+  text-decoration: none;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: opacity everything.$linear-duration;
+
+  &:focus {
+    opacity: 1;
+  }
+
+  &::after {
+    content: "#";
+  }
+
+  &:hover::after {
+    text-decoration: underline;
+  }
+}

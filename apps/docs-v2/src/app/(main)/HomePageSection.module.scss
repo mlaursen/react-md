@@ -1,0 +1,20 @@
+@use "everything";
+
+.container {
+  @include everything.large-desktop-media {
+    column-gap: 2rem;
+    display: grid;
+    grid-template-columns: minmax(0, everything.typography-get-var(line-length)) 1fr;
+    max-width: none;
+    padding: 0 4rem;
+  }
+
+  @media (min-width: 106em) {
+    justify-content: center;
+    max-width: 106em;
+  }
+}
+
+.row {
+  grid-column-end: span 2;
+}
