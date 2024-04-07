@@ -3,7 +3,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "prepare": "husky install",
+    "prepare": "husky",
     "build": "TURBO_TELEMETRY_DISABLED=1 turbo run build",
     "build-packages": "TURBO_TELEMETRY_DISABLED=1 turbo run build --filter=docs^... --filter=docs-v2^...",
     "dev": "TURBO_TELEMETRY_DISABLED=1 turbo run dev --no-cache --continue",

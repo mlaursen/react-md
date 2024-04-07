@@ -5,9 +5,13 @@ import {
   type WalkChildrenRendererProps,
 } from "./WalkChildren.js";
 
-// Eventually support `Shift+Tab` -> `<kbd>Shift</kbd> + <kbd>Tab</kbd>`
-const KEYBOARD_CODE_REGEX =
-  /`(?:(Enter|Space|ArrowUp|ArrowDown|ArrowLeft|ArrowRight|Home|End|Escape|Tab|Shift|Ctrl|Alt|PageUp|PageDown))`/gm;
+const MODIFIERS = "Shift|Ctrl|Alt";
+const ARROW_KEYS = "ArrowUp|ArrowRight|ArrowDown|ArrowLeft";
+const JUMP_KEYS = "Home|End|PageUp|PageDown";
+const ACTION_KEYS = "Enter|Space|Escape|Tab";
+const ACTION = `${ARROW_KEYS}|${JUMP_KEYS}|${ACTION_KEYS}`;
+
+const KEYBOARD_CODE_REGEX = new RegExp(`^(?:((${MODIFIERS})\\+)?(${ACTION}))$`);
 
 export interface KeyboardCodeProps {
   children?: ReactNode;
@@ -20,6 +24,11 @@ function Renderer(props: WalkChildrenRendererProps): ReactElement {
   return <InlineCode as="kbd">{name}</InlineCode>;
 }
 
+/**
+ * NOTE: The `rehype-keyboard-code` should be used over this when possible.
+ * Traversing react children isn't the best and the `Children` might be removed
+ * in the future.
+ */
 export function KeyboardCode(props: KeyboardCodeProps): ReactElement {
   const { children } = props;
 

@@ -1,5 +1,4 @@
-import { type CodeLanguage } from "@/components/CodeLanguageProvider.jsx";
-import { type PackageManager } from "@/components/PackageManagerProvider.jsx";
+import { type CodeLanguage } from "@/components/MainLayout/ConfigureTypescriptEnabled.jsx";
 import {
   CODE_LANGUAGE_KEY,
   CODE_THEME_KEY,
@@ -8,6 +7,7 @@ import {
 } from "@/constants/cookies.js";
 import { PRISM_THEMES, type PrismTheme } from "@/constants/prismThemes.js";
 import { getCookie } from "@/utils/serverCookies.js";
+import { type PackageManager } from "@react-md/code/PackageManagerProvider";
 import { type ColorSchemeMode } from "@react-md/core/theme/useColorScheme";
 import { cookies } from "next/headers.js";
 import "server-only";

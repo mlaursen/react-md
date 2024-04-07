@@ -1,8 +1,12 @@
+import withMDX from "@next/mdx";
+import { rehypePlugins } from "@react-md/mdx-plugins/rehype-plugins";
+import { remarkPlugins } from "@react-md/mdx-plugins/remark-plugins";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  pageExtensions: ["ts", "tsx"],
+  pageExtensions: ["ts", "tsx", "mdx"],
 
   // https://github.com/vercel/next.js/issues/49314
   webpack(config) {
@@ -35,6 +39,14 @@ const nextConfig = {
   sassOptions: {
     additionalData: `$env: ${process.env.NODE_ENV};`,
   },
+  // experimental: {
+  //   mdxRs: true,
+  // },
 };
 
-export default nextConfig;
+export default withMDX({
+  options: {
+    remarkPlugins,
+    rehypePlugins,
+  },
+})(nextConfig);

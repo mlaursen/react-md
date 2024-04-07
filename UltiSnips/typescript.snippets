@@ -11,6 +11,9 @@ def camelcase(t):
 
 	s = re.sub(r"(_|-)+", " ", t).title().replace(" ", "")
 	return ''.join([ s[0].lower(), s[1:] ])
+
+def pascalcase(t):
+	return upperfirst(camelcase(t))
 endglobal
 
 snippet jtf "jest test file" b
@@ -85,5 +88,19 @@ export function ${2:`!p snip.rv=camelcase(t[1])`}(options: `!p snip.rv=upperfirs
 	const { className } = options;
 
 	return cnb(styles(), className);
+}
+endsnippet
+
+snippet ecc "export children component" b
+import { type ReactElement, ReactNode } from "react";
+
+export interface ${1:`!p snip.rv=pascalcase(snip.basename)`}Props {
+	children: ReactNode;
+}
+
+export ${2:default }function $1(props: $1Props): ReactElement {
+	const { children } = props;
+
+	return <>{children}</>
 }
 endsnippet

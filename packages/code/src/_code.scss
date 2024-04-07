@@ -167,7 +167,7 @@ $color-preview-border-width: $color-preview-outer-width + 0.0625em;
     }
   }
 
-  .code-editor-app-bar {
+  .code-block-app-bar {
     @include core.interaction-use-dark-surface;
     @include core.theme-set-var(
       text-primary-color,
@@ -204,7 +204,7 @@ $color-preview-border-width: $color-preview-outer-width + 0.0625em;
 
     &::before,
     &::after {
-      background: var(--color-preview);
+      background: var(--color);
       border-radius: 0.25em;
       content: "";
       display: inline-block;

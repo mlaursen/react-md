@@ -1,29 +1,31 @@
 "use client";
-import {
-  CODE_LANGUAGES,
-  useCodeLanguageContext,
-  type CodeLanguage,
-} from "@/components/CodeLanguageProvider.jsx";
 import { SegmentedButtonGroup } from "@/components/SegmentedButtonGroup.jsx";
 import {
   SegmentedButtons,
   type SegmentedButtonsProps,
 } from "@/components/SegmentedButtons.jsx";
+import { useTypescriptEnabledContext } from "@react-md/code/TypescriptEnabledProvider";
 import { type ReactElement } from "react";
 
-export interface ConfigureCodeLanguageProps {
+export type CodeLanguage = "js" | "ts";
+
+const ITEMS = ["ts", "js"] as const;
+
+export interface ConfigureTypescriptEnabledProps {
   disableLabel?: boolean;
 }
 
-export function ConfigureCodeLanguage(
-  props: ConfigureCodeLanguageProps
+export function ConfigureTypescriptEnabled(
+  props: ConfigureTypescriptEnabledProps
 ): ReactElement {
   const { disableLabel } = props;
-  const { codeLanguage, setCodeLanguage } = useCodeLanguageContext();
+  const { isTypescriptEnabled, setTypescriptEnabled } =
+    useTypescriptEnabledContext();
+
   const sharedProps: SegmentedButtonsProps<CodeLanguage> = {
-    items: CODE_LANGUAGES,
-    value: codeLanguage,
-    setValue: setCodeLanguage,
+    items: ITEMS,
+    value: isTypescriptEnabled ? "ts" : "js",
+    setValue: (nextValue) => setTypescriptEnabled(nextValue === "ts"),
   };
   if (disableLabel) {
     return <SegmentedButtons {...sharedProps} disableFullWidth />;

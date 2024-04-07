@@ -1,3 +1,4 @@
+import { type RequireAtLeastOne } from "@react-md/core/types";
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
 import {
@@ -8,7 +9,10 @@ import {
 export interface CodeEditorCopyToClipboardProps extends CopyToClipboardProps {}
 
 export function CodeEditorCopyToClipboard(
-  props: CodeEditorCopyToClipboardProps
+  props: RequireAtLeastOne<
+    CodeEditorCopyToClipboardProps,
+    "copyText" | "getCopyText"
+  >
 ): ReactElement {
   const { className, ...remaining } = props;
 

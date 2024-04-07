@@ -1,6 +1,5 @@
 "use client";
-import { PACKAGE_MANAGER_KEY } from "@/constants/cookies.js";
-import { setCookie } from "@/utils/clientCookies.js";
+import { type UseStateInitializer } from "@react-md/core/types";
 import {
   createContext,
   useContext,
@@ -10,9 +9,13 @@ import {
   type ReactNode,
 } from "react";
 
-export type PackageManager = "npm" | "yarn" | "pnpm";
+const noop = (): void => {
+  // do nothing
+};
 
-export const PACKAGE_MANAGERS: readonly PackageManager[] = [
+export type PackageManager = "npm" | "yarn" | "pnpm" | (string & {});
+
+export const DEFAULT_PACKAGE_MANAGERS: readonly PackageManager[] = [
   "npm",
   "pnpm",
   "yarn",
@@ -20,6 +23,7 @@ export const PACKAGE_MANAGERS: readonly PackageManager[] = [
 
 export interface PackageManagerContext {
   packageManager: PackageManager;
+  packageManagers: readonly PackageManager[];
   setPackageManager(packageManager: PackageManager): void;
 }
 
@@ -30,7 +34,7 @@ const { Provider } = context;
 export function usePackageManagerContext(): PackageManagerContext {
   const value = useContext(context);
   if (!value) {
-    throw new Error();
+    throw new Error("PackageManagerProvider is not mounted");
   }
 
   return value;
@@ -38,23 +42,32 @@ export function usePackageManagerContext(): PackageManagerContext {
 
 export interface PackageManagerProviderProps {
   children: ReactNode;
-  defaultPackageManager: PackageManager;
+  defaultValue?: UseStateInitializer<PackageManager>;
+  packageManagers?: readonly PackageManager[];
+  onPackageManagerChange?(nextPackageManager: PackageManager): void;
 }
 
 export function PackageManagerProvider(
   props: PackageManagerProviderProps
 ): ReactElement {
-  const { defaultPackageManager: defaultTheme, children } = props;
-  const [packageManager, setPackageManager] = useState(defaultTheme);
+  const {
+    children,
+    defaultValue = "npm",
+    packageManagers = DEFAULT_PACKAGE_MANAGERS,
+    onPackageManagerChange = noop,
+  } = props;
+
+  const [packageManager, setPackageManager] = useState(defaultValue);
   const value = useMemo<PackageManagerContext>(
     () => ({
       packageManager,
+      packageManagers,
       setPackageManager(nextPackageManager) {
-        setCookie(PACKAGE_MANAGER_KEY, nextPackageManager);
+        onPackageManagerChange(nextPackageManager);
         setPackageManager(nextPackageManager);
       },
     }),
-    [packageManager]
+    [onPackageManagerChange, packageManager, packageManagers]
   );
 
   return <Provider value={value}>{children}</Provider>;

@@ -1,0 +1,196 @@
+# Installation
+
+Install `react-md` with one of the following commands.
+
+```sh npm
+npm install react-md sass
+```
+
+# Generating the styles
+
+`react-md` relies on [Sass] to generate the styles and the [@use rule] for
+importing modules. Create a top-level `.scss` file to include all the styles:
+
+```diff fileName="app.scss"
++@use "react-md";
++
++@include react-md.styles;
+```
+
+> The default theme uses #2196f3 and #ff9100 as the primary and secondary
+> colors. Check out the [color palette customization] page to configure the
+> global theme.
+
+# Including Fonts
+
+`react-md` uses the [Roboto] font by default. Add it to your project via
+Fontsource, the Google Fonts CDN, or Next.js's recommendation.
+
+## Fontsource Example
+
+Install:
+
+```sh npm
+npm install @fontsource/roboto
+```
+
+Include styles:
+
+```diff fileName="app.scss"
++@use '@fontsource/roboto/300.css';
++@use '@fontsource/roboto/400.css';
++@use '@fontsource/roboto/500.css';
++@use '@fontsource/roboto/700.css';
+ @use "react-md";
+
+ @include react-md.styles;
+```
+
+## Google Fonts CDN
+
+Update your `index.html` to include the stylesheet:
+
+```diff fileName="index.html"
+ <html lang="en">
+   <head>
+     <meta charset="utf-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1" />
++    <link rel="preconnect" href="https://fonts.googleapis.com" />
++    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
++    <link
++      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
++      rel="stylesheet"
++    />
+     <title>My App Title</title>
+   </head>
+```
+
+# Initialize Context Providers
+
+`react-md` uses [React context] for some of the client API. The most common
+providers are available through the [CoreProviders] which can be added near the
+root of your app:
+
+```diff fileName="src/index.tsx"
++import { CoreProviders } from "react-md";
+ import { createRoot } from "react-dom/client"
+
+ import App from "./App.jsx";
+
+ const container = document.getElementById("root");
+ const root = createRoot(container);
+-root.render(<App />)
++root.render(
++  <CoreProviders>
++    <App />
++  </CoreProviders>
++);
+```
+
+# Configuring Icons
+
+Since there are many types of icons available, choose one of the examples below
+to get started.
+
+## Configuring Font Icons
+
+`react-md` will use [material icons] by default which requires [including the
+icon fonts through google fonts]:
+
+```diff fileName="index.html"
+ <html lang="en">
+   <head>
+     <meta charset="utf-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1" />
+     <link rel="preconnect" href="https://fonts.googleapis.com" />
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+     <link
+       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+       rel="stylesheet"
+     />
++    <link
++      href="https://fonts.googleapis.com/icon?family=Material+Icons"
++      rel="stylesheet"
++    />
+     <title>My App Title</title>
+   </head>
+```
+
+## Configuring Custom Icons
+
+If it is not desired to load another stylesheet or custom branded icons are
+required for the application, the icons used throughout `react-md` can be
+configured by using the `configureIcons` helper function. The example below
+will show how to configure `react-md` to use the `@react-md/material-icons`
+provide SVG icons.
+
+```tsx fileName="src/rmdConfig.tsx"
+import { configureIcons } from "react-md";
+import ArrowDropDownIcon from "@react-md/material-icons/ArrowDropDownIcon";
+import ArrowUpwardIcon from "@react-md/material-icons/ArrowUpwardIcon";
+import CheckBoxIcon from "@react-md/material-icons/CheckBoxIcon";
+import CheckBoxOutlineBlankIcon from "@react-md/material-icons/CheckBoxOutlineBlankIcon";
+import CheckIcon from "@react-md/material-icons/CheckIcon";
+import CloseIcon from "@react-md/material-icons/CloseIcon";
+import ErrorOutlineIcon from "@react-md/material-icons/ErrorOutlineIcon";
+import FileUploadIcon from "@react-md/material-icons/FileUploadIcon";
+import IndeterminateCheckBoxIcon from "@react-md/material-icons/IndeterminateCheckBoxIcon";
+import KeyboardArrowDownIcon from "@react-md/material-icons/KeyboardArrowDownIcon";
+import KeyboardArrowLeftIcon from "@react-md/material-icons/KeyboardArrowLeftIcon";
+import KeyboardArrowRightIcon from "@react-md/material-icons/KeyboardArrowRightIcon";
+import MenuIcon from "@react-md/material-icons/MenuIcon";
+import NotificationsIcon from "@react-md/material-icons/NotificationsIcon";
+import RadioButtonCheckedIcon from "@react-md/material-icons/RadioButtonCheckedIcon";
+import RadioButtonUncheckedIcon from "@react-md/material-icons/RadioButtonUncheckedIcon";
+import RemoveRedEyeIcon from "@react-md/material-icons/RemoveRedEyeIcon";
+
+configureIcons({
+  back: <KeyboardArrowLeftIcon />,
+  close: <CloseIcon />,
+  checkbox: <CheckBoxOutlineBlankIcon />,
+  checkboxChecked: <CheckBoxIcon />,
+  checkboxIndeterminate: <IndeterminateCheckBoxIcon />,
+  dropdown: <ArrowDropDownIcon />,
+  error: <ErrorOutlineIcon />,
+  expander: <KeyboardArrowDownIcon />,
+  forward: <KeyboardArrowRightIcon />,
+  menu: <MenuIcon />,
+  notification: <NotificationsIcon />,
+  password: <RemoveRedEyeIcon />,
+  radio: <RadioButtonUncheckedIcon />,
+  radioChecked: <RadioButtonCheckedIcon />,
+  selected: <CheckIcon />,
+  sort: <ArrowUpwardIcon />,
+  upload: <FileUploadIcon />,
+});
+```
+
+> To see a list of all available material icon svg components, check out the [material icons page].
+
+This file should just be imported anywhere within the application to take effect:
+
+```diff fileName="src/index.tsx"
+ import { CoreProviders } from "react-md";
+ import { createRoot } from "react-dom/client"
+
++import "./rmdConfig.jsx";
+ import App from "./App.jsx";
+
+ const container = document.getElementById("root");
+ const root = createRoot(container);
+ root.render(
+   <CoreProviders>
+     <App />
+   </CoreProviders>
+ );
+```
+
+[sass]: https://sass-lang.com/
+[@use rule]: https://sass-lang.com/blog/the-module-system-is-launched/
+[roboto]: https://fonts.google.com/specimen/Roboto
+[react context]: https://react.dev/reference/react/createContext
+[material icons]: https://fonts.google.com/icons?icon.set=Material+Icons
+[including the icon fonts through google fonts]: https://developers.google.com/fonts/docs/material_icons#setup_method_1_using_via_google_fonts
+[coreproviders]: /components/core-providers
+[material icons page]: /components/material-icons-and-symbols
+[color palette customization]: /customization/color-palette

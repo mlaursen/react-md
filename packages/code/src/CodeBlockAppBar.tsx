@@ -7,14 +7,14 @@ import {
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
 
-export interface CodeEditorAppBarProps extends AppBarProps {
+export interface CodeBlockAppBarProps extends AppBarProps {
   /** @defaultValue "clear" */
   theme?: AppBarTheme;
   /** @defaultValue `"dense"` */
   height?: AppBarHeight;
 }
 
-export function CodeEditorAppBar(props: CodeEditorAppBarProps): ReactElement {
+export function CodeBlockAppBar(props: CodeBlockAppBarProps): ReactElement {
   const {
     theme = "clear",
     height = "dense",
@@ -28,7 +28,7 @@ export function CodeEditorAppBar(props: CodeEditorAppBarProps): ReactElement {
       {...remaining}
       theme={theme}
       height={height}
-      className={cnb("code-editor-app-bar", className)}
+      className={cnb("code-block-app-bar", className)}
     >
       {children}
     </AppBar>

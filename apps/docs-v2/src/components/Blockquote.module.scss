@@ -1,0 +1,50 @@
+@use "everything";
+
+.blockquote {
+  $border-style: 0.25em solid everything.divider-get-var(color);
+
+  // @include everything.theme-use-var(color, text-secondary-color);
+  @include everything.auto-rtl(border-left, $border-style);
+
+  font-style: italic;
+  margin: 1em 0;
+  padding: 0.5em 1em;
+  position: relative;
+
+  p:only-child {
+    margin: 0;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.themed {
+  @include everything.icon-set-var(color, currentcolor);
+  @include everything.link-set-var(color, currentcolor);
+
+  border: 0;
+  border-radius: 0.25rem;
+  padding: 1em;
+
+  svg:nth-child(1) {
+    margin-right: everything.$icon-spacing;
+    vertical-align: bottom;
+  }
+
+  p:nth-child(2) {
+    display: inline;
+  }
+
+  code {
+    color: currentcolor;
+  }
+}
+
+@each $theme in (info, warning, error, success) {
+  .#{$theme} {
+    background-color: var(--#{$theme}-bg);
+    color: var(--#{$theme}-color);
+  }
+}

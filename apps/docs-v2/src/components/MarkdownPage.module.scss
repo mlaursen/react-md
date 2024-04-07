@@ -1,0 +1,20 @@
+@use "everything";
+
+.container {
+  @include everything.tablet-media {
+    --hp: 4rem;
+  }
+
+  margin: 0 auto;
+  max-width: 105ch;
+  min-width: 0;
+  padding: 0 var(--hp, 2rem) 2rem;
+  width: 100%;
+
+  // when the table of contents doesn't exist, make the it span the full width.
+  // I don't really know if I'd have any pages without a table of contents
+  // though..
+  &:not(:has(> nav)) {
+    grid-column: 1 / -1;
+  }
+}

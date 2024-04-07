@@ -1,0 +1,75 @@
+{
+  "name": "@react-md/mdx-plugins",
+  "private": true,
+  "version": "0.0.1-next.0",
+  "description": "MDX Plugins for the documentation site",
+  "type": "module",
+  "exports": {
+    "./*": "./dist/*.js"
+  },
+  "scripts": {
+    "dev": "pnpm run watch",
+    "watch": "npm-run-all --parallel build-esm-watch build-types-watch",
+    "build": "npm-run-all build-esm build-types",
+    "build-esm": "swc -d ./dist --strip-leading-paths src",
+    "build-esm-watch": "pnpm run build-esm --watch",
+    "build-types": "tsc -P tsconfig.types.json",
+    "build-types-watch": "pnpm run build-types --watch",
+    "clean-dist": "rm -rf dist",
+    "clean": "rm -rf .turbo dist node_modules",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint \"src/**/*.{ts,tsx,js,jsx,cjs,mjs}\"",
+    "test": "NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest"
+  },
+  "engines": {
+    "pnpm": ">=8",
+    "node": ">=18"
+  },
+  "engineStrict": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mlaursen/react-md.git"
+  },
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mlaursen/react-md/issues"
+  },
+  "homepage": "https://react-md.dev",
+  "dependencies": {
+    "@react-md/core": "workspace:*",
+    "@types/estree-jsx": "^1.0.5",
+    "@types/hast": "^3.0.4",
+    "@types/unist": "^3.0.2",
+    "hast-util-heading-rank": "^3.0.0",
+    "mdast-util-from-markdown": "^2.0.0",
+    "mdast-util-mdx": "^3.0.0",
+    "mdast-util-mdx-jsx": "^3.1.2",
+    "mdast-util-to-string": "^4.0.0",
+    "micromark-extension-mdxjs": "^3.0.0",
+    "rehype": "^13.0.1",
+    "rehype-mdx-code-props": "^3.0.0",
+    "rehype-slug": "^6.0.0",
+    "remark-gfm": "^4.0.0",
+    "unified": "^11.0.4",
+    "unist-util-is": "^6.0.0",
+    "unist-util-visit": "^5.0.0",
+    "unist-util-visit-parents": "^6.0.1",
+    "vfile": "^6.0.1"
+  },
+  "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "@mdx-js/mdx": "^3.0.1",
+    "@mlaursen/eslint-config": "^2.5.0",
+    "@swc/cli": "^0.3.2",
+    "@swc/core": "1.4.12",
+    "@swc/jest": "^0.2.29",
+    "@types/node": "^20.11.28",
+    "eslint": "^8.49.0",
+    "jest": "^29.7.0",
+    "jest-watch-typeahead": "^2.2.2",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^3.0.3",
+    "typescript": "^5.4.2"
+  }
+}

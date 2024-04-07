@@ -3,6 +3,7 @@ import {
   TooltippedButton,
   type TooltippedButtonProps,
 } from "@react-md/core/button/TooltippedButton";
+import { type RequireAtLeastOne } from "@react-md/core/types";
 import ContentCopyOutlinedIcon from "@react-md/material-icons/ContentCopyOutlinedIcon";
 import { type ReactElement } from "react";
 
@@ -12,10 +13,13 @@ const noop = (): void => {
 
 export interface CopyToClipboardProps extends TooltippedButtonProps {
   onCopied?(text: string): void;
-  getCopyText(button: HTMLButtonElement): string;
+  copyText?: string;
+  getCopyText?(button: HTMLButtonElement): string;
 }
 
-export function CopyToClipboard(props: CopyToClipboardProps): ReactElement {
+export function CopyToClipboard(
+  props: RequireAtLeastOne<CopyToClipboardProps>
+): ReactElement {
   const {
     "aria-label": ariaLabel = "Copy",
     iconSize = "small",
@@ -24,7 +28,8 @@ export function CopyToClipboard(props: CopyToClipboardProps): ReactElement {
     tooltip = "Copy to clipboard",
     tooltipOptions,
     onCopied = noop,
-    getCopyText,
+    copyText = "",
+    getCopyText = () => copyText,
     ...remaining
   } = props;
 

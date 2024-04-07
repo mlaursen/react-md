@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rehypeKeyboardCode should be able to handle coverting a single modifier with an action to multiple kbd 1`] = `
+"import {jsx as _jsx, jsxs as _jsxs} from "react/jsx-runtime";
+function _createMdxContent(props) {
+  const _components = {
+    kbd: "kbd",
+    p: "p",
+    ...props.components
+  };
+  return _jsxs(_components.p, {
+    children: ["Use ", _jsx(_components.kbd, {
+      className: "inline-code inline-code--ticked",
+      children: "Shift"
+    }), " + ", _jsx(_components.kbd, {
+      className: "inline-code inline-code--ticked",
+      children: "Space"
+    }), " to do something, or ", _jsx(_components.kbd, {
+      className: "inline-code inline-code--ticked",
+      children: "Alt"
+    }), " + ", _jsx(_components.kbd, {
+      className: "inline-code inline-code--ticked",
+      children: "ArrowUp"
+    }), " for something else."]
+  });
+}
+export default function MDXContent(props = {}) {
+  const {wrapper: MDXLayout} = props.components || ({});
+  return MDXLayout ? _jsx(MDXLayout, {
+    ...props,
+    children: _jsx(_createMdxContent, {
+      ...props
+    })
+  }) : _createMdxContent(props);
+}
+"
+`;
+
+exports[`rehypeKeyboardCode should be able to handle coverting keyboard code strings to kbd 1`] = `
+"import {Fragment as _Fragment, jsx as _jsx, jsxs as _jsxs} from "react/jsx-runtime";
+function _createMdxContent(props) {
+  const _components = {
+    a: "a",
+    code: "code",
+    kbd: "kbd",
+    li: "li",
+    p: "p",
+    ul: "ul",
+    ...props.components
+  };
+  return _jsxs(_Fragment, {
+    children: [_jsxs(_components.p, {
+      children: ["The ", _jsx(_components.code, {
+        children: "Select"
+      }), " component implements everything for a ", _jsx(_components.a, {
+        href: "https://www.w3.org/WAI/ARIA/apg/patterns/combobox/",
+        children: "select only combobox"
+      }), "\\nwhich means:"]
+    }), "\\n", _jsxs(_components.ul, {
+      children: ["\\n", _jsxs(_components.li, {
+        children: [_jsx(_components.kbd, {
+          className: "inline-code inline-code--ticked",
+          children: "Space"
+        }), " will open the menu to show all the options and an option can be chosen\\nby ", _jsx(_components.kbd, {
+          className: "inline-code inline-code--ticked",
+          children: "Enter"
+        }), " or ", _jsx(_components.kbd, {
+          className: "inline-code inline-code--ticked",
+          children: "Space"
+        })]
+      }), "\\n", _jsxs(_components.li, {
+        children: ["the ", _jsx(_components.kbd, {
+          className: "inline-code inline-code--ticked",
+          children: "ArrowUp"
+        }), ", ", _jsx(_components.kbd, {
+          className: "inline-code inline-code--ticked",
+          children: "ArrowDown"
+        }), ", ", _jsx(_components.kbd, {
+          className: "inline-code inline-code--ticked",
+          children: "Home"
+        }), ", and ", _jsx(_components.kbd, {
+          className: "inline-code inline-code--ticked",
+          children: "End"
+        }), " keys can be used to select a\\nvalue while the list is open or closed"]
+      }), "\\n", _jsxs(_components.li, {
+        children: ["the first match will be found when typing a letter or number and repeated\\npresses will loop through all options that start with that letter or number", "\\n", _jsxs(_components.ul, {
+          children: ["\\n", _jsxs(_components.li, {
+            children: [_jsx(_components.code, {
+              children: "Shift"
+            }), " + a letter will always select the first match\`"]
+          }), "\\n"]
+        }), "\\n"]
+      }), "\\n", _jsxs(_components.li, {
+        children: ["the ", _jsx(_components.kbd, {
+          className: "inline-code inline-code--ticked",
+          children: "Enter"
+        }), " key will submit the ", _jsx(_components.code, {
+          children: "<form>"
+        }), " while the list is closed like a\\nnative ", _jsx(_components.code, {
+          children: "<select>"
+        })]
+      }), "\\n"]
+    })]
+  });
+}
+export default function MDXContent(props = {}) {
+  const {wrapper: MDXLayout} = props.components || ({});
+  return MDXLayout ? _jsx(MDXLayout, {
+    ...props,
+    children: _jsx(_createMdxContent, {
+      ...props
+    })
+  }) : _createMdxContent(props);
+}
+"
+`;
