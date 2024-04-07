@@ -6,6 +6,7 @@ import {
 } from "@/components/MarkdownCode.jsx";
 import { MarkdownLink } from "@/components/MarkdownLink.jsx";
 import { TableOfContents } from "@/components/TableOfContents/TableOfContents.jsx";
+import { TypescriptCodeBlock } from "@/components/TypescriptCodeBlock.jsx";
 import { Divider } from "@react-md/core/divider/Divider";
 import { Typography } from "@react-md/core/typography/Typography";
 import { type MDXComponents } from "mdx/types.js";
@@ -30,6 +31,7 @@ interface RedefinedComponents {
   h6(props: HeadingProps): ReactElement;
   hr(props: Record<string, never>): ReactElement;
   TableOfContents: typeof TableOfContents;
+  TypescriptCodeBlock: typeof TypescriptCodeBlock;
 }
 
 type Components = Omit<MDXComponents, keyof RedefinedComponents> &
@@ -60,5 +62,6 @@ export function useMDXComponents(components: MDXComponents): Components {
     },
     code: MarkdownCode,
     TableOfContents,
+    TypescriptCodeBlock,
   };
 }

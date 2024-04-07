@@ -7,6 +7,6 @@
     "declarationDir": "./dist",
     "emitDeclarationOnly": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "**/__tests__/**"]
 }

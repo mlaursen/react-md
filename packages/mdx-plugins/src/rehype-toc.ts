@@ -1,12 +1,9 @@
 import { type Root } from "hast";
 import { headingRank } from "hast-util-heading-rank";
-import { fromMarkdown } from "mdast-util-from-markdown";
-import { mdxFromMarkdown } from "mdast-util-mdx";
-import { type MdxJsxFlowElementHast } from "mdast-util-mdx-jsx";
 import { toString } from "mdast-util-to-string";
-import { mdxjs } from "micromark-extension-mdxjs";
 import { type Plugin } from "unified";
 import { visit } from "unist-util-visit";
+import { createJsxNode } from "./utils/createJsxNode.js";
 
 export interface TOCHeading {
   id: string;
@@ -78,7 +75,7 @@ function createToc(headings: TOCHeadings): TOCHeadings {
 
 export interface RehypeTocOptions {
   /** @defaultValue `"TableOfContents"` */
-  as?: string;
+  as?: string | null;
 
   /** @defaultValue `"toc"` */
   propName?: string;
@@ -108,12 +105,14 @@ export const rehypeToc: Plugin<[options?: RehypeTocOptions], Root> = (
       return;
     }
 
-    root.children.unshift(
-      fromMarkdown(`<${as} ${propName}={${JSON.stringify(toc)}} />`, {
-        extensions: [mdxjs()],
-        mdastExtensions: [mdxFromMarkdown()],
-      }).children[0] as MdxJsxFlowElementHast
-    );
+    if (as !== null) {
+      root.children.unshift(
+        createJsxNode({
+          as,
+          props: { [propName]: toc },
+        })
+      );
+    }
 
     file.data.toc = toc;
   };
@@ -121,6 +120,6 @@ export const rehypeToc: Plugin<[options?: RehypeTocOptions], Root> = (
 
 declare module "vfile" {
   interface DataMap {
-    toc: TOCItem[];
+    toc?: TOCItem[];
   }
 }
