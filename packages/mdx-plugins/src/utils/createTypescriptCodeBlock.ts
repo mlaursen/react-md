@@ -9,6 +9,7 @@ import { transformTsToJs } from "./transformTsToJs.js";
 
 export interface CreateTypescriptCodeBlockOptions
   extends ReplacePreElementOptions {
+  as: string;
   lang: string;
   filepath: string;
   codeElement: Element;
@@ -18,6 +19,7 @@ export async function createTypescriptCodeBlock(
   options: CreateTypescriptCodeBlockOptions
 ): Promise<void> {
   const {
+    as,
     meta,
     filepath,
     codeElement,
@@ -39,7 +41,7 @@ export async function createTypescriptCodeBlock(
   }
 
   const codeBlock = createJsxNode({
-    as: "TypescriptCodeBlock",
+    as,
     meta,
     props: {
       isTsx: filepath.endsWith(".tsx"),

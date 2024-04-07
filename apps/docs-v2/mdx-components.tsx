@@ -1,10 +1,12 @@
 import { Blockquote } from "@/components/Blockquote.jsx";
+import { Demo } from "@/components/Demo.jsx";
 import { LinkableHeading } from "@/components/LinkableHeading.jsx";
 import {
   MarkdownCode,
   type MarkdownCodeProps,
 } from "@/components/MarkdownCode.jsx";
 import { MarkdownLink } from "@/components/MarkdownLink.jsx";
+import { PackageManagerCodeBlock } from "@/components/PackageManagerCodeBlock.jsx";
 import { TableOfContents } from "@/components/TableOfContents/TableOfContents.jsx";
 import { TypescriptCodeBlock } from "@/components/TypescriptCodeBlock.jsx";
 import { Divider } from "@react-md/core/divider/Divider";
@@ -30,8 +32,10 @@ interface RedefinedComponents {
   h5(props: HeadingProps): ReactElement;
   h6(props: HeadingProps): ReactElement;
   hr(props: Record<string, never>): ReactElement;
+  Demo: typeof Demo;
   TableOfContents: typeof TableOfContents;
   TypescriptCodeBlock: typeof TypescriptCodeBlock;
+  PackageManagerCodeBlock: typeof PackageManagerCodeBlock;
 }
 
 type Components = Omit<MDXComponents, keyof RedefinedComponents> &
@@ -61,7 +65,9 @@ export function useMDXComponents(components: MDXComponents): Components {
       return cloneElement(children, codeProps);
     },
     code: MarkdownCode,
+    Demo,
     TableOfContents,
     TypescriptCodeBlock,
+    PackageManagerCodeBlock,
   };
 }

@@ -1,13 +1,22 @@
 import { type Root } from "hast";
+import { toString } from "mdast-util-to-string";
 import { type Plugin } from "unified";
 import { visitParents } from "unist-util-visit-parents";
 import { createDemo } from "./utils/createDemo.js";
 import { createTypescriptCodeBlock } from "./utils/createTypescriptCodeBlock.js";
 import { getCodeLanguage } from "./utils/getCodeLanguage.js";
 import { replacePreElement } from "./utils/replacePreElement.js";
+import { transformNpmCode } from "./utils/transformNpmCode.js";
 
 export interface RehypeCodeBlocksOptions {
-  //
+  /** @defaultValue `"TypescriptCodeBlock"` */
+  tsComponentName?: string;
+
+  /** @defaultValue `"PackageManagerCodeBlock"` */
+  npmComponentName?: string;
+
+  /** @defaultValue `"Demo"` */
+  demoComponentName?: string;
 }
 
 /**
@@ -18,7 +27,13 @@ export interface RehypeCodeBlocksOptions {
 export const rehypeCodeBlocks: Plugin<
   [options?: RehypeCodeBlocksOptions],
   Root
-> = (_options = {}) => {
+> = (options = {}) => {
+  const {
+    tsComponentName = "TypescriptCodeBlock",
+    npmComponentName = "PackageManagerCodeBlock",
+    demoComponentName = "Demo",
+  } = options;
+
   return async (root, file) => {
     const promises: Promise<void>[] = [];
     visitParents(root, "element", (node, ancestors) => {
@@ -26,8 +41,8 @@ export const rehypeCodeBlocks: Plugin<
         return;
       }
 
-      const meta = node.data?.meta;
-      if (typeof meta !== "string" || !meta) {
+      const meta = node.data?.meta ?? "";
+      if (typeof meta !== "string") {
         return;
       }
 
@@ -48,38 +63,77 @@ export const rehypeCodeBlocks: Plugin<
       const lang = getCodeLanguage(node);
       const filepath = file.path;
       const preElementIndex = preElementParent.children.indexOf(preElement);
-      if (lang === "ts" || lang === "tsx") {
-        promises.push(
-          createTypescriptCodeBlock({
-            meta,
-            lang,
-            filepath,
-            preElement,
-            preElementIndex,
-            preElementParent,
-            codeElement: node,
-          })
-        );
-      } else if (lang === "demo") {
-        promises.push(
-          createDemo({
-            meta,
-            filepath,
-            preElement,
-            preElementIndex,
-            preElementParent,
+      switch (lang) {
+        case "ts":
+        case "tsx":
+          promises.push(
+            createTypescriptCodeBlock({
+              as: tsComponentName,
+              meta,
+              lang,
+              filepath,
+              preElement,
+              preElementIndex,
+              preElementParent,
+              codeElement: node,
+            })
+          );
+          break;
+        case "sh": {
+          const code = toString(node).trim();
+          if (code.startsWith("npm")) {
+            transformNpmCode({
+              as: npmComponentName,
+              meta,
+              code,
+              preElement,
+              preElementIndex,
+              preElementParent,
+            });
+          } else if (meta) {
+            replacePreElement({
+              meta,
+              preElement,
+              preElementIndex,
+              preElementParent,
+            });
+          }
 
-            // temp
-            codeElement: node,
-          })
-        );
-      } else {
-        replacePreElement({
-          meta,
-          preElement,
-          preElementIndex,
-          preElementParent,
-        });
+          break;
+        }
+        case "demo":
+          promises.push(
+            createDemo({
+              as: demoComponentName,
+              meta,
+              filepath,
+              preElement,
+              preElementIndex,
+              preElementParent,
+
+              // temp
+              codeElement: node,
+            })
+          );
+          break;
+        case "bash":
+        case "shell":
+          throw new Error("Shell scripts should use `sh`");
+        case "js":
+        case "jsx":
+        case "javascript":
+        case "typescript":
+        case "typescriptreact":
+          throw new Error("Code examples must use `ts` or `tsx`");
+        default:
+          if (meta) {
+            replacePreElement({
+              meta,
+              preElement,
+              preElementIndex,
+              preElementParent,
+            });
+          }
       }
     });
 
