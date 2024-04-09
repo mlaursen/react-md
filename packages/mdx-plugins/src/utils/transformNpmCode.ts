@@ -1,13 +1,17 @@
 import { createJsxNode } from "./createJsxNode.js";
-import { type ReplacePreElementOptions } from "./replacePreElement.js";
+import {
+  replacePreElement,
+  type ReplacePreElementWithJsxNodeOptions,
+} from "./replacePreElement.js";
 
-export interface TransformNpmCodeOptions extends ReplacePreElementOptions {
+export interface TransformNpmCodeOptions
+  extends ReplacePreElementWithJsxNodeOptions {
   as: string;
   code: string;
 }
 
 export function transformNpmCode(options: TransformNpmCodeOptions): void {
-  const { as, code, meta, preElementIndex, preElementParent } = options;
+  const { as, code, meta, preElement, preElementParent } = options;
 
   const yarnCode = code
     .replace(/npm/g, "yarn")
@@ -26,5 +30,9 @@ export function transformNpmCode(options: TransformNpmCodeOptions): void {
       },
     },
   });
-  preElementParent.children[preElementIndex] = codeBlock;
+  replacePreElement({
+    preElement,
+    preElementParent,
+    replacements: [codeBlock],
+  });
 }

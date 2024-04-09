@@ -1,0 +1,174 @@
+# Button
+
+Buttons communicate actions that users can take. They are typically placed throughout your UI, in places like:
+
+- Dialogs
+- Modal windows
+- Forms
+- Cards
+- Toolbars
+
+# Simple Button
+
+The `Button` comes in multiple theme types: `flat` (default), `outlined`, `contained`
+
+```demo source="./SimpleButton.tsx"
+
+```
+
+## Text Button
+
+[Text buttons](https://m2.material.io/components/buttons#text-button) are typically used for less-pronounced actions, including those located:
+
+- In Dialogs
+- In Cards
+
+In cards, text buttons help maintain an emphasis on card content.
+
+```demo source="./TextButton.tsx"
+
+```
+
+## Outlined Button
+
+[Outlined buttons](https://m2.material.io/components/buttons#outlined-button) are medium-emphasis buttons. They contain actions that are important, but aren’t the primary action in an app.
+
+```demo source="./OutlinedButton.tsx"
+
+```
+
+## Contained Button
+
+[Contained buttons](https://m2.material.io/components/buttons#contained-button) Contained buttons are high-emphasis, distinguished by their use of elevation and fill. They contain actions that are primary to your app.
+
+```demo source="./ContainedButton.tsx"
+
+```
+
+# Themed Button
+
+The `Button` can also be themed with different theme colors:
+
+- `primary`
+- `secondary`
+- `warning`
+- `success`
+- `error`
+- `disabled`
+- `clear` (default)
+
+The `theme` will be applied as the text color for `flat` buttons, as the text color and border color
+for `outlined` buttons, and the background color for `contained` buttons.
+
+```demo source="./ThemedButton.tsx"
+
+```
+
+# Icon Button
+
+An icon button can be used when space is limited like on mobile devices or when
+there are a lot of actions. Icon buttons support all the same theme behavior as
+text buttons and can be rendered as a circle (default) or as a square.
+
+To create an icon button, set the `buttonType` prop to `"icon"` or `"icon-square"`.
+
+> !Warn! Icon buttons **must** provide accessible text for screen readers through `aria-label`, `aria-labelledby`, or [SrOnly](/components/sr-only) text.
+
+```demo source="./IconButton.tsx"
+
+```
+
+## Icon Sizes
+
+The icon button's size can be easily changed by updating the `font-size` to a
+new value which will automatically scale the padding with it. There are a few
+sizes by default: `small`, `normal` (default), and `large`.
+
+> !Warn! Using small icon buttons will be less accessible since there is a
+> smaller touch target.
+
+```demo source="./IconButtonSizes.tsx"
+
+```
+
+# Button with Text and Icon
+
+Text and icons can both exist within a `Button` by just including them in the `children`. Each element
+rendered in a button will automatically be separated using `gap` set to the `$icon-spacing` amount.
+
+> !Info! An `aria-label`, `aria-labelledby`, or `SrOnly` text is **not** needed for each icon in this sort of button since it is only presentational.
+
+```demo source="./ButtonWithTextAndIcon.tsx"
+
+```
+
+## Responsive Button
+
+A common pattern is to have a button be icon only on phones due to the limited screen size
+and then include a label as well once there is enough space. This can be done by enabling
+the `responsive` prop on the button and wrapping the label in the [SrOnly](/components/sr-only)
+component with the `phoneOnly` prop enabled:
+
+```demo source="./ResponsiveButton.tsx"
+
+```
+
+# Floating Action Button
+
+[Floating action buttons](https://m2.material.io/components/buttons-floating-action-button#usage)
+performs the primary, or most common, action on a screen. It appears in front
+of all screen content, typically as a circular shape with an icon in its
+center.
+
+To create a floating action button, set the `floating` prop to one of:
+`top-left`, `top-right`, `bottom-left`, or `bottom-right` while will position
+the button in that location within the screen by using `position: fixed`. When
+the floating prop is defined, the button default props will be updated with
+`theme="secondary"`, `themeType="contained"`, and `buttonType="icon"`.
+
+```demo source="./FloatingActionButton.tsx" card phone
+
+```
+
+# Async Button
+
+The `AsyncButton` can be used to display a loading indicator inside a button
+while an async task completes. If the `onClick` handler is an async function,
+the loading indicator will display until the promise resolves.
+
+```demo source="./AsyncButtonPromise.tsx"
+
+```
+
+## Manual Pending State
+
+When the pending state is derived by a separate action, the loading indicator
+can be shown by setting the `loading` prop to `true`:
+
+```demo source="./ManualPendingState.tsx"
+
+```
+
+## Loading Indicator Types
+
+The `AsyncButton` supports the following loading indicator behaviors out of the box:
+
+- `circular-overlay` (**default**) - Renders a circular loading indicator above the
+  `children` and hides the rest of the content in the button
+- `circular-before` - renders a circular loading indicator before the `children`
+- `circular-after` - renders a circular loading indicator after the `children`
+- `linear-above` - Renders a linear loading indicator above the `children`
+- `linear-below` - Renders a linear loading indicator below the `children`
+
+```demo source="./LoadingIndicatorTypes.tsx"
+
+```
+
+## Custom Loading Children
+
+If the `children` should be swapped out along with the loading indicator,
+provide that content through the `loadingChildren` prop.
+
+```demo source="./CustomLoadingChildren.tsx"
+
+```

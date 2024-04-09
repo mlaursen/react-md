@@ -8,3 +8,5 @@
 # editors
 /.vscode
 /.vim
+
+src/generated

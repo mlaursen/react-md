@@ -1,4 +1,4 @@
-import { type Element, type Root } from "hast";
+import { type Element, type ElementContent, type Root } from "hast";
 import { propertiesToMdxJsxAttributes } from "hast-util-properties-to-mdx-jsx-attributes";
 import {
   type MdxJsxFlowElementHast,
@@ -32,8 +32,31 @@ export function createPreJsxNode(
   return replacement;
 }
 
-export interface ReplacePreElementOptions extends CreatePreJsxNodeOptions {
-  preElementIndex: number;
+export interface ReplacePreElementOptions {
+  preElement: Element;
+  preElementParent:
+    | MdxJsxTextElementHast
+    | MdxJsxFlowElementHast
+    | Element
+    | Root;
+  replacements: ElementContent[];
+}
+
+export function replacePreElement(options: ReplacePreElementOptions): void {
+  const { preElement, preElementParent, replacements } = options;
+
+  preElementParent.children.splice(
+    // NOTE: Need to use .indexOf each time instead of passing an index around
+    // because of async behavior
+    preElementParent.children.indexOf(preElement),
+    1,
+    ...replacements
+  );
+}
+
+export interface ReplacePreElementWithJsxNodeOptions
+  extends CreatePreJsxNodeOptions {
+  preElement: Element;
   preElementParent:
     | MdxJsxTextElementHast
     | MdxJsxFlowElementHast
@@ -41,9 +64,14 @@ export interface ReplacePreElementOptions extends CreatePreJsxNodeOptions {
     | Root;
 }
 
-export function replacePreElement(options: ReplacePreElementOptions): void {
-  const { meta, preElement, preElementIndex, preElementParent } = options;
+export function replacePreElementWithJsxNode(
+  options: ReplacePreElementWithJsxNodeOptions
+): void {
+  const { meta, preElement, preElementParent } = options;
 
-  const replacement = createPreJsxNode({ meta, preElement });
-  preElementParent.children[preElementIndex] = replacement;
+  replacePreElement({
+    preElement,
+    preElementParent,
+    replacements: [createPreJsxNode({ meta, preElement })],
+  });
 }

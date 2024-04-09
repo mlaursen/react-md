@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json.schemastore.org/nodemon.json",
+  "watch": ["../../packages/mdx-plugins/dist/**/*"],
+  "exec": "pnpm next-dev",
+  "ext": "*.js"
+}

@@ -12,6 +12,14 @@ const nextConfig = {
   webpack(config) {
     return {
       ...config,
+
+      // TODO: Figure out why including prettier causes:
+      // ```
+      // [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Parsing of /home/mlaursen/code/react-md/node_modules/.pnpm/prettier@3.2.5/node_modules/prettier/index.mjs for build dependencies failed at 'import(pathToFileURL2(file).href)'.
+      // ```
+      infrastructureLogging: {
+        level: "error",
+      },
       resolve: {
         ...config.resolve,
         extensionAlias: {

@@ -62,19 +62,11 @@ export interface TypescriptCodeFile extends BaseCodeFile {
   compiled: string;
 }
 
-export interface JavascriptCodeFile extends BaseCodeFile {
-  lang: "js" | "jsx";
-  scope?: RunnableCodeScope;
-}
-
 export interface ScssCodeFile extends BaseCodeFile {
   lang: "scss";
   compiled: string;
 }
 
-export type SpecialCodeFile =
-  | JavascriptCodeFile
-  | TypescriptCodeFile
-  | ScssCodeFile;
+export type CompiledCodeFile = TypescriptCodeFile | ScssCodeFile;
 
-export type CodeFile = SpecialCodeFile | BaseCodeFile;
+export type CodeFile = BaseCodeFile | CompiledCodeFile;

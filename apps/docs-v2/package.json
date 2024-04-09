@@ -13,7 +13,7 @@
     "lint-scripts": "eslint \"**/*.{ts,tsx,js,jsx,cjs,mjs}\"",
     "lint-styles": "stylelint \"src/**/*.{css,scss}\"",
     "lint": "npm-run-all lint-scripts lint-styles",
-    "clean": "rm -rf .turbo .next node_modules",
+    "clean": "rm -rf .turbo .next node_modules src/generated",
     "mdx-dev": "nodemon --config nodemon.mdx-plugins.json",
     "next-dev": "next dev",
     "next-build": "next build",

@@ -1,7 +1,17 @@
+import { type ElementContent } from "hast";
 import { fromMarkdown } from "mdast-util-from-markdown";
 import { mdxFromMarkdown } from "mdast-util-mdx";
 import { type MdxJsxFlowElementHast } from "mdast-util-mdx-jsx";
 import { mdxjs } from "micromark-extension-mdxjs";
+
+export function createJsxElementContent<
+  T extends ElementContent = ElementContent,
+>(code: string): T[] {
+  return fromMarkdown(code, {
+    extensions: [mdxjs()],
+    mdastExtensions: [mdxFromMarkdown()],
+  }).children as T[];
+}
 
 export interface CreateJsxNodeOptions {
   as: string;
@@ -27,8 +37,7 @@ export function createJsxNode(
     jsxProps += spread.join(" ");
   }
 
-  return fromMarkdown(`<${as} ${jsxProps} />`, {
-    extensions: [mdxjs()],
-    mdastExtensions: [mdxFromMarkdown()],
-  }).children[0] as MdxJsxFlowElementHast;
+  return createJsxElementContent<MdxJsxFlowElementHast>(
+    `<${as} ${jsxProps} />`
+  )[0];
 }

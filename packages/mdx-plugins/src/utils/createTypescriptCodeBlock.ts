@@ -3,12 +3,13 @@ import { toString } from "mdast-util-to-string";
 import { createJsxNode } from "./createJsxNode.js";
 import {
   replacePreElement,
-  type ReplacePreElementOptions,
+  replacePreElementWithJsxNode,
+  type ReplacePreElementWithJsxNodeOptions,
 } from "./replacePreElement.js";
 import { transformTsToJs } from "./transformTsToJs.js";
 
 export interface CreateTypescriptCodeBlockOptions
-  extends ReplacePreElementOptions {
+  extends ReplacePreElementWithJsxNodeOptions {
   as: string;
   lang: string;
   filepath: string;
@@ -18,23 +19,15 @@ export interface CreateTypescriptCodeBlockOptions
 export async function createTypescriptCodeBlock(
   options: CreateTypescriptCodeBlockOptions
 ): Promise<void> {
-  const {
-    as,
-    meta,
-    filepath,
-    codeElement,
-    preElement,
-    preElementIndex,
-    preElementParent,
-  } = options;
+  const { as, meta, filepath, codeElement, preElement, preElementParent } =
+    options;
 
   const tsCode = toString(codeElement).trim();
   const jsCode = await transformTsToJs(tsCode, filepath);
   if (tsCode === jsCode) {
-    replacePreElement({
+    replacePreElementWithJsxNode({
       meta,
       preElement,
-      preElementIndex,
       preElementParent,
     });
     return;
@@ -49,5 +42,9 @@ export async function createTypescriptCodeBlock(
       jsCode,
     },
   });
-  preElementParent.children[preElementIndex] = codeBlock;
+  replacePreElement({
+    preElement,
+    preElementParent,
+    replacements: [codeBlock],
+  });
 }

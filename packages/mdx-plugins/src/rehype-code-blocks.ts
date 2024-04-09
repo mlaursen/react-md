@@ -1,11 +1,12 @@
 import { type Root } from "hast";
 import { toString } from "mdast-util-to-string";
+import { dirname, join, resolve } from "node:path";
 import { type Plugin } from "unified";
 import { visitParents } from "unist-util-visit-parents";
 import { createDemo } from "./utils/createDemo.js";
 import { createTypescriptCodeBlock } from "./utils/createTypescriptCodeBlock.js";
 import { getCodeLanguage } from "./utils/getCodeLanguage.js";
-import { replacePreElement } from "./utils/replacePreElement.js";
+import { replacePreElementWithJsxNode } from "./utils/replacePreElement.js";
 import { transformNpmCode } from "./utils/transformNpmCode.js";
 
 export interface RehypeCodeBlocksOptions {
@@ -33,6 +34,7 @@ export const rehypeCodeBlocks: Plugin<
     npmComponentName = "PackageManagerCodeBlock",
     demoComponentName = "Demo",
   } = options;
+  const generatedDir = join(process.cwd(), "src", "generated");
 
   return async (root, file) => {
     const promises: Promise<void>[] = [];
@@ -62,7 +64,6 @@ export const rehypeCodeBlocks: Plugin<
 
       const lang = getCodeLanguage(node);
       const filepath = file.path;
-      const preElementIndex = preElementParent.children.indexOf(preElement);
       switch (lang) {
         case "ts":
         case "tsx":
@@ -73,7 +74,6 @@ export const rehypeCodeBlocks: Plugin<
               lang,
               filepath,
               preElement,
-              preElementIndex,
               preElementParent,
               codeElement: node,
             })
@@ -87,35 +87,37 @@ export const rehypeCodeBlocks: Plugin<
               meta,
               code,
               preElement,
-              preElementIndex,
               preElementParent,
             });
           } else if (meta) {
-            replacePreElement({
+            replacePreElementWithJsxNode({
               meta,
               preElement,
-              preElementIndex,
               preElementParent,
             });
           }
 
           break;
         }
-        case "demo":
+        case "demo": {
+          const parentFolder = dirname(filepath);
+          const generatedPath = parentFolder.replace(
+            resolve(parentFolder, "..", "..") + "/",
+            ""
+          );
+
           promises.push(
             createDemo({
               as: demoComponentName,
               meta,
-              filepath,
+              outDir: join(generatedDir, generatedPath),
+              parentFolder,
               preElement,
-              preElementIndex,
               preElementParent,
-
-              // temp
-              codeElement: node,
             })
           );
           break;
+        }
         case "bash":
         case "shell":
           throw new Error("Shell scripts should use `sh`");
@@ -127,10 +129,9 @@ export const rehypeCodeBlocks: Plugin<
           throw new Error("Code examples must use `ts` or `tsx`");
         default:
           if (meta) {
-            replacePreElement({
+            replacePreElementWithJsxNode({
               meta,
               preElement,
-              preElementIndex,
               preElementParent,
             });
           }
