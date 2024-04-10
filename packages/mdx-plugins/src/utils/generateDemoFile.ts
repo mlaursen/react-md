@@ -1,20 +1,27 @@
 import babelParser from "@babel/parser";
-import { type CompiledCodeFile } from "@react-md/code/types";
+import {
+  type ScssCodeFile,
+  type TypescriptCodeFile,
+} from "@react-md/code/types";
+import { type NonNullMutableRef } from "@react-md/core/types";
 import { alphaNumericSort } from "@react-md/core/utils/alphaNumericSort";
 import { namedTypes as n, visit } from "ast-types";
 import { existsSync } from "node:fs";
 import { mkdir, writeFile } from "node:fs/promises";
-import { dirname } from "node:path";
+import { join } from "node:path";
 import { format } from "prettier";
 import { print } from "recast";
 import { type InlineDemoProps } from "./createDemo.js";
+import { getScssCodeFile } from "./getScssCodeFile.js";
 import { transformTsToJs } from "./transformTsToJs.js";
 
 const BASE_CODE = `"use client";
-import { CodeEditor } from "@/components/CodeEditor.jsx";
+import { DemoCodeEditor } from "@/components/DemoCode/DemoCodeEditor.jsx";
 import {
   type CompiledCodeFile,
   type RunnableCodeScope,
+  type ScssCodeFile,
+  type TypescriptCodeFile,
 } from "@react-md/code/types";
 import { type ReactElement } from "react";
 $IMPORTS
@@ -23,28 +30,45 @@ const scope: RunnableCodeScope = {
   import: { $IMPORT },
 };
 
-const files: CompiledCodeFile[] = $FILES;
+const tsCodeFile: TypescriptCodeFile = $TS_CODE_FILE;
+const scssCodeFile: ScssCodeFile | undefined = $SCSS_CODE_FILE;
 
 export default function $DEMO_NAME(): ReactElement {
-  return <CodeEditor scope={scope} files={files} $PROPS />;
+  return <DemoCodeEditor scope={scope} tsCodeFile={tsCodeFile} scssCodeFile={scssCodeFile} $PROPS />;
 }
 `;
 
 export interface GenerateDemoFileOptions {
   props: InlineDemoProps;
+  aliasDir: string;
+  demoDir: string;
   demoName: string;
-  sourceCode: string;
-  generatedPath: string;
+  demoOutDir: string;
+  demoOutPath: string;
+  generatedDir: string;
+  demoSourceCode: string;
+  createScssLookup: NonNullMutableRef<boolean>;
 }
 
 export async function generateDemoFile(
   options: GenerateDemoFileOptions
 ): Promise<void> {
-  const { props, sourceCode, generatedPath } = options;
+  const {
+    props,
+    aliasDir,
+    demoDir,
+    demoName,
+    demoOutDir,
+    demoOutPath,
+    generatedDir,
+    demoSourceCode,
+    createScssLookup,
+  } = options;
 
-  const sourceFile = babelParser.parse(sourceCode, {
+  const sourceFile = babelParser.parse(demoSourceCode, {
     plugins: ["jsx", "typescript"],
     sourceType: "module",
+    sourceFilename: demoOutPath,
   });
 
   let styles = "";
@@ -102,22 +126,27 @@ export async function generateDemoFile(
   });
 
   const tsCode = await format(print(sourceFile).code, { parser: "typescript" });
-  const jsCode = await transformTsToJs(tsCode, generatedPath);
+  const jsCode = await transformTsToJs(tsCode, demoOutPath);
 
-  const files: CompiledCodeFile[] = [
-    {
-      lang: "tsx",
-      name: "Demo",
-      code: tsCode,
-      compiled: jsCode,
-    },
-  ];
+  let scssCodeFile: ScssCodeFile | undefined;
+  const tsCodeFile: TypescriptCodeFile = {
+    lang: "tsx",
+    name: "Demo.tsx",
+    code: tsCode,
+    compiled: jsCode,
+  };
   if (styles) {
-    files.push({
-      lang: "scss",
-      name: "Demo",
-      code: styles,
-      compiled: "",
+    let scssLookupPath = "";
+    if (createScssLookup.current) {
+      createScssLookup.current = false;
+      scssLookupPath = join(generatedDir, "rmdScssLookup.ts");
+    }
+
+    scssCodeFile = await getScssCodeFile({
+      aliasDir,
+      demoName,
+      scssPath: join(demoDir, styles),
+      scssLookupPath,
     });
   }
 
@@ -142,22 +171,25 @@ export async function generateDemoFile(
 
       return s;
     },
-    ""
+    `demoName="${demoName}"`
   );
   const generatedCode = BASE_CODE.replace(
     "$IMPORTS",
     importStatements.join("\n")
   )
     .replace("$IMPORT", importScope.join(","))
-    .replace("$FILES", JSON.stringify(files))
+    .replace("$TS_CODE_FILE", JSON.stringify(tsCodeFile))
+    .replace(
+      "$SCSS_CODE_FILE",
+      scssCodeFile ? JSON.stringify(scssCodeFile) : "undefined"
+    )
     .replace("$PROPS", stringifiedProps);
 
-  const parentFolder = dirname(generatedPath);
-  if (!existsSync(parentFolder)) {
-    await mkdir(parentFolder, { recursive: true });
+  if (!existsSync(demoOutDir)) {
+    await mkdir(demoOutDir, { recursive: true });
   }
   await writeFile(
-    generatedPath,
+    demoOutPath,
     await format(generatedCode, { parser: "typescript" })
   );
 }

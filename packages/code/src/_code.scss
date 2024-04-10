@@ -84,8 +84,10 @@ $color-preview-border-width: $color-preview-outer-width + 0.0625em;
     }
 
     &__scroll-container {
-      @include core.mouse-hover {
-        @include core.interaction-focus-styles($disable-background: true);
+      &--hoverable {
+        @include core.mouse-hover {
+          @include core.interaction-focus-styles($disable-background: true);
+        }
       }
     }
 

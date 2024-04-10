@@ -1,5 +1,4 @@
 import { Blockquote } from "@/components/Blockquote.jsx";
-import { Demo } from "@/components/Demo.jsx";
 import { LinkableHeading } from "@/components/LinkableHeading.jsx";
 import {
   MarkdownCode,
@@ -32,7 +31,6 @@ interface RedefinedComponents {
   h5(props: HeadingProps): ReactElement;
   h6(props: HeadingProps): ReactElement;
   hr(props: Record<string, never>): ReactElement;
-  Demo: typeof Demo;
   TableOfContents: typeof TableOfContents;
   TypescriptCodeBlock: typeof TypescriptCodeBlock;
   PackageManagerCodeBlock: typeof PackageManagerCodeBlock;
@@ -65,7 +63,6 @@ export function useMDXComponents(components: MDXComponents): Components {
       return cloneElement(children, codeProps);
     },
     code: MarkdownCode,
-    Demo,
     TableOfContents,
     TypescriptCodeBlock,
     PackageManagerCodeBlock,

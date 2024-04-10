@@ -689,6 +689,12 @@ importers:
       micromark-extension-mdxjs:
         specifier: ^3.0.0
         version: 3.0.0
+      postcss:
+        specifier: ^8.4.38
+        version: 8.4.38
+      postcss-selector-parser:
+        specifier: ^6.0.16
+        version: 6.0.16
       prettier:
         specifier: ^3.0.3
         version: 3.2.5
@@ -707,6 +713,9 @@ importers:
       remark-gfm:
         specifier: ^4.0.0
         version: 4.0.0
+      sass:
+        specifier: ^1.74.1
+        version: 1.74.1
       sucrase:
         specifier: ^3.35.0
         version: 3.35.0
@@ -5305,7 +5314,7 @@ packages:
     engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0, npm: '>=7.0.0'}
     dependencies:
       mdn-data: 2.0.28
-      source-map-js: 1.0.2
+      source-map-js: 1.2.0
     dev: true
 
   /css-tree@2.3.1:
@@ -10690,7 +10699,6 @@ packages:
       nanoid: 3.3.7
       picocolors: 1.0.0
       source-map-js: 1.2.0
-    dev: true
 
   /preferred-pm@3.1.2:
     resolution: {integrity: sha512-nk7dKrcW8hfCZ4H6klWcdRknBOXWzNQByJ0oJyX97BOupsYD+FzLS4hflgEu/uPUEHZCuRfMxzCBsuWd7OzT8Q==}

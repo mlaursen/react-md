@@ -1,5 +1,6 @@
+import { type NonNullMutableRef } from "@react-md/core/types";
 import { readFile } from "node:fs/promises";
-import { join, parse, resolve } from "node:path";
+import { dirname, join, parse, resolve } from "node:path";
 import { assertString } from "./assertions.js";
 import { createJsxElementContent, createJsxNode } from "./createJsxNode.js";
 import { generateDemoFile } from "./generateDemoFile.js";
@@ -8,6 +9,19 @@ import {
   replacePreElement,
   type ReplacePreElementWithJsxNodeOptions,
 } from "./replacePreElement.js";
+
+interface CreateDemoMdxCodeOptions {
+  demoName: string;
+  aliasedDemoOutPath: string;
+}
+
+const createDemoMdxCode = ({
+  demoName,
+  aliasedDemoOutPath,
+}: CreateDemoMdxCodeOptions): string => `import ${demoName} from "${aliasedDemoOutPath}";
+
+<${demoName} />
+`;
 
 export interface InlineDemoProps {
   card: boolean;
@@ -23,14 +37,27 @@ export interface DemoProps extends InlineDemoProps {
 }
 
 export interface CreateDemoOptions extends ReplacePreElementWithJsxNodeOptions {
-  as: string;
-  outDir: string;
-  parentFolder: string;
+  createScssLookup: NonNullMutableRef<boolean>;
+
+  demoDir: string;
+
+  /**
+   * The full path to the docs src folder
+   */
+  aliasDir: string;
+  generatedDir: string;
 }
 
 export async function createDemo(options: CreateDemoOptions): Promise<void> {
-  const { as, meta, outDir, parentFolder, preElement, preElementParent } =
-    options;
+  const {
+    meta,
+    demoDir,
+    aliasDir,
+    generatedDir,
+    preElement,
+    preElementParent,
+    createScssLookup,
+  } = options;
   const code = createJsxNode({
     as: "code",
     meta,
@@ -80,31 +107,41 @@ export async function createDemo(options: CreateDemoOptions): Promise<void> {
     );
   }
 
-  const sourceCodePath = resolve(parentFolder, source);
-  const sourceCode = await readFile(sourceCodePath, "utf8");
   const demoName = parse(source).name;
-  const generatedPath = join(outDir, source);
-  const demoCode = `import ${demoName} from "${generatedPath}";
+  const demoCodePath = join(demoDir, source);
+  // /home/mlaursen/code/react-md/apps/docs/src/app/(main)/(markdown)/(demos)/components/button -> /components/button/
+  const twoFoldersAboveDemo = demoDir.replace(
+    resolve(demoDir, "..", "..") + "/",
+    ""
+  );
 
-<${demoName} />
-`;
-
-  replacePreElement({
-    preElement,
-    preElementParent,
-    replacements: createJsxElementContent(demoCode),
-  });
-
-  const name = generatedPath.replace(join(process.cwd(), "src"), "@");
-
+  const demoOutPath = join(generatedDir, twoFoldersAboveDemo, source);
+  const demoOutDir = dirname(demoOutPath);
+  const aliasedDemoOutPath = demoOutPath.replace(aliasDir, "@");
+  const demoSourceCode = await readFile(demoCodePath, "utf8");
   await log(
     generateDemoFile({
       props,
+      aliasDir,
+      demoDir,
       demoName,
-      sourceCode,
-      generatedPath,
+      demoOutDir,
+      demoOutPath,
+      generatedDir,
+      demoSourceCode,
+      createScssLookup,
     }),
-    `Compiling ${name}`,
-    `Compiled ${name}`
+    "",
+    `Compiled ${aliasedDemoOutPath}`
   );
+  replacePreElement({
+    preElement,
+    preElementParent,
+    replacements: createJsxElementContent(
+      createDemoMdxCode({
+        demoName,
+        aliasedDemoOutPath,
+      })
+    ),
+  });
 }

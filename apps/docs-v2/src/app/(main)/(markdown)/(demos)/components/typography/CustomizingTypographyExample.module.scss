@@ -43,6 +43,6 @@
 // @include core.styles;
 .container {
   :global {
-    @include core.typography-base-styles;
+    @include core.typography-base-styles($disable-layer: true);
   }
 }

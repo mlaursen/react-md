@@ -1,9 +1,4 @@
-import {
-  Fragment,
-  type ComponentType,
-  type PropsWithChildren,
-  type ReactElement,
-} from "react";
+import { type ReactElement } from "react";
 import {
   CodePreview,
   type ConfigurableCodePreviewProps,
@@ -15,14 +10,12 @@ import {
 
 export interface DangerousCodePreviewProps
   extends ConfigurableCodePreviewProps,
-    DangerouslyRunCodeOptions {
-  Container?: ComponentType<PropsWithChildren>;
-}
+    DangerouslyRunCodeOptions {}
 
 export function DangerousCodePreview(
   props: DangerousCodePreviewProps
 ): ReactElement {
-  const { code, scope, onRendered, Container = Fragment, ...remaining } = props;
+  const { code, scope, onRendered, ...remaining } = props;
 
   const { error, element } = useDangerouslyRunnableCode({
     code,
@@ -32,7 +25,7 @@ export function DangerousCodePreview(
 
   return (
     <CodePreview {...remaining} error={error?.message}>
-      <Container>{element}</Container>
+      {element}
     </CodePreview>
   );
 }

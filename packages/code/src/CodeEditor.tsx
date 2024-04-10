@@ -56,7 +56,9 @@ export function CodeEditor(props: CodeEditorProps): ReactElement {
         ...scrollContainerProps,
         tabIndex: 0,
         className: cnb(
-          styles("scroll-container"),
+          styles("scroll-container", {
+            hoverable: !editorProps?.readOnly && !editorProps?.disabled,
+          }),
           scrollContainerProps?.className
         ),
       }}

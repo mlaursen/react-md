@@ -1,6 +1,7 @@
+import { type NonNullMutableRef } from "@react-md/core/types";
 import { type Root } from "hast";
 import { toString } from "mdast-util-to-string";
-import { dirname, join, resolve } from "node:path";
+import { dirname, join } from "node:path";
 import { type Plugin } from "unified";
 import { visitParents } from "unist-util-visit-parents";
 import { createDemo } from "./utils/createDemo.js";
@@ -15,15 +16,60 @@ export interface RehypeCodeBlocksOptions {
 
   /** @defaultValue `"PackageManagerCodeBlock"` */
   npmComponentName?: string;
-
-  /** @defaultValue `"Demo"` */
-  demoComponentName?: string;
 }
 
 /**
- * This is a combination of multiple plugins:
+ * This plugin will inspect all code blocks in the MDX file to:
+ * - Ensure only specific languages are used in code blocks and throw errors
+ *   for others
+ * - If the code block is a shell script with `npm `code:
+ *   - auto convert the code into `pnpm` and `yarn` and replace the code block
+ *   with: `<PackageManagerCodeBlock manangers={{ npm, pnpm, yarn }} />`
+ * - Check if there are any "code props" and pass them to the `code` renderer
+ *   or other special components defined later.
+ *   - rehype-mdx-code-props - https://github.com/remcohaszing/rehype-mdx-code-props/blob/007ff4af2a2c11bfbdc7c3b592c247df35cbb076/src/rehype-mdx-code-props.ts
+ *   - Available props for the `demo` language:
+ *     - `source` (required)
+ *     - `card`
+ *     - `phone`
+ *     - `transparent`
+ *     - `disableEditor`
+ *     - `disablePreview`
+ * - If the code block is `ts `or `tsx`, try to convert it to javascript and
+ *   replace the code block with:
+ *   `<TypescriptCodeBlock isTsx={isTsx} tsCode={tsCode} jsCode={jsCode} />`
+ * - If the code block has a language of `demo`, resolve the `source` code prop
+ *   as the demo file to generate a new component that renders the
+ *   `<CodeEditor />` with props for that demo. Then replace the code block in
+ *   the markdown page with the new component.
  *
- * - rehype-mdx-code-props - https://github.com/remcohaszing/rehype-mdx-code-props/blob/007ff4af2a2c11bfbdc7c3b592c247df35cbb076/src/rehype-mdx-code-props.ts
+ *```tsx
+ *import CustomizingTypography from "@/generated/components/typography/CustomizingTypography.tsx";
+ *
+ *<CustomizingTypography />
+ *```
+ *
+ * - This generated component is important because it:
+ *   - it parses the demo source file to determine the `RunnableCodeScope`
+ *     imports
+ *   - transpiles the `.tsx` code into javascript
+ *   - checks if there is a `.module.scss` file to create fake scss modules
+ *     - load the scss source code
+ *     - compile using sass with a custom importer to conver to "file urls"
+ *       - create a `@/generated/rmdScssLookup.ts` with the
+ *         `@react-md/core/*.scss` so that the demo can be modified in the
+ *         browser
+ *     - use postcss to traverse the output to make a simple SCSS module with
+ *       local and global scoping based on the demo name
+ *   - TODO: Moves imported types and variables into the demo so that I can
+ *     reuse constants in multiple demos
+ *
+ *
+ * TODO:
+ * - Preserve comments and whitespace for imports
+ * - Handle the `disableEditor` and `disablePreview` cases
+ * - Trigger reload when demo is added, removed, or modified
+ * - Create codemod for `react-md` -> `@react-md/core/*`
  */
 export const rehypeCodeBlocks: Plugin<
   [options?: RehypeCodeBlocksOptions],
@@ -32,9 +78,12 @@ export const rehypeCodeBlocks: Plugin<
   const {
     tsComponentName = "TypescriptCodeBlock",
     npmComponentName = "PackageManagerCodeBlock",
-    demoComponentName = "Demo",
   } = options;
-  const generatedDir = join(process.cwd(), "src", "generated");
+  const srcDir = join(process.cwd(), "src");
+  const generatedDir = join(srcDir, "generated");
+  const createScssLookup: NonNullMutableRef<boolean> = {
+    current: true,
+  };
 
   return async (root, file) => {
     const promises: Promise<void>[] = [];
@@ -100,20 +149,15 @@ export const rehypeCodeBlocks: Plugin<
           break;
         }
         case "demo": {
-          const parentFolder = dirname(filepath);
-          const generatedPath = parentFolder.replace(
-            resolve(parentFolder, "..", "..") + "/",
-            ""
-          );
-
           promises.push(
             createDemo({
-              as: demoComponentName,
               meta,
-              outDir: join(generatedDir, generatedPath),
-              parentFolder,
+              demoDir: dirname(filepath),
+              aliasDir: srcDir,
+              generatedDir,
               preElement,
               preElementParent,
+              createScssLookup,
             })
           );
           break;
@@ -139,6 +183,9 @@ export const rehypeCodeBlocks: Plugin<
     });
 
     await Promise.all(promises);
+    if (process.env.NODE_ENV !== "production") {
+      createScssLookup.current = true;
+    }
     return;
   };
 };

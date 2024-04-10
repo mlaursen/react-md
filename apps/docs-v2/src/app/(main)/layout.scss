@@ -32,6 +32,7 @@ $is_production: true or $env == production;
     }
 
     --toc-width: 18rem;
+    --code-inline-font-family: var(--source-code-pro);
     @if everything.$color-scheme == light {
       @include everything.light-theme(false);
     } @else {
