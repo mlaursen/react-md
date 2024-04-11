@@ -1,6 +1,16 @@
 /* eslint-disable no-console */
 import prettyMilliseconds from "pretty-ms";
 
+export function logPending(message: string): void {
+  console.log(` ○ ${message} ...`);
+}
+
+export function logComplete(message: string, duration?: number): void {
+  const suffix =
+    typeof duration === "number" ? ` in ${prettyMilliseconds(duration)}` : "";
+  console.log(` ✓ ${message}${suffix}`);
+}
+
 export async function log<Result>(
   task: Promise<Result>,
   startMessage: string,
@@ -11,12 +21,12 @@ export async function log<Result>(
   }
 
   if (startMessage) {
-    console.log(` ○ ${startMessage} ...`);
+    logPending(startMessage);
   }
 
   const start = Date.now();
   const result = await task;
   const duration = Date.now() - start;
-  console.log(` ✓ ${endMessage} in ${prettyMilliseconds(duration)}`);
+  logComplete(endMessage, duration);
   return result;
 }

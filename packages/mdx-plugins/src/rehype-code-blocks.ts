@@ -61,12 +61,9 @@ export interface RehypeCodeBlocksOptions {
  *         browser
  *     - use postcss to traverse the output to make a simple SCSS module with
  *       local and global scoping based on the demo name
- *   - TODO: Moves imported types and variables into the demo so that I can
- *     reuse constants in multiple demos
- *
  *
  * TODO:
- * - Preserve comments and whitespace for imports
+ * - Preserve comments and whitespace
  * - Handle the `disableEditor` and `disablePreview` cases
  * - Trigger reload when demo is added, removed, or modified
  * - Create codemod for `react-md` -> `@react-md/core/*`

@@ -38,6 +38,7 @@
   "homepage": "https://react-md.dev",
   "dependencies": {
     "@babel/parser": "^7.24.4",
+    "@babel/types": "^7.24.0",
     "@prettier/sync": "^0.5.1",
     "@react-md/code": "workspace:*",
     "@react-md/core": "workspace:*",

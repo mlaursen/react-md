@@ -638,6 +638,9 @@ importers:
       '@babel/parser':
         specifier: ^7.24.4
         version: 7.24.4
+      '@babel/types':
+        specifier: ^7.24.0
+        version: 7.24.0
       '@prettier/sync':
         specifier: ^0.5.1
         version: 0.5.1(prettier@3.2.5)

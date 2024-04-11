@@ -3,9 +3,9 @@ import postcss from "postcss";
 import selectorParser from "postcss-selector-parser";
 import { compileString, type StringOptions } from "sass";
 
-const LOCAL_SCOPE = ":local";
-const GLOBAL_SCOPE = ":global";
-const FILE_URL = "file://";
+export const LOCAL_SCOPE = ":local";
+export const GLOBAL_SCOPE = ":global";
+export const FILE_URL = "file://";
 
 export type CompileScssModuleOptions = StringOptions<"sync"> & {
   scss: string;

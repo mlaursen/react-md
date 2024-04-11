@@ -3,12 +3,15 @@ import { readFileSync } from "node:fs";
 import { readFile, writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import { format } from "prettier";
-import prettyMilliseconds from "pretty-ms";
-import { compileScssModule } from "./compileScssModule.js";
+import { FILE_URL, compileScssModule } from "./compileScssModule.js";
+import { logComplete } from "./log.js";
 
 const coreSrc = resolve(process.cwd(), "../../packages/core/src");
 
 export interface GetScssCodeFileOptions {
+  create: boolean;
+  createLookup: boolean;
+
   aliasDir: string;
   demoName: string;
   scssPath: string;
@@ -17,8 +20,13 @@ export interface GetScssCodeFileOptions {
 
 export async function getScssCodeFile(
   options: GetScssCodeFileOptions
-): Promise<ScssCodeFile> {
-  const { aliasDir, demoName, scssPath, scssLookupPath } = options;
+): Promise<ScssCodeFile | undefined> {
+  const { create, createLookup, aliasDir, demoName, scssPath, scssLookupPath } =
+    options;
+
+  if (!create) {
+    return;
+  }
 
   const scssCode = await readFile(scssPath, "utf8");
   const start = Date.now();
@@ -27,7 +35,7 @@ export async function getScssCodeFile(
     scss: scssCode,
     baseName: demoName,
     load(fileUrl) {
-      const name = fileUrl.replace("file:///@react-md/", "");
+      const name = fileUrl.replace(`${FILE_URL}/@react-md/`, "");
       const path = name === "core" ? "_core.scss" : name;
       const fullPath = join(coreSrc, path);
 
@@ -38,7 +46,7 @@ export async function getScssCodeFile(
     },
   });
 
-  if (scssLookupPath) {
+  if (createLookup) {
     const aliasedPath = scssLookupPath.replace(aliasDir, "@");
     const scssLookupCode = `export const SCSS_LOOKUP: Record<string, string> = ${JSON.stringify(lookup)};`;
     const formatted = await format(scssLookupCode, {
@@ -46,10 +54,7 @@ export async function getScssCodeFile(
     });
     await writeFile(scssLookupPath, formatted, "utf8");
 
-    // eslint-disable-next-line no-console
-    console.log(
-      ` ✓ Created ${aliasedPath} in ${prettyMilliseconds(Date.now() - start)}`
-    );
+    logComplete(`Generated ${aliasedPath}`, Date.now() - start);
   }
 
   return {
