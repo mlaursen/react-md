@@ -13,7 +13,7 @@ declare module "react" {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface LayoutAppBarHeightResult {
   height: number | undefined;
@@ -69,7 +69,7 @@ export interface LayoutAppBarHeightResult {
  * };
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useLayoutAppBarHeight(
   ref?: Ref<HTMLDivElement>

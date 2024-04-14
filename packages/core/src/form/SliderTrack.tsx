@@ -12,9 +12,8 @@ const styles = bem("rmd-slider-track");
 
 /**
  * @internal
- * @remarks
- * \@since 2.5.0
- * \@since 6.0.0 Updated to be internal only.
+ * @since 2.5.0
+ * @since 6.0.0 Updated to be internal only.
  */
 export interface SliderTrackProps
   extends HTMLAttributes<HTMLSpanElement>,
@@ -28,9 +27,8 @@ export interface SliderTrackProps
  * **Server Component**
  *
  * @internal
- * @remarks
- * \@since 2.5.0
- * \@since 6.0.0 Updated to be internal only.
+ * @since 2.5.0
+ * @since 6.0.0 Updated to be internal only.
  */
 export const SliderTrack = forwardRef<HTMLSpanElement, SliderTrackProps>(
   function SliderTrack(props, ref) {

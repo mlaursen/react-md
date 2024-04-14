@@ -2,7 +2,7 @@
 import { useEffect, useState, type ReactElement, type ReactNode } from "react";
 import { useSsr } from "./SsrProvider.js";
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface NoSsrProps {
   children: ReactNode;
 }
@@ -41,7 +41,7 @@ export interface NoSsrProps {
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function NoSsr(props: NoSsrProps): ReactElement {
   const { children } = props;

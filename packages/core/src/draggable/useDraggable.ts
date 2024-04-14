@@ -29,7 +29,7 @@ const noop = (): void => {
 };
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type DraggableTouchEventHandlers<E extends HTMLElement> = Pick<
   HTMLAttributes<E>,
@@ -37,7 +37,7 @@ export type DraggableTouchEventHandlers<E extends HTMLElement> = Pick<
 >;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type DraggableMouseEventHandlers<E extends HTMLElement> = Pick<
   HTMLAttributes<E>,
@@ -45,7 +45,7 @@ export type DraggableMouseEventHandlers<E extends HTMLElement> = Pick<
 >;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type DraggableKeyboardEventHandlers<E extends HTMLElement> = Pick<
   HTMLAttributes<E>,
@@ -53,7 +53,7 @@ export type DraggableKeyboardEventHandlers<E extends HTMLElement> = Pick<
 >;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type DraggableEventHandlers<E extends HTMLElement> =
   DraggableTouchEventHandlers<E> &
@@ -61,7 +61,7 @@ export type DraggableEventHandlers<E extends HTMLElement> =
     DraggableKeyboardEventHandlers<E>;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ControllableDraggableStateOptions {
   value?: number;
@@ -72,7 +72,7 @@ export interface ControllableDraggableStateOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface BaseDraggableOptions<E extends HTMLElement>
   extends DraggableEventHandlers<E>,
@@ -208,7 +208,7 @@ export interface BaseDraggableOptions<E extends HTMLElement>
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface UncontrolledDraggableOptions {
   value?: never;
@@ -218,7 +218,7 @@ export interface UncontrolledDraggableOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ControlledValueDraggableOptions {
   value: number;
@@ -229,7 +229,7 @@ export interface ControlledValueDraggableOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ControlledDraggingDraggableOptions {
   value?: never;
@@ -240,7 +240,7 @@ export interface ControlledDraggingDraggableOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface FullyControlledDraggableOptions {
   value: number;
@@ -250,7 +250,7 @@ export interface FullyControlledDraggableOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type DraggableStateOptions =
   | UncontrolledDraggableOptions
@@ -259,13 +259,13 @@ export type DraggableStateOptions =
   | FullyControlledDraggableOptions;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type DraggableOptions<E extends HTMLElement = HTMLElement> =
   BaseDraggableOptions<E> & DraggableStateOptions;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface DraggableImplementation<E extends HTMLElement = HTMLElement>
   extends Required<DraggableEventHandlers<E>> {
@@ -314,7 +314,7 @@ export interface DraggableImplementation<E extends HTMLElement = HTMLElement>
    * This value will only update while dragging with a mouse or touch and should
    * be used for the positioning styles while dragging.
    *
-   * Note: The {@Link percentage} will use this value while dragging.
+   * Note: The {@link percentage} will use this value while dragging.
    */
   dragPercentage: number;
 
@@ -338,7 +338,7 @@ export interface DraggableImplementation<E extends HTMLElement = HTMLElement>
  * - window splitters
  * - sliders
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useDraggable<E extends HTMLElement>(
   options: DraggableOptions<E>

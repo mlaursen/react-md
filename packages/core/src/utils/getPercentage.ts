@@ -1,4 +1,4 @@
-/** @remarks \@since 4.0.1 */
+/** @since 4.0.1 */
 export interface GetPercentageOptions {
   /**
    * The min value allowed.
@@ -30,9 +30,8 @@ export interface GetPercentageOptions {
  * @returns the percentage that the `value` is between the `min` and `max`
  * values.
  *
- * @remarks
- * \@since 4.0.1 uses an object for options instead of multiple arguments.
- * \@since 6.0.0 Updated to be included in the public API and `validate`
+ * @since 4.0.1 uses an object for options instead of multiple arguments.
+ * @since 6.0.0 Updated to be included in the public API and `validate`
  * defaults to `false` instead of `true`.
  */
 export function getPercentage(options: GetPercentageOptions): number {

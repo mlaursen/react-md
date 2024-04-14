@@ -19,7 +19,7 @@ import {
 } from "./types.js";
 
 /**
- * @remarks \@since 6.0.0 Added `containerProps` and support for the
+ * @since 6.0.0 Added `containerProps` and support for the
  * `FormMessage` behavior.
  */
 export interface SwitchProps
@@ -63,7 +63,7 @@ export interface SwitchProps
  * }
  * ```
  *
- * @remarks \@since 6.0.0 Added support for `FormMessage` behavior.
+ * @since 6.0.0 Added support for `FormMessage` behavior.
  */
 export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
   function Switch(props, ref) {

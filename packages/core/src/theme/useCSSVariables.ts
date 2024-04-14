@@ -4,7 +4,7 @@ import { useEffect, useMemo } from "react";
 import type { CSSVariableName, DefinedCSSVariableName } from "./types.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface CSSVariable<
   Name extends CSSVariableName = DefinedCSSVariableName,
@@ -14,7 +14,7 @@ export interface CSSVariable<
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type CSSVariablesProperties<
   Name extends CSSVariableName = DefinedCSSVariableName,
@@ -23,7 +23,7 @@ export type CSSVariablesProperties<
 };
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type ReadonlyCSSVariableList<
   Name extends CSSVariableName = DefinedCSSVariableName,
@@ -61,7 +61,7 @@ export type ReadonlyCSSVariableList<
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useCSSVariables<Name extends CSSVariableName>(
   variables: ReadonlyCSSVariableList<Name>,
@@ -100,14 +100,14 @@ export function useCSSVariables<Name extends CSSVariableName>(
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useCSSVariables<Name extends CSSVariableName>(
   variables: ReadonlyCSSVariableList<Name>,
   inlineStyle: true
 ): CSSVariablesProperties<Name>;
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useCSSVariables<Name extends CSSVariableName>(
   variables: ReadonlyCSSVariableList<Name>,

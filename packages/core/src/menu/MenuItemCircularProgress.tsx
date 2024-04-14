@@ -12,7 +12,7 @@ import {
 } from "../progress/CircularProgress.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface MenuItemCircularProgressProps extends CircularProgressProps {
   /** @defaultValue `"Loading"` */
@@ -69,7 +69,7 @@ export interface MenuItemCircularProgressProps extends CircularProgressProps {
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const MenuItemCircularProgress = forwardRef<
   HTMLLIElement,

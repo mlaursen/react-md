@@ -19,7 +19,7 @@ import { treeItem, treeItemContent, treeItemMedia } from "./styles.js";
 import { type DefaultTreeItemNode } from "./types.js";
 
 /**
- * @remarks \@since 6.0.0  Added the `groupProps` prop.
+ * @since 6.0.0  Added the `groupProps` prop.
  */
 export interface TreeItemProps
   extends Omit<DefaultTreeItemNode, "parentId">,
@@ -80,11 +80,10 @@ export interface TreeItemProps
  * **Client Component**
  *
  * @see {@link https://www.w3.org/WAI/ARIA/apg/patterns/treeview/}
- * @remarks
- * \@since 6.0.0 The wrapping `<li>` element will always be `role="none"` and
+ * @since 6.0.0 The wrapping `<li>` element will always be `role="none"` and
  * the `<span>` or `<a>` will gain the `role="treeitem"` instead. This makes it
  * easier to pass event handlers because of the nested behavior of tree items.
- * \@since 6.0.0 No longer provides the `aria-level`, `aria-setsize` and
+ * @since 6.0.0 No longer provides the `aria-level`, `aria-setsize` and
  * `aria-posinset` attributes and allows the browser to compute them instead.
  */
 export function TreeItem(props: TreeItemProps): ReactElement {

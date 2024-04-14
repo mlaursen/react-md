@@ -20,7 +20,7 @@ declare module "react" {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface MaterialSymbolProps
   extends HTMLAttributes<HTMLSpanElement>,
@@ -64,7 +64,7 @@ export interface MaterialSymbolProps
  * root.render(<App />);
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const MaterialSymbol = forwardRef<HTMLSpanElement, MaterialSymbolProps>(
   function MaterialSymbol(props, ref) {

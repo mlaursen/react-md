@@ -3,7 +3,7 @@ import { type MaterialIconName } from "./material.js";
 import { MATERIAL_CONFIG } from "./materialConfig.js";
 import { icon, type MaterialIconClassNameOptions } from "./styles.js";
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface MaterialIconProps
   extends HTMLAttributes<HTMLSpanElement>,
     Partial<MaterialIconClassNameOptions> {
@@ -16,7 +16,7 @@ export interface MaterialIconProps
 /**
  * **Server Component**
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const MaterialIcon = forwardRef<HTMLSpanElement, MaterialIconProps>(
   function MaterialIcon(props, ref) {

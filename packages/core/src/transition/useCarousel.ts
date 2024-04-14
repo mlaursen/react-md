@@ -5,18 +5,18 @@ import { useToggle } from "../useToggle.js";
 import { loop } from "../utils/loop.js";
 import type { SlideDirection } from "./SlideContainer.js";
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface CarouselSlideState {
   direction: SlideDirection;
   activeIndex: number;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface CarouselState extends CarouselSlideState {
   paused: boolean;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface CarouselImplementation extends CarouselState {
   /**
    * Increments the carousel slide active index by 1 ensuring it does not
@@ -55,7 +55,7 @@ export interface CarouselImplementation extends CarouselState {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface CarouselOptions {
   /**
@@ -166,7 +166,7 @@ export interface CarouselOptions {
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @see {@link https://www.w3.org/WAI/ARIA/apg/patterns/carousel/}
  * @see {@link https://www.w3.org/WAI/ARIA/apg/example-index/carousel/carousel-2-tablist.html}
  */

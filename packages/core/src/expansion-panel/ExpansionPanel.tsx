@@ -14,7 +14,7 @@ import {
 
 const styles = bem("rmd-expansion-panel");
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface ExpansionPanelClassNameOptions {
   className?: string;
 
@@ -33,7 +33,7 @@ export interface ExpansionPanelClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function expansionPanel(
   options: ExpansionPanelClassNameOptions = {}
@@ -44,7 +44,7 @@ export function expansionPanel(
 }
 
 /**
- * @remarks \@since 6.0.0 Renamed some card props and updated for the latest
+ * @since 6.0.0 Renamed some card props and updated for the latest
  * API.
  */
 export interface ExpansionPanelProps extends CardProps {
@@ -78,7 +78,7 @@ export interface ExpansionPanelProps extends CardProps {
    * This can be used to implement a custom header implementation, but it
    * probably shouldn't be needed.
    *
-   * @remarks \@since 6.0.0 This was renamed from `customHeader`
+   * @since 6.0.0 This was renamed from `customHeader`
    * @see {@link headerProps}
    */
   header?: ReactNode;
@@ -128,7 +128,7 @@ export interface ExpansionPanelProps extends CardProps {
    * the expanded state. THis should generally contain some accessible text
    * describing the expansion panel's content.
    *
-   * @remarks \@since 6.0.0 THis was renamed from `header`
+   * @since 6.0.0 THis was renamed from `header`
    */
   headerChildren?: ReactNode;
 
@@ -186,7 +186,7 @@ export interface ExpansionPanelProps extends CardProps {
    * {@link expanded} state is `false`.
    *
    * @defaultValue `false`
-   * @remarks \@since 6.0.0 Renamed from `persistent` to match the
+   * @since 6.0.0 Renamed from `persistent` to match the
    * `useCollapseTransition` naming convention.
    */
   temporary?: boolean;
@@ -196,8 +196,7 @@ export interface ExpansionPanelProps extends CardProps {
  * **Client Component**
  *
  * @see `useExpansionPanels` for examples.
- * @remarks
- * \@since 6.0.0 The content will be persistent and invisible using `display: none`
+ * @since 6.0.0 The content will be persistent and invisible using `display: none`
  * instead of unmounting and also animate the `margin-top` style.
  */
 export const ExpansionPanel = forwardRef<

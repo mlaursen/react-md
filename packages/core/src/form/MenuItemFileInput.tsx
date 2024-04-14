@@ -13,7 +13,7 @@ const noop = (): void => {
 };
 
 /**
- * @remarks \@since 6.0.0 Removed most of the shared `FileInputProps` from this
+ * @since 6.0.0 Removed most of the shared `FileInputProps` from this
  * implementation.
  */
 export interface MenuItemFileInputProps
@@ -29,7 +29,6 @@ export interface MenuItemFileInputProps
    * }}
    * ```
    *
-   * @remarks
    * This is actually a native `Event` and not a `SyntheticEvent` because the
    * file input is created through `document.createElement` instead of `React`.
    * You can still access the files through `event.currentTarget.files` like
@@ -55,9 +54,8 @@ export interface MenuItemFileInputProps
  *
  * A wrapper for the `<input type="file">` element that works within menus.
  *
- * @remarks
- * \@since 5.0.0
- * \@since 6.0.0 No longer creates an invisible file input element within the
+ * @since 5.0.0
+ * @since 6.0.0 No longer creates an invisible file input element within the
  * menu item. This allows the menu to be closed immediately when this menu item
  * is clicked.
  */

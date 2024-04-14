@@ -17,7 +17,7 @@ const styles = bem("rmd-textarea");
 const containerStyles = bem("rmd-textarea-container");
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface TextareaClassNameOptions extends TextFieldClassNameOptions {
   className?: string;
@@ -45,7 +45,7 @@ export interface TextareaClassNameOptions extends TextFieldClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function textArea(options: TextareaClassNameOptions = {}): string {
   const {
@@ -70,7 +70,7 @@ export function textArea(options: TextareaClassNameOptions = {}): string {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface TextareaContainerClassNameOptions {
   className?: string;
@@ -81,7 +81,7 @@ export interface TextareaContainerClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function textAreaContainer(
   options: TextareaContainerClassNameOptions = {}

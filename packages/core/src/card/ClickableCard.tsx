@@ -10,7 +10,7 @@ const noop = (): void => {
 };
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ClickableCardProps extends CardProps {
   onClick: MouseEventHandler<HTMLDivElement>;
@@ -48,7 +48,7 @@ export interface ClickableCardProps extends CardProps {
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const ClickableCard = forwardRef<HTMLDivElement, ClickableCardProps>(
   function ClickableCard(props, ref) {

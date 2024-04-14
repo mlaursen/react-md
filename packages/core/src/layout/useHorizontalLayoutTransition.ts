@@ -10,7 +10,7 @@ import type {
 import { useCSSTransition } from "../transition/useCSSTransition.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const DEFAULT_HORIZONTAL_LAYOUT_TRANSITION_CLASSNAMES = {
   appearDone: "rmd-layout-h--active",
@@ -21,7 +21,7 @@ export const DEFAULT_HORIZONTAL_LAYOUT_TRANSITION_CLASSNAMES = {
 } satisfies Readonly<CSSTransitionClassNames>;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface HorizontalLayoutTransitionOptions
   extends PreconfiguredCSSTransitionOptions<HTMLElement> {
@@ -74,7 +74,7 @@ export interface HorizontalLayoutTransitionOptions
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useHorizontalLayoutTransition<
   E extends HTMLElement = HTMLElement,

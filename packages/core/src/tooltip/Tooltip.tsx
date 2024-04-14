@@ -20,9 +20,8 @@ import { tooltip } from "./tooltipStyles.js";
  * The base props for the `Tooltip` component. This can be extended when
  * creating custom tooltip implementations.
  *
- * @remarks
- * \@since 2.8.0 Supports the `RenderConditionalPortalProps`
- * \@since 6.0.0 No longer supports the `RenderConditionalPortalProps`.
+ * @since 2.8.0 Supports the `RenderConditionalPortalProps`
+ * @since 6.0.0 No longer supports the `RenderConditionalPortalProps`.
  */
 export interface TooltipProps
   extends HTMLAttributes<HTMLSpanElement>,

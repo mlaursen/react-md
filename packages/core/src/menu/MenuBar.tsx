@@ -64,8 +64,8 @@ export interface MenuBarProps extends Omit<ListProps, "role"> {
  * }
  * ```
  *
- * @remarks \@since 5.0.0
- * @remarks \@since 6.0.0 Combined with the previous `MenuBarWidget`
+ * @since 5.0.0
+ * @since 6.0.0 Combined with the previous `MenuBarWidget`
  */
 export const MenuBar = forwardRef<HTMLUListElement, MenuBarProps>(
   function MenuBar(props, ref) {

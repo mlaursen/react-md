@@ -3,7 +3,7 @@ import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-tr");
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface TableRowClassNameOptions {
   className?: string;
   disableHover?: boolean;
@@ -12,7 +12,7 @@ export interface TableRowClassNameOptions {
   clickable?: boolean;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export function tableRow(options: TableRowClassNameOptions = {}): string {
   const { disableHover, disableBorders, selected, clickable, className } =
     options;

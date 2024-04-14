@@ -4,7 +4,7 @@ import { bem } from "../utils/bem.js";
 const styles = bem("rmd-layout-main");
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface MainClassNameOptions {
   className?: string;
@@ -29,7 +29,7 @@ export interface MainClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function main(options: MainClassNameOptions = {}): string {
   const { navOffset, appBarOffset, className } = options;

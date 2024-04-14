@@ -5,7 +5,7 @@ import { createContext, useContext } from "react";
  * A simplified version of the {@link ToastManager} that has the actions bound
  * to the current {@link QueuedToast.toastId}.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface CurrentToastActions {
   /** @see {@link ToastManager.clearTimer} */
@@ -24,7 +24,7 @@ const context = createContext<CurrentToastActions | null>(null);
 context.displayName = "CurrentToastActions";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export const { Provider: CurrentToastActionsProvider } = context;
@@ -33,7 +33,7 @@ export const { Provider: CurrentToastActionsProvider } = context;
  * This is only required if you have multiple `Snackbar` implementations in your
  * app.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useCurrentToastActions(): CurrentToastActions {
   const actions = useContext(context);

@@ -17,22 +17,22 @@ import { type PropsWithRef } from "../types.js";
 import { SrOnly } from "../typography/SrOnly.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export type FileInputClassNameOptions = ButtonClassNameOptions;
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export function fileInput(options: FileInputClassNameOptions = {}): string {
   return cnb("rmd-file-input", button(options));
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export type FileInputHTMLAttributes = Omit<
   InputHTMLAttributes<HTMLInputElement>,
   "type"
 >;
 
 /**
- * @remarks \@since 6.0.0 Removed the `disableIconSpacing` prop since it is no
+ * @since 6.0.0 Removed the `disableIconSpacing` prop since it is no
  * longer required.
  */
 export interface FileInputProps
@@ -133,7 +133,7 @@ export interface FileInputProps
  * }
  * ```
  *
- * @remarks \@since 6.0.0 Added additional support for `iconSize` and
+ * @since 6.0.0 Added additional support for `iconSize` and
  * `responsive`. Also removed the `disableIconSpacing` prop since it is no
  * longer required.
  */

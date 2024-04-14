@@ -4,14 +4,13 @@ import { type UseStateInitializer, type UseStateSetter } from "../types.js";
 import { type SliderValueOptions } from "./useSlider.js";
 
 /**
- * @remarks
- * \@since 2.5.0
- * \@since 6.0.0 Updated to use labeled tuple.
+ * @since 2.5.0
+ * @since 6.0.0 Updated to use labeled tuple.
  */
 export type RangeSliderValue = readonly [minValue: number, maxValue: number];
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface RangeSliderState {
   rangeValue: RangeSliderValue;
@@ -19,14 +18,14 @@ export interface RangeSliderState {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface RangeSliderOptions extends SliderValueOptions {
   defaultValue?: UseStateInitializer<RangeSliderValue>;
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface RangeSliderImplementation
   extends Required<SliderValueOptions>,
@@ -66,9 +65,8 @@ export interface RangeSliderImplementation
  * ```
  *
  * @see The `Slider` component for additional examples.
- * @remarks
- * \@since 2.5.0
- * \@since 6.0.0 Now returns an object instead of an ordered tuple and only
+ * @since 2.5.0
+ * @since 6.0.0 Now returns an object instead of an ordered tuple and only
  * return the `rangeValue` and `setRangeValue` instead of all the slider
  * functionality. In addition, the hook only accepts a single object argument.
  */

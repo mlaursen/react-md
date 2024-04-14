@@ -12,7 +12,7 @@ declare module "react" {
 
 const styles = bem("rmd-toast");
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface ToastClassNameOptions {
   className?: string;
   /** @defaultValue `"surface"` */
@@ -30,7 +30,7 @@ export interface ToastClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function toast(options: ToastClassNameOptions = {}): string {
   const {

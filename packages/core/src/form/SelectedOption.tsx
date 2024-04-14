@@ -6,7 +6,7 @@ import { type OptionProps } from "./Option.js";
 import { textField } from "./textFieldStyles.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export interface SelectedOptionProps extends BoxProps {
@@ -20,7 +20,7 @@ export interface SelectedOptionProps extends BoxProps {
  *
  * This component is used to render the current option.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export function SelectedOption(props: SelectedOptionProps): ReactElement {

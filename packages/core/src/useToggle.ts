@@ -3,7 +3,7 @@ import { useCallback, useState } from "react";
 import type { UseStateInitializer, UseStateSetter } from "./types.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ToggleHookReturnValue {
   toggled: boolean;

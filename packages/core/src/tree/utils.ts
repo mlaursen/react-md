@@ -9,7 +9,7 @@ import type { TreeItemNode, TreeData, DefaultTreeItemNode } from "./types.js";
  * @param itemId - The item id to start the search at.
  * @returns an ordered list of the current item followed by all the direct
  * parents of that item.
- * @remarks \@since 6.0.0 Renamed from `getItemsFrom` to `getTreeItemsFrom`.
+ * @since 6.0.0 Renamed from `getItemsFrom` to `getTreeItemsFrom`.
  */
 export function getTreeItemsFrom<T extends TreeItemNode = DefaultTreeItemNode>(
   data: TreeData<T>,
@@ -41,7 +41,7 @@ export function getTreeItemsFrom<T extends TreeItemNode = DefaultTreeItemNode>(
  * recursive param is enabled, the list will be ordered so that the children of
  * a item will appear before the next item at the same level. So you either need
  * to sort by `parentId` or something else if you want a specific order.
- * @remarks \@since 6.0.0 Renamed from `getChildItems` to `getChildTreeItems`.
+ * @since 6.0.0 Renamed from `getChildItems` to `getChildTreeItems`.
  */
 export function getChildTreeItems<T extends TreeItemNode = DefaultTreeItemNode>(
   data: TreeData<T> | readonly T[],

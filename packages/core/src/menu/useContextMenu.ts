@@ -5,7 +5,7 @@ import { BELOW_INNER_LEFT_ANCHOR } from "../positioning/constants.js";
 import type { InitialCoords, PositionAnchor } from "../positioning/types.js";
 import type { UseStateObject } from "../types.js";
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface ContextMenuProps extends InitialCoords {
   "aria-label": string;
   anchor: PositionAnchor;
@@ -16,9 +16,8 @@ export interface ContextMenuProps extends InitialCoords {
 }
 
 /**
- * @remarks
- * \@since 5.0.0
- * \@since 6.0.0  Dropped most options since they are no longer required for the
+ * @since 5.0.0
+ * @since 6.0.0  Dropped most options since they are no longer required for the
  * context menu to work. Apply any `Menu` props directly to the `Menu` component
  * instead.
  */
@@ -42,9 +41,8 @@ export interface ContextMenuHookOptions {
 }
 
 /**
- * @remarks
- * \@since 5.0.0
- * \@since 6.0.0 Renamed from `ContextMenuHookReturnValue` to
+ * @since 5.0.0
+ * @since 6.0.0 Renamed from `ContextMenuHookReturnValue` to
  * `ContextMenuImplementation` and dropped the `menuRef` and `menuNodeRef`
  * fields.
  */
@@ -84,9 +82,8 @@ const noop = (): void => {
  * }
  * ```
  *
- * @remarks
- * \@since 5.0.0
- * \@since 6.0.0 No longer supports overriding most of the `Menu` props. The
+ * @since 5.0.0
+ * @since 6.0.0 No longer supports overriding most of the `Menu` props. The
  * props must be passed to the `Menu` component manually.
  */
 export function useContextMenu(

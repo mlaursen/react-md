@@ -3,7 +3,7 @@ import { toSearchQuery } from "./toSearchQuery.js";
 import { type BaseSearchOptions } from "./types.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export const defaultExtractor =
@@ -20,7 +20,7 @@ export const defaultExtractor =
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface SearchOptions<T> extends BaseSearchOptions<T> {
   type: "search" | "filter";
@@ -30,7 +30,7 @@ export interface SearchOptions<T> extends BaseSearchOptions<T> {
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function search<T>(
   options: SearchOptions<T>

@@ -16,7 +16,7 @@ declare module "react" {
 export type DividerElement = HTMLHRElement | HTMLDivElement;
 
 /**
- * @remarks \@since 6.0.0 Extends the {@Link DividerClassNameOptions}
+ * @since 6.0.0 Extends the {@link DividerClassNameOptions}
  */
 export interface DividerProps
   extends HTMLAttributes<DividerElement>,

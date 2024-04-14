@@ -4,7 +4,7 @@ import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvide
 import { useExpansionList } from "./useExpansionList.js";
 
 /**
- * @remarks \@since 6.0.0 No longer requires the `onKeyDown` prop.
+ * @since 6.0.0 No longer requires the `onKeyDown` prop.
  */
 export interface ExpansionListProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
@@ -18,7 +18,7 @@ export interface ExpansionListProps extends HTMLAttributes<HTMLDivElement> {
  *
  * @see {@link useExpansionList} for a custom implementation example if you do
  * not want to use a `<div>` for this wrapper component.
- * @remarks \@since 6.0.0 Uses the new keyboard movement API and does not
+ * @since 6.0.0 Uses the new keyboard movement API and does not
  * require the `onKeyDOwn` prop to be provided.
  */
 export const ExpansionList = forwardRef<HTMLDivElement, ExpansionListProps>(

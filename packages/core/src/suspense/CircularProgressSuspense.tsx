@@ -5,7 +5,7 @@ import {
 } from "../progress/CircularProgress.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface CircularProgressSuspenseProps extends CircularProgressProps {
   /**
@@ -39,7 +39,7 @@ export interface CircularProgressSuspenseProps extends CircularProgressProps {
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function CircularProgressSuspense(
   props: CircularProgressSuspenseProps

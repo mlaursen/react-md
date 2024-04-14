@@ -7,7 +7,7 @@ const treeStyles = bem("rmd-tree");
 const treeItemStyles = bem("rmd-tree-item");
 const treeGroupStyles = bem("rmd-tree-group");
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface TreeClassNameOptions {
   className?: string;
 }
@@ -16,7 +16,7 @@ export interface TreeClassNameOptions {
  * Apply the `className`s for a tree component. This will be type-safe if using
  * typescript.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function tree(options: TreeClassNameOptions = {}): string {
   const { className } = options;
@@ -24,7 +24,7 @@ export function tree(options: TreeClassNameOptions = {}): string {
   return cnb(treeStyles(), className);
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface TreeItemClassNameOptions {
   className?: string;
   expander?: boolean;
@@ -42,7 +42,7 @@ export interface TreeItemClassNameOptions {
  * Apply the `className`s for a tree item component. This will be type-safe if
  * using typescript.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function treeItem(options: TreeItemClassNameOptions = {}): string {
   const { className, expander = false, expanderLeft = false } = options;
@@ -56,7 +56,7 @@ export function treeItem(options: TreeItemClassNameOptions = {}): string {
   );
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface TreeItemContentClassNameOptions
   extends InternalListItemClassNameOptions {
   /**
@@ -86,7 +86,7 @@ export interface TreeItemContentClassNameOptions
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function treeItemContent(
   options: TreeItemContentClassNameOptions = {}
@@ -116,7 +116,7 @@ export function treeItemContent(
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface TreeItemMediaClassNameOptions {
   className?: string;
@@ -125,7 +125,7 @@ export interface TreeItemMediaClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function treeItemMedia(options: TreeItemMediaClassNameOptions): string {
   const { isLeafNode, isMediaLeftAddon, className } = options;
@@ -136,13 +136,13 @@ export function treeItemMedia(options: TreeItemMediaClassNameOptions): string {
   );
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface TreeGroupClassNameOptions {
   className?: string;
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function treeGroup(options: TreeGroupClassNameOptions = {}): string {
   const { className } = options;

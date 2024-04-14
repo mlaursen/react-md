@@ -14,7 +14,7 @@ const noop = (): void => {
 };
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ToastRendererProps extends ConfigurableToastProps, ToastMeta {
   /**
@@ -42,7 +42,7 @@ export interface ToastRendererProps extends ConfigurableToastProps, ToastMeta {
  * - always renders the {@link ToastRendererProps.toastDefaults}'s `children`
  *   'after the optional toast's `children`
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function DefaultToastRenderer(props: ToastRendererProps): ReactElement {
   const {

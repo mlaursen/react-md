@@ -1,5 +1,5 @@
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface TransitionConfig {
   /**
@@ -22,7 +22,7 @@ export interface TransitionConfig {
 let disabled = false;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const TRANSITION_CONFIG: TransitionConfig = {
   get disabled() {

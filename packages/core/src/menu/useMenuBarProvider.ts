@@ -8,8 +8,8 @@ import {
 
 /**
  * @internal
- * @remarks \@since 5.0.0
- * @remarks \@since 6.0.0 Updated to use the new `HoverModeContext` behavior.
+ * @since 5.0.0
+ * @since 6.0.0 Updated to use the new `HoverModeContext` behavior.
  */
 export interface MenuBarContext extends HoverModeContext {
   root: boolean;
@@ -27,13 +27,13 @@ context.displayName = "MenuBar";
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const { Provider: MenuBarProvider } = context;
 
 /**
  * @internal
- * @remarks \@since 5.0.0
+ * @since 5.0.0
  */
 export function useMenuBarContext(): Readonly<MenuBarContext> {
   return useContext(context);
@@ -41,7 +41,7 @@ export function useMenuBarContext(): Readonly<MenuBarContext> {
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface MenuBarProviderOptions {
   root: boolean;
@@ -54,7 +54,7 @@ export interface MenuBarProviderOptions {
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useMenuBarProvider(
   options: MenuBarProviderOptions

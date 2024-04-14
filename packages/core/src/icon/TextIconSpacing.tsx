@@ -97,7 +97,7 @@ export interface TextIconSpacingProps {
    * Boolean if the icon and content are in a `column-reverse` or `row-reverse`
    * `flex-direction`. This will swap the different classnames as needed.
    *
-   * @remarks \@since 2.5.0
+   * @since 2.5.0
    * @defaultValue `false`
    */
   flexReverse?: boolean;

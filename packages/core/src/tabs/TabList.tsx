@@ -20,7 +20,7 @@ import { type GetTabListScrollToOptions } from "./utils.js";
 import { type useTabs } from "./useTabs.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface TabListProps extends HTMLAttributes<HTMLDivElement> {
   activeIndex: number;
@@ -132,7 +132,7 @@ export interface TabListProps extends HTMLAttributes<HTMLDivElement> {
  *
  * @see {@link useTabs} for example usage.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const TabList = forwardRef<HTMLDivElement, TabListProps>(
   function TabList(props, ref) {

@@ -8,7 +8,7 @@ import { type TableCellHorizontalAlignment } from "./TableConfigurationProvider.
 export type SortOrder = "ascending" | "descending" | "none" | "other";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type TableCellContentsIconRotatorProps = Omit<
   IconRotatorProps,
@@ -16,7 +16,7 @@ export type TableCellContentsIconRotatorProps = Omit<
 >;
 
 /**
- * @remarks \@since 6.0.0 Extends the `ButtonHTMLAttributes` so the extra props
+ * @since 6.0.0 Extends the `ButtonHTMLAttributes` so the extra props
  * can be passed to the `ButtonUnstyled`
  * @internal
  */
@@ -47,7 +47,7 @@ export interface TableCellContentProps
   iconRotatorProps?: TableCellContentsIconRotatorProps;
 
   /**
-   * @remarks \@since 4.0.3
+   * @since 4.0.3
    * @see {@link TableCellHorizontalAlignment}
    */
   hAlign?: TableCellHorizontalAlignment;

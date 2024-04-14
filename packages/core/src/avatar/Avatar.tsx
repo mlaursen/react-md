@@ -21,7 +21,7 @@ declare module "react" {
 export type AvatarImgAttributes = ImgHTMLAttributes<HTMLImageElement>;
 
 /**
- * @remarks \@since 6.0.0 `aria-hidden` is set to `true` by default and removed
+ * @since 6.0.0 `aria-hidden` is set to `true` by default and removed
  * the `role="presentation"`.
  */
 export interface AvatarProps
@@ -61,7 +61,7 @@ export interface AvatarProps
    *
    * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-referrerpolicy|Referrer Policy}
    *
-   * @remarks \@since 2.2.0
+   * @since 2.2.0
    */
   referrerPolicy?: AvatarImgAttributes["referrerPolicy"];
 
@@ -74,7 +74,7 @@ export interface AvatarProps
    * Note: The values in this object will override the `src`, `alt`, and
    * `referrerPolicy` root level avatar props if they exist on this object.
    *
-   * @remarks \@since 2.2.0
+   * @since 2.2.0
    */
   imgProps?: PropsWithRef<AvatarImgAttributes, HTMLImageElement>;
 }
@@ -98,7 +98,7 @@ export interface AvatarProps
  * }
  * ```
  *
- * @remarks \@since 6.0.0 `aria-hidden` is set to `true` by default and removed
+ * @since 6.0.0 `aria-hidden` is set to `true` by default and removed
  * the `role="presentation"`.
  */
 export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(

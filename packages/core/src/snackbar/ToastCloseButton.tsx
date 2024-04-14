@@ -13,7 +13,7 @@ const noop = (): void => {
 };
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ToastCloseButtonProps extends ButtonProps {
   /**
@@ -43,7 +43,7 @@ export interface ToastCloseButtonProps extends ButtonProps {
  * This button will automatically close the toast when clicked unless
  * `event.stopPropagation()` is called from the `onClick` prop.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const ToastCloseButton = forwardRef<
   HTMLButtonElement,

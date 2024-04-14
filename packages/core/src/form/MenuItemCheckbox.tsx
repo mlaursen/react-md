@@ -36,7 +36,7 @@ import { type ICON_CONFIG } from "../icon/iconConfig.js";
  * }
  * ```
  *
- * @remarks \@since 2.8.0
+ * @since 2.8.0
  */
 export const MenuItemCheckbox = forwardRef<
   HTMLLIElement,

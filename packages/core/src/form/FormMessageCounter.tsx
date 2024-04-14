@@ -1,7 +1,7 @@
 import { type HTMLAttributes, type ReactElement, type ReactNode } from "react";
 import { formMessageCounter } from "./formMessageStyles.js";
 
-/** @remarks \@since 2.9.0 */
+/** @since 2.9.0 */
 export interface FormMessageCounterProps
   extends HTMLAttributes<HTMLSpanElement> {
   /**
@@ -44,7 +44,7 @@ export interface FormMessageCounterProps
  * }
  * ```
  *
- * @remarks \@since 2.9.0
+ * @since 2.9.0
  */
 export function FormMessageCounter(
   props: FormMessageCounterProps

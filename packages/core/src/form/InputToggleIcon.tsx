@@ -5,9 +5,8 @@ import { FORM_CONFIG } from "./formConfig.js";
 import { inputToggle, type InputToggleSize } from "./inputToggleStyles.js";
 
 /**
- * @remarks
- * \@since 2.8.0
- * \@since 6.0.0 Removed the `circle` and `overlay` props since they are no
+ * @since 2.8.0
+ * @since 6.0.0 Removed the `circle` and `overlay` props since they are no
  * longer needed. Added the `icon`, `disableEm`, `checkedIcon` and
  * `indeterminateIcon` props.
  * @internal
@@ -56,9 +55,8 @@ export interface InputToggleIconProps extends HTMLAttributes<HTMLSpanElement> {
 /**
  * **Server Component**
  *
- * @remarks
- * \@since 2.8.0
- * \@since 6.0.0 Updated to use different icons for each checked state instead
+ * @since 2.8.0
+ * @since 6.0.0 Updated to use different icons for each checked state instead
  * of a css overlay hack.
  * @internal
  */

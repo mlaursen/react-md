@@ -4,7 +4,7 @@ import { bem } from "../utils/bem.js";
 const styles = bem("rmd-native-select");
 const containerStyles = bem("rmd-native-select-container");
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface NativeSelectClassNameOptions {
   className?: string;
 
@@ -17,7 +17,7 @@ export interface NativeSelectClassNameOptions {
   icon?: boolean;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export function nativeSelect(
   options: NativeSelectClassNameOptions = {}
 ): string {
@@ -27,7 +27,7 @@ export function nativeSelect(
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface NativeSelectContainerClassNameOptions {
   className?: string;
@@ -37,7 +37,7 @@ export interface NativeSelectContainerClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function nativeSelectContainer(
   options: NativeSelectContainerClassNameOptions = {}

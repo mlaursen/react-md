@@ -13,7 +13,7 @@ import { Typography, type TypographyProps } from "../typography/Typography.js";
 import { type TypographyType } from "../typography/typographyStyles.js";
 
 /**
- * @remarks \@since 6.0.0 Updated to include additional heading/Typography
+ * @since 6.0.0 Updated to include additional heading/Typography
  * props.
  */
 export interface ExpansionPanelHeaderProps
@@ -129,7 +129,7 @@ export interface ExpansionPanelHeaderProps
  * }
  * ```
  *
- * @remarks \@since 6.0.0 Updated to be wrapped by the {@link Typography}
+ * @since 6.0.0 Updated to be wrapped by the {@link Typography}
  * component and rendered as an `<h6>`.
  */
 export const ExpansionPanelHeader = forwardRef<

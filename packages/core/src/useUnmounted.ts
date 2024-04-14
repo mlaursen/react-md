@@ -29,7 +29,7 @@ import type { NonNullRef } from "./types.js";
  *   return null;
  * }
  * ```
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useUnmounted(): NonNullRef<boolean> {
   const unmounted = useRef(false);

@@ -35,15 +35,14 @@ const noop = (): void => {
 };
 
 /**
- * @remarks
- * \@since 2.5.0
- * \@since 6.0.0 Added the `onInvalid` handler
+ * @since 2.5.0
+ * @since 6.0.0 Added the `onInvalid` handler
  */
 export type TextFieldChangeHandlers<
   E extends HTMLInputElement | HTMLTextAreaElement,
 > = Pick<HTMLAttributes<E>, "onBlur" | "onChange" | "onInvalid">;
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface ErrorChangeHandlerOptions<
   E extends HTMLInputElement | HTMLTextAreaElement,
 > {
@@ -89,15 +88,14 @@ export interface ErrorChangeHandlerOptions<
  * <Button type="submit" disabled={invalid} onClick={submitForm}>Submit</Button>
  * ```
  *
- * @remarks
- * \@since 2.5.0
- * \@since 6.0.0 Changed to object argument.
+ * @since 2.5.0
+ * @since 6.0.0 Changed to object argument.
  */
 export type ErrorChangeHandler<
   E extends HTMLInputElement | HTMLTextAreaElement,
 > = (options: ErrorChangeHandlerOptions<E>) => void;
 
-/** @remarks \@since 2.5.6 */
+/** @since 2.5.6 */
 export interface TextFieldHookState {
   /**
    * The current value for the `TextField` or `TextArea`.
@@ -121,7 +119,7 @@ export interface TextFieldHookState {
  * All the props that will be generated and return from the `useTextField` hook
  * that should be passed to a `FormMessage` component.
  *
- * @remarks \@since 2.5.0
+ * @since 2.5.0
  */
 export interface ProvidedFormMessageProps
   extends Pick<FormMessageProps, "id" | "theme" | "children">,
@@ -132,7 +130,7 @@ export interface ProvidedFormMessageProps
  * All the props that will be generated and returned by the `useTextField` hook
  * that should be passed to a `TextField` component.
  *
- * @remarks \@since 2.5.0
+ * @since 2.5.0
  */
 export interface ProvidedTextFieldProps<
   E extends HTMLInputElement | HTMLTextAreaElement,
@@ -144,13 +142,13 @@ export interface ProvidedTextFieldProps<
    * A ref that must be passed to the `TextField`/`TextArea` so that the custom
    * validity behavior can work.
    *
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   ref: RefCallback<E>;
 }
 
 /**
- * @remarks \@since 2.5.0
+ * @since 2.5.0
  */
 export interface ProvidedTextFieldMessageProps<
   E extends HTMLInputElement | HTMLTextAreaElement,
@@ -162,7 +160,7 @@ export interface ProvidedTextFieldMessageProps<
   messageProps: ProvidedFormMessageProps;
 }
 
-/** @remarks \@since 2.5.6 */
+/** @since 2.5.6 */
 export interface TextFieldHookOptions<
   E extends HTMLInputElement | HTMLTextAreaElement,
 > extends TextFieldValidationOptions,
@@ -315,7 +313,7 @@ export interface TextFieldHookOptions<
   validationType?: TextFieldValidationType;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface TextFieldImplementation<
   E extends HTMLInputElement | HTMLTextAreaElement,
 > extends TextFieldHookState {
@@ -325,14 +323,14 @@ export interface TextFieldImplementation<
   fieldProps: ProvidedTextFieldProps<E>;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface TextFieldWithMessageImplementation<
   E extends HTMLInputElement | HTMLTextAreaElement,
 > extends TextFieldImplementation<E> {
   fieldProps: ProvidedTextFieldMessageProps<E>;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface ValidatedTextFieldImplementation<
   E extends HTMLInputElement | HTMLTextAreaElement,
 > extends TextFieldImplementation<E> {
@@ -468,9 +466,8 @@ export function useTextField<E extends HTMLInputElement | HTMLTextAreaElement>(
  * ```
  *
  * @see https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/Constraint_validation
- * @remarks
- * \@since 2.5.6
- * \@since 6.0.0 This hook returns an object instead of an ordered list.
+ * @since 2.5.6
+ * @since 6.0.0 This hook returns an object instead of an ordered list.
  */
 export function useTextField<E extends HTMLInputElement | HTMLTextAreaElement>(
   options: TextFieldHookOptions<E>

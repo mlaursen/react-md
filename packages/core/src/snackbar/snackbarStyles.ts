@@ -4,9 +4,8 @@ import { bem } from "../utils/bem.js";
 const styles = bem("rmd-snackbar");
 
 /**
- * @remarks
- * \@since 2.0.0
- * \@since 6.0.0 Added the `"top-left"`, `"top-right"`, `"bottom-left"`, and
+ * @since 2.0.0
+ * @since 6.0.0 Added the `"top-left"`, `"top-right"`, `"bottom-left"`, and
  * `"bottom-right"` positions
  */
 export type SnackbarPosition =
@@ -17,7 +16,7 @@ export type SnackbarPosition =
   | "top-left"
   | "top-right";
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface SnackbarClassNameOptions {
   className?: string;
   absolute?: boolean;
@@ -25,7 +24,7 @@ export interface SnackbarClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function snackbar(options: SnackbarClassNameOptions): string {
   const { className, absolute, position } = options;

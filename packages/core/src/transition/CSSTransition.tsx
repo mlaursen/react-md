@@ -10,7 +10,7 @@ import { useCSSTransition } from "./useCSSTransition.js";
 /**
  * @typeParam E - An HTMLElement type used for the ref required for the
  * transition.
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export interface CSSTransitionProps<E extends HTMLElement>
   extends CSSTransitionHookOptions<E>,
@@ -75,7 +75,7 @@ export interface CSSTransitionProps<E extends HTMLElement>
  *
  * @typeParam E - An HTMLElement type used for the ref required for the
  * transition.
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export function CSSTransition<E extends HTMLElement>(
   props: CSSTransitionProps<E>

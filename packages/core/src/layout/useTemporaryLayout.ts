@@ -24,14 +24,14 @@ export interface TemporaryLayoutOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type ProvidedLayoutNavToggleProps = PropsWithChildren<
   Pick<Required<ButtonProps>, "aria-label" | "buttonType" | "onClick">
 >;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type ProvidedTemporaryLayoutNavProps = Pick<
   Required<SheetProps>,
@@ -39,21 +39,21 @@ export type ProvidedTemporaryLayoutNavProps = Pick<
 >;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type ProvidedTemporaryLayoutMainProps = Required<
   Pick<MainProps, "appBarOffset">
 >;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type ProvidedTemporaryLayoutAppBarProps = Required<
   Pick<AppBarProps, "position">
 >;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface TemporaryLayoutImplementation {
   visible: boolean;
@@ -116,7 +116,7 @@ export interface TemporaryLayoutImplementation {
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useTemporaryLayout(
   options: TemporaryLayoutOptions

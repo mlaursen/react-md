@@ -47,7 +47,7 @@ const noop = (): void => {
   // do nothing
 };
 
-/** @remarks \@since 2.8.0 */
+/** @since 2.8.0 */
 export interface TooltipPositioningOptions {
   style?: CSSProperties;
 
@@ -92,9 +92,8 @@ export interface TooltipPositioningOptions {
 }
 
 /**
- * @remarks
- * \@since 2.8.0
- * \@since 6.0.0 Removed the `TooltipTouchEventHandlers` and
+ * @since 2.8.0
+ * @since 6.0.0 Removed the `TooltipTouchEventHandlers` and
  * `TooltipKeyboardEventHandlers` types, removed the need for the `onKeyDown`
  * event.
  */
@@ -110,7 +109,7 @@ export interface TooltippedElementEventHandlers<
   onContextMenu?(event: MouseEvent<E>): void;
 }
 
-/** @remarks \@since 2.8.0 */
+/** @since 2.8.0 */
 export interface ProvidedTooltippedElementProps<E extends HTMLElement>
   extends Required<TooltippedElementEventHandlers<E>> {
   "aria-describedby": string | undefined;
@@ -118,9 +117,8 @@ export interface ProvidedTooltippedElementProps<E extends HTMLElement>
 }
 
 /**
- * @remarks
- * \@since 2.8.0
- * \@since 6.0.0 A major API change for the hover mode behavior and no longer
+ * @since 2.8.0
+ * @since 6.0.0 A major API change for the hover mode behavior and no longer
  * requires a `baseId`/`id` for the tooltip. Also renamed from
  * `TooltipHookOptions` to `TooltipOptions` to match other hook naming
  * conventions.
@@ -198,7 +196,7 @@ export interface TooltipOptions<
    * ```
    *
    * @defaultValue `false`
-   * @remarks \@since 5.1.0
+   * @since 5.1.0
    */
   disabled?: boolean;
 
@@ -229,15 +227,14 @@ export interface TooltipOptions<
    * `event .currentTarget` or `overflowRef` has text overflow.
    *
    * @defaultValue `false`
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   overflowOnly?: boolean;
 }
 
 /**
- * @remarks
- * \@since 2.8.0
- * \@since 6.0.0 This was renamed from `TooltipHookProvidedTooltipProps`
+ * @since 2.8.0
+ * @since 6.0.0 This was renamed from `TooltipHookProvidedTooltipProps`
  */
 export interface ProvidedTooltipProps<E extends HTMLElement = HTMLSpanElement>
   extends Required<FixedPositioningTransitionCallbacks> {
@@ -250,9 +247,8 @@ export interface ProvidedTooltipProps<E extends HTMLElement = HTMLSpanElement>
 }
 
 /**
- * @remarks
- * \@since 2.8.0
- * \@since 6.0.0 No longer returns any properties from the hover mode provider
+ * @since 2.8.0
+ * @since 6.0.0 No longer returns any properties from the hover mode provider
  * because of the major API change to hover mode.. Also renamed from
  * `TooltipHookReturnValue` to `TooltipImplementation` to match other hook
  * naming conventions.
@@ -275,7 +271,7 @@ export interface TooltipImplementation<
   hideTooltip(): void;
 
   /**
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   overflowRef: RefObject<HTMLElement>;
 }
@@ -361,9 +357,8 @@ export interface TooltipImplementation<
  * The tooltip will now remain visible allowing you to find it within the
  * "Inspector" tab in the dev tools.
  *
- * @remarks
- * \@since 2.8.0
- * \@since 6.0.0 Uses a separate `TooltipHoverModeProvider`.
+ * @since 2.8.0
+ * @since 6.0.0 Uses a separate `TooltipHoverModeProvider`.
  *
  * TODO: I need to fix the tooltip for click events and history changes since
  * the mouseleave event will not be correctly bubbled if hovering a child

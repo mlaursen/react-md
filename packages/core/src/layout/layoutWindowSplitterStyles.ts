@@ -4,7 +4,7 @@ import { bem } from "../utils/bem.js";
 const styles = bem("rmd-layout-splitter");
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface LayoutWindowSplitterClassNameOptions {
   className?: string;
@@ -28,7 +28,7 @@ export interface LayoutWindowSplitterClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function layoutWindowSplitter(
   options: LayoutWindowSplitterClassNameOptions = {}

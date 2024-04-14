@@ -18,7 +18,7 @@ const noop = (): void => {
 
 /**
  * @internal
- * @remarks \@since 5.0.0
+ * @since 5.0.0
  */
 export interface MenuItemButtonProps
   extends BaseMenuButtonProps,
@@ -31,7 +31,7 @@ export interface MenuItemButtonProps
  * menuitem for a `DropdownMenu` with a conditional dropdown icon.
  *
  * @internal
- * @remarks \@since 5.0.0
+ * @since 5.0.0
  */
 export const MenuItemButton = forwardRef<HTMLLIElement, MenuItemButtonProps>(
   function MenuItemButton(props, ref) {

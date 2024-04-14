@@ -4,7 +4,7 @@ import { type DividerProps } from "../divider/Divider.js";
 import { divider } from "../divider/styles.js";
 import { useMenuConfiguration } from "./MenuConfigurationProvider.js";
 
-/** @remarks \@since 5.0.0 */
+/** @since 5.0.0 */
 export interface MenuItemSeparatorProps
   extends HTMLAttributes<HTMLLIElement>,
     Pick<DividerProps, "inset" | "vertical"> {}
@@ -16,7 +16,7 @@ export interface MenuItemSeparatorProps
  * will also automatically render itself vertically instead of horizontally if
  * the menu is rendering horizontally.
  *
- * @remarks \@since 5.0.0 Renders as an `<li>` instead of a `<div>` or `<hr />`.
+ * @since 5.0.0 Renders as an `<li>` instead of a `<div>` or `<hr />`.
  */
 export const MenuItemSeparator = forwardRef<
   HTMLLIElement,

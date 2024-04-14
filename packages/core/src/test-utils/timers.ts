@@ -35,7 +35,7 @@ import { jest } from "@jest/globals";
  * });
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const useImmediateRaf = (): jest.SpiedFunction<
   typeof requestAnimationFrame

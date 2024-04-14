@@ -12,9 +12,8 @@ import { useCSSTransition } from "./useCSSTransition.js";
  * The default {@link CSSTransitionClassNames} for a horizontal scale
  * transition.
  *
- * @remarks
- * \@since 2.0.0
- * \@since 6.0.0 The class names were updated to be prefixed with
+ * @since 2.0.0
+ * @since 6.0.0 The class names were updated to be prefixed with
  * `rmd-scale-transition`
  */
 export const SCALE_CLASSNAMES: Readonly<CSSTransitionClassNamesObject> = {
@@ -30,9 +29,8 @@ export const SCALE_CLASSNAMES: Readonly<CSSTransitionClassNamesObject> = {
 /**
  * The default {@link CSSTransitionClassNames} for a vertical scale transition.
  *
- * @remarks
- * \@since 2.0.0
- * \@since 6.0.0 The class names were updated to be prefixed with
+ * @since 2.0.0
+ * @since 6.0.0 The class names were updated to be prefixed with
  * `rmd-scale-y-transition` and merged with the {@link SCALE_CLASSNAMES}
  */
 export const SCALE_Y_CLASSNAMES: Readonly<CSSTransitionClassNamesObject> = {
@@ -52,7 +50,7 @@ export const SCALE_Y_CLASSNAMES: Readonly<CSSTransitionClassNamesObject> = {
  * The default {@link TransitionTimeout} to use for horizontal and vertical
  * scale transitions.
  *
- * @remarks \@since 2.0.0
+ * @since 2.0.0
  */
 export const SCALE_TIMEOUT: Readonly<TransitionTimeoutObject> = {
   enter: 200,
@@ -62,7 +60,7 @@ export const SCALE_TIMEOUT: Readonly<TransitionTimeoutObject> = {
 /**
  * @typeParam E - The HTMLElement type used or the ref required for the
  * transition.
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export interface ScaleTransitionHookOptions<E extends HTMLElement>
   extends PreconfiguredCSSTransitionOptions<E> {
@@ -128,7 +126,7 @@ export interface ScaleTransitionHookOptions<E extends HTMLElement>
  *
  * @typeParam E - The HTMLElement type used or the ref required for the
  * transition.
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export function useScaleTransition<E extends HTMLElement>(
   options: ScaleTransitionHookOptions<E>

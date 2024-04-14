@@ -181,7 +181,7 @@ export function isContrastCompliant(
  * This is pretty much a javascript implementation as the `contrast-color` Sass
  * function.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function contrastColor(
   backgroundColor: string,

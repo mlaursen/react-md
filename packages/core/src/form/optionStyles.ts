@@ -4,7 +4,7 @@ import { bem } from "../utils/bem.js";
 const styles = bem("rmd-option");
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface OptionClassNameOptions {
   className?: string;
@@ -13,7 +13,7 @@ export interface OptionClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function option(options: OptionClassNameOptions): string {
   const { className, icon, selected } = options;

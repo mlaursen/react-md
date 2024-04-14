@@ -14,7 +14,7 @@ import { getPercentage } from "../utils/getPercentage.js";
 import { getRangeSteps } from "../utils/getRangeSteps.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 interface JumpOptions {
@@ -25,7 +25,7 @@ interface JumpOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export const getJumpValue = (options: JumpOptions): number => {
@@ -41,7 +41,7 @@ export const getJumpValue = (options: JumpOptions): number => {
 };
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 type RequiredThumbProps = Pick<
@@ -52,7 +52,7 @@ type RequiredThumbProps = Pick<
 > & { ref: RefObject<HTMLSpanElement> };
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export type ClosestThumbEventHandlersOptions = RenameKeysWithPrefix<
@@ -67,7 +67,7 @@ export type ClosestThumbEventHandlersOptions = RenameKeysWithPrefix<
 /**
  * NOTE: I do not need the mousemove events for this one to work.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export const getClosestThumbEventHandlers = (
@@ -156,7 +156,7 @@ export const getClosestThumbEventHandlers = (
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function getThumbOffset(
   offset: number | undefined,
@@ -174,7 +174,7 @@ export function getThumbOffset(
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export interface ThumbOffsetsOptions {
@@ -190,7 +190,7 @@ export interface ThumbOffsetsOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 interface ThumbOffsets {
@@ -199,7 +199,7 @@ interface ThumbOffsets {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export const getThumbOffsets = (options: ThumbOffsetsOptions): ThumbOffsets => {

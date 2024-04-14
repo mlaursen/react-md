@@ -20,7 +20,7 @@ const noop = (): void => {
 };
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface MenuClassNameOptions {
   className?: string;
@@ -29,7 +29,7 @@ export interface MenuClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function menu(options: MenuClassNameOptions = {}): string {
   const { className, horizontal, elevated } = options;

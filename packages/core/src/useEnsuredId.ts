@@ -17,7 +17,7 @@ import { useId } from "react";
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export function useEnsuredId(

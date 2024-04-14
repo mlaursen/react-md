@@ -4,7 +4,7 @@ import { bem } from "../utils/bem.js";
 const styles = bem("rmd-tablist-button");
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface TabListScrollButtonContainerClassNameOptions {
   className?: string;
@@ -12,7 +12,7 @@ export interface TabListScrollButtonContainerClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function tabListScrollButtonContainer(
   options: TabListScrollButtonContainerClassNameOptions
@@ -29,14 +29,14 @@ export function tabListScrollButtonContainer(
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface TabListScrollButtonClassNameOptions {
   className?: string;
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function tabListScrollButton(
   options: TabListScrollButtonClassNameOptions = {}

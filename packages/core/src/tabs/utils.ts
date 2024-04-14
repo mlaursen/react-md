@@ -46,7 +46,7 @@ export const scrollTabIntoView = (options: ScrollOptions): void => {
 };
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface TabListScrollToOptions {
   isRTL: boolean;
@@ -57,14 +57,14 @@ export interface TabListScrollToOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type GetTabListScrollToOptions = (
   options: TabListScrollToOptions
 ) => ScrollToOptions | undefined;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const getTabListScrollToOptions: GetTabListScrollToOptions = (
   options

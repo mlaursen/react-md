@@ -13,7 +13,7 @@ const noop = (): void => {
 };
 
 /**
- * @remarks \@since 2.8.0
+ * @since 2.8.0
  */
 export interface TooltipPositionHookOptions {
   /**
@@ -50,13 +50,13 @@ export interface TooltipPositionHookOptions {
 
 /**
  * @internal
- * @remarks \@since 2.8.0
+ * @since 2.8.0
  */
 export type UpdateTooltipPosition = (container: HTMLElement) => void;
 
 /**
  * @internal
- * @remarks \@since 2.8.0
+ * @since 2.8.0
  */
 export type TooltipPositionHookReturnValue = [
   SimplePosition,
@@ -68,7 +68,7 @@ export type TooltipPositionHookReturnValue = [
  * within the viewport.
  *
  * @internal
- * @remarks \@since 2.8.0
+ * @since 2.8.0
  */
 export function useTooltipPosition(
   options: TooltipPositionHookOptions

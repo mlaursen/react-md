@@ -3,7 +3,7 @@ import { loop } from "../utils/loop.js";
 import { type FocusableIndexOptions, type TabIndexBehavior } from "./types.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export const isElementDisabled = (element: HTMLElement): boolean =>
@@ -11,7 +11,7 @@ export const isElementDisabled = (element: HTMLElement): boolean =>
   element.getAttribute("aria-disabled") === "true";
 
 /**
- * @remarks \@since 5.0.0
+ * @since 5.0.0
  * @internal
  */
 export const isNotFocusable = (
@@ -30,7 +30,7 @@ export const isNotFocusable = (
 };
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export interface VirtualFocusableIndexOptions {
@@ -40,7 +40,7 @@ export interface VirtualFocusableIndexOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export const getVirtualFocusDefaultIndex = (
@@ -62,7 +62,7 @@ export const getVirtualFocusDefaultIndex = (
 };
 
 /**
- * @remarks \@since 5.0.0
+ * @since 5.0.0
  * @internal
  */
 export const getFirstFocusableIndex = (
@@ -90,7 +90,7 @@ export const getFirstFocusableIndex = (
 };
 
 /**
- * @remarks \@since 5.0.0
+ * @since 5.0.0
  * @internal
  */
 export const getLastFocusableIndex = (
@@ -118,7 +118,7 @@ export const getLastFocusableIndex = (
 };
 
 /**
- * @remarks \@since 5.0.0
+ * @since 5.0.0
  * @internal
  */
 interface NextFocusableIndexOptions extends FocusableIndexOptions {
@@ -128,7 +128,7 @@ interface NextFocusableIndexOptions extends FocusableIndexOptions {
 }
 
 /**
- * @remarks \@since 5.0.0
+ * @since 5.0.0
  * @internal
  */
 export const getNextFocusableIndex = (
@@ -173,7 +173,7 @@ export const getNextFocusableIndex = (
 };
 
 /**
- * @remarks \@since 5.0.0
+ * @since 5.0.0
  * @internal
  */
 export function getSearchText(
@@ -202,7 +202,7 @@ export function getSearchText(
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export interface RecalculateOptions {
@@ -217,7 +217,7 @@ export interface RecalculateOptions {
  * between renders (i.e. expanding all tree items on the same level with `*`).
  * There might be a better way to handle this in the future.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export function recalculateFocusIndex(options: RecalculateOptions): number {
@@ -245,7 +245,7 @@ export function recalculateFocusIndex(options: RecalculateOptions): number {
  * The shift key **is allowed** because holding shift means "search from the
  * beginning" instead of "search from current location".
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export function isSearchableEvent(event: KeyboardEvent): boolean {
@@ -262,7 +262,7 @@ export function isSearchableEvent(event: KeyboardEvent): boolean {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export function isTypeEvent(event: KeyboardEvent): boolean {

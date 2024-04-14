@@ -13,12 +13,12 @@ const noop = (): void => {
  * browser is no longer partially visible or becomes partially visible.
  *
  * @see https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilityState
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type PageInactiveType = "focus" | "visibility";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface PageInactiveOptions {
   /**
@@ -80,7 +80,7 @@ export interface PageInactiveOptions {
  *   return null;
  * }
  * ```
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function usePageInactive(options: PageInactiveOptions): void {
   const {

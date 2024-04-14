@@ -3,12 +3,12 @@ import { bem } from "../utils/bem.js";
 import { randomInt } from "../utils/randomInt.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const skeletonPlaceholder = bem("rmd-skeleton-placeholder");
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface SkeletonPlaceholderRandomOptions {
   /**
@@ -80,7 +80,7 @@ export interface SkeletonPlaceholderRandomOptions {
  *   );
  * }
  * ```
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function randomSkeletonPlaceholder(
   options: SkeletonPlaceholderRandomOptions = {}

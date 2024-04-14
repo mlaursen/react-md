@@ -29,17 +29,17 @@ const noop = (): void => {
  * move the focus outside of the container element. If `Shift + Tab` was used,
  * the last focusable element will be used instead.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type FocusType = "mount" | "unmount" | "keyboard";
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export type FocusContainerTransitionCallbacks = Pick<
   TransitionCallbacks,
   "onEntering" | "onEntered" | "onExiting" | "onExited"
 >;
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface FocusContainerTransitionOptions<E extends HTMLElement>
   extends FocusContainerTransitionCallbacks {
   /**
@@ -49,13 +49,13 @@ export interface FocusContainerTransitionOptions<E extends HTMLElement>
   nodeRef?: Ref<E>;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface FocusContainerEventHandlers<E extends HTMLElement> {
   onKeyDown?: KeyboardEventHandler<E>;
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type IsFocusTypeDisabled = (type: FocusType) => boolean;
 
@@ -71,7 +71,7 @@ export interface FocusContainerComponentProps {
   disableTransition?: boolean;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface FocusContainerOptions<E extends HTMLElement>
   extends FocusContainerTransitionOptions<E>,
     FocusContainerComponentProps {
@@ -92,7 +92,7 @@ export interface FocusContainerOptions<E extends HTMLElement>
   programmatic?: boolean;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface FocusContainerImplementation<E extends HTMLElement> {
   nodeRef: RefObject<E>;
   eventHandlers: Required<FocusContainerEventHandlers<E>>;
@@ -144,7 +144,7 @@ export interface FocusContainerImplementation<E extends HTMLElement> {
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useFocusContainer<E extends HTMLElement>(
   options: FocusContainerOptions<E>

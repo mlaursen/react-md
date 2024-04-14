@@ -2,6 +2,8 @@
 import {
   useRef,
   type FocusEventHandler,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  type InputHTMLAttributes,
   type KeyboardEventHandler,
   type MouseEventHandler,
   type Ref,
@@ -44,7 +46,7 @@ const noop = (): void => {
 };
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const getNonDisabledOptions = (
   container: HTMLElement
@@ -55,12 +57,12 @@ export const getNonDisabledOptions = (
 ];
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type SupportedComboboxPopup = "listbox" | "grid" | "dialog";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ComboboxKeyboardMovementData<
   E extends HTMLElement = HTMLInputElement,
@@ -72,14 +74,14 @@ export interface ComboboxKeyboardMovementData<
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type ExtendComboboxKeyDown<E extends HTMLElement = HTMLInputElement> = (
   movementData: ComboboxKeyboardMovementData<E>
 ) => void;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type ComboboxKeyboardMovementOptions<
   ComboboxEl extends HTMLElement = HTMLInputElement,
@@ -96,7 +98,7 @@ export type ComboboxKeyboardMovementOptions<
 >;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface BaseComboboxOptions<
   ComboboxEl extends HTMLElement = HTMLInputElement,
@@ -141,7 +143,7 @@ export interface BaseComboboxOptions<
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ComboboxOptions<
   ComboboxEl extends HTMLElement = HTMLInputElement,
@@ -155,7 +157,7 @@ export interface ComboboxOptions<
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ComboboxWidgetProps<
   ComboboxEl extends HTMLElement = HTMLInputElement,
@@ -173,7 +175,7 @@ export interface ComboboxWidgetProps<
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ComboboxWidgetPopupProps<
   PopupEl extends HTMLElement = HTMLElement,
@@ -184,7 +186,7 @@ export interface ComboboxWidgetPopupProps<
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type ComboboxTransitionCallbacks = Pick<
   TransitionCallbacks,
@@ -192,14 +194,14 @@ export type ComboboxTransitionCallbacks = Pick<
 >;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ComboboxTransitionOptions extends ComboboxTransitionCallbacks {
   disableTransition?: boolean;
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type ConfigurableComboboxMenuProps = Partial<
   Omit<
@@ -209,7 +211,7 @@ export type ConfigurableComboboxMenuProps = Partial<
 >;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ProvidedComboboxMenuProps<
   ComboboxEl extends HTMLElement = HTMLInputElement,
@@ -232,7 +234,7 @@ export interface ProvidedComboboxMenuProps<
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ComboboxMenuProps<
   ComboboxEl extends HTMLElement = HTMLInputElement,
@@ -253,7 +255,7 @@ export type ComboboxGetMenuProps<
 ) => ComboboxMenuProps<ComboboxEl, PopupEl>;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ComboboxImplementation<
   ComboboxEl extends HTMLElement = HTMLInputElement,
@@ -276,7 +278,7 @@ export interface ComboboxImplementation<
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useCombobox<
   ComboboxEl extends HTMLElement = HTMLInputElement,

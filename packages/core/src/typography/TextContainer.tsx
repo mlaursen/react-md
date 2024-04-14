@@ -5,7 +5,7 @@ import {
 } from "./textContainerStyles.js";
 
 /**
- * @remarks \@since 6.0.0 Removed the `size` option since there is no longer a
+ * @since 6.0.0 Removed the `size` option since there is no longer a
  * different line-length for mobile and desktop.
  */
 export interface TextContainerProps
@@ -41,7 +41,7 @@ export interface TextContainerProps
  *
  * @see {@link textContainer} If you only want to apply this class to an
  * element.
- * @remarks \@since 6.0.0 Removed the `size` option since there is no longer a
+ * @since 6.0.0 Removed the `size` option since there is no longer a
  * different line-length for mobile and desktop.
  */
 export const TextContainer = forwardRef<HTMLDivElement, TextContainerProps>(

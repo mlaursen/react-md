@@ -2,7 +2,7 @@ import { getRangeSteps } from "./getRangeSteps.js";
 import { nearest } from "./nearest.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface GetMiddleOfRangeOptions {
   min: number;
@@ -12,7 +12,7 @@ export interface GetMiddleOfRangeOptions {
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function getMiddleOfRange(options: GetMiddleOfRangeOptions): number {
   const { min, max, step } = options;

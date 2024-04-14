@@ -56,7 +56,6 @@ export interface SVGIconProps
    * This prop **should not** be used with the `children` prop as only one will
    * be rendered.
    *
-   * @remarks
    *
    * NOTE: IE **does not support** external SVGs. Please see the demo for more
    * details.

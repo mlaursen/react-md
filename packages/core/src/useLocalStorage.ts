@@ -5,12 +5,12 @@ import type { UseStateInitializer, UseStateSetter } from "./types.js";
 import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect.js";
 import { identity } from "./utils/identity.js";
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export type LocalStorageSerializer<T> = (value: T) => string;
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export type LocalStorageDeserializer<T> = (item: string) => T;
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface LocalStorageHookOptions<T> {
   /**
    * The local storage key name to use.
@@ -67,12 +67,12 @@ export interface LocalStorageHookOptions<T> {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const defaultLocalStorageSerializer = <T>(value: T): string =>
   typeof value === "string" ? value : `${value}`;
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface GetItemFromStorageOptions<T> {
   /**
    * The storage key to use
@@ -126,7 +126,7 @@ export interface GetItemFromStorageOptions<T> {
  * });
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const getItemFromStorage = <T>(
   options: GetItemFromStorageOptions<T>
@@ -149,7 +149,7 @@ export const getItemFromStorage = <T>(
   }
 };
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface SetItemInStorageOptions<T> {
   key: string;
   value: T;
@@ -189,7 +189,7 @@ export interface SetItemInStorageOptions<T> {
  * });
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const setItemInStorage = <T>(
   options: SetItemInStorageOptions<T>
@@ -212,7 +212,7 @@ export const setItemInStorage = <T>(
 };
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 interface RemoveItemFromStorageOptions {
@@ -223,7 +223,7 @@ interface RemoveItemFromStorageOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export const removeItemFromStorage = (
@@ -241,7 +241,7 @@ export const removeItemFromStorage = (
   }
 };
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface LocalStorageHookReturnValue<T> {
   value: T;
 
@@ -447,7 +447,7 @@ export interface LocalStorageHookReturnValue<T> {
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useLocalStorage<T>(
   options: LocalStorageHookOptions<T>

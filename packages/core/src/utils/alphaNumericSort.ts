@@ -5,14 +5,14 @@ import { type TextExtractor } from "../types.js";
  * The default `Intl.Collator` that should be used for sorting large lists.
  *
  * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare#performance
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const DEFAULT_COLLATOR = new Intl.Collator("en-US", {
   numeric: true,
   caseFirst: "upper",
 });
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface AlphaNumericSortOptions<T> {
   /**
    * The extractor is only required when the list of items are not strings.
@@ -31,7 +31,6 @@ export interface AlphaNumericSortOptions<T> {
    * })`
    * ```
    *
-   * @remarks
    * For javascript developers, this will throw an error in dev mode if an
    * extractor is not provided for non-string lists.
    *

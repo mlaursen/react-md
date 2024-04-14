@@ -21,7 +21,7 @@ import {
 } from "./types.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface InputToggleIconProps {
   /**
@@ -66,7 +66,7 @@ export interface InputToggleIconProps {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface InputToggleLabelProps {
   /**
@@ -144,7 +144,7 @@ export interface InputToggleLabelProps {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface BaseInputToggleProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "size">,
@@ -160,9 +160,8 @@ export interface BaseInputToggleProps
 }
 
 /**
- * @remarks
- * \@since 2.8.5
- * \@since 6.0.0 Removed the `aria-controls` prop and added the
+ * @since 2.8.5
+ * @since 6.0.0 Removed the `aria-controls` prop and added the
  * `indeterminateIcon` prop.
  */
 export interface IndeterminateCheckboxProps {
@@ -186,7 +185,7 @@ export interface IndeterminateCheckboxProps {
    * {@link indeterminate} prop is `true`.
    *
    * @defaultValue `getIcon("checkboxIndeterminate")`
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   indeterminateIcon?: ReactNode;
 }
@@ -195,7 +194,7 @@ export interface CheckboxProps
   extends BaseInputToggleProps,
     IndeterminateCheckboxProps {}
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface CheckboxInputToggleProps extends CheckboxProps {
   type: "checkbox";
 }
@@ -204,19 +203,19 @@ export interface RadioProps extends BaseInputToggleProps {
   /**
    * The value for the radio button.
    *
-   * @remarks \@since 6.0.0 This is now optional and no longer supports
+   * @since 6.0.0 This is now optional and no longer supports
    * `string[]` since there isn't much of a use case for array values.
    */
   value?: string | number;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface RadioInputToggleProps extends RadioProps {
   type: "radio";
 }
 
 /**
- * @remarks \@since 6.0.0 Updated to be a union between
+ * @since 6.0.0 Updated to be a union between
  * `CheckboxInputToggleProps` and `RadioInputToggleProps`
  */
 export type InputToggleProps = CheckboxInputToggleProps | RadioInputToggleProps;
@@ -224,7 +223,7 @@ export type InputToggleProps = CheckboxInputToggleProps | RadioInputToggleProps;
 /**
  * **Client Component**
  *
- * @remarks \@since 6.0.0 Now supports the `FormMessage` behavior and requires
+ * @since 6.0.0 Now supports the `FormMessage` behavior and requires
  * different icons for each checked state.
  */
 export const InputToggle = forwardRef<HTMLInputElement, InputToggleProps>(

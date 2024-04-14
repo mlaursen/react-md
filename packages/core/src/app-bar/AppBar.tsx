@@ -57,7 +57,7 @@ export type AppBarHeight =
   | "dense"
   | "prominent-dense";
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface AppBarClassNameOptions extends Omit<BoxOptions, "fullWidth"> {
   className?: string;
 
@@ -108,7 +108,7 @@ export interface AppBarClassNameOptions extends Omit<BoxOptions, "fullWidth"> {
    * `true` when the {@link position} prop is `true` so that once dialogs and menus
    * become visible the contents in the app bar do not need to be repainted.
    *
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    * @defaultValue `position === "fixed"`
    */
   scrollbarOffset?: boolean;
@@ -118,7 +118,7 @@ export interface AppBarClassNameOptions extends Omit<BoxOptions, "fullWidth"> {
  * Apply the `className`s for a tree component. This will be type-safe if using
  * typescript.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function appBar(options: AppBarClassNameOptions = {}): string {
   const {
@@ -175,7 +175,7 @@ export function appBar(options: AppBarClassNameOptions = {}): string {
   );
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export type CustomAppBarComponent = ElementType<
   HTMLAttributes<HTMLDivElement> & {
     ref?: Ref<HTMLDivElement>;
@@ -184,16 +184,15 @@ export type CustomAppBarComponent = ElementType<
 >;
 
 /**
- * @remarks
- * \@since 6.0.0 Renamed the `component` prop to `as` and updated the default
+ * @since 6.0.0 Renamed the `component` prop to `as` and updated the default
  * value to be a `"div"` when `fixed` is `false`.
- * \@since 6.0.0 Renamed the `fixedElevation` prop to `disableFixedElevation` to
+ * @since 6.0.0 Renamed the `fixedElevation` prop to `disableFixedElevation` to
  * match naming conventions when a feature is enabled by default.
- * \@since 6.0.0 Removed the `inheritColor` and `flexWrap` props since they are
+ * @since 6.0.0 Removed the `inheritColor` and `flexWrap` props since they are
  * no longer required.
- * \@since 6.0.0 Removed the `fixed` prop in favor of the new `position` prop
+ * @since 6.0.0 Removed the `fixed` prop in favor of the new `position` prop
  * which enables position `fixed` or `sticky` behavior.
- * \@since 6.0.0 Added the {@link stacked} and {@link scrollbarOffset} props.
+ * @since 6.0.0 Added the {@link stacked} and {@link scrollbarOffset} props.
  */
 export interface AppBarProps
   extends HTMLAttributes<HTMLDivElement>,
@@ -224,8 +223,7 @@ export interface AppBarProps
  * }
  * ```
  *
- * @remarks
- * \@since 6.0.0 The `AppBar` was updated to use `gap` for spacing
+ * @since 6.0.0 The `AppBar` was updated to use `gap` for spacing
  * instead of requiring the `AppBarNav` and `AppBarAction` components.
  */
 export const AppBar = forwardRef<HTMLDivElement, AppBarProps>(

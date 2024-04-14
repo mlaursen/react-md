@@ -5,7 +5,7 @@ import { type ConfigurableTextFieldAddonProps } from "./types.js";
 
 const styles = bem("rmd-text-field-addon");
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface TextFieldAddonClassNameOptions {
   className?: string;
 
@@ -22,7 +22,7 @@ export interface TextFieldAddonClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function textFieldAddon(
   options: TextFieldAddonClassNameOptions = {}
@@ -40,7 +40,7 @@ export function textFieldAddon(
 }
 
 /**
- * @remarks \@since 6.0.0 Split props into `ConfigurableTextFieldAddonProps`
+ * @since 6.0.0 Split props into `ConfigurableTextFieldAddonProps`
  */
 export interface TextFieldAddonProps extends ConfigurableTextFieldAddonProps {
   /**

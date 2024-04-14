@@ -9,7 +9,7 @@ import {
 import { textArea } from "./textAreaStyles.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export interface ResizingTextAreaWrapperProps
@@ -24,7 +24,7 @@ export interface ResizingTextAreaWrapperProps
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export const ResizingTextAreaWrapper = forwardRef<

@@ -4,21 +4,21 @@ import type { NonNullRef, UseStateSetter } from "./types.js";
 import { useUnmounted } from "./useUnmounted.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type AsyncActionFunction<Args extends unknown[]> = (
   ...args: Args
 ) => Promise<void>;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type HandleAsyncAction = <Args extends unknown[]>(
   action: AsyncActionFunction<Args>
 ) => AsyncActionFunction<Args>;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface AsyncActionOptions {
   /** @defaultValue `false` */
@@ -26,7 +26,7 @@ export interface AsyncActionOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface AsyncActionImplementation {
   pending: boolean;
@@ -162,7 +162,7 @@ export interface AsyncActionImplementation {
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useAsyncAction(
   options: AsyncActionOptions = {}

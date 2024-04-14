@@ -41,11 +41,11 @@ declare module "react" {
  * Note: this should match the `$interaction-mode` SCSS variable.
  *
  * @defaultValue `"ripple"`
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type ElementInteractionMode = "ripple" | "press" | "none";
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface ElementInteractionHandlers<E extends HTMLElement> {
   onBlur: FocusEventHandler<E>;
 
@@ -124,7 +124,7 @@ export interface ElementInteractionHandlers<E extends HTMLElement> {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export interface RippleStyle {
@@ -135,7 +135,7 @@ export interface RippleStyle {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export interface RippleState {
@@ -146,13 +146,13 @@ export interface RippleState {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export type RippleStateList = readonly RippleState[];
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export interface RippleTransitionCallbacks {
@@ -161,7 +161,7 @@ export interface RippleTransitionCallbacks {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export interface ProvidedRippleContainerProps
@@ -170,7 +170,7 @@ export interface ProvidedRippleContainerProps
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export interface ElementInteractionState {

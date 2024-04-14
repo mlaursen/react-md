@@ -23,16 +23,15 @@ const noop = (): void => {
  * This icon is used while the option is unselected so that the selected and
  * unselected options have the same alignment.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const DEFAULT_OPTION_UNSELECTED_ICON = (
   <span className={icon({ type: "svg" })} />
 );
 
 /**
- * @remarks
- * \@since 6.0.0 removed the `selected` and `focused` props.
- * \@since 6.0.0 Added the `value`, `selectedIcon`, `unselectedIcon`,
+ * @since 6.0.0 removed the `selected` and `focused` props.
+ * @since 6.0.0 Added the `value`, `selectedIcon`, `unselectedIcon`,
  * `selectedIconAfter`, and `iconSpacingProps` props.
  */
 export interface OptionProps extends MenuItemProps {
@@ -92,9 +91,8 @@ export interface OptionProps extends MenuItemProps {
  * This component is a wrapper around the {@link MenuItem} to implement custom
  * select option behavior.
  *
- * @remarks
- * \@since 6.0.0 removed the `selected` and `focused` props.
- * \@since 6.0.0 Added the `value`, `selectedIcon`, `unselectedIcon`,
+ * @since 6.0.0 removed the `selected` and `focused` props.
+ * @since 6.0.0 Added the `value`, `selectedIcon`, `unselectedIcon`,
  * `selectedIconAfter`, and `iconSpacingProps` props.
  */
 export const Option = forwardRef<HTMLLIElement, OptionProps>(

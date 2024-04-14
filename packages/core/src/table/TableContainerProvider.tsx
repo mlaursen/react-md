@@ -3,7 +3,7 @@ import { createContext, useContext, type RefObject } from "react";
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface TableContainerContext {
   exists: boolean;
@@ -20,7 +20,7 @@ context.displayName = "TableContainer";
  * **Client Component**
  *
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const { Provider: TableContainerProvider } = context;
 
@@ -29,7 +29,7 @@ export const { Provider: TableContainerProvider } = context;
  * behavior.
  *
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useTableContainer(): Readonly<TableContainerContext> {
   return useContext(context);

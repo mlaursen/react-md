@@ -9,7 +9,7 @@ import { type useWindowSplitter } from "./useWindowSplitter.js";
 const styles = bem("rmd-window-splitter");
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface WindowSplitterClassNameOptions {
   className?: string;
@@ -20,7 +20,7 @@ export interface WindowSplitterClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function windowSplitter(
   options: WindowSplitterClassNameOptions = {}
@@ -47,7 +47,7 @@ export function windowSplitter(
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @see {@link https://www.w3.org/WAI/ARIA/apg/patterns/windowsplitter/}
  */
 export interface BaseWindowSplitterProps
@@ -77,7 +77,7 @@ export interface BaseWindowSplitterProps
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type WindowSplitterProps = LabelRequiredForA11y<BaseWindowSplitterProps>;
 
@@ -86,7 +86,7 @@ export type WindowSplitterProps = LabelRequiredForA11y<BaseWindowSplitterProps>;
  * Most likely a client component since it relies on `useWindowSplitter`
  *
  * @see {@link useWindowSplitter} for an example usage
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const WindowSplitter = forwardRef<
   HTMLButtonElement,

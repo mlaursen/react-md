@@ -8,7 +8,7 @@ import { useScrollLock } from "./useScrollLock.js";
  * components to ensure the scroll lock is active only while the element is
  * rendered.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function ScrollLock(): null {
   useScrollLock(true);

@@ -21,7 +21,7 @@ import {
 } from "./useResizingTextArea.js";
 
 /**
- * @remarks \@since 6.0.0 Added `containerProps`.
+ * @since 6.0.0 Added `containerProps`.
  */
 export interface TextAreaProps
   extends FormFieldOptions,

@@ -22,7 +22,7 @@ export type ListItemHeight =
 export type ListItemAddonPosition = "top" | "middle" | "bottom";
 export type ListItemAddonType = "icon" | "avatar" | "media" | "large-media";
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface ListItemChildrenAddonProps {
   /**
    * An optional addon to display to the left of the `primaryText` or
@@ -48,7 +48,7 @@ export interface ListItemChildrenAddonProps {
   leftAddonPosition?: ListItemAddonPosition;
 
   /**
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   leftAddonClassName?: string;
 
@@ -57,7 +57,7 @@ export interface ListItemChildrenAddonProps {
    * apply the correct styling.
    *
    * @defaultValue `leftAddonType === "media" || leftAddonType === "large-media"`
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   leftAddonForceWrap?: boolean;
 
@@ -94,7 +94,7 @@ export interface ListItemChildrenAddonProps {
   rightAddonPosition?: ListItemAddonPosition;
 
   /**
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   rightAddonClassName?: string;
 
@@ -103,7 +103,7 @@ export interface ListItemChildrenAddonProps {
    * apply the correct styling.
    *
    * @defaultValue `rightAddonType === "media" || rightAddonType === "large-media"`
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   rightAddonForceWrap?: boolean;
 
@@ -118,7 +118,7 @@ export interface ListItemChildrenAddonProps {
    * When this is set to `true`, the flex styles will not be applied.
    *
    * @defaultValue `false`
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   disableLeftAddonCenteredMedia?: boolean;
 
@@ -133,7 +133,7 @@ export interface ListItemChildrenAddonProps {
    * When this is set to `true`, the flex styles will not be applied.
    *
    * @defaultValue `false`
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   disableRightAddonCenteredMedia?: boolean;
 }
@@ -143,7 +143,7 @@ export interface ListItemChildrenAddonProps {
  * {@link ListItemChildrenAddonProps} with renamed versions but should still
  * support everything for rendering text.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ListItemChildrenTextProps {
   /**
@@ -157,7 +157,7 @@ export interface ListItemChildrenTextProps {
    * Any additional props that should be passed to the `<span>` surrounding
    * the {@link children}, {@link primaryText}, and {@link secondaryText}.
    *
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   textProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>;
 
@@ -177,7 +177,7 @@ export interface ListItemChildrenTextProps {
    * Set this to `true` if the {@link children} should not automatically be
    * wrapped in the `ListItemText` component.
    *
-   * @remarks \@since 6.0.0 Renamed from `textChildren` since it was defaulted on.
+   * @since 6.0.0 Renamed from `textChildren` since it was defaulted on.
    * @defaultValue `false`
    */
   disableTextChildren?: boolean;
@@ -203,7 +203,7 @@ export interface ListItemChildrenTextProps {
    * Any additional props that should be passed to the `<span>` surrounding
    * the {@link secondaryText}.
    *
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   secondaryTextProps?: PropsWithRef<
     HTMLAttributes<HTMLSpanElement>,

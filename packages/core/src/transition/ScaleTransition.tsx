@@ -10,10 +10,9 @@ import {
 /**
  * @typeParam E - The HTMLElement type used or the ref required for the
  * transition.
- * @remarks
- * \@since 2.0.0
- * \@since 4.0.0 The typeParam was added
- * \@since 6.0.0 Removed portal props
+ * @since 2.0.0
+ * @since 4.0.0 The typeParam was added
+ * @since 6.0.0 Removed portal props
  */
 export interface ScaleTransitionProps<E extends HTMLElement>
   extends CSSTransitionComponentImplementation<E>,
@@ -61,10 +60,9 @@ export interface ScaleTransitionProps<E extends HTMLElement>
  *
  * @typeParam E - The HTMLElement type used or the ref required for the
  * transition.
- * @remarks
- * \@since 2.0.0
- * \@since 4.0.0 The typeParam was added and the API was updated.
- * \@since 6.0.0 Removed the built-in support for portalling.
+ * @since 2.0.0
+ * @since 4.0.0 The typeParam was added and the API was updated.
+ * @since 6.0.0 Removed the built-in support for portalling.
  */
 export function ScaleTransition<E extends HTMLElement>(
   props: ScaleTransitionProps<E>

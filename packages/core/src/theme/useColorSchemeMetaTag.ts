@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { type ColorScheme } from "./useColorScheme.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ColorSchemeMetaTagOptions {
   /**
@@ -19,7 +19,7 @@ export interface ColorSchemeMetaTagOptions {
  * should not be used if you are using the `useColorSchemeProvider` since it is
  * already built in.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useColorSchemeMetaTag(
   options: ColorSchemeMetaTagOptions

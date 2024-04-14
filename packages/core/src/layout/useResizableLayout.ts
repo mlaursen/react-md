@@ -13,7 +13,7 @@ import {
 } from "./useLayoutWindowSplitter.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ResizableLayoutOptions
   extends ExpandableLayoutOptions,
@@ -28,7 +28,7 @@ export interface ResizableLayoutOptions
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ProvidedResizableLayoutNavProps
   extends ProvidedLayoutNavProps {
@@ -36,7 +36,7 @@ export interface ProvidedResizableLayoutNavProps
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ResizableLayoutImplementation
   extends ExpandableLayoutImplementation {
@@ -107,7 +107,7 @@ export interface ResizableLayoutImplementation
  *   }
  * }
  * ```
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useResizableLayout(
   options: ResizableLayoutOptions

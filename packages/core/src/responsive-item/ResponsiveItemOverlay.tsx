@@ -9,7 +9,7 @@ const styles = bem("rmd-responsive-item-overlay");
  * the sizes are self-explanatory, but the `middle` position will be centered
  * vertically while `center` will be centered `horizontally`.
  *
- * @remarks \@since 6.0.0 Renamed from `MediaOverlayPosition` to
+ * @since 6.0.0 Renamed from `MediaOverlayPosition` to
  * `ResponsiveItemOverlayProps`.
  */
 export type ResponsiveItemOverlayPosition =
@@ -21,7 +21,7 @@ export type ResponsiveItemOverlayPosition =
   | "center"
   | "absolute-center";
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface ResponsiveItemOverlayClassNameOptions {
   className?: string;
   /** @defaultValue `"bottom"` */
@@ -29,7 +29,7 @@ export interface ResponsiveItemOverlayClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function responsiveItemOverlay(
   options: ResponsiveItemOverlayClassNameOptions = {}
@@ -47,7 +47,7 @@ export function responsiveItemOverlay(
 }
 
 /**
- * @remarks \@since 6.0.0 Renamed from `MediaOverlayProps` to
+ * @since 6.0.0 Renamed from `MediaOverlayProps` to
  * `ResponsiveItemOverlayProps`.
  */
 export interface ResponsiveItemOverlayProps
@@ -79,7 +79,7 @@ export interface ResponsiveItemOverlayProps
  *
  * @see {@link ResponsiveItemOverlayPosition}
  *
- * @remarks \@since 6.0.0 Renamed from `MediaOverlay` to `ResponsiveItemOverlay`
+ * @since 6.0.0 Renamed from `MediaOverlay` to `ResponsiveItemOverlay`
  * and renders as a `<span>` instead of a `<div>`.
  */
 export const ResponsiveItemOverlay = forwardRef<

@@ -5,7 +5,7 @@ const styles = bem("rmd-dialog");
 
 export type DialogType = "full-page" | "centered" | "custom";
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface DialogClassNameOptions {
   className?: string;
 
@@ -25,7 +25,7 @@ export interface DialogClassNameOptions {
   outline?: boolean;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export function dialog(options: DialogClassNameOptions = {}): string {
   const {
     type = "centered",
@@ -45,12 +45,12 @@ export function dialog(options: DialogClassNameOptions = {}): string {
   );
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface DialogHeaderClassNameOptions {
   className?: string;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export function dialogHeader(
   options: DialogHeaderClassNameOptions = {}
 ): string {
@@ -59,7 +59,7 @@ export function dialogHeader(
   return cnb(styles("header"), className);
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface DialogContentClassNameOptions {
   className?: string;
 
@@ -67,7 +67,7 @@ export interface DialogContentClassNameOptions {
   disablePadding?: boolean;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export function dialogContent(
   options: DialogContentClassNameOptions = {}
 ): string {
@@ -81,7 +81,7 @@ export function dialogContent(
  * of dialog footers are used to contain action buttons, the default alignment
  * is near the end.
  *
- * @remarks \@since 3.1.0
+ * @since 3.1.0
  */
 export type DialogFooterAlignment =
   | "none"
@@ -91,7 +91,7 @@ export type DialogFooterAlignment =
   | "stacked-start"
   | "stacked-end";
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface DialogFooterClassNameOptions {
   className?: string;
 
@@ -99,7 +99,7 @@ export interface DialogFooterClassNameOptions {
   align?: DialogFooterAlignment;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export function dialogFooter(
   options: DialogFooterClassNameOptions = {}
 ): string {

@@ -1,4 +1,4 @@
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface RandomIntOptions {
   /** @defaultValue `0` */
   min?: number;
@@ -12,7 +12,7 @@ export interface RandomIntOptions {
  *
  * @param options - the {@link RandomIntOptions}
  * @returns a random number
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function randomInt(options: RandomIntOptions = {}): number {
   const { min = 0, max = 10 } = options;

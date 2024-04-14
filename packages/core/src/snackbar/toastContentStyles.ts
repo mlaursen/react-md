@@ -4,7 +4,7 @@ import { bem } from "../utils/bem.js";
 const styles = bem("rmd-toast-content");
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ToastContentClassNameOptions {
   className?: string;
@@ -19,7 +19,7 @@ export interface ToastContentClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function toastContent(
   options: ToastContentClassNameOptions = {}

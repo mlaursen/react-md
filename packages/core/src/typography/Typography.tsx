@@ -15,7 +15,7 @@ import {
  * be rendered as. This is mostly used for adding the correct `HTMLAttributes`
  * and enabling the forward ref.
  *
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export type TypographyHTMLElement =
   | HTMLHeadingElement
@@ -26,7 +26,7 @@ export type TypographyHTMLElement =
   | HTMLBodyElement
   | HTMLHtmlElement;
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export type CustomTypographyComponent = ElementType<
   HTMLAttributes<TypographyHTMLElement> & { className: string }
 >;

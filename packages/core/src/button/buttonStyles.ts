@@ -58,7 +58,7 @@ export type ButtonTheme = ThemeColor | "clear" | "disabled";
  */
 export type ButtonThemeType = "flat" | "outline" | "contained";
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface ButtonClassNameThemeOptions {
   className?: string;
 
@@ -95,7 +95,7 @@ export interface ButtonClassNameThemeOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ButtonClassNameOptions extends ButtonClassNameThemeOptions {
   /** @defaultValue `false` */
@@ -111,7 +111,7 @@ export interface ButtonClassNameOptions extends ButtonClassNameThemeOptions {
  * @param options - An object containing the themeable button props to generate a
  * button theme className.
  * @returns a string of class names to create an element with a button theme.
- * @remarks \@since 6.0.0 This used to be called `buttonThemeClassNames`.
+ * @since 6.0.0 This used to be called `buttonThemeClassNames`.
  */
 export function button(options: ButtonClassNameOptions = {}): string {
   const {

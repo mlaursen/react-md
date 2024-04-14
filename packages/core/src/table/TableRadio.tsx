@@ -10,7 +10,7 @@ const noop = (): void => {
 };
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type TableRadioTdHTMLAttributes = Omit<
   TdHTMLAttributes<HTMLTableCellElement>,
@@ -18,7 +18,7 @@ export type TableRadioTdHTMLAttributes = Omit<
 >;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type TableRadioSupportedRadioProps = Pick<
   RadioProps,
@@ -38,7 +38,7 @@ export type TableRadioSupportedRadioProps = Pick<
 >;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface TableRadioProps
   extends TableRadioTdHTMLAttributes,
@@ -65,7 +65,7 @@ export interface TableRadioProps
    * ```
    *
    * @see {@link TableRadioSupportedRadioProps}
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   radioProps?: PropsWithRef<RadioProps, HTMLInputElement>;
 }
@@ -135,7 +135,7 @@ export interface TableRadioProps
  *   );
  * }
  * ```
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const TableRadio = forwardRef<HTMLTableCellElement, TableRadioProps>(
   function TableRadio(props, ref) {

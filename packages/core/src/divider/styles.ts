@@ -3,7 +3,7 @@ import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-divider");
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface DividerClassNameOptions {
   className?: string;
 
@@ -34,7 +34,7 @@ export interface DividerClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function divider(options: DividerClassNameOptions = {}): string {
   const { inset = false, vertical = false, className } = options;

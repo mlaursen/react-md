@@ -16,7 +16,7 @@ declare module "react" {
 const styles = bem("rmd-icon");
 const rotatorStyles = bem("rmd-icon-rotator");
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface SVGIconClassNameOptions {
   className?: string;
 
@@ -60,7 +60,7 @@ export interface SVGIconClassNameOptions {
   inline?: boolean;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface FontIconClassNameOptions extends SVGIconClassNameOptions {
   /**
    * The font icon class name to use.
@@ -70,18 +70,18 @@ export interface FontIconClassNameOptions extends SVGIconClassNameOptions {
   iconClassName?: string;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface MaterialIconClassNameOptions extends SVGIconClassNameOptions {
   family: MaterialIconFamily;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface MaterialSymbolClassNameOptions
   extends SVGIconClassNameOptions {
   family: MaterialSymbolFamily;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export type IconClassNameOptions =
   | ({ type: "font" } & FontIconClassNameOptions)
   | ({ type: "svg" } & SVGIconClassNameOptions)
@@ -90,7 +90,7 @@ export type IconClassNameOptions =
 
 /**
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function icon(options: IconClassNameOptions): string {
   const {
@@ -133,7 +133,7 @@ export function icon(options: IconClassNameOptions): string {
   );
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface IconRotatorClassNameOptions {
   className?: string;
 
@@ -152,7 +152,7 @@ export interface IconRotatorClassNameOptions {
 
 /**
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function iconRotator(options: IconRotatorClassNameOptions): string {
   const { className, rotated, disableTransition = false } = options;

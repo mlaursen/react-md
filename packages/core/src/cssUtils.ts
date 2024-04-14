@@ -7,7 +7,7 @@ import { cnb } from "cnbuilder";
  * - `success -> $success-color`
  * - `error -> $error-color`
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type ThemeColor =
   | "primary"
@@ -22,7 +22,7 @@ export type ThemeColor =
  * - `text-hint -> $text-hint-color`
  * - `text-disabled -> $text-disabled-color`
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type TextColor =
   | "text-primary"
@@ -32,12 +32,12 @@ export type TextColor =
   | `on-${ThemeColor}`;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type OutlineColor = ThemeColor | "greyscale" | "current-color";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type BackgroundColor = ThemeColor | "surface" | "current-color";
 
@@ -55,7 +55,7 @@ export type FontStyle = "italic" | "oblique" | "normal";
  *
  * @see {@link https://www.google.com/search?q=web+safe+fonts | Web Safe Fonts}
  * @see {@link https://www.google.com/search?q=variable+fonts | Variable FOnts}
- * @remarks \@since 6.0.0 This was `TextWeight` beforehand.
+ * @since 6.0.0 This was `TextWeight` beforehand.
  */
 export type FontWeight =
   | "thin"
@@ -77,14 +77,14 @@ export type FontWeight =
  * - top and bottom margin by setting this prop to `"none"`
  * - or keep the initial behavior: `"initial"`
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type Margin = "none" | "top" | "bottom" | "centered";
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export type TextOverflow = "allow" | "nowrap" | "ellipsis";
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface TextCssUtilsOptions {
   textColor?: ThemeColor | TextColor;
 
@@ -116,7 +116,7 @@ export interface TextCssUtilsOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface CssUtilsOptions extends TextCssUtilsOptions {
   className?: string;
@@ -176,7 +176,7 @@ export interface CssUtilsOptions extends TextCssUtilsOptions {
  * - text-align, text-decoration, text-transform, font-style, font-weight
  * - disable line wrap
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function cssUtils(options: CssUtilsOptions): string {
   const {

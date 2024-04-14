@@ -7,7 +7,7 @@ import { useMaxWidthTransition } from "../transition/useMaxWidthTransition.js";
 import { segmentedButton } from "./segmentedButtonStyles.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface SegmentedButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -98,7 +98,7 @@ export interface SegmentedButtonProps
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const SegmentedButton = forwardRef<
   HTMLButtonElement,

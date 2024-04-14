@@ -24,7 +24,7 @@ import { type TooltipHoverModeProvider } from "./tooltip/TooltipHoverModeProvide
 import { type WritingDirectionProvider } from "./typography/WritingDirectionProvider.js";
 /* eslint-enable @typescript-eslint/no-unused-vars */
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface ReactMDCoreConfiguration {
   /**
    * Set this to `true` if you are using SSR. This will update some hook
@@ -51,7 +51,7 @@ export interface ReactMDCoreConfiguration {
   portalContainer?: PortalContainer;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface CoreProvidersProps extends ReactMDCoreConfiguration {
   children: ReactNode;
 }
@@ -85,7 +85,7 @@ export interface CoreProvidersProps extends ReactMDCoreConfiguration {
  * - {@link Snackbar} - This isn't a provider but this is how you can display
  *   alerts in your app
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function CoreProviders(props: CoreProvidersProps): ReactElement {
   const {

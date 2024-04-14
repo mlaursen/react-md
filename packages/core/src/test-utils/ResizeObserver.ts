@@ -5,7 +5,7 @@ import {
 } from "../useResizeObserver.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ResizeObserverEntrySize {
   height?: number;
@@ -13,7 +13,7 @@ export interface ResizeObserverEntrySize {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type GetResizeObserverEntryMock = (
   target: Element,
@@ -24,7 +24,7 @@ export type GetResizeObserverEntryMock = (
  * This is mostly an internal function to be used with the {@link ResizeObserverMock}
  * and {@link setupResizeObserverMock}
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const createResizeObserverEntry: GetResizeObserverEntryMock = (
   target,
@@ -57,7 +57,7 @@ export const createResizeObserverEntry: GetResizeObserverEntryMock = (
  * exist in jsdom. You normally should not use this directly and instead use the
  * {@link setupResizeObserverMock} instead.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export class ResizeObserverMock implements ResizeObserver {
   elements: Set<Element>;
@@ -190,7 +190,7 @@ export class ResizeObserverMock implements ResizeObserver {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface SetupResizeObserverMockOptions {
   /**
@@ -282,7 +282,7 @@ export interface SetupResizeObserverMockOptions {
  * })
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function setupResizeObserverMock(
   options: SetupResizeObserverMockOptions = {}
@@ -305,7 +305,7 @@ export function setupResizeObserverMock(
 
 /**
  * @see {@link setupResizeObserverMock}
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function cleanupResizeObserverAfterEach(restoreAllMocks = true): void {
   afterEach(() => {

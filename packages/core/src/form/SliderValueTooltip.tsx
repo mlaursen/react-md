@@ -23,9 +23,8 @@ const VERTICAL_CLASS_NAMES: CSSTransitionClassNames = {
 
 /**
  * @internal
- * @remarks
- * \@since 2.5.0
- * \@since 6.0.0 Renamed from `SliderValueProps` to `SliderValueTooltipProps`.
+ * @since 2.5.0
+ * @since 6.0.0 Renamed from `SliderValueProps` to `SliderValueTooltipProps`.
  */
 export interface SliderValueTooltipProps extends TooltipProps {
   index: 1 | 2;
@@ -41,9 +40,8 @@ export interface SliderValueTooltipProps extends TooltipProps {
  * tooltip when needed.
  *
  * @internal
- * @remarks
- * \@since 2.5.0
- * \@since 6.0.0 Renamed from `SliderValue` to `SliderValueTooltip`.
+ * @since 2.5.0
+ * @since 6.0.0 Renamed from `SliderValue` to `SliderValueTooltip`.
  */
 export function SliderValueTooltip(
   props: SliderValueTooltipProps

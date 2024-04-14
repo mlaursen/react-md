@@ -5,7 +5,7 @@ import { Children, cloneElement, isValidElement } from "react";
 import { maxWidthTransition } from "./maxWidthTransition.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface MaxWidthTransitionOptions {
   element: ReactNode;
@@ -17,7 +17,7 @@ export interface MaxWidthTransitionOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useMaxWidthTransition(
   options: MaxWidthTransitionOptions

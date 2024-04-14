@@ -4,14 +4,14 @@ import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-fieldset");
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface FieldsetClassNameOptions {
   className?: string;
 
   /**
    * Set this to `true` to enable the default browser styles for a fieldset.
    *
-   * @remarks \@since 6.0.0 This was renamed from `unstyled`.
+   * @since 6.0.0 This was renamed from `unstyled`.
    * @defaultValue `false`
    */
   browserStyles?: boolean;
@@ -23,7 +23,7 @@ export interface FieldsetClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function fieldset(options: FieldsetClassNameOptions = {}): string {
   const { className, fullWidth, browserStyles = false } = options;
@@ -37,7 +37,7 @@ export function fieldset(options: FieldsetClassNameOptions = {}): string {
 /**
  * **Server Component**
  *
- * @remarks \@since 6.0.0 Removed the `legend`, `legendStyle`,
+ * @since 6.0.0 Removed the `legend`, `legendStyle`,
  * `legendClassName`, and `legendSROnly` props. You must provide a `Legend`
  * yourself manually instead of using a prop.
  */

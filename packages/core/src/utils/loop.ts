@@ -1,5 +1,5 @@
 /**
- * @remarks \@since 2.7.0
+ * @since 2.7.0
  * @internal
  */
 export interface LoopOptions {
@@ -41,7 +41,7 @@ export interface LoopOptions {
  *
  * @internal
  * @param options - {@link LoopOptions}
- * @remarks \@since 2.7.0 The `min` option was added and the arguments changed to an
+ * @since 2.7.0 The `min` option was added and the arguments changed to an
  * object
  */
 export function loop(options: LoopOptions): number {

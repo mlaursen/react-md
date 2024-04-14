@@ -3,14 +3,14 @@ import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-menu-item-input-toggle");
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface MenuItemInputToggleClassNameOptions {
   className?: string;
   type: "radio" | "checkbox" | "switch";
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function menuItemInputToggle(
   options: MenuItemInputToggleClassNameOptions
@@ -24,14 +24,14 @@ export function menuItemInputToggle(
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface MenuItemInputToggleTrackClassNameOptions {
   className?: string;
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function menuItemInputToggleTrack(
   options: MenuItemInputToggleTrackClassNameOptions = {}
@@ -42,14 +42,14 @@ export function menuItemInputToggleTrack(
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface MenuItemInputToggleBallClassNameOptions {
   className?: string;
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function menuItemInputToggleBall(
   options: MenuItemInputToggleBallClassNameOptions = {}
@@ -60,14 +60,14 @@ export function menuItemInputToggleBall(
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface MenuItemInputToggleIconClassNameOptions {
   className?: string;
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function menuItemInputToggleIcon(
   options: MenuItemInputToggleIconClassNameOptions = {}

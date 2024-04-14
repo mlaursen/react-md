@@ -3,7 +3,7 @@ import type { KeyboardMovementConfig } from "./types.js";
 /**
  * Most custom keyboard functionality use these keys.
  *
- * @remarks \@since 5.0.0
+ * @since 5.0.0
  * @internal
  */
 export const DEFAULT_KEYBOARD_MOVEMENT: Readonly<KeyboardMovementConfig> = {
@@ -14,7 +14,7 @@ export const DEFAULT_KEYBOARD_MOVEMENT: Readonly<KeyboardMovementConfig> = {
 };
 
 /**
- * @remarks \@since 5.1.2
+ * @since 5.1.2
  * @internal
  */
 export const DEFAULT_LTR_KEYBOARD_MOVEMENT: Readonly<KeyboardMovementConfig> = {
@@ -25,7 +25,7 @@ export const DEFAULT_LTR_KEYBOARD_MOVEMENT: Readonly<KeyboardMovementConfig> = {
 };
 
 /**
- * @remarks \@since 5.1.2
+ * @since 5.1.2
  * @internal
  */
 export const DEFAULT_RTL_KEYBOARD_MOVEMENT: Readonly<KeyboardMovementConfig> = {

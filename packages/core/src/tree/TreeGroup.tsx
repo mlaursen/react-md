@@ -6,7 +6,7 @@ import { useTreeContext } from "./TreeProvider.js";
 import { treeGroup } from "./styles.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface OverridableTreeGroupProps extends ListProps {
   /** @defaultValue `false` */
@@ -18,7 +18,7 @@ export interface OverridableTreeGroupProps extends ListProps {
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface TreeGroupProps extends OverridableTreeGroupProps {
   children: ReactNode;
@@ -30,7 +30,7 @@ export interface TreeGroupProps extends OverridableTreeGroupProps {
  * **Client Component**
  *
  * @internal
- * @remarks \@since 6.0.0 Removed the collapse options and is no longer a
+ * @since 6.0.0 Removed the collapse options and is no longer a
  * "public" component.
  */
 export const TreeGroup = forwardRef<HTMLUListElement, TreeGroupProps>(

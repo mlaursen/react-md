@@ -7,9 +7,8 @@ const noop = (): void => {
 };
 
 /**
- * @remarks
- * \@since 5.1.3
- * \@since 6.0.0 The element type is dynamically inferred on each handler
+ * @since 5.1.3
+ * @since 6.0.0 The element type is dynamically inferred on each handler
  * instead of the `DropzoneHandlers` type.
  */
 export interface DropzoneHandlers {
@@ -20,7 +19,7 @@ export interface DropzoneHandlers {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface DropzoneOptions extends DropzoneHandlers {
   /**
@@ -34,9 +33,8 @@ export interface DropzoneOptions extends DropzoneHandlers {
 }
 
 /**
- * @remarks
- * \@since 2.9.0
- * \@since 6.0.0 Returns an object instead of an ordered array of
+ * @since 2.9.0
+ * @since 6.0.0 Returns an object instead of an ordered array of
  * `[isOver: boolean, dropzoneHandlers: DropzoneHandlers]`. Also returns a new
  * `isDragging` state.
  */
@@ -132,9 +130,8 @@ export interface DropzoneHookReturnValue {
  * }
  * ```
  *
- * @remarks
- * \@since 2.9.0
- * \@since 6.0.0 Supports document-level dragging flag;
+ * @since 2.9.0
+ * @since 6.0.0 Supports document-level dragging flag;
  */
 export function useDropzone(options: DropzoneOptions): DropzoneHookReturnValue {
   const {

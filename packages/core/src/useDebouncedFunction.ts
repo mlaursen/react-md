@@ -4,7 +4,7 @@ import { type CancelableFunction, type AnyFunction } from "./types.js";
 import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type DebouncedFunction<F extends AnyFunction> = CancelableFunction<
   (...args: Parameters<F>) => void
@@ -85,7 +85,7 @@ export type DebouncedFunction<F extends AnyFunction> = CancelableFunction<
  *
  * @see `useThrottledFunction` for throttle behavior instead. (Call a
  * function at most once every X milliseconds).
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useDebouncedFunction<F extends AnyFunction>(
   func: F,

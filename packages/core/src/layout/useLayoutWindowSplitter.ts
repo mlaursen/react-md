@@ -10,7 +10,7 @@ import {
 } from "../window-splitter/useWindowSplitter.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface LayoutWindowSplitterOptions
   extends Omit<WindowSplitterOptions, "min" | "max"> {
@@ -48,7 +48,7 @@ export interface LayoutWindowSplitterOptions
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ProvidedLayoutWindowSplitterProps
   extends WindowSplitterWidgetProps<HTMLButtonElement> {
@@ -57,7 +57,7 @@ export interface ProvidedLayoutWindowSplitterProps
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface LayoutWindowSplitterImplementation
   extends WindowSplitterImplementation {
@@ -105,7 +105,7 @@ export interface LayoutWindowSplitterImplementation
  * ```
  *
  * @see {@link useResizableLayout} For a pre-built solution.
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useLayoutWindowSplitter(
   options: LayoutWindowSplitterOptions = {}

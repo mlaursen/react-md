@@ -28,7 +28,7 @@ declare module "react" {
 }
 
 /**
- * @remarks \@since 6.0.0 Renamed the `noninteractive` prop to
+ * @since 6.0.0 Renamed the `noninteractive` prop to
  * `noninteractable`.
  */
 export interface ChipProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -86,7 +86,7 @@ export interface ChipProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    * {@link rightAddon} instead of the {@link leftAddon}.
    *
    * @defaultValue `false`
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   selectedIconAfter?: boolean;
 
@@ -101,9 +101,8 @@ export interface ChipProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Set this to `true` to render the chip as a `<span>` instead of a button.
    *
-   * @remarks
-   * \@since 2.6.0
-   * \@since 6.0.0 Renamed from `noninteractable`
+   * @since 2.6.0
+   * @since 6.0.0 Renamed from `noninteractable`
    * @defaultValue `false`
    */
   noninteractive?: boolean;
@@ -111,7 +110,7 @@ export interface ChipProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * An optional background color theme to use.
    *
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   backgroundColor?: BackgroundColor;
 
@@ -141,7 +140,7 @@ export interface ChipProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * This will be ignored if {@link disableContentWrap} is `true`.
    *
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   contentProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>;
 
@@ -204,7 +203,7 @@ export interface ChipProps extends ButtonHTMLAttributes<HTMLButtonElement> {
  * }
  * ```
  *
- * @remarks \@since 6.0.0 Renamed the `noninteractable` prop to
+ * @since 6.0.0 Renamed the `noninteractable` prop to
  * `noninteractive`.
  */
 export const Chip = forwardRef<HTMLButtonElement, ChipProps>(

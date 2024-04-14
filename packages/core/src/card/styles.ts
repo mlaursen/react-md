@@ -4,7 +4,7 @@ import { cssUtils } from "../cssUtils.js";
 
 const cardStyles = bem("rmd-card");
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface CardClassNameOptions {
   className?: string;
 
@@ -43,7 +43,7 @@ export interface CardClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function card(options: CardClassNameOptions = {}): string {
   const { className, bordered, raisable, fullWidth, interactable } = options;
@@ -60,7 +60,7 @@ export function card(options: CardClassNameOptions = {}): string {
   );
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface CardHeaderClassNameOptions {
   className?: string;
 
@@ -72,7 +72,7 @@ export interface CardHeaderClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function cardHeader(options: CardHeaderClassNameOptions = {}): string {
   const { className, addonAfter = false, addonBefore = false } = options;
@@ -87,13 +87,13 @@ export function cardHeader(options: CardHeaderClassNameOptions = {}): string {
   );
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface CardHeaderContentClassNameOptions {
   className?: string;
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function cardHeaderContent(
   options: CardHeaderContentClassNameOptions = {}
@@ -103,13 +103,13 @@ export function cardHeaderContent(
   return cnb(cardStyles("header-content"), className);
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface CardTitleClassNameOptions {
   className?: string;
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function cardTitle(options: CardTitleClassNameOptions = {}): string {
   const { className } = options;
@@ -117,13 +117,13 @@ export function cardTitle(options: CardTitleClassNameOptions = {}): string {
   return cnb(cardStyles("title"), className);
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface CardSubtitleClassNameOptions {
   className?: string;
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function cardSubtitle(
   options: CardSubtitleClassNameOptions = {}
@@ -137,7 +137,7 @@ export function cardSubtitle(
   );
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface CardContentClassNameOptions {
   className?: string;
 
@@ -160,13 +160,13 @@ export interface CardContentClassNameOptions {
    * `CardContent` component is the last child.
    *
    * @defaultValue `false`
-   * @remarks \@since 6.0.0 Renamed from `disableExtraPadding`
+   * @since 6.0.0 Renamed from `disableExtraPadding`
    */
   disableLastChildPadding?: boolean;
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function cardContent(options: CardContentClassNameOptions = {}): string {
   const {
@@ -188,13 +188,13 @@ export function cardContent(options: CardContentClassNameOptions = {}): string {
   );
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface CardFooterClassNameOptions {
   className?: string;
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function cardFooter(options: CardFooterClassNameOptions = {}): string {
   const { className } = options;

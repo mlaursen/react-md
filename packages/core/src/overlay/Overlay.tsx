@@ -15,7 +15,7 @@ import {
 } from "./overlayStyles.js";
 
 /**
- * @remarks \@since 6.0.0 Added `align` and `justify` props.
+ * @since 6.0.0 Added `align` and `justify` props.
  */
 export interface OverlayProps
   extends HTMLAttributes<HTMLSpanElement>,
@@ -23,13 +23,13 @@ export interface OverlayProps
     TransitionActions {
   /**
    * @defaultValue `"center"`
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   align?: BoxAlignItems;
 
   /**
    * @defaultValue `"center"`
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   justify?: BoxJustifyContent;
 
@@ -86,7 +86,7 @@ export interface OverlayProps
  * }
  * ```
  *
- * @remarks \@since 6.0.0 Removed the `onRequestClose` prop in favor of using
+ * @since 6.0.0 Removed the `onRequestClose` prop in favor of using
  * the `onClick` prop instead.
  */
 export const Overlay = forwardRef<HTMLSpanElement, OverlayProps>(

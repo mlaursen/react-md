@@ -11,14 +11,14 @@ declare module "react" {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type ProgressTheme = ThemeColor | "current-color";
 
 /**
  * The base progress props for both the linear and circular progress components.
  *
- * @remarks \@since 6.0.0 Added the `theme` prop.
+ * @since 6.0.0 Added the `theme` prop.
  */
 export interface ProgressProps {
   /**
@@ -29,7 +29,7 @@ export interface ProgressProps {
    * `aria-describedby="THIS_ID"`.
    *
    * @defaultValue `"circular-progress-" useId() || "linear-progress-" + useId()`
-   * @remarks \@since 6.0.0 This prop is now optional.
+   * @since 6.0.0 This prop is now optional.
    */
   id?: string;
 
@@ -65,14 +65,14 @@ export interface ProgressProps {
    * progress updates or the updates happen in chunks.
    *
    * @defaultValue `false`
-   * @remarks \@since 6.0.0 This was renamed from `animate` to
+   * @since 6.0.0 This was renamed from `animate` to
    * `disableTransition`.
    */
   disableTransition?: boolean;
 
   /**
    * @defaultValue `"primary"`
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   theme?: ProgressTheme;
 }

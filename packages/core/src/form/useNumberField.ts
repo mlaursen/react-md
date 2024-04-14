@@ -16,7 +16,7 @@ const noop = (): void => {
   // do nothing
 };
 
-/** @remarks \@since 2.5.0 */
+/** @since 2.5.0 */
 export interface NumberFieldConstraints {
   /**
    * An optional min value for the number field.
@@ -38,9 +38,8 @@ export interface NumberFieldConstraints {
 }
 
 /**
- * @remarks
- * \@since 2.5.0
- * \@since 6.0.0
+ * @since 2.5.0
+ * @since 6.0.0
  * - Removed `updateOnChange` in favor of `updateValue`
  * - Renamed `fixOnBlur` to `updateValueOnBlur`
  */
@@ -106,33 +105,33 @@ export interface NumberFieldHookOptions
    * fix any min/max errors manually and maintain weird formatting.
    *
    * @defaultValue `true`
-   * @remarks \@since 6.0.0 This was renamed from `fixOnBlur` and removed the
+   * @since 6.0.0 This was renamed from `fixOnBlur` and removed the
    * `"min"` and `"max"` behavior.
    */
   updateValueOnBlur?: boolean;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface NumberFieldHookState
   extends Omit<TextFieldHookState, "value"> {
   value: number | undefined;
 }
 
-/** @remarks \@since 2.5.6 */
+/** @since 2.5.6 */
 export interface ProvidedNumberFieldProps
   extends ProvidedTextFieldProps<HTMLInputElement>,
     NumberFieldConstraints {
   type: "number";
 }
 
-/** @remarks \@since 2.5.6 */
+/** @since 2.5.6 */
 export interface ProvidedNumberFieldMessageProps
   extends ProvidedTextFieldMessageProps<HTMLInputElement>,
     NumberFieldConstraints {
   type: "number";
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface NumberFieldImplementation
   extends Omit<
     TextFieldImplementation<HTMLInputElement>,
@@ -143,13 +142,13 @@ export interface NumberFieldImplementation
   fieldProps: ProvidedNumberFieldProps;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface NumberFieldWithMessageImplementation
   extends NumberFieldImplementation {
   fieldProps: ProvidedNumberFieldMessageProps;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface ValidatedNumberFieldImplementation
   extends Omit<
     ValidatedTextFieldImplementation<HTMLInputElement>,

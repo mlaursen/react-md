@@ -20,7 +20,7 @@ const noop = (): void => {
 };
 
 /**
- * @remarks \@since 2.0.0
+ * @since 2.0.0
  */
 export const DEFAULT_COLLAPSE_TIMEOUT: Readonly<TransitionTimeoutObject> = {
   enter: 250,
@@ -28,7 +28,7 @@ export const DEFAULT_COLLAPSE_TIMEOUT: Readonly<TransitionTimeoutObject> = {
 };
 
 /**
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export interface CollapseConfigurationStyle {
   /**
@@ -75,7 +75,7 @@ export interface CollapseConfigurationStyle {
 }
 
 /**
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export interface CollapseStyle extends CollapseConfigurationStyle {
   /**
@@ -91,7 +91,7 @@ export interface CollapseStyle extends CollapseConfigurationStyle {
  *
  * @typeParam E - An HTMLElement type used for the ref required for the
  * transition.
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export interface CollapseElementProps<E extends HTMLElement>
   extends CSSTransitionElementProps<E> {
@@ -107,7 +107,7 @@ export interface CollapseElementProps<E extends HTMLElement>
 /**
  * @typeParam E - An HTMLElement type used for the ref required for the
  * transition.
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export interface CollapseTransitionHookOptions<E extends HTMLElement>
   extends Omit<PreconfiguredCSSTransitionOptions<E>, "exitedHidden">,
@@ -137,7 +137,7 @@ export interface CollapseTransitionHookOptions<E extends HTMLElement>
 /**
  * @typeParam E - An HTMLElement type used for the ref required for the
  * transition.
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export interface CollapseTransitionHookReturnValue<E extends HTMLElement>
   extends CSSTransitionHookReturnValue<E>,
@@ -278,7 +278,7 @@ export interface CollapseTransitionHookReturnValue<E extends HTMLElement>
  *
  * @typeParam E - An HTMLElement type used for the ref required for the
  * transition.
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export function useCollapseTransition<E extends HTMLElement>(
   options: CollapseTransitionHookOptions<E>

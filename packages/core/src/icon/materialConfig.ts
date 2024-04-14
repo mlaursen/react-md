@@ -5,7 +5,7 @@ import {
 } from "./material.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface MaterialIconCustomization {
   /**
@@ -15,7 +15,7 @@ export interface MaterialIconCustomization {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type MaterialIconConfiguration = Required<MaterialIconCustomization>;
 
@@ -27,7 +27,7 @@ export type MaterialIconConfiguration = Required<MaterialIconCustomization>;
  * interaction. The values are 0 for default or 1 for completely filled. Along
  * with the weight axis, the fill also impacts the look of the icon.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type MaterialSymbolFill = 0 | 1;
 
@@ -36,7 +36,7 @@ export type MaterialSymbolFill = 0 | 1;
  * thin (100) and bold (700). Weight can also affect the overall size of the
  * symbol.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type MaterialSymbolWeight = 100 | 200 | 300 | 400 | 500 | 600 | 700;
 
@@ -57,7 +57,7 @@ export type MaterialSymbolWeight = 100 | 200 | 300 | 400 | 500 | 600 | 700;
  * - High emphasis (e.g. 200 grade): To highlight a symbol, increase the
  *   positive grade.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type MaterialSymbolGrade = -25 | 0 | 200;
 
@@ -69,7 +69,7 @@ export type MaterialSymbolGrade = -25 | 0 | 200;
  * automatically adjust the stroke weight when you increase or decrease the
  * symbol size.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type MaterialSymbolOpticalSize = 20 | 24 | 40 | 48;
 
@@ -79,7 +79,7 @@ export type MaterialSymbolOpticalSize = 20 | 24 | 40 | 48;
  * info icon next to each property.
  *
  * @see https://fonts.google.com/icons?icon.set=Material+Symbols
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface MaterialSymbolCustomization {
   /**
@@ -143,19 +143,19 @@ export interface MaterialSymbolCustomization {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type MaterialSymbolConfiguration = Required<MaterialSymbolCustomization>;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface MaterialConfiguration
   extends MaterialIconConfiguration,
     MaterialSymbolConfiguration {}
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const MATERIAL_CONFIG: MaterialConfiguration = {
   fill: 0,
@@ -167,7 +167,7 @@ export const MATERIAL_CONFIG: MaterialConfiguration = {
 };
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface MaterialSymbolFontVariationSettings {
   style?: CSSProperties;
@@ -175,7 +175,7 @@ export interface MaterialSymbolFontVariationSettings {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export function getFontVariationSettings(

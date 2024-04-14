@@ -26,7 +26,7 @@ import type {
  * - the container element specifies an `aria-activedescendant` pointing to one
  *   of the ids for the child "focusable" elements
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type TabIndexBehavior = "roving" | "virtual";
 
@@ -52,7 +52,7 @@ export type GetFocusableElements = (
 ) => readonly HTMLElement[];
 
 /**
- * @remarks \@since 5.0.0
+ * @since 5.0.0
  */
 export interface KeyboardMovementConfiguration {
   /**
@@ -88,12 +88,12 @@ export interface KeyboardMovementConfiguration {
  * The defined {@link KeyboardMovementConfiguration} that should be used for
  * custom keyboard focus behavior.
  *
- * @remarks \@since 5.0.0
+ * @since 5.0.0
  */
 export type KeyboardMovementConfig = Required<KeyboardMovementConfiguration>;
 
 /**
- * @remarks \@since 5.0.0
+ * @since 5.0.0
  */
 export interface KeyboardMovementBehavior {
   /**
@@ -129,16 +129,15 @@ export interface KeyboardMovementBehavior {
    * updates the default keyboard config to use `ArrowRight` and `ArrowLeft`
    * instead of `ArrowDown` and `ArrowUp`,
    *
-   * @remarks \@since 5.1.2
+   * @since 5.1.2
    * @defaultValue `false`
    */
   horizontal?: boolean;
 }
 
 /**
- * @remarks
- * \@since 5.0.0
- * \@since 6.0.0 Removed `attach`, `detach` and `watching`
+ * @since 5.0.0
+ * @since 6.0.0 Removed `attach`, `detach` and `watching`
  * @internal
  */
 export interface KeyboardMovementContext
@@ -157,7 +156,7 @@ export interface KeyboardMovementContext
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export interface FocusableIndexOptions {
@@ -166,13 +165,13 @@ export interface FocusableIndexOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export type GetDefaultFocusedIndex = (options: FocusableIndexOptions) => number;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export type ExtendKeyDown<E extends HTMLElement> = (
@@ -180,7 +179,7 @@ export type ExtendKeyDown<E extends HTMLElement> = (
 ) => void;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export interface KeyboardMovementFocusChangeEvent {
@@ -189,7 +188,7 @@ export interface KeyboardMovementFocusChangeEvent {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export type KeyboardMovementFocusChangeEventHandler = (
@@ -197,7 +196,7 @@ export type KeyboardMovementFocusChangeEventHandler = (
 ) => void;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export interface KeyboardMovementExtensionData<E extends HTMLElement>
@@ -209,7 +208,7 @@ export interface KeyboardMovementExtensionData<E extends HTMLElement>
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export interface KeyboardMovementProviderOptions<E extends HTMLElement>
@@ -265,7 +264,7 @@ export interface KeyboardMovementProviderOptions<E extends HTMLElement>
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export interface KeyboardMovementProps<E extends HTMLElement> {
@@ -291,7 +290,7 @@ export interface KeyboardMovementProps<E extends HTMLElement> {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export interface KeyboardMovementProviderImplementation<E extends HTMLElement> {

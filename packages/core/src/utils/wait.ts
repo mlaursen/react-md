@@ -12,7 +12,7 @@
  * This util was just added to support random waits for mocking data and random
  * throttling.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const wait = (ms: number): Promise<void> =>
   new Promise((resolve) => setTimeout(() => resolve(), ms));

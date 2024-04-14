@@ -30,13 +30,13 @@ import { type TreeSelection } from "./useTreeSelection.js";
  * that requires the user to click on an icon or a button to expand the child
  * items.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type TreeExpansionMode = "auto" | "manual";
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface TreeItemMetadataLookup {
   /**
@@ -73,7 +73,7 @@ export interface TreeItemMetadataLookup {
  *
  * The other properties on the context are most likely for internal use only.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface TreeContext<T extends TreeItemNode = DefaultTreeItemNode>
   extends TreeExpansion,
@@ -105,7 +105,7 @@ const { Provider } = context;
  * This can be used for a custom tree item renderer.
  *
  * @see The `Tree` component for an example.
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useTreeContext<
   T extends TreeItemNode = DefaultTreeItemNode,
@@ -120,7 +120,7 @@ export function useTreeContext<
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface TreeProviderProps<T extends TreeItemNode = DefaultTreeItemNode>
   extends TreeContext<T> {
@@ -131,7 +131,7 @@ export interface TreeProviderProps<T extends TreeItemNode = DefaultTreeItemNode>
  * **Client Component**
  *
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function TreeProvider<T extends TreeItemNode = DefaultTreeItemNode>(
   props: TreeProviderProps<T>

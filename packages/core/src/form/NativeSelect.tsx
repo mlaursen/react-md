@@ -19,7 +19,7 @@ import {
 } from "./types.js";
 
 /**
- * @remarks \@since 6.0.0 Added support for {@link UserAgentAutocompleteProps}
+ * @since 6.0.0 Added support for {@link UserAgentAutocompleteProps}
  */
 export interface NativeSelectProps
   extends Omit<SelectHTMLAttributes<HTMLSelectElement>, "autoComplete">,

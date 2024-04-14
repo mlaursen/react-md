@@ -29,7 +29,7 @@ import { defaultExtractor, search } from "./utils.js";
  *
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @see {@link fuzzySearch}
  */
 export function createFuzzyRegExp(query: string): RegExp {
@@ -45,7 +45,7 @@ export function createFuzzyRegExp(query: string): RegExp {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type FuzzySearchOptions<T> = BaseSearchOptions<T>;
 
@@ -124,7 +124,7 @@ export type FuzzySearchOptions<T> = BaseSearchOptions<T>;
  *  //    ^   ^
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function fuzzySearch<T extends string>(
   options: Omit<FuzzySearchOptions<T>, "extractor"> & { type?: "filter" }

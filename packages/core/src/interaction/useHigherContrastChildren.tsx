@@ -66,7 +66,7 @@ import { INTERACTION_CONFIG } from "./config.js";
  * contrast mode is enabled. This is really used within `ListItem`s so there
  * aren't unneeded `<span>`s for string/number children when there are addons.
  * @returns the children to render
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export function useHigherContrastChildren(

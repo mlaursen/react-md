@@ -11,7 +11,7 @@ import {
 import { iconRotator, type IconRotatorClassNameOptions } from "./styles.js";
 
 /**
- * @remarks \@since 6.0.0 Removed `animate` prop and added `disableTransition`
+ * @since 6.0.0 Removed `animate` prop and added `disableTransition`
  */
 export interface IconRotatorBaseProps
   extends HTMLAttributes<HTMLSpanElement>,

@@ -15,7 +15,7 @@ declare module "react" {
 const styles = bem("rmd-badge");
 
 /**
- * @remarks \@since 6.0.0 Renamed `"default"` to `"greyscale"` and added all
+ * @since 6.0.0 Renamed `"default"` to `"greyscale"` and added all
  * theme colors.
  */
 export type BadgeTheme = BackgroundColor | "greyscale" | "clear";
@@ -84,7 +84,7 @@ export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
  * }
  * ```
  *
- * @remarks \@since 6.0.0 Removed the `disableNullOnZero` feature since it's
+ * @since 6.0.0 Removed the `disableNullOnZero` feature since it's
  * easier just to use condition rendering yourself.
  */
 export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(

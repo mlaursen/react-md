@@ -215,7 +215,7 @@ export const updateDragPosition = (
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface DeserializeDraggableValueOptions {
   min: number;
@@ -225,7 +225,7 @@ export interface DeserializeDraggableValueOptions {
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function deserializeDraggableValue(
   options: DeserializeDraggableValueOptions

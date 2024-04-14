@@ -5,7 +5,7 @@ import { bem } from "../utils/bem.js";
 const styles = bem("rmd-chip");
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  *
  * Note for the future: Once Firefox supports the `:has` selector, the
  * `leftAddon` and `rightAddon` can be removed. The styles would automatically
@@ -67,7 +67,7 @@ export interface ChipClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function chip(options: ChipClassNameOptions = {}): string {
   const {
@@ -108,14 +108,14 @@ export function chip(options: ChipClassNameOptions = {}): string {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ChipContentClassNameOptions {
   className?: string;
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function chipContent(options: ChipContentClassNameOptions = {}): string {
   const { className } = options;

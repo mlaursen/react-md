@@ -11,7 +11,7 @@ declare module "react" {
 
 const styles = bem("rmd-list");
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface ListClassNameOptions {
   className?: string;
 
@@ -23,7 +23,7 @@ export interface ListClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function list(options: ListClassNameOptions = {}): string {
   const { dense = false, horizontal = false, className } = options;

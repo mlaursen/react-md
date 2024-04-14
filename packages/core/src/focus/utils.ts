@@ -30,7 +30,7 @@ export const PROGRAMMATICALLY_FOCUSABLE = queries.join(",");
  * // do something with elements
  * ```
  *
- * @remarks \@since 6.0.0 This was updated to remove ALL elements that have a
+ * @since 6.0.0 This was updated to remove ALL elements that have a
  * `tabindex="-1"` applied instead of only elements that had a manual tab index
  * applied.
  */
@@ -47,8 +47,7 @@ export const TAB_FOCUSABLE = queries.reduce((fullQuery, query) => {
  * but it can also be the entire document if you want to find **all** focusable
  * elements within your page.
  *
- * @remarks
- * \@since 6.0.0 This function will be used for all keyboard focus behavior
+ * @since 6.0.0 This function will be used for all keyboard focus behavior
  * instead of trying to use refs. I did some performance testing in Firefox and
  * Chrome and the `querySelectorAll` takes 4ms with 5000 elements for my use
  * cases. There is more of a performance issue around rendering all 5000
@@ -76,7 +75,7 @@ export function getFocusableElements(
 /**
  * Attempts to find the first focusable element within a container.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @param container - The container element/document to find focusable elements
  * within.
  * @param programmatic - Boolean if programmatically focusable elements should be
@@ -102,7 +101,7 @@ export function getFocusableElement(
  * An element can be noted as "programmatically focusable only"  has the above
  * rules, but the `tabIndex` will be set to `-1`.
  *
- * @remarks \@since 2.8.0
+ * @since 2.8.0
  */
 export type ElementFocusType = "tab" | "programmatic";
 

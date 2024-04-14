@@ -39,7 +39,7 @@ declare module "react" {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type TreeHTMLAttributes = Omit<
   HTMLAttributes<HTMLUListElement>,
@@ -47,8 +47,7 @@ export type TreeHTMLAttributes = Omit<
 >;
 
 /**
- * @remarks
- * \@since 6.0.0 There was a major API change and the `id` is now `optional`.
+ * @since 6.0.0 There was a major API change and the `id` is now `optional`.
  * In addition, the following props were removed:
  * - `itemRenderer`
  * - `labelKey`
@@ -67,7 +66,7 @@ export interface TreeProps<T extends TreeItemNode>
   /**
    * An optional ref to pass to the tree element.
    *
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   treeRef?: Ref<HTMLUListElement>;
 
@@ -75,7 +74,7 @@ export interface TreeProps<T extends TreeItemNode>
   sort?: TreeItemSorter<T>;
 
   /**
-   * Any nodes in the {@Link data} that have a `parentId` set to this value will
+   * Any nodes in the {@link data} that have a `parentId` set to this value will
    * appear at the root of the tree.
    *
    * @defaultValue `null`
@@ -228,8 +227,7 @@ export interface TreeProps<T extends TreeItemNode>
  *
  * @see {@link TreeProps.renderer} for a custom tree item example.
  *
- * @remarks
- * \@since 6.0.0 There was a major API change and the `id` is now `optional`.
+ * @since 6.0.0 There was a major API change and the `id` is now `optional`.
  * In addition, the following props were removed:
  * - `itemRenderer`
  * - `labelKey`

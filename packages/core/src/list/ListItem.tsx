@@ -25,7 +25,7 @@ declare module "react" {
 }
 
 /**
- * @remarks \@since 6.0.0 Renamed `threeLines` to `multiline` since it can
+ * @since 6.0.0 Renamed `threeLines` to `multiline` since it can
  * support more than three lines of text.
  */
 export interface ListItemProps
@@ -61,7 +61,7 @@ export interface ListItemProps
    * Note: This does nothing if the `disabled` prop is not enabled.
    *
    * @defaultValue `false`
-   * @remarks \@since 2.4.3
+   * @since 2.4.3
    */
   disabledOpacity?: boolean;
 

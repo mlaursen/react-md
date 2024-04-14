@@ -10,7 +10,7 @@ const noop = (): void => {
 };
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type TableCheckboxTdHTMLAttributes = Omit<
   TdHTMLAttributes<HTMLTableCellElement>,
@@ -18,7 +18,7 @@ export type TableCheckboxTdHTMLAttributes = Omit<
 >;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type TableCheckboxSupportedCheckboxProps = Pick<
   CheckboxProps,
@@ -38,12 +38,11 @@ export type TableCheckboxSupportedCheckboxProps = Pick<
 >;
 
 /**
- * @remarks
- * \@since 6.0.0 The `id` prop is no longer required since the checkbox's id
+ * @since 6.0.0 The `id` prop is no longer required since the checkbox's id
  * will automatically be generated as `"checkbox" + useId()`. Use the {@link checkboxProps}
  * to set an `id` manually for the checkbox.
- * \@since 6.0.0 The `cellId` prop was removed. Use the `id` prop instead.
- * \@since 6,0.0 The default `aria-label` was changed from
+ * @since 6.0.0 The `cellId` prop was removed. Use the `id` prop instead.
+ * @since 6,0.0 The default `aria-label` was changed from
  * `"Toggle Row Selection"` to `"Select Row"`.
  */
 export interface TableCheckboxProps
@@ -71,7 +70,7 @@ export interface TableCheckboxProps
    * ```
    *
    * @see {@link TableCheckboxSupportedCheckboxProps}
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   checkboxProps?: PropsWithRef<CheckboxProps, HTMLInputElement>;
 }
@@ -143,12 +142,11 @@ export interface TableCheckboxProps
  * }
  * ```
  *
- * @remarks
- * \@since 6.0.0 The `id` prop is no longer required since the checkbox's id
+ * @since 6.0.0 The `id` prop is no longer required since the checkbox's id
  * will automatically be generated as `"checkbox" + useId()`. Use the {@link checkboxProps}
  * to set an `id` manually for the checkbox.
- * \@since 6.0.0 The `cellId` prop was removed. Use the `id` prop instead.
- * \@since 6,0.0 The default `aria-label` was changed from
+ * @since 6.0.0 The `cellId` prop was removed. Use the `id` prop instead.
+ * @since 6,0.0 The default `aria-label` was changed from
  * `"Toggle Row Selection"` to `"Select Row"`.
  */
 export const TableCheckbox = forwardRef<

@@ -16,11 +16,11 @@ const styles = bem("rmd-input-toggle");
  * When this is set to `"auto"`, the size will be determined by the current
  * `font-size` of the `Label` element.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type InputToggleSize = "auto" | "small" | "dense" | "normal" | "large";
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface InputToggleClassNameOptions
   extends Omit<FormComponentStates, "readOnly"> {
   className?: string;
@@ -43,7 +43,7 @@ export interface InputToggleClassNameOptions
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function inputToggle(options: InputToggleClassNameOptions): string {
   const {

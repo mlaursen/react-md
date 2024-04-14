@@ -9,20 +9,20 @@ import { useKeyboardMovementProvider } from "../movement/useKeyboardMovementProv
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 const getPanelsOnly = (container: HTMLElement): readonly HTMLElement[] => [
   ...container.querySelectorAll<HTMLElement>(".rmd-expansion-panel__button"),
 ];
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface ExpansionListHookOptions<E extends HTMLElement> {
   onClick?: MouseEventHandler<E>;
   onFocus?: FocusEventHandler<E>;
   onKeyDown?: KeyboardEventHandler<E>;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export type ExpansionListImplementation<E extends HTMLElement> =
   KeyboardMovementProviderImplementation<E>;
 
@@ -65,7 +65,7 @@ export type ExpansionListImplementation<E extends HTMLElement> =
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useExpansionList<E extends HTMLElement>(
   options: ExpansionListHookOptions<E> = {}

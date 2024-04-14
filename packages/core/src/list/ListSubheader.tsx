@@ -6,7 +6,7 @@ import { ListItemText } from "./ListItemText.js";
 
 const styles = bem("rmd-list-subheader");
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface ListSubheaderClassNameOptions {
   className?: string;
 
@@ -20,7 +20,7 @@ export interface ListSubheaderClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function listSubheader(
   options: ListSubheaderClassNameOptions = {}
@@ -39,7 +39,7 @@ export interface ListSubheaderProps
   role?: HTMLAttributes<HTMLLIElement>["role"];
 
   /**
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   textProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>;
 }

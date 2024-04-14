@@ -51,14 +51,14 @@ const noop = (): void => {
   // do nothing
 };
 
-/** @remarks \@since 5.0.0 */
+/** @since 5.0.0 */
 export type MenuTransitionProps = Omit<
   ScaleTransitionHookOptions<HTMLDivElement>,
   "transitionIn" | "vertical" | "nodeRef"
 >;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface MenuConfigurationProps extends CalculateFixedPositionOptions {
   /**
@@ -121,9 +121,8 @@ export interface MenuConfigurationProps extends CalculateFixedPositionOptions {
 }
 
 /**
- * @remarks
- * \@since 5.1.0
- * \@since 6.0.0 Renamed from `MenuListProps` to `MenuListConvenienceProps`
+ * @since 5.1.0
+ * @since 6.0.0 Renamed from `MenuListProps` to `MenuListConvenienceProps`
  */
 export interface MenuListConvenienceProps {
   /**
@@ -146,7 +145,7 @@ export interface MenuListConvenienceProps {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface MenuConvenienceProps extends MenuConfigurationProps {
   /**
@@ -195,7 +194,7 @@ export interface MenuConvenienceProps extends MenuConfigurationProps {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type MenuFixedPositioningOptions = Omit<
   FixedPositioningOptions<HTMLElement, HTMLDivElement>,
@@ -203,9 +202,8 @@ export type MenuFixedPositioningOptions = Omit<
 >;
 
 /**
- * @remarks
- * \@since 5.0.0
- * \@since 6.0.0 Updated to use the latest Menu, Transition, and Portal API.
+ * @since 5.0.0
+ * @since 6.0.0 Updated to use the latest Menu, Transition, and Portal API.
  */
 export interface MenuProps
   extends HTMLAttributes<HTMLDivElement>,
@@ -261,9 +259,8 @@ export interface MenuProps
  *
  * @see The `useContextMenu` hook for an example.
  *
- * @remarks
- * \@since 5.0.0
- * \@since 6.0.0 Updated this component to implement all the `Menu`
+ * @since 5.0.0
+ * @since 6.0.0 Updated this component to implement all the `Menu`
  * functionality instead of requiring the `useMenu` hook and `MenuWidget`
  * component. In addition, the `renderAsSheet` behavior has been moved into this
  * implementation so that the `MenuRenderer` is no longer required and context

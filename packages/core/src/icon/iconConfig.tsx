@@ -2,7 +2,7 @@ import { type ReactNode } from "react";
 import { FontIcon } from "./FontIcon.js";
 
 /**
- * @remarks \@since 5.0.0 The `download` icon has been renamed to `upload`.
+ * @since 5.0.0 The `download` icon has been renamed to `upload`.
  */
 export interface ConfigurableIcons {
   /**
@@ -15,7 +15,7 @@ export interface ConfigurableIcons {
   /**
    * @defaultValue `<FontIcon>close</FontIcon>`
    *
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   close?: ReactNode;
 
@@ -23,7 +23,7 @@ export interface ConfigurableIcons {
    * The icon to use for unchecked checkboxes.
    *
    * @defaultValue `<FontIcon>check_box_outline_blank</FontIcon>`
-   * @remarks \@since 6.0.0 This icon now represents the unchecked state for
+   * @since 6.0.0 This icon now represents the unchecked state for
    * checkboxes.
    */
   checkbox?: ReactNode;
@@ -32,7 +32,7 @@ export interface ConfigurableIcons {
    * The icon to use for checked checkboxes.
    *
    * @defaultValue `<FontIcon>check_box</FontIcon>`
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   checkboxChecked?: ReactNode;
 
@@ -40,7 +40,7 @@ export interface ConfigurableIcons {
    * The icon to use for indeterminate checkboxes.
    *
    * @defaultValue `<FontIcon>indeterminate_check_box</FontIcon>`
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   checkboxIndeterminate?: ReactNode;
 
@@ -55,7 +55,7 @@ export interface ConfigurableIcons {
   /**
    * The icon to use when there are form errors.
    *
-   * @remarks \@since 2.5.0
+   * @since 2.5.0
    * @defaultValue `<FontIcon>error_outline</FontIcon>`
    */
   error?: ReactNode;
@@ -102,7 +102,7 @@ export interface ConfigurableIcons {
    * The icon to use for unchecked radio buttons.
    *
    * @defaultValue `<FontIcon>radio_button_unchecked</FontIcon>`
-   * @remarks \@since 6.0.0 This icon now represents the unchecked state for
+   * @since 6.0.0 This icon now represents the unchecked state for
    * radios.
    */
   radio?: ReactNode;
@@ -134,7 +134,7 @@ export interface ConfigurableIcons {
    * The icon to use for the `FileInput` component (normally file
    * uploads).
    *
-   * @remarks \@since 5.0.0
+   * @since 5.0.0
    * @defaultValue `<FontIcon>file_upload</FontIcon>`
    */
   upload?: ReactNode;
@@ -143,7 +143,7 @@ export interface ConfigurableIcons {
 export type ConfiguredIcons = Required<ConfigurableIcons>;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type ConfigurableIconName = keyof ConfigurableIcons;
 
@@ -197,7 +197,7 @@ export type ConfigurableIconName = keyof ConfigurableIcons;
  * ```
  *
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const ICON_CONFIG: ConfiguredIcons = {
   back: <FontIcon>keyboard_arrow_left</FontIcon>,
@@ -265,7 +265,7 @@ export const ICON_CONFIG: ConfiguredIcons = {
  * });
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function configureIcons(overrides: ConfiguredIcons): void {
   Object.entries(overrides).forEach(([name, value]) => {
@@ -282,7 +282,7 @@ export function configureIcons(overrides: ConfiguredIcons): void {
  * a custom prop to override this behavior. The main benefit of this function is
  * that icons can be removed if the override is set to `null`.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function getIcon(
   name: ConfigurableIconName,

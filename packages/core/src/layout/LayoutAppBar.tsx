@@ -15,7 +15,7 @@ import { useEnsuredId } from "../useEnsuredId.js";
 import { useLayoutAppBarHeight } from "./useLayoutAppBarHeight.js";
 
 /**
- * @remarks \@since 6.0.0 Only supports `AppBar` + `SkipToMainContent` props
+ * @since 6.0.0 Only supports `AppBar` + `SkipToMainContent` props
  */
 export interface LayoutAppBarProps extends AppBarProps {
   /** @defaultValue `"header"` */
@@ -61,8 +61,7 @@ export interface LayoutAppBarProps extends AppBarProps {
  * }
  * ```
  *
- * @remarks
- * \@since 6.0.0 This component no longer renders the `LayoutNavToggle` and
+ * @since 6.0.0 This component no longer renders the `LayoutNavToggle` and
  * `LayoutAppBarTitle` since they no longer exist. The only purpose of this
  * component is to dynamically set the `--rmd-layout-header-height` variable.
  */

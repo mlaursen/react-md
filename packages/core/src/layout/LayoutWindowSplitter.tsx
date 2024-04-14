@@ -13,7 +13,7 @@ import {
 } from "./layoutWindowSplitterStyles.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface LayoutWindowSplitterProps
   extends WindowSplitterWidgetProps<HTMLButtonElement>,
@@ -90,7 +90,7 @@ export interface LayoutWindowSplitterProps
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const LayoutWindowSplitter = forwardRef<
   HTMLButtonElement,

@@ -53,7 +53,7 @@ export interface FormThemeOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface FormConfiguration extends Required<FormThemeOptions> {
   /**
@@ -86,7 +86,7 @@ export interface FormComponentStates {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @see https://html.spec.whatwg.org/multipage/forms.html#autofill
  * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values
  */
@@ -147,7 +147,7 @@ export type AutocompleteValue =
   | "photo";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface UserAgentAutocompleteProps {
   /**
@@ -284,7 +284,7 @@ export interface FormMessageProps
  *
  * Note: this should not be used alongside form-level messages.
  *
- * @remarks \@since 2.9.0 Renamed from `FormMessageCounterProps` to
+ * @since 2.9.0 Renamed from `FormMessageCounterProps` to
  * `FormMessageInputLengthCounterProps` since a `FormMessageCounter` component
  * was added
  */
@@ -315,7 +315,7 @@ export interface FormMessageWithCounterProps
     FormMessageInputLengthCounterProps {}
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface FormMessageWithoutCounterProps extends FormMessageProps {
   length?: never;
@@ -348,7 +348,7 @@ export interface FormMessageContainerExtension {
   >;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface LabelClassNameOptions {
   className?: string;
 
@@ -437,7 +437,7 @@ export interface LabelProps
     LabelClassNameOptions {}
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ConfigurableTextFieldAddonProps
   extends HTMLAttributes<HTMLSpanElement> {
@@ -451,7 +451,7 @@ export interface ConfigurableTextFieldAddonProps
 }
 
 /**
- * @remarks \@since 6.0.0 Added support for `leftAddonProps` and
+ * @since 6.0.0 Added support for `leftAddonProps` and
  * `rightAddonProps`.
  */
 export interface TextFieldContainerOptions
@@ -489,7 +489,7 @@ export interface TextFieldContainerOptions
   /**
    * Any additional props to pass to the `<span>` surrounding the {@link leftAddon}.
    *
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   leftAddonProps?: PropsWithRef<
     ConfigurableTextFieldAddonProps,
@@ -512,7 +512,7 @@ export interface TextFieldContainerOptions
   /**
    * Any additional props to pass to the `<span>` surrounding the {@link rightAddon}.
    *
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   rightAddonProps?: PropsWithRef<
     ConfigurableTextFieldAddonProps,

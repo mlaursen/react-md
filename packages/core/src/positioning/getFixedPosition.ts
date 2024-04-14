@@ -15,7 +15,7 @@ import {
  * `initialX` and `initialY` options have been provided.
  *
  * @internal
- * @remarks \@since 5.0.0
+ * @since 5.0.0
  */
 const FALLBACK_DOM_RECT: DOMRect = {
   x: 0,

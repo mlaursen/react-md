@@ -5,7 +5,7 @@ import { DISPLAY_NONE_CLASS } from "../utils/isElementVisible.js";
 const styles = bem("rmd-collapse");
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface CollapseClassNameOptions {
   className?: string;
@@ -16,7 +16,7 @@ export interface CollapseClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function collapse(options: CollapseClassNameOptions = {}): string {
   const { enter, leave, exited, disableOverflow, className } = options;

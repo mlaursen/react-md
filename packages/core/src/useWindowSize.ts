@@ -8,7 +8,7 @@ import {
 } from "./useResizeListener.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface WindowSizeOptions
   extends Omit<ResizeListenerOptions, "disabled" | "onUpdate"> {
@@ -67,7 +67,7 @@ export interface WindowSizeOptions
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useWindowSize(options: WindowSizeOptions = {}): ElementSize {
   const {

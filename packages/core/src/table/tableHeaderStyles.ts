@@ -3,7 +3,7 @@ import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-thead");
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface TableHeaderClassNameOptions {
   className?: string;
   dense?: boolean;
@@ -12,7 +12,7 @@ export interface TableHeaderClassNameOptions {
   stickyActiveClassName?: string;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export function tableHeader(options: TableHeaderClassNameOptions = {}): string {
   const { dense, sticky, stickyActive, stickyActiveClassName, className } =
     options;

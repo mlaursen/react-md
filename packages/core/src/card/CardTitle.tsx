@@ -7,7 +7,7 @@ import {
 import { cardTitle } from "./styles.js";
 
 /**
- * @remarks \@since 6,0.0 Extends the {@link TypographyProps} and removed the
+ * @since 6,0.0 Extends the {@link TypographyProps} and removed the
  * `small`/`noWrap` props.
  */
 export interface CardTitleProps extends TypographyProps {
@@ -24,7 +24,7 @@ export interface CardTitleProps extends TypographyProps {
 /**
  * **Server Component**
  *
- * @remarks \@since 6.0.0 Extends the {@Link Typography} component and removed
+ * @since 6.0.0 Extends the {@link Typography} component and removed
  * the `small`/`noWrap` props.
  */
 export const CardTitle = forwardRef<TypographyHTMLElement, CardTitleProps>(

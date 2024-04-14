@@ -17,14 +17,14 @@ import { type UseStateInitializer } from "../types.js";
 /**
  * Note: unlike the `dir` DOM attribute, the `"auto"` value is not supported.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type Dir = "ltr" | "rtl";
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export type DefaultDir = UseStateInitializer<Dir>;
 
-/** @remarks \@since 2.3.0 */
+/** @since 2.3.0 */
 export interface WritingDirectionContext {
   /**
    * The current writing direction that is being inherited.
@@ -77,14 +77,14 @@ const { Provider } = context;
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useDir(): Readonly<WritingDirectionContext> {
   const { root: _root, ...current } = useContext(context);
   return current;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface WritingDirectionProviderProps {
   /**
    * A single ReactElement child. If the `WritingDirection` has a parent
@@ -110,7 +110,7 @@ export interface WritingDirectionProviderProps {
  *
  * In node environments, this will default to `"ltr"`.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const DEFAULT_WRITING_DIRECTION = (): Dir => {
   let dir: Dir = "ltr";
@@ -197,7 +197,7 @@ export const DEFAULT_WRITING_DIRECTION = (): Dir => {
  * );
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function WritingDirectionProvider(
   props: WritingDirectionProviderProps

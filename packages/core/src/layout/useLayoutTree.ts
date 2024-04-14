@@ -25,7 +25,7 @@ const getParentIds = (
   getTreeItemsFrom(navItems, itemId).map(({ itemId }) => itemId);
 
 /**
- * @remarks \@since 6.0.0 Removed the `linkComponent` option.
+ * @since 6.0.0 Removed the `linkComponent` option.
  */
 export interface LayoutTreeOptions<
   T extends TreeItemNode = DefaultTreeItemNode,
@@ -79,7 +79,7 @@ export interface LayoutTreeOptions<
 }
 
 /**
- * @remarks \@since 6.0.0 Renamed from `LayoutNavigationState`, removed the
+ * @since 6.0.0 Renamed from `LayoutNavigationState`, removed the
  * `linkComponent`, and remap `navItems` to `data` so it can be passed to the
  * `Tree` component.
  */
@@ -165,7 +165,7 @@ export interface LayoutTreeImplementation<
  * }
  * ```
  *
- * @remarks \@since 6.0.0 Renamed from `useLayoutNavigation`.
+ * @since 6.0.0 Renamed from `useLayoutNavigation`.
  */
 export function useLayoutTree(
   options: LayoutTreeOptions

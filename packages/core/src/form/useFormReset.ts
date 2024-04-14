@@ -6,7 +6,7 @@ import {
 } from "./utils.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export interface FormResetOptions {
@@ -16,7 +16,7 @@ export interface FormResetOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export function useFormReset(options: FormResetOptions): void {

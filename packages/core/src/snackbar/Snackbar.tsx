@@ -11,7 +11,7 @@ import { useToastQueue } from "./ToastManagerProvider.js";
 import { snackbar, type SnackbarPosition } from "./snackbarStyles.js";
 
 /**
- * @remarks \@since 6.0.0 The `id` prop is optional
+ * @since 6.0.0 The `id` prop is optional
  */
 export interface SnackbarProps extends HTMLAttributes<HTMLDivElement> {
   /** @defaultValue `"snackbar-" + useId()` */
@@ -142,7 +142,7 @@ export interface SnackbarProps extends HTMLAttributes<HTMLDivElement> {
  *
  * @see {@link SnackbarProps.renderToast} for creating a custom toast
  * implementation.
- * @remarks \@since 6.0.0 Rewritten to use a new API that supports adding toasts
+ * @since 6.0.0 Rewritten to use a new API that supports adding toasts
  * outside of React components and rendering multiple toasts at once.
  */
 export const Snackbar = forwardRef<HTMLDivElement, SnackbarProps>(

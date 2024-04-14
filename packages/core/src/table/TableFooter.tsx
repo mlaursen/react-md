@@ -22,7 +22,7 @@ import {
 } from "./types.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const isTableFooterStickyActive: IsStickyTableSectionActive = (
   entry,
@@ -36,7 +36,7 @@ export const isTableFooterStickyActive: IsStickyTableSectionActive = (
   return intersectionRatio < 1 && boundingClientRect.top >= 0;
 };
 /**
- * @remarks \@since 6.0.0 Added support for "sticky-active" state.
+ * @since 6.0.0 Added support for "sticky-active" state.
  */
 export interface TableFooterProps
   extends HTMLAttributes<HTMLTableSectionElement>,

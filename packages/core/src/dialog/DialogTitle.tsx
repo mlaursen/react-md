@@ -9,7 +9,7 @@ import {
 import { type TypographyType } from "../typography/typographyStyles.js";
 
 /**
- * @remarks \@since 6.0.0 Inherits the `TypographyProps` instead of
+ * @since 6.0.0 Inherits the `TypographyProps` instead of
  * `HTMLAttributes<HTMLHeadingElement>`.
  */
 export interface DialogTitleProps extends TypographyProps {

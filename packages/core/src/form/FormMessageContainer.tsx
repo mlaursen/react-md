@@ -5,7 +5,7 @@ import { FormMessage } from "./FormMessage.js";
 import { type FormMessageProps } from "./types.js";
 
 /**
- * @remarks \@since 2.5.0
+ * @since 2.5.0
  */
 export interface FormMessageContainerProps
   extends HTMLAttributes<HTMLDivElement> {
@@ -22,7 +22,7 @@ export interface FormMessageContainerProps
  * Conditionally wraps the `children` in a `.rmd-form-message-container` wrapper
  * and renders the {@link FormMessage} component.
  *
- * @remarks \@since 2.5.0
+ * @since 2.5.0
  */
 export const FormMessageContainer = forwardRef<
   HTMLDivElement,

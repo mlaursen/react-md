@@ -49,7 +49,7 @@ export interface BaseSheetProps
   /**
    * @defaultValue `true`
    * @see {@link SheetDialogProps.exitedHidden}
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   exitedHidden?: boolean;
 }

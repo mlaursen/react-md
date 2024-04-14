@@ -4,7 +4,7 @@ import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-responsive-item-container");
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface ResponsiveItemContainerClassNameOptions {
   className?: string;
 
@@ -59,7 +59,7 @@ export interface ResponsiveItemContainerClassNameOptions {
   responsive?: "auto" | "manual" | "container";
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export function responsiveItemContainer(
   options: ResponsiveItemContainerClassNameOptions = {}
 ): string {
@@ -83,13 +83,12 @@ export function responsiveItemContainer(
 }
 
 /**
- * @remarks
- * \@since 6.0.0 Renamed from `MediaContainerProps` to
+ * @since 6.0.0 Renamed from `MediaContainerProps` to
  * `ResponsiveItemContainerProps`
- * \@since 6.0.0 The `height` and `width` props were removed in favor of the
+ * @since 6.0.0 The `height` and `width` props were removed in favor of the
  * `aspectRatio` props since the latest typescript string interpolation supports
  * enforcing the correct format.
- * \@since 6.0.0 The `auto` prop was removed in favor of the new
+ * @since 6.0.0 The `auto` prop was removed in favor of the new
  * {@link ResponsiveItemContainerProps.responsive} prop.
  */
 export interface ResponsiveItemContainerProps
@@ -148,7 +147,7 @@ export interface ResponsiveItemContainerProps
  * }
  * ```
  *
- * @remarks \@since 6.0.0 Renamed from `MediaContainer` to
+ * @since 6.0.0 Renamed from `MediaContainer` to
  * `ResponsiveItemContainer` and renders a `<span>` instead of a `<div>`.
  */
 export const ResponsiveItemContainer = forwardRef<

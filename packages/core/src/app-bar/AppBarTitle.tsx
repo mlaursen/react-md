@@ -15,11 +15,11 @@ const styles = bem("rmd-app-bar-title");
  * - `"list"` - this should be used when the title should align with the list
  *   item keyline and there is no nav icon before.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type AppBarTitleKeyline = "small" | "nav" | "list";
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface AppBarTitleClassNameOptions {
   className?: string;
 
@@ -34,7 +34,7 @@ export interface AppBarTitleClassNameOptions {
  * Apply the `className`s for a `AppBarTitle` component. This will be type-safe
  * if using typescript.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function appBarTitle(options: AppBarTitleClassNameOptions = {}): string {
   const { className, keyline = "small" } = options;
@@ -48,7 +48,7 @@ export function appBarTitle(options: AppBarTitleClassNameOptions = {}): string {
 }
 
 /**
- * @remarks \@since 6.0.0 Renamed the `noWrap` prop to `lineWrap` since the
+ * @since 6.0.0 Renamed the `noWrap` prop to `lineWrap` since the
  * `AppBarTitle` does not line wrap by default.
  */
 export interface AppBarTitleProps
@@ -83,10 +83,9 @@ export interface AppBarTitleProps
  * }
  * ```
  *
- * @remarks
- * \@since 6.0.0 Renamed the `noWrap` prop to `lineWrap` since the `AppBarTitle`
+ * @since 6.0.0 Renamed the `noWrap` prop to `lineWrap` since the `AppBarTitle`
  * does not line wrap by default.
- * \@since 6.0.0 The {@link keyline} prop was changed from a boolean to a type
+ * @since 6.0.0 The `keyline` prop was changed from a boolean to a type
  * union of different keylines: {@link AppBarTitleKeyline}
  */
 export const AppBarTitle = forwardRef<HTMLHeadingElement, AppBarTitleProps>(

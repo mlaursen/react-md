@@ -13,7 +13,7 @@ import { isWithinViewport } from "./utils.js";
 const noop = (): undefined => undefined;
 
 /**
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export type FixedPositioningTransitionCallbacks = Pick<
   TransitionCallbacks,
@@ -26,7 +26,7 @@ export type FixedPositioningTransitionCallbacks = Pick<
  *
  * @typeParam E - An HTMLElement type used for the ref required for the
  * transition.
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export interface FixedPositioningTransitionOptions<E extends HTMLElement>
   extends FixedPositioningTransitionCallbacks {
@@ -37,7 +37,7 @@ export interface FixedPositioningTransitionOptions<E extends HTMLElement>
 /**
  * @typeParam FixedToElement - An HTMLElement type for the static element.
  * @typeParam FixedElement - An HTMLElement type for the fixed element.
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export interface FixedPositioningScrollData<
   FixedToElement extends HTMLElement,
@@ -62,7 +62,7 @@ export interface FixedPositioningScrollData<
  * @param event - The scroll event
  * @param data - The {@link FixedPositioningScrollData} that can be used for
  * custom scroll behavior.
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export type TransitionScrollCallback<
   FixedToElement extends HTMLElement,
@@ -75,7 +75,7 @@ export type TransitionScrollCallback<
 /**
  * @typeParam FixedToElement - An HTMLElement type for the static element.
  * @typeParam FixedElement - An HTMLElement type for the fixed element.
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export interface FixedPositioningOptions<
   FixedToElement extends HTMLElement,
@@ -114,7 +114,7 @@ export interface FixedPositioningOptions<
 
 /**
  * @typeParam E - An HTMLElement type for the fixed element.
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export interface FixedPositioningHookReturnValue<E extends HTMLElement> {
   /**
@@ -200,7 +200,7 @@ export interface FixedPositioningHookReturnValue<E extends HTMLElement> {
  *
  * @typeParam FixedToElement - An HTMLElement type for the static element.
  * @typeParam FixedElement - An HTMLElement type for the fixed element.
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export function useFixedPositioning<
   FixedToElement extends HTMLElement,

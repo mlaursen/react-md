@@ -37,7 +37,7 @@ import {
 } from "./utils.js";
 
 /**
- * @remarks \@since 5.0.0
+ * @since 5.0.0
  * @internal
  */
 const context = createContext<KeyboardMovementContext>({
@@ -53,7 +53,7 @@ context.displayName = "KeyboardMovement";
 export const { Provider: KeyboardMovementProvider } = context;
 
 /**
- * @remarks \@since 5.0.0
+ * @since 5.0.0
  * @internal
  */
 export function useKeyboardMovementContext(): Readonly<KeyboardMovementContext> {
@@ -187,7 +187,7 @@ const returnNegative1 = (): number => -1;
  *   );
  * }
  * ```
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export function useKeyboardMovementProvider<E extends HTMLElement>(

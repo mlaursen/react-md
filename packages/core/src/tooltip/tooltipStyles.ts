@@ -6,7 +6,7 @@ import { bem } from "../utils/bem.js";
 const styles = bem("rmd-tooltip");
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface TooltipClassNameOptions {
   className?: string;
@@ -16,7 +16,7 @@ export interface TooltipClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function tooltip(options: TooltipClassNameOptions): string {
   const { dense, position, className, textOverflow } = options;

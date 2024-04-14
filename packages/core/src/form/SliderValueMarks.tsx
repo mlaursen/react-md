@@ -16,7 +16,7 @@ import {
 } from "./SliderMarkLabel.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface SliderValueMark {
   /**
@@ -33,7 +33,7 @@ export interface SliderValueMark {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface SliderValueMarkState {
   /** The {@link SliderValueMark.value} */
@@ -54,7 +54,7 @@ export interface SliderValueMarkState {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface SliderMarksOptions {
   /**
@@ -125,7 +125,7 @@ export interface SliderMarksOptions {
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface SliderValueMarksProps
   extends RangeStepsOptions,
@@ -140,7 +140,7 @@ export interface SliderValueMarksProps
  * **Server Component**
  *
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function SliderValueMarks(props: SliderValueMarksProps): ReactElement {
   const {

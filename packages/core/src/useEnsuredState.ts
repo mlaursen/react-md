@@ -5,7 +5,7 @@ import type { UseStateInitializer, UseStateSetter } from "./types.js";
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface EnsuredStateOptions<
   V,
@@ -21,7 +21,7 @@ export interface EnsuredStateOptions<
  * `setValue` or defaulting to uncontrolled behavior with local state.
  *
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useEnsuredState<
   V,

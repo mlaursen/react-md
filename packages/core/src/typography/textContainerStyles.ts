@@ -11,7 +11,7 @@ declare module "react" {
 const styles = bem("rmd-text-container");
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface TextContainerClassNameOptions {
   /**
@@ -42,7 +42,7 @@ export interface TextContainerClassNameOptions {
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function textContainer(
   options: TextContainerClassNameOptions = {}

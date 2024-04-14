@@ -9,7 +9,7 @@ import {
 import { isChangeableHTMLElement, triggerManualChangeEvent } from "./utils.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface EditableComboboxOptions<
   ComboboxEl extends HTMLElement = HTMLInputElement,
@@ -17,7 +17,7 @@ export interface EditableComboboxOptions<
 > extends BaseComboboxOptions<ComboboxEl, PopupEl> {}
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface EditableComboboxImplementation<
   ComboboxEl extends HTMLElement = HTMLInputElement,
@@ -25,7 +25,7 @@ export interface EditableComboboxImplementation<
 > extends ComboboxImplementation<ComboboxEl, PopupEl> {}
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useEditableCombobox<
   ComboboxEl extends HTMLElement = HTMLInputElement,

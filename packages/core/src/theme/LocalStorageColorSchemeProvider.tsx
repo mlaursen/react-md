@@ -5,7 +5,7 @@ import { ColorSchemeProvider, type ColorSchemeMode } from "./useColorScheme.js";
 import { useColorSchemeProvider } from "./useColorSchemeProvider.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface LocalStorageColorSchemeProviderProps {
   /**
@@ -98,7 +98,7 @@ export interface LocalStorageColorSchemeProviderProps {
  * );
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function LocalStorageColorSchemeProvider(
   props: LocalStorageColorSchemeProviderProps

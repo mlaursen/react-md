@@ -14,7 +14,7 @@ const noop = (): void => {
 /**
  * @see {@link spyOnMatchMedia} instead
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const BASE_MEDIA_QUERY_LIST: MediaQueryList = {
   media: "",
@@ -27,12 +27,12 @@ export const BASE_MEDIA_QUERY_LIST: MediaQueryList = {
   dispatchEvent: () => false,
 };
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export type MatchMediaMatcher = (query: string) => boolean;
 
 /**
  * @see {@link spyOnMatchMedia} for usage
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @returns `true` for phone media queries
  */
 export const matchPhone: MatchMediaMatcher = (query) =>
@@ -40,7 +40,7 @@ export const matchPhone: MatchMediaMatcher = (query) =>
 
 /**
  * @see {@link spyOnMatchMedia} for usage
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @returns `true` for tablet media queries
  */
 export const matchTablet: MatchMediaMatcher = (query) =>
@@ -48,7 +48,7 @@ export const matchTablet: MatchMediaMatcher = (query) =>
 
 /**
  * @see {@link spyOnMatchMedia} for usage
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @returns `true` for desktop media queries
  */
 export const matchDesktop: MatchMediaMatcher = (query) =>
@@ -56,7 +56,7 @@ export const matchDesktop: MatchMediaMatcher = (query) =>
 
 /**
  * @see {@link spyOnMatchMedia} for usage
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @returns `true` for large desktop media queries
  */
 export const matchLargeDesktop: MatchMediaMatcher = (query) =>
@@ -64,14 +64,14 @@ export const matchLargeDesktop: MatchMediaMatcher = (query) =>
 
 /**
  * @see {@link spyOnMatchMedia} for usage
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @returns `true` for both desktop and large desktop media queries
  */
 export const matchAnyDesktop: MatchMediaMatcher = (query) =>
   matchDesktop(query) || matchLargeDesktop(query);
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type MatchMediaSpiedFunction = jest.SpiedFunction<
   typeof window.matchMedia
@@ -132,7 +132,7 @@ export type MatchMediaSpiedFunction = jest.SpiedFunction<
  * // expect phone results
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function spyOnMatchMedia(
   defaultMatch: MatchMediaMatcher = matchDesktop

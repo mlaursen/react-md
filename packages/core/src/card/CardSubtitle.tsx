@@ -7,7 +7,7 @@ import {
 import { cardSubtitle } from "./styles.js";
 
 /**
- * @remarks \@since 6.0.0 Extends the {@link TypographyProps} and removed the
+ * @since 6.0.0 Extends the {@link TypographyProps} and removed the
  * `noWrap`/`disableSecondaryColor` props.
  */
 export interface CardSubtitleProps extends TypographyProps {
@@ -24,7 +24,7 @@ export interface CardSubtitleProps extends TypographyProps {
 /**
  * **Server Component**
  *
- * @remarks \@since 6.0.0 Extends the {@link Typography} component and removed the
+ * @since 6.0.0 Extends the {@link Typography} component and removed the
  * `noWrap`/`disableSecondaryColor` props.
  */
 export const CardSubtitle = forwardRef<

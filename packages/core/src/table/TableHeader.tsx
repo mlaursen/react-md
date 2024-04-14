@@ -22,7 +22,7 @@ import {
 } from "./types.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const isTableHeaderStickyActive: IsStickyTableSectionActive = (
   entry
@@ -34,7 +34,7 @@ export const isTableHeaderStickyActive: IsStickyTableSectionActive = (
 };
 
 /**
- * @remarks \@since 6.0.0 Added support for "sticky-active" state.
+ * @since 6.0.0 Added support for "sticky-active" state.
  */
 export interface TableHeaderProps
   extends HTMLAttributes<HTMLTableSectionElement>,

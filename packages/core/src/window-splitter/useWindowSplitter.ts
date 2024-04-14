@@ -23,7 +23,7 @@ declare module "react" {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface BaseWindowSplitterOptions<
   E extends HTMLElement = HTMLButtonElement,
@@ -43,13 +43,13 @@ export interface BaseWindowSplitterOptions<
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type WindowSplitterOptions<E extends HTMLElement = HTMLButtonElement> =
   BaseWindowSplitterOptions<E> & DraggableStateOptions;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface WindowSplitterWidgetProps<E extends HTMLElement>
   extends Required<DraggableMouseEventHandlers<E>>,
@@ -66,7 +66,7 @@ export interface WindowSplitterWidgetProps<E extends HTMLElement>
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface WindowSplitterImplementation<
   E extends HTMLElement = HTMLButtonElement,
@@ -105,7 +105,7 @@ export interface WindowSplitterImplementation<
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useWindowSplitter<E extends HTMLElement = HTMLButtonElement>(
   options: WindowSplitterOptions<E>

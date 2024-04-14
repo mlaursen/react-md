@@ -41,7 +41,7 @@ declare module "react" {
   }
 }
 
-/** @remarks \@since 4.0.0 */
+/** @since 4.0.0 */
 export const DEFAULT_DIALOG_CLASSNAMES: Readonly<CSSTransitionClassNames> = {
   appear: "rmd-dialog--enter",
   appearActive: "rmd-dialog--enter-active",
@@ -51,7 +51,7 @@ export const DEFAULT_DIALOG_CLASSNAMES: Readonly<CSSTransitionClassNames> = {
   exitActive: "rmd-dialog--exit-active",
 };
 
-/** @remarks \@since 4.0.0 */
+/** @since 4.0.0 */
 export const DEFAULT_DIALOG_TIMEOUT: Readonly<TransitionTimeout> = {
   enter: 200,
   exit: 150,
@@ -197,7 +197,7 @@ export interface BaseDialogProps
    * shadow while it is focused. The `Dialog` should normally only gain focus
    * when it becomes visible and no child elements have `autoFocus` enabled.
    *
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    * @defaultValue `type === "full-page"`
    */
   disableFocusOutline?: boolean;
@@ -255,7 +255,7 @@ export type DialogProps = LabelRequiredForA11y<BaseDialogProps>;
  * }
  * ```
  *
- * @remarks \@since 6.0.0 The `Dialog` no longer supports focusing elements
+ * @since 6.0.0 The `Dialog` no longer supports focusing elements
  * within once it becomes visible. You must manually add `autoFocus` to a
  * element instead.
  */

@@ -15,7 +15,7 @@ declare module "react" {
 const styles = bem("rmd-tab");
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface TabClassNameOptions {
   className?: string;
@@ -29,7 +29,7 @@ export interface TabClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function tab(options: TabClassNameOptions = {}): string {
   const {

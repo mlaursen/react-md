@@ -1,7 +1,7 @@
 import { type FormConfiguration } from "./types.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const FORM_CONFIG: FormConfiguration = {
   theme: "outline",
@@ -10,7 +10,7 @@ export const FORM_CONFIG: FormConfiguration = {
 };
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function getFormConfig<N extends keyof FormConfiguration>(
   name: N,

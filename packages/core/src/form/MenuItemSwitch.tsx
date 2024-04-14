@@ -33,7 +33,7 @@ import {
  * }
  * ```
  *
- * @remarks \@since 2.8.0
+ * @since 2.8.0
  */
 export const MenuItemSwitch = forwardRef<HTMLLIElement, MenuItemSwitchProps>(
   function MenuItemSwitch(props, ref) {

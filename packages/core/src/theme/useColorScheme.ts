@@ -2,14 +2,14 @@
 import { createContext, useContext } from "react";
 import type { UseStateSetter } from "../types.js";
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export type ColorScheme = "light" | "dark";
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export type ColorSchemeMode = ColorScheme | "system";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ColorSchemeModeBehavior {
   /**
@@ -32,7 +32,7 @@ export interface ColorSchemeModeBehavior {
   setColorSchemeMode: UseStateSetter<ColorSchemeMode>;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface ColorSchemeContext extends ColorSchemeModeBehavior {
   /**
    * The current color scheme that is being used. This is only useful when the
@@ -128,7 +128,7 @@ export const { Provider: ColorSchemeProvider } = context;
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useColorScheme(): Readonly<ColorSchemeContext> {
   return useContext(context);

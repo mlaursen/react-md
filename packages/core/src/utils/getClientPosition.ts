@@ -1,6 +1,6 @@
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ClientPositionMouseEvent {
   clientX: number;
@@ -9,7 +9,7 @@ export interface ClientPositionMouseEvent {
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ClientPositionTouchEvent {
   changedTouches: {
@@ -23,7 +23,7 @@ export type ClientPositionEvent =
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ClientPositionOptions {
   event: ClientPositionEvent;
@@ -32,7 +32,7 @@ export interface ClientPositionOptions {
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const getClientPosition = (options: ClientPositionOptions): number => {
   const { event, vertical } = options;

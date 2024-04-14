@@ -16,8 +16,7 @@ const getMainElement = (mainId: string): HTMLElement | null =>
     : document.querySelector<HTMLElement>('main,[role="main"]');
 
 /**
- * @remarks
- * \@since 6.0.0 The {@link mainId} is optional
+ * @since 6.0.0 The {@link mainId} is optional
  */
 export interface SkipToMainContentProps
   extends Omit<LinkProps, "href">,
@@ -43,8 +42,7 @@ export interface SkipToMainContentProps
 /**
  * **Client Component**
  *
- * @remarks
- * \@since 6.0.0 Throws an error after rendering if no main element can be found
+ * @since 6.0.0 Throws an error after rendering if no main element can be found
  * with the provided `mainId` in development mode. The previous behavior would
  * only log an error after being clicked.
  */

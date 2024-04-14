@@ -16,7 +16,7 @@ declare module "react" {
   }
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface SlideProps
   extends HTMLAttributes<HTMLDivElement>,
     CSSTransitionComponentProps,
@@ -40,7 +40,7 @@ export interface SlideProps
  * {@link useSlideTransition}.
  *
  * @see {@link SlideContainer} for example usage.
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const Slide = forwardRef<HTMLDivElement, SlideProps>(
   function Slide(props, nodeRef) {

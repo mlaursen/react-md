@@ -4,7 +4,7 @@ import { type ChangeableHTMLElement } from "./utils.js";
 
 /**
  * @internal
- * \@remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ListboxContext {
   /**
@@ -28,13 +28,13 @@ const context = createContext<ListboxContext | null>(null);
  * **Client Component**
  *
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const { Provider: ListboxProvider } = context;
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useListboxContext(): ListboxContext {
   const value = useContext(context);

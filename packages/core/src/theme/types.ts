@@ -1,13 +1,13 @@
 import type { CSSProperties } from "react";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type CSSVariableName = `--${string}`;
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type DefinedCustomProperty<Property = keyof CSSProperties> =
   Property extends CSSVariableName ? Property : never;
@@ -33,6 +33,6 @@ export type DefinedCustomProperty<Property = keyof CSSProperties> =
  * // defined react-md custom properties
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type DefinedCSSVariableName = DefinedCustomProperty;

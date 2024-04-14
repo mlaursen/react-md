@@ -12,7 +12,7 @@ import { useCSSTransition } from "./useCSSTransition.js";
 /**
  * The default cross fade transition classes to use.
  *
- * @remarks \@since 2.0.0
+ * @since 2.0.0
  */
 export const CROSS_FADE_CLASSNAMES: Readonly<CSSTransitionClassNamesObject> = {
   appear: "rmd-cross-fade",
@@ -24,7 +24,7 @@ export const CROSS_FADE_CLASSNAMES: Readonly<CSSTransitionClassNamesObject> = {
 /**
  * The default cross fade transition timeout.
  *
- * @remarks \@since 2.0.0
+ * @since 2.0.0
  */
 export const CROSS_FADE_TIMEOUT: Readonly<TransitionTimeoutObject> = {
   appear: 300,
@@ -35,7 +35,7 @@ export const CROSS_FADE_TIMEOUT: Readonly<TransitionTimeoutObject> = {
 /**
  * @typeParam E - An HTMLElement type used for the ref required for the
  * transition.
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export interface CrossFadeTransitionHookOptions<E extends HTMLElement>
   extends PreconfiguredCSSTransitionInDefaultedOptions<E> {
@@ -107,7 +107,7 @@ export interface CrossFadeTransitionHookOptions<E extends HTMLElement>
  *
  * @typeParam E - An HTMLElement type used for the ref required for the
  * transition.
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export function useCrossFadeTransition<E extends HTMLElement>(
   options: CrossFadeTransitionHookOptions<E> = {}

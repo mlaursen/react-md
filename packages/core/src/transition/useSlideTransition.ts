@@ -8,10 +8,10 @@ import type {
 } from "./types.js";
 import { useCSSTransition } from "./useCSSTransition.js";
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export const DEFAULT_SLIDE_TRANSITION_TIMEOUT: Readonly<TransitionTimeout> = 150;
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export const DEFAULT_SLIDE_TRANSITION_CLASSNAMES: Readonly<CSSTransitionClassNames> =
   {
     enter: "rmd-slide--enter",
@@ -20,7 +20,7 @@ export const DEFAULT_SLIDE_TRANSITION_CLASSNAMES: Readonly<CSSTransitionClassNam
     exitActive: "rmd-slide--exit-active rmd-slide--animate",
   };
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export type SlideTransitionOptions<E extends HTMLElement> =
   PreconfiguredCSSTransitionOptions<E>;
 
@@ -89,7 +89,7 @@ export type SlideTransitionOptions<E extends HTMLElement> =
  *
  * @see {@link SlideContainer} and {@link Slide} for convenient default
  * implementations.
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useSlideTransition<E extends HTMLElement>(
   options: SlideTransitionOptions<E>

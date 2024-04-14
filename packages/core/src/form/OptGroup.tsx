@@ -9,7 +9,7 @@ import { MenuItemGroup } from "../menu/MenuItemGroup.js";
 import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface OptGroupProps extends Omit<ListProps, "role"> {
   /**
    * This is really the `children` to display in a `ListSubheader` that
@@ -67,7 +67,7 @@ export interface OptGroupProps extends Omit<ListProps, "role"> {
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const OptGroup = forwardRef<ListElement, OptGroupProps>(
   function OptGroup(props, ref) {

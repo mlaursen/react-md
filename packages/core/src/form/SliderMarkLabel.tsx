@@ -11,7 +11,7 @@ import { bem } from "../utils/bem.js";
 const styles = bem("rmd-slider-mark-label");
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface CustomizableSliderMarkLabelProps extends TypographyProps {
   /** @defaultValue `"span"` */
@@ -23,7 +23,7 @@ export interface CustomizableSliderMarkLabelProps extends TypographyProps {
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface SliderMarkLabelProps extends CustomizableSliderMarkLabelProps {
   offset: string;
@@ -34,7 +34,7 @@ export interface SliderMarkLabelProps extends CustomizableSliderMarkLabelProps {
  * **Server Component**
  *
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function SliderMarkLabel(props: SliderMarkLabelProps): ReactElement {
   const {

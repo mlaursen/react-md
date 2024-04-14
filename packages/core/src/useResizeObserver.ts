@@ -6,7 +6,7 @@ import { useEnsuredRef } from "./useEnsuredRef.js";
 import { type useElementSize } from "./useElementSize.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type ResizeObserverEntryCallback = (entry: ResizeObserverEntry) => void;
 
@@ -40,7 +40,7 @@ interface SubscribeOptions {
 
 /**
  * @internal
- * @remarks \@since 6.0.0 This was added to help with testing. The
+ * @since 6.0.0 This was added to help with testing. The
  * `subscriptions` and `sharedObserver` used to be module-level variables but
  * moving to a class makes it easier to mock. Checkout the
  * `src/tests-utils/ResizeObserver.ts`
@@ -139,14 +139,13 @@ export class ResizeObserverManager {
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const resizeObserverManager = new ResizeObserverManager();
 
 /**
- * @remarks
- * \@since 2.3.0
- * \@since 6.0.0 Renamed from `UseResizeObserverOptions` and added
+ * @since 2.3.0
+ * @since 6.0.0 Renamed from `UseResizeObserverOptions` and added
  * `onUpdate`/`disabled` options.
  */
 export interface ResizeObserverHookOptions<E extends HTMLElement> {
@@ -195,9 +194,8 @@ export interface ResizeObserverHookOptions<E extends HTMLElement> {
  * For most cases you can use the {@link useElementSize} instead, but this hook
  * can be used for more complex behavior with the {@link ResizeObserverEntry}.
  *
- * @remarks
- * \@since 2.3.0
- * \@since 6.0.0 The API was updated to match the `useIntersectionObserver`
+ * @since 2.3.0
+ * @since 6.0.0 The API was updated to match the `useIntersectionObserver`
  * implementation -- accepts only a single object parameter and returns a
  * {@link RefCallback} instead of `[nodeRef, refCallback]`
  */

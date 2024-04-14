@@ -17,7 +17,7 @@ import {
  * Look at the `Tree` component for an example of creating a custom
  * implementation.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function DefaultTreeItemRenderer<
   T extends TreeItemNode = DefaultTreeItemNode,

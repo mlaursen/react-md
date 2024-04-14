@@ -18,7 +18,7 @@ declare module "react" {
   }
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface SkeletonPlaceholderProps
   extends HTMLAttributes<HTMLDivElement>,
     SkeletonPlaceholderOptions {
@@ -135,7 +135,7 @@ export interface SkeletonPlaceholderProps
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const SkeletonPlaceholder = forwardRef<
   HTMLDivElement,

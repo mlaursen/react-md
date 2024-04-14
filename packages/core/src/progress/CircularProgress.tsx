@@ -13,7 +13,7 @@ import { getPercentage } from "../utils/getPercentage.js";
 import { type ProgressProps } from "./types.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * Removed the `determinateRotateDegrees` prop since the determinate state no
  * longer rotates while increasing value.
  * Added the `disableShrink` prop.
@@ -95,9 +95,8 @@ export interface CircularProgressProps
    * Set to `true` to render as a smaller size.
    *
    * @defaultValue `false`
-   * @remarks
-   * \@since 2.3.0
-   * \@since 6.0.0 Renamed from `small`
+   * @since 2.3.0
+   * @since 6.0.0 Renamed from `small`
    */
   dense?: boolean;
 
@@ -107,7 +106,7 @@ export interface CircularProgressProps
    * loading spinners are displayed at once on the page.
    *
    * @defaultValue `false`
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   disableShrink?: boolean;
 }
@@ -142,7 +141,7 @@ const styles = bem("rmd-circular-progress");
  * }
  * ```
  *
- * @remarks \@since 6.0.0 Updated the determinate circular progress to no longer
+ * @since 6.0.0 Updated the determinate circular progress to no longer
  * rotate while increasing the value and require a label for accessibility.
  */
 export const CircularProgress = forwardRef<

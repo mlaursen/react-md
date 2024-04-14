@@ -17,11 +17,10 @@ import { type KeyboardEvent } from "react";
  * @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/requestSubmit
  * @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit
  * @internal
- * @remarks
- * \@since 2.7.0
- * \@since 6.0.0 No longer returns a boolean, added the `formId` parameter, and
+ * @since 2.7.0
+ * @since 6.0.0 No longer returns a boolean, added the `formId` parameter, and
  * moved into the form package.
- * \@since 6.0.0 Uses `form.requestSubmit` instead of clicking the submit button
+ * @since 6.0.0 Uses `form.requestSubmit` instead of clicking the submit button
  */
 export function tryToSubmitRelatedForm<E extends HTMLElement>(
   event: KeyboardEvent<E>,
@@ -52,19 +51,19 @@ export function tryToSubmitRelatedForm<E extends HTMLElement>(
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type EditableHTMLElement = HTMLInputElement | HTMLTextAreaElement;
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type ChangeableHTMLElement = EditableHTMLElement | HTMLSelectElement;
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function isChangeableHTMLElement(
   element: Element | null
@@ -77,7 +76,7 @@ export function isChangeableHTMLElement(
  *
  * @internal
  * @see https://stackoverflow.com/a/46012210
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function triggerManualChangeEvent(
   element: ChangeableHTMLElement | null,

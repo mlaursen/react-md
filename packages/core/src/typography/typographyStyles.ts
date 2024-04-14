@@ -6,7 +6,7 @@ import { cssUtils, type TextCssUtilsOptions } from "../cssUtils.js";
  * the Typography component, this will generate the correct typography className
  * to apply and determine what component to be rendered as if none was provided.
  *
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export type TypographyType =
   | "headline-1"
@@ -22,7 +22,7 @@ export type TypographyType =
   | "caption"
   | "overline";
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface TypographyClassNameOptions extends TextCssUtilsOptions {
   className?: string;
 
@@ -33,7 +33,7 @@ export interface TypographyClassNameOptions extends TextCssUtilsOptions {
   type?: TypographyType;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export type NullableTypographyClassNameOptions = Omit<
   TypographyClassNameOptions,
   "type"
@@ -128,7 +128,7 @@ export type NullableTypographyClassNameOptions = Omit<
  * @param options - An optional object of options used to create the typography
  * class name.
  * @returns a typography class name string
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function typography(
   options: NullableTypographyClassNameOptions = {}

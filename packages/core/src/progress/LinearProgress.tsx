@@ -13,7 +13,7 @@ import { getPercentage } from "../utils/getPercentage.js";
 import { type ProgressProps } from "./types.js";
 
 /**
- * @remarks \@since 6.0.0 Added the `theme` prop
+ * @since 6.0.0 Added the `theme` prop
  */
 export interface LinearProgressProps
   extends Omit<HTMLAttributes<HTMLSpanElement>, "id" | "children">,
@@ -90,7 +90,7 @@ const styles = bem("rmd-linear-progress");
  * }
  * ```
  *
- * @remarks \@since 6.0.0 Supports rendering as any of the theme colors and
+ * @since 6.0.0 Supports rendering as any of the theme colors and
  * requires a label for accessibility.
  */
 export const LinearProgress = forwardRef<

@@ -154,7 +154,7 @@ import { getTransitionClassNames } from "./utils.js";
  *
  * @typeParam E - An HTMLElement type used for the ref required for the
  * transition.
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export function useCSSTransition<E extends HTMLElement>(
   options: CSSTransitionHookOptions<E>

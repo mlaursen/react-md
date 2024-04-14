@@ -3,7 +3,7 @@ import { useCallback, useRef } from "react";
 import { createFuzzyRegExp } from "./fuzzy.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface FuzzyMatchOptions {
   value: string;
@@ -11,7 +11,7 @@ export interface FuzzyMatchOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type FuzzyMatch = (options: FuzzyMatchOptions) => boolean;
 
@@ -20,7 +20,7 @@ export type FuzzyMatch = (options: FuzzyMatchOptions) => boolean;
  * together for large datasets (10,000 or more items) and was really created
  * for the autocomplete component.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useFuzzyMatch(): FuzzyMatch {
   const prevQuery = useRef("");

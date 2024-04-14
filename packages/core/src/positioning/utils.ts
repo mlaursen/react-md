@@ -195,7 +195,7 @@ export function getBelowCoord({
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export interface TransformOriginOptions extends PositionAnchor {
@@ -353,7 +353,7 @@ export function getElementRect(element: HTMLElement): DOMRect {
 }
 
 /**
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  * @internal
  */
 interface IsWithinViewportOptions {
@@ -362,7 +362,7 @@ interface IsWithinViewportOptions {
 }
 
 /**
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  * @internal
  */
 export function isWithinViewport(options: IsWithinViewportOptions): boolean {

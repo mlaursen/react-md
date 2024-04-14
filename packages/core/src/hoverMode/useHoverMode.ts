@@ -5,7 +5,7 @@ import type { UseStateInitializer, UseStateSetter } from "../types.js";
 import type { SimpleHoverModeContext } from "./useHoverModeProvider.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface HoverModeConfigurationOptions extends SimpleHoverModeContext {
   /** @defaultValue `false` */
@@ -23,7 +23,7 @@ export interface HoverModeConfigurationOptions extends SimpleHoverModeContext {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ControlledHoverModeOptions
   extends HoverModeConfigurationOptions {
@@ -31,7 +31,7 @@ export interface ControlledHoverModeOptions
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ControlledHoverModeImplementation {
   startShowFlow(id?: string | MouseEvent): void;
@@ -40,7 +40,7 @@ export interface ControlledHoverModeImplementation {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface UncontrolledHoverModeOptions
   extends HoverModeConfigurationOptions {
@@ -48,7 +48,7 @@ export interface UncontrolledHoverModeOptions
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface UncontrolledHoverModeImplementation
   extends ControlledHoverModeImplementation {
@@ -57,7 +57,7 @@ export interface UncontrolledHoverModeImplementation
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface HoverModeImplementation
   extends ControlledHoverModeImplementation {
@@ -66,11 +66,10 @@ export interface HoverModeImplementation
 }
 
 /**
- * @remarks
- * \@since 2.8.0
- * \@since 5.0.0 This hook no longer returns `handlers` or
+ * @since 2.8.0
+ * @since 5.0.0 This hook no longer returns `handlers` or
  * `stickyHandlers` and does not hide when an element on the page is clicked.
- * \@since 6.0.0 Requires passing the custom hover mode context to
+ * @since 6.0.0 Requires passing the custom hover mode context to
  * work.
  */
 export function useHoverMode(

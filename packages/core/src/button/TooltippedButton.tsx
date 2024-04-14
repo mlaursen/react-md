@@ -15,7 +15,7 @@ const noop = (): void => {
 };
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface TooltippedButtonProps extends ButtonProps {
   /** @defaultValue `"icon"` */
@@ -72,7 +72,7 @@ export interface TooltippedButtonProps extends ButtonProps {
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const TooltippedButton = forwardRef<
   HTMLButtonElement,

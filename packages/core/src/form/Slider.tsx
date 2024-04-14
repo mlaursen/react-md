@@ -55,7 +55,7 @@ const noop = (): void => {
 };
 
 /**
- * @remarks \@since 2.5.0
+ * @since 2.5.0
  */
 export interface BaseSliderProps
   extends HTMLAttributes<HTMLDivElement>,
@@ -104,11 +104,10 @@ export interface BaseSliderProps
 }
 
 /**
- * @remarks
- * \@since 2.5.0
- * \@since 6.0.0 Only requires `value` and `setValue` props instead of all the
+ * @since 2.5.0
+ * @since 6.0.0 Only requires `value` and `setValue` props instead of all the
  * slider controls.
- * \@since 6.0.0 The `thumbLabel` and `thumbLabelledBy` props were removed. Use
+ * @since 6.0.0 The `thumbLabel` and `thumbLabelledBy` props were removed. Use
  * the `aria-label` or `aria-labelledby` props instead.
  */
 export interface SliderProps extends BaseSliderProps, SliderState {
@@ -162,11 +161,10 @@ export interface SliderProps extends BaseSliderProps, SliderState {
 }
 
 /**
- * @remarks
- * \@since 2.5.0
- * \@since 6.0.0 Only requires `rangeValue` and `setRangeValue` props instead of
+ * @since 2.5.0
+ * @since 6.0.0 Only requires `rangeValue` and `setRangeValue` props instead of
  * all the slider controls.
- * \@since 6.0.0 The `thumb1Label`, `thumb1LabelledBy`, `thumb1Props`,
+ * @since 6.0.0 The `thumb1Label`, `thumb1LabelledBy`, `thumb1Props`,
  * `thumb2Label`, `thumb2LabelledBy` and `thumb2Props` were renamed to
  * `minThumbLabel`, `minThumbLabelledBy`, `minThumbProps`, `maxThumbLabel`,
  * `maxThumbLabelledBy`, and `maxThumbProps` respectively.
@@ -328,11 +326,10 @@ export interface RangeSliderProps extends BaseSliderProps, RangeSliderState {
  * }
  * ```
  *
- * @remarks
- * \@since 2.5.0
- * \@since 6.0.0 The `Slider` and `RangeSlider` have been combined into the
+ * @since 2.5.0
+ * @since 6.0.0 The `Slider` and `RangeSlider` have been combined into the
  * single `Slider` component and removed the `label` support.
- * \@since 6.0.0 Each thumb includes an invisible `<input type="range">` instead
+ * @since 6.0.0 Each thumb includes an invisible `<input type="range">` instead
  * of an `<input type="hidden">`.
  */
 export function Slider(props: LabelRequiredForA11y<SliderProps>): ReactElement;

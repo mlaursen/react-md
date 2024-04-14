@@ -1,6 +1,6 @@
 import type { IntersectionObserverHookOptions } from "../useIntersectionObserver.js";
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export type TableStickySectionOptions = Pick<
   IntersectionObserverHookOptions<HTMLTableSectionElement>,
   "disabled" | "getThreshold" | "getRootMargin"
@@ -22,14 +22,14 @@ export type TableStickySectionOptions = Pick<
  *
  * @see {@link TableStickySectionProps.stickyOptions} for an example usage with custom threshold and
  * margin.
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type IsStickyTableSectionActive = (
   entry: IntersectionObserverEntry,
   isInTableContainer: boolean
 ) => boolean;
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface TableStickySectionProps {
   /**
    * @defaultValue `false`
@@ -67,7 +67,7 @@ export interface TableStickySectionProps {
    * }, [])}
    * ```
    *
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API}
    */
   stickyOptions?: TableStickySectionOptions;
@@ -84,7 +84,7 @@ export interface TableStickySectionProps {
    * @see {@link IsStickyTableSectionActive} for a description.
    * @see {@link stickyOptions} for an example usage with custom threshold and
    * margin.
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   isStickyActive?: IsStickyTableSectionActive;
 

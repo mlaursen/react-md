@@ -1,7 +1,7 @@
 import { type ElementInteractionMode } from "./types.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ElementInteractionConfiguration {
   mode: ElementInteractionMode;
@@ -14,7 +14,7 @@ let mode: ElementInteractionMode = "ripple";
 let higherContrast = true;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const INTERACTION_CONFIG: ElementInteractionConfiguration = {
   get mode() {

@@ -4,7 +4,7 @@ import { useCallback, useRef } from "react";
 import { applyRef } from "./utils/applyRef.js";
 
 /**
- * @remarks \@since 2.3.0
+ * @since 2.3.0
  * @internal
  */
 export type EnsuredRefs<E extends HTMLElement> = readonly [
@@ -37,7 +37,7 @@ export type EnsuredRefs<E extends HTMLElement> = readonly [
  * });
  * ```
  *
- * @remarks \@since 2.3.0
+ * @since 2.3.0
  * @internal
  */
 export function useEnsuredRef<E extends HTMLElement>(

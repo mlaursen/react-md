@@ -3,12 +3,11 @@ import { type PropsWithRef } from "../types.js";
 import { cardHeader, cardHeaderContent } from "./styles.js";
 
 /**
- * @remarks
- * \@since 6.0.0 Removed the `align` prop.
- * \@since 6.0.0 Renamed the `beforeChildren` and `afterChildren` props to
+ * @since 6.0.0 Removed the `align` prop.
+ * @since 6.0.0 Renamed the `beforeChildren` and `afterChildren` props to
  * `beforeAddon` and `afterAddon`.
- * \@since 6.0.0 Removed the `contentClassName` prop in favor of the
- * {@link contentProps}.
+ * @since 6.0.0 Removed the `contentClassName` prop in favor of the
+ * `contentProps`.
  */
 export interface CardHeaderProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -33,15 +32,14 @@ export interface CardHeaderProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * **Server Component**
  *
- * @remarks
- * \@since 6.0.0 Removed the `align` prop.
- * \@since 6.0.0 Renamed the `beforeChildren` and `afterChildren` props to
+ * @since 6.0.0 Removed the `align` prop.
+ * @since 6.0.0 Renamed the `beforeChildren` and `afterChildren` props to
  * `beforeAddon` and `afterAddon`.
- * \@since 6.0.0 Removed the `contentClassName` prop in favor of the
- * {@link contentProps}.
- * \@since 6.0.0 No longer uses the `TextIconSpacing` component and instead
+ * @since 6.0.0 Removed the `contentClassName` prop in favor of the
+ * `contentProps`.
+ * @since 6.0.0 No longer uses the `TextIconSpacing` component and instead
  * relies on the CSS `gap` for spacing.
- * \@since 6.0.0 Renders as a `<div>` instead of a `<header>`
+ * @since 6.0.0 Renders as a `<div>` instead of a `<header>`
  */
 export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
   function CardHeader(props, ref) {

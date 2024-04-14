@@ -22,7 +22,7 @@ const noop = (): void => {
 };
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type AsyncButtonLoadingType =
   | "circular-before"
@@ -32,7 +32,7 @@ export type AsyncButtonLoadingType =
   | "linear-below";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface AsyncButtonProps extends ButtonProps {
   /**
@@ -189,7 +189,7 @@ export interface AsyncButtonProps extends ButtonProps {
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const AsyncButton = forwardRef<HTMLButtonElement, AsyncButtonProps>(
   function AsyncButton(props, ref) {

@@ -4,7 +4,7 @@ import { type UseStateInitializer, type UseStateSetter } from "../types.js";
 
 const EMPTY_LIST = [] as const;
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface CheckboxGroupOptions<V> {
   /**
    * A `name` to apply to all the checkboxes within the group. This is required
@@ -54,7 +54,7 @@ export interface CheckboxGroupOptions<V> {
   defaultCheckedValues?: UseStateInitializer<readonly V[]>;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface CheckboxGroupImplementation<V extends string> {
   reset(): void;
   checkedValues: ReadonlySet<V>;
@@ -67,7 +67,7 @@ export interface CheckboxGroupImplementation<V extends string> {
   };
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface IndeterminateCheckboxGroupImplementation<V extends string>
   extends CheckboxGroupImplementation<V> {
   getIndeterminateProps(): {
@@ -79,7 +79,7 @@ export interface IndeterminateCheckboxGroupImplementation<V extends string>
   };
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface MenuItemCheckboxGroupImplementation<V extends string> {
   reset(): void;
   checkedValues: ReadonlySet<V>;
@@ -90,7 +90,7 @@ export interface MenuItemCheckboxGroupImplementation<V extends string> {
   };
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface IndeterminateMenuItemCheckboxGroupImplementation<
   V extends string,
 > extends MenuItemCheckboxGroupImplementation<V> {
@@ -102,7 +102,7 @@ export interface IndeterminateMenuItemCheckboxGroupImplementation<
   };
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface CombinedCheckboxGroupReturnValue<V extends string> {
   reset(): void;
   checkedValues: ReadonlySet<V>;
@@ -145,7 +145,7 @@ export interface CombinedCheckboxGroupReturnValue<V extends string> {
  * );
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useCheckboxGroup<V extends string>(
   options: CheckboxGroupOptions<V> & {
@@ -184,7 +184,7 @@ export function useCheckboxGroup<V extends string>(
  * );
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useCheckboxGroup<V extends string>(
   options: CheckboxGroupOptions<V> & {
@@ -214,7 +214,7 @@ export function useCheckboxGroup<V extends string>(
  * );
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useCheckboxGroup<V extends string>(
   options: CheckboxGroupOptions<V> & {
@@ -253,7 +253,7 @@ export function useCheckboxGroup<V extends string>(
  * );
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useCheckboxGroup<V extends string>(
   options: CheckboxGroupOptions<V> & {

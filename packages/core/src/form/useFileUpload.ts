@@ -31,7 +31,7 @@ const noop = (): void => {
  *
  * @typeParam CustomError - An optional error type that gets returned from the
  * {@link FilesValidator}.
- * @remarks \@since 2.9.0
+ * @since 2.9.0
  */
 export interface FileUploadState<CustomError = never> {
   /**
@@ -60,7 +60,7 @@ export interface FileUploadState<CustomError = never> {
  *
  * @typeParam CustomError - An optional error type that gets returned from the
  * {@link FilesValidator}.
- * @remarks \@since 2.9.0
+ * @since 2.9.0
  * @internal
  */
 export interface FileUploadHookState<CustomError = never>
@@ -79,7 +79,7 @@ export interface FileUploadHookState<CustomError = never>
  * {@link FileUploadHandlers}.
  * @typeParam CustomError - An optional error type that gets returned from the
  * {@link FilesValidator}.
- * @remarks \@since 2.9.0
+ * @since 2.9.0
  */
 export interface FileUploadOptions<E extends HTMLElement, CustomError = never>
   extends FileUploadHandlers<E>,
@@ -114,7 +114,7 @@ type Action<E = never> =
   | { type: "complete"; key: string; result: FileReaderResult }
   | { type: "clearErrors" };
 
-/** @remarks \@since 2.9.0 */
+/** @since 2.9.0 */
 export interface FileUploadActions {
   /**
    * Reset everything related to uploads ensuring that all file readers have
@@ -144,7 +144,7 @@ export interface FileUploadActions {
  * {@link FileUploadHandlers}.
  * @typeParam CustomError - An optional error type that gets returned from the
  * {@link FilesValidator}.
- * @remarks \@since 2.9.0
+ * @since 2.9.0
  */
 export interface FileUploadHookReturnValue<
   E extends HTMLElement = HTMLElement,
@@ -211,7 +211,7 @@ const EMPTY_OBJECT = {} as const;
  * {@link FilesValidator}.
  * @param options - All the {@link FileUploadOptions}
  * @returns the {@link FileUploadHookReturnValue}
- * @remarks \@since 2.9.0
+ * @since 2.9.0
  */
 export function useFileUpload<E extends HTMLElement, CustomError = never>({
   maxFiles = -1,

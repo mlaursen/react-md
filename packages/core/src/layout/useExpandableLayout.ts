@@ -17,7 +17,7 @@ import type {
 import { useTemporaryLayout } from "./useTemporaryLayout.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ExpandableLayoutOptions extends TemporaryLayoutOptions {
   /** @defaultValue `"fixed"` */
@@ -49,14 +49,14 @@ export interface ExpandableLayoutOptions extends TemporaryLayoutOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ProvidedLayoutMainProps
   extends ProvidedTemporaryLayoutMainProps,
     CSSTransitionElementProps<HTMLElement> {}
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type ProvidedLayoutNavProps = Pick<
   LayoutNavProps,
@@ -64,13 +64,13 @@ export type ProvidedLayoutNavProps = Pick<
 >;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type ProvidedLayoutAppBarProps = ProvidedTemporaryLayoutAppBarProps &
   Partial<CSSTransitionElementProps<HTMLElement>>;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ExpandableLayoutImplementation
   extends TemporaryLayoutImplementation {
@@ -146,7 +146,7 @@ export interface ExpandableLayoutImplementation
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @see {@link useResizableLayout}
  */
 export function useExpandableLayout(

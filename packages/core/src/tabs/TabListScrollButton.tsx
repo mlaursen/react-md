@@ -24,7 +24,7 @@ import {
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface BaseTabListScrollButtonProps
   extends HTMLAttributes<HTMLDivElement>,
@@ -40,7 +40,7 @@ export interface BaseTabListScrollButtonProps
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface TabListScrollButtonProps extends BaseTabListScrollButtonProps {
   type: "back" | "forward";
@@ -52,7 +52,7 @@ export interface TabListScrollButtonProps extends BaseTabListScrollButtonProps {
  * **Client Component**
  *
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const TabListScrollButton = forwardRef<
   HTMLDivElement,

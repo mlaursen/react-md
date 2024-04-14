@@ -18,7 +18,7 @@ import { type useTabs } from "./useTabs.js";
 import { type TabListProps } from "./TabList.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface BaseTabProps {
   /**
@@ -71,7 +71,7 @@ export interface BaseTabProps {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface TabButtonProps
   extends BaseTabProps,
@@ -86,7 +86,7 @@ export interface TabLinkProps
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type TabProps = TabButtonProps | TabLinkProps;
 
@@ -98,7 +98,7 @@ export type TabProps = TabButtonProps | TabLinkProps;
  *
  * @see {@link useTabs}
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function Tab(props: TabProps): ReactElement {
   const {

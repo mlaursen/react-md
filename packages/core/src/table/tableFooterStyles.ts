@@ -4,7 +4,7 @@ import { bem } from "../utils/bem.js";
 const styles = bem("rmd-tfoot");
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface TableFooterClassNameOptions {
   className?: string;

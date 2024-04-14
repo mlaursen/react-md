@@ -25,7 +25,7 @@ import type { TreeItemChildIds } from "./useTreeItems.js";
  *   closed
  *
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 const isParentItemCollapsing = (item: HTMLElement): boolean =>
   item
@@ -33,7 +33,7 @@ const isParentItemCollapsing = (item: HTMLElement): boolean =>
     ?.previousElementSibling?.getAttribute("aria-expanded") === "false";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 const getVisibleTreeItems = (
@@ -53,7 +53,7 @@ const getVisibleTreeItems = (
 };
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 interface TreeMovementOptions<T extends TreeItemNode> extends TreeExpansion {
@@ -66,7 +66,7 @@ interface TreeMovementOptions<T extends TreeItemNode> extends TreeExpansion {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 interface TreeMovement
@@ -79,7 +79,7 @@ interface TreeMovement
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export function useTreeMovement<T extends TreeItemNode>(

@@ -3,18 +3,18 @@ import type { Ref, RefCallback, RefObject } from "react";
 import { useEffect } from "react";
 import { useEnsuredRef } from "./useEnsuredRef.js";
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export type IntersectionObserverRoot = IntersectionObserverInit["root"];
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export type IntersectionObserverThreshold =
   IntersectionObserverInit["threshold"];
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export type IntersectionObserverRootMargin =
   IntersectionObserverInit["rootMargin"];
 
 /**
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#intersection_observer_options}
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface BaseIntersectionObserverHookOptions {
   /**
@@ -130,7 +130,7 @@ export interface BaseIntersectionObserverHookOptions {
 
 /**
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#intersection_observer_options}
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface IntersectionObserverHookOptions<E extends HTMLElement>
   extends BaseIntersectionObserverHookOptions {
@@ -252,7 +252,7 @@ export interface IntersectionObserverHookOptions<E extends HTMLElement>
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @see https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
  */
 export function useIntersectionObserver<E extends HTMLElement>(

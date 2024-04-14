@@ -3,7 +3,7 @@ import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-text-field");
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface TextFieldClassNameOptions {
   className?: string;
 
@@ -19,7 +19,7 @@ export interface TextFieldClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function textField(options: TextFieldClassNameOptions = {}): string {
   const { className, placeholderHidden = false } = options;

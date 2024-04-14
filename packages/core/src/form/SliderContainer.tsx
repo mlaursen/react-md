@@ -5,9 +5,8 @@ import { bem } from "../utils/bem.js";
 const styles = bem("rmd-slider-container");
 
 /**
- * @remarks
- * \@since 2.5.0
- * \@since 6.0.0 Renamed from `SliderAddons` to `SliderContainerAddonProps`
+ * @since 2.5.0
+ * @since 6.0.0 Renamed from `SliderAddons` to `SliderContainerAddonProps`
  */
 export interface SliderAddonProps {
   /**
@@ -30,9 +29,8 @@ export interface SliderAddonProps {
 
 /**
  * @internal
- * @remarks
- * \@since 2.5.0
- * \@since 6.0.0 Removed the `label` support since you'll generally want to use
+ * @since 2.5.0
+ * @since 6.0.0 Removed the `label` support since you'll generally want to use
  * a `Fieldset` instead.
  */
 export interface SliderContainerProps
@@ -50,9 +48,8 @@ export interface SliderContainerProps
  * bottom or top instead.
  *
  * @internal
- * @remarks
- * \@since 2.5.0
- * \@since 6.0.0 Removed the `label` support since you'll generally want to use
+ * @since 2.5.0
+ * @since 6.0.0 Removed the `label` support since you'll generally want to use
  * a `Fieldset` instead.
  */
 export const SliderContainer = forwardRef<HTMLDivElement, SliderContainerProps>(

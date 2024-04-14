@@ -1,12 +1,12 @@
 import { type TextExtractor } from "../types.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type WhitespaceFilter = "ignore" | "trim" | "keep";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface BaseSearchOptions<T> {
   list: readonly T[];

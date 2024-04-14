@@ -2,7 +2,7 @@ import { nanoid } from "nanoid";
 import { type ConfigurableToastProps } from "./Toast.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const DEFAULT_TOAST_VISIBLE_TIME = 5000;
 
@@ -18,7 +18,7 @@ export const DEFAULT_TOAST_VISIBLE_TIME = 5000;
  *   currently visible toast, the toast will be shown again once the `"immediate"`
  *   toast is hidden.
  *
- * @remarks \@since 6.0.0 Renamed from `MessagePriority` to `ToastPriority`
+ * @since 6.0.0 Renamed from `MessagePriority` to `ToastPriority`
  */
 export type ToastPriority = "normal" | "next" | "replace" | "immediate";
 
@@ -33,12 +33,12 @@ export type ToastPriority = "normal" | "next" | "replace" | "immediate";
  * - `"update"` - toasts that have the same `toastId` will just update the toast
  *   with the latest content while maintaining any existing timeouts
  *
- * @remarks \@since 6.0.0 Renamed from `DuplicateBehavior`
+ * @since 6.0.0 Renamed from `DuplicateBehavior`
  */
 export type ToastDuplicateBehavior = "allow" | "restart" | "update";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ToastMeta {
   /**
@@ -67,7 +67,7 @@ export interface ToastMeta {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface CreateToastOptions extends ConfigurableToastProps {
   /**
@@ -98,23 +98,23 @@ export interface CreateToastOptions extends ConfigurableToastProps {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface QueuedToast extends ConfigurableToastProps, ToastMeta {}
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type ToastQueue = readonly Readonly<QueuedToast>[];
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type ToastCallback = (queue: ToastQueue) => void;
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ToastVisibilityTimers {
   inactive: boolean;
@@ -126,7 +126,7 @@ export interface ToastVisibilityTimers {
 /**
  * @see {@link ToastManagerProvider}
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export class ToastManager {
   #queue: QueuedToast[];
@@ -528,20 +528,20 @@ export class ToastManager {
  * added without setting up the {@link ToastManagerProvider}.
  *
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const toastManager = new ToastManager();
 
 /**
  * @see {@link ToastManager.addToast}
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const addToast: ToastManager["addToast"] = (toast) =>
   toastManager.addToast(toast);
 
 /**
  * @see {@link ToastManager.startRemoveTimeout}
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const startRemoveToastTimeout: ToastManager["startRemoveTimeout"] = (
   toastId
@@ -549,19 +549,19 @@ export const startRemoveToastTimeout: ToastManager["startRemoveTimeout"] = (
 
 /**
  * @see {@link ToastManager.popToast}
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const popToast: ToastManager["popToast"] = () => toastManager.popToast();
 
 /**
  * @see {@link ToastManager.removeToast}
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const removeToast: ToastManager["removeToast"] = (toastId, transition) =>
   toastManager.removeToast(toastId, transition);
 
 /**
  * @see {@link ToastManager.clearToasts}
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const clearToasts = (): void => toastManager.clearToasts();

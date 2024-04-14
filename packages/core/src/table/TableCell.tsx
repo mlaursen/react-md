@@ -26,7 +26,7 @@ export type TableCellAttributes = Omit<
 >;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface TableCellOptions extends TableCellConfig {
   /**
@@ -53,7 +53,7 @@ export interface TableCellOptions extends TableCellConfig {
   /**
    *
    * @defaultValue `false`
-   * @remarks \@since 6.0.0 This prop is only a boolean.
+   * @since 6.0.0 This prop is only a boolean.
    */
   sticky?: boolean;
 
@@ -65,7 +65,7 @@ export interface TableCellOptions extends TableCellConfig {
 }
 
 /**
- * @remarks \@since 6.0.0 Removed the `colSpan="100%"` support since `colSpan`
+ * @since 6.0.0 Removed the `colSpan="100%"` support since `colSpan`
  * really only supports numbers.
  */
 export interface TableCellProps extends TableCellAttributes, TableCellOptions {
@@ -117,7 +117,7 @@ export interface TableCellProps extends TableCellAttributes, TableCellOptions {
    * `UnstyledButton` that surrounds the `children` when the `"aria-sort"` prop
    * has been provided.
    *
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   contentProps?: PropsWithRef<
     ButtonHTMLAttributes<HTMLButtonElement>,
@@ -128,7 +128,7 @@ export interface TableCellProps extends TableCellAttributes, TableCellOptions {
    * Any additional props to pass to the `IconRotator` when the `aria-sort` prop
    * has been provided.
    *
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   iconRotatorProps?: TableCellContentsIconRotatorProps;
 
@@ -138,7 +138,7 @@ export interface TableCellProps extends TableCellAttributes, TableCellOptions {
    * table cell before the main `children`.
    *
    * @see {@link afterChildren} for an example.
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   beforeChildren?: ReactNode;
 
@@ -195,7 +195,7 @@ export interface TableCellProps extends TableCellAttributes, TableCellOptions {
    * }
    * ```
    *
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   afterChildren?: ReactNode;
 }

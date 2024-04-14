@@ -5,7 +5,7 @@ import {
 } from "./segmentedButtonContainerStyles.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface SegmentedButtonContainerProps
   extends HTMLAttributes<HTMLDivElement>,
@@ -41,7 +41,7 @@ export interface SegmentedButtonContainerProps
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const SegmentedButtonContainer = forwardRef<
   HTMLDivElement,

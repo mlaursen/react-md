@@ -35,8 +35,7 @@ export interface ParseCssLengthUnitOptions {
  *
  * @see {@link https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units#lengths}
  * @internal
- * @remarks
- * \@since 6.0.0 This was renamed from `unitToNumber`
+ * @since 6.0.0 This was renamed from `unitToNumber`
  */
 export function parseCssLengthUnit(options: ParseCssLengthUnitOptions): number {
   const { value, container, fallbackFontSize = 16 } = options;

@@ -90,7 +90,7 @@ export interface InitialCoords {
   initialY?: number;
 }
 
-/** @remarks \@since 4.0.0 */
+/** @since 4.0.0 */
 export interface CalculateFixedPositionOptions extends InitialCoords {
   /**
    * The configuration to anchor the fixed element to the container element.
@@ -158,9 +158,9 @@ export interface CalculateFixedPositionOptions extends InitialCoords {
    * screen.
    *
    * @defaultValue `false`
-   * @remarks \@since 5.0.0 This will always be `true` if the
+   * @since 5.0.0 This will always be `true` if the
    * {@link FixedPositionOptions.container} is `null`.
-   * \@remarks \@since 6.0.0 Allow this to be `false` while the `container` is
+   * @since 6.0.0 Allow this to be `false` while the `container` is
    * null. I can't figure out why I prevented that.
    */
   disableSwapping?: boolean;
@@ -215,7 +215,7 @@ export interface Coords {
  * Note: The fixed element styles **will not** contain styles for `z-index` or
  * `background-color` so you'll need to add that manually.
  *
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export interface FixedPositionStyle extends Coords {
   /**

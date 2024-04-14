@@ -63,7 +63,7 @@ declare module "react" {
   }
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface ThemeColors {
   primaryColor: string;
   onPrimaryColor: string;
@@ -77,7 +77,7 @@ export interface ThemeColors {
   onSuccessColor: string;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface ThemeTextColors {
   textPrimaryColor: string;
   textSecondaryColor: string;
@@ -85,15 +85,15 @@ export interface ThemeTextColors {
   textDisabledColor: string;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface ConfigurableThemeColors extends ThemeColors, ThemeTextColors {
   backgroundColor: string;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export type ConfigurableThemeColorsName = keyof ConfigurableThemeColors;
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface ThemeContext extends ConfigurableThemeColors {
   /**
    * This will be `true` if a `theme` wsa not provided to the {@link ThemeProvider}
@@ -129,7 +129,7 @@ export interface ThemeContext extends ConfigurableThemeColors {
   setDerivedTheme: UseStateSetter<Readonly<ConfigurableThemeColors>>;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export const DEFAULT_THEME_COLORS: Readonly<ThemeColors> = {
   primaryColor: blue500,
   onPrimaryColor: black,
@@ -143,7 +143,7 @@ export const DEFAULT_THEME_COLORS: Readonly<ThemeColors> = {
   onSuccessColor: black,
 };
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export const DEFAULT_LIGHT_THEME: Readonly<ConfigurableThemeColors> = {
   ...DEFAULT_THEME_COLORS,
   backgroundColor: "#fafafa",
@@ -153,7 +153,7 @@ export const DEFAULT_LIGHT_THEME: Readonly<ConfigurableThemeColors> = {
   textDisabledColor: "#9e9e9e",
 };
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export const DEFAULT_DARK_THEME: Readonly<ConfigurableThemeColors> = {
   ...DEFAULT_THEME_COLORS,
   backgroundColor: "#121212",
@@ -167,7 +167,7 @@ const context = createContext<Readonly<ThemeContext> | undefined>(undefined);
 context.displayName = "Theme";
 const { Provider } = context;
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export const getDerivedTheme = (
   container: Element = document.documentElement
 ): Readonly<ConfigurableThemeColors> => {
@@ -224,14 +224,14 @@ export const getDerivedTheme = (
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @throws "The `ThemeProvider` has not been initialized."
  */
 export function useTheme(): Readonly<ThemeContext>;
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useTheme(
   allowUndefined: true
@@ -239,7 +239,7 @@ export function useTheme(
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @throws "The `ThemeProvider` has not been initialized."
  */
 export function useTheme(
@@ -253,7 +253,7 @@ export function useTheme(
   return theme;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface ThemeProviderProps {
   /**
    * When this is `undefined`, the theme will be derived by computing the
@@ -354,7 +354,7 @@ export interface ThemeProviderProps {
  * );
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function ThemeProvider(props: ThemeProviderProps): ReactElement {
   const { children, theme } = props;

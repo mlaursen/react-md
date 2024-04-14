@@ -10,7 +10,7 @@ const EMPTY_LIST = [] as const;
 const PANEL_PREFIX = "panel-";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface TabsHookOptions<TabValue extends string | number = number> {
   /**
@@ -58,7 +58,7 @@ export interface TabsHookOptions<TabValue extends string | number = number> {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ProvidedTabProps {
   "aria-controls": string;
@@ -67,7 +67,7 @@ export interface ProvidedTabProps {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ProvidedTabListProps {
   activeIndex: number;
@@ -75,7 +75,7 @@ export interface ProvidedTabListProps {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ProvidedTabPanelProps {
   "aria-labelledby": string;
@@ -85,7 +85,7 @@ export interface ProvidedTabPanelProps {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ProvidedTabPanelsProps<E extends HTMLElement> {
   ref: Ref<E>;
@@ -93,7 +93,7 @@ export interface ProvidedTabPanelsProps<E extends HTMLElement> {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface TabsImplementation<TabValue extends string | number = number> {
   direction: SlideDirection;
@@ -142,7 +142,7 @@ export interface TabsImplementation<TabValue extends string | number = number> {
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useTabs(): TabsImplementation<number> & {
   activeTab: number;
@@ -191,7 +191,7 @@ export function useTabs(): TabsImplementation<number> & {
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useTabs<TabValue extends number>(
   options: TabsHookOptions<TabValue> & {
@@ -253,7 +253,7 @@ export function useTabs<TabValue extends number>(
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useTabs<TabValue extends string>(
   options: TabsHookOptions<TabValue> & {
@@ -396,7 +396,7 @@ export function useTabs<TabValue extends string>(
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useTabs<TabValue extends string>(
   options: TabsHookOptions<TabValue> & {
@@ -410,7 +410,7 @@ export function useTabs<TabValue extends string>(
  * This hook can be uncontrolled/controlled and supports strongly typing the tab
  * values if needed. Check out the overloads for examples.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useTabs<TabValue extends string | number>(
   options: TabsHookOptions<TabValue> = {}

@@ -23,7 +23,7 @@ const noop = (): void => {
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 interface SliderThumbClassNameOptions {
   className?: string;
@@ -38,7 +38,7 @@ interface SliderThumbClassNameOptions {
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 function sliderThumb(options: SliderThumbClassNameOptions): string {
   const { className, mask, index, active, animate, disabled, vertical } =
@@ -67,12 +67,12 @@ function sliderThumb(options: SliderThumbClassNameOptions): string {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type SliderTooltipVisibility = "auto" | "hover" | "always";
 
 /**
- * @remarks \@since 2.5.0
+ * @since 2.5.0
  */
 export interface SliderThumbPresentation {
   /**
@@ -128,9 +128,8 @@ export interface SliderThumbPresentation {
 
 /**
  * @internal
- * @remarks
- * \@since 2.5.0
- * \@since 6.0.0 Internal only component.
+ * @since 2.5.0
+ * @since 6.0.0 Internal only component.
  */
 export interface SliderThumbProps
   extends Omit<HTMLAttributes<HTMLSpanElement>, "onChange">,
@@ -157,9 +156,8 @@ export interface SliderThumbProps
  * **Client Component**
  *
  * @internal
- * @remarks
- * \@since 2.5.0
- * \@since 6.0.0 Internal only component.
+ * @since 2.5.0
+ * @since 6.0.0 Internal only component.
  */
 export const SliderThumb = forwardRef<
   HTMLSpanElement,

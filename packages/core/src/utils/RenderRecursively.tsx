@@ -2,14 +2,14 @@
 import { type ComponentType, type ReactElement, type ReactNode } from "react";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type RecursiveItem<T = Record<string, unknown>> = T & {
   items?: readonly RecursiveItem<T>[];
 };
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface RenderRecursiveItemsProps<
   Item = Record<string, unknown>,
@@ -36,7 +36,7 @@ export interface RenderRecursiveItemsProps<
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface RenderRecursivelyProps<
   Item = Record<string, unknown>,
@@ -161,7 +161,7 @@ export interface RenderRecursivelyProps<
  * ```
  *
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function RenderRecursively<Item, Data>(
   props: RenderRecursivelyProps<Item, Data>

@@ -9,7 +9,7 @@ import { Fragment, type ReactElement } from "react";
 import { CoreProviders, type CoreProvidersProps } from "../CoreProviders.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ReactMDRenderOptions<
   Q extends Queries = typeof queries,
@@ -20,7 +20,7 @@ export interface ReactMDRenderOptions<
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function rmdRender<
   Q extends Queries = typeof queries,

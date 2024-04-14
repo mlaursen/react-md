@@ -60,7 +60,7 @@ export interface PasswordProps
   extends Omit<TextFieldProps, "type" | "rightAddon"> {
   /**
    * @defaultValue `"password"`
-   * @remarks \@since 6.0.0 Defaults to `"password"`
+   * @since 6.0.0 Defaults to `"password"`
    */
   name?: string;
 

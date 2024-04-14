@@ -25,10 +25,10 @@ declare module "react" {
   }
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export const PRESSED_CLASS_NAME = "rmd-pressed";
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface ElementInteractionOptions<E extends HTMLElement>
   extends Partial<ElementInteractionHandlers<E>> {
   /**
@@ -40,7 +40,7 @@ export interface ElementInteractionOptions<E extends HTMLElement>
   disabled?: boolean;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface ElementInteractionHookReturnValue<E extends HTMLElement> {
   /**
    * The event handlers required for element interaction.
@@ -61,7 +61,7 @@ export interface ElementInteractionHookReturnValue<E extends HTMLElement> {
   pressedClassName: string | undefined;
 
   /**
-   * The ripple click/touch interaction. This will be `undefined` when the {@Link ElementInteractionMode}
+   * The ripple click/touch interaction. This will be `undefined` when the {@link ElementInteractionMode}
    * is set to `"none"` or `"press"`.
    */
   ripples?: ReactElement;
@@ -147,7 +147,7 @@ const noop = (): void => {
  * @param options - An object of {@link ElementInteractionOptions} that is used
  * to merge event handlers or disable the interactions.
  * @returns the {@link ElementInteractionHookReturnValue}
- * @remarks \@since 6.0.0 Touch interactions were removed since it never looked
+ * @since 6.0.0 Touch interactions were removed since it never looked
  * good if the user touched a clickable element right before scrolling. The
  * ripple effect will only be fired on click now for touch devices.
  */

@@ -5,7 +5,7 @@ import { type PropsWithRef } from "../types.js";
 import { TextField, type TextFieldProps } from "./TextField.js";
 
 /**
- * @remarks \@since 5.0.0
+ * @since 5.0.0
  */
 export interface MenuItemTextFieldProps extends TextFieldProps {
   /**
@@ -27,7 +27,7 @@ export interface MenuItemTextFieldProps extends TextFieldProps {
  * hard to style nicely within menus. You'd most likely want to use another menu
  * for displaying errors.
  *
- * @remarks \@since 5.0.0
+ * @since 5.0.0
  */
 export const MenuItemTextField = forwardRef<
   HTMLInputElement,

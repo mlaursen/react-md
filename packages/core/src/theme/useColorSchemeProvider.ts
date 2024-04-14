@@ -11,7 +11,7 @@ import { useColorSchemeMetaTag } from "./useColorSchemeMetaTag.js";
 import { usePrefersDarkTheme } from "./usePrefersColorScheme.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ColorSchemeProviderOptions
   extends Partial<ColorSchemeModeBehavior> {
@@ -66,7 +66,7 @@ export interface ColorSchemeProviderOptions
  *   return <ColorSchemeProvider value={value}>{children}</ColorSchemeProvider>
  * }
  * ```
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useColorSchemeProvider(
   options?: { [key in keyof ColorSchemeModeBehavior]?: never } & {

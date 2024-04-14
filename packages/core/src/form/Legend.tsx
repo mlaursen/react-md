@@ -4,7 +4,7 @@ import { cssUtils } from "../cssUtils.js";
 import { Typography, type TypographyProps } from "../typography/Typography.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface LegendProps extends TypographyProps {
   /**
@@ -18,7 +18,7 @@ export interface LegendProps extends TypographyProps {
  *
  * This should be used within a `Fieldset` to apply a label.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const Legend = forwardRef<HTMLLegendElement, LegendProps>(
   function Legend(props, ref) {

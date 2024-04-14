@@ -11,10 +11,9 @@ let isLocked = false;
 /**
  *
  * @internal
- * @remarks
- * \@since 6.0.0 No longer support scroll locking elements other than
+ * @since 6.0.0 No longer support scroll locking elements other than
  * the `document.body` since it's more reliable to scroll lock with an overlay.
- * \@since 6.0.0 Now applies `paddingRight` equal to the current OS's
+ * @since 6.0.0 Now applies `paddingRight` equal to the current OS's
  * scrollbar width if there is a full page scrollbar to prevent layout shifting.
  *
  * @param locked - The `document.body` will not be scrollable when this is

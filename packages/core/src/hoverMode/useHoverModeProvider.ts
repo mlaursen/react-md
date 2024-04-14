@@ -6,7 +6,7 @@ const noop = (): void => {
   // do nothing
 };
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface SimpleHoverModeContext {
   /**
    * @example
@@ -75,9 +75,8 @@ export interface SimpleHoverModeContext {
 }
 
 /**
- * @remarks
- * \@since 2.8.0
- * \@since 6.0.0 Uses refs to increase performance by preventing unneeded
+ * @since 2.8.0
+ * @since 6.0.0 Uses refs to increase performance by preventing unneeded
  * re-renders of the entire hover mode provider's component tree. The API also
  * changed to support custom hover mode providers.
  */
@@ -108,7 +107,7 @@ export interface HoverModeContext extends SimpleHoverModeContext {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface CreateHoverModeContextOptions {
   /**
@@ -132,14 +131,14 @@ export interface CreateHoverModeContextOptions {
    * visibility to `false`.
    *
    * @defaultValue `0`
-   * @remarks \@since 6.0.0 This was renamed from `exitVisibilityDelay` and the
+   * @since 6.0.0 This was renamed from `exitVisibilityDelay` and the
    * default value changed from `300` to `0`.
    */
   leaveTimeout?: number;
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function createHoverModeContext(
   options: CreateHoverModeContextOptions = {}
@@ -159,7 +158,7 @@ export function createHoverModeContext(
   };
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface HoverModeConfiguration extends CreateHoverModeContextOptions {
   /**
    * The amount of time to wait before disabling the hover mode behavior if none
@@ -224,7 +223,7 @@ export interface HoverModeConfiguration extends CreateHoverModeContextOptions {
  *
  * @see {@link CreateHoverModeContextOptions}
  * @see {@link useHoverMode}
- * @remarks \@since 6.0.0 The `HoverModeProvider` component was replaced by this
+ * @since 6.0.0 The `HoverModeProvider` component was replaced by this
  * hook implementation. After developing the `MenuBar`, I realized the hover
  * mode should normally be grouped by related components or types instead of a
  * top-level catch all.

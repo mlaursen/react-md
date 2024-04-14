@@ -6,7 +6,7 @@ const styles = bem("rmd-slider-mark");
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface SliderMarkProps extends HTMLAttributes<HTMLSpanElement> {
   active: boolean;
@@ -18,7 +18,7 @@ export interface SliderMarkProps extends HTMLAttributes<HTMLSpanElement> {
  * **Server Component**
  *
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function SliderMark(props: SliderMarkProps): ReactElement {
   const { active, offset, vertical, style, className, ...remaining } = props;

@@ -4,7 +4,7 @@ import { useResizeObserver } from "../useResizeObserver.js";
 import { toastContent } from "./toastContentStyles.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ToastContentProps extends HTMLAttributes<HTMLDivElement> {
   /** @defaultValue `false` */
@@ -37,7 +37,7 @@ export interface ToastContentProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * **Client Component**
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const ToastContent = forwardRef<HTMLDivElement, ToastContentProps>(
   function ToastContent(props, ref) {

@@ -9,9 +9,8 @@ import {
 import { type NonNullMutableRef, type UseStateObject } from "../types.js";
 
 /**
- * @remarks
- * \@since 5.0.0
- * \@since 6.0.0 Added the `defaultFocusIndex` ref.
+ * @since 5.0.0
+ * @since 6.0.0 Added the `defaultFocusIndex` ref.
  */
 export interface MenuVisibilityContext
   extends UseStateObject<"visible", boolean> {
@@ -20,7 +19,7 @@ export interface MenuVisibilityContext
 
 /**
  * @internal
- * @remarks \@since 5.0.0
+ * @since 5.0.0
  */
 const context = createContext<MenuVisibilityContext>({
   visible: false,
@@ -33,7 +32,7 @@ context.displayName = "MenuVisibility";
 
 /**
  * @internal
- * @remarks \@since 5.0.0
+ * @since 5.0.0
  */
 const { Provider } = context;
 
@@ -56,7 +55,7 @@ const { Provider } = context;
  * ```
  *
  * @returns the {@link MenuVisibilityContext}
- * @remarks \@since 5.0.0
+ * @since 5.0.0
  */
 export function useMenuVisibility(): Readonly<MenuVisibilityContext> {
   return useContext(context);
@@ -64,7 +63,7 @@ export function useMenuVisibility(): Readonly<MenuVisibilityContext> {
 
 /**
  * @internal
- * @remarks \@since 5.0.0
+ * @since 5.0.0
  */
 export interface MenuVisibilityProviderProps extends MenuVisibilityContext {
   children: ReactNode;
@@ -74,7 +73,7 @@ export interface MenuVisibilityProviderProps extends MenuVisibilityContext {
  * **Client Component**
  *
  * @internal
- * @remarks \@since 5.0.0
+ * @since 5.0.0
  */
 export function MenuVisibilityProvider({
   visible,

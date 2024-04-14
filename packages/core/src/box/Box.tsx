@@ -2,7 +2,7 @@ import { forwardRef, type HTMLAttributes } from "react";
 import { box, type BoxOptions } from "./styles.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface BoxProps extends HTMLAttributes<HTMLDivElement>, BoxOptions {}
 
@@ -107,7 +107,7 @@ export interface BoxProps extends HTMLAttributes<HTMLDivElement>, BoxOptions {}
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const Box = forwardRef<HTMLDivElement, BoxProps>(
   function Box(props, ref) {

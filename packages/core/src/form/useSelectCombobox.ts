@@ -6,7 +6,7 @@ import {
 } from "./useCombobox.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface SelectComboboxOptions<
   ComboboxEl extends HTMLElement = HTMLInputElement,
@@ -17,7 +17,7 @@ export interface SelectComboboxOptions<
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface SelectComboboxImplementation<
   ComboboxEl extends HTMLElement = HTMLInputElement,
@@ -25,7 +25,7 @@ export interface SelectComboboxImplementation<
 > extends ComboboxImplementation<ComboboxEl, PopupEl> {}
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useSelectCombobox<
   ComboboxEl extends HTMLElement = HTMLInputElement,

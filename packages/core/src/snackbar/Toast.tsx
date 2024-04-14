@@ -23,7 +23,7 @@ import { ToastContent, type ToastContentProps } from "./ToastContent.js";
 import { toast } from "./toastStyles.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ConfigurableToastProps
   extends HTMLAttributes<HTMLDivElement>,
@@ -122,7 +122,7 @@ export interface ConfigurableToastProps
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ToastProps extends ConfigurableToastProps {
   paused?: boolean;
@@ -135,7 +135,7 @@ export interface ToastProps extends ConfigurableToastProps {
  * This component is just used for toast styling and does not implement any of
  * the visibility behavior.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const Toast = forwardRef<HTMLDivElement, ToastProps>(
   function Toast(props, ref) {

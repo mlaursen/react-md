@@ -9,7 +9,7 @@ import type {
 
 const styles = bem("rmd-list-item");
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface ListItemClassNameOptions {
   className?: string;
   /**
@@ -32,7 +32,7 @@ export interface ListItemClassNameOptions {
    * Note: This does nothing if the `disabled` prop is not enabled.
    *
    * @defaultValue `false`
-   * @remarks \@since 2.4.3
+   * @since 2.4.3
    */
   disabledOpacity?: boolean;
 
@@ -46,7 +46,7 @@ export interface ListItemClassNameOptions {
   clickable?: boolean;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface InternalListItemClassNameOptions
   extends ListItemClassNameOptions {
   /**
@@ -62,7 +62,7 @@ export interface InternalListItemClassNameOptions
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function listItem(
   options: InternalListItemClassNameOptions = {}
@@ -92,7 +92,7 @@ export function listItem(
   );
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface ListItemTextClassNameOptions {
   className?: string;
   /**
@@ -107,7 +107,7 @@ export interface ListItemTextClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function listItemText(
   options: ListItemTextClassNameOptions = {}
@@ -123,7 +123,7 @@ export function listItemText(
   );
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface ListItemAddonClassNameOptions {
   className?: string;
 
@@ -159,7 +159,7 @@ export interface ListItemAddonClassNameOptions {
    * When this is set to `true`, the flex styles will not be applied.
    *
    * @defaultValue `false`
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   disableCenteredMedia?: boolean;
 
@@ -175,7 +175,7 @@ export interface ListItemAddonClassNameOptions {
 
 /**
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function listItemAddon(
   options: ListItemAddonClassNameOptions = {}

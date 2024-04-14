@@ -13,7 +13,7 @@ interface YPosition {
   top: number;
   bottom?: number;
   actualY: VerticalPosition;
-  /** @remarks \@since 6.0.0 */
+  /** @since 6.0.0 */
   transformOriginY?: number;
 }
 

@@ -7,7 +7,7 @@ import {
 import { type PropsWithRef } from "./types.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface RootHtmlProps extends HtmlHTMLAttributes<HTMLHtmlElement> {
   /** @defaultValue `"ltr"` */
@@ -69,7 +69,7 @@ export interface RootHtmlProps extends HtmlHTMLAttributes<HTMLHtmlElement> {
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function RootHtml(props: RootHtmlProps): ReactElement {
   const {

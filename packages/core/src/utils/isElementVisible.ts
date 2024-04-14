@@ -1,7 +1,7 @@
 /**
  * Note: requires the `$disable-display-none-class` variable to remain `false`.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const DISPLAY_NONE_CLASS = "rmd-display-none";
 
@@ -23,7 +23,7 @@ export const DISPLAY_NONE_CLASS = "rmd-display-none";
  * expect(isElementVisible(treeItem)).toBe(true);
  * expect(isElementVisible(subTreeItem)).toBe(true);
  * ```
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function isElementVisible(element: HTMLElement | null): boolean {
   if (!element) {

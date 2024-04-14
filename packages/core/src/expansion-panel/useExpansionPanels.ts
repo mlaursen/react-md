@@ -4,7 +4,7 @@ import type { UseStateInitializer, UseStateSetter } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import type { ExpansionPanelProps } from "./ExpansionPanel.js";
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface ExpansionPanelHookOptions {
   /**
    * An optional id to prefix each panel with.
@@ -68,7 +68,7 @@ export interface ExpansionPanelHookOptions {
   disableContentPadding?: boolean;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export type ProvidedExpansionPanelProps = Pick<
   Required<ExpansionPanelProps>,
   | "disabled"
@@ -82,13 +82,13 @@ export type ProvidedExpansionPanelProps = Pick<
  * @param indexOrPanelId - This should either be a DOM id to use for the panel
  * or the panel's index.
  * @returns Props to pass to an `ExpansionPanel` for it to work correctly.
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type GetExpansionPanelProps = (
   indexOrPanelId: string | number
 ) => ProvidedExpansionPanelProps;
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface ExpansionPanelImplementation {
   /**
    * The current set of expanded panel ids if you need this for some reason.
@@ -194,8 +194,7 @@ export interface ExpansionPanelImplementation {
  * ```
  *
  *
- * @remarks
- * \@since 6.0.0 The hook was renamed from `usePanels` to `useExpansionPanels`,
+ * @since 6.0.0 The hook was renamed from `usePanels` to `useExpansionPanels`,
  * the API changed to return `getPanelProps` instead of a generated list of
  * panel props based on the provided `count`, and the hook no longer supports
  * having all panels expanded by default.

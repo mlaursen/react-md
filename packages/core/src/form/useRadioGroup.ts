@@ -12,7 +12,7 @@ const noop = (): void => {
   // do nothing
 };
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface RadioGroupOptions<T extends string | number> {
   /**
    * A `name` to apply to all the radios within the group. This is required if
@@ -73,7 +73,7 @@ export interface RadioGroupOptions<T extends string | number> {
   onInvalid?: FormEventHandler<HTMLInputElement>;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface ProvidedRadioGroupProps<V extends string | number> {
   name: string;
   value: V;
@@ -84,12 +84,12 @@ export interface ProvidedRadioGroupProps<V extends string | number> {
   onInvalid: FormEventHandler<HTMLInputElement>;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export type GetRadioGroupProps<V extends string | number> = (
   value: V
 ) => Readonly<ProvidedRadioGroupProps<V>>;
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface RadioGroupImplementation<V extends string | number> {
   reset(): void;
   value: V;
@@ -101,7 +101,7 @@ export type GetMenuItemRadioGroupProps<V extends string | number> = (
   value: V
 ) => Readonly<{ checked: boolean; onCheckedChange(): void }>;
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface MenuItemRadioGroupImplementation<V extends string | number> {
   reset(): void;
   value: V;
@@ -109,7 +109,7 @@ export interface MenuItemRadioGroupImplementation<V extends string | number> {
   getRadioProps: GetMenuItemRadioGroupProps<V>;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface CombinedRadioGroupReturnValue<V extends string | number> {
   reset(): void;
   value: V;
@@ -147,7 +147,7 @@ export interface CombinedRadioGroupReturnValue<V extends string | number> {
  *   </>
  * );
  * ```
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useRadioGroup<V extends number>(
   options: RadioGroupOptions<V> & {
@@ -207,7 +207,7 @@ export function useRadioGroup<V extends number>(
  *   </>
  * );
  * ```
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useRadioGroup<V extends string>(
   options: RadioGroupOptions<V> & {
@@ -250,7 +250,7 @@ export function useRadioGroup<V extends string>(
  *   </>
  * );
  * ```
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useRadioGroup<V extends string | number>(
   options: RadioGroupOptions<V>

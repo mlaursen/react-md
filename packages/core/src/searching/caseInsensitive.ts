@@ -3,7 +3,7 @@ import { type BaseSearchOptions } from "./types.js";
 import { defaultExtractor, search } from "./utils.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface CaseInsensitiveStartsWithOptions {
   /**
@@ -56,7 +56,7 @@ export interface CaseInsensitiveStartsWithOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface IsCaseInsensitiveMatchOptions
   extends CaseInsensitiveStartsWithOptions {
@@ -72,7 +72,7 @@ export interface IsCaseInsensitiveMatchOptions
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function isCaseInsensitiveMatch(
   options: IsCaseInsensitiveMatchOptions
@@ -87,7 +87,7 @@ export function isCaseInsensitiveMatch(
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface CaseInsensitiveOptions<T>
   extends BaseSearchOptions<T>,
@@ -151,7 +151,7 @@ export interface CaseInsensitiveOptions<T>
  * // [{ name: "Apple", value: 0 }, { name: "Grape", value: 2 }]
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function caseInsensitiveSearch<T extends string>(
   options: Omit<CaseInsensitiveOptions<T>, "extractor"> & { type?: "filter" }

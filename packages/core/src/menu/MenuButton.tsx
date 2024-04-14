@@ -13,21 +13,21 @@ const noop = (): void => {
   // do nothing
 };
 
-/** @remarks \@since 5.0.0 */
+/** @since 5.0.0 */
 export type MenuButtonTextIconSpacingProps = Pick<
   TextIconSpacingProps,
   "icon" | "iconAfter"
 >;
 
-/** @remarks \@since 5.0.0 */
+/** @since 5.0.0 */
 export type MenuButtonIconRotatorProps = Omit<
   IconRotatorProps,
   "children" | "rotated"
 >;
 
 /**
- * @remarks \@since 5.0.0
- * @remarks \@since 6.0.0 No longer extends the {@link ButtonProps}, no longer
+ * @since 5.0.0
+ * @since 6.0.0 No longer extends the {@link ButtonProps}, no longer
  * requires an `id`, and no longer supports `textIconSpacingProps`.
  */
 export interface BaseMenuButtonProps extends MenuButtonTextIconSpacingProps {
@@ -46,8 +46,8 @@ export interface BaseMenuButtonProps extends MenuButtonTextIconSpacingProps {
 }
 
 /**
- * @remarks \@since 5.0.0
- * @remarks \@since 6.0.0 See {@link BaseMenuButtonProps} for breaking changes.
+ * @since 5.0.0
+ * @since 6.0.0 See {@link BaseMenuButtonProps} for breaking changes.
  */
 export interface MenuButtonProps extends ButtonProps, BaseMenuButtonProps {}
 
@@ -57,8 +57,8 @@ export interface MenuButtonProps extends ButtonProps, BaseMenuButtonProps {}
  * An internal component that handles rendering a button for the `DropdownMenu`
  * while implementing the correct accessibility and keyboard movement.
  *
- * @remarks \@since 5.0.0
- * @remarks \@since 6.0.0 See {@link BaseMenuButtonProps} for breaking changes.
+ * @since 5.0.0
+ * @since 6.0.0 See {@link BaseMenuButtonProps} for breaking changes.
  */
 export const MenuButton = forwardRef<HTMLButtonElement, MenuButtonProps>(
   function MenuButton(props, ref) {

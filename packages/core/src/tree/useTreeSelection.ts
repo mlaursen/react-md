@@ -4,7 +4,7 @@ import type { UseStateSetter } from "../types.js";
 import type { TreeItemDefaultIds, TreeItemIdSet } from "./types.js";
 
 /**
- * @remarks \@since 6.0.0 Renamed from `TreeItemSelection` and uses a Set
+ * @since 6.0.0 Renamed from `TreeItemSelection` and uses a Set
  * instead of a list to increase performance. Also renamed `onItemSelect` to
  * `toggleTreeItemSelection` and `onMultiItemSelect` to
  * `selectMultipleTreeItems`.
@@ -18,7 +18,7 @@ export interface TreeSelection {
 }
 
 /**
- * @remarks \@since 6.0.0 Renamed from `useTreeItemSelection` and uses a Set
+ * @since 6.0.0 Renamed from `useTreeItemSelection` and uses a Set
  * instead of a list to increase performance.
  */
 export function useTreeSelection(

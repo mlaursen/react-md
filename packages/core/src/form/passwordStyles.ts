@@ -4,14 +4,14 @@ import { bem } from "../utils/bem.js";
 const styles = bem("rmd-password");
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface PasswordClassNameOptions {
   className?: string;
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function password(options: PasswordClassNameOptions = {}): string {
   const { className } = options;
@@ -20,7 +20,7 @@ export function password(options: PasswordClassNameOptions = {}): string {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface PasswordInputClassNameOptions {
   className?: string;
@@ -35,7 +35,7 @@ export function passwordInput(
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface PasswordInputToggleClassNameOptions {
   className?: string;

@@ -6,7 +6,7 @@ import { buttonUnstyled } from "./buttonUnstyledStyles.js";
  * attributes without the `type` since this component forces the `type="button"`
  * value.
  *
- * @remarks \@since 6.0.0 Renamed from `UnstyledButtonProps`
+ * @since 6.0.0 Renamed from `UnstyledButtonProps`
  */
 export type ButtonUnstyledProps = Omit<
   ButtonHTMLAttributes<HTMLButtonElement>,
@@ -22,7 +22,7 @@ export type ButtonUnstyledProps = Omit<
  * Requires the `$disable-unstyled-utility-class` to be `false` to use.
  *
  * @see {@link buttonUnstyled}
- * @remarks \@since 6.0.0 Renamed from `UnstyledButton`
+ * @since 6.0.0 Renamed from `UnstyledButton`
  */
 export const ButtonUnstyled = forwardRef<
   HTMLButtonElement,

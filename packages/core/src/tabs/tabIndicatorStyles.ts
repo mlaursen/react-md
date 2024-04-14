@@ -4,7 +4,7 @@ import { bem } from "../utils/bem.js";
 const styles = bem("rmd-tab-indicator");
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface TabIndicatorClassNameOptions {
   className?: string;
@@ -14,7 +14,7 @@ export interface TabIndicatorClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function tabIndicator(
   options: TabIndicatorClassNameOptions = {}

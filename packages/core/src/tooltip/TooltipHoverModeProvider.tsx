@@ -13,7 +13,7 @@ import {
 } from "../hoverMode/useHoverModeProvider.js";
 import { DEFAULT_TOOLTIP_DELAY } from "./constants.js";
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export type TooltipHoverModeContext = HoverModeContext;
 
 const context = createContext<TooltipHoverModeContext>(
@@ -27,14 +27,14 @@ const { Provider } = context;
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useTooltipHoverMode(): Readonly<TooltipHoverModeContext> {
   return useContext(context);
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface TooltipHoverModeProviderProps
   extends Partial<HoverModeConfiguration> {
@@ -85,7 +85,7 @@ export interface TooltipHoverModeProviderProps
  * </TooltipHoverModeProvider>
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function TooltipHoverModeProvider(
   props: TooltipHoverModeProviderProps

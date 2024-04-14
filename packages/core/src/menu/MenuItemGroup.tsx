@@ -5,7 +5,7 @@ import { List, type ListElement, type ListProps } from "../list/List.js";
 import { type LabelRequiredForA11y } from "../types.js";
 import { useMenuConfiguration } from "./MenuConfigurationProvider.js";
 
-/** @remarks \@since 5.0.0 */
+/** @since 5.0.0 */
 export type MenuItemGroupProps = LabelRequiredForA11y<
   Omit<ListProps, "role">
 > & {
@@ -77,7 +77,7 @@ export type MenuItemGroupProps = LabelRequiredForA11y<
  * }
  * ```
  *
- * @remarks \@since 5.0.0
+ * @since 5.0.0
  */
 export const MenuItemGroup = forwardRef<ListElement, MenuItemGroupProps>(
   function MenuItemGroup({ children, className, ...props }, ref) {

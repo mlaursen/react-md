@@ -3,7 +3,7 @@ import { Box, type BoxProps } from "../box/Box.js";
 import { type BoxJustifyContent } from "../box/styles.js";
 import { cardFooter } from "./styles.js";
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface CardFooterProps extends BoxProps {
   /**
    * @defaultValue `"flex-end"`
@@ -17,7 +17,7 @@ export interface CardFooterProps extends BoxProps {
  * A simple wrapper around the {@link Box} component that applies additional
  * padding and applies `justify-content: flex-end;` by default.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const CardFooter = forwardRef<HTMLDivElement, CardFooterProps>(
   function CardFooter(props, ref) {

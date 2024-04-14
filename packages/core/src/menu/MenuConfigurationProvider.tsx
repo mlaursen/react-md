@@ -8,7 +8,7 @@ import {
 } from "react";
 import { type SheetPosition, type SheetVerticalSize } from "../sheet/styles.js";
 
-/** @remarks \@since 5.0.0 */
+/** @since 5.0.0 */
 export interface MenuOrientationProps {
   /**
    * Boolean if the menu should be rendered horizontally instead of vertically.
@@ -29,11 +29,11 @@ export interface MenuOrientationProps {
  *   phone (`isPhone === true`).
  *
  * @defaultValue `false`
- * @remarks \@since 5.0.0
+ * @since 5.0.0
  */
 export type RenderMenuAsSheet = boolean | "phone";
 
-/** @remarks \@since 5.0.0 */
+/** @since 5.0.0 */
 export interface MenuConfiguration extends MenuOrientationProps {
   /** {@inheritDoc RenderMenuAsSheet} */
   renderAsSheet?: RenderMenuAsSheet;
@@ -67,10 +67,10 @@ export interface MenuConfiguration extends MenuOrientationProps {
   sheetFooter?: ReactNode;
 }
 
-/** @remarks \@since 5.0.0 */
+/** @since 5.0.0 */
 export type MenuConfigurationContext = Required<MenuConfiguration>;
 
-/** @remarks \@since 5.0.0 */
+/** @since 5.0.0 */
 export const DEFAULT_MENU_CONFIGURATION: Readonly<MenuConfiguration> = {
   horizontal: false,
   renderAsSheet: false,
@@ -82,7 +82,7 @@ export const DEFAULT_MENU_CONFIGURATION: Readonly<MenuConfiguration> = {
 
 /**
  * @internal
- * @remarks \@since 5.0.0
+ * @since 5.0.0
  */
 const context = createContext<MenuConfigurationContext>({
   horizontal: false,
@@ -96,7 +96,7 @@ context.displayName = "MenuConfiguration";
 
 /**
  * @internal
- * @remarks \@since 5.0.0
+ * @since 5.0.0
  */
 const { Provider } = context;
 
@@ -108,7 +108,7 @@ const { Provider } = context;
  * the inherited context values if they are not `undefined`.
  * @returns the {@link MenuConfigurationContext} with any overrides that were
  * provided.
- * @remarks \@since 5.0.0
+ * @since 5.0.0
  */
 export function useMenuConfiguration(
   overrides: MenuConfiguration = {}
@@ -135,7 +135,7 @@ export function useMenuConfiguration(
   };
 }
 
-/** @remarks \@since 5.0.0 */
+/** @since 5.0.0 */
 export interface MenuConfigurationProviderProps extends MenuConfiguration {
   children: ReactNode;
 }
@@ -146,7 +146,7 @@ export interface MenuConfigurationProviderProps extends MenuConfiguration {
  * Note: This will always merge values with any parent
  * `MenuConfigurationProvider`s.
  *
- * @remarks \@since 5.0.0
+ * @since 5.0.0
  */
 export function MenuConfigurationProvider(
   props: MenuConfigurationProviderProps

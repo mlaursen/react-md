@@ -13,7 +13,7 @@ declare module "react" {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type BoxAlignItems =
   | "start"
@@ -24,7 +24,7 @@ export type BoxAlignItems =
   | "stretch";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type BoxJustifyContent =
   | BoxAlignItems
@@ -33,12 +33,12 @@ export type BoxJustifyContent =
   | "space-evenly";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type BoxFlexDirection = "row" | "column";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface BoxOptions {
   className?: string;
@@ -133,7 +133,7 @@ export interface BoxOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function box(options: BoxOptions = {}): string {
   const {

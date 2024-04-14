@@ -1,7 +1,7 @@
 import { Suspense, type ReactElement, type ReactNode } from "react";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface NullSuspenseProps {
   children: ReactNode;
@@ -30,7 +30,7 @@ export interface NullSuspenseProps {
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function NullSuspense(props: NullSuspenseProps): ReactElement {
   const { children } = props;

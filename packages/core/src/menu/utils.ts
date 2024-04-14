@@ -12,7 +12,7 @@ import {
 import type { PositionAnchor } from "../positioning/types.js";
 
 /**
- * @remarks \@since 5.0.0
+ * @since 5.0.0
  * @internal
  */
 interface DefaultAnchorOptions {
@@ -24,7 +24,7 @@ interface DefaultAnchorOptions {
 }
 
 /**
- * @remarks \@since 5.0.0
+ * @since 5.0.0
  * @internal
  */
 export const getDefaultAnchor = (

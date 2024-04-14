@@ -4,7 +4,7 @@ import { type KeyboardMovementContext } from "../movement/types.js";
 import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export interface MenuWidgetKeyboardProviderProps {
@@ -16,7 +16,7 @@ export interface MenuWidgetKeyboardProviderProps {
 /**
  * **Client Component**
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export function MenuWidgetKeyboardProvider(

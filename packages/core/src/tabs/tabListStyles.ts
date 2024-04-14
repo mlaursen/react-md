@@ -10,7 +10,7 @@ const styles = bem("rmd-tablist");
 export type TabsAlignment = "left" | "center" | "right";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface TabListClassNameOptions {
   className?: string;
@@ -24,7 +24,7 @@ export interface TabListClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function tabList(options: TabListClassNameOptions = {}): string {
   const {

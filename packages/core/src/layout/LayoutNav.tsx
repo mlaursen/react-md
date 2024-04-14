@@ -16,7 +16,7 @@ import { useCSSTransition } from "../transition/useCSSTransition.js";
 import { layoutNav } from "./layoutNavStyles.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface LayoutNavProps
   extends HTMLAttributes<HTMLDivElement>,
@@ -135,7 +135,7 @@ export interface LayoutNavProps
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const LayoutNav = forwardRef<HTMLDivElement, LayoutNavProps>(
   function LayoutNav(props, ref) {

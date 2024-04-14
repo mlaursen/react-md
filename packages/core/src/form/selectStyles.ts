@@ -5,7 +5,7 @@ import { type FormTheme } from "./types.js";
 const styles = bem("rmd-select");
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface SelectClassNameOptions {
   className?: string;
@@ -16,7 +16,7 @@ export interface SelectClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function select(options: SelectClassNameOptions = {}): string {
   const { className, theme = "outline" } = options;

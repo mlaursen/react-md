@@ -70,7 +70,7 @@ export type LabelRequiredForA11y<Props extends LabelA11y> = RequireAtLeastOne<
 >;
 
 /**
- * @remarks \@since 5.0.0
+ * @since 5.0.0
  * @internal
  */
 export interface NonNullRef<T> {
@@ -78,14 +78,14 @@ export interface NonNullRef<T> {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export interface NonNullMutableRef<T> {
   current: T;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export type HtmlTagName = keyof JSX.IntrinsicElements;
 
 /**
@@ -102,18 +102,18 @@ export type HtmlTagName = keyof JSX.IntrinsicElements;
  *
  * const extractor: TextExtractor<Item> = (item) => item.name;
  * ```
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type TextExtractor<T> = (item: T) => string;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export type UseStateSetter<T> = Dispatch<SetStateAction<T>>;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export type UseStateInitializer<T> = T | (() => T);
@@ -133,7 +133,7 @@ export type UseStateInitializer<T> = T | (() => T);
  * //   setRenderAsSheet: UseStateSetter<RenderMenuAsSheet>;
  * // }
  * ```
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export type UseStateObject<Name extends string, Value> = {
@@ -157,7 +157,7 @@ export type UseStateObject<Name extends string, Value> = {
  * // }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export type RenameKeysWithPrefix<T, Prefix extends string> = {
@@ -165,23 +165,23 @@ export type RenameKeysWithPrefix<T, Prefix extends string> = {
 };
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type CssPosition = "fixed" | "sticky" | "static";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type AnyFunction = (...args: any[]) => any | void;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type CancelableFunction<F extends AnyFunction> = F & { cancel(): void };
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ElementSize {
   height: number;

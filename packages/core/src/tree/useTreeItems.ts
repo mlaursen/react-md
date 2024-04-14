@@ -11,13 +11,13 @@ import type {
  * support the `*` keyboard behavior of opening all tree items at the current
  * level.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export type TreeItemChildIds = Map<string | null, Set<string>>;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export type RenderableTreeItemNode<
@@ -27,7 +27,7 @@ export type RenderableTreeItemNode<
 };
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export interface BuildTreeOptions<T extends TreeItemNode> {
@@ -42,7 +42,7 @@ export interface BuildTreeOptions<T extends TreeItemNode> {
  * list of items by linking items together with the provided `parentId`. This
  * will also recursively build the tree and _hopefully_ all items will be added.
  *
- * @remarks \@since 6.0.0 Updated to include the {@link TreeItemChildIds}
+ * @since 6.0.0 Updated to include the {@link TreeItemChildIds}
  */
 export function buildTree<T extends TreeItemNode>(
   options: BuildTreeOptions<T>
@@ -85,7 +85,7 @@ export function buildTree<T extends TreeItemNode>(
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface TreeItemOptions<T extends TreeItemNode> {
   data: TreeData<T>;
@@ -94,7 +94,7 @@ export interface TreeItemOptions<T extends TreeItemNode> {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface TreeItems<T extends TreeItemNode> {
   items: readonly RenderableTreeItemNode<T>[];
@@ -105,7 +105,7 @@ export interface TreeItems<T extends TreeItemNode> {
  * This is mostly an internal hook, but can be used to build tree-like
  * data structures without the need of the `Tree` component.
  *
- * @remarks \@since 6.0.0 converted to use an object argument instead of
+ * @since 6.0.0 converted to use an object argument instead of
  * multiple arguments. Also logs any orphaned items that do not have a parent
  */
 export function useTreeItems<T extends TreeItemNode>(

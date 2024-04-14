@@ -11,7 +11,7 @@ import { main, type MainClassNameOptions } from "./mainStyles.js";
 import { useMainTabIndex } from "./useMainTabIndex.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type CustomMainElement = ElementType<
   HTMLAttributes<HTMLElement> & {
@@ -22,7 +22,7 @@ export type CustomMainElement = ElementType<
 >;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface MainProps
   extends HTMLAttributes<HTMLElement>,
@@ -61,7 +61,7 @@ export interface MainProps
  * }
  * ```
  *
- * @remarks \@since 6.0.0 Renamed from `LayoutMain` removed a lot of
+ * @since 6.0.0 Renamed from `LayoutMain` removed a lot of
  * functionality to keep this component simple.
  */
 export const Main = forwardRef<HTMLElement, MainProps>(

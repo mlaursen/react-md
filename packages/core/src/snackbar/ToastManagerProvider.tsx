@@ -29,7 +29,7 @@ const { Provider } = context;
  *
  * @returns The current `ToastManager` set in the `ToastManagerProvider`.
  * Defaults to {@link toastManager} if there are no parent providers.
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useToastManager(): ToastManager {
   return useContext(context);
@@ -37,7 +37,7 @@ export function useToastManager(): ToastManager {
 
 /**
  * @see {@link ToastManager.addToast}
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useAddToast(): ToastManager["addToast"] {
   return useToastManager().addToast;
@@ -45,7 +45,7 @@ export function useAddToast(): ToastManager["addToast"] {
 
 /**
  * @see {@link ToastManager.removeToast}
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useRemoveToast(): ToastManager["removeToast"] {
   return useToastManager().removeToast;
@@ -53,7 +53,7 @@ export function useRemoveToast(): ToastManager["removeToast"] {
 
 /**
  * @param limit - the total number of toasts that can be visible at once.
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useToastQueue(limit?: number): ToastQueue {
   const toastManager = useToastManager();
@@ -74,7 +74,7 @@ export function useToastQueue(limit?: number): ToastQueue {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ToastManagerProviderProps {
   children: ReactNode;
@@ -94,7 +94,7 @@ export interface ToastManagerProviderProps {
  * implementation.
  *
  * @see {@link ToastManager} for example usage.
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function ToastManagerProvider(
   props: ToastManagerProviderProps

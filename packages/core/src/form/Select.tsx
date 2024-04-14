@@ -84,13 +84,13 @@ const noop = (): void => {
  *   );
  * }
  * ```
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type SelectChangeEvent<Value extends string> =
   ChangeEvent<HTMLInputElement> & { currentTarget: { value: Value } };
 
 /**
- * @remarks \@since 6.0.0 Rewritten with a new API.
+ * @since 6.0.0 Rewritten with a new API.
  */
 export interface SelectProps<Value extends string>
   extends Omit<TextFieldContainerProps, "label">,
@@ -263,7 +263,7 @@ export interface SelectProps<Value extends string>
  * expect(selectInput).toHaveValue("b");
  * ```
  *
- * @remarks \@since 6.0.0 Rewritten with a new API.
+ * @since 6.0.0 Rewritten with a new API.
  */
 export function Select<Value extends string>(
   props: RequireAtLeastOne<SelectProps<Value>, "label" | keyof LabelA11y>

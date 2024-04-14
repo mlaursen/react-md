@@ -17,7 +17,7 @@ declare module "react" {
 const labelStyles = bem("rmd-label");
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function label(options: LabelClassNameOptions): string {
   const {
@@ -72,7 +72,7 @@ export function label(options: LabelClassNameOptions): string {
  * you need to separate the label from an existing form component or you need to
  * create a custom implementation of a form component.
  *
- * @remarks \@since 6.0.0 Updated to be usable externally and combines the
+ * @since 6.0.0 Updated to be usable externally and combines the
  * floating label styles instead of having separate components.
  */
 export const Label = forwardRef<HTMLLabelElement, LabelProps>(

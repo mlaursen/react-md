@@ -6,7 +6,7 @@ import type { TreeSelection } from "./useTreeSelection.js";
 import { useTreeSelection } from "./useTreeSelection.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface TreeHookOptions {
   /**
@@ -26,7 +26,7 @@ export interface TreeHookOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface TreeImplementation extends TreeSelection, TreeExpansion {}
 
@@ -52,7 +52,7 @@ export interface TreeImplementation extends TreeSelection, TreeExpansion {}
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useTree(options: TreeHookOptions = {}): TreeImplementation {
   const {

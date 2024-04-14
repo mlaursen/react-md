@@ -13,14 +13,14 @@ const { Provider } = context;
 context.displayName = "Ssr";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useSsr(): boolean {
   return useContext(context);
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface SsrProviderProps {
   ssr?: boolean;
@@ -30,7 +30,7 @@ export interface SsrProviderProps {
 /**
  * **Client Component**
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function SsrProvider(props: SsrProviderProps): ReactElement {
   const { ssr = false, children } = props;

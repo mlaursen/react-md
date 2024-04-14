@@ -5,7 +5,7 @@ import {
   type TableCellVerticalAlignment,
 } from "./TableConfigurationProvider.js";
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface TableCellClassNameOptions {
   className?: string;
 
@@ -43,7 +43,7 @@ export interface TableCellClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function tableCell(options: TableCellClassNameOptions): string {
   const {

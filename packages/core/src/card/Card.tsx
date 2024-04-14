@@ -10,7 +10,7 @@ declare module "react" {
 }
 
 /**
- * @remarks \@since 6.0.0 Extends the {@link CardClassNameOptions}.
+ * @since 6.0.0 Extends the {@link CardClassNameOptions}.
  */
 export interface CardProps
   extends HTMLAttributes<HTMLDivElement>,
@@ -55,7 +55,7 @@ export interface CardProps
  * }
  * ```
  *
- * @remarks \@since 6.0.0 Removed the deprecated `raiseable` prop
+ * @since 6.0.0 Removed the deprecated `raiseable` prop
  */
 export const Card = forwardRef<HTMLDivElement, CardProps>(
   function Card(props, ref) {

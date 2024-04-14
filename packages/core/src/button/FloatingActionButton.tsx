@@ -13,7 +13,7 @@ const styles = bem("rmd-fab");
 /**
  * The position within the viewport for the floating action button.
  *
- * @remarks \@since 6.0.0 This was renamed from `FABPosition`
+ * @since 6.0.0 This was renamed from `FABPosition`
  */
 export type FloatingActionButtonPosition =
   | "bottom-left"
@@ -23,7 +23,7 @@ export type FloatingActionButtonPosition =
   | null;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export interface FloatingActionButtonClassNameOptions {
@@ -41,7 +41,7 @@ export interface FloatingActionButtonClassNameOptions {
 /**
  * FAB = Floating Action Button
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export function fab(options: FloatingActionButtonClassNameOptions): string {
@@ -59,13 +59,13 @@ export function fab(options: FloatingActionButtonClassNameOptions): string {
   );
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface FloatingActionButtonProps
   extends HTMLAttributes<HTMLSpanElement>,
     FloatingActionButtonClassNameOptions {}
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export const FloatingActionButton = forwardRef<

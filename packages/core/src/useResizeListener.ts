@@ -5,7 +5,7 @@ import { delegateEvent } from "./delegateEvent.js";
 import { useResizeObserver } from "./useResizeObserver.js";
 
 /**
- * @remarks \@since 6.0.0  Updated the API
+ * @since 6.0.0  Updated the API
  */
 export interface ResizeListenerOptions extends AddEventListenerOptions {
   /**
@@ -66,7 +66,7 @@ export interface ResizeListenerOptions extends AddEventListenerOptions {
  * }
  * ```
  *
- * @remarks \@since 6.0.0  Updated the API to match the `useResizeObserver` and
+ * @since 6.0.0  Updated the API to match the `useResizeObserver` and
  * `useIntersectionObserver` hooks by having an `onUpdate` callback and include
  * the `AddEventListenerOptions` as part of the hook options.
  */

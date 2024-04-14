@@ -2,7 +2,7 @@ import { cnb } from "cnbuilder";
 import { type HTMLAttributes, type ReactElement, type ReactNode } from "react";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export interface DialogContainerProps extends HTMLAttributes<HTMLDivElement> {
@@ -13,7 +13,7 @@ export interface DialogContainerProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * **Server Component**
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export function DialogContainer(props: DialogContainerProps): ReactElement {

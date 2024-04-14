@@ -14,7 +14,7 @@ declare module "react" {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type CustomLinkComponent =
   | ForwardRefExoticComponent<{ href: string }>
@@ -22,13 +22,12 @@ export type CustomLinkComponent =
   | "a";
 
 /**
- * @remarks
- * \@since 6.0.0 Removed the `preventMaliciousTarget` prop since browsers
+ * @since 6.0.0 Removed the `preventMaliciousTarget` prop since browsers
  * default to `rel=noopener` after updating the {@link https://github.com/whatwg/html/issues/4078|spec}.
- * \@since 6.0.0 Removed the `component` prop since all you need for link
+ * @since 6.0.0 Removed the `component` prop since all you need for link
  * behavior is `className="rmd-link"`.
- * \@since 6.0.0 The `href` prop is required.
- * \@since 6.0.0 Removed the `flexCentered` prop since it is now the default
+ * @since 6.0.0 The `href` prop is required.
+ * @since 6.0.0 Removed the `flexCentered` prop since it is now the default
  * styles.
  */
 export interface LinkProps
@@ -69,13 +68,12 @@ export interface LinkProps
  * ```
  *
  *
- * @remarks
- * \@since 6.0.0 Removed the `preventMaliciousTarget` prop since browsers
+ * @since 6.0.0 Removed the `preventMaliciousTarget` prop since browsers
  * default to `rel=noopener` after updating the {@link https://github.com/whatwg/html/issues/4078|spec}.
- * \@since 6.0.0 Removed the `component` prop since all you need for link
+ * @since 6.0.0 Removed the `component` prop since all you need for link
  * behavior is `className="rmd-link"`.
- * \@since 6.0.0 The `href` prop is required.
- * \@since 6.0.0 Removed the `flexCentered` prop since it is now the default
+ * @since 6.0.0 The `href` prop is required.
+ * @since 6.0.0 Removed the `flexCentered` prop since it is now the default
  * styles.
  */
 export const Link = forwardRef<HTMLAnchorElement, LinkProps>(

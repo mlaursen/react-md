@@ -6,7 +6,7 @@
 import type { ReactElement, Ref, RefCallback } from "react";
 
 /**
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export interface TransitionActions {
   /**
@@ -41,7 +41,7 @@ export interface TransitionActions {
  * {@link TransitionActions}. If a value is set to `0` or `undefined`, the
  * transition will not occur.
  *
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export type TransitionTimeoutObject = {
   [action in keyof TransitionActions]?: number;
@@ -52,7 +52,7 @@ export type TransitionTimeoutObject = {
  * {@link TransitionActions} stages, or an object of transition durations.
  *
  * @see {@link TransitionTimeout}
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export type TransitionTimeout = number | Readonly<TransitionTimeoutObject>;
 
@@ -62,7 +62,7 @@ export type TransitionTimeout = number | Readonly<TransitionTimeoutObject>;
  * begin the enter transition going from `enter -> entering -> entered` while
  * setting the stage to `exit` will transition from `exit -> exiting -> exited`.
  *
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export type TransitionStage =
   | "enter"
@@ -79,7 +79,7 @@ export type TransitionStage =
  * calculations.
  *
  * @param appearing - Boolean if this is the initial `appear` flow.
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export type TransitionEnterHandler = (appearing: boolean) => void;
 
@@ -88,12 +88,12 @@ export type TransitionEnterHandler = (appearing: boolean) => void;
  * TransitionOptions.nodeRef} was provided, the DOM node should be available in
  * `nodeRef.current` by this point if the transition requires DOM calculations.
  *
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export type TransitionExitHandler = () => void;
 
 /**
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export interface TransitionCallbacks {
   /**
@@ -148,7 +148,7 @@ export interface TransitionCallbacks {
 /**
  * @typeParam E - An HTMLElement type used for the ref required for the
  * transition.
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export interface PreconfiguredTransitionInDefaultedOptions<
   E extends HTMLElement,
@@ -183,7 +183,7 @@ export interface PreconfiguredTransitionInDefaultedOptions<
 /**
  * @typeParam E - An HTMLElement type used for the ref required for the
  * transition.
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export interface PreconfiguredTransitionOptions<E extends HTMLElement>
   extends PreconfiguredTransitionInDefaultedOptions<E> {
@@ -194,7 +194,7 @@ export interface PreconfiguredTransitionOptions<E extends HTMLElement>
 /**
  * @typeParam E - An HTMLElement type used for the ref required for the
  * transition.
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export interface TransitionOptions<E extends HTMLElement>
   extends PreconfiguredTransitionOptions<E> {
@@ -258,7 +258,7 @@ export interface TransitionOptions<E extends HTMLElement>
  * // className === "exit--done exit--complete"
  * ```
  *
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export interface CSSTransitionClassNamesObject {
   /**
@@ -329,7 +329,7 @@ export interface CSSTransitionClassNamesObject {
 }
 
 /**
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export type CSSTransitionClassNames =
   | string
@@ -338,7 +338,7 @@ export type CSSTransitionClassNames =
 /**
  * @typeParam E - An HTMLElement type used for the ref required for the
  * transition.
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export interface PreconfiguredCSSTransitionInDefaultedOptions<
   E extends HTMLElement,
@@ -354,7 +354,7 @@ export interface PreconfiguredCSSTransitionInDefaultedOptions<
    * conditionally rendering the element.
    *
    * @defaultValue `false`
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   exitedHidden?: boolean;
 }
@@ -362,7 +362,7 @@ export interface PreconfiguredCSSTransitionInDefaultedOptions<
 /**
  * @typeParam E - An HTMLElement type used for the ref required for the
  * transition.
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export interface PreconfiguredCSSTransitionOptions<E extends HTMLElement>
   extends PreconfiguredCSSTransitionInDefaultedOptions<E> {
@@ -373,7 +373,7 @@ export interface PreconfiguredCSSTransitionOptions<E extends HTMLElement>
 /**
  * @typeParam E - An HTMLElement type used for the ref required for the
  * transition.
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export interface TransitionHookOptions<E extends HTMLElement>
   extends TransitionOptions<E> {
@@ -387,14 +387,14 @@ export interface TransitionHookOptions<E extends HTMLElement>
   reflow?: boolean;
 
   /**
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    * @defaultValue `false`
    */
   disablePortal?: boolean;
 }
 
 /**
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export interface TransitionState {
   /** {@inheritDoc TransitionStage} */
@@ -419,7 +419,7 @@ export interface TransitionState {
 /**
  * @typeParam E - An HTMLElement type used for the ref required for the
  * transition.
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export interface TransitionHookReturnValue<E extends HTMLElement>
   extends TransitionState {
@@ -477,7 +477,7 @@ export interface TransitionHookReturnValue<E extends HTMLElement>
    * from the server and remain true until it unmounts from the DOM.
    *
    * @defaultValue `false`
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   disablePortal: boolean;
 }
@@ -485,7 +485,7 @@ export interface TransitionHookReturnValue<E extends HTMLElement>
 /**
  * @typeParam E - An HTMLElement type used for the ref required for the
  * transition.
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export interface CSSTransitionHookOptions<E extends HTMLElement>
   extends PreconfiguredCSSTransitionOptions<E> {
@@ -495,7 +495,7 @@ export interface CSSTransitionHookOptions<E extends HTMLElement>
   classNames: CSSTransitionClassNames;
 
   /**
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   disablePortal?: boolean;
 }
@@ -503,7 +503,7 @@ export interface CSSTransitionHookOptions<E extends HTMLElement>
 /**
  * @typeParam E - An HTMLElement type used for the ref required for the
  * transition.
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export interface CSSTransitionElementProps<E extends HTMLElement> {
   /** @see {@link TransitionHookReturnValue.ref} */
@@ -518,7 +518,7 @@ export interface CSSTransitionElementProps<E extends HTMLElement> {
 /**
  * @typeParam E - An HTMLElement type used for the ref required for the
  * transition.
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export interface CSSTransitionHookReturnValue<E extends HTMLElement>
   extends TransitionHookReturnValue<E>,
@@ -586,7 +586,7 @@ export interface CSSTransitionHookReturnValue<E extends HTMLElement>
  * This is mostly an internal type that can be used to help with transitionable
  * components.
  *
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export interface CSSTransitionComponentProps extends TransitionCallbacks {
   /** @see {@link CSSTransitionHookOptions.temporary} */
@@ -602,7 +602,7 @@ export interface CSSTransitionComponentProps extends TransitionCallbacks {
 /**
  * @typeParam E - An HTMLElement type used for the ref required for the
  * transition.
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export interface CSSTransitionComponentImplementation<E extends HTMLElement> {
   /**

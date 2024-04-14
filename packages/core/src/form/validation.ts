@@ -1,8 +1,8 @@
 import { type InputHTMLAttributes, type ReactNode } from "react";
 
 /**
- * @remarks \@since 2.5.6
- * @remarks \@since 6.0.0 Renamed from `TextConstraints` to
+ * @since 2.5.6
+ * @since 6.0.0 Renamed from `TextConstraints` to
  * `TextFieldValidationOptions`
  */
 export type TextFieldValidationOptions = Pick<
@@ -29,8 +29,8 @@ export type TextFieldValidationOptions = Pick<
  *
  * @see {@link RECOMMENDED_STATE_KEYS}
  * @see {@link RECOMMENDED_NUMBER_STATE_KEYS}
- * @remarks \@since 2.5.6
- * @remarks \@since 6.0.0 Renamed from `ChangeValidationBehavior` to
+ * @since 2.5.6
+ * @since 6.0.0 Renamed from `ChangeValidationBehavior` to
  * `TextFieldValidationType`
  */
 export type TextFieldValidationType =
@@ -41,7 +41,7 @@ export type TextFieldValidationType =
   | readonly (keyof ValidityState)[];
 
 /**
- * @remarks \@since 2.5.0
+ * @since 2.5.0
  */
 export interface ErrorMessageOptions extends TextFieldValidationOptions {
   /**
@@ -84,13 +84,13 @@ export interface ErrorMessageOptions extends TextFieldValidationOptions {
  * @param options - An object containing metadata that can be used to create an
  * error message for your `TextField` or `TextArea`.
  * @returns An error message to display or an empty string.
- * @remarks \@since 2.5.0
+ * @since 2.5.0
  */
 export type GetErrorMessage = (options: ErrorMessageOptions) => string;
 
 /**
  * @internal
- * @remarks \@since 2.5.0
+ * @since 2.5.0
  */
 const VALIDITY_STATE_KEYS: readonly (keyof ValidityState)[] = [
   "badInput",
@@ -107,7 +107,7 @@ const VALIDITY_STATE_KEYS: readonly (keyof ValidityState)[] = [
 
 /**
  * @internal
- * @remarks \@since 2.5.0
+ * @since 2.5.0
  */
 export const RECOMMENDED_STATE_KEYS: readonly (keyof ValidityState)[] = [
   "badInput",
@@ -117,7 +117,7 @@ export const RECOMMENDED_STATE_KEYS: readonly (keyof ValidityState)[] = [
 
 /**
  * @internal
- * @remarks \@since 2.5.0
+ * @since 2.5.0
  */
 export const RECOMMENDED_NUMBER_STATE_KEYS: readonly (keyof ValidityState)[] = [
   ...RECOMMENDED_STATE_KEYS,
@@ -135,7 +135,7 @@ export const RECOMMENDED_NUMBER_STATE_KEYS: readonly (keyof ValidityState)[] = [
  * of errors.
  *
  * @internal
- * @remarks \@since 2.5.0
+ * @since 2.5.0
  */
 const isRecommended = (validity: ValidityState, isNumber: boolean): boolean => {
   const errorable = isNumber
@@ -153,7 +153,7 @@ const isRecommended = (validity: ValidityState, isNumber: boolean): boolean => {
  * or `TextArea` components that relies on the behavior of the
  * {@link ChangeValidationBehavior}
  *
- * @remarks \@since 2.5.0
+ * @since 2.5.0
  */
 export const defaultGetErrorMessage: GetErrorMessage = (options) => {
   const {
@@ -185,7 +185,7 @@ export const defaultGetErrorMessage: GetErrorMessage = (options) => {
 };
 
 /**
- * @remarks \@since 2.5.0
+ * @since 2.5.0
  */
 export interface IsErroredOptions extends ErrorMessageOptions {
   /**
@@ -201,7 +201,7 @@ export interface IsErroredOptions extends ErrorMessageOptions {
  * @param options - All the current options that can be used to determine the
  * error state.
  * @returns True if the component is considered to be in an errored state.
- * @remarks \@since 2.5.0
+ * @since 2.5.0
  */
 export type IsErrored = (options: IsErroredOptions) => boolean;
 
@@ -211,7 +211,7 @@ export type IsErrored = (options: IsErroredOptions) => boolean;
  * value is not within the `minLength` and `maxLength` constraints when they
  * exist.
  *
- * @remarks \@since 2.5.0
+ * @since 2.5.0
  */
 export const defaultIsErrored: IsErrored = (options) => {
   const { value, errorMessage, minLength, maxLength, isBlurEvent } = options;
@@ -224,7 +224,7 @@ export const defaultIsErrored: IsErrored = (options) => {
 };
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface GetErrorIconOptions {
   /**
@@ -249,8 +249,8 @@ export interface GetErrorIconOptions {
  *
  * @param options - The {@link GetErrorIconOptions}
  * @returns An icon to render or falsey to render nothing.
- * @remarks \@since 2.5.0
- * @remarks \@since 6.0.0 Updated to accept a single object argument
+ * @since 2.5.0
+ * @since 6.0.0 Updated to accept a single object argument
  */
 export type GetErrorIcon = (options: GetErrorIconOptions) => ReactNode;
 
@@ -258,7 +258,7 @@ export type GetErrorIcon = (options: GetErrorIconOptions) => ReactNode;
  * The default implementation for showing an error icon in `TextField` and
  * `TextArea` components that will only display when the error flag is enabled.
  *
- * @remarks \@since 2.5.0
+ * @since 2.5.0
  */
 export const defaultGetErrorIcon: GetErrorIcon = (options) => {
   const { error, errorIcon } = options;

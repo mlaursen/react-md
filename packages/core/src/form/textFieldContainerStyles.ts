@@ -19,7 +19,7 @@ declare module "react" {
 
 const styles = bem("rmd-text-field-container");
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface TextFieldContainerClassNameOptions
   extends FormThemeOptions,
     FormComponentStates {
@@ -45,7 +45,7 @@ export interface TextFieldContainerClassNameOptions
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function textFieldContainer(
   options: TextFieldContainerClassNameOptions = {}

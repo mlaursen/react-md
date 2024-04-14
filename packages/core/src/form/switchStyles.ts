@@ -11,7 +11,7 @@ declare module "react" {
 const styles = bem("rmd-switch");
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface SwitchClassNameOptions {
   className?: string;
@@ -20,7 +20,7 @@ export interface SwitchClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function switchStyles(options: SwitchClassNameOptions = {}): string {
   const { className, clickable, currentColor } = options;

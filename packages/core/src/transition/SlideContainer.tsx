@@ -45,11 +45,11 @@ const styles = bem("rmd-slide-container");
  *           -------------
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type SlideDirection = "left" | "right";
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface SlideContainerClassNameOptions {
   className?: string;
 
@@ -59,7 +59,7 @@ export interface SlideContainerClassNameOptions {
 
 /**
  * @see {@link useSlideTransition} for an example
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function slideContainer(
   options: SlideContainerClassNameOptions
@@ -69,7 +69,7 @@ export function slideContainer(
   return cnb(styles({ [direction]: true }), className);
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface SlideContainerProps
   extends HTMLAttributes<HTMLDivElement>,
     SlideContainerClassNameOptions {}
@@ -169,7 +169,7 @@ export interface SlideContainerProps
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export const SlideContainer = forwardRef<HTMLDivElement, SlideContainerProps>(
   function SlideContainer(props, ref) {

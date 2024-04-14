@@ -11,7 +11,7 @@ import {
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type PortalContainer = Element | DocumentFragment | null;
 
@@ -28,13 +28,13 @@ const { Provider } = context;
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function usePortalContainer(): PortalContainer {
   return useContext(context);
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface PortalContainerProviderProps {
   /**
    * An optional container element to use. When this is `undefined`, a
@@ -54,7 +54,7 @@ export interface PortalContainerProviderProps {
  * the `document.body` and be used as the container element.
  *
  * @see {@link Portal}
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function PortalContainerProvider(
   props: PortalContainerProviderProps

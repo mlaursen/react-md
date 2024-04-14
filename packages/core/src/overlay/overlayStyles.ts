@@ -19,7 +19,7 @@ declare module "react" {
 
 const styles = bem("rmd-overlay");
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface OverlayClassNameOptions {
   className?: string;
 
@@ -41,7 +41,7 @@ export interface OverlayClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function overlay(
   options: OverlayClassNameOptions & { active?: boolean }
@@ -72,10 +72,10 @@ export function overlay(
   );
 }
 
-/** @remarks \@since 2.4.0 */
+/** @since 2.4.0 */
 export const DEFAULT_OVERLAY_TIMEOUT: TransitionTimeout = 150;
 
-/** @remarks \@since 2.4.0 */
+/** @since 2.4.0 */
 export const DEFAULT_OVERLAY_CLASSNAMES: Readonly<CSSTransitionClassNamesObject> =
   {
     appearActive: "rmd-overlay--active",

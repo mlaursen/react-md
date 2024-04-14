@@ -4,7 +4,7 @@ import { bem } from "../utils/bem.js";
 const styles = bem("rmd-segmented-button-container");
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface SegmentedButtonContainerClassNameOptions {
   className?: string;
@@ -14,7 +14,7 @@ export interface SegmentedButtonContainerClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function segmentedButtonContainerStyles(
   options: SegmentedButtonContainerClassNameOptions = {}

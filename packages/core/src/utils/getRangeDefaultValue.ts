@@ -6,7 +6,7 @@ import {
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface RangeDefaultValueOptions extends GetMiddleOfRangeOptions {
   defaultValue?: UseStateInitializer<number>;
@@ -14,7 +14,7 @@ export interface RangeDefaultValueOptions extends GetMiddleOfRangeOptions {
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function getRangeDefaultValue(
   options: RangeDefaultValueOptions

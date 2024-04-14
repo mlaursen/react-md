@@ -21,9 +21,8 @@ import {
  * render reasonably well by default. There is no built-in validation or
  * anything adding onto existing browser functionality for these types.
  *
- * @remarks
- * \@since 2.5.0 - `"search"` was added
- * \@since 6.0.0 Dropped support for `"week"` and `"month"` input types since
+ * @since 2.5.0 - `"search"` was added
+ * @since 6.0.0 Dropped support for `"week"` and `"month"` input types since
  * they are not available in Firefox and Safari at this time.
  */
 export type SupportedInputTypes =
@@ -40,7 +39,7 @@ export type SupportedInputTypes =
   | "search";
 
 /**
- * @remarks \@since 6.0.0 Renamed from `TextFieldAttributes` to
+ * @since 6.0.0 Renamed from `TextFieldAttributes` to
  * `TextFieldInputAttributes`
  */
 export type TextFieldInputAttributes = Omit<
@@ -49,7 +48,7 @@ export type TextFieldInputAttributes = Omit<
 >;
 
 /**
- * @remarks \@since 6.0.0 Removed the `containerRef` prop.
+ * @since 6.0.0 Removed the `containerRef` prop.
  */
 export interface TextFieldProps
   extends TextFieldInputAttributes,
@@ -97,7 +96,7 @@ export interface TextFieldProps
    * component implementation
    *
    * @internal
-   * @remarks \@since 6.0.0
+   * @since 6.0.0
    */
   children?: ReactNode;
 }

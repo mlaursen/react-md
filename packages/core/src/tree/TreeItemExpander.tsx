@@ -13,7 +13,7 @@ import { useTreeContext } from "./TreeProvider.js";
 
 /**
  * @internal
- * @remarks \@since 6.0.0 Updated to use the latest API
+ * @since 6.0.0 Updated to use the latest API
  */
 export interface TreeItemExpanderProps {
   /** @defaultValue `false` */
@@ -30,7 +30,7 @@ export interface TreeItemExpanderProps {
  * **Client Component**
  *
  * @internal
- * @remarks \@since 6.0.0 Updated to support the new `expansionMode` behavior.
+ * @since 6.0.0 Updated to support the new `expansionMode` behavior.
  */
 export function TreeItemExpander(props: TreeItemExpanderProps): ReactElement {
   const {

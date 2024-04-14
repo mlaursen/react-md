@@ -37,7 +37,7 @@ export type SheetHorizontalSize = "none" | "media" | "touch" | "static";
  */
 export type SheetVerticalSize = "none" | "touch" | "recommended";
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface BaseSheetClassNameOptions {
   className?: string;
 
@@ -58,7 +58,7 @@ export interface BaseSheetClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export interface SheetClassNameOptions extends BaseSheetClassNameOptions {
@@ -66,7 +66,7 @@ export interface SheetClassNameOptions extends BaseSheetClassNameOptions {
   disableOverlay?: boolean;
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export function sheet(options: SheetClassNameOptions): string {
   const {
     position = "left",

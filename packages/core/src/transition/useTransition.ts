@@ -29,7 +29,7 @@ const noop = (): void => {
  *
  * @typeParam E - The HTMLElement type used or the ref required for the
  * transition.
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  */
 export function useTransition<E extends HTMLElement>(
   options: TransitionHookOptions<E>

@@ -9,7 +9,7 @@ const noop = (): void => {
 };
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type MenuSheetConfigurableProps = Omit<
   BaseSheetProps,
@@ -17,7 +17,7 @@ export type MenuSheetConfigurableProps = Omit<
 >;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface MenuSheetConvenienceProps {
   /**
@@ -58,9 +58,8 @@ export interface MenuSheetConvenienceProps {
 
 /**
  * @internal
- * @remarks
- * \@since 5.0.0
- * \@since 6.0.0 Updated to use the latest menu API.
+ * @since 5.0.0
+ * @since 6.0.0 Updated to use the latest menu API.
  */
 export interface MenuSheetProps extends BaseSheetProps {
   /** {@inheritDoc MenuConfiguration.sheetHeader} */
@@ -69,7 +68,7 @@ export interface MenuSheetProps extends BaseSheetProps {
   footer?: ReactNode;
   children: ReactNode;
 
-  /** @remarks \@since 6.0.0 */
+  /** @since 6.0.0 */
   enabled: RenderMenuAsSheet;
 }
 
@@ -80,9 +79,8 @@ export interface MenuSheetProps extends BaseSheetProps {
  * really be used externally.
  *
  * @internal
- * @remarks
- * \@since 5.0.0
- * \@since 6.0.0 Added the `enabled` prop and does not render a custom `Menu`
+ * @since 5.0.0
+ * @since 6.0.0 Added the `enabled` prop and does not render a custom `Menu`
  * implementation.
  */
 export function MenuSheet(

@@ -3,7 +3,7 @@ import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-responsive-item");
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface ResponsiveItemClassNameOptions {
   className?: string;
 
@@ -37,7 +37,7 @@ export interface ResponsiveItemClassNameOptions {
  * Applies the visual media responsive styles manually if you cannot use the
  * `ResponsiveItemContainer` component.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function responsiveItem(
   options: ResponsiveItemClassNameOptions = {}

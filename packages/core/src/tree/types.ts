@@ -3,7 +3,7 @@ import type { ListItemChildrenProps } from "../list/types.js";
 import type { UseStateInitializer } from "../types.js";
 
 /**
- * @remarks \@since 6.0.0 This was renamed from `TreeItemIds`
+ * @since 6.0.0 This was renamed from `TreeItemIds`
  */
 export interface TreeItemNode {
   itemId: string;
@@ -14,7 +14,7 @@ export interface TreeItemNode {
  * The default tree item node allows for any props for rendering children within
  * list items and rendering links.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface DefaultTreeItemNode
   extends TreeItemNode,
@@ -95,7 +95,7 @@ export interface DefaultTreeItemNode
  * };
  * ```
  *
- * @remarks \@since 6.0.0 Updated the default types
+ * @since 6.0.0 Updated the default types
  * @see {@link DefaultTreeItemNode}
  */
 export type TreeData<T extends TreeItemNode = DefaultTreeItemNode> = Record<
@@ -104,13 +104,13 @@ export type TreeData<T extends TreeItemNode = DefaultTreeItemNode> = Record<
 >;
 
 /**
- * @remarks \@since 6.0.0 This used to be `TreeItemIds` but was converted to a
+ * @since 6.0.0 This used to be `TreeItemIds` but was converted to a
  * Set to increase performance for large trees.
  */
 export type TreeItemIdSet = ReadonlySet<string>;
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type TreeItemDefaultIds = UseStateInitializer<readonly string[]>;
 

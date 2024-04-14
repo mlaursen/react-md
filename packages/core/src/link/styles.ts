@@ -3,7 +3,7 @@ import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-link");
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface LinkClassNameOptions {
   className?: string;
 
@@ -15,7 +15,7 @@ export interface LinkClassNameOptions {
  * This really doesn't do much at this time since it only merges `rmd-link` with
  * the optional className. This was mostly added just for convention purposes.
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function link(options: LinkClassNameOptions = {}): string {
   const { flex, className } = options;
@@ -23,7 +23,7 @@ export function link(options: LinkClassNameOptions = {}): string {
   return cnb(styles({ flex }), className);
 }
 
-/** @remarks \@since 6.0.0 */
+/** @since 6.0.0 */
 export interface SKipToMainContentClassNameOptions {
   className?: string;
 
@@ -34,7 +34,7 @@ export interface SKipToMainContentClassNameOptions {
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function skipToMainContent(
   options: SKipToMainContentClassNameOptions = {}

@@ -7,7 +7,7 @@ import {
 } from "./useResizeObserver.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ElementSizeOptions<E extends HTMLElement>
   extends Omit<ResizeObserverHookOptions<E>, "onUpdate"> {
@@ -16,7 +16,7 @@ export interface ElementSizeOptions<E extends HTMLElement>
 }
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface ElementSizeImplementation<E extends HTMLElement>
   extends ElementSize {
@@ -44,7 +44,7 @@ export interface ElementSizeImplementation<E extends HTMLElement>
  * }
  * ```
  *
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useElementSize<E extends HTMLElement>(
   options: ElementSizeOptions<E> = {}

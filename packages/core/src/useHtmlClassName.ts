@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function useHtmlClassName(className: string): void {
   useEffect(() => {

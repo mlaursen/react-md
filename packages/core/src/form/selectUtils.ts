@@ -3,7 +3,7 @@ import { type MenuItemProps } from "../menu/MenuItem.js";
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface SelectOption<Value extends string | number = string>
   extends MenuItemProps {
@@ -12,7 +12,7 @@ export interface SelectOption<Value extends string | number = string>
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 function getLabelFromChildren(children: ReactNode): string {
   if (!children) {
@@ -50,7 +50,7 @@ function getLabelFromChildren(children: ReactNode): string {
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 interface ExtractedOptions<Value extends string | number> {
   options: readonly Value[];
@@ -59,7 +59,7 @@ interface ExtractedOptions<Value extends string | number> {
 
 /**
  * @internal
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export function extractOptionsFromChildren<Value extends string | number>(
   children: ReactNode,

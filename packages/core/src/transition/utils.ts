@@ -7,7 +7,7 @@ import type {
 } from "./types.js";
 
 /**
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  * @internal
  */
 export interface TransitionTimeoutOptions extends Required<TransitionActions> {
@@ -15,7 +15,7 @@ export interface TransitionTimeoutOptions extends Required<TransitionActions> {
 }
 
 /**
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  * @internal
  */
 export function getTransitionTimeout(
@@ -38,7 +38,7 @@ export function getTransitionTimeout(
 }
 
 /**
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  * @internal
  */
 export interface CollapseSizing {
@@ -53,7 +53,7 @@ export interface CollapseSizing {
  * max-height value since `max-height: auto` does not transition. The only way
  * to get transition is to change max-height values manually.
  *
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  * @internal
  */
 export function getElementSizing(element: HTMLElement | null): CollapseSizing {
@@ -95,7 +95,7 @@ export function getElementSizing(element: HTMLElement | null): CollapseSizing {
 }
 
 /**
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  * @internal
  */
 export interface TransitionClassNamesOptions extends TransitionTimeoutOptions {
@@ -103,7 +103,7 @@ export interface TransitionClassNamesOptions extends TransitionTimeoutOptions {
 }
 
 /**
- * @remarks \@since 4.0.0
+ * @since 4.0.0
  * @internal
  */
 export function getTransitionClassNames(

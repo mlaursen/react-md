@@ -35,14 +35,14 @@ const noop = (): void => {
 };
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export type MenuItemInputToggleCheckedCallback = (
   checked: boolean,
   event: MouseEvent<HTMLLIElement>
 ) => void;
 
-/** @remarks \@since 2.8.0 */
+/** @since 2.8.0 */
 export interface BaseMenuItemInputToggleProps
   extends HTMLAttributes<HTMLLIElement>,
     InputToggleIconProps,
@@ -102,9 +102,8 @@ export interface MenuItemCheckboxProps
 export type MenuItemRadioProps = BaseMenuItemInputToggleProps;
 
 /**
- * @remarks
- * \@since 2.8.0
- * \@since 6.0.0 Added additional props for styling the track and ball.
+ * @since 2.8.0
+ * @since 6.0.0 Added additional props for styling the track and ball.
  */
 export interface MenuItemSwitchProps extends BaseMenuItemInputToggleProps {
   trackProps?: PropsWithRef<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
@@ -116,9 +115,8 @@ export interface MenuItemSwitchProps extends BaseMenuItemInputToggleProps {
 }
 
 /**
- * @remarks
- * \@since 2.8.0
- * \@since 6.0.0 Updated to be a union of the different props to enforce the
+ * @since 2.8.0
+ * @since 6.0.0 Updated to be a union of the different props to enforce the
  * correct props based on `type`
  */
 export type MenuItemInputToggleProps =
@@ -136,7 +134,7 @@ export type MenuItemInputToggleProps =
  * @see {@link MenuItemCheckbox} for checkbox examples
  * @see {@link MenuItemRadio} for radio examples
  * @see {@link MenuItemSwitch} for switch examples
- * @remarks \@since 2.8.0
+ * @since 2.8.0
  */
 export const MenuItemInputToggle = forwardRef<
   HTMLLIElement,

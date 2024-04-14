@@ -43,7 +43,7 @@ export interface DropdownMenuItemButtonProps
     BaseDropdownMenuProps {}
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  */
 export interface DropdownMenuStateProps {
   visible: boolean;
@@ -51,9 +51,8 @@ export interface DropdownMenuStateProps {
 }
 
 /**
- * @remarks
- * \@since 5.0.0
- * \@since 6.0.0 Updated to use an `&` instead of `|` to allow autocompletion to
+ * @since 5.0.0
+ * @since 6.0.0 Updated to use an `&` instead of `|` to allow autocompletion to
  * work better by default. It's up to the user to make sure they don't provide
  * incorrect props.
  */
@@ -112,9 +111,8 @@ export type DropdownMenuProps = DropdownMenuButtonProps &
  * }
  * ```
  *
- * @remarks
- * \@since 5.0.0
- * \@since 6.0.0 Updated to use the latest menu API.
+ * @since 5.0.0
+ * @since 6.0.0 Updated to use the latest menu API.
  */
 export function DropdownMenu(props: DropdownMenuProps): ReactElement {
   const {
