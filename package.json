@@ -37,7 +37,7 @@
   },
   "engines": {
     "pnpm": ">=8",
-    "node": "^18"
+    "node": ">=18"
   },
   "engineStrict": true,
   "packageManager": "pnpm@8.15.2",
@@ -47,7 +47,7 @@
     ]
   },
   "volta": {
-    "node": "18.19.1",
-    "pnpm": "8.15.5"
+    "node": "20.12.2",
+    "pnpm": "8.15.7"
   }
 }

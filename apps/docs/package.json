@@ -1,5 +1,5 @@
 {
-  "name": "docs-v2",
+  "name": "docs",
   "type": "module",
   "private": true,
   "version": "0.0.1",
@@ -24,7 +24,7 @@
   },
   "engines": {
     "pnpm": ">=8",
-    "node": "^18"
+    "node": ">=18"
   },
   "engineStrict": true,
   "repository": {
@@ -77,5 +77,9 @@
     "svgo": "^3.2.0",
     "tsx": "^4.7.2",
     "typescript": "^5.4.5"
+  },
+  "volta": {
+    "node": "20.12.2",
+    "pnpm": "8.15.7"
   }
 }

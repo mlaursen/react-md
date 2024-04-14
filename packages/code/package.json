@@ -95,5 +95,9 @@
     "react-dom": {
       "optional": false
     }
+  },
+  "volta": {
+    "node": "20.12.2",
+    "pnpm": "8.15.7"
   }
 }

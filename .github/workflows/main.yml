@@ -21,23 +21,17 @@ jobs:
         with:
           version: 8
 
-      - name: Use Node.js 18
+      - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:
-          node-version: 18.18.2
+          node-version: 20.12.2
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm check-format
-      - run: pnpm build-packages
+      # build everything so the generated code can also be typechecked
+      - run: pnpm build
       - run: pnpm lint
       - run: pnpm typecheck
-
-      # # Check if there are uncommitted generated changes
-      # - run: pnpm --filter docs api-pages
-      # - run: pnpm --filter docs mdx-pages
-      # - run: pnpm --filter docs scss-lookup
-      # - run: pnpm --filter docs prism-themes
-      # - run: git diff --quiet
 
       - run: pnpm test -- -- --coverage
       - run: npx codecov -t ${{ secrets.CODECOV_TOKEN }}
