@@ -1,6 +1,6 @@
 import { type TypescriptCodeFile } from "@react-md/code/types";
 import { format } from "prettier";
-import { Node, type Project } from "ts-morph";
+import { type Project } from "ts-morph";
 import { transformTsToJs } from "./transformTsToJs.js";
 
 export interface ParseWithTsMorphOptions {

@@ -113,7 +113,8 @@ export async function generateDemoFile(
 
       return s;
     },
-    ""
+    // allow hot reloading in dev mode with the `watch-demos` script
+    process.env.NODE_ENV !== "production" ? `key={${Date.now()}}` : ""
   );
   sourceFile.addFunction({
     name: demoName,

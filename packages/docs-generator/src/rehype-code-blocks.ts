@@ -60,10 +60,6 @@ export interface RehypeCodeBlocksOptions {
  *         browser
  *     - use postcss to traverse the output to make a simple SCSS module with
  *       local and global scoping based on the demo name
- *
- * TODO:
- * - Trigger reload when demo is added, removed, or modified
- * - Create codemod for `react-md` -> `@react-md/core/*`
  */
 export const rehypeCodeBlocks: Plugin<
   [options?: RehypeCodeBlocksOptions],
@@ -178,6 +174,16 @@ export const rehypeCodeBlocks: Plugin<
     });
 
     await Promise.all(promises);
+
+    // having a single project is much faster for building production but need
+    // to remove the source files in dev mode so that changing a demo can get
+    // the new changes
+    if (process.env.NODE_ENV !== "production") {
+      project.getSourceFiles().forEach((sourceFile) => {
+        project.removeSourceFile(sourceFile);
+      });
+    }
+
     return;
   };
 };

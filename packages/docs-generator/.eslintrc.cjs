@@ -8,6 +8,8 @@ module.exports = {
     sourceType: "module",
   },
   settings: {
-    react: "18",
+    react: {
+      version: "18",
+    },
   },
 };

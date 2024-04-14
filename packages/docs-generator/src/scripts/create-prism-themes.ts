@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { alphaNumericSort } from "@react-md/core/utils/alphaNumericSort";
 import autoprefixer from "autoprefixer";
 import cssnano from "cssnano";
@@ -179,13 +178,14 @@ async function compileAndMinifyScss(
   const compiled = compileScss(options);
   const result = await postcss([
     cssnano({
-      preset: cssnanoPresetDefault(),
+      preset: cssnanoPresetDefault({
+        env: "production",
+      }),
       plugins: [autoprefixer],
     }),
   ]).process(compiled, {
     from: "./theme.css",
   });
-  console.log(result.css === compiled);
 
   return result.css;
 }
@@ -256,7 +256,9 @@ await Promise.all(
       rule.walkDecls(regexp, (decl) => {
         const { prop, value } = decl;
         if (properties.has(prop) && properties.get(prop) !== value) {
+          // eslint-disable-next-line no-console
           console.log(themeName);
+          // eslint-disable-next-line no-console
           console.log(decl.toString());
           return;
         }
@@ -340,6 +342,7 @@ export type PrismTheme = typeof PRISM_THEMES[number];
 await writeFile(themesPath, themesContent);
 
 if (unknownTheme.size) {
+  // eslint-disable-next-line no-console
   console.error(
     `Unknown themes: ${[...unknownTheme].map((name) => `- ${name}`).join("\n")}`
   );

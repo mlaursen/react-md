@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "es5",
     "noEmit": true,
     "jsx": "preserve",
     "strict": true,
@@ -10,9 +10,10 @@
     "resolveJsonModule": true,
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
+    "incremental": true,
     "forceConsistentCasingInFileNames": true,
     "lib": ["esnext"]
   },
-  "include": ["**/*.ts"],
+  "include": ["./*.ts"],
   "exclude": ["node_modules"]
 }

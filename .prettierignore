@@ -22,3 +22,4 @@ packages/codemod/transforms/**/__testfixtures__
 generating.json
 material-metadata.json
 apps/docs/public/prism-themes
+apps/docs/src/generated

@@ -5,7 +5,7 @@ import { createScssLookup } from "docs-generator/scripts/create-scss-lookup";
 import { logComplete } from "docs-generator/utils/log";
 
 if (!process.argv.includes("--watch")) {
-  await createScssLookup();
+  createScssLookup();
   process.exit(0);
 }
 
