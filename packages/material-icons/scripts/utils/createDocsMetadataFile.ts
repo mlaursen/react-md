@@ -33,7 +33,10 @@ export async function createDocsMetadataFile(
   const generatedMetadata = await format(
     `${GENERATED_FILE_BANNER}
 
-import type { MaterialIconName, MaterialSymbolName } from "@react-md/core";
+import {
+  type MaterialIconName,
+  type MaterialSymbolName,
+} from "@react-md/core/icon/material";
 
 export type MaterialIconType = "icon" | "symbol";
 export type MaterialIconAndSymbolName = MaterialIconName | MaterialSymbolName;

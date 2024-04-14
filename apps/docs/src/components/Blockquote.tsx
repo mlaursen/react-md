@@ -1,8 +1,4 @@
-import { typography } from "react-md";
-import CheckCircleOutlinedIcon from "@react-md/material-icons/CheckCircleOutlinedIcon";
-import ErrorOutlineOutlinedIcon from "@react-md/material-icons/ErrorOutlineOutlinedIcon";
-import InfoOutlinedIcon from "@react-md/material-icons/InfoOutlinedIcon";
-import WarningOutlinedIcon from "@react-md/material-icons/WarningOutlinedIcon";
+import { typography } from "@react-md/core/typography/typographyStyles";
 import { cnb } from "cnbuilder";
 import {
   Children,
@@ -14,10 +10,12 @@ import {
   type ReactNode,
 } from "react";
 import styles from "./Blockquote.module.scss";
+import {
+  BlockquoteThemeIcon,
+  type BlockquoteTheme,
+} from "./BlockquoteThemeIcon.jsx";
 
 const THEME_REGEX = /!(Warn|Info|Success|Error)!/;
-
-type BlockquoteTheme = "warning" | "info" | "success" | "error";
 
 const getTheme = (theme: string): BlockquoteTheme => {
   switch (theme) {
@@ -27,23 +25,6 @@ const getTheme = (theme: string): BlockquoteTheme => {
       return theme.toLowerCase() as BlockquoteTheme;
   }
 };
-
-function BlockquoteThemeIcon({
-  theme,
-}: {
-  theme: BlockquoteTheme;
-}): ReactElement {
-  switch (theme) {
-    case "info":
-      return <InfoOutlinedIcon />;
-    case "warning":
-      return <WarningOutlinedIcon />;
-    case "success":
-      return <CheckCircleOutlinedIcon />;
-    case "error":
-      return <ErrorOutlineOutlinedIcon />;
-  }
-}
 
 export interface BlockquoteProps extends HTMLAttributes<HTMLElement> {
   theme?: BlockquoteTheme;
@@ -58,55 +39,60 @@ export function Blockquote(props: BlockquoteProps): ReactElement {
   } = props;
 
   let theme = propTheme;
-  const children: ReactNode[] = [];
-  Children.forEach(propChildren, (child, index) => {
-    if (!isValidElement<{ children: ReactNode }>(child)) {
-      children.push(child);
-      return;
-    }
-
-    const childChildren = child.props.children;
-    if (typeof childChildren === "string") {
-      const [, themeMatch] = childChildren.match(THEME_REGEX) || [];
-      if (themeMatch) {
-        theme = getTheme(themeMatch);
-        children.push(
-          cloneElement(
-            child,
-            { key: index },
-            childChildren.substring(themeMatch.length + 2)
-          )
-        );
+  let children = propChildren;
+  if (!theme) {
+    const nextChildren: ReactNode[] = [];
+    Children.forEach(propChildren, (child, index) => {
+      if (!isValidElement<{ children: ReactNode }>(child)) {
+        nextChildren.push(child);
         return;
       }
-    } else {
-      const [maybeTheme, ...remaining] = Children.toArray(childChildren);
-      if (typeof maybeTheme === "string") {
-        const [, themeMatch] = maybeTheme.match(THEME_REGEX) || [];
+
+      const childChildren = child.props.children;
+      if (typeof childChildren === "string") {
+        const [, themeMatch] = childChildren.match(THEME_REGEX) || [];
         if (themeMatch) {
           theme = getTheme(themeMatch);
-          const text = maybeTheme.substring(themeMatch.length + 2);
-          const cloned = cloneElement(
-            child,
-            {
-              ...child.props,
-              key: child.key || index,
-            },
-            <>
-              {text}
-              {remaining.map((item, index) => (
-                <Fragment key={index}>{item}</Fragment>
-              ))}
-            </>
+          nextChildren.push(
+            cloneElement(
+              child,
+              { key: index },
+              childChildren.substring(themeMatch.length + 2)
+            )
           );
-          children.push(cloned);
           return;
         }
+      } else {
+        const [maybeTheme, ...remaining] = Children.toArray(childChildren);
+        if (typeof maybeTheme === "string") {
+          const [, themeMatch] = maybeTheme.match(THEME_REGEX) || [];
+          if (themeMatch) {
+            theme = getTheme(themeMatch);
+            const text = maybeTheme.substring(themeMatch.length + 2);
+            const cloned = cloneElement(
+              child,
+              {
+                ...child.props,
+                key: child.key || index,
+              },
+              <>
+                {text}
+                {remaining.map((item, index) => (
+                  <Fragment key={index}>{item}</Fragment>
+                ))}
+              </>
+            );
+            nextChildren.push(cloned);
+            return;
+          }
+        }
       }
-    }
 
-    children.push(child);
-  });
+      nextChildren.push(child);
+    });
+
+    children = nextChildren;
+  }
 
   if (theme) {
     return (

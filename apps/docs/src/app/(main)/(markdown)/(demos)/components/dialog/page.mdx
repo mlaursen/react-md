@@ -1,0 +1,85 @@
+# Dialog
+
+Dialogs inform users about a task and can contain critical information, require
+decisions, or involve multiple tasks.
+
+A dialog is a type of modal window that appears in front of app content to
+provide critical information or ask for a decision. Dialogs disable all app
+functionality when they appear, and remain on screen until confirmed, dismissed,
+or a required action has been taken.
+
+# Simple Example
+
+A dialog can be created using the `Dialog`, `DialogHeader`, `DialogTitle`,
+`DialogContent`, and `DialogFooter` components. The `Dialog` is a controlled
+component requiring a `visible` state, `onRequestClose` function to close the
+dialog, and either an `aria-label` or `aria-labelledby` for accessibility.
+
+A common pattern is to set the `aria-labelledby` to the `DialogTitle` since the
+title would normally describe the purpose of the dialog.
+
+```demo source="./SimpleExample.tsx"
+
+```
+
+## Full Page Dialog
+
+A dialog can span the entire viewport by setting the `type` to `"full-page"`.
+
+```demo source="./FullPageDialogExample.tsx"
+
+```
+
+# Modal Dialog
+
+The default behavior for the dialog is to allow the user to click the overlay to
+close the dialog. If the user should be forced to interact with the modal to
+close it, enable the `modal` prop.
+
+When the `modal` prop is enabled, the `role` should normally switch to an
+[alertdialog](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/alertdialog_role)
+to increase the accessibility. An `aria-describedby` should also be set on the
+dialog to describe the alert.
+
+```demo source="./ModalDialogExample.tsx"
+
+```
+
+# Fixed Dialog
+
+If a dialog should be positioned relative to another element, use the
+`FixedDialog` component. The `FixedDialog` component maintains the same API as
+the `Dialog` component with a few changes:
+
+- a new `fixedTo` ref prop is required to position itself to another element
+  - the default anchor is set to `TOP_INNER_RIGHT_ANCHOR`
+- the CSS transition defaults to using a scale transition
+- the overlay is hidden by default
+- the page is scrollable while the dialog is visible by default
+  - the dialog will automatically hide if the user scrolls the dialog out of
+    view
+  - the `fixedTo` element is not re-focused for this flow
+
+```demo source="./FixedDialogExample.tsx"
+
+```
+
+# Setting the Initial Focus
+
+When the dialog gains visibility, the current focus will move to the dialog
+itself and trap focus within the dialog. If another element in the dialog should
+gain focus instead, enable the `autoFocus` prop on that element.
+
+```demo source="./SettingInitialFocusExample.tsx"
+
+```
+
+# Custom Transition
+
+The `Dialog` uses the [useCSSTransition](/hooks/use-css-transition) to handle
+the visibility transitions and can be customized by providing the `timeout` and
+`classNames` props.
+
+```demo source="./CustomTransitionExample.tsx"
+
+```

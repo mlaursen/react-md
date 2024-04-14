@@ -1,0 +1,143 @@
+# Tooltip
+
+Tooltips display informative text when users hover over, focus on, or tap an element.
+
+# Simple Example
+
+A tooltip can be created by using the `Tooltip` component and the `useTooltip`
+hook to handle controlling the visibility. The default behavior will be to show
+the tooltip after hovering/focusing/touching for 1 second.
+
+```demo source="./SimpleTooltipExample.tsx"
+
+```
+
+## Dense Tooltip
+
+The tooltip can be rendered with a smaller size and spacing from the tooltipped
+element by enabling the `dense` option.
+
+```demo source="./DenseTooltipExample.tsx"
+
+```
+
+## Long Text Tooltip
+
+Tooltips have a `max-width` set to `15rem` by default but can be configured by
+setting the `core.$tooltip-max-width` Sass variable or through CSS on the
+tooltip.
+
+```demo source="./LongTextTooltipTooltipExample.tsx"
+
+```
+
+# Tooltip Positioning
+
+The `Tooltip` will automatically attempt to render itself within the viewport
+either above or below the tooltipped element preferring below. The positioning
+can be configured by providing the `defaultPosition` option to the `useTooltip`
+hook as one of the following:
+
+- `"below"` (default) - renders the tooltip below the tooltipped element and
+  swaps to above if near the bottom of the viewport
+- `"above"` - renders the tooltip above the tooltipped element and swaps to
+  below if near the top of the viewport
+- `"left"` - renders the tooltip to the left of the tooltipped element and swaps
+  to the right if near the left edge of the viewport
+- `"right"` - renders the tooltip to the right of the tooltipped element and
+  swaps to the left if near the right edge of the viewport
+
+```demo source="./TooltipPositioningExample.tsx"
+
+```
+
+## Forced Tooltip Position
+
+A specific position can be forced by setting the `position` option instead.
+
+```demo source="./ForcedTooltipPositionExample.tsx"
+
+```
+
+# Enabling Hover Mode
+
+Tooltips can also be updated to have a "hover mode" so that subsequent tooltips
+are shown immediately instead of requiring the default delay. After no tooltips
+have been shown via mouse for a few seconds, the "hover mode" will be disabled
+and the initial hover delay will be used again. This feature can be enabled for
+all tooltips in the application or just a small group of tooltips by wrapping
+the components in the `TooltipHoverModeProvider`.
+
+```demo source="./EnablingHoverModeExample.tsx"
+
+```
+
+# Configuring Tooltip Timeouts
+
+The timeouts for showing and hiding the tooltips can be configured globally
+using the `TooltipHoverModeProvider` or a tooltip-by-tooltip basis with the
+`useTooltip` hook which would override the `TooltipHoverModeProvider` value.
+
+- `hoverTimeout` - The amount of time to wait in milliseconds before showing the
+  tooltip. Defaults to `1000`
+- `leaveTimeout` - The amount of time to wait in milliseconds before hiding the
+  tooltip. Defaults to `0`
+- `disableTimeout` (`TooltipHoverModeProvider`) - The amount of time to wait in
+  milliseconds before disabling the hover mode functionality. Defaults to `1000`
+
+```demo source="./ConfiguringTooltipTimeoutsExample.tsx"
+
+```
+
+# Overflow Only Tooltip
+
+The `useTooltip` hook also supports an `overflowOnly` option that will display
+the tooltip only while there is overflown content for the tooltipped element.
+
+```demo source="./OverflowOnlyTooltipExample.tsx"
+
+```
+
+## Custom Overflow Element
+
+If the tooltipped element is a flex or grid container, a child element will most
+likely need to be updated to add the overflow styles. This would cause the
+tooltip to never appear since the tooltipped element is not considered overflown
+even though the child is truncated. In this case, add the `overflowRef` to the
+truncated element and the tooltip will correctly appear.
+
+> Try commenting out the `ref` or changing the `width` so there is no truncated
+> text in this example and hover the button.
+
+```demo source="./CustomOverflowElementExample.tsx"
+
+```
+
+# Custom Tooltip
+
+A `Tooltip` can be rendered without the `useTooltip` hook but will require some
+additional styling for the correct positioning to work.
+
+1. Enable the `disablePortal` prop so it renders inline
+2. Add styles for `position: absolute` positioning
+3. Wrap in a container element with `position: relative`
+4. Optionally set the `textOverflow` prop to `"nowrap"` so that the width is not
+   restricted to the wrapper element's width
+
+```demo source="./CustomTooltipExample.tsx"
+
+```
+
+## Progressbar Tooltip Example
+
+This demo just showcases a possible use-case for the custom tooltip by rendering
+it with a progressbar to show the current progress.
+
+```demo source="./ProgressbarTooltipExample.tsx"
+
+```
+
+# Accessibility
+
+Tooltips follow the [tooltip pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/)
+and the [tooltip role](https://w3c.github.io/aria/#tooltip).

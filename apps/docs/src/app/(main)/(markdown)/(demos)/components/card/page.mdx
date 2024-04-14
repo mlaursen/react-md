@@ -1,0 +1,113 @@
+# Card
+
+Cards are usually used to show some basic information and then allow the user to
+interact with it to show more data. The size of the card is determined by the
+content within.
+
+# Simple Example
+
+The `Card` component can be used to add elevation to content by adding a surface
+background color and box shadow. The `Card` is normally used with the
+`CardContent` component to add default padding around the content and apply the
+text secondary color.
+
+```demo source="./SimpleExample.tsx"
+
+```
+
+## Full Width Card
+
+A `Card` can gain `width: 100%` by enabling the `fullWidth` prop.
+
+```demo source="./FullWidthCardExample.tsx"
+
+```
+
+## Raisable Example
+
+A `Card` can gain additional box shadow while hovered by enabling the `raisable`
+prop.
+
+> !Warn! The raisable card is not really noticeable in dark mode by default.
+> Custom box shadow styles will be required.
+
+```demo source="./RaisableExample.tsx"
+
+```
+
+## Bordered Example
+
+A `Card` can gain a border instead of box-shadow by enabling the `bordered`
+prop.
+
+```demo source="./BorderedExample.tsx"
+
+```
+
+# Card With Media
+
+Another main use case for cards is to display some sort of image or video along
+with a description using the
+[responsive item components](/components/responsive-item).
+
+```demo source="./CardWithMediaExample.tsx"
+
+```
+
+# Additional Card Components
+
+There are a few additional card components that can be used:
+
+- `CardHeader` - A simple `flex` container with padding and `column-gap`.
+  Normally renders the `CardTitle`, `CardSubtitle`, and addons.
+  - `CardTitle` - Simple wrapper around the `Typography` component to render
+    as `headline-5` with no margin.
+  - `CardSubtitle` - Simple wrapper around the `Typography` to render as
+    `subtitle-2` with no margin and the secondary text color.
+- `CardContent` - Adds padding and applies the secondary text color.
+- `CardFooter` - Simple wrapper around the `Box` component that defaults to
+  `align="end"` and `0.5rem` padding. This is normally used to render `Button`
+  components.
+
+```demo source="./AdditionalCardComponentsExample.tsx"
+
+```
+
+## Card Header Addons
+
+The `CardHeader` component can render additional content before and after the
+`children` by using the `beforeAddon` and `afterAddon` props. The main benefits
+to these props are that they will not automatically be truncated with ellipsis
+when overflowing.
+
+```demo source="./CardHeaderAddonsExample.tsx"
+
+```
+
+# Card Grid
+
+Multiple cards can be rendered in a grid using the `Box` component.
+
+```demo source="./CardGridExample.tsx"
+
+```
+
+# Expandable Card
+
+A common pattern for cards are to have expandable sections to show more
+information when space is limited. There is no built-in functionality for this
+in cards but can be easily implemented using the
+[Collapse](/components/collapse) component.
+
+```demo source="./ExpandableCardExample.tsx"
+
+```
+
+# Clickable Card
+
+If a `Card` should be clickable, use the `ClickableCard` component instead to
+apply the required accessibility changes and styling.
+
+```demo source="./ClickableCardExample.tsx"
+
+```

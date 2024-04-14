@@ -1,0 +1,59 @@
+# Divider
+
+Dividers group and separate content within lists and page layouts. The divider
+is a thin rule, lightweight yet sufficient to distinguish content visually and
+spatially.
+
+# Simple Divider
+
+Create a divider using the `Divider` component.
+
+```demo source="./SimpleDivider.tsx"
+
+```
+
+## Customizing Divider
+
+The color can be configured by the
+`core.$divider-light-theme-color`/`core.$divider-dark-theme-color`/`core.$divider-color`
+Sass variables or the `--rmd-divider-color` custom property. The default
+behavior will be to use the correct light or dark theme color.
+
+The height can be configured by the `core.$divider-size` Sass variable or
+`--rmd-divider-size` custom property.
+
+The spacing around the divider can be configured by the `core.$divider-spacing` Sass
+variable or the `--rmd-divider-spacing` custom property.
+
+```demo source="./CustomizingDivider.tsx"
+
+```
+
+## Inset Divider
+
+Enable the `inset` prop to apply additional `margin-left` so it is inset with a
+list of items. The inset amount can be configured by the
+`core.$divider-inset` Sass variable or `--rmd-divider-inset` custom
+property.
+
+```demo source="./InsetDivider.tsx"
+
+```
+
+# Vertical Divider
+
+A divider can be rendered vertically instead of horizontally by enabling the
+`vertical` prop.
+
+The height will be set to `100%` but can be configured by setting the `height`
+through CSS or `--rmd-divider-max-size` custom property.
+
+The width can be configured by the `core.$divider-vertical-size` Sass
+variable or the `--rmd-divider-vertical-size` custom property.
+
+The margin can be configured by the `core.$divider-vertical-spacing` Sass
+variable or the `--rmd-divider-vertical-spacing` custom property.
+
+```demo source="./VerticalDivider.tsx"
+
+```

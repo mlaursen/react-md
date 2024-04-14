@@ -1,0 +1,45 @@
+# Segmented Button
+
+Segmented buttons can be used to represent a group of choices like a
+[Radio](/components/radio) in a more condensed fashion.
+
+# Simple Example
+
+Create a segmented button using the `SegmentedButton` and
+`SegmentedButtonContainer` components. The `SegmentedButton` is a controlled
+component requiring the `selected` state and `onClick` props.
+
+```demo source="./SimpleSegmentedButtonGroupExample.tsx"
+
+```
+
+## Disable Full Width
+
+The `SegmentedButtonContainer` defaults to using `width: 100%` to make styling
+easier in other flex or grid containers but can be rendered inline by enabling
+`disableFullWidth`.
+
+```demo source="./DisableFullWidthExample.tsx"
+
+```
+
+# Selected Icon
+
+The currently selected button will gain a selected icon by default. This can be
+removed by enabling the `disableSelectedIcon` prop or setting ``
+
+```demo source="./SelectedIconExample.tsx"
+
+```
+
+## Disable Selected Icon Transition
+
+The default behavior for is to use the
+[useMaxWidthTransition](/hooks/use-max-width-transition) for the selected icon
+but can be disabled by enabling `disableSelectedTransition`. It is recommended
+to enable this prop if the buttons would change width if the selected icon
+appears.
+
+```demo source="./DisableSelectedIconTransitionExample.tsx"
+
+```

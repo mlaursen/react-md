@@ -38,7 +38,7 @@
   "dependencies": {
     "commander": "^12.0.0",
     "glob": "^10.3.12",
-    "inquirer": "^9.2.17",
+    "inquirer": "^9.2.18",
     "jscodeshift": "^0.15.2"
   },
   "devDependencies": {
@@ -47,7 +47,7 @@
     "@types/glob": "^8.0.1",
     "@types/inquirer": "^9.0.7",
     "@types/jscodeshift": "^0.11.11",
-    "typescript": "^5.4.4"
+    "typescript": "^5.4.5"
   },
   "publishConfig": {
     "access": "public"

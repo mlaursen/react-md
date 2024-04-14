@@ -1,0 +1,66 @@
+# Native Select
+
+The `NativeSelect` component is just a wrapper around the `<select>` element to
+apply some of the default theme styles. If additional customization that is not
+supported by the browser is required, use the [Select](/components/select)
+instead.
+
+# Simple Native Select
+
+```demo source="./SimpleNativeSelect.tsx"
+
+```
+
+## Native Select Theme
+
+The `NativeSelect` supports the different form themes:
+
+- `"outline"` (default) - Applies an outline mimicking a native text box
+- `"underline"` - Only applies an underline that will grow from the left,
+  center, or right
+- `"filled"` - An extension of the `"underline"` that also adds a background
+  color to make it appear clickable
+- `"none"` - no styling. This is useful if a custom theme should be applied
+
+> !Info! The default theme can be configured by the [form config](/customization/form-config).
+
+```demo source="./NativeSelectTheme.tsx"
+
+```
+
+# Required Native Select
+
+Making a `<select>` required in a form is a bit tricky. It must:
+
+- have a `name`
+- set `required`
+- create an `<option>` that has a value of an empty string
+- set the `defaultValue` to an empty string
+
+```demo source="./RequiredNativeSelect.tsx"
+
+```
+
+## Required with a placeholder
+
+This example shows how to make a required select that has placeholder text.
+
+```demo source="./RequiredWithAPlaceholder.tsx"
+
+```
+
+# Help and Error Text
+
+The `NativeSelect` component is wrapped in the
+[FormMessageContainer](/components/form-message#form-message-container) so additional
+hint or error messages can be displayed.
+
+```demo source="./HelpAndErrorText.tsx"
+
+```
+
+# Multiselect Example
+
+```demo source="./MultiselectExample.tsx"
+
+```

@@ -1,0 +1,84 @@
+# Switch
+
+Switches toggle the state of a single item on or off and are the preferred way to adjust settings on mobile.
+
+Use switches to:
+
+- Toggle a single item on or off, on mobile and tablet
+- Immediately activate or deactivate something
+
+# Simple Switch
+
+A switch can be created using the `Switch` component. A `label` should normally be provided
+for accessibility purposes.
+
+```demo source="./SimpleSwitch.tsx"
+
+```
+
+## Icon After Label
+
+The label can be placed before the switch icon by enabling the `iconAfter` prop.
+
+```demo source="./IconAfterLabel.tsx"
+
+```
+
+## Stacked Label
+
+The label can be stacked above or below the switch by enabling the `stacked` prop.
+
+```demo source="./StackedSwitch.tsx"
+
+```
+
+# Switch Sizes
+
+The `Switch` will automatically scale the label and switch toggle based on the
+current `font-size`. Apply the `font-size` only to the
+`trackStyle`/`trackClassName` if only the switch toggle should change size.
+
+```demo source="./SwitchSizes.tsx"
+
+```
+
+# Switch States
+
+The `Switch` also has different states that can be applied. The most common will
+be the `error` or `disabled` states but also supports `active`.
+
+```demo source="./SwitchStates.tsx"
+
+```
+
+# Controlling Switches
+
+The `Switch` can be controlled by providing the `checked` prop and `onChange`
+like a native `<input type="checkbox">`:
+
+```demo source="./ControllingSwitches.tsx"
+
+```
+
+# Switch with Messages
+
+The `Switch` component is wrapped in the
+[FormMessageContainer](/components/form-message#form-message-container) so additional
+hint or error messages can be displayed.
+
+```demo source="./SwitchWithMessages.tsx"
+
+```
+
+# Switch with Circular Progress
+
+The `Switch` can has been updated to support rendering a `CircularProgress`
+within the ball by using the `ballAddon` prop.
+
+> !Info! The `ballAddon` can also be used to render icons, but some additional
+> styles will be required to update the color of the icon between the unchecked
+> and checked states.
+
+```demo source="./SwitchWithCircularProgress.tsx"
+
+```

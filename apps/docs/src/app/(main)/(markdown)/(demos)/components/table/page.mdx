@@ -1,0 +1,222 @@
+# Table
+
+Tables display sets of data across rows and columns.
+
+# Simple Example
+
+A table can be created using the following components:
+
+- `Table` - A styled `<table>`
+- `TableHeader` - A styled `<thead>`
+- `TableBody` - A `<tbody>` with some additional behavior defined later
+- `TableFooter` - A styled `<tfoot>` with some additional behavior defined later
+- `TableRow` - A styled `<tr>` with some additional behavior defined later
+- `TableCell` - A styled `th` or `td`. Rendered as a `th` when a child of the
+  `TableHeader` and a `td` otherwise.
+
+The `TableRow` will default to rendering a border on the bottom and a different
+background color while hovered when in the `TableBody`.
+
+A [caption](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/caption)
+can be added by using the `Typography` component.
+
+```demo source="./SimpleTableExample.tsx"
+
+```
+
+## Disable Hover Styles
+
+The row hover styles that appear on all the `TableRow` in the `TableBody` can be
+configured on the `Table`, `TableBody`, or `TableRow`components with
+the`disableHover`prop. The `TableRow` will inherit this value or override the
+inherited value if defined.
+
+```demo source="./DisableHoverExample.tsx"
+
+```
+
+## Disable Border Styles
+
+The bottom border that appears on all `TableRow` in the `TableBody` can be
+removed by enabling the `disableBorders` prop on the `Table`, `TableBody`, or
+`TableRow` components. The `TableRow` will inherit this value or override the
+inherited value if defined.
+
+```demo source="./DisableBordersExample.tsx"
+
+```
+
+# Scrollable Tables
+
+If a table should be scrollable, wrap it in a `TableContainer`. The
+`TableContainer` allows scrolling horizontally and vertically by adding:
+
+```css
+.rmd-table-container {
+  max-width: 100%;
+  overflow: auto;
+}
+```
+
+```demo source="./ScrollableTableExample.tsx"
+
+```
+
+# Selectable Rows
+
+A common pattern with tables are to make the rows selectable so different
+actions can be applied. A `TableRow` can be updated to have a `selected` state
+which will add a different background color and a `clickable` state that updates
+the cursor to be a pointer.
+
+```demo source="./SelectableRowsExample.tsx"
+
+```
+
+## Selectable Rows with Checkbox
+
+It is recommended to use the `TableCheckbox` component as the first cell in each
+row to help show the row can be selected and the
+[useCheckboxGroup](/hooks/use-checkbox-group) hook to control the selected
+state.
+
+```demo source="./SelectableRowsWithCheckboxExample.tsx"
+
+```
+
+## Selectable Rows with Radio
+
+If only one row can be selected at a time, the `TableRadio` component can be
+used instead.
+
+```demo source="./SelectableRowsWithRadioExample.tsx"
+
+```
+
+## Updating Selected Row Color
+
+The selected background color defaults to
+`core.interaction-get-var(selected-background-color)`. This can be configured by
+the `core.$table-row-selected-color` Sass variable or the
+`--rmd-table-selected-background-color` custom property.
+
+If the text color and hover colors also need to change while selected, it is
+recommended to just add a custom `className` while selected instead. Here's a
+quick example of using the primary color while selected.
+
+```demo source="./UpdatingSelectedRowColorExample.tsx"
+
+```
+
+# Sortable Columns
+
+To create a sortable header cell, provide the `aria-sort` prop to a `TableCell`
+as one of the following values:
+
+- `"ascending"` - The data has been sorted in ascending order. So A-z, 0-9, and
+  earlier dates before later dates.
+- `"descending"` The data has been sorted in descending order. So z-A, 9-0, and
+  later dates before earlier dates.
+- `"other"` - The data has been sorted in another programmatic order.
+- `"none"` - The data has not been sorted ("aria-sort" default)
+
+When the `aria-sort` prop has been set to one of these values, the cell will
+automatically update the children to be rendered within a button element so that
+it can be tab-focused and clickable for keyboard users. However when the sort
+behavior has been set to `none`, only the button element will be rendered
+without the current sort icon to show that it is not currently sorted, but can
+be.
+
+```demo source="./SortableColumnsExample.tsx"
+
+```
+
+## Customizing Sort Icon
+
+The sortable `TableCell` component will use the
+[sort](/customization/icon-config#sort) icon from the `ICON_CONFIG` by default
+but can also be configured by providing the `sortIcon` prop.
+
+The sort icon can also be placed after the children by enabling the
+`sortIconAfter` prop and disable the rotation transition by enabling
+`disableTransition` to the `iconRotatorProps`.
+
+```demo source="./CustomizingSortIconExample.tsx"
+
+```
+
+# Sticky Tables
+
+Tables within `react-md` can be updated to have sticky headers, footers, and
+columns by using
+[sticky positioning](https://developer.mozilla.org/en-US/docs/Web/CSS/position#sticky_positioning).
+When an element has `position: sticky` set, it will be fixed within the
+**closest scroll container** based on the `top`, `right`, `bottom`, and `left`
+properties. If there are no parent elements that have `overflow: auto` or
+`overflow: scroll`, the sticky elements can be positioned relative to the
+entire document.
+
+## Container Based Sticky Table
+
+To create a sticky `TableHeader` or `TableFooter`, enable the `sticky` prop
+which will add `top: 0` and `bottom: 0` as the sticky positioning. This will
+make it so the header and footer are stuck to the top and bottom of the
+`TableContainer` component.
+
+```demo source="./ContainerBasedStickyTableExample.tsx"
+
+```
+
+## Viewport Based Sticky Table
+
+To create a sticky `TableHeader` and `TableFooter` relative to the viewport, do
+not wrap the `Table` with the `TableContainer` and ensure no parent elements
+have `overflow: auto` set. If there is a fixed header in the app, the header
+will also need to update it's position so it is stuck below that header. This
+can be done by updating the `--rmd-table-sticky-header` custom property or
+setting the `top` style.
+
+```demo source="./ViewportBasedStickyTableExample.tsx"
+
+```
+
+## Sticky Columns Example
+
+A column of `TableCell` can also become sticky horizontally by enabling the
+`sticky` prop on each `TableCell` in that column. It defaults to using `left: 0`
+(`right: 0` when RTL) but can be configured by the `--rmd-table-sticky-cell`
+custom property.
+
+This example will showcase a sticky checkbox cell followed by a sticky row
+header cell with sticky headers and footers.
+
+```demo source="./StickyColumnsExample.tsx"
+
+```
+
+## Sticky Active Styles
+
+When the `TableHeader`/`TableFooter` have the `sticky` prop enabled, some magic
+happens behind the scenes to automatically raise the elevation for the
+`TableHeader`/`TableFooter` when covering rows of content by scroll position.
+These styles can be configured globally by the
+`core.$table-sticky-header-inactive-styles`,
+`core.$table-sticky-header-active-styles`,
+`core.$table-sticky-footer-inactive-styles`, and
+`core.$table-sticky-footer-active-styles` Sass variables.
+
+If the styles should not be configured globally, provide a custom
+`stickyActiveClassName` and optionally `className` to override the styling.
+
+```demo source="./StickyActiveStylesExample.tsx"
+
+```
+
+## Disable Sticky Active Styles
+
+The sticky active styles can also be disabled by enabling the
+`disableStickyStyles`.
+
+```demo source="./DisableStickyActiveStylesExample.tsx"
+
+```

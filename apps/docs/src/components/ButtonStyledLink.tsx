@@ -1,8 +1,10 @@
-import { button, type ButtonClassNameThemeOptions } from "react-md";
-import { cnb } from "cnbuilder";
+import {
+  button,
+  type ButtonClassNameThemeOptions,
+} from "@react-md/core/button/buttonStyles";
+import { cssUtils } from "@react-md/core/cssUtils";
 import { type ReactElement } from "react";
-import styles from "./ButtonStyledLink.module.scss";
-import { LinkUnstyled, type LinkUnstyledProps } from "./LinkUnstyled.js";
+import { LinkUnstyled, type LinkUnstyledProps } from "./LinkUnstyled.jsx";
 
 export interface ButtonStyledLinkProps
   extends LinkUnstyledProps,
@@ -27,7 +29,7 @@ export function ButtonStyledLink(props: ButtonStyledLinkProps): ReactElement {
         themeType,
         buttonType,
         disabled,
-        className: cnb(styles.container, className),
+        className: cssUtils({ textDecoration: "none", className }),
       })}
     >
       {children}

@@ -1,5 +1,5 @@
-"use client";
-import { configureIcons, type ReactMDCoreConfiguration } from "react-md";
+import { type ReactMDCoreConfiguration } from "@react-md/core/CoreProviders";
+import { configureIcons } from "@react-md/core/icon/iconConfig";
 import ArrowDropDownIcon from "@react-md/material-icons/ArrowDropDownIcon";
 import ArrowUpwardIcon from "@react-md/material-icons/ArrowUpwardIcon";
 import CheckBoxIcon from "@react-md/material-icons/CheckBoxIcon";
@@ -40,10 +40,6 @@ configureIcons({
 
 export const rmdConfig: ReactMDCoreConfiguration = {
   ssr: true,
-  // colorSchemeMode: "system",
-  // colorSchemeModeKey: "colorScheme",
-  // elementInteractionMode: "ripple",
-  // disableHigherContrast: false,
 };
 
 export const DISABLE_DEFAULT_SYSTEM_THEME =

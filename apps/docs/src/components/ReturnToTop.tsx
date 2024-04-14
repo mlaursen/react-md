@@ -1,13 +1,11 @@
 "use client";
+import { TooltippedButton } from "@react-md/core/button/TooltippedButton";
 import {
-  Button,
   DEFAULT_DIALOG_CLASSNAMES,
   DEFAULT_DIALOG_TIMEOUT,
-  Tooltip,
-  useCSSTransition,
-  useIntersectionObserver,
-  useTooltip,
-} from "react-md";
+} from "@react-md/core/dialog/Dialog";
+import { useCSSTransition } from "@react-md/core/transition/useCSSTransition";
+import { useIntersectionObserver } from "@react-md/core/useIntersectionObserver";
 import ArrowUpwardIcon from "@react-md/material-icons/ArrowUpwardIcon";
 import { useCallback, useState, type ReactElement } from "react";
 
@@ -19,7 +17,6 @@ export function ReturnToTop(): ReactElement {
     }, []),
   });
 
-  const { elementProps, tooltipProps } = useTooltip();
   const { elementProps: floatingProps } = useCSSTransition({
     timeout: DEFAULT_DIALOG_TIMEOUT,
     classNames: DEFAULT_DIALOG_CLASSNAMES,
@@ -29,20 +26,18 @@ export function ReturnToTop(): ReactElement {
   return (
     <>
       <span ref={targetRef} />
-      <Button
-        {...elementProps}
-        floatingProps={floatingProps}
+      <TooltippedButton
         aria-label="Return to top"
         floating="bottom-right"
         onClick={() => {
           window.scrollTo(0, 0);
         }}
+        floatingProps={floatingProps}
+        tooltip="Return to top"
+        tooltipProps={{ textOverflow: "nowrap" }}
       >
         <ArrowUpwardIcon />
-      </Button>
-      <Tooltip {...tooltipProps} textOverflow="nowrap">
-        Return to top
-      </Tooltip>
+      </TooltippedButton>
     </>
   );
 }

@@ -1,0 +1,174 @@
+# Tabs
+
+Tabs organize content across different screens, data sets, and other
+interactions.
+
+# Simple Example
+
+Tabs can be created by using the following components and hooks:
+
+- `useTabs` - Manages the state for the active tab content and provides
+  additional accessibility props required for a tab widget
+- `TabList` - Contains all the `Tab` components
+- `Tab - A button that should show specific content while active
+- `SliderContainer`/`Slide` - Used to animate the active tab content into view
+
+```demo source="./SimpleExample.tsx"
+
+```
+
+## With Icons
+
+The `Tab` component can also render an icon to the left, right, above, or below
+the content by using the `icon`, `iconAfter`, and `stacked` props.
+
+```demo source="./WithIconsExample.tsx"
+
+```
+
+# Controlling the Active Tab
+
+If the active tab index needs to be controlled externally, the `activeTab` and
+`setActiveTab` returned values can be used.
+
+```demo source="./ControllingTheActiveTabExample.tsx"
+
+```
+
+## Custom Active Tab Index
+
+For more complex flows, the `activeTab` can be controlled by providing the
+`activeTab` and `setActiveTab` options to the `useTabs` hook.
+
+```demo source="./CustomActiveTabIndexExample.tsx"
+
+```
+
+## Custom Active Tab
+
+If the active tab should be derived from a string value instead of an index, an
+ordered list of available tab values need to be provided to the hook so the
+keyboard movement behavior can work correctly.
+
+```demo source="./CustomActiveTabExample.tsx"
+
+```
+
+# Link Tab Example
+
+Tabs can also be rendered as links by setting the `as` prop to `"a"` or a custom
+link component.
+
+This example shows how the active tab could be derived from the current
+`window.location.hash`, but most real world examples would be based on
+`pathname` or search parameters.
+
+```demo source="./LinkTabExample.tsx"
+
+```
+
+# Scrollable Tabs
+
+When there are overflow issues due to rendering a lot of tabs, the overflown
+tabs will be hidden by default. The user can scroll the hidden tabs into view
+by hovering the `TabList` and either:
+
+- `Shift + Mouse Wheel` on Windows
+- Two-finger scroll on Mac
+- Touch scroll on touch devices
+- [Keyboard behavior](#keyboard-movement)
+
+Since most users might not know how to scroll horizontally, scroll buttons can
+be enabled instead that will scroll 1/10th the distance on each click.
+
+```demo source="./ScrollableTabsExample.tsx"
+
+```
+
+## Scrollable Tabs with Scrollbar
+
+A scrollbar could also be shown with or without the scroll buttons by enabling
+the `scrollbar` prop.
+
+```demo source="./ScrollableTabsWithScrollbarExample.tsx"
+
+```
+
+## Custom Scroll Behavior
+
+The scroll distance can be configured by providing the `getScrollToOptions` to
+the `TabList` component.
+
+```demo source="./CustomScrollBehaviorExample.tsx"
+
+```
+
+# Vertical Tabs
+
+Tabs can be rendered vertically instead of horizontally by enabling the
+`vertical` prop on the `TabList` component.
+
+```demo source="./VerticalTabsExample.tsx"
+
+```
+
+# Disable Active Tab Transition
+
+The active tab indicator transition can be disabled by setting
+`disableTransition` to `true` on the `TabList` component and enabling the
+`activeIndicator` prop on each `Tab`.
+
+```demo source="./DisableActiveTabTransitionExample.tsx"
+
+```
+
+## Disable Vertical Active Tab Transition
+
+If the tabs are rendered vertically, the `verticalActiveIndicator` prop must
+also be enabled on each `Tab` for the correct styles to apply.
+
+```demo source="./DisableVerticalActiveTabTransitionExample.tsx"
+
+```
+
+# Custom Tab Panels
+
+The `SlideContainer` and `Slide` components are not required for rendering the
+different tab panels, but it will make it easier to use since most of the
+required functionality has already been defined.
+
+> !Info! Check out the [Slide demos](/components/slide) to see how to disable
+> the transition or temporarily render each tab panel instead of hiding with
+> `display: none`.
+
+Here is a small example for creating custom tab panels without the
+`SlideContainer` and `Slide` components.
+
+```demo source="./CustomTabPanelsExample.tsx"
+
+```
+
+# Accessibility
+
+The tab components and hooks implement the
+[tabs pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/).
+
+## Keyboard Movement
+
+- Using `Tab` and `Shift+Tab` will only focus the active tab
+- Once a tab has been focused, `ArrowLeft` and `ArrowRight` can be used to
+  focus another tab
+  - Use `ArrowUp` and `ArrowDown` for vertical tabs
+- Pressing `Enter` or `Space` will select the focused tab
+- `Home` - Move focus to the first tab
+- `End` - Move focus to the last tab
+
+## Activation Mode
+
+When navigating between tabs with a keyboard, tabs must be activated manually by
+pressing `Space` or `Enter`. An alternative approach is to automatically select
+a tab once focused with a keyboard by setting `activationMode="automatic"`.
+
+```demo source="./ActivationModeExample.tsx"
+
+```

@@ -1,23 +1,33 @@
-"use client";
 import { GITHUB_URL } from "@/constants/env.js";
-import { GithubIcon } from "@/icons/GithubIcon.jsx";
-import { Tooltip, button, useTooltip } from "react-md";
+import { button } from "@react-md/core/button/buttonStyles";
+import { Tooltip } from "@react-md/core/tooltip/Tooltip";
+import { useTooltip } from "@react-md/core/tooltip/useTooltip";
 import { type ReactElement } from "react";
+import { GithubIcon } from "./GithubIcon.jsx";
 import { LinkUnstyled } from "./LinkUnstyled.jsx";
 
-export function GithubLink(): ReactElement {
+export interface GithubLinkProps {
+  href?: string;
+}
+
+export function GithubLink(props: GithubLinkProps): ReactElement {
+  const { href = GITHUB_URL } = props;
+
   const { tooltipProps, elementProps } = useTooltip<HTMLAnchorElement>();
+
   return (
     <>
       <LinkUnstyled
         {...elementProps}
         aria-label="Github"
-        href={GITHUB_URL}
+        href={href}
         className={button({ buttonType: "icon" })}
       >
         <GithubIcon />
       </LinkUnstyled>
-      <Tooltip {...tooltipProps}>Github</Tooltip>
+      <Tooltip {...tooltipProps} textOverflow="nowrap">
+        Github
+      </Tooltip>
     </>
   );
 }

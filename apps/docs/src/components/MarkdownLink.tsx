@@ -1,5 +1,5 @@
 import { GITHUB_LINK_URL } from "@/constants/env.js";
-import { link } from "react-md";
+import { link } from "@react-md/core/link/styles";
 import { type ReactElement } from "react";
 import { LinkUnstyled, type LinkUnstyledProps } from "./LinkUnstyled.jsx";
 

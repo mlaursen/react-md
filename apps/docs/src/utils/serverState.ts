@@ -1,4 +1,5 @@
 import fallbackThemeStyles from "@/components/LoadThemeStyles/SystemTheme.module.scss";
+import { type CodeLanguage } from "@/components/MainLayout/ConfigureTypescriptEnabled.jsx";
 import {
   CODE_LANGUAGE_KEY,
   CODE_THEME_KEY,
@@ -7,13 +8,12 @@ import {
 } from "@/constants/cookies.js";
 import { PRISM_THEMES, type PrismTheme } from "@/constants/prismThemes.js";
 import { DISABLE_DEFAULT_SYSTEM_THEME } from "@/constants/rmdConfig.jsx";
-import { type CodeLanguage } from "@/providers/CodeLanguageProvider.jsx";
-import { type PackageManager } from "@/providers/PackageManagerProvider.jsx";
 import { getCookie } from "@/utils/serverCookies.js";
-import { pascalCase } from "@/utils/strings.js";
-import { type ColorSchemeMode } from "react-md";
+import { type PackageManager } from "@react-md/code/PackageManagerProvider";
+import { type ColorSchemeMode } from "@react-md/core/theme/useColorScheme";
 import { cookies } from "next/headers.js";
 import "server-only";
+import { pascalCase } from "./strings.js";
 
 export interface AppCookies {
   defaultPrismTheme: PrismTheme;

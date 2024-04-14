@@ -1,4 +1,3 @@
-import { alphaNumericSort } from "react-md";
 import { glob, globSync } from "glob";
 import { createHash } from "node:crypto";
 import { existsSync } from "node:fs";
@@ -8,10 +7,7 @@ import postcss from "postcss";
 import postcssCombineDuplicatedSelectors from "postcss-combine-duplicated-selectors";
 import postcssRemovePrefixes from "postcss-remove-prefixes";
 import postcssSorting from "postcss-sorting";
-import { format } from "../src/utils/format.js";
 import { GENERATED_FILE_BANNER } from "./constants.js";
-import { compileScss } from "./utils/compileScss.js";
-import { getScriptFlags } from "./utils/getScriptFlags.js";
 
 const prismThemesFolder = resolve(process.cwd(), "src", "constants");
 const themesPath = resolve(prismThemesFolder, "prismThemes.ts");

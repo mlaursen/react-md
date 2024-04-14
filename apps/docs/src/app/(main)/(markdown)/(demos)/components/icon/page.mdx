@@ -1,0 +1,86 @@
+# Icon
+
+Icons can be used to represent actions and information in a condensed form. They
+should normally be accompanied with screenreader accessible text and/or a tooltip.
+
+> !Info! Check out the [material icons and symbols](/components/material-icons-and-symbols)
+> page to see all available icons from Material Design via the
+> `@react-md/material-icons` package.
+
+# Icon Theme
+
+The icon can use all the different theme colors through the `theme` prop.
+
+```demo source="./IconTheme.tsx"
+
+```
+
+# Icon Size
+
+The icon can be sized as: `normal` (default) or `dense` out of the box. Set `dense` to `true`
+to render at a slightly smaller size.
+
+The icon's size will also automatically scale to the current `font-size` when set directly
+or can be configured using the [icon-set-var](/sassdoc/icon#mixin-set-var) mixin:
+
+```scss
+@use "everything";
+
+.container {
+  @include everything.icon-set-var(size, 2rem);
+}
+```
+
+```demo source="./IconSize.tsx"
+
+```
+
+# Custom Font Icons
+
+The `FontIcon` component can be used to render icons that have been created as web fonts. It
+defaults to Material Icons but can be configured by using the `iconClassName` prop.
+
+```demo source="./FontAwesomeExample.tsx"
+
+```
+
+# Custom SVG Icons
+
+Custom SVG icons can be created by using the `SVGIcon` component and pasting the
+svg contents as `children`. Here is the `AbcIcon` from Material Icons for
+example:
+
+```tsx
+import { forwardRef } from "react";
+import type { SVGIconProps } from "react-md";
+import { SVGIcon } from "react-md";
+
+export default forwardRef<SVGSVGElement, SVGIconProps>(
+  function AbcIcon(props, ref) {
+    return (
+      <SVGIcon {...props} ref={ref}>
+        <path d="M21 11h-1.5v-.5h-2v3h2V13H21v1c0 .55-.45 1-1 1h-3c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1h3c.55 0 1 .45 1 1v1zM8 10v5H6.5v-1.5h-2V15H3v-5c0-.55.45-1 1-1h3c.55 0 1 .45 1 1zm-1.5.5h-2V12h2v-1.5zm7 1.5c.55 0 1 .45 1 1v1c0 .55-.45 1-1 1h-4V9h4c.55 0 1 .45 1 1v1c0 .55-.45 1-1 1zM11 10.5v.75h2v-.75h-2zm2 2.25h-2v.75h2v-.75z" />
+      </SVGIcon>
+    );
+  }
+);
+```
+
+## Creating Icons Programmatically
+
+Since icons might have specific branding for the company and provided as svgs
+from designers, they could also be created by running a script. The steps would
+normally be:
+
+- Download the raw `.svg`s that has been exported from some design program
+- Move the raw `.svg`s into a common folder that can be part of source control
+- Run the `.svg` through [svgo](https://github.com/svg/svgo) to minify and
+  optimize the icon
+- Extract the svg contents to create an icon component
+
+Here is an example that could be used but will need to be modified depending on
+the svg exports.
+
+```demo source="./createIcons.ts" importOnly
+
+```

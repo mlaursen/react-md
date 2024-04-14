@@ -1,0 +1,67 @@
+# App Bar
+
+An `AppBar` displays information and actions relating to the current screen or
+displays navigation and key actions at the bottom of mobile screens. It can also
+be thought of as a flex container that can render actions and a title.
+
+Check out the [Layout](/getting-started/layout),
+[useTemporaryLayout](/hooks/use-temporary-layout),
+[useExpandableLayout](/hooks/use-expandable-layout),
+[useResizableLayout](/hooks/use-resizable-layout) pages to see how to use the
+`AppBar` in a global layout.
+
+# Simple Example
+
+The `AppBar` normally renders a title using the `AppBarTitle` and additional
+actions.
+
+```demo source="./SimpleExample.tsx"
+
+```
+
+## App Bar Themes
+
+The `AppBar` supports all the normal theme colors using the `theme` prop.
+
+```demo source="./AppBarThemesExample.tsx" transparent
+
+```
+
+# App Bar Heights
+
+The `AppBar` supports multiple heights by using the `height` prop
+
+- `"dense"` - Defaults to `3rem`
+- `"normal"` (default) - Defaults to `3.5rem`
+- `"prominent-dense"` - Defaults to `6rem`
+- `"prominent"` - Defaults to `7rem`
+- `"auto"` - Height is based on the content
+
+```demo source="./AppBarHeightsExample.tsx"
+
+```
+
+## Stacked App Bars
+
+It's recommended to stack app bars when the desired height is `"prominent"` or
+`"prominent-dense"`. It allows each app bar to act as a row of content.
+
+```demo source="./StackedAppBarsExample.tsx"
+
+```
+
+# App Bar Title Keyline
+
+The `AppBarTitle` supports applying additional spacing to align itself with
+other content on the page using the `keyline` prop.
+
+- `"small"` (default) - Applies `0.75rem` spacing so there is a total distance
+  of `1rem` from the edge of the `AppBar`
+- `"nav"` - Applies spacing so the title aligns with the list keyline when there
+  is a navigation button before the title
+- `"list"` - Applies spacing so the title aligns with the list keyline when
+  there is no content before the title
+
+```demo source="./AppBarTitleKeylineExample.tsx"
+
+```

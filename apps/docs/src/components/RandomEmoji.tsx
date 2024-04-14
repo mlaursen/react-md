@@ -1,7 +1,6 @@
 "use client";
-import { randomInt } from "react-md";
+import { randomInt } from "@react-md/core/utils/randomInt";
 import { useRef, type ReactElement } from "react";
-
 import styles from "./RandomEmoji.module.scss";
 
 // some that I found while viewing google fonts and https://en.wikipedia.org/wiki/List_of_emoticons

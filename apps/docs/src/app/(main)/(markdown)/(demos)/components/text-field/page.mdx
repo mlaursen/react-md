@@ -1,0 +1,207 @@
+# Text Field
+
+[Text fields](https://m2.material.io/components/text-fields#usage) allow users
+to enter text into a UI. They typically appear in forms and dialogs.
+
+# Simple Text Field
+
+The default text field will look similar to a native `<input type="text">`
+with a border surrounding the text content that will change color and thickness
+when hovered or focused. Every text field should have an accessible label by
+providing one of the following props: `label`, `aria-label`, `aria-labelledby`.
+
+It is generally recommended to
+[place a label with the text field](https://m2.material.io/components/text-fields#research),
+but placeholder only text fields are also supported.
+
+```demo source="./OutlinedTextField.tsx"
+
+```
+
+## Filled Text Field
+
+Filled text fields have more visual emphasis than outlined text fields, making
+them stand out when surrounded by other content and components.
+
+```demo source="./FilledTextField.tsx"
+
+```
+
+## Underlined Text Field
+
+Underlined text fields have the least emphasis, making them better for less
+prominent editing.
+
+```demo source="./UnderlinedTextField.tsx"
+
+```
+
+## No Theme Text Field
+
+The text field can also be set with `theme="none"` which removes most of the
+styling behavior. There isn't much use for this though since the floating label
+will not display correctly when this is set and can only be used for placeholder
+only text fields.
+
+```demo source="./NoThemeTextField.tsx"
+
+```
+
+# Text Field State
+
+The text field supports the following states:
+
+- `disabled` - Greys out the input and prevents modifications
+- `readOnly` - Normal styles but prevents modifications
+- `error` - Applies the theme error color (normally red)
+- `active` - Applies the focus state if it is required to be manually be
+  triggered
+
+```demo source="./TextFieldState.tsx"
+
+```
+
+# Text Field Type
+
+The text field supports rendering as most of the [input types](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types)
+that are displayed as a textbox. There is no additional functionality built-in
+to support these types other than attempting to display them correctly.
+
+```demo source="./TextFieldType.tsx"
+
+```
+
+## Password
+
+When rendering password fields, it is recommended to use the `Password`
+component instead which will allow the user to toggle the visibility of the
+password.
+
+```demo source="./PasswordExample.tsx"
+
+```
+
+## Number
+
+The default browser implementation `<input type="number">` leaves much to be
+desired so a `useNumberField` hook is provided to fix the following issues and
+additional type safety.
+
+- the value will only be `undefined` if the `defaultValue` provided was
+  `undefined`
+- displays an error message when the user types an invalid number. These are
+  _technically_ valid numbers in the browser implementation: `--0`, `0-0`,
+  `0-0-`, `++0`, etc
+- attempts to fix the number on blur:
+  - `00000` -> `0`
+  - `001` -> `1`
+  - `1e+3` -> `1000`
+  - enforce the value between the `min` and `max` values (if provided)
+
+See more info at the [useNumberField documentation](/hooks/use-number-field).
+
+```demo source="./NumberExample.tsx"
+
+```
+
+# Simple TextArea
+
+Use the `TextArea` component when multiple lines of text should be supported. It
+supports all the same theming, addons, help text, and error text as the
+`TextField` but renders in a `<textarea>` instead.
+
+The default behavior of the `TextArea` is to resize it's height based on the
+current amount of text.
+
+```demo source="./SimpleTextArea.tsx"
+
+```
+
+## Setting Max Rows
+
+Since it might not be ideal to support an infinite editing height, the max
+number of rows to grow to can be specified by the `maxRows` prop.
+
+```demo source="./ResizingTextAreaMaxRows.tsx"
+
+```
+
+## Disabling Resize Transition
+
+The textarea's height transition can be disabled by setting `disableTransition`.
+
+```demo source="./DisablingResizeTransition.tsx"
+
+```
+
+## Other Resize Behavior
+
+The native [resize behavior](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#controlling_whether_a_textarea_is_resizable)
+is also supported by setting the `resize` prop to one of: `horizontal`,
+`vertical`, `both`, or `none`.
+
+```demo source="./OtherResizeBehavior.tsx"
+
+```
+
+# Text Field Addon
+
+The `TextField` can render addons (normally icons) before and after the text of
+by using the `leftAddon`/`rightAddon` props. The addon will be placed above the
+`<input>` using absolute positioning and the `<input>` will gain additional
+`padding-left`/`padding-right` so the addons will not overlap with the text
+content.
+
+```demo source="./TextFieldAddon.tsx"
+
+```
+
+## Non-icon Addons
+
+If an addon is not icon sized, additional styling will be required. Here are a
+few available options:
+
+1. Modify the `--rmd-text-field-padding-left`/`--rmd-text-field-padding-right` to
+   be the width of the addon plus some additional padding. This is the "best"
+   option if the addons should still be rendered above the `<input>` element
+   since it will also update the floating label position automatically
+2. Set `disableLeftAddonStyles`/`disableRightAddonStyles` to `true` to no longer
+   use absolute positioning and render the addon inline
+3. Add custom styles with `leftAddonProps`/`rightAddonProps` as needed
+
+```demo source="./NonIconAddons.tsx"
+
+```
+
+# Help Text and Error Text
+
+The `TextField` component is wrapped in the
+[FormMessageContainer](/components/form-message#form-message-container) so additional
+hint or error messages can be displayed.
+
+```demo source="./HelpTextAndErrorText.tsx"
+
+```
+
+## Text Field With Counter
+
+A text field can also render an inline counter using the `messageProps` by
+providing the current length of the value and a `maxLength`.
+
+```demo source="./TextFieldWithCounter.tsx"
+
+```
+
+## Text Field Hook
+
+The `useTextField` hook can be used to control the value of a single text field
+to conditionally display help text, error text, error icons, and inline
+counters. The hook also supports simple validation using the
+[Constraint Validation API](https://developer.mozilla.org/en-US/docs/Web/HTML/Constraint_validation).
+
+Check out the [useTextField documentation](/hooks/use-text-field) for more
+information.
+
+```demo source="./TextFieldHookExample.tsx"
+
+```

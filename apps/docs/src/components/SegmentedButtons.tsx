@@ -1,10 +1,10 @@
+import { type TextTransform } from "@react-md/core/cssUtils";
+import { SegmentedButton } from "@react-md/core/segmented-button/SegmentedButton";
 import {
-  SegmentedButton,
   SegmentedButtonContainer,
-  typography,
   type SegmentedButtonContainerProps,
-  type TextTransform,
-} from "react-md";
+} from "@react-md/core/segmented-button/SegmentedButtonContainer";
+import { typography } from "@react-md/core/typography/typographyStyles";
 import { type ReactElement, type ReactNode } from "react";
 
 const noop = (): ReactNode => undefined;

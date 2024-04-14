@@ -1,75 +1,25 @@
-"use client";
-import {
-  PACKAGE_MANAGERS,
-  usePackageManagerContext,
-  type PackageManager,
-} from "@/providers/PackageManagerProvider.jsx";
-import { DISPLAY_NONE_CLASS, Tab, TabList, useTabs } from "react-md";
-import { cnb } from "cnbuilder";
-import { type ReactElement } from "react";
-import { CodeBlock } from "./CodeBlock.jsx";
-import { CodeBlockHeader } from "./CodeBlockHeader.jsx";
-import styles from "./PackageManagerCodeBlock.module.scss";
+import { type PackageManager } from "@react-md/code/PackageManagerProvider";
+import { type ReactElement, type ReactNode } from "react";
+import { MarkdownCode } from "./MarkdownCode.jsx";
+import { PackageManagerCodeBlockContainer } from "./PackageManagerCodeBlockContainer.jsx";
 
-const CLASS_NAME = "language-sh";
-
-export type PackageManagerCodeBlockProps = Record<PackageManager, string> & {
+export interface PackageManagerCodeBlockProps {
   lineWrap?: boolean;
-};
+  managers: Record<PackageManager, string>;
+}
 
 export function PackageManagerCodeBlock(
   props: PackageManagerCodeBlockProps
 ): ReactElement {
-  const { lineWrap, ...managers } = props;
-  const { packageManager, setPackageManager } = usePackageManagerContext();
-  const { getTabListProps, getTabProps, getTabPanelProps } = useTabs({
-    tabs: PACKAGE_MANAGERS,
-    activeTab: packageManager,
-    setActiveTab: setPackageManager,
+  const { lineWrap, managers } = props;
+  const nextManagers: Record<PackageManager, ReactNode> = { ...managers };
+  Object.entries(managers).forEach(([manager, code]) => {
+    nextManagers[manager] = (
+      <MarkdownCode lineWrap={lineWrap} language="sh" disableMarginTop>
+        {code}
+      </MarkdownCode>
+    );
   });
 
-  return (
-    <>
-      <CodeBlockHeader>
-        <TabList
-          {...getTabListProps()}
-          inline
-          className={styles.tabs}
-          disableTransition
-        >
-          {PACKAGE_MANAGERS.map((name) => (
-            <Tab
-              key={name}
-              {...getTabProps(name)}
-              className={styles.tab}
-              activeIndicator
-            >
-              {name}
-            </Tab>
-          ))}
-        </TabList>
-      </CodeBlockHeader>
-      {PACKAGE_MANAGERS.map((name) => {
-        const { active, ...panelProps } = getTabPanelProps(name);
-        return (
-          <div
-            {...panelProps}
-            key={name}
-            className={cnb(!active && DISPLAY_NONE_CLASS)}
-          >
-            <CodeBlock
-              className={CLASS_NAME}
-              disableMarginTop
-              lineWrap={lineWrap}
-            >
-              <code
-                className={CLASS_NAME}
-                dangerouslySetInnerHTML={{ __html: managers[name] }}
-              />
-            </CodeBlock>
-          </div>
-        );
-      })}
-    </>
-  );
+  return <PackageManagerCodeBlockContainer managers={nextManagers} />;
 }

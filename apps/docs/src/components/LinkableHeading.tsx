@@ -1,7 +1,11 @@
-import { link, Typography, type TypographyProps } from "react-md";
+import { link } from "@react-md/core/link/styles";
+import {
+  Typography,
+  type TypographyProps,
+} from "@react-md/core/typography/Typography";
 import { cnb } from "cnbuilder";
 import { type ReactElement, type ReactNode } from "react";
-import { LinkUnstyled } from "./LinkUnstyled.js";
+import { LinkUnstyled } from "./LinkUnstyled.jsx";
 import styles from "./LinkableHeading.module.scss";
 
 export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
@@ -21,6 +25,7 @@ export function LinkableHeading(props: LinkableHeadingProps): ReactElement {
     children,
     ...remaining
   } = props;
+
   let type = propType;
   if (!type) {
     switch (level) {

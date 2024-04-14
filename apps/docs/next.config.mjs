@@ -1,14 +1,25 @@
 import withMDX from "@next/mdx";
+import { rehypePlugins } from "docs-generator/rehype-plugins";
+import { remarkPlugins } from "docs-generator/remark-plugins";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
+  pageExtensions: ["ts", "tsx", "mdx"],
+
   // https://github.com/vercel/next.js/issues/49314
   webpack(config) {
     return {
       ...config,
+
+      // TODO: Figure out why including prettier causes:
+      // ```
+      // [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Parsing of /home/mlaursen/code/react-md/node_modules/.pnpm/prettier@3.2.5/node_modules/prettier/index.mjs for build dependencies failed at 'import(pathToFileURL2(file).href)'.
+      // ```
+      infrastructureLogging: {
+        level: "error",
+      },
       resolve: {
         ...config.resolve,
         extensionAlias: {
@@ -36,22 +47,14 @@ const nextConfig = {
   sassOptions: {
     additionalData: `$env: ${process.env.NODE_ENV};`,
   },
-  // transpilePackages: ["@react-md/core"],
-  // does not support mdx plugins
-  experimental: {
-    mdxRs: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-};
-
-export default withMDX({
-  options: {},
   // experimental: {
   //   mdxRs: true,
   // },
+};
+
+export default withMDX({
+  options: {
+    remarkPlugins,
+    rehypePlugins,
+  },
 })(nextConfig);
