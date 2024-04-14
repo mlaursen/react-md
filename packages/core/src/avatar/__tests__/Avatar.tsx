@@ -40,7 +40,7 @@ describe("Avatar", () => {
     const { rerender } = render(<Avatar {...props} />);
 
     const avatar = screen.getByTestId("avatar");
-    const img = screen.getByRole("img", { hidden: true });
+    const img = screen.getByRole("presentation", { hidden: true });
     expect(img).toHaveAttribute("src", props.src);
     expect(img).toHaveAttribute("alt", "");
     expect(avatar).toMatchSnapshot();
