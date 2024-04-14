@@ -13,11 +13,6 @@
     "forceConsistentCasingInFileNames": true,
     "lib": ["esnext"]
   },
-  "include": [
-    "**/*.ts",
-    "*.mjs",
-    "../next-env.d.ts",
-    "../next-env-custom.d.ts"
-  ],
+  "include": ["**/*.ts"],
   "exclude": ["node_modules"]
 }

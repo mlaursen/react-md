@@ -44,28 +44,32 @@ export async function parseWithTsMorph(
         .replace(/.*@/, "src")
         .replace(/\.js(x)?$/, ".ts$1");
 
-      project.addSourceFileAtPath(nonAliasedName);
-      const nextSourceFile = project.getSourceFileOrThrow(nonAliasedName);
-      const exports = [...nextSourceFile.getExportedDeclarations().entries()];
-      exports.forEach(([name, declarations]) => {
-        if (!namedImports.find((imp) => imp.getText() === name)) {
-          return;
-        }
+      const nextSourceFile = project.addSourceFileAtPath(nonAliasedName);
+      sourceFile.addStatements("\n\n" + nextSourceFile.getFullText());
+      // for some reason I can't get this to work anymore, so just move the
+      // entire file over.
+      //
 
-        declarations.forEach((declaration) => {
-          if (Node.isVariableDeclaration(declaration)) {
-            const statement = declaration.getVariableStatementOrThrow();
-            statement.setIsExported(false);
-            sourceFile.addVariableStatement(statement.getStructure());
-          } else if (Node.isTypeAliasDeclaration(declaration)) {
-            declaration.setIsExported(false);
-            sourceFile.addTypeAlias(declaration.getStructure());
-          } else if (Node.isInterfaceDeclaration(declaration)) {
-            declaration.setIsExported(false);
-            sourceFile.addInterface(declaration.getStructure());
-          }
-        });
-      });
+      // const exports = [...nextSourceFile.getExportedDeclarations().entries()];
+      // exports.forEach(([name, declarations]) => {
+      //   if (!namedImports.find((imp) => imp.getText() === name)) {
+      //     return;
+      //   }
+      //
+      //   declarations.forEach((declaration) => {
+      //     if (Node.isVariableDeclaration(declaration)) {
+      //       const statement = declaration.getVariableStatementOrThrow();
+      //       statement.setIsExported(false);
+      //       sourceFile.addVariableStatement(statement.getStructure());
+      //     } else if (Node.isTypeAliasDeclaration(declaration)) {
+      //       declaration.setIsExported(false);
+      //       sourceFile.addTypeAlias(declaration.getStructure());
+      //     } else if (Node.isInterfaceDeclaration(declaration)) {
+      //       declaration.setIsExported(false);
+      //       sourceFile.addInterface(declaration.getStructure());
+      //     }
+      //   });
+      // });
 
       importDeclaration.remove();
     } else {

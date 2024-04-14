@@ -3,11 +3,13 @@ import { readFileSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import { FILE_URL, compileScssModule } from "./compileScssModule.js";
+import { getProjectRootDir } from "./getProjectRootDir.js";
 
-const rootDir = process.cwd();
-const packagesDir = resolve(rootDir, "../../packages");
+const rootDir = getProjectRootDir();
+const packagesDir = resolve(rootDir, "packages");
 const coreRoot = resolve(packagesDir, "core");
 const codeRoot = resolve(packagesDir, "code");
+const docsRoot = resolve(rootDir, "apps", "docs");
 
 export function loadDemoScssInNode(fileUrl: string): string {
   const url = fileUrl.replace(FILE_URL, "");
@@ -16,7 +18,7 @@ export function loadDemoScssInNode(fileUrl: string): string {
   if (url.startsWith("/docs")) {
     const name = url.replace("/docs/", "");
 
-    filePath = join(rootDir, name);
+    filePath = join(docsRoot, name);
   } else if (url.includes("/code/")) {
     const name = url.replace("/@react-md/code/", "");
     filePath = join(codeRoot, name);

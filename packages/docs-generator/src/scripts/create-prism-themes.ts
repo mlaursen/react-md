@@ -1,5 +1,8 @@
 /* eslint-disable no-console */
 import { alphaNumericSort } from "@react-md/core/utils/alphaNumericSort";
+import autoprefixer from "autoprefixer";
+import cssnano from "cssnano";
+import cssnanoPresetDefault from "cssnano-preset-default";
 import { globSync } from "glob";
 import { createHash } from "node:crypto";
 import { existsSync } from "node:fs";
@@ -10,15 +13,23 @@ import postcssCombineDuplicatedSelectors from "postcss-combine-duplicated-select
 import postcssRemovePrefixes from "postcss-remove-prefixes";
 import postcssSorting from "postcss-sorting";
 import { format } from "prettier";
-import { compileScss } from "../utils/compileScssModule.js";
+import {
+  compileScss,
+  type CompileScssOptions,
+} from "../utils/compileScssModule.js";
+import { getProjectRootDir } from "../utils/getProjectRootDir.js";
 import { loadDemoScssInNode } from "../utils/getScssCodeFile.js";
 
-const prismThemesFolder = resolve(process.cwd(), "src", "constants");
+const projectRoot = getProjectRootDir();
+const docsRoot = join(projectRoot, "apps", "docs");
+const prismThemesFolder = resolve(docsRoot, "src", "constants");
 const themesPath = resolve(prismThemesFolder, "prismThemes.ts");
-const prismThemesOutFolder = resolve(process.cwd(), "public", "prism-themes");
+const prismThemesOutFolder = resolve(docsRoot, "public", "prism-themes");
+
 const VIM_SOLARIZED_DARK = "vim-solarized-dark";
 const VIM_SOLARIZED_DARK_SCSS = resolve(
   process.cwd(),
+  "src",
   "scripts",
   `${VIM_SOLARIZED_DARK}.scss`
 );
@@ -162,6 +173,23 @@ function isNoLicenseTheme(theme: string): boolean {
   ].includes(theme);
 }
 
+async function compileAndMinifyScss(
+  options: CompileScssOptions
+): Promise<string> {
+  const compiled = compileScss(options);
+  const result = await postcss([
+    cssnano({
+      preset: cssnanoPresetDefault(),
+      plugins: [autoprefixer],
+    }),
+  ]).process(compiled, {
+    from: "./theme.css",
+  });
+  console.log(result.css === compiled);
+
+  return result.css;
+}
+
 await Promise.all(
   files.map(async (filePath) => {
     const themeName = filePath.replace(/^.*prism(-([A-z0-9.-]+))?\.css$/, "$2");
@@ -266,7 +294,7 @@ await Promise.all(
     // run in through postcss again to combine duplicated selectors and other
     // stuffs
     const updatedCss = await transformCss(themeCssAst.toResult().toString());
-    const css = compileScss({
+    const css = await compileAndMinifyScss({
       scss: `${license}
 
 @layer code {
@@ -281,7 +309,7 @@ await Promise.all(
 
 await writeCss(
   VIM_SOLARIZED_DARK,
-  compileScss({
+  await compileAndMinifyScss({
     scss: await readFile(VIM_SOLARIZED_DARK_SCSS, "utf8"),
     load: loadDemoScssInNode,
   })
