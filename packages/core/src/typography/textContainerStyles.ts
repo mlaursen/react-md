@@ -21,8 +21,7 @@ export interface TextContainerClassNameOptions {
 }
 
 /**
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { textContainer, Typography } from "@react-md/core";
  *

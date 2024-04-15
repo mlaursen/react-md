@@ -321,8 +321,7 @@ export interface FileValidationOptions {
    *
    * Note: The extensions and file names will be compared ignoring case.
    *
-   * @example
-   * Only Allow Images
+   * @example Only Allow Images
    * ```ts
    * const extensions = ["png", "jpeg", "jpg", "gif"];
    * ```
@@ -382,8 +381,7 @@ export interface ValidatedFilesResult<CustomError> {
  * This function will be called whenever a file has been uploaded by the user
  * either through an `<input type="file">` or drag and drop behavior.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```ts
  * const validateFiles: FilesValidator = (files, options) => {
  *   const invalid: File[] = [];
@@ -608,8 +606,7 @@ export type FileReaderParser =
  * A function that should return one of the {@link FileReaderParser} functions
  * to start uploading a file to the browser.
  *
- * @example
- * The Default File Upload Parser
+ * @example The Default File Upload Parser
  * ```ts
  * export const getFileParser: GetFileParser = (file) => {
  *   if (isMediaFile(file)) {

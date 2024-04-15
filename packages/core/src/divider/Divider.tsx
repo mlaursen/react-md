@@ -25,8 +25,7 @@ export interface DividerProps
 /**
  * **Server Component**
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { Divider } from "@react-md/core";
  * import type { ReactElement } from "react";

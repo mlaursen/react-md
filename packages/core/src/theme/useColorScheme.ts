@@ -54,8 +54,7 @@ context.displayName = "ColorScheme";
 export const { Provider: ColorSchemeProvider } = context;
 
 /**
- * @example
- * Lazy Load Configurable Themes
+ * @example Lazy Load Configurable Themes
  * ```tsx
  * import type { ChangeEvent, ReactElement } from "react";
  * import { lazy } from "react";

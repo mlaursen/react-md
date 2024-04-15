@@ -8,8 +8,7 @@ import { InputToggle, type RadioProps } from "./InputToggle.js";
  * You'll generally want to use the `useRadioGroup` hook along with this
  * component.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * const { value, getRadioProps } = useRadioGroup({ name: "group" });
  *

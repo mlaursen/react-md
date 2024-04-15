@@ -72,8 +72,7 @@ export interface LayoutWindowSplitterImplementation
  * Note: This will automatically save the width in local storage as
  * `"navWidth"`. See the example below if you do not want to use local storage.
  *
- * @example
- * Without this hook
+ * @example Without this hook
  * ```tsx
  * import { useWindowSize, useWindowSplitter } from "@react-md/core";
  * import type { ProvidedLayoutWindowSplitterProps } from "@react-md/core";

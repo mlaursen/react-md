@@ -42,8 +42,7 @@ export interface OptGroupProps extends Omit<ListProps, "role"> {
  * correct accessibility when creating an `<optgroup>` with the `Select`
  * component.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { Select, OptGroup, Option } from "@react-md/core";
  * import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";

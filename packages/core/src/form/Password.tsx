@@ -13,8 +13,7 @@ import {
 import { TextField, type TextFieldProps } from "./TextField.js";
 
 /**
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * const getVisibilityIcon: GetPasswordVisibilityIcon = (isPasswordVisible) => {
  *   if (isPasswordVisible) {
@@ -34,8 +33,7 @@ export type GetPasswordVisibilityIcon = (
 ) => ReactNode;
 
 /**
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * const visibilityIcon: ConfigurableVisibilityIcon = {
  *   visible: <SecurityIcon />,
@@ -65,8 +63,7 @@ export interface PasswordProps
   name?: string;
 
   /**
-   * @example
-   * Configurable Visibility Icon Object
+   * @example Configurable Visibility Icon Object
    * ```tsx
    * <Password
    *   {...props}
@@ -77,8 +74,7 @@ export interface PasswordProps
    * />
    * ```
    *
-   * @example
-   * Get Password Visibility Icon Function
+   * @example Get Password Visibility Icon Function
    * ```tsx
    * <Password
    *   {...props}
@@ -92,8 +88,7 @@ export interface PasswordProps
    * />
    * ```
    *
-   * @example
-   * Custom Icon
+   * @example Custom Icon
    * ```tsx
    * <Password
    *   {...props}
@@ -124,8 +119,7 @@ export interface PasswordProps
 /**
  * **Client Component**
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { Password } from "@react-md/core";
  *

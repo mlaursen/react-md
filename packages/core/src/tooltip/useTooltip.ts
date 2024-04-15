@@ -149,8 +149,7 @@ export interface TooltipOptions<
    * should be set to `true` when your component might not have a tooltip associated
    * with it.
    *
-   * @example
-   * Real World Example
+   * @example Real World Example
    * ```tsx
    * import { Button, ButtonProps, Tooltip, useTooltip  } from "@react-md/core";
    * import type { ReactElement, ReactNode } from "react";
@@ -277,8 +276,7 @@ export interface TooltipImplementation<
 }
 
 /**
- * @example
- * Simple Usage
+ * @example Simple Usage
  * ```tsx
  * import { Button, useTooltip, Tooltip } from "@react-md/core";
  *
@@ -296,8 +294,7 @@ export interface TooltipImplementation<
  * }
  * ```
  *
- * @example
- * Overflow-only Tooltips
+ * @example Overflow-only Tooltips
  * ```tsx
  * import {
  *   cssUtils,

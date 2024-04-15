@@ -91,8 +91,7 @@ export interface FileInputProps
  * **Client Component**
  * This might be able to become a server component if I remove the getIcon hook
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { FileInput, Form } from "@react-md/core";
  * import type { ReactElement } from "react";

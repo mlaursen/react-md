@@ -7,8 +7,7 @@ export interface FormMessageCounterProps
   /**
    * The children to display in the counter. This is normally a string like:
    *
-   * @example
-   * String Example
+   * @example String Example
    * ```ts
    * `${min} / ${max}`
    * ```
@@ -25,8 +24,7 @@ export interface FormMessageCounterProps
  * Note: This is really only useful when using the {@link FormMessage} component
  * without a {@link TextField}.
  *
- * @example
- * Example Usage
+ * @example Example Usage
  * ```ts
  * interface ExampleProps {
  *   min: number;

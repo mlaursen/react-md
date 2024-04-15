@@ -52,8 +52,7 @@ const noop = (): void => {
  * invalid value. This also does not work for numbers, so you will need to
  * implement that yourself.
  *
- * @example
- * Simple Usage
+ * @example Simple Usage
  * ```tsx
  * import type { SelectedChangeEvent } from "@react-md/core";
  * import { Select, Option } from "@react-md/core";
@@ -212,8 +211,7 @@ export interface SelectProps<Value extends string>
 /**
  * **Client Component**
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { Select, Option } from "react-md";
  * import { useState, type ReactElement } from "react";
@@ -237,8 +235,7 @@ export interface SelectProps<Value extends string>
  * }
  * ```
  *
- * @example
- * Testing
+ * @example Testing
  * ```tsx
  * rmdRender(
  *   <Select label="Select" selectedOptionProps={{ "data-testid": "selected" }}>

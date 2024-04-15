@@ -13,8 +13,7 @@ export interface NoSsrProps {
  * A small wrapper that can be used to render children client side only. The
  * main use-case are for components that rely on browser API to work correctly.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { CoreProviders, NoSsr, Typography } from "@react-md/core";
  * import type { ReactElement } from "react";

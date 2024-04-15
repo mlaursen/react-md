@@ -67,8 +67,7 @@ export interface DefaultTreeItemNode
 }
 
 /**
- * @example
- * Default Structure
+ * @example Default Structure
  * ```tsx
  * import type { TreeData } from "@react-md/core";
  * import FolderIcon from "@react-md/material-icons/FolderIcon";

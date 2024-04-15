@@ -85,8 +85,7 @@ export interface ExpandableLayoutImplementation
 }
 
 /**
- * @example
- * Main USage
+ * @example Main Usage
  * ```tsx
  * import {
  *   AppBarTitle,

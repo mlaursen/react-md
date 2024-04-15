@@ -34,8 +34,7 @@ export interface TableProps
 /**
  * **Client Component**
  *
- * @example
- * Responsive Example
+ * @example Responsive Example
  * ```tsx
  * import {
  *   Table,

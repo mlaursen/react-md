@@ -107,8 +107,7 @@ export interface TabsImplementation<TabValue extends string | number = number> {
 }
 
 /**
- * @example
- * Super Simple
+ * @example Super Simple
  * ```tsx
  * import { TabList, Tab, SlideContainer, Slide, useTabs } from "@react-md/core";
  * import type { ReactElement } from "react";
@@ -152,8 +151,7 @@ export function useTabs(): TabsImplementation<number> & {
  * The tab behavior can be controlled by providing the `activeTab` and
  * `setActiveTab` options.
  *
- * @example
- * Controlled
+ * @example Controlled
  * ```tsx
  * import { TabList, Tab, SlideContainer, Slide, useTabs } from "@react-md/core";
  * import type { ReactElement } from "react";
@@ -216,8 +214,7 @@ export function useTabs<TabValue extends number>(
  * When using string values, the {@link TabsHookOptions.tabs} option **must** be
  * provided to determine the correct active tab index.
  *
- * @example
- * String Value Simple
+ * @example String Value Simple
  * ```tsx
  * import { TabList, Tab, SlideContainer, Slide, useTabs } from "@react-md/core";
  * import type { ReactElement } from "react";
@@ -270,8 +267,7 @@ export function useTabs<TabValue extends string>(
  * When using string values, the {@link TabsHookOptions.tabs} option **must** be
  * provided to determine the correct active tab index.
  *
- * @example
- * String Controlled Simple
+ * @example String Controlled Simple
  * ```tsx
  * import { TabList, Tab, SlideContainer, Slide, useTabs } from "@react-md/core";
  * import type { ReactElement } from "react";
@@ -311,8 +307,7 @@ export function useTabs<TabValue extends string>(
  * }
  * ```
  *
- * @example
- * Navigation Tabs
+ * @example Navigation Tabs
  * ```tsx
  * "use client";
  * import {

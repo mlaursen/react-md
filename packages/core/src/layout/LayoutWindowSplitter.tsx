@@ -39,8 +39,7 @@ export interface LayoutWindowSplitterProps
  * @see {@link useResizableExpandableLayout} for a default implementation for
  * this component.
  *
- * @example
- * Dynamic Resizing
+ * @example Dynamic Resizing
  * ```tsx
  * import {
  *   LayoutNav,

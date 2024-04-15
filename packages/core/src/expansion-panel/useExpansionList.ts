@@ -27,8 +27,7 @@ export type ExpansionListImplementation<E extends HTMLElement> =
   KeyboardMovementProviderImplementation<E>;
 
 /**
- * @example
- * Custom Implementation
+ * @example Custom Implementation
  * ```tsx
  * import {
  *   ExpansionPanel,
@@ -59,7 +58,7 @@ export type ExpansionListImplementation<E extends HTMLElement> =
  *         <ExpansionPanel {...getPanelProps("billing-address-panel")}>
  *           <BillingAddress />
  *         </ExpansionPanel>
- *       </FOrm>
+ *       </Form>
  *     </KeyboardMovementProvider>
  *   );
  * }

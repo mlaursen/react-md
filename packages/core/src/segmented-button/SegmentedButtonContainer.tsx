@@ -19,8 +19,7 @@ export interface SegmentedButtonContainerProps
  * Simple wrapper `div` to apply the segmented button container styles. You can
  * just use the {@link segmentedButtonContainerStyles} util function instead.
  *
- * @example
- * Without This Component
+ * @example Without This Component
  * ```tsx
  * import {
  *   SegmentedButton,

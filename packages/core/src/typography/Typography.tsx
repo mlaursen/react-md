@@ -95,8 +95,7 @@ export interface TypographyProps
  * Render text with one of the material design typography styles applied and
  * optional styles like font-weight, font-style, text color, etc.
  *
- * @example
- * All Example
+ * @example All Example
  * ```tsx
  * import { Typography } from "@react-md/core":
  *

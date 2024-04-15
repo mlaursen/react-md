@@ -29,8 +29,7 @@ export interface ClickableCardProps extends CardProps {
  * A Small wrapper around the `Card` component that is clickable and has the
  * element interaction enabled (ripples).
  *
- * @example
- * SImple Example
+ * @example Simple Example
  * ```tsx
  * import { CardContent, ClickableCard } from "@react-md/core";
  * import { type ReactElement } from "react";

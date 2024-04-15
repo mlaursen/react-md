@@ -17,8 +17,7 @@ export interface AlphaNumericSortOptions<T> {
   /**
    * The extractor is only required when the list of items are not strings.
    *
-   * @example
-   * Simple Example
+   * @example Simple Example
    * ```ts
    * interface Item {
    *   name: string;
@@ -43,8 +42,7 @@ export interface AlphaNumericSortOptions<T> {
    * provided if the language for your app is not `"en-US"` or you'd like to
    * provide some custom sorting options.
    *
-   * @example
-   * Custom Compare using Intl.Collator
+   * @example Custom Compare using Intl.Collator
    * ```ts
    * const collator = new Intl.Collator("en-US", {
    *   numeric: false,
@@ -72,8 +70,7 @@ export interface AlphaNumericSortOptions<T> {
 }
 
 /**
- * @example
- * Simple Example
+ * @example Simple Example
  * ```ts
  * const items = ["World", "Hello"];
  *
@@ -89,8 +86,7 @@ export function alphaNumericSort<T extends string>(
   options?: Omit<AlphaNumericSortOptions<T>, "extractor">
 ): readonly T[];
 /**
- * @example
- * Simple Example
+ * @example Simple Example
  * ```ts
  * interface Item {
  *   name: string;

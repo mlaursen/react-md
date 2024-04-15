@@ -63,8 +63,7 @@ export interface SliderMarksOptions {
    * {@link getMarkLabelProps} to customize the styles or display a label for
    * the mark.
    *
-   * @example
-   * Custom Marks
+   * @example Custom Marks
    * ```tsx
    * const slider = useSlider({ step: 10 });
    *
@@ -99,8 +98,7 @@ export interface SliderMarksOptions {
    * This can be used to override any styles for a specific mark's label or
    * display a label dynamically.
    *
-   * @example
-   * Dynamic Labels
+   * @example Dynamic Labels
    * ```tsx
    * <Slider
    *   {...slider}

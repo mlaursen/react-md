@@ -1,0 +1,387 @@
+"use client";
+import {
+  type AriaAttributes,
+  type FocusEventHandler,
+  type KeyboardEventHandler,
+  type MouseEventHandler,
+  type Ref,
+  type RefCallback,
+  type RefObject,
+} from "react";
+import {
+  type GetDefaultFocusedIndex,
+  type GetFocusableElements,
+  type KeyboardMovementProviderImplementation,
+} from "../movement/types.js";
+import { useKeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
+import { type UseStateInitializer, type UseStateSetter } from "../types.js";
+import { useEnsuredId } from "../useEnsuredId.js";
+import { useEnsuredRef } from "../useEnsuredRef.js";
+import { useToggle } from "../useToggle.js";
+import { tryToSubmitRelatedForm } from "./utils.js";
+import { isSearchableEvent } from "../movement/utils.js";
+// import { isSearchableEvent } from "../movement/utils.js";
+// import { findMatchIndex } from "../movement/findMatchIndex.js";
+// import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
+
+const noop = (): void => {
+  // do nothing
+};
+
+export const getNonDisabledOptions = (
+  container: HTMLElement
+): readonly HTMLElement[] => [
+  ...container.querySelectorAll<HTMLLIElement>(
+    '[role="option"]:not([aria-disabled])'
+  ),
+];
+
+export type SupportedComboboxPopup = "listbox" | "grid" | "dialog";
+
+export interface ComboboxOption {
+  label: string;
+  value: string;
+}
+
+export interface ComboboxOptions<
+  ComboboxEl extends HTMLElement = HTMLInputElement,
+  PopupEl extends HTMLElement = HTMLElement,
+> {
+  /**
+   * This is the {@link InputHTMLAttributes.form} attribute and is used to
+   * attempt submitting a form when the enter key is pressed.
+   */
+  form?: string;
+
+  // options: readonly ComboboxOption[];
+
+  /**
+   * @defaultValue `"combobox-popup-" + useId()`
+   */
+  popupId?: string;
+  popupRef?: Ref<PopupEl>;
+
+  /**
+   * @defaultValue `"combobox-" + useId()`
+   */
+  comboboxId?: string;
+
+  comboboxRef?: Ref<ComboboxEl>;
+
+  /**
+   * @defaultValue `"listbox"`
+   */
+  popup?: "listbox" | "grid" | "dialog";
+
+  /**
+   * Used to determine the keyboard completion behavior with the {@link popup}
+   * type:
+   *
+   * - `"none"` - applies `aria-autocomplete="none"` and focusing options does
+   *   not update the value automatically. the user must select an option with
+   *   enter
+   * - `"list"` - applies `aria-autocomplete="list"` and focusing options
+   *   immediately updates the value
+   * - `"both"` - applies `aria-autocomplete="both"`, focusing options
+   *   immediately updates the value, and typing will attempt to autocomplete
+   *   the rest of the match inline using selection ranges
+   * - `"select"` - acts as a `<select>` element and is **not editable**.
+   *
+   * @defaultValue `"list"`
+   */
+  autocomplete?: "none" | "list" | "both" | "select";
+
+  onClick?: MouseEventHandler<ComboboxEl>;
+  onFocus?: FocusEventHandler<ComboboxEl>;
+  onKeyDown?: KeyboardEventHandler<ComboboxEl>;
+
+  /**
+   * @defaultValue `false`
+   */
+  disabled?: boolean;
+
+  /**
+   * @defaultValue `false`
+   */
+  // disableShowOnFocus?: boolean;
+
+  /**
+   * @defaultValue `false`
+   */
+  defaultVisible?: UseStateInitializer<boolean>;
+
+  /**
+   * @defaultValue {@link getNonDisabledOptions}
+   */
+  getFocusableElements?: GetFocusableElements;
+
+  getDefaultFocusedIndex?: GetDefaultFocusedIndex;
+}
+
+export interface ComboboxWidgetProps<
+  ComboboxEl extends HTMLElement = HTMLInputElement,
+> {
+  "aria-haspopup": SupportedComboboxPopup;
+  "aria-expanded": boolean;
+  "aria-autocomplete"?: AriaAttributes["aria-autocomplete"];
+  id: string;
+  ref: RefCallback<ComboboxEl>;
+  role: "combobox";
+  onClick: MouseEventHandler<ComboboxEl>;
+  onFocus: FocusEventHandler<ComboboxEl>;
+  onKeyDown: KeyboardEventHandler<ComboboxEl>;
+}
+
+export interface ComboboxWidgetPopupProps<
+  PopupEl extends HTMLElement = HTMLElement,
+> {
+  "aria-labelledby": string;
+  id: string;
+  ref: RefCallback<PopupEl>;
+  role: "listbox" | "dialog" | "grid";
+}
+
+export interface ComboboxImplementation<
+  ComboboxEl extends HTMLElement = HTMLInputElement,
+  PopupEl extends HTMLElement = HTMLElement,
+> extends KeyboardMovementProviderImplementation<ComboboxEl> {
+  show(): void;
+  hide(): void;
+  visible: boolean;
+  setVisible: UseStateSetter<boolean>;
+  popupRef: RefObject<PopupEl>;
+  popupProps: ComboboxWidgetPopupProps<PopupEl>;
+  comboboxRef: RefObject<ComboboxEl>;
+  comboboxProps: ComboboxWidgetProps<ComboboxEl>;
+}
+
+export function useCombobox<
+  ComboboxEl extends HTMLElement = HTMLInputElement,
+  PopupEl extends HTMLElement = HTMLElement,
+>(
+  options: ComboboxOptions<ComboboxEl, PopupEl>
+): ComboboxImplementation<ComboboxEl, PopupEl> {
+  const {
+    form,
+    autocomplete = "list",
+    popup = "listbox",
+    onClick = noop,
+    onFocus = noop,
+    onKeyDown,
+    disabled = false,
+    comboboxId: propComboboxId,
+    comboboxRef: propComboboxRef,
+    popupId: propPopupId,
+    popupRef: propPopupRef,
+    defaultVisible = false,
+    // disableShowOnFocus = autocomplete === "select",
+    getFocusableElements = getNonDisabledOptions,
+    getDefaultFocusedIndex,
+  } = options;
+  const isSelect = autocomplete === "select";
+
+  const {
+    toggled: visible,
+    enable: show,
+    disable: hide,
+    setToggled: setVisible,
+  } = useToggle(defaultVisible);
+  // const keyboard = useUserInteractionMode() === "keyboard";
+  const popupId = useEnsuredId(propPopupId, "combobox-popup");
+  const comboboxId = useEnsuredId(propComboboxId, "combobox");
+  const [comboboxRef, comboboxRefCallback] = useEnsuredRef(propComboboxRef);
+  const [popupRef, popupRefCallback] = useEnsuredRef(propPopupRef);
+  const {
+    movementProps,
+    movementContext,
+    currentFocusIndex,
+    setActiveDescendantId,
+  } = useKeyboardMovementProvider<ComboboxEl>({
+    onFocus,
+    // onFocus(event) {
+    //   onFocus(event);
+    //   // Note: Without the `!keyboard` flag, the menu's hide event will be
+    //   // triggered since the click event happens after the focus event
+    //   if (disableShowOnFocus || !keyboard) {
+    //     return;
+    //   }
+
+    //   event.stopPropagation();
+    //   show();
+    // },
+    onClick(event) {
+      onClick(event);
+      if (disabled) {
+        return;
+      }
+
+      show();
+    },
+    extendKeyDown(movementData) {
+      if (disabled) {
+        return;
+      }
+
+      const { event, currentFocusIndex, setActiveDescendantId } = movementData;
+      if (!visible && !isSelect && isSearchableEvent(event)) {
+        show();
+      }
+
+      if (visible) {
+        if (
+          !isSelect &&
+          (isSearchableEvent(event) ||
+            ["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key))
+        ) {
+          currentFocusIndex.current = -1;
+          setActiveDescendantId("");
+        }
+
+        switch (event.key) {
+          case "Tab":
+          case "Escape":
+            event.stopPropagation();
+            hide();
+            break;
+          case "Enter":
+            event.preventDefault();
+            break;
+          case "Home":
+          case "End":
+            if (!isSelect) {
+              event.stopPropagation();
+            }
+            break;
+        }
+
+        // while visible, always use the default keyboard movement behavior
+        return;
+      }
+
+      switch (event.key) {
+        case " ":
+        case "Home":
+        case "End":
+        case "ArrowUp":
+        case "ArrowDown":
+          event.preventDefault();
+          event.stopPropagation();
+          // focusLast.current = event.key === "End" || event.key === "ArrowUp";
+          show();
+          break;
+        case "Enter":
+          tryToSubmitRelatedForm(event, form);
+          break;
+      }
+    },
+    onKeyDown,
+    // onKeyDown(event) {
+    //   onKeyDown(event);
+    //   if (disabled) {
+    //     return;
+    //   }
+
+    //   if (visible) {
+    //     if (event.key === "Escape" || event.key === "Tab") {
+    //       event.stopPropagation();
+    //       hide();
+    //     }
+
+    //     return;
+    //   }
+
+    //   switch (event.key) {
+    //     case " ":
+    //       event.preventDefault();
+    //       event.stopPropagation();
+    //       show();
+    //       break;
+    //     case "Enter":
+    //       tryToSubmitRelatedForm(event, form);
+    //       break;
+    //     case "Home":
+    //       event.preventDefault();
+    //       event.stopPropagation();
+    //       // if (currentIndex !== 0) {
+    //       //   triggerManualChangeEvent(inputRef.current, options[0].value);
+    //       // }
+    //       break;
+    //     case "End":
+    //       event.preventDefault();
+    //       event.stopPropagation();
+    //       // if (currentIndex !== totalOptions) {
+    //       //   triggerManualChangeEvent(
+    //       //     inputRef.current,
+    //       //     options[totalOptions].value
+    //       //   );
+    //       // }
+    //       break;
+    //     case "ArrowDown":
+    //     case "ArrowUp": {
+    //       // event.preventDefault();
+    //       // event.stopPropagation();
+
+    //       // const increment = event.key === "ArrowDown";
+    //       // if (currentIndex === -1 && !increment) {
+    //       //   // this matches the native select behavior where it will do
+    //       //   // nothing if there is no current value
+    //       //   return;
+    //       // }
+
+    //       // const nextIndex = loop({
+    //       //   max: totalOptions,
+    //       //   value: currentIndex,
+    //       //   minmax: true,
+    //       //   increment,
+    //       // });
+
+    //       // triggerManualChangeEvent(inputRef.current, options[nextIndex].value);
+    //       break;
+    //     }
+    //   }
+    // },
+    loopable: false,
+    searchable: isSelect,
+    programmatic: true,
+    includeDisabled: false,
+    tabIndexBehavior: "virtual",
+    getFocusableElements(container, programmatic) {
+      const popup = popupRef.current;
+      if (!popup) {
+        return [];
+      }
+
+      return getFocusableElements(popup || container, programmatic);
+    },
+    getDefaultFocusedIndex,
+    isNegativeOneAllowed: !isSelect,
+  });
+
+  return {
+    show,
+    hide,
+    visible,
+    setVisible,
+    popupRef,
+    popupProps: {
+      "aria-labelledby": comboboxId,
+      id: popupId,
+      ref: popupRefCallback,
+      role: popup,
+    },
+    comboboxRef,
+    comboboxProps: {
+      ...movementProps,
+      "aria-haspopup": popup,
+      "aria-expanded": visible,
+      "aria-autocomplete": autocomplete === "select" ? undefined : autocomplete,
+      id: comboboxId,
+      ref: comboboxRefCallback,
+      role: "combobox",
+    },
+    movementProps,
+    movementContext,
+    currentFocusIndex,
+    setActiveDescendantId,
+  };
+}

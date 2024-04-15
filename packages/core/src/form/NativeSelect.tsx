@@ -71,8 +71,7 @@ export interface NativeSelectProps
  * same theming as `TextField` and `TextArea` components. This component might
  * not be used much since the `Select` offers more styling options.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * <NativeSelect label="Label">
  *   <option value="a">Value 1</option>
@@ -82,8 +81,7 @@ export interface NativeSelectProps
  * </NativeSelect>
  * ```
  *
- * @example
- * Required Value Example
+ * @example Required Value Example
  * ```tsx
  * function Example(): ReactElement {
  *   // using `defaultValue=""` makes it so the first option selected by default

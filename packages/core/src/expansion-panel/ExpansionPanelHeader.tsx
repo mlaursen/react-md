@@ -86,8 +86,7 @@ export interface ExpansionPanelHeaderProps
  * custom header implementation if needed. This might really be a client
  * component in practice since the `onClick` prop must be provided.
  *
- * @example
- * Custom Header
+ * @example Custom Header
  * ```tsx
  * import type { ExpansionPanelProps } from "@react-md/core";
  * import {

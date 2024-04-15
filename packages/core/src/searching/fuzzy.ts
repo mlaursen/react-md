@@ -54,8 +54,7 @@ export type FuzzySearchOptions<T> = BaseSearchOptions<T>;
  * case, punctuation, whitespace, and special characters. This is kind of the
  * same filtering that appears in text editors.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```ts
  * const list = [
  *   "at",

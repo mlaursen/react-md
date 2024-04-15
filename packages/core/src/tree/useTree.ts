@@ -34,8 +34,7 @@ export interface TreeImplementation extends TreeSelection, TreeExpansion {}
  * This is a convenience wrapper for the {@link useTreeExpansion} and
  * {@link useTreeSelection} hooks since they will almost always be used together.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import type { TreeData } from "@react-md/core";
  * import { Tree, useTree } from "@react-md/core";

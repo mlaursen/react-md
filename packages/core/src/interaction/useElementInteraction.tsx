@@ -80,8 +80,7 @@ const noop = (): void => {
  * This hook is used to apply the required element interaction based on the
  * {@link ElementInteractionMode} and should generally be used internally only.
  *
- * @example
- * Providing Element Interaction
+ * @example Providing Element Interaction
  * ```tsx
  * import { useElementInteraction } from "@react-md/core";
  * import { cnb } from "cnbuilder";

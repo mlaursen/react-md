@@ -21,8 +21,7 @@ import { type ICON_CONFIG } from "../icon/iconConfig.js";
  * with an element using the separator role.
  * @see {@link https://www.w3.org/TR/wai-aria-1.1/#menuitemradio}
  *
- * @example
- * Only Radio Items
+ * @example Only Radio Items
  * ```tsx
  * import { ReactElement, useState } from "react";
  * import { DropdownMenu, MenuItemRadio } from "@react-md/core";
@@ -58,8 +57,7 @@ import { type ICON_CONFIG } from "../icon/iconConfig.js";
  * }
  * ```
  *
- * @example
- * With Other Items
+ * @example With Other Items
  * ```tsx
  * import {
  *   DropdownMenu,

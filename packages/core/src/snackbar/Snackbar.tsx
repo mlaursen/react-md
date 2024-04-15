@@ -118,8 +118,7 @@ export interface SnackbarProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * **Client Component**
  *
- * @example
- * Super SImple Example
+ * @example Super Simple Example
  * ```tsx
  * import { Button, Snackbar, addToast } from "@react-md/core";
  * import type { ReactElement } from "react";

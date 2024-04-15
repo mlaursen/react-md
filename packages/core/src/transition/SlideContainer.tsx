@@ -5,8 +5,7 @@ import { bem } from "../utils/bem.js";
 const styles = bem("rmd-slide-container");
 
 /**
- * @example
- * Direction "left"
+ * @example Direction "left"
  * ```
  *           -------------
  *           |           |
@@ -25,8 +24,7 @@ const styles = bem("rmd-slide-container");
  *           -------------
  * ```
  *
- * @example
- * Direction "right"
+ * @example Direction "right"
  * ```
  *           -------------
  *           |           |
@@ -78,8 +76,7 @@ export interface SlideContainerProps
  * **Server Component**
  * This is a server component, but generally relies on state so probably a client component.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { SlideContainer, Slide } from "@react-md/core";
  * import type { ReactElement, ReactNode } from "react";
@@ -122,8 +119,7 @@ export interface SlideContainerProps
  * }
  * ```
  *
- * @example
- * Persistent Slides
+ * @example Persistent Slides
  * ```tsx
  * import type { SlideDirection } from "@react-md/core";
  * import { SlideContainer, Slide } from "@react-md/core";

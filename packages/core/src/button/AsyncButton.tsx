@@ -137,8 +137,7 @@ export interface AsyncButtonProps extends ButtonProps {
  * `loading` prop or returning a promise from the `onClick` event which will
  * continue to show the loading indicator until the promise has been resolved.
  *
- * @example
- * Async onClick
+ * @example Async onClick
  * ```tsx
  * import { AsyncButton } from "@react-md/core";
  * import { useState, type ReactElement } from "react";
@@ -160,8 +159,7 @@ export interface AsyncButtonProps extends ButtonProps {
  * }
  * ```
  *
- * @example
- * Manual Loading State
+ * @example Manual Loading State
  * ```tsx
  * import { AsyncButton } from "@react-md/core";
  * import { useMutation } from "@tanstack/query";

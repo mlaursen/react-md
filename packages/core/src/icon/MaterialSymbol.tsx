@@ -41,8 +41,7 @@ export interface MaterialSymbolProps
  * there are so many icons available. If it becomes an issue, just stop using
  * this component and define the icons inline instead.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { MaterialSymbol } from "@react-md/core";
  * import type { ReactElement } from "react";

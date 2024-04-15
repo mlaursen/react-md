@@ -22,8 +22,7 @@ export interface LayoutAppBarHeightResult {
 }
 
 /**
- * @example
- * Main Usage
+ * @example Main Usage
  * ```tsx
  * import type { PropsWithChildren, ReactElement } from "react";
  * import {
@@ -44,8 +43,7 @@ export interface LayoutAppBarHeightResult {
  * };
  * ```
  *
- * @example
- * Inline Variables
+ * @example Inline Variables
  * ```tsx
  * import type { PropsWithChildren, ReactElement } from "react";
  * import {

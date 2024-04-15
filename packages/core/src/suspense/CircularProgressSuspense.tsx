@@ -21,8 +21,7 @@ export interface CircularProgressSuspenseProps extends CircularProgressProps {
  * This is just a convenience component to set the `fallback` to the
  * {@link CircularProgress} component.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { CircularProgressSuspense } from "@react-md/core";
  * import type { ReactElement } from "react";

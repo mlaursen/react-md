@@ -60,8 +60,7 @@ const { Provider } = context;
  * Gets the writing direction context which provides access to the current `dir`
  * and a `toggleDir` function.
  *
- * @example
- * Manually Changing the Writing Direction
+ * @example Manually Changing the Writing Direction
  * ```tsx
  * import { useDir } from "@react-md/core";
  *
@@ -136,8 +135,7 @@ export const DEFAULT_WRITING_DIRECTION = (): Dir => {
  * that the child is either a DOM element or the `dir` prop is passed from your
  * custom component.
  *
- * @example
- * Root Setup
+ * @example Root Setup
  * ```tsx
  * import { createRoot } from "react-dom/client";
  * import { WritingDirection } from "@react-md/core";
@@ -153,8 +151,7 @@ export const DEFAULT_WRITING_DIRECTION = (): Dir => {
  * );
  * ```
  *
- * @example
- * Supporting RTL Languages
+ * @example Supporting RTL Languages
  * ```tsx
  * import { createRoot } from "react-dom/client";
  * import { WritingDirection } from "@react-md/core";

@@ -30,8 +30,7 @@ export type ReadonlyCSSVariableList<
 > = readonly Readonly<CSSVariable<Name>>[];
 
 /**
- * @example
- * Applying Variables the root html element
+ * @example Applying Variables the root html element
  * ```ts
  * import {
  *   contrastColor,
@@ -68,8 +67,7 @@ export function useCSSVariables<Name extends CSSVariableName>(
   rootNode?: RefObject<HTMLElement> | HTMLElement
 ): void;
 /**
- * @example
- * Applying variables through inline styles
+ * @example Applying variables through inline styles
  * ```tsx
  * import {
  *   contrastColor,

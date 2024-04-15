@@ -35,8 +35,7 @@ export interface SkeletonPlaceholderProps
 /**
  * **Client Component**
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import type { ReactElement } from "@react";
  * import { SkeletonPlaceholder } from "@react-md/core";
@@ -55,8 +54,7 @@ export interface SkeletonPlaceholderProps
  * }
  * ```
  *
- * @example
- * Pre-rendered Layout
+ * @example Pre-rendered Layout
  * ```tsx
  * import type { ReactElement } from "@react";
  * import { SkeletonPlaceholder } from "@react-md/core";

@@ -87,8 +87,7 @@ export interface AvatarProps
  * the avatar is not an image, different themes can be applied to make the
  * avatar more unique.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { Avatar } from "@react-md/core";
  * import { type ReactElement } from "react";

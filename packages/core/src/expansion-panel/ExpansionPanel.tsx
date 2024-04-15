@@ -125,10 +125,10 @@ export interface ExpansionPanelProps extends CardProps {
 
   /**
    * Content to display within the header of the expansion panel that toggles
-   * the expanded state. THis should generally contain some accessible text
+   * the expanded state. This should generally contain some accessible text
    * describing the expansion panel's content.
    *
-   * @since 6.0.0 THis was renamed from `header`
+   * @since 6.0.0 This was renamed from `header`
    */
   headerChildren?: ReactNode;
 

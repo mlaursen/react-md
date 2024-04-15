@@ -27,8 +27,7 @@ export interface ElementSizeImplementation<E extends HTMLElement>
  * A small wrapper around the {@link useResizeObserver} hook to calculate the
  * element's size.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { useElementSize } from "@react-md/core";
  * import { type ReactElement } from "react";

@@ -9,8 +9,7 @@ const noop = (): void => {
 /** @since 6.0.0 */
 export interface SimpleHoverModeContext {
   /**
-   * @example
-   * Main Usage
+   * @example Main Usage
    * ```ts
    * onMouseEnter(event) {
    *   const hoverTimeout = hoverTimeoutRef.current;
@@ -31,8 +30,7 @@ export interface SimpleHoverModeContext {
   hoverTimeoutRef: NonNullRef<number | undefined>;
 
   /**
-   * @example
-   * Main Usage
+   * @example Main Usage
    * ```ts
    * onMouseLeave() {
    *   if (mode === "touch") {
@@ -177,8 +175,7 @@ export interface HoverModeConfiguration extends CreateHoverModeContextOptions {
 }
 
 /**
- * @example
- * Creating a Hover Mode Group
+ * @example Creating a Hover Mode Group
  * ```tsx
  * import type {
  *   HoverModeConfiguration,

@@ -41,8 +41,7 @@ export interface AsyncActionImplementation {
  * `react-query`, `@reduxjs/toolkit/query`, `@apollo/client`, etc for API calls
  * which have a built-in pending state for mutations.
  *
- * @example
- * Simple Example (Async Button)
+ * @example Simple Example (Async Button)
  * ```tsx
  * import type { ButtonProps } from "@react-md/core";
  * import { box, Button, CircularProgress, useAsyncAction } from "@react-md/core";
@@ -100,8 +99,7 @@ export interface AsyncActionImplementation {
  * }
  * ```
  *
- * @example
- * Confirmation Dialog with Overlay
+ * @example Confirmation Dialog with Overlay
  * ```tsx
  * import {
  *   Button,

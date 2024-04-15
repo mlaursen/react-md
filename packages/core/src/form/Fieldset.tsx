@@ -46,8 +46,7 @@ export interface FieldsetProps
     FieldsetClassNameOptions {}
 
 /**
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { Form, Fieldset, Legend } from "@react-md/core";
  *

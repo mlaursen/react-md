@@ -14,8 +14,7 @@ import { type ICON_CONFIG } from "../icon/iconConfig.js";
  * render it as a checkbox and pulling the checkbox icon from the
  * {@link ICON_CONFIG}.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { DropdownMenu, MenuItemCheckbox } from "@react-md/core";
  * import { ReactElement, useState } from "react";

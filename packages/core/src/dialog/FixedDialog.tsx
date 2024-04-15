@@ -46,8 +46,7 @@ export const DEFAULT_FIXED_DIALOG_CLASSNAMES: Readonly<CSSTransitionClassNamesOb
 /**
  * **Client Component**
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import {
  *   Button,

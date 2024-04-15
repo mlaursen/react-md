@@ -26,8 +26,7 @@ export interface ScaleTransitionProps<E extends HTMLElement>
  * component uses the `React.cloneElement` to inject the `ref` and `className`
  * into the `children`, it is recommended to use the hook instead.
  *
- * @example
- * Dropdown Menu Example
+ * @example Dropdown Menu Example
  * ```tsx
  * import { ReactElement, useRef, useState } from "react";
  * import { Button, useFixedPositioning, useScaleTransition } from "@react-md/core";

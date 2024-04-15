@@ -32,8 +32,7 @@ export interface ButtonProps
 /**
  * **Client Component**
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { Button } from "@react-md/core";
  * import type { ReactElement } from "react";
@@ -51,8 +50,7 @@ export interface ButtonProps
  * }
  * ```
  *
- * @example
- * Theme Example
+ * @example Theme Example
  * ```tsx
  * import { Button } from "@react-md/core";
  * import type { ReactElement } from "react";
@@ -72,8 +70,7 @@ export interface ButtonProps
  * }
  * ```
  *
- * @example
- * Icon Button Example
+ * @example Icon Button Example
  * ```tsx
  * import { Button } from "@react-md/core";
  * import { FavoriteSVGIcon } from "@react-md/material-icons";
@@ -95,8 +92,7 @@ export interface ButtonProps
  * }
  * ```
  *
- * @example
- * Text Button with icons
+ * @example Text Button with icons
  * ```tsx
  * import { Button } from "@react-md/core";
  * import { FavoriteSVGIcon } from "@react-md/material-icons";

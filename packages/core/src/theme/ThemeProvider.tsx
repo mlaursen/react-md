@@ -96,13 +96,12 @@ export type ConfigurableThemeColorsName = keyof ConfigurableThemeColors;
 /** @since 6.0.0 */
 export interface ThemeContext extends ConfigurableThemeColors {
   /**
-   * This will be `true` if a `theme` wsa not provided to the {@link ThemeProvider}
+   * This will be `true` if a `theme` was not provided to the {@link ThemeProvider}
    */
   derived: boolean;
 
   /**
-   * @example
-   * Simple Example
+   * @example Simple Example
    * ```tsx
    * import { getDerivedTheme, useHtmlClassName, useTheme } from "@react-md/core";
    * import { useEffect } from "react";
@@ -211,8 +210,7 @@ export const getDerivedTheme = (
  * This hook can be used to access the current theme set by the
  * {@link ThemeProvider}.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { useTheme } from "@react-md/core";
  * import type { ReactElement } from "react";
@@ -328,8 +326,7 @@ export interface ThemeProviderProps {
  * );
  * ```
  *
- * @example
- * Automatically Deriving the Theme
+ * @example Automatically Deriving the Theme
  * ```tsx
  * import {
  *   CoreProviders,

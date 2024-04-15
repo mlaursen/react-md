@@ -105,8 +105,7 @@ export interface TextFieldProps
  * **Server Component**
  *
  * The structure for this component is:
- * @example
- * Component Structure
+ * @example Component Structure
  * ```tsx
  * <FormMessageContainer {...messageContainerProps}>
  *   <TextFieldContainer {...containerProps}>
@@ -116,8 +115,7 @@ export interface TextFieldProps
  * </FormMessageContainer>
  * ```
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { TextField } from "@react-md/core";
  * import type { ReactElement } from "react";

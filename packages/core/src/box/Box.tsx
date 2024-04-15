@@ -14,8 +14,7 @@ export interface BoxProps extends HTMLAttributes<HTMLDivElement>, BoxOptions {}
  * There are pass-through props for all of the box module styling properties
  * available by default.
  *
- * @example
- * Default Styles
+ * @example Default Styles
  * ```scss
  * .box {
  *   align-items: center;
@@ -43,8 +42,7 @@ export interface BoxProps extends HTMLAttributes<HTMLDivElement>, BoxOptions {}
  * }
  * ```
  *
- * @example
- * Default Grid Styles
+ * @example Default Grid Styles
  * ```scss
  * .box {
  *   align-items: center;
@@ -72,8 +70,7 @@ export interface BoxProps extends HTMLAttributes<HTMLDivElement>, BoxOptions {}
  * }
  * ```
  *
- * @example
- * Custom Grid
+ * @example Custom Grid
  * ```scss
  * @use "@react-md/core" with (
  *   $grids: (

@@ -261,8 +261,7 @@ export interface LocalStorageHookReturnValue<T> {
    * Manually persist the current {@link value} into local storage. This is only
    * useful if the {@link LocalStorageHookOptions.manual} option is `true`.
    *
-   * @example
-   * Manual Persisting
+   * @example Manual Persisting
    * ```tsx
    * import type { ReactElement } from "react";
    *
@@ -296,8 +295,7 @@ export interface LocalStorageHookReturnValue<T> {
 }
 
 /**
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import type { ReactElement } from "react";
  * import { TextField, useLocalStorage } from "@react-md/core";
@@ -322,8 +320,7 @@ export interface LocalStorageHookReturnValue<T> {
  * }
  * ```
  *
- * @example
- * Type-safe Objects
+ * @example Type-safe Objects
  * ```tsx
  * import type { ReactElement } from "react";
  * import { useLocalStorage } from "@react-md/core";
@@ -358,8 +355,7 @@ export interface LocalStorageHookReturnValue<T> {
  * }
  * ```
  *
- * @example
- * Manual Persistence
+ * @example Manual Persistence
  * ```tsx
  * import type { ReactElement } from "react";
  * import { Button, Checkbox, Form, useLocalStorage } from "@react-md/core";
@@ -401,8 +397,7 @@ export interface LocalStorageHookReturnValue<T> {
  * was updated in a separate tab with the `"storage"` event. You must setup your
  * own context to share values or another state manager solution.
  *
- * @example
- * Shared Value
+ * @example Shared Value
  * ```tsx
  * const context = createContext(null);
  * const { Provider } = context;

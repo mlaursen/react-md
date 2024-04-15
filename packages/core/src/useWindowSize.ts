@@ -48,8 +48,7 @@ export interface WindowSizeOptions
 /**
  * This is just a convenience wrapper around the {@link useResizeListener}.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { useWindowSize } from "@react-md/core";
  * import type { ReactElement } from "react";

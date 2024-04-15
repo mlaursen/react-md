@@ -14,8 +14,7 @@ export type DebouncedFunction<F extends AnyFunction> = CancelableFunction<
  * Creates a function that will only be called if it has not been called again
  * for X milliseconds.
  *
- * @example
- * Debounced Search API Requests
+ * @example Debounced Search API Requests
  * ```tsx
  * import { TextField, useDebouncedFunction, useUnmounted } from "@react-md/core";
  * import { useState } from "react";

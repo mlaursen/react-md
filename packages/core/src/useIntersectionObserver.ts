@@ -36,8 +36,7 @@ export interface BaseIntersectionObserverHookOptions {
    * the component or wrapped in a `useMemo` to prevent the IntersectionObserver
    * from being re-created each render.**
    *
-   * @example
-   * Moving Out of Render
+   * @example Moving Out of Render
    * ```tsx
    * const threshold = [0, 0.25, 0.5, 0.75, 1];
    *
@@ -51,8 +50,7 @@ export interface BaseIntersectionObserverHookOptions {
    * }
    * ```
    *
-   * @example
-   * Wrapping in useMemo
+   * @example Wrapping in useMemo
    * ```tsx
    * interface ExampleProps {
    *   min: number;
@@ -84,8 +82,7 @@ export interface BaseIntersectionObserverHookOptions {
    * generally useful if you need access to the DOM or do some expensive
    * computation.
    *
-   * @example
-   * Simple Example
+   * @example Simple Example
    * ```tsx
    * const targetRef = useIntersectionObserver({
    *   getThreshold: useCallback(() => {
@@ -109,8 +106,7 @@ export interface BaseIntersectionObserverHookOptions {
    * This can be used to dynamically generate the {@link rootMargin} which is
    * generally useful if you need access to the DOM.
    *
-   * @example
-   * Simple Example
+   * @example Simple Example
    * ```tsx
    * const nodeRef = useRef<HTMLElement>();
    * const targetRef = useIntersectionObserver({
@@ -143,8 +139,7 @@ export interface IntersectionObserverHookOptions<E extends HTMLElement>
    * **Must be wrapped in `useCallback` to prevent re-creating the
    * IntersectionObserver each render.**
    *
-   * @example
-   * Simple Example
+   * @example Simple Example
    * ```tsx
    * const threshold = [0, 0.25, 0.5, 0.75, 1];
    *
@@ -170,8 +165,7 @@ export interface IntersectionObserverHookOptions<E extends HTMLElement>
    * If this is defined, the {@link ref} will be ignored along with the returned
    * ref.
    *
-   * @example
-   * Watching Queried Elements
+   * @example Watching Queried Elements
    * ```tsx
    * function Example(): ReactElement {
    *   useIntersectionObserver({
@@ -195,8 +189,7 @@ export interface IntersectionObserverHookOptions<E extends HTMLElement>
 }
 
 /**
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * // https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#a_simple_example
  *

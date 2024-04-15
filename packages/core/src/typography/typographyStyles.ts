@@ -53,8 +53,7 @@ export type NullableTypographyClassNameOptions = Omit<
  * only useful if you are unable to use the {@link Typography} component for
  * some reason.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```ts
  * import { typography } from "@react-md/core";
  *
@@ -79,8 +78,7 @@ export type NullableTypographyClassNameOptions = Omit<
  * }
  * ```
  *
- * @example
- * Applying Additional Styles
+ * @example Applying Additional Styles
  * ```ts
  * import { typography } from "@react-md/core";
  *

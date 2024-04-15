@@ -35,8 +35,7 @@ export interface MenuBarProps extends Omit<ListProps, "role"> {
 /**
  * **Client Component**
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { DropdownMenu, MenuBar, MenuItem } from "@react-md/core";
  * import type { ReactElement } from "react";

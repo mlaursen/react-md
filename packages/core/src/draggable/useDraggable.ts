@@ -116,8 +116,7 @@ export interface BaseDraggableOptions<E extends HTMLElement>
    * changing as the other values change, so the drag percentage would be
    * incorrect.
    *
-   * @example
-   * Range Slider
+   * @example Range Slider
    * ```ts
    * const min = 0;
    * const max = 100;
@@ -294,7 +293,7 @@ export interface DraggableImplementation<E extends HTMLElement = HTMLElement>
   decrement(): void;
 
   /**
-   * THe current percentage the `value` is within the range.
+   * The current percentage the `value` is within the range.
    *
    * ```ts
    * const percentage =
@@ -516,7 +515,7 @@ export function useDraggable<E extends HTMLElement>(
           return;
         }
 
-        // dont' allow text to be selected
+        // don't allow text to be selected
         event.preventDefault();
         updateDragPosition({
           isDragStart: true,

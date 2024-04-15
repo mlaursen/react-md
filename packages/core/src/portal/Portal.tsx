@@ -22,8 +22,7 @@ export interface PortalProps {
  * and menus at a different port of the DOM. This implementation will render
  * the `children` in the current {@link PortalContainer} element.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { Portal } from "@react-md/portal";
  *

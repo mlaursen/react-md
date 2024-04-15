@@ -15,8 +15,7 @@ import { getTransitionClassNames } from "./utils.js";
  * This hook is used to create CSS transitions for different components whenever
  * a {@link TransitionHookOptions.transitionIn} flag is changed.
  *
- * @example
- * Simple Transition
+ * @example Simple Transition
  * ```tsx
  * import { ReactElement, useState } from "react";
  * import { Button, Typography, useCSSTransition } from "@react-md/core";
@@ -66,8 +65,7 @@ import { getTransitionClassNames } from "./utils.js";
  * }
  * ```
  *
- * @example
- * Visibility Transition
+ * @example Visibility Transition
  * ```tsx
  * import { ReactElement, useState } from "react";
  * import { Button, Typography, useCSSTransition } from "@react-md/core";
@@ -123,8 +121,7 @@ import { getTransitionClassNames } from "./utils.js";
  * }
  * ```
  *
- * @example
- * Mount Transition
+ * @example Mount Transition
  * ```tsx
  * import type { ReactElement } from "react";
  * import { useCSSTransition } from "@react-md/transition";

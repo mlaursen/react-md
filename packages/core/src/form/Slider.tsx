@@ -120,8 +120,7 @@ export interface SliderProps extends BaseSliderProps, SliderState {
   /**
    * This can be used to update the discrete slider's tooltip props.
    *
-   * @example
-   * Custom Styles
+   * @example Custom Styles
    * ```tsx
    * <Slider
    *   {...slider}
@@ -139,8 +138,7 @@ export interface SliderProps extends BaseSliderProps, SliderState {
   /**
    * This can be used to update the discrete slider's value tooltip.
    *
-   * @example
-   * More Value Information
+   * @example More Value Information
    * ```tsx
    * <Slider
    *   {...slider}
@@ -221,8 +219,7 @@ export interface RangeSliderProps extends BaseSliderProps, RangeSliderState {
   /**
    * This can be used to update the discrete slider's tooltip props.
    *
-   * @example
-   * Custom Styles
+   * @example Custom Styles
    * ```tsx
    * <Slider
    *   {...slider}
@@ -240,8 +237,7 @@ export interface RangeSliderProps extends BaseSliderProps, RangeSliderState {
   /**
    * This can be used to update the discrete slider's value tooltip.
    *
-   * @example
-   * More Value Information
+   * @example More Value Information
    * ```tsx
    * <Slider
    *   {...rangeSlider}
@@ -267,8 +263,7 @@ export interface RangeSliderProps extends BaseSliderProps, RangeSliderState {
 /**
  * **Client Component**
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { Form, Slider, useSlider } from "@react-md/core";
  * import type { ReactElement } from "react";
@@ -294,8 +289,7 @@ export interface RangeSliderProps extends BaseSliderProps, RangeSliderState {
  * }
  * ```
  *
- * @example
- * Range Slider Example
+ * @example Range Slider Example
  * ```tsx
  * import { Fieldset, Form, Legend, Slider, useRangeSlider } from "@react-md/core";
  * import type { ReactElement } from "react";

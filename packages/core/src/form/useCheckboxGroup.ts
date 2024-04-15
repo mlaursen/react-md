@@ -27,8 +27,7 @@ export interface CheckboxGroupOptions<V> {
    * checkbox is checked and determine if all the checkboxes have manually be
    * selected.
    *
-   * @example
-   * Indeterminate Behavior
+   * @example Indeterminate Behavior
    * ```tsx
    * const OPTIONS = [
    *   { label: "First", value: "a" },
@@ -125,8 +124,7 @@ export interface CombinedCheckboxGroupReturnValue<V extends string> {
 }
 
 /**
- * @example
- * Checkbox Group
+ * @example Checkbox Group
  * ```tsx
  * const { getCheckboxProps, checkedValues } = useCheckboxGroup({ name: "example" });
  *
@@ -155,8 +153,7 @@ export function useCheckboxGroup<V extends string>(
   }
 ): CheckboxGroupImplementation<V>;
 /**
- * @example
- * Indeterminate Checkbox Group
+ * @example Indeterminate Checkbox Group
  * ```tsx
  * const OPTIONS = [
  *   { label: "First", value: "a" },
@@ -194,8 +191,7 @@ export function useCheckboxGroup<V extends string>(
   }
 ): IndeterminateCheckboxGroupImplementation<V>;
 /**
- * @example
- * MenuItemCheckbox Group
+ * @example MenuItemCheckbox Group
  * ```tsx
  * const { getCheckboxProps, checkedValues } = useCheckboxGroup({ menu: true });
  *
@@ -224,8 +220,7 @@ export function useCheckboxGroup<V extends string>(
   }
 ): MenuItemCheckboxGroupImplementation<V>;
 /**
- * @example
- * Indeterminate MenuItemCheckbox Group
+ * @example Indeterminate MenuItemCheckbox Group
  * ```tsx
  * const OPTIONS = [
  *   { label: "First", value: "a" },

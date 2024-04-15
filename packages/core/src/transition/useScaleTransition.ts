@@ -91,8 +91,7 @@ export interface ScaleTransitionHookOptions<E extends HTMLElement>
  * Implements a scale transition that should generally be used for temporary
  * elements that are positioned via `position: absolute` or `position: fixed`.
  *
- * @example
- * Dropdown Menu Example
+ * @example Dropdown Menu Example
  * ```tsx
  * import { ReactElement, useRef, useState } from "react";
  * import { Button, useFixedPositioning, useScaleTransition } from "@react-md/core";

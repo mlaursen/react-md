@@ -23,8 +23,7 @@ export type MenuItemGroupProps = LabelRequiredForA11y<
  *
  * @see {@link https://www.w3.org/TR/wai-aria-1.1/#menuitemradio}
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { ReactElement, useState } from "react";
  * import {

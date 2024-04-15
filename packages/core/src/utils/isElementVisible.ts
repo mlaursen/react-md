@@ -10,8 +10,7 @@ export const DISPLAY_NONE_CLASS = "rmd-display-none";
  * checking the element and all parents to see if they contain the
  * {@link DISPLAY_NONE_CLASS}.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * const treeItem = screen.getByRole("treeitem", { name: "Tree Item" });
  * const subTreeItem = screen.getByRole("treeitem", { Name: "Sub Tree Item" });

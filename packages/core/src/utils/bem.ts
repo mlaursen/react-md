@@ -25,10 +25,9 @@ export type BEMResult = (
 /**
  * Applies the BEM styled class name to an element.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```jsx
- * import { Bem } from "@react-md/core":
+ * import { bem } from "@react-md/core":
  *
  * const styles = bem("my-component"):
  *

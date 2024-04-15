@@ -69,8 +69,7 @@ export interface ListProps extends HTMLAttributes<ListElement> {
  * The `List` component is used to render a collection of clickable actions
  * vertically or horizontally and does not include the default `ol`/`ul` styles.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { List, ListItem, ListItemLink } from "@react-md/core";
  * import type { ReactElement } from "react";

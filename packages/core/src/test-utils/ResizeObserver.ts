@@ -83,8 +83,7 @@ export class ResizeObserverMock implements ResizeObserver {
    * Triggers the resize event for a specific element. This must be wrapped in
    * `act`.
    *
-   * @example
-   * Main Usage
+   * @example Main Usage
    * ```tsx
    * import {
    *   cleanupResizeObserverAfterEach,
@@ -216,8 +215,7 @@ export interface SetupResizeObserverMockOptions {
 /**
  * Initializes the `ResizeObserverMock` to be used for tests.
  *
- * @example
- * Main Usage
+ * @example Main Usage
  * ```tsx
  * import { useCallback, useState } from "react";
  * import {

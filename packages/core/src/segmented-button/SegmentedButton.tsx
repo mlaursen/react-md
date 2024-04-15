@@ -60,8 +60,7 @@ export interface SegmentedButtonProps
 /**
  * **Client Component**
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import {
  *   SegmentedButton,

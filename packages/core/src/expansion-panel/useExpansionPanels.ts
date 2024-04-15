@@ -102,16 +102,14 @@ export interface ExpansionPanelImplementation {
   setExpandedIds: UseStateSetter<ReadonlySet<string>>;
 
   /**
-   * @example
-   * Index Based Panels
+   * @example Index Based Panels
    * ```tsx
    * <ExpansionPanel {...getPanelProps(0)} />
    * <ExpansionPanel {...getPanelProps(1)} />
    * <ExpansionPanel {...getPanelProps(2)} />
    * ```
    *
-   * @example
-   * Custom Panel Ids
+   * @example Custom Panel Ids
    * ```tsx
    * <ExpansionPanel {...getPanelProps("address-panel")} />
    * <ExpansionPanel {...getPanelProps("billing-panel")} />
@@ -124,8 +122,7 @@ export interface ExpansionPanelImplementation {
 /**
  * Use this hook to control the expanded state for a group of `ExpansionPanel`.
  *
- * @example
- * Index Based Panels
+ * @example Index Based Panels
  * ```tsx
  * import {
  *   ExpansionList,
@@ -153,8 +150,7 @@ export interface ExpansionPanelImplementation {
  * }
  * ```
  *
- * @example
- * Custom Panel Ids and Expand All Panels by Default
+ * @example Custom Panel Ids and Expand All Panels by Default
  * ```tsx
  * import {
  *   ExpansionList,

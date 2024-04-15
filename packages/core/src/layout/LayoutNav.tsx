@@ -59,8 +59,7 @@ export interface LayoutNavProps
  * `LayoutWindowSplitter` and expandable layouts. Do not use this component for
  * temporary navigation and instead use a `Sheet`.
  *
- * @example
- * Full Height Layout
+ * @example Full Height Layout
  * ```tsx
  * "use client";
  * import {
@@ -92,8 +91,7 @@ export interface LayoutNavProps
  * }
  * ```
  *
- * @example
- * Toggleable Layout
+ * @example Toggleable Layout
  * ```tsx
  * "use client";
  * import {

@@ -46,8 +46,7 @@ export interface LabelA11y {
  * A small accessibility helper to ensure that either `aria-label` or
  * `aria-labelledby` have been provided to a component.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```ts
  * import type { HTMLAttributes, ReactElement } from "react";
  * import type { LabelRequiredForA11y } from "@react-md/core";
@@ -91,8 +90,7 @@ export type HtmlTagName = keyof JSX.IntrinsicElements;
 /**
  * A function to get a string from a generic item.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```ts
  * interface Item {
  *   name: string;

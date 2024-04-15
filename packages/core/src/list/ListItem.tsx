@@ -81,8 +81,7 @@ export interface ListItemProps
  * The `ListItem` is used to create a clickable/focusable button within a
  * `List` and removes the normal `<li>` styles.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { List, ListItem } from "@react-md/core";
  * import type { ReactElement  } from "react";
@@ -111,8 +110,7 @@ export interface ListItemProps
  * }
  * ```
  *
- * @example
- * Applying Addons Example
+ * @example Applying Addons Example
  * ```tsx
  * import { List, ListItem } from "@react-md/core";
  * import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";

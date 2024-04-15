@@ -155,8 +155,7 @@ export type ConfigurableIconName = keyof ConfigurableIcons;
  * @see {@link configureIcons} for a quick way of overriding the configuration
  * or the example below.
  *
- * @example
- * Mutating this object
+ * @example Mutating this object
  * ```tsx
  * import { ICON_CONFIG } from "@react-md/core";
  * import ArrowDropDownIcon from "@react-md/material-icons/ArrowDropDownIcon";
@@ -222,8 +221,7 @@ export const ICON_CONFIG: ConfiguredIcons = {
 /**
  * A convenience helper to reconfigure icons within `react-md`.
  *
- * @example
- * Using SVG Material Icons
+ * @example Using SVG Material Icons
  * ```tsx
  * import { configureIcons } from "@react-md/core";
  * import ArrowDropDownIcon from "@react-md/material-icons/ArrowDropDownIcon";

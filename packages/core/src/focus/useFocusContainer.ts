@@ -105,8 +105,7 @@ export interface FocusContainerImplementation<E extends HTMLElement> {
  * This API was developed to be used with the `useCSSTransition`/`useTransition`
  * hooks as well.
  *
- * @example
- * Main Usage
+ * @example Main Usage
  * ```tsx
  * import {
  *   Button,

@@ -40,8 +40,7 @@ export interface SwitchProps
 /**
  * **Server Component**
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { Form, Switch } from "@react-md/core";
  * import type { ReactElement } from "react";

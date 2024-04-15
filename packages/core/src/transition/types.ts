@@ -84,9 +84,10 @@ export type TransitionStage =
 export type TransitionEnterHandler = (appearing: boolean) => void;
 
 /**
- * THis function is called at each `"exit"` {@link TransitionStage}. If a {@link
- * TransitionOptions.nodeRef} was provided, the DOM node should be available in
- * `nodeRef.current` by this point if the transition requires DOM calculations.
+ * This function is called at each `"exit"` {@link TransitionStage}. If a
+ * {@link TransitionOptions.nodeRef} was provided, the DOM node should be
+ * available in `nodeRef.current` by this point if the transition requires DOM
+ * calculations.
  *
  * @since 4.0.0
  */
@@ -207,8 +208,7 @@ export interface TransitionOptions<E extends HTMLElement>
  * {@link TransitionStage} where all the classes in the previous stages will
  * also be applied.
  *
- * @example
- * Explaining className application
+ * @example Explaining className application
  * ```ts
  * const { ref, className, stage, appearing } = useCSSTransition({
  *   appear: true,
@@ -435,8 +435,7 @@ export interface TransitionHookReturnValue<E extends HTMLElement>
    * useful for "appear only transitions" that do not unmount the child
    * elements.
    *
-   * @example
-   * Simple Example
+   * @example Simple Example
    * ```tsx
    * import { ReactElement, useEffect, useRef } from "react";
    * import { useCSSTransition } from "@react-md/transition";
@@ -527,8 +526,7 @@ export interface CSSTransitionHookReturnValue<E extends HTMLElement>
    * This can be used so that you don't need to destructure multiple props from
    * the hook return value to pass to the transitioning component.
    *
-   * @example
-   * Simple Example
+   * @example Simple Example
    * ```tsx
    * import type { ReactElement } from "react";
    * import { useCSSTransition } from "@react-md/transition";
@@ -553,8 +551,7 @@ export interface CSSTransitionHookReturnValue<E extends HTMLElement>
    * }
    * ```
    *
-   * @example
-   * Verbose Version
+   * @example Verbose Version
    * ```tsx
    * import type { ReactElement } from "react";
    * import { useCSSTransition } from "@react-md/transition";

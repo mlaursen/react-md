@@ -10,8 +10,7 @@ export interface CaseInsensitiveStartsWithOptions {
    * Set this to `true` if the item in the list must start with the query
    * instead of only including it.
    *
-   * @example
-   * Search Example
+   * @example Search Example
    * ```ts
    * const fruits = ["Banana", "Grape", "Apple", "Orange"];
    *
@@ -31,8 +30,7 @@ export interface CaseInsensitiveStartsWithOptions {
    * // "Apple"
    * ```
    *
-   * @example
-   * Filter Example
+   * @example Filter Example
    * ```ts
    * const fruits = ["Apple", "Banana", "Grape", "Orange"];
    *
@@ -94,8 +92,7 @@ export interface CaseInsensitiveOptions<T>
     CaseInsensitiveStartsWithOptions {}
 
 /**
- * @example
- * String list
+ * @example String list
  * ```ts
  * const fruits = ["Apple", "Banana", "Grape", "Orange"];
  *
@@ -133,8 +130,7 @@ export interface CaseInsensitiveOptions<T>
  * // ["Apple", "Grape"]
  * ```
  *
- * @example
- * Objects
+ * @example Objects
  * ```ts
  * const fruits = [
  *   { name: "Apple", value: 0 },

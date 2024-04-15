@@ -11,8 +11,7 @@ import {
  * This is a simple wrapper for the {@link MenuItemInputToggle} component to
  * render it as a switch.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { ReactElement, useState } from "react";
  * import { DropdownMenu, MenuItemSwitch } from "@react-md/core";

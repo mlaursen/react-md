@@ -12,8 +12,7 @@ export interface NullSuspenseProps {
  *
  * This is just a convenience component to set the `fallback` to `null`.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { NullSuspense } from "@react-md/core";
  * import type { ReactElement } from "react";

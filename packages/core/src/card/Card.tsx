@@ -19,8 +19,7 @@ export interface CardProps
 /**
  * **Server Component**
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import {
  *   Button,

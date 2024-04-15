@@ -116,8 +116,7 @@ const styles = bem("rmd-circular-progress");
 /**
  * **Server Component**
  *
- * @example
- * Indeterminate Example
+ * @example Indeterminate Example
  * ```tsx
  * import { CircularProgress } from "@react-md/core":
  * import { type ReactElement } from "react";
@@ -127,8 +126,7 @@ const styles = bem("rmd-circular-progress");
  * }
  * ```
  *
- * @example
- * Determinate Example
+ * @example Determinate Example
  * ```tsx
  * import { CircularProgress } from "@react-md/core":
  * import { useState, type ReactElement } from "react";

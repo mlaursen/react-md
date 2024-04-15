@@ -38,8 +38,7 @@ export interface LayoutAppBarProps extends AppBarProps {
  * javascript bundle size, it is recommended to configure this variable in SCSS
  * instead.
  *
- * @example
- * Static Height
+ * @example Static Height
  * ```scss
  * @use "everything";
  *
@@ -48,8 +47,7 @@ export interface LayoutAppBarProps extends AppBarProps {
  * }
  * ```
  *
- * @example
- * Media Query Height Changes
+ * @example Media Query Height Changes
  * ```scss
  * @use "everything";
  *

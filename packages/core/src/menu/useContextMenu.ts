@@ -59,8 +59,7 @@ const noop = (): void => {
 /**
  * This hook controls the visibility and positioning for a context menu.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import type { ReactElement } from "react";
  * import [ Menu, MenuItem, useContextMenu ] from "@react-md/core":

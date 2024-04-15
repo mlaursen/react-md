@@ -118,8 +118,7 @@ export interface TreeProps<T extends TreeItemNode>
   temporaryChildItems?: boolean;
 
   /**
-   * @example
-   * Custom Tree Item Renderer
+   * @example Custom Tree Item Renderer
    * ```tsx
    * import {
    *   TreeItem,
@@ -180,8 +179,7 @@ export interface TreeProps<T extends TreeItemNode>
 /**
  * **Client Component**
  *
- * @example
- * Simple Tree
+ * @example Simple Tree
  * ```tsx
  * import type { TreeData } from "@react-md/core";
  * import { Tree, useTree } from "@react-md/core";

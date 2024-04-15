@@ -16,8 +16,7 @@ import { type ListItemChildrenProps } from "./types.js";
  * in a DOM node for styling. The parent component should normally have
  * `display: flex` for the styling to work.
  *
- * @example
- * Custom Component Usage
+ * @example Custom Component Usage
  * ```tsx
  * import { ListItemChildren } from "@react-md/core";
  * import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";

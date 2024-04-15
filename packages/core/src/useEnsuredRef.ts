@@ -19,8 +19,7 @@ export type EnsuredRefs<E extends HTMLElement> = readonly [
  * followed by a ref callback function that should be passed to the DOM node
  * that will ensure that both the optional `propRef` and hook ref are updated.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { HTMLAttributes, forwardRef } from "react";
  * import { useEnsuredRef } from "@react-md/core";

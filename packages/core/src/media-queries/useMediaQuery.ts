@@ -3,8 +3,7 @@ import { useEffect, useState } from "react";
 import { useSsr } from "../SsrProvider.js";
 
 /**
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { useMediaQuery } from "@react-md/core";
  * import type { ReactElement } from "react";

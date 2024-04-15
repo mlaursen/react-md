@@ -12,8 +12,7 @@ import { INTERACTION_CONFIG } from "./config.js";
  * Note: This should generally be used with the {@link useElementInteraction}
  * hook.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import {
  *   useElementInteraction,

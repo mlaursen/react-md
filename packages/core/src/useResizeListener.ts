@@ -35,8 +35,7 @@ export interface ResizeListenerOptions extends AddEventListenerOptions {
  * observe specific elements resizing, check out the {@link useResizeObserver}
  * hook instead.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { useResizeListener } from "@react-md/core";
  * import type { ReactElement } from "react";

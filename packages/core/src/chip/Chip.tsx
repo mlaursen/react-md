@@ -158,8 +158,7 @@ export interface ChipProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 /**
  * **Server Component**
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { Chip } from "@react-md/core";
  * import type { ReactElement } from "react";
@@ -169,8 +168,7 @@ export interface ChipProps extends ButtonHTMLAttributes<HTMLButtonElement> {
  * }
  * ```
  *
- * @example
- * Outlined Example
+ * @example Outlined Example
  * ```tsx
  * import { Chip } from "@react-md/core";
  * import type { ReactElement } from "react";
@@ -180,8 +178,7 @@ export interface ChipProps extends ButtonHTMLAttributes<HTMLButtonElement> {
  * }
  * ```
  *
- * @example
- * Addons Example
+ * @example Addons Example
  * ```tsx
  * import { Avatar, Chip } from "@react-md/core";
  * import AddCircleIcon from "@react-md/material-icons/AddCircleIcon";

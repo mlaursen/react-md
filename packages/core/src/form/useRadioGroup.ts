@@ -50,7 +50,7 @@ export interface RadioGroupOptions<T extends string | number> {
 
   /**
    * If you need to prevent the default behavior in a radio group for some
-   * reason, you can provide a custom `onCHange` event handler and call
+   * reason, you can provide a custom `onChange` event handler and call
    * `event.stopPropagation()`. This will be called whenever a new radio button
    * is checked.
    *
@@ -130,8 +130,7 @@ export interface CombinedRadioGroupReturnValue<V extends string | number> {
 // string.
 
 /**
- * @example
- * Generic Number Example
+ * @example Generic Number Example
  * ```tsx
  * const { value, getRadioProps } = useRadioGroup<number>({
  *   name: "group",
@@ -167,8 +166,7 @@ export function useRadioGroup<V extends number>(
   }
 ): MenuItemRadioGroupImplementation<V>;
 /**
- * @example
- * Generic String Example
+ * @example Generic String Example
  * ```tsx
  * const { value, getRadioProps } = useRadioGroup({ name: "group" });
  *
@@ -181,8 +179,7 @@ export function useRadioGroup<V extends number>(
  * );
  * ```
  *
- * @example
- * String Union Example
+ * @example String Union Example
  * ```tsx
  * const values = [
  *   { label: "First", value: "a" },
@@ -227,8 +224,7 @@ export function useRadioGroup<V extends string>(
   }
 ): MenuItemRadioGroupImplementation<V>;
 /**
- * @example
- * Strict Union Example
+ * @example Strict Union Example
  * ```tsx
  * type ValidValues = 1 | 2 | 3 | 4 | "" | "a" | "b";
  *

@@ -109,8 +109,7 @@ export interface TextIconSpacingProps {
  * Note: This component **must** be rendered within a flex container unless the
  * {@link TextIconSpacingProps.forceIconWrap} is set to `true`.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { TextIconSpacing, FontIcon } from "@react-md/core";
  * import type { ReactElement } from "react";
@@ -124,8 +123,7 @@ export interface TextIconSpacingProps {
  * }
  * ```
  *
- * @example
- * Stacked Example
+ * @example Stacked Example
  * ```tsx
  * import { TextIconSpacing, FontIcon } from "@react-md/core";
  * import type { ReactElement } from "react";

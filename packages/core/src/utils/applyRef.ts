@@ -4,8 +4,7 @@ import type { MutableRefObject, Ref } from "react";
  * A small utility function that allows me to apply a passed in ref along with
  * my own custom ref logic.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { HTMLAttributes, forwardRef } from "react";
  * import { applyRef } from "@react-md/core";

@@ -99,8 +99,7 @@ export interface TextAreaProps
 /**
  * **Client Component**
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { TextArea } from "@react-md/core";
  * import type { ReactElement } from "react";

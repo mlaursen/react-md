@@ -77,8 +77,7 @@ export interface WindowSplitterImplementation<
 /**
  * Used to control the state for the `WindowSplitter` component.
  *
- * @example
- * Custom Implementation
+ * @example Custom Implementation
  * ```tsx
  * import { useWindowSplitter, WindowSplitterImplementation } from "@react-md/core";
  * import { useState } from "react";

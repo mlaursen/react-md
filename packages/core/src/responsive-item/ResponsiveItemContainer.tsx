@@ -23,8 +23,7 @@ export interface ResponsiveItemContainerClassNameOptions {
   /**
    * Set this to a custom aspect ratio to use.
    *
-   * @example
-   * Valid Aspect Ratios
+   * @example Valid Aspect Ratios
    * ```tsx
    * aspectRatio="16-9"
    * aspectRatio="9-16"
@@ -98,8 +97,7 @@ export interface ResponsiveItemContainerProps
 /**
  * **Server Component**
  *
- * @example
- * Image Example
+ * @example Image Example
  * ```tsx
  * import { ResponsiveItemContainer } from "@react-md/core";
  * import type { ReactElement } from "react";
@@ -113,8 +111,7 @@ export interface ResponsiveItemContainerProps
  * }
  * ```
  *
- * @example
- * Iframe Example
+ * @example Iframe Example
  * ```tsx
  * import { ResponsiveItemContainer } from "@react-md/core";
  * import type { ReactElement } from "react";
@@ -132,8 +129,7 @@ export interface ResponsiveItemContainerProps
  * }
  * ```
  *
- * @example
- * Forced Aspect Ratio
+ * @example Forced Aspect Ratio
  * ```tsx
  * import { ResponsiveItemContainer } from "@react-md/core";
  * import type { ReactElement } from "react";

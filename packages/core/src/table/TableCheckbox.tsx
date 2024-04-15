@@ -60,8 +60,7 @@ export interface TableCheckboxProps
    * This allows you to override any props for the checkbox that are not
    * configurable as top-level props.
    *
-   * @example
-   * Simple Example
+   * @example Simple Example
    * ```tsx
    * checkboxProps={{
    *   id: "some-custom-id",
@@ -80,8 +79,7 @@ export interface TableCheckboxProps
  * The `TableCheckbox` is used to render a `Checkbox` within a `TableCell` by applying
  * some minimal styles.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import {
  *   Table,

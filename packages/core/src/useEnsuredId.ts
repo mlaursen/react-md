@@ -4,8 +4,7 @@ import { useId } from "react";
  * This hook is used to ensure that an `id` has been provided to a component
  * either through props or use the `useId` hook.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import type { HTMLAttributes, ReactElement } from "react";
  * import { useEnsuredId } from "@react-md/core";

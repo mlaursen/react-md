@@ -22,8 +22,7 @@ export interface ParseCssLengthUnitOptions {
  * - `rem`
  * - `em` (if {@link ParseCssLengthUnitOptions.container} is provided)
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```ts
  * parseCssLengthUnit({ value: "24px" }) // 24
  * parseCssLengthUnit({ value: "3.5rem" }) // 56

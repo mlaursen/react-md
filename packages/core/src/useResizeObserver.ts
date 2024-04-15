@@ -165,7 +165,7 @@ export interface ResizeObserverHookOptions<E extends HTMLElement> {
   onUpdate: ResizeObserverEntryCallback;
 
   /**
-   * Set this to `true` to prevent observing the element's size changes. THis is
+   * Set this to `true` to prevent observing the element's size changes. This is
    * equivalent to not attaching the returned ref to any element.
    *
    * @defaultValue `false`

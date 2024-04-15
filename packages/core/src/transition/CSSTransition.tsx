@@ -24,8 +24,7 @@ export interface CSSTransitionProps<E extends HTMLElement>
  * `React.cloneElement` to inject the `ref` and `className` into the `children`,
  * it is recommended to use the hook instead.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { ReactElement, useState } from "react";
  * import { Button, CSSTransition } from "@react-md/core":

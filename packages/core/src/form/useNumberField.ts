@@ -60,8 +60,7 @@ export interface NumberFieldHookOptions
    * other components, keep this as the default of `"change"`. Otherwise, set
    * this to `"blur"`.
    *
-   * @example
-   * Deferring Updates on Blur
+   * @example Deferring Updates on Blur
    * ```tsx
    * import { TextField, useNumberField } from "@react-md/core";
    * import type { ReactElement } from "react";
@@ -160,8 +159,7 @@ export interface ValidatedNumberFieldImplementation
 }
 
 /**
- * @example
- * Enforce Number Value and No Error Messages
+ * @example Enforce Number Value and No Error Messages
  * ```tsx
  * import { TextField, useNumberField } from "@react-md/core";
  * import type { ReactElement } from "react";
@@ -198,8 +196,7 @@ export function useNumberField(
 };
 
 /**
- * @example
- * No Error Messages
+ * @example No Error Messages
  * ```tsx
  * import { TextField, useNumberField } from "@react-md/core";
  * import type { ReactElement } from "react";
@@ -230,8 +227,7 @@ export function useNumberField(
 ): NumberFieldImplementation;
 
 /**
- * @example
- * Enforce Number Value
+ * @example Enforce Number Value
  * ```tsx
  * import { TextField, useNumberField } from "@react-md/core";
  * import type { ReactElement } from "react";
@@ -253,8 +249,7 @@ export function useNumberField(
  * }
  * ```
  *
- * @example
- * Enforce Number Value and Deferring Updates
+ * @example Enforce Number Value and Deferring Updates
  * ```tsx
  * import { TextField, useNumberField } from "@react-md/core";
  * import type { ReactElement } from "react";
@@ -293,8 +288,7 @@ export function useNumberField(
  * The `useNumberField` hook is used to control the state of a `TextField` or
  * `<input type="number">`
  *
- * @example
- * Default Implementation
+ * @example Default Implementation
  * ```tsx
  * import { TextField, useNumberField } from "@react-md/core";
  * import type { ReactElement } from "react";
@@ -316,8 +310,7 @@ export function useNumberField(
  * }
  * ```
  *
- * @example
- * Adding Constraints
+ * @example Adding Constraints
  * ```tsx
  * import { TextField, useNumberField } from "@react-md/core";
  * import type { ReactElement } from "react";

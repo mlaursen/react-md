@@ -17,8 +17,7 @@ import { jest } from "@jest/globals";
  * });
  * ```
  *
- * @example
- * Automatic Cleanup
+ * @example Automatic Cleanup
  * ```ts
  * import { useImmediateRaf } from "@react-md/core/test-utils";
  *

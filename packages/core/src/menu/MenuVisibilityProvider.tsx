@@ -40,8 +40,7 @@ const { Provider } = context;
  * This hook allows you control the visibility of a parent menu. The main
  * use-case for this hook is adding a custom sheet header/footer.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * function SheetFooter(): ReactElement {
  *   const { setVisible } = useMenuVisibility();

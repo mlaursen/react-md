@@ -15,8 +15,7 @@ export interface ToggleHookReturnValue {
 
 /**
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { Button, useToggle } from "@react-md/core";
  * import type { ReactElement } from "react";

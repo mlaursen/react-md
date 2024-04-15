@@ -74,8 +74,7 @@ export interface CarouselOptions {
 }
 
 /**
- * @example
- * Accessible Carousel Example
+ * @example Accessible Carousel Example
  * ```tsx
  * import { Button, SlideContainer, Slide, useCarousel } from "@react-md/core";
  * import ChevronLeftIcon from "@react-md/material-icons/ChevronLeftIcon";

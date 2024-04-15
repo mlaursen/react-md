@@ -68,8 +68,7 @@ export interface OverlayProps
 /**
  * **Client Component**
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { Button, Overlay, useToggle } from "@react-md/core";
  * import type { ReactElement } from "react";

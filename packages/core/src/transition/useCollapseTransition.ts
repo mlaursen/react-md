@@ -146,8 +146,7 @@ export interface CollapseTransitionHookReturnValue<E extends HTMLElement>
    * This is just a convenience object so that you don't need to destructure as
    * many variables to pass to an element.
    *
-   * @example
-   * Simple Usage
+   * @example Simple Usage
    * ```tsx
    * const { elementProps, rendered } = useCollapseTransition({
    *   // ...options
@@ -193,8 +192,7 @@ export interface CollapseTransitionHookReturnValue<E extends HTMLElement>
  * `minHeight`, `minPaddingTop`, and `minPaddingBottom` options can make this
  * work like a "See More"/"Preview" type of element
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { ReactElement, useState } from "react";
  * import { Button, Typography, useCollapseTransition } from "@react-md/core";
@@ -225,8 +223,7 @@ export interface CollapseTransitionHookReturnValue<E extends HTMLElement>
  * }
  * ```
  *
- * @example
- * See More Example
+ * @example See More Example
  * ```tsx
  * import { ReactElement, useState } from "react";
  * import { Button, IconRotator, Typography, useCollapseTransition } from "@react-md/core";

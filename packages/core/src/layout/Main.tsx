@@ -42,8 +42,7 @@ export interface MainProps
  * to work correctly. If you don't need that functionality, use the {@link main}
  * style utility instead.
  *
- * @example
- * Styles Only
+ * @example Styles Only
  * ```tsx
  * import { main as mainStyles } from "@react-md/core":
  *

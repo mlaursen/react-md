@@ -61,8 +61,7 @@ export interface UserInteractionModeProviderProps {
  * - only display `:focus` outlines while in `"keyboard-mode"`
  * - do not display `:hover` effects while in `"touch-mode"`
  *
- * @example
- * Mount at the root of your app
+ * @example Mount at the root of your app
  * ```tsx
  * import { createRoot } from "react-dom/client";
  * import { UserInteractionModeProvider } from "@react-md/core";

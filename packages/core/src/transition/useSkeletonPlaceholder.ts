@@ -25,7 +25,7 @@ export interface SkeletonPlaceholderOptions
   delay?: string;
 
   /**
-   * Set this value tp a number or length unit string to set the height with
+   * Set this value to a number or length unit string to set the height with
    * inline styles.
    *
    * If this is `undefined`, it will use the skeleton placeholder CSS variable
@@ -41,8 +41,7 @@ export interface SkeletonPlaceholderOptions
    * Set this value to an empty string if you want to control the width through
    * SCSS.
    *
-   * @example
-   * No Inline Width CSS
+   * @example No Inline Width CSS
    * ```scss
    * @use "@react-md/core";
    *
@@ -58,8 +57,7 @@ export interface SkeletonPlaceholderOptions
    * }
    * ```
    *
-   * @example
-   * No Inline Width
+   * @example No Inline Width
    * ```ts
    * import type { ReactElement } from "@react";
    * import { useSkeletonPlaceholder } from "@react-md/core";
@@ -80,8 +78,7 @@ export interface SkeletonPlaceholderOptions
    * Set this value to a number or length unit string to set the width with
    * inline styles.
    *
-   * @example
-   * Custom Inline Width
+   * @example Custom Inline Width
    * ```ts
    * import type { ReactElement } from "@react";
    * import { useSkeletonPlaceholder } from "@react-md/core";
@@ -115,8 +112,7 @@ export interface SkeletonPlaceholderOptions
    * to be applied. This is really only useful if you can prerender parts of
    * your layout while waiting for the data to load.
    *
-   * @example
-   * Pre-rendered Layout
+   * @example Pre-rendered Layout
    * ```tsx
    * import type { ReactElement } from "@react";
    * import { SkeletonPlaceholder } from "@react-md/core";

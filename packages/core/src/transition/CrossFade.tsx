@@ -34,8 +34,7 @@ export interface CrossFadeProps<E extends HTMLElement>
  * `React.cloneElement` to inject the `ref` and `className` into the `children`,
  * it is recommended to use the hook instead.
  *
- * @example
- * Appear transitions with a React `key`
+ * @example Appear transitions with a React `key`
  * ```tsx
  * import { ReactElement, useState } from "react";
  * import { CrossFade } from "@react-md/transition";

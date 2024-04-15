@@ -45,8 +45,7 @@ export interface ResizableLayoutImplementation
 }
 
 /**
- * @example
- * Main USage
+ * @example Main Usage
  * ```tsx
  * import {
  *   AppBarTitle,

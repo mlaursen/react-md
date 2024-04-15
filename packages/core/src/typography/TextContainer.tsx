@@ -18,8 +18,7 @@ export interface TextContainerProps
  * This component should be used to render text based content with an
  * appropriate max line length to optimize legibility.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { TextContainer, Typography } from "@react-md/core";
  *

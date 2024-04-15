@@ -72,8 +72,7 @@ export interface TooltipProps
  * will need to manually add all the event listeners and triggers to change the
  * `visible` prop.
  *
- * @example
- * Simple Usage
+ * @example Simple Usage
  * ```tsx
  * import { Button, useTooltip, Tooltip } from "@react-md/core";
  *

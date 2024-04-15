@@ -152,8 +152,7 @@ export interface FixedPositioningHookReturnValue<E extends HTMLElement> {
  * `position: fixed` as if it were `position: absolute` to a parent element that
  * had `position: relative`.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { ReactElement, useRef, useState } from "react";
  * import { Button, useCSSTransition, useFixedPositioning } from "@react-md/core";

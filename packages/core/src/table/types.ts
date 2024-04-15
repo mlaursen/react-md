@@ -40,16 +40,14 @@ export interface TableStickySectionProps {
    * This can be used when the {@link sticky} prop is set to `true` for
    * additional behavior around the "active" state for sticky headers.
    *
-   * @example
-   * Disabling Sticky Active State
+   * @example Disabling Sticky Active State
    * ```ts
    * stickyOptions={{
    *   disabled: true,
    * }}
    * ```
    *
-   * @example
-   * Custom Options
+   * @example Custom Options
    * ```ts
    * stickyOptions={{
    *   getThreshold: useCallback(() => {

@@ -245,8 +245,7 @@ export class ToastManager {
    * Either adds the toast to the queue or updates an existing toast when using
    * an existing `toastId`.
    *
-   * @example
-   * Adding toasts
+   * @example Adding toasts
    * ```tsx
    * // create a toast when the user is offline that will not disappear
    * addToast({ toastId: "offline", visibleTime: null });

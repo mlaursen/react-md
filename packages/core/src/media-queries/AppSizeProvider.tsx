@@ -40,8 +40,7 @@ const { Provider } = context;
  * **Note**: The app size object returned by this hook will **not** be equal
  * between renders.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { useAppSize } from "@react-md/core";
  *

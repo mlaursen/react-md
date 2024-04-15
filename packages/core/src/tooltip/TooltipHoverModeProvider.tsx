@@ -67,8 +67,7 @@ export interface TooltipHoverModeProviderProps
  * You can also use this provider to configure all tooltips' visibility delay to
  * a new value.
  *
- * @example
- * Configuration Example
+ * @example Configuration Example
  * ```tsx
  * <TooltipHoverModeProvider
  *   // wait 3 seconds before displaying any tooltips

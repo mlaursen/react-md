@@ -180,8 +180,7 @@ export interface TextFieldHookOptions<
    * `<textarea>` DOM node, you can use the `fieldRef` returned by this hook
    * instead.
    *
-   * @example
-   * Accessing TextField DOM Node
+   * @example Accessing TextField DOM Node
    * ```tsx
    * import { TextField, useTextField } from "@react-md/core";
    * import { useEffect } from "react";
@@ -341,8 +340,7 @@ export interface ValidatedTextFieldImplementation<
  * If you do not want to display the error messages below the `TextField` and
  * handle error messages separately, set the `disableMessage` option to `true`.
  *
- * @example
- * No Inline Error Messages
+ * @example No Inline Error Messages
  * ```tsx
  * import type { ReactElement } from "react";
  * import { TextField, useTextField } from "@react-md/core";
@@ -364,8 +362,7 @@ export function useTextField<E extends HTMLInputElement | HTMLTextAreaElement>(
 ): TextFieldImplementation<E>;
 
 /**
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import type { ReactElement } from "react";
  * import { TextField, useTextField } from "@react-md/core";
@@ -379,8 +376,7 @@ export function useTextField<E extends HTMLInputElement | HTMLTextAreaElement>(
  * }
  * ```
  *
- * @example
- * Inline Counter
+ * @example Inline Counter
  * ```tsx
  * import type { ReactElement } from "react";
  * import { TextField, useTextField } from "@react-md/core";
@@ -398,8 +394,7 @@ export function useTextField<E extends HTMLInputElement | HTMLTextAreaElement>(
  * }
  * ```
  *
- * @example
- * Adding Constraints
+ * @example Adding Constraints
  * ```tsx
  * import type { ReactElement } from "react";
  * import { TextField, useTextField } from "@react-md/core";
@@ -417,8 +412,7 @@ export function useTextField<E extends HTMLInputElement | HTMLTextAreaElement>(
  * }
  * ```
  *
- * @example
- * Custom Validation
+ * @example Custom Validation
  * ```tsx
  * import type { ReactElement } from "react";
  * import { TextField, useTextField } from "@react-md/core";

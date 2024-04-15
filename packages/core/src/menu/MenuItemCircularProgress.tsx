@@ -32,8 +32,7 @@ export interface MenuItemCircularProgressProps extends CircularProgressProps {
 }
 
 /**
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * "use client";
  * import {

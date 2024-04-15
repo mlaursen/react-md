@@ -7,8 +7,7 @@ import { InputToggle, type CheckboxProps } from "./InputToggle.js";
  * You'll generally want to use the `useCheckboxGroup` hook for managing the
  * checked state for groups of checkboxes and indeterminate checkbox behavior.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import type { ReactElement } from "react";
  * import { Checkbox } from "@react-md/core";

@@ -25,8 +25,7 @@ export type SlideTransitionOptions<E extends HTMLElement> =
   PreconfiguredCSSTransitionOptions<E>;
 
 /**
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import type { SlideDirection } from "@react-md/core";
  * import { slideContainer, useSlideTransition } from "@react-md/core";

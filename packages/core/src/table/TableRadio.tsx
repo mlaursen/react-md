@@ -55,8 +55,7 @@ export interface TableRadioProps
    * This allows you to override any props for the checkbox that are not
    * configurable as top-level props.
    *
-   * @example
-   * Simple Example
+   * @example Simple Example
    * ```tsx
    * checkboxProps={{
    *   id: "some-custom-id",
@@ -75,8 +74,7 @@ export interface TableRadioProps
  * The `TableRadio` is used to render a `Radio` within a `TableCell` by applying
  * some minimal styles.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import {
  *   Table,

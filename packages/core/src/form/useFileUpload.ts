@@ -177,8 +177,7 @@ export interface FileUploadHookReturnValue<
    * when the {@link FileValidationOptions.extensions} list has been provided to
    * limit which files the OS will _attempt_ to allow access to.
    *
-   * @example
-   * Simple example
+   * @example Simple example
    * ```ts
    * const extensions = ['pdf', 'docx', 'ppt'];
    * const { accept } = useFileUpload({ extensions, ...others });

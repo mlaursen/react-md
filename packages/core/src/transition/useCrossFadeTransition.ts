@@ -66,8 +66,7 @@ export interface CrossFadeTransitionHookOptions<E extends HTMLElement>
  * distance. This is generally used for full page transitions when a route
  * changes.
  *
- * @example
- * New Page Transition with the Layout component
+ * @example New Page Transition with the Layout component
  * ```tsx
  * import { ReactElement, ReactNode, useLayoutEffect } from "react";
  * import { useLocation } from "react-router-dom":

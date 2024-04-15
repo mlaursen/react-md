@@ -77,8 +77,7 @@ export type MatchMediaSpiedFunction = jest.SpiedFunction<
   typeof window.matchMedia
 > & {
   /**
-   * @example
-   * Default Behavior
+   * @example Default Behavior
    * ```tsx
    * const matchMedia = spyOnMatchMedia();
    * render(<Test />);
@@ -89,8 +88,7 @@ export type MatchMediaSpiedFunction = jest.SpiedFunction<
    * // expect phone results
    * ```
    *
-   * @example
-   * Custom Act Behavior
+   * @example Custom Act Behavior
    * ```tsx
    * const matchMedia = spyOnMatchMedia();
    * const { rerender } = render(<Test />);
@@ -107,8 +105,7 @@ export type MatchMediaSpiedFunction = jest.SpiedFunction<
 };
 
 /**
- * @example
- * Default Behavior
+ * @example Default Behavior
  * ```tsx
  * import { matchPhone, render, spyOnMatchMedia } from "@react-md/test-utils";
  *
@@ -121,8 +118,7 @@ export type MatchMediaSpiedFunction = jest.SpiedFunction<
  * // expect phone results
  * ```
  *
- * @example
- * Set Default Media
+ * @example Set Default Media
  * ```tsx
  * import { matchPhone, render, spyOnMatchMedia } from "@react-md/test-utils";
  *

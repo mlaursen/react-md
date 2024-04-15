@@ -13,8 +13,7 @@ export type ThrottledFunction<F extends AnyFunction> = CancelableFunction<
 /**
  * Creates a function that will only be called once every X milliseconds.
  *
- * @example
- * Throttling Search API Requests
+ * @example Throttling Search API Requests
  * ```tsx
  * import { TextField, useThrottledFunction, useUnmounted } from "@react-md/core";
  * import { useState } from "react";

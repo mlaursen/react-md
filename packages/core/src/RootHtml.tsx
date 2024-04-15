@@ -49,8 +49,7 @@ export interface RootHtmlProps extends HtmlHTMLAttributes<HTMLHtmlElement> {
  * passed to the root `<html>` and `<body>` elements and children can be
  * rendered before and after the `<body>` if needed.
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * // src/app/layout.tsx
  * import { RootHtml } from "@react-md/core";

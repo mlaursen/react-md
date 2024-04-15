@@ -62,8 +62,7 @@ export interface DropzoneHookReturnValue {
 }
 
 /**
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import { useDropzone, useFileUpload } from "@react-md/core"
  * import type { CSSProperties, ReactElement } from "react";
@@ -92,8 +91,7 @@ export interface DropzoneHookReturnValue {
  * }
  * ```
  *
- * @example
- * Dragging Example
+ * @example Dragging Example
  * ```tsx
  * import { useDropzone, useFileUpload } from "@react-md/core"
  * import type { CSSProperties, ReactElement } from "react";

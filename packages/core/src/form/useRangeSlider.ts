@@ -32,8 +32,7 @@ export interface RangeSliderImplementation
     RangeSliderState {}
 
 /**
- * @example
- * Range Slider Example
+ * @example Range Slider Example
  * ```tsx
  * import { Fieldset, Form, Legend, Slider, useRangeSlider } from "@react-md/core";
  * import type { ReactElement } from "react";

@@ -208,8 +208,7 @@ export type DialogProps = LabelRequiredForA11y<BaseDialogProps>;
 /**
  * **Client Component**
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import {
  *   Button,

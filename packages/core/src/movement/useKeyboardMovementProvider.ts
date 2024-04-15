@@ -70,8 +70,7 @@ const returnNegative1 = (): number => -1;
  * Implements the custom keyboard movement behavior throughout react-md. Using
  * the "Find References" will be the best way to see example usage.
  *
- * @example
- * Default Keyboard Movement for any Focusable Element
+ * @example Default Keyboard Movement for any Focusable Element
  * ```tsx
  * import {
  *   KeyboardMovementProvider,
@@ -94,8 +93,7 @@ const returnNegative1 = (): number => -1;
  * }
  * ```
  *
- * @example
- * Active Descendant Movement
+ * @example Active Descendant Movement
  * ```tsx
  * import {
  *   KeyboardMovementProvider,
@@ -141,8 +139,7 @@ const returnNegative1 = (): number => -1;
  * }
  * ```
  *
- * @example
- * Roving Tab Index
+ * @example Roving Tab Index
  * ```tsx
  * import {
  *   KeyboardMovementProvider,

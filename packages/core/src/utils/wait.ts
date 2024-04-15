@@ -1,6 +1,5 @@
 /**
- * @example
- * Wait some duration
+ * @example Wait some duration
  * ```ts
  * import { wait } from "@react-md/core";
  *

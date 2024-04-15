@@ -49,8 +49,7 @@ export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
 /**
  * **Server Component**
  *
- * @example
- * Simple Example
+ * @example Simple Example
  * ```tsx
  * import type { ReactElement } from "react";
  * import { Badge, Button, MaterialSymbol } from "@react-md/core";
@@ -68,8 +67,7 @@ export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
  * }
  * ```
  *
- * @example
- * Within Buttons Example
+ * @example Within Buttons Example
  * ```tsx
  * import type { ReactElement } from "react";
  * import { Badge, Button, MaterialSymbol } from "@react-md/core";
