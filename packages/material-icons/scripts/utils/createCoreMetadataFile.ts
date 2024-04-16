@@ -15,16 +15,16 @@ export async function createCoreMetadataFIle(
   const generatedTypes = await format(
     `${GENERATED_FILE_BANNER}
 
-/** @remarks \\@since 6.0.0 */
+/** @since 6.0.0 */
 ${printTypeUnion("MaterialIconFamily", iconFamilyTypes)}
 
-/** @remarks \\@since 6.0.0 */
+/** @since 6.0.0 */
 ${printTypeUnion("MaterialIconName", [...iconNames])}
 
-/** @remarks \\@since 6.0.0 */
+/** @since 6.0.0 */
 ${printTypeUnion("MaterialSymbolFamily", symbolFamilyTypes)}
 
-/** @remarks \\@since 6.0.0 */
+/** @since 6.0.0 */
 ${printTypeUnion("MaterialSymbolName", [...symbolNames])}
 
 `
