@@ -68,7 +68,30 @@ describe("LayoutAppBar", () => {
     rmdRender(<Test />);
 
     expect(getVar()).toBe("0px");
+
     const appBar = screen.getByRole("banner");
+    act(() => {
+      observer.resizeElement(appBar, {
+        height: 96,
+      });
+    });
+    expect(getVar()).toBe("96px");
+  });
+
+  it("should automatically apply the app bar height as css variables while waiting for the first observer event to prevent layout shifts", () => {
+    const observer = setupResizeObserverMock();
+    // pretend it was set in CSS
+    const getComputedStyle = jest
+      .spyOn(window, "getComputedStyle")
+      .mockReturnValue({
+        getPropertyValue: () => "3.5rem",
+      } as unknown as CSSStyleDeclaration);
+    rmdRender(<Test />);
+
+    expect(getVar()).toBe("3.5rem");
+
+    const appBar = screen.getByRole("banner");
+    getComputedStyle.mockRestore();
     act(() => {
       observer.resizeElement(appBar, {
         height: 96,

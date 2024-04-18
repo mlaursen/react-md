@@ -1,8 +1,7 @@
 "use client";
-import type { Ref, RefCallback } from "react";
-import { useMemo } from "react";
-import type { DefinedCSSVariableName } from "../theme/types.js";
-import type { CSSVariable } from "../theme/useCSSVariables.js";
+import { useMemo, type Ref, type RefCallback } from "react";
+import { type DefinedCSSVariableName } from "../theme/types.js";
+import { type CSSVariable } from "../theme/useCSSVariables.js";
 import { useElementSize } from "../useElementSize.js";
 
 declare module "react" {
@@ -72,17 +71,17 @@ export interface LayoutAppBarHeightResult {
 export function useLayoutAppBarHeight(
   ref?: Ref<HTMLDivElement>
 ): LayoutAppBarHeightResult {
-  const { height, elementRef } = useElementSize({
+  const { height, elementRef, observedOnce } = useElementSize({
     ref,
     disableWidth: true,
   });
   const variables = useMemo<CSSVariable<DefinedCSSVariableName>[]>(() => {
-    if (Number.isNaN(height)) {
+    if (Number.isNaN(height) || !observedOnce) {
       return [];
     }
 
     return [{ name: "--rmd-layout-header-height", value: `${height}px` }];
-  }, [height]);
+  }, [height, observedOnce]);
 
   return {
     height,

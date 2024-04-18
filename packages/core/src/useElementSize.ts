@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useState, type RefCallback } from "react";
+import { useCallback, useRef, useState, type RefCallback } from "react";
 import { type ElementSize, type UseStateInitializer } from "./types.js";
 import {
   useResizeObserver,
@@ -21,6 +21,29 @@ export interface ElementSizeOptions<E extends HTMLElement>
 export interface ElementSizeImplementation<E extends HTMLElement>
   extends ElementSize {
   elementRef: RefCallback<E>;
+
+  /**
+   * This will be `true` once the resize observer's callback is triggered at
+   * least once.
+   *
+   * This was added so that generating custom properties that have a reasonable
+   * default value set in css don't cause major layout shifts when a default
+   * value cannot be provided.
+   *
+   * @example
+   * ```tsx
+   * const { height, width, observedOnce }` = useElementSize();
+   * useCSSVariables(useMemo(() => {
+   *   if (!observedOnce) {
+   *     return []
+   *   }
+   *
+   *   // something that uses the element's height, width, or both
+   *   return [{ var: "--something", value: height / width * 0.5 }];
+   * }, [height, width, observedOnce]))
+   * ```
+   */
+  observedOnce: boolean;
 }
 
 /**
@@ -50,6 +73,7 @@ export function useElementSize<E extends HTMLElement>(
 ): ElementSizeImplementation<E> {
   const { defaultValue } = options;
 
+  const observedOnce = useRef(false);
   const [size, setSize] = useState<ElementSize>(() => {
     if (typeof defaultValue === "function") {
       return defaultValue();
@@ -66,6 +90,7 @@ export function useElementSize<E extends HTMLElement>(
   const elementRef = useResizeObserver({
     ...options,
     onUpdate: useCallback((entry) => {
+      observedOnce.current = true;
       const size = entry.borderBoxSize[0];
 
       setSize({
@@ -78,5 +103,6 @@ export function useElementSize<E extends HTMLElement>(
   return {
     ...size,
     elementRef,
+    observedOnce: observedOnce.current,
   };
 }
