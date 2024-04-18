@@ -311,6 +311,40 @@ describe("ToastManagerProvider", () => {
       expect(message).not.toBeInTheDocument();
     });
 
+    it("should set the startTime to the current timestamp when resuming so that it can be paused multiple times", async () => {
+      const { message, user } = await init();
+
+      await user.hover(message);
+      act(() => {
+        jest.advanceTimersByTime(3000);
+      });
+      expect(message).toBeInTheDocument();
+      expect(message).not.toHaveClass(LEAVE_CLASS_NAME);
+
+      await user.unhover(message);
+      expect(message).toBeInTheDocument();
+      expect(message).not.toHaveClass(LEAVE_CLASS_NAME);
+      await user.hover(message);
+      act(() => {
+        jest.advanceTimersByTime(8000);
+      });
+      expect(message).toBeInTheDocument();
+      expect(message).not.toHaveClass(LEAVE_CLASS_NAME);
+
+      await user.unhover(message);
+      expect(message).toBeInTheDocument();
+      expect(message).not.toHaveClass(LEAVE_CLASS_NAME);
+      act(() => {
+        jest.advanceTimersByTime(2000);
+      });
+      expect(message).toBeInTheDocument();
+      expect(message).toHaveClass(LEAVE_CLASS_NAME);
+      act(() => {
+        jest.runOnlyPendingTimers();
+      });
+      expect(message).not.toBeInTheDocument();
+    });
+
     it("should restart toasts with the same toastId by default", async () => {
       const user = userEvent.setup({ delay: null });
       renderWithManager(<SimpleTest toast={{ toastId: "same-toast-id" }} />);

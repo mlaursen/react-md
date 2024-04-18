@@ -312,13 +312,17 @@ export class ToastManager {
     const existingIndex = this.#getToastIndex(toast.toastId);
     if (existingIndex !== -1 && duplicates !== "allow") {
       const existingToast = this.#queue[existingIndex];
+      const nextToast: QueuedToast = {
+        ...existingToast,
+        ...toast,
+      };
 
       // reorder/move the existing toast to be the next item in the queue by:
       // - removing the toast from the queue
       // - inserting it into the next position with the updates
       if (priority === "next" && existingIndex > 1) {
         this.#queue.splice(existingIndex, 1);
-        this.#queue.splice(1, 0, { ...existingToast, ...toast });
+        this.#queue.splice(1, 0, nextToast);
         this.#emit();
         return;
       }
@@ -329,10 +333,7 @@ export class ToastManager {
         existingIndex !== 0
       ) {
         this.#queue.splice(existingIndex, 1);
-        this.#addToastImmediately({
-          ...existingToast,
-          ...toast,
-        });
+        this.#addToastImmediately(nextToast);
         this.#emit();
         return;
       }
@@ -340,7 +341,12 @@ export class ToastManager {
       const timers = this.#timers.get(toastId);
       if (existingToast.visible && duplicates === "restart" && timers) {
         this.#timers.set(toastId, { ...timers, elapsedTime: 0 });
-        this.startRemoveTimeout(toastId);
+
+        // wait for the next resume event instead. this _should_ only happen
+        // when hovering a toast and another toast replaces it
+        if (!nextToast.paused) {
+          this.startRemoveTimeout(toastId);
+        }
       }
 
       this.#updateToast(existingIndex, toast);
@@ -445,6 +451,7 @@ export class ToastManager {
       return;
     }
 
+    timers.startTime = Date.now();
     this.#updateToast(toastIndex, { paused: false });
     this.startRemoveTimeout(toastId);
   };

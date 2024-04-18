@@ -43,7 +43,7 @@ exports[`ToastManagerProvider default toast manager should work without needing 
 exports[`ToastManagerProvider toast queue should add a toast next in queue if a different toast is being displayed and duplicates are allowed or the toast does not exist in the queue yet 1`] = `
 <div
   class="rmd-toast"
-  id="toast-:ru:"
+  id="toast-:r10:"
   role="status"
 >
   <div
@@ -57,7 +57,7 @@ exports[`ToastManagerProvider toast queue should add a toast next in queue if a 
 exports[`ToastManagerProvider toast queue should allow a toast to replace the currently shown toast 1`] = `
 <div
   class="rmd-toast"
-  id="toast-:ri:"
+  id="toast-:rk:"
   role="status"
 >
   <div
@@ -72,11 +72,11 @@ exports[`ToastManagerProvider toast queue should not trigger a timeout if the vi
 <div
   class="rmd-snackbar rmd-snackbar--bottom"
   data-testid="snackbar"
-  id="snackbar-:r1b:"
+  id="snackbar-:r1d:"
 >
   <div
     class="rmd-toast rmd-toast--x rmd-scale-transition--enter rmd-scale-transition--enter-active"
-    id="toast-:r1c:"
+    id="toast-:r1e:"
     role="alert"
   >
     <div
@@ -104,11 +104,11 @@ exports[`ToastManagerProvider toast queue should not trigger a timeout if the vi
 <div
   class="rmd-snackbar rmd-snackbar--bottom"
   data-testid="snackbar"
-  id="snackbar-:r1b:"
+  id="snackbar-:r1d:"
 >
   <div
     class="rmd-toast rmd-toast--x rmd-scale-transition--exit rmd-scale-transition--exit-active"
-    id="toast-:r1c:"
+    id="toast-:r1e:"
     role="alert"
   >
     <div
@@ -136,33 +136,33 @@ exports[`ToastManagerProvider toast queue should support rendering multiple toas
 <div
   class="rmd-snackbar rmd-snackbar--bottom"
   data-testid="snackbar"
-  id="snackbar-:r1d:"
+  id="snackbar-:r1f:"
 >
   <div
     class="rmd-toast"
-    id="toast-:r1e:"
-    role="status"
-  >
-    <div
-      class="rmd-toast-content"
-    >
-      Hello, world!
-    </div>
-  </div>
-  <div
-    class="rmd-toast rmd-scale-transition--enter rmd-scale-transition--enter-active"
-    id="toast-:r1f:"
-    role="status"
-  >
-    <div
-      class="rmd-toast-content"
-    >
-      Hello, world!
-    </div>
-  </div>
-  <div
-    class="rmd-toast rmd-scale-transition--enter rmd-scale-transition--enter-active"
     id="toast-:r1g:"
+    role="status"
+  >
+    <div
+      class="rmd-toast-content"
+    >
+      Hello, world!
+    </div>
+  </div>
+  <div
+    class="rmd-toast rmd-scale-transition--enter rmd-scale-transition--enter-active"
+    id="toast-:r1h:"
+    role="status"
+  >
+    <div
+      class="rmd-toast-content"
+    >
+      Hello, world!
+    </div>
+  </div>
+  <div
+    class="rmd-toast rmd-scale-transition--enter rmd-scale-transition--enter-active"
+    id="toast-:r1i:"
     role="status"
   >
     <div
@@ -178,11 +178,11 @@ exports[`ToastManagerProvider toast queue should support rendering multiple toas
 <div
   class="rmd-snackbar rmd-snackbar--bottom"
   data-testid="snackbar"
-  id="snackbar-:r1d:"
+  id="snackbar-:r1f:"
 >
   <div
     class="rmd-toast"
-    id="toast-:r1f:"
+    id="toast-:r1h:"
     role="status"
   >
     <div
@@ -193,7 +193,7 @@ exports[`ToastManagerProvider toast queue should support rendering multiple toas
   </div>
   <div
     class="rmd-toast"
-    id="toast-:r1g:"
+    id="toast-:r1i:"
     role="status"
   >
     <div
@@ -204,7 +204,7 @@ exports[`ToastManagerProvider toast queue should support rendering multiple toas
   </div>
   <div
     class="rmd-toast rmd-scale-transition--enter rmd-scale-transition--enter-active"
-    id="toast-:r1h:"
+    id="toast-:r1j:"
     role="status"
   >
     <div
@@ -220,11 +220,11 @@ exports[`ToastManagerProvider toast queue should support rendering multiple toas
 <div
   class="rmd-snackbar rmd-snackbar--bottom"
   data-testid="snackbar"
-  id="snackbar-:r1d:"
+  id="snackbar-:r1f:"
 >
   <div
     class="rmd-toast rmd-scale-transition--exit rmd-scale-transition--exit-active"
-    id="toast-:r1f:"
+    id="toast-:r1h:"
     role="status"
   >
     <div
@@ -235,7 +235,7 @@ exports[`ToastManagerProvider toast queue should support rendering multiple toas
   </div>
   <div
     class="rmd-toast rmd-scale-transition--exit rmd-scale-transition--exit-active"
-    id="toast-:r1g:"
+    id="toast-:r1i:"
     role="status"
   >
     <div
@@ -246,7 +246,7 @@ exports[`ToastManagerProvider toast queue should support rendering multiple toas
   </div>
   <div
     class="rmd-toast"
-    id="toast-:r1h:"
+    id="toast-:r1j:"
     role="status"
   >
     <div
@@ -262,11 +262,11 @@ exports[`ToastManagerProvider toast queue should support rendering multiple toas
 <div
   class="rmd-snackbar rmd-snackbar--bottom"
   data-testid="snackbar"
-  id="snackbar-:r1d:"
+  id="snackbar-:r1f:"
 >
   <div
     class="rmd-toast rmd-scale-transition--exit rmd-scale-transition--exit-active"
-    id="toast-:r1h:"
+    id="toast-:r1j:"
     role="status"
   >
     <div
@@ -277,7 +277,7 @@ exports[`ToastManagerProvider toast queue should support rendering multiple toas
   </div>
   <div
     class="rmd-toast rmd-scale-transition--enter rmd-scale-transition--enter-active"
-    id="toast-:r1i:"
+    id="toast-:r1k:"
     role="status"
   >
     <div
