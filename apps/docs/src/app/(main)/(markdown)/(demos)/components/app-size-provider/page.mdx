@@ -1,3 +1,44 @@
 # App Size Provider
 
-TODO
+The `AppSizeProvider` is used to determine the viewport size through media
+queries. This provider is included in the [CoreProviders](./core-providers)
+and multiple instances cannot be mounted multiple times in a single app.
+
+# Configuration
+
+`react-md` uses the following media queries to determine the app size:
+
+- `phone` - `@media screen and (max-width: 47.9375em)`
+- `tablet` - `@media screen and (min-width: 48em)`
+- `tablet-only` - `@media screen and (min-width: 48em) and (max-width: 64em)`
+- `desktop` - `@media screen and (min-width: 64.0625em)`
+- `large-desktop` - `@media screen and (min-width: 80em)`
+
+To change these values, update the Sass variables and `appSizeQueries`.
+
+```demo source="./ConfigurationExample.tsx" importOnly
+
+```
+
+```scss
+@use "@react-md/core" with (
+  $phone-max-width: 47.9375em,
+  $tablet-min-width: 48em,
+  $tablet-max-width: 64,
+  $desktop-min-width: 64.0625em,
+  $large-desktop-min-width: 80em
+);
+```
+
+# Use App Size
+
+Once the `AppSizeProvider` has been mounted somewhere near the root of your app,
+the current app size can be retrieved by the `useAppSize` hook. The app size is
+used internally for the [layout](/getting-started/layout), [menu
+components](./menu), and [tabs components](./tabs).
+
+Try resizing the browser to see the values updating.
+
+```demo source="./UseAppSizeExample.tsx"
+
+```
