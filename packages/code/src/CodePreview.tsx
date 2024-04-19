@@ -8,6 +8,7 @@ import { useId, type ReactElement, type ReactNode } from "react";
 const styles = bem("code-preview");
 
 export interface ConfigurableCodePreviewProps extends BoxProps {
+  disableBox?: boolean;
   transparent?: boolean;
   borderBottom?: boolean;
 }
@@ -21,7 +22,8 @@ export function CodePreview(props: CodePreviewProps): ReactElement {
     error,
     className,
     justify = "center",
-    borderBottom = false,
+    borderBottom,
+    disableBox,
     transparent,
     children,
     ...remaining
@@ -34,7 +36,11 @@ export function CodePreview(props: CodePreviewProps): ReactElement {
       {...remaining}
       justify={justify}
       className={cnb(
-        styles({ transparent, "no-bb": !borderBottom }),
+        styles({
+          block: disableBox,
+          "no-bb": !borderBottom,
+          transparent,
+        }),
         className
       )}
     >

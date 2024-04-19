@@ -1,0 +1,35 @@
+@use "sass:map";
+@use "@react-md/core" with (
+  $box-grids: (
+    variant-1: (
+      min: 5rem,
+    ),
+    variant-2: (
+      min: 7rem,
+      gap: 0.5rem,
+      padding: 2rem,
+    ),
+    variant-3: (
+      min: 7rem,
+      gap: 1.5rem,
+      padding: 0,
+    ),
+  )
+);
+
+// this is only required for this demo. In your application, this should just be the normal:
+// @include core.styles;
+.container {
+  :global {
+    .rmd-box {
+      @each $name, $values in core.$box-grids {
+        @include core.box-custom-grid-class(
+          "&--#{$name}",
+          $min: map.get($values, min),
+          $gap: map.get($values, gap),
+          $padding: map.get($values, padding)
+        );
+      }
+    }
+  }
+}

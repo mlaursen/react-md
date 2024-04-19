@@ -56,7 +56,7 @@ $variables: (gap, padding, item-min-size, columns);
 
 @mixin custom-grid($min: null, $padding: null, $gap: null) {
   @if $min {
-    @include set-var(min-size, $min);
+    @include set-var(item-min-size, $min);
   }
 
   @if $padding {

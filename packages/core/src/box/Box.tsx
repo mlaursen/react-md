@@ -73,7 +73,7 @@ export interface BoxProps extends HTMLAttributes<HTMLDivElement>, BoxOptions {}
  * @example Custom Grid
  * ```scss
  * @use "@react-md/core" with (
- *   $grids: (
+ *   $box-grids: (
  *     small: (
  *       min: 5rem,
  *     ),
@@ -113,6 +113,7 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>(
       children,
       align,
       grid = false,
+      style: propStyle,
       gridName = "",
       justify,
       stacked = false,
@@ -124,9 +125,18 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>(
       ...remaining
     } = props;
 
+    let style = propStyle;
+    if (typeof gridColumns === "number") {
+      style = {
+        ...propStyle,
+        "--rmd-box-columns": gridColumns,
+      };
+    }
+
     return (
       <div
         {...remaining}
+        style={style}
         ref={ref}
         className={box({
           className,

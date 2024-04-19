@@ -64,6 +64,10 @@ $color-preview-border-width: $color-preview-outer-width + 0.0625em;
       border-bottom-width: 0;
     }
 
+    &--block {
+      display: block;
+    }
+
     &--transparent {
       --code-preview-bg: transparent;
     }

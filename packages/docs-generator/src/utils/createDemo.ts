@@ -26,8 +26,9 @@ const createDemoMdxCode = ({
 export interface InlineDemoProps {
   card: boolean;
   phone: boolean;
-  transparent: boolean;
+  disableBox: boolean;
   importOnly: boolean;
+  transparent: boolean;
 }
 
 export interface DemoProps extends InlineDemoProps {
@@ -65,6 +66,7 @@ export async function createDemo(options: CreateDemoOptions): Promise<void> {
   const props: InlineDemoProps = {
     card: false,
     phone: false,
+    disableBox: false,
     importOnly: false,
     transparent: false,
   };
@@ -83,8 +85,9 @@ export async function createDemo(options: CreateDemoOptions): Promise<void> {
         break;
       case "card":
       case "phone":
-      case "transparent":
+      case "disableBox":
       case "importOnly":
+      case "transparent":
         props[name] = true;
         break;
       default:

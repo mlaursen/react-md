@@ -1,3 +1,131 @@
 # Box
 
-TODO
+The `Box` component can be used for simple `flex` and `grid` layouts that have
+spacing between each item.
+
+# Flex Example
+
+The `Box` defaults to using `display: flex`, `align-items: center`,
+`justify-content: center`, `padding: 1rem`, and `gap: 1rem`.
+
+> !Info! The `padding` and `gap` can be configured globally by changing the
+> `$box-gap` and `$box-padding` Sass variables.
+
+```demo source="./FlexExample.tsx"
+
+```
+
+## Disable Flex Wrap
+
+Enable the `disableWrap` prop to prevent line wrapping and instead attempt to
+shrink each item to fit on a single line.
+
+```demo source="./DisableFlexWrap.tsx" disableBox
+
+```
+
+## Additional Flex Options
+
+The following flex options can be configured by props:
+
+- `align` - `"start" | "center" | "end" | "stretch"`
+- `justify` - `"start" | "center" | "end" | "stretch" | "space-around" | "space-between" | "space-evenly"`
+- `fullWidth` - apply `width: 100%`
+- `disablePadding` - do not apply the default padding
+- `stacked` - set `flex-direction: column`
+- `reversed` - set `flex-direction: row-reverse` or `flex-direction: column-reverse` when `stacked` is enabled
+
+See the example below to see how these props can be used.
+
+```demo source="./AdditionalFlexOptionsExample.tsx" disableBox
+
+```
+
+# Grid Example
+
+Enable the `grid` prop to render equal width dynamic columns that will be at
+least `8rem` wide.
+
+> !Info! The min width can be configured globally by changing the
+> `$box-item-min-size` Sass variable.
+
+```demo source="./GridExample.tsx" disableBox
+
+```
+
+## Custom Grid Name
+
+As the app grows it might be useful to define different grid variants that
+provide different min item size, gap, and/or padding. The variants can be
+configured by setting the `$box-grids` variable when `@forward`-ing or
+`@use`-ing `@react-md/core`. Each mapped name will be available as a `gridName`
+on the `Box` component.
+
+```demo source="./CustomGridNameExample.tsx" disableBox
+
+```
+
+## Customizing Gap, Padding, and Min Item Size
+
+The `gap`, `padding`, and min item size for part of the DOM using the
+`box-set-var` mixin or a custom class name on the `Box` component.
+
+> !Success! The `gap` and `padding` are also available for the `flex` version
+> of the `Box`.
+
+```demo source="./CustomizingGapPaddingAndMinItemSize.tsx" disableBox
+
+```
+
+## Auto-fill Grid Columns
+
+The grid defaults to using `auto-fit` but can be configured to `auto-fill`
+by setting `gridColumns="fill"`. To help explain the difference between the two:
+
+- `auto-fit` - fill the entire width with columns and stretch columns to fill
+  the remaining space
+- `auto-fill` - fill the entire width with columns and add empty columns to
+  fill the remaining space
+
+Try changing the `ITEMS` value below to see the difference.
+
+```demo source="./AutoFillGridColumnsExample.tsx" disableBox
+
+```
+
+## Custom Grid Columns
+
+If a specific number of columns should be enforced, set the `gridColumns` prop
+to that number.
+
+```demo source="./CustomGridColumnsExample.tsx" disableBox
+
+```
+
+## Additional Grid Options
+
+The following grid options can be configured by props:
+
+- `align` - `"start" | "center" | "end" | "stretch"`
+- `fullWidth` - apply `width: 100%`
+- `disablePadding` - do not apply the default padding
+
+See the example below to see how these props can be used.
+
+```demo source="./AdditionalGridOptionsExample.tsx" disableBox
+
+```
+
+# Box Class Name Function
+
+The box styles can also be applied using the `box` class name function. It
+supports all the box styling options and can be applied to any element that
+supports `display: flex` or `display: grid`.
+
+> !Warn! Setting the `gridColumns` to a number with the `box` class name
+> function does not enforce the provided number of columns like the `Box`
+> component. It will only update the `--rmd-box-item-min-size` to `0`.
+
+```demo source="./BoxClassNameFunctionExample.tsx" disableBox
+
+```

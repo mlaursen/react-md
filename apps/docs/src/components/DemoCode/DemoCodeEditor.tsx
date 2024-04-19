@@ -25,10 +25,11 @@ import { ScssCodeEditor } from "./ScssCodeEditor.jsx";
 import { TypescriptCodeEditor } from "./TypescriptCodeEditor.jsx";
 
 export interface DemoCodeEditorProps extends PreviewContainerOptions {
-  transparent?: boolean;
   scope: RunnableCodeScope;
   demoName: string;
   tsCodeFile: TypescriptCodeFile;
+  disableBox?: boolean;
+  transparent?: boolean;
   scssCodeFile?: ScssCodeFile;
 }
 
@@ -39,8 +40,9 @@ export function DemoCodeEditor(props: DemoCodeEditorProps): ReactElement {
     scope,
     demoName,
     tsCodeFile,
-    scssCodeFile,
+    disableBox,
     transparent,
+    scssCodeFile,
   } = props;
 
   const toastManager = useMemo(() => new ToastManager(), []);
@@ -73,9 +75,10 @@ export function DemoCodeEditor(props: DemoCodeEditorProps): ReactElement {
       <DemoCodePreview
         key={`${toggled}`}
         code={code.replace("Demo.module.scss", `${demoName}.module.scss`)}
-        scope={scope}
         card={card}
+        scope={scope}
         phone={phone}
+        disableBox={disableBox}
         transparent={transparent}
       />
       <CodeBlockAppBar>

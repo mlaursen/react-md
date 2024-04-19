@@ -1,0 +1,14 @@
+@use "everything";
+
+.container {
+  @include everything.box-set-var(padding, 2rem);
+  @include everything.box-set-var(gap, 0.5rem);
+  @include everything.box-set-var(item-min-size, 5rem);
+}
+
+.override {
+  @include everything.box-set-var(item-min-size, 12rem);
+
+  gap: 1.25rem;
+  padding: 0.25rem;
+}

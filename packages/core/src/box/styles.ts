@@ -73,12 +73,11 @@ export interface BoxOptions {
   disablePadding?: boolean;
 
   /**
-   * This is a grid configuration
-   * This should match one of the names in the `$grids` map. So for example:
+   * This should match one of the names in the `$box-grids` map. So for example:
    *
    * ```scss
    * @use "react-md" with (
-   *   $grids: (
+   *   $box-grids: (
    *     small: (
    *       min: 5rem
    *     ),
@@ -108,7 +107,8 @@ export interface BoxOptions {
   align?: BoxAlignItems;
 
   /**
-   * The default value is really `center` or whatever the `$default-align-items` is set to.
+   * The default value is really `center` or whatever the
+   * `$box-default-align-items` is set to.
    *
    * @defaultValue `""`
    */

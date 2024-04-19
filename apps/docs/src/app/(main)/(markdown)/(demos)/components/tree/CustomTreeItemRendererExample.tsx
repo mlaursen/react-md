@@ -81,7 +81,7 @@ function CustomTreeItem(
       itemId={itemId}
       leftAddon={expanded ? <FolderOpenIcon /> : <FolderIcon />}
       childItems={childItems}
-      className={cnb(selected && styles.selected)}
+      contentClassName={cnb(selected && styles.selected)}
     >
       {name}
     </TreeItem>
