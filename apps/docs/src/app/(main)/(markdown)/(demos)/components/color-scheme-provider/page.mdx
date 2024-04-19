@@ -1,3 +1,121 @@
 # Color Scheme Provider
 
-TODO
+The `ColorSchemeProvider` can be used to allow the user to change the color
+scheme of the app to `light`, `dark`, or `system`. The provider can be
+initialized using the `LocalStorageColorSchemeProvider` or the
+`useLocalStorageProvider` for a custom implementation.
+
+> !Info! See the [Dark Mode](/customization/dark-mode) customization for more
+> information around creating a dark mode for the app.
+
+# Local Storage Example
+
+> !Warn! The documentation site uses a custom implementation using cookies
+> so the website's color scheme will not match this example.
+
+Mount the `LocalStorageColorSchemeProvider` near the root of the app with the
+`defaultColorSchemeMode` set to `"light"`, `"dark"`, or `"system"` and update
+the `@react-md/core` Sass configuration to match.
+
+```demo source="./LocalStorageExample.tsx"
+
+```
+
+# Cookie Storage Example
+
+When using server side rendering, it is recommended to use cookies or an API so
+that the default color scheme can be set on the server preventing any screen
+flashing when changing from light to dark or dark to light. The code below is a
+simplified version of how this documentation site handles the color scheme.
+
+```tsx fileName="src/components/CookieColorSchemeProvider.tsx"
+"use client";
+import {
+  ColorSchemeProvider,
+  type ColorSchemeMode,
+} from "@react-md/core/theme/useColorScheme";
+import { useColorSchemeProvider } from "@react-md/core/theme/useColorSchemeProvider";
+import { type UseStateSetter } from "@react-md/core/types";
+import Cookies from "js-cookie";
+import {
+  useCallback,
+  useState,
+  type ReactElement,
+  type ReactNode,
+} from "react";
+
+export function setCookie(name: string, value: string): void {
+  const today = new Date();
+  const nextYear = today.getFullYear() + 1;
+  Cookies.set(name, value, {
+    secure: true,
+    expires: new Date(today.setFullYear(nextYear)),
+    sameSite: "strict",
+  });
+}
+
+export const COLOR_SCHEME_KEY = "colorScheme";
+
+export interface CookieColorSchemeProviderProps {
+  children: ReactNode;
+  defaultColorSchemeMode: ColorSchemeMode;
+}
+
+export function CookieColorSchemeProvider(
+  props: CookieColorSchemeProviderProps
+): ReactElement {
+  const { children, defaultColorSchemeMode } = props;
+
+  const [colorSchemeMode, setColorSchemeMode] = useState(
+    defaultColorSchemeMode
+  );
+  const value = useColorSchemeProvider({
+    colorSchemeMode,
+    setColorSchemeMode: useCallback<UseStateSetter<ColorSchemeMode>>(
+      (nextOrFn) => {
+        setColorSchemeMode((prev) => {
+          const next =
+            typeof nextOrFn === "function" ? nextOrFn(prev) : nextOrFn;
+
+          setCookie(COLOR_SCHEME_KEY, next);
+
+          return next;
+        });
+      },
+      []
+    ),
+  });
+
+  return <ColorSchemeProvider value={value}>{children}</ColorSchemeProvider>;
+}
+```
+
+```tsx fileName="src/app/layout.tsx"
+import { type ReactElement, type ReactNode } from "react";
+import { cookies } from "next/headers.js";
+
+interface RootLayoutProps {
+  children: ReactNode;
+}
+
+export default function RootLayout(props: RootLayoutProps): ReactElement {
+  const { children } = props;
+
+  const instance = cookies();
+  const value = instance.get(COLOR_SCHEME_KEY)?.value;
+  const defaultColorSchemeMode =
+    value === "light" || value === "dark" || value === "system"
+      ? value
+      : "system";
+
+  return (
+    <CoreProviders ssr>
+      <CookieColorSchemeProvider
+        defaultColorSchemeMode={defaultColorSchemeMode}
+      >
+        {children}
+      </CookieColorSchemeProvider>
+    </CoreProviders>
+  );
+}
+```

@@ -1,3 +1,23 @@
 # Theme Provider
 
-TODO
+The `ThemeProvider` can be used get access to the current theme colors in
+react components. The main use-case for this is if you are mixing css-in-js
+into the app or allowing the user to configure their own theme.
+
+# Derived Theme Example
+
+If the user can configure their own theme, mount the `ThemeProvider` near
+the root of the app. The theme will automatically update as the user changes between
+light and dark theme.
+
+```demo source="./DerivedThemeExample.tsx"
+
+```
+
+# Known Theme Example
+
+If the theme is static and is just used for css-in-js, provide the `theme` prop.
+
+```demo source="./KnownThemeExample.tsx"
+
+```

@@ -1,3 +1,46 @@
 # SSR Provider
 
-TODO
+The `SsrProvider` should be used when using server side rendering to help
+rehydrate the DOM and should be mounted near the root of the app.
+
+> !Info! This is included in the [CoreProviders](./core-providers) and should
+> normally be used instead.
+
+# Enable SSR Mode
+
+```tsx
+import { SsrProvider } from "@react-md/core/SsrProvider";
+import { RestOfTheApp } from "./RestOfTheApp.jsx";
+
+function App() {
+  return (
+    <SsrProvider ssr>
+      <RestOfTheApp />
+    </SsrProvider>
+  );
+}
+```
+
+# Check for SSR
+
+The main purpose for this hook is to be able to determine if the DOM exists
+while initializing state or if it needs to be deferred with `useEffect` or
+another mechanism. The current state can be retrieved using the `useSsr` hook
+and all components that use the `useSsr` hook will be re-rendered once the DOM
+has finished rehydrating.
+
+> !Info! This documentation site uses `ssr` mode with [next.js](https://nextjs.org/).
+
+This example below will behave differently depending on the flow:
+
+- When reloading this page:
+  - Display `Hello`
+  - Display `HelloWorld!`
+- When resetting the demo or navigating through html5 history
+  - Display `World!`
+
+The `ssr` value will never be `true` after initial rehydration.
+
+```demo source="./CheckForSsrExample.tsx"
+
+```

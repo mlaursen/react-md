@@ -1,3 +1,36 @@
 # Core Providers
 
-TODO
+The `CoreProviders` is a convenience wrapper for initializing the most common
+context providers within `react-md`. It includes:
+
+- [AppSizeProvider]
+- [SsrProvider]
+- [PortalContainerProvider]
+- [UserInteractionModeProvider]
+
+The `CoreProviders` should be initialized near the root of your app.
+
+```demo source="./SimpleSetup.tsx" importOnly
+
+```
+
+# Pass-through Props
+
+The other context providers can be configured with pass through props:
+
+- [SsrProvider]
+  - `ssr`
+- [AppSizeProvider]
+  - `ssrAppSize`
+  - `appSizeQueries`
+- [PortalContainerProvider]
+  - `portalContainer`
+
+[appsizeprovider]: ./app-size-provider
+[ssrprovider]: ./ssr-provider
+[portalcontainerprovider]: ./portal-container-rpvodier
+[userinteractionmodeprovider]: ./user-interaction-mode-provider
+
+```demo source="./PassThroughPropsExample.tsx" importOnly
+
+```

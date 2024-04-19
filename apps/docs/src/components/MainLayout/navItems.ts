@@ -287,16 +287,24 @@ export const navItems: readonly NavigationItem[] = [
         children: "Providers",
         items: [
           {
-            href: "/app-size-provider",
-            children: "AppSizeProvider",
-          },
-          {
             href: "/core-providers",
             children: "CoreProviders",
           },
           {
+            href: "/app-size-provider",
+            children: "AppSizeProvider",
+          },
+          {
             href: "/ssr-provider",
             children: "SsrProvider",
+          },
+          {
+            href: "/portal-container-provider",
+            children: "PortalContainerProvider",
+          },
+          {
+            href: "/user-interaction-mode-provider",
+            children: "UserInteractionModeProvider",
           },
           {
             href: "/color-scheme-provider",
@@ -305,10 +313,6 @@ export const navItems: readonly NavigationItem[] = [
           {
             href: "/theme-provider",
             children: "ThemeProvider",
-          },
-          {
-            href: "/user-interaction-mode-provider",
-            children: "UserInteractionModeProvider",
           },
           {
             href: "/writing-direction-provider",

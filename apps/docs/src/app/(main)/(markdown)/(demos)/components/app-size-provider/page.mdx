@@ -1,8 +1,13 @@
 # App Size Provider
 
 The `AppSizeProvider` is used to determine the viewport size through media
-queries. This provider is included in the [CoreProviders](./core-providers)
-and multiple instances cannot be mounted multiple times in a single app.
+queries.
+
+> !Info! This is included in the [CoreProviders](./core-providers) and should
+> normally be used instead.
+
+> !Error! Only once instance of the `AppSizeProvider` can be mounted in the app
+> or else an error will be thrown.
 
 # Configuration
 

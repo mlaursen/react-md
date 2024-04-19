@@ -1,0 +1,18 @@
+@use "@react-md/core" with (
+  $color-scheme: system,
+  $disable-default-system-theme: true
+);
+
+.light {
+  @include core.use-light-theme;
+}
+
+.dark {
+  @include core.use-dark-theme;
+}
+
+.system {
+  @media (prefers-color-scheme: dark) {
+    @include core.use-dark-theme;
+  }
+}
