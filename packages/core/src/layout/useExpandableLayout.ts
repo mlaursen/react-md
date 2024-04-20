@@ -1,20 +1,25 @@
 "use client";
+import { cnb } from "cnbuilder";
 import { useAppSize } from "../media-queries/AppSizeProvider.js";
-import type { CSSTransitionElementProps } from "../transition/types.js";
-import type { CssPosition, UseStateInitializer } from "../types.js";
+import { type CSSTransitionElementProps } from "../transition/types.js";
+import { type CssPosition, type UseStateInitializer } from "../types.js";
 import { useToggle } from "../useToggle.js";
-import type { LayoutNavProps } from "./LayoutNav.js";
-import type { HorizontalLayoutTransitionOptions } from "./useHorizontalLayoutTransition.js";
-import { useHorizontalLayoutTransition } from "./useHorizontalLayoutTransition.js";
+import { type LayoutNavProps } from "./LayoutNav.js";
+import {
+  useHorizontalLayoutTransition,
+  type HorizontalLayoutTransitionOptions,
+} from "./useHorizontalLayoutTransition.js";
+import { DISPLAY_NONE_CLASS } from "../utils/isElementVisible.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type { useResizableLayout } from "./useResizableLayout.js";
-import type {
-  ProvidedTemporaryLayoutAppBarProps,
-  ProvidedTemporaryLayoutMainProps,
-  TemporaryLayoutImplementation,
-  TemporaryLayoutOptions,
+import { type useResizableLayout } from "./useResizableLayout.js";
+import {
+  useTemporaryLayout,
+  type ProvidedLayoutNavToggleProps,
+  type ProvidedTemporaryLayoutAppBarProps,
+  type ProvidedTemporaryLayoutMainProps,
+  type TemporaryLayoutImplementation,
+  type TemporaryLayoutOptions,
 } from "./useTemporaryLayout.js";
-import { useTemporaryLayout } from "./useTemporaryLayout.js";
 
 /**
  * @since 6.0.0
@@ -32,9 +37,13 @@ export interface ExpandableLayoutOptions extends TemporaryLayoutOptions {
    * by the navigation. The default behavior is to place the navigation below
    * the fixed header.
    *
+   * Set this to `"static"` to make the navigation span the full height of the
+   * screen and hide the button until the screen shrinks to the temporary
+   * layout type.
+   *
    * @defaultValue `false`
    */
-  fullHeightNav?: boolean;
+  fullHeightNav?: boolean | "static";
 
   /** @see {@link HorizontalLayoutTransitionOptions} */
   transitionProps?: Omit<HorizontalLayoutTransitionOptions, "transitionIn">;
@@ -72,6 +81,14 @@ export type ProvidedLayoutAppBarProps = ProvidedTemporaryLayoutAppBarProps &
 /**
  * @since 6.0.0
  */
+export interface ProvidedExpandableLayoutNavToggleProps
+  extends ProvidedLayoutNavToggleProps {
+  className: string;
+}
+
+/**
+ * @since 6.0.0
+ */
 export interface ExpandableLayoutImplementation
   extends TemporaryLayoutImplementation {
   temporary: boolean;
@@ -81,6 +98,7 @@ export interface ExpandableLayoutImplementation
   toggleNavigation(): void;
   appBarProps: ProvidedLayoutAppBarProps;
   mainProps: ProvidedLayoutMainProps;
+  navToggleProps: ProvidedExpandableLayoutNavToggleProps;
   expandableNavProps: ProvidedLayoutNavProps;
 }
 
@@ -152,10 +170,10 @@ export function useExpandableLayout(
   options: ExpandableLayoutOptions
 ): ExpandableLayoutImplementation {
   const {
-    defaultExpanded = false,
     fullHeightNav = false,
-    transitionProps,
     temporaryUntil = "tablet",
+    transitionProps,
+    defaultExpanded = fullHeightNav === "static",
     ...temporaryOptions
   } = options;
 
@@ -213,6 +231,7 @@ export function useExpandableLayout(
           toggleNavigation();
         }
       },
+      className: cnb(fullHeightNav === "static" && DISPLAY_NONE_CLASS),
     },
   };
 }

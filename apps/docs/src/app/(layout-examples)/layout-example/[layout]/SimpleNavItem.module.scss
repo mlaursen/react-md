@@ -1,0 +1,21 @@
+@use "@react-md/core";
+
+.active {
+  @include core.icon-set-var(color, currentcolor);
+
+  color: core.$white;
+}
+
+.link::after {
+  @include core.pseudo-element;
+  @include core.interaction-use-var(
+    background-color,
+    selected-background-color
+  );
+
+  opacity: 0;
+}
+
+.active::after {
+  opacity: 1;
+}

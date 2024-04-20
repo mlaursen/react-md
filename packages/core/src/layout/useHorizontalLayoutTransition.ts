@@ -1,11 +1,11 @@
 "use client";
 import { cnb } from "cnbuilder";
 import { DEFAULT_SHEET_TIMEOUT } from "../sheet/Sheet.js";
-import type {
-  CSSTransitionClassNames,
-  CSSTransitionHookReturnValue,
-  PreconfiguredCSSTransitionOptions,
-  TransitionTimeout,
+import {
+  type CSSTransitionClassNames,
+  type CSSTransitionHookReturnValue,
+  type PreconfiguredCSSTransitionOptions,
+  type TransitionTimeout,
 } from "../transition/types.js";
 import { useCSSTransition } from "../transition/useCSSTransition.js";
 

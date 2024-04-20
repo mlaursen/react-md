@@ -1,13 +1,13 @@
 "use client";
 import { useEffect, useMemo } from "react";
-import type { TreeProps } from "../tree/Tree.js";
-import type {
-  DefaultTreeItemNode,
-  TreeData,
-  TreeItemDefaultIds,
-  TreeItemNode,
+import { type TreeProps } from "../tree/Tree.js";
+import {
+  type DefaultTreeItemNode,
+  type TreeData,
+  type TreeItemDefaultIds,
+  type TreeItemNode,
 } from "../tree/types.js";
-import type { TreeImplementation } from "../tree/useTree.js";
+import { type TreeImplementation } from "../tree/useTree.js";
 import { useTreeExpansion } from "../tree/useTreeExpansion.js";
 import { getTreeItemsFrom } from "../tree/utils.js";
 

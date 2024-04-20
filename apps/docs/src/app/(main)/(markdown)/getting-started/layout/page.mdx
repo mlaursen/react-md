@@ -1,0 +1,281 @@
+# Layout
+
+> !Info! If this is a new project, check out the [example projects
+> page](./example-projects) to be able to clone a template project with
+> everything configured.
+
+When creating an app, a global layout is defined to help the user access common
+actions or navigate to different pages. Most web applications will use a fixed
+header, a navigation panel that can be toggled or static, and a main content
+area. `react-md` provides components, and hooks to help create these global
+layouts.
+
+# Choosing a Layout Type
+
+To get started, determine the type of layout that makes the most sense for the
+app. Should there be a fixed header at the top of the page or should it scroll
+with the rest of the content on the page? Should the navigation always be
+visible, toggleable, expandable, or resizable? Once a general idea has been
+formed, choose one of the layouts listed below to get started or build your
+own.
+
+## Temporary Navigation Layout
+
+A temporary navigation layout is common and always used on smaller viewports
+for the other layout types. The layout is created by using the
+`useTemporaryLayout` hook and an `AppBar`, `Button`, `Main`, `Sheet`, and some
+sort of navigation component. The `useTemporaryLayout` provides props for each
+component to handle the updating the `Sheet`'s visibility as the `pathname`
+changes.
+
+> !Info! Check out the [useTemporaryLayout](/hooks/use-temporary-layout) hook
+> documentation for more configuration options.
+
+The code for an example temporary layout is shown below and can be viewed
+[here](/layout-example/temporary).
+
+```tsx
+"use client";
+import { AppBar } from "@react-md/core/app-bar/AppBar";
+import { AppBarTitle } from "@react-md/core/app-bar/AppBarTitle";
+import { Button } from "@react-md/core/button/Button";
+import { Main } from "@react-md/core/layout/Main";
+import { useTemporaryLayout } from "@react-md/core/layout/useTemporaryLayout";
+import { Sheet } from "@react-md/core/sheet/Sheet";
+import { usePathname } from "next/navigation.js";
+import { type ReactElement, type ReactNode } from "react";
+import { Navigation } from "./Navigation.jsx";
+
+export interface TemporaryLayoutExampleProps {
+  children: ReactNode;
+}
+
+export function TemporaryLayoutExample(
+  props: TemporaryLayoutExampleProps
+): ReactElement {
+  const { children } = props;
+
+  const pathname = usePathname();
+  const { appBarProps, mainProps, temporaryNavProps, navToggleProps } =
+    useTemporaryLayout({ pathname });
+
+  return (
+    <>
+      <AppBar {...appBarProps}>
+        <Button {...navToggleProps} />
+        <AppBarTitle>Main Title</AppBarTitle>
+      </AppBar>
+      <Main {...mainProps}>{children}</Main>
+      <Sheet {...temporaryNavProps}>
+        <Navigation />
+      </Sheet>
+    </>
+  );
+}
+```
+
+## Expandable Navigation Layout
+
+An expandable layout extends the temporary layout by allowing larger viewports
+like tablets and desktops to be able to view the navigation inline with the
+main content. This layout can be created using the `useExpandableLayout` hook,
+the same components as the temporary layout, and a new `LayoutNav` component.
+
+> !Info! Check out the [useExpandableLayout](/hooks/use-expandable-layout) hook
+> documentation for more configuration options.
+
+The code for an example expandable layout is shown below and can be viewed
+[here](/layout-example/expandable).
+
+```tsx
+"use client";
+import { AppBar } from "@react-md/core/app-bar/AppBar";
+import { AppBarTitle } from "@react-md/core/app-bar/AppBarTitle";
+import { Button } from "@react-md/core/button/Button";
+import { LayoutNav } from "@react-md/core/layout/LayoutNav";
+import { Main } from "@react-md/core/layout/Main";
+import { useExpandableLayout } from "@react-md/core/layout/useExpandableLayout";
+import { Sheet } from "@react-md/core/sheet/Sheet";
+import { usePathname } from "next/navigation.js";
+import { type ReactElement, type ReactNode } from "react";
+import { Navigation } from "./Navigation.jsx";
+
+export interface ExpandableLayoutExampleProps {
+  children: ReactNode;
+}
+
+export function ExpandableLayoutExample(
+  props: ExpandableLayoutExampleProps
+): ReactElement {
+  const { children } = props;
+
+  const pathname = usePathname();
+  const {
+    temporary,
+    temporaryNavProps,
+    navToggleProps,
+    appBarProps,
+    mainProps,
+    expandableNavProps,
+  } = useExpandableLayout({ pathname });
+
+  return (
+    <>
+      <AppBar {...appBarProps}>
+        <Button {...navToggleProps} />
+        <AppBarTitle>Expandable Layout Example</AppBarTitle>
+      </AppBar>
+      <LayoutNav {...expandableNavProps}>
+        <Navigation />
+      </LayoutNav>
+      {temporary && (
+        <Sheet {...temporaryNavProps}>
+          <Navigation />
+        </Sheet>
+      )}
+      <Main {...mainProps}>{children}</Main>
+    </>
+  );
+}
+```
+
+### Full Height Navigation Layout
+
+This layout reuses everything from the expandable layout without making the
+layout expandable and the navigation panel spans the entire height of the
+screen instead of appearing beneath the fixed app bar.
+
+The diff for creating a full height layout is shown below and can be viewed
+[here](/layout-example/full-height).
+
+```diff
+  const {
+    temporary,
+    temporaryNavProps,
+    navToggleProps,
+    appBarProps,
+    mainProps,
+    expandableNavProps,
+- } = useExpandableLayout({ pathname });
++ } = useExpandableLayout({ pathname, fullHeightNav: "static" });
+```
+
+### Full Height Expandable Navigation Layout
+
+This layout is the same as the expandable layout except that the navigation
+panel is the full height instead of appearing beneath the fixed app bar.
+
+The diff for creating a full height expandable layout is shown below and can be
+viewed [here](/layout-example/full-height-expandable).
+
+```diff
+  const {
+    temporary,
+    temporaryNavProps,
+    navToggleProps,
+    appBarProps,
+    mainProps,
+    expandableNavProps,
+- } = useExpandableLayout({ pathname });
++ } = useExpandableLayout({ pathname, fullHeightNav: true });
+```
+
+## Resizable Navigation Layout
+
+A resizable layout extends the expandable layout by allowing the user to
+manually resize the navigation panel to their desired width by dragging to their
+desired width. This layout can be created using the `useResizableLayout` hook,
+the same components as the expandable layout, and a new `LayoutWindowSplitter`
+component.
+
+> !Info! Check out the [useResizableLayout](/hooks/use-resizable-layout) hook
+> documentation for more configuration options.
+
+The code for an example resizable layout is shown below and can be viewed
+[here](/layout-example/resizable).
+
+```tsx
+"use client";
+import { AppBar } from "@react-md/core/app-bar/AppBar";
+import { AppBarTitle } from "@react-md/core/app-bar/AppBarTitle";
+import { Button } from "@react-md/core/button/Button";
+import { LayoutNav } from "@react-md/core/layout/LayoutNav";
+import { LayoutWindowSplitter } from "@react-md/core/layout/LayoutWindowSplitter";
+import { Main } from "@react-md/core/layout/Main";
+import { useResizableLayout } from "@react-md/core/layout/useResizableLayout";
+import { Sheet } from "@react-md/core/sheet/Sheet";
+import { usePathname } from "next/navigation.js";
+import { type ReactElement, type ReactNode } from "react";
+import { Navigation } from "./Navigation.jsx";
+
+export interface ResizableLayoutExampleProps {
+  children: ReactNode;
+}
+
+export function ResizableLayoutExample(
+  props: ResizableLayoutExampleProps
+): ReactElement {
+  const { children } = props;
+
+  const pathname = usePathname();
+  const {
+    temporary,
+    appBarProps,
+    navToggleProps,
+    expandableNavProps,
+    mainProps,
+    temporaryNavProps,
+    windowSplitterProps,
+  } = useResizableLayout({ pathname });
+
+  return (
+    <>
+      <AppBar {...appBarProps}>
+        <Button {...navToggleProps} />
+        <AppBarTitle>Resizable Layout Example</AppBarTitle>
+      </AppBar>
+      <LayoutNav {...expandableNavProps}>
+        <Navigation />
+      </LayoutNav>
+      <LayoutWindowSplitter {...windowSplitterProps} />
+      {temporary && (
+        <Sheet {...temporaryNavProps}>
+          <Navigation />
+        </Sheet>
+      )}
+      <Main {...mainProps}>{children}</Main>
+    </>
+  );
+}
+```
+
+### Full Height Resizable Layout
+
+Just like the expandable layout version, the resizable layout can become full
+height by providing `fullHeightNav: true` or `fullHeightNav: "static"`. The
+diff for creating a full height static resizable layout is shown below and can
+be viewed [here](/layout-example/full-height-resizable).
+
+```diff
+  const {
+    temporary,
+    appBarProps,
+    navToggleProps,
+    expandableNavProps,
+    mainProps,
+    temporaryNavProps,
+    windowSplitterProps,
+- } = useResizableLayout({ pathname });
++ } = useResizableLayout({ pathname, fullHeightNav: "static" });
+
+```
+
+# Creating the Navigation
+
+Now that a layout has been setup, it's time to create the `Navigation`
+component. Navigation is usually handled by:
+
+- list of links
+- collapsible list of links
+- dropdown menus
+- tree

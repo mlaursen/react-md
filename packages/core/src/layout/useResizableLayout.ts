@@ -77,7 +77,7 @@ export interface ResizableLayoutImplementation
  *   const { pathname } = useHistory();
  *
  *   const {
- *     isPhone,
+ *     temporary,
  *     appBarProps,
  *     expandableNavProps,
  *     mainProps,
@@ -96,7 +96,7 @@ export interface ResizableLayoutImplementation
  *         <CustomNavigation />
  *       </LayoutNav>
  *       <LayoutWindowSplitter {...windowSplitterProps} />
- *       {isPhone && (
+ *       {temporary && (
  *         <Sheet {...temporaryNavProps}>
  *           <CustomNavigation />
  *         </Sheet>
