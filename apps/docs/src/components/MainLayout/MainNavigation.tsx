@@ -1,7 +1,7 @@
-import { RenderRecursively } from "@react-md/core/utils/RenderRecursively";
+import { Navigation } from "@react-md/core/navigation/Navigation";
+import { usePathname } from "next/navigation.js";
 import { type ReactElement } from "react";
-import { MainNavigationGroup } from "./MainNavigationGroup.jsx";
-import { RenderMainNavigationItem } from "./RenderMainNavigationItem.jsx";
+import { LinkUnstyled } from "../LinkUnstyled.jsx";
 import { navItems } from "./navItems.js";
 
 export interface MainNavigationProps {
@@ -10,10 +10,13 @@ export interface MainNavigationProps {
 
 export function MainNavigation(props: MainNavigationProps): ReactElement {
   const { className } = props;
+  const pathname = usePathname();
 
   return (
-    <MainNavigationGroup depth={0} className={className}>
-      <RenderRecursively items={navItems} render={RenderMainNavigationItem} />
-    </MainNavigationGroup>
+    <Navigation
+      data={{ pathname, linkComponent: LinkUnstyled }}
+      items={navItems}
+      className={className}
+    />
   );
 }
