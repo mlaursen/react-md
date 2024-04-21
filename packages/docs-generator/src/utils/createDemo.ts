@@ -94,13 +94,24 @@ export async function createDemo(options: CreateDemoOptions): Promise<void> {
         errors.add(`\`${name}\` is not a valid demo prop`);
     }
   });
+  if (errors.size) {
+    errors.add(`Valid demo props are:
+${Object.keys(props)
+  .map((name) => `- ${name}`)
+  .join("\n")}
+`);
+  }
 
   if (!source || !source.startsWith("./")) {
     errors.add("`source` is required and must be a relative path");
   }
 
   if (errors.size) {
-    const message = [...errors].map((error) => `- ${error}`).join("\n");
+    const message = [...errors]
+      .map((error) =>
+        error.startsWith("Valid demo props are") ? error : `- ${error}`
+      )
+      .join("\n");
     throw new Error(
       `Unable to create a demo due to the following errors:\n${message}`
     );

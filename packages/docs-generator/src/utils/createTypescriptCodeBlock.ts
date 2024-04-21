@@ -24,7 +24,7 @@ export async function createTypescriptCodeBlock(
 
   const tsCode = toString(codeElement).trim();
   const jsCode = await transformTsToJs(tsCode, filepath);
-  if (tsCode === jsCode) {
+  if (!jsCode || tsCode === jsCode) {
     replacePreElementWithJsxNode({
       meta,
       preElement,

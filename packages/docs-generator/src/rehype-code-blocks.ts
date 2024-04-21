@@ -7,6 +7,7 @@ import { visitParents } from "unist-util-visit-parents";
 import { createDemo } from "./utils/createDemo.js";
 import { createTypescriptCodeBlock } from "./utils/createTypescriptCodeBlock.js";
 import { getCodeLanguage } from "./utils/getCodeLanguage.js";
+import { importCode } from "./utils/importCode.js";
 import { replacePreElementWithJsxNode } from "./utils/replacePreElement.js";
 import { transformNpmCode } from "./utils/transformNpmCode.js";
 
@@ -149,6 +150,19 @@ export const rehypeCodeBlocks: Plugin<
               generatedDir,
               preElement,
               preElementParent,
+            })
+          );
+          break;
+        }
+        case "import": {
+          promises.push(
+            importCode({
+              meta,
+              demoDir: dirname(filepath),
+              aliasDir: srcDir,
+              preElement,
+              preElementParent,
+              codeElement: node,
             })
           );
           break;

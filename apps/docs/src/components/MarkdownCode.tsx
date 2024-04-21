@@ -23,6 +23,25 @@ export function MarkdownCode(props: MarkdownCodeProps): ReactElement {
     throw new Error("Code must be string");
   }
 
+  if (process.env.NODE_ENV !== "production") {
+    const KNOWN_PROPS = new Set<string>(["fileName", "disableMarginTop"]);
+    const invalid = new Set<string>();
+    Object.keys(remaining).forEach((key) => {
+      if (!KNOWN_PROPS.has(key)) {
+        invalid.add(key);
+      }
+    });
+
+    if (invalid.size) {
+      throw new Error(`Unsupported code props:
+${[...invalid].map((name) => `- ${name}`).join("\n")}
+
+Supports props are:
+${[...KNOWN_PROPS].map((name) => `- ${name}`).join("\n")}
+`);
+    }
+  }
+
   return (
     <HighlightedCodeBlockWithAppBar
       {...remaining}
