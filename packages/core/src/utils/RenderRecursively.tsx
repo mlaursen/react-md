@@ -11,6 +11,32 @@ export type RecursiveItem<T = Record<string, unknown>> = T & {
 /**
  * @since 6.0.0
  */
+export interface RecursiveItemKeyOptions<Item = Record<string, unknown>> {
+  item: RecursiveItem<Item>;
+  depth: number;
+  index: number;
+}
+
+/**
+ * This is the default implementation for {@link RenderRecursivelyProps.getItemKey}.
+ *
+ * ```ts
+ * return `${options.depth}-${options.index}`
+ * ```
+ *
+ * @since 6.0.0
+ */
+export function getRecursiveItemKey<Item = Record<string, unknown>>(
+  options: RecursiveItemKeyOptions<Item>
+): string {
+  const { depth, index } = options;
+
+  return `${depth}-${index}`;
+}
+
+/**
+ * @since 6.0.0
+ */
 export interface RenderRecursiveItemsProps<
   Item = Record<string, unknown>,
   Data = unknown,
@@ -65,12 +91,13 @@ export interface RenderRecursivelyProps<
    *
    * @example
    * ```ts
-   * getItemKey={(item) => item.id}
+   * getItemKey={({ item }) => item.id}
    * ```
    *
-   * @defaultValue `() => ${parents.length}-${index}`.
+   * @see {@link getRecursiveItemKey}
+   * @defaultValue `({ index, depth }) => ${depth}-${index}`.
    */
-  getItemKey?(item: RecursiveItem<Item>): string;
+  getItemKey?(options: RecursiveItemKeyOptions<Item>): string;
 }
 
 /**
@@ -166,7 +193,13 @@ export interface RenderRecursivelyProps<
 export function RenderRecursively<Item, Data>(
   props: RenderRecursivelyProps<Item, Data>
 ): ReactElement {
-  const { data, items, render: Render, getItemKey, parents = [] } = props;
+  const {
+    data,
+    items,
+    render: Render,
+    getItemKey = getRecursiveItemKey,
+    parents = [],
+  } = props;
 
   return (
     <>
@@ -187,7 +220,7 @@ export function RenderRecursively<Item, Data>(
 
         return (
           <Render
-            key={getItemKey ? getItemKey(item) : `${depth}-${index}`}
+            key={getItemKey({ item, depth, index })}
             // typecast since it should be undefined in renderer as well?
             data={data}
             item={item}

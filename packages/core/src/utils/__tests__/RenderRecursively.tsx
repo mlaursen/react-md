@@ -71,7 +71,7 @@ function Test(): ReactElement {
       data={activeId}
       items={items}
       render={Render}
-      getItemKey={(item) => item.id}
+      getItemKey={({ item }) => item.id}
     />
   );
 }

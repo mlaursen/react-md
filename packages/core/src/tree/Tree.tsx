@@ -313,8 +313,8 @@ export function Tree<T extends TreeItemNode>(
         >
           <RenderRecursively
             items={items}
-            getItemKey={(item) => item.itemId}
             render={TreeItemRenderer}
+            getItemKey={(options) => options.item.itemId}
           />
         </List>
       </KeyboardMovementProvider>

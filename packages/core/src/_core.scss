@@ -34,6 +34,7 @@
 @forward "menu/menu" as menu-*;
 @forward "form/form" as form-*;
 @forward "layout/layout" as layout-*;
+@forward "navigation/navigation" as navigation-*;
 @forward "segmented-button/segmented-button" as segmented-button-*;
 
 @use "avatar/avatar";
@@ -69,6 +70,7 @@
 @use "menu/menu";
 @use "form/form";
 @use "layout/layout";
+@use "navigation/navigation";
 @use "utils";
 
 $_layer-order: (
@@ -101,6 +103,7 @@ $_layer-order: (
   menu,
   form,
   layout,
+  navigation,
   snackbar,
   segmented-button,
   utils
@@ -348,6 +351,7 @@ $_layer-order: (
   @include link.variables;
   @include list.variables;
   @include menu.variables;
+  @include navigation.variables;
   @include overlay.variables;
   @include progress.variables;
   @include segmented-button.variables;
@@ -395,6 +399,7 @@ $_layer-order: (
   @include link.styles($disable-layer);
   @include list.styles($disable-layer);
   @include menu.styles($disable-layer);
+  @include navigation.styles($disable-layer);
   @include overlay.styles($disable-layer);
   @include progress.styles($disable-layer);
   @include responsive-item.styles($disable-layer);

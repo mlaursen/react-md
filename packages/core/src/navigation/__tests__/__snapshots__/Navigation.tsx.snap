@@ -1,0 +1,156 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navigation should allow route groups to be expanded 1`] = `
+<li
+  class="rmd-nav-item"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-interaction-surface rmd-nav-item__content"
+    type="button"
+  >
+    <span>
+      Path 2
+    </span>
+    <span
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated"
+    >
+      arrow_drop_down
+    </span>
+  </button>
+  <ul
+    class="rmd-list rmd-nav-group rmd-nav-group--np rmd-collapse"
+    role="none"
+    style="padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
+  >
+    <li
+      class="rmd-list-subheader"
+      role="presentation"
+    >
+      <span
+        class="rmd-list-item__text rmd-nav-item"
+      >
+        Routes
+      </span>
+    </li>
+    <li
+      class="rmd-nav-item"
+    >
+      <a
+        class="rmd-nav-item__content rmd-nav-item__link rmd-button rmd-button--text rmd-interaction-surface rmd-none"
+        href="/path-2/route-1"
+        id=":r4:"
+        type="route"
+      >
+        <span
+          class="rmd-nowrap rmd-ellipsis"
+        >
+          Route 1
+        </span>
+      </a>
+    </li>
+    <hr
+      class="rmd-divider rmd-divider--inset"
+      role="separator"
+    />
+    <li
+      class="rmd-nav-item"
+    >
+      <a
+        class="rmd-nav-item__content rmd-nav-item__link rmd-button rmd-button--text rmd-interaction-surface rmd-none"
+        href="/path-2/route-2"
+        id=":r6:"
+        type="route"
+      >
+        <span
+          class="rmd-nowrap rmd-ellipsis"
+        >
+          Route 2
+        </span>
+      </a>
+    </li>
+  </ul>
+</li>
+`;
+
+exports[`Navigation should be able to render dividers, subheaders, groups, links, and nested items out of the box 1`] = `
+<ul
+  class="rmd-list rmd-nav-group"
+  data-testid="nav"
+  role="none"
+  style="--rmd-tree-depth: 0;"
+>
+  <li
+    class="rmd-nav-item"
+  >
+    <a
+      class="rmd-nav-item__content rmd-nav-item__link rmd-nav-item__link--active rmd-button rmd-button--text rmd-interaction-surface rmd-none rmd-bold"
+      href="/"
+      id=":r0:"
+      type="route"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons"
+      >
+        home
+      </span>
+      <span
+        class="rmd-nowrap rmd-ellipsis"
+      >
+        Home
+      </span>
+    </a>
+  </li>
+  <hr
+    class="rmd-divider"
+    role="separator"
+  />
+  <li
+    class="rmd-list-subheader"
+    role="presentation"
+  >
+    <span
+      class="rmd-list-item__text rmd-nav-item"
+    >
+      Subheader
+    </span>
+  </li>
+  <li
+    class="rmd-nav-item"
+  >
+    <button
+      class="rmd-button rmd-button--text rmd-interaction-surface rmd-nav-item__content"
+      type="button"
+    >
+      <span>
+        Path 1
+      </span>
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate"
+      >
+        arrow_drop_down
+      </span>
+    </button>
+  </li>
+  <li
+    class="rmd-nav-item"
+  >
+    <button
+      class="rmd-button rmd-button--text rmd-interaction-surface rmd-nav-item__content"
+      type="button"
+    >
+      <span>
+        Path 2
+      </span>
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate"
+      >
+        arrow_drop_down
+      </span>
+    </button>
+  </li>
+</ul>
+`;

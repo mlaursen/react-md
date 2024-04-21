@@ -45,7 +45,7 @@ export function TableOfContents(props: TableOfContentsProps): ReactElement {
           data={activeHeadingId}
           items={transformToItems(toc)}
           render={RenderTableOfContentsItem}
-          getItemKey={(item) => item.id}
+          getItemKey={({ item }) => item.id}
         />
       </TableOfContentsGroup>
     </nav>
