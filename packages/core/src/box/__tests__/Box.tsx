@@ -1,8 +1,8 @@
 import { describe, expect, it } from "@jest/globals";
-import { render, screen, userEvent } from "../../test-utils/index.js";
-import { Box, type BoxProps } from "../Box.js";
 import { createRef } from "react";
-import { type BoxJustifyContent, type BoxAlignItems } from "../styles.js";
+import { render, screen } from "../../test-utils/index.js";
+import { Box, type BoxProps } from "../Box.js";
+import { type BoxAlignItems, type BoxJustifyContent } from "../styles.js";
 
 const align: BoxAlignItems[] = [
   "start",
