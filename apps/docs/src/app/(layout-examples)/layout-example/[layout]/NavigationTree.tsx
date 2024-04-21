@@ -3,6 +3,7 @@ import { ButtonStyledLink } from "@/components/ButtonStyledLink.jsx";
 import { LinkUnstyled } from "@/components/LinkUnstyled.jsx";
 import { pascalCase } from "@/utils/strings.js";
 import { box } from "@react-md/core/box/styles";
+import { cssUtils } from "@react-md/core/cssUtils";
 import { useLayoutTree } from "@react-md/core/layout/useLayoutTree";
 import { Tree } from "@react-md/core/tree/Tree";
 import { type TreeData, type TreeItemSorter } from "@react-md/core/tree/types";
@@ -15,7 +16,6 @@ import StarIcon from "node_modules/@react-md/material-icons/src/StarIcon.jsx";
 import { useMemo, type ReactElement } from "react";
 import { LayoutIcon } from "./LayoutIcon.jsx";
 import { LAYOUT_TYPES, type LayoutType } from "./layouts.js";
-import { cssUtils } from "@react-md/core/cssUtils";
 
 const PATH_PREFIX = "/layout-example/";
 const TYPE_SUFFIX = "-type";

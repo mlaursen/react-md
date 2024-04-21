@@ -112,6 +112,7 @@ export function ExpandableLayoutExample(
   const pathname = usePathname();
   const {
     temporary,
+    persistent,
     temporaryNavProps,
     navToggleProps,
     appBarProps,
@@ -125,9 +126,11 @@ export function ExpandableLayoutExample(
         <Button {...navToggleProps} />
         <AppBarTitle>Expandable Layout Example</AppBarTitle>
       </AppBar>
-      <LayoutNav {...expandableNavProps}>
-        <Navigation />
-      </LayoutNav>
+      {persistent && (
+        <LayoutNav {...expandableNavProps}>
+          <Navigation />
+        </LayoutNav>
+      )}
       {temporary && (
         <Sheet {...temporaryNavProps}>
           <Navigation />
@@ -151,6 +154,7 @@ The diff for creating a full height layout is shown below and can be viewed
 ```diff
   const {
     temporary,
+    persistent,
     temporaryNavProps,
     navToggleProps,
     appBarProps,
@@ -171,6 +175,7 @@ viewed [here](/layout-example/full-height-expandable).
 ```diff
   const {
     temporary,
+    persistent,
     temporaryNavProps,
     navToggleProps,
     appBarProps,
@@ -220,6 +225,7 @@ export function ResizableLayoutExample(
   const pathname = usePathname();
   const {
     temporary,
+    persistent,
     appBarProps,
     navToggleProps,
     expandableNavProps,
@@ -234,10 +240,14 @@ export function ResizableLayoutExample(
         <Button {...navToggleProps} />
         <AppBarTitle>Resizable Layout Example</AppBarTitle>
       </AppBar>
-      <LayoutNav {...expandableNavProps}>
-        <Navigation />
-      </LayoutNav>
-      <LayoutWindowSplitter {...windowSplitterProps} />
+      {persistent && (
+        <>
+          <LayoutNav {...expandableNavProps}>
+            <Navigation />
+          </LayoutNav>
+          <LayoutWindowSplitter {...windowSplitterProps} />
+        </>
+      )}
       {temporary && (
         <Sheet {...temporaryNavProps}>
           <Navigation />
@@ -259,6 +269,7 @@ be viewed [here](/layout-example/full-height-resizable).
 ```diff
   const {
     temporary,
+    persistent,
     appBarProps,
     navToggleProps,
     expandableNavProps,

@@ -26,6 +26,7 @@ export function ExpandableLayoutExample(
   const pathname = usePathname();
   const {
     temporary,
+    persistent,
     temporaryNavProps,
     navToggleProps,
     appBarProps,
@@ -39,9 +40,11 @@ export function ExpandableLayoutExample(
         <Button {...navToggleProps} />
         <AppBarTitle>Expandable Layout Example</AppBarTitle>
       </AppBar>
-      <LayoutNav {...expandableNavProps}>
-        <Navigation layout={layout} />
-      </LayoutNav>
+      {persistent && (
+        <LayoutNav {...expandableNavProps}>
+          <Navigation layout={layout} />
+        </LayoutNav>
+      )}
       {temporary && (
         <Sheet {...temporaryNavProps}>
           <Navigation layout={layout} />

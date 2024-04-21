@@ -1,4 +1,5 @@
 "use client";
+import { useSsr } from "@react-md/core/SsrProvider";
 import { AppBar } from "@react-md/core/app-bar/AppBar";
 import { AppBarTitle } from "@react-md/core/app-bar/AppBarTitle";
 import { Button } from "@react-md/core/button/Button";
@@ -11,11 +12,11 @@ import { Sheet } from "@react-md/core/sheet/Sheet";
 import { cnb } from "cnbuilder";
 import { usePathname } from "next/navigation.js";
 import { type ReactElement, type ReactNode } from "react";
+import { GithubLink } from "../GithubLink.jsx";
 import styles from "./MainLayout.module.scss";
 import { MainNavigation } from "./MainNavigation.jsx";
 import { MainTitle } from "./MainTitle.jsx";
 import { VersionDropdown } from "./VersionDropdown.jsx";
-import { GithubLink } from "../GithubLink.jsx";
 import { WebsiteConfiguration } from "./WebsiteConfiguration.jsx";
 
 const isTableOfContentsRoute = (pathname: string): boolean =>
@@ -29,6 +30,7 @@ export function MainLayout(props: MainLayoutProps): ReactElement {
   const { children } = props;
 
   const pathname = usePathname();
+  const ssr = useSsr();
   const {
     temporary,
     appBarProps,
@@ -56,15 +58,17 @@ export function MainLayout(props: MainLayoutProps): ReactElement {
         <GithubLink />
         <WebsiteConfiguration />
       </LayoutAppBar>
-      <LayoutNav
-        {...expandableNavProps}
-        className={cssUtils({
-          className: styles.navigation,
-          backgroundColor: "current-color",
-        })}
-      >
-        <MainNavigation />
-      </LayoutNav>
+      {(ssr || !temporary) && (
+        <LayoutNav
+          {...expandableNavProps}
+          className={cssUtils({
+            className: styles.navigation,
+            backgroundColor: "current-color",
+          })}
+        >
+          <MainNavigation />
+        </LayoutNav>
+      )}
       {temporary && (
         <Sheet {...temporaryNavProps}>
           <AppBar theme="clear">

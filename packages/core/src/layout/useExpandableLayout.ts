@@ -9,7 +9,7 @@ import {
   useHorizontalLayoutTransition,
   type HorizontalLayoutTransitionOptions,
 } from "./useHorizontalLayoutTransition.js";
-import { DISPLAY_NONE_CLASS } from "../utils/isElementVisible.js";
+import { useSsr } from "../SsrProvider.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { type useResizableLayout } from "./useResizableLayout.js";
 import {
@@ -92,6 +92,7 @@ export interface ProvidedExpandableLayoutNavToggleProps
 export interface ExpandableLayoutImplementation
   extends TemporaryLayoutImplementation {
   temporary: boolean;
+  persistent: boolean;
   expanded: boolean;
   expandNavigation(): void;
   collapseNavigation(): void;
@@ -163,6 +164,47 @@ export interface ExpandableLayoutImplementation
  * }
  * ```
  *
+ * If you have a large navigation panel, you can conditionally render the
+ * `LayoutNav` with the `persistent` boolean returned by the hook which will
+ * ensure that the DOM has rehydrated before unmounting to prevent SSR errors.
+ *
+ * @example Safely Conditionally Rendering
+ * ```diff
+ *   const {
+ *     temporary,
+ * +   persistent,
+ *     appBarProps,
+ *     expandableNavProps,
+ *     mainProps,
+ *     navToggleProps,
+ *     temporaryNavProps,
+ *     windowSplitterProps,
+ *   } = useExpandableLayout({ pathname });
+ *
+ *   return {
+ *     <>
+ *       <LayoutAppBar {...appBarProps}>
+ *         <Button {...navToggleProps} />
+ *         <AppBarTitle>Hello, world!</AppBarTitle>
+ *       </LayoutAppBar>
+ * -     <LayoutNav {...expandableNavProps}>
+ * -       <CustomNavigation />
+ * -     </LayoutNav>
+ * +     {persistent && (
+ * +       <LayoutNav {...expandableNavProps}>
+ * +         <CustomNavigation />
+ * +       </LayoutNav>
+ * +     )}
+ *       {temporary && (
+ *         <Sheet {...temporaryNavProps}>
+ *           <CustomNavigation />
+ *         </Sheet>
+ *       )}
+ *       <Main {...mainProps}>{children}</Main>
+ *     </>
+ *   }
+ * ```
+ *
  * @since 6.0.0
  * @see {@link useResizableLayout}
  */
@@ -177,6 +219,7 @@ export function useExpandableLayout(
     ...temporaryOptions
   } = options;
 
+  const ssr = useSsr();
   const {
     appBarProps,
     mainProps,
@@ -203,6 +246,7 @@ export function useExpandableLayout(
   return {
     visible,
     temporary,
+    persistent: ssr || !temporary,
     hideTemporaryNav,
     showTemporaryNav,
     expanded,
@@ -231,7 +275,7 @@ export function useExpandableLayout(
           toggleNavigation();
         }
       },
-      className: cnb(fullHeightNav === "static" && DISPLAY_NONE_CLASS),
+      className: cnb(fullHeightNav === "static" && "rmd-layout-nav-toggle"),
     },
   };
 }

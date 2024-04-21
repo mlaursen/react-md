@@ -13,6 +13,7 @@
 
 $disable-everything: false !default;
 $disable-resizable: false !default;
+$disable-full-height-navigation: false !default;
 
 $main-focus-z-index: 999 !default;
 
@@ -103,6 +104,14 @@ $variables: (size, header-height);
 
         &--offset-v {
           @include use-var(top, header-height);
+        }
+      }
+
+      @if not $disable-full-height-navigation {
+        .rmd-layout-nav-toggle {
+          @include media-queries.media($navigation-breakpoint) {
+            display: none;
+          }
         }
       }
 

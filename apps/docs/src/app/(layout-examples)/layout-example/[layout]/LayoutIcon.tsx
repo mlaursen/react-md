@@ -1,3 +1,4 @@
+import { type SVGIconProps } from "@react-md/core/icon/SVGIcon";
 import ForestIcon from "@react-md/material-icons/ForestIcon";
 import AllOutIcon from "node_modules/@react-md/material-icons/src/AllOutIcon.jsx";
 import DensityLargeIcon from "node_modules/@react-md/material-icons/src/DensityLargeIcon.jsx";
@@ -7,7 +8,6 @@ import MenuOpenIcon from "node_modules/@react-md/material-icons/src/MenuOpenIcon
 import OpenInFullIcon from "node_modules/@react-md/material-icons/src/OpenInFullIcon.jsx";
 import { type ComponentType, type ReactElement } from "react";
 import { type LayoutType } from "./layouts.js";
-import { type SVGIconProps } from "@react-md/core/icon/SVGIcon";
 
 export interface LayoutIconProps extends SVGIconProps {
   layout: LayoutType;

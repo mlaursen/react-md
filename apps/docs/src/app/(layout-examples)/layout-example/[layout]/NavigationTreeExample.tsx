@@ -10,14 +10,15 @@ import { Sheet } from "@react-md/core/sheet/Sheet";
 import { usePathname } from "next/navigation.js";
 import { type ReactElement } from "react";
 import { NavigationTree } from "./NavigationTree.jsx";
-import { type ExampleLayoutProps } from "./layouts.js";
 import styles from "./NavigationTreeExample.module.scss";
+import { type ExampleLayoutProps } from "./layouts.js";
 
 export function NavigationTreeExample(props: ExampleLayoutProps): ReactElement {
   const { layout, children } = props;
   const pathname = usePathname();
   const {
     temporary,
+    persistent,
     temporaryNavProps,
     navToggleProps,
     appBarProps,
@@ -32,10 +33,14 @@ export function NavigationTreeExample(props: ExampleLayoutProps): ReactElement {
         <Button {...navToggleProps} />
         <AppBarTitle>Layout Tree Example</AppBarTitle>
       </AppBar>
-      <LayoutNav {...expandableNavProps} className={styles.navigation}>
-        <NavigationTree layout={layout} />
-      </LayoutNav>
-      <LayoutWindowSplitter {...windowSplitterProps} />
+      {persistent && (
+        <>
+          <LayoutNav {...expandableNavProps} className={styles.navigation}>
+            <NavigationTree layout={layout} />
+          </LayoutNav>
+          <LayoutWindowSplitter {...windowSplitterProps} />
+        </>
+      )}
       {temporary && (
         <Sheet {...temporaryNavProps} className={styles.navigation}>
           <NavigationTree layout={layout} />

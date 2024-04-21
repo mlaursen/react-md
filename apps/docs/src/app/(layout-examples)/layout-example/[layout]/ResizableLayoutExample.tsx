@@ -27,6 +27,7 @@ export function ResizableLayoutExample(
   const pathname = usePathname();
   const {
     temporary,
+    persistent,
     appBarProps,
     navToggleProps,
     expandableNavProps,
@@ -41,10 +42,14 @@ export function ResizableLayoutExample(
         <Button {...navToggleProps} />
         <AppBarTitle>Resizable Layout Example</AppBarTitle>
       </AppBar>
-      <LayoutNav {...expandableNavProps}>
-        <Navigation layout={layout} />
-      </LayoutNav>
-      <LayoutWindowSplitter {...windowSplitterProps} />
+      {persistent && (
+        <>
+          <LayoutNav {...expandableNavProps}>
+            <Navigation layout={layout} />
+          </LayoutNav>
+          <LayoutWindowSplitter {...windowSplitterProps} />
+        </>
+      )}
       {temporary && (
         <Sheet {...temporaryNavProps}>
           <Navigation layout={layout} />

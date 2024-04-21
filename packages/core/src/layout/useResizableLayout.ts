@@ -106,6 +106,53 @@ export interface ResizableLayoutImplementation
  *   }
  * }
  * ```
+ *
+ * If you have a large navigation panel, you can conditionally render the
+ * `LayoutNav` with the `persistent` boolean returned by the hook which will
+ * ensure that the DOM has rehydrated before unmounting to prevent SSR errors.
+ *
+ * @example Conditionally Rendering
+ * ```diff
+ *   const {
+ *     temporary,
+ * +   persistent,
+ *     appBarProps,
+ *     expandableNavProps,
+ *     mainProps,
+ *     navToggleProps,
+ *     temporaryNavProps,
+ *     windowSplitterProps,
+ *   } = useResizableLayout({ pathname });
+ *
+ *   return {
+ *     <>
+ *       <LayoutAppBar {...appBarProps}>
+ *         <Button {...navToggleProps} />
+ *         <AppBarTitle>Hello, world!</AppBarTitle>
+ *       </LayoutAppBar>
+ * -     <LayoutNav {...expandableNavProps}>
+ * -       <CustomNavigation />
+ * -     </LayoutNav>
+ * -     <LayoutWindowSplitter {...windowSplitterProps} />
+ * +     {persistent && (
+ * +       <>
+ * +         <LayoutNav {...expandableNavProps}>
+ * +           <CustomNavigation />
+ * +         </LayoutNav>
+ * +         <LayoutWindowSplitter {...windowSplitterProps} />
+ * +       </>
+ * +     )}
+ *       {temporary && (
+ *         <Sheet {...temporaryNavProps}>
+ *           <CustomNavigation />
+ *         </Sheet>
+ *       )}
+ *       <Main {...mainProps}>{children}</Main>
+ *     </>
+ *   }
+ *
+ * ```
+ *
  * @since 6.0.0
  */
 export function useResizableLayout(

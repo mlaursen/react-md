@@ -267,5 +267,13 @@ describe("useExpandableLayout", () => {
 
     matchMediaSpy.changeViewport(matchDesktop);
     expect(temporaryNav).not.toBeInTheDocument();
+
+    matchMediaSpy.mockRestore();
+  });
+
+  it("should allow for a static full height nav which will be hidden based on media queries", () => {
+    rmdRender(<Layout fullHeightNav="static" defaultVisible />);
+    const navToggle = screen.getByRole("button", { name: "Navigation" });
+    expect(navToggle).toHaveClass("rmd-layout-nav-toggle");
   });
 });
