@@ -1,15 +1,15 @@
 "use client";
+import { useActiveHeadingId } from "@react-md/core/navigation/useActiveHeadingId";
 import { Typography } from "@react-md/core/typography/Typography";
 import {
-  type RecursiveItem,
   RenderRecursively,
+  type RecursiveItem,
 } from "@react-md/core/utils/RenderRecursively";
 import { type TOCItem } from "docs-generator/rehype-toc";
 import { useId, type ReactElement } from "react";
 import { RenderTableOfContentsItem } from "./RenderTableOfContentsItem.jsx";
 import styles from "./TableOfContents.module.scss";
 import { TableOfContentsGroup } from "./TableOfContentsGroup.jsx";
-import { useTableOfContentsActiveHeading } from "./useTableOfContentsActiveHeading.js";
 
 function transformToItems(
   toc: readonly TOCItem[]
@@ -34,7 +34,7 @@ export function TableOfContents(props: TableOfContentsProps): ReactElement {
   const { toc } = props;
 
   const headingId = useId();
-  const activeHeadingId = useTableOfContentsActiveHeading(toc);
+  const activeHeadingId = useActiveHeadingId({ headings: toc });
   return (
     <nav aria-labelledby={headingId} className={styles.container}>
       <Typography id={headingId} type="headline-5" margin="none">
