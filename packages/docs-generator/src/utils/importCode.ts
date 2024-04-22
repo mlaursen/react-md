@@ -92,6 +92,7 @@ export async function importCode(options: ImportCodeOptions): Promise<void> {
           isTsx: true,
           tsCode: sourceCode,
           jsCode,
+          fileName,
         },
       });
     } else {
