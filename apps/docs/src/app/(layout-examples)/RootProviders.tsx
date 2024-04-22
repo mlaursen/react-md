@@ -1,6 +1,7 @@
 "use client";
 import { rmdConfig } from "@/constants/rmdConfig.jsx";
 import { CoreProviders } from "@react-md/core/CoreProviders";
+import { TooltipHoverModeProvider } from "@react-md/core/tooltip/TooltipHoverModeProvider";
 import { type ReactElement, type ReactNode } from "react";
 
 export interface RootProvidersProps {
@@ -10,5 +11,9 @@ export interface RootProvidersProps {
 export function RootProviders(props: RootProvidersProps): ReactElement {
   const { children } = props;
 
-  return <CoreProviders {...rmdConfig}>{children}</CoreProviders>;
+  return (
+    <CoreProviders {...rmdConfig}>
+      <TooltipHoverModeProvider>{children}</TooltipHoverModeProvider>
+    </CoreProviders>
+  );
 }

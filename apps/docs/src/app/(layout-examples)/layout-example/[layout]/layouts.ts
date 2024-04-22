@@ -7,7 +7,6 @@ export const LAYOUT_TYPES = [
   "full-height-expandable",
   "resizable",
   "full-height-resizable",
-  "tree",
 ] as const;
 export type LayoutType = (typeof LAYOUT_TYPES)[number];
 

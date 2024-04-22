@@ -6,7 +6,6 @@ import { ExpandableLayoutExample } from "./ExpandableLayoutExample.jsx";
 import { FullHeightExpandableLayoutExample } from "./FullHeightExpandableLayoutExample.jsx";
 import { FullHeightLayoutExample } from "./FullHeightLayoutExample.jsx";
 import { FullHeightResizableLayoutExample } from "./FullHeightResizableLayoutExample.jsx";
-import { NavigationTreeExample } from "./NavigationTreeExample.jsx";
 import { ResizableLayoutExample } from "./ResizableLayoutExample.jsx";
 import { TemporaryLayoutExample } from "./TemporaryLayoutExample.jsx";
 import {
@@ -22,7 +21,6 @@ const LAYOUTS = {
   "full-height-expandable": FullHeightExpandableLayoutExample,
   resizable: ResizableLayoutExample,
   "full-height-resizable": FullHeightResizableLayoutExample,
-  tree: NavigationTreeExample,
 } satisfies Record<LayoutType, ComponentType<ExampleLayoutProps>>;
 
 export interface RouteParams {

@@ -19,6 +19,11 @@ visible, toggleable, expandable, or resizable? Once a general idea has been
 formed, choose one of the layouts listed below to get started or build your
 own.
 
+> !Info! All layout types will not be shown on this page since there are endless
+> possibilities. Check out the [AppBar](/components/app-bar),
+> [Sheet](/components/sheet), [Dialog](/components/dialog), and
+> [Navigation](/components/navigation) components to extend the layout.
+
 ## Temporary Navigation Layout
 
 A temporary navigation layout is common and always used on smaller viewports
@@ -44,7 +49,7 @@ import { useTemporaryLayout } from "@react-md/core/layout/useTemporaryLayout";
 import { Sheet } from "@react-md/core/sheet/Sheet";
 import { usePathname } from "next/navigation.js";
 import { type ReactElement, type ReactNode } from "react";
-import { Navigation } from "./Navigation.jsx";
+import { MainNavigation } from "./MainNavigation.jsx";
 
 export interface TemporaryLayoutExampleProps {
   children: ReactNode;
@@ -67,7 +72,7 @@ export function TemporaryLayoutExample(
       </AppBar>
       <Main {...mainProps}>{children}</Main>
       <Sheet {...temporaryNavProps}>
-        <Navigation />
+        <MainNavigation />
       </Sheet>
     </>
   );
@@ -98,7 +103,7 @@ import { useExpandableLayout } from "@react-md/core/layout/useExpandableLayout";
 import { Sheet } from "@react-md/core/sheet/Sheet";
 import { usePathname } from "next/navigation.js";
 import { type ReactElement, type ReactNode } from "react";
-import { Navigation } from "./Navigation.jsx";
+import { MainNavigation } from "./MainNavigation.jsx";
 
 export interface ExpandableLayoutExampleProps {
   children: ReactNode;
@@ -128,12 +133,12 @@ export function ExpandableLayoutExample(
       </AppBar>
       {persistent && (
         <LayoutNav {...expandableNavProps}>
-          <Navigation />
+          <MainNavigation />
         </LayoutNav>
       )}
       {temporary && (
         <Sheet {...temporaryNavProps}>
-          <Navigation />
+          <MainNavigation />
         </Sheet>
       )}
       <Main {...mainProps}>{children}</Main>
@@ -211,7 +216,7 @@ import { useResizableLayout } from "@react-md/core/layout/useResizableLayout";
 import { Sheet } from "@react-md/core/sheet/Sheet";
 import { usePathname } from "next/navigation.js";
 import { type ReactElement, type ReactNode } from "react";
-import { Navigation } from "./Navigation.jsx";
+import { MainNavigation } from "./MainNavigation.jsx";
 
 export interface ResizableLayoutExampleProps {
   children: ReactNode;
@@ -243,14 +248,14 @@ export function ResizableLayoutExample(
       {persistent && (
         <>
           <LayoutNav {...expandableNavProps}>
-            <Navigation />
+            <MainNavigation />
           </LayoutNav>
           <LayoutWindowSplitter {...windowSplitterProps} />
         </>
       )}
       {temporary && (
         <Sheet {...temporaryNavProps}>
-          <Navigation />
+          <MainNavigation />
         </Sheet>
       )}
       <Main {...mainProps}>{children}</Main>
@@ -259,7 +264,7 @@ export function ResizableLayoutExample(
 }
 ```
 
-### Full Height Resizable Layout
+### Full Height Resizable Navigation Layout
 
 Just like the expandable layout version, the resizable layout can become full
 height by providing `fullHeightNav: true` or `fullHeightNav: "static"`. The
@@ -281,12 +286,133 @@ be viewed [here](/layout-example/full-height-resizable).
 
 ```
 
-# Creating the Navigation
+# Creating the MainNavigation
 
-Now that a layout has been setup, it's time to create the `Navigation`
-component. Navigation is usually handled by:
+Now that a layout has been setup, it's time to create the `MainNavigation`
+component which is usually one of:
 
 - list of links
 - collapsible list of links
 - dropdown menus
 - tree
+
+## Navigation Component
+
+The easiest way to get started is by using the `Navigation` component which is
+the default navigation type shown in the demos on this page. The `Navigation`
+component accepts a list of `items` and `data` containing the `pathname` and
+`linkComponent`. The `Home`, `Page 1`, and `Page 2` routes in the
+[demos](/layout-example/full-height?navType=core) are created by:
+
+```tsx
+import { Navigation } from "@react-md/core/navigation/Navigation";
+import { type NavigationItem } from "@react-md/core/navigation/types";
+import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
+import HomeIcon from "@react-md/material-icons/HomeIcon";
+import StarIcon from "@react-md/material-icons/StarIcon";
+import Link from "next/link.js";
+import { usePathname } from "next/navigation.js";
+import { type ReactElement } from "react";
+
+const items: readonly NavigationItem[] = [
+  {
+    type: "route",
+    href: "/",
+    children: "Home",
+    beforeAddon: <HomeIcon />,
+  },
+  {
+    type: "route",
+    href: "/page-1",
+    children: "Page 1",
+    beforeAddon: <StarIcon />,
+  },
+  {
+    type: "route",
+    href: "/page-2",
+    children: "Page 2",
+    beforeAddon: <FavoriteIcon />,
+  },
+];
+
+export function MainNavigation(): ReactElement {
+  const pathname = usePathname();
+
+  return <Navigation items={items} data={{ pathname, linkComponent: Link }} />;
+}
+```
+
+See the [Navigation](/components/navigation) component documentation for
+additional features, styling, and customization.
+
+## Tree Component
+
+> !Warn! Before considering the use of a [Tree](/components/tree) for site
+> navigation, it is important to understand:
+>
+> - The `Tree` implementation requires complex functionality that is not needed
+>   for typical site navigation
+> - The `Navigation` component can be used instead for expandable groups of
+>   links
+
+A [Tree](/components/tree) can be used for site navigation with the
+[useLayoutTree](/hooks/use-layout-tree) hook using the `TreeData` data
+structure. Each item should have an `itemId` that matches the `href` for the
+route and a `parentId` of a parent route or `null`. When the `itemId` matches
+the current `pathname`, it will gain the active styles.
+
+A tree layout can be viewed [here](/layout-example/full-height?navType=tree).
+
+```tsx
+import { Tree } from "@react-md/core/tree/Tree";
+import { type TreeData } from "@react-md/core/tree/types";
+import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
+import HomeIcon from "@react-md/material-icons/HomeIcon";
+import StarIcon from "@react-md/material-icons/StarIcon";
+import Link from "next/link.js";
+import { usePathname } from "next/navigation.js";
+import { type ReactElement } from "react";
+
+const navItems: TreeData = {
+  "/": {
+    parentId: null,
+    itemId: "/",
+    href: "/",
+    children: "Home",
+    leftAddon: <HomeIcon />,
+  },
+  "/page-1": {
+    itemId: "/page-1",
+    parentId: null,
+    href: "/page-1",
+    children: "Page 1",
+    leftAddon: <StarIcon />,
+  },
+  "/page-1/child-page-1": {
+    itemId: "/page-1/child-page-1",
+    parentId: "/page-1",
+    href: "/page-1/child-page-1",
+    children: "Child Page 1",
+  },
+  "/page-2": {
+    itemId: "/page-2",
+    parentId: null,
+    href: "/page-2",
+    children: "Page 2",
+    leftAddon: <FavoriteIcon />,
+  },
+};
+
+export function MainNavigation(): ReactElement {
+  const pathname = usePathname();
+  const tree = useLayoutTree({
+    navItems,
+    pathname,
+  });
+
+  return <Tree aria-label="Navigation" {...tree} linkComponent={Link} />;
+}
+```
+
+See the [Tree](/components/tree) component documentation for additional
+features, styling, and customization.

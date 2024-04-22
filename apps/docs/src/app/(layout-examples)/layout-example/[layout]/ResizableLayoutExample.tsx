@@ -12,7 +12,7 @@ import {
 import { Sheet } from "@react-md/core/sheet/Sheet";
 import { usePathname } from "next/navigation.js";
 import { type ReactElement } from "react";
-import { Navigation } from "./Navigation.jsx";
+import { ExampleNavigation } from "./ExampleNavigation.jsx";
 import { type ExampleLayoutProps } from "./layouts.js";
 
 export interface ResizableLayoutExampleProps
@@ -45,14 +45,14 @@ export function ResizableLayoutExample(
       {persistent && (
         <>
           <LayoutNav {...expandableNavProps}>
-            <Navigation layout={layout} />
+            <ExampleNavigation layout={layout} />
           </LayoutNav>
           <LayoutWindowSplitter {...windowSplitterProps} />
         </>
       )}
       {temporary && (
         <Sheet {...temporaryNavProps}>
-          <Navigation layout={layout} />
+          <ExampleNavigation layout={layout} />
         </Sheet>
       )}
       <Main {...mainProps}>{children}</Main>

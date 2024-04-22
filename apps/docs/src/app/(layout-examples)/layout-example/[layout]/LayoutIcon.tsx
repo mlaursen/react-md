@@ -1,11 +1,10 @@
 import { type SVGIconProps } from "@react-md/core/icon/SVGIcon";
-import ForestIcon from "@react-md/material-icons/ForestIcon";
-import AllOutIcon from "node_modules/@react-md/material-icons/src/AllOutIcon.jsx";
-import DensityLargeIcon from "node_modules/@react-md/material-icons/src/DensityLargeIcon.jsx";
-import ExpandIcon from "node_modules/@react-md/material-icons/src/ExpandIcon.jsx";
-import FullscreenIcon from "node_modules/@react-md/material-icons/src/FullscreenIcon.jsx";
-import MenuOpenIcon from "node_modules/@react-md/material-icons/src/MenuOpenIcon.jsx";
-import OpenInFullIcon from "node_modules/@react-md/material-icons/src/OpenInFullIcon.jsx";
+import AllOutIcon from "@react-md/material-icons/AllOutIcon";
+import DensityLargeIcon from "@react-md/material-icons/DensityLargeIcon";
+import ExpandIcon from "@react-md/material-icons/ExpandIcon";
+import FullscreenIcon from "@react-md/material-icons/FullscreenIcon";
+import MenuOpenIcon from "@react-md/material-icons/MenuOpenIcon";
+import OpenInFullIcon from "@react-md/material-icons/OpenInFullIcon";
 import { type ComponentType, type ReactElement } from "react";
 import { type LayoutType } from "./layouts.js";
 
@@ -34,9 +33,6 @@ export function LayoutIcon(props: LayoutIconProps): ReactElement {
       break;
     case "full-height-resizable":
       Component = AllOutIcon;
-      break;
-    case "tree":
-      Component = ForestIcon;
       break;
   }
 
