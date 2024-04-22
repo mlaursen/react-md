@@ -41,16 +41,22 @@ export interface NavigationItemSubheader extends ListSubheaderProps {
 }
 
 /**
- * Used to create a group of routes being prefixed with a `ListItemSubheader`.
+ * This is used to either create a route group which update all child routes to
+ * be prefixed with the optional `href`.
  *
- * @example Output
+ * @example Route Group Output
  * ```tsx
- * const { items, type, ...props } = item;
+ * const nextParents = [item, ...parents];
  * return (
- *   <>
- *     <ListSubheader {...props} />
+ *   <CollapsibleNavGroup
+ *     depth={nextParents.length})
+ *     defaultCollapsed={() =>
+ *       !data.pathname.includes(getHrefFromParents(nextParents))
+ *     }
+ *     buttonChildren={item.children}
+ *   >
  *     {children}
- *   </>
+ *   </CollapsibleNavGroup>
  * );
  * ```
  *
@@ -60,6 +66,7 @@ export interface NavigationItemSubheader extends ListSubheaderProps {
  */
 export interface NavigationItemGroup {
   type: "group";
+  href?: string;
   children: ReactNode;
   items: readonly NavigationItem[];
 }
@@ -70,7 +77,6 @@ export interface NavigationItemGroup {
 export interface NavigationItemRoute {
   type: "route";
   href: string;
-  items?: readonly NavigationItem[];
   children: ReactNode;
   active?: boolean;
   beforeAddon?: ReactNode;

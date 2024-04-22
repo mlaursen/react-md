@@ -26,7 +26,7 @@ export function getRecursiveNavItemKey<
   const { item } = options;
   // if it's a route, try setting the key to the href since they are generally
   // unique
-  if (item.type === "route" && item.href) {
+  if ("href" in item && item.href) {
     return item.href;
   }
 

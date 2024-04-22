@@ -17,7 +17,7 @@ const items: NavigationItem[] = [
     children: "Subheader",
   },
   {
-    type: "route",
+    type: "group",
     href: "/path-1",
     children: "Path 1",
     items: [
@@ -34,29 +34,24 @@ const items: NavigationItem[] = [
     ],
   },
   {
-    type: "route",
+    type: "group",
     href: "/path-2",
     children: "Path 2",
     items: [
+      { type: "subheader", children: "Routes" },
       {
-        type: "group",
-        children: "Routes",
-        items: [
-          {
-            type: "route",
-            href: "/route-1",
-            children: "Route 1",
-          },
-          {
-            type: "divider",
-            inset: true,
-          },
-          {
-            type: "route",
-            href: "/route-2",
-            children: "Route 2",
-          },
-        ],
+        type: "route",
+        href: "/route-1",
+        children: "Route 1",
+      },
+      {
+        type: "divider",
+        inset: true,
+      },
+      {
+        type: "route",
+        href: "/route-2",
+        children: "Route 2",
       },
     ],
   },

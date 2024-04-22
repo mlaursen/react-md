@@ -1,0 +1,130 @@
+# Navigation
+
+The `Navigation` component can be used to create a list of links to different
+pages within the app and generally used within a [Sheet](./sheet) or
+[LayoutNav](./layout-nav).
+
+> !Info! Most of the demos on this page are for presentational purpose only and
+> will use a `FakeLink` with a hard-coded `pathname`. A "real-world" example is
+> available as the navigation for this website and some [example layouts](/layout-example/temporary).
+
+# Simple Example
+
+The `Navigation` component accepts a list of `items` defining all the routes to
+render and a `data` prop defining the current `pathname` and `linkComponent`.
+The `linkComponent` **must** accept and forward a `ref` and accept an `href`.
+When an item's `href` matches the current `pathname`, it will gain the active
+styles.
+
+> !Info! The `Navigation` component only needs to be wrapped in a `<nav>` when
+> not using the [LayoutNav](./layout-nav) component and any of the
+> `useTemporaryLayout`, `useExpandableLayout`, or `useResizableLayout` hooks.
+
+```demo source="./SimpleExample.tsx"
+
+```
+
+## Adding Icons
+
+Icons can be added before or after the `children` by using the `beforeAddon` and
+`afterAddon` props respectively.
+
+```demo source="./AddingIconsExample.tsx"
+
+```
+
+## Adding Dividers and Subheaders
+
+Dividers and subheaders can be rendered by setting the `type` to `"divider"` or
+`"subheader"` respectively.
+
+```demo source="./AddingDividersAndSubheadersExample.tsx"
+
+```
+
+## Collapsible Groups
+
+A group of routes can be created by creating an item with `type: "group"`. If an
+`href` is also included in this item, all child routes' `href` will be prefixed
+with the group `href`.
+
+```demo source="./CollapsibleGroupsExample.tsx"
+
+```
+
+# Routing Libraries and Frameworks
+
+## Nextjs Example
+
+It is recommended to create a simple `LinkUnstyled` component which can be
+customized and used throughout the app:
+
+```import source="@/components/LinkUnstyled.tsx" fileName="src/components/LinkUnstyled.tsx"
+
+```
+
+Then use the `LinkUnstyled` as the `linkComponent` and pass the current
+`pathname` with the `usePathname` hook:
+
+```import source="./NextjsExample.tsx" fileName="src/components/Navigation.tsx"
+
+```
+
+## React Router Example
+
+It is recommended to create a simple `LinkUnstyled` component which can be
+customized and used throughout the app:
+
+```tsx
+import { Link, type LinkProps } from "react-router-dom";
+
+export interface LinkUnstyledProps extends Omit<LinkProps, "to"> {
+  href: string;
+}
+
+export const LinkUnstyled = forwardRef<HTMLAnchorElement, LinkUnstyledProps>(
+  function LinkUnstyled(props, ref) {
+    const { href, ...remaining } = props;
+
+    return <Link {...remaining} to={href} ref={ref} />;
+  }
+);
+```
+
+Then use the `LinkUnstyled` as the `linkComponent` and pass the current
+`pathname` with the `useHref` hook:
+
+```tsx
+import { LinkUnstyled } from "@/components/LinkUnstyled.jsx";
+import { Navigation } from "@react-md/core/navigation/Navigation";
+import { type NavigationItem } from "@react-md/core/navigation/types";
+import { type ReactElement } from "react";
+import { useHref } from "react-router-dom";
+
+const items: readonly NavigationItem[] = [
+  {
+    type: "route",
+    href: "/",
+    children: "Home",
+  },
+  {
+    type: "route",
+    href: "/page-1",
+    children: "Page 1",
+  },
+];
+
+export function MainNavigation(): ReactElement {
+  const pathname = useHref();
+  return (
+    <nav aria-label="Navigation">
+      <Navigation
+        data={{ pathname, linkComponent: LinkUnstyled }}
+        items={items}
+      />
+    </nav>
+  );
+}
+```
+
+> !Warn! Disclaimer: I haven't actually tried upgrading to `react-router-dom@v6.x.x` yet.

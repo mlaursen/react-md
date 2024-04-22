@@ -42,15 +42,6 @@ export function DefaultNavigationRenderer<
       const { type: _type, items: _items, ...subheader } = item;
       return <NavSubheader {...subheader} />;
     }
-    case "group": {
-      const { type: _type, items: _items, ...subheader } = item;
-      return (
-        <>
-          <NavSubheader {...subheader} />
-          {children}
-        </>
-      );
-    }
   }
 
   if (item.items) {
@@ -73,7 +64,7 @@ export function DefaultNavigationRenderer<
     <NavItemLink
       {...item}
       as={data?.linkComponent}
-      active={!!item.active || data?.pathname === href}
+      active={("active" in item && !!item.active) || data?.pathname === href}
       href={href}
     />
   );

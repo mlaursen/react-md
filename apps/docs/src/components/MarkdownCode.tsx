@@ -24,7 +24,12 @@ export function MarkdownCode(props: MarkdownCodeProps): ReactElement {
   }
 
   if (process.env.NODE_ENV !== "production") {
-    const KNOWN_PROPS = new Set<string>(["fileName", "disableMarginTop"]);
+    const KNOWN_PROPS = new Set<string>([
+      "fileName",
+      "lineWrap",
+      "containerProps",
+      "disableMarginTop",
+    ]);
     const invalid = new Set<string>();
     Object.keys(remaining).forEach((key) => {
       if (!KNOWN_PROPS.has(key)) {

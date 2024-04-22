@@ -117,6 +117,7 @@ function handleImports(options: HandleImportsOptions): void {
     sourceFile.addStatements(
       "\n\n" + nextSourceFile.getFullText().replace(/"use client";/, "")
     );
+    project.removeSourceFile(nextSourceFile);
     // for some reason I can't get this to work anymore, so just move the
     // entire file over.
     //
