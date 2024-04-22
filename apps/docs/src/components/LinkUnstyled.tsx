@@ -1,7 +1,9 @@
 import Link, { type LinkProps } from "next/link.js";
-import { forwardRef } from "react";
+import { forwardRef, type AnchorHTMLAttributes } from "react";
 
-export interface LinkUnstyledProps extends LinkProps {
+export interface LinkUnstyledProps
+  extends LinkProps,
+    AnchorHTMLAttributes<HTMLAnchorElement> {
   href: string;
 }
 
