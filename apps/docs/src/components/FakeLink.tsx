@@ -8,7 +8,7 @@ export interface FakeLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
 }
 
 export const FakeLink = forwardRef<HTMLAnchorElement, FakeLinkProps>(
-  function HashLink(props, ref) {
+  function HashLink(props, _ref) {
     const { href, ...remaining } = props;
     const { elementProps, tooltipProps } = useTooltip({
       ...props,
@@ -16,9 +16,11 @@ export const FakeLink = forwardRef<HTMLAnchorElement, FakeLinkProps>(
       defaultPosition: "right",
     });
 
+    // do not forward the ref so the link is not scrolled into view for demos
+    // since it scrolls the entire page instead of a navigation panel
     return (
       <>
-        <span {...remaining} {...elementProps} ref={ref} />
+        <span {...remaining} {...elementProps} />
         <Tooltip {...tooltipProps}>href: {href}</Tooltip>
       </>
     );

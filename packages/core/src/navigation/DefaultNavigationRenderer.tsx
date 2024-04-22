@@ -11,8 +11,8 @@ import { type NavigationItem, type NavigationRenderData } from "./types.js";
  * @since 6.0.0
  */
 export interface DefaultNavigationRendererProps<
-  Item extends NavigationItem,
-  Data extends NavigationRenderData,
+  Item extends NavigationItem = NavigationItem,
+  Data extends NavigationRenderData = NavigationRenderData,
 > extends RenderRecursiveItemsProps<Item, Data> {}
 
 /**
