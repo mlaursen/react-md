@@ -26,8 +26,8 @@
     "start": "next start"
   },
   "engines": {
-    "pnpm": ">=8",
-    "node": ">=18"
+    "pnpm": "9.x",
+    "node": "20.x"
   },
   "engineStrict": true,
   "repository": {
@@ -84,6 +84,6 @@
   },
   "volta": {
     "node": "20.12.2",
-    "pnpm": "8.15.7"
+    "pnpm": "9.0.5"
   }
 }
