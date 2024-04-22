@@ -40,10 +40,10 @@
     "cnbuilder": "^3.1.0"
   },
   "devDependencies": {
-    "@swc/core": "1.4.13",
+    "@swc/core": "1.4.16",
     "@types/lodash": "^4.17.0",
     "@types/node": "^20.12.7",
-    "@types/react": "^18.2.78",
+    "@types/react": "^18.2.79",
     "glob": "^10.3.12",
     "lodash": "^4.17.21",
     "prettier": "^3.2.5",
