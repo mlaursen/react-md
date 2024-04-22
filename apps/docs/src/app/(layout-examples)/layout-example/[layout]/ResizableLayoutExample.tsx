@@ -54,9 +54,11 @@ export function ResizableLayoutExample(
       )}
       {temporary && (
         <Sheet {...temporaryNavProps}>
-          <Suspense>
-            <ExampleNavigation layout={layout} />
-          </Suspense>
+          <nav aria-label="Navigation">
+            <Suspense>
+              <ExampleNavigation layout={layout} />
+            </Suspense>
+          </nav>
         </Sheet>
       )}
       <Main {...mainProps}>{children}</Main>

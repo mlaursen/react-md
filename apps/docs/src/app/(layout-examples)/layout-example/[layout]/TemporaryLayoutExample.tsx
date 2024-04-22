@@ -22,13 +22,15 @@ export function TemporaryLayoutExample(
     <>
       <AppBar {...appBarProps}>
         <Button {...navToggleProps} />
-        <AppBarTitle>Temporary Navigation Example</AppBarTitle>
+        <AppBarTitle>Temporary Example</AppBarTitle>
       </AppBar>
       <Main {...mainProps}>{children}</Main>
       <Sheet {...temporaryNavProps}>
-        <Suspense>
-          <ExampleNavigation layout={layout} />
-        </Suspense>
+        <nav aria-label="Navigation">
+          <Suspense>
+            <ExampleNavigation layout={layout} />
+          </Suspense>
+        </nav>
       </Sheet>
     </>
   );

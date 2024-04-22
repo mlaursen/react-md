@@ -16,9 +16,8 @@ The `linkComponent` **must** accept and forward a `ref` and accept an `href`.
 When an item's `href` matches the current `pathname`, it will gain the active
 styles.
 
-> !Info! The `Navigation` component only needs to be wrapped in a `<nav>` when
-> not using the [LayoutNav](./layout-nav) component and any of the
-> `useTemporaryLayout`, `useExpandableLayout`, or `useResizableLayout` hooks.
+> !Warn! The `Navigation` component must be wrapped in a `<nav>` with an
+> accessible label when not using the [LayoutNav](./layout-nav) component.
 
 ```demo source="./SimpleExample.tsx"
 

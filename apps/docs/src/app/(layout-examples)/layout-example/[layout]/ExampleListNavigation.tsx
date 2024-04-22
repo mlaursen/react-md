@@ -1,6 +1,5 @@
 "use client";
 import { pascalCase } from "@/utils/strings.js";
-import { cssUtils } from "@react-md/core/cssUtils";
 import { Divider } from "@react-md/core/divider/Divider";
 import { List } from "@react-md/core/list/List";
 import { ListSubheader } from "@react-md/core/list/ListSubheader";
@@ -10,6 +9,7 @@ import HomeIcon from "@react-md/material-icons/HomeIcon";
 import StarIcon from "@react-md/material-icons/StarIcon";
 import { usePathname } from "next/navigation.js";
 import { type ReactElement } from "react";
+import styles from "./ExampleListNavigation.module.scss";
 import { LayoutIcon } from "./LayoutIcon.js";
 import { NavigationTypeIcon } from "./NavigationTypeIcon.jsx";
 import { SimpleNavItem } from "./SimpleNavItem.js";
@@ -30,7 +30,7 @@ export function ExampleListNavigation(
   const pathname = usePathname();
 
   return (
-    <List className={cssUtils({ textOverflow: "ellipsis" })}>
+    <List className={styles.container}>
       <SimpleNavItem
         href={`/layout-example/${layout}${navTypeParam}`}
         leftAddon={<HomeIcon />}
