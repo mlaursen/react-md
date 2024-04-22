@@ -11,7 +11,7 @@ import {
 } from "@react-md/core/layout/useResizableLayout";
 import { Sheet } from "@react-md/core/sheet/Sheet";
 import { usePathname } from "next/navigation.js";
-import { type ReactElement } from "react";
+import { Suspense, type ReactElement } from "react";
 import { ExampleNavigation } from "./ExampleNavigation.jsx";
 import { type ExampleLayoutProps } from "./layouts.js";
 
@@ -45,14 +45,18 @@ export function ResizableLayoutExample(
       {persistent && (
         <>
           <LayoutNav {...expandableNavProps}>
-            <ExampleNavigation layout={layout} />
+            <Suspense>
+              <ExampleNavigation layout={layout} />
+            </Suspense>
           </LayoutNav>
           <LayoutWindowSplitter {...windowSplitterProps} />
         </>
       )}
       {temporary && (
         <Sheet {...temporaryNavProps}>
-          <ExampleNavigation layout={layout} />
+          <Suspense>
+            <ExampleNavigation layout={layout} />
+          </Suspense>
         </Sheet>
       )}
       <Main {...mainProps}>{children}</Main>

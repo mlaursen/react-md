@@ -6,7 +6,7 @@ import { Main } from "@react-md/core/layout/Main";
 import { useTemporaryLayout } from "@react-md/core/layout/useTemporaryLayout";
 import { Sheet } from "@react-md/core/sheet/Sheet";
 import { usePathname } from "next/navigation.js";
-import { type ReactElement } from "react";
+import { Suspense, type ReactElement } from "react";
 import { ExampleNavigation } from "./ExampleNavigation.jsx";
 import { type ExampleLayoutProps } from "./layouts.js";
 
@@ -26,7 +26,9 @@ export function TemporaryLayoutExample(
       </AppBar>
       <Main {...mainProps}>{children}</Main>
       <Sheet {...temporaryNavProps}>
-        <ExampleNavigation layout={layout} />
+        <Suspense>
+          <ExampleNavigation layout={layout} />
+        </Suspense>
       </Sheet>
     </>
   );
