@@ -10,10 +10,6 @@ import {
 import { Button, type ButtonProps } from "./Button.js";
 import { type ButtonType } from "./buttonStyles.js";
 
-const noop = (): void => {
-  // do nothing
-};
-
 /**
  * @since 6.0.0
  */
@@ -83,13 +79,13 @@ export const TooltippedButton = forwardRef<
     tooltipProps,
     tooltipOptions,
     buttonType = "icon",
-    onBlur = noop,
-    onFocus = noop,
-    onMouseEnter = noop,
-    onMouseLeave = noop,
-    onTouchStart = noop,
-    onTouchEnd = noop,
-    onContextMenu = noop,
+    onBlur,
+    onFocus,
+    onMouseEnter,
+    onMouseLeave,
+    onTouchStart,
+    onTouchEnd,
+    onContextMenu,
     ...remaining
   } = props;
   const { tooltipProps: providedTooltipProps, elementProps } = useTooltip({
