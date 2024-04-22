@@ -3,12 +3,17 @@
   "globalDependencies": ["**/.env.*local"],
   "pipeline": {
     "@react-md/material-icons#build": {
-      "cache": false,
       "outputs": ["*.d.ts", "*.js"]
     },
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", "types/**", ".next/**", "!.next/cache/**"]
+      "outputs": [
+        "dist/**",
+        "types/**",
+        ".next/**",
+        "src/generated/**",
+        "!.next/cache/**"
+      ]
     },
     "test": {
       "outputs": ["coverage/**"],
