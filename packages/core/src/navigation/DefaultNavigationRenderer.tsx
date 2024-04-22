@@ -73,7 +73,7 @@ export function DefaultNavigationRenderer<
     <NavItemLink
       {...item}
       as={data?.linkComponent}
-      active={data?.pathname === href}
+      active={!!item.active || data?.pathname === href}
       href={href}
     />
   );

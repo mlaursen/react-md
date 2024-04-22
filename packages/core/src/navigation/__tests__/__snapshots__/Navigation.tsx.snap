@@ -6,9 +6,12 @@ exports[`Navigation should allow route groups to be expanded 1`] = `
 >
   <button
     class="rmd-button rmd-button--text rmd-interaction-surface rmd-nav-item__content"
+    id=":ra:"
     type="button"
   >
-    <span>
+    <span
+      class="rmd-nowrap rmd-ellipsis"
+    >
       Path 2
     </span>
     <span
@@ -39,7 +42,7 @@ exports[`Navigation should allow route groups to be expanded 1`] = `
       <a
         class="rmd-nav-item__content rmd-nav-item__link rmd-button rmd-button--text rmd-interaction-surface rmd-none"
         href="/path-2/route-1"
-        id=":r4:"
+        id=":rc:"
         type="route"
       >
         <span
@@ -59,7 +62,7 @@ exports[`Navigation should allow route groups to be expanded 1`] = `
       <a
         class="rmd-nav-item__content rmd-nav-item__link rmd-button rmd-button--text rmd-interaction-surface rmd-none"
         href="/path-2/route-2"
-        id=":r6:"
+        id=":re:"
         type="route"
       >
         <span
@@ -121,9 +124,12 @@ exports[`Navigation should be able to render dividers, subheaders, groups, links
   >
     <button
       class="rmd-button rmd-button--text rmd-interaction-surface rmd-nav-item__content"
+      id=":r2:"
       type="button"
     >
-      <span>
+      <span
+        class="rmd-nowrap rmd-ellipsis"
+      >
         Path 1
       </span>
       <span
@@ -139,9 +145,12 @@ exports[`Navigation should be able to render dividers, subheaders, groups, links
   >
     <button
       class="rmd-button rmd-button--text rmd-interaction-surface rmd-nav-item__content"
+      id=":r4:"
       type="button"
     >
-      <span>
+      <span
+        class="rmd-nowrap rmd-ellipsis"
+      >
         Path 2
       </span>
       <span

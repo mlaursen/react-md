@@ -77,6 +77,8 @@ $variables: (border-radius, horizontal-padding, padding-incrementor);
         }
 
         &__link {
+          justify-content: flex-start;
+
           &::after {
             @include utils.pseudo-element;
             @include interaction.use-var(

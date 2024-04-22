@@ -3,29 +3,27 @@ import {
   forwardRef,
   useEffect,
   type AnchorHTMLAttributes,
-  type HTMLAttributes,
   type LiHTMLAttributes,
-  type ReactNode,
 } from "react";
 import { cssUtils } from "../cssUtils.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { Tooltip } from "../tooltip/Tooltip.js";
-import {
-  useTooltip,
-  type TooltipOptions,
-  type TooltippedElementEventHandlers,
-} from "../tooltip/useTooltip.js";
+import { useTooltip } from "../tooltip/useTooltip.js";
 import { type PropsWithRef } from "../types.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
 import { NavItem } from "./NavItem.js";
 import { navItemLink } from "./navItemStyles.js";
-import { type NavigationLinkComponent } from "./types.js";
+import {
+  type NavItemContentProps,
+  type NavigationLinkComponent,
+} from "./types.js";
 
 /**
  * @since 6.0.0
  */
 export interface NavItemLinkProps
-  extends AnchorHTMLAttributes<HTMLAnchorElement> {
+  extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "children">,
+    NavItemContentProps {
   /** @defaultValue `"a"` */
   as?: NavigationLinkComponent;
   href: string;
@@ -35,24 +33,6 @@ export interface NavItemLinkProps
    * `style`, `className`, and `ref`.
    */
   liProps?: PropsWithRef<LiHTMLAttributes<HTMLLIElement>, HTMLLIElement>;
-
-  /**
-   * Any additional props to provide the `<span>` element that wraps the
-   * children such as `style`, `className`, and `ref`.
-   */
-  spanProps?: HTMLAttributes<HTMLSpanElement>;
-
-  /**
-   * An optional addon to render before the `children` and will not be wrapped
-   * in the `span` that adds ellipsis overflow.
-   */
-  beforeAddon?: ReactNode;
-
-  /**
-   * An optional addon to render after the `children` and will not be wrapped
-   * in the `span` that adds ellipsis overflow.
-   */
-  afterAddon?: ReactNode;
 
   /**
    * Set this to `true` if the link matches the current `pathname`. This will
@@ -65,36 +45,6 @@ export interface NavItemLinkProps
 
   /** @defaultValue `!to && !href` */
   disabled?: boolean;
-
-  /**
-   * This should contain accessible text for the page that this will link to and
-   * will automatically be truncated with ellipsis if it is too large. A tooltip
-   * will also appear only when it has been truncated.
-   */
-  children: ReactNode;
-
-  /**
-   * This most likely will never need to be used, but it's a way to override any
-   * tooltip options. The default behavior will position the tooltip to the
-   * right and only appear if the `children` are overflown.
-   *
-   * @example Customize
-   * ```tsx
-   * <NavItemLink
-   *   {...props}
-   *   tooltipOptions={{
-   *     overflowOnly: false,
-   *     defaultPosition: "above",
-   *     vhMargin: "1rem",
-   *     vwMargin: "1rem",
-   *   }}
-   * >
-   * ```
-   */
-  tooltipOptions?: Omit<
-    TooltipOptions<HTMLAnchorElement>,
-    keyof TooltippedElementEventHandlers<HTMLAnchorElement>
-  >;
 
   /**
    * Set this to `true` to prevent this item from scrolling into view when it

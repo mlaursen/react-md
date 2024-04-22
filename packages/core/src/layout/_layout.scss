@@ -94,8 +94,10 @@ $variables: (size, header-height);
       .rmd-layout-nav {
         @include sheet.set-var(width, get-var(size));
         @include media-queries.media($navigation-breakpoint) {
+          // Why did I want grid? flex seems easier atm
           // use grid so that you can easily have a header + tree that fills the remaining space
-          display: grid;
+          display: flex;
+          flex-direction: column;
         }
 
         container: $navigation-container-name;

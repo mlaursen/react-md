@@ -1,10 +1,15 @@
 import {
   type AnchorHTMLAttributes,
   type ForwardRefExoticComponent,
+  type HTMLAttributes,
   type ReactNode,
 } from "react";
 import { type DividerProps } from "../divider/Divider.js";
 import { type ListSubheaderProps } from "../list/ListSubheader.js";
+import {
+  type TooltipOptions,
+  type TooltippedElementEventHandlers,
+} from "../tooltip/useTooltip.js";
 
 /**
  * Used to add a `Divider` to the navigation list.
@@ -67,6 +72,7 @@ export interface NavigationItemRoute {
   href: string;
   items?: readonly NavigationItem[];
   children: ReactNode;
+  active?: boolean;
   beforeAddon?: ReactNode;
   afterAddon?: ReactNode;
 }
@@ -98,4 +104,57 @@ export interface NavigationRenderData {
    */
   pathname: string;
   linkComponent: NavigationLinkComponent;
+}
+
+/**
+ * @since 6.0.0
+ */
+export interface NavItemContentProps {
+  /**
+   * Any additional props to provide the `<span>` element that wraps the
+   * children such as `style`, `className`, and `ref`.
+   */
+  spanProps?: HTMLAttributes<HTMLSpanElement>;
+
+  /**
+   * An optional addon to render before the `children` and will not be wrapped
+   * in the `span` that adds ellipsis overflow.
+   */
+  beforeAddon?: ReactNode;
+
+  /**
+   * An optional addon to render after the `children` and will not be wrapped
+   * in the `span` that adds ellipsis overflow.
+   */
+  afterAddon?: ReactNode;
+
+  /**
+   * This should contain accessible text for the page that this will link to and
+   * will automatically be truncated with ellipsis if it is too large. A tooltip
+   * will also appear only when it has been truncated.
+   */
+  children: ReactNode;
+
+  /**
+   * This most likely will never need to be used, but it's a way to override any
+   * tooltip options. The default behavior will position the tooltip to the
+   * right and only appear if the `children` are overflown.
+   *
+   * @example Customize
+   * ```tsx
+   * <NavItemLink
+   *   {...props}
+   *   tooltipOptions={{
+   *     overflowOnly: false,
+   *     defaultPosition: "above",
+   *     vhMargin: "1rem",
+   *     vwMargin: "1rem",
+   *   }}
+   * >
+   * ```
+   */
+  tooltipOptions?: Omit<
+    TooltipOptions<HTMLAnchorElement>,
+    keyof TooltippedElementEventHandlers<HTMLAnchorElement>
+  >;
 }
