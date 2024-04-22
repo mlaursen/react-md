@@ -4,18 +4,19 @@ import { pascalCase } from "@/utils/strings.js";
 import { useLayoutTree } from "@react-md/core/layout/useLayoutTree";
 import { Tree } from "@react-md/core/tree/Tree";
 import { type TreeData } from "@react-md/core/tree/types";
+import ExitToAppIcon from "@react-md/material-icons/ExitToAppIcon";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import HomeIcon from "@react-md/material-icons/HomeIcon";
 import StarIcon from "@react-md/material-icons/StarIcon";
 import { cnb } from "cnbuilder";
 import { usePathname } from "next/navigation.js";
 import { useMemo, type ReactElement } from "react";
-import { LAYOUT_TYPES, type LayoutType } from "./layouts.js";
-import { NAVIGATION_TYPES } from "./navTypes.js";
-import { useNavType } from "./useNavType.js";
-import ExitToAppIcon from "@react-md/material-icons/ExitToAppIcon";
 import { LayoutIcon } from "./LayoutIcon.jsx";
 import { NavigationTypeIcon } from "./NavigationTypeIcon.jsx";
+import { LAYOUT_TYPES, type LayoutType } from "./layouts.js";
+import { NAVIGATION_TYPES } from "./navTypes.js";
+
+const navTypeParam = `?navType=tree`;
 
 export interface ExampleTreeNavigationProps {
   layout: LayoutType;
@@ -26,7 +27,6 @@ export function ExampleTreeNavigation(
 ): ReactElement {
   const { layout } = props;
 
-  const navType = useNavType();
   const pathname = usePathname();
 
   const navItems = useMemo<TreeData>(() => {
@@ -39,7 +39,7 @@ export function ExampleTreeNavigation(
       const itemId = `layouts/${layoutType}`;
       layouts[itemId] = {
         itemId,
-        href: `/layout-example/${layoutType}?navType=${navType}`,
+        href: `/layout-example/${layoutType}${navTypeParam}`,
         parentId: "layouts",
         children: pascalCase(layoutType, " "),
         leftAddon: <LayoutIcon layout={layoutType} />,
@@ -57,7 +57,7 @@ export function ExampleTreeNavigation(
         children: pascalCase(type, " "),
         leftAddon: <NavigationTypeIcon navType={type} />,
         contentClassName: cnb(
-          type === navType && "rmd-tree-item__content--selected"
+          type === "tree" && "rmd-tree-item__content--selected"
         ),
       };
     });
@@ -70,21 +70,21 @@ export function ExampleTreeNavigation(
       [homeHref]: {
         itemId: homeHref,
         parentId: "pages",
-        href: `${homeHref}?navType=${navType}`,
+        href: `${homeHref}${navTypeParam}`,
         children: "Home",
         leftAddon: <HomeIcon />,
       },
       [page1Href]: {
         itemId: page1Href,
         parentId: "pages",
-        href: `${page1Href}?navType=${navType}`,
+        href: `${page1Href}${navTypeParam}`,
         children: "Page 1",
         leftAddon: <StarIcon />,
       },
       [page2Href]: {
         itemId: page2Href,
         parentId: "pages",
-        href: `${page2Href}?navType=${navType}`,
+        href: `${page2Href}${navTypeParam}`,
         children: "Page 2",
         leftAddon: <FavoriteIcon />,
       },
@@ -108,7 +108,7 @@ export function ExampleTreeNavigation(
         leftAddon: <ExitToAppIcon />,
       },
     } satisfies TreeData;
-  }, [layout, navType]);
+  }, [layout]);
 
   const tree = useLayoutTree({
     navItems,

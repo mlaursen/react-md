@@ -15,7 +15,8 @@ import { NavigationTypeIcon } from "./NavigationTypeIcon.jsx";
 import { SimpleNavItem } from "./SimpleNavItem.js";
 import { LAYOUT_TYPES, type LayoutType } from "./layouts.js";
 import { NAVIGATION_TYPES } from "./navTypes.js";
-import { useNavType } from "./useNavType.js";
+
+const navTypeParam = `?navType=list`;
 
 export interface ExampleListNavigationProps {
   layout: LayoutType;
@@ -25,25 +26,25 @@ export function ExampleListNavigation(
   props: ExampleListNavigationProps
 ): ReactElement {
   const { layout } = props;
+
   const pathname = usePathname();
-  const currentNavType = useNavType();
 
   return (
     <List className={cssUtils({ textOverflow: "ellipsis" })}>
       <SimpleNavItem
-        href={`/layout-example/${layout}`}
+        href={`/layout-example/${layout}${navTypeParam}`}
         leftAddon={<HomeIcon />}
       >
         Home
       </SimpleNavItem>
       <SimpleNavItem
-        href={`/layout-example/${layout}/page-1`}
+        href={`/layout-example/${layout}/page-1${navTypeParam}`}
         leftAddon={<StarIcon />}
       >
         Page 1
       </SimpleNavItem>
       <SimpleNavItem
-        href={`/layout-example/${layout}/page-2`}
+        href={`/layout-example/${layout}/page-2${navTypeParam}`}
         leftAddon={<FavoriteIcon />}
       >
         Page 2
@@ -54,7 +55,7 @@ export function ExampleListNavigation(
         <SimpleNavItem
           key={layoutType}
           active={layout === layoutType}
-          href={`/layout-example/${layoutType}`}
+          href={`/layout-example/${layoutType}${navTypeParam}`}
           leftAddon={<LayoutIcon layout={layoutType} />}
         >
           {pascalCase(layoutType, " ")}
@@ -66,7 +67,7 @@ export function ExampleListNavigation(
         <SimpleNavItem
           key={navType}
           href={`${pathname}?navType=${navType}`}
-          active={navType === currentNavType}
+          active={navType === "list"}
           leftAddon={<NavigationTypeIcon navType={navType} />}
         >
           {pascalCase(navType, " ")}

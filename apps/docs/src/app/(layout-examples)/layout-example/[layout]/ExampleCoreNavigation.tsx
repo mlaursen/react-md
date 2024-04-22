@@ -14,6 +14,8 @@ import { NavigationTypeIcon } from "./NavigationTypeIcon.jsx";
 import { LAYOUT_TYPES, type LayoutType } from "./layouts.js";
 import { NAVIGATION_TYPES } from "./navTypes.js";
 
+const navTypeParam = "?navType=core";
+
 export interface ExampleCoreNavigationProps {
   layout: LayoutType;
 }
@@ -23,7 +25,6 @@ export function ExampleCoreNavigation(
 ): ReactElement {
   const { layout } = props;
 
-  const navTypeParam = "?navType=core";
   const pathname = usePathname();
   const items = useMemo<readonly NavigationItem[]>(
     () => [

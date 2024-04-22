@@ -1,10 +1,17 @@
 "use client";
+import { useSearchParams } from "next/navigation.js";
 import { type ComponentType, type ReactElement } from "react";
 import { ExampleCoreNavigation } from "./ExampleCoreNavigation.jsx";
 import { ExampleListNavigation } from "./ExampleListNavigation.jsx";
 import { ExampleTreeNavigation } from "./ExampleTreeNavigation.jsx";
 import { type LayoutType } from "./layouts.js";
-import { useNavType } from "./useNavType.js";
+import { type NavigationType } from "./navTypes.js";
+
+function getNavType(navType: string | null): NavigationType {
+  return navType === "core" || navType === "list" || navType === "tree"
+    ? navType
+    : "core";
+}
 
 export interface ExampleNavigationProps {
   layout: LayoutType;
@@ -13,7 +20,8 @@ export interface ExampleNavigationProps {
 export function ExampleNavigation(props: ExampleNavigationProps): ReactElement {
   const { layout } = props;
 
-  const navType = useNavType();
+  const searchParams = useSearchParams();
+  const navType = getNavType(searchParams.get("navType"));
 
   let Navigation: ComponentType<ExampleNavigationProps>;
   switch (navType) {
