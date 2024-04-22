@@ -25,11 +25,6 @@
     "build": "npm-run-all build-env next-build",
     "start": "next start"
   },
-  "engines": {
-    "pnpm": "9.x",
-    "node": "20.x"
-  },
-  "engineStrict": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mlaursen/react-md.git"
@@ -84,6 +79,6 @@
   },
   "volta": {
     "node": "20.12.2",
-    "pnpm": "9.0.5"
+    "pnpm": "8.15.7"
   }
 }
