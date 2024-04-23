@@ -484,18 +484,11 @@ export function useDraggable<E extends HTMLElement>(
   ]);
 
   const prevRange = useRef({ min, max, step });
-  useEffect(() => {
-    if (
-      prevRange.current.min === min &&
-      prevRange.current.max === max &&
-      prevRange.current.step === step
-    ) {
-      return;
-    }
-
-    // ensure that if the `min`, `max`, or `step` value changes that the value
-    // is updated as well. Without this, there will be a runtime error if the
-    // value is not within the new range.
+  if (
+    prevRange.current.min !== min ||
+    prevRange.current.max !== max ||
+    prevRange.current.step !== step
+  ) {
     prevRange.current = { min, max, step };
     setValue((prevValue) =>
       nearest({
@@ -505,7 +498,7 @@ export function useDraggable<E extends HTMLElement>(
         value: prevValue,
       })
     );
-  }, [max, min, setValue, step]);
+  }
 
   const mouseEventHandlers: Required<DraggableMouseEventHandlers<E>> = {
     onMouseDown: useCallback(
