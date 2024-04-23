@@ -24,7 +24,7 @@
     "codesandbox": "^2.2.3",
     "date-fns": "^2.28.0",
     "filesize": "^8.0.7",
-    "formidable": "^2.0.1",
+    "formidable": "^3.2.4",
     "fuse.js": "6.5.3",
     "js-cookie": "^3.0.1",
     "lodash": "^4.17.21",
