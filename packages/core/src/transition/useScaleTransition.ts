@@ -134,6 +134,7 @@ export function useScaleTransition<E extends HTMLElement>(
     timeout = SCALE_TIMEOUT,
     vertical = false,
     temporary = true,
+    exitedHidden = true,
     classNames = vertical ? SCALE_Y_CLASSNAMES : SCALE_CLASSNAMES,
     ...transitionOptions
   } = options;
@@ -142,6 +143,7 @@ export function useScaleTransition<E extends HTMLElement>(
     ...transitionOptions,
     timeout,
     temporary,
+    exitedHidden,
     classNames,
   });
 }

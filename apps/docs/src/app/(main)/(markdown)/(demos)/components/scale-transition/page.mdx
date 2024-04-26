@@ -1,3 +1,50 @@
 # Scale Transition
 
-TODO
+The scale transition is generally used for temporary elements like dropdown
+menus and toasts. See the [CSSTransition](./css-transition) component and
+[useCSSTransition](/hooks/use-css-transition) for additional options.
+
+# Simple Example
+
+The transition can be enabled using the `ScaleTransition` component which
+defaults to:
+
+- Dynamically rendering the children only while `transitionIn` is `true`
+- Triggering an enter transition from `scale(0)` to `scale(1)`
+- Triggering an exit transition from `scale(1)` to `scale(0)`
+
+The `ScaleTransition` requires a single child component that accepts the
+`className` prop and forwards `ref`s like the other CSS transitions.
+
+```demo source="./SimpleExample.tsx"
+
+```
+
+## Vertical Example
+
+The transition can be updated to use `scaleY` by enabling the `vertical` prop.
+
+```demo source="./VerticalExample.tsx"
+
+```
+
+# Hidden While Exited
+
+The default behavior for the `ScaleTransition` is to unmount the component while
+not visible. Since this causes the state of these components to reset, this
+means the state needs to be pushed up the tree which isn't always ideal.
+Instead, the `ScaleTransition` supports using `display: none` while not visible
+instead by setting `temporary={false}`.
+
+```demo source="./HiddenWhileExitedExample.tsx"
+
+```
+
+# Scale Transition Hook Example
+
+The `useScaleTransition` can be used instead of the `ScaleTransition` component
+which exposes the full API.
+
+```demo source="./ScaleTransitionHookExample.tsx"
+
+```
