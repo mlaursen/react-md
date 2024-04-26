@@ -94,20 +94,13 @@ export interface CrossFadeProps<E extends HTMLElement>
 export function CrossFade<E extends HTMLElement>(
   props: CrossFadeProps<E>
 ): ReactElement {
-  const {
-    appear = true,
-    transitionIn = appear,
-    children,
-    className,
-    ...options
-  } = props;
+  const { appear = true, children, className, ...options } = props;
 
   const child = Children.only(children);
   const { elementProps, rendered } = useCrossFadeTransition({
     ...options,
     appear,
     className: cnb(child.props.className, className),
-    transitionIn,
   });
 
   return <>{rendered && cloneElement(children, elementProps)}</>;

@@ -1,3 +1,62 @@
 # Cross Fade
 
-TODO
+The cross fade transition is generally used for displaying new items with an
+enter only transition that fades in while dropping down into place. I don't
+remember why I named it cross fade.
+
+The transition can be triggered by using the `CrossFade` component or
+`useCrossFadeTransition` hook.
+
+# New Items Example
+
+This example will showcase how the `CrossFade` component can be used to animate
+new items that appear within a grid. The `CrossFade` child **must** forward
+refs and accept a `className` to animate correctly.
+
+```demo source="./NewItemsExample.tsx"
+
+```
+
+## Incorrect Example
+
+This example will show how to fix common issues with the `CrossFade` component's
+child transition.
+
+```demo source="./IncorrectExample.tsx"
+
+```
+
+# Using Keys
+
+The cross fade transition can be triggered by changing the `key` on the
+`CrossFade` component.
+
+```demo source="./UsingKeysExample.tsx"
+
+```
+
+# Cross Fade Transition Hook
+
+The `useCrossFadeTransition` can be used instead of the `CrossFade` component to
+enable the cross fade transition. The hook will provide `elementProps`
+containing a `ref` and `className` which must be passed to a component for the
+transition to work.
+
+> !Warn! Unlike the `CrossFade` component, the `useCrossFadeTransition` does
+> not default to enabling `appear` transitions.
+
+```demo source="./CrossFadeTransitionHookExample.tsx"
+
+```
+
+## Transition To
+
+The main benefit to the `useCrossFadeTransition` hook is that the transition
+can be triggered without re-mounting child components which is ideal for full page
+layout transitions. To trigger a new transition, call `transitionTo("enter")`.
+
+> !Info! See the [useCSSTransition hook](/hooks/use-css-transition) for more options.
+
+```demo source="./TransitionToExample.tsx"
+
+```

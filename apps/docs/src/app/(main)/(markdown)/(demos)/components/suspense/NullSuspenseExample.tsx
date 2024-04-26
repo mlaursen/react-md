@@ -7,6 +7,7 @@ import { CardHeader } from "@react-md/core/card/CardHeader";
 import { CardTitle } from "@react-md/core/card/CardTitle";
 import { NullSuspense } from "@react-md/core/suspense/NullSuspense";
 import { useToggle } from "@react-md/core/useToggle";
+import { wait } from "@react-md/core/utils/wait";
 import {
   lazy,
   useMemo,
@@ -38,15 +39,12 @@ export default function NullSuspenseExample(): ReactElement {
   );
 }
 
-function fakeImport<P>(
+async function fakeImport<P>(
   Component: FC<P>,
   delay: number
 ): Promise<{ default: FC<P> }> {
-  return new Promise((resolve) => {
-    window.setTimeout(() => {
-      resolve({ default: Component });
-    }, delay);
-  });
+  await wait(delay);
+  return { default: Component };
 }
 
 /**

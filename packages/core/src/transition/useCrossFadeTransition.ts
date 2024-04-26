@@ -112,6 +112,7 @@ export function useCrossFadeTransition<E extends HTMLElement>(
   options: CrossFadeTransitionHookOptions<E> = {}
 ): CSSTransitionHookReturnValue<E> {
   const {
+    appear = false,
     transitionIn = true,
     timeout = CROSS_FADE_TIMEOUT,
     classNames = CROSS_FADE_CLASSNAMES,
@@ -120,6 +121,7 @@ export function useCrossFadeTransition<E extends HTMLElement>(
 
   return useCSSTransition({
     ...cssOptions,
+    appear,
     timeout,
     classNames,
     transitionIn,
