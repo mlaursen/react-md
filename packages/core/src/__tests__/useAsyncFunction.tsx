@@ -11,7 +11,7 @@ import {
 import { box } from "../box/styles.js";
 import { Button, type ButtonProps } from "../button/Button.js";
 import { CircularProgress } from "../progress/CircularProgress.js";
-import { useAsyncAction } from "../useAsyncAction.js";
+import { useAsyncFunction } from "../useAsyncFunction.js";
 
 interface TestProps extends ButtonProps {
   onClick(event: MouseEvent<HTMLButtonElement>): Promise<void>;
@@ -27,7 +27,7 @@ function Test(props: TestProps): ReactElement {
     hookDisabled,
     ...remaining
   } = props;
-  const { handleAsync, pending } = useAsyncAction({
+  const { handleAsync, pending } = useAsyncFunction({
     disabled: disabled || hookDisabled,
   });
 
@@ -54,7 +54,7 @@ function Test(props: TestProps): ReactElement {
   );
 }
 
-describe("useAsyncAction", () => {
+describe("useAsyncFunction", () => {
   it("should start the async flow once clicked, prevent additional actions from being fired while pending, and not trigger the action if unmounted", async () => {
     const user = userEvent.setup();
 

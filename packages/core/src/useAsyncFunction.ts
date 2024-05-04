@@ -6,21 +6,21 @@ import { useUnmounted } from "./useUnmounted.js";
 /**
  * @since 6.0.0
  */
-export type AsyncActionFunction<Args extends unknown[]> = (
+export type AsyncFunction<Args extends unknown[]> = (
   ...args: Args
 ) => Promise<void>;
 
 /**
  * @since 6.0.0
  */
-export type HandleAsyncAction = <Args extends unknown[]>(
-  action: AsyncActionFunction<Args>
-) => AsyncActionFunction<Args>;
+export type HandleAsyncFunction = <Args extends unknown[]>(
+  action: AsyncFunction<Args>
+) => AsyncFunction<Args>;
 
 /**
  * @since 6.0.0
  */
-export interface AsyncActionOptions {
+export interface AsyncFunctionHookOptions {
   /** @defaultValue `false` */
   disabled?: boolean;
 }
@@ -28,11 +28,11 @@ export interface AsyncActionOptions {
 /**
  * @since 6.0.0
  */
-export interface AsyncActionImplementation {
+export interface AsyncFunctionHookImplementation {
   pending: boolean;
   unmounted: NonNullRef<boolean>;
   setPending: UseStateSetter<boolean>;
-  handleAsync: HandleAsyncAction;
+  handleAsync: HandleAsyncFunction;
 }
 
 /**
@@ -44,7 +44,7 @@ export interface AsyncActionImplementation {
  * @example Simple Example (Async Button)
  * ```tsx
  * import type { ButtonProps } from "@react-md/core";
- * import { box, Button, CircularProgress, useAsyncAction } from "@react-md/core";
+ * import { box, Button, CircularProgress, useAsyncFunction } from "@react-md/core";
  * import { cnb } from "cnbuilder";
  * import type { MouseEvent, ReactElement } from "react";
  *
@@ -56,7 +56,7 @@ export interface AsyncActionImplementation {
  *
  * export function AsyncButton(props: AsyncButtonProps): ReactElement {
  *   const { onClick, children, theme, className, disabled, ...remaining } = props;
- *   const { handleAsync, pending } = useAsyncAction({ disabled });
+ *   const { handleAsync, pending } = useAsyncFunction({ disabled });
  *
  *   return (
  *     <Button
@@ -107,7 +107,7 @@ export interface AsyncActionImplementation {
  *   DialogContent,
  *   DialogFooter,
  *   Form,
- *   useAsyncAction,
+ *   useAsyncFunction,
  * } from "@react-md/core";
  * import CloseIcon from "@react-md/material-icons/CloseIcon";
  * import type { ReactElement } from "react";
@@ -119,7 +119,7 @@ export interface AsyncActionImplementation {
  * }
  *
  * function Example({ hide, submit }: ExampleProps): ReactElement {
- *   const { handleAsync, pending } = useAsyncAction();
+ *   const { handleAsync, pending } = useAsyncFunction();
  *   const formId = useId();
  *
  *   return (
@@ -162,15 +162,15 @@ export interface AsyncActionImplementation {
  *
  * @since 6.0.0
  */
-export function useAsyncAction(
-  options: AsyncActionOptions = {}
-): AsyncActionImplementation {
+export function useAsyncFunction(
+  options: AsyncFunctionHookOptions = {}
+): AsyncFunctionHookImplementation {
   const { disabled } = options;
 
   const [pending, setPending] = useState(false);
   const unmounted = useUnmounted();
 
-  const handleAsync = useCallback<HandleAsyncAction>(
+  const handleAsync = useCallback<HandleAsyncFunction>(
     (action) =>
       async (...args) => {
         if (pending || disabled) {

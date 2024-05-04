@@ -305,7 +305,7 @@ export * from "@react-md/core/typography/Typography";
 export * from "@react-md/core/typography/WritingDirectionProvider";
 export * from "@react-md/core/typography/textContainerStyles";
 export * from "@react-md/core/typography/typographyStyles";
-export * from "@react-md/core/useAsyncAction";
+export * from "@react-md/core/useAsyncFunction";
 export * from "@react-md/core/useDebouncedFunction";
 export * from "@react-md/core/useDropzone";
 export * from "@react-md/core/useElementSize";

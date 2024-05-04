@@ -450,8 +450,8 @@ export const navItems: readonly NavigationItem[] = [
       { type: "subheader", children: "Actions" },
       {
         type: "route",
-        href: "/use-async-action",
-        children: "useAsyncAction",
+        href: "/use-async-function",
+        children: "useAsyncFunction",
       },
       {
         type: "route",

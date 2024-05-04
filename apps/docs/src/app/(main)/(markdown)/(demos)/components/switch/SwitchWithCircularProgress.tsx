@@ -3,7 +3,7 @@ import { box } from "@react-md/core/box/styles";
 import { Form } from "@react-md/core/form/Form";
 import { Switch } from "@react-md/core/form/Switch";
 import { CircularProgress } from "@react-md/core/progress/CircularProgress";
-import { useAsyncAction } from "@react-md/core/useAsyncAction";
+import { useAsyncFunction } from "@react-md/core/useAsyncFunction";
 import { randomInt } from "@react-md/core/utils/randomInt";
 import { wait } from "@react-md/core/utils/wait";
 import { cnb } from "cnbuilder";
@@ -13,7 +13,7 @@ import styles from "./SwitchWithCircularProgress.module.scss";
 export default function SwitchWithCircularProgress(): ReactElement {
   const id = useId();
   const [checked, setChecked] = useState(false);
-  const { handleAsync, pending } = useAsyncAction();
+  const { handleAsync, pending } = useAsyncFunction();
   return (
     <Form className={box()}>
       <Switch

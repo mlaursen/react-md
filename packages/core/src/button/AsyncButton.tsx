@@ -13,7 +13,7 @@ import {
 } from "../progress/LinearProgress.js";
 import { type ProgressTheme } from "../progress/types.js";
 import { type PropsWithRef } from "../types.js";
-import { useAsyncAction } from "../useAsyncAction.js";
+import { useAsyncFunction } from "../useAsyncFunction.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { Button, type ButtonProps } from "./Button.js";
 
@@ -214,7 +214,7 @@ export const AsyncButton = forwardRef<HTMLButtonElement, AsyncButtonProps>(
       ...remaining
     } = props;
     const id = useEnsuredId(propId, "async-button");
-    const { handleAsync, pending } = useAsyncAction({ disabled });
+    const { handleAsync, pending } = useAsyncFunction({ disabled });
     const loading = pending || propLoading;
 
     let progressTheme: ProgressTheme = "current-color";

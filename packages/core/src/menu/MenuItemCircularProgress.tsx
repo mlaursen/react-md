@@ -39,11 +39,11 @@ export interface MenuItemCircularProgressProps extends CircularProgressProps {
  *   DropdownMenu,
  *   MenuItem,
  *   MenuItemCircularProgress,
- *   useAsyncAction,
+ *   useAsyncFunction,
  * } from "@react-md/core";
  *
  * function Example() {
- *   const { handleAsync, pending } = useAsyncAction();
+ *   const { handleAsync, pending } = useAsyncFunction();
  *   const [visible, setVisible] = useState(false);
  *
  *   return (
