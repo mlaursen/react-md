@@ -99,6 +99,16 @@ export interface TextFieldProps
    * @since 6.0.0
    */
   children?: ReactNode;
+
+  /**
+   * The `children` will be rendered within the `TextFieldContainer` and after
+   * the `<input />` and `<label />` elements. This is like using the
+   * `rightAddon` prop but will not change any padding on the container or
+   * input.
+   *
+   * @since 6.0.0
+   */
+  afterInputChildren?: ReactNode;
 }
 
 /**
@@ -164,6 +174,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       messageContainerProps,
       containerProps,
       children,
+      afterInputChildren,
       ...remaining
     } = props;
     const { disabled, readOnly } = props;
@@ -238,6 +249,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
               {label}
             </Label>
           )}
+          {afterInputChildren}
         </TextFieldContainer>
       </FormMessageContainer>
     );

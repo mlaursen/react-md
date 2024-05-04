@@ -204,17 +204,13 @@ export interface ComboboxTransitionOptions extends ComboboxTransitionCallbacks {
  * @since 6.0.0
  */
 export type ConfigurableComboboxMenuProps = Partial<
-  Omit<
-    MenuProps,
-    "fixedTo" | "visible" | "onRequestClose" | keyof ComboboxWidgetPopupProps
-  >
+  Omit<MenuProps, "visible" | "onRequestClose" | keyof ComboboxWidgetPopupProps>
 >;
 
 /**
  * @since 6.0.0
  */
 export interface ProvidedComboboxMenuProps<
-  ComboboxEl extends HTMLElement = HTMLInputElement,
   PopupEl extends HTMLElement = HTMLDivElement,
 > extends Required<ComboboxTransitionCallbacks>,
     ComboboxWidgetPopupProps<PopupEl> {
@@ -227,7 +223,7 @@ export interface ProvidedComboboxMenuProps<
   /** @defaultValue `BELOW_CENTER_ANCHOR` */
   anchor: PositionAnchor;
 
-  fixedTo: RefObject<ComboboxEl>;
+  fixedTo: RefObject<HTMLElement>;
 
   sheetProps: MenuSheetConfigurableProps &
     Required<ComboboxTransitionCallbacks>;
@@ -236,23 +232,17 @@ export interface ProvidedComboboxMenuProps<
 /**
  * @since 6.0.0
  */
-export interface ComboboxMenuProps<
-  ComboboxEl extends HTMLElement = HTMLInputElement,
-  PopupEl extends HTMLElement = HTMLDivElement,
-> extends Omit<ConfigurableComboboxMenuProps, keyof ProvidedComboboxMenuProps>,
-    ProvidedComboboxMenuProps<ComboboxEl, PopupEl> {}
+export interface ComboboxMenuProps<PopupEl extends HTMLElement = HTMLDivElement>
+  extends Omit<ConfigurableComboboxMenuProps, keyof ProvidedComboboxMenuProps>,
+    ProvidedComboboxMenuProps<PopupEl> {}
 
 /**
  * Since the combobox usually uses the `Menu` as a popup element, this is a
  * helper util to create the required props and merge any additional props
  * with reasonable defaults.
  */
-export type ComboboxGetMenuProps<
-  ComboboxEl extends HTMLElement = HTMLInputElement,
-  PopupEl extends HTMLElement = HTMLDivElement,
-> = (
-  props?: ConfigurableComboboxMenuProps
-) => ComboboxMenuProps<ComboboxEl, PopupEl>;
+export type ComboboxGetMenuProps<PopupEl extends HTMLElement = HTMLDivElement> =
+  (props?: ConfigurableComboboxMenuProps) => ComboboxMenuProps<PopupEl>;
 
 /**
  * @since 6.0.0
@@ -271,7 +261,7 @@ export interface ComboboxImplementation<
   comboboxRef: RefObject<ComboboxEl>;
   comboboxProps: ComboboxWidgetProps<ComboboxEl>;
 
-  getMenuProps: ComboboxGetMenuProps<ComboboxEl, PopupEl>;
+  getMenuProps: ComboboxGetMenuProps<PopupEl>;
   getTransitionCallbacks(
     options: ComboboxTransitionOptions
   ): Required<ComboboxTransitionCallbacks>;
@@ -505,9 +495,9 @@ export function useCombobox<
       return {
         anchor: BELOW_CENTER_ANCHOR,
         width: "min",
+        fixedTo: comboboxRef,
         ...props,
         ...popupProps,
-        fixedTo: comboboxRef,
         visible,
         onRequestClose: hide,
         ...getTransitionCallbacks(props),
