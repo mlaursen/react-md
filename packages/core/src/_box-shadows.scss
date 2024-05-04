@@ -1,4 +1,7 @@
+@use "sass:list";
 @use "sass:map";
+@use "sass:math";
+@use "sass:meta";
 @use "sass:string";
 @use "theme/theme";
 @use "transition/transition";
@@ -92,7 +95,7 @@ $box-shadow-3-layers: (
 ) !default;
 
 @function box-shadow($z-value, $color: $box-shadow-color, $opacity-boost: 0) {
-  @if type-of($z-value) != "number" or not unitless($z-value) {
+  @if meta.type-of($z-value) != "number" or not math.is-unitless($z-value) {
     @error "$z-value must be a unitless number, but received '#{$z-value}'";
   }
 
@@ -157,10 +160,10 @@ $box-shadow-3-layers: (
       transition: opacity $duration transition.$linear-timing-function;
     }
 
-    @if type-of($active-selectors) == string {
+    @if meta.type-of($active-selectors) == string {
       $active-string: $active-selectors + $suffix;
-    } @else if type-of($active-selectors) == list {
-      @for $i from 1 to length($active-selectors) + 1 {
+    } @else if meta.type-of($active-selectors) == list {
+      @for $i from 1 to list.length($active-selectors) + 1 {
         $selector: list.nth($active-selectors, $i);
 
         $prefix: $active-string + if($i > 1, ", ", "");

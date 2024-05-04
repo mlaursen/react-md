@@ -1,7 +1,7 @@
-@use "sass:string";
+@use "sass:list";
 @use "sass:map";
 @use "sass:meta";
-@use "sass:list";
+@use "sass:string";
 
 $disable-rtl: false !default;
 $disable-validation: false !default;
@@ -67,7 +67,7 @@ $_swappable-properties: text-align;
   }
 
   $choices: if($is-map, map.keys($list-or-map), $list-or-map);
-  @if not index($choices, $key-or-value) {
+  @if not list.index($choices, $key-or-value) {
     @error "Invalid #{$error-message}: '#{$key-or-value}'. Choose one of: #{$choices}";
   }
 

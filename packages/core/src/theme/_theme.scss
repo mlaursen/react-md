@@ -1,8 +1,8 @@
 @use "sass:color";
 @use "sass:list";
 @use "sass:map";
-@use "sass:string";
 @use "sass:meta";
+@use "sass:string";
 @use "colors";
 @use "a11y";
 
@@ -456,7 +456,7 @@ $theme-variables: (
         "not use material design colors, set #{$fallback} instead to get a correct color for the provided swatch: " +
         "#{$swatch}.";
       @error $error-msg;
-    } @else if type-of($fallback-color) != "color" {
+    } @else if meta.type-of($fallback-color) != "color" {
       @error "Invalid fallback color: '#{$fallback-color}'. This must be a valid color.";
     } @else {
       @return $fallback-color;
@@ -482,7 +482,7 @@ $theme-variables: (
   } @else {
     $index: 1;
     $found: false;
-    @while not $found and $index < length(colors.$available-color-names) {
+    @while not $found and $index < list.length(colors.$available-color-names) {
       $suffix: list.nth(colors.$available-color-names, $index);
       $suffix-index: string.index($current-color-name, $suffix);
       @if $suffix-index {
@@ -500,7 +500,7 @@ $theme-variables: (
 
   $color-name: "#{$current-color-name}#{if($accent, "-a", "")}-#{$swatch}";
 
-  @return map-get(colors.$color-map, $color-name);
+  @return map.get(colors.$color-map, $color-name);
 }
 
 @mixin default-system-theme {

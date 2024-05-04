@@ -126,7 +126,10 @@ $disable-aspect-ratios: not list.length(map.keys($aspect-ratios)) !default;
 
           @each $suffix, $ratio-list in $aspect-ratios {
             &--#{$suffix} {
-              @include aspect-ratio(nth($ratio-list, 1), nth($ratio-list, 2));
+              @include aspect-ratio(
+                list.nth($ratio-list, 1),
+                list.nth($ratio-list, 2)
+              );
             }
           }
         }

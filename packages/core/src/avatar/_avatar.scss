@@ -1,3 +1,4 @@
+@use "sass:list";
 @use "sass:map";
 @use "sass:math";
 @use "../utils";
@@ -139,14 +140,14 @@ $variables: (
         }
 
         @each $name, $values in $colors {
-          @if length($values) != 2 {
+          @if list.length($values) != 2 {
             @error 'Unable to create an avatar color because the list of values is not of length 2. The first value should be the background-color and the second should be the text color. "#{$values}"';
           }
 
           @include custom-color(
             "&--#{$name}",
-            nth($values, 2),
-            nth($values, 1),
+            list.nth($values, 2),
+            list.nth($values, 1),
             true
           );
         }
