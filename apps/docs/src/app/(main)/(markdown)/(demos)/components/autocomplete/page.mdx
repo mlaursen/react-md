@@ -1,0 +1,133 @@
+# Autocomplete
+
+An `AutoComplete` is a component that allows for real-time suggestions from a
+pre-determined list as the user types by filtering data based on the current
+value. It can also be used to interact with an API that handles the sorting,
+filtering, matching, etc as well.
+
+# Simple Example
+
+An `Autocomplete` requires a list of options which can be strings or an object
+with a `label` string so that the options can be filtered as the user types.
+
+```demo source="./SimpleExample.tsx"
+
+```
+
+## Simple Label Example
+
+This is the same example as above, but using options as `{ label: string }`.
+
+```demo source="./SimpleLabelExample.tsx"
+
+```
+
+# Object Options
+
+The `Autocomplete` can support any object option by also providing an
+`extractor` prop that will return a string value for each option.
+
+```demo source="./ObjectOptionsExample.tsx"
+
+```
+
+## Option Props
+
+The `Autocomplete` will automatically pass through common `MenuItem` props that
+exist on each option.
+
+```demo source="./OptionPropsExample.tsx"
+
+```
+
+## Get Option Props
+
+Another way to pass props to each option is using the `getOptionProps` function.
+
+```demo source="./GetOptionPropsExample.tsx"
+
+```
+
+# Disabled Options
+
+An option can be disabled by adding `disabled: true` to the option or using `getOptionProps`
+to return `disabled: true`.
+
+```demo source="./DisabledOptionsExample.tsx"
+
+```
+
+# Selected Value Example
+
+The current selected option can be tracked using the `onAutocomplete` prop which is called whenever
+a new option is selected or the value is reset. When the value is reset, this
+will be called with `null`.
+
+```demo source="./SelectedValueExample.tsx"
+
+```
+
+# Custom Filter Function
+
+The `Autocomplete` uses the [caseInsensitiveSearch](/utils/case-insensitive-search) filter function by default
+but can be changed using the `filter` prop. The filter function must return the
+filtered list and is called with an object containing:
+
+- `list` - The list of `options` to filter
+- `query` - The current text field value
+- `extractor` - The `extractor` function to get a string for each option
+- `whitespace` - Either `"ignore"`, `"trim"` (default), or `"keep"` and used by the default search functions
+
+This example will show how the filter function could be swapped out for the [fuzzySearch](/utils/fuzzy-search).
+
+```demo source="./CustomFilterFunctionExample.tsx"
+
+```
+
+## Disable Filtering
+
+When the `value` needs to be controlled or options are already filtered, enable the `disableFilter`
+prop.
+
+```demo source="./DisableFilteringExample.tsx"
+
+```
+
+# Async Example
+
+The `Autocomplete` supports rendering a `CircularProgress` after the input field to show
+async behavior. The `CircularProgress` will be shown while the `loading` prop is true.
+
+This example below will "load" the options each time the autocomplete is opened.
+
+```demo source="./AsyncExample.tsx"
+
+```
+
+# Accessibility
+
+The `Autocomplete` component implements the
+[combobox](https:://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#kbd_focus_activedescendant)
+so the `<input />` will remain focused while the options gain styles to show
+they are focused.
+
+### Closed Listbox
+
+- Typing will open the listbox and keep focus on the input.
+- `ArrowDown` - Opens the listbox and focuses the first option.
+- `Alt+ArrowDown` - Opens the listbox and keeps focus on the input.
+- `ArrowUp` - Opens the listbox and focuses the last option.
+- `Escape` - Clears the value.
+
+### Open Listbox
+
+- Typing will move focus back to the input
+- `ArrowDown` - Moves focus to the next option in the listbox. If focus was on
+  the input, the first option will be focused.
+- `ArrowUp` - Moves focus to the previous option in the listbox. If focus was on
+  the input, the last option will be focused.
+- `Alt+ArrowUp` - If an option is focused, moves focus into the input. If the
+  input is focused, closes the listbox.
+- `ArrowLeft`/`ArrowRight`/`Home`/`End` - Moves focus into the input and uses
+  default text editing behavior for these keys.
+- `Escape` - Hides the listbox.

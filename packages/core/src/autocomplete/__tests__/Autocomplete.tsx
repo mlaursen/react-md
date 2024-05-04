@@ -26,22 +26,22 @@ const OBJECT_LIST = [
   { name: "Banana", value: 3 },
 ];
 
-const FRUIT_PROPS: AutocompleteProps<string> = {
+const FRUIT_PROPS = {
   label: "Field",
   menuLabel: "Fruits",
   options: FRUITS,
-};
+} satisfies AutocompleteProps<string>;
 
 describe("Autocomplete", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {
     const inputRef = createRef<HTMLInputElement>();
-    const props: AutocompleteProps<string> = {
+    const props = {
       ...FRUIT_PROPS,
       inputRef,
       containerProps: {
         "data-testid": "container",
       },
-    };
+    } satisfies AutocompleteProps<string>;
     const { rerender } = rmdRender(<Autocomplete {...props} />);
 
     const field = screen.getByRole("combobox", { name: "Field" });
@@ -90,18 +90,16 @@ describe("Autocomplete", () => {
     expect(() => screen.getByRole("listbox")).toThrow();
 
     // the listbox should appear if the user types
-    await user.type(autocomplete, "an", { skipClick: true });
+    await user.type(autocomplete, "a", { skipClick: true });
     const listbox = screen.getByRole("listbox", { name: "Fruits" });
     const options = screen.getAllByRole("option");
-    expect(options).toHaveLength(4);
-    expect(options[0]).toBe(screen.getByRole("option", { name: "Banana" }));
-    expect(options[1]).toBe(screen.getByRole("option", { name: "Cranberry" }));
-    expect(options[2]).toBe(screen.getByRole("option", { name: "Mango" }));
-    expect(options[3]).toBe(screen.getByRole("option", { name: "Orange" }));
+    expect(options).toHaveLength(2);
+    expect(options[0]).toBe(screen.getByRole("option", { name: "Apple" }));
+    expect(options[1]).toBe(screen.getByRole("option", { name: "Apricot" }));
 
-    await user.click(screen.getByRole("option", { name: "Mango" }));
+    await user.click(screen.getByRole("option", { name: "Apricot" }));
     expect(listbox).not.toBeInTheDocument();
-    expect(autocomplete).toHaveValue("Mango");
+    expect(autocomplete).toHaveValue("Apricot");
   });
 
   it("should allow for a custom filter function", async () => {
@@ -172,8 +170,8 @@ describe("Autocomplete", () => {
     const autocomplete = screen.getByRole("combobox", { name: "Field" });
     const button = screen.getByRole("button", { name: "Set Value" });
 
-    await user.type(autocomplete, "ana");
-    expect(autocomplete).toHaveValue("ana");
+    await user.type(autocomplete, "BA");
+    expect(autocomplete).toHaveValue("BA");
     expect(screen.getAllByRole("option")).toHaveLength(1);
     expect(() => screen.getByRole("option", { name: "Banana" })).not.toThrow();
 
@@ -414,9 +412,12 @@ describe("Autocomplete", () => {
           <Autocomplete
             options={["a", "b", "c"]}
             onAutocomplete={(option) => {
-              // should not error since it is a string
-              option.charAt(0);
+              if (option !== null) {
+                // should not error since it is a string
+                option.charAt(0);
+              }
             }}
+            menuLabel="Label"
           />
         )
       ).not.toThrow();
@@ -424,6 +425,7 @@ describe("Autocomplete", () => {
       expect(() =>
         rmdRender(
           <Autocomplete
+            menuLabel="Label"
             options={OBJECT_LIST}
             extractor={(option) => {
               // @ts-expect-error
@@ -432,10 +434,12 @@ describe("Autocomplete", () => {
               return option.name;
             }}
             onAutocomplete={(option) => {
-              // should not error since it is a string
-              option.name.charAt(0);
-              // should not error since it is a number
-              option.value.toFixed(0);
+              if (option !== null) {
+                // should not error since it is a string
+                option.name.charAt(0);
+                // should not error since it is a number
+                option.value.toFixed(0);
+              }
             }}
           />
         )

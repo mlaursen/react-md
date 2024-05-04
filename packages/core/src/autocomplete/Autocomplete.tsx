@@ -17,12 +17,12 @@ import { Menu } from "../menu/Menu.js";
 import { MenuItem, type MenuItemProps } from "../menu/MenuItem.js";
 import { type KeyboardMovementFocusChangeEventHandler } from "../movement/types.js";
 import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
-import { caseInsensitiveSearch } from "../searching/caseInsensitive.js";
+import { type WhitespaceFilter } from "../searching/types.js";
 import {
-  type BaseSearchOptions,
-  type WhitespaceFilter,
-} from "../searching/types.js";
-import { type PropsWithRef, type TextExtractor } from "../types.js";
+  type PropsWithRef,
+  type RequireAtLeastOne,
+  type TextExtractor,
+} from "../types.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
 import {
   AutocompleteCircularProgress,
@@ -35,7 +35,9 @@ import {
 } from "./AutocompleteDropdownButton.js";
 import {
   defaultAutocompleteExtractor,
+  defaultAutocompleteFilter,
   defaultAutocompleteOptionProps,
+  type AutocompleteFilterOptions,
 } from "./defaults.js";
 
 const noop = (): void => {
@@ -45,10 +47,17 @@ const noop = (): void => {
 /**
  * @since 6.0.0
  */
-export type AutocompleteFilterOptions<T> = Pick<
-  Required<BaseSearchOptions<T>>,
-  "list" | "query" | "extractor" | "whitespace"
->;
+export interface AutocompleteGetOptionPropsOptions<T> {
+  index: number;
+  option: T;
+}
+
+/**
+ * @since 6.0.0
+ */
+export type AutocompleteMenuLabel<
+  T extends { menuLabel?: string; menuLabelledBy?: string },
+> = RequireAtLeastOne<T, "menuLabel" | "menuLabelledBy">;
 
 /**
  * @since 6.0.0
@@ -145,12 +154,14 @@ export interface AutocompleteProps<T>
    * }}
    * ```
    */
-  getOptionProps?(options: { option: T }): Partial<MenuItemProps> | undefined;
+  getOptionProps?(
+    options: AutocompleteGetOptionPropsOptions<T>
+  ): Partial<MenuItemProps> | undefined;
 
   /**
-   * This will be called whenever one of the options are selected.
+   * This will be called whenever one of the options are selected or reset.
    */
-  onAutocomplete?(option: T): void;
+  onAutocomplete?(option: T | null): void;
 
   /**
    * Set this to `true` to disable the built-in filtering of the
@@ -229,15 +240,19 @@ export interface AutocompleteProps<T>
  * @since 6.0.0
  */
 export function Autocomplete<T extends string | { label: string }>(
-  props: Omit<AutocompleteProps<T>, "extractor">
+  props: AutocompleteMenuLabel<Omit<AutocompleteProps<T>, "extractor">>
 ): ReactElement;
 /**
  * @since 6.0.0
  */
 export function Autocomplete<T>(
-  props: AutocompleteProps<T> & { extractor: TextExtractor<T> }
+  props: AutocompleteMenuLabel<
+    AutocompleteProps<T> & { extractor: TextExtractor<T> }
+  >
 ): ReactElement;
-export function Autocomplete<T>(props: AutocompleteProps<T>): ReactElement {
+export function Autocomplete<T>(
+  props: AutocompleteMenuLabel<AutocompleteProps<T>>
+): ReactElement {
   const {
     id,
     onClick,
@@ -255,7 +270,7 @@ export function Autocomplete<T>(props: AutocompleteProps<T>): ReactElement {
     menuLabel,
     menuLabelledBy,
     containerProps,
-    filter = caseInsensitiveSearch,
+    filter = defaultAutocompleteFilter,
     whitespace = "keep",
     disableFilter: propDisableFilter,
     noOptionsChildren = <ListSubheader>No options</ListSubheader>,
@@ -347,7 +362,10 @@ export function Autocomplete<T>(props: AutocompleteProps<T>): ReactElement {
                 aria-controls={comboboxProps.id}
                 {...dropdownButtonProps}
                 visible={visible}
-                onClick={() => setVisible((prev) => !prev)}
+                onClick={() => {
+                  comboboxRef.current?.focus();
+                  setVisible((prev) => !prev);
+                }}
               />
             )}
           </>
@@ -363,9 +381,10 @@ export function Autocomplete<T>(props: AutocompleteProps<T>): ReactElement {
       >
         {children}
         {renderedOptions.length === 0 && noOptionsChildren}
-        {renderedOptions.map((option) => {
+        {renderedOptions.map((option, index) => {
           const label = extractor(option);
           const optionProps = getOptionProps({
+            index,
             option,
           });
 

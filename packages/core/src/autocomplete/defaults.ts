@@ -1,4 +1,6 @@
 import { type MenuItemProps } from "../menu/MenuItem.js";
+import { caseInsensitiveSearch } from "../searching/caseInsensitive.js";
+import { type BaseSearchOptions } from "../searching/types.js";
 import { defaultExtractor } from "../searching/utils.js";
 
 /**
@@ -69,3 +71,23 @@ export const defaultAutocompleteOptionProps = <T>(options: {
   }
   return;
 };
+
+/**
+ * @since 6.0.0
+ */
+export type AutocompleteFilterOptions<T> = Pick<
+  Required<BaseSearchOptions<T>>,
+  "list" | "query" | "extractor" | "whitespace"
+>;
+
+/**
+ * This is just the {@link caseInsensitiveSearch} but requires
+ * the options to start with the current query.
+ *
+ * @since 6.0.0
+ */
+export function defaultAutocompleteFilter<T>(
+  options: AutocompleteFilterOptions<T>
+): readonly T[] {
+  return caseInsensitiveSearch({ ...options, startsWith: true });
+}
