@@ -236,7 +236,7 @@ exports[`Select should apply the correct styling, HTMLAttributes, and allow a re
     Select
   </span>
   <span
-    class="rmd-text-field-addon rmd-text-field-addon--after rmd-text-field-addon--presentational"
+    class="rmd-text-field-addon rmd-text-field-addon--after rmd-text-field-addon--presentational rmd-box rmd-box--wrap"
   >
     <span
       aria-hidden="true"
@@ -281,7 +281,7 @@ exports[`Select should apply the correct styling, HTMLAttributes, and allow a re
     Select
   </span>
   <span
-    class="rmd-text-field-addon rmd-text-field-addon--after rmd-text-field-addon--presentational"
+    class="rmd-text-field-addon rmd-text-field-addon--after rmd-text-field-addon--presentational rmd-box rmd-box--wrap"
   >
     <span
       aria-hidden="true"

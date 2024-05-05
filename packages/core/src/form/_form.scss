@@ -3,6 +3,7 @@
 @use "sass:color";
 @use "../utils";
 @use "../box-shadows";
+@use "../box/box";
 @use "../button/button";
 @use "../progress/progress";
 @use "../theme/colors";
@@ -122,6 +123,7 @@ $text-field-underlined-label-padding-top: 1.5rem !default;
 $text-field-underlined-label-left-offset: icon.$spacing !default;
 $text-field-color-min-width: 5rem !default;
 
+$text-field-addon-gap: 0.25rem !default;
 $text-field-addon-margin: icon.$spacing !default;
 
 $text-field-light-border-color: rgba(#000, 0.12) !default;
@@ -1191,6 +1193,9 @@ $variables: (
 @mixin text-field-addon-styles($disable-layer: false) {
   @include utils.optional-layer(form, $disable-layer) {
     .rmd-text-field-addon {
+      @if $text-field-addon-gap {
+        @include box.set-var(gap, $text-field-addon-gap);
+      }
       @if not
         $disable-text-field-filled-theme or not
         $disable-text-field-underlined-theme
@@ -1201,7 +1206,6 @@ $variables: (
       // this makes it so that this container element is the same size as the
       // child (normally icons). without this, icons would have a height of 30.5px
       // and no longer be centered
-      display: inline-flex;
       position: absolute;
 
       // Note: Can't use `:first-child` and `:last-child` since

@@ -1,5 +1,6 @@
 import { cnb } from "cnbuilder";
 import { forwardRef } from "react";
+import { box } from "../box/styles.js";
 import { bem } from "../utils/bem.js";
 import { type ConfigurableTextFieldAddonProps } from "./types.js";
 
@@ -27,7 +28,7 @@ export interface TextFieldAddonClassNameOptions {
 export function textFieldAddon(
   options: TextFieldAddonClassNameOptions = {}
 ): string {
-  const { className, after = false, presentational = false } = options;
+  const { className, after, presentational } = options;
 
   return cnb(
     styles({
@@ -35,6 +36,7 @@ export function textFieldAddon(
       after,
       presentational,
     }),
+    box({ disablePadding: true }),
     className
   );
 }
@@ -66,11 +68,11 @@ export interface TextFieldAddonProps extends ConfigurableTextFieldAddonProps {
 export const TextFieldAddon = forwardRef<HTMLSpanElement, TextFieldAddonProps>(
   function TextFieldAddon(props, ref) {
     const {
-      after = false,
+      after,
+      disabled,
+      pointerEvents,
       children,
       className,
-      disabled = false,
-      pointerEvents = false,
       ...remaining
     } = props;
 
