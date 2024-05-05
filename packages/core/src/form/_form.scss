@@ -284,6 +284,9 @@ $variables: (
   text-field-border-color,
   text-field-hover-border-color,
   text-field-filled-color,
+  text-field-filled-padding,
+  text-field-outlined-padding,
+  text-field-underlined-padding,
   textarea-height,
   textarea-padding,
   switch-track-background-color,
@@ -459,30 +462,24 @@ $variables: (
       margin: $message-margin-top 0 $message-margin-bottom;
       min-height: $message-min-height;
 
-      @if not $disable-text-field-filled-theme and $text-field-filled-padding {
+      @if not $disable-text-field-filled-theme {
         &--filled {
-          padding-left: $text-field-filled-padding;
-          padding-right: $text-field-filled-padding;
+          @include use-var(padding-left, text-field-filled-padding);
+          @include use-var(padding-right, text-field-filled-padding);
         }
       }
 
-      @if not
-        $disable-text-field-outlined-theme and
-        $text-field-outlined-padding
-      {
+      @if not $disable-text-field-outlined-theme {
         &--outline {
-          padding-left: $text-field-outlined-padding;
-          padding-right: $text-field-outlined-padding;
+          @include use-var(padding-left, text-field-outlined-padding);
+          @include use-var(padding-right, text-field-outlined-padding);
         }
       }
 
-      @if not
-        $disable-text-field-underlined-theme and
-        $text-field-underlined-padding
-      {
+      @if not $disable-text-field-underlined-theme {
         &--underline {
-          padding-left: $text-field-underlined-padding;
-          padding-right: $text-field-underlined-padding;
+          @include use-var(padding-left, text-field-underlined-padding);
+          @include use-var(padding-right, text-field-underlined-padding);
         }
       }
 
@@ -678,19 +675,25 @@ $variables: (
         &--outline {
           @include set-var(
             text-field-padding-left,
-            $text-field-outlined-padding
+            get-var(text-field-outlined-padding)
           );
           @include set-var(
             text-field-padding-right,
-            $text-field-outlined-padding
+            get-var(text-field-outlined-padding)
           );
           @include use-var(border-color, text-field-border-color);
           @if not $disable-text-field-addon {
-            @include set-var(addon-left-offset, $text-field-outlined-padding);
+            @include set-var(
+              addon-left-offset,
+              get-var(text-field-outlined-padding)
+            );
           }
 
           @if not $disable-floating-label {
-            @include set-var(label-left-offset, $text-field-outlined-padding);
+            @include set-var(
+              label-left-offset,
+              get-var(text-field-outlined-padding)
+            );
             @include set-var(label-top-offset, -50%);
             @include set-var(label-active-padding, 0 $label-floating-padding);
             @include set-var(
@@ -724,8 +727,8 @@ $variables: (
         &--outline-left {
           $distance: calc(
             #{icon.get-var(size)} +
-              #{$text-field-outlined-padding +
-              $text-field-spacing}
+              #{get-var(text-field-outlined-padding)} +
+              #{$text-field-spacing}
           );
 
           @include set-var(text-field-padding-left, $distance);
@@ -1095,25 +1098,22 @@ $variables: (
 
       @if not $disable-text-field-outlined-theme {
         &--outline {
+          @include use-var(padding-right, text-field-outlined-padding);
           @include utils.rtl {
+            @include use-var(padding-left, text-field-outlined-padding);
             @include use-var(padding-right, text-field-padding-left);
-
-            padding-left: $text-field-outlined-padding;
           }
-
-          padding-right: $text-field-outlined-padding;
         }
       }
 
       @if not $disable-text-field-filled-theme {
         &--filled {
+          @include use-var(padding-right, text-field-filled-padding);
           @include utils.rtl {
             @include use-var(padding-right, text-field-padding-left);
 
-            padding-left: $text-field-filled-padding;
+            @include use-var(padding-left, text-field-filled-padding);
           }
-
-          padding-right: $text-field-filled-padding;
         }
       }
     }
@@ -1975,6 +1975,37 @@ $variables: (
       @include set-var(label-top-offset, 0px);
       @include set-var(label-active-padding, 0px);
       @include set-var(label-active-background-color, transparent);
+    }
+
+    @if not
+      $disable-text-field or not
+      $disable-textarea or not
+      $disable-select or not
+      $disable-native-select
+    {
+      @if not $disable-text-field-filled-theme and $text-field-filled-padding {
+        @include set-var(text-field-filled-padding, $text-field-filled-padding);
+      }
+
+      @if not
+        $disable-text-field-outlined-theme and
+        $text-field-outlined-padding
+      {
+        @include set-var(
+          text-field-outlined-padding,
+          $text-field-outlined-padding
+        );
+      }
+
+      @if not
+        $disable-text-field-underlined-theme and
+        $text-field-underlined-padding
+      {
+        @include set-var(
+          text-field-underlined-padding,
+          $text-field-underlined-padding
+        );
+      }
     }
 
     @if not $disable-text-field {

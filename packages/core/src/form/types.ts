@@ -451,6 +451,14 @@ export interface ConfigurableTextFieldAddonProps
 }
 
 /**
+ * @since 6.0.0
+ */
+export type ConfigurableTextFieldAddonPropsWithRef = PropsWithRef<
+  ConfigurableTextFieldAddonProps,
+  HTMLSpanElement
+>;
+
+/**
  * @since 6.0.0 Added support for `leftAddonProps` and
  * `rightAddonProps`.
  */
@@ -491,10 +499,7 @@ export interface TextFieldContainerOptions
    *
    * @since 6.0.0
    */
-  leftAddonProps?: PropsWithRef<
-    ConfigurableTextFieldAddonProps,
-    HTMLSpanElement
-  >;
+  leftAddonProps?: ConfigurableTextFieldAddonPropsWithRef;
 
   /**
    * @see {@link TextFieldAddonProps.disabled}
@@ -514,10 +519,7 @@ export interface TextFieldContainerOptions
    *
    * @since 6.0.0
    */
-  rightAddonProps?: PropsWithRef<
-    ConfigurableTextFieldAddonProps,
-    HTMLSpanElement
-  >;
+  rightAddonProps?: ConfigurableTextFieldAddonPropsWithRef;
 
   /**
    * @see {@link TextFieldAddonProps.disabled}

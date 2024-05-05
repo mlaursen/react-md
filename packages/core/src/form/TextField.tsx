@@ -88,27 +88,6 @@ export interface TextFieldProps
    * add a `ref` for some DOM behavior.
    */
   containerProps?: PropsWithRef<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
-
-  /**
-   * The `beforeInputChildren` will be rendered within the `TextFieldContainer`
-   * and before the `<input />` element. This is like using the `leftAddon` prop
-   * but will not change any padding on the container or input so the size of
-   * the text field container will change when dynamically rendered.
-   *
-   * @since 6.0.0
-   */
-  beforeInputChildren?: ReactNode;
-
-  /**
-   * The `afterInputChildren` will be rendered within the `TextFieldContainer`
-   * and after the `<input />` and `<label />` elements. This is like using the
-   * `rightAddon` prop but will not change any padding on the container or
-   * input so the size of the text field container will change when dynamically
-   * rendered.
-   *
-   * @since 6.0.0
-   */
-  afterInputChildren?: ReactNode;
 }
 
 /**
@@ -173,8 +152,6 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       messageProps,
       messageContainerProps,
       containerProps,
-      beforeInputChildren,
-      afterInputChildren,
       ...remaining
     } = props;
     const { disabled, readOnly } = props;
@@ -218,7 +195,6 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
           disableLeftAddonStyles={disableLeftAddonStyles}
           disableRightAddonStyles={disableRightAddonStyles}
         >
-          {beforeInputChildren}
           <input
             {...remaining}
             id={id}
@@ -249,7 +225,6 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
               {label}
             </Label>
           )}
-          {afterInputChildren}
         </TextFieldContainer>
       </FormMessageContainer>
     );
