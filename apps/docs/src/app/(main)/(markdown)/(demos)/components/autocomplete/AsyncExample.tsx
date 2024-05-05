@@ -24,15 +24,14 @@ export default function AsyncExample(): ReactElement {
 
   return (
     <Autocomplete
-      type="search"
-      label="Search"
+      label="State"
       options={defaultAutocompleteFilter({
         list: options,
         query: value,
         extractor,
         whitespace: "trim",
       })}
-      menuLabel="Results"
+      menuLabel="States"
       extractor={extractor}
       loading={loading}
       onChange={(event) => setValue(event.currentTarget.value)}
@@ -49,6 +48,7 @@ export default function AsyncExample(): ReactElement {
           }
         },
       }}
+      style={{ width: "18rem" }}
     />
   );
 }

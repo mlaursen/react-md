@@ -3,7 +3,6 @@ import {
   type CSSProperties,
   type HTMLAttributes,
   type InputHTMLAttributes,
-  type ReactNode,
 } from "react";
 import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
@@ -91,20 +90,21 @@ export interface TextFieldProps
   containerProps?: PropsWithRef<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 
   /**
-   * The `children` will be rendered within the `TextFieldContainer` and before
-   * the `<input />` element. This was added to support the new `Select`
-   * component implementation
+   * The `beforeInputChildren` will be rendered within the `TextFieldContainer`
+   * and before the `<input />` element. This is like using the `leftAddon` prop
+   * but will not change any padding on the container or input so the size of
+   * the text field container will change when dynamically rendered.
    *
-   * @internal
    * @since 6.0.0
    */
-  children?: ReactNode;
+  beforeInputChildren?: ReactNode;
 
   /**
-   * The `children` will be rendered within the `TextFieldContainer` and after
-   * the `<input />` and `<label />` elements. This is like using the
+   * The `afterInputChildren` will be rendered within the `TextFieldContainer`
+   * and after the `<input />` and `<label />` elements. This is like using the
    * `rightAddon` prop but will not change any padding on the container or
-   * input.
+   * input so the size of the text field container will change when dynamically
+   * rendered.
    *
    * @since 6.0.0
    */
@@ -173,7 +173,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       messageProps,
       messageContainerProps,
       containerProps,
-      children,
+      beforeInputChildren,
       afterInputChildren,
       ...remaining
     } = props;
@@ -218,7 +218,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
           disableLeftAddonStyles={disableLeftAddonStyles}
           disableRightAddonStyles={disableRightAddonStyles}
         >
-          {children}
+          {beforeInputChildren}
           <input
             {...remaining}
             id={id}

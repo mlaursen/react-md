@@ -104,12 +104,53 @@ This example below will "load" the options each time the autocomplete is opened.
 
 ```
 
+## Debounced Search Example
+
+When the `Autocomplete` should be used as a `<input type="search" />` to send
+requests to an API as the user types to get the options, set the
+`type="search"`, enable `disableFilter`, and add a custom `onChange` handler to
+send the current value to the search API. It is recommended to either debounce
+or throttle these search requests so that each keystroke is not a new request.
+
+`react-md` provides two hooks to help with debouncing and throttling:
+
+- [useDebouncedFunction](/hooks/use-debounced-function)
+- [useThrottledFunction](/hooks/use-throttled-function)
+
+This example will show a debounced implementation while the next example will
+show a throttled implementation.
+
+```demo source="./DebouncedSearchExample.tsx"
+
+```
+
+## Throttled Search Example
+
+This is the same example as above, but using [useDebouncedFunction](/hooks/use-debounced-function)
+instead.
+
+```demo source="./ThrottledSearchExample.tsx"
+
+```
+
 # Accessibility
 
 The `Autocomplete` component implements the
 [combobox](https:://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#kbd_focus_activedescendant)
 so the `<input />` will remain focused while the options gain styles to show
 they are focused.
+
+## Labels
+
+- The listbox requires an `aria-label`/`aria-labelledby` by the
+  `menuLabel`/`menuLabelledby` props respectively
+- The dropdown button defaults to an `aria-label`/`aria-labelledby` based on the
+  `menuLabel`/`menuLabelledby` props respectively
+- The inline circular progress bar defaults to an `aria-label="Loading"`
+
+## Keyboard Movement
+
+The following keyboard movement has been implemented:
 
 ### Closed Listbox
 

@@ -333,7 +333,7 @@ export function Autocomplete<T>(
         }}
         onChange={(event) => {
           onChange(event);
-          if (disableFilter) {
+          if (disableFilter || !visible) {
             return;
           }
 
@@ -350,6 +350,12 @@ export function Autocomplete<T>(
               })
             );
           });
+        }}
+        onKeyDown={(event) => {
+          comboboxProps.onKeyDown(event);
+          if (!visible && event.key === "Escape") {
+            onAutocomplete(null);
+          }
         }}
         afterInputChildren={
           <>
@@ -374,10 +380,11 @@ export function Autocomplete<T>(
       <Menu
         aria-label={menuLabel as string}
         aria-labelledby={menuLabelledBy}
+        {...getMenuProps(menuProps)}
         // since the `afterInputChildren` is not included in the `comboboxRef`'s
         // width, the menu will no longer be equal width without changing the
         // fixedTo node to the container
-        {...getMenuProps({ ...menuProps, fixedTo: containerNodeRef })}
+        fixedTo={containerNodeRef}
       >
         {children}
         {renderedOptions.length === 0 && noOptionsChildren}

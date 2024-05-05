@@ -131,6 +131,9 @@ export function useEditableCombobox<
     ...combobox,
     getMenuProps(props) {
       return {
+        // override the inherited renderAsSheet context since the sheet makes it
+        // so the user can't actually type in the combobox
+        renderAsSheet: false,
         preventOverlap: true,
         ...getMenuProps(props),
       };
