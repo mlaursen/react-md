@@ -165,11 +165,28 @@ few available options:
    be the width of the addon plus some additional padding. This is the "best"
    option if the addons should still be rendered above the `<input>` element
    since it will also update the floating label position automatically
+   - See the [Automatic Addon Padding](#automatic-addon-padding) example to see
+     how this can be handled automatically.
 2. Set `disableLeftAddonStyles`/`disableRightAddonStyles` to `true` to no longer
    use absolute positioning and render the addon inline
 3. Add custom styles with `leftAddonProps`/`rightAddonProps` as needed
 
 ```demo source="./NonIconAddons.tsx"
+
+```
+
+## Automatic Addon Padding
+
+If the addons are dynamic or custom styles are not desired, the
+`useTextFieldContainerAddons` hook can be used to automatically update the
+`--rmd-text-field-padding-left`/`--rmd-text-field-padding-right` variables using
+the [useResizeObserver](/hooks/use-resize-observer) behind the scenes.
+
+The `useTextFieldContainerAddons` hook requires a `leftAddon` and `rightAddon`
+flag to be provided and will return a `style` object, `leftAddonRef`, and
+`rightAddonRef` which can be passed to the `TextField` component.
+
+```demo source="./AutomaticAddonPaddingExample.tsx"
 
 ```
 

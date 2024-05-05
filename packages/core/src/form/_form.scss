@@ -107,7 +107,6 @@ $text-field-height: 3rem !default;
 $text-field-dense-height: 2.5rem !default;
 $text-field-label-height: 3.5rem !default;
 $text-field-label-dense-height: 3.25rem !default;
-$text-field-spacing: icon.$spacing !default;
 $text-field-border-radius: 0.25rem !default;
 $text-field-border-width: 1px !default;
 $text-field-border-width-active: 2px !default;
@@ -125,6 +124,7 @@ $text-field-color-min-width: 5rem !default;
 
 $text-field-addon-gap: 0.25rem !default;
 $text-field-addon-margin: icon.$spacing !default;
+$text-field-addon-spacing: icon.get-var(spacing) !default;
 
 $text-field-light-border-color: rgba(#000, 0.12) !default;
 $text-field-dark-border-color: rgba(#fff, 0.5) !default;
@@ -272,6 +272,7 @@ $variables: (
   active-color,
   focus-color,
   addon-top,
+  addon-spacing,
   addon-margin-top,
   addon-left-offset,
   label-floating-top,
@@ -726,20 +727,24 @@ $variables: (
           opacity: 1;
         }
 
-        &--outline-left {
-          $distance: calc(
-            #{icon.get-var(size)} +
-              #{get-var(text-field-outlined-padding)} +
-              #{$text-field-spacing}
-          );
+        @if not $disable-text-field-addon {
+          &--outline-left {
+            $distance: calc(
+              icon.get-var(size) +
+                get-var(text-field-outlined-padding) +
+                get-var(addon-spacing)
+            );
 
-          @include set-var(text-field-padding-left, $distance);
-        }
+            @include set-var(text-field-padding-left, $distance);
+          }
 
-        &--outline-right {
-          $distance: calc(#{icon.get-var(size)} + #{$text-field-spacing * 2});
+          &--outline-right {
+            $distance: calc(
+              icon.get-var(size) + calc(get-var(addon-spacing) * 2)
+            );
 
-          @include set-var(text-field-padding-right, $distance);
+            @include set-var(text-field-padding-right, $distance);
+          }
         }
       }
 
@@ -1217,7 +1222,7 @@ $variables: (
       }
 
       &--after {
-        @include utils.auto-rtl(right, $text-field-spacing);
+        @include utils.auto-rtl(right, get-var(addon-spacing));
       }
 
       &--presentational {
@@ -2038,6 +2043,7 @@ $variables: (
       @include set-var(addon-top, auto);
       @include set-var(addon-margin-top, 0px);
       @include set-var(addon-left-offset, 0px);
+      @include set-var(addon-spacing, $text-field-addon-spacing);
     }
 
     @if not $disable-switch {
