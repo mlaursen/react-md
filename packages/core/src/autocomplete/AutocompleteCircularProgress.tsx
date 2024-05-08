@@ -13,9 +13,6 @@ export interface AutocompleteCircularProgressProps
   /** @defaultValue `"Loading"` */
   "aria-label"?: string;
 
-  /** @defaultValue `true` */
-  dense?: boolean;
-
   /** @defaultValue `"current-color"` */
   theme?: ProgressTheme;
 }
@@ -29,7 +26,6 @@ export function AutocompleteCircularProgress(
   const {
     "aria-labelledby": ariaLabelledby,
     "aria-label": ariaLabel = ariaLabelledby ? undefined : "Loading",
-    dense = true,
     theme = "current-color",
     ...remaining
   } = props;
@@ -39,7 +35,6 @@ export function AutocompleteCircularProgress(
       {...remaining}
       aria-label={ariaLabel as string}
       aria-labelledby={ariaLabelledby}
-      dense={dense}
       theme={theme}
     />
   );

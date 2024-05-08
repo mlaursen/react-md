@@ -6,7 +6,7 @@ exports[`Autocomplete should allow the CircularProgress bar props to be configur
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color custom-class-name"
-  id="circular-progress-:r2v:"
+  id="circular-progress-:r3f:"
   role="progressbar"
 >
   <svg
@@ -25,17 +25,17 @@ exports[`Autocomplete should allow the CircularProgress bar props to be configur
 
 exports[`Autocomplete should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <div
-  class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label"
+  class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-text-field-container--outline-right rmd-autocomplete rmd-autocomplete--ra1"
   data-testid="container"
 >
   <input
     aria-activedescendant=""
     aria-autocomplete="list"
-    aria-controls="combobox-popup-:r0:"
+    aria-controls="autocomplete-listbox-:r1:"
     aria-expanded="false"
     aria-haspopup="listbox"
     class="rmd-text-field rmd-text-field--placeholder-hidden"
-    id="combobox-:r1:"
+    id="autocomplete-:r0:"
     placeholder=" "
     role="combobox"
     tabindex="0"
@@ -43,43 +43,47 @@ exports[`Autocomplete should apply the correct styling, HTML attributes, and all
   />
   <label
     class="rmd-label rmd-label--floating"
-    for="combobox-:r1:"
+    for="autocomplete-:r0:"
   >
     Field
   </label>
-  <button
-    aria-controls="combobox-:r1:"
-    aria-expanded="false"
-    aria-label="Fruits"
-    class="rmd-button rmd-button--icon rmd-button--small rmd-interaction-surface"
-    id="dropdown-:r3:"
-    tabindex="-1"
-    type="button"
+  <span
+    class="rmd-text-field-addon rmd-text-field-addon--after rmd-box rmd-box--wrap rmd-autocomplete__right-addon rmd-background-container"
   >
-    <span
-      aria-hidden="true"
-      class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate"
+    <button
+      aria-controls="autocomplete-:r0:"
+      aria-expanded="false"
+      aria-label="Fruits"
+      class="rmd-button rmd-button--icon rmd-interaction-surface"
+      id="autocomplete-dropdown-:r5:"
+      tabindex="-1"
+      type="button"
     >
-      arrow_drop_down
-    </span>
-  </button>
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate"
+      >
+        arrow_drop_down
+      </span>
+    </button>
+  </span>
 </div>
 `;
 
 exports[`Autocomplete should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <div
-  class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label custom-class-name"
+  class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-text-field-container--outline-right rmd-autocomplete rmd-autocomplete--ra1 custom-class-name"
   data-testid="container"
   style="color: white;"
 >
   <input
     aria-activedescendant=""
     aria-autocomplete="list"
-    aria-controls="combobox-popup-:r0:"
+    aria-controls="autocomplete-listbox-:r1:"
     aria-expanded="false"
     aria-haspopup="listbox"
     class="rmd-text-field rmd-text-field--placeholder-hidden"
-    id="combobox-:r1:"
+    id="autocomplete-:r0:"
     placeholder=" "
     role="combobox"
     tabindex="0"
@@ -87,26 +91,30 @@ exports[`Autocomplete should apply the correct styling, HTML attributes, and all
   />
   <label
     class="rmd-label rmd-label--floating"
-    for="combobox-:r1:"
+    for="autocomplete-:r0:"
   >
     Field
   </label>
-  <button
-    aria-controls="combobox-:r1:"
-    aria-expanded="false"
-    aria-label="Fruits"
-    class="rmd-button rmd-button--icon rmd-button--small rmd-interaction-surface"
-    id="dropdown-:r3:"
-    tabindex="-1"
-    type="button"
+  <span
+    class="rmd-text-field-addon rmd-text-field-addon--after rmd-box rmd-box--wrap rmd-autocomplete__right-addon rmd-background-container"
   >
-    <span
-      aria-hidden="true"
-      class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate"
+    <button
+      aria-controls="autocomplete-:r0:"
+      aria-expanded="false"
+      aria-label="Fruits"
+      class="rmd-button rmd-button--icon rmd-interaction-surface"
+      id="autocomplete-dropdown-:r5:"
+      tabindex="-1"
+      type="button"
     >
-      arrow_drop_down
-    </span>
-  </button>
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate"
+      >
+        arrow_drop_down
+      </span>
+    </button>
+  </span>
 </div>
 `;
 
@@ -115,8 +123,8 @@ exports[`Autocomplete should be able to render a CircularProgress bar when the l
   aria-label="Loading"
   aria-valuemax="100"
   aria-valuemin="0"
-  class="rmd-circular-progress rmd-circular-progress--dense rmd-circular-progress--centered"
-  id="circular-progress-:r2r:"
+  class="rmd-circular-progress rmd-circular-progress--centered"
+  id="circular-progress-:r39:"
   role="progressbar"
 >
   <svg

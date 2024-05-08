@@ -1,0 +1,75 @@
+@use "sass:list";
+@use "sass:map";
+@use "../utils";
+@use "../button/button";
+@use "../form/form";
+@use "../progress/progress";
+
+$disable-everything: false !default;
+$disable-dropdown-button: false !default;
+$disable-circular-progress: false !default;
+
+$button-size: button.$icon-small-size !default;
+$circular-progress-size: progress.$circular-dense-size !default;
+
+$dropdown-button-calc: calc(button.get-var(icon-font-size) * 2) !default;
+$dropdown-button-only-calc: calc(
+  form.get-var(addon-spacing) + $dropdown-button-calc
+) !default;
+$circular-progress-only-calc: calc(
+  form.get-var(addon-spacing) + progress.get-var(circular-size)
+) !default;
+$circular-progress-and-dropdown-button-calc: calc(
+  calc(form.get-var(addon-spacing) * 2) + progress.get-var(circular-size) +
+    $dropdown-button-calc
+) !default;
+
+@mixin styles($disable-layer: false) {
+  @if not $disable-everything {
+    @include utils.optional-layer(autocomplete, $disable-layer) {
+      .rmd-autocomplete {
+        @if not $disable-dropdown-button {
+          @include button.set-var(icon-font-size, $button-size);
+        }
+        @if not $disable-circular-progress {
+          @include progress.set-var(circular-size, $circular-progress-size);
+        }
+
+        @if not $disable-dropdown-button {
+          // right-addon-1: dropdown button
+          &--ra1 {
+            @include form.set-var(
+              text-field-padding-right,
+              $dropdown-button-only-calc
+            );
+          }
+
+          @if not $disable-circular-progress {
+            // right-addon-2: circular progress and dropdown button
+            &--ra2 {
+              @include form.set-var(
+                text-field-padding-right,
+                $circular-progress-and-dropdown-button-calc
+              );
+            }
+          }
+        }
+
+        @if not $disable-circular-progress {
+          // right-addon-3: circular progress
+          &--ra3 {
+            @include form.set-var(
+              text-field-padding-right,
+              $circular-progress-only-calc
+            );
+          }
+        }
+
+        &__right-addon {
+          @include utils.auto-rtl(right, 0);
+          @include utils.auto-rtl(padding-left, form.get-var(addon-spacing), 0);
+        }
+      }
+    }
+  }
+}

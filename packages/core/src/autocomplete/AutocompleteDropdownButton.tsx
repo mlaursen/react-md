@@ -19,7 +19,7 @@ export interface ConfigurableAutocompleteDropdownButtonProps
   /** @defaultValue `AutocompleteProps.menuLabelledby` */
   "aria-labelledby"?: string;
 
-  /** @defaultValue `"dropdown-" + useId()` */
+  /** @defaultValue `"autocomplete-dropdown-" + useId()` */
   id?: string;
 
   /** @defaultValue `getIcon("dropdown")` */
@@ -46,16 +46,9 @@ export interface AutocompleteDropdownButtonProps
 export function AutocompleteDropdownButton(
   props: AutocompleteDropdownButtonProps
 ): ReactElement {
-  const {
-    id: propId,
-    icon,
-    iconSize = "small",
-    visible,
-    iconRotatorProps,
-    ...remaining
-  } = props;
+  const { id: propId, icon, visible, iconRotatorProps, ...remaining } = props;
 
-  const id = useEnsuredId(propId, "dropdown");
+  const id = useEnsuredId(propId, "autocomplete-dropdown");
 
   return (
     <Button
@@ -63,7 +56,6 @@ export function AutocompleteDropdownButton(
       id={id}
       aria-expanded={visible}
       tabIndex={-1}
-      iconSize={iconSize}
       buttonType="icon"
     >
       <IconRotator {...iconRotatorProps} rotated={visible}>

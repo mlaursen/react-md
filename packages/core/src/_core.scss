@@ -33,12 +33,14 @@
 @forward "expansion-panel/expansion-panel" as expansion-panel-*;
 @forward "menu/menu" as menu-*;
 @forward "form/form" as form-*;
+@forward "autocomplete/autocomplete" as autocomplete-*;
 @forward "layout/layout" as layout-*;
 @forward "navigation/navigation" as navigation-*;
 @forward "segmented-button/segmented-button" as segmented-button-*;
 
-@use "avatar/avatar";
 @use "app-bar/app-bar";
+@use "autocomplete/autocomplete";
+@use "avatar/avatar";
 @use "box/box";
 @use "button/button";
 @use "segmented-button/segmented-button";
@@ -102,6 +104,7 @@ $_layer-order: (
   window-splitter,
   menu,
   form,
+  autocomplete,
   layout,
   navigation,
   snackbar,
@@ -382,6 +385,7 @@ $_layer-order: (
   }
 
   @include app-bar.styles($disable-layer);
+  @include autocomplete.styles($disable-layer);
   @include avatar.styles($disable-layer);
   @include badge.styles($disable-layer);
   @include box.styles($disable-layer);

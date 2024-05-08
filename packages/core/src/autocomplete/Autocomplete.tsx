@@ -1,6 +1,7 @@
 "use client";
 import {
   startTransition,
+  useEffect,
   useState,
   type AriaAttributes,
   type FC,
@@ -23,6 +24,7 @@ import {
   type RequireAtLeastOne,
   type TextExtractor,
 } from "../types.js";
+import { useEnsuredId } from "../useEnsuredId.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
 import {
   AutocompleteCircularProgress,
@@ -33,6 +35,7 @@ import {
   type AutocompleteDropdownButtonProps,
   type ConfigurableAutocompleteDropdownButtonProps,
 } from "./AutocompleteDropdownButton.js";
+import { autocomplete, autocompleteRightAddon } from "./autocompleteStyles.js";
 import {
   defaultAutocompleteExtractor,
   defaultAutocompleteFilter,
@@ -254,12 +257,13 @@ export function Autocomplete<T>(
   props: AutocompleteMenuLabel<AutocompleteProps<T>>
 ): ReactElement {
   const {
-    id,
+    id: propId,
     onClick,
     onFocus,
     onKeyDown,
     onChange = noop,
     onFocusChange,
+    className,
     options,
     children,
     inputRef,
@@ -274,18 +278,21 @@ export function Autocomplete<T>(
     whitespace = "keep",
     disableFilter: propDisableFilter,
     noOptionsChildren = <ListSubheader>No options</ListSubheader>,
-    afterInputChildren,
     DropdownButton = AutocompleteDropdownButton,
     dropdownButtonProps,
     disableDropdownButton,
     loading,
     loadingProps,
+    rightAddon,
+    rightAddonProps,
     ...remaining
   } = props;
 
   const { form, value, defaultValue = "" } = props;
   const disableFilter =
     props["aria-autocomplete"] === "none" || propDisableFilter;
+  const id = useEnsuredId(propId, "autocomplete");
+  const menuId = useEnsuredId(menuProps?.id, "autocomplete-listbox");
   const [filtered, setFiltered] = useState(() => {
     if (disableFilter || (!defaultValue && !value)) {
       return options;
@@ -314,12 +321,21 @@ export function Autocomplete<T>(
     onFocus,
     onKeyDown,
     onFocusChange,
-    popupId: menuProps?.id,
+    popupId: menuId,
     popupRef: menuProps?.ref,
     comboboxId: id,
     comboboxRef: inputRef,
   });
   const [containerNodeRef, containerRef] = useEnsuredRef(containerProps?.ref);
+  useEffect(() => {
+    const input = comboboxRef.current;
+    if (!input || document.activeElement !== input) {
+      return;
+    }
+
+    const target = input.value.length;
+    input.setSelectionRange(target, target);
+  }, [comboboxRef, loading]);
 
   return (
     <KeyboardMovementProvider value={movementContext}>
@@ -331,6 +347,11 @@ export function Autocomplete<T>(
           ...containerProps,
           ref: containerRef,
         }}
+        className={autocomplete({
+          className,
+          loading,
+          disableDropdownButton,
+        })}
         onChange={(event) => {
           onChange(event);
           if (disableFilter || !visible) {
@@ -357,9 +378,9 @@ export function Autocomplete<T>(
             onAutocomplete(null);
           }
         }}
-        afterInputChildren={
+        rightAddon={
           <>
-            {afterInputChildren}
+            {rightAddon}
             {loading && <AutocompleteCircularProgress {...loadingProps} />}
             {!disableDropdownButton && (
               <DropdownButton
@@ -376,6 +397,13 @@ export function Autocomplete<T>(
             )}
           </>
         }
+        rightAddonProps={{
+          ...rightAddonProps,
+          pointerEvents: true,
+          className: autocompleteRightAddon({
+            className: rightAddonProps?.className,
+          }),
+        }}
       />
       <Menu
         aria-label={menuLabel as string}
