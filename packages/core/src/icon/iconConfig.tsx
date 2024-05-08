@@ -13,6 +13,14 @@ export interface ConfigurableIcons {
   back?: ReactNode;
 
   /**
+   * The icon to use when clearing content from a text field.
+   *
+   * @defaultValue `<FontIcon>clear</FontIcon>`
+   * @since 6.0.0
+   */
+  clear?: ReactNode;
+
+  /**
    * @defaultValue `<FontIcon>close</FontIcon>`
    *
    * @since 6.0.0
@@ -200,6 +208,7 @@ export type ConfigurableIconName = keyof ConfigurableIcons;
  */
 export const ICON_CONFIG: ConfiguredIcons = {
   back: <FontIcon>keyboard_arrow_left</FontIcon>,
+  clear: <FontIcon>clear</FontIcon>,
   close: <FontIcon>close</FontIcon>,
   checkbox: <FontIcon>check_box_outline_blank</FontIcon>,
   checkboxChecked: <FontIcon>check_box</FontIcon>,

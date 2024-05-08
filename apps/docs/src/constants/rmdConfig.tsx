@@ -5,6 +5,7 @@ import ArrowUpwardIcon from "@react-md/material-icons/ArrowUpwardIcon";
 import CheckBoxIcon from "@react-md/material-icons/CheckBoxIcon";
 import CheckBoxOutlineBlankIcon from "@react-md/material-icons/CheckBoxOutlineBlankIcon";
 import CheckIcon from "@react-md/material-icons/CheckIcon";
+import ClearIcon from "@react-md/material-icons/ClearIcon";
 import CloseIcon from "@react-md/material-icons/CloseIcon";
 import ErrorOutlineIcon from "@react-md/material-icons/ErrorOutlineIcon";
 import FileUploadIcon from "@react-md/material-icons/FileUploadIcon";
@@ -20,6 +21,7 @@ import RemoveRedEyeIcon from "@react-md/material-icons/RemoveRedEyeIcon";
 
 configureIcons({
   back: <KeyboardArrowLeftIcon />,
+  clear: <ClearIcon />,
   close: <CloseIcon />,
   checkbox: <CheckBoxOutlineBlankIcon />,
   checkboxChecked: <CheckBoxIcon />,
