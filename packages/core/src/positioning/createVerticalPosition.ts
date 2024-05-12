@@ -1,19 +1,19 @@
-import type { YCoordConfig } from "./utils.js";
+import { type FixedPositionOptions, type VerticalPosition } from "./types.js";
 import {
   getAboveCoord,
   getBelowCoord,
   getBottomCoord,
   getCenterYCoord,
   getTopCoord,
+  type YCoordConfig,
 } from "./utils.js";
-import type { FixedPositionOptions, VerticalPosition } from "./types.js";
 
 /** @internal */
 interface YPosition {
   top: number;
   bottom?: number;
   actualY: VerticalPosition;
-  /** @since 6.0.0 */
+  /** @since 5.1.6 */
   transformOriginY?: number;
 }
 

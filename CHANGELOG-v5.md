@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.6](https://github.com/mlaursen/react-md/compare/v5.1.5...v5.1.6) (2023-12-11)
+
+### Bug Fixes
+
+- **@react-md/chip:** add overflow to support font icons ([da44bbd](https://github.com/mlaursen/react-md/commit/da44bbd8de1de8b1d50d6a0cc35cffa7906a58c2)), closes [#1432](https://github.com/mlaursen/react-md/issues/1432)
+- **select:** port fixed positioning fixes back from v6.0.0 ([feb9ec6](https://github.com/mlaursen/react-md/commit/feb9ec6c32c22665851d6e470aa38637b0d3b32e)), closes [#1461](https://github.com/mlaursen/react-md/issues/1461)
+
+### Documentation
+
+- **react-md.dev:** update blog to include additional releases ([b305882](https://github.com/mlaursen/react-md/commit/b3058824056f5a0e97bd45049b63a9b583903ade))
+
+## [5.1.5](https://github.com/mlaursen/react-md/compare/v5.1.4...v5.1.5) (2023-05-09)
+
+### Bug Fixes
+
+- **@react-md/autocomplete:** Prevent event default when pressing enter with open `AutoComplete` ([#1439](https://github.com/mlaursen/react-md/issues/1439)) ([c505642](https://github.com/mlaursen/react-md/commit/c505642e7c41c8c42391b8373925609a98adc2e7))
+
+### Documentation
+
+- fix material-icons after SSR ([8417216](https://github.com/mlaursen/react-md/commit/8417216bcaae595d409d913ea3e5c2a7aaf9544f)), closes [#1423](https://github.com/mlaursen/react-md/issues/1423)
+
 ## [5.1.4](https://github.com/mlaursen/react-md/compare/v5.1.3...v5.1.4) (2022-06-16)
 
 ### Bug Fixes

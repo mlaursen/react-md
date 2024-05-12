@@ -2,7 +2,7 @@ import { getScrollbarWidth } from "../scroll/getScrollbarWidth.js";
 import { BELOW_CENTER_ANCHOR } from "./constants.js";
 import { createHorizontalPosition } from "./createHorizontalPosition.js";
 import { createVerticalPosition } from "./createVerticalPosition.js";
-import type { FixedPosition, FixedPositionOptions } from "./types.js";
+import { type FixedPosition, type FixedPositionOptions } from "./types.js";
 import {
   findSizingContainer,
   getElementRect,
