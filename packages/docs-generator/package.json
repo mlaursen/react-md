@@ -75,9 +75,9 @@
     "@mdx-js/mdx": "^3.0.1",
     "@mlaursen/eslint-config": "^4.1.1",
     "@swc/cli": "^0.3.2",
-    "@swc/core": "1.5.5",
+    "@swc/core": "1.5.7",
     "@swc/jest": "^0.2.29",
-    "@types/node": "^20.12.11",
+    "@types/node": "^20.12.12",
     "@types/postcss-sorting": "^8.0.2",
     "autoprefixer": "^10.4.19",
     "cssnano": "^7.0.1",
@@ -89,7 +89,7 @@
     "pretty-ms": "^9.0.0",
     "prism-themes": "^1.9.0",
     "prismjs": "^1.29.0",
-    "tsx": "^4.10.1",
+    "tsx": "^4.10.3",
     "typescript": "^5.4.5"
   },
   "volta": {
