@@ -21,10 +21,10 @@ jobs:
         with:
           version: 8
 
-      - name: Use Node.js 20
+      - name: Use Volta Node Version
         uses: actions/setup-node@v4
         with:
-          node-version: 20.12.2
+          node-version-file: "package.json"
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm check-format
@@ -34,7 +34,7 @@ jobs:
       - run: pnpm typecheck
 
       - run: pnpm test -- -- --coverage
-      - run: npx codecov -t ${{ secrets.CODECOV_TOKEN }}
+      - run: pnpx codecov -t ${{ secrets.CODECOV_TOKEN }}
 
   # validate_matrix:
   #   name: Validate Using Node Matrix
