@@ -6,7 +6,7 @@ exports[`Autocomplete should allow the CircularProgress bar props to be configur
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color custom-class-name"
-  id="circular-progress-:r3f:"
+  id="circular-progress-:r3g:"
   role="progressbar"
 >
   <svg
@@ -40,6 +40,7 @@ exports[`Autocomplete should apply the correct styling, HTML attributes, and all
     role="combobox"
     tabindex="0"
     type="text"
+    value=""
   />
   <label
     class="rmd-label rmd-label--floating"
@@ -88,6 +89,7 @@ exports[`Autocomplete should apply the correct styling, HTML attributes, and all
     role="combobox"
     tabindex="0"
     type="text"
+    value=""
   />
   <label
     class="rmd-label rmd-label--floating"
@@ -124,7 +126,7 @@ exports[`Autocomplete should be able to render a CircularProgress bar when the l
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered"
-  id="circular-progress-:r39:"
+  id="circular-progress-:r3a:"
   role="progressbar"
 >
   <svg

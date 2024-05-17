@@ -179,7 +179,7 @@ describe("Autocomplete", () => {
     await user.click(autocomplete);
     expect(autocomplete).toHaveValue("plu");
     expect(screen.getAllByRole("option")).toHaveLength(1);
-    expect(() => screen.getByRole("option", { name: "Banana" })).not.toThrow();
+    expect(() => screen.getByRole("option", { name: "Plum" })).not.toThrow();
   });
 
   it("should be able to render a CircularProgress bar when the loading prop is enabled", () => {
@@ -382,26 +382,35 @@ describe("Autocomplete", () => {
   });
 
   describe("type safety", () => {
-    it("should require the extractor for when the options are not a list of strings or a list of objects with a label", () => {
+    it("should require the extractor for when the options are not a list of strings or a list of objects with a label", async () => {
+      const user = userEvent.setup();
       const error = jest.spyOn(console, "error").mockImplementation(() => {});
       const errorMessage = `A \`TextExtractor\` must be provided to \`Autocomplete\` for lists that do not contain strings`;
-      expect(() =>
+      const { rerender } = rmdRender(
         // @ts-expect-error
-        rmdRender(<Autocomplete options={[0, 1, 2, 3]} />)
-      ).toThrow(errorMessage);
+        <Autocomplete menuLabel="Options" options={[0, 1, 2, 3]} />
+      );
+      await expect(
+        user.click(screen.getByRole("button", { name: "Options" }))
+      ).rejects.toThrow(errorMessage);
 
-      expect(() =>
-        rmdRender(
-          // @ts-expect-error
-          <Autocomplete options={[{ children: "A" }, { children: "B" }]} />
-        )
-      ).toThrow(errorMessage);
-      expect(() =>
-        rmdRender(
-          // @ts-expect-error
-          <Autocomplete options={["One", "Two", 3, "Four"]} />
-        )
-      ).toThrow(errorMessage);
+      rerender(
+        // @ts-expect-error
+        <Autocomplete
+          menuLabel="Options"
+          options={[{ children: "A" }, { children: "B" }]}
+        />
+      );
+      await expect(
+        user.click(screen.getByRole("button", { name: "Options" }))
+      ).rejects.toThrow(errorMessage);
+      rerender(
+        // @ts-expect-error
+        <Autocomplete menuLabel="Options" options={["One", "Two", 3, "Four"]} />
+      );
+      await expect(
+        user.click(screen.getByRole("button", { name: "Options" }))
+      ).rejects.toThrow(errorMessage);
 
       error.mockRestore();
     });

@@ -1,47 +1,38 @@
 "use client";
 import {
-  startTransition,
   useEffect,
-  useState,
   type AriaAttributes,
-  type FC,
   type ReactElement,
-  type ReactNode,
   type Ref,
 } from "react";
 import { TextField, type TextFieldProps } from "../form/TextField.js";
 import { type ConfigurableComboboxMenuProps } from "../form/useCombobox.js";
 import { useEditableCombobox } from "../form/useEditableCombobox.js";
-import { triggerManualChangeEvent } from "../form/utils.js";
-import { ListSubheader } from "../list/ListSubheader.js";
 import { Menu } from "../menu/Menu.js";
-import { MenuItem, type MenuItemProps } from "../menu/MenuItem.js";
 import { type KeyboardMovementFocusChangeEventHandler } from "../movement/types.js";
 import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
-import { type WhitespaceFilter } from "../searching/types.js";
 import {
   type PropsWithRef,
-  type RequireAtLeastOne,
   type TextExtractor,
+  type UseStateSetter,
 } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
+import { useEnsuredState } from "../useEnsuredState.js";
 import {
   AutocompleteCircularProgress,
   type AutocompleteCircularProgressProps,
 } from "./AutocompleteCircularProgress.js";
 import {
   AutocompleteDropdownButton,
-  type AutocompleteDropdownButtonProps,
   type ConfigurableAutocompleteDropdownButtonProps,
 } from "./AutocompleteDropdownButton.js";
+import { FilterAutocompleteOptions } from "./FilterAutocompleteOptions.js";
 import { autocomplete, autocompleteRightAddon } from "./autocompleteStyles.js";
 import {
-  defaultAutocompleteExtractor,
-  defaultAutocompleteFilter,
-  defaultAutocompleteOptionProps,
-  type AutocompleteFilterOptions,
-} from "./defaults.js";
+  type AutocompleteMenuLabel,
+  type AutocompleteOptionsProps,
+} from "./types.js";
 
 const noop = (): void => {
   // do nothing
@@ -50,76 +41,14 @@ const noop = (): void => {
 /**
  * @since 6.0.0
  */
-export interface AutocompleteGetOptionPropsOptions<T> {
-  index: number;
-  option: T;
-}
-
-/**
- * @since 6.0.0
- */
-export type AutocompleteMenuLabel<
-  T extends { menuLabel?: string; menuLabelledBy?: string },
-> = RequireAtLeastOne<T, "menuLabel" | "menuLabelledBy">;
-
-/**
- * @since 6.0.0
- */
 export interface AutocompleteProps<T>
-  extends Omit<TextFieldProps, "value" | "defaultValue"> {
+  extends Omit<TextFieldProps, "value" | "defaultValue">,
+    AutocompleteOptionsProps<T> {
   /** @defaultValue `"list"` */
   "aria-autocomplete"?: AriaAttributes["aria-autocomplete"];
   inputRef?: Ref<HTMLInputElement>;
   value?: string;
   defaultValue?: string;
-
-  /**
-   * This list of options to display and will be filtered based on the current
-   * value in the text box unless {@link disableFilter} is `true`.
-   *
-   * When this is not a list of strings or a list of objects with a
-   * `{ label: string }`, the {@link extractor} is required to pull a searchable
-   * string from each option.
-   */
-  options: readonly T[];
-
-  /**
-   * The children to display when there are no {@link options} due to the
-   * current text box value.
-   *
-   * @defaultValue `<ListSubheader>No options</ListSubheader`
-   */
-  noOptionsChildren?: ReactNode;
-
-  /**
-   * This controls how the {@link options} are filtered based on the current
-   * value in the text box.
-   *
-   * @example Fuzzy Search
-   * ```tsx
-   * import { fuzzySearch } from "@react-md/core/searching/fuzzy";
-   *
-   * <Autocomplete
-   *   {...props}
-   *   filter={fuzzySearch}
-   * />
-   * ```
-   *
-   * @defaultValue `caseInsensitiveSearch`
-   */
-  filter?(options: AutocompleteFilterOptions<T>): readonly T[];
-
-  /**
-   * @example
-   * ```tsx
-   * <Autocomplete
-   *   options={[{ children: "Apple" }, { children = "Banana" }]}
-   *   extractor={(option) => option.children}
-   *   {...props}
-   * />
-   * ```
-   */
-  extractor?: TextExtractor<T>;
 
   /**
    * An `aria-label` to pass to the `Menu` component that describes the list of
@@ -144,63 +73,10 @@ export interface AutocompleteProps<T>
   >;
 
   /**
-   * This can be used to add additional props to each option.
-   *
-   * @example Simple Example
-   * ```tsx
-   * getOptionProps={({ option }) => {
-   *   return {
-   *     disabled: option === "",
-   *     className: cnb(option === "a" && styles.blue),
-   *     leftAddon: option === value && <CheckIcon />,
-   *   };
-   * }}
-   * ```
-   */
-  getOptionProps?(
-    options: AutocompleteGetOptionPropsOptions<T>
-  ): Partial<MenuItemProps> | undefined;
-
-  /**
-   * This will be called whenever one of the options are selected or reset.
-   */
-  onAutocomplete?(option: T | null): void;
-
-  /**
-   * Set this to `true` to disable the built-in filtering of the
-   * {@link options}. This will always be `true` if `aria-autocomplete="none"`.
-   *
-   * @defaultValue `false`
-   */
-  disableFilter?: boolean;
-
-  /** @defaultValue `"trim"` */
-  whitespace?: WhitespaceFilter;
-
-  /**
    * This prop should only be used when `aria-autocomplete` is set to
    * `"inline"` or `"both"`.
    */
   onFocusChange?: KeyboardMovementFocusChangeEventHandler;
-
-  /**
-   * This can be used to create a custom dropdown button when the
-   * {@link dropdownButtonProps} aren't configurable enough for your use case.
-   * This component will always be provided:
-   *
-   * ```tsx
-   * <DropdownButton
-   *   aria-label={menuLabel}
-   *   aria-labelledby={menuLabelledBy}
-   *   {...dropdownButtonProps}
-   *   visible={visible}
-   *   onClick={() => setVisible((prev) => !prev)}
-   * />
-   * ```
-   *
-   * @defaultValue `AutocompleteDropdownButton`
-   */
-  DropdownButton?: FC<AutocompleteDropdownButtonProps>;
 
   /**
    * This can be used to add any custom styling, change the icon, change the
@@ -258,6 +134,8 @@ export function Autocomplete<T>(
 ): ReactElement {
   const {
     id: propId,
+    value: propValue,
+    defaultValue = "",
     onClick,
     onFocus,
     onKeyDown,
@@ -267,18 +145,18 @@ export function Autocomplete<T>(
     options,
     children,
     inputRef,
-    extractor = defaultAutocompleteExtractor("Autocomplete"),
+    extractor,
     onAutocomplete = noop,
-    getOptionProps = defaultAutocompleteOptionProps,
+    getOptionProps,
+    clearOnAutocomplete,
     menuProps,
     menuLabel,
     menuLabelledBy,
     containerProps,
-    filter = defaultAutocompleteFilter,
-    whitespace = "keep",
-    disableFilter: propDisableFilter,
-    noOptionsChildren = <ListSubheader>No options</ListSubheader>,
-    DropdownButton = AutocompleteDropdownButton,
+    filter,
+    whitespace,
+    disableFilter,
+    noOptionsChildren,
     dropdownButtonProps,
     disableDropdownButton,
     loading,
@@ -288,25 +166,15 @@ export function Autocomplete<T>(
     ...remaining
   } = props;
 
-  const { form, value, defaultValue = "" } = props;
-  const disableFilter =
-    props["aria-autocomplete"] === "none" || propDisableFilter;
+  const { form } = props;
   const id = useEnsuredId(propId, "autocomplete");
   const menuId = useEnsuredId(menuProps?.id, "autocomplete-listbox");
-  const [filtered, setFiltered] = useState(() => {
-    if (disableFilter || (!defaultValue && !value)) {
-      return options;
-    }
 
-    return filter({
-      list: options,
-      query: value || defaultValue,
-      extractor,
-      whitespace,
-    });
+  const [query, setQuery] = useEnsuredState<string, UseStateSetter<string>>({
+    value: propValue,
+    setValue: typeof propValue === "string" ? noop : undefined,
+    defaultValue,
   });
-
-  const renderedOptions = disableFilter ? options : filtered;
 
   const {
     visible,
@@ -342,6 +210,7 @@ export function Autocomplete<T>(
       <TextField
         aria-autocomplete="list"
         {...remaining}
+        value={query}
         {...comboboxProps}
         containerProps={{
           ...containerProps,
@@ -354,23 +223,7 @@ export function Autocomplete<T>(
         })}
         onChange={(event) => {
           onChange(event);
-          if (disableFilter || !visible) {
-            return;
-          }
-
-          // use a transition to prevent the UI from being blocked while
-          // filtering large lists
-          const { value } = event.currentTarget;
-          startTransition(() => {
-            setFiltered(
-              filter({
-                list: options,
-                query: value,
-                extractor,
-                whitespace,
-              })
-            );
-          });
+          setQuery(event.currentTarget.value);
         }}
         onKeyDown={(event) => {
           comboboxProps.onKeyDown(event);
@@ -378,12 +231,19 @@ export function Autocomplete<T>(
             onAutocomplete(null);
           }
         }}
+        onFocus={(event) => {
+          comboboxProps.onFocus(event);
+          event.currentTarget.setSelectionRange(
+            0,
+            event.currentTarget.value.length
+          );
+        }}
         rightAddon={
           <>
             {rightAddon}
             {loading && <AutocompleteCircularProgress {...loadingProps} />}
             {!disableDropdownButton && (
-              <DropdownButton
+              <AutocompleteDropdownButton
                 aria-label={menuLabel}
                 aria-labelledby={menuLabelledBy}
                 aria-controls={comboboxProps.id}
@@ -415,30 +275,19 @@ export function Autocomplete<T>(
         fixedTo={containerNodeRef}
       >
         {children}
-        {renderedOptions.length === 0 && noOptionsChildren}
-        {renderedOptions.map((option, index) => {
-          const label = extractor(option);
-          const optionProps = getOptionProps({
-            index,
-            option,
-          });
-
-          return (
-            <MenuItem
-              key={label}
-              role="option"
-              {...optionProps}
-              onClick={(event) => {
-                optionProps?.onClick?.(event);
-
-                triggerManualChangeEvent(comboboxRef.current, label);
-                onAutocomplete(option);
-              }}
-            >
-              {optionProps?.children ?? label}
-            </MenuItem>
-          );
-        })}
+        <FilterAutocompleteOptions
+          query={query}
+          filter={filter}
+          options={options}
+          noOptionsChildren={noOptionsChildren}
+          extractor={extractor}
+          whitespace={whitespace}
+          comboboxRef={comboboxRef}
+          disableFilter={disableFilter || props["aria-autocomplete"] === "none"}
+          getOptionProps={getOptionProps}
+          onAutocomplete={onAutocomplete}
+          clearOnAutocomplete={clearOnAutocomplete}
+        />
       </Menu>
     </KeyboardMovementProvider>
   );

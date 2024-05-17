@@ -1,26 +1,24 @@
 import { type MenuItemProps } from "../menu/MenuItem.js";
 import { caseInsensitiveSearch } from "../searching/caseInsensitive.js";
-import { type BaseSearchOptions } from "../searching/types.js";
 import { defaultExtractor } from "../searching/utils.js";
+import { type AutocompleteFilterOptions } from "./types.js";
 
 /**
  * @remarks \@since 6.0.0
  * @internal
  */
-export const defaultAutocompleteExtractor =
-  <T>(name: string) =>
-  (item: T): string => {
-    if (
-      item &&
-      typeof item === "object" &&
-      "label" in item &&
-      typeof item.label === "string"
-    ) {
-      return item.label;
-    }
+export const defaultAutocompleteExtractor = <T>(item: T): string => {
+  if (
+    item &&
+    typeof item === "object" &&
+    "label" in item &&
+    typeof item.label === "string"
+  ) {
+    return item.label;
+  }
 
-    return defaultExtractor(name)(item);
-  };
+  return defaultExtractor("Autocomplete")(item);
+};
 
 /**
  * @remarks \@since 6.0.0
@@ -71,14 +69,6 @@ export const defaultAutocompleteOptionProps = <T>(options: {
   }
   return;
 };
-
-/**
- * @since 6.0.0
- */
-export type AutocompleteFilterOptions<T> = Pick<
-  Required<BaseSearchOptions<T>>,
-  "list" | "query" | "extractor" | "whitespace"
->;
 
 /**
  * This is just the {@link caseInsensitiveSearch} but requires
