@@ -1,8 +1,7 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import { useRef, useState, type ReactElement } from "react";
-import { act } from "react-dom/test-utils";
 import { Button } from "../../button/Button.js";
-import { rmdRender, screen, userEvent } from "../../test-utils/index.js";
+import { act, rmdRender, screen, userEvent } from "../../test-utils/index.js";
 import { useFormReset } from "../useFormReset.js";
 
 interface TestImplementationProps {

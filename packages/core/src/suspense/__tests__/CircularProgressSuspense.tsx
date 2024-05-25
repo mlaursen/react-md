@@ -1,16 +1,16 @@
-import { describe, it, expect } from "@jest/globals";
-import { act } from "react-dom/test-utils";
+import { describe, expect, it } from "@jest/globals";
+import { lazy, type FC, type ReactElement } from "react";
 import {
+  act,
   render,
   screen,
   waitForElementToBeRemoved,
 } from "../../test-utils/index.js";
+import { Typography } from "../../typography/Typography.js";
 import {
   CircularProgressSuspense,
   type CircularProgressSuspenseProps,
 } from "../CircularProgressSuspense.js";
-import { type FC, lazy, type ReactElement } from "react";
-import { Typography } from "../../typography/Typography.js";
 
 const setup = (props?: Omit<CircularProgressSuspenseProps, "children">) => {
   function Content(): ReactElement {
