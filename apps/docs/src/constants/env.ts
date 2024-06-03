@@ -7,6 +7,7 @@ declare global {
       NEXT_PUBLIC_GITHUB_URL: string;
       NEXT_PUBLIC_GITHUB_FILE_LINK: string;
       NEXT_PUBLIC_RMD_VERSION: string;
+      NEXT_PUBLIC_GTAG_ID?: string;
 
       // https://vercel.com/docs/projects/environment-variables/system-environment-variables#framework-environment-variables
       NEXT_PUBLIC_VERCEL_ENV?: "production" | "preview" | "development";
@@ -25,6 +26,7 @@ declare global {
   }
 }
 
+export const GTAG_ID = process.env.NEXT_PUBLIC_GTAG_ID;
 export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 export const GITHUB_URL = process.env.NEXT_PUBLIC_GITHUB_URL;
 export const GITHUB_LINK_URL = process.env.NEXT_PUBLIC_GITHUB_FILE_LINK;

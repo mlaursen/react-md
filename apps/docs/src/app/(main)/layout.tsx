@@ -8,6 +8,7 @@ import { cnb } from "cnbuilder";
 import { Roboto_Flex, Source_Code_Pro } from "next/font/google";
 import { type ReactElement, type ReactNode } from "react";
 import "./layout.scss";
+import { GtagAnalytics } from "@/components/GtagAnalytics.jsx";
 export { metadata } from "@/constants/metadata.js";
 
 // import localFont from "next/font/local";
@@ -60,6 +61,7 @@ export default async function RootLayout(
           />
         </head>
       }
+      afterBodyChildren={<GtagAnalytics />}
     >
       <RootProviders {...providerProps}>
         <LoadThemeStyles />
