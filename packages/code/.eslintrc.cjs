@@ -7,6 +7,14 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: "module",
   },
+  rules: {
+    "react-hooks/exhaustive-deps": [
+      "error",
+      {
+        additionalHooks: "(useIsomorphicLayoutEffect)",
+      },
+    ],
+  },
   overrides: [
     {
       files: ["src/**/index.ts"],

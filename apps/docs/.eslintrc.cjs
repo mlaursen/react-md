@@ -15,6 +15,12 @@ module.exports = {
 
     // I only use this within dialogs which IS recommended
     "jsx-a11y/no-autofocus": 0,
+    "react-hooks/exhaustive-deps": [
+      "error",
+      {
+        additionalHooks: "(useIsomorphicLayoutEffect)",
+      },
+    ],
   },
   overrides: [
     {
