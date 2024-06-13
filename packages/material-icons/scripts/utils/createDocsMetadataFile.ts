@@ -25,6 +25,7 @@ export async function createDocsMetadataFile(
     "docs",
     "src",
     "app",
+    "(main)",
     "components",
     "material-icons-and-symbols",
     "metadata.ts"
