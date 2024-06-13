@@ -410,7 +410,8 @@ $theme-variables: (
   @if not $disable-dark-elevation {
     @if $color-scheme == dark {
       @include use-dark-theme-elevation-colors;
-    } @else if $color-scheme == light {
+    } @else {
+      // default to light theme for system themes as well
       @include use-light-theme-elevation-colors;
     }
   }
