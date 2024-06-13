@@ -23,8 +23,8 @@
     "test": "NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest"
   },
   "engines": {
-    "pnpm": ">=8",
-    "node": ">=18"
+    "pnpm": ">=9",
+    "node": ">=20"
   },
   "engineStrict": true,
   "repository": {
@@ -94,6 +94,6 @@
   },
   "volta": {
     "node": "20.12.2",
-    "pnpm": "8.15.7"
+    "pnpm": "9.3.0"
   }
 }
