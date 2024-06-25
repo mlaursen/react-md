@@ -16,6 +16,6 @@
     "forceConsistentCasingInFileNames": true,
     "lib": ["esnext"]
   },
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["**/*.ts", "**/*.tsx", "**/*.cjs", ".eslintrc.cjs"],
   "exclude": ["node_modules", "**/__testfixtures__/**"]
 }

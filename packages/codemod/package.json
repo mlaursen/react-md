@@ -11,10 +11,13 @@
     "bin"
   ],
   "scripts": {
+    "run-script": "tsx --tsconfig scripts/tsconfig.json",
     "update-docs": "node updateDocs.cjs",
     "prepare-release": "npm-run-all clean-dist build",
     "clean-dist": "rm -rf bin",
     "clean": "rm -rf .turbo bin node_modules",
+    "lint": "eslint \"**/*.{ts,tsx,js,jsx,cjs,mjs}\"",
+    "test": "jest",
     "build": "tsc --project tsconfig.build.json"
   },
   "repository": {
@@ -44,9 +47,20 @@
   "devDependencies": {
     "@babel/core": "^7.24.7",
     "@babel/preset-env": "^7.24.7",
+    "@jest/globals": "^29.7.0",
+    "@jest/types": "^29.6.3",
+    "@swc/cli": "^0.3.14",
+    "@swc/core": "1.5.29",
+    "@swc/jest": "^0.2.36",
     "@types/glob": "^8.0.1",
     "@types/inquirer": "^9.0.7",
     "@types/jscodeshift": "^0.11.11",
+    "@types/node": "^20.14.0",
+    "eslint": "^8.57.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^29.7.0",
+    "jest-watch-typeahead": "^2.2.2",
+    "tsx": "^4.11.2",
     "typescript": "^5.4.5"
   },
   "publishConfig": {
