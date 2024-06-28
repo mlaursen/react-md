@@ -6,6 +6,25 @@ import {
 } from "jscodeshift";
 import { ONLY_SYMBOL_AVAILABLE, RENAMED_ICONS } from "./constants";
 
+/**
+ * This transformer will:
+ * - search for any **top-level** imports from `@react-md/material-icons` or
+ *   `react-md`
+ * - check the destructured imports for any *SVGIcon or *FontIcon imported
+ *   components
+ *   - if there is a match:
+ *     - add new import statements to the top of the file for the new v6 import
+ *       and naming convention. Also add them alphaNumerically sorted
+ *     - rename the components to match the naming convention even if it was
+ *       renamed with `as SomeOtherName`
+ *     - remove the `@react-md/material-icons` import
+ *     - remove the `*SVGIcon`/`*FontIcon` components from the `react-md`
+ *       import (__should__ remove the entire react-md import if there are no
+ *       other declarations)
+ *
+ * NOTE: Will throw an error if the Motorcycle or PhoneInTalk icons are used since they
+ * are only available as a material symbol for some reason
+ */
 export default function transformer(
   file: FileInfo,
   api: API,

@@ -97,8 +97,7 @@ export interface AvatarProps
  * }
  * ```
  *
- * @since 6.0.0 `aria-hidden` is set to `true` by default and removed
- * the `role="presentation"`.
+ * @since 6.0.0 `aria-hidden` is set to `true` by default.
  */
 export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
   function Avatar(props, ref) {

@@ -1,12 +1,26 @@
-import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
+import {
+  forwardRef,
+  type AriaAttributes,
+  type HTMLAttributes,
+  type ReactNode,
+} from "react";
 import { icon, type FontIconClassNameOptions } from "./styles.js";
 
+/**
+ * @since 6.0.0 Removed the `forceSize`/`forceFontSize` props and added the
+ * `inline` and `theme` props.
+ */
 export interface FontIconProps
-  extends HTMLAttributes<HTMLElement>,
+  extends HTMLAttributes<HTMLSpanElement>,
     FontIconClassNameOptions {
+  /** @defaultValue `true` */
+  "aria-hidden"?: AriaAttributes["aria-hidden"];
+
   /**
    * Any children to render to create the font icon. This is required for
    * material-icons.
+   *
+   * @example `<FontIcon>clear</FontIcon>`
    */
   children?: ReactNode;
 }
@@ -18,22 +32,18 @@ export interface FontIconProps
  * The default is to use the `material-icons` library, but others can be used as
  * well.
  *
- * If you are using another font icon library that does not always create icons
- * with a perfect 1:1 scale (such as font awesome), it is recommended to use the
- * `forceSize` and `forceFontSize` props to fix the sizing issues.
- *
  * @since 6.0.0 Switched from `<i>` to `<span>` element and removed
  * the `forceSize`/`forceFontSize` props.
  */
 export const FontIcon = forwardRef<HTMLElement, FontIconProps>(
   function FontIcon(props, ref) {
     const {
-      className,
-      children,
       "aria-hidden": ariaHidden = true,
+      iconClassName = "material-icons",
       dense = false,
       theme,
-      iconClassName = "material-icons",
+      className,
+      children,
       ...remaining
     } = props;
 
