@@ -4,6 +4,7 @@ import {
   type MemberExpression,
   type Options,
 } from "jscodeshift";
+import { getImportedName } from "../utils/getImportedName";
 import { VARIABLE_LOOKUP } from "./scssVariables";
 
 const getIdentifierName = (node: MemberExpression): string => {
@@ -90,10 +91,7 @@ export default function transformer(
       j(importDeclaration)
         .find(j.ImportDefaultSpecifier)
         .forEach((defaultImport) => {
-          const name =
-            defaultImport.node.local?.name ??
-            defaultImport.node.name?.name ??
-            "";
+          const name = getImportedName(defaultImport);
           if (name) {
             mapping.set(name, varLookupName);
           }

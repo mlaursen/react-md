@@ -48,8 +48,11 @@ export function appBarTitle(options: AppBarTitleClassNameOptions = {}): string {
 }
 
 /**
- * @since 6.0.0 Renamed the `noWrap` prop to `lineWrap` since the
- * `AppBarTitle` does not line wrap by default.
+ * @since 6.0.0 The `keyline` prop was changed from a boolean to a type
+ * union of different keylines: {@link AppBarTitleKeyline}
+ * @since 6.0.0 The `noWrap` prop was removed in favor of the `textOverflow`
+ * prop inherited through the base `Typography` component. The `textOverflow`
+ * will default to `"ellipsis"` which is new as well.
  */
 export interface AppBarTitleProps
   extends TypographyProps,
@@ -82,10 +85,11 @@ export interface AppBarTitleProps
  * }
  * ```
  *
- * @since 6.0.0 Renamed the `noWrap` prop to `lineWrap` since the `AppBarTitle`
- * does not line wrap by default.
  * @since 6.0.0 The `keyline` prop was changed from a boolean to a type
  * union of different keylines: {@link AppBarTitleKeyline}
+ * @since 6.0.0 The `noWrap` prop was removed in favor of the `textOverflow`
+ * prop inherited through the base `Typography` component. The `textOverflow`
+ * will default to `"ellipsis"` which is new as well.
  */
 export const AppBarTitle = forwardRef<HTMLHeadingElement, AppBarTitleProps>(
   function AppBarTitle(props, ref) {

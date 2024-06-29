@@ -17,6 +17,12 @@ Next, start running the codemods in order to finish the migration:
   - `to-font` - The `Motorcycle` and `PhoneInTalk` icons are only supported as
     material symbols in v6
   - `to-symbol`
+- `app-bar`:
+  - `remove-class-name-constants`
+  - `remove-use-action-class-name`
+  - `replace-nav-and-action-with-button`
+  - `update-app-bar-props`
+  - `update-app-bar-title-props`
 
 Finally (optional), run the `to-core-imports` codemod to improve development
 build times by switching to `@react-md/core/{{FILE}}`.

@@ -1,4 +1,5 @@
 import { type API, type FileInfo, type Options } from "jscodeshift";
+import { getImportedName } from "../../utils/getImportedName";
 import { sortImportSpecifiers } from "../../utils/sortImportSpecifiers";
 import { ONLY_SYMBOL_AVAILABLE, RENAMED_ICONS } from "./constants";
 
@@ -49,12 +50,12 @@ export default function transformer(
             return;
           }
 
-          const localName = importSpecifier.value.local?.name;
-          if (localName && localName !== name) {
+          const localName = getImportedName(importSpecifier);
+          if (localName !== name) {
             importRenamed.set(localName, name);
           }
 
-          icons.add(localName ?? name);
+          icons.add(localName);
 
           if (importDeclaration.value.source.value === "react-md") {
             j(importSpecifier).remove();

@@ -1,5 +1,6 @@
 import { type API, type FileInfo, type Options } from "jscodeshift";
 import { removeProps } from "../../utils/removeProps";
+import { getImportedName } from "../../utils/getImportedName";
 
 const REMOVED_PROPS = ["forceSize", "forceFontSize"];
 
@@ -37,10 +38,7 @@ export default function transformer(
             throw new Error("A named FontIcon already exists?");
           }
 
-          // if renamed with `FontIcon as AnotherName`, use `AnotherName`. Otherwise `FontIcon`
-          name =
-            importSpecifier.node.local?.name ??
-            importSpecifier.node.imported.name;
+          name = getImportedName(importSpecifier);
         });
     });
 

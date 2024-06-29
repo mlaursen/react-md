@@ -4,6 +4,7 @@ import {
   type ImportDeclaration,
   type Options,
 } from "jscodeshift";
+import { getImportedName } from "../../utils/getImportedName";
 import { renameIdentifier } from "../../utils/renameIdentifier";
 import { ONLY_SYMBOL_AVAILABLE, RENAMED_ICONS } from "./constants";
 
@@ -77,7 +78,7 @@ export default function transformer(
             j,
             root,
             to: v6Name,
-            from: importSpecifier.value.local?.name ?? name,
+            from: getImportedName(importSpecifier),
           });
 
           declarations.set(updatedPath, declaration);
