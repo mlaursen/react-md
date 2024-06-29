@@ -6,6 +6,9 @@ work without this prerequisite.
 
 Next, start running the codemods in order to finish the migration:
 
+- `hardcode-scss-variables` - convert the `@react-md/*/dist/scssVariables` into
+  hard coded constants and remove the imports. This will throw an error if using
+  computed keys
 - `icon`:
   - `remove-deprecated-font-icon-props`
 - `material-icons` -- Choose one of:
