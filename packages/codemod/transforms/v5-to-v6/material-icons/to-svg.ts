@@ -4,6 +4,7 @@ import {
   type ImportDeclaration,
   type Options,
 } from "jscodeshift";
+import { renameIdentifier } from "../../utils/renameIdentifier";
 import { ONLY_SYMBOL_AVAILABLE, RENAMED_ICONS } from "./constants";
 
 /**
@@ -72,17 +73,12 @@ export default function transformer(
           );
 
           // rename any references to the v6Name
-          root
-            .find(j.Identifier, {
-              name: importSpecifier.value.local?.name ?? name,
-            })
-            .forEach((identifier) => {
-              j(identifier).replaceWith(
-                j.identifier.from({
-                  name: v6Name,
-                })
-              );
-            });
+          renameIdentifier({
+            j,
+            root,
+            to: v6Name,
+            from: importSpecifier.value.local?.name ?? name,
+          });
 
           declarations.set(updatedPath, declaration);
 

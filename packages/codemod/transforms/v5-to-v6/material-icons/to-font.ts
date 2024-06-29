@@ -1,4 +1,5 @@
 import { type API, type FileInfo, type Options } from "jscodeshift";
+import { sortImportSpecifiers } from "../../utils/sortImportSpecifiers";
 import { ONLY_SYMBOL_AVAILABLE, RENAMED_ICONS } from "./constants";
 
 /**
@@ -86,24 +87,13 @@ export default function transformer(
         }
 
         replaced = true;
-        const specifiers = [
+        const specifiers = sortImportSpecifiers([
           ...(decl.node.specifiers ?? []),
           j.importSpecifier({
             name: "MaterialIcon",
             type: "Identifier",
           }),
-        ];
-        specifiers.sort((a, b) => {
-          const aName =
-            ((a.type === "ImportSpecifier" && a.imported.name) ||
-              a.name?.name) ??
-            "";
-          const bName =
-            ((b.type === "ImportSpecifier" && b.imported.name) ||
-              b.name?.name) ??
-            "";
-          return aName.localeCompare(bName);
-        });
+        ]);
 
         j(decl).replaceWith(
           j.importDeclaration.from({

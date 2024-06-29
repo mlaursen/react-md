@@ -1,4 +1,5 @@
 import { type API, type FileInfo, type Options } from "jscodeshift";
+import { sortImportSpecifiers } from "../../utils/sortImportSpecifiers";
 import { RENAMED_ICONS } from "./constants";
 
 /**
@@ -77,13 +78,13 @@ export default function transformer(
         j(decl).replaceWith(
           j.importDeclaration.from({
             ...decl.node,
-            specifiers: [
+            specifiers: sortImportSpecifiers([
               ...(decl.node.specifiers ?? []),
               j.importSpecifier({
                 name: "MaterialSymbol",
                 type: "Identifier",
               }),
-            ],
+            ]),
           })
         );
       });

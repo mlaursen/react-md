@@ -1,4 +1,5 @@
 import { type API, type FileInfo, type Options } from "jscodeshift";
+import { removeProps } from "../../utils/removeProps";
 
 const REMOVED_PROPS = ["forceSize", "forceFontSize"];
 
@@ -45,34 +46,11 @@ export default function transformer(
 
   // if it was imported, find all references in the file and remove the deprecated props
   if (name) {
-    root
-      .find(
-        j.JSXOpeningElement,
-        (path) => path.name.type === "JSXIdentifier" && path.name.name === name
-      )
-      .forEach((jsxOpeningElement) => {
-        const originalAttributes = jsxOpeningElement.node.attributes ?? [];
-        const attributes = originalAttributes?.filter((attr) => {
-          if (attr.type === "JSXAttribute") {
-            const attrName =
-              typeof attr.name.name === "string"
-                ? attr.name.name
-                : attr.name.name.name;
-            return !REMOVED_PROPS.includes(attrName);
-          }
-
-          return true;
-        });
-
-        if (originalAttributes.length !== attributes.length) {
-          j(jsxOpeningElement).replaceWith(
-            j.jsxOpeningElement.from({
-              ...jsxOpeningElement.node,
-              attributes,
-            })
-          );
-        }
-      });
+    removeProps({
+      root,
+      props: REMOVED_PROPS,
+      component: name,
+    });
   }
 
   return root.toSource(printOptions);

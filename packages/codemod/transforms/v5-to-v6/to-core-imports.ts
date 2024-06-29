@@ -4,9 +4,9 @@ import {
   type ImportDeclaration,
   type Options,
 } from "jscodeshift";
-
 import { isTypeImport } from "../utils/isTypeImport";
-import { MODULE_MAP, TYPES } from "./coreExportMaps";
+import { sortImportSpecifiers } from "../utils/sortImportSpecifiers";
+import { MODULE_MAP } from "./coreExportMaps";
 
 export default function transformer(
   file: FileInfo,
@@ -53,24 +53,9 @@ export default function transformer(
 
       j(importDeclaration).replaceWith(
         sortedDeclarations.map(([_importPath, declaration]) => {
-          const specifiers = declaration.specifiers ?? [];
-          specifiers.sort((a, b) => {
-            const aName = a.name?.name ?? "";
-            const bName = b.name?.name ?? "";
-            if (TYPES.has(aName) && !TYPES.has(bName)) {
-              return 1;
-            }
-
-            if (!TYPES.has(aName) && TYPES.has(bName)) {
-              return -1;
-            }
-
-            return aName.localeCompare(bName);
-          });
-
           return {
             ...declaration,
-            specifiers,
+            specifiers: sortImportSpecifiers(declaration.specifiers ?? []),
           };
         })
       );

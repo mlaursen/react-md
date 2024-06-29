@@ -4,7 +4,7 @@ import {
   type ImportSpecifier,
   type Options,
 } from "jscodeshift";
-import { isTypeImport } from "../utils/isTypeImport";
+import { sortImportSpecifiers } from "../utils/sortImportSpecifiers";
 
 const V5_PACKAGES = [
   "@react-md/alert",
@@ -102,22 +102,11 @@ export default function transformer(
         }
         merged.set(name, specifier);
       });
-      const sorted = [...merged.entries()]
-        .sort(([a, aSpec], [b, bSpec]) => {
-          if (isTypeImport(aSpec) && !isTypeImport(bSpec)) {
-            return 1;
-          } else if (!isTypeImport(aSpec) && isTypeImport(bSpec)) {
-            return -1;
-          }
-
-          return a.localeCompare(b);
-        })
-        .map(([, a]) => a);
 
       j(importDeclaration).replaceWith(
         j.importDeclaration.from({
           ...importDeclaration.node,
-          specifiers: sorted,
+          specifiers: sortImportSpecifiers([...merged.values()]),
         })
       );
     });
