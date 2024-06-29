@@ -35,8 +35,51 @@ Next, start running the codemods in order to finish the migration:
   - `update-card-header-props`
   - `update-card-subtitle-props`
   - `update-card-title-props`
+- `chip`:
+  - `update-chip-props`
 - `overlay`:
   - `update-overlay-props`
 
 Finally (optional), run the `to-core-imports` codemod to improve development
 build times by switching to `@react-md/core/{{FILE}}`.
+
+## TODO - Codemods
+
+- [ ] alert
+- [x] app-bar
+- [ ] autocomplete
+- [x] avatar - None!
+- [ ] badge
+- [x] button
+- [x] card
+- [x] chip
+- [ ] dialog
+- [ ] divider
+- [ ] elevation ?
+- [ ] expansion-panel
+- [ ] form
+- [x] icon
+- [ ] layout
+- [ ] link
+- [ ] list
+- [x] material-icons
+- [ ] media
+- [ ] menu
+- [x] overlay
+- [ ] portal
+- [ ] progress
+- [ ] sheet
+- [ ] states
+- [ ] table
+- [ ] tabs
+- [ ] theme ?
+- [ ] tooltip
+- [ ] transition
+- [ ] tree
+- [ ] typography
+- [ ] utils
+
+Good demos to try to auto convert:
+
+- Tree - Customizing Tree Items
+- AutoComplete - Using Object Data Sets
