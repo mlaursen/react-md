@@ -35,6 +35,8 @@ Next, start running the codemods in order to finish the migration:
   - `update-card-header-props`
   - `update-card-subtitle-props`
   - `update-card-title-props`
+- `overlay`:
+  - `update-overlay-props`
 
 Finally (optional), run the `to-core-imports` codemod to improve development
 build times by switching to `@react-md/core/{{FILE}}`.

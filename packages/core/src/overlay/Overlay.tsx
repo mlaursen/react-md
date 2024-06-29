@@ -16,6 +16,7 @@ import {
 
 /**
  * @since 6.0.0 Added `align` and `justify` props.
+ * @since 6.0.0 Renamed `hidden` to `noOpacity`.
  */
 export interface OverlayProps
   extends HTMLAttributes<HTMLSpanElement>,
