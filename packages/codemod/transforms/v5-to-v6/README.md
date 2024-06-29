@@ -28,6 +28,13 @@ Next, start running the codemods in order to finish the migration:
   - `rename-button-theme-class-names`
   - `rename-fab`
   - `rename-unstyled-button`
+- `card`:
+  - `card-actions-to-card-footer`
+  - `remove-deprecated-card-props`
+  - `update-card-content-props`
+  - `update-card-header-props`
+  - `update-card-subtitle-props`
+  - `update-card-title-props`
 
 Finally (optional), run the `to-core-imports` codemod to improve development
 build times by switching to `@react-md/core/{{FILE}}`.

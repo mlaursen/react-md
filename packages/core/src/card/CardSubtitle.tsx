@@ -19,6 +19,13 @@ export interface CardSubtitleProps extends TypographyProps {
 
   /** @defaultValue `"none"` */
   margin?: TypographyProps["margin"];
+
+  /**
+   * Set this to `null` to inherit the current color.
+   *
+   * @defaultValue `"text-secondary"`
+   */
+  textColor?: TypographyProps["textColor"];
 }
 
 /**
@@ -36,6 +43,7 @@ export const CardSubtitle = forwardRef<
     as = "h6",
     type = "subtitle-2",
     margin = "none",
+    textColor = "text-secondary",
     className,
     ...remaining
   } = props;
@@ -47,6 +55,7 @@ export const CardSubtitle = forwardRef<
       as={as}
       type={type}
       margin={margin}
+      textColor={textColor}
       className={cardSubtitle({ className })}
     >
       {children}

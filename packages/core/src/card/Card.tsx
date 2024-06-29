@@ -10,7 +10,8 @@ declare module "react" {
 }
 
 /**
- * @since 6.0.0 Extends the {@link CardClassNameOptions}.
+ * @since 6.0.0 Extends the {@link CardClassNameOptions} and removed the
+ * deprecated `raiseable` prop
  */
 export interface CardProps
   extends HTMLAttributes<HTMLDivElement>,

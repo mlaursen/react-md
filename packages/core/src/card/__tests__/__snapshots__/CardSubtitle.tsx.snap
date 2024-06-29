@@ -2,7 +2,7 @@
 
 exports[`CardSubtitle should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <h6
-  class="rmd-typography rmd-typography--subtitle-2 rmd-no-margin rmd-card__subtitle rmd-text-secondary-color"
+  class="rmd-typography rmd-typography--subtitle-2 rmd-text-secondary-color rmd-no-margin rmd-card__subtitle"
 >
   Subtitle
 </h6>
@@ -10,7 +10,7 @@ exports[`CardSubtitle should apply the correct styling, HTML attributes, and all
 
 exports[`CardSubtitle should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <h6
-  class="rmd-typography rmd-typography--subtitle-2 rmd-no-margin rmd-card__subtitle rmd-text-secondary-color custom-class-name"
+  class="rmd-typography rmd-typography--subtitle-2 rmd-text-secondary-color rmd-no-margin rmd-card__subtitle custom-class-name"
   style="color: white;"
 >
   Subtitle

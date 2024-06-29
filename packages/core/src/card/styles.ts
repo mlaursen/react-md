@@ -1,6 +1,6 @@
 import { cnb } from "cnbuilder";
-import { bem } from "../utils/bem.js";
 import { cssUtils } from "../cssUtils.js";
+import { bem } from "../utils/bem.js";
 
 const cardStyles = bem("rmd-card");
 
@@ -130,11 +130,7 @@ export function cardSubtitle(
 ): string {
   const { className } = options;
 
-  return cnb(
-    cardStyles("subtitle"),
-    cssUtils({ textColor: "text-secondary" }),
-    className
-  );
+  return cnb(cardStyles("subtitle"), className);
 }
 
 /** @since 6.0.0 */

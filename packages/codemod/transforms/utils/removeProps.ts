@@ -1,4 +1,5 @@
 import { type Collection } from "jscodeshift";
+import { getPropName } from "./getPropName";
 
 export interface RemovePropsOptions {
   root: Collection<unknown>;
@@ -13,16 +14,8 @@ export function removeProps(options: RemovePropsOptions): void {
   root.findJSXElements(component).forEach((path) => {
     path.node.openingElement.attributes =
       path.node.openingElement.attributes?.filter((attr) => {
-        if (attr.type !== "JSXAttribute") {
-          return true;
-        }
-
-        const name =
-          typeof attr.name.name === "string"
-            ? attr.name.name
-            : attr.name.name.name;
-
-        return !propsSet.has(name);
+        const name = getPropName(attr);
+        return !name || !propsSet.has(name);
       });
   });
 }
