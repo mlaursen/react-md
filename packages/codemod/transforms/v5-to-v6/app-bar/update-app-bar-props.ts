@@ -5,8 +5,8 @@ import {
   type JSXSpreadAttribute,
   type Options,
 } from "jscodeshift";
-import { getImportedName } from "../../utils/getImportedName";
 import { isPropEnabled } from "../../utils/isPropEnabled";
+import { traverseIdentifiers } from "../../utils/traverseIdentifiers";
 
 export default function transformer(
   file: FileInfo,
@@ -17,23 +17,12 @@ export default function transformer(
   const root = j(file.source);
   const printOptions = options.printOptions;
 
-  let appBarName = "";
-  root
-    .find(j.ImportDeclaration, (path) => path.source.value === "react-md")
-    .forEach((importDeclaration) => {
-      j(importDeclaration)
-        .find(j.ImportSpecifier, (path) => path.imported.name === "AppBar")
-        .forEach((importSpecifier) => {
-          if (appBarName) {
-            throw new Error("AppBar was imported multiple times");
-          }
-
-          appBarName = getImportedName(importSpecifier);
-        });
-    });
-
-  if (appBarName) {
-    root.findJSXElements(appBarName).forEach((appBar) => {
+  traverseIdentifiers({
+    j,
+    root,
+    name: "AppBar",
+  }).forEach((name) => {
+    root.findJSXElements(name).forEach((appBar) => {
       const attributes: (JSXAttribute | JSXSpreadAttribute)[] = [];
       appBar.node.openingElement.attributes?.forEach((attr) => {
         if (
@@ -77,7 +66,7 @@ export default function transformer(
 
       appBar.node.openingElement.attributes = attributes;
     });
-  }
+  });
 
   return root.toSource(printOptions);
 }

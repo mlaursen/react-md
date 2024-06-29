@@ -2,11 +2,12 @@ import {
   type API,
   type FileInfo,
   type Identifier,
+  type ObjectExpression,
   type ObjectProperty,
   type Options,
 } from "jscodeshift";
-import { getImportedName } from "../../utils/getImportedName";
 import { removeEmptyImportDeclaration } from "../../utils/removeEmptyImportDeclaration";
+import { traverseIdentifiers } from "../../utils/traverseIdentifiers";
 
 export default function transformer(
   file: FileInfo,
@@ -17,20 +18,12 @@ export default function transformer(
   const root = j(file.source);
   const printOptions = options.printOptions;
 
-  const names = new Set<string>();
-  // find the `useActionClassName` imports from `react-md`
-  root
-    .find(j.ImportDeclaration, { source: { value: "react-md" } })
-    .forEach((importDeclaration) => {
-      j(importDeclaration)
-        .find(j.ImportSpecifier, {
-          imported: { name: "useActionClassName" },
-        })
-        .forEach((importSpecifier) => {
-          names.add(getImportedName(importSpecifier));
-          j(importSpecifier).remove();
-        });
-    });
+  const names = traverseIdentifiers({
+    j,
+    root,
+    name: "useActionClassName",
+    remove: true,
+  });
 
   if (names.size) {
     // if the names exist, find their calls to figure out how to remove the code
@@ -47,7 +40,9 @@ export default function transformer(
         // `className`, so try to see if there are any arguments and the
         // className exists
         const className = callExpression.node.arguments
-          .find((arg) => arg.type === "ObjectExpression")
+          .find(
+            (arg): arg is ObjectExpression => arg.type === "ObjectExpression"
+          )
           ?.properties.find(
             (
               prop

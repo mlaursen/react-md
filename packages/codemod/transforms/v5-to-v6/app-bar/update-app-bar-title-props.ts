@@ -5,8 +5,8 @@ import {
   type JSXSpreadAttribute,
   type Options,
 } from "jscodeshift";
-import { getImportedName } from "../../utils/getImportedName";
 import { isPropEnabled } from "../../utils/isPropEnabled";
+import { traverseIdentifiers } from "../../utils/traverseIdentifiers";
 
 export default function transformer(
   file: FileInfo,
@@ -16,23 +16,13 @@ export default function transformer(
   const j = api.jscodeshift;
   const root = j(file.source);
   const printOptions = options.printOptions;
-  let appBarTitleName = "";
-  root
-    .find(j.ImportDeclaration, (path) => path.source.value === "react-md")
-    .forEach((importDeclaration) => {
-      j(importDeclaration)
-        .find(j.ImportSpecifier, (path) => path.imported.name === "AppBarTitle")
-        .forEach((importSpecifier) => {
-          if (appBarTitleName) {
-            throw new Error("AppBarTitle was imported multiple times");
-          }
 
-          appBarTitleName = getImportedName(importSpecifier);
-        });
-    });
-
-  if (appBarTitleName) {
-    root.findJSXElements(appBarTitleName).forEach((appBarTitle) => {
+  traverseIdentifiers({
+    j,
+    root,
+    name: "AppBarTitle",
+  }).forEach((name) => {
+    root.findJSXElements(name).forEach((appBarTitle) => {
       const attributes: (JSXAttribute | JSXSpreadAttribute)[] = [];
       appBarTitle.node.openingElement.attributes?.forEach((attr) => {
         if (
@@ -72,7 +62,7 @@ export default function transformer(
 
       appBarTitle.node.openingElement.attributes = attributes;
     });
-  }
+  });
 
   return root.toSource(printOptions);
 }

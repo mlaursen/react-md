@@ -1,7 +1,7 @@
 import { type API, type FileInfo, type Options } from "jscodeshift";
 import { addFileComment } from "../../utils/addFileComment";
-import { getImportedName } from "../../utils/getImportedName";
 import { removeEmptyImportDeclaration } from "../../utils/removeEmptyImportDeclaration";
+import { traverseIdentifiers } from "../../utils/traverseIdentifiers";
 
 const CONSTANTS = new Set([
   "APP_BAR_OFFSET_CLASSNAME",
@@ -19,19 +19,12 @@ export default function transformer(
   const root = j(file.source);
   const printOptions = options.printOptions;
 
-  const constants = new Set<string>();
-  root
-    .find(j.ImportDeclaration, { source: { value: "react-md" } })
-    .forEach((importDeclaration) => {
-      j(importDeclaration)
-        .find(j.ImportSpecifier)
-        .forEach((importSpecifier) => {
-          if (CONSTANTS.has(importSpecifier.node.imported.name)) {
-            constants.add(getImportedName(importSpecifier));
-            j(importSpecifier).remove();
-          }
-        });
-    });
+  const constants = traverseIdentifiers({
+    j,
+    root,
+    name: CONSTANTS,
+    remove: true,
+  });
 
   if (constants.size) {
     root

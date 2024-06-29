@@ -1,6 +1,6 @@
 import { type API, type FileInfo, type Options } from "jscodeshift";
 import { removeProps } from "../../utils/removeProps";
-import { getImportedName } from "../../utils/getImportedName";
+import { traverseIdentifiers } from "../../utils/traverseIdentifiers";
 
 const REMOVED_PROPS = ["forceSize", "forceFontSize"];
 
@@ -17,39 +17,18 @@ export default function transformer(
   const root = j(file.source);
   const printOptions = options.printOptions;
 
-  // need to see if the `FontIcon` has been imported from any react-md package
-  // and find if it was aliased with `as AnotherName`
-  let name = "";
-  root
-    .find(j.ImportDeclaration, (path) => {
-      const { value } = path.source;
-
-      return (
-        value === "@react-md/icon" ||
-        value === "react-md" ||
-        value === "@react-md/core/icon/FontIcon"
-      );
-    })
-    .forEach((importDeclaration) => {
-      j(importDeclaration)
-        .find(j.ImportSpecifier, (path) => path.imported.name === "FontIcon")
-        .forEach((importSpecifier) => {
-          if (name) {
-            throw new Error("A named FontIcon already exists?");
-          }
-
-          name = getImportedName(importSpecifier);
-        });
-    });
-
-  // if it was imported, find all references in the file and remove the deprecated props
-  if (name) {
+  traverseIdentifiers({
+    j,
+    root,
+    name: "FontIcon",
+    packages: ["react-md", "@react-md/icon", "@react-md/core/icon/FontIcon"],
+  }).forEach((name) => {
     removeProps({
       root,
       props: REMOVED_PROPS,
       component: name,
     });
-  }
+  });
 
   return root.toSource(printOptions);
 }
