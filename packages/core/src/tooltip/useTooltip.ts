@@ -1,25 +1,33 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type {
-  CSSProperties,
-  FocusEvent,
-  MouseEvent,
-  MutableRefObject,
-  Ref,
-  RefObject,
-  TouchEvent,
+import {
+  useCallback,
+  useEffect,
+  useId,
+  useRef,
+  type CSSProperties,
+  type FocusEvent,
+  type MouseEvent,
+  type MutableRefObject,
+  type Ref,
+  type RefObject,
+  type TouchEvent,
 } from "react";
-import { useCallback, useEffect, useId, useRef } from "react";
 import {
   useHoverMode,
   type ControlledHoverModeImplementation,
 } from "../hoverMode/useHoverMode.js";
-import type { UserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
-import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
-import type { SimplePosition } from "../positioning/types.js";
-import type { FixedPositioningTransitionCallbacks } from "../positioning/useFixedPositioning.js";
-import { useFixedPositioning } from "../positioning/useFixedPositioning.js";
-import type { UseStateSetter } from "../types.js";
+import {
+  useUserInteractionMode,
+  type UserInteractionMode,
+} from "../interaction/UserInteractionModeProvider.js";
+import { type SimplePosition } from "../positioning/types.js";
+import {
+  useFixedPositioning,
+  type FixedPositioningOptions,
+  type FixedPositioningTransitionCallbacks,
+} from "../positioning/useFixedPositioning.js";
+import { type UseStateSetter } from "../types.js";
 import { usePageInactive } from "../usePageInactive.js";
 import { parseCssLengthUnit } from "../utils/parseCssLengthUnit.js";
 import { useTooltipHoverMode } from "./TooltipHoverModeProvider.js";
@@ -31,8 +39,10 @@ import {
   DEFAULT_TOOLTIP_THRESHOLD,
   TOOLTIP_SPACING_VAR,
 } from "./constants.js";
-import type { TooltipPositionHookOptions } from "./useTooltipPosition.js";
-import { useTooltipPosition } from "./useTooltipPosition.js";
+import {
+  useTooltipPosition,
+  type TooltipPositionHookOptions,
+} from "./useTooltipPosition.js";
 import { getAnchor } from "./utils.js";
 
 declare module "react" {
@@ -52,35 +62,46 @@ export interface TooltipPositioningOptions {
   style?: CSSProperties;
 
   /**
-   * @defaultValue `DEFAULT_TOOLTIP_MARGIN`
-   * @see {@link DEFAULT_TOOLTIP_MARGIN}
+   * @see {@link FixedPositioningOptions.vwMargin}
+   * @defaultValue `16`
    */
   vwMargin?: number;
 
   /**
-   * @defaultValue `DEFAULT_TOOLTIP_MARGIN`
-   * @see {@link DEFAULT_TOOLTIP_MARGIN}
+   * @see {@link FixedPositioningOptions.vhMargin}
+   * @defaultValue `16`
    */
   vhMargin?: number;
 
   /**
+   * Set this to `true` to reduce the font size and padding on the tooltip and
+   * the amount of spacing between the tooltipped element and the tooltip.
+   *
    * @defaultValue `false`
    */
   dense?: boolean;
 
   /**
-   * @defaultValue `DEFAULT_TOOLTIP_SPACING`
-   * @see {@link DEFAULT_TOOLTIP_SPACING}
+   * The amount of spacing to use between the tooltipped element and the tooltip
+   * when {@link disableAutoSpacing} is `false`.
+   *
+   * @defaultValue `"1.5rem`
    */
   spacing?: number | string;
 
   /**
-   * @defaultValue `DEFAULT_TOOLTIP_DENSE_SPACING`
-   * @see {@link DEFAULT_TOOLTIP_DENSE_SPACING}
+   * The amount of spacing to use between the tooltipped element and the tooltip
+   * when {@link disableAutoSpacing} is `false` and {@link dense} is `true`.
+   *
+   * @defaultValue `"0.875rem`
    */
   denseSpacing?: number | string;
 
   /**
+   * Set this to `true` to prevent the {@link defaultPosition} to swap to the
+   * other side of the tooltipped element when it is too close to the viewport
+   * edge. This will always be `true` if a {@link position} is provided.
+   *
    * @defaultValue `false`
    */
   disableSwapping?: boolean;
@@ -109,7 +130,10 @@ export interface TooltippedElementEventHandlers<
   onContextMenu?(event: MouseEvent<E>): void;
 }
 
-/** @since 2.8.0 */
+/**
+ * @since 2.8.0
+ * @since 6.0.0 Renamed from `TooltipHookProvidedElementProps`
+ */
 export interface ProvidedTooltippedElementProps<E extends HTMLElement>
   extends Required<TooltippedElementEventHandlers<E>> {
   "aria-describedby": string | undefined;
@@ -206,7 +230,7 @@ export interface TooltipOptions<
    * The default value is really the current hover timeout from the
    * `TooltipHoverModeProvider`.
    *
-   * @defaultValue `DEFAULT_TOOLTIP_DELAY`
+   * @defaultValue `1000`
    */
   hoverTimeout?: number;
 

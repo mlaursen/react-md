@@ -371,12 +371,30 @@ export interface PreconfiguredCSSTransitionOptions<E extends HTMLElement>
 }
 
 /**
+ * @since 6.0.0
+ */
+export interface SSRTransitionOptions {
+  /**
+   * This is mostly used internally to make it so that you can render portalled
+   * elements inline with content if SSR is enabled in your app. To enable this
+   * feature, the {@link CoreProvidersProps.ssr} must be set to `true`.
+   *
+   * This value will be `true` if a portalled element was rendered by default
+   * from the server and remain true until it unmounts from the DOM.
+   *
+   * @defaultValue `false`
+   */
+  disablePortal?: boolean;
+}
+
+/**
  * @typeParam E - An HTMLElement type used for the ref required for the
  * transition.
  * @since 4.0.0
  */
 export interface TransitionHookOptions<E extends HTMLElement>
-  extends TransitionOptions<E> {
+  extends TransitionOptions<E>,
+    SSRTransitionOptions {
   /**
    * Boolean if the DOM should forcefully be reflow each time a transition
    * change occurs. This is generally required for any CSS transition and is
@@ -385,12 +403,6 @@ export interface TransitionHookOptions<E extends HTMLElement>
    * @defaultValue `false`
    */
   reflow?: boolean;
-
-  /**
-   * @since 6.0.0
-   * @defaultValue `false`
-   */
-  disablePortal?: boolean;
 }
 
 /**
@@ -422,7 +434,8 @@ export interface TransitionState {
  * @since 4.0.0
  */
 export interface TransitionHookReturnValue<E extends HTMLElement>
-  extends TransitionState {
+  extends TransitionState,
+    Required<SSRTransitionOptions> {
   /**
    * A ref that is required for the transition to occur and should be passed to
    * the element affected by the transition.
@@ -466,19 +479,6 @@ export interface TransitionHookReturnValue<E extends HTMLElement>
    * @param stage - The {@link TransitionStage} to set to
    */
   transitionTo(stage: TransitionStage): void;
-
-  /**
-   * This is mostly used internally to make it so that you can render portalled
-   * elements inline with content if SSR is enabled in your app. To enable this
-   * feature, the {@link CoreProvidersProps.ssr} must be set to `true`.
-   *
-   * This value will be `true` if a portalled element was rendered by default
-   * from the server and remain true until it unmounts from the DOM.
-   *
-   * @defaultValue `false`
-   * @since 6.0.0
-   */
-  disablePortal: boolean;
 }
 
 /**
@@ -487,16 +487,12 @@ export interface TransitionHookReturnValue<E extends HTMLElement>
  * @since 4.0.0
  */
 export interface CSSTransitionHookOptions<E extends HTMLElement>
-  extends PreconfiguredCSSTransitionOptions<E> {
+  extends PreconfiguredCSSTransitionOptions<E>,
+    SSRTransitionOptions {
   /** {@inheritDoc TransitionTimeout} */
   timeout: TransitionTimeout;
   /** {@inheritDoc CSSTransitionClassNames} */
   classNames: CSSTransitionClassNames;
-
-  /**
-   * @since 6.0.0
-   */
-  disablePortal?: boolean;
 }
 
 /**

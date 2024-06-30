@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { delegateEvent } from "./delegateEvent.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { useResizeObserver } from "./useResizeObserver.js";
+import { type useResizeObserver } from "./useResizeObserver.js";
 
 /**
  * @since 6.0.0  Updated the API

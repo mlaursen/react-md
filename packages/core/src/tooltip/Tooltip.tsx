@@ -4,8 +4,11 @@ import { type TextOverflow } from "../cssUtils.js";
 import { Portal } from "../portal/Portal.js";
 import { type SimplePosition } from "../positioning/types.js";
 import {
+  type CSSTransitionClassNames,
   type CSSTransitionComponentProps,
+  type SSRTransitionOptions,
   type TransitionActions,
+  type TransitionTimeout,
 } from "../transition/types.js";
 import { useCSSTransition } from "../transition/useCSSTransition.js";
 import { useEnsuredId } from "../useEnsuredId.js";
@@ -21,22 +24,28 @@ import { tooltip } from "./tooltipStyles.js";
  * creating custom tooltip implementations.
  *
  * @since 2.8.0 Supports the `RenderConditionalPortalProps`
- * @since 6.0.0 No longer supports the `RenderConditionalPortalProps`.
+ * @since 6.0.0 The `id` prop is optional.
+ * @since 6.0.0 Removed `lineWrap` for `textOverflow`
+ * @since 6.0.0 No longer supports the `RenderConditionalPortalProps` other than
+ * `portal` with the `disablePortal` prop.
  */
 export interface TooltipProps
   extends HTMLAttributes<HTMLSpanElement>,
     CSSTransitionComponentProps,
+    SSRTransitionOptions,
     TransitionActions {
   visible: boolean;
 
   /**
+   * Set this to `true` to use a smaller font size and padding on the tooltip
+   * and a smaller gap between the tooltip and tooltipped element.
+   *
    * @defaultValue `false`
    */
   dense?: boolean;
 
   /**
-   * @defaultValue `DEFAULT_TOOLTIP_POSITION`
-   * @see {@link DEFAULT_TOOLTIP_POSITION}
+   * @defaultValue `"below"`
    */
   position?: SimplePosition;
 
@@ -45,11 +54,6 @@ export interface TooltipProps
    * @defaultValue `true`
    */
   temporary?: boolean;
-
-  /**
-   * @defaultValue `false`
-   */
-  disablePortal?: boolean;
 
   /**
    * Set this to `"nowrap"` for tooltips that are positioned near the edge of
@@ -62,6 +66,18 @@ export interface TooltipProps
    * @defaultValue `"allow"`
    */
   textOverflow?: TextOverflow;
+
+  /**
+   * @see {@link CSSTransitionComponentProps.timeout}
+   * @defaultValue `DEFAULT_TOOLTIP_TIMEOUT`
+   */
+  timeout?: TransitionTimeout;
+
+  /**
+   * @see {@link CSSTransitionComponentProps.classNames}
+   * @defaultValue `DEFAULT_TOOLTIP_CLASSNAMES`
+   */
+  classNames?: CSSTransitionClassNames;
 }
 
 /**

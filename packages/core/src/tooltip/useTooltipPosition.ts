@@ -30,8 +30,7 @@ export interface TooltipPositionHookOptions {
    * Vertical - `"below"` or `"above"`
    * Horizontal - `"left"` or `"right"`
    *
-   * @defaultValue `DEFAULT_TOOLTIP_POSITION`
-   * @see {@link DEFAULT_TOOLTIP_POSITION}
+   * @defaultValue `"below"`
    */
   defaultPosition?: SimplePosition;
 
@@ -42,8 +41,7 @@ export interface TooltipPositionHookOptions {
    *
    * You _probably_ won't ever really need to update this value.
    *
-   * @defaultValue `DEFAULT_TOOLTIP_THRESHOLD`
-   * @see {@link DEFAULT_TOOLTIP_THRESHOLD}
+   * @defaultValue `0.75`
    */
   threshold?: number;
 }
