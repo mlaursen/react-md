@@ -2,7 +2,7 @@ import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
 import { icon, type SVGIconClassNameOptions } from "./styles.js";
 
 /**
- * @remarks @since 6.0.0 Added the `inline` and `theme` props.
+ * @since 6.0.0 Added the `inline` and `theme` props.
  */
 export interface SVGIconProps
   extends HTMLAttributes<SVGSVGElement>,

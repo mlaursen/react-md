@@ -39,6 +39,8 @@ Next, start running the codemods in order to finish the migration:
   - `update-chip-props`
 - `overlay`:
   - `update-overlay-props`
+- `portal`:
+  - `use-new-portal-api`
 
 Finally (optional), run the `to-core-imports` codemod to improve development
 build times by switching to `@react-md/core/{{FILE}}`.
@@ -66,7 +68,7 @@ build times by switching to `@react-md/core/{{FILE}}`.
 - [ ] media
 - [ ] menu
 - [x] overlay
-- [ ] portal
+- [x] portal
 - [ ] progress
 - [ ] sheet
 - [ ] states

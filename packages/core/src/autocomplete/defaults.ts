@@ -4,7 +4,7 @@ import { defaultExtractor } from "../searching/utils.js";
 import { type AutocompleteFilterOptions } from "./types.js";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export const defaultAutocompleteExtractor = <T>(item: T): string => {
@@ -21,7 +21,7 @@ export const defaultAutocompleteExtractor = <T>(item: T): string => {
 };
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 const isProbablyMenuItemProps = (
@@ -29,7 +29,7 @@ const isProbablyMenuItemProps = (
 ): item is Partial<MenuItemProps> => !!item && typeof item === "object";
 
 /**
- * @remarks \@since 6.0.0
+ * @since 6.0.0
  * @internal
  */
 export const defaultAutocompleteOptionProps = <T>(options: {

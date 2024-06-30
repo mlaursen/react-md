@@ -4,8 +4,13 @@ import { createPortal } from "react-dom";
 
 import { usePortalContainer } from "./PortalContainerProvider.js";
 
+/**
+ * @since 6.0.0 Removed the `into` and `intoId` props. Use the
+ * `PortalContainerProvider` instead.
+ */
 export interface PortalProps {
   children: ReactNode;
+
   /**
    * Setting this to `true` will disable the portal behavior and just render
    * the `children` in the normal DOM tree.

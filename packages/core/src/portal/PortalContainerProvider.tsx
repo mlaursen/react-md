@@ -13,16 +13,24 @@ import {
  * @internal
  * @since 6.0.0
  */
-export type PortalContainer = Element | DocumentFragment | null;
+export type PortalContainerNode = Element | DocumentFragment | null;
+
+/**
+ * @internal
+ * @since 6.0.0
+ */
+export type PortalContainer =
+  | PortalContainerNode
+  | RefObject<PortalContainerNode>;
 
 export const PORTAL_CONTAINER_ID = "rmd-portal-container";
 
-let portalContainer: PortalContainer = null;
+let portalContainer: PortalContainerNode = null;
 
-const getPortalContainer = (): PortalContainer =>
+const getPortalContainer = (): PortalContainerNode =>
   typeof window === "undefined" ? null : document.body;
 
-const context = createContext<PortalContainer>(getPortalContainer());
+const context = createContext<PortalContainerNode>(getPortalContainer());
 context.displayName = "PortalContainer";
 const { Provider } = context;
 
@@ -30,7 +38,7 @@ const { Provider } = context;
  * @internal
  * @since 6.0.0
  */
-export function usePortalContainer(): PortalContainer {
+export function usePortalContainer(): PortalContainerNode {
   return useContext(context);
 }
 
@@ -41,7 +49,7 @@ export interface PortalContainerProviderProps {
    * `<div id="rmd-portal-container"></div>` will be added as the last child to
    * the `document.body` and be used as the container element.
    */
-  container?: PortalContainer | RefObject<PortalContainer>;
+  container?: PortalContainer;
   children: ReactNode;
 }
 
@@ -60,7 +68,7 @@ export function PortalContainerProvider(
   props: PortalContainerProviderProps
 ): ReactElement {
   const { container, children } = props;
-  const [value, setValue] = useState<PortalContainer>(portalContainer);
+  const [value, setValue] = useState<PortalContainerNode>(portalContainer);
   useEffect(() => {
     if (container && "current" in container) {
       setValue(container.current);
@@ -68,6 +76,7 @@ export function PortalContainerProvider(
     }
 
     if (typeof container !== "undefined") {
+      setValue(container);
       return;
     }
 
