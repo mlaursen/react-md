@@ -13,11 +13,11 @@ import { getPercentage } from "../utils/getPercentage.js";
 import { type ProgressProps } from "./types.js";
 
 /**
- * @since 6.0.0
- * Removed the `determinateRotateDegrees` prop since the determinate state no
+ * @since 6.0.0 Added the `disableShrink` prop.
+ * @since 6.0.0 Renamed `small` to `dense`.
+ * @since 6.0.0 Renamed `centered` to `disableCentered`.
+ * @since 6.0.0 Removed the `maxRotation` prop since the determinate state no
  * longer rotates while increasing value.
- * Added the `disableShrink` prop.
- * Renamed the `small` prop to `dense` to match other components.
  */
 export interface CircularProgressProps
   extends Omit<HTMLAttributes<HTMLSpanElement>, "id">,
@@ -88,6 +88,7 @@ export interface CircularProgressProps
    * margins.
    *
    * @defaultValue `false`
+   * @since 6.0.0 Renamed from `centered`
    */
   disableCentered?: boolean;
 

@@ -41,6 +41,8 @@ Next, start running the codemods in order to finish the migration:
   - `update-overlay-props`
 - `portal`:
   - `use-new-portal-api`
+- `progress`:
+  - `update-circular-progress-props`
 - `typography`:
   - `remove-removed-types`
   - `update-text-container-props`
@@ -73,7 +75,7 @@ build times by switching to `@react-md/core/{{FILE}}`.
 - [ ] menu
 - [x] overlay
 - [x] portal
-- [ ] progress
+- [x] progress
 - [ ] sheet
 - [ ] states
 - [ ] table

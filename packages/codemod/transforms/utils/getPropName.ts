@@ -1,6 +1,16 @@
-import { type JSXAttribute, type JSXSpreadAttribute } from "jscodeshift";
+import {
+  type ASTPath,
+  type JSXAttribute,
+  type JSXSpreadAttribute,
+} from "jscodeshift";
 
-export function getPropName(prop: JSXAttribute | JSXSpreadAttribute): string {
+export function getPropName(
+  attr:
+    | JSXAttribute
+    | JSXSpreadAttribute
+    | ASTPath<JSXAttribute | JSXSpreadAttribute>
+): string {
+  const prop = "node" in attr ? attr.node : attr;
   if (prop.type !== "JSXAttribute") {
     return "";
   }
