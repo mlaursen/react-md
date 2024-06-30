@@ -7,6 +7,8 @@ import {
 /**
  * @since 6.0.0 Removed the `size` option since there is no longer a
  * different line-length for mobile and desktop.
+ * @since 6.0.0 Removed the `clone` prop and the children render function
+ * behavior. Use the `textContainer` class name utility instead.
  */
 export interface TextContainerProps
   extends HTMLAttributes<HTMLDivElement>,
@@ -42,6 +44,8 @@ export interface TextContainerProps
  * element.
  * @since 6.0.0 Removed the `size` option since there is no longer a
  * different line-length for mobile and desktop.
+ * @since 6.0.0 Removed the `clone` prop and the children render function
+ * behavior. Use the `textContainer` class name utility instead.
  */
 export const TextContainer = forwardRef<HTMLDivElement, TextContainerProps>(
   function TextContainer(props, ref) {

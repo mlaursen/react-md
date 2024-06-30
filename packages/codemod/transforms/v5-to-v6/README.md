@@ -41,6 +41,10 @@ Next, start running the codemods in order to finish the migration:
   - `update-overlay-props`
 - `portal`:
   - `use-new-portal-api`
+- `typography`:
+  - `remove-removed-types`
+  - `update-text-container-props`
+  - `update-typography-props`
 
 Finally (optional), run the `to-core-imports` codemod to improve development
 build times by switching to `@react-md/core/{{FILE}}`.
@@ -78,7 +82,7 @@ build times by switching to `@react-md/core/{{FILE}}`.
 - [ ] tooltip
 - [ ] transition
 - [ ] tree
-- [ ] typography
+- [x] typography
 - [ ] utils
 
 Good demos to try to auto convert:

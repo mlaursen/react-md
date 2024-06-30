@@ -65,6 +65,11 @@ function getComponent(
   }
 }
 
+/**
+ * @since 6.0.0 Renamed `component` to `as`.
+ * @since 6.0.0 Removed the children render function behavior. Use the
+ * `typography` class name utility instead.
+ */
 export interface TypographyProps
   extends HTMLAttributes<TypographyHTMLElement>,
     TypographyClassNameOptions {
@@ -85,6 +90,8 @@ export interface TypographyProps
    * - `"body-2"     -> <p>`
    * - `"caption"    -> <caption>`
    * - `"overline"   -> <span>`
+   *
+   * @since 6.0.0 Renamed from `component`
    */
   as?: CustomTypographyComponent;
 }
@@ -129,6 +136,9 @@ export interface TypographyProps
  *   ):
  * }
  * ```
+ *
+ * @since 6.0.0 Removed the children render function behavior . Use the
+ * `typography` class name utility instead.
  */
 export const Typography = forwardRef<TypographyHTMLElement, TypographyProps>(
   function Typography(props, ref): ReactElement {
