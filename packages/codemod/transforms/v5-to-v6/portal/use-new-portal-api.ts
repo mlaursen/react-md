@@ -1,17 +1,17 @@
 import {
-  type JSXAttribute,
   type API,
   type FileInfo,
-  type Options,
+  type JSXAttribute,
   type JSXSpreadAttribute,
+  type Options,
 } from "jscodeshift";
-import { addFileComment } from "../../utils/addFileComment";
+import { addFileComments } from "../../utils/addFileComment";
+import { addImportSpecifier } from "../../utils/addImportSpecifier";
 import { getPropName } from "../../utils/getPropName";
 import { isPropEnabled } from "../../utils/isPropEnabled";
 import { removeEmptyImportDeclaration } from "../../utils/removeEmptyImportDeclaration";
-import { traverseIdentifiers } from "../../utils/traverseIdentifiers";
 import { renameIdentifier } from "../../utils/renameIdentifier";
-import { addImportSpecifier } from "../../utils/addImportSpecifier";
+import { traverseIdentifiers } from "../../utils/traverseIdentifiers";
 
 const PORTAL_INTO_COMMENT =
   "TODO: The `PortalContainer` replaced the `PortalInto` type but does not support functions. Double check the usage before removing this line.";
@@ -142,17 +142,15 @@ export default function transformer(
     });
   });
 
-  comments.forEach((comment) => {
-    addFileComment({
-      j,
-      root,
-      comment,
-    });
-  });
-
   removeEmptyImportDeclaration({
     j,
     root,
+  });
+
+  addFileComments({
+    j,
+    root,
+    comments,
   });
 
   return root.toSource(printOptions);

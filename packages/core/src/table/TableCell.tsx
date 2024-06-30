@@ -67,6 +67,7 @@ export interface TableCellOptions extends TableCellConfig {
 /**
  * @since 6.0.0 Removed the `colSpan="100%"` support since `colSpan`
  * really only supports numbers.
+ * @since 6.0.0 Removed `disablePadding` in favor of `padding`.
  */
 export interface TableCellProps extends TableCellAttributes, TableCellOptions {
   /**

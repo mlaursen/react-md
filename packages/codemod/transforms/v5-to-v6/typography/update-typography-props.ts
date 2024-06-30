@@ -6,7 +6,7 @@ import {
   type JSXElement,
   type Options,
 } from "jscodeshift";
-import { addFileComment } from "../../utils/addFileComment";
+import { addFileComments } from "../../utils/addFileComment";
 import { renameProps } from "../../utils/renameProps";
 import { traverseIdentifiers } from "../../utils/traverseIdentifiers";
 
@@ -63,12 +63,10 @@ export default function transformer(
     });
   });
 
-  comments.forEach((comment) => {
-    addFileComment({
-      j,
-      root,
-      comment,
-    });
+  addFileComments({
+    j,
+    root,
+    comments,
   });
 
   return root.toSource(printOptions);

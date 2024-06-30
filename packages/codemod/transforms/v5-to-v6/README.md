@@ -45,6 +45,10 @@ Next, start running the codemods in order to finish the migration:
   - `use-new-portal-api`
 - `progress`:
   - `update-circular-progress-props`
+- `table`:
+  - `update-table-cell-props`
+  - `update-table-checkbox-props`
+  - `caption-to-typography`
 - `typography`:
   - `remove-removed-types`
   - `update-text-container-props`
@@ -80,7 +84,7 @@ build times by switching to `@react-md/core/{{FILE}}`.
 - [x] progress
 - [ ] sheet
 - [ ] states
-- [ ] table
+- [x] table
 - [ ] tabs
 - [ ] theme ?
 - [ ] tooltip

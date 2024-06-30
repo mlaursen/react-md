@@ -12,3 +12,21 @@ export function addFileComment(options: AddFileCommentOptions): void {
   rootNode.comments ||= [];
   rootNode.comments.unshift(j.commentLine(` ${comment}`));
 }
+
+export interface AddFileCommentsOptions {
+  j: JSCodeshift;
+  root: Collection<unknown>;
+  comments: ReadonlySet<string>;
+}
+
+export function addFileComments(options: AddFileCommentsOptions): void {
+  const { j, root, comments } = options;
+
+  comments.forEach((comment) => {
+    addFileComment({
+      j,
+      root,
+      comment,
+    });
+  });
+}

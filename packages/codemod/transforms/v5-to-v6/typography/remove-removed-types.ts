@@ -1,5 +1,5 @@
 import { type API, type FileInfo, type Options } from "jscodeshift";
-import { addFileComment } from "../../utils/addFileComment";
+import { addFileComments } from "../../utils/addFileComment";
 import { removeEmptyImportDeclaration } from "../../utils/removeEmptyImportDeclaration";
 
 export default function transformer(
@@ -38,12 +38,10 @@ export default function transformer(
     root,
   });
 
-  comments.forEach((comment) => {
-    addFileComment({
-      j,
-      root,
-      comment,
-    });
+  addFileComments({
+    j,
+    root,
+    comments,
   });
 
   return root.toSource(printOptions);
