@@ -1,9 +1,9 @@
+import { type JSCodeshift, type JSXAttribute } from "jscodeshift";
 import {
-  type JSCodeshift,
-  type JSXAttribute,
-  type JSXExpressionContainer,
-  type StringLiteral,
-} from "jscodeshift";
+  createExpression,
+  type JSXAttributeExpression,
+  type NormalExpression,
+} from "./createExpression";
 import { isPropConditionalExpression } from "./isPropConditionalExpression";
 import { isPropEnabled } from "./isPropEnabled";
 
@@ -12,27 +12,40 @@ export interface CreateJsxAttributeFromBooleanOptions {
   name: string;
   attr: JSXAttribute;
   value: string | null;
+  fallback?: string | null;
+  reversed?: boolean;
 }
 
 export function createJsxAttributeFromBoolean(
   options: CreateJsxAttributeFromBooleanOptions
 ): JSXAttribute | undefined {
-  const { j, attr, name, value } = options;
-  const isNull = value === null;
+  const {
+    j,
+    attr,
+    name,
+    value,
+    fallback = "undefined",
+    reversed = false,
+  } = options;
 
-  let jsxValue: JSXExpressionContainer | StringLiteral | undefined;
+  let jsxValue: JSXAttributeExpression | undefined;
   if (isPropConditionalExpression(attr)) {
+    const args: [NormalExpression, NormalExpression] = [
+      createExpression({ j, value }),
+      createExpression({ j, value: fallback }),
+    ];
+    if (reversed) {
+      args.reverse();
+    }
     jsxValue = j.jsxExpressionContainer(
-      j.conditionalExpression(
-        attr.value.expression,
-        isNull ? j.nullLiteral() : j.stringLiteral(value),
-        j.identifier("undefined")
-      )
+      j.conditionalExpression(attr.value.expression, ...args)
     );
-  } else if (isPropEnabled(attr)) {
-    jsxValue = isNull
-      ? j.jsxExpressionContainer(j.nullLiteral())
-      : j.stringLiteral(value);
+  } else if (isPropEnabled(attr) !== reversed) {
+    jsxValue = createExpression({
+      j,
+      jsx: true,
+      value,
+    });
   } else {
     return;
   }
