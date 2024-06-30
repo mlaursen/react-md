@@ -37,6 +37,8 @@ Next, start running the codemods in order to finish the migration:
   - `update-card-title-props`
 - `chip`:
   - `update-chip-props`
+- `divider`:
+  - `vertical-divider-to-divider`
 - `overlay`:
   - `update-overlay-props`
 - `portal`:
@@ -62,7 +64,7 @@ build times by switching to `@react-md/core/{{FILE}}`.
 - [x] card
 - [x] chip
 - [ ] dialog
-- [ ] divider
+- [x] divider
 - [ ] elevation ?
 - [ ] expansion-panel
 - [ ] form

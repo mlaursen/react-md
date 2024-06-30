@@ -8,12 +8,21 @@ export interface TraverseIdentifiersOptions {
   remove?: boolean;
   replace?: string;
   packages?: string | ReadonlySet<string> | readonly string[];
+  returnOriginalName?: boolean;
 }
 
 export function traverseIdentifiers(
   options: TraverseIdentifiersOptions
 ): ReadonlySet<string> {
-  const { j, root, name, remove, replace, packages = "react-md" } = options;
+  const {
+    j,
+    root,
+    name,
+    remove,
+    replace,
+    packages = "react-md",
+    returnOriginalName,
+  } = options;
 
   const validPackages = new Set(
     typeof packages === "string" ? [packages] : packages
@@ -34,7 +43,11 @@ export function traverseIdentifiers(
           validSpecifiers.has(path.imported.name)
         )
         .forEach((importSpecifier) => {
-          names.add(getImportedName(importSpecifier));
+          names.add(
+            returnOriginalName
+              ? importSpecifier.node.imported.name
+              : getImportedName(importSpecifier)
+          );
 
           if (replace) {
             j(importSpecifier).replaceWith(
