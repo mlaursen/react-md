@@ -24,7 +24,7 @@ export function link(options: LinkClassNameOptions = {}): string {
 }
 
 /** @since 6.0.0 */
-export interface SKipToMainContentClassNameOptions {
+export interface SkipToMainContentClassNameOptions {
   className?: string;
 
   /**
@@ -37,7 +37,7 @@ export interface SKipToMainContentClassNameOptions {
  * @since 6.0.0
  */
 export function skipToMainContent(
-  options: SKipToMainContentClassNameOptions = {}
+  options: SkipToMainContentClassNameOptions = {}
 ): string {
   const { unstyled = false, className } = options;
 

@@ -3,7 +3,7 @@ import { forwardRef, useEffect, useRef, type ReactNode } from "react";
 import { Link, type LinkProps } from "./Link.js";
 import {
   skipToMainContent,
-  type SKipToMainContentClassNameOptions,
+  type SkipToMainContentClassNameOptions,
 } from "./styles.js";
 
 const noop = (): void => {
@@ -16,11 +16,15 @@ const getMainElement = (mainId: string): HTMLElement | null =>
     : document.querySelector<HTMLElement>('main,[role="main"]');
 
 /**
- * @since 6.0.0 The {@link mainId} is optional
+ * @since 6.0.0 The `mainId` is optional
  */
 export interface SkipToMainContentProps
   extends Omit<LinkProps, "href">,
-    SKipToMainContentClassNameOptions {
+    SkipToMainContentClassNameOptions {
+  /**
+   * @since 6.0.0 Changed default value from `"skip-to-main-content"`
+   * @defaultValue `"skip-to-main"`
+   */
   id?: string;
 
   /**
@@ -42,6 +46,9 @@ export interface SkipToMainContentProps
 /**
  * **Client Component**
  *
+ * @since 6.0.0 Changed the default `id` from `"skip-to-main-content"` to
+ * `"skip-to-main"`.
+ * @since 6.0.0 The `mainId` prop is optional
  * @since 6.0.0 Throws an error after rendering if no main element can be found
  * with the provided `mainId` in development mode. The previous behavior would
  * only log an error after being clicked.
@@ -56,7 +63,7 @@ export const SkipToMainContent = forwardRef<
     children = "Skip to main content",
     mainId = "",
     onClick = noop,
-    unstyled = false,
+    unstyled,
     ...remaining
   } = props;
 

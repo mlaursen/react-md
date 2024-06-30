@@ -27,8 +27,7 @@ export type CustomLinkComponent =
  * @since 6.0.0 Removed the `component` prop since all you need for link
  * behavior is `className="rmd-link"`.
  * @since 6.0.0 The `href` prop is required.
- * @since 6.0.0 Removed the `flexCentered` prop since it is now the default
- * styles.
+ * @since 6.0.0 Renamed `flexCentered` to `flex`.
  */
 export interface LinkProps
   extends AnchorHTMLAttributes<HTMLAnchorElement>,
@@ -72,8 +71,7 @@ export interface LinkProps
  * @since 6.0.0 Removed the `component` prop since all you need for link
  * behavior is `className="rmd-link"`.
  * @since 6.0.0 The `href` prop is required.
- * @since 6.0.0 Removed the `flexCentered` prop since it is now the default
- * styles.
+ * @since 6.0.0 Renamed `flexCentered` to `flex`.
  */
 export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
   function Link(props, ref) {

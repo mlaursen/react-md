@@ -39,6 +39,8 @@ Next, start running the codemods in order to finish the migration:
   - `update-chip-props`
 - `divider`:
   - `vertical-divider-to-divider`
+- `link`:
+  - `update-link-props`
 - `overlay`:
   - `update-overlay-props`
 - `portal`:
@@ -74,7 +76,7 @@ build times by switching to `@react-md/core/{{FILE}}`.
 - [ ] form
 - [x] icon
 - [ ] layout
-- [ ] link
+- [x] link
 - [ ] list
 - [x] material-icons
 - [ ] media
