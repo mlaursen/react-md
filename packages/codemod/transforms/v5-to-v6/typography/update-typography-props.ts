@@ -8,7 +8,7 @@ import {
 } from "jscodeshift";
 import { addFileComments } from "../../utils/addFileComment";
 import { renameProps } from "../../utils/renameProps";
-import { traverseIdentifiers } from "../../utils/traverseIdentifiers";
+import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers";
 
 function isChildrenExpression(
   j: JSCodeshift,
@@ -40,7 +40,7 @@ export default function transformer(
 
   const comments = new Set<string>();
   ["Typography", "SrOnly"].forEach((component) => {
-    traverseIdentifiers({
+    traverseImportSpecifiers({
       j,
       root,
       name: component,

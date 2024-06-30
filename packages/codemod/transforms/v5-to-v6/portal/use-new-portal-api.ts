@@ -11,7 +11,7 @@ import { getPropName } from "../../utils/getPropName";
 import { isPropEnabled } from "../../utils/isPropEnabled";
 import { removeEmptyImportDeclaration } from "../../utils/removeEmptyImportDeclaration";
 import { renameIdentifier } from "../../utils/renameIdentifier";
-import { traverseIdentifiers } from "../../utils/traverseIdentifiers";
+import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers";
 
 const PORTAL_INTO_COMMENT =
   "TODO: The `PortalContainer` replaced the `PortalInto` type but does not support functions. Double check the usage before removing this line.";
@@ -29,7 +29,7 @@ export default function transformer(
 
   const comments = new Set<string>();
 
-  traverseIdentifiers({
+  traverseImportSpecifiers({
     j,
     root,
     name: "PortalInto",
@@ -46,7 +46,7 @@ export default function transformer(
   });
 
   let portalName = "";
-  traverseIdentifiers({
+  traverseImportSpecifiers({
     j,
     root,
     name: "Portal",
@@ -80,7 +80,7 @@ export default function transformer(
         jsxOpeningElement.node.attributes = attributes;
       });
   });
-  traverseIdentifiers({
+  traverseImportSpecifiers({
     j,
     root,
     name: "ConditionalPortal",

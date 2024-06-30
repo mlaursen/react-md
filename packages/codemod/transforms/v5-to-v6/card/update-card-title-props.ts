@@ -7,7 +7,7 @@ import {
 } from "jscodeshift";
 import { createJsxAttributeFromBoolean } from "../../utils/createJsxAttributeFromBoolean";
 import { getPropName } from "../../utils/getPropName";
-import { traverseIdentifiers } from "../../utils/traverseIdentifiers";
+import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers";
 
 export default function transformer(
   file: FileInfo,
@@ -18,7 +18,7 @@ export default function transformer(
   const root = j(file.source);
   const printOptions = options.printOptions;
 
-  traverseIdentifiers({
+  traverseImportSpecifiers({
     j,
     root,
     name: "CardTitle",

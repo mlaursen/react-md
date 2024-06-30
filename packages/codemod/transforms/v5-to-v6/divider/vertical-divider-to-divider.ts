@@ -4,7 +4,7 @@ import { addImportSpecifier } from "../../utils/addImportSpecifier";
 import { getPropName } from "../../utils/getPropName";
 import { removeEmptyImportDeclaration } from "../../utils/removeEmptyImportDeclaration";
 import { renameIdentifier } from "../../utils/renameIdentifier";
-import { traverseIdentifiers } from "../../utils/traverseIdentifiers";
+import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers";
 
 export default function transformer(
   file: FileInfo,
@@ -15,7 +15,7 @@ export default function transformer(
   const root = j(file.source);
   const printOptions = options.printOptions;
 
-  traverseIdentifiers({
+  traverseImportSpecifiers({
     j,
     root,
     name: "VerticalDivider",
@@ -52,7 +52,7 @@ export default function transformer(
       }
     });
   });
-  traverseIdentifiers({
+  traverseImportSpecifiers({
     j,
     root,
     name: "VerticalDividerProps",
@@ -66,7 +66,7 @@ export default function transformer(
     });
   });
 
-  const removed = traverseIdentifiers({
+  const removed = traverseImportSpecifiers({
     j,
     root,
     name: [

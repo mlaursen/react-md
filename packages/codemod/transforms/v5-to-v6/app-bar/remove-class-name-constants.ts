@@ -1,7 +1,7 @@
 import { type API, type FileInfo, type Options } from "jscodeshift";
 import { addFileComment } from "../../utils/addFileComment";
 import { removeEmptyImportDeclaration } from "../../utils/removeEmptyImportDeclaration";
-import { traverseIdentifiers } from "../../utils/traverseIdentifiers";
+import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers";
 
 const CONSTANTS = new Set([
   "APP_BAR_OFFSET_CLASSNAME",
@@ -19,7 +19,7 @@ export default function transformer(
   const root = j(file.source);
   const printOptions = options.printOptions;
 
-  const constants = traverseIdentifiers({
+  const constants = traverseImportSpecifiers({
     j,
     root,
     name: CONSTANTS,

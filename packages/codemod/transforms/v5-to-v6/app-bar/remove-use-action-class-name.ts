@@ -7,7 +7,7 @@ import {
   type Options,
 } from "jscodeshift";
 import { removeEmptyImportDeclaration } from "../../utils/removeEmptyImportDeclaration";
-import { traverseIdentifiers } from "../../utils/traverseIdentifiers";
+import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers";
 
 export default function transformer(
   file: FileInfo,
@@ -18,7 +18,7 @@ export default function transformer(
   const root = j(file.source);
   const printOptions = options.printOptions;
 
-  const names = traverseIdentifiers({
+  const names = traverseImportSpecifiers({
     j,
     root,
     name: "useActionClassName",

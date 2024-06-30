@@ -1,6 +1,6 @@
 import { type API, type FileInfo, type Options } from "jscodeshift";
 import { removeProps } from "../../utils/removeProps";
-import { traverseIdentifiers } from "../../utils/traverseIdentifiers";
+import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers";
 
 const REMOVED_PROPS = ["forceSize", "forceFontSize"];
 
@@ -17,7 +17,7 @@ export default function transformer(
   const root = j(file.source);
   const printOptions = options.printOptions;
 
-  traverseIdentifiers({
+  traverseImportSpecifiers({
     j,
     root,
     name: "FontIcon",

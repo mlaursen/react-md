@@ -2,7 +2,7 @@ import { type API, type FileInfo, type Options } from "jscodeshift";
 import { addFileComments } from "../../utils/addFileComment";
 import { getPropName } from "../../utils/getPropName";
 import { isPropEnabled } from "../../utils/isPropEnabled";
-import { traverseIdentifiers } from "../../utils/traverseIdentifiers";
+import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers";
 
 export default function transformer(
   file: FileInfo,
@@ -14,7 +14,7 @@ export default function transformer(
   const printOptions = options.printOptions;
 
   const comments = new Set<string>();
-  traverseIdentifiers({
+  traverseImportSpecifiers({
     j,
     root,
     name: "TableCell",

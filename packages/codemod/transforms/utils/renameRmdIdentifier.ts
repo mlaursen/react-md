@@ -2,12 +2,12 @@ import {
   renameIdentifier,
   type RenameIdentifierOptions,
 } from "./renameIdentifier";
-import { traverseIdentifiers } from "./traverseIdentifiers";
+import { traverseImportSpecifiers } from "./traverseImportSpecifiers";
 
 export function renameRmdIdentifier(options: RenameIdentifierOptions): void {
   const { j, to, from, root } = options;
 
-  traverseIdentifiers({
+  traverseImportSpecifiers({
     j,
     root,
     name: from,

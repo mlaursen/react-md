@@ -1,7 +1,7 @@
 import { type Collection, type JSCodeshift } from "jscodeshift";
 import { getImportedName } from "./getImportedName";
 
-export interface TraverseIdentifiersOptions {
+export interface TraverseImportSpecifiersOptions {
   j: JSCodeshift;
   root: Collection<unknown>;
   name: string | ReadonlySet<string> | readonly string[];
@@ -11,8 +11,8 @@ export interface TraverseIdentifiersOptions {
   returnOriginalName?: boolean;
 }
 
-export function traverseIdentifiers(
-  options: TraverseIdentifiersOptions
+export function traverseImportSpecifiers(
+  options: TraverseImportSpecifiersOptions
 ): ReadonlySet<string> {
   const {
     j,
