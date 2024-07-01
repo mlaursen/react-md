@@ -158,10 +158,10 @@ entire document.
 
 ## Container Based Sticky Table
 
-To create a sticky `TableHeader` or `TableFooter`, enable the `sticky` prop
-which will add `top: 0` and `bottom: 0` as the sticky positioning. This will
-make it so the header and footer are stuck to the top and bottom of the
-`TableContainer` component.
+To create a sticky `TableHeader` or `TableFooter`, use the `StickyTableSection`
+component with `type="header"` or `type="footer"` which will add `top: 0` and
+`bottom: 0` as the sticky positioning. This will make it so the header and
+footer are stuck to the top and bottom of the `TableContainer` component.
 
 ```demo source="./ContainerBasedStickyTableExample.tsx"
 
@@ -215,7 +215,8 @@ If the styles should not be configured globally, provide a custom
 ## Disable Sticky Active Styles
 
 The sticky active styles can also be disabled by enabling the
-`disableStickyStyles`.
+`disableStickyStyles` or using the `TableHeader`/`TableFooter` components
+instead with the `sticky` prop enabled.
 
 ```demo source="./DisableStickyActiveStylesExample.tsx"
 

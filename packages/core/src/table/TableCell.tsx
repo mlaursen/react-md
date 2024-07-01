@@ -10,14 +10,11 @@ import { getIcon } from "../icon/iconConfig.js";
 import { type PropsWithRef } from "../types.js";
 import {
   TableCellContent,
-  type SortOrder,
   type TableCellContentsIconRotatorProps,
 } from "./TableCellContent.js";
-import {
-  useTableConfig,
-  type TableCellConfig,
-} from "./TableConfigurationProvider.js";
+import { useTableConfig } from "./TableConfigurationProvider.js";
 import { tableCell } from "./tableCellStyles.js";
+import { type SortOrder, type TableCellConfig } from "./types.js";
 
 export type TableCellAttributes = Omit<
   | TdHTMLAttributes<HTMLTableCellElement>

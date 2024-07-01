@@ -4,11 +4,10 @@ import { TableBody } from "@react-md/core/table/TableBody";
 import { TableCell } from "@react-md/core/table/TableCell";
 import { TableCheckbox } from "@react-md/core/table/TableCheckbox";
 import { TableContainer } from "@react-md/core/table/TableContainer";
-import { TableFooter } from "@react-md/core/table/TableFooter";
-import { TableHeader } from "@react-md/core/table/TableHeader";
 import { TableRow } from "@react-md/core/table/TableRow";
 import type { ReactElement } from "react";
 
+import { StickyTableSection } from "@react-md/core/table/StickyTableSection";
 import styles from "./StickyColumnsExample.module.scss";
 
 const rows = Array.from({ length: 30 }, (_, i) => `row-${i + 1}`);
@@ -23,7 +22,7 @@ export default function StickyColumnsExample(): ReactElement {
   return (
     <TableContainer className={styles.container}>
       <Table fullWidth>
-        <TableHeader sticky>
+        <StickyTableSection type="header">
           <TableRow>
             <TableCheckbox
               id="sticky-header-checkbox"
@@ -35,7 +34,7 @@ export default function StickyColumnsExample(): ReactElement {
               <TableCell key={header}>{header}</TableCell>
             ))}
           </TableRow>
-        </TableHeader>
+        </StickyTableSection>
         <TableBody>
           {rows.map((row, rowIndex) => {
             const checkboxProps = getCheckboxProps(row);
@@ -65,14 +64,14 @@ export default function StickyColumnsExample(): ReactElement {
             );
           })}
         </TableBody>
-        <TableFooter sticky>
+        <StickyTableSection type="footer">
           <TableRow>
             <TableCell sticky colSpan={2}>
               Sticky Footer
             </TableCell>
             <TableCell colSpan={20} />
           </TableRow>
-        </TableFooter>
+        </StickyTableSection>
       </Table>
     </TableContainer>
   );

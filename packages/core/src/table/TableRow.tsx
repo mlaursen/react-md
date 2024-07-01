@@ -1,10 +1,8 @@
 "use client";
 import { forwardRef, type HTMLAttributes } from "react";
-import {
-  useTableConfig,
-  type TableRowConfiguration,
-} from "./TableConfigurationProvider.js";
+import { useTableConfig } from "./TableConfigurationProvider.js";
 import { tableRow } from "./tableRowStyles.js";
+import { type TableRowConfiguration } from "./types.js";
 
 export interface TableRowProps
   extends HTMLAttributes<HTMLTableRowElement>,

@@ -3,9 +3,7 @@ import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from "react";
 import { ButtonUnstyled } from "../button/ButtonUnstyled.js";
 import { IconRotator, type IconRotatorProps } from "../icon/IconRotator.js";
 import { bem } from "../utils/bem.js";
-import { type TableCellHorizontalAlignment } from "./TableConfigurationProvider.js";
-
-export type SortOrder = "ascending" | "descending" | "none" | "other";
+import { type SortOrder, type TableCellHorizontalAlignment } from "./types.js";
 
 /**
  * @since 6.0.0

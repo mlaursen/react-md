@@ -1,9 +1,9 @@
 import { Table } from "@react-md/core/table/Table";
 import { TableCell } from "@react-md/core/table/TableCell";
-import { type SortOrder } from "@react-md/core/table/TableCellContent";
 import { TableContainer } from "@react-md/core/table/TableContainer";
 import { TableHeader } from "@react-md/core/table/TableHeader";
 import { TableRow } from "@react-md/core/table/TableRow";
+import { type SortOrder } from "@react-md/core/table/types";
 import { useToggle } from "@react-md/core/useToggle";
 import ChevronLeftIcon from "@react-md/material-icons/ChevronLeftIcon";
 import { type ReactElement } from "react";

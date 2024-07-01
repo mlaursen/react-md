@@ -3,7 +3,7 @@ import { cssUtils } from "../cssUtils.js";
 import {
   type TableCellHorizontalAlignment,
   type TableCellVerticalAlignment,
-} from "./TableConfigurationProvider.js";
+} from "./types.js";
 
 /** @since 6.0.0 */
 export interface TableCellClassNameOptions {

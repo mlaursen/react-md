@@ -9,10 +9,10 @@ import { cssUtils } from "@react-md/core/cssUtils";
 import { Table } from "@react-md/core/table/Table";
 import { TableBody } from "@react-md/core/table/TableBody";
 import { TableCell } from "@react-md/core/table/TableCell";
-import { type SortOrder } from "@react-md/core/table/TableCellContent";
 import { TableContainer } from "@react-md/core/table/TableContainer";
 import { TableHeader } from "@react-md/core/table/TableHeader";
 import { TableRow } from "@react-md/core/table/TableRow";
+import { type SortOrder } from "@react-md/core/table/types";
 import { useState, type ReactElement } from "react";
 
 export default function SortableColumnsExample(): ReactElement {

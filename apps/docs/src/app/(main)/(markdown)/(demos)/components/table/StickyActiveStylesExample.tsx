@@ -1,17 +1,14 @@
 import { cssUtils } from "@react-md/core/cssUtils";
+import { StickyTableSection } from "@react-md/core/table/StickyTableSection";
 import { Table } from "@react-md/core/table/Table";
 import { TableBody } from "@react-md/core/table/TableBody";
 import { TableCell } from "@react-md/core/table/TableCell";
 import { TableContainer } from "@react-md/core/table/TableContainer";
-import {
-  TableFooter,
-  isTableFooterStickyActive,
-} from "@react-md/core/table/TableFooter";
-import {
-  TableHeader,
-  isTableHeaderStickyActive,
-} from "@react-md/core/table/TableHeader";
 import { TableRow } from "@react-md/core/table/TableRow";
+import {
+  isTableFooterStickyActive,
+  isTableHeaderStickyActive,
+} from "@react-md/core/table/useStickyTableSection";
 import { type ReactElement } from "react";
 import styles from "./StickyActiveStylesExample.module.scss";
 
@@ -19,8 +16,8 @@ export default function StickyActiveStylesExample(): ReactElement {
   return (
     <TableContainer className={styles.container}>
       <Table fullWidth>
-        <TableHeader
-          sticky
+        <StickyTableSection
+          type="header"
           stickyActiveClassName={cssUtils({
             backgroundColor: "secondary",
             className: styles.active,
@@ -37,7 +34,7 @@ export default function StickyActiveStylesExample(): ReactElement {
             <TableCell>Header 1</TableCell>
             <TableCell>Header 2</TableCell>
           </TableRow>
-        </TableHeader>
+        </StickyTableSection>
         <TableBody>
           {Array.from({ length: 20 }, (_, i) => (
             <TableRow key={i}>
@@ -46,8 +43,8 @@ export default function StickyActiveStylesExample(): ReactElement {
             </TableRow>
           ))}
         </TableBody>
-        <TableFooter
-          sticky
+        <StickyTableSection
+          type="footer"
           stickyActiveClassName={cssUtils({
             backgroundColor: "primary",
             className: styles.active,
@@ -63,7 +60,7 @@ export default function StickyActiveStylesExample(): ReactElement {
           <TableRow>
             <TableCell colSpan={2}>Content</TableCell>
           </TableRow>
-        </TableFooter>
+        </StickyTableSection>
       </Table>
     </TableContainer>
   );

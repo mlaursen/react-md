@@ -4,9 +4,8 @@ import { forwardRef, useMemo, type HTMLAttributes } from "react";
 import {
   TableConfigProvider,
   useTableConfig,
-  type TableConfig,
-  type TableConfigContext,
 } from "./TableConfigurationProvider.js";
+import { type TableConfig, type TableConfigContext } from "./types.js";
 
 export interface TableBodyProps
   extends HTMLAttributes<HTMLTableSectionElement>,

@@ -1,11 +1,8 @@
 "use client";
 import { forwardRef, useMemo, type TableHTMLAttributes } from "react";
-import {
-  TableConfigProvider,
-  type TableConfigContext,
-  type TableConfiguration,
-} from "./TableConfigurationProvider.js";
+import { TableConfigProvider } from "./TableConfigurationProvider.js";
 import { table } from "./tableStyles.js";
+import { type TableConfigContext, type TableConfiguration } from "./types.js";
 
 declare module "react" {
   interface CSSProperties {

@@ -1,8 +1,7 @@
+import { StickyTableSection } from "@react-md/core/table/StickyTableSection";
 import { Table } from "@react-md/core/table/Table";
 import { TableBody } from "@react-md/core/table/TableBody";
 import { TableCell } from "@react-md/core/table/TableCell";
-import { TableFooter } from "@react-md/core/table/TableFooter";
-import { TableHeader } from "@react-md/core/table/TableHeader";
 import { TableRow } from "@react-md/core/table/TableRow";
 import { type ReactElement } from "react";
 import styles from "./ViewportBasedStickyTableExample.module.scss";
@@ -10,12 +9,12 @@ import styles from "./ViewportBasedStickyTableExample.module.scss";
 export default function ViewportBasedStickyTableExample(): ReactElement {
   return (
     <Table fullWidth className={styles.container}>
-      <TableHeader sticky>
+      <StickyTableSection type="header">
         <TableRow>
           <TableCell>Header 1</TableCell>
           <TableCell>Header 2</TableCell>
         </TableRow>
-      </TableHeader>
+      </StickyTableSection>
       <TableBody>
         {Array.from({ length: 40 }, (_, i) => (
           <TableRow key={i}>
@@ -24,11 +23,11 @@ export default function ViewportBasedStickyTableExample(): ReactElement {
           </TableRow>
         ))}
       </TableBody>
-      <TableFooter sticky>
+      <StickyTableSection type="footer">
         <TableRow>
           <TableCell colSpan={40}>Footer</TableCell>
         </TableRow>
-      </TableFooter>
+      </StickyTableSection>
     </Table>
   );
 }

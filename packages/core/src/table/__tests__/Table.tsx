@@ -3,6 +3,7 @@ import { createRef } from "react";
 import { act, render, screen } from "../../test-utils/index.js";
 
 import { type PropsWithRef } from "../../types.js";
+import { StickyTableSection } from "../StickyTableSection.js";
 import { Table, type TableProps } from "../Table.js";
 import { TableBody } from "../TableBody.js";
 import { TableCell } from "../TableCell.js";
@@ -129,11 +130,11 @@ describe("Table", () => {
       it("should use an intersection observer to apply a custom className when the table's header is covering content within the table using the full viewport", () => {
         const { container } = render(
           <Table>
-            <TableHeader sticky>
+            <StickyTableSection type="header">
               <TableRow>
                 <TableCell>Header Cell</TableCell>
               </TableRow>
-            </TableHeader>
+            </StickyTableSection>
             <TableBody>
               {Array.from({ length: 20 }, (_, i) => (
                 <TableRow key={i}>
@@ -169,11 +170,11 @@ describe("Table", () => {
         const { container } = render(
           <TableContainer>
             <Table>
-              <TableHeader sticky>
+              <StickyTableSection type="header">
                 <TableRow>
                   <TableCell>Header Cell</TableCell>
                 </TableRow>
-              </TableHeader>
+              </StickyTableSection>
               <TableBody>
                 {Array.from({ length: 20 }, (_, i) => (
                   <TableRow key={i}>
@@ -218,11 +219,11 @@ describe("Table", () => {
                 </TableRow>
               ))}
             </TableBody>
-            <TableFooter sticky>
+            <StickyTableSection type="footer">
               <TableRow>
                 <TableCell>Footer Cell</TableCell>
               </TableRow>
-            </TableFooter>
+            </StickyTableSection>
           </Table>
         );
 
@@ -272,11 +273,11 @@ describe("Table", () => {
                   </TableRow>
                 ))}
               </TableBody>
-              <TableFooter sticky>
+              <StickyTableSection type="footer">
                 <TableRow>
                   <TableCell>Footer Cell</TableCell>
                 </TableRow>
-              </TableFooter>
+              </StickyTableSection>
             </Table>
           </TableContainer>
         );
