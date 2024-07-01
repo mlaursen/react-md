@@ -20,10 +20,10 @@
     "release": "pnpm run run-script scripts/release.ts"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.27.5",
-    "@inquirer/confirm": "^3.1.9",
-    "@inquirer/input": "^2.1.9",
-    "@inquirer/rawlist": "^2.1.9",
+    "@changesets/cli": "^2.27.7",
+    "@inquirer/confirm": "^3.1.12",
+    "@inquirer/input": "^2.1.12",
+    "@inquirer/rawlist": "^2.1.12",
     "@mlaursen/eslint-config": "^4.1.1",
     "@octokit/core": "^6.1.2",
     "dotenv": "^16.4.5",
@@ -31,8 +31,8 @@
     "husky": "^9.0.11",
     "lint-staged": "^15.2.7",
     "prettier": "^3.3.2",
-    "tsx": "^4.15.4",
-    "turbo": "^2.0.3",
+    "tsx": "^4.16.0",
+    "turbo": "^2.0.6",
     "typescript": "^5.4.5"
   },
   "engines": {

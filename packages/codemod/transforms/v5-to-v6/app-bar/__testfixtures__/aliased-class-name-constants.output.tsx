@@ -10,6 +10,7 @@ export default function Example() {
   return (
     (<div
       className={cn(styles.content, {})}
-    >content</div>)
+    >content
+          </div>)
   );
 }
