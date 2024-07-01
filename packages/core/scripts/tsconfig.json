@@ -13,6 +13,6 @@
     "forceConsistentCasingInFileNames": true,
     "lib": ["esnext"]
   },
-  "include": ["**/*.ts"],
+  "include": ["**/*.ts", "../src/utils/alphaNumericSort.ts"],
   "exclude": ["node_modules"]
 }

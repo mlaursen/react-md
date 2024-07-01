@@ -6,7 +6,7 @@ import {
 } from "jscodeshift";
 import { isTypeImport } from "../utils/isTypeImport";
 import { sortImportSpecifiers } from "../utils/sortImportSpecifiers";
-import { MODULE_MAP } from "./coreExportMaps";
+import { EXPORT_MAP } from "./coreExportMap";
 
 export default function transformer(
   file: FileInfo,
@@ -26,7 +26,7 @@ export default function transformer(
         .find(j.ImportSpecifier)
         .forEach((importSpecifier) => {
           const { name } = importSpecifier.value.imported;
-          const coreImportPath = MODULE_MAP[name];
+          const coreImportPath = EXPORT_MAP[name];
           if (!coreImportPath) {
             throw new Error(`${name} does not exist in v6`);
           }
