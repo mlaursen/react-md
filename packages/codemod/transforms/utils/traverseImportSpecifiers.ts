@@ -6,7 +6,7 @@ export interface TraverseImportSpecifiersOptions {
   root: Collection<unknown>;
   name: string | ReadonlySet<string> | readonly string[];
   remove?: boolean;
-  replace?: string;
+  replace?: string | Record<string, string>;
   packages?: string | ReadonlySet<string> | readonly string[];
   returnOriginalName?: boolean;
 }
@@ -43,16 +43,20 @@ export function traverseImportSpecifiers(
           validSpecifiers.has(path.imported.name)
         )
         .forEach((importSpecifier) => {
-          names.add(
-            returnOriginalName
-              ? importSpecifier.node.imported.name
-              : getImportedName(importSpecifier)
-          );
+          const importName = returnOriginalName
+            ? importSpecifier.node.imported.name
+            : getImportedName(importSpecifier);
+          names.add(importName);
 
-          if (replace) {
+          let replacedName = typeof replace === "string" ? replace : "";
+          if (!replacedName && replace && typeof replace !== "string") {
+            replacedName = replace[importName] || "";
+          }
+
+          if (replacedName) {
             j(importSpecifier).replaceWith(
               j.importSpecifier({
-                name: replace,
+                name: replacedName,
                 type: "Identifier",
                 comments: importSpecifier.node.comments,
               })

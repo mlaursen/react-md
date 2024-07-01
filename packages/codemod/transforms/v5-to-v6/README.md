@@ -53,6 +53,10 @@ Next, start running the codemods in order to finish the migration:
   - `caption-to-typography`
 - `transition`:
   - `update-scale-transition`
+- `tooltip`:
+  - `convert-use-tooltip`
+  - `remove-tooltipped-component`
+  - `update-tooltip-props`
 - `typography`:
   - `remove-removed-types`
   - `update-text-container-props`
@@ -91,7 +95,7 @@ build times by switching to `@react-md/core/{{FILE}}`.
 - [x] table
 - [ ] tabs
 - [ ] theme ?
-- [ ] tooltip
+- [x] tooltip
 - [x] transition
 - [ ] tree
 - [x] typography

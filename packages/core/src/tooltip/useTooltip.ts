@@ -24,6 +24,7 @@ import {
 import { type SimplePosition } from "../positioning/types.js";
 import {
   useFixedPositioning,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   type FixedPositioningOptions,
   type FixedPositioningTransitionCallbacks,
 } from "../positioning/useFixedPositioning.js";
