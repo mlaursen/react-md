@@ -1,10 +1,13 @@
-import { type JSXAttribute } from "jscodeshift";
+import { type ASTPath, type JSXAttribute } from "jscodeshift";
 import { isPropBooleanExpression } from "./isPropBooleanExpression";
 import { isPropBooleanUnvalued } from "./isPropBooleanUnvalued";
 
-export function isPropEnabled(attr: JSXAttribute): boolean {
+export function isPropEnabled(
+  attr: JSXAttribute | ASTPath<JSXAttribute>
+): boolean {
+  const node = "node" in attr ? attr.node : attr;
   return (
-    isPropBooleanUnvalued(attr) ||
-    (isPropBooleanExpression(attr) && attr.value.expression.value)
+    isPropBooleanUnvalued(node) ||
+    (isPropBooleanExpression(node) && node.value.expression.value)
   );
 }

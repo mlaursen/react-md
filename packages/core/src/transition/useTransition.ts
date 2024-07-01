@@ -30,6 +30,7 @@ const noop = (): void => {
  * @typeParam E - The HTMLElement type used or the ref required for the
  * transition.
  * @since 4.0.0
+ * @since 6.0.0 Added the `disablePortal` flag to the return value for SSR.
  */
 export function useTransition<E extends HTMLElement>(
   options: TransitionHookOptions<E>

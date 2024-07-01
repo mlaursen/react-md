@@ -51,6 +51,8 @@ Next, start running the codemods in order to finish the migration:
   - `update-table-cell-props`
   - `update-table-checkbox-props`
   - `caption-to-typography`
+- `transition`:
+  - `update-scale-transition`
 - `typography`:
   - `remove-removed-types`
   - `update-text-container-props`
@@ -90,7 +92,7 @@ build times by switching to `@react-md/core/{{FILE}}`.
 - [ ] tabs
 - [ ] theme ?
 - [ ] tooltip
-- [ ] transition
+- [x] transition
 - [ ] tree
 - [x] typography
 - [ ] utils
