@@ -40,7 +40,7 @@
     "cnbuilder": "^3.1.0"
   },
   "devDependencies": {
-    "@swc/core": "1.5.29",
+    "@swc/core": "^1.6.6",
     "@types/lodash": "^4.17.6",
     "@types/node": "^20.14.9",
     "@types/react": "^18.3.3",
