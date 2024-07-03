@@ -1,51 +1,22 @@
 "use client";
-import { cnb } from "cnbuilder";
 import { forwardRef, type CSSProperties, type ReactNode } from "react";
 import { Card, type CardProps } from "../card/Card.js";
 import { CardContent, type CardContentProps } from "../card/CardContent.js";
 import { useCollapseTransition } from "../transition/useCollapseTransition.js";
 import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
-import { bem } from "../utils/bem.js";
 import {
   ExpansionPanelHeader,
   type ExpansionPanelHeaderProps,
 } from "./ExpansionPanelHeader.js";
-
-const styles = bem("rmd-expansion-panel");
-
-/** @since 6.0.0 */
-export interface ExpansionPanelClassNameOptions {
-  className?: string;
-
-  /**
-   * @defaultValue `false`
-   */
-  expanded?: boolean;
-
-  /**
-   * Set this to `true` to disable the `margin-top` transition between multiple
-   * panels
-   *
-   * @defaultValue `false`
-   */
-  disableTransition?: boolean;
-}
+import { expansionPanel } from "./expansionPanelStyles.js";
 
 /**
- * @since 6.0.0
- */
-export function expansionPanel(
-  options: ExpansionPanelClassNameOptions = {}
-): string {
-  const { className, expanded = false, disableTransition = false } = options;
-
-  return cnb(styles({ expanded, animate: !disableTransition }), className);
-}
-
-/**
- * @since 6.0.0 Renamed some card props and updated for the latest
- * API.
+ * @since 6.0.0 The `disableSecondaryColor` convenience prop was removed in
+ * favor of the new `contentProps` object.
+ * @since 6.0.0 The `disableParagraphMargin` prop was removed since it no longer
+ * exists on the `CardContent` component.
+ * @since 6.0.0 Removed the `marginTop` prop since it is no longer needed.
  */
 export interface ExpansionPanelProps extends CardProps {
   /**
@@ -136,8 +107,8 @@ export interface ExpansionPanelProps extends CardProps {
    * This can be used to apply additional props to the `CardContent` component
    * if needed.
    *
-   * Note: The `disableLastChildPadding` defaults to `true` in this
-   * implementation.
+   * Note: `disableSecondaryColor` and `disableLastChildPadding` default to
+   * `true` in this implementation.
    *
    * @example
    * ```tsx
@@ -145,7 +116,7 @@ export interface ExpansionPanelProps extends CardProps {
    *   style: {},
    *   className: "some-class-name",
    *   disablePadding: true,
-   *   disableSecondaryColor: true,
+   *   disableSecondaryColor: false,
    *   disableLastChildPadding: false,
    *   // whatever else
    * }}

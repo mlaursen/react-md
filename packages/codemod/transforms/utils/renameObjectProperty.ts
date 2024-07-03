@@ -1,10 +1,15 @@
 import { type ASTPath, type ObjectProperty } from "jscodeshift";
 
+export interface RenameObjectPropertyOptions {
+  name: string;
+  prop: ObjectProperty | ASTPath<ObjectProperty>;
+}
+
 export function renameObjectProperty(
-  name: string,
-  objectProperty: ObjectProperty | ASTPath<ObjectProperty>
+  options: RenameObjectPropertyOptions
 ): void {
-  const node = "node" in objectProperty ? objectProperty.node : objectProperty;
+  const { name, prop } = options;
+  const node = "node" in prop ? prop.node : prop;
   switch (node.key.type) {
     case "Literal":
       node.key.value = name;
@@ -14,6 +19,7 @@ export function renameObjectProperty(
       break;
     case "Identifier":
       node.key.name = name;
+      node.shorthand = false;
       break;
   }
 }

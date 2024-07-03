@@ -77,7 +77,10 @@ export default function transformer(
             const name = getObjectPropertyName(node);
             switch (name) {
               case "baseId":
-                renameObjectProperty("id", node);
+                renameObjectProperty({
+                  name: "id",
+                  prop: node,
+                });
                 break;
               case "touchTime":
                 if (isNumberOrIdentifier(node)) {
@@ -148,7 +151,10 @@ export default function transformer(
                     j(objectProperty).remove();
                     break;
                   case "clearHoverTimeout":
-                    renameObjectProperty("clearVisibilityTimeout", node);
+                    renameObjectProperty({
+                      name: "clearVisibilityTimeout",
+                      prop: node,
+                    });
                     break;
                   case "enableHoverMode":
                   case "disableHoverMode":

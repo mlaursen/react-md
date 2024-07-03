@@ -39,6 +39,9 @@ Next, start running the codemods in order to finish the migration:
   - `update-chip-props`
 - `divider`:
   - `vertical-divider-to-divider`
+- `expansion-panel`:
+  - `update-expansion-panel-props`
+  - `use-panels-to-use-expansion-panel`
 - `link`:
   - `update-link-props`
 - `overlay`:
@@ -78,7 +81,7 @@ build times by switching to `@react-md/core/{{FILE}}`.
 - [ ] dialog
 - [x] divider
 - [ ] elevation ?
-- [ ] expansion-panel
+- [x] expansion-panel
 - [ ] form
 - [x] icon
 - [ ] layout

@@ -19,7 +19,7 @@ export interface ExpansionListProps extends HTMLAttributes<HTMLDivElement> {
  * @see {@link useExpansionList} for a custom implementation example if you do
  * not want to use a `<div>` for this wrapper component.
  * @since 6.0.0 Uses the new keyboard movement API and does not
- * require the `onKeyDOwn` prop to be provided.
+ * require the `onKeyDown` prop to be provided.
  */
 export const ExpansionList = forwardRef<HTMLDivElement, ExpansionListProps>(
   function ExpansionList(props, ref) {

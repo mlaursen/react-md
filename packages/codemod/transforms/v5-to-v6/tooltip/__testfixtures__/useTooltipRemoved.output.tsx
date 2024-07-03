@@ -13,7 +13,7 @@ export default function Example(): ReactElement {
   const {
     elementProps,
     tooltipProps,
-    clearVisibilityTimeout
+    clearVisibilityTimeout: clearHoverTimeout
   } = useTooltip({
     id: "example-1-id",
     onClick(event) {

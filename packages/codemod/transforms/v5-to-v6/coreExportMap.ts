@@ -2351,9 +2351,9 @@ export const EXPORT_MAP: Record<string, string> = {
     "@react-md/core/expansion-panel/useExpansionList",
   ExpansionListProps: "@react-md/core/expansion-panel/ExpansionList",
   ExpansionPanel: "@react-md/core/expansion-panel/ExpansionPanel",
-  expansionPanel: "@react-md/core/expansion-panel/ExpansionPanel",
+  expansionPanel: "@react-md/core/expansion-panel/expansionPanelStyles",
   ExpansionPanelClassNameOptions:
-    "@react-md/core/expansion-panel/ExpansionPanel",
+    "@react-md/core/expansion-panel/expansionPanelStyles",
   ExpansionPanelHeader: "@react-md/core/expansion-panel/ExpansionPanelHeader",
   ExpansionPanelHeaderProps:
     "@react-md/core/expansion-panel/ExpansionPanelHeader",
