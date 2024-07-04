@@ -1,7 +1,7 @@
 "use client";
 import { useCallback, useState } from "react";
-import type { UseStateSetter } from "../types.js";
-import type { TreeItemDefaultIds, TreeItemIdSet } from "./types.js";
+import { type UseStateSetter } from "../types.js";
+import { type TreeDefaultIds, type TreeItemIdSet } from "./types.js";
 
 /**
  * @since 6.0.0 Renamed from `TreeItemSelection` and uses a Set
@@ -22,7 +22,7 @@ export interface TreeSelection {
  * instead of a list to increase performance.
  */
 export function useTreeSelection(
-  defaultSelectedIds?: TreeItemDefaultIds,
+  defaultSelectedIds?: TreeDefaultIds,
   multiSelect = false
 ): Required<TreeSelection> {
   const [selectedIds, setSelectedIds] = useState<TreeItemIdSet>(() => {

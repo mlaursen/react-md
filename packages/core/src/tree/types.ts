@@ -1,6 +1,7 @@
-import type { ReactNode } from "react";
-import type { ListItemChildrenProps } from "../list/types.js";
-import type { UseStateInitializer } from "../types.js";
+import { type ReactNode } from "react";
+import { type ListItemChildrenProps } from "../list/types.js";
+import { type UseStateInitializer } from "../types.js";
+import { type RenderRecursiveItemsProps } from "../utils/RenderRecursively.js";
 
 /**
  * @since 6.0.0 This was renamed from `TreeItemIds`
@@ -103,15 +104,17 @@ export type TreeData<T extends TreeItemNode = DefaultTreeItemNode> = Record<
 >;
 
 /**
- * @since 6.0.0 This used to be `TreeItemIds` but was converted to a
- * Set to increase performance for large trees.
+ * @since 6.0.0 This used to be `ExpandedIds`/`SelectedIds` but was converted to
+ * a `Set` to increase performance for large trees.
  */
 export type TreeItemIdSet = ReadonlySet<string>;
 
 /**
  * @since 6.0.0
  */
-export type TreeItemDefaultIds = UseStateInitializer<readonly string[]>;
+export type TreeDefaultIds = UseStateInitializer<
+  readonly string[] | ReadonlySet<string>
+>;
 
 /**
  * A function to call that will sort the items within the tree for each unique
@@ -144,3 +147,10 @@ export type TreeItemDefaultIds = UseStateInitializer<readonly string[]>;
 export type TreeItemSorter<T extends TreeItemNode = DefaultTreeItemNode> = (
   items: readonly T[]
 ) => readonly T[];
+
+/**
+ * @since 6.0.0
+ */
+export type TreeItemRendererProps<
+  T extends TreeItemNode = DefaultTreeItemNode,
+> = RenderRecursiveItemsProps<T, TreeData<T>>;

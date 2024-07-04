@@ -1,5 +1,5 @@
 "use client";
-import { type TreeItemDefaultIds } from "./types.js";
+import { type TreeDefaultIds } from "./types.js";
 import { useTreeExpansion, type TreeExpansion } from "./useTreeExpansion.js";
 import { useTreeSelection, type TreeSelection } from "./useTreeSelection.js";
 
@@ -15,12 +15,12 @@ export interface TreeHookOptions {
   /**
    * @defaultValue `[]`
    */
-  defaultExpandedIds?: TreeItemDefaultIds;
+  defaultExpandedIds?: TreeDefaultIds;
 
   /**
    * @defaultValue `[]`
    */
-  defaultSelectedIds?: TreeItemDefaultIds;
+  defaultSelectedIds?: TreeDefaultIds;
 }
 
 /**

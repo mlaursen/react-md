@@ -56,6 +56,13 @@ Next, start running the codemods in order to finish the migration:
   - `caption-to-typography`
 - `transition`:
   - `update-scale-transition`
+- `tree`:
+  - `everything`:
+    - `get-item-props-to-render-component`
+    - `item-renderer-to-render-component`
+    - `update-simple-types`
+    - `update-tree-props`
+    - `use-tree-hooks`
 - `tooltip`:
   - `convert-use-tooltip`
   - `remove-tooltipped-component`
@@ -100,7 +107,7 @@ build times by switching to `@react-md/core/{{FILE}}`.
 - [ ] theme ?
 - [x] tooltip
 - [x] transition
-- [ ] tree
+- [x] tree
 - [x] typography
 - [ ] utils
 

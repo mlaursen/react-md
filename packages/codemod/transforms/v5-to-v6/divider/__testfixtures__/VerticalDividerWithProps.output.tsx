@@ -1,5 +1,5 @@
 import { type ReactElement } from "react";
-import { DividerProps, Divider } from "react-md";
+import { Divider, DividerProps } from "react-md";
 
 export interface ExampleProps extends DividerProps {
   children: ReactElement;

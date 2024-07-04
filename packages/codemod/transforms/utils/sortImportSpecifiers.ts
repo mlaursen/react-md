@@ -1,14 +1,20 @@
-import {
-  type ImportDefaultSpecifier,
-  type ImportNamespaceSpecifier,
-  type ImportSpecifier,
-} from "jscodeshift";
+import { type AnyImportSpecifier } from "../types";
+import { getImportedName } from "./getImportedName";
 import { isTypeImport } from "./isTypeImport";
 
-type Spec = ImportSpecifier | ImportDefaultSpecifier | ImportNamespaceSpecifier;
-
-export const sortImportSpecifiers = (specifiers: readonly Spec[]): Spec[] => {
-  const sorted = [...specifiers];
+export const sortImportSpecifiers = (
+  specifiers: readonly AnyImportSpecifier[]
+): AnyImportSpecifier[] => {
+  const sorted = [...specifiers].filter(
+    (spec, index, array) =>
+      spec.type !== "ImportSpecifier" ||
+      index ===
+        array.findIndex(
+          (s) =>
+            s.type === "ImportSpecifier" &&
+            getImportedName(s) === getImportedName(spec)
+        )
+  );
   sorted.sort((a, b) => {
     if (a.type === "ImportSpecifier" && b.type === "ImportSpecifier") {
       if (isTypeImport(a) && !isTypeImport(b)) {

@@ -3,14 +3,11 @@ import { folders, type Folder } from "@/constants/folders.js";
 import { Tree } from "@react-md/core/tree/Tree";
 import { TreeItem } from "@react-md/core/tree/TreeItem";
 import { useTreeContext } from "@react-md/core/tree/TreeProvider";
-import { type TreeData } from "@react-md/core/tree/types";
-
+import { TreeItemRendererProps } from "@react-md/core/tree/types";
 import {
   // useKeyboardMovementContext,
   useTree,
 } from "@react-md/core/tree/useTree";
-
-import { type RenderRecursiveItemsProps } from "@react-md/core/utils/RenderRecursively";
 import FolderIcon from "@react-md/material-icons/FolderIcon";
 import FolderOpenIcon from "@react-md/material-icons/FolderOpenIcon";
 import { cnb } from "cnbuilder";
@@ -32,9 +29,7 @@ export default function CustomTreeItemRendererExample(): ReactElement {
   );
 }
 
-function CustomTreeItem(
-  props: RenderRecursiveItemsProps<Folder, TreeData<Folder>>
-): ReactElement {
+function CustomTreeItem(props: TreeItemRendererProps<Folder>): ReactElement {
   const {
     item,
     // data,

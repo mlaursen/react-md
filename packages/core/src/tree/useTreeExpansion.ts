@@ -1,7 +1,7 @@
 "use client";
 import { useCallback, useState } from "react";
-import type { UseStateSetter } from "../types.js";
-import type { TreeItemDefaultIds, TreeItemIdSet } from "./types.js";
+import { type UseStateSetter } from "../types.js";
+import { type TreeDefaultIds, type TreeItemIdSet } from "./types.js";
 
 /**
  * @since 6.0.0 Renamed from `TreeItemExpansion` and uses a Set
@@ -20,7 +20,7 @@ export interface TreeExpansion {
  * instead of a list to increase performance.
  */
 export function useTreeExpansion(
-  defaultExpandedIds?: TreeItemDefaultIds
+  defaultExpandedIds?: TreeDefaultIds
 ): TreeExpansion {
   const [expandedIds, setExpandedIds] = useState<TreeItemIdSet>(() => {
     const defaultIds =

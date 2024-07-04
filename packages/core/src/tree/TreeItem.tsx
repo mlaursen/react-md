@@ -19,7 +19,11 @@ import { treeItem, treeItemContent, treeItemMedia } from "./styles.js";
 import { type DefaultTreeItemNode } from "./types.js";
 
 /**
- * @since 6.0.0  Added the `groupProps` prop.
+ * @since 6.0.0 Added `liProps` and `groupProps`.
+ * @since 6.0.0 The `liRef`, `liStyle`, and `liClassName` props were removed in
+ * favor of `liProps={{ ref, style, className }}`.
+ * @since 6.0.0 The `itemIndex`, `listSize`, `renderChildItems`, `isLink`,
+ * `contentComponent`, and `readOnly` props were removed.
  */
 export interface TreeItemProps
   extends Omit<DefaultTreeItemNode, "parentId">,
@@ -80,8 +84,11 @@ export interface TreeItemProps
  * **Client Component**
  *
  * @see {@link https://www.w3.org/WAI/ARIA/apg/patterns/treeview/}
- * @since 6.0.0 The wrapping `<li>` element will always be `role="none"` and
- * the `<span>` or `<a>` will gain the `role="treeitem"` instead. This makes it
+ * @since 6.0.0 No longer forwards refs. The ref must be provided using
+ * `contentRef` instead.
+ * @since 6.0.0 The `liRef` was removed in favor of `liProps={{ ref }}`.
+ * @since 6.0.0 The wrapping `<li>` element will always be `role="none"` and the
+ * `<span>` or `<a>` will gain the `role="treeitem"` instead. This makes it
  * easier to pass event handlers because of the nested behavior of tree items.
  * @since 6.0.0 No longer provides the `aria-level`, `aria-setsize` and
  * `aria-posinset` attributes and allows the browser to compute them instead.

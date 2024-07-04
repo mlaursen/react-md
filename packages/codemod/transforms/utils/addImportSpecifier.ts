@@ -1,4 +1,5 @@
 import { type Collection, type JSCodeshift } from "jscodeshift";
+import { sortImportSpecifiers } from "./sortImportSpecifiers";
 
 export interface AddImportSpecifierOptions {
   j: JSCodeshift;
@@ -14,19 +15,9 @@ export function addImportSpecifier(options: AddImportSpecifierOptions): void {
     .find(j.ImportDeclaration, { source: { value: packageName } })
     .at(0)
     .forEach((imp) => {
-      if (
-        !imp.node.specifiers?.find(
-          (spec) =>
-            spec.type === "ImportSpecifier" && spec.imported.name === name
-        )
-      ) {
-        imp.node.specifiers ||= [];
-        imp.node.specifiers.push(
-          j.importSpecifier({
-            name,
-            type: "Identifier",
-          })
-        );
-      }
+      imp.node.importKind = "value";
+      imp.node.specifiers ||= [];
+      imp.node.specifiers.push(j.importSpecifier(j.identifier(name)));
+      imp.node.specifiers = sortImportSpecifiers(imp.node.specifiers);
     });
 }

@@ -4,7 +4,7 @@ import { type TreeProps } from "../tree/Tree.js";
 import {
   type DefaultTreeItemNode,
   type TreeData,
-  type TreeItemDefaultIds,
+  type TreeDefaultIds,
   type TreeItemNode,
 } from "../tree/types.js";
 import { type TreeImplementation } from "../tree/useTree.js";
@@ -75,7 +75,7 @@ export interface LayoutTreeOptions<
   /**
    * @defaultValue `getParentIds(pathname, navItems)`
    */
-  defaultExpandedIds?: TreeItemDefaultIds;
+  defaultExpandedIds?: TreeDefaultIds;
 }
 
 /**

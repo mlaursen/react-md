@@ -11,10 +11,7 @@ import { List } from "../list/List.js";
 import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
 import { type LabelRequiredForA11y } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
-import {
-  RenderRecursively,
-  type RenderRecursiveItemsProps,
-} from "../utils/RenderRecursively.js";
+import { RenderRecursively } from "../utils/RenderRecursively.js";
 import { identity } from "../utils/identity.js";
 import { DefaultTreeItemRenderer } from "./DefaultTreeItemRenderer.js";
 import { TreeProvider, type TreeExpansionMode } from "./TreeProvider.js";
@@ -22,6 +19,7 @@ import { tree } from "./styles.js";
 import {
   type TreeData,
   type TreeItemNode,
+  type TreeItemRendererProps,
   type TreeItemSorter,
 } from "./types.js";
 import { type TreeExpansion } from "./useTreeExpansion.js";
@@ -124,7 +122,7 @@ export interface TreeProps<T extends TreeItemNode>
    *   TreeItem,
    *   useKeyboardMovementContext,
    *   useTreeContext,
-   *   type RenderRecursiveItemsProps,
+   *   type TreeItemRendererProps,
    * } from "@react-md/core";
    * import FolderIcon from "@react-md/material-icons/FolderIcon";
    * import FolderOpenIcon from "@react-md/material-icons/FolderOpenIcon";
@@ -164,7 +162,7 @@ export interface TreeProps<T extends TreeItemNode>
    * @see {@link DefaultTreeItemRenderer}
    * @defaultValue `DefaultTreeItemRenderer`
    */
-  renderer?: ComponentType<RenderRecursiveItemsProps<T, TreeData<T>>>;
+  renderer?: ComponentType<TreeItemRendererProps<T>>;
 
   /**
    * The link component to use for any tree item nodes that have a `to` or

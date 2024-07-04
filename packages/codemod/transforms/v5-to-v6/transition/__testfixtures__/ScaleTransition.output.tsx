@@ -1,5 +1,5 @@
 import { type ReactElement } from "react";
-import { ScaleTransition, Portal } from "react-md";
+import { Portal, ScaleTransition } from "react-md";
 
 import SomeComponent from "./SomeComponent";
 

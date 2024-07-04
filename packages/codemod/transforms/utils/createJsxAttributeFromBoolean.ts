@@ -50,11 +50,5 @@ export function createJsxAttributeFromBoolean(
     return;
   }
 
-  return j.jsxAttribute(
-    {
-      name,
-      type: "JSXIdentifier",
-    },
-    jsxValue
-  );
+  return j.jsxAttribute(j.jsxIdentifier(name), jsxValue);
 }

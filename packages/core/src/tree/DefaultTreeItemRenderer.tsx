@@ -1,10 +1,9 @@
 import { type ReactElement } from "react";
-import { type RenderRecursiveItemsProps } from "../utils/RenderRecursively.js";
 import { TreeItem } from "./TreeItem.js";
 import {
   type DefaultTreeItemNode,
-  type TreeData,
   type TreeItemNode,
+  type TreeItemRendererProps,
 } from "./types.js";
 
 /**
@@ -21,8 +20,8 @@ import {
  */
 export function DefaultTreeItemRenderer<
   T extends TreeItemNode = DefaultTreeItemNode,
->(props: RenderRecursiveItemsProps<T, TreeData<T>>): ReactElement {
-  const { item: _item, parents, children: childItems } = props;
+>(props: TreeItemRendererProps<T>): ReactElement {
+  const { parents, children: childItems } = props;
   const item = props.item as DefaultTreeItemNode;
 
   const {
