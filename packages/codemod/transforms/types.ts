@@ -26,3 +26,4 @@ export type JSXExpression = Parameters<
 export type AnyJSXAttribute = JSXAttribute | JSXSpreadAttribute;
 export type JSXAttributes = AnyJSXAttribute[];
 export type JSXReactNode = Parameters<JSCodeshift["jsxElement"]>[2];
+export type JSXReactNodeItem = NonNullable<JSXReactNode>[number];

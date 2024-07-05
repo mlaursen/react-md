@@ -23,6 +23,9 @@ Next, start running the codemods in order to finish the migration:
   - `replace-nav-and-action-with-button`
   - `update-app-bar-props`
   - `update-app-bar-title-props`
+- `badge`:
+  - `remove-badge-container`
+  - `update-badge`
 - `button`:
   - `remove-unused-props`
   - `rename-button-theme-class-names`
@@ -81,7 +84,7 @@ build times by switching to `@react-md/core/{{FILE}}`.
 - [x] app-bar
 - [ ] autocomplete
 - [x] avatar - None!
-- [ ] badge
+- [x] badge
 - [x] button
 - [x] card
 - [x] chip

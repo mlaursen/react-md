@@ -40,7 +40,7 @@ export function badge(options: BadgeClassNameOptions = {}): string {
 }
 
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
-  /** @defaultValue `""greyscale` */
+  /** @defaultValue `"greyscale"` */
   theme?: BadgeTheme;
 
   children: ReactNode;

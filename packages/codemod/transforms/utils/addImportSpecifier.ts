@@ -1,4 +1,5 @@
 import { type Collection, type JSCodeshift } from "jscodeshift";
+import { mergeImportDeclarations } from "./mergeImportDeclarations";
 import { sortImportSpecifiers } from "./sortImportSpecifiers";
 
 export interface AddImportSpecifierOptions {
@@ -10,6 +11,33 @@ export interface AddImportSpecifierOptions {
 
 export function addImportSpecifier(options: AddImportSpecifierOptions): void {
   const { j, root, name, packageName = "react-md" } = options;
+
+  let declarations = root.find(j.ImportDeclaration, {
+    source: { value: packageName },
+  });
+  if (declarations.length === 0) {
+    root
+      .get()
+      .node.program.body.unshift(
+        j.importDeclaration(
+          [j.importSpecifier(j.identifier(name))],
+          j.stringLiteral(packageName)
+        )
+      );
+    return;
+  }
+
+  if (declarations.length > 1) {
+    mergeImportDeclarations({
+      j,
+      root,
+      name: packageName,
+      force: true,
+    });
+    declarations = root.find(j.ImportDeclaration, {
+      source: { value: packageName },
+    });
+  }
 
   root
     .find(j.ImportDeclaration, { source: { value: packageName } })
