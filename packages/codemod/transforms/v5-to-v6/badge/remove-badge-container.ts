@@ -18,12 +18,10 @@ export default function transformer(
   }).forEach((name) => {
     root.findJSXElements(name).forEach((jsxElement) => {
       const props = [...(jsxElement.node.openingElement.attributes ?? [])];
-      let isStyleFound = false;
-      j(jsxElement)
-        .find(j.JSXAttribute, { name: { name: "style" } })
-        .forEach((style) => {
-          isStyleFound = true;
-        });
+      const isStyleFound =
+        j(jsxElement).find(j.JSXAttribute, { name: { name: "style" } }).length >
+        0;
+
       if (!isStyleFound) {
         props.push(
           j.jsxAttribute(

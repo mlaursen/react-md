@@ -22,7 +22,6 @@ import { createObjectProperty } from "../../utils/createObjectProperty";
 import { getObjectPropertyName } from "../../utils/getObjectPropertyName";
 import { isFunctionType } from "../../utils/isFunctionType";
 import { isValidJsxExpression } from "../../utils/isValidJsxExpression";
-import { mergeImportDeclarations } from "../../utils/mergeImportDeclarations";
 import { removeEmptyImportDeclaration } from "../../utils/removeEmptyImportDeclaration";
 import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers";
 

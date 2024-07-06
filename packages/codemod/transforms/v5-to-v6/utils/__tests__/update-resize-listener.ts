@@ -7,4 +7,3 @@ const test = (fixture: string): void => {
 };
 
 test("useResizeListener");
-// test("SimpleResizeListenerComponent");
