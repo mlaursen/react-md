@@ -42,7 +42,7 @@
   "devDependencies": {
     "@swc/core": "^1.6.6",
     "@types/lodash": "^4.17.6",
-    "@types/node": "^20.14.9",
+    "@types/node": "^20.14.10",
     "@types/react": "^18.3.3",
     "eslint": "^8.57.0",
     "glob": "^10.4.2",
@@ -50,8 +50,8 @@
     "prettier": "^3.3.2",
     "pretty-ms": "^9.0.0",
     "svgo": "^3.3.2",
-    "tsx": "^4.16.0",
-    "typescript": "^5.4.5"
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.3"
   },
   "peerDependencies": {
     "react": ">= 18",
