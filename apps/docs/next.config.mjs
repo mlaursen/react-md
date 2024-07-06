@@ -27,7 +27,7 @@ const nextConfig = {
       headers: [
         {
           key: "Referrer-Policy",
-          value: "origin-when-cross-origin",
+          value: "strict-origin-when-cross-origin",
         },
         {
           key: "Strict-Transport-Security",
