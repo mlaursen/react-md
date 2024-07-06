@@ -1,3 +1,4 @@
+import { GtagAnalytics } from "@/components/GtagAnalytics.jsx";
 import { LoadThemeStyles } from "@/components/LoadThemeStyles/LoadThemeStyles.jsx";
 import { MainLayout } from "@/components/MainLayout/MainLayout.jsx";
 import { RootProviders } from "@/components/RootProviders.jsx";
@@ -8,7 +9,6 @@ import { cnb } from "cnbuilder";
 import { Roboto_Flex, Source_Code_Pro } from "next/font/google";
 import { type ReactElement, type ReactNode } from "react";
 import "./layout.scss";
-import { GtagAnalytics } from "@/components/GtagAnalytics.jsx";
 export { metadata } from "@/constants/metadata.js";
 
 // import localFont from "next/font/local";
