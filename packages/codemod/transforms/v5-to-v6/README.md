@@ -113,6 +113,47 @@ build times by switching to `@react-md/core/{{FILE}}`.
 - [x] tree
 - [x] typography
 - [ ] utils
+  - [x] applyRef
+  - [x] bem
+  - [x] colors
+  - [x] containsElement
+  - [x] defaults
+  - [x] Dir - Dir -> WritingDirectionProvider
+  - [x] events - Removed `ScrollListener`/`useScrollListener`
+  - [x] getPercentage
+  - [ ] hover - how to do the new hover mode API...
+  - [ ] keyboardMovement - how to do the keyboard api...
+  - [ ] layout - how to migrate the Grid stuff
+  - [x] loop
+  - [ ] mode - update user interaction stuff
+  - [x] nearest - convert to object
+  - [ ] omit - removed
+  - [ ] positioning - `findSizingContainer` was removed
+  - [ ] scrollIntoView - was removed
+  - [ ] search - try to update fuzzy, caseInsensitive. Ignore `useKeyboardSearch`
+  - [ ] sizing
+    - AppSizeListener -> AppSizeProvider
+    - `useResizeObserver` to use single argument and only returns a ref callback
+    - `useResizeListener`: `onResize` -> `onUpdate`, `enabled` -> `disabled`, removed `immediate`, flatten `options`
+    - removed `ResizeListener` component
+    - removed `MobileOnly`, `PhoneOnly`, `TabletOnly`, `DesktopOnly`
+    - removed `defaultValue` and `checkImmediately` from `useMediaQuery`
+    - ignore `useOrientation`, `useWidthMediaQuery`, `useAppSizeMedia`
+  - [ ] throttle
+  - [ ] types
+  - [ ] unitToNumber
+  - [ ] useCloseOnOutsideClick
+  - [ ] useDropzone
+  - [ ] useEnsuredRef
+  - [ ] useInterval
+  - [ ] useIsomorphicLayoutEffect
+  - [ ] useOnUnmount
+  - [ ] useRefCache
+  - [ ] useTempValue
+  - [ ] useTimeout
+  - [ ] useToggle
+  - [ ] wia-aria
+  - [ ] withinRange
 
 Good demos to try to auto convert:
 

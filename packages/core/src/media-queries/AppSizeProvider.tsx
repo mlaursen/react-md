@@ -65,10 +65,16 @@ export function useAppSize(): Readonly<AppSize> {
   return appSize;
 }
 
+/**
+ * @since 6.0.0 Renamed from `AppSizeListenerProps`.
+ * @since 6.0.0 Removed the `onChange` prop
+ * @since 6.0.0 Renamed `defaultSize` to `ssrSize`
+ */
 export interface AppSizeProviderProps extends AppSizeQueries {
   /**
    * @defaultValue `DEFAULT_APP_SIZE`
    * @see {@link DEFAULT_APP_SIZE}
+   * @since 6.0.0
    */
   ssrSize?: Readonly<AppSize>;
   children: ReactNode;
@@ -79,6 +85,8 @@ export interface AppSizeProviderProps extends AppSizeQueries {
  *
  * This component should be mounted near the root of your app to determine the
  * current app size based on different media queries.
+ *
+ * @since 6.0.0 Renamed from `AppSizeListener`
  */
 export function AppSizeProvider(props: AppSizeProviderProps): ReactElement {
   const {

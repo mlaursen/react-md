@@ -5,7 +5,12 @@ import { delegateEvent } from "./delegateEvent.js";
 import { type useResizeObserver } from "./useResizeObserver.js";
 
 /**
- * @since 6.0.0  Updated the API
+ * @since 6.0.0 Removed the `immediate` option to force the resize handler to be
+ * called immediately.
+ * @since 6.0.0 Renamed to a new API so that there is no longer an `options`
+ * property and instead the `AddEventListenerOptions` are part of the hook
+ * options.
+ * @since 6.0.0 Renamed `onResize` to `onUpdate` and `enabled` to `disabled`.
  */
 export interface ResizeListenerOptions extends AddEventListenerOptions {
   /**
@@ -13,6 +18,7 @@ export interface ResizeListenerOptions extends AddEventListenerOptions {
    * `window.requestAnimationFrame`.
    *
    * @defaultValue `true`
+   * @since 6.0.0
    */
   throttle?: boolean;
 

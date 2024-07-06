@@ -1,5 +1,5 @@
 import { type API, type FileInfo, type Options } from "jscodeshift";
-import { renameRmdIdentifier } from "../../utils/renameRmdIdentifier";
+import { renameImportSpecifier } from "../../utils/renameImportSpecifier";
 
 export default function transformer(
   file: FileInfo,
@@ -10,7 +10,7 @@ export default function transformer(
   const root = j(file.source);
   const printOptions = options.printOptions;
 
-  renameRmdIdentifier({
+  renameImportSpecifier({
     j,
     root,
     to: "ButtonUnstyled",

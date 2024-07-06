@@ -109,7 +109,7 @@ export interface WritingDirectionProviderProps {
  *
  * In node environments, this will default to `"ltr"`.
  *
- * @since 6.0.0
+ * @since 6.0.0 Renamed from `DEFAULT_DIR`
  */
 export const DEFAULT_WRITING_DIRECTION = (): Dir => {
   let dir: Dir = "ltr";
@@ -194,7 +194,7 @@ export const DEFAULT_WRITING_DIRECTION = (): Dir => {
  * );
  * ```
  *
- * @since 6.0.0
+ * @since 6.0.0 Renamed from `Dir`
  */
 export function WritingDirectionProvider(
   props: WritingDirectionProviderProps

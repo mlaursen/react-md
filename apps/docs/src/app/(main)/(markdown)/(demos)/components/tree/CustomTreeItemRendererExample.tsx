@@ -3,7 +3,7 @@ import { folders, type Folder } from "@/constants/folders.js";
 import { Tree } from "@react-md/core/tree/Tree";
 import { TreeItem } from "@react-md/core/tree/TreeItem";
 import { useTreeContext } from "@react-md/core/tree/TreeProvider";
-import { TreeItemRendererProps } from "@react-md/core/tree/types";
+import { type TreeItemRendererProps } from "@react-md/core/tree/types";
 import {
   // useKeyboardMovementContext,
   useTree,

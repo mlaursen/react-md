@@ -19,7 +19,7 @@ import { useSsr } from "../SsrProvider.js";
  * @param disabled - When `true`, the `window.matchMedia` API will not be
  * activated and the hook will always return `false`.
  * @returns `true` if the media query matches
- * @since 6.0.0
+ * @since 6.0.0 Removed the `defaultValue` and `checkImmediately` options.
  */
 export function useMediaQuery(query: string, disabled = false): boolean {
   const ssr = useSsr();

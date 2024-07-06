@@ -1,0 +1,95 @@
+// TODO: The `ScrollListener`/`useScrollListener` have been removed from react-md. You will need to implement their behavior manually.
+import { ArrowDropDownSVGIcon } from "@react-md/material-icons";
+import type { CSSProperties, ReactElement } from "react";
+import { useCallback, useRef, useState } from "react";
+import {
+  Button,
+  List,
+  ListItem,
+  Overlay,
+  TextIconSpacing,
+  Typography,
+  getFixedPosition,
+  useToggle,
+} from "react-md";
+
+import styles from "./SimpleExample.module.scss";
+
+export default function SimpleExample(): ReactElement {
+  const [visible, , hide, toggle] = useToggle(false);
+  const [style, setStyle] = useState<CSSProperties | undefined>();
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
+  const listRef = useRef<HTMLUListElement | null>(null);
+
+  const updatePosition = useCallback(() => {
+    setStyle(
+      getFixedPosition({
+        container: buttonRef.current,
+        element: listRef.current,
+      }).style
+    );
+  }, []);
+  const listRefCB = useCallback((list: HTMLUListElement | null) => {
+    listRef.current = list;
+
+    updatePosition();
+    // only want to call this once on mount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return (
+    (<div className={styles.container}>
+      <Button
+        id="portal-button"
+        theme="secondary"
+        themeType="outline"
+        aria-haspopup="true"
+        aria-expanded={visible}
+        onClick={toggle}
+        ref={buttonRef}
+      >
+        <TextIconSpacing icon={<ArrowDropDownSVGIcon />} iconAfter>
+          Options...
+        </TextIconSpacing>
+      </Button>
+      <Overlay
+        id="portal-menu-overlay"
+        className={styles.overlay}
+        visible={visible}
+        onRequestClose={hide}
+      >
+        <List
+          role="menu"
+          id="portal-menu"
+          aria-labelledby="portal-button"
+          tabIndex={-1}
+          ref={listRefCB}
+          style={style}
+          className={styles.menu}
+          onClick={(event) => {
+            if (event.currentTarget !== event.target) {
+              hide();
+            }
+          }}
+        >
+
+          {Array.from({ length: 6 }).map((_, i) => (
+            <ListItem id={`menu-item-${i}`} key={i} role="menuitem">
+              {`Option ${i + 1}`}
+            </ListItem>
+          ))}
+        </List>
+      </Overlay>
+      <Typography>
+        In condimentum ultrices metus ut viverra. In faucibus erat eu massa
+        tincidunt finibus. Donec eget quam venenatis, venenatis arcu sed, mollis
+        tellus. Mauris massa nunc, condimentum quis nisi vel, fermentum
+        pellentesque est. Pellentesque varius rhoncus dui. Donec suscipit
+        gravida justo eu pharetra. Donec suscipit neque a orci bibendum, a
+        consectetur ipsum finibus. Aenean est ligula, aliquet ut nunc vitae,
+        volutpat pharetra tortor. Cras ipsum mi, posuere eu diam a, cursus
+        euismod mi. Ut vitae eros nibh.
+      </Typography>
+    </div>)
+  );
+}
