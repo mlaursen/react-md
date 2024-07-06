@@ -3,19 +3,6 @@ import withMDX from "@next/mdx";
 import { rehypePlugins } from "docs-generator/rehype-plugins";
 import { remarkPlugins } from "docs-generator/remark-plugins";
 
-const csp = [
-  "default-src 'self';",
-  "script-src 'self' 'unsafe-eval' 'unsafe-inline';",
-  "style-src 'self' 'unsafe-inline';",
-  "img-src 'self' blob: data:;",
-  "font-src 'self';",
-  "object-src 'none';",
-  "base-uri 'self';",
-  "form-action 'self';",
-  "frame-ancestors 'none';",
-  "upgrade-insecure-requests;",
-].join("");
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -38,13 +25,14 @@ const nextConfig = {
           value: "nosniff",
         },
 
-        // TODO: Eventually move to including as nonce with middleware instead.
+        // TODO: Eventually add a Content-Security-Policy with middleware:
         // https://nextjs.org/docs/app/building-your-application/configuring/content-security-policy
-        // Just doesn't appear to work with CSS at the moment
-        {
-          key: "Content-Security-Policy",
-          value: csp,
-        },
+        //
+        // There are too many issues at the moment to deal with:
+        // - nonce is not applied to css, so some initial styles fail on page
+        //   load. works correctly if navigating between pages
+        // - nonce is not applied to `GoogleTagManager` from `@next/third-parties`
+        // - differences between dev and prod builds
       ],
     },
   ],
