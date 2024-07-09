@@ -151,7 +151,7 @@ build times by switching to `@react-md/core/{{FILE}}`.
   - [ ] useRefCache
   - [ ] useTempValue
   - [ ] useTimeout
-  - [ ] useToggle
+  - [x] useToggle
   - [ ] wia-aria
   - [x] withinRange
 

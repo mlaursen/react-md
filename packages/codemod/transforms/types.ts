@@ -1,16 +1,31 @@
 import {
+  type ArrayPattern,
   type ArrowFunctionExpression,
+  type AssignmentPattern,
   type BlockStatement,
   type CallExpression,
   type FunctionDeclaration,
   type FunctionExpression,
+  type Identifier,
   type ImportDefaultSpecifier,
   type ImportNamespaceSpecifier,
   type ImportSpecifier,
   type JSCodeshift,
   type JSXAttribute,
+  type JSXIdentifier,
   type JSXSpreadAttribute,
   type ObjectExpression,
+  type ObjectPattern,
+  type PrivateName,
+  type PropertyPattern,
+  type RestElement,
+  type SpreadElementPattern,
+  type SpreadPropertyPattern,
+  type TSAsExpression,
+  type TSNonNullExpression,
+  type TSParameterProperty,
+  type TSTypeAssertion,
+  type TSTypeParameter,
 } from "jscodeshift";
 
 export type AnyImportSpecifier =
@@ -22,6 +37,22 @@ export type StatementKind = Parameters<JSCodeshift["blockStatement"]>[0][0];
 export type ExpressionKind = NonNullable<
   Parameters<JSCodeshift["variableDeclarator"]>[1]
 >;
+export type PatternKind =
+  | Identifier
+  | RestElement
+  | SpreadElementPattern
+  | PropertyPattern
+  | ObjectPattern
+  | ArrayPattern
+  | AssignmentPattern
+  | SpreadPropertyPattern
+  | JSXIdentifier
+  | PrivateName
+  | TSAsExpression
+  | TSNonNullExpression
+  | TSTypeParameter
+  | TSTypeAssertion
+  | TSParameterProperty;
 
 export type Statements = StatementKind[];
 

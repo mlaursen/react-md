@@ -1,11 +1,11 @@
 "use client";
 import { useCallback, useState } from "react";
-import type { UseStateInitializer, UseStateSetter } from "./types.js";
+import { type UseStateInitializer, type UseStateSetter } from "./types.js";
 
 /**
  * @since 6.0.0
  */
-export interface ToggleHookReturnValue {
+export interface ToggleImplementation {
   toggled: boolean;
   setToggled: UseStateSetter<boolean>;
   toggle(): void;
@@ -25,7 +25,7 @@ export interface ToggleHookReturnValue {
  *
  *   return (
  *     <>
- *       <Button onClick=[toggle]>Toggle</Button>
+ *       <Button onClick={toggle}>Toggle</Button>
  *       {`Toggled: ${toggled}`}
  *     </>
  *   );
@@ -36,7 +36,7 @@ export interface ToggleHookReturnValue {
  */
 export function useToggle(
   defaultValue: UseStateInitializer<boolean> = false
-): Readonly<ToggleHookReturnValue> {
+): ToggleImplementation {
   const [toggled, setToggled] = useState(defaultValue);
 
   return {
