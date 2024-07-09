@@ -5,7 +5,9 @@ import {
   type NullLiteral,
   type NumericLiteral,
   type Options,
+  type UnaryExpression,
 } from "jscodeshift";
+import { isNumericExpression } from "../../utils/isNumericExpression";
 import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers";
 
 export default function transformer(
@@ -25,13 +27,16 @@ export default function transformer(
     root
       .find(j.CallExpression, { callee: { name } })
       .forEach((callExpression) => {
-        const args: (Identifier | NumericLiteral | NullLiteral)[] = new Array(
-          5
-        );
+        const args: (
+          | Identifier
+          | NumericLiteral
+          | NullLiteral
+          | UnaryExpression
+        )[] = new Array(5);
 
         // let value, min, max, steps;
         callExpression.node.arguments.forEach((arg, i) => {
-          if (j.Identifier.check(arg) || j.NumericLiteral.check(arg)) {
+          if (j.Identifier.check(arg) || isNumericExpression(j, arg)) {
             args[i] = arg;
             return;
           }

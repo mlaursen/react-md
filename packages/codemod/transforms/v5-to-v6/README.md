@@ -153,7 +153,7 @@ build times by switching to `@react-md/core/{{FILE}}`.
   - [ ] useTimeout
   - [ ] useToggle
   - [ ] wia-aria
-  - [ ] withinRange
+  - [x] withinRange
 
 Good demos to try to auto convert:
 
