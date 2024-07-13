@@ -213,7 +213,7 @@ export function TreeItem(props: TreeItemProps): ReactElement {
   // cheating a bit so there are type errors around the event handlers
   const ContentComponent = (isLink ? Link : "span") as "span";
   const leftAddonType =
-    propLeftAddonType ?? (expanderLeft && leftAddon) ? "media" : undefined;
+    (propLeftAddonType ?? (expanderLeft && leftAddon)) ? "media" : undefined;
   const isMediaLeftAddon =
     typeof propLeftAddonType === "undefined" && leftAddonType === "media";
   const disableLeftAddonCenteredMedia =

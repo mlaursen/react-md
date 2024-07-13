@@ -135,7 +135,7 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>(
     );
     const unselectedIcon = disableSelectedIcon
       ? null
-      : propUnselectedIcon ?? DEFAULT_OPTION_UNSELECTED_ICON;
+      : (propUnselectedIcon ?? DEFAULT_OPTION_UNSELECTED_ICON);
     const icon = selected ? selectedIcon : unselectedIcon;
 
     let leftAddon = propLeftAddon;

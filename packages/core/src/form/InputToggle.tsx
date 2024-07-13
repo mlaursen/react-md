@@ -285,7 +285,7 @@ export const InputToggle = forwardRef<HTMLInputElement, InputToggleProps>(
     // set on the `remaining` object to bypass the eslint rule about
     // aria-checked not being valid for textbox role
     remaining["aria-checked"] =
-      remaining["aria-checked"] ?? indeterminate ? "mixed" : undefined;
+      (remaining["aria-checked"] ?? indeterminate) ? "mixed" : undefined;
 
     return (
       <FormMessageContainer

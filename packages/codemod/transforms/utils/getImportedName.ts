@@ -15,6 +15,6 @@ export function getImportedName(
 
   return (
     node.local?.name ??
-    ("imported" in node ? node.imported.name : node.name?.name ?? fallback)
+    ("imported" in node ? node.imported.name : (node.name?.name ?? fallback))
   );
 }

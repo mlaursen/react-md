@@ -57,7 +57,7 @@ class MockedObserver implements globalThis.IntersectionObserver {
     this.thresholds =
       typeof options.threshold === "number"
         ? [options.threshold]
-        : options.threshold ?? [];
+        : (options.threshold ?? []);
 
     this.elements = new Set();
   }
