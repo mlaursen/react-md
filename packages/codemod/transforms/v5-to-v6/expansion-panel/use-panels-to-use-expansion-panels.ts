@@ -11,6 +11,7 @@ import {
 import { addFileComments } from "../../utils/addFileComment";
 import { addImportSpecifier } from "../../utils/addImportSpecifier";
 import { getObjectPropertyName } from "../../utils/getObjectPropertyName";
+import { isTypescriptFile } from "../../utils/isTypescriptFile";
 import { removeVariableReferences } from "../../utils/removeVariableReferences";
 import { renameObjectProperty } from "../../utils/renameObjectProperty";
 import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers";
@@ -89,6 +90,8 @@ export default function transformer(
     name: "usePanels",
     replace: "useExpansionPanels",
   }).forEach((name) => {
+    const isTypescript = isTypescriptFile(file);
+
     let i = 0;
     root
       .find(j.CallExpression, { callee: { type: "Identifier", name } })
@@ -168,7 +171,6 @@ export default function transformer(
           }
 
           if (setExpandedIds) {
-            const isTypescript = /\.tsx?$/.test(file.path);
             const tempName = `TODO_${++i}_SET_EXPANDED_IDS`;
             if (isTypescript) {
               addImportSpecifier({
