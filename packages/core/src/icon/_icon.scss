@@ -159,8 +159,8 @@ $_disable-icons: $disable-font and $disable-svg and $disable-symbol;
         }
 
         @if not $disable-inline {
-          &--vab {
-            vertical-align: bottom;
+          &--vam {
+            vertical-align: middle;
           }
         }
 

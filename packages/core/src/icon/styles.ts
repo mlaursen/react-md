@@ -117,7 +117,7 @@ export function icon(options: IconClassNameOptions): string {
       svg: isSvg,
       font: isFont || isMaterial,
       symbol: isSymbol,
-      vab: inline,
+      vam: inline,
       dense,
     }),
     isSymbol && `material-symbols-${family}`,
