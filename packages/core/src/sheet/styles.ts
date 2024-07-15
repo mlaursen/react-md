@@ -1,5 +1,40 @@
 import { cnb } from "cnbuilder";
+import {
+  type CSSTransitionClassNames,
+  type TransitionTimeout,
+} from "../transition/types.js";
 import { bem } from "../utils/bem.js";
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { type BaseDialogProps } from "../dialog/Dialog.js";
+
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-sheet-height"?: string | number;
+    "--rmd-sheet-width"?: string | number;
+    "--rmd-sheet-max-height"?: string | number;
+    "--rmd-sheet-touch-width"?: string | number;
+    "--rmd-sheet-touch-max-height"?: string | number;
+    "--rmd-sheet-static-width"?: string | number;
+    "--rmd-sheet-transform-offscreen"?: string | number;
+    "--rmd-sheet-z-index"?: number;
+  }
+}
+
+export const DEFAULT_SHEET_TIMEOUT: Readonly<TransitionTimeout> = {
+  enter: 200,
+  exit: 150,
+};
+
+export const DEFAULT_SHEET_CLASSNAMES: Readonly<CSSTransitionClassNames> = {
+  appear: "rmd-sheet--offscreen",
+  appearActive: "rmd-sheet--enter rmd-sheet--visible",
+  enter: "rmd-sheet--offscreen",
+  enterActive: "rmd-sheet--enter rmd-sheet--visible",
+  exit: "rmd-sheet--exit",
+  exitActive: "rmd-sheet--offscreen",
+  exitDone: "rmd-sheet--offscreen rmd-sheet--hidden",
+};
 
 const styles = bem("rmd-sheet");
 
@@ -62,7 +97,22 @@ export interface BaseSheetClassNameOptions {
  * @internal
  */
 export interface SheetClassNameOptions extends BaseSheetClassNameOptions {
+  /**
+   * Set this to `true` if the sheet is rendered, but not visible.
+   *
+   * This isn't actually used since it is hard coded in {@link DEFAULT_SHEET_CLASSNAMES}.
+   *
+   * @defaultValue `false`
+   */
   offscreen?: boolean;
+
+  /**
+   * Set this to `true` to disable the overlay behind the sheet and any
+   * additional box-shadow that would be applied to the sheet.
+   *
+   * @see {@link BaseDialogProps.disableOverlay}
+   * @defaultValue `false`
+   */
   disableOverlay?: boolean;
 }
 

@@ -103,7 +103,7 @@ build times by switching to `@react-md/core/{{FILE}}`.
 - [x] overlay
 - [x] portal
 - [x] progress
-- [ ] sheet
+- [x] sheet
 - [ ] states
 - [x] table
 - [ ] tabs

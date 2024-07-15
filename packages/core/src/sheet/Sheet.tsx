@@ -1,43 +1,23 @@
 "use client";
 import { forwardRef } from "react";
 import { Dialog, type BaseDialogProps } from "../dialog/Dialog.js";
-import {
-  type CSSTransitionClassNames,
-  type TransitionTimeout,
-} from "../transition/types.js";
 import { type LabelRequiredForA11y } from "../types.js";
-import { sheet, type BaseSheetClassNameOptions } from "./styles.js";
+import {
+  DEFAULT_SHEET_CLASSNAMES,
+  DEFAULT_SHEET_TIMEOUT,
+  sheet,
+  type BaseSheetClassNameOptions,
+} from "./styles.js";
 
-declare module "react" {
-  interface CSSProperties {
-    "--rmd-sheet-height"?: string | number;
-    "--rmd-sheet-width"?: string | number;
-    "--rmd-sheet-max-height"?: string | number;
-    "--rmd-sheet-touch-width"?: string | number;
-    "--rmd-sheet-touch-max-height"?: string | number;
-    "--rmd-sheet-static-width"?: string | number;
-    "--rmd-sheet-transform-offscreen"?: string | number;
-    "--rmd-sheet-z-index"?: number;
-  }
-}
-
-export const DEFAULT_SHEET_TIMEOUT: Readonly<TransitionTimeout> = {
-  enter: 200,
-  exit: 150,
-};
-
-export const DEFAULT_SHEET_CLASSNAMES: Readonly<CSSTransitionClassNames> = {
-  appear: "rmd-sheet--offscreen",
-  appearActive: "rmd-sheet--enter rmd-sheet--visible",
-  enter: "rmd-sheet--offscreen",
-  enterActive: "rmd-sheet--enter rmd-sheet--visible",
-  exit: "rmd-sheet--exit",
-  exitActive: "rmd-sheet--offscreen",
-  exitDone: "rmd-sheet--offscreen rmd-sheet--hidden",
-};
-
+/**
+ * @since 6.0.0
+ */
 export type SheetDialogProps = Omit<BaseDialogProps, "role" | "type" | "modal">;
 
+/**
+ * @since 6.0.0 extends the `SheetDialogProps` instead of `AllowedDialogProps`
+ * and exports the `SheetDialogProps`.
+ */
 export interface BaseSheetProps
   extends SheetDialogProps,
     BaseSheetClassNameOptions {
@@ -59,6 +39,29 @@ export type SheetProps = LabelRequiredForA11y<BaseSheetProps>;
 /**
  * **Client Component**
  *
+ * The `Sheet` component is a {@link Dialog} that is fixed to the top, right,
+ * bottom, or left of the viewport.
+ *
+ * @example Simple Example
+ * ```tsx
+ * import { Button } from "@react-md/core/button/Button";
+ * import { Sheet } from "@react-md/core/sheet/Sheet";
+ * import { useToggle } from "@react-md/core/useToggle";
+ * import { type ReactElement } from "react";
+ *
+ * export function Example(): ReactElement {
+ *   const { toggled, disable, enable } = useToggle();
+ *
+ *   return (
+ *     <>
+ *       <Button onClick={enable}>Show</Button>
+ *       <Sheet aria-label="Customization" visible={toggled} onRequestClose={disable}>
+ *         Whatever Content
+ *       </Sheet>
+ *     </>
+ *   );
+ * }
+ * ```
  */
 export const Sheet = forwardRef<HTMLDivElement, SheetProps>(
   function Sheet(props, ref) {

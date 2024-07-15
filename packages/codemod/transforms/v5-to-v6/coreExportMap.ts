@@ -2234,8 +2234,8 @@ export const EXPORT_MAP: Record<string, string> = {
   DEFAULT_RIPPLE_CLASSNAMES: "@react-md/core/interaction/Ripple",
   DEFAULT_RIPPLE_TIMEOUT: "@react-md/core/interaction/Ripple",
   DEFAULT_RTL_KEYBOARD_MOVEMENT: "@react-md/core/movement/constants",
-  DEFAULT_SHEET_CLASSNAMES: "@react-md/core/sheet/Sheet",
-  DEFAULT_SHEET_TIMEOUT: "@react-md/core/sheet/Sheet",
+  DEFAULT_SHEET_CLASSNAMES: "@react-md/core/sheet/styles",
+  DEFAULT_SHEET_TIMEOUT: "@react-md/core/sheet/styles",
   DEFAULT_SLIDE_TRANSITION_CLASSNAMES:
     "@react-md/core/transition/useSlideTransition",
   DEFAULT_SLIDE_TRANSITION_TIMEOUT:

@@ -4,8 +4,9 @@ import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
 import {
   DEFAULT_SHEET_CLASSNAMES,
   DEFAULT_SHEET_TIMEOUT,
-} from "../sheet/Sheet.js";
-import { sheet, type BaseSheetClassNameOptions } from "../sheet/styles.js";
+  sheet,
+  type BaseSheetClassNameOptions,
+} from "../sheet/styles.js";
 import {
   type CSSTransitionClassNames,
   type TransitionActions,

@@ -1,7 +1,7 @@
 "use client";
 import { useHorizontalLayoutTransition } from "@react-md/core/layout/useHorizontalLayoutTransition";
 import { useAppSize } from "@react-md/core/media-queries/AppSizeProvider";
-import { DEFAULT_SHEET_TIMEOUT } from "@react-md/core/sheet/Sheet";
+import { DEFAULT_SHEET_TIMEOUT } from "@react-md/core/sheet/styles";
 import { useColorScheme } from "@react-md/core/theme/useColorScheme";
 import { useHtmlClassName } from "@react-md/core/useHtmlClassName";
 import { cnb } from "cnbuilder";
