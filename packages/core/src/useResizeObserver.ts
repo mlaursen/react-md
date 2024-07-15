@@ -23,9 +23,9 @@ interface TargetSize {
 
 /** @internal */
 interface TargetSubscription {
-  readonly onUpdate: ResizeObserverEntryCallback;
-  readonly disableHeight: boolean;
-  readonly disableWidth: boolean;
+  onUpdate: ResizeObserverEntryCallback;
+  disableHeight: boolean;
+  disableWidth: boolean;
 
   size?: TargetSize;
 }
