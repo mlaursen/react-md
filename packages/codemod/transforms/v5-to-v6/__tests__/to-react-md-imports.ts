@@ -8,3 +8,4 @@ const test = (fixture: string): void => {
 
 test("scoped-package-imports");
 test("duplicated-scoped-package-imports");
+test("MultipleScopedImports");

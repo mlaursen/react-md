@@ -1,4 +1,4 @@
-import { MaterialSymbol } from "@react-md/core";
+import { MaterialSymbol } from "react-md";
 
 function Example() {
   return (<>

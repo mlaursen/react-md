@@ -1,5 +1,6 @@
 import { type API, type FileInfo, type Options } from "jscodeshift";
-import { sortImportSpecifiers } from "../../utils/sortImportSpecifiers";
+import { addImportSpecifier } from "../../utils/addImportSpecifier";
+import { getImportedName } from "../../utils/getImportedName";
 import { RENAMED_ICONS } from "./constants";
 
 /**
@@ -27,6 +28,7 @@ export default function transformer(
   const printOptions = options.printOptions;
 
   const icons = new Set<string>();
+  const renamedImports = new Map<string, string>();
   root
     .find(
       j.ImportDeclaration,
@@ -39,6 +41,11 @@ export default function transformer(
         .find(j.ImportSpecifier)
         .forEach((importSpecifier) => {
           const { name } = importSpecifier.value.imported;
+          const localName = getImportedName(importSpecifier);
+          if (name !== localName) {
+            renamedImports.set(name, localName);
+          }
+
           if (!/[A-Za-z0-9](Font|SVG)Icon$/.test(name)) {
             return;
           }
@@ -54,57 +61,15 @@ export default function transformer(
       }
     });
 
-  const rmdCore = root.find(j.ImportDeclaration, {
-    source: { value: "@react-md/core" },
+  addImportSpecifier({
+    j,
+    root,
+    name: "MaterialSymbol",
   });
-  if (rmdCore.length) {
-    let found = false;
-    rmdCore.forEach((decl) => {
-      const symbol = j(decl).find(j.ImportSpecifier, {
-        name: { name: "MaterialSymbol" },
-      });
-      if (symbol.length) {
-        found = true;
-      }
-    });
-    if (!found) {
-      let replaced = false;
-      rmdCore.forEach((decl) => {
-        if (replaced) {
-          return;
-        }
 
-        replaced = true;
-        j(decl).replaceWith(
-          j.importDeclaration.from({
-            ...decl.node,
-            specifiers: sortImportSpecifiers([
-              ...(decl.node.specifiers ?? []),
-              j.importSpecifier({
-                name: "MaterialSymbol",
-                type: "Identifier",
-              }),
-            ]),
-          })
-        );
-      });
-    }
-  } else {
-    root.get().node.program.body.unshift(
-      j.importDeclaration(
-        [
-          j.importSpecifier({
-            name: "MaterialSymbol",
-            type: "Identifier",
-          }),
-        ],
-        j.stringLiteral("@react-md/core")
-      )
-    );
-  }
-
-  [...icons].forEach((iconName) => {
+  icons.forEach((iconName) => {
     let v6Name = iconName.replace(/(Font|SVG)Icon/, "");
+
     const renamed = RENAMED_ICONS.get(v6Name);
     v6Name = (renamed || v6Name)
       .split(/(?=[A-Z]+)/)
@@ -112,7 +77,11 @@ export default function transformer(
       .join("_");
 
     root
-      .find(j.JSXElement, { openingElement: { name: { name: iconName } } })
+      .find(j.JSXElement, {
+        openingElement: {
+          name: { name: renamedImports.get(iconName) || iconName },
+        },
+      })
       .forEach((node) => {
         j(node).replaceWith(
           j.jsxElement.from({
