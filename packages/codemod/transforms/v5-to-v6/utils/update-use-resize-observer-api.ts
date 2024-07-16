@@ -342,13 +342,13 @@ export default function transformer(
           j.ObjectProperty.check(refOption) &&
           j.Identifier.check(refOption.value)
         ) {
-          const ref = refOption.value;
+          const refOptionIdentifier = refOption.value;
           // if it there is an inline `useRef` or `React.useRef`, don't need
           // to do the useEnsuredRef conversion
           if (
             j(component)
               .find(j.VariableDeclarator, {
-                id: { name: ref.name },
+                id: { name: refOptionIdentifier.name },
                 init: { type: "CallExpression" },
               })
               .find(j.Identifier, { name: "useRef" }).length
@@ -362,18 +362,11 @@ export default function transformer(
             .find(j.Identifier, { name: refOption.value.name })
             .at(0)
             .forEach((identifier) => {
-              const { parent, node } = identifier;
-              const prevName = node.name;
-              const tempName = `TEMP_${prevName}`;
-              const callbackName = `${tempName}Callback`;
-              if (j.ObjectProperty.check(parent?.node)) {
-                parent.node.shorthand = false;
-                parent.node.value = j.identifier(tempName);
-              } else {
-                node.name = tempName;
-              }
+              const { node } = identifier;
+              const callbackName = `${node.name}Callback`;
 
-              ref.name = callbackName;
+              const prevName = ref.name;
+              refOptionIdentifier.name = callbackName;
 
               j(variableDeclarator.parent).insertBefore(
                 j.variableDeclaration("const", [
@@ -382,9 +375,7 @@ export default function transformer(
                       j.identifier(prevName),
                       j.identifier(callbackName),
                     ]),
-                    j.callExpression(j.identifier("useEnsuredRef"), [
-                      j.identifier(tempName),
-                    ])
+                    j.callExpression(j.identifier("useEnsuredRef"), [node])
                   ),
                 ])
               );

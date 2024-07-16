@@ -1,9 +1,19 @@
-import { type ReactElement, useCallback, useState } from "react";
+import {
+  type ReactElement,
+  type Ref,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { useEnsuredRef, useResizeObserver } from "react-md";
 
-export default function Example({ nodeRef: TEMP_nodeRef }): ReactElement {
+interface ExampleProps {
+  nodeRef?: Ref<HTMLDivElement>;
+}
+
+export default function Example({ nodeRef }: ExampleProps): ReactElement {
   const [state, setState] = useState();
-  const [nodeRef, TEMP_nodeRefCallback] = useEnsuredRef(TEMP_nodeRef);
+  const [ref, nodeRefCallback] = useEnsuredRef(nodeRef);
   const refCallback = useResizeObserver({
     onUpdate: useCallback(
       entry => {
@@ -15,8 +25,14 @@ export default function Example({ nodeRef: TEMP_nodeRef }): ReactElement {
       []
     ),
 
-    ref: TEMP_nodeRefCallback
+    ref: nodeRefCallback
   });
 
-  return <div ref={ref} />;
+  useEffect(() => {
+    if (ref.current) {
+      // do something
+    }
+  }, []);
+
+  return <div ref={refCallback} />;
 }

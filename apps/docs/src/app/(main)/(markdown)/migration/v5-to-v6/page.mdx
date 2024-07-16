@@ -1,3 +1,2692 @@
 # Migrate from v5 to v6
 
-TODO
+There were a lot of breaking changes between v5 and v6 of react-md, but most
+can be automated using the `codemod`. The migrations will be listed on this
+page and prefixed with an icon:
+
+- 🎉 - no breaking changes
+- ✅ - can be fully migrated
+- 🎨 - can be migrated but might need additional styling
+- 🔧 - can be migrated but will probably require a few manual changes
+- ❌ - must be manually updated
+
+The full interactive migration can be run with the following command:
+
+```sh
+npx @react-md/codemod v5-to-v6
+```
+
+# ✅ Update all imports to `react-md`
+
+> !Warn! This step is **required** for any other codemods to work. The codemods
+> only look for the `react-md` package name.
+
+```sh
+npx @react-md/codemod v5-to-v6/to-react-md-imports
+```
+
+To make the migration easier, the codemod will begin by converting all scoped
+package imports (`@react-md/*`) into the `react-md` package import.
+
+```diff
++import {
++  AppBar,
++  AppBarNav,
++  ArrowBackSVGIcon,
++  Button,
++  Dialog,
++  DialogContent,
++  MediaContainer,
++} from "react-md";
++
+ import type { ReactElement } from "react";
+ import { useState } from "react";
+-import { AppBar, AppBarNav } from "@react-md/app-bar";
+-import { Button } from "@react-md/button";
+-import { Dialog, DialogContent } from "@react-md/dialog";
+-import { ArrowBackSVGIcon } from "@react-md/material-icons";
+-import { MediaContainer } from "@react-md/media";
+
+ import AppBarTitle from "./AppBarTitle";
+ import styles from "./FullPageExample.module.scss";
+```
+
+# 🔧 Hardcode any scssVariables usage
+
+```sh
+npx @react-md/codemod v5-to-v6/hardcode-scss-variables
+```
+
+This codemod converts any `@react-md/*/dist/scssVariables` into hard coded constants since
+it no longer exists.
+
+```diff
+-import alertVariables from "@react-md/alert/dist/scssVariables";
+-import appBarVariables from "@react-md/app-bar/dist/scssVariables";
+-import mediaVariables from "@react-md/media/dist/scssVariables";
+ import shouldNotChange from "another/scssVariables";
+
+-const color = alertVariables["rmd-alert-theme-values"].color;
+-const backgroundColor =
+-  alertVariables["rmd-alert-theme-values"]["background-color"];
++const color = "#fff";
++const backgroundColor = "#323232";
+
+-const margin = alertVariables["rmd-snackbar-margin"];
+-const zIndex = alertVariables["rmd-snackbar-z-index"];
++const margin = "1rem";
++const zIndex = 40;
+
+-const titleKeyline = appBarVariables["rmd-app-bar-title-keyline"];
++const titleKeyline = "4.5rem";
+
+-const mediaOverlayPositions = mediaVariables["rmd-media-overlay-positions"];
+-const mediaOverlayPosition = mediaVariables["rmd-media-overlay-positions"][2];
+-const aspectRatio = mediaVariables["rmd-media-default-aspect-ratios"]['"16-9"'];
++const mediaOverlayPositions = [
++  "top",
++  "right",
++  "bottom",
++  "left",
++  "middle",
++  "center",
++  "absolute-center",
++];
++const mediaOverlayPosition = "bottom";
++const aspectRatio = "16 9";
+
+ function Example() {
+   return (
+     <div
+       style={{
+-        backgroundColor:
+-          appBarVariables["rmd-app-bar-primary-background-color"],
++        backgroundColor: "var(--rmd-theme-primary, #9c27b0)",
+       }}
+     />
+   );
+```
+
+# ✅ Remove deprecated `FontIcon` props
+
+```sh
+npx @react-md/codemod v5-to-v6/icon/remove-deprecated-font-icon-props
+```
+
+The `forceSize` and `forceFontSize` props were removed from the `FontIcon` component.
+
+```diff
+     <>
+       <FontIcon>material_unchanged</FontIcon>
+       <FontIcon iconClassName="fa fa-star" />
+-      <FontIcon iconClassName="fa fa-star" className={styles.icon} forceSize />
+-      <FontIcon iconClassName={styles.fontIcon} forceFontSize />
+-      <FontIcon
+-        iconClassName={styles.fontIcon}
+-        className={styles.icon}
+-        forceSize
+-        forceFontSize
+-      />
++      <FontIcon iconClassName="fa fa-star" className={styles.icon} />
++      <FontIcon iconClassName={styles.fontIcon} />
++      <FontIcon iconClassName={styles.fontIcon} className={styles.icon} />
+     </>
+   );
+ }
+```
+
+# ✅ Update Material Icons
+
+The `@react-md/material-icons` package was updated to support all the new icons
+and material symbols but only exports SVG icon component versions. Choose one of
+the following migrations:
+
+### ✅ to-svg
+
+```sh
+npx @react-md/codemod v5-to-v6/material-icons/to-svg
+```
+
+Converts all material icons into the SVG components in v6.0.0.
+
+```diff
++import ArrowDropDownIcon from "@react-md/material-icons/ArrowDropDownIcon";
++import ArrowUpwardIcon from "@react-md/material-icons/ArrowUpwardIcon";
++import CheckBoxIcon from "@react-md/material-icons/CheckBoxIcon";
++import CheckIcon from "@react-md/material-icons/CheckIcon";
++import ErrorOutlineIcon from "@react-md/material-icons/ErrorOutlineIcon";
++import FileUploadIcon from "@react-md/material-icons/FileUploadIcon";
++import KeyboardArrowDownIcon from "@react-md/material-icons/KeyboardArrowDownIcon";
++import KeyboardArrowLeftIcon from "@react-md/material-icons/KeyboardArrowLeftIcon";
++import KeyboardArrowRightIcon from "@react-md/material-icons/KeyboardArrowRightIcon";
++import MenuIcon from "@react-md/material-icons/MenuIcon";
++import NotificationsIcon from "@react-md/material-icons/NotificationsIcon";
++import RadioButtonCheckedIcon from "@react-md/material-icons/RadioButtonCheckedIcon";
++import RemoveRedEyeIcon from "@react-md/material-icons/RemoveRedEyeIcon";
+ import type { ReactElement, ReactNode } from "react";
+ import { Link, useLocation } from "react-router-dom";
+ import {
+-  ArrowDropDownSVGIcon,
+-  ArrowUpwardSVGIcon,
+-  CheckBoxSVGIcon,
+-  CheckSVGIcon,
+   ConfiguredIcons,
+   Configuration,
+-  ErrorOutlineSVGIcon,
+-  FileUploadSVGIcon,
+-  KeyboardArrowDownSVGIcon,
+-  KeyboardArrowLeftSVGIcon,
+-  KeyboardArrowRightFontIcon,
+   Layout as RMDLayout,
+-  MenuSVGIcon,
+-  NotificationsSVGIcon,
+-  RadioButtonCheckedSVGIcon,
+-  RemoveRedEyeSVGIcon as MyTestIcon,
+   useLayoutNavigation,
+ } from "react-md";
+
+ import navItems from "./navItems";
+
+ const icons: ConfiguredIcons = {
+-  back: <KeyboardArrowLeftSVGIcon />,
+-  checkbox: <CheckBoxSVGIcon />,
+-  dropdown: <ArrowDropDownSVGIcon />,
+-  error: <ErrorOutlineSVGIcon />,
+-  expander: <KeyboardArrowDownSVGIcon />,
+-  forward: <KeyboardArrowRightFontIcon />,
+-  menu: <MenuSVGIcon />,
+-  notification: <NotificationsSVGIcon />,
+-  password: <MyTestIcon />,
+-  radio: <RadioButtonCheckedSVGIcon />,
+-  selected: <CheckSVGIcon />,
+-  sort: <ArrowUpwardSVGIcon />,
+-  upload: <FileUploadSVGIcon></FileUploadSVGIcon>,
++  back: <KeyboardArrowLeftIcon />,
++  checkbox: <CheckBoxIcon />,
++  dropdown: <ArrowDropDownIcon />,
++  error: <ErrorOutlineIcon />,
++  expander: <KeyboardArrowDownIcon />,
++  forward: <KeyboardArrowRightIcon />,
++  menu: <MenuIcon />,
++  notification: <NotificationsIcon />,
++  password: <RemoveRedEyeIcon />,
++  radio: <RadioButtonCheckedIcon />,
++  selected: <CheckIcon />,
++  sort: <ArrowUpwardIcon />,
++  upload: <FileUploadIcon></FileUploadIcon>,
+ };
+```
+
+### ✅ to-font
+
+```sh
+npx @react-md/codemod v5-to-v6/material-icons/to-font
+```
+
+Converts all material icons into the new `MaterialIcon` component.
+
+```diff
+@@ -1,39 +1,27 @@
+ import type { ReactElement, ReactNode } from "react";
+ import { Link, useLocation } from "react-router-dom";
+ import {
+-  ArrowDropDownFontIcon,
+-  ArrowUpwardFontIcon,
+-  CheckBoxFontIcon,
+-  CheckFontIcon,
+-  ConfiguredIcons,
+   Configuration,
+-  ErrorOutlineFontIcon,
+-  FileUploadFontIcon,
+-  KeyboardArrowDownFontIcon,
+-  KeyboardArrowLeftFontIcon,
+-  KeyboardArrowRightFontIcon,
++  ConfiguredIcons,
+   Layout as RMDLayout,
+-  MenuFontIcon,
+-  NotificationsFontIcon,
+-  RadioButtonCheckedFontIcon,
+-  RemoveRedEyeFontIcon as MyTestIcon,
++  MaterialIcon,
+   useLayoutNavigation,
+ } from "react-md";
+
+ import navItems from "./navItems";
+
+ const icons: ConfiguredIcons = {
+-  back: <KeyboardArrowLeftFontIcon />,
+-  checkbox: <CheckBoxFontIcon />,
+-  dropdown: <ArrowDropDownFontIcon />,
+-  error: <ErrorOutlineFontIcon />,
+-  expander: <KeyboardArrowDownFontIcon />,
+-  forward: <KeyboardArrowRightFontIcon />,
+-  menu: <MenuFontIcon />,
+-  notification: <NotificationsFontIcon />,
+-  password: <MyTestIcon />,
+-  radio: <RadioButtonCheckedFontIcon />,
+-  selected: <CheckFontIcon />,
+-  sort: <ArrowUpwardFontIcon />,
+-  upload: <FileUploadFontIcon></FileUploadFontIcon>,
++  back: <MaterialIcon name="keyboard_arrow_left" />,
++  checkbox: <MaterialIcon name="check_box" />,
++  dropdown: <MaterialIcon name="arrow_drop_down" />,
++  error: <MaterialIcon name="error_outline" />,
++  expander: <MaterialIcon name="keyboard_arrow_down" />,
++  forward: <MaterialIcon name="keyboard_arrow_right" />,
++  menu: <MaterialIcon name="menu" />,
++  notification: <MaterialIcon name="notifications" />,
++  password: <MaterialIcon name="remove_red_eye" />,
++  radio: <MaterialIcon name="radio_button_checked" />,
++  selected: <MaterialIcon name="check" />,
++  sort: <MaterialIcon name="arrow_upward" />,
++  upload: <MaterialIcon name="file_upload" />,
+ };
+```
+
+### ✅ to-symbol
+
+```sh
+npx @react-md/codemod v5-to-v6/material-icons/to-symbol
+```
+
+Converts all material icons into the new `MaterialSymbol` component.
+
+```diff
+ import type { ReactElement, ReactNode } from "react";
+ import { Link, useLocation } from "react-router-dom";
+ import {
+-  ArrowDropDownFontIcon,
+-  ArrowUpwardFontIcon,
+-  CheckBoxFontIcon,
+-  CheckFontIcon,
+-  ConfiguredIcons,
+   Configuration,
+-  ErrorOutlineFontIcon,
+-  FileUploadFontIcon,
+-  KeyboardArrowDownFontIcon,
+-  KeyboardArrowLeftFontIcon,
+-  KeyboardArrowRightFontIcon,
++  ConfiguredIcons,
+   Layout as RMDLayout,
+-  MenuFontIcon,
+-  NotificationsFontIcon,
+-  RadioButtonCheckedFontIcon,
+-  RemoveRedEyeFontIcon as MyTestIcon,
++  MaterialSymbol,
+   useLayoutNavigation,
+ } from "react-md";
+
+ import navItems from "./navItems";
+
+ const icons: ConfiguredIcons = {
+-  back: <KeyboardArrowLeftFontIcon />,
+-  checkbox: <CheckBoxFontIcon />,
+-  dropdown: <ArrowDropDownFontIcon />,
+-  error: <ErrorOutlineFontIcon />,
+-  expander: <KeyboardArrowDownFontIcon />,
+-  forward: <KeyboardArrowRightFontIcon />,
+-  menu: <MenuFontIcon />,
+-  notification: <NotificationsFontIcon />,
+-  password: <MyTestIcon />,
+-  radio: <RadioButtonCheckedFontIcon />,
+-  selected: <CheckFontIcon />,
+-  sort: <ArrowUpwardFontIcon />,
+-  upload: <FileUploadFontIcon></FileUploadFontIcon>,
++  back: <MaterialSymbol name="keyboard_arrow_left" />,
++  checkbox: <MaterialSymbol name="check_box" />,
++  dropdown: <MaterialSymbol name="arrow_drop_down" />,
++  error: <MaterialSymbol name="error_outline" />,
++  expander: <MaterialSymbol name="keyboard_arrow_down" />,
++  forward: <MaterialSymbol name="keyboard_arrow_right" />,
++  menu: <MaterialSymbol name="menu" />,
++  notification: <MaterialSymbol name="notifications" />,
++  password: <MaterialSymbol name="remove_red_eye" />,
++  radio: <MaterialSymbol name="radio_button_checked" />,
++  selected: <MaterialSymbol name="check" />,
++  sort: <MaterialSymbol name="arrow_upward" />,
++  upload: <MaterialSymbol name="file_upload" />,
+ };
+```
+
+# Update the scoped packages
+
+## Alert
+
+## App Bar
+
+### 🔧 remove-class-name-constants
+
+```sh
+npx @react-md/codemod v5-to-v6/app-bar/remove-class-name-constants
+```
+
+The `APP_BAR_OFFSET_*` constants were removed and custom styles are required to
+add any offset going forward. The codemod will apply the following diff:
+
+```diff
++// TODO: Add styles for app bar offset
+ import cn from "classnames";
+ import { useState } from "react";
+-import {
+-  APP_BAR_OFFSET_CLASSNAME,
+-  APP_BAR_OFFSET_DENSE_CLASSNAME,
+-  APP_BAR_OFFSET_PROMINENT_CLASSNAME,
+-  APP_BAR_OFFSET_PROMINENT_DENSE_CLASSNAME,
+-} from "react-md";
+ import styles from "./styles.module.scss";
+
+ export default function Example() {
+   const [dense, setDense] = useState(false);
+   const [prominent, setProminent] = useState(false);
+
+-  return (
+-    <div
+-      className={cn(
+-        styles.content,
+-        {
+-          [APP_BAR_OFFSET_CLASSNAME]: !dense && !prominent,
+-          [APP_BAR_OFFSET_DENSE_CLASSNAME]: dense && !prominent,
+-          [APP_BAR_OFFSET_PROMINENT_CLASSNAME]: !dense && prominent,
+-          [APP_BAR_OFFSET_PROMINENT_DENSE_CLASSNAME]: dense && prominent,
+-        },
+-        !dense && !prominent && APP_BAR_OFFSET_CLASSNAME,
+-        dense && !prominent && APP_BAR_OFFSET_DENSE_CLASSNAME,
+-        !dense && prominent && APP_BAR_OFFSET_PROMINENT_CLASSNAME,
+-        dense && prominent && APP_BAR_OFFSET_PROMINENT_DENSE_CLASSNAME
+-      )}
+-    >
+-      content
+-    </div>
+-  );
++  return <div className={cn(styles.content, {})}>content</div>;
+ }
+```
+
+If the content should still be offset by the app bar's height, apply the following styles:
+
+```scss
+@use "react-md";
+
+.container {
+  // use the current var(--rmd-app-bar-height) as the padding top
+  @include react-md.app-bar-use-var(padding-top, height);
+
+  // or choose one of the static values:
+  padding-top: react-md.$app-bar-height;
+  padding-top: react-md.$dense-height;
+  padding-top: react-md.$prominent-height;
+  padding-top: react-md.$prominent-dense-height;
+}
+```
+
+### ✅ remove-use-action-class-name
+
+```sh
+npx @react-md/codemod v5-to-v6/app-bar/remove-use-action-class-name
+```
+
+The `useActionClassName` hook was removed since it is no longer needed for
+spacing within an `AppBar`.
+
+```diff
+-import { useActionClassName } from "react-md";
+ import SomeComponent from "./SomeComponent";
+ import styles from "./styles.module.scss";
+
+ export function Example() {
+-  const className1 = useActionClassName();
+-  const className2 = useActionClassName({ first: true });
+-  const className3 = useActionClassName({ last: true });
+-  const className4 = useActionClassName({ className: styles.example });
++  const className4 = styles.example;
+
+   return (
+     <>
+-      <div className={className1} />
+-      <div className={className2} />
+-      <div className={className3} />
++      <div />
++      <div />
++      <div />
+       <div className={className4} />
+       <SomeComponent
+-        className1={useActionClassName()}
+-        className2={useActionClassName({ first: true })}
+-        className3={useActionClassName({ last: true })}
+-        className4={useActionClassName({ className: styles.example })}
++        className4={styles.example}
+         objectExample={{
+-          className1: useActionClassName(),
+-          className2: useActionClassName({ first: true }),
+-          className3: useActionClassName({ last: true }),
+-          className4: useActionClassName({ className: styles.example }),
++          className4: styles.example,
+         }}
+       />
+     </>
+```
+
+### ✅ replace-nav-and-action-with-button
+
+```sh
+npx @react-md/codemod v5-to-v6/app-bar/replace-nav-and-action-with-button
+```
+
+The `AppBarAction` and `AppBarNav` components were removed and can be replaced
+with a `Button`.
+
+```diff
+ import type { ReactElement } from "react";
+ import {
+   AppBar,
+-  AppBarAction,
+-  AppBarNav,
+   AppBarTitle,
++  Button,
+   MenuSVGIcon,
+   MoreVertSVGIcon,
+   SearchSVGIcon,
+@@ -19,33 +18,21 @@ export default function Demo(): ReactElement {
+     <Container>
+       {themes.map((theme, i) => (
+         <AppBar id={`simple-usage-app-bar-${i}`} theme={theme} key={theme}>
+-          <AppBarNav
+-            id={`simple-usage-nav-${i}`}
+-            aria-label="Navigation"
+-            inheritColor
+-          >
++          <Button id={`simple-usage-nav-${i}`} aria-label="Navigation">
+             <MenuSVGIcon />
+-          </AppBarNav>
++          </Button>
+           <AppBarTitle
+             id={`simple-usage-title-${i}`}
+             className="rmd-typography--capitalize"
+           >
+             {theme}
+           </AppBarTitle>
+-          <AppBarAction
+-            id={`simple-usage-search-${i}`}
+-            first
+-            aria-label="Search"
+-          >
++          <Button id={`simple-usage-search-${i}`} aria-label="Search">
+             <SearchSVGIcon />
+-          </AppBarAction>
+-          <AppBarAction
+-            id={`simple-usage-kebab-${i}`}
+-            last
+-            aria-label="Actions"
+-          >
++          </Button>
++          <Button id={`simple-usage-kebab-${i}`} aria-label="Actions">
+             <MoreVertSVGIcon />
+-          </AppBarAction>
++          </Button>
+         </AppBar>
+       ))}
+     </Container>
+```
+
+### ✅ update-app-bar-props
+
+```sh
+npx @react-md/codemod v5-to-v6/app-bar/update-app-bar-props
+```
+
+The following props have changed for the `AppBar` component:
+
+- `component` was renamed to `as`
+- `fixedElevation` was renamed to `disableElevation`
+- `fixed` was removed in favor of the new `position` prop
+- `flexWrap` and `inheritColor` were removed since they are no longer needed
+
+```diff
+ function Example() {
+   return (
+     <>
+-      <AppBar component="div">Hello</AppBar>
+-      <AppBar fixed={true}>Hello</AppBar>
+-      <AppBar fixed fixedElevation={false}>
+-        Hello
+-      </AppBar>
+-      <AppBar fixed={false} fixedElevation>
+-        Hello
+-      </AppBar>
+-      <AppBar flexWrap inheritColor>
++      <AppBar as="div">Hello</AppBar>
++      <AppBar position="fixed">Hello</AppBar>
++      <AppBar position="fixed" disableFixedElevation>
+         Hello
+       </AppBar>
++      <AppBar>Hello</AppBar>
++      <AppBar>Hello</AppBar>
+     </>
+   );
+ }
+```
+
+### ✅ update-app-bar-title-props
+
+```sh
+npx @react-md/codemod v5-to-v6/app-bar/update-app-bar-title-props
+```
+
+The following props have changed for the `AppBarTitle` component:
+
+- `noWrap` was removed in favor of the new `textOverflow` prop
+- `keyline` is no longer a boolean
+
+```diff
+ function Example() {
+   return (
+     <>
+-      <AppBarTitle noWrap>Hello</AppBarTitle>
+-      <AppBarTitle noWrap={true}>Hello</AppBarTitle>
+-      <AppBarTitle noWrap={false}>Hello</AppBarTitle>
+-      <AppBarTitle keyline>Hello</AppBarTitle>
+-      <AppBarTitle keyline={true}>Hello</AppBarTitle>
+-      <AppBarTitle keyline={false}>Hello</AppBarTitle>
++      <AppBarTitle textOverflow="nowrap">Hello</AppBarTitle>
++      <AppBarTitle textOverflow="nowrap">Hello</AppBarTitle>
++      <AppBarTitle>Hello</AppBarTitle>
++      <AppBarTitle keyline="nav">Hello</AppBarTitle>
++      <AppBarTitle keyline="nav">Hello</AppBarTitle>
++      <AppBarTitle>Hello</AppBarTitle>
+     </>
+   );
+ }
+```
+
+## Auto Complete
+
+## Avatar 🎉
+
+No breaking changes!
+
+## Badge
+
+### 🎨 remove-badge-container
+
+```sh
+npx @react-md/codemod v5-to-v6/badge/remove-badge-container
+```
+
+The `BadgeContainer` was removed and custom styles must be used instead.
+
+```diff
+ import type { ReactElement } from "react";
+-import {
+-  Badge,
+-  BadgeContainer,
+-  Button,
+-  NotificationsSVGIcon,
+-  Typography,
+-} from "react-md";
++import { Badge, Button, NotificationsSVGIcon, Typography } from "react-md";
+
+ import { COPYRIGHT } from "constants/unicode";
+
+@@ -14,15 +8,27 @@ import styles from "./CustomizingBadges.module.scss";
+ export default function CustomizingBadges(): ReactElement {
+   return (
+     <>
+-      <BadgeContainer className={styles.container}>
++      <span
++        className={styles.container}
++        style={{
++          display: "inline-flex",
++          position: "relative",
++        }}
++      >
+         {/* since the badge is presentational, don't add the `aria-describedby` value */}
+         <Typography>Some amazing product</Typography>
+         <Badge id="copyright-badge" theme="clear">
+           {COPYRIGHT}
+         </Badge>
+-      </BadgeContainer>
++      </span>
+       {/* this is _basically_ the `BadgedButton` component except with an extra `<span>` */}
+-      <BadgeContainer className={styles.custom}>
++      <span
++        className={styles.custom}
++        style={{
++          display: "inline-flex",
++          position: "relative",
++        }}
++      >
+         <Button
+           id="custom-badged-button"
+           aria-describedby="custom-badged-button-badge"
+@@ -31,7 +37,7 @@ export default function CustomizingBadges(): ReactElement {
+           <NotificationsSVGIcon />
+         </Button>
+         <Badge id="custom-badged-button-badge">8</Badge>
+-      </BadgeContainer>
++      </span>
+     </>
+   );
+ }
+```
+
+### 🔧 update-badge
+
+```sh
+npx @react-md/codemod v5-to-v6/badge/update-badge
+```
+
+The `BadgedButton` was removed and instead just use the `Button` and `Badge`
+components together.
+
+```diff
+ import { type ReactElement } from "react";
+-import { BadgedButton } from "react-md";
++import { Badge, Button, getIcon } from "react-md";
+ import { NotificationsSVGIcon } from "@react-md/material-icons";
+
+ import styles from "./SimpleExamples.module.scss";
+@@ -7,16 +7,24 @@ import styles from "./SimpleExamples.module.scss";
+ export default function Example(): ReactElement {
+   return (
+     <>
+-      <BadgedButton id="badged-button-1" className={styles.container}>
+-        3
+-      </BadgedButton>
+-      <BadgedButton
++      <Button
++        id="badged-button-1"
++        className={styles.container}
++        aria-label="Notifications"
++        buttonType="icon"
++      >
++        {getIcon("notification")}
++        <Badge>3</Badge>
++      </Button>
++      <Button
+         id="badged-button-2"
+         className={styles.container}
+-        buttonChildren={<NotificationsSVGIcon />}
++        aria-label="Notifications"
++        buttonType="icon"
+       >
+-        7
+-      </BadgedButton>
++        <NotificationsSVGIcon />
++        <Badge>7</Badge>
++      </Button>
+     </>
+   );
+ }
+```
+
+In addition, the `BadgeTheme` was updated `"default"` to be `"greyscale"`. The
+codemod will insert a temporary `_toBadgeTheme` helper when the `theme` is not
+a string.
+
+```diff
+ import type { ReactElement } from "react";
+-import type { BadgeTheme } from "react-md";
+-import { BadgedButton } from "react-md";
++import { Badge, BadgeTheme, Button, getIcon } from "react-md";
+
+ import styles from "./SimpleExamples.module.scss";
+
+@@ -10,15 +9,23 @@ export default function ThemedBadges(): ReactElement {
+   return (
+     <>
+       {themes.map((theme) => (
+-        <BadgedButton
++        <Button
+           key={theme}
+           id={`badged-button-${theme}`}
+-          badgeTheme={theme}
+           className={styles.container}
++          aria-label="Notifications"
++          buttonType="icon"
+         >
+-          {theme.length}
+-        </BadgedButton>
++          {getIcon("notification")}
++          <Badge theme={_toBadgeTheme(theme)}>{theme.length}</Badge>
++        </Button>
+       ))}
+     </>
+   );
+ }
++
++function _toBadgeTheme(
++  theme: BadgeTheme | "default" | undefined,
++): BadgeTheme | undefined {
++  return theme === "default" ? "greyscale" : theme;
++}
+```
+
+## Button
+
+### ✅ remove-unused-props
+
+```sh
+npx @react-md/codemod v5-to-v6/button/remove-unused-props
+```
+
+The `Button` no longer supports the ripple props.
+
+```diff
+ import { Button } from "react-md";
+ import styles from "./styles.module.scss";
+
+ export default function Example() {
+   return (
+     <Button
+       onClick={() => {
+         // do something
+       }}
+-      disableRipple
+-      disableProgrammaticRipple
+-      disableEnterClick
+-      disableSpacebarClick
+-      disablePressedFallback
+-      enablePressedAndRipple
+-      rippleTimeout={100}
+-      rippleClassName={styles.ripple}
+-      rippleClassNames={{ enter: "", exit: "" }}
+-      rippleContainerClassName="example"
+     >
+       Hello, world!
+     </Button>
+   );
+ }
+```
+
+### ✅ rename-button-theme-class-names
+
+```sh
+npx @react-md/codemod v5-to-v6/button/rename-button-theme-class-names
+```
+
+The `buttonThemeClassNames` utility function was renamed to `button`.
+
+```diff
+ import cn from "classnames";
+ import type { ReactElement } from "react";
+ import type { ButtonThemeProps, LinkProps } from "react-md";
+-import { Link, buttonThemeClassNames } from "react-md";
++import { Link, button } from "react-md";
+
+ import styles from "./WithButtonStyles.module.scss";
+
+@@ -17,7 +17,7 @@ function LinkStyledButton({
+   return (
+     <Link
+       {...props}
+-      className={buttonThemeClassNames({
++      className={button({
+         disabled,
+         theme,
+         themeType,
+
+```
+
+### ✅ rename-fab
+
+```sh
+npx @react-md/codemod v5-to-v6/button/rename-fab
+```
+
+The `FAB` was renamed to `FloatingActionButton`.
+
+```diff
+ import { ReactNode, ReactElement } from "react";
+-import { FAB, FABProps, FABPosition } from "react-md";
++import {
++  FloatingActionButton,
++  FloatingActionButtonProps,
++  FloatingActionButtonPosition,
++} from "react-md";
+
+-interface CustomProps extends FABProps {
+-  altPosition?: FABPosition;
++interface CustomProps extends FloatingActionButtonProps {
++  altPosition?: FloatingActionButtonPosition;
+   children: ReactNode;
+ }
+
+@@ -10,8 +14,8 @@ export function Custom(props: CustomProps): ReactElement {
+   const { children, altPosition, ...remaining } = props;
+
+   return (
+-    <FAB {...remaining} position={altPosition}>
++    <FloatingActionButton {...remaining} position={altPosition}>
+       {children}
+-    </FAB>
++    </FloatingActionButton>
+   );
+ }
+```
+
+### ✅ rename-unstyled-button
+
+```sh
+npx @react-md/codemod v5-to-v6/button/rename-unstyled-button
+```
+
+The `UnstyledButton` component was renamed to `ButtonUnstyled`.
+
+```diff
+@@ -1,4 +1,4 @@
+-import { Button, UnstyledButton } from "react-md";
++import { Button, ButtonUnstyled } from "react-md";
+
+ export default function Example() {
+   return (
+@@ -10,21 +10,21 @@ export default function Example() {
+       >
+         Hello!
+       </Button>
+-      <UnstyledButton
++      <ButtonUnstyled
+         onClick={() => {
+           // do something else
+         }}
+       >
+         Unstyled 1
+-      </UnstyledButton>
+-      <UnstyledButton
++      </ButtonUnstyled>
++      <ButtonUnstyled
+         onClick={() => {
+           // do something else
+         }}
+         className="example-class-name"
+       >
+         Unstyled 2
+-      </UnstyledButton>
++      </ButtonUnstyled>
+     </>
+   );
+ }
+```
+
+## Card
+
+### ✅ card-actions-to-card-footer
+
+```sh
+npx @react-md/codemod v5-to-v6/card/card-actions-to-card-footer
+```
+
+The `CardActions` component was renamed to `CardFooter` and the `align` prop
+was renamed to `justify`.
+
+```diff
+ import { type ReactElement } from "react";
+-import { CardActions } from "react-md";
++import { CardFooter } from "react-md";
+
+ export default function Example(): ReactElement {
+   return (
+-    <CardActions align="start" className="example">
++    <CardFooter justify="start" className="example">
+       Content
+-    </CardActions>
++    </CardFooter>
+   );
+ }
+```
+
+### ✅ remove-deprecated-card-props
+
+```sh
+npx @react-md/codemod v5-to-v6/card/remove-deprecated-card-props
+```
+
+The deprecated `raiseable` prop was removed in favor of `raisable`.
+
+```diff
+ export default function Example() {
+   return (
+     <>
+-      <Card raiseable>Content</Card>
++      <Card raisable>Content</Card>
+       <Card raisable>Content</Card>
+       <Card>Content</Card>
+     </>
+```
+
+### ✅ update-card-content-props
+
+```sh
+npx @react-md/codemod v5-to-v6/card/update-card-content-props
+```
+
+The `CardContent` component updated the following props:
+
+- `disableExtraPadding` was renamed to `disableLastChildPadding`
+- `disableParagraphMargin` was removed
+
+```diff
+   return (
+     <>
+       <CardContent>Content</CardContent>
+-      <CardContent disableParagraphMargin>Content</CardContent>
+-      <CardContent disableExtraPadding>Content</CardContent>
++      <CardContent>Content</CardContent>
++      <CardContent disableLastChildPadding>Content</CardContent>
+       <CardContent disablePadding disableSecondaryColor className="custom">
+         Content
+       </CardContent>
+```
+
+### ✅ update-card-header-props
+
+```sh
+npx @react-md/codemod v5-to-v6/card/update-card-header-props
+```
+
+The `CardHeader` updated the following props:
+
+- `align` was removed
+- `beforeChildren` was renamed to `beforeAddon`
+- `afterChildren` was renamed to `afterAddon`
+- `contentClassName` was removed in favor of the new `contentProps`
+
+```diff
+   return (
+     <>
+       <CardHeader
+-        align="top"
+-        beforeChildren={<p>Hello</p>}
+-        afterChildren={<Typography>World!</Typography>}
+-        contentClassName="content-classname"
++        beforeAddon={<p>Hello</p>}
++        afterAddon={<Typography>World!</Typography>}
++        contentProps={{
++          className: "content-classname",
++        }}
+       >
+         Content
+       </CardHeader>
+-      <CardHeader contentClassName={styles.className}>Content</CardHeader>
+-      <CardHeader contentClassName={cn(styles.className, "another")}>
++      <CardHeader
++        contentProps={{
++          className: styles.className,
++        }}
++      >
++        Content
++      </CardHeader>
++      <CardHeader
++        contentProps={{
++          className: cn(styles.className, "another"),
++        }}
++      >
+         Content
+       </CardHeader>
+     </>
+```
+
+### ✅ update-card-subtitle-props
+
+```sh
+npx @react-md/codemod v5-to-v6/card/update-card-subtitle-props
+```
+
+The `CardSubtitle` updated the following props:
+
+- `noWrap` was removed in favor of the new `textOverflow` prop
+- `disableSecondaryColor` was removed in favor of the new `textColor` prop
+
+```diff
+ }: ExampleProps): ReactElement {
+   return (
+     <>
+-      <CardSubtitle noWrap>{children}</CardSubtitle>
+-      <CardSubtitle disableSecondaryColor>{children}</CardSubtitle>
++      <CardSubtitle textOverflow="nowrap">{children}</CardSubtitle>
++      <CardSubtitle textColor={null}>{children}</CardSubtitle>
+       <CardSubtitle
+-        noWrap={noWrap}
+-        disableSecondaryColor={disableSecondaryColor}
++        textOverflow={noWrap ? "nowrap" : undefined}
++        textColor={disableSecondaryColor ? null : undefined}
+       >
+         {children}
+       </CardSubtitle>
+```
+
+### ✅ update-card-title-props
+
+```sh
+npx @react-md/codemod v5-to-v6/card/update-card-title-props
+```
+
+The `CardTitle` updated the following props:
+
+- `noWrap` was removed in favor of the new `textOverflow` prop
+- `small` was removed in favor of setting the `type` `Typography` prop
+
+```diff
+   return (
+     <>
+       <CardTitle>{children}</CardTitle>
+-      <CardTitle small>{children}</CardTitle>
+-      <CardTitle small={false}>{children}</CardTitle>
+-      <CardTitle noWrap>{children}</CardTitle>
+-      <CardTitle noWrap={false}>{children}</CardTitle>
+-      <CardTitle small noWrap>
++      <CardTitle type="subtitle-1">{children}</CardTitle>
++      <CardTitle>{children}</CardTitle>
++      <CardTitle textOverflow="nowrap">{children}</CardTitle>
++      <CardTitle>{children}</CardTitle>
++      <CardTitle type="subtitle-1" textOverflow="nowrap">
+         {children}
+       </CardTitle>
+     </>
+```
+
+## Chip
+
+### ✅ update-chip-props
+
+```sh
+npx @react-md/codemod v5-to-v6/chip/update-chip-props
+```
+
+The `Chip` renamed the `noninteractable` prop to `noninteractive`.
+
+```diff
+ export default function Example(): ReactElement {
+   return (
+     <>
+-      <Chip noninteractable>Hello!</Chip>
++      <Chip noninteractive>Hello!</Chip>
+     </>
+   );
+ }
+```
+
+## Dialog
+
+## Divider
+
+### 🎨 vertical-divider-to-divider
+
+```sh
+npx @react-md/codemod v5-to-v6/divider/vertical-divider-to-divider
+```
+
+The `VerticalDivider` component was removed in favor of just enabling the
+`vertical` prop on the `Divider`.
+
+```diff
+ import { type ReactElement } from "react";
+-import { VerticalDivider } from "react-md";
++import { Divider } from "react-md";
+
+ export default function Example(): ReactElement {
+   return (
+     <>
+-      <VerticalDivider />
+-      <VerticalDivider maxHeight={0.8} />
+-      <VerticalDivider maxHeight={0.8} className="custom-class-name" />
++      <Divider vertical />
++      <Divider vertical />
++      <Divider className="custom-class-name" vertical />
+     </>
+   );
+ }
+```
+
+In addition, the somewhat undocumented `useVerticalDividerHeight` hook was removed
+and there is no replacement.
+
+```diff
++// TODO: The following react-md imports have been removed from the library and must be manually removed from the rest of the file: VerticalDividerHeight, VerticalDividerHookOptions, useVerticalDividerHeight
+ import { type ReactElement } from "react";
+-import {
+-  VerticalDividerHeight,
+-  VerticalDividerHookOptions,
+-  useVerticalDividerHeight,
+-} from "react-md";
+
+ type H = VerticalDividerHeight;
+ type O = VerticalDividerHookOptions;
+
+ export default function Example(): ReactElement {
+   const { ref, style } = useVerticalDividerHeight({
+     maxHeight: 0.8,
+   });
+
+   return <div style={style} ref={ref} vertical />;
+ }
+```
+
+## Elevation
+
+## Expansion Panel
+
+### ✅ update-expansion-panel-props
+
+```sh
+npx @react-md/codemod v5-to-v6/expansion-panel/update-expansion-panel-props
+```
+
+The `ExpansionPanel` updated the following props:
+
+- `raiseable` was renamed to `raisable`
+- `disablePadding` was renamed to `disableContentPadding`
+- `header` was renamed to `headerChildren`
+- `customHeader` was renamed to `header`
+
+```diff
+ export function SimpleExample(): ReactElement {
+   return (
+     <>
+-      <ExpansionPanel raiseable />
+-      <ExpansionPanel disablePadding />
+-      <ExpansionPanel disableLastParagraphMargin />
+-      <ExpansionPanel disableSecondaryColor />
+-      <ExpansionPanel disableSecondaryColor={false} />
+-      <ExpansionPanel disableSecondaryColor={flag || another} />
++      <ExpansionPanel raisable />
++      <ExpansionPanel disableContentPadding />
++      <ExpansionPanel />
++      <ExpansionPanel />
++      <ExpansionPanel
++        contentProps={{
++          disableSecondaryColor: false,
++        }}
++      />
++      <ExpansionPanel
++        contentProps={{
++          disableSecondaryColor: flag || another,
++        }}
++      />
+     </>
+   );
+ }
+
+ export function HeaderExample(): ReactElement {
+   return (
+     <>
+-      <ExpansionPanel header="Some Content">And some more</ExpansionPanel>
+-      <ExpansionPanel header={<Typography>Some JSX</Typography>}>
++      <ExpansionPanel headerChildren="Some Content">
+         And some more
+       </ExpansionPanel>
+-      <ExpansionPanel customHeader={<ExpansionPanelHeader />}>
+-        Content
++      <ExpansionPanel headerChildren={<Typography>Some JSX</Typography>}>
++        And some more
+       </ExpansionPanel>
++      <ExpansionPanel header={<ExpansionPanelHeader />}>Content</ExpansionPanel>
+     </>
+   );
+ }
+```
+
+### 🔧 use-panels-to-use-expansion-panel
+
+```sh
+npx @react-md/codemod v5-to-v6/expansion-panel/use-panels-to-use-expansion-panel
+```
+
+The `usePanels` hook was renamed to `useExpansionPanels` with a new API:
+
+- the `onKeyDown` event handler is no longer returned since the `ExpansionList`
+  no longer requires it
+- the hook returns an object instead of an ordered array
+- the panel props are generated using `getPanelProps` instead of providing a
+  `count` of panel props to generate
+- `preventAllClosed` was renamed to `preventAllCollapsed`
+- `idPrefix` was renamed to `baseId`
+- the `expandedIds` are now a `ReadonlySet<string>` instead of `string[]`
+
+```diff
+@@ -6,7 +6,7 @@ import {
+   Fieldset,
+   Grid,
+   useChecked,
+-  usePanels,
++  useExpansionPanels,
+ } from "react-md";
+
+ interface Props {
+@@ -25,19 +25,19 @@ function Example({
+     defaultExpandedIndex = multiple ? [1, 2] : 0;
+   }
+
+-  const [panels, onKeyDown] = usePanels({
+-    count: 3,
+-    idPrefix: "configuring-panels",
++  const { getPanelProps: getPanelProps } = useExpansionPanels({
++    baseId: "configuring-panels",
+     multiple,
+-    preventAllClosed,
++    preventAllCollapsed: preventAllClosed,
++
+     // this will be considered `0` if the `preventAllClosed` option is enabled
+     // but still `undefined`
+     defaultExpandedIndex,
+   });
+
+   return (
+-    <ExpansionList onKeyDown={onKeyDown}>
+-      <ExpansionPanel {...panels[0]} header="Panel 1">
++    <ExpansionList>
++      <ExpansionPanel {...getPanelProps(0)} header="Panel 1">
+         Nam lorem est, porta id tincidunt et, consectetur in nulla. Morbi cursus
+         at massa a feugiat. Mauris eu convallis elit, ac mollis metus. Quisque
+         pulvinar ante libero, ut laoreet dolor bibendum volutpat. In diam purus,
+@@ -46,7 +46,7 @@ function Example({
+         ultricies lacus in massa finibus gravida. Maecenas turpis libero,
+         fringilla nec sodales sed, lacinia eget libero.
+       </ExpansionPanel>
+-      <ExpansionPanel {...panels[1]} header="Panel 2">
++      <ExpansionPanel {...getPanelProps(1)} header="Panel 2">
+         Aenean rhoncus tristique fringilla. Phasellus ac libero porta, iaculis
+         quam quis, porta nibh. Maecenas laoreet dignissim magna quis ultricies.
+         Vivamus ut blandit nisl. Curabitur vel turpis vulputate, mollis ante in,
+@@ -54,7 +54,7 @@ function Example({
+         finibus lectus. Donec eleifend felis odio, vitae gravida purus ornare
+         sed.
+       </ExpansionPanel>
+-      <ExpansionPanel {...panels[2]} header="Panel 3">
++      <ExpansionPanel {...getPanelProps(2)} header="Panel 3">
+         Donec lacinia ut sem vitae molestie. Nam placerat tristique facilisis.
+         Aliquam iaculis augue eget mollis fermentum. Morbi mattis ultricies
+         lacinia. Fusce vitae commodo nisl. Donec congue arcu ut porta feugiat.
+```
+
+## Form
+
+## Icon
+
+## Layout
+
+## Link
+
+### 🔧 update-link-props
+
+```sh
+npx @react-md/codemod v5-to-v6/link/update-link-props
+```
+
+The `Link` component updated the following props:
+
+- `preventMaliciousTarget` was removed since browsers implement this behavior
+  automatically now
+- `flexCentered` was renamed to `flex`
+- the `component` prop was removed in favor of using the `link` utility function instead
+
+```diff
+   return (
+     <>
+       <Link href="#">Link 1</Link>
+-      <Link href="#" flexCentered>
++      <Link href="#" flex>
+         Link 1
+       </Link>
+-      <Link href="#" flexCentered={flexCentered}>
+-        Link 1
+-      </Link>
+-      <Link href="#" preventMaliciousTarget={false}>
++      <Link href="#" flex={flexCentered}>
+         Link 1
+       </Link>
++      <Link href="#">Link 1</Link>
+     </>
+   );
+ }
+```
+
+## List
+
+## Material Icons
+
+## Media
+
+## Menu
+
+## Overlay
+
+### 🔧 update-overlay-props
+
+```sh
+npx @react-md/codemod v5-to-v6/overlay/update-overlay-props
+```
+
+The `Overlay` updated the following props:
+
+- `hidden` was renamed to `noOpacity` so the native `hidden` attribute can be used
+- `onRequestClose` was removed in favor of using the `onClick` handler
+
+```diff
+     <>
+       <Overlay
+         visible={visible}
+-        onRequestClose={() => {
++        onClick={() => {
+           setVisible(false);
+         }}
+       />
+-      <Overlay visible={visible2} onRequestClose={hide} />
++      <Overlay visible={visible2} onClick={hide} />
+       <Overlay
+         visible={visible2}
+-        onRequestClose={() => {
++        onClick={() => {
+           hide();
+         }}
+-        hidden
++        noOpacity
+       />
+       <Overlay
+         visible={visible}
+-        onRequestClose={() => {
++        onClick={() => {
+           setVisible(false);
+         }}
+         clickable
+@@ -39,7 +39,7 @@ export default function Example({ handleClick }: ExampleProps): ReactElement {
+         onClick={(event) => {
+           handleClick?.(event);
+         }}
+-        onRequestClose={() => {
++        onClick={() => {
+           setVisible(false);
+         }}
+         clickable
+```
+
+## Portal
+
+### 🔧 use-new-portal-api
+
+```sh
+npx @react-md/codemod v5-to-v6/portal/use-new-portal-api
+```
+
+Most of the `Portal` changes cannot be automated due to the new portal
+container behavior, but should not affect most codebases since it is mostly an
+internal component. The changes are:
+
+- The `into` and `intoId` props were removed from the `Portal` component
+  - Use the new `PortalContainerProvider` instead
+- The `portal`, `portalInto`, and `portalIntoId` convenience props were removed
+  from all react-md components that used the `Portal`
+  - Use the new `PortalContainerProvider` instead
+- the `PortalInto` type was renamed to `PortalContainer` and no longer supports
+  functions for getting the portal node
+- the `ConditionalPortal` was removed in favor of using the `disabled` prop on
+  the `Portal` instead
+
+```diff
++// TODO: Check how the Portal prop `intoId` was used since it is no longer supported.
++// TODO: Check how the Portal prop `into` was used since it is no longer supported.
+ import { type ReactElement } from "react";
+ import { Portal } from "react-md";
+
+ export default function Example(): ReactElement {
+   return (
+     <>
+-      <Portal into={something}>Content</Portal>
+-      <Portal intoId="some-id">Content</Portal>
+-      <Portal into={somethingElse}>Content</Portal>
+-      <Portal intoId="some-other-id">Content</Portal>
++      <Portal>Content</Portal>
++      <Portal>Content</Portal>
++      <Portal>Content</Portal>
++      <Portal>Content</Portal>
+     </>
+   );
+ }
+```
+
+```diff
+-import { PortalInto } from "react-md";
++// TODO: The `PortalContainer` replaced the `PortalInto` type but does not support functions. Double check the usage before removing this line.
++import { PortalContainer } from "react-md";
+
+ export interface ExampleProps {
+-  portalInto: PortalInto;
++  portalInto: PortalContainer;
+ }
+```
+
+```diff
+ import { type ReactElement } from "react";
+-import { ConditionalPortal } from "react-md";
++import { Portal } from "react-md";
+
+ export default function Example(): ReactElement {
+   return (
+     <>
+-      <ConditionalPortal portal={false}>Content</ConditionalPortal>
+-      <ConditionalPortal>Hello, world!</ConditionalPortal>
+-      <ConditionalPortal>
++      <Portal disabled>Content</Portal>
++      <Portal disabled>Hello, world!</Portal>
++      <Portal disabled>
+         <div>Hello, world!</div>
+-      </ConditionalPortal>
++      </Portal>
+     </>
+   );
+ }
+```
+
+In addition, the `ConditionalPortal` was removed.
+
+## Progress
+
+### ✅ update-circular-progress-props
+
+```sh
+npx @react-md/codemod v5-to-v6/progress/update-circular-progress-props
+```
+
+The `CircularProgress` updated the following props:
+
+- `small` was renamed to `dense`
+- `centered` was renamed to `disableCentered`
+- `maxRotation` was removed
+
+```diff
+ export default function Example(): ReactElement {
+   return (
+     <>
+-      <CircularProgress id="some-id-1" small />
+-      <CircularProgress id="some-id-2" small={false} />
+-      <CircularProgress id="some-id-3" centered />
+-      <CircularProgress id="some-id-4" centered={false} />
+-      <CircularProgress id="some-id-5" maxRotation={360 * 1.5} />
++      <CircularProgress id="some-id-1" dense />
++      <CircularProgress id="some-id-2" />
++      <CircularProgress id="some-id-3" />
++      <CircularProgress id="some-id-4" disableCentered />
++      <CircularProgress id="some-id-5" />
+     </>
+   );
+ }
+```
+
+## Sheet 🎉
+
+## States
+
+## Table
+
+### 🔧 update-table-cell-props
+
+```sh
+npx @react-md/codemod v5-to-v6/table/update-table-cell-props
+```
+
+The `TableCell` updated the following props:
+
+- `colSpan` no longer supports a value of `100%` or any non-numbers
+  - ❌ cannot be automatically updated and must be set to the number of columns
+    in the table instead
+- `disablePadding` was removed in favor of the new `padding` prop
+
+```diff
++// TODO: Update the `TableCell` to have a `colSpan` number equal to the total number of columns in the table
+ import type { ReactElement } from "react";
+ import {
+   Table,
+@@ -33,7 +34,7 @@ export default function StickyColumnsPart3(): ReactElement {
+         </TableBody>
+         <TableFooter sticky>
+           <TableRow>
+-            <TableCell colSpan="100%">
++            <TableCell>
+               This is the sticky footer content. Any components can be rendered
+               inside.
+             </TableCell>
+-            <TableCell disablePadding className="example">
++            <TableCell padding="none" className="example">
+               Content
+             </TableCell>
+```
+
+### 🔧 update-table-checkbox-props
+
+```sh
+npx @react-md/codemod v5-to-v6/table/update-table-checkbox-props
+```
+
+The `TableCheckbox` no longer supports the `cellId` prop in favor of the `id` prop.
+
+```diff
+ export function Example(props): ReactElement {
+   return (
+     <>
+-      <TableCheckbox {...props} cellId="some-unique-id" />
++      <TableCheckbox {...props} />
+     </>
+   );
+ }
+```
+
+### ✅ caption-to-typography
+
+```sh
+npx @react-md/codemod v5-to-v6/table/caption-to-typography
+```
+
+The `Caption` component was removed in favor of using the existing `Typography`
+component.
+
+```diff
+@@ -1,11 +1,11 @@
+ import type { ReactElement } from "react";
+ import {
+-  Caption,
+   Table,
+   TableBody,
+   TableCell,
+   TableHeader,
+   TableRow,
++  Typography,
+ } from "react-md";
+
+ import styles from "./DefaultStyles.module.scss";
+@@ -13,7 +13,7 @@ import styles from "./DefaultStyles.module.scss";
+ export default function DefaultStyles(): ReactElement {
+   return (
+     <Table className={styles.centered}>
+-      <Caption>This is a caption</Caption>
++      <Typography type="caption">This is a caption</Typography>
+       <TableHeader>
+         <TableRow>
+           <TableCell>Column 1</TableCell>
+```
+
+## Tabs
+
+## Theme
+
+## Transition
+
+### 🔧 update-scale-transition
+
+```sh
+npx @react-md/codemod v5-to-v6/transition/update-scale-transition
+```
+
+The `ScaleTransition` component no longer supports the `portal`, `portalInto`, and
+`portalIntoId` props.
+
+```diff
++// TODO: The `portalInto` for the `ScaleTransition` cannot be converted automatically.
++// TODO: The `portalIntoId` for the `ScaleTransition` cannot be converted automatically.
+ import { type ReactElement } from "react";
+-import { ScaleTransition } from "react-md";
++import { Portal, ScaleTransition } from "react-md";
+ import SomeComponent from "./SomeComponent";
+
+ export default function Example(): ReactElement {
+   return (
+     <>
+-      <ScaleTransition portalIntoId="some-id" transitionIn={transitionIn}>
+-        <SomeComponent />
+-      </ScaleTransition>
++      <Portal>
++        <ScaleTransition transitionIn={transitionIn}>
++          <SomeComponent />
++        </ScaleTransition>
++      </Portal>
+     </>
+   );
+ }
+```
+
+## Tree
+
+There were a lot of breaking changes for the `Tree` API and cannot be fully
+converted automatically for complex implementations. The list of changes are:
+
+- The `Tree` component updated the following props:
+  - the `itemRenderer` and `getItemProps` have been removed in favor of the new
+    `renderer`
+  - `labelKey`, `valueKey`, `getItemKey`, and `getItemValue` were removed
+  - `onItemExpansion` was renamed to `toggleTreeItemExpansion`
+  - `onMultiItemExpansion` was renamed to `expandMultipleTreeItems`
+  - `onItemSelection` was renamed to `toggleTreeItemSelection`
+  - `onMultiItemSelection` was renamed to `expandMultipleTreeItems`
+- The `Tree` component no longer forwards refs and the new `treeRef` prop
+  should be used instead
+- `defaultTreeItemRenderer` was removed in favor of the new
+  `DefaultTreeItemRenderer` component
+- `useTreeItemExpansion` was renamed to `useTreeExpansion` and the returned
+  value was updated so that:
+  - `expandedIds` is now a `ReadonlySet<string>` instead of `string[]`
+  - `onItemExpansion` was renamed to `toggleTreeItemExpansion`
+  - `onMultiItemExpansion` was renamed to `expandMultipleTreeItems`
+- `useTreeItemSelection` was renamed to `useTreeSelection` and the returned
+  value was updated so that:
+  - `selectedIds` is now a `ReadonlySet<string>` instead of `string[]`
+  - `onItemSelection` was renamed to `toggleTreeItemSelection`
+  - `onMultiItemSelection` was renamed to `expandMultipleTreeItems`
+
+Typescript type changes:
+
+- `TreeItemExpansion` type was renamed to `TreeExpansion`
+- `TreeItemSelection` type was renamed to `TreeSelection`
+- `TreeItemId` was removed in favor of just using a `string`
+- `TreeItemIds` was renamed to `TreeItemNode`
+- `ExpandedIds` and `SelectedIds` were removed in favor of `TreeItemIdSet`
+- `GetItemProps` and `TreeItemRenderer` was removed in favor of `TreeItemRendererProps`
+
+The new `renderer` prop on the `Tree` should be a component that accepts the
+following props:
+
+- `item` - the current tree item
+- `data` - the full tree data
+- `parents` - an ordered list of parent tree items
+- `children` - any content to render if the current `item` has child items
+
+One of the main differences with this new API is that the `expanded`,
+`selected`, and `focused` states are no longer provided by default since it is
+handled by the `TreeItem` component internally. Otherwise, the `TreeItem` no
+longer supports the `expanderLeft` icon so icons must be provided on the `Tree`
+component itself using the `TreeProvider` around each `TreeItem`.
+
+> !Info! See the [Custom Tree Item Renderer](/components/tree#custom-tree-item-renderer)
+> example for an in-depth example using the API or the diff shown below for
+> [convert-get-item-props](#-convert-get-item-props)
+
+All the following codemods can be run at once using:
+
+```sh
+npx @react-md/codemod v5-to-v6/tree/everything
+```
+
+```diff
+@@ -1,13 +1,21 @@
++// TODO: The `getItemProps` have been removed from the `Tree` component and need to be manually changed. The `renderer` prop is the closest in functionality.
+ import cn from "classnames";
+-import type { ReactElement, ReactNode } from "react";
+-import type { GetItemProps, TreeData, TreeItemIds } from "react-md";
++import { ReactElement, ReactNode, useId } from "react";
++
+ import {
+   ArrowDropDownSVGIcon,
++  DefaultTreeItemRenderer,
+   FolderOpenSVGIcon,
+   FolderSVGIcon,
+   Tree,
+-  useTreeItemExpansion,
+-  useTreeItemSelection,
++  TreeData,
++  TreeItemNode,
++  TreeItemRendererProps,
++  TreeProvider,
++  useKeyboardMovementContext,
++  useTreeContext,
++  useTreeExpansion,
++  useTreeSelection,
+ } from "react-md";
+
+ import Html5SVGIcon from "icons/Html5SVGIcon";
+@@ -19,7 +27,7 @@ import createIdGenerator from "./createIdGenerator";
+ import styles from "./CustomizingTreeItems.module.scss";
+
+ type ItemType = "folder" | "html" | "typescript" | "scss" | "text";
+-interface Item extends TreeItemIds {
++interface Item extends TreeItemNode {
+   name: string;
+   type: ItemType;
+ }
+@@ -28,7 +36,7 @@ const uuid = createIdGenerator("custom-tree-items");
+ const createItem = (
+   name: string,
+   type: ItemType,
+-  parentId: string | null = null
++  parentId: string | null = null,
+ ): Item => {
+   const itemId = uuid();
+   return {
+@@ -57,11 +65,25 @@ const data = [
+   index,
+ ].reduce<TreeData<Item>>(
+   (tree, item) => ({ ...tree, [item.itemId]: item }),
+-  {}
++  {},
+ );
+
+-const getItemProps: GetItemProps<Item> = (item) => {
+-  const { selected, focused, expanded, type } = item;
++// TODO: This might need to be renamed to match normal component naming conventions
++const getItemProps = function Renderer(
++  props: TreeItemRendererProps<Item>,
++): ReactElement {
++  const { item } = props;
++
++  const { type, itemId } = item;
++
++  const context = useTreeContext();
++
++  const { expandedIds, selectedIds } = context;
++
++  const expanded = expandedIds.has(itemId);
++  const selected = selectedIds.has(itemId);
++  const id = useId();
++  const focused = useKeyboardMovementContext().activeDescendantId === id;
+   let leftAddon: ReactNode = null;
+   switch (type) {
+     case "folder":
+@@ -82,22 +104,24 @@ const getItemProps: GetItemProps<Item> = (item) => {
+     // no default
+   }
+
+-  return {
+-    leftAddon,
+-    expanderIcon: <ArrowDropDownSVGIcon />,
+-    className: cn(styles.item, {
+-      [styles.focused]: focused,
+-      [styles.selected]: selected,
+-    }),
+-  };
++  return (
++    <TreeProvider {...context} expanderIcon={<ArrowDropDownSVGIcon />}>
++      <DefaultTreeItemRenderer
++        {...props}
++        leftAddon={leftAddon}
++        className={cn(styles.item, {
++          [styles.focused]: focused,
++          [styles.selected]: selected,
++        })}
++        id={id}
++      />
++    </TreeProvider>
++  );
+ };
+
+ export default function Demo(): ReactElement {
+-  const selection = useTreeItemSelection([demo.itemId], false);
+-  const expansion = useTreeItemExpansion([
+-    srcFolder.itemId,
+-    publicFolder.itemId,
+-  ]);
++  const selection = useTreeSelection([demo.itemId], false);
++  const expansion = useTreeExpansion([srcFolder.itemId, publicFolder.itemId]);
+
+   return (
+     <Tree
+```
+
+### 🔧 convert-get-item-props
+
+```sh
+npx @react-md/codemod v5-to-v6/tree/convert-get-item-props
+```
+
+```diff
+ import cn from "classnames";
+-import type { ReactNode } from "react";
+-import type { GetItemProps } from "react-md";
++import { ReactElement, ReactNode, useId } from "react";
+ import {
+   ArrowDropDownSVGIcon,
++  DefaultTreeItemRenderer,
+   FolderOpenSVGIcon,
+   FolderSVGIcon,
++  TreeItemRendererProps,
++  TreeProvider,
++  useKeyboardMovementContext,
++  useTreeContext,
+ } from "react-md";
+
+ import Html5SVGIcon from "icons/Html5SVGIcon";
+ import FileSVGIcon from "./FileSVGIcon";
+ import SassSVGIcon from "./SassSVGIcon";
+ import TypescriptSVGIcon from "./TypescriptSVGIcon";
+ import { Item } from "./anotherFile";
+ import styles from "./styles.module.scss";
+
+-export const getItemProps: GetItemProps<Item> = ({
+-  selected,
+-  focused,
+-  expanded,
+-  type,
+-  ...item
+-}) => {
++// TODO: This might need to be renamed to match normal component naming conventions
++export const getItemProps = function Renderer(
++  props: TreeItemRendererProps<Item>,
++): ReactElement {
++  const { item: tempItem } = props;
++
++  const { type, itemId, ...item } = tempItem;
++
++  const context = useTreeContext();
++
++  const { expandedIds, selectedIds } = context;
++
++  const expanded = expandedIds.has(itemId);
++  const selected = selectedIds.has(itemId);
++  const id = useId();
++  const focused = useKeyboardMovementContext().activeDescendantId === id;
+   let leftAddon: ReactNode = null;
+   switch (type) {
+     case "folder":
+       leftAddon = expanded ? <FolderOpenSVGIcon /> : <FolderSVGIcon />;
+       break;
+     case "html":
+       leftAddon = <Html5SVGIcon />;
+       break;
+     case "text":
+       leftAddon = <FileSVGIcon />;
+       break;
+     case "scss":
+       leftAddon = <SassSVGIcon />;
+       break;
+     case "typescript":
+       leftAddon = <TypescriptSVGIcon />;
+       break;
+     // no default
+   }
+
+-  return {
+-    leftAddon,
+-    expanderIcon: <ArrowDropDownSVGIcon />,
+-    className: cn(styles.item, {
+-      [styles.focused]: focused,
+-      [styles.selected]: selected,
+-    }),
+-  };
++  return (
++    <TreeProvider {...context} expanderIcon={<ArrowDropDownSVGIcon />}>
++      <DefaultTreeItemRenderer
++        {...props}
++        leftAddon={leftAddon}
++        className={cn(styles.item, {
++          [styles.focused]: focused,
++          [styles.selected]: selected,
++        })}
++        id={id}
++      />
++    </TreeProvider>
++  );
+ };
+```
+
+### 🔧 item-renderer-to-render-component
+
+```sh
+npx @react-md/codemod v5-to-v6/tree/item-renderer-to-render-component
+```
+
+```diff
+-import { TreeItemRenderer, defaultTreeItemRenderer } from "react-md";
++// TODO: The `defaultTreeItemRenderer` has been replaced by the `DefaultTreeItemRenderer` component and cannot automatically be converted
++// TODO: The `TreeItemRenderer` type has been replaced by the `TreeItemRendererProps` type and cannot automatically be converted
++import { TreeItemRendererProps, DefaultTreeItemRenderer } from "react-md";
+ import { MyTreeItem } from "./types";
+ import MyFancyNonTreeItem from "./MyFancyNonTreeItem";
+
+ export const itemRenderer: TreeItemRenderer<MyTreeItem> = (
+   itemProps,
+   item,
+   treeProps
+ ) => {
+   const { key } = itemProps;
+   const { isCustom } = item;
+   if (isCustom) {
+     return <MyFancyNonTreeItem item={item} key={key} />;
+   }
+
+   return defaultTreeItemRenderer(itemProps, item, treeProps);
+ };
+```
+
+### ✅ update-simple-types
+
+```sh
+npx @react-md/codemod v5-to-v6/tree/update-simple-types
+```
+
+```diff
+-import { TreeItemId, TreeItemIds, ExpandedIds, SelectedIds } from "react-md";
++import { TreeItemIdSet, TreeItemNode } from "react-md";
+
+-export interface Example1 extends TreeItemIds {
+-  itemId: TreeItemId;
+-  selectedIds: SelectedIds;
+-  expandedIds: ExpandedIds;
++export interface Example1 extends TreeItemNode {
++  itemId: string;
++  selectedIds: TreeItemIdSet;
++  expandedIds: TreeItemIdSet;
+ }
+```
+
+### 🔧 update-tree-props
+
+```sh
+npx @react-md/codemod v5-to-v6/tree/update-tree-props
+```
+
+```diff
+   return (
+     <>
+       <Tree
+-        labelKey="example"
+-        valueKey="example-2"
+-        getItemLabel={(item) => item.something}
+-        getItemValue={(item) => item.somethingElse}
+-        onItemExpansion={(itemId) => {
++        toggleTreeItemExpansion={(itemId) => {
+           expand(itemId);
+         }}
+-        onMultiItemExpansion={(itemIds) => {
++        expandMultipleTreeItems={(itemIds) => {
+           setExpanded(itemIds);
+         }}
+-        onItemSelect={(itemId) => {
++        toggleTreeItemSelection={(itemId) => {
+           select(itemId);
+         }}
+-        onMultiItemSelect={(itemIds) => {
++        selectMultipleTreeItems={(itemIds) => {
+           multiSelect(itemIds);
+         }}
+       />
+```
+
+### 🔧 use-tree-hooks
+
+```sh
+npx @react-md/codemod v5-to-v6/tree/use-tree-hooks
+```
+
+```diff
+ import type { ReactElement } from "react";
+-import { Tree, useTreeItemSelection, useTreeItemExpansion } from "react-md";
++import { Tree, useTreeSelection, useTreeExpansion } from "react-md";
+
+ import folders from "./folders";
+
+ export default function Demo(): ReactElement {
+-  const { selectedIds, multiSelect, onItemSelect, onMultiItemSelect } =
+-    useTreeItemSelection([], false);
+-  const { expandedIds, onItemExpansion, onMultiItemExpansion } =
+-    useTreeItemExpansion([]);
++  const {
++    selectedIds,
++    multiSelect,
++    toggleTreeItemSelection: onItemSelect,
++    selectMultipleTreeItems: onMultiItemSelect,
++  } = useTreeSelection([], false);
++  const {
++    expandedIds,
++    toggleTreeItemExpansion: onItemExpansion,
++    expandMultipleTreeItems: onMultiItemExpansion,
++  } = useTreeExpansion([]);
+
+   return (
+     <Tree
+```
+
+## Tooltip
+
+### 🔧 convert-use-tooltip
+
+```sh
+npx @react-md/codemod v5-to-v6/tooltip/convert-use-tooltip
+```
+
+The `useTooltip` went through an API change since it no longer uses the shared
+"hover mode API" and instead has its own `TooltipHoverModeProvider`. The other
+changes are:
+
+- `baseId` was renamed to `id`
+- `touchTime` and `focusTime` were removed in favor of `hoverTimeout`
+- `disableHoverMode` was removed as an option
+- the returned value was updated:
+  - `stuck`, `active`, `onClick`, `onMouseEnter`, `onMouseLeave`, and `handlers`
+    were removed
+  - `clearHoverTimeout` was renamed to `clearVisibilityTimeout`
+  - `enableHoverMode`, `disableHoverMode`, and `startDisableTimer` were removed
+    but available through the new `useTooltipHoverMode` hook
+
+```diff
++// TODO: `useTooltip` no longer supports the `disableHoverMode` option and was removed. See the new hover mode API docs or define the `hoverTimeout` to option.
+ import { type ReactElement } from "react";
+ import { Button, Tooltip, useTooltip } from "react-md";
+
+ export default function Example(): ReactElement {
+   const { elementProps, tooltipProps } = useTooltip({
+-    baseId: "example-1-id",
++    id: "example-1-id",
++
+     onClick(event) {
+       // DO SOMETHING
+     },
+-    touchTime: 500,
+-    focusTime: 400,
+-    disableHoverMode: true,
++
++    hoverTimeout: 400,
+   });
+   return (
+     <>
+```
+
+If the hover mode API was used, there will be a diff similar to:
+
+```diff
++// TODO: `useTooltip` no longer returns the following keys from the hover mode api and must manually be updated: stuck, active, onClick, onMouseEnter, onMouseLeave
++// TODO: `useTooltip` no longer returns the `handlers` object. The event handlers can be extracted from the `elementProps` if they are still needed.
+ import { type ReactElement } from "react";
+-import { Button, Tooltip, useTooltip } from "react-md";
++import { Button, Tooltip, useTooltip, useTooltipHoverMode } from "react-md";
+
+ export default function Example(): ReactElement {
+   const {
+-    elementProps,
+-    tooltipProps,
+-    stuck,
+-    active,
+-    onClick,
+-    onMouseEnter,
+-    onMouseLeave,
+-    handlers,
+     enableHoverMode: enable,
+     disableHoverMode,
+     startDisableTimer,
+-    clearHoverTimeout,
++  } = useTooltipHoverMode();
++
++  const {
++    elementProps,
++    tooltipProps,
++    clearVisibilityTimeout: clearHoverTimeout,
+   } = useTooltip({
+-    baseId: "example-1-id",
++    id: "example-1-id",
+     onClick(event) {
+       // DO SOMETHING
+     },
+```
+
+### 🔧 remove-tooltipped-component
+
+```sh
+npx @react-md/codemod v5-to-v6/tooltip/remove-tooltipped-component
+```
+
+The `Tooltipped` component has been removed and a custom implementation must be
+used instead.
+
+```diff
++// TODO: The `Tooltipped` component has been removed. Update the code to use the `useTooltip` hook instead.
+ import { type ReactNode } from "react";
+-import { SimplePosition, Tooltipped } from "react-md";
++import { SimplePosition, useTooltip } from "react-md";
+
+ interface Test1Props {
+   onClick?(event: MouseEvent): void;
+```
+
+### 🔧 update-tooltip-props
+
+```sh
+npx @react-md/codemod v5-to-v6/tooltip/update-tooltip-props
+```
+
+The `Tooltip` component updated the following props:
+
+- `portal` was renamed to `disablePortal`
+- `portalInto` and `portalIntoId` were removed due to the new portal API
+- `lineWrap` was removed in favor of the new `textOverflow` prop
+
+```diff
+   return (
+     <>
+       <Tooltip>Hello</Tooltip>
+-      <Tooltip portal>Hello</Tooltip>
+-      <Tooltip portal={false}>Hello</Tooltip>
+-      <Tooltip portalInto={() => document.getElementById("some-node")}>
+-        Hello
+-      </Tooltip>
+-      <Tooltip portalIntoId="some-dom-id">Hello</Tooltip>
+-      <Tooltip lineWrap>Hello</Tooltip>
+-      <Tooltip lineWrap={true}>Hello</Tooltip>
+-      <Tooltip lineWrap={lineWrap}>Hello</Tooltip>
+-      <Tooltip lineWrap={false}>Hello</Tooltip>
++      <Tooltip>Hello</Tooltip>
++      <Tooltip disablePortal>Hello</Tooltip>
++      <Tooltip>Hello</Tooltip>
++      <Tooltip>Hello</Tooltip>
++      <Tooltip>Hello</Tooltip>
++      <Tooltip>Hello</Tooltip>
++      <Tooltip textOverflow={lineWrap ? "allow" : "nowrap"}>Hello</Tooltip>
++      <Tooltip textOverflow="nowrap">Hello</Tooltip>
+     </>
+   );
+ }
+```
+
+## Typography
+
+### ❌ remove-removed-types
+
+```sh
+npx @react-md/codemod v5-to-v6/typography/remove-removed-types
+```
+
+The following types were removed and cannot be migrated automatically.
+
+```diff
+-import {
+-  TextContainerSize,
+-  TextContainerRenderFunction,
+-  TypographyRenderFunction,
+-} from "react-md";
+-
++// TODO: Remove the `TypographyRenderFunction` usage since it no longer exists.
++// TODO: Remove the `TextContainerRenderFunction` usage since it no longer exists.
++// TODO: Remove the `TextContainerSize` usage since it no longer exists.
+ const x: TextContainerRenderFunction = ({ className }) => <>{className}</>;
+ const y: TypographyRenderFunction = ({ className }) => <>{className}</>;
+```
+
+### ✅ update-text-container-props
+
+```sh
+npx @react-md/codemod v5-to-v6/typography/update-text-container-props
+```
+
+The `TextContainer` no longer supports the `size` prop and should be removed.
+
+```diff
+       <TextContainer>
+         <Typography>Hello, world!</Typography>
+       </TextContainer>
+-      <TextContainer size="auto">
++      <TextContainer>
+         <Typography>Hello, world!</Typography>
+       </TextContainer>
+-      <TextContainer size="mobile">
++      <TextContainer>
+         <Typography>Hello, world!</Typography>
+       </TextContainer>
+-      <TextContainer size={size}>
++      <TextContainer>
+         <Typography>Hello, world!</Typography>
+       </TextContainer>
+     </>
+```
+
+### ✅ update-typography-props
+
+```sh
+npx @react-md/codemod v5-to-v6/typography/update-typography-props
+```
+
+The `Typography` and `SrOnly` components renamed the `component` prop to `as`.
+
+```diff
+ export default function Example(): ReactElement {
+   return (
+     <>
+-      <Typography component="div">Hello, world!</Typography>
+-      <Typography component={CustomElement}>Hello, world!</Typography>
+-      <SrOnly component="div">Hello, world!</SrOnly>
+-      <SrOnly component={CustomElement}>Hello, world!</SrOnly>
++      <Typography as="div">Hello, world!</Typography>
++      <Typography as={CustomElement}>Hello, world!</Typography>
++      <SrOnly as="div">Hello, world!</SrOnly>
++      <SrOnly as={CustomElement}>Hello, world!</SrOnly>
+     </>
+   );
+ }
+```
+
+In addition, the `Typography` and `SrOnly` components no longer support the
+child render function behavior and prefer the `typography()` or `srOnly()`
+class name utility functions instead.
+
+❌ This cannot be updated automatically.
+
+```diff
++// TODO: Check the `Typography` usage to see if using the removed children function renderer behavior for getting the class name.
+ import { type ReactElement } from "react";
+-import { Typography } from "react-md";
++import { Typography } from "react-md";
+ import CustomComponent from "./CustomComponent";
+
+ export default function Example(): ReactElement {
+   return (
+-    <Typography
+-      children={({ className }) => (
+-        <CustomComponent classNameProp={className}>
+-          Hello, world!
+-        </CustomComponent>
+-      )}
+-    />
++    <CustomComponent classNameProp={typography()}>
++      Hello, world!
++    </CustomComponent>
+   );
+ }
+```
+
+## Utils
+
+### ✅ dir-to-writing-direction-provider
+
+```sh
+npx @react-md/codemod v5-to-v6/utils/dir-to-writing-direction-provider
+```
+
+There have been a few breaking changes around handling the `dir` attribute:
+
+- `DEFAULT_DIR` was renamed to `DEFAULT_WRITING_DIRECTION`
+- `Dir` was renamed to `WritingDirectionProvider`
+
+Typescript only:
+
+- `DirProps` was renamed to `WritingDirectionProviderProps`
+- `WritingDirect` was renamed to `Dir`
+
+```diff
+ import { type ReactElement } from "react";
+-import { Dir, DirProps, DEFAULT_DIR, WritingDirection, useDir } from "react-md";
++import {
++  WritingDirectionProvider,
++  WritingDirectionProviderProps,
++  DEFAULT_WRITING_DIRECTION,
++  Dir,
++  useDir,
++} from "react-md";
+
+-export function Example1(props: DirProps): ReactElement {
+-  return <Dir defaultDir={DEFAULT_DIR} {...props} />;
++export function Example1(props: WritingDirectionProviderProps): ReactElement {
++  return (
++    <WritingDirectionProvider
++      defaultDir={DEFAULT_WRITING_DIRECTION}
++      {...props}
++    />
++  );
+ }
+
+ export function Example2(): ReactElement {
+-  let dir: WritingDirection = "ltr";
++  let dir: Dir = "ltr";
+   if (something) {
+     dir = "rtl";
+   }
+
+-  return <Dir defaultDir={dir} />;
++  return <WritingDirectionProvider defaultDir={dir} />;
+ }
+
+ export function Example3(): ReactElement {
+```
+
+### ✅ nearest-parameters-to-object
+
+```sh
+npx @react-md/codemod v5-to-v6/utils/nearest-parameters-to-object
+```
+
+The `nearest` utility function was updated to accept a single object parameter instead of multiple parameters.
+
+```diff
+ const steps = range;
+ const minValue = 2000;
+ const maxValue = 8000;
+-expect(nearest(10000, min, maxValue, steps, range)).toBe(maxValue);
+-expect(nearest(0, minValue, max, steps, range)).toBe(minValue);
++expect(
++  nearest({
++    value: 10000,
++    min: min,
++    max: maxValue,
++    steps: steps,
++    range: range,
++  }),
++).toBe(maxValue);
++expect(
++  nearest({
++    value: 0,
++    min: minValue,
++    max: max,
++    steps: steps,
++    range: range,
++  }),
++).toBe(minValue);
+```
+
+### ❌ remove-scroll-listener
+
+```sh
+npx @react-md/codemod v5-to-v6/utils/remove-scroll-listener
+```
+
+The `useScrollListener` hook and `ScrollListener` component have been removed
+and must be implemented manually.
+
+```diff
++// TODO: The `ScrollListener`/`useScrollListener` have been removed from react-md. You will need to implement their behavior manually.
+ import { ArrowDropDownSVGIcon } from "@react-md/material-icons";
+ import type { CSSProperties, ReactElement } from "react";
+ import { useCallback, useRef, useState } from "react";
+@@ -6,12 +7,10 @@ import {
+   List,
+   ListItem,
+   Overlay,
+-  ScrollListener,
+   TextIconSpacing,
+   Typography,
+   getFixedPosition,
+   useToggle,
+-  useScrollListener,
+ } from "react-md";
+
+ import styles from "./SimpleExample.module.scss";
+@@ -38,10 +37,6 @@ export default function SimpleExample(): ReactElement {
+     // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, []);
+
+-  useScrollListener({
+-    onUpdate: updatePosition,
+-  });
+-
+   return (
+     <div className={styles.container}>
+       <Button
+@@ -77,7 +72,6 @@ export default function SimpleExample(): ReactElement {
+             }
+           }}
+         >
+-          <ScrollListener onScroll={updatePosition} />
+           {Array.from({ length: 6 }).map((_, i) => (
+             <ListItem id={`menu-item-${i}`} key={i} role="menuitem">
+               {`Option ${i + 1}`}
+
+```
+
+### ✅ update-resize-listener
+
+```sh
+npx @react-md/codemod v5-to-v6/utils/update-resize-listener
+```
+
+The `useResizeListener` options have been updated as follows:
+
+- `onResize` renamed to `onUpdate`
+- `immediate` as been removed
+- `options` has been removed and instead should be passed directly to the hook
+- `enabled` has been renamed to `disabled`
+
+```diff
+ export default function Example(): null {
+   const [size, setSize] = useState(window.innerWidth);
+   useResizeListener({
+-    onResize() {
++    onUpdate() {
+       setSize(window.innerWidth);
+     },
+   });
+
+   useResizeListener({
+-    onResize: () => setSize(window.innerWidth),
+-    enabled: false,
++    onUpdate: () => setSize(window.innerWidth),
++    disabled: true,
+   });
+   useResizeListener({
+-    onResize: () => setSize(window.innerWidth),
+-    enabled: someFlag || anotherFlag,
++    onUpdate: () => setSize(window.innerWidth),
++    disabled: !(someFlag || anotherFlag),
+   });
+   useResizeListener({
+-    immediate: false,
+-    onResize: () => setSize(window.innerWidth),
+-    options: false,
++    onUpdate: () => setSize(window.innerWidth),
++    capture: false,
+   });
+   useResizeListener({
+-    immediate: someFlag,
+-    onResize: () => {
++    onUpdate: () => {
+       console.log(window.innerWidth);
+     },
+-    options: {
+-      once: true,
+-      passive: true,
+-    },
++    once: true,
++    passive: true,
+   });
+```
+
+In addition, the `ResizeListener` component has been removed in favor of using the
+`useResizeListener` hook.
+
+```diff
+ import type { ReactElement } from "react";
+ import { useState } from "react";
+-import { Checkbox, ResizeListener, Typography, useChecked } from "react-md";
++import { Checkbox, Typography, useChecked, useResizeListener } from "react-md";
+
+ import CodeBlock from "./CodeBlock";
+
+@@ -16,6 +16,11 @@ export default function Demo(): ReactElement {
+   const [enabled, handleEnabledChange] = useChecked(true);
+   const [immediate, handleImmediateChange] = useChecked(true);
+
++  useResizeListener({
++    onUpdate: () => setSize(window.innerWidth),
++    disabled: !enabled,
++  });
++
+   return (
+     <>
+       <Checkbox
+@@ -32,12 +37,7 @@ export default function Demo(): ReactElement {
+         onChange={handleImmediateChange}
+         label="Invoke on mount"
+       />
+-      {enabled && (
+-        <ResizeListener
+-          immediate={immediate}
+-          onResize={() => setSize(window.innerWidth)}
+-        />
+-      )}
++
+       <Typography>The current app size is:</Typography>
+       <CodeBlock suppressHydrationWarning>{size}px</CodeBlock>
+     </>
+```
+
+### ✅ update-use-resize-observer
+
+```sh
+npx @react-md/codemod v5-to-v6/utils/update-use-resize-observer
+```
+
+The `useResizeObserver` hook was updated so that it:
+
+- accepts a single argument param
+  - the callback should now be set to the `onUpdate` property
+- only returns a `refCallback` instead of a tuple
+- the callback function now provides the `ResizeObserverEntry` instead of the
+  `ResizeObserverElementData`
+  - if the `height` or `width` are needed, get from the `entry.contentRect` or
+    `entry.borderBoxSize[0]`
+  - if the `element` is needed, use `entry.target`
+  - if the `scrollHeight` or `scrollWidth` are needed, use
+    `entry.target.scrollHeight` or `entry.target.scrollWidth`
+
+```diff
+ export default function Example(): ReactElement {
+   const [state, setState] = useState();
+-  const [, refCallback] = useResizeObserver(
+-    useCallback(
+-      (resizeData) =>
+-        setState({
+-          height: resizeData.scrollHeight,
+-          width: resizeData.scrollWidth,
+-        }),
+-      []
+-    )
+-  );
++  const refCallback = useResizeObserver({
++    onUpdate: useCallback((entry) => {
++      setState({
++        height: entry.target.scrollHeight,
++        width: entry.target.scrollWidth,
++      });
++    }, []),
++  });
+
+   return <></>;
+ }
+```
+
+If a `ref` is required within the component, provide it using the `ref` option
+like before:
+
+```diff
+ export default function Example(): ReactElement {
+   const [state, setState] = useState();
+   const nodeRef = useRef();
+-  const [ref, refCallback] = useResizeObserver(
+-    useCallback(
+-      (resizeData) =>
+-        setState({
+-          height: resizeData.scrollHeight,
+-          width: resizeData.scrollWidth,
+-        }),
+-      []
+-    ),
+-    {
+-      ref: nodeRef,
+-    }
+-  );
++  const refCallback = useResizeObserver({
++    onUpdate: useCallback((entry) => {
++      setState({
++        height: entry.target.scrollHeight,
++        width: entry.target.scrollWidth,
++      });
++    }, []),
++
++    ref: nodeRef,
++  });
+
+  // do stuff with `nodeRef.current`
+```
+
+If the `nodeRef` is dynamic, wrap with `useEnsuredRef`:
+
+```diff
+ @@ -5,7 +5,7 @@ import {
+   useEffect,
+   useState,
+ } from "react";
+-import { useResizeObserver } from "react-md";
++import { useEnsuredRef, useResizeObserver } from "react-md";
+
+ interface ExampleProps {
+   nodeRef?: Ref<HTMLDivElement>;
+@@ -13,19 +13,17 @@ interface ExampleProps {
+
+ export default function Example({ nodeRef }: ExampleProps): ReactElement {
+   const [state, setState] = useState();
+-  const [ref, refCallback] = useResizeObserver(
+-    useCallback(
+-      (resizeData) =>
+-        setState({
+-          height: resizeData.scrollHeight,
+-          width: resizeData.scrollWidth,
+-        }),
+-      []
+-    ),
+-    {
+-      ref: nodeRef,
+-    }
+-  );
++  const [ref, nodeRefCallback] = useEnsuredRef(nodeRef);
++  const refCallback = useResizeObserver({
++    onUpdate: useCallback((entry) => {
++      setState({
++        height: entry.target.scrollHeight,
++        width: entry.target.scrollWidth,
++      });
++    }, []),
++
++    ref: nodeRefCallback,
++  });
+
+   useEffect(() => {
+     if (ref.current) {
+```
+
+### ✅ update-use-toggle-api
+
+```sh
+npx @react-md/codemod v5-to-v6/utils/update-use-toggle-api
+```
+
+The `useToggle` hook was updated to return an object instead of an ordered array.
+
+```diff
+ import { type ReactElement } from "react";
+ import { Button, useToggle } from "react-md";
+
+ export default function Example(): ReactElement {
+-  const [toggled, enable, disable, toggle] = useToggle();
++  const {
++    toggled: toggled,
++    enable: enable,
++    disable: disable,
++    toggle: toggle,
++  } = useToggle();
+   return (
+     <>
+       <Button onClick={enable}>Enable</Button>
+       <Button onClick={disable}>Diable</Button>
+       <Button onClick={toggle}>Toggle</Button>
+       {toggled && <>Hello, world!</>}
+     </>
+   );
+ }
+```
+
+### ✅ within-range-parameters-to-object
+
+```sh
+npx @react-md/codemod v5-to-v6/utils/within-range-parameters-to-object
+```
+
+The `withinRange` util was updated to accept a single object parameter
+instead of multiple parameters.
+
+```diff
+-expect(withinRange(0, 0, 10)).toBe(0);
+-expect(withinRange(-1, 0, 10)).toBe(0);
++expect(
++  withinRange({
++    min: 0,
++    max: 10,
++    value: 0,
++  }),
++).toBe(0);
++expect(
++  withinRange({
++    min: 0,
++    max: 10,
++    value: -1,
++  }),
++).toBe(0);
+```

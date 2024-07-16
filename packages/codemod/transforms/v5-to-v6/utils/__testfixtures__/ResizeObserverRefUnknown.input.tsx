@@ -1,7 +1,17 @@
-import { type ReactElement, useCallback, useState } from "react";
+import {
+  type ReactElement,
+  type Ref,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { useResizeObserver } from "react-md";
 
-export default function Example({ nodeRef }): ReactElement {
+interface ExampleProps {
+  nodeRef?: Ref<HTMLDivElement>;
+}
+
+export default function Example({ nodeRef }: ExampleProps): ReactElement {
   const [state, setState] = useState();
   const [ref, refCallback] = useResizeObserver(
     useCallback(
@@ -17,5 +27,11 @@ export default function Example({ nodeRef }): ReactElement {
     }
   );
 
-  return <div ref={ref} />;
+  useEffect(() => {
+    if (ref.current) {
+      // do something
+    }
+  }, []);
+
+  return <div ref={refCallback} />;
 }

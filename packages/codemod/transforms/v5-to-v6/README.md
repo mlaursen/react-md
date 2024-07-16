@@ -132,13 +132,13 @@ build times by switching to `@react-md/core/{{FILE}}`.
   - [ ] scrollIntoView - was removed
   - [ ] search - try to update fuzzy, caseInsensitive. Ignore `useKeyboardSearch`
   - [ ] sizing
-    - AppSizeListener -> AppSizeProvider
-    - `useResizeObserver` to use single argument and only returns a ref callback
-    - `useResizeListener`: `onResize` -> `onUpdate`, `enabled` -> `disabled`, removed `immediate`, flatten `options`
-    - removed `ResizeListener` component
-    - removed `MobileOnly`, `PhoneOnly`, `TabletOnly`, `DesktopOnly`
-    - removed `defaultValue` and `checkImmediately` from `useMediaQuery`
-    - ignore `useOrientation`, `useWidthMediaQuery`, `useAppSizeMedia`
+    - [ ] AppSizeListener -> AppSizeProvider
+    - [x] `useResizeObserver` to use single argument and only returns a ref callback
+    - [x] `useResizeListener`: `onResize` -> `onUpdate`, `enabled` -> `disabled`, removed `immediate`, flatten `options`
+    - [x] removed `ResizeListener` component
+    - [ ] removed `MobileOnly`, `PhoneOnly`, `TabletOnly`, `DesktopOnly`
+    - [ ] removed `defaultValue` and `checkImmediately` from `useMediaQuery`
+    - [x] ignore `useOrientation`, `useWidthMediaQuery`, `useAppSizeMedia`
   - [ ] throttle
   - [ ] types
   - [ ] unitToNumber
