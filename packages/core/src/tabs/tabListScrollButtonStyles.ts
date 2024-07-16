@@ -9,6 +9,7 @@ const styles = bem("rmd-tablist-button");
 export interface TabListScrollButtonContainerClassNameOptions {
   className?: string;
   forward: boolean;
+  vertical?: boolean;
 }
 
 /**
@@ -17,12 +18,14 @@ export interface TabListScrollButtonContainerClassNameOptions {
 export function tabListScrollButtonContainer(
   options: TabListScrollButtonContainerClassNameOptions
 ): string {
-  const { forward, className } = options;
+  const { forward, vertical, className } = options;
 
   return cnb(
     styles({
-      left: !forward,
-      right: forward,
+      left: !vertical && !forward,
+      right: !vertical && forward,
+      above: vertical && !forward,
+      below: vertical && forward,
     }),
     className
   );
@@ -33,6 +36,7 @@ export function tabListScrollButtonContainer(
  */
 export interface TabListScrollButtonClassNameOptions {
   className?: string;
+  vertical?: boolean;
 }
 
 /**
@@ -41,7 +45,7 @@ export interface TabListScrollButtonClassNameOptions {
 export function tabListScrollButton(
   options: TabListScrollButtonClassNameOptions = {}
 ): string {
-  const { className } = options;
+  const { className, vertical } = options;
 
-  return cnb(styles("button"), className);
+  return cnb(styles("button", { v: vertical }), className);
 }

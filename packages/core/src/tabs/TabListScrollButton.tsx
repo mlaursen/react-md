@@ -98,7 +98,11 @@ export const TabListScrollButton = forwardRef<
           applyRef(instance, ref);
           root.current = instance?.parentElement || null;
         }}
-        className={tabListScrollButtonContainer({ forward, className })}
+        className={tabListScrollButtonContainer({
+          forward,
+          vertical,
+          className,
+        })}
       >
         <Button
           aria-label={ariaLabel || (iconButton ? type : undefined)}
@@ -107,7 +111,10 @@ export const TabListScrollButton = forwardRef<
           buttonType={buttonType}
           disabled={propDisabled || disabled}
           {...buttonProps}
-          className={tabListScrollButton(buttonProps)}
+          className={tabListScrollButton({
+            className: buttonProps?.className,
+            vertical,
+          })}
           onClick={(event) => {
             buttonProps?.onClick?.(event);
             const container = root.current;

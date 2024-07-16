@@ -17,8 +17,9 @@ $disable-tablist-indicator: false !default;
 $disable-tablist-hidden-scrollbar: false !default;
 $disable-tablist-scroll-button: false !default;
 $disable-tablist-active-indicator-transition: false !default;
+$disable-tablist-scroll-button-vertical: $disable-tablist-vertical !default;
 $disable-indicator: false !default;
-$disable-indicator-vertical: false !default;
+$disable-indicator-vertical: $disable-tablist-vertical !default;
 
 $typography: map.remove(typography.$button-styles, line-height) !default;
 $gap: icon.$spacing !default;
@@ -133,7 +134,7 @@ $variables: (
     // make sure it can enable scrollbars in flex/grid containers
     max-width: 100%;
     outline: none;
-    overflow-x: auto;
+    overflow: auto;
     position: relative;
 
     &--full-width {
@@ -172,6 +173,7 @@ $variables: (
     display: inline-flex;
     flex-shrink: 0;
     justify-content: center;
+    max-width: $max-width;
     position: sticky;
     z-index: $tablist-scroller-z-index;
 
@@ -183,9 +185,25 @@ $variables: (
       @include utils.auto-rtl(right, 0);
     }
 
+    @if not $disable-tablist-scroll-button-vertical {
+      &--above {
+        top: 0;
+      }
+
+      &--below {
+        bottom: 0;
+      }
+    }
+
     &__button {
       @include utils.rtl {
         transform: rotate(180deg);
+      }
+
+      @if not $disable-tablist-scroll-button-vertical {
+        &--v {
+          transform: rotate(90deg);
+        }
       }
     }
   }
@@ -205,9 +223,9 @@ $variables: (
     display: inline-flex;
     flex: 1 1 auto;
     gap: $gap;
-    height: $height;
     justify-content: center;
     max-width: $max-width;
+    min-height: $height;
     min-width: $min-width;
     padding: 0 $horizontal-padding;
     transition: color $transition-duration $transition-timing-function;

@@ -10,20 +10,13 @@ import {
 import { type ReactElement } from "react";
 
 export default function CustomScrollBehaviorExample(): ReactElement {
-  const { getTabProps, getTabListProps } = useTabs();
+  const { getTabProps, getTabListProps } = useTabs({ disableTransition });
 
   return (
     <>
       <TabList
         {...getTabListProps()}
         scrollButtons
-        disableTransition={disableTransition}
-        forwardScrollButtonProps={{
-          disableTransition,
-        }}
-        backwardScrollButtonProps={{
-          disableTransition,
-        }}
         getScrollToOptions={(options) => {
           // the default implementation
           // return getTabListScrollToOptions(options);
@@ -47,11 +40,7 @@ export default function CustomScrollBehaviorExample(): ReactElement {
         }}
       >
         {tabs.map((name, i) => (
-          <Tab
-            key={name}
-            {...getTabProps(i)}
-            activeIndicator={disableTransition}
-          >
+          <Tab key={name} {...getTabProps(i)}>
             {name}
           </Tab>
         ))}

@@ -67,6 +67,37 @@ This example shows how the active tab could be derived from the current
 
 ```
 
+# Disable Active Tab Transition
+
+The active tab indicator transition can be disabled by setting
+`disableTransition` to `true` on the `TabList` component and enabling the
+`activeIndicator` prop on each `Tab`.
+
+> !Info! All tab transitions (tab indicator and tab panel) can be disabled by
+> passing `disableTransition: true` to the `useTabs` hook.
+
+```demo source="./DisableActiveTabTransitionExample.tsx"
+
+```
+
+## Disable Vertical Active Tab Transition
+
+If the tabs are rendered vertically, the `verticalActiveIndicator` prop must
+also be enabled on each `Tab` for the correct styles to apply.
+
+```demo source="./DisableVerticalActiveTabTransitionExample.tsx"
+
+```
+
+# Vertical Tabs
+
+Tabs can be rendered vertically instead of horizontally by enabling the
+`vertical` prop on the `TabList` component.
+
+```demo source="./VerticalTabsExample.tsx"
+
+```
+
 # Scrollable Tabs
 
 When there are overflow issues due to rendering a lot of tabs, the overflown
@@ -94,40 +125,20 @@ the `scrollbar` prop.
 
 ```
 
+## Vertical Scrollable Tabs
+
+The scroll buttons and scrollbar are available for vertical tabs as well.
+
+```demo source="./VerticalScrollableTabsExample.tsx"
+
+```
+
 ## Custom Scroll Behavior
 
 The scroll distance can be configured by providing the `getScrollToOptions` to
 the `TabList` component.
 
 ```demo source="./CustomScrollBehaviorExample.tsx"
-
-```
-
-# Vertical Tabs
-
-Tabs can be rendered vertically instead of horizontally by enabling the
-`vertical` prop on the `TabList` component.
-
-```demo source="./VerticalTabsExample.tsx"
-
-```
-
-# Disable Active Tab Transition
-
-The active tab indicator transition can be disabled by setting
-`disableTransition` to `true` on the `TabList` component and enabling the
-`activeIndicator` prop on each `Tab`.
-
-```demo source="./DisableActiveTabTransitionExample.tsx"
-
-```
-
-## Disable Vertical Active Tab Transition
-
-If the tabs are rendered vertically, the `verticalActiveIndicator` prop must
-also be enabled on each `Tab` for the correct styles to apply.
-
-```demo source="./DisableVerticalActiveTabTransitionExample.tsx"
 
 ```
 

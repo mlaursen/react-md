@@ -27,10 +27,18 @@ const getIntersectionRatio = jest.fn((target: Element): number =>
   target.nextElementSibling ? 1 : 0
 );
 
-function Test(
-  props: Omit<TabListProps, keyof ProvidedTabListProps>
-): ReactElement {
-  const { getTabProps, getTabListProps } = useTabs();
+function Test({
+  vertical,
+  disableTransition,
+  ...props
+}: Omit<TabListProps, keyof ProvidedTabListProps> & {
+  vertical?: boolean;
+  disableTransition?: boolean;
+}): ReactElement {
+  const { getTabProps, getTabListProps } = useTabs({
+    vertical,
+    disableTransition,
+  });
 
   return (
     <TabList {...props} {...getTabListProps()}>

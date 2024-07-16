@@ -65,11 +65,13 @@ export interface TabListHookReturnValue {
     ref: RefObject<HTMLDivElement>;
     type: "back";
     vertical: boolean;
+    disableTransition?: boolean;
   };
   forwardProps: {
     ref: RefObject<HTMLDivElement>;
     type: "forward";
     vertical: boolean;
+    disableTransition?: boolean;
   };
 }
 
@@ -206,11 +208,13 @@ export function useTabList(
       ref: backwardRef,
       type: "back",
       vertical,
+      disableTransition,
     },
     forwardProps: {
       ref: forwardRef,
       type: "forward",
       vertical,
+      disableTransition,
     },
     movementContext,
   };

@@ -79,6 +79,9 @@ export interface TabButtonProps
   as?: "button";
 }
 
+/**
+ * @since 6.0.0
+ */
 export interface TabLinkProps
   extends BaseTabProps,
     AnchorHTMLAttributes<HTMLAnchorElement> {

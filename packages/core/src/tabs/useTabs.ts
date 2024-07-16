@@ -1,10 +1,21 @@
 "use client";
-import type { Dispatch, Ref, RefObject } from "react";
-import { useEffect, useRef, useState } from "react";
-import type { SlideDirection } from "../transition/SlideContainer.js";
-import type { UseStateInitializer, UseStateSetter } from "../types.js";
+import {
+  type Dispatch,
+  type Ref,
+  type RefObject,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { type SlideDirection } from "../transition/SlideContainer.js";
+import { type UseStateInitializer, type UseStateSetter } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { useEnsuredState } from "../useEnsuredState.js";
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { type TabProps } from "./Tab.js";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { type TabListProps } from "./TabList.js";
 
 const EMPTY_LIST = [] as const;
 const PANEL_PREFIX = "panel-";
@@ -55,6 +66,21 @@ export interface TabsHookOptions<TabValue extends string | number = number> {
    * @defaultValue `0`
    */
   defaultActiveTab?: UseStateInitializer<TabValue>;
+
+  /** Convenience pass-through prop to {@link TabProps.stacked} */
+  stacked?: boolean;
+  /** Convenience pass-through prop to {@link TabProps.iconAfter} */
+  iconAfter?: boolean;
+
+  /** Convenience pass-through props to {@link TabListProps.vertical} */
+  vertical?: boolean;
+
+  /**
+   * Convenience prop to disable all transitions for the
+   * {@link TabsImplementation.getTabProps} and
+   * {@link TabsImplementation.getTabListProps}.
+   */
+  disableTransition?: boolean;
 }
 
 /**
@@ -64,6 +90,15 @@ export interface ProvidedTabProps {
   "aria-controls": string;
   id: string;
   active: boolean;
+
+  /** Convenience pass-through prop from {@link TabsHookOptions.stacked} */
+  stacked?: boolean;
+  /** Convenience pass-through prop from {@link TabsHookOptions.iconAfter} */
+  iconAfter?: boolean;
+  /** Convenience pass-through prop from {@link TabsHookOptions.disableTransition} */
+  activeIndicator?: boolean;
+  /** Convenience pass-through prop from {@link TabsHookOptions.vertical} and {@link TabsHookOptions.disableTransition} */
+  verticalActiveIndicator?: boolean;
 }
 
 /**
@@ -72,6 +107,8 @@ export interface ProvidedTabProps {
 export interface ProvidedTabListProps {
   activeIndex: number;
   setActiveIndex: Dispatch<number>;
+  vertical?: boolean;
+  disableTransition?: boolean;
 }
 
 /**
@@ -414,9 +451,13 @@ export function useTabs<TabValue extends string | number>(
     baseId: propBaseId,
     disableScrollFix,
     tabs = EMPTY_LIST,
+    stacked,
+    vertical,
+    iconAfter,
     activeTab: propActiveTab,
     setActiveTab: propSetActiveTab,
     defaultActiveTab,
+    disableTransition,
   } = options;
 
   const baseId = useEnsuredId(propBaseId, "tab");
@@ -456,6 +497,10 @@ export function useTabs<TabValue extends string | number>(
         "aria-controls": getTabId(tabValue, PANEL_PREFIX),
         id: getTabId(tabValue),
         active: tabValue === activeTab,
+        stacked,
+        iconAfter,
+        activeIndicator: disableTransition,
+        verticalActiveIndicator: vertical && disableTransition,
       };
     },
     getTabListProps() {
@@ -469,6 +514,8 @@ export function useTabs<TabValue extends string | number>(
             setActiveTab(nextActiveIndex as TabValue);
           }
         },
+        vertical,
+        disableTransition,
       };
     },
     getTabPanelProps(tabValue) {
