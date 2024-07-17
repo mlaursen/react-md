@@ -1,5 +1,11 @@
-import { type ASTPath, type JSCodeshift } from "jscodeshift";
-import { type ComponentDefinition } from "../types";
+import {
+  type ASTPath,
+  type ExpressionStatement,
+  type JSCodeshift,
+  type VariableDeclaration,
+} from "jscodeshift";
+import { type ComponentDefinition, type PatternKind } from "../types";
+import { createConst } from "./createConst";
 import { getClosestComponentDefinition } from "./getClosestComponentDefinition";
 import { isRulesOfHooksReturnFound } from "./isRulesOfHooksReturnStatement";
 
@@ -8,12 +14,13 @@ export interface InsertHookIntoComponentOptions {
   name: string;
   args?: Parameters<JSCodeshift["callExpression"]>[1];
   from: ASTPath | ComponentDefinition;
+  result?: PatternKind;
 }
 
 export function insertHookIntoComponent(
   options: InsertHookIntoComponentOptions
 ): void {
-  const { j, name, args = [], from } = options;
+  const { j, name, args = [], from, result } = options;
 
   let component: ComponentDefinition | undefined;
   if ("node" in from) {
@@ -39,9 +46,16 @@ export function insertHookIntoComponent(
     return;
   }
 
-  component.body.body.splice(
-    firstReturnIndex,
-    0,
-    j.expressionStatement(j.callExpression(j.identifier(name), args))
-  );
+  const hookCall = j.callExpression(j.identifier(name), args);
+  let expression: ExpressionStatement | VariableDeclaration =
+    j.expressionStatement(hookCall);
+  if (result) {
+    expression = createConst({
+      j,
+      id: result,
+      value: hookCall,
+    });
+  }
+
+  component.body.body.splice(firstReturnIndex, 0, expression);
 }

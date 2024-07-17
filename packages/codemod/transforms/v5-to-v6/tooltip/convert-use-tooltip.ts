@@ -8,6 +8,7 @@ import {
 } from "jscodeshift";
 import { addFileComments } from "../../utils/addFileComment";
 import { addImportSpecifier } from "../../utils/addImportSpecifier";
+import { createDestructuredConst } from "../../utils/createDestructuredConst";
 import { type NormalExpression } from "../../utils/createExpression";
 import { getObjectPropertyName } from "../../utils/getObjectPropertyName";
 import { removeEmptyImportDeclaration } from "../../utils/removeEmptyImportDeclaration";
@@ -180,12 +181,11 @@ export default function transformer(
             name: "useTooltipHoverMode",
           });
 
-          const hook = j.variableDeclaration("const", [
-            j.variableDeclarator(
-              j.objectPattern([...useTooltipHoverModeProperties]),
-              j.callExpression(j.identifier("useTooltipHoverMode"), [])
-            ),
-          ]);
+          const hook = createDestructuredConst({
+            j,
+            props: [...useTooltipHoverModeProperties],
+            value: j.callExpression(j.identifier("useTooltipHoverMode"), []),
+          });
 
           j(callExpression)
             .closest(j.VariableDeclarator)

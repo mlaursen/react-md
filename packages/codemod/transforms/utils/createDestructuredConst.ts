@@ -5,6 +5,7 @@ import {
   type VariableDeclaration,
 } from "jscodeshift";
 import { type ExpressionKind } from "../types";
+import { createConst } from "./createConst";
 import { createObjectProperty } from "./createObjectProperty";
 
 export interface CreateDestructuredConstOptions {
@@ -40,10 +41,9 @@ export function createDestructuredConst(
     properties.push(prop);
   });
 
-  return j.variableDeclaration("const", [
-    j.variableDeclarator(
-      j.objectPattern(properties),
-      typeof value === "string" ? j.identifier(value) : value
-    ),
-  ]);
+  return createConst({
+    j,
+    id: j.objectPattern(properties),
+    value: typeof value === "string" ? j.identifier(value) : value,
+  });
 }

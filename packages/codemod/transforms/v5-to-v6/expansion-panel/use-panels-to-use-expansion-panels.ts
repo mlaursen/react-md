@@ -10,6 +10,8 @@ import {
 } from "jscodeshift";
 import { addFileComments } from "../../utils/addFileComment";
 import { addImportSpecifier } from "../../utils/addImportSpecifier";
+import { createConst } from "../../utils/createConst";
+import { createTypedIdentifier } from "../../utils/createTypedIdentifier";
 import { getObjectPropertyName } from "../../utils/getObjectPropertyName";
 import { isTypescriptFile } from "../../utils/isTypescriptFile";
 import { removeVariableReferences } from "../../utils/removeVariableReferences";
@@ -158,16 +160,15 @@ export default function transformer(
               )
             );
 
-            path
-              .closest(j.VariableDeclaration)
-              .insertAfter(
-                j.variableDeclaration("const", [
-                  j.variableDeclarator(
-                    j.identifier(expandedIds.name),
-                    j.arrayExpression([j.spreadElement(j.identifier(tempName))])
-                  ),
-                ])
-              );
+            path.closest(j.VariableDeclaration).insertAfter(
+              createConst({
+                j,
+                id: j.identifier(expandedIds.name),
+                value: j.arrayExpression([
+                  j.spreadElement(j.identifier(tempName)),
+                ]),
+              })
+            );
           }
 
           if (setExpandedIds) {
@@ -211,40 +212,38 @@ export default function transformer(
               j.newExpression(j.identifier("Set"), [j.identifier("value")])
             );
 
-            const declaration = j.variableDeclarator(
-              j.identifier(setExpandedIds.name),
-              j.arrowFunctionExpression(
-                [j.identifier("value")],
-                j.blockStatement([
-                  j.expressionStatement(
-                    j.callExpression(j.identifier(tempName), [
-                      j.arrowFunctionExpression(
-                        [j.identifier("prevSet")],
-                        j.blockStatement([
-                          ifInstanceOf,
-                          returnNewSetCalledValue,
-                        ])
-                      ),
+            path.closest(j.VariableDeclaration).insertAfter(
+              createConst({
+                j,
+                id: createTypedIdentifier({
+                  j,
+                  name: setExpandedIds.name,
+                  type: j.tsTypeReference(
+                    j.identifier("UseStateSetter"),
+                    j.tsTypeParameterInstantiation([
+                      j.tsArrayType(j.tsStringKeyword()),
                     ])
                   ),
-                ])
-              )
-            );
-
-            if (isTypescript && declaration.id.type === "Identifier") {
-              declaration.id.typeAnnotation = j.tsTypeAnnotation(
-                j.tsTypeReference(
-                  j.identifier("UseStateSetter"),
-                  j.tsTypeParameterInstantiation([
-                    j.tsArrayType(j.tsStringKeyword()),
+                  isTypescript,
+                }),
+                value: j.arrowFunctionExpression(
+                  [j.identifier("value")],
+                  j.blockStatement([
+                    j.expressionStatement(
+                      j.callExpression(j.identifier(tempName), [
+                        j.arrowFunctionExpression(
+                          [j.identifier("prevSet")],
+                          j.blockStatement([
+                            ifInstanceOf,
+                            returnNewSetCalledValue,
+                          ])
+                        ),
+                      ])
+                    ),
                   ])
-                )
-              );
-            }
-
-            path
-              .closest(j.VariableDeclaration)
-              .insertAfter(j.variableDeclaration("const", [declaration]));
+                ),
+              })
+            );
           }
           // don't care about supporting since it wasn't really documented
           if (createExpandClick) {

@@ -16,6 +16,7 @@ import {
   type Statements,
 } from "../../types";
 import { addImportSpecifiers } from "../../utils/addImportSpecifiers";
+import { createConst } from "../../utils/createConst";
 import { createDestructuredConst } from "../../utils/createDestructuredConst";
 import { createJsxElement } from "../../utils/createJsxElement";
 import { createObjectProperty } from "../../utils/createObjectProperty";
@@ -123,9 +124,11 @@ function convertDestructuredItem(options: ConvertDestructuredOptions): string {
     if (expanderIcon) {
       value = j.identifier("context");
       statements.push(
-        j.variableDeclaration("const", [
-          j.variableDeclarator(value, useTreeContext),
-        ])
+        createConst({
+          j,
+          id: value,
+          value: useTreeContext,
+        })
       );
     }
 
@@ -139,15 +142,14 @@ function convertDestructuredItem(options: ConvertDestructuredOptions): string {
 
     renames.forEach(([name, localName]) => {
       statements.push(
-        j.variableDeclaration("const", [
-          j.variableDeclarator(
-            j.identifier(localName),
-            j.callExpression(
-              j.memberExpression(j.identifier(name), j.identifier("has")),
-              [j.identifier(itemIdName)]
-            )
+        createConst({
+          j,
+          id: j.identifier(localName),
+          value: j.callExpression(
+            j.memberExpression(j.identifier(name), j.identifier("has")),
+            [j.identifier(itemIdName)]
           ),
-        ])
+        })
       );
     });
   }
@@ -163,25 +165,23 @@ function convertDestructuredItem(options: ConvertDestructuredOptions): string {
     reactImports.add("useId");
     rmdImports.add("useKeyboardMovementContext");
     statements.push(
-      j.variableDeclaration("const", [
-        j.variableDeclarator(
-          j.identifier("id"),
-          j.callExpression(j.identifier("useId"), [])
+      createConst({
+        j,
+        id: j.identifier("id"),
+        value: j.callExpression(j.identifier("useId"), []),
+      }),
+      createConst({
+        j,
+        id: j.identifier(focusedName),
+        value: j.binaryExpression(
+          "===",
+          j.memberExpression(
+            j.callExpression(j.identifier("useKeyboardMovementContext"), []),
+            j.identifier("activeDescendantId")
+          ),
+          j.identifier("id")
         ),
-      ]),
-      j.variableDeclaration("const", [
-        j.variableDeclarator(
-          j.identifier(focusedName),
-          j.binaryExpression(
-            "===",
-            j.memberExpression(
-              j.callExpression(j.identifier("useKeyboardMovementContext"), []),
-              j.identifier("activeDescendantId")
-            ),
-            j.identifier("id")
-          )
-        ),
-      ])
+      })
     );
   }
 
@@ -395,20 +395,17 @@ export default function transformer(
         statements.push(j.returnStatement(returnedJsx));
 
         // the item will always need to be destructured from the `props`
-        const destructureItemFromProps = j.variableDeclaration("const", [
-          j.variableDeclarator(
-            j.objectPattern([
-              j.objectProperty(
-                j.identifier("item"),
-                j.identifier(itemLocalName)
-              ),
-            ]),
-            j.identifier("props")
-          ),
-        ]);
-        // @ts-expect-error This is the real type
-        destructureItemFromProps.declarations[0].id.properties[0].shorthand =
-          true;
+        const destructureItemFromProps = createDestructuredConst({
+          j,
+          props: [
+            createObjectProperty({
+              j,
+              name: "item",
+              local: itemLocalName,
+            }),
+          ],
+          value: j.identifier("props"),
+        });
         const rendererFunction = j.functionExpression(
           j.identifier("Renderer"),
           [props],

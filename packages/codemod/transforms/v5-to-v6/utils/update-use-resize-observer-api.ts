@@ -10,6 +10,8 @@ import {
 } from "jscodeshift";
 import { type ComponentDefinition, type ObjectPropertyKind } from "../../types";
 import { addImportSpecifiers } from "../../utils/addImportSpecifiers";
+import { createConst } from "../../utils/createConst";
+import { createDestructuredConst } from "../../utils/createDestructuredConst";
 import { getClosestComponentDefinition } from "../../utils/getClosestComponentDefinition";
 import { getObjectPropertyName } from "../../utils/getObjectPropertyName";
 import { isTypescriptFile } from "../../utils/isTypescriptFile";
@@ -164,62 +166,52 @@ function convertCallbackArrowFunction(
   const element = remaps.get("element");
   if (height || width) {
     declarations.push(
-      j.variableDeclaration("const", [
-        j.variableDeclarator(
-          j.objectPattern(
-            [
-              height && j.objectProperty(j.identifier("height"), height),
-              width && j.objectProperty(j.identifier("width"), width),
-            ].filter((b) => !!b)
-          ),
-          j.memberExpression(entry, j.identifier("contentRect"))
-        ),
-      ])
+      createDestructuredConst({
+        j,
+        props: [
+          height && j.objectProperty(j.identifier("height"), height),
+          width && j.objectProperty(j.identifier("width"), width),
+        ].filter((b) => !!b),
+        value: j.memberExpression(entry, j.identifier("contentRect")),
+      })
     );
   }
 
   if (element) {
     declarations.push(
-      j.variableDeclaration("const", [
-        j.variableDeclarator(
-          element,
-          j.memberExpression(entry, j.identifier("target"))
-        ),
-      ])
+      createConst({
+        j,
+        id: element,
+        value: j.memberExpression(entry, j.identifier("target")),
+      })
     );
 
     if (scrollHeight || scrollWidth) {
       declarations.push(
-        j.variableDeclaration("const", [
-          j.variableDeclarator(
-            j.objectPattern(
-              [
-                scrollHeight &&
-                  j.objectProperty(j.identifier("scrollHeight"), scrollHeight),
-                scrollWidth &&
-                  j.objectProperty(j.identifier("scrollWidth"), scrollWidth),
-              ].filter((b) => !!b)
-            ),
-            element
-          ),
-        ])
+        createDestructuredConst({
+          j,
+          props: [
+            scrollHeight &&
+              j.objectProperty(j.identifier("scrollHeight"), scrollHeight),
+            scrollWidth &&
+              j.objectProperty(j.identifier("scrollWidth"), scrollWidth),
+          ].filter((b) => !!b),
+          value: element,
+        })
       );
     }
   } else if (scrollHeight || scrollWidth) {
     declarations.push(
-      j.variableDeclaration("const", [
-        j.variableDeclarator(
-          j.objectPattern(
-            [
-              scrollHeight &&
-                j.objectProperty(j.identifier("scrollHeight"), scrollHeight),
-              scrollWidth &&
-                j.objectProperty(j.identifier("scrollWidth"), scrollWidth),
-            ].filter((b) => !!b)
-          ),
-          j.memberExpression(entry, j.identifier("target"))
-        ),
-      ])
+      createDestructuredConst({
+        j,
+        props: [
+          scrollHeight &&
+            j.objectProperty(j.identifier("scrollHeight"), scrollHeight),
+          scrollWidth &&
+            j.objectProperty(j.identifier("scrollWidth"), scrollWidth),
+        ].filter((b) => !!b),
+        value: j.memberExpression(entry, j.identifier("target")),
+      })
     );
   }
 
@@ -369,15 +361,16 @@ export default function transformer(
               refOptionIdentifier.name = callbackName;
 
               j(variableDeclarator.parent).insertBefore(
-                j.variableDeclaration("const", [
-                  j.variableDeclarator(
-                    j.arrayPattern([
-                      j.identifier(prevName),
-                      j.identifier(callbackName),
-                    ]),
-                    j.callExpression(j.identifier("useEnsuredRef"), [node])
-                  ),
-                ])
+                createConst({
+                  j,
+                  id: j.arrayPattern([
+                    j.identifier(prevName),
+                    j.identifier(callbackName),
+                  ]),
+                  value: j.callExpression(j.identifier("useEnsuredRef"), [
+                    node,
+                  ]),
+                })
               );
             });
 
@@ -394,7 +387,11 @@ export default function transformer(
           ]);
         }
         j(variableDeclarator.parent).insertBefore(
-          j.variableDeclaration("const", [j.variableDeclarator(ref, useRef)])
+          createConst({
+            j,
+            id: ref,
+            value: useRef,
+          })
         );
 
         hookOptions.properties.push(j.objectProperty(j.identifier("ref"), ref));

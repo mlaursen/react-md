@@ -14,6 +14,7 @@ import { addImportSpecifier } from "../../utils/addImportSpecifier";
 import { getObjectPropertyName } from "../../utils/getObjectPropertyName";
 import { getPropName } from "../../utils/getPropName";
 import { insertHookIntoComponent } from "../../utils/insertHookIntoComponent";
+import { isJsxExpressionContainer } from "../../utils/isJsxExpressionContainer";
 import { negateExpression } from "../../utils/negateExpression";
 import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers";
 
@@ -245,8 +246,7 @@ export default function transformer(
             );
           } else if (
             j.JSXAttribute.check(attr) &&
-            j.JSXExpressionContainer.check(attr.value) &&
-            !j.JSXEmptyExpression.check(attr.value.expression)
+            isJsxExpressionContainer(j, attr.value)
           ) {
             const name = getPropName(attr);
             const value = attr.value.expression;
