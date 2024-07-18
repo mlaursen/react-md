@@ -1645,9 +1645,12 @@ To migrate to the new API, the step are as follows:
   - Add `{...getTabPanelsProps()}` to the `SlideContainer`
   - If the `disableScrollFix` prop was enabled, add it to the `useTabs` hook
     instead
-  - If the `disableTransition` prop was enabled, set `timeout={0}` to each
-    child `Slide` instead
+  - Remove the `disableTransition` prop if it existed
   - Remove the `persistent` prop if it existed
+- Replace the `TabPanel` component with the `Slide` component
+  - Add `{...getTabPanelProps(panelIndex)}` to the `Slide` component
+  - If the transition should be disabled, add `timeout={0}`
+  - If the panel should unmount while not visible, enable the `temporary` prop
 
 ```diff
   import type { ReactElement } from "react";
