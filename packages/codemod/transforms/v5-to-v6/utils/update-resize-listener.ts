@@ -1,10 +1,8 @@
 import {
   type API,
-  type BinaryExpression,
   type FileInfo,
   type Identifier,
   type JSCodeshift,
-  type MemberExpression,
   type ObjectProperty,
   type Options,
   type SpreadElement,
@@ -15,21 +13,11 @@ import { getObjectPropertyName } from "../../utils/getObjectPropertyName";
 import { getPropName } from "../../utils/getPropName";
 import { insertHookIntoComponent } from "../../utils/insertHookIntoComponent";
 import { isJsxExpressionContainer } from "../../utils/isJsxExpressionContainer";
+import { isTypeOfExpression } from "../../utils/isTypeOfExpression";
 import { negateExpression } from "../../utils/negateExpression";
 import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers";
 
 const ADD_EVENT_LISTENER_KEYS = ["once", "signal", "capture", "passive"];
-
-function isTypeofBoolean(
-  j: JSCodeshift,
-  checker: MemberExpression | Identifier
-): BinaryExpression {
-  return j.binaryExpression(
-    "===",
-    j.unaryExpression("typeof", checker),
-    j.stringLiteral("boolean")
-  );
-}
 
 function convertEnabledToDisabled(
   j: JSCodeshift,
@@ -40,7 +28,11 @@ function convertEnabledToDisabled(
     j.identifier("disabled"),
     j.logicalExpression(
       "&&",
-      isTypeofBoolean(j, enabled),
+      isTypeOfExpression({
+        j,
+        type: "boolean",
+        value: enabled,
+      }),
       j.unaryExpression("!", enabled)
     )
   );
@@ -57,7 +49,11 @@ function createTypeofCaptureSpread(
 ): SpreadElement {
   return j.spreadElement(
     j.conditionalExpression(
-      isTypeofBoolean(j, identifier),
+      isTypeOfExpression({
+        j,
+        type: "boolean",
+        value: identifier,
+      }),
       j.objectExpression([
         j.objectProperty(j.identifier("capture"), identifier),
       ]),

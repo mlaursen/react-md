@@ -119,52 +119,6 @@ export interface SlideContainerProps
  * }
  * ```
  *
- * @example Persistent Slides
- * ```tsx
- * import type { SlideDirection } from "@react-md/core";
- * import { SlideContainer, Slide } from "@react-md/core";
- * import type { ReactElement, ReactNode } from "react";
- * import { useState } from "react";
- *
- * interface State {
- *   direction: SlideDirection;
- *   activeIndex: number;
- * }
- *
- * function Example(): ReactElement {
- *   const [state, setState] = useState<State>({
- *     direction: "left",
- *     activeIndex: 0,
- *   });
- *   const { direction, activeIndex } = state;
- *
- *   // when changing a slide, `direction` should be set to "left" if the
- *   // previous `activeIndex` is less than the next index
- *   //
- *   // i.e.
- *   // setState((prevState) => ({
- *   //   direction: prevState.activeIndex < index ? "left" : "right",
- *   //   activeIndex: index,
- *   // }))
- *
- *   // enabling `persistent` makes it so that the `<Slide>` never unmounts so
- *   // that state can be maintained while it is not active.
- *   return (
- *     <SlideContainer direction={direction}>
- *       <Slide active={activeIndex === 0} persistent>
- *         Slide 1
- *       </Slide>
- *       <Slide active={activeIndex === 1} persistent>
- *         Slide 2
- *       </Slide>
- *       <Slide active={activeIndex === 2} persistent>
- *         Slide 3
- *       </Slide>
- *     </SlideContainer>
- *   );
- * }
- * ```
- *
  * @since 6.0.0
  */
 export const SlideContainer = forwardRef<HTMLDivElement, SlideContainerProps>(

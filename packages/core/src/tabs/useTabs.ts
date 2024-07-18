@@ -33,15 +33,6 @@ export interface TabsHookOptions<TabValue extends string | number = number> {
   baseId?: string;
 
   /**
-   * Set this to `true` if changing active tabs should no longer attempt to
-   * scroll to the top of the tab panels container when using the
-   * {@link TabsImplementation.getTabPanelsProps}.
-   *
-   * @defaultValue `false`
-   */
-  disableScrollFix?: boolean;
-
-  /**
    * Set this to an **ordered** list of tab values when:
    * - using a `string` tab value
    * - using a `number` tab value does not represent a tab index
@@ -74,6 +65,15 @@ export interface TabsHookOptions<TabValue extends string | number = number> {
 
   /** Convenience pass-through props to {@link TabListProps.vertical} */
   vertical?: boolean;
+
+  /**
+   * Set this to `true` if changing active tabs should no longer attempt to
+   * scroll to the top of the tab panels container when using the
+   * {@link TabsImplementation.getTabPanelsProps}.
+   *
+   * @defaultValue `false`
+   */
+  disableScrollFix?: boolean;
 
   /**
    * Convenience prop to disable all transitions for the
@@ -449,7 +449,6 @@ export function useTabs<TabValue extends string | number>(
 ): TabsImplementation<TabValue> {
   const {
     baseId: propBaseId,
-    disableScrollFix,
     tabs = EMPTY_LIST,
     stacked,
     vertical,
@@ -457,6 +456,7 @@ export function useTabs<TabValue extends string | number>(
     activeTab: propActiveTab,
     setActiveTab: propSetActiveTab,
     defaultActiveTab,
+    disableScrollFix,
     disableTransition,
   } = options;
 

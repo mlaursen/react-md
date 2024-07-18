@@ -1,14 +1,14 @@
 import {
   type Identifier,
   type JSCodeshift,
-  type TSTypeReference,
+  type TSTypeAnnotation,
 } from "jscodeshift";
 
 export interface CreateTypedIdentifierOptions {
   j: JSCodeshift;
   name: string;
+  type: TSTypeAnnotation["typeAnnotation"];
   isTypescript: boolean;
-  type: TSTypeReference;
 }
 
 export function createTypedIdentifier(

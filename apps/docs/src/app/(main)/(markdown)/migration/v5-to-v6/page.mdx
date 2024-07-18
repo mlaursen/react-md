@@ -1605,6 +1605,206 @@ component.
 
 ## Tabs
 
+There is a completely new tabs API which will require manual changes. First,
+the `TabsManager` and `Tabs` components have been removed and should be
+replaced by:
+
+- the `useTabs` hook for controlling the active tab state
+- the `TabList` component for basic styling and keyboard behavior
+- the `Tab` component for rendering each tab
+
+The `TabPanels` and `TabPanel` components have been removed in favor of the
+`getTabPanelsProps` and `getTabPanelProps` returned by the `useTabs` hook. The
+previous [slide transition](/components/slide) can be implemented using the
+`SlideContainer` and `Slide` components.
+
+> !Info! The `Slide` component behaves like the `TabPanel` with the
+> `persistent` flag enabled. If the tab panels should be unmounted while not
+> active, enable the `temporary` flag on the `Slide`.
+
+To migrate to the new API, the step are as follows:
+
+- Remove the `TabsManager` component and replace with the `useTabs` hook
+  - the `tabsId` can be removed or added as the `baseId` hook option
+  - the `defaultActiveIndex`, `stacked`, and `iconAfter` can be moved as hook
+    options
+  - the `activeIndex` and `onActiveIndexChange` must be provided together and
+    will be the `activeIndex`/`setActiveIndex` hook options
+  - this hook returns `getTabListProps`, `getTabPanelsProps`,
+    `getTabPanelProps`, and `getTabProps` which will be required for the new
+    components
+- Replace the `Tabs` component with the `TabsList` component
+  - The `automatic` prop has been removed in favor of
+    `activationMode="automatic"` or `activationMode="manual"` (default)
+  - The `orientation` prop has been removed in favor of `vertical`
+- Render each tab as a child of the `TabList` using the `Tab` component
+  - The `Tab` component should be rendered with `{...getTabProps(index)}`
+  - The `Tab` component still supports the `icon`, `stacked`, and `iconAfter`
+    props
+- Replace the `TabPanels` component with the `SlideContainer` component
+  - Add `{...getTabPanelsProps()}` to the `SlideContainer`
+  - If the `disableScrollFix` prop was enabled, add it to the `useTabs` hook
+    instead
+  - If the `disableTransition` prop was enabled, set `timeout={0}` to each
+    child `Slide` instead
+  - Remove the `persistent` prop if it existed
+
+```diff
+  import type { ReactElement } from "react";
+-import { TabPanel, TabPanels, Tabs, TabsManager, Typography } from "react-md";
++import {
++  Slide,
++  SlideContainer,
++  Tab,
++  TabList,
++  Typography,
++  useTabs,
++} from "react-md";
+
+ const tabs = ["Tab 1", "Tab 2", "Tab 3"];
+ const stacked = false;
+ const iconAfter = false;
+ const defaultActiveIndex = 0;
+
+ export default function Demo(): ReactElement {
++  const { getTabProps, getTabListProps, getTabPanelProps, getTabPanelsProps } =
++    useTabs({
++      baseId: "basic-usage-tabs",
++      stacked: stacked,
++      iconAfter: iconAfter,
++      defaultActiveIndex: defaultActiveIndex,
++    });
++
+   return (
+-    <TabsManager
+-      tabs={tabs}
+-      tabsId="basic-usage-tabs"
+-      stacked={stacked}
+-      iconAfter={iconAfter}
+-      defaultActiveIndex={defaultActiveIndex}
+-    >
+-      <Tabs />
+-      <TabPanels>
+-        <TabPanel>
++    <>
++      <TabList {...getTabListProps()}>
++        {tabs.map((tab, i) => (
++          <Tab {...getTabProps(i)}>{tab}</Tab>
++        ))}
++      </TabList>
++      <SlideContainer {...getTabPanelsProps()}>
++        <Slide {...getTabPanelProps(0)}>
+           <Typography type="headline-4">Panel 1</Typography>
+-        </TabPanel>
+-        <TabPanel>
++        </Slide>
++        <Slide {...getTabPanelProps(1)}>
+           <Typography type="headline-4">Panel 2</Typography>
+-        </TabPanel>
+-        <TabPanel>
++        </Slide>
++        <Slide {...getTabPanelProps(2)}>
+           <Typography type="headline-4">Panel 3</Typography>
+-        </TabPanel>
+-      </TabPanels>
+-    </TabsManager>
++        </Slide>
++      </SlideContainer>
++    </>
+   );
+ }
+
+```
+
+### ❌ update-tabs-api
+
+```sh
+npx @react-md/codemod v5-to-v6/tabs/update-tabs-api
+```
+
+This codemod will try its best to convert tabs to the latest API but will
+really only work if the `TabsManager`, `Tabs`, `TabPanels`, and `TabPanel`
+components were defined in the same file.
+
+```diff
+-import type { ReactElement } from "react";
+-import { TabPanel, TabPanels, Tabs, TabsManager, Typography } from "react-md";
++import { ReactElement, ReactNode } from "react";
++import {
++  Slide,
++  SlideContainer,
++  Tab,
++  TabList,
++  TabProps,
++  Typography,
++  useTabs,
++} from "react-md";
+
+ const tabs = ["Tab 1", "Tab 2", "Tab 3"];
+
+ export default function Demo(): ReactElement {
++  const { getTabProps, getTabListProps, getTabPanelProps, getTabPanelsProps } =
++    useTabs({
++      baseId: "basic-usage-tabs",
++    });
++
+   return (
+-    <TabsManager tabs={tabs} tabsId="basic-usage-tabs">
+-      <Tabs />
+-      <TabPanels>
+-        <TabPanel>
++    <>
++      <TabList {...getTabListProps()}>
++        {tabs.map((tab, i) => {
++          const tabProps = getTabProps(i);
++          let children: ReactNode;
++          let overrides: TabProps | undefined;
++
++          if (typeof tab !== "string" && "children" in tab) {
++            children = tab.children;
++
++            const {
++              children: _c,
++              contentStyle: _cs,
++              contentClassName: _ccn,
++              ...stillValidProps
++            } = tab;
++
++            overrides = stillValidProps;
++          } else {
++            children = tab;
++          }
++
++          return (
++            <Tab {...tabProps} {...overrides} key={tabProps.id}>
++              {children}
++            </Tab>
++          );
++        })}
++      </TabList>
++      <SlideContainer {...getTabPanelsProps()}>
++        <Slide {...getTabPanelProps(0)}>
+           <Typography type="headline-4">Panel 1</Typography>
+-        </TabPanel>
+-        <TabPanel>
++        </Slide>
++        <Slide {...getTabPanelProps(1)}>
+           <Typography type="headline-4">Panel 2</Typography>
+-        </TabPanel>
+-        <TabPanel>
++        </Slide>
++        <Slide {...getTabPanelProps(2)}>
+           <Typography type="headline-4">Panel 3</Typography>
+-        </TabPanel>
+-      </TabPanels>
+-    </TabsManager>
++        </Slide>
++      </SlideContainer>
++    </>
+   );
+ }
+```
+
 ## Theme
 
 ## Transition

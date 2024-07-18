@@ -106,7 +106,7 @@ build times by switching to `@react-md/core/{{FILE}}`.
 - [x] sheet
 - [ ] states
 - [x] table
-- [ ] tabs
+- [x] tabs
 - [ ] theme ?
 - [x] tooltip
 - [x] transition
