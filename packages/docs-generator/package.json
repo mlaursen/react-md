@@ -44,7 +44,7 @@
     "@types/estree-jsx": "^1.0.5",
     "@types/hast": "^3.0.4",
     "@types/unist": "^3.0.2",
-    "glob": "^10.4.5",
+    "glob": "^11.0.0",
     "hast-util-heading-rank": "^3.0.0",
     "hast-util-properties-to-mdx-jsx-attributes": "^1.0.0",
     "mdast-util-from-markdown": "^2.0.1",
@@ -68,7 +68,7 @@
     "unist-util-is": "^6.0.0",
     "unist-util-visit": "^5.0.0",
     "unist-util-visit-parents": "^6.0.1",
-    "vfile": "^6.0.1"
+    "vfile": "^6.0.2"
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
@@ -77,7 +77,7 @@
     "@swc/cli": "^0.4.0",
     "@swc/core": "^1.6.13",
     "@swc/jest": "^0.2.29",
-    "@types/node": "^20.14.10",
+    "@types/node": "^20.14.11",
     "@types/postcss-sorting": "^8.0.2",
     "autoprefixer": "^10.4.19",
     "cssnano": "^7.0.4",
