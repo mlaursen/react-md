@@ -57,7 +57,7 @@
   },
   "devDependencies": {
     "@swc/cli": "^0.4.0",
-    "@swc/core": "^1.6.13",
+    "@swc/core": "^1.7.0",
     "@types/node": "^20.14.11",
     "chokidar": "^3.6.0",
     "glob": "^11.0.0",

@@ -80,7 +80,7 @@
     "@jest/types": "^29.6.3",
     "@microsoft/api-extractor": "^7.47.2",
     "@swc/cli": "^0.4.0",
-    "@swc/core": "^1.6.13",
+    "@swc/core": "^1.7.0",
     "@swc/jest": "^0.2.36",
     "@testing-library/dom": "^10.3.2",
     "@testing-library/jest-dom": "^6.4.6",
