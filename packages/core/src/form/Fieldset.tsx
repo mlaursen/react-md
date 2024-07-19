@@ -35,8 +35,6 @@ export function fieldset(options: FieldsetClassNameOptions = {}): string {
 }
 
 /**
- * **Server Component**
- *
  * @since 6.0.0 Removed the `legend`, `legendStyle`,
  * `legendClassName`, and `legendSROnly` props. You must provide a `Legend`
  * yourself manually instead of using a prop.

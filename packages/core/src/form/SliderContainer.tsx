@@ -40,8 +40,6 @@ export interface SliderContainerProps
 }
 
 /**
- * **Server Component**
- *
  * The `SliderContainer` component is mostly an internal component that is
  * built-in to the `Slider` and `RangeSlider` components to add addons to the
  * left or right of the `SliderTrack`. When vertical, it will add addons to the

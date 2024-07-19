@@ -1,11 +1,28 @@
 import { cnb } from "cnbuilder";
 import { cssUtils } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
-import type {
-  ListItemAddonPosition,
-  ListItemAddonType,
-  ListItemHeight,
+import {
+  type ListItemAddonPosition,
+  type ListItemAddonType,
+  type ListItemHeight,
 } from "./types.js";
+
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-list-item-keyline"?: string | number;
+    "--rmd-list-item-padding-h"?: string | number;
+    "--rmd-list-item-padding-v"?: string | number;
+    "--rmd-list-item-height"?: string | number;
+    "--rmd-list-item-medium-height"?: string | number;
+    "--rmd-list-item-large-height"?: string | number;
+    "--rmd-list-item-extra-large-height"?: string | number;
+    "--rmd-list-item-multiline-clamp"?: string | number;
+    "--rmd-list-item-multiline-height"?: string | number;
+    "--rmd-list-item-media-size"?: string | number;
+    "--rmd-list-item-media-spacing"?: string | number;
+    "--rmd-list-item-text-multiline-height"?: string | number;
+  }
+}
 
 const styles = bem("rmd-list-item");
 

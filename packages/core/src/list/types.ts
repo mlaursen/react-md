@@ -147,9 +147,9 @@ export interface ListItemChildrenAddonProps {
  */
 export interface ListItemChildrenTextProps {
   /**
-   * The main content to display. When the `textChildren` prop is enabled and
-   * there is child content, it will be treated as primary text and update the
-   * styles automatically.
+   * The main content to display that defaults to being wrapped in the
+   * `ListItemText` component. Enable the {@link disableTextChildren} prop to
+   * render without the additional `ListItemText` wrapper.
    */
   children?: ReactNode;
 
@@ -222,6 +222,12 @@ export interface ListItemChildrenTextProps {
   multiline?: boolean;
 }
 
+/**
+ * @since 6.0.0 Extends the `ListItemChildrenTextProps` and
+ * `ListItemChildrenAddonProps` interfaces.
+ * @since 6.0.0 Added `textProps` and `secondaryTextClassName`
+ * @since 6.0.0 Renamed `textChildren` to `disableTextChildren`
+ */
 export interface ListItemChildrenProps
   extends ListItemChildrenTextProps,
     ListItemChildrenAddonProps {}

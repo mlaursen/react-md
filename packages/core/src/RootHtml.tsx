@@ -42,8 +42,6 @@ export interface RootHtmlProps extends HtmlHTMLAttributes<HTMLHtmlElement> {
 }
 
 /**
- * **Server Component**
- *
  * This is mostly for creating the root html for next.js applications that
  * defaults to setting the `dir="ltr"` and `lang="en"`. Additional props can be
  * passed to the root `<html>` and `<body>` elements and children can be

@@ -22,8 +22,6 @@ export interface CardTitleProps extends TypographyProps {
 }
 
 /**
- * **Server Component**
- *
  * @since 6.0.0 Extends the {@link Typography} component and removed
  * the `small`/`noWrap` props.
  */

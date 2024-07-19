@@ -16,8 +16,6 @@ export interface CircularProgressSuspenseProps extends CircularProgressProps {
 }
 
 /**
- * **Server Component**
- *
  * This is just a convenience component to set the `fallback` to the
  * {@link CircularProgress} component.
  *

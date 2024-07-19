@@ -73,8 +73,6 @@ export interface SVGIconProps
 }
 
 /**
- * **Server Component**
- *
  * The `SVGIcon` component is used to render inline SVG icons or SVG icons in a
  * sprite map as an icon.
  */

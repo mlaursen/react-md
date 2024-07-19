@@ -48,8 +48,6 @@ export interface LinkProps
 }
 
 /**
- * **Server Component**
- *
  * @example Simple Example
  * ```tsx
  * import { Link, Typography } from "@react-md/core";

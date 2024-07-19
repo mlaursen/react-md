@@ -42,8 +42,6 @@ export interface IconRotatorProps extends IconRotatorBaseProps {
 }
 
 /**
- * **Server Component**
- *
  * The `IconRotator` is a simple component that is used to rotate an icon from a
  * one degrees to another.
  */

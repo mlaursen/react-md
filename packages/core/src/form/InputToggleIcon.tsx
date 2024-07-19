@@ -53,8 +53,6 @@ export interface InputToggleIconProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 /**
- * **Server Component**
- *
  * @since 2.8.0
  * @since 6.0.0 Updated to use different icons for each checked state instead
  * of a css overlay hack.

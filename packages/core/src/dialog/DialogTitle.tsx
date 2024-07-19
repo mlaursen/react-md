@@ -24,9 +24,9 @@ export interface DialogTitleProps extends TypographyProps {
 }
 
 /**
- * **Server Component**
- *
- * Look at the `Dialog` or `FixedDialog` components for example usage.
+ * The `DialogTitle` component is a simple `Typography` component wrapper with
+ * sensible defaults to be rendered within a `Dialog`. Look at the `Dialog` or
+ * `FixedDialog` components for example usage.
  */
 export const DialogTitle = forwardRef<HTMLHeadingElement, DialogTitleProps>(
   function DialogTitle(

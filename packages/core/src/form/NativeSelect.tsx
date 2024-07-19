@@ -65,8 +65,6 @@ export interface NativeSelectProps
 }
 
 /**
- * **Server Component**
- *
  * This component is a wrapper for the native `<select>` field that applies the
  * same theming as `TextField` and `TextArea` components. This component might
  * not be used much since the `Select` offers more styling options.

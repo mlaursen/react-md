@@ -95,8 +95,6 @@ export interface ResponsiveItemContainerProps
     ResponsiveItemContainerClassNameOptions {}
 
 /**
- * **Server Component**
- *
  * @example Image Example
  * ```tsx
  * import { ResponsiveItemContainer } from "@react-md/core";

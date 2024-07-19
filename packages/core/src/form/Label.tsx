@@ -65,8 +65,6 @@ export function label(options: LabelClassNameOptions): string {
 }
 
 /**
- * **Server Component**
- *
  * Most of the form components already use this `Label` internally when a
  * `label` prop has been provided. You should generally use this component if
  * you need to separate the label from an existing form component or you need to

@@ -18,7 +18,6 @@ export interface FormMessageContainerProps
 }
 
 /**
- * **Server Component**
  * Conditionally wraps the `children` in a `.rmd-form-message-container` wrapper
  * and renders the {@link FormMessage} component.
  *

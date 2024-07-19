@@ -16,8 +16,6 @@ export interface SelectedOptionProps extends BoxProps {
 }
 
 /**
- * **Server Component**
- *
  * This component is used to render the current option.
  *
  * @since 6.0.0

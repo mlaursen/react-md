@@ -91,8 +91,6 @@ export interface TextFieldProps
 }
 
 /**
- * **Server Component**
- *
  * The structure for this component is:
  * @example Component Structure
  * ```tsx

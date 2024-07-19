@@ -67,8 +67,6 @@ export interface AppBarTitleProps
 }
 
 /**
- * **Server Component**
- *
  * @example Updating the Keyline
  * ```tsx
  * import { AppBar, AppBarTitle } from "@react-md/core";

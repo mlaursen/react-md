@@ -63,8 +63,6 @@ export interface LinearProgressProps
 const styles = bem("rmd-linear-progress");
 
 /**
- * **Server Component**
- *
  * @example Indeterminate Example
  * ```tsx
  * import { LinearProgress } from "@react-md/core";

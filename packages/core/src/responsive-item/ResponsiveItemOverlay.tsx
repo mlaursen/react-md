@@ -55,8 +55,6 @@ export interface ResponsiveItemOverlayProps
     ResponsiveItemOverlayClassNameOptions {}
 
 /**
- * **Server Component**
- *
  * @example Simple Example
  * ```tsx
  * import { ResponsiveItemContainer, ResponsiveItemOverlay } from "@react-md/core";

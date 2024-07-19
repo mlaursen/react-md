@@ -20,7 +20,8 @@ export interface SwitchTrackProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 /**
- * **Server Component**
+ * Used to create the switch track styles
+ * @internal
  */
 export const SwitchTrack = forwardRef<HTMLDivElement, SwitchTrackProps>(
   function SwitchTrack(props, ref) {

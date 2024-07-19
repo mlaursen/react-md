@@ -202,8 +202,6 @@ export interface AppBarProps
 }
 
 /**
- * **Server Component**
- *
  * @example Simple Example
  * ```tsx
  * import { AppBar, AppBarTitle, Button } from "@react-md/core";

@@ -9,8 +9,6 @@ export interface NavItemProps extends LiHTMLAttributes<HTMLLIElement> {
 }
 
 /**
- * **Server Component**
- *
  * This component is just used to add padding based on the depth of the nav item
  * and should not be used on its own. See the `CollapsibleNavGroup` and
  * `NavItemLink` instead.

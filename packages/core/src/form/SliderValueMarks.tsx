@@ -135,8 +135,6 @@ export interface SliderValueMarksProps
 }
 
 /**
- * **Server Component**
- *
  * @internal
  * @since 6.0.0
  */

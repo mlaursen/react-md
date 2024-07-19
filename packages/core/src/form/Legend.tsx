@@ -14,8 +14,6 @@ export interface LegendProps extends TypographyProps {
 }
 
 /**
- * **Server Component**
- *
  * This should be used within a `Fieldset` to apply a label.
  *
  * @since 6.0.0

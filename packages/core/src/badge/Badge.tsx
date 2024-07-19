@@ -47,8 +47,6 @@ export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 /**
- * **Server Component**
- *
  * @example Simple Example
  * ```tsx
  * import type { ReactElement } from "react";

@@ -33,7 +33,6 @@ export interface MaterialSymbolProps
 }
 
 /**
- * **Server Component**
  * This is a convenience component that provides autocomplete for all the
  * available material symbols via the `name` prop.
  *

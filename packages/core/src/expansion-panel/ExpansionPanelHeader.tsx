@@ -81,7 +81,6 @@ export interface ExpansionPanelHeaderProps
 }
 
 /**
- * **Server Component**
  * This is mostly an internal component, but can also be used to implement a
  * custom header implementation if needed. This might really be a client
  * component in practice since the `onClick` prop must be provided.

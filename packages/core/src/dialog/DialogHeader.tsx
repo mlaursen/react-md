@@ -4,9 +4,9 @@ import { dialogHeader } from "./styles.js";
 export type DialogHeaderProps = HTMLAttributes<HTMLDivElement>;
 
 /**
- * **Server Component**
- *
- * Look at the `Dialog` or `FixedDialog` components for example usage.
+ * The `DialogHeader` component should be rendered within a `Dialog` component
+ * and generally contains the `DialogTitle`. Look at the `Dialog` or
+ * `FixedDialog` components for example usage.
  */
 export const DialogHeader = forwardRef<HTMLDivElement, DialogHeaderProps>(
   function DialogHeader(props, ref) {

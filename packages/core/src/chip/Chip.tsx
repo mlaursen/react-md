@@ -156,8 +156,6 @@ export interface ChipProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 /**
- * **Server Component**
- *
  * @example Simple Example
  * ```tsx
  * import { Chip } from "@react-md/core";

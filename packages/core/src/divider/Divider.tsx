@@ -23,8 +23,6 @@ export interface DividerProps
     DividerClassNameOptions {}
 
 /**
- * **Server Component**
- *
  * @example Simple Example
  * ```tsx
  * import { Divider } from "@react-md/core";

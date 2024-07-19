@@ -11,8 +11,6 @@ import { navItem } from "./navItemStyles.js";
 export interface NavSubheaderProps extends ListSubheaderProps {}
 
 /**
- * **Server Component**
- *
  * A simple wrapper around the {@Link ListSubheader} that updates the padding
  * based on the current navigation item depth to match the other items.
  *

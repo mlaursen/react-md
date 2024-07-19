@@ -31,8 +31,6 @@ export interface SliderMarkLabelProps extends CustomizableSliderMarkLabelProps {
 }
 
 /**
- * **Server Component**
- *
  * @internal
  * @since 6.0.0
  */

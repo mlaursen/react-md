@@ -26,8 +26,6 @@ export interface FontIconProps
 }
 
 /**
- * **Server Component**
- *
  * The `FontIcon` component is used for rendering a font-icon library's icon.
  * The default is to use the `material-icons` library, but others can be used as
  * well.

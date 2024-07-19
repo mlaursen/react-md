@@ -6,9 +6,9 @@ export interface DialogContentProps
     DialogContentClassNameOptions {}
 
 /**
- * **Server Component**
- *
- * Look at the `Dialog` or `FixedDialog` components for example usage.
+ * The `DialogContent` component should be used as a child of the `Dialog`
+ * component that applies some reasonable default styles. Look at the `Dialog`
+ * or `FixedDialog` components for example usage.
  */
 export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
   function DialogContent(

@@ -14,8 +14,6 @@ export type ButtonUnstyledProps = Omit<
 >;
 
 /**
- * **Server Component**
- *
  * A simple wrapper for a `<button type="button">` that applies the unstyled
  * utility class.
  *

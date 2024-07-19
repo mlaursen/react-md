@@ -7,8 +7,6 @@ import { box, type BoxOptions } from "./styles.js";
 export interface BoxProps extends HTMLAttributes<HTMLDivElement>, BoxOptions {}
 
 /**
- * **Server Component**
- *
  * The `Box` component is a wrapper around the CSS box model and should solve
  * most of your `flex` and `grid` layout requirements for responsive design.
  * There are pass-through props for all of the box module styling properties

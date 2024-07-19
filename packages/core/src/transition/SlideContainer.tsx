@@ -73,8 +73,8 @@ export interface SlideContainerProps
     SlideContainerClassNameOptions {}
 
 /**
- * **Server Component**
- * This is a server component, but generally relies on state so probably a client component.
+ * The `SlideContainer` is used to enable a slide transition when child `Slide`
+ * components change.
  *
  * @example Simple Example
  * ```tsx

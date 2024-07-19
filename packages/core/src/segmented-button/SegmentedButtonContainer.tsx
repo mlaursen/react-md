@@ -14,8 +14,6 @@ export interface SegmentedButtonContainerProps
 }
 
 /**
- * **Server Component**
- *
  * Simple wrapper `div` to apply the segmented button container styles. You can
  * just use the {@link segmentedButtonContainerStyles} util function instead.
  *

@@ -82,8 +82,8 @@ export interface BaseWindowSplitterProps
 export type WindowSplitterProps = LabelRequiredForA11y<BaseWindowSplitterProps>;
 
 /**
- * **Server Component**
- * Most likely a client component since it relies on `useWindowSplitter`
+ * The `WindowSplitter` should be used with the `useWindowSplitter` hook to
+ * resize parts of a layout.
  *
  * @see {@link useWindowSplitter} for an example usage
  * @since 6.0.0

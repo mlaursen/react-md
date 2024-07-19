@@ -27,7 +27,8 @@ export interface SrOnlyProps extends HTMLAttributes<TypographyHTMLElement> {
 }
 
 /**
- * **Server Component**
+ * The `SrOnly` component is used to render content that is only visible to
+ * screen readers.
  *
  * @example Simple Example
  * ```tsx

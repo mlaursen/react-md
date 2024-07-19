@@ -11,8 +11,6 @@ export interface NavGroupProps extends ListProps {
 }
 
 /**
- * **Server Component**
- *
  * A simple wrapper around the {@link Link} component that ads the
  * `--rmd-tree-depth: depth` custom property to allow for incremented padding.
  *

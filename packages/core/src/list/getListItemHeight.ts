@@ -20,8 +20,8 @@ export interface ListItemHeightOptions
 }
 
 /**
- * Gets the expected height for the `ListItem` or `SimpleListItem` based on the
- * addons and `secondaryText` props.
+ * Gets the expected height for the `ListItem` based on the addons and
+ * `secondaryText` props.
  *
  * @see {@link ListItemHeight}
  * @internal

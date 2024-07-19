@@ -60,9 +60,7 @@ export interface TextFieldAddonProps extends ConfigurableTextFieldAddonProps {
 }
 
 /**
- * **Server Component**
- *
- * This component is used to add an an icon before or after the text field with
+ * This component is used to add an icon before or after the text field with
  * correct styling.
  */
 export const TextFieldAddon = forwardRef<HTMLSpanElement, TextFieldAddonProps>(

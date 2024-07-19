@@ -24,8 +24,6 @@ export interface SliderTrackProps
 }
 
 /**
- * **Server Component**
- *
  * @internal
  * @since 2.5.0
  * @since 6.0.0 Updated to be internal only.

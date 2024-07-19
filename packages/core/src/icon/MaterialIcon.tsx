@@ -21,8 +21,6 @@ export interface MaterialIconProps
 }
 
 /**
- * **Server Component**
- *
  * The `MaterialIcon` component is used for rendering a material icon using the
  * Google Fonts stylesheet (handled separately). This is mostly a convenience
  * wrapper around the `FontIcon` that will catch typos for the supported icon

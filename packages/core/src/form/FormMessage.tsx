@@ -9,8 +9,6 @@ import {
 } from "./types.js";
 
 /**
- * **Server Component**
- *
  * The `FormMessage` component is used to create additional helper messages or
  * error messages and generally placed below the related `TextField`. If a
  * `length` (of the `value`) and `maxLength` are provided, a counter will also

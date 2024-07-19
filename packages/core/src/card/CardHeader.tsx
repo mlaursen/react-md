@@ -30,8 +30,6 @@ export interface CardHeaderProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 /**
- * **Server Component**
- *
  * @since 6.0.0 Removed the `align` prop.
  * @since 6.0.0 Renamed the `beforeChildren` and `afterChildren` props to
  * `beforeAddon` and `afterAddon`.

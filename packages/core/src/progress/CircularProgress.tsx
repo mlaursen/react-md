@@ -115,8 +115,6 @@ export interface CircularProgressProps
 const styles = bem("rmd-circular-progress");
 
 /**
- * **Server Component**
- *
  * @example Indeterminate Example
  * ```tsx
  * import { CircularProgress } from "@react-md/core":
