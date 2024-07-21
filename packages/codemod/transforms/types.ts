@@ -1,4 +1,6 @@
 import {
+  type JSXEmptyExpression,
+  type JSXExpressionContainer,
   type ArrayPattern,
   type ArrowFunctionExpression,
   type AssignmentPattern,
@@ -73,3 +75,8 @@ export type ComponentDefinition = (
   | FunctionDeclaration
   | FunctionExpression
 ) & { body: BlockStatement };
+
+export type NonEmptyJSXExpresson = Exclude<
+  JSXExpressionContainer["expression"],
+  JSXEmptyExpression
+>;

@@ -1,19 +1,11 @@
-import {
-  type JSCodeshift,
-  type JSXEmptyExpression,
-  type JSXExpressionContainer,
-} from "jscodeshift";
-
-type DefinedExpression = Exclude<
-  JSXExpressionContainer["expression"],
-  JSXEmptyExpression
->;
+import { type JSCodeshift, type JSXExpressionContainer } from "jscodeshift";
+import { type NonEmptyJSXExpresson } from "../types";
 
 export function isJsxExpressionContainer(
   j: JSCodeshift,
   value: unknown
 ): value is JSXExpressionContainer & {
-  expression: DefinedExpression;
+  expression: NonEmptyJSXExpresson;
 } {
   return (
     j.JSXExpressionContainer.check(value) &&

@@ -1342,6 +1342,160 @@ The `Link` component updated the following props:
 
 ## List
 
+There are a few breaking changes for the list components:
+
+- The `SimpleListItem` was removed in favor of using an `<li>` with the
+  `ListItemChildren` component
+- The `ListItem` and `ListItemLink` removed support for the ripple props
+  and updated the following props:
+  - The `forceAddonWrap` prop was removed in favor of the `leftAddonForceWrap`
+    and `rightAddonForceWrap`
+  - The `textChildren` prop was renamed to `disableTextChildren`
+- The `ListItemLink` renamed `component` to `as`
+
+> !Warn! For Typescript users, the `ListItemLink` no longer allows
+> `{ [key: string]: unknown }` when the `as` component is provided.
+
+### 🔧 update-list-item-props
+
+```sh
+npx @react-md/codemod v5-to-v6/list/update-list-item-props
+```
+
+Update `textChildren` prop:
+
+```diff
+ import { type ReactElement } from "react";
+ import { ListItem } from "react-md";
+
+ export default function Example(): ReactElement {
+   return (
+     <>
+-      <ListItem textChildren>Hello, world!</ListItem>
+-      <ListItem textChildren={false}>Hello, world!</ListItem>
+-      <ListItem textChildren={true}>Hello, world!</ListItem>
+-      <ListItem textChildren={textChildren}>Hello, world!</ListItem>
++      <ListItem>Hello, world!</ListItem>
++      <ListItem disableTextChildren>Hello, world!</ListItem>
++      <ListItem>Hello, world!</ListItem>
++      <ListItem disableTextChildren={!textChildren}>Hello, world!</ListItem>
+     </>
+   );
+ }
+```
+
+Remove ripple props:
+
+```diff
+ import { type ReactElement } from "react";
+ import { ListItem } from "react-md";
+ import styles from "./styles.module.scss";
+
+ export default function Example(): ReactElement {
+   return (
+     <ListItem
+       onClick={() => {
+         // do something
+       }}
+-      disableRipple
+-      disableProgrammaticRipple
+-      disableEnterClick
+-      disableSpacebarClick
+-      disablePressedFallback
+-      enablePressedAndRipple
+-      rippleTimeout={100}
+-      rippleClassName={styles.ripple}
+-      rippleClassNames={{ enter: "", exit: "" }}
+-      rippleContainerClassName="example"
+     >
+       Hello, world!
+     </ListItem>
+   );
+ }
+```
+
+Rename `component` to `as`:
+
+```diff
+ export default function Example(): ReactElement {
+   return (
+     <>
+-      <ListItemLink component={CustomLink} to="/some-path">
++      <ListItemLink as={CustomLink} to="/some-path">
+         Link 1
+       </ListItemLink>
+-      <ListItemLink component="a" href="/some-path">
++      <ListItemLink as="a" href="/some-path">
+         Link 2
+       </ListItemLink>
+     </>
+```
+
+Remove `SimpleListItem`:
+
+```diff
+ import type { ReactElement } from "react";
+ import cn from "classnames";
+-import { FavoriteSVGIcon, List, SimpleListItem } from "react-md";
++import { FavoriteSVGIcon, List, ListItemChildren } from "react-md";
+
+ import people from "./people";
+
+@@ -12,33 +12,35 @@ export default function Demo(): ReactElement {
+     <Container>
+       <List>
+         {people.slice(0, 10).map((name) => (
+-          <SimpleListItem
++          <li
+             key={name}
+             className={cn(styles.item, styles.dotted, styles.margin)}
+           >
+-            {name}
+-          </SimpleListItem>
++            <ListItemChildren>{name}</ListItemChildren>
++          </li>
+         ))}
+       </List>
+       <List className={styles.ordered}>
+         {people.slice(11, 20).map((name) => (
+-          <SimpleListItem key={name} className={cn(styles.item, styles.margin)}>
+-            {name}
+-          </SimpleListItem>
++          <li key={name} className={cn(styles.item, styles.margin)}>
++            <ListItemChildren>{name}</ListItemChildren>
++          </li>
+         ))}
+       </List>
+       <List>
+-        <SimpleListItem
+-          primaryText={<span>Primary Text</span>}
+-          secondaryText={
+-            <span className={styles.secondary}>Secondary Text</span>
+-          }
+-          leftAddon={<FavoriteSVGIcon />}
+-          rightAddon={<img alt="" src="https://example.com/image.jpeg" />}
+-          rightAddonType="media"
+-        >
+-          Other children
+-        </SimpleListItem>
++        <li>
++          <ListItemChildren
++            primaryText={<span>Primary Text</span>}
++            secondaryText={
++              <span className={styles.secondary}>Secondary Text</span>
++            }
++            leftAddon={<FavoriteSVGIcon />}
++            rightAddon={<img alt="" src="https://example.com/image.jpeg" />}
++            rightAddonType="media"
++          >
++            Other children
++          </ListItemChildren>
++        </li>
+       </List>
+     </Container>
+   );
+```
+
 ## Material Icons
 
 ## Media

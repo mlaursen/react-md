@@ -30,6 +30,9 @@ export function listSubheader(
   return cnb(styles({ inset }), className);
 }
 
+/**
+ * @since 6.0.0 The `role` prop defaults to `"presentation"`
+ */
 export interface ListSubheaderProps
   extends HTMLAttributes<HTMLLIElement>,
     ListSubheaderClassNameOptions {

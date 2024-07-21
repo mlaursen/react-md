@@ -96,7 +96,7 @@ build times by switching to `@react-md/core/{{FILE}}`.
 - [x] icon
 - [ ] layout
 - [x] link
-- [ ] list
+- [x] list
 - [x] material-icons
 - [ ] media
 - [ ] menu

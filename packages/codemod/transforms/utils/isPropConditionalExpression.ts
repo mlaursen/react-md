@@ -1,18 +1,15 @@
 import {
-  type JSXText,
-  type Identifier,
   type JSXAttribute,
   type JSXExpressionContainer,
-  type Literal,
-  type NumericLiteral,
-  type StringLiteral,
+  type BooleanLiteral,
 } from "jscodeshift";
+import { type NonEmptyJSXExpresson } from "../types";
 
 export function isPropConditionalExpression(
   attr: JSXAttribute
 ): attr is JSXAttribute & {
   value: JSXExpressionContainer & {
-    expression: Identifier | Literal | StringLiteral | NumericLiteral | JSXText;
+    expression: Exclude<NonEmptyJSXExpresson, BooleanLiteral>;
   };
 } {
   return (
