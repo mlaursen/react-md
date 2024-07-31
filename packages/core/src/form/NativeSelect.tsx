@@ -123,17 +123,16 @@ export const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
       autoCompleteValue,
       autoComplete = autoCompleteValue,
       name = autoCompleteValue,
-      dense = false,
-      error = false,
-      active = false,
-      inline = false,
-      stretch = false,
+      dense,
+      error,
+      active,
+      inline,
       leftAddon,
       rightAddon: propRightAddon,
       leftAddonProps,
       rightAddonProps,
-      disableLeftAddonStyles = false,
-      disableRightAddonStyles = false,
+      disableLeftAddonStyles,
+      disableRightAddonStyles,
       theme: propTheme,
       underlineDirection: propUnderlineDirection,
       messageProps,
@@ -142,7 +141,7 @@ export const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
       children,
       ...remaining
     } = props;
-    const { disabled = false, readOnly = false, multiple = false } = props;
+    const { disabled, readOnly, multiple } = props;
     const id = useEnsuredId(propId, "select");
     const theme = getFormConfig("theme", propTheme);
     const underlineDirection = getFormConfig(
@@ -177,7 +176,6 @@ export const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
           dense={dense}
           inline={inline}
           active={active}
-          stretch={stretch}
           readOnly={readOnly}
           disabled={disabled}
           leftAddon={leftAddon}

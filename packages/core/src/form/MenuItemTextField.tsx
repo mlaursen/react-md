@@ -33,7 +33,7 @@ export const MenuItemTextField = forwardRef<
   HTMLInputElement,
   MenuItemTextFieldProps
 >(function MenuItemTextField(props, ref) {
-  const { liProps, onKeyDown, stretch = true, ...remaining } = props;
+  const { liProps, onKeyDown, ...remaining } = props;
   return (
     <li
       role="none"
@@ -47,7 +47,6 @@ export const MenuItemTextField = forwardRef<
       <TextField
         {...remaining}
         ref={ref}
-        stretch={stretch}
         onKeyDown={(event) => {
           onKeyDown?.(event);
           switch (event.key) {

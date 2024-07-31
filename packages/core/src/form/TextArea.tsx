@@ -128,15 +128,14 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       areaClassName,
       resizeContainerProps,
       resize = "auto",
-      dense = false,
-      error = false,
-      active = false,
-      inline: propInline = false,
-      stretch = false,
+      dense,
+      error,
+      active,
+      inline: propInline,
       leftAddon,
       rightAddon,
-      disableLeftAddonStyles = false,
-      disableRightAddonStyles = false,
+      disableLeftAddonStyles,
+      disableRightAddonStyles,
       theme: propTheme,
       underlineDirection: propUnderlineDirection,
       messageProps,
@@ -267,7 +266,6 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
           dense={dense}
           inline={inline}
           active={active}
-          stretch={stretch}
           readOnly={readOnly}
           disabled={disabled}
           leftAddon={leftAddon}

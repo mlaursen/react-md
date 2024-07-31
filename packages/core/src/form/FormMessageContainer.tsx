@@ -1,7 +1,7 @@
-import { cnb } from "cnbuilder";
 import { forwardRef, type HTMLAttributes } from "react";
 import { type PropsWithRef } from "../types.js";
 import { FormMessage } from "./FormMessage.js";
+import { formMessageContainer } from "./formMessageContainerStyles.js";
 import { type FormMessageProps } from "./types.js";
 
 /**
@@ -36,7 +36,7 @@ export const FormMessageContainer = forwardRef<
     <div
       {...remaining}
       ref={ref}
-      className={cnb("rmd-form-message-container", className)}
+      className={formMessageContainer({ className })}
     >
       {children}
       <FormMessage {...messageProps} />

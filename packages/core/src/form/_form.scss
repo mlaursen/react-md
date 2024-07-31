@@ -456,6 +456,7 @@ $variables: (
     .rmd-form-message-container {
       display: flex;
       flex-direction: column;
+      width: 100%;
     }
 
     .rmd-form-message {
@@ -620,7 +621,9 @@ $variables: (
 
       align-items: center;
       display: flex;
+      flex: 1 1 auto;
       position: relative;
+      width: 100%;
 
       @if not $disable-text-field-container-dense {
         &--dense {
@@ -634,11 +637,7 @@ $variables: (
 
       &--inline {
         display: inline-flex;
-      }
-
-      &--stretch {
-        flex: 1 1 auto;
-        width: 100%;
+        width: auto;
       }
 
       &--label {

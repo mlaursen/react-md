@@ -32,9 +32,6 @@ export interface TextFieldContainerClassNameOptions
   inline?: boolean;
 
   /** @defaultValue `false` */
-  stretch?: boolean;
-
-  /** @defaultValue `false` */
   label?: boolean;
 
   /** @defaultValue `false` */
@@ -53,16 +50,15 @@ export function textFieldContainer(
   const {
     className,
     theme = "outline",
-    dense = false,
-    error = false,
-    label = false,
-    active = false,
-    inline = false,
-    stretch = false,
-    readOnly = false,
-    disabled = false,
-    leftAddon = false,
-    rightAddon = false,
+    dense,
+    error,
+    label,
+    active,
+    inline,
+    readOnly,
+    disabled,
+    leftAddon,
+    rightAddon,
     underlineDirection = "left",
   } = options;
   const underline = theme === "underline";
@@ -82,7 +78,6 @@ export function textFieldContainer(
     styles({
       error,
       inline,
-      stretch,
       filled,
       outline,
       disabled: disabled || readOnly,

@@ -136,7 +136,6 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       error,
       active,
       inline,
-      stretch,
       leftAddon,
       leftAddonProps,
       rightAddon,
@@ -182,7 +181,6 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
           dense={dense}
           inline={inline}
           active={active}
-          stretch={stretch}
           readOnly={readOnly}
           disabled={disabled}
           leftAddon={leftAddon}
