@@ -1,4 +1,10 @@
 import { forwardRef, type HTMLAttributes } from "react";
+import { Box } from "../box/Box.js";
+import {
+  type BoxAlignItems,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  type BoxOptions,
+} from "../box/styles.js";
 import { card, type CardClassNameOptions } from "./styles.js";
 
 declare module "react" {
@@ -15,7 +21,23 @@ declare module "react" {
  */
 export interface CardProps
   extends HTMLAttributes<HTMLDivElement>,
-    CardClassNameOptions {}
+    CardClassNameOptions {
+  /**
+   * @defaultValue `"stretch"`
+   */
+  align?: BoxAlignItems;
+
+  /**
+   * @defaultValue `"start"`
+   */
+  justify?: BoxAlignItems;
+
+  /**
+   * @see {@link BoxOptions.fullWidth}
+   * @defaultValue `false`
+   */
+  fullWidth?: boolean;
+}
 
 /**
  * @example Simple Example
@@ -54,12 +76,16 @@ export interface CardProps
  * ```
  *
  * @since 6.0.0 Removed the deprecated `raiseable` prop
+ * @since 6.0.0 Uses the `Box` component and displays as `flex` instead of
+ * `block`/`inline-block`.
  */
 export const Card = forwardRef<HTMLDivElement, CardProps>(
   function Card(props, ref) {
     const {
       children,
       className,
+      align = "stretch",
+      justify = "stretch",
       bordered,
       raisable,
       fullWidth,
@@ -68,19 +94,24 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
     } = props;
 
     return (
-      <div
+      <Box
         {...remaining}
+        align={align}
+        justify={justify}
+        stacked
+        fullWidth={fullWidth}
+        disableGap
+        disablePadding
         ref={ref}
         className={card({
           className,
           bordered,
           raisable,
-          fullWidth,
           interactable,
         })}
       >
         {children}
-      </div>
+      </Box>
     );
   }
 );

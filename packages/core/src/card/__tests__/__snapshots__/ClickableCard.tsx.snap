@@ -2,7 +2,7 @@
 
 exports[`ClickableCard should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <div
-  class="rmd-card rmd-card--shadowed rmd-card--clickable"
+  class="rmd-box rmd-box--wrap rmd-box--column rmd-box--align-stretch rmd-box--justify-stretch rmd-card rmd-card--shadowed rmd-card--clickable"
   data-testid="card"
   role="button"
   tabindex="0"
@@ -11,7 +11,7 @@ exports[`ClickableCard should apply the correct styling, HTMLAttributes, and all
 
 exports[`ClickableCard should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <div
-  class="rmd-card rmd-card--shadowed rmd-card--clickable custom-class-name"
+  class="rmd-box rmd-box--wrap rmd-box--column rmd-box--align-stretch rmd-box--justify-stretch rmd-card rmd-card--shadowed rmd-card--clickable custom-class-name"
   data-testid="card"
   role="button"
   style="color: white;"

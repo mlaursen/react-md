@@ -1,6 +1,0 @@
-// card has a higher specificity than the `box` in the
-// layer order, so need to set `display: flex` to
-// override the `display: inline-box` from the card
-.container {
-  display: flex;
-}

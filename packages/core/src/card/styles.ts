@@ -25,14 +25,6 @@ export interface CardClassNameOptions {
   raisable?: boolean;
 
   /**
-   * Update the card to have `display: block` and `width: 100%` instead of
-   * `display: inline-block`.
-   *
-   * @defaultValue `false`
-   */
-  fullWidth?: boolean;
-
-  /**
    * Set this to `true` if the card should gain the pointer cursor while
    * hovering and other interaction styles and not using the `ClickableCard`
    * component.
@@ -46,7 +38,7 @@ export interface CardClassNameOptions {
  * @since 6.0.0
  */
 export function card(options: CardClassNameOptions = {}): string {
-  const { className, bordered, raisable, fullWidth, interactable } = options;
+  const { className, bordered, raisable, interactable } = options;
 
   return cnb(
     cardStyles({
@@ -54,7 +46,6 @@ export function card(options: CardClassNameOptions = {}): string {
       shadowed: !bordered,
       raisable: !bordered && raisable,
       interactable,
-      "full-width": fullWidth,
     }),
     className
   );
