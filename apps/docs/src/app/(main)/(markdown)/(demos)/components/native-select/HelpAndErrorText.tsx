@@ -8,14 +8,11 @@ export default function HelpAndErrorText(): ReactElement {
     <Form
       className={box({
         stacked: true,
-        justify: "stretch",
-        fullWidth: true,
         disablePadding: true,
       })}
     >
       <NativeSelect
         label="Label"
-        stretch
         messageProps={{
           children: "This is some help text.",
         }}
@@ -27,10 +24,8 @@ export default function HelpAndErrorText(): ReactElement {
       </NativeSelect>
       <NativeSelect
         label="Label"
-        stretch
         error
         messageProps={{
-          error: true,
           children: "This field has an error!",
         }}
       >

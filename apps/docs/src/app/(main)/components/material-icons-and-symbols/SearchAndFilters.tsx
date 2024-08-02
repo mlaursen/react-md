@@ -41,7 +41,6 @@ export function SearchAndFilters(): ReactElement {
         }
         disableRightAddonStyles
         type="search"
-        stretch
         dense
         placeholder="Search icons"
         value={search}

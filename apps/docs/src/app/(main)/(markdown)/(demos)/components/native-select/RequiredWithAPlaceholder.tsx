@@ -16,7 +16,6 @@ export default function RequiredWithAPlaceholder(): ReactElement {
     >
       <NativeSelect
         label="Label"
-        stretch
         name="choice"
         required
         defaultValue=""

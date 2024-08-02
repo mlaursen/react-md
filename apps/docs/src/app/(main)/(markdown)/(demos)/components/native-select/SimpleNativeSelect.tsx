@@ -12,7 +12,7 @@ export default function SimpleNativeSelect(): ReactElement {
         fullWidth: true,
       })}
     >
-      <NativeSelect label="Label" stretch>
+      <NativeSelect label="Label">
         <option>Option 1</option>
         <option>Option 2</option>
         <option>Option 3</option>

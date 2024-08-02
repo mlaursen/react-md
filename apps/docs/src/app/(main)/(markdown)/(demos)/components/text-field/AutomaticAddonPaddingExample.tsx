@@ -48,7 +48,6 @@ export default function AutomaticAddonPaddingExample(): ReactElement {
         label="Label"
         placeholder="Placeholder"
         style={style}
-        stretch
         leftAddon={leftAddon}
         leftAddonProps={{ ref: leftAddonRef, pointerEvents: true }}
         rightAddon={rightAddon}
