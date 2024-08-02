@@ -1,0 +1,17 @@
+@use "sass:color";
+@use "@react-md/core" with (
+  $responsive-item-overlay-background-color: rgba(#000, 0.54),
+  // the `$responsive-item-overlay-color` is really `$dark-theme-text-primary-color`, but can be used in this demo
+  $responsive-item-overlay-color: color.adjust(#fff, $lightness: -15%),
+  $responsive-item-overlay-z-index: 0,
+  $responsive-item-overlay-padding: 1rem,
+  // try updating the width to `auto` or another value
+  $responsive-item-overlay-horizontal-width: 30%
+);
+
+// this is only required for the demo
+.container {
+  :global {
+    @include core.responsive-item-styles;
+  }
+}

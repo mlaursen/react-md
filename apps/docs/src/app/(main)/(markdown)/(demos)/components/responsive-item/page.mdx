@@ -1,3 +1,91 @@
-# Responsive Item
+# Responsive Item Container
 
-TODO
+The `ResponsiveItemContainer` component can be used to make images, videos,
+iframes, or other media elements responsive within a relative container. There
+is also some built-in support for forcing specific aspect ratios when the item's
+size is unknown.
+
+# Simple Example
+
+This example will show how to create responsive images by wrapping the
+`<img>` element in the `ResponsiveItemContainer`. The default behavior
+will be to respect the `<img>` dimensions but scale them down into the
+container's width.
+
+Try resizing the browser or updating the `columns` constant in the next
+demo to see how it works.
+
+```demo source="./SimpleExample.tsx"
+
+```
+
+# Force Aspect Ratio
+
+When dealing with unknown content, the aspect ratio can be forced using
+the `aspectRatio` prop. The default aspect ratios are:
+`16-9`, `4-3`, and `1-1`.
+
+```demo source="./ForceAspectRatio.tsx"
+
+```
+
+## YouTube IFrame Example
+
+When a YouTube video should be rendered in an iframe, either the `height` and
+`width` need to be provided to the `iframe` or an aspect ratio must be set on
+the `ResponsiveItemContainer` to work correctly.
+
+```demo source="./YouTubeIFrame.tsx"
+
+```
+
+## Configuring Allowed Aspect Ratios
+
+The generated aspect ratios are configured by the `$responsive-item-aspect-ratios`
+sass variable which is a map of `x-y: x y`.
+
+```demo source="./ConfiguringAllowedAspectRatios.tsx"
+
+```
+
+# Responsive Item Overlay Example
+
+It can sometimes be useful to add an overlay above the responsive item to cover
+it with a title, description, or other information. Use the `ResponsiveItemOverlay`
+component to add this overlayh within a `ResponsiveItemContainer`.
+
+```demo source="./ResponsiveItemOverlayExample.tsx"
+
+```
+
+## Overlay Positions
+
+The `ResponsiveItemOverlay` supports the following positions:
+
+- `top`
+- `right`
+- `bottom` (default)
+- `left`
+- `middle` - vertically centered
+- `center` - horizontally centered
+- `absolute-center` - horizontally and vertically centered
+
+```demo source="./OverlayPositions.tsx"
+
+```
+
+## Customizing Styles
+
+The global overlay styles can be configured by changing the following sass variables:
+
+- `$responsive-item-overlay-background-color`
+- `$responsive-item-overlay-color`
+- `$responsive-item-overlay-z-index`
+- `$responsive-item-overlay-padding`
+- `$responsive-item-overlay-horizontal-width`
+
+Otherwise, custom styles can be provided using the `className` prop like normal.
+
+```demo source="./CustomizingStyles.tsx"
+
+```

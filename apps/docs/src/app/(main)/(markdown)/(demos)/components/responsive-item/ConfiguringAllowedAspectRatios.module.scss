@@ -1,0 +1,24 @@
+@use "sass:list";
+@use "@react-md/core" with (
+  $responsive-item-aspect-ratios: (
+    // these are the default values and can be removed
+    // if they aren't needed in your app
+    "16-9": 16 9,
+    "4-3": 4 3,
+    "1-1": 1 1,
+  )
+);
+
+// this is only required for this demo and how the class names are generated
+.container {
+  :global {
+    @each $suffix, $ratio-list in core.$responsive-item-aspect-ratios {
+      .rmd-responsive-item-container--#{$suffix} {
+        @include core.responsive-item-aspect-ratio(
+          list.nth($ratio-list, 1),
+          list.nth($ratio-list, 2)
+        );
+      }
+    }
+  }
+}

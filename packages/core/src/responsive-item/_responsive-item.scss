@@ -2,6 +2,7 @@
 @use "sass:map";
 @use "sass:math";
 @use "../utils";
+@use "../theme/colors";
 @use "../theme/theme";
 
 $disable-everything: false !default;
@@ -19,13 +20,12 @@ $disable-overlay-middle: false !default;
 $disable-overlay-center: false !default;
 $disable-overlay-absolute-center: false !default;
 
-$background-color: rgba(#000, 0.54) !default;
-$color: theme.$dark-theme-text-primary-color !default;
-$z-index: 1 !default;
-
-$overlay-padding: 1rem !default;
 $selectors: (img ">svg" iframe video embed object) !default;
 
+$overlay-background-color: rgba(colors.$black, 0.54) !default;
+$overlay-color: theme.$dark-theme-text-primary-color !default;
+$overlay-z-index: 0 !default;
+$overlay-padding: 1rem !default;
 $overlay-horizontal-width: 30% !default;
 
 $aspect-ratios: (
@@ -137,11 +137,11 @@ $disable-aspect-ratios: not list.length(map.keys($aspect-ratios)) !default;
 
       @if not $disable-overlay {
         .rmd-responsive-item-overlay {
-          background-color: $background-color;
-          color: $color;
+          background-color: $overlay-background-color;
+          color: $overlay-color;
           padding: $overlay-padding;
           position: absolute;
-          z-index: 0;
+          z-index: $overlay-z-index;
 
           @if not $disable-overlay-top {
             &--top {
