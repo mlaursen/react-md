@@ -701,12 +701,18 @@ export const navItems: readonly NavigationItem[] = [
         href: "/is-element-visible",
         children: "isElementVisible",
       },
-      { type: "subheader", children: "Other" },
+      { type: "subheader", children: "Styling" },
       {
         type: "route",
         href: "/bem",
         children: "bem",
       },
+      {
+        type: "route",
+        href: "/object-fit",
+        children: "objectFit",
+      },
+      { type: "subheader", children: "Other" },
       {
         type: "route",
         href: "/identity",

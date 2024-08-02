@@ -11,7 +11,7 @@ export interface ObjectFitOptions {
 
   /**
    * @see {@link https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit}
-   * @defaultValue `"contain"`
+   * @defaultValue `aspectRatio ? "fill" : "contain"`
    */
   fit?: "contain" | "cover" | "fill" | "none" | "scale-down";
 
@@ -75,7 +75,8 @@ export interface ObjectFitOptions {
  * @since 6.0.0
  */
 export function objectFit(options: ObjectFitOptions = {}): string {
-  const { className, fit = "contain", aspectRatio = "" } = options;
+  const { className, fit: propFit, aspectRatio = "" } = options;
+  const fit = propFit ?? (aspectRatio ? "fill" : "contain");
 
   return cnb(
     styles({

@@ -1,0 +1,44 @@
+# objectFit
+
+The `objectFit` class name utility function is used to create responsive
+images and videos within the current content box with support for enforcing
+specific aspect ratios.
+
+> !Info! See the [ResponsiveItem](/components/responsive-item) component
+> for an alternative solution.
+
+# Simple Example
+
+To create a responsive image or video, set the `className` to `objectFit`. The default
+behavior will use
+[object-fit: contain](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit#contain).
+
+```demo source="./SimpleExample.tsx"
+
+```
+
+## Custom Fit Behavior
+
+The `objectFit` function supports the following `object-fit` values:
+
+- `contain` (default)
+- `cover`
+- `fill`
+- `none`
+- `scale-down`
+
+```demo source="./CustomFitBehavior.tsx"
+
+```
+
+# Aspect Ratios
+
+The `objectFit` class name utility function supports setting the aspect ratio
+using the
+[aspect-ratio](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio)
+property. `16-9`, `4-3`, and `1-1` are supported out of the box, but can be
+configured by changing the `$object-fit-aspect-ratios` map.
+
+```demo source="./AspectRatios.tsx"
+
+```

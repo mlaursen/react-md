@@ -49,7 +49,7 @@ $aspect-ratios: (
 
         @each $suffix, $ratio-list in $aspect-ratios {
           &--#{$suffix} {
-            aspect-ratio: list.nth($ratio-list, 1) / list.nth($ratio-list, 2);
+            aspect-ratio: list.slash($ratio-list...);
           }
         }
       }

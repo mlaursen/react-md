@@ -1,0 +1,15 @@
+@use "@react-md/core" with (
+  $object-fit-aspect-ratios: (
+    // these are the defaults
+    "16-9": 16 9,
+    "4-3": 4 3,
+    "1-1": 1 1,
+  )
+);
+
+// this is only required for this demo
+.container {
+  :global {
+    @include core.object-fit-styles;
+  }
+}
