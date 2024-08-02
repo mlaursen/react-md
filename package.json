@@ -21,19 +21,19 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.7",
-    "@inquirer/confirm": "^3.1.16",
-    "@inquirer/input": "^2.2.3",
-    "@inquirer/rawlist": "^2.1.16",
+    "@inquirer/confirm": "^3.1.20",
+    "@inquirer/input": "^2.2.7",
+    "@inquirer/rawlist": "^2.2.2",
     "@mlaursen/eslint-config": "^4.2.0",
     "@octokit/core": "^6.1.2",
     "dotenv": "^16.4.5",
     "eslint": "^8.57.0",
-    "husky": "^9.1.1",
+    "husky": "^9.1.4",
     "lint-staged": "^15.2.7",
     "prettier": "^3.3.3",
-    "tsx": "^4.16.2",
-    "turbo": "^2.0.8",
-    "typescript": "^5.5.3"
+    "tsx": "^4.16.5",
+    "turbo": "^2.0.11",
+    "typescript": "^5.5.4"
   },
   "engines": {
     "pnpm": ">=9",
@@ -48,6 +48,6 @@
   },
   "volta": {
     "node": "20.12.2",
-    "pnpm": "9.5.0"
+    "pnpm": "9.6.0"
   }
 }

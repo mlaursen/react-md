@@ -57,13 +57,13 @@
   },
   "devDependencies": {
     "@swc/cli": "^0.4.0",
-    "@swc/core": "^1.7.0",
-    "@types/node": "^20.14.11",
+    "@swc/core": "^1.7.5",
+    "@types/node": "^22.1.0",
     "chokidar": "^3.6.0",
     "glob": "^11.0.0",
     "npm-run-all": "^4.1.5",
-    "tsx": "^4.16.2",
-    "typescript": "^5.5.3"
+    "tsx": "^4.16.5",
+    "typescript": "^5.5.4"
   },
   "peerDependencies": {
     "@jest/globals": "^29.7.0",
@@ -106,6 +106,6 @@
   },
   "volta": {
     "node": "20.12.2",
-    "pnpm": "9.5.0"
+    "pnpm": "9.6.0"
   }
 }
