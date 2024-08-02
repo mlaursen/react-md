@@ -85,7 +85,43 @@ export type WindowSplitterProps = LabelRequiredForA11y<BaseWindowSplitterProps>;
  * The `WindowSplitter` should be used with the `useWindowSplitter` hook to
  * resize parts of a layout.
  *
- * @see {@link useWindowSplitter} for an example usage
+ * See the `useResizableLayout` hook if the entire page layout should be
+ * resizable.
+ *
+ * @example Simple Example
+ * ```tsx
+ * "use client";
+ * import { WindowSplitter } from "@react-md/core/window-splitter/WindowSplitter";
+ * import { useWindowSplitter } from "@react-md/core/window-splitter/useWindowSplitter";
+ * import { useId, type ReactElement } from "react";
+ *
+ * export function Example(): ReactElement {
+ *   const panelId = useId();
+ *   const { value, splitterProps } = useWindowSplitter({
+ *     min: 120,
+ *     max: 380,
+ *   });
+ *
+ *   return (
+ *     <div
+ *       style={{
+ *         "--rmd-window-splitter-position": `${value}px`,
+ *         display: "grid",
+ *         gridTemplateColumns: "var(--rmd-window-splitter-position, 120px) 1fr",
+ *       }}
+ *     >
+ *       <div>Panel 1</div>
+ *       <WindowSplitter
+ *         {...splitterProps}
+ *         aria-controls={panelId}
+ *         aria-labelledby={panelId}
+ *       />
+ *       <div>Panel 2</div>
+ *     </div>
+ *   );
+ * }
+ * ```
+ *
  * @since 6.0.0
  */
 export const WindowSplitter = forwardRef<

@@ -1,0 +1,13 @@
+@use "everything";
+
+.container {
+  grid-template-columns:
+    minmax(0, everything.window-splitter-get-var(position))
+    1fr;
+  position: relative;
+}
+
+.second {
+  flex-shrink: 0;
+  white-space: nowrap;
+}

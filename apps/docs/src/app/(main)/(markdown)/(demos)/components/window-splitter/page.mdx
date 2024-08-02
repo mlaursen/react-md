@@ -1,3 +1,90 @@
 # Window Splitter
 
-TODO
+The `WindowSplitter` component can be used with the `useWindowSplitter` hook to
+allow the user to resize windows or panels within the application using the
+mouse or keyboard. The `--rmd-window-splitter-position` custom property can be
+used to set the `height` or `width` of panels and is used to set the
+`WindowSplitter`'s position within the viewport or relative container.
+
+> !Info! If the entire layout should be resizable, see the
+> [Resizable Navigation Layout](http://localhost:3000/getting-started/layout#resizable-navigation-layout) and
+> [useResizableLayout](/hooks/use-resizable-layout) instead.
+
+# Horizontal Resizable Sheet Example
+
+This example will show how to create a resizable `Sheet` using the
+`WindowSplitter`. The `useWindowSplitter` hook requires a `min` and `max` value
+(in pixels) and provides the current `value` (in pixels) which can be used to
+set the `width` or update custom properties.
+
+The [useWindowSize hook](/hooks/use-window-size) can be used to dynamically set
+the `max` value if the user resizes the window.
+
+```demo source="./HorizontalResizableSheetExample.tsx"
+
+```
+
+## Reversed Horizontal Resizable Sheet Example
+
+If the panel size should increment when dragging from right-to-left instead of
+left-to-right, enable the `reversed` option for the `useWindowSplitter` hook.
+
+> !Success! The dragging behavior automatically updates for right-to-left
+> languages when using the `WritingDirectionProvider`. Try changing the website
+> orientation through the options menu to see it in action.
+
+```demo source="./ReversedHorizontalResizableSheetExample.tsx"
+
+```
+
+# Vertical Resizable Sheet Example
+
+The `WindowSplitter` and `useWindowSplitter` can be used to resize vertically
+as well. Just enable the `vertical` option for the `useWindowSplitter`.
+
+```demo source="./VerticalResizableSheetExample.tsx"
+
+```
+
+## Reversed Vertical Resizable Sheet Example
+
+If the panel size should increment when dragging from down-to-up instead of
+up-to-down, enable the `reversed` option for the `useWindowSplitter` hook.
+
+```demo source="./ReversedVerticalResizableSheetExample.tsx"
+
+```
+
+# Relative Horizontal Example
+
+The `WindowSplitter` defaults to using `position: fixed` but can also be used
+within `position: relative` containers by enabling the `disableFixed` prop. The
+max value will also need to be updated to be based on the container size which
+can be done using the [useElementSize hook](/hooks/use-element-size) or another implementation.
+
+```demo source="./RelativeHorizontalExample.tsx"
+
+```
+
+## Relative Vertical Example
+
+This is the same as above, but just vertical instead of horizontal.
+
+```demo source="./RelativeVerticalExample.tsx"
+
+```
+
+# Accessibility
+
+The window splitter implements the [window
+splitter](https://www.w3.org/WAI/ARIA/apg/patterns/windowsplitter/)
+specifications and will require an `aria-label`/`aria-labelledby`.
+
+## Keyboard Behavior
+
+- The `Home` and `End` keys will move the splitter to the largest and smallest
+  allowed size for both horizontal and vertical window splitters
+- The `ArrowLeft` and `ArrowRight` keys can be used to decrement and increment
+  the horizontal window splitter size
+- The `ArrowUp` and `ArrowDown` keys can be used to decrement and increment the
+  vertical window splitter size

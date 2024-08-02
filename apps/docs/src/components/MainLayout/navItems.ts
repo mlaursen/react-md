@@ -403,6 +403,11 @@ export const navItems: readonly NavigationItem[] = [
       },
       {
         type: "route",
+        href: "/use-element-size",
+        children: "useElementSize",
+      },
+      {
+        type: "route",
         href: "/use-window-size",
         children: "useWindowSize",
       },
