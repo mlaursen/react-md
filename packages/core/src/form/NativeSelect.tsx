@@ -159,7 +159,13 @@ export const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
     return (
       <FormMessageContainer
         {...messageContainerProps}
-        messageProps={messageProps}
+        messageProps={
+          messageProps && {
+            error,
+            theme,
+            ...messageProps,
+          }
+        }
       >
         <TextFieldContainer
           {...containerProps}
