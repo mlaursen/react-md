@@ -72,7 +72,7 @@ exports[`TextArea should allow for addons before and after the input 1`] = `
   data-testid="container"
 >
   <span
-    class="rmd-text-field-addon rmd-text-field-addon--before rmd-text-field-addon--presentational rmd-box rmd-box--wrap"
+    class="rmd-text-field-addon rmd-text-field-addon--before rmd-text-field-addon--presentational rmd-box rmd-box--gap rmd-box--wrap"
   >
     <span
       aria-hidden="true"
@@ -107,7 +107,7 @@ exports[`TextArea should allow for addons before and after the input 1`] = `
     />
   </div>
   <span
-    class="rmd-text-field-addon rmd-text-field-addon--after rmd-text-field-addon--presentational rmd-box rmd-box--wrap"
+    class="rmd-text-field-addon rmd-text-field-addon--after rmd-text-field-addon--presentational rmd-box rmd-box--gap rmd-box--wrap"
   >
     <span
       aria-hidden="true"

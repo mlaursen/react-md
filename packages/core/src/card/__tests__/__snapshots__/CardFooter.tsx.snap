@@ -2,7 +2,7 @@
 
 exports[`CardFooter should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <div
-  class="rmd-box rmd-box--wrap rmd-box--padded rmd-box--justify-end rmd-card__footer"
+  class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--justify-end rmd-card__footer"
   data-testid="footer"
 >
   Footer
@@ -11,7 +11,7 @@ exports[`CardFooter should apply the correct styling, HTML attributes, and allow
 
 exports[`CardFooter should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <div
-  class="rmd-box rmd-box--wrap rmd-box--padded rmd-box--justify-end rmd-card__footer custom-class-name"
+  class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--justify-end rmd-card__footer custom-class-name"
   data-testid="footer"
   style="color: white;"
 >
@@ -21,7 +21,7 @@ exports[`CardFooter should apply the correct styling, HTML attributes, and allow
 
 exports[`CardFooter should apply the correct styling, HTML attributes, and allow a ref 3`] = `
 <div
-  class="rmd-box rmd-box--wrap rmd-box--padded rmd-box--justify-between rmd-card__footer"
+  class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--justify-between rmd-card__footer"
   data-testid="footer"
   style=""
 >

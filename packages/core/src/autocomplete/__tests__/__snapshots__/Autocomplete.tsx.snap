@@ -49,7 +49,7 @@ exports[`Autocomplete should apply the correct styling, HTML attributes, and all
     Field
   </label>
   <span
-    class="rmd-text-field-addon rmd-text-field-addon--after rmd-box rmd-box--wrap rmd-autocomplete__right-addon rmd-background-container"
+    class="rmd-text-field-addon rmd-text-field-addon--after rmd-box rmd-box--gap rmd-box--wrap rmd-autocomplete__right-addon rmd-background-container"
   >
     <button
       aria-controls="autocomplete-:r0:"
@@ -98,7 +98,7 @@ exports[`Autocomplete should apply the correct styling, HTML attributes, and all
     Field
   </label>
   <span
-    class="rmd-text-field-addon rmd-text-field-addon--after rmd-box rmd-box--wrap rmd-autocomplete__right-addon rmd-background-container"
+    class="rmd-text-field-addon rmd-text-field-addon--after rmd-box rmd-box--gap rmd-box--wrap rmd-autocomplete__right-addon rmd-background-container"
   >
     <button
       aria-controls="autocomplete-:r0:"

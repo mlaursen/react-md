@@ -87,10 +87,12 @@ $variables: (gap, padding, item-min-size, columns);
   @if not $disable-everything {
     @include utils.optional-layer(box, $disable-layer) {
       .rmd-box {
-        @include use-var(gap, gap);
-
         align-items: $default-align-items;
         display: flex;
+
+        &--gap {
+          @include use-var(gap, gap);
+        }
 
         &--padded {
           @include use-var(padding);

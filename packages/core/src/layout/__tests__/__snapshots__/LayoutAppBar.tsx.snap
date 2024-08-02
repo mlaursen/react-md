@@ -12,7 +12,7 @@ exports[`LayoutAppBar should allow props to be passed to the SkipToMainContent c
 
 exports[`LayoutAppBar should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <header
-  class="rmd-app-bar rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--elevated rmd-app-bar--scrollbar-offset rmd-box rmd-box--padded rmd-box--full-width rmd-background-container rmd-primary-container"
+  class="rmd-app-bar rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--elevated rmd-app-bar--scrollbar-offset rmd-box rmd-box--gap rmd-box--padded rmd-box--full-width rmd-background-container rmd-primary-container"
   id="layout-header-:r0:"
 >
   <a
@@ -28,7 +28,7 @@ exports[`LayoutAppBar should apply the correct styling, HTMLAttributes, and allo
 
 exports[`LayoutAppBar should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <header
-  class="rmd-app-bar rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--elevated rmd-app-bar--scrollbar-offset rmd-box rmd-box--padded rmd-box--full-width rmd-background-container rmd-primary-container custom-class-name"
+  class="rmd-app-bar rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--elevated rmd-app-bar--scrollbar-offset rmd-box rmd-box--gap rmd-box--padded rmd-box--full-width rmd-background-container rmd-primary-container custom-class-name"
   id="layout-header-:r0:"
   style="color: white;"
 >
@@ -45,7 +45,7 @@ exports[`LayoutAppBar should apply the correct styling, HTMLAttributes, and allo
 
 exports[`LayoutAppBar should apply the correct styling, HTMLAttributes, and allow a ref 3`] = `
 <header
-  class="rmd-app-bar rmd-app-bar--fixed rmd-app-bar--sticky rmd-app-bar--top rmd-app-bar--elevated rmd-box rmd-box--padded rmd-box--full-width rmd-background-container rmd-primary-container"
+  class="rmd-app-bar rmd-app-bar--fixed rmd-app-bar--sticky rmd-app-bar--top rmd-app-bar--elevated rmd-box rmd-box--gap rmd-box--padded rmd-box--full-width rmd-background-container rmd-primary-container"
   id="layout-header-:r0:"
   style=""
 >
@@ -62,7 +62,7 @@ exports[`LayoutAppBar should apply the correct styling, HTMLAttributes, and allo
 
 exports[`LayoutAppBar should apply the correct styling, HTMLAttributes, and allow a ref 4`] = `
 <div
-  class="rmd-app-bar rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--elevated rmd-app-bar--scrollbar-offset rmd-box rmd-box--padded rmd-box--full-width rmd-background-container rmd-primary-container"
+  class="rmd-app-bar rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--elevated rmd-app-bar--scrollbar-offset rmd-box rmd-box--gap rmd-box--padded rmd-box--full-width rmd-background-container rmd-primary-container"
   data-testid="div"
   id="layout-header-:r0:"
 >

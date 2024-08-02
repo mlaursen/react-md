@@ -59,6 +59,13 @@ export interface BoxOptions {
   fullWidth?: boolean;
 
   /**
+   * Set this to `true` to prevent gap between items.
+   *
+   * @defaultValue `false`
+   */
+  disableGap?: boolean;
+
+  /**
    * Set this to `true` to set `flex-wrap: nowrap`.
    *
    * @defaultValue `false`
@@ -139,19 +146,21 @@ export function box(options: BoxOptions = {}): string {
   const {
     className,
     align = "",
-    grid = false,
+    grid,
     gridName = "",
     gridColumns = "fit",
     justify = "",
-    stacked = false,
+    stacked,
     reversed,
-    fullWidth = false,
-    disableWrap = false,
-    disablePadding = false,
+    fullWidth,
+    disableGap,
+    disableWrap,
+    disablePadding,
   } = options;
 
   return cnb(
     styles({
+      gap: !disableGap,
       wrap: !disableWrap,
       padded: !disablePadding,
       column: stacked && !reversed,

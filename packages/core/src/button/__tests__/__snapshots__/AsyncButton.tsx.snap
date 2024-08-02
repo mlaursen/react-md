@@ -47,7 +47,7 @@ exports[`AsyncButton should allow for custom children to be displayed only while
     remove
   </span>
   <span
-    class="rmd-overlay rmd-overlay--active rmd-overlay--visible rmd-overlay--absolute rmd-box rmd-box--wrap rmd-box--align-center rmd-box--justify-center"
+    class="rmd-overlay rmd-overlay--active rmd-overlay--visible rmd-overlay--absolute rmd-box rmd-box--gap rmd-box--wrap rmd-box--align-center rmd-box--justify-center"
   >
     <span
       aria-labelledby="async-button-:re:"
@@ -247,7 +247,7 @@ exports[`AsyncButton should default to using the same theme while loading but ca
     Button
   </span>
   <span
-    class="rmd-overlay rmd-overlay--active rmd-overlay--visible rmd-overlay--absolute rmd-box rmd-box--wrap rmd-box--align-center rmd-box--justify-center"
+    class="rmd-overlay rmd-overlay--active rmd-overlay--visible rmd-overlay--absolute rmd-box rmd-box--gap rmd-box--wrap rmd-box--align-center rmd-box--justify-center"
   >
     <span
       aria-labelledby="async-button-:rj:"
@@ -296,7 +296,7 @@ exports[`AsyncButton should render a progressbar until the onClick's promise has
     Button
   </span>
   <span
-    class="rmd-overlay rmd-overlay--active rmd-overlay--visible rmd-overlay--absolute rmd-box rmd-box--wrap rmd-box--align-center rmd-box--justify-center"
+    class="rmd-overlay rmd-overlay--active rmd-overlay--visible rmd-overlay--absolute rmd-box rmd-box--gap rmd-box--wrap rmd-box--align-center rmd-box--justify-center"
   >
     <span
       aria-labelledby="async-button-:r1:"
@@ -333,7 +333,7 @@ exports[`AsyncButton should should be able to render a linear progress bar above
     Button
   </span>
   <span
-    class="rmd-overlay rmd-overlay--active rmd-overlay--visible rmd-overlay--absolute rmd-box rmd-box--wrap rmd-box--align-start rmd-box--justify-center"
+    class="rmd-overlay rmd-overlay--active rmd-overlay--visible rmd-overlay--absolute rmd-box rmd-box--gap rmd-box--wrap rmd-box--align-start rmd-box--justify-center"
   >
     <span
       aria-labelledby="async-button-:r9:"
@@ -362,7 +362,7 @@ exports[`AsyncButton should should be able to render a linear progress bar above
     Button
   </span>
   <span
-    class="rmd-overlay rmd-overlay--active rmd-overlay--visible rmd-overlay--absolute rmd-box rmd-box--wrap rmd-box--align-end rmd-box--justify-center"
+    class="rmd-overlay rmd-overlay--active rmd-overlay--visible rmd-overlay--absolute rmd-box rmd-box--gap rmd-box--wrap rmd-box--align-end rmd-box--justify-center"
   >
     <span
       aria-labelledby="async-button-:r9:"
@@ -391,7 +391,7 @@ exports[`AsyncButton should use the current-color as the progress bar's color wh
     Button
   </span>
   <span
-    class="rmd-overlay rmd-overlay--active rmd-overlay--visible rmd-overlay--absolute rmd-box rmd-box--wrap rmd-box--align-center rmd-box--justify-center"
+    class="rmd-overlay rmd-overlay--active rmd-overlay--visible rmd-overlay--absolute rmd-box rmd-box--gap rmd-box--wrap rmd-box--align-center rmd-box--justify-center"
   >
     <span
       aria-labelledby="async-button-:rg:"

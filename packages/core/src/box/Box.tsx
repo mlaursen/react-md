@@ -107,19 +107,20 @@ export interface BoxProps extends HTMLAttributes<HTMLDivElement>, BoxOptions {}
 export const Box = forwardRef<HTMLDivElement, BoxProps>(
   function Box(props, ref) {
     const {
+      style: propStyle,
       className,
       children,
       align,
-      grid = false,
-      style: propStyle,
-      gridName = "",
+      grid,
+      gridName,
       justify,
-      stacked = false,
-      reversed = false,
-      gridColumns = "fit",
-      fullWidth = false,
-      disableWrap = false,
-      disablePadding = false,
+      stacked,
+      reversed,
+      gridColumns,
+      fullWidth,
+      disableGap,
+      disableWrap,
+      disablePadding,
       ...remaining
     } = props;
 
@@ -146,6 +147,7 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>(
           align,
           justify,
           reversed,
+          disableGap,
           disableWrap,
           disablePadding,
         })}
