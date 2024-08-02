@@ -1,8 +1,8 @@
 import { Button } from "@react-md/core/button/Button";
 import { Card } from "@react-md/core/card/Card";
 import { CardContent } from "@react-md/core/card/CardContent";
+import { objectFit } from "@react-md/core/objectFit";
 import { ResponsiveItemOverlay } from "@react-md/core/responsive-item/ResponsiveItemOverlay";
-import { responsiveItem } from "@react-md/core/responsive-item/styles";
 import { Tab } from "@react-md/core/tabs/Tab";
 import { TabList } from "@react-md/core/tabs/TabList";
 import { Slide } from "@react-md/core/transition/Slide";
@@ -58,13 +58,7 @@ export default function CarouselExample(): ReactElement {
               timeout={500}
               className={styles.slide}
             >
-              <img
-                src={src}
-                alt=""
-                className={responsiveItem({
-                  scaleToContainer: true,
-                })}
-              />
+              <img src={src} alt="" className={objectFit()} />
               <ResponsiveItemOverlay
                 position="bottom"
                 className={styles.overlay}

@@ -1,0 +1,58 @@
+@use "sass:list";
+@use "./utils";
+
+$disable-everything: false !default;
+$disable-cover: false !default;
+$disable-fill: false !default;
+$disable-none: false !default;
+$disable-scale-down: false !default;
+
+$display: block !default;
+$aspect-ratios: (
+  "16-9": 16 9,
+  "4-3": 4 3,
+  "1-1": 1 1,
+) !default;
+
+@mixin styles($disable-layer: false) {
+  @if not $disable-everything {
+    @include utils.optional-layer(object-fit, $disable-layer) {
+      .rmd-object-fit {
+        display: $display;
+        height: 100%;
+        object-fit: contain;
+        width: 100%;
+
+        @if not $disable-cover {
+          &--cover {
+            object-fit: cover;
+          }
+        }
+
+        @if not $disable-fill {
+          &--fill {
+            object-fit: fill;
+          }
+        }
+
+        @if not $disable-none {
+          &--none {
+            object-fit: none;
+          }
+        }
+
+        @if not $disable-scale-down {
+          &--scale-down {
+            object-fit: scale-down;
+          }
+        }
+
+        @each $suffix, $ratio-list in $aspect-ratios {
+          &--#{$suffix} {
+            aspect-ratio: list.nth($ratio-list, 1) / list.nth($ratio-list, 2);
+          }
+        }
+      }
+    }
+  }
+}

@@ -37,6 +37,7 @@
 @forward "layout/layout" as layout-*;
 @forward "navigation/navigation" as navigation-*;
 @forward "segmented-button/segmented-button" as segmented-button-*;
+@forward "object-fit" as object-fit-*;
 
 @use "app-bar/app-bar";
 @use "autocomplete/autocomplete";
@@ -73,6 +74,7 @@
 @use "form/form";
 @use "layout/layout";
 @use "navigation/navigation";
+@use "object-fit";
 @use "utils";
 
 $_layer-order: (
@@ -109,6 +111,7 @@ $_layer-order: (
   navigation,
   snackbar,
   segmented-button,
+  object-fit,
   utils
 );
 
@@ -404,6 +407,7 @@ $_layer-order: (
   @include list.styles($disable-layer);
   @include menu.styles($disable-layer);
   @include navigation.styles($disable-layer);
+  @include object-fit.styles($disable-layer);
   @include overlay.styles($disable-layer);
   @include progress.styles($disable-layer);
   @include responsive-item.styles($disable-layer);
