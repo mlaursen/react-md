@@ -6,10 +6,7 @@
 @use "../theme/theme";
 
 $disable-everything: false !default;
-$disable-item: false !default;
-$disable-scale-to-container: false !default;
 $disable-auto: false !default;
-$disable-auto-scale: false !default;
 $disable-full-width: false !default;
 $disable-overlay: false !default;
 $disable-overlay-top: false !default;
@@ -43,156 +40,126 @@ $disable-aspect-ratios: not list.length(map.keys($aspect-ratios)) !default;
   width: 100%;
 }
 
-@mixin responsive-item {
-  height: auto;
-  width: 100%;
-}
-
-@mixin scale-to-container {
-  max-height: 100%;
-  max-width: 100%;
-  object-fit: contain;
-}
-
 @mixin aspect-ratio($width, $height) {
   padding-bottom: math.percentage(math.div($height, $width));
+}
+
+@mixin base-styles {
+  .rmd-responsive-item {
+    display: inline-block;
+    position: relative;
+
+    @if not $disable-auto {
+      &--auto {
+        @each $selector in $selectors {
+          #{$selector} {
+            height: auto;
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    @if not $disable-full-width {
+      &--full-width {
+        display: block;
+        width: 100%;
+      }
+    }
+
+    @if not $disable-aspect-ratios {
+      &--aspect-ratio {
+        display: block;
+        height: 0;
+        overflow: hidden;
+        padding: 0;
+
+        @each $selector in $selectors {
+          #{$selector} {
+            @include forced-aspect-ratio;
+          }
+        }
+      }
+
+      @each $suffix, $ratio-list in $aspect-ratios {
+        &--#{$suffix} {
+          @include aspect-ratio(
+            list.nth($ratio-list, 1),
+            list.nth($ratio-list, 2)
+          );
+        }
+      }
+    }
+  }
+}
+
+@mixin overlay-styles {
+  .rmd-responsive-item-overlay {
+    background-color: $overlay-background-color;
+    color: $overlay-color;
+    padding: $overlay-padding;
+    position: absolute;
+    z-index: $overlay-z-index;
+
+    @if not $disable-overlay-top {
+      &--top {
+        inset: 0 0 auto;
+      }
+    }
+
+    @if not $disable-overlay-bottom {
+      &--bottom {
+        inset: auto 0 0;
+      }
+    }
+
+    &--horizontal {
+      inset: 0 auto;
+      width: $overlay-horizontal-width;
+    }
+
+    @if not $disable-overlay-left {
+      &--left {
+        @include utils.auto-rtl(left, 0);
+      }
+    }
+
+    @if not $disable-overlay-right {
+      &--right {
+        @include utils.auto-rtl(right, 0);
+      }
+    }
+
+    @if not $disable-overlay-middle {
+      &--middle {
+        inset: auto 0 50%;
+        transform: translate3d(0, 50%, 0);
+      }
+    }
+
+    @if not $disable-overlay-center {
+      &--center {
+        inset: 0 50% 0 auto;
+        transform: translate3d(50%, 0, 0);
+      }
+    }
+
+    @if not $disable-overlay-absolute-center {
+      &--absolute-center {
+        inset: auto 50% 50% auto;
+        transform: translate3d(50%, 50%, 0);
+      }
+    }
+  }
 }
 
 @mixin styles($disable-layer: false) {
   @if not $disable-everything {
     @include utils.optional-layer(responsive-item, $disable-layer) {
-      @if not $disable-item {
-        .rmd-responsive-item {
-          @include responsive-item;
-
-          @if not $disable-scale-to-container {
-            &--scale {
-              @include scale-to-container;
-            }
-          }
-
-          @if not $disable-aspect-ratios {
-            &--aspect-ratio {
-              @include forced-aspect-ratio;
-            }
-          }
-        }
-      }
-
-      .rmd-responsive-item-container {
-        display: inline-block;
-        position: relative;
-
-        @if not $disable-auto {
-          &--auto {
-            @each $selector in $selectors {
-              #{$selector} {
-                @include responsive-item;
-              }
-            }
-          }
-
-          @if not $disable-auto-scale {
-            &--auto-scale {
-              @each $selector in $selectors {
-                #{$selector} {
-                  @include scale-to-container;
-                }
-              }
-            }
-          }
-        }
-
-        @if not $disable-full-width {
-          &--full-width {
-            display: block;
-            width: 100%;
-          }
-        }
-
-        @if not $disable-aspect-ratios {
-          &--aspect-ratio {
-            display: block;
-            height: 0;
-            overflow: hidden;
-            padding: 0;
-
-            @each $selector in $selectors {
-              #{$selector} {
-                @include forced-aspect-ratio;
-              }
-            }
-          }
-
-          @each $suffix, $ratio-list in $aspect-ratios {
-            &--#{$suffix} {
-              @include aspect-ratio(
-                list.nth($ratio-list, 1),
-                list.nth($ratio-list, 2)
-              );
-            }
-          }
-        }
-      }
+      @include base-styles;
 
       @if not $disable-overlay {
-        .rmd-responsive-item-overlay {
-          background-color: $overlay-background-color;
-          color: $overlay-color;
-          padding: $overlay-padding;
-          position: absolute;
-          z-index: $overlay-z-index;
-
-          @if not $disable-overlay-top {
-            &--top {
-              inset: 0 0 auto;
-            }
-          }
-
-          @if not $disable-overlay-bottom {
-            &--bottom {
-              inset: auto 0 0;
-            }
-          }
-
-          &--horizontal {
-            inset: 0 auto;
-            width: $overlay-horizontal-width;
-          }
-
-          @if not $disable-overlay-left {
-            &--left {
-              @include utils.auto-rtl(left, 0);
-            }
-          }
-
-          @if not $disable-overlay-right {
-            &--right {
-              @include utils.auto-rtl(right, 0);
-            }
-          }
-
-          @if not $disable-overlay-middle {
-            &--middle {
-              inset: auto 0 50%;
-              transform: translate3d(0, 50%, 0);
-            }
-          }
-
-          @if not $disable-overlay-center {
-            &--center {
-              inset: 0 50% 0 auto;
-              transform: translate3d(50%, 0, 0);
-            }
-          }
-
-          @if not $disable-overlay-absolute-center {
-            &--absolute-center {
-              inset: auto 50% 50% auto;
-              transform: translate3d(50%, 50%, 0);
-            }
-          }
-        }
+        @include overlay-styles;
       }
     }
   }

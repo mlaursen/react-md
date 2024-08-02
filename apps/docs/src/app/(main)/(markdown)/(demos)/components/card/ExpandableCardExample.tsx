@@ -7,7 +7,7 @@ import { CardTitle } from "@react-md/core/card/CardTitle";
 import { IconRotator } from "@react-md/core/icon/IconRotator";
 import { List } from "@react-md/core/list/List";
 import { ListItem } from "@react-md/core/list/ListItem";
-import { ResponsiveItemContainer } from "@react-md/core/responsive-item/ResponsiveItemContainer";
+import { ResponsiveItem } from "@react-md/core/responsive-item/ResponsiveItem";
 import { Collapse } from "@react-md/core/transition/Collapse";
 import { useToggle } from "@react-md/core/useToggle";
 import EmailIcon from "@react-md/material-icons/EmailIcon";
@@ -21,9 +21,9 @@ export default function ExpandableCardExample(): ReactElement {
 
   return (
     <Card fullWidth className={styles.card}>
-      <ResponsiveItemContainer fullWidth>
+      <ResponsiveItem fullWidth>
         <img src="https://picsum.photos/300/200?image=1011" alt="" />
-      </ResponsiveItemContainer>
+      </ResponsiveItem>
       <CardHeader
         beforeAddon={<Avatar src="https://picsum.photos/40?image=1011" />}
         afterAddon={

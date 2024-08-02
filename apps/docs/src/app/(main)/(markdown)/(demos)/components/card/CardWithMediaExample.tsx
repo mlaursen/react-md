@@ -1,7 +1,7 @@
 import { Card } from "@react-md/core/card/Card";
 import { CardContent } from "@react-md/core/card/CardContent";
 import { CardTitle } from "@react-md/core/card/CardTitle";
-import { ResponsiveItemContainer } from "@react-md/core/responsive-item/ResponsiveItemContainer";
+import { ResponsiveItem } from "@react-md/core/responsive-item/ResponsiveItem";
 import { ResponsiveItemOverlay } from "@react-md/core/responsive-item/ResponsiveItemOverlay";
 import { Typography } from "@react-md/core/typography/Typography";
 import { type ReactElement } from "react";
@@ -9,12 +9,12 @@ import { type ReactElement } from "react";
 export default function CardWithMediaExample(): ReactElement {
   return (
     <Card>
-      <ResponsiveItemContainer fullWidth>
+      <ResponsiveItem fullWidth>
         <img src="https://picsum.photos/600/337?image=402" alt="" />
         <ResponsiveItemOverlay>
           <CardTitle>Wow</CardTitle>
         </ResponsiveItemOverlay>
-      </ResponsiveItemContainer>
+      </ResponsiveItem>
       <CardContent>
         <Typography>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut

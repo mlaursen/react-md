@@ -1,14 +1,13 @@
-# Responsive Item Container
+# Responsive Item
 
-The `ResponsiveItemContainer` component can be used to make images, videos,
-iframes, or other media elements responsive within a relative container. There
-is also some built-in support for forcing specific aspect ratios when the item's
-size is unknown.
+The `ResponsiveItem` component can be used to make images, videos, iframes, or
+other media elements responsive within a relative container with built-in
+support for forcing specific aspect ratios when the item's size is unknown.
 
 # Simple Example
 
 This example will show how to create responsive images by wrapping the
-`<img>` element in the `ResponsiveItemContainer`. The default behavior
+`<img>` element in the `ResponsiveItem`. The default behavior
 will be to respect the `<img>` dimensions but scale them down into the
 container's width.
 
@@ -33,7 +32,7 @@ the `aspectRatio` prop. The default aspect ratios are:
 
 When a YouTube video should be rendered in an iframe, either the `height` and
 `width` need to be provided to the `iframe` or an aspect ratio must be set on
-the `ResponsiveItemContainer` to work correctly.
+the `ResponsiveItem` to work correctly.
 
 ```demo source="./YouTubeIFrame.tsx"
 
@@ -52,7 +51,7 @@ sass variable which is a map of `x-y: x y`.
 
 It can sometimes be useful to add an overlay above the responsive item to cover
 it with a title, description, or other information. Use the `ResponsiveItemOverlay`
-component to add this overlayh within a `ResponsiveItemContainer`.
+component to add this overlayh within a `ResponsiveItem`.
 
 ```demo source="./ResponsiveItemOverlayExample.tsx"
 

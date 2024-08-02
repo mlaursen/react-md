@@ -2,7 +2,7 @@ import { Box } from "@react-md/core/box/Box";
 import { box } from "@react-md/core/box/styles";
 import { button } from "@react-md/core/button/buttonStyles";
 import { Card } from "@react-md/core/card/Card";
-import { ResponsiveItemContainer } from "@react-md/core/responsive-item/ResponsiveItemContainer";
+import { ResponsiveItem } from "@react-md/core/responsive-item/ResponsiveItem";
 import { ResponsiveItemOverlay } from "@react-md/core/responsive-item/ResponsiveItemOverlay";
 import { Typography } from "@react-md/core/typography/Typography";
 import InfoOutlineIcon from "node_modules/@react-md/material-icons/src/InfoOutlineIcon.jsx";
@@ -12,7 +12,7 @@ export default function ResponsiveItemOverlayExample(): ReactElement {
   return (
     <Box grid fullWidth>
       <Card>
-        <ResponsiveItemContainer>
+        <ResponsiveItem>
           <img
             src="https://picsum.photos/800/800?image=432"
             alt="green trees, grass, and lake at sunrise"
@@ -33,7 +33,7 @@ export default function ResponsiveItemOverlayExample(): ReactElement {
               <InfoOutlineIcon />
             </a>
           </ResponsiveItemOverlay>
-        </ResponsiveItemContainer>
+        </ResponsiveItem>
       </Card>
     </Box>
   );

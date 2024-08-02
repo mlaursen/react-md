@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ResponsiveItem should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<div>
+  <span
+    class="rmd-responsive-item rmd-responsive-item--auto"
+  >
+    <img
+      alt=""
+      src="/some-image.png"
+    />
+  </span>
+</div>
+`;
+
+exports[`ResponsiveItem should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<div>
+  <span
+    class="rmd-responsive-item rmd-responsive-item--auto rmd-responsive-item--full-width"
+  >
+    <img
+      alt=""
+      src="/some-image.png"
+    />
+  </span>
+</div>
+`;
+
+exports[`ResponsiveItem should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+<div>
+  <span
+    class="rmd-responsive-item rmd-responsive-item--auto custom-class-name"
+    style="background-color: orange;"
+  >
+    <img
+      alt=""
+      src="/some-image.png"
+    />
+  </span>
+</div>
+`;
+
+exports[`ResponsiveItem should apply the correct styling, HTML attributes, and allow a ref 4`] = `
+<div>
+  <span
+    class="rmd-responsive-item"
+    style=""
+  >
+    <img
+      alt=""
+      src="/some-image.png"
+    />
+  </span>
+</div>
+`;
+
+exports[`ResponsiveItem should apply the correct styling, HTML attributes, and allow a ref 5`] = `
+<div>
+  <span
+    class="rmd-responsive-item rmd-responsive-item--auto rmd-responsive-item--auto-scale"
+    style=""
+  >
+    <img
+      alt=""
+      src="/some-image.png"
+    />
+  </span>
+</div>
+`;
+
+exports[`ResponsiveItem should apply the correct styling, HTML attributes, and allow a ref 6`] = `
+<div>
+  <span
+    class="rmd-responsive-item rmd-responsive-item--auto rmd-responsive-item--aspect-ratio rmd-responsive-item--16-9"
+    style=""
+  >
+    <img
+      alt=""
+      src="/some-image.png"
+    />
+  </span>
+</div>
+`;

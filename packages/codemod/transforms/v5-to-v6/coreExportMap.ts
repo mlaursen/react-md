@@ -623,11 +623,10 @@ export const TYPES: ReadonlySet<string> = new Set([
   "ResizingTextAreaReturnValue",
   "ResizingTextAreaWrapperProps",
   "ResponsiveItemClassNameOptions",
-  "ResponsiveItemContainerClassNameOptions",
-  "ResponsiveItemContainerProps",
   "ResponsiveItemOverlayClassNameOptions",
   "ResponsiveItemOverlayPosition",
   "ResponsiveItemOverlayProps",
+  "ResponsiveItemProps",
   "RGB",
   "RippleContainerProps",
   "RippleProps",
@@ -1539,9 +1538,8 @@ export const VARIABLES: ReadonlySet<string> = new Set([
   "ResizeObserverManager",
   "resizeObserverManager",
   "ResizingTextAreaWrapper",
+  "ResponsiveItem",
   "responsiveItem",
-  "ResponsiveItemContainer",
-  "responsiveItemContainer",
   "ResponsiveItemOverlay",
   "responsiveItemOverlay",
   "Ripple",
@@ -3135,24 +3133,20 @@ export const EXPORT_MAP: Record<string, string> = {
   ResizingTextAreaReturnValue: "@react-md/core/form/useResizingTextArea",
   ResizingTextAreaWrapper: "@react-md/core/form/ResizingTextAreaWrapper",
   ResizingTextAreaWrapperProps: "@react-md/core/form/ResizingTextAreaWrapper",
-  responsiveItem: "@react-md/core/responsive-item/styles",
-  ResponsiveItemClassNameOptions: "@react-md/core/responsive-item/styles",
-  ResponsiveItemContainer:
-    "@react-md/core/responsive-item/ResponsiveItemContainer",
-  responsiveItemContainer:
-    "@react-md/core/responsive-item/ResponsiveItemContainer",
-  ResponsiveItemContainerClassNameOptions:
-    "@react-md/core/responsive-item/ResponsiveItemContainer",
-  ResponsiveItemContainerProps:
-    "@react-md/core/responsive-item/ResponsiveItemContainer",
+  ResponsiveItem: "@react-md/core/responsive-item/ResponsiveItem",
+  responsiveItem: "@react-md/core/responsive-item/responsiveItemStyles",
+  ResponsiveItemClassNameOptions:
+    "@react-md/core/responsive-item/responsiveItemStyles",
   ResponsiveItemOverlay: "@react-md/core/responsive-item/ResponsiveItemOverlay",
-  responsiveItemOverlay: "@react-md/core/responsive-item/ResponsiveItemOverlay",
+  responsiveItemOverlay:
+    "@react-md/core/responsive-item/responsiveItemOverlayStyles",
   ResponsiveItemOverlayClassNameOptions:
-    "@react-md/core/responsive-item/ResponsiveItemOverlay",
+    "@react-md/core/responsive-item/responsiveItemOverlayStyles",
   ResponsiveItemOverlayPosition:
-    "@react-md/core/responsive-item/ResponsiveItemOverlay",
+    "@react-md/core/responsive-item/responsiveItemOverlayStyles",
   ResponsiveItemOverlayProps:
     "@react-md/core/responsive-item/ResponsiveItemOverlay",
+  ResponsiveItemProps: "@react-md/core/responsive-item/ResponsiveItem",
   RGB: "@react-md/core/theme/utils",
   Ripple: "@react-md/core/interaction/Ripple",
   RippleContainer: "@react-md/core/interaction/RippleContainer",
