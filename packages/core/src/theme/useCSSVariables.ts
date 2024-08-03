@@ -1,33 +1,10 @@
 "use client";
-import type { RefObject } from "react";
-import { useEffect, useMemo } from "react";
-import type { CSSVariableName, DefinedCSSVariableName } from "./types.js";
-
-/**
- * @since 6.0.0
- */
-export interface CSSVariable<
-  Name extends CSSVariableName = DefinedCSSVariableName,
-> {
-  name: Name;
-  value: string | number;
-}
-
-/**
- * @since 6.0.0
- */
-export type CSSVariablesProperties<
-  Name extends CSSVariableName = DefinedCSSVariableName,
-> = {
-  [key in Name]?: string | number;
-};
-
-/**
- * @since 6.0.0
- */
-export type ReadonlyCSSVariableList<
-  Name extends CSSVariableName = DefinedCSSVariableName,
-> = readonly Readonly<CSSVariable<Name>>[];
+import { type RefObject, useEffect, useMemo } from "react";
+import {
+  type CSSVariableName,
+  type CSSVariablesProperties,
+  type ReadonlyCSSVariableList,
+} from "./types.js";
 
 /**
  * @example Applying Variables the root html element

@@ -1,8 +1,6 @@
 import { SegmentedButtonGroup } from "@/components/SegmentedButtonGroup.jsx";
-import {
-  useColorScheme,
-  type ColorSchemeMode,
-} from "@react-md/core/theme/useColorScheme";
+import { type ColorSchemeMode } from "@react-md/core/theme/types";
+import { useColorScheme } from "@react-md/core/theme/useColorScheme";
 import DarkModeOutlinedIcon from "@react-md/material-icons/DarkModeOutlinedIcon";
 import DevicesOutlinedIcon from "@react-md/material-icons/DevicesOutlinedIcon";
 import LightModeOutlinedIcon from "@react-md/material-icons/LightModeOutlinedIcon";

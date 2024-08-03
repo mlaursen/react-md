@@ -6,9 +6,9 @@ import {
   type ColorSchemeContext,
   type ColorSchemeMode,
   type ColorSchemeModeBehavior,
-} from "./useColorScheme.js";
+} from "./types.js";
 import { useColorSchemeMetaTag } from "./useColorSchemeMetaTag.js";
-import { usePrefersDarkTheme } from "./usePrefersColorScheme.js";
+import { usePrefersDarkTheme } from "./usePrefersDarkScheme.js";
 
 /**
  * @since 6.0.0

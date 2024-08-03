@@ -1,0 +1,230 @@
+# Dark Mode
+
+There are a few different type of light/dark themes that can be available for a
+web application:
+
+- Light Only
+- Dark Only
+- System Preference
+- Light/Dark Mode Toggle
+- Light/Dark/System Toggle
+
+> !Info! This page will guide you through all the approaches except for the
+> "Light Only" theme since that is the default behavior. Check out the
+> [theme customization documentation](./theme) for more theme behavior.
+
+If the application should only use a dark theme, set the `$color-scheme`
+variable to `dark` when importing the `react-md` styles which will generate all
+styles with the dark theme variants.
+
+```scss
+@use "@react-md/core" with (
+  $color-scheme: dark
+);
+
+@include core.styles;
+```
+
+# System Mode
+
+If the application should use the dark theme only if the user has set their
+system preference to dark, set the `$color-scheme` to `system`. The generated
+styles will default to the light theme but add a media query to use the dark
+theme when the `@media (prefers-color-scheme: dark)` matches.
+
+```scss
+@use "@react-md/core" with (
+  $color-scheme: system
+);
+
+@include core.styles;
+```
+
+# Light or Dark Mode
+
+If the application allows the user to select the current color scheme, generate
+the styles as normal with the default color scheme and create a global class
+name with the alternative theme using the `core.light-theme` or
+`core.dark-theme` mixins.
+
+Once the styles are generated, the app should be wrapped in the
+[LocalStorageColorSchemeProvider](/components/color-scheme-provider#local-storage-example)
+or a custom
+[Cookie Storage Provider](/components/color-scheme-provider#cookie-storage-example)
+and apply the light or dark theme class name to the root html as needed. The
+following examples will use the `LocalStorageColorSchemeProvider` to keep it simple.
+
+Start by configuring the default `$color-scheme` and creating a class name for
+the other color scheme. This example will default to a `light` theme and allow
+the user to configure it to be `dark`.
+
+```scss
+@use "@react-md/core";
+
+@include core.styles;
+
+.dark-theme {
+  @include core.dark-theme;
+}
+
+// if you want to default with a dark theme instead:
+@use "@react-md/core" with (
+  $color-scheme: dark
+);
+
+@include core.styles;
+
+.light-theme {
+  @include core.light-theme;
+}
+```
+
+Wrap the app in the chosen `ColorSchemeProvider` implementation:
+
+```tsx
+import { LocalStorageColorSchemeProvider } from "@react-md/core/theme/LocalStorageColorSchemeProvider";
+
+function App() {
+  return (
+    <LocalStorageColorSchemeProvider>
+      <RestOfTheApp />
+      <ApplyTheme />
+    </LocalStorageColorSchemeProvider>
+  );
+}
+```
+
+Change the styles based on the color scheme:
+
+```tsx
+import { useColorScheme } from "@react-md/core/theme/useColorScheme";
+import { useHtmlClassName } from "@react-md/core/useHtmlClassName";
+
+function ApplyTheme() {
+  const { colorScheme, setColorSchemeMode } = useColorScheme();
+  useHtmlClassName(colorScheme === "dark" ? "dark-theme" : "");
+
+  // Whatever UI is desired for this
+  return (
+    <Button
+      onClick={() =>
+        setColorSchemeMode((prev) => (prev === "light" ? "dark" : "light"))
+      }
+    >
+      Theme
+    </Button>
+  );
+}
+```
+
+# Light or Dark or System Mode
+
+The style setup will be about the same as the previous examples. Start by
+defining the default `$color-scheme` and create additional classes for the
+other color schemes.
+
+```scss
+@use "@react-md/core" with (
+  $color-scheme: light
+);
+
+@include core.styles;
+
+.dark-theme {
+  @include core.dark-theme;
+}
+
+.system-theme {
+  @media (prefers-color-scheme: dark) {
+    @include core.dark-theme;
+  }
+}
+```
+
+Then apply the `dark-theme` or `system-theme` class name when needed:
+
+```tsx
+import { useColorScheme } from "@react-md/core/theme/useColorScheme";
+import { useHtmlClassName } from "@react-md/core/useHtmlClassName";
+import { cnb } from "cnbuilder";
+
+function ApplyTheme() {
+  const { colorSchemeMode } = useColorScheme();
+  useHtmlClassName(
+    cnb(colorSchemeMode !== "light" && `${colorSchemeMode}-theme`)
+  );
+  return null;
+}
+```
+
+## This Website's Implementation
+
+If a real-world example is useful, here's this website's implementation
+with next.js:
+
+```import source="@/components/CookieColorSchemeProvider.tsx" fileName="src/components/CookieColorSchemeProvider.tsx"
+
+```
+
+```import source="@/utils/clientCookies.ts" fileName="src/utils/clientCookies.ts"
+
+```
+
+```tsx fileName="src/components/RootLayout.tsx"
+import { CookieColorSchemeProvider } from "@/components/CookieColorSchemeProvider.jsx";
+import { LoadThemeStyles } from "@/components/LoadThemeStyles.jsx";
+import { COLOR_SCHEME_KEY } from "@/constants/cookies.js";
+import { rmdConfig } from "@/constants/rmdConfig.jsx";
+import { CoreProviders } from "@react-md/core/CoreProviders";
+import { MenuConfigurationProvider } from "@react-md/core/menu/MenuConfigurationProvider";
+import { RootHtml } from "@react-md/core/RootHtml";
+import { NullSuspense } from "@react-md/core/suspense/NullSuspense";
+import { cnb } from "cnbuilder";
+import { Roboto_Flex } from "next/font/google";
+import { cookies } from "next/headers.js";
+import { type ReactElement, type ReactNode } from "react";
+import "./layout.scss";
+export { metadata } from "@/constants/metadata.js";
+
+const roboto = Roboto_Flex({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--roboto",
+});
+
+export interface RootLayoutProps {
+  children: ReactNode;
+}
+
+export function RootLayout({ children }: RootLayoutProps): ReactElement {
+  const colorScheme = cookies().get(COLOR_SCHEME_KEY)?.value;
+  const defaultColorScheme = isColorSchemeMode(colorScheme)
+    ? colorScheme
+    : "system";
+
+  return (
+    <RootHtml className={cnb(roboto.variable, `${defaultColorScheme}-theme`)}>
+      <CoreProviders {...rmdConfig}>
+        <MenuConfigurationProvider renderAsSheet="phone">
+          <CookieColorSchemeProvider defaultColorScheme={defaultColorScheme}>
+            <NullSuspense>
+              <LoadThemeStyles />
+            </NullSuspense>
+            <MainLayout>{children}</MainLayout>
+          </CookieColorSchemeProvider>
+        </MenuConfigurationProvider>
+      </CoreProviders>
+    </RootHtml>
+  );
+}
+```
+
+```tsx fileName="src/components/LoadThemeStyles.tsx"
+"use client";
+import { useColorScheme } from "@react-md/core/theme/useColorScheme";
+
+export function LoadThemeStyles(): null {
+  useHtmlClassName(`${colorSchemeMode}-theme`);
+  return null;
+}
+```

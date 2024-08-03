@@ -1,7 +1,9 @@
 "use client";
 import { useMemo, type Ref, type RefCallback } from "react";
-import { type DefinedCSSVariableName } from "../theme/types.js";
-import { type CSSVariable } from "../theme/useCSSVariables.js";
+import {
+  type CSSVariable,
+  type DefinedCSSVariableName,
+} from "../theme/types.js";
 import { useElementSize } from "../useElementSize.js";
 
 declare module "react" {

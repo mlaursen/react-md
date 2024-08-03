@@ -4,11 +4,8 @@ import { render, screen } from "../../test-utils/index.js";
 
 import { type UseStateSetter } from "../../types.js";
 import { LocalStorageColorSchemeProvider } from "../LocalStorageColorSchemeProvider.js";
-import {
-  useColorScheme,
-  type ColorScheme,
-  type ColorSchemeMode,
-} from "../useColorScheme.js";
+import { type ColorScheme, type ColorSchemeMode } from "../types.js";
+import { useColorScheme } from "../useColorScheme.js";
 
 function ControllableTest(): ReactElement {
   const { colorScheme, colorSchemeMode, setColorSchemeMode } = useColorScheme();

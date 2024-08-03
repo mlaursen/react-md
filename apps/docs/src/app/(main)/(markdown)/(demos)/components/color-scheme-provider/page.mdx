@@ -30,10 +30,8 @@ simplified version of how this documentation site handles the color scheme.
 
 ```tsx fileName="src/components/CookieColorSchemeProvider.tsx"
 "use client";
-import {
-  ColorSchemeProvider,
-  type ColorSchemeMode,
-} from "@react-md/core/theme/useColorScheme";
+import { type ColorSchemeMode } from "@react-md/core/theme/types";
+import { ColorSchemeProvider } from "@react-md/core/theme/useColorScheme";
 import { useColorSchemeProvider } from "@react-md/core/theme/useColorSchemeProvider";
 import { type UseStateSetter } from "@react-md/core/types";
 import Cookies from "js-cookie";
@@ -91,6 +89,7 @@ export function CookieColorSchemeProvider(
 ```
 
 ```tsx fileName="src/app/layout.tsx"
+import { isColorSchemeMode } from "@react-md/core/theme/isColorScheme";
 import { type ReactElement, type ReactNode } from "react";
 import { cookies } from "next/headers.js";
 
@@ -103,10 +102,7 @@ export default function RootLayout(props: RootLayoutProps): ReactElement {
 
   const instance = cookies();
   const value = instance.get(COLOR_SCHEME_KEY)?.value;
-  const defaultColorSchemeMode =
-    value === "light" || value === "dark" || value === "system"
-      ? value
-      : "system";
+  const defaultColorSchemeMode = isColorSchemeMode(value) ? value : "system";
 
   return (
     <CoreProviders ssr>

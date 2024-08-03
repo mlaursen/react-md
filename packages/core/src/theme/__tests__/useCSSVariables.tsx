@@ -10,11 +10,12 @@ import {
 import { fireEvent, render, screen } from "../../test-utils/index.js";
 
 import { textPrimaryColorVar } from "../cssVars.js";
-import { type CSSVariableName, type DefinedCSSVariableName } from "../types.js";
 import {
-  useCSSVariables,
+  type CSSVariableName,
+  type DefinedCSSVariableName,
   type ReadonlyCSSVariableList,
-} from "../useCSSVariables.js";
+} from "../types.js";
+import { useCSSVariables } from "../useCSSVariables.js";
 
 declare module "react" {
   interface CSSProperties {

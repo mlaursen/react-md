@@ -10,7 +10,8 @@ import { PRISM_THEMES, type PrismTheme } from "@/constants/prismThemes.js";
 import { DISABLE_DEFAULT_SYSTEM_THEME } from "@/constants/rmdConfig.jsx";
 import { getCookie } from "@/utils/serverCookies.js";
 import { type PackageManager } from "@react-md/code/PackageManagerProvider";
-import { type ColorSchemeMode } from "@react-md/core/theme/useColorScheme";
+import { isColorSchemeMode } from "@react-md/core/theme/isColorScheme";
+import { type ColorSchemeMode } from "@react-md/core/theme/types";
 import { cookies } from "next/headers.js";
 import "server-only";
 import { pascalCase } from "./strings.js";
@@ -26,8 +27,7 @@ export function getAppCookies(): AppCookies {
   const instance = cookies();
   const defaultColorSchemeMode = getCookie({
     name: COLOR_SCHEME_KEY,
-    isValid: (value): value is ColorSchemeMode =>
-      value === "light" || value === "dark" || value === "system",
+    isValid: isColorSchemeMode,
     defaultValue: "system",
     instance,
   });

@@ -1,12 +1,11 @@
+"use client";
 import { Box } from "@react-md/core/box/Box";
 import { Card } from "@react-md/core/card/Card";
 import { SegmentedButton } from "@react-md/core/segmented-button/SegmentedButton";
 import { SegmentedButtonContainer } from "@react-md/core/segmented-button/SegmentedButtonContainer";
 import { LocalStorageColorSchemeProvider } from "@react-md/core/theme/LocalStorageColorSchemeProvider";
-import {
-  useColorScheme,
-  type ColorSchemeMode,
-} from "@react-md/core/theme/useColorScheme";
+import { type ColorSchemeMode } from "@react-md/core/theme/types";
+import { useColorScheme } from "@react-md/core/theme/useColorScheme";
 import { Typography } from "@react-md/core/typography/Typography";
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";

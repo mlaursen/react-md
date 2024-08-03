@@ -1,8 +1,10 @@
 "use client";
 import { type ReactElement, type ReactNode } from "react";
 import { useLocalStorage } from "../useLocalStorage.js";
-import { ColorSchemeProvider, type ColorSchemeMode } from "./useColorScheme.js";
+import { type ColorSchemeMode } from "./types.js";
+import { ColorSchemeProvider } from "./useColorScheme.js";
 import { useColorSchemeProvider } from "./useColorSchemeProvider.js";
+import { isColorSchemeMode } from "./isColorScheme.js";
 
 /**
  * @since 6.0.0
@@ -115,9 +117,7 @@ export function LocalStorageColorSchemeProvider(
       key: localStorageKey,
       defaultValue: defaultColorSchemeMode,
       deserializer: (item) =>
-        item === "light" || item === "dark" || item === "system"
-          ? item
-          : defaultColorSchemeMode,
+        isColorSchemeMode(item) ? item : defaultColorSchemeMode,
     });
 
   const value = useColorSchemeProvider({
