@@ -1,0 +1,109 @@
+# Breakpoints
+
+The default `react-md` styles do not use media queries to change the styles
+depending on the viewport size. However, there is built-in support for determining
+the current app size using the following breakpoints:
+
+- `phone` - `(max-width: 47.9375em)` (about `767px`)
+- `tablet` - `(min-width: 48em)` (about `788px`)
+- `tablet-only` - `(min-width: 48em and max-width: 64em)` (about `788px` to `1024px`)
+- `desktop` - `(min-width: 64.0625em)` (about `1025px`)
+- `large-desktop` - `(min-width: 80em)` (about `1280px`)
+
+# Usage
+
+These breakpoints can be leveraged in CSS files using media query mixins or in
+React components using the [useAppSize hook](/hooks/use-app-size).
+
+The media query mixins are recommended if the goal is to reduce the total JS
+served to the client and dynamic rendering is not required. If different
+experiences are required between mobile and desktop, the `useAppSize` hook is
+recommended instead. The following mixins are provided:
+
+| Mixin                 | Media Query                                                                                 |
+| --------------------- | ------------------------------------------------------------------------------------------- |
+| `phone-media`         | `@media screen and (max-width: ${$phone-max-width})`                                        |
+| `tablet-media`        | `@media screen and (min-width: #{$tablet-min-width})`                                       |
+| `tablet-only-media`   | `@media screen and (min-width: #{$tablet-min-width}) and (max-width: #{$tablet-max-width})` |
+| `desktop-media`       | `@media screen and (min-width: #{$desktop-min-width})`                                      |
+| `large-desktop-media` | `@media screen and (min-width: #{$large-desktop-min-width})`                                |
+
+Here's a quick example using the media query mixins:
+
+```scss
+@use "@react-md/core";
+
+.example {
+  width: 100%;
+
+  @include core.phone-media {
+    color: red;
+  }
+
+  @include core.tablet-media {
+    width: 50%;
+  }
+
+  @include core.tablet-only-media {
+    border: 1px solid red;
+  }
+
+  @include core.desktop-media {
+    width: 40%;
+  }
+
+  @include core.large-desktop-media {
+    width: 30%;
+  }
+}
+```
+
+## Configuration
+
+The breakpoints can be configured by changing the following Sass variables:
+
+```scss
+@use "@react-md/core" with (
+  $phone-max-width: 47.9375em !default,
+  $tablet-min-width: 48em !default,
+  $tablet-max-width: 64em !default,
+  $desktop-min-width: 64.0625em !default,
+  $large-desktop-min-width: 80em !default
+);
+```
+
+If the Sass variables were updated, either the
+[CoreProviders](/components/core-providers) or the
+[AppSizeProvider](/components/app-size-provider) needs to be updated with the
+new values:
+
+```tsx
+import {
+  DEFAULT_PHONE_MAX_WIDTH,
+  DEFAULT_TABLET_MIN_WIDTH,
+  DEFAULT_TABLET_MAX_WIDTH,
+  DEFAULT_DESKTOP_MIN_WIDTH,
+  DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
+} from "@react-md/core/media-queries/appSize.js";
+
+// change to match the sass variables
+const phoneMaxWidth = DEFAULT_PHONE_MAX_WIDTH;
+const tabletMinWidth = DEFAULT_TABLET_MIN_WIDTH;
+const tabletMaxWidth = DEFAULT_TABLET_MAX_WIDTH;
+const desktopMinWidth = DEFAULT_DESKTOP_MIN_WIDTH;
+const desktopLargeMinWidth = DEFAULT_DESKTOP_LARGE_MIN_WIDTH;
+
+function App() {
+  return (
+    <AppSizeProvider
+      phoneMaxWidth={phoneMaxWidth}
+      tabletMinWidth={tabletMinWidth}
+      tabletMaxWidth={tabletMaxWidth}
+      desktopMinWidth={desktopMinWidth}
+      desktopLargeMinWidth={desktopLargeMinWidth}
+    >
+      <RestOfTheApp />
+    </AppSizeProvider>
+  );
+}
+```

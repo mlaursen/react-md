@@ -12,14 +12,18 @@ export interface TableCellClassNameOptions {
   /**
    * Set this to `true` if the cell is rendered as a `<th>` so that the correct
    * sticky styles can be applied.
+   *
+   * @defaultValue `false`
    */
-  header: boolean;
+  header?: boolean;
 
   /**
    * Set this to true if the cell is rendered in a `<thead>` so that the correct
    * sticky styles can be applied.
+   *
+   * @defaultValue `header`
    */
-  isInTableHeader: boolean;
+  isInTableHeader?: boolean;
 
   /** @defaultValue `false` */
   grow?: boolean;
@@ -45,7 +49,7 @@ export interface TableCellClassNameOptions {
 /**
  * @since 6.0.0
  */
-export function tableCell(options: TableCellClassNameOptions): string {
+export function tableCell(options: TableCellClassNameOptions = {}): string {
   const {
     grow,
     sticky,
@@ -55,7 +59,7 @@ export function tableCell(options: TableCellClassNameOptions): string {
     vAlign,
     lineWrap = true,
     padding = "horizontal",
-    isInTableHeader,
+    isInTableHeader = header,
     className,
   } = options;
 
