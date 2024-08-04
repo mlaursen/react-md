@@ -1,6 +1,8 @@
 @use "everything";
 
 .selected {
+  @include everything.table-set-var(cell-color, currentcolor);
+
   @include everything.mouse-only(true) {
     &:hover {
       background-color: color-mix(
@@ -10,6 +12,4 @@
       );
     }
   }
-
-  @include everything.table-set-var(cell-color, currentcolor);
 }

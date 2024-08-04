@@ -275,10 +275,12 @@ $_layer-order: (
 
     @each $alignment in typography.$text-alignments {
       .rmd-align-#{$alignment} {
+        text-align: $alignment;
+
         @if $alignment != center {
-          @include utils.auto-rtl(text-align, $alignment);
-        } @else {
-          text-align: $alignment;
+          @include utils.rtl {
+            text-align: utils.swap-position($alignment);
+          }
         }
       }
     }

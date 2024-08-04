@@ -72,7 +72,6 @@ $box-shadow-overlay-bottom: -6px !default;
         @if button.$disable-unstyled-utility-class {
           @include button.unstyled;
         }
-        @include utils.auto-rtl(text-align, left);
 
         align-items: center;
         color: inherit;
@@ -81,6 +80,7 @@ $box-shadow-overlay-bottom: -6px !default;
         justify-content: space-between;
         letter-spacing: inherit;
         padding: $padding;
+        text-align: left;
         width: 100%;
 
         &[aria-disabled="true"] {
@@ -100,6 +100,10 @@ $box-shadow-overlay-bottom: -6px !default;
               }
             }
           }
+        }
+
+        @include utils.rtl {
+          text-align: right;
         }
       }
     }

@@ -1,14 +1,18 @@
 @use "everything";
 
 .tooltip {
-  @include everything.auto-rtl(right, 1.25rem);
-
   background-color: everything.$black;
   font-family: var(--code-font-family);
   font-size: var(--code-font-size);
   margin: 0;
   padding: 0.75em;
   position: absolute;
+  right: 1.25rem;
   top: 0.25rem;
   z-index: 10;
+
+  @include everything.rtl {
+    left: 1.25rem;
+    right: auto;
+  }
 }

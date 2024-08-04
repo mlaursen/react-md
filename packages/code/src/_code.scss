@@ -156,10 +156,14 @@ $color-preview-border-width: $color-preview-outer-width + 0.0625em;
 
       // Note: The height and positioning is set up in a way so that the copy button
       // can be visible in a single-line code example without displaying scrollbars
-      @include core.auto-rtl(right, 1rem);
-
       position: absolute;
+      right: 1rem;
       top: 0.25rem;
+
+      @include core.rtl {
+        left: 1rem;
+        right: auto;
+      }
     }
 
     &__progress {
@@ -203,9 +207,8 @@ $color-preview-border-width: $color-preview-outer-width + 0.0625em;
   }
 
   .color-preview {
-    @include core.auto-rtl(padding-left, 1.25em);
-
     display: inline-block;
+    padding-left: 1.25em;
     position: relative;
 
     &::before,
@@ -244,6 +247,11 @@ $color-preview-border-width: $color-preview-outer-width + 0.0625em;
 
     &:hover::after {
       opacity: 1;
+    }
+
+    @include core.rtl {
+      padding-left: 0;
+      padding-right: 1.25em;
     }
   }
 }

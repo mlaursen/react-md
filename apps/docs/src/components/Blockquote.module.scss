@@ -3,9 +3,7 @@
 .blockquote {
   $border-style: 0.25em solid everything.divider-get-var(color);
 
-  // @include everything.theme-use-var(color, text-secondary-color);
-  @include everything.auto-rtl(border-left, $border-style);
-
+  border-left: $border-style;
   font-style: italic;
   margin: 1em 0;
   padding: 0.5em 1em;
@@ -17,6 +15,11 @@
 
   p:last-child {
     margin-bottom: 0;
+  }
+
+  @include everything.rtl {
+    border-left: 0;
+    border-right: $border-style;
   }
 }
 

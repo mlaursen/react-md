@@ -10,7 +10,13 @@
 
 .offset {
   @include everything.desktop-media {
-    @include everything.auto-rtl(left, everything.layout-get-var(size));
+    @include everything.layout-use-var(left, size);
+
+    @include everything.rtl {
+      @include everything.layout-use-var(right, size);
+
+      left: 0;
+    }
   }
 }
 

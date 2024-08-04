@@ -13,11 +13,13 @@ $tree-padding: calc(everything.tree-get-var(depth) * 1.125rem + 1rem);
     padding-right: $tree-padding;
   }
 
-  display: block;
-  padding: 0.5rem 1rem 0.5rem $tree-padding;
-  position: relative;
-
-  text-decoration: none;
+  // stylelint-disable-next-line no-duplicate-selectors
+  & {
+    display: block;
+    padding: 0.5rem 1rem 0.5rem $tree-padding;
+    position: relative;
+    text-decoration: none;
+  }
 
   &:hover {
     @include everything.link-use-var(color);

@@ -493,11 +493,17 @@ $variables: (
 
       @if not $disable-text-field-counter {
         &__counter {
-          @include utils.auto-rtl(margin-left, auto);
-          @include utils.auto-rtl(padding-left, $message-counter-spacing);
-
           flex-shrink: 0;
+          margin-left: auto;
+          padding-left: $message-counter-spacing;
           white-space: nowrap;
+
+          @include utils.rtl {
+            margin-left: 0;
+            margin-right: auto;
+            padding-left: 0;
+            padding-right: $message-counter-spacing;
+          }
         }
       }
     }
@@ -526,6 +532,14 @@ $variables: (
 
       @if not $disable-floating-label {
         &--floating {
+          left: 0;
+          position: absolute;
+          top: 0;
+          transform: translate(
+            get-var(text-field-padding-left),
+            get-var(label-floating-top)
+          );
+
           @include utils.rtl {
             left: auto;
             right: 0;
@@ -534,14 +548,6 @@ $variables: (
               get-var(label-floating-top)
             );
           }
-
-          left: 0;
-          position: absolute;
-          top: 0;
-          transform: translate(
-            get-var(text-field-padding-left),
-            get-var(label-floating-top)
-          );
         }
 
         &--floating-dense {
@@ -565,14 +571,6 @@ $variables: (
         }
 
         #{$floating-active-selector} {
-          @include utils.rtl {
-            transform: scale($label-floating-scale)
-              translate(
-                utils.negate-var(get-var(label-left-offset)),
-                get-var(label-top-offset)
-              );
-            transform-origin: 100% 0;
-          }
           @include use-var(background-color, label-active-background-color);
           @include use-var(padding, label-active-padding);
 
@@ -582,6 +580,15 @@ $variables: (
           // it'll change the position based on the size of the label otherwise
           transform-origin: 0 0;
           z-index: 1;
+
+          @include utils.rtl {
+            transform: scale($label-floating-scale)
+              translate(
+                utils.negate-var(get-var(label-left-offset)),
+                get-var(label-top-offset)
+              );
+            transform-origin: 100% 0;
+          }
         }
       }
 
@@ -877,10 +884,6 @@ $variables: (
 
 @mixin _text-field-base-styles {
   @include utils.map-to-styles($text-field-typography);
-  @include utils.rtl {
-    @include use-var(padding-left, text-field-padding-right);
-    @include use-var(padding-right, text-field-padding-left);
-  }
   @include use-var(padding-left, text-field-padding-left);
   @include use-var(padding-right, text-field-padding-right);
   @include use-var(padding-top, text-field-padding-top);
@@ -892,16 +895,16 @@ $variables: (
   height: 100%;
   outline: none;
   width: 100%;
-
-  &[disabled] {
-    @include theme.theme-use-var(color, text-disabled-color);
-  }
 }
 
 @mixin text-field-styles($disable-layer: false) {
   @include utils.optional-layer(form, $disable-layer) {
     .rmd-text-field {
       @include _text-field-base-styles;
+
+      &[disabled] {
+        @include theme.theme-use-var(color, text-disabled-color);
+      }
 
       @if $text-field-color-min-width {
         &[type="color"] {
@@ -936,6 +939,11 @@ $variables: (
       &--placeholder-hidden:not(:focus)::placeholder {
         opacity: 0;
       }
+
+      @include utils.rtl {
+        @include use-var(padding-left, text-field-padding-right);
+        @include use-var(padding-right, text-field-padding-left);
+      }
     }
   }
 }
@@ -949,13 +957,23 @@ $variables: (
       );
 
       &__input {
-        @include utils.auto-rtl(margin-right, button.get-var(icon-size));
+        @include button.use-var(margin-right, icon-size);
+
+        @include utils.rtl {
+          @include button.use-var(margin-left, icon-size);
+
+          margin-right: 0;
+        }
       }
 
       &__toggle {
-        @include utils.auto-rtl(right, 0);
-
         position: absolute;
+        right: 0;
+
+        @include utils.rtl {
+          left: 0;
+          right: auto;
+        }
       }
     }
   }
@@ -1080,25 +1098,19 @@ $variables: (
     }
 
     .rmd-select {
-      // disable pointer events on touch devices so the soft keyboard does not
-      // appear when clicking the select
-      @media (hover: none) and (pointer: coarse) {
-        pointer-events: none;
-      }
-
       opacity: 0;
 
       // All these additional overrides are provided so that the select will have
       // the same sizing as a text field with the same props provided.
       @if not $disable-text-field-underlined-theme {
         &--underline {
+          padding-right: 0;
+
           @include utils.rtl {
             @include use-var(padding-right, text-field-padding-left);
 
             padding-left: 0;
           }
-
-          padding-right: 0;
         }
       }
 
@@ -1122,6 +1134,12 @@ $variables: (
           }
         }
       }
+
+      // disable pointer events on touch devices so the soft keyboard does not
+      // appear when clicking the select
+      @media (hover: none) and (pointer: coarse) {
+        pointer-events: none;
+      }
     }
   }
 }
@@ -1130,13 +1148,13 @@ $variables: (
   @include utils.optional-layer(form, $disable-layer) {
     .rmd-option {
       &--icon {
+        padding-left: $option-padding-left;
+
         @include utils.rtl {
           @include list.use-var(padding-left, item-horizontal-padding);
 
           padding-right: $option-padding-left;
         }
-
-        padding-left: $option-padding-left;
       }
 
       &--selected {
@@ -1187,8 +1205,17 @@ $variables: (
 
       appearance: none;
 
+      &[disabled] {
+        @include theme.theme-use-var(color, text-disabled-color);
+      }
+
       &[multiple] {
         overflow: auto;
+      }
+
+      @include utils.rtl {
+        @include use-var(padding-left, text-field-padding-right);
+        @include use-var(padding-right, text-field-padding-left);
       }
     }
   }
@@ -1217,11 +1244,21 @@ $variables: (
       // `.rmd-text-field-container` which would prevent these styles from being
       // applied
       &--before {
-        @include utils.auto-rtl(left, get-var(addon-left-offset));
+        @include use-var(left, addon-left-offset);
+
+        @include utils.rtl {
+          @include use-var(right, addon-left-offset);
+          left: auto;
+        }
       }
 
       &--after {
-        @include utils.auto-rtl(right, get-var(addon-spacing));
+        @include use-var(right, addon-spacing);
+
+        @include utils.rtl {
+          @include use-var(left, addon-spacing);
+          right: auto;
+        }
       }
 
       &--presentational {
@@ -1252,6 +1289,7 @@ $variables: (
 @mixin input-toggle-styles($disable-layer: false) {
   @include utils.optional-layer(form, $disable-layer) {
     .rmd-input-toggle {
+      @include icon.set-var(color, currentcolor);
       @include interaction.surface(
         $focus-selector:
           if(
@@ -1264,14 +1302,16 @@ $variables: (
         $disabled-selector: "&--disabled",
         $higher-contrast: false
       );
-      @include icon.set-var(color, currentcolor);
 
-      align-items: center;
-      border-radius: $input-toggle-border-radius;
-      display: inline-flex;
-      flex-shrink: 0;
-      justify-content: center;
-      padding: $input-toggle-padding;
+      // stylelint-disable-next-line no-duplicate-selectors
+      & {
+        align-items: center;
+        border-radius: $input-toggle-border-radius;
+        display: inline-flex;
+        flex-shrink: 0;
+        justify-content: center;
+        padding: $input-toggle-padding;
+      }
 
       &--em {
         @include icon.set-var(size, 1em);
@@ -1406,19 +1446,22 @@ $variables: (
           $disabled-selector: null,
           $clickable: false
         );
-        @include utils.auto-rtl(left, calc(-50% + #{$switch-ball-offset}));
 
-        align-items: center;
-        border-radius: $switch-ball-border-radius;
-        display: flex;
-        height: $switch-ball-size * 2;
-        justify-content: center;
-        top: calc(-50% - #{$switch-ball-size - $switch-track-height});
-        transition-duration: transition.$linear-duration;
-        transition-property: background-color, transform;
-        transition-timing-function: transition.$linear-timing-function;
-        width: $switch-ball-size * 2;
-        z-index: 1;
+        // stylelint-disable-next-line no-duplicate-selectors
+        & {
+          align-items: center;
+          border-radius: $switch-ball-border-radius;
+          display: flex;
+          height: $switch-ball-size * 2;
+          justify-content: center;
+          left: calc(-50% + #{$switch-ball-offset});
+          top: calc(-50% - #{$switch-ball-size - $switch-track-height});
+          transition-duration: transition.$linear-duration;
+          transition-property: background-color, transform;
+          transition-timing-function: transition.$linear-timing-function;
+          width: $switch-ball-size * 2;
+          z-index: 1;
+        }
 
         &::after {
           @include use-var(background-color, switch-ball-background-color);
@@ -1441,12 +1484,18 @@ $variables: (
         #{$active-selector} {
           $offset: $switch-ball-size + $switch-ball-offset;
 
-          @include utils.rtl {
-            transform: translateX(-$offset);
-          }
           @include set-var(switch-ball-background-color, get-var(active-color));
 
           transform: translateX($offset);
+
+          @include utils.rtl {
+            transform: translateX(-$offset);
+          }
+        }
+
+        @include utils.rtl {
+          left: auto;
+          right: calc(-50% + #{$switch-ball-offset});
         }
       }
     }
@@ -1479,9 +1528,8 @@ $variables: (
         // by the ListItem instead. without decreasing the ball size, horizontal
         // scrollbars will appear when the switch is checked
         &__ball {
-          @include utils.auto-rtl(left, -$switch-ball-offset);
-
           height: $switch-ball-size;
+          left: -$switch-ball-offset;
           top: calc(50% - $switch-ball-size * 0.5);
           width: $switch-ball-size;
 
@@ -1491,6 +1539,11 @@ $variables: (
 
           &::after {
             inset: 0;
+          }
+
+          @include utils.rtl {
+            left: auto;
+            right: -$switch-ball-offset;
           }
         }
       }
@@ -1623,24 +1676,29 @@ $variables: (
         }
 
         &--h1::after {
-          @include utils.auto-rtl(left, 0);
           @include use-var(max-width, slider-offset-1);
 
+          left: 0;
           transition-property: max-width;
           width: 100%;
+
+          @include utils.rtl {
+            left: auto;
+            right: 0;
+          }
         }
 
         @if not $disable-range-slider {
           &--h2::after {
-            @include utils.rtl {
-              left: calc(100% - get-var(slider-offset-2));
-              right: get-var(slider-offset-1);
-            }
-
             left: get-var(slider-offset-1);
             right: calc(100% - get-var(slider-offset-2));
             transition-property: left, right;
             will-change: left, right;
+
+            @include utils.rtl {
+              left: calc(100% - get-var(slider-offset-2));
+              right: get-var(slider-offset-1);
+            }
           }
         }
       }
@@ -1749,39 +1807,51 @@ $variables: (
 
       @if not $disable-horizontal-slider {
         &--h {
+          transform: translateX(-50%);
+          transition-property: left;
+
           @include utils.rtl {
             transform: translateX(50%);
             transition-property: right;
           }
-
-          transform: translateX(-50%);
-          transition-property: left;
         }
 
         &--h1 {
-          @include utils.auto-rtl(left, get-var(slider-offset-1));
+          @include use-var(left, slider-offset-1);
+
+          @include utils.rtl {
+            @include use-var(right, slider-offset-1);
+
+            left: auto;
+          }
         }
 
         @if not $disable-range-slider {
           &--h2 {
-            @include utils.auto-rtl(left, get-var(slider-offset-2));
+            @include use-var(left, slider-offset-2);
+
+            @include utils.rtl {
+              @include use-var(right, slider-offset-2);
+
+              left: auto;
+            }
           }
         }
 
         &--disabled-h {
+          transform: translateX(-50%) scale($slider-thumb-disabled-scale);
+
           @include utils.rtl {
             transform: translateX(50%) scale($slider-thumb-disabled-scale);
           }
-
-          transform: translateX(-50%) scale($slider-thumb-disabled-scale);
         }
 
         &--mask-h {
+          transform: translateX(-50%) scale($slider-thumb-mask-scale);
+
           @include utils.rtl {
             transform: translateX(50%) scale($slider-thumb-mask-scale);
           }
-
-          transform: translateX(-50%) scale($slider-thumb-mask-scale);
         }
       }
 
@@ -1843,10 +1913,6 @@ $variables: (
 
         @if not $disable-horizontal-slider {
           &--h {
-            @include utils.rtl {
-              @include set-var(slider-tooltip-translate, 50%);
-            }
-
             top: $slider-tooltip-offset;
             transform: translateX(get-var(slider-tooltip-translate))
               scale(get-var(slider-tooltip-scale));
@@ -1857,6 +1923,10 @@ $variables: (
               left: 50%;
               top: 100%;
               transform: translateX(get-var(slider-tooltip-translate));
+            }
+
+            @include utils.rtl {
+              @include set-var(slider-tooltip-translate, 50%);
             }
           }
 
@@ -1920,18 +1990,25 @@ $variables: (
 
         @if not $disable-horizontal-slider {
           &--h {
-            @include utils.auto-rtl(left, get-var(slider-mark-offset));
+            @include use-var(left, slider-mark-offset);
 
             height: $slider-mark-height;
             top: 50%;
             transform: translateY(-50%);
             width: $slider-mark-width;
+
+            @include utils.rtl {
+              @include use-var(right, slider-mark-offset);
+
+              left: auto;
+            }
           }
         }
 
         @if not $disable-vertical-slider {
           &--v {
-            bottom: get-var(slider-mark-offset);
+            @include use-var(bottom, slider-mark-offset);
+
             height: $slider-mark-width;
             transform: translateY(50%);
             width: $slider-mark-height;
@@ -1946,25 +2023,30 @@ $variables: (
 
         @if not $disable-horizontal-slider {
           &--h {
+            @include use-var(left, slider-mark-offset);
+
+            top: 100%;
+            transform: translateX(-50%);
+
             @include utils.rtl {
               @include use-var(right, slider-mark-offset);
 
               left: auto;
               transform: translateX(50%);
             }
-            @include use-var(left, slider-mark-offset);
-
-            top: 100%;
-            transform: translateX(-50%);
           }
         }
 
         @if not $disable-vertical-slider {
           &--v {
-            @include utils.auto-rtl(left, 100%);
-
+            left: 100%;
             top: get-var(slider-mark-offset);
             transform: translateY(-50%);
+
+            @include utils.rtl {
+              left: auto;
+              right: 100%;
+            }
           }
         }
       }

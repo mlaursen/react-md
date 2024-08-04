@@ -169,21 +169,23 @@ $variables: (background-color, color, offset);
 
         @if not $disable-action-button {
           &--action {
-            @include utils.auto-rtl(
-              padding-right,
-              $action-horizontal-padding,
-              $horizontal-padding
-            );
+            padding-right: $action-horizontal-padding;
+
+            @include utils.rtl {
+              padding-left: $action-horizontal-padding;
+              padding-right: $horizontal-padding;
+            }
           }
         }
 
         @if not $disable-close-button {
           &--x {
-            @include utils.auto-rtl(
-              padding-right,
-              $close-button-horizontal-padding,
-              $horizontal-padding
-            );
+            padding-right: $close-button-horizontal-padding;
+
+            @include utils.rtl {
+              padding-left: $close-button-horizontal-padding;
+              padding-right: $horizontal-padding;
+            }
           }
 
           @if not $disable-action-button {
@@ -226,16 +228,23 @@ $variables: (background-color, color, offset);
 
         @if not $disable-action-button {
           &--action {
-            @include utils.auto-rtl(
-              padding-right,
-              button.$text-horizontal-padding
-            );
+            padding-right: button.$text-horizontal-padding;
+
+            @include utils.rtl {
+              padding-left: button.$text-horizontal-padding;
+              padding-right: 0;
+            }
           }
         }
 
         @if not $disable-close-button and not $disable-action-button {
           &--gap {
-            @include utils.auto-rtl(margin-right, $toast-gap);
+            margin-right: $toast-gap;
+
+            @include utils.rtl {
+              margin-left: $toast-gap;
+              margin-right: 0;
+            }
           }
         }
       }
@@ -254,10 +263,14 @@ $variables: (background-color, color, offset);
           justify-self: flex-end;
 
           &--reordered {
-            @include utils.auto-rtl(margin-right, $action-horizontal-padding);
-
             grid-column-end: span 2;
+            margin-right: $action-horizontal-padding;
             order: 3;
+
+            @include utils.rtl {
+              margin-left: $action-horizontal-padding;
+              margin-right: 0;
+            }
           }
         }
       }

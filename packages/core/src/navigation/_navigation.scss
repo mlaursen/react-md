@@ -55,11 +55,6 @@ $variables: (border-radius, horizontal-padding, padding-incrementor);
       }
 
       .rmd-nav-item {
-        @include utils.rtl {
-          @include use-var(padding-left, horizontal-padding);
-
-          padding-right: $increasing-padding;
-        }
         @include use-var(padding-right, horizontal-padding);
 
         padding-left: $increasing-padding;
@@ -92,6 +87,12 @@ $variables: (border-radius, horizontal-padding, padding-incrementor);
           &--active::after {
             opacity: 1;
           }
+        }
+
+        @include utils.rtl {
+          @include use-var(padding-left, horizontal-padding);
+
+          padding-right: $increasing-padding;
         }
       }
     }

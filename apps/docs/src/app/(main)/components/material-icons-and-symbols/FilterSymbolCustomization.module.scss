@@ -5,17 +5,17 @@
 }
 
 .firstLabel {
+  transform: translateX(0);
+
   @include everything.rtl {
     transform: translateX(0);
   }
-
-  transform: translateX(0);
 }
 
 .lastLabel {
+  transform: translateX(-100%);
+
   @include everything.rtl {
     transform: translateX(100%);
   }
-
-  transform: translateX(-100%);
 }

@@ -13,11 +13,12 @@ const styles = bem("rmd-chip");
  *
  * ```scss
  * &:has(.rmd-icon:first-child, .rmd-avatar:first-child) {
- *   @include core.auto-rtl(
- *     padding-left,
- *     $addon-left-padding,
- *     $horizontal-padding
- *   );
+ *   padding-left: $addon-left-padding;
+ *
+ *   @include utils.rtl {
+ *     padding-left: $horizontal-padding;
+ *     padding-right; $addon-left-padding;
+ *   }
  * }
  *
  * $index: if(
@@ -26,11 +27,12 @@ const styles = bem("rmd-chip");
  *   2 // last child is always the `.rmd-ripple-container`
  * );
  * &:has(.rmd-icon:nth-last-child(#{$index})) {
- *   @include core.auto-rtl(
- *     padding-right,
- *     $addon-right-padding,
- *     $horizontal-padding
- *   );
+ *   padding-right: $addon-left-padding;
+ *
+ *   @include utils.rtl {
+ *     padding-left; $addon-left-padding;
+ *     padding-right: $horizontal-padding;
+ *   }
  * }
  * ```
  */

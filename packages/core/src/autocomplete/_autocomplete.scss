@@ -66,8 +66,15 @@ $circular-progress-and-dropdown-button-calc: calc(
         }
 
         &__right-addon {
-          @include utils.auto-rtl(right, 0);
-          @include utils.auto-rtl(padding-left, form.get-var(addon-spacing), 0);
+          padding-left: form.get-var(addon-spacing);
+          right: 0;
+
+          @include utils.rtl {
+            left: 0;
+            padding-left: 0;
+            padding-right: form.get-var(addon-spacing);
+            right: auto;
+          }
         }
       }
     }

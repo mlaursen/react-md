@@ -185,6 +185,8 @@ $box-shadow-3-layers: (
   }
 }
 
+/// Note: This will need to be included at the end of a block with the new Sass
+/// rules or prefix styles with `& {}`
 @mixin elevation-transition(
   $start-z-value,
   $end-z-value,

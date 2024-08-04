@@ -350,17 +350,23 @@ $variables: (
 @mixin _linear-progress-bar {
   @if not $disable-linear-horizontal {
     &--horizontal {
-      @include utils.auto-rtl(left, 0);
+      left: 0;
+
+      @include utils.rtl {
+        left: auto;
+        right: 0;
+      }
     }
 
     @if not $disable-linear-reverse {
       &--horizontal-reverse {
-        @include utils.auto-rtl-group(
-          (
-            left: auto,
-            right: 0,
-          )
-        );
+        left: auto;
+        right: 0;
+
+        @include utils.rtl {
+          left: 0;
+          right: auto;
+        }
       }
     }
   }
@@ -400,13 +406,6 @@ $variables: (
     &--indeterminate {
       &::before,
       &::after {
-        @include utils.auto-rtl-group(
-          (
-            left: 0,
-            right: 100%,
-          )
-        );
-
         @include use-var(background-color, color);
         @include use-var(height, linear-size);
 
@@ -414,9 +413,16 @@ $variables: (
         animation-iteration-count: infinite;
         animation-timing-function: transition.$linear-timing-function;
         content: "";
+        left: 0;
         position: absolute;
+        right: 100%;
         will-change: left, right;
         z-index: 0;
+
+        @include utils.rtl {
+          left: 100%;
+          right: 0;
+        }
       }
 
       @if not $disable-linear-horizontal {

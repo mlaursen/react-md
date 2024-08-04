@@ -1,12 +1,12 @@
 @use "everything";
 
 .toast {
+  position: relative;
+  transform-origin: right;
+
   @include everything.rtl {
     transform-origin: left;
   }
-
-  position: relative;
-  transform-origin: right;
 }
 
 .progress {

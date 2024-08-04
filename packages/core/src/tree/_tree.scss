@@ -88,11 +88,7 @@ $item-padding: calc(
         }
 
         &__content {
-          @include utils.auto-rtl(
-            padding-left,
-            get-var(item-padding),
-            list.get-var(item-horizontal-padding)
-          );
+          @include use-var(padding-left, item-padding);
 
           &--disabled {
             cursor: auto;
@@ -126,6 +122,8 @@ $item-padding: calc(
 
           @if $selected-styles {
             &--selected {
+              @include utils.map-to-styles($selected-styles);
+
               @if not $disable-selected-background-color {
                 @include interaction.set-var(
                   background-color,
@@ -141,8 +139,12 @@ $item-padding: calc(
                   }
                 }
               }
-              @include utils.map-to-styles($selected-styles);
             }
+          }
+
+          @include utils.rtl {
+            @include list.use-var(padding-left, item-horizontal-padding);
+            @include use-var(padding-right, item-padding);
           }
         }
 

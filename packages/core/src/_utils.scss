@@ -131,6 +131,8 @@ $_swappable-properties: text-align;
   @return "--rmd-" + $prefix + validate($variables, $name, $group + " var");
 }
 
+/// Note: If the styles include complex selectors like `.parent &`, it will need
+/// to be the last mixin in the current block or wrap other styles in `& {}`
 @mixin map-to-styles($map) {
   @each $property, $value in $map {
     @if meta.type-of($value) == map {
@@ -223,6 +225,8 @@ $_swappable-properties: text-align;
   }
 }
 
+/// Note: This will need to be included at the end of a block with the new Sass
+/// rules or prefix styles with `& {}`
 @mixin rtl {
   @if not $disable-rtl {
     [dir="rtl"] & {
@@ -231,7 +235,7 @@ $_swappable-properties: text-align;
   }
 }
 
-@function _swap-position($property) {
+@function swap-position($property) {
   $prefix: "";
   $position: $property;
   @each $valid-prefix in $_swappable-position-prefixes {
@@ -254,55 +258,11 @@ $_swappable-properties: text-align;
     $next-position: top;
   }
 
-  @return "#{$prefix}#{$next-position}";
+  @return #{$prefix}#{$next-position};
 }
 
-@mixin auto-rtl-group($styles, $swapped-styles: ()) {
-  @include map-to-styles($styles);
-  @include rtl {
-    @each $property, $value in $styles {
-      $inversed-property: _swap-position($property);
-      $inversed-value: auto;
-      @if map.has-key($swapped-styles, $property) {
-        $inversed-value: map.get($swapped-styles, $property);
-      } @else if map.has-key($styles, $inversed-property) {
-        $inversed-value: map.get($swapped-styles, $inversed-property);
-      }
-
-      #{$property}: #{$inversed-value};
-      #{$inversed-property}: #{$value};
-
-      @content;
-    }
-  }
-}
-
-@mixin auto-rtl($property, $value, $swapped-value: null) {
-  @include rtl {
-    @if list.index($_swappable-properties, $property) {
-      $swapped-property-value: $swapped-value or _swap-position($value);
-      #{$property}: #{$swapped-property-value};
-    } @else {
-      $inversed-property: _swap-position($property);
-      @if not $swapped-value {
-        $swapped-value: auto;
-
-        @each $prefix in $_swappable-position-prefixes {
-          @if string.index($property, "#{$prefix}-") {
-            $swapped-value: 0;
-          }
-        }
-      }
-
-      #{$property}: #{$swapped-value};
-      #{$inversed-property}: #{$value};
-    }
-    @content;
-  }
-
-  #{$property}: #{$value};
-}
-
+/// Note: This will need to be included at the end of a block with the new Sass
+/// rules or prefix styles with `& {}`
 @mixin keyboard-only($css-modules: false, $parent-selector: true) {
   @include optional-css-modules(
     ".keyboard-mode",
@@ -313,12 +273,16 @@ $_swappable-properties: text-align;
   }
 }
 
+/// Note: This will need to be included at the end of a block with the new Sass
+/// rules or prefix styles with `& {}`
 @mixin mouse-only($css-modules: false) {
   @include optional-css-modules(".mouse-mode", $css-modules) {
     @content;
   }
 }
 
+/// Note: This will need to be included at the end of a block with the new Sass
+/// rules or prefix styles with `& {}`
 @mixin touch-only($css-modules: false) {
   @include optional-css-modules(".touch-mode", $css-modules) {
     @content;

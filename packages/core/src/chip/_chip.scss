@@ -229,6 +229,9 @@ $variables: (
 
         @if not $disable-solid-theme {
           &--solid {
+            @include use-var(background-color, solid-background-color);
+            @include use-var(color, solid-color);
+
             @if not $disable-solid-raisable {
               @include box-shadows.elevation-transition(
                 $start-z-value: 0,
@@ -239,13 +242,14 @@ $variables: (
                 $position-relative: false
               );
             }
-            @include use-var(background-color, solid-background-color);
-            @include use-var(color, solid-color);
           }
         }
 
         @if not $disable-outline-theme {
           &--outline {
+            @include use-var(background-color, outline-background-color);
+            @include use-var(color, outline-text-color);
+
             @if not $disable-outline-raisable {
               $outline-box-shadow: inset
                 0
@@ -264,8 +268,6 @@ $variables: (
                 $position-relative: false
               );
             }
-            @include use-var(background-color, outline-background-color);
-            @include use-var(color, outline-text-color);
           }
         }
 
@@ -293,21 +295,23 @@ $variables: (
 
         @if not $disable-left-addon {
           &--left-addon {
-            @include utils.auto-rtl(
-              padding-left,
-              $addon-left-padding,
-              $horizontal-padding
-            );
+            padding-left: $addon-left-padding;
+
+            @include utils.rtl {
+              padding-left: $horizontal-padding;
+              padding-right: $addon-left-padding;
+            }
           }
         }
 
         @if not $disable-right-addon {
           &--right-addon {
-            @include utils.auto-rtl(
-              padding-right,
-              $addon-right-padding,
-              $horizontal-padding
-            );
+            padding-right: $addon-right-padding;
+
+            @include utils.rtl {
+              padding-left: $addon-right-padding;
+              padding-right: $horizontal-padding;
+            }
           }
         }
 

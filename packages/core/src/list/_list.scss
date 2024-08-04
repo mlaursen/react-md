@@ -228,9 +228,6 @@ $variables: (
 
         &__text {
           @include typography.text-overflow;
-          @include utils.rtl {
-            margin-left: auto;
-          }
 
           display: block;
           flex-grow: 1;
@@ -249,6 +246,10 @@ $variables: (
               line-height: $item-secondary-text-line-height;
               white-space: normal;
             }
+          }
+
+          @include utils.rtl {
+            margin-left: auto;
           }
         }
 
@@ -307,12 +308,12 @@ $variables: (
 
           @if not $disable-subheader-inset {
             &--inset {
+              @include use-var(padding-left, item-keyline);
+
               @include utils.rtl {
                 @include use-var(padding-left, item-horizontal-padding);
                 @include use-var(padding-right, item-keyline);
               }
-
-              @include use-var(padding-left, item-keyline);
             }
           }
         }

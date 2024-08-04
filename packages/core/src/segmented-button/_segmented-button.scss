@@ -169,27 +169,27 @@ $variables: (
         padding: $vertical-padding $horizontal-padding;
 
         &:first-child {
+          border-bottom-left-radius: $border-radius;
+          border-top-left-radius: $border-radius;
+
           @include utils.rtl {
             border-bottom-left-radius: 0;
             border-bottom-right-radius: $border-radius;
             border-top-left-radius: 0;
             border-top-right-radius: $border-radius;
           }
-
-          border-bottom-left-radius: $border-radius;
-          border-top-left-radius: $border-radius;
         }
 
         &:last-child {
+          border-bottom-right-radius: $border-radius;
+          border-top-right-radius: $border-radius;
+
           @include utils.rtl {
             border-bottom-left-radius: $border-radius;
             border-bottom-right-radius: 0;
             border-top-left-radius: $border-radius;
             border-top-right-radius: 0;
           }
-
-          border-bottom-right-radius: $border-radius;
-          border-top-right-radius: $border-radius;
         }
 
         &--selected {

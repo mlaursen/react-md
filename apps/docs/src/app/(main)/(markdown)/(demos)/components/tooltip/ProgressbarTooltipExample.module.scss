@@ -6,8 +6,7 @@
 }
 
 .tooltip {
-  @include everything.auto-rtl(left, var(--offset, 0%));
-
+  left: var(--offset, 0%);
   position: absolute;
   top: calc(100% + 1em);
   transform: translateX(-50%);
@@ -15,4 +14,9 @@
     left everything.$linear-duration everything.$linear-timing-function,
     background-color 0.3s;
   will-change: left, right;
+
+  @include everything.rtl {
+    left: auto;
+    right: var(--offset, 0%);
+  }
 }

@@ -91,11 +91,15 @@ $variables: (
 
     @if not $disable-indicator-vertical {
       &--v::after {
-        @include utils.auto-rtl(left, $tablist-vertical-indicator-left);
-
         height: 100%;
+        left: $tablist-vertical-indicator-left;
         top: 0;
         width: $indicator-height;
+
+        @include utils.rtl {
+          left: auto;
+          right: $tablist-vertical-indicator-left;
+        }
       }
     }
 
@@ -156,7 +160,12 @@ $variables: (
 
     @if not $disable-tablist-padded {
       &--padded {
-        @include utils.auto-rtl(padding-left, $tablist-padding-left);
+        padding-left: $tablist-padding-left;
+
+        @include utils.rtl {
+          padding-left: 0;
+          padding-right: $tablist-padding-left;
+        }
       }
     }
 
@@ -178,11 +187,11 @@ $variables: (
     z-index: $tablist-scroller-z-index;
 
     &--left {
-      @include utils.auto-rtl(left, 0);
+      left: 0;
     }
 
     &--right {
-      @include utils.auto-rtl(right, 0);
+      right: 0;
     }
 
     @if not $disable-tablist-scroll-button-vertical {
@@ -196,14 +205,26 @@ $variables: (
     }
 
     &__button {
-      @include utils.rtl {
-        transform: rotate(180deg);
-      }
-
       @if not $disable-tablist-scroll-button-vertical {
         &--v {
           transform: rotate(90deg);
         }
+      }
+    }
+
+    @include utils.rtl {
+      &--left {
+        left: auto;
+        right: 0;
+      }
+
+      &--right {
+        left: 0;
+        right: auto;
+      }
+
+      &__button {
+        transform: rotate(180deg);
       }
     }
   }

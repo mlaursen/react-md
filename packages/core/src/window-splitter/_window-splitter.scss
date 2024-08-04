@@ -42,17 +42,6 @@ $variables: (top, right, bottom, left, opacity, position);
     @include utils.optional-layer(window-splitter, $disable-layer) {
       .rmd-window-splitter {
         @include use-var(opacity);
-        @include utils.mouse-hover {
-          @include set-var(opacity, 1);
-        }
-        @include utils.keyboard-only {
-          // Do not use `:focus-visible` here since since it'll still be active
-          // after dragging with a mouse until the user clicks something else. The
-          // `--dragging` state handles that part
-          &:focus {
-            @include set-var(opacity, 1);
-          }
-        }
 
         background-color: transparent;
         border: 0;
@@ -71,8 +60,8 @@ $variables: (top, right, bottom, left, opacity, position);
 
         @if not $disable-horizontal {
           &--h {
-            @include utils.auto-rtl(left, get-var(position));
             @include use-var(bottom);
+            @include use-var(left, position);
             @include use-var(top);
 
             cursor: col-resize;
@@ -81,16 +70,33 @@ $variables: (top, right, bottom, left, opacity, position);
             &::after {
               width: $background-size;
             }
+
+            @include utils.rtl {
+              @include use-var(right, position);
+
+              left: auto;
+            }
           }
 
           @if not $disable-reversed {
             &--hr {
-              @include utils.auto-rtl(right, get-var(position));
+              @include use-var(right, position);
 
               left: auto;
 
               &::after {
-                @include utils.auto-rtl(margin-left, auto);
+                margin-left: auto;
+              }
+
+              @include utils.rtl {
+                @include use-var(left, position);
+
+                right: auto;
+
+                &::after {
+                  margin-left: 0;
+                  margin-right: auto;
+                }
               }
             }
           }
@@ -136,6 +142,18 @@ $variables: (top, right, bottom, left, opacity, position);
           // set to important so that the `.rmd-dragging` styles do not affect
           // window splitter
           pointer-events: auto !important;
+        }
+
+        @include utils.mouse-hover {
+          @include set-var(opacity, 1);
+        }
+        @include utils.keyboard-only {
+          // Do not use `:focus-visible` here since since it'll still be active
+          // after dragging with a mouse until the user clicks something else. The
+          // `--dragging` state handles that part
+          &:focus {
+            @include set-var(opacity, 1);
+          }
         }
       }
     }

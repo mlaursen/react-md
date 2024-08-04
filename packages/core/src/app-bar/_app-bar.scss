@@ -125,9 +125,9 @@ $variables: (height, surface-background-color, surface-color);
       }
 
       .rmd-app-bar {
-        @include use-var(height);
         @include box.set-var(gap, $gap);
         @include box.set-var(padding, $vertical-padding $horizontal-padding);
+        @include use-var(height);
 
         // since app bars can appear a lot in full page dialogs, setting these flex
         // values allows it be be a direct replacement of the `DialogHeader`
@@ -181,19 +181,19 @@ $variables: (height, surface-background-color, surface-color);
 
         @if not $disable-dense-theme {
           &--dense {
-            @include set-var(height, $dense-height);
+            height: $dense-height;
           }
         }
 
         @if not $disable-prominent-theme {
           &--prominent {
-            @include set-var(height, $prominent-height);
+            height: $prominent-height;
           }
         }
 
         @if not $disable-prominent-dense-theme {
           &--prominent-dense {
-            @include set-var(height, $prominent-dense-height);
+            height: $prominent-dense-height;
           }
         }
 
@@ -206,13 +206,13 @@ $variables: (height, surface-background-color, surface-color);
 
         @if not $disable-scrollbar-offset {
           &--scrollbar-offset {
-            @include utils.rtl {
-              margin-right: calc(-1 * #{utils.scrollbar-size()});
-            }
-
             padding-right: calc(
               #{$horizontal-padding} + #{utils.scrollbar-size()}
             );
+
+            @include utils.rtl {
+              margin-right: calc(-1 * #{utils.scrollbar-size()});
+            }
           }
 
           @if not $disable-static-scrollbar-offset {
@@ -225,21 +225,33 @@ $variables: (height, surface-background-color, surface-color);
 
       @if not $disable-title {
         .rmd-app-bar-title {
-          @include utils.auto-rtl(margin-left, $keyline - $horizontal-padding);
+          $title-h-margin: $keyline - $horizontal-padding;
+          $title-keyline-h-margin: $title-keyline - $horizontal-padding;
 
           flex: 1 1 auto;
-          margin-bottom: 0;
-          margin-top: 0;
+          margin: 0 auto 0 $title-h-margin;
 
           &--keyline {
-            @include utils.auto-rtl(
-              margin-left,
-              $title-keyline - $horizontal-padding
-            );
+            margin-left: $title-keyline-h-margin;
           }
 
           &--nav-keyline {
-            @include utils.auto-rtl(margin-left, $nav-keyline);
+            margin-left: $nav-keyline;
+          }
+
+          @include utils.rtl {
+            margin-left: 0;
+            margin-right: $title-h-margin;
+
+            &--keyline {
+              margin-left: 0;
+              margin-right: $title-keyline-h-margin;
+            }
+
+            &--nav-keyline {
+              margin-left: 0;
+              margin-right: $nav-keyline;
+            }
           }
         }
       }

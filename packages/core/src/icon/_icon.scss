@@ -166,13 +166,25 @@ $_disable-icons: $disable-font and $disable-svg and $disable-symbol;
 
         @if not $disable-spacing-before {
           &--before {
-            @include utils.auto-rtl(margin-right, get-var(spacing), 0);
+            @include use-var(margin-right, spacing);
+
+            @include utils.rtl {
+              @include use-var(margin-left, spacing);
+
+              margin-right: 0;
+            }
           }
         }
 
         @if not $disable-spacing-after {
           &--after {
-            @include utils.auto-rtl(margin-left, get-var(spacing), 0);
+            @include use-var(margin-left, spacing);
+
+            @include utils.rtl {
+              @include use-var(margin-right, spacing);
+
+              margin-left: 0;
+            }
           }
         }
 

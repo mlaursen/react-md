@@ -93,12 +93,6 @@ $variables: (size, header-height);
       /// between layout types as you resize the browser.
       .rmd-layout-nav {
         @include sheet.set-var(width, get-var(size));
-        @include media-queries.media($navigation-breakpoint) {
-          // Why did I want grid? flex seems easier atm
-          // use grid so that you can easily have a header + tree that fills the remaining space
-          display: flex;
-          flex-direction: column;
-        }
 
         container: $navigation-container-name;
         display: none;
@@ -106,6 +100,13 @@ $variables: (size, header-height);
 
         &--offset-v {
           @include use-var(top, header-height);
+        }
+
+        @include media-queries.media($navigation-breakpoint) {
+          // Why did I want grid? flex seems easier atm
+          // use grid so that you can easily have a header + tree that fills the remaining space
+          display: flex;
+          flex-direction: column;
         }
       }
 
@@ -124,10 +125,22 @@ $variables: (size, header-height);
 
         &--active {
           @include media-queries.media($navigation-breakpoint) {
-            @include utils.auto-rtl(margin-left, get-var(size));
+            @include use-var(margin-left, size);
 
             &::before {
-              @include utils.auto-rtl(left, get-var(size));
+              @include use-var(left, size);
+            }
+
+            @include utils.rtl {
+              @include use-var(margin-right, size);
+
+              margin-left: 0;
+
+              &::before {
+                @include use-var(right, size);
+
+                left: auto;
+              }
             }
           }
         }
@@ -150,11 +163,11 @@ $variables: (size, header-height);
           }
 
           &--responsive {
+            display: none;
+
             @include media-queries.media($navigation-breakpoint) {
               display: inline-block;
             }
-
-            display: none;
           }
         }
       }

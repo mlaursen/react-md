@@ -15,9 +15,9 @@
 }
 
 .text {
+  transform: translateX(-0.875em);
+
   @include everything.rtl {
     transform: translateX(0.8em);
   }
-
-  transform: translateX(-0.875em);
 }

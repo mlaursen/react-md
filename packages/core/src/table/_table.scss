@@ -255,10 +255,11 @@ $row-selected-styles: (
           &--sticky {
             @include use-var(background-color, sticky-background-color);
             @include use-var(top, sticky-header);
-            @include utils.map-to-styles($sticky-header-inactive-styles);
 
             position: sticky;
             z-index: $sticky-header-z-index;
+
+            @include utils.map-to-styles($sticky-header-inactive-styles);
           }
 
           &--sticky-active {
@@ -272,10 +273,11 @@ $row-selected-styles: (
           &--sticky {
             @include use-var(background-color, sticky-background-color);
             @include use-var(bottom, sticky-footer);
-            @include utils.map-to-styles($sticky-footer-inactive-styles);
 
             position: sticky;
             z-index: $sticky-footer-z-index;
+
+            @include utils.map-to-styles($sticky-footer-inactive-styles);
           }
 
           &--sticky-active {
@@ -357,9 +359,9 @@ $row-selected-styles: (
           }
 
           &--sticky-cell {
-            @include utils.auto-rtl(left, get-var(sticky-cell));
             @include theme.theme-use-var(background-color);
 
+            @include use-var(left, sticky-cell);
             transition: background-color transition.$linear-duration;
             z-index: $sticky-cell-z-index;
 
@@ -439,6 +441,16 @@ $row-selected-styles: (
             gap: $cell-content-gap;
             height: 100%;
             width: 100%;
+          }
+        }
+
+        @if not $disable-sticky-cell {
+          @include utils.rtl {
+            &--sticky-cell {
+              @include use-var(right, sticky-cell);
+
+              left: auto;
+            }
           }
         }
       }

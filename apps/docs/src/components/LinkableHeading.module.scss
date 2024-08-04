@@ -3,30 +3,31 @@
 .container {
   --spacing: 1em;
 
-  @include everything.touch-only($css-modules: true) {
-    --spacing: 0;
-  }
-  @include everything.auto-rtl-group(
-    (
-      margin-left: everything.negate-var(var(--spacing)),
-      padding-left: var(--spacing),
-    )
-  );
-
   margin-bottom: 0.5em;
+  margin-left: everything.negate-var(var(--spacing));
   margin-top: 1.25em;
+  padding-left: var(--spacing);
   position: relative;
   scroll-margin-top: calc(0.5rem + everything.layout-get-var(header-height));
 
   &:hover .link {
     opacity: 1;
   }
+
+  @include everything.touch-only($css-modules: true) {
+    --spacing: 0;
+  }
+  @include everything.rtl {
+    margin-left: 0;
+    margin-right: everything.negate-var(var(--spacing));
+    padding-left: 0;
+    padding-right: var(--spacing);
+  }
 }
 
 .link {
-  @include everything.auto-rtl(left, 0);
-
   color: inherit;
+  left: 0;
   opacity: 0;
   position: absolute;
   text-decoration: none;
@@ -44,5 +45,10 @@
 
   &:hover::after {
     text-decoration: underline;
+  }
+
+  @include everything.rtl {
+    left: auto;
+    right: 0;
   }
 }

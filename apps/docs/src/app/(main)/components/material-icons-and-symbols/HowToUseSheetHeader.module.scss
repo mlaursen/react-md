@@ -7,7 +7,11 @@
 }
 
 .title {
-  @include everything.auto-rtl(margin-right, auto);
-
   flex-grow: 0;
+  margin-right: auto;
+
+  @include everything.rtl {
+    margin-left: auto;
+    margin-right: 0;
+  }
 }

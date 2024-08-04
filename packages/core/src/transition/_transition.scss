@@ -339,11 +339,7 @@ $transition-variables: (
     @if not $disable-max-width-transition {
       .rmd-max-width-transition {
         @if not $disable-max-width-transition-gap {
-          @include utils.auto-rtl(
-            margin-right,
-            utils.negate-var(transition-get-var(max-width-gap)),
-            0
-          );
+          margin-right: utils.negate-var(transition-get-var(max-width-gap));
         }
 
         max-width: 0;
@@ -354,10 +350,22 @@ $transition-variables: (
         will-change: max-width;
 
         &--visible {
-          @if not $disable-max-width-transition-gap {
-            @include utils.auto-rtl(margin-right, 0);
-          }
           @include transition-use-var(max-width);
+
+          @if not $disable-max-width-transition-gap {
+            margin-right: 0;
+          }
+        }
+
+        @if not $disable-max-width-transition-gap {
+          @include utils.rtl {
+            margin-left: utils.negate-var(transition-get-var(max-width-gap));
+            margin-right: 0;
+
+            &--visible {
+              margin-left: 0;
+            }
+          }
         }
       }
     }

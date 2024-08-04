@@ -4,30 +4,40 @@ $tablet-max-width: 64em !default;
 $desktop-min-width: 64.0625em !default;
 $large-desktop-min-width: 80em !default;
 
+/// Note: This will need to be included at the end of a block with the new Sass
+/// rules or prefix styles with `& {}`
 @mixin phone-media {
   @media screen and (max-width: #{$phone-max-width}) {
     @content;
   }
 }
 
+/// Note: This will need to be included at the end of a block with the new Sass
+/// rules or prefix styles with `& {}`
 @mixin tablet-media {
   @media screen and (min-width: #{$tablet-min-width}) {
     @content;
   }
 }
 
+/// Note: This will need to be included at the end of a block with the new Sass
+/// rules or prefix styles with `& {}`
 @mixin tablet-only-media {
   @media screen and (min-width: #{$tablet-min-width}) and (max-width: #{$tablet-max-width}) {
     @content;
   }
 }
 
+/// Note: This will need to be included at the end of a block with the new Sass
+/// rules or prefix styles with `& {}`
 @mixin desktop-media {
   @media screen and (min-width: #{$desktop-min-width}) {
     @content;
   }
 }
 
+/// Note: This will need to be included at the end of a block with the new Sass
+/// rules or prefix styles with `& {}`
 /// Creates a media query so that screen sizes matching at least the min width
 /// for a large desktop will gain these styles.
 @mixin large-desktop-media {
@@ -36,6 +46,8 @@ $large-desktop-min-width: 80em !default;
   }
 }
 
+/// Note: This will need to be included at the end of a block with the new Sass
+/// rules or prefix styles with `& {}`
 @mixin media($type) {
   @if $type == phone {
     @include phone-media {

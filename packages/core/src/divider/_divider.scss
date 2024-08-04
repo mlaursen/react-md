@@ -102,9 +102,15 @@ $variables: (
 
         @if not $disable-inset {
           &--inset {
-            @include utils.auto-rtl(margin-left, get-var(inset), auto);
+            @include use-var(margin-left, inset);
 
             width: calc(get-var(max-size) - get-var(inset));
+
+            @include utils.rtl {
+              @include use-var(margin-right, inset);
+
+              margin-left: auto;
+            }
           }
         }
 

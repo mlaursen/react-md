@@ -118,9 +118,11 @@ $variables: (
     $box-shadow: $box-shadow
   );
 
-  background-color: transparent;
-  border-width: 0;
-  display: inline-flex;
+  & {
+    background-color: transparent;
+    border-width: 0;
+    display: inline-flex;
+  }
 }
 
 @mixin text-styles {
@@ -238,18 +240,6 @@ $variables: (
 
         @if not $disable-contained {
           &--contained {
-            @include box-shadows.elevation-transition(
-              $contained-elevation,
-              if(
-                $disable-contained-pressed-elevation,
-                null,
-                $contained-pressed-elevation
-              ),
-              "&.rmd-button--pressed",
-              $pseudo-before: false,
-              $position-relative: false
-            );
-
             // contained buttons should _normally_ always force dark background
             // colors for the interaction states This means use the default light
             // theme since it is based off of the root background color
@@ -262,6 +252,18 @@ $variables: (
               get-var(contained-background-color)
             );
             @include set-var(color, get-var(contained-color));
+
+            @include box-shadows.elevation-transition(
+              $contained-elevation,
+              if(
+                $disable-contained-pressed-elevation,
+                null,
+                $contained-pressed-elevation
+              ),
+              "&.rmd-button--pressed",
+              $pseudo-before: false,
+              $position-relative: false
+            );
           }
         }
 
@@ -302,23 +304,29 @@ $variables: (
 
           @each $suffix, $styles in $floating-positions {
             &--#{$suffix} {
+              $left: null;
+              $right: null;
+
               @each $property, $value in $styles {
                 @if $property == left {
-                  @include utils.rtl {
-                    left: auto;
-                    right: calc(#{$value} + #{get-var(fab-offset)});
-                  }
+                  $left: auto;
+                  $right: calc(#{$value} + #{get-var(fab-offset)});
 
                   left: $value;
                 } @else if $property == right {
-                  @include utils.rtl {
-                    left: $value;
-                    right: auto;
-                  }
+                  $left: $value;
+                  $right: auto;
 
                   right: calc(#{$value} + #{get-var(fab-offset)});
                 } @else {
                   #{$property}: #{$value};
+                }
+              }
+
+              @if $left and $right {
+                @include utils.rtl {
+                  left: $left;
+                  right: $right;
                 }
               }
             }
