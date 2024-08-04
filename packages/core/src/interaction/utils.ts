@@ -1,9 +1,9 @@
-import type { KeyboardEvent, MouseEvent, TouchEvent } from "react";
+import { type KeyboardEvent, type MouseEvent, type TouchEvent } from "react";
 import { findSizingContainer } from "../positioning/utils.js";
-import type {
-  ElementInteractionState,
-  RippleState,
-  RippleStyle,
+import {
+  type ElementInteractionState,
+  type RippleState,
+  type RippleStyle,
 } from "./types.js";
 
 /** @internal */
@@ -61,8 +61,8 @@ export function getRippleStyle(
       ({ pageX, pageY } = event);
     }
 
-    x = pageX - (left + window.pageXOffset);
-    y = pageY - (top + window.pageYOffset);
+    x = pageX - (left + window.scrollX);
+    y = pageY - (top + window.scrollY);
   }
 
   const radius = getRadius(x, y, width, height);
