@@ -13,7 +13,7 @@ export const upperFirst = (s: string): string =>
 /**
  * @see https://github.com/lodash/lodash/blob/c7c70a7da5172111b99bb45e45532ed034d7b5b9/src/camelCase.ts
  *
- * @param s - The string to covnert to camel case
+ * @param s - The string to convert to camel case
  * @param separator - An optional separator for each "word" in the string
  */
 export const camelCase = (s: string, separator = ""): string =>
@@ -28,3 +28,19 @@ export const camelCase = (s: string, separator = ""): string =>
  */
 export const pascalCase = (s: string, separator?: string): string =>
   upperFirst(camelCase(s, separator));
+
+/**
+ * @param s - The string to convert
+ */
+export const titleCase = (s: string): string =>
+  s.split(/(?=[A-Z])/).reduce((result, part, i) => {
+    return result + (i ? " " : "") + upperFirst(part);
+  }, "");
+
+/**
+ * @param s - The string to convert
+ */
+export const kebabCase = (s: string): string =>
+  s.split(/(?=[A-Z])/).reduce((result, part, i) => {
+    return result + (i ? "-" : "") + part.toLowerCase();
+  }, "");

@@ -1,0 +1,11 @@
+@use "everything";
+
+.container {
+  @include everything.box-set-var(item-min-size, 14rem);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

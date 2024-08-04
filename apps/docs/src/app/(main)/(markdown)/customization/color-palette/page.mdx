@@ -1,0 +1,60 @@
+import { ColorPalette } from "./ColorPalette.tsx";
+
+# Color Palette
+
+The first two versions of Material Design provide a
+[color system](https://m2.material.io/design/color/the-color-system.html) that
+have a preset of colors that generally look good together. The official
+[Material palette generator](https://m2.material.io/inline-tools/color/) can
+be used to generate a palette for any color you input.
+
+`react-md` still supports this color system by providing both Sass and
+Javascript variables where Sass variables will use `kebab-case-names` and
+Javascript will use `camelCaseNames`. The Sass variables can be accessed
+through `@use "@react-md/core/colors";` and the Javascript variables can
+be accessed through `import { colorName } from "@react-md/core/theme/colors";`.
+
+To help show the naming conventions and usage, all the available red colors
+will be shown below:
+
+```scss
+@use "@react-md/core/colors";
+
+$example: colors.$red-50;
+$example: colors.$red-100;
+$example: colors.$red-200;
+$example: colors.$red-300;
+$example: colors.$red-400;
+$example: colors.$red-500;
+$example: colors.$red-600;
+$example: colors.$red-700;
+$example: colors.$red-800;
+$example: colors.$red-a-100;
+$example: colors.$red-a-200;
+$example: colors.$red-a-400;
+$example: colors.$red-a-700;
+```
+
+```ts
+import {
+  red50,
+  red100,
+  red200,
+  red300,
+  red400,
+  red500,
+  red600,
+  red700,
+  red800,
+  red900,
+  redAccent100,
+  redAccent200,
+  redAccent400,
+  redAccent700,
+} from "@react-md/core/theme/colors";
+```
+
+> !Info! Check out the [Theme Builder](./theme-builder) page to use this color
+> palette or a custom color palette while previewing the behavior.
+
+<ColorPalette />
