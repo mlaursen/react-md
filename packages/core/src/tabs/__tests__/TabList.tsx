@@ -17,10 +17,10 @@ import {
 import { Tooltip } from "../../tooltip/Tooltip.js";
 import { useTooltip } from "../../tooltip/useTooltip.js";
 import { WritingDirectionProvider } from "../../typography/WritingDirectionProvider.js";
+import { type GetTabListScrollToOptions } from "../getTabListScrollToOptions.js";
 import { Tab } from "../Tab.js";
 import { TabList, type TabListProps } from "../TabList.js";
 import { useTabs, type ProvidedTabListProps } from "../useTabs.js";
-import { type GetTabListScrollToOptions } from "../utils.js";
 
 // make it so the back button defaults to intersecting
 const getIntersectionRatio = jest.fn((target: Element): number =>

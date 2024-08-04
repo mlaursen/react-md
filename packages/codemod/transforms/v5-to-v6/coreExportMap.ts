@@ -2538,8 +2538,8 @@ export const EXPORT_MAP: Record<string, string> = {
   getScrollbarWidth: "@react-md/core/scroll/getScrollbarWidth",
   getSearchText: "@react-md/core/movement/utils",
   getSplitFileUploads: "@react-md/core/form/fileUtils",
-  GetTabListScrollToOptions: "@react-md/core/tabs/utils",
-  getTabListScrollToOptions: "@react-md/core/tabs/utils",
+  GetTabListScrollToOptions: "@react-md/core/tabs/getTabListScrollToOptions",
+  getTabListScrollToOptions: "@react-md/core/tabs/getTabListScrollToOptions",
   getTabRoleOnly: "@react-md/core/tabs/utils",
   getThumbOffset: "@react-md/core/form/sliderUtils",
   getThumbOffsets: "@react-md/core/form/sliderUtils",
@@ -3364,7 +3364,7 @@ export const EXPORT_MAP: Record<string, string> = {
   TabListScrollButtonContainerClassNameOptions:
     "@react-md/core/tabs/tabListScrollButtonStyles",
   TabListScrollButtonProps: "@react-md/core/tabs/TabListScrollButton",
-  TabListScrollToOptions: "@react-md/core/tabs/utils",
+  TabListScrollToOptions: "@react-md/core/tabs/getTabListScrollToOptions",
   TabOffsetVar: "@react-md/core/tabs/useTabList",
   TabProps: "@react-md/core/tabs/Tab",
   TabsAlignment: "@react-md/core/tabs/tabListStyles",
@@ -3693,9 +3693,8 @@ export const EXPORT_MAP: Record<string, string> = {
   WhitespaceFilter: "@react-md/core/searching/types",
   WindowSizeOptions: "@react-md/core/useWindowSize",
   WindowSplitter: "@react-md/core/window-splitter/WindowSplitter",
-  windowSplitter: "@react-md/core/window-splitter/WindowSplitter",
-  WindowSplitterClassNameOptions:
-    "@react-md/core/window-splitter/WindowSplitter",
+  windowSplitter: "@react-md/core/window-splitter/styles",
+  WindowSplitterClassNameOptions: "@react-md/core/window-splitter/styles",
   WindowSplitterImplementation:
     "@react-md/core/window-splitter/useWindowSplitter",
   WindowSplitterOptions: "@react-md/core/window-splitter/useWindowSplitter",

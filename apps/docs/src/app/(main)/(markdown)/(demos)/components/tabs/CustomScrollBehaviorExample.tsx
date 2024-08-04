@@ -1,11 +1,8 @@
 "use client";
 import { Tab } from "@react-md/core/tabs/Tab";
+// import { getTabListScrollToOptions } from "@react-md/core/tabs/getTabListScrollToOptions";
 import { TabList } from "@react-md/core/tabs/TabList";
-
-import {
-  // getTabListScrollToOptions,
-  useTabs,
-} from "@react-md/core/tabs/useTabs";
+import { useTabs } from "@react-md/core/tabs/useTabs";
 
 import { type ReactElement } from "react";
 

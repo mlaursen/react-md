@@ -1,5 +1,28 @@
+// Private files not included:
+// - draggable/utils
+// - form/selectUtils
+// - form/SliderTrack
+// - form/sliderUtils
+// - interaction/utils
+// - list/getListItemHeight
+// - menu/MenuWidgetKeyboardProvider
+// - menu/utils
+// - position/createHorizontalPosition
+// - position/createVerticalPosition
+// - tabs/useTabList
+// - tabs/utils
+// - tooltip/useTooltipPosition
+// - transition/utils
+// - tree/useTreeMovement
+
 export * from "@react-md/core/app-bar/AppBar";
 export * from "@react-md/core/app-bar/AppBarTitle";
+export * from "@react-md/core/autocomplete/Autocomplete";
+export * from "@react-md/core/autocomplete/AutocompleteCircularProgress";
+export * from "@react-md/core/autocomplete/AutocompleteDropdownButton";
+export * from "@react-md/core/autocomplete/autocompleteStyles";
+export * from "@react-md/core/autocomplete/defaults";
+export * from "@react-md/core/autocomplete/types";
 export * from "@react-md/core/avatar/Avatar";
 export * from "@react-md/core/avatar/styles";
 export * from "@react-md/core/badge/Badge";
@@ -40,6 +63,7 @@ export * from "@react-md/core/draggable/useDraggable";
 export * from "@react-md/core/expansion-panel/ExpansionList";
 export * from "@react-md/core/expansion-panel/ExpansionPanel";
 export * from "@react-md/core/expansion-panel/ExpansionPanelHeader";
+export * from "@react-md/core/expansion-panel/expansionPanelStyles";
 export * from "@react-md/core/expansion-panel/useExpansionList";
 export * from "@react-md/core/expansion-panel/useExpansionPanels";
 export * from "@react-md/core/focus/useFocusContainer";
@@ -52,9 +76,11 @@ export * from "@react-md/core/form/Form";
 export * from "@react-md/core/form/formConfig";
 export * from "@react-md/core/form/FormMessage";
 export * from "@react-md/core/form/FormMessageContainer";
+export * from "@react-md/core/form/formMessageContainerStyles";
 export * from "@react-md/core/form/FormMessageCounter";
 export * from "@react-md/core/form/formMessageStyles";
 export * from "@react-md/core/form/InputToggle";
+export * from "@react-md/core/form/inputToggleStyles";
 export * from "@react-md/core/form/Label";
 export * from "@react-md/core/form/Legend";
 export * from "@react-md/core/form/MenuItemCheckbox";
@@ -80,12 +106,13 @@ export * from "@react-md/core/form/SliderContainer";
 export * from "@react-md/core/form/SliderMark";
 export * from "@react-md/core/form/SliderMarkLabel";
 export * from "@react-md/core/form/SliderThumb";
-export * from "@react-md/core/form/SliderTrack";
 export * from "@react-md/core/form/SliderValueMarks";
 export * from "@react-md/core/form/SliderValueTooltip";
 export * from "@react-md/core/form/Switch";
 export * from "@react-md/core/form/switchStyles";
+export * from "@react-md/core/form/SwitchTrack";
 export * from "@react-md/core/form/TextArea";
+export * from "@react-md/core/form/textAreaStyles";
 export * from "@react-md/core/form/TextField";
 export * from "@react-md/core/form/TextFieldAddon";
 export * from "@react-md/core/form/TextFieldContainer";
@@ -104,6 +131,7 @@ export * from "@react-md/core/form/useRangeSlider";
 export * from "@react-md/core/form/useSelectCombobox";
 export * from "@react-md/core/form/useSlider";
 export * from "@react-md/core/form/useTextField";
+export * from "@react-md/core/form/useTextFieldContainerAddons";
 export * from "@react-md/core/form/utils";
 export * from "@react-md/core/form/validation";
 export * from "@react-md/core/hoverMode/useHoverMode";
@@ -151,6 +179,7 @@ export * from "@react-md/core/list/ListItemChildren";
 export * from "@react-md/core/list/ListItemLink";
 export * from "@react-md/core/list/listItemStyles";
 export * from "@react-md/core/list/ListItemText";
+export * from "@react-md/core/list/listStyles";
 export * from "@react-md/core/list/ListSubheader";
 export * from "@react-md/core/list/types";
 export * from "@react-md/core/media-queries/appSize";
@@ -183,14 +212,17 @@ export * from "@react-md/core/overlay/overlayStyles";
 export * from "@react-md/core/portal/Portal";
 export * from "@react-md/core/portal/PortalContainerProvider";
 export * from "@react-md/core/positioning/constants";
+export * from "@react-md/core/positioning/getFixedPosition";
 export * from "@react-md/core/positioning/types";
 export * from "@react-md/core/positioning/useFixedPositioning";
+export * from "@react-md/core/positioning/utils";
 export * from "@react-md/core/progress/CircularProgress";
 export * from "@react-md/core/progress/getProgressA11y";
 export * from "@react-md/core/progress/LinearProgress";
 export * from "@react-md/core/progress/types";
 export * from "@react-md/core/responsive-item/ResponsiveItem";
 export * from "@react-md/core/responsive-item/ResponsiveItemOverlay";
+export * from "@react-md/core/responsive-item/responsiveItemOverlayStyles";
 export * from "@react-md/core/responsive-item/responsiveItemStyles";
 export * from "@react-md/core/RootHtml";
 export * from "@react-md/core/scroll/getScrollbarWidth";
@@ -223,6 +255,7 @@ export * from "@react-md/core/snackbar/useCurrentToastActions";
 export * from "@react-md/core/SsrProvider";
 export * from "@react-md/core/suspense/CircularProgressSuspense";
 export * from "@react-md/core/suspense/NullSuspense";
+export * from "@react-md/core/table/StickyTableSection";
 export * from "@react-md/core/table/Table";
 export * from "@react-md/core/table/TableBody";
 export * from "@react-md/core/table/TableCell";
@@ -232,6 +265,7 @@ export * from "@react-md/core/table/TableCheckbox";
 export * from "@react-md/core/table/TableConfigurationProvider";
 export * from "@react-md/core/table/TableContainer";
 export * from "@react-md/core/table/TableContainerProvider";
+export * from "@react-md/core/table/tableContainerStyles";
 export * from "@react-md/core/table/TableFooter";
 export * from "@react-md/core/table/tableFooterStyles";
 export * from "@react-md/core/table/TableHeader";
@@ -241,6 +275,9 @@ export * from "@react-md/core/table/TableRow";
 export * from "@react-md/core/table/tableRowStyles";
 export * from "@react-md/core/table/tableStyles";
 export * from "@react-md/core/table/types";
+export * from "@react-md/core/table/useStickyTableSection";
+export * from "@react-md/core/table/useTableSectionConfig";
+export * from "@react-md/core/tabs/getTabListScrollToOptions";
 export * from "@react-md/core/tabs/Tab";
 export * from "@react-md/core/tabs/tabIndicatorStyles";
 export * from "@react-md/core/tabs/TabList";
@@ -249,9 +286,9 @@ export * from "@react-md/core/tabs/tabListScrollButtonStyles";
 export * from "@react-md/core/tabs/tabListStyles";
 export * from "@react-md/core/tabs/tabStyles";
 export * from "@react-md/core/tabs/useTabs";
-export * from "@react-md/core/tabs/utils";
 export * from "@react-md/core/theme/colors";
 export * from "@react-md/core/theme/cssVars";
+export * from "@react-md/core/theme/isColorScheme";
 export * from "@react-md/core/theme/LocalStorageColorSchemeProvider";
 export * from "@react-md/core/theme/ThemeProvider";
 export * from "@react-md/core/theme/types";
@@ -259,7 +296,7 @@ export * from "@react-md/core/theme/useColorScheme";
 export * from "@react-md/core/theme/useColorSchemeMetaTag";
 export * from "@react-md/core/theme/useColorSchemeProvider";
 export * from "@react-md/core/theme/useCSSVariables";
-export * from "@react-md/core/theme/usePrefersColorScheme";
+export * from "@react-md/core/theme/usePrefersDarkScheme";
 export * from "@react-md/core/theme/utils";
 export * from "@react-md/core/tooltip/constants";
 export * from "@react-md/core/tooltip/Tooltip";
@@ -267,6 +304,7 @@ export * from "@react-md/core/tooltip/TooltipHoverModeProvider";
 export * from "@react-md/core/tooltip/tooltipStyles";
 export * from "@react-md/core/tooltip/useTooltip";
 export * from "@react-md/core/transition/Collapse";
+export * from "@react-md/core/transition/collapseStyles";
 export * from "@react-md/core/transition/config";
 export * from "@react-md/core/transition/CrossFade";
 export * from "@react-md/core/transition/CSSTransition";
@@ -312,10 +350,12 @@ export * from "@react-md/core/useDropzone";
 export * from "@react-md/core/useElementSize";
 export * from "@react-md/core/useEnsuredId";
 export * from "@react-md/core/useEnsuredRef";
+export * from "@react-md/core/useEnsuredState";
 export * from "@react-md/core/useHtmlClassName";
 export * from "@react-md/core/useIntersectionObserver";
 export * from "@react-md/core/useIsomorphicLayoutEffect";
 export * from "@react-md/core/useLocalStorage";
+export * from "@react-md/core/useMutationObserver";
 export * from "@react-md/core/useOrientation";
 export * from "@react-md/core/usePageInactive";
 export * from "@react-md/core/useResizeListener";
@@ -341,5 +381,6 @@ export * from "@react-md/core/utils/randomInt";
 export * from "@react-md/core/utils/RenderRecursively";
 export * from "@react-md/core/utils/wait";
 export * from "@react-md/core/utils/withinRange";
+export * from "@react-md/core/window-splitter/styles";
 export * from "@react-md/core/window-splitter/useWindowSplitter";
 export * from "@react-md/core/window-splitter/WindowSplitter";

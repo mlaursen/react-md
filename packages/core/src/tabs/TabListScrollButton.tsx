@@ -14,13 +14,13 @@ import { useDir } from "../typography/WritingDirectionProvider.js";
 import { useIntersectionObserver } from "../useIntersectionObserver.js";
 import { applyRef } from "../utils/applyRef.js";
 import {
+  getTabListScrollToOptions,
+  type GetTabListScrollToOptions,
+} from "./getTabListScrollToOptions.js";
+import {
   tabListScrollButton,
   tabListScrollButtonContainer,
 } from "./tabListScrollButtonStyles.js";
-import {
-  getTabListScrollToOptions,
-  type GetTabListScrollToOptions,
-} from "./utils.js";
 
 /**
  * @internal

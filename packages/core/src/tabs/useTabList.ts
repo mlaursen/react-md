@@ -18,14 +18,6 @@ import { useEnsuredRef } from "../useEnsuredRef.js";
 import { useResizeObserver } from "../useResizeObserver.js";
 import { getTabRoleOnly, scrollTabIntoView } from "./utils.js";
 
-declare module "react" {
-  interface CSSProperties {
-    "--rmd-tab-size"?: string;
-    "--rmd-tab-offset"?: string | number;
-    "--rmd-tab-indicator-background"?: string;
-  }
-}
-
 const TAB_SIZE_VAR = "--rmd-tab-size";
 const TAB_OFFSET_VAR = "--rmd-tab-offset";
 

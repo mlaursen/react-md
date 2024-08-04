@@ -3,6 +3,18 @@ import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-divider");
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-divider-size"?: string | number;
+    "--rmd-divider-vertical-size"?: string | number;
+    "--rmd-divider-color"?: string;
+    "--rmd-divider-spacing"?: string | number;
+    "--rmd-divider-vertical-spacing"?: string | number;
+    "--rmd-divider-inset"?: string | number;
+    "--rmd-divider-max-size"?: string | number;
+  }
+}
+
 /** @since 6.0.0 */
 export interface DividerClassNameOptions {
   className?: string;

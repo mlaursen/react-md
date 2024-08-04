@@ -9,6 +9,10 @@ declare module "react" {
     "--rmd-tab-active-color"?: string;
     "--rmd-tab-inactive-color"?: string;
     "--rmd-tab-disabled-color"?: string;
+
+    "--rmd-tab-size"?: string;
+    "--rmd-tab-offset"?: string | number;
+    "--rmd-tab-indicator-background"?: string;
   }
 }
 

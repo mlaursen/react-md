@@ -1,13 +1,20 @@
 "use client";
 import { cnb } from "cnbuilder";
-import type { HTMLAttributes, Ref, RefCallback } from "react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type HTMLAttributes,
+  type Ref,
+  type RefCallback,
+} from "react";
 import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
 import { useScrollLock } from "../scroll/useScrollLock.js";
-import type {
-  NonNullRef,
-  UseStateInitializer,
-  UseStateSetter,
+import {
+  type NonNullRef,
+  type UseStateInitializer,
+  type UseStateSetter,
 } from "../types.js";
 import { useDir } from "../typography/WritingDirectionProvider.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";

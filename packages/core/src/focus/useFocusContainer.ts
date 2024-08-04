@@ -1,15 +1,23 @@
 "use client";
-import type { KeyboardEventHandler, Ref, RefObject } from "react";
-import { useEffect, useRef } from "react";
+import {
+  useEffect,
+  useRef,
+  type KeyboardEventHandler,
+  type Ref,
+  type RefObject,
+} from "react";
 import { TRANSITION_CONFIG } from "../transition/config.js";
-import type {
-  TransitionCallbacks,
-  TransitionEnterHandler,
-  TransitionExitHandler,
+import {
+  type TransitionCallbacks,
+  type TransitionEnterHandler,
+  type TransitionExitHandler,
 } from "../transition/types.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
-import type { FocusElementWithinType } from "./utils.js";
-import { focusElementWithin, getFocusableElements } from "./utils.js";
+import {
+  focusElementWithin,
+  getFocusableElements,
+  type FocusElementWithinType,
+} from "./utils.js";
 
 const noop = (): void => {
   // do nothing
