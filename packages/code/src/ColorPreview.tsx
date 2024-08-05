@@ -1,26 +1,33 @@
-import { type ReactElement, type ReactNode } from "react";
-import { ColorPreviewRenderer } from "./ColorPreviewRenderer.js";
-import { WalkChildren } from "./WalkChildren.js";
+import { cnb } from "cnbuilder";
+import { type HTMLAttributes, type ReactElement } from "react";
+import { InlineCode, type InlineCodeProps } from "./InlineCode.js";
 
-// https://stackoverflow.com/a/1636354/744230
-const HEX_CODE_REGEX = /#(?:[0-9a-fA-F]{3}){1,2}/gim;
-
-export interface ColorPreviewProps {
-  children?: ReactNode;
+export interface ColorPreviewProps extends HTMLAttributes<HTMLSpanElement> {
+  color: string;
+  codeProps?: InlineCodeProps;
 }
 
+/**
+ * Creates an inline preview for a color. It will also add a tooltip while
+ * hovered for a slightly larger preview.
+ */
 export function ColorPreview(props: ColorPreviewProps): ReactElement {
-  const { children } = props;
+  const { color, className, codeProps, ...remaining } = props;
 
   return (
-    <WalkChildren regex={HEX_CODE_REGEX} renderer={ColorPreviewRenderer}>
-      {children}
-    </WalkChildren>
+    <span
+      {...remaining}
+      style={{ "--color": color }}
+      className={cnb("color-preview", className)}
+    >
+      <InlineCode {...codeProps}>{color}</InlineCode>
+    </span>
   );
 }
 
 declare module "react" {
   interface CSSProperties {
-    "--color-preview"?: string;
+    "--color"?: string;
+    "--text-color"?: string;
   }
 }

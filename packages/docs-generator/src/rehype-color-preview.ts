@@ -1,4 +1,3 @@
-import { contrastColor } from "@react-md/core/theme/utils";
 import { type Element, type Node, type Root } from "hast";
 import { type Plugin } from "unified";
 import { is } from "unist-util-is";
@@ -27,7 +26,7 @@ const createColorNode = (color: string): Element => ({
     },
   ],
   properties: {
-    style: `--color:${color};--text-color:${contrastColor(color)}`,
+    style: `--color:${color};`,
     class: "color-preview",
   },
 });
