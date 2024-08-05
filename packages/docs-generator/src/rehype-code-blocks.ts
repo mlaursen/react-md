@@ -34,7 +34,11 @@ export interface RehypeCodeBlocksOptions {
  *     - `card`
  *     - `phone`
  *     - `importOnly`
+ *     - `startOnScss`
+ *     - `disableBox`
  *     - `transparent`
+ *     - `forceDarkMode`
+ *     - `disablePadding`
  * - If the code block is `ts `or `tsx`, try to convert it to javascript and
  *   replace the code block with:
  *   `<TypescriptCodeBlock isTsx={isTsx} tsCode={tsCode} jsCode={jsCode} />`

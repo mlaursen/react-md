@@ -60,6 +60,10 @@ $color-preview-border-width: $color-preview-outer-width + 0.0625em;
     padding: 3rem;
     position: relative;
 
+    &--np {
+      padding: 0;
+    }
+
     &--no-bb {
       border-bottom-width: 0;
     }
@@ -70,6 +74,12 @@ $color-preview-border-width: $color-preview-outer-width + 0.0625em;
 
     &--transparent {
       --code-preview-bg: transparent;
+    }
+
+    &--dark {
+      @include core.use-dark-theme;
+      @include core.theme-use-var(background-color);
+      @include core.theme-use-var(color, text-primary-color);
     }
 
     &__error {

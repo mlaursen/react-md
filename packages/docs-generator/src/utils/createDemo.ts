@@ -9,6 +9,7 @@ import {
   replacePreElement,
   type ReplacePreElementWithJsxNodeOptions,
 } from "./replacePreElement.js";
+import { type CodePreviewProps } from "@react-md/code/CodePreview";
 
 interface CreateDemoMdxCodeOptions {
   demoName: string;
@@ -23,12 +24,22 @@ const createDemoMdxCode = ({
 <${demoName} />
 `;
 
-export interface InlineDemoProps {
+export type DemoCodePreviewProps = Required<
+  Pick<
+    CodePreviewProps,
+    | "disableBox"
+    | "transparent"
+    | "transparent"
+    | "forceDarkMode"
+    | "disablePadding"
+  >
+>;
+
+export interface InlineDemoProps extends DemoCodePreviewProps {
   card: boolean;
   phone: boolean;
-  disableBox: boolean;
   importOnly: boolean;
-  transparent: boolean;
+  startOnScss: boolean;
 }
 
 export interface DemoProps extends InlineDemoProps {
@@ -68,7 +79,10 @@ export async function createDemo(options: CreateDemoOptions): Promise<void> {
     phone: false,
     disableBox: false,
     importOnly: false,
+    startOnScss: false,
     transparent: false,
+    forceDarkMode: false,
+    disablePadding: false,
   };
 
   const errors = new Set<string>();
@@ -88,6 +102,9 @@ export async function createDemo(options: CreateDemoOptions): Promise<void> {
       case "disableBox":
       case "importOnly":
       case "transparent":
+      case "startOnScss":
+      case "forceDarkMode":
+      case "disablePadding":
         props[name] = true;
         break;
       default:

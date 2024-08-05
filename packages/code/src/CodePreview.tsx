@@ -11,6 +11,7 @@ export interface ConfigurableCodePreviewProps extends BoxProps {
   disableBox?: boolean;
   transparent?: boolean;
   borderBottom?: boolean;
+  forceDarkMode?: boolean;
 }
 
 export interface CodePreviewProps extends ConfigurableCodePreviewProps {
@@ -22,9 +23,11 @@ export function CodePreview(props: CodePreviewProps): ReactElement {
     error,
     className,
     justify = "center",
-    borderBottom,
     disableBox,
     transparent,
+    borderBottom,
+    forceDarkMode,
+    disablePadding,
     children,
     ...remaining
   } = props;
@@ -35,9 +38,12 @@ export function CodePreview(props: CodePreviewProps): ReactElement {
     <Box
       {...remaining}
       justify={justify}
+      disablePadding={disablePadding}
       className={cnb(
         styles({
+          dark: forceDarkMode,
           block: disableBox,
+          np: disablePadding,
           "no-bb": !borderBottom,
           transparent,
         }),

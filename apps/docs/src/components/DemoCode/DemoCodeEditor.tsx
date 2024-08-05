@@ -30,7 +30,10 @@ export interface DemoCodeEditorProps extends PreviewContainerOptions {
   tsCodeFile: TypescriptCodeFile;
   disableBox?: boolean;
   transparent?: boolean;
+  forceDarkMode?: boolean;
+  disablePadding?: boolean;
   scssCodeFile?: ScssCodeFile;
+  startOnScss?: boolean;
 }
 
 export function DemoCodeEditor(props: DemoCodeEditorProps): ReactElement {
@@ -42,7 +45,10 @@ export function DemoCodeEditor(props: DemoCodeEditorProps): ReactElement {
     tsCodeFile,
     disableBox,
     transparent,
+    startOnScss,
     scssCodeFile,
+    forceDarkMode,
+    disablePadding,
   } = props;
 
   const toastManager = useMemo(() => new ToastManager(), []);
@@ -67,7 +73,9 @@ export function DemoCodeEditor(props: DemoCodeEditorProps): ReactElement {
     getTabListProps,
     getTabPanelProps,
     getTabPanelsProps,
-  } = useTabs();
+  } = useTabs({
+    defaultActiveTab: () => (scssCodeFile && startOnScss ? 1 : 0),
+  });
   const { toggled: isCssVisible, toggle: toggleCssVisible } = useToggle();
 
   return (
@@ -80,6 +88,8 @@ export function DemoCodeEditor(props: DemoCodeEditorProps): ReactElement {
         phone={phone}
         disableBox={disableBox}
         transparent={transparent}
+        forceDarkMode={forceDarkMode}
+        disablePadding={disablePadding}
       />
       <CodeBlockAppBar>
         {activeTab === 0 && <ConfigureTypescriptEnabled disableLabel />}
