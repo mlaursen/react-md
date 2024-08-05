@@ -1,0 +1,49 @@
+@use "sass:map";
+@use "@react-md/core" with (
+  $color-scheme: dark,
+  $dark-elevation-colors: (
+    // this is really `$dark-theme-background-color`
+    0: #121212,
+    1: #1f1f1f,
+    2: #242424,
+    3: #262626,
+    4: #282828,
+    5: #282828,
+    6: #2c2c2c,
+    7: #2c2c2c,
+    8: #2f2f2f,
+    9: #2f2f2f,
+    10: #2f2f2f,
+    11: #2f2f2f,
+    12: #333,
+    13: #333,
+    14: #333,
+    15: #333,
+    16: #353535,
+    17: #353535,
+    18: #353535,
+    19: #353535,
+    20: #353535,
+    21: #353535,
+    22: #353535,
+    23: #353535,
+    24: #383838,
+  )
+);
+
+// NOTE: All the styles below are only required for this demo and should not be
+// used in your code.
+.container {
+  @include core.use-dark-theme-elevation-colors;
+}
+
+@for $i from 1 through 24 {
+  .elevation-#{$i} {
+    @include core.box-shadow($i);
+
+    // the real behavior is just to keep it empty
+    @if not map.get(core.$dark-elevation-colors, $i) {
+      @include core.set-dark-elevation-color($i, transparent);
+    }
+  }
+}

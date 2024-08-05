@@ -1,3 +1,5 @@
+import { DarkModeColors } from "./DarkModeColors.tsx";
+
 # Dark Mode
 
 There are a few different type of light/dark themes that can be available for a
@@ -23,6 +25,40 @@ styles with the dark theme variants.
 );
 
 @include core.styles;
+```
+
+Enabling the dark mode will change all the theme colors to their dark-mode
+variants and exclude any light theme behavior from the generated CSS. The
+default theme colors are:
+
+<DarkModeColors />
+
+## Dark Elevation Colors
+
+When the dark mode is enabled, the surface background color will become lighter
+as the `z-index`/`box-shadow` increases to enable more contrast between
+temporary elements. Here is a list of components in `react-md` and their elevation:
+
+| Name                | Elevation |
+| ------------------- | --------- |
+| `AppBar`            | `2`       |
+| `Card`              | `2`       |
+| `Sheet` (inline)    | `2`       |
+| `StickyTableHeader` | `4`       |
+| `Chip`              | `8`       |
+| `Toast`             | `6`       |
+| `Menu`              | `8`       |
+| `Dialog`            | `16`      |
+| `Sheet` (normal)    | `16`      |
+
+## Configuring Elevation Colors
+
+The different elevation colors can be changed by modifying the
+`$dark-elevation-colors` map. The next demo shows all 25 elevation colors and
+allows the values to be modified to see how they behave.
+
+```demo source="./DarkElevationColors.tsx" disableBox startOnScss forceDarkMode disablePadding
+
 ```
 
 # System Mode
@@ -59,7 +95,12 @@ the other color scheme. This example will default to a `light` theme and allow
 the user to configure it to be `dark`.
 
 ```scss
-@use "@react-md/core";
+@use "@react-md/core" with (
+  // If the $color-scheme is not set or set to `light`, the dark elevation
+  // styles are omitted by default to keep the bundle smaller. So when enabling
+  // a toggleable dark mode, force the styles to be created:
+  $disable-dark-elevation: false
+);
 
 @include core.styles;
 
@@ -134,8 +175,8 @@ other color schemes.
   @include core.dark-theme;
 }
 
-.system-theme {
-  @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
+  .system-theme {
     @include core.dark-theme;
   }
 }
