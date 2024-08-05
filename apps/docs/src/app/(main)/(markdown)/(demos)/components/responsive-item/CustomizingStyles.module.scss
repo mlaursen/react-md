@@ -1,8 +1,9 @@
 @use "sass:color";
+@use "@react-md/core/colors";
 @use "@react-md/core" with (
-  $responsive-item-overlay-background-color: rgba(#000, 0.54),
+  $responsive-item-overlay-background-color: rgba(colors.$black, 0.54),
   // the `$responsive-item-overlay-color` is really `$dark-theme-text-primary-color`, but can be used in this demo
-  $responsive-item-overlay-color: color.adjust(#fff, $lightness: -15%),
+  $responsive-item-overlay-color: color.adjust(colors.$white, $lightness: -15%),
   $responsive-item-overlay-z-index: 0,
   $responsive-item-overlay-padding: 1rem,
   // try updating the width to `auto` or another value

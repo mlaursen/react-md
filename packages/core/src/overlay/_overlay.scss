@@ -1,9 +1,10 @@
 @use "sass:map";
 @use "../utils";
+@use "../theme/colors";
 @use "../transition/transition";
 
 $disable-everything: false !default;
-$background-color: rgba(0, 0, 0, 0.4) !default;
+$background-color: rgba(colors.$black, 0.4) !default;
 $z-index: utils.$temporary-element-z-index !default;
 
 $transition-duration: transition.$linear-duration !default;
