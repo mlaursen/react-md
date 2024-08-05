@@ -262,7 +262,9 @@ $theme-variables: (
 }
 
 @mixin set-dark-elevation-color($z-value, $value) {
-  #{_dark-elevation-color($z-value)}: #{$value};
+  @if $value {
+    #{_dark-elevation-color($z-value)}: #{$value};
+  }
 }
 
 @mixin theme-set-var($name, $value-or-theme-name) {

@@ -145,6 +145,10 @@ $variables: (
 @mixin use-light-theme {
   @if not $disable-solid-theme {
     @include set-var(solid-background-color, $solid-light-background-color);
+    @include set-var(
+      solid-disabled-background-color,
+      $solid-light-disabled-background-color
+    );
     @include set-var(solid-color, $solid-light-color);
   }
 
@@ -160,6 +164,10 @@ $variables: (
 @mixin use-dark-theme {
   @if not $disable-solid-theme {
     @include set-var(solid-background-color, $solid-dark-background-color);
+    @include set-var(
+      solid-disabled-background-color,
+      $solid-dark-disabled-background-color
+    );
     @include set-var(solid-color, $solid-dark-color);
   }
 

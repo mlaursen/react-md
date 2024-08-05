@@ -36,8 +36,7 @@ $skeleton-placeholder-width: 43% !default;
 $skeleton-placeholder-border-radius: 0.25rem !default;
 $skeleton-placeholder-light-background-color: #000 !default;
 $skeleton-placeholder-dark-background-color: colors.$grey-300 !default;
-$skeleton-placeholder-background-color: if(
-  theme.$color-scheme == system,
+$skeleton-placeholder-background-color: theme.get-default-color(
   $skeleton-placeholder-dark-background-color,
   $skeleton-placeholder-light-background-color
 ) !default;
