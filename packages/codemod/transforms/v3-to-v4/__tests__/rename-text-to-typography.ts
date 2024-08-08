@@ -1,3 +1,4 @@
+import { describe } from "@jest/globals";
 import { defineTest } from "jscodeshift/src/testUtils";
 
 const testName = "rename-text-to-typography";

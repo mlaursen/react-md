@@ -16,6 +16,7 @@
     "prepare-release": "npm-run-all clean-dist build",
     "clean-dist": "rm -rf bin",
     "clean": "rm -rf .turbo bin node_modules",
+    "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{ts,tsx,js,jsx,cjs,mjs}\"",
     "test": "jest",
     "build": "tsc --project tsconfig.build.json"
@@ -42,7 +43,7 @@
     "commander": "^12.1.0",
     "glob": "^11.0.0",
     "inquirer": "^9.3.6",
-    "jscodeshift": "^0.16.1"
+    "jscodeshift": "^17.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
