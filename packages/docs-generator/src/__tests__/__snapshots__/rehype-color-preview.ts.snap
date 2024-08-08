@@ -12,8 +12,7 @@ function _createMdxContent(props) {
   return _jsxs(_components.p, {
     children: ["The color ", _jsx(_components.span, {
       style: {
-        "--color": "#000",
-        "--text-color": "#fff"
+        "--color": "#000"
       },
       className: "color-preview",
       children: _jsx(_components.code, {
@@ -21,8 +20,7 @@ function _createMdxContent(props) {
       })
     }), " should display inline as well as ", _jsx(_components.span, {
       style: {
-        "--color": "#fafafa",
-        "--text-color": "#000"
+        "--color": "#fafafa"
       },
       className: "color-preview",
       children: _jsx(_components.code, {
@@ -57,8 +55,7 @@ function _createMdxContent(props) {
     children: [_jsxs(_components.h1, {
       children: ["Heading that should include ", _jsx(_components.span, {
         style: {
-          "--color": "#000",
-          "--text-color": "#fff"
+          "--color": "#000"
         },
         className: "color-preview",
         children: _jsx(_components.code, {
@@ -68,8 +65,7 @@ function _createMdxContent(props) {
     }), "\\n", _jsxs(_components.p, {
       children: ["Some paragraph ", _jsx(_components.span, {
         style: {
-          "--color": "#333",
-          "--text-color": "#fff"
+          "--color": "#333"
         },
         className: "color-preview",
         children: _jsx(_components.code, {
@@ -79,8 +75,7 @@ function _createMdxContent(props) {
     }), "\\n", _jsxs(_components.p, {
       children: ["| a | b | c |\\n| ", _jsx(_components.span, {
         style: {
-          "--color": "#000",
-          "--text-color": "#fff"
+          "--color": "#000"
         },
         className: "color-preview",
         children: _jsx(_components.code, {
@@ -88,8 +83,7 @@ function _createMdxContent(props) {
         })
       }), " | ", _jsx(_components.span, {
         style: {
-          "--color": "#030303",
-          "--text-color": "#fff"
+          "--color": "#030303"
         },
         className: "color-preview",
         children: _jsx(_components.code, {
