@@ -4,8 +4,8 @@ import { semver } from "@/utils/semver.js";
 import { DropdownMenu } from "@react-md/core/menu/DropdownMenu";
 import { MenuItem } from "@react-md/core/menu/MenuItem";
 import { Typography } from "@react-md/core/typography/Typography";
+import CheckIcon from "@react-md/material-icons/CheckIcon";
 import { cnb } from "cnbuilder";
-import CheckIcon from "node_modules/@react-md/material-icons/src/CheckIcon.jsx";
 import { type ReactElement } from "react";
 import { VersionMenuItem } from "./VersionMenuItem.jsx";
 

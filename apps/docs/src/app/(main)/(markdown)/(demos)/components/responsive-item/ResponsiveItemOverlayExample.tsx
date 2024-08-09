@@ -5,7 +5,7 @@ import { Card } from "@react-md/core/card/Card";
 import { ResponsiveItem } from "@react-md/core/responsive-item/ResponsiveItem";
 import { ResponsiveItemOverlay } from "@react-md/core/responsive-item/ResponsiveItemOverlay";
 import { Typography } from "@react-md/core/typography/Typography";
-import InfoOutlineIcon from "node_modules/@react-md/material-icons/src/InfoOutlineIcon.jsx";
+import InfoOutlineIcon from "@react-md/material-icons/InfoOutlineIcon";
 import { type ReactElement } from "react";
 
 export default function ResponsiveItemOverlayExample(): ReactElement {

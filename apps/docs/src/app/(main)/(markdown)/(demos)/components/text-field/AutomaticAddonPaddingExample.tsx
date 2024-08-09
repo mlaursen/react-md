@@ -11,8 +11,8 @@ import { CircularProgress } from "@react-md/core/progress/CircularProgress";
 import { useToggle } from "@react-md/core/useToggle";
 import { loop } from "@react-md/core/utils/loop";
 import { randomInt } from "@react-md/core/utils/randomInt";
+import CancelIcon from "@react-md/material-icons/CancelIcon";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
-import CancelIcon from "node_modules/@react-md/material-icons/src/CancelIcon.jsx";
 import { useEffect, useState, type ReactElement } from "react";
 
 export default function AutomaticAddonPaddingExample(): ReactElement {
