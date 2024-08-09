@@ -123,7 +123,7 @@ export interface FileUploadActions {
   reset(): void;
 
   /**
-   * Removes all the errors that exist in state without cancelling any of the
+   * Removes all the errors that exist in state without canceling any of the
    * uploads already in progress.
    */
   clearErrors(): void;
@@ -212,21 +212,23 @@ const EMPTY_OBJECT = {} as const;
  * @returns the {@link FileUploadHookReturnValue}
  * @since 2.9.0
  */
-export function useFileUpload<E extends HTMLElement, CustomError = never>({
-  maxFiles = -1,
-  extensions = EMPTY_LIST,
-  minFileSize = -1,
-  maxFileSize = -1,
-  totalFileSize = -1,
-  concurrency = -1,
-  onDrop: propOnDrop = noop,
-  onChange: propOnChange = noop,
-  validateFiles = defaultValidateFiles,
-  getFileParser = defaultGetFileParser,
-  isValidFileName = defaultIsValidFileName,
-}: FileUploadOptions<E, CustomError> = {}): Readonly<
-  FileUploadHookReturnValue<E, CustomError>
-> {
+export function useFileUpload<E extends HTMLElement, CustomError = never>(
+  options: FileUploadOptions<E, CustomError> = {}
+): Readonly<FileUploadHookReturnValue<E, CustomError>> {
+  const {
+    maxFiles = -1,
+    extensions = EMPTY_LIST,
+    minFileSize = -1,
+    maxFileSize = -1,
+    totalFileSize = -1,
+    concurrency = -1,
+    onDrop: propOnDrop = noop,
+    onChange: propOnChange = noop,
+    validateFiles = defaultValidateFiles,
+    getFileParser = defaultGetFileParser,
+    isValidFileName = defaultIsValidFileName,
+  } = options;
+
   const [state, dispatch] = useReducer(
     function reducer(
       state: FileUploadHookState<CustomError>,
