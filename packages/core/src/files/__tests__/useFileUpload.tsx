@@ -7,9 +7,8 @@ import {
   screen,
   userEvent,
 } from "../../test-utils/index.js";
-
 import { FileInput } from "../FileInput.js";
-import { useFileUpload, type FileUploadOptions } from "../useFileUpload.js";
+import { type FileUploadOptions, useFileUpload } from "../useFileUpload.js";
 
 function createFile(name: string, bytes: number): File {
   const content = new Uint8Array(bytes);

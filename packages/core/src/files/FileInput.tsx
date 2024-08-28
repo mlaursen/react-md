@@ -1,29 +1,17 @@
 "use client";
-import { cnb } from "cnbuilder";
 import {
   forwardRef,
   type InputHTMLAttributes,
   type LabelHTMLAttributes,
   type ReactNode,
 } from "react";
-import {
-  button,
-  type ButtonClassNameOptions,
-  type ButtonClassNameThemeOptions,
-} from "../button/buttonStyles.js";
+import { type ButtonClassNameThemeOptions } from "../button/buttonStyles.js";
 import { getIcon } from "../icon/iconConfig.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { type PropsWithRef } from "../types.js";
 import { SrOnly } from "../typography/SrOnly.js";
 import { useEnsuredId } from "../useEnsuredId.js";
-
-/** @since 6.0.0 */
-export type FileInputClassNameOptions = ButtonClassNameOptions;
-
-/** @since 6.0.0 */
-export function fileInput(options: FileInputClassNameOptions = {}): string {
-  return cnb("rmd-file-input", button(options));
-}
+import { fileInput } from "./styles.js";
 
 /** @since 6.0.0 */
 export type FileInputHTMLAttributes = Omit<

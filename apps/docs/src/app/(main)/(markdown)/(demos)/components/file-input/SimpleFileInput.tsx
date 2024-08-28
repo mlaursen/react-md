@@ -1,5 +1,5 @@
 import { box } from "@react-md/core/box/styles";
-import { FileInput } from "@react-md/core/form/FileInput";
+import { FileInput } from "@react-md/core/files/FileInput";
 import { Form } from "@react-md/core/form/Form";
 import { type ReactElement } from "react";
 

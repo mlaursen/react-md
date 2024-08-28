@@ -1,6 +1,6 @@
 "use client";
 import { box } from "@react-md/core/box/styles";
-import { FileInput } from "@react-md/core/form/FileInput";
+import { FileInput } from "@react-md/core/files/FileInput";
 import { Form } from "@react-md/core/form/Form";
 import { Typography } from "@react-md/core/typography/Typography";
 import { useState, type ReactElement } from "react";

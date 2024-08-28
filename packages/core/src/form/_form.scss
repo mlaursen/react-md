@@ -24,7 +24,6 @@ $disable-label-gap: $disable-everything !default;
 $disable-label-reversed: $disable-everything !default;
 $disable-label-stacked: $disable-everything !default;
 $disable-label-stacked-reversed: $disable-everything !default;
-$disable-file-input: $disable-everything !default;
 $disable-text-field: $disable-everything !default;
 $disable-textarea: $disable-everything !default;
 $disable-password: $disable-text-field !default;
@@ -433,20 +432,6 @@ $variables: (
         slider-mark-inactive-opacity,
         $slider-mark-dark-inactive-opacity
       );
-    }
-  }
-}
-
-@mixin file-input-styles($disable-layer: false) {
-  @if utils.$disable-has-selectors or utils.$disable-focus-visible {
-    .rmd-file-input:focus-within::before {
-      @include utils.keyboard-only {
-        @include interaction.focus-styles;
-      }
-    }
-  } @else {
-    .rmd-file-input:has(:focus-visible)::before {
-      @include interaction.focus-styles;
     }
   }
 }
@@ -2199,10 +2184,6 @@ $variables: (
 
       @if not $disable-label {
         @include label-styles(true);
-      }
-
-      @if not $disable-file-input {
-        @include file-input-styles(true);
       }
 
       @if not $disable-message {

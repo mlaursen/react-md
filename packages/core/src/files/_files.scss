@@ -1,0 +1,22 @@
+@use "../utils";
+@use "../interaction/interaction";
+
+$disable-everything: false !default;
+
+@mixin styles($disable-layer: false) {
+  @if not $disable-everything {
+    @include utils.optional-layer(files, $disable-layer) {
+      @if utils.$disable-has-selectors or utils.$disable-focus-visible {
+        .rmd-file-input:focus-within::before {
+          @include utils.keyboard-only {
+            @include interaction.focus-styles;
+          }
+        }
+      } @else {
+        .rmd-file-input:has(:focus-visible)::before {
+          @include interaction.focus-styles;
+        }
+      }
+    }
+  }
+}

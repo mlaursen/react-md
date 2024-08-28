@@ -8,20 +8,22 @@ import {
   type DragEvent,
 } from "react";
 import {
-  FileAccessError,
   getFileParser as defaultGetFileParser,
-  isValidFileName as defaultIsValidFileName,
-  validateFiles as defaultValidateFiles,
   type CompletedFileUploadStats,
   type FileReaderResult,
   type FileUploadHandlers,
   type FileUploadStats,
+  type GetFileParser,
+  type ProcessingFileUploadStats,
+} from "./utils.js";
+import {
+  FileAccessError,
+  isValidFileName as defaultIsValidFileName,
+  validateFiles as defaultValidateFiles,
   type FileValidationError,
   type FileValidationOptions,
   type FilesValidator,
-  type GetFileParser,
-  type ProcessingFileUploadStats,
-} from "./fileUtils.js";
+} from "./validation.js";
 
 const noop = (): void => {
   // do nothing
@@ -200,9 +202,6 @@ const EMPTY_OBJECT = {} as const;
  * formats to be previewed `<img>`, `<video>`, `<embed>`, etc tags. However, it
  * can also be used to upload the files as an `ArrayBuffer` and then uploaded to
  * a server.
- *
- * Note: If using the `aws-sdk` to upload files directly to S3, **do not use
- * this hook** since it uses its own upload process.
  *
  * @typeParam E - An optional HTMLElement type that is used for the
  * {@link FileUploadHandlers}.

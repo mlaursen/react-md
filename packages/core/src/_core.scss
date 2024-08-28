@@ -33,6 +33,7 @@
 @forward "expansion-panel/expansion-panel" as expansion-panel-*;
 @forward "menu/menu" as menu-*;
 @forward "form/form" as form-*;
+@forward "files/files" as files-*;
 @forward "autocomplete/autocomplete" as autocomplete-*;
 @forward "layout/layout" as layout-*;
 @forward "navigation/navigation" as navigation-*;
@@ -72,6 +73,7 @@
 @use "window-splitter/window-splitter";
 @use "menu/menu";
 @use "form/form";
+@use "files/files";
 @use "layout/layout";
 @use "navigation/navigation";
 @use "object-fit";
@@ -106,6 +108,7 @@ $_layer-order: (
   window-splitter,
   menu,
   form,
+  files,
   autocomplete,
   layout,
   navigation,
@@ -402,6 +405,7 @@ $_layer-order: (
   @include draggable.styles($disable-layer);
   @include expansion-panel.styles($disable-layer);
   @include form.styles($disable-layer);
+  @include files.styles($disable-layer);
   @include icon.styles($disable-layer);
   @include interaction.styles($disable-layer);
   @include layout.styles($disable-layer);
