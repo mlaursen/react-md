@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavItem should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<li
+  class="rmd-nav-item"
+  data-testid="item"
+>
+  Content
+</li>
+`;
+
+exports[`NavItem should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<li
+  class="rmd-nav-item custom-class-name"
+  data-testid="item"
+  style="color: white;"
+>
+  Content
+</li>
+`;

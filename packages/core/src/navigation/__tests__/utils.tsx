@@ -1,7 +1,11 @@
 import { describe, expect, it } from "@jest/globals";
-import { type NavigationItem } from "../types.js";
 import { FontIcon } from "../../icon/FontIcon.js";
-import { getHrefFromParents, getPartsFromPathname } from "../utils.js";
+import { type NavigationItem } from "../types.js";
+import {
+  getHrefFromParents,
+  getNavigationGroupId,
+  getPartsFromPathname,
+} from "../utils.js";
 
 const items = [
   {
@@ -75,6 +79,30 @@ describe("getHrefFromParents", () => {
     expect(getHrefFromParents([group2, group2Item1])).toBe("/path-2/route-1");
     expect(getHrefFromParents([group2, group2Divider])).toBe("/path-2");
     expect(getHrefFromParents([group2, group2Item2])).toBe("/path-2/route-2");
+  });
+});
+
+describe("getNavigationGroupId", () => {
+  it("should return the group.id if it is a string and has length", () => {
+    expect(
+      getNavigationGroupId(
+        { type: "group", id: "group-id", children: "Group", items: [] },
+        []
+      )
+    ).toBe("group-id");
+  });
+
+  it("should return the href if there is no group id or it is not a string or does not have length", () => {
+    const base: NavigationItem = {
+      type: "group",
+      href: "/group-1",
+      children: "Group",
+      items: [],
+    };
+    const group1 = { ...base, id: "" };
+    const group2 = { ...base, id: 1 as unknown as string };
+    expect(getNavigationGroupId(group1, [group1])).toBe("/group-1");
+    expect(getNavigationGroupId(group2, [group2])).toBe("/group-1");
   });
 });
 

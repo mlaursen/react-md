@@ -47,13 +47,15 @@ export interface NavigationItemSubheader extends ListSubheaderProps {
  * @example Route Group Output
  * ```tsx
  * const nextParents = [item, ...parents];
+ * const id = getNavigationGroupId(item, nextParents);
  * return (
  *   <CollapsibleNavGroup
- *     depth={nextParents.length})
- *     defaultCollapsed={() =>
- *       !data.pathname.includes(getHrefFromParents(nextParents))
- *     }
+ *     depth={nextParents.length}
+ *     collapsed={!data?.expandedItems.has(id)}
  *     buttonChildren={item.children}
+ *     toggleCollapsed={() => {
+ *       data?.toggleExpandedItem(id);
+ *     }}
  *   >
  *     {children}
  *   </CollapsibleNavGroup>
@@ -66,6 +68,43 @@ export interface NavigationItemSubheader extends ListSubheaderProps {
  */
 export interface NavigationItemGroup {
   type: "group";
+
+  /**
+   * An optional unique id to identify the group used for handling the expanded
+   * state when the `href` can't be used.
+   */
+  id?: string;
+
+  /**
+   * An optional href to prefix all child routes with and can be used instead of
+   * the {@link id} for handling the expanded state.
+   *
+   * @example
+   * ```ts
+   * {
+   *   type: "group",
+   *   href: "/some-path",
+   *   children: "Some Name",
+   *   items: [
+   *     {
+   *       type: "route",
+   *       href: "/page-1",
+   *       children: "Page 1",
+   *     },
+   *     {
+   *       type: "route",
+   *       href: "/page-2",
+   *       children: "Page 2",
+   *     },
+   *   ],
+   * }
+   * ```
+   *
+   * Would result in:
+   *
+   * - Page 1 - `/some-path/page-1`
+   * - Page 2 - `/some-path/page-2`
+   */
   href?: string;
   children: ReactNode;
   items: readonly NavigationItem[];
@@ -95,18 +134,21 @@ export type NavigationItem =
 /**
  * @since 6.0.0
  */
-export type NavigationLinkComponent =
-  | "a"
-  | ForwardRefExoticComponent<
-      AnchorHTMLAttributes<HTMLAnchorElement> & { href: string }
-    >;
+export type CustomNavigationLinkComponent = ForwardRefExoticComponent<
+  AnchorHTMLAttributes<HTMLAnchorElement> & { href: string }
+>;
+
+/**
+ * @since 6.0.0
+ */
+export type NavigationLinkComponent = "a" | CustomNavigationLinkComponent;
 
 /**
  * @since 6.0.0
  */
 export interface NavigationExpansion {
   expandedItems: ReadonlySet<string>;
-  toggleExpandedItem(href: string): void;
+  toggleExpandedItem(id: string): void;
 }
 
 /**

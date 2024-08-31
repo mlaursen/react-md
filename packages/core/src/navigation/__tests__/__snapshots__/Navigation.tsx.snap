@@ -5,6 +5,7 @@ exports[`Navigation should allow route groups to be expanded 1`] = `
   class="rmd-nav-item"
 >
   <button
+    aria-expanded="true"
     class="rmd-button rmd-button--text rmd-interaction-surface rmd-nav-item__content"
     id=":ra:"
     type="button"
@@ -87,6 +88,7 @@ exports[`Navigation should be able to render dividers, subheaders, groups, links
     class="rmd-nav-item"
   >
     <a
+      aria-current="page"
       class="rmd-nav-item__content rmd-nav-item__link rmd-nav-item__link--active rmd-button rmd-button--text rmd-interaction-surface rmd-none rmd-bold"
       href="/"
       id=":r0:"
@@ -123,6 +125,7 @@ exports[`Navigation should be able to render dividers, subheaders, groups, links
     class="rmd-nav-item"
   >
     <button
+      aria-expanded="false"
       class="rmd-button rmd-button--text rmd-interaction-surface rmd-nav-item__content"
       id=":r2:"
       type="button"
@@ -144,6 +147,7 @@ exports[`Navigation should be able to render dividers, subheaders, groups, links
     class="rmd-nav-item"
   >
     <button
+      aria-expanded="false"
       class="rmd-button rmd-button--text rmd-interaction-surface rmd-nav-item__content"
       id=":r4:"
       type="button"

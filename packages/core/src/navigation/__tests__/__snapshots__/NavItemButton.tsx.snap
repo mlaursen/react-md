@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavItemButton should allow an addon to be rendered before or after the children so that the addons are not included in the overflowing tooltip 1`] = `
+<button
+  aria-expanded="false"
+  class="rmd-button rmd-button--text rmd-interaction-surface rmd-nav-item__content"
+  id=":r6:"
+  type="button"
+>
+  <span>
+    Before
+  </span>
+  <span
+    class="rmd-nowrap rmd-ellipsis"
+  >
+    Content
+  </span>
+  <span>
+    After
+  </span>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate"
+  >
+    arrow_drop_down
+  </span>
+</button>
+`;
+
+exports[`NavItemButton should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<button
+  aria-expanded="false"
+  class="rmd-button rmd-button--text rmd-interaction-surface rmd-nav-item__content"
+  id=":r0:"
+  type="button"
+>
+  <span
+    class="rmd-nowrap rmd-ellipsis"
+  >
+    Content
+  </span>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate"
+  >
+    arrow_drop_down
+  </span>
+</button>
+`;
+
+exports[`NavItemButton should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<button
+  aria-expanded="false"
+  class="rmd-button rmd-button--text rmd-interaction-surface rmd-nav-item__content custom-class-name"
+  id=":r0:"
+  style="color: white;"
+  type="button"
+>
+  <span
+    class="rmd-nowrap rmd-ellipsis"
+  >
+    Content
+  </span>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate"
+  >
+    arrow_drop_down
+  </span>
+</button>
+`;
+
+exports[`NavItemButton should support an overflow only tooltip by default 1`] = `
+<span
+  class="rmd-tooltip rmd-tooltip--right rmd-tooltip--visible"
+  id=":r4:-tooltip"
+  role="tooltip"
+  style="position: fixed; left: 24px; top: 16px;"
+>
+  Content
+</span>
+`;

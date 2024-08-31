@@ -48,7 +48,7 @@ export interface NavItemLinkProps
 
   /**
    * Set this to `true` to prevent this item from scrolling into view when it
-   * becomes active. It is generally recommended to keep this `true` unless a
+   * becomes active. It is generally recommended to keep this `false` unless a
    * custom implementation has been added so that when the temporary navigation
    * will show the active route.
    *
@@ -120,7 +120,10 @@ export const NavItemLink = forwardRef<HTMLAnchorElement, NavItemLinkProps>(
         !active ||
         !link ||
         disableScrollIntoView ||
-        document.activeElement === link
+        document.activeElement === link ||
+        // do not scroll into view if the collapse transition is occurring since
+        // it makes it animate weirdly
+        link.closest(".rmd-collapse--enter")
       ) {
         return;
       }
@@ -131,6 +134,7 @@ export const NavItemLink = forwardRef<HTMLAnchorElement, NavItemLinkProps>(
     return (
       <NavItem {...liProps}>
         <Component
+          aria-current={active ? "page" : undefined}
           {...remaining}
           {...handlers}
           {...elementProps}

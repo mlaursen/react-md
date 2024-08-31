@@ -4,8 +4,8 @@ import { type RenderRecursiveItemsProps } from "../utils/RenderRecursively.js";
 import { CollapsibleNavGroup } from "./CollapsibleNavGroup.js";
 import { NavItemLink } from "./NavItemLink.js";
 import { NavSubheader } from "./NavSubheader.js";
-import { getHrefFromParents } from "./utils.js";
 import { type NavigationItem, type NavigationRenderData } from "./types.js";
+import { getHrefFromParents, getNavigationGroupId } from "./utils.js";
 
 /**
  * @since 6.0.0
@@ -46,14 +46,14 @@ export function DefaultNavigationRenderer<
 
   if (item.items) {
     const nextParents = [item, ...parents];
-    const href = getHrefFromParents(nextParents);
+    const id = getNavigationGroupId(item, nextParents);
     return (
       <CollapsibleNavGroup
         depth={nextParents.length}
-        collapsed={!data?.expandedItems.has(href)}
+        collapsed={!data?.expandedItems.has(id)}
         buttonChildren={item.children}
         toggleCollapsed={() => {
-          data?.toggleExpandedItem(href);
+          data?.toggleExpandedItem(id);
         }}
       >
         {children}

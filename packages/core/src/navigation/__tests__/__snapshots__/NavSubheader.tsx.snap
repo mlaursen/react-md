@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavSubheader should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<li
+  class="rmd-list-subheader"
+  data-testid="subheader"
+  role="presentation"
+>
+  <span
+    class="rmd-list-item__text rmd-nav-item"
+  >
+    Content
+  </span>
+</li>
+`;
+
+exports[`NavSubheader should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<li
+  class="rmd-list-subheader custom-class-name"
+  data-testid="subheader"
+  role="presentation"
+  style="color: white;"
+>
+  <span
+    class="rmd-list-item__text rmd-nav-item"
+  >
+    Content
+  </span>
+</li>
+`;

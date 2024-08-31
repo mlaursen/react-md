@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef } from "react";
 import { type UseStateInitializer, type UseStateSetter } from "../types.js";
 import { useReadonlySet } from "../useReadonlySet.js";
 import {
+  type NavigationExpansion,
   type NavigationLinkComponent,
   type NavigationRenderData,
 } from "./types.js";
@@ -82,11 +83,9 @@ export interface NavigationExpansionOptions {
 /**
  * @since 6.0.0
  */
-export interface NavigationExpansionImplementation {
+export interface NavigationExpansionImplementation extends NavigationExpansion {
   data: NavigationRenderData;
-  expandedItems: ReadonlySet<string>;
   setExpandedItems: UseStateSetter<ReadonlySet<string>>;
-  toggleExpandedItem(href: string): void;
 }
 
 /**
@@ -131,7 +130,8 @@ export function useNavigationExpansion(
     setValue: setExpandedItems,
     toggleValue: toggleExpandedItem,
   } = useReadonlySet({
-    defaultValue: defaultExpandedItems,
+    defaultValue:
+      defaultExpandedItems ?? (() => new Set(getPartsFromPathname(pathname))),
   });
 
   const prevPathname = useRef(pathname);

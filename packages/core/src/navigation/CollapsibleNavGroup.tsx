@@ -1,7 +1,10 @@
 "use client";
 import { forwardRef, type LiHTMLAttributes, type ReactNode } from "react";
 import { type ButtonProps } from "../button/Button.js";
-import { useCollapseTransition } from "../transition/useCollapseTransition.js";
+import {
+  type CollapseTransitionHookOptions,
+  useCollapseTransition,
+} from "../transition/useCollapseTransition.js";
 import { type PropsWithRef } from "../types.js";
 import { NavGroup, type NavGroupProps } from "./NavGroup.js";
 import { NavItem } from "./NavItem.js";
@@ -22,6 +25,10 @@ export interface CollapsibleNavGroupProps
     NavItemButtonRotatorProps {
   liProps?: PropsWithRef<LiHTMLAttributes<HTMLLIElement>, HTMLLIElement>;
   buttonProps?: PropsWithRef<ButtonProps, HTMLButtonElement>;
+  collapseOptions?: Omit<
+    CollapseTransitionHookOptions<HTMLUListElement>,
+    "nodeRef" | "className" | "transitionIn"
+  >;
 
   /**
    * The children to render in the {@link NavItemButton} that toggles the
@@ -58,10 +65,12 @@ export const CollapsibleNavGroup = forwardRef<
     children,
     collapsed,
     toggleCollapsed,
+    collapseOptions,
     ...remaining
   } = props;
 
   const { rendered, elementProps } = useCollapseTransition({
+    ...collapseOptions,
     nodeRef: ref,
     className,
     transitionIn: !collapsed,

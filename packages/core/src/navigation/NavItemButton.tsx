@@ -15,7 +15,7 @@ import { type NavItemContentProps } from "./types.js";
 export interface NavItemButtonRotatorProps {
   /** @defaultValue `getIcon("dropdown")` */
   icon?: ReactNode;
-  iconRotatorProps?: IconRotatorBaseProps;
+  iconRotatorProps?: Omit<IconRotatorBaseProps, "rotated">;
   disableIconRotator?: boolean;
 }
 
@@ -74,6 +74,7 @@ export const NavItemButton = forwardRef<HTMLButtonElement, NavItemButtonProps>(
     return (
       <>
         <Button
+          aria-expanded={!collapsed}
           {...remaining}
           {...elementProps}
           ref={ref}

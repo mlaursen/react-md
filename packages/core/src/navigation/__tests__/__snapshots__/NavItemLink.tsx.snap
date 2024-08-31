@@ -1,0 +1,133 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavItemLink should allow an addon to be rendered before or after the children so that the addons are not included in the overflowing tooltip 1`] = `
+<li
+  class="rmd-nav-item"
+>
+  <a
+    aria-current="page"
+    class="rmd-nav-item__content rmd-nav-item__link rmd-nav-item__link--active rmd-button rmd-button--text rmd-interaction-surface rmd-none rmd-bold"
+    href="/"
+    id=":r4:"
+  >
+    <span>
+      Before
+    </span>
+    <span
+      class="rmd-nowrap rmd-ellipsis"
+    >
+      Home
+    </span>
+    <span>
+      After
+    </span>
+  </a>
+</li>
+`;
+
+exports[`NavItemLink should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<li
+  class="rmd-nav-item"
+>
+  <a
+    class="rmd-nav-item__content rmd-nav-item__link rmd-button rmd-button--text rmd-interaction-surface rmd-none"
+    href="/"
+    id=":r0:"
+  >
+    <span
+      class="rmd-nowrap rmd-ellipsis"
+    >
+      Home
+    </span>
+  </a>
+</li>
+`;
+
+exports[`NavItemLink should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<li
+  class="rmd-nav-item"
+>
+  <a
+    class="rmd-nav-item__content rmd-nav-item__link rmd-button rmd-button--text rmd-interaction-surface rmd-none custom-class-name"
+    href="/"
+    id=":r0:"
+    style="color: white;"
+  >
+    <span
+      class="rmd-nowrap rmd-ellipsis"
+    >
+      Home
+    </span>
+  </a>
+</li>
+`;
+
+exports[`NavItemLink should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+<li
+  class="rmd-nav-item"
+>
+  <a
+    aria-current="page"
+    class="rmd-nav-item__content rmd-nav-item__link rmd-nav-item__link--active rmd-button rmd-button--text rmd-interaction-surface rmd-none rmd-bold"
+    href="/"
+    id=":r0:"
+    style=""
+  >
+    <span
+      class="rmd-nowrap rmd-ellipsis"
+    >
+      Home
+    </span>
+  </a>
+</li>
+`;
+
+exports[`NavItemLink should apply the correct styling, HTML attributes, and allow a ref 4`] = `
+<li
+  class="rmd-nav-item"
+>
+  <a
+    aria-current="page"
+    class="rmd-nav-item__content rmd-nav-item__link rmd-nav-item__link--active rmd-button rmd-button--text rmd-interaction-surface rmd-none custom-active-class"
+    href="/"
+    id=":r0:"
+    style=""
+  >
+    <span
+      class="rmd-nowrap rmd-ellipsis"
+    >
+      Home
+    </span>
+  </a>
+</li>
+`;
+
+exports[`NavItemLink should apply the correct styling, HTML attributes, and allow a ref 5`] = `
+<li
+  class="rmd-nav-item"
+>
+  <a
+    class="rmd-nav-item__content rmd-nav-item__link rmd-button rmd-button--text rmd-interaction-surface rmd-none"
+    href="/"
+    id=":r0:"
+    style=""
+  >
+    <span
+      class="rmd-nowrap rmd-ellipsis"
+    >
+      Home
+    </span>
+  </a>
+</li>
+`;
+
+exports[`NavItemLink should support an overflow only tooltip by default 1`] = `
+<span
+  class="rmd-tooltip rmd-tooltip--right rmd-tooltip--visible"
+  id=":r2:-tooltip"
+  role="tooltip"
+  style="position: fixed; left: 24px; top: 16px;"
+>
+  Home
+</span>
+`;

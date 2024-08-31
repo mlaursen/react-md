@@ -17,6 +17,20 @@ export function getHrefFromParents(parents: readonly NavigationItem[]): string {
 /**
  * @since 6.0.0
  */
+export function getNavigationGroupId(
+  group: NavigationItem,
+  parents: readonly NavigationItem[]
+): string {
+  if ("id" in group && typeof group.id === "string" && group.id) {
+    return group.id;
+  }
+
+  return getHrefFromParents(parents);
+}
+
+/**
+ * @since 6.0.0
+ */
 export function getPartsFromPathname(pathname: string): ReadonlySet<string> {
   // remove trailing slashes just in case there aren't rewrites in place
   const href = pathname.replace(/\/{2,}/g, "/").replace(/\/+$/, "");

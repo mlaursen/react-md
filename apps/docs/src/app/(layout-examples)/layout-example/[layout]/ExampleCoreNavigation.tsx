@@ -51,8 +51,8 @@ export function ExampleCoreNavigation(
         type: "divider",
       },
       {
-        type: "route",
-        href: "",
+        id: "layout-types",
+        type: "group",
         children: "Layout Types",
         items: LAYOUT_TYPES.map((layoutType) => ({
           type: "route",
@@ -66,8 +66,8 @@ export function ExampleCoreNavigation(
         type: "divider",
       },
       {
-        type: "route",
-        href: "",
+        id: "navigation-types",
+        type: "group",
         children: "Navigation Types",
         items: NAVIGATION_TYPES.map((navType) => ({
           type: "route",
@@ -92,6 +92,7 @@ export function ExampleCoreNavigation(
   const { data } = useNavigationExpansion({
     pathname: `${pathname}${navTypeParam}`,
     linkComponent: LinkUnstyled,
+    defaultExpandedItems: ["navigation-types", "layout-types"],
   });
 
   return <Navigation items={items} data={data} />;
