@@ -360,6 +360,7 @@ export * from "@react-md/core/useLocalStorage";
 export * from "@react-md/core/useMutationObserver";
 export * from "@react-md/core/useOrientation";
 export * from "@react-md/core/usePageInactive";
+export * from "@react-md/core/useReadonlySet";
 export * from "@react-md/core/useResizeListener";
 export * from "@react-md/core/useResizeObserver";
 export * from "@react-md/core/useThrottledFunction";
