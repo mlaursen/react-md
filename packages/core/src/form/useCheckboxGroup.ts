@@ -1,6 +1,7 @@
 "use client";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useRef } from "react";
 import { type UseStateInitializer, type UseStateSetter } from "../types.js";
+import { useReadonlySet } from "../useReadonlySet.js";
 
 const EMPTY_LIST = [] as const;
 
@@ -266,12 +267,12 @@ export function useCheckboxGroup<V extends string>(
     values,
     defaultCheckedValues = EMPTY_LIST,
   } = options;
-  const [checkedValues, setCheckedValues] = useState<ReadonlySet<V>>(() => {
-    if (typeof defaultCheckedValues === "function") {
-      return new Set(defaultCheckedValues());
-    }
-
-    return new Set(defaultCheckedValues);
+  const {
+    value: checkedValues,
+    setValue: setCheckedValues,
+    toggleValue,
+  } = useReadonlySet({
+    defaultValue: defaultCheckedValues,
   });
   const initial = useRef(checkedValues);
 
@@ -287,7 +288,7 @@ export function useCheckboxGroup<V extends string>(
         checked,
         indeterminate,
         [menu ? "onCheckedChange" : "onChange"]() {
-          setCheckedValues(() => {
+          setCheckedValues((checkedValues) => {
             if (checkedValues.size === 0 || indeterminate) {
               return new Set(values);
             }
@@ -302,7 +303,7 @@ export function useCheckboxGroup<V extends string>(
   return {
     reset: useCallback(() => {
       setCheckedValues(initial.current);
-    }, []),
+    }, [setCheckedValues]),
     checkedValues,
     setCheckedValues,
     getIndeterminateProps,
@@ -312,16 +313,7 @@ export function useCheckboxGroup<V extends string>(
         value: menu ? undefined : value,
         checked: checkedValues.has(value),
         [menu ? "onCheckedChange" : "onChange"]() {
-          setCheckedValues((prevValues) => {
-            const nextValues = new Set(prevValues);
-            if (prevValues.has(value)) {
-              nextValues.delete(value);
-            } else {
-              nextValues.add(value);
-            }
-
-            return nextValues;
-          });
+          toggleValue(value);
         },
       };
     },

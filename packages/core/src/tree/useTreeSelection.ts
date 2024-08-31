@@ -1,6 +1,6 @@
 "use client";
-import { useCallback, useState } from "react";
 import { type UseStateSetter } from "../types.js";
+import { useReadonlySet } from "../useReadonlySet.js";
 import { type TreeDefaultIds, type TreeItemIdSet } from "./types.js";
 
 /**
@@ -25,39 +25,15 @@ export function useTreeSelection(
   defaultSelectedIds?: TreeDefaultIds,
   multiSelect = false
 ): Required<TreeSelection> {
-  const [selectedIds, setSelectedIds] = useState<TreeItemIdSet>(() => {
-    const defaultIds =
-      typeof defaultSelectedIds === "function"
-        ? defaultSelectedIds()
-        : defaultSelectedIds;
-
-    return new Set(defaultIds);
+  const { value, setValue, toggleValue } = useReadonlySet({
+    toggleType: multiSelect ? "multiple" : "single-select",
+    defaultValue: defaultSelectedIds,
   });
 
-  const toggleTreeItemSelection = useCallback(
-    (itemId: string) => {
-      setSelectedIds((selectedIds) => {
-        if (!multiSelect) {
-          return selectedIds.has(itemId) ? selectedIds : new Set([itemId]);
-        }
-
-        const nextSelectedIds = new Set(selectedIds);
-        if (selectedIds.has(itemId)) {
-          nextSelectedIds.delete(itemId);
-        } else {
-          nextSelectedIds.add(itemId);
-        }
-
-        return nextSelectedIds;
-      });
-    },
-    [multiSelect]
-  );
-
   return {
-    selectedIds,
     multiSelect,
-    toggleTreeItemSelection,
-    selectMultipleTreeItems: setSelectedIds,
+    selectedIds: value,
+    toggleTreeItemSelection: toggleValue,
+    selectMultipleTreeItems: setValue,
   };
 }

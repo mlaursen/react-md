@@ -1,7 +1,7 @@
 "use client";
-import { useState } from "react";
 import type { UseStateInitializer, UseStateSetter } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
+import { useReadonlySet } from "../useReadonlySet.js";
 import type { ExpansionPanelProps } from "./ExpansionPanel.js";
 
 /** @since 6.0.0 */
@@ -210,21 +210,26 @@ export function useExpansionPanels(
 
   const baseId = useEnsuredId(propBaseId, "expansion-panel");
   const createId = (index: number): string => `${baseId}-${index + 1}`;
-  const [expandedIds, setExpandedIds] = useState<ReadonlySet<string>>(() => {
-    if (typeof defaultExpandedIds === "undefined") {
-      const initialList: string[] = [];
-      if (typeof defaultExpandedIndex === "number" || preventAllCollapsed) {
-        initialList.push(createId(defaultExpandedIndex ?? 0));
+  const {
+    value: expandedIds,
+    setValue: setExpandedIds,
+    toggleValue,
+  } = useReadonlySet({
+    toggleType: multiple ? "multiple" : "single",
+    defaultValue: () => {
+      if (typeof defaultExpandedIds === "undefined") {
+        const initialList: string[] = [];
+        if (typeof defaultExpandedIndex === "number" || preventAllCollapsed) {
+          initialList.push(createId(defaultExpandedIndex ?? 0));
+        }
+
+        return new Set(initialList);
       }
 
-      return new Set(initialList);
-    }
-
-    const ids =
-      typeof defaultExpandedIds === "function"
+      return typeof defaultExpandedIds === "function"
         ? defaultExpandedIds()
         : defaultExpandedIds;
-    return new Set(ids);
+    },
   });
 
   return {
@@ -252,21 +257,7 @@ export function useExpansionPanels(
             return;
           }
 
-          setExpandedIds((prevIds) => {
-            const expanded = prevIds.has(panelId);
-            if (!multiple) {
-              return new Set(expanded ? [] : [panelId]);
-            }
-
-            const nextIds = new Set(prevIds);
-            if (expanded) {
-              nextIds.delete(panelId);
-            } else {
-              nextIds.add(panelId);
-            }
-
-            return nextIds;
-          });
+          toggleValue(panelId);
         },
         disableTransition,
         disableContentPadding,

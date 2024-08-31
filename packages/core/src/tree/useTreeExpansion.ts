@@ -1,6 +1,6 @@
 "use client";
-import { useCallback, useState } from "react";
 import { type UseStateSetter } from "../types.js";
+import { useReadonlySet } from "../useReadonlySet.js";
 import { type TreeDefaultIds, type TreeItemIdSet } from "./types.js";
 
 /**
@@ -22,31 +22,13 @@ export interface TreeExpansion {
 export function useTreeExpansion(
   defaultExpandedIds?: TreeDefaultIds
 ): TreeExpansion {
-  const [expandedIds, setExpandedIds] = useState<TreeItemIdSet>(() => {
-    const defaultIds =
-      typeof defaultExpandedIds === "function"
-        ? defaultExpandedIds()
-        : defaultExpandedIds;
-
-    return new Set(defaultIds);
+  const { value, setValue, toggleValue } = useReadonlySet({
+    defaultValue: defaultExpandedIds,
   });
 
-  const toggleTreeItemExpansion = useCallback((itemId: string) => {
-    setExpandedIds((prevExpandedIds) => {
-      const expandedIds = new Set(prevExpandedIds);
-      if (expandedIds.has(itemId)) {
-        expandedIds.delete(itemId);
-      } else {
-        expandedIds.add(itemId);
-      }
-
-      return expandedIds;
-    });
-  }, []);
-
   return {
-    expandedIds,
-    toggleTreeItemExpansion,
-    expandMultipleTreeItems: setExpandedIds,
+    expandedIds: value,
+    toggleTreeItemExpansion: toggleValue,
+    expandMultipleTreeItems: setValue,
   };
 }
