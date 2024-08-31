@@ -2,6 +2,7 @@ import { FakeLink } from "@/components/FakeLink.jsx";
 import { card } from "@react-md/core/card/styles";
 import { Navigation } from "@react-md/core/navigation/Navigation";
 import { type NavigationItem } from "@react-md/core/navigation/types";
+import { useNavigationExpansion } from "@react-md/core/navigation/useNavigationExpansion";
 import { type ReactElement } from "react";
 
 const items: readonly NavigationItem[] = [
@@ -23,12 +24,13 @@ const items: readonly NavigationItem[] = [
 ];
 
 export default function SimpleExample(): ReactElement {
+  const { data } = useNavigationExpansion({
+    pathname: "/",
+    linkComponent: FakeLink,
+  });
   return (
     <nav aria-label="Fake Navigation" className={card()}>
-      <Navigation
-        data={{ pathname: "/", linkComponent: FakeLink }}
-        items={items}
-      />
+      <Navigation data={data} items={items} />
     </nav>
   );
 }

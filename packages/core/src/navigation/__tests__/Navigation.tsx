@@ -1,8 +1,15 @@
 import { describe, expect, it } from "@jest/globals";
 import { FontIcon } from "../../icon/FontIcon.js";
-import { render, screen, userEvent, within } from "../../test-utils/index.js";
+import {
+  render as baseRender,
+  screen,
+  userEvent,
+  within,
+} from "../../test-utils/index.js";
 import { Navigation, type NavigationProps } from "../Navigation.js";
 import { type NavigationItem } from "../types.js";
+import { type ReactElement } from "react";
+import { useNavigationExpansion } from "../useNavigationExpansion.js";
 
 const items: NavigationItem[] = [
   {
@@ -57,15 +64,21 @@ const items: NavigationItem[] = [
   },
 ];
 
-const BASE_PROPS: NavigationProps = {
-  "data-testid": "nav",
-  data: { pathname: "/", linkComponent: "a" },
-  items,
-};
+function Test(props: Partial<NavigationProps>): ReactElement {
+  const { data } = useNavigationExpansion({
+    pathname: "/",
+    linkComponent: "a",
+  });
+
+  return <Navigation data-testid="nav" data={data} items={items} {...props} />;
+}
+
+const render = (props?: Partial<NavigationProps>) =>
+  baseRender(<Test {...props} />);
 
 describe("Navigation", () => {
   it("should be able to render dividers, subheaders, groups, links, and nested items out of the box", () => {
-    render(<Navigation {...BASE_PROPS} />);
+    render();
 
     const nav = screen.getByTestId("nav");
     expect(nav).toMatchSnapshot();
@@ -80,7 +93,7 @@ describe("Navigation", () => {
 
   it("should allow route groups to be expanded", async () => {
     const user = userEvent.setup();
-    render(<Navigation {...BASE_PROPS} />);
+    render();
     const path2 = screen.getByRole("button", { name: "Path 2" });
     const path2Parent = path2.parentElement;
     if (!path2Parent) {

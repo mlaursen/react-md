@@ -2,8 +2,7 @@
 import { forwardRef, type LiHTMLAttributes, type ReactNode } from "react";
 import { type ButtonProps } from "../button/Button.js";
 import { useCollapseTransition } from "../transition/useCollapseTransition.js";
-import { type PropsWithRef, type UseStateInitializer } from "../types.js";
-import { useToggle } from "../useToggle.js";
+import { type PropsWithRef } from "../types.js";
 import { NavGroup, type NavGroupProps } from "./NavGroup.js";
 import { NavItem } from "./NavItem.js";
 import {
@@ -35,8 +34,8 @@ export interface CollapsibleNavGroupProps
    */
   children: ReactNode;
 
-  /** @defaultValue `false` */
-  defaultCollapsed?: UseStateInitializer<boolean>;
+  collapsed: boolean;
+  toggleCollapsed(): void;
 }
 
 /**
@@ -57,11 +56,11 @@ export const CollapsibleNavGroup = forwardRef<
     disableIconRotator,
     className,
     children,
-    defaultCollapsed,
+    collapsed,
+    toggleCollapsed,
     ...remaining
   } = props;
 
-  const { toggled: collapsed, toggle } = useToggle(defaultCollapsed);
   const { rendered, elementProps } = useCollapseTransition({
     nodeRef: ref,
     className,
@@ -75,7 +74,7 @@ export const CollapsibleNavGroup = forwardRef<
         {...buttonProps}
         onClick={(event) => {
           onButtonClick(event);
-          toggle();
+          toggleCollapsed();
         }}
         collapsed={collapsed}
         icon={icon}

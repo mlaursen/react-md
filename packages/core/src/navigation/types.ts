@@ -104,7 +104,15 @@ export type NavigationLinkComponent =
 /**
  * @since 6.0.0
  */
-export interface NavigationRenderData {
+export interface NavigationExpansion {
+  expandedItems: ReadonlySet<string>;
+  toggleExpandedItem(href: string): void;
+}
+
+/**
+ * @since 6.0.0
+ */
+export interface NavigationRenderData extends NavigationExpansion {
   /**
    * This is used to set the `active` state on a `NavItemLink`
    */

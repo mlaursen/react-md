@@ -3,6 +3,7 @@ import { LinkUnstyled } from "@/components/LinkUnstyled.jsx";
 import { pascalCase } from "@/utils/strings.js";
 import { Navigation } from "@react-md/core/navigation/Navigation";
 import { type NavigationItem } from "@react-md/core/navigation/types";
+import { useNavigationExpansion } from "@react-md/core/navigation/useNavigationExpansion";
 import ExitToAppIcon from "@react-md/material-icons/ExitToAppIcon";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import HomeIcon from "@react-md/material-icons/HomeIcon";
@@ -88,14 +89,10 @@ export function ExampleCoreNavigation(
     ],
     [layout, pathname]
   );
+  const { data } = useNavigationExpansion({
+    pathname: `${pathname}${navTypeParam}`,
+    linkComponent: LinkUnstyled,
+  });
 
-  return (
-    <Navigation
-      items={items}
-      data={{
-        pathname: `${pathname}${navTypeParam}`,
-        linkComponent: LinkUnstyled,
-      }}
-    />
-  );
+  return <Navigation items={items} data={data} />;
 }
