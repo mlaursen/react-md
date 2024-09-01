@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AutocompleteClearButton should apply the correct styling and HTML attributes 1`] = `
+<button
+  aria-label="Clear"
+  class="rmd-button rmd-button--icon rmd-interaction-surface rmd-autocomplete__clear-button"
+  id="autocomplete-clear-:r0:"
+  tabindex="-1"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    clear
+  </span>
+</button>
+`;
+
+exports[`AutocompleteClearButton should apply the correct styling and HTML attributes 2`] = `
+<button
+  aria-label="Clear"
+  class="rmd-button rmd-button--icon rmd-interaction-surface rmd-autocomplete__clear-button custom-class-name"
+  id="autocomplete-clear-:r0:"
+  style="color: white;"
+  tabindex="-1"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    clear
+  </span>
+</button>
+`;

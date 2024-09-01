@@ -18,6 +18,10 @@ export interface AutocompleteCircularProgressProps
 }
 
 /**
+ * An internal component used to handle the styling and minimal accessibility
+ * for the `CircularProgress` within the `Autocomplete`
+ *
+ * @internal
  * @since 6.0.0
  */
 export function AutocompleteCircularProgress(
