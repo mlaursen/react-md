@@ -10,10 +10,8 @@ import { Overlay } from "../overlay/Overlay.js";
 import { Portal } from "../portal/Portal.js";
 import { useScrollLock } from "../scroll/useScrollLock.js";
 import {
-  type CSSTransitionClassNames,
   type CSSTransitionComponentProps,
   type TransitionActions,
-  type TransitionTimeout,
 } from "../transition/types.js";
 import { useCSSTransition } from "../transition/useCSSTransition.js";
 import { type LabelRequiredForA11y } from "../types.js";
@@ -24,38 +22,12 @@ import {
   NestedDialogProvider,
   useNestedDialogContext,
 } from "./NestedDialogProvider.js";
-import { dialog, type DialogType } from "./styles.js";
-
-declare module "react" {
-  interface CSSProperties {
-    "--rmd-dialog-background-color"?: string;
-    "--rmd-dialog-color"?: string;
-    "--rmd-dialog-min-width"?: string | number;
-    "--rmd-dialog-horizontal-margin"?: string | number;
-    "--rmd-dialog-vertical-margin"?: string | number;
-    "--rmd-dialog-z-index"?: string | number;
-    "--rmd-dialog-header-padding"?: string | number;
-    "--rmd-dialog-header-padding-bottom"?: string | number;
-    "--rmd-dialog-content-padding"?: string | number;
-    "--rmd-dialog-footer-padding"?: string | number;
-  }
-}
-
-/** @since 4.0.0 */
-export const DEFAULT_DIALOG_CLASSNAMES: Readonly<CSSTransitionClassNames> = {
-  appear: "rmd-dialog--enter",
-  appearActive: "rmd-dialog--enter-active",
-  enter: "rmd-dialog--enter",
-  enterActive: "rmd-dialog--enter-active",
-  exit: "rmd-dialog--exit",
-  exitActive: "rmd-dialog--exit-active",
-};
-
-/** @since 4.0.0 */
-export const DEFAULT_DIALOG_TIMEOUT: Readonly<TransitionTimeout> = {
-  enter: 200,
-  exit: 150,
-};
+import {
+  DEFAULT_DIALOG_CLASSNAMES,
+  DEFAULT_DIALOG_TIMEOUT,
+  dialog,
+  type DialogType,
+} from "./styles.js";
 
 const noop = (): void => {
   // do nothing

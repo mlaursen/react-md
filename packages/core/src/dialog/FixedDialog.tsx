@@ -6,7 +6,6 @@ import {
   type PositionAnchor,
 } from "../positioning/types.js";
 import { useFixedPositioning } from "../positioning/useFixedPositioning.js";
-import { type CSSTransitionClassNamesObject } from "../transition/types.js";
 import { SCALE_CLASSNAMES } from "../transition/useScaleTransition.js";
 import { type LabelRequiredForA11y } from "../types.js";
 import { Dialog, type BaseDialogProps } from "./Dialog.js";
@@ -33,15 +32,6 @@ export type FixedDialogProps = LabelRequiredForA11y<BaseFixedDialogProps>;
 const noop = (): void => {
   // do nothing
 };
-export const DEFAULT_FIXED_DIALOG_CLASSNAMES: Readonly<CSSTransitionClassNamesObject> =
-  {
-    appear: "rmd-dialog--fixed-enter",
-    appearActive: "rmd-dialog--fixed-enter-active",
-    enter: "rmd-dialog--fixed-enter",
-    enterActive: "rmd-dialog--fixed-enter-active",
-    exit: "rmd-dialog--fixed-exit",
-    exitActive: "rmd-dialog--fixed-exit-active",
-  };
 
 /**
  * **Client Component**

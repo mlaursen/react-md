@@ -23,6 +23,7 @@ export const TYPES: ReadonlySet<string> = new Set([
   "AutocompleteCircularProgressProps",
   "AutocompleteClassNameOptions",
   "AutocompleteClearButtonClassNameOptions",
+  "AutocompleteClearButtonProps",
   "AutocompleteDropdownButtonProps",
   "AutocompleteFilterOptions",
   "AutocompleteGetOptionPropsOptions",
@@ -140,6 +141,7 @@ export const TYPES: ReadonlySet<string> = new Set([
   "ComboboxWidgetPopupProps",
   "ComboboxWidgetProps",
   "CompletedFileUploadStats",
+  "ConfigurableAutocompleteClearButtonProps",
   "ConfigurableAutocompleteDropdownButtonProps",
   "ConfigurableComboboxMenuProps",
   "ConfigurableIconName",
@@ -185,6 +187,7 @@ export const TYPES: ReadonlySet<string> = new Set([
   "CustomizableSliderMarkLabelProps",
   "CustomLinkComponent",
   "CustomMainElement",
+  "CustomNavigationLinkComponent",
   "CustomTypographyComponent",
   "DebouncedFunction",
   "DefaultDir",
@@ -940,6 +943,7 @@ export const VARIABLES: ReadonlySet<string> = new Set([
   "Autocomplete",
   "autocomplete",
   "AutocompleteCircularProgress",
+  "AutocompleteClearButton",
   "autocompleteClearButton",
   "AutocompleteDropdownButton",
   "autocompleteRightAddon",
@@ -1109,7 +1113,6 @@ export const VARIABLES: ReadonlySet<string> = new Set([
   "DEFAULT_DESKTOP_MIN_WIDTH",
   "DEFAULT_DIALOG_CLASSNAMES",
   "DEFAULT_DIALOG_TIMEOUT",
-  "DEFAULT_FIXED_DIALOG_CLASSNAMES",
   "DEFAULT_HORIZONTAL_LAYOUT_TRANSITION_CLASSNAMES",
   "DEFAULT_KEYBOARD_MOVEMENT",
   "DEFAULT_LIGHT_THEME",
@@ -1232,6 +1235,7 @@ export const VARIABLES: ReadonlySet<string> = new Set([
   "getListItemHeight",
   "getLuminance",
   "getMiddleOfRange",
+  "getNavigationGroupId",
   "getNextFocusableIndex",
   "getNonDisabledOptions",
   "getOrientationType",
@@ -1881,9 +1885,13 @@ export const EXPORT_MAP: Record<string, string> = {
     "@react-md/core/autocomplete/AutocompleteCircularProgress",
   AutocompleteClassNameOptions:
     "@react-md/core/autocomplete/autocompleteStyles",
+  AutocompleteClearButton:
+    "@react-md/core/autocomplete/AutocompleteClearButton",
   autocompleteClearButton: "@react-md/core/autocomplete/autocompleteStyles",
   AutocompleteClearButtonClassNameOptions:
     "@react-md/core/autocomplete/autocompleteStyles",
+  AutocompleteClearButtonProps:
+    "@react-md/core/autocomplete/AutocompleteClearButton",
   AutocompleteDropdownButton:
     "@react-md/core/autocomplete/AutocompleteDropdownButton",
   AutocompleteDropdownButtonProps:
@@ -2099,6 +2107,8 @@ export const EXPORT_MAP: Record<string, string> = {
   ComboboxWidgetPopupProps: "@react-md/core/form/useCombobox",
   ComboboxWidgetProps: "@react-md/core/form/useCombobox",
   CompletedFileUploadStats: "@react-md/core/files/utils",
+  ConfigurableAutocompleteClearButtonProps:
+    "@react-md/core/autocomplete/AutocompleteClearButton",
   ConfigurableAutocompleteDropdownButtonProps:
     "@react-md/core/autocomplete/AutocompleteDropdownButton",
   ConfigurableComboboxMenuProps: "@react-md/core/form/useCombobox",
@@ -2175,6 +2185,7 @@ export const EXPORT_MAP: Record<string, string> = {
   CustomizableSliderMarkLabelProps: "@react-md/core/form/SliderMarkLabel",
   CustomLinkComponent: "@react-md/core/link/Link",
   CustomMainElement: "@react-md/core/layout/Main",
+  CustomNavigationLinkComponent: "@react-md/core/navigation/types",
   CustomTypographyComponent: "@react-md/core/typography/Typography",
   cyan50: "@react-md/core/theme/colors",
   cyan100: "@react-md/core/theme/colors",
@@ -2230,9 +2241,8 @@ export const EXPORT_MAP: Record<string, string> = {
   DEFAULT_DARK_THEME: "@react-md/core/theme/ThemeProvider",
   DEFAULT_DESKTOP_LARGE_MIN_WIDTH: "@react-md/core/media-queries/appSize",
   DEFAULT_DESKTOP_MIN_WIDTH: "@react-md/core/media-queries/appSize",
-  DEFAULT_DIALOG_CLASSNAMES: "@react-md/core/dialog/Dialog",
-  DEFAULT_DIALOG_TIMEOUT: "@react-md/core/dialog/Dialog",
-  DEFAULT_FIXED_DIALOG_CLASSNAMES: "@react-md/core/dialog/FixedDialog",
+  DEFAULT_DIALOG_CLASSNAMES: "@react-md/core/dialog/styles",
+  DEFAULT_DIALOG_TIMEOUT: "@react-md/core/dialog/styles",
   DEFAULT_HORIZONTAL_LAYOUT_TRANSITION_CLASSNAMES:
     "@react-md/core/layout/useHorizontalLayoutTransition",
   DEFAULT_KEYBOARD_MOVEMENT: "@react-md/core/movement/constants",
@@ -2525,6 +2535,7 @@ export const EXPORT_MAP: Record<string, string> = {
   GetMenuItemRadioGroupProps: "@react-md/core/form/useRadioGroup",
   getMiddleOfRange: "@react-md/core/utils/getMiddleOfRange",
   GetMiddleOfRangeOptions: "@react-md/core/utils/getMiddleOfRange",
+  getNavigationGroupId: "@react-md/core/navigation/utils",
   getNextFocusableIndex: "@react-md/core/movement/utils",
   getNonDisabledOptions: "@react-md/core/form/useCombobox",
   getOrientationType: "@react-md/core/useOrientation",
