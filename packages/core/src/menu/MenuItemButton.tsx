@@ -38,6 +38,7 @@ export const MenuItemButton = forwardRef<HTMLLIElement, MenuItemButtonProps>(
     const {
       id: propId,
       children,
+      height: propHeight,
       onClick = noop,
       onKeyDown = noop,
       onMouseEnter = noop,
@@ -82,9 +83,14 @@ export const MenuItemButton = forwardRef<HTMLLIElement, MenuItemButtonProps>(
       setVisible(id === activeId);
     }, [activeId, defaultFocusIndex, id, menubar, setVisible]);
 
-    const dropdownIcon = getIcon(root ? "dropdown" : "forward");
+    let height = propHeight;
     let rightAddon = propRightAddon;
+    const dropdownIcon = getIcon(root ? "dropdown" : "forward");
     if (!disableDropdownIcon) {
+      if (!height && !props.leftAddon) {
+        height = "normal";
+      }
+
       rightAddon = (
         <IconRotator {...iconRotatorProps} rotated={visible}>
           {dropdownIcon}
