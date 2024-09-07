@@ -83,3 +83,28 @@ the visibility transitions and can be customized by providing the `timeout` and
 ```demo source="./CustomTransitionExample.tsx"
 
 ```
+
+# Nested Dialogs
+
+Dialogs can be nested without any additional setup since the dialogs are
+portalled behind the scenes and only the topmost overlay will be shown at a
+time.
+
+> !Info! If multiple overlays were shown at the same time, the overlay would
+> become darker as more dialogs are shown which can cause performance issues on
+> mobile devices.
+
+```demo source="./NestedDialogsExample.tsx"
+
+```
+
+## Nested Dialogs Default Visible
+
+If nested dialogs should be visible by on initial page load or mount, trigger
+the `show` behavior into a `useEffect` instead of setting the initial state to
+`true`. If multiple dialogs are rendered at once, the topmost dialog will be
+shown instead of the child dialogs due to how React renders.
+
+```demo source="./NestedDialogsVisibleExample.tsx"
+
+```

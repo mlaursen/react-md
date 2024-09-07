@@ -252,10 +252,10 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
       exit,
       onEnter = noop,
       onEntering = noop,
-      onEntered,
+      onEntered = noop,
       onExit = noop,
       onExiting = noop,
-      onExited,
+      onExited = noop,
       exitedHidden = true,
       disableOverlay = false,
       overlayProps,
@@ -273,13 +273,29 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
 
     const ssr = useSsr();
     const setChildVisible = useNestedDialogContext();
+
+    // this makes it so that as more non-full page dialogs become visible, the
+    // overlay does not become darker as more and more overlays are stacked upon
+    // each other. only the top-most overlay will have and active background
+    // color.
+    const [isChildVisible, setIsChildVisible] = useState(false);
     const { eventHandlers, transitionOptions } = useFocusContainer({
       nodeRef: ref,
       activate: visible,
-      onEntered,
+      onEntered(appear) {
+        onEntered(appear);
+        // this needs to be called onEnter and onEntered just in case the
+        // transition is disabled
+        setChildVisible(type !== "full-page");
+      },
       onEntering,
       onExiting,
-      onExited,
+      onExited() {
+        onExited();
+        // this needs to be called onExit and onExited just in case the
+        // transition is disabled
+        setChildVisible(false);
+      },
       disableTransition,
       onKeyDown(event) {
         onKeyDown(event);
@@ -306,6 +322,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
         type,
         fixed,
         outline: !disableFocusOutline,
+        disableBoxShadow: isChildVisible,
         className,
       }),
       appear: appear && !disableTransition && !ssr,
@@ -325,12 +342,6 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
       ...transitionOptions,
     });
     useScrollLock(!disableScrollLock && visible);
-
-    // this makes it so that as more non-full page dialogs become visible, the
-    // overlay does not become darker as more and more overlays are stacked upon
-    // each other. only the top-most overlay will have and active background
-    // color.
-    const [isChildVisible, setIsChildVisible] = useState(false);
 
     return (
       <NestedDialogProvider value={setIsChildVisible}>

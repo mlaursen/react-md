@@ -42,6 +42,14 @@ export interface DialogClassNameOptions {
    * @defaultValue `type === "full-page"`
    */
   outline?: boolean;
+
+  /**
+   * This is mostly used for handling nested dialogs and removes any box shadow
+   * on a dialog that has a child visible.
+   *
+   * @defaultValue `false`
+   */
+  disableBoxShadow?: boolean;
 }
 
 /** @since 6.0.0 */
@@ -50,6 +58,7 @@ export function dialog(options: DialogClassNameOptions = {}): string {
     type = "centered",
     fixed = false,
     outline = type === "full-page",
+    disableBoxShadow,
     className,
   } = options;
 
@@ -59,6 +68,7 @@ export function dialog(options: DialogClassNameOptions = {}): string {
       outline,
       centered: type === "centered",
       "full-page": type === "full-page",
+      "no-box-shadow": type === "centered" && disableBoxShadow,
     }),
     className
   );

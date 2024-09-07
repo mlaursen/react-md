@@ -264,7 +264,7 @@ describe("Dialog", () => {
     expect(document.body).not.toHaveStyle("overflow: hidden");
   });
 
-  it("should enable the noOpacity prop on parent dialog overlay elements so the screen does not get darker as more dialogs are visible", async () => {
+  it("should handle nested dialogs by preventing the overlay and box-shadow from getting darker as more dialogs become visible", async () => {
     const user = userEvent.setup();
     function InfiniteDialog({ depth }: { depth: number }): ReactElement {
       const { toggled, enable, disable } = useToggle();
@@ -295,17 +295,34 @@ describe("Dialog", () => {
     await user.click(screen.getByRole("button", { name: "Show" }));
 
     const overlay = screen.getByTestId("overlay");
+    const dialog = screen.getByRole("dialog", { name: "Dialog" });
+    expect(overlay).toHaveClass("rmd-overlay--active");
+    expect(dialog).not.toHaveClass("rmd-dialog--no-box-shadow");
     expect(overlay.className).toMatchSnapshot();
+    expect(dialog.className).toMatchSnapshot();
 
     await user.click(screen.getByRole("button", { name: "Show 1" }));
 
     const overlay1 = screen.getByTestId("overlay1");
+    const dialog1 = screen.getByRole("dialog", { name: "Dialog 1" });
+    expect(overlay).not.toHaveClass("rmd-overlay--active");
+    expect(overlay1).toHaveClass("rmd-overlay--active");
+    expect(dialog).toHaveClass("rmd-dialog--no-box-shadow");
+    expect(dialog1).not.toHaveClass("rmd-dialog--no-box-shadow");
     expect(overlay.className).toMatchSnapshot();
     expect(overlay1.className).toMatchSnapshot();
+    expect(dialog.className).toMatchSnapshot();
+    expect(dialog1.className).toMatchSnapshot();
 
     await user.click(screen.getByRole("button", { name: "Show 2" }));
+    expect(overlay).not.toHaveClass("rmd-overlay--active");
+    expect(overlay1).not.toHaveClass("rmd-overlay--active");
+    expect(dialog).toHaveClass("rmd-dialog--no-box-shadow");
+    expect(dialog1).toHaveClass("rmd-dialog--no-box-shadow");
     expect(overlay.className).toMatchSnapshot();
     expect(overlay1.className).toMatchSnapshot();
+    expect(dialog.className).toMatchSnapshot();
+    expect(dialog1.className).toMatchSnapshot();
   });
 });
 

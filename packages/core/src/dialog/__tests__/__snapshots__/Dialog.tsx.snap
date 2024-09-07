@@ -71,14 +71,24 @@ exports[`Dialog should be able to render as a modal with the correct accessibili
 />
 `;
 
-exports[`Dialog should enable the noOpacity prop on parent dialog overlay elements so the screen does not get darker as more dialogs are visible 1`] = `"rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-box rmd-box--gap rmd-box--wrap rmd-box--align-center rmd-box--justify-center rmd-overlay--active"`;
+exports[`Dialog should handle nested dialogs by preventing the overlay and box-shadow from getting darker as more dialogs become visible 1`] = `"rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-box rmd-box--gap rmd-box--wrap rmd-box--align-center rmd-box--justify-center rmd-overlay--active"`;
 
-exports[`Dialog should enable the noOpacity prop on parent dialog overlay elements so the screen does not get darker as more dialogs are visible 2`] = `"rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-box rmd-box--gap rmd-box--wrap rmd-box--align-center rmd-box--justify-center rmd-overlay--active"`;
+exports[`Dialog should handle nested dialogs by preventing the overlay and box-shadow from getting darker as more dialogs become visible 2`] = `"rmd-dialog rmd-dialog--outline rmd-dialog--centered"`;
 
-exports[`Dialog should enable the noOpacity prop on parent dialog overlay elements so the screen does not get darker as more dialogs are visible 3`] = `"rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-box rmd-box--gap rmd-box--wrap rmd-box--align-center rmd-box--justify-center rmd-overlay--active"`;
+exports[`Dialog should handle nested dialogs by preventing the overlay and box-shadow from getting darker as more dialogs become visible 3`] = `"rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-box rmd-box--gap rmd-box--wrap rmd-box--align-center rmd-box--justify-center"`;
 
-exports[`Dialog should enable the noOpacity prop on parent dialog overlay elements so the screen does not get darker as more dialogs are visible 4`] = `"rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-box rmd-box--gap rmd-box--wrap rmd-box--align-center rmd-box--justify-center rmd-overlay--active"`;
+exports[`Dialog should handle nested dialogs by preventing the overlay and box-shadow from getting darker as more dialogs become visible 4`] = `"rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-box rmd-box--gap rmd-box--wrap rmd-box--align-center rmd-box--justify-center rmd-overlay--active"`;
 
-exports[`Dialog should enable the noOpacity prop on parent dialog overlay elements so the screen does not get darker as more dialogs are visible 5`] = `"rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-box rmd-box--gap rmd-box--wrap rmd-box--align-center rmd-box--justify-center rmd-overlay--active"`;
+exports[`Dialog should handle nested dialogs by preventing the overlay and box-shadow from getting darker as more dialogs become visible 5`] = `"rmd-dialog rmd-dialog--outline rmd-dialog--centered rmd-dialog--no-box-shadow"`;
+
+exports[`Dialog should handle nested dialogs by preventing the overlay and box-shadow from getting darker as more dialogs become visible 6`] = `"rmd-dialog rmd-dialog--outline rmd-dialog--centered"`;
+
+exports[`Dialog should handle nested dialogs by preventing the overlay and box-shadow from getting darker as more dialogs become visible 7`] = `"rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-box rmd-box--gap rmd-box--wrap rmd-box--align-center rmd-box--justify-center"`;
+
+exports[`Dialog should handle nested dialogs by preventing the overlay and box-shadow from getting darker as more dialogs become visible 8`] = `"rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-box rmd-box--gap rmd-box--wrap rmd-box--align-center rmd-box--justify-center"`;
+
+exports[`Dialog should handle nested dialogs by preventing the overlay and box-shadow from getting darker as more dialogs become visible 9`] = `"rmd-dialog rmd-dialog--outline rmd-dialog--centered rmd-dialog--no-box-shadow"`;
+
+exports[`Dialog should handle nested dialogs by preventing the overlay and box-shadow from getting darker as more dialogs become visible 10`] = `"rmd-dialog rmd-dialog--outline rmd-dialog--centered rmd-dialog--no-box-shadow"`;
 
 exports[`dialog class name utility should be callable with no arguments 1`] = `"rmd-dialog rmd-dialog--centered"`;

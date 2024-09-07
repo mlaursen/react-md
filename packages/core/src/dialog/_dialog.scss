@@ -145,6 +145,10 @@ $variables: (
           width: 100%;
         }
 
+        &--no-box-shadow {
+          box-shadow: none;
+        }
+
         @if not $disable-focus-outline {
           // Note: Do not use the `interaction-outline` mixin +
           // `interaction.set-var(interaction.$focus-color)` like normal focus
