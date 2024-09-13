@@ -17,7 +17,7 @@ Note: it is recommended to use the [@react-md/core] package instead since the
 convenience. Some more information can be found
 [here](https://vitejs.dev/guide/performance#avoid-barrel-files).
 
-## [Full Documentation (Preview)]
+## [Full Documentation]
 
 ### Highlights/Features
 
@@ -32,6 +32,6 @@ convenience. Some more information can be found
 [typescript]: https://www.typescriptlang.org/
 [www.w3.org]: https://www.w3.org/TR/wai-aria-practices
 [installation]: https://next.react-md.dev/getting-started/installation
-[full documentation (preview)]: https://next.react-md.dev
+[full documentation]: https://next.react-md.dev
 [material design specifications]: https://material.io/design/
 [@react-md/core]: https://npmjs.com/package/@react-md/core

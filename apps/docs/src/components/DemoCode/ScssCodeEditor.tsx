@@ -7,16 +7,9 @@ import { useCodeEditHistory } from "@react-md/code/useCodeEditHistory";
 import { useFocusCodeEditor } from "@react-md/code/useFocusCodeEditor";
 import { cssUtils } from "@react-md/core/cssUtils";
 import { Snackbar } from "@react-md/core/snackbar/Snackbar";
-import { useEffect, useState, type ReactElement } from "react";
+import { type ReactElement } from "react";
 import styles from "./ScssCodeEditor.module.scss";
-
-const UPDATE_DELAY = 800;
-
-interface State {
-  error: Error | null;
-  compiled: string;
-  compiling: boolean;
-}
+import { useScssCodeEditor } from "./useScssCodeEditor.js";
 
 export interface ScssCodeEditorProps {
   demoName: string;
@@ -28,7 +21,6 @@ export function ScssCodeEditor(props: ScssCodeEditorProps): ReactElement {
   const { demoName, isCssVisible, scssCodeFile } = props;
 
   const defaultCode = scssCodeFile.code;
-  const defaultCompiled = scssCodeFile.compiled;
   const { code, editorRef, editorProps } = useCodeEditHistory({
     defaultCode,
   });
@@ -36,75 +28,12 @@ export function ScssCodeEditor(props: ScssCodeEditorProps): ReactElement {
     editorRef,
     onEditorKeyDown: editorProps.onKeyDown,
   });
-  const [state, setState] = useState<State>({
-    error: null,
-    compiled: defaultCompiled,
-    compiling: false,
+  const { error, compiled, compiling } = useScssCodeEditor({
+    code,
+    demoName,
+    defaultCode,
+    defaultCompiledCode: scssCodeFile.compiled,
   });
-  const { error, compiled, compiling } = state;
-  useEffect(() => {
-    if (code === defaultCode) {
-      setState({
-        error: null,
-        compiled: defaultCompiled,
-        compiling: false,
-      });
-      return;
-    }
-
-    let cancelled = false;
-    setState((prev) => ({
-      ...prev,
-      compiling: true,
-    }));
-
-    // debounce the SCSS updates since it is too easy to cause layout shifts
-    // while creating new css
-    const timeout = window.setTimeout(async () => {
-      try {
-        const [compile, SCSS_LOOKUP] = await Promise.all([
-          import("docs-generator/utils/compileScssModule").then(
-            (mod) => mod.compileScssModule
-          ),
-          import("@/generated/rmdScssLookup.js").then((mod) => mod.SCSS_LOOKUP),
-        ]);
-        const compiled = compile({
-          scss: code,
-          baseName: demoName,
-          load(fileUrl) {
-            const contents = SCSS_LOOKUP[fileUrl];
-            if (!contents) {
-              throw new Error(`Unable to import "${fileUrl}"`);
-            }
-
-            return contents;
-          },
-        });
-        if (!cancelled) {
-          setState({
-            error: null,
-            compiled,
-            compiling: false,
-          });
-        }
-      } catch (e) {
-        if (cancelled) {
-          return;
-        }
-
-        const error = e instanceof Error ? e : new Error("Unknown error.");
-        setState((prev) => ({
-          ...prev,
-          error,
-          compiling: false,
-        }));
-      }
-    }, UPDATE_DELAY);
-    return () => {
-      cancelled = true;
-      window.clearTimeout(timeout);
-    };
-  }, [code, defaultCode, defaultCompiled, demoName]);
 
   const value = isCssVisible ? compiled : code;
 

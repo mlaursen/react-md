@@ -140,6 +140,7 @@ export function DemoCodeEditor(props: DemoCodeEditorProps): ReactElement {
           </Slide>
           <Slide {...getTabPanelProps(1)} timeout={0}>
             <ScssCodeEditor
+              key={`${toggled}`}
               demoName={demoName}
               isCssVisible={isCssVisible}
               scssCodeFile={scssCodeFile}

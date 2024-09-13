@@ -34,9 +34,9 @@ export interface RehypeCodeBlocksOptions {
  *     - `card`
  *     - `phone`
  *     - `importOnly`
- *     - `startOnScss`
  *     - `disableBox`
  *     - `transparent`
+ *     - `startOnScss`
  *     - `forceDarkMode`
  *     - `disablePadding`
  * - If the code block is `ts `or `tsx`, try to convert it to javascript and
