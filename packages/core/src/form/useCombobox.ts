@@ -130,6 +130,11 @@ export interface BaseComboboxOptions<
   /**
    * @defaultValue `false`
    */
+  multiselect?: boolean;
+
+  /**
+   * @defaultValue `false`
+   */
   defaultVisible?: UseStateInitializer<boolean>;
 
   extendKeyDown?: ExtendComboboxKeyDown<ComboboxEl>;
@@ -180,6 +185,7 @@ export interface ComboboxWidgetProps<
 export interface ComboboxWidgetPopupProps<
   PopupEl extends HTMLElement = HTMLElement,
 > {
+  "aria-multiselectable": true | undefined;
   id: string;
   ref: RefCallback<PopupEl>;
   role: "listbox" | "dialog" | "grid";
@@ -283,6 +289,7 @@ export function useCombobox<
     onFocus,
     onKeyDown,
     searchable,
+    multiselect,
     isNegativeOneAllowed,
     loopable,
     disabled,
@@ -460,6 +467,7 @@ export function useCombobox<
   };
 
   const popupProps: ComboboxWidgetPopupProps<PopupEl> = {
+    "aria-multiselectable": multiselect || undefined,
     id: popupId,
     ref: popupRefCallback,
     role: popup,

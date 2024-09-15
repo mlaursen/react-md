@@ -1,25 +1,18 @@
 "use client";
-import { createContext, useContext, type RefObject } from "react";
-import { type ChangeableHTMLElement } from "./utils.js";
+import { createContext, useContext } from "react";
 
 /**
  * @internal
  * @since 6.0.0
  */
 export interface ListboxContext {
-  /**
-   * This ref is used to trigger the change event when an option is clicked.
-   */
-  inputRef: RefObject<ChangeableHTMLElement>;
+  selectOption(option: unknown): void;
+  isOptionSelected(option: unknown): boolean;
 
-  /**
-   * This is used within the `Option` component to determine if it is currently
-   * selected or not.
-   */
-  currentValue: string | number | null;
-
-  selectedIconAfter: boolean;
-  disableSelectedIcon: boolean;
+  /** Convenience pass-through value */
+  selectedIconAfter?: boolean;
+  /** Convenience pass-through value */
+  disableSelectedIcon?: boolean;
 }
 
 const context = createContext<ListboxContext | null>(null);
@@ -41,5 +34,6 @@ export function useListboxContext(): ListboxContext {
   if (!value) {
     throw new Error("The `ListboxProvider` must be a parent component");
   }
+
   return value;
 }

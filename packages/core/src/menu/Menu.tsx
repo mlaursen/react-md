@@ -198,7 +198,7 @@ export interface MenuConvenienceProps extends MenuConfigurationProps {
  */
 export type MenuFixedPositioningOptions = Omit<
   FixedPositioningOptions<HTMLElement, HTMLDivElement>,
-  "onScroll" | "onResize"
+  "onScroll" | "onResize" | "nodeRef"
 >;
 
 /**

@@ -11,9 +11,8 @@ import { getListItemHeight } from "../list/getListItemHeight.js";
 import { ListItemText } from "../list/ListItemText.js";
 import { MenuItem, type MenuItemProps } from "../menu/MenuItem.js";
 import { useEnsuredId } from "../useEnsuredId.js";
+import { useListboxContext } from "./ListboxProvider.js";
 import { option } from "./optionStyles.js";
-import { useListboxContext } from "./useListboxProvider.js";
-import { triggerManualChangeEvent } from "./utils.js";
 
 const noop = (): void => {
   // do nothing
@@ -40,7 +39,7 @@ export interface OptionProps extends MenuItemProps {
    */
   role?: string;
 
-  value: string | number;
+  value: string | number | Record<string, unknown>;
 
   /**
    * @defaultValue `getIcon("selected")`
@@ -122,13 +121,13 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>(
 
     const id = useEnsuredId(propId, "option");
     const {
-      inputRef,
-      currentValue,
+      selectOption,
+      isOptionSelected,
       disableSelectedIcon,
       selectedIconAfter: contextSelectedIconAfter,
     } = useListboxContext();
     const selectedIconAfter = propSelectedIconAfter ?? contextSelectedIconAfter;
-    const selected = value === currentValue;
+    const selected = isOptionSelected(value);
     const selectedIcon = getIcon(
       "selected",
       disableSelectedIcon ? null : propSelectedIcon
@@ -186,7 +185,7 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>(
         role={role}
         onClick={(event) => {
           onClick(event);
-          triggerManualChangeEvent(inputRef.current, value);
+          selectOption(value);
         }}
         className={option({ icon: !!icon, selected, className })}
         secondaryText={secondaryText}

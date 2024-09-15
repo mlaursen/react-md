@@ -1,7 +1,7 @@
 "use client";
 import { cnb } from "cnbuilder";
 import {
-  useMemo,
+  useCallback,
   useRef,
   useState,
   type ChangeEvent,
@@ -14,7 +14,7 @@ import {
 import { type BoxProps } from "../box/Box.js";
 import { IconRotator } from "../icon/IconRotator.js";
 import { getIcon } from "../icon/iconConfig.js";
-import { Menu, type MenuProps } from "../menu/Menu.js";
+import { type MenuProps } from "../menu/Menu.js";
 import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
 import {
   type LabelA11y,
@@ -24,6 +24,7 @@ import {
 import { useEnsuredId } from "../useEnsuredId.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
 import { label as labelStyles } from "./Label.js";
+import { Listbox } from "./Listbox.js";
 import { SelectedOption } from "./SelectedOption.js";
 import {
   TextFieldContainer,
@@ -35,8 +36,8 @@ import { extractOptionsFromChildren } from "./selectUtils.js";
 import { textField } from "./textFieldStyles.js";
 import { type UserAgentAutocompleteProps } from "./types.js";
 import { useFormReset } from "./useFormReset.js";
-import { ListboxProvider, type ListboxContext } from "./useListboxProvider.js";
 import { useSelectCombobox } from "./useSelectCombobox.js";
+import { triggerManualChangeEvent } from "./utils.js";
 
 const EMPTY_STRING = "" as const;
 const noop = (): void => {
@@ -166,7 +167,10 @@ export interface SelectProps<Value extends string>
    * - `anchor={BELOW_CENTER_ANCHOR}`
    * - `width="min"`
    */
-  menuProps?: Omit<MenuProps, "visible" | "onRequestClose" | "fixedTo">;
+  menuProps?: PropsWithRef<
+    Omit<MenuProps, "visible" | "onRequestClose" | "fixedTo">,
+    HTMLDivElement
+  >;
 
   /**
    * Any additional props to pass to the div that contains the current visible
@@ -328,7 +332,7 @@ export function Select<Value extends string>(
       onKeyDown,
       disabled,
       popupId: menuProps.id,
-      popupRef: menuProps.nodeRef,
+      popupRef: menuProps.ref,
       comboboxId,
       comboboxRef: containerRef,
     });
@@ -339,15 +343,6 @@ export function Select<Value extends string>(
     elementRef: inputRef,
     defaultValue: initialValue.current,
   });
-  const listboxContext = useMemo<ListboxContext>(
-    () => ({
-      inputRef,
-      currentValue,
-      selectedIconAfter,
-      disableSelectedIcon,
-    }),
-    [currentValue, disableSelectedIcon, inputRef, selectedIconAfter]
-  );
 
   const icon = getIcon("dropdown", propIcon);
   const theme = getFormConfig("theme", propTheme);
@@ -356,6 +351,7 @@ export function Select<Value extends string>(
     rightAddon = <IconRotator rotated={visible}>{icon}</IconRotator>;
   }
 
+  const { ref: listboxRef, ...listboxProps } = getMenuProps(menuProps);
   let listboxLabelledBy = menuProps["aria-labelledby"];
   const listboxLabel = menuProps["aria-label"];
   if (!listboxLabel && !listboxLabelledBy) {
@@ -363,77 +359,82 @@ export function Select<Value extends string>(
   }
 
   return (
-    <ListboxProvider value={listboxContext}>
-      <KeyboardMovementProvider value={movementContext}>
-        <TextFieldContainer
-          aria-labelledby={labelId}
-          {...remaining}
-          {...comboboxProps}
-          label={!!label}
-          theme={theme}
-          active={active || visible}
-          className={cnb("rmd-select-container", className)}
-          rightAddon={rightAddon}
-        >
-          <SelectedOption
-            option={currentOption}
-            placeholder={placeholder}
-            disableAddon={disableOptionAddon}
-            {...selectedOptionProps}
-          />
-          <input
-            aria-hidden
-            id={inputId}
-            ref={inputRefCallback}
-            type="text"
-            autoComplete={autoComplete}
-            name={name}
-            tabIndex={-1}
-            disabled={disabled}
-            required={required}
-            placeholder=" "
-            {...inputProps}
-            value={value}
-            defaultValue={defaultValue}
-            className={cnb(select({ theme }), textField())}
-            onChange={(event) => {
-              onChange(event as SelectChangeEvent<Value>);
-              if (typeof value !== "undefined") {
-                return;
-              }
+    <KeyboardMovementProvider value={movementContext}>
+      <TextFieldContainer
+        aria-labelledby={labelId}
+        {...remaining}
+        {...comboboxProps}
+        label={!!label}
+        theme={theme}
+        active={active || visible}
+        className={cnb("rmd-select-container", className)}
+        rightAddon={rightAddon}
+      >
+        <SelectedOption
+          option={currentOption}
+          placeholder={placeholder}
+          disableAddon={disableOptionAddon}
+          {...selectedOptionProps}
+        />
+        <input
+          aria-hidden
+          id={inputId}
+          ref={inputRefCallback}
+          type="text"
+          autoComplete={autoComplete}
+          name={name}
+          tabIndex={-1}
+          disabled={disabled}
+          required={required}
+          placeholder=" "
+          {...inputProps}
+          value={value}
+          defaultValue={defaultValue}
+          className={cnb(select({ theme }), textField())}
+          onChange={(event) => {
+            onChange(event as SelectChangeEvent<Value>);
+            if (typeof value !== "undefined") {
+              return;
+            }
 
-              const nextValue = event.currentTarget.value;
-              const nextOption = options.find((option) => option === nextValue);
+            const nextValue = event.currentTarget.value;
+            const nextOption = options.find((option) => option === nextValue);
 
-              setLocalValue(nextOption ?? initialValue.current);
-            }}
-          />
-          {label && (
-            <span
-              {...labelProps}
-              id={labelId}
-              className={labelStyles({
-                dense,
-                error,
-                disabled,
-                active: active || visible,
-                floating: true,
-                floatingActive: !!placeholder || !!currentOption,
-                className: labelProps.className,
-              })}
-            >
-              {label}
-            </span>
-          )}
-        </TextFieldContainer>
-        <Menu
-          {...getMenuProps(menuProps)}
-          aria-label={listboxLabel}
-          aria-labelledby={listboxLabelledBy as string}
-        >
-          {children}
-        </Menu>
-      </KeyboardMovementProvider>
-    </ListboxProvider>
+            setLocalValue(nextOption ?? initialValue.current);
+          }}
+        />
+        {label && (
+          <span
+            {...labelProps}
+            id={labelId}
+            className={labelStyles({
+              dense,
+              error,
+              disabled,
+              active: active || visible,
+              floating: true,
+              floatingActive: !!placeholder || !!currentOption,
+              className: labelProps.className,
+            })}
+          >
+            {label}
+          </span>
+        )}
+      </TextFieldContainer>
+      <Listbox
+        {...listboxProps}
+        aria-label={listboxLabel}
+        aria-labelledby={listboxLabelledBy as string}
+        nodeRef={listboxRef}
+        value={currentValue}
+        setValue={useCallback((option: "" | Value) => {
+          triggerManualChangeEvent(inputRef.current, option);
+        }, [])}
+        selectedIconAfter={selectedIconAfter}
+        disableSelectedIcon={disableSelectedIcon}
+      >
+        {children}
+      </Listbox>
+    </KeyboardMovementProvider>
   );
 }
