@@ -1,14 +1,7 @@
 "use client";
 import { useEffect, useMemo, useRef } from "react";
-import { type AnyFunction, type CancelableFunction } from "./types.js";
+import { type AnyFunction, type ThrottledFunction } from "./types.js";
 import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect.js";
-
-/**
- * @since 6.0.0
- */
-export type ThrottledFunction<F extends AnyFunction> = CancelableFunction<
-  (...args: Parameters<F>) => ReturnType<F>
->;
 
 /**
  * Creates a function that will only be called once every X milliseconds.

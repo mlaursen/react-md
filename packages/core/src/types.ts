@@ -181,6 +181,20 @@ export type CancelableFunction<F extends AnyFunction> = F & { cancel(): void };
 /**
  * @since 6.0.0
  */
+export type DebouncedFunction<F extends AnyFunction> = CancelableFunction<
+  (...args: Parameters<F>) => void
+>;
+
+/**
+ * @since 6.0.0
+ */
+export type ThrottledFunction<F extends AnyFunction> = CancelableFunction<
+  (...args: Parameters<F>) => ReturnType<F>
+>;
+
+/**
+ * @since 6.0.0
+ */
 export interface ElementSize {
   height: number;
   width: number;

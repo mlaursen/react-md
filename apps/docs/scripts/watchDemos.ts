@@ -1,5 +1,4 @@
-import { type AnyFunction } from "@react-md/core/types";
-import { type DebouncedFunction } from "@react-md/core/useDebouncedFunction";
+import { debounce } from "@react-md/core/utils/debounce";
 import { watch } from "chokidar";
 import { logComplete, logPending } from "docs-generator/utils/log";
 import { existsSync } from "node:fs";
@@ -14,22 +13,6 @@ const watcher = watch(`src/app/**/*.{ts,tsx,scss}`, {
   cwd,
   persistent: true,
 });
-
-const debounce = <F extends AnyFunction>(
-  fn: F,
-  duration: number
-): DebouncedFunction<F> => {
-  let timeout: NodeJS.Timeout | undefined;
-  const debounced: DebouncedFunction<F> = (...args) => {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => {
-      fn(...args);
-    }, duration);
-  };
-  debounced.cancel = () => clearTimeout(timeout);
-
-  return debounced;
-};
 
 const debounced = debounce(async (path: string): Promise<void> => {
   if (!path.includes("(demos)")) {
