@@ -243,14 +243,6 @@ export interface ComboboxMenuProps<PopupEl extends HTMLElement = HTMLDivElement>
     ProvidedComboboxMenuProps<PopupEl> {}
 
 /**
- * Since the combobox usually uses the `Menu` as a popup element, this is a
- * helper util to create the required props and merge any additional props
- * with reasonable defaults.
- */
-export type ComboboxGetMenuProps<PopupEl extends HTMLElement = HTMLDivElement> =
-  (props?: ConfigurableComboboxMenuProps) => ComboboxMenuProps<PopupEl>;
-
-/**
  * @since 6.0.0
  */
 export interface ComboboxImplementation<
@@ -267,7 +259,14 @@ export interface ComboboxImplementation<
   comboboxRef: RefObject<ComboboxEl>;
   comboboxProps: ComboboxWidgetProps<ComboboxEl>;
 
-  getMenuProps: ComboboxGetMenuProps<PopupEl>;
+  /**
+   * Since the combobox usually uses the `Menu` as a popup element, this is a
+   * helper util to create the required props and merge any additional props
+   * with reasonable defaults.
+   */
+  getMenuProps(
+    overrides?: ConfigurableComboboxMenuProps
+  ): ComboboxMenuProps<PopupEl>;
   getTransitionCallbacks(
     options: ComboboxTransitionOptions
   ): Required<ComboboxTransitionCallbacks>;

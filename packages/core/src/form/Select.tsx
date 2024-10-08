@@ -427,9 +427,12 @@ export function Select<Value extends string>(
         aria-labelledby={listboxLabelledBy as string}
         nodeRef={listboxRef}
         value={currentValue}
-        setValue={useCallback((option: "" | Value) => {
-          triggerManualChangeEvent(inputRef.current, option);
-        }, [])}
+        setValue={useCallback(
+          (option: "" | Value) => {
+            triggerManualChangeEvent(inputRef.current, option);
+          },
+          [inputRef]
+        )}
         selectedIconAfter={selectedIconAfter}
         disableSelectedIcon={disableSelectedIcon}
       >

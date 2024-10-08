@@ -90,7 +90,7 @@ export interface FormComponentStates {
  * @see https://html.spec.whatwg.org/multipage/forms.html#autofill
  * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values
  */
-export type AutocompleteValue =
+export type AutocompleteAttributeValue =
   | "off"
   | "on"
   | "name"
@@ -182,11 +182,11 @@ export interface UserAgentAutocompleteProps {
    *
    * @see https://html.spec.whatwg.org/multipage/forms.html#autofill
    * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values
-   * @see {@link AutocompleteValue}
+   * @see {@link AutocompleteAttributeValue}
    * @see {@link autoComplete}
    * @see {@link UserAgentAutocompleteProps.name}
    */
-  autoCompleteValue?: AutocompleteValue;
+  autoCompleteValue?: AutocompleteAttributeValue;
 
   /**
    * @see {@link autoCompleteValue}

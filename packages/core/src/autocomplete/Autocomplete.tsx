@@ -1,82 +1,92 @@
 "use client";
-import {
-  useEffect,
-  type AriaAttributes,
-  type ReactElement,
-  type Ref,
-} from "react";
+import { type ReactElement, type ReactNode, type Ref } from "react";
+import { Listbox, type ListboxSelectIconProps } from "../form/Listbox.js";
 import { TextField, type TextFieldProps } from "../form/TextField.js";
-import { type ConfigurableComboboxMenuProps } from "../form/useCombobox.js";
-import { useEditableCombobox } from "../form/useEditableCombobox.js";
-import { Menu } from "../menu/Menu.js";
-import { type KeyboardMovementFocusChangeEventHandler } from "../movement/types.js";
+import { ListSubheader } from "../list/ListSubheader.js";
 import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
-import {
-  type PropsWithRef,
-  type TextExtractor,
-  type UseStateSetter,
-} from "../types.js";
+import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
-import { useEnsuredRef } from "../useEnsuredRef.js";
-import { useEnsuredState } from "../useEnsuredState.js";
 import {
   AutocompleteCircularProgress,
   type AutocompleteCircularProgressProps,
 } from "./AutocompleteCircularProgress.js";
 import {
+  AutocompleteClearButton,
+  type ConfigurableAutocompleteClearButtonProps,
+} from "./AutocompleteClearButton.js";
+import {
   AutocompleteDropdownButton,
   type ConfigurableAutocompleteDropdownButtonProps,
 } from "./AutocompleteDropdownButton.js";
-import { FilterAutocompleteOptions } from "./FilterAutocompleteOptions.js";
+import { AutocompleteListboxChildren } from "./AutocompleteListboxChildren.js";
 import { autocomplete, autocompleteRightAddon } from "./autocompleteStyles.js";
 import {
-  type AutocompleteMenuLabel,
-  type AutocompleteOptionsProps,
+  defaultAutocompleteExtractor,
+  defaultAutocompleteFilter,
+  defaultAutocompleteGetOptionProps,
+  noopAutocompleteFilter,
+} from "./defaults.js";
+import {
+  type AutocompleteFilteringOptions,
+  type AutocompleteGetOptionPropsOptions,
+  type AutocompleteOption,
+  type AutocompleteOptionLabelExtractor,
+  type AutocompleteQuery,
+  type AutocompleteUnknownQueryAndValueOptions,
+  type AutocompleteValue,
+  type ConfigurableAutocompleteListboxProps,
+  type ConfigurableAutocompleteOptionProps,
 } from "./types.js";
-
-const noop = (): void => {
-  // do nothing
-};
+import { useAutocomplete } from "./useAutocomplete.js";
 
 /**
  * @since 6.0.0
  */
-export interface AutocompleteProps<T>
+export interface AutocompleteBaseProps<Option extends AutocompleteOption>
   extends Omit<TextFieldProps, "value" | "defaultValue">,
-    AutocompleteOptionsProps<T> {
-  /** @defaultValue `"list"` */
-  "aria-autocomplete"?: AriaAttributes["aria-autocomplete"];
+    AutocompleteFilteringOptions<Option>,
+    ListboxSelectIconProps {
   inputRef?: Ref<HTMLInputElement>;
-  value?: string;
-  defaultValue?: string;
 
   /**
-   * An `aria-label` to pass to the `Menu` component that describes the list of
-   * {@link options}. Either this or the {@link menuLabelledBy} are required for
-   * accessibility.
+   * An `aria-label` to pass to the `Listbox` component that describes the list
+   * of {@link options}. Either this or the {@link listboxLabelledBy} are
+   * required for accessibility.
    */
-  menuLabel?: string;
+  listboxLabel?: string;
 
   /**
-   * An `aria-labelledby` to pass to the `Menu` component that describes the
-   * list of {@link options}. Either this or the {@link menuLabel} are required
-   * for accessibility.
+   * An `aria-labelledby` to pass to the `Listbox` component that describes the
+   * list of {@link options}. Either this or the {@link listboxLabel} are
+   * required for accessibility.
    */
-  menuLabelledBy?: string;
+  listboxLabelledBy?: string;
 
   /**
-   * Any additional props that should be passed to the `Menu` component.
+   * Any additional props that should be passed to the `Listbox` component.
    */
-  menuProps?: PropsWithRef<
-    ConfigurableComboboxMenuProps & { id?: string },
+  listboxProps?: PropsWithRef<
+    ConfigurableAutocompleteListboxProps,
     HTMLDivElement
   >;
 
   /**
-   * This prop should only be used when `aria-autocomplete` is set to
-   * `"inline"` or `"both"`.
+   * This can be used to add additional props to each option.
+   *
+   * @example Simple Example
+   * ```tsx
+   * getOptionProps={({ option }) => {
+   *   return {
+   *     disabled: option === "",
+   *     className: cnb(option === "a" && styles.blue),
+   *     leftAddon: option === value && <CheckIcon />,
+   *   };
+   * }}
+   * ```
    */
-  onFocusChange?: KeyboardMovementFocusChangeEventHandler;
+  getOptionProps?(
+    options: AutocompleteGetOptionPropsOptions<Option>
+  ): ConfigurableAutocompleteOptionProps | undefined;
 
   /**
    * This can be used to add any custom styling, change the icon, change the
@@ -113,146 +123,194 @@ export interface AutocompleteProps<T>
    * @defaultValue `{ "aria-label": "Loading", ...loadingProps }`
    */
   loadingProps?: AutocompleteCircularProgressProps;
+
+  clearButtonProps?: PropsWithRef<
+    ConfigurableAutocompleteClearButtonProps,
+    HTMLButtonElement
+  >;
+
+  /**
+   * @defaultValue `false`
+   */
+  disableClearButton?: boolean;
+
+  onOpen?(): void;
+
+  /**
+   * The children to display when there are no {@link options} due to the
+   * current text box value.
+   *
+   * @defaultValue `<ListSubheader>No options</ListSubheader`
+   */
+  noOptionsChildren?: ReactNode;
+
+  /** @defaultValue `true` */
+  disableSelectedIcon?: boolean;
 }
 
 /**
  * @since 6.0.0
  */
-export function Autocomplete<T extends string | { label: string }>(
-  props: AutocompleteMenuLabel<Omit<AutocompleteProps<T>, "extractor">>
-): ReactElement;
+export type AutocompleteListboxLabelProps =
+  | { listboxLabel: string }
+  | { listboxLabelledBy: string };
+
 /**
  * @since 6.0.0
  */
-export function Autocomplete<T>(
-  props: AutocompleteMenuLabel<
-    AutocompleteProps<T> & { extractor: TextExtractor<T> }
-  >
+export type AutocompleteQueryAndExtractorProps<
+  Option extends AutocompleteOption,
+> = AutocompleteBaseProps<Option> &
+  AutocompleteOptionLabelExtractor<Option> &
+  AutocompleteQuery &
+  AutocompleteListboxLabelProps;
+
+/**
+ * @since 6.0.0
+ */
+export type AutocompleteSingleSelectProps<Option extends AutocompleteOption> =
+  AutocompleteQueryAndExtractorProps<Option> & AutocompleteValue<Option | null>;
+
+/**
+ * @since 6.0.0
+ */
+export type AutocompleteMultiSelectProps<Option extends AutocompleteOption> =
+  AutocompleteQueryAndExtractorProps<Option> &
+    AutocompleteValue<readonly Option[]>;
+
+/**
+ * @since 6.0.0
+ */
+export type AutocompleteProps<Option extends AutocompleteOption> =
+  AutocompleteBaseProps<Option> &
+    AutocompleteUnknownQueryAndValueOptions<Option>;
+
+/**
+ * This is the single select autocomplete implementation.
+ *
+ * @since 6.0.0
+ */
+export function Autocomplete<Option extends AutocompleteOption>(
+  props: AutocompleteSingleSelectProps<Option>
 ): ReactElement;
-export function Autocomplete<T>(
-  props: AutocompleteMenuLabel<AutocompleteProps<T>>
+/**
+ * This is the multiselect autocomplete implementation.
+ *
+ * @since 6.0.0
+ */
+export function Autocomplete<Option extends AutocompleteOption>(
+  props: AutocompleteMultiSelectProps<Option>
+): ReactElement;
+/**
+ * @since 6.0.0
+ * @internal
+ */
+export function Autocomplete<Option extends AutocompleteOption>(
+  props: AutocompleteProps<Option>
 ): ReactElement {
   const {
     id: propId,
-    value: propValue,
-    defaultValue = "",
-    onClick,
+    onBlur,
     onFocus,
+    onClick,
+    onChange,
     onKeyDown,
-    onChange = noop,
-    onFocusChange,
+    onOpen,
+    type,
     className,
-    options,
-    children,
     inputRef,
-    extractor,
-    onAutocomplete = noop,
-    getOptionProps,
-    clearOnAutocomplete,
-    menuProps,
-    menuLabel,
-    menuLabelledBy,
-    containerProps,
-    filter,
-    whitespace,
-    disableFilter,
-    noOptionsChildren,
-    dropdownButtonProps,
-    disableDropdownButton,
+    children,
+    filter = type === "search"
+      ? noopAutocompleteFilter
+      : defaultAutocompleteFilter,
+    value,
+    setValue,
+    defaultValue,
+    query,
+    setQuery,
+    defaultQuery,
+    options,
+    getOptionLabel = defaultAutocompleteExtractor,
+    getOptionProps = defaultAutocompleteGetOptionProps,
+    listboxProps: menuProps,
+    listboxLabel,
+    listboxLabelledBy,
+    selectedIconAfter,
+    disableSelectedIcon = true,
     loading,
     loadingProps,
+    dropdownButtonProps,
+    disableDropdownButton,
+    clearButtonProps,
+    disableClearButton,
+    noOptionsChildren = <ListSubheader>No Options</ListSubheader>,
     rightAddon,
     rightAddonProps,
     ...remaining
   } = props;
+  const { form, disabled } = props;
 
-  const { form } = props;
   const id = useEnsuredId(propId, "autocomplete");
   const menuId = useEnsuredId(menuProps?.id, "autocomplete-listbox");
-
-  const [query, setQuery] = useEnsuredState<string, UseStateSetter<string>>({
-    value: propValue,
-    setValue: typeof propValue === "string" ? noop : undefined,
-    defaultValue,
-  });
-
   const {
-    visible,
-    setVisible,
-    getMenuProps,
-    comboboxRef,
+    query: currentQuery,
     comboboxProps,
     movementContext,
-  } = useEditableCombobox({
+    availableOptions,
+    getListboxProps,
+    getClearButtonProps,
+    getDropdownButtonProps,
+  } = useAutocomplete({
     form,
-    onClick,
+    onBlur,
     onFocus,
+    onClick,
+    onChange,
     onKeyDown,
-    onFocusChange,
+    onOpen,
+    disabled,
+    filter,
     popupId: menuId,
     popupRef: menuProps?.ref,
     comboboxId: id,
     comboboxRef: inputRef,
+    options,
+    getOptionLabel,
+    value,
+    setValue,
+    defaultValue,
+    query,
+    setQuery,
+    defaultQuery,
+    selectedIconAfter,
+    disableSelectedIcon,
   });
-  const [containerNodeRef, containerRef] = useEnsuredRef(containerProps?.ref);
-  useEffect(() => {
-    const input = comboboxRef.current;
-    if (!input || document.activeElement !== input) {
-      return;
-    }
-
-    const target = input.value.length;
-    input.setSelectionRange(target, target);
-  }, [comboboxRef, loading]);
 
   return (
     <KeyboardMovementProvider value={movementContext}>
       <TextField
-        aria-autocomplete="list"
         {...remaining}
-        value={query}
         {...comboboxProps}
-        containerProps={{
-          ...containerProps,
-          ref: containerRef,
-        }}
         className={autocomplete({
           className,
           loading,
           disableDropdownButton,
         })}
-        onChange={(event) => {
-          onChange(event);
-          setQuery(event.currentTarget.value);
-        }}
-        onKeyDown={(event) => {
-          comboboxProps.onKeyDown(event);
-          if (!visible && event.key === "Escape") {
-            onAutocomplete(null);
-          }
-        }}
-        onFocus={(event) => {
-          comboboxProps.onFocus(event);
-          event.currentTarget.setSelectionRange(
-            0,
-            event.currentTarget.value.length
-          );
-        }}
         rightAddon={
           <>
             {rightAddon}
             {loading && <AutocompleteCircularProgress {...loadingProps} />}
+            {!disableClearButton && !!currentQuery && (
+              <AutocompleteClearButton
+                {...clearButtonProps}
+                {...getClearButtonProps(clearButtonProps)}
+              />
+            )}
             {!disableDropdownButton && (
               <AutocompleteDropdownButton
-                aria-label={menuLabel}
-                aria-labelledby={menuLabelledBy}
-                aria-controls={comboboxProps.id}
-                {...dropdownButtonProps}
-                visible={visible}
-                onClick={() => {
-                  comboboxRef.current?.focus();
-                  setVisible((prev) => !prev);
-                }}
+                aria-label={listboxLabel as string}
+                aria-labelledby={listboxLabelledBy}
+                {...getDropdownButtonProps(dropdownButtonProps)}
               />
             )}
           </>
@@ -265,30 +323,20 @@ export function Autocomplete<T>(
           }),
         }}
       />
-      <Menu
-        aria-label={menuLabel as string}
-        aria-labelledby={menuLabelledBy}
-        {...getMenuProps(menuProps)}
-        // since the `afterInputChildren` is not included in the `comboboxRef`'s
-        // width, the menu will no longer be equal width without changing the
-        // fixedTo node to the container
-        fixedTo={containerNodeRef}
+      <Listbox
+        aria-label={listboxLabel as string}
+        aria-labelledby={listboxLabelledBy}
+        {...getListboxProps(menuProps)}
       >
-        {children}
-        <FilterAutocompleteOptions
-          query={query}
-          filter={filter}
-          options={options}
-          noOptionsChildren={noOptionsChildren}
-          extractor={extractor}
-          whitespace={whitespace}
-          comboboxRef={comboboxRef}
-          disableFilter={disableFilter || props["aria-autocomplete"] === "none"}
+        <AutocompleteListboxChildren
+          options={availableOptions}
+          getOptionLabel={getOptionLabel}
           getOptionProps={getOptionProps}
-          onAutocomplete={onAutocomplete}
-          clearOnAutocomplete={clearOnAutocomplete}
-        />
-      </Menu>
+          noOptionsChildren={noOptionsChildren}
+        >
+          {children}
+        </AutocompleteListboxChildren>
+      </Listbox>
     </KeyboardMovementProvider>
   );
 }

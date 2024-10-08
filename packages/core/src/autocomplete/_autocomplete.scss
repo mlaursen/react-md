@@ -10,7 +10,7 @@ $disable-dropdown-button: false !default;
 $disable-circular-progress: false !default;
 
 $button-size: button.$icon-small-size !default;
-$circular-progress-size: progress.$circular-dense-size !default;
+$circular-progress-size: button.$icon-small-size !default;
 
 $dropdown-button-calc: calc(button.get-var(icon-font-size) * 2) !default;
 $dropdown-button-only-calc: calc(
@@ -62,6 +62,12 @@ $circular-progress-and-dropdown-button-calc: calc(
               text-field-padding-right,
               $circular-progress-only-calc
             );
+          }
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+          &:not(:hover):not(:focus-within) .rmd-autocomplete__clear-button {
+            display: none;
           }
         }
 

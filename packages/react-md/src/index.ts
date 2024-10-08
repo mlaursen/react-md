@@ -1,4 +1,6 @@
 // Private files not included:
+// - autocomplete/AutocompleteListboxChildren
+// - autocomplete/utils
 // - draggable/utils
 // - form/selectUtils
 // - form/SliderTrack
@@ -19,10 +21,12 @@ export * from "@react-md/core/app-bar/AppBar";
 export * from "@react-md/core/app-bar/AppBarTitle";
 export * from "@react-md/core/autocomplete/Autocomplete";
 export * from "@react-md/core/autocomplete/AutocompleteCircularProgress";
+export * from "@react-md/core/autocomplete/AutocompleteClearButton";
 export * from "@react-md/core/autocomplete/AutocompleteDropdownButton";
 export * from "@react-md/core/autocomplete/autocompleteStyles";
 export * from "@react-md/core/autocomplete/defaults";
 export * from "@react-md/core/autocomplete/types";
+export * from "@react-md/core/autocomplete/useAutocomplete";
 export * from "@react-md/core/avatar/Avatar";
 export * from "@react-md/core/avatar/styles";
 export * from "@react-md/core/badge/Badge";
@@ -86,6 +90,7 @@ export * from "@react-md/core/form/InputToggle";
 export * from "@react-md/core/form/inputToggleStyles";
 export * from "@react-md/core/form/Label";
 export * from "@react-md/core/form/Legend";
+export * from "@react-md/core/form/ListboxProvider";
 export * from "@react-md/core/form/MenuItemCheckbox";
 export * from "@react-md/core/form/MenuItemFileInput";
 export * from "@react-md/core/form/MenuItemInputToggle";
@@ -126,7 +131,6 @@ export * from "@react-md/core/form/useCheckboxGroup";
 export * from "@react-md/core/form/useCombobox";
 export * from "@react-md/core/form/useEditableCombobox";
 export * from "@react-md/core/form/useFormReset";
-export * from "@react-md/core/form/useListboxProvider";
 export * from "@react-md/core/form/useNumberField";
 export * from "@react-md/core/form/useRadioGroup";
 export * from "@react-md/core/form/useRangeSlider";

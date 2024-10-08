@@ -1,7 +1,11 @@
 import { type MenuItemProps } from "../menu/MenuItem.js";
 import { caseInsensitiveSearch } from "../searching/caseInsensitive.js";
 import { defaultExtractor } from "../searching/utils.js";
-import { type AutocompleteFilterOptions } from "./types.js";
+import {
+  type AutocompleteFilterOptions,
+  type AutocompleteGetOptionPropsOptions,
+  type AutocompleteOption,
+} from "./types.js";
 
 /**
  * @since 6.0.0
@@ -24,6 +28,21 @@ export const defaultAutocompleteExtractor = <T>(item: T): string => {
  * @since 6.0.0
  * @internal
  */
+export const defaultAutocompleteFilter = <Option extends AutocompleteOption>(
+  options: AutocompleteFilterOptions<Option>
+): readonly Option[] => caseInsensitiveSearch({ ...options, startsWith: true });
+
+/**
+ * @since 6.0.0
+ */
+export const noopAutocompleteFilter = <Option extends AutocompleteOption>(
+  options: AutocompleteFilterOptions<Option>
+): readonly Option[] => options.list;
+
+/**
+ * @since 6.0.0
+ * @internal
+ */
 const isProbablyMenuItemProps = (
   item: unknown
 ): item is Partial<MenuItemProps> => !!item && typeof item === "object";
@@ -32,9 +51,9 @@ const isProbablyMenuItemProps = (
  * @since 6.0.0
  * @internal
  */
-export const defaultAutocompleteOptionProps = <T>(options: {
-  option: T;
-}): Partial<MenuItemProps> | undefined => {
+export const defaultAutocompleteGetOptionProps = <T extends AutocompleteOption>(
+  options: AutocompleteGetOptionPropsOptions<T>
+): Partial<MenuItemProps> | undefined => {
   const { option } = options;
   if (isProbablyMenuItemProps(option)) {
     const {
@@ -69,15 +88,3 @@ export const defaultAutocompleteOptionProps = <T>(options: {
   }
   return;
 };
-
-/**
- * This is just the {@link caseInsensitiveSearch} but requires
- * the options to start with the current query.
- *
- * @since 6.0.0
- */
-export function defaultAutocompleteFilter<T>(
-  options: AutocompleteFilterOptions<T>
-): readonly T[] {
-  return caseInsensitiveSearch({ ...options, startsWith: true });
-}

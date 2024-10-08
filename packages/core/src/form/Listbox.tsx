@@ -13,24 +13,12 @@ import { ListboxProvider } from "./ListboxProvider.js";
  * @since 6.0.0
  * @internal
  */
-export type ListboxValue =
-  | string
-  | number
-  | null
-  | Record<string, unknown>
-  | readonly (string | number | Record<string, unknown>)[];
+export type ListboxValue = string | number | null | Record<string, unknown>;
 
 /**
  * @since 6.0.0
- * @internal
  */
-export interface ListboxProps<Value extends ListboxValue> extends MenuProps {
-  nodeRef?: Ref<HTMLDivElement>;
-
-  value: Value;
-  setValue: Dispatch<Value>;
-  children: ReactNode;
-
+export interface ListboxSelectIconProps {
   /**
    * Set this to `true` if all the `Option` components should display the
    * selected icon after the children instead of before.
@@ -48,6 +36,20 @@ export interface ListboxProps<Value extends ListboxValue> extends MenuProps {
    * @defaultValue `false`
    */
   disableSelectedIcon?: boolean;
+}
+
+/**
+ * @since 6.0.0
+ * @internal
+ */
+export interface ListboxProps<Value extends ListboxValue>
+  extends MenuProps,
+    ListboxSelectIconProps {
+  nodeRef?: Ref<HTMLDivElement>;
+
+  value: Value | readonly NonNullable<ListboxValue>[];
+  setValue: Dispatch<NonNullable<Value>>;
+  children: ReactNode;
 }
 
 /**

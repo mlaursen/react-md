@@ -1,10 +1,10 @@
 import { describe, expect, it, jest } from "@jest/globals";
-import { createRef, useEffect, useState, type ReactElement } from "react";
-import { Button } from "../../button/Button.js";
+import { act, createRef, type ReactElement, useEffect, useState } from "react";
 import { fuzzySearch } from "../../searching/fuzzy.js";
-import { act, rmdRender, screen, userEvent } from "../../test-utils/index.js";
+import { rmdRender, screen, userEvent } from "../../test-utils/index.js";
 import { SrOnly } from "../../typography/SrOnly.js";
 import { Autocomplete, type AutocompleteProps } from "../Autocomplete.js";
+import { noopAutocompleteFilter } from "../defaults.js";
 
 const FRUITS = [
   "Apple",
@@ -28,7 +28,7 @@ const OBJECT_LIST = [
 
 const FRUIT_PROPS = {
   label: "Field",
-  menuLabel: "Fruits",
+  listboxLabel: "Fruits",
   options: FRUITS,
 } satisfies AutocompleteProps<string>;
 
@@ -75,9 +75,7 @@ describe("Autocomplete", () => {
     expect(autocomplete).toHaveAttribute("aria-activedescendant", "");
 
     await user.click(autocomplete);
-    expect(listbox).not.toBeInTheDocument();
-    expect(autocomplete).toHaveAttribute("aria-expanded", "false");
-    expect(autocomplete).toHaveAttribute("aria-activedescendant", "");
+    expect(listbox).toBeInTheDocument();
   });
 
   it("should filter the options as the user types", async () => {
@@ -117,7 +115,7 @@ describe("Autocomplete", () => {
     expect(options[3]).toBe(screen.getByRole("option", { name: "Strawberry" }));
   });
 
-  it("should allow the filtering to be disabled by enabling the disableFilter prop to manually filter instead", async () => {
+  it("should allow the filtering to be disabled by providing a noop filter function (like noopAutocompleteFilter)", async () => {
     const user = userEvent.setup();
 
     // this is how you can manually resolve a promise using events
@@ -130,7 +128,13 @@ describe("Autocomplete", () => {
         });
       }, []);
 
-      return <Autocomplete {...FRUIT_PROPS} options={options} disableFilter />;
+      return (
+        <Autocomplete
+          {...FRUIT_PROPS}
+          options={options}
+          filter={noopAutocompleteFilter}
+        />
+      );
     }
 
     rmdRender(<Test />);
@@ -146,40 +150,33 @@ describe("Autocomplete", () => {
     expect(screen.getAllByRole("option")).toHaveLength(FRUITS.slice(3).length);
   });
 
-  // If the value is changed externally, the user **must** disable the filter
-  // behavior and filter themselves since it means doing a lot of funky stuff
-  // with useEffect
-  it("should allow the value to be controlled but will not update the filtered list automatically", async () => {
-    function Test(): ReactElement {
-      const [value, setValue] = useState("");
+  it("should default the filter function to noopAutocompleteFilter when the input type is search", async () => {
+    const user = userEvent.setup();
 
-      return (
-        <>
-          <Autocomplete
-            {...FRUIT_PROPS}
-            value={value}
-            onChange={(event) => setValue(event.currentTarget.value)}
-          />
-          <Button onClick={() => setValue("plu")}>Set Value</Button>
-        </>
-      );
+    // this is how you can manually resolve a promise using events
+    const instance = new EventTarget();
+    function Test(): ReactElement {
+      const [options, setOptions] = useState(FRUITS);
+      useEffect(() => {
+        instance.addEventListener("fake-filter", () => {
+          setOptions(FRUITS.slice(3));
+        });
+      }, []);
+
+      return <Autocomplete {...FRUIT_PROPS} options={options} type="search" />;
     }
 
-    const user = userEvent.setup();
     rmdRender(<Test />);
     const autocomplete = screen.getByRole("combobox", { name: "Field" });
-    const button = screen.getByRole("button", { name: "Set Value" });
 
-    await user.type(autocomplete, "BA");
-    expect(autocomplete).toHaveValue("BA");
-    expect(screen.getAllByRole("option")).toHaveLength(1);
-    expect(() => screen.getByRole("option", { name: "Banana" })).not.toThrow();
+    await user.type(autocomplete, "Hello, world!");
+    expect(screen.getAllByRole("option")).toHaveLength(FRUITS.length);
 
-    await user.click(button);
-    await user.click(autocomplete);
-    expect(autocomplete).toHaveValue("plu");
-    expect(screen.getAllByRole("option")).toHaveLength(1);
-    expect(() => screen.getByRole("option", { name: "Plum" })).not.toThrow();
+    act(() => {
+      // resolve the promise
+      instance.dispatchEvent(new Event("fake-filter"));
+    });
+    expect(screen.getAllByRole("option")).toHaveLength(FRUITS.slice(3).length);
   });
 
   it("should be able to render a CircularProgress bar when the loading prop is enabled", () => {
@@ -230,7 +227,7 @@ describe("Autocomplete", () => {
       expect(autocomplete).toHaveValue("");
     });
 
-    it("should allow keyboard users to force the menu to appear with ArrowDown and focus the first item", async () => {
+    it("should allow keyboard users to force the listbox to appear with ArrowDown and focus the first item", async () => {
       const user = userEvent.setup();
       rmdRender(<Autocomplete {...FRUIT_PROPS} />);
       const autocomplete = screen.getByRole("combobox", { name: "Field" });
@@ -254,7 +251,7 @@ describe("Autocomplete", () => {
       );
     });
 
-    it("should allow keyboard users to force the menu to appear with alt+ArrowDown without focusing the first item", async () => {
+    it("should allow keyboard users to force the listbox to appear with alt+ArrowDown without focusing the first item", async () => {
       const user = userEvent.setup();
       rmdRender(<Autocomplete {...FRUIT_PROPS} />);
       const autocomplete = screen.getByRole("combobox", { name: "Field" });
@@ -275,7 +272,7 @@ describe("Autocomplete", () => {
       expect(autocomplete).toHaveAttribute("aria-activedescendant", "");
     });
 
-    it("should allow keyboard users to force the menu to appear with ArrowUp and focus the last item", async () => {
+    it("should allow keyboard users to force the listbox to appear with ArrowUp and focus the last item", async () => {
       const user = userEvent.setup();
       rmdRender(<Autocomplete {...FRUIT_PROPS} />);
       const autocomplete = screen.getByRole("combobox", { name: "Field" });
@@ -388,8 +385,9 @@ describe("Autocomplete", () => {
       const errorMessage = `A \`TextExtractor\` must be provided to \`Autocomplete\` for lists that do not contain strings`;
       const { rerender } = rmdRender(
         // @ts-expect-error
-        <Autocomplete menuLabel="Options" options={[0, 1, 2, 3]} />
+        <Autocomplete listboxLabel="Options" options={[0, 1, 2, 3]} />
       );
+
       await expect(
         user.click(screen.getByRole("button", { name: "Options" }))
       ).rejects.toThrow(errorMessage);
@@ -397,7 +395,7 @@ describe("Autocomplete", () => {
       rerender(
         // @ts-expect-error
         <Autocomplete
-          menuLabel="Options"
+          listboxLabel="Options"
           options={[{ children: "A" }, { children: "B" }]}
         />
       );
@@ -405,8 +403,11 @@ describe("Autocomplete", () => {
         user.click(screen.getByRole("button", { name: "Options" }))
       ).rejects.toThrow(errorMessage);
       rerender(
-        // @ts-expect-error
-        <Autocomplete menuLabel="Options" options={["One", "Two", 3, "Four"]} />
+        <Autocomplete
+          listboxLabel="Options"
+          // 3 extends {} so there is no error. I can't use `object` since it makes the listbox annoying
+          options={["One", "Two", 3, "Four"]}
+        />
       );
       await expect(
         user.click(screen.getByRole("button", { name: "Options" }))
@@ -420,13 +421,14 @@ describe("Autocomplete", () => {
         rmdRender(
           <Autocomplete
             options={["a", "b", "c"]}
-            onAutocomplete={(option) => {
+            value={null}
+            setValue={(option) => {
               if (option !== null) {
                 // should not error since it is a string
                 option.charAt(0);
               }
             }}
-            menuLabel="Label"
+            listboxLabel="Label"
           />
         )
       ).not.toThrow();
@@ -434,15 +436,16 @@ describe("Autocomplete", () => {
       expect(() =>
         rmdRender(
           <Autocomplete
-            menuLabel="Label"
+            listboxLabel="Label"
             options={OBJECT_LIST}
-            extractor={(option) => {
+            getOptionLabel={(option) => {
               // @ts-expect-error
               option.label;
 
               return option.name;
             }}
-            onAutocomplete={(option) => {
+            value={null}
+            setValue={(option) => {
               if (option !== null) {
                 // should not error since it is a string
                 option.name.charAt(0);
