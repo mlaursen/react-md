@@ -85,11 +85,11 @@ $linear-channel-values: (
 );
 
 @function luminance($color) {
-  $red: list.nth($linear-channel-values, color.red($color) + 1);
+  $red: list.nth($linear-channel-values, color.channel($color, "red") + 1);
   $red-multiplier: 0.2126;
-  $green: list.nth($linear-channel-values, color.green($color) + 1);
+  $green: list.nth($linear-channel-values, color.channel($color, "green") + 1);
   $green-multiplier: 0.7152;
-  $blue: list.nth($linear-channel-values, color.blue($color) + 1);
+  $blue: list.nth($linear-channel-values, color.channel($color, "blue") + 1);
   $blue-multiplier: 0.0722;
 
   @return ($red * $red-multiplier) + ($green * $green-multiplier) +

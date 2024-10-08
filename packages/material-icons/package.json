@@ -41,16 +41,16 @@
   },
   "devDependencies": {
     "@swc/core": "^1.7.22",
-    "@types/lodash": "^4.17.7",
-    "@types/node": "^22.5.1",
-    "@types/react": "^18.3.5",
+    "@types/lodash": "^4.17.10",
+    "@types/node": "^22.7.5",
+    "@types/react": "^18.3.11",
     "eslint": "^8.57.0",
     "glob": "^11.0.0",
     "lodash": "^4.17.21",
     "prettier": "^3.3.3",
     "pretty-ms": "^9.1.0",
     "svgo": "^3.3.2",
-    "tsx": "^4.19.0",
+    "tsx": "^4.19.1",
     "typescript": "^5.5.4"
   },
   "peerDependencies": {
