@@ -1,5 +1,5 @@
 "use client";
-import { states } from "@/constants/states.js";
+import { desserts } from "@/constants/desserts.js";
 import { Autocomplete } from "@react-md/core/autocomplete/Autocomplete";
 import { type ReactElement } from "react";
 
@@ -7,9 +7,9 @@ export default function ObjectOptionsExample(): ReactElement {
   return (
     <Autocomplete
       label="State"
-      options={states}
-      extractor={(state) => state.name}
-      menuLabel="States"
+      options={desserts}
+      getOptionLabel={(dessert) => dessert.name}
+      listboxLabel="States"
     />
   );
 }

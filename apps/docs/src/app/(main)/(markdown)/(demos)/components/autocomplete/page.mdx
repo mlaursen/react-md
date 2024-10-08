@@ -8,7 +8,9 @@ filtering, matching, etc as well.
 # Simple Example
 
 An `Autocomplete` requires a list of options which can be strings or an object
-with a `label` string so that the options can be filtered as the user types.
+with a `label` string so that the options can be filtered as the user types. In
+addition, a `listboxLabel` or `listboxLabelledby` prop must be defined for
+accessibility to provide a label for the listbox.
 
 ```demo source="./SimpleExample.tsx"
 
@@ -25,15 +27,17 @@ This is the same example as above, but using options as `{ label: string }`.
 # Object Options
 
 The `Autocomplete` can support any object option by also providing an
-`extractor` prop that will return a string value for each option.
+`getOptionLabel` prop that will return a string value for each option.
+
+> !Info! See [Typescript Typing](#typescript-typing) for type behavior.
 
 ```demo source="./ObjectOptionsExample.tsx"
 
 ```
 
-## Option Props
+# Option Props
 
-The `Autocomplete` will automatically pass through common `MenuItem` props that
+The `Autocomplete` will automatically pass through common `Option` props that
 exist on each option.
 
 ```demo source="./OptionPropsExample.tsx"
@@ -48,7 +52,7 @@ Another way to pass props to each option is using the `getOptionProps` function.
 
 ```
 
-# Disabled Options
+## Disabled Options
 
 An option can be disabled by adding `disabled: true` to the option or using `getOptionProps`
 to return `disabled: true`.
@@ -57,39 +61,39 @@ to return `disabled: true`.
 
 ```
 
-# Selected Value Example
+# Controlling the Value
 
-The current selected option can be tracked using the `onAutocomplete` prop which is called whenever
-a new option is selected or the value is reset. When the value is reset, this
-will be called with `null`.
+If the current value is needed, provide a `value` and `setValue` prop.
 
-```demo source="./SelectedValueExample.tsx"
+```demo source="./ControllingTheValueExample.tsx"
 
 ```
 
-# Custom Filter Function
+## Setting a default value
 
-The `Autocomplete` uses the [caseInsensitiveSearch](/utils/case-insensitive-search) filter function by default
-but can be changed using the `filter` prop. The filter function must return the
-filtered list and is called with an object containing:
+If the value does not need to be controlled but one of the options should
+be selected by default, set the `defaultValue` prop instead.
 
-- `list` - The list of `options` to filter
-- `query` - The current text field value
-- `extractor` - The `extractor` function to get a string for each option
-- `whitespace` - Either `"ignore"`, `"trim"` (default), or `"keep"` and used by the default search functions
+> !Info! See [Typescript Typing](#typescript-typing) for type behavior.
 
-This example will show how the filter function could be swapped out for the [fuzzySearch](/utils/fuzzy-search).
-
-```demo source="./CustomFilterFunctionExample.tsx"
+```demo source="./SettingADefaultValueExample.tsx"
 
 ```
 
-## Disable Filtering
+## Controlling the input value
 
-When the `value` needs to be controlled or options are already filtered, enable the `disableFilter`
-prop.
+If the input value needs to be controlled, provide a `query` and `setQuery` prop.
 
-```demo source="./DisableFilteringExample.tsx"
+```demo source="./ControllingTheInputValueExample.tsx"
+
+```
+
+## Getting the current input value
+
+If the input value doesn't need to be controlled, the value can be retrieved
+with the normal `onChange` event handler.
+
+```demo source="./GettingTheCurrentInputValueExample.tsx"
 
 ```
 
@@ -107,10 +111,10 @@ This example below will "load" the options each time the autocomplete is opened.
 ## Debounced Search Example
 
 When the `Autocomplete` should be used as a `<input type="search" />` to send
-requests to an API as the user types to get the options, set the
-`type="search"`, enable `disableFilter`, and add a custom `onChange` handler to
-send the current value to the search API. It is recommended to either debounce
-or throttle these search requests so that each keystroke is not a new request.
+requests to an API as the user types to get the options, set the `type="search"`
+and add a custom `onChange` handler to send the current value to the search API.
+It is recommended to either debounce or throttle these search requests so that
+each keystroke is not a new request.
 
 `react-md` provides two hooks to help with debouncing and throttling:
 
@@ -126,11 +130,162 @@ show a throttled implementation.
 
 ## Throttled Search Example
 
-This is the same example as above, but using [useDebouncedFunction](/hooks/use-debounced-function)
+This is the same example as above, but using [useThrottledFunction](/hooks/use-throttled-function)
 instead.
 
 ```demo source="./ThrottledSearchExample.tsx"
 
+```
+
+# Custom Filter Function
+
+The `Autocomplete` uses the
+[caseInsensitiveSearch](/utils/case-insensitive-search) filter function by
+default but can be changed using the `filter` prop. The filter function must
+return the filtered list and is called with an object containing:
+
+- `list` - The list of `options` to filter
+- `query` - The current text field value
+- `extractor` - The `extractor` function to get a string for each option
+
+This example will show how the filter function could be swapped out for the
+[fuzzySearch](/utils/fuzzy-search).
+
+```demo source="./CustomFilterFunctionExample.tsx"
+
+```
+
+# Typescript Typing
+
+The `Autocomplete` option is defined as:
+
+```ts disableTransform
+type AutocompleteLabeledOption = string | { label: string };
+type AutocompleteOption = AutocompleteLabeledOption | {};
+```
+
+Each option should extend this type and will automatically be inferred for
+almost all use cases.
+
+```tsx disableTransform
+// ✅ Inferred as `string[]`
+<Autocomplete {...props} options={["One", "Two", "Three"]} />;
+
+// ✅ Inferred as `string[]`
+const options = ["One", "Two", "Three"];
+<Autocomplete {...props} options={options} />;
+
+// ✅ Inferred as `("One" | "Two" | "Three")[]`
+const options = ["One", "Two", "Three"] as const;
+<Autocomplete {...props} options={options} />;
+
+// ✅ Inferred as `{ name: string, value: number }`
+const options = [
+  { name: "Hello", value: 1 },
+  { name: "World", value: 2 },
+];
+<Autocomplete
+  {...props}
+  options={options}
+  getOptionLabel={(option) => option.name}
+/>;
+
+// ✅ Inferred as `State`
+interface State {
+  name: string;
+  abbreviation: string;
+}
+const options: readonly State[] = [
+  { name: "Virginia", abbreviation: "VA" },
+  { name: "Whyoming", abbreviation: "WY" },
+];
+<Autocomplete
+  {...props}
+  options={options}
+  getOptionLabel={(state) => state.name}
+/>;
+```
+
+The only time it appears to have an issue is when the list of options are
+defined with `as const`:
+
+```tsx disableTransform
+const options = [
+  { name: "Virginia", abbreviation: "VA" },
+  { name: "Whyoming", abbreviation: "WY" },
+] as const;
+<Autocomplete
+  {...props}
+  options={options}
+  // ❌ Parameter 'state' implicity has an `any` type.
+  getOptionLabel={(state) => state.name}
+/>;
+```
+
+The type issue can be resolved by one of the following:
+
+```tsx disableTransform
+const options = [
+  { name: "Virginia", abbreviation: "VA" },
+  { name: "Whyoming", abbreviation: "WY" },
+] as const;
+
+type State = (typeof options)[number];
+
+// 1. Provide the type definition to the `getOptionLabel` parameter
+<Autocomplete
+  {...props}
+  // ✅ `state` and `options` are set to the `State` type
+  options={options}
+  getOptionLabel={(state: State) => state.name}
+/>;
+
+// 2. Provide the type definition as the `Autocomplete` type parameter
+<Autocomplete<State>
+  {...props}
+  // ✅ `state` and `options` are set to the `State` type
+  options={options}
+  getOptionLabel={(state) => state.name}
+/>;
+
+// 3. Cast the options to a new list:
+<Autocomplete
+  {...props}
+  // ✅ `state` and `options` are set to the `State` type
+  options={options as State[]}
+  getOptionLabel={(state) => state.name}
+/>;
+
+// 4. Redefine the list:
+const states: readonly State[] = options;
+<Autocomplete
+  {...props}
+  // ✅ `state` and `options` are set to the `State` type
+  options={states}
+  getOptionLabel={(state) => state.name}
+/>;
+
+// 5. Provide a `defaultValue`
+const defaultValue: State | null = null
+
+<Autocomplete
+  {...props}
+  defaultValue={defaultValue}
+  // ✅ `state` and `options` are set to the `State` type
+  options={options}
+  getOptionLabel={(state) => state.name}
+/>;
+
+// 6. Control the value:
+const [value, setValue] = useState<State | null>(null);
+<Autocomplete
+  {...props}
+  value={value}
+  setValue={setValue}
+  // ✅ `state` and `options` are set to the `State` type
+  options={options}
+  getOptionLabel={(state) => state.name}
+/>;
 ```
 
 # Accessibility
@@ -143,9 +298,9 @@ they are focused.
 ## Labels
 
 - The listbox requires an `aria-label`/`aria-labelledby` by the
-  `menuLabel`/`menuLabelledby` props respectively
+  `listboxLabel`/`listboxLabelledby` props respectively
 - The dropdown button defaults to an `aria-label`/`aria-labelledby` based on the
-  `menuLabel`/`menuLabelledby` props respectively
+  `listboxLabel`/`listboxLabelledby` props respectively
 - The inline circular progress bar defaults to an `aria-label="Loading"`
 
 ## Keyboard Movement
@@ -159,6 +314,7 @@ The following keyboard movement has been implemented:
 - `Alt+ArrowDown` - Opens the listbox and keeps focus on the input.
 - `ArrowUp` - Opens the listbox and focuses the last option.
 - `Escape` - Clears the value.
+- `Home`/`End` - Moves cursor to the start and end of the input
 
 ### Open Listbox
 

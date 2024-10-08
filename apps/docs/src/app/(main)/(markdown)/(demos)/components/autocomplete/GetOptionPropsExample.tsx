@@ -1,5 +1,5 @@
 "use client";
-import { states } from "@/constants/states.js";
+import { desserts } from "@/constants/desserts.js";
 import { Autocomplete } from "@react-md/core/autocomplete/Autocomplete";
 import { Avatar } from "@react-md/core/avatar/Avatar";
 import { cssUtils } from "@react-md/core/cssUtils";
@@ -9,16 +9,16 @@ import { type ReactElement } from "react";
 export default function GetOptionPropsExample(): ReactElement {
   return (
     <Autocomplete
-      label="State"
-      options={states}
+      label="Dessert"
+      options={desserts}
       getOptionProps={({ index, option }) => ({
         className: cnb(
           index % 3 === 0 && cssUtils({ textDecoration: "line-through" })
         ),
-        leftAddon: <Avatar size="icon">{option.abbreviation}</Avatar>,
+        leftAddon: <Avatar size="icon">{option.type.charAt(0)}</Avatar>,
       })}
-      extractor={(state) => state.name}
-      menuLabel="States"
+      getOptionLabel={(dessert) => dessert.name}
+      listboxLabel="Desserts"
     />
   );
 }

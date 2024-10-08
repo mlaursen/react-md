@@ -2,6 +2,17 @@
 import { Autocomplete } from "@react-md/core/autocomplete/Autocomplete";
 import { type ReactElement } from "react";
 
+export default function SimpleLabelExample(): ReactElement {
+  return (
+    <Autocomplete
+      label="Fruit"
+      placeholder="Apple"
+      listboxLabel="Fruits"
+      options={options}
+    />
+  );
+}
+
 const options = [
   { label: "Apple" },
   { label: "Apricot" },
@@ -15,14 +26,3 @@ const options = [
   { label: "Plum" },
   { label: "Strawberry" },
 ];
-
-export default function SimpleLabelExample(): ReactElement {
-  return (
-    <Autocomplete
-      label="Fruit"
-      placeholder="Apple"
-      menuLabel="Fruits"
-      options={options}
-    />
-  );
-}

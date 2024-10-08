@@ -20,5 +20,7 @@ const options = [
 ];
 
 export default function OptionPropsExample(): ReactElement {
-  return <Autocomplete label="State" options={options} menuLabel="States" />;
+  return (
+    <Autocomplete label="Label" options={options} listboxLabel="Options" />
+  );
 }
