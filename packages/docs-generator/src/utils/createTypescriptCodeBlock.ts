@@ -8,6 +8,8 @@ import {
 } from "./replacePreElement.js";
 import { transformTsToJs } from "./transformTsToJs.js";
 
+const DISABLE_TRANSFORM = "disableTransform";
+
 export interface CreateTypescriptCodeBlockOptions
   extends ReplacePreElementWithJsxNodeOptions {
   as: string;
@@ -23,6 +25,15 @@ export async function createTypescriptCodeBlock(
     options;
 
   const tsCode = toString(codeElement).trim();
+  if (meta.includes(DISABLE_TRANSFORM)) {
+    replacePreElementWithJsxNode({
+      meta: meta.replace(DISABLE_TRANSFORM, "").trim(),
+      preElement,
+      preElementParent,
+    });
+    return;
+  }
+
   const jsCode = await transformTsToJs(tsCode, filepath);
   if (!jsCode || tsCode === jsCode) {
     replacePreElementWithJsxNode({

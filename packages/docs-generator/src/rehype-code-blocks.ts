@@ -42,6 +42,7 @@ export interface RehypeCodeBlocksOptions {
  * - If the code block is `ts `or `tsx`, try to convert it to javascript and
  *   replace the code block with:
  *   `<TypescriptCodeBlock isTsx={isTsx} tsCode={tsCode} jsCode={jsCode} />`
+ *   - if `disableTransform` exists, just render as-is
  * - If the code block has a language of `demo`, resolve the `source` code prop
  *   as the demo file to generate a new component that renders the
  *   `<CodeEditor />` with props for that demo. Then replace the code block in
