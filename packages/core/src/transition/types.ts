@@ -478,7 +478,7 @@ export interface TransitionHookReturnValue<E extends HTMLElement>
    *
    * @param stage - The {@link TransitionStage} to set to
    */
-  transitionTo(stage: TransitionStage): void;
+  transitionTo: (stage: TransitionStage) => void;
 }
 
 /**

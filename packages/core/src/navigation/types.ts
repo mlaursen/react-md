@@ -148,7 +148,7 @@ export type NavigationLinkComponent = "a" | CustomNavigationLinkComponent;
  */
 export interface NavigationExpansion {
   expandedItems: ReadonlySet<string>;
-  toggleExpandedItem(id: string): void;
+  toggleExpandedItem: (id: string) => void;
 }
 
 /**

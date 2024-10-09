@@ -133,7 +133,7 @@ export interface SliderProps extends BaseSliderProps, SliderState {
    * />
    * ```
    */
-  getTooltipProps?(value: number): Partial<TooltipProps>;
+  getTooltipProps?: (value: number) => Partial<TooltipProps>;
 
   /**
    * This can be used to update the discrete slider's value tooltip.
@@ -155,7 +155,7 @@ export interface SliderProps extends BaseSliderProps, SliderState {
    *
    * @defaultValue `(value) => value`
    */
-  getTooltipChildren?(value: number): ReactNode;
+  getTooltipChildren?: (value: number) => ReactNode;
 }
 
 /**
@@ -232,7 +232,10 @@ export interface RangeSliderProps extends BaseSliderProps, RangeSliderState {
    * />
    * ```
    */
-  getTooltipProps?(value: number, isFirstThumb: boolean): Partial<TooltipProps>;
+  getTooltipProps?: (
+    value: number,
+    isFirstThumb: boolean
+  ) => Partial<TooltipProps>;
 
   /**
    * This can be used to update the discrete slider's value tooltip.
@@ -257,7 +260,7 @@ export interface RangeSliderProps extends BaseSliderProps, RangeSliderState {
    *
    * @defaultValue `(value) => value`
    */
-  getTooltipChildren?(value: number, isFirstThumb: boolean): ReactNode;
+  getTooltipChildren?: (value: number, isFirstThumb: boolean) => ReactNode;
 }
 
 /**

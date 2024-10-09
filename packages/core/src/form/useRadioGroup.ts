@@ -91,7 +91,7 @@ export type GetRadioGroupProps<V extends string | number> = (
 
 /** @since 6.0.0 */
 export interface RadioGroupImplementation<V extends string | number> {
-  reset(): void;
+  reset: () => void;
   value: V;
   setValue: UseStateSetter<V>;
   getRadioProps: GetRadioGroupProps<V>;
@@ -99,11 +99,11 @@ export interface RadioGroupImplementation<V extends string | number> {
 
 export type GetMenuItemRadioGroupProps<V extends string | number> = (
   value: V
-) => Readonly<{ checked: boolean; onCheckedChange(): void }>;
+) => Readonly<{ checked: boolean; onCheckedChange: () => void }>;
 
 /** @since 6.0.0 */
 export interface MenuItemRadioGroupImplementation<V extends string | number> {
-  reset(): void;
+  reset: () => void;
   value: V;
   setValue: UseStateSetter<V>;
   getRadioProps: GetMenuItemRadioGroupProps<V>;
@@ -111,17 +111,17 @@ export interface MenuItemRadioGroupImplementation<V extends string | number> {
 
 /** @since 6.0.0 */
 export interface CombinedRadioGroupReturnValue<V extends string | number> {
-  reset(): void;
+  reset: () => void;
   value: V;
   setValue: UseStateSetter<V>;
-  getRadioProps?(value: V): {
+  getRadioProps?: (value: V) => {
     name?: string;
     value?: V;
     checked: boolean;
     error?: boolean;
     required?: boolean;
     onChange?: ChangeEventHandler<HTMLInputElement>;
-    onCheckedChange?(): void;
+    onCheckedChange?: () => void;
     onInvalid?: FormEventHandler<HTMLInputElement>;
   };
 }

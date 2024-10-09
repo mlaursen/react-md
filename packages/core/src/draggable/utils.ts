@@ -126,9 +126,9 @@ interface UpdateDragPositionOptions
   nodeRef: RefObject<HTMLElement>;
   focus?: boolean;
   isDragStart: boolean;
-  setValue(value: number): void;
-  setDragging(dragging: boolean): void;
-  setDragPercentage(value: number): void;
+  setValue: (value: number) => void;
+  setDragging: (dragging: boolean) => void;
+  setDragPercentage: (value: number) => void;
   withinOffsetParent: boolean;
 }
 

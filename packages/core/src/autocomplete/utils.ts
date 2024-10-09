@@ -17,8 +17,8 @@ export interface GetDefaultValueOptions<Option extends AutocompleteOption> {
     | UseStateInitializer<Option | null | readonly Option[]>
     | undefined;
   options: readonly Option[];
-  getOptionLabel(value: Option): string;
-  filter(options: AutocompleteFilterOptions<Option>): readonly Option[];
+  getOptionLabel: (value: Option) => string;
+  filter: (options: AutocompleteFilterOptions<Option>) => readonly Option[];
 }
 
 /**
@@ -80,7 +80,7 @@ export function getDefaultValue<Option extends AutocompleteOption>(
  */
 interface GetDefaultQueryOptions<Option extends AutocompleteOption> {
   value: Option | null | readonly Option[];
-  getOptionLabel(option: Option): string;
+  getOptionLabel: (option: Option) => string;
   defaultQuery?: UseStateInitializer<string>;
 }
 

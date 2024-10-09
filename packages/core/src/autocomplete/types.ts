@@ -149,8 +149,8 @@ export interface AutocompleteUnknownQueryAndValueOptions<
 export type AutocompleteOptionLabelExtractor<
   Option extends AutocompleteOption,
 > = Option extends AutocompleteLabeledOption
-  ? { getOptionLabel?(option: Option): string }
-  : { getOptionLabel(option: Option): string };
+  ? { getOptionLabel?: (option: Option) => string }
+  : { getOptionLabel: (option: Option) => string };
 
 /**
  * @since 6.0.0
@@ -196,7 +196,7 @@ export interface AutocompleteFilteringOptions<
    *
    * @defaultValue `defaultAutocompleteExtractor`
    */
-  getOptionLabel?(option: Option): string;
+  getOptionLabel?: (option: Option) => string;
 
   /**
    * The function that filters the {@link options} based on the current query
@@ -269,8 +269,7 @@ export interface AutocompleteEditableComboboxOptions<
     ListboxSelectIconProps {
   onBlur?: FocusEventHandler<ComboboxEl>;
   onChange?: ChangeEventHandler<ComboboxEl>;
-
-  onOpen?(): void;
+  onOpen?: () => void;
 }
 
 /**
@@ -336,7 +335,7 @@ export interface AutocompleteListboxProps<
     ListboxSelectIconProps {
   value: T | null | readonly T[];
   setValue: Dispatch<T>;
-  onEnter(appearing: boolean): void;
+  onEnter: (appearing: boolean) => void;
 }
 
 /**
@@ -360,15 +359,15 @@ export interface AutocompleteWithQueryImplementation<
   setQuery: Dispatch<string>;
   comboboxProps: AutocompleteComboboxProps<ComboboxEl>;
   availableOptions: readonly Option[];
-  getListboxProps(
+  getListboxProps: (
     overrides?: ConfigurableAutocompleteListboxProps
-  ): AutocompleteListboxProps<Option, PopupEl>;
-  getClearButtonProps(
+  ) => AutocompleteListboxProps<Option, PopupEl>;
+  getClearButtonProps: (
     overrides?: ConfigurableAutocompleteClearButtonProps
-  ): AutocompleteClearButtonProps;
-  getDropdownButtonProps(
+  ) => AutocompleteClearButtonProps;
+  getDropdownButtonProps: (
     overrides?: ConfigurableAutocompleteDropdownButtonProps
-  ): AutocompleteDropdownButtonProps;
+  ) => AutocompleteDropdownButtonProps;
 }
 
 /**

@@ -12,11 +12,10 @@ const noop = (): ReactNode => undefined;
 export interface SegmentedButtonsProps<V extends string>
   extends Omit<SegmentedButtonContainerProps, "children"> {
   textTransform?: TextTransform;
-
   icon?: Record<V, ReactNode> | ((item: V) => ReactNode);
   items: readonly V[];
   value: V;
-  setValue(nextValue: V): void;
+  setValue: (nextValue: V) => void;
 }
 
 export function SegmentedButtons<V extends string>(

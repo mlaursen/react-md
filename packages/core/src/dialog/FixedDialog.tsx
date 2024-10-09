@@ -14,7 +14,7 @@ export interface BaseFixedDialogProps extends Omit<BaseDialogProps, "type"> {
   anchor?: PositionAnchor;
   fixedTo: RefObject<HTMLElement>;
   options?: CalculateFixedPositionOptions;
-  getFixedPositionOptions?(): CalculateFixedPositionOptions;
+  getFixedPositionOptions?: () => CalculateFixedPositionOptions;
 
   /**
    * @defaultValue `true`

@@ -67,7 +67,7 @@ export interface BaseDialogProps
    *   the user presses the `"Escape"` key.
    * - The overlay element is clicked
    */
-  onRequestClose(): void;
+  onRequestClose: () => void;
 
   /** @defaultValue `false` */
   disableTransition?: boolean;

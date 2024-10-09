@@ -12,7 +12,7 @@ export interface ContextMenuProps extends InitialCoords {
   fixedTo: RefObject<HTMLElement>;
   visible: boolean;
   preventScroll: boolean;
-  onRequestClose(): void;
+  onRequestClose: () => void;
 }
 
 /**
@@ -37,7 +37,7 @@ export interface ContextMenuHookOptions {
    * @defaultValue `true`
    */
   preventScroll?: boolean;
-  onContextMenu?<E extends HTMLElement>(event: MouseEvent<E>): void;
+  onContextMenu?: <E extends HTMLElement>(event: MouseEvent<E>) => void;
 }
 
 /**
@@ -49,7 +49,7 @@ export interface ContextMenuHookOptions {
 export interface ContextMenuImplementation
   extends UseStateObject<"visible", boolean> {
   menuProps: ContextMenuProps;
-  onContextMenu<E extends HTMLElement>(event: MouseEvent<E>): void;
+  onContextMenu: <E extends HTMLElement>(event: MouseEvent<E>) => void;
 }
 
 const noop = (): void => {

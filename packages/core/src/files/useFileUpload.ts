@@ -122,13 +122,13 @@ export interface FileUploadActions {
    * Reset everything related to uploads ensuring that all file readers have
    * been aborted.
    */
-  reset(): void;
+  reset: () => void;
 
   /**
    * Removes all the errors that exist in state without canceling any of the
    * uploads already in progress.
    */
-  clearErrors(): void;
+  clearErrors: () => void;
 
   /**
    * This function is used to cancel pending and uploading files or removing
@@ -137,7 +137,7 @@ export interface FileUploadActions {
    * @param keyOrKeys - A single or list of {@link BaseFileUploadStats.key} to
    * remove from state.
    */
-  remove(keyOrKeys: string | readonly string[]): void;
+  remove: (keyOrKeys: string | readonly string[]) => void;
 }
 
 /**

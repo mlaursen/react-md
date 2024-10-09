@@ -101,7 +101,7 @@ export interface SliderThumbPresentation {
    *
    * @defaultValue `() => ""`
    */
-  getValueText?(value: number): string;
+  getValueText?: (value: number) => string;
 
   /**
    * Set this to `true` if the slider's thumb position should only update when
@@ -145,11 +145,11 @@ export interface SliderThumbProps
   vertical: boolean;
   onChange: ChangeEventHandler<HTMLInputElement>;
   tooltipProps?: Partial<TooltipProps>;
-  getTooltipProps(
+  getTooltipProps: (
     value: number,
     isFirstThumb: boolean
-  ): Partial<TooltipProps> | void;
-  getTooltipChildren(value: number, isFirstThumb: boolean): ReactNode;
+  ) => Partial<TooltipProps> | void;
+  getTooltipChildren: (value: number, isFirstThumb: boolean) => ReactNode;
 }
 
 /**

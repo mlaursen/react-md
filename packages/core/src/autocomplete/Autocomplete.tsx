@@ -84,9 +84,9 @@ export interface AutocompleteBaseProps<Option extends AutocompleteOption>
    * }}
    * ```
    */
-  getOptionProps?(
+  getOptionProps?: (
     options: AutocompleteGetOptionPropsOptions<Option>
-  ): ConfigurableAutocompleteOptionProps | undefined;
+  ) => ConfigurableAutocompleteOptionProps | undefined;
 
   /**
    * This can be used to add any custom styling, change the icon, change the
@@ -134,7 +134,7 @@ export interface AutocompleteBaseProps<Option extends AutocompleteOption>
    */
   disableClearButton?: boolean;
 
-  onOpen?(): void;
+  onOpen?: () => void;
 
   /**
    * The children to display when there are no {@link options} due to the

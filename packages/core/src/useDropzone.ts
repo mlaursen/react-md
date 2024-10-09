@@ -12,10 +12,10 @@ const noop = (): void => {
  * instead of the `DropzoneHandlers` type.
  */
 export interface DropzoneHandlers {
-  onDrop<E extends HTMLElement>(event: DragEvent<E>): void;
-  onDragEnter?<E extends HTMLElement>(event: DragEvent<E>): void;
-  onDragOver?<E extends HTMLElement>(event: DragEvent<E>): void;
-  onDragLeave?<E extends HTMLElement>(event: DragEvent<E>): void;
+  onDrop: <E extends HTMLElement>(event: DragEvent<E>) => void;
+  onDragEnter?: <E extends HTMLElement>(event: DragEvent<E>) => void;
+  onDragOver?: <E extends HTMLElement>(event: DragEvent<E>) => void;
+  onDragLeave?: <E extends HTMLElement>(event: DragEvent<E>) => void;
 }
 
 /**

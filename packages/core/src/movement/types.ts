@@ -203,8 +203,8 @@ export interface KeyboardMovementExtensionData<E extends HTMLElement>
   extends KeyboardMovementContext {
   event: KeyboardEvent<E>;
   currentFocusIndex: NonNullMutableRef<number>;
-  setFocusIndex(index: number, focusables: readonly HTMLElement[]): void;
-  setActiveDescendantId(id: string): void;
+  setFocusIndex: (index: number, focusables: readonly HTMLElement[]) => void;
+  setActiveDescendantId: (id: string) => void;
 }
 
 /**
@@ -217,9 +217,9 @@ export interface KeyboardMovementProviderOptions<E extends HTMLElement>
   /** @see {@link TabIndexBehavior} */
   tabIndexBehavior?: TabIndexBehavior;
 
-  onClick?(event: MouseEvent<E>): void;
-  onFocus?(event: FocusEvent<E>): void;
-  onKeyDown?(event: KeyboardEvent<E>): void;
+  onClick?: (event: MouseEvent<E>) => void;
+  onFocus?: (event: FocusEvent<E>) => void;
+  onKeyDown?: (event: KeyboardEvent<E>) => void;
 
   /** @defaultValue `false` */
   disabled?: boolean;

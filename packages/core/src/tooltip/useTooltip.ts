@@ -122,13 +122,13 @@ export interface TooltipPositioningOptions {
 export interface TooltippedElementEventHandlers<
   E extends HTMLElement = HTMLButtonElement,
 > {
-  onBlur?(event: FocusEvent<E>): void;
-  onFocus?(event: FocusEvent<E>): void;
-  onMouseEnter?(event: MouseEvent<E>): void;
-  onMouseLeave?(event: MouseEvent<E>): void;
-  onTouchStart?(event: TouchEvent<E>): void;
-  onTouchEnd?(event: TouchEvent<E>): void;
-  onContextMenu?(event: MouseEvent<E>): void;
+  onBlur?: (event: FocusEvent<E>) => void;
+  onFocus?: (event: FocusEvent<E>) => void;
+  onMouseEnter?: (event: MouseEvent<E>) => void;
+  onMouseLeave?: (event: MouseEvent<E>) => void;
+  onTouchStart?: (event: TouchEvent<E>) => void;
+  onTouchEnd?: (event: TouchEvent<E>) => void;
+  onContextMenu?: (event: MouseEvent<E>) => void;
 }
 
 /**
@@ -292,7 +292,7 @@ export interface TooltipImplementation<
    * This is a wrapper around the {@link setVisible} behavior that will also
    * clear any pending timeouts.
    */
-  hideTooltip(): void;
+  hideTooltip: () => void;
 
   /**
    * @since 6.0.0

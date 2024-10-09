@@ -15,7 +15,7 @@ import {
 
 export interface PrismThemeContext {
   prismTheme: PrismTheme;
-  setPrismTheme(theme: PrismTheme): void;
+  setPrismTheme: (theme: PrismTheme) => void;
 }
 
 const context = createContext<PrismThemeContext | null>(null);

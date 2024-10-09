@@ -13,7 +13,7 @@ export interface TreeSelection {
   /** @defaultValue `false` */
   multiSelect?: boolean;
   selectedIds: ReadonlySet<string>;
-  toggleTreeItemSelection(itemId: string): void;
+  toggleTreeItemSelection: (itemId: string) => void;
   selectMultipleTreeItems: UseStateSetter<TreeItemIdSet>;
 }
 

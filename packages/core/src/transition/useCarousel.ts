@@ -22,13 +22,13 @@ export interface CarouselImplementation extends CarouselState {
    * Increments the carousel slide active index by 1 ensuring it does not
    * advance past the {@link CarouselOptions.totalSlides} index.
    */
-  increment(): void;
+  increment: () => void;
 
   /**
    * Decrements the carousel slide active index by 1 and prevents decrementing
    * past 0.
    */
-  decrement(): void;
+  decrement: () => void;
 
   /**
    * This can be used to manually control the {@link paused} state.
@@ -38,7 +38,7 @@ export interface CarouselImplementation extends CarouselState {
   /**
    * Toggles the {@link paused} state.
    */
-  togglePaused(): void;
+  togglePaused: () => void;
 
   /**
    * A convenience wrapper for the {@link setCarouselSlideState} that will

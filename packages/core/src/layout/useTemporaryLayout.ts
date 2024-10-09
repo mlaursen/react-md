@@ -56,8 +56,8 @@ export type ProvidedTemporaryLayoutAppBarProps = Required<
  */
 export interface TemporaryLayoutImplementation {
   visible: boolean;
-  showTemporaryNav(): void;
-  hideTemporaryNav(): void;
+  showTemporaryNav: () => void;
+  hideTemporaryNav: () => void;
   appBarProps: ProvidedTemporaryLayoutAppBarProps;
   mainProps: ProvidedTemporaryLayoutMainProps;
   navToggleProps: ProvidedLayoutNavToggleProps;

@@ -58,7 +58,7 @@ export interface AlphaNumericSortOptions<T> {
    * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator
    * @defaultValue `new Intl.Collator("en-US", { numeric: true, caseFirst: "upper" }).compare`
    */
-  compare?(a: string, b: string): number;
+  compare?: (a: string, b: string) => number;
 
   /**
    * Setting this to `true` will return the list in descending order instead of

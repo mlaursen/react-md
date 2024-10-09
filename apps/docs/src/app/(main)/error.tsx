@@ -6,7 +6,7 @@ import { type ReactElement } from "react";
 
 export interface ErrorPageProps {
   error: Error & { digest?: string };
-  reset(): void;
+  reset: () => void;
 }
 
 export default function ErrorPage(props: ErrorPageProps): ReactElement {

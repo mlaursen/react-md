@@ -14,7 +14,7 @@ import { CircularProgress } from "../progress/CircularProgress.js";
 import { useAsyncFunction } from "../useAsyncFunction.js";
 
 interface TestProps extends ButtonProps {
-  onClick(event: MouseEvent<HTMLButtonElement>): Promise<void>;
+  onClick: (event: MouseEvent<HTMLButtonElement>) => Promise<void>;
   hookDisabled?: boolean;
 }
 

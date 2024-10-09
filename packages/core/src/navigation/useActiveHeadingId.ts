@@ -112,7 +112,7 @@ export interface ActiveHeadingIdOptions {
   threshold?: IntersectionObserverThreshold;
 
   /** @see {@link DEFAULT_ACTIVE_HEADING_GET_ROOT_MARGIN} */
-  getRootMargin?(): IntersectionObserverRootMargin;
+  getRootMargin?: () => IntersectionObserverRootMargin;
 
   /** @defaultValue `headings[0]?.id ?? ""` */
   defaultActiveId?: UseStateInitializer<string>;

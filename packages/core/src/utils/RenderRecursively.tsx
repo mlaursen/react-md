@@ -97,7 +97,7 @@ export interface RenderRecursivelyProps<
    * @see {@link getRecursiveItemKey}
    * @defaultValue `({ index, depth }) => ${depth}-${index}`.
    */
-  getItemKey?(options: RecursiveItemKeyOptions<Item>): string;
+  getItemKey?: (options: RecursiveItemKeyOptions<Item>) => string;
 }
 
 /**

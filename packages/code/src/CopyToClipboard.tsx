@@ -12,9 +12,9 @@ const noop = (): void => {
 };
 
 export interface CopyToClipboardProps extends TooltippedButtonProps {
-  onCopied?(text: string): void;
+  onCopied?: (text: string) => void;
   copyText?: string;
-  getCopyText?(button: HTMLButtonElement): string;
+  getCopyText?: (button: HTMLButtonElement) => string;
 }
 
 export function CopyToClipboard(

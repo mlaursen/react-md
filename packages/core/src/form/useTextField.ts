@@ -317,7 +317,7 @@ export interface TextFieldImplementation<
   E extends HTMLInputElement | HTMLTextAreaElement,
 > extends TextFieldHookState {
   fieldRef: RefObject<E>;
-  reset(): void;
+  reset: () => void;
   setState: UseStateSetter<Readonly<TextFieldHookState>>;
   fieldProps: ProvidedTextFieldProps<E>;
 }

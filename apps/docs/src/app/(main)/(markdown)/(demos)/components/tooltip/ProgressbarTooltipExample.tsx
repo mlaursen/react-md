@@ -44,7 +44,7 @@ export default function ProgressbarTooltipExample(): ReactElement {
 
 function useIncrementingValue(): {
   value: number;
-  toggle(): void;
+  toggle: () => void;
   toggled: boolean;
 } {
   const { toggled, toggle } = useToggle();

@@ -34,7 +34,7 @@ export interface WritingDirectionContext {
   /**
    * Toggles the current writing direction for the first parent `Dir` component.
    */
-  toggleDir(): void;
+  toggleDir: () => void;
 }
 
 /** @internal */

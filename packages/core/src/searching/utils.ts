@@ -24,7 +24,7 @@ export const defaultExtractor =
  */
 export interface SearchOptions<T> extends BaseSearchOptions<T> {
   type: "search" | "filter";
-  filter(query: string, value: string): boolean;
+  filter: (query: string, value: string) => boolean;
   extractor: TextExtractor<T>;
 }
 

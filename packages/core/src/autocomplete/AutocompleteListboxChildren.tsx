@@ -14,10 +14,10 @@ export interface AutocompleteListboxChildrenProps<
   Option extends AutocompleteOption,
 > {
   options: readonly Option[];
-  getOptionLabel(option: Option): string;
-  getOptionProps(
+  getOptionLabel: (option: Option) => string;
+  getOptionProps: (
     options: AutocompleteGetOptionPropsOptions<Option>
-  ): ConfigurableAutocompleteOptionProps | undefined;
+  ) => ConfigurableAutocompleteOptionProps | undefined;
   children: ReactNode;
   noOptionsChildren: ReactNode;
 }

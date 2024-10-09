@@ -12,7 +12,7 @@ const noop = (): void => {
 };
 
 export interface DangerouslyRunCodeOptions extends DangerouslyEvalCodeOptions {
-  onRendered?(error: Error | null): void;
+  onRendered?: (error: Error | null) => void;
 }
 
 export interface DangerouslyRunCodeResult {

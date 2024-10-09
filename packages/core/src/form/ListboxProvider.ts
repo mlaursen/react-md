@@ -6,6 +6,8 @@ import { createContext, useContext } from "react";
  * @since 6.0.0
  */
 export interface ListboxContext {
+  // NOTE: These are not converted to arrow functions so the option can be
+  // inferred correctly
   selectOption(option: unknown): void;
   isOptionSelected(option: unknown): boolean;
 

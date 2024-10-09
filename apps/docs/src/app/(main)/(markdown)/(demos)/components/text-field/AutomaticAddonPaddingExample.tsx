@@ -93,7 +93,7 @@ const max = ADDONS.length - 1;
 
 interface RotatingAddonsProps
   extends Pick<TextFieldProps, "leftAddon" | "rightAddon"> {
-  toggle(): void;
+  toggle: () => void;
   running: boolean;
 }
 

@@ -29,7 +29,7 @@ export interface ExpansionPanelProps extends CardProps {
    * A function that should toggle the {@link expanded} state. This should
    * generally be provided by the `useExpansionPanels` hook.
    */
-  onExpandClick(): void;
+  onExpandClick: () => void;
 
   /**
    * Set this to `true` to prevent the panel from toggling the {@link expanded}

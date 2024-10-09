@@ -101,7 +101,7 @@ export type MatchMediaSpiedFunction = jest.SpiedFunction<
    * // expect phone results
    * ```
    */
-  changeViewport(matcher: MatchMediaMatcher, disableAct?: boolean): void;
+  changeViewport: (matcher: MatchMediaMatcher, disableAct?: boolean) => void;
 };
 
 /**

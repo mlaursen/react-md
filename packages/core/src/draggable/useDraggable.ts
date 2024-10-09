@@ -282,22 +282,22 @@ export interface DraggableImplementation<E extends HTMLElement = HTMLElement>
   /**
    * Set the {@link value} to {@link DraggableOptions.min}.
    */
-  minimum(): void;
+  minimum: () => void;
 
   /**
    * Set the {@link value} to {@link DraggableOptions.max}.
    */
-  maximum(): void;
+  maximum: () => void;
 
   /**
    * Increment the {@link value} by {@link DraggableOptions.step}.
    */
-  increment(): void;
+  increment: () => void;
 
   /**
    * Decrement the {@link value} by {@link DraggableOptions.step}.
    */
-  decrement(): void;
+  decrement: () => void;
 
   /**
    * The current percentage the `value` is within the range.

@@ -3,7 +3,7 @@ import "server-only";
 
 interface GetCookieOptions<V extends string> {
   name: string;
-  isValid(value: string): value is V;
+  isValid: (value: string) => value is V;
   defaultValue: V;
   instance: ReturnType<typeof cookies>;
 }

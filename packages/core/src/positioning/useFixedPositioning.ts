@@ -109,7 +109,7 @@ export interface FixedPositioningOptions<
    * some options require the element to be in the DOM for specific
    * calculations.
    */
-  getFixedPositionOptions?(): CalculateFixedPositionOptions;
+  getFixedPositionOptions?: () => CalculateFixedPositionOptions;
 
   /**
    * An optional function to call if the page resizes while the `FixedElement`
@@ -148,7 +148,7 @@ export interface FixedPositioningHookReturnValue<E extends HTMLElement> {
   /**
    * A function that can be called to update the style for the fixed element.
    */
-  updateStyle(): void;
+  updateStyle: () => void;
 
   /** {@inheritDoc FixedPositioningTransitionOptions} */
   transitionOptions: Readonly<Required<FixedPositioningTransitionOptions<E>>>;

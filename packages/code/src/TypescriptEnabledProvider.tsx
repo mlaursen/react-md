@@ -15,7 +15,7 @@ const noop = (): void => {
 
 export interface TypescriptEnabledContext {
   isTypescriptEnabled: boolean;
-  setTypescriptEnabled(enabled: boolean): void;
+  setTypescriptEnabled: (enabled: boolean) => void;
 }
 
 const context = createContext<TypescriptEnabledContext | null>(null);
@@ -34,7 +34,7 @@ export function useTypescriptEnabledContext(): TypescriptEnabledContext {
 export interface TypescriptEnabledProviderProps {
   children: ReactNode;
   defaultValue?: UseStateInitializer<boolean>;
-  onTypescriptEnabledChange?(enabled: boolean): void;
+  onTypescriptEnabledChange?: (enabled: boolean) => void;
 }
 
 export function TypescriptEnabledProvider(

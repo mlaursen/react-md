@@ -9,15 +9,15 @@ import { createContext, useContext } from "react";
  */
 export interface CurrentToastActions {
   /** @see {@link ToastManager.clearTimer} */
-  clearTimer(): void;
+  clearTimer: () => void;
   /** @see {@link ToastManager.removeToast} */
-  removeToast(transition: boolean): void;
+  removeToast: (transition: boolean) => void;
   /** @see {@link ToastManager.startRemoveTimeout} */
-  startRemoveTimeout(): void;
+  startRemoveTimeout: () => void;
   /** @see {@link ToastManager.pauseRemoveTimeout} */
-  pauseRemoveTimeout(): void;
+  pauseRemoveTimeout: () => void;
   /** @see {@link ToastManager.resumeRemoveTimeout} */
-  resumeRemoveTimeout(): void;
+  resumeRemoveTimeout: () => void;
 }
 
 const context = createContext<CurrentToastActions | null>(null);

@@ -8,7 +8,7 @@ import { type RunnableCodeScope } from "./types.js";
 import { type DangerouslyRunCodeOptions } from "./useDangerousCodeRunner.js";
 
 export interface DangerousCodeRunnerProps extends DangerouslyRunCodeOptions {
-  onRendered(error: Error | null): void;
+  onRendered: (error: Error | null) => void;
 }
 
 export interface DangerousCodeRunnerState {

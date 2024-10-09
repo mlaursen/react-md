@@ -94,9 +94,9 @@ export interface ExpandableLayoutImplementation
   temporary: boolean;
   persistent: boolean;
   expanded: boolean;
-  expandNavigation(): void;
-  collapseNavigation(): void;
-  toggleNavigation(): void;
+  expandNavigation: () => void;
+  collapseNavigation: () => void;
+  toggleNavigation: () => void;
   appBarProps: ProvidedLayoutAppBarProps;
   mainProps: ProvidedLayoutMainProps;
   navToggleProps: ProvidedExpandableLayoutNavToggleProps;

@@ -65,11 +65,11 @@ export interface MaterialIconsAndSymbolsContext
   weight: MaterialSymbolWeight;
   grade: MaterialSymbolGrade;
   opticalSize: MaterialSymbolOpticalSize;
-  selectIcon(name: MaterialIconAndSymbolName): void;
-  deselectIcon(): void;
-  toggleFilters(): void;
-  resetSymbols(): void;
-  resetFilters(): void;
+  selectIcon: (name: MaterialIconAndSymbolName) => void;
+  deselectIcon: () => void;
+  toggleFilters: () => void;
+  resetSymbols: () => void;
+  resetFilters: () => void;
   isFillChanged: boolean;
   isGradeChanged: boolean;
   isWeightChanged: boolean;
@@ -81,9 +81,9 @@ export interface MaterialIconsAndSymbolsContext
   isFontFamilyChanged: boolean;
   isSymbolCustomizationChanged: boolean;
   isResettable: boolean;
-  setSearch(search: string): void;
-  setIconType(iconType: IconType): void;
-  setIconFamily(iconFamily: MaterialIconFamily): void;
-  setIconCategory(iconCategory: IconCategoryFilter): void;
-  changeSvgToFont(): void;
+  setSearch: (search: string) => void;
+  setIconType: (iconType: IconType) => void;
+  setIconFamily: (iconFamily: MaterialIconFamily) => void;
+  setIconCategory: (iconCategory: IconCategoryFilter) => void;
+  changeSvgToFont: () => void;
 }

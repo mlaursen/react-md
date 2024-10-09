@@ -35,7 +35,7 @@ export interface TabListHookOptions {
   ref: Ref<HTMLDivElement> | undefined;
   style: CSSProperties | undefined;
   activeIndex: number;
-  setActiveIndex(nextActiveIndex: number): void;
+  setActiveIndex: (nextActiveIndex: number) => void;
   scrollButtons: boolean;
   activationMode: "manual" | "automatic";
   vertical: boolean;

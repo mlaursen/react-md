@@ -129,7 +129,7 @@ export interface SelectProps<Value extends string>
   defaultValue?: Value;
 
   /** @see {@link SelectChangeEvent} */
-  onChange?(event: SelectChangeEvent<Value>): void;
+  onChange?: (event: SelectChangeEvent<Value>) => void;
 
   /**
    * An optional floating label to display like other form fields.

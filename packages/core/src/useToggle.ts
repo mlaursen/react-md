@@ -8,9 +8,9 @@ import { type UseStateInitializer, type UseStateSetter } from "./types.js";
 export interface ToggleImplementation {
   toggled: boolean;
   setToggled: UseStateSetter<boolean>;
-  toggle(): void;
-  enable(): void;
-  disable(): void;
+  toggle: () => void;
+  enable: () => void;
+  disable: () => void;
 }
 
 /**

@@ -11,7 +11,7 @@ import { type TreeDefaultIds, type TreeItemIdSet } from "./types.js";
  */
 export interface TreeExpansion {
   expandedIds: TreeItemIdSet;
-  toggleTreeItemExpansion(itemId: string): void;
+  toggleTreeItemExpansion: (itemId: string) => void;
   expandMultipleTreeItems: UseStateSetter<TreeItemIdSet>;
 }
 

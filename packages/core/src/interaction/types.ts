@@ -156,8 +156,8 @@ export type RippleStateList = readonly RippleState[];
  * @internal
  */
 export interface RippleTransitionCallbacks {
-  onEntered(ripple: RippleState): void;
-  onExited(ripple: RippleState): void;
+  onEntered: (ripple: RippleState) => void;
+  onExited: (ripple: RippleState) => void;
 }
 
 /**

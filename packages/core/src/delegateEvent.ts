@@ -13,12 +13,12 @@ export interface DelegatedEventHandler {
   /**
    * Adds the provided callback to the throttled event listener.
    */
-  add(callback: EventListener): void;
+  add: (callback: EventListener) => void;
 
   /**
    * Attempts to remove the provided callback from the throttled event listener.
    */
-  remove(callback: EventListener): void;
+  remove: (callback: EventListener) => void;
 }
 
 /** @internal */

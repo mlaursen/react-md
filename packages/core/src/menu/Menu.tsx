@@ -117,7 +117,7 @@ export interface MenuConfigurationProps extends CalculateFixedPositionOptions {
   closeOnResize?: boolean;
 
   /** @see {@link FixedPositioningOptions.getFixedPositionOptions} */
-  getFixedPositionOptions?(): CalculateFixedPositionOptions;
+  getFixedPositionOptions?: () => CalculateFixedPositionOptions;
 }
 
 /**
@@ -215,7 +215,7 @@ export interface MenuProps
     MenuListConvenienceProps,
     MenuSheetConvenienceProps {
   visible: boolean;
-  onRequestClose(): void;
+  onRequestClose: () => void;
 
   /**
    * @defaultValue `"menu-" + useId()`

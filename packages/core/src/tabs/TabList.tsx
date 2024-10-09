@@ -24,7 +24,7 @@ import { type useTabs } from "./useTabs.js";
  */
 export interface TabListProps extends HTMLAttributes<HTMLDivElement> {
   activeIndex: number;
-  setActiveIndex(nextActiveIndex: number): void;
+  setActiveIndex: (nextActiveIndex: number) => void;
 
   /**
    * @defaultValue `"left"`

@@ -88,7 +88,7 @@ interface SortState {
 }
 
 interface SortedColumnsHookResult extends SortState {
-  update(sortKey: DessertKey): void;
+  update: (sortKey: DessertKey) => void;
 }
 
 function useSortedColumns(): SortedColumnsHookResult {

@@ -136,11 +136,11 @@ export interface TabsImplementation<TabValue extends string | number = number> {
   direction: SlideDirection;
   setDirection: UseStateSetter<SlideDirection>;
   activeTab?: TabValue;
-  setActiveTab?(nextActiveTab: TabValue): void;
-  getTabProps(tabValue: TabValue): ProvidedTabProps;
-  getTabListProps(): ProvidedTabListProps;
-  getTabPanelProps(tabValue: TabValue): ProvidedTabPanelProps;
-  getTabPanelsProps<E extends HTMLElement>(): ProvidedTabPanelsProps<E>;
+  setActiveTab?: (nextActiveTab: TabValue) => void;
+  getTabProps: (tabValue: TabValue) => ProvidedTabProps;
+  getTabListProps: () => ProvidedTabListProps;
+  getTabPanelProps: (tabValue: TabValue) => ProvidedTabPanelProps;
+  getTabPanelsProps: <E extends HTMLElement>() => ProvidedTabPanelsProps<E>;
 }
 
 /**

@@ -42,7 +42,7 @@ export interface ReadonlySetOptions<T> {
 export interface ReadonlySetImplementation<T> {
   value: ReadonlySet<T>;
   setValue: UseStateSetter<ReadonlySet<T>>;
-  toggleValue(item: T): void;
+  toggleValue: (item: T) => void;
 }
 
 /**

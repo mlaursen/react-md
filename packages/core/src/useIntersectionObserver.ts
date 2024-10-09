@@ -89,7 +89,7 @@ export interface BaseIntersectionObserverHookOptions {
    *     // pretend some expensive computation
    *     return [0, 0.25, 0.5, 0.75, 1];
    *   }, []),
-   *   OnUpdate: useCallback(() => {
+   *   onUpdate: useCallback(() => {
    *     // do something
    *   }, []),
    * });
@@ -97,7 +97,7 @@ export interface BaseIntersectionObserverHookOptions {
    *
    * If this option is provided, {@link threshold}'s value will be ignored.
    */
-  getThreshold?(): IntersectionObserverThreshold;
+  getThreshold?: () => IntersectionObserverThreshold;
 
   /**
    * **Must be wrapped in `useCallback` to prevent re-creating the
@@ -121,7 +121,7 @@ export interface BaseIntersectionObserverHookOptions {
    *
    * Note: If this option is provided, {@link rootMargin} will be ignored.
    */
-  getRootMargin?(): IntersectionObserverRootMargin;
+  getRootMargin?: () => IntersectionObserverRootMargin;
 }
 
 /**
@@ -156,7 +156,7 @@ export interface IntersectionObserverHookOptions<E extends HTMLElement>
    * }
    * ```
    */
-  onUpdate(entries: readonly IntersectionObserverEntry[]): void;
+  onUpdate: (entries: readonly IntersectionObserverEntry[]) => void;
 
   /**
    * **Must be wrapped in `useCallback` to prevent re-creating the
@@ -185,7 +185,7 @@ export interface IntersectionObserverHookOptions<E extends HTMLElement>
    * }
    * ```
    */
-  getTargets?(): readonly Element[];
+  getTargets?: () => readonly Element[];
 }
 
 /**

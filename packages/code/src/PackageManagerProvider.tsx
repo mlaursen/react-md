@@ -24,7 +24,7 @@ export const DEFAULT_PACKAGE_MANAGERS: readonly PackageManager[] = [
 export interface PackageManagerContext {
   packageManager: PackageManager;
   packageManagers: readonly PackageManager[];
-  setPackageManager(packageManager: PackageManager): void;
+  setPackageManager: (packageManager: PackageManager) => void;
 }
 
 const context = createContext<PackageManagerContext | null>(null);
@@ -44,7 +44,7 @@ export interface PackageManagerProviderProps {
   children: ReactNode;
   defaultValue?: UseStateInitializer<PackageManager>;
   packageManagers?: readonly PackageManager[];
-  onPackageManagerChange?(nextPackageManager: PackageManager): void;
+  onPackageManagerChange?: (nextPackageManager: PackageManager) => void;
 }
 
 export function PackageManagerProvider(

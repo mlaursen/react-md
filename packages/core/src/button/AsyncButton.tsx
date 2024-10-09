@@ -47,7 +47,7 @@ export interface AsyncButtonProps extends ButtonProps {
    *
    * @defaultValue `() => {}`
    */
-  onClick?(event: MouseEvent<HTMLButtonElement>): Promise<void> | void;
+  onClick?: (event: MouseEvent<HTMLButtonElement>) => Promise<void> | void;
 
   /**
    * Set this to `true` to manually display a loading spinner.

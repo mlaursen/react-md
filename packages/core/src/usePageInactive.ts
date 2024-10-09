@@ -36,7 +36,7 @@ export interface PageInactiveOptions {
    * This will be called whenever the page activity changes based on the
    * {@link PageInactiveType}.
    */
-  onChange(active: boolean): void;
+  onChange: (active: boolean) => void;
 
   /**
    * This will be fired whenever the {@link disabled} state is `true` which can
@@ -47,7 +47,7 @@ export interface PageInactiveOptions {
    *
    * @defaultValue `() => {}`
    */
-  onDisabledCleanup?(): void;
+  onDisabledCleanup?: () => void;
 }
 
 /**

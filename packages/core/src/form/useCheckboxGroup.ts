@@ -56,37 +56,37 @@ export interface CheckboxGroupOptions<V> {
 
 /** @since 6.0.0 */
 export interface CheckboxGroupImplementation<V extends string> {
-  reset(): void;
+  reset: () => void;
   checkedValues: ReadonlySet<V>;
   setCheckedValues: UseStateSetter<ReadonlySet<V>>;
-  getCheckboxProps(value: V): {
+  getCheckboxProps: (value: V) => {
     name: string;
     value: V;
     checked: boolean;
-    onChange(): void;
+    onChange: () => void;
   };
 }
 
 /** @since 6.0.0 */
 export interface IndeterminateCheckboxGroupImplementation<V extends string>
   extends CheckboxGroupImplementation<V> {
-  getIndeterminateProps(): {
+  getIndeterminateProps: () => {
     "aria-checked": "mixed" | undefined;
     name: string;
     checked: boolean;
     indeterminate: boolean;
-    onChange(): void;
+    onChange: () => void;
   };
 }
 
 /** @since 6.0.0 */
 export interface MenuItemCheckboxGroupImplementation<V extends string> {
-  reset(): void;
+  reset: () => void;
   checkedValues: ReadonlySet<V>;
   setCheckedValues: UseStateSetter<ReadonlySet<V>>;
-  getCheckboxProps(value: V): {
+  getCheckboxProps: (value: V) => {
     checked: boolean;
-    onCheckedChange(): void;
+    onCheckedChange: () => void;
   };
 }
 
@@ -94,33 +94,33 @@ export interface MenuItemCheckboxGroupImplementation<V extends string> {
 export interface IndeterminateMenuItemCheckboxGroupImplementation<
   V extends string,
 > extends MenuItemCheckboxGroupImplementation<V> {
-  getIndeterminateProps(): {
+  getIndeterminateProps: () => {
     "aria-checked": "mixed" | undefined;
     checked: boolean;
     indeterminate: boolean;
-    onCheckedChange(): void;
+    onCheckedChange: () => void;
   };
 }
 
 /** @since 6.0.0 */
 export interface CombinedCheckboxGroupReturnValue<V extends string> {
-  reset(): void;
+  reset: () => void;
   checkedValues: ReadonlySet<V>;
   setCheckedValues: UseStateSetter<ReadonlySet<V>>;
-  getCheckboxProps(value: V): {
+  getCheckboxProps: (value: V) => {
     name?: string;
     value?: V;
     checked: boolean;
-    onChange?(): void;
-    onCheckedChange?(): void;
+    onChange?: () => void;
+    onCheckedChange?: () => void;
   };
-  getIndeterminateProps?(): {
+  getIndeterminateProps?: () => {
     "aria-checked": "mixed" | undefined;
     name?: string;
     checked: boolean;
     indeterminate: boolean;
-    onChange?(): void;
-    onCheckedChange?(): void;
+    onChange?: () => void;
+    onCheckedChange?: () => void;
   };
 }
 

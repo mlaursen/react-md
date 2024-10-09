@@ -58,7 +58,7 @@ export interface NavigationProps<
   render?: ComponentType<RenderRecursiveItemsProps<Item, Data>>;
 
   /** @see {@link getRecursiveNavItemKey} */
-  getItemKey?(options: RecursiveItemKeyOptions<Item>): string;
+  getItemKey?: (options: RecursiveItemKeyOptions<Item>) => string;
 }
 
 /**

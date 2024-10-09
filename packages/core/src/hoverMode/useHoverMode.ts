@@ -34,9 +34,9 @@ export interface ControlledHoverModeOptions
  * @since 6.0.0
  */
 export interface ControlledHoverModeImplementation {
-  startShowFlow(id?: string | MouseEvent): void;
-  startHideFlow(): void;
-  clearVisibilityTimeout(): void;
+  startShowFlow: (id?: string | MouseEvent) => void;
+  startHideFlow: () => void;
+  clearVisibilityTimeout: () => void;
 }
 
 /**

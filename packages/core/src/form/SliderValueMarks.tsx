@@ -90,9 +90,9 @@ export interface SliderMarksOptions {
   /**
    * This can be used to override any styles for the specific mark.
    */
-  getMarkProps?(
+  getMarkProps?: (
     options: SliderValueMarkState
-  ): HTMLAttributes<HTMLSpanElement> | void;
+  ) => HTMLAttributes<HTMLSpanElement> | void;
 
   /**
    * This can be used to override any styles for a specific mark's label or
@@ -116,9 +116,9 @@ export interface SliderMarksOptions {
    * />
    * ```
    */
-  getMarkLabelProps?(
+  getMarkLabelProps?: (
     options: SliderValueMarkState
-  ): Partial<CustomizableSliderMarkLabelProps> | void;
+  ) => Partial<CustomizableSliderMarkLabelProps> | void;
 }
 
 /**

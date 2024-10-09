@@ -255,7 +255,7 @@ export interface LocalStorageHookReturnValue<T> {
   /**
    * Remove the item from local storage.
    */
-  remove(): void;
+  remove: () => void;
 
   /**
    * Manually persist the current {@link value} into local storage. This is only
@@ -291,7 +291,7 @@ export interface LocalStorageHookReturnValue<T> {
    * }
    * ```
    */
-  persist(): void;
+  persist: () => void;
 }
 
 /**

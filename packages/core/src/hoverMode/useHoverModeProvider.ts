@@ -53,23 +53,23 @@ export interface SimpleHoverModeContext {
    *
    * @see {@link hoverTimeoutRef} for an example.
    */
-  enableHoverMode(activeId: string): void;
+  enableHoverMode: (activeId: string) => void;
 
   /**
    * Disables all hover mode behavior by clearing all timeouts and resetting
    * internal state.
    */
-  disableHoverMode(): void;
+  disableHoverMode: () => void;
 
   /**
    * @see {@link leaveTimeoutRef} for an example.
    */
-  startDisableTimer(): void;
+  startDisableTimer: () => void;
 
   /**
    * @see {@link hoverTimeoutRef} for an example.
    */
-  clearDisableTimer(): void;
+  clearDisableTimer: () => void;
 }
 
 /**

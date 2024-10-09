@@ -67,8 +67,8 @@ export type SupportedComboboxPopup = "listbox" | "grid" | "dialog";
 export interface ComboboxKeyboardMovementData<
   E extends HTMLElement = HTMLInputElement,
 > extends KeyboardMovementExtensionData<E> {
-  show(): void;
-  hide(): void;
+  show: () => void;
+  hide: () => void;
   visible: boolean;
   focusLast: NonNullMutableRef<boolean>;
 }
@@ -154,11 +154,11 @@ export interface ComboboxOptions<
   ComboboxEl extends HTMLElement = HTMLInputElement,
   PopupEl extends HTMLElement = HTMLElement,
 > extends BaseComboboxOptions<ComboboxEl, PopupEl> {
-  getEnterDefaultFocusedIndex(options: {
+  getEnterDefaultFocusedIndex: (options: {
     focusLast: boolean;
     focusables: readonly HTMLElement[];
     currentFocusIndex: number;
-  }): number;
+  }) => number;
 }
 
 /**
@@ -221,16 +221,12 @@ export interface ProvidedComboboxMenuProps<
 > extends Required<ComboboxTransitionCallbacks>,
     ComboboxWidgetPopupProps<PopupEl> {
   visible: boolean;
-  onRequestClose(): void;
-
+  onRequestClose: () => void;
   /** @defaultValue `"min"` */
   width: PositionWidth;
-
   /** @defaultValue `BELOW_CENTER_ANCHOR` */
   anchor: PositionAnchor;
-
   fixedTo: RefObject<HTMLElement>;
-
   sheetProps: MenuSheetConfigurableProps &
     Required<ComboboxTransitionCallbacks>;
 }
@@ -249,8 +245,8 @@ export interface ComboboxImplementation<
   ComboboxEl extends HTMLElement = HTMLInputElement,
   PopupEl extends HTMLElement = HTMLElement,
 > extends KeyboardMovementProviderImplementation<ComboboxEl> {
-  show(): void;
-  hide(): void;
+  show: () => void;
+  hide: () => void;
   visible: boolean;
   setVisible: UseStateSetter<boolean>;
   focusLast: NonNullMutableRef<boolean>;
@@ -258,18 +254,17 @@ export interface ComboboxImplementation<
   popupProps: ComboboxWidgetPopupProps<PopupEl>;
   comboboxRef: RefObject<ComboboxEl>;
   comboboxProps: ComboboxWidgetProps<ComboboxEl>;
-
   /**
    * Since the combobox usually uses the `Menu` as a popup element, this is a
    * helper util to create the required props and merge any additional props
    * with reasonable defaults.
    */
-  getMenuProps(
+  getMenuProps: (
     overrides?: ConfigurableComboboxMenuProps
-  ): ComboboxMenuProps<PopupEl>;
-  getTransitionCallbacks(
+  ) => ComboboxMenuProps<PopupEl>;
+  getTransitionCallbacks: (
     options: ComboboxTransitionOptions
-  ): Required<ComboboxTransitionCallbacks>;
+  ) => Required<ComboboxTransitionCallbacks>;
 }
 
 /**

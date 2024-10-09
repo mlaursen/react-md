@@ -28,7 +28,7 @@ export default function ChipWithCircularProgressExample(): ReactElement {
 interface DemoStateHookResult {
   enabled: boolean;
   loading: boolean;
-  onClick(): void;
+  onClick: () => void;
 }
 
 function useDemoState(): DemoStateHookResult {

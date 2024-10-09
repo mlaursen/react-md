@@ -42,7 +42,7 @@ export interface CollapsibleNavGroupProps
   children: ReactNode;
 
   collapsed: boolean;
-  toggleCollapsed(): void;
+  toggleCollapsed: () => void;
 }
 
 /**

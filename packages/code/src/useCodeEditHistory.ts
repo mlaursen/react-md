@@ -35,7 +35,7 @@ export interface CodeEditHistory {
 
 interface HandleKeydownOptions extends Required<CodeEditTextAction> {
   event: KeyboardEvent<HTMLTextAreaElement>;
-  update(editAction: CodeEditTextAction): void;
+  update: (editAction: CodeEditTextAction) => void;
 }
 
 const TAB_TEXT = " ".repeat(2);
@@ -199,9 +199,9 @@ export interface CodeEditHistoryImplementation {
     onChange: ChangeEventHandler<HTMLTextAreaElement>;
     onKeyDown: KeyboardEventHandler<HTMLTextAreaElement>;
   };
-  setCode(nextCode: string): void;
-  editCode(action: CodeEditAction): void;
-  updateTextArea(action: CodeEditTextAction): void;
+  setCode: (nextCode: string) => void;
+  editCode: (action: CodeEditAction) => void;
+  updateTextArea: (action: CodeEditTextAction) => void;
 }
 
 export function useCodeEditHistory(

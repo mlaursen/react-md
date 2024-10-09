@@ -50,7 +50,7 @@ const fakeFetch = jest.fn((search: string) =>
 
 interface AsyncTestProps {
   unmounted: MutableRefObject<boolean>;
-  onUnmounted(): void;
+  onUnmounted: () => void;
 }
 
 function AsyncTest(props: AsyncTestProps): ReactElement {

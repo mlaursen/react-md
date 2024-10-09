@@ -14,7 +14,7 @@ export interface MutationObserverHookOptions<E extends HTMLElement>
    */
   disabled?: boolean;
 
-  onObserved(mutation: MutationRecord): void;
+  onObserved: (mutation: MutationRecord) => void;
 }
 
 /**

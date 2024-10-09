@@ -27,8 +27,8 @@ export default function DisableDeterminateTransition(): ReactElement {
 const UPDATE_INTERVAL = 10;
 
 interface ProgressControls {
-  toggle(): void;
-  restart(): void;
+  toggle: () => void;
+  restart: () => void;
   running: boolean;
   progress: number;
 }

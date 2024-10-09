@@ -15,7 +15,7 @@ export default function NestedDialogsExample(): ReactElement {
 
 interface InfiniteDialogProps {
   depth: number;
-  closeAll(): void;
+  closeAll: () => void;
 }
 
 function InfiniteDialog(props: InfiniteDialogProps): ReactElement {

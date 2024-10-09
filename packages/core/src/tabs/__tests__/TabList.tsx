@@ -102,7 +102,7 @@ class MockedObserver implements globalThis.IntersectionObserver {
   };
 }
 
-type Observer = (IntersectionObserver & { trigger(): void }) | undefined;
+type Observer = (IntersectionObserver & { trigger: () => void }) | undefined;
 
 describe("TabList", () => {
   beforeEach(() => {

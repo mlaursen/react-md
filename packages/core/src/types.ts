@@ -176,7 +176,9 @@ export type AnyFunction = (...args: any[]) => any | void;
 /**
  * @since 6.0.0
  */
-export type CancelableFunction<F extends AnyFunction> = F & { cancel(): void };
+export type CancelableFunction<F extends AnyFunction> = F & {
+  cancel: () => void;
+};
 
 /**
  * @since 6.0.0
