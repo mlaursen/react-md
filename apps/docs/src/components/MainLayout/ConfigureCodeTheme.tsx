@@ -19,7 +19,9 @@ export function ConfigureCodeTheme(): ReactElement {
         aria-labelledby={labelId}
         name="theme"
         value={prismTheme}
-        onChange={(event) => setPrismTheme(event.currentTarget.value)}
+        onChange={(event) => {
+          setPrismTheme(event.currentTarget.value);
+        }}
       >
         {PRISM_THEMES.map((theme) => (
           <Option key={theme} value={theme}>

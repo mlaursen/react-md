@@ -8,7 +8,7 @@ import {
   type CopyToClipboardProps,
 } from "./CopyToClipboard.js";
 
-export interface CodeEditorCopyToClipboardProps extends CopyToClipboardProps {}
+export type CodeEditorCopyToClipboardProps = CopyToClipboardProps;
 
 export function CodeEditorCopyToClipboard(
   props: RequireAtLeastOne<
@@ -21,7 +21,9 @@ export function CodeEditorCopyToClipboard(
 
   return (
     <CopyToClipboard
-      onCopied={() => addToast({ children: "Copied to clipboard!" })}
+      onCopied={() => {
+        addToast({ children: "Copied to clipboard!" });
+      }}
       {...remaining}
       className={cnb("code-editor__copy", className)}
     />

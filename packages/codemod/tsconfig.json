@@ -6,6 +6,7 @@
     "jsx": "react-jsx",
     "sourceMap": true,
     "strict": true,
+    "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "moduleResolution": "node",
@@ -16,6 +17,6 @@
     "forceConsistentCasingInFileNames": true,
     "lib": ["esnext"]
   },
-  "include": ["**/*.ts", "**/*.tsx", "**/*.cjs", ".eslintrc.cjs"],
+  "include": ["**/*.ts", "**/*.tsx", "**/*.cjs"],
   "exclude": ["node_modules", "**/__testfixtures__/**"]
 }

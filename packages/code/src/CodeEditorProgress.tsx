@@ -5,7 +5,7 @@ import {
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
 
-export interface CodeEditorProgressProps extends LinearProgressProps {}
+export type CodeEditorProgressProps = LinearProgressProps;
 
 export function CodeEditorProgress(
   props: CodeEditorProgressProps

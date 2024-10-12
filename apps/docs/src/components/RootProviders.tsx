@@ -17,10 +17,12 @@ import { type ReactElement, type ReactNode } from "react";
 import { CookieColorSchemeProvider } from "./CookieColorSchemeProvider.jsx";
 import { PrismThemeProvider } from "./PrismThemeProvider.jsx";
 
-const handlePackageManagerChange = (value: PackageManager): void =>
+const handlePackageManagerChange = (value: PackageManager): void => {
   setCookie(PACKAGE_MANAGER_KEY, value);
-const handleTypescriptEnabledChange = (enabled: boolean): void =>
+};
+const handleTypescriptEnabledChange = (enabled: boolean): void => {
   setCookie(CODE_LANGUAGE_KEY, enabled ? "ts" : "js");
+};
 
 export interface RootProvidersProps extends AppCookies {
   children: ReactNode;

@@ -27,7 +27,9 @@ export function FilterStylePanel(
       <Select
         label="Icon Type"
         value={iconType}
-        onChange={(event) => setIconType(event.currentTarget.value)}
+        onChange={(event) => {
+          setIconType(event.currentTarget.value);
+        }}
       >
         <Option value="symbol">Material Symbols</Option>
         <Option value="icon">Material Icons (SVG)</Option>
@@ -36,7 +38,9 @@ export function FilterStylePanel(
       <Select
         label="Icon Family"
         value={iconFamily}
-        onChange={(event) => setIconFamily(event.currentTarget.value)}
+        onChange={(event) => {
+          setIconFamily(event.currentTarget.value);
+        }}
         className={cssUtils({ textTransform: "capitalize" })}
       >
         {iconFamilies.map((family) => (

@@ -24,7 +24,9 @@ export default function VerticalSizeExample(): ReactElement {
       <Select
         label="Vertical Size"
         value={verticalSize}
-        onChange={(event) => setVertical(event.currentTarget.value)}
+        onChange={(event) => {
+          setVertical(event.currentTarget.value);
+        }}
       >
         {verticalSizes.map((size) => (
           <Option key={size} value={size}>

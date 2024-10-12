@@ -7,7 +7,13 @@ export default function ControllingMenuVisibility(): ReactElement {
   const [visible, setVisible] = useState(false);
   return (
     <>
-      <Button onClick={() => setVisible(true)}>Open</Button>
+      <Button
+        onClick={() => {
+          setVisible(true);
+        }}
+      >
+        Open
+      </Button>
       <DropdownMenu
         buttonChildren="Options..."
         visible={visible}

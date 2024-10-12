@@ -14,7 +14,9 @@ export function debounce<F extends AnyFunction>(
       fn(...args);
     }, duration);
   };
-  debounced.cancel = () => clearTimeout(timeout);
+  debounced.cancel = () => {
+    clearTimeout(timeout);
+  };
 
   return debounced;
 }

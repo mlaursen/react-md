@@ -27,7 +27,7 @@ describe("useMediaQuery", () => {
   it("should check if the query matches on mount", () => {
     let matches: boolean | undefined;
     function Test(): null {
-      matches = useMediaQuery(`${DEFAULT_DESKTOP_MIN_WIDTH}`);
+      matches = useMediaQuery(DEFAULT_DESKTOP_MIN_WIDTH);
       return null;
     }
 
@@ -40,7 +40,7 @@ describe("useMediaQuery", () => {
   it("should update when the change event is fired", () => {
     let matches: boolean | undefined;
     function Test(): null {
-      matches = useMediaQuery(`${DEFAULT_DESKTOP_MIN_WIDTH}`);
+      matches = useMediaQuery(DEFAULT_DESKTOP_MIN_WIDTH);
       return null;
     }
 

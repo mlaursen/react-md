@@ -88,7 +88,7 @@ function AsyncTest(props: AsyncTestProps): ReactElement {
           const { value } = event.currentTarget;
 
           setNormalValue(value);
-          throttled(value);
+          void throttled(value);
         }}
       />
     </>
@@ -188,7 +188,9 @@ describe("useThrottledFunction", () => {
           <div data-testid="output">{value}</div>
           <TextField
             label="Field"
-            onChange={(event) => handleChange(event.currentTarget.value)}
+            onChange={(event) => {
+              handleChange(event.currentTarget.value);
+            }}
           />
           <Button
             onClick={() => {

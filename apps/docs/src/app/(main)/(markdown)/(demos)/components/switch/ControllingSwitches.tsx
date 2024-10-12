@@ -11,7 +11,9 @@ export default function ControllingSwitches(): ReactElement {
       <Switch
         label="Label"
         checked={checked}
-        onChange={(event) => setChecked(event.currentTarget.checked)}
+        onChange={(event) => {
+          setChecked(event.currentTarget.checked);
+        }}
       />
     </Form>
   );

@@ -74,7 +74,11 @@ function SimpleTest(props: SimpleTestProps): ReactElement {
   const addToast = useAddToast();
   return (
     <>
-      <Button onClick={() => addToast({ children: "Hello, world!", ...toast })}>
+      <Button
+        onClick={() => {
+          addToast({ children: "Hello, world!", ...toast });
+        }}
+      >
         Button
       </Button>
       {children}
@@ -98,7 +102,11 @@ describe("ToastManagerProvider", () => {
       function Test(): ReactElement {
         return (
           <>
-            <Button onClick={() => addToast({ children: "Hello, world!" })}>
+            <Button
+              onClick={() => {
+                addToast({ children: "Hello, world!" });
+              }}
+            >
               Button
             </Button>
             <Snackbar data-testid="snackbar" />
@@ -169,10 +177,18 @@ describe("ToastManagerProvider", () => {
         const scopedAddToast = useAddToast();
         return (
           <>
-            <Button onClick={() => scopedAddToast({ children: "Scoped" })}>
+            <Button
+              onClick={() => {
+                scopedAddToast({ children: "Scoped" });
+              }}
+            >
               Scoped
             </Button>
-            <Button onClick={() => addToast({ children: "Global" })}>
+            <Button
+              onClick={() => {
+                addToast({ children: "Global" });
+              }}
+            >
               Global
             </Button>
             <Snackbar data-testid="snackbar" />
@@ -205,10 +221,8 @@ describe("ToastManagerProvider", () => {
     });
 
     const init = async (props?: SimpleTestProps) => {
-      // eslint-disable-next-line testing-library/await-async-events
       const user = userEvent.setup({ delay: null });
-      // eslint-disable-next-line testing-library/render-result-naming-convention
-      const result = renderWithManager(<SimpleTest {...props} />);
+      const view = renderWithManager(<SimpleTest {...props} />);
       const button = screen.getByRole("button", { name: "Button" });
 
       await user.click(button);
@@ -231,7 +245,7 @@ describe("ToastManagerProvider", () => {
         button,
         snackbar,
         message,
-        ...result,
+        ...view,
       };
     };
 
@@ -530,34 +544,34 @@ describe("ToastManagerProvider", () => {
         return (
           <>
             <Button
-              onClick={() =>
-                addToast({ toastId: "toast-1", children: "Toast 1" })
-              }
+              onClick={() => {
+                addToast({ toastId: "toast-1", children: "Toast 1" });
+              }}
             >
               Toast 1
             </Button>
             <Button
-              onClick={() =>
-                addToast({ toastId: "toast-2", children: "Toast 2" })
-              }
+              onClick={() => {
+                addToast({ toastId: "toast-2", children: "Toast 2" });
+              }}
             >
               Toast 2
             </Button>
             <Button
-              onClick={() =>
-                addToast({ toastId: "toast-3", children: "Toast 3" })
-              }
+              onClick={() => {
+                addToast({ toastId: "toast-3", children: "Toast 3" });
+              }}
             >
               Toast 3
             </Button>
             <Button
-              onClick={() =>
+              onClick={() => {
                 addToast({
                   toastId: "toast-3",
                   children: "Toast 3",
                   priority: "replace",
-                })
-              }
+                });
+              }}
             >
               Replace
             </Button>

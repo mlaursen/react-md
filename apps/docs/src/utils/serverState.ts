@@ -68,7 +68,7 @@ async function loadStyles(
 ): Promise<CSSModulesImport> {
   return await load
     .then((mod) => mod.default)
-    .catch((error) => {
+    .catch((error: unknown) => {
       if (process.env.NODE_ENV !== "production") {
         throw error;
       }
@@ -93,6 +93,7 @@ export async function getInitialState(): Promise<InitialAppState> {
   if (defaultColorSchemeMode !== "system" || DISABLE_DEFAULT_SYSTEM_THEME) {
     const themeName = pascalCase(defaultColorSchemeMode);
     themeStyles = await loadStyles(
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       import(`@/components/LoadThemeStyles/${themeName}Theme.module.scss`),
       fallbackThemeStyles
     );

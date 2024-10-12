@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { type AnyFunction, type ThrottledFunction } from "../types.js";
 
 /**
@@ -30,7 +32,9 @@ export function throttle<F extends AnyFunction>(
 
     return result;
   };
-  throttled.cancel = () => clearTimeout(timeout);
+  throttled.cancel = () => {
+    clearTimeout(timeout);
+  };
 
   return throttled;
 }

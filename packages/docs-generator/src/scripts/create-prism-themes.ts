@@ -119,6 +119,7 @@ async function writeCss(themeName: string, contents: string): Promise<void> {
 async function transformCss(css: string): Promise<string> {
   const result = await postcss(
     // remove prefixes to make it easier to handle replacements
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-call
     postcssRemovePrefixes(),
     // sort everything alphabetically to make it easier for me to find
     // properties

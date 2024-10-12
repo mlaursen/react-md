@@ -45,7 +45,7 @@ describe("UserInteractionModeProvider", () => {
     expect(document.body.className).toContain("touch-mode");
   });
 
-  it("should swap from touch back to mouse only when the mousemove event has not been triggered after a touchstart event", async () => {
+  it("should swap from touch back to mouse only when the mousemove event has not been triggered after a touchstart event", () => {
     // this is really a test that should be done in a browser.
     const now = jest
       .spyOn(Date, "now")
@@ -110,12 +110,12 @@ describe("UserInteractionModeProvider", () => {
     );
 
     const mode = screen.getByTestId("mode");
-    expect(mode.textContent).toBe("mouse");
+    expect(mode).toHaveTextContent("mouse");
 
     fireEvent.keyDown(window);
-    expect(mode.textContent).toBe("keyboard");
+    expect(mode).toHaveTextContent("keyboard");
 
     fireEvent.touchStart(window);
-    expect(mode.textContent).toBe("touch");
+    expect(mode).toHaveTextContent("touch");
   });
 });

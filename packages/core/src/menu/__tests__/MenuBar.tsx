@@ -213,39 +213,39 @@ describe("MenuBar", () => {
     const after = screen.getByRole("button", { name: "after" });
 
     await user.tab();
-    expect(document.activeElement).toBe(before);
+    expect(before).toHaveFocus();
 
     await user.tab();
-    expect(document.activeElement).toBe(menubarItems[0]);
+    expect(menubarItems[0]).toHaveFocus();
 
     await user.tab();
-    expect(document.activeElement).toBe(after);
+    expect(after).toHaveFocus();
 
     await user.tab({ shift: true });
-    expect(document.activeElement).toBe(menubarItems[0]);
+    expect(menubarItems[0]).toHaveFocus();
 
     await user.keyboard("{ArrowRight}");
     await waitFor(() => {
-      expect(document.activeElement).toBe(menubarItems[1]);
+      expect(menubarItems[1]).toHaveFocus();
     });
     await user.keyboard("{End}");
     await waitFor(() => {
-      expect(document.activeElement).toBe(menubarItems[3]);
+      expect(menubarItems[3]).toHaveFocus();
     });
 
     await user.keyboard("{Home}");
     await waitFor(() => {
-      expect(document.activeElement).toBe(menubarItems[0]);
+      expect(menubarItems[0]).toHaveFocus();
     });
 
     await user.keyboard("s");
     await waitFor(() => {
-      expect(document.activeElement).toBe(menubarItems[1]);
+      expect(menubarItems[1]).toHaveFocus();
     });
 
     await user.keyboard("s");
     await waitFor(() => {
-      expect(document.activeElement).toBe(menubarItems[3]);
+      expect(menubarItems[3]).toHaveFocus();
     });
 
     await user.keyboard("{Enter}");
@@ -253,76 +253,60 @@ describe("MenuBar", () => {
     await waitFor(() => {
       expect(sizeMenu).not.toHaveClass("rmd-scale-transition--enter");
     });
-    expect(document.activeElement).toBe(
-      screen.getByRole("menuitem", { name: "Normal" })
-    );
+    expect(screen.getByRole("menuitem", { name: "Normal" })).toHaveFocus();
 
     await user.keyboard("{End}");
-    expect(document.activeElement).toBe(
-      screen.getByRole("menuitem", { name: "Submenu" })
-    );
+    expect(screen.getByRole("menuitem", { name: "Submenu" })).toHaveFocus();
 
     // arrow right should open nested dropdown menus
     await user.keyboard("{ArrowRight}");
     await waitFor(() => {
-      expect(document.activeElement).toBe(
-        screen.getByRole("menuitem", { name: "Item 1" })
-      );
+      expect(screen.getByRole("menuitem", { name: "Item 1" })).toHaveFocus();
     });
 
     // arrow left should close the nested dropdown menus
     await user.keyboard("{ArrowLeft}");
     await waitFor(() => {
-      expect(document.activeElement).toBe(
-        screen.getByRole("menuitem", { name: "Submenu" })
-      );
+      expect(screen.getByRole("menuitem", { name: "Submenu" })).toHaveFocus();
     });
 
     // arrow left on a normal menuitem should open the menu to the left and focus the first item
     await user.keyboard("{ArrowLeft}");
     await waitFor(() => {
-      expect(document.activeElement).toBe(
-        screen.getByRole("menuitem", { name: "Left" })
-      );
+      expect(screen.getByRole("menuitem", { name: "Left" })).toHaveFocus();
     });
 
     // arrow right should open the next menu and focus the first item
     await user.keyboard("{ArrowRight}");
     await waitFor(() => {
-      expect(document.activeElement).toBe(
-        screen.getByRole("menuitem", { name: "Normal" })
-      );
+      expect(screen.getByRole("menuitem", { name: "Normal" })).toHaveFocus();
     });
 
     // Loops
     await user.keyboard("{ArrowRight}");
     await waitFor(() => {
-      expect(document.activeElement).toBe(
-        screen.getByRole("menuitem", { name: "Roboto" })
-      );
+      expect(screen.getByRole("menuitem", { name: "Roboto" })).toHaveFocus();
     });
 
     await user.keyboard("{ArrowLeft}");
     await waitFor(() => {
-      expect(document.activeElement).toBe(
-        screen.getByRole("menuitem", { name: "Normal" })
-      );
+      expect(screen.getByRole("menuitem", { name: "Normal" })).toHaveFocus();
     });
 
     await user.keyboard("{Escape}");
     await waitFor(() => {
-      expect(document.activeElement).toBe(menubarItems[3]);
+      expect(menubarItems[3]).toHaveFocus();
     });
 
     // the tab index updated
     await user.tab();
-    expect(document.activeElement).toBe(after);
+    expect(after).toHaveFocus();
 
     await user.tab({ shift: true });
-    expect(document.activeElement).toBe(menubarItems[3]);
+    expect(menubarItems[3]).toHaveFocus();
 
     await user.tab({ shift: true });
-    expect(document.activeElement).toBe(before);
+    expect(before).toHaveFocus();
   });
 
   it("should refocus the top-level menuitem when the tab key is pressed", async () => {
@@ -332,23 +316,17 @@ describe("MenuBar", () => {
     await user.tab();
     await user.keyboard("[End][Space]");
     await waitFor(() => {
-      expect(document.activeElement).toBe(
-        screen.getByRole("menuitem", { name: "Normal" })
-      );
+      expect(screen.getByRole("menuitem", { name: "Normal" })).toHaveFocus();
     });
 
     await user.keyboard("[End][Enter]");
     await waitFor(() => {
-      expect(document.activeElement).toBe(
-        screen.getByRole("menuitem", { name: "Item 1" })
-      );
+      expect(screen.getByRole("menuitem", { name: "Item 1" })).toHaveFocus();
     });
 
     await user.tab();
     await waitFor(() => {
-      expect(document.activeElement).toBe(
-        screen.getByRole("menuitem", { name: "Size" })
-      );
+      expect(screen.getByRole("menuitem", { name: "Size" })).toHaveFocus();
     });
   });
 });

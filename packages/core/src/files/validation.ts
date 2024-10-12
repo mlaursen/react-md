@@ -139,7 +139,7 @@ export type FileValidationError<E = GenericFileError> =
  * @param error - The error to check
  * @returns true if the error is a {@link FileAccessError}
  */
-export function isGenericFileError<CustomError extends {}>(
+export function isGenericFileError<CustomError extends object>(
   error: FileValidationError<CustomError>
 ): error is GenericFileError {
   return "name" in error && error.name === "GenericFileError";
@@ -153,7 +153,7 @@ export function isGenericFileError<CustomError extends {}>(
  * @param error - The error to check
  * @returns true if the error is a {@link FileAccessError}
  */
-export function isFileAccessError<CustomError extends {}>(
+export function isFileAccessError<CustomError extends object>(
   error: FileValidationError<CustomError>
 ): error is FileAccessError {
   return "name" in error && error.name === "FileAccessError";
@@ -167,7 +167,7 @@ export function isFileAccessError<CustomError extends {}>(
  * @param error - The error to check
  * @returns true if the error is a {@link TooManyFilesError}
  */
-export function isTooManyFilesError<CustomError extends {}>(
+export function isTooManyFilesError<CustomError extends object>(
   error: FileValidationError<CustomError>
 ): error is TooManyFilesError {
   return "name" in error && error.name === "TooManyFilesError";
@@ -181,7 +181,7 @@ export function isTooManyFilesError<CustomError extends {}>(
  * @param error - The error to check
  * @returns true if the error is a {@link FileSizeError}
  */
-export function isFileSizeError<CustomError extends {}>(
+export function isFileSizeError<CustomError extends object>(
   error: FileValidationError<CustomError>
 ): error is FileSizeError {
   return "name" in error && error.name === "FileSizeError";
@@ -195,7 +195,7 @@ export function isFileSizeError<CustomError extends {}>(
  * @param error - The error to check
  * @returns true if the error is a {@link FileExtensionError}
  */
-export function isFileExtensionError<CustomError extends {}>(
+export function isFileExtensionError<CustomError extends object>(
   error: FileValidationError<CustomError>
 ): error is FileExtensionError {
   return "name" in error && error.name === "FileExtensionError";

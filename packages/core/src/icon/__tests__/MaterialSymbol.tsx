@@ -67,19 +67,19 @@ describe("MaterialSymbol", () => {
     const { rerender } = render(<MaterialSymbol {...props} />);
     const icon = screen.getByTestId("icon");
     expect(icon).toHaveClass("material-symbols-outlined");
-    expect(icon.style.fontVariationSettings).toBe("");
+    expect(icon).toHaveStyle({ fontVariationSettings: "" });
 
     rerender(<MaterialSymbol {...props} fill={1} />);
-    expect(icon.style.fontVariationSettings).toBe(
-      '"FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24'
-    );
+    expect(icon).toHaveStyle({
+      fontVariationSettings: '"FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24',
+    });
 
     rerender(
       <MaterialSymbol {...props} fill={1} grade={-25} opticalSize={48} />
     );
-    expect(icon.style.fontVariationSettings).toBe(
-      '"FILL" 1, "wght" 400, "GRAD" -25, "opsz" 48'
-    );
+    expect(icon).toHaveStyle({
+      fontVariationSettings: '"FILL" 1, "wght" 400, "GRAD" -25, "opsz" 48',
+    });
   });
 
   it("should use the prop style fontVariationSettings if it exists", () => {
@@ -93,8 +93,8 @@ describe("MaterialSymbol", () => {
     render(<MaterialSymbol {...props} />);
     const icon = screen.getByTestId("icon");
 
-    expect(icon.style.fontVariationSettings).toBe(
-      '"FILL" 1, "wght" 400, "GRAD" -25, "opsz" 48'
-    );
+    expect(icon).toHaveStyle({
+      fontVariationSettings: '"FILL" 1, "wght" 400, "GRAD" -25, "opsz" 48',
+    });
   });
 });

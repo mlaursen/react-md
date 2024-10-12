@@ -89,7 +89,13 @@ function Test(props: TestProps): ReactElement {
         AnchorHTMLAttributes<HTMLAnchorElement> & { href: string }
       >(function FakeLink(props, ref) {
         return (
-          <a ref={ref} {...props} onClick={() => setPathname(props.href)} />
+          <a
+            ref={ref}
+            {...props}
+            onClick={() => {
+              setPathname(props.href);
+            }}
+          />
         );
       }),
     []
@@ -105,10 +111,18 @@ function Test(props: TestProps): ReactElement {
   return (
     <>
       <Navigation data-testid="nav" data={data} items={items} />
-      <Button onClick={() => setPathname("/path-1/route-1")}>
+      <Button
+        onClick={() => {
+          setPathname("/path-1/route-1");
+        }}
+      >
         Set Path 1 Route 1
       </Button>
-      <Button onClick={() => setPathname("/path-2/route-2")}>
+      <Button
+        onClick={() => {
+          setPathname("/path-2/route-2");
+        }}
+      >
         Set Path 2 Route 2
       </Button>
     </>

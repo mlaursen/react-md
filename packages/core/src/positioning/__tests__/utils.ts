@@ -1034,17 +1034,17 @@ describe("getElementRect", () => {
     expect(element.id).toBe("element-id");
     expect(cloned.id).toBe("");
 
-    expect(element.getAttribute("role")).toBe("tooltip");
-    expect(cloned.getAttribute("role")).toBe(null);
+    expect(element).toHaveAttribute("role", "tooltip");
+    expect(cloned).not.toHaveAttribute("role");
 
-    expect(element.style.position).toBe("");
-    expect(cloned.style.position).toBe("fixed");
+    expect(element).toHaveStyle({ position: "" });
+    expect(cloned).toHaveStyle({ position: "fixed" });
 
-    expect(element.style.visibility).toBe("");
-    expect(cloned.style.visibility).toBe("hidden");
+    expect(element).toHaveStyle({ visibility: "visible" });
+    expect(cloned).toHaveStyle({ visibility: "hidden" });
 
-    expect(element.style.transform).toBe("");
-    expect(cloned.style.transform).toBe("none");
+    expect(element).toHaveStyle({ transform: "" });
+    expect(cloned).toHaveStyle({ transform: "none" });
   });
 
   it("should try to add the cloned node to the parent element or fallback to the document.body if there isn't a parent element and then remove the cloned child from the DOM", () => {

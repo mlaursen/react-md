@@ -22,6 +22,7 @@ import {
   cloneElement,
   isValidElement,
   type ComponentType,
+  type HTMLAttributes,
   type ReactElement,
   type ReactNode,
 } from "react";
@@ -69,7 +70,7 @@ export function useMDXComponents(components: MDXComponents): Components {
     ul: (props) => <Typography type="body-1" as="ul" {...props} />,
     ol: (props) => <Typography type="body-1" as="ol" {...props} />,
     blockquote: (props) => <Blockquote {...props} />,
-    pre: (props) => {
+    pre: (props: HTMLAttributes<HTMLPreElement>) => {
       const { children, ...codeProps } = props;
       if (!isValidElement<MarkdownCodeProps>(children)) {
         throw new Error("Invalid pre element");

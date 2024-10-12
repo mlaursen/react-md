@@ -29,8 +29,20 @@ export default function CustomActiveTabExample(): ReactElement {
         </TabList>
       </AppBar>
       <Typography>{`The current activeTab is ${activeTab}`}</Typography>
-      <Button onClick={() => setActiveTab("tab-1")}>Set 1</Button>
-      <Button onClick={() => setActiveTab("tab-2")}>Set 2</Button>
+      <Button
+        onClick={() => {
+          setActiveTab("tab-1");
+        }}
+      >
+        Set 1
+      </Button>
+      <Button
+        onClick={() => {
+          setActiveTab("tab-2");
+        }}
+      >
+        Set 2
+      </Button>
     </>
   );
 }

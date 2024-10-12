@@ -25,7 +25,9 @@ export function ConfigureTypescriptEnabled(
   const sharedProps: SegmentedButtonsProps<CodeLanguage> = {
     items: ITEMS,
     value: isTypescriptEnabled ? "ts" : "js",
-    setValue: (nextValue) => setTypescriptEnabled(nextValue === "ts"),
+    setValue: (nextValue) => {
+      setTypescriptEnabled(nextValue === "ts");
+    },
   };
   if (disableLabel) {
     return <SegmentedButtons {...sharedProps} disableFullWidth />;

@@ -33,7 +33,9 @@ export function SearchAndFilters(): ReactElement {
             aria-label="Clear"
             buttonType="icon"
             iconSize="small"
-            onClick={() => setSearch("")}
+            onClick={() => {
+              setSearch("");
+            }}
             className={cnb(!search && DISPLAY_NONE_CLASS)}
           >
             <CloseOutlinedIcon />
@@ -44,7 +46,9 @@ export function SearchAndFilters(): ReactElement {
         dense
         placeholder="Search icons"
         value={search}
-        onChange={(event) => setSearch(event.currentTarget.value)}
+        onChange={(event) => {
+          setSearch(event.currentTarget.value);
+        }}
       />
     </AppBar>
   );

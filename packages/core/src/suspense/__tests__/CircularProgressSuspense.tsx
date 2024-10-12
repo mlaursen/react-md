@@ -22,9 +22,9 @@ const setup = (props?: Omit<CircularProgressSuspenseProps, "children">) => {
   const FakeLazyComponent = lazy(
     () =>
       new Promise<{ default: FC }>((resolve) => {
-        instance.addEventListener("resolve-promise", () =>
-          resolve({ default: Content })
-        );
+        instance.addEventListener("resolve-promise", () => {
+          resolve({ default: Content });
+        });
       })
   );
 

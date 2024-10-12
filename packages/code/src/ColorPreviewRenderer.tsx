@@ -2,7 +2,7 @@ import { type ReactElement } from "react";
 import { ColorPreview } from "./ColorPreview.jsx";
 import { type WalkChildrenRendererProps } from "./WalkChildren.js";
 
-export interface ColorPreviewRendererProps extends WalkChildrenRendererProps {}
+export type ColorPreviewRendererProps = WalkChildrenRendererProps;
 
 export function ColorPreviewRenderer(
   props: ColorPreviewRendererProps

@@ -40,7 +40,9 @@ export const getOrientationType = (): OrientationType => {
 export function useOrientation(): OrientationType {
   const [orientation, setOrientation] = useState(getOrientationType);
   useEffect(() => {
-    const handler = (): void => setOrientation(getOrientationType());
+    const handler = (): void => {
+      setOrientation(getOrientationType());
+    };
 
     const { orientation } = window.screen;
     if (orientation) {

@@ -32,7 +32,9 @@ export default function SelectableRowsExample(): ReactElement {
         <TableBody>
           <TableRow
             clickable
-            onClick={() => toggleRow(0)}
+            onClick={() => {
+              toggleRow(0);
+            }}
             selected={selectedRows.includes(0)}
           >
             <TableCell>Cell 1</TableCell>
@@ -41,7 +43,9 @@ export default function SelectableRowsExample(): ReactElement {
           </TableRow>
           <TableRow
             clickable
-            onClick={() => toggleRow(1)}
+            onClick={() => {
+              toggleRow(1);
+            }}
             selected={selectedRows.includes(1)}
           >
             <TableCell>Cell 1</TableCell>
@@ -50,7 +54,9 @@ export default function SelectableRowsExample(): ReactElement {
           </TableRow>
           <TableRow
             clickable
-            onClick={() => toggleRow(2)}
+            onClick={() => {
+              toggleRow(2);
+            }}
             selected={selectedRows.includes(2)}
           >
             <TableCell>Cell 1</TableCell>

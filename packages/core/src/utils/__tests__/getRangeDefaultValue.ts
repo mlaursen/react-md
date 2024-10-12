@@ -2,7 +2,7 @@ import { describe, expect, it } from "@jest/globals";
 import { getRangeDefaultValue } from "../getRangeDefaultValue.js";
 
 describe("getRangeDefaultValue", () => {
-  it("should return the default value if it is defined", async () => {
+  it("should return the default value if it is defined", () => {
     expect(
       getRangeDefaultValue({ min: 0, max: 100, step: 1, defaultValue: 10 })
     ).toBe(10);

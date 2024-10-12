@@ -46,7 +46,9 @@ function Content(): ReactElement {
             <SegmentedButton
               key={mode}
               selected={mode === colorSchemeMode}
-              onClick={() => setColorSchemeMode(mode)}
+              onClick={() => {
+                setColorSchemeMode(mode);
+              }}
             >
               {mode}
             </SegmentedButton>

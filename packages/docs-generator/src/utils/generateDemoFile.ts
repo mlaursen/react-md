@@ -55,7 +55,7 @@ export async function generateDemoFile(
   const importScope: Record<string, string> = {};
   [...imports.entries()].forEach(([name, values]) => {
     const sortedValues = alphaNumericSort([...values]);
-    const key = `${sortedValues.join("_")}`;
+    const key = sortedValues.join("_");
     importScope[name] = key;
     sourceFile.addImportDeclaration({
       namespaceImport: key,

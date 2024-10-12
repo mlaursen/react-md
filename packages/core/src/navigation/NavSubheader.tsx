@@ -8,7 +8,7 @@ import { navItem } from "./navItemStyles.js";
 /**
  * @since 6.0.0
  */
-export interface NavSubheaderProps extends ListSubheaderProps {}
+export type NavSubheaderProps = ListSubheaderProps;
 
 /**
  * A simple wrapper around the {@Link ListSubheader} that updates the padding

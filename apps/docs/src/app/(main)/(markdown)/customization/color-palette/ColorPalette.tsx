@@ -59,10 +59,7 @@ export function ColorPalette(): ReactElement {
 
       // make sure the group of colors are sorted like original material design
       // setup
-      return (
-        GROUP_ORDER.indexOf(aName as Group) -
-        GROUP_ORDER.indexOf(bName as Group)
-      );
+      return GROUP_ORDER.indexOf(aName) - GROUP_ORDER.indexOf(bName);
     },
     extractor: ([name]) => name,
   });

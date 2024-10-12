@@ -81,7 +81,7 @@ describe("useTabs", () => {
     expect(tab3).toHaveAttribute("tabIndex", "-1");
 
     await user.tab();
-    expect(document.activeElement).toBe(tab1);
+    expect(tab1).toHaveFocus();
     expect(tabList).toHaveAttribute("tabIndex", "-1");
     expect(tab1).toHaveAttribute("aria-selected", "true");
     expect(tab1).toHaveAttribute("tabIndex", "0");
@@ -91,7 +91,7 @@ describe("useTabs", () => {
     expect(tab3).toHaveAttribute("tabIndex", "-1");
 
     await user.keyboard("[ArrowRight]");
-    expect(document.activeElement).toBe(tab2);
+    expect(tab2).toHaveFocus();
     expect(tabList).toHaveAttribute("tabIndex", "-1");
     expect(tab1).toHaveAttribute("aria-selected", "true");
     expect(tab1).toHaveAttribute("tabIndex", "-1");
@@ -190,7 +190,7 @@ describe("useTabs", () => {
     const tab3 = screen.getByRole("tab", { name: "Tab 3" });
 
     await user.tab();
-    expect(document.activeElement).toBe(tab1);
+    expect(tab1).toHaveFocus();
     expect(tabList).toHaveAttribute("tabIndex", "-1");
     expect(tab1).toHaveAttribute("aria-selected", "true");
     expect(tab1).toHaveAttribute("tabIndex", "0");
@@ -200,7 +200,7 @@ describe("useTabs", () => {
     expect(tab3).toHaveAttribute("tabIndex", "-1");
 
     await user.keyboard("[ArrowRight]");
-    expect(document.activeElement).toBe(tab2);
+    expect(tab2).toHaveFocus();
     expect(tabList).toHaveAttribute("tabIndex", "-1");
     expect(tab1).toHaveAttribute("aria-selected", "false");
     expect(tab1).toHaveAttribute("tabIndex", "-1");

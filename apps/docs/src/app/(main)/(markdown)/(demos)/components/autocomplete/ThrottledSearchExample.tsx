@@ -35,7 +35,7 @@ export default function ThrottledSearchExample(): ReactElement {
       loading={loading}
       onChange={(event) => {
         setLoading(true);
-        search(event.currentTarget.value);
+        void search(event.currentTarget.value);
       }}
       style={{ width: "18rem" }}
     />

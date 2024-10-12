@@ -39,6 +39,8 @@ import { useFormReset } from "./useFormReset.js";
 import { useSelectCombobox } from "./useSelectCombobox.js";
 import { triggerManualChangeEvent } from "./utils.js";
 
+// This needs to remain typed as `""` instead of any string
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
 const EMPTY_STRING = "" as const;
 const noop = (): void => {
   // do nothing

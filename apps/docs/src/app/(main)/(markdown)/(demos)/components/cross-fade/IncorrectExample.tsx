@@ -20,12 +20,16 @@ export default function IncorrectExample(): ReactElement {
           theme="primary"
           themeType="contained"
           disabled={items >= 16}
-          onClick={() => setItems((prev) => prev + 1)}
+          onClick={() => {
+            setItems((prev) => prev + 1);
+          }}
         >
           Add Item
         </Button>
         <Button
-          onClick={() => setItems(0)}
+          onClick={() => {
+            setItems(0);
+          }}
           theme="warning"
           themeType="contained"
         >
@@ -34,7 +38,9 @@ export default function IncorrectExample(): ReactElement {
         <Switch
           label="Fixed?"
           checked={fixed}
-          onChange={(event) => setFixed(event.currentTarget.checked)}
+          onChange={(event) => {
+            setFixed(event.currentTarget.checked);
+          }}
         />
       </Box>
       <Box grid fullWidth gridColumns="fill">

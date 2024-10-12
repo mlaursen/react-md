@@ -84,7 +84,7 @@ describe("Autocomplete", () => {
 
     const autocomplete = screen.getByRole("combobox", { name: "Field" });
     await user.tab();
-    expect(document.activeElement).toBe(autocomplete);
+    expect(autocomplete).toHaveFocus();
     expect(() => screen.getByRole("listbox")).toThrow();
 
     // the listbox should appear if the user types
@@ -235,7 +235,7 @@ describe("Autocomplete", () => {
       expect(autocomplete).toHaveAttribute("aria-activedescendant", "");
 
       await user.tab();
-      expect(document.activeElement).toBe(autocomplete);
+      expect(autocomplete).toHaveFocus();
       expect(() => screen.getByRole("listbox")).toThrow();
       expect(autocomplete).toHaveAttribute("aria-expanded", "false");
       expect(autocomplete).toHaveAttribute("aria-activedescendant", "");
@@ -259,7 +259,7 @@ describe("Autocomplete", () => {
       expect(autocomplete).toHaveAttribute("aria-activedescendant", "");
 
       await user.tab();
-      expect(document.activeElement).toBe(autocomplete);
+      expect(autocomplete).toHaveFocus();
       expect(() => screen.getByRole("listbox")).toThrow();
       expect(autocomplete).toHaveAttribute("aria-expanded", "false");
       expect(autocomplete).toHaveAttribute("aria-activedescendant", "");
@@ -280,7 +280,7 @@ describe("Autocomplete", () => {
       expect(autocomplete).toHaveAttribute("aria-activedescendant", "");
 
       await user.tab();
-      expect(document.activeElement).toBe(autocomplete);
+      expect(autocomplete).toHaveFocus();
       expect(() => screen.getByRole("listbox")).toThrow();
       expect(autocomplete).toHaveAttribute("aria-expanded", "false");
       expect(autocomplete).toHaveAttribute("aria-activedescendant", "");
@@ -370,11 +370,11 @@ describe("Autocomplete", () => {
       const dropdown = screen.getByRole("button", { name: "Fruits" });
 
       await user.tab();
-      expect(document.activeElement).toBe(autocomplete);
+      expect(autocomplete).toHaveFocus();
 
       await user.tab();
-      expect(document.activeElement).not.toBe(dropdown);
-      expect(document.activeElement).toBe(document.body);
+      expect(dropdown).not.toHaveFocus();
+      expect(document.body).toHaveFocus();
     });
   });
 
@@ -440,6 +440,7 @@ describe("Autocomplete", () => {
             options={OBJECT_LIST}
             getOptionLabel={(option) => {
               // @ts-expect-error
+              // eslint-disable-next-line @typescript-eslint/no-unused-expressions
               option.label;
 
               return option.name;

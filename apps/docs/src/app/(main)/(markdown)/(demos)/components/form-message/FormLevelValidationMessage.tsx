@@ -13,8 +13,12 @@ export default function FormLevelValidationMessage(): ReactElement {
   const { getRadioProps, reset } = useRadioGroup({
     name: "choices",
     required: true,
-    onInvalid: () => setError(true),
-    onChange: () => setError(false),
+    onInvalid: () => {
+      setError(true);
+    },
+    onChange: () => {
+      setError(false);
+    },
   });
 
   return (

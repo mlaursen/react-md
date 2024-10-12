@@ -57,7 +57,11 @@ function Test(props: TestProps): ReactElement {
         Tooltip
       </Tooltip>
       <Button onClick={hideTooltip}>Hide Tooltip</Button>
-      <Button onClick={() => setVisible((prev) => !prev)}>
+      <Button
+        onClick={() => {
+          setVisible((prev) => !prev);
+        }}
+      >
         Toggle Tooltip
       </Button>
       <div data-testid="animatedOnce">{`${animatedOnce}`}</div>
@@ -307,7 +311,7 @@ describe("Tooltip", () => {
 
     await user.tab();
     await user.tab({ shift: true });
-    expect(document.activeElement).toBe(button);
+    expect(button).toHaveFocus();
     tooltip = await screen.findByRole("tooltip");
     await waitFor(() => {
       expect(tooltip).not.toHaveClass("rmd-tooltip--enter");
@@ -420,6 +424,9 @@ describe("Tooltip", () => {
     await waitFor(() => {
       expect(tooltip).not.toHaveClass("rmd-tooltip--enter");
     });
+
+    // disable since I am mocking window.getComputedStyle
+    // eslint-disable-next-line jest-dom/prefer-to-have-style
     expect(tooltip.style.top).toBe(`${spacingPixels}px`);
 
     await user.unhover(button);
@@ -446,6 +453,8 @@ describe("Tooltip", () => {
     const defaultSpacingPixels = parseCssLengthUnit({
       value: DEFAULT_TOOLTIP_SPACING,
     });
+    // disable since I am mocking window.getComputedStyle
+    // eslint-disable-next-line jest-dom/prefer-to-have-style
     expect(tooltip.style.top).toBe(`${defaultSpacingPixels}px`);
 
     await user.unhover(button);
@@ -465,6 +474,8 @@ describe("Tooltip", () => {
     const denseSpacingPixels = parseCssLengthUnit({
       value: DEFAULT_TOOLTIP_DENSE_SPACING,
     });
+    // disable since I am mocking window.getComputedStyle
+    // eslint-disable-next-line jest-dom/prefer-to-have-style
     expect(tooltip.style.top).toBe(`${denseSpacingPixels}px`);
   });
 

@@ -13,7 +13,13 @@ export default function InvisibleOverlayExample(): ReactElement {
       visible={visible}
       setVisible={setVisible}
     >
-      <Overlay visible noOpacity onClick={() => setVisible(false)} />
+      <Overlay
+        visible
+        noOpacity
+        onClick={() => {
+          setVisible(false);
+        }}
+      />
       <MenuItem>Item 1</MenuItem>
       <MenuItem>Item 2</MenuItem>
       <MenuItem>Item 3</MenuItem>

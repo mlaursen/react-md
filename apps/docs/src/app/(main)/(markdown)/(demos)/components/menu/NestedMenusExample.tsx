@@ -12,7 +12,9 @@ export default function NestedMenusExample(): ReactElement {
       <Switch
         label="Horizontal?"
         checked={horizontal}
-        onChange={(event) => setHorizontal(event.currentTarget.checked)}
+        onChange={(event) => {
+          setHorizontal(event.currentTarget.checked);
+        }}
       />
       <DropdownMenu buttonChildren="Dropdown" horizontal={horizontal}>
         <MenuItem>Item 1</MenuItem>

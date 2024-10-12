@@ -57,7 +57,12 @@ function Header(): ReactElement {
   return (
     <AppBar theme="clear">
       <AppBarTitle>Custom</AppBarTitle>
-      <Button onClick={() => setVisible(false)} buttonType="icon">
+      <Button
+        onClick={() => {
+          setVisible(false);
+        }}
+        buttonType="icon"
+      >
         <CloseIcon />
       </Button>
     </AppBar>
@@ -70,7 +75,13 @@ function Footer(): ReactElement {
     <>
       <Divider />
       <DialogFooter>
-        <Button onClick={() => setVisible(false)}>Cancel</Button>
+        <Button
+          onClick={() => {
+            setVisible(false);
+          }}
+        >
+          Cancel
+        </Button>
       </DialogFooter>
     </>
   );

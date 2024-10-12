@@ -12,7 +12,9 @@ export default function MenuItemSwitchExample(): ReactElement {
     <DropdownMenu buttonChildren="Dropdown" themeType="outline">
       <MenuItemSwitch
         checked={checked}
-        onCheckedChange={(checked) => setChecked(checked)}
+        onCheckedChange={(checked) => {
+          setChecked(checked);
+        }}
         preventMenuHideOnClick
       >
         Label

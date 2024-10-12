@@ -14,4 +14,8 @@
  * @since 6.0.0
  */
 export const wait = (ms: number): Promise<void> =>
-  new Promise((resolve) => setTimeout(() => resolve(), ms));
+  new Promise((resolve) =>
+    setTimeout(() => {
+      resolve();
+    }, ms)
+  );

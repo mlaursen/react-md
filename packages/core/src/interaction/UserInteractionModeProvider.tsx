@@ -136,8 +136,12 @@ export function UserInteractionModeProvider(
    * and I have no experience using them.
    */
   useEffect(() => {
-    const enableMouseMode = (): void => setMode("mouse");
-    const enableKeyboardMode = (): void => setMode("keyboard");
+    const enableMouseMode = (): void => {
+      setMode("mouse");
+    };
+    const enableKeyboardMode = (): void => {
+      setMode("keyboard");
+    };
 
     const handleTouchStart = (): void => {
       lastTouchTime.current = Date.now();

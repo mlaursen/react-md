@@ -52,7 +52,7 @@ export function getChildTreeItems<T extends TreeItemNode = DefaultTreeItemNode>(
   parentId: string | null,
   recursive = false
 ): readonly T[] {
-  const items = Array.isArray(data) ? data : Object.values(data);
+  const items: readonly T[] = Array.isArray(data) ? data : Object.values(data);
 
   return items.reduce<T[]>((list, item) => {
     if (parentId !== item.parentId) {

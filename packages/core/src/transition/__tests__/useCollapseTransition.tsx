@@ -34,7 +34,12 @@ function Test({
 
   return (
     <>
-      <button type="button" onClick={() => setTransitionIn((p) => !p)}>
+      <button
+        type="button"
+        onClick={() => {
+          setTransitionIn((p) => !p);
+        }}
+      >
         Toggle
       </button>
       {rendered && (
@@ -150,9 +155,9 @@ describe("useCollapseTransition", () => {
   it("should not apply any style if it mounts while transitionIn is true", () => {
     const { container } = render(<Test defaultTransitionIn />);
     const element = screen.getByTestId("element");
-    expect(element.style.minHeight).toBe("");
-    expect(element.style.paddingBottom).toBe("");
-    expect(element.style.paddingTop).toBe("");
+    expect(element).toHaveStyle({ minHeight: "" });
+    expect(element).toHaveStyle({ paddingBottom: "" });
+    expect(element).toHaveStyle({ paddingTop: "" });
     expect(container).toMatchSnapshot();
   });
 
@@ -230,17 +235,17 @@ describe("useCollapseTransition", () => {
     let element = screen.getByTestId("element");
     const toggle = screen.getByRole("button");
 
-    expect(element.style.transitionDuration).toBe("100ms");
+    expect(element).toHaveStyle({ transitionDuration: "100ms" });
     expect(container).toMatchSnapshot();
 
     act(() => {
       jest.runAllTimers();
     });
-    expect(element.style.transitionDuration).toBe("");
+    expect(element).toHaveStyle({ transitionDuration: "" });
     expect(container).toMatchSnapshot();
 
     fireEvent.click(toggle);
-    expect(element.style.transitionDuration).toBe("200ms");
+    expect(element).toHaveStyle({ transitionDuration: "200ms" });
     expect(container).toMatchSnapshot();
 
     act(() => {
@@ -251,13 +256,13 @@ describe("useCollapseTransition", () => {
 
     fireEvent.click(toggle);
     element = screen.getByTestId("element");
-    expect(element.style.transitionDuration).toBe("250ms");
+    expect(element).toHaveStyle({ transitionDuration: "250ms" });
     expect(container).toMatchSnapshot();
 
     act(() => {
       jest.runAllTimers();
     });
-    expect(element.style.transitionDuration).toBe("");
+    expect(element).toHaveStyle({ transitionDuration: "" });
     expect(container).toMatchSnapshot();
   });
 
@@ -291,7 +296,12 @@ describe("useCollapseTransition", () => {
 
       return (
         <>
-          <button type="button" onClick={() => setTransitionIn((p) => !p)}>
+          <button
+            type="button"
+            onClick={() => {
+              setTransitionIn((p) => !p);
+            }}
+          >
             Toggle
           </button>
           <div {...elementProps} data-testid="element">

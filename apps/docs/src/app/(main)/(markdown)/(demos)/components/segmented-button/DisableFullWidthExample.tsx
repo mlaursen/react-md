@@ -8,10 +8,20 @@ export default function DisableFullWidthExample(): ReactElement {
 
   return (
     <SegmentedButtonContainer disableFullWidth>
-      <SegmentedButton onClick={() => setValue("a")} selected={value === "a"}>
+      <SegmentedButton
+        onClick={() => {
+          setValue("a");
+        }}
+        selected={value === "a"}
+      >
         First
       </SegmentedButton>
-      <SegmentedButton onClick={() => setValue("b")} selected={value === "b"}>
+      <SegmentedButton
+        onClick={() => {
+          setValue("b");
+        }}
+        selected={value === "b"}
+      >
         Second
       </SegmentedButton>
     </SegmentedButtonContainer>

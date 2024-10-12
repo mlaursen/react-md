@@ -9,14 +9,18 @@ export default function DisableSelectedIconTransitionExample(): ReactElement {
   return (
     <SegmentedButtonContainer disableFullWidth>
       <SegmentedButton
-        onClick={() => setValue("a")}
+        onClick={() => {
+          setValue("a");
+        }}
         selected={value === "a"}
         disableSelectedTransition
       >
         First
       </SegmentedButton>
       <SegmentedButton
-        onClick={() => setValue("b")}
+        onClick={() => {
+          setValue("b");
+        }}
         selected={value === "b"}
         disableSelectedTransition
       >

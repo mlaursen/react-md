@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 "use client";
 import { useEffect, useMemo, useRef } from "react";
 import { type AnyFunction, type ThrottledFunction } from "./types.js";
@@ -106,19 +108,23 @@ export function useThrottledFunction<F extends AnyFunction>(
       const remaining = wait - (now - lastCalledTime.current);
       if (remaining <= 0 || remaining > wait) {
         lastCalledTime.current = now;
+
         result.current = funcRef.current(...args.current);
       } else if (!timeout.current) {
         timeout.current = window.setTimeout(() => {
           lastCalledTime.current = Date.now();
           timeout.current = undefined;
           // should exist by this time
+
           result.current = funcRef.current(...(args.current as Parameters<F>));
         }, remaining);
       }
 
       return result.current as ReturnType<F>;
     };
-    throttled.cancel = () => window.clearTimeout(timeout.current);
+    throttled.cancel = () => {
+      window.clearTimeout(timeout.current);
+    };
 
     return throttled;
   }, [wait]);

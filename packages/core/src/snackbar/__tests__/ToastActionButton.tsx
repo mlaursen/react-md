@@ -88,7 +88,7 @@ describe("ToastActionButton", () => {
     expect(handleClick).toHaveBeenCalledTimes(1);
 
     handleClick.mockImplementation((event) => {
-      event?.stopPropagation();
+      event.stopPropagation();
     });
     await user.click(button);
     expect(removeToast).toHaveBeenCalledTimes(1);

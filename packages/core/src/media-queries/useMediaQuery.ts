@@ -39,8 +39,9 @@ export function useMediaQuery(query: string, disabled = false): boolean {
     const result = window.matchMedia(query);
     setMatches(result.matches);
 
-    const updater = ({ matches }: MediaQueryListEvent): void =>
+    const updater = ({ matches }: MediaQueryListEvent): void => {
       setMatches(matches);
+    };
 
     result.addEventListener("change", updater);
     return () => {

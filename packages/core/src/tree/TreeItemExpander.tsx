@@ -60,7 +60,7 @@ export function TreeItemExpander(props: TreeItemExpanderProps): ReactElement {
   }
 
   const isCloneable = isValidElement(icon);
-  let clickProps: { onClick: MouseEventHandler<Element> } | undefined;
+  let clickProps: { onClick: MouseEventHandler } | undefined;
   if (expansionMode === "manual" && !disabled) {
     clickProps = {
       onClick(event) {

@@ -184,29 +184,29 @@ describe("ExpansionPanel", () => {
     expect(panel3).toHaveAttribute("aria-expanded", "false");
 
     await user.tab();
-    expect(document.activeElement).toBe(panel1);
+    expect(panel1).toHaveFocus();
 
     await user.keyboard("[End]");
-    expect(document.activeElement).toBe(panel3);
+    expect(panel3).toHaveFocus();
 
     await user.keyboard("[Home]");
-    expect(document.activeElement).toBe(panel1);
+    expect(panel1).toHaveFocus();
 
     await user.keyboard("[ArrowUp]");
-    expect(document.activeElement).toBe(panel3);
+    expect(panel3).toHaveFocus();
 
     await user.keyboard("[ArrowUp]");
-    expect(document.activeElement).toBe(panel2);
+    expect(panel2).toHaveFocus();
 
     await user.keyboard("[ArrowDown]");
-    expect(document.activeElement).toBe(panel3);
+    expect(panel3).toHaveFocus();
 
     await user.keyboard("[ArrowDown]");
-    expect(document.activeElement).toBe(panel1);
+    expect(panel1).toHaveFocus();
 
     // not searchable
     await user.keyboard("p");
-    expect(document.activeElement).toBe(panel1);
+    expect(panel1).toHaveFocus();
   });
 
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {

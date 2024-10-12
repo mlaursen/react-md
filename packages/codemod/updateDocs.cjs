@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+/* eslint-disable no-undef */
 const glob = require("glob");
 const { join } = require("path");
 const { execSync, spawnSync } = require("child_process");

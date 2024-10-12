@@ -27,11 +27,7 @@ const createDemoMdxCode = ({
 export type DemoCodePreviewProps = Required<
   Pick<
     CodePreviewProps,
-    | "disableBox"
-    | "transparent"
-    | "transparent"
-    | "forceDarkMode"
-    | "disablePadding"
+    "disableBox" | "transparent" | "forceDarkMode" | "disablePadding"
   >
 >;
 

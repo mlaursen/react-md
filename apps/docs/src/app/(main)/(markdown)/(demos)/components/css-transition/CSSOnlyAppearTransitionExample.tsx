@@ -11,7 +11,7 @@ export default function CSSOnlyAppearTransitionExample(): ReactElement {
   return (
     <Box stacked disablePadding>
       <Button
-        onClick={() =>
+        onClick={() => {
           setCount((prevCount) => {
             // just so it doesn't render too many
             if (prevCount === 9) {
@@ -19,8 +19,8 @@ export default function CSSOnlyAppearTransitionExample(): ReactElement {
             }
 
             return prevCount + 1;
-          })
-        }
+          });
+        }}
       >
         Add
       </Button>

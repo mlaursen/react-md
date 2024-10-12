@@ -1,9 +1,6 @@
 "use client";
 import { useMemo, type Ref, type RefCallback } from "react";
-import {
-  type CSSVariable,
-  type DefinedCSSVariableName,
-} from "../theme/types.js";
+import { type CSSVariable } from "../theme/types.js";
 import { useElementSize } from "../useElementSize.js";
 
 declare module "react" {
@@ -18,7 +15,7 @@ declare module "react" {
  */
 export interface LayoutAppBarHeightResult {
   height: number | undefined;
-  variables: readonly CSSVariable<DefinedCSSVariableName>[];
+  variables: readonly CSSVariable[];
   appBarRef: RefCallback<HTMLDivElement>;
 }
 
@@ -77,7 +74,7 @@ export function useLayoutAppBarHeight(
     ref,
     disableWidth: true,
   });
-  const variables = useMemo<CSSVariable<DefinedCSSVariableName>[]>(() => {
+  const variables = useMemo<CSSVariable[]>(() => {
     if (Number.isNaN(height) || !observedOnce) {
       return [];
     }

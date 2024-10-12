@@ -22,7 +22,9 @@ export default function LinearProgressTheme(): ReactElement {
         <Switch
           label="Run"
           checked={checked}
-          onChange={(event) => setChecked(event.currentTarget.checked)}
+          onChange={(event) => {
+            setChecked(event.currentTarget.checked);
+          }}
         />
       </Box>
     </>

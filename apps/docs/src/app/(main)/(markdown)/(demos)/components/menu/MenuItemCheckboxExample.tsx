@@ -41,13 +41,17 @@ export default function MenuItemCheckboxExample(): ReactElement {
       </MenuItemCheckbox>
       <MenuItemCheckbox
         checked={bold}
-        onCheckedChange={(checked) => setBold(checked)}
+        onCheckedChange={(checked) => {
+          setBold(checked);
+        }}
       >
         Bold
       </MenuItemCheckbox>
       <MenuItemCheckbox
         checked={italic}
-        onCheckedChange={(checked) => setItalic(checked)}
+        onCheckedChange={(checked) => {
+          setItalic(checked);
+        }}
       >
         Italic
       </MenuItemCheckbox>

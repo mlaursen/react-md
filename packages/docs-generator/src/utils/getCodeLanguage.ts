@@ -8,7 +8,7 @@ export function getCodeLanguage(node: Element): string {
   assertStringArray(classNames);
 
   for (let i = 0; i < classNames.length; i += 1) {
-    const className = `${classNames[i]}`;
+    const className = classNames[i];
     if (className.startsWith(LANG_PREFIX)) {
       return className.slice(LANG_PREFIX.length);
     }

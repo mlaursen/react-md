@@ -58,8 +58,12 @@ function useProgress(): ProgressControls {
   }, [progress, running]);
 
   return {
-    toggle: () => setState((prev) => ({ ...prev, running: !prev.running })),
-    restart: () => setState({ running: false, progress: 0 }),
+    toggle: () => {
+      setState((prev) => ({ ...prev, running: !prev.running }));
+    },
+    restart: () => {
+      setState({ running: false, progress: 0 });
+    },
     running,
     progress,
   };

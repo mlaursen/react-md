@@ -24,7 +24,9 @@ export default function HorizontalSizeExample(): ReactElement {
       <Select
         label="Sheet Position"
         value={horizontalSize}
-        onChange={(event) => setHorizontalSize(event.currentTarget.value)}
+        onChange={(event) => {
+          setHorizontalSize(event.currentTarget.value);
+        }}
       >
         {horizontalSizes.map((size) => (
           <Option key={size} value={size}>

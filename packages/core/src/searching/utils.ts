@@ -7,8 +7,8 @@ import { type BaseSearchOptions } from "./types.js";
  * @internal
  */
 export const defaultExtractor =
-  <T>(name: string) =>
-  (item: T): string => {
+  (name: string) =>
+  (item: unknown): string => {
     if (typeof item === "string") {
       return item;
     }

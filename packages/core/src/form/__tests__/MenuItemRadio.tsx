@@ -31,7 +31,7 @@ describe("MenuItemRadio", () => {
     expect(element).toMatchSnapshot();
   });
 
-  it("should allow for a custom unchecked and checked icon", async () => {
+  it("should allow for a custom unchecked and checked icon", () => {
     const props: MenuItemRadioProps = {
       icon: null,
       checkedIcon: <span data-testid="checked" />,

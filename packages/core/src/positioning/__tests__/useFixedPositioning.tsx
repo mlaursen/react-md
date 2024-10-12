@@ -44,7 +44,9 @@ function Test({ defaultVisible = false, ...options }: TestProps): ReactElement {
       <button
         ref={buttonRef}
         type="button"
-        onClick={() => setVisible((p) => !p)}
+        onClick={() => {
+          setVisible((p) => !p);
+        }}
       >
         Toggle
       </button>

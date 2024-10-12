@@ -39,7 +39,6 @@ function Test<Value extends string = string>(
 function render<Value extends string = string>(
   props: Partial<SelectProps<Value>> = {}
 ) {
-  // eslint-disable-next-line testing-library/await-async-events
   const user = userEvent.setup();
   const { rerender } = rmdRender(<Test {...props} />);
   const select = screen.getByRole("combobox", { name: "Select" });
@@ -47,8 +46,9 @@ function render<Value extends string = string>(
   const selectValue = screen.getByRole("textbox", { hidden: true });
 
   return {
-    rerender: (props: Partial<SelectProps<Value>>) =>
-      rerender(<Test {...props} />),
+    rerender: (props: Partial<SelectProps<Value>>) => {
+      rerender(<Test {...props} />);
+    },
     user,
     select,
     selected,
@@ -122,7 +122,9 @@ describe("Select", () => {
           <Test
             value={value}
             // this should be correctly typed to `Value | ""`
-            onChange={(event) => setValue(event.currentTarget.value)}
+            onChange={(event) => {
+              setValue(event.currentTarget.value);
+            }}
           />
         </>
       );
@@ -363,11 +365,11 @@ describe("Select", () => {
       let option3 = screen.getByRole("option", { name: "Option 3" });
       let option4 = screen.getByRole("option", { name: "Option 4" });
 
-      expect(document.activeElement).toBe(select);
+      expect(select).toHaveFocus();
       expect(select).toHaveAttribute("aria-activedescendant", option1.id);
 
       await user.keyboard("[End]");
-      expect(document.activeElement).toBe(select);
+      expect(select).toHaveFocus();
       expect(select).toHaveAttribute("aria-activedescendant", option4.id);
 
       await user.keyboard("[ArrowDown]");
@@ -398,7 +400,7 @@ describe("Select", () => {
       option3 = screen.getByRole("option", { name: "Option 3" });
       option4 = screen.getByRole("option", { name: "Option 4" });
 
-      expect(document.activeElement).toBe(select);
+      expect(select).toHaveFocus();
       expect(select).toHaveAttribute("aria-activedescendant", option3.id);
 
       await user.keyboard("[Escape]");

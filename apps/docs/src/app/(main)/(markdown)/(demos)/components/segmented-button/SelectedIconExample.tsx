@@ -10,21 +10,27 @@ export default function SelectedIconExample(): ReactElement {
   return (
     <SegmentedButtonContainer disableFullWidth>
       <SegmentedButton
-        onClick={() => setValue("a")}
+        onClick={() => {
+          setValue("a");
+        }}
         selected={value === "a"}
         selectedIcon={<FavoriteIcon />}
       >
         Custom Icon
       </SegmentedButton>
       <SegmentedButton
-        onClick={() => setValue("b")}
+        onClick={() => {
+          setValue("b");
+        }}
         selected={value === "b"}
         selectedIcon={null}
       >
         Null Icon
       </SegmentedButton>
       <SegmentedButton
-        onClick={() => setValue("c")}
+        onClick={() => {
+          setValue("c");
+        }}
         selected={value === "c"}
         disableSelectedIcon
       >

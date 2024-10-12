@@ -35,7 +35,9 @@ function Content(): ReactElement {
       </CardContent>
       <CardFooter>
         <Button
-          onClick={() => setClicked((prev) => prev + 1)}
+          onClick={() => {
+            setClicked((prev) => prev + 1);
+          }}
           theme="primary"
           themeType="outline"
         >

@@ -242,7 +242,7 @@ describe("TextArea", () => {
     const container = screen.getByTestId("container");
     const textarea = screen.getByRole("textbox", { name: "Label" });
     await user.click(container);
-    expect(document.activeElement).toBe(textarea);
+    expect(textarea).toHaveFocus();
   });
 
   it("should allow the value to be controlled", async () => {
@@ -252,7 +252,9 @@ describe("TextArea", () => {
       return (
         <TextArea
           value={value}
-          onChange={(event) => setValue(event.currentTarget.value)}
+          onChange={(event) => {
+            setValue(event.currentTarget.value);
+          }}
           label="Label"
         />
       );
@@ -325,7 +327,7 @@ describe("TextArea", () => {
       expect(container).toMatchSnapshot();
     });
 
-    it("should update the height if the width changes", async () => {
+    it("should update the height if the width changes", () => {
       const { mask, observer, getHeightVar, maskScrollHeight } = setup();
       expect(getHeightVar()).toBe("");
 

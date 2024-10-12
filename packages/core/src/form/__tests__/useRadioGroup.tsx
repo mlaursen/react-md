@@ -1,3 +1,4 @@
+/* eslint-disable jest-dom/prefer-to-have-value */
 import { describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement } from "react";
 import { fireEvent, render, screen } from "../../test-utils/index.js";

@@ -24,7 +24,12 @@ function Test({ defaultCollapsed = true, ...props }: TestProps): ReactElement {
 
   return (
     <>
-      <button type="button" onClick={() => setCollapsed((p) => !p)}>
+      <button
+        type="button"
+        onClick={() => {
+          setCollapsed((p) => !p);
+        }}
+      >
         Toggle
       </button>
       <Collapse {...props} collapsed={collapsed}>
@@ -138,9 +143,9 @@ describe("useCollapseTransition", () => {
   it("should not apply any style if it mounts while collapsed is false", () => {
     const { container } = render(<Test defaultCollapsed={false} />);
     const element = screen.getByTestId("element");
-    expect(element.style.minHeight).toBe("");
-    expect(element.style.paddingBottom).toBe("");
-    expect(element.style.paddingTop).toBe("");
+    expect(element).toHaveStyle({ minHeight: "" });
+    expect(element).toHaveStyle({ paddingBottom: "" });
+    expect(element).toHaveStyle({ paddingTop: "" });
     expect(container).toMatchSnapshot();
   });
 

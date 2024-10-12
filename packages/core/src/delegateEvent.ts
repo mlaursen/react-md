@@ -43,12 +43,12 @@ const delegatedEvents: DelegableEvent[] = [];
  * functions once you have created this event handler. Otherwise there'd be ts
  * errors trying to do `MouseEvent` or `KeyboardEvent` in your listeners.
  */
-function createEventHandler<K extends keyof WindowEventMap>(
+function createEventHandler(
   throttle: boolean,
   callbacks: readonly EventListener[]
-): (event: WindowEventMap[K]) => void {
+): (event: WindowEventMap[keyof WindowEventMap]) => void {
   let running = false;
-  const runCallbacks = (event: WindowEventMap[K]) => () => {
+  const runCallbacks = (event: WindowEventMap[keyof WindowEventMap]) => () => {
     for (let i = 0; i < callbacks.length; i += 1) {
       callbacks[i](event);
     }

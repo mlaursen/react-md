@@ -33,13 +33,17 @@ export default function MenuItemFileInputExample(): ReactElement {
   return (
     <DropdownMenu buttonChildren="Options">
       <MenuItemFileInput
-        onChange={(event) => setFile1(event.currentTarget.value)}
+        onChange={(event) => {
+          setFile1(event.currentTarget.value);
+        }}
         secondaryText={`Selected file: ${file1 || "none"}`}
       >
         Upload
       </MenuItemFileInput>
       <MenuItemFileInput
-        onChange={(event) => setFile2(event.currentTarget.value)}
+        onChange={(event) => {
+          setFile2(event.currentTarget.value);
+        }}
         secondaryText={`Selected file: ${file2 || "none"}`}
         preventMenuHideOnClick
       >

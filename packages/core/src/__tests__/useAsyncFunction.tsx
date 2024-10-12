@@ -62,7 +62,9 @@ describe("useAsyncFunction", () => {
     const instance = new EventTarget();
     const onClick = jest.fn(() => {
       return new Promise<void>((resolve) => {
-        instance.addEventListener("resolve-promise", () => resolve());
+        instance.addEventListener("resolve-promise", () => {
+          resolve();
+        });
       });
     });
     const { unmount } = rmdRender(<Test onClick={onClick} />);
@@ -71,7 +73,7 @@ describe("useAsyncFunction", () => {
     expect(button).not.toHaveAttribute("aria-disabled");
     await user.click(button);
     expect(button).toHaveAttribute("aria-disabled", "true");
-    expect(button).not.toHaveAttribute("disabled");
+    expect(button).toBeEnabled();
     expect(onClick).toHaveBeenCalledTimes(1);
 
     act(() => {
@@ -82,12 +84,12 @@ describe("useAsyncFunction", () => {
       expect(button).not.toHaveAttribute("aria-disabled");
     });
     await waitFor(() => {
-      expect(button).not.toHaveAttribute("disabled");
+      expect(button).toBeEnabled();
     });
 
     await user.click(button);
     expect(button).toHaveAttribute("aria-disabled", "true");
-    expect(button).not.toHaveAttribute("disabled");
+    expect(button).toBeEnabled();
     expect(onClick).toHaveBeenCalledTimes(2);
 
     await user.click(button);
@@ -117,7 +119,7 @@ describe("useAsyncFunction", () => {
     expect(onClick).not.toHaveBeenCalled();
 
     rerender(<Test {...props} hookDisabled />);
-    expect(button).not.toBeDisabled();
+    expect(button).toBeEnabled();
     await user.click(button);
     expect(onClick).not.toHaveBeenCalled();
   });

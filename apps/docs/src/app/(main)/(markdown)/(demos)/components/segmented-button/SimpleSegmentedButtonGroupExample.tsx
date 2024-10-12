@@ -8,13 +8,28 @@ export default function SimpleSegmentedButtonGroupExample(): ReactElement {
 
   return (
     <SegmentedButtonContainer>
-      <SegmentedButton onClick={() => setValue("a")} selected={value === "a"}>
+      <SegmentedButton
+        onClick={() => {
+          setValue("a");
+        }}
+        selected={value === "a"}
+      >
         First
       </SegmentedButton>
-      <SegmentedButton onClick={() => setValue("b")} selected={value === "b"}>
+      <SegmentedButton
+        onClick={() => {
+          setValue("b");
+        }}
+        selected={value === "b"}
+      >
         Second
       </SegmentedButton>
-      <SegmentedButton onClick={() => setValue("c")} selected={value === "c"}>
+      <SegmentedButton
+        onClick={() => {
+          setValue("c");
+        }}
+        selected={value === "c"}
+      >
         Third
       </SegmentedButton>
     </SegmentedButtonContainer>

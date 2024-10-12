@@ -18,8 +18,9 @@ describe("IconRotator", () => {
       </IconRotator>
     );
     const icon = screen.getByTestId("icon");
-    expect(icon.className).toBe(
-      "custom-icon rmd-icon-rotator rmd-icon-rotator--animate"
+    expect(icon).toHaveClass(
+      "custom-icon rmd-icon-rotator rmd-icon-rotator--animate",
+      { exact: true }
     );
     expect(container).toMatchSnapshot();
 
@@ -28,8 +29,9 @@ describe("IconRotator", () => {
         <Icon />
       </IconRotator>
     );
-    expect(icon.className).toBe(
-      "custom-icon rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated"
+    expect(icon).toHaveClass(
+      "custom-icon rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated",
+      { exact: true }
     );
     expect(container).toMatchSnapshot();
   });

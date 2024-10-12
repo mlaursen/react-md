@@ -329,7 +329,7 @@ describe("Tree", () => {
     expect(tree).toHaveAttribute("aria-activedescendant", "");
 
     await user.tab();
-    expect(document.activeElement).toBe(tree);
+    expect(tree).toHaveFocus();
     expect(tree).toHaveAttribute("tabIndex", "0");
     expect(tree).toHaveAttribute("aria-activedescendant", oranges.id);
 

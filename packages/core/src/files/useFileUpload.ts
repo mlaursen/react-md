@@ -498,12 +498,7 @@ export function useFileUpload<E extends HTMLElement, CustomError = never>(
       /* istanbul ignore next */
       if (
         process.env.NODE_ENV !== "production" &&
-        ![
-          "readAsText",
-          "readAsDataURL",
-          "readAsArrayBuffer",
-          "readAsBinaryString",
-        ].includes(parser)
+        !["readAsText", "readAsDataURL", "readAsArrayBuffer"].includes(parser)
       ) {
         throw new Error("Invalid file reader parser");
       }

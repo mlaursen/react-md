@@ -12,7 +12,12 @@ export function NoMatches(): ReactElement {
       <Typography type="headline-5">
         {`No icons found for '${search}'`}
       </Typography>
-      <Button themeType="outline" onClick={() => resetFilters()}>
+      <Button
+        themeType="outline"
+        onClick={() => {
+          resetFilters();
+        }}
+      >
         Clear your filters and try again
       </Button>
     </div>

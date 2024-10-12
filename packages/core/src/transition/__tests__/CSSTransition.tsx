@@ -36,7 +36,12 @@ function Test({
   const [transitionIn, setTransitionIn] = useState(defaultTransitionIn);
   return (
     <>
-      <button type="button" onClick={() => setTransitionIn((p) => !p)}>
+      <button
+        type="button"
+        onClick={() => {
+          setTransitionIn((p) => !p);
+        }}
+      >
         Toggle
       </button>
       <CSSTransition

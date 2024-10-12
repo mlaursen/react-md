@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/unified-signatures */
 import { cnb } from "cnbuilder";
 import { type HTMLAttributes, type ReactElement } from "react";
 import { CodeBlock, type CodeBlockConfigurableProps } from "./CodeBlock.js";

@@ -5,7 +5,7 @@ import type { Dispatch, ReactElement, Ref, SetStateAction } from "react";
  * object even though a `ref` isn't a real prop.
  */
 export type PropsWithRef<
-  Props extends {},
+  Props extends object,
   Element extends HTMLElement,
 > = Props & {
   /**
@@ -18,7 +18,7 @@ export type PropsWithRef<
  * A simple type that can be used for different components that clone a
  * `className` into a child component.
  */
-export type ClassNameCloneableChild<T = {}> = ReactElement<
+export type ClassNameCloneableChild<T = object> = ReactElement<
   T & { className?: string }
 >;
 
@@ -171,7 +171,7 @@ export type CssPosition = "fixed" | "sticky" | "static";
  * @since 6.0.0
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type AnyFunction = (...args: any[]) => any | void;
+export type AnyFunction = (...args: any[]) => any;
 
 /**
  * @since 6.0.0

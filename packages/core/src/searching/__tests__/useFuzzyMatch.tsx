@@ -71,7 +71,9 @@ describe("useFuzzyMatch", () => {
             Search
             <input
               type="text"
-              onChange={(event) => setValue(event.currentTarget.value)}
+              onChange={(event) => {
+                setValue(event.currentTarget.value);
+              }}
             />
           </label>
         </>

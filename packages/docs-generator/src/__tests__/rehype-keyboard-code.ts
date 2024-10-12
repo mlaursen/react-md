@@ -5,7 +5,7 @@ import { resolve } from "node:path";
 import { rehypeKeyboardCode } from "../rehype-keyboard-code.js";
 
 async function getFixture(name: string): Promise<string> {
-  const filePath = resolve(process.cwd(), "src", "__testfixtures__", `${name}`);
+  const filePath = resolve(process.cwd(), "src", "__testfixtures__", name);
   return await readFile(filePath, "utf8");
 }
 

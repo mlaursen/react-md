@@ -6,7 +6,7 @@ import rehypeSlug from "rehype-slug";
 import { rehypeToc, type TOCItem } from "../rehype-toc.js";
 
 async function getFixture(name: string): Promise<string> {
-  const filePath = resolve(process.cwd(), "src", "__testfixtures__", `${name}`);
+  const filePath = resolve(process.cwd(), "src", "__testfixtures__", name);
   return await readFile(filePath, "utf8");
 }
 

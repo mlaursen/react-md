@@ -16,12 +16,16 @@ export default function NewItemsExample(): ReactElement {
           theme="primary"
           themeType="contained"
           disabled={items >= 16}
-          onClick={() => setItems((prev) => prev + 1)}
+          onClick={() => {
+            setItems((prev) => prev + 1);
+          }}
         >
           Add Item
         </Button>
         <Button
-          onClick={() => setItems(0)}
+          onClick={() => {
+            setItems(0);
+          }}
           theme="warning"
           themeType="contained"
         >

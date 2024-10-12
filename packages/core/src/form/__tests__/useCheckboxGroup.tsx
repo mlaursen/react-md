@@ -1,3 +1,5 @@
+// the indeterminate checkbox should be checked, but not have aria-checked
+/* eslint-disable jest-dom/prefer-checked */
 import { describe, expect, it } from "@jest/globals";
 import { type ReactElement } from "react";
 import { fireEvent, render, screen } from "../../test-utils/index.js";
@@ -17,6 +19,7 @@ describe("useCheckboxGroup", () => {
       const { getCheckboxProps } = checkboxGroup;
 
       // @ts-expect-error
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       checkboxGroup.getIndeterminateProps;
 
       return (

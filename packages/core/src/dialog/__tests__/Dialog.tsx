@@ -13,11 +13,10 @@ import { isElementVisible } from "../../utils/isElementVisible.js";
 import { Dialog, type DialogProps } from "../Dialog.js";
 import { dialog } from "../styles.js";
 
-interface TestProps
-  extends Omit<
-    DialogProps,
-    "aria-label" | "aria-labelledby" | "visible" | "onRequestClose"
-  > {}
+type TestProps = Omit<
+  DialogProps,
+  "aria-label" | "aria-labelledby" | "visible" | "onRequestClose"
+>;
 
 function Test(props: TestProps): ReactElement {
   const { children, ...remaining } = props;
@@ -150,7 +149,7 @@ describe("Dialog", () => {
     await user.click(show);
 
     const dialog = screen.getByRole("dialog", { name: "Dialog" });
-    expect(document.activeElement).toBe(dialog);
+    expect(dialog).toHaveFocus();
 
     await user.click(screen.getByRole("button", { name: "Close" }));
     expect(dialog).not.toBeInTheDocument();
@@ -158,7 +157,7 @@ describe("Dialog", () => {
     // have to use waitFor because this focus happens after an animation frame
     // due to the weird timing of Enter keydown events compared to space
     await waitFor(() => {
-      expect(document.activeElement).toBe(show);
+      expect(show).toHaveFocus();
     });
   });
 

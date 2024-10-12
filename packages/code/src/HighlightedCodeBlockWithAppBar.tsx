@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/unified-signatures */
 import { type ReactElement, type ReactNode } from "react";
 import {
   CodeBlockAppBar,

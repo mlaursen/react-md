@@ -40,7 +40,9 @@ export function FilterSymbolCustomization(): ReactElement {
         <Switch
           label="Fill"
           checked={symbolFill === 1}
-          onChange={() => setFill(symbolFill === 1 ? 0 : 1)}
+          onChange={() => {
+            setFill(symbolFill === 1 ? 0 : 1);
+          }}
         />
         <Fieldset className={styles.fieldset}>
           <Legend>Weight</Legend>

@@ -34,7 +34,9 @@ export default function SnackbarPositionExample(): ReactElement {
       <Select
         label="Position"
         value={position}
-        onChange={(event) => setPosition(event.currentTarget.value)}
+        onChange={(event) => {
+          setPosition(event.currentTarget.value);
+        }}
       >
         {positions.map((position) => (
           <Option key={position} value={position}>

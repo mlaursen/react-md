@@ -60,7 +60,7 @@ describe("useResizeObserver", () => {
     expect(resizeObserverSpy).toHaveBeenCalledTimes(1);
   });
 
-  it("should do nothing when disabled, both the height and width are disabled, or there is no element", async () => {
+  it("should do nothing when disabled, both the height and width are disabled, or there is no element", () => {
     const resizeObserverSpy = jest.spyOn(window, "ResizeObserver");
     const noRefUpdate = jest.fn();
     const disabledUpdate = jest.fn();

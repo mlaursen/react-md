@@ -29,7 +29,9 @@ function TestImplementation({
         form={form}
         type="text"
         value={value}
-        onChange={(event) => setValue(event.currentTarget.value)}
+        onChange={(event) => {
+          setValue(event.currentTarget.value);
+        }}
       />
     </label>
   );
@@ -117,7 +119,9 @@ describe("useFormReset", () => {
           <input
             type="text"
             value={value}
-            onChange={(event) => setValue(event.currentTarget.value)}
+            onChange={(event) => {
+              setValue(event.currentTarget.value);
+            }}
           />
         </label>
       );
@@ -163,7 +167,9 @@ describe("useFormReset", () => {
             ref={elementRef}
             type="text"
             value={value}
-            onChange={(event) => setValue(event.currentTarget.value)}
+            onChange={(event) => {
+              setValue(event.currentTarget.value);
+            }}
           />
         </label>
       );

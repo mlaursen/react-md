@@ -83,13 +83,13 @@ describe("SkipToMainContent", () => {
 
     const link = screen.getByRole("link", { name: "Skip to main content" });
     const main = screen.getByRole("main");
-    expect(document.activeElement).toBe(document.body);
+    expect(document.body).toHaveFocus();
 
     fireEvent.click(link);
-    expect(document.activeElement).toBe(main);
+    expect(main).toHaveFocus();
 
     main.blur();
-    expect(document.activeElement).toBe(document.body);
+    expect(document.body).toHaveFocus();
     rerender(
       <SkipToMainContent
         mainId="main-id"
@@ -99,7 +99,7 @@ describe("SkipToMainContent", () => {
       />
     );
     fireEvent.click(link);
-    expect(document.activeElement).toBe(document.body);
+    expect(document.body).toHaveFocus();
   });
 
   it("should defer finding the main element to the click event in production", () => {
@@ -114,10 +114,10 @@ describe("SkipToMainContent", () => {
 
     const link = screen.getByRole("link", { name: "Skip to main content" });
     const main = screen.getByRole("main");
-    expect(document.activeElement).toBe(document.body);
+    expect(document.body).toHaveFocus();
 
     fireEvent.click(link);
-    expect(document.activeElement).toBe(main);
+    expect(main).toHaveFocus();
     expect(querySelector).toHaveBeenCalledTimes(1);
 
     process.env.NODE_ENV = NODE_ENV;

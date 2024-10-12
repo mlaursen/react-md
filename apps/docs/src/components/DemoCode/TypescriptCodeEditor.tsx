@@ -6,11 +6,10 @@ import { useFocusCodeEditor } from "@react-md/code/useFocusCodeEditor";
 import { Snackbar } from "@react-md/core/snackbar/Snackbar";
 import { type ReactElement } from "react";
 
-export interface TypescriptCodeEditorProps
-  extends Pick<
-    CodeEditHistoryImplementation,
-    "code" | "editorRef" | "editorProps"
-  > {}
+export type TypescriptCodeEditorProps = Pick<
+  CodeEditHistoryImplementation,
+  "code" | "editorRef" | "editorProps"
+>;
 
 export function TypescriptCodeEditor(
   props: TypescriptCodeEditorProps

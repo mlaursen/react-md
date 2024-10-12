@@ -27,9 +27,9 @@ describe("ResizeObserverMock", () => {
     });
     expect(onUpdate).toHaveBeenCalledTimes(1);
 
-    expect(() =>
-      resizeObserver.resizeElement(document.createElement("div"))
-    ).toThrow(
+    expect(() => {
+      resizeObserver.resizeElement(document.createElement("div"));
+    }).toThrow(
       "The `ResizeObserverMock` is not watching the target element and cannot be resized"
     );
 
@@ -61,11 +61,11 @@ describe("ResizeObserverMock", () => {
     });
 
     resizeObserver.disconnect();
-    expect(() =>
+    expect(() => {
       resizeObserver.resizeElement(element, (target) =>
         createResizeObserverEntry(target, { width: 50, height: 100 })
-      )
-    ).toThrow(
+      );
+    }).toThrow(
       "The `ResizeObserverMock` is not watching the target element and cannot be resized"
     );
   });

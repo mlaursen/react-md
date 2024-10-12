@@ -56,7 +56,12 @@ function Test({
 
   return (
     <>
-      <button type="button" onClick={() => setTransitionIn((p) => !p)}>
+      <button
+        type="button"
+        onClick={() => {
+          setTransitionIn((p) => !p);
+        }}
+      >
         Toggle
       </button>
       <ul role="log">
@@ -91,38 +96,38 @@ describe("useCSSTransition", () => {
 
     expect(node).toHaveTextContent('The current stage is: "entering"');
     expect(() => screen.getByText("Appearing: true")).not.toThrow();
-    expect(node.className).toBe("appear appear-active");
+    expect(node).toHaveClass("appear appear-active", { exact: true });
 
     act(() => {
       jest.runAllTimers();
     });
     expect(node).toHaveTextContent('The current stage is: "entered"');
     expect(() => screen.getByText("Appearing: true")).not.toThrow();
-    expect(node.className).toBe("appear-done");
+    expect(node).toHaveClass("appear-done", { exact: true });
 
     fireEvent.click(toggle);
     expect(node).toHaveTextContent('The current stage is: "exiting"');
     expect(() => screen.getByText("Appearing: false")).not.toThrow();
-    expect(node.className).toBe("exit exit-active");
+    expect(node).toHaveClass("exit exit-active", { exact: true });
 
     act(() => {
       jest.runAllTimers();
     });
     expect(node).toHaveTextContent('The current stage is: "exited"');
     expect(() => screen.getByText("Appearing: false")).not.toThrow();
-    expect(node.className).toBe("exit-done");
+    expect(node).toHaveClass("exit-done", { exact: true });
 
     fireEvent.click(toggle);
     expect(node).toHaveTextContent('The current stage is: "entering"');
     expect(() => screen.getByText("Appearing: false")).not.toThrow();
-    expect(node.className).toBe("enter enter-active");
+    expect(node).toHaveClass("enter enter-active", { exact: true });
 
     act(() => {
       jest.runAllTimers();
     });
     expect(node).toHaveTextContent('The current stage is: "entered"');
     expect(() => screen.getByText("Appearing: false")).not.toThrow();
-    expect(node.className).toBe("enter-done");
+    expect(node).toHaveClass("enter-done", { exact: true });
   });
 
   it("should correctly call the transition callbacks", () => {

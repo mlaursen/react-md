@@ -40,7 +40,7 @@ if (process.argv.includes("--watch")) {
     switch (eventName) {
       case "add":
       case "change":
-        cp(path, dist);
+        void cp(path, dist);
         break;
       case "unlink": {
         if (existsSync(dist)) {

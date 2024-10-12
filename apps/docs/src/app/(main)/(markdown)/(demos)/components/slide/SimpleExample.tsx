@@ -32,13 +32,28 @@ export default function SimpleExample(): ReactElement {
   return (
     <Box stacked fullWidth>
       <SegmentedButtonContainer>
-        <SegmentedButton selected={page === 1} onClick={() => setPage(1)}>
+        <SegmentedButton
+          selected={page === 1}
+          onClick={() => {
+            setPage(1);
+          }}
+        >
           Page 1
         </SegmentedButton>
-        <SegmentedButton selected={page === 2} onClick={() => setPage(2)}>
+        <SegmentedButton
+          selected={page === 2}
+          onClick={() => {
+            setPage(2);
+          }}
+        >
           Page 2
         </SegmentedButton>
-        <SegmentedButton selected={page === 3} onClick={() => setPage(3)}>
+        <SegmentedButton
+          selected={page === 3}
+          onClick={() => {
+            setPage(3);
+          }}
+        >
           Page 3
         </SegmentedButton>
       </SegmentedButtonContainer>

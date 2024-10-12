@@ -542,8 +542,9 @@ export const toastManager = new ToastManager();
  * @see {@link ToastManager.addToast}
  * @since 6.0.0
  */
-export const addToast: ToastManager["addToast"] = (toast) =>
+export const addToast: ToastManager["addToast"] = (toast) => {
   toastManager.addToast(toast);
+};
 
 /**
  * @see {@link ToastManager.startRemoveTimeout}
@@ -551,23 +552,33 @@ export const addToast: ToastManager["addToast"] = (toast) =>
  */
 export const startRemoveToastTimeout: ToastManager["startRemoveTimeout"] = (
   toastId
-) => toastManager.startRemoveTimeout(toastId);
+) => {
+  toastManager.startRemoveTimeout(toastId);
+};
 
 /**
  * @see {@link ToastManager.popToast}
  * @since 6.0.0
  */
-export const popToast: ToastManager["popToast"] = () => toastManager.popToast();
+export const popToast: ToastManager["popToast"] = () => {
+  toastManager.popToast();
+};
 
 /**
  * @see {@link ToastManager.removeToast}
  * @since 6.0.0
  */
-export const removeToast: ToastManager["removeToast"] = (toastId, transition) =>
+export const removeToast: ToastManager["removeToast"] = (
+  toastId,
+  transition
+) => {
   toastManager.removeToast(toastId, transition);
+};
 
 /**
  * @see {@link ToastManager.clearToasts}
  * @since 6.0.0
  */
-export const clearToasts = (): void => toastManager.clearToasts();
+export const clearToasts = (): void => {
+  toastManager.clearToasts();
+};

@@ -71,7 +71,7 @@ async function run(): Promise<void> {
         // camelCase for react
         .replace(
           /([a-z]+)[-:]([-:a-z]+)=/g,
-          (_match, prefix, suffix) =>
+          (_match, prefix, suffix: string) =>
             `${prefix}${upperFirst(camelCase(suffix))}`
         );
 
@@ -100,4 +100,4 @@ export const ${componentName} = forwardRef<SVGSVGElement, SVGIconProps>(function
   );
 }
 
-run();
+void run();

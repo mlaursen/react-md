@@ -69,7 +69,9 @@ describe("useLocalStorage", () => {
             </tbody>
           </table>
           <Button
-            onClick={() => setValue((prevValue) => ({ ...prevValue, b: 0 }))}
+            onClick={() => {
+              setValue((prevValue) => ({ ...prevValue, b: 0 }));
+            }}
           >
             Button
           </Button>
@@ -291,7 +293,13 @@ describe("useLocalStorage", () => {
       });
       return (
         <>
-          <Button onClick={() => setValue("value")}>Set Value</Button>
+          <Button
+            onClick={() => {
+              setValue("value");
+            }}
+          >
+            Set Value
+          </Button>
           <Button onClick={persist}>Persist</Button>
           <Button onClick={remove}>Remove</Button>
           <div data-testid="value">{value}</div>

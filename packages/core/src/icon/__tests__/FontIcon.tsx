@@ -20,12 +20,15 @@ describe("FontIcon", () => {
   it("should apply the correct classNames", () => {
     const { rerender } = render(<FontIcon data-testid="icon" />);
     const icon = screen.getByTestId("icon");
-    expect(icon.className).toBe("rmd-icon rmd-icon--font material-icons");
+    expect(icon).toHaveClass("rmd-icon rmd-icon--font material-icons", {
+      exact: true,
+    });
     expect(icon).toMatchSnapshot();
 
     rerender(<FontIcon data-testid="icon" className="test-thing" dense />);
-    expect(icon.className).toBe(
-      "rmd-icon rmd-icon--font rmd-icon--dense material-icons test-thing"
+    expect(icon).toHaveClass(
+      "rmd-icon rmd-icon--font rmd-icon--dense material-icons test-thing",
+      { exact: true }
     );
     expect(icon).toMatchSnapshot();
 
@@ -37,8 +40,9 @@ describe("FontIcon", () => {
         iconClassName="fa fa-github"
       />
     );
-    expect(icon.className).toBe(
-      "rmd-icon rmd-icon--font rmd-icon--dense fa fa-github test-thing"
+    expect(icon).toHaveClass(
+      "rmd-icon rmd-icon--font rmd-icon--dense fa fa-github test-thing",
+      { exact: true }
     );
     expect(icon).toMatchSnapshot();
   });

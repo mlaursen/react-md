@@ -45,7 +45,7 @@ export const getJumpValue = (options: JumpOptions): number => {
  * @internal
  */
 type RequiredThumbProps = Pick<
-  DraggableImplementation<HTMLElement>,
+  DraggableImplementation,
   | "dragging"
   | keyof DraggableMouseEventHandlers<HTMLElement>
   | keyof DraggableTouchEventHandlers<HTMLElement>

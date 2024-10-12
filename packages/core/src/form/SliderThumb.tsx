@@ -148,7 +148,7 @@ export interface SliderThumbProps
   getTooltipProps: (
     value: number,
     isFirstThumb: boolean
-  ) => Partial<TooltipProps> | void;
+  ) => Partial<TooltipProps> | undefined;
   getTooltipChildren: (value: number, isFirstThumb: boolean) => ReactNode;
 }
 

@@ -155,6 +155,7 @@ describe("caseInsensitiveSearch", () => {
     ).toBe("Apple");
 
     expect(
+      // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
       caseInsensitiveSearch({
         list: [],
         query: "",

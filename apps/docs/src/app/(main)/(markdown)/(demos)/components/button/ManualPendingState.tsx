@@ -12,7 +12,9 @@ export default function ManualLoadingState(): ReactElement {
       <Switch
         label="Loading?"
         checked={loading}
-        onChange={(event) => setLoading(event.currentTarget.checked)}
+        onChange={(event) => {
+          setLoading(event.currentTarget.checked);
+        }}
       />
       <AsyncButton loading={loading} theme="clear" themeType="flat">
         Button

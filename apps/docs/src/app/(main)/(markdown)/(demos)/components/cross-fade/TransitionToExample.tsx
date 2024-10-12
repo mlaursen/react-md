@@ -20,13 +20,17 @@ export default function TransitionToExample(): ReactElement {
       <SegmentedButtonContainer>
         <SegmentedButton
           selected={page === 1}
-          onClick={() => transitionToPage(1)}
+          onClick={() => {
+            transitionToPage(1);
+          }}
         >
           Page 1
         </SegmentedButton>
         <SegmentedButton
           selected={page === 2}
-          onClick={() => transitionToPage(2)}
+          onClick={() => {
+            transitionToPage(2);
+          }}
         >
           Page 2
         </SegmentedButton>

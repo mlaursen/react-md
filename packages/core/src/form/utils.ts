@@ -86,6 +86,7 @@ export function triggerManualChangeEvent(
     return;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const prototype = Object.getPrototypeOf(element);
   const setter = Object.getOwnPropertyDescriptor(prototype, "value")?.set;
   if (!setter) {

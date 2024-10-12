@@ -36,7 +36,7 @@ export type MatchMediaMatcher = (query: string) => boolean;
  * @returns `true` for phone media queries
  */
 export const matchPhone: MatchMediaMatcher = (query) =>
-  query.includes(`${DEFAULT_PHONE_MAX_WIDTH}`);
+  query.includes(DEFAULT_PHONE_MAX_WIDTH);
 
 /**
  * @see {@link spyOnMatchMedia} for usage
@@ -44,7 +44,7 @@ export const matchPhone: MatchMediaMatcher = (query) =>
  * @returns `true` for tablet media queries
  */
 export const matchTablet: MatchMediaMatcher = (query) =>
-  query.includes(`${DEFAULT_TABLET_MIN_WIDTH}`);
+  query.includes(DEFAULT_TABLET_MIN_WIDTH);
 
 /**
  * @see {@link spyOnMatchMedia} for usage
@@ -52,7 +52,7 @@ export const matchTablet: MatchMediaMatcher = (query) =>
  * @returns `true` for desktop media queries
  */
 export const matchDesktop: MatchMediaMatcher = (query) =>
-  query.includes(`${DEFAULT_DESKTOP_MIN_WIDTH}`);
+  query.includes(DEFAULT_DESKTOP_MIN_WIDTH);
 
 /**
  * @see {@link spyOnMatchMedia} for usage
@@ -60,7 +60,7 @@ export const matchDesktop: MatchMediaMatcher = (query) =>
  * @returns `true` for large desktop media queries
  */
 export const matchLargeDesktop: MatchMediaMatcher = (query) =>
-  query.includes(`${DEFAULT_DESKTOP_LARGE_MIN_WIDTH}`);
+  query.includes(DEFAULT_DESKTOP_LARGE_MIN_WIDTH);
 
 /**
  * @see {@link spyOnMatchMedia} for usage

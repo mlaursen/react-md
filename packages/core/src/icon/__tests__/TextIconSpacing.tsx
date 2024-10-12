@@ -6,7 +6,7 @@ import { TextIconSpacing } from "../TextIconSpacing.js";
 describe("TextIconSpacing", () => {
   it("should be able to render without any children or icon even though it's worthless", () => {
     const { container } = render(<TextIconSpacing />);
-    expect(container.firstChild).toBe(null);
+    expect(container).toBeEmptyDOMElement();
   });
 
   it("should return the children if no icon prop is provided", () => {
@@ -54,7 +54,7 @@ describe("TextIconSpacing", () => {
     );
 
     let icon = screen.getByTestId("icon");
-    expect(icon.className).toBe("rmd-icon--before");
+    expect(icon).toHaveClass("rmd-icon--before", { exact: true });
 
     rerender(
       <TextIconSpacing icon={<i data-testid="icon" />} iconAfter>
@@ -62,7 +62,7 @@ describe("TextIconSpacing", () => {
       </TextIconSpacing>
     );
     icon = screen.getByTestId("icon");
-    expect(icon.className).toBe("rmd-icon--after");
+    expect(icon).toHaveClass("rmd-icon--after", { exact: true });
   });
 
   it("should wrap the icon in a span with the required classNames if the icon is not a valid react element or the forceIconWrap prop is enabled", () => {
@@ -91,18 +91,18 @@ describe("TextIconSpacing", () => {
     const { container, rerender } = render(<TextIconSpacing {...props} />);
     expect(container).toMatchSnapshot();
 
-    expect(screen.getByTestId("icon").className).toContain("rmd-icon--after");
+    expect(screen.getByTestId("icon")).toHaveClass("rmd-icon--after");
 
     rerender(<TextIconSpacing {...props} iconAfter />);
     expect(container).toMatchSnapshot();
-    expect(screen.getByTestId("icon").className).toContain("rmd-icon--before");
+    expect(screen.getByTestId("icon")).toHaveClass("rmd-icon--before");
 
     rerender(<TextIconSpacing {...props} stacked />);
     expect(container).toMatchSnapshot();
-    expect(screen.getByTestId("icon").className).toContain("rmd-icon--below");
+    expect(screen.getByTestId("icon")).toHaveClass("rmd-icon--below");
 
     rerender(<TextIconSpacing {...props} stacked iconAfter />);
     expect(container).toMatchSnapshot();
-    expect(screen.getByTestId("icon").className).toContain("rmd-icon--above");
+    expect(screen.getByTestId("icon")).toHaveClass("rmd-icon--above");
   });
 });

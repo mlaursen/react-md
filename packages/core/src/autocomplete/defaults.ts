@@ -11,7 +11,7 @@ import {
  * @since 6.0.0
  * @internal
  */
-export const defaultAutocompleteExtractor = <T>(item: T): string => {
+export const defaultAutocompleteExtractor = (item: unknown): string => {
   if (
     item &&
     typeof item === "object" &&

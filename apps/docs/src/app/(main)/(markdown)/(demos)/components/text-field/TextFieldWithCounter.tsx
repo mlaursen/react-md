@@ -14,7 +14,9 @@ export default function TextFieldWithCounter(): ReactElement {
         label="Label"
         placeholder="Placeholder"
         value={value}
-        onChange={(event) => setValue(event.currentTarget.value)}
+        onChange={(event) => {
+          setValue(event.currentTarget.value);
+        }}
         // Uncomment this line to allow the browser to prevent adding more
         // characters as well
         // maxLength={maxLength}

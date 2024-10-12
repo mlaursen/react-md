@@ -13,7 +13,9 @@ export default function LoadingIndicatorTypes(): ReactElement {
       <Switch
         label="Loading?"
         checked={loading}
-        onChange={(event) => setLoading(event.currentTarget.checked)}
+        onChange={(event) => {
+          setLoading(event.currentTarget.checked);
+        }}
       />
       <AsyncButton
         loading={loading}

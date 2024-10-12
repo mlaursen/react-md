@@ -39,7 +39,7 @@ const renderMain = (options: ElementSizeOptions<HTMLElement> = {}) => {
 };
 
 describe("useElementSize", () => {
-  it("should default to a height and width of 0", async () => {
+  it("should default to a height and width of 0", () => {
     const elementSize: MutableRefObject<ElementSize | null> = {
       current: null,
     };

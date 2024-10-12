@@ -93,7 +93,6 @@ const abort = jest.fn();
 const readAsText = jest.fn();
 const readAsDataURL = jest.fn();
 const readAsArrayBuffer = jest.fn();
-const readAsBinaryString = jest.fn();
 let mockFileReader = new MockFileReader();
 
 let fileReader = jest.spyOn(window, "FileReader");
@@ -108,7 +107,6 @@ beforeEach(() => {
   mockFileReader.readAsText = readAsText;
   mockFileReader.readAsDataURL = readAsDataURL;
   mockFileReader.readAsArrayBuffer = readAsArrayBuffer;
-  mockFileReader.readAsBinaryString = readAsBinaryString;
 });
 
 function SingleFileTest(props: FileUploadOptions<HTMLElement>) {
@@ -147,7 +145,7 @@ describe("useFileUpload", () => {
   it("should work correctly for a single file upload flow and reset", async () => {
     const file = new File(["pretend-bytes"], "README.txt");
     render(<SingleFileTest />);
-    const input = screen.getByLabelText("Upload") as HTMLInputElement;
+    const input = screen.getByLabelText("Upload");
     const status = screen.getByTestId("status");
     const fileName = screen.getByTestId("fileName");
     const progress = screen.getByTestId("progress");
@@ -212,7 +210,7 @@ describe("useFileUpload", () => {
   it("should abort any FileReaders when the reset function is called", async () => {
     const file = new File(["pretend-bytes"], "README.txt");
     render(<SingleFileTest />);
-    const input = screen.getByLabelText("Upload") as HTMLInputElement;
+    const input = screen.getByLabelText("Upload");
 
     await userEvent.upload(input, file);
     expect(abort).not.toHaveBeenCalled();
@@ -222,7 +220,7 @@ describe("useFileUpload", () => {
 
   it("should allow for some default validation", async () => {
     render(<SingleFileTest maxFileSize={1024} minFileSize={612} />);
-    const input = screen.getByLabelText("Upload") as HTMLInputElement;
+    const input = screen.getByLabelText("Upload");
     const status = screen.getByTestId("status");
     const fileName = screen.getByTestId("fileName");
     const reset = screen.getByRole("button", { name: "Reset" });

@@ -1,3 +1,5 @@
+// this was disabled because it removes the value type infer behavior
+/* eslint-disable @typescript-eslint/unified-signatures */
 "use client";
 import {
   useRef,
@@ -50,7 +52,7 @@ declare module "react" {
 }
 
 const emptyString = (): string => "";
-const noop = (): void => {
+const noop = (): undefined => {
   // do nothing
 };
 
@@ -133,7 +135,7 @@ export interface SliderProps extends BaseSliderProps, SliderState {
    * />
    * ```
    */
-  getTooltipProps?: (value: number) => Partial<TooltipProps>;
+  getTooltipProps?: (value: number) => Partial<TooltipProps> | undefined;
 
   /**
    * This can be used to update the discrete slider's value tooltip.
@@ -590,9 +592,9 @@ export function Slider(
           value={thumb1Value}
           index={1}
           active={thumb1Dragging}
-          onChange={(event) =>
-            setThumb1Value(event.currentTarget.valueAsNumber)
-          }
+          onChange={(event) => {
+            setThumb1Value(event.currentTarget.valueAsNumber);
+          }}
           onKeyDown={thumb1OnKeyDown}
         />
         {isRangeSlider && (
@@ -608,9 +610,9 @@ export function Slider(
             value={thumb2Value}
             index={2}
             active={thumb2Dragging}
-            onChange={(event) =>
-              setThumb2Value(event.currentTarget.valueAsNumber)
-            }
+            onChange={(event) => {
+              setThumb2Value(event.currentTarget.valueAsNumber);
+            }}
             onKeyDown={thumb2OnKeyDown}
           />
         )}

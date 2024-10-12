@@ -115,6 +115,7 @@ export function useTreeContext<
     throw new Error("Cannot find a parent Tree component");
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   return value;
 }
 

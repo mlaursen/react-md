@@ -102,7 +102,9 @@ export function useDebouncedFunction<F extends AnyFunction>(
         funcRef.current(...args);
       }, wait);
     };
-    debounced.cancel = () => window.clearTimeout(timeout.current);
+    debounced.cancel = () => {
+      window.clearTimeout(timeout.current);
+    };
 
     return debounced;
   }, [wait]);

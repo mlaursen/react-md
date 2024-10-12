@@ -19,10 +19,10 @@ export interface SelectComboboxOptions<
 /**
  * @since 6.0.0
  */
-export interface SelectComboboxImplementation<
+export type SelectComboboxImplementation<
   ComboboxEl extends HTMLElement = HTMLInputElement,
   PopupEl extends HTMLElement = HTMLElement,
-> extends ComboboxImplementation<ComboboxEl, PopupEl> {}
+> = ComboboxImplementation<ComboboxEl, PopupEl>;
 
 /**
  * @since 6.0.0

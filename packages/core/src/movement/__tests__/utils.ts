@@ -587,7 +587,9 @@ describe("recalculateFocusIndex", () => {
   });
 
   afterEach(() => {
-    focusables.forEach((element) => element.remove());
+    focusables.forEach((element) => {
+      element.remove();
+    });
   });
 
   it("should return the index of the document.activeElement if the tabIndexBehavior is not virtual", () => {
@@ -625,7 +627,7 @@ describe("recalculateFocusIndex", () => {
     ).toBe(-1);
 
     select.focus();
-    expect(document.activeElement).toBe(select);
+    expect(select).toHaveFocus();
     expect(
       recalculateFocusIndex({
         focusables,
@@ -644,7 +646,7 @@ describe("recalculateFocusIndex", () => {
     ).toBe(1);
 
     textarea.focus();
-    expect(document.activeElement).toBe(textarea);
+    expect(textarea).toHaveFocus();
     expect(
       recalculateFocusIndex({
         focusables,
@@ -664,7 +666,7 @@ describe("recalculateFocusIndex", () => {
   });
 
   it("should use the getVirtualFocusDefaultIndex behavior when the tabIndexBehavior is virtual", () => {
-    expect(document.activeElement).toBe(document.body);
+    expect(document.body).toHaveFocus();
 
     expect(
       recalculateFocusIndex({

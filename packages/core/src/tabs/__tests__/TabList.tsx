@@ -212,7 +212,7 @@ describe("TabList", () => {
     const forward = screen.getByRole("button", { name: "forward" });
 
     expect(back).toBeDisabled();
-    expect(forward).not.toBeDisabled();
+    expect(forward).toBeEnabled();
 
     tablist.scrollTo ??= jest.fn();
     const scrollTo = jest.spyOn(tablist, "scrollTo").mockImplementation(() => {
@@ -229,8 +229,8 @@ describe("TabList", () => {
       left: 10,
       behavior: "smooth",
     });
-    expect(back).not.toBeDisabled();
-    expect(forward).not.toBeDisabled();
+    expect(back).toBeEnabled();
+    expect(forward).toBeEnabled();
 
     scrollLeft.mockReturnValue(10);
     await user.click(forward);
@@ -238,8 +238,8 @@ describe("TabList", () => {
       left: 20,
       behavior: "smooth",
     });
-    expect(back).not.toBeDisabled();
-    expect(forward).not.toBeDisabled();
+    expect(back).toBeEnabled();
+    expect(forward).toBeEnabled();
 
     scrollLeft.mockReturnValue(20);
     getIntersectionRatio.mockImplementation((target) =>
@@ -250,7 +250,7 @@ describe("TabList", () => {
       left: 30,
       behavior: "smooth",
     });
-    expect(back).not.toBeDisabled();
+    expect(back).toBeEnabled();
     expect(forward).toBeDisabled();
 
     scrollLeft.mockReturnValue(30);
@@ -261,8 +261,8 @@ describe("TabList", () => {
       left: 20,
       behavior: "smooth",
     });
-    expect(back).not.toBeDisabled();
-    expect(forward).not.toBeDisabled();
+    expect(back).toBeEnabled();
+    expect(forward).toBeEnabled();
   });
 
   it("should support rendering scroll buttons to scroll vertically by setting the scrollButtons prop to true", async () => {
@@ -308,7 +308,7 @@ describe("TabList", () => {
     const forward = screen.getByRole("button", { name: "forward" });
 
     expect(back).toBeDisabled();
-    expect(forward).not.toBeDisabled();
+    expect(forward).toBeEnabled();
 
     tablist.scrollTo ??= jest.fn();
     const scrollTo = jest.spyOn(tablist, "scrollTo").mockImplementation(() => {
@@ -325,8 +325,8 @@ describe("TabList", () => {
       top: 10,
       behavior: "smooth",
     });
-    expect(back).not.toBeDisabled();
-    expect(forward).not.toBeDisabled();
+    expect(back).toBeEnabled();
+    expect(forward).toBeEnabled();
 
     scrollTop.mockReturnValue(10);
     await user.click(forward);
@@ -334,8 +334,8 @@ describe("TabList", () => {
       top: 20,
       behavior: "smooth",
     });
-    expect(back).not.toBeDisabled();
-    expect(forward).not.toBeDisabled();
+    expect(back).toBeEnabled();
+    expect(forward).toBeEnabled();
 
     scrollTop.mockReturnValue(20);
     getIntersectionRatio.mockImplementation((target) =>
@@ -346,7 +346,7 @@ describe("TabList", () => {
       top: 30,
       behavior: "smooth",
     });
-    expect(back).not.toBeDisabled();
+    expect(back).toBeEnabled();
     expect(forward).toBeDisabled();
 
     scrollTop.mockReturnValue(30);
@@ -357,8 +357,8 @@ describe("TabList", () => {
       top: 20,
       behavior: "smooth",
     });
-    expect(back).not.toBeDisabled();
-    expect(forward).not.toBeDisabled();
+    expect(back).toBeEnabled();
+    expect(forward).toBeEnabled();
   });
 
   it("should support custom labels for the scroll buttons", () => {
@@ -390,8 +390,8 @@ describe("TabList", () => {
     jest.spyOn(window, "matchMedia").mockImplementation((query) => ({
       media: query,
       matches:
-        query.includes(`${DEFAULT_DESKTOP_MIN_WIDTH}`) ||
-        query.includes(`${DEFAULT_DESKTOP_LARGE_MIN_WIDTH}`),
+        query.includes(DEFAULT_DESKTOP_MIN_WIDTH) ||
+        query.includes(DEFAULT_DESKTOP_LARGE_MIN_WIDTH),
       onchange: noop,
       addListener: noop,
       removeListener: noop,
@@ -413,7 +413,7 @@ describe("TabList", () => {
       [...handlers.entries()].forEach(([query, listener]) => {
         listener({
           ...new Event("change"),
-          matches: query.includes(`${DEFAULT_PHONE_MAX_WIDTH}`),
+          matches: query.includes(DEFAULT_PHONE_MAX_WIDTH),
           media: query,
         });
       });
@@ -475,7 +475,7 @@ describe("TabList", () => {
     const forward = screen.getByRole("button", { name: "forward" });
 
     expect(back).toBeDisabled();
-    expect(forward).not.toBeDisabled();
+    expect(forward).toBeEnabled();
 
     tablist.scrollTo ??= jest.fn();
     const scrollTo = jest.spyOn(tablist, "scrollTo").mockImplementation(() => {
@@ -492,8 +492,8 @@ describe("TabList", () => {
       left: -10,
       behavior: "smooth",
     });
-    expect(back).not.toBeDisabled();
-    expect(forward).not.toBeDisabled();
+    expect(back).toBeEnabled();
+    expect(forward).toBeEnabled();
 
     scrollLeft.mockReturnValue(-10);
     await user.click(forward);
@@ -501,8 +501,8 @@ describe("TabList", () => {
       left: -20,
       behavior: "smooth",
     });
-    expect(back).not.toBeDisabled();
-    expect(forward).not.toBeDisabled();
+    expect(back).toBeEnabled();
+    expect(forward).toBeEnabled();
 
     scrollLeft.mockReturnValue(-20);
     getIntersectionRatio.mockImplementation((target) =>
@@ -513,7 +513,7 @@ describe("TabList", () => {
       left: -30,
       behavior: "smooth",
     });
-    expect(back).not.toBeDisabled();
+    expect(back).toBeEnabled();
     expect(forward).toBeDisabled();
 
     scrollLeft.mockReturnValue(-30);
@@ -524,8 +524,8 @@ describe("TabList", () => {
       left: -20,
       behavior: "smooth",
     });
-    expect(back).not.toBeDisabled();
-    expect(forward).not.toBeDisabled();
+    expect(back).toBeEnabled();
+    expect(forward).toBeEnabled();
   });
 
   it("should support scrolling a custom distance with the getScrollToOptions prop", async () => {

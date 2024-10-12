@@ -10,10 +10,10 @@ import { getHrefFromParents, getNavigationGroupId } from "./utils.js";
 /**
  * @since 6.0.0
  */
-export interface DefaultNavigationRendererProps<
+export type DefaultNavigationRendererProps<
   Item extends NavigationItem = NavigationItem,
   Data extends NavigationRenderData = NavigationRenderData,
-> extends RenderRecursiveItemsProps<Item, Data> {}
+> = RenderRecursiveItemsProps<Item, Data>;
 
 /**
  * **Client Component**

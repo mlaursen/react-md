@@ -206,6 +206,7 @@ export function useTransition<E extends HTMLElement>(
 
     if (reflow && ref.current && stage !== "exited" && stage !== "entered") {
       // force reflow by accessing scrollTop
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       ref.current.scrollTop;
     }
 

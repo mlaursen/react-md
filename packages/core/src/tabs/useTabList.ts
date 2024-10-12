@@ -107,6 +107,7 @@ export function useTabList(
         // this is kind of hacky -- the styles should update when switching between
         // RTL, but the RTL state isn't required for any styles. Just reference it
         // so that the hooks eslint rule doesn't show a warning...
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         isRTL;
 
         const activeTab = getTabRoleOnly(entry.target)[activeIndex];

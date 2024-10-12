@@ -128,7 +128,7 @@ describe("useFocusContainer", () => {
     );
     const showButton = screen.getByRole("button", { name: "Show" });
 
-    expect(document.activeElement).toBe(document.body);
+    expect(document.body).toHaveFocus();
     await user.click(showButton);
 
     const container = screen.getByTestId("container");
@@ -136,12 +136,12 @@ describe("useFocusContainer", () => {
       expect(onEntering).toHaveBeenCalled();
     });
     expect(onEntered).not.toHaveBeenCalled();
-    expect(document.activeElement).toBe(container);
+    expect(container).toHaveFocus();
     expect(onExiting).not.toHaveBeenCalled();
     await waitFor(() => {
       expect(onEntered).toHaveBeenCalled();
     });
-    expect(document.activeElement).toBe(container);
+    expect(container).toHaveFocus();
 
     await user.click(screen.getByRole("button", { name: "Button 1" }));
     await waitFor(() => {
@@ -149,14 +149,14 @@ describe("useFocusContainer", () => {
     });
     // have to await because of the raf. this might cause a timing issue at some point with the onExited...
     await waitFor(() => {
-      expect(document.activeElement).toBe(showButton);
+      expect(showButton).toHaveFocus();
     });
     expect(onExited).not.toHaveBeenCalled();
 
     await waitFor(() => {
       expect(onExited).toHaveBeenCalled();
     });
-    expect(document.activeElement).toBe(showButton);
+    expect(showButton).toHaveFocus();
   });
 
   it("should still move focus when the disableTransition option is true", async () => {
@@ -178,19 +178,19 @@ describe("useFocusContainer", () => {
     );
     const showButton = screen.getByRole("button", { name: "Show" });
 
-    expect(document.activeElement).toBe(document.body);
+    expect(document.body).toHaveFocus();
     await user.click(showButton);
 
     const container = screen.getByTestId("container");
     expect(onEntering).not.toHaveBeenCalled();
     expect(onEntered).toHaveBeenCalled();
-    expect(document.activeElement).toBe(container);
+    expect(container).toHaveFocus();
 
     await user.click(screen.getByRole("button", { name: "Button 1" }));
     expect(onExiting).not.toHaveBeenCalled();
     expect(onExited).toHaveBeenCalled();
     await waitFor(() => {
-      expect(document.activeElement).toBe(showButton);
+      expect(showButton).toHaveFocus();
     });
   });
 
@@ -210,19 +210,19 @@ describe("useFocusContainer", () => {
     );
     const showButton = screen.getByRole("button", { name: "Show" });
 
-    expect(document.activeElement).toBe(document.body);
+    expect(document.body).toHaveFocus();
     await user.click(showButton);
 
     const container = screen.getByTestId("container");
     expect(onEntering).not.toHaveBeenCalled();
     expect(onEntered).toHaveBeenCalled();
-    expect(document.activeElement).toBe(container);
+    expect(container).toHaveFocus();
 
     await user.click(screen.getByRole("button", { name: "Button 1" }));
     expect(onExiting).not.toHaveBeenCalled();
     expect(onExited).toHaveBeenCalled();
     await waitFor(() => {
-      expect(document.activeElement).toBe(showButton);
+      expect(showButton).toHaveFocus();
     });
   });
 
@@ -231,9 +231,7 @@ describe("useFocusContainer", () => {
     rmdRender(<Test autoFocus />);
 
     await user.click(screen.getByRole("button", { name: "Show" }));
-    expect(document.activeElement).toBe(
-      screen.getByRole("button", { name: "Button 1" })
-    );
+    expect(screen.getByRole("button", { name: "Button 1" })).toHaveFocus();
   });
 
   it("should prevent tab focus from moving outside of the container element", async () => {
@@ -248,19 +246,19 @@ describe("useFocusContainer", () => {
     const button4 = screen.getByRole("button", { name: "Button 4" });
 
     await user.tab();
-    expect(document.activeElement).toBe(button1);
+    expect(button1).toHaveFocus();
 
     await user.tab({ shift: true });
-    expect(document.activeElement).toBe(button4);
+    expect(button4).toHaveFocus();
 
     await user.tab();
-    expect(document.activeElement).toBe(button1);
+    expect(button1).toHaveFocus();
 
     await user.tab();
-    expect(document.activeElement).toBe(button2);
+    expect(button2).toHaveFocus();
 
     await user.tab();
-    expect(document.activeElement).toBe(button3);
+    expect(button3).toHaveFocus();
   });
 
   it("should just stop tab focus if there are no focusable elements", async () => {
@@ -269,12 +267,12 @@ describe("useFocusContainer", () => {
 
     await user.click(screen.getByRole("button", { name: "Show" }));
     const container = screen.getByTestId("container");
-    expect(document.activeElement).toBe(container);
+    expect(container).toHaveFocus();
 
     await user.tab();
-    expect(document.activeElement).toBe(container);
+    expect(container).toHaveFocus();
 
     await user.tab({ shift: true });
-    expect(document.activeElement).toBe(container);
+    expect(container).toHaveFocus();
   });
 });

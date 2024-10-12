@@ -25,10 +25,20 @@ export default function UsingKeysExample(): ReactElement {
   return (
     <>
       <SegmentedButtonContainer>
-        <SegmentedButton selected={page === 1} onClick={() => setPage(1)}>
+        <SegmentedButton
+          selected={page === 1}
+          onClick={() => {
+            setPage(1);
+          }}
+        >
           Page 1
         </SegmentedButton>
-        <SegmentedButton selected={page === 2} onClick={() => setPage(2)}>
+        <SegmentedButton
+          selected={page === 2}
+          onClick={() => {
+            setPage(2);
+          }}
+        >
           Page 2
         </SegmentedButton>
       </SegmentedButtonContainer>

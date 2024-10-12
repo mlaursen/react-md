@@ -57,14 +57,14 @@ describe("DropdownMenu", () => {
       expect(menu).not.toHaveClass("rmd-scale-transition--enter");
     });
     expect(menu).toMatchSnapshot();
-    expect(document.activeElement).toBe(menu);
+    expect(menu).toHaveFocus();
 
     await user.click(screen.getByRole("menuitem", { name: "Item 2" }));
     await waitFor(() => {
       expect(menu).not.toBeInTheDocument();
     });
 
-    expect(document.activeElement).toBe(button);
+    expect(button).toHaveFocus();
     expect(onItem1Click).not.toHaveBeenCalled();
     expect(onItem2Click).toHaveBeenCalledTimes(1);
     expect(onItem3Click).not.toHaveBeenCalled();
@@ -84,7 +84,7 @@ describe("DropdownMenu", () => {
 
     // since the outside element is not focusable, the click event should bubble
     // up to the body and focus that instead
-    expect(document.activeElement).toBe(document.body);
+    expect(document.body).toHaveFocus();
     expect(onItem1Click).not.toHaveBeenCalled();
     expect(onItem2Click).toHaveBeenCalledTimes(1);
     expect(onItem3Click).not.toHaveBeenCalled();
@@ -171,42 +171,42 @@ describe("DropdownMenu", () => {
     const button = screen.getByRole("button", { name: "Dropdown" });
 
     await user.tab();
-    expect(document.activeElement).toBe(button);
+    expect(button).toHaveFocus();
 
     await user.keyboard("{ArrowDown}");
     let menu = screen.getByRole("menu", { name: "Dropdown" });
     let items = screen.getAllByRole("menuitem");
-    expect(document.activeElement).toBe(items[0]);
+    expect(items[0]).toHaveFocus();
 
     await user.keyboard("{ArrowDown}");
-    expect(document.activeElement).toBe(items[1]);
+    expect(items[1]).toHaveFocus();
 
     await user.keyboard("a");
-    expect(document.activeElement).toBe(items[3]);
+    expect(items[3]).toHaveFocus();
 
     await user.keyboard("a");
-    expect(document.activeElement).toBe(items[4]);
+    expect(items[4]).toHaveFocus();
 
     await user.keyboard("{ArrowUp}");
-    expect(document.activeElement).toBe(items[3]);
+    expect(items[3]).toHaveFocus();
 
     // this is to emulate "Shift+A" movement which should start the search over
     // I can't do `A` since the `useKeyboardMovementProvider` stuff checks with
     // a shift key being held
     await user.keyboard("{Shift>}A{/Shift}");
-    expect(document.activeElement).toBe(items[1]);
+    expect(items[1]).toHaveFocus();
 
     await user.keyboard("{Escape}");
     expect(menu).not.toBeInTheDocument();
     // must wait because of animation frame
     await waitFor(() => {
-      expect(document.activeElement).toBe(button);
+      expect(button).toHaveFocus();
     });
 
     await user.keyboard("{ArrowUp}");
     menu = screen.getByRole("menu", { name: "Dropdown" });
     items = screen.getAllByRole("menuitem");
-    expect(document.activeElement).toBe(items[5]);
+    expect(items[5]).toHaveFocus();
   });
 
   it("should hide the menu when the page is resized when the closeOnResize prop is enabled", async () => {
@@ -241,7 +241,7 @@ describe("DropdownMenu", () => {
 
     // when the menu closes because of resize events, the button should not be
     // refocused since it would scroll back to the button
-    expect(document.activeElement).toBe(document.body);
+    expect(document.body).toHaveFocus();
 
     raf.mockRestore();
   });
@@ -277,7 +277,7 @@ describe("DropdownMenu", () => {
 
     // when the menu closes because of scroll events, the button should not be
     // refocused since it would scroll back to the button
-    expect(document.activeElement).toBe(document.body);
+    expect(document.body).toHaveFocus();
 
     rerender(
       <DropdownMenu buttonChildren="Dropdown" disableTransition>
@@ -309,7 +309,7 @@ describe("DropdownMenu", () => {
       window.dispatchEvent(new Event("scroll"));
     });
     expect(menu).not.toBeInTheDocument();
-    expect(document.activeElement).toBe(document.body);
+    expect(document.body).toHaveFocus();
 
     raf.mockRestore();
   });
@@ -325,8 +325,8 @@ describe("DropdownMenu", () => {
       .mockImplementation((query) => ({
         media: query,
         matches:
-          query.includes(`${DEFAULT_DESKTOP_MIN_WIDTH}`) ||
-          query.includes(`${DEFAULT_DESKTOP_LARGE_MIN_WIDTH}`),
+          query.includes(DEFAULT_DESKTOP_MIN_WIDTH) ||
+          query.includes(DEFAULT_DESKTOP_LARGE_MIN_WIDTH),
         onchange: noop,
         addListener: noop,
         removeListener: noop,
@@ -348,7 +348,13 @@ describe("DropdownMenu", () => {
       const { setVisible } = useMenuVisibility();
       return (
         <DialogHeader>
-          <Button onClick={() => setVisible(false)}>Header Close</Button>
+          <Button
+            onClick={() => {
+              setVisible(false);
+            }}
+          >
+            Header Close
+          </Button>
         </DialogHeader>
       );
     }
@@ -358,7 +364,13 @@ describe("DropdownMenu", () => {
 
       return (
         <DialogFooter>
-          <Button onClick={() => setVisible(false)}>Footer Close</Button>
+          <Button
+            onClick={() => {
+              setVisible(false);
+            }}
+          >
+            Footer Close
+          </Button>
         </DialogFooter>
       );
     }
@@ -397,7 +409,7 @@ describe("DropdownMenu", () => {
         listener({
           ...event,
           media: "",
-          matches: query.includes(`${DEFAULT_PHONE_MAX_WIDTH}`),
+          matches: query.includes(DEFAULT_PHONE_MAX_WIDTH),
         });
       });
     });
@@ -414,7 +426,7 @@ describe("DropdownMenu", () => {
     ).not.toThrow();
     menu = await screen.findByRole("menu", { name: "Dropdown" });
     expect(sheet).toMatchSnapshot();
-    expect(document.activeElement).toBe(sheet);
+    expect(sheet).toHaveFocus();
 
     const headerClose = screen.getByRole("button", { name: "Header Close" });
     const footerClose = screen.getByRole("button", { name: "Footer Close" });
@@ -422,19 +434,19 @@ describe("DropdownMenu", () => {
     const item2 = screen.getByRole("menuitem", { name: "Item 2" });
     const item3 = screen.getByRole("menuitem", { name: "Item 3" });
     await user.tab();
-    expect(document.activeElement).toBe(headerClose);
+    expect(headerClose).toHaveFocus();
 
     await user.tab();
-    expect(document.activeElement).toBe(item1);
+    expect(item1).toHaveFocus();
 
     await user.keyboard("{ArrowDown}");
-    expect(document.activeElement).toBe(item2);
+    expect(item2).toHaveFocus();
 
     await user.keyboard("{Home}");
-    expect(document.activeElement).toBe(item1);
+    expect(item1).toHaveFocus();
 
     await user.keyboard("{End}");
-    expect(document.activeElement).toBe(item3);
+    expect(item3).toHaveFocus();
 
     await user.tab();
     // once the menu is blurred in a sheet, it waits an animation frame before
@@ -442,12 +454,12 @@ describe("DropdownMenu", () => {
     await waitFor(() => {
       expect(menu).toHaveAttribute("tabIndex", "0");
     });
-    expect(document.activeElement).toBe(footerClose);
+    expect(footerClose).toHaveFocus();
 
     await user.tab({ shift: true });
     // there is no roving tab index here, so it'll always be the first item.
     // might be something to implement later?
-    expect(document.activeElement).toBe(item1);
+    expect(item1).toHaveFocus();
 
     matchMedia.mockRestore();
   });
@@ -552,7 +564,7 @@ describe("DropdownMenu", () => {
 
     await user.keyboard("{Escape}");
     await waitForElementToBeRemoved(nestedMenu1);
-    expect(document.activeElement).toBe(nestedItem1);
+    expect(nestedItem1).toHaveFocus();
 
     await user.click(nestedItem2);
     const nestedSheet = await screen.findByRole("dialog", {
@@ -564,13 +576,13 @@ describe("DropdownMenu", () => {
     await user.keyboard("{Escape}");
 
     await waitForElementToBeRemoved(nestedSheet);
-    expect(document.activeElement).toBe(nestedItem2);
+    expect(nestedItem2).toHaveFocus();
 
     await user.keyboard("{Tab}");
     await waitForElementToBeRemoved(
       await screen.findByRole("menu", { name: "Dropdown" })
     );
-    expect(document.activeElement).toBe(button);
+    expect(button).toHaveFocus();
   });
 
   it("should include disabled menu items for the keyboard movement", async () => {
@@ -602,16 +614,16 @@ describe("DropdownMenu", () => {
     expect(frozenYogurt).toHaveAttribute("aria-disabled", "true");
     expect(iceCream).toHaveAttribute("aria-disabled", "true");
     expect(eclair).not.toHaveAttribute("aria-disabled");
-    expect(document.activeElement).toBe(frozenYogurt);
+    expect(frozenYogurt).toHaveFocus();
 
     await user.keyboard("{End}");
-    expect(document.activeElement).toBe(eclair);
+    expect(eclair).toHaveFocus();
 
     await user.keyboard("{ArrowUp}");
-    expect(document.activeElement).toBe(iceCream);
+    expect(iceCream).toHaveFocus();
 
     await user.keyboard("f");
-    expect(document.activeElement).toBe(frozenYogurt);
+    expect(frozenYogurt).toHaveFocus();
 
     await user.keyboard(" ");
     expect(onItemClick).not.toHaveBeenCalled();
@@ -620,8 +632,6 @@ describe("DropdownMenu", () => {
     await waitFor(() => {
       expect(() => screen.getByRole("menu")).toThrow();
     });
-    expect(document.activeElement).toBe(
-      screen.getByRole("button", { name: "Dropdown" })
-    );
+    expect(screen.getByRole("button", { name: "Dropdown" })).toHaveFocus();
   });
 });

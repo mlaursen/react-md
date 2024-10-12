@@ -26,7 +26,9 @@ export default function SortableColumnsExample(): ReactElement {
               <TableCell
                 key={name}
                 aria-sort={name === sortKey ? sortOrder : "none"}
-                onClick={() => update(name)}
+                onClick={() => {
+                  update(name);
+                }}
                 grow={i === 0}
                 contentProps={{
                   className: cssUtils({ textTransform: "capitalize" }),

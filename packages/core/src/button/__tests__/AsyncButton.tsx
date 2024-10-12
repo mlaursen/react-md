@@ -43,7 +43,9 @@ describe("AsyncButton", () => {
     const instance = new EventTarget();
     const onClick = jest.fn(() => {
       return new Promise<void>((resolve) => {
-        instance.addEventListener("resolve-promise", () => resolve());
+        instance.addEventListener("resolve-promise", () => {
+          resolve();
+        });
       });
     });
 
@@ -58,7 +60,7 @@ describe("AsyncButton", () => {
     await user.click(button);
 
     expect(button).toHaveAttribute("aria-disabled", "true");
-    expect(button).not.toHaveAttribute("disabled");
+    expect(button).toBeEnabled();
     expect(() => within(button).getByRole("progressbar")).not.toThrow();
     expect(onClick).toHaveBeenCalledTimes(1);
     expect(button).toMatchSnapshot();
@@ -71,7 +73,7 @@ describe("AsyncButton", () => {
       expect(button).not.toHaveAttribute("aria-disabled");
     });
     await waitFor(() => {
-      expect(button).not.toHaveAttribute("disabled");
+      expect(button).toBeEnabled();
     });
     expect(() => within(button).getByRole("progressbar")).toThrow();
 
@@ -95,7 +97,7 @@ describe("AsyncButton", () => {
     await user.click(button);
 
     expect(button).not.toHaveAttribute("aria-disabled");
-    expect(button).not.toHaveAttribute("disabled");
+    expect(button).toBeEnabled();
     expect(() => within(button).getByRole("progressbar")).toThrow();
 
     const onClick = jest.fn(() => {});
@@ -104,7 +106,7 @@ describe("AsyncButton", () => {
 
     expect(onClick).toHaveBeenCalledTimes(1);
     expect(button).not.toHaveAttribute("aria-disabled");
-    expect(button).not.toHaveAttribute("disabled");
+    expect(button).toBeEnabled();
     expect(() => within(button).getByRole("progressbar")).toThrow();
   });
 

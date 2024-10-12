@@ -6,12 +6,12 @@ import { SVGIcon } from "../SVGIcon.js";
 describe("SVGIcon", () => {
   it("should default to setting aria-hidden", () => {
     render(<SVGIcon data-testid="icon" />);
-    expect(screen.getByTestId("icon").getAttribute("aria-hidden")).toBe("true");
+    expect(screen.getByTestId("icon")).toHaveAttribute("aria-hidden", "true");
   });
 
   it("should default to setting focusable false to fix IE bugs of custom focus", () => {
     render(<SVGIcon data-testid="icon" />);
-    expect(screen.getByTestId("icon").getAttribute("focusable")).toBe("false");
+    expect(screen.getByTestId("icon")).toHaveAttribute("focusable", "false");
   });
 
   it("should render correctly", () => {

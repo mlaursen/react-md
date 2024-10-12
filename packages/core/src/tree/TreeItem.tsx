@@ -179,10 +179,12 @@ export function TreeItem(props: TreeItemProps): ReactElement {
     lookup.itemToElement[itemId] = id;
 
     return () => {
+      /* eslint-disable @typescript-eslint/no-dynamic-delete */
       delete lookup.disabledItems[itemId];
       delete lookup.expandable[itemId];
       delete lookup.elementToItem[id];
       delete lookup.itemToElement[itemId];
+      /* eslint-enable @typescript-eslint/no-dynamic-delete */
     };
   }, [id, metadataLookup, itemId, isLeafNode, disabled, depth]);
 

@@ -9,13 +9,13 @@ import { type ReactElement } from "react";
 export default function CustomActionButtonExample(): ReactElement {
   return (
     <Button
-      onClick={() =>
+      onClick={() => {
         addToast({
           children: "Something happened.",
           actionButton: <ActionButton />,
           visibleTime: null,
-        })
-      }
+        });
+      }}
     >
       Toast!
     </Button>

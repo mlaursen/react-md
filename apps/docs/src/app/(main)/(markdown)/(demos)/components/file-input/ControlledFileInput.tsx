@@ -11,7 +11,9 @@ export default function ControlledFileInput(): ReactElement {
     <Form className={box({ stacked: true, align: "start", fullWidth: true })}>
       <FileInput
         value={value}
-        onChange={(event) => setValue(event.currentTarget.value)}
+        onChange={(event) => {
+          setValue(event.currentTarget.value);
+        }}
       />
       <Typography margin="top">The current value is:</Typography>
       <Typography as="code" margin="none">

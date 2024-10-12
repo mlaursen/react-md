@@ -17,9 +17,27 @@ function ExampleChildren(): ReactElement {
   return (
     <>
       <ListItem presentational>{`Last clicked: ${clicked}`}</ListItem>
-      <MenuItem onClick={() => setClicked(0)}>Item 1</MenuItem>
-      <MenuItem onClick={() => setClicked(1)}>Item 2</MenuItem>
-      <MenuItem onClick={() => setClicked(2)}>Item 3</MenuItem>
+      <MenuItem
+        onClick={() => {
+          setClicked(0);
+        }}
+      >
+        Item 1
+      </MenuItem>
+      <MenuItem
+        onClick={() => {
+          setClicked(1);
+        }}
+      >
+        Item 2
+      </MenuItem>
+      <MenuItem
+        onClick={() => {
+          setClicked(2);
+        }}
+      >
+        Item 3
+      </MenuItem>
     </>
   );
 }

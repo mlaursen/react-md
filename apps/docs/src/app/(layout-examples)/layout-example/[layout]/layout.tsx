@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/require-await */
 import { pascalCase } from "@/utils/strings.js";
 import { type Metadata } from "next";
 import { notFound } from "next/navigation.js";
@@ -34,7 +35,7 @@ export interface RootLayoutProps extends RouteParams {
 export default function RootLayout(props: RootLayoutProps): ReactElement {
   const { children, params } = props;
   const { layout } = params;
-  const Layout = LAYOUTS[layout as LayoutType];
+  const Layout = LAYOUTS[layout];
   if (!Layout) {
     notFound();
   }

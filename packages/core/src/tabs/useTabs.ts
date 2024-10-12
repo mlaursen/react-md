@@ -180,7 +180,7 @@ export interface TabsImplementation<TabValue extends string | number = number> {
  *
  * @since 6.0.0
  */
-export function useTabs(): TabsImplementation<number> & {
+export function useTabs(): TabsImplementation & {
   activeTab: number;
   setActiveTab: number;
 };

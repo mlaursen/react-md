@@ -26,8 +26,20 @@ export default function CustomActiveTabIndexExample(): ReactElement {
         </TabList>
       </AppBar>
       <Typography>{`The current activeIndex is ${activeTab}`}</Typography>
-      <Button onClick={() => setActiveTab(0)}>Set 0</Button>
-      <Button onClick={() => setActiveTab(1)}>Set 1</Button>
+      <Button
+        onClick={() => {
+          setActiveTab(0);
+        }}
+      >
+        Set 0
+      </Button>
+      <Button
+        onClick={() => {
+          setActiveTab(1);
+        }}
+      >
+        Set 1
+      </Button>
     </>
   );
 }

@@ -128,7 +128,7 @@ describe("useCSSVariables", () => {
     // custom properties
     fireEvent.click(button);
     expect(div.style.getPropertyValue("--test")).toBe("100px");
-    expect(div.style.backgroundColor).toBe("red");
+    expect(div).toHaveStyle({ backgroundColor: "red" });
     expect(div).toMatchSnapshot();
   });
 

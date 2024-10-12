@@ -29,7 +29,9 @@ function setup(delay?: number | null) {
         <div data-testid="output">{value}</div>
         <TextField
           label="Field"
-          onChange={(event) => handleChange(event.currentTarget.value)}
+          onChange={(event) => {
+            handleChange(event.currentTarget.value);
+          }}
         />
         <Button
           onClick={() => {

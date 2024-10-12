@@ -69,7 +69,8 @@ export interface LocalStorageHookOptions<T> {
 /**
  * @since 6.0.0
  */
-export const defaultLocalStorageSerializer = <T>(value: T): string =>
+export const defaultLocalStorageSerializer = (value: unknown): string =>
+  // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
   typeof value === "string" ? value : `${value}`;
 
 /** @since 6.0.0 */
@@ -135,7 +136,7 @@ export const getItemFromStorage = <T>(
     key,
     fallback,
     storage = localStorage,
-    deserializer = JSON.parse,
+    deserializer = JSON.parse as LocalStorageDeserializer<T>,
   } = options;
   if (!key) {
     return fallback;
@@ -144,7 +145,7 @@ export const getItemFromStorage = <T>(
   try {
     const value = storage.getItem(key);
     return !value ? fallback : deserializer(value);
-  } catch (e) {
+  } catch {
     return fallback;
   }
 };
@@ -456,7 +457,7 @@ export function useLocalStorage<T>(
   const serializer =
     options.serializer ??
     (raw ? defaultLocalStorageSerializer : JSON.stringify);
-  const deserializer =
+  const deserializer: LocalStorageDeserializer<T> =
     options.deserializer ??
     (raw && typeof initialValue === "string" ? identity : JSON.parse);
 

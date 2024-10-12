@@ -87,7 +87,7 @@ export function useCSSVariables<Name extends CSSVariableName>(
 export function useCSSVariables<Name extends CSSVariableName>(
   variables: ReadonlyCSSVariableList<Name>,
   rootNodeOrInlineStyle?: RefObject<HTMLElement> | HTMLElement | boolean
-): CSSVariablesProperties<Name> | void {
+): CSSVariablesProperties<Name> | undefined {
   useEffect(() => {
     if (rootNodeOrInlineStyle === true || !variables.length) {
       return;
