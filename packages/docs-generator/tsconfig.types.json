@@ -7,5 +7,5 @@
     "declarationDir": "./dist",
     "emitDeclarationOnly": true
   },
-  "exclude": ["node_modules", "**/__tests__/**"]
+  "exclude": ["node_modules", "**/__tests__/**", "jest.config.ts", "*.mjs"]
 }
