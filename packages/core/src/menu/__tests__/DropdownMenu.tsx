@@ -4,7 +4,7 @@ import {
   act,
   rmdRender,
   screen,
-  useImmediateRaf,
+  testImmediateRaf,
   userEvent,
   waitFor,
   waitForElementToBeRemoved,
@@ -210,7 +210,7 @@ describe("DropdownMenu", () => {
   });
 
   it("should hide the menu when the page is resized when the closeOnResize prop is enabled", async () => {
-    const raf = useImmediateRaf();
+    const raf = testImmediateRaf();
     const user = userEvent.setup();
     const { rerender } = rmdRender(
       <DropdownMenu buttonChildren="Dropdown" disableTransition>
@@ -247,7 +247,7 @@ describe("DropdownMenu", () => {
   });
 
   it("should hide the menu when the page is scrolled when the closeOnScroll prop is enabled or the menu button is scrolled out of the viewport", async () => {
-    const raf = useImmediateRaf();
+    const raf = testImmediateRaf();
     const user = userEvent.setup();
     const { rerender } = rmdRender(
       <DropdownMenu buttonChildren="Dropdown" disableTransition>

@@ -3,11 +3,11 @@ import { jest } from "@jest/globals";
 /**
  * @example
  * ```ts
- * import { useImmediateRaf } from "@react-md/core/test-utils";
+ * import { testImmediateRaf } from "@react-md/core/test-utils";
  *
  * describe("some test suite", () => {
  *   it("should test something with requestAnimationFrame", () => {
- *     const raf = useImmediateRaf();
+ *     const raf = testImmediateRaf();
  *
  *     // do some testing with requestAnimationFrame
  *
@@ -19,7 +19,7 @@ import { jest } from "@jest/globals";
  *
  * @example Automatic Cleanup
  * ```ts
- * import { useImmediateRaf } from "@react-md/core/test-utils";
+ * import { testImmediateRaf } from "@react-md/core/test-utils";
  *
  * afterEach(() => {
  *   jest.restoreAllMocks();
@@ -27,7 +27,7 @@ import { jest } from "@jest/globals";
  *
  * describe("some test suite", () => {
  *   it("should test something with requestAnimationFrame", () => {
- *     const raf = useImmediateRaf();
+ *     const raf = testImmediateRaf();
  *
  *     // do some testing with requestAnimationFrame
  *   });
@@ -36,7 +36,7 @@ import { jest } from "@jest/globals";
  *
  * @since 6.0.0
  */
-export const useImmediateRaf = (): jest.SpiedFunction<
+export const testImmediateRaf = (): jest.SpiedFunction<
   typeof requestAnimationFrame
 > =>
   jest.spyOn(window, "requestAnimationFrame").mockImplementation((cb) => {
