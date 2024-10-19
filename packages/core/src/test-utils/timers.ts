@@ -1,6 +1,11 @@
 import { jest } from "@jest/globals";
 
 /**
+ * @since 6.0.0
+ */
+export type RafSpy = jest.SpiedFunction<typeof requestAnimationFrame>;
+
+/**
  * @example
  * ```ts
  * import { testImmediateRaf } from "@react-md/core/test-utils";
@@ -36,9 +41,7 @@ import { jest } from "@jest/globals";
  *
  * @since 6.0.0
  */
-export const testImmediateRaf = (): jest.SpiedFunction<
-  typeof requestAnimationFrame
-> =>
+export const testImmediateRaf = (): RafSpy =>
   jest.spyOn(window, "requestAnimationFrame").mockImplementation((cb) => {
     cb(0);
     return 0;

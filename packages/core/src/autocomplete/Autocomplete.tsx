@@ -136,6 +136,12 @@ export interface AutocompleteBaseProps<Option extends AutocompleteOption>
    */
   disableClearButton?: boolean;
 
+  /**
+   * This is a convenience prop for the `onEntering`/`onEntered` transition
+   * callbacks that will ensure it is only called once even if the transitions
+   * are disabled. A great use-case for this function is to fetch data once the
+   * menu is opened.
+   */
   onOpen?: () => void;
 
   /**
@@ -234,6 +240,7 @@ export function Autocomplete<Option extends AutocompleteOption>(
     options,
     getOptionLabel = defaultAutocompleteExtractor,
     getOptionProps = defaultAutocompleteGetOptionProps,
+    allowAnyValue,
     listboxProps: menuProps,
     listboxLabel,
     listboxLabelledBy,
@@ -278,6 +285,7 @@ export function Autocomplete<Option extends AutocompleteOption>(
     comboboxRef: inputRef,
     options,
     getOptionLabel,
+    allowAnyValue,
     value,
     setValue,
     defaultValue,

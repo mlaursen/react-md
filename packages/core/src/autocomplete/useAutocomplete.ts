@@ -95,6 +95,7 @@ export function useAutocomplete<
     onChange = noop,
     onOpen = noop,
     filter = defaultAutocompleteFilter,
+    allowAnyValue = filter === noopAutocompleteFilter,
     multiselect: propMultiselect,
     selectedIconAfter,
     disableSelectedIcon,
@@ -187,6 +188,10 @@ export function useAutocomplete<
       },
       onBlur(event) {
         onBlur(event);
+
+        if (allowAnyValue) {
+          return;
+        }
 
         enforceSelectedValue({
           value,

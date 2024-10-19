@@ -175,32 +175,26 @@ export function enforceSelectedValue<Option extends AutocompleteOption>(
     return;
   }
 
-  // TODO: Ugh. The double raf is required for this to work with
-  // `@testing-library/user-event` since events fire differently in jsdom than
-  // the browser. Without the double raf, this blur event would be fired in an
-  // incorrect order causing the input to have the wrong value
   window.requestAnimationFrame(() => {
-    window.requestAnimationFrame(() => {
-      if (
-        container.contains(document.activeElement) ||
-        popupRef.current?.contains(document.activeElement)
-      ) {
-        return;
-      }
+    if (
+      container.contains(document.activeElement) ||
+      popupRef.current?.contains(document.activeElement)
+    ) {
+      return;
+    }
 
-      if (visible) {
-        // this makes it so that the options are not filtered again while closing
-        prevAvailableOptions.current = availableOptions;
-      }
+    if (visible) {
+      // this makes it so that the options are not filtered again while closing
+      prevAvailableOptions.current = availableOptions;
+    }
 
-      let label = "";
-      if (typeof value === "string") {
-        label = value;
-      } else if (typeof value === "object" && value && !("length" in value)) {
-        label = getOptionLabel(value);
-      }
+    let label = "";
+    if (typeof value === "string") {
+      label = value;
+    } else if (typeof value === "object" && value && !("length" in value)) {
+      label = getOptionLabel(value);
+    }
 
-      triggerManualChangeEvent(comboboxRef.current, label);
-    });
+    triggerManualChangeEvent(comboboxRef.current, label);
   });
 }

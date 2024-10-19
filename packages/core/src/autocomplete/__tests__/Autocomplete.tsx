@@ -1,11 +1,13 @@
-import { describe, expect, it, jest } from "@jest/globals";
+import { afterAll, beforeAll, describe, expect, it, jest } from "@jest/globals";
 import { act, createRef, type ReactElement, useEffect, useState } from "react";
 import { FontIcon } from "../../icon/FontIcon.js";
 import { type MenuItemProps } from "../../menu/MenuItem.js";
 import { fuzzySearch } from "../../searching/fuzzy.js";
 import {
+  type RafSpy,
   rmdRender,
   screen,
+  testImmediateRaf,
   userEvent,
   within,
 } from "../../test-utils/index.js";
@@ -43,6 +45,16 @@ const FRUIT_PROPS = {
   listboxLabel: "Fruits",
   options: FRUITS,
 } satisfies AutocompleteProps<string>;
+
+let raf: RafSpy;
+
+beforeAll(() => {
+  raf = testImmediateRaf();
+});
+
+afterAll(() => {
+  raf.mockRestore();
+});
 
 describe("Autocomplete", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {
@@ -354,6 +366,30 @@ describe("Autocomplete", () => {
     expect(() => {
       screen.getByRole("option", { selected: true });
     }).toThrow();
+  });
+
+  it("should allow any value to be typed when the allowAnyValue prop is enabled", async () => {
+    const user = userEvent.setup();
+    rmdRender(<Autocomplete {...FRUIT_PROPS} allowAnyValue />);
+    const autocomplete = screen.getByRole("combobox", { name: "Field" });
+
+    await user.type(autocomplete, "New Value");
+    await user.click(document.body);
+    expect(document.body).toHaveFocus();
+    expect(autocomplete).toHaveValue("New Value");
+  });
+
+  it("should default the allowAnyValue to true when the filter is set to noopAutocompleteFilter", async () => {
+    const user = userEvent.setup();
+    rmdRender(
+      <Autocomplete {...FRUIT_PROPS} filter={noopAutocompleteFilter} />
+    );
+    const autocomplete = screen.getByRole("combobox", { name: "Field" });
+
+    await user.type(autocomplete, "New Value");
+    await user.click(document.body);
+    expect(document.body).toHaveFocus();
+    expect(autocomplete).toHaveValue("New Value");
   });
 
   describe("keyboard support", () => {

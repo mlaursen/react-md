@@ -6,7 +6,7 @@ exports[`Autocomplete should allow the CircularProgress bar props to be configur
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color custom-class-name"
-  id="circular-progress-:r6t:"
+  id="circular-progress-:r6u:"
   role="progressbar"
 >
   <svg
@@ -128,7 +128,7 @@ exports[`Autocomplete should attempt to pull menu item props from the options 1`
 <div
   aria-label="Fruits"
   class="rmd-menu rmd-menu--elevated"
-  id="autocomplete-listbox-:r8l:"
+  id="autocomplete-listbox-:r8n:"
   role="listbox"
   style="position: fixed; transform-origin: 50% 0; left: 16px; top: 0px; min-width: 0;"
   tabindex="-1"
@@ -139,7 +139,7 @@ exports[`Autocomplete should attempt to pull menu item props from the options 1`
   >
     <li
       class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface rmd-menu-item rmd-option"
-      id="option-:r8r:"
+      id="option-:r8t:"
       role="option"
       tabindex="-1"
     >
@@ -162,7 +162,7 @@ exports[`Autocomplete should attempt to pull menu item props from the options 1`
     </li>
     <li
       class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface rmd-menu-item rmd-option"
-      id="option-:r8t:"
+      id="option-:r8v:"
       role="option"
       tabindex="-1"
     >
@@ -185,7 +185,7 @@ exports[`Autocomplete should attempt to pull menu item props from the options 1`
     </li>
     <li
       class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface rmd-menu-item rmd-option"
-      id="option-:r8v:"
+      id="option-:r91:"
       role="option"
       tabindex="-1"
     >
@@ -208,7 +208,7 @@ exports[`Autocomplete should attempt to pull menu item props from the options 1`
     </li>
     <li
       class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface rmd-menu-item rmd-option"
-      id="option-:r91:"
+      id="option-:r93:"
       role="option"
       tabindex="-1"
     >
@@ -231,7 +231,7 @@ exports[`Autocomplete should attempt to pull menu item props from the options 1`
     </li>
     <li
       class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface rmd-menu-item rmd-option"
-      id="option-:r93:"
+      id="option-:r95:"
       role="option"
       tabindex="-1"
     >
@@ -254,7 +254,7 @@ exports[`Autocomplete should attempt to pull menu item props from the options 1`
     </li>
     <li
       class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface rmd-menu-item rmd-option"
-      id="option-:r95:"
+      id="option-:r97:"
       role="option"
       tabindex="-1"
     >
@@ -277,7 +277,7 @@ exports[`Autocomplete should attempt to pull menu item props from the options 1`
     </li>
     <li
       class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface rmd-menu-item rmd-option"
-      id="option-:r97:"
+      id="option-:r99:"
       role="option"
       tabindex="-1"
     >
@@ -301,7 +301,7 @@ exports[`Autocomplete should attempt to pull menu item props from the options 1`
     <li
       aria-disabled="true"
       class="rmd-list-item rmd-list-item--extra-large rmd-list-item--disabled-color rmd-interaction-surface rmd-menu-item rmd-option"
-      id="option-:r99:"
+      id="option-:r9b:"
       role="option"
       tabindex="-1"
     >
@@ -324,7 +324,7 @@ exports[`Autocomplete should attempt to pull menu item props from the options 1`
     </li>
     <li
       class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface rmd-menu-item rmd-option"
-      id="option-:r9b:"
+      id="option-:r9d:"
       role="option"
       tabindex="-1"
     >
@@ -347,7 +347,7 @@ exports[`Autocomplete should attempt to pull menu item props from the options 1`
     </li>
     <li
       class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface rmd-menu-item rmd-option"
-      id="option-:r9d:"
+      id="option-:r9f:"
       role="option"
       tabindex="-1"
     >
@@ -370,7 +370,7 @@ exports[`Autocomplete should attempt to pull menu item props from the options 1`
     </li>
     <li
       class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface rmd-menu-item rmd-option"
-      id="option-:r9f:"
+      id="option-:r9h:"
       role="option"
       tabindex="-1"
     >
@@ -401,7 +401,7 @@ exports[`Autocomplete should be able to render a CircularProgress bar when the l
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered"
-  id="circular-progress-:r6n:"
+  id="circular-progress-:r6o:"
   role="progressbar"
 >
   <svg

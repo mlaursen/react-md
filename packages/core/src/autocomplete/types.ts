@@ -256,6 +256,14 @@ export interface AutocompleteFilteringOptions<
    * @defaultValue `defaultAutocompleteFilter`
    */
   filter?: AutocompleteFilterFunction<Option>;
+
+  /**
+   * Set this to `true` to allow any value to be typed into the autocomplete
+   * instead of enforcing an empty string or one of the option labels.
+   *
+   * @defaultValue `filter === noopAutocompleteFilter`
+   */
+  allowAnyValue?: boolean;
 }
 
 /**

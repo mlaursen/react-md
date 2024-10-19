@@ -97,6 +97,47 @@ with the normal `onChange` event handler.
 
 ```
 
+# Allow Any Value
+
+The `Autocomplete` normally behave like a searchable select component where it
+requires a specific option to be selected and will reject all other values. If
+any value should be allowed, enable the `allowAnyValue` prop.
+
+```demo source="./AllowAnyValueExample.tsx"
+
+```
+
+# Disable Filtering
+
+There are some cases where the available options should only be suggestions and
+not required value such as displaying the most recent searches. Set the `filter`
+prop to `noopAutocompleteFilter` to enable this behavior which also enables the
+`allowAnyValue` prop.
+
+> !Info! This is the default behavior when `type="search"` is set.
+
+```demo source="./DisableFilteringExample.tsx"
+
+```
+
+## Custom Filter Function
+
+The `Autocomplete` uses the
+[caseInsensitiveSearch](/utils/case-insensitive-search) filter function by
+default but can be changed using the `filter` prop. The filter function must
+return the filtered list and is called with an object containing:
+
+- `list` - The list of `options` to filter
+- `query` - The current text field value
+- `extractor` - The `extractor` function to get a string for each option
+
+This example will show how the filter function could be swapped out for the
+[fuzzySearch](/utils/fuzzy-search).
+
+```demo source="./CustomFilterFunctionExample.tsx"
+
+```
+
 # Async Example
 
 The `Autocomplete` supports rendering a `CircularProgress` after the input field to show
@@ -134,24 +175,6 @@ This is the same example as above, but using [useThrottledFunction](/hooks/use-t
 instead.
 
 ```demo source="./ThrottledSearchExample.tsx"
-
-```
-
-# Custom Filter Function
-
-The `Autocomplete` uses the
-[caseInsensitiveSearch](/utils/case-insensitive-search) filter function by
-default but can be changed using the `filter` prop. The filter function must
-return the filtered list and is called with an object containing:
-
-- `list` - The list of `options` to filter
-- `query` - The current text field value
-- `extractor` - The `extractor` function to get a string for each option
-
-This example will show how the filter function could be swapped out for the
-[fuzzySearch](/utils/fuzzy-search).
-
-```demo source="./CustomFilterFunctionExample.tsx"
 
 ```
 
