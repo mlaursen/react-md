@@ -6,7 +6,7 @@ exports[`Autocomplete should allow the CircularProgress bar props to be configur
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color custom-class-name"
-  id="circular-progress-:r59:"
+  id="circular-progress-:r6t:"
   role="progressbar"
 >
   <svg
@@ -34,6 +34,8 @@ exports[`Autocomplete should apply the correct styling, HTML attributes, and all
     aria-controls="autocomplete-listbox-:r1:"
     aria-expanded="false"
     aria-haspopup="listbox"
+    autocapitalize="none"
+    autocomplete="off"
     class="rmd-text-field rmd-text-field--placeholder-hidden"
     id="autocomplete-:r0:"
     placeholder=" "
@@ -83,6 +85,8 @@ exports[`Autocomplete should apply the correct styling, HTML attributes, and all
     aria-controls="autocomplete-listbox-:r1:"
     aria-expanded="false"
     aria-haspopup="listbox"
+    autocapitalize="none"
+    autocomplete="off"
     class="rmd-text-field rmd-text-field--placeholder-hidden"
     id="autocomplete-:r0:"
     placeholder=" "
@@ -120,13 +124,284 @@ exports[`Autocomplete should apply the correct styling, HTML attributes, and all
 </div>
 `;
 
+exports[`Autocomplete should attempt to pull menu item props from the options 1`] = `
+<div
+  aria-label="Fruits"
+  class="rmd-menu rmd-menu--elevated"
+  id="autocomplete-listbox-:r8l:"
+  role="listbox"
+  style="position: fixed; transform-origin: 50% 0; left: 16px; top: 0px; min-width: 0;"
+  tabindex="-1"
+>
+  <ul
+    class="rmd-list"
+    role="none"
+  >
+    <li
+      class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface rmd-menu-item rmd-option"
+      id="option-:r8r:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+      >
+        favorite
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        Apple
+        <span
+          class="rmd-list-item__text rmd-list-item__text--secondary"
+        >
+          Fruit
+        </span>
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface rmd-menu-item rmd-option"
+      id="option-:r8t:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+      >
+        favorite
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        Apricot
+        <span
+          class="rmd-list-item__text rmd-list-item__text--secondary"
+        >
+          Fruit
+        </span>
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface rmd-menu-item rmd-option"
+      id="option-:r8v:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+      >
+        favorite
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        Banana
+        <span
+          class="rmd-list-item__text rmd-list-item__text--secondary"
+        >
+          Fruit
+        </span>
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface rmd-menu-item rmd-option"
+      id="option-:r91:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+      >
+        favorite
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        Blueberry
+        <span
+          class="rmd-list-item__text rmd-list-item__text--secondary"
+        >
+          Fruit
+        </span>
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface rmd-menu-item rmd-option"
+      id="option-:r93:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+      >
+        favorite
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        Cranberry
+        <span
+          class="rmd-list-item__text rmd-list-item__text--secondary"
+        >
+          Fruit
+        </span>
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface rmd-menu-item rmd-option"
+      id="option-:r95:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+      >
+        favorite
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        Kiwi
+        <span
+          class="rmd-list-item__text rmd-list-item__text--secondary"
+        >
+          Fruit
+        </span>
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface rmd-menu-item rmd-option"
+      id="option-:r97:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+      >
+        favorite
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        Mango
+        <span
+          class="rmd-list-item__text rmd-list-item__text--secondary"
+        >
+          Fruit
+        </span>
+      </span>
+    </li>
+    <li
+      aria-disabled="true"
+      class="rmd-list-item rmd-list-item--extra-large rmd-list-item--disabled-color rmd-interaction-surface rmd-menu-item rmd-option"
+      id="option-:r99:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+      >
+        favorite
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        Orange
+        <span
+          class="rmd-list-item__text rmd-list-item__text--secondary"
+        >
+          Fruit
+        </span>
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface rmd-menu-item rmd-option"
+      id="option-:r9b:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+      >
+        favorite
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        Peach
+        <span
+          class="rmd-list-item__text rmd-list-item__text--secondary"
+        >
+          Fruit
+        </span>
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface rmd-menu-item rmd-option"
+      id="option-:r9d:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+      >
+        favorite
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        Plum
+        <span
+          class="rmd-list-item__text rmd-list-item__text--secondary"
+        >
+          Fruit
+        </span>
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface rmd-menu-item rmd-option"
+      id="option-:r9f:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+      >
+        favorite
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        Strawberry
+        <span
+          class="rmd-list-item__text rmd-list-item__text--secondary"
+        >
+          Fruit
+        </span>
+      </span>
+    </li>
+  </ul>
+</div>
+`;
+
 exports[`Autocomplete should be able to render a CircularProgress bar when the loading prop is enabled 1`] = `
 <span
   aria-label="Loading"
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered"
-  id="circular-progress-:r53:"
+  id="circular-progress-:r6n:"
   role="progressbar"
 >
   <svg

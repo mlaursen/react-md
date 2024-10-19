@@ -23,7 +23,11 @@ import {
   type AutocompleteSingleSelectImplementation,
   type AutocompleteSingleSelectOptions,
 } from "./types.js";
-import { getDefaultQuery, getDefaultValue } from "./utils.js";
+import {
+  enforceSelectedValue,
+  getDefaultQuery,
+  getDefaultValue,
+} from "./utils.js";
 
 const noop = (): void => {
   // do nothing
@@ -138,39 +142,25 @@ export function useAutocomplete<
     getMenuProps,
   } = combobox;
 
-  /**
-   * This ref is used to make sure that the options do not begin filtering until
-   * the menu has become visible. This improves the UX by displaying all options
-   * until the user types a new query
-   */
+  // These refs are used to make it so that the options are not filtered until
+  // the user types a new query while the listbox is visible. The filtered
+  // options will be "cached" while:
+  // - the listbox is closing
+  // - the listbox is opening and:
+  //   - the user has not typed at least one letter
+  //   - the options have not changed
   const entered = useRef(false);
   const initialQuery = useRef("");
-
-  /**
-   * This ref is used to make it so that the `availableOptions` are not filtered
-   * again after a user has selected one of the options and the menu exit
-   * transition is happening
-   *
-   * NOTE: This really needs to be the query since some keypress trigger it? It's because of switching between mouse `->` keybaord
-   */
-  const exitingOptions = useRef<readonly Option[] | null>(null);
-
-  // TODO: What I need to have is:
-  // - Open Listbox
-  // - Display all options
-  // - User types a new query and filters options
-  // - User selects or closes the menu
-  // - The options are filtered until the menu closes
-  // - Restart
-  //
-  // This solution no good since moving keyboard focus rerenders the component
-  let availableOptions = exitingOptions.current || values;
+  const prevAvailableOptions = useRef<readonly Option[] | null>(null);
+  let availableOptions = prevAvailableOptions.current || values;
   if (
-    !exitingOptions.current &&
     query &&
+    query !== initialQuery.current &&
+    filter !== noopAutocompleteFilter &&
     entered.current &&
-    filter !== noopAutocompleteFilter
+    !prevAvailableOptions.current
   ) {
+    initialQuery.current = "";
     availableOptions = filter({
       list: values,
       query,
@@ -198,32 +188,15 @@ export function useAutocomplete<
       onBlur(event) {
         onBlur(event);
 
-        // Maybe move to `useClickAway/useFocusLoss`
-        const container = event.currentTarget.parentElement;
-        window.requestAnimationFrame(() => {
-          if (
-            container?.contains(document.activeElement) ||
-            popupRef.current?.contains(document.activeElement)
-          ) {
-            return;
-          }
-
-          if (visible) {
-            exitingOptions.current = availableOptions;
-          }
-
-          let label = "";
-          if (typeof value === "string") {
-            label = value;
-          } else if (
-            typeof value === "object" &&
-            value &&
-            !("length" in value)
-          ) {
-            label = getOptionLabel(value);
-          }
-
-          triggerManualChangeEvent(comboboxRef.current, label);
+        enforceSelectedValue({
+          value,
+          visible,
+          popupRef,
+          container: event.currentTarget.parentElement,
+          comboboxRef,
+          getOptionLabel,
+          availableOptions,
+          prevAvailableOptions,
         });
       },
       onFocus(event) {
@@ -263,6 +236,10 @@ export function useAutocomplete<
           }
 
           onOpen();
+
+          // when the listbox is opened, need to flag the entered state to show
+          // that new `query` values should be accepted. Also store the initial
+          // query.
           entered.current = true;
           initialQuery.current = query;
         };
@@ -287,7 +264,9 @@ export function useAutocomplete<
         nodeRef: ref,
         value,
         setValue(option) {
-          exitingOptions.current = availableOptions;
+          // this makes it so that the options are not filtered again while the
+          // listbox is closing after selecting a value
+          prevAvailableOptions.current = availableOptions;
 
           if (value && typeof value === "object" && "length" in value) {
             const nextValue = [...value];
@@ -309,8 +288,10 @@ export function useAutocomplete<
         onExited() {
           onExited();
 
+          // once the listbox has exited, reset any cached states so the next
+          // time the listbox is opened the filtering behaves the same
           entered.current = false;
-          exitingOptions.current = null;
+          prevAvailableOptions.current = null;
         },
       };
     },
@@ -320,6 +301,7 @@ export function useAutocomplete<
         onClick(event) {
           overrides?.onClick?.(event);
           comboboxRef.current?.focus();
+
           if (!multiselect) {
             setValue(null);
           }
@@ -336,7 +318,7 @@ export function useAutocomplete<
           overrides?.onClick?.(event);
           comboboxRef.current?.focus();
           if (visible) {
-            exitingOptions.current = availableOptions;
+            prevAvailableOptions.current = availableOptions;
           }
           setVisible((prev) => !prev);
         },

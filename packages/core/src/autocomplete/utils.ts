@@ -1,4 +1,9 @@
-import { type UseStateInitializer } from "../types.js";
+import { type RefObject } from "react";
+import {
+  type EditableHTMLElement,
+  triggerManualChangeEvent,
+} from "../form/utils.js";
+import { type NonNullMutableRef, type UseStateInitializer } from "../types.js";
 import { noopAutocompleteFilter } from "./defaults.js";
 import {
   type AutocompleteFilterOptions,
@@ -48,6 +53,11 @@ export function getDefaultValue<Option extends AutocompleteOption>(
     return [];
   }
 
+  // do not support a default value out of the box for this case
+  if (filter === noopAutocompleteFilter) {
+    return null;
+  }
+
   return () => {
     let q = "";
     if (query) {
@@ -58,10 +68,6 @@ export function getDefaultValue<Option extends AutocompleteOption>(
 
     if (!q) {
       return null;
-    }
-
-    if (filter === noopAutocompleteFilter) {
-      return values[0] ?? null;
     }
 
     const filtered = filter({
@@ -108,4 +114,93 @@ export function getDefaultQuery<Option extends AutocompleteOption>(
 
     return "";
   };
+}
+
+/**
+ * @since 6.0.0
+ * @internal
+ */
+export interface EnforceSelectedValueOptions<
+  Option extends AutocompleteOption,
+> {
+  value: Option | readonly Option[] | null;
+  visible: boolean;
+  container: HTMLElement | null;
+  popupRef: RefObject<HTMLElement>;
+  comboboxRef: RefObject<EditableHTMLElement>;
+  getOptionLabel: (option: Option) => string;
+  availableOptions: readonly Option[];
+  prevAvailableOptions: NonNullMutableRef<readonly Option[] | null>;
+}
+
+/**
+ * This enforces that if the user clicks away, touches somewhere else on the
+ * page, tabs to the next element, or focuses another element programmatically
+ * the autocomplete will set the `value` back to the previous selected value if
+ * there was one. i.e.
+ *
+ * Case 1:
+ * - User selects "Apple"
+ * - User hits backspace twice. Input displays "App"
+ * - User clicks somewhere else on the page
+ * - Input now displays "Apple" again
+ *
+ * Case 2:
+ * - User selects "Apple"
+ * - User clears the input
+ * - User types "app"
+ * - User clicks somewhere else on the page
+ * - Input now displays "" and the value is set to `null`
+ *
+ * NOTE: This mutates the {@link EnforceSelectedValueOptions.prevAvailableOptions}
+ *
+ * @since 6.0.0
+ * @internal
+ */
+export function enforceSelectedValue<Option extends AutocompleteOption>(
+  options: EnforceSelectedValueOptions<Option>
+): void {
+  const {
+    value,
+    visible,
+    container,
+    popupRef,
+    comboboxRef,
+    getOptionLabel,
+    availableOptions,
+    prevAvailableOptions,
+  } = options;
+
+  if (!container) {
+    return;
+  }
+
+  // TODO: Ugh. The double raf is required for this to work with
+  // `@testing-library/user-event` since events fire differently in jsdom than
+  // the browser. Without the double raf, this blur event would be fired in an
+  // incorrect order causing the input to have the wrong value
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => {
+      if (
+        container.contains(document.activeElement) ||
+        popupRef.current?.contains(document.activeElement)
+      ) {
+        return;
+      }
+
+      if (visible) {
+        // this makes it so that the options are not filtered again while closing
+        prevAvailableOptions.current = availableOptions;
+      }
+
+      let label = "";
+      if (typeof value === "string") {
+        label = value;
+      } else if (typeof value === "object" && value && !("length" in value)) {
+        label = getOptionLabel(value);
+      }
+
+      triggerManualChangeEvent(comboboxRef.current, label);
+    });
+  });
 }

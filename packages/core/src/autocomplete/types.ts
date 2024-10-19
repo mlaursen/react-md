@@ -8,12 +8,12 @@ import { type ListboxSelectIconProps } from "../form/Listbox.js";
 import { type OptionProps } from "../form/Option.js";
 import {
   type ComboboxMenuProps,
-  type ComboboxWidgetProps,
   type ConfigurableComboboxMenuProps,
 } from "../form/useCombobox.js";
 import {
   type EditableComboboxImplementation,
   type EditableComboboxOptions,
+  type EditableComboboxWidgetProps,
 } from "../form/useEditableCombobox.js";
 import { type EditableHTMLElement } from "../form/utils.js";
 import { type BaseSearchOptions } from "../searching/types.js";
@@ -270,6 +270,13 @@ export interface AutocompleteEditableComboboxOptions<
     ListboxSelectIconProps {
   onBlur?: FocusEventHandler<ComboboxEl>;
   onChange?: ChangeEventHandler<ComboboxEl>;
+
+  /**
+   * This is a convenience prop for the `onEntering`/`onEntered` transition
+   * callbacks that will ensure it is only called once even if the transitions
+   * are disabled. A great use-case for this function is to fetch data once the
+   * menu is opened.
+   */
   onOpen?: () => void;
 }
 
@@ -319,7 +326,7 @@ export interface AutocompleteOptions<
  */
 export interface AutocompleteComboboxProps<
   ComboboxEl extends EditableHTMLElement = HTMLInputElement,
-> extends ComboboxWidgetProps<ComboboxEl> {
+> extends EditableComboboxWidgetProps<ComboboxEl> {
   "aria-autocomplete": NonNullable<AriaAttributes["aria-autocomplete"]>;
   value: string;
   onBlur: FocusEventHandler<ComboboxEl>;
@@ -359,13 +366,33 @@ export interface AutocompleteWithQueryImplementation<
   query: string;
   setQuery: Dispatch<string>;
   comboboxProps: AutocompleteComboboxProps<ComboboxEl>;
+
+  /**
+   * This is the current list of options that will be filtered based on the
+   * current `query`. This should normally be rendered in the
+   * `AutocompleteListboxChildren` component
+   */
   availableOptions: readonly Option[];
+
+  /**
+   * Generates the props required for the `Listbox` component and should
+   * normally be provided any menu props that might override the default display
+   * settings.
+   */
   getListboxProps: (
     overrides?: ConfigurableAutocompleteListboxProps
   ) => AutocompleteListboxProps<Option, PopupEl>;
+
+  /**
+   * Generates the props required for the `AutocompleteClearButton`.
+   */
   getClearButtonProps: (
     overrides?: ConfigurableAutocompleteClearButtonProps
   ) => AutocompleteClearButtonProps;
+
+  /**
+   * Generates the props required for the `AutocompleteDropdownButton`.
+   */
   getDropdownButtonProps: (
     overrides?: ConfigurableAutocompleteDropdownButtonProps
   ) => AutocompleteDropdownButtonProps;

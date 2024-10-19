@@ -2,11 +2,16 @@
 import { useRef } from "react";
 import { isTypeEvent } from "../movement/utils.js";
 import {
-  useCombobox,
   type BaseComboboxOptions,
   type ComboboxImplementation,
+  type ComboboxWidgetProps,
+  useCombobox,
 } from "./useCombobox.js";
-import { isChangeableHTMLElement, triggerManualChangeEvent } from "./utils.js";
+import {
+  type EditableHTMLElement,
+  isChangeableHTMLElement,
+  triggerManualChangeEvent,
+} from "./utils.js";
 
 /**
  * @since 6.0.0
@@ -19,16 +24,41 @@ export type EditableComboboxOptions<
 /**
  * @since 6.0.0
  */
-export type EditableComboboxImplementation<
-  ComboboxEl extends HTMLElement = HTMLInputElement,
+export interface EditableComboboxWidgetProps<
+  ComboboxEl extends EditableHTMLElement = HTMLInputElement,
+> extends ComboboxWidgetProps<ComboboxEl> {
+  /**
+   * This is set to `off` to prevent browser from providing their own
+   * suggestions.
+   *
+   * @defaultValue `"off"`
+   */
+  autoComplete: string;
+
+  /**
+   * This is set to `"none"` to prevent browsers from automatically capitalizing
+   * the first letter.
+   *
+   * @defaultValue `"none"`
+   */
+  autoCapitalize: string;
+}
+
+/**
+ * @since 6.0.0
+ */
+export interface EditableComboboxImplementation<
+  ComboboxEl extends EditableHTMLElement = HTMLInputElement,
   PopupEl extends HTMLElement = HTMLElement,
-> = ComboboxImplementation<ComboboxEl, PopupEl>;
+> extends ComboboxImplementation<ComboboxEl, PopupEl> {
+  comboboxProps: EditableComboboxWidgetProps<ComboboxEl>;
+}
 
 /**
  * @since 6.0.0
  */
 export function useEditableCombobox<
-  ComboboxEl extends HTMLElement = HTMLInputElement,
+  ComboboxEl extends EditableHTMLElement = HTMLInputElement,
   PopupEl extends HTMLElement = HTMLElement,
 >(
   options: EditableComboboxOptions<ComboboxEl, PopupEl> = {}
@@ -129,6 +159,11 @@ export function useEditableCombobox<
 
   return {
     ...combobox,
+    comboboxProps: {
+      ...combobox.comboboxProps,
+      autoCapitalize: "none",
+      autoComplete: "off",
+    },
     getMenuProps(props) {
       return {
         // override the inherited renderAsSheet context since the sheet makes it

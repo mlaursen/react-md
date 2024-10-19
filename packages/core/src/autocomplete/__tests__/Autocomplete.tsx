@@ -1,7 +1,14 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import { act, createRef, type ReactElement, useEffect, useState } from "react";
+import { FontIcon } from "../../icon/FontIcon.js";
+import { type MenuItemProps } from "../../menu/MenuItem.js";
 import { fuzzySearch } from "../../searching/fuzzy.js";
-import { rmdRender, screen, userEvent } from "../../test-utils/index.js";
+import {
+  rmdRender,
+  screen,
+  userEvent,
+  within,
+} from "../../test-utils/index.js";
 import { SrOnly } from "../../typography/SrOnly.js";
 import { Autocomplete, type AutocompleteProps } from "../Autocomplete.js";
 import { noopAutocompleteFilter } from "../defaults.js";
@@ -25,6 +32,11 @@ const OBJECT_LIST = [
   { name: "Apricot", value: 2 },
   { name: "Banana", value: 3 },
 ];
+
+const FRUIT_OBJECTS = FRUITS.map((fruit) => ({
+  label: fruit,
+  value: fruit,
+}));
 
 const FRUIT_PROPS = {
   label: "Field",
@@ -179,6 +191,31 @@ describe("Autocomplete", () => {
     expect(screen.getAllByRole("option")).toHaveLength(FRUITS.slice(3).length);
   });
 
+  it("should not filter the options if a value was already selected until the first value change to make it behave like a select", async () => {
+    const user = userEvent.setup();
+    rmdRender(<Autocomplete {...FRUIT_PROPS} />);
+    const autocomplete = screen.getByRole("combobox", { name: "Field" });
+
+    await user.type(autocomplete, "app");
+    let listbox = screen.getByRole("listbox", { name: "Fruits" });
+    expect(within(listbox).getAllByRole("option")).toHaveLength(1);
+    await user.keyboard("[ArrowDown][Enter]");
+    expect(autocomplete).toHaveValue("Apple");
+    expect(listbox).not.toBeInTheDocument();
+
+    await user.keyboard("{Alt>}[ArrowDown]{/Alt}");
+    listbox = screen.getByRole("listbox", { name: "Fruits" });
+    expect(within(listbox).getAllByRole("option")).toHaveLength(FRUITS.length);
+
+    await user.keyboard("[Backspace][Backspace]");
+    // NOTE: I don't know if this is a bug in `@testing-library/user-event` or
+    // the `triggerManualChangeEvent`, but this should be `App` (and still is
+    // in the browser)
+    expect(autocomplete).toHaveValue("a");
+    // This should be `1` once 🔼 is fixed. it matches `Apple` and `Apricot` when it is `ap`
+    expect(within(listbox).getAllByRole("option")).toHaveLength(2);
+  });
+
   it("should be able to render a CircularProgress bar when the loading prop is enabled", () => {
     const { rerender } = rmdRender(<Autocomplete {...FRUIT_PROPS} />);
 
@@ -207,6 +244,116 @@ describe("Autocomplete", () => {
     );
     const progressbar = screen.getByRole("progressbar", { name: "Wait" });
     expect(progressbar).toMatchSnapshot();
+  });
+
+  it("should prevent the listbox from closing and reopening when the text field, clear button, dropdown button, or any addon is clicked", async () => {
+    const user = userEvent.setup();
+    rmdRender(<Autocomplete {...FRUIT_PROPS} />);
+    const autocomplete = screen.getByRole("combobox", { name: "Field" });
+    await user.type(autocomplete, "or");
+
+    let listbox = screen.getByRole("listbox", { name: "Fruits" });
+    expect(within(listbox).getAllByRole("option")).toHaveLength(1);
+
+    await user.click(screen.getByRole("option", { name: "Orange" }));
+    expect(listbox).not.toBeInTheDocument();
+    expect(autocomplete).toHaveValue("Orange");
+    expect(autocomplete).not.toHaveFocus();
+
+    await user.click(autocomplete);
+    listbox = screen.getByRole("listbox", { name: "Fruits" });
+    await user.click(screen.getByRole("button", { name: "Clear" }));
+    expect(listbox).toBeInTheDocument();
+
+    await user.click(screen.getByRole("button", { name: "Fruits" }));
+    expect(listbox).not.toBeInTheDocument();
+  });
+
+  it("should attempt to pull menu item props from the options", async () => {
+    const user = userEvent.setup();
+    const options: (Partial<MenuItemProps> & {
+      value: string;
+      label: string;
+    })[] = FRUITS.map((fruit) => ({
+      leftAddon: <FontIcon>favorite</FontIcon>,
+      disabled: fruit === "Orange",
+      value: fruit,
+      label: fruit,
+      secondaryText: "Fruit",
+    }));
+
+    rmdRender(<Autocomplete {...FRUIT_PROPS} options={options} />);
+    const autocomplete = screen.getByRole("combobox", { name: "Field" });
+    await user.click(autocomplete);
+
+    expect(screen.getByRole("listbox", { name: "Fruits" })).toMatchSnapshot();
+  });
+
+  it("should allot for a default query either as a string or a UseStateInitializer", async () => {
+    const user = userEvent.setup();
+    const { rerender } = rmdRender(
+      <Autocomplete {...FRUIT_PROPS} defaultQuery="Orange" />
+    );
+
+    let autocomplete = screen.getByRole("combobox", { name: "Field" });
+    expect(autocomplete).toHaveValue("Orange");
+    await user.click(autocomplete);
+    expect(() => {
+      screen.getByRole("option", { name: "Orange", selected: true });
+    }).not.toThrow();
+
+    rerender(
+      <Autocomplete
+        key="remount"
+        {...FRUIT_PROPS}
+        defaultQuery={() => FRUITS[2]}
+      />
+    );
+    expect(autocomplete).not.toBeInTheDocument();
+    autocomplete = screen.getByRole("combobox", { name: "Field" });
+    expect(autocomplete).toHaveValue(FRUITS[2]);
+    await user.click(autocomplete);
+    expect(() => {
+      screen.getByRole("option", { name: FRUITS[2], selected: true });
+    }).not.toThrow();
+  });
+
+  it("should allow for a default value", async () => {
+    const user = userEvent.setup();
+    rmdRender(
+      <Autocomplete
+        {...FRUIT_PROPS}
+        options={FRUIT_OBJECTS}
+        defaultValue={FRUIT_OBJECTS[1]}
+      />
+    );
+    const autocomplete = screen.getByRole("combobox", { name: "Field" });
+    expect(autocomplete).toHaveValue(FRUIT_OBJECTS[1].label);
+
+    await user.click(autocomplete);
+    expect(() => {
+      screen.getByRole("option", {
+        name: FRUIT_OBJECTS[1].label,
+        selected: true,
+      });
+    }).not.toThrow();
+  });
+
+  it("should not set the default value if a query was provided and the filtering is disabled through the noopAutocompleteFilter", async () => {
+    const user = userEvent.setup();
+    rmdRender(
+      <Autocomplete
+        {...FRUIT_PROPS}
+        filter={noopAutocompleteFilter}
+        defaultQuery="Hello, world!"
+      />
+    );
+    const autocomplete = screen.getByRole("combobox", { name: "Field" });
+    expect(autocomplete).toHaveValue("Hello, world!");
+    await user.click(autocomplete);
+    expect(() => {
+      screen.getByRole("option", { selected: true });
+    }).toThrow();
   });
 
   describe("keyboard support", () => {
@@ -375,6 +522,28 @@ describe("Autocomplete", () => {
       await user.tab();
       expect(dropdown).not.toHaveFocus();
       expect(document.body).toHaveFocus();
+    });
+
+    it("should not prevent the listbox from closing and reopening when the text field, clear button, dropdown button, or any addon is clicked while in keyboard mode", async () => {
+      const user = userEvent.setup();
+      rmdRender(<Autocomplete {...FRUIT_PROPS} />);
+      const autocomplete = screen.getByRole("combobox", { name: "Field" });
+
+      await user.type(autocomplete, "or");
+
+      let listbox = screen.getByRole("listbox", { name: "Fruits" });
+      expect(within(listbox).getAllByRole("option")).toHaveLength(1);
+
+      await user.keyboard("[ArrowDown][Enter]");
+      expect(listbox).not.toBeInTheDocument();
+      expect(autocomplete).toHaveValue("Orange");
+      expect(autocomplete).toHaveFocus();
+
+      await user.keyboard("[Alt>][ArrowDown][/Alt]");
+      listbox = screen.getByRole("listbox", { name: "Fruits" });
+      await user.keyboard("[Escape]");
+      expect(listbox).not.toBeInTheDocument();
+      expect(autocomplete).toHaveFocus();
     });
   });
 
