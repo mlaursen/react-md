@@ -70,7 +70,6 @@ export interface LocalStorageHookOptions<T> {
  * @since 6.0.0
  */
 export const defaultLocalStorageSerializer = (value: unknown): string =>
-  // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
   typeof value === "string" ? value : `${value}`;
 
 /** @since 6.0.0 */

@@ -18,7 +18,6 @@ export function getAnchor(position: SimplePosition): PositionAnchor {
     case "right":
       return CENTER_RIGHT_ANCHOR;
     default:
-      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       throw new Error(`Invalid tooltip position: "${position}"`);
   }
 }

@@ -10,7 +10,6 @@ import { useEffect, useLayoutEffect } from "react";
 export const useIsomorphicLayoutEffect =
   typeof window !== "undefined" &&
   typeof window.document !== "undefined" &&
-  // eslint-disable-next-line @typescript-eslint/no-deprecated
   typeof window.document.createElement !== "undefined"
     ? useLayoutEffect
     : useEffect;
