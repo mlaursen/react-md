@@ -84,6 +84,7 @@ export interface AutocompleteControlledValue<T> {
   value: T;
   setValue: Dispatch<T>;
   defaultValue?: never;
+  onValueChange?: never;
 }
 
 /**
@@ -93,6 +94,15 @@ export interface AutocompleteUncontrolledValue<T> {
   value?: never;
   setValue?: never;
   defaultValue?: UseStateInitializer<T>;
+
+  /**
+   * This prop should be used when some action should occur whenever the value
+   * changes, but is not required to be stored in state. For all other cases, it
+   * is recommended to control the `value` instead of using this prop.
+   *
+   * @defaultValue `() => {}`
+   */
+  onValueChange?: (value: T) => void;
 }
 
 /**
@@ -139,6 +149,7 @@ export interface AutocompleteUnknownQueryAndValueOptions<
   value?: Option | null | readonly Option[];
   setValue?: Dispatch<Option | null | readonly Option[]>;
   defaultValue?: UseStateInitializer<Option | null | readonly Option[]>;
+  onValueChange?: (value: Option | null | readonly Option[]) => void;
 }
 
 /**

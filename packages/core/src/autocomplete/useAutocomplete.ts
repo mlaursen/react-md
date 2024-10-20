@@ -1,5 +1,5 @@
 "use client";
-import { useRef } from "react";
+import { useCallback, useRef } from "react";
 import { useEditableCombobox } from "../form/useEditableCombobox.js";
 import {
   triggerManualChangeEvent,
@@ -86,6 +86,7 @@ export function useAutocomplete<
     value: propValue,
     setValue: propSetValue,
     defaultValue,
+    onValueChange = noop,
     query: propQuery,
     setQuery: propSetQuery,
     defaultQuery,
@@ -103,7 +104,7 @@ export function useAutocomplete<
   } = options;
 
   const mode = useUserInteractionMode();
-  const [value, setValue] = useEnsuredState({
+  const [value, setValueState] = useEnsuredState({
     value: propValue,
     setValue: propSetValue,
     defaultValue: getDefaultValue({
@@ -116,6 +117,13 @@ export function useAutocomplete<
       getOptionLabel,
     }),
   });
+  const setValue = useCallback(
+    (value: Option | null | readonly Option[]) => {
+      onValueChange(value);
+      setValueState(value);
+    },
+    [onValueChange, setValueState]
+  );
   const multiselect =
     propMultiselect ??
     (!!value && typeof value === "object" && "length" in value);
