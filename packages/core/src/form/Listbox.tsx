@@ -8,6 +8,7 @@ import {
 import { Menu, type MenuProps } from "../menu/Menu.js";
 import { type LabelRequiredForA11y } from "../types.js";
 import { ListboxProvider } from "./ListboxProvider.js";
+import { type OptionSelectedIconProps } from "./Option.js";
 
 /**
  * @since 6.0.0
@@ -18,17 +19,7 @@ export type ListboxValue = string | number | null | Record<string, unknown>;
 /**
  * @since 6.0.0
  */
-export interface ListboxSelectIconProps {
-  /**
-   * Set this to `true` if all the `Option` components should display the
-   * selected icon after the children instead of before.
-   *
-   * @see {@link disableSelectedIcon} to remove the selected icon instead.
-   *
-   * @defaultValue `false`
-   */
-  selectedIconAfter?: boolean;
-
+export interface ListboxSelectedIconProps extends OptionSelectedIconProps {
   /**
    * Set this to `true` to update all the `Option` components to no longer
    * render an icon while selected.
@@ -44,7 +35,7 @@ export interface ListboxSelectIconProps {
  */
 export interface ListboxProps<Value extends ListboxValue>
   extends MenuProps,
-    ListboxSelectIconProps {
+    ListboxSelectedIconProps {
   nodeRef?: Ref<HTMLDivElement>;
 
   value: Value | readonly NonNullable<ListboxValue>[];
@@ -65,6 +56,8 @@ export function Listbox<T extends ListboxValue>(
     children,
     nodeRef,
     selectedIconAfter,
+    selectedIcon,
+    unselectedIcon,
     disableSelectedIcon,
     ...remaining
   } = props;
@@ -80,10 +73,19 @@ export function Listbox<T extends ListboxValue>(
               (Array.isArray(value) && value.includes(option))
             );
           },
+          selectedIcon,
+          unselectedIcon,
           selectedIconAfter,
           disableSelectedIcon,
         }),
-        [disableSelectedIcon, selectedIconAfter, setValue, value]
+        [
+          disableSelectedIcon,
+          selectedIcon,
+          selectedIconAfter,
+          setValue,
+          unselectedIcon,
+          value,
+        ]
       )}
     >
       <Menu {...remaining} ref={nodeRef}>

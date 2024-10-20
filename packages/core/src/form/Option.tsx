@@ -29,18 +29,9 @@ export const DEFAULT_OPTION_UNSELECTED_ICON = (
 );
 
 /**
- * @since 6.0.0 removed the `selected` and `focused` props.
- * @since 6.0.0 Added the `value`, `selectedIcon`, `unselectedIcon`,
- * `selectedIconAfter`, and `iconSpacingProps` props.
+ * @since 6.0.0
  */
-export interface OptionProps extends MenuItemProps {
-  /**
-   * @defaultValue `"option"`
-   */
-  role?: string;
-
-  value: string | number | Record<string, unknown>;
-
+export interface OptionSelectedIconProps {
   /**
    * @defaultValue `getIcon("selected")`
    */
@@ -59,6 +50,20 @@ export interface OptionProps extends MenuItemProps {
    * @defaultValue `false`
    */
   selectedIconAfter?: boolean;
+}
+
+/**
+ * @since 6.0.0 removed the `selected` and `focused` props.
+ * @since 6.0.0 Added the `value`, `selectedIcon`, `unselectedIcon`,
+ * `selectedIconAfter`, and `iconSpacingProps` props.
+ */
+export interface OptionProps extends MenuItemProps, OptionSelectedIconProps {
+  /**
+   * @defaultValue `"option"`
+   */
+  role?: string;
+
+  value: string | number | Record<string, unknown>;
 
   /**
    * Since the `selectedIcon`/`unselectedIcon` are rendered as
@@ -124,17 +129,21 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>(
       selectOption,
       isOptionSelected,
       disableSelectedIcon,
+      selectedIcon: contextSelectedIcon,
+      unselectedIcon: contextUnselectedIcon,
       selectedIconAfter: contextSelectedIconAfter,
     } = useListboxContext();
     const selectedIconAfter = propSelectedIconAfter ?? contextSelectedIconAfter;
     const selected = isOptionSelected(value);
     const selectedIcon = getIcon(
       "selected",
-      disableSelectedIcon ? null : propSelectedIcon
+      disableSelectedIcon ? null : (propSelectedIcon ?? contextSelectedIcon)
     );
     const unselectedIcon = disableSelectedIcon
       ? null
-      : (propUnselectedIcon ?? DEFAULT_OPTION_UNSELECTED_ICON);
+      : (propUnselectedIcon ??
+        contextUnselectedIcon ??
+        DEFAULT_OPTION_UNSELECTED_ICON);
     const icon = selected ? selectedIcon : unselectedIcon;
 
     let leftAddon = propLeftAddon;

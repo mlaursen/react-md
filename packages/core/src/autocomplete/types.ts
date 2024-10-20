@@ -4,7 +4,7 @@ import {
   type Dispatch,
   type FocusEventHandler,
 } from "react";
-import { type ListboxSelectIconProps } from "../form/Listbox.js";
+import { type ListboxSelectedIconProps } from "../form/Listbox.js";
 import { type OptionProps } from "../form/Option.js";
 import {
   type ComboboxMenuProps,
@@ -69,6 +69,62 @@ export interface AutocompleteGetOptionPropsOptions<
   index: number;
   option: Option;
 }
+
+/**
+ * This can be used to add additional props to each option.
+ *
+ * @example Simple Example
+ * ```tsx
+ * getOptionProps={({ option }) => {
+ *   return {
+ *     disabled: option === "",
+ *     className: cnb(option === "a" && styles.blue),
+ *     leftAddon: option === value && <CheckIcon />,
+ *   };
+ * }}
+ * ```
+ * @since 6.0.0
+ */
+export type AutocompleteGetOptionProps<Option extends AutocompleteOption> = (
+  options: AutocompleteGetOptionPropsOptions<Option>
+) => ConfigurableAutocompleteOptionProps | undefined;
+
+/**
+ * If the list of options contain an object that doesn't have a
+ * `label: string`, this prop must be provided to extract a string to display
+ * in the text field once selected.
+ *
+ * @example No Getter Required
+ * ```tsx
+ * const options1 = ['a', 'b', 'c', 'd'];
+ * const options2 = [{ label: 'a' }, { label: 'b' }, { label: 'c' }, { label: 'd' }];
+ *
+ * <Autocomplete options={options1} />
+ * <Autocomplete options={options2} />
+ * ```
+ *
+ * @example Getter Required
+ * ```tsx
+ * const options = [
+ *   {
+ *     name: "Alaska",
+ *     abbr: "AK",
+ *   },
+ *   {
+ *     name: "Arizona",
+ *     abbr: "AZ",
+ *   }
+ * ];
+ *
+ * <Autocomplete options={options} getOptionLabel={(state) => state.name} />
+ * ```
+ *
+ * @defaultValue `defaultAutocompleteExtractor`
+ * @since 6.0.0
+ */
+export type AutocompleteGetOptionLabel<Option extends AutocompleteOption> = (
+  option: Option
+) => string;
 
 /**
  * @since 6.0.0
@@ -161,8 +217,8 @@ export interface AutocompleteUnknownQueryAndValueOptions<
 export type AutocompleteOptionLabelExtractor<
   Option extends AutocompleteOption,
 > = Option extends AutocompleteLabeledOption
-  ? { getOptionLabel?: (option: Option) => string }
-  : { getOptionLabel: (option: Option) => string };
+  ? { getOptionLabel?: AutocompleteGetOptionLabel<Option> }
+  : { getOptionLabel: AutocompleteGetOptionLabel<Option> };
 
 /**
  * @since 6.0.0
@@ -176,39 +232,8 @@ export interface AutocompleteFilteringOptions<
    */
   options: readonly Option[];
 
-  /**
-   * If the list of options contain an object that doesn't have a
-   * `label: string`, this prop must be provided to extract a string to display
-   * in the text field once selected.
-   *
-   * @example No Getter Required
-   * ```tsx
-   * const options1 = ['a', 'b', 'c', 'd'];
-   * const options2 = [{ label: 'a' }, { label: 'b' }, { label: 'c' }, { label: 'd' }];
-   *
-   * <Autocomplete options={options1} />
-   * <Autocomplete options={options2} />
-   * ```
-   *
-   * @example Getter Required
-   * ```tsx
-   * const options = [
-   *   {
-   *     name: "Alaska",
-   *     abbr: "AK",
-   *   },
-   *   {
-   *     name: "Arizona",
-   *     abbr: "AZ",
-   *   }
-   * ];
-   *
-   * <Autocomplete options={options} getOptionLabel={(state) => state.name} />
-   * ```
-   *
-   * @defaultValue `defaultAutocompleteExtractor`
-   */
-  getOptionLabel?: (option: Option) => string;
+  /** @see {@link AutocompleteGetOptionLabel} */
+  getOptionLabel?: AutocompleteGetOptionLabel<Option>;
 
   /**
    * The function that filters the {@link options} based on the current query
@@ -280,13 +305,42 @@ export interface AutocompleteFilteringOptions<
 /**
  * @since 6.0.0
  */
+export interface AutocompleteFilterAndListboxOptions<
+  Option extends AutocompleteOption,
+> extends AutocompleteFilteringOptions<Option>,
+    ListboxSelectedIconProps {
+  /**
+   * Set this to `true` when using a multiselect autocomplete to update each
+   * option to use checkboxes to show the selection state.
+   *
+   * @defaultValue `false`
+   */
+  checkboxes?: boolean;
+
+  /** @defaultValue `!checkboxes` */
+  disableSelectedIcon?: boolean;
+
+  /**
+   * Set this to `true` to prevent the listbox from closing when an option is
+   * selected.
+   *
+   * @defaultValue `checkboxes`
+   */
+  disableCloseOnSelect?: boolean;
+
+  /** @see {@link AutocompleteGetOptionProps} */
+  getOptionProps?: AutocompleteGetOptionProps<Option>;
+}
+
+/**
+ * @since 6.0.0
+ */
 export interface AutocompleteEditableComboboxOptions<
   Option extends AutocompleteOption,
   ComboboxEl extends EditableHTMLElement = HTMLInputElement,
   PopupEl extends HTMLElement = HTMLElement,
 > extends EditableComboboxOptions<ComboboxEl, PopupEl>,
-    AutocompleteFilteringOptions<Option>,
-    ListboxSelectIconProps {
+    AutocompleteFilterAndListboxOptions<Option> {
   onBlur?: FocusEventHandler<ComboboxEl>;
   onChange?: ChangeEventHandler<ComboboxEl>;
 
@@ -297,6 +351,17 @@ export interface AutocompleteEditableComboboxOptions<
    * menu is opened.
    */
   onOpen?: () => void;
+
+  /**
+   * Set this to `true` to clear the `query` whenever a new value is selected.
+   * This should generally be used if the current value is stored outside of the
+   * autocomplete itself or multiselect implementations.
+   *
+   * This will be enabled by default for multiselect implementations.
+   *
+   * @defaultValue `multiselect || Array.isArray(value ?? defaultValue)`
+   */
+  clearOnSelect?: boolean;
 }
 
 /**
@@ -359,7 +424,7 @@ export interface AutocompleteListboxProps<
   T extends AutocompleteOption = AutocompleteOption,
   PopupEl extends HTMLElement = HTMLElement,
 > extends Omit<ComboboxMenuProps<PopupEl>, "ref">,
-    ListboxSelectIconProps {
+    ListboxSelectedIconProps {
   value: T | null | readonly T[];
   setValue: Dispatch<T>;
   onEnter: (appearing: boolean) => void;
@@ -370,7 +435,7 @@ export interface AutocompleteListboxProps<
  */
 export interface ConfigurableAutocompleteListboxProps
   extends ConfigurableComboboxMenuProps,
-    ListboxSelectIconProps {
+    ListboxSelectedIconProps {
   id?: string;
 }
 
@@ -415,6 +480,11 @@ export interface AutocompleteWithQueryImplementation<
   getDropdownButtonProps: (
     overrides?: ConfigurableAutocompleteDropdownButtonProps
   ) => AutocompleteDropdownButtonProps;
+
+  /** @see {@link AutocompleteGetOptionLabel} */
+  getOptionLabel: AutocompleteGetOptionLabel<Option>;
+  /** @see {@link AutocompleteGetOptionProps} */
+  getOptionProps: AutocompleteGetOptionProps<Option>;
 }
 
 /**

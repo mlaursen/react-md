@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/unified-signatures */
 "use client";
 import { type ReactElement, type ReactNode, type Ref } from "react";
-import { Listbox, type ListboxSelectIconProps } from "../form/Listbox.js";
+import { Listbox } from "../form/Listbox.js";
 import { TextField, type TextFieldProps } from "../form/TextField.js";
 import { ListSubheader } from "../list/ListSubheader.js";
 import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
@@ -24,21 +24,18 @@ import {
 import { AutocompleteListboxChildren } from "./AutocompleteListboxChildren.js";
 import { autocomplete, autocompleteRightAddon } from "./autocompleteStyles.js";
 import {
-  defaultAutocompleteExtractor,
   defaultAutocompleteFilter,
-  defaultAutocompleteGetOptionProps,
   noopAutocompleteFilter,
 } from "./defaults.js";
 import {
-  type AutocompleteFilteringOptions,
-  type AutocompleteGetOptionPropsOptions,
+  AutocompleteFilterAndListboxOptions,
+  AutocompleteGetOptionProps,
   type AutocompleteOption,
   type AutocompleteOptionLabelExtractor,
   type AutocompleteQuery,
   type AutocompleteUnknownQueryAndValueOptions,
   type AutocompleteValue,
   type ConfigurableAutocompleteListboxProps,
-  type ConfigurableAutocompleteOptionProps,
 } from "./types.js";
 import { useAutocomplete } from "./useAutocomplete.js";
 
@@ -47,8 +44,7 @@ import { useAutocomplete } from "./useAutocomplete.js";
  */
 export interface AutocompleteBaseProps<Option extends AutocompleteOption>
   extends Omit<TextFieldProps, "value" | "defaultValue">,
-    AutocompleteFilteringOptions<Option>,
-    ListboxSelectIconProps {
+    AutocompleteFilterAndListboxOptions<Option> {
   inputRef?: Ref<HTMLInputElement>;
 
   /**
@@ -73,23 +69,8 @@ export interface AutocompleteBaseProps<Option extends AutocompleteOption>
     HTMLDivElement
   >;
 
-  /**
-   * This can be used to add additional props to each option.
-   *
-   * @example Simple Example
-   * ```tsx
-   * getOptionProps={({ option }) => {
-   *   return {
-   *     disabled: option === "",
-   *     className: cnb(option === "a" && styles.blue),
-   *     leftAddon: option === value && <CheckIcon />,
-   *   };
-   * }}
-   * ```
-   */
-  getOptionProps?: (
-    options: AutocompleteGetOptionPropsOptions<Option>
-  ) => ConfigurableAutocompleteOptionProps | undefined;
+  /** @see {@link AutocompleteGetOptionProps} */
+  getOptionProps?: AutocompleteGetOptionProps<Option>;
 
   /**
    * This can be used to add any custom styling, change the icon, change the
@@ -152,9 +133,6 @@ export interface AutocompleteBaseProps<Option extends AutocompleteOption>
    * @defaultValue `<ListSubheader>No options</ListSubheader`
    */
   noOptionsChildren?: ReactNode;
-
-  /** @defaultValue `true` */
-  disableSelectedIcon?: boolean;
 }
 
 /**
@@ -178,7 +156,10 @@ export type AutocompleteQueryAndExtractorProps<
  * @since 6.0.0
  */
 export type AutocompleteSingleSelectProps<Option extends AutocompleteOption> =
-  AutocompleteQueryAndExtractorProps<Option> & AutocompleteValue<Option | null>;
+  AutocompleteQueryAndExtractorProps<Option> &
+    AutocompleteValue<Option | null> & {
+      checkboxes?: never;
+    };
 
 /**
  * @since 6.0.0
@@ -240,14 +221,17 @@ export function Autocomplete<Option extends AutocompleteOption>(
     setQuery,
     defaultQuery,
     options,
-    getOptionLabel = defaultAutocompleteExtractor,
-    getOptionProps = defaultAutocompleteGetOptionProps,
+    getOptionLabel: propGetOptionLabel,
+    getOptionProps: propGetOptionProps,
     allowAnyValue,
     listboxProps: menuProps,
     listboxLabel,
     listboxLabelledBy,
+    selectedIcon,
+    unselectedIcon,
     selectedIconAfter,
-    disableSelectedIcon = true,
+    checkboxes,
+    disableSelectedIcon,
     loading,
     loadingProps,
     dropdownButtonProps,
@@ -258,6 +242,7 @@ export function Autocomplete<Option extends AutocompleteOption>(
     rightAddon,
     rightAddonProps,
     containerProps,
+    disableCloseOnSelect,
     ...remaining
   } = props;
   const { form, disabled } = props;
@@ -270,6 +255,8 @@ export function Autocomplete<Option extends AutocompleteOption>(
     comboboxProps,
     movementContext,
     availableOptions,
+    getOptionLabel,
+    getOptionProps,
     getListboxProps,
     getClearButtonProps,
     getDropdownButtonProps,
@@ -288,7 +275,8 @@ export function Autocomplete<Option extends AutocompleteOption>(
     comboboxId: id,
     comboboxRef: inputRef,
     options,
-    getOptionLabel,
+    getOptionLabel: propGetOptionLabel,
+    getOptionProps: propGetOptionProps,
     allowAnyValue,
     value,
     setValue,
@@ -297,8 +285,12 @@ export function Autocomplete<Option extends AutocompleteOption>(
     query,
     setQuery,
     defaultQuery,
+    checkboxes,
+    selectedIcon,
+    unselectedIcon,
     selectedIconAfter,
     disableSelectedIcon,
+    disableCloseOnSelect,
   });
   const [containerRef, containerRefCallback] = useEnsuredRef(
     containerProps?.ref

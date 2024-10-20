@@ -1,20 +1,16 @@
 "use client";
 import { createContext, useContext } from "react";
+import { type ListboxSelectedIconProps } from "./Listbox.jsx";
 
 /**
  * @internal
  * @since 6.0.0
  */
-export interface ListboxContext {
+export interface ListboxContext extends ListboxSelectedIconProps {
   // NOTE: These are not converted to arrow functions so the option can be
   // inferred correctly
   selectOption(option: unknown): void;
   isOptionSelected(option: unknown): boolean;
-
-  /** Convenience pass-through value */
-  selectedIconAfter?: boolean;
-  /** Convenience pass-through value */
-  disableSelectedIcon?: boolean;
 }
 
 const context = createContext<ListboxContext | null>(null);

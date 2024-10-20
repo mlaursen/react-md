@@ -7,6 +7,7 @@ import { type NonNullMutableRef, type UseStateInitializer } from "../types.js";
 import { noopAutocompleteFilter } from "./defaults.js";
 import {
   type AutocompleteFilterOptions,
+  type AutocompleteGetOptionLabel,
   type AutocompleteOption,
 } from "./types.js";
 
@@ -22,7 +23,7 @@ export interface GetDefaultValueOptions<Option extends AutocompleteOption> {
     | UseStateInitializer<Option | null | readonly Option[]>
     | undefined;
   options: readonly Option[];
-  getOptionLabel: (value: Option) => string;
+  getOptionLabel: AutocompleteGetOptionLabel<Option>;
   filter: (options: AutocompleteFilterOptions<Option>) => readonly Option[];
 }
 
@@ -86,7 +87,7 @@ export function getDefaultValue<Option extends AutocompleteOption>(
  */
 interface GetDefaultQueryOptions<Option extends AutocompleteOption> {
   value: Option | null | readonly Option[];
-  getOptionLabel: (option: Option) => string;
+  getOptionLabel: AutocompleteGetOptionLabel<Option>;
   defaultQuery?: UseStateInitializer<string>;
 }
 
@@ -128,7 +129,7 @@ export interface EnforceSelectedValueOptions<
   container: HTMLElement | null;
   popupRef: RefObject<HTMLElement>;
   comboboxRef: RefObject<EditableHTMLElement>;
-  getOptionLabel: (option: Option) => string;
+  getOptionLabel: AutocompleteGetOptionLabel<Option>;
   availableOptions: readonly Option[];
   prevAvailableOptions: NonNullMutableRef<readonly Option[] | null>;
 }

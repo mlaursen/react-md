@@ -1,9 +1,9 @@
 import { type ReactElement, type ReactNode } from "react";
 import { Option } from "../form/Option.js";
 import {
-  type AutocompleteGetOptionPropsOptions,
+  type AutocompleteGetOptionLabel,
+  type AutocompleteGetOptionProps,
   type AutocompleteOption,
-  type ConfigurableAutocompleteOptionProps,
 } from "./types.js";
 
 /**
@@ -14,10 +14,8 @@ export interface AutocompleteListboxChildrenProps<
   Option extends AutocompleteOption,
 > {
   options: readonly Option[];
-  getOptionLabel: (option: Option) => string;
-  getOptionProps: (
-    options: AutocompleteGetOptionPropsOptions<Option>
-  ) => ConfigurableAutocompleteOptionProps | undefined;
+  getOptionLabel: AutocompleteGetOptionLabel<Option>;
+  getOptionProps: AutocompleteGetOptionProps<Option>;
   children: ReactNode;
   noOptionsChildren: ReactNode;
 }

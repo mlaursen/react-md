@@ -5,6 +5,7 @@ import {
   triggerManualChangeEvent,
   type EditableHTMLElement,
 } from "../form/utils.js";
+import { getIcon } from "../icon/iconConfig.js";
 import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
 import { TRANSITION_CONFIG } from "../transition/config.js";
 import { type TransitionEnterHandler } from "../transition/types.js";
@@ -12,6 +13,7 @@ import { useEnsuredState } from "../useEnsuredState.js";
 import {
   defaultAutocompleteExtractor,
   defaultAutocompleteFilter,
+  defaultAutocompleteGetOptionProps,
   noopAutocompleteFilter,
 } from "./defaults.js";
 import {
@@ -92,14 +94,20 @@ export function useAutocomplete<
     defaultQuery,
     options: values,
     getOptionLabel = defaultAutocompleteExtractor,
+    getOptionProps = defaultAutocompleteGetOptionProps,
     onBlur = noop,
     onChange = noop,
     onOpen = noop,
     filter = defaultAutocompleteFilter,
     allowAnyValue = filter === noopAutocompleteFilter,
     multiselect: propMultiselect,
+    checkboxes,
+    selectedIcon: propSelectedIcon,
+    unselectedIcon: propUnselectedIcon,
     selectedIconAfter,
-    disableSelectedIcon,
+    disableSelectedIcon: propDisableSelectedIcon,
+    clearOnSelect: propClearOnSelect,
+    disableCloseOnSelect: propDisableCloseOnSelect,
     ...comboboxOptions
   } = options;
 
@@ -117,16 +125,12 @@ export function useAutocomplete<
       getOptionLabel,
     }),
   });
-  const setValue = useCallback(
-    (value: Option | null | readonly Option[]) => {
-      onValueChange(value);
-      setValueState(value);
-    },
-    [onValueChange, setValueState]
-  );
   const multiselect =
     propMultiselect ??
     (!!value && typeof value === "object" && "length" in value);
+  const clearOnSelect = propClearOnSelect ?? multiselect;
+  const disableCloseOnSelect =
+    propDisableCloseOnSelect ?? (multiselect && checkboxes);
 
   const [query, setQuery] = useEnsuredState({
     value: propQuery,
@@ -137,6 +141,13 @@ export function useAutocomplete<
       defaultQuery,
     }),
   });
+  const setValue = useCallback(
+    (value: Option | null | readonly Option[]) => {
+      onValueChange(value);
+      setValueState(value);
+    },
+    [onValueChange, setValueState]
+  );
 
   const combobox = useEditableCombobox<ComboboxEl, PopupEl>({
     ...comboboxOptions,
@@ -257,7 +268,23 @@ export function useAutocomplete<
           initialQuery.current = query;
         };
 
+      let selectedIcon = propSelectedIcon;
+      let unselectedIcon = propUnselectedIcon;
+      let disableSelectedIcon = propDisableSelectedIcon;
+      if (multiselect && checkboxes) {
+        if (typeof selectedIcon === "undefined") {
+          selectedIcon = getIcon("checkboxChecked");
+        }
+        if (typeof unselectedIcon === "undefined") {
+          unselectedIcon = getIcon("checkbox");
+        }
+      } else if (typeof disableSelectedIcon === "undefined") {
+        disableSelectedIcon = true;
+      }
+
       return {
+        selectedIcon,
+        unselectedIcon,
         selectedIconAfter,
         disableSelectedIcon,
         ...menuProps,
@@ -294,7 +321,9 @@ export function useAutocomplete<
           } else {
             setValue(option);
           }
-          triggerManualChangeEvent(comboboxRef.current, getOptionLabel(option));
+
+          const nextQuery = clearOnSelect ? "" : getOptionLabel(option);
+          triggerManualChangeEvent(comboboxRef.current, nextQuery);
         },
         onEnter: handleEntering(onEnter, false),
         onEntered: handleEntering(onEntered, isTransitionCompleteSkipped),
@@ -305,6 +334,20 @@ export function useAutocomplete<
           // time the listbox is opened the filtering behaves the same
           entered.current = false;
           prevAvailableOptions.current = null;
+        },
+      };
+    },
+    getOptionLabel,
+    getOptionProps(options) {
+      const overrides = getOptionProps(options);
+
+      return {
+        ...overrides,
+        onClick: (event) => {
+          overrides?.onClick?.(event);
+          if (disableCloseOnSelect) {
+            event.stopPropagation();
+          }
         },
       };
     },
