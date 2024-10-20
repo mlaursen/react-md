@@ -1,84 +1,213 @@
 @use "sass:list";
 @use "sass:map";
+@use "sass:string";
 @use "../utils";
+@use "../box/box";
 @use "../button/button";
 @use "../form/form";
 @use "../progress/progress";
 
 $disable-everything: false !default;
+$disable-clear-button: false !default;
 $disable-dropdown-button: false !default;
 $disable-circular-progress: false !default;
+$disable-text-overflow-ellipsis: false !default;
 
 $button-size: button.$icon-small-size !default;
 $circular-progress-size: button.$icon-small-size !default;
+$addon-gap: form.$text-field-addon-gap !default;
+$addon-spacing: form.get-var(addon-spacing) !default;
 
-$dropdown-button-calc: calc(button.get-var(icon-font-size) * 2) !default;
-$dropdown-button-only-calc: calc(
-  form.get-var(addon-spacing) + $dropdown-button-calc
-) !default;
-$circular-progress-only-calc: calc(
-  form.get-var(addon-spacing) + progress.get-var(circular-size)
-) !default;
-$circular-progress-and-dropdown-button-calc: calc(
-  calc(form.get-var(addon-spacing) * 2) + progress.get-var(circular-size) +
-    $dropdown-button-calc
-) !default;
+$clear-button-size: calc(button.get-var(icon-font-size) * 2) !default;
+$dropdown-button-size: calc(button.get-var(icon-font-size) * 2) !default;
+$circular-progress-size: progress.get-var(circular-size) !default;
+
+$_clear-button-selector: ".rmd-autocomplete__clear-button";
+$_dropdown-button-selector: ".rmd-autocomplete__dropdown-button";
+
+$variables: (
+  clear-button-size,
+  dropdown-button-size,
+  circular-progress-size,
+  addon-gap,
+  gap-count,
+  addon-spacing
+);
+
+@function get-var($name, $fallback: null) {
+  $var: utils.get-var-name($variables, $name, "autocomplete");
+  @if $fallback {
+    @return var(#{$var}, #{$fallback});
+  }
+
+  @return var(#{$var});
+}
+
+@mixin set-var($name, $value) {
+  @if $value {
+    #{utils.get-var-name($variables, $name, "autocomplete")}: #{$value};
+  }
+}
+
+@mixin use-var($property, $name: $property, $fallback: null) {
+  #{$property}: get-var($name, $fallback);
+}
+
+@mixin variables {
+  @if not $disable-everything {
+    @include set-var(addon-gap, $addon-gap);
+    @include set-var(addon-spacing, $addon-spacing);
+  }
+}
+
+@function _right-addon-calc() {
+  $calc-spacing: get-var(addon-spacing);
+  $calc-total-gap: calc(get-var(gap-count, 0) * get-var(addon-gap));
+  $calc-clear-button: if(
+    $disable-clear-button,
+    "",
+    " + " + get-var(clear-button-size, 0px)
+  );
+  $calc-dropdown-button: if(
+    $disable-dropdown-button,
+    "",
+    " + " + get-var(dropdown-button-size, 0px)
+  );
+  $calc-circular-progress: if(
+    $disable-circular-progress,
+    "",
+    " + " + get-var(circular-progress-size, 0px)
+  );
+  $calc-addon-size: $calc-clear-button + $calc-dropdown-button +
+    $calc-circular-progress;
+
+  @return calc($calc-spacing + #{$calc-total-gap + $calc-addon-size});
+}
+
+@function _add-has-selector($appending-selector, $addon-selector) {
+  $prefix: if(string.length($appending-selector), "", "&");
+
+  @return $appending-selector + $prefix + ":has(" + $addon-selector + ")";
+}
 
 @mixin styles($disable-layer: false) {
   @if not $disable-everything {
     @include utils.optional-layer(autocomplete, $disable-layer) {
       .rmd-autocomplete {
-        @if not $disable-dropdown-button {
+        @if not $disable-clear-button and not $disable-dropdown-button {
           @include button.set-var(icon-font-size, $button-size);
         }
         @if not $disable-circular-progress {
           @include progress.set-var(circular-size, $circular-progress-size);
         }
 
-        @if not $disable-dropdown-button {
-          // right-addon-1: dropdown button
-          &--ra1 {
-            @include form.set-var(
-              text-field-padding-right,
-              $dropdown-button-only-calc
-            );
-          }
+        @if not
+          $disable-clear-button or not
+          $disable-dropdown-button or not
+          $disable-circular-progress
+        {
+          // the way the padding right works is to create a calc string that
+          // sums all the available addons widths (including gap) that have
+          // been rendered in the autocomplete. to calculate the gap, the
+          // `&--db` and `&--cp` selectors will increase the `gap-count`
+          // variable based on how many other addons exist with it.
+          //
+          // So:
+          // - only clear button - count == 0
+          // - only dropdown button - count == 0
+          // - only circular progress - count == 0
+          // - clear button and dropdown button - count == 1
+          // - clear button and circular progress - count == 1
+          // - dropdown button and circular progress - count == 1
+          // - circular progress, clear button, and dropdown button - count == 2
+          //
+          // When the addon isn't included, its size will be set to `0px`. When
+          // the addon is included, the size is set to the correct value
+          @include form.set-var(text-field-padding-right, _right-addon-calc());
+        }
 
-          @if not $disable-circular-progress {
-            // right-addon-2: circular progress and dropdown button
-            &--ra2 {
-              @include form.set-var(
-                text-field-padding-right,
-                $circular-progress-and-dropdown-button-calc
-              );
+        @if not $disable-text-overflow-ellipsis {
+          :where(.rmd-text-field) {
+            text-overflow: ellipsis;
+          }
+        }
+
+        @if not $disable-clear-button {
+          &--cb {
+            @include set-var(clear-button-size, $clear-button-size);
+          }
+        }
+
+        @if not $disable-dropdown-button {
+          &--db {
+            @include set-var(dropdown-button-size, $dropdown-button-size);
+
+            @if not $disable-clear-button {
+              &:has(#{$_clear-button-selector}) {
+                @include set-var(gap-count, 1);
+              }
             }
           }
         }
 
         @if not $disable-circular-progress {
-          // right-addon-3: circular progress
-          &--ra3 {
-            @include form.set-var(
-              text-field-padding-right,
-              $circular-progress-only-calc
-            );
+          &--cp {
+            @include set-var(circular-progress-size, $circular-progress-size);
+
+            $two-addon-selector: "";
+            $single-selector-list: ();
+            @if not $disable-clear-button {
+              $single-selector-list: list.append(
+                $single-selector-list,
+                $_clear-button-selector,
+                $separator: comma
+              );
+              $two-addon-selector: _add-has-selector(
+                $two-addon-selector,
+                $_clear-button-selector
+              );
+            }
+
+            @if not $disable-dropdown-button {
+              $single-selector-list: list.append(
+                $single-selector-list,
+                $_dropdown-button-selector,
+                $separator: comma
+              );
+              $two-addon-selector: _add-has-selector(
+                $two-addon-selector,
+                $_dropdown-button-selector
+              );
+            }
+
+            @if list.length($single-selector-list) {
+              &:has(#{$single-selector-list}) {
+                @include set-var(gap-count, 1);
+              }
+            }
+            @if string.length($two-addon-selector) {
+              #{$two-addon-selector} {
+                @include set-var(gap-count, 2);
+              }
+            }
           }
         }
 
-        @media (hover: hover) and (pointer: fine) {
-          &:not(:hover):not(:focus-within) .rmd-autocomplete__clear-button {
-            display: none;
+        @include utils.mouse-hover($wrap-in-hover: false) {
+          &:where(:not(:hover):not(:focus-within))
+            :where(#{$_clear-button-selector}) {
+            opacity: 0;
           }
         }
 
         &__right-addon {
-          padding-left: form.get-var(addon-spacing);
+          padding-left: get-var(addon-spacing);
           right: 0;
 
           @include utils.rtl {
             left: 0;
             padding-left: 0;
-            padding-right: form.get-var(addon-spacing);
+            padding-right: get-var(addon-spacing);
             right: auto;
           }
         }

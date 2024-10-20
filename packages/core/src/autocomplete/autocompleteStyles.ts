@@ -11,6 +11,7 @@ export interface AutocompleteClassNameOptions {
   className?: string;
 
   loading?: boolean;
+  disableClearButton?: boolean;
   disableDropdownButton?: boolean;
 }
 
@@ -20,18 +21,14 @@ export interface AutocompleteClassNameOptions {
 export function autocomplete(
   options: AutocompleteClassNameOptions = {}
 ): string {
-  const { className, loading, disableDropdownButton } = options;
+  const { className, loading, disableClearButton, disableDropdownButton } =
+    options;
 
   return cnb(
     styles({
-      // all other configurations must be set manually
-
-      // right-addon-1: dropdown button only
-      ra1: !loading && !disableDropdownButton,
-      // right-addon-2: circular progress and dropdown button
-      ra2: loading && !disableDropdownButton,
-      // right-addon-3: circular progress only
-      ra3: loading && disableDropdownButton,
+      cb: !disableClearButton,
+      db: !disableDropdownButton,
+      cp: loading,
     }),
     className
   );
@@ -57,6 +54,23 @@ export function autocompleteRightAddon(
     cssUtils({ backgroundColor: "current-color" }),
     className
   );
+}
+/**
+ * @since 6.0.0
+ */
+export interface AutocompleteDropdownButtonClassNameOptions {
+  className?: string;
+}
+
+/**
+ * @since 6.0.0
+ */
+export function autocompleteDropdownButton(
+  options: AutocompleteDropdownButtonClassNameOptions = {}
+): string {
+  const { className } = options;
+
+  return cnb(styles("dropdown-button"), className);
 }
 
 /**

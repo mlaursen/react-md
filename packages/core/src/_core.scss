@@ -347,6 +347,7 @@ $_layer-order: (
 @mixin variables {
   @include theme.theme-variables;
   @include app-bar.variables;
+  @include autocomplete.variables;
   @include avatar.variables;
   @include badge.variables;
   @include box.variables;

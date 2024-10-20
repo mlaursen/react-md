@@ -7,8 +7,9 @@ import {
 import { Button, type ButtonProps } from "../button/Button.js";
 import { IconRotator, type IconRotatorProps } from "../icon/IconRotator.js";
 import { getIcon } from "../icon/iconConfig.js";
-import { useEnsuredId } from "../useEnsuredId.js";
 import { type LabelRequiredForA11y } from "../types.js";
+import { useEnsuredId } from "../useEnsuredId.js";
+import { autocompleteDropdownButton } from "./autocompleteStyles.js";
 
 /**
  * @since 6.0.0
@@ -47,7 +48,14 @@ export interface AutocompleteDropdownButtonProps
 export function AutocompleteDropdownButton(
   props: LabelRequiredForA11y<AutocompleteDropdownButtonProps>
 ): ReactElement {
-  const { id: propId, icon, visible, iconRotatorProps, ...remaining } = props;
+  const {
+    id: propId,
+    icon,
+    visible,
+    iconRotatorProps,
+    className,
+    ...remaining
+  } = props;
 
   const id = useEnsuredId(propId, "autocomplete-dropdown");
 
@@ -58,6 +66,7 @@ export function AutocompleteDropdownButton(
       aria-expanded={visible}
       tabIndex={-1}
       buttonType="icon"
+      className={autocompleteDropdownButton({ className })}
     >
       <IconRotator {...iconRotatorProps} rotated={visible}>
         {getIcon("dropdown", icon)}

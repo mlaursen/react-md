@@ -8,6 +8,7 @@
       { "ignorePseudoClasses": ["global", "local"] }
     ],
     "order/properties-alphabetical-order": true,
+    "scss/comment-no-empty": null,
     "scss/operator-no-newline-before": null,
     "scss/operator-no-newline-after": null
   }

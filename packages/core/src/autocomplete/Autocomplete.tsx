@@ -304,6 +304,7 @@ export function Autocomplete<Option extends AutocompleteOption>(
         className={autocomplete({
           className,
           loading,
+          disableClearButton,
           disableDropdownButton,
         })}
         rightAddon={
