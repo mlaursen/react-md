@@ -127,7 +127,7 @@ $variables: (
         }
 
         @if not $disable-text-overflow-ellipsis {
-          :where(.rmd-text-field) {
+          &:where(:not(:hover):not(:focus-within)) :where(.rmd-text-field) {
             text-overflow: ellipsis;
           }
         }
