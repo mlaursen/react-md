@@ -741,6 +741,11 @@ $variables: (
 
       @if not $disable-text-field-filled-theme {
         &--filled {
+          @include theme.theme-set-var(
+            background-color,
+            get-var(text-field-filled-color)
+          );
+          @include theme.theme-use-var(background-color);
           @include set-var(text-field-padding-left, $text-field-filled-padding);
           @include set-var(
             text-field-padding-right,
@@ -756,8 +761,6 @@ $variables: (
           @if not $disable-text-field-addon {
             @include set-var(addon-left-offset, $text-field-filled-padding);
           }
-
-          @include use-var(background-color, text-field-filled-color);
         }
       }
 
