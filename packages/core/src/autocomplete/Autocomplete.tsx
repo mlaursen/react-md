@@ -8,6 +8,7 @@ import { ListSubheader } from "../list/ListSubheader.js";
 import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
 import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
+import { useEnsuredRef } from "../useEnsuredRef.js";
 import {
   AutocompleteCircularProgress,
   type AutocompleteCircularProgressProps,
@@ -255,6 +256,7 @@ export function Autocomplete<Option extends AutocompleteOption>(
     noOptionsChildren = <ListSubheader>No Options</ListSubheader>,
     rightAddon,
     rightAddonProps,
+    containerProps,
     ...remaining
   } = props;
   const { form, disabled } = props;
@@ -262,6 +264,7 @@ export function Autocomplete<Option extends AutocompleteOption>(
   const id = useEnsuredId(propId, "autocomplete");
   const menuId = useEnsuredId(menuProps?.id, "autocomplete-listbox");
   const {
+    comboboxRef: inputNodeRef,
     query: currentQuery,
     comboboxProps,
     movementContext,
@@ -295,12 +298,23 @@ export function Autocomplete<Option extends AutocompleteOption>(
     selectedIconAfter,
     disableSelectedIcon,
   });
+  const [containerRef, containerRefCallback] = useEnsuredRef(
+    containerProps?.ref
+  );
 
   return (
     <KeyboardMovementProvider value={movementContext}>
       <TextField
         {...remaining}
         {...comboboxProps}
+        containerProps={{
+          ...containerProps,
+          ref: containerRefCallback,
+          onClick: (event) => {
+            containerProps?.onClick?.(event);
+            inputNodeRef.current?.focus();
+          },
+        }}
         className={autocomplete({
           className,
           loading,
@@ -338,6 +352,7 @@ export function Autocomplete<Option extends AutocompleteOption>(
         aria-label={listboxLabel as string}
         aria-labelledby={listboxLabelledBy}
         {...getListboxProps(menuProps)}
+        fixedTo={containerRef}
       >
         <AutocompleteListboxChildren
           options={availableOptions}
