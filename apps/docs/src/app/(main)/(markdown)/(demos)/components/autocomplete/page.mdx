@@ -178,6 +178,67 @@ instead.
 
 ```
 
+# Multiple Values
+
+The `Autocomplete` supports multiple values by either:
+
+- setting the `defaultValue` to a list
+- controlling the `value` and setting it to a list
+
+When multiple values are allowed, the `Autocomplete` will display inline chips
+representing all the selected values and automatically clear the input when a
+new option is selected.
+
+```demo source="./MultipleValuesExample.tsx"
+
+```
+
+## Disable Close On Select
+
+To prevent the listbox from closing when an option is selected, enable the
+`disableCloseOnSelect` prop.
+
+> !Success! This is also supported for the single select `Autocomplete`
+
+```demo source="./DisableCloseOnSelectExample.tsx"
+
+```
+
+## Checkboxes
+
+The multiselect `Autocomplete` also supports updating all the options to use
+checkbox icons by enabling the `checkboxes` prop. This also enables the
+`disableCloseOnSelect` by default.
+
+The `Option` will use the `ICON_CONFIG.checkbox` and
+`ICON_CONFIG.checkboxChecked` icons for the unselected and selected states.
+
+> !Info! These icons can be overridden using the `getOptionProps` and returning
+> a custom `selectedIcon` / `unselectedIcon`.
+
+```demo source="./MultiselectCheckboxesExample.tsx"
+
+```
+
+## Disable Inline Chips
+
+If the selected options should not be shown as inline chips, enable the
+`disableInlineChips` prop.
+
+```demo source="./DisableInlineChipsExample.tsx"
+
+```
+
+## Customizing Inline Chips
+
+The inline chips can be customized using the `getChipProps` which provides the
+`index` and `option` being rendered. This can be used to disable chips, add
+custom styles, change the theme, etc.
+
+```demo source="./CustomizingInlineChipsExample.tsx"
+
+```
+
 # Typescript Typing
 
 The `Autocomplete` option is defined as:
