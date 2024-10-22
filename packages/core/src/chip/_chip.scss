@@ -112,6 +112,11 @@ $outline-raisable-box-shadow-z-value: 8 !default;
 $outline-raisable-transition-duration: transition.$linear-duration !default;
 
 $variables: (
+  gap,
+  height,
+  border-radius,
+  horizontal-padding,
+  vertical-padding,
   solid-background-color,
   solid-disabled-background-color,
   solid-color,
@@ -187,6 +192,11 @@ $variables: (
       solid-disabled-background-color,
       $solid-disabled-background-color
     );
+    @include set-var(gap, $gap);
+    @include set-var(height, $height);
+    @include set-var(border-radius, $border-radius);
+    @include set-var(horizontal-padding, $horizontal-padding);
+    @include set-var(vertical-padding, $vertical-padding);
     @include set-var(solid-color, $solid-color);
     @include set-var(theme-background-color, $theme-background-color);
     @include set-var(theme-color, $theme-color);
@@ -225,15 +235,15 @@ $variables: (
         @include utils.map-to-styles($typography);
 
         align-items: center;
-        border-radius: $border-radius;
+        border-radius: get-var(border-radius);
         border-width: 0;
         display: inline-flex;
         flex-shrink: 0;
-        gap: $gap;
-        height: $height;
+        gap: get-var(gap);
+        height: get-var(height);
         justify-content: center;
         max-width: 100%;
-        padding: $vertical-padding $horizontal-padding;
+        padding: get-var(vertical-padding) get-var(horizontal-padding);
 
         @if not $disable-solid-theme {
           &--solid {
