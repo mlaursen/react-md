@@ -6,6 +6,7 @@
 @use "../box/box";
 @use "../button/button";
 @use "../chip/chip";
+@use "../icon/icon";
 @use "../form/form";
 @use "../progress/progress";
 
@@ -17,17 +18,12 @@ $disable-text-overflow-ellipsis: false !default;
 $disable-inline-chips: chip.$disable-everything !default;
 
 $inline-min-width: 5rem !default;
-$inline-chips-gap: 0.5rem !default;
-
-$inline-base-vertical-padding: math.div(
-  form.$text-field-height - chip.$height,
-  2
-) !default;
+$inline-chips-gap: icon.get-var(spacing) !default;
 $inline-outlined-vertical-padding: calc(
-  $inline-base-vertical-padding - form.$text-field-border-width
+  (form.get-var(text-field-height) - chip.get-var(height)) / 2 -
+    form.$text-field-border-width
 ) !default;
-$inline-underlined-vertical-padding: $inline-base-vertical-padding !default;
-$inline-filled-vertical-padding: $inline-base-vertical-padding !default;
+$inline-input-leading-padding: chip.get-var(horizontal-padding) !default;
 
 $button-size: button.$icon-small-size !default;
 $circular-progress-size: button.$icon-small-size !default;
@@ -283,9 +279,9 @@ $variables: (
               // since the label will also be forced to floating
               :where(.rmd-text-field) {
                 @include use-var(min-width, inline-min-width);
+                @include chip.use-var(height);
 
-                height: chip.$height;
-                padding-left: chip.$horizontal-padding;
+                padding-left: $inline-input-leading-padding;
                 padding-right: 0;
                 width: 0;
 
@@ -295,7 +291,7 @@ $variables: (
 
                 @include utils.rtl {
                   padding-left: 0;
-                  padding-right: chip.$horizontal-padding;
+                  padding-right: $inline-input-leading-padding;
                 }
               }
             }
