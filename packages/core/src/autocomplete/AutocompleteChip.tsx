@@ -5,6 +5,9 @@ import { autocompleteChip } from "./autocompleteStyles.js";
 import { type AutocompleteChipProps } from "./types.js";
 
 /**
+ * A small wrapper around the `Chip` that defaults the `rightAddon` to the
+ * remove icon and adds a default `aria-description`.
+ *
  * @since 6.0.0
  */
 export const AutocompleteChip = forwardRef<

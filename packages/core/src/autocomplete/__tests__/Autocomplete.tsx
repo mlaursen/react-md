@@ -1,4 +1,5 @@
 import { afterAll, beforeAll, describe, expect, it, jest } from "@jest/globals";
+import { cnb } from "cnbuilder";
 import { act, createRef, type ReactElement, useEffect, useState } from "react";
 import { FontIcon } from "../../icon/FontIcon.js";
 import { type MenuItemProps } from "../../menu/MenuItem.js";
@@ -9,14 +10,12 @@ import {
   screen,
   testImmediateRaf,
   userEvent,
-  waitFor,
   within,
 } from "../../test-utils/index.js";
 import { SrOnly } from "../../typography/SrOnly.js";
 import { Autocomplete } from "../Autocomplete.js";
 import { noopAutocompleteFilter } from "../defaults.js";
 import { type AutocompleteProps } from "../types.js";
-import { cnb } from "cnbuilder";
 
 const FRUITS = [
   "Apple",

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/require-await */
 import { pascalCase } from "@/utils/strings.js";
 import { type Metadata } from "next";
 import { notFound } from "next/navigation.js";
