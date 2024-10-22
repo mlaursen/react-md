@@ -20,6 +20,7 @@
 export * from "@react-md/core/app-bar/AppBar";
 export * from "@react-md/core/app-bar/AppBarTitle";
 export * from "@react-md/core/autocomplete/Autocomplete";
+export * from "@react-md/core/autocomplete/AutocompleteChip";
 export * from "@react-md/core/autocomplete/AutocompleteCircularProgress";
 export * from "@react-md/core/autocomplete/AutocompleteClearButton";
 export * from "@react-md/core/autocomplete/AutocompleteDropdownButton";
