@@ -1,26 +1,17 @@
 // this was disabled since it removes the nice type infer behavior based on the value/options
 /* eslint-disable @typescript-eslint/unified-signatures */
 "use client";
-import { type ReactElement, type ReactNode, type Ref } from "react";
+import { type ReactElement } from "react";
 import { Listbox } from "../form/Listbox.js";
-import { TextField, type TextFieldProps } from "../form/TextField.js";
+import { TextField } from "../form/TextField.js";
 import { ListSubheader } from "../list/ListSubheader.js";
 import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
-import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
-import {
-  AutocompleteCircularProgress,
-  type AutocompleteCircularProgressProps,
-} from "./AutocompleteCircularProgress.js";
-import {
-  AutocompleteClearButton,
-  type ConfigurableAutocompleteClearButtonProps,
-} from "./AutocompleteClearButton.js";
-import {
-  AutocompleteDropdownButton,
-  type ConfigurableAutocompleteDropdownButtonProps,
-} from "./AutocompleteDropdownButton.js";
+import { AutocompleteChip } from "./AutocompleteChip.js";
+import { AutocompleteCircularProgress } from "./AutocompleteCircularProgress.js";
+import { AutocompleteClearButton } from "./AutocompleteClearButton.js";
+import { AutocompleteDropdownButton } from "./AutocompleteDropdownButton.js";
 import { AutocompleteListboxChildren } from "./AutocompleteListboxChildren.js";
 import { autocomplete, autocompleteRightAddon } from "./autocompleteStyles.js";
 import {
@@ -28,152 +19,14 @@ import {
   noopAutocompleteFilter,
 } from "./defaults.js";
 import {
-  AutocompleteFilterAndListboxOptions,
-  AutocompleteGetOptionProps,
+  type AutocompleteMultiSelectProps,
   type AutocompleteOption,
-  type AutocompleteOptionLabelExtractor,
-  type AutocompleteQuery,
-  type AutocompleteUnknownQueryAndValueOptions,
-  type AutocompleteValue,
-  type ConfigurableAutocompleteListboxProps,
+  type AutocompleteProps,
+  type AutocompleteSingleSelectProps,
 } from "./types.js";
 import { useAutocomplete } from "./useAutocomplete.js";
 
-/**
- * @since 6.0.0
- */
-export interface AutocompleteBaseProps<Option extends AutocompleteOption>
-  extends Omit<TextFieldProps, "value" | "defaultValue">,
-    AutocompleteFilterAndListboxOptions<Option> {
-  inputRef?: Ref<HTMLInputElement>;
-
-  /**
-   * An `aria-label` to pass to the `Listbox` component that describes the list
-   * of {@link options}. Either this or the {@link listboxLabelledBy} are
-   * required for accessibility.
-   */
-  listboxLabel?: string;
-
-  /**
-   * An `aria-labelledby` to pass to the `Listbox` component that describes the
-   * list of {@link options}. Either this or the {@link listboxLabel} are
-   * required for accessibility.
-   */
-  listboxLabelledBy?: string;
-
-  /**
-   * Any additional props that should be passed to the `Listbox` component.
-   */
-  listboxProps?: PropsWithRef<
-    ConfigurableAutocompleteListboxProps,
-    HTMLDivElement
-  >;
-
-  /** @see {@link AutocompleteGetOptionProps} */
-  getOptionProps?: AutocompleteGetOptionProps<Option>;
-
-  /**
-   * This can be used to add any custom styling, change the icon, change the
-   * label, etc for the dropdown button.
-   *
-   * @example Simple Example
-   * ```tsx
-   * dropdownButtonProps={{
-   *   "aria-label": "Open",
-   *   className: styles.dropdownButton,
-   *   icon: <MyCustomDropdownIcon />,
-   * }}
-   * ```
-   */
-  dropdownButtonProps?: ConfigurableAutocompleteDropdownButtonProps;
-
-  /**
-   * Set this to `true` to remove the {@link DropdownButton} from being rendered
-   * after the input element.
-   *
-   * @defaultValue `false`
-   */
-  disableDropdownButton?: boolean;
-
-  /**
-   * Set this to `true` to disable a `<CircularProgress />` after the input and
-   * before the `<DropdownButton />`.
-   *
-   * @defaultValue `false`
-   */
-  loading?: boolean;
-
-  /**
-   * @defaultValue `{ "aria-label": "Loading", ...loadingProps }`
-   */
-  loadingProps?: AutocompleteCircularProgressProps;
-
-  clearButtonProps?: PropsWithRef<
-    ConfigurableAutocompleteClearButtonProps,
-    HTMLButtonElement
-  >;
-
-  /**
-   * @defaultValue `false`
-   */
-  disableClearButton?: boolean;
-
-  /**
-   * This is a convenience prop for the `onEntering`/`onEntered` transition
-   * callbacks that will ensure it is only called once even if the transitions
-   * are disabled. A great use-case for this function is to fetch data once the
-   * menu is opened.
-   */
-  onOpen?: () => void;
-
-  /**
-   * The children to display when there are no {@link options} due to the
-   * current text box value.
-   *
-   * @defaultValue `<ListSubheader>No options</ListSubheader`
-   */
-  noOptionsChildren?: ReactNode;
-}
-
-/**
- * @since 6.0.0
- */
-export type AutocompleteListboxLabelProps =
-  | { listboxLabel: string }
-  | { listboxLabelledBy: string };
-
-/**
- * @since 6.0.0
- */
-export type AutocompleteQueryAndExtractorProps<
-  Option extends AutocompleteOption,
-> = AutocompleteBaseProps<Option> &
-  AutocompleteOptionLabelExtractor<Option> &
-  AutocompleteQuery &
-  AutocompleteListboxLabelProps;
-
-/**
- * @since 6.0.0
- */
-export type AutocompleteSingleSelectProps<Option extends AutocompleteOption> =
-  AutocompleteQueryAndExtractorProps<Option> &
-    AutocompleteValue<Option | null> & {
-      checkboxes?: never;
-    };
-
-/**
- * @since 6.0.0
- */
-export type AutocompleteMultiSelectProps<Option extends AutocompleteOption> =
-  AutocompleteQueryAndExtractorProps<Option> &
-    AutocompleteValue<readonly Option[]>;
-
-/**
- * @since 6.0.0
- */
-export type AutocompleteProps<Option extends AutocompleteOption> =
-  AutocompleteBaseProps<Option> &
-    AutocompleteUnknownQueryAndValueOptions<Option>;
+const noop = (): undefined => undefined;
 
 /**
  * This is the single select autocomplete implementation.
@@ -239,9 +92,14 @@ export function Autocomplete<Option extends AutocompleteOption>(
     clearButtonProps,
     disableClearButton,
     noOptionsChildren = <ListSubheader>No Options</ListSubheader>,
+    leftAddon: propLeftAddon,
+    disableLeftAddonStyles: propDisableLeftAddonStyles,
+    labelProps,
     rightAddon,
     rightAddonProps,
     containerProps,
+    getChipProps = noop,
+    disableInlineChips,
     disableCloseOnSelect,
     ...remaining
   } = props;
@@ -250,8 +108,11 @@ export function Autocomplete<Option extends AutocompleteOption>(
   const id = useEnsuredId(propId, "autocomplete");
   const menuId = useEnsuredId(menuProps?.id, "autocomplete-listbox");
   const {
-    comboboxRef: inputNodeRef,
     query: currentQuery,
+    value: currentValue,
+    setValue: currentSetValue,
+    multiselect,
+    comboboxRef: inputNodeRef,
     comboboxProps,
     movementContext,
     availableOptions,
@@ -296,6 +157,39 @@ export function Autocomplete<Option extends AutocompleteOption>(
     containerProps?.ref
   );
 
+  let leftAddon = propLeftAddon;
+  let disableLeftAddonStyles = propDisableLeftAddonStyles;
+  let inlineChips = false;
+  let floatingActive = labelProps?.floatingActive;
+  if (multiselect && !disableInlineChips) {
+    inlineChips = true;
+    // TODO: Maybe one day fix the typing? Might not be possible with
+    // destructuring though
+    const value = currentValue as readonly Option[];
+    disableLeftAddonStyles ??= true;
+    floatingActive ||= value.length > 0;
+    leftAddon = (
+      <>
+        {value.map((option, index) => {
+          const label = getOptionLabel(option);
+          const overrides = getChipProps({ index, option });
+          return (
+            <AutocompleteChip
+              key={label}
+              {...overrides}
+              onClick={(event) => {
+                overrides?.onClick?.(event);
+                currentSetValue(value.filter((v) => v !== option));
+              }}
+            >
+              {overrides?.children ?? label}
+            </AutocompleteChip>
+          );
+        })}
+      </>
+    );
+  }
+
   return (
     <KeyboardMovementProvider value={movementContext}>
       <TextField
@@ -312,9 +206,16 @@ export function Autocomplete<Option extends AutocompleteOption>(
         className={autocomplete({
           className,
           loading,
+          inlineChips,
           disableClearButton,
           disableDropdownButton,
         })}
+        labelProps={{
+          ...labelProps,
+          floatingActive,
+        }}
+        leftAddon={leftAddon}
+        disableLeftAddonStyles={disableLeftAddonStyles}
         rightAddon={
           <>
             {rightAddon}

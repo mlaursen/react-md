@@ -195,6 +195,7 @@ export function useAutocomplete<
     query,
     setQuery,
     availableOptions,
+    multiselect,
     comboboxProps: {
       ...comboboxProps,
       "aria-autocomplete": "list",

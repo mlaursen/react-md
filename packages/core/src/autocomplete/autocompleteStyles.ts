@@ -11,6 +11,7 @@ export interface AutocompleteClassNameOptions {
   className?: string;
 
   loading?: boolean;
+  inlineChips?: boolean;
   disableClearButton?: boolean;
   disableDropdownButton?: boolean;
 }
@@ -21,14 +22,20 @@ export interface AutocompleteClassNameOptions {
 export function autocomplete(
   options: AutocompleteClassNameOptions = {}
 ): string {
-  const { className, loading, disableClearButton, disableDropdownButton } =
-    options;
+  const {
+    className,
+    loading,
+    inlineChips,
+    disableClearButton,
+    disableDropdownButton,
+  } = options;
 
   return cnb(
     styles({
       cb: !disableClearButton,
       db: !disableDropdownButton,
       cp: loading,
+      "inline-chips": inlineChips,
     }),
     className
   );
@@ -89,4 +96,22 @@ export function autocompleteClearButton(
   const { className } = options;
 
   return cnb(styles("clear-button"), className);
+}
+
+/**
+ * @since 6.0.0
+ */
+export interface AutocompleteChipClassNameOptions {
+  className?: string;
+}
+
+/**
+ * @since 6.0.0
+ */
+export function autocompleteChip(
+  options: AutocompleteChipClassNameOptions = {}
+): string {
+  const { className } = options;
+
+  return cnb(styles("chip"), className);
 }

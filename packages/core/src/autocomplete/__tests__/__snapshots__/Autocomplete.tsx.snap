@@ -1,5 +1,478 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Autocomplete multiselect should allow the options to be rendered with checkboxes by enabling the checkboxes prop and preventing the listbox from closing by default once clicked 1`] = `
+<div
+  aria-label="Fruits"
+  aria-multiselectable="true"
+  class="rmd-menu rmd-menu--elevated"
+  id="autocomplete-listbox-:rrq:"
+  role="listbox"
+  style="position: fixed; transform-origin: 50% 0; left: 16px; top: 0px; min-width: 0;"
+  tabindex="-1"
+>
+  <ul
+    class="rmd-list"
+    role="none"
+  >
+    <li
+      class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
+      id="option-:rs0:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon"
+      >
+        check_box_outline_blank
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        Apple
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
+      id="option-:rs2:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon"
+      >
+        check_box_outline_blank
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        Apricot
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
+      id="option-:rs4:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon"
+      >
+        check_box_outline_blank
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        Banana
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
+      id="option-:rs6:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon"
+      >
+        check_box_outline_blank
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        Blueberry
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
+      id="option-:rs8:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon"
+      >
+        check_box_outline_blank
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        Cranberry
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
+      id="option-:rsa:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon"
+      >
+        check_box_outline_blank
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        Kiwi
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
+      id="option-:rsc:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon"
+      >
+        check_box_outline_blank
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        Mango
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
+      id="option-:rse:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon"
+      >
+        check_box_outline_blank
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        Orange
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
+      id="option-:rsg:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon"
+      >
+        check_box_outline_blank
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        Peach
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
+      id="option-:rsi:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon"
+      >
+        check_box_outline_blank
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        Plum
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
+      id="option-:rsk:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon"
+      >
+        check_box_outline_blank
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        Strawberry
+      </span>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`Autocomplete multiselect should allow the options to be rendered with checkboxes by enabling the checkboxes prop and preventing the listbox from closing by default once clicked 2`] = `
+<div
+  aria-label="Fruits"
+  aria-multiselectable="true"
+  class="rmd-menu rmd-menu--elevated"
+  id="autocomplete-listbox-:rrq:"
+  role="listbox"
+  style="position: fixed; transform-origin: 50% 0; left: 16px; top: 0px; min-width: 0;"
+  tabindex="-1"
+>
+  <ul
+    class="rmd-list"
+    role="none"
+  >
+    <li
+      aria-selected="true"
+      class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon rmd-option--selected"
+      id="option-:rs0:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon"
+      >
+        check_box
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        Apple
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
+      id="option-:rs2:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon"
+      >
+        check_box_outline_blank
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        Apricot
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
+      id="option-:rs4:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon"
+      >
+        check_box_outline_blank
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        Banana
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
+      id="option-:rs6:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon"
+      >
+        check_box_outline_blank
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        Blueberry
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
+      id="option-:rs8:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon"
+      >
+        check_box_outline_blank
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        Cranberry
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
+      id="option-:rsa:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon"
+      >
+        check_box_outline_blank
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        Kiwi
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
+      id="option-:rsc:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon"
+      >
+        check_box_outline_blank
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        Mango
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
+      id="option-:rse:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon"
+      >
+        check_box_outline_blank
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        Orange
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
+      id="option-:rsg:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon"
+      >
+        check_box_outline_blank
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        Peach
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
+      id="option-:rsi:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon"
+      >
+        check_box_outline_blank
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        Plum
+      </span>
+    </li>
+    <li
+      class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
+      id="option-:rsk:"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-option__icon"
+      >
+        check_box_outline_blank
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        Strawberry
+      </span>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`Autocomplete multiselect should support multiselect behavior by setting the defaultValue to a list and renders inline chips 1`] = `
+<input
+  aria-activedescendant=""
+  aria-autocomplete="list"
+  aria-controls="autocomplete-listbox-:rnm:"
+  aria-expanded="false"
+  aria-haspopup="listbox"
+  autocapitalize="none"
+  autocomplete="off"
+  class="rmd-text-field rmd-text-field--placeholder-hidden"
+  data-testid="container"
+  id="autocomplete-:rnl:"
+  placeholder=" "
+  role="combobox"
+  tabindex="0"
+  type="text"
+  value=""
+/>
+`;
+
+exports[`Autocomplete multiselect should support multiselect behavior by setting the defaultValue to a list and renders inline chips 2`] = `
+<input
+  aria-activedescendant=""
+  aria-autocomplete="list"
+  aria-controls="autocomplete-listbox-:rnm:"
+  aria-expanded="false"
+  aria-haspopup="listbox"
+  autocapitalize="none"
+  autocomplete="off"
+  class="rmd-text-field rmd-text-field--placeholder-hidden"
+  data-testid="container"
+  id="autocomplete-:rnl:"
+  placeholder=" "
+  role="combobox"
+  tabindex="0"
+  type="text"
+  value=""
+/>
+`;
+
 exports[`Autocomplete should allow the CircularProgress bar props to be configured with loadingProps 1`] = `
 <span
   aria-labelledby="label-id"
@@ -25,7 +498,7 @@ exports[`Autocomplete should allow the CircularProgress bar props to be configur
 
 exports[`Autocomplete should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <div
-  class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-text-field-container--outline-right rmd-autocomplete rmd-autocomplete--ra1"
+  class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-text-field-container--outline-right rmd-autocomplete rmd-autocomplete--cb rmd-autocomplete--db"
   data-testid="container"
 >
   <input
@@ -57,7 +530,7 @@ exports[`Autocomplete should apply the correct styling, HTML attributes, and all
       aria-controls="autocomplete-:r0:"
       aria-expanded="false"
       aria-label="Fruits"
-      class="rmd-button rmd-button--icon rmd-interaction-surface"
+      class="rmd-button rmd-button--icon rmd-interaction-surface rmd-autocomplete__dropdown-button"
       id="autocomplete-dropdown-:r5:"
       tabindex="-1"
       type="button"
@@ -75,7 +548,7 @@ exports[`Autocomplete should apply the correct styling, HTML attributes, and all
 
 exports[`Autocomplete should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <div
-  class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-text-field-container--outline-right rmd-autocomplete rmd-autocomplete--ra1 custom-class-name"
+  class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-text-field-container--outline-right rmd-autocomplete rmd-autocomplete--cb rmd-autocomplete--db custom-class-name"
   data-testid="container"
   style="color: white;"
 >
@@ -108,7 +581,7 @@ exports[`Autocomplete should apply the correct styling, HTML attributes, and all
       aria-controls="autocomplete-:r0:"
       aria-expanded="false"
       aria-label="Fruits"
-      class="rmd-button rmd-button--icon rmd-interaction-surface"
+      class="rmd-button rmd-button--icon rmd-interaction-surface rmd-autocomplete__dropdown-button"
       id="autocomplete-dropdown-:r5:"
       tabindex="-1"
       type="button"

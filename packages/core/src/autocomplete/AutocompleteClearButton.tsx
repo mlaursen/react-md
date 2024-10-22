@@ -1,29 +1,10 @@
 "use client";
-import { type MouseEventHandler, type ReactElement } from "react";
-import { Button, type ButtonProps } from "../button/Button.js";
+import { type ReactElement } from "react";
+import { Button } from "../button/Button.js";
 import { getIcon } from "../icon/iconConfig.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { autocompleteClearButton } from "./autocompleteStyles.js";
-
-/**
- * @since 6.0.0
- */
-export interface ConfigurableAutocompleteClearButtonProps extends ButtonProps {
-  /** @defaultValue `"Clear"` */
-  "aria-label"?: string;
-
-  /** @defaultValue `"autocomplete-clear-" + useId()` */
-  id?: string;
-}
-
-/**
- * @internal
- * @since 6.0.0
- */
-export interface AutocompleteClearButtonProps
-  extends ConfigurableAutocompleteClearButtonProps {
-  onClick: MouseEventHandler<HTMLButtonElement>;
-}
+import { type AutocompleteClearButtonProps } from "./types.js";
 
 /**
  * An internal component used for to clear the value from the `Autocomplete`.

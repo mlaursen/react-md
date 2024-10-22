@@ -123,6 +123,13 @@ export interface ConfigurableIcons {
   radioChecked?: ReactNode;
 
   /**
+   * The icon to use when removing elements.
+   *
+   * @defaultValue `<FontIcon>cancel</FontIcon>`
+   */
+  remove?: ReactNode;
+
+  /**
    * The icon to use for showing that something has been selected that is not a
    * radio or checkbox. This is used internally for the `Chip` in the
    * `@react-md/core` package.
@@ -168,6 +175,7 @@ export type ConfigurableIconName = keyof ConfigurableIcons;
  * import { ICON_CONFIG } from "@react-md/core";
  * import ArrowDropDownIcon from "@react-md/material-icons/ArrowDropDownIcon";
  * import ArrowUpwardIcon from "@react-md/material-icons/ArrowUpwardIcon";
+ * import CancelIcon from "@react-md/material-icons/CancelIcon";
  * import CheckBoxIcon from "@react-md/material-icons/CheckBoxIcon";
  * import CheckBoxOutlineBlankIcon from "@react-md/material-icons/CheckBoxOutlineBlankIcon";
  * import CheckIcon from "@react-md/material-icons/CheckIcon";
@@ -198,6 +206,7 @@ export type ConfigurableIconName = keyof ConfigurableIcons;
  * ICON_CONFIG.password = <RemoveRedEyeIcon />;
  * ICON_CONFIG.radio = <RadioButtonUncheckedIcon />;
  * ICON_CONFIG.radioChecked = <RadioButtonCheckedIcon />;
+ * ICON_CONFIG.remove = <CancelIcon />;
  * ICON_CONFIG.selected = <CheckIcon />;
  * ICON_CONFIG.sort = <ArrowUpwardIcon />;
  * ICON_CONFIG.upload = <FileUploadIcon />;
@@ -222,6 +231,7 @@ export const ICON_CONFIG: ConfiguredIcons = {
   password: <FontIcon>remove_red_eye</FontIcon>,
   radio: <FontIcon>radio_button_unchecked</FontIcon>,
   radioChecked: <FontIcon>radio_button_checked</FontIcon>,
+  remove: <FontIcon>cancel</FontIcon>,
   selected: <FontIcon>check</FontIcon>,
   sort: <FontIcon>arrow_upward</FontIcon>,
   upload: <FontIcon>file_upload</FontIcon>,
@@ -236,6 +246,7 @@ export const ICON_CONFIG: ConfiguredIcons = {
  * import { configureIcons } from "@react-md/core";
  * import ArrowDropDownIcon from "@react-md/material-icons/ArrowDropDownIcon";
  * import ArrowUpwardIcon from "@react-md/material-icons/ArrowUpwardIcon";
+ * import CancelIcon from "@react-md/material-icons/CancelIcon";
  * import CheckBoxIcon from "@react-md/material-icons/CheckBoxIcon";
  * import CheckBoxOutlineBlankIcon from "@react-md/material-icons/CheckBoxOutlineBlankIcon";
  * import CheckIcon from "@react-md/material-icons/CheckIcon";
@@ -267,6 +278,7 @@ export const ICON_CONFIG: ConfiguredIcons = {
  *   password: <RemoveRedEyeIcon />,
  *   radio: <RadioButtonUncheckedIcon />,
  *   radioChecked: <RadioButtonCheckedIcon />,
+ *   remove: <CancelIcon />,
  *   selected: <CheckIcon />,
  *   sort: <ArrowUpwardIcon />,
  *   upload: <FileUploadIcon />,

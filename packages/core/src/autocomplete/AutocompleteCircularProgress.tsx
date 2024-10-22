@@ -1,21 +1,6 @@
 import { type ReactElement } from "react";
-import {
-  CircularProgress,
-  type CircularProgressProps,
-} from "../progress/CircularProgress.js";
-import { type ProgressTheme } from "../progress/types.js";
-
-/**
- * @since 6.0.0
- */
-export interface AutocompleteCircularProgressProps
-  extends CircularProgressProps {
-  /** @defaultValue `"Loading"` */
-  "aria-label"?: string;
-
-  /** @defaultValue `"current-color"` */
-  theme?: ProgressTheme;
-}
+import { CircularProgress } from "../progress/CircularProgress.js";
+import { type AutocompleteCircularProgressProps } from "./types.js";
 
 /**
  * An internal component used to handle the styling and minimal accessibility

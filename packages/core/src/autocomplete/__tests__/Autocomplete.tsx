@@ -9,11 +9,14 @@ import {
   screen,
   testImmediateRaf,
   userEvent,
+  waitFor,
   within,
 } from "../../test-utils/index.js";
 import { SrOnly } from "../../typography/SrOnly.js";
-import { Autocomplete, type AutocompleteProps } from "../Autocomplete.js";
+import { Autocomplete } from "../Autocomplete.js";
 import { noopAutocompleteFilter } from "../defaults.js";
+import { type AutocompleteProps } from "../types.js";
+import { cnb } from "cnbuilder";
 
 const FRUITS = [
   "Apple",
@@ -662,6 +665,170 @@ describe("Autocomplete", () => {
           />
         )
       ).not.toThrow();
+    });
+  });
+
+  describe("multiselect", () => {
+    it("should support multiselect behavior by setting the defaultValue to a list and renders inline chips", async () => {
+      const user = userEvent.setup();
+      rmdRender(
+        <Autocomplete
+          data-testid="container"
+          {...FRUIT_PROPS}
+          defaultValue={[]}
+        />
+      );
+
+      const container = screen.getByTestId("container");
+      const autocomplete = screen.getByRole("combobox", { name: "Field" });
+      expect(container).toMatchSnapshot();
+      await user.click(autocomplete);
+      let listbox = screen.getByRole("listbox", { name: "Fruits" });
+      expect(listbox).toHaveAttribute("aria-multiselectable", "true");
+
+      const [firstFruit] = FRUITS;
+      await user.click(screen.getByRole("option", { name: firstFruit }));
+      expect(listbox).not.toBeInTheDocument();
+      expect(autocomplete).toHaveValue("");
+      expect(container).toMatchSnapshot();
+
+      const firstFruitChip = screen.getByRole("button", { name: firstFruit });
+
+      await user.click(autocomplete);
+      listbox = screen.getByRole("listbox", { name: "Fruits" });
+      expect(screen.getByRole("option", { name: firstFruit })).toHaveAttribute(
+        "aria-selected",
+        "true"
+      );
+
+      await user.type(autocomplete, "ki[ArrowDown][Enter]");
+      expect(listbox).not.toBeInTheDocument();
+      expect(autocomplete).toHaveValue("");
+      const kiwi = screen.getByRole("button", { name: "Kiwi" });
+      expect(firstFruitChip).toBeInTheDocument();
+
+      await user.click(autocomplete);
+      listbox = screen.getByRole("listbox", { name: "Fruits" });
+      expect(screen.getByRole("option", { name: firstFruit })).toHaveAttribute(
+        "aria-selected",
+        "true"
+      );
+      expect(screen.getByRole("option", { name: "Kiwi" })).toHaveAttribute(
+        "aria-selected",
+        "true"
+      );
+
+      await user.click(kiwi);
+      expect(kiwi).not.toBeInTheDocument();
+      expect(firstFruitChip).toBeInTheDocument();
+
+      await user.click(autocomplete);
+      listbox = screen.getByRole("listbox", { name: "Fruits" });
+      expect(screen.getByRole("option", { name: firstFruit })).toHaveAttribute(
+        "aria-selected",
+        "true"
+      );
+      expect(screen.getByRole("option", { name: "Kiwi" })).not.toHaveAttribute(
+        "aria-selected"
+      );
+    });
+
+    it("should support a defaultValue", async () => {
+      const user = userEvent.setup();
+      rmdRender(
+        <Autocomplete
+          {...FRUIT_PROPS}
+          defaultValue={["Apple", "Banana", "Orange"]}
+        />
+      );
+
+      expect(screen.getByRole("button", { name: "Apple" })).toBeInTheDocument();
+      expect(
+        screen.getByRole("button", { name: "Banana" })
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole("button", { name: "Orange" })
+      ).toBeInTheDocument();
+
+      await user.click(screen.getByRole("combobox", { name: "Field" }));
+      expect(screen.getByRole("option", { name: "Apple" })).toHaveAttribute(
+        "aria-selected",
+        "true"
+      );
+      expect(screen.getByRole("option", { name: "Banana" })).toHaveAttribute(
+        "aria-selected",
+        "true"
+      );
+      expect(screen.getByRole("option", { name: "Orange" })).toHaveAttribute(
+        "aria-selected",
+        "true"
+      );
+    });
+
+    it("should allow the inline chips behavior to be disabled with the disableInlineChips prop", async () => {
+      const user = userEvent.setup();
+      rmdRender(
+        <Autocomplete
+          {...FRUIT_PROPS}
+          disableInlineChips
+          defaultValue={["Apple"]}
+        />
+      );
+
+      const autocomplete = screen.getByRole("combobox", { name: "Field" });
+      expect(() => screen.getByRole("button", { name: "Apple" })).toThrow();
+      await user.click(autocomplete);
+      const listbox = screen.getByRole("listbox", { name: "Fruits" });
+      expect(listbox).toHaveAttribute("aria-multiselectable", "true");
+      expect(screen.getByRole("option", { name: "Apple" })).toHaveAttribute(
+        "aria-selected",
+        "true"
+      );
+    });
+
+    it("should allow the options to be rendered with checkboxes by enabling the checkboxes prop and preventing the listbox from closing by default once clicked", async () => {
+      const user = userEvent.setup();
+      rmdRender(<Autocomplete {...FRUIT_PROPS} checkboxes defaultValue={[]} />);
+
+      const autocomplete = screen.getByRole("combobox", { name: "Field" });
+      await user.click(autocomplete);
+      const listbox = screen.getByRole("listbox", { name: "Fruits" });
+
+      const apple = screen.getByRole("option", { name: "Apple" });
+      expect(apple).not.toHaveAttribute("aria-selected");
+      expect(listbox).toMatchSnapshot();
+
+      await user.click(apple);
+      expect(listbox).toBeInTheDocument();
+      expect(apple).toHaveAttribute("aria-selected", "true");
+      expect(listbox).toMatchSnapshot();
+    });
+
+    it("should allow the chips to be customized through the getChipProps", async () => {
+      const user = userEvent.setup();
+      const onClick = jest.fn();
+      rmdRender(
+        <Autocomplete
+          {...FRUIT_PROPS}
+          defaultValue={["Apple", "Orange"]}
+          getChipProps={({ index, option }) => ({
+            disabled: index === 0,
+            className: cnb(option === "Orange" && "custom-class-name"),
+            children: `${index + 1}. ${option}`,
+            onClick,
+          })}
+        />
+      );
+
+      const apple = screen.getByRole("button", { name: "1. Apple" });
+      const orange = screen.getByRole("button", { name: "2. Orange" });
+      expect(apple).toBeDisabled();
+      expect(orange).toBeEnabled();
+      expect(apple).not.toHaveClass("custom-class-name");
+      expect(orange).toHaveClass("custom-class-name");
+
+      await user.click(orange);
+      expect(onClick).toHaveBeenCalledTimes(1);
     });
   });
 });

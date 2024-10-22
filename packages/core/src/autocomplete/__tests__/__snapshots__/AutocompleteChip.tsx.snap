@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AutocompleteChip should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<button
+  aria-description="Remove "Option 1""
+  class="rmd-chip rmd-chip--solid rmd-chip--right-addon rmd-interaction-surface rmd-autocomplete__chip"
+  type="button"
+>
+  <span
+    class="rmd-chip__content"
+  >
+    Option 1
+  </span>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    cancel
+  </span>
+</button>
+`;
+
+exports[`AutocompleteChip should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<button
+  aria-description="Remove "Option 1""
+  class="rmd-chip rmd-chip--solid rmd-chip--right-addon rmd-interaction-surface rmd-autocomplete__chip custom-class-name"
+  style="color: white;"
+  type="button"
+>
+  <span
+    class="rmd-chip__content"
+  >
+    Option 1
+  </span>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    cancel
+  </span>
+</button>
+`;

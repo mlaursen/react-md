@@ -3,9 +3,15 @@ import {
   type ChangeEventHandler,
   type Dispatch,
   type FocusEventHandler,
+  type MouseEventHandler,
+  type ReactNode,
+  type Ref,
 } from "react";
+import { type ButtonProps } from "../button/Button.js";
+import { type ChipProps } from "../chip/Chip.js";
 import { type ListboxSelectedIconProps } from "../form/Listbox.js";
 import { type OptionProps } from "../form/Option.js";
+import { type TextFieldProps } from "../form/TextField.js";
 import {
   type ComboboxMenuProps,
   type ConfigurableComboboxMenuProps,
@@ -16,16 +22,11 @@ import {
   type EditableComboboxWidgetProps,
 } from "../form/useEditableCombobox.js";
 import { type EditableHTMLElement } from "../form/utils.js";
+import { type IconRotatorProps } from "../icon/IconRotator.js";
+import { type CircularProgressProps } from "../progress/CircularProgress.js";
+import { type ProgressTheme } from "../progress/types.js";
 import { type BaseSearchOptions } from "../searching/types.js";
-import { type UseStateInitializer } from "../types.js";
-import {
-  type AutocompleteClearButtonProps,
-  type ConfigurableAutocompleteClearButtonProps,
-} from "./AutocompleteClearButton.js";
-import {
-  type AutocompleteDropdownButtonProps,
-  type ConfigurableAutocompleteDropdownButtonProps,
-} from "./AutocompleteDropdownButton.js";
+import { type PropsWithRef, type UseStateInitializer } from "../types.js";
 
 /**
  * If a autocomplete value is one of these types, no additional code is required
@@ -88,6 +89,25 @@ export interface AutocompleteGetOptionPropsOptions<
 export type AutocompleteGetOptionProps<Option extends AutocompleteOption> = (
   options: AutocompleteGetOptionPropsOptions<Option>
 ) => ConfigurableAutocompleteOptionProps | undefined;
+
+/**
+ * This can be used to add additional props to each inline chip for multiselect
+ * autocompletes.
+ *
+ * @example Simple Example
+ * ```tsx
+ * getChipProps={({ option, index }) => {
+ *   return {
+ *     disabled: index < 3,
+ *     className: cnb(option === "a" && styles.blue)<
+ *   };
+ * }}
+ * ```
+ * @since 6.0.0
+ */
+export type AutocompleteGetChipProps<Option extends AutocompleteOption> = (
+  options: AutocompleteGetOptionPropsOptions<Option>
+) => Partial<AutocompleteChipProps> | undefined;
 
 /**
  * If the list of options contain an object that doesn't have a
@@ -442,6 +462,80 @@ export interface ConfigurableAutocompleteListboxProps
 /**
  * @since 6.0.0
  */
+export interface ConfigurableAutocompleteClearButtonProps extends ButtonProps {
+  /** @defaultValue `"Clear"` */
+  "aria-label"?: string;
+
+  /** @defaultValue `"autocomplete-clear-" + useId()` */
+  id?: string;
+}
+
+/**
+ * @internal
+ * @since 6.0.0
+ */
+export interface AutocompleteClearButtonProps
+  extends ConfigurableAutocompleteClearButtonProps {
+  onClick: MouseEventHandler<HTMLButtonElement>;
+}
+
+/**
+ * @since 6.0.0
+ */
+export interface ConfigurableAutocompleteDropdownButtonProps
+  extends ButtonProps {
+  /** @defaultValue `AutocompleteProps.listboxLabel` */
+  "aria-label"?: string;
+  /** @defaultValue `AutocompleteProps.listboxLabelledby` */
+  "aria-labelledby"?: string;
+
+  /** @defaultValue `"autocomplete-dropdown-" + useId()` */
+  id?: string;
+
+  /** @defaultValue `getIcon("dropdown")` */
+  icon?: ReactNode;
+  iconRotatorProps?: Omit<IconRotatorProps, "rotated">;
+}
+
+/**
+ * @since 6.0.0
+ */
+export interface AutocompleteDropdownButtonProps
+  extends ConfigurableAutocompleteDropdownButtonProps {
+  "aria-controls": string;
+  onClick: MouseEventHandler<HTMLButtonElement>;
+  visible: boolean;
+}
+
+/**
+ * @since 6.0.0
+ */
+export interface AutocompleteCircularProgressProps
+  extends CircularProgressProps {
+  /** @defaultValue `"Loading"` */
+  "aria-label"?: string;
+
+  /** @defaultValue `"current-color"` */
+  theme?: ProgressTheme;
+}
+
+/**
+ * @since 6.0.0
+ */
+export interface AutocompleteChipProps extends ChipProps {
+  /**
+   * @defaultValue `typeof children === "string" && \`Remove "${children}"\`
+   */
+  "aria-description"?: string;
+
+  /** @defaultValue `getIcon("remove")` */
+  removeIcon?: ReactNode;
+  children: ReactNode;
+}
+
+/**
+ * @since 6.0.0
+ */
 export interface AutocompleteWithQueryImplementation<
   Option extends AutocompleteOption,
   ComboboxEl extends EditableHTMLElement = HTMLInputElement,
@@ -450,6 +544,12 @@ export interface AutocompleteWithQueryImplementation<
   query: string;
   setQuery: Dispatch<string>;
   comboboxProps: AutocompleteComboboxProps<ComboboxEl>;
+
+  /**
+   * This is a convenience prop to determine if the autocomplete supports
+   * multiselect.
+   */
+  multiselect: boolean;
 
   /**
    * This is the current list of options that will be filtered based on the
@@ -522,3 +622,154 @@ export interface AutocompleteImplementation<
   value: Option | null | readonly Option[];
   setValue: Dispatch<Option | null | readonly Option[]>;
 }
+
+/**
+ * @since 6.0.0
+ */
+export interface AutocompleteBaseProps<Option extends AutocompleteOption>
+  extends Omit<TextFieldProps, "value" | "defaultValue">,
+    AutocompleteFilterAndListboxOptions<Option> {
+  inputRef?: Ref<HTMLInputElement>;
+
+  /**
+   * An `aria-label` to pass to the `Listbox` component that describes the list
+   * of {@link options}. Either this or the {@link listboxLabelledBy} are
+   * required for accessibility.
+   */
+  listboxLabel?: string;
+
+  /**
+   * An `aria-labelledby` to pass to the `Listbox` component that describes the
+   * list of {@link options}. Either this or the {@link listboxLabel} are
+   * required for accessibility.
+   */
+  listboxLabelledBy?: string;
+
+  /**
+   * Any additional props that should be passed to the `Listbox` component.
+   */
+  listboxProps?: PropsWithRef<
+    ConfigurableAutocompleteListboxProps,
+    HTMLDivElement
+  >;
+
+  /** @see {@link AutocompleteGetOptionProps} */
+  getOptionProps?: AutocompleteGetOptionProps<Option>;
+
+  /**
+   * This can be used to add any custom styling, change the icon, change the
+   * label, etc for the dropdown button.
+   *
+   * @example Simple Example
+   * ```tsx
+   * dropdownButtonProps={{
+   *   "aria-label": "Open",
+   *   className: styles.dropdownButton,
+   *   icon: <MyCustomDropdownIcon />,
+   * }}
+   * ```
+   */
+  dropdownButtonProps?: ConfigurableAutocompleteDropdownButtonProps;
+
+  /**
+   * Set this to `true` to remove the {@link DropdownButton} from being rendered
+   * after the input element.
+   *
+   * @defaultValue `false`
+   */
+  disableDropdownButton?: boolean;
+
+  /**
+   * Set this to `true` to disable a `<CircularProgress />` after the input and
+   * before the `<DropdownButton />`.
+   *
+   * @defaultValue `false`
+   */
+  loading?: boolean;
+
+  /**
+   * @defaultValue `{ "aria-label": "Loading", ...loadingProps }`
+   */
+  loadingProps?: AutocompleteCircularProgressProps;
+
+  clearButtonProps?: PropsWithRef<
+    ConfigurableAutocompleteClearButtonProps,
+    HTMLButtonElement
+  >;
+
+  /**
+   * @defaultValue `false`
+   */
+  disableClearButton?: boolean;
+
+  /**
+   * This is a convenience prop for the `onEntering`/`onEntered` transition
+   * callbacks that will ensure it is only called once even if the transitions
+   * are disabled. A great use-case for this function is to fetch data once the
+   * menu is opened.
+   */
+  onOpen?: () => void;
+
+  /**
+   * The children to display when there are no {@link options} due to the
+   * current text box value.
+   *
+   * @defaultValue `<ListSubheader>No options</ListSubheader`
+   */
+  noOptionsChildren?: ReactNode;
+
+  /**
+   * Set this to `true` when using a multiselect autocomplete to prevent the
+   * selected values from being rendered inline with the input. This is useful
+   * when the selected values should be shown in a different part of the UI
+   * instead.
+   *
+   * @defaultValue `false`
+   */
+  disableInlineChips?: boolean;
+
+  /** @see {@link AutocompleteGetChipProps} */
+  getChipProps?: AutocompleteGetChipProps<Option>;
+}
+
+/**
+ * @since 6.0.0
+ */
+export type AutocompleteListboxLabelProps =
+  | { listboxLabel: string }
+  | { listboxLabelledBy: string };
+
+/**
+ * @since 6.0.0
+ */
+export type AutocompleteQueryAndExtractorProps<
+  Option extends AutocompleteOption,
+> = AutocompleteBaseProps<Option> &
+  AutocompleteOptionLabelExtractor<Option> &
+  AutocompleteQuery &
+  AutocompleteListboxLabelProps;
+
+/**
+ * @since 6.0.0
+ */
+export type AutocompleteSingleSelectProps<Option extends AutocompleteOption> =
+  AutocompleteQueryAndExtractorProps<Option> &
+    AutocompleteValue<Option | null> & {
+      checkboxes?: never;
+      getChipProps?: never;
+      disableInlineChips?: never;
+    };
+
+/**
+ * @since 6.0.0
+ */
+export type AutocompleteMultiSelectProps<Option extends AutocompleteOption> =
+  AutocompleteQueryAndExtractorProps<Option> &
+    AutocompleteValue<readonly Option[]>;
+
+/**
+ * @since 6.0.0
+ */
+export type AutocompleteProps<Option extends AutocompleteOption> =
+  AutocompleteBaseProps<Option> &
+    AutocompleteUnknownQueryAndValueOptions<Option>;

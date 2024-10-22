@@ -2,6 +2,7 @@ import { type ReactMDCoreConfiguration } from "@react-md/core/CoreProviders";
 import { configureIcons } from "@react-md/core/icon/iconConfig";
 import ArrowDropDownIcon from "@react-md/material-icons/ArrowDropDownIcon";
 import ArrowUpwardIcon from "@react-md/material-icons/ArrowUpwardIcon";
+import CancelIcon from "@react-md/material-icons/CancelIcon";
 import CheckBoxIcon from "@react-md/material-icons/CheckBoxIcon";
 import CheckBoxOutlineBlankIcon from "@react-md/material-icons/CheckBoxOutlineBlankIcon";
 import CheckIcon from "@react-md/material-icons/CheckIcon";
@@ -35,6 +36,7 @@ configureIcons({
   password: <RemoveRedEyeIcon />,
   radio: <RadioButtonUncheckedIcon />,
   radioChecked: <RadioButtonCheckedIcon />,
+  remove: <CancelIcon />,
   selected: <CheckIcon />,
   sort: <ArrowUpwardIcon />,
   upload: <FileUploadIcon />,

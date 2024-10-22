@@ -1,9 +1,11 @@
 @use "sass:list";
 @use "sass:map";
+@use "sass:math";
 @use "sass:string";
 @use "../utils";
 @use "../box/box";
 @use "../button/button";
+@use "../chip/chip";
 @use "../form/form";
 @use "../progress/progress";
 
@@ -12,6 +14,20 @@ $disable-clear-button: false !default;
 $disable-dropdown-button: false !default;
 $disable-circular-progress: false !default;
 $disable-text-overflow-ellipsis: false !default;
+$disable-inline-chips: chip.$disable-everything !default;
+
+$inline-min-width: 5rem !default;
+$inline-chips-gap: 0.5rem !default;
+
+$inline-base-vertical-padding: math.div(
+  form.$text-field-height - chip.$height,
+  2
+) !default;
+$inline-outlined-vertical-padding: calc(
+  $inline-base-vertical-padding - form.$text-field-border-width
+) !default;
+$inline-underlined-vertical-padding: $inline-base-vertical-padding !default;
+$inline-filled-vertical-padding: $inline-base-vertical-padding !default;
 
 $button-size: button.$icon-small-size !default;
 $circular-progress-size: button.$icon-small-size !default;
@@ -22,13 +38,18 @@ $clear-button-size: calc(button.get-var(icon-font-size) * 2) !default;
 $dropdown-button-size: calc(button.get-var(icon-font-size) * 2) !default;
 $circular-progress-size: progress.get-var(circular-size) !default;
 
+$_chip-selector: ".rmd-autocomplete__chip";
 $_clear-button-selector: ".rmd-autocomplete__clear-button";
 $_dropdown-button-selector: ".rmd-autocomplete__dropdown-button";
+$_outline-selector: ".rmd-text-field-container--outline";
+$_underline-selector: ".rmd-text-field-container--underline";
 
 $variables: (
   clear-button-size,
   dropdown-button-size,
   circular-progress-size,
+  inline-gap,
+  inline-min-width,
   addon-gap,
   gap-count,
   addon-spacing
@@ -57,6 +78,10 @@ $variables: (
   @if not $disable-everything {
     @include set-var(addon-gap, $addon-gap);
     @include set-var(addon-spacing, $addon-spacing);
+    @if not $disable-inline-chips {
+      @include set-var(inline-gap, $inline-chips-gap);
+      @include set-var(inline-min-width, $inline-min-width);
+    }
   }
 }
 
@@ -91,6 +116,10 @@ $variables: (
 }
 
 @mixin styles($disable-layer: false) {
+  // disclaimer: this is the first component where I'm trying to utilize more of
+  // the `:has`, `:where`, `:is`, etc selectors to require less javascript and
+  // move more behavior into CSS
+
   @if not $disable-everything {
     @include utils.optional-layer(autocomplete, $disable-layer) {
       .rmd-autocomplete {
@@ -197,6 +226,85 @@ $variables: (
           &:where(:not(:hover):not(:focus-within))
             :where(#{$_clear-button-selector}) {
             opacity: 0;
+          }
+        }
+
+        @if not $disable-inline-chips {
+          // the basic idea for the inline chips are:
+          // - move any padding from the input to the container element
+          // - update the styles to display a text cursor when hovering the
+          //   container element instead of only the input (since clicking
+          //   anywhere in the container focuses the input)
+          // - keep other styles the same until at least one chip exists
+          // - when a chip exists, update the vertical padding to align
+          //   everything nicely
+          // - the input will also be updated to align with the text of a chip
+          //   so it looks nicely when stacked and starting at the beginning of
+          //   a line
+          // - I am NOT updating the underline behavior to match the input width
+          //   since those are still "boxed" elements and it helps show current
+          //   focus
+          &--inline-chips {
+            @include form.use-var(min-height, text-field-height);
+            @include form.use-var(padding-right, text-field-padding-right);
+            @include use-var(gap, inline-gap);
+
+            flex-wrap: wrap;
+            height: auto;
+
+            &:where(:not(:has(.rmd-text-field:disabled))) {
+              cursor: text;
+            }
+
+            @if not
+              form.$disable-text-field-filled-theme or not
+              form.$disable-text-field-underlined-theme
+            {
+              &:where(#{$_underline-selector}):has(#{$_chip-selector}) {
+                @include form.use-var(padding-top, text-field-padding-top);
+                @include use-var(padding-bottom, inline-gap);
+
+                :where(.rmd-text-field) {
+                  padding-top: 0;
+                }
+              }
+            }
+
+            @if not form.$disable-text-field-outlined-theme {
+              &:where(#{$_outline-selector}):has(#{$_chip-selector}) {
+                padding-bottom: $inline-outlined-vertical-padding;
+                padding-top: $inline-outlined-vertical-padding;
+              }
+            }
+
+            &:has(#{$_chip-selector}) {
+              // when at least one chip exists, ensure the text field has some
+              // leading padding and always display the placeholder (if exists)
+              // since the label will also be forced to floating
+              :where(.rmd-text-field) {
+                @include use-var(min-width, inline-min-width);
+
+                height: chip.$height;
+                padding-left: chip.$horizontal-padding;
+                padding-right: 0;
+                width: 0;
+
+                &::placeholder {
+                  opacity: 1;
+                }
+
+                @include utils.rtl {
+                  padding-left: 0;
+                  padding-right: chip.$horizontal-padding;
+                }
+              }
+            }
+
+            @include utils.rtl {
+              @include form.use-var(padding-left, text-field-padding-right);
+
+              padding-right: 0;
+            }
           }
         }
 
