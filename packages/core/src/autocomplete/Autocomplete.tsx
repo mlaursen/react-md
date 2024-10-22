@@ -66,6 +66,7 @@ export function Autocomplete<Option extends AutocompleteOption>(
     filter = type === "search"
       ? noopAutocompleteFilter
       : defaultAutocompleteFilter,
+    filterSelected,
     value,
     setValue,
     defaultValue,
@@ -131,6 +132,7 @@ export function Autocomplete<Option extends AutocompleteOption>(
     onOpen,
     disabled,
     filter,
+    filterSelected,
     popupId: menuId,
     popupRef: menuProps?.ref,
     comboboxId: id,

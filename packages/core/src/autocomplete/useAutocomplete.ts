@@ -99,6 +99,7 @@ export function useAutocomplete<
     onChange = noop,
     onOpen = noop,
     filter = defaultAutocompleteFilter,
+    filterSelected,
     allowAnyValue = filter === noopAutocompleteFilter,
     multiselect: propMultiselect,
     checkboxes,
@@ -186,6 +187,37 @@ export function useAutocomplete<
       query,
       extractor: getOptionLabel,
     });
+  }
+
+  // This is probably overkill, but `filterSelected` will create a quick-lookup
+  // for all the selected values in a `Set` since it is much faster than
+  // `Array.includes()`. The lookup will only be re-created whenever the `value`
+  // changes or is uninitialized to prevent it being created each render as
+  // well.
+  //
+  // These optimizations only start mattering when there are around 5000 items
+  // selected...
+  const prevValue = useRef(value);
+  const selectedOptionsSet = useRef<ReadonlySet<Option> | null>(null);
+  if (filterSelected) {
+    if (prevValue.current !== value || selectedOptionsSet.current === null) {
+      prevValue.current = value;
+
+      let optionList: readonly Option[] = [];
+      if (value && typeof value === "object" && "length" in value) {
+        optionList = value;
+      } else if (value) {
+        optionList = [value];
+      }
+      selectedOptionsSet.current = new Set(optionList);
+    }
+
+    const selectedOptions = selectedOptionsSet.current;
+    if (selectedOptions?.size) {
+      availableOptions = availableOptions.filter(
+        (option) => !selectedOptions.has(option)
+      );
+    }
   }
 
   return {

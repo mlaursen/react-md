@@ -314,6 +314,15 @@ export interface AutocompleteFilteringOptions<
   filter?: AutocompleteFilterFunction<Option>;
 
   /**
+   * Set this to `true` to update the filtering behavior to also remove the
+   * selected value from the available options. This is mostly for the
+   * multiselect behavior.
+   *
+   * @defaultValue `false`
+   */
+  filterSelected?: boolean;
+
+  /**
    * Set this to `true` to allow any value to be typed into the autocomplete
    * instead of enforcing an empty string or one of the option labels.
    *

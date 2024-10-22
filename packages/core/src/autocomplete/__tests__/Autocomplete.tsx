@@ -830,5 +830,20 @@ describe("Autocomplete", () => {
       await user.click(orange);
       expect(onClick).toHaveBeenCalledTimes(1);
     });
+
+    it("should allow the selected options to be filtered from the listbox by enabling the filterSelected prop", async () => {
+      const user = userEvent.setup();
+      rmdRender(
+        <Autocomplete
+          {...FRUIT_PROPS}
+          defaultValue={["Apple", "Orange"]}
+          filterSelected
+        />
+      );
+
+      await user.click(screen.getByRole("combobox", { name: "Field" }));
+      expect(() => screen.getByRole("option", { name: "Apple" })).toThrow();
+      expect(() => screen.getByRole("option", { name: "Orange" })).toThrow();
+    });
   });
 });
