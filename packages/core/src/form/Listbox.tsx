@@ -61,6 +61,13 @@ export function Listbox<T extends ListboxValue>(
     disableSelectedIcon,
     ...remaining
   } = props;
+  const values = useMemo(() => {
+    if (Array.isArray(value)) {
+      return new Set(value);
+    }
+
+    return new Set([value]);
+  }, [value]);
 
   return (
     <ListboxProvider
@@ -68,10 +75,7 @@ export function Listbox<T extends ListboxValue>(
         () => ({
           selectOption: setValue,
           isOptionSelected(option) {
-            return (
-              option === value ||
-              (Array.isArray(value) && value.includes(option))
-            );
+            return values.has(option);
           },
           selectedIcon,
           unselectedIcon,
@@ -84,7 +88,7 @@ export function Listbox<T extends ListboxValue>(
           selectedIconAfter,
           setValue,
           unselectedIcon,
-          value,
+          values,
         ]
       )}
     >
