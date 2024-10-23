@@ -23,7 +23,7 @@ exports[`Dialog should apply the correct styling, HTMLAttributes, and allow a re
 
 exports[`Dialog should be able to render as a full-page dialog by setting the type prop to full-page 1`] = `
 <div
-  class="rmd-dialog-container"
+  class="rmd-dialog-container rmd-dialog-container--centered"
   data-testid="container"
 >
   <div
@@ -48,7 +48,7 @@ exports[`Dialog should be able to render as a full-page dialog by setting the ty
 exports[`Dialog should be able to render as a full-page dialog by setting the type prop to full-page 2`] = `
 <div
   aria-label="Dialog"
-  class="rmd-dialog rmd-dialog--outline rmd-dialog--centered"
+  class="rmd-dialog rmd-dialog--full-page"
   id="dialog-:ra:"
   role="dialog"
   tabindex="-1"

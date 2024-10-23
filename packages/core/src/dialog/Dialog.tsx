@@ -1,5 +1,4 @@
 "use client";
-import { cnb } from "cnbuilder";
 import { forwardRef, useState, type HTMLAttributes } from "react";
 import { useSsr } from "../SsrProvider.js";
 import {
@@ -16,8 +15,6 @@ import {
 import { useCSSTransition } from "../transition/useCSSTransition.js";
 import { type LabelRequiredForA11y } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
-import { DISPLAY_NONE_CLASS } from "../utils/isElementVisible.js";
-import { DialogContainer } from "./DialogContainer.js";
 import {
   NestedDialogProvider,
   useNestedDialogContext,
@@ -26,6 +23,7 @@ import {
   DEFAULT_DIALOG_CLASSNAMES,
   DEFAULT_DIALOG_TIMEOUT,
   dialog,
+  dialogContainer,
   type DialogType,
 } from "./styles.js";
 
@@ -359,16 +357,13 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
         )}
         <Portal disabled={disablePortal}>
           {rendered && (
-            <DialogContainer
+            <div
               {...containerProps}
-              className={cnb(
-                containerProps?.className,
-                !temporary &&
-                  exitedHidden &&
-                  stage === "exited" &&
-                  DISPLAY_NONE_CLASS
-              )}
-              enabled={type === "centered"}
+              className={dialogContainer({
+                className: containerProps?.className,
+                centered: type === "centered",
+                displayNone: !temporary && exitedHidden && stage === "exited",
+              })}
             >
               <div
                 aria-modal={modal || undefined}
@@ -381,7 +376,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
               >
                 {children}
               </div>
-            </DialogContainer>
+            </div>
           )}
         </Portal>
       </NestedDialogProvider>

@@ -4,8 +4,10 @@ import {
   type TransitionTimeout,
 } from "../transition/types.js";
 import { bem } from "../utils/bem.js";
+import { DISPLAY_NONE_CLASS } from "../utils/isElementVisible.js";
 
 const styles = bem("rmd-dialog");
+const containerStyles = bem("rmd-dialog-container");
 
 declare module "react" {
   interface CSSProperties {
@@ -23,6 +25,31 @@ declare module "react" {
 }
 
 export type DialogType = "full-page" | "centered" | "custom";
+
+/**
+ * @since 6.0.0
+ */
+export interface DialogContainerClassNameOptions {
+  className?: string;
+
+  centered?: boolean;
+  displayNone?: boolean;
+}
+
+/**
+ * @since 6.0.0
+ */
+export function dialogContainer(
+  options: DialogContainerClassNameOptions = {}
+): string {
+  const { className, centered, displayNone } = options;
+
+  return cnb(
+    containerStyles({ centered }),
+    displayNone && DISPLAY_NONE_CLASS,
+    className
+  );
+}
 
 /** @since 6.0.0 */
 export interface DialogClassNameOptions {

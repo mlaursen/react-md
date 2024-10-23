@@ -238,9 +238,7 @@ describe("Dialog", () => {
     expect(container).toMatchSnapshot();
 
     rerender(<Test type="full-page" />);
-    // for some reason the container changes to the dialog? so just check there
-    // is no container by retying to re-query for it
-    expect(() => screen.getByTestId("container")).toThrow();
+    expect(container).toBeInTheDocument();
     expect(dialog).toMatchSnapshot();
   });
 

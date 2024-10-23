@@ -104,18 +104,22 @@ $variables: (
   @if not $disable-everything {
     @include utils.optional-layer(dialog, $disable-layer) {
       .rmd-dialog-container {
-        @include use-var(z-index);
+        &--centered {
+          @include use-var(z-index);
 
-        align-items: center;
-        display: flex;
-        inset: 0;
-        justify-content: center;
-        margin: get-var(vertical-margin) get-var(horizontal-margin);
-        margin-right: calc(
-          #{get-var(horizontal-margin)} + #{utils.scrollbar-size()}
-        );
-        pointer-events: none;
-        position: fixed;
+          align-items: center;
+          display: flex;
+          inset: 0;
+          justify-content: center;
+          margin: get-var(vertical-margin) get-var(horizontal-margin);
+          margin-right: calc(
+            #{get-var(horizontal-margin)} + #{utils.scrollbar-size()}
+          );
+
+          // pointer-events are disabled so the overlay can be clicked instead
+          pointer-events: none;
+          position: fixed;
+        }
       }
 
       .rmd-dialog {
@@ -128,11 +132,10 @@ $variables: (
         max-height: 100%;
         max-width: 100%;
         outline: none;
+        pointer-events: auto;
 
         &--centered {
           @include use-var(min-width);
-
-          pointer-events: auto;
         }
 
         &--full-page {
