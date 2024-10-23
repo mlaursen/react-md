@@ -9,10 +9,12 @@ if (!process.argv.includes("--watch")) {
 }
 
 const CORE_DIST = "node_modules/@react-md/core/dist";
-const CORE_SCSS_PATTERN = `${CORE_DIST}/**/*.scss`;
 
 const debounced = debounce(createScssLookup, 1000);
-const watcher = watch(CORE_SCSS_PATTERN, { persistent: true });
+const watcher = watch(CORE_DIST, {
+  persistent: true,
+  ignored: (path, stats) => !!stats?.isFile() && !path.endsWith(".scss"),
+});
 watcher.on("change", () => {
   try {
     debounced();

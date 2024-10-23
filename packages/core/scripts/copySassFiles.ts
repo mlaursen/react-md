@@ -33,7 +33,9 @@ const cp = async (path: string, dest = replaceDist(path)): Promise<void> => {
 };
 
 if (process.argv.includes("--watch")) {
-  const watcher = chokidar.watch(pattern);
+  const watcher = chokidar.watch("src", {
+    ignored: (path, stats) => !!stats?.isFile() && !path.endsWith(".scss"),
+  });
   watcher.on("all", async (eventName, path) => {
     const dist = replaceDist(path);
 

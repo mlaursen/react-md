@@ -8,17 +8,14 @@ import { dirname, join } from "node:path";
 let pending = false;
 
 const cwd = process.cwd();
-// the watcher really does not like "(main)/(markdown)/(demos)"
-const watcher = watch(`src/app/**/*.{ts,tsx,scss}`, {
+const watcher = watch("src/app", {
   cwd,
   persistent: true,
+  ignored: (path, stats) =>
+    !!stats?.isFile() && !/\(demos\).+\.(ts|tsx|scss)$/.test(path),
 });
 
 const debounced = debounce(async (path: string): Promise<void> => {
-  if (!path.includes("(demos)")) {
-    return;
-  }
-
   const page = join(dirname(path), "page.mdx");
   if (!existsSync(page)) {
     console.warn(`${page} does not exist?`);
