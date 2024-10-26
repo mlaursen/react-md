@@ -547,12 +547,12 @@ $variables: (
         {
           $floating-active-selector: $floating-active-selector +
             ", .rmd-text-field-container:focus-within &--floating" +
-            ", .rmd-text-field:not(:placeholder-shown) + &--floating";
+            ", .rmd-text-field:not(:placeholder-shown) ~ &--floating";
         }
         @if not $disable-native-select {
           $floating-active-selector: $floating-active-selector +
-            ", .rmd-native-select[multiple] + &--floating" +
-            ", .rmd-native-select:not(:invalid) + &--floating";
+            ", .rmd-native-select[multiple] ~ &--floating" +
+            ", .rmd-native-select:not(:invalid) ~ &--floating";
         }
 
         #{$floating-active-selector} {
