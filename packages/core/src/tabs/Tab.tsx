@@ -5,6 +5,7 @@ import {
   type ReactElement,
   type ReactNode,
 } from "react";
+import { type ComponentWithRippleProps } from "../interaction/types.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
 import { type CustomLinkComponent } from "../link/Link.js";
@@ -20,7 +21,7 @@ import { type TabListProps } from "./TabList.js";
 /**
  * @since 6.0.0
  */
-export interface BaseTabProps {
+export interface BaseTabProps extends ComponentWithRippleProps {
   /**
    * Set this to `true` if the tab is currently active.
    *
@@ -126,6 +127,7 @@ export function Tab(props: TabProps): ReactElement {
     onTouchStart,
     onTouchEnd,
     onTouchMove,
+    disableRipple,
     ...remaining
   } = props as TabButtonProps;
   const { disabled } = props as TabButtonProps;
@@ -133,6 +135,7 @@ export function Tab(props: TabProps): ReactElement {
   const id = useEnsuredId(propId, "tab");
   const { activeDescendantId } = useKeyboardMovementContext();
   const { ripples, handlers } = useElementInteraction({
+    mode: disableRipple ? "none" : undefined,
     onBlur,
     onClick,
     onKeyDown,

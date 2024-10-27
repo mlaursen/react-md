@@ -1,5 +1,6 @@
 "use client";
 import { forwardRef, type HTMLAttributes } from "react";
+import { type ComponentWithRippleProps } from "../interaction/types.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
 import { getListItemHeight } from "./getListItemHeight.js";
@@ -13,7 +14,8 @@ import { type ListItemChildrenProps, type ListItemHeight } from "./types.js";
  */
 export interface ListItemProps
   extends HTMLAttributes<HTMLLIElement>,
-    ListItemChildrenProps {
+    ListItemChildrenProps,
+    ComponentWithRippleProps {
   /**
    * @defaultValue `"button"`
    */
@@ -148,6 +150,7 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
       disableRightAddonCenteredMedia,
       multiline = false,
       disabled = false,
+      disableRipple,
       disabledOpacity = false,
       role = "button",
       onBlur,
@@ -173,6 +176,7 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
     }
 
     const { pressedClassName, ripples, handlers } = useElementInteraction({
+      mode: disableRipple ? "none" : undefined,
       onBlur,
       onClick,
       onKeyDown,

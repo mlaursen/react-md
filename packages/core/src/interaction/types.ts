@@ -20,6 +20,25 @@ declare module "react" {
 }
 
 /**
+ * @since 6.0.0
+ */
+export interface ComponentWithRippleProps {
+  /**
+   * Set this to `true` to disable the ripple behavior for this single component
+   * only. If all components should have the ripple disabled:
+   *
+   * ```ts
+   * INTERACTION_CONFIG.mode = "none";
+   * // or
+   * INTERACTION_CONFIG.mode = "press";
+   * ```
+   *
+   * @defaultValue `false`
+   */
+  disableRipple?: boolean;
+}
+
+/**
  * This is used to provide feedback to the user that they are interacting with
  * elements on the page. It is recommended to not set this to `"none"` unless
  * you will implement your own version.

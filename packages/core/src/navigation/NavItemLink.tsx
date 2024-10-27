@@ -6,6 +6,7 @@ import {
   type LiHTMLAttributes,
 } from "react";
 import { cssUtils } from "../cssUtils.js";
+import { type ComponentWithRippleProps } from "../interaction/types.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { Tooltip } from "../tooltip/Tooltip.js";
 import { useTooltip } from "../tooltip/useTooltip.js";
@@ -23,7 +24,8 @@ import {
  */
 export interface NavItemLinkProps
   extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "children">,
-    NavItemContentProps {
+    NavItemContentProps,
+    ComponentWithRippleProps {
   /** @defaultValue `"a"` */
   as?: NavigationLinkComponent;
   href: string;
@@ -88,12 +90,14 @@ export const NavItemLink = forwardRef<HTMLAnchorElement, NavItemLinkProps>(
       onTouchEnd,
       onTouchStart,
       tooltipOptions,
+      disableRipple,
       disableScrollIntoView,
       ...remaining
     } = props;
 
     const [linkRef, linkRefCallback] = useEnsuredRef(propRef);
     const { handlers, ripples } = useElementInteraction({
+      mode: disableRipple ? "none" : undefined,
       disabled,
       onClick,
       onBlur,

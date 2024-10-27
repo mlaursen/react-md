@@ -1,6 +1,7 @@
 "use client";
 import { cnb } from "cnbuilder";
 import { forwardRef, type MouseEventHandler } from "react";
+import { type ComponentWithRippleProps } from "../interaction/types.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
 import { Card, type CardProps } from "./Card.js";
@@ -12,7 +13,9 @@ const noop = (): void => {
 /**
  * @since 6.0.0
  */
-export interface ClickableCardProps extends CardProps {
+export interface ClickableCardProps
+  extends CardProps,
+    ComponentWithRippleProps {
   onClick: MouseEventHandler<HTMLDivElement>;
 
   /**
@@ -59,9 +62,13 @@ export const ClickableCard = forwardRef<HTMLDivElement, ClickableCardProps>(
       onKeyDown = noop,
       className,
       children: propChildren,
+      disableRipple,
       ...remaining
     } = props;
-    const { handlers, ripples } = useElementInteraction(remaining);
+    const { handlers, ripples } = useElementInteraction({
+      ...remaining,
+      mode: disableRipple ? "none" : undefined,
+    });
     const children = useHigherContrastChildren(propChildren);
 
     return (

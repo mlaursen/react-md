@@ -8,6 +8,7 @@ import {
   type LabelHTMLAttributes,
   type ReactNode,
 } from "react";
+import { type ComponentWithRippleProps } from "../interaction/types.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
@@ -151,7 +152,8 @@ export interface BaseInputToggleProps
     FormMessageContainerExtension,
     FormComponentStates,
     InputToggleIconProps,
-    InputToggleLabelProps {
+    InputToggleLabelProps,
+    ComponentWithRippleProps {
   /**
    * @see https://stackoverflow.com/questions/5985839/bug-with-firefox-disabled-attribute-of-input-not-resetting-when-refreshing
    * @defaultValue `type === "checkbox" ? "off" : undefined`
@@ -262,12 +264,14 @@ export const InputToggle = forwardRef<HTMLInputElement, InputToggleProps>(
       onTouchEnd,
       onTouchMove,
       onTouchStart,
+      disableRipple,
       ...remaining
     } = props as CheckboxInputToggleProps;
     const { disabled = false, checked } = props;
 
     const id = useEnsuredId(propId, type);
     const { pressedClassName, ripples, handlers } = useElementInteraction({
+      mode: disableRipple ? "none" : undefined,
       disabled,
       onBlur,
       onClick,

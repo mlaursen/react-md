@@ -1,5 +1,6 @@
 "use client";
 import { forwardRef, type ButtonHTMLAttributes } from "react";
+import { type ComponentWithRippleProps } from "../interaction/types.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
 import { type PropsWithRef } from "../types.js";
@@ -12,7 +13,8 @@ import { button, type ButtonClassNameThemeOptions } from "./buttonStyles.js";
 
 export interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
-    ButtonClassNameThemeOptions {
+    ButtonClassNameThemeOptions,
+    ComponentWithRippleProps {
   /** @defaultValue `"button"` */
   type?: "button" | "reset" | "submit";
 
@@ -137,12 +139,14 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       onTouchStart,
       onTouchEnd,
       onTouchMove,
+      disableRipple,
       ...remaining
     } = props;
     const isThemeDisabled = theme === "disabled";
     const ariaDisabled = props["aria-disabled"];
     const { pressed, pressedClassName, ripples, handlers } =
       useElementInteraction({
+        mode: disableRipple ? "press" : undefined,
         onBlur,
         onClick,
         onKeyDown,

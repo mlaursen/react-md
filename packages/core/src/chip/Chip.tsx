@@ -9,6 +9,7 @@ import {
 } from "react";
 import { type BackgroundColor } from "../cssUtils.js";
 import { getIcon } from "../icon/iconConfig.js";
+import { type ComponentWithRippleProps } from "../interaction/types.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
 import { useMaxWidthTransition } from "../transition/useMaxWidthTransition.js";
@@ -31,7 +32,9 @@ declare module "react" {
  * @since 6.0.0 Renamed the `noninteractive` prop to
  * `noninteractable`.
  */
-export interface ChipProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ChipProps
+  extends ButtonHTMLAttributes<HTMLButtonElement>,
+    ComponentWithRippleProps {
   /**
    * @defaultValue `"solid"`
    */
@@ -216,6 +219,7 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(
       selectedIconAfter = false,
       backgroundColor,
       noninteractive = false,
+      disableRipple,
       disableIconTransition = false,
       children: propChildren,
       onClick,
@@ -286,6 +290,7 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(
 
     const { pressed, pressedClassName, ripples, handlers } =
       useElementInteraction({
+        mode: disableRipple ? "none" : undefined,
         onClick,
         onKeyDown,
         onKeyUp,

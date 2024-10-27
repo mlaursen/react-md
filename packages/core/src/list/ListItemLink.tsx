@@ -4,6 +4,7 @@ import {
   type AnchorHTMLAttributes,
   type HTMLAttributes,
 } from "react";
+import { type ComponentWithRippleProps } from "../interaction/types.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
 import { type CustomLinkComponent } from "../link/Link.js";
@@ -16,7 +17,8 @@ import { type ListItemChildrenProps } from "./types.js";
 export interface ListItemLinkProps
   extends AnchorHTMLAttributes<HTMLAnchorElement>,
     ListItemClassNameOptions,
-    ListItemChildrenProps {
+    ListItemChildrenProps,
+    ComponentWithRippleProps {
   /** @defaultValue `"a"` */
   as?: CustomLinkComponent;
 
@@ -93,10 +95,12 @@ export const ListItemLink = forwardRef<HTMLAnchorElement, ListItemLinkProps>(
       role,
       tabIndex = disabled || role === "menuitem" ? -1 : undefined,
       children: propChildren,
+      disableRipple,
       ...remaining
     } = props;
 
     const { pressedClassName, ripples, handlers } = useElementInteraction({
+      mode: disableRipple ? "none" : undefined,
       onBlur,
       onClick,
       onKeyDown,

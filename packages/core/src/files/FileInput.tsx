@@ -7,6 +7,7 @@ import {
 } from "react";
 import { type ButtonClassNameThemeOptions } from "../button/buttonStyles.js";
 import { getIcon } from "../icon/iconConfig.js";
+import { type ComponentWithRippleProps } from "../interaction/types.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { type PropsWithRef } from "../types.js";
 import { SrOnly } from "../typography/SrOnly.js";
@@ -25,7 +26,8 @@ export type FileInputHTMLAttributes = Omit<
  */
 export interface FileInputProps
   extends ButtonClassNameThemeOptions,
-    FileInputHTMLAttributes {
+    FileInputHTMLAttributes,
+    ComponentWithRippleProps {
   /**
    * This is the label text for icon-only file inputs.
    *
@@ -142,12 +144,14 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
       iconSize,
       responsive,
       multiple = false,
+      disableRipple,
       ...remaining
     } = props;
     const id = useEnsuredId(propId, "file-input");
     const { pressed, pressedClassName, ripples, handlers } =
       useElementInteraction({
         ...labelProps,
+        mode: disableRipple ? "none" : undefined,
         onClick(event) {
           labelProps?.onClick?.(event);
 

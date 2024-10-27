@@ -12,6 +12,7 @@ import { useUserInteractionMode } from "./UserInteractionModeProvider.js";
 import { INTERACTION_CONFIG } from "./config.js";
 import type {
   ElementInteractionHandlers,
+  ElementInteractionMode,
   ElementInteractionState,
   RippleState,
   RippleStyle,
@@ -31,6 +32,13 @@ export const PRESSED_CLASS_NAME = "rmd-pressed";
 /** @since 6.0.0 */
 export interface ElementInteractionOptions<E extends HTMLElement>
   extends Partial<ElementInteractionHandlers<E>> {
+  /**
+   * This can be used to override the {@link INTERACTION_CONFIG.mode}
+   *
+   * @defaultValue `INTERACTION_CONFIG.mode`
+   */
+  mode?: ElementInteractionMode;
+
   /**
    * Boolean if the element is currently disabled which will prevent any of the
    * element interaction states from happening.
@@ -165,10 +173,9 @@ export function useElementInteraction<E extends HTMLElement>(
     onTouchEnd = noop,
     onTouchMove = noop,
     onDragStart = noop,
+    mode = INTERACTION_CONFIG.mode,
     disabled = false,
   } = options;
-
-  const { mode } = INTERACTION_CONFIG;
 
   const holding = useRef(false);
   const disableClick = useRef(false);

@@ -6,6 +6,7 @@ import {
   type ReactNode,
   type Ref,
 } from "react";
+import { type ComponentWithRippleProps } from "../interaction/types.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
 import { ListItemChildren } from "../list/ListItemChildren.js";
@@ -27,7 +28,8 @@ import { type DefaultTreeItemNode } from "./types.js";
  */
 export interface TreeItemProps
   extends Omit<DefaultTreeItemNode, "parentId">,
-    HTMLAttributes<HTMLLIElement> {
+    HTMLAttributes<HTMLLIElement>,
+    ComponentWithRippleProps {
   /**
    * @defaultValue `"tree-item-" + useId()`
    */
@@ -140,6 +142,7 @@ export function TreeItem(props: TreeItemProps): ReactElement {
     onTouchEnd,
     onTouchMove,
     contentRef,
+    disableRipple,
     ...remaining
   } = props;
 
@@ -190,6 +193,7 @@ export function TreeItem(props: TreeItemProps): ReactElement {
 
   const { pressedClassName, ripples, handlers } =
     useElementInteraction<HTMLLIElement>({
+      mode: disableRipple ? "none" : undefined,
       onBlur,
       onClick(event) {
         onClick?.(event);

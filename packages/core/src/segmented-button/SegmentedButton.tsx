@@ -1,6 +1,7 @@
 "use client";
 import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from "react";
 import { getIcon } from "../icon/iconConfig.js";
+import { type ComponentWithRippleProps } from "../interaction/types.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
 import { useMaxWidthTransition } from "../transition/useMaxWidthTransition.js";
@@ -10,7 +11,8 @@ import { segmentedButton } from "./segmentedButtonStyles.js";
  * @since 6.0.0
  */
 export interface SegmentedButtonProps
-  extends ButtonHTMLAttributes<HTMLButtonElement> {
+  extends ButtonHTMLAttributes<HTMLButtonElement>,
+    ComponentWithRippleProps {
   /**
    * Set this to `true` to apply selected styles and an optional
    * {@link selectedIcon}
@@ -126,6 +128,7 @@ export const SegmentedButton = forwardRef<
     onTouchEnd,
     onTouchMove,
     disabled,
+    disableRipple,
     ...remaining
   } = props;
 
@@ -138,6 +141,7 @@ export const SegmentedButton = forwardRef<
     disableTransition: disableSelectedTransition,
   });
   const { pressedClassName, handlers, ripples } = useElementInteraction({
+    mode: disableRipple ? "none" : undefined,
     onBlur,
     onClick,
     onKeyDown,
