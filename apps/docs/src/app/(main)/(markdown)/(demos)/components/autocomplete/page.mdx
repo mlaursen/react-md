@@ -80,6 +80,17 @@ be selected by default, set the `defaultValue` prop instead.
 
 ```
 
+## Getting the current value
+
+> !Warn! It is recommended to control the `value` instead of using this option.
+
+When the `value` does not need to be stored anywhere but can be used for other
+actions, the `onValueChange` prop can be used.
+
+```demo source="./GettingTheCurrentValueExample.tsx"
+
+```
+
 ## Controlling the input value
 
 If the input value needs to be controlled, provide a `query` and `setQuery` prop.
@@ -270,7 +281,9 @@ custom styles, change the theme, etc.
 
 ```
 
-# Highlights
+# Customization
+
+## Highlights
 
 The search query can be highlighted using the
 [autosuggest-highlight](https://www.npmjs.com/package/autosuggest-highlight)
@@ -278,6 +291,49 @@ package and the `getOptionProps` to provide highlighted `children` to each
 option.
 
 ```demo source="./HighlightsExample.tsx"
+
+```
+
+## Github's Label Picker
+
+This demo shows how the Github label picker could be created with `react-md`
+with most of the same behavior. Here's a breakdown of how this was created:
+
+- Start by creating a simple `Button` + `FixedDialog` combination to display the
+  `Autocomplete`
+- Create a multiselect `Autocomplete` with most of the default UI disabled to
+  better match Github
+  - `disableClearButton`
+  - `disableDropdownButton`
+  - `disableInlineChips`
+  - `listboxProps.disableElevation`
+- Update the `Autocomplete` so that the listbox renders inline with the other
+  content and within the dialog
+  - `listboxProps.disablePortal`
+  - `listboxProps.disableFixedPositioning`
+- Ensure the listbox is always visible by enabling the `visible` prop and
+  providing a noop for the `setVisible` prop. Also enable the
+  `disableCloseOnSelect` prop to ensure items are still filtered after selecting
+  an new value
+- Set `updateQueryOnSelect` to `"as-is"` so that selecting a new value doesn't
+  change the value in the `Autocomplete`
+- Update the behavior so that the selected values are only updated when the
+  dialog closes by:
+  - creating a `nextValue` ref that is mutated with the `onValueChange` prop
+  - setting the `defaultValue` to the `labels` state which ensures the latest
+    values are selected each time the dialog is opened
+  - add an `onExited` handler to the `Dialog` that sets the state with the
+    `nextValue` ref
+- Allow filtering to happen anywhere within the label name by setting
+  `filter={(options) => caseInsensitiveSearch(options)}`
+- Sort the `options` prop for the `Autocomplete` so that the selected labels
+  appear first
+- Provide a `onKeyDown` handler for the `Dialog`, `Listbox`, and `input` that
+  closes the dialog when the `Escape` key is pressed
+- Render the selected labels in a `Box` with `Chip` components
+- Update any styles to match Github
+
+```demo source="./GithubLabelPickerExample.tsx"
 
 ```
 

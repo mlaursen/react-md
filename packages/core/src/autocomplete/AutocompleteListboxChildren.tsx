@@ -1,4 +1,6 @@
+"use client";
 import { type ReactElement, type ReactNode } from "react";
+import { useListboxContext } from "../form/ListboxProvider.js";
 import { Option } from "../form/Option.js";
 import {
   type AutocompleteGetOptionLabel,
@@ -39,6 +41,7 @@ export function AutocompleteListboxChildren<Option extends AutocompleteOption>(
     getOptionLabel,
     getOptionProps,
   } = props;
+  const { isOptionSelected } = useListboxContext();
 
   return (
     <>
@@ -47,9 +50,10 @@ export function AutocompleteListboxChildren<Option extends AutocompleteOption>(
       {availableOptions.map((option, index) => {
         const label = getOptionLabel(option);
         const optionProps = getOptionProps({
-          query,
           index,
+          query,
           option,
+          selected: isOptionSelected(option),
         });
 
         return (

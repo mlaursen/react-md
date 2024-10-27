@@ -1,0 +1,85 @@
+@use "everything";
+
+.container {
+  @include everything.box-set-var(gap, 0.25rem);
+  @include everything.chip-set-var(height, 1.25rem);
+  @include everything.chip-set-var(horizontal-padding, 0.5rem);
+
+  max-width: 16rem;
+  width: 100%;
+
+  :global(.rmd-chip) {
+    font-size: 0.75rem;
+  }
+}
+
+.button {
+  @include everything.interaction-set-var(hover-background-color, transparent);
+
+  justify-content: space-between;
+  padding: 0;
+  width: 100%;
+
+  @include everything.mouse-hover {
+    color: #4493f8;
+  }
+}
+
+.dialog {
+  // I just grabbed the color variables in dark mode and moved them here. not
+  // going to do both light/dark mode
+  @include everything.interaction-use-dark-surface;
+  @include everything.theme-set-var(text-primary-color, everything.$white);
+  @include everything.theme-set-var(background-color, #151b23);
+  @include everything.list-set-var(vertical-padding, 0);
+  @include everything.list-set-var(item-height, auto);
+  @include everything.list-set-var(item-vertical-padding, 0.5rem);
+  @include everything.list-set-var(item-horizontal-padding, 0.5rem);
+  @include everything.icon-set-var(size, 1rem);
+  @include everything.avatar-set-var(size, 1rem);
+
+  :global(.rmd-list-item) {
+    @include everything.divider-border-style;
+
+    font-size: 0.75rem;
+    height: auto;
+    line-height: 1;
+  }
+}
+
+.title {
+  padding: 0.5rem 0.625rem;
+}
+
+.autocomplete {
+  // remove the outlined border since it is moved to the input
+  border: 0;
+  padding: 0.625rem;
+
+  // remove the outlined focus behavior since it is moved to the input
+  &::after {
+    display: none;
+  }
+
+  input {
+    background: #0d1117;
+    border: max(1px, 0.0625rem) solid #3d444db3;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    padding: 0.3125rem 0.75rem;
+
+    &:focus {
+      border-color: #1f6feb;
+    }
+  }
+}
+
+// remove the selected option background color
+.option {
+  background: transparent;
+}
+
+.editLabels {
+  color: #9198a1;
+  gap: 0.5rem;
+}

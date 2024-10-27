@@ -108,7 +108,7 @@ export function useAutocomplete<
     unselectedIcon: propUnselectedIcon,
     selectedIconAfter,
     disableSelectedIcon: propDisableSelectedIcon,
-    clearOnSelect: propClearOnSelect,
+    updateQueryOnSelect: propUpdateQueryOnSelect,
     disableCloseOnSelect: propDisableCloseOnSelect,
     ...comboboxOptions
   } = options;
@@ -130,7 +130,11 @@ export function useAutocomplete<
   const multiselect =
     propMultiselect ??
     (!!value && typeof value === "object" && "length" in value);
-  const clearOnSelect = propClearOnSelect ?? multiselect;
+  let updateQueryOnSelect = propUpdateQueryOnSelect;
+  if (typeof propUpdateQueryOnSelect === "undefined") {
+    updateQueryOnSelect = multiselect ? "clear" : "selected";
+  }
+
   const disableCloseOnSelect =
     propDisableCloseOnSelect ?? (multiselect && checkboxes);
 
@@ -337,9 +341,11 @@ export function useAutocomplete<
         nodeRef: ref,
         value,
         setValue(option) {
-          // this makes it so that the options are not filtered again while the
-          // listbox is closing after selecting a value
-          prevAvailableOptions.current = availableOptions;
+          if (!disableCloseOnSelect) {
+            // this makes it so that the options are not filtered again while the
+            // listbox is closing after selecting a value
+            prevAvailableOptions.current = availableOptions;
+          }
 
           if (value && typeof value === "object" && "length" in value) {
             const nextValue = [...value];
@@ -355,7 +361,12 @@ export function useAutocomplete<
             setValue(option);
           }
 
-          const nextQuery = clearOnSelect ? "" : getOptionLabel(option);
+          if (updateQueryOnSelect === "as-is") {
+            return;
+          }
+
+          const nextQuery =
+            updateQueryOnSelect === "clear" ? "" : getOptionLabel(option);
           triggerManualChangeEvent(comboboxRef.current, nextQuery);
         },
         onEnter: handleEntering(onEnter, false),

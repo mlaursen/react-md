@@ -9,11 +9,14 @@ import {
 } from "react";
 import { type ButtonProps } from "../button/Button.js";
 import { type ChipProps } from "../chip/Chip.js";
-import { type ListboxSelectedIconProps } from "../form/Listbox.js";
-import { type OptionProps } from "../form/Option.js";
+import {
+  type OptionProps,
+  type OptionSelectedIconProps,
+} from "../form/Option.js";
 import { type TextFieldProps } from "../form/TextField.js";
 import {
   type ComboboxMenuProps,
+  type ComboboxVisibilityOptions,
   type ConfigurableComboboxMenuProps,
 } from "../form/useCombobox.js";
 import {
@@ -68,8 +71,9 @@ export interface AutocompleteGetOptionPropsOptions<
   Option extends AutocompleteOption,
 > {
   index: number;
-  option: Option;
   query: string;
+  option: Option;
+  selected: boolean;
 }
 
 /**
@@ -107,7 +111,7 @@ export type AutocompleteGetOptionProps<Option extends AutocompleteOption> = (
  * @since 6.0.0
  */
 export type AutocompleteGetChipProps<Option extends AutocompleteOption> = (
-  options: AutocompleteGetOptionPropsOptions<Option>
+  options: Omit<AutocompleteGetOptionPropsOptions<Option>, "selected">
 ) => Partial<AutocompleteChipProps> | undefined;
 
 /**
@@ -213,6 +217,18 @@ export interface AutocompleteUncontrolledQuery {
 export type AutocompleteQuery =
   | AutocompleteControlledQuery
   | AutocompleteUncontrolledQuery;
+
+/**
+ * This allows the `query` to be updated whenever a new value has been selected.
+ *
+ * - `"clear"` - clears the `query`
+ * - `"selected"` - sets the 	query	 to the selected value's label
+ * - `"as-is"` - doesn't change the `query`
+ *
+ * @defaultValue `(multiselect || Array.isArray(value ?? defaultValue)) ? "clear" : "as-is"`
+ * @since 6.0.0
+ */
+export type AutocompleteUpdateQueryOnSelect = "clear" | "selected" | "as-is";
 
 /**
  * @since 6.0.0
@@ -338,7 +354,7 @@ export interface AutocompleteFilteringOptions<
 export interface AutocompleteFilterAndListboxOptions<
   Option extends AutocompleteOption,
 > extends AutocompleteFilteringOptions<Option>,
-    ListboxSelectedIconProps {
+    OptionSelectedIconProps {
   /**
    * Set this to `true` when using a multiselect autocomplete to update each
    * option to use checkboxes to show the selection state.
@@ -348,10 +364,16 @@ export interface AutocompleteFilterAndListboxOptions<
   checkboxes?: boolean;
 
   /**
-   * @see {@link ListboxSelectedIconProps.disableSelectedIcon}
+   * @see {@link OptionSelectedIconProps.disableSelectedIcon}
    * @defaultValue `!checkboxes`
    */
   disableSelectedIcon?: boolean;
+
+  /**
+   * @see {@link AutocompleteUpdateQueryOnSelect}
+   * @defaultValue `multiselect ? "clear" : "as-is"`
+   */
+  updateQueryOnSelect?: AutocompleteUpdateQueryOnSelect;
 
   /**
    * Set this to `true` to prevent the listbox from closing when an option is
@@ -384,17 +406,6 @@ export interface AutocompleteEditableComboboxOptions<
    * menu is opened.
    */
   onOpen?: () => void;
-
-  /**
-   * Set this to `true` to clear the `query` whenever a new value is selected.
-   * This should generally be used if the current value is stored outside of the
-   * autocomplete itself or multiselect implementations.
-   *
-   * This will be enabled by default for multiselect implementations.
-   *
-   * @defaultValue `multiselect || Array.isArray(value ?? defaultValue)`
-   */
-  clearOnSelect?: boolean;
 }
 
 /**
@@ -457,7 +468,7 @@ export interface AutocompleteListboxProps<
   T extends AutocompleteOption = AutocompleteOption,
   PopupEl extends HTMLElement = HTMLElement,
 > extends Omit<ComboboxMenuProps<PopupEl>, "ref">,
-    ListboxSelectedIconProps {
+    OptionSelectedIconProps {
   value: T | null | readonly T[];
   setValue: Dispatch<T>;
   onEnter: (appearing: boolean) => void;
@@ -468,7 +479,7 @@ export interface AutocompleteListboxProps<
  */
 export interface ConfigurableAutocompleteListboxProps
   extends ConfigurableComboboxMenuProps,
-    ListboxSelectedIconProps {
+    OptionSelectedIconProps {
   id?: string;
 }
 
