@@ -118,6 +118,12 @@ export interface MenuConfigurationProps extends CalculateFixedPositionOptions {
 
   /** @see {@link FixedPositioningOptions.getFixedPositionOptions} */
   getFixedPositionOptions?: () => CalculateFixedPositionOptions;
+
+  /**
+   * @defaultValue `false`
+   * @see {@link FixedPositioningOptions.disabled}
+   */
+  disableFixedPositioning?: boolean;
 }
 
 /**
@@ -198,7 +204,7 @@ export interface MenuConvenienceProps extends MenuConfigurationProps {
  */
 export type MenuFixedPositioningOptions = Omit<
   FixedPositioningOptions<HTMLElement, HTMLDivElement>,
-  "onScroll" | "onResize" | "nodeRef"
+  "onScroll" | "onResize" | "nodeRef" | "disabled"
 >;
 
 /**
@@ -322,6 +328,7 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
       disableVHBounds,
       initialX,
       initialY,
+      disableFixedPositioning,
       getFixedPositionOptions,
       disablePortal: propDisablePortal,
       disableTransition,
@@ -449,6 +456,7 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
 
     const { ref, style, callbacks, updateStyle } = useFixedPositioning({
       ...transitionOptions,
+      disabled: disableFixedPositioning,
       onEnter,
       style: isSheet ? propStyle : menuStyle,
       fixedTo,

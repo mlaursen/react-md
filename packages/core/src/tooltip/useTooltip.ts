@@ -254,6 +254,12 @@ export interface TooltipOptions<
    * @since 6.0.0
    */
   overflowOnly?: boolean;
+
+  /**
+   * @see {@link FixedPositioningOptions.disabled}
+   * @defaultValue `false`
+   */
+  disableFixedPositioning?: boolean;
 }
 
 /**
@@ -265,7 +271,7 @@ export interface ProvidedTooltipProps<E extends HTMLElement = HTMLSpanElement>
   id: string;
   ref: Ref<E>;
   dense: boolean;
-  style: CSSProperties;
+  style: CSSProperties | undefined;
   visible: boolean;
   position: SimplePosition;
 }
@@ -422,6 +428,7 @@ export function useTooltip<
     onEntered = noop,
     onExited,
     overflowOnly,
+    disableFixedPositioning,
   } = options;
 
   const fallbackId = useId();
@@ -469,6 +476,7 @@ export function useTooltip<
     fixedTo: elementRef,
     anchor: getAnchor(position),
     disableSwapping: disableSwapping ?? !!determinedPosition,
+    disabled: disableFixedPositioning,
     getFixedPositionOptions() {
       let tooltipSpacing = dense ? denseSpacing : spacing;
       const tooltip = tooltipRef.current;

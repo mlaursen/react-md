@@ -15,7 +15,11 @@ import { useEnsuredRef } from "../useEnsuredRef.js";
 import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect.js";
 import { BELOW_CENTER_ANCHOR } from "./constants.js";
 import { getFixedPosition } from "./getFixedPosition.js";
-import { type CalculateFixedPositionOptions } from "./types.js";
+import {
+  type CalculateFixedPositionOptions,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  type FixedPositionStyle,
+} from "./types.js";
 import { isWithinViewport } from "./utils.js";
 
 const noop = (): undefined => undefined;
@@ -118,6 +122,17 @@ export interface FixedPositioningOptions<
   onResize?: EventListener;
   /** @see {@link TransitionScrollCallback} */
   onScroll?: TransitionScrollCallback<FixedToElement, FixedElement>;
+
+  /**
+   * Set this to `true` to disable the fixed positioning behavior so it can be
+   * customized within CSS or manually instead. This was added mostly to just
+   * support rendering menus inline with other content (like autocompletes
+   * within a dialog).
+   *
+   * @defaultValue `false`
+   * @since 6.0.0
+   */
+  disabled?: boolean;
 }
 
 /**
@@ -135,9 +150,12 @@ export interface FixedPositioningHookReturnValue<E extends HTMLElement> {
   ref: RefCallback<E>;
 
   /**
-   * @see {@link FixedPositionStyle}
+   * This is the {@link FixedPositionStyle} merged with the
+   * {@link FixedPositioningOptions.style}. This will only return `undefined`
+   * when {@link FixedPositioningOptions.disabled} is `true` and no `style` was
+   * provided.
    */
-  style: CSSProperties;
+  style: CSSProperties | undefined;
 
   /**
    * This should really only be used if the {@link transitionOptions} is not
@@ -219,6 +237,7 @@ export function useFixedPositioning<
     style: propStyle,
     nodeRef,
     fixedTo,
+    disabled,
     onEnter = noop,
     onEntering = noop,
     onEntered = noop,
@@ -310,6 +329,10 @@ export function useFixedPositioning<
   );
 
   const updateStyle = useCallback(() => {
+    if (disabled) {
+      return;
+    }
+
     const {
       ref,
       fixedTo,
@@ -348,12 +371,12 @@ export function useFixedPositioning<
     setStyle(style);
     setActive(!!element && !element.hidden);
 
-    // Only changing the initialX and initialY should cause the useEffect below
-    // to trigger, which is why everything else is set in a ref.
-  }, [initialX, initialY]);
+    // Only changing the initialX, initialY, or disabled should cause the
+    // useEffect below to trigger, which is why everything else is set in a ref.
+  }, [disabled, initialX, initialY]);
 
   useEffect(() => {
-    if (!active) {
+    if (!active || disabled) {
       return;
     }
 
@@ -385,7 +408,7 @@ export function useFixedPositioning<
       resizeHandler.remove(resizeCallback);
       scrollHandler.remove(scrollCallback);
     };
-  }, [active, fixedTo, onResize, onScroll, ref, updateStyle]);
+  }, [active, disabled, fixedTo, onResize, onScroll, ref, updateStyle]);
 
   const callbacks: Required<FixedPositioningTransitionCallbacks> = {
     onEnter(appearing) {
@@ -408,7 +431,7 @@ export function useFixedPositioning<
 
   return {
     ref: refHandler,
-    style: { ...style, ...propStyle },
+    style: disabled ? propStyle : { ...style, ...propStyle },
     callbacks,
     updateStyle,
     transitionOptions: {
