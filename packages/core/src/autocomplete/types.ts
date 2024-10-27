@@ -641,7 +641,8 @@ export interface AutocompleteImplementation<
  */
 export interface AutocompleteBaseProps<Option extends AutocompleteOption>
   extends Omit<TextFieldProps, "value" | "defaultValue">,
-    AutocompleteFilterAndListboxOptions<Option> {
+    AutocompleteFilterAndListboxOptions<Option>,
+    ComboboxVisibilityOptions {
   inputRef?: Ref<HTMLInputElement>;
 
   /**

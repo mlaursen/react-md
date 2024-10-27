@@ -171,7 +171,7 @@ export function useAutocomplete<
   // - the listbox is opening and:
   //   - the user has not typed at least one letter
   //   - the options have not changed
-  const entered = useRef(false);
+  const entered = useRef(visible);
   const initialQuery = useRef("");
   const prevAvailableOptions = useRef<readonly Option[] | null>(null);
   const isQueryChange =
@@ -277,7 +277,7 @@ export function useAutocomplete<
         onEntered,
         onExited,
         disableTransition,
-        ...menuProps
+        ...listboxProps
       } = getMenuProps(overrides);
 
       const isTransitionCompleteSkipped =
@@ -320,7 +320,7 @@ export function useAutocomplete<
         unselectedIcon,
         selectedIconAfter,
         disableSelectedIcon,
-        ...menuProps,
+        ...listboxProps,
         disableTransition,
         onRequestClose() {
           // Make it so clicking on the text field, clear button, dropdown
@@ -332,7 +332,7 @@ export function useAutocomplete<
             return;
           }
 
-          menuProps.onRequestClose();
+          listboxProps.onRequestClose();
         },
         nodeRef: ref,
         value,

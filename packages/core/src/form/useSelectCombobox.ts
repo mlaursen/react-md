@@ -1,8 +1,8 @@
 "use client";
 import {
   useCombobox,
-  type BaseComboboxOptions,
   type ComboboxImplementation,
+  type ConfigurableComboboxOptions,
 } from "./useCombobox.js";
 
 /**
@@ -11,7 +11,7 @@ import {
 export interface SelectComboboxOptions<
   ComboboxEl extends HTMLElement = HTMLInputElement,
   PopupEl extends HTMLElement = HTMLElement,
-> extends BaseComboboxOptions<ComboboxEl, PopupEl> {
+> extends ConfigurableComboboxOptions<ComboboxEl, PopupEl> {
   value: string;
   values: readonly string[];
 }

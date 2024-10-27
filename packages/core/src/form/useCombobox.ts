@@ -1,5 +1,6 @@
 "use client";
 import {
+  useCallback,
   useRef,
   type FocusEventHandler,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -38,7 +39,7 @@ import {
 } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
-import { useToggle } from "../useToggle.js";
+import { useEnsuredState } from "../useEnsuredState.js";
 import { tryToSubmitRelatedForm } from "./utils.js";
 
 const noop = (): void => {
@@ -100,10 +101,45 @@ export type ComboboxKeyboardMovementOptions<
 /**
  * @since 6.0.0
  */
-export interface BaseComboboxOptions<
+export interface ComboboxVisibilityOptions {
+  /**
+   * This can be used to control the popup's visibility and **must** be used
+   * along with {@link setVisible}.
+   */
+  visible?: boolean;
+
+  /**
+   * Used to control the popup's visibility and should generally be a `useState`
+   * setter.
+   *
+   * @example Controlling the Visibility
+   * ```tsx
+   * const [visible, setVisible] = useState(false);
+   *
+   * useCombobox({
+   *   visible,
+   *   setVisible,
+   * });
+   * ```
+   */
+  setVisible?: UseStateSetter<boolean>;
+
+  /**
+   * Set this to `true` to have the combobox's popup visible by default.
+   *
+   * @defaultValue `false`
+   */
+  defaultVisible?: UseStateInitializer<boolean>;
+}
+
+/**
+ * @since 6.0.0
+ */
+export interface ConfigurableComboboxOptions<
   ComboboxEl extends HTMLElement = HTMLInputElement,
   PopupEl extends HTMLElement = HTMLElement,
-> extends ComboboxKeyboardMovementOptions<ComboboxEl> {
+> extends ComboboxKeyboardMovementOptions<ComboboxEl>,
+    ComboboxVisibilityOptions {
   /**
    * This is the {@link InputHTMLAttributes.form} attribute and is used to
    * attempt submitting a form when the enter key is pressed.
@@ -132,11 +168,6 @@ export interface BaseComboboxOptions<
    */
   multiselect?: boolean;
 
-  /**
-   * @defaultValue `false`
-   */
-  defaultVisible?: UseStateInitializer<boolean>;
-
   extendKeyDown?: ExtendComboboxKeyDown<ComboboxEl>;
 
   /**
@@ -150,15 +181,22 @@ export interface BaseComboboxOptions<
 /**
  * @since 6.0.0
  */
+export interface ComboboxGetEnterDefaultFocusedIndexOptions {
+  focusLast: boolean;
+  focusables: readonly HTMLElement[];
+  currentFocusIndex: number;
+}
+
+/**
+ * @since 6.0.0
+ */
 export interface ComboboxOptions<
   ComboboxEl extends HTMLElement = HTMLInputElement,
   PopupEl extends HTMLElement = HTMLElement,
-> extends BaseComboboxOptions<ComboboxEl, PopupEl> {
-  getEnterDefaultFocusedIndex: (options: {
-    focusLast: boolean;
-    focusables: readonly HTMLElement[];
-    currentFocusIndex: number;
-  }) => number;
+> extends ConfigurableComboboxOptions<ComboboxEl, PopupEl> {
+  getEnterDefaultFocusedIndex: (
+    options: ComboboxGetEnterDefaultFocusedIndexOptions
+  ) => number;
 }
 
 /**
@@ -287,11 +325,13 @@ export function useCombobox<
     isNegativeOneAllowed,
     loopable,
     disabled,
+    visible: propVisible,
+    setVisible: propSetVisible,
+    defaultVisible = false,
     comboboxId: propComboboxId,
     comboboxRef: propComboboxRef,
     popupId: propPopupId,
     popupRef: propPopupRef,
-    defaultVisible = false,
     onFocusChange = noop,
     extendKeyDown = noop,
     getFocusableElements = getNonDisabledOptions,
@@ -299,12 +339,18 @@ export function useCombobox<
     getDefaultFocusedIndex,
   } = options;
 
-  const {
-    toggled: visible,
-    enable: show,
-    disable: hide,
-    setToggled: setVisible,
-  } = useToggle(defaultVisible);
+  const [visible, setVisible] = useEnsuredState({
+    value: propVisible,
+    setValue: propSetVisible,
+    defaultValue: defaultVisible,
+  });
+  const show = useCallback(() => {
+    setVisible(true);
+  }, [setVisible]);
+  const hide = useCallback(() => {
+    setVisible(false);
+  }, [setVisible]);
+
   const popupId = useEnsuredId(propPopupId, "combobox-popup");
   const comboboxId = useEnsuredId(propComboboxId, "combobox");
   const [comboboxRef, comboboxRefCallback] = useEnsuredRef(propComboboxRef);

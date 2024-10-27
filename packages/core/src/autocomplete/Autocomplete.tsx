@@ -78,7 +78,7 @@ export function Autocomplete<Option extends AutocompleteOption>(
     getOptionLabel: propGetOptionLabel,
     getOptionProps: propGetOptionProps,
     allowAnyValue,
-    listboxProps: menuProps,
+    listboxProps,
     listboxLabel,
     listboxLabelledBy,
     selectedIcon,
@@ -100,6 +100,9 @@ export function Autocomplete<Option extends AutocompleteOption>(
     rightAddonProps,
     containerProps,
     getChipProps = noop,
+    visible,
+    setVisible,
+    defaultVisible,
     disableInlineChips,
     disableCloseOnSelect,
     ...remaining
@@ -107,7 +110,7 @@ export function Autocomplete<Option extends AutocompleteOption>(
   const { form, disabled } = props;
 
   const id = useEnsuredId(propId, "autocomplete");
-  const menuId = useEnsuredId(menuProps?.id, "autocomplete-listbox");
+  const menuId = useEnsuredId(listboxProps?.id, "autocomplete-listbox");
   const {
     query: currentQuery,
     value: currentValue,
@@ -134,7 +137,7 @@ export function Autocomplete<Option extends AutocompleteOption>(
     filter,
     filterSelected,
     popupId: menuId,
-    popupRef: menuProps?.ref,
+    popupRef: listboxProps?.ref,
     comboboxId: id,
     comboboxRef: inputRef,
     options,
@@ -148,6 +151,9 @@ export function Autocomplete<Option extends AutocompleteOption>(
     query,
     setQuery,
     defaultQuery,
+    defaultVisible,
+    visible,
+    setVisible,
     checkboxes,
     selectedIcon,
     unselectedIcon,
@@ -175,8 +181,8 @@ export function Autocomplete<Option extends AutocompleteOption>(
         {value.map((option, index) => {
           const label = getOptionLabel(option);
           const overrides = getChipProps({
-            query: currentQuery,
             index,
+            query: currentQuery,
             option,
           });
           return (
@@ -252,7 +258,7 @@ export function Autocomplete<Option extends AutocompleteOption>(
       <Listbox
         aria-label={listboxLabel as string}
         aria-labelledby={listboxLabelledBy}
-        {...getListboxProps(menuProps)}
+        {...getListboxProps(listboxProps)}
         fixedTo={containerRef}
       >
         <AutocompleteListboxChildren

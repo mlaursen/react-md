@@ -2,9 +2,9 @@
 import { useRef } from "react";
 import { isTypeEvent } from "../movement/utils.js";
 import {
-  type BaseComboboxOptions,
   type ComboboxImplementation,
   type ComboboxWidgetProps,
+  type ConfigurableComboboxOptions,
   useCombobox,
 } from "./useCombobox.js";
 import {
@@ -19,7 +19,7 @@ import {
 export type EditableComboboxOptions<
   ComboboxEl extends HTMLElement = HTMLInputElement,
   PopupEl extends HTMLElement = HTMLElement,
-> = BaseComboboxOptions<ComboboxEl, PopupEl>;
+> = ConfigurableComboboxOptions<ComboboxEl, PopupEl>;
 
 /**
  * @since 6.0.0
