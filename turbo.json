@@ -5,6 +5,9 @@
     "@react-md/material-icons#build": {
       "outputs": ["*.d.ts", "*.js"]
     },
+    "@react-md/codemod#build": {
+      "outputs": ["bin/**"]
+    },
     "build": {
       "dependsOn": ["^build"],
       "outputs": [

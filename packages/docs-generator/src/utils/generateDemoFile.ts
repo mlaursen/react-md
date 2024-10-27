@@ -19,6 +19,13 @@ import {
 import { type ReactElement } from "react";
 `;
 
+/**
+ * These packages fail with the `import * ` notation
+ */
+function isCjsOnly(key: string): boolean {
+  return /^autosuggest-highlight/.test(key);
+}
+
 export interface GenerateDemoFileOptions extends ParseCompleteDemoFileOptions {
   props: InlineDemoProps;
   demoOutDir: string;
@@ -57,10 +64,18 @@ export async function generateDemoFile(
     const sortedValues = alphaNumericSort([...values]);
     const key = sortedValues.join("_");
     importScope[name] = key;
-    sourceFile.addImportDeclaration({
-      namespaceImport: key,
-      moduleSpecifier: name,
-    });
+
+    if (isCjsOnly(name)) {
+      sourceFile.addImportDeclaration({
+        defaultImport: key,
+        moduleSpecifier: name,
+      });
+    } else {
+      sourceFile.addImportDeclaration({
+        namespaceImport: key,
+        moduleSpecifier: name,
+      });
+    }
   });
 
   sourceFile.addVariableStatement({

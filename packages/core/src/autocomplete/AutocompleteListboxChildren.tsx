@@ -54,6 +54,7 @@ export function AutocompleteListboxChildren<Option extends AutocompleteOption>(
           query,
           option,
           selected: isOptionSelected(option),
+          extractor: getOptionLabel,
         });
 
         return (

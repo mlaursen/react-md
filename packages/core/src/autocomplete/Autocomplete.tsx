@@ -186,6 +186,7 @@ export function Autocomplete<Option extends AutocompleteOption>(
             index,
             query: currentQuery,
             option,
+            extractor: getOptionLabel,
           });
           return (
             <AutocompleteChip

@@ -1,4 +1,10 @@
 {
   "extends": "./tsconfig.json",
-  "exclude": ["**/__tests__/**", "**/__testfixtures__/**", "*.mjs"]
+  "exclude": [
+    "**/__tests__/**",
+    "**/__testfixtures__/**",
+    "jest.config.ts",
+    "eslint.config.mjs",
+    "updateDocs.cjs"
+  ]
 }

@@ -29,7 +29,11 @@ import { type IconRotatorProps } from "../icon/IconRotator.js";
 import { type CircularProgressProps } from "../progress/CircularProgress.js";
 import { type ProgressTheme } from "../progress/types.js";
 import { type BaseSearchOptions } from "../searching/types.js";
-import { type PropsWithRef, type UseStateInitializer } from "../types.js";
+import {
+  type PropsWithRef,
+  type TextExtractor,
+  type UseStateInitializer,
+} from "../types.js";
 
 /**
  * If a autocomplete value is one of these types, no additional code is required
@@ -74,6 +78,7 @@ export interface AutocompleteGetOptionPropsOptions<
   query: string;
   option: Option;
   selected: boolean;
+  extractor: TextExtractor<Option>;
 }
 
 /**

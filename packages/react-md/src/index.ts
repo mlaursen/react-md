@@ -54,7 +54,6 @@ export * from "@react-md/core/CoreProviders";
 export * from "@react-md/core/cssUtils";
 export * from "@react-md/core/delegateEvent";
 export * from "@react-md/core/dialog/Dialog";
-export * from "@react-md/core/dialog/DialogContainer";
 export * from "@react-md/core/dialog/DialogContent";
 export * from "@react-md/core/dialog/DialogFooter";
 export * from "@react-md/core/dialog/DialogHeader";
