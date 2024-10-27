@@ -50,6 +50,13 @@ export interface OptionSelectedIconProps {
    * @defaultValue `false`
    */
   selectedIconAfter?: boolean;
+
+  /**
+   * Set this to `true` to remove selected icon behavior from the `Option`.
+   *
+   * @defaultValue `false`
+   */
+  disableSelectedIcon?: boolean;
 }
 
 /**
@@ -111,6 +118,7 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>(
       selectedIcon: propSelectedIcon,
       unselectedIcon: propUnselectedIcon,
       selectedIconAfter: propSelectedIconAfter,
+      disableSelectedIcon: propDisableSelectedIcon,
       textIconSpacingProps,
       leftAddon: propLeftAddon,
       leftAddonType,
@@ -128,12 +136,14 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>(
     const {
       selectOption,
       isOptionSelected,
-      disableSelectedIcon,
+      disableSelectedIcon: contextDisableSelectedIcon,
       selectedIcon: contextSelectedIcon,
       unselectedIcon: contextUnselectedIcon,
       selectedIconAfter: contextSelectedIconAfter,
     } = useListboxContext();
     const selectedIconAfter = propSelectedIconAfter ?? contextSelectedIconAfter;
+    const disableSelectedIcon =
+      propDisableSelectedIcon ?? contextDisableSelectedIcon;
     const selected = isOptionSelected(value);
     const selectedIcon = getIcon(
       "selected",

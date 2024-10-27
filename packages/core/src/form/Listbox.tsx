@@ -18,24 +18,11 @@ export type ListboxValue = string | number | null | Record<string, unknown>;
 
 /**
  * @since 6.0.0
- */
-export interface ListboxSelectedIconProps extends OptionSelectedIconProps {
-  /**
-   * Set this to `true` to update all the `Option` components to no longer
-   * render an icon while selected.
-   *
-   * @defaultValue `false`
-   */
-  disableSelectedIcon?: boolean;
-}
-
-/**
- * @since 6.0.0
  * @internal
  */
 export interface ListboxProps<Value extends ListboxValue>
   extends MenuProps,
-    ListboxSelectedIconProps {
+    OptionSelectedIconProps {
   nodeRef?: Ref<HTMLDivElement>;
 
   value: Value | readonly NonNullable<ListboxValue>[];
