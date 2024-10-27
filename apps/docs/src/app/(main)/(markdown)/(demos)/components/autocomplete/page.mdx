@@ -97,16 +97,6 @@ with the normal `onChange` event handler.
 
 ```
 
-# Allow Any Value
-
-The `Autocomplete` normally behave like a searchable select component where it
-requires a specific option to be selected and will reject all other values. If
-any value should be allowed, enable the `allowAnyValue` prop.
-
-```demo source="./AllowAnyValueExample.tsx"
-
-```
-
 # Disable Filtering
 
 There are some cases where the available options should only be suggestions and
@@ -135,6 +125,37 @@ This example will show how the filter function could be swapped out for the
 [fuzzySearch](/utils/fuzzy-search).
 
 ```demo source="./CustomFilterFunctionExample.tsx"
+
+```
+
+# Allow Any Value
+
+The `Autocomplete` normally behave like a searchable select component where it
+requires a specific option to be selected and will reject all other values. If
+any value should be allowed, enable the `allowAnyValue` prop.
+
+```demo source="./AllowAnyValueExample.tsx"
+
+```
+
+## Creatable
+
+An alternative to the `allowAnyValue` prop is to allow the user to create a new
+option with their typed value by manually selecting the dynamically generated
+option. There is nothing built-in to the `Autocomplete` component itself, but
+can be easily coded with a few changes:
+
+- ensure the provided `options` are a list of objects
+- provide a custom `filter` function that inserts a new option at the end (or
+  beginning) of the filtered items
+- optionally: also provide a custom `getOptionLabel` function to handle the
+  creatable item
+
+This example will show how to insert a `Add: "${query}"` option with the list of
+fruits. The `Add: "${query}"` is set as the `children` so that when the option
+is selected, only the `query` will be inserted into the input.
+
+```demo source="./CreatableAutocompleteExample.tsx"
 
 ```
 

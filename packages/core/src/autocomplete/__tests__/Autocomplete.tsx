@@ -14,7 +14,10 @@ import {
 } from "../../test-utils/index.js";
 import { SrOnly } from "../../typography/SrOnly.js";
 import { Autocomplete } from "../Autocomplete.js";
-import { noopAutocompleteFilter } from "../defaults.js";
+import {
+  defaultAutocompleteFilter,
+  noopAutocompleteFilter,
+} from "../defaults.js";
 import { type AutocompleteProps } from "../types.js";
 
 const FRUITS = [
@@ -392,6 +395,86 @@ describe("Autocomplete", () => {
     await user.click(document.body);
     expect(document.body).toHaveFocus();
     expect(autocomplete).toHaveValue("New Value");
+  });
+
+  it("should allow for a creatable version by inserting an option into the fultered result list", async () => {
+    const onValueChange = jest.fn();
+    function Test(): ReactElement {
+      return (
+        <Autocomplete
+          label="Fruit"
+          placeholder="Apple"
+          listboxLabel="Fruits"
+          options={FRUIT_OBJECTS}
+          onValueChange={onValueChange}
+          filter={(options) => {
+            const { list, extractor, query } = options;
+            const filtered = defaultAutocompleteFilter(options);
+            if (query && !list.some((option) => extractor(option) === query)) {
+              return [
+                ...filtered,
+                {
+                  label: query,
+                  value: query,
+                  children: `Add: "${query}"`,
+                },
+              ];
+            }
+
+            return filtered;
+          }}
+        />
+      );
+    }
+
+    const user = userEvent.setup();
+    rmdRender(<Test />);
+
+    const autocomplete = screen.getByRole("combobox", { name: "Fruit" });
+
+    await user.type(autocomplete, "A");
+    let listbox = screen.getByRole("listbox", { name: "Fruits" });
+    let options = within(listbox).getAllByRole("option");
+    expect(options).toHaveLength(3);
+    expect(options[0]).toHaveTextContent("Apple");
+    expect(options[1]).toHaveTextContent("Apricot");
+    expect(options[2]).toHaveTextContent('Add: "A"');
+
+    await user.type(autocomplete, " new fruit");
+    options = within(listbox).getAllByRole("option");
+    expect(options).toHaveLength(1);
+    expect(options[0]).toHaveTextContent('Add: "A new fruit"');
+    expect(() => screen.getByText("No Options")).toThrow();
+
+    await user.click(options[0]);
+    expect(listbox).not.toBeInTheDocument();
+    expect(onValueChange).toHaveBeenCalledWith({
+      label: "A new fruit",
+      value: "A new fruit",
+      children: 'Add: "A new fruit"',
+    });
+    expect(autocomplete).toHaveValue("A new fruit");
+
+    await user.click(autocomplete);
+    listbox = screen.getByRole("listbox", { name: "Fruits" });
+    options = within(listbox).getAllByRole("option");
+    expect(options).toHaveLength(FRUIT_OBJECTS.length);
+    expect(() =>
+      within(listbox).getByRole("option", { name: 'Add: "A new fruit"' })
+    ).toThrow();
+
+    await user.type(autocomplete, "[Backspace]t");
+    options = within(listbox).getAllByRole("option");
+    expect(options).toHaveLength(1);
+    expect(options[0]).toHaveTextContent('Add: "A new fruit"');
+    expect(options[0]).not.toHaveAttribute("aria-selected");
+    expect(autocomplete).toHaveValue("A new fruit");
+
+    await user.type(autocomplete, "[Backspace]");
+    await user.click(document.body);
+    expect(listbox).not.toBeInTheDocument();
+    // it should still consider the `A new fruit` selected and revert back to it
+    expect(autocomplete).toHaveValue("A new fruit");
   });
 
   describe("keyboard support", () => {

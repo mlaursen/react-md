@@ -60,6 +60,7 @@ export const defaultAutocompleteGetOptionProps = <T extends AutocompleteOption>(
       leftAddon,
       rightAddon,
       className,
+      children,
       disabled,
       height,
       textProps,
@@ -72,6 +73,7 @@ export const defaultAutocompleteGetOptionProps = <T extends AutocompleteOption>(
     } = option;
 
     return {
+      children,
       leftAddon,
       rightAddon,
       className,

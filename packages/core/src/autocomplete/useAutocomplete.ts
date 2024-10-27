@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useRef } from "react";
+import { useCallback, useMemo, useRef } from "react";
 import { useEditableCombobox } from "../form/useEditableCombobox.js";
 import {
   triggerManualChangeEvent,
@@ -29,6 +29,7 @@ import {
   enforceSelectedValue,
   getDefaultQuery,
   getDefaultValue,
+  isMultipleValues,
 } from "./utils.js";
 
 const noop = (): void => {
@@ -173,12 +174,13 @@ export function useAutocomplete<
   const entered = useRef(false);
   const initialQuery = useRef("");
   const prevAvailableOptions = useRef<readonly Option[] | null>(null);
+  const isQueryChange =
+    query && query !== initialQuery.current && entered.current;
+
   let availableOptions = prevAvailableOptions.current || values;
   if (
-    query &&
-    query !== initialQuery.current &&
+    isQueryChange &&
     filter !== noopAutocompleteFilter &&
-    entered.current &&
     !prevAvailableOptions.current
   ) {
     initialQuery.current = "";
@@ -197,27 +199,25 @@ export function useAutocomplete<
   //
   // These optimizations only start mattering when there are around 5000 items
   // selected...
-  const prevValue = useRef(value);
-  const selectedOptionsSet = useRef<ReadonlySet<Option> | null>(null);
-  if (filterSelected) {
-    if (prevValue.current !== value || selectedOptionsSet.current === null) {
-      prevValue.current = value;
-
-      let optionList: readonly Option[] = [];
-      if (value && typeof value === "object" && "length" in value) {
-        optionList = value;
-      } else if (value) {
-        optionList = [value];
-      }
-      selectedOptionsSet.current = new Set(optionList);
+  const selectedOptions = useMemo(() => {
+    if (!filterSelected) {
+      return null;
     }
 
-    const selectedOptions = selectedOptionsSet.current;
-    if (selectedOptions?.size) {
-      availableOptions = availableOptions.filter(
-        (option) => !selectedOptions.has(option)
-      );
+    let optionList: readonly Option[] = [];
+    if (isMultipleValues(value)) {
+      optionList = value;
+    } else if (value) {
+      optionList = [value];
     }
+
+    return new Set(optionList);
+  }, [filterSelected, value]);
+
+  if (filterSelected && selectedOptions?.size) {
+    availableOptions = availableOptions.filter(
+      (option) => !selectedOptions.has(option)
+    );
   }
 
   return {

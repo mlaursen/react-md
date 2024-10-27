@@ -199,3 +199,13 @@ export function enforceSelectedValue<Option extends AutocompleteOption>(
     triggerManualChangeEvent(comboboxRef.current, label);
   });
 }
+
+/**
+ * @since 6.0.0
+ * @internal
+ */
+export function isMultipleValues<Option extends AutocompleteOption>(
+  value: Option | null | readonly Option[]
+): value is readonly Option[] {
+  return !!value && typeof value === "object" && "length" in value;
+}

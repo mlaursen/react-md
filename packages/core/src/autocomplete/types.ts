@@ -346,7 +346,10 @@ export interface AutocompleteFilterAndListboxOptions<
    */
   checkboxes?: boolean;
 
-  /** @defaultValue `!checkboxes` */
+  /**
+   * @see {@link ListboxSelectedIconProps.disableSelectedIcon}
+   * @defaultValue `!checkboxes`
+   */
   disableSelectedIcon?: boolean;
 
   /**

@@ -5,7 +5,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
   aria-label="Fruits"
   aria-multiselectable="true"
   class="rmd-menu rmd-menu--elevated"
-  id="autocomplete-listbox-:rrq:"
+  id="autocomplete-listbox-:rub:"
   role="listbox"
   style="position: fixed; transform-origin: 50% 0; left: 16px; top: 0px; min-width: 0;"
   tabindex="-1"
@@ -16,7 +16,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
   >
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rs0:"
+      id="option-:ruh:"
       role="option"
       tabindex="-1"
     >
@@ -34,7 +34,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rs2:"
+      id="option-:ruj:"
       role="option"
       tabindex="-1"
     >
@@ -52,7 +52,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rs4:"
+      id="option-:rul:"
       role="option"
       tabindex="-1"
     >
@@ -70,7 +70,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rs6:"
+      id="option-:run:"
       role="option"
       tabindex="-1"
     >
@@ -88,7 +88,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rs8:"
+      id="option-:rup:"
       role="option"
       tabindex="-1"
     >
@@ -106,7 +106,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rsa:"
+      id="option-:rur:"
       role="option"
       tabindex="-1"
     >
@@ -124,7 +124,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rsc:"
+      id="option-:rut:"
       role="option"
       tabindex="-1"
     >
@@ -142,7 +142,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rse:"
+      id="option-:ruv:"
       role="option"
       tabindex="-1"
     >
@@ -160,7 +160,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rsg:"
+      id="option-:rv1:"
       role="option"
       tabindex="-1"
     >
@@ -178,7 +178,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rsi:"
+      id="option-:rv3:"
       role="option"
       tabindex="-1"
     >
@@ -196,7 +196,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rsk:"
+      id="option-:rv5:"
       role="option"
       tabindex="-1"
     >
@@ -221,7 +221,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
   aria-label="Fruits"
   aria-multiselectable="true"
   class="rmd-menu rmd-menu--elevated"
-  id="autocomplete-listbox-:rrq:"
+  id="autocomplete-listbox-:rub:"
   role="listbox"
   style="position: fixed; transform-origin: 50% 0; left: 16px; top: 0px; min-width: 0;"
   tabindex="-1"
@@ -233,7 +233,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     <li
       aria-selected="true"
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon rmd-option--selected"
-      id="option-:rs0:"
+      id="option-:ruh:"
       role="option"
       tabindex="-1"
     >
@@ -251,7 +251,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rs2:"
+      id="option-:ruj:"
       role="option"
       tabindex="-1"
     >
@@ -269,7 +269,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rs4:"
+      id="option-:rul:"
       role="option"
       tabindex="-1"
     >
@@ -287,7 +287,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rs6:"
+      id="option-:run:"
       role="option"
       tabindex="-1"
     >
@@ -305,7 +305,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rs8:"
+      id="option-:rup:"
       role="option"
       tabindex="-1"
     >
@@ -323,7 +323,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rsa:"
+      id="option-:rur:"
       role="option"
       tabindex="-1"
     >
@@ -341,7 +341,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rsc:"
+      id="option-:rut:"
       role="option"
       tabindex="-1"
     >
@@ -359,7 +359,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rse:"
+      id="option-:ruv:"
       role="option"
       tabindex="-1"
     >
@@ -377,7 +377,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rsg:"
+      id="option-:rv1:"
       role="option"
       tabindex="-1"
     >
@@ -395,7 +395,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rsi:"
+      id="option-:rv3:"
       role="option"
       tabindex="-1"
     >
@@ -413,7 +413,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rsk:"
+      id="option-:rv5:"
       role="option"
       tabindex="-1"
     >
@@ -437,14 +437,14 @@ exports[`Autocomplete multiselect should support multiselect behavior by setting
 <input
   aria-activedescendant=""
   aria-autocomplete="list"
-  aria-controls="autocomplete-listbox-:rnm:"
+  aria-controls="autocomplete-listbox-:rq7:"
   aria-expanded="false"
   aria-haspopup="listbox"
   autocapitalize="none"
   autocomplete="off"
   class="rmd-text-field rmd-text-field--placeholder-hidden"
   data-testid="container"
-  id="autocomplete-:rnl:"
+  id="autocomplete-:rq6:"
   placeholder=" "
   role="combobox"
   tabindex="0"
@@ -457,14 +457,14 @@ exports[`Autocomplete multiselect should support multiselect behavior by setting
 <input
   aria-activedescendant=""
   aria-autocomplete="list"
-  aria-controls="autocomplete-listbox-:rnm:"
+  aria-controls="autocomplete-listbox-:rq7:"
   aria-expanded="false"
   aria-haspopup="listbox"
   autocapitalize="none"
   autocomplete="off"
   class="rmd-text-field rmd-text-field--placeholder-hidden"
   data-testid="container"
-  id="autocomplete-:rnl:"
+  id="autocomplete-:rq6:"
   placeholder=" "
   role="combobox"
   tabindex="0"
