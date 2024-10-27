@@ -174,7 +174,11 @@ export function Autocomplete<Option extends AutocompleteOption>(
       <>
         {value.map((option, index) => {
           const label = getOptionLabel(option);
-          const overrides = getChipProps({ index, option });
+          const overrides = getChipProps({
+            query: currentQuery,
+            index,
+            option,
+          });
           return (
             <AutocompleteChip
               key={label}
@@ -252,6 +256,7 @@ export function Autocomplete<Option extends AutocompleteOption>(
         fixedTo={containerRef}
       >
         <AutocompleteListboxChildren
+          query={currentQuery}
           options={availableOptions}
           getOptionLabel={getOptionLabel}
           getOptionProps={getOptionProps}

@@ -61,7 +61,7 @@ importers:
         version: 14.2.15(@mdx-js/loader@3.1.0(acorn@8.13.0)(webpack@5.94.0(@swc/core@1.7.22(@swc/helpers@0.5.12))))
       '@next/third-parties':
         specifier: ^14.2.15
-        version: 14.2.15(next@14.2.15(@babel/core@7.25.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.3))(react@18.3.1)
+        version: 14.2.15(next@14.2.15(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.3))(react@18.3.1)
       '@react-md/code':
         specifier: workspace:*
         version: link:../../packages/code
@@ -71,6 +71,9 @@ importers:
       '@react-md/material-icons':
         specifier: workspace:*
         version: link:../../packages/material-icons
+      autosuggest-highlight:
+        specifier: ^3.3.4
+        version: 3.3.4
       cnbuilder:
         specifier: ^3.1.0
         version: 3.1.0
@@ -85,7 +88,7 @@ importers:
         version: 3.0.5
       next:
         specifier: ^14.2.15
-        version: 14.2.15(@babel/core@7.25.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.3)
+        version: 14.2.15(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.3)
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -102,6 +105,9 @@ importers:
       '@mlaursen/eslint-config':
         specifier: ^5.1.3
         version: 5.1.3(@testing-library/dom@10.4.0)(@typescript-eslint/eslint-plugin@8.8.1(@typescript-eslint/parser@8.8.1(eslint@9.13.0)(typescript@5.5.4))(eslint@9.13.0)(typescript@5.5.4))(eslint@9.13.0)(jest@29.7.0(@types/node@22.7.7)(ts-node@10.9.2(@swc/core@1.7.22(@swc/helpers@0.5.12))(@types/node@22.7.7)(typescript@5.5.4)))(typescript@5.5.4)
+      '@types/autosuggest-highlight':
+        specifier: ^3.2.3
+        version: 3.2.3
       '@types/js-cookie':
         specifier: ^3.0.6
         version: 3.0.6
@@ -2245,6 +2251,9 @@ packages:
   '@types/aria-query@5.0.4':
     resolution: {integrity: sha512-rfT93uj5s0PRL7EzccGMs3brplhcrghnDoV26NqKhCAS1hVo+WdNsPvE/yb6ilfr5hi2MEk6d5EWJTKdxg8jVw==}
 
+  '@types/autosuggest-highlight@3.2.3':
+    resolution: {integrity: sha512-8Mb21KWtpn6PvRQXjsKhrXIcxbSloGqNH50RntwGeJsGPW4xvNhfml+3kKulaKpO/7pgZfOmzsJz7VbepArlGQ==}
+
   '@types/babel__core@7.20.2':
     resolution: {integrity: sha512-pNpr1T1xLUc2l3xJKuPtsEky3ybxN3m4fJkknfIpTCTfIZCDW57oAg+EfCgIIp2rvCe0Wn++/FfodDS4YXxBwA==}
 
@@ -2726,6 +2735,9 @@ packages:
     hasBin: true
     peerDependencies:
       postcss: ^8.1.0
+
+  autosuggest-highlight@3.3.4:
+    resolution: {integrity: sha512-j6RETBD2xYnrVcoV1S5R4t3WxOlWZKyDQjkwnggDPSjF5L4jV98ZltBpvPvbkM1HtoSe5o+bNrTHyjPbieGeYA==}
 
   available-typed-arrays@1.0.7:
     resolution: {integrity: sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==}
@@ -5806,6 +5818,9 @@ packages:
   remark-stringify@11.0.0:
     resolution: {integrity: sha512-1OSmLd3awB/t8qdoEOMazZkNsfVTeY4fTsgzcQFdXNq8ToTN4ZGwrMnlda4K6smTFKD+GRV6O48i6Z4iKgPPpw==}
 
+  remove-accents@0.4.4:
+    resolution: {integrity: sha512-EpFcOa/ISetVHEXqu+VwI96KZBmq+a8LJnGkaeFw45epGlxIZz5dhEEnNZMsQXgORu3qaMoLX4qJCzOik6ytAg==}
+
   repeating@2.0.1:
     resolution: {integrity: sha512-ZqtSMuVybkISo2OWvqvm7iHSWngvdaW3IpsT9/uP8v4gMi591LY6h35wdOfvQdWCKFWZWm2Y1Opp4kV7vQKT6A==}
     engines: {node: '>=0.10.0'}
@@ -8320,9 +8335,9 @@ snapshots:
   '@next/swc-win32-x64-msvc@14.2.15':
     optional: true
 
-  '@next/third-parties@14.2.15(next@14.2.15(@babel/core@7.25.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.3))(react@18.3.1)':
+  '@next/third-parties@14.2.15(next@14.2.15(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.3))(react@18.3.1)':
     dependencies:
-      next: 14.2.15(@babel/core@7.25.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.3)
+      next: 14.2.15(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.3)
       react: 18.3.1
       third-party-capital: 1.0.20
 
@@ -8677,6 +8692,8 @@ snapshots:
   '@types/argparse@1.0.38': {}
 
   '@types/aria-query@5.0.4': {}
+
+  '@types/autosuggest-highlight@3.2.3': {}
 
   '@types/babel__core@7.20.2':
     dependencies:
@@ -9271,6 +9288,10 @@ snapshots:
       picocolors: 1.1.1
       postcss: 8.4.47
       postcss-value-parser: 4.2.0
+
+  autosuggest-highlight@3.3.4:
+    dependencies:
+      remove-accents: 0.4.4
 
   available-typed-arrays@1.0.7:
     dependencies:
@@ -12329,7 +12350,7 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  next@14.2.15(@babel/core@7.25.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.3):
+  next@14.2.15(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.3):
     dependencies:
       '@next/env': 14.2.15
       '@swc/helpers': 0.5.5
@@ -12339,7 +12360,7 @@ snapshots:
       postcss: 8.4.31
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
-      styled-jsx: 5.1.1(@babel/core@7.25.8)(react@18.3.1)
+      styled-jsx: 5.1.1(react@18.3.1)
     optionalDependencies:
       '@next/swc-darwin-arm64': 14.2.15
       '@next/swc-darwin-x64': 14.2.15
@@ -13178,6 +13199,8 @@ snapshots:
       mdast-util-to-markdown: 2.1.0
       unified: 11.0.5
 
+  remove-accents@0.4.4: {}
+
   repeating@2.0.1:
     dependencies:
       is-finite: 1.1.0
@@ -13602,12 +13625,10 @@ snapshots:
     dependencies:
       inline-style-parser: 0.2.4
 
-  styled-jsx@5.1.1(@babel/core@7.25.8)(react@18.3.1):
+  styled-jsx@5.1.1(react@18.3.1):
     dependencies:
       client-only: 0.0.1
       react: 18.3.1
-    optionalDependencies:
-      '@babel/core': 7.25.8
 
   stylehacks@7.0.4(postcss@8.4.47):
     dependencies:

@@ -13,6 +13,7 @@ import {
 export interface AutocompleteListboxChildrenProps<
   Option extends AutocompleteOption,
 > {
+  query: string;
   options: readonly Option[];
   getOptionLabel: AutocompleteGetOptionLabel<Option>;
   getOptionProps: AutocompleteGetOptionProps<Option>;
@@ -32,6 +33,7 @@ export function AutocompleteListboxChildren<Option extends AutocompleteOption>(
 ): ReactElement {
   const {
     children,
+    query,
     options: availableOptions,
     noOptionsChildren,
     getOptionLabel,
@@ -45,6 +47,7 @@ export function AutocompleteListboxChildren<Option extends AutocompleteOption>(
       {availableOptions.map((option, index) => {
         const label = getOptionLabel(option);
         const optionProps = getOptionProps({
+          query,
           index,
           option,
         });
