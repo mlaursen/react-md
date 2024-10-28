@@ -23,6 +23,7 @@ const noop = (): void => {
  * unselected options have the same alignment.
  *
  * @since 6.0.0
+ * @defaultValue `<span className="rmd-icon rmd-icon--svg />`
  */
 export const DEFAULT_OPTION_UNSELECTED_ICON = (
   <span className={icon({ type: "svg" })} />
@@ -69,8 +70,35 @@ export interface OptionProps extends MenuItemProps, OptionSelectedIconProps {
    * @defaultValue `"option"`
    */
   role?: string;
-
   value: string | number | Record<string, unknown>;
+
+  /**
+   * An optional className to apply only while the current option is selected to
+   * override any global default selected styles. It is recommended to update
+   * the `react-md.$form-option-selected-styles` map first to change selected
+   * style globally and then any one-off customizations through this prop.
+   *
+   * @example Global Change
+   * ```scss
+   * @use "@react-md/core" with (
+   *   // these are the defaults
+   *   $form-option-selected-styles: (
+   *     --rmd-icon-color: currentcolor,
+   *     background-color: colors.$blue-900,
+   *     color: colors.$white,
+   *   ),
+   *
+   *   // so if you wanted to remove the styles globally
+   *   $form-option-selected-styles: (),
+   * );
+   * ```
+   *
+   * This really results in something like:
+   * ```ts
+   * className="rmd-list-item ... rmd-menu-item ... rmd-option rmd-option--selected ${selectedClassName}"
+   * ```
+   */
+  selectedClassName?: string;
 
   /**
    * Since the `selectedIcon`/`unselectedIcon` are rendered as
@@ -104,7 +132,7 @@ export interface OptionProps extends MenuItemProps, OptionSelectedIconProps {
  *
  * @since 6.0.0 removed the `selected` and `focused` props.
  * @since 6.0.0 Added the `value`, `selectedIcon`, `unselectedIcon`,
- * `selectedIconAfter`, and `iconSpacingProps` props.
+ * `selectedIconAfter`, `iconSpacingProps`, and `selectedClassName` props.
  */
 export const Option = forwardRef<HTMLLIElement, OptionProps>(
   function Option(props, ref) {
@@ -115,6 +143,7 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>(
       children: propChildren,
       onClick = noop,
       className,
+      selectedClassName,
       selectedIcon: propSelectedIcon,
       unselectedIcon: propUnselectedIcon,
       selectedIconAfter: propSelectedIconAfter,
@@ -206,7 +235,12 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>(
           onClick(event);
           selectOption(value);
         }}
-        className={option({ icon: !!icon, selected, className })}
+        className={option({
+          icon: !!icon,
+          selected,
+          selectedClassName,
+          className,
+        })}
         secondaryText={secondaryText}
         height={height}
         leftAddon={leftAddon}
