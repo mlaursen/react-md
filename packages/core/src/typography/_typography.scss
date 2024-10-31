@@ -3,42 +3,55 @@
 @use "../media-queries/media-queries";
 @use "../utils";
 
+// Set this to `true` to disable the styles for the `TextContainer` component
 $disable-text-container: false !default;
+
+// Set this to `true` to disable the `headline-1` typography styles
 $disable-headline-1: false !default;
+
+// Set this to `true` to disable the `headline-2` typography styles
 $disable-headline-2: false !default;
+
+// Set this to `true` to disable the `headline-3` typography styles
 $disable-headline-3: false !default;
+
+// Set this to `true` to disable the `headline-4` typography styles
 $disable-headline-4: false !default;
+
+// Set this to `true` to disable the `headline-5` typography styles
 $disable-headline-5: false !default;
+
+// Set this to `true` to disable the `headline-6` typography styles
 $disable-headline-6: false !default;
+
+// Set this to `true` to disable the `subtitle-1` typography styles
 $disable-subtitle-1: false !default;
+
+// Set this to `true` to disable the `subtitle-2` typography styles
 $disable-subtitle-2: false !default;
+
+// Set this to `true` to disable the `body-1` typography styles
 $disable-body-1: false !default;
+
+// Set this to `true` to disable the `body-2` typography styles
 $disable-body-2: false !default;
+
+// Set this to `true` to disable the `caption` typography styles
 $disable-caption: false !default;
+
+// Set this to `true` to disable the `overline` typography styles
 $disable-overline: false !default;
 
-/// A small utility function to get the letter spacing based on tracking and
-/// font-size
-///
-/// @access private
-/// @param {Number} tracking - The tracking to use
-/// @param {Number} font-size - The font size to use
-/// @return {Number} the letter spacing value in em
+// A small utility function to get the letter spacing based on tracking and
+// font-size
+//
+// @internal
+// @param {number} tracking - The tracking to use
+// @param {number} font-size - The font size to use
+// @returns {number} the letter spacing value in em
 @function get-letter-spacing($tracking, $font-size) {
   @return math.div($tracking, $font-size * 16) * 1em;
 }
-
-/// The font family to use throughout the entire application.
-///
-/// @example scss - Changing the Font
-///   @use "react-md" with (
-///     $font-family: string.unquote("'Open Sans', Koulen, 'Roboto Flex', sans-serif")
-///   ):
-///
-///   @include react-md.typography;
-///
-/// @type String
-$font-family: Roboto, sans-serif !default;
 
 $font-weight-thin: 100 !default;
 $font-weight-light: 300 !default;
@@ -48,19 +61,19 @@ $font-weight-bold: 700 !default;
 $font-weight-semi-bold: 800 !default;
 $font-weight-black: 900 !default;
 
-/// A Map of all the font weights.
-///
-/// @type Map
-/// @prop {Number} thin [$font-weight-thin] - The thin font weight value.
-/// @prop {Number} light [$font-weight-light] - The light font weight value.
-/// @prop {Number} regular [$font-weight-regular] - The regular font weight
-/// value.
-/// @prop {Number} medium [$font-weight-medium] - The medium font weight
-/// value.
-/// @prop {Number} bold [$font-weight-bold] - The bold font weight value.
-/// @prop {Number} semi-bold [$font-weight-semi-bold] - The semi-bold font
-/// weight value.
-/// @prop {Number} black [$font-weight-black] - The black font weight value.
+// A Map of all the font weights.
+//
+// @type Map
+// @prop {number} thin [$font-weight-thin] - The thin font weight value.
+// @prop {number} light [$font-weight-light] - The light font weight value.
+// @prop {number} regular [$font-weight-regular] - The regular font weight
+// value.
+// @prop {number} medium [$font-weight-medium] - The medium font weight
+// value.
+// @prop {number} bold [$font-weight-bold] - The bold font weight value.
+// @prop {number} semi-bold [$font-weight-semi-bold] - The semi-bold font
+// weight value.
+// @prop {number} black [$font-weight-black] - The black font weight value.
 $font-weights: (
   thin: $font-weight-thin,
   light: $font-weight-light,
@@ -76,10 +89,27 @@ $text-decorations: underline overline line-through none !default;
 $text-transforms: capitalize uppercase lowercase !default;
 $font-styles: normal italic oblique !default;
 
-/// The base styles for typography.
-/// @type Map
+// The font family to use throughout the entire application.
+//
+// @example Changing the Font
+// ```scss
+// @use "react-md" with (
+//   $font-family: string.unquote("'Open Sans', Koulen, 'Roboto Flex', sans-serif")
+// ):
+//
+// @include react-md.typography;
+// ```
+//
+// @type string
+$font-family: Roboto, sans-serif !default;
+$font-size: 1rem !default;
+$font-weight: $font-weight-regular !default;
+$line-height: 1.5rem !default;
+
+// The base styles for typography.
+// @type Map
 $base-recommended-font-styles: (
-  font-family: $font-family,
+  font-family: var(--rmd-font-family),
   overflow: inherit,
   overflow-wrap: break-word,
   text-overflow: inherit,
@@ -248,7 +278,14 @@ $text-container-padding: 1rem !default;
 // characters + left and right padding so the text is _really_ 65ch
 $text-line-length: calc(65ch + $text-container-padding * 2) !default;
 
-$typography-variables: (line-length, text-container-padding);
+$typography-variables: (
+  line-length,
+  text-container-padding,
+  font-size,
+  font-family,
+  font-weight,
+  line-height
+);
 
 @function typography-get-var($name, $fallback: null) {
   $var: utils.get-var-name($typography-variables, $name, "typography");
@@ -382,6 +419,19 @@ $typography-variables: (line-length, text-container-padding);
 }
 
 @mixin typography-variables {
+  @include typography-set-var(font-family, $font-family);
+  @if $font-size {
+    @include typography-set-var(font-size, $font-size);
+  }
+
+  @if $font-weight {
+    @include typography-set-var(font-weight, $font-weight);
+  }
+
+  @if $line-height {
+    @include typography-set-var(line-height, $line-height);
+  }
+
   @if not $disable-text-container {
     @include typography-set-var(line-length, $text-line-length);
     @include typography-set-var(
@@ -389,6 +439,13 @@ $typography-variables: (line-length, text-container-padding);
       $text-container-padding
     );
   }
+}
+
+@mixin typography-html-body-styles {
+  @include typography-use-var(font-family);
+  @include typography-use-var(font-size);
+  @include typography-use-var(font-weight);
+  @include typography-use-var(line-height);
 }
 
 @mixin typography-styles($disable-layer: false) {

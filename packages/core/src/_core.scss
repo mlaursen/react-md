@@ -118,16 +118,26 @@ $_layer-order: (
   utils
 );
 
+// A simple CSS reset for react-md that:
+// - applies box-sizing: border-box to everything for easier positioning and
+//   calculations
+// - updates the `html` and `body` to be full height without any padding or
+//   margin to ensure your app can utilize the full viewport
+// - applies the root background, text color, and typography to the `html`
+//   element
+// - ensures touch events are bubbleable to the `body` element on iOS for
+//   "close on outside click" behavior
+// - remove the `-webkit-tap-highlight-color` for touch devices
+//
+// This should not be used when using the {@link styles} mixin since it is
+// included by default.
 @mixin css-reset {
-  // setting everything to border-box for easier positioning and calculations
   *,
   *::before,
   *::after {
     box-sizing: border-box;
   }
 
-  // always force full height and remove any spacing the browser might add to
-  // ensure your app can use the full viewport
   html,
   body {
     height: 100%;
@@ -135,23 +145,30 @@ $_layer-order: (
     padding: 0;
   }
 
-  html {
+  body {
     @include theme.theme-use-var(background-color);
     @include theme.theme-use-var(color, text-primary-color);
+    @include typography.typography-html-body-styles;
 
-    font-family: typography.$font-family;
-  }
+    &:has(.rmd-touch-mode) {
+      // stylelint-disable order/properties-alphabetical-order
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
-  body.touch-mode {
-    // stylelint-disable order/properties-alphabetical-order
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-
-    // this allows for click events to be bubble-able on iOS to the root
-    // document. Without this, all the `onOutsideClick` behavior won't work.
-    cursor: pointer;
+      // this allows for click events to be bubbleable on iOS to the root
+      // document
+      cursor: pointer;
+    }
   }
 }
 
+// Provides all the css utility classes for react-md. Not including these styles
+// will cause most components to look incorrect.
+//
+// This should not be used when using the {@link styles} mixin since it is
+// included by default.
+//
+// @param disable-layer [false] - Set this to `true` to prevent the css utils
+// from being wrapped in `@layer utils { ...styles... }`
 @mixin css-utils($disable-layer: false) {
   @include utils.optional-layer(utils, $disable-layer) {
     .rmd-display-none {
@@ -314,6 +331,17 @@ $_layer-order: (
   }
 }
 
+// Used to apply all the light theme variables at once and will only include
+// features/components that have not been disabled.
+//
+// @example
+// ```scss
+// @use "@react-md/core";
+//
+// .light-theme {
+//   @include core.use-light-theme;
+// }
+// ```
 @mixin use-light-theme {
   @include theme.use-light-theme-colors;
   @include interaction.use-light-surface;
@@ -329,6 +357,17 @@ $_layer-order: (
   @include badge.use-light-theme;
 }
 
+// Used to apply all the dark theme variables at once and will only include
+// features/components that have not been disabled.
+//
+// @example
+// ```scss
+// @use "@react-md/core";
+//
+// .dark-theme {
+//   @include core.use-dark-theme;
+// }
+// ```
 @mixin use-dark-theme {
   @include theme.use-dark-theme-colors;
   @include interaction.use-dark-surface;
@@ -344,6 +383,25 @@ $_layer-order: (
   @include badge.use-dark-theme;
 }
 
+// Used to apply all the variables at once and will only include
+// features/components that have not been disabled.
+//
+// This should only be used when {@link theme.$disable-default-root-theme} has
+// been set to `true` since it is included in the {@link styles} mixin by
+// default.
+//
+// @example
+// ```scss
+// @use "@react-md/core" with (
+//   $disable-default-root-theme: true
+// );
+//
+// @include core.styles;
+//
+// :root {
+//   @include core.variables;
+// }
+// ```
 @mixin variables {
   @include theme.theme-variables;
   @include app-bar.variables;
@@ -377,6 +435,28 @@ $_layer-order: (
   @include typography.typography-variables;
 }
 
+// Generates all the styles for react-md respecting all feature flags.
+//
+// @example
+// ```scss
+// @use "@react-md/core";
+//
+// @include core.styles;
+// ```
+//
+// @param disable-layer [false] - Set this to `true` if all the react-md styles
+// should not be wrapped in a [css layer](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer).
+// You normally want this so it is easier to override react-md styles.
+// @param disable-layer-order [$disable-layer] - Set this to `true` to remove
+// the layer ordering.
+// @param disable-reset [false] - Set this to `true` to prevent the
+// {@link css-reset} from being applied. This is only useful if you want to call
+// the `css-reset` yourself since most components will not work correctly
+// without this reset.
+// @param disable-css-utils - Set this to `true` to prevent the
+// {@link css-utils} from being applied. This is only useful if you want to call
+// the `css-utils` yourself since most components will not work correctly
+// without this reset.
 @mixin styles(
   $disable-layer: false,
   $disable-layer-order: $disable-layer,

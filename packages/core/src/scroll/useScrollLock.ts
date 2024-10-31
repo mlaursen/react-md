@@ -2,6 +2,12 @@
 import { useEffect } from "react";
 import { getScrollbarWidth } from "./getScrollbarWidth.js";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-scrollbar-size"?: string;
+  }
+}
+
 export const SCROLLBAR_SIZE_VAR = "--rmd-scrollbar-size";
 
 // this is really just so that nested dialogs will work correctly. Only the

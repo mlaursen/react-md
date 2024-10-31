@@ -53,13 +53,13 @@ export interface UserInteractionModeProviderProps {
  * to update component functionality and applying the following class names to
  * the `document.body`:
  *
- * - `"mouse-mode"`
- * - `"keyboard-mode"`
- * - `"touch-mode"`
+ * - `"rmd-mouse-mode"`
+ * - `"rmd-keyboard-mode"`
+ * - `"rmd-touch-mode"`
  *
  * Within `react-md`, these classes are used for the following behavior:
- * - only display `:focus` outlines while in `"keyboard-mode"`
- * - do not display `:hover` effects while in `"touch-mode"`
+ * - only display `:focus` outlines while in `"rmd-keyboard-mode"`
+ * - do not display `:hover` effects while in `"rmd-touch-mode"`
  *
  * @example Mount at the root of your app
  * ```tsx
@@ -164,7 +164,7 @@ export function UserInteractionModeProvider(
       isTouchContextMenu.current = true;
     };
 
-    const className = `${mode}-mode`;
+    const className = `rmd-${mode}-mode`;
     document.body.classList.add(className);
     window.addEventListener("touchstart", handleTouchStart, true);
     if (mode === "mouse") {
