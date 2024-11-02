@@ -24,6 +24,7 @@ import {
   DEFAULT_DIALOG_TIMEOUT,
   dialog,
   dialogContainer,
+  type DialogWidth,
   type DialogType,
 } from "./styles.js";
 
@@ -47,6 +48,12 @@ export interface BaseDialogProps
    * @defaultValue `"centered"`
    */
   type?: DialogType;
+
+  /**
+   * @see {@link DialogWidth}
+   * @defaultValue `"auto"`
+   */
+  width?: DialogWidth;
 
   /**
    * @defaultValue `"dialog"`
@@ -236,6 +243,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
       modal = false,
       role = modal ? "alertdialog" : "dialog",
       type = "centered",
+      width,
       tabIndex = -1,
       visible,
       onRequestClose,
@@ -318,6 +326,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
       classNames,
       className: dialog({
         type,
+        width,
         fixed,
         outline: !disableFocusOutline,
         disableBoxShadow: isChildVisible,

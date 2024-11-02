@@ -30,6 +30,21 @@ A dialog can span the entire viewport by setting the `type` to `"full-page"`.
 
 ```
 
+# Dialog Widths
+
+The `Dialog` can be updated to enforce a specific width instead of relying on
+the size of the content using the `width` prop. The available values are:
+
+- `"auto"` (default) - width is based on content
+- `"small"` - uses `var(--rmd-dialog-small-width)` and configured by `core.$dialog-small-width`
+- `"medium"` - uses `var(--rmd-dialog-medium-width)` and configured by `core.$dialog-medium-width`
+- `"large"` - uses `var(--rmd-dialog-large-width)` and configured by `core.$dialog-large-width`
+- `"extra-large"` - uses `var(--rmd-dialog-extra-large-width)` and configured by `core.$dialog-extra-large-width`
+
+```demo source="./DialogWidths.tsx"
+
+```
+
 # Modal Dialog
 
 The default behavior for the dialog is to allow the user to click the overlay to

@@ -27,6 +27,21 @@ declare module "react" {
 export type DialogType = "full-page" | "centered" | "custom";
 
 /**
+ * This can be used to enforce a specific width for dialogs instead of relying
+ * on the size of the content to determine the width. The width will also ensure
+ * that it does not overflow based on the viewport width and margins applied.
+ *
+ * For example: if the `width="extra-large"` and the total viewport size is
+ * `600px`, the dialog width would be `420px` since there is a default `80px`
+ * margin to the left and right of the dialog. If the user expands the browser,
+ * the dialog width will continue to grow until it reaches the `extra-large`
+ * width and stop growing from that point.
+ *
+ * @since 6.0.0
+ */
+export type DialogWidth = "auto" | "small" | "medium" | "large" | "extra-large";
+
+/**
  * @since 6.0.0
  */
 export interface DialogContainerClassNameOptions {
@@ -61,6 +76,11 @@ export interface DialogClassNameOptions {
   type?: DialogType;
 
   /**
+   * @defaultValue `"auto"`
+   */
+  width?: DialogWidth;
+
+  /**
    * @defaultValue `false`
    */
   fixed?: boolean;
@@ -83,6 +103,7 @@ export interface DialogClassNameOptions {
 export function dialog(options: DialogClassNameOptions = {}): string {
   const {
     type = "centered",
+    width,
     fixed = false,
     outline = type === "full-page",
     disableBoxShadow,
@@ -96,6 +117,10 @@ export function dialog(options: DialogClassNameOptions = {}): string {
       centered: type === "centered",
       "full-page": type === "full-page",
       "no-box-shadow": type === "centered" && disableBoxShadow,
+      "s-width": width === "small",
+      "m-width": width === "medium",
+      "l-width": width === "large",
+      "xl-width": width === "extra-large",
     }),
     className
   );

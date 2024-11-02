@@ -32,6 +32,10 @@ $color: if(
 ) !default;
 
 $min-width: 17.5rem !default;
+$small-width: 25rem !default;
+$medium-width: 40rem !default;
+$large-width: 60rem !default;
+$extra-large-width: 80rem !default;
 $horizontal-margin: 2.5rem !default;
 $vertical-margin: 1.5rem !default;
 $transition-distance: 1.875rem !default;
@@ -56,7 +60,12 @@ $variables: (
   header-padding,
   header-padding-bottom,
   content-padding,
-  footer-padding
+  footer-padding,
+  width,
+  small-width,
+  medium-width,
+  large-width,
+  extra-large-width
 );
 
 @function get-var($name, $fallback: null) {
@@ -85,6 +94,19 @@ $variables: (
     @include set-var(horizontal-margin, $horizontal-margin);
     @include set-var(vertical-margin, $vertical-margin);
     @include set-var(z-index, $z-index);
+
+    @if $small-width {
+      @include set-var(small-width, $small-width);
+    }
+    @if $medium-width {
+      @include set-var(medium-width, $medium-width);
+    }
+    @if $large-width {
+      @include set-var(large-width, $large-width);
+    }
+    @if $extra-large-width {
+      @include set-var(extra-large-width, $extra-large-width);
+    }
 
     @if not $disable-header {
       @include set-var(header-padding, $header-padding);
@@ -136,6 +158,31 @@ $variables: (
 
         &--centered {
           @include use-var(min-width);
+          @include use-var(width);
+        }
+
+        @if $small-width {
+          &--s-width {
+            @include set-var(width, get-var(small-width));
+          }
+        }
+
+        @if $medium-width {
+          &--m-width {
+            @include set-var(width, get-var(medium-width));
+          }
+        }
+
+        @if $large-width {
+          &--l-width {
+            @include set-var(width, get-var(large-width));
+          }
+        }
+
+        @if $extra-large-width {
+          &--xl-width {
+            @include set-var(width, get-var(extra-large-width));
+          }
         }
 
         &--full-page {

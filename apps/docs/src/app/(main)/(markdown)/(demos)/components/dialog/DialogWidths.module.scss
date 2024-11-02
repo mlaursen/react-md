@@ -1,0 +1,16 @@
+@use "@react-md/core" with (
+  $dialog-small-width: 25rem,
+  $dialog-medium-width: 40rem,
+  $dialog-large-width: 60rem,
+  $dialog-extra-large-width: 80rem
+);
+
+.container {
+  @include core.dialog-set-var(small-width, core.$dialog-small-width);
+  @include core.dialog-set-var(medium-width, core.$dialog-medium-width);
+  @include core.dialog-set-var(large-width, core.$dialog-large-width);
+  @include core.dialog-set-var(
+    extra-large-width,
+    core.$dialog-extra-large-width
+  );
+}
