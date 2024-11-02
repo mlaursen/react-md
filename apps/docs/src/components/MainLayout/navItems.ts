@@ -78,6 +78,11 @@ export const navItems: readonly NavigationItem[] = [
       },
       {
         type: "route",
+        href: "/button-unstyled",
+        children: "ButtonUnstyled",
+      },
+      {
+        type: "route",
         href: "/checkbox",
         children: "Checkbox",
       },
@@ -121,6 +126,18 @@ export const navItems: readonly NavigationItem[] = [
         href: "/text-field",
         children: "TextField",
       },
+      { type: "subheader", children: "Form" },
+      {
+        type: "route",
+        href: "/form",
+        children: "Form",
+      },
+      {
+        type: "route",
+        href: "/form-message",
+        children: "FormMessage",
+      },
+
       { type: "subheader", children: "Presentation" },
       {
         type: "route",
@@ -149,23 +166,18 @@ export const navItems: readonly NavigationItem[] = [
       },
       {
         type: "route",
-        href: "/text-icon-spacing",
-        children: "TextIconSpacing",
-      },
-      {
-        type: "route",
         href: "/icon-rotator",
         children: "IconRotator",
       },
       {
         type: "route",
-        href: "/material-icons-and-symbols",
-        children: "Material Icons/Symbols",
+        href: "/list",
+        children: "List",
       },
       {
         type: "route",
-        href: "/list",
-        children: "List",
+        href: "/material-icons-and-symbols",
+        children: "Material Icons/Symbols",
       },
       {
         type: "route",
@@ -179,6 +191,16 @@ export const navItems: readonly NavigationItem[] = [
       },
       {
         type: "route",
+        href: "/text-container",
+        children: "TextContainer",
+      },
+      {
+        type: "route",
+        href: "/text-icon-spacing",
+        children: "TextIconSpacing",
+      },
+      {
+        type: "route",
         href: "/tooltip",
         children: "Tooltip",
       },
@@ -187,52 +209,17 @@ export const navItems: readonly NavigationItem[] = [
         href: "/typography",
         children: "Typography",
       },
-      {
-        type: "route",
-        href: "/text-container",
-        children: "TextContainer",
-      },
-      { type: "subheader", children: "Feedback" },
-      {
-        type: "route",
-        href: "/dialog",
-        children: "Dialog",
-      },
-      {
-        type: "route",
-        href: "/progress",
-        children: "Progress",
-      },
-      {
-        type: "route",
-        href: "/overlay",
-        children: "Overlay",
-      },
-      {
-        type: "route",
-        href: "/sheet",
-        children: "Sheet",
-      },
-      {
-        type: "route",
-        href: "/skeleton-placeholder",
-        children: "SkeletonPlaceholder",
-      },
-      {
-        type: "route",
-        href: "/snackbar",
-        children: "Snackbar",
-      },
+
       { type: "subheader", children: "Navigation" },
+      {
+        type: "route",
+        href: "/carousel",
+        children: "Carousel",
+      },
       {
         type: "route",
         href: "/link",
         children: "Link",
-      },
-      {
-        type: "route",
-        href: "/navigation",
-        children: "Navigation",
       },
       {
         type: "route",
@@ -241,29 +228,57 @@ export const navItems: readonly NavigationItem[] = [
       },
       {
         type: "route",
-        href: "/tabs",
-        children: "Tabs",
+        href: "/navigation",
+        children: "Navigation",
       },
       {
         type: "route",
-        href: "/carousel",
-        children: "Carousel",
+        href: "/tabs",
+        children: "Tabs",
       },
       {
         type: "route",
         href: "/tree",
         children: "Tree",
       },
-      { type: "subheader", children: "Layout" },
+
+      { type: "subheader", children: "Feedback" },
       {
         type: "route",
-        href: "/box",
-        children: "Box",
+        href: "/dialog",
+        children: "Dialog",
       },
+      {
+        type: "route",
+        href: "/overlay",
+        children: "Overlay",
+      },
+      {
+        type: "route",
+        href: "/progress",
+        children: "Progress",
+      },
+      {
+        type: "route",
+        href: "/sheet",
+        children: "Sheet",
+      },
+      {
+        type: "route",
+        href: "/snackbar",
+        children: "Snackbar",
+      },
+
+      { type: "subheader", children: "Layout" },
       {
         type: "route",
         href: "/app-bar",
         children: "AppBar",
+      },
+      {
+        type: "route",
+        href: "/box",
+        children: "Box",
       },
       {
         type: "route",
@@ -280,47 +295,29 @@ export const navItems: readonly NavigationItem[] = [
         href: "/window-splitter",
         children: "WindowSplitter",
       },
-      { type: "subheader", children: "Providers" },
+
+      { type: "subheader", children: "Utils" },
       {
         type: "route",
-        href: "/core-providers",
-        children: "CoreProviders",
+        href: "/portal",
+        children: "Portal",
       },
       {
         type: "route",
-        href: "/app-size-provider",
-        children: "AppSizeProvider",
+        href: "/skip-to-main-content",
+        children: "SkipToMainContent",
       },
       {
         type: "route",
-        href: "/ssr-provider",
-        children: "SsrProvider",
+        href: "/sr-only",
+        children: "SrOnly",
       },
       {
         type: "route",
-        href: "/portal-container-provider",
-        children: "PortalContainerProvider",
+        href: "/suspense",
+        children: "Suspense",
       },
-      {
-        type: "route",
-        href: "/user-interaction-mode-provider",
-        children: "UserInteractionModeProvider",
-      },
-      {
-        type: "route",
-        href: "/color-scheme-provider",
-        children: "ColorSchemeProvider",
-      },
-      {
-        type: "route",
-        href: "/theme-provider",
-        children: "ThemeProvider",
-      },
-      {
-        type: "route",
-        href: "/writing-direction-provider",
-        children: "WritingDirectionProvider",
-      },
+
       { type: "subheader", children: "Transitions" },
       {
         type: "route",
@@ -344,34 +341,55 @@ export const navItems: readonly NavigationItem[] = [
       },
       {
         type: "route",
+        href: "/skeleton-placeholder",
+        children: "SkeletonPlaceholder",
+      },
+      {
+        type: "route",
         href: "/slide",
         children: "Slide",
       },
-      { type: "subheader", children: "Utils" },
+
+      { type: "subheader", children: "Providers" },
       {
         type: "route",
-        href: "/button-unstyled",
-        children: "ButtonUnstyled",
+        href: "/app-size-provider",
+        children: "AppSizeProvider",
       },
       {
         type: "route",
-        href: "/portal",
-        children: "Portal",
+        href: "/color-scheme-provider",
+        children: "ColorSchemeProvider",
       },
       {
         type: "route",
-        href: "/skip-to-main-content",
-        children: "SkipToMainContent",
+        href: "/core-providers",
+        children: "CoreProviders",
       },
       {
         type: "route",
-        href: "/suspense",
-        children: "Suspense",
+        href: "/portal-container-provider",
+        children: "PortalContainerProvider",
       },
       {
         type: "route",
-        href: "/sr-only",
-        children: "SrOnly",
+        href: "/ssr-provider",
+        children: "SsrProvider",
+      },
+      {
+        type: "route",
+        href: "/theme-provider",
+        children: "ThemeProvider",
+      },
+      {
+        type: "route",
+        href: "/user-interaction-mode-provider",
+        children: "UserInteractionModeProvider",
+      },
+      {
+        type: "route",
+        href: "/writing-direction-provider",
+        children: "WritingDirectionProvider",
       },
     ],
   },
