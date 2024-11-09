@@ -1,5 +1,3 @@
-// this was disabled since it removes the nice type infer behavior based on the value/options
-/* eslint-disable @typescript-eslint/unified-signatures */
 "use client";
 import { type ReactElement } from "react";
 import { Listbox } from "../form/Listbox.js";

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/unified-signatures */
 import { pascalCase, upperFirst } from "@/utils/strings.js";
 import {
   type MaterialIconFamily,

@@ -1,5 +1,3 @@
-// this was disabled because it removes the value type infer behavior
-/* eslint-disable @typescript-eslint/unified-signatures */
 "use client";
 import {
   useRef,

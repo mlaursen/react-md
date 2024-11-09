@@ -24,18 +24,18 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.9",
-    "@inquirer/confirm": "^5.0.0",
-    "@inquirer/input": "^4.0.0",
-    "@inquirer/rawlist": "^4.0.0",
+    "@inquirer/confirm": "^5.0.1",
+    "@inquirer/input": "^4.0.1",
+    "@inquirer/rawlist": "^4.0.1",
     "@octokit/core": "^6.1.2",
     "dotenv": "^16.4.5",
-    "eslint": "^9.13.0",
+    "eslint": "^9.14.0",
     "husky": "^9.1.6",
     "lint-staged": "^15.2.10",
     "prettier": "^3.3.3",
-    "tsx": "^4.19.1",
+    "tsx": "^4.19.2",
     "turbo": "^2.2.3",
-    "typescript": "^5.5.4"
+    "typescript": "^5.6.3"
   },
   "engines": {
     "pnpm": ">=9",
