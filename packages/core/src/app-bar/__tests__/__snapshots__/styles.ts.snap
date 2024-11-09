@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`styling utils should be callback without any arguments 1`] = `"rmd-app-bar rmd-box rmd-box--gap rmd-box--padded rmd-box--full-width rmd-background-container rmd-primary-container"`;

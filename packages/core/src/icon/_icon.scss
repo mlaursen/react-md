@@ -3,28 +3,132 @@
 @use "../transition/transition";
 @use "../utils";
 
+// Set to `true` to disable the font icon styles. You normally want to only have
+// one icon type enabled.
+//
+// @example Font Icons Only
+// ```scss
+// @use "@react-md/core" with (
+//   $disable-svg: true,
+//   $disable-symbol: true
+// );
+// ```
+// @type boolean
 $disable-font: false !default;
+
+// Set to `true` to disable the svg icon styles. You normally want to only have
+// one icon type enabled.
+//
+// @example SVG Icons Only
+// ```scss
+// @use "@react-md/core" with (
+//   $disable-font: true,
+//   $disable-symbol: true
+// );
+// ```
+// @type boolean
 $disable-svg: false !default;
+
+// Set to `true` to disable the symbol icon styles. You normally want to only have
+// one icon type enabled.
+//
+// @example Material Symbols Icons Only
+// ```scss
+// @use "@react-md/core" with (
+//   $disable-font: true,
+//   $disable-svg: true
+// );
+// ```
+// @type boolean
 $disable-symbol: false !default;
+
+// Set to `true` to disable the dense icon sizes
+// @type boolean
 $disable-dense: false !default;
+
+// Set to `true` to disable the styles for aligning icons within inline text
+// blocks (like paragraphs).
+// @type boolean
 $disable-inline: false !default;
+
+// Set to `true` to disable the `.rmd-icon--before` styles with the
+// `TextIconSpacing` component.
+// @type boolean
 $disable-spacing-before: false !default;
+
+// Set to `true` to disable the `.rmd-icon--after` styles with the
+// `TextIconSpacing` component.
+// @type boolean
 $disable-spacing-after: false !default;
+
+// Set to `true` to disable the `.rmd-icon--above` styles with the
+// `TextIconSpacing` component.
+// @type boolean
 $disable-spacing-above: false !default;
+
+// Set to `true` to disable the `.rmd-icon--below` styles with the
+// `TextIconSpacing` component.
+// @type boolean
 $disable-spacing-below: false !default;
+
+// Set to `true` to disable the icon rotator styles
+// @type boolean
 $disable-rotator: false !default;
 
+// The default icon color when using the global light theme
+// @type Color
 $light-theme-color: color.adjust(#000, $lightness: 46%) !default;
+
+// The default icon color when using the global dark theme
+// @type Color
 $dark-theme-color: color.adjust(#fff, $lightness: -30%) !default;
 
+// The default icon color
+// @type Color
 $color: theme.get-default-color($light-theme-color, $dark-theme-color) !default;
 
+// The default icon size
+// @type number
 $size: 1.5rem !default;
+
+// The default icon dense size
+// @type number
 $dense-size: 1.25rem !default;
 
+// This is the default material symbol fill value. It should be one of:
+// - `0`
+// - `1`
+//
+// @type number
 $symbol-fill: 0 !default;
+
+// This is the default material symbol weight value. It should be one of:
+// - `100`
+// - `200`
+// - `300`
+// - `400`
+// - `500`
+// - `600`
+// - `700`
+//
+// @type number
 $symbol-weight: 400 !default;
+
+// This is the default material symbol grade value. It should be one of:
+// - `-25`
+// - `0`
+// - `200`
+//
+// @type number
 $symbol-grade: 0 !default;
+
+// This is the default material symbol fill value. It should be one of:
+// - `20`
+// - `24`
+// - `40`
+// - `48`
+//
+// @type number
 $symbol-optical-size: 48 !default;
 
 $_validated-fill: utils.validate((0, 1), $symbol-fill, "$symbol-fill");
@@ -40,12 +144,27 @@ $_validated_optical-size: utils.validate(
   "$symbol-optical-size"
 );
 
+// The default spacing for the `TextIconSpacing` component or anytime icons
+// should be separated from other content.
+//
+// @type number
 $spacing: 0.5rem !default;
 
+// The default `IconRotator` starting position
+// @type string
 $rotate-from: 0deg !default;
+
+// The default `IconRotator` ending position
+// @type string
 $rotate-to: 180deg !default;
+
+// The default `IconRotator` transition duration
+// @type number
 $rotate-duration: transition.$linear-duration !default;
 
+// The available configurable css variables and mostly used internally for the
+// `get-var`, `set-var`, and `use-var` utils.
+// @type List
 $variables: (
   color,
   size,
@@ -61,6 +180,9 @@ $variables: (
 // shouldn't really use react-md without icons though...
 $_disable-icons: $disable-font and $disable-svg and $disable-symbol;
 
+// @param {string} name - The supported variable name
+// @param {any} fallback - An optional fallback value
+// @returns {string} a `var()` statement
 @function get-var($name, $fallback: null) {
   $var: utils.get-var-name($variables, $name, "icon");
   @if $fallback {
@@ -70,34 +192,45 @@ $_disable-icons: $disable-font and $disable-svg and $disable-symbol;
   @return var(#{$var});
 }
 
+// @param {string} name - The supported variable name
+// @param {any} value - The value to set the variable to. Supports `null` which
+// will just be a no-op.
 @mixin set-var($name, $value) {
   @if $value {
     #{utils.get-var-name($variables, $name, "icon")}: #{$value};
   }
 }
 
+// @param {string} property - The css property to apply the variable to
+// @param {string} name - The supported variable name
+// @param {any} fallback - An optional fallback value if the variable has not
+// been set
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
 }
 
+// Applies the light the variables based on feature flags
 @mixin use-light-theme {
   @if not $_disable-icons {
     @include set-var(color, $light-theme-color);
   }
 }
 
+// Applies the dark the variables based on feature flags
 @mixin use-dark-theme {
   @if not $_disable-icons {
     @include set-var(color, $dark-theme-color);
   }
 }
 
+// Applies the dense height variables
 @mixin dense {
   @if $dense-size {
     @include set-var(size, $dense-size);
   }
 }
 
+// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $_disable-icons {
     @include set-var(color, $color);
@@ -118,6 +251,10 @@ $_disable-icons: $disable-font and $disable-svg and $disable-symbol;
   }
 }
 
+// Generates all the styles based on feature flags.
+//
+// @param {boolean} disable-layer - Set this to `true` to disable the
+// layer behavior
 @mixin styles($disable-layer: false) {
   @if not $_disable-icons {
     @include utils.optional-layer(icon, $disable-layer) {

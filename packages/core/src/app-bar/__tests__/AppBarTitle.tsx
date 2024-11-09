@@ -1,8 +1,8 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
 import { render, screen } from "../../test-utils/index.js";
-
-import { appBarTitle, AppBarTitle } from "../AppBarTitle.js";
+import { AppBarTitle } from "../AppBarTitle.js";
+import { appBarTitle } from "../styles.js";
 
 describe("AppBarTitle", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {

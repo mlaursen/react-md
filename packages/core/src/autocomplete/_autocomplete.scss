@@ -10,28 +10,89 @@
 @use "../form/form";
 @use "../progress/progress";
 
+// Set to `true` to disable all the styles
+// @type boolean
 $disable-everything: false !default;
+
+// Set to `true` to disable the clear button styles
+// @type boolean
 $disable-clear-button: false !default;
+
+// Set to `true` to disable the dropdown button styles
+// @type boolean
 $disable-dropdown-button: false !default;
+
+// Set to `true` to disable the circular progress styles
+// @type boolean
 $disable-circular-progress: false !default;
+
+// Set to `true` to disable setting `text-overflow: ellipsis` on the input
+// @type boolean
 $disable-text-overflow-ellipsis: false !default;
+
+// Set to `true` to disable the inline chip styles
+// @type boolean
 $disable-inline-chips: chip.$disable-everything !default;
 
+// This is the min width for the input when there are inline chips. This causes
+// the input to wrap to the next line.
+// @type number
 $inline-min-width: 5rem !default;
+
+// The amount of spacing between each inline chip
+// @type number
 $inline-chips-gap: icon.get-var(spacing) !default;
+
+// The vertical padding to apply to the text field when using inline chips and
+// the outline theme. This is used so that the chips and floating label look
+// nice.
+// @type number
 $inline-outlined-vertical-padding: calc(
   (form.get-var(text-field-height) - chip.get-var(height)) / 2 -
     form.$text-field-border-width
 ) !default;
+
+// The amount of padding to apply to the text field when there is at least one
+// chip visible. The default behavior makes it so the text in the input matches
+// with a chip if they were stacked.
+//
+// @type number
 $inline-input-leading-padding: chip.get-var(horizontal-padding) !default;
 
+// Updates all the icon button sizes that appear within the autocomplete to use
+// this new size
+// @type number
 $button-size: button.$icon-small-size !default;
+
+// Updates the circular progress size in the autocomplete to this size.
+// @type number
 $circular-progress-size: button.$icon-small-size !default;
+
+// The amount of gap between the circular progress, clear button, and dropdown
+// button (when they exist).
+//
+// @type number
 $addon-gap: form.$text-field-addon-gap !default;
+
+// The spacing between the input and the circular progress/clear button/dropdown
+// button addons.
+//
+// @type number
 $addon-spacing: form.get-var(addon-spacing) !default;
 
+// The size of the clear button and used to generate the correct padding for all
+// the inline addons
+// @type number
 $clear-button-size: calc(button.get-var(icon-font-size) * 2) !default;
+
+// The size of the dropdown button and used to generate the correct padding for all
+// the inline addons
+// @type number
 $dropdown-button-size: calc(button.get-var(icon-font-size) * 2) !default;
+
+// The size of the circular progress and used to generate the correct padding
+// for all the inline addons
+// @type number
 $circular-progress-size: progress.get-var(circular-size) !default;
 
 $_chip-selector: ".rmd-autocomplete__chip";
@@ -40,6 +101,9 @@ $_dropdown-button-selector: ".rmd-autocomplete__dropdown-button";
 $_outline-selector: ".rmd-text-field-container--outline";
 $_underline-selector: ".rmd-text-field-container--underline";
 
+// The available configurable css variables and mostly used internally for the
+// `get-var`, `set-var`, and `use-var` utils.
+// @type List
 $variables: (
   clear-button-size,
   dropdown-button-size,
@@ -51,6 +115,9 @@ $variables: (
   addon-spacing
 );
 
+// @param {string} name - The supported variable name
+// @param {any} fallback - An optional fallback value
+// @returns {string} a `var()` statement
 @function get-var($name, $fallback: null) {
   $var: utils.get-var-name($variables, $name, "autocomplete");
   @if $fallback {
@@ -60,16 +127,24 @@ $variables: (
   @return var(#{$var});
 }
 
+// @param {string} name - The supported variable name
+// @param {any} value - The value to set the variable to. Supports `null` which
+// will just be a no-op.
 @mixin set-var($name, $value) {
   @if $value {
     #{utils.get-var-name($variables, $name, "autocomplete")}: #{$value};
   }
 }
 
+// @param {string} property - The css property to apply the variable to
+// @param {string} name - The supported variable name
+// @param {any} fallback - An optional fallback value if the variable has not
+// been set
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
 }
 
+// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $disable-everything {
     @include set-var(addon-gap, $addon-gap);
@@ -81,6 +156,7 @@ $variables: (
   }
 }
 
+// @internal
 @function _right-addon-calc() {
   $calc-spacing: get-var(addon-spacing);
   $calc-total-gap: calc(get-var(gap-count, 0) * get-var(addon-gap));
@@ -105,12 +181,18 @@ $variables: (
   @return calc($calc-spacing + #{$calc-total-gap + $calc-addon-size});
 }
 
+// @internal
 @function _add-has-selector($appending-selector, $addon-selector) {
   $prefix: if(string.length($appending-selector), "", "&");
 
   @return $appending-selector + $prefix + ":has(" + $addon-selector + ")";
 }
 
+// Generates all the styles for the `Autocomplete` components based on feature
+// flags.
+//
+// @param {boolean} disable-layer - Set this to `true` to disable the
+// layer behavior
 @mixin styles($disable-layer: false) {
   // disclaimer: this is the first component where I'm trying to utilize more of
   // the `:has`, `:where`, `:is`, etc selectors to require less javascript and

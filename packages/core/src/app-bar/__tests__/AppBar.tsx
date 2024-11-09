@@ -1,14 +1,9 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
 import { render, screen } from "../../test-utils/index.js";
-
-import {
-  AppBar,
-  appBar,
-  type AppBarHeight,
-  type AppBarPosition,
-} from "../AppBar.js";
+import { AppBar } from "../AppBar.js";
 import { AppBarTitle } from "../AppBarTitle.js";
+import { type AppBarHeight, type AppBarPosition } from "../styles.js";
 
 describe("AppBar", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {
@@ -110,12 +105,6 @@ describe("AppBar", () => {
     heights.forEach((height) => {
       rerender(<AppBar {...props} height={height} />);
       expect(appBar).toMatchSnapshot();
-    });
-  });
-
-  describe("styling utils", () => {
-    it("should be callback without any arguments", () => {
-      expect(appBar()).toMatchSnapshot();
     });
   });
 });

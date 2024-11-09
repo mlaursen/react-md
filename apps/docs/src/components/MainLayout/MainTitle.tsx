@@ -1,4 +1,4 @@
-import { appBarTitle } from "@react-md/core/app-bar/AppBarTitle";
+import { appBarTitle } from "@react-md/core/app-bar/styles";
 import { Box } from "@react-md/core/box/Box";
 import { Typography } from "@react-md/core/typography/Typography";
 import Link from "next/link.js";

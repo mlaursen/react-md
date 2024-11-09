@@ -81,6 +81,7 @@ $solid-raisable-box-shadow-z-value: 4 !default;
 $solid-raisable-transition-duration: transition.$linear-duration !default;
 
 $outline-width: 0.0625rem !default;
+$outline-raisable-box-shadow-z-value: 8 !default;
 $outline-light-color: colors.$grey-300 !default;
 $outline-light-background-color: theme.$light-theme-surface-color !default;
 $outline-light-text-color: a11y.contrast-color(
@@ -90,7 +91,7 @@ $outline-dark-color: $outline-light-color !default;
 $outline-dark-background-color: if(
   theme.$disable-dark-elevation,
   theme.$dark-theme-surface-color,
-  map.get(theme.$dark-elevation-colors, 8)
+  map.get(theme.$dark-elevation-colors, $outline-raisable-box-shadow-z-value)
 ) !default;
 $outline-dark-text-color: a11y.contrast-color(
   $outline-dark-background-color
@@ -108,7 +109,6 @@ $outline-text-color: theme.get-default-color(
   $outline-light-text-color,
   $outline-dark-text-color
 ) !default;
-$outline-raisable-box-shadow-z-value: 8 !default;
 $outline-raisable-transition-duration: transition.$linear-duration !default;
 
 $variables: (

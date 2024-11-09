@@ -1,8 +1,6 @@
 import { AppBar } from "@react-md/core/app-bar/AppBar";
-import {
-  AppBarTitle,
-  type AppBarTitleKeyline,
-} from "@react-md/core/app-bar/AppBarTitle";
+import { AppBarTitle } from "@react-md/core/app-bar/AppBarTitle";
+import { type AppBarTitleKeyline } from "@react-md/core/app-bar/styles";
 import { Button } from "@react-md/core/button/Button";
 import { Card } from "@react-md/core/card/Card";
 import { List } from "@react-md/core/list/List";

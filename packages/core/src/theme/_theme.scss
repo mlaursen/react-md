@@ -8,113 +8,278 @@
 
 @use "../utils";
 
-/// This defines the total color scheme for your app and can be either:
-/// - `light`
-/// - `dark`
-/// - `system`
-///
-/// Setting this value to `system` will default to a light theme unless the user
-/// has set their preferred color scheme to dark on their OS.
-///
-/// If this value is changed from the default `light` value, the
-/// `colorSchemeMode` on the `CoreProviders` component should be updated to
-/// match the new value.
+// This defines the total color scheme for your app and can be either:
+// - `light`
+// - `dark`
+// - `system`
+//
+// Setting this value to `system` will default to a light theme unless the user
+// has set their preferred color scheme to dark on their OS.
+//
+// If this value is changed from the default `light` value, the
+// `colorSchemeMode` on the `CoreProviders` component should be updated to
+// match the new value.
+//
+// @type string
 $color-scheme: light !default;
 
-/// The dark elevation feature is generally recommended to keep enabled since it
-/// helps with visibility when your app is using the dark color scheme either
-/// through `$color-scheme: dark` or `using the `use-dark-theme mixin. When this
-/// feature is enabled, the `background-color` for surfaces will gradually
-/// become lighter the higher their `z-value` is with the material design box
-/// shadows.
-///
-/// If this is set to `false`, all surfaces will mimic the light theme and have
-/// a single surface color.
+// The dark elevation feature is generally recommended to keep enabled since it
+// helps with visibility when your app is using the dark color scheme either
+// through `$color-scheme: dark` or `using the `use-dark-theme mixin. When this
+// feature is enabled, the `background-color` for surfaces will gradually
+// become lighter the higher their `z-value` is with the material design box
+// shadows.
+//
+// If this is set to `false`, all surfaces will mimic the light theme and have
+// a single surface color.
+//
+// @type boolean
 $disable-dark-elevation: $color-scheme == light !default;
 
-/// This value should be set to `false` if you do not want the initial bundle to
-/// include the `@media (prefers-color-scheme: dark)` styles.
+// Set this to `true` if you do not want the initial bundle to include the
+// `@media (prefers-color-scheme: dark)` styles.
+//
+// @type boolean
 $disable-default-system-theme: false !default;
+
+// Set this to `true` if you do not want the initial bundle to include the
+// `:root { ... variables ... }` styles.
+//
+// @type boolean
 $disable-default-root-theme: false !default;
 
-// this should only be used if your application does not use menu, dialog,
+// This should only be used if your application does not use menu, dialog,
 // sheet, card, expansion-panel, select, app-bar (theme="surface")
+//
+// @type boolean
 $disable-surface-color: false !default;
+
+// Set to `true` if you don't want to create a primary color variable.
+// @type boolean
 $disable-primary-color: false !default;
+
+// Set to `true` if you don't want to create a on-primary color variable.
+// @type boolean
 $disable-on-primary-color: $disable-primary-color !default;
+
+// Set to `true` if you don't want to create a secondary color variable.
+// @type boolean
 $disable-secondary-color: false !default;
+
+// Set to `true` if you don't want to create a on-secondary color variable.
+// @type boolean
 $disable-on-secondary-color: $disable-secondary-color !default;
+
+// Set to `true` if you don't want to create a warning color variable.
+// @type boolean
 $disable-warning-color: false !default;
+
+// Set to `true` if you don't want to create a on-warning color variable.
+// @type boolean
 $disable-on-warning-color: $disable-warning-color !default;
+
+// Set to `true` if you don't want to create a error color variable.
+// @type boolean
 $disable-error-color: false !default;
+
+// Set to `true` if you don't want to create a on-error color variable.
+// @type boolean
 $disable-on-error-color: $disable-error-color !default;
+
+// Set to `true` if you don't want to create a success color variable.
+// @type boolean
 $disable-success-color: false !default;
+
+// Set to `true` if you don't want to create a on-success color variable.
+// @type boolean
 $disable-on-success-color: $disable-success-color !default;
+
+// Set to `true` if you don't want to create a outline grey color variable.
+// @type boolean
 $disable-outline-grey-color: false !default;
+
+// Set to `true` if you don't want to create a text-primary color variable.
+// @type boolean
 $disable-text-primary-color: false !default;
+
+// Set to `true` if you don't want to create a text-secondary color variable.
+// @type boolean
 $disable-text-secondary-color: false !default;
+
+// Set to `true` if you don't want to create a text-hint color variable.
+// @type boolean
 $disable-text-hint-color: false !default;
+
+// Set to `true` if you don't want to create a text-disabled color variable.
+// @type boolean
 $disable-text-disabled-color: false !default;
 
+// The primary theme color to use throughout the app.
+// @type Color
 $primary-color: colors.$blue-500 !default;
+
+// An accessible text color to use when the primary color is a background.
+// @type Color
 $on-primary-color: a11y.contrast-color($primary-color) !default;
+
+// The secondary theme color to use throughout the app.
+// @type Color
 $secondary-color: colors.$orange-a-400 !default;
+
+// An accessible text color to use when the secondary color is a background.
+// @type Color
 $on-secondary-color: a11y.contrast-color($secondary-color) !default;
+
+// The warning color to use throughout the app.
+// @type Color
 $warning-color: colors.$deep-orange-a-400 !default;
+
+// An accessible text color to use when the warning color is a background.
+// @type Color
 $on-warning-color: a11y.contrast-color($warning-color) !default;
+
+// The error color to use throughout the app.
+// @type Color
 $error-color: colors.$red-500 !default;
+
+// An accessible text color to use when the error color is a background.
+// @type Color
 $on-error-color: a11y.contrast-color($error-color) !default;
+
+// The success color to use throughout the app.
+// @type Color
 $success-color: colors.$green-a-700 !default;
+
+// An accessible text color to use when the success color is a background.
+// @type Color
 $on-success-color: a11y.contrast-color($success-color) !default;
 
+// The default outline-width to apply for focus, borders, etc
+// @type number
 $outline-width: 0.0625em !default;
+
+// The color to use for the outline.
+// @type Color
 $outline-color: currentcolor !default;
+
+// The color to use when the outline should be grey.
+// @type Color
 $outline-grey-color: #999 !default;
 
+// The root background color (html) when using the light theme.
+// @type Color
 $light-theme-background-color: #fafafa !default;
+
+// The background color to apply for surfaces/temporary elements when using the
+// light theme. So things like dialogs and menus.
+// @type Color
 $light-theme-surface-color: #fff !default;
+
+// The primary text color when using the light theme.
+// @type Color
 $light-theme-text-primary-color: color.adjust(#000, $lightness: 13%) !default;
+
+// The secondary text color when using the light theme.
+// @type Color
 $light-theme-text-secondary-color: color.adjust(#000, $lightness: 46%) !default;
+
+// The hint text color when using the light theme.
+// @type Color
 $light-theme-text-hint-color: color.adjust(#000, $lightness: 66%) !default;
+
+// The disabled text color when using the light theme.
+// @type Color
 $light-theme-text-disabled-color: color.adjust(#000, $lightness: 62%) !default;
 
+// The background color to apply for surfaces/temporary elements when using the
+// dark theme. So things like dialogs and menus.
+// @type Color
 $dark-theme-background-color: #121212 !default;
+
+// The default surface background color to apply for surfaces/temporary elements
+// when using the dark theme.
+//
+// This value is a bit different than the light theme variant since dark mode
+// supports an "elevation mode" where each surface gains a different background
+// color depending on its elevation.
+//
+// @type Color
 $dark-theme-surface-color: if($disable-dark-elevation, #424242, null) !default;
+
+// The primary text color when using the dark theme.
+// @type Color
 $dark-theme-text-primary-color: color.adjust(#fff, $lightness: -15%) !default;
+
+// The secondary text color when using the dark theme.
+// @type Color
 $dark-theme-text-secondary-color: color.adjust(#fff, $lightness: -30%) !default;
+
+// The hint text color when using the dark theme.
+// @type Color
 $dark-theme-text-hint-color: color.adjust(#fff, $lightness: -50%) !default;
+
+// The disabled text color when using the dark theme.
+// @type Color
 $dark-theme-text-disabled-color: color.adjust(#fff, $lightness: -50%) !default;
 
+// Used to provide the correct color based on the `$color-scheme` setting.
+//
+// @param {Color} light-color - The light theme color
+// @param {Color} dark-color - The dark theme color
+// @returns {Color} The correct color depending on the `$color-scheme`
 @function get-default-color($light-color, $dark-color) {
   @return if($color-scheme == dark, $dark-color, $light-color);
 }
 
+// The default background color
+// @type Color
 $background-color: get-default-color(
   $light-theme-background-color,
   $dark-theme-background-color
 ) !default;
+
+// The default surface color
+// @type Color
 $surface-color: get-default-color(
   $light-theme-surface-color,
   $dark-theme-surface-color
 ) !default;
+
+// The default text primary color
+// @type Color
 $text-primary-color: get-default-color(
   $light-theme-text-primary-color,
   $dark-theme-text-primary-color
 ) !default;
+
+// The default text secondary color
+// @type Color
 $text-secondary-color: get-default-color(
   $light-theme-text-secondary-color,
   $dark-theme-text-secondary-color
 ) !default;
+
+// The default text hint color
+// @type Color
 $text-hint-color: get-default-color(
   $light-theme-text-hint-color,
   $dark-theme-text-hint-color
 ) !default;
+
+// The default text disabled color
+// @type Color
 $text-disabled-color: get-default-color(
   $light-theme-text-disabled-color,
   $dark-theme-text-disabled-color
 ) !default;
 
-$dark-elevation-colors: (
+// This is a Map for all the supported material design elevations (0 - 24) and
+// the background color to use for that elevation. Check out
+// {@link $dark-elevation-colors} and {@link $custom-dark-elevation-colors} for
+// how to change these values.;
+//
+// @type Map
+$default-dark-elevation-colors: (
   0: $dark-theme-background-color,
   1: #1f1f1f,
   2: #242424,
@@ -140,14 +305,70 @@ $dark-elevation-colors: (
   22: #353535,
   23: #353535,
   24: #383838,
+);
+
+// This Map can be used to override the {@link $default-dark-elevation-colors}
+// with new values if you only want to change a few values.
+//
+// @example
+// ```scss
+// @use "@react-md/core" with (
+//   $custom-dark-elevation-colors: (
+//     1: #000,
+//     2: #1f1f1f,
+//   )
+// );
+// ```
+//
+// @type Map
+$custom-dark-elevation-colors: () !default;
+
+// This Map can be used to completely configure the dark elevation colors and
+// remove unused elevations.
+//
+// Elevations:
+//
+// - 0 - Root background color
+// - 1 - Raisable card starting elevation, Switch ball
+// - 2 - Sheet default elevation
+// - 4 - Sticky table header/footer inactive styles
+// - 8 - Raisable card ending elevation, Raisable chip, Menu
+// - 12 - Solid chip background color
+// - 16 - Dialogs, Sheet raised elevation
+//
+// @example Used Colors Only
+// ```scss
+// @use "@react-md/core" with (
+//   $dark-elevation-colors: (
+//     0: #121212,
+//     1: #1f1f1f,
+//     2: #242424,
+//     4: #282828,
+//     8: #2f2f2f,
+//     12: #333,
+//     16: #353535,
+//   )
+// );
+// ```
+//
+// @type Map
+$dark-elevation-colors: map.merge(
+  $default-dark-elevation-colors,
+  $custom-dark-elevation-colors
 ) !default;
 
+// Used to just ensure that the user overrides the `$color-scheme` with a
+// supported value
+// @internal
 $_validated_color_scheme: utils.validate(
   (light dark system),
   $color-scheme,
   "$color-scheme"
 );
 
+// The available configurable css variables and mostly used internally for the
+// `get-var`, `set-var`, and `use-var` utils.
+// @type List
 $theme-variables: (
   background-color,
   on-background-color,
@@ -171,6 +392,9 @@ $theme-variables: (
   outline-grey-color
 );
 
+// @internal
+// $param {string} name - The variable name
+// @returns {boolean} the feature flag value
 @function _is-var-disabled($name) {
   @if $name == surface-color {
     @return $disable-surface-color;
@@ -239,6 +463,29 @@ $theme-variables: (
   @return false;
 }
 
+// @param {number} z-value - The dark elevation value
+// @returns {string} the dark elevation color var name
+@function _dark-elevation-color($z-value) {
+  @return "--rmd-dark-elevation-color-#{$z-value}";
+}
+
+// @param {number} z-value - The dark elevation value
+// @returns {string} the dark elevation color var
+@function get-dark-elevation-color($z-value) {
+  @return var(#{_dark-elevation-color($z-value)});
+}
+
+// @param {number} z-value - The dark elevation value
+// @param {string} value - The value to set
+@mixin set-dark-elevation-color($z-value, $value) {
+  @if $value {
+    #{_dark-elevation-color($z-value)}: #{$value};
+  }
+}
+
+// @param {string} name - The supported variable name
+// @param {any} fallback - An optional fallback value
+// @returns {string} a `var()` statement
 @function theme-get-var($name, $fallback: null) {
   @if _is-var-disabled($name) {
     @return $fallback;
@@ -253,23 +500,12 @@ $theme-variables: (
   @return var(#{$var});
 }
 
-@function _dark-elevation-color($z-value) {
-  @return "--rmd-dark-elevation-color-#{$z-value}";
-}
-
-@function get-dark-elevation-color($z-value) {
-  @return var(#{_dark-elevation-color($z-value)});
-}
-
-@mixin set-dark-elevation-color($z-value, $value) {
-  @if $value {
-    #{_dark-elevation-color($z-value)}: #{$value};
-  }
-}
-
+// @param {string} name - The supported variable name
+// @param {any} value-or-theme-name - The value to set the variable to. Supports `null` which
+// will just be a no-op.
 @mixin theme-set-var($name, $value-or-theme-name) {
   @if _is-var-disabled($name) {
-    @error '"#{$name}" is currently disabled and cannot be changed. Set "$disable-#{$name}-var" to `true` or remove it from the Sass module overrides.';
+    @error '"#{$name}" is currently disabled and cannot be changed. Set "$disable-#{$name}" to `false` or remove it from the Sass module overrides.';
   }
 
   $var: utils.get-var-name($theme-variables, $name, "theme");
@@ -282,6 +518,10 @@ $theme-variables: (
   #{$var}: #{$value};
 }
 
+// @param {string} property - The css property to apply the variable to
+// @param {string} name - The supported variable name
+// @param {any} fallback - An optional fallback value if the variable has not
+// been set
 @mixin theme-use-var($property, $name: $property, $fallback: null) {
   @if _is-var-disabled($name) {
     @error '"#{$name}" is currently disabled and cannot be changed. Set "$disable-#{$name}-var" to `true` or remove it from the Sass module overrides.';
@@ -290,18 +530,22 @@ $theme-variables: (
   #{$property}: theme-get-var($name, $fallback);
 }
 
+// This makes it so that the dark elevation colors are not applied when using
+// the light theme.
 @mixin use-light-theme-elevation-colors {
   @each $z-value, $background-color in $dark-elevation-colors {
     @include set-dark-elevation-color($z-value, $light-theme-surface-color);
   }
 }
 
+// This applies all the dark elevation colors for the dark theme.
 @mixin use-dark-theme-elevation-colors {
   @each $z-value, $background-color in $dark-elevation-colors {
     @include set-dark-elevation-color($z-value, $background-color);
   }
 }
 
+// Creates all the css variables for the light theme respecting feature flags
 @mixin use-light-theme-colors {
   @include theme-set-var(background-color, $light-theme-background-color);
   @if $disable-dark-elevation and not $disable-surface-color {
@@ -331,6 +575,7 @@ $theme-variables: (
   }
 }
 
+// Creates all the css variables for the dark theme respecting feature flags
 @mixin use-dark-theme-colors {
   @include theme-set-var(background-color, $dark-theme-background-color);
   @if $disable-dark-elevation and not $disable-surface-color {
@@ -360,6 +605,7 @@ $theme-variables: (
   }
 }
 
+// Creates all the default theme css variables respecting feature flags
 @mixin theme-variables {
   @include theme-set-var(background-color, $background-color);
   @if $disable-dark-elevation and not $disable-surface-color {
@@ -425,6 +671,12 @@ $theme-variables: (
   }
 }
 
+// Creates a new theme surface by conditionally updating theme background and
+// text colors for the elevation.
+//
+// @param {number} z-value - The material design elevation (0 - 24)
+// @param {boolean} disable-colors - Set to `true` if the `background-color` and
+// `color` should not be updated.
 @mixin create-surface($z-value, $disable-colors: $disable-dark-elevation) {
   @if not $disable-dark-elevation {
     @include theme-set-var(surface-color, get-dark-elevation-color($z-value));
@@ -438,6 +690,20 @@ $theme-variables: (
   }
 }
 
+// This is used to get another material design color with a different swatch or
+// accent.
+//
+// @param {string} color - The material design color name
+// @param {number} swatch - This should be: `100`, `200`, `300`, `400`, `500`,
+// `600`, `700`, `800`, or `900`. When `$accent` is set to `true`, it should be:
+// `100`, `200`, `400`, or `700`
+// @param {boolean} accent - Set to `true` to get an accent color instead of a
+// main color.
+// @param {Color|null} fallback-color - A color to use if the `$color` is not a
+// material design color. Mostly for internal usage.
+// @param {string} fallback-name - Used internally to provide a better error
+// message if a `$fallback-color` was not provided.
+// @returns {Color|null} The swatch or fallback color
 @function get-swatch(
   $color,
   $swatch,
@@ -506,6 +772,9 @@ $theme-variables: (
   @return map.get(colors.$color-map, $color-name);
 }
 
+// Generates the default `@media (prefers-color-scheme: dark)` styles if the
+// `$disable-default-system-theme` and `$disable-default-root-theme` are both
+// `false` and the `$color-scheme` has been set to `system`.
 @mixin default-system-theme {
   @if not
     $disable-default-system-theme and

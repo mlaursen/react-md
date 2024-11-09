@@ -9,63 +9,165 @@
 @use "../button/button";
 @use "../typography/typography";
 
+// Set to `true` to disable all the styles
+// @type boolean
 $disable-everything: false !default;
-$disable-fixed: false !default;
-$disable-sticky: false !default;
-$disable-surface-theme: $disable-everything !default;
-$disable-dense-theme: false !default;
-$disable-prominent-theme: false !default;
-$disable-prominent-dense-theme: false !default;
-$disable-scrollbar-offset: false !default;
-$disable-static-scrollbar-offset: false !default;
-$disable-primary-interaction-colors: interaction.$light-surface-base-background-color
-  == interaction.$dark-surface-base-background-color !default;
-$disable-secondary-interaction-colors: interaction.$light-surface-base-background-color
-  == interaction.$dark-surface-base-background-color !default;
 
+// Set to `true` to only disable the `position: fixed` styles
+// @type boolean
+$disable-fixed: false !default;
+
+// Set to `true` to only disable the `position: fixed` styles
+// @type boolean
+$disable-sticky: false !default;
+
+// Set to `true` to only disable the `position: fixed` styles
+// @type boolean
+$disable-surface-theme: $disable-everything !default;
+
+// Set to `true` to only disable the dense height styles
+// @type boolean
+$disable-dense: false !default;
+
+// Set to `true` to only disable the prominent height styles
+// @type boolean
+$disable-prominent-theme: false !default;
+
+// Set to `true` to only disable the prominent-dense height styles
+// @type boolean
+$disable-prominent-dense: false !default;
+
+// Set to `true` to disable the styles that offset the app bar based on a
+// visible scrollbar.
+//
+// @type boolean
+$disable-scrollbar-offset: false !default;
+
+// Set to `true` to only disable the styles for offsetting the app bar for a
+// visible toolbar while `position: static`.
+//
+// @type boolean
+$disable-static-scrollbar-offset: false !default;
+
+// Set to `true` to only disable the app bar title styles
+// @type boolean
 $disable-title: false !default;
 
+// Sets the `gap` css property to apply spacing between each item.
+// @type number
 $gap: 0.25rem !default;
+
+// The default height for an app bar
+// @type number
 $height: 3.5rem !default;
+
+// @type number
 $dense-height: 3rem !default;
+
+// @type number
 $prominent-height: $height * 2 !default;
+
+// @type number
 $prominent-dense-height: $dense-height * 2 !default;
 
+// The z-index to use when the app bar is `position: fixed`
+// @type number
 $fixed-z-index: 10 !default;
+
+// This should be a number from 0 to 24 representing the material design
+// elevation. It is used to generate the correct surface styles with box shadow.
+// @type number
 $fixed-elevation: 2 !default;
+
+// Allows the app bar to be fixed to the top and bottom of the viewport. If you
+// don't need support for one, remove it from the list.
+//
+// @example Removing Top Fixed Position
+// ```scss
+// @use "react-md/core" with (
+//   $app-bar-fixed-positions: (bottom)
+// );
+// ```
+//
+// @type List
 $fixed-positions: top bottom !default;
 
+// The background color to use when `theme="surface"` and using the global light
+// theme
+// @type Color
 $light-theme-surface-background-color: theme.$light-theme-surface-color !default;
+
+// The text color to use when `theme="surface"` and using the global light theme
+// @type Color
 $light-theme-surface-color: a11y.contrast-color(
   $light-theme-surface-background-color
 ) !default;
+
+// The background color to use when `theme="surface"` and using the global dark
+// theme
+// @type Color
 $dark-theme-surface-background-color: if(
   theme.$disable-dark-elevation,
   theme.$dark-theme-surface-color,
   map.get(theme.$dark-elevation-colors, $fixed-elevation)
 ) !default;
+
+// The text color to use when `theme="surface"` and using the global dark theme
+// @type Color
 $dark-theme-surface-color: #fff !default;
 
+// The default `theme="surface"` background color. You normally don't want to
+// change this value.
+// @type Color
 $surface-background-color: theme.get-default-color(
   $light-theme-surface-background-color,
   $dark-theme-surface-background-color
 ) !default;
+
+// The default `theme="surface"` text color. You normally don't want to change
+// this value.
+// @type Color
 $surface-color: theme.get-default-color(
   $light-theme-surface-color,
   $dark-theme-surface-color
 ) !default;
 
+// Horizontal padding for the app bar
+// @type number|string
 $horizontal-padding: 0.25rem !default;
+
+// Vertical padding for the app bar
+// @type number|string
 $vertical-padding: 0 !default;
 
+// This value is used to align the first element (normally a button) nicely with
+// other elements on the page.
+//
+// @type number|string
 $keyline: 1rem !default;
+
+// This value is used to align the `AppBarTitle` with other elements on the page
+// (like `ListItem`).
+// @type number|string
 $title-keyline: 4.5rem !default;
+
+// This is used to align a a nav button with an `AppBarTitle` nicely in the
+// `AppBar`.
+//
 // 3rem is the icon-button's default size. can't use the variables since it's
 // based on font-size now and `em`
+//
+// @type number|string
 $nav-keyline: $title-keyline - $horizontal-padding - $gap - 3rem !default;
 
+// The available configurable css variables and mostly used internally for the
+// `get-var`, `set-var`, and `use-var` utils.
+// @type List
 $variables: (height, surface-background-color, surface-color);
 
+// @param {string} name - The supported variable name
+// @param {any} fallback - An optional fallback value
+// @returns {string} a `var()` statement
 @function get-var($name, $fallback: null) {
   $var: utils.get-var-name($variables, $name, "app-bar");
   @if $fallback {
@@ -75,16 +177,24 @@ $variables: (height, surface-background-color, surface-color);
   @return var(#{$var});
 }
 
+// @param {string} name - The supported variable name
+// @param {any} value - The value to set the variable to. Supports `null` which
+// will just be a no-op.
 @mixin set-var($name, $value) {
   @if $value {
     #{utils.get-var-name($variables, $name, "app-bar")}: #{$value};
   }
 }
 
+// @param {string} property - The css property to apply the variable to
+// @param {string} name - The supported variable name
+// @param {any} fallback - An optional fallback value if the variable has not
+// been set
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
 }
 
+// Applies the light the variables based on feature flags
 @mixin use-light-theme {
   @if not $disable-surface-theme {
     @include set-var(
@@ -95,6 +205,7 @@ $variables: (height, surface-background-color, surface-color);
   }
 }
 
+// Applies the dark the variables based on feature flags
 @mixin use-dark-theme {
   @if not $disable-surface-theme {
     @include set-var(
@@ -105,10 +216,14 @@ $variables: (height, surface-background-color, surface-color);
   }
 }
 
+// Applies the dense height variables
 @mixin dense {
-  @include set-var(height, $dense-height);
+  @if $dense-height {
+    @include set-var(height, $dense-height);
+  }
 }
 
+// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $disable-everything {
     @include set-var(height, $height);
@@ -117,6 +232,10 @@ $variables: (height, surface-background-color, surface-color);
   }
 }
 
+// Generates all the styles based on feature flags.
+//
+// @param {boolean} disable-layer - Set this to `true` to disable the
+// layer behavior
 @mixin styles($disable-layer: false) {
   @if not $disable-everything {
     @include utils.optional-layer(app-bar, $disable-layer) {
@@ -179,7 +298,7 @@ $variables: (height, surface-background-color, surface-color);
           padding: 0;
         }
 
-        @if not $disable-dense-theme {
+        @if not $disable-dense {
           &--dense {
             height: $dense-height;
           }
@@ -191,7 +310,7 @@ $variables: (height, surface-background-color, surface-color);
           }
         }
 
-        @if not $disable-prominent-dense-theme {
+        @if not $disable-prominent-dense {
           &--prominent-dense {
             height: $prominent-dense-height;
           }

@@ -6,47 +6,116 @@
 @use "../divider/divider";
 @use "../interaction/interaction";
 
+// Set to `true` to disable all the styles
+// @type boolean
 $disable-everything: false !default;
+
+// Set to `true` to disable the bordered styles since cards use box-shadow by
+// default.
+// @type boolean
 $disable-bordered: false !default;
+
+// Set to `true` to disable the box-shadow styles if you want to rely on the
+// border styles instead.
+// @type boolean
 $disable-shadowed: false !default;
-$disable-raisable: false !default;
+
+// Set to `true` to disable the raisable card styles where hovering a card
+// increases the elevation/box-shadow.
+//
+// @type boolean
+$disable-raisable: $disable-shadowed !default;
+
+// Set to `true` to disable the clickable card styles
+// @type boolean
 $disable-clickable: false !default;
-$disable-content-secondary-color: false !default;
+
+// Set to `true` to disable the styles for adding additional padding to the
+// last `CardContent` that exists
+// @type boolean
 $disable-content-last-child-padding: false !default;
 
+// The default card box-shadow elevation
+// @type number
 $elevation: 2 !default;
+
+// The default card raisable starting box-shadow elevation
+// @type number
 $raisable-start-elevation: 1 !default;
+
+// The default card raisable ending (hovering) box-shadow elevation
+// @type number
 $raisable-end-elevation: 8 !default;
 
+// The background color to use when using the global light theme
+// @type Color
 $light-theme-background-color: theme.theme-get-var(surface-color) !default;
+
+// The background color to use when using the global dark theme
+// @type Color
 $dark-theme-background-color: if(
   theme.$disable-dark-elevation,
   theme.$dark-theme-surface-color,
   map.get(theme.$dark-elevation-colors, $elevation)
 ) !default;
 
+// The default card background color
+// @type Color
 $background-color: theme.get-default-color(
   $light-theme-background-color,
   $dark-theme-background-color
 ) !default;
+
+// The default card text color
+// @type Color
 $color: theme.theme-get-var(text-primary-color) !default;
 
+// The default border-color for bordered cards
+// @type Color
 $border-color: divider.get-var(color) !default;
+
+// The default border-width for bordered cards
+// @type number
 $border-width: divider.get-var(size) !default;
+
+// The default border-radius for bordered cards
+// @type number
 $border-radius: 0.25rem !default;
 
+// The default padding to apply to `CardHeader`
+// @type number
 $header-padding: 1rem !default;
+
+// The default padding-top to apply to `CardHeader`
+// @type number
 $header-padding-top: 1.5rem !default;
 
+// The default `column-gap` to apply to the `CardHeader`
+// @type number
 $header-spacing: 1rem !default;
 
+// The default padding to apply to the `CardContent`
+// @type number
 $content-padding: 1rem !default;
+
+// The default padding-bottom to apply to the `CardContent` when it is the last
+// child and the {@link $disable-content-last-child-padding} feature flag has
+// not been disabled.
+//
+// @type number
 $content-padding-bottom: 1.5rem !default;
 
+// The default padding to apply to the `CardFooter`
 $footer-padding: 0.5rem !default;
 
+// The available configurable css variables and mostly used internally for the
+// `get-var`, `set-var`, and `use-var` utils.
+// @type List
 $variables: (background-color, color, secondary-color);
 
+// @param {string} name - The supported variable name
+// @param {any} fallback - An optional fallback value
+// @returns {string} a `var()` statement
 @function get-var($name, $fallback: null) {
   $var: utils.get-var-name($variables, $name, "card");
   @if $fallback {
@@ -56,28 +125,38 @@ $variables: (background-color, color, secondary-color);
   @return var(#{$var});
 }
 
+// @param {string} name - The supported variable name
+// @param {any} value - The value to set the variable to. Supports `null` which
+// will just be a no-op.
 @mixin set-var($name, $value) {
   @if $value {
     #{utils.get-var-name($variables, $name, "card")}: #{$value};
   }
 }
 
+// @param {string} property - The css property to apply the variable to
+// @param {string} name - The supported variable name
+// @param {any} fallback - An optional fallback value if the variable has not
+// been set
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
 }
 
+// Applies the light the variables based on feature flags
 @mixin use-light-theme {
   @if not $disable-everything {
     @include set-var(background-color, $light-theme-background-color);
   }
 }
 
+// Applies the dark the variables based on feature flags
 @mixin use-dark-theme {
   @if not $disable-everything {
     @include set-var(background-color, $dark-theme-background-color);
   }
 }
 
+// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $disable-everything {
     @include set-var(background-color, $background-color);
@@ -85,6 +164,10 @@ $variables: (background-color, color, secondary-color);
   }
 }
 
+// Generates all the styles based on feature flags.
+//
+// @param {boolean} disable-layer - Set this to `true` to disable the
+// layer behavior
 @mixin styles($disable-layer: false) {
   @if not $disable-everything {
     @include utils.optional-layer(card, $disable-layer) {
@@ -130,7 +213,11 @@ $variables: (background-color, color, secondary-color);
           align-items: center;
           column-gap: $header-spacing;
           display: flex;
-          padding: $header-padding-top $header-padding $header-padding;
+          padding: if(
+            $header-padding == $header-padding-top or not $header-padding-top,
+            $header-padding,
+            $header-padding-top $header-padding $header-padding
+          );
         }
 
         &__header-content {
@@ -149,12 +236,6 @@ $variables: (background-color, color, secondary-color);
         // }
 
         &__content {
-          @if not $disable-content-secondary-color {
-            &--secondary {
-              @include theme.theme-use-var(color, text-secondary-color);
-            }
-          }
-
           @if $content-padding {
             &--padded {
               padding: $content-padding;

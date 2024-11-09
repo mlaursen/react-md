@@ -1,9 +1,8 @@
+import { AppBar, type AppBarProps } from "@react-md/core/app-bar/AppBar";
 import {
-  AppBar,
   type AppBarHeight,
-  type AppBarProps,
   type AppBarTheme,
-} from "@react-md/core/app-bar/AppBar";
+} from "@react-md/core/app-bar/styles";
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
 

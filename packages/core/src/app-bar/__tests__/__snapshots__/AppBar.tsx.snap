@@ -182,5 +182,3 @@ exports[`AppBar should apply the correct styling, HTML attributes, and allow a r
   </h6>
 </div>
 `;
-
-exports[`AppBar styling utils should be callback without any arguments 1`] = `"rmd-app-bar rmd-box rmd-box--gap rmd-box--padded rmd-box--full-width rmd-background-container rmd-primary-container"`;

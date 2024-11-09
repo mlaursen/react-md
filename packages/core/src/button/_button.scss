@@ -11,48 +11,155 @@
 @use "../overlay/overlay";
 @use "../typography/typography";
 
+// Set to `true` to disable all the styles
+// @type boolean
 $disable-everything: false !default;
+
+// Set to `true` to disable the text button styles
+// @type boolean
 $disable-text: false !default;
+
+// Set to `true` to disable the icon button styles
+// @type boolean
 $disable-icon: false !default;
+
+// Set to `true` to disable the icon-square button styles
+// @type boolean
 $disable-icon-square: false !default;
+
+// Set to `true` to disable the contained button styles
+// @type boolean
 $disable-contained: false !default;
+
+// Set to `true` to disable the contained with pressed elevation button styles
+// @type boolean
 $disable-contained-pressed-elevation: false !default;
+
+// Contained buttons should _normally_ always force dark background colors for
+// the interaction states This means use the default light theme since it is
+// based off of the root background color.
+//
+// @type boolean
 $disable-contained-interaction-colors: interaction.$light-surface-base-background-color
   == interaction.$dark-surface-base-background-color !default;
+
+// Set to `true` to disable the floating button styles
+// @type boolean
 $disable-floating: false !default;
+
+// Set to `true` to disable the floating button `position: absolute` styles
+// @type boolean
 $disable-floating-absolute-position: false !default;
+
+// Set to `true` to disable updating the circular progress size within buttons
+// @type boolean
 $disable-circular-progress: progress.$disable-circular !default;
+
+// Set to `true` to disable the async button styles
+// @type boolean
 $disable-async: $disable-circular-progress !default;
+
+// Set to `true` to disable `.rmd-button-unstyled` utility class
+// @type boolean
 $disable-unstyled-utility-class: false !default;
 
+// The default border radius to apply to text buttons
+// @type number
 $text-border-radius: 0.5rem !default;
+
+// The default horizontal padding to apply to text buttons
+// @type number
 $text-horizontal-padding: 1rem !default;
+
+// The default vertical padding to apply to text buttons
+// @type number
 $text-vertical-padding: 0 !default;
+
+// The default min-height to apply to text buttons
+// @type number
 $text-min-height: 2.25rem !default;
+
+// The default min-width to apply to text buttons
+// @type number
 $text-min-width: 4rem !default;
+
+// The default size to set icons that appear as children of text buttons
+// @type number
 $text-icon-size: 1.125rem !default;
 
+// The default border radius to apply to icon buttons
+// @type number
 $icon-border-radius: 50% !default;
+
+// The default border radius to apply to square icon buttons
+// @type number
 $icon-square-border-radius: $text-border-radius !default;
+
+// The default height and width of icon buttons. This default value makes them
+// responsive based on the current font size.
+// @type number
 $icon-size: auto !default;
+
+// The default icon button small size
+// @type number
 $icon-small-size: icon.$size - 0.25rem !default;
+
+// The default icon button large size
+// @type number
 $icon-large-size: icon.$size + 0.25rem !default;
+
+// The default icon button font size which is used to update the total size of
+// the button as well.
+// @type number
 $icon-font-size: icon.$size !default;
+
+// The default padding for icon buttons. The icon button size is determined by
+// adding the padding to the icon size.
+// @type number
 $icon-padding: 0.5em !default;
 
+// The default material design elevation for the contained button theme. This
+// should be a number from 0 - 24.
+// @type number
 $contained-elevation: 2 !default;
+
+// The default material design elevation for the contained button theme while
+// pressed. This should be a number from 0 - 24.
+// @type number
 $contained-pressed-elevation: 4 !default;
+
+// The default background color to apply to contained buttons while the theme is
+// set to clear
+// @type Color
 $clear-contained-background-color: theme.$light-theme-surface-color !default;
+
+// The default text color to apply to contained buttons while the theme is set
+// to clear
+// @type Color
 $clear-contained-color: a11y.contrast-color(
   $clear-contained-background-color
 ) !default;
 
+// The default size for circular progress components that appear as a child of
+// a text button
+// @type number
 $circular-progress-size: icon.get-var(size) !default;
 
+// The default viewport margin for a floating action button
+// @type number
 $floating-margin: 1.5rem !default;
+
+// The default z-index for a floating action button
+// @type number
 $floating-z-index: utils.$temporary-element-z-index !default;
-// set this below the app bar
+
+// The default z-index for an absolute positioned floating action button. This
+// should be a number lower than the `$app-bar-fixed-z-index`.
+// @type number
 $floating-absolute-z-index: 5 !default;
+
+// The default floating action button positions and their margin styles.
+// @type number
 $floating-positions: (
   tl: (
     left: $floating-margin,
@@ -72,6 +179,9 @@ $floating-positions: (
   ),
 ) !default;
 
+// The available configurable css variables and mostly used internally for the
+// `get-var`, `set-var`, and `use-var` utils.
+// @type List
 $variables: (
   background-color,
   color,
@@ -88,6 +198,9 @@ $variables: (
   fab-offset
 );
 
+// @param {string} name - The supported variable name
+// @param {any} fallback - An optional fallback value
+// @returns {string} a `var()` statement
 @function get-var($name, $fallback: null) {
   $var: utils.get-var-name($variables, $name, "button");
   @if $fallback {
@@ -97,12 +210,19 @@ $variables: (
   @return var(#{$var});
 }
 
+// @param {string} name - The supported variable name
+// @param {any} value - The value to set the variable to. Supports `null` which
+// will just be a no-op.
 @mixin set-var($name, $value) {
   @if $value {
     #{utils.get-var-name($variables, $name, "button")}: #{$value};
   }
 }
 
+// @param {string} property - The css property to apply the variable to
+// @param {string} name - The supported variable name
+// @param {any} fallback - An optional fallback value if the variable has not
+// been set
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
 }
@@ -136,6 +256,7 @@ $variables: (
   padding: get-var(text-vertical-padding) get-var(text-horizontal-padding);
 }
 
+// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $disable-everything {
     @include set-var(background-color, transparent);
@@ -166,6 +287,10 @@ $variables: (
   }
 }
 
+// Generates all the styles based on feature flags.
+//
+// @param {boolean} disable-layer - Set this to `true` to disable the
+// layer behavior
 @mixin styles($disable-layer: false) {
   @if not $disable-everything {
     @include utils.optional-layer(button, $disable-layer) {
@@ -271,7 +396,6 @@ $variables: (
           &--async {
             @include overlay.set-var(background-color, transparent);
             @include progress.set-var(color, currentcolor);
-            // @include progress.set-var(background-color, currentcolor);
           }
 
           &--async-overlay {

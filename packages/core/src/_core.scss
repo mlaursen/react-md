@@ -167,8 +167,8 @@ $_layer-order: (
 // This should not be used when using the {@link styles} mixin since it is
 // included by default.
 //
-// @param disable-layer [false] - Set this to `true` to prevent the css utils
-// from being wrapped in `@layer utils { ...styles... }`
+// @param {boolean} disable-layer - Set this to `true` to prevent the
+// css utils from being wrapped in `@layer utils { ...styles... }`
 @mixin css-utils($disable-layer: false) {
   @include utils.optional-layer(utils, $disable-layer) {
     .rmd-display-none {
@@ -444,16 +444,16 @@ $_layer-order: (
 // @include core.styles;
 // ```
 //
-// @param disable-layer [false] - Set this to `true` if all the react-md styles
+// @param {boolean} disable-layer - Set this to `true` if all the react-md styles
 // should not be wrapped in a [css layer](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer).
 // You normally want this so it is easier to override react-md styles.
-// @param disable-layer-order [$disable-layer] - Set this to `true` to remove
+// @param {boolean} disable-layer-order - Set this to `true` to remove
 // the layer ordering.
-// @param disable-reset [false] - Set this to `true` to prevent the
+// @param {boolean} disable-reset - Set this to `true` to prevent the
 // {@link css-reset} from being applied. This is only useful if you want to call
 // the `css-reset` yourself since most components will not work correctly
 // without this reset.
-// @param disable-css-utils - Set this to `true` to prevent the
+// @param {boolean} disable-css-utils - Set this to `true` to prevent the
 // {@link css-utils} from being applied. This is only useful if you want to call
 // the `css-utils` yourself since most components will not work correctly
 // without this reset.

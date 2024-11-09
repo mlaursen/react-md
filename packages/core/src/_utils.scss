@@ -41,7 +41,7 @@ $_swappable-properties: text-align;
 // }
 // ```
 //
-// @returns `var(--rmd-scrollbar-size, 0px)`
+// @returns {string} `var(--rmd-scrollbar-size, 0px)`}
 @function scrollbar-size() {
   @return var(--rmd-scrollbar-size, 0px);
 }
@@ -53,7 +53,7 @@ $_swappable-properties: text-align;
 // @param {string} string - Initial string
 // @param {string} search - Substring to replace
 // @param {string} replace - New value
-// @returns {string} - Updated string
+// @returns {string} Updated string
 // @link https://css-tricks.com/snippets/sass/str-replace-function Source from CSS Tricks
 @function str-replace($string, $search, $replace) {
   $index: string.index($string, $search);
@@ -73,7 +73,7 @@ $_swappable-properties: text-align;
 // Used to negate a number or a variable that might be a `var` statement.
 //
 // @param {string} css-variable - The `var()` or number to negate.
-// @returns `calc(-1 * #{$css-variable})`
+// @returns {string} `calc(-1 * #{$css-variable})`}
 @function negate-var($css-variable) {
   @return calc(-1 * #{$css-variable});
 }
@@ -85,7 +85,7 @@ $_swappable-properties: text-align;
 // @param {string|number} key-or-value - Either the map key or list value to
 // check if exists
 // @param {string} error-message - The additional error message to display
-// @returns the value from the list or map
+// @returns {any} the value from the list or map
 @function validate($list-or-map, $key-or-value, $error-message) {
   $type: meta.type-of($list-or-map);
   $is-map: $type == map;
@@ -239,7 +239,9 @@ $_swappable-properties: text-align;
 // @include core.keyframes(my-animation) {
 //   @include core.map-to-animation($animation);
 // }
-// ````
+// ```
+//
+// @param {Map} map - the map of animation styles to generate
 @mixin map-to-animation($map) {
   @each $percentage, $styles in $map {
     #{$percentage} {
@@ -259,12 +261,12 @@ $_swappable-properties: text-align;
 // }
 // ```
 //
-// @param {number} z-index [0] - The z-index for the pseudo element.
-// @param {boolean} fixed [false] - Set to `true` to change from `position:
-// absolute` to `position: fixed`
-// @param {number} inset [0] - Used to apply any inset styles from the parent
+// @param {number} z-index - The z-index for the pseudo element.
+// @param {boolean} fixed - Set to `true` to change from `position: absolute`
+// to `position: fixed`
+// @param {number} inset - Used to apply any inset styles from the parent
 // element.
-// @param {string} border-radius [inherit] - You normally want to inherit the
+// @param {string} border-radius - You normally want to inherit the
 // `border-radius`, but it can be configured with this param if needed.
 @mixin pseudo-element(
   $z-index: 0,
@@ -300,9 +302,9 @@ $_swappable-properties: text-align;
 // You'll normally just want to use the `SrOnly` component or `cssUtils` instead
 // of this mixin.
 //
-// @param {boolean} focusable [false] - Set to `true` to update the element so
+// @param {boolean} focusable - Set to `true` to update the element so
 // it will become visible to everyone while focused
-// @param {string} focus-selector [&--focusable] - A selector to show that the
+// @param {string} focus-selector - A selector to show that the
 // element has been focused
 @mixin sr-only($focusable: false, $focus-selector: "&--focusable") {
   border: 0;
@@ -346,10 +348,9 @@ $_swappable-properties: text-align;
 //
 // @param {string} selector - The selector that should not be affected by CSS
 // module behavior
-// @param {boolean} css-modules [false] - Set to `true` when used within a CSS
-// Module
-// @param {boolean} parent-selector [true] - Updates the selector to end with
-// ` &` so it inherits the current scope
+// @param {boolean} css-modules - Set to `true` when used within a CSS Module
+// @param {boolean} parent-selector - Updates the selector to end with ` &` so
+// it inherits the current scope
 @mixin optional-css-modules(
   $selector,
   $css-modules: false,
@@ -426,10 +427,9 @@ $_swappable-properties: text-align;
 // Note: This will need to be included at the end of a block with the new Sass
 // rules or prefix styles with `& {}`
 //
-// @param {boolean} css-modules [false] - Set to `true` when used within a CSS
-// Module
-// @param {boolean} parent-selector [true] - Updates the selector to end with
-// ` &` so it inherits the current scope
+// @param {boolean} css-modules - Set to `true` when used within a CSS Module
+// @param {boolean} parent-selector - Updates the selector to end with ` &` so
+// it inherits the current scope
 @mixin keyboard-only($css-modules: false, $parent-selector: true) {
   @include optional-css-modules(
     ".rmd-keyboard-mode",
@@ -446,10 +446,9 @@ $_swappable-properties: text-align;
 // Note: This will need to be included at the end of a block with the new Sass
 // rules or prefix styles with `& {}`
 //
-// @param {boolean} css-modules [false] - Set to `true` when used within a CSS
-// Module
-// @param {boolean} parent-selector [true] - Updates the selector to end with
-// ` &` so it inherits the current scope
+// @param {boolean} css-modules - Set to `true` when used within a CSS Module
+// @param {boolean} parent-selector - Updates the selector to end with ` &` so
+// it inherits the current scope
 @mixin mouse-only($css-modules: false, $parent-selector: true) {
   @include optional-css-modules(
     ".rmd-mouse-mode",
@@ -466,10 +465,9 @@ $_swappable-properties: text-align;
 // Note: This will need to be included at the end of a block with the new Sass
 // rules or prefix styles with `& {}`
 //
-// @param {boolean} css-modules [false] - Set to `true` when used within a CSS
-// Module
-// @param {boolean} parent-selector [true] - Updates the selector to end with
-// ` &` so it inherits the current scope
+// @param {boolean} css-modules - Set to `true` when used within a CSS Module
+// @param {boolean} parent-selector - Updates the selector to end with ` &` so
+// it inherits the current scope
 @mixin touch-only($css-modules: false, $parent-selector: true) {
   @include optional-css-modules(
     ".rmd-touch-mode",
@@ -494,8 +492,8 @@ $_swappable-properties: text-align;
 // }
 // ```
 //
-// @param {boolean} wrap-in-hover [true] - Set this to `false` if the content
-// should not automatically be wrapped in `&:hover`
+// @param {boolean} wrap-in-hover - Set this to `false` if the content should
+// not automatically be wrapped in `&:hover`
 @mixin mouse-hover($wrap-in-hover: true) {
   @media (hover: hover) and (pointer: fine) {
     @if $wrap-in-hover {
