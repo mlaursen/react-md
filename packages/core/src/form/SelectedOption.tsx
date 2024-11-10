@@ -26,6 +26,7 @@ export function SelectedOption(props: SelectedOptionProps): ReactElement {
     disableAddon,
     option,
     className,
+    disableWrap = true,
     disablePadding = true,
     placeholder,
     ...remaining
@@ -44,6 +45,7 @@ export function SelectedOption(props: SelectedOptionProps): ReactElement {
     <Box
       {...remaining}
       className={cnb("rmd-selected-option", textField(), className)}
+      disableWrap={disableWrap}
       disablePadding={disablePadding}
     >
       {!disableAddon && option?.leftAddon}

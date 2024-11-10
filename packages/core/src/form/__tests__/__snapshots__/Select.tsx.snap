@@ -217,7 +217,7 @@ exports[`Select should apply the correct styling, HTMLAttributes, and allow a re
   tabindex="0"
 >
   <div
-    class="rmd-box rmd-box--gap rmd-box--wrap rmd-selected-option rmd-text-field"
+    class="rmd-box rmd-box--gap rmd-selected-option rmd-text-field"
     data-testid="selected"
   />
   <input
@@ -262,7 +262,7 @@ exports[`Select should apply the correct styling, HTMLAttributes, and allow a re
   tabindex="0"
 >
   <div
-    class="rmd-box rmd-box--gap rmd-box--wrap rmd-selected-option rmd-text-field"
+    class="rmd-box rmd-box--gap rmd-selected-option rmd-text-field"
     data-testid="selected"
   />
   <input
@@ -453,7 +453,7 @@ exports[`Select should automatically pull options from the children and update w
 
 exports[`Select should include the leftAddon of the selected option unless disableOptionAddon is true 1`] = `
 <div
-  class="rmd-box rmd-box--gap rmd-box--wrap rmd-selected-option rmd-text-field"
+  class="rmd-box rmd-box--gap rmd-selected-option rmd-text-field"
   data-testid="selected"
 >
   <span
@@ -473,7 +473,7 @@ exports[`Select should include the leftAddon of the selected option unless disab
 
 exports[`Select should include the leftAddon of the selected option unless disableOptionAddon is true 2`] = `
 <div
-  class="rmd-box rmd-box--gap rmd-box--wrap rmd-selected-option rmd-text-field"
+  class="rmd-box rmd-box--gap rmd-selected-option rmd-text-field"
   data-testid="selected"
 >
   <span
