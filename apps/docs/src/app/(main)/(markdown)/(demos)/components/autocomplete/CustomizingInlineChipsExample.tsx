@@ -1,10 +1,13 @@
 "use client";
-import { desserts } from "@/constants/desserts.js";
+import { type Dessert, desserts } from "@/constants/desserts.js";
 import { Autocomplete } from "@react-md/core/autocomplete/Autocomplete";
 import FavoriteIcon from "node_modules/@react-md/material-icons/src/FavoriteIcon.jsx";
 import { type ReactElement } from "react";
 
 export default function CustomizingInlineChipsExample(): ReactElement {
+  const isDisabled = (option: Dessert): boolean =>
+    option === desserts[0] || option === desserts[1] || option === desserts[4];
+
   return (
     <>
       <Autocomplete
@@ -14,11 +17,16 @@ export default function CustomizingInlineChipsExample(): ReactElement {
         listboxLabel="Desserts"
         options={desserts}
         getOptionLabel={(dessert) => dessert.name}
+        getOptionProps={({ option }) => {
+          return {
+            disabled: isDisabled(option),
+          };
+        }}
         getChipProps={({ option, index }) => {
           return {
             theme: "outline",
             leftAddon: <FavoriteIcon />,
-            disabled: index < 3,
+            disabled: isDisabled(option),
             children: `${option.name} ${index + 1}`,
           };
         }}

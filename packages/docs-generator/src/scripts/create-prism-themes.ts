@@ -4,8 +4,7 @@ import cssnano from "cssnano";
 import cssnanoPresetDefault from "cssnano-preset-default";
 import { globSync } from "glob";
 import { createHash } from "node:crypto";
-import { existsSync } from "node:fs";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import postcss from "postcss";
 import postcssCombineDuplicatedSelectors from "postcss-combine-duplicated-selectors";
@@ -99,9 +98,8 @@ const INLINE_CODE_SELECTOR = ':not(pre) > code[class*="language-"]';
 const PREFIX_OR_EXTENSION_REGEXP =
   /-moz|\.(highlight|diff-highlight|line-highlight|code-toolbar|command-line|rainbow-braces|prism-previewer|line-numbers)/;
 
-if (!existsSync(prismThemesOutFolder)) {
-  await mkdir(prismThemesOutFolder, { recursive: true });
-}
+await rm(prismThemesOutFolder, { recursive: true, force: true });
+await mkdir(prismThemesOutFolder, { recursive: true });
 
 async function writeCss(themeName: string, contents: string): Promise<void> {
   const contentHashName = createHash("sha256")

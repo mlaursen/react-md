@@ -116,9 +116,25 @@ $green: #859900;
     }
   }
 
-  .language-scss .token.function,
-  .language-scss .token.variable {
-    color: $blue;
+  .language-sh,
+  .language-bash,
+  .language-shell,
+  .language-css {
+    .token.function {
+      color: $orange;
+    }
+  }
+
+  .language-scss {
+    .token.unit,
+    .token.number {
+      color: $violet;
+    }
+
+    .token.function,
+    .token.variable {
+      color: $blue;
+    }
   }
 
   .language-ts .token + .class-name {
@@ -132,6 +148,14 @@ $green: #859900;
   .language-ts,
   .language-tsx {
     .token.number {
+      color: inherit;
+    }
+
+    .function {
+      color: $blue;
+    }
+
+    .keyword + .keyword + .function {
       color: inherit;
     }
 
@@ -150,21 +174,5 @@ $green: #859900;
         color: $red;
       }
     }
-  }
-
-  .language-scss .token.function {
-    color: $orange;
-  }
-
-  .language-sh .token.function,
-  .language-bash .token.function,
-  .language-shell .token.function {
-    color: $blue;
-  }
-
-  .language-sh .token.function,
-  .language-bash .token.parameter,
-  .language-shell .token.parameter {
-    color: $orange;
   }
 }

@@ -42,7 +42,7 @@ export function ScssCodeEditor(props: ScssCodeEditorProps): ReactElement {
       <CodeEditor
         disableMarginTop
         highlightCode={highlightCode}
-        language="css"
+        language={isCssVisible ? "css" : "scss"}
         editorProps={{
           ...editorProps,
           readOnly: isCssVisible,
