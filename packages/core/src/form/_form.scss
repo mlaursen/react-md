@@ -543,16 +543,21 @@ $variables: (
         @if not
           $disable-text-field or not
           $disable-password or not
-          $disable-textarea
+          $disable-textarea or not
+          $disable-select
         {
+          $text-field-floating: ", .rmd-text-field:where(:not(:placeholder-shown))" +
+            if($disable-select, "", " ~ :where(:not(.rmd-select))") +
+            " ~ &--floating";
+
           $floating-active-selector: $floating-active-selector +
             ", .rmd-text-field-container:focus-within &--floating" +
-            ", .rmd-text-field:not(:placeholder-shown) ~ &--floating";
+            $text-field-floating;
         }
         @if not $disable-native-select {
           $floating-active-selector: $floating-active-selector +
             ", .rmd-native-select[multiple] ~ &--floating" +
-            ", .rmd-native-select:not(:invalid) ~ &--floating";
+            ", .rmd-native-select:where(:not(:invalid)) ~ &--floating";
         }
 
         #{$floating-active-selector} {
