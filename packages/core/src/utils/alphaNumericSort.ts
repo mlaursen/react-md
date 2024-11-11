@@ -25,9 +25,9 @@ export interface AlphaNumericSortOptions<T> {
    *
    * const items: Item[] = [{ name: 'Hello' }, { name: 'World' }];
    *
-   * `alphaNumericSort(items, {
-   *   extractor: item => item.name,
-   * })`
+   * alphaNumericSort(items, {
+   *   extractor: (item) => item.name,
+   * });
    * ```
    *
    * For javascript developers, this will throw an error in dev mode if an
@@ -95,7 +95,7 @@ export function alphaNumericSort<T extends string>(
  * const items: Item[] = [{ name: "World" }, { name: "Hello" }];
  *
  * const sorted = alphaNumericSort(items, {
- *   extractor: item => item.name,
+ *   extractor: (item) => item.name,
  * });
  * // sorted == [{ name: "Hello" }, { name: "World" }]
  * ```
