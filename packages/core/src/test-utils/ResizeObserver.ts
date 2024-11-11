@@ -217,14 +217,14 @@ export interface SetupResizeObserverMockOptions {
  *
  * @example Main Usage
  * ```tsx
- * import { useCallback, useState } from "react";
  * import {
  *   cleanupResizeObserverAfterEach,
  *   render,
  *   screen,
  *   setupResizeObserverMock,
  * } from "@react-md/core/test-utils";
- * import { useResizeObserver } from "@react-md/core";
+ * import { useResizeObserver } from "@react-md/core/useResizeObserver";
+ * import { useCallback, useState } from "react";
  *
  * function ExampleComponent() {
  *   const [size, setSize] = useState({ height: 0, width: 0 });
@@ -234,7 +234,7 @@ export interface SetupResizeObserverMockOptions {
  *         height: entry.contentRect.height,
  *         width: entry.contentRect.width,
  *       });
- *     });
+ *     }, []),
  *   });
  *
  *   return (
@@ -250,10 +250,10 @@ export interface SetupResizeObserverMockOptions {
  * describe("ExampleComponent", () => {
  *   it("should do stuff", () => {
  *     const observer = setupResizeObserverMock();
- *     render(<ExampleComponent />)
+ *     render(<ExampleComponent />);
  *
  *     const size = screen.getByTestId("size");
- *     const resizeTarget = screen.getByTestId("resize-target")
+ *     const resizeTarget = screen.getByTestId("resize-target");
  *
  *     // jsdom sets all element sizes to 0 by default
  *     expect(size).toHaveTextContent(JSON.stringify({ height: 0, width: 0 }));
@@ -265,19 +265,18 @@ export interface SetupResizeObserverMockOptions {
  *     expect(size).toHaveTextContent(JSON.stringify({ height: 100, width: 100 }));
  *
  *     // or you can mock the `getBoundingClientRect` result
- *     jest.spyOn(resizeTarget, "getBoundingClientRect")
- *       .mockReturnValue({
- *         ...document.body.getBoundingClientRect(),
- *         height: 200,
- *         width: 200,
- *       }):
+ *     jest.spyOn(resizeTarget, "getBoundingClientRect").mockReturnValue({
+ *       ...document.body.getBoundingClientRect(),
+ *       height: 200,
+ *       width: 200,
+ *     });
  *
  *     act(() => {
  *       observer.resizeElement(resizeTarget);
  *     });
  *     expect(size).toHaveTextContent(JSON.stringify({ height: 200, width: 200 }));
  *   });
- * })
+ * });
  * ```
  *
  * @since 6.0.0

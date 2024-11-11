@@ -194,6 +194,25 @@ export interface ResizeObserverHookOptions<E extends HTMLElement> {
  * For most cases you can use the {@link useElementSize} instead, but this hook
  * can be used for more complex behavior with the {@link ResizeObserverEntry}.
  *
+ * @example Simple Example
+ * ```tsx
+ * import { useResizeObserver } from "@react-md/core/useResizeObserver";
+ * import { useCallback, useState, type ReactElement } from "react";
+ *
+ * function Example(): ReactElement {
+ *   const elementRef = useResizeObserver({
+ *     onUpdate: useCallback((entry) => {
+ *       const element = entry.target;
+ *       const { height, width } = entry.contentRect;
+ *       const { inlineSize, blockSize } = entry.borderBoxSize[0]O
+ *       // do something
+ *     }, []),
+ *   });
+ *
+ *   return <div ref={elementRef}>{...whatever...}</div>
+ * }
+ * ```
+ *
  * @since 2.3.0
  * @since 6.0.0 The API was updated to match the `useIntersectionObserver`
  * implementation -- accepts only a single object parameter and returns a
