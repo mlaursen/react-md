@@ -13,7 +13,7 @@
     "clean": "TURBO_TELEMETRY_DISABLED=1 turbo run clean && pnpm clean-root",
     "clean-dist": "TURBO_TELEMETRY_DISABLED=1 turbo run clean-dist",
     "clean-root": "rm -rf .turbo coverage node_modules",
-    "test": "TURBO_TELEMETRY_DISABLED=1 turbo run test --concurrency=1",
+    "test": "TURBO_TELEMETRY_DISABLED=1 turbo run test",
     "typecheck": "TURBO_TELEMETRY_DISABLED=1 turbo run typecheck",
     "validate": "pnpm run lint && pnpm run typecheck",
     "format": "prettier --write .",

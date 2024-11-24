@@ -1,7 +1,12 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import { createRef, type ReactElement, type Ref } from "react";
 import { type IconRotatorBaseProps } from "../../icon/IconRotator.js";
-import { rmdRender, screen, userEvent } from "../../test-utils/index.js";
+import {
+  rmdRender,
+  screen,
+  userEvent,
+  waitFor,
+} from "../../test-utils/index.js";
 import { useToggle } from "../../useToggle.js";
 import { NavItemButton, type NavItemButtonProps } from "../NavItemButton.js";
 
@@ -99,6 +104,11 @@ describe("NavItemButton", () => {
     await user.hover(button);
     const tooltip = await screen.findByRole("tooltip", {
       name: "Content",
+    });
+    // Make the test less flakey by waiting for the fixed positioning style
+    // to have been calculated at least once with the tooltip element
+    await waitFor(() => {
+      expect(tooltip).toHaveStyle("left: 24px");
     });
 
     expect(tooltip).toMatchSnapshot();
