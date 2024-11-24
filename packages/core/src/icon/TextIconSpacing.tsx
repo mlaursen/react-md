@@ -26,7 +26,7 @@ export interface TextIconSpacingProps {
    * If this is not a valid react element, the icon will be wrapped in a
    * `<span>` instead with the class names applied.
    */
-  icon?: ReactElement | ReactNode;
+  icon?: ReactElement<{ className?: string }> | ReactNode;
 
   /**
    * Boolean if the icon should appear after the text instead of before.

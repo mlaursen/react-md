@@ -347,7 +347,7 @@ export interface ValidatedFilesResult<CustomError> {
  * };
  * ```
  *
- * @typeparam E - An optional custom file validation error.
+ * @typeParam E - An optional custom file validation error.
  * @param files - The list of files to check
  * @param options - The {@link FilesValidationOptions}
  * @returns the {@link ValidatedFilesResult}
@@ -364,7 +364,7 @@ export type FilesValidator<CustomError = never> = (
  * {@link useFileUpload} that ensures the {@link FilesValidationOptions} are
  * enforced before allowing a file to be uploaded.
  *
- * @typeparam E - An optional custom file validation error.
+ * @typeParam E - An optional custom file validation error.
  * @param files - The list of files to check
  * @param options - The {@link FilesValidationOptions}
  * @returns the {@link ValidatedFilesResult}

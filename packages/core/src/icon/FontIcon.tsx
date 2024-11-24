@@ -18,9 +18,11 @@ export interface FontIconProps
 
   /**
    * Any children to render to create the font icon. This is required for
-   * material-icons.
+   * material-icons. For example:
    *
-   * @example `<FontIcon>clear</FontIcon>`
+   * ```tsx
+   * <FontIcon>clear</FontIcon>
+   * ```
    */
   children?: ReactNode;
 }

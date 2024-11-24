@@ -2,7 +2,6 @@
 import { config, configs, gitignore } from "@mlaursen/eslint-config";
 import { join } from "node:path";
 
-// eslint-disable-next-line no-undef
 const strict = process.env.STRICT_TYPING === "true";
 
 const frontend = strict
