@@ -278,8 +278,9 @@ $variables: (
 
               @include box-shadows.box-shadow-transition(
                 $start-shadow: $outline-box-shadow,
-                $end-shadow:
-                  box-shadows.box-shadow($outline-raisable-box-shadow-z-value),
+                $end-shadow: box-shadows.box-shadow(
+                    $outline-raisable-box-shadow-z-value
+                  ),
                 $duration: $outline-raisable-transition-duration,
                 $active-selectors: "&.rmd-chip--pressed",
                 $pseudo-before: false,
