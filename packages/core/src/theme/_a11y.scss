@@ -109,11 +109,20 @@ $_linear-channel-values: (
 // @param {Color} color - The color to check
 // @returns {number} A number representing the luminance for the color.
 @function _luminance($color) {
-  $red: list.nth($_linear-channel-values, color.channel($color, "red") + 1);
+  $red: list.nth(
+    $_linear-channel-values,
+    math.round(color.channel($color, "red")) + 1
+  );
   $red-multiplier: 0.2126;
-  $green: list.nth($_linear-channel-values, color.channel($color, "green") + 1);
+  $green: list.nth(
+    $_linear-channel-values,
+    math.round(color.channel($color, "green")) + 1
+  );
   $green-multiplier: 0.7152;
-  $blue: list.nth($_linear-channel-values, color.channel($color, "blue") + 1);
+  $blue: list.nth(
+    $_linear-channel-values,
+    math.round(color.channel($color, "blue")) + 1
+  );
   $blue-multiplier: 0.0722;
 
   @return ($red * $red-multiplier) + ($green * $green-multiplier) +
