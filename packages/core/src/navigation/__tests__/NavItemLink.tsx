@@ -83,6 +83,7 @@ describe("NavItemLink", () => {
       name: "Home",
     });
 
+    expect(tooltip).toHaveStyle("position: fixed; left: 24px;top: 16px;");
     expect(tooltip).toMatchSnapshot();
   });
 
