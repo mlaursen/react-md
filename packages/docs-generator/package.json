@@ -1,7 +1,7 @@
 {
   "name": "docs-generator",
   "private": true,
-  "version": "0.0.1-next.5",
+  "version": "0.0.1-next.6",
   "description": "MDX Plugins for the documentation site",
   "type": "module",
   "exports": {

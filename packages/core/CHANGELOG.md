@@ -1,5 +1,15 @@
 # @react-md/core
 
+## 1.0.0-next.18
+
+### Patch Changes
+
+- - The `constrast-color` mixin no longer throws an error with some colors due to `color.channel` not returning an int
+  - Fixed some type definitions for the React 19 release
+  - Disable line wrapping for the current selected option in the `Select` component
+  - Updated docs for lots of hooks and components
+  - Added docs for testing with Jest
+
 ## 1.0.0-next.17
 
 ### Patch Changes
