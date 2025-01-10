@@ -546,9 +546,40 @@ $variables: (
           $disable-textarea or not
           $disable-select
         {
-          $text-field-floating: ", .rmd-text-field:where(:not(:placeholder-shown))" +
-            if($disable-select, "", " ~ :where(:not(.rmd-select))") +
-            " ~ &--floating";
+          // The label should automatically float while the input is not focused
+          // and there is a value the label _should_ always be the next element.
+          // However, password managers might inject an element in the DOM
+          // before the label to display their way of autocompleting the field
+          // so it also needs to support the label appearing anywhere after the
+          // input instead of the next element. It should also ignore the select
+          // field since it is more of a hidden input. Here are a few examples:
+          //
+          // ```html
+          // <!-- Simple TextField with no password manager -->
+          // <input class="rmd-text-field" type="text" />
+          // <label class="rmd-label rmd-label--floating"></label>
+          //
+          // <!-- Simple TextField with password manager -->
+          // <input class="rmd-text-field" type="text" />
+          // <div style="position: relative !important; ...">...</div>
+          // <label class="rmd-label rmd-label--floating"></label>
+          //
+          // <!-- Simple Select -->
+          // <input class="rmd-select rmd-text-field" type="text" />
+          // <span class="rmd-label rmd-label--floating"></span>
+          // ```
+          $valued-input: ", .rmd-text-field:where(:not(:placeholder-shown))";
+
+          // so this targets the TextField with no password manager
+          $valued-input-with-floating-label-next-element: $valued-input +
+            " + &--floating";
+          // this targets the TextField with a password manager and excludes the
+          // Select
+          $valued-input-with-floating-label-any-relative-element: $valued-input +
+            " ~ :where(:not(.rmd-select)) ~ &--floating";
+
+          $text-field-floating: $valued-input-with-floating-label-next-element +
+            $valued-input-with-floating-label-any-relative-element;
 
           $floating-active-selector: $floating-active-selector +
             ", .rmd-text-field-container:focus-within &--floating" +
