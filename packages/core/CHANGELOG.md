@@ -1,5 +1,11 @@
 # @react-md/core
 
+## 1.0.0-next.19
+
+### Patch Changes
+
+- Fixed TextField styling
+
 ## 1.0.0-next.18
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # react-md
 
+## 6.0.0-next.7
+
+### Patch Changes
+
+- Updated dependencies
+  - @react-md/core@1.0.0-next.19
+
 ## 6.0.0-next.6
 
 ### Patch Changes
