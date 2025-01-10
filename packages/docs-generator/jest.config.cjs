@@ -1,7 +1,9 @@
-import { type Config } from "jest";
-import { type Options as SwcOptions } from "@swc/core";
+// NOTE: Should eventually be switched back to ts once ESM is natively supported
+// import { type Config } from "jest";
+// import { type Options as SwcOptions } from "@swc/core";
 
-const config: Config = {
+// const config: Config = {
+const config = {
   transform: {
     "^.+\\.(t|j)sx?$": [
       "@swc/jest",
@@ -19,7 +21,8 @@ const config: Config = {
           },
           target: "esnext",
         },
-      } satisfies SwcOptions,
+        // } satisfies SwcOptions,
+      },
     ],
   },
   // setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
@@ -53,4 +56,5 @@ const config: Config = {
   extensionsToTreatAsEsm: [".ts"],
 };
 
-export default config;
+// export default config;
+module.exports = config;
