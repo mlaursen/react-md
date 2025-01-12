@@ -17,6 +17,7 @@
       "default": "./dist/test-utils/polyfills/*.js"
     },
     "./test-utils/jest-globals": "./dist/test-utils/jest-globals/index.js",
+    "./test-utils/vitest": "./dist/test-utils/vitest/index.js",
     "./test-utils": "./dist/test-utils/index.js",
     "./colors": {
       "sass": "./dist/_colors.scss",
@@ -109,7 +110,8 @@
     "ts-morph": "^25.0.0",
     "ts-node": "^10.9.2",
     "tsx": "^4.19.2",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "vitest": "^2.1.8"
   },
   "peerDependencies": {
     "@jest/globals": "^29.7.0",
@@ -119,7 +121,8 @@
     "@testing-library/react": ">= 14",
     "@testing-library/user-event": ">= 14",
     "react": ">= 18",
-    "react-dom": ">= 18"
+    "react-dom": ">= 18",
+    "vitest": ">= 2"
   },
   "peerDependenciesMeta": {
     "@jest/globals": {
@@ -144,6 +147,9 @@
       "optional": true
     },
     "react-dom": {
+      "optional": true
+    },
+    "vitest": {
       "optional": true
     }
   },
