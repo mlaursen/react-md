@@ -8,7 +8,7 @@ export type RafSpy = MockInstance<typeof requestAnimationFrame>;
 /**
  * @example
  * ```ts
- * import { testImmediateRaf } from "@react-md/core/test-utils/jest-globals";
+ * import { testImmediateRaf } from "@react-md/core/test-utils/vitest";
  *
  * describe("some test suite", () => {
  *   it("should test something with requestAnimationFrame", () => {
@@ -24,7 +24,7 @@ export type RafSpy = MockInstance<typeof requestAnimationFrame>;
  *
  * @example Automatic Cleanup
  * ```ts
- * import { testImmediateRaf } from "@react-md/core/test-utils/jest-globals";
+ * import { testImmediateRaf } from "@react-md/core/test-utils/vitest";
  *
  * afterEach(() => {
  *   jest.restoreAllMocks();

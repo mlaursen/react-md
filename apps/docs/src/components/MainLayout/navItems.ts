@@ -598,8 +598,18 @@ export const navItems: readonly NavigationItem[] = [
     items: [
       {
         type: "route",
-        href: "/jest",
-        children: "Jest",
+        href: "/quickstart",
+        children: "Quickstart",
+      },
+      {
+        type: "route",
+        href: "/polyfills",
+        children: "Polyfills",
+      },
+      {
+        type: "route",
+        href: "/test-utils",
+        children: "Test Utils",
       },
     ],
   },

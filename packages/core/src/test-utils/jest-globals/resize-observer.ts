@@ -14,7 +14,7 @@ import {
  * import {
  *   cleanupResizeObserverAfterEach,
  *   setupResizeObserverMock,
- * } from "test-utils/jest-globals";
+ * } from "@react-md/core/test-utils/jest-globals";
  * import { useResizeObserver } from "@react-md/core/useResizeObserver";
  * import { useCallback, useState } from "react";
  *

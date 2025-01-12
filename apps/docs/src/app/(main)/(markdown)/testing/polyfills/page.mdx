@@ -1,0 +1,71 @@
+import SourceLink from "./SourceLink.jsx";
+
+# Polyfills
+
+By importing the `@react-md/core/test-utils/polyfills`, all the following
+polyfills will be applied. You can also manually import the specific polyfills
+instead.
+
+## matchMedia <SourceLink name="matchMedia" />
+
+```ts
+import "@react-md/core/test-utils/polyfills/matchMedia";
+```
+
+This updates `window.matchMedia` to default to desktop when `typeof window.matchMedia === "undefined"`.
+
+## ResizeObserver <SourceLink name="ResizeObserver" />
+
+```ts
+import "@react-md/core/test-utils/polyfills/ResizeObserver";
+```
+
+This sets the `window.ResizeObserver` to the `ResizeObserverMock`
+when it is `undefined`. See the
+[ResizeObserverMock](./test-utils#resize-observer-mock) for more details.
+
+## IntersectionObserver <SourceLink name="IntersectionObserver" />
+
+```ts
+import "@react-md/core/test-utils/polyfills/IntersectionObserver";
+```
+
+This sets the `window.IntersectionObserver` to the `IntersectionObserverMock`
+when it is `undefined`. See the
+[IntersectionObserverMock](./test-utils#intersection-observer-mock) for more details.
+
+## TextEncoder <SourceLink name="TextEncoder" />
+
+```ts
+import "@react-md/core/test-utils/polyfills/TextEncoder";
+```
+
+This sets the `global.TextEncoder` to `node:util`
+[TextEncoder](https://nodejs.org/docs/latest-v22.x/api/util.html#class-utiltextencoder)
+when it is `undefined`.
+
+## TextDecoder <SourceLink name="TextDecoder" />
+
+```ts
+import "@react-md/core/test-utils/polyfills/TextDecoder";
+```
+
+This sets the `global.TextDecoder` to `node:util`
+[TextDecoder](https://nodejs.org/docs/latest-v22.x/api/util.html#class-utiltextdecoder)
+when it is `undefined`.
+
+## offsetParent <SourceLink name="offsetParent" />
+
+```ts
+import "@react-md/core/test-utils/polyfills/offsetParent";
+```
+
+This polyfill was added for the tree keyboard movement behavior since `offsetParent` might return the incorrect value in jsdom.
+
+## scrollIntoView <SourceLink name="scrollIntoView" />
+
+```ts
+import "@react-md/core/test-utils/polyfills/scrollIntoView";
+```
+
+This polyfill adds no-op behavior to the `HTMLElement.prototype.scrollIntoView` if it is `undefined`.

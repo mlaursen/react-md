@@ -29,6 +29,8 @@ export function MarkdownCode(props: MarkdownCodeProps): ReactElement {
       "lineWrap",
       "containerProps",
       "disableMarginTop",
+      "appBarProps",
+      "appBarChildren",
     ]);
     const invalid = new Set<string>();
     Object.keys(remaining).forEach((key) => {

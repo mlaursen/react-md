@@ -1,0 +1,110 @@
+import TestConfigCodeBlock from "./TestConfigCodeBlock.tsx";
+import TestSetupCodeBlock from "./TestSetupCodeBlock.tsx";
+import InstallDependenciesCodeBlock from "./InstallDependenciesCodeBlock.tsx";
+import TestUtilsCodeBlock from "./TestUtilsCodeBlock.tsx";
+
+# Quickstart
+
+ReactMD provides built-in support for testing for the following test frameworks:
+
+- [jest](https://jestjs.io/) with `@jest/globals`
+- [vitest](https://vitest.dev)
+
+The test environment is handled through:
+
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+- [Jest DOM](https://testing-library.com/docs/ecosystem-jest-dom/)
+- [User Event Testing](https://testing-library.com/docs/user-event/v13/)
+
+## Installing Dependencies
+
+First, install `jest` or `vitest` along with the React Testing Library packages:
+
+<InstallDependenciesCodeBlock />
+
+## Setup Polyfills and Test Matchers
+
+Next, create a `src/testSetup.ts` that imports the polyfills and additional
+React Testing Library matchers:
+
+<TestSetupCodeBlock />
+
+Then configure the [jest setupFilesAfterEnv](https://jestjs.io/docs/configuration#setupfilesafterenv-array)
+or [vitest setupFiles](https://vitest.dev/config/#setupfiles) to include the
+`src/testSetup.ts` so it is included before each test.
+
+<TestConfigCodeBlock />
+
+## Render Tests with `rmdRender`
+
+> !Success! It is recommended to jump to the next section to [create a custom test renderer](#create-a-custom-test-renderer)
+> for larger apps.
+
+Now replace all `@testing-library/react` imports with `@react-md/core/test-utils` and any `render` with `rmdRender`:
+
+```diff fileName="src/__tests__/App.tsx"
+-import { render, userEvent } from "@testing-library/react";
++import { rmdRender, userEvent } from "@react-md/core/test-utils";
+
+ import App from "../App.jsx";
+
+ describe('App', () => {
+   it('should render without crashing', () => {
+-    expect(() => render(<App />)).not.toThrow();
++    expect(() => rmdRender(<App />)).not.toThrow();
+   });
+ });
+```
+
+The `rmdRender` function just automatically wraps each test in the [CoreProviders](/components/core-providers) to prevent any errors around missing context providers.
+
+# Create a Custom Test Renderer
+
+My preferred method of making all the global context providers, data stores,
+`react-md` configuration, etc available for each test is to create a utility file
+that re-exports everything from `@react-md/core/test-utils`,
+`@testing-library/react`, and `@testing-library/user-event`. The example below
+shows a possible setup.
+
+> See [Custom Renderer](https://testing-library.com/docs/react-testing-library/setup#custom-render) for additional context.
+
+```diff fileName="src/__tests__/MyComponent.tsx"
+-import { render, userEvent } from "@react-md/core/test-utils";
++import { render, userEvent } from "../test-utils";
+```
+
+```tsx fileName="src/rmdConfig.tsx"
+import { type ReactMDCoreConfiguration } from "@react-md/core/CoreProviders";
+import { configureIcons } from "@react-md/core/icon/iconConfig";
+
+// any icon overrides. Using material icons as an example
+configureIcons({
+  back: <KeyboardArrowLeftIcon />,
+  clear: <ClearIcon />,
+  close: <CloseIcon />,
+  checkbox: <CheckBoxOutlineBlankIcon />,
+  checkboxChecked: <CheckBoxIcon />,
+  checkboxIndeterminate: <IndeterminateCheckBoxIcon />,
+  dropdown: <ArrowDropDownIcon />,
+  error: <ErrorOutlineIcon />,
+  expander: <KeyboardArrowDownIcon />,
+  forward: <KeyboardArrowRightIcon />,
+  menu: <MenuIcon />,
+  notification: <NotificationsIcon />,
+  password: <RemoveRedEyeIcon />,
+  radio: <RadioButtonUncheckedIcon />,
+  radioChecked: <RadioButtonCheckedIcon />,
+  remove: <CancelIcon />,
+  selected: <CheckIcon />,
+  sort: <ArrowUpwardIcon />,
+  upload: <FileUploadIcon />,
+});
+
+export const rmdConfig: ReactMDCoreConfiguration = {
+  // any other global changes
+  // ssr: true,
+  // colorSchemeMode: "system",
+};
+```
+
+<TestUtilsCodeBlock />

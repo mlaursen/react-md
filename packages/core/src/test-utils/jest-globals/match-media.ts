@@ -8,7 +8,8 @@ import { matchDesktop, type MatchMediaMatcher } from "../mocks/match-media.js";
 /**
  * @example Default Behavior
  * ```tsx
- * import { matchPhone, render, spyOnMatchMedia } from "@react-md/core/test-utils/jest-globals";
+ * import { matchPhone, render } from "@react-md/core/test-utils";
+ * import { spyOnMatchMedia } from "@react-md/core/test-utils/jest-globals";
  *
  * const matchMedia = spyOnMatchMedia();
  * render(<Test />);
@@ -21,7 +22,8 @@ import { matchDesktop, type MatchMediaMatcher } from "../mocks/match-media.js";
  *
  * @example Set Default Media
  * ```tsx
- * import { matchPhone, render, spyOnMatchMedia } from "@react-md/core/test-utils/jest-globals";
+ * import { matchPhone, render } from "@react-md/core/test-utils";
+ * import { spyOnMatchMedia } from "@react-md/core/test-utils/jest-globals";
  *
  * const matchMedia = spyOnMatchMedia(matchPhone);
  * render(<Test />);
