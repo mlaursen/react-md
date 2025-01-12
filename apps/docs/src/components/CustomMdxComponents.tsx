@@ -5,7 +5,7 @@ import {
   type MarkdownCodeProps,
 } from "@/components/MarkdownCode.jsx";
 import { MarkdownLink } from "@/components/MarkdownLink.jsx";
-import { PackageManagerCodeBlock } from "@/components/PackageManagerCodeBlock.jsx";
+import { PackageManagerCodeBlock } from "@/components/PackageManagerCodeBlock/PackageManagerCodeBlock.jsx";
 import { TableOfContents } from "@/components/TableOfContents/TableOfContents.jsx";
 import { TypescriptCodeBlock } from "@/components/TypescriptCodeBlock.jsx";
 import { Divider } from "@react-md/core/divider/Divider";

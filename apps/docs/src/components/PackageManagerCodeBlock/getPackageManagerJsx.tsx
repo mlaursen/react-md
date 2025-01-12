@@ -1,16 +1,15 @@
 import { type PackageManager } from "@react-md/code/PackageManagerProvider";
-import { type ReactElement, type ReactNode } from "react";
-import { MarkdownCode } from "./MarkdownCode.jsx";
-import { PackageManagerCodeBlockContainer } from "./PackageManagerCodeBlockContainer.jsx";
+import { type ReactNode } from "react";
+import { MarkdownCode } from "../MarkdownCode.jsx";
 
 export interface PackageManagerCodeBlockProps {
   lineWrap?: boolean;
   managers: Record<PackageManager, string>;
 }
 
-export function PackageManagerCodeBlock(
+export function getPackageManagerJsx(
   props: PackageManagerCodeBlockProps
-): ReactElement {
+): Record<PackageManager, ReactNode> {
   const { lineWrap, managers } = props;
   const nextManagers: Record<PackageManager, ReactNode> = { ...managers };
   Object.entries(managers).forEach(([manager, code]) => {
@@ -21,5 +20,5 @@ export function PackageManagerCodeBlock(
     );
   });
 
-  return <PackageManagerCodeBlockContainer managers={nextManagers} />;
+  return nextManagers;
 }

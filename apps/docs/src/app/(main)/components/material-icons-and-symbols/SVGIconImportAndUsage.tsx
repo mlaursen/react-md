@@ -1,5 +1,5 @@
 import { Blockquote } from "@/components/Blockquote.jsx";
-import { PackageManagerCodeBlock } from "@/components/PackageManagerCodeBlock.jsx";
+import { PackageManagerCodeBlock } from "@/components/PackageManagerCodeBlock/PackageManagerCodeBlock.jsx";
 import { Typography } from "@react-md/core/typography/Typography";
 import { cnb } from "cnbuilder";
 import Link from "next/link.js";
