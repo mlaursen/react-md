@@ -16,12 +16,7 @@ import { useRadioGroup } from "../../form/useRadioGroup.js";
 import { useAppSize } from "../../media-queries/AppSizeProvider.js";
 import { Sheet } from "../../sheet/Sheet.js";
 import { drag } from "../../test-utils/drag.js";
-import {
-  rmdRender,
-  screen,
-  userEvent,
-  waitFor,
-} from "../../test-utils/index.js";
+import { rmdRender, screen, userEvent, waitFor } from "test-utils";
 import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { removeItemFromStorage } from "../../useLocalStorage.js";
 import { isElementVisible } from "../../utils/isElementVisible.js";

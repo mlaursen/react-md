@@ -1,12 +1,7 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement } from "react";
 import { Button } from "../../button/Button.js";
-import {
-  rmdRender,
-  screen,
-  userEvent,
-  waitFor,
-} from "../../test-utils/index.js";
+import { rmdRender, screen, userEvent, waitFor } from "test-utils";
 import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { useScaleTransition } from "../../transition/useScaleTransition.js";
 import { useToggle } from "../../useToggle.js";

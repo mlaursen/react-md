@@ -1,4 +1,4 @@
-import { BASE_MEDIA_QUERY_LIST, matchDesktop } from "../matchMedia.js";
+import { BASE_MEDIA_QUERY_LIST, matchDesktop } from "../mocks/match-media.js";
 
 if (typeof window !== "undefined" && typeof window.matchMedia !== "function") {
   window.matchMedia = (query) => ({

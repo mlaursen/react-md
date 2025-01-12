@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
 import { Button } from "../../button/Button.js";
-import { render, screen } from "../../test-utils/index.js";
+import { render, screen } from "test-utils";
 import { DialogFooter } from "../DialogFooter.js";
 import { dialogFooter, type DialogFooterAlignment } from "../styles.js";
 

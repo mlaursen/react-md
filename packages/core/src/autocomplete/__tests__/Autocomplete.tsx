@@ -1,17 +1,11 @@
 import { afterAll, beforeAll, describe, expect, it, jest } from "@jest/globals";
 import { cnb } from "cnbuilder";
 import { act, createRef, type ReactElement, useEffect, useState } from "react";
+import { rmdRender, screen, userEvent, within } from "test-utils";
+import { type RafSpy, testImmediateRaf } from "test-utils/jest-globals";
 import { FontIcon } from "../../icon/FontIcon.js";
 import { type MenuItemProps } from "../../menu/MenuItem.js";
 import { fuzzySearch } from "../../searching/fuzzy.js";
-import {
-  type RafSpy,
-  rmdRender,
-  screen,
-  testImmediateRaf,
-  userEvent,
-  within,
-} from "../../test-utils/index.js";
 import { SrOnly } from "../../typography/SrOnly.js";
 import { Autocomplete } from "../Autocomplete.js";
 import {

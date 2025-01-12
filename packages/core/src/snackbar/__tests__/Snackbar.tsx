@@ -5,7 +5,7 @@ import {
   screen,
   type ReactMDRenderOptions,
   type RenderResult,
-} from "../../test-utils/index.js";
+} from "test-utils";
 
 import { Snackbar } from "../Snackbar.js";
 import { ToastManager } from "../ToastManager.js";

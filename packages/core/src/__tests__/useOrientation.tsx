@@ -1,5 +1,5 @@
 import { describe, expect, it, jest } from "@jest/globals";
-import { act, render } from "../test-utils/index.js";
+import { act, render } from "test-utils";
 
 import { useOrientation } from "../useOrientation.js";
 

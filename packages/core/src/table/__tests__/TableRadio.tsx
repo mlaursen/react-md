@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef, type FC, type ReactElement, type ReactNode } from "react";
 import { useRadioGroup } from "../../form/useRadioGroup.js";
-import { render, screen, userEvent, within } from "../../test-utils/index.js";
+import { render, screen, userEvent, within } from "test-utils";
 import { Table } from "../Table.js";
 import { TableBody } from "../TableBody.js";
 import { TableRadio } from "../TableRadio.js";

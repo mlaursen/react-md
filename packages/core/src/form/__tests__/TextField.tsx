@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
 import { FontIcon } from "../../icon/FontIcon.js";
-import { render, screen } from "../../test-utils/index.js";
+import { render, screen } from "test-utils";
 import { TextField, type TextFieldProps } from "../TextField.js";
 
 describe("TextField", () => {

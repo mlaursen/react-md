@@ -1,56 +1,12 @@
-import { afterEach, jest } from "@jest/globals";
 import {
-  resizeObserverManager,
   type ResizeObserverManager,
-} from "../useResizeObserver.js";
-
-/**
- * @since 6.0.0
- */
-export interface ResizeObserverEntrySize {
-  height?: number;
-  width?: number;
-}
-
-/**
- * @since 6.0.0
- */
-export type GetResizeObserverEntryMock = (
-  target: Element,
-  size?: ResizeObserverEntrySize
-) => ResizeObserverEntry;
-
-/**
- * This is mostly an internal function to be used with the {@link ResizeObserverMock}
- * and {@link setupResizeObserverMock}
- *
- * @since 6.0.0
- */
-export const createResizeObserverEntry: GetResizeObserverEntryMock = (
-  target,
-  size
-) => {
-  const contentRect = target.getBoundingClientRect();
-  if (typeof size?.height === "number") {
-    contentRect.height = size.height;
-  }
-  if (typeof size?.width === "number") {
-    contentRect.width = size.width;
-  }
-
-  const boxSize: ResizeObserverSize = {
-    blockSize: contentRect.height,
-    inlineSize: contentRect.width,
-  };
-
-  return {
-    target,
-    contentRect,
-    borderBoxSize: [boxSize],
-    contentBoxSize: [boxSize],
-    devicePixelContentBoxSize: [],
-  };
-};
+  resizeObserverManager,
+} from "../../useResizeObserver.js";
+import {
+  createResizeObserverEntry,
+  type GetResizeObserverEntryMock,
+  type ResizeObserverEntrySize,
+} from "../utils/resize-observer.js";
 
 /**
  * This is the default ResizeObserver implementation if it does not already
@@ -88,7 +44,7 @@ export class ResizeObserverMock implements ResizeObserver {
    * import {
    *   cleanupResizeObserverAfterEach,
    *   setupResizeObserverMock,
-   * } from "@react-md/core/test-utils";
+   * } from "@react-md/core/test-utils/jest-globals";
    * import { useResizeObserver } from "@react-md/core";
    * import { ExampleComponent } from "../ExampleComponent.js";
    *
@@ -217,12 +173,11 @@ export interface SetupResizeObserverMockOptions {
  *
  * @example Main Usage
  * ```tsx
+ * import { render, screen } from "@react-md/core/test-utils";
  * import {
  *   cleanupResizeObserverAfterEach,
- *   render,
- *   screen,
  *   setupResizeObserverMock,
- * } from "@react-md/core/test-utils";
+ * } from "test-utils/jest-globals";
  * import { useResizeObserver } from "@react-md/core/useResizeObserver";
  * import { useCallback, useState } from "react";
  *
@@ -298,20 +253,4 @@ export function setupResizeObserverMock(
   });
   manager.sharedObserver = resizeObserver;
   return resizeObserver;
-}
-
-/**
- * @see {@link setupResizeObserverMock}
- * @since 6.0.0
- */
-export function cleanupResizeObserverAfterEach(restoreAllMocks = true): void {
-  afterEach(() => {
-    resizeObserverManager.frame = 0;
-    resizeObserverManager.subscriptions = new Map();
-    resizeObserverManager.sharedObserver = undefined;
-
-    if (restoreAllMocks) {
-      jest.restoreAllMocks();
-    }
-  });
 }

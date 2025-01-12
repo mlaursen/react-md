@@ -1,12 +1,10 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef, type MutableRefObject, type ReactElement } from "react";
+import { act, render, screen } from "test-utils";
 import {
-  act,
   cleanupResizeObserverAfterEach,
-  render,
-  screen,
   setupResizeObserverMock,
-} from "../test-utils/index.js";
+} from "test-utils/jest-globals";
 import { type ElementSize } from "../types.js";
 import { useElementSize, type ElementSizeOptions } from "../useElementSize.js";
 

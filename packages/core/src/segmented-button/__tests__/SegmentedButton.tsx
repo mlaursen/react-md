@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
 import { FontIcon } from "../../icon/FontIcon.js";
-import { rmdRender, screen } from "../../test-utils/index.js";
+import { rmdRender, screen } from "test-utils";
 import { SegmentedButton } from "../SegmentedButton.js";
 import { segmentedButton } from "../segmentedButtonStyles.js";
 

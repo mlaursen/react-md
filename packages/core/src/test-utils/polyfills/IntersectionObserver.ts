@@ -1,4 +1,4 @@
-import { IntersectionObserverMock } from "../IntersectionObserver.js";
+import { IntersectionObserverMock } from "../mocks/IntersectionObserver.js";
 
 if (
   typeof window !== "undefined" &&

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { render } from "../../test-utils/index.js";
+import { render } from "test-utils";
 
 import { SrOnly } from "../SrOnly.js";
 

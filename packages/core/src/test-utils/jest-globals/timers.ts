@@ -8,7 +8,7 @@ export type RafSpy = jest.SpiedFunction<typeof requestAnimationFrame>;
 /**
  * @example
  * ```ts
- * import { testImmediateRaf } from "@react-md/core/test-utils";
+ * import { testImmediateRaf } from "@react-md/core/test-utils/jest-globals";
  *
  * describe("some test suite", () => {
  *   it("should test something with requestAnimationFrame", () => {
@@ -24,7 +24,7 @@ export type RafSpy = jest.SpiedFunction<typeof requestAnimationFrame>;
  *
  * @example Automatic Cleanup
  * ```ts
- * import { testImmediateRaf } from "@react-md/core/test-utils";
+ * import { testImmediateRaf } from "@react-md/core/test-utils/jest-globals";
  *
  * afterEach(() => {
  *   jest.restoreAllMocks();

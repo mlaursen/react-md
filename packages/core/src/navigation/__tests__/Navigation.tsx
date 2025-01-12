@@ -1,12 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
 import { type ReactElement } from "react";
 import { FontIcon } from "../../icon/FontIcon.js";
-import {
-  render as baseRender,
-  screen,
-  userEvent,
-  within,
-} from "../../test-utils/index.js";
+import { render as baseRender, screen, userEvent, within } from "test-utils";
 import { Navigation, type NavigationProps } from "../Navigation.js";
 import { type NavigationItem } from "../types.js";
 import { useNavigationExpansion } from "../useNavigationExpansion.js";

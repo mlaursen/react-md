@@ -1,11 +1,6 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import { createRef, type MouseEvent } from "react";
-import {
-  render,
-  rmdRender,
-  screen,
-  userEvent,
-} from "../../test-utils/index.js";
+import { render, rmdRender, screen, userEvent } from "test-utils";
 
 import { ToastCloseButton } from "../ToastCloseButton.js";
 import {

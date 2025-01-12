@@ -1,5 +1,5 @@
 import { describe, expect, it, jest } from "@jest/globals";
-import { fireEvent, render } from "../../test-utils/index.js";
+import { fireEvent, render } from "test-utils";
 
 import { TreeItemExpander } from "../TreeItemExpander.js";
 import { TreeProvider } from "../TreeProvider.js";

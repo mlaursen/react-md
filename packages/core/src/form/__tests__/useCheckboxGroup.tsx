@@ -2,7 +2,7 @@
 /* eslint-disable jest-dom/prefer-checked */
 import { describe, expect, it } from "@jest/globals";
 import { type ReactElement } from "react";
-import { fireEvent, render, screen } from "../../test-utils/index.js";
+import { fireEvent, render, screen } from "test-utils";
 
 import { Button } from "../../button/Button.js";
 import { AppSizeProvider } from "../../media-queries/AppSizeProvider.js";

@@ -1,11 +1,6 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement } from "react";
-import {
-  rmdRender,
-  screen,
-  userEvent,
-  waitFor,
-} from "../../test-utils/index.js";
+import { rmdRender, screen, userEvent, waitFor } from "test-utils";
 
 import { Slide } from "../../transition/Slide.js";
 import { SlideContainer } from "../../transition/SlideContainer.js";

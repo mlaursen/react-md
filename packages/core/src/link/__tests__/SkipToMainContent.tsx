@@ -1,6 +1,6 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import { createRef, type FC, type ReactNode } from "react";
-import { fireEvent, render, screen } from "../../test-utils/index.js";
+import { fireEvent, render, screen } from "test-utils";
 
 import { SkipToMainContent } from "../SkipToMainContent.js";
 

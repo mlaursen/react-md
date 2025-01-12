@@ -1,6 +1,7 @@
 import { beforeEach } from "@jest/globals";
-import { INTERACTION_CONFIG } from "../interaction/config.js";
-import { TRANSITION_CONFIG } from "../transition/config.js";
+import "@testing-library/jest-dom/jest-globals";
+import { INTERACTION_CONFIG } from "../../interaction/config.js";
+import { TRANSITION_CONFIG } from "../../transition/config.js";
 
 beforeEach(() => {
   // set the mode to `none` in tests since ripples require

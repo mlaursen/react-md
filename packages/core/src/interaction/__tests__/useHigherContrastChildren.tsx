@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { type FC, type PropsWithChildren } from "react";
-import { render } from "../../test-utils/index.js";
+import { render } from "test-utils";
 
 import { useHigherContrastChildren } from "../useHigherContrastChildren.js";
 

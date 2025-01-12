@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
 import { CircularProgress } from "../../progress/CircularProgress.js";
-import { rmdRender, screen } from "../../test-utils/index.js";
+import { rmdRender, screen } from "test-utils";
 import { Switch, type SwitchProps } from "../Switch.js";
 
 const labelProps = {

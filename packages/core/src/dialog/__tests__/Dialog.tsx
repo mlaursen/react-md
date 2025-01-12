@@ -2,12 +2,7 @@ import { describe, expect, it } from "@jest/globals";
 import { createRef, type ReactElement } from "react";
 import { Button } from "../../button/Button.js";
 import { PORTAL_CONTAINER_ID } from "../../portal/PortalContainerProvider.js";
-import {
-  rmdRender,
-  screen,
-  userEvent,
-  waitFor,
-} from "../../test-utils/index.js";
+import { rmdRender, screen, userEvent, waitFor } from "test-utils";
 import { useToggle } from "../../useToggle.js";
 import { isElementVisible } from "../../utils/isElementVisible.js";
 import { Dialog, type DialogProps } from "../Dialog.js";

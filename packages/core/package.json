@@ -16,11 +16,8 @@
       "require": "./dist/test-utils/polyfills/*",
       "default": "./dist/test-utils/polyfills/*.js"
     },
+    "./test-utils/jest-globals": "./dist/test-utils/jest-globals/index.js",
     "./test-utils": "./dist/test-utils/index.js",
-    "./test-utils/*": {
-      "require": "./dist/test-utils/*",
-      "default": "./dist/test-utils/*.js"
-    },
     "./colors": {
       "sass": "./dist/_colors.scss",
       "default": "./dist/theme/colors.js"

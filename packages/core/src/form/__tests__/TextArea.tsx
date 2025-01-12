@@ -1,14 +1,11 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import { createRef, useState } from "react";
-import { FontIcon } from "../../icon/FontIcon.js";
+import { act, render, screen, userEvent } from "test-utils";
 import {
-  act,
   cleanupResizeObserverAfterEach,
-  render,
-  screen,
   setupResizeObserverMock,
-  userEvent,
-} from "../../test-utils/index.js";
+} from "test-utils/jest-globals";
+import { FontIcon } from "../../icon/FontIcon.js";
 import { TextArea, type TextAreaProps } from "../TextArea.js";
 
 describe("TextArea", () => {

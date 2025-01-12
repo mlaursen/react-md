@@ -30,6 +30,9 @@ const config = {
   moduleNameMapper: {
     "\\.scss$": "identity-obj-proxy",
     "^(\\.{1,2}/.*)\\.js$": "$1",
+    "^test-utils$": "<rootDir>/src/test-utils/index.ts",
+    "^test-utils/jest-globals$":
+      "<rootDir>/src/test-utils/jest-globals/index.ts",
   },
 
   watchPlugins: [

@@ -1,11 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { lazy, type FC, type ReactElement } from "react";
-import {
-  act,
-  render,
-  screen,
-  waitForElementToBeRemoved,
-} from "../../test-utils/index.js";
+import { act, render, screen, waitForElementToBeRemoved } from "test-utils";
 import { Typography } from "../../typography/Typography.js";
 import {
   CircularProgressSuspense,

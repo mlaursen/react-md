@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { render, screen } from "../../test-utils/index.js";
+import { render, screen } from "test-utils";
 
 import { ButtonUnstyled } from "../ButtonUnstyled.js";
 import { buttonUnstyled } from "../buttonUnstyledStyles.js";

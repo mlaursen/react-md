@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { render, screen } from "../../test-utils/index.js";
+import { render, screen } from "test-utils";
 
 import { type PropsWithRef } from "../../types.js";
 import { List, type ListElement, type ListProps } from "../List.js";

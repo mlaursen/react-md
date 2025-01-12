@@ -5,8 +5,8 @@ import {
   matchPhone,
   matchTablet,
   render,
-  spyOnMatchMedia,
-} from "../../test-utils/index.js";
+} from "test-utils";
+import { spyOnMatchMedia } from "test-utils/jest-globals";
 
 import { type AppSize } from "../appSize.js";
 import { AppSizeProvider, useAppSize } from "../AppSizeProvider.js";

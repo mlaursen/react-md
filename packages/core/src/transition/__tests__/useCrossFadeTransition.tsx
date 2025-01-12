@@ -8,7 +8,7 @@ import {
   jest,
 } from "@jest/globals";
 import { useState, type ReactElement } from "react";
-import { act, fireEvent, render, screen } from "../../test-utils/index.js";
+import { act, fireEvent, render, screen } from "test-utils";
 
 import { TRANSITION_CONFIG } from "../config.js";
 import {

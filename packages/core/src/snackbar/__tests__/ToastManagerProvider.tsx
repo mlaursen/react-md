@@ -14,7 +14,7 @@ import {
   waitFor,
   within,
   type RenderResult,
-} from "../../test-utils/index.js";
+} from "test-utils";
 
 import { type ReactElement, type ReactNode } from "react";
 import { Button } from "../../button/Button.js";

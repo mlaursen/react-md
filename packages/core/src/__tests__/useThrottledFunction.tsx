@@ -5,14 +5,7 @@ import {
   type MutableRefObject,
   type ReactElement,
 } from "react";
-import {
-  act,
-  fireEvent,
-  render,
-  screen,
-  userEvent,
-  waitFor,
-} from "../test-utils/index.js";
+import { act, fireEvent, render, screen, userEvent, waitFor } from "test-utils";
 
 import { Button } from "../button/Button.js";
 import { TextField } from "../form/TextField.js";

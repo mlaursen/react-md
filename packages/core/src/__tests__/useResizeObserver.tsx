@@ -2,13 +2,15 @@ import { describe, expect, it, jest } from "@jest/globals";
 import { useEffect, type ReactElement } from "react";
 import {
   act,
-  cleanupResizeObserverAfterEach,
   createResizeObserverEntry,
   render,
   screen,
-  setupResizeObserverMock,
   waitFor,
-} from "../test-utils/index.js";
+} from "test-utils";
+import {
+  cleanupResizeObserverAfterEach,
+  setupResizeObserverMock,
+} from "test-utils/jest-globals";
 
 import {
   useResizeObserver,

@@ -1,6 +1,6 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import { createRef } from "react";
-import { render, screen, waitFor } from "../../test-utils/index.js";
+import { render, screen, waitFor } from "test-utils";
 
 import { ToastContent } from "../ToastContent.js";
 

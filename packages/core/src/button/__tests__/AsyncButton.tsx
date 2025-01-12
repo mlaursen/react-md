@@ -1,14 +1,7 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import { createRef } from "react";
 import { FontIcon } from "../../icon/FontIcon.js";
-import {
-  act,
-  rmdRender,
-  screen,
-  userEvent,
-  waitFor,
-  within,
-} from "../../test-utils/index.js";
+import { act, rmdRender, screen, userEvent, waitFor, within } from "test-utils";
 import { AsyncButton, type AsyncButtonProps } from "../AsyncButton.js";
 
 describe("AsyncButton", () => {

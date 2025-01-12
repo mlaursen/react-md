@@ -1,12 +1,6 @@
 import { beforeEach, describe, expect, it, jest } from "@jest/globals";
 import { createRef, type ReactElement } from "react";
-import {
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-  within,
-} from "../../test-utils/index.js";
+import { fireEvent, render, screen, waitFor, within } from "test-utils";
 
 import { SsrProvider } from "../../SsrProvider.js";
 import { Button } from "../../button/Button.js";

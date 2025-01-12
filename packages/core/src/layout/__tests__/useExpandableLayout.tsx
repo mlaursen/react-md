@@ -1,5 +1,16 @@
 import { beforeEach, describe, expect, it } from "@jest/globals";
 import { type ReactNode } from "react";
+import {
+  matchDesktop,
+  matchPhone,
+  matchTablet,
+  rmdRender,
+  screen,
+  userEvent,
+  waitFor,
+  within,
+} from "test-utils";
+import { spyOnMatchMedia } from "test-utils/jest-globals";
 import { AppBar } from "../../app-bar/AppBar.js";
 import { AppBarTitle } from "../../app-bar/AppBarTitle.js";
 import { Button } from "../../button/Button.js";
@@ -8,17 +19,6 @@ import { Radio } from "../../form/Radio.js";
 import { useRadioGroup } from "../../form/useRadioGroup.js";
 import { useAppSize } from "../../media-queries/AppSizeProvider.js";
 import { Sheet } from "../../sheet/Sheet.js";
-import {
-  matchDesktop,
-  matchPhone,
-  rmdRender,
-  screen,
-  spyOnMatchMedia,
-  userEvent,
-  waitFor,
-  within,
-} from "../../test-utils/index.js";
-import { matchTablet } from "../../test-utils/matchMedia.js";
 import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { isElementVisible } from "../../utils/isElementVisible.js";
 import { LayoutNav } from "../LayoutNav.js";

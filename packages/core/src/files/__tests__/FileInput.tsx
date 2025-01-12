@@ -4,7 +4,7 @@ import {
   type ButtonTheme,
   type ButtonThemeType,
 } from "../../button/buttonStyles.js";
-import { rmdRender, screen } from "../../test-utils/index.js";
+import { rmdRender, screen } from "test-utils";
 import { FileInput } from "../FileInput.js";
 
 const PROPS = {

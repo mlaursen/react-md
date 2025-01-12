@@ -7,7 +7,7 @@ import {
   type ReactElement,
   type RefObject,
 } from "react";
-import { fireEvent, render, screen } from "../../test-utils/index.js";
+import { fireEvent, render, screen } from "test-utils";
 
 import { textPrimaryColorVar } from "../cssVars.js";
 import {

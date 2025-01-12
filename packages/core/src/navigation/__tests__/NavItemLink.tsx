@@ -7,7 +7,7 @@ import {
   userEvent,
   waitFor,
   waitForElementToBeRemoved,
-} from "../../test-utils/index.js";
+} from "test-utils";
 import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { useToggle } from "../../useToggle.js";
 import { CollapsibleNavGroup } from "../CollapsibleNavGroup.js";
@@ -83,7 +83,9 @@ describe("NavItemLink", () => {
       name: "Home",
     });
 
-    expect(tooltip).toHaveStyle("position: fixed; left: 24px;top: 16px;");
+    await waitFor(() => {
+      expect(tooltip).toHaveStyle("position: fixed; left: 24px; top: 16px;");
+    });
     expect(tooltip).toMatchSnapshot();
   });
 

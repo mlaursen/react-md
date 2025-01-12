@@ -4,12 +4,12 @@ import {
   act,
   rmdRender,
   screen,
-  testImmediateRaf,
   userEvent,
   waitFor,
   waitForElementToBeRemoved,
   within,
-} from "../../test-utils/index.js";
+} from "test-utils";
+import { testImmediateRaf } from "test-utils/jest-globals";
 
 import { Button } from "../../button/Button.js";
 import { DialogFooter } from "../../dialog/DialogFooter.js";

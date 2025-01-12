@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { type ReactElement } from "react";
-import { fireEvent, rmdRender, screen } from "../../test-utils/index.js";
+import { fireEvent, rmdRender, screen } from "test-utils";
 import { Menu } from "../Menu.js";
 import { MenuItem } from "../MenuItem.js";
 import { useContextMenu } from "../useContextMenu.js";
