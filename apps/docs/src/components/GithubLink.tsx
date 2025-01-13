@@ -9,36 +9,55 @@ import {
   type TooltipOptions,
   useTooltip,
 } from "@react-md/core/tooltip/useTooltip";
+import { cnb } from "cnbuilder";
 import { type AnchorHTMLAttributes, type ReactElement } from "react";
 import { GithubIcon } from "./GithubIcon.jsx";
+import styles from "./GithubLink.module.scss";
 import { LinkUnstyled } from "./LinkUnstyled.jsx";
 
 export interface GithubLinkProps
   extends AnchorHTMLAttributes<HTMLAnchorElement>,
     ButtonClassNameOptions {
-  href?: string;
   file?: string;
-  /** @defaultValue `"Github"` */
+
+  /** @defaultValue ``file ? `${GITHUB_LINK_URL}/${file}` : GITHUB_URL`` */
+  href?: string;
+
+  /** @defaultValue `file ? "Source code" : "Github"` */
   label?: string;
+
+  /**
+   * @defaultValue `{ defaultPosition: file ? "left" : "below", ...tooltipOptions }`
+   */
   tooltipOptions?: TooltipOptions<HTMLAnchorElement>;
+
+  /**
+   * Set this to `"absolute"` to use absolute positioning to the right edge of
+   * a `position: relative` container (normally a `LinkableHeading`)
+   */
+  position?: null | "absolute";
 }
 
 export function GithubLink(props: GithubLinkProps): ReactElement {
   const {
     file,
     href = file ? `${GITHUB_LINK_URL}/${file}` : GITHUB_URL,
-    label = "Github",
+    label = file ? "Source code" : "Github",
+    position,
     className,
     disabled,
     theme,
     themeType,
     responsive,
-    iconSize,
+    iconSize = position === "absolute" ? "small" : undefined,
     tooltipOptions,
     ...remaining
   } = props;
 
-  const { tooltipProps, elementProps } = useTooltip(tooltipOptions);
+  const { tooltipProps, elementProps } = useTooltip({
+    defaultPosition: file ? "left" : "below",
+    ...tooltipOptions,
+  });
 
   return (
     <>
@@ -53,7 +72,7 @@ export function GithubLink(props: GithubLinkProps): ReactElement {
           theme,
           themeType,
           responsive,
-          className,
+          className: cnb(position === "absolute" && styles.absolute, className),
           buttonType: "icon",
         })}
       >

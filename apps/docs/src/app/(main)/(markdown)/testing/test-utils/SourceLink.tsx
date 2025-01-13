@@ -10,7 +10,7 @@ export default function SourceLink(props: SourceLinkProps): ReactElement {
 
   return (
     <GithubLink
-      file={`packages/core/src/test-utils/polyfills/${name}.ts`}
+      file={`packages/core/src/test-utils/${name}.ts`}
       position="absolute"
     />
   );

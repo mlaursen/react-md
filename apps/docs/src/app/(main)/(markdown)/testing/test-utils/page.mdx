@@ -1,0 +1,85 @@
+import SourceLink from "./SourceLink.jsx";
+import ChangeViewportExample from "./ChangeViewportExample.jsx";
+import DefaultMediaExample from "./DefaultMediaExample.jsx";
+import ResizeObserverMockExample from "./ResizeObserverMockExample.jsx";
+import TestImmediateRafExample from "./TestImmediateRafExample.jsx";
+
+# Test Utils
+
+## spyOnMatchMedia <SourceLink name="mocks/match-media-implementation" />
+
+Since it can be useful to test different viewport sizes in `jest`, a few
+`window.matchMedia` helpers have been included. The `spyOnMatchMedia` can be
+used to change the viewport size for tests and expect different results. The
+default behavior is to match the desktop min width.
+
+<ChangeViewportExample />
+
+A default matcher can be provided as well:
+
+<DefaultMediaExample />
+
+## Match Media Matchers <SourceLink name="mocks/match-media" />
+
+The following matchers have been provided out of the box which use the default media query breakpoints:
+
+- `matchPhone` - `query.includes(DEFAULT_PHONE_MAX_WIDTH)`
+- `matchTablet` - `query.includes(DEFAULT_TABLET_MIN_WIDTH)`
+- `matchDesktop` - `query.includes(DEFAULT_DESKTOP_MIN_WIDTH)`
+- `matchLargeDesktop` - `query.includes(DEFAULT_DESKTOP_LARGE_MIN_WIDTH)`
+- `matchAnyDesktop` - `matchDesktop(query) || matchLargeDesktop(query)`
+
+You can also create a custom matcher:
+
+```ts
+const customMatcher: MatchMediaMatcher = (query) => query.includes("20rem");
+
+function Example() {
+  // the `customMatcher` would be called with `"screen and (min-width: 20rem)"`
+  const matches = useMediaQuery("screen and (min-width: 20rem)");
+
+  // implementation
+}
+```
+
+## testImmediateRaf
+
+Use this util to make `window.requestAnimationFrame` happen immediately.
+
+<TestImmediateRafExample />
+
+## Resize Observer Mock <SourceLink name="mocks/ResizeObserver" />
+
+The `ResizeObserverMock` can be used to write tests that include the `useResizeObserver` hook. Here is a small example:
+
+```tsx fileName="src/ExampleComponent.tsx"
+import { useResizeObserver } from "@react-md/core/useResizeObserver";
+import { useCallback, useState } from "react";
+
+export function ExampleComponent() {
+  const [size, setSize] = useState({ height: 0, width: 0 });
+  const ref = useResizeObserver({
+    onUpdate: useCallback((entry) => {
+      setSize({
+        height: entry.contentRect.height,
+        width: entry.contentRect.width,
+      });
+    }, []),
+  });
+
+  return (
+    <>
+      <div data-testid="size">{JSON.stringify(size)}</div>
+      <div data-testid="resize-target" ref={ref} />
+    </>
+  );
+}
+```
+
+<ResizeObserverMockExample />
+
+## Intersection Observer Mock <SourceLink name="mocks/IntersectionObserver" />
+
+This mock currently does nothing other than preventing errors while running tests,
+but might be updated to have a similar API as the `ResizeObserverMock` to
+improve testing.
