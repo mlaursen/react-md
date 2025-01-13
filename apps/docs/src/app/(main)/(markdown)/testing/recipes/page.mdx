@@ -1,0 +1,141 @@
+# Recipes
+
+This page will provide common testing recipes for components through ReactMD.
+
+# Autocomplete
+
+TODO
+
+# Checkbox
+
+TODO
+
+# Dialog/Sheet
+
+TODO
+
+# Expansion Panel
+
+TODO
+
+# Menu
+
+TODO
+
+# Radio
+
+TODO
+
+# Select
+
+> All of these examples will use the [Simple Select](/components/select#simple-select) example code.
+
+## Find and Change Value
+
+This example showcases how to:
+
+- find the `Select` component
+- find and verify the current selected option
+- change the selected option
+
+```tsx
+import { screen, rmdRender, userEvent } from "@react-md/core/test-utils";
+
+it("should be able to change value", async () => {
+  const user = userEvent.setup();
+  rmdRender(<SimpleSelect />);
+
+  // this is the clickable element that allows the listbox of options to appear
+  const select = screen.getByRole("combobox", { name: "Label" });
+  // this stores the current value
+  const selectValue = screen.getByRole("textbox", { hidden: true });
+  expect(selectValue).toHaveValue("");
+
+  await user.click(select);
+  // the `name` should be the accessible text in any of the available options
+  await user.click(screen.getByRole("option", { name: "Option 1" }));
+  expect(selectValue).toHaveValue("a");
+
+  await user.click(select);
+
+  // the `Option 1` should now be selected
+  expect(() =>
+    screen.getByRole("option", { name: "Option 1", selected: true })
+  ).not.toThrow();
+});
+```
+
+## Verify the Display Value
+
+This example showcases how to find and verify the selected option's display
+value while the Select listbox is closed using the `getSelectParts` test util query.
+
+```tsx
+import {
+  getSelectParts,
+  screen,
+  rmdRender,
+  userEvent,
+} from "@react-md/core/test-utils";
+
+it("should be able to verify the display value", async () => {
+  const user = userEvent.setup();
+  rmdRender(<SimpleSelect />);
+
+  const { select, selectValue, selectDisplay } = getSelectParts({
+    name: "Label",
+  });
+  // this isn't required, but added to show what element this is
+  expect(selectDisplay).toHaveClass("rmd-selected-option");
+
+  // there is currently no selected value
+  expect(selectDisplay).toHaveTextContent("");
+
+  await user.click(select);
+  await user.click(screen.getByRole("option", { name: "Option 1" }));
+  expect(selectValue).toHaveValue("a");
+  expect(selectDisplay).toHaveTextContent("Option 1");
+});
+```
+
+# Slider
+
+TODO
+
+# Snackbar
+
+TODO
+
+# Switch
+
+## Find and Toggle
+
+The `Switch` is an extension of an `<input type="checkbox">` with
+`role="switch"`, so the element can be changed just like a `Checkbox`.
+
+```tsx
+import { screen, rmdRender, userEvent } from "@react-md/core/test-utils";
+
+it("should be able to change the checked state", async () => {
+  const user = userEvent.setup();
+  rmdRender(<Switch label="Label" />);
+
+  const switchElement = screen.getByRole("switch", { name: "Label" });
+  expect(switchElement).not.toBeChecked();
+
+  await user.click(switchElement);
+  expect(switchElement).toBeChecked();
+});
+```
+
+# Tabs
+
+TODO
+
+# Tooltip
+
+TODO
+
+# Tree
+
+TODO

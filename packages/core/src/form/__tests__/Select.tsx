@@ -6,6 +6,7 @@ import { FontIcon } from "../../icon/FontIcon.js";
 import { CircularProgress } from "../../progress/CircularProgress.js";
 import {
   act,
+  getSelectParts,
   rmdRender,
   screen,
   userEvent,
@@ -41,9 +42,11 @@ function render<Value extends string = string>(
 ) {
   const user = userEvent.setup();
   const { rerender } = rmdRender(<Test {...props} />);
-  const select = screen.getByRole("combobox", { name: "Select" });
-  const selected = screen.getByTestId("selected");
-  const selectValue = screen.getByRole("textbox", { hidden: true });
+  const {
+    select,
+    selectValue,
+    selectDisplay: selected,
+  } = getSelectParts({ name: "Select" });
 
   return {
     rerender: (props: Partial<SelectProps<Value>>) => {

@@ -603,6 +603,11 @@ export const navItems: readonly NavigationItem[] = [
       },
       {
         type: "route",
+        href: "/recipes",
+        children: "Recipes",
+      },
+      {
+        type: "route",
         href: "/polyfills",
         children: "Polyfills",
       },
