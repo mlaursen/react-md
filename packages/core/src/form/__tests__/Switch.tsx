@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
 import { CircularProgress } from "../../progress/CircularProgress.js";
-import { rmdRender, screen } from "test-utils";
+import { rmdRender, screen, userEvent } from "test-utils";
 import { Switch, type SwitchProps } from "../Switch.js";
 
 const labelProps = {
@@ -148,5 +148,16 @@ describe("Switch", () => {
     expect(() => screen.getByRole("progressbar")).not.toThrow();
     const label = screen.getByTestId("label");
     expect(label).toMatchSnapshot();
+  });
+
+  it("should support toggling the checked state", async () => {
+    const user = userEvent.setup();
+    rmdRender(<Switch label="Switch" name="volume" defaultChecked />);
+    const element = screen.getByRole("switch", { name: "Switch" });
+    expect(element).toBeChecked();
+    expect(element).toMatchSnapshot();
+    await user.click(element);
+    expect(element).not.toBeChecked();
+    expect(element).toMatchSnapshot();
   });
 });

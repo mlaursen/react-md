@@ -426,3 +426,25 @@ exports[`Switch should support rendering the label before and after as well as s
   </div>
 </label>
 `;
+
+exports[`Switch should support toggling the checked state 1`] = `
+<input
+  checked=""
+  class="rmd-switch__input rmd-hidden-input"
+  id="switch-:r9:"
+  name="volume"
+  role="switch"
+  type="checkbox"
+/>
+`;
+
+exports[`Switch should support toggling the checked state 2`] = `
+<input
+  checked=""
+  class="rmd-switch__input rmd-hidden-input"
+  id="switch-:r9:"
+  name="volume"
+  role="switch"
+  type="checkbox"
+/>
+`;
