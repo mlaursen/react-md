@@ -400,7 +400,7 @@ export function Slider(
     thumb1LabelledBy = minThumbLabelledBy;
     thumb1Label = minThumbLabel || (minThumbLabelledBy ? undefined : "Min");
     thumb2LabelledBy = maxThumbLabelledBy;
-    thumb2Label = maxThumbLabel || (maxThumbLabelledBy ? undefined : "max");
+    thumb2Label = maxThumbLabel || (maxThumbLabelledBy ? undefined : "Max");
 
     [thumb1Value, thumb2Value] = rangeValue;
 

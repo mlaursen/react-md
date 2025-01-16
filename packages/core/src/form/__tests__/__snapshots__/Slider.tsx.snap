@@ -1,0 +1,547 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Slider discrete sliders should support rendering a tooltip while focused or dragging by enabling the discrete prop 1`] = `
+<span
+  class="rmd-tooltip rmd-tooltip--dense rmd-tooltip--above rmd-nowrap rmd-slider-tooltip rmd-slider-tooltip--h rmd-slider-thumb--animate rmd-slider-thumb--h1"
+  id="tooltip-:rd:"
+  role="tooltip"
+>
+  50
+</span>
+`;
+
+exports[`Slider discrete sliders should support rendering a tooltip while focused or dragging by enabling the discrete prop 2`] = `
+<span
+  class="rmd-tooltip rmd-tooltip--dense rmd-tooltip--above rmd-nowrap rmd-slider-tooltip rmd-slider-tooltip--h rmd-slider-thumb--animate rmd-slider-thumb--h1"
+  id="tooltip-:rd:"
+  role="tooltip"
+>
+  60
+</span>
+`;
+
+exports[`Slider discrete sliders should support rendering a tooltip while focused or dragging by enabling the discrete prop for range sliders 1`] = `
+<span
+  class="rmd-tooltip rmd-tooltip--dense rmd-tooltip--above rmd-nowrap rmd-slider-tooltip rmd-slider-tooltip--h rmd-slider-thumb--animate rmd-slider-thumb--h1"
+  id="tooltip-:rj:"
+  role="tooltip"
+>
+  0
+</span>
+`;
+
+exports[`Slider discrete sliders should support rendering a tooltip while focused or dragging by enabling the discrete prop for range sliders 2`] = `
+<span
+  class="rmd-tooltip rmd-tooltip--dense rmd-tooltip--above rmd-nowrap rmd-slider-tooltip rmd-slider-tooltip--h rmd-slider-thumb--animate rmd-slider-thumb--h1"
+  id="tooltip-:rj:"
+  role="tooltip"
+>
+  10
+</span>
+`;
+
+exports[`Slider discrete sliders should support rendering a tooltip while focused or dragging by enabling the discrete prop for range sliders 3`] = `
+<span
+  class="rmd-tooltip rmd-tooltip--dense rmd-tooltip--above rmd-nowrap rmd-slider-tooltip rmd-slider-tooltip--h rmd-slider-thumb--animate rmd-slider-thumb--h2"
+  id="tooltip-:rk:"
+  role="tooltip"
+>
+  100
+</span>
+`;
+
+exports[`Slider range slider should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<div
+  class="rmd-slider-container rmd-slider-container--h rmd-slider-container--pad-left rmd-slider-container--pad-right"
+>
+  <span
+    class="rmd-slider-track rmd-slider-track--animate rmd-slider-track--hoverable rmd-slider-track--h rmd-slider-track--h2"
+    style="--rmd-slider-offset-1: 0%; --rmd-slider-offset-2: 100%;"
+  >
+    <span
+      aria-label="Min"
+      aria-valuemax="99"
+      aria-valuemin="0"
+      aria-valuenow="0"
+      class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1 rmd-slider-thumb--animate"
+      id="slider-:r6:"
+      role="slider"
+      tabindex="0"
+    />
+    <input
+      aria-hidden="true"
+      aria-label="Min"
+      class="rmd-slider-thumb__input"
+      id="slider-:r6:-value"
+      max="99"
+      min="0"
+      step="1"
+      tabindex="-1"
+      type="range"
+      value="0"
+    />
+    <span
+      aria-label="Max"
+      aria-valuemax="100"
+      aria-valuemin="1"
+      aria-valuenow="100"
+      class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h2 rmd-slider-thumb--animate"
+      id="slider-:r6:-2"
+      role="slider"
+      tabindex="0"
+    />
+    <input
+      aria-hidden="true"
+      aria-label="Max"
+      class="rmd-slider-thumb__input"
+      id="slider-:r6:-2-value"
+      max="100"
+      min="1"
+      step="1"
+      tabindex="-1"
+      type="range"
+      value="100"
+    />
+  </span>
+</div>
+`;
+
+exports[`Slider range slider should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<div
+  class="rmd-slider-container rmd-slider-container--h rmd-slider-container--pad-left rmd-slider-container--pad-right custom-class-name"
+  style="color: white;"
+>
+  <span
+    class="rmd-slider-track rmd-slider-track--animate rmd-slider-track--hoverable rmd-slider-track--h rmd-slider-track--h1"
+    style="--rmd-slider-offset-1: 50%;"
+  >
+    <span
+      aria-label="Slider"
+      aria-valuemax="100"
+      aria-valuemin="0"
+      aria-valuenow="50"
+      class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1 rmd-slider-thumb--animate"
+      id="slider-:r7:"
+      role="slider"
+      tabindex="0"
+    />
+    <input
+      aria-hidden="true"
+      aria-label="Slider"
+      class="rmd-slider-thumb__input"
+      id="slider-:r7:-value"
+      max="100"
+      min="0"
+      step="1"
+      tabindex="-1"
+      type="range"
+      value="50"
+    />
+  </span>
+</div>
+`;
+
+exports[`Slider range slider should support a disabled state 1`] = `
+<div
+  class="rmd-slider-container rmd-slider-container--h rmd-slider-container--pad-left rmd-slider-container--pad-right"
+  data-testid="container"
+>
+  <span
+    class="rmd-slider-track rmd-slider-track--animate rmd-slider-track--disabled rmd-slider-track--h rmd-slider-track--h2"
+    style="--rmd-slider-offset-1: 0%; --rmd-slider-offset-2: 100%;"
+  >
+    <span
+      class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1 rmd-slider-thumb--mask rmd-slider-thumb--mask-h rmd-slider-thumb--animate rmd-slider-thumb--disabled"
+    />
+    <span
+      aria-disabled="true"
+      aria-label="Min"
+      aria-valuemax="99"
+      aria-valuemin="0"
+      aria-valuenow="0"
+      class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1 rmd-slider-thumb--animate rmd-slider-thumb--disabled rmd-slider-thumb--disabled-h"
+      id="slider-:r8:"
+      role="slider"
+      tabindex="-1"
+    />
+    <input
+      aria-hidden="true"
+      aria-label="Min"
+      class="rmd-slider-thumb__input"
+      disabled=""
+      id="slider-:r8:-value"
+      max="99"
+      min="0"
+      step="1"
+      tabindex="-1"
+      type="range"
+      value="0"
+    />
+    <span
+      class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h2 rmd-slider-thumb--mask rmd-slider-thumb--mask-h rmd-slider-thumb--animate rmd-slider-thumb--disabled"
+    />
+    <span
+      aria-disabled="true"
+      aria-label="Max"
+      aria-valuemax="100"
+      aria-valuemin="1"
+      aria-valuenow="100"
+      class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h2 rmd-slider-thumb--animate rmd-slider-thumb--disabled rmd-slider-thumb--disabled-h"
+      id="slider-:r8:-2"
+      role="slider"
+      tabindex="-1"
+    />
+    <input
+      aria-hidden="true"
+      aria-label="Max"
+      class="rmd-slider-thumb__input"
+      disabled=""
+      id="slider-:r8:-2-value"
+      max="100"
+      min="1"
+      step="1"
+      tabindex="-1"
+      type="range"
+      value="100"
+    />
+  </span>
+</div>
+`;
+
+exports[`Slider single thumb slider should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<div
+  class="rmd-slider-container rmd-slider-container--h rmd-slider-container--pad-left rmd-slider-container--pad-right"
+>
+  <span
+    class="rmd-slider-track rmd-slider-track--animate rmd-slider-track--hoverable rmd-slider-track--h rmd-slider-track--h1"
+    style="--rmd-slider-offset-1: 50%;"
+  >
+    <span
+      aria-label="Slider"
+      aria-valuemax="100"
+      aria-valuemin="0"
+      aria-valuenow="50"
+      class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1 rmd-slider-thumb--animate"
+      id="slider-:r0:"
+      role="slider"
+      tabindex="0"
+    />
+    <input
+      aria-hidden="true"
+      aria-label="Slider"
+      class="rmd-slider-thumb__input"
+      id="slider-:r0:-value"
+      max="100"
+      min="0"
+      step="1"
+      tabindex="-1"
+      type="range"
+      value="50"
+    />
+  </span>
+</div>
+`;
+
+exports[`Slider single thumb slider should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<div
+  class="rmd-slider-container rmd-slider-container--h rmd-slider-container--pad-left rmd-slider-container--pad-right custom-class-name"
+  style="color: white;"
+>
+  <span
+    class="rmd-slider-track rmd-slider-track--animate rmd-slider-track--hoverable rmd-slider-track--h rmd-slider-track--h1"
+    style="--rmd-slider-offset-1: 50%;"
+  >
+    <span
+      aria-label="Slider"
+      aria-valuemax="100"
+      aria-valuemin="0"
+      aria-valuenow="50"
+      class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1 rmd-slider-thumb--animate"
+      id="slider-:r0:"
+      role="slider"
+      tabindex="0"
+    />
+    <input
+      aria-hidden="true"
+      aria-label="Slider"
+      class="rmd-slider-thumb__input"
+      id="slider-:r0:-value"
+      max="100"
+      min="0"
+      step="1"
+      tabindex="-1"
+      type="range"
+      value="50"
+    />
+  </span>
+</div>
+`;
+
+exports[`Slider single thumb slider should be able to render addons before and after the slider 1`] = `
+<div
+  class="rmd-slider-container rmd-slider-container--h"
+  data-testid="container"
+>
+  <span
+    data-testid="before"
+  />
+  <span
+    class="rmd-slider-track rmd-slider-track--animate rmd-slider-track--hoverable rmd-slider-track--h rmd-slider-track--h1"
+    style="--rmd-slider-offset-1: 50%;"
+  >
+    <span
+      aria-label="Slider"
+      aria-valuemax="100"
+      aria-valuemin="0"
+      aria-valuenow="50"
+      class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1 rmd-slider-thumb--animate"
+      id="slider-:r2:"
+      role="slider"
+      tabindex="0"
+    />
+    <input
+      aria-hidden="true"
+      aria-label="Slider"
+      class="rmd-slider-thumb__input"
+      id="slider-:r2:-value"
+      max="100"
+      min="0"
+      step="1"
+      tabindex="-1"
+      type="range"
+      value="50"
+    />
+  </span>
+  After!
+</div>
+`;
+
+exports[`Slider single thumb slider should be able to render addons before and after the slider 2`] = `
+<div
+  class="rmd-slider-container rmd-slider-container--h rmd-slider-container--pad-left"
+  data-testid="container"
+>
+  <span
+    class="rmd-slider-track rmd-slider-track--animate rmd-slider-track--hoverable rmd-slider-track--h rmd-slider-track--h1"
+    style="--rmd-slider-offset-1: 50%;"
+  >
+    <span
+      aria-label="Slider"
+      aria-valuemax="100"
+      aria-valuemin="0"
+      aria-valuenow="50"
+      class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1 rmd-slider-thumb--animate"
+      id="slider-:r2:"
+      role="slider"
+      tabindex="0"
+    />
+    <input
+      aria-hidden="true"
+      aria-label="Slider"
+      class="rmd-slider-thumb__input"
+      id="slider-:r2:-value"
+      max="100"
+      min="0"
+      step="1"
+      tabindex="-1"
+      type="range"
+      value="50"
+    />
+  </span>
+  After!
+</div>
+`;
+
+exports[`Slider single thumb slider should be able to render addons before and after the slider 3`] = `
+<div
+  class="rmd-slider-container rmd-slider-container--h rmd-slider-container--pad-right"
+  data-testid="container"
+>
+  <span
+    data-testid="before"
+  />
+  <span
+    class="rmd-slider-track rmd-slider-track--animate rmd-slider-track--hoverable rmd-slider-track--h rmd-slider-track--h1"
+    style="--rmd-slider-offset-1: 50%;"
+  >
+    <span
+      aria-label="Slider"
+      aria-valuemax="100"
+      aria-valuemin="0"
+      aria-valuenow="50"
+      class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1 rmd-slider-thumb--animate"
+      id="slider-:r2:"
+      role="slider"
+      tabindex="0"
+    />
+    <input
+      aria-hidden="true"
+      aria-label="Slider"
+      class="rmd-slider-thumb__input"
+      id="slider-:r2:-value"
+      max="100"
+      min="0"
+      step="1"
+      tabindex="-1"
+      type="range"
+      value="50"
+    />
+  </span>
+</div>
+`;
+
+exports[`Slider single thumb slider should be able to render addons before and after the slider 4`] = `
+<div
+  class="rmd-slider-container rmd-slider-container--v"
+  data-testid="container"
+>
+  <span
+    data-testid="before"
+  />
+  <span
+    class="rmd-slider-track rmd-slider-track--animate rmd-slider-track--hoverable rmd-slider-track--v rmd-slider-track--v1"
+    style="--rmd-slider-offset-1: 50%;"
+  >
+    <span
+      aria-label="Slider"
+      aria-orientation="vertical"
+      aria-valuemax="100"
+      aria-valuemin="0"
+      aria-valuenow="50"
+      class="rmd-slider-thumb rmd-slider-thumb--v rmd-slider-thumb--v1 rmd-slider-thumb--animate"
+      id="slider-:r2:"
+      role="slider"
+      tabindex="0"
+    />
+    <input
+      aria-hidden="true"
+      aria-label="Slider"
+      class="rmd-slider-thumb__input"
+      id="slider-:r2:-value"
+      max="100"
+      min="0"
+      step="1"
+      tabindex="-1"
+      type="range"
+      value="50"
+    />
+  </span>
+  After!
+</div>
+`;
+
+exports[`Slider single thumb slider should be able to render addons before and after the slider 5`] = `
+<div
+  class="rmd-slider-container rmd-slider-container--v rmd-slider-container--pad-bottom"
+  data-testid="container"
+>
+  <span
+    class="rmd-slider-track rmd-slider-track--animate rmd-slider-track--hoverable rmd-slider-track--v rmd-slider-track--v1"
+    style="--rmd-slider-offset-1: 50%;"
+  >
+    <span
+      aria-label="Slider"
+      aria-orientation="vertical"
+      aria-valuemax="100"
+      aria-valuemin="0"
+      aria-valuenow="50"
+      class="rmd-slider-thumb rmd-slider-thumb--v rmd-slider-thumb--v1 rmd-slider-thumb--animate"
+      id="slider-:r2:"
+      role="slider"
+      tabindex="0"
+    />
+    <input
+      aria-hidden="true"
+      aria-label="Slider"
+      class="rmd-slider-thumb__input"
+      id="slider-:r2:-value"
+      max="100"
+      min="0"
+      step="1"
+      tabindex="-1"
+      type="range"
+      value="50"
+    />
+  </span>
+  After!
+</div>
+`;
+
+exports[`Slider single thumb slider should be able to render addons before and after the slider 6`] = `
+<div
+  class="rmd-slider-container rmd-slider-container--v rmd-slider-container--pad-top"
+  data-testid="container"
+>
+  <span
+    data-testid="before"
+  />
+  <span
+    class="rmd-slider-track rmd-slider-track--animate rmd-slider-track--hoverable rmd-slider-track--v rmd-slider-track--v1"
+    style="--rmd-slider-offset-1: 50%;"
+  >
+    <span
+      aria-label="Slider"
+      aria-orientation="vertical"
+      aria-valuemax="100"
+      aria-valuemin="0"
+      aria-valuenow="50"
+      class="rmd-slider-thumb rmd-slider-thumb--v rmd-slider-thumb--v1 rmd-slider-thumb--animate"
+      id="slider-:r2:"
+      role="slider"
+      tabindex="0"
+    />
+    <input
+      aria-hidden="true"
+      aria-label="Slider"
+      class="rmd-slider-thumb__input"
+      id="slider-:r2:-value"
+      max="100"
+      min="0"
+      step="1"
+      tabindex="-1"
+      type="range"
+      value="50"
+    />
+  </span>
+</div>
+`;
+
+exports[`Slider single thumb slider should support a disabled state 1`] = `
+<div
+  class="rmd-slider-container rmd-slider-container--h rmd-slider-container--pad-left rmd-slider-container--pad-right"
+  data-testid="container"
+>
+  <span
+    class="rmd-slider-track rmd-slider-track--animate rmd-slider-track--disabled rmd-slider-track--h rmd-slider-track--h1"
+    style="--rmd-slider-offset-1: 50%;"
+  >
+    <span
+      class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1 rmd-slider-thumb--mask rmd-slider-thumb--mask-h rmd-slider-thumb--animate rmd-slider-thumb--disabled"
+    />
+    <span
+      aria-disabled="true"
+      aria-label="Slider"
+      aria-valuemax="100"
+      aria-valuemin="0"
+      aria-valuenow="50"
+      class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1 rmd-slider-thumb--animate rmd-slider-thumb--disabled rmd-slider-thumb--disabled-h"
+      id="slider-:r1:"
+      role="slider"
+      tabindex="-1"
+    />
+    <input
+      aria-hidden="true"
+      aria-label="Slider"
+      class="rmd-slider-thumb__input"
+      disabled=""
+      id="slider-:r1:-value"
+      max="100"
+      min="0"
+      step="1"
+      tabindex="-1"
+      type="range"
+      value="50"
+    />
+  </span>
+</div>
+`;

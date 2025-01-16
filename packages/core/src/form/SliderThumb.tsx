@@ -304,6 +304,7 @@ export const SliderThumb = forwardRef<
         max={max}
         step={step}
         value={value}
+        disabled={disabled}
         tabIndex={-1}
         onChange={onChange}
         className={styles("input")}

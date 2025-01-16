@@ -1587,6 +1587,7 @@ $variables: (
       @include icon.use-var(gap, spacing);
 
       align-items: center;
+      touch-action: none;
 
       @if not $disable-horizontal-slider {
         &--h {

@@ -91,7 +91,78 @@ it("should be able to verify the display value", async () => {
 
 ## Slider
 
-TODO
+### Find and Change Value
+
+Tests including the `Slider` are generally setup to include verifying the
+current value and optionally changing it. The slider element can be found
+using `screen.getByRole("slider", { name: "THE_SLIDER_LABEL" })` which can
+be used to verify the current numeric value and update through touch, drag,
+or keyboard events.
+
+Since updating through touch, drag, or keyboard events aren't convenient for
+tests, it's recommended to find the hidden `<input type="range" />` and trigger
+a change event on that instead and could be found by
+`screen.getByRole("slider", { name: "", hidden: true })`.
+
+ReactMD provides a React Testing Library query named `getSliderTestElements`
+that can be used to get the `slider` element and the `sliderInput`.
+
+```tsx
+import {
+  fireEvent,
+  getSliderTestElements,
+  rmdRender,
+  screen,
+} from "@react-md/core/test-utils";
+
+it("should be able to change the value", async () => {
+  rmdRender(<HorizontalSlider />);
+
+  // `name` is the accessible label for the `Slider`
+  const { slider, sliderInput } = getSliderTestElements({ name: "Slider" });
+  expect(slider).toHaveValue(50);
+  expect(sliderInput).toHaveValue("50");
+
+  fireEvent.change(sliderInput, { target: { value: "80" } });
+  expect(slider).toHaveValue(80);
+  expect(sliderInput).toHaveValue("80");
+});
+```
+
+### Find and Change Value (Range Slider)
+
+ReactMD provides another React Testing Library query named `getRangeSliderTestElements`
+that can be used for a range slider. It will return the `minSlider`,
+`minSliderInput`, `maxSlider`, and `maxSliderInput` allowing the values to be
+verified like the normal slider.
+
+```tsx
+import {
+  fireEvent,
+  getRangeSliderTestElements,
+  rmdRender,
+  screen,
+} from "@react-md/core/test-utils";
+
+import RangeSlider from "../RangeSlider.jsx";
+
+it("should be able to change the value", async () => {
+  rmdRender(<RangeSlider defaultValue={[30, 60]} />);
+
+  const { minSlider, minSliderInput, maxSlider, maxSliderInput } =
+    getRangeSliderTestElements();
+  expedct(minSlider).toHaveValue(30);
+  expedct(minSliderInput).toHaveValue("30");
+  expedct(maxSlider).toHaveValue(60);
+  expedct(maxSliderInput).toHaveValue("60");
+
+  fireEvent.change(minSliderInput, { target: { value: "50" } });
+  expect(slider).toHaveValue(50);
+  expect(sliderInput).toHaveValue("50");
+  expedct(maxSlider).toHaveValue(60);
+  expedct(maxSliderInput).toHaveValue("60");
+});
+```
 
 ## Switch
 

@@ -96,3 +96,151 @@ export function getSelectTestElements(
     selectedOption,
   };
 }
+
+/**
+ * @since 6.0.0
+ */
+export interface SliderTestElements {
+  /**
+   * The element that is visible to screen readers and can be updated using
+   * drag, touch, or keyboard events. Since this is usually annoying for tests,
+   * the `sliderInput` should normally be used instead.
+   */
+  slider: HTMLSpanElement;
+
+  /**
+   * The element that is hidden to screen readers but stores the current value
+   * and can be updated using
+   * `fireEvent.change(sliderInput, { target: { value: "100" }})`.
+   */
+  sliderInput: HTMLInputElement;
+}
+
+/**
+ * @example Simple Example
+ * ```tsx
+ * function Test(): ReactElement {
+ *   const slider = useSlider({ defaultValue: 30 });
+ *   return <Slider {...slider} aria-label="Example" />;
+ * }
+ *
+ * rmdRender(<Test />);
+ *
+ * const { slider, sliderInput } = getSliderTestElements({ name: "Example" });
+ *
+ * expect(slider).toHaveValue(30);
+ * expect(sliderInput).toHaveValue("30");
+ *
+ * fireEvent.change(sliderInput, { target: { value: "55" }});
+ * expect(slider).toHaveValue(55);
+ * expect(sliderInput).toHaveValue("55");
+ * ```
+ *
+ * @since 6.0.0
+ */
+export function getSliderTestElements(
+  options: GetPartsByRoleOptions
+): SliderTestElements {
+  const { container = screen, ...byRoleOptions } = options;
+  const slider = container.getByRole<HTMLSpanElement>("slider", byRoleOptions);
+  const sliderInput = slider.nextElementSibling;
+  if (!(sliderInput instanceof HTMLInputElement)) {
+    throw new Error("Unable to find the `Slider` input element");
+  }
+
+  return {
+    slider,
+    sliderInput,
+  };
+}
+
+/**
+ * @since 6.0.0
+ */
+export interface GetRangetSliderTestElementsOptions {
+  /** @defaultValue `screen` */
+  container?: BoundFunctions<typeof queries>;
+
+  /** @defaultValue `{ name: "Min" }` */
+  min?: ByRoleOptions;
+
+  /** @defaultValue `{ name: "Max" }` */
+  max?: ByRoleOptions;
+}
+
+/**
+ * @since 6.0.0
+ */
+export interface RangeSliderTestElements {
+  /** @see {@link SliderTestElements.slider} */
+  minSlider: HTMLSpanElement;
+  /** @see {@link SliderTestElements.sliderInput} */
+  minSliderInput: HTMLInputElement;
+  /** @see {@link SliderTestElements.slider} */
+  maxSlider: HTMLSpanElement;
+  /** @see {@link SliderTestElements.sliderInput} */
+  maxSliderInput: HTMLInputElement;
+}
+
+/**
+ * @example Simple Example
+ * ```tsx
+ * function Test(): ReactElement {
+ *   const slider = useRangeSlider({ defaultValue: [30, 60] });
+ *   return <Slider {...slider} aria-label="Example" />;
+ * }
+ *
+ * rmdRender(<Test />);
+ *
+ * const { slider, sliderInput } = getSliderTestElements();
+ *
+ * const { minSlider, minSliderInput, maxSlider, maxSliderInput } =
+ *   getRangeSliderTestElements();
+ * expect(minSlider).toHaveValue(30);
+ * expect(minSliderInput).toHaveValue("30");
+ * expect(maxSlider).toHaveAttribute(60);
+ * expect(maxSliderInput).toHaveValue("60");
+ *
+ * fireEvent.change(minSliderInput, { target: { value: "55" }});
+ * expect(minSlider).toHaveValue(55);
+ * expect(minSliderInput).toHaveValue("55");
+ * expect(maxSlider).toHaveAttribute(60);
+ * expect(maxSliderInput).toHaveValue("60");
+ *
+ * fireEvent.change(maxSliderInput, { target: { value: "88" }});
+ * expect(minSlider).toHaveValue(55);
+ * expect(minSliderInput).toHaveValue("55");
+ * expect(maxSlider).toHaveAttribute(88);
+ * expect(maxSliderInput).toHaveValue("88");
+ * ```
+ *
+ * @since 6.0.0
+ */
+export function getRangeSliderTestElements(
+  options: GetRangetSliderTestElementsOptions = {}
+): RangeSliderTestElements {
+  const { container = screen, min, max } = options;
+  const minSlider = container.getByRole<HTMLSpanElement>(
+    "slider",
+    min ?? { name: "Min" }
+  );
+  const maxSlider = container.getByRole<HTMLSpanElement>(
+    "slider",
+    max ?? { name: "Max" }
+  );
+  const minSliderInput = minSlider.nextElementSibling;
+  const maxSliderInput = maxSlider.nextElementSibling;
+  if (!(minSliderInput instanceof HTMLInputElement)) {
+    throw new Error("Unable to find the `Slider` min input element");
+  }
+  if (!(maxSliderInput instanceof HTMLInputElement)) {
+    throw new Error("Unable to find the `Slider` max input element");
+  }
+
+  return {
+    minSlider,
+    minSliderInput,
+    maxSlider,
+    maxSliderInput,
+  };
+}

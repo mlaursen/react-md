@@ -344,6 +344,9 @@ export interface DraggableImplementation<E extends HTMLElement = HTMLElement>
  * - window splitters
  * - sliders
  *
+ * NOTE: This requires `touch-action: none` to be applied to the draggable
+ * element to help prevent page scrolling on mobile devices.
+ *
  * @since 6.0.0
  */
 export function useDraggable<E extends HTMLElement>(
@@ -459,8 +462,12 @@ export function useDraggable<E extends HTMLElement>(
 
     const stopDragging = (event: MouseEvent | TouchEvent): void => {
       updatePosition(event);
-      draggingRef.current = false;
       setDragging(false);
+      draggingRef.current = false;
+      // blur the element so that it no longer maintains the `:focus-visible`
+      // styles if they were applied. pressing tab would re-focus this element
+      // so the tab order is preserved
+      nodeRef.current?.blur();
     };
 
     const updateKey = isTouch ? "touchmove" : "mousemove";
@@ -491,11 +498,15 @@ export function useDraggable<E extends HTMLElement>(
   ]);
 
   const prevRange = useRef({ min, max, step });
-  if (
-    prevRange.current.min !== min ||
-    prevRange.current.max !== max ||
-    prevRange.current.step !== step
-  ) {
+  useEffect(() => {
+    if (
+      prevRange.current.min === min &&
+      prevRange.current.max === max &&
+      prevRange.current.step === step
+    ) {
+      return;
+    }
+
     prevRange.current = { min, max, step };
     setValue((prevValue) =>
       nearest({
@@ -505,7 +516,7 @@ export function useDraggable<E extends HTMLElement>(
         value: prevValue,
       })
     );
-  }
+  }, [max, min, setValue, step]);
 
   const mouseEventHandlers: Required<DraggableMouseEventHandlers<E>> = {
     onMouseDown: useCallback(
@@ -621,8 +632,8 @@ export function useDraggable<E extends HTMLElement>(
           return;
         }
 
-        const decrementKey = vertical ? "ArrowUp" : "ArrowLeft";
-        const incrementKey = vertical ? "ArrowDown" : "ArrowRight";
+        const decrementKey = vertical ? "ArrowDown" : "ArrowLeft";
+        const incrementKey = vertical ? "ArrowUp" : "ArrowRight";
 
         switch (event.key) {
           case decrementKey:
