@@ -9,25 +9,47 @@ import {
 /**
  * @since 6.0.0
  */
-export interface SelectParts {
-  select: HTMLDivElement;
-  selectValue: HTMLInputElement;
-  selectDisplay: HTMLDivElement;
+export interface GetPartsByRoleOptions extends ByRoleOptions {
+  /** @defaultValue `screen` */
+  container?: BoundFunctions<typeof queries>;
 }
 
 /**
  * @since 6.0.0
  */
-export interface GetSelectPartsOptions extends ByRoleOptions {
-  /** @defaultValue `screen` */
-  container?: BoundFunctions<typeof queries>;
+export interface SelectTestElements {
+  /**
+   * The element that should be interacted with for showing and hiding the
+   * listbox of available options in the `Select`.
+   */
+  select: HTMLDivElement;
+
+  /**
+   * The input element storing the current value for the `Select`. This should
+   * be used to verify a specific option has been selected and will be the
+   * `Option`'s `value` prop.
+   *
+   * i.e. Selecting `<Option value="a">Option 1</Option>` -> `selectInput`
+   * would have value `"a"`.
+   */
+  selectInput: HTMLInputElement;
+
+  /**
+   * The current selected option that is shown in the `Select` underneath the
+   * floating label. This should be used if the selected option label needs to
+   * be verified instead of the value.
+   *
+   * i.e. Selecting `<Option value="a">Option 1</Option>` -> `selectedOption`
+   * would have text content `"Option 1"`.
+   */
+  selectedOption: HTMLDivElement;
 }
 
 /**
  * @example Simple Example
  * ```tsx
  * import {
- *   getSelectParts,
+ *   getSelectTestElements,
  *   screen,
  *   rmdRender,
  *   userEvent,
@@ -37,38 +59,40 @@ export interface GetSelectPartsOptions extends ByRoleOptions {
  *   const user = userEvent.setup();
  *   rmdRender(<SimpleSelect />);
  *
- *   const { select, selectValue, selectDisplay } = getSelectParts({
+ *   const { select, selectInput, selectedOption } = getSelectTestElements({
  *     name: "Label",
  *   });
  *   // this isn't required, but added to show what element this is
- *   expect(selectDisplay).toHaveClass("rmd-selected-option");
+ *   expect(selectedOption).toHaveClass("rmd-selected-option");
  *
  *   // there is currently no selected value
- *   expect(selectDisplay).toHaveTextContent("");
+ *   expect(selectedOption).toHaveTextContent("");
  *
  *   await user.click(select);
  *   await user.click(screen.getByRole("option", { name: "Option 1" }));
- *   expect(selectValue).toHaveValue("a");
- *   expect(selectDisplay).toHaveTextContent("Option 1");
+ *   expect(selectInput).toHaveValue("a");
+ *   expect(selectedOption).toHaveTextContent("Option 1");
  * });
  * ```
  *
  * @since 6.0.0
  */
-export function getSelectParts(options: GetSelectPartsOptions): SelectParts {
+export function getSelectTestElements(
+  options: GetPartsByRoleOptions
+): SelectTestElements {
   const { container = screen, ...byRoleOptions } = options;
   const select = container.getByRole<HTMLDivElement>("combobox", byRoleOptions);
-  const selectValue = within(select).getByRole<HTMLInputElement>("textbox", {
+  const selectInput = within(select).getByRole<HTMLInputElement>("textbox", {
     hidden: true,
   });
-  const selectDisplay = select.firstElementChild;
-  if (!(selectDisplay instanceof HTMLDivElement)) {
-    throw new Error("Unable to find the `Select` display value element");
+  const selectedOption = select.firstElementChild;
+  if (!(selectedOption instanceof HTMLDivElement)) {
+    throw new Error("Unable to find the `Select` selected option element");
   }
 
   return {
     select,
-    selectValue,
-    selectDisplay,
+    selectInput,
+    selectedOption,
   };
 }

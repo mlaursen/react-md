@@ -2,35 +2,25 @@
 
 This page will provide common testing recipes for components through ReactMD.
 
-# Autocomplete
+# Inputs
+
+## Autocomplete
 
 TODO
 
-# Checkbox
+## Checkbox
 
 TODO
 
-# Dialog/Sheet
+## Radio
 
 TODO
 
-# Expansion Panel
-
-TODO
-
-# Menu
-
-TODO
-
-# Radio
-
-TODO
-
-# Select
+## Select
 
 > All of these examples will use the [Simple Select](/components/select#simple-select) example code.
 
-## Find and Change Value
+### Find and Change Value
 
 This example showcases how to:
 
@@ -48,13 +38,13 @@ it("should be able to change value", async () => {
   // this is the clickable element that allows the listbox of options to appear
   const select = screen.getByRole("combobox", { name: "Label" });
   // this stores the current value
-  const selectValue = screen.getByRole("textbox", { hidden: true });
-  expect(selectValue).toHaveValue("");
+  const selectInput = screen.getByRole("textbox", { hidden: true });
+  expect(selectInput).toHaveValue("");
 
   await user.click(select);
   // the `name` should be the accessible text in any of the available options
   await user.click(screen.getByRole("option", { name: "Option 1" }));
-  expect(selectValue).toHaveValue("a");
+  expect(selectInput).toHaveValue("a");
 
   await user.click(select);
 
@@ -65,14 +55,15 @@ it("should be able to change value", async () => {
 });
 ```
 
-## Verify the Display Value
+### Verify the Display Value
 
 This example showcases how to find and verify the selected option's display
-value while the Select listbox is closed using the `getSelectParts` test util query.
+value while the Select listbox is closed using the `getSelectTestElements` test
+util query.
 
 ```tsx
 import {
-  getSelectParts,
+  getSelectTestElements,
   screen,
   rmdRender,
   userEvent,
@@ -82,33 +73,29 @@ it("should be able to verify the display value", async () => {
   const user = userEvent.setup();
   rmdRender(<SimpleSelect />);
 
-  const { select, selectValue, selectDisplay } = getSelectParts({
+  const { select, selectInput, selectedOption } = getSelectTestElements({
     name: "Label",
   });
   // this isn't required, but added to show what element this is
-  expect(selectDisplay).toHaveClass("rmd-selected-option");
+  expect(selectedOption).toHaveClass("rmd-selected-option");
 
   // there is currently no selected value
-  expect(selectDisplay).toHaveTextContent("");
+  expect(selectedOption).toHaveTextContent("");
 
   await user.click(select);
   await user.click(screen.getByRole("option", { name: "Option 1" }));
-  expect(selectValue).toHaveValue("a");
-  expect(selectDisplay).toHaveTextContent("Option 1");
+  expect(selectInput).toHaveValue("a");
+  expect(selectedOption).toHaveTextContent("Option 1");
 });
 ```
 
-# Slider
+## Slider
 
 TODO
 
-# Snackbar
+## Switch
 
-TODO
-
-# Switch
-
-## Find and Toggle
+### Find and Toggle
 
 The `Switch` is an extension of an `<input type="checkbox">` with
 `role="switch"`, so the element can be changed just like a `Checkbox`.
@@ -128,14 +115,38 @@ it("should be able to change the checked state", async () => {
 });
 ```
 
-# Tabs
+# Presentation
+
+## Tooltip
 
 TODO
 
-# Tooltip
+# Navigation
+
+## Menu
 
 TODO
 
-# Tree
+## Tabs
+
+TODO
+
+## Tree
+
+TODO
+
+# Feedback
+
+## Dialog/Sheet
+
+TODO
+
+## Snackbar
+
+TODO
+
+# Layout
+
+## Expansion Panel
 
 TODO

@@ -6,7 +6,7 @@ import { FontIcon } from "../../icon/FontIcon.js";
 import { CircularProgress } from "../../progress/CircularProgress.js";
 import {
   act,
-  getSelectParts,
+  getSelectTestElements,
   rmdRender,
   screen,
   userEvent,
@@ -42,11 +42,9 @@ function render<Value extends string = string>(
 ) {
   const user = userEvent.setup();
   const { rerender } = rmdRender(<Test {...props} />);
-  const {
-    select,
-    selectValue,
-    selectDisplay: selected,
-  } = getSelectParts({ name: "Select" });
+  const { select, selectInput, selectedOption } = getSelectTestElements({
+    name: "Select",
+  });
 
   return {
     rerender: (props: Partial<SelectProps<Value>>) => {
@@ -54,18 +52,18 @@ function render<Value extends string = string>(
     },
     user,
     select,
-    selected,
-    selectValue,
+    selectInput,
+    selectedOption,
   };
 }
 
 describe("Select", () => {
   it("should apply the correct styling, HTMLAttributes, and allow a ref", () => {
     const inputRef = createRef<HTMLInputElement>();
-    const { rerender, select, selectValue } = render({ inputRef });
+    const { rerender, select, selectInput } = render({ inputRef });
 
     expect(inputRef.current).toBeInstanceOf(HTMLInputElement);
-    expect(inputRef.current).toBe(selectValue);
+    expect(inputRef.current).toBe(selectInput);
     expect(select).toMatchSnapshot();
 
     rerender({
@@ -77,8 +75,8 @@ describe("Select", () => {
   });
 
   it("should automatically pull options from the children and update when selected", async () => {
-    const { user, select, selectValue } = render();
-    expect(selectValue).toHaveValue("");
+    const { user, select, selectInput } = render();
+    expect(selectInput).toHaveValue("");
 
     await user.click(select);
 
@@ -88,7 +86,7 @@ describe("Select", () => {
 
     await user.click(screen.getByRole("option", { name: "Option 1" }));
     expect(listbox).not.toBeInTheDocument();
-    expect(selectValue).toHaveValue("a");
+    expect(selectInput).toHaveValue("a");
     expect(select).toHaveTextContent(/Option 1/);
 
     await user.click(select);
@@ -100,13 +98,13 @@ describe("Select", () => {
 
     await user.click(screen.getByRole("option", { name: "Option 2" }));
     expect(listbox).not.toBeInTheDocument();
-    expect(selectValue).toHaveValue("b");
+    expect(selectInput).toHaveValue("b");
     expect(select).toHaveTextContent(/Option 2/);
   });
 
   it("should allow for a default value", async () => {
-    const { user, select, selectValue } = render({ defaultValue: "c" });
-    expect(selectValue).toHaveValue("c");
+    const { user, select, selectInput } = render({ defaultValue: "c" });
+    expect(selectInput).toHaveValue("c");
 
     await user.click(select);
     expect(() =>
@@ -280,7 +278,7 @@ describe("Select", () => {
   });
 
   it("should open the listbox and focus the last element when the arrow up key is pressed unless there is a value", async () => {
-    const { user, select, selectValue } = render();
+    const { user, select, selectInput } = render();
     act(() => {
       select.focus();
     });
@@ -291,7 +289,7 @@ describe("Select", () => {
 
     await user.keyboard("[ArrowUp][Enter]");
     expect(select).toHaveAttribute("aria-activedescendant", "");
-    expect(selectValue).toHaveValue("c");
+    expect(selectInput).toHaveValue("c");
 
     await user.keyboard("[ArrowUp]");
     const option3 = screen.getByRole("option", { name: "Option 3" });
@@ -357,7 +355,7 @@ describe("Select", () => {
 
   describe("keyboard behavior", () => {
     it("should open the listbox when the spacebar key is pressed and automatically focus the first element", async () => {
-      const { user, select, selectValue } = render();
+      const { user, select, selectInput } = render();
       act(() => {
         select.focus();
       });
@@ -394,7 +392,7 @@ describe("Select", () => {
       expect(select).toHaveAttribute("aria-activedescendant", option3.id);
 
       await user.keyboard("[Enter]");
-      expect(selectValue).toHaveValue("c");
+      expect(selectInput).toHaveValue("c");
       expect(select).toHaveAttribute("aria-activedescendant", "");
 
       await user.keyboard("[Space]");
@@ -408,7 +406,7 @@ describe("Select", () => {
 
       await user.keyboard("[Escape]");
       expect(select).toHaveAttribute("aria-activedescendant", "");
-      expect(selectValue).toHaveValue("c");
+      expect(selectInput).toHaveValue("c");
     });
 
     it("should submit the form when the enter key is pressed while the listbox is not visible", async () => {
