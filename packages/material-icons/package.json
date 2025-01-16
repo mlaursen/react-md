@@ -70,7 +70,7 @@
     "access": "public"
   },
   "volta": {
-    "node": "20.12.2",
+    "node": "22.13.0",
     "pnpm": "9.15.4"
   }
 }
