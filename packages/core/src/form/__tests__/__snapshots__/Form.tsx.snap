@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form should apply the correct styles, HTMLAttributes, and allow a ref 1`] = `
+<form
+  name="form"
+/>
+`;
+
+exports[`Form should apply the correct styles, HTMLAttributes, and allow a ref 2`] = `
+<form
+  class="custom-class-name"
+  name="form"
+  style="color: white;"
+/>
+`;

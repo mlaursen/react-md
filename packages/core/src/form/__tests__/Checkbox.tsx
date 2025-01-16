@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { render, screen } from "test-utils";
+import { render, screen, userEvent } from "test-utils";
 
 import { Checkbox } from "../Checkbox.js";
 
@@ -38,5 +38,26 @@ describe("Checkbox", () => {
 
     const checkbox = screen.getByRole("checkbox");
     expect(checkbox).toHaveAttribute("autocomplete", "off");
+  });
+
+  it("should allow the checked state to be toggled", async () => {
+    const user = userEvent.setup();
+    render(<Checkbox label="Label" />);
+
+    const checkbox = screen.getByRole("checkbox", { name: "Label" });
+    expect(checkbox).not.toBeChecked();
+    await user.click(checkbox);
+
+    expect(checkbox).toBeChecked();
+
+    await user.click(checkbox);
+    expect(checkbox).not.toBeChecked();
+  });
+
+  it("should allow for a defaultChecked state", () => {
+    render(<Checkbox label="Label" defaultChecked />);
+
+    const checkbox = screen.getByRole("checkbox", { name: "Label" });
+    expect(checkbox).toBeChecked();
   });
 });
