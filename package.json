@@ -42,7 +42,7 @@
     "node": ">=20"
   },
   "engineStrict": true,
-  "packageManager": "pnpm@9.12.1",
+  "packageManager": "pnpm@9.15.4",
   "lint-staged": {
     "**/*.{scss,js,jsx,md,yml,json,ts,tsx}": [
       "prettier --write"
@@ -50,6 +50,6 @@
   },
   "volta": {
     "node": "20.12.2",
-    "pnpm": "9.14.1"
+    "pnpm": "9.15.4"
   }
 }
