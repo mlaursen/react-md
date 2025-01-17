@@ -34,7 +34,7 @@ export const getJumpValue = (options: JumpOptions): number => {
   const steps = getRangeSteps({ min, max, step });
   const value = jump ?? (steps / 10) * step;
   if (Number.isInteger(step)) {
-    return Math.ceil(value);
+    return Math.max(step, Math.ceil(value));
   }
 
   return value;
@@ -44,7 +44,7 @@ export const getJumpValue = (options: JumpOptions): number => {
  * @since 6.0.0
  * @internal
  */
-type RequiredThumbProps = Pick<
+export type RequiredThumbProps = Pick<
   DraggableImplementation,
   | "dragging"
   | keyof DraggableMouseEventHandlers<HTMLElement>
@@ -158,7 +158,7 @@ export const getClosestThumbEventHandlers = (
  * @internal
  * @since 6.0.0
  */
-export function getThumbOffset(
+function getThumbOffset(
   offset: number | undefined,
   fallback: number
 ): string | undefined {
@@ -202,7 +202,7 @@ interface ThumbOffsets {
  * @since 6.0.0
  * @internal
  */
-export const getThumbOffsets = (options: ThumbOffsetsOptions): ThumbOffsets => {
+export function getThumbOffsets(options: ThumbOffsetsOptions): ThumbOffsets {
   const {
     min,
     max,
@@ -232,4 +232,4 @@ export const getThumbOffsets = (options: ThumbOffsetsOptions): ThumbOffsets => {
     "--rmd-slider-offset-1": getThumbOffset(thumb1Percentage, 0),
     "--rmd-slider-offset-2": getThumbOffset(thumb2Percentage, 1),
   };
-};
+}
