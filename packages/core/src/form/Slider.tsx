@@ -1,13 +1,11 @@
 "use client";
 import {
   useRef,
-  useState,
   type HTMLAttributes,
   type ReactElement,
   type ReactNode,
   type Ref,
 } from "react";
-import { useDraggable } from "../draggable/useDraggable.js";
 import { type TooltipProps } from "../tooltip/Tooltip.js";
 import {
   type LabelRequiredForA11y,
@@ -16,7 +14,6 @@ import {
 } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { identity } from "../utils/identity.js";
-import { withinRange } from "../utils/withinRange.js";
 import { SliderContainer, type SliderAddonProps } from "./SliderContainer.js";
 import {
   SliderThumb,
@@ -31,6 +28,7 @@ import {
 import { getJumpValue } from "./sliderUtils.js";
 import { type RangeSliderState } from "./useRangeSlider.js";
 import { type SliderState, type SliderValueOptions } from "./useSlider.js";
+import { useSliderDraggable } from "./useSliderDraggable.js";
 
 declare module "react" {
   interface CSSProperties {
@@ -429,7 +427,6 @@ export function Slider(
     };
   }
 
-  const [thumb1Dragging, setThumb1Dragging] = useState(false);
   const {
     onKeyDown: thumb1OnKeyDown,
     onMouseUp: thumb1OnMouseUp,
@@ -439,7 +436,9 @@ export function Slider(
     onTouchMove: thumb1OnTouchMove,
     dragPercentage: thumb1DragPercentage,
     draggableRef: thumb1DraggableRef,
-  } = useDraggable({
+    dragging: thumb1Dragging,
+  } = useSliderDraggable({
+    jump,
     ref: thumb1Ref,
     min,
     max: thumb1Max,
@@ -447,41 +446,10 @@ export function Slider(
     step,
     value: thumb1Value,
     setValue: setThumb1Value,
-    dragging: thumb1Dragging,
-    setDragging: setThumb1Dragging,
     disabled,
     vertical,
-    withinOffsetParent: true,
-    disableDraggingCursorClassName: true,
-    onKeyDown(event) {
-      switch (event.key) {
-        case "PageUp":
-          event.preventDefault();
-          event.stopPropagation();
-          setThumb1Value((prevValue) =>
-            withinRange({
-              min,
-              max: thumb1Max,
-              value: prevValue + jump,
-            })
-          );
-          break;
-        case "PageDown":
-          event.preventDefault();
-          event.stopPropagation();
-          setThumb1Value((prevValue) =>
-            withinRange({
-              min,
-              max: thumb1Max,
-              value: prevValue - jump,
-            })
-          );
-          break;
-      }
-    },
   });
 
-  const [thumb2Dragging, setThumb2Dragging] = useState(false);
   const {
     onKeyDown: thumb2OnKeyDown,
     onMouseUp: thumb2OnMouseUp,
@@ -491,7 +459,9 @@ export function Slider(
     onTouchMove: thumb2OnTouchMove,
     dragPercentage: thumb2DragPercentage,
     draggableRef: thumb2DraggableRef,
-  } = useDraggable({
+    dragging: thumb2Dragging,
+  } = useSliderDraggable({
+    jump,
     ref: thumb2Ref,
     min: thumb2Min,
     max,
@@ -499,38 +469,8 @@ export function Slider(
     step,
     value: thumb2Value,
     setValue: setThumb2Value,
-    dragging: thumb2Dragging,
-    setDragging: setThumb2Dragging,
     vertical,
     disabled,
-    withinOffsetParent: true,
-    disableDraggingCursorClassName: true,
-    onKeyDown(event) {
-      switch (event.key) {
-        case "PageUp":
-          event.preventDefault();
-          event.stopPropagation();
-          setThumb2Value((prevValue) =>
-            withinRange({
-              min: thumb2Min,
-              max,
-              value: prevValue + jump,
-            })
-          );
-          break;
-        case "PageDown":
-          event.preventDefault();
-          event.stopPropagation();
-          setThumb2Value((prevValue) =>
-            withinRange({
-              min: thumb2Min,
-              max,
-              value: prevValue - jump,
-            })
-          );
-          break;
-      }
-    },
   });
 
   const dragging = thumb1Dragging || thumb2Dragging;
