@@ -13,7 +13,13 @@ import {
   type MutableRefObject,
   type ReactElement,
 } from "react";
-import { act, fireEvent, render, screen, waitFor } from "test-utils";
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from "../../test-utils/index.js";
 
 import { SsrProvider, useSsr } from "../../SsrProvider.js";
 import { useLocalStorage } from "../../useLocalStorage.js";

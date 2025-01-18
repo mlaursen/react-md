@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { type ReactElement } from "react";
-import { render, screen } from "test-utils";
+import { render, screen } from "../test-utils/index.js";
 
 import { useEnsuredId } from "../useEnsuredId.js";
 

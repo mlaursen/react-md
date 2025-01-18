@@ -735,23 +735,19 @@ $variables: (
           border-radius: $text-field-border-radius;
           border-style: solid;
           border-width: $text-field-border-width;
-
-          &::after {
-            @include utils.pseudo-element;
-
-            box-shadow: 0
-              0
-              0
-              $text-field-border-width-active
-              get-var(focus-color);
-            opacity: 0;
-            transition: opacity transition.$linear-duration;
-          }
         }
 
-        &--outline:focus-within::after,
-        &--outline-active::after {
-          opacity: 1;
+        &--outline:focus-within,
+        &--outline-active {
+          @include interaction.outline(
+            $box-shadow: false,
+            $color: interaction.get-var(focus-color),
+            $outline-offset: false
+          );
+
+          @if not interaction.$disable-outline-offset {
+            outline-offset: calc($text-field-border-width * -1);
+          }
         }
 
         @if not $disable-text-field-addon {

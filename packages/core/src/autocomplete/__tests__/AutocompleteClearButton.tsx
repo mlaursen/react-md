@@ -1,5 +1,5 @@
 import { describe, expect, it, jest } from "@jest/globals";
-import { render, screen } from "test-utils";
+import { render, screen } from "../../test-utils/index.js";
 import { AutocompleteClearButton } from "../AutocompleteClearButton.js";
 import { type AutocompleteClearButtonProps } from "../types.js";
 

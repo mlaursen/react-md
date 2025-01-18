@@ -5,7 +5,7 @@ import {
   screen,
   userEvent,
   type RenderResult,
-} from "test-utils";
+} from "../../test-utils/index.js";
 
 import { FontIcon } from "../../icon/FontIcon.js";
 import { TRANSITION_CONFIG } from "../../transition/config.js";

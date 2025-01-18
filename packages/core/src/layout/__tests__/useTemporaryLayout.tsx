@@ -7,7 +7,12 @@ import { Form } from "../../form/Form.js";
 import { Radio } from "../../form/Radio.js";
 import { useRadioGroup } from "../../form/useRadioGroup.js";
 import { Sheet } from "../../sheet/Sheet.js";
-import { rmdRender, screen, userEvent, waitFor } from "test-utils";
+import {
+  rmdRender,
+  screen,
+  userEvent,
+  waitFor,
+} from "../../test-utils/index.js";
 import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { Main } from "../Main.js";
 import {

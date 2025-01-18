@@ -5,7 +5,13 @@ import {
   type AnchorHTMLAttributes,
   type ReactElement,
 } from "react";
-import { fireEvent, rmdRender, screen, userEvent, waitFor } from "test-utils";
+import {
+  fireEvent,
+  rmdRender,
+  screen,
+  userEvent,
+  waitFor,
+} from "../../test-utils/index.js";
 
 import { Divider } from "../../divider/Divider.js";
 import { FontIcon } from "../../icon/FontIcon.js";

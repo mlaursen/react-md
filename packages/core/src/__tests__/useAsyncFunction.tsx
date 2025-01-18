@@ -1,6 +1,12 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import { type MouseEvent, type ReactElement } from "react";
-import { act, rmdRender, screen, userEvent, waitFor } from "test-utils";
+import {
+  act,
+  rmdRender,
+  screen,
+  userEvent,
+  waitFor,
+} from "../test-utils/index.js";
 
 import { box } from "../box/styles.js";
 import { Button, type ButtonProps } from "../button/Button.js";

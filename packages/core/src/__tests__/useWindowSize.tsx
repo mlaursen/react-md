@@ -1,7 +1,7 @@
 import { beforeAll, beforeEach, describe, expect, it } from "@jest/globals";
 import { createRef, type MutableRefObject, type ReactElement } from "react";
 import { SsrProvider } from "../SsrProvider.js";
-import { act, render, screen, waitFor } from "test-utils";
+import { act, render, screen, waitFor } from "../test-utils/index.js";
 import { type ElementSize } from "../types.js";
 import { useWindowSize, type WindowSizeOptions } from "../useWindowSize.js";
 

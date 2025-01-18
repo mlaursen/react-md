@@ -8,7 +8,7 @@ import {
 } from "react";
 import { Button } from "../../button/Button.js";
 import { FontIcon } from "../../icon/FontIcon.js";
-import { render, screen, userEvent } from "test-utils";
+import { render, screen, userEvent } from "../../test-utils/index.js";
 import { type UseStateInitializer } from "../../types.js";
 import { Navigation } from "../Navigation.js";
 import { type NavigationItem } from "../types.js";

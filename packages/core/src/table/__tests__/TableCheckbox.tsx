@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef, type FC, type ReactElement, type ReactNode } from "react";
-import { render, screen, userEvent } from "test-utils";
+import { render, screen, userEvent } from "../../test-utils/index.js";
 
 import { useCheckboxGroup } from "../../form/useCheckboxGroup.js";
 import { Table } from "../Table.js";

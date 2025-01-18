@@ -1,6 +1,6 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import { createRef } from "react";
-import { rmdRender, screen } from "test-utils";
+import { rmdRender, screen } from "../../test-utils/index.js";
 import { type MenuItemCheckboxProps } from "../MenuItemInputToggle.js";
 import { MenuItemCheckbox } from "../MenuItemCheckbox.js";
 

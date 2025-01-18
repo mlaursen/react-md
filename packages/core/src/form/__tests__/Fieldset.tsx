@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { render, screen } from "test-utils";
+import { render, screen } from "../../test-utils/index.js";
 
 import { fieldset, Fieldset } from "../Fieldset.js";
 import { Legend } from "../Legend.js";

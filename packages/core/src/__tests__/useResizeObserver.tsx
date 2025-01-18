@@ -6,11 +6,11 @@ import {
   render,
   screen,
   waitFor,
-} from "test-utils";
+} from "../test-utils/index.js";
 import {
   cleanupResizeObserverAfterEach,
   setupResizeObserverMock,
-} from "test-utils/jest-globals";
+} from "../test-utils/jest-globals/index.js";
 
 import {
   useResizeObserver,

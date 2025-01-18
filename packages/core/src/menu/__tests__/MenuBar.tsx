@@ -8,7 +8,7 @@ import {
   userEvent,
   waitFor,
   within,
-} from "test-utils";
+} from "../../test-utils/index.js";
 
 import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { DropdownMenu } from "../DropdownMenu.js";

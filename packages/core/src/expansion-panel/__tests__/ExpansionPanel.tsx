@@ -1,6 +1,12 @@
 import { beforeEach, describe, expect, it } from "@jest/globals";
 import { createRef, type ReactElement } from "react";
-import { fireEvent, render, screen, userEvent, waitFor } from "test-utils";
+import {
+  fireEvent,
+  render,
+  screen,
+  userEvent,
+  waitFor,
+} from "../../test-utils/index.js";
 
 import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { isElementVisible } from "../../utils/isElementVisible.js";

@@ -1,6 +1,6 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import { createRef } from "react";
-import { render, screen } from "test-utils";
+import { render, screen } from "../../test-utils/index.js";
 import { AutocompleteChip } from "../AutocompleteChip.js";
 
 describe("AutocompleteChip", () => {

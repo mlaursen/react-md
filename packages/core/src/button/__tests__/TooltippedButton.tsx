@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
 import { FontIcon } from "../../icon/FontIcon.js";
-import { render, screen, userEvent } from "test-utils";
+import { render, screen, userEvent } from "../../test-utils/index.js";
 import {
   TooltippedButton,
   type TooltippedButtonProps,

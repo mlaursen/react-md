@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { rmdRender, screen } from "test-utils";
+import { rmdRender, screen } from "../../test-utils/index.js";
 import { LayoutNav, type LayoutNavProps } from "../LayoutNav.js";
 import { layoutNav } from "../layoutNavStyles.js";
 

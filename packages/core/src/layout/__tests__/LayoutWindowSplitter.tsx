@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef, type Ref } from "react";
-import { rmdRender, screen } from "test-utils";
+import { rmdRender, screen } from "../../test-utils/index.js";
 import {
   LayoutWindowSplitter,
   type LayoutWindowSplitterProps,

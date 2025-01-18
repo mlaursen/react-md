@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { render, screen, userEvent } from "test-utils";
+import { render, screen, userEvent } from "../../test-utils/index.js";
 
 import { Checkbox } from "../Checkbox.js";
 

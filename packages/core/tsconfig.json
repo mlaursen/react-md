@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "target": "esnext",
     "module": "nodenext",
     "strict": true,
@@ -15,11 +14,7 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "jsx": "preserve",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "paths": {
-      "test-utils/jest-globals": ["./src/test-utils/jest-globals/index.ts"],
-      "test-utils": ["./src/test-utils/index.ts"]
-    }
+    "lib": ["dom", "dom.iterable", "esnext"]
   },
   "exclude": ["node_modules", "dist"]
 }

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { lazy, type FC, type ReactElement } from "react";
-import { act, render, screen, waitFor } from "test-utils";
+import { act, render, screen, waitFor } from "../../test-utils/index.js";
 import { Typography } from "../../typography/Typography.js";
 import { NullSuspense } from "../NullSuspense.js";
 

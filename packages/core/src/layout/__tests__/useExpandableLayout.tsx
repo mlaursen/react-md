@@ -9,8 +9,8 @@ import {
   userEvent,
   waitFor,
   within,
-} from "test-utils";
-import { spyOnMatchMedia } from "test-utils/jest-globals";
+} from "../../test-utils/index.js";
+import { spyOnMatchMedia } from "../../test-utils/jest-globals/index.js";
 import { AppBar } from "../../app-bar/AppBar.js";
 import { AppBarTitle } from "../../app-bar/AppBarTitle.js";
 import { Button } from "../../button/Button.js";

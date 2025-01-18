@@ -7,7 +7,7 @@ import {
   type ReactElement,
   type Ref,
 } from "react";
-import { fireEvent, rmdRender, screen } from "test-utils";
+import { fireEvent, rmdRender, screen } from "../../test-utils/index.js";
 
 import { Button } from "../../button/Button.js";
 import { WritingDirectionProvider } from "../../typography/WritingDirectionProvider.js";

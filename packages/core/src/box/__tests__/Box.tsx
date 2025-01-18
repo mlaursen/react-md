@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { render, screen } from "test-utils";
+import { render, screen } from "../../test-utils/index.js";
 import { Box, type BoxProps } from "../Box.js";
 import { type BoxAlignItems, type BoxJustifyContent } from "../styles.js";
 

@@ -7,7 +7,7 @@ import {
   userEvent,
   waitFor,
   waitForElementToBeRemoved,
-} from "test-utils";
+} from "../../test-utils/index.js";
 import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { useToggle } from "../../useToggle.js";
 import { CollapsibleNavGroup } from "../CollapsibleNavGroup.js";

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { cnb } from "cnbuilder";
-import { render, screen } from "test-utils";
+import { render, screen } from "../../test-utils/index.js";
 
 import { FontIcon } from "../FontIcon.js";
 import { IconRotator } from "../IconRotator.js";

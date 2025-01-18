@@ -10,7 +10,7 @@ import {
 } from "react";
 
 import { FontIcon } from "../../icon/FontIcon.js";
-import { rmdRender, screen, userEvent } from "test-utils";
+import { rmdRender, screen, userEvent } from "../../test-utils/index.js";
 import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { Tree } from "../../tree/Tree.js";
 import { type TreeData } from "../../tree/types.js";

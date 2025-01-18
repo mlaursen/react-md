@@ -13,7 +13,7 @@ import {
   waitFor,
   waitForElementToBeRemoved,
   within,
-} from "test-utils";
+} from "../../test-utils/index.js";
 import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { Form } from "../Form.js";
 import { OptGroup } from "../OptGroup.js";

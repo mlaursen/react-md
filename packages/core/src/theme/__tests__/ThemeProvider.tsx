@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, jest } from "@jest/globals";
 import lodash from "lodash";
-import { render } from "test-utils";
+import { render } from "../../test-utils/index.js";
 
 import {
   DEFAULT_DARK_THEME,

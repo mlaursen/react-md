@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef, type ReactElement } from "react";
-import { rmdRender, screen } from "test-utils";
+import { rmdRender, screen } from "../../test-utils/index.js";
 import { MenuItemCircularProgress } from "../MenuItemCircularProgress.js";
 
 function render(ui: ReactElement) {

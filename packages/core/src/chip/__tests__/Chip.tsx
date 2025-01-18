@@ -1,6 +1,12 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import { createRef, type ReactElement } from "react";
-import { fireEvent, render, rmdRender, screen, userEvent } from "test-utils";
+import {
+  fireEvent,
+  render,
+  rmdRender,
+  screen,
+  userEvent,
+} from "../../test-utils/index.js";
 
 import { FontIcon } from "../../icon/FontIcon.js";
 import { INTERACTION_CONFIG } from "../../interaction/config.js";

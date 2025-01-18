@@ -15,7 +15,7 @@ import {
   userEvent,
   waitFor,
   waitForElementToBeRemoved,
-} from "test-utils";
+} from "../../test-utils/index.js";
 
 import { Button } from "../../button/Button.js";
 import { FontIcon } from "../../icon/FontIcon.js";

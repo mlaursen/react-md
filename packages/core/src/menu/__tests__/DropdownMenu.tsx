@@ -8,8 +8,8 @@ import {
   waitFor,
   waitForElementToBeRemoved,
   within,
-} from "test-utils";
-import { testImmediateRaf } from "test-utils/jest-globals";
+} from "../../test-utils/index.js";
+import { testImmediateRaf } from "../../test-utils/jest-globals/index.js";
 
 import { Button } from "../../button/Button.js";
 import { DialogFooter } from "../../dialog/DialogFooter.js";

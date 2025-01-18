@@ -7,7 +7,7 @@ import {
   screen,
   userEvent,
   waitFor,
-} from "test-utils";
+} from "../../test-utils/index.js";
 
 import {
   DEFAULT_DESKTOP_LARGE_MIN_WIDTH,

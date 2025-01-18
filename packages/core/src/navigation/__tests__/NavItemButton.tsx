@@ -1,7 +1,12 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import { createRef, type ReactElement, type Ref } from "react";
 import { type IconRotatorBaseProps } from "../../icon/IconRotator.js";
-import { rmdRender, screen, userEvent, waitFor } from "test-utils";
+import {
+  rmdRender,
+  screen,
+  userEvent,
+  waitFor,
+} from "../../test-utils/index.js";
 import { useToggle } from "../../useToggle.js";
 import { NavItemButton, type NavItemButtonProps } from "../NavItemButton.js";
 

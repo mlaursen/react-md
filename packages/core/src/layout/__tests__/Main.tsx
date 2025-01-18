@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { rmdRender, screen, userEvent } from "test-utils";
+import { rmdRender, screen, userEvent } from "../../test-utils/index.js";
 import { Main } from "../Main.js";
 import { main } from "../mainStyles.js";
 

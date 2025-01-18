@@ -1,6 +1,12 @@
 import { beforeEach, describe, expect, it, jest } from "@jest/globals";
 import { useEffect } from "react";
-import { act, fireEvent, render, screen, userEvent } from "test-utils";
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  userEvent,
+} from "../../test-utils/index.js";
 import { FileInput } from "../FileInput.js";
 import { type FileUploadOptions, useFileUpload } from "../useFileUpload.js";
 

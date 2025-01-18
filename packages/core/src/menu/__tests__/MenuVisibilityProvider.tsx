@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@jest/globals";
-import { fireEvent, render, screen } from "test-utils";
+import { fireEvent, render, screen } from "../../test-utils/index.js";
 
 import { Button } from "../../button/Button.js";
 import { useMenuVisibility } from "../MenuVisibilityProvider.js";

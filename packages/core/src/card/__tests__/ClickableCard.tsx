@@ -1,6 +1,6 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import { createRef } from "react";
-import { fireEvent, render, screen } from "test-utils";
+import { fireEvent, render, screen } from "../../test-utils/index.js";
 import { ClickableCard } from "../ClickableCard.js";
 
 describe("ClickableCard", () => {

@@ -1,11 +1,11 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import { waitFor } from "@testing-library/react";
-import { createResizeObserverEntry } from "test-utils";
-import { cleanupResizeObserverAfterEach } from "test-utils/jest-globals";
 import {
   ResizeObserverManager,
   resizeObserverManager,
 } from "../../../useResizeObserver.js";
+import { cleanupResizeObserverAfterEach } from "../../jest-globals/resize-observer.js";
+import { createResizeObserverEntry } from "../../utils/resize-observer.js";
 import { setupResizeObserverMock } from "../ResizeObserver.js";
 
 describe("ResizeObserverMock", () => {

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { FontIcon } from "../../icon/FontIcon.js";
-import { render, screen } from "test-utils";
+import { render, screen } from "../../test-utils/index.js";
 import { Tab, type TabProps } from "../Tab.js";
 
 describe("Tab", () => {
