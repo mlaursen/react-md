@@ -1,5 +1,6 @@
-import { describe, expect, it } from "@jest/globals";
+import { describe, expect, it, jest } from "@jest/globals";
 import { createRef, type ReactElement } from "react";
+import { drag } from "../../test-utils/drag.js";
 import {
   fireEvent,
   getRangeSliderTestElements,
@@ -7,7 +8,7 @@ import {
   rmdRender,
   screen,
   userEvent,
-} from "test-utils";
+} from "../../test-utils/index.js";
 import { type RangeSliderProps, Slider, type SliderProps } from "../Slider.js";
 import {
   type RangeSliderImplementation,
@@ -19,6 +20,8 @@ import {
   type SliderOptions,
   useSlider,
 } from "../useSlider.js";
+
+const TRACK_SIZE = 400;
 
 interface SingleThumbTestProps
   extends Omit<SliderProps, keyof SliderImplementation> {
@@ -43,6 +46,47 @@ function RangeSliderTest(props: RangeSliderTestProps): ReactElement {
 
   return <Slider {...slider} aria-label="Slider" {...remaining} />;
 }
+
+const setupRangeSliderDragTest = (vertical = false) => {
+  const rect = document.body.getBoundingClientRect();
+  rmdRender(
+    <RangeSliderTest options={{ defaultValue: [30, 60] }} vertical={vertical} />
+  );
+  const { sliderTrack, minSlider, maxSlider } = getRangeSliderTestElements();
+
+  // with this setup, each value is 4px making calculations easier
+  jest.spyOn(sliderTrack, "getBoundingClientRect").mockReturnValue({
+    ...rect,
+    left: 0,
+    right: vertical ? 48 : TRACK_SIZE,
+    top: 0,
+    bottom: vertical ? TRACK_SIZE : 48,
+    height: vertical ? TRACK_SIZE : 48,
+    width: vertical ? 48 : TRACK_SIZE,
+  });
+  // so to mock how it works in the browser, set the `x` location to the `(value * 4)`
+  // when vertical, a bigger y value means a lower value, so y is `height - (value * 4)`
+  jest.spyOn(minSlider, "getBoundingClientRect").mockImplementation(() => {
+    const value = parseInt(minSlider.getAttribute("aria-valuenow") || "", 10);
+    const position = value * 4;
+    return {
+      ...rect,
+      x: vertical ? 0 : position,
+      y: vertical ? TRACK_SIZE - position : 0,
+    };
+  });
+  jest.spyOn(maxSlider, "getBoundingClientRect").mockImplementation(() => {
+    const value = parseInt(maxSlider.getAttribute("aria-valuenow") || "", 10);
+    const position = value * 4;
+    return {
+      ...rect,
+      x: vertical ? 0 : position,
+      y: vertical ? TRACK_SIZE - position : 0,
+    };
+  });
+
+  return { sliderTrack, minSlider, maxSlider };
+};
 
 describe("Slider", () => {
   describe("single thumb slider", () => {
@@ -259,6 +303,72 @@ describe("Slider", () => {
       expect(slider).toHaveValue(0);
       await user.keyboard("[End]");
       expect(slider).toHaveValue(100);
+    });
+
+    it("should allow the user to click on the track to quickly jump to a specific value", () => {
+      const rect = document.body.getBoundingClientRect();
+      rmdRender(<SingleThumbTest />);
+
+      const { sliderTrack, slider } = getSliderTestElements({ name: "Slider" });
+      expect(slider).toHaveValue(50);
+
+      jest.spyOn(sliderTrack, "getBoundingClientRect").mockReturnValue({
+        ...rect,
+        left: 0,
+        right: TRACK_SIZE,
+        top: 0,
+        bottom: 48,
+        height: 48,
+        width: TRACK_SIZE,
+      });
+      fireEvent.mouseDown(sliderTrack, { clientX: 40 });
+      expect(slider).toHaveValue(10);
+      // need to apply focus for Chromium based browsers
+      expect(slider).toHaveFocus();
+
+      // if the user stutters while clicking
+      fireEvent.mouseMove(sliderTrack, { clientX: 45 });
+      expect(slider).toHaveValue(11);
+
+      fireEvent.mouseMove(sliderTrack, { clientX: 41 });
+      expect(slider).toHaveValue(10);
+      fireEvent.mouseUp(sliderTrack, { clientX: 41 });
+      expect(slider).toHaveValue(10);
+      expect(slider).not.toHaveFocus();
+    });
+
+    it("should allow the user to click anywhere in the slider to start dragging to a new value", async () => {
+      const rect = document.body.getBoundingClientRect();
+      rmdRender(<SingleThumbTest />);
+
+      const { sliderTrack, slider } = getSliderTestElements({ name: "Slider" });
+      expect(slider).toHaveValue(50);
+
+      jest.spyOn(sliderTrack, "getBoundingClientRect").mockReturnValue({
+        ...rect,
+        left: 0,
+        right: TRACK_SIZE,
+        top: 0,
+        bottom: 48,
+        height: 48,
+        width: TRACK_SIZE,
+      });
+
+      await drag(sliderTrack, {
+        to: {
+          x: 300,
+          y: -100,
+        },
+      });
+      expect(slider).toHaveValue(75);
+
+      await drag(sliderTrack, {
+        to: {
+          x: -300,
+          y: 100,
+        },
+      });
+      expect(slider).toHaveValue(0);
     });
   });
 
@@ -689,6 +799,197 @@ describe("Slider", () => {
       ({ minSlider, maxSlider } = getRangeSliderTestElements());
       expect(minSlider).toHaveValue(55);
       expect(maxSlider).toHaveValue(80);
+    });
+
+    it("should find the closest thumb when clicking somewhere on the track before jumping and dragging", () => {
+      const { minSlider, maxSlider, sliderTrack } = setupRangeSliderDragTest();
+      expect(minSlider).toHaveValue(30);
+      expect(maxSlider).toHaveValue(60);
+
+      fireEvent.mouseDown(sliderTrack, { clientX: 100 });
+      expect(minSlider).toHaveFocus();
+      expect(minSlider).toHaveClass("rmd-slider-thumb--active");
+      expect(maxSlider).not.toHaveClass("rmd-slider-thumb--active");
+      expect(minSlider).toHaveValue(25);
+      expect(maxSlider).toHaveValue(60);
+
+      // switch to document.body since the dragging class gets applied which
+      // removes pointer-events from the rest of the document while dragging
+      fireEvent.mouseMove(document.body, { clientX: 101 });
+      expect(minSlider).toHaveClass("rmd-slider-thumb--active");
+      expect(maxSlider).not.toHaveClass("rmd-slider-thumb--active");
+      expect(minSlider).toHaveValue(25);
+      expect(maxSlider).toHaveValue(60);
+
+      fireEvent.mouseUp(document.body, { clientX: 102 });
+      expect(minSlider).not.toHaveFocus();
+      expect(minSlider).not.toHaveClass("rmd-slider-thumb--active");
+      expect(maxSlider).not.toHaveClass("rmd-slider-thumb--active");
+      expect(minSlider).toHaveValue(26);
+      expect(maxSlider).toHaveValue(60);
+
+      fireEvent.mouseDown(sliderTrack, { clientX: 255 });
+      expect(maxSlider).toHaveFocus();
+      expect(minSlider).not.toHaveClass("rmd-slider-thumb--active");
+      expect(maxSlider).toHaveClass("rmd-slider-thumb--active");
+      expect(minSlider).toHaveValue(26);
+      expect(maxSlider).toHaveValue(64);
+
+      fireEvent.mouseMove(document.body, { clientX: 254 });
+      expect(minSlider).not.toHaveClass("rmd-slider-thumb--active");
+      expect(maxSlider).toHaveClass("rmd-slider-thumb--active");
+      expect(minSlider).toHaveValue(26);
+      expect(maxSlider).toHaveValue(64);
+
+      fireEvent.mouseUp(document.body, { clientX: 255 });
+      expect(maxSlider).not.toHaveFocus();
+      expect(minSlider).not.toHaveClass("rmd-slider-thumb--active");
+      expect(maxSlider).not.toHaveClass("rmd-slider-thumb--active");
+      expect(minSlider).toHaveValue(26);
+      expect(maxSlider).toHaveValue(64);
+    });
+
+    it("should choose the min slider if the click event is exactly in the middle between the two thumbs", () => {
+      const { minSlider, maxSlider, sliderTrack } = setupRangeSliderDragTest();
+      expect(minSlider).toHaveValue(30);
+      expect(maxSlider).toHaveValue(60);
+
+      fireEvent.mouseDown(sliderTrack, { clientX: 180 });
+      expect(minSlider).toHaveFocus();
+      expect(minSlider).toHaveClass("rmd-slider-thumb--active");
+      expect(maxSlider).not.toHaveClass("rmd-slider-thumb--active");
+      expect(minSlider).toHaveValue(45);
+      expect(maxSlider).toHaveValue(60);
+
+      fireEvent.mouseUp(sliderTrack, { clientX: 180 });
+      expect(minSlider).not.toHaveFocus();
+      expect(minSlider).not.toHaveClass("rmd-slider-thumb--active");
+      expect(maxSlider).not.toHaveClass("rmd-slider-thumb--active");
+      expect(minSlider).toHaveValue(45);
+      expect(maxSlider).toHaveValue(60);
+    });
+
+    it("should find the closest thumb when clicking somewhere on the track before jumping and dragging while vertical", () => {
+      const { minSlider, maxSlider, sliderTrack } =
+        setupRangeSliderDragTest(true);
+      expect(minSlider).toHaveValue(30);
+      expect(maxSlider).toHaveValue(60);
+
+      fireEvent.mouseDown(sliderTrack, {
+        // TRACK_SIZE - (25 * 4)
+        clientY: 300,
+      });
+      expect(minSlider).toHaveFocus();
+      expect(minSlider).toHaveClass("rmd-slider-thumb--active");
+      expect(maxSlider).not.toHaveClass("rmd-slider-thumb--active");
+      expect(minSlider).toHaveValue(25);
+      expect(maxSlider).toHaveValue(60);
+
+      // switch to document.body since the dragging class gets applied which
+      // removes pointer-events from the rest of the document while dragging
+      fireEvent.mouseMove(document.body, {
+        // TRACK_SIZE - (25 * 4 - 1)
+        clientY: 299,
+      });
+      expect(minSlider).toHaveClass("rmd-slider-thumb--active");
+      expect(maxSlider).not.toHaveClass("rmd-slider-thumb--active");
+      expect(minSlider).toHaveValue(25);
+      expect(maxSlider).toHaveValue(60);
+
+      fireEvent.mouseUp(document.body, {
+        // TRACK_SIZE - (25 * 4 - 2)
+        clientY: 298,
+      });
+      expect(minSlider).not.toHaveFocus();
+      expect(minSlider).not.toHaveClass("rmd-slider-thumb--active");
+      expect(maxSlider).not.toHaveClass("rmd-slider-thumb--active");
+      expect(minSlider).toHaveValue(26);
+      expect(maxSlider).toHaveValue(60);
+
+      fireEvent.mouseDown(sliderTrack, {
+        // TRACK_SIZE - (64 * 4)
+        clientY: 144,
+      });
+      expect(maxSlider).toHaveFocus();
+      expect(minSlider).not.toHaveClass("rmd-slider-thumb--active");
+      expect(maxSlider).toHaveClass("rmd-slider-thumb--active");
+      expect(minSlider).toHaveValue(26);
+      expect(maxSlider).toHaveValue(64);
+
+      fireEvent.mouseMove(document.body, {
+        // TRACK_SIZE - (64 * 4 + 1)
+        clientY: 143,
+      });
+      expect(minSlider).not.toHaveClass("rmd-slider-thumb--active");
+      expect(maxSlider).toHaveClass("rmd-slider-thumb--active");
+      expect(minSlider).toHaveValue(26);
+      expect(maxSlider).toHaveValue(64);
+
+      fireEvent.mouseUp(document.body, { clientY: 144 });
+      expect(maxSlider).not.toHaveFocus();
+      expect(minSlider).not.toHaveClass("rmd-slider-thumb--active");
+      expect(maxSlider).not.toHaveClass("rmd-slider-thumb--active");
+      expect(minSlider).toHaveValue(26);
+      expect(maxSlider).toHaveValue(64);
+    });
+
+    it("should allow the user to click anywhere in the slider to start dragging to a new value", async () => {
+      const { minSlider, maxSlider, sliderTrack } = setupRangeSliderDragTest();
+      expect(minSlider).toHaveValue(30);
+      expect(maxSlider).toHaveValue(60);
+
+      await drag(sliderTrack, {
+        from: {
+          x: 180,
+          y: 0,
+        },
+        to: {
+          x: 300,
+          y: -100,
+        },
+      });
+      // it should prevent dragging past the other thumb
+      expect(minSlider).toHaveValue(59);
+      expect(maxSlider).toHaveValue(60);
+
+      await drag(sliderTrack, {
+        to: {
+          x: -300,
+          y: 100,
+        },
+      });
+      expect(minSlider).toHaveValue(0);
+      expect(maxSlider).toHaveValue(60);
+    });
+
+    it("should allow the user to click anywhere in the slider to start dragging to a new value while vertical", async () => {
+      const { minSlider, maxSlider, sliderTrack } =
+        setupRangeSliderDragTest(true);
+      expect(minSlider).toHaveValue(30);
+      expect(maxSlider).toHaveValue(60);
+
+      await drag(sliderTrack, {
+        from: {
+          x: 0,
+          y: 160,
+        },
+        to: {
+          x: 100,
+          y: 800,
+        },
+      });
+      // it should prevent dragging past the other thumb
+      expect(minSlider).toHaveValue(30);
+      expect(maxSlider).toHaveValue(31);
+
+      await drag(sliderTrack, {
+        to: {
+          x: 10,
+          y: -100,
+        },
+      });
+      expect(minSlider).toHaveValue(30);
+      expect(maxSlider).toHaveValue(100);
     });
   });
 

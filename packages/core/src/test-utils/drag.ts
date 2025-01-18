@@ -9,6 +9,7 @@ interface XYCoords {
 
 interface BaseDragOptions {
   to?: XYCoords | Element;
+  from?: XYCoords;
   delta?: XYCoords;
   steps?: number;
   duration?: number;
@@ -41,8 +42,14 @@ export async function drag(
   element: Element,
   options: DragOptions
 ): Promise<void> {
-  const { delta, to: inTo, steps = 20, duration = 500 } = options;
-  const from = getElementClientCenter(element);
+  const {
+    delta,
+    to: inTo,
+    from: fromCoords,
+    steps = 20,
+    duration = 500,
+  } = options;
+  const from = fromCoords ?? getElementClientCenter(element);
   const to = delta
     ? {
         x: from.x + delta.x,

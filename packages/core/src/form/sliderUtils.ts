@@ -114,7 +114,7 @@ export const getClosestThumbEventHandlers = (
       const thumb2Position = vertical ? thumb2Rect.y : thumb2Rect.x;
 
       return (
-        Math.abs(clientPosition - thumb1Position) <
+        Math.abs(clientPosition - thumb1Position) <=
         Math.abs(clientPosition - thumb2Position)
       );
     }
