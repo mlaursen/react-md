@@ -114,6 +114,19 @@ export interface SliderTestElements {
    * `fireEvent.change(sliderInput, { target: { value: "100" }})`.
    */
   sliderInput: HTMLInputElement;
+
+  /**
+   * This is only useful when needing to verify that clicking somewhere on the
+   * track updates the value. Most test cases can be solved through the
+   * {@link slider} or {@link sliderInput} instead.
+   */
+  sliderTrack: HTMLSpanElement;
+
+  /**
+   * Returns the slider container element if it is needed for testing. It's
+   * useful for simple snapshot tests.
+   */
+  sliderContainer: HTMLDivElement;
 }
 
 /**
@@ -144,13 +157,29 @@ export function getSliderTestElements(
   const { container = screen, ...byRoleOptions } = options;
   const slider = container.getByRole<HTMLSpanElement>("slider", byRoleOptions);
   const sliderInput = slider.nextElementSibling;
+  const sliderTrack = slider.parentElement;
+  const sliderContainer = sliderTrack?.parentElement;
   if (!(sliderInput instanceof HTMLInputElement)) {
     throw new Error("Unable to find the `Slider` input element");
+  }
+  if (
+    !(sliderTrack instanceof HTMLSpanElement) ||
+    !sliderTrack.classList.contains("rmd-slider-track")
+  ) {
+    throw new Error("Unable to find the `Slider` track element");
+  }
+  if (
+    !(sliderContainer instanceof HTMLDivElement) ||
+    !sliderContainer.classList.contains("rmd-slider-container")
+  ) {
+    throw new Error("Unable to find the `Slider` container element");
   }
 
   return {
     slider,
     sliderInput,
+    sliderTrack,
+    sliderContainer,
   };
 }
 
@@ -180,6 +209,10 @@ export interface RangeSliderTestElements {
   maxSlider: HTMLSpanElement;
   /** @see {@link SliderTestElements.sliderInput} */
   maxSliderInput: HTMLInputElement;
+  /** @see {@link SliderTestElements.sliderTrack} */
+  sliderTrack: HTMLSpanElement;
+  /** @see {@link SliderTestElements.sliderContainer} */
+  sliderContainer: HTMLDivElement;
 }
 
 /**
@@ -230,11 +263,25 @@ export function getRangeSliderTestElements(
   );
   const minSliderInput = minSlider.nextElementSibling;
   const maxSliderInput = maxSlider.nextElementSibling;
+  const sliderTrack = minSlider.parentElement;
+  const sliderContainer = sliderTrack?.parentElement;
   if (!(minSliderInput instanceof HTMLInputElement)) {
     throw new Error("Unable to find the `Slider` min input element");
   }
   if (!(maxSliderInput instanceof HTMLInputElement)) {
     throw new Error("Unable to find the `Slider` max input element");
+  }
+  if (
+    !(sliderTrack instanceof HTMLSpanElement) ||
+    !sliderTrack.classList.contains("rmd-slider-track")
+  ) {
+    throw new Error("Unable to find the `Slider` track element");
+  }
+  if (
+    !(sliderContainer instanceof HTMLDivElement) ||
+    !sliderContainer.classList.contains("rmd-slider-container")
+  ) {
+    throw new Error("Unable to find the `Slider` container element");
   }
 
   return {
@@ -242,5 +289,7 @@ export function getRangeSliderTestElements(
     minSliderInput,
     maxSlider,
     maxSliderInput,
+    sliderTrack,
+    sliderContainer,
   };
 }

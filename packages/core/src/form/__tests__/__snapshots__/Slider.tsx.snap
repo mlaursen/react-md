@@ -1,9 +1,63 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Slider discrete sliders should support manually defining the marks using a list 1`] = `
+<div
+  class="rmd-slider-container rmd-slider-container--h rmd-slider-container--pad-left rmd-slider-container--pad-right"
+>
+  <span
+    class="rmd-slider-track rmd-slider-track--hoverable rmd-slider-track--h rmd-slider-track--h1"
+    style="--rmd-slider-offset-1: 50%;"
+  >
+    <span
+      aria-label="Slider"
+      aria-valuemax="100"
+      aria-valuemin="0"
+      aria-valuenow="50"
+      class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1"
+      id="slider-:r11:"
+      role="slider"
+      tabindex="0"
+    />
+    <input
+      aria-hidden="true"
+      aria-label="Slider"
+      class="rmd-slider-thumb__input"
+      id="slider-:r11:-value"
+      max="100"
+      min="0"
+      step="10"
+      tabindex="-1"
+      type="range"
+      value="50"
+    />
+    <span
+      class="rmd-slider-mark rmd-slider-mark--active rmd-slider-mark--h"
+      data-testid="mark-0"
+      style="--rmd-slider-mark-offset: 0%;"
+    />
+    <span
+      class="rmd-slider-mark rmd-slider-mark--active rmd-slider-mark--h"
+      data-testid="mark-20"
+      style="--rmd-slider-mark-offset: 20%;"
+    />
+    <span
+      class="rmd-slider-mark rmd-slider-mark--inactive rmd-slider-mark--h"
+      data-testid="mark-50"
+      style="--rmd-slider-mark-offset: 50%;"
+    />
+    <span
+      class="rmd-slider-mark rmd-slider-mark--inactive rmd-slider-mark--h"
+      data-testid="mark-100"
+      style="--rmd-slider-mark-offset: 100%;"
+    />
+  </span>
+</div>
+`;
+
 exports[`Slider discrete sliders should support rendering a tooltip while focused or dragging by enabling the discrete prop 1`] = `
 <span
   class="rmd-tooltip rmd-tooltip--dense rmd-tooltip--above rmd-nowrap rmd-slider-tooltip rmd-slider-tooltip--h rmd-slider-thumb--animate rmd-slider-thumb--h1"
-  id="tooltip-:rd:"
+  id="tooltip-:rk:"
   role="tooltip"
 >
   50
@@ -13,7 +67,7 @@ exports[`Slider discrete sliders should support rendering a tooltip while focuse
 exports[`Slider discrete sliders should support rendering a tooltip while focused or dragging by enabling the discrete prop 2`] = `
 <span
   class="rmd-tooltip rmd-tooltip--dense rmd-tooltip--above rmd-nowrap rmd-slider-tooltip rmd-slider-tooltip--h rmd-slider-thumb--animate rmd-slider-thumb--h1"
-  id="tooltip-:rd:"
+  id="tooltip-:rk:"
   role="tooltip"
 >
   60
@@ -23,7 +77,7 @@ exports[`Slider discrete sliders should support rendering a tooltip while focuse
 exports[`Slider discrete sliders should support rendering a tooltip while focused or dragging by enabling the discrete prop for range sliders 1`] = `
 <span
   class="rmd-tooltip rmd-tooltip--dense rmd-tooltip--above rmd-nowrap rmd-slider-tooltip rmd-slider-tooltip--h rmd-slider-thumb--animate rmd-slider-thumb--h1"
-  id="tooltip-:rj:"
+  id="tooltip-:rq:"
   role="tooltip"
 >
   0
@@ -33,7 +87,7 @@ exports[`Slider discrete sliders should support rendering a tooltip while focuse
 exports[`Slider discrete sliders should support rendering a tooltip while focused or dragging by enabling the discrete prop for range sliders 2`] = `
 <span
   class="rmd-tooltip rmd-tooltip--dense rmd-tooltip--above rmd-nowrap rmd-slider-tooltip rmd-slider-tooltip--h rmd-slider-thumb--animate rmd-slider-thumb--h1"
-  id="tooltip-:rj:"
+  id="tooltip-:rq:"
   role="tooltip"
 >
   10
@@ -43,11 +97,100 @@ exports[`Slider discrete sliders should support rendering a tooltip while focuse
 exports[`Slider discrete sliders should support rendering a tooltip while focused or dragging by enabling the discrete prop for range sliders 3`] = `
 <span
   class="rmd-tooltip rmd-tooltip--dense rmd-tooltip--above rmd-nowrap rmd-slider-tooltip rmd-slider-tooltip--h rmd-slider-thumb--animate rmd-slider-thumb--h2"
-  id="tooltip-:rk:"
+  id="tooltip-:rr:"
   role="tooltip"
 >
   100
 </span>
+`;
+
+exports[`Slider discrete sliders should support rendering marks at each step on the slider 1`] = `
+<div
+  class="rmd-slider-container rmd-slider-container--h rmd-slider-container--pad-left rmd-slider-container--pad-right"
+>
+  <span
+    class="rmd-slider-track rmd-slider-track--hoverable rmd-slider-track--h rmd-slider-track--h1"
+    style="--rmd-slider-offset-1: 50%;"
+  >
+    <span
+      aria-label="Slider"
+      aria-valuemax="100"
+      aria-valuemin="0"
+      aria-valuenow="50"
+      class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1"
+      id="slider-:rv:"
+      role="slider"
+      tabindex="0"
+    />
+    <input
+      aria-hidden="true"
+      aria-label="Slider"
+      class="rmd-slider-thumb__input"
+      id="slider-:rv:-value"
+      max="100"
+      min="0"
+      step="10"
+      tabindex="-1"
+      type="range"
+      value="50"
+    />
+    <span
+      class="rmd-slider-mark rmd-slider-mark--active rmd-slider-mark--h"
+      data-testid="mark-0"
+      style="--rmd-slider-mark-offset: 0%;"
+    />
+    <span
+      class="rmd-slider-mark rmd-slider-mark--active rmd-slider-mark--h"
+      data-testid="mark-10"
+      style="--rmd-slider-mark-offset: 10%;"
+    />
+    <span
+      class="rmd-slider-mark rmd-slider-mark--active rmd-slider-mark--h"
+      data-testid="mark-20"
+      style="--rmd-slider-mark-offset: 20%;"
+    />
+    <span
+      class="rmd-slider-mark rmd-slider-mark--active rmd-slider-mark--h"
+      data-testid="mark-30"
+      style="--rmd-slider-mark-offset: 30%;"
+    />
+    <span
+      class="rmd-slider-mark rmd-slider-mark--active rmd-slider-mark--h"
+      data-testid="mark-40"
+      style="--rmd-slider-mark-offset: 40%;"
+    />
+    <span
+      class="rmd-slider-mark rmd-slider-mark--inactive rmd-slider-mark--h"
+      data-testid="mark-50"
+      style="--rmd-slider-mark-offset: 50%;"
+    />
+    <span
+      class="rmd-slider-mark rmd-slider-mark--inactive rmd-slider-mark--h"
+      data-testid="mark-60"
+      style="--rmd-slider-mark-offset: 60%;"
+    />
+    <span
+      class="rmd-slider-mark rmd-slider-mark--inactive rmd-slider-mark--h"
+      data-testid="mark-70"
+      style="--rmd-slider-mark-offset: 70%;"
+    />
+    <span
+      class="rmd-slider-mark rmd-slider-mark--inactive rmd-slider-mark--h"
+      data-testid="mark-80"
+      style="--rmd-slider-mark-offset: 80%;"
+    />
+    <span
+      class="rmd-slider-mark rmd-slider-mark--inactive rmd-slider-mark--h"
+      data-testid="mark-90"
+      style="--rmd-slider-mark-offset: 90%;"
+    />
+    <span
+      class="rmd-slider-mark rmd-slider-mark--inactive rmd-slider-mark--h"
+      data-testid="mark-100"
+      style="--rmd-slider-mark-offset: 100%;"
+    />
+  </span>
+</div>
 `;
 
 exports[`Slider range slider should apply the correct styling, HTML attributes, and allow a ref 1`] = `
@@ -64,7 +207,7 @@ exports[`Slider range slider should apply the correct styling, HTML attributes, 
       aria-valuemin="0"
       aria-valuenow="0"
       class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1 rmd-slider-thumb--animate"
-      id="slider-:r6:"
+      id="slider-:r9:"
       role="slider"
       tabindex="0"
     />
@@ -72,7 +215,7 @@ exports[`Slider range slider should apply the correct styling, HTML attributes, 
       aria-hidden="true"
       aria-label="Min"
       class="rmd-slider-thumb__input"
-      id="slider-:r6:-value"
+      id="slider-:r9:-value"
       max="99"
       min="0"
       step="1"
@@ -86,7 +229,7 @@ exports[`Slider range slider should apply the correct styling, HTML attributes, 
       aria-valuemin="1"
       aria-valuenow="100"
       class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h2 rmd-slider-thumb--animate"
-      id="slider-:r6:-2"
+      id="slider-:r9:-2"
       role="slider"
       tabindex="0"
     />
@@ -94,7 +237,7 @@ exports[`Slider range slider should apply the correct styling, HTML attributes, 
       aria-hidden="true"
       aria-label="Max"
       class="rmd-slider-thumb__input"
-      id="slider-:r6:-2-value"
+      id="slider-:r9:-2-value"
       max="100"
       min="1"
       step="1"
@@ -121,7 +264,7 @@ exports[`Slider range slider should apply the correct styling, HTML attributes, 
       aria-valuemin="0"
       aria-valuenow="50"
       class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1 rmd-slider-thumb--animate"
-      id="slider-:r7:"
+      id="slider-:ra:"
       role="slider"
       tabindex="0"
     />
@@ -129,7 +272,7 @@ exports[`Slider range slider should apply the correct styling, HTML attributes, 
       aria-hidden="true"
       aria-label="Slider"
       class="rmd-slider-thumb__input"
-      id="slider-:r7:-value"
+      id="slider-:ra:-value"
       max="100"
       min="0"
       step="1"
@@ -160,7 +303,7 @@ exports[`Slider range slider should support a disabled state 1`] = `
       aria-valuemin="0"
       aria-valuenow="0"
       class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1 rmd-slider-thumb--animate rmd-slider-thumb--disabled rmd-slider-thumb--disabled-h"
-      id="slider-:r8:"
+      id="slider-:rb:"
       role="slider"
       tabindex="-1"
     />
@@ -169,7 +312,7 @@ exports[`Slider range slider should support a disabled state 1`] = `
       aria-label="Min"
       class="rmd-slider-thumb__input"
       disabled=""
-      id="slider-:r8:-value"
+      id="slider-:rb:-value"
       max="99"
       min="0"
       step="1"
@@ -187,7 +330,7 @@ exports[`Slider range slider should support a disabled state 1`] = `
       aria-valuemin="1"
       aria-valuenow="100"
       class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h2 rmd-slider-thumb--animate rmd-slider-thumb--disabled rmd-slider-thumb--disabled-h"
-      id="slider-:r8:-2"
+      id="slider-:rb:-2"
       role="slider"
       tabindex="-1"
     />
@@ -196,7 +339,7 @@ exports[`Slider range slider should support a disabled state 1`] = `
       aria-label="Max"
       class="rmd-slider-thumb__input"
       disabled=""
-      id="slider-:r8:-2-value"
+      id="slider-:rb:-2-value"
       max="100"
       min="1"
       step="1"

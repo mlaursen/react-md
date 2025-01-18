@@ -224,6 +224,42 @@ describe("Slider", () => {
       fireEvent.change(sliderInput, { target: { value: "30" } });
       expect(sliderInput).toHaveValue("30");
     });
+
+    it("should support a default value as a number or function", () => {
+      const { unmount } = rmdRender(
+        <SingleThumbTest options={{ defaultValue: 30 }} />
+      );
+      expect(getSliderTestElements({ name: "Slider" }).slider).toHaveValue(30);
+      unmount();
+
+      rmdRender(<SingleThumbTest options={{ defaultValue: () => 55 }} />);
+      expect(getSliderTestElements({ name: "Slider" }).slider).toHaveValue(55);
+    });
+
+    it("should allow for custom step amounts", async () => {
+      const user = userEvent.setup();
+      rmdRender(<SingleThumbTest options={{ step: 10 }} />);
+
+      const { slider, sliderInput } = getSliderTestElements({ name: "Slider" });
+      expect(slider).toHaveValue(50);
+      expect(sliderInput).toHaveValue("50");
+      expect(sliderInput).toHaveAttribute("step", "10");
+
+      await user.tab();
+      await user.keyboard("[ArrowRight]");
+      expect(slider).toHaveValue(60);
+      expect(sliderInput).toHaveValue("60");
+
+      await user.keyboard("[ArrowLeft]");
+      expect(slider).toHaveValue(50);
+      expect(sliderInput).toHaveValue("50");
+
+      // home and end should be unaffected
+      await user.keyboard("[Home]");
+      expect(slider).toHaveValue(0);
+      await user.keyboard("[End]");
+      expect(slider).toHaveValue(100);
+    });
   });
 
   describe("range slider", () => {
@@ -606,6 +642,54 @@ describe("Slider", () => {
       expect(maxSlider).toHaveValue(100);
       expect(maxSliderInput).toHaveValue("100");
     });
+
+    it("should allow the user to configure the thumb labels", () => {
+      const { rerender } = rmdRender(
+        <RangeSliderTest minThumbLabel="Minimum" maxThumbLabel="Maximum" />
+      );
+      expect(() =>
+        getRangeSliderTestElements({
+          min: { name: "Minimum" },
+          max: { name: "Maximum" },
+        })
+      ).not.toThrow();
+
+      rerender(
+        <>
+          <span id="label-1">Hello</span>
+          <span id="label-2">World</span>
+          <RangeSliderTest
+            minThumbLabelledBy="label-1"
+            maxThumbLabelledBy="label-2"
+          />
+        </>
+      );
+      const { minSlider, minSliderInput, maxSlider, maxSliderInput } =
+        getRangeSliderTestElements({
+          min: { name: "Hello" },
+          max: { name: "World" },
+        });
+
+      expect(minSlider).not.toHaveAttribute("aria-label");
+      expect(minSliderInput).not.toHaveAttribute("aria-label");
+      expect(maxSlider).not.toHaveAttribute("aria-label");
+      expect(maxSliderInput).not.toHaveAttribute("aria-label");
+    });
+
+    it("should support a default value as a number or function", () => {
+      const { unmount } = rmdRender(
+        <RangeSliderTest options={{ defaultValue: [30, 60] }} />
+      );
+      let { minSlider, maxSlider } = getRangeSliderTestElements();
+      expect(minSlider).toHaveValue(30);
+      expect(maxSlider).toHaveValue(60);
+      unmount();
+
+      rmdRender(<RangeSliderTest options={{ defaultValue: () => [55, 80] }} />);
+      ({ minSlider, maxSlider } = getRangeSliderTestElements());
+      expect(minSlider).toHaveValue(55);
+      expect(maxSlider).toHaveValue(80);
+    });
   });
 
   describe("discrete sliders", () => {
@@ -725,6 +809,39 @@ describe("Slider", () => {
       expect(maxTooltip).toBeInTheDocument();
       expect(minTooltip).toHaveTextContent("0");
       expect(maxTooltip).toHaveTextContent("100");
+    });
+
+    it("should support rendering marks at each step on the slider", () => {
+      rmdRender(
+        <SingleThumbTest
+          discrete
+          options={{ step: 10 }}
+          marks
+          getMarkProps={({ value }) => ({
+            "data-testid": `mark-${value}`,
+          })}
+        />
+      );
+      const { sliderContainer } = getSliderTestElements({ name: "Slider" });
+      const marks = screen.getAllByTestId(/^mark-/);
+      expect(marks).toHaveLength(11);
+      expect(sliderContainer).toMatchSnapshot();
+    });
+
+    it("should support manually defining the marks using a list", () => {
+      rmdRender(
+        <SingleThumbTest
+          marks={[{ value: 0 }, { value: 20 }, { value: 50 }, { value: 100 }]}
+          options={{ step: 10 }}
+          getMarkProps={({ value }) => ({
+            "data-testid": `mark-${value}`,
+          })}
+        />
+      );
+      const { sliderContainer } = getSliderTestElements({ name: "Slider" });
+      const marks = screen.getAllByTestId(/^mark-/);
+      expect(marks).toHaveLength(4);
+      expect(sliderContainer).toMatchSnapshot();
     });
   });
 });
