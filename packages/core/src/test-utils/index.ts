@@ -1,6 +1,6 @@
 export * from "@testing-library/react";
 export * from "@testing-library/user-event";
 export * from "./mocks/match-media.js";
+export * from "./queries/index.js";
 export * from "./render.js";
-export * from "./utils/queries.js";
 export * from "./utils/resize-observer.js";

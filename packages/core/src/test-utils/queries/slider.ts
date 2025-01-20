@@ -3,98 +3,32 @@ import {
   type ByRoleOptions,
   type queries,
   screen,
-  within,
 } from "@testing-library/dom";
+import { type GetPartsByRoleOptions } from "./types.js";
 
-/**
- * @since 6.0.0
- */
-export interface GetPartsByRoleOptions extends ByRoleOptions {
-  /** @defaultValue `screen` */
-  container?: BoundFunctions<typeof queries>;
-}
+type Elements = Omit<SliderTestElements, "slider">;
 
-/**
- * @since 6.0.0
- */
-export interface SelectTestElements {
-  /**
-   * The element that should be interacted with for showing and hiding the
-   * listbox of available options in the `Select`.
-   */
-  select: HTMLDivElement;
-
-  /**
-   * The input element storing the current value for the `Select`. This should
-   * be used to verify a specific option has been selected and will be the
-   * `Option`'s `value` prop.
-   *
-   * i.e. Selecting `<Option value="a">Option 1</Option>` -> `selectInput`
-   * would have value `"a"`.
-   */
-  selectInput: HTMLInputElement;
-
-  /**
-   * The current selected option that is shown in the `Select` underneath the
-   * floating label. This should be used if the selected option label needs to
-   * be verified instead of the value.
-   *
-   * i.e. Selecting `<Option value="a">Option 1</Option>` -> `selectedOption`
-   * would have text content `"Option 1"`.
-   */
-  selectedOption: HTMLDivElement;
-}
-
-/**
- * @example Simple Example
- * ```tsx
- * import {
- *   getSelectTestElements,
- *   screen,
- *   rmdRender,
- *   userEvent,
- * } from "@react-md/core/test-utils";
- *
- * it("should be able to verify the display value", async () => {
- *   const user = userEvent.setup();
- *   rmdRender(<SimpleSelect />);
- *
- *   const { select, selectInput, selectedOption } = getSelectTestElements({
- *     name: "Label",
- *   });
- *   // this isn't required, but added to show what element this is
- *   expect(selectedOption).toHaveClass("rmd-selected-option");
- *
- *   // there is currently no selected value
- *   expect(selectedOption).toHaveTextContent("");
- *
- *   await user.click(select);
- *   await user.click(screen.getByRole("option", { name: "Option 1" }));
- *   expect(selectInput).toHaveValue("a");
- *   expect(selectedOption).toHaveTextContent("Option 1");
- * });
- * ```
- *
- * @since 6.0.0
- */
-export function getSelectTestElements(
-  options: GetPartsByRoleOptions
-): SelectTestElements {
-  const { container = screen, ...byRoleOptions } = options;
-  const select = container.getByRole<HTMLDivElement>("combobox", byRoleOptions);
-  const selectInput = within(select).getByRole<HTMLInputElement>("textbox", {
-    hidden: true,
-  });
-  const selectedOption = select.firstElementChild;
-  if (!(selectedOption instanceof HTMLDivElement)) {
-    throw new Error("Unable to find the `Select` selected option element");
+function getElements(slider: HTMLSpanElement): Elements {
+  const sliderInput = slider.nextElementSibling;
+  const sliderTrack = slider.parentElement;
+  const sliderContainer = sliderTrack?.parentElement;
+  if (!(sliderInput instanceof HTMLInputElement)) {
+    throw new Error("Unable to find the `Slider` input element");
+  }
+  if (
+    !(sliderTrack instanceof HTMLSpanElement) ||
+    !sliderTrack.classList.contains("rmd-slider-track")
+  ) {
+    throw new Error("Unable to find the `Slider` track element");
+  }
+  if (
+    !(sliderContainer instanceof HTMLDivElement) ||
+    !sliderContainer.classList.contains("rmd-slider-container")
+  ) {
+    throw new Error("Unable to find the `Slider` container element");
   }
 
-  return {
-    select,
-    selectInput,
-    selectedOption,
-  };
+  return { sliderInput, sliderTrack, sliderContainer };
 }
 
 /**
@@ -156,30 +90,29 @@ export function getSliderTestElements(
 ): SliderTestElements {
   const { container = screen, ...byRoleOptions } = options;
   const slider = container.getByRole<HTMLSpanElement>("slider", byRoleOptions);
-  const sliderInput = slider.nextElementSibling;
-  const sliderTrack = slider.parentElement;
-  const sliderContainer = sliderTrack?.parentElement;
-  if (!(sliderInput instanceof HTMLInputElement)) {
-    throw new Error("Unable to find the `Slider` input element");
-  }
-  if (
-    !(sliderTrack instanceof HTMLSpanElement) ||
-    !sliderTrack.classList.contains("rmd-slider-track")
-  ) {
-    throw new Error("Unable to find the `Slider` track element");
-  }
-  if (
-    !(sliderContainer instanceof HTMLDivElement) ||
-    !sliderContainer.classList.contains("rmd-slider-container")
-  ) {
-    throw new Error("Unable to find the `Slider` container element");
-  }
 
   return {
     slider,
-    sliderInput,
-    sliderTrack,
-    sliderContainer,
+    ...getElements(slider),
+  };
+}
+
+/**
+ * @see {@link getSliderTestElements}
+ * @since 6.0.0
+ */
+export async function findSliderTestElements(
+  options: GetPartsByRoleOptions
+): Promise<SliderTestElements> {
+  const { container = screen, ...byRoleOptions } = options;
+  const slider = await container.findByRole<HTMLSpanElement>(
+    "slider",
+    byRoleOptions
+  );
+
+  return {
+    slider,
+    ...getElements(slider),
   };
 }
 
@@ -261,28 +194,46 @@ export function getRangeSliderTestElements(
     "slider",
     max ?? { name: "Max" }
   );
-  const minSliderInput = minSlider.nextElementSibling;
-  const maxSliderInput = maxSlider.nextElementSibling;
-  const sliderTrack = minSlider.parentElement;
-  const sliderContainer = sliderTrack?.parentElement;
-  if (!(minSliderInput instanceof HTMLInputElement)) {
-    throw new Error("Unable to find the `Slider` min input element");
-  }
-  if (!(maxSliderInput instanceof HTMLInputElement)) {
-    throw new Error("Unable to find the `Slider` max input element");
-  }
-  if (
-    !(sliderTrack instanceof HTMLSpanElement) ||
-    !sliderTrack.classList.contains("rmd-slider-track")
-  ) {
-    throw new Error("Unable to find the `Slider` track element");
-  }
-  if (
-    !(sliderContainer instanceof HTMLDivElement) ||
-    !sliderContainer.classList.contains("rmd-slider-container")
-  ) {
-    throw new Error("Unable to find the `Slider` container element");
-  }
+
+  const {
+    sliderInput: minSliderInput,
+    sliderTrack,
+    sliderContainer,
+  } = getElements(minSlider);
+  const { sliderInput: maxSliderInput } = getElements(maxSlider);
+
+  return {
+    minSlider,
+    minSliderInput,
+    maxSlider,
+    maxSliderInput,
+    sliderTrack,
+    sliderContainer,
+  };
+}
+
+/**
+ * @see {@link getRangeSliderTestElements}
+ * @since 6.0.0
+ */
+export async function findRangeSliderTestElements(
+  options: GetRangetSliderTestElementsOptions = {}
+): Promise<RangeSliderTestElements> {
+  const { container = screen, min, max } = options;
+  const minSlider = await container.findByRole<HTMLSpanElement>(
+    "slider",
+    min ?? { name: "Min" }
+  );
+  const maxSlider = await container.findByRole<HTMLSpanElement>(
+    "slider",
+    max ?? { name: "Max" }
+  );
+  const {
+    sliderInput: minSliderInput,
+    sliderTrack,
+    sliderContainer,
+  } = getElements(minSlider);
+  const { sliderInput: maxSliderInput } = getElements(maxSlider);
 
   return {
     minSlider,
