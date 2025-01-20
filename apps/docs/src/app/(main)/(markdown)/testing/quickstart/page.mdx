@@ -35,6 +35,28 @@ or [vitest setupFiles](https://vitest.dev/config/#setupfiles) to include the
 
 <TestConfigCodeBlock />
 
+### Default Test Behavior
+
+To make testing easier, the `@react-md/core/test-utils/jest-globals/setup` and `@react-md/core/test-utils/vitest/setup`
+add the following code:
+
+```ts
+beforeEach(() => {
+  // set the mode to `none` in tests since ripples require
+  // `getBoundingClientRect()` to create correct CSS. You'll either see warnings
+  // in the console around invalid css values or `NaN`.
+  INTERACTION_CONFIG.mode = "none";
+
+  // disable transitions in tests since it just makes it more difficult
+  TRANSITION_CONFIG.disabled = true;
+});
+```
+
+If a specific test needs to verify the interaction mode or transition behavior,
+that specific test can just set the expected state instead using `.spyOn()`:
+
+<SpyOnClodeBlock />
+
 ## Render Tests with `rmdRender`
 
 > !Success! It is recommended to jump to the next section to [create a custom test renderer](#create-a-custom-test-renderer)

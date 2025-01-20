@@ -2,6 +2,9 @@
 
 This page will provide common testing recipes for components through ReactMD.
 
+> !Warn! All examples assume that fake timers are not enabled. Enable at your
+> own debugging risk!
+
 # Inputs
 
 ## Autocomplete
@@ -10,11 +13,78 @@ TODO
 
 ## Checkbox
 
-TODO
+### Find and Change Value
+
+The `Checkbox` can be found like any other checkbox element:
+
+```tsx
+import { render, screen, userEvent } from "@react-md/core-test-utils";
+
+it("should be able to change value", async () => {
+  const user = userEvent.setup();
+  rmdRender(<Checkbox label="Label" />);
+
+  const checkbox = screen.getByRole("checkbox", { name: "Label" });
+  expect(checkbox).not.toBeChecked();
+
+  await user.click(checkbox);
+  expect(checkbox).toBeChecked();
+
+  await user.click(checkbox);
+  expect(checkbox).not.toBeChecked();
+});
+```
 
 ## Radio
 
-TODO
+### Find and Change Value
+
+The `Radio` can be found like any other radio element:
+
+```tsx
+function Test(): ReactElement {
+  const { getRadioProps } = useRadioGroup({ name: "example" });
+
+  return (
+    <Form>
+      <Radio {...getRadioProps("a")} label="First" />
+      <Radio {...getRadioProps("b")} label="Second" />
+      <Radio {...getRadioProps("c")} label="Third" />
+      <Radio {...getRadioProps("d")} label="Forth" />
+    </Form>
+  );
+}
+
+it("should be able to change value", async () => {
+  const user = userEvent.setup();
+  render(<Test />);
+  const radio1 = screen.getByRole("radio", { name: "First" });
+  const radio2 = screen.getByRole("radio", { name: "Second" });
+  const radio3 = screen.getByRole("radio", { name: "Third" });
+  const radio4 = screen.getByRole("radio", { name: "Forth" });
+
+  expect(radio1).toHaveAttribute("value", "a");
+  expect(radio2).toHaveAttribute("value", "b");
+  expect(radio3).toHaveAttribute("value", "c");
+  expect(radio4).toHaveAttribute("value", "d");
+  expect(radio1).not.toBeChecked();
+  expect(radio2).not.toBeChecked();
+  expect(radio3).not.toBeChecked();
+  expect(radio4).not.toBeChecked();
+
+  await user.click(radio1);
+  expect(radio1).toBeChecked();
+  expect(radio2).not.toBeChecked();
+  expect(radio3).not.toBeChecked();
+  expect(radio4).not.toBeChecked();
+
+  await user.click(radio3);
+  expect(radio1).not.toBeChecked();
+  expect(radio2).not.toBeChecked();
+  expect(radio3).toBeChecked();
+  expect(radio4).not.toBeChecked();
+});
+```
 
 ## Select
 
@@ -190,7 +260,34 @@ it("should be able to change the checked state", async () => {
 
 ## Tooltip
 
-TODO
+### Find and Verify Tooltip
+
+A tooltip can be found using using `.getByRole("tooltip")` or
+`.findByRole("tooltip")` along with the `hover` event:
+
+> !Success! This example will also work with custom `useTooltip` usage and by
+> changing the button to the tooltipped element.
+
+```tsx
+render(
+  <TooltippedButton tooltip={<span>Some Tooltip</span>}>
+    Button
+  </TooltippedButton>
+);
+
+const button = screen.getByRole("button", { name: "Button" });
+
+expect(() => screen.getByRole("tooltip")).toThrow();
+
+await user.hover(button);
+
+// change `name` to the tooltip text or another query
+const tooltip = screen.getByRole("tooltip", { name: "Some Tooltip" });
+expect(tooltip).toBeInTheDocument();
+
+await user.unhover(button);
+expect(tooltip).not.toBeInTheDocument();
+```
 
 # Navigation
 
@@ -200,7 +297,76 @@ TODO
 
 ## Tabs
 
-TODO
+All of the tab tests will use the following test setup:
+
+```tsx
+type TestProps = Omit<TabsHookOptions, "activeTab" | "setActiveTab"> &
+  Pick<TabListProps, "activationMode">;
+
+function Test(props: TestProps): ReactElement {
+  const { activationMode, ...options } = props;
+  const { getTabProps, getTabListProps, getTabPanelProps, getTabPanelsProps } =
+    useTabs(options);
+
+  return (
+    <>
+      <TabList {...getTabListProps()} activationMode={activationMode}>
+        <Tab {...getTabProps(0)}>Tab 1</Tab>
+        <Tab {...getTabProps(1)}>Tab 2</Tab>
+        <Tab {...getTabProps(2)}>Tab 3</Tab>
+      </TabList>
+      <SlideContainer {...getTabPanelsProps()} data-testid="panels">
+        <Slide {...getTabPanelProps(0)}>Tab 1 Content</Slide>
+        <Slide {...getTabPanelProps(1)}>Tab 2 Content</Slide>
+        <Slide {...getTabPanelProps(2)}>Tab 3 Content</Slide>
+      </SlideContainer>
+    </>
+  );
+}
+```
+
+### Verify Selected Tab and Change Tabs
+
+Each tab can be found by using the `"tab"` role while the tab panel can be
+found using the `"tabpanel"` role. The inactive tab panels are hidden using
+`display: none` by default so the visibility can be tested using the
+[isElementVisible util](#%EF%B8%8F-iselementvisible-util).
+
+```tsx
+import { Tab } from "@react-md/core/tabs/Tab.js";
+import { TabList, type TabListProps } from "@react-md/core/tabs/TabList.js";
+import { type TabsHookOptions, useTabs } from "@react-md/core/tabs/useTabs.js";
+import { Slide } from "@react-md/core/transition/Slide.js";
+import { SlideContainer } from "@react-md/core/transition/SlideContainer.js";
+import { isElementVisible } from "@react-md/core/utils/isElementVisible.js";
+
+it("should test something...", async () => {
+  const user = userEvent.setup();
+  rmdRender(<Test />);
+
+  const tab1 = screen.getByRole("tab", { name: "Tab 1" });
+  const tab2 = screen.getByRole("tab", { name: "Tab 2" });
+  const tab3 = screen.getByRole("tab", { name: "Tab 3" });
+  const panel1 = screen.getByRole("tabpanel", { name: "Tab 1" });
+  const panel2 = screen.getByRole("tabpanel", { name: "Tab 2" });
+  const panel3 = screen.getByRole("tabpanel", { name: "Tab 3" });
+
+  expect(tab1).toHaveAttribute("aria-selected", "true");
+  expect(tab2).toHaveAttribute("aria-selected", "false");
+  expect(tab3).toHaveAttribute("aria-selected", "false");
+  expect(isElementVisible(panel1)).toBe(true);
+  expect(isElementVisible(panel2)).toBe(false);
+  expect(isElementVisible(panel3)).toBe(false);
+
+  await user.click(tab2);
+  expect(tab1).toHaveAttribute("aria-selected", "false");
+  expect(tab2).toHaveAttribute("aria-selected", "true");
+  expect(tab3).toHaveAttribute("aria-selected", "false");
+  expect(isElementVisible(panel1)).toBe(false);
+  expect(isElementVisible(panel2)).toBe(true);
+  expect(isElementVisible(panel3)).toBe(false);
+});
+```
 
 ## Tree
 
@@ -220,4 +386,87 @@ TODO
 
 ## Expansion Panel
 
-TODO
+All of the examples below will use this following test component:
+
+```tsx
+interface TestProps extends ExpansionPanelHookOptions {
+  manualIds?: boolean;
+  disablePanel2?: boolean;
+}
+
+function Test(props: TestProps): ReactElement {
+  const { manualIds, ...options } = props;
+  const { getPanelProps } = useExpansionPanels(options);
+
+  return (
+    <ExpansionList>
+      <ExpansionPanel
+        {...getPanelProps(manualIds ? "panel-1" : 0)}
+        headerChildren="Panel 1"
+      >
+        Panel 1 Contents
+      </ExpansionPanel>
+      <ExpansionPanel
+        {...getPanelProps(manualIds ? "panel-2" : 1)}
+        headerChildren="Panel 2"
+      >
+        Panel 2 Contents
+      </ExpansionPanel>
+      <ExpansionPanel
+        {...getPanelProps(manualIds ? "panel-3" : 2)}
+        headerChildren="Panel 3"
+      >
+        Panel 3 Contents
+      </ExpansionPanel>
+    </ExpansionList>
+  );
+}
+```
+
+### Find and Verify Expansion
+
+Each expansion panel can be found using the `"button"` role while the panel
+contents can be found using the `"region"` role. The collapsed panel contents
+are hidden using `display: none` by default so the visibility can be tested
+using the [isElementVisible util](#%EF%B8%8F-iselementvisible-util).
+
+```tsx
+it("should test something", async () => {
+  const user = userEvent.setup();
+  render(<Test />);
+  const panel1 = screen.getByRole("button", { name: "Panel 1" });
+  const panel2 = screen.getByRole("button", { name: "Panel 2" });
+  const panel3 = screen.getByRole("button", { name: "Panel 3" });
+
+  const [panel1Contents, panel2Contents, panel3Contents] =
+    screen.getAllByRole("region");
+
+  expect(panel1).toHaveAttribute("aria-expanded", "false");
+  expect(panel2).toHaveAttribute("aria-expanded", "false");
+  expect(panel3).toHaveAttribute("aria-expanded", "false");
+  expect(panel1Contents).toBeInTheDocument();
+  expect(panel2Contents).toBeInTheDocument();
+  expect(panel3Contents).toBeInTheDocument();
+  expect(isElementVisible(panel1Contents)).toBe(false);
+  expect(isElementVisible(panel2Contents)).toBe(false);
+  expect(isElementVisible(panel3Contents)).toBe(false);
+
+  await user.click(panel3);
+  expect(panel1).toHaveAttribute("aria-expanded", "false");
+  expect(panel2).toHaveAttribute("aria-expanded", "false");
+  expect(panel3).toHaveAttribute("aria-expanded", "true");
+  expect(panel1Contents).toBeInTheDocument();
+  expect(panel2Contents).toBeInTheDocument();
+  expect(panel3Contents).toBeInTheDocument();
+  expect(isElementVisible(panel1Contents)).toBe(false);
+  expect(isElementVisible(panel2Contents)).toBe(false);
+  expect(isElementVisible(panel3Contents)).toBe(true);
+});
+```
+
+# ⚠️ isElementVisible util
+
+> !Warn! The `isElementVisible` util really only verifies that the element or
+> any parent elements do not contain the `"rmd-display-none"` class. A custom
+> util will be required for components not apart of `react-md` or custom
+> styling to hide panels.

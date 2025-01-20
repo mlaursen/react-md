@@ -68,6 +68,9 @@ describe("useTabs", () => {
     const panel2 = screen.getByRole("tabpanel", { name: "Tab 2" });
     const panel3 = screen.getByRole("tabpanel", { name: "Tab 3" });
 
+    expect(tab1).toHaveAttribute("aria-selected", "true");
+    expect(tab2).toHaveAttribute("aria-selected", "false");
+    expect(tab3).toHaveAttribute("aria-selected", "false");
     expect(isElementVisible(panel1)).toBe(true);
     expect(isElementVisible(panel2)).toBe(false);
     expect(isElementVisible(panel3)).toBe(false);
