@@ -1,10 +1,11 @@
 "use client";
+
 import { Chip } from "@react-md/core/chip/Chip";
 import { CircularProgress } from "@react-md/core/progress/CircularProgress";
 import { randomInt } from "@react-md/core/utils/randomInt";
 import BrightnessHighIcon from "@react-md/material-icons/BrightnessHighIcon";
 import BrightnessLowIcon from "@react-md/material-icons/BrightnessLowIcon";
-import { useEffect, useState, type ReactElement } from "react";
+import { type ReactElement, useEffect, useState } from "react";
 
 export default function ChipWithCircularProgressExample(): ReactElement {
   const { enabled, loading, onClick } = useDemoState();

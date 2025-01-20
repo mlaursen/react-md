@@ -1,14 +1,15 @@
-import { forwardRef, type AriaAttributes, type HTMLAttributes } from "react";
+import { type AriaAttributes, type HTMLAttributes, forwardRef } from "react";
+
 import { type MaterialSymbolName } from "./material.js";
 import {
-  getFontVariationSettings,
   type MaterialSymbolCustomization,
   type MaterialSymbolFill,
   type MaterialSymbolGrade,
   type MaterialSymbolOpticalSize,
   type MaterialSymbolWeight,
+  getFontVariationSettings,
 } from "./materialConfig.js";
-import { icon, type MaterialSymbolClassNameOptions } from "./styles.js";
+import { type MaterialSymbolClassNameOptions, icon } from "./styles.js";
 
 declare module "react" {
   interface CSSProperties {

@@ -1,9 +1,10 @@
 import {
-  button,
   type ButtonClassNameThemeOptions,
+  button,
 } from "@react-md/core/button/buttonStyles";
 import { cssUtils } from "@react-md/core/cssUtils";
 import { type ReactElement } from "react";
+
 import { LinkUnstyled, type LinkUnstyledProps } from "./LinkUnstyled.jsx";
 
 export interface ButtonStyledLinkProps

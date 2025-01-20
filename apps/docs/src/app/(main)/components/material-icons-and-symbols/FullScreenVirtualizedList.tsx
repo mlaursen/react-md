@@ -1,4 +1,5 @@
 "use client";
+
 import { useHorizontalLayoutTransition } from "@react-md/core/layout/useHorizontalLayoutTransition";
 import { useAppSize } from "@react-md/core/media-queries/AppSizeProvider";
 import { DEFAULT_SHEET_TIMEOUT } from "@react-md/core/sheet/styles";
@@ -7,6 +8,7 @@ import { useHtmlClassName } from "@react-md/core/useHtmlClassName";
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
 import { VariableSizeList } from "react-window";
+
 import styles from "./FullScreenVirtualizedList.module.scss";
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";
 import { NoMatches } from "./NoMatches.jsx";

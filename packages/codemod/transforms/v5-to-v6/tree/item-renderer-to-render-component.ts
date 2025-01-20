@@ -1,7 +1,8 @@
 import { type API, type FileInfo, type Options } from "jscodeshift";
+
 import { addFileComments } from "../../utils/addFileComment";
-import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers";
 import { mergeImportDeclarations } from "../../utils/mergeImportDeclarations";
+import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers";
 
 export default function transformer(
   file: FileInfo,

@@ -1,9 +1,11 @@
 "use client";
+
 import {
-  forwardRef,
   type ChangeEventHandler,
   type InputHTMLAttributes,
+  forwardRef,
 } from "react";
+
 import { getIcon } from "../icon/iconConfig.js";
 import { MenuItem, type MenuItemProps } from "../menu/MenuItem.js";
 import { useEnsuredId } from "../useEnsuredId.js";

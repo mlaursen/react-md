@@ -1,5 +1,6 @@
 import { cnb } from "cnbuilder";
 import { type HTMLAttributes, type ReactElement } from "react";
+
 import { CodeBlock, type CodeBlockConfigurableProps } from "./CodeBlock.js";
 import { type HighlightCode, type SupportedCodeLanguage } from "./types.js";
 

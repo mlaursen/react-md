@@ -1,5 +1,6 @@
 import { beforeEach, describe, expect, it } from "@jest/globals";
-import { createRef, type ReactElement } from "react";
+import { type ReactElement, createRef } from "react";
+
 import {
   fireEvent,
   render,
@@ -7,14 +8,13 @@ import {
   userEvent,
   waitFor,
 } from "../../test-utils/index.js";
-
 import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { isElementVisible } from "../../utils/isElementVisible.js";
 import { ExpansionList } from "../ExpansionList.js";
 import { ExpansionPanel, type ExpansionPanelProps } from "../ExpansionPanel.js";
 import {
-  useExpansionPanels,
   type ExpansionPanelHookOptions,
+  useExpansionPanels,
 } from "../useExpansionPanels.js";
 
 interface TestProps extends ExpansionPanelHookOptions {

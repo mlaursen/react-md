@@ -1,22 +1,24 @@
 "use client";
+
 import {
+  type ReactElement,
+  type ReactNode,
   createContext,
   useContext,
   useMemo,
-  type ReactElement,
-  type ReactNode,
 } from "react";
+
 import { useSsr } from "../SsrProvider.js";
 import { useOrientation } from "../useOrientation.js";
 import {
+  type AppSize,
+  type AppSizeQueries,
   DEFAULT_APP_SIZE,
   DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
   DEFAULT_DESKTOP_MIN_WIDTH,
   DEFAULT_PHONE_MAX_WIDTH,
   DEFAULT_TABLET_MAX_WIDTH,
   DEFAULT_TABLET_MIN_WIDTH,
-  type AppSize,
-  type AppSizeQueries,
 } from "./appSize.js";
 import { useMediaQuery } from "./useMediaQuery.js";
 

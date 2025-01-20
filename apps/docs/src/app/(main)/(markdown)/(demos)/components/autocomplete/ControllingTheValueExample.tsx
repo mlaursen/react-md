@@ -1,9 +1,11 @@
 "use client";
-import { states, type State } from "@/constants/states.js";
+
 import { Autocomplete } from "@react-md/core/autocomplete/Autocomplete";
 import { Box } from "@react-md/core/box/Box";
 import { Typography } from "@react-md/core/typography/Typography";
-import { useState, type ReactElement } from "react";
+import { type ReactElement, useState } from "react";
+
+import { type State, states } from "@/constants/states.js";
 
 export default function ControllingTheValueExample(): ReactElement {
   const [value, setValue] = useState<State | null>(null);

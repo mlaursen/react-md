@@ -1,11 +1,13 @@
 "use client";
+
 import {
+  type ChangeEventHandler,
+  type FormEventHandler,
   useCallback,
   useRef,
   useState,
-  type ChangeEventHandler,
-  type FormEventHandler,
 } from "react";
+
 import { type UseStateInitializer, type UseStateSetter } from "../types.js";
 
 const noop = (): void => {

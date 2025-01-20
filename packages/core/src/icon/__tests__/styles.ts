@@ -1,4 +1,5 @@
 import { describe, expect, it } from "@jest/globals";
+
 import { type TextColor, type ThemeColor } from "../../cssUtils.js";
 import { icon } from "../styles.js";
 

@@ -1,4 +1,5 @@
 "use client";
+
 import { Avatar } from "@react-md/core/avatar/Avatar";
 import { box } from "@react-md/core/box/styles";
 import { Button } from "@react-md/core/button/Button";
@@ -13,7 +14,7 @@ import { loop } from "@react-md/core/utils/loop";
 import { randomInt } from "@react-md/core/utils/randomInt";
 import CancelIcon from "@react-md/material-icons/CancelIcon";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
-import { useEffect, useState, type ReactElement } from "react";
+import { type ReactElement, useEffect, useState } from "react";
 
 export default function AutomaticAddonPaddingExample(): ReactElement {
   const { leftAddon, rightAddon, toggle, running } = useRotatingAddons();

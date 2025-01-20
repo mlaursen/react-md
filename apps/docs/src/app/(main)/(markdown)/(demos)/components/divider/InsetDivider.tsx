@@ -3,6 +3,7 @@ import { List } from "@react-md/core/list/List";
 import { ListItem } from "@react-md/core/list/ListItem";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import { type ReactElement } from "react";
+
 import styles from "./InsetDivider.module.scss";
 
 export default function InsetDivider(): ReactElement {

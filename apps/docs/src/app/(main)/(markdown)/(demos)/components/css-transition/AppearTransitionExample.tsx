@@ -1,10 +1,12 @@
 "use client";
+
 import { Box } from "@react-md/core/box/Box";
 import { Button } from "@react-md/core/button/Button";
 import { List } from "@react-md/core/list/List";
 import { ListItem } from "@react-md/core/list/ListItem";
 import { CSSTransition } from "@react-md/core/transition/CSSTransition";
-import { useState, type ReactElement } from "react";
+import { type ReactElement, useState } from "react";
+
 import styles from "./AppearTransitionExample.module.scss";
 
 export default function AppearTransitionExample(): ReactElement {

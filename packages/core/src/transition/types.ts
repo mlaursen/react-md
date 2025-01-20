@@ -2,7 +2,6 @@
 // hook implementation. I also had to redo most of the types for v4.0.0 due to
 // the new `nodeRef` stuff, so it made it easier to create the types and hooks
 // here.
-
 import type { ReactElement, Ref, RefCallback } from "react";
 
 /**

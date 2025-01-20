@@ -1,4 +1,5 @@
 import { describe, expect, it, jest } from "@jest/globals";
+
 import { fuzzySearch } from "../fuzzy.js";
 
 const FRUITS = ["Apple", "Banana", "Mango", "Orange"];

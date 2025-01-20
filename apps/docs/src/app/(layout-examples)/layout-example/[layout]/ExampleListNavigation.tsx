@@ -1,5 +1,5 @@
 "use client";
-import { pascalCase } from "@/utils/strings.js";
+
 import { Divider } from "@react-md/core/divider/Divider";
 import { List } from "@react-md/core/list/List";
 import { ListSubheader } from "@react-md/core/list/ListSubheader";
@@ -9,6 +9,9 @@ import HomeIcon from "@react-md/material-icons/HomeIcon";
 import StarIcon from "@react-md/material-icons/StarIcon";
 import { usePathname } from "next/navigation.js";
 import { type ReactElement } from "react";
+
+import { pascalCase } from "@/utils/strings.js";
+
 import styles from "./ExampleListNavigation.module.scss";
 import { LayoutIcon } from "./LayoutIcon.js";
 import { NavigationTypeIcon } from "./NavigationTypeIcon.jsx";

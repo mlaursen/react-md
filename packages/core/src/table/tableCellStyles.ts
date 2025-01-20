@@ -1,4 +1,5 @@
 import { cnb } from "cnbuilder";
+
 import { cssUtils } from "../cssUtils.js";
 import {
   type TableCellHorizontalAlignment,

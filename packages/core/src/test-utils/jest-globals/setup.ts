@@ -1,5 +1,6 @@
 import { beforeEach } from "@jest/globals";
 import "@testing-library/jest-dom/jest-globals";
+
 import { INTERACTION_CONFIG } from "../../interaction/config.js";
 import { TRANSITION_CONFIG } from "../../transition/config.js";
 

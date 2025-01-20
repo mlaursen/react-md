@@ -6,7 +6,7 @@ import { DialogContent } from "@react-md/core/dialog/DialogContent";
 import { Typography } from "@react-md/core/typography/Typography";
 import { useToggle } from "@react-md/core/useToggle";
 import CloseIcon from "@react-md/material-icons/CloseIcon";
-import { useId, type ReactElement } from "react";
+import { type ReactElement, useId } from "react";
 
 export default function FullPageDialogExample(): ReactElement {
   const titleId = useId();

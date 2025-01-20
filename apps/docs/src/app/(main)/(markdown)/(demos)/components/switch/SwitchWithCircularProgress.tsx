@@ -1,4 +1,5 @@
 "use client";
+
 import { box } from "@react-md/core/box/styles";
 import { Form } from "@react-md/core/form/Form";
 import { Switch } from "@react-md/core/form/Switch";
@@ -7,7 +8,8 @@ import { useAsyncFunction } from "@react-md/core/useAsyncFunction";
 import { randomInt } from "@react-md/core/utils/randomInt";
 import { wait } from "@react-md/core/utils/wait";
 import { cnb } from "cnbuilder";
-import { useState, type ReactElement, useId } from "react";
+import { type ReactElement, useId, useState } from "react";
+
 import styles from "./SwitchWithCircularProgress.module.scss";
 
 export default function SwitchWithCircularProgress(): ReactElement {

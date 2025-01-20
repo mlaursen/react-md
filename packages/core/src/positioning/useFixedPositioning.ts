@@ -1,14 +1,16 @@
 "use client";
+
 import {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
   type CSSProperties,
   type Ref,
   type RefCallback,
   type RefObject,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
 } from "react";
+
 import { delegateEvent } from "../delegateEvent.js";
 import { type TransitionCallbacks } from "../transition/types.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";

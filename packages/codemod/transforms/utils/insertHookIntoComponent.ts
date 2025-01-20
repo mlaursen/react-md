@@ -4,6 +4,7 @@ import {
   type JSCodeshift,
   type VariableDeclaration,
 } from "jscodeshift";
+
 import { type ComponentDefinition, type PatternKind } from "../types";
 import { createConst } from "./createConst";
 import { getClosestComponentDefinition } from "./getClosestComponentDefinition";

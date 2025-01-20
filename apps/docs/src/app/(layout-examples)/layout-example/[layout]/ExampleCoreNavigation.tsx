@@ -1,6 +1,5 @@
 "use client";
-import { LinkUnstyled } from "@/components/LinkUnstyled.jsx";
-import { pascalCase } from "@/utils/strings.js";
+
 import { Navigation } from "@react-md/core/navigation/Navigation";
 import { type NavigationItem } from "@react-md/core/navigation/types";
 import { useNavigationExpansion } from "@react-md/core/navigation/useNavigationExpansion";
@@ -9,7 +8,11 @@ import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import HomeIcon from "@react-md/material-icons/HomeIcon";
 import StarIcon from "@react-md/material-icons/StarIcon";
 import { usePathname } from "next/navigation.js";
-import { useMemo, type ReactElement } from "react";
+import { type ReactElement, useMemo } from "react";
+
+import { LinkUnstyled } from "@/components/LinkUnstyled.jsx";
+import { pascalCase } from "@/utils/strings.js";
+
 import { LayoutIcon } from "./LayoutIcon.jsx";
 import { NavigationTypeIcon } from "./NavigationTypeIcon.jsx";
 import { LAYOUT_TYPES, type LayoutType } from "./layouts.js";

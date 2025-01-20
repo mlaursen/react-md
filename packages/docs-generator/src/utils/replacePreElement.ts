@@ -4,6 +4,7 @@ import {
   type MdxJsxFlowElementHast,
   type MdxJsxTextElementHast,
 } from "mdast-util-mdx-jsx";
+
 import { createJsxNode } from "./createJsxNode.js";
 
 export interface CreatePreJsxNodeOptions {

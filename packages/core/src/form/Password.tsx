@@ -1,16 +1,18 @@
 "use client";
-import { forwardRef, type ReactNode } from "react";
+
+import { type ReactNode, forwardRef } from "react";
+
 import { Button, type ButtonProps } from "../button/Button.js";
 import { getIcon } from "../icon/iconConfig.js";
 import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { useToggle } from "../useToggle.js";
+import { TextField, type TextFieldProps } from "./TextField.js";
 import {
   password,
   passwordInput,
   passwordInputToggle,
 } from "./passwordStyles.js";
-import { TextField, type TextFieldProps } from "./TextField.js";
 
 /**
  * @example Simple Example

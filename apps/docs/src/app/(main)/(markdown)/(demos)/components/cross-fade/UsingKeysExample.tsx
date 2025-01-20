@@ -1,16 +1,17 @@
 "use client";
+
 import { SegmentedButton } from "@react-md/core/segmented-button/SegmentedButton";
 import { SegmentedButtonContainer } from "@react-md/core/segmented-button/SegmentedButtonContainer";
 import { CrossFade } from "@react-md/core/transition/CrossFade";
 import { TextContainer } from "@react-md/core/typography/TextContainer";
 import { Typography } from "@react-md/core/typography/Typography";
 import {
+  type HTMLAttributes,
+  type ReactElement,
   forwardRef,
   useEffect,
   useRef,
   useState,
-  type HTMLAttributes,
-  type ReactElement,
 } from "react";
 
 export default function UsingKeysExample(): ReactElement {

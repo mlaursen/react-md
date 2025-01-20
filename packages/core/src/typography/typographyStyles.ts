@@ -1,5 +1,6 @@
 import { cnb } from "cnbuilder";
-import { cssUtils, type TextCssUtilsOptions } from "../cssUtils.js";
+
+import { type TextCssUtilsOptions, cssUtils } from "../cssUtils.js";
 
 /**
  * A union of all the material design provided typography styles. When used with

@@ -1,4 +1,3 @@
-import { FakeLink } from "@/components/FakeLink.jsx";
 import { card } from "@react-md/core/card/styles";
 import { Navigation } from "@react-md/core/navigation/Navigation";
 import { type NavigationItem } from "@react-md/core/navigation/types";
@@ -7,6 +6,8 @@ import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import HomeIcon from "@react-md/material-icons/HomeIcon";
 import StarIcon from "@react-md/material-icons/StarIcon";
 import { type ReactElement } from "react";
+
+import { FakeLink } from "@/components/FakeLink.jsx";
 
 const items: readonly NavigationItem[] = [
   {

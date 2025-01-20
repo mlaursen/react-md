@@ -1,5 +1,6 @@
 import { describe, expect, it, jest } from "@jest/globals";
-import { createRef, type ReactElement, type Ref } from "react";
+import { type ReactElement, type Ref, createRef } from "react";
+
 import { type IconRotatorBaseProps } from "../../icon/IconRotator.js";
 import {
   rmdRender,

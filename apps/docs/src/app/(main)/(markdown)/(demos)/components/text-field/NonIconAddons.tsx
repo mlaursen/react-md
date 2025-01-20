@@ -1,4 +1,5 @@
 "use client";
+
 import { Avatar } from "@react-md/core/avatar/Avatar";
 import { Box } from "@react-md/core/box/Box";
 import { box } from "@react-md/core/box/styles";
@@ -12,6 +13,7 @@ import { Typography } from "@react-md/core/typography/Typography";
 import { typography } from "@react-md/core/typography/typographyStyles";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import { type ReactElement } from "react";
+
 import styles from "./NonIconAddons.module.scss";
 
 export default function NonIconAddons(): ReactElement {

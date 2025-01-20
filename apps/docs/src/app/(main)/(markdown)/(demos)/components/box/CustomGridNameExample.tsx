@@ -3,6 +3,7 @@ import { Card } from "@react-md/core/card/Card";
 import { CardContent } from "@react-md/core/card/CardContent";
 import { Typography } from "@react-md/core/typography/Typography";
 import { type ReactElement } from "react";
+
 import styles from "./CustomGridNameExample.module.scss";
 
 export default function CustomGridNameExample(): ReactElement {

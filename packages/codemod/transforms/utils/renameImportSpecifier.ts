@@ -1,6 +1,6 @@
 import {
-  renameIdentifier,
   type RenameIdentifierOptions,
+  renameIdentifier,
 } from "./renameIdentifier";
 import { traverseImportSpecifiers } from "./traverseImportSpecifiers";
 

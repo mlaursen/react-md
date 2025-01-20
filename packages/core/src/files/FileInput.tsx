@@ -1,10 +1,12 @@
 "use client";
+
 import {
-  forwardRef,
   type InputHTMLAttributes,
   type LabelHTMLAttributes,
   type ReactNode,
+  forwardRef,
 } from "react";
+
 import { type ButtonClassNameThemeOptions } from "../button/buttonStyles.js";
 import { getIcon } from "../icon/iconConfig.js";
 import { type ComponentWithRippleProps } from "../interaction/types.js";

@@ -2,11 +2,11 @@
 /* eslint-disable jest-dom/prefer-checked */
 import { describe, expect, it } from "@jest/globals";
 import { type ReactElement } from "react";
-import { fireEvent, render, screen } from "../../test-utils/index.js";
 
 import { Button } from "../../button/Button.js";
 import { AppSizeProvider } from "../../media-queries/AppSizeProvider.js";
 import { DropdownMenu } from "../../menu/DropdownMenu.js";
+import { fireEvent, render, screen } from "../../test-utils/index.js";
 import { Checkbox } from "../Checkbox.js";
 import { Form } from "../Form.js";
 import { MenuItemCheckbox } from "../MenuItemCheckbox.js";

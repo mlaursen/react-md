@@ -1,4 +1,5 @@
 "use client";
+
 import { CardContent } from "@react-md/core/card/CardContent";
 import { ClickableCard } from "@react-md/core/card/ClickableCard";
 import { Dialog } from "@react-md/core/dialog/Dialog";

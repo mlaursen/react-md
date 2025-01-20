@@ -1,5 +1,11 @@
 import { beforeEach, describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement } from "react";
+
+import {
+  DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
+  DEFAULT_DESKTOP_MIN_WIDTH,
+  DEFAULT_PHONE_MAX_WIDTH,
+} from "../../media-queries/appSize.js";
 import {
   act,
   fireEvent,
@@ -8,19 +14,13 @@ import {
   userEvent,
   waitFor,
 } from "../../test-utils/index.js";
-
-import {
-  DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
-  DEFAULT_DESKTOP_MIN_WIDTH,
-  DEFAULT_PHONE_MAX_WIDTH,
-} from "../../media-queries/appSize.js";
 import { Tooltip } from "../../tooltip/Tooltip.js";
 import { useTooltip } from "../../tooltip/useTooltip.js";
 import { WritingDirectionProvider } from "../../typography/WritingDirectionProvider.js";
-import { type GetTabListScrollToOptions } from "../getTabListScrollToOptions.js";
 import { Tab } from "../Tab.js";
 import { TabList, type TabListProps } from "../TabList.js";
-import { useTabs, type ProvidedTabListProps } from "../useTabs.js";
+import { type GetTabListScrollToOptions } from "../getTabListScrollToOptions.js";
+import { type ProvidedTabListProps, useTabs } from "../useTabs.js";
 
 // make it so the back button defaults to intersecting
 const getIntersectionRatio = jest.fn((target: Element): number =>

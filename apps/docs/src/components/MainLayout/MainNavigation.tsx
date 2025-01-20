@@ -2,6 +2,7 @@ import { Navigation } from "@react-md/core/navigation/Navigation";
 import { useNavigationExpansion } from "@react-md/core/navigation/useNavigationExpansion";
 import { usePathname } from "next/navigation.js";
 import { type ReactElement } from "react";
+
 import { LinkUnstyled } from "../LinkUnstyled.jsx";
 import { navItems } from "./navItems.js";
 

@@ -3,16 +3,17 @@ import { cnb } from "cnbuilder";
 import {
   Children,
   Fragment,
-  cloneElement,
-  isValidElement,
   type HTMLAttributes,
   type ReactElement,
   type ReactNode,
+  cloneElement,
+  isValidElement,
 } from "react";
+
 import styles from "./Blockquote.module.scss";
 import {
-  BlockquoteThemeIcon,
   type BlockquoteTheme,
+  BlockquoteThemeIcon,
 } from "./BlockquoteThemeIcon.jsx";
 
 const THEME_REGEX = /!(Warn|Info|Success|Error)!/;

@@ -4,6 +4,7 @@ import { typography } from "@react-md/core/typography/typographyStyles";
 import Link from "next/link.js";
 import { type ReactElement } from "react";
 import "server-only";
+
 import SsrOnlyExample from "../SsrOnlyExample.jsx";
 import styles from "./page.module.scss";
 

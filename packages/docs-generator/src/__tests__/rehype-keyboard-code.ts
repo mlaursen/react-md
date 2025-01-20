@@ -2,6 +2,7 @@ import { describe, expect, it } from "@jest/globals";
 import { compile } from "@mdx-js/mdx";
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
+
 import { rehypeKeyboardCode } from "../rehype-keyboard-code.js";
 
 async function getFixture(name: string): Promise<string> {

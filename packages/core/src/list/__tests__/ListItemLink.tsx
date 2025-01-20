@@ -1,8 +1,8 @@
 import { describe, expect, it } from "@jest/globals";
-import { forwardRef, type HTMLAttributes, type ReactElement } from "react";
-import { render, screen } from "../../test-utils/index.js";
+import { type HTMLAttributes, type ReactElement, forwardRef } from "react";
 
 import { Link } from "../../link/Link.js";
+import { render, screen } from "../../test-utils/index.js";
 import { List } from "../List.js";
 import { ListItemLink } from "../ListItemLink.js";
 

@@ -1,6 +1,8 @@
 "use client";
+
 import { cnb } from "cnbuilder";
-import { forwardRef, useMemo, type HTMLAttributes } from "react";
+import { type HTMLAttributes, forwardRef, useMemo } from "react";
+
 import {
   TableConfigProvider,
   useTableConfig,

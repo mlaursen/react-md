@@ -1,5 +1,7 @@
 "use client";
+
 import { useCallback, useState } from "react";
+
 import type { SimplePosition } from "../positioning/types.js";
 import {
   DEFAULT_TOOLTIP_POSITION,

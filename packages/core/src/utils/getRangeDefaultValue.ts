@@ -1,7 +1,7 @@
 import { type UseStateInitializer } from "../types.js";
 import {
-  getMiddleOfRange,
   type GetMiddleOfRangeOptions,
+  getMiddleOfRange,
 } from "./getMiddleOfRange.js";
 
 /**

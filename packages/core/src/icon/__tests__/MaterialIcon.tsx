@@ -1,7 +1,8 @@
 import { beforeEach, describe, expect, it } from "@jest/globals";
+import { createRef } from "react";
+
 import { rmdRender, screen } from "../../test-utils/index.js";
 import { MaterialIcon } from "../MaterialIcon.js";
-import { createRef } from "react";
 import { MATERIAL_CONFIG } from "../materialConfig.js";
 
 describe("MaterialIcon", () => {

@@ -1,5 +1,6 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement } from "react";
+
 import { Button } from "../../button/Button.js";
 import {
   rmdRender,
@@ -11,8 +12,8 @@ import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { useScaleTransition } from "../../transition/useScaleTransition.js";
 import { useToggle } from "../../useToggle.js";
 import {
-  useFocusContainer,
   type FocusContainerOptions,
+  useFocusContainer,
 } from "../useFocusContainer.js";
 
 function Test(

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
-import { render, screen } from "../../test-utils/index.js";
 
+import { render, screen } from "../../test-utils/index.js";
 import { TextIconSpacing } from "../TextIconSpacing.js";
 
 describe("TextIconSpacing", () => {

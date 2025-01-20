@@ -2,8 +2,8 @@
 import { describe, expect, it } from "@jest/globals";
 import { renderToStaticMarkup } from "react-dom/server";
 
-import { type AppSize } from "../appSize.js";
 import { AppSizeProvider, useAppSize } from "../AppSizeProvider.js";
+import { type AppSize } from "../appSize.js";
 
 describe("AppSizeProvider.node", () => {
   it("should use the ssr size in node environments", () => {

@@ -1,4 +1,5 @@
-import { forwardRef, type LiHTMLAttributes, type ReactNode } from "react";
+import { type LiHTMLAttributes, type ReactNode, forwardRef } from "react";
+
 import { navItem } from "./navItemStyles.js";
 
 /**

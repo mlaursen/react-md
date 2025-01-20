@@ -1,4 +1,5 @@
 "use client";
+
 import { Box } from "@react-md/core/box/Box";
 import { Tab } from "@react-md/core/tabs/Tab";
 import { TabList } from "@react-md/core/tabs/TabList";
@@ -6,6 +7,7 @@ import { useTabs } from "@react-md/core/tabs/useTabs";
 import { Slide } from "@react-md/core/transition/Slide";
 import { SlideContainer } from "@react-md/core/transition/SlideContainer";
 import { type ReactElement } from "react";
+
 import styles from "./VerticalTabsExample.module.scss";
 
 export default function VerticalTabsExample(): ReactElement {

@@ -1,9 +1,10 @@
-import { forwardRef, type HTMLAttributes } from "react";
+import { type HTMLAttributes, forwardRef } from "react";
+
 import {
-  responsiveItemOverlay,
   type ResponsiveItemOverlayClassNameOptions,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   type ResponsiveItemOverlayPosition,
+  responsiveItemOverlay,
 } from "./responsiveItemOverlayStyles.js";
 
 /**

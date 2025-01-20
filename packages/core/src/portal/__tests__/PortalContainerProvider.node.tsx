@@ -1,8 +1,8 @@
 /** @jest-environment node */
 import { describe, expect, it } from "@jest/globals";
 import { renderToString } from "react-dom/server";
-import { Portal } from "../Portal.js";
 
+import { Portal } from "../Portal.js";
 import { PortalContainerProvider } from "../PortalContainerProvider.js";
 
 describe("PortalContainerProvider", () => {

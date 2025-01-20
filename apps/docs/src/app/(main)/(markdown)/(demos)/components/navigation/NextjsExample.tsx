@@ -1,10 +1,12 @@
 "use client";
-import { LinkUnstyled } from "@/components/LinkUnstyled.jsx";
+
 import { Navigation } from "@react-md/core/navigation/Navigation";
 import { type NavigationItem } from "@react-md/core/navigation/types";
 import { useNavigationExpansion } from "@react-md/core/navigation/useNavigationExpansion";
 import { usePathname } from "next/navigation.js";
 import { type ReactElement } from "react";
+
+import { LinkUnstyled } from "@/components/LinkUnstyled.jsx";
 
 const items: readonly NavigationItem[] = [
   {

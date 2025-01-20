@@ -1,4 +1,5 @@
 import { useCheckboxGroup } from "@react-md/core/form/useCheckboxGroup";
+import { StickyTableSection } from "@react-md/core/table/StickyTableSection";
 import { Table } from "@react-md/core/table/Table";
 import { TableBody } from "@react-md/core/table/TableBody";
 import { TableCell } from "@react-md/core/table/TableCell";
@@ -7,7 +8,6 @@ import { TableContainer } from "@react-md/core/table/TableContainer";
 import { TableRow } from "@react-md/core/table/TableRow";
 import type { ReactElement } from "react";
 
-import { StickyTableSection } from "@react-md/core/table/StickyTableSection";
 import styles from "./StickyColumnsExample.module.scss";
 
 const rows = Array.from({ length: 30 }, (_, i) => `row-${i + 1}`);

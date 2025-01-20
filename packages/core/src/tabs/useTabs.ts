@@ -1,4 +1,5 @@
 "use client";
+
 import {
   type Dispatch,
   type Ref,
@@ -7,11 +8,11 @@ import {
   useRef,
   useState,
 } from "react";
+
 import { type SlideDirection } from "../transition/SlideContainer.js";
 import { type UseStateInitializer, type UseStateSetter } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { useEnsuredState } from "../useEnsuredState.js";
-
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { type TabProps } from "./Tab.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

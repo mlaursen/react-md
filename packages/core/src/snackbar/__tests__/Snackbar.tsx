@@ -1,12 +1,12 @@
 import { describe, expect, it } from "@jest/globals";
-import { createRef, type ReactElement } from "react";
+import { type ReactElement, createRef } from "react";
+
 import {
-  rmdRender,
-  screen,
   type ReactMDRenderOptions,
   type RenderResult,
+  rmdRender,
+  screen,
 } from "../../test-utils/index.js";
-
 import { Snackbar } from "../Snackbar.js";
 import { ToastManager } from "../ToastManager.js";
 import { ToastManagerProvider } from "../ToastManagerProvider.js";

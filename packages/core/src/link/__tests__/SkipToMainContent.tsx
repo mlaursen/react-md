@@ -1,7 +1,7 @@
 import { describe, expect, it, jest } from "@jest/globals";
-import { createRef, type FC, type ReactNode } from "react";
-import { fireEvent, render, screen } from "../../test-utils/index.js";
+import { type FC, type ReactNode, createRef } from "react";
 
+import { fireEvent, render, screen } from "../../test-utils/index.js";
 import { SkipToMainContent } from "../SkipToMainContent.js";
 
 const MainIdWrapper: FC<{ children: ReactNode }> = ({ children }) => (

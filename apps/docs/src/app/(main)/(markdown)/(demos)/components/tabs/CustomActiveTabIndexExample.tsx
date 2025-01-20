@@ -1,11 +1,12 @@
 "use client";
+
 import { AppBar } from "@react-md/core/app-bar/AppBar";
 import { Button } from "@react-md/core/button/Button";
 import { Tab } from "@react-md/core/tabs/Tab";
 import { TabList } from "@react-md/core/tabs/TabList";
 import { useTabs } from "@react-md/core/tabs/useTabs";
 import { Typography } from "@react-md/core/typography/Typography";
-import { useState, type ReactElement } from "react";
+import { type ReactElement, useState } from "react";
 
 export default function CustomActiveTabIndexExample(): ReactElement {
   const [activeTab, setActiveTab] = useState(0);

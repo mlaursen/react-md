@@ -1,13 +1,15 @@
 "use client";
+
 import { useCSSVariables } from "@react-md/core/theme/useCSSVariables";
 import { useResizeObserver } from "@react-md/core/useResizeObserver";
 import {
+  type CSSProperties,
+  type RefCallback,
   useCallback,
   useMemo,
   useState,
-  type CSSProperties,
-  type RefCallback,
 } from "react";
+
 import { SELECTED_ICON } from "./searchParams.js";
 
 const MIN_CELL_WIDTH = 160;

@@ -1,15 +1,5 @@
 import { beforeEach, describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement } from "react";
-import {
-  act,
-  rmdRender,
-  screen,
-  userEvent,
-  waitFor,
-  waitForElementToBeRemoved,
-  within,
-} from "../../test-utils/index.js";
-import { testImmediateRaf } from "../../test-utils/jest-globals/index.js";
 
 import { Button } from "../../button/Button.js";
 import { DialogFooter } from "../../dialog/DialogFooter.js";
@@ -20,6 +10,16 @@ import {
   DEFAULT_DESKTOP_MIN_WIDTH,
   DEFAULT_PHONE_MAX_WIDTH,
 } from "../../media-queries/appSize.js";
+import {
+  act,
+  rmdRender,
+  screen,
+  userEvent,
+  waitFor,
+  waitForElementToBeRemoved,
+  within,
+} from "../../test-utils/index.js";
+import { testImmediateRaf } from "../../test-utils/jest-globals/index.js";
 import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { DropdownMenu } from "../DropdownMenu.js";
 import { MenuItem } from "../MenuItem.js";

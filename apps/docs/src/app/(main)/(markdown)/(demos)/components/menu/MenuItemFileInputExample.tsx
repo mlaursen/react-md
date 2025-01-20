@@ -1,7 +1,7 @@
-import { MenuItemFileInput } from "@react-md/core/form/MenuItemFileInput";
 import { useFileUpload } from "@react-md/core/files/useFileUpload";
+import { MenuItemFileInput } from "@react-md/core/form/MenuItemFileInput";
 import { DropdownMenu } from "@react-md/core/menu/DropdownMenu";
-import { useState, type ReactElement } from "react";
+import { type ReactElement, useState } from "react";
 
 const extensions = [
   "svg",

@@ -7,6 +7,9 @@ import {
   jest,
 } from "@jest/globals";
 import { type ReactElement } from "react";
+
+import { Button } from "../../button/Button.js";
+import { FontIcon } from "../../icon/FontIcon.js";
 import {
   act,
   fireEvent,
@@ -16,9 +19,6 @@ import {
   waitFor,
   waitForElementToBeRemoved,
 } from "../../test-utils/index.js";
-
-import { Button } from "../../button/Button.js";
-import { FontIcon } from "../../icon/FontIcon.js";
 import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { isElementVisible } from "../../utils/isElementVisible.js";
 import { parseCssLengthUnit } from "../../utils/parseCssLengthUnit.js";
@@ -27,7 +27,7 @@ import {
   DEFAULT_TOOLTIP_DENSE_SPACING,
   DEFAULT_TOOLTIP_SPACING,
 } from "../constants.js";
-import { useTooltip, type TooltipOptions } from "../useTooltip.js";
+import { type TooltipOptions, useTooltip } from "../useTooltip.js";
 
 interface TestProps extends TooltipOptions {
   tooltip?: Partial<TooltipProps>;

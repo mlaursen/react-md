@@ -1,22 +1,23 @@
 "use client";
+
 import {
   type AnchorHTMLAttributes,
   type ButtonHTMLAttributes,
   type ReactElement,
   type ReactNode,
 } from "react";
+
 import { type ComponentWithRippleProps } from "../interaction/types.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
 import { type CustomLinkComponent } from "../link/Link.js";
 import { useKeyboardMovementContext } from "../movement/useKeyboardMovementProvider.js";
 import { useEnsuredId } from "../useEnsuredId.js";
-import { tab } from "./tabStyles.js";
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { type useTabs } from "./useTabs.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { type TabListProps } from "./TabList.js";
+import { tab } from "./tabStyles.js";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { type useTabs } from "./useTabs.js";
 
 /**
  * @since 6.0.0

@@ -1,4 +1,5 @@
 "use client";
+
 import { useMediaQuery } from "../media-queries/useMediaQuery.js";
 
 /**

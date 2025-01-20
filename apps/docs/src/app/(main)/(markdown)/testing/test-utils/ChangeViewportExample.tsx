@@ -1,4 +1,5 @@
 import { type ReactElement } from "react";
+
 import { FrameworkCodeSwap } from "../FrameworkCodeSwap.jsx";
 
 const BASE_CODE = `

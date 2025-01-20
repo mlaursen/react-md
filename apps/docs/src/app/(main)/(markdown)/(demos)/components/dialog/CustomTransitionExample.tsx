@@ -6,7 +6,8 @@ import { DialogHeader } from "@react-md/core/dialog/DialogHeader";
 import { DialogTitle } from "@react-md/core/dialog/DialogTitle";
 import { Typography } from "@react-md/core/typography/Typography";
 import { useToggle } from "@react-md/core/useToggle";
-import { useId, type ReactElement } from "react";
+import { type ReactElement, useId } from "react";
+
 import styles from "./CustomTransitionExample.module.scss";
 
 export default function CustomTransitionExample(): ReactElement {

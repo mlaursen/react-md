@@ -1,5 +1,7 @@
 "use client";
+
 import { useEffect, useMemo, useRef } from "react";
+
 import { type AnyFunction, type ThrottledFunction } from "./types.js";
 import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect.js";
 

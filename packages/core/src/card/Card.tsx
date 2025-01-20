@@ -1,11 +1,12 @@
-import { forwardRef, type HTMLAttributes } from "react";
+import { type HTMLAttributes, forwardRef } from "react";
+
 import { Box } from "../box/Box.js";
 import {
   type BoxAlignItems,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   type BoxOptions,
 } from "../box/styles.js";
-import { card, type CardClassNameOptions } from "./styles.js";
+import { type CardClassNameOptions, card } from "./styles.js";
 
 declare module "react" {
   interface CSSProperties {

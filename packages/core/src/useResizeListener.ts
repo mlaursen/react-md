@@ -1,5 +1,7 @@
 "use client";
+
 import { useEffect } from "react";
+
 import { delegateEvent } from "./delegateEvent.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { type useResizeObserver } from "./useResizeObserver.js";

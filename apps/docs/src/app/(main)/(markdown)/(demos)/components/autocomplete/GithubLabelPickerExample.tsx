@@ -1,5 +1,5 @@
 "use client";
-import { githubLabels, type GithubLabel } from "@/constants/githubLabels.js";
+
 import { Autocomplete } from "@react-md/core/autocomplete/Autocomplete";
 import { Avatar } from "@react-md/core/avatar/Avatar";
 import { Box } from "@react-md/core/box/Box";
@@ -19,12 +19,15 @@ import CloseIcon from "@react-md/material-icons/CloseIcon";
 import EditIcon from "@react-md/material-icons/EditIcon";
 import SettingsIcon from "@react-md/material-icons/SettingsIcon";
 import {
+  type KeyboardEvent,
+  type ReactElement,
   useId,
   useRef,
   useState,
-  type KeyboardEvent,
-  type ReactElement,
 } from "react";
+
+import { type GithubLabel, githubLabels } from "@/constants/githubLabels.js";
+
 import styles from "./GithubLabelPickerExample.module.scss";
 
 const noop = (): void => {

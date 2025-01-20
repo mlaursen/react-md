@@ -1,4 +1,5 @@
-import { forwardRef, type HTMLAttributes } from "react";
+import { type HTMLAttributes, forwardRef } from "react";
+
 import { list } from "./listStyles.js";
 
 export type ListElement = HTMLUListElement | HTMLOListElement;

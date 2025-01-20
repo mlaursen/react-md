@@ -1,5 +1,6 @@
 import { fireEvent } from "@testing-library/dom";
 import type { MouseEvent } from "react";
+
 import { wait } from "../utils/wait.js";
 
 interface XYCoords {

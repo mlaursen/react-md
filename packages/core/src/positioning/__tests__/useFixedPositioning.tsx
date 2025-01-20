@@ -7,16 +7,16 @@ import {
   it,
   jest,
 } from "@jest/globals";
-import { useRef, useState, type ReactElement } from "react";
-import { act, fireEvent, render, screen } from "../../test-utils/index.js";
+import { type ReactElement, useRef, useState } from "react";
 
+import { act, fireEvent, render, screen } from "../../test-utils/index.js";
 import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { useScaleTransition } from "../../transition/useScaleTransition.js";
 import { TOP_INNER_RIGHT_ANCHOR } from "../constants.js";
 import {
-  useFixedPositioning,
   type FixedPositioningOptions,
   type FixedPositioningTransitionCallbacks,
+  useFixedPositioning,
 } from "../useFixedPositioning.js";
 
 interface TestProps

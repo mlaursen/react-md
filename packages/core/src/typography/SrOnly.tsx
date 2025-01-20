@@ -1,4 +1,5 @@
-import { forwardRef, type ElementType, type HTMLAttributes } from "react";
+import { type ElementType, type HTMLAttributes, forwardRef } from "react";
+
 import { cssUtils } from "../cssUtils.js";
 import {
   type CustomTypographyComponent,

@@ -1,12 +1,14 @@
-import { DISPLAY_NONE_PHONE } from "@/constants/classnames.js";
-import { RMD_VERSION } from "@/constants/env.js";
-import { semver } from "@/utils/semver.js";
 import { DropdownMenu } from "@react-md/core/menu/DropdownMenu";
 import { MenuItem } from "@react-md/core/menu/MenuItem";
 import { Typography } from "@react-md/core/typography/Typography";
 import CheckIcon from "@react-md/material-icons/CheckIcon";
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
+
+import { DISPLAY_NONE_PHONE } from "@/constants/classnames.js";
+import { RMD_VERSION } from "@/constants/env.js";
+import { semver } from "@/utils/semver.js";
+
 import { VersionMenuItem } from "./VersionMenuItem.jsx";
 
 // I might just want to start react-md at v6

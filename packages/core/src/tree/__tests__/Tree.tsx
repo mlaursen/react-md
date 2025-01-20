@@ -1,10 +1,13 @@
 import { beforeEach, describe, expect, it, jest } from "@jest/globals";
 import {
-  createRef,
-  forwardRef,
   type AnchorHTMLAttributes,
   type ReactElement,
+  createRef,
+  forwardRef,
 } from "react";
+
+import { Divider } from "../../divider/Divider.js";
+import { FontIcon } from "../../icon/FontIcon.js";
 import {
   fireEvent,
   rmdRender,
@@ -12,9 +15,6 @@ import {
   userEvent,
   waitFor,
 } from "../../test-utils/index.js";
-
-import { Divider } from "../../divider/Divider.js";
-import { FontIcon } from "../../icon/FontIcon.js";
 import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { type RenderRecursiveItemsProps } from "../../utils/RenderRecursively.js";
 import { alphaNumericSort } from "../../utils/alphaNumericSort.js";
@@ -27,7 +27,7 @@ import {
   type TreeData,
   type TreeItemNode,
 } from "../types.js";
-import { useTree, type TreeHookOptions } from "../useTree.js";
+import { type TreeHookOptions, useTree } from "../useTree.js";
 import { type TreeExpansion } from "../useTreeExpansion.js";
 import { type TreeSelection } from "../useTreeSelection.js";
 

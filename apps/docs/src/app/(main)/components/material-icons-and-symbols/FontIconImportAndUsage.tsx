@@ -1,5 +1,6 @@
 import { Typography } from "@react-md/core/typography/Typography";
 import { type ReactElement } from "react";
+
 import { AdditionalChanges } from "./AdditionalChanges.jsx";
 import { CopyCode } from "./CopyCode.jsx";
 import { IconImportAndUsage } from "./IconImportAndUsage.jsx";

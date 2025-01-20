@@ -1,5 +1,6 @@
-import { forwardRef, type ElementType, type HTMLAttributes } from "react";
-import { divider, type DividerClassNameOptions } from "./styles.js";
+import { type ElementType, type HTMLAttributes, forwardRef } from "react";
+
+import { type DividerClassNameOptions, divider } from "./styles.js";
 
 export type DividerElement = HTMLHRElement | HTMLDivElement;
 

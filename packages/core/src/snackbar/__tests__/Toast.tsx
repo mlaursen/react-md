@@ -1,13 +1,13 @@
 import { beforeEach, describe, expect, it, jest } from "@jest/globals";
-import { createRef, type ReactElement } from "react";
+import { type ReactElement, createRef } from "react";
+
+import { FontIcon } from "../../icon/FontIcon.js";
 import {
+  type RenderResult,
   rmdRender as baseRender,
   screen,
   userEvent,
-  type RenderResult,
 } from "../../test-utils/index.js";
-
-import { FontIcon } from "../../icon/FontIcon.js";
 import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { Typography } from "../../typography/Typography.js";
 import { Toast } from "../Toast.js";

@@ -1,7 +1,8 @@
-import { forwardRef, type AriaAttributes, type HTMLAttributes } from "react";
+import { type AriaAttributes, type HTMLAttributes, forwardRef } from "react";
+
 import { type MaterialIconFamily, type MaterialIconName } from "./material.js";
 import { MATERIAL_CONFIG } from "./materialConfig.js";
-import { icon, type MaterialIconClassNameOptions } from "./styles.js";
+import { type MaterialIconClassNameOptions, icon } from "./styles.js";
 
 /** @since 6.0.0 */
 export interface MaterialIconProps

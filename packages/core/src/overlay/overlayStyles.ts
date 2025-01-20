@@ -1,8 +1,9 @@
 import { cnb } from "cnbuilder";
+
 import {
-  box,
   type BoxAlignItems,
   type BoxJustifyContent,
+  box,
 } from "../box/styles.js";
 import {
   type CSSTransitionClassNamesObject,

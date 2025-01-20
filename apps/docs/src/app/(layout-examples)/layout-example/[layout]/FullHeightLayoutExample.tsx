@@ -1,4 +1,5 @@
 import { type ReactElement } from "react";
+
 import { ExpandableLayoutExample } from "./ExpandableLayoutExample.jsx";
 import { type ExampleLayoutProps } from "./layouts.js";
 

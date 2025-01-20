@@ -1,5 +1,6 @@
 import { cnb } from "cnbuilder";
-import { cssUtils, type TextOverflow } from "../cssUtils.js";
+
+import { type TextOverflow, cssUtils } from "../cssUtils.js";
 import type { SimplePosition } from "../positioning/types.js";
 import { bem } from "../utils/bem.js";
 

@@ -1,5 +1,8 @@
 import { beforeEach, describe, expect, it, jest } from "@jest/globals";
-import { createRef, type ReactElement } from "react";
+import { type ReactElement, createRef } from "react";
+
+import { SsrProvider } from "../../SsrProvider.js";
+import { Button } from "../../button/Button.js";
 import {
   fireEvent,
   render,
@@ -7,9 +10,6 @@ import {
   waitFor,
   within,
 } from "../../test-utils/index.js";
-
-import { SsrProvider } from "../../SsrProvider.js";
-import { Button } from "../../button/Button.js";
 import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { useToggle } from "../../useToggle.js";
 import { DISPLAY_NONE_CLASS } from "../../utils/isElementVisible.js";

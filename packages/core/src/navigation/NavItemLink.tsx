@@ -1,10 +1,12 @@
 "use client";
+
 import {
-  forwardRef,
-  useEffect,
   type AnchorHTMLAttributes,
   type LiHTMLAttributes,
+  forwardRef,
+  useEffect,
 } from "react";
+
 import { cssUtils } from "../cssUtils.js";
 import { type ComponentWithRippleProps } from "../interaction/types.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";

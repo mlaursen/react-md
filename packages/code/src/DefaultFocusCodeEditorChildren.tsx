@@ -1,4 +1,5 @@
 import { type ReactElement } from "react";
+
 import { InlineCode } from "./InlineCode.js";
 
 export function DefaultFocusCodeEditorChildren(): ReactElement {

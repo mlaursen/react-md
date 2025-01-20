@@ -1,3 +1,9 @@
+import { type PackageManager } from "@react-md/code/PackageManagerProvider";
+import { isColorSchemeMode } from "@react-md/core/theme/isColorScheme";
+import { type ColorSchemeMode } from "@react-md/core/theme/types";
+import { cookies } from "next/headers.js";
+import "server-only";
+
 import fallbackThemeStyles from "@/components/LoadThemeStyles/SystemTheme.module.scss";
 import { type CodeLanguage } from "@/components/MainLayout/ConfigureTypescriptEnabled.jsx";
 import {
@@ -9,11 +15,7 @@ import {
 import { PRISM_THEMES, type PrismTheme } from "@/constants/prismThemes.js";
 import { DISABLE_DEFAULT_SYSTEM_THEME } from "@/constants/rmdConfig.jsx";
 import { getCookie } from "@/utils/serverCookies.js";
-import { type PackageManager } from "@react-md/code/PackageManagerProvider";
-import { isColorSchemeMode } from "@react-md/core/theme/isColorScheme";
-import { type ColorSchemeMode } from "@react-md/core/theme/types";
-import { cookies } from "next/headers.js";
-import "server-only";
+
 import { pascalCase } from "./strings.js";
 
 export interface AppCookies {

@@ -94,11 +94,12 @@ Then use the `LinkUnstyled` as the `linkComponent` and pass the current
 `pathname` with the `useHref` hook:
 
 ```tsx
-import { LinkUnstyled } from "@/components/LinkUnstyled.jsx";
 import { Navigation } from "@react-md/core/navigation/Navigation";
 import { type NavigationItem } from "@react-md/core/navigation/types";
 import { type ReactElement } from "react";
 import { useHref } from "react-router-dom";
+
+import { LinkUnstyled } from "@/components/LinkUnstyled.jsx";
 
 const items: readonly NavigationItem[] = [
   {

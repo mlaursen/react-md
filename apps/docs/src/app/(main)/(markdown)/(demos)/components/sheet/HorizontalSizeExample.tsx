@@ -1,4 +1,5 @@
 "use client";
+
 import { Box } from "@react-md/core/box/Box";
 import { Button } from "@react-md/core/button/Button";
 import { DialogContent } from "@react-md/core/dialog/DialogContent";
@@ -11,7 +12,7 @@ import { type SheetHorizontalSize } from "@react-md/core/sheet/styles";
 import { Typography } from "@react-md/core/typography/Typography";
 import { useToggle } from "@react-md/core/useToggle";
 import CloseIcon from "@react-md/material-icons/CloseIcon";
-import { useState, type ReactElement } from "react";
+import { type ReactElement, useState } from "react";
 
 export default function HorizontalSizeExample(): ReactElement {
   const { toggled, enable, disable } = useToggle();

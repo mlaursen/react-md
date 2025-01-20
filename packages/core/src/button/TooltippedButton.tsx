@@ -1,11 +1,13 @@
 "use client";
-import { forwardRef, type ReactNode } from "react";
+
+import { type ReactNode, forwardRef } from "react";
+
 import { Tooltip, type TooltipProps } from "../tooltip/Tooltip.js";
 import {
-  useTooltip,
   type ProvidedTooltipProps,
   type TooltipOptions,
   type TooltippedElementEventHandlers,
+  useTooltip,
 } from "../tooltip/useTooltip.js";
 import { Button, type ButtonProps } from "./Button.js";
 import { type ButtonType } from "./buttonStyles.js";

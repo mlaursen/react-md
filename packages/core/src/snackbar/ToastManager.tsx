@@ -1,4 +1,5 @@
 import { nanoid } from "nanoid";
+
 import { type ConfigurableToastProps } from "./Toast.js";
 
 /**

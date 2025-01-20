@@ -1,14 +1,16 @@
-import { pascalCase, upperFirst } from "@/utils/strings.js";
 import {
   type MaterialIconFamily,
   type MaterialSymbolName,
 } from "@react-md/core/icon/material";
 import { type MaterialSymbolConfiguration } from "@react-md/core/icon/materialConfig";
+
+import { pascalCase, upperFirst } from "@/utils/strings.js";
+
 import {
   ICON_NAME_FIXES,
+  type IconsByCategory,
   MATERIAL_ICONS,
   MATERIAL_SYMBOLS,
-  type IconsByCategory,
   type MaterialIconAndSymbolName,
 } from "./metadata.js";
 import { isMaterialIconType } from "./searchParams.js";

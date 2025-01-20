@@ -1,7 +1,8 @@
 "use client";
+
 import { useSsr } from "@react-md/core/SsrProvider";
 import { Typography } from "@react-md/core/typography/Typography";
-import { useRef, type ReactElement } from "react";
+import { type ReactElement, useRef } from "react";
 
 export default function CheckForSsrExample(): ReactElement {
   const ssr = useSsr();

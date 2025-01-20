@@ -1,5 +1,7 @@
 "use client";
+
 import { useRef } from "react";
+
 import { isTypeEvent } from "../movement/utils.js";
 import {
   type ComboboxImplementation,

@@ -1,16 +1,16 @@
 import { describe, expect, it, jest } from "@jest/globals";
-import { createRef, type MouseEvent } from "react";
+import { type MouseEvent, createRef } from "react";
+
 import {
   render,
   rmdRender,
   screen,
   userEvent,
 } from "../../test-utils/index.js";
-
 import { ToastActionButton } from "../ToastActionButton.js";
 import {
-  CurrentToastActionsProvider,
   type CurrentToastActions,
+  CurrentToastActionsProvider,
 } from "../useCurrentToastActions.js";
 
 describe("ToastActionButton", () => {

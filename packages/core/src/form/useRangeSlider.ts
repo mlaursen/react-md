@@ -1,5 +1,7 @@
 "use client";
+
 import { useState } from "react";
+
 import { type UseStateInitializer, type UseStateSetter } from "../types.js";
 import { type SliderValueOptions } from "./useSlider.js";
 

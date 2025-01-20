@@ -1,4 +1,5 @@
 "use client";
+
 import { box } from "@react-md/core/box/styles";
 import { Fieldset } from "@react-md/core/form/Fieldset";
 import { Form } from "@react-md/core/form/Form";
@@ -6,7 +7,8 @@ import { Legend } from "@react-md/core/form/Legend";
 import { Slider } from "@react-md/core/form/Slider";
 import { useRangeSlider } from "@react-md/core/form/useRangeSlider";
 import { useSlider } from "@react-md/core/form/useSlider";
-import { useId, type ReactElement } from "react";
+import { type ReactElement, useId } from "react";
+
 import styles from "./SliderMarks.module.scss";
 
 const vertical = false;

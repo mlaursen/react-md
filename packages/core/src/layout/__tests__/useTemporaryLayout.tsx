@@ -1,5 +1,6 @@
 import { beforeEach, describe, expect, it } from "@jest/globals";
 import { type ReactNode } from "react";
+
 import { AppBar } from "../../app-bar/AppBar.js";
 import { AppBarTitle } from "../../app-bar/AppBarTitle.js";
 import { Button } from "../../button/Button.js";
@@ -16,8 +17,8 @@ import {
 import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { Main } from "../Main.js";
 import {
-  useTemporaryLayout,
   type TemporaryLayoutOptions,
+  useTemporaryLayout,
 } from "../useTemporaryLayout.js";
 
 interface LayoutProps extends Omit<TemporaryLayoutOptions, "pathname"> {

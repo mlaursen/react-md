@@ -1,4 +1,5 @@
-import { forwardRef, type HTMLAttributes } from "react";
+import { type HTMLAttributes, forwardRef } from "react";
+
 import { dialogHeader } from "./styles.js";
 
 export type DialogHeaderProps = HTMLAttributes<HTMLDivElement>;

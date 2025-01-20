@@ -1,5 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
-import { createRef, type FC, type ReactElement, type ReactNode } from "react";
+import { type FC, type ReactElement, type ReactNode, createRef } from "react";
+
 import { useRadioGroup } from "../../form/useRadioGroup.js";
 import { render, screen, userEvent, within } from "../../test-utils/index.js";
 import { Table } from "../Table.js";

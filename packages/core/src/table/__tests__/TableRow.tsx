@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { render, screen } from "../../test-utils/index.js";
 
+import { render, screen } from "../../test-utils/index.js";
 import { Table } from "../Table.js";
 import { TableBody } from "../TableBody.js";
 import { TableCell } from "../TableCell.js";

@@ -1,7 +1,7 @@
 import { type Element, type Node, type Root } from "hast";
 import { type Plugin } from "unified";
 import { is } from "unist-util-is";
-import { visit, type Test } from "unist-util-visit";
+import { type Test, visit } from "unist-util-visit";
 
 // https://stackoverflow.com/a/1636354/744230
 const HEX_CODE_REGEX = /#(?:[0-9a-fA-F]{3}){1,2}/gim;

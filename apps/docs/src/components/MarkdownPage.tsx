@@ -1,6 +1,7 @@
 import { Snackbar } from "@react-md/core/snackbar/Snackbar";
 import { ToastManagerProvider } from "@react-md/core/snackbar/ToastManagerProvider";
 import { type ReactElement, type ReactNode } from "react";
+
 import styles from "./MarkdownPage.module.scss";
 
 export interface MarkdownPageProps {

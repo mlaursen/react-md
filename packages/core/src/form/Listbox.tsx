@@ -5,6 +5,7 @@ import {
   type Ref,
   useMemo,
 } from "react";
+
 import { Menu, type MenuProps } from "../menu/Menu.js";
 import { type LabelRequiredForA11y } from "../types.js";
 import { ListboxProvider } from "./ListboxProvider.js";

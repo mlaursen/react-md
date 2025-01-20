@@ -8,8 +8,8 @@ import {
 } from "./useExpandableLayout.js";
 import { useExpandableLayout } from "./useExpandableLayout.js";
 import {
-  useLayoutWindowSplitter,
   type LayoutWindowSplitterOptions,
+  useLayoutWindowSplitter,
 } from "./useLayoutWindowSplitter.js";
 
 /**

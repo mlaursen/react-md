@@ -1,11 +1,13 @@
 "use client";
+
 import {
-  useCallback,
-  useState,
   type ReactNode,
   type Ref,
   type RefCallback,
+  useCallback,
+  useState,
 } from "react";
+
 import { useEnsuredRef } from "../useEnsuredRef.js";
 import { useIntersectionObserver } from "../useIntersectionObserver.js";
 import { useTableContainer } from "./TableContainerProvider.js";

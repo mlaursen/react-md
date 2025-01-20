@@ -1,6 +1,7 @@
 import { TextContainer } from "@react-md/core/typography/TextContainer";
 import { Typography } from "@react-md/core/typography/Typography";
 import { type ReactElement } from "react";
+
 import styles from "./SimpleExample.module.scss";
 
 export default function SimpleExample(): ReactElement {

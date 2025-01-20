@@ -1,8 +1,9 @@
 "use client";
+
 import { box } from "@react-md/core/box/styles";
 import { Form } from "@react-md/core/form/Form";
 import { Switch } from "@react-md/core/form/Switch";
-import { useState, type ReactElement } from "react";
+import { type ReactElement, useState } from "react";
 
 export default function ControllingSwitches(): ReactElement {
   const [checked, setChecked] = useState(false);

@@ -1,5 +1,6 @@
 import { cnb } from "cnbuilder";
 import { type HTMLAttributes, type ReactElement } from "react";
+
 import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-slider-mark");

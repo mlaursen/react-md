@@ -1,6 +1,7 @@
 import { Box } from "@react-md/core/box/Box";
 import { Typography } from "@react-md/core/typography/Typography";
 import { type ReactElement, type ReactNode } from "react";
+
 import styles from "./ColorHeadingWrapper.module.scss";
 
 export interface ColorHeadingWrapperProps {

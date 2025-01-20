@@ -1,12 +1,14 @@
+import { getTransformedNpmCode } from "docs-generator/utils/transformNpmCode";
+import { type ReactElement } from "react";
+
 import { MarkdownCode } from "@/components/MarkdownCode.jsx";
 import { getPackageManagerJsx } from "@/components/PackageManagerCodeBlock/getPackageManagerJsx.jsx";
 import { TransformTypescriptCodeBlock } from "@/components/TransformTypescriptCodeBlock.jsx";
-import { getTransformedNpmCode } from "docs-generator/utils/transformNpmCode";
-import { type ReactElement } from "react";
-import { type TestFramework } from "./constants.js";
+
 import { RenderFramework } from "./RenderFramework.jsx";
 import { TestFrameworkNpmCode } from "./TestFrameworkNpmCode.jsx";
 import { TestFrameworksToggle } from "./TestFrameworksToggle.jsx";
+import { type TestFramework } from "./constants.js";
 
 export interface TestFrameworkCodeBlockProps {
   lang: "sh" | "tsx" | "diff";

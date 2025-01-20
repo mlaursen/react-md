@@ -1,5 +1,8 @@
 import { describe, expect, it, jest } from "@jest/globals";
-import { createRef, type ReactElement, type Ref } from "react";
+import { type ReactElement, type Ref, createRef } from "react";
+
+import { UserInteractionModeProvider } from "../../interaction/UserInteractionModeProvider.js";
+import { INTERACTION_CONFIG } from "../../interaction/config.js";
 import {
   fireEvent,
   render,
@@ -7,9 +10,6 @@ import {
   userEvent,
   waitFor,
 } from "../../test-utils/index.js";
-
-import { UserInteractionModeProvider } from "../../interaction/UserInteractionModeProvider.js";
-import { INTERACTION_CONFIG } from "../../interaction/config.js";
 import { List } from "../List.js";
 import { ListItem, type ListItemProps } from "../ListItem.js";
 

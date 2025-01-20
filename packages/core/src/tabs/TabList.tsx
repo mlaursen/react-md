@@ -1,21 +1,22 @@
 "use client";
+
 import {
+  type HTMLAttributes,
   forwardRef,
   useEffect,
   useRef,
   useState,
-  type HTMLAttributes,
 } from "react";
+
 import { useAppSize } from "../media-queries/AppSizeProvider.js";
 import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
-import { type GetTabListScrollToOptions } from "./getTabListScrollToOptions.js";
 import {
-  TabListScrollButton,
   type BaseTabListScrollButtonProps,
+  TabListScrollButton,
 } from "./TabListScrollButton.js";
-import { tabList, type TabsAlignment } from "./tabListStyles.js";
+import { type GetTabListScrollToOptions } from "./getTabListScrollToOptions.js";
+import { type TabsAlignment, tabList } from "./tabListStyles.js";
 import { useTabList } from "./useTabList.js";
-
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { type useTabs } from "./useTabs.js";
 

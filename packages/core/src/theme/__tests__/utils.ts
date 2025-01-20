@@ -1,4 +1,5 @@
 import { describe, expect, it } from "@jest/globals";
+
 import { getLuminance, hexToRGB, isContrastCompliant } from "../utils.js";
 
 describe("getLuminance", () => {

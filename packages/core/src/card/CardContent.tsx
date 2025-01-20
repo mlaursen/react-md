@@ -1,5 +1,6 @@
-import { forwardRef, type HTMLAttributes } from "react";
-import { cardContent, type CardContentClassNameOptions } from "./styles.js";
+import { type HTMLAttributes, forwardRef } from "react";
+
+import { type CardContentClassNameOptions, cardContent } from "./styles.js";
 
 /**
  * @since 6.0.0 Renamed `disableExtraPadding` to `disableLastChildPadding` and

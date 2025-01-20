@@ -1,6 +1,8 @@
 "use client";
+
 import { type CSSProperties, type ReactElement, type ReactNode } from "react";
-import { Sheet, type BaseSheetProps } from "../sheet/Sheet.js";
+
+import { type BaseSheetProps, Sheet } from "../sheet/Sheet.js";
 import { type LabelRequiredForA11y, type PropsWithRef } from "../types.js";
 import { type RenderMenuAsSheet } from "./MenuConfigurationProvider.js";
 

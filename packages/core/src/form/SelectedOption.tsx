@@ -1,5 +1,6 @@
 import { cnb } from "cnbuilder";
 import { type ReactElement, type ReactNode } from "react";
+
 import { Box, type BoxProps } from "../box/Box.js";
 import { cssUtils } from "../cssUtils.js";
 import { type OptionProps } from "./Option.js";

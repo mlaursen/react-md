@@ -1,5 +1,7 @@
 "use client";
-import { forwardRef, type HTMLAttributes } from "react";
+
+import { type HTMLAttributes, forwardRef } from "react";
+
 import { type TextOverflow } from "../cssUtils.js";
 import { Portal } from "../portal/Portal.js";
 import { type SimplePosition } from "../positioning/types.js";

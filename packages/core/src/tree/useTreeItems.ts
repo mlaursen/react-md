@@ -1,9 +1,10 @@
 import { useMemo } from "react";
+
 import type {
-  TreeItemSorter,
-  TreeItemNode,
-  TreeData,
   DefaultTreeItemNode,
+  TreeData,
+  TreeItemNode,
+  TreeItemSorter,
 } from "./types.js";
 
 /**

@@ -1,8 +1,9 @@
 import { afterEach, vi } from "vitest";
+
 import { resizeObserverManager } from "../../useResizeObserver.js";
 import {
-  type SetupResizeObserverMockOptions,
   ResizeObserverMock,
+  type SetupResizeObserverMockOptions,
 } from "../mocks/ResizeObserver.js";
 
 /**

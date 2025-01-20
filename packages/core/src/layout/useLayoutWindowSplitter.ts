@@ -1,12 +1,13 @@
 "use client";
+
 import { type UncontrolledDraggableOptions } from "../draggable/useDraggable.js";
 import { type UseStateInitializer } from "../types.js";
 import { useWindowSize } from "../useWindowSize.js";
 import {
-  useWindowSplitter,
   type WindowSplitterImplementation,
   type WindowSplitterOptions,
   type WindowSplitterWidgetProps,
+  useWindowSplitter,
 } from "../window-splitter/useWindowSplitter.js";
 
 /**

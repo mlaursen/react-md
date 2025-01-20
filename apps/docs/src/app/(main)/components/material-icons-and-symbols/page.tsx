@@ -1,6 +1,8 @@
-import { ReturnToTop } from "@/components/ReturnToTop.jsx";
 import { NoSsr } from "@react-md/core/NoSsr";
 import { type ReactElement } from "react";
+
+import { ReturnToTop } from "@/components/ReturnToTop.jsx";
+
 import { FiltersSheet } from "./FiltersSheet.jsx";
 import { FullScreenVirtualizedList } from "./FullScreenVirtualizedList.jsx";
 import { HowToUseSheet } from "./HowToUseSheet.jsx";

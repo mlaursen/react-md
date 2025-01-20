@@ -1,4 +1,5 @@
 "use client";
+
 import { Box } from "@react-md/core/box/Box";
 import { Button } from "@react-md/core/button/Button";
 import { Card } from "@react-md/core/card/Card";
@@ -7,7 +8,8 @@ import { CardFooter } from "@react-md/core/card/CardFooter";
 import { ScaleTransition } from "@react-md/core/transition/ScaleTransition";
 import { Typography } from "@react-md/core/typography/Typography";
 import { useToggle } from "@react-md/core/useToggle";
-import { useState, type ReactElement } from "react";
+import { type ReactElement, useState } from "react";
+
 import styles from "./HiddenWhileExitedExample.module.scss";
 
 export default function HiddenWhileExitedExample(): ReactElement {

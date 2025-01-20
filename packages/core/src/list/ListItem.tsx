@@ -1,10 +1,12 @@
 "use client";
-import { forwardRef, type HTMLAttributes } from "react";
+
+import { type HTMLAttributes, forwardRef } from "react";
+
 import { type ComponentWithRippleProps } from "../interaction/types.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
-import { getListItemHeight } from "./getListItemHeight.js";
 import { ListItemChildren } from "./ListItemChildren.js";
+import { getListItemHeight } from "./getListItemHeight.js";
 import { listItem } from "./listItemStyles.js";
 import { type ListItemChildrenProps, type ListItemHeight } from "./types.js";
 

@@ -1,9 +1,10 @@
 import { cnb } from "cnbuilder";
+
 import {
-  cssUtils,
   type OutlineColor,
   type TextColor,
   type ThemeColor,
+  cssUtils,
 } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
 

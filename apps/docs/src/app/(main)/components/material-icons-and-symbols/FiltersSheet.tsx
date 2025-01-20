@@ -1,4 +1,5 @@
 "use client";
+
 import { AppBar } from "@react-md/core/app-bar/AppBar";
 import { box } from "@react-md/core/box/styles";
 import { Button } from "@react-md/core/button/Button";
@@ -9,7 +10,8 @@ import { useCSSTransition } from "@react-md/core/transition/useCSSTransition";
 import CloseOutlinedIcon from "@react-md/material-icons/CloseOutlinedIcon";
 import RefreshOutlinedIcon from "@react-md/material-icons/RefreshOutlinedIcon";
 import { cnb } from "cnbuilder";
-import { useEffect, useId, useState, type ReactElement } from "react";
+import { type ReactElement, useEffect, useId, useState } from "react";
+
 import styles from "./FiltersSheet.module.scss";
 import { FiltersSheetContent } from "./FiltersSheetContent.jsx";
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";

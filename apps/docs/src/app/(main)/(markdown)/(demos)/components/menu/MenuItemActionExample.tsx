@@ -1,9 +1,10 @@
 "use client";
+
 import { Box } from "@react-md/core/box/Box";
 import { DropdownMenu } from "@react-md/core/menu/DropdownMenu";
 import { MenuItem } from "@react-md/core/menu/MenuItem";
 import { Typography } from "@react-md/core/typography/Typography";
-import { useState, type ReactElement } from "react";
+import { type ReactElement, useState } from "react";
 
 export default function MenuitemActionExample(): ReactElement {
   const [lastClicked, setLastClicked] = useState("");

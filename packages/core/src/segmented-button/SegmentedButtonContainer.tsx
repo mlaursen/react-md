@@ -1,7 +1,8 @@
-import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
+import { type HTMLAttributes, type ReactNode, forwardRef } from "react";
+
 import {
-  segmentedButtonContainerStyles,
   type SegmentedButtonContainerClassNameOptions,
+  segmentedButtonContainerStyles,
 } from "./segmentedButtonContainerStyles.js";
 
 /**

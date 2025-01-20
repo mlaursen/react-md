@@ -1,10 +1,12 @@
 "use client";
-import { desserts } from "@/constants/desserts.js";
+
 import { Autocomplete } from "@react-md/core/autocomplete/Autocomplete";
 import { Avatar } from "@react-md/core/avatar/Avatar";
 import { cssUtils } from "@react-md/core/cssUtils";
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
+
+import { desserts } from "@/constants/desserts.js";
 
 export default function GetOptionPropsExample(): ReactElement {
   return (

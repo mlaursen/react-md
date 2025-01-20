@@ -1,20 +1,21 @@
 import { describe, expect, it } from "@jest/globals";
+
 import {
+  type FileUploadStats,
   getFileParser,
   getSplitFileUploads,
-  type FileUploadStats,
 } from "../utils.js";
 import {
-  isGenericFileError,
-  GenericFileError,
   FileAccessError,
+  FileExtensionError,
+  FileSizeError,
+  GenericFileError,
+  TooManyFilesError,
   isFileAccessError,
   isFileExtensionError,
-  FileExtensionError,
-  validateFiles,
+  isGenericFileError,
   isValidFileName,
-  FileSizeError,
-  TooManyFilesError,
+  validateFiles,
 } from "../validation.js";
 
 function createFile(name: string, bytes: number): File {

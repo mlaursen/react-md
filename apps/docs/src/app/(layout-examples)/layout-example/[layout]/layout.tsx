@@ -1,7 +1,9 @@
-import { pascalCase } from "@/utils/strings.js";
 import { type Metadata } from "next";
 import { notFound } from "next/navigation.js";
 import { type ComponentType, type ReactElement, type ReactNode } from "react";
+
+import { pascalCase } from "@/utils/strings.js";
+
 import { ExpandableLayoutExample } from "./ExpandableLayoutExample.jsx";
 import { FullHeightExpandableLayoutExample } from "./FullHeightExpandableLayoutExample.jsx";
 import { FullHeightLayoutExample } from "./FullHeightLayoutExample.jsx";
@@ -9,8 +11,8 @@ import { FullHeightResizableLayoutExample } from "./FullHeightResizableLayoutExa
 import { ResizableLayoutExample } from "./ResizableLayoutExample.jsx";
 import { TemporaryLayoutExample } from "./TemporaryLayoutExample.jsx";
 import {
-  LAYOUT_TYPES,
   type ExampleLayoutProps,
+  LAYOUT_TYPES,
   type LayoutType,
 } from "./layouts.js";
 

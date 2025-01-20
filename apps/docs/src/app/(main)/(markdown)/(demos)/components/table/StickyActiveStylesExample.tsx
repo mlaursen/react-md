@@ -10,6 +10,7 @@ import {
   isTableHeaderStickyActive,
 } from "@react-md/core/table/useStickyTableSection";
 import { type ReactElement } from "react";
+
 import styles from "./StickyActiveStylesExample.module.scss";
 
 export default function StickyActiveStylesExample(): ReactElement {

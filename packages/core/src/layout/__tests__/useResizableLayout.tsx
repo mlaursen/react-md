@@ -7,6 +7,7 @@ import {
   jest,
 } from "@jest/globals";
 import { type ReactNode } from "react";
+
 import { AppBar } from "../../app-bar/AppBar.js";
 import { AppBarTitle } from "../../app-bar/AppBarTitle.js";
 import { Button } from "../../button/Button.js";
@@ -30,8 +31,8 @@ import { LayoutWindowSplitter } from "../LayoutWindowSplitter.js";
 import { Main } from "../Main.js";
 import { DEFAULT_HORIZONTAL_LAYOUT_TRANSITION_CLASSNAMES } from "../useHorizontalLayoutTransition.js";
 import {
-  useResizableLayout,
   type ResizableLayoutOptions,
+  useResizableLayout,
 } from "../useResizableLayout.js";
 
 const OFFSCREEN_CLASS = "rmd-sheet--offscreen";

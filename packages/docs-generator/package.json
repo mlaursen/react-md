@@ -41,6 +41,7 @@
     "@prettier/sync": "^0.5.2",
     "@react-md/code": "workspace:*",
     "@react-md/core": "workspace:*",
+    "@trivago/prettier-plugin-sort-imports": "^5.2.1",
     "@types/estree-jsx": "^1.0.5",
     "@types/hast": "^3.0.4",
     "@types/unist": "^3.0.3",

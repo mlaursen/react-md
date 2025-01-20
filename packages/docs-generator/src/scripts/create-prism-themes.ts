@@ -11,9 +11,10 @@ import postcssCombineDuplicatedSelectors from "postcss-combine-duplicated-select
 import postcssRemovePrefixes from "postcss-remove-prefixes";
 import postcssSorting from "postcss-sorting";
 import { format } from "prettier";
+
 import {
-  compileScss,
   type CompileScssOptions,
+  compileScss,
 } from "../utils/compileScssModule.js";
 import { getProjectRootDir } from "../utils/getProjectRootDir.js";
 import { loadDemoScssInNode } from "../utils/getScssCodeFile.js";

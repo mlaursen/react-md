@@ -1,5 +1,6 @@
 import { cnb } from "cnbuilder";
-import { cssUtils, type BackgroundColor } from "../cssUtils.js";
+
+import { type BackgroundColor, cssUtils } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
 
 declare module "react" {

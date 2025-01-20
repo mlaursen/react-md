@@ -1,11 +1,12 @@
-import { SegmentedButtonGroup } from "@/components/SegmentedButtonGroup.jsx";
 import {
-  useDir,
   type Dir,
+  useDir,
 } from "@react-md/core/typography/WritingDirectionProvider";
 import FormatTextdirectionLToROutlinedIcon from "@react-md/material-icons/FormatTextdirectionLToROutlinedIcon";
 import FormatTextdirectionRToLOutlinedIcon from "@react-md/material-icons/FormatTextdirectionRToLOutlinedIcon";
 import { type ReactElement, type ReactNode } from "react";
+
+import { SegmentedButtonGroup } from "@/components/SegmentedButtonGroup.jsx";
 
 const directions: readonly Dir[] = ["ltr", "rtl"];
 const ICONS: Record<Dir, ReactNode> = {

@@ -1,7 +1,9 @@
 "use client";
+
 import { cnb } from "cnbuilder";
 import type { CSSProperties } from "react";
 import { useState } from "react";
+
 import { useEnsuredRef } from "../useEnsuredRef.js";
 import { DISPLAY_NONE_CLASS } from "../utils/isElementVisible.js";
 import { collapse } from "./collapseStyles.js";

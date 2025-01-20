@@ -4,7 +4,8 @@ import {
   type TypographyProps,
 } from "@react-md/core/typography/Typography";
 import { cnb } from "cnbuilder";
-import { forwardRef, type ReactNode } from "react";
+import { type ReactNode, forwardRef } from "react";
+
 import { DefaultFocusCodeEditorChildren } from "./DefaultFocusCodeEditorChildren.js";
 
 export interface FocusCodeEditorProps extends TypographyProps {

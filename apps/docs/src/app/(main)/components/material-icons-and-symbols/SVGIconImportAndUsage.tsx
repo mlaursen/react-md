@@ -1,10 +1,12 @@
-import { Blockquote } from "@/components/Blockquote.jsx";
-import { PackageManagerCodeBlock } from "@/components/PackageManagerCodeBlock/PackageManagerCodeBlock.jsx";
 import { Typography } from "@react-md/core/typography/Typography";
 import { cnb } from "cnbuilder";
 import Link from "next/link.js";
 import { usePathname } from "next/navigation.js";
 import { type ReactElement } from "react";
+
+import { Blockquote } from "@/components/Blockquote.jsx";
+import { PackageManagerCodeBlock } from "@/components/PackageManagerCodeBlock/PackageManagerCodeBlock.jsx";
+
 import { AdditionalChanges } from "./AdditionalChanges.jsx";
 import { CopyCode } from "./CopyCode.js";
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";

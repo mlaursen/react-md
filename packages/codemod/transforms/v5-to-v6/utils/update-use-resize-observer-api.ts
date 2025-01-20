@@ -8,6 +8,7 @@ import {
   type Options,
   type VariableDeclaration,
 } from "jscodeshift";
+
 import { type ComponentDefinition, type ObjectPropertyKind } from "../../types";
 import { addImportSpecifiers } from "../../utils/addImportSpecifiers";
 import { createConst } from "../../utils/createConst";

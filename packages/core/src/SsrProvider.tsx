@@ -1,11 +1,12 @@
 "use client";
+
 import {
+  type ReactElement,
+  type ReactNode,
   createContext,
   useContext,
   useEffect,
   useState,
-  type ReactElement,
-  type ReactNode,
 } from "react";
 
 const context = createContext(false);

@@ -4,7 +4,8 @@ import { useAppSize } from "@react-md/core/media-queries/AppSizeProvider";
 import { useColorScheme } from "@react-md/core/theme/useColorScheme";
 import { Typography } from "@react-md/core/typography/Typography";
 import { cnb } from "cnbuilder";
-import { useId, type ReactElement } from "react";
+import { type ReactElement, useId } from "react";
+
 import { FilterCategoryPanel } from "./FilterCategoryPanel.jsx";
 import { FilterStylePanel } from "./FilterStylePanel.jsx";
 import { FilterSymbolCustomization } from "./FilterSymbolCustomization.jsx";

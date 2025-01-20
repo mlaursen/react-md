@@ -6,6 +6,7 @@ import {
   type MaterialSymbolWeight,
 } from "@react-md/core/icon/materialConfig";
 import { type UseStateSetter } from "@react-md/core/types";
+
 import {
   type MaterialIconAndSymbolName,
   type MaterialIconCategory,

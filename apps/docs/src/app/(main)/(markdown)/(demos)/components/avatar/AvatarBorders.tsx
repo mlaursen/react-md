@@ -1,6 +1,7 @@
 import { Avatar } from "@react-md/core/avatar/Avatar";
 import { Box } from "@react-md/core/box/Box";
 import { type ReactElement } from "react";
+
 import styles from "./AvatarBorders.module.scss";
 
 export default function AvatarBorders(): ReactElement {

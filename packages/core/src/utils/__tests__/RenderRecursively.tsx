@@ -1,6 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
+
 import { Divider } from "../../divider/Divider.js";
 import { List } from "../../list/List.js";
 import { render, screen } from "../../test-utils/index.js";

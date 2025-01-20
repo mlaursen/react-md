@@ -1,11 +1,11 @@
 import { type FixedPositionOptions, type VerticalPosition } from "./types.js";
 import {
+  type YCoordConfig,
   getAboveCoord,
   getBelowCoord,
   getBottomCoord,
   getCenterYCoord,
   getTopCoord,
-  type YCoordConfig,
 } from "./utils.js";
 
 /** @internal */

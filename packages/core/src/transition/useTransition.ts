@@ -1,8 +1,11 @@
 "use client";
+
 import { useEffect, useReducer, useRef, useState } from "react";
+
 import { useSsr } from "../SsrProvider.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
 import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect.js";
+import { TRANSITION_CONFIG } from "./config.js";
 import type {
   TransitionHookOptions,
   TransitionHookReturnValue,
@@ -10,7 +13,6 @@ import type {
   TransitionState,
 } from "./types.js";
 import { getTransitionTimeout } from "./utils.js";
-import { TRANSITION_CONFIG } from "./config.js";
 
 const INITIAL_STATE: TransitionState = {
   appearing: false,

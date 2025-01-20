@@ -1,4 +1,3 @@
-import { ReactMDLogo } from "@/components/ReactMDLogo.jsx";
 import { CodePreview } from "@react-md/code/CodePreview";
 import { Box } from "@react-md/core/box/Box";
 import { Button } from "@react-md/core/button/Button";
@@ -13,6 +12,9 @@ import { LinearProgress } from "@react-md/core/progress/LinearProgress";
 import { Typography } from "@react-md/core/typography/Typography";
 import CodeIcon from "@react-md/material-icons/CodeIcon";
 import { type ReactElement } from "react";
+
+import { ReactMDLogo } from "@/components/ReactMDLogo.jsx";
+
 import styles from "./Showcase.module.scss";
 
 export function Showcase(): ReactElement {

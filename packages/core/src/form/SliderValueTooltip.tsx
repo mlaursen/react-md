@@ -1,6 +1,8 @@
 "use client";
+
 import { cnb } from "cnbuilder";
 import { type ReactElement, type ReactNode } from "react";
+
 import { Tooltip, type TooltipProps } from "../tooltip/Tooltip.js";
 import { type CSSTransitionClassNames } from "../transition/types.js";
 import { bem } from "../utils/bem.js";

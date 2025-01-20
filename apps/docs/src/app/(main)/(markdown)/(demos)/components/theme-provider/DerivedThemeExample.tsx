@@ -1,4 +1,5 @@
 "use client";
+
 import { ThemeProvider, useTheme } from "@react-md/core/theme/ThemeProvider";
 import { type ReactElement } from "react";
 

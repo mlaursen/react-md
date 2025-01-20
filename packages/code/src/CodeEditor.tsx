@@ -1,4 +1,5 @@
 "use client";
+
 import { type PropsWithRef } from "@react-md/core/types";
 import { type TypographyProps } from "@react-md/core/typography/Typography";
 import { bem } from "@react-md/core/utils/bem";
@@ -8,6 +9,7 @@ import {
   type ReactNode,
   type TextareaHTMLAttributes,
 } from "react";
+
 import { FocusCodeEditor } from "./FocusCodeEditor.js";
 import {
   HighlightedCodeBlock,

@@ -1,4 +1,5 @@
 "use client";
+
 import { Autocomplete } from "@react-md/core/autocomplete/Autocomplete";
 import { type ReactElement } from "react";
 

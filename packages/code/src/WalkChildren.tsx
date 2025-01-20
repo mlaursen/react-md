@@ -1,10 +1,10 @@
 import {
   Children,
-  isValidElement,
-  memo,
   type FC,
   type ReactElement,
   type ReactNode,
+  isValidElement,
+  memo,
 } from "react";
 
 export interface WalkChildrenRendererProps {

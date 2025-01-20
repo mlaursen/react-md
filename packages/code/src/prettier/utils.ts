@@ -1,4 +1,5 @@
 import { type BuiltInParserName } from "prettier";
+
 import { type SupportedCodeLanguage } from "../types.js";
 
 export const BUILT_IN_PARSERS = [

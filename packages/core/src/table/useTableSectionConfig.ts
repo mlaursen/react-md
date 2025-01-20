@@ -1,5 +1,7 @@
 "use client";
+
 import { useMemo } from "react";
+
 import { useTableConfig } from "./TableConfigurationProvider.js";
 import {
   type TableConfigContext,

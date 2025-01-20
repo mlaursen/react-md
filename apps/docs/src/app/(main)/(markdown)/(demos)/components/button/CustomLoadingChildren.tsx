@@ -1,4 +1,5 @@
 "use client";
+
 import { AsyncButton } from "@react-md/core/button/AsyncButton";
 import { wait } from "@react-md/core/utils/wait";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";

@@ -1,6 +1,6 @@
 import { CircularProgress } from "@react-md/core/progress/CircularProgress";
 import { loop } from "@react-md/core/utils/loop";
-import { useEffect, useState, type ReactElement } from "react";
+import { type ReactElement, useEffect, useState } from "react";
 
 export default function DeterminateCircularProgress(): ReactElement {
   const progress = useProgress();

@@ -1,11 +1,13 @@
 "use client";
+
 import {
-  useCallback,
-  useRef,
   type ReactElement,
   type ReactNode,
   type RefObject,
+  useCallback,
+  useRef,
 } from "react";
+
 import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
 import { getLastFocusableIndex } from "../movement/utils.js";
 import { type UseStateSetter } from "../types.js";
@@ -18,8 +20,8 @@ import {
 } from "./Menu.js";
 import { MenuButton, type MenuButtonProps } from "./MenuButton.js";
 import {
-  MenuConfigurationProvider,
   type MenuConfiguration,
+  MenuConfigurationProvider,
 } from "./MenuConfigurationProvider.js";
 import { MenuItemButton, type MenuItemButtonProps } from "./MenuItemButton.js";
 import { type MenuSheetConvenienceProps } from "./MenuSheet.js";

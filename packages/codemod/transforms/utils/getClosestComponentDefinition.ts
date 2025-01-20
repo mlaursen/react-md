@@ -1,4 +1,5 @@
 import { type ASTPath, type JSCodeshift } from "jscodeshift";
+
 import { type ComponentDefinition } from "../types";
 
 export interface GetClosestComponentDefinitionOptions {

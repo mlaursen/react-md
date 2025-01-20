@@ -2,6 +2,7 @@ import { Box } from "@react-md/core/box/Box";
 import { Typography } from "@react-md/core/typography/Typography";
 import { typography } from "@react-md/core/typography/typographyStyles";
 import { type ReactElement } from "react";
+
 import NotFoundSVG from "./NotFoundSVG.jsx";
 
 export default function NotFound(): ReactElement {

@@ -1,15 +1,16 @@
+import { type CodePreviewProps } from "@react-md/code/CodePreview";
 import { dirname, join, parse, resolve } from "node:path";
 import { type Project } from "ts-morph";
+
 import { assertString } from "./assertions.js";
 import { createJsxElementContent, createJsxNode } from "./createJsxNode.js";
 import { generateDemoFile } from "./generateDemoFile.js";
 import { log } from "./log.js";
 import { parseWithTsMorph } from "./parseWithTsMorph.js";
 import {
-  replacePreElement,
   type ReplacePreElementWithJsxNodeOptions,
+  replacePreElement,
 } from "./replacePreElement.js";
-import { type CodePreviewProps } from "@react-md/code/CodePreview";
 
 interface CreateDemoMdxCodeOptions {
   demoName: string;

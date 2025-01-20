@@ -1,10 +1,11 @@
 import {
-  forwardRef,
   type AriaAttributes,
   type HTMLAttributes,
   type ReactNode,
+  forwardRef,
 } from "react";
-import { icon, type FontIconClassNameOptions } from "./styles.js";
+
+import { type FontIconClassNameOptions, icon } from "./styles.js";
 
 /**
  * @since 6.0.0 Removed the `forceSize`/`forceFontSize` props and added the

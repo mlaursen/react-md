@@ -1,4 +1,5 @@
 "use client";
+
 import { Autocomplete } from "@react-md/core/autocomplete/Autocomplete";
 import { cssUtils } from "@react-md/core/cssUtils";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";

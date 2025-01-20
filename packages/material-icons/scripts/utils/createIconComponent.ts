@@ -2,6 +2,7 @@ import { type MaterialIconFamily } from "@react-md/core/icon/material";
 import lodash from "lodash";
 import { writeFile } from "node:fs/promises";
 import { join } from "node:path";
+
 import { GENERATED_FILE_BANNER } from "../constants.js";
 import { type MaterialComponentMetadata } from "./converters.js";
 import { format } from "./format.js";

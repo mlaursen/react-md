@@ -7,7 +7,8 @@ import { main } from "@react-md/core/layout/mainStyles";
 import { SkipToMainContent } from "@react-md/core/link/SkipToMainContent";
 import { useToggle } from "@react-md/core/useToggle";
 import CloseIcon from "@react-md/material-icons/CloseIcon";
-import { useId, type ReactElement } from "react";
+import { type ReactElement, useId } from "react";
+
 import styles from "./CustomFocusTargetExample.module.scss";
 
 export default function CustomFocusTargetExample(): ReactElement {

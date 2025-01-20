@@ -1,11 +1,13 @@
 "use client";
+
+import { useTypescriptEnabledContext } from "@react-md/code/TypescriptEnabledProvider";
+import { type ReactElement } from "react";
+
 import { SegmentedButtonGroup } from "@/components/SegmentedButtonGroup.jsx";
 import {
   SegmentedButtons,
   type SegmentedButtonsProps,
 } from "@/components/SegmentedButtons.jsx";
-import { useTypescriptEnabledContext } from "@react-md/code/TypescriptEnabledProvider";
-import { type ReactElement } from "react";
 
 export type CodeLanguage = "js" | "ts";
 

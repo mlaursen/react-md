@@ -1,4 +1,5 @@
 "use client";
+
 import { TooltippedButton } from "@react-md/core/button/TooltippedButton";
 import {
   DEFAULT_DIALOG_CLASSNAMES,
@@ -7,7 +8,7 @@ import {
 import { useCSSTransition } from "@react-md/core/transition/useCSSTransition";
 import { useIntersectionObserver } from "@react-md/core/useIntersectionObserver";
 import ArrowUpwardIcon from "@react-md/material-icons/ArrowUpwardIcon";
-import { useCallback, useState, type ReactElement } from "react";
+import { type ReactElement, useCallback, useState } from "react";
 
 export function ReturnToTop(): ReactElement {
   const [visible, setVisible] = useState(false);

@@ -1,9 +1,11 @@
 "use client";
-import { forwardRef, useMemo, type HTMLAttributes } from "react";
+
+import { type HTMLAttributes, forwardRef, useMemo } from "react";
+
 import { useEnsuredRef } from "../useEnsuredRef.js";
 import {
-  TableContainerProvider,
   type TableContainerContext,
+  TableContainerProvider,
 } from "./TableContainerProvider.js";
 import { tableContainer } from "./tableContainerStyles.js";
 

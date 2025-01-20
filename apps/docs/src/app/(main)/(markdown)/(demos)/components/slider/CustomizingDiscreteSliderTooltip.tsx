@@ -1,4 +1,5 @@
 "use client";
+
 import { box } from "@react-md/core/box/styles";
 import { cssUtils } from "@react-md/core/cssUtils";
 import { Fieldset } from "@react-md/core/form/Fieldset";
@@ -8,7 +9,7 @@ import { Slider } from "@react-md/core/form/Slider";
 import { useRangeSlider } from "@react-md/core/form/useRangeSlider";
 import { useSlider } from "@react-md/core/form/useSlider";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
-import { useId, type ReactElement } from "react";
+import { type ReactElement, useId } from "react";
 
 const vertical = false;
 

@@ -1,10 +1,12 @@
 "use client";
+
 import type {
   FocusEventHandler,
   KeyboardEventHandler,
   MouseEventHandler,
 } from "react";
 import { useRef } from "react";
+
 import type { KeyboardMovementProviderImplementation } from "../movement/types.js";
 import { useKeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
 import { getNextFocusableIndex } from "../movement/utils.js";

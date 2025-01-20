@@ -1,7 +1,8 @@
-import { forwardRef, type HTMLAttributes } from "react";
+import { type HTMLAttributes, forwardRef } from "react";
+
 import {
-  responsiveItem,
   type ResponsiveItemClassNameOptions,
+  responsiveItem,
 } from "./responsiveItemStyles.js";
 
 /**

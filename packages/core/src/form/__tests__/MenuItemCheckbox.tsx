@@ -1,8 +1,9 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import { createRef } from "react";
+
 import { rmdRender, screen } from "../../test-utils/index.js";
-import { type MenuItemCheckboxProps } from "../MenuItemInputToggle.js";
 import { MenuItemCheckbox } from "../MenuItemCheckbox.js";
+import { type MenuItemCheckboxProps } from "../MenuItemInputToggle.js";
 
 describe("MenuItemCheckbox", () => {
   it("should apply the correct styling, HTMLAttributes, and allow a ref", () => {

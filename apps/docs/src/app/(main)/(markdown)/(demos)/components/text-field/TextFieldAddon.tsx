@@ -1,4 +1,5 @@
 "use client";
+
 import { Avatar } from "@react-md/core/avatar/Avatar";
 import { Box } from "@react-md/core/box/Box";
 import { box } from "@react-md/core/box/styles";

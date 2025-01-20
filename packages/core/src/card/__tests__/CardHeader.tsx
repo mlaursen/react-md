@@ -1,8 +1,8 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { render, screen } from "../../test-utils/index.js";
 
 import { Button } from "../../button/Button.js";
+import { render, screen } from "../../test-utils/index.js";
 import { CardHeader } from "../CardHeader.js";
 import { CardSubtitle } from "../CardSubtitle.js";
 import { CardTitle } from "../CardTitle.js";

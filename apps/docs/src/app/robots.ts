@@ -1,5 +1,6 @@
-import { BASE_URL } from "@/constants/env.js";
 import { type MetadataRoute } from "next";
+
+import { BASE_URL } from "@/constants/env.js";
 
 export default function robots(): MetadataRoute.Robots {
   return {

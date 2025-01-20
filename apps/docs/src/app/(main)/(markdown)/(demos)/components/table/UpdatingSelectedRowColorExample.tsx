@@ -5,7 +5,8 @@ import { TableCell } from "@react-md/core/table/TableCell";
 import { TableRow } from "@react-md/core/table/TableRow";
 import { type UseStateSetter } from "@react-md/core/types";
 import { cnb } from "cnbuilder";
-import { useState, type ReactElement } from "react";
+import { type ReactElement, useState } from "react";
+
 import styles from "./UpdatingSelectedRowColorExample.module.scss";
 
 export default function UpdatingSelectedRowColorExample(): ReactElement {

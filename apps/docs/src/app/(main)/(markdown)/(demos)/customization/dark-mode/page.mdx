@@ -212,19 +212,22 @@ with next.js:
 ```
 
 ```tsx fileName="src/components/RootLayout.tsx"
-import { CookieColorSchemeProvider } from "@/components/CookieColorSchemeProvider.jsx";
-import { LoadThemeStyles } from "@/components/LoadThemeStyles.jsx";
-import { COLOR_SCHEME_KEY } from "@/constants/cookies.js";
-import { rmdConfig } from "@/constants/rmdConfig.jsx";
 import { CoreProviders } from "@react-md/core/CoreProviders";
-import { MenuConfigurationProvider } from "@react-md/core/menu/MenuConfigurationProvider";
 import { RootHtml } from "@react-md/core/RootHtml";
+import { MenuConfigurationProvider } from "@react-md/core/menu/MenuConfigurationProvider";
 import { NullSuspense } from "@react-md/core/suspense/NullSuspense";
 import { cnb } from "cnbuilder";
 import { Roboto_Flex } from "next/font/google";
 import { cookies } from "next/headers.js";
 import { type ReactElement, type ReactNode } from "react";
+
+import { CookieColorSchemeProvider } from "@/components/CookieColorSchemeProvider.jsx";
+import { LoadThemeStyles } from "@/components/LoadThemeStyles.jsx";
+import { COLOR_SCHEME_KEY } from "@/constants/cookies.js";
+import { rmdConfig } from "@/constants/rmdConfig.jsx";
+
 import "./layout.scss";
+
 export { metadata } from "@/constants/metadata.js";
 
 const roboto = Roboto_Flex({
@@ -262,6 +265,7 @@ export function RootLayout({ children }: RootLayoutProps): ReactElement {
 
 ```tsx fileName="src/components/LoadThemeStyles.tsx"
 "use client";
+
 import { useColorScheme } from "@react-md/core/theme/useColorScheme";
 
 export function LoadThemeStyles(): null {

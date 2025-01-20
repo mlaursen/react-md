@@ -1,4 +1,5 @@
 "use client";
+
 import { Button } from "@react-md/core/button/Button";
 import { Card } from "@react-md/core/card/Card";
 import { CardContent } from "@react-md/core/card/CardContent";
@@ -8,6 +9,7 @@ import { Typography } from "@react-md/core/typography/Typography";
 import { useToggle } from "@react-md/core/useToggle";
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
+
 import styles from "./PartialCollapseExample.module.scss";
 
 export default function PartialCollapseExample(): ReactElement {

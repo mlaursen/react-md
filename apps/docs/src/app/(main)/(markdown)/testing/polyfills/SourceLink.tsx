@@ -1,5 +1,6 @@
-import { GithubLink } from "@/components/GithubLink.jsx";
 import { type ReactElement } from "react";
+
+import { GithubLink } from "@/components/GithubLink.jsx";
 
 export interface SourceLinkProps {
   name: string;

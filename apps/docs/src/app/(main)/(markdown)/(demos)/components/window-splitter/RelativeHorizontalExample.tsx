@@ -1,12 +1,14 @@
 "use client";
+
+import { useSsr } from "@react-md/core/SsrProvider";
 import { Box } from "@react-md/core/box/Box";
 import { Card } from "@react-md/core/card/Card";
 import { CardContent } from "@react-md/core/card/CardContent";
-import { useSsr } from "@react-md/core/SsrProvider";
 import { useElementSize } from "@react-md/core/useElementSize";
-import { useWindowSplitter } from "@react-md/core/window-splitter/useWindowSplitter";
 import { WindowSplitter } from "@react-md/core/window-splitter/WindowSplitter";
-import { useId, type ReactElement } from "react";
+import { useWindowSplitter } from "@react-md/core/window-splitter/useWindowSplitter";
+import { type ReactElement, useId } from "react";
+
 import styles from "./RelativeHorizontalExample.module.scss";
 
 const MIN_MAIN_PANEL_WIDTH = 140;

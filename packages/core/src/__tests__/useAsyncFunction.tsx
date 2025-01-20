@@ -1,5 +1,9 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import { type MouseEvent, type ReactElement } from "react";
+
+import { box } from "../box/styles.js";
+import { Button, type ButtonProps } from "../button/Button.js";
+import { CircularProgress } from "../progress/CircularProgress.js";
 import {
   act,
   rmdRender,
@@ -7,10 +11,6 @@ import {
   userEvent,
   waitFor,
 } from "../test-utils/index.js";
-
-import { box } from "../box/styles.js";
-import { Button, type ButtonProps } from "../button/Button.js";
-import { CircularProgress } from "../progress/CircularProgress.js";
 import { useAsyncFunction } from "../useAsyncFunction.js";
 
 interface TestProps extends ButtonProps {

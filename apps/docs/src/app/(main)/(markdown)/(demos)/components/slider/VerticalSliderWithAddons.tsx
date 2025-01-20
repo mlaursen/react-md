@@ -1,4 +1,5 @@
 "use client";
+
 import { box } from "@react-md/core/box/styles";
 import { Fieldset } from "@react-md/core/form/Fieldset";
 import { Form } from "@react-md/core/form/Form";
@@ -7,7 +8,7 @@ import { Slider } from "@react-md/core/form/Slider";
 import { useSlider } from "@react-md/core/form/useSlider";
 import VolumeOffOutlinedIcon from "@react-md/material-icons/VolumeOffOutlinedIcon";
 import VolumeUpOutlinedIcon from "@react-md/material-icons/VolumeUpOutlinedIcon";
-import { useId, type ReactElement } from "react";
+import { type ReactElement, useId } from "react";
 
 export default function VerticalSliderWithAddons(): ReactElement {
   const legendId = useId();

@@ -1,5 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
+
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Button } from "@react-md/core/button/Button";
 import { Form } from "@react-md/core/form/Form";
 import { TextField } from "@react-md/core/form/TextField";

@@ -1,9 +1,11 @@
 "use client";
-import { desserts, type Dessert } from "@/constants/desserts.js";
+
 import { Autocomplete } from "@react-md/core/autocomplete/Autocomplete";
 import { AutocompleteChip } from "@react-md/core/autocomplete/AutocompleteChip";
 import { Box } from "@react-md/core/box/Box";
-import { useState, type ReactElement } from "react";
+import { type ReactElement, useState } from "react";
+
+import { type Dessert, desserts } from "@/constants/desserts.js";
 
 export default function FilterSelectedExample(): ReactElement {
   const [value, setValue] = useState<readonly Dessert[]>([

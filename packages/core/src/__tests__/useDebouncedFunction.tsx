@@ -1,5 +1,8 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import { useState } from "react";
+
+import { Button } from "../button/Button.js";
+import { TextField } from "../form/TextField.js";
 import {
   act,
   fireEvent,
@@ -8,9 +11,6 @@ import {
   userEvent,
   waitFor,
 } from "../test-utils/index.js";
-
-import { Button } from "../button/Button.js";
-import { TextField } from "../form/TextField.js";
 import { useDebouncedFunction } from "../useDebouncedFunction.js";
 
 function setup(delay?: number | null) {

@@ -1,28 +1,30 @@
 "use client";
+
 import { nanoid } from "nanoid";
 import {
+  type ChangeEvent,
+  type DragEvent,
   useCallback,
   useEffect,
   useReducer,
-  type ChangeEvent,
-  type DragEvent,
 } from "react";
+
 import {
-  getFileParser as defaultGetFileParser,
   type CompletedFileUploadStats,
   type FileReaderResult,
   type FileUploadHandlers,
   type FileUploadStats,
   type GetFileParser,
   type ProcessingFileUploadStats,
+  getFileParser as defaultGetFileParser,
 } from "./utils.js";
 import {
   FileAccessError,
-  isValidFileName as defaultIsValidFileName,
-  validateFiles as defaultValidateFiles,
   type FileValidationError,
   type FileValidationOptions,
   type FilesValidator,
+  isValidFileName as defaultIsValidFileName,
+  validateFiles as defaultValidateFiles,
 } from "./validation.js";
 
 const noop = (): void => {

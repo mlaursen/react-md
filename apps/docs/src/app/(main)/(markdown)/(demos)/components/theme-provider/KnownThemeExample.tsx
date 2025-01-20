@@ -1,4 +1,5 @@
 "use client";
+
 import {
   blue500,
   greenAccent700,
@@ -7,9 +8,9 @@ import {
   red500,
 } from "@react-md/core/colors";
 import {
+  type ConfigurableThemeColors,
   ThemeProvider,
   useTheme,
-  type ConfigurableThemeColors,
 } from "@react-md/core/theme/ThemeProvider";
 import { useColorScheme } from "@react-md/core/theme/useColorScheme";
 import { contrastColor } from "@react-md/core/theme/utils";

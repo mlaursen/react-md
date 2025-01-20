@@ -1,12 +1,12 @@
 import { cnb } from "cnbuilder";
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { type BaseDialogProps } from "../dialog/Dialog.js";
 import {
   type CSSTransitionClassNames,
   type TransitionTimeout,
 } from "../transition/types.js";
 import { bem } from "../utils/bem.js";
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { type BaseDialogProps } from "../dialog/Dialog.js";
 
 declare module "react" {
   interface CSSProperties {

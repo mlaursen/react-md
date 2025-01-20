@@ -1,13 +1,3 @@
-import { Blockquote } from "@/components/Blockquote.jsx";
-import { LinkableHeading } from "@/components/LinkableHeading.jsx";
-import {
-  MarkdownCode,
-  type MarkdownCodeProps,
-} from "@/components/MarkdownCode.jsx";
-import { MarkdownLink } from "@/components/MarkdownLink.jsx";
-import { PackageManagerCodeBlock } from "@/components/PackageManagerCodeBlock/PackageManagerCodeBlock.jsx";
-import { TableOfContents } from "@/components/TableOfContents/TableOfContents.jsx";
-import { TypescriptCodeBlock } from "@/components/TypescriptCodeBlock.jsx";
 import { Divider } from "@react-md/core/divider/Divider";
 import { Table } from "@react-md/core/table/Table";
 import { TableBody } from "@react-md/core/table/TableBody";
@@ -19,13 +9,25 @@ import { TableRow } from "@react-md/core/table/TableRow";
 import { Typography } from "@react-md/core/typography/Typography";
 import { type MDXComponents } from "mdx/types.js";
 import {
-  cloneElement,
-  isValidElement,
   type ComponentType,
   type HTMLAttributes,
   type ReactElement,
   type ReactNode,
+  cloneElement,
+  isValidElement,
 } from "react";
+
+import { Blockquote } from "@/components/Blockquote.jsx";
+import { LinkableHeading } from "@/components/LinkableHeading.jsx";
+import {
+  MarkdownCode,
+  type MarkdownCodeProps,
+} from "@/components/MarkdownCode.jsx";
+import { MarkdownLink } from "@/components/MarkdownLink.jsx";
+import { PackageManagerCodeBlock } from "@/components/PackageManagerCodeBlock/PackageManagerCodeBlock.jsx";
+import { TableOfContents } from "@/components/TableOfContents/TableOfContents.jsx";
+import { TypescriptCodeBlock } from "@/components/TypescriptCodeBlock.jsx";
+
 import styles from "./CustomMdxComponents.module.scss";
 
 interface HeadingProps {

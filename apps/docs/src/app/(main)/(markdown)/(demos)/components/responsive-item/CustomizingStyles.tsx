@@ -4,6 +4,7 @@ import { ResponsiveItem } from "@react-md/core/responsive-item/ResponsiveItem";
 import { ResponsiveItemOverlay } from "@react-md/core/responsive-item/ResponsiveItemOverlay";
 import { Typography } from "@react-md/core/typography/Typography";
 import { type ReactElement } from "react";
+
 import styles from "./CustomizingStyles.module.scss";
 
 export default function CustomizingStyles(): ReactElement {

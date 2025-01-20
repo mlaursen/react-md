@@ -1,4 +1,5 @@
 "use client";
+
 import { box } from "@react-md/core/box/styles";
 import { Form } from "@react-md/core/form/Form";
 import { Slider } from "@react-md/core/form/Slider";
@@ -6,7 +7,8 @@ import { TextField } from "@react-md/core/form/TextField";
 import { useNumberField } from "@react-md/core/form/useNumberField";
 import { type GetErrorMessage } from "@react-md/core/form/validation";
 import { Typography } from "@react-md/core/typography/Typography";
-import { useId, type ReactElement } from "react";
+import { type ReactElement, useId } from "react";
+
 import styles from "./LinkedWithATextField.module.scss";
 
 const min = 0;

@@ -1,5 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { render, screen } from "@react-md/core/test-utils";
+
 import { HighlightedCodeBlock } from "../HighlightedCodeBlock.js";
 import { highlightCode } from "../prismjs/highlight.js";
 

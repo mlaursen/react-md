@@ -5,6 +5,7 @@ import { ExpansionPanel } from "@react-md/core/expansion-panel/ExpansionPanel";
 import { useExpansionPanels } from "@react-md/core/expansion-panel/useExpansionPanels";
 import { Typography } from "@react-md/core/typography/Typography";
 import type { ReactElement } from "react";
+
 import styles from "./AdditionalChangesPanels.module.scss";
 import { CopyCode } from "./CopyCode.jsx";
 import { MaterialConfigChanges } from "./MaterialConfigChanges.jsx";

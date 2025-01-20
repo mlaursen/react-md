@@ -1,5 +1,6 @@
-import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
-import { badge, type BadgeTheme } from "./styles.js";
+import { type HTMLAttributes, type ReactNode, forwardRef } from "react";
+
+import { type BadgeTheme, badge } from "./styles.js";
 
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
   /** @defaultValue `"greyscale"` */

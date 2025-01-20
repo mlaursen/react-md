@@ -1,5 +1,6 @@
 import { cnb } from "cnbuilder";
-import { cssUtils, type ThemeColor } from "../cssUtils.js";
+
+import { type ThemeColor, cssUtils } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-avatar");

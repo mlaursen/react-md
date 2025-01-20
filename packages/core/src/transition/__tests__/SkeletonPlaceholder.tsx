@@ -1,11 +1,12 @@
 import { describe, expect, it } from "@jest/globals";
-import { createRef, type ReactElement } from "react";
+import { type ReactElement, createRef } from "react";
+
 import { render, rmdRender, screen } from "../../test-utils/index.js";
 import { type NonNullMutableRef } from "../../types.js";
 import { SkeletonPlaceholder } from "../SkeletonPlaceholder.js";
 import {
-  useSkeletonPlaceholder,
   type SkeletonPlaceholderStylingProps,
+  useSkeletonPlaceholder,
 } from "../useSkeletonPlaceholder.js";
 
 describe("SkeletonPlaceholder", () => {

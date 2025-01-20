@@ -1,7 +1,7 @@
-import { type ReactElement } from "react";
 import { Box } from "@react-md/core/box/Box";
 import { Card } from "@react-md/core/card/Card";
 import { objectFit } from "@react-md/core/objectFit";
+import { type ReactElement } from "react";
 
 export default function ObjectFitExample(): ReactElement {
   return (

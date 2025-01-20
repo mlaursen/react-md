@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
-import { createRef, type ReactElement, type Ref } from "react";
-import { render, screen } from "../../test-utils/index.js";
+import { type ReactElement, type Ref, createRef } from "react";
 
+import { render, screen } from "../../test-utils/index.js";
 import { List } from "../List.js";
 import { ListSubheader, type ListSubheaderProps } from "../ListSubheader.js";
 

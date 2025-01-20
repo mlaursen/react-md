@@ -1,4 +1,5 @@
 "use client";
+
 import { useSsr } from "@react-md/core/SsrProvider";
 import { AppBar } from "@react-md/core/app-bar/AppBar";
 import { AppBarTitle } from "@react-md/core/app-bar/AppBarTitle";
@@ -12,6 +13,7 @@ import { Sheet } from "@react-md/core/sheet/Sheet";
 import { cnb } from "cnbuilder";
 import { usePathname } from "next/navigation.js";
 import { type ReactElement, type ReactNode } from "react";
+
 import { GithubLink } from "../GithubLink.jsx";
 import styles from "./MainLayout.module.scss";
 import { MainNavigation } from "./MainNavigation.jsx";

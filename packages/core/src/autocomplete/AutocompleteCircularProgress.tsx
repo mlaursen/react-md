@@ -1,4 +1,5 @@
 import { type ReactElement } from "react";
+
 import { CircularProgress } from "../progress/CircularProgress.js";
 import { type AutocompleteCircularProgressProps } from "./types.js";
 

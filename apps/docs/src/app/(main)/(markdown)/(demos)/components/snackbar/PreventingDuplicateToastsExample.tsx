@@ -1,11 +1,12 @@
 "use client";
+
 import { AsyncButton } from "@react-md/core/button/AsyncButton";
 import { Snackbar } from "@react-md/core/snackbar/Snackbar";
 import { ToastManager } from "@react-md/core/snackbar/ToastManager";
 import { ToastManagerProvider } from "@react-md/core/snackbar/ToastManagerProvider";
 import { SCALE_TIMEOUT } from "@react-md/core/transition/useScaleTransition";
 import { type UseStateSetter } from "@react-md/core/types";
-import { useEffect, useState, type ReactElement } from "react";
+import { type ReactElement, useEffect, useState } from "react";
 
 const TOAST_ID = "toast-id-1";
 const manager = new ToastManager();

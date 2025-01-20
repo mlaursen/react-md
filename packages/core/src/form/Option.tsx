@@ -1,14 +1,16 @@
 "use client";
+
 import { cnb } from "cnbuilder";
-import { forwardRef, Fragment, type ReactNode } from "react";
-import { getIcon } from "../icon/iconConfig.js";
-import { icon } from "../icon/styles.js";
+import { Fragment, type ReactNode, forwardRef } from "react";
+
 import {
   TextIconSpacing,
   type TextIconSpacingProps,
 } from "../icon/TextIconSpacing.js";
-import { getListItemHeight } from "../list/getListItemHeight.js";
+import { getIcon } from "../icon/iconConfig.js";
+import { icon } from "../icon/styles.js";
 import { ListItemText } from "../list/ListItemText.js";
+import { getListItemHeight } from "../list/getListItemHeight.js";
 import { MenuItem, type MenuItemProps } from "../menu/MenuItem.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { useListboxContext } from "./ListboxProvider.js";

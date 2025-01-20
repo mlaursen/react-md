@@ -7,14 +7,14 @@ import {
   it,
   jest,
 } from "@jest/globals";
-import { useState, type ReactElement } from "react";
-import { act, fireEvent, render, screen } from "../../test-utils/index.js";
+import { type ReactElement, useState } from "react";
 
+import { act, fireEvent, render, screen } from "../../test-utils/index.js";
 import { DISPLAY_NONE_CLASS } from "../../utils/isElementVisible.js";
 import { TRANSITION_CONFIG } from "../config.js";
 import {
-  useCollapseTransition,
   type CollapseTransitionHookOptions,
+  useCollapseTransition,
 } from "../useCollapseTransition.js";
 
 interface TestProps

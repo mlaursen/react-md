@@ -1,10 +1,11 @@
 import { cnb } from "cnbuilder";
 import {
-  forwardRef,
   type CSSProperties,
   type HTMLAttributes,
   type ReactNode,
+  forwardRef,
 } from "react";
+
 import { type PropsWithRef } from "../types.js";
 import { bem } from "../utils/bem.js";
 

@@ -1,9 +1,10 @@
 import { type MockInstance, vi } from "vitest";
+
 import {
-  createMatchMediaSpy,
   type MatchMediaChangeViewport,
+  createMatchMediaSpy,
 } from "../mocks/match-media-implementation.js";
-import { matchDesktop, type MatchMediaMatcher } from "../mocks/match-media.js";
+import { type MatchMediaMatcher, matchDesktop } from "../mocks/match-media.js";
 
 /**
  * @example Default Behavior

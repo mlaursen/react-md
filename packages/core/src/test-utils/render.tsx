@@ -1,11 +1,12 @@
 import {
-  render,
   type Queries,
   type RenderOptions,
   type RenderResult,
   type queries,
+  render,
 } from "@testing-library/react";
 import { Fragment, type ReactElement } from "react";
+
 import { CoreProviders, type CoreProvidersProps } from "../CoreProviders.js";
 
 /**

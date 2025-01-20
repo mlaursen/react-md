@@ -1,11 +1,13 @@
 "use client";
+
 import {
-  useEffect,
   type HTMLAttributes,
   type ReactElement,
   type ReactNode,
   type Ref,
+  useEffect,
 } from "react";
+
 import { type ComponentWithRippleProps } from "../interaction/types.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
@@ -13,7 +15,7 @@ import { ListItemChildren } from "../list/ListItemChildren.js";
 import { useKeyboardMovementContext } from "../movement/useKeyboardMovementProvider.js";
 import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
-import { TreeGroup, type OverridableTreeGroupProps } from "./TreeGroup.js";
+import { type OverridableTreeGroupProps, TreeGroup } from "./TreeGroup.js";
 import { TreeItemExpander } from "./TreeItemExpander.js";
 import { useTreeContext } from "./TreeProvider.js";
 import { treeItem, treeItemContent, treeItemMedia } from "./styles.js";

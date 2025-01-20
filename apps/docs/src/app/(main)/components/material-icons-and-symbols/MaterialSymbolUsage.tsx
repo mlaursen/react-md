@@ -1,4 +1,5 @@
 import { type ReactElement } from "react";
+
 import { AdditionalChanges } from "./AdditionalChanges.jsx";
 import { IconImportAndUsage } from "./IconImportAndUsage.jsx";
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";

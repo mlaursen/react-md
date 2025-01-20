@@ -1,7 +1,8 @@
 "use client";
+
 import { Tooltip } from "@react-md/core/tooltip/Tooltip";
 import { useTooltip } from "@react-md/core/tooltip/useTooltip";
-import { forwardRef, type AnchorHTMLAttributes } from "react";
+import { type AnchorHTMLAttributes, forwardRef } from "react";
 
 export interface FakeLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   href: string;

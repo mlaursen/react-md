@@ -13,7 +13,8 @@ import ChevronLeftIcon from "@react-md/material-icons/ChevronLeftIcon";
 import ChevronRightIcon from "@react-md/material-icons/ChevronRightIcon";
 import PauseIcon from "@react-md/material-icons/PauseIcon";
 import PlayArrowIcon from "@react-md/material-icons/PlayArrowIcon";
-import { useId, type ReactElement } from "react";
+import { type ReactElement, useId } from "react";
+
 import styles from "./CarouselExample.module.scss";
 
 /**

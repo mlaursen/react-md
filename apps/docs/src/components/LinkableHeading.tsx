@@ -5,6 +5,7 @@ import {
 } from "@react-md/core/typography/Typography";
 import { cnb } from "cnbuilder";
 import { type ReactElement, type ReactNode } from "react";
+
 import { LinkUnstyled } from "./LinkUnstyled.jsx";
 import styles from "./LinkableHeading.module.scss";
 

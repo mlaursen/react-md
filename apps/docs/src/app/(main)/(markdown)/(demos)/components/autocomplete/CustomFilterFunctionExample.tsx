@@ -1,10 +1,12 @@
 "use client";
-import { type State, states } from "@/constants/states.js";
+
 import { Autocomplete } from "@react-md/core/autocomplete/Autocomplete";
 import { type AutocompleteFilterFunction } from "@react-md/core/autocomplete/types";
 import { caseInsensitiveSearch } from "@react-md/core/searching/caseInsensitive";
 import { fuzzySearch } from "@react-md/core/searching/fuzzy";
 import { type ReactElement } from "react";
+
+import { type State, states } from "@/constants/states.js";
 
 const NO_STARTS_WITH = false;
 

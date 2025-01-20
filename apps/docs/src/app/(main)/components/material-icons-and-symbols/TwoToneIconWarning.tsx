@@ -1,6 +1,8 @@
-import { Blockquote } from "@/components/Blockquote.jsx";
 import { cssUtils } from "@react-md/core/cssUtils";
 import { type ReactElement } from "react";
+
+import { Blockquote } from "@/components/Blockquote.jsx";
+
 import { CopyCode } from "./CopyCode.jsx";
 import styles from "./TwoToneIconWarning.module.scss";
 

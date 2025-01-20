@@ -1,9 +1,10 @@
 import {
-  format,
   type BuiltInParserName,
   type Options as PrettierOptions,
+  format,
 } from "prettier";
 import "server-only";
+
 import { type SupportedCodeLanguage } from "../types.js";
 
 function isBuiltInParser(

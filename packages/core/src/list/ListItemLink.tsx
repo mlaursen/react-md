@@ -1,9 +1,11 @@
 "use client";
+
 import {
-  forwardRef,
   type AnchorHTMLAttributes,
   type HTMLAttributes,
+  forwardRef,
 } from "react";
+
 import { type ComponentWithRippleProps } from "../interaction/types.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
@@ -11,7 +13,7 @@ import { type CustomLinkComponent } from "../link/Link.js";
 import { type PropsWithRef } from "../types.js";
 import { ListItemChildren } from "./ListItemChildren.js";
 import { getListItemHeight } from "./getListItemHeight.js";
-import { listItem, type ListItemClassNameOptions } from "./listItemStyles.js";
+import { type ListItemClassNameOptions, listItem } from "./listItemStyles.js";
 import { type ListItemChildrenProps } from "./types.js";
 
 export interface ListItemLinkProps

@@ -1,6 +1,7 @@
 import { type RenderRecursiveItemsProps } from "@react-md/core/utils/RenderRecursively";
 import { type TOCItem } from "docs-generator/rehype-toc";
-import { useEffect, useRef, type ReactElement } from "react";
+import { type ReactElement, useEffect, useRef } from "react";
+
 import styles from "./RenderTableOfContentsItem.module.scss";
 import { TableOfContentsGroup } from "./TableOfContentsGroup.jsx";
 

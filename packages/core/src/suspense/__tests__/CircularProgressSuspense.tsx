@@ -1,5 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
-import { lazy, type FC, type ReactElement } from "react";
+import { type FC, type ReactElement, lazy } from "react";
+
 import {
   act,
   render,

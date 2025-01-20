@@ -1,4 +1,5 @@
 "use client";
+
 import { Button } from "@react-md/core/button/Button";
 import { Snackbar } from "@react-md/core/snackbar/Snackbar";
 import { ToastManager, addToast } from "@react-md/core/snackbar/ToastManager";

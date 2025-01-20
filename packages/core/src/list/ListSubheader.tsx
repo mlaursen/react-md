@@ -1,5 +1,6 @@
 import { cnb } from "cnbuilder";
-import { forwardRef, type HTMLAttributes } from "react";
+import { type HTMLAttributes, forwardRef } from "react";
+
 import { type PropsWithRef } from "../types.js";
 import { bem } from "../utils/bem.js";
 import { ListItemText } from "./ListItemText.js";

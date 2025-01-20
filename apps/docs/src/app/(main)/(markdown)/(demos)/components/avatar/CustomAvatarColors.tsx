@@ -1,5 +1,6 @@
 import { Avatar } from "@react-md/core/avatar/Avatar";
 import { type ReactElement } from "react";
+
 import styles from "./CustomAvatarColors.module.scss";
 
 export default function CustomAvatarColors(): ReactElement {

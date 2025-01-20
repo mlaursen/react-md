@@ -1,8 +1,10 @@
 "use client";
+
 import { useSkeletonPlaceholder } from "@react-md/core/transition/useSkeletonPlaceholder";
 import { useToggle } from "@react-md/core/useToggle";
 import { randomInt } from "@react-md/core/utils/randomInt";
-import { useEffect, type ReactElement } from "react";
+import { type ReactElement, useEffect } from "react";
+
 import styles from "./ReplacingContentExample.module.scss";
 
 export default function ReplacingContentExample(): ReactElement {

@@ -1,12 +1,12 @@
 import { beforeEach, describe, expect, it } from "@jest/globals";
 import {
+  type AnchorHTMLAttributes,
+  type ReactElement,
+  type ReactNode,
   createContext,
   forwardRef,
   useContext,
   useState,
-  type AnchorHTMLAttributes,
-  type ReactElement,
-  type ReactNode,
 } from "react";
 
 import { FontIcon } from "../../icon/FontIcon.js";

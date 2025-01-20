@@ -1,9 +1,10 @@
-import { LinkableHeading } from "@/components/LinkableHeading.jsx";
-import { MarkdownPage } from "@/components/MarkdownPage.jsx";
-import { TableOfContents } from "@/components/TableOfContents/TableOfContents.jsx";
 import { Typography } from "@react-md/core/typography/Typography";
 import { type TOCItem } from "docs-generator/rehype-toc";
 import { type ReactElement } from "react";
+
+import { LinkableHeading } from "@/components/LinkableHeading.jsx";
+import { MarkdownPage } from "@/components/MarkdownPage.jsx";
+import { TableOfContents } from "@/components/TableOfContents/TableOfContents.jsx";
 
 const toc: readonly TOCItem[] = [
   {

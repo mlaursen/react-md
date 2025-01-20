@@ -1,8 +1,9 @@
 import { type PackageManager } from "@react-md/code/PackageManagerProvider";
+
 import { createJsxNode } from "./createJsxNode.js";
 import {
-  replacePreElement,
   type ReplacePreElementWithJsxNodeOptions,
+  replacePreElement,
 } from "./replacePreElement.js";
 
 export function getTransformedNpmCode(

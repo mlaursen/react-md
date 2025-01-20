@@ -1,10 +1,11 @@
 "use client";
+
 import { SegmentedButton } from "@react-md/core/segmented-button/SegmentedButton";
 import { SegmentedButtonContainer } from "@react-md/core/segmented-button/SegmentedButtonContainer";
 import { useCrossFadeTransition } from "@react-md/core/transition/useCrossFadeTransition";
 import { TextContainer } from "@react-md/core/typography/TextContainer";
 import { Typography } from "@react-md/core/typography/Typography";
-import { useEffect, useRef, useState, type ReactElement } from "react";
+import { type ReactElement, useEffect, useRef, useState } from "react";
 
 export default function CrossFadeTransitionHookExample(): ReactElement {
   const [page, setPage] = useState<1 | 2>(1);

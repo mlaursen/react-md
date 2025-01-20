@@ -1,11 +1,13 @@
 "use client";
+
 import { forwardRef } from "react";
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { type ICON_CONFIG } from "../icon/iconConfig.js";
 import {
   MenuItemInputToggle,
   type MenuItemRadioProps,
 } from "./MenuItemInputToggle.js";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { type ICON_CONFIG } from "../icon/iconConfig.js";
 
 /**
  * **Client Component**

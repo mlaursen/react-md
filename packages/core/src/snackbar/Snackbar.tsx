@@ -1,5 +1,7 @@
 "use client";
-import { forwardRef, type ComponentType, type HTMLAttributes } from "react";
+
+import { type ComponentType, type HTMLAttributes, forwardRef } from "react";
+
 import { Portal } from "../portal/Portal.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import {
@@ -8,7 +10,7 @@ import {
 } from "./DefaultToastRenderer.js";
 import { type ConfigurableToastProps } from "./Toast.js";
 import { useToastQueue } from "./ToastManagerProvider.js";
-import { snackbar, type SnackbarPosition } from "./snackbarStyles.js";
+import { type SnackbarPosition, snackbar } from "./snackbarStyles.js";
 
 /**
  * @since 6.0.0 The `id` prop is optional

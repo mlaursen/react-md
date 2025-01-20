@@ -1,7 +1,7 @@
 import { Button } from "@react-md/core/button/Button";
 import { DropdownMenu } from "@react-md/core/menu/DropdownMenu";
 import { MenuItem } from "@react-md/core/menu/MenuItem";
-import { useState, type ReactElement } from "react";
+import { type ReactElement, useState } from "react";
 
 export default function ControllingMenuVisibility(): ReactElement {
   const [visible, setVisible] = useState(false);

@@ -1,10 +1,12 @@
 "use client";
-import { states, type State } from "@/constants/states.js";
+
 import { Autocomplete } from "@react-md/core/autocomplete/Autocomplete";
 import { type TextExtractor } from "@react-md/core/types";
 import { useUnmounted } from "@react-md/core/useUnmounted";
 import { wait } from "@react-md/core/utils/wait";
-import { useState, type ReactElement } from "react";
+import { type ReactElement, useState } from "react";
+
+import { type State, states } from "@/constants/states.js";
 
 interface AsyncState {
   loading: boolean;

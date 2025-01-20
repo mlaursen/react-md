@@ -3,6 +3,7 @@ import { headingRank } from "hast-util-heading-rank";
 import { toString } from "mdast-util-to-string";
 import { type Plugin } from "unified";
 import { visit } from "unist-util-visit";
+
 import { createJsxNode } from "./utils/createJsxNode.js";
 
 export interface TOCHeading {

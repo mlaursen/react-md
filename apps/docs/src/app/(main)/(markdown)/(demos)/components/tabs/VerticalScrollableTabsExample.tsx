@@ -1,8 +1,10 @@
 "use client";
+
 import { Tab } from "@react-md/core/tabs/Tab";
 import { TabList } from "@react-md/core/tabs/TabList";
 import { useTabs } from "@react-md/core/tabs/useTabs";
 import { type ReactElement } from "react";
+
 import styles from "./VerticalScrollableTabsExample.module.scss";
 
 export default function VerticalScrollableTabsExample(): ReactElement {

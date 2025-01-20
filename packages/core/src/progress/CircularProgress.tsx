@@ -1,10 +1,11 @@
 import { cnb } from "cnbuilder";
 import {
-  forwardRef,
-  useMemo,
   type CSSProperties,
   type HTMLAttributes,
+  forwardRef,
+  useMemo,
 } from "react";
+
 import { cssUtils } from "../cssUtils.js";
 import { type LabelRequiredForA11y } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";

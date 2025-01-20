@@ -1,8 +1,9 @@
 "use client";
+
 import { DropdownMenu } from "@react-md/core/menu/DropdownMenu";
 import { MenuItem } from "@react-md/core/menu/MenuItem";
 import { Overlay } from "@react-md/core/overlay/Overlay";
-import { useState, type ReactElement } from "react";
+import { type ReactElement, useState } from "react";
 
 // Try clicking on an item in the `TableOfContents` with and without the overlay
 export default function InvisibleOverlayExample(): ReactElement {

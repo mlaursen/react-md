@@ -1,11 +1,13 @@
 "use client";
+
 import { cnb } from "cnbuilder";
-import { useEffect, useState, type CSSProperties } from "react";
+import { type CSSProperties, useEffect, useState } from "react";
+
 import { useSsr } from "../SsrProvider.js";
 import {
+  type SkeletonPlaceholderRandomOptions,
   randomSkeletonPlaceholder,
   skeletonPlaceholder,
-  type SkeletonPlaceholderRandomOptions,
 } from "./skeletonPlaceholderUtils.js";
 
 /** @since 6.0.0 */

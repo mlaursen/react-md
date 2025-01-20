@@ -1,17 +1,18 @@
 "use client";
 
 import {
+  type ReactElement,
+  type ReactNode,
   createContext,
   useContext,
   useMemo,
   useSyncExternalStore,
-  type ReactElement,
-  type ReactNode,
 } from "react";
+
 import {
-  toastManager,
   type ToastManager,
   type ToastQueue,
+  toastManager,
 } from "./ToastManager.js";
 
 const context = createContext(toastManager);

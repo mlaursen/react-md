@@ -1,5 +1,8 @@
 import { describe, expect, it, jest } from "@jest/globals";
-import { createRef, type ReactElement } from "react";
+import { type ReactElement, createRef } from "react";
+
+import { FontIcon } from "../../icon/FontIcon.js";
+import { INTERACTION_CONFIG } from "../../interaction/config.js";
 import {
   fireEvent,
   render,
@@ -7,9 +10,6 @@ import {
   screen,
   userEvent,
 } from "../../test-utils/index.js";
-
-import { FontIcon } from "../../icon/FontIcon.js";
-import { INTERACTION_CONFIG } from "../../interaction/config.js";
 import { useToggle } from "../../useToggle.js";
 import { DISPLAY_NONE_CLASS } from "../../utils/isElementVisible.js";
 import { Chip } from "../Chip.js";

@@ -1,5 +1,7 @@
 "use client";
+
 import { type ReactElement } from "react";
+
 import { Button } from "../button/Button.js";
 import { IconRotator } from "../icon/IconRotator.js";
 import { getIcon } from "../icon/iconConfig.js";

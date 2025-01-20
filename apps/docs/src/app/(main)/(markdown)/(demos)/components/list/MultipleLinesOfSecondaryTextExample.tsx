@@ -1,6 +1,7 @@
 import { List } from "@react-md/core/list/List";
 import { ListItem } from "@react-md/core/list/ListItem";
 import { type ReactElement } from "react";
+
 import styles from "./MultipleLinesOfSecondaryTextExample.module.scss";
 
 export default function MultipleLinesOfSecondaryTextExample(): ReactElement {

@@ -1,8 +1,10 @@
 "use client";
-import { folders } from "@/constants/folders.js";
+
 import { Tree } from "@react-md/core/tree/Tree";
 import { useTree } from "@react-md/core/tree/useTree";
 import { type ReactElement } from "react";
+
+import { folders } from "@/constants/folders.js";
 
 export default function SingleSelectTreeExample(): ReactElement {
   const tree = useTree();

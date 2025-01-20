@@ -1,4 +1,5 @@
-import { Children, isValidElement, type ReactNode } from "react";
+import { Children, type ReactNode, isValidElement } from "react";
+
 import { type MenuItemProps } from "../menu/MenuItem.js";
 
 /**

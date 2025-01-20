@@ -1,4 +1,5 @@
 "use client";
+
 import { CodeBlockAppBar } from "@react-md/code/CodeBlockAppBar";
 import { useTypescriptEnabledContext } from "@react-md/code/TypescriptEnabledProvider";
 import {
@@ -17,7 +18,8 @@ import { useTabs } from "@react-md/core/tabs/useTabs";
 import { Slide } from "@react-md/core/transition/Slide";
 import { useToggle } from "@react-md/core/useToggle";
 import RefreshOutlinedIcon from "@react-md/material-icons/RefreshOutlinedIcon";
-import { useMemo, useRef, type ReactElement } from "react";
+import { type ReactElement, useMemo, useRef } from "react";
+
 import { ConfigureTypescriptEnabled } from "../MainLayout/ConfigureTypescriptEnabled.jsx";
 import { DemoCodePreview } from "./DemoCodePreview.jsx";
 import { type PreviewContainerOptions } from "./PreviewContainer.jsx";

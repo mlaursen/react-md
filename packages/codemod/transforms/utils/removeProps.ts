@@ -1,4 +1,5 @@
 import { type Collection } from "jscodeshift";
+
 import { getPropName } from "./getPropName";
 
 export interface RemovePropsOptions {

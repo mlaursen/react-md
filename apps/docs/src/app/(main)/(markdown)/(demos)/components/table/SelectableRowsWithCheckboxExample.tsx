@@ -1,5 +1,5 @@
 "use client";
-import { desserts } from "@/constants/desserts.js";
+
 import { Form } from "@react-md/core/form/Form";
 import { useCheckboxGroup } from "@react-md/core/form/useCheckboxGroup";
 import { Table } from "@react-md/core/table/Table";
@@ -10,6 +10,8 @@ import { TableContainer } from "@react-md/core/table/TableContainer";
 import { TableHeader } from "@react-md/core/table/TableHeader";
 import { TableRow } from "@react-md/core/table/TableRow";
 import { type ReactElement } from "react";
+
+import { desserts } from "@/constants/desserts.js";
 
 export default function SelectableRowsWithCheckboxExample(): ReactElement {
   const { getCheckboxProps, getIndeterminateProps } = useCheckboxGroup({

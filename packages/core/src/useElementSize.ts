@@ -1,9 +1,11 @@
 "use client";
-import { useCallback, useRef, useState, type RefCallback } from "react";
+
+import { type RefCallback, useCallback, useRef, useState } from "react";
+
 import { type ElementSize, type UseStateInitializer } from "./types.js";
 import {
-  useResizeObserver,
   type ResizeObserverHookOptions,
+  useResizeObserver,
 } from "./useResizeObserver.js";
 
 /**

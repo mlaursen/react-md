@@ -1,4 +1,5 @@
 import { describe, expect, it } from "@jest/globals";
+
 import { chip, chipContent } from "../styles.js";
 
 describe("chip", () => {

@@ -1,4 +1,5 @@
 import { type API, type FileInfo, type Options } from "jscodeshift";
+
 import { removeProps } from "../../utils/removeProps";
 import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers";
 import { REMOVED_INTERACTION_PROPS } from "../interaction/constants";

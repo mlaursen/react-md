@@ -4,6 +4,7 @@ import {
   type ObjectExpression,
   type ObjectPattern,
 } from "jscodeshift";
+
 import { getObjectPropertyName } from "./getObjectPropertyName";
 import { renameObjectProperty } from "./renameObjectProperty";
 

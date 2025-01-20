@@ -1,6 +1,8 @@
 "use client";
+
 import { cnb } from "cnbuilder";
-import { forwardRef, type ReactNode } from "react";
+import { type ReactNode, forwardRef } from "react";
+
 import { List, type ListElement, type ListProps } from "../list/List.js";
 import { type LabelRequiredForA11y } from "../types.js";
 import { useMenuConfiguration } from "./MenuConfigurationProvider.js";

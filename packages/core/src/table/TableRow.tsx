@@ -1,5 +1,7 @@
 "use client";
-import { forwardRef, type HTMLAttributes } from "react";
+
+import { type HTMLAttributes, forwardRef } from "react";
+
 import { useTableConfig } from "./TableConfigurationProvider.js";
 import { tableRow } from "./tableRowStyles.js";
 import { type TableRowConfiguration } from "./types.js";

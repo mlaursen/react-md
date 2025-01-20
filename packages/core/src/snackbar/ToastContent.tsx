@@ -1,5 +1,7 @@
 "use client";
-import { forwardRef, useCallback, useState, type HTMLAttributes } from "react";
+
+import { type HTMLAttributes, forwardRef, useCallback, useState } from "react";
+
 import { useResizeObserver } from "../useResizeObserver.js";
 import { toastContent } from "./toastContentStyles.js";
 

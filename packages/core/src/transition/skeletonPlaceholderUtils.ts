@@ -1,4 +1,5 @@
 import { type CSSProperties } from "react";
+
 import { bem } from "../utils/bem.js";
 import { randomInt } from "../utils/randomInt.js";
 

@@ -1,4 +1,5 @@
 "use client";
+
 import { Chip } from "@react-md/core/chip/Chip";
 import { useToggle } from "@react-md/core/useToggle";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";

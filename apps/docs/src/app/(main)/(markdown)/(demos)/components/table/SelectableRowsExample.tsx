@@ -1,11 +1,12 @@
 "use client";
+
 import { Table } from "@react-md/core/table/Table";
 import { TableBody } from "@react-md/core/table/TableBody";
 import { TableCell } from "@react-md/core/table/TableCell";
 import { TableContainer } from "@react-md/core/table/TableContainer";
 import { TableHeader } from "@react-md/core/table/TableHeader";
 import { TableRow } from "@react-md/core/table/TableRow";
-import { useState, type ReactElement } from "react";
+import { type ReactElement, useState } from "react";
 
 export default function SelectableRowsExample(): ReactElement {
   const [selectedRows, setSelectedRows] = useState<readonly number[]>([]);

@@ -1,8 +1,9 @@
 import { type MouseEvent, type RefObject, type TouchEvent } from "react";
+
 import {
-  getClientPosition,
   type ClientPositionEvent,
   type ClientPositionOptions,
+  getClientPosition,
 } from "../utils/getClientPosition.js";
 import { getRangeSteps } from "../utils/getRangeSteps.js";
 import { nearest } from "../utils/nearest.js";

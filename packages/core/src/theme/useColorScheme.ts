@@ -1,5 +1,7 @@
 "use client";
+
 import { createContext, useContext } from "react";
+
 import { type ColorSchemeContext } from "./types.js";
 
 const context = createContext<ColorSchemeContext>({

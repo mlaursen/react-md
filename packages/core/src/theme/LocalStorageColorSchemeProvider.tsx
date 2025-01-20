@@ -1,10 +1,12 @@
 "use client";
+
 import { type ReactElement, type ReactNode } from "react";
+
 import { useLocalStorage } from "../useLocalStorage.js";
+import { isColorSchemeMode } from "./isColorScheme.js";
 import { type ColorSchemeMode } from "./types.js";
 import { ColorSchemeProvider } from "./useColorScheme.js";
 import { useColorSchemeProvider } from "./useColorSchemeProvider.js";
-import { isColorSchemeMode } from "./isColorScheme.js";
 
 /**
  * @since 6.0.0

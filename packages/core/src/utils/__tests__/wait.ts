@@ -1,4 +1,5 @@
 import { describe, expect, it } from "@jest/globals";
+
 import { wait } from "../wait.js";
 
 describe("wait", () => {

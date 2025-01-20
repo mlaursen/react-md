@@ -1,5 +1,6 @@
 import { beforeEach, describe, expect, it, jest } from "@jest/globals";
 import { type MouseEventHandler, type ReactElement } from "react";
+
 import {
   act,
   fireEvent,
@@ -9,7 +10,6 @@ import {
   waitFor,
   within,
 } from "../../test-utils/index.js";
-
 import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { DropdownMenu } from "../DropdownMenu.js";
 import { MenuBar } from "../MenuBar.js";

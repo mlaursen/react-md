@@ -1,5 +1,6 @@
 import { Typography } from "@react-md/core/typography/Typography";
 import { type ReactElement } from "react";
+
 import { CopyCode } from "./CopyCode.jsx";
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";
 import { getFontStylesheet } from "./utils.js";

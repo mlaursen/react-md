@@ -3,9 +3,9 @@ import { describe, expect, it } from "@jest/globals";
 import { renderToString } from "react-dom/server";
 
 import {
+  type Dir,
   WritingDirectionProvider,
   useDir,
-  type Dir,
 } from "../WritingDirectionProvider.js";
 
 describe("WritingDirectionProvider", () => {

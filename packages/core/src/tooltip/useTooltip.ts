@@ -1,10 +1,7 @@
 "use client";
+
 import { cnb } from "cnbuilder";
 import {
-  useCallback,
-  useEffect,
-  useId,
-  useRef,
   type CSSProperties,
   type FocusEvent,
   type MouseEvent,
@@ -12,21 +9,26 @@ import {
   type Ref,
   type RefObject,
   type TouchEvent,
+  useCallback,
+  useEffect,
+  useId,
+  useRef,
 } from "react";
+
 import {
-  useHoverMode,
   type ControlledHoverModeImplementation,
+  useHoverMode,
 } from "../hoverMode/useHoverMode.js";
 import {
-  useUserInteractionMode,
   type UserInteractionMode,
+  useUserInteractionMode,
 } from "../interaction/UserInteractionModeProvider.js";
 import { type SimplePosition } from "../positioning/types.js";
 import {
-  useFixedPositioning,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   type FixedPositioningOptions,
   type FixedPositioningTransitionCallbacks,
+  useFixedPositioning,
 } from "../positioning/useFixedPositioning.js";
 import { type UseStateSetter } from "../types.js";
 import { usePageInactive } from "../usePageInactive.js";
@@ -41,8 +43,8 @@ import {
   TOOLTIP_SPACING_VAR,
 } from "./constants.js";
 import {
-  useTooltipPosition,
   type TooltipPositionHookOptions,
+  useTooltipPosition,
 } from "./useTooltipPosition.js";
 import { getAnchor } from "./utils.js";
 

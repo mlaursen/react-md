@@ -1,4 +1,5 @@
 import { describe, expect, it } from "@jest/globals";
+
 import { FontIcon } from "../../icon/FontIcon.js";
 import { type NavigationItem } from "../types.js";
 import {

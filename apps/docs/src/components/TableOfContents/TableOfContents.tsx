@@ -1,12 +1,14 @@
 "use client";
+
 import { useActiveHeadingId } from "@react-md/core/navigation/useActiveHeadingId";
 import { Typography } from "@react-md/core/typography/Typography";
 import {
-  RenderRecursively,
   type RecursiveItem,
+  RenderRecursively,
 } from "@react-md/core/utils/RenderRecursively";
 import { type TOCItem } from "docs-generator/rehype-toc";
-import { useId, type ReactElement } from "react";
+import { type ReactElement, useId } from "react";
+
 import { RenderTableOfContentsItem } from "./RenderTableOfContentsItem.jsx";
 import styles from "./TableOfContents.module.scss";
 import { TableOfContentsGroup } from "./TableOfContentsGroup.jsx";

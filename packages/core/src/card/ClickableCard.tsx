@@ -1,6 +1,8 @@
 "use client";
+
 import { cnb } from "cnbuilder";
-import { forwardRef, type MouseEventHandler } from "react";
+import { type MouseEventHandler, forwardRef } from "react";
+
 import { type ComponentWithRippleProps } from "../interaction/types.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";

@@ -1,11 +1,12 @@
 import { cnb } from "cnbuilder";
 import {
-  forwardRef,
   type CSSProperties,
   type HTMLAttributes,
   type Ref,
   type TextareaHTMLAttributes,
+  forwardRef,
 } from "react";
+
 import { textArea } from "./textAreaStyles.js";
 
 /**

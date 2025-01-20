@@ -1,4 +1,5 @@
 import { type ReactElement } from "react";
+
 import { PackageManagerCodeBlockContainer } from "./PackageManagerCodeBlockContainer.jsx";
 import {
   type PackageManagerCodeBlockProps,

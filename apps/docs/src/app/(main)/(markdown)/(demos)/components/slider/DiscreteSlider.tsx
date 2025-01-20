@@ -1,4 +1,5 @@
 "use client";
+
 import { box } from "@react-md/core/box/styles";
 import { Divider } from "@react-md/core/divider/Divider";
 import { Fieldset } from "@react-md/core/form/Fieldset";
@@ -8,7 +9,7 @@ import { Slider } from "@react-md/core/form/Slider";
 import { useRangeSlider } from "@react-md/core/form/useRangeSlider";
 import { useSlider } from "@react-md/core/form/useSlider";
 import { Typography } from "@react-md/core/typography/Typography";
-import { useId, type ReactElement } from "react";
+import { type ReactElement, useId } from "react";
 
 export default function DiscreteSlider(): ReactElement {
   const legendId1 = useId();

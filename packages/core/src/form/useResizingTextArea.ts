@@ -1,13 +1,15 @@
 "use client";
+
 import {
+  type ChangeEventHandler,
+  type Ref,
+  type RefCallback,
   useCallback,
   useEffect,
   useRef,
   useState,
-  type ChangeEventHandler,
-  type Ref,
-  type RefCallback,
 } from "react";
+
 import { useEnsuredRef } from "../useEnsuredRef.js";
 import { useResizeObserver } from "../useResizeObserver.js";
 

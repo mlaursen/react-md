@@ -1,8 +1,9 @@
 import { describe, expect, it } from "@jest/globals";
+
 import { render } from "../../test-utils/index.js";
 import {
-  useColorSchemeMetaTag,
   type ColorSchemeMetaTagOptions,
+  useColorSchemeMetaTag,
 } from "../useColorSchemeMetaTag.js";
 
 const getColorSchemeMetaTag = (): HTMLMetaElement | null =>

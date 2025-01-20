@@ -1,5 +1,6 @@
 import { cnb } from "cnbuilder";
 import { type HTMLAttributes, type ReactElement } from "react";
+
 import { InlineCode, type InlineCodeProps } from "./InlineCode.js";
 
 export interface ColorPreviewProps extends HTMLAttributes<HTMLSpanElement> {

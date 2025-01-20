@@ -1,13 +1,14 @@
 import {
-  forwardRef,
   type ElementType,
   type HTMLAttributes,
   type ReactElement,
+  forwardRef,
 } from "react";
+
 import {
-  typography,
   type TypographyClassNameOptions,
   type TypographyType,
+  typography,
 } from "./typographyStyles.js";
 
 /**

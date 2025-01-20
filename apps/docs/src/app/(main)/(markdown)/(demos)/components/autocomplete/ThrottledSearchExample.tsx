@@ -1,9 +1,10 @@
 "use client";
+
 import { Autocomplete } from "@react-md/core/autocomplete/Autocomplete";
 import { useThrottledFunction } from "@react-md/core/useThrottledFunction";
 import { useUnmounted } from "@react-md/core/useUnmounted";
 import { wait } from "@react-md/core/utils/wait";
-import { useRef, useState, type ReactElement } from "react";
+import { type ReactElement, useRef, useState } from "react";
 
 export default function ThrottledSearchExample(): ReactElement {
   const [loading, setLoading] = useState(false);

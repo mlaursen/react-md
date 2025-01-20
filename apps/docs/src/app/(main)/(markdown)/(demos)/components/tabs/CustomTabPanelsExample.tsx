@@ -1,14 +1,15 @@
 "use client";
+
 import { Tab } from "@react-md/core/tabs/Tab";
 import { TabList } from "@react-md/core/tabs/TabList";
 import {
-  useTabs,
   type ProvidedTabPanelProps,
   type ProvidedTabPanelsProps,
+  useTabs,
 } from "@react-md/core/tabs/useTabs";
 import { DISPLAY_NONE_CLASS } from "@react-md/core/utils/isElementVisible";
 import { cnb } from "cnbuilder";
-import { forwardRef, type ReactElement, type ReactNode } from "react";
+import { type ReactElement, type ReactNode, forwardRef } from "react";
 
 export default function CustomTabPanelsExample(): ReactElement {
   const { getTabProps, getTabListProps, getTabPanelProps, getTabPanelsProps } =

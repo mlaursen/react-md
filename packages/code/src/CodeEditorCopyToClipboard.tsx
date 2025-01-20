@@ -1,8 +1,10 @@
 "use client";
+
 import { useAddToast } from "@react-md/core/snackbar/ToastManagerProvider";
 import { type RequireAtLeastOne } from "@react-md/core/types";
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
+
 import {
   CopyToClipboard,
   type CopyToClipboardProps,

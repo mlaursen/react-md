@@ -6,6 +6,7 @@ import FullscreenIcon from "@react-md/material-icons/FullscreenIcon";
 import MenuOpenIcon from "@react-md/material-icons/MenuOpenIcon";
 import OpenInFullIcon from "@react-md/material-icons/OpenInFullIcon";
 import { type ComponentType, type ReactElement } from "react";
+
 import { type LayoutType } from "./layouts.js";
 
 export interface LayoutIconProps extends SVGIconProps {

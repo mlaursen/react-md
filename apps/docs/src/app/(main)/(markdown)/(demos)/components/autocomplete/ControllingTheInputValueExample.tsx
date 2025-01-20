@@ -1,10 +1,12 @@
 "use client";
-import { states, type State } from "@/constants/states.js";
+
 import { Autocomplete } from "@react-md/core/autocomplete/Autocomplete";
 import { Box } from "@react-md/core/box/Box";
 import { Button } from "@react-md/core/button/Button";
 import { Typography } from "@react-md/core/typography/Typography";
-import { useState, type ReactElement } from "react";
+import { type ReactElement, useState } from "react";
+
+import { type State, states } from "@/constants/states.js";
 
 export default function ControllingTheInputValueExample(): ReactElement {
   const [query, setQuery] = useState("");

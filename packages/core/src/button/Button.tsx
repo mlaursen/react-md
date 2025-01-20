@@ -1,5 +1,7 @@
 "use client";
-import { forwardRef, type ButtonHTMLAttributes } from "react";
+
+import { type ButtonHTMLAttributes, forwardRef } from "react";
+
 import { type ComponentWithRippleProps } from "../interaction/types.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
@@ -9,7 +11,7 @@ import {
   type FloatingActionButtonPosition,
   type FloatingActionButtonProps,
 } from "./FloatingActionButton.js";
-import { button, type ButtonClassNameThemeOptions } from "./buttonStyles.js";
+import { type ButtonClassNameThemeOptions, button } from "./buttonStyles.js";
 
 export interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,

@@ -1,11 +1,12 @@
 import { type ComponentType, type ReactElement } from "react";
+
 import { type ListProps } from "../list/List.js";
 import {
-  RenderRecursively,
-  getRecursiveItemKey,
   type RecursiveItem,
   type RecursiveItemKeyOptions,
   type RenderRecursiveItemsProps,
+  RenderRecursively,
+  getRecursiveItemKey,
 } from "../utils/RenderRecursively.js";
 import { DefaultNavigationRenderer } from "./DefaultNavigationRenderer.js";
 import { NavGroup } from "./NavGroup.js";

@@ -1,9 +1,10 @@
 "use client";
+
 import { MenuItemCheckbox } from "@react-md/core/form/MenuItemCheckbox";
 import { useCheckboxGroup } from "@react-md/core/form/useCheckboxGroup";
 import { DropdownMenu } from "@react-md/core/menu/DropdownMenu";
 import { MenuItemSeparator } from "@react-md/core/menu/MenuItemSeparator";
-import { useState, type ReactElement } from "react";
+import { type ReactElement, useState } from "react";
 
 const values = ["a", "b", "c", "d"] as const;
 const labels = {

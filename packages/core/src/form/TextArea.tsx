@@ -1,10 +1,12 @@
 "use client";
+
 import {
-  forwardRef,
   type CSSProperties,
   type HTMLAttributes,
   type TextareaHTMLAttributes,
+  forwardRef,
 } from "react";
+
 import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
@@ -16,8 +18,8 @@ import { getFormConfig } from "./formConfig.js";
 import { textArea, textAreaContainer } from "./textAreaStyles.js";
 import { type FormFieldOptions } from "./types.js";
 import {
-  useResizingTextArea,
   type TextAreaResize,
+  useResizingTextArea,
 } from "./useResizingTextArea.js";
 
 /**

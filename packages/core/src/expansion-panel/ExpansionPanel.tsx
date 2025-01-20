@@ -1,5 +1,7 @@
 "use client";
-import { forwardRef, type CSSProperties, type ReactNode } from "react";
+
+import { type CSSProperties, type ReactNode, forwardRef } from "react";
+
 import { Card, type CardProps } from "../card/Card.js";
 import { CardContent, type CardContentProps } from "../card/CardContent.js";
 import { useCollapseTransition } from "../transition/useCollapseTransition.js";

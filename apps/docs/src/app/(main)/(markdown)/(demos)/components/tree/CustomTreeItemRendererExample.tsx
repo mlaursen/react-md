@@ -1,5 +1,5 @@
 "use client";
-import { folders, type Folder } from "@/constants/folders.js";
+
 import { Tree } from "@react-md/core/tree/Tree";
 import { TreeItem } from "@react-md/core/tree/TreeItem";
 import { useTreeContext } from "@react-md/core/tree/TreeProvider";
@@ -11,7 +11,10 @@ import {
 import FolderIcon from "@react-md/material-icons/FolderIcon";
 import FolderOpenIcon from "@react-md/material-icons/FolderOpenIcon";
 import { cnb } from "cnbuilder";
-import { useId, type ReactElement } from "react";
+import { type ReactElement, useId } from "react";
+
+import { type Folder, folders } from "@/constants/folders.js";
+
 import styles from "./CustomTreeItemRendererExample.module.scss";
 
 export default function CustomTreeItemRendererExample(): ReactElement {

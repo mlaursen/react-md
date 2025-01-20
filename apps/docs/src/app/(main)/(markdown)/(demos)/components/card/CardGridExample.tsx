@@ -4,6 +4,7 @@ import { CardTitle } from "@react-md/core/card/CardTitle";
 import { ResponsiveItem } from "@react-md/core/responsive-item/ResponsiveItem";
 import { ResponsiveItemOverlay } from "@react-md/core/responsive-item/ResponsiveItemOverlay";
 import { type ReactElement } from "react";
+
 import styles from "./CardGridExample.module.scss";
 
 export default function CardGridExample(): ReactElement {

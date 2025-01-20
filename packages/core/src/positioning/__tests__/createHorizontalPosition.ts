@@ -1,5 +1,8 @@
 import { describe, expect, it } from "@jest/globals";
+
 import {
+  type EqualWidthOptions,
+  type FixConfig,
   createAnchoredCenter,
   createAnchoredInnerLeft,
   createAnchoredInnerRight,
@@ -7,10 +10,7 @@ import {
   createAnchoredRight,
   createEqualWidth,
   createHorizontalPosition,
-  type EqualWidthOptions,
-  type FixConfig,
 } from "../createHorizontalPosition.js";
-
 import {
   getCenterXCoord,
   getInnerLeftCoord,

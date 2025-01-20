@@ -1,7 +1,9 @@
 "use client";
-import { type State, states } from "@/constants/states.js";
+
 import { Autocomplete } from "@react-md/core/autocomplete/Autocomplete";
 import { type ReactElement } from "react";
+
+import { type State, states } from "@/constants/states.js";
 
 export default function GettingTheCurrentValueExample(): ReactElement {
   const defaultValue: State = states[9];

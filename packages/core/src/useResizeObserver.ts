@@ -1,9 +1,10 @@
 "use client";
-import { useEffect, type Ref, type RefCallback } from "react";
-import { useEnsuredRef } from "./useEnsuredRef.js";
+
+import { type Ref, type RefCallback, useEffect } from "react";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { type useElementSize } from "./useElementSize.js";
+import { useEnsuredRef } from "./useEnsuredRef.js";
 
 /**
  * @since 6.0.0

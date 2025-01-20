@@ -1,10 +1,10 @@
 import { type Options } from "prettier";
-import prettier from "prettier/standalone.js";
+import estreePlugin from "prettier/plugins/estree.js";
 import htmlPlugin from "prettier/plugins/html.js";
-import yamlPlugin from "prettier/plugins/yaml.js";
 import postcssPlugin from "prettier/plugins/postcss.js";
 import typescriptPlugin from "prettier/plugins/typescript.js";
-import estreePlugin from "prettier/plugins/estree.js";
+import yamlPlugin from "prettier/plugins/yaml.js";
+import prettier from "prettier/standalone.js";
 
 export async function formatCode(
   source: string,

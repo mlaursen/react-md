@@ -1,10 +1,11 @@
 "use client";
+
 import { Box } from "@react-md/core/box/Box";
 import { Button } from "@react-md/core/button/Button";
 import { Switch } from "@react-md/core/form/Switch";
 import { CircularProgress } from "@react-md/core/progress/CircularProgress";
 import { LinearProgress } from "@react-md/core/progress/LinearProgress";
-import { useEffect, useState, type ReactElement } from "react";
+import { type ReactElement, useEffect, useState } from "react";
 
 export default function DisableDeterminateTransition(): ReactElement {
   const { progress, toggle, restart, running } = useProgress();

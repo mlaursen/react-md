@@ -8,11 +8,13 @@ import {
   jest,
 } from "@jest/globals";
 import {
-  useEffect,
-  useState,
   type MutableRefObject,
   type ReactElement,
+  useEffect,
+  useState,
 } from "react";
+
+import { SsrProvider, useSsr } from "../../SsrProvider.js";
 import {
   act,
   fireEvent,
@@ -20,8 +22,6 @@ import {
   screen,
   waitFor,
 } from "../../test-utils/index.js";
-
-import { SsrProvider, useSsr } from "../../SsrProvider.js";
 import { useLocalStorage } from "../../useLocalStorage.js";
 import { TRANSITION_CONFIG } from "../config.js";
 import {

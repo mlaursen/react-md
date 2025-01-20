@@ -1,5 +1,7 @@
 "use client";
-import { forwardRef, useMemo, type TableHTMLAttributes } from "react";
+
+import { type TableHTMLAttributes, forwardRef, useMemo } from "react";
+
 import { TableConfigProvider } from "./TableConfigurationProvider.js";
 import { table } from "./tableStyles.js";
 import { type TableConfigContext, type TableConfiguration } from "./types.js";

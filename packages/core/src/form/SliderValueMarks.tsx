@@ -4,15 +4,16 @@ import {
   type ReactElement,
   type ReactNode,
 } from "react";
+
 import { getPercentage } from "../utils/getPercentage.js";
 import {
-  getRangeSteps,
   type RangeStepsOptions,
+  getRangeSteps,
 } from "../utils/getRangeSteps.js";
 import { SliderMark } from "./SliderMark.js";
 import {
-  SliderMarkLabel,
   type CustomizableSliderMarkLabelProps,
+  SliderMarkLabel,
 } from "./SliderMarkLabel.js";
 
 /**

@@ -1,7 +1,7 @@
 import { Box } from "@react-md/core/box/Box";
 import { Switch } from "@react-md/core/form/Switch";
 import { LinearProgress } from "@react-md/core/progress/LinearProgress";
-import { useState, type ReactElement } from "react";
+import { type ReactElement, useState } from "react";
 
 export default function LinearProgressTheme(): ReactElement {
   const [checked, setChecked] = useState(false);

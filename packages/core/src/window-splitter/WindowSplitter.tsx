@@ -1,7 +1,7 @@
-import { forwardRef, type ButtonHTMLAttributes } from "react";
+import { type ButtonHTMLAttributes, forwardRef } from "react";
+
 import { type LabelRequiredForA11y } from "../types.js";
 import { windowSplitter } from "./styles.js";
-
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { type useWindowSplitter } from "./useWindowSplitter.js";
 

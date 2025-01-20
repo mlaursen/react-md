@@ -1,10 +1,12 @@
 "use client";
+
 import { useCallback, useState } from "react";
+
 import { useSsr } from "./SsrProvider.js";
 import { type ElementSize } from "./types.js";
 import {
-  useResizeListener,
   type ResizeListenerOptions,
+  useResizeListener,
 } from "./useResizeListener.js";
 
 /**

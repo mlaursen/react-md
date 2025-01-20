@@ -1,4 +1,5 @@
 "use client";
+
 import { Tab } from "@react-md/core/tabs/Tab";
 import { TabList } from "@react-md/core/tabs/TabList";
 import { useTabs } from "@react-md/core/tabs/useTabs";

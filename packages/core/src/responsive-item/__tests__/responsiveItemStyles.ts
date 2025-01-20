@@ -1,4 +1,5 @@
 import { describe, expect, it } from "@jest/globals";
+
 import { responsiveItem } from "../responsiveItemStyles.js";
 
 describe("responsiveItem", () => {

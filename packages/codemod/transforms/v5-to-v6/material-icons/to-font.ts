@@ -1,4 +1,5 @@
 import { type API, type FileInfo, type Options } from "jscodeshift";
+
 import { getImportedName } from "../../utils/getImportedName";
 import { sortImportSpecifiers } from "../../utils/sortImportSpecifiers";
 import { ONLY_SYMBOL_AVAILABLE, RENAMED_ICONS } from "./constants";

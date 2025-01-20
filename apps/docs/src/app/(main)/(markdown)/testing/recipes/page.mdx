@@ -29,7 +29,7 @@ This example showcases how to:
 - change the selected option
 
 ```tsx
-import { screen, rmdRender, userEvent } from "@react-md/core/test-utils";
+import { rmdRender, screen, userEvent } from "@react-md/core/test-utils";
 
 it("should be able to change value", async () => {
   const user = userEvent.setup();
@@ -64,8 +64,8 @@ util query.
 ```tsx
 import {
   getSelectTestElements,
-  screen,
   rmdRender,
+  screen,
   userEvent,
 } from "@react-md/core/test-utils";
 
@@ -172,7 +172,7 @@ The `Switch` is an extension of an `<input type="checkbox">` with
 `role="switch"`, so the element can be changed just like a `Checkbox`.
 
 ```tsx
-import { screen, rmdRender, userEvent } from "@react-md/core/test-utils";
+import { rmdRender, screen, userEvent } from "@react-md/core/test-utils";
 
 it("should be able to change the checked state", async () => {
   const user = userEvent.setup();

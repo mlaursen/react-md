@@ -1,5 +1,6 @@
 import { cnb } from "cnbuilder";
-import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from "react";
+import { type ButtonHTMLAttributes, type ReactNode, forwardRef } from "react";
+
 import { ButtonUnstyled } from "../button/ButtonUnstyled.js";
 import { IconRotator, type IconRotatorProps } from "../icon/IconRotator.js";
 import { bem } from "../utils/bem.js";

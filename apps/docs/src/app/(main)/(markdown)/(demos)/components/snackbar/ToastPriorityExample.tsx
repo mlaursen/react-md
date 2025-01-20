@@ -1,4 +1,5 @@
 "use client";
+
 import { Box } from "@react-md/core/box/Box";
 import { AsyncButton } from "@react-md/core/button/AsyncButton";
 import { Form } from "@react-md/core/form/Form";
@@ -17,6 +18,7 @@ import {
 } from "@react-md/core/snackbar/ToastManagerProvider";
 import { wait } from "@react-md/core/utils/wait";
 import { type ReactElement } from "react";
+
 import styles from "./ToastPriorityExample.module.scss";
 
 const manager = new ToastManager();

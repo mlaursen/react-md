@@ -1,8 +1,9 @@
 import { act } from "@testing-library/react";
+
 import {
   BASE_MEDIA_QUERY_LIST,
-  matchDesktop,
   type MatchMediaMatcher,
+  matchDesktop,
 } from "./match-media.js";
 
 /**

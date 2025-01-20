@@ -1,5 +1,6 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import { waitFor } from "@testing-library/react";
+
 import {
   ResizeObserverManager,
   resizeObserverManager,

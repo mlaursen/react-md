@@ -1,4 +1,5 @@
-import { useEffect, type RefCallback, type Ref } from "react";
+import { type Ref, type RefCallback, useEffect } from "react";
+
 import { useEnsuredRef } from "./useEnsuredRef.js";
 
 /**

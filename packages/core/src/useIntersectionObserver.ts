@@ -1,6 +1,8 @@
 "use client";
+
 import type { Ref, RefCallback, RefObject } from "react";
 import { useEffect } from "react";
+
 import { useEnsuredRef } from "./useEnsuredRef.js";
 
 /** @since 6.0.0 */

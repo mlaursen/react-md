@@ -1,12 +1,14 @@
 "use client";
+
 import { cnb } from "cnbuilder";
 import {
+  type CSSProperties,
+  type HTMLAttributes,
   forwardRef,
   useEffect,
   useRef,
-  type CSSProperties,
-  type HTMLAttributes,
 } from "react";
+
 import { type FloatingActionButtonPosition } from "../button/FloatingActionButton.js";
 import { useFocusContainer } from "../focus/useFocusContainer.js";
 import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
@@ -16,22 +18,22 @@ import { type GetDefaultFocusedIndex } from "../movement/types.js";
 import { Portal } from "../portal/Portal.js";
 import { type CalculateFixedPositionOptions } from "../positioning/types.js";
 import {
-  useFixedPositioning,
   type FixedPositioningOptions,
+  useFixedPositioning,
 } from "../positioning/useFixedPositioning.js";
 import { useScrollLock } from "../scroll/useScrollLock.js";
 import {
-  useScaleTransition,
   type ScaleTransitionHookOptions,
+  useScaleTransition,
 } from "../transition/useScaleTransition.js";
 import { type LabelRequiredForA11y, type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect.js";
 import {
-  MenuConfigurationProvider,
-  useMenuConfiguration,
   type MenuConfiguration,
+  MenuConfigurationProvider,
   type MenuOrientationProps,
+  useMenuConfiguration,
 } from "./MenuConfigurationProvider.js";
 import { MenuSheet, type MenuSheetConvenienceProps } from "./MenuSheet.js";
 import { MenuWidget } from "./MenuWidget.js";

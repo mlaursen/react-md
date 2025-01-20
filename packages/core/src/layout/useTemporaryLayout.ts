@@ -1,5 +1,7 @@
 "use client";
-import { useEffect, type PropsWithChildren } from "react";
+
+import { type PropsWithChildren, useEffect } from "react";
+
 import { type AppBarProps } from "../app-bar/AppBar.js";
 import { type ButtonProps } from "../button/Button.js";
 import { getIcon } from "../icon/iconConfig.js";

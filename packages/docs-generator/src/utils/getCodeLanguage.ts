@@ -1,4 +1,5 @@
 import { type Element } from "hast";
+
 import { assertStringArray } from "./assertions.js";
 
 const LANG_PREFIX = "language-";

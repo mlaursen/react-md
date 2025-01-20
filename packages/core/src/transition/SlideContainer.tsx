@@ -1,5 +1,6 @@
 import { cnb } from "cnbuilder";
-import { forwardRef, type HTMLAttributes } from "react";
+import { type HTMLAttributes, forwardRef } from "react";
+
 import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-slide-container");

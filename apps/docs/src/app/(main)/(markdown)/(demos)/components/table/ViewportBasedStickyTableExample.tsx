@@ -4,6 +4,7 @@ import { TableBody } from "@react-md/core/table/TableBody";
 import { TableCell } from "@react-md/core/table/TableCell";
 import { TableRow } from "@react-md/core/table/TableRow";
 import { type ReactElement } from "react";
+
 import styles from "./ViewportBasedStickyTableExample.module.scss";
 
 export default function ViewportBasedStickyTableExample(): ReactElement {

@@ -1,4 +1,5 @@
 import { describe, expect, it } from "@jest/globals";
+
 import { getJumpValue, getThumbOffsets } from "../sliderUtils.js";
 
 describe("getJumpValue", () => {

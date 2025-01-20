@@ -2,7 +2,7 @@ import { Box } from "@react-md/core/box/Box";
 import { Switch } from "@react-md/core/form/Switch";
 import { DropdownMenu } from "@react-md/core/menu/DropdownMenu";
 import { MenuItem } from "@react-md/core/menu/MenuItem";
-import { useState, type ReactElement } from "react";
+import { type ReactElement, useState } from "react";
 
 export default function NestedMenusExample(): ReactElement {
   const [horizontal, setHorizontal] = useState(false);

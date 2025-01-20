@@ -1,9 +1,11 @@
 "use client";
-import { states, type StateAbbreviation } from "@/constants/states.js";
+
 import { Form } from "@react-md/core/form/Form";
 import { Option } from "@react-md/core/form/Option";
 import { Select } from "@react-md/core/form/Select";
-import { useState, type ReactElement } from "react";
+import { type ReactElement, useState } from "react";
+
+import { type StateAbbreviation, states } from "@/constants/states.js";
 
 export default function ControlledSelectExample(): ReactElement {
   const [value, setValue] = useState<StateAbbreviation | "">("");

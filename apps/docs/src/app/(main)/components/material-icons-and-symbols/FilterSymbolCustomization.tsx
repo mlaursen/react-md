@@ -8,6 +8,7 @@ import { Link } from "@react-md/core/link/Link";
 import { Typography } from "@react-md/core/typography/Typography";
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
+
 import styles from "./FilterSymbolCustomization.module.scss";
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";
 import {

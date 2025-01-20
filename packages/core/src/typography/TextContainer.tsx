@@ -1,7 +1,8 @@
-import { forwardRef, type HTMLAttributes } from "react";
+import { type HTMLAttributes, forwardRef } from "react";
+
 import {
-  textContainer,
   type TextContainerClassNameOptions,
+  textContainer,
 } from "./textContainerStyles.js";
 
 /**

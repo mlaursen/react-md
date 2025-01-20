@@ -1,9 +1,10 @@
 import { cnb } from "cnbuilder";
 import { forwardRef } from "react";
+
 import { type Margin } from "../cssUtils.js";
 import {
-  Typography,
   type CustomTypographyComponent,
+  Typography,
   type TypographyProps,
 } from "../typography/Typography.js";
 import { type TypographyType } from "../typography/typographyStyles.js";

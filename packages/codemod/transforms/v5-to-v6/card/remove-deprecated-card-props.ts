@@ -1,7 +1,8 @@
 import { type API, type FileInfo, type Options } from "jscodeshift";
+
 import { removeProps } from "../../utils/removeProps";
-import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers";
 import { renameProps } from "../../utils/renameProps";
+import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers";
 
 export default function transformer(
   file: FileInfo,

@@ -1,14 +1,16 @@
 "use client";
+
 import { cssUtils } from "@react-md/core/cssUtils";
 import { useIntersectionObserver } from "@react-md/core/useIntersectionObserver";
 import { cnb } from "cnbuilder";
 import {
+  type ReactElement,
+  type ReactNode,
   useCallback,
   useEffect,
   useRef,
-  type ReactElement,
-  type ReactNode,
 } from "react";
+
 import styles from "./HomePageBannerContainer.module.scss";
 
 const ELEVATED_CLASS_NAME = "rmd-app-bar--elevated";

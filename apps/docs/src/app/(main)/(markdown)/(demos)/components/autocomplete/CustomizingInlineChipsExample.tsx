@@ -1,8 +1,10 @@
 "use client";
-import { type Dessert, desserts } from "@/constants/desserts.js";
+
 import { Autocomplete } from "@react-md/core/autocomplete/Autocomplete";
 import FavoriteIcon from "node_modules/@react-md/material-icons/src/FavoriteIcon.jsx";
 import { type ReactElement } from "react";
+
+import { type Dessert, desserts } from "@/constants/desserts.js";
 
 export default function CustomizingInlineChipsExample(): ReactElement {
   const isDisabled = (option: Dessert): boolean =>

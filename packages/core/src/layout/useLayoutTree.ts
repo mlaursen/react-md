@@ -1,5 +1,7 @@
 "use client";
+
 import { useEffect, useMemo } from "react";
+
 import { type TreeProps } from "../tree/Tree.js";
 import {
   type DefaultTreeItemNode,

@@ -1,7 +1,7 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import { type ChangeEvent, type ReactElement } from "react";
-import { render, screen } from "../../test-utils/index.js";
 
+import { render, screen } from "../../test-utils/index.js";
 import { type UseStateSetter } from "../../types.js";
 import { LocalStorageColorSchemeProvider } from "../LocalStorageColorSchemeProvider.js";
 import { type ColorScheme, type ColorSchemeMode } from "../types.js";

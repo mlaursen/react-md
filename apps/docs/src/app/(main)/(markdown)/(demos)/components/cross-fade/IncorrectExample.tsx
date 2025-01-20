@@ -1,11 +1,12 @@
 "use client";
+
 import { Box } from "@react-md/core/box/Box";
 import { Button } from "@react-md/core/button/Button";
 import { Card, type CardProps } from "@react-md/core/card/Card";
 import { CardContent } from "@react-md/core/card/CardContent";
 import { Switch } from "@react-md/core/form/Switch";
 import { CrossFade } from "@react-md/core/transition/CrossFade";
-import { forwardRef, useState, type ReactElement } from "react";
+import { type ReactElement, forwardRef, useState } from "react";
 
 export default function IncorrectExample(): ReactElement {
   const [items, setItems] = useState(0);

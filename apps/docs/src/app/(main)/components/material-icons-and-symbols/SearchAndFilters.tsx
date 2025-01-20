@@ -1,4 +1,5 @@
 "use client";
+
 import { AppBar } from "@react-md/core/app-bar/AppBar";
 import { Button } from "@react-md/core/button/Button";
 import { TextField } from "@react-md/core/form/TextField";
@@ -9,6 +10,7 @@ import SearchOutlinedIcon from "@react-md/material-icons/SearchOutlinedIcon";
 import TuneOutlinedIcon from "@react-md/material-icons/TuneOutlinedIcon";
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
+
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";
 import styles from "./SearchAndFilters.module.scss";
 

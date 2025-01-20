@@ -1,5 +1,6 @@
 import { cnb } from "cnbuilder";
 import { forwardRef } from "react";
+
 import { box } from "../box/styles.js";
 import { bem } from "../utils/bem.js";
 import { type ConfigurableTextFieldAddonProps } from "./types.js";

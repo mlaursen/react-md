@@ -1,11 +1,11 @@
 import { type FixedPositionOptions, type HorizontalPosition } from "./types.js";
 import {
+  type XCoordConfig,
   getCenterXCoord,
   getInnerLeftCoord,
   getInnerRightCoord,
   getLeftCoord,
   getRightCoord,
-  type XCoordConfig,
 } from "./utils.js";
 
 /**

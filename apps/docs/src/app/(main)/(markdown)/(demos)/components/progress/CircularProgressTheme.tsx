@@ -1,7 +1,7 @@
 import { Box } from "@react-md/core/box/Box";
 import { Switch } from "@react-md/core/form/Switch";
 import { CircularProgress } from "@react-md/core/progress/CircularProgress";
-import { useState, type ReactElement } from "react";
+import { type ReactElement, useState } from "react";
 
 export default function CircularProgressTheme(): ReactElement {
   const [checked, setChecked] = useState(false);

@@ -1,5 +1,6 @@
-import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
-import { icon, type SVGIconClassNameOptions } from "./styles.js";
+import { type HTMLAttributes, type ReactNode, forwardRef } from "react";
+
+import { type SVGIconClassNameOptions, icon } from "./styles.js";
 
 /**
  * @since 6.0.0 Added the `inline` and `theme` props.

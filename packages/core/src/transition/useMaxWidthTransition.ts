@@ -1,7 +1,9 @@
 "use client";
+
 import { cnb } from "cnbuilder";
 import type { ReactNode } from "react";
 import { Children, cloneElement, isValidElement } from "react";
+
 import { maxWidthTransition } from "./maxWidthTransition.js";
 
 /**

@@ -1,4 +1,5 @@
 import { type JSCodeshift, type UnaryExpression } from "jscodeshift";
+
 import { type ExpressionKind } from "../types";
 import { nullishCoalescingCheck } from "./nullishCoalescingCheck";
 

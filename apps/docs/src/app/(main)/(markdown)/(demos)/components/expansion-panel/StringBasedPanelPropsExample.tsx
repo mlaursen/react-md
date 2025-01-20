@@ -1,5 +1,5 @@
 "use client";
-import { type Dessert, desserts } from "@/constants/desserts.js";
+
 import { ExpansionList } from "@react-md/core/expansion-panel/ExpansionList";
 import { ExpansionPanel } from "@react-md/core/expansion-panel/ExpansionPanel";
 import { useExpansionPanels } from "@react-md/core/expansion-panel/useExpansionPanels";
@@ -10,6 +10,8 @@ import { TableContainer } from "@react-md/core/table/TableContainer";
 import { TableHeader } from "@react-md/core/table/TableHeader";
 import { TableRow } from "@react-md/core/table/TableRow";
 import { type ReactElement } from "react";
+
+import { type Dessert, desserts } from "@/constants/desserts.js";
 
 export default function StringBasedPanelPropsExample(): ReactElement {
   const { getPanelProps } = useExpansionPanels({

@@ -30,16 +30,17 @@ simplified version of how this documentation site handles the color scheme.
 
 ```tsx fileName="src/components/CookieColorSchemeProvider.tsx"
 "use client";
+
 import { type ColorSchemeMode } from "@react-md/core/theme/types";
 import { ColorSchemeProvider } from "@react-md/core/theme/useColorScheme";
 import { useColorSchemeProvider } from "@react-md/core/theme/useColorSchemeProvider";
 import { type UseStateSetter } from "@react-md/core/types";
 import Cookies from "js-cookie";
 import {
-  useCallback,
-  useState,
   type ReactElement,
   type ReactNode,
+  useCallback,
+  useState,
 } from "react";
 
 export function setCookie(name: string, value: string): void {
@@ -90,8 +91,8 @@ export function CookieColorSchemeProvider(
 
 ```tsx fileName="src/app/layout.tsx"
 import { isColorSchemeMode } from "@react-md/core/theme/isColorScheme";
-import { type ReactElement, type ReactNode } from "react";
 import { cookies } from "next/headers.js";
+import { type ReactElement, type ReactNode } from "react";
 
 interface RootLayoutProps {
   children: ReactNode;

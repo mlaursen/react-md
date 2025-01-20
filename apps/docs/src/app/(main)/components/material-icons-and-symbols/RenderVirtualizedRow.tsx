@@ -3,6 +3,7 @@ import { box } from "@react-md/core/box/styles";
 import { Typography } from "@react-md/core/typography/Typography";
 import { type ReactElement } from "react";
 import { type ListChildComponentProps } from "react-window";
+
 import { MaterialSymbolOrIcon } from "./MaterialSymbolOrIcon.jsx";
 import styles from "./RenderVirtualizedRow.module.scss";
 import { VirtualizedMatch } from "./VirtualizedMatch.jsx";

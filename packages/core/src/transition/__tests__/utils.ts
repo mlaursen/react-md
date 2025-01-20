@@ -1,4 +1,5 @@
 import { describe, expect, it, jest } from "@jest/globals";
+
 import type { CSSTransitionClassNamesObject } from "../types.js";
 import type { TransitionTimeoutOptions } from "../utils.js";
 import {

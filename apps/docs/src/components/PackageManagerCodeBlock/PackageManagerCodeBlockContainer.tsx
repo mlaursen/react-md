@@ -1,11 +1,13 @@
 "use client";
+
 import { CodeBlockAppBar } from "@react-md/code/CodeBlockAppBar";
 import {
-  usePackageManagerContext,
   type PackageManager,
+  usePackageManagerContext,
 } from "@react-md/code/PackageManagerProvider";
 import { useTabs } from "@react-md/core/tabs/useTabs";
 import { type ReactElement, type ReactNode } from "react";
+
 import { PackageManagerTabPanels } from "./PackageManagerTabPanels.jsx";
 import { PackageManagerTabs } from "./PackageManagerTabs.jsx";
 

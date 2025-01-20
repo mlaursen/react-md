@@ -2,6 +2,7 @@ import { box } from "@react-md/core/box/styles";
 import { contrastColor } from "@react-md/core/theme/utils";
 import { cnb } from "cnbuilder";
 import { type ReactElement, type ReactNode } from "react";
+
 import styles from "./Color.module.scss";
 import { ColorHeadingWrapper } from "./ColorHeadingWrapper.jsx";
 

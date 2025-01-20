@@ -3,6 +3,7 @@ import ForestIcon from "@react-md/material-icons/ForestIcon";
 import ListIcon from "@react-md/material-icons/ListIcon";
 import StyleIcon from "@react-md/material-icons/StyleIcon";
 import { type ComponentType, type ReactElement } from "react";
+
 import { type NavigationType } from "./navTypes.js";
 
 export interface NavigationTypeIconProps extends SVGIconProps {

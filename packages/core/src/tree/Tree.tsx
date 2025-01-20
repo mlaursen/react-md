@@ -1,4 +1,5 @@
 "use client";
+
 import {
   type ComponentType,
   type HTMLAttributes,
@@ -6,6 +7,7 @@ import {
   type ReactNode,
   type Ref,
 } from "react";
+
 import { type CustomLinkComponent } from "../link/Link.js";
 import { List } from "../list/List.js";
 import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
@@ -14,7 +16,7 @@ import { useEnsuredId } from "../useEnsuredId.js";
 import { RenderRecursively } from "../utils/RenderRecursively.js";
 import { identity } from "../utils/identity.js";
 import { DefaultTreeItemRenderer } from "./DefaultTreeItemRenderer.js";
-import { TreeProvider, type TreeExpansionMode } from "./TreeProvider.js";
+import { type TreeExpansionMode, TreeProvider } from "./TreeProvider.js";
 import { tree } from "./styles.js";
 import {
   type TreeData,

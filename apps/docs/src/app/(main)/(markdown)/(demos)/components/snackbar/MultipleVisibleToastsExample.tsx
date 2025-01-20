@@ -1,10 +1,12 @@
 "use client";
+
 import { Button } from "@react-md/core/button/Button";
 import { LinearProgress } from "@react-md/core/progress/LinearProgress";
 import { Snackbar } from "@react-md/core/snackbar/Snackbar";
 import { ToastManager } from "@react-md/core/snackbar/ToastManager";
 import { ToastManagerProvider } from "@react-md/core/snackbar/ToastManagerProvider";
-import { useRef, type ReactElement } from "react";
+import { type ReactElement, useRef } from "react";
+
 import styles from "./MultipleVisibleToastsExample.module.scss";
 
 const manager = new ToastManager();

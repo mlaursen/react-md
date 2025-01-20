@@ -1,10 +1,13 @@
 "use client";
-import { LinkUnstyled } from "@/components/LinkUnstyled.jsx";
+
 import { cssUtils } from "@react-md/core/cssUtils";
 import { ListItemLink } from "@react-md/core/list/ListItemLink";
 import { cnb } from "cnbuilder";
 import { usePathname } from "next/navigation.js";
 import { type ReactElement, type ReactNode } from "react";
+
+import { LinkUnstyled } from "@/components/LinkUnstyled.jsx";
+
 import styles from "./SimpleNavItem.module.scss";
 
 export interface SimpleNavItemProps {

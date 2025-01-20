@@ -4,6 +4,7 @@ import { Option } from "@react-md/core/form/Option";
 import { Select } from "@react-md/core/form/Select";
 import StyleOutlinedIcon from "@react-md/material-icons/StyleOutlinedIcon";
 import { type ReactElement } from "react";
+
 import { FilterPanel } from "./FilterPanel.jsx";
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";
 import {

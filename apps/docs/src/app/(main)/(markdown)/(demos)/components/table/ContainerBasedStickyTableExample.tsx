@@ -5,6 +5,7 @@ import { TableCell } from "@react-md/core/table/TableCell";
 import { TableContainer } from "@react-md/core/table/TableContainer";
 import { TableRow } from "@react-md/core/table/TableRow";
 import { type ReactElement } from "react";
+
 import styles from "./ContainerBasedStickyTableExample.module.scss";
 
 export default function ContainerBasedStickyTableExample(): ReactElement {

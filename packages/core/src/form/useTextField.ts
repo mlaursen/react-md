@@ -1,14 +1,16 @@
 "use client";
+
 import {
-  useCallback,
-  useRef,
-  useState,
   type HTMLAttributes,
   type ReactNode,
   type Ref,
   type RefCallback,
   type RefObject,
+  useCallback,
+  useRef,
+  useState,
 } from "react";
+
 import { getIcon } from "../icon/iconConfig.js";
 import { type UseStateInitializer, type UseStateSetter } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
@@ -19,15 +21,15 @@ import {
   type FormMessageProps,
 } from "./types.js";
 import {
-  defaultGetErrorIcon,
-  defaultGetErrorMessage,
-  defaultIsErrored,
   type ErrorMessageOptions,
   type GetErrorIcon,
   type GetErrorMessage,
   type IsErrored,
   type TextFieldValidationOptions,
   type TextFieldValidationType,
+  defaultGetErrorIcon,
+  defaultGetErrorMessage,
+  defaultIsErrored,
 } from "./validation.js";
 
 const noop = (): void => {

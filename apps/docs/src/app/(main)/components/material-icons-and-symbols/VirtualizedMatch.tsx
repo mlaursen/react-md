@@ -4,6 +4,7 @@ import { cssUtils } from "@react-md/core/cssUtils";
 import { useColorScheme } from "@react-md/core/theme/useColorScheme";
 import { cnb } from "cnbuilder";
 import { type ReactElement, type ReactNode } from "react";
+
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";
 import styles from "./VirtualizedMatch.module.scss";
 import { type MaterialIconAndSymbolName } from "./metadata.js";

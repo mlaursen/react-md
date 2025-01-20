@@ -1,8 +1,9 @@
 "use client";
+
 import { Box } from "@react-md/core/box/Box";
 import { AsyncButton } from "@react-md/core/button/AsyncButton";
 import { Switch } from "@react-md/core/form/Switch";
-import { useState, type ReactElement } from "react";
+import { type ReactElement, useState } from "react";
 
 export default function ManualLoadingState(): ReactElement {
   const [loading, setLoading] = useState(false);

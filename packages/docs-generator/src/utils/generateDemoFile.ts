@@ -3,10 +3,11 @@ import { existsSync } from "node:fs";
 import { mkdir, writeFile } from "node:fs/promises";
 import { format } from "prettier";
 import { VariableDeclarationKind } from "ts-morph";
+
 import { type InlineDemoProps } from "./createDemo.js";
 import {
-  parseCompleteDemoFile,
   type ParseCompleteDemoFileOptions,
+  parseCompleteDemoFile,
 } from "./parseDemoFile.js";
 
 const TEMPLATE = `"use client";

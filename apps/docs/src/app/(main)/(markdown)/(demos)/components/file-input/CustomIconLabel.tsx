@@ -2,7 +2,7 @@ import { box } from "@react-md/core/box/styles";
 import { FileInput } from "@react-md/core/files/FileInput";
 import { Form } from "@react-md/core/form/Form";
 import { SrOnly } from "@react-md/core/typography/SrOnly";
-import { useId, type ReactElement } from "react";
+import { type ReactElement, useId } from "react";
 
 export default function CustomIconLabel(): ReactElement {
   const labelId = useId();

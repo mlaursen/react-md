@@ -1,8 +1,9 @@
 "use client";
+
 import {
-  useCombobox,
   type ComboboxImplementation,
   type ConfigurableComboboxOptions,
+  useCombobox,
 } from "./useCombobox.js";
 
 /**

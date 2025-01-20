@@ -1,4 +1,5 @@
 "use client";
+
 import { Box } from "@react-md/core/box/Box";
 import { Card } from "@react-md/core/card/Card";
 import { SegmentedButton } from "@react-md/core/segmented-button/SegmentedButton";
@@ -9,6 +10,7 @@ import { useColorScheme } from "@react-md/core/theme/useColorScheme";
 import { Typography } from "@react-md/core/typography/Typography";
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
+
 import styles from "./LocalStorageExample.module.scss";
 
 export default function LocalStorageExample(): ReactElement {

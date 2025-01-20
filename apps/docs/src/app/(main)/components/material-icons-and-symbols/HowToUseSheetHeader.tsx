@@ -1,4 +1,5 @@
 // import { addAppToast } from "@/toasts.js";
+import { CopyToClipboard } from "@react-md/code/CopyToClipboard";
 import { TooltippedButton } from "@react-md/core/button/TooltippedButton";
 import { cssUtils } from "@react-md/core/cssUtils";
 import { DialogHeader } from "@react-md/core/dialog/DialogHeader";
@@ -8,10 +9,10 @@ import { useTooltip } from "@react-md/core/tooltip/useTooltip";
 import CloseOutlinedIcon from "@react-md/material-icons/CloseOutlinedIcon";
 import ShareOutlinedIcon from "@react-md/material-icons/ShareOutlinedIcon";
 import { type ReactElement } from "react";
+
 import styles from "./HowToUseSheetHeader.module.scss";
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";
 import { MaterialSymbolOrIcon } from "./MaterialSymbolOrIcon.jsx";
-import { CopyToClipboard } from "@react-md/code/CopyToClipboard";
 
 export function HowToUseSheetHeader(): ReactElement {
   const { selectedIconName, deselectIcon } = useMaterialIconsAndSymbols();

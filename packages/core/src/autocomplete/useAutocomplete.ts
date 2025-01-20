@@ -1,9 +1,11 @@
 "use client";
+
 import { useCallback, useMemo, useRef } from "react";
+
 import { useEditableCombobox } from "../form/useEditableCombobox.js";
 import {
-  triggerManualChangeEvent,
   type EditableHTMLElement,
+  triggerManualChangeEvent,
 } from "../form/utils.js";
 import { getIcon } from "../icon/iconConfig.js";
 import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider.js";

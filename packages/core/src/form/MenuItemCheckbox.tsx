@@ -1,11 +1,13 @@
 "use client";
+
 import { forwardRef } from "react";
-import {
-  MenuItemInputToggle,
-  type MenuItemCheckboxProps,
-} from "./MenuItemInputToggle.js";
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { type ICON_CONFIG } from "../icon/iconConfig.js";
+import {
+  type MenuItemCheckboxProps,
+  MenuItemInputToggle,
+} from "./MenuItemInputToggle.js";
 
 /**
  * **Client Component**

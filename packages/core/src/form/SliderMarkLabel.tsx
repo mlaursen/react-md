@@ -1,8 +1,9 @@
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
+
 import {
-  Typography,
   type CustomTypographyComponent,
+  Typography,
   type TypographyProps,
 } from "../typography/Typography.js";
 import { type TypographyType } from "../typography/typographyStyles.js";

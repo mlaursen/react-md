@@ -3,9 +3,9 @@ import {
   resizeObserverManager,
 } from "../../useResizeObserver.js";
 import {
-  createResizeObserverEntry,
   type GetResizeObserverEntryMock,
   type ResizeObserverEntrySize,
+  createResizeObserverEntry,
 } from "../utils/resize-observer.js";
 
 /**

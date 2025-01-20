@@ -3,7 +3,7 @@ import { cssUtils } from "@react-md/core/cssUtils";
 import { Typography } from "@react-md/core/typography/Typography";
 import { bem } from "@react-md/core/utils/bem";
 import { cnb } from "cnbuilder";
-import { useId, type ReactElement, type ReactNode } from "react";
+import { type ReactElement, type ReactNode, useId } from "react";
 
 const styles = bem("code-preview");
 

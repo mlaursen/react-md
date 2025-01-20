@@ -1,4 +1,4 @@
-import { Suspense, type ReactElement, type ReactNode } from "react";
+import { type ReactElement, type ReactNode, Suspense } from "react";
 
 /**
  * @since 6.0.0

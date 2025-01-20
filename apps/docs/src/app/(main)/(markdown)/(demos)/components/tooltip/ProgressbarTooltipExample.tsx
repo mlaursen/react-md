@@ -1,4 +1,5 @@
 "use client";
+
 import { box } from "@react-md/core/box/styles";
 import { Button } from "@react-md/core/button/Button";
 import { cssUtils } from "@react-md/core/cssUtils";
@@ -7,7 +8,8 @@ import { Tooltip } from "@react-md/core/tooltip/Tooltip";
 import { useToggle } from "@react-md/core/useToggle";
 import { loop } from "@react-md/core/utils/loop";
 import CelebrationOutlinedIcon from "@react-md/material-icons/CelebrationOutlinedIcon";
-import { useEffect, useState, type ReactElement } from "react";
+import { type ReactElement, useEffect, useState } from "react";
+
 import styles from "./ProgressbarTooltipExample.module.scss";
 
 export default function ProgressbarTooltipExample(): ReactElement {

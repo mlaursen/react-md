@@ -1,6 +1,7 @@
 import { typography } from "@react-md/core/typography/typographyStyles";
 import { cnb } from "cnbuilder";
-import { useId, type HTMLAttributes, type ReactElement } from "react";
+import { type HTMLAttributes, type ReactElement, useId } from "react";
+
 import styles from "./ReactMDLogo.module.scss";
 
 export interface ReactMDLogoProps extends HTMLAttributes<SVGSVGElement> {

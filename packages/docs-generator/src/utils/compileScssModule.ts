@@ -1,7 +1,7 @@
 import { getFakeCssModuleClassName } from "@react-md/code/fakeCssModules";
 import postcss from "postcss";
 import selectorParser from "postcss-selector-parser";
-import { compileString, type Importer, type StringOptions } from "sass";
+import { type Importer, type StringOptions, compileString } from "sass";
 
 export const LOCAL_SCOPE = ":local";
 export const GLOBAL_SCOPE = ":global";

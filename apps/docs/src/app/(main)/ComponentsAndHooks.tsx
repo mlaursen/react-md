@@ -1,5 +1,6 @@
 import { Link } from "@react-md/core/link/Link";
 import { type ReactElement } from "react";
+
 import { HomePageSection } from "./HomePageSection.jsx";
 import { Showcase } from "./Showcase.jsx";
 

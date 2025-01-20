@@ -1,4 +1,5 @@
 "use client";
+
 import { Box } from "@react-md/core/box/Box";
 import { Button } from "@react-md/core/button/Button";
 import { DialogContent } from "@react-md/core/dialog/DialogContent";
@@ -10,7 +11,7 @@ import { Sheet } from "@react-md/core/sheet/Sheet";
 import { type SheetPosition } from "@react-md/core/sheet/styles";
 import { Typography } from "@react-md/core/typography/Typography";
 import { useToggle } from "@react-md/core/useToggle";
-import { useState, type ReactElement } from "react";
+import { type ReactElement, useState } from "react";
 
 export default function SheetPositionsExample(): ReactElement {
   const { toggled, enable, disable } = useToggle();

@@ -1,7 +1,6 @@
 "use client";
+
 import {
-  useCallback,
-  useRef,
   type FocusEventHandler,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   type InputHTMLAttributes,
@@ -10,7 +9,10 @@ import {
   type Ref,
   type RefCallback,
   type RefObject,
+  useCallback,
+  useRef,
 } from "react";
+
 import { type MenuProps } from "../menu/Menu.js";
 import { type MenuSheetConfigurableProps } from "../menu/MenuSheet.js";
 import {

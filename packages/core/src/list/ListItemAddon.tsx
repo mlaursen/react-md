@@ -1,11 +1,12 @@
 import { type ReactElement, type ReactNode } from "react";
+
 import {
   TextIconSpacing,
   type TextIconSpacingProps,
 } from "../icon/TextIconSpacing.js";
 import {
-  listItemAddon,
   type ListItemAddonClassNameOptions,
+  listItemAddon,
 } from "./listItemStyles.js";
 
 export interface ListItemAddonProps

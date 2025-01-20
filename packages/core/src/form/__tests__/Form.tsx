@@ -1,5 +1,6 @@
 import { describe, expect, it, jest } from "@jest/globals";
-import { createRef, type FormEvent } from "react";
+import { type FormEvent, createRef } from "react";
+
 import { fireEvent, render, screen } from "../../test-utils/index.js";
 import { type NonNullMutableRef } from "../../types.js";
 import { Form } from "../Form.js";

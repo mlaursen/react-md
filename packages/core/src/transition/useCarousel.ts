@@ -1,5 +1,7 @@
 "use client";
+
 import { useCallback, useEffect, useState } from "react";
+
 import type { UseStateSetter } from "../types.js";
 import { useToggle } from "../useToggle.js";
 import { loop } from "../utils/loop.js";

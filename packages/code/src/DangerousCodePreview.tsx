@@ -1,11 +1,12 @@
 import { type ReactElement } from "react";
+
 import {
   CodePreview,
   type ConfigurableCodePreviewProps,
 } from "./CodePreview.js";
 import {
-  useDangerouslyRunnableCode,
   type DangerouslyRunCodeOptions,
+  useDangerouslyRunnableCode,
 } from "./useDangerousCodeRunner.js";
 
 export interface DangerousCodePreviewProps

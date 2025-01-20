@@ -1,8 +1,9 @@
 import {
+  type BooleanLiteral,
   type JSXAttribute,
   type JSXExpressionContainer,
-  type BooleanLiteral,
 } from "jscodeshift";
+
 import { type NonEmptyJSXExpresson } from "../types";
 
 export function isPropConditionalExpression(

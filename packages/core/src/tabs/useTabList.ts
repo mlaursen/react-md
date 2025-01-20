@@ -1,4 +1,5 @@
 "use client";
+
 import type {
   CSSProperties,
   FocusEventHandler,
@@ -8,6 +9,7 @@ import type {
   RefObject,
 } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
+
 import type {
   KeyboardMovementContext,
   KeyboardMovementProps,

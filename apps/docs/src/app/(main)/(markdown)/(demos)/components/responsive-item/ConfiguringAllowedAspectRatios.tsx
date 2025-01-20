@@ -2,6 +2,7 @@ import { Box } from "@react-md/core/box/Box";
 import { Card } from "@react-md/core/card/Card";
 import { ResponsiveItem } from "@react-md/core/responsive-item/ResponsiveItem";
 import { type ReactElement } from "react";
+
 import styles from "./ConfiguringAllowedAspectRatios.module.scss";
 
 export default function ConfiguringAllowedAspectRatios(): ReactElement {

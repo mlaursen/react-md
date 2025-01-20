@@ -1,5 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
+
 import { CircularProgress } from "../../progress/CircularProgress.js";
 import { rmdRender, screen, userEvent } from "../../test-utils/index.js";
 import { Switch, type SwitchProps } from "../Switch.js";

@@ -1,4 +1,5 @@
 "use client";
+
 import { Box } from "@react-md/core/box/Box";
 import { SegmentedButton } from "@react-md/core/segmented-button/SegmentedButton";
 import { SegmentedButtonContainer } from "@react-md/core/segmented-button/SegmentedButtonContainer";
@@ -8,7 +9,7 @@ import {
   type SlideDirection,
 } from "@react-md/core/transition/SlideContainer";
 import { Typography } from "@react-md/core/typography/Typography";
-import { useState, type ReactElement } from "react";
+import { type ReactElement, useState } from "react";
 
 interface State {
   page: 1 | 2 | 3;

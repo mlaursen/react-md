@@ -1,6 +1,7 @@
 import { Badge } from "@react-md/core/badge/Badge";
 import { Button } from "@react-md/core/button/Button";
 import { type ReactElement } from "react";
+
 import styles from "./BadgePositionExample.module.scss";
 
 export default function BadgePositionExample(): ReactElement {

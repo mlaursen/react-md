@@ -1,15 +1,17 @@
 "use client";
+
 import { forwardRef, useMemo } from "react";
+
 import { type DefinedCSSVariableName } from "../theme/types.js";
 import { useCSSVariables } from "../theme/useCSSVariables.js";
 import {
-  WindowSplitter,
   type BaseWindowSplitterProps,
+  WindowSplitter,
 } from "../window-splitter/WindowSplitter.js";
 import { type WindowSplitterWidgetProps } from "../window-splitter/useWindowSplitter.js";
 import {
-  layoutWindowSplitter,
   type LayoutWindowSplitterClassNameOptions,
+  layoutWindowSplitter,
 } from "./layoutWindowSplitterStyles.js";
 
 /**

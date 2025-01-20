@@ -1,4 +1,5 @@
 "use client";
+
 import type {
   FocusEvent,
   KeyboardEvent,
@@ -7,6 +8,7 @@ import type {
   TouchEvent,
 } from "react";
 import { useCallback, useReducer, useRef } from "react";
+
 import { RippleContainer } from "./RippleContainer.js";
 import { useUserInteractionMode } from "./UserInteractionModeProvider.js";
 import { INTERACTION_CONFIG } from "./config.js";

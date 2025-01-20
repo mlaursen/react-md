@@ -1,16 +1,18 @@
 "use client";
-import { COLOR_SCHEME_KEY } from "@/constants/cookies.js";
-import { setCookie } from "@/utils/clientCookies.js";
+
 import { type ColorSchemeMode } from "@react-md/core/theme/types";
 import { ColorSchemeProvider } from "@react-md/core/theme/useColorScheme";
 import { useColorSchemeProvider } from "@react-md/core/theme/useColorSchemeProvider";
 import { type UseStateSetter } from "@react-md/core/types";
 import {
-  useCallback,
-  useState,
   type ReactElement,
   type ReactNode,
+  useCallback,
+  useState,
 } from "react";
+
+import { COLOR_SCHEME_KEY } from "@/constants/cookies.js";
+import { setCookie } from "@/utils/clientCookies.js";
 
 export interface CookieColorSchemeProviderProps {
   children: ReactNode;

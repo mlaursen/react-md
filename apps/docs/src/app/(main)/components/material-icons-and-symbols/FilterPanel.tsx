@@ -6,6 +6,7 @@ import { useAppSize } from "@react-md/core/media-queries/AppSizeProvider";
 import { useColorScheme } from "@react-md/core/theme/useColorScheme";
 import { cnb } from "cnbuilder";
 import { type ReactElement, type ReactNode } from "react";
+
 import styles from "./FilterPanel.module.scss";
 
 export interface FilterPanelProps extends ProvidedExpansionPanelProps {

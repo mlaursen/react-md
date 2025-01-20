@@ -1,7 +1,8 @@
 "use client";
+
 import { SegmentedButton } from "@react-md/core/segmented-button/SegmentedButton";
 import { SegmentedButtonContainer } from "@react-md/core/segmented-button/SegmentedButtonContainer";
-import { useState, type ReactElement } from "react";
+import { type ReactElement, useState } from "react";
 
 export default function DisableFullWidthExample(): ReactElement {
   const [value, setValue] = useState("a");

@@ -1,14 +1,14 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import {
-  useMemo,
-  useRef,
-  useState,
   type CSSProperties,
   type ReactElement,
   type RefObject,
+  useMemo,
+  useRef,
+  useState,
 } from "react";
-import { fireEvent, render, screen } from "../../test-utils/index.js";
 
+import { fireEvent, render, screen } from "../../test-utils/index.js";
 import { textPrimaryColorVar } from "../cssVars.js";
 import {
   type CSSVariableName,

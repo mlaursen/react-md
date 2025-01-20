@@ -1,9 +1,10 @@
 "use client";
+
 // https://github.com/nihgwu/react-runner/tree/974ebc932db7b7c7d59f1b50a79aed705efbf75a
 // This is pretty much everything from there except using the new JSX transform
 // and I wanted to understand why things were implemented the way they were
+import { type ReactElement, useEffect, useRef, useState } from "react";
 
-import { useEffect, useRef, useState, type ReactElement } from "react";
 import { DangerousCodeRunner } from "./DangerousCodeRunner.js";
 import { type DangerouslyEvalCodeOptions } from "./dangerousCodeUtils.js";
 

@@ -1,8 +1,9 @@
 "use client";
+
 import { MenuItemSwitch } from "@react-md/core/form/MenuItemSwitch";
 import { useCheckboxGroup } from "@react-md/core/form/useCheckboxGroup";
 import { DropdownMenu } from "@react-md/core/menu/DropdownMenu";
-import { useState, type ReactElement } from "react";
+import { type ReactElement, useState } from "react";
 
 export default function MenuItemSwitchExample(): ReactElement {
   const { getCheckboxProps } = useCheckboxGroup({ menu: true });

@@ -1,4 +1,4 @@
-import { type ColorSchemeMode, type ColorScheme } from "./types.js";
+import { type ColorScheme, type ColorSchemeMode } from "./types.js";
 
 /**
  * A type assertion helper to check if a value is a valid {@link ColorScheme}

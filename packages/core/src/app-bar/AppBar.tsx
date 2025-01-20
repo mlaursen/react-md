@@ -1,10 +1,11 @@
 import {
-  forwardRef,
   type ElementType,
   type HTMLAttributes,
   type Ref,
+  forwardRef,
 } from "react";
-import { appBar, type AppBarClassNameOptions } from "./styles.js";
+
+import { type AppBarClassNameOptions, appBar } from "./styles.js";
 
 /** @since 6.0.0 */
 export type CustomAppBarComponent = ElementType<

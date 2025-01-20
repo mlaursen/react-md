@@ -1,4 +1,5 @@
 "use client";
+
 import { AppBar } from "@react-md/core/app-bar/AppBar";
 import { AppBarTitle } from "@react-md/core/app-bar/AppBarTitle";
 import { Box } from "@react-md/core/box/Box";
@@ -15,6 +16,7 @@ import CloseIcon from "@react-md/material-icons/CloseIcon";
 import MoreVertOutlinedIcon from "@react-md/material-icons/MoreVertOutlinedIcon";
 import Link from "next/link.js";
 import { type ReactElement } from "react";
+
 import { ConfigureCodeTheme } from "./ConfigureCodeTheme.jsx";
 import { ConfigureColorScheme } from "./ConfigureColorScheme.jsx";
 import { ConfigureOrientation } from "./ConfigureOrientation.jsx";

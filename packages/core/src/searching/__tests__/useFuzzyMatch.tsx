@@ -1,6 +1,7 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import { nanoid } from "nanoid";
 import { useState } from "react";
+
 import { fireEvent, render, screen } from "../../test-utils/index.js";
 import { type NonNullMutableRef } from "../../types.js";
 import { createFuzzyRegExp } from "../fuzzy.js";

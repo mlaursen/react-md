@@ -1,4 +1,5 @@
 import { type ASTPath } from "jscodeshift";
+
 import { type AnyJSXAttribute } from "../types";
 
 export function getPropName(

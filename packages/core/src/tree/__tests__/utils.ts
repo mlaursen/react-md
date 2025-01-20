@@ -1,4 +1,5 @@
 import { describe, expect, it } from "@jest/globals";
+
 import type { TreeData } from "../types.js";
 import { getChildTreeItems, getTreeItemsFrom } from "../utils.js";
 

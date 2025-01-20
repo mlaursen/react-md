@@ -2,6 +2,7 @@ import { Box } from "@react-md/core/box/Box";
 import { Card } from "@react-md/core/card/Card";
 import { objectFit } from "@react-md/core/objectFit";
 import { type ReactElement } from "react";
+
 import styles from "./AspectRatios.module.scss";
 
 export default function AspectRatios(): ReactElement {

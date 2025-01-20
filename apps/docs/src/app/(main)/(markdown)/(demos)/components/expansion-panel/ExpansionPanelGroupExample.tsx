@@ -1,4 +1,5 @@
 "use client";
+
 import { ExpansionList } from "@react-md/core/expansion-panel/ExpansionList";
 import { ExpansionPanel } from "@react-md/core/expansion-panel/ExpansionPanel";
 import { useExpansionPanels } from "@react-md/core/expansion-panel/useExpansionPanels";

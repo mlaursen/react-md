@@ -66,9 +66,9 @@ Since I always use [prismjs](https://prismjs.com/) for code highlighting, the
 `highlightCode` behavior is available in `@react-md/code/prismjs/highlight`.
 
 ```tsx
-import { type ReactElement } from "react";
 import { HighlightedCodeBlock } from "@react-md/code/HighlightedCodeBlock";
 import { highlightCode } from "@react-md/code/prismjs/highlight";
+import { type ReactElement } from "react";
 
 const code = `const x = 3;`;
 
@@ -89,9 +89,9 @@ with some updated default styles. This component also accepts `fileName`,
 `appBarProps`, and `appBarChildren` to render the `CodeBlockAppBar`.
 
 ```tsx
-import { type ReactElement } from "react";
 import { HighlightedCodeBlockWithAppBar } from "@react-md/code/HighlightedCodeBlockWithAppBar";
 import { highlightCode } from "@react-md/code/prismjs/highlight";
+import { type ReactElement } from "react";
 
 const code = `const x = 3;`;
 

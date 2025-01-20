@@ -1,10 +1,12 @@
 "use client";
-import { folders, type Folder } from "@/constants/folders.js";
+
 import { Tree } from "@react-md/core/tree/Tree";
 import { type TreeData } from "@react-md/core/tree/types";
 import { useTree } from "@react-md/core/tree/useTree";
 import FolderIcon from "@react-md/material-icons/FolderIcon";
-import { useMemo, type ReactElement, type ReactNode } from "react";
+import { type ReactElement, type ReactNode, useMemo } from "react";
+
+import { type Folder, folders } from "@/constants/folders.js";
 
 type CustomTreeData = TreeData<Folder & { leftAddon?: ReactNode }>;
 

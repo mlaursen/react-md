@@ -1,9 +1,10 @@
 "use client";
+
 import { Box } from "@react-md/core/box/Box";
 import { AsyncButton } from "@react-md/core/button/AsyncButton";
 import { Switch } from "@react-md/core/form/Switch";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
-import { useState, type ReactElement } from "react";
+import { type ReactElement, useState } from "react";
 
 export default function LoadingIndicatorTypes(): ReactElement {
   const [loading, setLoading] = useState(false);

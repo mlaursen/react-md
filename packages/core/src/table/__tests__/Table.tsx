@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
-import { act, render, screen } from "../../test-utils/index.js";
 
+import { act, render, screen } from "../../test-utils/index.js";
 import { type PropsWithRef } from "../../types.js";
 import { StickyTableSection } from "../StickyTableSection.js";
 import { Table, type TableProps } from "../Table.js";

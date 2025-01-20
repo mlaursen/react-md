@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import type { Dispatch } from "react";
 import { useState } from "react";
+
 import type { UseStateInitializer, UseStateSetter } from "./types.js";
 
 /**

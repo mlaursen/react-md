@@ -1,5 +1,6 @@
 import { writeFile } from "node:fs/promises";
 import { join } from "node:path";
+
 import { GENERATED_FILE_BANNER } from "../constants.js";
 import { printTypeUnion } from "./converters.js";
 import { format } from "./format.js";

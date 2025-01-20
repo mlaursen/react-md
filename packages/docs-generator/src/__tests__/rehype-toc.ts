@@ -3,7 +3,8 @@ import { compile } from "@mdx-js/mdx";
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import rehypeSlug from "rehype-slug";
-import { rehypeToc, type TOCItem } from "../rehype-toc.js";
+
+import { type TOCItem, rehypeToc } from "../rehype-toc.js";
 
 async function getFixture(name: string): Promise<string> {
   const filePath = resolve(process.cwd(), "src", "__testfixtures__", name);

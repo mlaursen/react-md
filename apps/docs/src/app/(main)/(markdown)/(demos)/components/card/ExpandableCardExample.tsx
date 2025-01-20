@@ -14,6 +14,7 @@ import EmailIcon from "@react-md/material-icons/EmailIcon";
 import KeyboardArrowDownIcon from "@react-md/material-icons/KeyboardArrowDownIcon";
 import PhoneIcon from "@react-md/material-icons/PhoneIcon";
 import { type ReactElement } from "react";
+
 import styles from "./ExpandableCardExample.module.scss";
 
 export default function ExpandableCardExample(): ReactElement {

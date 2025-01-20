@@ -1,5 +1,7 @@
 "use client";
-import { forwardRef, type HTMLAttributes } from "react";
+
+import { type HTMLAttributes, forwardRef } from "react";
+
 import { type DividerProps } from "../divider/Divider.js";
 import { divider } from "../divider/styles.js";
 import { useMenuConfiguration } from "./MenuConfigurationProvider.js";

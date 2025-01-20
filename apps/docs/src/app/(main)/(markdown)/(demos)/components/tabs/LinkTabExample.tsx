@@ -1,8 +1,9 @@
 "use client";
+
 import { Tab } from "@react-md/core/tabs/Tab";
 import { TabList } from "@react-md/core/tabs/TabList";
 import { useTabs } from "@react-md/core/tabs/useTabs";
-import { useEffect, useState, type ReactElement } from "react";
+import { type ReactElement, useEffect, useState } from "react";
 
 export default function LinkTabExample(): ReactElement {
   const activeTab = useActiveTab();

@@ -1,5 +1,6 @@
 import { describe, expect, it, jest } from "@jest/globals";
-import { createRef, type ReactElement } from "react";
+import { type ReactElement, createRef } from "react";
+
 import { drag } from "../../test-utils/drag.js";
 import {
   fireEvent,

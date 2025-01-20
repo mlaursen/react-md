@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
-import { render, screen } from "../../test-utils/index.js";
+import { type ReactElement, useRef } from "react";
 
-import { useRef, type ReactElement } from "react";
+import { render, screen } from "../../test-utils/index.js";
 import { Portal } from "../Portal.js";
 import {
   PORTAL_CONTAINER_ID,

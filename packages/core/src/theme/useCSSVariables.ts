@@ -1,5 +1,7 @@
 "use client";
+
 import { type RefObject, useEffect, useMemo } from "react";
+
 import {
   type CSSVariableName,
   type CSSVariablesProperties,

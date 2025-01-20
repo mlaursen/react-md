@@ -1,4 +1,5 @@
 "use client";
+
 import { Button } from "@react-md/core/button/Button";
 import { Card } from "@react-md/core/card/Card";
 import { CardContent } from "@react-md/core/card/CardContent";
@@ -9,11 +10,11 @@ import { NullSuspense } from "@react-md/core/suspense/NullSuspense";
 import { useToggle } from "@react-md/core/useToggle";
 import { wait } from "@react-md/core/utils/wait";
 import {
-  lazy,
-  useMemo,
   type FC,
   type LazyExoticComponent,
   type ReactElement,
+  lazy,
+  useMemo,
 } from "react";
 
 export default function NullSuspenseExample(): ReactElement {

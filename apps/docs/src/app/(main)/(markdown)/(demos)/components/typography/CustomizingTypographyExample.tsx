@@ -1,5 +1,6 @@
 import { Typography } from "@react-md/core/typography/Typography";
 import { type ReactElement } from "react";
+
 import styles from "./CustomizingTypographyExample.module.scss";
 
 export default function CustomizingTypographyExample(): ReactElement {

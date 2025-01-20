@@ -1,22 +1,25 @@
 "use client";
-import { chunk } from "@/utils/lists.js";
+
 import { delegateEvent } from "@react-md/core/delegateEvent";
 import { alphaNumericSort } from "@react-md/core/utils/alphaNumericSort";
 import Fuse from "fuse.js";
 import {
+  type RefObject,
   useDeferredValue,
   useEffect,
   useMemo,
   useRef,
-  type RefObject,
 } from "react";
 import {
   type VariableSizeList,
   type VariableSizeListProps,
 } from "react-window";
+
+import { chunk } from "@/utils/lists.js";
+
 import { type VirtualizedData } from "./RenderVirtualizedRow.js";
 import { type MaterialIconAndSymbolName } from "./metadata.js";
-import { getIconsByCategory, type IconsByCategoryOptions } from "./utils.js";
+import { type IconsByCategoryOptions, getIconsByCategory } from "./utils.js";
 
 const getRowHeight = (row: CategoryOrIconNames, isFirst: boolean): number => {
   // if it's a category header

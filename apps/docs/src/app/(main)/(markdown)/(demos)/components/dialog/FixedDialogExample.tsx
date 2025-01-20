@@ -1,4 +1,5 @@
 "use client";
+
 import { Button } from "@react-md/core/button/Button";
 import { DialogContent } from "@react-md/core/dialog/DialogContent";
 import { DialogFooter } from "@react-md/core/dialog/DialogFooter";
@@ -7,7 +8,7 @@ import { DialogTitle } from "@react-md/core/dialog/DialogTitle";
 import { FixedDialog } from "@react-md/core/dialog/FixedDialog";
 import { Typography } from "@react-md/core/typography/Typography";
 import { useToggle } from "@react-md/core/useToggle";
-import { useId, useRef, type ReactElement } from "react";
+import { type ReactElement, useId, useRef } from "react";
 
 export default function FixedDialogExample(): ReactElement {
   const {

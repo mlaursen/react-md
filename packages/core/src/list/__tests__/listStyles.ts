@@ -1,4 +1,5 @@
-import { describe, it, expect } from "@jest/globals";
+import { describe, expect, it } from "@jest/globals";
+
 import { list } from "../listStyles.js";
 
 describe("styling utility class", () => {

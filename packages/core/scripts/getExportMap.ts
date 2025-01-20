@@ -3,6 +3,7 @@ import { glob } from "glob";
 import { resolve } from "node:path";
 import { format } from "prettier";
 import { Node, Project } from "ts-morph";
+
 import { alphaNumericSort } from "../src/utils/alphaNumericSort.js";
 
 const files = await glob("src/**/*.{ts,tsx}", {

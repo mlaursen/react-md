@@ -1,4 +1,5 @@
-import { forwardRef, type ReactNode } from "react";
+import { type ReactNode, forwardRef } from "react";
+
 import { List, type ListProps } from "../list/List.js";
 import { navGroup } from "./navGroupStyles.js";
 

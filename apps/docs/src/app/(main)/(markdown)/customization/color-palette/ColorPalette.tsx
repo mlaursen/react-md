@@ -1,12 +1,14 @@
-import { titleCase } from "@/utils/strings.js";
 import { Box } from "@react-md/core/box/Box";
 import { cssUtils } from "@react-md/core/cssUtils";
 import * as colors from "@react-md/core/theme/colors";
 import {
-  alphaNumericSort,
   DEFAULT_COLLATOR,
+  alphaNumericSort,
 } from "@react-md/core/utils/alphaNumericSort";
 import { type ReactElement } from "react";
+
+import { titleCase } from "@/utils/strings.js";
+
 import { Color } from "./Color.jsx";
 import styles from "./ColorPalette.module.scss";
 

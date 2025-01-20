@@ -1,6 +1,8 @@
 "use client";
+
 import { cnb } from "cnbuilder";
-import { forwardRef, useRef, useState, type HTMLAttributes } from "react";
+import { type HTMLAttributes, forwardRef, useRef, useState } from "react";
+
 import { List } from "../list/List.js";
 import { type GetDefaultFocusedIndex } from "../movement/types.js";
 import { useKeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";

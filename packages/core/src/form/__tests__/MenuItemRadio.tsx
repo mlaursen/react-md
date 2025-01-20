@@ -1,5 +1,6 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import { createRef } from "react";
+
 import { rmdRender, screen } from "../../test-utils/index.js";
 import { type MenuItemRadioProps } from "../MenuItemInputToggle.js";
 import { MenuItemRadio } from "../MenuItemRadio.js";

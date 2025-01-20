@@ -1,5 +1,7 @@
 "use client";
+
 import { type ReactElement, type ReactNode } from "react";
+
 import { type KeyboardMovementContext } from "../movement/types.js";
 import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
 

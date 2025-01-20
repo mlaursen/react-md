@@ -1,13 +1,15 @@
 "use client";
+
 import {
-  forwardRef,
   type HTMLAttributes,
   type ReactElement,
   type ReactNode,
+  forwardRef,
 } from "react";
+
 import {
-  useSkeletonPlaceholder,
   type SkeletonPlaceholderOptions,
+  useSkeletonPlaceholder,
 } from "./useSkeletonPlaceholder.js";
 
 declare module "react" {

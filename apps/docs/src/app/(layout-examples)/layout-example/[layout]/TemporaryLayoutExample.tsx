@@ -1,4 +1,5 @@
 "use client";
+
 import { AppBar } from "@react-md/core/app-bar/AppBar";
 import { AppBarTitle } from "@react-md/core/app-bar/AppBarTitle";
 import { Button } from "@react-md/core/button/Button";
@@ -6,7 +7,8 @@ import { Main } from "@react-md/core/layout/Main";
 import { useTemporaryLayout } from "@react-md/core/layout/useTemporaryLayout";
 import { Sheet } from "@react-md/core/sheet/Sheet";
 import { usePathname } from "next/navigation.js";
-import { Suspense, type ReactElement } from "react";
+import { type ReactElement, Suspense } from "react";
+
 import { ExampleNavigation } from "./ExampleNavigation.jsx";
 import { type ExampleLayoutProps } from "./layouts.js";
 

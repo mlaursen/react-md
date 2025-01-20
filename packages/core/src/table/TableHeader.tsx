@@ -1,5 +1,7 @@
 "use client";
-import { forwardRef, type HTMLAttributes } from "react";
+
+import { type HTMLAttributes, forwardRef } from "react";
+
 import { TableConfigProvider } from "./TableConfigurationProvider.js";
 import { tableHeader } from "./tableHeaderStyles.js";
 import { type TableSectionConfiguration } from "./types.js";

@@ -1,4 +1,5 @@
 import { describe, expect, it } from "@jest/globals";
+
 import { objectFit } from "../objectFit.js";
 
 describe("objectFit", () => {

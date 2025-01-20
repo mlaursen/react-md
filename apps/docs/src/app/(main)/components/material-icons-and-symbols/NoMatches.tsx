@@ -1,7 +1,9 @@
-import { RandomEmoji } from "@/components/RandomEmoji.jsx";
 import { Button } from "@react-md/core/button/Button";
 import { Typography } from "@react-md/core/typography/Typography";
 import type { ReactElement } from "react";
+
+import { RandomEmoji } from "@/components/RandomEmoji.jsx";
+
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";
 
 export function NoMatches(): ReactElement {

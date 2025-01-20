@@ -1,4 +1,5 @@
 import { describe, expect, it } from "@jest/globals";
+
 import { bem } from "../bem.js";
 
 describe("bem", () => {

@@ -4,6 +4,7 @@ import {
   type MaterialSymbolOpticalSize,
   type MaterialSymbolWeight,
 } from "@react-md/core/icon/materialConfig";
+
 import { type MaterialIconsAndSymbolsState } from "./types.js";
 
 export const DEFAULT_FILL = 0;

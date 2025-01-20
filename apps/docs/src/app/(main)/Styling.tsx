@@ -2,6 +2,7 @@ import { HighlightedCodeBlock } from "@react-md/code/HighlightedCodeBlock";
 import { highlightCode } from "@react-md/code/prismjs/highlight";
 import { Link } from "@react-md/core/link/Link";
 import { type ReactElement } from "react";
+
 import { HomePageSection } from "./HomePageSection.jsx";
 
 const code = `@use "@react-md/core/colors";

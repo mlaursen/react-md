@@ -1,5 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
+
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { box } from "@react-md/core/box/styles";
 import { Button } from "@react-md/core/button/Button";
 import { Checkbox } from "@react-md/core/form/Checkbox";

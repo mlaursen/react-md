@@ -1,10 +1,5 @@
 "use client";
-import {
-  dessertColumns,
-  desserts,
-  type Dessert,
-  type DessertKey,
-} from "@/constants/desserts.js";
+
 import { cssUtils } from "@react-md/core/cssUtils";
 import { Table } from "@react-md/core/table/Table";
 import { TableBody } from "@react-md/core/table/TableBody";
@@ -13,7 +8,14 @@ import { TableContainer } from "@react-md/core/table/TableContainer";
 import { TableHeader } from "@react-md/core/table/TableHeader";
 import { TableRow } from "@react-md/core/table/TableRow";
 import { type SortOrder } from "@react-md/core/table/types";
-import { useState, type ReactElement } from "react";
+import { type ReactElement, useState } from "react";
+
+import {
+  type Dessert,
+  type DessertKey,
+  dessertColumns,
+  desserts,
+} from "@/constants/desserts.js";
 
 export default function SortableColumnsExample(): ReactElement {
   const { data, sortKey, sortOrder, update } = useSortedColumns();

@@ -5,6 +5,7 @@ import { TableContainer } from "@react-md/core/table/TableContainer";
 import { TableHeader } from "@react-md/core/table/TableHeader";
 import { TableRow } from "@react-md/core/table/TableRow";
 import { type ReactElement } from "react";
+
 import styles from "./ScrollableTableExample.module.scss";
 
 const rows = 20;

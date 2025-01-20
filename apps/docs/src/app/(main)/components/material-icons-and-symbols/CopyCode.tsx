@@ -1,6 +1,8 @@
-import { MarkdownCode } from "@/components/MarkdownCode.jsx";
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
+
+import { MarkdownCode } from "@/components/MarkdownCode.jsx";
+
 import styles from "./CopyCode.module.scss";
 
 export interface CopyCodeProps {

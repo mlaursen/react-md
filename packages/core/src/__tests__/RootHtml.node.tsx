@@ -1,8 +1,8 @@
 /** @jest-environment node */
 /* eslint-disable testing-library/render-result-naming-convention */
-
 import { describe, expect, it } from "@jest/globals";
 import { renderToString } from "react-dom/server";
+
 import { RootHtml } from "../RootHtml.js";
 
 describe("RootHtml", () => {

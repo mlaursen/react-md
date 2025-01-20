@@ -1,9 +1,10 @@
-import { states } from "@/constants/states.js";
 import { Box } from "@react-md/core/box/Box";
 import { Button } from "@react-md/core/button/Button";
 import { Form } from "@react-md/core/form/Form";
 import { NativeSelect } from "@react-md/core/form/NativeSelect";
 import { type ReactElement } from "react";
+
+import { states } from "@/constants/states.js";
 
 export default function MultiselectExample(): ReactElement {
   return (

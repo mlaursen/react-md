@@ -1,10 +1,11 @@
 import {
-  forwardRef,
   type CSSProperties,
   type HTMLAttributes,
   type ReactNode,
   type SelectHTMLAttributes,
+  forwardRef,
 } from "react";
+
 import { getIcon } from "../icon/iconConfig.js";
 import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";

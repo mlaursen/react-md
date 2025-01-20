@@ -1,4 +1,5 @@
 import { describe, expect, it } from "@jest/globals";
+
 import { caseInsensitiveSearch } from "../caseInsensitive.js";
 
 const FRUITS = ["Apple", "Banana", "Mango", "Orange"];

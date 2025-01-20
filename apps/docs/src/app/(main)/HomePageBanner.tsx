@@ -1,10 +1,12 @@
-import { ButtonStyledLink } from "@/components/ButtonStyledLink.jsx";
-import { ReactMDLogo } from "@/components/ReactMDLogo.jsx";
-import { DEFAULT_TITLE } from "@/constants/metadata.js";
 import { Box } from "@react-md/core/box/Box";
 import { TextContainer } from "@react-md/core/typography/TextContainer";
 import { Typography } from "@react-md/core/typography/Typography";
 import { type ReactElement } from "react";
+
+import { ButtonStyledLink } from "@/components/ButtonStyledLink.jsx";
+import { ReactMDLogo } from "@/components/ReactMDLogo.jsx";
+import { DEFAULT_TITLE } from "@/constants/metadata.js";
+
 import styles from "./HomePageBanner.module.scss";
 import { HomePageBannerContainer } from "./HomePageBannerContainer.jsx";
 

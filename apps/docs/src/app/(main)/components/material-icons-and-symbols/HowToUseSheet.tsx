@@ -1,8 +1,10 @@
 "use client";
+
 import { useAppSize } from "@react-md/core/media-queries/AppSizeProvider";
 import { Sheet } from "@react-md/core/sheet/Sheet";
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
+
 import styles from "./HowToUseSheet.module.scss";
 import { HowToUseSheetContent } from "./HowToUseSheetContent.jsx";
 import { HowToUseSheetHeader } from "./HowToUseSheetHeader.jsx";

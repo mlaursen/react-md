@@ -1,4 +1,5 @@
 "use client";
+
 import { useAppSize } from "@react-md/core/media-queries/AppSizeProvider";
 import { type ReactElement } from "react";
 

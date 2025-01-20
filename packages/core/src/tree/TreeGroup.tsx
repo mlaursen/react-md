@@ -1,5 +1,7 @@
 "use client";
-import { forwardRef, type CSSProperties, type ReactNode } from "react";
+
+import { type CSSProperties, type ReactNode, forwardRef } from "react";
+
 import { List, type ListProps } from "../list/List.js";
 import { useCollapseTransition } from "../transition/useCollapseTransition.js";
 import { useTreeContext } from "./TreeProvider.js";

@@ -4,6 +4,7 @@ import { type ProvidedExpansionPanelProps } from "@react-md/core/expansion-panel
 import { useAppSize } from "@react-md/core/media-queries/AppSizeProvider";
 import CategoryOutlinedIcon from "@react-md/material-icons/CategoryOutlinedIcon";
 import { type ReactElement } from "react";
+
 import { FilterPanel } from "./FilterPanel.jsx";
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";
 import {

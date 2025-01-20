@@ -1,4 +1,5 @@
 import { type HTMLAttributes, type ReactElement } from "react";
+
 import styles from "./NotFoundSVG.module.scss";
 
 export default function NotFoundSVG(

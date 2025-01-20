@@ -1,4 +1,5 @@
 import { type JSCodeshift, type LogicalExpression } from "jscodeshift";
+
 import { type ExpressionKind } from "../types";
 
 export interface NullishCoalescingCheckOptions {

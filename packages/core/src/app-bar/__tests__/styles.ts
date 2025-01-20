@@ -1,4 +1,5 @@
 import { describe, expect, it } from "@jest/globals";
+
 import { appBar } from "../styles.js";
 
 describe("styling utils", () => {

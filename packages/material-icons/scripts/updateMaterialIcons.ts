@@ -5,6 +5,7 @@ import { execSync } from "node:child_process";
 import { rm } from "node:fs/promises";
 import { join } from "node:path";
 import prettyMilliseconds from "pretty-ms";
+
 import { createCoreMetadataFIle } from "./utils/createCoreMetadataFile.js";
 import { createDocsMetadataFile } from "./utils/createDocsMetadataFile.js";
 import { createIconComponent } from "./utils/createIconComponent.js";

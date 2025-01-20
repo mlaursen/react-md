@@ -1,11 +1,12 @@
 import {
-  forwardRef,
   type HTMLAttributes,
   type ImgHTMLAttributes,
   type ReactNode,
+  forwardRef,
 } from "react";
+
 import { type PropsWithRef } from "../types.js";
-import { avatar, avatarImage, type AvatarClassNameOptions } from "./styles.js";
+import { type AvatarClassNameOptions, avatar, avatarImage } from "./styles.js";
 
 declare module "react" {
   interface CSSProperties {

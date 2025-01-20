@@ -1,9 +1,11 @@
 "use client";
+
 import { CodeBlockAppBar } from "@react-md/code/CodeBlockAppBar";
 import { CodeBlockFileName } from "@react-md/code/CodeBlockFileName";
 import { type HighlightedCodeBlockWithAppBarAdditionalProps } from "@react-md/code/HighlightedCodeBlockWithAppBar";
 import { useTypescriptEnabledContext } from "@react-md/code/TypescriptEnabledProvider";
 import { type ReactElement, type ReactNode } from "react";
+
 import { ConfigureTypescriptEnabled } from "./MainLayout/ConfigureTypescriptEnabled.jsx";
 
 export interface TypescriptCodeBlockContainerProps

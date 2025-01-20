@@ -1,4 +1,5 @@
 import { describe, expect, it } from "@jest/globals";
+
 import { getProgressA11y } from "../getProgressA11y.js";
 
 describe("getProgressA11y", () => {

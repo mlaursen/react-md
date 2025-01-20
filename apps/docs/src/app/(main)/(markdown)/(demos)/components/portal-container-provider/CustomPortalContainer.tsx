@@ -1,10 +1,11 @@
 "use client";
+
 import { Box } from "@react-md/core/box/Box";
 import { Button } from "@react-md/core/button/Button";
 import { Portal } from "@react-md/core/portal/Portal";
 import { PortalContainerProvider } from "@react-md/core/portal/PortalContainerProvider";
 import { useToggle } from "@react-md/core/useToggle";
-import { useRef, type ReactElement } from "react";
+import { type ReactElement, useRef } from "react";
 
 export default function CustomPortalContainer(): ReactElement {
   const { toggled, toggle } = useToggle();

@@ -1,16 +1,19 @@
 "use client";
-import { PackageManagerTabPanels } from "@/components/PackageManagerCodeBlock/PackageManagerTabPanels.jsx";
-import { PackageManagerTabs } from "@/components/PackageManagerCodeBlock/PackageManagerTabs.jsx";
+
 import { CodeBlockAppBar } from "@react-md/code/CodeBlockAppBar";
 import {
-  usePackageManagerContext,
   type PackageManager,
+  usePackageManagerContext,
 } from "@react-md/code/PackageManagerProvider";
 import { useTabs } from "@react-md/core/tabs/useTabs";
 import { type ReactElement, type ReactNode } from "react";
-import { type TestFramework } from "./constants.js";
+
+import { PackageManagerTabPanels } from "@/components/PackageManagerCodeBlock/PackageManagerTabPanels.jsx";
+import { PackageManagerTabs } from "@/components/PackageManagerCodeBlock/PackageManagerTabs.jsx";
+
 import { useTestFramework } from "./TestFrameworkProvider.jsx";
 import { TestFrameworksToggle } from "./TestFrameworksToggle.jsx";
+import { type TestFramework } from "./constants.js";
 
 export interface TestFrameworkNpmCodeProps {
   frameworks: Record<TestFramework, Record<PackageManager, ReactNode>>;

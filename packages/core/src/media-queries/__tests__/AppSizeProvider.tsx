@@ -1,4 +1,5 @@
 import { beforeEach, describe, expect, it, jest } from "@jest/globals";
+
 import {
   matchAnyDesktop,
   matchLargeDesktop,
@@ -7,9 +8,8 @@ import {
   render,
 } from "../../test-utils/index.js";
 import { spyOnMatchMedia } from "../../test-utils/jest-globals/index.js";
-
-import { type AppSize } from "../appSize.js";
 import { AppSizeProvider, useAppSize } from "../AppSizeProvider.js";
+import { type AppSize } from "../appSize.js";
 
 const matchMedia = spyOnMatchMedia();
 

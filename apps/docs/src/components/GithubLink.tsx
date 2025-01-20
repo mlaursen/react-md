@@ -1,8 +1,8 @@
 "use client";
-import { GITHUB_LINK_URL, GITHUB_URL } from "@/constants/env.js";
+
 import {
-  button,
   type ButtonClassNameOptions,
+  button,
 } from "@react-md/core/button/buttonStyles";
 import { Tooltip } from "@react-md/core/tooltip/Tooltip";
 import {
@@ -11,6 +11,9 @@ import {
 } from "@react-md/core/tooltip/useTooltip";
 import { cnb } from "cnbuilder";
 import { type AnchorHTMLAttributes, type ReactElement } from "react";
+
+import { GITHUB_LINK_URL, GITHUB_URL } from "@/constants/env.js";
+
 import { GithubIcon } from "./GithubIcon.jsx";
 import styles from "./GithubLink.module.scss";
 import { LinkUnstyled } from "./LinkUnstyled.jsx";

@@ -1,4 +1,5 @@
 import { describe, expect, it } from "@jest/globals";
+
 import { render, screen } from "../../test-utils/index.js";
 import { AutocompleteCircularProgress } from "../AutocompleteCircularProgress.js";
 

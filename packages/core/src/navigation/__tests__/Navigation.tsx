@@ -1,5 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { type ReactElement } from "react";
+
 import { FontIcon } from "../../icon/FontIcon.js";
 import {
   render as baseRender,

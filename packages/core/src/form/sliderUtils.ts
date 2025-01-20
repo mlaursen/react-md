@@ -1,4 +1,5 @@
 import { type RefObject } from "react";
+
 import {
   type DraggableEventHandlers,
   type DraggableImplementation,
@@ -7,8 +8,8 @@ import {
 } from "../draggable/useDraggable.js";
 import { type RenameKeysWithPrefix } from "../types.js";
 import {
-  getClientPosition,
   type ClientPositionEvent,
+  getClientPosition,
 } from "../utils/getClientPosition.js";
 import { getPercentage } from "../utils/getPercentage.js";
 import { getRangeSteps } from "../utils/getRangeSteps.js";

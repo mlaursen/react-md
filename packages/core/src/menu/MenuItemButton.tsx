@@ -1,5 +1,7 @@
 "use client";
+
 import { forwardRef, useEffect } from "react";
+
 import { useHoverMode } from "../hoverMode/useHoverMode.js";
 import { IconRotator } from "../icon/IconRotator.js";
 import { getIcon } from "../icon/iconConfig.js";

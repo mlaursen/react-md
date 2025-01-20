@@ -1,5 +1,7 @@
 "use client";
+
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+
 import type { NonNullMutableRef, NonNullRef } from "../types.js";
 
 const noop = (): void => {

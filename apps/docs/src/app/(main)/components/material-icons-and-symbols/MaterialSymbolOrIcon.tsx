@@ -1,7 +1,8 @@
-import { type MaterialSymbolFamily } from "@react-md/core/icon/material";
 import { MaterialIcon } from "@react-md/core/icon/MaterialIcon";
 import { MaterialSymbol } from "@react-md/core/icon/MaterialSymbol";
+import { type MaterialSymbolFamily } from "@react-md/core/icon/material";
 import { type ReactElement } from "react";
+
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";
 import { type MaterialIconAndSymbolName } from "./metadata.js";
 import { isMaterialSymbol } from "./utils.js";

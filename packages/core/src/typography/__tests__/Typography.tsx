@@ -1,9 +1,9 @@
 import { describe, expect, it } from "@jest/globals";
 import { type HTMLAttributes, type ReactElement } from "react";
-import { render, screen } from "../../test-utils/index.js";
 
+import { render, screen } from "../../test-utils/index.js";
 import { Typography } from "../Typography.js";
-import { typography, type TypographyType } from "../typographyStyles.js";
+import { type TypographyType, typography } from "../typographyStyles.js";
 
 describe("Typography", () => {
   it("should default to rendering as a paragraph and body-1 styles", () => {

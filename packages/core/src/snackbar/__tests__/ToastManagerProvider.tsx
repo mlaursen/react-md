@@ -6,28 +6,28 @@ import {
   it,
   jest,
 } from "@jest/globals";
+import { type ReactElement, type ReactNode } from "react";
+
+import { Button } from "../../button/Button.js";
 import {
+  type RenderResult,
   act,
   rmdRender,
   screen,
   userEvent,
   waitFor,
   within,
-  type RenderResult,
 } from "../../test-utils/index.js";
-
-import { type ReactElement, type ReactNode } from "react";
-import { Button } from "../../button/Button.js";
 import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { Snackbar, type SnackbarProps } from "../Snackbar.js";
 import {
+  type CreateToastOptions,
   ToastManager,
   addToast,
   clearToasts,
   popToast,
   removeToast,
   toastManager,
-  type CreateToastOptions,
 } from "../ToastManager.js";
 import { ToastManagerProvider, useAddToast } from "../ToastManagerProvider.js";
 

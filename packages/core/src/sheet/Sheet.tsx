@@ -1,12 +1,14 @@
 "use client";
+
 import { forwardRef } from "react";
-import { Dialog, type BaseDialogProps } from "../dialog/Dialog.js";
+
+import { type BaseDialogProps, Dialog } from "../dialog/Dialog.js";
 import { type LabelRequiredForA11y } from "../types.js";
 import {
+  type BaseSheetClassNameOptions,
   DEFAULT_SHEET_CLASSNAMES,
   DEFAULT_SHEET_TIMEOUT,
   sheet,
-  type BaseSheetClassNameOptions,
 } from "./styles.js";
 
 /**

@@ -1,4 +1,5 @@
 import { Children, type ReactNode } from "react";
+
 import { INTERACTION_CONFIG } from "./config.js";
 
 /**

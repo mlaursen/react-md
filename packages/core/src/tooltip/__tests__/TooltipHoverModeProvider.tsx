@@ -1,5 +1,7 @@
 import { beforeEach, describe, expect, it } from "@jest/globals";
 import { type ReactElement } from "react";
+
+import { Button } from "../../button/Button.js";
 import {
   render,
   screen,
@@ -7,8 +9,6 @@ import {
   waitFor,
   waitForElementToBeRemoved,
 } from "../../test-utils/index.js";
-
-import { Button } from "../../button/Button.js";
 import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { Tooltip } from "../Tooltip.js";
 import { TooltipHoverModeProvider } from "../TooltipHoverModeProvider.js";

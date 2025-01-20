@@ -1,5 +1,7 @@
 "use client";
+
 import { cnb } from "cnbuilder";
+
 import { DISPLAY_NONE_CLASS } from "../utils/isElementVisible.js";
 import type {
   CSSTransitionElementProps,

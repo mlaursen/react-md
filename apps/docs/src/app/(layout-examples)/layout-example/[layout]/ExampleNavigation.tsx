@@ -1,6 +1,8 @@
 "use client";
+
 import { useSearchParams } from "next/navigation.js";
 import { type ComponentType, type ReactElement } from "react";
+
 import { ExampleCoreNavigation } from "./ExampleCoreNavigation.jsx";
 import { ExampleListNavigation } from "./ExampleListNavigation.jsx";
 import { ExampleTreeNavigation } from "./ExampleTreeNavigation.jsx";

@@ -1,15 +1,16 @@
 "use client";
+
 import { useEnsuredRef } from "@react-md/core/useEnsuredRef";
 import {
-  useCallback,
-  useRef,
-  useState,
   type ChangeEventHandler,
   type KeyboardEvent,
   type KeyboardEventHandler,
   type Ref,
   type RefCallback,
   type RefObject,
+  useCallback,
+  useRef,
+  useState,
 } from "react";
 
 const noop = (): void => {

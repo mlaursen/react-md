@@ -1,5 +1,6 @@
 import { cnb } from "cnbuilder";
 import { forwardRef } from "react";
+
 import { type TextColor, type ThemeColor, cssUtils } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
 import { type LabelClassNameOptions, type LabelProps } from "./types.js";

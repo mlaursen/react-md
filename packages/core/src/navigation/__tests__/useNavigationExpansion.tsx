@@ -1,11 +1,12 @@
 import { describe, expect, it } from "@jest/globals";
 import {
+  type AnchorHTMLAttributes,
+  type ReactElement,
   forwardRef,
   useMemo,
   useState,
-  type AnchorHTMLAttributes,
-  type ReactElement,
 } from "react";
+
 import { Button } from "../../button/Button.js";
 import { FontIcon } from "../../icon/FontIcon.js";
 import { render, screen, userEvent } from "../../test-utils/index.js";

@@ -1,5 +1,7 @@
 "use client";
+
 import { useEffect } from "react";
+
 import { type ColorScheme } from "./types.js";
 
 /**

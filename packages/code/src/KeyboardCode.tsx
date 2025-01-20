@@ -1,4 +1,5 @@
 import { type ReactElement, type ReactNode } from "react";
+
 import { InlineCode } from "./InlineCode.js";
 import {
   WalkChildren,

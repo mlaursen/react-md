@@ -1,5 +1,6 @@
 import { cnb } from "cnbuilder";
-import { cssUtils, type TextColor, type ThemeColor } from "../cssUtils.js";
+
+import { type TextColor, type ThemeColor, cssUtils } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
 import type { MaterialIconFamily, MaterialSymbolFamily } from "./material.js";
 

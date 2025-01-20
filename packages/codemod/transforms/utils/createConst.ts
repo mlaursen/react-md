@@ -1,4 +1,5 @@
 import { type JSCodeshift, type VariableDeclaration } from "jscodeshift";
+
 import { type ExpressionKind, type PatternKind } from "../types";
 
 export interface CreateConstOptions {

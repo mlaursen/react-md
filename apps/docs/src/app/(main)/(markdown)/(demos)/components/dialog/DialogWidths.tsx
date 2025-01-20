@@ -8,7 +8,8 @@ import { Option } from "@react-md/core/form/Option";
 import { Select } from "@react-md/core/form/Select";
 import { Typography } from "@react-md/core/typography/Typography";
 import { useToggle } from "@react-md/core/useToggle";
-import { useId, useState, type ReactElement } from "react";
+import { type ReactElement, useId, useState } from "react";
+
 import styles from "./DialogWidths.module.scss";
 
 export default function DialogWidths(): ReactElement {

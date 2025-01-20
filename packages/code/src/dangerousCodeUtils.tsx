@@ -1,16 +1,18 @@
+"use client";
+
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-implied-eval */
 // https://github.com/nihgwu/react-runner/tree/974ebc932db7b7c7d59f1b50a79aed705efbf75a
 // This is pretty much everything from there except using the new JSX transform
 // and I wanted to understand why things were implemented the way they were
-"use client";
 import React, {
-  isValidElement,
   type ComponentType,
   type ReactElement,
+  isValidElement,
 } from "react";
 import * as jsxRuntime from "react/jsx-runtime";
 import { transform } from "sucrase";
+
 import { createFakeCssModules } from "./fakeCssModules.js";
 import { type LocalCodeScope, type RunnableCodeScope } from "./types.js";
 

@@ -1,10 +1,12 @@
 "use client";
+
 import { useCallback, useRef, useState } from "react";
+
 import { type UseStateInitializer } from "../types.js";
 import {
-  useIntersectionObserver,
   type IntersectionObserverRootMargin,
   type IntersectionObserverThreshold,
+  useIntersectionObserver,
 } from "../useIntersectionObserver.js";
 import { parseCssLengthUnit } from "../utils/parseCssLengthUnit.js";
 

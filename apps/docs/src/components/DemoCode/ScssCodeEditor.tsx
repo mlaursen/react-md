@@ -8,6 +8,7 @@ import { useFocusCodeEditor } from "@react-md/code/useFocusCodeEditor";
 import { cssUtils } from "@react-md/core/cssUtils";
 import { Snackbar } from "@react-md/core/snackbar/Snackbar";
 import { type ReactElement } from "react";
+
 import styles from "./ScssCodeEditor.module.scss";
 import { useScssCodeEditor } from "./useScssCodeEditor.js";
 

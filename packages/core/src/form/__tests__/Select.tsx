@@ -1,5 +1,6 @@
 import { describe, expect, it, jest } from "@jest/globals";
-import { createRef, useState, type ReactElement } from "react";
+import { type ReactElement, createRef, useState } from "react";
+
 import { Avatar } from "../../avatar/Avatar.js";
 import { Button } from "../../button/Button.js";
 import { FontIcon } from "../../icon/FontIcon.js";

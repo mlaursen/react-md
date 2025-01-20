@@ -1,9 +1,11 @@
 "use client";
-import { forwardRef, useState, type HTMLAttributes } from "react";
+
+import { type HTMLAttributes, forwardRef, useState } from "react";
+
 import { useSsr } from "../SsrProvider.js";
 import {
-  useFocusContainer,
   type FocusContainerComponentProps,
+  useFocusContainer,
 } from "../focus/useFocusContainer.js";
 import { Overlay } from "../overlay/Overlay.js";
 import { Portal } from "../portal/Portal.js";
@@ -22,10 +24,10 @@ import {
 import {
   DEFAULT_DIALOG_CLASSNAMES,
   DEFAULT_DIALOG_TIMEOUT,
+  type DialogType,
+  type DialogWidth,
   dialog,
   dialogContainer,
-  type DialogWidth,
-  type DialogType,
 } from "./styles.js";
 
 const noop = (): void => {

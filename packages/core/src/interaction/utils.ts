@@ -1,4 +1,5 @@
 import { type KeyboardEvent, type MouseEvent, type TouchEvent } from "react";
+
 import { findSizingContainer } from "../positioning/utils.js";
 import {
   type ElementInteractionState,

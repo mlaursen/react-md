@@ -1,4 +1,5 @@
 import { describe, expect, it } from "@jest/globals";
+
 import { getRangeDefaultValue } from "../getRangeDefaultValue.js";
 
 describe("getRangeDefaultValue", () => {

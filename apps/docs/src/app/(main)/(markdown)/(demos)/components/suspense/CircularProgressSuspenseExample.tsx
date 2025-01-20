@@ -1,11 +1,12 @@
 "use client";
+
 import { Box } from "@react-md/core/box/Box";
 import { Button } from "@react-md/core/button/Button";
 import { CircularProgressSuspense } from "@react-md/core/suspense/CircularProgressSuspense";
 import { Typography } from "@react-md/core/typography/Typography";
 import { useToggle } from "@react-md/core/useToggle";
 import { wait } from "@react-md/core/utils/wait";
-import { use, type ReactElement } from "react";
+import { type ReactElement, use } from "react";
 
 // Note: This is a copy of the suspense codesandbox provided by react:
 // https://codesandbox.io/p/sandbox/restless-waterfall-7hzg5z

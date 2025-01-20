@@ -1,5 +1,7 @@
 "use client";
+
 import { useEffect } from "react";
+
 import { getScrollbarWidth } from "./getScrollbarWidth.js";
 
 declare module "react" {

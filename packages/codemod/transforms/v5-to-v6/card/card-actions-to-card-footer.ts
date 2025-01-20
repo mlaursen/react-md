@@ -1,7 +1,8 @@
 import { type API, type FileInfo, type Options } from "jscodeshift";
+
+import { renameIdentifier } from "../../utils/renameIdentifier";
 import { renameProps } from "../../utils/renameProps";
 import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers";
-import { renameIdentifier } from "../../utils/renameIdentifier";
 
 export default function transformer(
   file: FileInfo,

@@ -1,4 +1,5 @@
 import { describe, expect, it } from "@jest/globals";
+
 import {
   BELOW_CENTER_ANCHOR,
   BELOW_INNER_LEFT_ANCHOR,
@@ -10,7 +11,6 @@ import {
   TOP_INNER_RIGHT_ANCHOR,
   TOP_RIGHT_ANCHOR,
 } from "../../positioning/constants.js";
-
 import { getDefaultAnchor } from "../utils.js";
 
 describe("getDefaultAnchor", () => {

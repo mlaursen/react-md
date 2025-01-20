@@ -13,6 +13,7 @@ import "prismjs/components/prism-properties";
 import "prismjs/components/prism-scss";
 import "prismjs/components/prism-tsx";
 import "prismjs/components/prism-typescript";
+
 import { type HighlightCode } from "../types.js";
 
 Prism.manual = true;

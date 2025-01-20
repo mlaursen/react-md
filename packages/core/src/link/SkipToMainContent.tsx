@@ -1,9 +1,11 @@
 "use client";
-import { forwardRef, useEffect, useRef, type ReactNode } from "react";
+
+import { type ReactNode, forwardRef, useEffect, useRef } from "react";
+
 import { Link, type LinkProps } from "./Link.js";
 import {
-  skipToMainContent,
   type SkipToMainContentClassNameOptions,
+  skipToMainContent,
 } from "./styles.js";
 
 const noop = (): void => {

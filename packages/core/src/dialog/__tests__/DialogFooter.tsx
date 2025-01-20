@@ -1,9 +1,10 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
+
 import { Button } from "../../button/Button.js";
 import { render, screen } from "../../test-utils/index.js";
 import { DialogFooter } from "../DialogFooter.js";
-import { dialogFooter, type DialogFooterAlignment } from "../styles.js";
+import { type DialogFooterAlignment, dialogFooter } from "../styles.js";
 
 describe("DialogFooter", () => {
   it("should apply the correct styling, HTMLAttributes, and allow a ref", () => {

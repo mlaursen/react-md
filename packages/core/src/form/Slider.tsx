@@ -1,11 +1,13 @@
 "use client";
+
 import {
-  useRef,
   type HTMLAttributes,
   type ReactElement,
   type ReactNode,
   type Ref,
+  useRef,
 } from "react";
+
 import { type TooltipProps } from "../tooltip/Tooltip.js";
 import {
   type LabelRequiredForA11y,
@@ -14,7 +16,7 @@ import {
 } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { identity } from "../utils/identity.js";
-import { SliderContainer, type SliderAddonProps } from "./SliderContainer.js";
+import { type SliderAddonProps, SliderContainer } from "./SliderContainer.js";
 import {
   SliderThumb,
   type SliderThumbPresentation,
@@ -22,8 +24,8 @@ import {
 } from "./SliderThumb.js";
 import { SliderTrack } from "./SliderTrack.js";
 import {
-  SliderValueMarks,
   type SliderMarksOptions,
+  SliderValueMarks,
 } from "./SliderValueMarks.js";
 import { getJumpValue } from "./sliderUtils.js";
 import { type RangeSliderState } from "./useRangeSlider.js";

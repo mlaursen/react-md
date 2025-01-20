@@ -1,10 +1,11 @@
-import { states } from "@/constants/states.js";
 import { Avatar } from "@react-md/core/avatar/Avatar";
 import { Form } from "@react-md/core/form/Form";
 import { Option } from "@react-md/core/form/Option";
 import { Select } from "@react-md/core/form/Select";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import { type ReactElement } from "react";
+
+import { states } from "@/constants/states.js";
 
 export default function RenderingWithinASheet(): ReactElement {
   return (

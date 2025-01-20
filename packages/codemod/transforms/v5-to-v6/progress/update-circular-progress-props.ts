@@ -1,4 +1,5 @@
 import { type API, type FileInfo, type Options } from "jscodeshift";
+
 import { getPropName } from "../../utils/getPropName";
 import { isPropEnabled } from "../../utils/isPropEnabled";
 import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers";

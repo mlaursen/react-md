@@ -1,4 +1,5 @@
 import { type ReactElement } from "react";
+
 import { Divider } from "../divider/Divider.js";
 import { type RenderRecursiveItemsProps } from "../utils/RenderRecursively.js";
 import { CollapsibleNavGroup } from "./CollapsibleNavGroup.js";
