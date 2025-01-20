@@ -1,8 +1,6 @@
-export type Block = string;
-export type Element = string;
-export type Modifier = Record<string, unknown>;
+export type BEMModifier = Record<string, unknown>;
 
-function modify(base: string, modifier?: Modifier): string {
+function modify(base: string, modifier?: BEMModifier): string {
   if (!modifier) {
     return base;
   }
@@ -17,10 +15,30 @@ function modify(base: string, modifier?: Modifier): string {
   }, base);
 }
 
-export type BEMResult = (
-  elementOrModifier?: Element | Modifier,
-  modifier?: Modifier
-) => string;
+/**
+ * @since 6.0.0 Converted to an interface that supports the `base` attribute.
+ */
+export interface BEMResult {
+  /**
+   * Creates the full class name from the base block name. This can be called
+   * without any arguments which will just return the base block name (kind of
+   * worthless), or you can provide a child element name and modifiers.
+   *
+   * @param elementOrModifier - This is either the child element name or an
+   * object of modifiers to apply. This **must** be a string if the second
+   * argument is provided.
+   * @param modifier - Any optional modifiers to apply to the block and optional
+   * element.
+   * @returns the full class name
+   */
+  (elementOrModifier?: BEMModifier): string;
+  (elementOrModifier?: string, modifier?: BEMModifier): string;
+
+  /**
+   * The base class name
+   */
+  base: string;
+}
 
 /**
  * Applies the BEM styled class name to an element.
@@ -62,7 +80,7 @@ export type BEMResult = (
  * @param base - The base class to use
  * @returns a function to call that generates the full class name
  */
-export function bem(base: Block): BEMResult {
+export function bem(base: string): BEMResult {
   if (process.env.NODE_ENV !== "production") {
     if (!base) {
       throw new Error(
@@ -71,21 +89,9 @@ export function bem(base: Block): BEMResult {
     }
   }
 
-  /**
-   * Creates the full class name from the base block name. This can be called
-   * without any arguments which will just return the base block name (kind of
-   * worthless), or you can provide a child element name and modifiers.
-   *
-   * @param elementOrModifier - This is either the child element name or an
-   * object of modifiers to apply. This **must** be a string if the second
-   * argument is provided.
-   * @param modifier - Any optional modifiers to apply to the block and optional
-   * element.
-   * @returns the full class name
-   */
-  return function block(
-    elementOrModifier?: Element | Modifier,
-    modifier?: Modifier
+  function block(
+    elementOrModifier?: BEMModifier | string,
+    modifier?: BEMModifier
   ): string {
     if (process.env.NODE_ENV !== "production") {
       if (typeof elementOrModifier !== "string" && modifier) {
@@ -104,5 +110,7 @@ export function bem(base: Block): BEMResult {
     }
 
     return modify(`${base}__${elementOrModifier}`, modifier);
-  };
+  }
+  block.base = base;
+  return block;
 }

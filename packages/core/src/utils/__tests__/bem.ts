@@ -47,6 +47,7 @@ describe("bem", () => {
     });
 
     it("should throw an error if both arguments are considered a modifier", () => {
+      // @ts-expect-error
       expect(() => block1({}, {})).toThrow(
         "bem does not support having two modifier arguments."
       );
