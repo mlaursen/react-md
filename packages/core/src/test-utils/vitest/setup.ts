@@ -1,9 +1,9 @@
 import "@testing-library/jest-dom/vitest";
+import { beforeEach } from "vitest";
 
 import { INTERACTION_CONFIG } from "../../interaction/config.js";
 import { TRANSITION_CONFIG } from "../../transition/config.js";
 
-// @ts-expect-error I do not have globals enabled
 beforeEach(() => {
   // set the mode to `none` in tests since ripples require
   // `getBoundingClientRect()` to create correct CSS. You'll either see warnings
