@@ -328,10 +328,6 @@ $variables: (height, surface-background-color, surface-color);
             padding-right: calc(
               #{$horizontal-padding} + #{utils.scrollbar-size()}
             );
-
-            @include utils.rtl {
-              margin-right: calc(-1 * #{utils.scrollbar-size()});
-            }
           }
 
           @if not $disable-static-scrollbar-offset {

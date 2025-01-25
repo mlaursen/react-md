@@ -7,6 +7,12 @@
 
   background-color: var(--background-color);
   box-shadow: none;
+
+  @include everything.rtl {
+    @include everything.divider-border-style(left);
+
+    border-right: 0;
+  }
 }
 
 .main {
