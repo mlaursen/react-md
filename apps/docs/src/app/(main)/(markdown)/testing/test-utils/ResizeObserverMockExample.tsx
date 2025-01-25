@@ -1,13 +1,18 @@
 import { type ReactElement } from "react";
 
-import { FrameworkCodeSwap } from "../FrameworkCodeSwap.jsx";
+import TestFrameworkCodeBlock from "../TestFrameworkCodeBlock.jsx";
 
 const BASE_CODE = `
-import { render, screen } from "@react-md/core/test-utils";
-import { cleanupResizeObserverAfterEach, setupResizeObserverMock } from "@react-md/core/test-utils/{FRAMEWORK}";
+import { afterEach, describe, expect, it, {FRAMEWORK} } from "{IMPORT}";
+import {
+  cleanupResizeObserverAfterEach,
+  render,
+  screen,
+  setupResizeObserverMock,
+} from "@react-md/core/test-utils";
 import { ExampleComponent } from "../ExampleComponent.jsx";
 
-cleanupResizeObserverAfterEach();
+cleanupResizeObserverAfterEach(afterEach, {FRAMEWORK}.restoreAllMocks);
 
 describe("ExampleComponent", () => {
   it("should do stuff", () => {
@@ -44,9 +49,18 @@ describe("ExampleComponent", () => {
 
 export default function ResizeObserverMockExample(): ReactElement {
   return (
-    <FrameworkCodeSwap
+    <TestFrameworkCodeBlock
       lang="tsx"
-      code={BASE_CODE}
+      code={{
+        jest: BASE_CODE.replace(/{IMPORT}/g, "@jest/globals").replace(
+          /{FRAMEWORK}/g,
+          "jest"
+        ),
+        vitest: BASE_CODE.replace(/{IMPORT}/g, "vitest").replace(
+          /{FRAMEWORK}/g,
+          "vitest"
+        ),
+      }}
       fileName="Resize Observer Testing"
     />
   );

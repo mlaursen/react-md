@@ -1,15 +1,17 @@
-import { describe, expect, it } from "@jest/globals";
+import { afterEach, describe, expect, it, jest } from "@jest/globals";
 import { type MutableRefObject, type ReactElement, createRef } from "react";
 
-import { act, render, screen } from "../test-utils/index.js";
 import {
+  act,
   cleanupResizeObserverAfterEach,
+  render,
+  screen,
   setupResizeObserverMock,
-} from "../test-utils/jest-globals/index.js";
+} from "../test-utils/index.js";
 import { type ElementSize } from "../types.js";
 import { type ElementSizeOptions, useElementSize } from "../useElementSize.js";
 
-cleanupResizeObserverAfterEach();
+cleanupResizeObserverAfterEach(afterEach, jest.restoreAllMocks);
 
 const getValue = (element: HTMLElement): number =>
   parseFloat(element.textContent || "");
