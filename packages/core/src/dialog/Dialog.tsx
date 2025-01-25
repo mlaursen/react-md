@@ -11,8 +11,10 @@ import { Overlay } from "../overlay/Overlay.js";
 import { Portal } from "../portal/Portal.js";
 import { useScrollLock } from "../scroll/useScrollLock.js";
 import {
+  type CSSTransitionClassNames,
   type CSSTransitionComponentProps,
   type TransitionActions,
+  type TransitionTimeout,
 } from "../transition/types.js";
 import { useCSSTransition } from "../transition/useCSSTransition.js";
 import { type LabelRequiredForA11y } from "../types.js";
@@ -163,13 +165,13 @@ export interface BaseDialogProps
    * @see {@link DEFAULT_DIALOG_TIMEOUT}
    * @defaultValue `DEFAULT_DIALOG_TIMEOUT`
    */
-  timeout?: CSSTransitionComponentProps["timeout"];
+  timeout?: TransitionTimeout;
 
   /**
    * @see {@link DEFAULT_DIALOG_CLASSNAMES}
    * @defaultValue `DEFAULT_DIALOG_CLASSNAMES`
    */
-  classNames?: CSSTransitionComponentProps["classNames"];
+  classNames?: CSSTransitionClassNames;
 
   /**
    * Set this to `true` if the `Dialog` should not gain the normal focus box

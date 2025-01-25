@@ -66,6 +66,11 @@ const config = {
     // use react-dom/server in jsdom?
     "!<rootDir>/src/test-utils/polyfills/TextEncoder.ts",
     "!<rootDir>/src/test-utils/polyfills/TextDecoder.ts",
+
+    // generated file that doesn't really matter
+    "!<rootDir>/src/icon/material.ts",
+    // can't really test vitest with jest
+    "!<rootDir>/src/test-utils/vitest/**",
   ],
 
   extensionsToTreatAsEsm: [".ts", ".tsx"],

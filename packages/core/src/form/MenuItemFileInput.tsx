@@ -19,7 +19,11 @@ const noop = (): void => {
  * implementation.
  */
 export interface MenuItemFileInputProps
-  extends Omit<MenuItemProps, "onChange"> {
+  extends Omit<MenuItemProps, "onChange">,
+    Pick<
+      InputHTMLAttributes<HTMLInputElement>,
+      "accept" | "capture" | "multiple"
+    > {
   /**
    * A change event handler that should do something with the selected files.
    * Usually the `onChange` returned by `useFileUpload` or:
@@ -37,10 +41,6 @@ export interface MenuItemFileInputProps
    * normal.
    */
   onChange: ChangeEventHandler<HTMLInputElement>;
-
-  accept?: InputHTMLAttributes<HTMLInputElement>["accept"];
-  capture?: InputHTMLAttributes<HTMLInputElement>["capture"];
-  multiple?: InputHTMLAttributes<HTMLInputElement>["multiple"];
 
   /**
    * Set this to `true` if the `Menu` should not close when the file input's
@@ -69,8 +69,9 @@ export const MenuItemFileInput = forwardRef<
     id: propId,
     onClick = noop,
     onChange,
-    accept = "",
-    multiple = false,
+    accept,
+    capture,
+    multiple,
     children,
     leftAddon: propLeftAddon,
     preventMenuHideOnClick = false,
@@ -93,12 +94,21 @@ export const MenuItemFileInput = forwardRef<
           event.stopPropagation();
         }
 
-        // create a temporary file input element and click it to trigger the
-        // file upload behavior.
+        // Since the menu closes when the menu item is clicked causing the
+        // elements to be removed from the DOM, a normal `<input type="file" />`
+        // can't be used. Instead, create a temporary file input element and
+        // click it to trigger the file upload behavior.
         let input: HTMLInputElement | null = document.createElement("input");
         input.type = "file";
-        input.accept = accept;
-        input.multiple = multiple;
+        if (accept) {
+          input.accept = accept;
+        }
+        if (multiple) {
+          input.multiple = multiple;
+        }
+        if (capture) {
+          input.capture = capture === true ? "" : capture;
+        }
 
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-expect-error

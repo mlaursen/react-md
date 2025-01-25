@@ -6,7 +6,7 @@ import {
   type GetResizeObserverEntryMock,
   type ResizeObserverEntrySize,
   createResizeObserverEntry,
-} from "../utils/resize-observer.js";
+} from "../utils/createResizeObserverEntry.js";
 
 /**
  * This is the default ResizeObserver implementation if it does not already
@@ -178,13 +178,21 @@ export interface SetupResizeObserverMockOptions {
  *
  * @example Main Usage
  * ```tsx
- * import { render, screen } from "@react-md/core/test-utils";
  * import {
  *   cleanupResizeObserverAfterEach,
+ *   render,
+ *   screen,
  *   setupResizeObserverMock,
- * } from "test-utils/jest-globals";
+ * } from "@react-md/core/test-utils";
  * import { useResizeObserver } from "@react-md/core/useResizeObserver";
  * import { useCallback, useState } from "react";
+ *
+ * // choose your test framework
+ * import { afterEach, jest } from "@jest/globals";
+ * cleanupResizeObserverAfterEach(afterEach, jest.restoreAllMocks);
+ *
+ * import { afterEach, vitest } from "vitest";
+ * cleanupResizeObserverAfterEach(afterEach, vitest.restoreAllMocks);
  *
  * function ExampleComponent() {
  *   const [size, setSize] = useState({ height: 0, width: 0 });
@@ -204,8 +212,6 @@ export interface SetupResizeObserverMockOptions {
  *     </>
  *   );
  * }
- *
- * cleanupResizeObserverAfterEach();
  *
  * describe("ExampleComponent", () => {
  *   it("should do stuff", () => {
@@ -258,4 +264,20 @@ export function setupResizeObserverMock(
   });
   manager.sharedObserver = resizeObserver;
   return resizeObserver;
+}
+
+/**
+ * @see {@link setupResizeObserverMock}
+ * @since 6.0.0
+ */
+export function cleanupResizeObserverAfterEach(
+  afterEach: (callback: () => void) => void,
+  restoreAllMocks: () => void = () => {}
+): void {
+  afterEach(() => {
+    resizeObserverManager.frame = 0;
+    resizeObserverManager.subscriptions = new Map();
+    resizeObserverManager.sharedObserver = undefined;
+    restoreAllMocks();
+  });
 }

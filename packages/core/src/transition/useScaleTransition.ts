@@ -2,10 +2,9 @@
 
 import type {
   CSSTransitionClassNames,
-  CSSTransitionClassNamesObject,
   CSSTransitionHookReturnValue,
   PreconfiguredCSSTransitionOptions,
-  TransitionTimeoutObject,
+  TransitionTimeout,
 } from "./types.js";
 import { useCSSTransition } from "./useCSSTransition.js";
 
@@ -17,7 +16,7 @@ import { useCSSTransition } from "./useCSSTransition.js";
  * @since 6.0.0 The class names were updated to be prefixed with
  * `rmd-scale-transition`
  */
-export const SCALE_CLASSNAMES: Readonly<CSSTransitionClassNamesObject> = {
+export const SCALE_CLASSNAMES = {
   appear: "rmd-scale-transition--enter",
   appearActive: "rmd-scale-transition--enter-active",
   enter: "rmd-scale-transition--enter",
@@ -25,7 +24,7 @@ export const SCALE_CLASSNAMES: Readonly<CSSTransitionClassNamesObject> = {
   enterDone: "",
   exit: "rmd-scale-transition--exit",
   exitActive: "rmd-scale-transition--exit-active",
-};
+} as const satisfies CSSTransitionClassNames;
 
 /**
  * The default {@link CSSTransitionClassNames} for a vertical scale transition.
@@ -34,7 +33,7 @@ export const SCALE_CLASSNAMES: Readonly<CSSTransitionClassNamesObject> = {
  * @since 6.0.0 The class names were updated to be prefixed with
  * `rmd-scale-y-transition` and merged with the {@link SCALE_CLASSNAMES}
  */
-export const SCALE_Y_CLASSNAMES: Readonly<CSSTransitionClassNamesObject> = {
+export const SCALE_Y_CLASSNAMES = {
   appear: "rmd-scale-transition--enter rmd-scale-transition--y-enter",
   appearActive:
     "rmd-scale-transition--enter-active rmd-scale-transition--y-enter-active",
@@ -45,7 +44,7 @@ export const SCALE_Y_CLASSNAMES: Readonly<CSSTransitionClassNamesObject> = {
   exit: "rmd-scale-transition--exit rmd-scale-transition--y-exit",
   exitActive:
     "rmd-scale-transition--exit-active rmd-scale-transition--y-exit-active",
-};
+} as const satisfies CSSTransitionClassNames;
 
 /**
  * The default {@link TransitionTimeout} to use for horizontal and vertical
@@ -53,10 +52,10 @@ export const SCALE_Y_CLASSNAMES: Readonly<CSSTransitionClassNamesObject> = {
  *
  * @since 2.0.0
  */
-export const SCALE_TIMEOUT: Readonly<TransitionTimeoutObject> = {
+export const SCALE_TIMEOUT = {
   enter: 200,
   exit: 150,
-};
+} as const satisfies TransitionTimeout;
 
 /**
  * @typeParam E - The HTMLElement type used or the ref required for the

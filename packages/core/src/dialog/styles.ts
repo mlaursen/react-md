@@ -200,17 +200,17 @@ export function dialogFooter(
 }
 
 /** @since 4.0.0 */
-export const DEFAULT_DIALOG_CLASSNAMES: Readonly<CSSTransitionClassNames> = {
+export const DEFAULT_DIALOG_CLASSNAMES = {
   appear: "rmd-dialog--enter",
   appearActive: "rmd-dialog--enter-active",
   enter: "rmd-dialog--enter",
   enterActive: "rmd-dialog--enter-active",
   exit: "rmd-dialog--exit",
   exitActive: "rmd-dialog--exit-active",
-};
+} as const satisfies CSSTransitionClassNames;
 
 /** @since 4.0.0 */
-export const DEFAULT_DIALOG_TIMEOUT: Readonly<TransitionTimeout> = {
+export const DEFAULT_DIALOG_TIMEOUT = {
   enter: 200,
   exit: 150,
-};
+} as const satisfies TransitionTimeout;

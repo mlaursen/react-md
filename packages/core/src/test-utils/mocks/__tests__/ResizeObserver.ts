@@ -5,11 +5,11 @@ import {
   ResizeObserverManager,
   resizeObserverManager,
 } from "../../../useResizeObserver.js";
+import { createResizeObserverEntry } from "../../utils/createResizeObserverEntry.js";
 import {
   cleanupResizeObserverAfterEach,
-  createResizeObserverEntry,
-} from "../../utils/resize-observer.js";
-import { setupResizeObserverMock } from "../ResizeObserver.js";
+  setupResizeObserverMock,
+} from "../ResizeObserver.js";
 
 describe("ResizeObserverMock", () => {
   cleanupResizeObserverAfterEach(afterEach, jest.restoreAllMocks);

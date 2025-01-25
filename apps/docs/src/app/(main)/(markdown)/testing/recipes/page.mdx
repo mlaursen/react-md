@@ -18,7 +18,7 @@ TODO
 The `Checkbox` can be found like any other checkbox element:
 
 ```tsx
-import { render, screen, userEvent } from "@react-md/core-test-utils";
+import { rmdRender, screen, userEvent } from "@react-md/core/test-utils";
 
 it("should be able to change value", async () => {
   const user = userEvent.setup();
@@ -32,6 +32,36 @@ it("should be able to change value", async () => {
 
   await user.click(checkbox);
   expect(checkbox).not.toBeChecked();
+});
+```
+
+## FileInput
+
+### Find and Change Value
+
+The `FileInput` can be found like any other `<input type="file">`:
+
+```tsx
+function Test(): ReactElement {
+  return (
+    <Form>
+      <FileInput
+        onChange={(event) => {
+          // do something
+        }}
+      />
+    </Form>
+  );
+}
+
+it("should be able to change value", async () => {
+  const user = userEvent.setup();
+  rmdRender(<Test />);
+
+  const input = screen.getByLabelTest("Upload");
+
+  const file = new File(["some-example-content"], "README.md");
+  await user.upload(input, file);
 });
 ```
 
@@ -293,7 +323,288 @@ expect(tooltip).not.toBeInTheDocument();
 
 ## Menu
 
-TODO
+### Open and Click a `MenuItem`
+
+```tsx
+import { expect, it, jest } from "@jest/globals";
+import { DropdownMenu } from "@react-md/core/menu/DropdownMenu";
+import { MenuItem } from "@react-md/core/menu/MenuItem";
+import { rmdRender } from "@react-md/core/test-utils";
+import { type ReactElement } from "react";
+
+const handleClick1 = jest.fn();
+const handleClick2 = jest.fn();
+
+function Test(): ReactElement {
+  return (
+    <DropdownMenu buttonChildren="Menu Toggle">
+      <MenuItem onClick={handleClick1}>First Item</MenuItem>
+      <MenuItem onClick={handleClick2}>Second Item</MenuItem>
+    </DropdownMenu>
+  );
+}
+
+describe("Test", () => {
+  it("should be able to open the menu and trigger actions", async () => {
+    const user = userEvent.setup();
+    rmdRender(<Test />);
+
+    const menuToggle = screen.getByRole("button", { name: "Menu Toggle" });
+    expect(() => screen.getByRole("menu")).toThrow();
+
+    await user.click(menuToggle);
+    // this isn't really required, but shows how you can find the menu
+    // the name defaults to the button label, but will reflect the `aria-label`
+    // or `aria-labelledby` prop if it was provided
+    expect(() =>
+      screen.getByRole("menu", { name: "Menu Toggle" })
+    ).not.toThrow();
+
+    await user.click(screen.getByRole("menuitem", { name: "First Item" }));
+    expect(handleClick1).toHaveBeenCalledTimes(1);
+    // menu no longer is visible
+    expect(() => screen.getByRole("menu")).toThrow();
+
+    const menuToggle = screen.getByRole("button", { name: "Menu Toggle" });
+
+    await user.click(screen.getByRole("menuitem", { name: "Second Item" }));
+    expect(handleClick2).toHaveBeenCalledTimes(1);
+  });
+});
+```
+
+### MenuItemCheckbox
+
+The `MenuitemCheckbox` can be found using the `"menuitemcheckbox"` role:
+
+```tsx
+const values = ["a", "b", "c", "d"] as const;
+const labels = {
+  a: "Label 1",
+  b: "Label 2",
+  c: "Label 3",
+  d: "Label 4",
+} as const;
+
+function Test(): ReactElement {
+  const { getCheckboxProps, getIndeterminateProps } = useCheckboxGroup({
+    menu: true,
+    values,
+  });
+
+  return (
+    <DropdownMenu buttonChildren="Checkboxes">
+      <MenuItemCheckbox {...getIndeterminateProps()}>
+        Toggle All
+      </MenuItemCheckbox>
+      {values.map((value) => (
+        <MenuItemCheckbox key={value} {...getCheckboxProps(value)}>
+          {labels[value]}
+        </MenuItemCheckbox>
+      ))}
+    </DropdownMenu>
+  );
+}
+
+it("should be able to change the checked state", async () => {
+  const user = userEvent.setup();
+  rmdRender(<Test />);
+
+  const toggle = screen.getByRole("button", { name: "Checkboxes" });
+
+  await user.click(toggle);
+  let toggleAll = screen.getByRole("menuitemcheckbox", {
+    name: "Toggle All",
+  });
+  let label1 = screen.getByRole("menuitemcheckbox", {
+    name: "Label 1",
+  });
+  let label2 = screen.getByRole("menuitemcheckbox", {
+    name: "Label 2",
+  });
+  let label3 = screen.getByRole("menuitemcheckbox", {
+    name: "Label 3",
+  });
+  let label4 = screen.getByRole("menuitemcheckbox", {
+    name: "Label 4",
+  });
+
+  expect(toggleAll).not.toBeChecked();
+  expect(label1).not.toBeChecked();
+  expect(label2).not.toBeChecked();
+  expect(label3).not.toBeChecked();
+  expect(label4).not.toBeChecked();
+
+  await user.click(label1);
+  // the menu closed
+  expect(toggleAll).not.toBeInTheDocument();
+  expect(label1).not.toBeInTheDocument();
+  expect(label2).not.toBeInTheDocument();
+  expect(label3).not.toBeInTheDocument();
+  expect(label4).not.toBeInTheDocument();
+
+  await user.click(toggle);
+  // can also use `getAllByRole` since the order is known
+  [toggleAll, label1, label2, label3, label4] =
+    screen.getAllByRole("menuitemcheckbox");
+
+  expect(toggleAll).not.toBeChecked();
+  expect(toggleAll).toHaveAttribute("aria-checked", "mixed");
+  expect(label1).toBeChecked();
+  expect(label2).not.toBeChecked();
+  expect(label3).not.toBeChecked();
+  expect(label4).not.toBeChecked();
+});
+```
+
+### MenuItemFileInput
+
+The `MenuItemFileInput` does not render an `<input type="file">` in the DOM, and instead
+dynamically creates the input when the menu item is clicked. To help test this flow,
+use the `uploadMenuItemFileInput` from `@react-md/core/test-utils/jest-globals`
+or `@react-md/core/test-utils/vitest`:
+
+```tsx
+import { uploadMenuItemFileInput } from "@react-md/core/test-utils/jest-globals";
+
+function Test(): ReactElement {
+  return (
+    <DropdownMenu buttonChildren="Dropdown Menu">
+      <MenuItemFileInput
+        onChange={(event) => {
+          // do something
+        }}
+      >
+        Upload
+      </MenuItemFileInput>
+    </DropdownMenu>
+  );
+}
+
+it("should be able to trigger the change event", async () => {
+  const user = userEvent.setup();
+  rmdRender(<Test />);
+
+  await user.click(screen.getByRole("button", { name: "Dropdown Menu" }));
+  const menuItem = screen.getByRole("menuitem", { name: "Upload" });
+
+  await uploadMenuItemFileInput({
+    user,
+    menuItem,
+    // this could also be a list of files if multiple files should be uploaded
+    files: new File(["example-content"], "README.md"),
+  });
+
+  // expect the files to be uploaded
+});
+```
+
+### MenuItemRadio
+
+The `MenuItemRadio` can be found using the `menuitemradio` role:
+
+```tsx
+const decorations = [
+  "none",
+  "underline",
+  "overline",
+  "strike-through",
+] as const;
+type Decoration = (typeof decorations)[number];
+
+function Test(): ReactElement {
+  const { getRadioProps } = useRadioGroup({
+    menu: true,
+    defaultValue: "none",
+  });
+
+  return (
+    <DropdownMenu buttonChildren="Radio">
+      {decorations.map((decoration) => (
+        <MenuItemRadio key={decoration} {...getRadioProps(decoration)}>
+          {decoration}
+        </MenuItemRadio>
+      ))}
+    </DropdownMenu>
+  );
+}
+
+it("should be able to trigger the change event", async () => {
+  const user = userEvent.setup();
+  rmdRender(<Test />);
+
+  const toggle = screen.getByRole("button", { name: "Dropdown Menu" });
+  await user.click(toggle);
+
+  let none = screen.getByRole("menuitemradio", { name: "none" });
+  let underline = screen.getByRole("menuitemradio", { name: "underline" });
+  let overline = screen.getByRole("menuitemradio", { name: "overline" });
+  let strikeThrough = screen.getByRole("menuitemradio", {
+    name: "strike-through",
+  });
+
+  expect(none).toBeChecked();
+  expect(underline).not.toBeChecked();
+  expect(overline).not.toBeChecked();
+  expect(strikeThrough).not.toBeChecked();
+
+  await user.click(overline);
+  // the menu has closed
+  expect(none).not.toBeInTheDocument();
+  expect(underline).not.toBeInTheDocument();
+  expect(overline).not.toBeInTheDocument();
+  expect(strikeThrough).not.toBeInTheDocument();
+
+  await user.click(toggle);
+
+  // can also just find them using the `getAllByRole`
+  [none, underline, overline, strikeThrough] =
+    screen.getAllByRole("menuitemradio");
+
+  expect(none).not.toBeChecked();
+  expect(underline).not.toBeChecked();
+  expect(overline).toBeChecked();
+  expect(strikeThrough).not.toBeChecked();
+});
+```
+
+### MenuItemSwitch
+
+The `MenuItemSwitch` can be found using the `"menuitemcheckbox"` role:
+
+```tsx
+function Test(): ReactElement {
+  const [checked, setChecked] = useState(false);
+  return (
+    <DropdownMenu buttonChildren="Toggle">
+      <MenuItemSwitch
+        checked={checked}
+        onCheckedChange={(checked) => setChecked(checked)}
+      >
+        Mute
+      </MenuItemSwitch>
+    </DropdownMenu>
+  );
+}
+
+it("should be able to change the checked state", async () => {
+  const user = userEvent.setup();
+  rmdRender(<Test />);
+
+  const toggle = screen.getByRole("button", { name: "Toggle" });
+  await user.click(toggle);
+
+  const mute = screen.getByRole("menuitemcheckbox", { name: "Mute" });
+  expect(mute).not.toBeChecked();
+
+  await user.click(mute);
+  // the menu has closed
+  expect(mute).not.toBeInTheDocument();
+
+  await user.click(toggle);
+  expect(screen.getByRole("menuitemcheckbox", { name: "Mute" })).toBeChecked();
+});
+```
 
 ## Tabs
 
@@ -370,17 +681,119 @@ it("should test something...", async () => {
 
 ## Tree
 
-TODO
+### Find and Verify Selected Items
+
+The top-level tree can be found using the `"tree"` role and each item with `"treeitem"`:
+
+```tsx
+rmdRender(<Test />);
+
+// name is the `aria-label`
+const tree = screen.getByRole("tree", { name: "Tree" });
+const item1 = screen.getByRole("treeitem", { name: "Item 1" });
+const item2 = screen.getByRole("treeitem", { name: "Item 2" });
+
+expect(item1).toHaveAttribute("aria-selected", "true");
+expect(item2).toHaveAttribute("aria-selected", "false");
+
+await user.click(item2);
+expect(item1).toHaveAttribute("aria-selected", "false");
+expect(item2).toHaveAttribute("aria-selected", "true");
+```
+
+### Find and Verify Expansion
+
+Unless the `temporaryChildItems` props are enabled, all tree items will be
+rendered but hidden using `display: none`. The expansion state can be verified
+using the `aria-expanded` attribute on the tree item or using the
+`isElementVisible` util with each subtree group.
+
+```tsx
+rmdRender(<Test />);
+
+const tree = screen.getByRole("tree", { name: "Tree" });
+const item1 = screen.getByRole("treeitem", { name: "Item 1" });
+const item2 = screen.getByRole("treeitem", { name: "Item 2" });
+
+// pretend only item1 has child items
+const subtrees = within(tree).getAllByRole("group");
+expect(subtrees).toHaveLength(1);
+const [item1Subtree] = subtrees;
+
+// NOTE: This would error while not expanded if the `temporaryChildItems` prop was enabled.
+// Also, this could be found by
+// `within(item1Subtree).getByRole("treeitem", { name: "Item 1-1" })`
+// if there are items with the same name
+const item11 = screen.getByRole("treeitem", { name: "Item 1-1" });
+
+expect(item1).toHaveAttribute("aria-selected", "true");
+expect(item1).toHaveAttribute("aria-expanded", "false");
+expect(item2).toHaveAttribute("aria-selected", "false");
+expect(item2).toHaveAttribute("aria-expanded", "false");
+expect(isElementVisible(item1Subtree)).toBe(false);
+
+await user.click(item1);
+expect(item1).toHaveAttribute("aria-selected", "true");
+expect(item1).toHaveAttribute("aria-expanded", "true");
+expect(item2).toHaveAttribute("aria-selected", "false");
+expect(item2).toHaveAttribute("aria-expanded", "false");
+
+// due to timers, might to use `waitFor`
+await waitFor(() => {
+  expect(isElementVisible(item1Subtree)).toBe(true);
+});
+```
 
 # Feedback
 
 ## Dialog/Sheet
 
-TODO
+### Find and Toggle Visibility
 
-## Snackbar
+Both the `Dialog` and `Sheet` can be found using the `"dialog"` role or `"alertdialog"` when
+the `modal` prop is enabled:
 
-TODO
+```tsx
+function Example(): ReactElement {
+  const { enable: show, disable: hide, toggled: visible } = useState(false);
+  const titleId = useId();
+
+  return (
+    <>
+      <Button onClick={show}>Show</Button>
+      <Dialog aria-labelledby={titleId} visible={visible} onRequestClose={hide}>
+        <DialogHeader>
+          <DialogTitle id={titleId}>Hello, world!</DialogTitle>
+          <Button aria-label="Close" onClick={hide}>
+            <CloseIcon />
+          </Button>
+        </DialogHeader>
+        <DialogContent>
+          <Typography>Here is some content.</Typography>
+        </DialogContent>
+      </Dialog>
+    </>
+  );
+}
+
+it("should be able to change the visibility", async () => {
+  const user = userEvent.setup();
+  rmdRender(<Test />);
+
+  // not required -- just show that the dialog isn't visible
+  expect(() => screen.getByRole("dialog")).toThrow();
+
+  const show = screen.getByRole("button", { name: "Show" });
+  await user.click(show);
+
+  const dialog = screen.getByRole("dialog", { name: "Hello, world!" });
+  // do whatever you want to verify
+
+  // close the dialog by clicking the close button
+  await user.click(screen.getByRole("button", { name: "Close" }));
+  expect(dialog).not.toBeInTheDocument();
+});
+```
 
 # Layout
 

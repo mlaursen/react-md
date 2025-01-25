@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FixedDialog should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+<div
+  aria-labelledby=":r0:"
+  class="rmd-dialog rmd-dialog--fixed rmd-dialog--outline"
+  id="dialog-:r1:"
+  role="dialog"
+  style="position: fixed; transform-origin: 0 0; left: 16px; top: 0px;"
+  tabindex="-1"
+>
+  <div
+    class="rmd-dialog__header"
+  >
+    <h2
+      class="rmd-typography rmd-typography--headline-4 rmd-no-margin rmd-dialog__title"
+      id=":r0:"
+    >
+      Hello, world!
+    </h2>
+  </div>
+  <div
+    class="rmd-dialog__content rmd-dialog__content--padded"
+  >
+    <p
+      class="rmd-typography rmd-typography--body-1 rmd-no-margin"
+    >
+      Additional content
+    </p>
+  </div>
+  <footer
+    class="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end"
+  >
+    <button
+      class="rmd-button rmd-button--text rmd-interaction-surface"
+      type="button"
+    >
+      <span>
+        OK
+      </span>
+    </button>
+  </footer>
+</div>
+`;
+
+exports[`FixedDialog should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+<div
+  aria-labelledby=":r0:"
+  class="rmd-dialog rmd-dialog--fixed rmd-dialog--outline custom-class-name"
+  id="dialog-:r1:"
+  role="dialog"
+  style="position: fixed; transform-origin: 0 0; left: 16px; top: 0px; color: orange;"
+  tabindex="-1"
+>
+  <div
+    class="rmd-dialog__header"
+  >
+    <h2
+      class="rmd-typography rmd-typography--headline-4 rmd-no-margin rmd-dialog__title"
+      id=":r0:"
+    >
+      Hello, world!
+    </h2>
+  </div>
+  <div
+    class="rmd-dialog__content rmd-dialog__content--padded"
+  >
+    <p
+      class="rmd-typography rmd-typography--body-1 rmd-no-margin"
+    >
+      Additional content
+    </p>
+  </div>
+  <footer
+    class="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end"
+  >
+    <button
+      class="rmd-button rmd-button--text rmd-interaction-surface"
+      type="button"
+    >
+      <span>
+        OK
+      </span>
+    </button>
+  </footer>
+</div>
+`;

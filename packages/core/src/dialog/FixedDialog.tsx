@@ -97,10 +97,10 @@ export const FixedDialog = forwardRef<HTMLDivElement, FixedDialogProps>(
       anchor = TOP_INNER_RIGHT_ANCHOR,
       options,
       getFixedPositionOptions,
-      onEnter,
+      onEnter = noop,
       onEntering,
-      onEntered,
-      onExited = noop,
+      onEntered = noop,
+      onExited,
       onRequestClose,
       overlayHidden = true,
       disableScrollLock = true,
@@ -113,13 +113,16 @@ export const FixedDialog = forwardRef<HTMLDivElement, FixedDialogProps>(
       nodeRef,
       style: propStyle,
       transformOrigin: true,
-      onEnter,
-      onEntering,
-      onEntered,
-      onExited() {
-        onExited();
+      onEnter(appearing) {
+        onEnter(appearing);
         disableExitFocus.current = false;
       },
+      onEntering,
+      onEntered(appearing) {
+        onEntered(appearing);
+        disableExitFocus.current = false;
+      },
+      onExited,
       anchor,
       fixedTo,
       onScroll(_event, data) {

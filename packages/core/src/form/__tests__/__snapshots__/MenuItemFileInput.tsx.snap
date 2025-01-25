@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MenuItemFileInput should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+<li
+  class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-menu-item"
+  id="menu-item-:r0:"
+  role="menuitem"
+  tabindex="-1"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+  >
+    file_upload
+  </span>
+  <span
+    class="rmd-list-item__text"
+  >
+    Upload
+  </span>
+</li>
+`;
+
+exports[`MenuItemFileInput should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+<li
+  class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-menu-item custom-class-name"
+  id="menu-item-:r0:"
+  role="menuitem"
+  style="color: orange;"
+  tabindex="-1"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+  >
+    file_upload
+  </span>
+  <span
+    class="rmd-list-item__text"
+  >
+    Upload
+  </span>
+</li>
+`;
+
+exports[`MenuItemFileInput should default to using the upload icon as the leftAddon 1`] = `
+<span
+  aria-hidden="true"
+  class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+>
+  file_upload
+</span>
+`;
+
+exports[`MenuItemFileInput should default to using the upload icon as the leftAddon 2`] = `
+<li
+  class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-menu-item"
+  id="menu-item-:r2:"
+  role="menuitem"
+  tabindex="-1"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+  >
+    file_upload
+  </span>
+  <span
+    class="rmd-list-item__text"
+  >
+    Upload
+  </span>
+</li>
+`;
+
+exports[`MenuItemFileInput should default to using the upload icon as the leftAddon 3`] = `
+<li
+  class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-menu-item"
+  id="menu-item-:r2:"
+  role="menuitem"
+  tabindex="-1"
+>
+  <span
+    class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+    data-testid="icon"
+  />
+  <span
+    class="rmd-list-item__text"
+  >
+    Upload
+  </span>
+</li>
+`;
