@@ -12,7 +12,7 @@ const transitionMock = jest
   .mockReturnValue(false);
 `;
 
-export default function SpyOneCodeBlock(): ReactElement {
+export default function SpyOnCodeBlock(): ReactElement {
   return (
     <FrameworkCodeSwap
       fileName="src/__tests__/SomeComponent.tsx"
