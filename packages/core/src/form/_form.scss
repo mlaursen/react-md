@@ -15,59 +15,59 @@
 @use "../typography/typography";
 @use "../interaction/interaction";
 
-$disable-everything: false !default;
-$disable-fieldset: $disable-everything !default;
-$disable-message: $disable-everything !default;
-$disable-label: $disable-everything !default;
-$disable-floating-label: $disable-everything !default;
-$disable-label-gap: $disable-everything !default;
-$disable-label-reversed: $disable-everything !default;
-$disable-label-stacked: $disable-everything !default;
-$disable-label-stacked-reversed: $disable-everything !default;
-$disable-text-field: $disable-everything !default;
-$disable-textarea: $disable-everything !default;
+$form-disable-everything: false !default;
+$disable-fieldset: $form-disable-everything !default;
+$disable-message: $form-disable-everything !default;
+$disable-label: $form-disable-everything !default;
+$disable-floating-label: $form-disable-everything !default;
+$disable-label-gap: $form-disable-everything !default;
+$disable-label-reversed: $form-disable-everything !default;
+$disable-label-stacked: $form-disable-everything !default;
+$disable-label-stacked-reversed: $form-disable-everything !default;
+$disable-text-field: $form-disable-everything !default;
+$disable-textarea: $form-disable-everything !default;
 $disable-password: $disable-text-field !default;
 $disable-text-field-addon: $disable-text-field and $disable-password and
   $disable-textarea !default;
 $disable-placeholder-ellipsis: false !default;
 $disable-text-field-container-dense: false !default;
-$disable-select: $disable-everything !default;
+$disable-select: $form-disable-everything !default;
 $disable-option: $disable-select !default;
-$disable-native-select: $disable-everything !default;
-$disable-native-select-multiple: $disable-everything !default;
-$disable-checkbox: $disable-everything !default;
-$disable-radio: $disable-everything !default;
+$disable-native-select: $form-disable-everything !default;
+$disable-native-select-multiple: $form-disable-everything !default;
+$disable-checkbox: $form-disable-everything !default;
+$disable-radio: $form-disable-everything !default;
 $disable-uncontrolled-input-toggles: false !default;
-$disable-switch: $disable-everything !default;
+$disable-switch: $form-disable-everything !default;
 $disable-switch-circular-progress: progress.$disable-circular !default;
 $disable-switch-icon: false !default;
 $disable-menu-item-checkbox: $disable-checkbox !default;
 $disable-menu-item-radio: $disable-radio !default;
 $disable-menu-item-switch: $disable-switch !default;
-$disable-slider: $disable-everything !default;
-$disable-horizontal-slider: $disable-everything !default;
-$disable-vertical-slider: $disable-everything !default;
-$disable-range-slider: $disable-everything !default;
-$disable-discrete-slider: $disable-everything !default;
+$disable-slider: $form-disable-everything !default;
+$disable-horizontal-slider: $form-disable-everything !default;
+$disable-vertical-slider: $form-disable-everything !default;
+$disable-range-slider: $form-disable-everything !default;
+$disable-discrete-slider: $form-disable-everything !default;
 $disable-discrete-slider-marks: $disable-discrete-slider !default;
 $disable-discrete-slider-marks-labels: $disable-discrete-slider-marks !default;
 
 // Note: enabling the filled theme forces the underlined theme to be used since it depends on the same styles
-$disable-text-field-filled-theme: $disable-everything !default;
-$disable-text-field-outlined-theme: $disable-everything !default;
-$disable-text-field-underlined-theme: $disable-everything !default;
-$disable-text-field-counter: $disable-everything !default;
-$disable-text-field-underline-left: $disable-everything !default;
-$disable-text-field-underline-center: $disable-everything !default;
-$disable-text-field-underline-right: $disable-everything !default;
+$disable-text-field-filled-theme: $form-disable-everything !default;
+$disable-text-field-outlined-theme: $form-disable-everything !default;
+$disable-text-field-underlined-theme: $form-disable-everything !default;
+$disable-text-field-counter: $form-disable-everything !default;
+$disable-text-field-underline-left: $form-disable-everything !default;
+$disable-text-field-underline-center: $form-disable-everything !default;
+$disable-text-field-underline-right: $form-disable-everything !default;
 
-$disable-textarea-resizing-rows: $disable-everything !default;
+$disable-textarea-resizing-rows: $form-disable-everything !default;
 $disable-textarea-resizing-mask: $disable-textarea-resizing-rows !default;
-$disable-textarea-resize-horizontal: $disable-everything !default;
-$disable-textarea-resize-vertical: $disable-everything !default;
+$disable-textarea-resize-horizontal: $form-disable-everything !default;
+$disable-textarea-resize-vertical: $form-disable-everything !default;
 
-$active-color: theme.theme-get-var(primary-color) !default;
-$focus-color: interaction.$focus-color !default;
+$form-active-color: theme.theme-get-var(primary-color) !default;
+$form-focus-color: interaction.$focus-color !default;
 
 $label-gap: icon.$spacing !default;
 $label-font-size: 1em !default;
@@ -82,16 +82,16 @@ $label-floating-top-dense: 0.9rem !default;
 $label-floating-scale: 0.75 !default;
 $label-floating-padding: 0.25rem !default;
 
-$message-typography-styles: map.merge(
+$form-message-typography-styles: map.merge(
   typography.$body-2-styles,
   (
     font-size: 0.75rem,
   )
 ) !default;
-$message-counter-spacing: icon.$spacing !default;
-$message-margin-top: 0.5rem !default;
-$message-margin-bottom: 1rem !default;
-$message-min-height: 2rem !default;
+$form-message-counter-spacing: icon.$spacing !default;
+$form-message-margin-top: 0.5rem !default;
+$form-message-margin-bottom: 1rem !default;
+$form-message-min-height: 2rem !default;
 
 $text-field-typography: map.merge(
   typography.$base-font-styles,
@@ -267,7 +267,7 @@ $slider-transition-timing-function: transition.$linear-timing-function !default;
 $_disable-text-field-container: $disable-text-field and $disable-password and
   $disable-textarea and $disable-select and $disable-native-select;
 
-$variables: (
+$form-variables: (
   active-color,
   focus-color,
   addon-top,
@@ -311,8 +311,8 @@ $variables: (
   slider-mark-inactive-opacity
 );
 
-@function get-var($name, $fallback: null) {
-  $var: utils.get-var-name($variables, $name, "form");
+@function form-get-var($name, $fallback: null) {
+  $var: utils.get-var-name($form-variables, $name, "form");
   @if $fallback {
     @return var(#{$var}, #{$fallback});
   }
@@ -320,31 +320,34 @@ $variables: (
   @return var(#{$var});
 }
 
-@mixin set-var($name, $value) {
+@mixin form-set-var($name, $value) {
   @if $value {
-    #{utils.get-var-name($variables, $name, "form")}: #{$value};
+    #{utils.get-var-name($form-variables, $name, "form")}: #{$value};
   }
 }
 
-@mixin use-var($property, $name: $property, $fallback: null) {
-  #{$property}: get-var($name, $fallback);
+@mixin form-use-var($property, $name: $property, $fallback: null) {
+  #{$property}: form-get-var($name, $fallback);
 }
 
-@mixin use-light-theme {
-  @if not $disable-everything {
-    @include set-var(text-field-border-color, $text-field-light-border-color);
-    @include set-var(
+@mixin form-use-light-theme {
+  @if not $form-disable-everything {
+    @include form-set-var(
+      text-field-border-color,
+      $text-field-light-border-color
+    );
+    @include form-set-var(
       text-field-hover-border-color,
       $text-field-light-hover-border-color
     );
     @if not $disable-text-field-filled-theme {
-      @include set-var(
+      @include form-set-var(
         text-field-filled-color,
         $text-field-light-filled-background-color
       );
     }
     @if not $disable-switch {
-      @include set-var(
+      @include form-set-var(
         switch-track-background-color,
         $switch-track-light-background-color
       );
@@ -356,7 +359,7 @@ $variables: (
       $slider-mark-light-active-color !=
       $slider-mark-dark-active-color
     {
-      @include set-var(
+      @include form-set-var(
         slider-mark-active-color,
         $slider-mark-light-active-color
       );
@@ -366,7 +369,7 @@ $variables: (
       $slider-mark-light-inactive-color !=
       $slider-mark-dark-inactive-color
     {
-      @include set-var(
+      @include form-set-var(
         slider-mark-inactive-color,
         $slider-mark-light-inactive-color
       );
@@ -375,7 +378,7 @@ $variables: (
       $slider-mark-light-inactive-opacity !=
       $slider-mark-dark-inactive-opacity
     {
-      @include set-var(
+      @include form-set-var(
         slider-mark-inactive-opacity,
         $slider-mark-light-inactive-opacity
       );
@@ -383,21 +386,24 @@ $variables: (
   }
 }
 
-@mixin use-dark-theme {
-  @if not $disable-everything {
-    @include set-var(text-field-border-color, $text-field-dark-border-color);
-    @include set-var(
+@mixin form-use-dark-theme {
+  @if not $form-disable-everything {
+    @include form-set-var(
+      text-field-border-color,
+      $text-field-dark-border-color
+    );
+    @include form-set-var(
       text-field-hover-border-color,
       $text-field-dark-hover-border-color
     );
     @if not $disable-text-field-filled-theme {
-      @include set-var(
+      @include form-set-var(
         text-field-filled-color,
         $text-field-dark-filled-background-color
       );
     }
     @if not $disable-switch {
-      @include set-var(
+      @include form-set-var(
         switch-track-background-color,
         $switch-track-dark-background-color
       );
@@ -409,7 +415,7 @@ $variables: (
       $slider-mark-light-active-color !=
       $slider-mark-dark-active-color
     {
-      @include set-var(
+      @include form-set-var(
         slider-mark-active-color,
         $slider-mark-dark-active-color
       );
@@ -419,7 +425,7 @@ $variables: (
       $slider-mark-light-inactive-color !=
       $slider-mark-dark-inactive-color
     {
-      @include set-var(
+      @include form-set-var(
         slider-mark-inactive-color,
         $slider-mark-dark-inactive-color
       );
@@ -428,7 +434,7 @@ $variables: (
       $slider-mark-light-inactive-opacity !=
       $slider-mark-dark-inactive-opacity
     {
-      @include set-var(
+      @include form-set-var(
         slider-mark-inactive-opacity,
         $slider-mark-dark-inactive-opacity
       );
@@ -445,30 +451,30 @@ $variables: (
     }
 
     .rmd-form-message {
-      @include utils.map-to-styles($message-typography-styles);
+      @include utils.map-to-styles($form-message-typography-styles);
 
       display: flex;
-      margin: $message-margin-top 0 $message-margin-bottom;
-      min-height: $message-min-height;
+      margin: $form-message-margin-top 0 $form-message-margin-bottom;
+      min-height: $form-message-min-height;
 
       @if not $disable-text-field-filled-theme {
         &--filled {
-          @include use-var(padding-left, text-field-filled-padding);
-          @include use-var(padding-right, text-field-filled-padding);
+          @include form-use-var(padding-left, text-field-filled-padding);
+          @include form-use-var(padding-right, text-field-filled-padding);
         }
       }
 
       @if not $disable-text-field-outlined-theme {
         &--outline {
-          @include use-var(padding-left, text-field-outlined-padding);
-          @include use-var(padding-right, text-field-outlined-padding);
+          @include form-use-var(padding-left, text-field-outlined-padding);
+          @include form-use-var(padding-right, text-field-outlined-padding);
         }
       }
 
       @if not $disable-text-field-underlined-theme {
         &--underline {
-          @include use-var(padding-left, text-field-underlined-padding);
-          @include use-var(padding-right, text-field-underlined-padding);
+          @include form-use-var(padding-left, text-field-underlined-padding);
+          @include form-use-var(padding-right, text-field-underlined-padding);
         }
       }
 
@@ -480,14 +486,14 @@ $variables: (
         &__counter {
           flex-shrink: 0;
           margin-left: auto;
-          padding-left: $message-counter-spacing;
+          padding-left: $form-message-counter-spacing;
           white-space: nowrap;
 
           @include utils.rtl {
             margin-left: 0;
             margin-right: auto;
             padding-left: 0;
-            padding-right: $message-counter-spacing;
+            padding-right: $form-message-counter-spacing;
           }
         }
       }
@@ -512,7 +518,7 @@ $variables: (
       }
 
       #{$active-selector} {
-        @include use-var(color, focus-color);
+        @include form-use-var(color, focus-color);
       }
 
       @if not $disable-floating-label {
@@ -521,22 +527,22 @@ $variables: (
           position: absolute;
           top: 0;
           transform: translate(
-            get-var(text-field-padding-left),
-            get-var(label-floating-top)
+            form-get-var(text-field-padding-left),
+            form-get-var(label-floating-top)
           );
 
           @include utils.rtl {
             left: auto;
             right: 0;
             transform: translate(
-              utils.negate-var(get-var(text-field-padding-left)),
-              get-var(label-floating-top)
+              utils.negate-var(form-get-var(text-field-padding-left)),
+              form-get-var(label-floating-top)
             );
           }
         }
 
         &--floating-dense {
-          @include set-var(label-floating-top, $label-floating-top-dense);
+          @include form-set-var(label-floating-top, $label-floating-top-dense);
         }
 
         $floating-active-selector: "&--floating-active";
@@ -592,11 +598,17 @@ $variables: (
         }
 
         #{$floating-active-selector} {
-          @include use-var(background-color, label-active-background-color);
-          @include use-var(padding, label-active-padding);
+          @include form-use-var(
+            background-color,
+            label-active-background-color
+          );
+          @include form-use-var(padding, label-active-padding);
 
           transform: scale($label-floating-scale)
-            translate(get-var(label-left-offset), get-var(label-top-offset));
+            translate(
+              form-get-var(label-left-offset),
+              form-get-var(label-top-offset)
+            );
           // need to add the `transform-origin` because of the scaling applied.
           // it'll change the position based on the size of the label otherwise
           transform-origin: 0 0;
@@ -605,8 +617,8 @@ $variables: (
           @include utils.rtl {
             transform: scale($label-floating-scale)
               translate(
-                utils.negate-var(get-var(label-left-offset)),
-                get-var(label-top-offset)
+                utils.negate-var(form-get-var(label-left-offset)),
+                form-get-var(label-top-offset)
               );
             transform-origin: 100% 0;
           }
@@ -645,7 +657,7 @@ $variables: (
 @mixin text-field-container-styles($disable-layer: false) {
   @include utils.optional-layer(form, $disable-layer) {
     .rmd-text-field-container {
-      @include use-var(height, text-field-height);
+      @include form-use-var(height, text-field-height);
 
       align-items: center;
       display: flex;
@@ -655,11 +667,14 @@ $variables: (
 
       @if not $disable-text-field-container-dense {
         &--dense {
-          @include set-var(text-field-height, $text-field-dense-height);
+          @include form-set-var(text-field-height, $text-field-dense-height);
         }
 
         &--dense-label {
-          @include set-var(text-field-height, $text-field-label-dense-height);
+          @include form-set-var(
+            text-field-height,
+            $text-field-label-dense-height
+          );
         }
       }
 
@@ -669,25 +684,25 @@ $variables: (
       }
 
       &--label {
-        @include set-var(text-field-height, $text-field-label-height);
+        @include form-set-var(text-field-height, $text-field-label-height);
       }
 
       &--error {
         @if not $disable-text-field-addon {
           @include icon.set-var(color, currentcolor);
         }
-        @include set-var(active-color, currentcolor);
-        @include set-var(focus-color, currentcolor);
+        @include form-set-var(active-color, currentcolor);
+        @include form-set-var(focus-color, currentcolor);
 
         @if not
           $disable-text-field-underlined-theme or not
           $disable-text-field-outlined-theme
         {
-          @include set-var(
+          @include form-set-var(
             text-field-border-color,
             theme.theme-get-var(error-color)
           );
-          @include set-var(
+          @include form-set-var(
             text-field-hover-border-color,
             theme.theme-get-var(error-color)
           );
@@ -695,38 +710,41 @@ $variables: (
       }
 
       &--hoverable:hover {
-        @include set-var(
+        @include form-set-var(
           text-field-border-color,
-          get-var(text-field-hover-border-color)
+          form-get-var(text-field-hover-border-color)
         );
       }
 
       @if not $disable-text-field-outlined-theme {
         &--outline {
-          @include set-var(
+          @include form-set-var(
             text-field-padding-left,
-            get-var(text-field-outlined-padding)
+            form-get-var(text-field-outlined-padding)
           );
-          @include set-var(
+          @include form-set-var(
             text-field-padding-right,
-            get-var(text-field-outlined-padding)
+            form-get-var(text-field-outlined-padding)
           );
-          @include use-var(border-color, text-field-border-color);
+          @include form-use-var(border-color, text-field-border-color);
           @if not $disable-text-field-addon {
-            @include set-var(
+            @include form-set-var(
               addon-left-offset,
-              get-var(text-field-outlined-padding)
+              form-get-var(text-field-outlined-padding)
             );
           }
 
           @if not $disable-floating-label {
-            @include set-var(
+            @include form-set-var(
               label-left-offset,
-              get-var(text-field-outlined-padding)
+              form-get-var(text-field-outlined-padding)
             );
-            @include set-var(label-top-offset, -50%);
-            @include set-var(label-active-padding, 0 $label-floating-padding);
-            @include set-var(
+            @include form-set-var(label-top-offset, -50%);
+            @include form-set-var(
+              label-active-padding,
+              0 $label-floating-padding
+            );
+            @include form-set-var(
               label-active-background-color,
               theme.theme-get-var(background-color)
             );
@@ -754,19 +772,19 @@ $variables: (
           &--outline-left {
             $distance: calc(
               icon.get-var(size) +
-                get-var(text-field-outlined-padding) +
-                get-var(addon-spacing)
+                form-get-var(text-field-outlined-padding) +
+                form-get-var(addon-spacing)
             );
 
-            @include set-var(text-field-padding-left, $distance);
+            @include form-set-var(text-field-padding-left, $distance);
           }
 
           &--outline-right {
             $distance: calc(
-              icon.get-var(size) + calc(get-var(addon-spacing) * 2)
+              icon.get-var(size) + calc(form-get-var(addon-spacing) * 2)
             );
 
-            @include set-var(text-field-padding-right, $distance);
+            @include form-set-var(text-field-padding-right, $distance);
           }
         }
       }
@@ -775,23 +793,29 @@ $variables: (
         &--filled {
           @include theme.theme-set-var(
             background-color,
-            get-var(text-field-filled-color)
+            form-get-var(text-field-filled-color)
           );
           @include theme.theme-use-var(background-color);
-          @include set-var(text-field-padding-left, $text-field-filled-padding);
-          @include set-var(
+          @include form-set-var(
+            text-field-padding-left,
+            $text-field-filled-padding
+          );
+          @include form-set-var(
             text-field-padding-right,
             $text-field-filled-padding
           );
           @if not $disable-floating-label {
-            @include set-var(
+            @include form-set-var(
               label-left-offset,
               $text-field-filled-padding + $label-floating-padding
             );
           }
 
           @if not $disable-text-field-addon {
-            @include set-var(addon-left-offset, $text-field-filled-padding);
+            @include form-set-var(
+              addon-left-offset,
+              $text-field-filled-padding
+            );
           }
         }
       }
@@ -802,24 +826,24 @@ $variables: (
         $disable-text-field-filled-theme
       {
         &--underline {
-          @include use-var(border-color, text-field-border-color);
+          @include form-use-var(border-color, text-field-border-color);
 
           border-bottom-style: solid;
           border-bottom-width: $text-field-border-width;
 
           @if $text-field-underlined-padding {
-            @include set-var(
+            @include form-set-var(
               text-field-padding-left,
               $text-field-underlined-padding
             );
-            @include set-var(
+            @include form-set-var(
               text-field-padding-right,
               $text-field-underlined-padding
             );
           }
 
           &::after {
-            @include use-var(background-color, focus-color);
+            @include form-use-var(background-color, focus-color);
 
             bottom: -$text-field-border-width;
             content: "";
@@ -837,7 +861,7 @@ $variables: (
 
         @if $text-field-underlined-placeholder-height {
           &--underline-placeholder {
-            @include set-var(
+            @include form-set-var(
               text-field-padding-top,
               $text-field-underlined-placeholder-addon-padding-top
             );
@@ -845,7 +869,7 @@ $variables: (
           }
 
           &--underline-placeholder-only {
-            @include set-var(
+            @include form-set-var(
               text-field-padding-top,
               $text-field-underlined-placeholder-padding-top
             );
@@ -853,11 +877,11 @@ $variables: (
         }
 
         &--underline-labelled {
-          @include set-var(
+          @include form-set-var(
             text-field-padding-top,
             $text-field-underlined-label-padding-top
           );
-          @include set-var(addon-margin-top, $text-field-addon-margin);
+          @include form-set-var(addon-margin-top, $text-field-addon-margin);
         }
 
         @if not $disable-text-field-underline-left {
@@ -890,11 +914,17 @@ $variables: (
           }
 
           &--underline-left-addon {
-            @include set-var(text-field-padding-left, calc(#{$addon-offset}));
+            @include form-set-var(
+              text-field-padding-left,
+              calc(#{$addon-offset})
+            );
           }
 
           &--underline-right-addon {
-            @include set-var(text-field-padding-right, calc(#{$addon-offset}));
+            @include form-set-var(
+              text-field-padding-right,
+              calc(#{$addon-offset})
+            );
           }
         }
       }
@@ -904,9 +934,9 @@ $variables: (
 
 @mixin _text-field-base-styles {
   @include utils.map-to-styles($text-field-typography);
-  @include use-var(padding-left, text-field-padding-left);
-  @include use-var(padding-right, text-field-padding-right);
-  @include use-var(padding-top, text-field-padding-top);
+  @include form-use-var(padding-left, text-field-padding-left);
+  @include form-use-var(padding-right, text-field-padding-right);
+  @include form-use-var(padding-top, text-field-padding-top);
 
   background-color: transparent;
   border-width: 0;
@@ -961,8 +991,8 @@ $variables: (
       }
 
       @include utils.rtl {
-        @include use-var(padding-left, text-field-padding-right);
-        @include use-var(padding-right, text-field-padding-left);
+        @include form-use-var(padding-left, text-field-padding-right);
+        @include form-use-var(padding-right, text-field-padding-left);
       }
     }
   }
@@ -971,7 +1001,7 @@ $variables: (
 @mixin password-styles($disable-layer: false) {
   @include utils.optional-layer(form, $disable-layer) {
     .rmd-password {
-      @include set-var(
+      @include form-set-var(
         text-field-padding-right,
         $password-visibility-toggle-spacing
       );
@@ -1002,12 +1032,13 @@ $variables: (
 @mixin textarea-container-styles($disable-layer: false) {
   @include utils.optional-layer(form, $disable-layer) {
     .rmd-textarea-container {
-      @include set-var(addon-top, $textarea-addon-top);
+      @include form-set-var(addon-top, $textarea-addon-top);
 
       height: auto;
       max-width: 100%;
       padding-top: calc(
-        #{get-var(text-field-padding-top)} + #{get-var(textarea-padding)}
+        #{form-get-var(text-field-padding-top)} +
+          #{form-get-var(textarea-padding)}
       );
 
       &--cursor:hover {
@@ -1022,8 +1053,8 @@ $variables: (
         $disable-text-field-underlined-theme
       {
         &--underline-labelled {
-          @include set-var(textarea-padding, 0px);
-          @include set-var(
+          @include form-set-var(textarea-padding, 0px);
+          @include form-set-var(
             label-floating-top,
             $text-field-underlined-label-padding-top
           );
@@ -1033,9 +1064,9 @@ $variables: (
       @if not $disable-textarea-resizing-rows {
         &--height {
           height: calc(
-            #{get-var(text-field-padding-top)} +
-              #{get-var(textarea-padding)} +
-              #{get-var(textarea-height)}
+            #{form-get-var(text-field-padding-top)} +
+              #{form-get-var(textarea-padding)} +
+              #{form-get-var(textarea-height)}
           );
         }
 
@@ -1046,7 +1077,7 @@ $variables: (
         }
 
         &__inner {
-          height: get-var(textarea-height, 100%);
+          height: form-get-var(textarea-height, 100%);
           width: 100%;
 
           &--animate {
@@ -1063,10 +1094,10 @@ $variables: (
 @mixin textarea-styles($disable-layer: false) {
   @include utils.optional-layer(form, $disable-layer) {
     .rmd-textarea {
-      @include set-var(text-field-padding-top, 0px);
-      @include use-var(min-height, text-field-height);
+      @include form-set-var(text-field-padding-top, 0px);
+      @include form-use-var(min-height, text-field-height);
 
-      height: get-var(textarea-height, 100%);
+      height: form-get-var(textarea-height, 100%);
 
       @if not $disable-textarea-resize-horizontal {
         &--rh {
@@ -1127,7 +1158,7 @@ $variables: (
           padding-right: 0;
 
           @include utils.rtl {
-            @include use-var(padding-right, text-field-padding-left);
+            @include form-use-var(padding-right, text-field-padding-left);
 
             padding-left: 0;
           }
@@ -1136,21 +1167,21 @@ $variables: (
 
       @if not $disable-text-field-outlined-theme {
         &--outline {
-          @include use-var(padding-right, text-field-outlined-padding);
+          @include form-use-var(padding-right, text-field-outlined-padding);
           @include utils.rtl {
-            @include use-var(padding-left, text-field-outlined-padding);
-            @include use-var(padding-right, text-field-padding-left);
+            @include form-use-var(padding-left, text-field-outlined-padding);
+            @include form-use-var(padding-right, text-field-padding-left);
           }
         }
       }
 
       @if not $disable-text-field-filled-theme {
         &--filled {
-          @include use-var(padding-right, text-field-filled-padding);
+          @include form-use-var(padding-right, text-field-filled-padding);
           @include utils.rtl {
-            @include use-var(padding-right, text-field-padding-left);
+            @include form-use-var(padding-right, text-field-padding-left);
 
-            @include use-var(padding-left, text-field-filled-padding);
+            @include form-use-var(padding-left, text-field-filled-padding);
           }
         }
       }
@@ -1194,8 +1225,8 @@ $variables: (
     @if not $disable-native-select-multiple {
       .rmd-native-select-container {
         &--multi {
-          @include set-var(addon-top, $native-select-addon-top);
-          @include use-var(min-height, text-field-height);
+          @include form-set-var(addon-top, $native-select-addon-top);
+          @include form-use-var(min-height, text-field-height);
 
           height: auto;
         }
@@ -1209,7 +1240,7 @@ $variables: (
           $disable-text-field-underlined-theme
         {
           &--underline {
-            @include set-var(text-field-padding-top, 0);
+            @include form-set-var(text-field-padding-top, 0);
           }
 
           &--underline-padded {
@@ -1234,8 +1265,8 @@ $variables: (
       }
 
       @include utils.rtl {
-        @include use-var(padding-left, text-field-padding-right);
-        @include use-var(padding-right, text-field-padding-left);
+        @include form-use-var(padding-left, text-field-padding-right);
+        @include form-use-var(padding-right, text-field-padding-left);
       }
     }
   }
@@ -1251,7 +1282,7 @@ $variables: (
         $disable-text-field-filled-theme or not
         $disable-text-field-underlined-theme
       {
-        @include use-var(margin-top, addon-margin-top);
+        @include form-use-var(margin-top, addon-margin-top);
       }
 
       // this makes it so that this container element is the same size as the
@@ -1264,19 +1295,19 @@ $variables: (
       // `.rmd-text-field-container` which would prevent these styles from being
       // applied
       &--before {
-        @include use-var(left, addon-left-offset);
+        @include form-use-var(left, addon-left-offset);
 
         @include utils.rtl {
-          @include use-var(right, addon-left-offset);
+          @include form-use-var(right, addon-left-offset);
           left: auto;
         }
       }
 
       &--after {
-        @include use-var(right, addon-spacing);
+        @include form-use-var(right, addon-spacing);
 
         @include utils.rtl {
-          @include use-var(left, addon-spacing);
+          @include form-use-var(left, addon-spacing);
           right: auto;
         }
       }
@@ -1337,7 +1368,7 @@ $variables: (
       }
 
       &--active {
-        @include use-var(color, active-color);
+        @include form-use-var(color, active-color);
       }
 
       @if $input-toggle-small-size {
@@ -1372,12 +1403,12 @@ $variables: (
           // make sure the active color from the label also applies to the icon when
           // checked
           .rmd-label--active & #{$icon-color-selector} {
-            @include use-var(color, focus-color);
+            @include form-use-var(color, focus-color);
           }
 
           // make sure the error color applies to the icon when checked
           &:where(:not(.rmd-error-color)) #{$icon-color-selector} {
-            @include use-var(color, active-color);
+            @include form-use-var(color, active-color);
           }
 
           // when the input is checked, hide the first icon (unchecked state)
@@ -1404,7 +1435,7 @@ $variables: (
 
       &--current-color,
       &--current-color .rmd-switch__input:checked + .rmd-switch__ball {
-        @include set-var(switch-ball-background-color, currentcolor);
+        @include form-set-var(switch-ball-background-color, currentcolor);
       }
 
       &__input {
@@ -1443,7 +1474,7 @@ $variables: (
         @if not $disable-switch-icon {
           @include icon.set-var(size, $switch-icon-size);
         }
-        @include use-var(background-color, switch-track-background-color);
+        @include form-use-var(background-color, switch-track-background-color);
 
         border-radius: $switch-track-border-radius;
         height: $switch-track-height;
@@ -1483,7 +1514,7 @@ $variables: (
         }
 
         &::after {
-          @include use-var(background-color, switch-ball-background-color);
+          @include form-use-var(background-color, switch-ball-background-color);
 
           border-radius: inherit;
           box-shadow: box-shadows.box-shadow(1);
@@ -1503,7 +1534,10 @@ $variables: (
         #{$active-selector} {
           $offset: $switch-ball-size + $switch-ball-offset;
 
-          @include set-var(switch-ball-background-color, get-var(active-color));
+          @include form-set-var(
+            switch-ball-background-color,
+            form-get-var(active-color)
+          );
 
           transform: translateX($offset);
 
@@ -1622,7 +1656,7 @@ $variables: (
       &::before,
       &::after {
         @if $slider-track-color {
-          @include use-var(background-color, slider-color);
+          @include form-use-var(background-color, slider-color);
         }
 
         content: "";
@@ -1632,7 +1666,7 @@ $variables: (
 
       &::before {
         @if not $slider-track-color {
-          @include use-var(background-color, slider-inactive-color);
+          @include form-use-var(background-color, slider-inactive-color);
         }
 
         opacity: $slider-track-inactive-opacity;
@@ -1641,7 +1675,7 @@ $variables: (
 
       &::after {
         @if not $slider-track-color {
-          @include use-var(background-color, slider-active-color);
+          @include form-use-var(background-color, slider-active-color);
         }
 
         opacity: $slider-track-active-opacity;
@@ -1659,7 +1693,7 @@ $variables: (
 
       @if $slider-track-color {
         &--disabled {
-          @include set-var(slider-color, $slider-track-disabled-color);
+          @include form-set-var(slider-color, $slider-track-disabled-color);
 
           @if $slider-track-inactive-opacity {
             &::before {
@@ -1668,7 +1702,7 @@ $variables: (
           }
 
           &::after {
-            @include set-var(slider-active-size, 0px);
+            @include form-set-var(slider-active-size, 0px);
             @if $slider-track-active-opacity {
               opacity: 1;
             }
@@ -1678,25 +1712,25 @@ $variables: (
 
       @if not $disable-horizontal-slider {
         &--h {
-          @include use-var(height, slider-size);
+          @include form-use-var(height, slider-size);
 
           align-items: center;
           display: flex;
           width: 100%;
 
           &::before {
-            @include use-var(height, slider-inactive-size);
+            @include form-use-var(height, slider-inactive-size);
 
             width: 100%;
           }
 
           &::after {
-            @include use-var(height, slider-active-size);
+            @include form-use-var(height, slider-active-size);
           }
         }
 
         &--h1::after {
-          @include use-var(max-width, slider-offset-1);
+          @include form-use-var(max-width, slider-offset-1);
 
           left: 0;
           transition-property: max-width;
@@ -1710,14 +1744,14 @@ $variables: (
 
         @if not $disable-range-slider {
           &--h2::after {
-            left: get-var(slider-offset-1);
-            right: calc(100% - get-var(slider-offset-2));
+            left: form-get-var(slider-offset-1);
+            right: calc(100% - form-get-var(slider-offset-2));
             transition-property: left, right;
             will-change: left, right;
 
             @include utils.rtl {
-              left: calc(100% - get-var(slider-offset-2));
-              right: get-var(slider-offset-1);
+              left: calc(100% - form-get-var(slider-offset-2));
+              right: form-get-var(slider-offset-1);
             }
           }
         }
@@ -1725,20 +1759,20 @@ $variables: (
 
       @if not $disable-vertical-slider {
         &--v {
-          @include use-var(height, slider-vertical-size);
-          @include use-var(width, slider-size);
+          @include form-use-var(height, slider-vertical-size);
+          @include form-use-var(width, slider-size);
 
           display: inline-flex;
           justify-content: center;
 
           &::before {
-            @include use-var(width, slider-inactive-size);
+            @include form-use-var(width, slider-inactive-size);
 
             height: 100%;
           }
 
           &::after {
-            @include use-var(width, slider-active-size);
+            @include form-use-var(width, slider-active-size);
 
             bottom: 0;
           }
@@ -1746,7 +1780,7 @@ $variables: (
 
         // one thumb track horizontal styles
         &--v1::after {
-          @include use-var(max-height, slider-offset-1);
+          @include form-use-var(max-height, slider-offset-1);
 
           height: 100%;
           transition-property: max-height;
@@ -1755,9 +1789,9 @@ $variables: (
         @if not $disable-range-slider {
           // two thumb track horizontal styles
           &--v2::after {
-            @include use-var(bottom, slider-offset-1);
+            @include form-use-var(bottom, slider-offset-1);
 
-            top: calc(100% - #{get-var(slider-offset-2)});
+            top: calc(100% - #{form-get-var(slider-offset-2)});
             transition-property: bottom, top;
             will-change: bottom, top;
           }
@@ -1766,7 +1800,7 @@ $variables: (
     }
 
     .rmd-slider-thumb {
-      @include use-var(
+      @include form-use-var(
         background-color,
         if($slider-track-color, slider-color, slider-active-color)
       );
@@ -1837,10 +1871,10 @@ $variables: (
         }
 
         &--h1 {
-          @include use-var(left, slider-offset-1);
+          @include form-use-var(left, slider-offset-1);
 
           @include utils.rtl {
-            @include use-var(right, slider-offset-1);
+            @include form-use-var(right, slider-offset-1);
 
             left: auto;
           }
@@ -1848,10 +1882,10 @@ $variables: (
 
         @if not $disable-range-slider {
           &--h2 {
-            @include use-var(left, slider-offset-2);
+            @include form-use-var(left, slider-offset-2);
 
             @include utils.rtl {
-              @include use-var(right, slider-offset-2);
+              @include form-use-var(right, slider-offset-2);
 
               left: auto;
             }
@@ -1885,12 +1919,12 @@ $variables: (
         }
 
         &--v1 {
-          @include use-var(bottom, slider-offset-1);
+          @include form-use-var(bottom, slider-offset-1);
         }
 
         @if not $disable-range-slider {
           &--v2 {
-            @include use-var(bottom, slider-offset-2);
+            @include form-use-var(bottom, slider-offset-2);
           }
         }
 
@@ -1934,30 +1968,30 @@ $variables: (
         @if not $disable-horizontal-slider {
           &--h {
             top: $slider-tooltip-offset;
-            transform: translateX(get-var(slider-tooltip-translate))
-              scale(get-var(slider-tooltip-scale));
+            transform: translateX(form-get-var(slider-tooltip-translate))
+              scale(form-get-var(slider-tooltip-scale));
 
             &::after {
               @include tooltip.use-var(border-top-color, background-color);
 
               left: 50%;
               top: 100%;
-              transform: translateX(get-var(slider-tooltip-translate));
+              transform: translateX(form-get-var(slider-tooltip-translate));
             }
 
             @include utils.rtl {
-              @include set-var(slider-tooltip-translate, 50%);
+              @include form-set-var(slider-tooltip-translate, 50%);
             }
           }
 
           &--h-off {
-            @include set-var(slider-tooltip-scale, 0);
+            @include form-set-var(slider-tooltip-scale, 0);
           }
 
           // have to "duplicate" these styles since the `--h-off` would override the
           // `--h` styles due to css order.
           &--h-on {
-            @include set-var(slider-tooltip-scale, 1);
+            @include form-set-var(slider-tooltip-scale, 1);
           }
         }
 
@@ -1995,22 +2029,22 @@ $variables: (
         position: absolute;
 
         &--inactive {
-          @include use-var(background-color, slider-mark-inactive-color);
-          @include use-var(opacity, slider-mark-inactive-opacity);
+          @include form-use-var(background-color, slider-mark-inactive-color);
+          @include form-use-var(opacity, slider-mark-inactive-opacity);
 
           z-index: $slider-mark-inactive-z-index;
         }
 
         &--active {
-          @include use-var(background-color, slider-mark-active-color);
-          @include use-var(opacity, slider-mark-active-opacity);
+          @include form-use-var(background-color, slider-mark-active-color);
+          @include form-use-var(opacity, slider-mark-active-opacity);
 
           z-index: $slider-mark-active-z-index;
         }
 
         @if not $disable-horizontal-slider {
           &--h {
-            @include use-var(left, slider-mark-offset);
+            @include form-use-var(left, slider-mark-offset);
 
             height: $slider-mark-height;
             top: 50%;
@@ -2018,7 +2052,7 @@ $variables: (
             width: $slider-mark-width;
 
             @include utils.rtl {
-              @include use-var(right, slider-mark-offset);
+              @include form-use-var(right, slider-mark-offset);
 
               left: auto;
             }
@@ -2027,7 +2061,7 @@ $variables: (
 
         @if not $disable-vertical-slider {
           &--v {
-            @include use-var(bottom, slider-mark-offset);
+            @include form-use-var(bottom, slider-mark-offset);
 
             height: $slider-mark-width;
             transform: translateY(50%);
@@ -2043,13 +2077,13 @@ $variables: (
 
         @if not $disable-horizontal-slider {
           &--h {
-            @include use-var(left, slider-mark-offset);
+            @include form-use-var(left, slider-mark-offset);
 
             top: 100%;
             transform: translateX(-50%);
 
             @include utils.rtl {
-              @include use-var(right, slider-mark-offset);
+              @include form-use-var(right, slider-mark-offset);
 
               left: auto;
               transform: translateX(50%);
@@ -2060,7 +2094,7 @@ $variables: (
         @if not $disable-vertical-slider {
           &--v {
             left: 100%;
-            top: get-var(slider-mark-offset);
+            top: form-get-var(slider-mark-offset);
             transform: translateY(-50%);
 
             @include utils.rtl {
@@ -2074,17 +2108,17 @@ $variables: (
   }
 }
 
-@mixin variables {
-  @if not $disable-everything {
-    @include set-var(active-color, $active-color);
-    @include set-var(focus-color, $focus-color);
+@mixin form-variables {
+  @if not $form-disable-everything {
+    @include form-set-var(active-color, $form-active-color);
+    @include form-set-var(focus-color, $form-focus-color);
 
     @if not $disable-label and not $disable-floating-label {
-      @include set-var(label-floating-top, $label-floating-top);
-      @include set-var(label-left-offset, 0px);
-      @include set-var(label-top-offset, 0px);
-      @include set-var(label-active-padding, 0px);
-      @include set-var(label-active-background-color, transparent);
+      @include form-set-var(label-floating-top, $label-floating-top);
+      @include form-set-var(label-left-offset, 0px);
+      @include form-set-var(label-top-offset, 0px);
+      @include form-set-var(label-active-padding, 0px);
+      @include form-set-var(label-active-background-color, transparent);
     }
 
     @if not
@@ -2094,14 +2128,17 @@ $variables: (
       $disable-native-select
     {
       @if not $disable-text-field-filled-theme and $text-field-filled-padding {
-        @include set-var(text-field-filled-padding, $text-field-filled-padding);
+        @include form-set-var(
+          text-field-filled-padding,
+          $text-field-filled-padding
+        );
       }
 
       @if not
         $disable-text-field-outlined-theme and
         $text-field-outlined-padding
       {
-        @include set-var(
+        @include form-set-var(
           text-field-outlined-padding,
           $text-field-outlined-padding
         );
@@ -2111,7 +2148,7 @@ $variables: (
         $disable-text-field-underlined-theme and
         $text-field-underlined-padding
       {
-        @include set-var(
+        @include form-set-var(
           text-field-underlined-padding,
           $text-field-underlined-padding
         );
@@ -2119,68 +2156,74 @@ $variables: (
     }
 
     @if not $disable-text-field {
-      @include set-var(text-field-height, $text-field-height);
-      @include set-var(text-field-padding-left, 0px);
-      @include set-var(text-field-padding-right, 0px);
-      @include set-var(text-field-padding-top, 0px);
-      @include set-var(text-field-border-color, $text-field-border-color);
-      @include set-var(
+      @include form-set-var(text-field-height, $text-field-height);
+      @include form-set-var(text-field-padding-left, 0px);
+      @include form-set-var(text-field-padding-right, 0px);
+      @include form-set-var(text-field-padding-top, 0px);
+      @include form-set-var(text-field-border-color, $text-field-border-color);
+      @include form-set-var(
         text-field-hover-border-color,
         $text-field-hover-border-color
       );
 
-      @include set-var(
+      @include form-set-var(
         text-field-filled-color,
         $text-field-filled-background-color
       );
     }
 
     @if not $disable-textarea {
-      @include set-var(textarea-height, $text-field-height);
-      @include set-var(textarea-padding, $textarea-vertical-padding);
+      @include form-set-var(textarea-height, $text-field-height);
+      @include form-set-var(textarea-padding, $textarea-vertical-padding);
     }
 
     @if not $disable-text-field-addon {
-      @include set-var(addon-top, auto);
-      @include set-var(addon-margin-top, 0px);
-      @include set-var(addon-left-offset, 0px);
-      @include set-var(addon-spacing, $text-field-addon-spacing);
+      @include form-set-var(addon-top, auto);
+      @include form-set-var(addon-margin-top, 0px);
+      @include form-set-var(addon-left-offset, 0px);
+      @include form-set-var(addon-spacing, $text-field-addon-spacing);
     }
 
     @if not $disable-switch {
-      @include set-var(
+      @include form-set-var(
         switch-track-background-color,
         $switch-track-background-color
       );
-      @include set-var(
+      @include form-set-var(
         switch-ball-background-color,
         $switch-ball-background-color
       );
     }
 
     @if not $disable-slider {
-      @include set-var(slider-color, $slider-track-color);
-      @include set-var(slider-active-color, $slider-track-active-color);
-      @include set-var(slider-inactive-color, $slider-track-inactive-color);
-      @include set-var(slider-size, $slider-size);
-      @include set-var(slider-active-size, $slider-track-active-size);
-      @include set-var(slider-inactive-size, $slider-track-inactive-size);
+      @include form-set-var(slider-color, $slider-track-color);
+      @include form-set-var(slider-active-color, $slider-track-active-color);
+      @include form-set-var(
+        slider-inactive-color,
+        $slider-track-inactive-color
+      );
+      @include form-set-var(slider-size, $slider-size);
+      @include form-set-var(slider-active-size, $slider-track-active-size);
+      @include form-set-var(slider-inactive-size, $slider-track-inactive-size);
       @if not $disable-discrete-slider {
-        @include set-var(slider-tooltip-scale, 1);
-        @include set-var(slider-tooltip-translate, -50%);
+        @include form-set-var(slider-tooltip-scale, 1);
+        @include form-set-var(slider-tooltip-translate, -50%);
 
         @if not $disable-discrete-slider-marks {
-          @include set-var(slider-mark-offset, 0%);
-          @include set-var(slider-mark-active-color, $slider-mark-active-color);
-          @include set-var(
+          @include form-set-var(slider-mark-offset, 0%);
+          @include form-set-var(
+            slider-mark-active-color,
+            $slider-mark-active-color
+          );
+          @include form-set-var(
             slider-mark-active-opacity,
             $slider-mark-active-opacity
           );
-          @include set-var(
+          @include form-set-var(
             slider-mark-inactive-color,
             $slider-mark-inactive-color
           );
-          @include set-var(
+          @include form-set-var(
             slider-mark-inactive-opacity,
             $slider-mark-inactive-opacity
           );
@@ -2188,17 +2231,17 @@ $variables: (
       }
 
       @if not $disable-vertical-slider {
-        @include set-var(slider-vertical-size, $slider-vertical-size);
+        @include form-set-var(slider-vertical-size, $slider-vertical-size);
       }
     }
   }
 }
 
-@mixin styles($disable-layer: false) {
-  @if not $disable-everything {
+@mixin form-styles($disable-layer: false) {
+  @if not $form-disable-everything {
     @include utils.optional-layer(form, $disable-layer) {
       @include theme.default-system-theme {
-        @include use-dark-theme;
+        @include form-use-dark-theme;
       }
 
       @if not $disable-fieldset {

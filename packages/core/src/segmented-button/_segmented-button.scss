@@ -9,29 +9,56 @@
 @use "../theme/colors";
 @use "../theme/theme";
 
+// Set to `true` to disable all the styles
+// @type boolean
 $disable-everything: false !default;
+
+// Set to `true` to disable the styles to display an icon while selected
+// @type boolean
 $disable-selected-icon: false !default;
 
+// The light theme text color
+// @type Color
 $light-theme-color: colors.$black !default;
+
+// The light theme outline color
+// @type Color
 $light-theme-outline-color: #79747e !default;
+
+// The light theme background color while selected
+// @type Color
 $light-theme-selected-background-color: theme.get-swatch(
   theme.$secondary-color,
   700,
   false,
   color.adjust(theme.$secondary-color, $lightness: -20%)
 ) !default;
+
+// The light theme text color while selected
+// @type Color
 $light-theme-selected-color: a11y.contrast-color(
   $light-theme-selected-background-color
 ) !default;
 
+// The dark theme text color
+// @type Color
 $dark-theme-color: colors.$white !default;
+
+// The dark theme outline color
+// @type Color
 $dark-theme-outline-color: #938f99 !default;
+
+// The dark theme background color while selected
+// @type Color
 $dark-theme-selected-background-color: theme.get-swatch(
   theme.$secondary-color,
   300,
   false,
   color.adjust(theme.$secondary-color, $lightness: 20%)
 ) !default;
+
+// The dark theme text color while selected
+// @type Color
 $dark-theme-selected-color: a11y.contrast-color(
   $dark-theme-selected-background-color
 ) !default;
@@ -59,6 +86,9 @@ $selected-background-color: theme.get-default-color(
 
 $typography-styles: typography.$button-styles !default;
 
+// The available configurable css variables and mostly used internally for the
+// `get-var`, `set-var`, and `use-var` utils.
+// @type List
 $variables: (
   outline-width,
   outline-color,
@@ -67,6 +97,9 @@ $variables: (
   selected-color
 );
 
+// @param {string} name - The supported variable name
+// @param {any} fallback - An optional fallback value
+// @returns {string} a `var()` statement
 @function get-var($name, $fallback: null) {
   $var: utils.get-var-name($variables, $name, "segmented-button");
   @if $fallback {
@@ -76,12 +109,19 @@ $variables: (
   @return var(#{$var});
 }
 
+// @param {string} name - The supported variable name
+// @param {any} value - The value to set the variable to. Supports `null` which
+// will just be a no-op.
 @mixin set-var($name, $value) {
   @if $value {
     #{utils.get-var-name($variables, $name, "segmented-button")}: #{$value};
   }
 }
 
+// @param {string} property - The css property to apply the variable to
+// @param {string} name - The supported variable name
+// @param {any} fallback - An optional fallback value if the variable has not
+// been set
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
 }

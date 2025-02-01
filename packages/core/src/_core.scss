@@ -32,7 +32,7 @@
 @forward "snackbar/snackbar" as snackbar-*;
 @forward "expansion-panel/expansion-panel" as expansion-panel-*;
 @forward "menu/menu" as menu-*;
-@forward "form/form" as form-*;
+@forward "form/form";
 @forward "files/files" as files-*;
 @forward "autocomplete/autocomplete" as autocomplete-*;
 @forward "layout/layout" as layout-*;
@@ -351,7 +351,7 @@ $_layer-order: (
   @include app-bar.use-light-theme;
   @include divider.use-light-theme;
   @include card.use-light-theme;
-  @include form.use-light-theme;
+  @include form.form-use-light-theme;
   @include table.use-light-theme;
   @include segmented-button.use-light-theme;
   @include badge.use-light-theme;
@@ -377,7 +377,7 @@ $_layer-order: (
   @include app-bar.use-dark-theme;
   @include divider.use-dark-theme;
   @include card.use-dark-theme;
-  @include form.use-dark-theme;
+  @include form.form-use-dark-theme;
   @include table.use-dark-theme;
   @include segmented-button.use-dark-theme;
   @include badge.use-dark-theme;
@@ -414,7 +414,7 @@ $_layer-order: (
   @include chip.variables;
   @include dialog.variables;
   @include divider.variables;
-  @include form.variables;
+  @include form.form-variables;
   @include icon.variables;
   @include interaction.variables;
   @include layout.variables;
@@ -485,7 +485,7 @@ $_layer-order: (
   @include divider.styles($disable-layer);
   @include draggable.styles($disable-layer);
   @include expansion-panel.styles($disable-layer);
-  @include form.styles($disable-layer);
+  @include form.form-styles($disable-layer);
   @include files.styles($disable-layer);
   @include icon.styles($disable-layer);
   @include interaction.styles($disable-layer);

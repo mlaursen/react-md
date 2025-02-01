@@ -48,7 +48,7 @@ $inline-chips-gap: icon.get-var(spacing) !default;
 // nice.
 // @type number
 $inline-outlined-vertical-padding: calc(
-  (form.get-var(text-field-height) - chip.get-var(height)) / 2 -
+  (form.form-get-var(text-field-height) - chip.get-var(height)) / 2 -
     form.$text-field-border-width
 ) !default;
 
@@ -64,7 +64,8 @@ $inline-input-leading-padding: chip.get-var(horizontal-padding) !default;
 // @type number
 $button-size: button.$icon-small-size !default;
 
-// Updates the circular progress size in the autocomplete to this size.
+// The size of the circular progress and used to generate the correct padding
+// for all the inline addons
 // @type number
 $circular-progress-size: button.$icon-small-size !default;
 
@@ -78,7 +79,7 @@ $addon-gap: form.$text-field-addon-gap !default;
 // button addons.
 //
 // @type number
-$addon-spacing: form.get-var(addon-spacing) !default;
+$addon-spacing: form.form-get-var(addon-spacing) !default;
 
 // The size of the clear button and used to generate the correct padding for all
 // the inline addons
@@ -89,11 +90,6 @@ $clear-button-size: calc(button.get-var(icon-font-size) * 2) !default;
 // the inline addons
 // @type number
 $dropdown-button-size: calc(button.get-var(icon-font-size) * 2) !default;
-
-// The size of the circular progress and used to generate the correct padding
-// for all the inline addons
-// @type number
-$circular-progress-size: progress.get-var(circular-size) !default;
 
 $_chip-selector: ".rmd-autocomplete__chip";
 $_clear-button-selector: ".rmd-autocomplete__clear-button";
@@ -230,7 +226,10 @@ $variables: (
           //
           // When the addon isn't included, its size will be set to `0px`. When
           // the addon is included, the size is set to the correct value
-          @include form.set-var(text-field-padding-right, _right-addon-calc());
+          @include form.form-set-var(
+            text-field-padding-right,
+            _right-addon-calc()
+          );
         }
 
         @if not $disable-text-overflow-ellipsis {
@@ -323,8 +322,8 @@ $variables: (
           //   since those are still "boxed" elements and it helps show current
           //   focus
           &--inline-chips {
-            @include form.use-var(min-height, text-field-height);
-            @include form.use-var(padding-right, text-field-padding-right);
+            @include form.form-use-var(min-height, text-field-height);
+            @include form.form-use-var(padding-right, text-field-padding-right);
             @include use-var(gap, inline-gap);
 
             flex-wrap: wrap;
@@ -339,7 +338,7 @@ $variables: (
               form.$disable-text-field-underlined-theme
             {
               &:where(#{$_underline-selector}):has(#{$_chip-selector}) {
-                @include form.use-var(padding-top, text-field-padding-top);
+                @include form.form-use-var(padding-top, text-field-padding-top);
                 @include use-var(padding-bottom, inline-gap);
 
                 :where(.rmd-text-field) {
@@ -379,7 +378,10 @@ $variables: (
             }
 
             @include utils.rtl {
-              @include form.use-var(padding-left, text-field-padding-right);
+              @include form.form-use-var(
+                padding-left,
+                text-field-padding-right
+              );
 
               padding-right: 0;
             }
