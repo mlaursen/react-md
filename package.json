@@ -6,6 +6,7 @@
     "prepare": "husky",
     "build": "TURBO_TELEMETRY_DISABLED=1 turbo run build",
     "build-packages": "TURBO_TELEMETRY_DISABLED=1 turbo run build --filter=docs^...",
+    "update-material-icons": "pnpm --filter material-icons update-icons",
     "core-dev": "pnpm --filter core dev",
     "docs-dev": "pnpm --filter docs dev",
     "dev": "TURBO_TELEMETRY_DISABLED=1 turbo run dev --no-cache --continue",
