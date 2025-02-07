@@ -5,6 +5,6 @@
   // progress bar will be visible while checked
   @include everything.form-set-var(
     switch-ball-background-color,
-    everything.$form-switch-ball-background-color
+    everything.$switch-ball-background-color
   );
 }
