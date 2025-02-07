@@ -213,6 +213,7 @@ $variables: (background-color, color, secondary-color);
           align-items: center;
           column-gap: $header-spacing;
           display: flex;
+          max-width: 100%;
           padding: if(
             $header-padding == $header-padding-top or not $header-padding-top,
             $header-padding,
@@ -236,6 +237,8 @@ $variables: (background-color, color, secondary-color);
         // }
 
         &__content {
+          max-width: 100%;
+
           @if $content-padding {
             &--padded {
               padding: $content-padding;
