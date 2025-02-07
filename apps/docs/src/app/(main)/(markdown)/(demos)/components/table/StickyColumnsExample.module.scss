@@ -12,7 +12,7 @@
     sticky-cell,
     calc(
       everything.$table-cell-input-toggle-horizontal-padding * 2 +
-        everything.$form-input-toggle-normal-size * 2
+        everything.$input-toggle-normal-size * 2
     )
   );
 }

@@ -81,6 +81,7 @@ export async function createDemo(options: CreateDemoOptions): Promise<void> {
     forceDarkMode: false,
     disablePadding: false,
   };
+  let disableImportOnlySCSS = false;
 
   const errors = new Set<string>();
   code.attributes.forEach((attr) => {
@@ -104,6 +105,9 @@ export async function createDemo(options: CreateDemoOptions): Promise<void> {
       case "disablePadding":
         props[name] = true;
         break;
+      case "disableImportOnlySCSS":
+        disableImportOnlySCSS = true;
+        break;
       default:
         errors.add(`\`${name}\` is not a valid demo prop`);
     }
@@ -111,6 +115,7 @@ export async function createDemo(options: CreateDemoOptions): Promise<void> {
   if (errors.size) {
     errors.add(`Valid demo props are:
 ${Object.keys(props)
+  .concat("disableImportOnlySCSS")
   .map((name) => `- ${name}`)
   .join("\n")}
 `);
@@ -150,7 +155,7 @@ ${Object.keys(props)
         demoSourcePath: demoCodePath,
       });
 
-      if (scssModulesPath) {
+      if (scssModulesPath && !disableImportOnlySCSS) {
         throw new Error("SCSS Modules are not supported for import-only demos");
       }
 

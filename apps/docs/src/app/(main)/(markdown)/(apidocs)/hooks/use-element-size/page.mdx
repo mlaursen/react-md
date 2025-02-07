@@ -1,0 +1,123 @@
+# useElementSize
+
+The `useElementSize` hook can be used to track size changes for a specific
+element using the [Resize Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Resize_Observer_API).
+
+## Example Usage
+
+```tsx
+import { useElementSize } from "@react-md/core/useElementSize";
+
+function Example() {
+  const { height, width, elementRef } = useElementSize();
+
+  return <div ref={elementRef}>{`height: ${height}, width: ${width}`}</div>;
+}
+```
+
+## Parameters (optional)
+
+```ts disableScroll disableTransform
+export interface ElementSizeOptions<E extends HTMLElement> {
+  /** @defaultValue `{ height: 0, width: 0 }` */
+  defaultValue?: UseStateInitializer<ElementSize>;
+
+  /**
+   * An optional ref to merge with the ref returned by this hook.
+   */
+  ref?: Ref<E>;
+
+  /**
+   * Set this to `true` to prevent observing the element's size changes. This is
+   * equivalent to not attaching the returned ref to any element.
+   *
+   * @defaultValue `false`
+   */
+  disabled?: boolean;
+
+  /**
+   * Set this to `true` if the {@link onUpdate} should not be fired for height
+   * changes.
+   *
+   * @defaultValue `false`
+   */
+  disableHeight?: boolean;
+
+  /**
+   * Set this to `true` if the {@link onUpdate} should not be fired for width
+   * changes.
+   *
+   * @defaultValue `false`
+   */
+  disableWidth?: boolean;
+}
+```
+
+### defaultValue
+
+This prop can be used to define a default value for the first render if the
+size can be guessed. This is mostly useful for server-side-rendering.
+
+The default value can be static or using an initializer function to handle
+client side values.
+
+```ts
+const ssr = useSsr();
+const { height, width, elementRef } = useElementSize({
+  defaultValue: () => {
+    if (ssr) {
+      return { height: 128, width: 64 };
+    }
+
+    // some sort of known client calculation
+    return {
+      height: window.innerHeight / 8,
+      width: window.innerWidth / 12,
+    };
+  },
+});
+```
+
+## Returns
+
+```ts disableScroll disableTransform
+export interface ElementSizeImplementation<E extends HTMLElement> {
+  height: number;
+  width: number;
+
+  elementRef: RefCallback<E>;
+
+  /**
+   * This will be `true` once the resize observer's callback is triggered at
+   * least once.
+   *
+   * This was added so that generating custom properties that have a reasonable
+   * default value set in css don't cause major layout shifts when a default
+   * value cannot be provided.
+   */
+  observedOnce: boolean;
+}
+```
+
+### observedOnce
+
+The `observedOnce` flag can be used to ensure some value is only calculated once
+the Resize Observer has been initialized.
+
+```ts disableTransform
+const { height, width, observedOnce } = useElementSize();
+useCSSVariables(
+  useMemo(() => {
+    if (!observedOnce) {
+      return [];
+    }
+
+    // something that uses the element's height, width, or both
+    return [{ var: "--something", value: (height / width) * 0.5 }];
+  }, [height, width, observedOnce])
+);
+```
+
+## See Also
+
+- [useResizeObserver](./use-resize-observer)

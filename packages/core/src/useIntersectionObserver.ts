@@ -1,6 +1,6 @@
 "use client";
 
-import type { Ref, RefCallback, RefObject } from "react";
+import { type Ref, type RefCallback, type RefObject } from "react";
 import { useEffect } from "react";
 
 import { useEnsuredRef } from "./useEnsuredRef.js";
@@ -195,8 +195,8 @@ export interface IntersectionObserverHookOptions<E extends HTMLElement>
  * ```tsx
  * // https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#a_simple_example
  *
- * import { useIntersectionObserver } from "@react-md/core";
- * import type { ReactElement } from "react";
+ * import { useIntersectionObserver } from "@react-md/core/useIntersectionObserver";
+ * import { type ReactElement } from "react";
  * import { useState } from "react";
  *
  * import styles from "./Example.module.scss";

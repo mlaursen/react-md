@@ -44,7 +44,7 @@ const { Provider } = context;
  *
  * @example Simple Example
  * ```tsx
- * import { useAppSize } from "@react-md/core";
+ * import { useAppSize } from "@react-md/core/media-queries/AppSizeProvider";
  *
  * function Example() {
  *   const { isPhone, isTablet, isDesktop, isLargeDesktop, isLandscape } =

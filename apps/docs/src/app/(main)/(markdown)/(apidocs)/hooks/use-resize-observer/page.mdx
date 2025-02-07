@@ -1,0 +1,80 @@
+# useResizeObserver
+
+The `useResizeObserver` hook is used to track the size changes of a specific
+element. For most cases you can use the [useElementSize](./use-element-size)
+instead, but this hook can be used for more complex behavior with the
+[ResizeObserverEntry](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry).
+
+## Example Usage
+
+The `useResizeObserver` hook requires a memoized `onUpdate` callback to handle resize events.
+
+```tsx
+import { useResizeObserver } from "@react-md/core/useResizeObserver";
+import { useCallback } from "react";
+
+function Example() {
+  const elementRef = useResizeObserver({
+    onUpdate: useCallback((entry) => {
+      const element = entry.target;
+      const { height, width } = entry.contentRect;
+      const { inlineSize, blockSize } = entry.borderBoxSize[0];
+      // do something
+    }, []),
+  });
+
+  return <div ref={elementRef}>{/*...whatever... */}</div>;
+}
+```
+
+## Parameters
+
+```ts disableScroll disableTransform
+export interface ResizeObserverHookOptions<E extends HTMLElement> {
+  /**
+   * An optional ref to merge with the ref returned by this hook.
+   */
+  ref?: Ref<E>;
+
+  /**
+   * **Must be wrapped in `useCallback` to prevent re-creating the
+   * ResizeObserver each render.**
+   *
+   * This function will be called whenever the target element resizes.
+   */
+  onUpdate: (entry: ResizeObserverEntry) => void;
+
+  /**
+   * Set this to `true` to prevent observing the element's size changes. This is
+   * equivalent to not attaching the returned ref to any element.
+   *
+   * @defaultValue `false`
+   */
+  disabled?: boolean;
+
+  /**
+   * Set this to `true` if the {@link onUpdate} should not be fired for height
+   * changes.
+   *
+   * @defaultValue `false`
+   */
+  disableHeight?: boolean;
+
+  /**
+   * Set this to `true` if the {@link onUpdate} should not be fired for width
+   * changes.
+   *
+   * @defaultValue `false`
+   */
+  disableWidth?: boolean;
+}
+```
+
+## Returns
+
+A `RefCallback` that needs to be passed to a DOM node to work correctly.
+
+## See Also
+
+- [Resize Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Resize_Observer_API)
+- [useElementSize](./use-element-size)

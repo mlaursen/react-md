@@ -1,0 +1,26 @@
+# useMediaQuery
+
+The `useMediaQuery` hook can be used to access media queries and update
+functionality in React components.
+
+## Example Usage
+
+```tsx
+import { useMediaQuery } from "@react-md/core/media-queries/useMediaQuery";
+
+function Example() {
+  const matches = useMediaQuery("screen and (min-width: 768px)");
+
+  return <>{matches ? "Matches" : "Doesn't"}</>;
+}
+```
+
+## Returns
+
+`true` if the media query matches.
+
+## See Also
+
+- [Using media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries)
+- [useAppSize](./use-app-size)
+- [usePrefersDarkTheme](./use-prefers-dark-theme)

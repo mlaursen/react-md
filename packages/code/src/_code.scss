@@ -48,6 +48,10 @@ $color-preview-border-width: $color-preview-outer-width + 0.0625em;
         white-space: pre-wrap;
         word-break: break-all;
       }
+
+      &--no-scroll {
+        position: relative;
+      }
     }
   }
 

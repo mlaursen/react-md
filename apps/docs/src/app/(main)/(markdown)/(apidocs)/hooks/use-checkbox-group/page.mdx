@@ -1,0 +1,94 @@
+# useCheckboxGroup
+
+The `useCheckboxGroup` hook can be used to control the value for a group of checkboxes
+and an optional indeterminate checkbox.
+
+## Example Usage
+
+See the [Checkbox useCheckboxGroup hook Example](/components/checkbox#usecheckboxgroup-hook) for a demo.
+
+## Parameters
+
+```ts disableScroll disableTransform
+export interface CheckboxGroupOptions<V> {
+  /**
+   * A `name` to apply to all the checkboxes within the group. This is required
+   * if the {@link menu} option is set to `true`.
+   */
+  name?: string;
+
+  /**
+   * Set this to `true` if using the `MenuItemCheckbox` component instead of the
+   * `Checkbox` so the correct props can be provided.
+   *
+   * @defaultValue `false`
+   */
+  menu?: boolean;
+
+  /**
+   * This prop **must** be defined to enable the indeterminate checkbox feature
+   * from the hook and should be a list of all the possible checkbox values in
+   * the group. This will be used to select all values when the indeterminate
+   * checkbox is checked and determine if all the checkboxes have manually be
+   * selected.
+   */
+  values?: readonly V[];
+
+  /**
+   * Set this to a list of checkbox values that should be checked by default.
+   *
+   * @defaultValue `[]`
+   */
+  defaultCheckedValues?: UseStateInitializer<readonly V[]>;
+}
+```
+
+### menu
+
+If the checkboxes are rendered using the `MenuItemCheckbox` instead of a
+`Checkbox`, set this prop to `true` to update the props to match the
+`MenuItemCheckbox` component.
+
+### values
+
+The `values` option is only required for indeterminate checkboxes and should be each possible
+value within the group.
+
+```ts
+const OPTIONS = [
+  { label: "First", value: "a" },
+  { label: "Second", value: "b" },
+  { label: "Third", value: "c" },
+] as const;
+const VALUES = OPTIONS.map(({ value }) => value) as const;
+
+const { getCheckboxProps, getIndeterminateProps, checkedValues } =
+  useCheckboxGroup({ name: "group", values: VALUES });
+```
+
+## Returns
+
+```ts disableScroll disableTransform
+export interface CombinedCheckboxGroupReturnValue<V extends string> {
+  reset: () => void;
+  checkedValues: ReadonlySet<V>;
+  setCheckedValues: UseStateSetter<ReadonlySet<V>>;
+  getCheckboxProps: (value: V) => {
+    name?: string;
+    value?: V;
+    checked: boolean;
+    onChange?: () => void;
+    onCheckedChange?: () => void;
+  };
+  getIndeterminateProps?: () => {
+    "aria-checked": "mixed" | undefined;
+    name?: string;
+    checked: boolean;
+    indeterminate: boolean;
+    onChange?: () => void;
+    onCheckedChange?: () => void;
+  };
+}
+```
+
+> !Info! The `getIndeterminateProps` will only be returned with the `values` option was provided.

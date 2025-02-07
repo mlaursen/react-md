@@ -7,7 +7,7 @@ import { useSsr } from "../SsrProvider.js";
 /**
  * @example Simple Example
  * ```tsx
- * import { useMediaQuery } from "@react-md/core";
+ * import { useMediaQuery } from "@react-md/core/media-queries/useMediaQuery";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {

@@ -28,6 +28,7 @@ export function MarkdownCode(props: MarkdownCodeProps): ReactElement {
       "fileName",
       "lineWrap",
       "containerProps",
+      "disableScroll",
       "disableMarginTop",
       "appBarProps",
       "appBarChildren",

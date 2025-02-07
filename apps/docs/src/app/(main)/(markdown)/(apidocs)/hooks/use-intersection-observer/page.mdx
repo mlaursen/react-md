@@ -1,0 +1,161 @@
+# useIntersectionObserver
+
+The `useIntersectionObserver` hook can be used to interact with the
+[Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)
+within React components.
+
+## Example Usage
+
+This example was forked from the
+[Mozilla Simple Example](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#a_simple_example)
+and a demo is available [here](./use-intersection-observer/example).
+
+```demo source="./SimpleExample.tsx" importOnly disableImportOnlySCSS
+
+```
+
+## Parameters
+
+```ts disableScroll disableTransform
+export interface IntersectionObserverHookOptions<E extends HTMLElement> {
+  /**
+   * An optional ref to merge with the ref returned by this hook.
+   */
+  ref?: Ref<E>;
+
+  /**
+   * **Must be wrapped in `useCallback` to prevent re-creating the
+   * IntersectionObserver each render.**
+   */
+  onUpdate: (entries: readonly IntersectionObserverEntry[]) => void;
+
+  /**
+   * **Must be wrapped in `useCallback` to prevent re-creating the
+   * IntersectionObserver each render.**
+   *
+   * If this is defined, the `ref` will be ignored along with the returned
+   * ref.
+   */
+  getTargets?: () => readonly Element[];
+
+  /**
+   * This is the same as the normal `root` for an IntersectionObserverInit, but
+   * also supports refs.
+   */
+  root?: RefObject<IntersectionObserverRoot> | IntersectionObserverRoot;
+
+  /**
+   * Set this to `true` if the intersection observer behavior should be
+   * disabled.
+   *
+   * @defaultValue `false`
+   */
+  disabled?: boolean;
+
+  /**
+   * **When using a list of thresholds, they must either be defined outside of
+   * the component or wrapped in a `useMemo` to prevent the IntersectionObserver
+   * from being re-created each render.**
+   *
+   * @see {@link getThreshold}
+   */
+  threshold?: IntersectionObserverThreshold;
+
+  /** @see {@link getRootMargin} */
+  rootMargin?: IntersectionObserverRootMargin;
+
+  /**
+   * **Must be wrapped in `useCallback` to prevent re-creating the
+   * IntersectionObserver each render.**
+   *
+   * This can be used to dynamically generate the `threshold` which is
+   * generally useful if you need access to the DOM or do some expensive
+   * computation.
+   *
+   * If this option is provided, `threshold`'s value will be ignored.
+   */
+  getThreshold?: () => IntersectionObserverThreshold;
+
+  /**
+   * **Must be wrapped in `useCallback` to prevent re-creating the
+   * IntersectionObserver each render.**
+   *
+   * This can be used to dynamically generate the `rootMargin` which is
+   * generally useful if you need access to the DOM.
+   *
+   * Note: If this option is provided, `rootMargin` will be ignored.
+   */
+  getRootMargin?: () => IntersectionObserverRootMargin;
+}
+```
+
+### threshold
+
+The `threshold` option can be used to define the intersection threshold. This
+value needs to be memoized to prevent re-creating the Intersection Observer
+during each render.
+
+```tsx
+// Memoized by not having it during the render cycle
+const threshold = [0, 0.25, 0.5, 0.75, 1];
+
+function Example() {
+  const targetRef = useIntersectionObserver({
+    threshold,
+    onUpdate: useCallback(([entry]) => {
+      // do something
+    }, []),
+  });
+}
+
+// or just use useMemo
+function Example() {
+  const targetRef = useIntersectionObserver({
+    threshold: useMemo(() => [0, 0.25, 0.5, 0.75, 1]),
+    onUpdate: useCallback(([entry]) => {
+      // do something
+    }, []),
+  });
+}
+```
+
+### getThreshold
+
+This option can be used to dynamically generate a threshold and will override
+the `threshold` value.
+
+```ts
+const targetRef = useIntersectionObserver({
+  getThreshold: useCallback(() => {
+    // pretend some expensive computation
+    return [0, 0.25, 0.5, 0.75, 1];
+  }, []),
+  onUpdate: useCallback(() => {
+    // do something
+  }, []),
+});
+```
+
+### getRootMargin
+
+This option can be used to dynamically generate the `rootMargin`.
+
+```tsx
+const nodeRef = useRef<HTMLElement>();
+const targetRef = useIntersectionObserver({
+  getRootMargin: useCallback(() => {
+    return `-${nodeRef.current.offsetHeight - 1}px 0px 0px`;
+  }, []),
+  onUpdate: useCallback(() => {
+    // do something
+  }, []),
+});
+```
+
+## Returns
+
+A `RefCallback` that needs to be passed to the DOM node to watch.
+
+## See Also
+
+- [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)

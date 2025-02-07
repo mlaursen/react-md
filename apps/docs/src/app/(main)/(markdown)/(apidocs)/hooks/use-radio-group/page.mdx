@@ -1,0 +1,110 @@
+# useRadioGroup
+
+The `useRadioGroup` hook can be used to control a collection of `Radio` or
+`MenuItemRadio` components.
+
+## Example Usage
+
+See the [Controlling Radios](/components/radio#controlling-radios),
+[Required Radio Group](/components/radio#required-radio-group),
+and [MenuItemRadio Example](/components/menu#menuitemradio-example) for example
+usage.
+
+## Parameters
+
+```ts disableScroll disableTransform
+export interface RadioGroupOptions<T extends string | number> {
+  /**
+   * A `name` to apply to all the radios within the group. This is required if
+   * unless {@link menu} is set to `true`.
+   */
+  name?: string;
+
+  /**
+   * Set this to `true` if using the `MenuItemRadio` component instead of the
+   * `Radio` so the correct props can be provided.
+   *
+   * @defaultValue `false`
+   */
+  menu?: boolean;
+
+  /**
+   * The value of a radio that should be checked by default. If you want to
+   * force the user to select one of the radios, keep this as the empty string
+   * or set it to a string or number that does not represent a valid radio
+   * value.
+   *
+   * @defaultValue `""`
+   */
+  defaultValue?: UseStateInitializer<T>;
+
+  /**
+   * Set this to `true` if one of the radios within the group must be checked before
+   * a form can be submitted.
+   *
+   * This option is invalid and will be ignored if {@link menu} is `true`.
+   *
+   * @defaultValue `false`
+   */
+  required?: boolean;
+
+  /**
+   * If you need to prevent the default behavior in a radio group for some
+   * reason, you can provide a custom `onChange` event handler and call
+   * `event.stopPropagation()`. This will be called whenever a new radio button
+   * is checked.
+   *
+   * This option is invalid and will be ignored if {@link menu} is `true`.
+   *
+   * @defaultValue `() => {}`
+   */
+  onChange?: ChangeEventHandler<HTMLInputElement>;
+
+  /**
+   * If the radio group has {@link required} set to `true`, the radios will gain
+   * the `error` state if a form is submitted without a checked radio. If you
+   * want to prevent that behavior for some reason, you can provide this
+   * function and call `event.stopPropagation()`.
+   *
+   * This option is invalid and will be ignored if {@link menu} is `true`.
+   *
+   * @defaultValue `() => {}`
+   */
+  onInvalid?: FormEventHandler<HTMLInputElement>;
+}
+```
+
+### name
+
+The `name` option is required when the `menu` option is not provided. It will be passed
+as the `name` attribute to each `Radio`.
+
+### menu
+
+Set this option to `true` when using the hook with the `MenuItemRadio` component
+to update the props to match the `MenuItemRadio` prop API.
+
+## Returns
+
+```ts disableScroll disableTransform
+export interface CombinedRadioGroupReturnValue<V extends string | number> {
+  reset: () => void;
+  value: V;
+  setValue: UseStateSetter<V>;
+  getRadioProps: (value: V) => {
+    name?: string;
+    value?: V;
+    checked: boolean;
+    error?: boolean;
+    required?: boolean;
+    onChange?: ChangeEventHandler<HTMLInputElement>;
+    onCheckedChange?: () => void;
+    onInvalid?: FormEventHandler<HTMLInputElement>;
+  };
+}
+```
+
+### reset
+
+The `reset` function can be used to reset the radio group value back to the
+`defaultValue` and remove any error states.

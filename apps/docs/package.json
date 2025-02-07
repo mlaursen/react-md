@@ -49,6 +49,7 @@
     "autosuggest-highlight": "^3.3.4",
     "cnbuilder": "^3.1.0",
     "docs-generator": "workspace:*",
+    "filesize": "^10.1.6",
     "fuse.js": "^7.0.0",
     "js-cookie": "^3.0.5",
     "next": "^14.2.15",

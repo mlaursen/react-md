@@ -34,7 +34,7 @@ export interface ElementSizeImplementation<E extends HTMLElement>
    *
    * @example
    * ```tsx
-   * const { height, width, observedOnce }` = useElementSize();
+   * const { height, width, observedOnce } = useElementSize();
    * useCSSVariables(useMemo(() => {
    *   if (!observedOnce) {
    *     return []
@@ -42,7 +42,7 @@ export interface ElementSizeImplementation<E extends HTMLElement>
    *
    *   // something that uses the element's height, width, or both
    *   return [{ var: "--something", value: height / width * 0.5 }];
-   * }, [height, width, observedOnce]))
+   * }, [height, width, observedOnce]));
    * ```
    */
   observedOnce: boolean;
@@ -54,7 +54,7 @@ export interface ElementSizeImplementation<E extends HTMLElement>
  *
  * @example Simple Example
  * ```tsx
- * import { useElementSize } from "@react-md/core";
+ * import { useElementSize } from "@react-md/core/useElementSize";
  * import { type ReactElement } from "react";
  *
  * function Example(): ReactElement {

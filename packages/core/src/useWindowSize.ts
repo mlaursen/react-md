@@ -52,7 +52,7 @@ export interface WindowSizeOptions
  *
  * @example Simple Example
  * ```tsx
- * import { useWindowSize } from "@react-md/core";
+ * import { useWindowSize } from "@react-md/core/useWindowSize";
  * import type { ReactElement } from "react";
  * import { useState } from "react";
  *

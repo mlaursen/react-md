@@ -116,7 +116,7 @@ export interface CombinedRadioGroupReturnValue<V extends string | number> {
   reset: () => void;
   value: V;
   setValue: UseStateSetter<V>;
-  getRadioProps?: (value: V) => {
+  getRadioProps: (value: V) => {
     name?: string;
     value?: V;
     checked: boolean;

@@ -25,7 +25,7 @@ export interface CheckboxGroupOptions<V> {
 
   /**
    * This prop **must** be defined to enable the indeterminate checkbox feature
-   * from the hook. This should be a list of all the possible checkbox values in
+   * from the hook and should be a list of all the possible checkbox values in
    * the group. This will be used to select all values when the indeterminate
    * checkbox is checked and determine if all the checkboxes have manually be
    * selected.
@@ -36,7 +36,7 @@ export interface CheckboxGroupOptions<V> {
    *   { label: "First", value: "a" },
    *   { label: "Second", value: "b" },
    *   { label: "Third", value: "c" },
-   * ] as const:
+   * ] as const;
    * const VALUES = OPTIONS.map(({ value }) => value) as const;
    *
    * const {

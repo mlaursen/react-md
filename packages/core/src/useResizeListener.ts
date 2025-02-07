@@ -45,15 +45,15 @@ export interface ResizeListenerOptions extends AddEventListenerOptions {
  *
  * @example Simple Example
  * ```tsx
- * import { useResizeListener } from "@react-md/core";
- * import type { ReactElement } from "react";
+ * import { useResizeListener } from "@react-md/core/useResizeListener";
+ * import { type ReactElement } from "react";
  * import { useState } from "react";
  *
  * function Example(): ReactElement {
  *   const [size, setSize] = useState({
  *     height: window.innerHeight,
  *     width: window.innerWidth,
- *   }):
+ *   });
  *
  *   useResizeListener({
  *     onUpdate(event) {
@@ -67,7 +67,9 @@ export interface ResizeListenerOptions extends AddEventListenerOptions {
  *   return (
  *     <>
  *       The current window size:
- *       <pre><code>{JSON.stringify(size, null, 2)}</code></pre>
+ *       <pre>
+ *         <code>{JSON.stringify(size, null, 2)}</code>
+ *       </pre>
  *     </>
  *   );
  * }

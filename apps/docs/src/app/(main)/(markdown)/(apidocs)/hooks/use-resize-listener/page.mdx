@@ -1,0 +1,76 @@
+# useResizeListener
+
+The `useResizeListener` hook can be used to update React component functionality based
+on window resize events with a few performance optimizations.
+
+> !Info! The [useWindowSize](./use-window-size) hook can be used for most cases
+> unless additional behavior is required.
+
+## Example Usage
+
+The `useResizeListener` hook requires an `onUpdate` handler to be provided.
+
+```tsx
+import { useResizeListener } from "@react-md/core/useResizeListener";
+import { useState } from "react";
+
+function Example() {
+  const [size, setSize] = useState({
+    height: window.innerHeight,
+    width: window.innerWidth,
+  });
+
+  useResizeListener({
+    onUpdate(event) {
+      setSize({
+        height: window.innerHeight,
+        width: window.innerWidth,
+      });
+    },
+  });
+
+  return (
+    <>
+      The current window size:
+      <pre>
+        <code>{JSON.stringify(size, null, 2)}</code>
+      </pre>
+    </>
+  );
+}
+```
+
+## Parameters
+
+```ts disableScroll disableTransform
+export interface ResizeListenerOptions extends AddEventListenerOptions {
+  /**
+   * This function will be called whenever the resize event is fired on the
+   * `window`. This should be wrapped in `useCallback`.
+   */
+  onUpdate: (event: Event) => void;
+
+  /**
+   * Set this to `false` to disable throttling with
+   * `window.requestAnimationFrame`.
+   */
+  throttle?: boolean;
+
+  /**
+   * Set this to `true` to disable attaching the resize event handler.
+   *
+   * @defaultValue `false`
+   */
+  disabled?: boolean;
+}
+```
+
+## Returns
+
+Nothing.
+
+## See Also
+
+- [useResizeObserver](./use-resize-observer)
+- [useElementSize](./use-element-size)
+- [useWindowSize](./use-window-size)

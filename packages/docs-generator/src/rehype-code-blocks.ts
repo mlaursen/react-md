@@ -39,6 +39,7 @@ export interface RehypeCodeBlocksOptions {
  *     - `transparent`
  *     - `startOnScss`
  *     - `forceDarkMode`
+ *     - `disableScroll`
  *     - `disablePadding`
  * - If the code block is `ts `or `tsx`, try to convert it to javascript and
  *   replace the code block with:

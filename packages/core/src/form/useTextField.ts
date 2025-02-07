@@ -344,8 +344,9 @@ export interface ValidatedTextFieldImplementation<
  *
  * @example No Inline Error Messages
  * ```tsx
- * import type { ReactElement } from "react";
- * import { TextField, useTextField } from "@react-md/core";
+ * import { type ReactElement } from "react";
+ * import { TextField } from "@react-md/core/form/TextField";
+ * import { useTextField } from "@react-md/core/form/useTextField";
  *
  * function Example(): ReactElement {
  *   const { fieldProps } = useTextField({
@@ -366,8 +367,9 @@ export function useTextField<E extends HTMLInputElement | HTMLTextAreaElement>(
 /**
  * @example Simple Example
  * ```tsx
- * import type { ReactElement } from "react";
- * import { TextField, useTextField } from "@react-md/core";
+ * import { type ReactElement } from "react";
+ * import { TextField } from "@react-md/core/form/TextField";
+ * import { useTextField } from "@react-md/core/form/useTextField";
  *
  * function Example(): ReactElement {
  *   const { fieldProps } = useTextField({
@@ -380,8 +382,9 @@ export function useTextField<E extends HTMLInputElement | HTMLTextAreaElement>(
  *
  * @example Inline Counter
  * ```tsx
- * import type { ReactElement } from "react";
- * import { TextField, useTextField } from "@react-md/core";
+ * import { type ReactElement } from "react";
+ * import { TextField } from "@react-md/core/form/TextField";
+ * import { useTextField } from "@react-md/core/form/useTextField";
  *
  * function Example(): ReactElement {
  *   const { fieldProps } = useTextField({
@@ -398,8 +401,9 @@ export function useTextField<E extends HTMLInputElement | HTMLTextAreaElement>(
  *
  * @example Adding Constraints
  * ```tsx
- * import type { ReactElement } from "react";
- * import { TextField, useTextField } from "@react-md/core";
+ * import { type ReactElement } from "react";
+ * import { TextField } from "@react-md/core/form/TextField";
+ * import { useTextField } from "@react-md/core/form/useTextField";
  *
  * function Example(): ReactElement {
  *   const { fieldProps } = useTextField({
@@ -416,8 +420,9 @@ export function useTextField<E extends HTMLInputElement | HTMLTextAreaElement>(
  *
  * @example Custom Validation
  * ```tsx
- * import type { ReactElement } from "react";
- * import { TextField, useTextField } from "@react-md/core";
+ * import { type ReactElement } from "react";
+ * import { TextField } from "@react-md/core/form/TextField";
+ * import { useTextField } from "@react-md/core/form/useTextField";
  *
  * function Example(): ReactElement {
  *   const { fieldProps } = useTextField({

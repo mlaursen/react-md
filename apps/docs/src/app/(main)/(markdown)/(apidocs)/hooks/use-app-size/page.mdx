@@ -1,0 +1,67 @@
+# useAppSize
+
+The `useAppSize` hook should be used to update the **functionality** depending
+on the current viewport size in React components through multiple media queries.
+
+## Prerequisites
+
+Either the [CoreProviders](/components/core-providers) or
+[AppSizeProvider](/components/app-size-provider) component must be mounted for
+this hook to work correctly.
+
+## Example Usage
+
+```tsx
+import { useAppSize } from "@react-md/core/media-queries/AppSizeProvider";
+
+function Example() {
+  const { isPhone, isTablet, isDesktop, isLargeDesktop, isLandscape } =
+    useAppSize();
+
+  // do something based on the app size
+  return null;
+}
+```
+
+> !Info! See the [AppSizeProvider](/components/app-size-provider) for additional examples and configuration.
+
+## Returns
+
+```ts disableScroll disableTransform
+export interface AppSize {
+  /**
+   * Boolean if currently matching a phone by comparing the max width of the
+   * device.
+   */
+  isPhone: boolean;
+
+  /**
+   * Boolean if currently matching a tablet by comparing the max width of the
+   * device.
+   */
+  isTablet: boolean;
+
+  /**
+   * Boolean if currently matching a desktop screen by comparing the max width
+   * of the device.
+   */
+  isDesktop: boolean;
+
+  /**
+   * Boolean if currently matching a large desktop screen by comparing the max
+   * width of the device.
+   */
+  isLargeDesktop: boolean;
+
+  /**
+   * Boolean if the app is considered to be in landscape mode. This will just
+   * verify that the window width is greater than the window height.
+   *
+   * NOTE: This might not be super accurate on Android devices since the soft
+   * keyboard will change the dimensions of the viewport when it appears. It is
+   * recommended to use the `useOrientation` hook as well if you'd like to get
+   * the current orientation type.
+   */
+  isLandscape: boolean;
+}
+```

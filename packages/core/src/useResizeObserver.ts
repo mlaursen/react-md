@@ -205,7 +205,7 @@ export interface ResizeObserverHookOptions<E extends HTMLElement> {
  *     onUpdate: useCallback((entry) => {
  *       const element = entry.target;
  *       const { height, width } = entry.contentRect;
- *       const { inlineSize, blockSize } = entry.borderBoxSize[0]O
+ *       const { inlineSize, blockSize } = entry.borderBoxSize[0];
  *       // do something
  *     }, []),
  *   });

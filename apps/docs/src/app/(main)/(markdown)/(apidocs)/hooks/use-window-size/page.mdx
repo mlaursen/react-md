@@ -1,0 +1,92 @@
+# useWindowSize
+
+The `useWindowSize` hook is a wrapper around the [useResizeListener](./use-resize-listener) to
+return the current window height and width.
+
+## Example Usage
+
+```tsx disableTransform
+import { useWindowSize } from "@react-md/core/useWindowSize";
+import { useState } from "react";
+
+function Example() {
+  const { height, width } = useWindowSize();
+
+  return (
+    <>
+      The current window size:
+      <pre>
+        <code>{JSON.stringify(size, null, 2)}</code>
+      </pre>
+    </>
+  );
+}
+```
+
+## Parameters (optional)
+
+```ts disableScroll disableTransform
+export interface WindowSizeOptions extends AddEventListenerOptions {
+  /**
+   * The default value to use in SSR environments for the window's height.
+   *
+   * @defaultValue `0`
+   */
+  ssrHeight?: number;
+
+  /**
+   * The default value to use in SSR environments for the window's width.
+   *
+   * @defaultValue `0`
+   */
+  ssrWidth?: number;
+
+  /**
+   * Set this to `true` to ignore resize events that only updated the height.
+   * The hook can be disabled by setting this and {@link disableWidth} to
+   * `true`.
+   *
+   * @defaultValue `false`
+   */
+  disableHeight?: boolean;
+
+  /**
+   * Set this to `true` to ignore resize events that only updated the width.
+   * The hook can be disabled by setting this and {@link disableHeight} to
+   * `true`.
+   *
+   * @defaultValue `false`
+   */
+  disableWidth?: boolean;
+
+  /**
+   * Set this to `false` to disable throttling with
+   * `window.requestAnimationFrame`.
+   *
+   * @defaultValue `true`
+   */
+  throttle?: boolean;
+}
+```
+
+### Server Side Rendering
+
+If the `height` and `width` can be guessed during SSR, it is recommended to
+provide the `ssrHeight` and `ssrWidth` props to reduce layout shifts.
+
+## Returns
+
+```ts disableScroll disableTransform
+export interface ElementSize {
+  height: number;
+  width: number;
+}
+```
+
+## See Also
+
+- [useResizeListener](./use-resize-listener)
+- [useMediaQuery](./use-media-query)
+- [useAppSize](./use-app-size)
+- [useResizeObserver](./use-resize-observer)
+- [useElementSize](./useElementSize)
