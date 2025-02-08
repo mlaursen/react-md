@@ -9,7 +9,8 @@ import { transform } from "sucrase";
  */
 export async function transformTsToJs(
   code: string,
-  filepath: string
+  filepath: string,
+  printWidth = 80
 ): Promise<string> {
   const transformedCode = transform(code, {
     transforms: ["typescript", "jsx"],
@@ -26,7 +27,13 @@ export async function transformTsToJs(
 
   const formatted = await format(
     transformedCode.replace(/(>|,)\r?\n+/g, "$1\n"),
-    { parser: "babel", filepath }
+    {
+      parser: "typescript",
+      filepath,
+      // It looks like the .prettierrc.yaml aren't always picked up
+      printWidth,
+      trailingComma: "es5",
+    }
   );
   return formatted.trim();
 }

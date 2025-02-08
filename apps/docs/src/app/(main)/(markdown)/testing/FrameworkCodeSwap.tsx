@@ -8,23 +8,21 @@ export interface FrameworkCodeSwapProps
   extends Omit<TestFrameworkCodeBlockProps, "code"> {
   code: string;
   replacement?: {
-    jest: string;
-    vitest: string;
+    jest?: string;
+    vitest?: string;
   };
 }
 
 export function FrameworkCodeSwap(props: FrameworkCodeSwapProps): ReactElement {
-  const {
-    code,
-    replacement = { jest: "jest-globals", vitest: "vitest" },
-    ...remaining
-  } = props;
+  const { code, replacement = {}, ...remaining } = props;
+  const { jest = "jest-globals", vitest = "vitest" } = replacement;
+
   return (
     <TestFrameworkCodeBlock
       {...remaining}
       code={{
-        jest: code.replace(/{FRAMEWORK}/g, replacement.jest),
-        vitest: code.replace(/{FRAMEWORK}/g, replacement.vitest),
+        jest: code.replace(/{FRAMEWORK}/g, jest),
+        vitest: code.replace(/{FRAMEWORK}/g, vitest),
       }}
     />
   );

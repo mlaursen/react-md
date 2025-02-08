@@ -1,15 +1,15 @@
-import { afterEach, describe, expect, it, jest } from "@jest/globals";
+import { describe, expect, it, jest } from "@jest/globals";
 import { createRef, useState } from "react";
 
 import { FontIcon } from "../../icon/FontIcon.js";
 import {
   act,
-  cleanupResizeObserverAfterEach,
   render,
   screen,
   setupResizeObserverMock,
   userEvent,
 } from "../../test-utils/index.js";
+import { cleanupResizeObserverAfterEach } from "../../test-utils/jest-globals/index.js";
 import { TextArea, type TextAreaProps } from "../TextArea.js";
 
 describe("TextArea", () => {
@@ -309,7 +309,7 @@ describe("TextArea", () => {
       };
     }
 
-    cleanupResizeObserverAfterEach(afterEach, jest.restoreAllMocks);
+    cleanupResizeObserverAfterEach();
 
     it("should update the height as the user types", async () => {
       const { user, container, textarea, getHeightVar, maskScrollHeight } =

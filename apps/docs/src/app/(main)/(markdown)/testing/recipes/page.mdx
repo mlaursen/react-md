@@ -1,3 +1,25 @@
+import AutocompleteFindAndChangeValue from "./AutocompleteFindAndChangeValue.jsx";
+import AutocompleteFindAndChangeValueThroughSuggestions from "./AutocompleteFindAndChangeValueThroughSuggestions.jsx";
+import CheckboxFindAndChangeValue from "./CheckboxFindAndChangeValue.jsx";
+import DialogFindAndToggleVisibility from "./DialogFindAndToggleVisibility.jsx";
+import ExpansionPanelFindAndVerifyExpansion from "./ExpansionPanelFindAndVerifyExpansion.jsx";
+import FileInputFindAndChangeValue from "./FileInputFindAndChangeValue.jsx";
+import MenuItemCheckbox from "./MenuItemCheckbox.jsx";
+import MenuItemFileInput from "./MenuItemFileInput.jsx";
+import MenuItemRadio from "./MenuItemRadio.jsx";
+import MenuItemSwitch from "./MenuItemSwitch.jsx";
+import MenuOpenAndClickAMenuItem from "./MenuOpenAndClickAMenuItem.jsx";
+import RadioFindAndChangeValue from "./RadioFindAndChangeValue.jsx";
+import RangeSliderFindAndChangeValue from "./RangeSliderFindAndChangeValue.jsx";
+import SelectFindAndChangeValue from "./SelectFindAndChangeValue.jsx";
+import SelectVerifyTheDisplayValue from "./SelectVerifyTheDisplayValue.jsx";
+import SliderFindAndChangeValue from "./SliderFindAndChangeValue.jsx";
+import SwitchFindAndToggle from "./SwitchFindAndToggle.jsx";
+import TabVerifySelectedTabAndChangeTabs from "./TabVerifySelectedTabAndChangeTabs.jsx";
+import TooltipFindAndVerifyTooltip from "./TooltipFindAndVerifyTooltip.jsx";
+import TreeFindAndVerifyExpansion from "./TreeFindAndVerifyExpansion.jsx";
+import TreeFindAndVerifySelectedItems from "./TreeFindAndVerifySelectedItems.jsx";
+
 # Recipes
 
 This page will provide common testing recipes for components through ReactMD.
@@ -9,7 +31,31 @@ This page will provide common testing recipes for components through ReactMD.
 
 ## Autocomplete
 
-TODO
+The following examples will use the [Autocomplete Simple Example](/components/autocomplete#simple-example)
+code.
+
+### Autocomplete Parts
+
+The `Autocomplete` is broken up into a few accessible roles that can be found:
+
+- `"combobox"` - The main `TextField`
+- `"listbox"` - The popup menu of suggestions
+- `"option"` - The available suggestions in the popup menu
+
+### Find and Change Value
+
+For simple tests, it is recommended just to update the `Autocomplete` like
+a normal `TextField` using `user.type()` or `fireEvent.change()`
+
+<AutocompleteFindAndChangeValue />
+
+### Find and Change Value Through Suggestions
+
+If the test needs to verify specific suggestions are visible, filtering
+behavior, or anything else, open the listbox and select an option to change the
+value.
+
+<AutocompleteFindAndChangeValueThroughSuggestions />
 
 ## Checkbox
 
@@ -17,53 +63,16 @@ TODO
 
 The `Checkbox` can be found like any other checkbox element:
 
-```tsx
-import { rmdRender, screen, userEvent } from "@react-md/core/test-utils";
-
-it("should be able to change value", async () => {
-  const user = userEvent.setup();
-  rmdRender(<Checkbox label="Label" />);
-
-  const checkbox = screen.getByRole("checkbox", { name: "Label" });
-  expect(checkbox).not.toBeChecked();
-
-  await user.click(checkbox);
-  expect(checkbox).toBeChecked();
-
-  await user.click(checkbox);
-  expect(checkbox).not.toBeChecked();
-});
-```
+<CheckboxFindAndChangeValue />
 
 ## FileInput
 
 ### Find and Change Value
 
-The `FileInput` can be found like any other `<input type="file">`:
+The `FileInput` can be found like any other `<input type="file">` and updated
+using the [upload utility](https://testing-library.com/docs/user-event/utility#upload)
 
-```tsx
-function Test(): ReactElement {
-  return (
-    <Form>
-      <FileInput
-        onChange={(event) => {
-          // do something
-        }}
-      />
-    </Form>
-  );
-}
-
-it("should be able to change value", async () => {
-  const user = userEvent.setup();
-  rmdRender(<Test />);
-
-  const input = screen.getByLabelTest("Upload");
-
-  const file = new File(["some-example-content"], "README.md");
-  await user.upload(input, file);
-});
-```
+<FileInputFindAndChangeValue />
 
 ## Radio
 
@@ -71,54 +80,11 @@ it("should be able to change value", async () => {
 
 The `Radio` can be found like any other radio element:
 
-```tsx
-function Test(): ReactElement {
-  const { getRadioProps } = useRadioGroup({ name: "example" });
-
-  return (
-    <Form>
-      <Radio {...getRadioProps("a")} label="First" />
-      <Radio {...getRadioProps("b")} label="Second" />
-      <Radio {...getRadioProps("c")} label="Third" />
-      <Radio {...getRadioProps("d")} label="Forth" />
-    </Form>
-  );
-}
-
-it("should be able to change value", async () => {
-  const user = userEvent.setup();
-  render(<Test />);
-  const radio1 = screen.getByRole("radio", { name: "First" });
-  const radio2 = screen.getByRole("radio", { name: "Second" });
-  const radio3 = screen.getByRole("radio", { name: "Third" });
-  const radio4 = screen.getByRole("radio", { name: "Forth" });
-
-  expect(radio1).toHaveAttribute("value", "a");
-  expect(radio2).toHaveAttribute("value", "b");
-  expect(radio3).toHaveAttribute("value", "c");
-  expect(radio4).toHaveAttribute("value", "d");
-  expect(radio1).not.toBeChecked();
-  expect(radio2).not.toBeChecked();
-  expect(radio3).not.toBeChecked();
-  expect(radio4).not.toBeChecked();
-
-  await user.click(radio1);
-  expect(radio1).toBeChecked();
-  expect(radio2).not.toBeChecked();
-  expect(radio3).not.toBeChecked();
-  expect(radio4).not.toBeChecked();
-
-  await user.click(radio3);
-  expect(radio1).not.toBeChecked();
-  expect(radio2).not.toBeChecked();
-  expect(radio3).toBeChecked();
-  expect(radio4).not.toBeChecked();
-});
-```
+<RadioFindAndChangeValue />
 
 ## Select
 
-> All of these examples will use the [Simple Select](/components/select#simple-select) example code.
+The following examples will use the [Simple Select](/components/select#simple-select) code.
 
 ### Find and Change Value
 
@@ -128,32 +94,7 @@ This example showcases how to:
 - find and verify the current selected option
 - change the selected option
 
-```tsx
-import { rmdRender, screen, userEvent } from "@react-md/core/test-utils";
-
-it("should be able to change value", async () => {
-  const user = userEvent.setup();
-  rmdRender(<SimpleSelect />);
-
-  // this is the clickable element that allows the listbox of options to appear
-  const select = screen.getByRole("combobox", { name: "Label" });
-  // this stores the current value
-  const selectInput = screen.getByRole("textbox", { hidden: true });
-  expect(selectInput).toHaveValue("");
-
-  await user.click(select);
-  // the `name` should be the accessible text in any of the available options
-  await user.click(screen.getByRole("option", { name: "Option 1" }));
-  expect(selectInput).toHaveValue("a");
-
-  await user.click(select);
-
-  // the `Option 1` should now be selected
-  expect(() =>
-    screen.getByRole("option", { name: "Option 1", selected: true })
-  ).not.toThrow();
-});
-```
+<SelectFindAndChangeValue />
 
 ### Verify the Display Value
 
@@ -161,33 +102,7 @@ This example showcases how to find and verify the selected option's display
 value while the Select listbox is closed using the `getSelectTestElements` test
 util query.
 
-```tsx
-import {
-  getSelectTestElements,
-  rmdRender,
-  screen,
-  userEvent,
-} from "@react-md/core/test-utils";
-
-it("should be able to verify the display value", async () => {
-  const user = userEvent.setup();
-  rmdRender(<SimpleSelect />);
-
-  const { select, selectInput, selectedOption } = getSelectTestElements({
-    name: "Label",
-  });
-  // this isn't required, but added to show what element this is
-  expect(selectedOption).toHaveClass("rmd-selected-option");
-
-  // there is currently no selected value
-  expect(selectedOption).toHaveTextContent("");
-
-  await user.click(select);
-  await user.click(screen.getByRole("option", { name: "Option 1" }));
-  expect(selectInput).toHaveValue("a");
-  expect(selectedOption).toHaveTextContent("Option 1");
-});
-```
+<SelectVerifyTheDisplayValue />
 
 ## Slider
 
@@ -207,27 +122,7 @@ a change event on that instead and could be found by
 ReactMD provides a React Testing Library query named `getSliderTestElements`
 that can be used to get the `slider` element and the `sliderInput`.
 
-```tsx
-import {
-  fireEvent,
-  getSliderTestElements,
-  rmdRender,
-  screen,
-} from "@react-md/core/test-utils";
-
-it("should be able to change the value", async () => {
-  rmdRender(<HorizontalSlider />);
-
-  // `name` is the accessible label for the `Slider`
-  const { slider, sliderInput } = getSliderTestElements({ name: "Slider" });
-  expect(slider).toHaveValue(50);
-  expect(sliderInput).toHaveValue("50");
-
-  fireEvent.change(sliderInput, { target: { value: "80" } });
-  expect(slider).toHaveValue(80);
-  expect(sliderInput).toHaveValue("80");
-});
-```
+<SliderFindAndChangeValue />
 
 ### Find and Change Value (Range Slider)
 
@@ -236,33 +131,7 @@ that can be used for a range slider. It will return the `minSlider`,
 `minSliderInput`, `maxSlider`, and `maxSliderInput` allowing the values to be
 verified like the normal slider.
 
-```tsx
-import {
-  fireEvent,
-  getRangeSliderTestElements,
-  rmdRender,
-  screen,
-} from "@react-md/core/test-utils";
-
-import RangeSlider from "../RangeSlider.jsx";
-
-it("should be able to change the value", async () => {
-  rmdRender(<RangeSlider defaultValue={[30, 60]} />);
-
-  const { minSlider, minSliderInput, maxSlider, maxSliderInput } =
-    getRangeSliderTestElements();
-  expedct(minSlider).toHaveValue(30);
-  expedct(minSliderInput).toHaveValue("30");
-  expedct(maxSlider).toHaveValue(60);
-  expedct(maxSliderInput).toHaveValue("60");
-
-  fireEvent.change(minSliderInput, { target: { value: "50" } });
-  expect(slider).toHaveValue(50);
-  expect(sliderInput).toHaveValue("50");
-  expedct(maxSlider).toHaveValue(60);
-  expedct(maxSliderInput).toHaveValue("60");
-});
-```
+<RangeSliderFindAndChangeValue />
 
 ## Switch
 
@@ -271,20 +140,7 @@ it("should be able to change the value", async () => {
 The `Switch` is an extension of an `<input type="checkbox">` with
 `role="switch"`, so the element can be changed just like a `Checkbox`.
 
-```tsx
-import { rmdRender, screen, userEvent } from "@react-md/core/test-utils";
-
-it("should be able to change the checked state", async () => {
-  const user = userEvent.setup();
-  rmdRender(<Switch label="Label" />);
-
-  const switchElement = screen.getByRole("switch", { name: "Label" });
-  expect(switchElement).not.toBeChecked();
-
-  await user.click(switchElement);
-  expect(switchElement).toBeChecked();
-});
-```
+<SwitchFindAndToggle />
 
 # Presentation
 
@@ -298,26 +154,7 @@ A tooltip can be found using using `.getByRole("tooltip")` or
 > !Success! This example will also work with custom `useTooltip` usage and by
 > changing the button to the tooltipped element.
 
-```tsx
-render(
-  <TooltippedButton tooltip={<span>Some Tooltip</span>}>
-    Button
-  </TooltippedButton>
-);
-
-const button = screen.getByRole("button", { name: "Button" });
-
-expect(() => screen.getByRole("tooltip")).toThrow();
-
-await user.hover(button);
-
-// change `name` to the tooltip text or another query
-const tooltip = screen.getByRole("tooltip", { name: "Some Tooltip" });
-expect(tooltip).toBeInTheDocument();
-
-await user.unhover(button);
-expect(tooltip).not.toBeInTheDocument();
-```
+<TooltipFindAndVerifyTooltip />
 
 # Navigation
 
@@ -325,137 +162,13 @@ expect(tooltip).not.toBeInTheDocument();
 
 ### Open and Click a `MenuItem`
 
-```tsx
-import { expect, it, jest } from "@jest/globals";
-import { DropdownMenu } from "@react-md/core/menu/DropdownMenu";
-import { MenuItem } from "@react-md/core/menu/MenuItem";
-import { rmdRender } from "@react-md/core/test-utils";
-import { type ReactElement } from "react";
-
-const handleClick1 = jest.fn();
-const handleClick2 = jest.fn();
-
-function Test(): ReactElement {
-  return (
-    <DropdownMenu buttonChildren="Menu Toggle">
-      <MenuItem onClick={handleClick1}>First Item</MenuItem>
-      <MenuItem onClick={handleClick2}>Second Item</MenuItem>
-    </DropdownMenu>
-  );
-}
-
-describe("Test", () => {
-  it("should be able to open the menu and trigger actions", async () => {
-    const user = userEvent.setup();
-    rmdRender(<Test />);
-
-    const menuToggle = screen.getByRole("button", { name: "Menu Toggle" });
-    expect(() => screen.getByRole("menu")).toThrow();
-
-    await user.click(menuToggle);
-    // this isn't really required, but shows how you can find the menu
-    // the name defaults to the button label, but will reflect the `aria-label`
-    // or `aria-labelledby` prop if it was provided
-    expect(() =>
-      screen.getByRole("menu", { name: "Menu Toggle" })
-    ).not.toThrow();
-
-    await user.click(screen.getByRole("menuitem", { name: "First Item" }));
-    expect(handleClick1).toHaveBeenCalledTimes(1);
-    // menu no longer is visible
-    expect(() => screen.getByRole("menu")).toThrow();
-
-    const menuToggle = screen.getByRole("button", { name: "Menu Toggle" });
-
-    await user.click(screen.getByRole("menuitem", { name: "Second Item" }));
-    expect(handleClick2).toHaveBeenCalledTimes(1);
-  });
-});
-```
+<MenuOpenAndClickAMenuItem />
 
 ### MenuItemCheckbox
 
 The `MenuitemCheckbox` can be found using the `"menuitemcheckbox"` role:
 
-```tsx
-const values = ["a", "b", "c", "d"] as const;
-const labels = {
-  a: "Label 1",
-  b: "Label 2",
-  c: "Label 3",
-  d: "Label 4",
-} as const;
-
-function Test(): ReactElement {
-  const { getCheckboxProps, getIndeterminateProps } = useCheckboxGroup({
-    menu: true,
-    values,
-  });
-
-  return (
-    <DropdownMenu buttonChildren="Checkboxes">
-      <MenuItemCheckbox {...getIndeterminateProps()}>
-        Toggle All
-      </MenuItemCheckbox>
-      {values.map((value) => (
-        <MenuItemCheckbox key={value} {...getCheckboxProps(value)}>
-          {labels[value]}
-        </MenuItemCheckbox>
-      ))}
-    </DropdownMenu>
-  );
-}
-
-it("should be able to change the checked state", async () => {
-  const user = userEvent.setup();
-  rmdRender(<Test />);
-
-  const toggle = screen.getByRole("button", { name: "Checkboxes" });
-
-  await user.click(toggle);
-  let toggleAll = screen.getByRole("menuitemcheckbox", {
-    name: "Toggle All",
-  });
-  let label1 = screen.getByRole("menuitemcheckbox", {
-    name: "Label 1",
-  });
-  let label2 = screen.getByRole("menuitemcheckbox", {
-    name: "Label 2",
-  });
-  let label3 = screen.getByRole("menuitemcheckbox", {
-    name: "Label 3",
-  });
-  let label4 = screen.getByRole("menuitemcheckbox", {
-    name: "Label 4",
-  });
-
-  expect(toggleAll).not.toBeChecked();
-  expect(label1).not.toBeChecked();
-  expect(label2).not.toBeChecked();
-  expect(label3).not.toBeChecked();
-  expect(label4).not.toBeChecked();
-
-  await user.click(label1);
-  // the menu closed
-  expect(toggleAll).not.toBeInTheDocument();
-  expect(label1).not.toBeInTheDocument();
-  expect(label2).not.toBeInTheDocument();
-  expect(label3).not.toBeInTheDocument();
-  expect(label4).not.toBeInTheDocument();
-
-  await user.click(toggle);
-  // can also use `getAllByRole` since the order is known
-  [toggleAll, label1, label2, label3, label4] =
-    screen.getAllByRole("menuitemcheckbox");
-
-  expect(toggleAll).not.toBeChecked();
-  expect(toggleAll).toHaveAttribute("aria-checked", "mixed");
-  expect(label1).toBeChecked();
-  expect(label2).not.toBeChecked();
-  expect(label3).not.toBeChecked();
-  expect(label4).not.toBeChecked();
-});
-```
+<MenuItemCheckbox />
 
 ### MenuItemFileInput
 
@@ -464,177 +177,21 @@ dynamically creates the input when the menu item is clicked. To help test this f
 use the `uploadMenuItemFileInput` from `@react-md/core/test-utils/jest-globals`
 or `@react-md/core/test-utils/vitest`:
 
-```tsx
-import { uploadMenuItemFileInput } from "@react-md/core/test-utils/jest-globals";
-
-function Test(): ReactElement {
-  return (
-    <DropdownMenu buttonChildren="Dropdown Menu">
-      <MenuItemFileInput
-        onChange={(event) => {
-          // do something
-        }}
-      >
-        Upload
-      </MenuItemFileInput>
-    </DropdownMenu>
-  );
-}
-
-it("should be able to trigger the change event", async () => {
-  const user = userEvent.setup();
-  rmdRender(<Test />);
-
-  await user.click(screen.getByRole("button", { name: "Dropdown Menu" }));
-  const menuItem = screen.getByRole("menuitem", { name: "Upload" });
-
-  await uploadMenuItemFileInput({
-    user,
-    menuItem,
-    // this could also be a list of files if multiple files should be uploaded
-    files: new File(["example-content"], "README.md"),
-  });
-
-  // expect the files to be uploaded
-});
-```
+<MenuItemFileInput />
 
 ### MenuItemRadio
 
 The `MenuItemRadio` can be found using the `menuitemradio` role:
 
-```tsx
-const decorations = [
-  "none",
-  "underline",
-  "overline",
-  "strike-through",
-] as const;
-type Decoration = (typeof decorations)[number];
-
-function Test(): ReactElement {
-  const { getRadioProps } = useRadioGroup({
-    menu: true,
-    defaultValue: "none",
-  });
-
-  return (
-    <DropdownMenu buttonChildren="Radio">
-      {decorations.map((decoration) => (
-        <MenuItemRadio key={decoration} {...getRadioProps(decoration)}>
-          {decoration}
-        </MenuItemRadio>
-      ))}
-    </DropdownMenu>
-  );
-}
-
-it("should be able to trigger the change event", async () => {
-  const user = userEvent.setup();
-  rmdRender(<Test />);
-
-  const toggle = screen.getByRole("button", { name: "Dropdown Menu" });
-  await user.click(toggle);
-
-  let none = screen.getByRole("menuitemradio", { name: "none" });
-  let underline = screen.getByRole("menuitemradio", { name: "underline" });
-  let overline = screen.getByRole("menuitemradio", { name: "overline" });
-  let strikeThrough = screen.getByRole("menuitemradio", {
-    name: "strike-through",
-  });
-
-  expect(none).toBeChecked();
-  expect(underline).not.toBeChecked();
-  expect(overline).not.toBeChecked();
-  expect(strikeThrough).not.toBeChecked();
-
-  await user.click(overline);
-  // the menu has closed
-  expect(none).not.toBeInTheDocument();
-  expect(underline).not.toBeInTheDocument();
-  expect(overline).not.toBeInTheDocument();
-  expect(strikeThrough).not.toBeInTheDocument();
-
-  await user.click(toggle);
-
-  // can also just find them using the `getAllByRole`
-  [none, underline, overline, strikeThrough] =
-    screen.getAllByRole("menuitemradio");
-
-  expect(none).not.toBeChecked();
-  expect(underline).not.toBeChecked();
-  expect(overline).toBeChecked();
-  expect(strikeThrough).not.toBeChecked();
-});
-```
+<MenuItemRadio />
 
 ### MenuItemSwitch
 
 The `MenuItemSwitch` can be found using the `"menuitemcheckbox"` role:
 
-```tsx
-function Test(): ReactElement {
-  const [checked, setChecked] = useState(false);
-  return (
-    <DropdownMenu buttonChildren="Toggle">
-      <MenuItemSwitch
-        checked={checked}
-        onCheckedChange={(checked) => setChecked(checked)}
-      >
-        Mute
-      </MenuItemSwitch>
-    </DropdownMenu>
-  );
-}
-
-it("should be able to change the checked state", async () => {
-  const user = userEvent.setup();
-  rmdRender(<Test />);
-
-  const toggle = screen.getByRole("button", { name: "Toggle" });
-  await user.click(toggle);
-
-  const mute = screen.getByRole("menuitemcheckbox", { name: "Mute" });
-  expect(mute).not.toBeChecked();
-
-  await user.click(mute);
-  // the menu has closed
-  expect(mute).not.toBeInTheDocument();
-
-  await user.click(toggle);
-  expect(screen.getByRole("menuitemcheckbox", { name: "Mute" })).toBeChecked();
-});
-```
+<MenuItemSwitch />
 
 ## Tabs
-
-All of the tab tests will use the following test setup:
-
-```tsx
-type TestProps = Omit<TabsHookOptions, "activeTab" | "setActiveTab"> &
-  Pick<TabListProps, "activationMode">;
-
-function Test(props: TestProps): ReactElement {
-  const { activationMode, ...options } = props;
-  const { getTabProps, getTabListProps, getTabPanelProps, getTabPanelsProps } =
-    useTabs(options);
-
-  return (
-    <>
-      <TabList {...getTabListProps()} activationMode={activationMode}>
-        <Tab {...getTabProps(0)}>Tab 1</Tab>
-        <Tab {...getTabProps(1)}>Tab 2</Tab>
-        <Tab {...getTabProps(2)}>Tab 3</Tab>
-      </TabList>
-      <SlideContainer {...getTabPanelsProps()} data-testid="panels">
-        <Slide {...getTabPanelProps(0)}>Tab 1 Content</Slide>
-        <Slide {...getTabPanelProps(1)}>Tab 2 Content</Slide>
-        <Slide {...getTabPanelProps(2)}>Tab 3 Content</Slide>
-      </SlideContainer>
-    </>
-  );
-}
-```
 
 ### Verify Selected Tab and Change Tabs
 
@@ -643,63 +200,19 @@ found using the `"tabpanel"` role. The inactive tab panels are hidden using
 `display: none` by default so the visibility can be tested using the
 [isElementVisible util](#%EF%B8%8F-iselementvisible-util).
 
-```tsx
-import { Tab } from "@react-md/core/tabs/Tab.js";
-import { TabList, type TabListProps } from "@react-md/core/tabs/TabList.js";
-import { type TabsHookOptions, useTabs } from "@react-md/core/tabs/useTabs.js";
-import { Slide } from "@react-md/core/transition/Slide.js";
-import { SlideContainer } from "@react-md/core/transition/SlideContainer.js";
-import { isElementVisible } from "@react-md/core/utils/isElementVisible.js";
+This test uses the [Tabs Simple Example](/components/tabs#simple-example).
 
-it("should test something...", async () => {
-  const user = userEvent.setup();
-  rmdRender(<Test />);
-
-  const tab1 = screen.getByRole("tab", { name: "Tab 1" });
-  const tab2 = screen.getByRole("tab", { name: "Tab 2" });
-  const tab3 = screen.getByRole("tab", { name: "Tab 3" });
-  const panel1 = screen.getByRole("tabpanel", { name: "Tab 1" });
-  const panel2 = screen.getByRole("tabpanel", { name: "Tab 2" });
-  const panel3 = screen.getByRole("tabpanel", { name: "Tab 3" });
-
-  expect(tab1).toHaveAttribute("aria-selected", "true");
-  expect(tab2).toHaveAttribute("aria-selected", "false");
-  expect(tab3).toHaveAttribute("aria-selected", "false");
-  expect(isElementVisible(panel1)).toBe(true);
-  expect(isElementVisible(panel2)).toBe(false);
-  expect(isElementVisible(panel3)).toBe(false);
-
-  await user.click(tab2);
-  expect(tab1).toHaveAttribute("aria-selected", "false");
-  expect(tab2).toHaveAttribute("aria-selected", "true");
-  expect(tab3).toHaveAttribute("aria-selected", "false");
-  expect(isElementVisible(panel1)).toBe(false);
-  expect(isElementVisible(panel2)).toBe(true);
-  expect(isElementVisible(panel3)).toBe(false);
-});
-```
+<TabVerifySelectedTabAndChangeTabs />
 
 ## Tree
+
+The following examples use the [Single Select Tree Example](/components/tree#single-select-tree).
 
 ### Find and Verify Selected Items
 
 The top-level tree can be found using the `"tree"` role and each item with `"treeitem"`:
 
-```tsx
-rmdRender(<Test />);
-
-// name is the `aria-label`
-const tree = screen.getByRole("tree", { name: "Tree" });
-const item1 = screen.getByRole("treeitem", { name: "Item 1" });
-const item2 = screen.getByRole("treeitem", { name: "Item 2" });
-
-expect(item1).toHaveAttribute("aria-selected", "true");
-expect(item2).toHaveAttribute("aria-selected", "false");
-
-await user.click(item2);
-expect(item1).toHaveAttribute("aria-selected", "false");
-expect(item2).toHaveAttribute("aria-selected", "true");
-```
+<TreeFindAndVerifySelectedItems />
 
 ### Find and Verify Expansion
 
@@ -708,41 +221,7 @@ rendered but hidden using `display: none`. The expansion state can be verified
 using the `aria-expanded` attribute on the tree item or using the
 `isElementVisible` util with each subtree group.
 
-```tsx
-rmdRender(<Test />);
-
-const tree = screen.getByRole("tree", { name: "Tree" });
-const item1 = screen.getByRole("treeitem", { name: "Item 1" });
-const item2 = screen.getByRole("treeitem", { name: "Item 2" });
-
-// pretend only item1 has child items
-const subtrees = within(tree).getAllByRole("group");
-expect(subtrees).toHaveLength(1);
-const [item1Subtree] = subtrees;
-
-// NOTE: This would error while not expanded if the `temporaryChildItems` prop was enabled.
-// Also, this could be found by
-// `within(item1Subtree).getByRole("treeitem", { name: "Item 1-1" })`
-// if there are items with the same name
-const item11 = screen.getByRole("treeitem", { name: "Item 1-1" });
-
-expect(item1).toHaveAttribute("aria-selected", "true");
-expect(item1).toHaveAttribute("aria-expanded", "false");
-expect(item2).toHaveAttribute("aria-selected", "false");
-expect(item2).toHaveAttribute("aria-expanded", "false");
-expect(isElementVisible(item1Subtree)).toBe(false);
-
-await user.click(item1);
-expect(item1).toHaveAttribute("aria-selected", "true");
-expect(item1).toHaveAttribute("aria-expanded", "true");
-expect(item2).toHaveAttribute("aria-selected", "false");
-expect(item2).toHaveAttribute("aria-expanded", "false");
-
-// due to timers, might to use `waitFor`
-await waitFor(() => {
-  expect(isElementVisible(item1Subtree)).toBe(true);
-});
-```
+<TreeFindAndVerifyExpansion />
 
 # Feedback
 
@@ -751,90 +230,16 @@ await waitFor(() => {
 ### Find and Toggle Visibility
 
 Both the `Dialog` and `Sheet` can be found using the `"dialog"` role or `"alertdialog"` when
-the `modal` prop is enabled:
+the `modal` prop is enabled. Here's a simple test flow for the
+[Simple Dialog Example](/components/dialog#simple-example).
 
-```tsx
-function Example(): ReactElement {
-  const { enable: show, disable: hide, toggled: visible } = useState(false);
-  const titleId = useId();
-
-  return (
-    <>
-      <Button onClick={show}>Show</Button>
-      <Dialog aria-labelledby={titleId} visible={visible} onRequestClose={hide}>
-        <DialogHeader>
-          <DialogTitle id={titleId}>Hello, world!</DialogTitle>
-          <Button aria-label="Close" onClick={hide}>
-            <CloseIcon />
-          </Button>
-        </DialogHeader>
-        <DialogContent>
-          <Typography>Here is some content.</Typography>
-        </DialogContent>
-      </Dialog>
-    </>
-  );
-}
-
-it("should be able to change the visibility", async () => {
-  const user = userEvent.setup();
-  rmdRender(<Test />);
-
-  // not required -- just show that the dialog isn't visible
-  expect(() => screen.getByRole("dialog")).toThrow();
-
-  const show = screen.getByRole("button", { name: "Show" });
-  await user.click(show);
-
-  const dialog = screen.getByRole("dialog", { name: "Hello, world!" });
-  // do whatever you want to verify
-
-  // close the dialog by clicking the close button
-  await user.click(screen.getByRole("button", { name: "Close" }));
-  expect(dialog).not.toBeInTheDocument();
-});
-```
+<DialogFindAndToggleVisibility />
 
 # Layout
 
 ## Expansion Panel
 
-All of the examples below will use this following test component:
-
-```tsx
-interface TestProps extends ExpansionPanelHookOptions {
-  manualIds?: boolean;
-  disablePanel2?: boolean;
-}
-
-function Test(props: TestProps): ReactElement {
-  const { manualIds, ...options } = props;
-  const { getPanelProps } = useExpansionPanels(options);
-
-  return (
-    <ExpansionList>
-      <ExpansionPanel
-        {...getPanelProps(manualIds ? "panel-1" : 0)}
-        headerChildren="Panel 1"
-      >
-        Panel 1 Contents
-      </ExpansionPanel>
-      <ExpansionPanel
-        {...getPanelProps(manualIds ? "panel-2" : 1)}
-        headerChildren="Panel 2"
-      >
-        Panel 2 Contents
-      </ExpansionPanel>
-      <ExpansionPanel
-        {...getPanelProps(manualIds ? "panel-3" : 2)}
-        headerChildren="Panel 3"
-      >
-        Panel 3 Contents
-      </ExpansionPanel>
-    </ExpansionList>
-  );
-}
-```
+The following examples use the [Expansion Panel Group Example](/components/expansion-panel#expansion-panel-group).
 
 ### Find and Verify Expansion
 
@@ -843,39 +248,7 @@ contents can be found using the `"region"` role. The collapsed panel contents
 are hidden using `display: none` by default so the visibility can be tested
 using the [isElementVisible util](#%EF%B8%8F-iselementvisible-util).
 
-```tsx
-it("should test something", async () => {
-  const user = userEvent.setup();
-  render(<Test />);
-  const panel1 = screen.getByRole("button", { name: "Panel 1" });
-  const panel2 = screen.getByRole("button", { name: "Panel 2" });
-  const panel3 = screen.getByRole("button", { name: "Panel 3" });
-
-  const [panel1Contents, panel2Contents, panel3Contents] =
-    screen.getAllByRole("region");
-
-  expect(panel1).toHaveAttribute("aria-expanded", "false");
-  expect(panel2).toHaveAttribute("aria-expanded", "false");
-  expect(panel3).toHaveAttribute("aria-expanded", "false");
-  expect(panel1Contents).toBeInTheDocument();
-  expect(panel2Contents).toBeInTheDocument();
-  expect(panel3Contents).toBeInTheDocument();
-  expect(isElementVisible(panel1Contents)).toBe(false);
-  expect(isElementVisible(panel2Contents)).toBe(false);
-  expect(isElementVisible(panel3Contents)).toBe(false);
-
-  await user.click(panel3);
-  expect(panel1).toHaveAttribute("aria-expanded", "false");
-  expect(panel2).toHaveAttribute("aria-expanded", "false");
-  expect(panel3).toHaveAttribute("aria-expanded", "true");
-  expect(panel1Contents).toBeInTheDocument();
-  expect(panel2Contents).toBeInTheDocument();
-  expect(panel3Contents).toBeInTheDocument();
-  expect(isElementVisible(panel1Contents)).toBe(false);
-  expect(isElementVisible(panel2Contents)).toBe(false);
-  expect(isElementVisible(panel3Contents)).toBe(true);
-});
-```
+<ExpansionPanelFindAndVerifyExpansion />
 
 # ⚠️ isElementVisible util
 

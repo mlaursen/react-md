@@ -14,7 +14,6 @@ import { rmdConfig } from "./rmdConfig.jsx";
 import { MyCustomProviders } from "./MyCustomProviders.jsx";
 
 export * from "@react-md/core/test-utils";
-// NOTE: The next line changes depending on the framework
 export * from "@react-md/core/test-utils/{FRAMEWORK}";
 
 export const render = (

@@ -1,13 +1,13 @@
-import { afterEach, describe, expect, it, jest } from "@jest/globals";
+import { describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement, type Ref, createRef } from "react";
 
 import {
   act,
-  cleanupResizeObserverAfterEach,
   rmdRender,
   screen,
   setupResizeObserverMock,
 } from "../../test-utils/index.js";
+import { cleanupResizeObserverAfterEach } from "../../test-utils/jest-globals/index.js";
 import { LayoutAppBar, type LayoutAppBarProps } from "../LayoutAppBar.js";
 import { Main } from "../Main.js";
 
@@ -28,7 +28,7 @@ function Test(
   );
 }
 
-cleanupResizeObserverAfterEach(afterEach, jest.restoreAllMocks);
+cleanupResizeObserverAfterEach();
 
 describe("LayoutAppBar", () => {
   it("should apply the correct styling, HTMLAttributes, and allow a ref", () => {

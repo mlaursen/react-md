@@ -1,23 +1,23 @@
-import { afterEach, describe, expect, it, jest } from "@jest/globals";
+import { describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement, useEffect } from "react";
 
 import {
   act,
-  cleanupResizeObserverAfterEach,
   createResizeObserverEntry,
   render,
   screen,
   setupResizeObserverMock,
   waitFor,
 } from "../test-utils/index.js";
+import { cleanupResizeObserverAfterEach } from "../test-utils/jest-globals/index.js";
 import {
   type ResizeObserverEntryCallback,
   useResizeObserver,
 } from "../useResizeObserver.js";
 
-describe("useResizeObserver", () => {
-  cleanupResizeObserverAfterEach(afterEach, jest.restoreAllMocks);
+cleanupResizeObserverAfterEach();
 
+describe("useResizeObserver", () => {
   it("should only create a single shared observer to improve performance", () => {
     const observe = jest.fn();
     const resizeObserverSpy = jest

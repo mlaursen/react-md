@@ -3,16 +3,16 @@ import { type ReactElement } from "react";
 import TestFrameworkCodeBlock from "../TestFrameworkCodeBlock.jsx";
 
 const BASE_CODE = `
-import { afterEach, describe, expect, it, {FRAMEWORK} } from "{IMPORT}";
+import { afterEach, describe, expect, it, {LOCAL} } from "{IMPORT}";
 import {
-  cleanupResizeObserverAfterEach,
   render,
   screen,
   setupResizeObserverMock,
 } from "@react-md/core/test-utils";
+import { cleanupResizeObserverAfterEach } from "@react-md/core/test-utils/{FRAMEWORK}"
 import { ExampleComponent } from "../ExampleComponent.jsx";
 
-cleanupResizeObserverAfterEach(afterEach, {FRAMEWORK}.restoreAllMocks);
+cleanupResizeObserverAfterEach();
 
 describe("ExampleComponent", () => {
   it("should do stuff", () => {
@@ -32,7 +32,7 @@ describe("ExampleComponent", () => {
     expect(size).toHaveTextContent(JSON.stringify({ height: 100, width: 100 }));
 
     // or you can mock the \`getBoundingClientRect\` result
-    jest.spyOn(resizeTarget, "getBoundingClientRect").mockReturnValue({
+    {LOCAL}.spyOn(resizeTarget, "getBoundingClientRect").mockReturnValue({
       ...document.body.getBoundingClientRect(),
       height: 200,
       width: 200,
@@ -52,14 +52,12 @@ export default function ResizeObserverMockExample(): ReactElement {
     <TestFrameworkCodeBlock
       lang="tsx"
       code={{
-        jest: BASE_CODE.replace(/{IMPORT}/g, "@jest/globals").replace(
-          /{FRAMEWORK}/g,
-          "jest"
-        ),
-        vitest: BASE_CODE.replace(/{IMPORT}/g, "vitest").replace(
-          /{FRAMEWORK}/g,
-          "vitest"
-        ),
+        jest: BASE_CODE.replace(/{IMPORT}/g, "@jest/globals")
+          .replace(/{LOCAL}/g, "jest")
+          .replace(/{FRAMEWORK}/g, "jest-globals"),
+        vitest: BASE_CODE.replace(/{IMPORT}/g, "vitest")
+          .replace(/{LOCAL}/g, "vi")
+          .replace(/{FRAMEWORK}/g, "vitest"),
       }}
       fileName="Resize Observer Testing"
     />

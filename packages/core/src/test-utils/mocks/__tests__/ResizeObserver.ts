@@ -1,18 +1,16 @@
-import { afterEach, describe, expect, it, jest } from "@jest/globals";
+import { describe, expect, it, jest } from "@jest/globals";
 import { waitFor } from "@testing-library/react";
 
 import {
   ResizeObserverManager,
   resizeObserverManager,
 } from "../../../useResizeObserver.js";
+import { cleanupResizeObserverAfterEach } from "../../jest-globals/index.js";
 import { createResizeObserverEntry } from "../../utils/createResizeObserverEntry.js";
-import {
-  cleanupResizeObserverAfterEach,
-  setupResizeObserverMock,
-} from "../ResizeObserver.js";
+import { setupResizeObserverMock } from "../ResizeObserver.js";
 
 describe("ResizeObserverMock", () => {
-  cleanupResizeObserverAfterEach(afterEach, jest.restoreAllMocks);
+  cleanupResizeObserverAfterEach();
 
   it("should throw an error when the resizeElement function is called for an element that is not being watched", () => {
     const baseRect = document.body.getBoundingClientRect();

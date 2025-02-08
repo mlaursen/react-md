@@ -3,6 +3,7 @@ import { type ReactElement } from "react";
 import TestFrameworkCodeBlock from "../TestFrameworkCodeBlock.jsx";
 
 const BASE_CODE = `
+import { jest } from "@jest/globals";
 import { testImmediateRaf } from "@react-md/core/test-utils/jest-globals";
 
 afterEach(() => {
