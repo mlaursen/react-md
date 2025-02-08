@@ -267,8 +267,10 @@ export function RootLayout({ children }: RootLayoutProps): ReactElement {
 "use client";
 
 import { useColorScheme } from "@react-md/core/theme/useColorScheme";
+import { useHtmlClassName } from "@react-md/core/useHtmlClassName";
 
 export function LoadThemeStyles(): null {
+  const { colorSchemeMode } = useColorScheme();
   useHtmlClassName(`${colorSchemeMode}-theme`);
   return null;
 }

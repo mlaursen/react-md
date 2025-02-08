@@ -11,12 +11,9 @@ import {
 /**
  * @example Applying Variables the root html element
  * ```ts
- * import {
- *   contrastColor,
- *   pinkAccent200,
- *   purple500,
- *   useCSSVariables,
- *  } from "@react-md/core";
+ * import { purple500 } from "@react-md/core/theme/colors";
+ * import { useCSSVariables } from "@react-md/core/theme/useCSSVariables";
+ * import { contrastColor } from "@react-md/core/theme/utils";
  * import { useMemo } from "react";
  *
  * function Example(): null {
@@ -48,15 +45,11 @@ export function useCSSVariables<Name extends CSSVariableName>(
 /**
  * @example Applying variables through inline styles
  * ```tsx
- * import {
- *   contrastColor,
- *   ReadonlyCSSVariableList,
- *   pinkAccent200,
- *   purple500,
- *   useCSSVariables,
- *  } from "@react-md/core";
- * import { useMemo } from "react";
- * import type { ReactElement, ReactNode } from "react";
+ * import { purple500 } from "@react-md/core/theme/colors";
+ * import { type ReadonlyCSSVariableList } from "@react-md/core/theme/types";
+ * import { useCSSVariables } from "@react-md/core/theme/useCSSVariables";
+ * import { contrastColor } from "@react-md/core/theme/utils";
+ * import { type ReactElement, type ReactNode, useMemo } from "react";
  *
  * function Example({ children }: { children: ReactNode }): ReactElement {
  *   const customVariables = useMemo<ReadonlyCSSVariableList>(() => {

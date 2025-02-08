@@ -545,11 +545,6 @@ export const navItems: readonly NavigationItem[] = [
       },
       {
         type: "route",
-        href: "/use-scroll-lock",
-        children: "useScrollLock",
-      },
-      {
-        type: "route",
         href: "/use-toggle",
         children: "useToggle",
       },
@@ -588,6 +583,11 @@ export const navItems: readonly NavigationItem[] = [
         type: "route",
         href: "/use-focus-container",
         children: "useFocusContainer",
+      },
+      {
+        type: "route",
+        href: "/use-scroll-lock",
+        children: "useScrollLock",
       },
     ],
   },

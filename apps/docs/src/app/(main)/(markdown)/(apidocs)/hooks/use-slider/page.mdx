@@ -1,0 +1,67 @@
+# useSlider
+
+```ts
+function useSlider(options?: SliderOptions): SliderImplementation;
+```
+
+## Example Usage
+
+```tsx
+const slider = useSlider();
+const { value, setValue, min, max, step } = slider;
+
+return <Slider aria-label="Example" {...slider} />
+```
+
+> !Info! See the [Slider component](/components/slider) for more examples.
+
+## Parameters
+
+- `options` (optional) - An object with the following definition:
+
+```ts disableScroll disableTransform
+export interface SliderValueOptions {
+  /**
+   * The min value for the slider.
+   *
+   * @defaultValue `0`
+   */
+  min?: number;
+
+  /**
+   * The max value for the slider.
+   *
+   * @defaultValue `100`
+   */
+  max?: number;
+
+  /**
+   * A positive number representing the value to "jump" while incrementing or
+   * decrementing the slider's value. This should normally stay as the default
+   * value of `1`, but can also be decimal values if needed.
+   *
+   * @defaultValue `1`
+   */
+  step?: number;
+}
+
+export interface SliderOptions extends SliderValueOptions {
+  /**
+   * @defaultValue `(max - min ) / 2`
+   */
+  defaultValue?: UseStateInitializer<number>;
+}
+```
+
+## Returns
+
+```ts disableScroll disableTransform
+export interface SliderState {
+  value: number;
+  setValue: UseStateSetter<number>;
+}
+
+export interface SliderImplementation
+  extends Required<SliderValueOptions>,
+    SliderState {}
+```

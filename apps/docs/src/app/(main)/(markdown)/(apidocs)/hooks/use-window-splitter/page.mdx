@@ -1,0 +1,133 @@
+# useWindowSplitter
+
+```ts
+function useWindowSplitter<E extends HTMLElement = HTMLButtonElement>(
+  options: WindowSplitterOptions<E>
+): WindowSplitterImplementation<E>;
+```
+
+The `useWindowSplitter` hook is used to control the `WindowSplitter` component
+and resize different panels in the UI.
+
+## Example Usage
+
+The `useWindowSplitter` requires a `min` and `max` value with an optional default value.
+
+> !Info! See the [Window Splitter component](/components/window-splitter) for more examples.
+
+```tsx
+function Example() {
+  const { width } = useWindowSize({ disableHeight: true });
+  const { value, splitterProps } = useWindowSplitter({
+    min: 256,
+    max: Math.max(400, width - width / 4),
+    defaultValue: 256,
+  });
+  // update style of some other panel by this variable
+  useCSSVariables(
+    useMemo(() => [
+      { name: "--rmd-window-splitter-position", value: `${value}px` },
+    ])
+  );
+
+  return (
+    <WindowSplitter
+      {...splitterProps}
+      aria-controls={sheetId}
+      aria-label="Resize Sheet"
+    />
+  );
+}
+```
+
+## Parameters
+
+> !Warn! There are a lot of options. It is easier to just inspect this in the editor instead.
+
+- `options` - An object with the following definition:
+
+```ts disableScroll disableTransform
+export type WindowSplitterOptions<E extends HTMLElement = HTMLButtonElement> =
+  BaseWindowSplitterOptions<E> & DraggableStateOptions;
+
+export interface BaseWindowSplitterOptions<
+  E extends HTMLElement = HTMLButtonElement,
+> extends Omit<BaseDraggableOptions<E>, keyof DraggableTouchEventHandlers<E>> {
+  /**
+   * An optional id to use for the window splitter.
+   *
+   * @defaultValue `"window-splitter-" + useId()`
+   */
+  id?: string;
+
+  /**
+   * An optional ref for the window splitter element. This will be merged into
+   * the {@link WindowSplitterWidgetProps.ref}.
+   */
+  ref?: Ref<E>;
+}
+
+export type DraggableStateOptions =
+  | UncontrolledDraggableOptions
+  | ControlledValueDraggableOptions
+  | ControlledDraggingDraggableOptions
+  | FullyControlledDraggableOptions;
+
+export interface ControllableDraggableStateOptions {
+  value?: number;
+  setValue?: UseStateSetter<number>;
+  defaultValue?: UseStateInitializer<number>;
+  dragging?: boolean;
+  setDragging?: UseStateSetter<boolean>;
+}
+
+export type DraggableTouchEventHandlers<E extends HTMLElement> = Pick<
+  HTMLAttributes<E>,
+  "onTouchStart" | "onTouchMove"
+>;
+
+export type DraggableMouseEventHandlers<E extends HTMLElement> = Pick<
+  HTMLAttributes<E>,
+  "onMouseDown" | "onMouseUp" | "onMouseMove"
+>;
+
+export type DraggableKeyboardEventHandlers<E extends HTMLElement> = Pick<
+  HTMLAttributes<E>,
+  "onKeyDown"
+>;
+
+export type DraggableEventHandlers<E extends HTMLElement> =
+  DraggableTouchEventHandlers<E> &
+    DraggableMouseEventHandlers<E> &
+    DraggableKeyboardEventHandlers<E>;
+```
+
+## Returns
+
+```ts disableScroll disableTransform
+export interface WindowSplitterImplementation<
+  E extends HTMLElement = HTMLButtonElement,
+> extends DraggableImplementation<E> {
+  splitterProps: WindowSplitterWidgetProps<E>;
+}
+
+export interface WindowSplitterWidgetProps<E extends HTMLElement>
+  extends Required<DraggableMouseEventHandlers<E>>,
+    Required<DraggableKeyboardEventHandlers<E>> {
+  "aria-orientation": "vertical" | undefined;
+  "aria-valuenow": number;
+  "aria-valuemin": number;
+  "aria-valuemax": number;
+  id: string;
+  ref: RefCallback<E>;
+  role: "separator";
+  reversed: boolean;
+  dragging: boolean;
+}
+```
+
+## See Also
+
+- [useDraggable](./use-draggable)
+- [useResizableLayout](./use-resizeable-layout)
+- [WindowSplitter](/components/window-splitter)

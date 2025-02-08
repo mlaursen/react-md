@@ -32,6 +32,27 @@ export interface AsyncFunctionHookOptions {
  */
 export interface AsyncFunctionHookImplementation {
   pending: boolean;
+
+  /**
+   * This ref can be used to prevent setting state on an unmounted component.
+   * @example
+   * ```tsx
+   * const { handleAsync, pending, unmounted } = useAsyncFunction();
+   *
+   * return (
+   *   <Button
+   *     onClick={async () => {
+   *       await handleAsync(someAsyncTaskThatMightUnmountThisComponent);
+   *       if (!unmounted.current) {
+   *         // set some local state
+   *       }
+   *     }}
+   *  >
+   *    Button
+   *  </Button>
+   * );
+   * ```
+   */
   unmounted: NonNullRef<boolean>;
   setPending: UseStateSetter<boolean>;
   handleAsync: HandleAsyncFunction;

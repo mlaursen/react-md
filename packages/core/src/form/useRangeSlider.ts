@@ -23,6 +23,7 @@ export interface RangeSliderState {
  * @since 6.0.0
  */
 export interface RangeSliderOptions extends SliderValueOptions {
+  /** @defaultValue `[min, max]` */
   defaultValue?: UseStateInitializer<RangeSliderValue>;
 }
 

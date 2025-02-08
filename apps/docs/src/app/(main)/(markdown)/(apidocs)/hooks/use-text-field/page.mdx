@@ -1,0 +1,364 @@
+# useTextField
+
+```ts
+function useTextField<E extends HTMLInputElement | HTMLTextAreaElement>(
+  options: TextFieldHookOptions<E>
+): ValidatedTextFieldImplementation<E>;
+```
+
+The `useTextField` hook can be used for extremely simple validation using the
+[browser's constraint validation](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/Constraint_validation).
+If values need to be validate with complex logic or against other fields, use
+[react-hook-form](https://react-hook-form.com/) or another library instead.
+
+## Example Usage
+
+The `useTextField` will always require a `name` to be provided:
+
+```tsx
+function Example() {
+  const { fieldProps } = useTextField({
+    name: "example",
+  });
+
+  return <TextField {...fieldProps} label="Example" />;
+}
+```
+
+### No Inline Error messages
+
+If you do not want to display the error messages below the `TextField` and
+handle error messages separately, set the `disableMessage` option to `true`.
+
+```tsx
+function Example() {
+  const { fieldProps } = useTextField({
+    name: "example",
+    disableMessage: true,
+  });
+
+  return <TextField {...fieldProps} label="Example" />;
+}
+```
+
+### Inline Counter
+
+An inline counter can be rendered with the `TextField` be enabling the
+`counter` prop and setting a `maxLength` value.
+
+```tsx
+function Example() {
+  const { fieldProps } = useTextField({
+    name: "example",
+    counter: true,
+    required: true,
+    maxLength: 20,
+    // this allows the user to type beyond the max length limit and display
+    // an error message. omit or set to `false` to enforce the max length instead
+    disableMaxLength: true,
+  });
+
+  return <TextField {...fieldProps} label="Example" />;
+}
+```
+
+### Adding Constraints
+
+Simple constraint validation can be added using the `pattern`, `minLength`, and `maxLength` options.
+
+```tsx
+function Example() {
+  const { fieldProps } = useTextField({
+    name: "example",
+    required: true,
+    pattern: "^[A-z]+$",
+    minLength: 4,
+    maxLength: 20,
+  });
+
+  return <TextField {...fieldProps} label="Example" />;
+}
+```
+
+### Custom Validation
+
+Custom error messaging can be provided using the `getErrorMessage` option. It
+should return a string
+
+```tsx
+import { useTextField } from "@react-md/core/form/useTextField";
+import { defaultGetErrorMessage } from "@react-md/core/form/validation";
+
+function Example() {
+  const { fieldProps } = useTextField({
+    name: "example",
+    required: true,
+    getErrorMessage(options) {
+      const {
+        value,
+        pattern,
+        required,
+        minLength,
+        maxLength,
+        validity,
+        validationMessage,
+        isNumber,
+        isBlurEvent,
+        validationType,
+      } = options;
+
+      if (validity.tooLong) {
+        return `No more than ${maxLength} characters.`;
+      }
+
+      if (validity.tooShort) {
+        return `No more than ${minLength} characters.`;
+      }
+
+      if (validity.valueMissing) {
+        return "This value is required!";
+      }
+
+      if (value === "bad value") {
+        return "Value cannot be bad value";
+      }
+
+      return defaultGetErrorMessage(options);
+    },
+  });
+
+  return <TextField {...fieldProps} label="Example" />;
+}
+```
+
+### Additional Return Values
+
+The `useTextField` hook returns some other values and functions to customize or
+control the text field behavior.
+
+```tsx
+function Example() {
+  const { value, error, errorMessage, reset, setState, fieldRef, fieldProps } =
+    useTextField();
+
+  return <TextField label="Field" {...fieldProps} />;
+}
+```
+
+## Parameters
+
+- `options` - An object with the following definition:
+
+````ts disableScroll disableTransform
+export type TextFieldValidationOptions = Pick<
+  InputHTMLAttributes<HTMLInputElement>,
+  "minLength" | "maxLength" | "required" | "pattern"
+>;
+
+export type TextFieldChangeHandlers<
+  E extends HTMLInputElement | HTMLTextAreaElement,
+> = Pick<HTMLAttributes<E>, "onBlur" | "onChange" | "onInvalid">;
+
+export interface TextFieldHookOptions<
+  E extends HTMLInputElement | HTMLTextAreaElement,
+> extends TextFieldValidationOptions,
+    TextFieldChangeHandlers<E> {
+  /**
+   * An optional id to use for the `TextField` or `TextArea` that is also used
+   * to create an id for the inline help/error messages.
+   *
+   * @defaultValue `"text-field-" + useId()`
+   */
+  id?: string;
+
+  /**
+   * An optional ref that should be merged with the ref returned by this hook.
+   * This should really only be used if you are making a custom component using
+   * this hook and forwarding refs. If you need a ref to access the `<input>` or
+   * `<textarea>` DOM node, you can use the `fieldRef` returned by this hook
+   * instead.
+   *
+   * @example Accessing TextField DOM Node
+   * ```tsx
+   * import { TextField, useTextField } from "@react-md/core";
+   * import { useEffect } from "react";
+   * import type { ReactElement } from "react";
+   *
+   * function Example(): ReactElement {
+   *   const { fieldRef, fieldProps } = useTextField({ name: "example" });
+   *
+   *   useEffect(() => {
+   *     fieldRef.current;
+   *     //       ^ HTMLInputElement | null
+   *   }, [fieldRef]);
+   *
+   *   return <TextField {...fieldProps} label="Example" />;
+   * }
+   * ```
+   */
+  ref?: Ref<E>;
+
+  /**
+   * A unique name to attach to the `TextField`, `TextArea` or `Password`
+   * component.
+   */
+  name: string;
+
+  /**
+   * Boolean if the `FormMessage` should also display a counter for the
+   * remaining letters allowed based on the `maxLength`.
+   *
+   * This will still be considered false if the `maxLength` value is not
+   * provided.
+   *
+   * @defaultValue `false`
+   */
+  counter?: boolean;
+
+  /**
+   * This is used internally for the `useNumberField` hook and probably
+   * shouldn't be used otherwise. This is just passed into the
+   * {@link getErrorMessage} options and is used for additional validation.
+   *
+   * @defaultValue `false`
+   */
+  isNumber?: boolean;
+
+  /**
+   * The default value to use for the `TextField` or `TextArea` one initial
+   * render. If you want to manually change the value to something else after
+   * the initial render, either change the `key` for the component containing
+   * this hook, or use the `setState` function returned from this hook.
+   *
+   * @defaultValue `""`
+   */
+  defaultValue?: UseStateInitializer<string>;
+
+  /**
+   * An optional help text to display in the `FormMessage` component when there
+   * is not an error.
+   */
+  helpText?: ReactNode;
+
+  /**
+   * A function used to determine if the `TextField` or `TextArea` is an in
+   * errored state.
+   *
+   * @see {@link defaultIsErrored}
+   * @defaultValue `defaultIsErrored`
+   */
+  isErrored?: IsErrored;
+
+  /**
+   * An optional error icon used in the {@link getErrorIcon} option.
+   *
+   * @defaultValue `getIcon("error")`
+   */
+  errorIcon?: ReactNode;
+
+  /**
+   * A function used to get the error icon to display at the right of the
+   * `TextField` or `TextArea`. The default behavior will only show an icon when
+   * the `error` state is `true` and an `errorIcon` option has been provided.
+   *
+   * @see {@link defaultGetErrorIcon}
+   * @defaultValue `defaultGetErrorIcon`
+   */
+  getErrorIcon?: GetErrorIcon;
+
+  /**
+   * A function to get and display an error message based on the `TextField` or
+   * `TextArea` validity.
+   *
+   * @see {@link defaultGetErrorMessage}
+   * @defaultValue `defaultGetErrorMessage`
+   */
+  getErrorMessage?: GetErrorMessage;
+
+  /**
+   * An optional function that will be called whenever the `error` state is
+   * changed. This can be used for more complex forms to `disable` the Submit
+   * button or anything else if any field has an error.
+   *
+   * @defaultValue `() => {}`
+   */
+  onErrorChange?: ErrorChangeHandler<E>;
+
+  /**
+   * Boolean if the `TextField` or `TextArea` will **not** be rendered along
+   * with a `FormMessage` component. This will prevent the `aria-describedby`
+   * prop from being returned when set to `true`.
+   *
+   * @defaultValue `false`
+   */
+  disableMessage?: boolean;
+
+  /**
+   * Boolean if the `maxLength` prop should not be passed to the `TextField`
+   * component since it will prevent any additional characters from being
+   * entered in the text field which might feel like weird behavior to some
+   * users. This should really only be used when the `counter` option is also
+   * enabled and rendering along with a `FormMessage` component.
+   *
+   * @defaultValue `false`
+   */
+  disableMaxLength?: boolean;
+
+  /**
+   * @defaultValue `"recommended"`
+   */
+  validationType?: TextFieldValidationType;
+}
+````
+
+## Returns
+
+The return type has the following shape, but changes depending on the provided options.
+Just know that it is always save to pass the `fieldProps` to the `TextField` component.
+
+```ts disableScroll disableTransform
+export interface TextFieldHookState {
+  /**
+   * The current value for the `TextField` or `TextArea`.
+   */
+  value: string;
+
+  /**
+   * This will be `true` when the `TextField`/`TextArea` has an error.
+   */
+  error: boolean;
+
+  /**
+   * The error message returned by {@link GetErrorMessage}/the browser's
+   * validation message. This is normally an empty string when the {@link error}
+   * state is `false`.
+   */
+  errorMessage: string;
+}
+
+export interface TextFieldImplementation<
+  E extends HTMLInputElement | HTMLTextAreaElement,
+> extends TextFieldHookState {
+  fieldRef: RefObject<E>;
+  reset: () => void;
+  setState: UseStateSetter<Readonly<TextFieldHookState>>;
+  fieldProps: ProvidedTextFieldProps<E>;
+}
+
+export interface ProvidedTextFieldProps<
+  E extends HTMLInputElement | HTMLTextAreaElement,
+> extends TextFieldValidationOptions,
+    TextFieldChangeHandlers<E>,
+    Required<Pick<TextFieldProps, "id" | "name" | "value" | "error">>,
+    Pick<TextFieldProps, "aria-describedby" | "rightAddon"> {
+  /**
+   * A ref that must be passed to the `TextField`/`TextArea` so that the custom
+   * validity behavior can work.
+   */
+  ref: RefCallback<E>;
+}
+```
+
+## See Also
+
+- [useNumberField](./use-number-field)

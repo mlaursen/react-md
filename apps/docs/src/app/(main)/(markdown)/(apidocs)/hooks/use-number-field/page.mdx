@@ -1,0 +1,152 @@
+# useNumberField
+
+```ts
+function useNumberField(
+  options: NumberFieldHookOptions
+): ValidatedNumberFieldImplementation;
+```
+
+The `useNumberField` hook is a wrapper around the [useTextField](./use-text-field)
+hook to create a "better" `<input type="number" />`.
+
+## Example Usage
+
+> !Info! See the [Number Text Field Example](/components/text-field#number) for an editable demo.
+
+The `useNumberField` requires a `name` just like the `useTextField` hook, but also supports
+optional number constraints.
+
+```tsx
+function Example() {
+  const { fieldProps, value } = useNumberField({
+    name: "someName",
+    min: 0,
+    max: 100,
+    step: 2,
+    required: true,
+  });
+
+  // `value` will be `undefined` until the user enters a valid value once
+  // there is a valid value, `value` will be a `number`. So this might cause
+  // `computed` to be `NaN | number`
+  //
+  // const computed = value * 10;
+
+  // whenever there is an error, an error message will be displayed below the
+  // `TextField`
+  return <TextField {...fieldProps} label="Label" />;
+}
+```
+
+## Parameters
+
+- `options` - An object with the following definition:
+
+````ts disableScroll disableTransform
+export interface NumberFieldConstraints {
+  /**
+   * An optional min value for the number field.
+   */
+  min?: number;
+
+  /**
+   * An optional max value for the number field.
+   */
+  max?: number;
+
+  /**
+   * An optional step amount to use.
+   *
+   * Note: The `min` and `max` values must be divisible by this value when any
+   * are defined.
+   */
+  step?: number;
+}
+
+export interface NumberFieldHookOptions
+  extends Omit<
+      TextFieldHookOptions<HTMLInputElement>,
+      "defaultValue" | "isNumber"
+    >,
+    NumberFieldConstraints {
+  /**
+   * @defaultValue `undefined`
+   */
+  defaultValue?: UseStateInitializer<number>;
+
+  /**
+   * This controls the behavior for the `value` returned by this hook. If you
+   * need access to the current value immediately as the user types to update
+   * other components, keep this as the default of `"change"`. Otherwise, set
+   * this to `"blur"`.
+   *
+   * @example Deferring Updates on Blur
+   * ```tsx
+   * import { TextField, useNumberField } from "@react-md/core";
+   * import type { ReactElement } from "react";
+   *
+   * function Example(): ReactElement {
+   *   const { fieldProps, value } = useNumberField({
+   *     min: 0,
+   *     max: 100,
+   *     name: "someName",
+   *     defaultValue: 0,
+   *     updateValue: "blur",
+   *   });
+   *
+   *   const result = useMemo(() => someExpensiveComputation(value), [value]);
+   *
+   *   return <TextField {...fieldProps} label="Label" />;
+   * }
+   * ```
+   *
+   * @defaultValue `"change"`
+   */
+  updateValue?: "blur" | "change";
+
+  /**
+   * This option is used to update the `number` value and text field value to be
+   * within the `min` and `max` range or just format the text field value when
+   * the input is blurred. This update will only be applied if the text field
+   * contains a valid number. Using `min = 0` and `max = 10`:
+   *
+   * | text value | updated value |
+   * | ---------- | ------------- |
+   * | 000001     | 1             |
+   * | -1         | 0             |
+   * | 20         | 10            |
+   * | -12        | 0             |
+   * | --1        | --1           |
+   * | fjdka      | fjdka         |
+   *
+   *
+   * Set this to `false` if no changed should be applied and force the user to
+   * fix any min/max errors manually and maintain weird formatting.
+   *
+   * @defaultValue `true`
+   */
+  updateValueOnBlur?: boolean;
+}
+````
+
+## Returns
+
+The return type has the following shape, but changes depending on the provided options.
+Just know that it is always save to pass the `fieldProps` to the `TextField` component.
+
+```ts disableScroll disableTransform
+export interface ValidatedNumberFieldImplementation
+  extends Omit<
+    ValidatedTextFieldImplementation<HTMLInputElement>,
+    "value" | "setState"
+  > {
+  // value will only be `undefined` if the `defaultValue` was `undefined`
+  value: number | undefined;
+  setState: UseStateSetter<NumberFieldHookState>;
+  fieldProps: ProvidedNumberFieldProps | ProvidedNumberFieldMessageProps;
+}
+```
+
+## See Also
+
+- [useTextField](./use-text-field)

@@ -1,0 +1,70 @@
+# useRangeSlider
+
+```ts
+function useRangeSlider(
+  options?: RangeSliderOptions
+): RangeSliderImplementation;
+```
+
+## Example Usage
+
+```tsx
+const slider = useRangeSlider();
+const { rangeValue, min, max, step, setRangeValue } = slider;
+const [minPrice, maxPrice] = rangeValue;
+
+return <Slider aria-label="Example" {...slider} />;
+```
+
+> !Info! See the [Slider component](/components/slider#range-slider) for more examples.
+
+## Parameters
+
+- `options` (optional) - An object with the following definition:
+
+```ts disableScroll disableTransform
+export interface SliderValueOptions {
+  /**
+   * The min value for the slider.
+   *
+   * @defaultValue `0`
+   */
+  min?: number;
+
+  /**
+   * The max value for the slider.
+   *
+   * @defaultValue `100`
+   */
+  max?: number;
+
+  /**
+   * A positive number representing the value to "jump" while incrementing or
+   * decrementing the slider's value. This should normally stay as the default
+   * value of `1`, but can also be decimal values if needed.
+   *
+   * @defaultValue `1`
+   */
+  step?: number;
+}
+
+export type RangeSliderValue = readonly [minValue: number, maxValue: number];
+
+export interface RangeSliderOptions extends SliderValueOptions {
+  /** @defaultValue `[min, max]` */
+  defaultValue?: UseStateInitializer<RangeSliderValue>;
+}
+```
+
+## Returns
+
+```ts disableScroll disableTransform
+export interface RangeSliderState {
+  rangeValue: RangeSliderValue;
+  setRangeValue: UseStateSetter<RangeSliderValue>;
+}
+
+export interface RangeSliderImplementation
+  extends Required<SliderValueOptions>,
+    RangeSliderState {}
+```

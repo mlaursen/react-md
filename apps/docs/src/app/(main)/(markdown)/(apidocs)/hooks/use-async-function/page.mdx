@@ -1,0 +1,88 @@
+# useAsyncFunction
+
+```ts
+function useAsyncFunction(
+  options?: AsyncFunctionHookOptions
+): AsyncFunctionHookImplementation;
+```
+
+A simple utility hook for triggering a pending state while an async function
+is running. This is really only useful if you aren't using something like
+`react-query`, `@reduxjs/toolkit/query`, `@apollo/client`, etc for API calls
+which have a built-in pending state for mutations.
+
+## Example Usage
+
+```tsx
+import { save } from "@/api";
+
+function Example() {
+  const { handleAsync, pending } = useAsyncFunction();
+
+  return (
+    <>
+      {pending && <CircularProgress aria-label="Loading" />}
+      <Button
+        onClick={handleAsync(save)}
+        // or if you need to access the arguments:
+        onClick={handleAsync(async (event) => {
+          await save({
+            // some data
+          });
+        })}
+      >
+        Button
+      </Button>
+    </>
+  );
+}
+```
+
+## Parameters
+
+- `options` - An object with the following definition:
+
+```ts disableScroll disableTransform
+export interface AsyncFunctionHookOptions {
+  /** @defaultValue `false` */
+  disabled?: boolean;
+}
+```
+
+## Returns
+
+````ts disableScroll disableTransform
+export interface AsyncFunctionHookImplementation {
+  pending: boolean;
+
+  /**
+   * This ref can be used to prevent setting state on an unmounted component.
+   * @example
+   * ```tsx
+   * const { handleAsync, pending, unmounted } = useAsyncFunction();
+   *
+   * return (
+   *   <Button
+   *     onClick={async () => {
+   *       await handleAsync(someAsyncTaskThatMightUnmountThisComponent);
+   *       if (!unmounted.current) {
+   *         // set some local state
+   *       }
+   *     }}
+   *  >
+   *    Button
+   *  </Button>
+   * );
+   * ```
+   */
+  unmounted: NonNullRef<boolean>;
+  setPending: UseStateSetter<boolean>;
+  handleAsync: HandleAsyncFunction;
+}
+````
+
+## See Also
+
+- [AsyncButton](/components/button#async-button)
+- [useDebouncedFunction](./use-debounced-function)
+- [useThrottledFunction](./use-throttled-function)

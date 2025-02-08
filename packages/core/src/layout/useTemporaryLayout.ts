@@ -10,6 +10,9 @@ import { type CssPosition, type UseStateInitializer } from "../types.js";
 import { useToggle } from "../useToggle.js";
 import { type MainProps } from "./Main.js";
 
+/**
+ * @since 6.0.0
+ */
 export interface TemporaryLayoutOptions {
   /**
    * This is used to automatically hide the temporary navigation whenever the
@@ -67,17 +70,19 @@ export interface TemporaryLayoutImplementation {
 }
 
 /**
+ * The `useTemporaryLayout` hook is used to create a layout where the main
+ * navigation is hidden in a `Sheet` until a user clicks a button to show the
+ * navigation.
+ *
  * @example
  * ```tsx
- * import {
- *   AppBar,
- *   AppBarTitle,
- *   Button,
- *   Main,
- *   Sheet,
- *   useTemporaryLayout,
- * } from "@react-md/core";
- * import type { ReactElement, ReactNode } from "react";
+ * import { AppBar } from "@react-md/core/app-bar/AppBar";
+ * import { AppBarTitle } from "@react-md/core/app-bar/AppBarTitle";
+ * import { Button } from "@react-md/core/button/Button";
+ * import { useTemporaryLayout } from "@react-md/core/layout/useTemporaryLayout";
+ * import { Main } from "@react-md/core/layout/Main";
+ * import { Sheet } from "@react-md/core/sheet/Sheet";
+ * import { type ReactElement, type ReactNode } from "react";
  *
  * import { CustomNavigation } from "./CustomNavigation.jsx";
  *

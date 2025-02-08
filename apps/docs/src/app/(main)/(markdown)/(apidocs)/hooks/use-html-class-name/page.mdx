@@ -1,0 +1,34 @@
+# useHtmlClassName
+
+```ts
+function useHtmlClassName(className: string): void;
+```
+
+This hook can be used to dynamically apply a single className to the
+`document.documentElement` (`<html>`) using the `classList` API.
+
+## Example Usage
+
+A great use-case for this hook is to apply a `dark-mode` or `light-mode` class based on
+the user's preference.
+
+```tsx
+function Example() {
+  const { colorScheme } = useColorScheme();
+  useHtmlClassName(`${colorScheme}-mode`);
+  return null;
+}
+```
+
+## Parameters
+
+- `className` - The class name to apply. Can be set to an empty string to
+  disable the hook.
+
+## Returns
+
+Nothing.
+
+## See Also
+
+- [useColorScheme](./use-color-scheme)

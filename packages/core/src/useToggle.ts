@@ -16,11 +16,11 @@ export interface ToggleImplementation {
 }
 
 /**
- *
  * @example Simple Example
  * ```tsx
- * import { Button, useToggle } from "@react-md/core";
- * import type { ReactElement } from "react";
+ * import { Button } from "@react-md/core/button/Button";
+ * import { useToggle } from "@react-md/core/useToggle";
+ * import { type ReactElement } from "react";
  *
  * function Example(): ReactElement {
  *   const { toggled, toggle } = useToggle();

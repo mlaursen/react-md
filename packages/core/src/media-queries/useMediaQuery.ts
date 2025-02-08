@@ -8,7 +8,7 @@ import { useSsr } from "../SsrProvider.js";
  * @example Simple Example
  * ```tsx
  * import { useMediaQuery } from "@react-md/core/media-queries/useMediaQuery";
- * import type { ReactElement } from "react";
+ * import { type ReactElement } from "react";
  *
  * function Example(): ReactElement {
  *   const matches = useMediaQuery("screen and (min-width: 768px)");
@@ -19,7 +19,7 @@ import { useSsr } from "../SsrProvider.js";
  *
  * @param query - The media query to use
  * @param disabled - When `true`, the `window.matchMedia` API will not be
- * activated and the hook will always return `false`.
+ * activated and the hook will return the last cached value.
  * @returns `true` if the media query matches
  * @since 6.0.0 Removed the `defaultValue` and `checkImmediately` options.
  */

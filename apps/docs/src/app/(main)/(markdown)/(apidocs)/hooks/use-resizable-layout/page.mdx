@@ -1,0 +1,134 @@
+# useResizableLayout
+
+```ts
+function useResizableLayout(
+  options: ResizableLayoutOptions
+): ResizableLayoutImplementation;
+```
+
+The `useResizableLayout` expands upon the [useExpandableLayout](./use-expandable-layout)
+and [useTemporaryLayout](./use-temporary-layout) by adding support for a `WindowSplitter`
+as well.
+
+## Example Usage
+
+```tsx
+import { AppBarTitle } from "@react-md/core/app-bar/AppBarTitle";
+import { Button } from "@react-md/core/button/Button";
+import { LayoutAppBar } from "@react-md/core/layout/LayoutAppBar";
+import { LayoutNav } from "@react-md/core/layout/LayoutNav";
+import { LayoutWindowSplitter } from "@react-md/core/layout/LayoutWindowSplitter";
+import { Main } from "@react-md/core/layout/Main";
+import { useResizableLayout } from "@react-md/core/layout/useResizableLayout";
+import { Sheet } from "@react-md/core/sheet/Sheet";
+import { type ReactElement, type ReactNode } from "react";
+
+import { CustomNavigation } from "./CustomNavigation";
+
+export interface LayoutProps {
+  children: ReactNode;
+}
+
+export function Layout(props: LayoutProps): ReactElement {
+  const { children } = props;
+
+  // choose whichever one for your app
+  // nextjs app dir
+  const pathname = usePathname();
+  // nextjs pages
+  const { pathname } = useRouter();
+  // react router
+  const { pathname } = useHistory();
+
+  const {
+    temporary,
+    appBarProps,
+    expandableNavProps,
+    mainProps,
+    navToggleProps,
+    temporaryNavProps,
+    windowSplitterProps,
+  } = useResizableLayout({ pathname });
+
+  return (
+    <>
+      <LayoutAppBar {...appBarProps}>
+        <Button {...navToggleProps} />
+        <AppBarTitle>Hello, world!</AppBarTitle>
+      </LayoutAppBar>
+      <LayoutNav {...expandableNavProps}>
+        <CustomNavigation />
+      </LayoutNav>
+      <LayoutWindowSplitter {...windowSplitterProps} />
+      {temporary && (
+        <Sheet {...temporaryNavProps}>
+          <CustomNavigation />
+        </Sheet>
+      )}
+      <Main {...mainProps}>{children}</Main>
+    </>
+  );
+}
+```
+
+### Conditionally Rendering
+
+If you have a large navigation panel, you can conditionally render the
+`LayoutNav` with the `persistent` boolean returned by the hook which will
+ensure that the DOM has rehydrated before unmounting to prevent SSR errors.
+
+```diff
+  const {
+    temporary,
++   persistent,
+    appBarProps,
+    expandableNavProps,
+    mainProps,
+    navToggleProps,
+    temporaryNavProps,
+    windowSplitterProps,
+  } = useResizableLayout({ pathname });
+
+  return (
+    <>
+      <LayoutAppBar {...appBarProps}>
+        <Button {...navToggleProps} />
+        <AppBarTitle>Hello, world!</AppBarTitle>
+      </LayoutAppBar>
+-     <LayoutNav {...expandableNavProps}>
+-       <CustomNavigation />
+-     </LayoutNav>
+-     <LayoutWindowSplitter {...windowSplitterProps} />
++     {persistent && (
++       <>
++         <LayoutNav {...expandableNavProps}>
++           <CustomNavigation />
++         </LayoutNav>
++         <LayoutWindowSplitter {...windowSplitterProps} />
++       </>
++     )}
+      {temporary && (
+        <Sheet {...temporaryNavProps}>
+          <CustomNavigation />
+        </Sheet>
+      )}
+      <Main {...mainProps}>{children}</Main>
+    </>
+  )
+```
+
+## Parameters
+
+- `options` (optional) - An object with the following definition:
+
+```ts disableScroll disableTransform
+export interface Options {}
+```
+
+## Returns
+
+## See Also
+
+- [Choosing a Layout Type](/getting-started/layout#choosing-a-layout-type)
+- [useTemporaryLayout](./use-temporary-layout)
+- [useExpandableLayout](./use-expandable-layout)

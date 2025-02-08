@@ -1,0 +1,144 @@
+# useLayoutTree
+
+```ts
+function useLayoutTree(options: LayoutTreeOptions): LayoutTreeImplementation;
+```
+
+This is a pretty reasonable default implementation for having a navigation
+tree within the Layout component. The way it'll work is that the current
+route will be the only selected item within the tree. When the pathname
+changes, the selectedIds will be updated to only be the current pathname once
+again.
+
+This means that you can use whatever routing library or history provider that
+ensures that your layout re-renders on a path change.
+
+## Example Usage
+
+The `useLayoutTree` hook should be used with the `Tree` component and a routing library
+to implement a navigation tree.
+
+```tsx
+import { useLayoutTree } from "@react-md/core/layout/useLayoutTree";
+import { Tree } from "@react-md/core/tree/Tree";
+import { type TreeData } from "@react-md/core/tree/types";
+import { type ReactElement } from "react";
+// choose your routing library...
+import { Link, useLocation } from "react-router";
+
+const navItems = {
+  "/": {
+    itemId: "/",
+    parentId: null,
+    children: "Home",
+    leftAddon: <HomeIcon />,
+    to: "/",
+  },
+  "/route-1": {
+    itemId: "/route-1",
+    parentId: null,
+    children: "Route 1",
+    leftAddon: <TvIcon />,
+    to: "/route-1",
+  },
+  "/route-2": {
+    itemId: "/route-2",
+    parentId: null,
+    children: "Route 2",
+    leftAddon: <AppsIcon />,
+    to: "/route-2",
+  },
+  "/route-3": {
+    itemId: "/route-3",
+    parentId: null,
+    children: "Route 3",
+    leftAddon: <BookIcon />,
+    to: "/route-3",
+  },
+} satisfies TreeData;
+
+function Example(): ReactElement {
+  const { pathname } = useLocation();
+  const tree = useLayoutTree({
+    navItems,
+    pathname,
+  });
+
+  return <Tree {...tree} aria-label="Navigation" linkComponent={Link} />;
+}
+```
+
+## Parameters
+
+- `options` - An object with the following definition:
+
+````ts disableScroll disableTransform
+export interface TreeItemNode {
+  itemId: string;
+  parentId: string | null;
+}
+
+export interface LayoutTreeOptions<
+  T extends TreeItemNode = DefaultTreeItemNode,
+> {
+  /**
+   * The current pathname which is used as the tree `itemId`.
+   */
+  pathname: string;
+
+  /**
+   * @example
+   * ```tsx
+   * const navItems = {
+   *   "/": {
+   *     itemId: "/",
+   *     parentId: null,
+   *     children: "Home",
+   *     leftAddon: <HomeIcon />,
+   *     to: "/",
+   *   },
+   *   "/route-1": {
+   *     itemId: "/route-1",
+   *     parentId: null,
+   *     children: "Route 1",
+   *     leftAddon: <TvIcon />,
+   *     to: "/route-1",
+   *   },
+   *   "/route-2": {
+   *     itemId: "/route-2",
+   *     parentId: null,
+   *     children: "Route 2",
+   *     leftAddon: <AppsIcon />,
+   *     to: "/route-2",
+   *   },
+   *   "/route-3": {
+   *     itemId: "/route-3",
+   *     parentId: null,
+   *     children: "Route 3",
+   *     leftAddon: <BookIcon />,
+   *     to: "/route-3",
+   *   },
+   * } satisfies TreeData;
+   * ```
+   */
+  navItems: TreeData<T>;
+
+  /**
+   * @defaultValue `getParentIds(pathname, navItems)`
+   */
+  defaultExpandedIds?: TreeDefaultIds;
+}
+````
+
+## Returns
+
+```ts disableScroll disableTransform
+export interface LayoutTreeImplementation<
+  T extends TreeItemNode = DefaultTreeItemNode,
+> extends Pick<TreeProps<T>, "data">,
+    TreeImplementation {}
+```
+
+## See Also
+
+- [Tree](/components/tree)

@@ -81,7 +81,10 @@ export interface WindowSplitterImplementation<
  *
  * @example Custom Implementation
  * ```tsx
- * import { useWindowSplitter, WindowSplitterImplementation } from "@react-md/core";
+ * import {
+ *   useWindowSplitter,
+ *   type WindowSplitterImplementation
+ * } from "@react-md/core/window-splitter/useWindowSplitter";
  * import { useState } from "react";
  *
  * // this is pretty much the `useWindowSplitter` implementation

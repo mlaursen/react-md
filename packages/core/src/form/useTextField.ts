@@ -392,6 +392,8 @@ export function useTextField<E extends HTMLInputElement | HTMLTextAreaElement>(
  *     counter: true,
  *     required: true,
  *     maxLength: 20,
+ *     // this allows the user to type beyond the max length limit and display
+ *     // an error message. omit or set to `false` to enforce the max length instead
  *     disableMaxLength: true,
  *   });
  *

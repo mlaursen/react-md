@@ -1,5 +1,9 @@
 # useMediaQuery
 
+```ts
+function useMediaQuery(query: string, disabled?: boolean): boolean;
+```
+
 The `useMediaQuery` hook can be used to access media queries and update
 functionality in React components.
 
@@ -14,6 +18,11 @@ function Example() {
   return <>{matches ? "Matches" : "Doesn't"}</>;
 }
 ```
+
+## Parameters
+
+- `query` - The media query string that is passed to `window,matchMedia`
+- `disabled` - Prevent the media query from updating
 
 ## Returns
 

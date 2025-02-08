@@ -1,0 +1,46 @@
+# useToggle
+
+```ts
+function useToggle(
+  defaultValue: UseStateInitializer<boolean> = false
+): ToggleImplementation;
+```
+
+The `useToggle` hook is a simple wrapper around `useState` that memoizes
+toggling a boolean.
+
+## Example Usage
+
+```tsx
+import { Button } from "@react-md/core/button/Button";
+import { useToggle } from "@react-md/core/useToggle";
+import { type ReactElement } from "react";
+
+function Example(): ReactElement {
+  const { toggled, toggle } = useToggle();
+
+  return (
+    <>
+      <Button onClick={toggle}>Toggle</Button>
+      {`Toggled: ${toggled}`}
+    </>
+  );
+}
+```
+
+## Parameters
+
+- `defaultValue` (optional) - Either a `boolean` or a function that returns a
+  `boolean` to define the default value
+
+## Returns
+
+```ts disableScroll disableTransform
+export interface ToggleImplementation {
+  toggled: boolean;
+  setToggled: UseStateSetter<boolean>;
+  toggle: () => void;
+  enable: () => void;
+  disable: () => void;
+}
+```

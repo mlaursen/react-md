@@ -1,0 +1,34 @@
+# useScrollLock
+
+```ts
+function useScrollLock(locked: boolean): void;
+```
+
+> !Info! You are most likely not going to need this hook and instead rely
+> on existing components like the [Dialog](/components/dialog) or
+> [Sheet](/components/sheet) to handle it for you.
+
+The `useScrollLock` hook can be used to lock scrolling on the entire page.
+
+## Example Usage
+
+```ts
+function Example() {
+  const { toggled, toggle } = useToggle();
+  useScrollLock(toggled);
+
+  return <Button onClick={toggle}>Toggle</Button>;
+}
+```
+
+## Parameters
+
+- `locked` - Boolean if the `document.body` should be no longer be scrollable
+
+```ts disableScroll disableTransform
+export interface Options {}
+```
+
+## Returns
+
+Nothing.

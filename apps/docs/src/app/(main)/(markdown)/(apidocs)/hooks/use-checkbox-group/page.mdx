@@ -1,5 +1,11 @@
 # useCheckboxGroup
 
+```ts
+function useCheckboxGroup<V extends string>(
+  options: CheckboxGroupOptions<V>
+): CombinedCheckboxGroupReturnValue<V>;
+```
+
 The `useCheckboxGroup` hook can be used to control the value for a group of checkboxes
 and an optional indeterminate checkbox.
 
@@ -8,6 +14,8 @@ and an optional indeterminate checkbox.
 See the [Checkbox useCheckboxGroup hook Example](/components/checkbox#usecheckboxgroup-hook) for a demo.
 
 ## Parameters
+
+- `options` - An object with the following definition:
 
 ```ts disableScroll disableTransform
 export interface CheckboxGroupOptions<V> {
@@ -68,6 +76,17 @@ const { getCheckboxProps, getIndeterminateProps, checkedValues } =
 
 ## Returns
 
+The return type has the following shape depending on the provided options:
+
+- `getIndeterminateProps` will only be defined when the `values` option was provided
+- `name` will only be returned from `getCheckboxProps`/`getIndeterminateProps`
+  when the `menu` option is `false` or not provided
+- `onChange` will only be returned from
+  `getCheckboxProps`/`getIndeterminateProps` when the `menu` option is `false` or
+  not provided
+- `onCheckedChange` will only be returned from
+  `getCheckboxProps`/`getIndeterminateProps` when the `menu` option is `true`
+
 ```ts disableScroll disableTransform
 export interface CombinedCheckboxGroupReturnValue<V extends string> {
   reset: () => void;
@@ -90,5 +109,3 @@ export interface CombinedCheckboxGroupReturnValue<V extends string> {
   };
 }
 ```
-
-> !Info! The `getIndeterminateProps` will only be returned with the `values` option was provided.

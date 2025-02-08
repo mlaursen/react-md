@@ -1,5 +1,11 @@
 # useResizeObserver
 
+```ts
+function useResizeObserver<E extends HTMLElement>(
+  options: ResizeObserverHookOptions<E>
+): RefCallback<E>;
+```
+
 The `useResizeObserver` hook is used to track the size changes of a specific
 element.
 
@@ -30,6 +36,8 @@ function Example() {
 ```
 
 ## Parameters
+
+- `options` - An object with the following definition:
 
 ```ts disableScroll disableTransform
 export interface ResizeObserverHookOptions<E extends HTMLElement> {

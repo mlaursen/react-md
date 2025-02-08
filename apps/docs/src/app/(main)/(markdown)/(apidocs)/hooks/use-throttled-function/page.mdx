@@ -1,0 +1,55 @@
+# useThrottledFunction
+
+```ts
+function useThrottledFunction<F extends AnyFunction>(
+  func: F,
+  wait: number
+): ThrottledFunction<F>;
+```
+
+Creates a function that will only be called if it has not been called again
+for X milliseconds.
+
+## Example Usage
+
+```tsx
+function Example() {
+  const [options, setOptions] = useState<readonly string[]>([]);
+  const unmounted = useUnmounted();
+  const search = useThrottledFunction(async (query: string) => {
+    const response = await fetch(`/api/search`, {
+      method: "POST",
+      body: JSON.stringify({ query }),
+    });
+    const json = await response.json();
+    if (!unmounted.current) {
+      setOptions(json);
+    }
+  }, 500);
+
+  return (
+    <Autocomplete
+      {...props}
+      onChange={(event) => search(event.currentTarget.value)}
+    />
+  );
+}
+```
+
+## Parameters
+
+- `func` - The function to debounce
+- `wait` - The amount of time in milliseconds to debounce the function call
+
+## Returns
+
+```ts disableScroll disableTransform
+export type ThrottledFunction<F extends AnyFunction> = CancelableFunction<
+  (...args: Parameters<F>) => ReturnType<F>
+>;
+```
+
+## See Also
+
+- [useAsyncFunction](./use-async-function)
+- [useDebouncedFunction](./use-debounced-function)

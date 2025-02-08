@@ -108,16 +108,14 @@ export interface ExpandableLayoutImplementation
 /**
  * @example Main Usage
  * ```tsx
- * import {
- *   AppBarTitle,
- *   Button,
- *   LayoutAppBar,
- *   LayoutNav,
- *   Main,
- *   Sheet,
- *   useExpandableLayout,
- * } from "@react-md/core";
- * import type { ReactElement, ReactNode } from "react";
+ * import { AppBarTitle } from "@react-md/core/app-bar/AppBarTitle";
+ * import { Button } from "@react-md/core/button/Button";
+ * import { LayoutAppBar } from "@react-md/core/layout/LayoutAppBar";
+ * import { LayoutNav } from "@react-md/core/layout/LayoutNav";
+ * import { Main } from "@react-md/core/layout/Main";
+ * import { useExpandableLayout } from "@react-md/core/layout/useExpandableLayout";
+ * import { Sheet } from "@react-md/core/sheet/Sheet";
+ * import { type ReactElement, type ReactNode } from "react";
  *
  * import { CustomNavigation } from "./CustomNavigation";
  *
@@ -146,7 +144,7 @@ export interface ExpandableLayoutImplementation
  *     windowSplitterProps,
  *   } = useExpandableLayout({ pathname });
  *
- *   return {
+ *   return (
  *     <>
  *       <LayoutAppBar {...appBarProps}>
  *         <Button {...navToggleProps} />
@@ -162,7 +160,7 @@ export interface ExpandableLayoutImplementation
  *       )}
  *       <Main {...mainProps}>{children}</Main>
  *     </>
- *   }
+ *   );
  * }
  * ```
  *
@@ -183,7 +181,7 @@ export interface ExpandableLayoutImplementation
  *     windowSplitterProps,
  *   } = useExpandableLayout({ pathname });
  *
- *   return {
+ *   return (
  *     <>
  *       <LayoutAppBar {...appBarProps}>
  *         <Button {...navToggleProps} />
@@ -204,7 +202,7 @@ export interface ExpandableLayoutImplementation
  *       )}
  *       <Main {...mainProps}>{children}</Main>
  *     </>
- *   }
+ *   );
  * ```
  *
  * @since 6.0.0

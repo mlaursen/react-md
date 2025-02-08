@@ -52,9 +52,7 @@ export interface SliderImplementation
  * @since 6.0.0
  */
 export interface SliderOptions extends SliderValueOptions {
-  /**
-   * @defaultValue `(max - min ) / 2`
-   */
+  /** @defaultValue `(max - min ) / 2` */
   defaultValue?: UseStateInitializer<number>;
 }
 

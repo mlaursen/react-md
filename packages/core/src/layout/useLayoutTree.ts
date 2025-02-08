@@ -112,9 +112,10 @@ export interface LayoutTreeImplementation<
  *
  * @example
  * ```tsx
- * import { Tree, useLayoutTree } from "@react-md/core";
- * import type { TreeData } from "@react-md/core";
- * import type { ReactElement } from "react";
+ * import { useLayoutTree } from "@react-md/core/layout/useLayoutTree"
+ * import { Tree } from "@react-md/core/tree/Tree";
+ * import { type TreeData } from "@react-md/core/tree/types";
+ * import { type ReactElement } from "react";
  *
  * // choose your routing library...
  * import { Link, useLocation } from "react-router";

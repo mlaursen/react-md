@@ -47,17 +47,15 @@ export interface ResizableLayoutImplementation
 /**
  * @example Main Usage
  * ```tsx
- * import {
- *   AppBarTitle,
- *   Button,
- *   LayoutAppBar,
- *   LayoutNav,
- *   LayoutWindowSplitter,
- *   Main,
- *   Sheet,
- *   useResizableLayout,
- * } from "@react-md/core";
- * import type { ReactElement, ReactNode } from "react";
+ * import { AppBarTitle } from "@react-md/core/app-bar/AppBarTitle";
+ * import { Button } from "@react-md/core/button/Button";
+ * import { LayoutAppBar } from "@react-md/core/layout/LayoutAppBar";
+ * import { LayoutNav } from "@react-md/core/layout/LayoutNav";
+ * import { LayoutWindowSplitter } from "@react-md/core/layout/LayoutWindowSplitter";
+ * import { Main } from "@react-md/core/layout/Main";
+ * import { useResizableLayout } from "@react-md/core/layout/useResizableLayout";
+ * import { Sheet } from "@react-md/core/sheet/Sheet";
+ * import { type ReactElement, type ReactNode } from "react";
  *
  * import { CustomNavigation } from "./CustomNavigation";
  *
@@ -86,7 +84,7 @@ export interface ResizableLayoutImplementation
  *     windowSplitterProps,
  *   } = useResizableLayout({ pathname });
  *
- *   return {
+ *   return (
  *     <>
  *       <LayoutAppBar {...appBarProps}>
  *         <Button {...navToggleProps} />
@@ -103,7 +101,7 @@ export interface ResizableLayoutImplementation
  *       )}
  *       <Main {...mainProps}>{children}</Main>
  *     </>
- *   }
+ *   );
  * }
  * ```
  *
@@ -124,7 +122,7 @@ export interface ResizableLayoutImplementation
  *     windowSplitterProps,
  *   } = useResizableLayout({ pathname });
  *
- *   return {
+ *   return (
  *     <>
  *       <LayoutAppBar {...appBarProps}>
  *         <Button {...navToggleProps} />
@@ -149,8 +147,7 @@ export interface ResizableLayoutImplementation
  *       )}
  *       <Main {...mainProps}>{children}</Main>
  *     </>
- *   }
- *
+ *   )
  * ```
  *
  * @since 6.0.0

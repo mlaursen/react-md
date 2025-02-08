@@ -1,5 +1,11 @@
 # useElementSize
 
+```ts
+function useElementSize<E extends HTMLElement>(
+  options?: ElementSizeOptions<E>
+): ElementSizeImplementation<E>;
+```
+
 The `useElementSize` hook can be used to track size changes for a specific
 element using the [Resize Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Resize_Observer_API).
 
@@ -15,7 +21,9 @@ function Example() {
 }
 ```
 
-## Parameters (optional)
+## Parameters
+
+- `options` (optional) - An object with the following definition:
 
 ```ts disableScroll disableTransform
 export interface ElementSizeOptions<E extends HTMLElement> {

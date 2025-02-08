@@ -17,8 +17,8 @@ export const SCROLLBAR_SIZE_VAR = "--rmd-scrollbar-size";
 let isLocked = false;
 
 /**
+ * Used to enable scroll locking on the entire page.
  *
- * @internal
  * @since 6.0.0 No longer support scroll locking elements other than
  * the `document.body` since it's more reliable to scroll lock with an overlay.
  * @since 6.0.0 Now applies `paddingRight` equal to the current OS's

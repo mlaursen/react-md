@@ -1,0 +1,85 @@
+# useCSSVariables
+
+```ts
+function useCSSVariables<Name extends CSSVariableName>(
+  variables: ReadonlyCSSVariableList<Name>,
+  rootNodeOrInlineStyle?: RefObject<HTMLElement> | HTMLElement | boolean
+): CSSVariablesProperties<Name> | undefined;
+```
+
+The `useCSSVariables` hook can be used to dynamically set CSS Variables (custom
+properties) on the root `<html>`, other elements, or using inline styles.
+
+## Example Usage
+
+```tsx
+import { purple500 } from "@react-md/core/theme/colors";
+import { useCSSVariables } from "@react-md/core/theme/useCSSVariables";
+import { contrastColor } from "@react-md/core/theme/utils";
+import { useMemo } from "react";
+
+function Example() {
+  // Note: You should use `useMemo` so that the custom variables are not
+  // added and removed during each render.
+  useCSSVariables(
+    useMemo(() => {
+      return [
+        {
+          name: "--rmd-primary-color",
+          value: purple500,
+        },
+        {
+          name: "--rmd-on-primary-color",
+          value: contrastColor(purple500),
+        },
+      ];
+    }, [])
+  );
+
+  return null;
+}
+```
+
+### Applying with Inline Styles
+
+```tsx
+import { purple500 } from "@react-md/core/theme/colors";
+import { type ReadonlyCSSVariableList } from "@react-md/core/theme/types";
+import { useCSSVariables } from "@react-md/core/theme/useCSSVariables";
+import { contrastColor } from "@react-md/core/theme/utils";
+import { type ReactElement, type ReactNode, useMemo } from "react";
+
+function Example({ children }: { children: ReactNode }): ReactElement {
+  const customVariables = useMemo<ReadonlyCSSVariableList>(() => {
+    return [
+      {
+        name: "--rmd-primary-color",
+        value: purple500,
+      },
+      {
+        name: "--rmd-on-primary-color",
+        value: contrastColor(purple500),
+      },
+    ];
+  }, []);
+  const style = useCSSVariables(customVariables, true);
+
+  return <div style={style}>{children}</div>;
+}
+```
+
+## Parameters
+
+- `variables` - A list of `{ name: string; value: string | number; }` to
+  define. The hook will do nothing if this is an empty list.
+- `rootNodeOrInlineStyle` - One of:
+  - `undefined | false` - Applies the custom properties to the root
+    `document.documentElement`
+  - `RefObject<HTMLElement> | HTMLElement` - Applies the custom properties to that element
+  - `true` - Does not apply the custom properties to any elements and instead
+    updates the hook to return a style object to apply to an element manually
+
+## Returns
+
+- Nothing when `rootNodeOrInlineStyle` is anything other than `true`
+- A style object when the `rootNodeOrInlineStyle` is `true`
