@@ -142,14 +142,14 @@ import { useColorScheme } from "@react-md/core/theme/useColorScheme";
 import { useHtmlClassName } from "@react-md/core/useHtmlClassName";
 
 function ApplyTheme() {
-  const { colorScheme, setColorSchemeMode } = useColorScheme();
-  useHtmlClassName(colorScheme === "dark" ? "dark-theme" : "");
+  const { currentColor, setColorScheme } = useColorScheme();
+  useHtmlClassName(currentColor === "dark" ? "dark-theme" : "");
 
   // Whatever UI is desired for this
   return (
     <Button
       onClick={() =>
-        setColorSchemeMode((prev) => (prev === "light" ? "dark" : "light"))
+        setColorScheme((prev) => (prev === "light" ? "dark" : "light"))
       }
     >
       Theme
@@ -190,10 +190,8 @@ import { useHtmlClassName } from "@react-md/core/useHtmlClassName";
 import { cnb } from "cnbuilder";
 
 function ApplyTheme() {
-  const { colorSchemeMode } = useColorScheme();
-  useHtmlClassName(
-    cnb(colorSchemeMode !== "light" && `${colorSchemeMode}-theme`)
-  );
+  const { colorScheme } = useColorScheme();
+  useHtmlClassName(cnb(colorScheme !== "light" && `${colorScheme}-theme`));
   return null;
 }
 ```
@@ -216,6 +214,7 @@ import { CoreProviders } from "@react-md/core/CoreProviders";
 import { RootHtml } from "@react-md/core/RootHtml";
 import { MenuConfigurationProvider } from "@react-md/core/menu/MenuConfigurationProvider";
 import { NullSuspense } from "@react-md/core/suspense/NullSuspense";
+import { isColorScheme } from "@react-md/core/theme/isColorScheme";
 import { cnb } from "cnbuilder";
 import { Roboto_Flex } from "next/font/google";
 import { cookies } from "next/headers.js";
@@ -241,8 +240,8 @@ export interface RootLayoutProps {
 }
 
 export function RootLayout({ children }: RootLayoutProps): ReactElement {
-  const colorScheme = cookies().get(COLOR_SCHEME_KEY)?.value;
-  const defaultColorScheme = isColorSchemeMode(colorScheme)
+  const colorSchemeCookie = cookies().get(COLOR_SCHEME_KEY)?.value;
+  const defaultColorScheme = isColorScheme(colorSchemeCookie)
     ? colorScheme
     : "system";
 
@@ -270,8 +269,8 @@ import { useColorScheme } from "@react-md/core/theme/useColorScheme";
 import { useHtmlClassName } from "@react-md/core/useHtmlClassName";
 
 export function LoadThemeStyles(): null {
-  const { colorSchemeMode } = useColorScheme();
-  useHtmlClassName(`${colorSchemeMode}-theme`);
+  const { colorScheme } = useColorScheme();
+  useHtmlClassName(`${colorScheme}-theme`);
   return null;
 }
 ```

@@ -16,10 +16,6 @@
 // Setting this value to `system` will default to a light theme unless the user
 // has set their preferred color scheme to dark on their OS.
 //
-// If this value is changed from the default `light` value, the
-// `colorSchemeMode` on the `CoreProviders` component should be updated to
-// match the new value.
-//
 // @type string
 $color-scheme: light !default;
 

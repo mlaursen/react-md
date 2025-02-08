@@ -26,7 +26,7 @@ export function FullScreenVirtualizedList(): ReactElement {
     filtersVisible,
     selectedIconName,
   } = useMaterialIconsAndSymbols();
-  const { colorSchemeMode } = useColorScheme();
+  const { colorScheme } = useColorScheme();
   const { columns, containerRef, containerStyle, containerWidth } =
     useVirtualizedColumns();
   const { list, listProps } = useVirtualizedWindow({
@@ -42,8 +42,8 @@ export function FullScreenVirtualizedList(): ReactElement {
   // apply to html so that the icons in the HowToUseSheet are also updated
   useHtmlClassName(
     cnb(
-      colorSchemeMode === "dark" && styles.dark,
-      colorSchemeMode === "system" && styles.system
+      colorScheme === "dark" && styles.dark,
+      colorScheme === "system" && styles.system
     )
   );
   const { elementProps: filterPanelTransitionProps } =

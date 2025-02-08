@@ -1,6 +1,6 @@
 import { type PackageManager } from "@react-md/code/PackageManagerProvider";
-import { isColorSchemeMode } from "@react-md/core/theme/isColorScheme";
-import { type ColorSchemeMode } from "@react-md/core/theme/types";
+import { isColorScheme } from "@react-md/core/theme/isColorScheme";
+import { type ColorScheme } from "@react-md/core/theme/types";
 import { cookies } from "next/headers.js";
 import "server-only";
 
@@ -22,14 +22,14 @@ export interface AppCookies {
   defaultPrismTheme: PrismTheme;
   defaultCodeLanguage: CodeLanguage;
   defaultPackageManager: PackageManager;
-  defaultColorSchemeMode: ColorSchemeMode;
+  defaultColorScheme: ColorScheme;
 }
 
 export function getAppCookies(): AppCookies {
   const instance = cookies();
-  const defaultColorSchemeMode = getCookie({
+  const defaultColorScheme = getCookie({
     name: COLOR_SCHEME_KEY,
-    isValid: isColorSchemeMode,
+    isValid: isColorScheme,
     defaultValue: "system",
     instance,
   });
@@ -58,7 +58,7 @@ export function getAppCookies(): AppCookies {
     defaultPrismTheme,
     defaultCodeLanguage,
     defaultPackageManager,
-    defaultColorSchemeMode,
+    defaultColorScheme,
   };
 }
 
@@ -88,12 +88,12 @@ export async function getInitialState(): Promise<InitialAppState> {
     defaultPrismTheme,
     defaultCodeLanguage,
     defaultPackageManager,
-    defaultColorSchemeMode,
+    defaultColorScheme,
   } = getAppCookies();
 
   let themeStyles: CSSModulesImport = {};
-  if (defaultColorSchemeMode !== "system" || DISABLE_DEFAULT_SYSTEM_THEME) {
-    const themeName = pascalCase(defaultColorSchemeMode);
+  if (defaultColorScheme !== "system" || DISABLE_DEFAULT_SYSTEM_THEME) {
+    const themeName = pascalCase(defaultColorScheme);
     themeStyles = await loadStyles(
       import(`@/components/LoadThemeStyles/${themeName}Theme.module.scss`),
       fallbackThemeStyles
@@ -104,7 +104,7 @@ export async function getInitialState(): Promise<InitialAppState> {
     defaultPrismTheme,
     defaultCodeLanguage,
     defaultPackageManager,
-    defaultColorSchemeMode,
+    defaultColorScheme,
     themeStyles,
   };
 }

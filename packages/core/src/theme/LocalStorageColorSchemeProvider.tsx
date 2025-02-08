@@ -3,8 +3,8 @@
 import { type ReactElement, type ReactNode } from "react";
 
 import { useLocalStorage } from "../useLocalStorage.js";
-import { isColorSchemeMode } from "./isColorScheme.js";
-import { type ColorSchemeMode } from "./types.js";
+import { isColorScheme } from "./isColorScheme.js";
+import { type ColorScheme } from "./types.js";
 import { ColorSchemeProvider } from "./useColorScheme.js";
 import { useColorSchemeProvider } from "./useColorSchemeProvider.js";
 
@@ -34,7 +34,7 @@ export interface LocalStorageColorSchemeProviderProps {
    *
    * @defaultValue `"light"`
    */
-  defaultColorSchemeMode?: ColorSchemeMode;
+  defaultColorScheme?: ColorScheme;
 
   children: ReactNode;
 }
@@ -55,34 +55,34 @@ export interface LocalStorageColorSchemeProviderProps {
  * import { createRoot } from "react-dom/client";
  *
  * function MyComponent(): ReactElement {
- *   const { colorScheme, colorSchemeMode, setColorSchemeMode } = useColorScheme();
- *   // colorScheme: "light" | "dark"
- *   // colorSchemeMode: "light" | "dark" | "system"
+ *   const { currentColor, colorScheme, setColorScheme } = useColorScheme();
+ *   // currentColor: "light" | "dark"
+ *   // colorScheme: "light" | "dark" | "system"
  *
  *   return (
  *     <>
- *       The current color scheme is {colorScheme}
+ *       The current color scheme is {currentColor}
  *       <SegmentedButtonContainer>
  *         <SegmentedButton
- *           selected={colorSchemeMode === "light"}
+ *           selected={colorScheme === "light"}
  *           onClick={() => {
- *             setColorSchemeMode("light")
+ *             setColorScheme("light")
  *           }}
  *         >
  *           Light
  *         </SegmentedButton>
  *         <SegmentedButton
- *           selected={colorSchemeMode === "dark"}
+ *           selected={colorScheme === "dark"}
  *           onClick={() => {
- *             setColorSchemeMode("dark")
+ *             setColorScheme("dark")
  *           }}
  *         >
  *           Dark
  *         </SegmentedButton>
  *         <SegmentedButton
- *           selected={colorSchemeMode === "system"}
+ *           selected={colorScheme === "system"}
  *           onClick={() => {
- *             setColorSchemeMode("system")
+ *             setColorScheme("system")
  *           }}
  *         >
  *           System
@@ -96,7 +96,7 @@ export interface LocalStorageColorSchemeProviderProps {
  * const root = createRoot(container);
  *
  * root.render(
- *   <LocalStorageColorSchemeProvider defaultColorSchemeMode="system">
+ *   <LocalStorageColorSchemeProvider defaultColorScheme="system">
  *     <MyComponent />
  *   </LocalStorageColorSchemeProvider>
  * );
@@ -109,23 +109,21 @@ export function LocalStorageColorSchemeProvider(
 ): ReactElement {
   const {
     localStorageKey = "",
-    defaultColorSchemeMode = "light",
+    defaultColorScheme = "light",
     disableMetaTag,
     children,
   } = props;
 
-  const { value: colorSchemeMode, setValue: setColorSchemeMode } =
-    useLocalStorage({
-      key: localStorageKey,
-      defaultValue: defaultColorSchemeMode,
-      deserializer: (item) =>
-        isColorSchemeMode(item) ? item : defaultColorSchemeMode,
-    });
+  const { value: colorScheme, setValue: setColorScheme } = useLocalStorage({
+    key: localStorageKey,
+    defaultValue: defaultColorScheme,
+    deserializer: (item) => (isColorScheme(item) ? item : defaultColorScheme),
+  });
 
   const value = useColorSchemeProvider({
     disableMetaTag,
-    colorSchemeMode,
-    setColorSchemeMode,
+    colorScheme,
+    setColorScheme,
   });
 
   return <ColorSchemeProvider value={value}>{children}</ColorSchemeProvider>;

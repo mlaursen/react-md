@@ -5,9 +5,9 @@ import { createContext, useContext } from "react";
 import { type ColorSchemeContext } from "./types.js";
 
 const context = createContext<ColorSchemeContext>({
+  currentColor: "light",
   colorScheme: "light",
-  colorSchemeMode: "light",
-  setColorSchemeMode() {
+  setColorScheme() {
     if (process.env.NODE_ENV !== "production") {
       throw new Error("The `ColorSchemeProvider` has not been initialized.");
     }
@@ -19,45 +19,47 @@ export const { Provider: ColorSchemeProvider } = context;
 /**
  * @example Lazy Load Configurable Themes
  * ```tsx
- * import type { ChangeEvent, ReactElement } from "react";
- * import { lazy } from "react";
- * import { createRoot } from "react-doc/client";
- * import { Checkbox, ColorSchemeProvider, useColorScheme } from "@react-md/core";
+ * import { Checkbox } from "@react-md/core/form/Checkbox";
+ * import { ColorSchemeProvider, useColorScheme } from "@react-md/core/theme/useColorScheme";
+ * import { type ChangeEvent, lazy, type ReactElement } from "react";
+ * import { createRoot } from "react-dom/client";
  *
- * const DarkTheme = lazy(() => import("./DarkTheme"));
- * const SystemTheme = lazy(() => import("./SystemTheme"));
+ * const DarkTheme = lazy(() => import("./DarkTheme.jsx"));
+ * const SystemTheme = lazy(() => import("./SystemTheme.jsx"));
  *
  * function App(): ReactElement {
- *   const { colorScheme, colorSchemeMode, setColorSchemeMode } =
+ *   const { currentColor, colorScheme, setColorScheme } =
  *     useColorScheme();
  *
  *   const onChange = (event: ChangeEvent<HTMLInputElement>): void => {
  *     const { value } = event.currentTarget;
  *     if (value === "light" || value === "dark" || value === "system") {
- *       setColorSchemeMode(value);
+ *       setColorScheme(value);
  *     }
  *   };
  *
  *   return (
  *     <>
- *       {colorSchemeMode === "dark" && <DarkTheme />}
- *       {colorSchemeMode === "system" && <SystemTheme />}
+ *       <NullSuspense>
+ *         {colorScheme === "dark" && <DarkTheme />}
+ *         {colorScheme === "system" && <SystemTheme />}
+ *       </NullSuspense>
  *       <Checkbox
  *         label="Light"
  *         value="light"
- *         checked={colorSchemeMode === "light"}
+ *         checked={colorScheme === "light"}
  *         onChange={onChange}
  *       />
  *       <Checkbox
  *         label="Dark"
  *         value="dark"
- *         checked={colorSchemeMode === "dark"}
+ *         checked={colorScheme === "dark"}
  *         onChange={onChange}
  *       />
  *       <Checkbox
  *         label="System"
  *         value="system"
- *         checked={colorSchemeMode === "system"}
+ *         checked={colorScheme === "system"}
  *         onChange={onChange}
  *       />
  *     </>

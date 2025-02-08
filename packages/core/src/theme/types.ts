@@ -66,40 +66,27 @@ export type ReadonlyCSSVariableList<
 > = readonly Readonly<CSSVariable<Name>>[];
 
 /** @since 6.0.0 */
-export type ColorScheme = "light" | "dark";
+export type LightDarkColorScheme = "light" | "dark";
 
 /** @since 6.0.0 */
-export type ColorSchemeMode = ColorScheme | "system";
+export type ColorScheme = LightDarkColorScheme | "system";
 
 /**
  * @since 6.0.0
  */
-export interface ColorSchemeModeBehavior {
+export interface ColorSchemeState {
   /**
-   * The current color scheme mode that is being used by your app that should
-   * default to the `$color-scheme` SCSS variable. If the
-   * {@link setColorSchemeMode} is called, this will update to that new value.
-   *
-   * TODO: Figure out how to document this
-   *
-   * - `colorScheme` - only `light` or `dark` -- only useful when the `colorSchemeMode` is set to `system`
-   * - `colorSchemeMode` - current **user** defined color scheme behavior? should default to `$color-scheme`, but will change based on `setColorSchemeMode`
+   * The defined color scheme for the app that should match the `$color-scheme`
+   * SCSS variable.
    */
-  colorSchemeMode: ColorSchemeMode;
-
-  /**
-   * A function to update the color scheme.
-   *
-   * @see {@link useColorScheme} for an example usage
-   */
-  setColorSchemeMode: UseStateSetter<ColorSchemeMode>;
+  colorScheme: ColorScheme;
+  setColorScheme: UseStateSetter<ColorScheme>;
 }
 
 /** @since 6.0.0 */
-export interface ColorSchemeContext extends ColorSchemeModeBehavior {
+export interface ColorSchemeContext extends ColorSchemeState {
   /**
-   * The current color scheme that is being used. This is only useful when the
-   * {@link colorSchemeMode} is set to `"system"`.
+   * When the {@link colorScheme} is set to `"system"`, this will reflect
    */
-  colorScheme: ColorScheme;
+  currentColor: LightDarkColorScheme;
 }

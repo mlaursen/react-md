@@ -18,7 +18,7 @@ export function VirtualizedMatch(props: VirtualizedMatchProps): ReactElement {
   const { name, icon, className, ...remaining } = props;
   const { selectIcon, selectedIconName } = useMaterialIconsAndSymbols();
   const selected = selectedIconName === name;
-  const { colorScheme } = useColorScheme();
+  const { currentColor } = useColorScheme();
 
   return (
     <Button
@@ -28,8 +28,8 @@ export function VirtualizedMatch(props: VirtualizedMatchProps): ReactElement {
           className,
           styles.button,
           selected && styles.selected,
-          selected && colorScheme === "light" && styles.selectedLight,
-          selected && colorScheme === "dark" && styles.selectedDark,
+          selected && currentColor === "light" && styles.selectedLight,
+          selected && currentColor === "dark" && styles.selectedDark,
           cssUtils({
             textTransform: "capitalize",
             textAlign: "center",

@@ -11,16 +11,16 @@ const DarkTheme = dynamic(() => import("./DarkTheme.js"));
 const SystemTheme = dynamic(() => import("./SystemTheme.js"));
 
 export function LoadThemeStyles(): ReactElement | null {
-  const { colorSchemeMode } = useColorScheme();
-  if (colorSchemeMode === "system" && !DISABLE_DEFAULT_SYSTEM_THEME) {
+  const { colorScheme } = useColorScheme();
+  if (colorScheme === "system" && !DISABLE_DEFAULT_SYSTEM_THEME) {
     return null;
   }
 
   return (
     <>
-      {colorSchemeMode === "light" && <LightTheme />}
-      {colorSchemeMode === "dark" && <DarkTheme />}
-      {colorSchemeMode === "system" && <SystemTheme />}
+      {colorScheme === "light" && <LightTheme />}
+      {colorScheme === "dark" && <DarkTheme />}
+      {colorScheme === "system" && <SystemTheme />}
     </>
   );
 }

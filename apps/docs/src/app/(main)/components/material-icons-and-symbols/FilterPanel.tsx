@@ -19,14 +19,14 @@ export interface FilterPanelProps extends ProvidedExpansionPanelProps {
 export function FilterPanel(props: FilterPanelProps): ReactElement {
   const { icon, name, inline, children, ...remaining } = props;
   const { isDesktop } = useAppSize();
-  const { colorScheme } = useColorScheme();
+  const { currentColor } = useColorScheme();
 
   return (
     <ExpansionPanel
       {...remaining}
       className={cnb(
         styles.panel,
-        !isDesktop && colorScheme === "dark" && styles.elevationFix
+        !isDesktop && currentColor === "dark" && styles.elevationFix
       )}
       headerChildren={
         <span className={box({ disablePadding: true })}>

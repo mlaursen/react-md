@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-import { type ColorScheme } from "./types.js";
+import { type LightDarkColorScheme } from "./types.js";
 
 /**
  * @since 6.0.0
@@ -12,7 +12,7 @@ export interface ColorSchemeMetaTagOptions {
    * @defaultValue `"false"`
    */
   disabled?: boolean;
-  colorScheme: ColorScheme;
+  colorScheme: LightDarkColorScheme;
 }
 
 /**

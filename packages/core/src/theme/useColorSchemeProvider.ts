@@ -5,9 +5,9 @@ import { useMemo } from "react";
 import { type UseStateInitializer } from "../types.js";
 import { useEnsuredState } from "../useEnsuredState.js";
 import {
+  type ColorScheme,
   type ColorSchemeContext,
-  type ColorSchemeMode,
-  type ColorSchemeModeBehavior,
+  type ColorSchemeState,
 } from "./types.js";
 import { useColorSchemeMetaTag } from "./useColorSchemeMetaTag.js";
 import { usePrefersDarkTheme } from "./usePrefersDarkScheme.js";
@@ -15,8 +15,7 @@ import { usePrefersDarkTheme } from "./usePrefersDarkScheme.js";
 /**
  * @since 6.0.0
  */
-export interface ColorSchemeProviderOptions
-  extends Partial<ColorSchemeModeBehavior> {
+export interface ColorSchemeProviderOptions extends Partial<ColorSchemeState> {
   /**
    * Set this to `true` to prevent a `<meta name="color-scheme" content="{COLOR_SCHEME}">`
    * from being added to the `document.head`.
@@ -31,7 +30,7 @@ export interface ColorSchemeProviderOptions
    *
    * @defaultValue `"light"`
    */
-  defaultColorSchemeMode?: UseStateInitializer<ColorSchemeMode>;
+  defaultColorScheme?: UseStateInitializer<ColorScheme>;
 }
 
 /**
@@ -40,7 +39,7 @@ export interface ColorSchemeProviderOptions
  * import {
  *   ColorSchemeProvider,
  *   useColorSchemeProvider,
- *   type ColorSchemeMode,
+ *   type ColorScheme,
  * } from "@react-md/core";
  * import { type PropsWithChildren, type ReactElement } from "react";
  * import Cookies from "js-cookie";
@@ -48,18 +47,18 @@ export interface ColorSchemeProviderOptions
  * function MyColorSchemeProvider(props: PropsWithChildren): ReactElement {
  *   const { children } = props;
  *
- *   const [colorSchemeMode, setColorSchemeMode] = useState<ColorSchemeMode>(
- *     () => Cookies.get("colorSchemeMode") || "system"
+ *   const [colorScheme, setColorScheme] = useState<ColorScheme>(
+ *     () => Cookies.get("colorScheme") || "system"
  *   );
  *   const value = useColorSchemeProvider({
- *     colorSchemeMode,
- *     setColorSchemeMode(nextValue) {
- *       setColorSchemeMode((prevValue) => {
+ *     colorScheme,
+ *     setColorScheme(nextValue) {
+ *       setColorScheme((prevValue) => {
  *         const value = typeof nextValue === "function"
  *           ? nextValue(prevValue)
  *           : nextValue;
  *
- *         Cookies.set("colorSchemeMode", value);
+ *         Cookies.set("colorScheme", value);
  *         return value;
  *       });
  *     }
@@ -71,15 +70,15 @@ export interface ColorSchemeProviderOptions
  * @since 6.0.0
  */
 export function useColorSchemeProvider(
-  options?: { [key in keyof ColorSchemeModeBehavior]?: never } & {
+  options?: { [key in keyof ColorSchemeState]?: never } & {
     disableMetaTag?: boolean;
-    defaultColorSchemeMode?: UseStateInitializer<ColorSchemeMode>;
+    defaultColorScheme?: UseStateInitializer<ColorScheme>;
   }
 ): ColorSchemeContext;
 export function useColorSchemeProvider(
-  options: ColorSchemeModeBehavior & {
+  options: ColorSchemeState & {
     disableMetaTag?: boolean;
-    defaultColorSchemeMode?: never;
+    defaultColorScheme?: never;
   }
 ): ColorSchemeContext;
 export function useColorSchemeProvider(
@@ -87,32 +86,32 @@ export function useColorSchemeProvider(
 ): ColorSchemeContext {
   const {
     disableMetaTag,
-    colorSchemeMode: value,
-    setColorSchemeMode: setValue,
-    defaultColorSchemeMode,
+    colorScheme: propColorScheme,
+    setColorScheme: propSetColorScheme,
+    defaultColorScheme,
   } = options;
 
-  const [colorSchemeMode, setColorSchemeMode] = useEnsuredState({
-    value,
-    setValue,
-    defaultValue: defaultColorSchemeMode,
+  const [colorScheme, setColorScheme] = useEnsuredState({
+    value: propColorScheme,
+    setValue: propSetColorScheme,
+    defaultValue: defaultColorScheme,
   });
-  const prefersDarkTheme = usePrefersDarkTheme(colorSchemeMode !== "system");
+  const prefersDarkTheme = usePrefersDarkTheme(colorScheme !== "system");
   const derivedColorScheme = prefersDarkTheme ? "dark" : "light";
-  const colorScheme =
-    colorSchemeMode === "system" ? derivedColorScheme : colorSchemeMode;
+  const currentColor =
+    colorScheme === "system" ? derivedColorScheme : colorScheme;
 
   useColorSchemeMetaTag({
     disabled: disableMetaTag,
-    colorScheme,
+    colorScheme: currentColor,
   });
 
   return useMemo<ColorSchemeContext>(
     () => ({
+      currentColor,
       colorScheme,
-      colorSchemeMode,
-      setColorSchemeMode,
+      setColorScheme,
     }),
-    [colorScheme, colorSchemeMode, setColorSchemeMode]
+    [currentColor, colorScheme, setColorScheme]
   );
 }

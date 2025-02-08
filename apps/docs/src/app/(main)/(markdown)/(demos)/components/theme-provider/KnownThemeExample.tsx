@@ -44,9 +44,9 @@ const lightTheme: Readonly<ConfigurableThemeColors> = {
 };
 
 export default function KnownThemeExample(): ReactElement {
-  const { colorScheme } = useColorScheme();
+  const { currentColor } = useColorScheme();
   return (
-    <ThemeProvider theme={colorScheme === "light" ? lightTheme : darkTheme}>
+    <ThemeProvider theme={currentColor === "light" ? lightTheme : darkTheme}>
       <Content />
     </ThemeProvider>
   );

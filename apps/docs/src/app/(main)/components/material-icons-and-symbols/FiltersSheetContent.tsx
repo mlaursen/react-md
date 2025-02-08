@@ -23,11 +23,11 @@ export function FiltersSheetContent(): ReactElement {
     defaultExpandedIds: [styleId, categoriesId],
   });
   const { isDesktop } = useAppSize();
-  const { colorScheme } = useColorScheme();
+  const { currentColor } = useColorScheme();
 
   return (
     <Form
-      className={cnb(!isDesktop && colorScheme === "dark" && styles.darker)}
+      className={cnb(!isDesktop && currentColor === "dark" && styles.darker)}
     >
       {iconType === "symbol" && (
         <>

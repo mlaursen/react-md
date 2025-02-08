@@ -14,8 +14,8 @@ the user's preference.
 
 ```tsx
 function Example() {
-  const { colorScheme } = useColorScheme();
-  useHtmlClassName(`${colorScheme}-mode`);
+  const { currentColor } = useColorScheme();
+  useHtmlClassName(`${currentColor}-mode`);
   return null;
 }
 ```

@@ -4,28 +4,28 @@ import { type ChangeEvent, type ReactElement } from "react";
 import { render, screen } from "../../test-utils/index.js";
 import { type UseStateSetter } from "../../types.js";
 import { LocalStorageColorSchemeProvider } from "../LocalStorageColorSchemeProvider.js";
-import { type ColorScheme, type ColorSchemeMode } from "../types.js";
+import { type ColorScheme, type LightDarkColorScheme } from "../types.js";
 import { useColorScheme } from "../useColorScheme.js";
 
 function ControllableTest(): ReactElement {
-  const { colorScheme, colorSchemeMode, setColorSchemeMode } = useColorScheme();
+  const { currentColor, colorScheme, setColorScheme } = useColorScheme();
 
   const onChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const { value } = event.currentTarget;
     if (value === "light" || value === "dark" || value === "system") {
-      setColorSchemeMode(value);
+      setColorScheme(value);
     }
   };
 
   return (
     <>
-      <span data-testid="color-scheme">{colorScheme}</span>
+      <span data-testid="color-scheme">{currentColor}</span>
       <label>
         Light
         <input
           type="checkbox"
           value="light"
-          checked={colorSchemeMode === "light"}
+          checked={colorScheme === "light"}
           onChange={onChange}
         />
       </label>
@@ -34,7 +34,7 @@ function ControllableTest(): ReactElement {
         <input
           type="checkbox"
           value="dark"
-          checked={colorSchemeMode === "dark"}
+          checked={colorScheme === "dark"}
           onChange={onChange}
         />
       </label>
@@ -43,7 +43,7 @@ function ControllableTest(): ReactElement {
         <input
           type="checkbox"
           value="system"
-          checked={colorSchemeMode === "system"}
+          checked={colorScheme === "system"}
           onChange={onChange}
         />
       </label>
@@ -67,17 +67,17 @@ describe("LocalStorageColorSchemeProvider", () => {
     expect(systemTheme).not.toBeChecked();
   });
 
-  it("should throw an error if the setColorSchemeMode from the useColorScheme hook is used without a ColorSchemeProvider", () => {
-    let setColorSchemeMode: UseStateSetter<ColorSchemeMode> | undefined;
+  it("should throw an error if the setColorScheme from the useColorScheme hook is used without a ColorSchemeProvider", () => {
+    let setColorScheme: UseStateSetter<ColorScheme> | undefined;
     function Test(): null {
-      ({ setColorSchemeMode } = useColorScheme());
+      ({ setColorScheme } = useColorScheme());
       return null;
     }
 
     jest.spyOn(console, "error").mockImplementation(() => {});
     render(<Test />);
 
-    expect(() => setColorSchemeMode?.("dark")).toThrow(
+    expect(() => setColorScheme?.("dark")).toThrow(
       "The `ColorSchemeProvider` has not been initialized."
     );
   });
@@ -107,20 +107,20 @@ describe("LocalStorageColorSchemeProvider", () => {
         ...baseQueryList,
       }));
 
-    let colorScheme: ColorScheme | undefined;
+    let currentColor: LightDarkColorScheme | undefined;
     function Test(): null {
-      ({ colorScheme } = useColorScheme());
+      ({ currentColor } = useColorScheme());
 
       return null;
     }
 
     render(
-      <LocalStorageColorSchemeProvider defaultColorSchemeMode="system">
+      <LocalStorageColorSchemeProvider defaultColorScheme="system">
         <Test />
       </LocalStorageColorSchemeProvider>
     );
 
-    expect(colorScheme).toBe("dark");
+    expect(currentColor).toBe("dark");
     expect(matchMedia).toHaveBeenCalledWith("(prefers-color-scheme: dark)");
     expect(matchMedia).toHaveBeenCalledTimes(2);
   });
@@ -131,7 +131,7 @@ describe("LocalStorageColorSchemeProvider", () => {
     render(
       <LocalStorageColorSchemeProvider
         localStorageKey={localStorageKey}
-        defaultColorSchemeMode="system"
+        defaultColorScheme="system"
       >
         <ControllableTest />
       </LocalStorageColorSchemeProvider>
@@ -141,13 +141,13 @@ describe("LocalStorageColorSchemeProvider", () => {
     expect(localStorage.getItem(localStorageKey)).toBe("light");
   });
 
-  it("should set the initial value to the defaultColorSchemeMode if there is an invalid value in local storage", () => {
+  it("should set the initial value to the defaultColorScheme if there is an invalid value in local storage", () => {
     const localStorageKey = "colorScheme";
     localStorage.setItem(localStorageKey, "invalid");
     render(
       <LocalStorageColorSchemeProvider
         localStorageKey={localStorageKey}
-        defaultColorSchemeMode="system"
+        defaultColorScheme="system"
       >
         <ControllableTest />
       </LocalStorageColorSchemeProvider>

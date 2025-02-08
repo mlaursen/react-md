@@ -37,7 +37,7 @@ export function RootProviders(props: RootProvidersProps): ReactElement {
     defaultPrismTheme,
     defaultCodeLanguage,
     defaultPackageManager,
-    defaultColorSchemeMode,
+    defaultColorScheme,
   } = props;
 
   return (
@@ -47,7 +47,7 @@ export function RootProviders(props: RootProvidersProps): ReactElement {
           <TooltipHoverModeProvider>
             <ThemeProvider>
               <CookieColorSchemeProvider
-                defaultColorSchemeMode={defaultColorSchemeMode}
+                defaultColorScheme={defaultColorScheme}
               >
                 <TypescriptEnabledProvider
                   defaultValue={defaultCodeLanguage === "ts"}

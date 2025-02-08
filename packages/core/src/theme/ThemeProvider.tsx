@@ -259,7 +259,7 @@ export interface ThemeProviderProps {
    * When this is `undefined`, the theme will be derived by computing the
    * `document.documentElement`'s styles for all the `react-md` theme custom
    * properties. The theme will also automatically update whenever the
-   * `colorScheme` or `colorSchemeMode` change.
+   * `currentColor` or `colorScheme` change.
    *
    * It is recommended to manually provide your theme if you know it beforehand.
    * Deriving the theme is really only useful if you allow your user to
@@ -268,7 +268,7 @@ export interface ThemeProviderProps {
    *
    * @see {@link DEFAULT_DARK_THEME}
    * @see {@link DEFAULT_LIGHT_THEME}
-   * @defaultValue `colorScheme === "dark" ? DEFAULT_DARK_THEME : DEFAULT_LIGHT_THEME`
+   * @defaultValue `currentColor === "dark" ? DEFAULT_DARK_THEME : DEFAULT_LIGHT_THEME`
    */
   theme?: Readonly<ConfigurableThemeColors>;
 
@@ -358,7 +358,7 @@ export interface ThemeProviderProps {
 export function ThemeProvider(props: ThemeProviderProps): ReactElement {
   const { children, theme } = props;
   const ssr = useSsr();
-  const { colorScheme, colorSchemeMode } = useColorScheme();
+  const { currentColor, colorScheme } = useColorScheme();
   const [derivedTheme, setDerivedTheme] = useState<ConfigurableThemeColors>(
     () => {
       if (theme) {
@@ -369,7 +369,7 @@ export function ThemeProvider(props: ThemeProviderProps): ReactElement {
         return getDerivedTheme(document.documentElement);
       }
 
-      return colorScheme === "dark" ? DEFAULT_DARK_THEME : DEFAULT_LIGHT_THEME;
+      return currentColor === "dark" ? DEFAULT_DARK_THEME : DEFAULT_LIGHT_THEME;
     }
   );
 
@@ -393,7 +393,7 @@ export function ThemeProvider(props: ThemeProviderProps): ReactElement {
     return () => {
       window.cancelAnimationFrame(frame);
     };
-  }, [theme, colorScheme, colorSchemeMode]);
+  }, [theme, currentColor, colorScheme]);
 
   const value = useMemo<ThemeContext>(() => {
     const backgroundColor =

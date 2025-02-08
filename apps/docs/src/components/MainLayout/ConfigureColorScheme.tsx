@@ -16,14 +16,14 @@ const ICONS: Record<ColorSchemeMode, ReactNode> = {
 };
 
 export function ConfigureColorScheme(): ReactElement {
-  const { colorSchemeMode, setColorSchemeMode } = useColorScheme();
+  const { colorScheme, setColorScheme } = useColorScheme();
 
   return (
     <SegmentedButtonGroup
       label="Color Scheme"
       items={modes}
-      value={colorSchemeMode}
-      setValue={setColorSchemeMode}
+      value={colorScheme}
+      setValue={setColorScheme}
       icon={ICONS}
       textTransform="capitalize"
     />
