@@ -768,6 +768,10 @@ $form-variables: (
           }
         }
 
+        &--outline-error {
+          @include interaction.set-var(focus-color, currentcolor);
+        }
+
         @if not $disable-text-field-addon {
           &--outline-left {
             $distance: calc(

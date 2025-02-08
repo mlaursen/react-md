@@ -117,13 +117,11 @@ export interface FocusContainerImplementation<E extends HTMLElement> {
  *
  * @example Main Usage
  * ```tsx
- * import {
- *   Button,
- *   useFocusContainer,
- *   useScaleTransition,
- *   useToggle,
- * } from "@react-md/core";
- * import type { ReactElement } from "react";
+ * import { Button } from "@react-md/core/button/Button"
+ * import { useFocusContainer } from "@react-md/core/focus/useFocusContainer"
+ * import { useScaleTransition } from "@react-md/core/transition/useScaleTransition"
+ * import { useToggle } from "@react-md/core/useToggle"
+ * import { type ReactElement } from "react";
  *
  * function Example(): ReactElement {
  *   const { toggled, enable, disable } = useToggle(false);
