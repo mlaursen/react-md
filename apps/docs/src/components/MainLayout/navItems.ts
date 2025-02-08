@@ -482,8 +482,8 @@ export const navItems: readonly NavigationItem[] = [
       },
       {
         type: "route",
-        href: "/use-local-storage",
-        children: "useLocalStorage",
+        href: "/use-storage",
+        children: "useStorage",
       },
       { type: "subheader", children: "Resizing and Positioning" },
       {

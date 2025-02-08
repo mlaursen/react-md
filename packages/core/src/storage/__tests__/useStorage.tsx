@@ -2,19 +2,24 @@ import { afterEach, describe, expect, it } from "@jest/globals";
 import lzString from "lz-string";
 import { type ReactElement, useEffect } from "react";
 
-import { SsrProvider } from "../SsrProvider.js";
-import { Button } from "../button/Button.js";
-import { act, fireEvent, render, screen } from "../test-utils/index.js";
+import { SsrProvider } from "../../SsrProvider.js";
+import { Button } from "../../button/Button.js";
 import {
-  type LocalStorageDeserializer,
-  useLocalStorage,
-} from "../useLocalStorage.js";
+  act,
+  fireEvent,
+  render,
+  screen,
+  userEvent,
+} from "../../test-utils/index.js";
+import { type StorageDeserializer } from "../types.js";
+import { useStorage } from "../useStorage.js";
 
 const TEST_KEY = "test-key";
 
-describe("useLocalStorage", () => {
+describe("useStorage", () => {
   afterEach(() => {
     localStorage.clear();
+    sessionStorage.clear();
   });
 
   it("should support storing objects using JSON.stringify", () => {
@@ -35,7 +40,7 @@ describe("useLocalStorage", () => {
     };
 
     function Test(): ReactElement {
-      const { value, setValue, remove } = useLocalStorage({
+      const { value, setValue, remove } = useStorage({
         key: TEST_KEY,
         defaultValue,
       });
@@ -109,7 +114,7 @@ describe("useLocalStorage", () => {
 
   it("should support storing numbers as-is", () => {
     function Test(): ReactElement {
-      const { value, setValue } = useLocalStorage({
+      const { value, setValue } = useStorage({
         key: TEST_KEY,
         defaultValue: -1,
       });
@@ -158,7 +163,7 @@ describe("useLocalStorage", () => {
 
     // this is just one example of using it
     function Test(): ReactElement {
-      const { value, setValue } = useLocalStorage<Value>({
+      const { value, setValue } = useStorage<Value>({
         key: TEST_KEY,
         defaultValue,
         serializer: (value) => lzString.compress(JSON.stringify(value)),
@@ -208,7 +213,7 @@ describe("useLocalStorage", () => {
       email: "hello@example.com",
     };
 
-    const deserializer: LocalStorageDeserializer<Schema> = (item) => {
+    const deserializer: StorageDeserializer<Schema> = (item) => {
       const value = JSON.parse(item);
       let { username, birth_year, email } = value;
 
@@ -257,7 +262,7 @@ describe("useLocalStorage", () => {
     );
 
     function Test(): ReactElement {
-      const { value } = useLocalStorage({
+      const { value } = useStorage({
         key: TEST_KEY,
         defaultValue: DEFAULT_VALUE,
         deserializer,
@@ -286,7 +291,7 @@ describe("useLocalStorage", () => {
 
   it("should support manually persisting the value", () => {
     function Test(): ReactElement {
-      const { value, setValue, persist, remove } = useLocalStorage({
+      const { value, setValue, persist, remove } = useStorage({
         key: TEST_KEY,
         manual: true,
         defaultValue: "",
@@ -331,7 +336,7 @@ describe("useLocalStorage", () => {
 
   it("should update the value for storage events", () => {
     function Test(): ReactElement {
-      const { value } = useLocalStorage({
+      const { value } = useStorage({
         key: TEST_KEY,
         defaultValue: "",
       });
@@ -350,16 +355,59 @@ describe("useLocalStorage", () => {
           key: TEST_KEY,
           oldValue: "",
           newValue: "storage event value",
+          storageArea: localStorage,
         })
       );
     });
     expect(value).toHaveTextContent("storage event value");
   });
 
+  it("should skip updating the value for storage events if the key or storageArea do not match", () => {
+    function Test(): ReactElement {
+      const { value } = useStorage({
+        key: TEST_KEY,
+        defaultValue: "",
+      });
+      return <div data-testid="value">{value}</div>;
+    }
+
+    render(<Test />);
+    const value = screen.getByTestId("value");
+    expect(value).toBeEmptyDOMElement();
+
+    act(() => {
+      // don't really know a good way to test this part
+      localStorage.setItem(TEST_KEY, '"storage event value"');
+      window.dispatchEvent(
+        new StorageEvent("storage", {
+          key: TEST_KEY,
+          oldValue: "",
+          newValue: "storage event value",
+          storageArea: sessionStorage,
+        })
+      );
+    });
+    expect(value).toBeEmptyDOMElement();
+
+    act(() => {
+      // don't really know a good way to test this part
+      localStorage.setItem(TEST_KEY + "INVALID", '"storage event value"');
+      window.dispatchEvent(
+        new StorageEvent("storage", {
+          key: TEST_KEY + "INVALID",
+          oldValue: "",
+          newValue: "storage event value",
+          storageArea: localStorage,
+        })
+      );
+    });
+    expect(value).toBeEmptyDOMElement();
+  });
+
   it("should work correctly in SSR mode", () => {
     let initialValue: string | null = null;
     function Test(): ReactElement {
-      const { value } = useLocalStorage({
+      const { value } = useStorage({
         key: TEST_KEY,
         defaultValue: "",
       });
@@ -381,5 +429,82 @@ describe("useLocalStorage", () => {
     const value = screen.getByTestId("value");
     expect(initialValue).toBe("");
     expect(value).toHaveTextContent("stored value");
+  });
+
+  it("should support session storage", async () => {
+    const user = userEvent.setup();
+
+    function Test(): ReactElement {
+      const { value, setValue } = useStorage({
+        key: TEST_KEY,
+        storage: sessionStorage,
+        defaultValue: "Hello, world!",
+      });
+
+      return (
+        <>
+          <div data-testid="value">{value}</div>
+          <Button
+            onClick={() => {
+              setValue("next value!");
+            }}
+          >
+            Button
+          </Button>
+        </>
+      );
+    }
+
+    render(<Test />);
+    const value = screen.getByTestId("value");
+    expect(value).toHaveTextContent("Hello, world!");
+    expect(localStorage.getItem("TEST_KEY")).toBe(null);
+    expect(sessionStorage.getItem(TEST_KEY)).toBe("Hello, world!");
+
+    await user.click(screen.getByRole("button", { name: "Button" }));
+    expect(localStorage.getItem("TEST_KEY")).toBe(null);
+    expect(sessionStorage.getItem(TEST_KEY)).toBe("next value!");
+  });
+
+  it("should act as a normal useState hook if the key is an empty string", async () => {
+    function Test(): ReactElement {
+      const { value, setValue } = useStorage({ key: "", defaultValue: "" });
+
+      return (
+        <>
+          <div data-testid="value">{value}</div>
+          <Button onClick={() => setValue("next value!")}>Button</Button>
+        </>
+      );
+    }
+
+    const user = userEvent.setup();
+    render(<Test />);
+
+    const value = screen.getByTestId("value");
+    const button = screen.getByRole("button", { name: "Button" });
+    expect(value).toBeEmptyDOMElement();
+    expect(localStorage.length).toBe(0);
+
+    act(() => {
+      // don't really know a good way to test this part
+      localStorage.setItem(TEST_KEY, '"storage event value"');
+      window.dispatchEvent(
+        new StorageEvent("storage", {
+          key: TEST_KEY,
+          oldValue: "",
+          newValue: "storage event value",
+          storageArea: localStorage,
+        })
+      );
+    });
+    expect(value).toBeEmptyDOMElement();
+    expect(localStorage.length).toBe(1);
+    expect(localStorage.getItem(TEST_KEY)).toBe('"storage event value"');
+
+    await user.click(button);
+    expect(value).toHaveTextContent("next value!");
+    expect(localStorage.length).toBe(1);
+    expect(localStorage.getItem(TEST_KEY)).toBe('"storage event value"');
   });
 });

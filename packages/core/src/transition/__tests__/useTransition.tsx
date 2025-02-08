@@ -15,6 +15,7 @@ import {
 } from "react";
 
 import { SsrProvider, useSsr } from "../../SsrProvider.js";
+import { useStorage } from "../../storage/useStorage.js";
 import {
   act,
   fireEvent,
@@ -22,7 +23,6 @@ import {
   screen,
   waitFor,
 } from "../../test-utils/index.js";
-import { useLocalStorage } from "../../useLocalStorage.js";
 import { TRANSITION_CONFIG } from "../config.js";
 import {
   type TransitionHookOptions,
@@ -477,7 +477,7 @@ describe("useTransition", () => {
     const stages: TransitionStage[] = [];
     function Test() {
       const ssr = useSsr();
-      const { value: transitionIn } = useLocalStorage({
+      const { value: transitionIn } = useStorage({
         key: "expanded",
         defaultValue: false,
       });

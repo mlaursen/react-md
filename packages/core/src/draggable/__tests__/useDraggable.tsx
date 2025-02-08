@@ -9,9 +9,9 @@ import {
 } from "react";
 
 import { Button } from "../../button/Button.js";
+import { useStorage } from "../../storage/useStorage.js";
 import { fireEvent, rmdRender, screen } from "../../test-utils/index.js";
 import { WritingDirectionProvider } from "../../typography/WritingDirectionProvider.js";
-import { useLocalStorage } from "../../useLocalStorage.js";
 import { getPercentage } from "../../utils/getPercentage.js";
 import {
   type ControlledValueDraggableOptions,
@@ -473,7 +473,7 @@ describe("useDraggable", () => {
       const min = 0;
       const max = 100;
       const [dragging, setDragging] = useState(false);
-      const { value, setValue, persist } = useLocalStorage({
+      const { value, setValue, persist } = useStorage({
         key: "test",
         manual: dragging,
         defaultValue: 50,

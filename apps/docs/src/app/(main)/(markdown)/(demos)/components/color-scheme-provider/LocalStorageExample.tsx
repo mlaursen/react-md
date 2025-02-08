@@ -42,7 +42,7 @@ function Content(): ReactElement {
     >
       <Box>
         <Typography>{`The current derived color scheme is "${currentColor}"`}</Typography>
-        <Typography>{`The current saved color scheme mode is "${colorScheme}"`}</Typography>
+        <Typography>{`The current saved color scheme is "${colorScheme}"`}</Typography>
         <SegmentedButtonContainer>
           {MODES.map((mode) => (
             <SegmentedButton

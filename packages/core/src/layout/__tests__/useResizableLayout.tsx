@@ -16,6 +16,7 @@ import { Radio } from "../../form/Radio.js";
 import { useRadioGroup } from "../../form/useRadioGroup.js";
 import { useAppSize } from "../../media-queries/AppSizeProvider.js";
 import { Sheet } from "../../sheet/Sheet.js";
+import { removeItemFromStorage } from "../../storage/utils.js";
 import { drag } from "../../test-utils/drag.js";
 import {
   rmdRender,
@@ -24,7 +25,6 @@ import {
   waitFor,
 } from "../../test-utils/index.js";
 import { TRANSITION_CONFIG } from "../../transition/config.js";
-import { removeItemFromStorage } from "../../useLocalStorage.js";
 import { isElementVisible } from "../../utils/isElementVisible.js";
 import { LayoutNav } from "../LayoutNav.js";
 import { LayoutWindowSplitter } from "../LayoutWindowSplitter.js";

@@ -2,7 +2,7 @@
 
 import { type ReactElement, type ReactNode } from "react";
 
-import { useLocalStorage } from "../useLocalStorage.js";
+import { useStorage } from "../storage/useStorage.js";
 import { isColorScheme } from "./isColorScheme.js";
 import { type ColorScheme } from "./types.js";
 import { ColorSchemeProvider } from "./useColorScheme.js";
@@ -21,15 +21,15 @@ export interface LocalStorageColorSchemeProviderProps {
   disableMetaTag?: boolean;
 
   /**
-   * Set this to a string like `"colorScheme"` if you want to store the user's
-   * color scheme preference in local storage.
+   * Set this to an empty string to disable the local storage behavior. Otherwise,
+   * this can be used to customize the name.
    *
-   * @defaultValue `""`
+   * @defaultValue `"colorScheme"`
    */
   localStorageKey?: string;
 
   /**
-   * The current color scheme mode that is being used by your app. This should
+   * The current color scheme that is being used by your app. This should
    * match the `$color-scheme` SCSS variable.
    *
    * @defaultValue `"light"`
@@ -108,13 +108,13 @@ export function LocalStorageColorSchemeProvider(
   props: LocalStorageColorSchemeProviderProps
 ): ReactElement {
   const {
-    localStorageKey = "",
+    localStorageKey = "colorScheme",
     defaultColorScheme = "light",
     disableMetaTag,
     children,
   } = props;
 
-  const { value: colorScheme, setValue: setColorScheme } = useLocalStorage({
+  const { value: colorScheme, setValue: setColorScheme } = useStorage({
     key: localStorageKey,
     defaultValue: defaultColorScheme,
     deserializer: (item) => (isColorScheme(item) ? item : defaultColorScheme),

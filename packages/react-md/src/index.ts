@@ -11,6 +11,7 @@
 // - menu/utils
 // - position/createHorizontalPosition
 // - position/createVerticalPosition
+// - storage/internalUtils
 // - tabs/useTabList
 // - tabs/utils
 // - tooltip/useTooltipPosition
@@ -259,6 +260,9 @@ export * from "@react-md/core/snackbar/ToastManagerProvider";
 export * from "@react-md/core/snackbar/toastStyles";
 export * from "@react-md/core/snackbar/useCurrentToastActions";
 export * from "@react-md/core/SsrProvider";
+export * from "@react-md/core/storage/types";
+export * from "@react-md/core/storage/useStorage";
+export * from "@react-md/core/storage/utils";
 export * from "@react-md/core/suspense/CircularProgressSuspense";
 export * from "@react-md/core/suspense/NullSuspense";
 export * from "@react-md/core/table/StickyTableSection";
@@ -360,7 +364,6 @@ export * from "@react-md/core/useEnsuredState";
 export * from "@react-md/core/useHtmlClassName";
 export * from "@react-md/core/useIntersectionObserver";
 export * from "@react-md/core/useIsomorphicLayoutEffect";
-export * from "@react-md/core/useLocalStorage";
 export * from "@react-md/core/useMutationObserver";
 export * from "@react-md/core/useOrientation";
 export * from "@react-md/core/usePageInactive";

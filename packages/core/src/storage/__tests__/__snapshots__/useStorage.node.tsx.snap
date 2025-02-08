@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useStorage should not error while rendering in a node environment and just return the defaultValue 1`] = `"<div data-testid="value">100</div>"`;

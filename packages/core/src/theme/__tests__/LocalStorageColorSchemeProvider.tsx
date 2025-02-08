@@ -1,7 +1,8 @@
-import { describe, expect, it, jest } from "@jest/globals";
+import { afterEach, describe, expect, it, jest } from "@jest/globals";
 import { type ChangeEvent, type ReactElement } from "react";
 
 import { render, screen } from "../../test-utils/index.js";
+import { spyOnMatchMedia } from "../../test-utils/jest-globals/match-media.js";
 import { type UseStateSetter } from "../../types.js";
 import { LocalStorageColorSchemeProvider } from "../LocalStorageColorSchemeProvider.js";
 import { type ColorScheme, type LightDarkColorScheme } from "../types.js";
@@ -52,6 +53,10 @@ function ControllableTest(): ReactElement {
 }
 
 describe("LocalStorageColorSchemeProvider", () => {
+  afterEach(() => {
+    localStorage.clear();
+  });
+
   it("should default to the light color scheme and allow the useColorScheme hook to change the values", () => {
     render(
       <LocalStorageColorSchemeProvider>
@@ -83,29 +88,7 @@ describe("LocalStorageColorSchemeProvider", () => {
   });
 
   it("should return dark when the mode is system and the prefers-color-scheme media query matches dark", () => {
-    const onchange = jest.fn();
-    const addListener = jest.fn();
-    const addEventListener = jest.fn();
-    const removeListener = jest.fn();
-    const removeEventListener = jest.fn();
-    const dispatchEvent = jest.fn(() => false);
-
-    const baseQueryList: Omit<MediaQueryList, "matches"> = {
-      media: "",
-      onchange,
-      addListener,
-      addEventListener,
-      removeEventListener,
-      removeListener,
-      dispatchEvent,
-    };
-
-    const matchMedia = jest
-      .spyOn(window, "matchMedia")
-      .mockImplementation((query) => ({
-        matches: query.includes("dark"),
-        ...baseQueryList,
-      }));
+    const matchMedia = spyOnMatchMedia((query) => query.includes("dark"));
 
     let currentColor: LightDarkColorScheme | undefined;
     function Test(): null {
