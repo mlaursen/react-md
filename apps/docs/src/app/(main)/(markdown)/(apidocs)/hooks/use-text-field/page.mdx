@@ -149,7 +149,7 @@ function Example() {
 
 - `options` - An object with the following definition:
 
-````ts disableScroll disableTransform
+````ts disableTransform
 export type TextFieldValidationOptions = Pick<
   InputHTMLAttributes<HTMLInputElement>,
   "minLength" | "maxLength" | "required" | "pattern"
@@ -316,7 +316,7 @@ export interface TextFieldHookOptions<
 The return type has the following shape, but changes depending on the provided options.
 Just know that it is always save to pass the `fieldProps` to the `TextField` component.
 
-```ts disableScroll disableTransform
+```ts disableTransform
 export interface TextFieldHookState {
   /**
    * The current value for the `TextField` or `TextArea`.

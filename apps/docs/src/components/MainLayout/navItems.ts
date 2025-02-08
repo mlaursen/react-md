@@ -398,42 +398,6 @@ export const navItems: readonly NavigationItem[] = [
     href: "/hooks",
     children: "Hooks",
     items: [
-      { type: "subheader", children: "Resizing and Positioning" },
-      {
-        type: "route",
-        href: "/use-app-size",
-        children: "useAppSize",
-      },
-      {
-        type: "route",
-        href: "/use-media-query",
-        children: "useMediaQuery",
-      },
-      {
-        type: "route",
-        href: "/use-resize-observer",
-        children: "useResizeObserver",
-      },
-      {
-        type: "route",
-        href: "/use-resize-listener",
-        children: "useResizeListener",
-      },
-      {
-        type: "route",
-        href: "/use-element-size",
-        children: "useElementSize",
-      },
-      {
-        type: "route",
-        href: "/use-window-size",
-        children: "useWindowSize",
-      },
-      {
-        type: "route",
-        href: "/use-intersection-observer",
-        children: "useIntersectionObserver",
-      },
       { type: "subheader", children: "Form State" },
       {
         type: "route",
@@ -470,23 +434,17 @@ export const navItems: readonly NavigationItem[] = [
         href: "/use-file-upload",
         children: "useFileUpload",
       },
-      { type: "subheader", children: "Actions" },
       {
         type: "route",
-        href: "/use-async-function",
-        children: "useAsyncFunction",
+        href: "/use-dropzone",
+        children: "useDropzone",
       },
+      { type: "subheader", children: "UI and State" },
       {
         type: "route",
-        href: "/use-debounced-function",
-        children: "useDebouncedFunction",
+        href: "/use-active-heading-id",
+        children: "useActiveHeadingId",
       },
-      {
-        type: "route",
-        href: "/use-throttled-function",
-        children: "useThrottledFunction",
-      },
-      { type: "subheader", children: "Layout" },
       {
         type: "route",
         href: "/use-layout-tree",
@@ -512,26 +470,93 @@ export const navItems: readonly NavigationItem[] = [
         href: "/use-window-splitter",
         children: "useWindowSplitter",
       },
-      { type: "subheader", children: "UI and State" },
       {
         type: "route",
-        href: "/use-tooltip",
-        children: "useTooltip",
+        href: "/use-toggle",
+        children: "useToggle",
       },
       {
         type: "route",
-        href: "/use-dropzone",
-        children: "useDropzone",
+        href: "/use-readonly-set",
+        children: "useReadonlySet",
+      },
+      {
+        type: "route",
+        href: "/use-local-storage",
+        children: "useLocalStorage",
+      },
+      { type: "subheader", children: "Resizing and Positioning" },
+      {
+        type: "route",
+        href: "/use-app-size",
+        children: "useAppSize",
+      },
+      {
+        type: "route",
+        href: "/use-media-query",
+        children: "useMediaQuery",
+      },
+      {
+        type: "route",
+        href: "/use-resize-observer",
+        children: "useResizeObserver",
+      },
+      {
+        type: "route",
+        href: "/use-resize-listener",
+        children: "useResizeListener",
+      },
+      {
+        type: "route",
+        href: "/use-element-size",
+        children: "useElementSize",
+      },
+      {
+        type: "route",
+        href: "/use-window-size",
+        children: "useWindowSize",
+      },
+      {
+        type: "route",
+        href: "/use-intersection-observer",
+        children: "useIntersectionObserver",
+      },
+      {
+        type: "route",
+        href: "/use-mutation-observer",
+        children: "useMutationObserver",
       },
       {
         type: "route",
         href: "/use-fixed-positioning",
         children: "useFixedPositioning",
       },
+      { type: "subheader", children: "Actions" },
+      {
+        type: "route",
+        href: "/use-async-function",
+        children: "useAsyncFunction",
+      },
+      {
+        type: "route",
+        href: "/use-debounced-function",
+        children: "useDebouncedFunction",
+      },
+      {
+        type: "route",
+        href: "/use-throttled-function",
+        children: "useThrottledFunction",
+      },
+      { type: "subheader", children: "Theming" },
       {
         type: "route",
         href: "/use-html-class-name",
         children: "useHtmlClassName",
+      },
+      {
+        type: "route",
+        href: "/use-prefers-dark-theme",
+        children: "usePrefersDarkTheme",
       },
       {
         type: "route",
@@ -540,20 +565,35 @@ export const navItems: readonly NavigationItem[] = [
       },
       {
         type: "route",
+        href: "/use-color-scheme-provider",
+        children: "useColorSchemeProvider",
+      },
+      {
+        type: "route",
+        href: "/use-color-scheme-meta-tag",
+        children: "useColorSchemeMetaTag",
+      },
+      {
+        type: "route",
         href: "/use-css-variables",
         children: "useCSSVariables",
       },
-      {
-        type: "route",
-        href: "/use-toggle",
-        children: "useToggle",
-      },
-      {
-        type: "route",
-        href: "/use-local-storage",
-        children: "useLocalStorage",
-      },
       { type: "subheader", children: "Low-level" },
+      {
+        type: "route",
+        href: "/use-unmounted",
+        children: "useUnmounted",
+      },
+      {
+        type: "route",
+        href: "/use-ensured-id",
+        children: "useEnsuredId",
+      },
+      {
+        type: "route",
+        href: "/use-ensured-ref",
+        children: "useEnsuredRef",
+      },
       {
         type: "route",
         href: "/use-element-interaction",
@@ -573,6 +613,16 @@ export const navItems: readonly NavigationItem[] = [
         type: "route",
         href: "/use-hover-mode-provider",
         children: "useHoverModeProvider",
+      },
+      {
+        type: "route",
+        href: "/use-orientation",
+        children: "useOrientation",
+      },
+      {
+        type: "route",
+        href: "/use-page-inactive",
+        children: "usePageInactive",
       },
       {
         type: "route",

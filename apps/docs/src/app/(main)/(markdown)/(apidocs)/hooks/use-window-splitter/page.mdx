@@ -46,7 +46,7 @@ function Example() {
 
 - `options` - An object with the following definition:
 
-```ts disableScroll disableTransform
+```ts disableTransform
 export type WindowSplitterOptions<E extends HTMLElement = HTMLButtonElement> =
   BaseWindowSplitterOptions<E> & DraggableStateOptions;
 
@@ -104,7 +104,7 @@ export type DraggableEventHandlers<E extends HTMLElement> =
 
 ## Returns
 
-```ts disableScroll disableTransform
+```ts disableTransform
 export interface WindowSplitterImplementation<
   E extends HTMLElement = HTMLButtonElement,
 > extends DraggableImplementation<E> {

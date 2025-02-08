@@ -1,0 +1,31 @@
+@use "everything";
+
+.container {
+  @include everything.icon-set-var(size, 4rem);
+  @include everything.interaction-outline();
+
+  height: 30vh;
+  position: relative;
+}
+
+.dragging {
+  @include everything.interaction-focus-styles($disable-background: true);
+}
+
+.dragover {
+  @include everything.interaction-set-var(
+    focus-color,
+    everything.theme-get-var(success-color)
+  );
+}
+
+.invisible {
+  opacity: 0;
+}
+
+.progress {
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}

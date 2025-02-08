@@ -458,6 +458,7 @@ $variables: (
           height: auto;
           left: 0;
           right: 0;
+          will-change: top, bottom;
         }
 
         &::before {
@@ -569,7 +570,7 @@ $variables: (
 
 @mixin styles($disable-layer: false) {
   @include utils.optional-layer(
-    overlay,
+    progress,
     $disable-layer or ($disable-circular and $disable-linear)
   ) {
     @if not $disable-circular {

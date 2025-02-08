@@ -21,6 +21,19 @@ export interface ColorSchemeMetaTagOptions {
  * should not be used if you are using the `useColorSchemeProvider` since it is
  * already built in.
  *
+ * @example
+ * ```tsx
+ * import { useColorScheme } from "@react-md/core/theme/useColorScheme";
+ * import { useColorSchemeMetaTag } from "@react-md/core/theme/useColorSchemeMetaTag";
+ *
+ * function Example() {
+ *   const { currentColor } = useColorScheme();
+ *   useColorSchemeMetaTag({ colorScheme: currentColor });
+ *
+ *   return null;
+ * }
+ * ```
+ *
  * @since 6.0.0
  */
 export function useColorSchemeMetaTag(

@@ -7,7 +7,7 @@ import { useId } from "react";
  * @example Simple Example
  * ```tsx
  * import type { HTMLAttributes, ReactElement } from "react";
- * import { useEnsuredId } from "@react-md/core";
+ * import { useEnsuredId } from "@react-md/core/useEnsuredId";
  *
  * export function MaterialDesignComponent(props: HTMLAttributes<HTMLDivElement>): ReactElement {
  *   const id = useEnsuredId(props.id, "component-name");

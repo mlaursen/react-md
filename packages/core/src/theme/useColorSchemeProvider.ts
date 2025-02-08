@@ -36,11 +36,9 @@ export interface ColorSchemeProviderOptions extends Partial<ColorSchemeState> {
 /**
  * @example
  * ```tsx
- * import {
- *   ColorSchemeProvider,
- *   useColorSchemeProvider,
- *   type ColorScheme,
- * } from "@react-md/core";
+ * import { type ColorScheme } from "@react-md/core/theme/types";
+ * import { ColorSchemeProvider } from "@react-md/core/theme/useColorScheme";
+ * import { useColorSchemeProvider } from "@reat-md/core/theme/useColorSchemeProvider";
  * import { type PropsWithChildren, type ReactElement } from "react";
  * import Cookies from "js-cookie";
  *
@@ -64,7 +62,7 @@ export interface ColorSchemeProviderOptions extends Partial<ColorSchemeState> {
  *     }
  *   });
  *
- *   return <ColorSchemeProvider value={value}>{children}</ColorSchemeProvider>
+ *   return <ColorSchemeProvider value={value}>{children}</ColorSchemeProvider>;
  * }
  * ```
  * @since 6.0.0

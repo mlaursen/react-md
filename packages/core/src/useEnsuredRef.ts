@@ -23,8 +23,8 @@ export type EnsuredRefs<E extends HTMLElement> = readonly [
  *
  * @example Simple Example
  * ```tsx
+ * import { useEnsuredRef } from "@react-md/core/useEnsuredRef";
  * import { HTMLAttributes, forwardRef } from "react";
- * import { useEnsuredRef } from "@react-md/core";
  *
  * export type ExampleProps = HTMLAttributes<HTMLDivElement>;
  *

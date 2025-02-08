@@ -1,0 +1,32 @@
+# useEnsuredId
+
+```ts
+function useEnsuredId(propId: string | undefined, prefix: string): string;
+```
+
+This hook is used to ensure that an `id` has been provided to a component
+either through props or use the `useId` hook.
+
+## Example Usage
+
+```tsx
+import { useEnsuredId } from "@react-md/core/useEnsuredId";
+import type { HTMLAttributes, ReactElement } from "react";
+
+export function MaterialDesignComponent(
+  props: HTMLAttributes<HTMLDivElement>
+): ReactElement {
+  const id = useEnsuredId(props.id, "component-name");
+
+  return <div {...props} id={id} />;
+}
+```
+
+## Parameters
+
+- `propId` - The optional `props.id` that will be used if it is defined
+- `prefix` - The prefix to apply to the `useId()` hook as `${prefix}-${useId()}`
+
+## Returns
+
+An `id` to be passed to an element; generally for accessibility.

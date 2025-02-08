@@ -1,0 +1,46 @@
+# useColorSchemeMetaTag
+
+```ts
+function useColorSchemeMetaTag(options: ColorSchemeMetaTagOptions): void;
+```
+
+Adds a `<meta name="color-scheme" content="light">` or
+`<meta name="color-scheme" content="dark">` into the head element.
+
+> !Warn! This should not be used if you are using the `useColorSchemeProvider`
+> since it is already built in.
+
+## Example Usage
+
+```tsx
+import { useColorScheme } from "@react-md/core/theme/useColorScheme";
+import { useColorSchemeMetaTag } from "@react-md/core/theme/useColorSchemeMetaTag";
+
+function Example() {
+  const { currentColor } = useColorScheme();
+  useColorSchemeMetaTag({ colorScheme: currentColor });
+
+  return null;
+}
+```
+
+## Parameters
+
+- `options` - An object with the following definition:
+
+```ts disableTransform
+export interface ColorSchemeMetaTagOptions {
+  /** @defaultValue `"false"` */
+  disabled?: boolean;
+  colorScheme: "light" | "dark";
+}
+```
+
+## Returns
+
+Nothing.
+
+## See Also
+
+- [useColorSchemeProvider](./use-color-scheme-provider)
+- [ColorSchemeProvider](/components/color-scheme-provider)

@@ -52,7 +52,7 @@ function Example(): ReactElement {
 
 - `options` - An object with the following definition:
 
-```ts disableScroll disableTransform
+```ts disableTransform
 export interface FocusContainerOptions<E extends HTMLElement>
   extends FocusContainerTransitionOptions<E>,
     FocusContainerComponentProps {
@@ -114,7 +114,7 @@ export interface FocusContainerTransitionOptions<E extends HTMLElement>
 
 ## Returns
 
-```ts disableScroll disableTransform
+```ts disableTransform
 export interface FocusContainerImplementation<E extends HTMLElement> {
   nodeRef: RefObject<E>;
   eventHandlers: Required<FocusContainerEventHandlers<E>>;

@@ -31,7 +31,7 @@ function Example() {
 
 - `options` (optional) - An object with the following definition:
 
-```ts disableScroll disableTransform
+```ts disableTransform
 export interface WindowSizeOptions extends AddEventListenerOptions {
   /**
    * The default value to use in SSR environments for the window's height.
@@ -82,7 +82,7 @@ provide the `ssrHeight` and `ssrWidth` props to reduce layout shifts.
 
 ## Returns
 
-```ts disableScroll disableTransform
+```ts disableTransform
 export interface ElementSize {
   height: number;
   width: number;

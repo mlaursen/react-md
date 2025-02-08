@@ -1,0 +1,52 @@
+# useElementInteraction
+
+```ts
+function useEnsuredRef<E extends HTMLElement>(
+  propRef?: Ref<E | null>
+): EnsuredRefs<E>;
+```
+
+This is mostly an internal hook that allows for an optional ref (normally
+from props or hook options) to be merged with a hook's required `ref`. This
+will return a MutableRefObject used for DOM manipulation in a custom hook
+followed by a ref callback function that should be passed to the DOM node
+that will ensure that both the optional `propRef` and hook ref are updated.
+
+## Example Usage
+
+```tsx
+import { useEnsuredRef } from "@react-md/core/useEnsuredRef";
+import { HTMLAttributes, forwardRef } from "react";
+
+export type ExampleProps = HTMLAttributes<HTMLDivElement>;
+
+export const Example = forwardRef<HTMLDivElement, ExampleProps>(
+  function Example(props, ref) {
+    const [nodeRef, refHandler] = useEnsuredRef(ref);
+    useEffect(() => {
+      // do something with nodeRef.current
+    }, [nodeRef]);
+
+    return <div ref={refHandler} />;
+  }
+);
+```
+
+## Parameters
+
+- `propRef` (optional) - The ref to merge with the return refs
+
+```ts disableTransform
+export interface Options {}
+```
+
+## Returns
+
+```ts disableTransform
+export type EnsuredRefs<E extends HTMLElement> = readonly [
+  MutableRefObject<E | null>,
+  RefCallback<E | null>,
+];
+```
+
+## See Also

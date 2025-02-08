@@ -1,0 +1,40 @@
+# useUnmounted
+
+```ts
+function useUnmounted(): NonNullRef<boolean>;
+```
+
+## Example Usage
+
+```tsx
+import { useUnmounted } from "@react-md/core";
+import { useEffect, useState } from "react";
+
+function Example(): ReactElement {
+  const [state, setState] = useState({ loading: false });
+  const unmounted = useUnmounted();
+
+  useEffect(() => {
+    async function load(): void {
+      const result = await fetch("/some-api");
+      const json = await response.json();
+      if (!unmounted.current) {
+        setState({ loading: false, result: json });
+      }
+    }
+
+    setState({ loading: true });
+    load();
+  }, [unmounted]);
+
+  return null;
+}
+```
+
+## Parameters
+
+None.
+
+## Returns
+
+A `NonNullRef<boolean>` that can be used to check if currently unmounted.

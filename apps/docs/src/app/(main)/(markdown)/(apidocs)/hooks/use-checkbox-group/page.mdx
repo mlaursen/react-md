@@ -17,7 +17,7 @@ See the [Checkbox useCheckboxGroup hook Example](/components/checkbox#usecheckbo
 
 - `options` - An object with the following definition:
 
-```ts disableScroll disableTransform
+```ts disableTransform
 export interface CheckboxGroupOptions<V> {
   /**
    * A `name` to apply to all the checkboxes within the group. This is required
@@ -87,7 +87,7 @@ The return type has the following shape depending on the provided options:
 - `onCheckedChange` will only be returned from
   `getCheckboxProps`/`getIndeterminateProps` when the `menu` option is `true`
 
-```ts disableScroll disableTransform
+```ts disableTransform
 export interface CombinedCheckboxGroupReturnValue<V extends string> {
   reset: () => void;
   checkedValues: ReadonlySet<V>;

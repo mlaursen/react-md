@@ -1,0 +1,81 @@
+# useColorSchemeProvider
+
+```ts
+function useColorSchemeProvider(
+  options: ColorSchemeProviderOptions = {}
+): ColorSchemeContext;
+```
+
+The `useColorSchemeProvider` hook is used to create the `ColorSchemeContext` required
+for the `ColorSchemeProvider` with a few reasonable defaults:
+
+- Derives the current color using the `usePrefersDarkTheme` media query
+- Automatically updates the `color-scheme` meta tag to match the current color
+  using `useColorSchemeProvider`
+
+## Example Usage
+
+```tsx
+import { type ColorScheme } from "@react-md/core/theme/types";
+import { ColorSchemeProvider } from "@react-md/core/theme/useColorScheme";
+import { useColorSchemeProvider } from "@reat-md/core/theme/useColorSchemeProvider";
+import Cookies from "js-cookie";
+import { type PropsWithChildren, type ReactElement } from "react";
+
+function MyColorSchemeProvider(props: PropsWithChildren): ReactElement {
+  const { children } = props;
+
+  const [colorScheme, setColorScheme] = useState<ColorScheme>(
+    () => Cookies.get("colorScheme") || "system"
+  );
+  const value = useColorSchemeProvider({
+    colorScheme,
+    setColorScheme(nextValue) {
+      setColorScheme((prevValue) => {
+        const value =
+          typeof nextValue === "function" ? nextValue(prevValue) : nextValue;
+
+        Cookies.set("colorScheme", value);
+        return value;
+      });
+    },
+  });
+
+  return <ColorSchemeProvider value={value}>{children}</ColorSchemeProvider>;
+}
+```
+
+## Parameters
+
+- `options` (optional) - An object with the following definition:
+
+```ts disableTransform
+export interface ColorSchemeProviderOptions extends Partial<ColorSchemeState> {
+  /**
+   * Set this to `true` to prevent a `<meta name="color-scheme" content="{COLOR_SCHEME}">`
+   * from being added to the `document.head`.
+   *
+   * @defaultValue `false`
+   */
+  disableMetaTag?: boolean;
+
+  /**
+   * The current color scheme mode that is being used by your app. This should
+   * match the `$color-scheme` SCSS variable.
+   *
+   * @defaultValue `"light"`
+   */
+  defaultColorScheme?: UseStateInitializer<ColorScheme>;
+}
+```
+
+## Returns
+
+The [ColorSchemeContext](./use-color-scheme).
+
+## See Also
+
+- [LocalStorageColorSchemeProvider](/components/color-scheme-provider#local-storage-example)
+- [useColorScheme](./use-color-scheme)
+- [useColorSchemeMetaTag](./use-color-scheme-meta-tag)
+- [usePrefersDarkTheme](./use-prefers-dark-theme)

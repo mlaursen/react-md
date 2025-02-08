@@ -1,7 +1,14 @@
 "use client";
 
-import type { DragEvent } from "react";
-import { useEffect, useRef, useState } from "react";
+import {
+  type DragEvent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+
+import { useToggle } from "./useToggle.js";
 
 const noop = (): void => {
   // do nothing
@@ -24,22 +31,28 @@ export interface DropzoneHandlers {
  */
 export interface DropzoneOptions extends DropzoneHandlers {
   /**
-   * Set this to `true` if you do not need to capture drag events from outside
-   * the window. i.e. Dragging files into the dropzone.
+   * By default, the `useDropzone` hook will listen to any `dragenter`/`dragover`
+   * events on the page and enabling the {@link DragHookReturnValue.isDragging}
+   * flag to show that the user is dragging _something_ and they might want to
+   * drag that something into the dropzone.
+   *
+   * So set this option to `true` if that behavior is not required and only
+   * drag events on the dropzone element need to be captured.
    *
    * @defaultValue `false`
-   * @see {@link DropzoneHookReturnValue.isDragging}
+   * @see {@link DropzoneImplementation.isDragging}
    */
   disableDragging?: boolean;
 }
 
 /**
  * @since 2.9.0
- * @since 6.0.0 Returns an object instead of an ordered array of
- * `[isOver: boolean, dropzoneHandlers: DropzoneHandlers]`. Also returns a new
- * `isDragging` state.
+ * @since 6.0.0 Renamed from `DropzoneHookReturnValue` to
+ * `DropzoneImplementation` to match other naming conventions. Returns an
+ * object instead of an ordered array of `[isOver: boolean, dropzoneHandlers:
+ * DropzoneHandlers]`. Also returns a new `isDragging` state.
  */
-export interface DropzoneHookReturnValue {
+export interface DropzoneImplementation {
   /**
    * This will be `true` when the user is dragging something over the dropzone
    * target.
@@ -65,8 +78,9 @@ export interface DropzoneHookReturnValue {
 /**
  * @example Simple Example
  * ```tsx
- * import { useDropzone, useFileUpload } from "@react-md/core"
- * import type { CSSProperties, ReactElement } from "react";
+ * import { useFileUpload } from "@react-md/core/files/useFileUpload";
+ * import { useDropzone } from "@react-md/core/useDropzone";
+ * import { type CSSProperties, type ReactElement } from "react";
  *
  * const style: CSSProperties = {
  *   border: '1px solid blue',
@@ -132,7 +146,7 @@ export interface DropzoneHookReturnValue {
  * @since 2.9.0
  * @since 6.0.0 Supports document-level dragging flag;
  */
-export function useDropzone(options: DropzoneOptions): DropzoneHookReturnValue {
+export function useDropzone(options: DropzoneOptions): DropzoneImplementation {
   const {
     onDrop,
     onDragOver = noop,
@@ -142,39 +156,37 @@ export function useDropzone(options: DropzoneOptions): DropzoneHookReturnValue {
   } = options;
 
   const [isOver, setOver] = useState(false);
-  const [isDragging, setDragging] = useState(false);
+  const {
+    toggled: isDragging,
+    enable: startDragging,
+    disable: stopDragging,
+  } = useToggle();
   const draggingTimeout = useRef<number | undefined>();
+
+  // Browsers sometimes don't trigger a dragleave event for the entire
+  // document, so we have to work around that by using the `dragover` event
+  // instead. The `dragover` event will continually fire within the window
+  // until the user drops the file or moves the file outside of the window.
+  const delayedStopDragging = useCallback(() => {
+    window.clearTimeout(draggingTimeout.current);
+    draggingTimeout.current = window.setTimeout(() => {
+      stopDragging();
+    }, 100);
+  }, [stopDragging]);
 
   useEffect(() => {
     if (disableDragging) {
       return;
     }
 
-    const startDragging = (): void => {
-      setDragging(true);
-    };
-
-    // Browsers sometimes don't trigger a dragleave event for the entire
-    // document, so we have to work around that by using the `dragover` event
-    // instead. The `dragover` event will continually fire within the window
-    // until the user drops the file or moves the file outside of the window.
-    //
-    // So we can consider the
-    const handler = (): void => {
-      window.clearTimeout(draggingTimeout.current);
-      draggingTimeout.current = window.setTimeout(() => {
-        setDragging(false);
-      }, 100);
-    };
-
     window.addEventListener("dragenter", startDragging);
-    window.addEventListener("dragover", handler);
+    window.addEventListener("dragover", delayedStopDragging);
     return () => {
       window.clearTimeout(draggingTimeout.current);
       window.removeEventListener("dragenter", startDragging);
-      window.removeEventListener("dragover", handler);
+      window.removeEventListener("dragover", delayedStopDragging);
     };
-  }, [disableDragging]);
+  }, [delayedStopDragging, disableDragging, startDragging]);
 
   return {
     isOver,
@@ -194,7 +206,7 @@ export function useDropzone(options: DropzoneOptions): DropzoneHookReturnValue {
         window.clearTimeout(draggingTimeout.current);
         onDrop(event);
         setOver(false);
-        setDragging(false);
+        stopDragging();
       },
       onDragOver(event) {
         event.preventDefault();
@@ -217,6 +229,9 @@ export function useDropzone(options: DropzoneOptions): DropzoneHookReturnValue {
 
         onDragLeave(event);
         setOver(false);
+        // this stops dragging if the user's File Explorer is somewhat above the dropzone
+        // and drags out into the File Explorer
+        delayedStopDragging();
       },
     },
   };

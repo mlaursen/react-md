@@ -1,10 +1,8 @@
 "use client";
 
-import { Button } from "@react-md/core/button/Button";
-import { Tooltip } from "@react-md/core/tooltip/Tooltip";
+import { TooltippedButton } from "@react-md/core/button/TooltippedButton";
 import { TooltipHoverModeProvider } from "@react-md/core/tooltip/TooltipHoverModeProvider";
-import { useTooltip } from "@react-md/core/tooltip/useTooltip";
-import { type ReactElement, type ReactNode } from "react";
+import { type ReactElement } from "react";
 
 export default function ConfiguringTooltipTimeoutsExample(): ReactElement {
   return (
@@ -14,40 +12,27 @@ export default function ConfiguringTooltipTimeoutsExample(): ReactElement {
       disableTimeout={10000}
     >
       {Array.from({ length: 5 }, (_, i) => (
-        <TooltippedButton key={i} tooltip={`Tooltip ${i + 1}`}>
+        <TooltippedButton
+          key={i}
+          tooltip={`Tooltip ${i + 1}`}
+          buttonType="text"
+        >
           {`Button ${i + 1}`}
         </TooltippedButton>
       ))}
       <TooltippedButton
         tooltip="Another tooltip"
-        leaveTimeout={1000}
-        hoverTimeout={1500}
+        // these are pass-through to the `useTooltip` hook
+        // i.e.
+        // useTooltip({ ...tooltipOptions, disabled: !tooltip || tooltipOptions?.disabled })
+        tooltipOptions={{
+          leaveTimeout: 1000,
+          hoverTimeout: 1500,
+        }}
+        buttonType="text"
       >
         Custom Timeout
       </TooltippedButton>
     </TooltipHoverModeProvider>
-  );
-}
-
-export interface TooltippedButtonProps {
-  tooltip: ReactNode;
-  children: ReactNode;
-  hoverTimeout?: number;
-  leaveTimeout?: number;
-}
-
-function TooltippedButton(props: TooltippedButtonProps): ReactElement {
-  const { tooltip, children, hoverTimeout, leaveTimeout } = props;
-
-  const { elementProps, tooltipProps } = useTooltip({
-    hoverTimeout,
-    leaveTimeout,
-  });
-
-  return (
-    <>
-      <Button {...elementProps}>{children}</Button>
-      <Tooltip {...tooltipProps}>{tooltip}</Tooltip>
-    </>
   );
 }

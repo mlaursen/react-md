@@ -43,7 +43,7 @@ function Example() {
 
 ## Returns
 
-```ts disableScroll disableTransform
+```ts disableTransform
 export type DebouncedFunction<F extends AnyFunction> = CancelableFunction<
   (...args: Parameters<F>) => void
 >;

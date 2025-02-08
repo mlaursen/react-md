@@ -19,7 +19,7 @@ return <Slider aria-label="Example" {...slider} />
 
 - `options` (optional) - An object with the following definition:
 
-```ts disableScroll disableTransform
+```ts disableTransform
 export interface SliderValueOptions {
   /**
    * The min value for the slider.
@@ -55,7 +55,7 @@ export interface SliderOptions extends SliderValueOptions {
 
 ## Returns
 
-```ts disableScroll disableTransform
+```ts disableTransform
 export interface SliderState {
   value: number;
   setValue: UseStateSetter<number>;

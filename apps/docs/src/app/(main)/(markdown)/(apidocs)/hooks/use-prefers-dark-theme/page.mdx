@@ -1,0 +1,36 @@
+# usePrefersDarkTheme
+
+```ts
+function usePrefersDarkTheme(disabled = false): boolean;
+```
+
+A simple wrapper around the [useMediaQuery](./use-media-query) hook with
+`"(prefers-color-scheme: dark)"`.
+
+## Example Usage
+
+```tsx
+import { usePrefersDarkTheme } from "@react-md/core/theme/usePrefersDarkTheme";
+
+function Example() {
+  const prefersDarkTheme = usePrefersDarkTheme();
+  if (prefersDarkTheme) {
+    // do something
+  }
+
+  return null;
+}
+```
+
+## Parameters
+
+- `disabled` (optional) - Set to `true` to disable the media query
+
+## Returns
+
+`true` if the user prefers the dark theme through their system preferences.
+
+## See Also
+
+- [useColorScheme](./use-color-scheme)
+- [useColorSchemeMetaTag](./use-color-scheme-meta-tag)

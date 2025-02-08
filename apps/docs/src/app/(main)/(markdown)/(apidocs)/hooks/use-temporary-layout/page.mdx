@@ -66,7 +66,7 @@ export function Layout(props: LayoutProps): ReactElement {
 
 - `options` - An object with the following definition:
 
-```ts disableScroll disableTransform
+```ts disableTransform
 export interface TemporaryLayoutOptions {
   /**
    * This is used to automatically hide the temporary navigation whenever the
@@ -84,7 +84,7 @@ export interface TemporaryLayoutOptions {
 
 ## Returns
 
-```ts disableScroll disableTransform
+```ts disableTransform
 export interface TemporaryLayoutImplementation {
   visible: boolean;
   showTemporaryNav: () => void;

@@ -178,8 +178,11 @@ export interface TooltipOptions<
    *
    * @example Real World Example
    * ```tsx
-   * import { Button, ButtonProps, Tooltip, useTooltip  } from "@react-md/core";
-   * import type { ReactElement, ReactNode } from "react";
+   * // This is _almost_ the source code for the `TooltippedButton` provided by react-md
+   * import { Button } from "@react-md/core/button/Button";
+   * import { Tooltip } from "@react-md/core/tooltip/Tooltip";
+   * import { useTooltip } from "@react-md/core/tooltip/useTooltip";
+   * import { type ReactElement, type ReactNode } from "react";
    *
    * export interface TooltippedButtonProps extends ButtonProps {
    *   tooltip?: ReactNode;

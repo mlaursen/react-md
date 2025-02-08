@@ -42,7 +42,7 @@ function Example() {
 
 - `options` - An object with the following definition:
 
-````ts disableScroll disableTransform
+````ts disableTransform
 export interface NumberFieldConstraints {
   /**
    * An optional min value for the number field.
@@ -134,7 +134,7 @@ export interface NumberFieldHookOptions
 The return type has the following shape, but changes depending on the provided options.
 Just know that it is always save to pass the `fieldProps` to the `TextField` component.
 
-```ts disableScroll disableTransform
+```ts disableTransform
 export interface ValidatedNumberFieldImplementation
   extends Omit<
     ValidatedTextFieldImplementation<HTMLInputElement>,

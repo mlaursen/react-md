@@ -26,14 +26,6 @@ export interface CodeBlockConfigurableProps {
   afterPreElement?: ReactNode;
 
   /**
-   * Set to `true` to disable the default scrollbar behavior which is useful when the
-   * code itself should not be scrollable and instead normal content in the page.
-   *
-   * This was added to support hook/function documentation.
-   */
-  disableScroll?: boolean;
-
-  /**
    * This should be enabled if the header or preview exists above the code
    * block.
    */
@@ -78,29 +70,12 @@ export function CodeBlock(props: CodeBlockProps): ReactElement {
     className,
     lineWrap,
     containerProps,
-    disableScroll,
     preContainerProps,
     scrollContainerProps,
     afterPreElement,
     disableMarginTop,
     fixedChildren,
   } = props;
-
-  if (disableScroll) {
-    return (
-      <pre
-        {...preProps}
-        className={cnb(
-          className,
-          styles("pre", { wrap: lineWrap, "no-scroll": disableScroll }),
-          preProps?.className
-        )}
-      >
-        {children}
-        {fixedChildren}
-      </pre>
-    );
-  }
 
   return (
     <div

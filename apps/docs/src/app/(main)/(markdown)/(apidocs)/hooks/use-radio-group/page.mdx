@@ -20,7 +20,7 @@ usage.
 
 - `options` - An object with the following definition:
 
-```ts disableScroll disableTransform
+```ts disableTransform
 export interface RadioGroupOptions<T extends string | number> {
   /**
    * A `name` to apply to all the radios within the group. This is required if
@@ -100,7 +100,7 @@ The return type has the following shape depending on the provided options:
   - `checked`/`onCheckedChange` when the `menu` option was enabled
   - `name`, `value`, `error`, `checked`, `requried`, `onChange`, and `onInvalid` otherwise
 
-```ts disableScroll disableTransform
+```ts disableTransform
 export interface CombinedRadioGroupReturnValue<V extends string | number> {
   reset: () => void;
   value: V;

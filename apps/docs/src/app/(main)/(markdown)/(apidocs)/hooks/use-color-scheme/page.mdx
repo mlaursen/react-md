@@ -1,0 +1,71 @@
+# useColorScheme
+
+```ts
+function useColorScheme(): Readonly<ColorSchemeContext>;
+```
+
+## Prerequisites
+
+A [ColorSchemeProvider](/components/color-scheme-provider) implementation must be a parent component.
+
+## Example Usage
+
+```tsx
+import { SegmentedButton } from "@react-md/core/segmented-button/SegmentedButton";
+import { SegmentedButtonContainer } from "@react-md/core/segmented-button/SegmentedButtonContainer";
+import { useColorScheme } from "@react-md/core/theme/useColorScheme";
+
+const COLOR_SCHEMES = ["light", "dark", "system"];
+
+function Example() {
+  const { currentColor, colorScheme, setColorScheme } = useColorScheme();
+
+  return (
+    <SegmentedButtonContainer {...remaining}>
+      {COLOR_SCHEMES.map((value) => (
+        <SegmentedButton
+          key={value}
+          selected={value === colorScheme}
+          onClick={() => {
+            setColorScheme(value);
+          }}
+          disableSelectedIcon
+        >
+          {item}
+        </SegmentedButton>
+      ))}
+    </SegmentedButtonContainer>
+  );
+}
+```
+
+## Parameters
+
+- `options` (optional) - An object with the following definition:
+
+## Returns
+
+```ts disableTransform
+export interface ColorSchemeState {
+  /**
+   * The defined color scheme for the app that should match the `$color-scheme`
+   * SCSS variable.
+   */
+  colorScheme: ColorScheme;
+  setColorScheme: UseStateSetter<ColorScheme>;
+}
+
+/** @since 6.0.0 */
+export interface ColorSchemeContext extends ColorSchemeState {
+  /**
+   * When the {@link colorScheme} is set to `"system"`, this will reflect
+   */
+  currentColor: LightDarkColorScheme;
+}
+```
+
+## See Also
+
+- [LocalStorageColorSchemeProvider](/components/color-scheme-provider#local-storage-example)
+- [useColorSchemeProvider](./use-color-scheme-provider)
+- [useColorSchemeMetaTag](./use-color-scheme-meta-tag)

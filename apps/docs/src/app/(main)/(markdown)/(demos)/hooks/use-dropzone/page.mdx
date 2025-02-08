@@ -1,0 +1,76 @@
+# useDropzone
+
+```ts
+function useDropzone(options: DropzoneOptions): DropzoneHookReturnValue;
+```
+
+The `useDropzone` hook can be used to handle drop events for a container
+element on the page. The main use case is for handling dropping files
+and uploading them along with the [useFileUpload](./use-file-upload)
+hook.
+
+## Example Usage
+
+```demo source="./SimpleExample.tsx"
+
+```
+
+## Parameters
+
+- `options` (optional) - An object with the following definition:
+
+```ts disableTransform
+export interface DropzoneOptions {
+  onDrop: <E extends HTMLElement>(event: DragEvent<E>) => void;
+
+  onDragEnter?: <E extends HTMLElement>(event: DragEvent<E>) => void;
+  onDragOver?: <E extends HTMLElement>(event: DragEvent<E>) => void;
+  onDragLeave?: <E extends HTMLElement>(event: DragEvent<E>) => void;
+
+  /**
+   * By default, the `useDropzone` hook will listen to any `dragenter`/`dragover`
+   * events on the page and enabling the {@link DragHookReturnValue.isDragging}
+   * flag to show that the user is dragging _something_ and they might want to
+   * drag that something into the dropzone.
+   *
+   * So set this option to `true` if that behavior is not required and only
+   * drag events on the dropzone element need to be captured.
+   *
+   * @defaultValue `false`
+   * @see {@link DropzoneImplementation.isDragging}
+   */
+  disableDragging?: boolean;
+}
+```
+
+## Returns
+
+```ts disableTransform
+export interface DropzoneImplementation {
+  /**
+   * This will be `true` when the user is dragging something over the dropzone
+   * target.
+   */
+  isOver: boolean;
+
+  /**
+   * This will be `true` when the user is dragging anything within the document.
+   * The main use case for this is detecting when a user is dragging a file into
+   * the document so you can help highlight the dropzone area.
+   *
+   * This will always be `false` if {@link DropzoneOptions.disableDragging} is
+   * `true`.
+   */
+  isDragging: boolean;
+
+  /**
+   * The event handlers that should be passed to the dropzone target.
+   */
+  dropzoneHandlers: Required<DropzoneHandlers>;
+}
+```
+
+## See Also
+
+- [useFileUpload](./use-file-upload)
+- [FileInput](/components/file-input)
