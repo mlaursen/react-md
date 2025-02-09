@@ -35,10 +35,10 @@ export interface GithubLinkProps
   tooltipOptions?: TooltipOptions<HTMLAnchorElement>;
 
   /**
-   * Set this to `"absolute"` to use absolute positioning to the right edge of
-   * a `position: relative` container (normally a `LinkableHeading`)
+   * Set this to `true` to `float: right` to right align in headings (normally
+   * a `LinkableHeading`).
    */
-  position?: null | "absolute";
+  float?: boolean;
 }
 
 export function GithubLink(props: GithubLinkProps): ReactElement {
@@ -46,19 +46,22 @@ export function GithubLink(props: GithubLinkProps): ReactElement {
     file,
     href = file ? `${GITHUB_LINK_URL}/${file}` : GITHUB_URL,
     label = file ? "Source code" : "Github",
-    position,
+    float,
     className,
     disabled,
     theme,
     themeType,
     responsive,
-    iconSize = position === "absolute" ? "small" : undefined,
+    iconSize = float ? "small" : undefined,
+    children = <GithubIcon />,
+    buttonType = typeof children === "string" ? "text" : "icon",
     tooltipOptions,
     ...remaining
   } = props;
 
   const { tooltipProps, elementProps } = useTooltip({
     defaultPosition: file ? "left" : "below",
+    disabled: buttonType !== "icon",
     ...tooltipOptions,
   });
 
@@ -69,17 +72,21 @@ export function GithubLink(props: GithubLinkProps): ReactElement {
         {...elementProps}
         aria-label={label}
         href={href}
-        className={button({
-          iconSize,
-          disabled,
-          theme,
-          themeType,
-          responsive,
-          className: cnb(position === "absolute" && styles.absolute, className),
-          buttonType: "icon",
-        })}
+        className={cnb(
+          buttonType !== "text" &&
+            button({
+              iconSize,
+              disabled,
+              theme,
+              themeType,
+              responsive,
+              buttonType: "text",
+            }),
+          float && styles.float,
+          className
+        )}
       >
-        <GithubIcon />
+        {children}
       </LinkUnstyled>
       <Tooltip {...tooltipProps} textOverflow="nowrap">
         {label}

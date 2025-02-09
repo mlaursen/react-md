@@ -98,9 +98,14 @@ This example showcases how to:
 
 ### Verify the Display Value
 
-This example showcases how to find and verify the selected option's display
-value while the Select listbox is closed using the `getSelectTestElements` test
-util query.
+The `Select` display value cannot be found using a normal query and instead
+can be found as the `container.getByRole("combobox", { name: "LABEL" }).firstElementChild`.
+
+ReactMD provides React Testing Library queries named
+[getSelectTestElements]($GITHUB/packages/core/src/test-utils/queries/select.ts#L68)
+and
+[findSelectTestElements]($GITHUB/packages/core/src/test-utils/queries/select.ts#L92)
+to find the important `Select` element parts with the correct type definitions.
 
 <SelectVerifyTheDisplayValue />
 
@@ -119,14 +124,20 @@ tests, it's recommended to find the hidden `<input type="range" />` and trigger
 a change event on that instead and could be found by
 `screen.getByRole("slider", { name: "", hidden: true })`.
 
-ReactMD provides a React Testing Library query named `getSliderTestElements`
+ReactMD provides React Testing Library queries named
+[getSliderTestElements]($GITHUB/packages/core/src/test-utils/queries/slider.ts#L89)
+and
+[findSliderTestElements]($GITHUB/packages/core/src/test-utils/queries/slider.ts#L105)
 that can be used to get the `slider` element and the `sliderInput`.
 
 <SliderFindAndChangeValue />
 
 ### Find and Change Value (Range Slider)
 
-ReactMD provides another React Testing Library query named `getRangeSliderTestElements`
+ReactMD provides additioanl React Testing Library queries named
+[getRangeSliderTestElements]($GITHUB/packages/core/src/test-utils/queries/slider.ts#L186)
+and
+[findRangeSliderTestElements]($GITHUB/packages/core/src/test-utils/queries/slider.ts#L220)
 that can be used for a range slider. It will return the `minSlider`,
 `minSliderInput`, `maxSlider`, and `maxSliderInput` allowing the values to be
 verified like the normal slider.

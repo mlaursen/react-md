@@ -28,7 +28,10 @@ function getHeadings(ast: Root): TOCHeadings {
       const heading = {
         id: typeof id === "string" ? id : "",
         depth: level,
-        value: toString(node),
+        // remove any [$SOURCE](path/to/file) from headings
+        value: toString(node)
+          .replace(/\$SOURCE/, "")
+          .trim(),
       };
       if (!heading.id) {
         throw new Error(

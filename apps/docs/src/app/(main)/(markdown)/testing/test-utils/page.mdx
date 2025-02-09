@@ -1,12 +1,11 @@
 import ChangeViewportExample from "./ChangeViewportExample.jsx";
 import DefaultMediaExample from "./DefaultMediaExample.jsx";
 import ResizeObserverMockExample from "./ResizeObserverMockExample.jsx";
-import SourceLink from "./SourceLink.jsx";
 import TestImmediateRafExample from "./TestImmediateRafExample.jsx";
 
 # Test Utils
 
-## spyOnMatchMedia <SourceLink name="mocks/match-media-implementation" />
+## spyOnMatchMedia [$SOURCE](packages/core/src/test-utils/mocks/match-media-implementation.ts)
 
 Since it can be useful to test different viewport sizes in `jest`, a few
 `window.matchMedia` helpers have been included. The `spyOnMatchMedia` can be
@@ -19,7 +18,7 @@ A default matcher can be provided as well:
 
 <DefaultMediaExample />
 
-## Match Media Matchers <SourceLink name="mocks/match-media" />
+## Match Media Matchers [$SOURCE](packages/core/src/test-utils/mocks/match-media.ts)
 
 The following matchers have been provided out of the box which use the default media query breakpoints:
 
@@ -42,13 +41,13 @@ function Example() {
 }
 ```
 
-## testImmediateRaf
+## testImmediateRaf [$SOURCE](packages/core/src/test-utils/jest-globals/timers.ts)
 
 Use this util to make `window.requestAnimationFrame` happen immediately.
 
 <TestImmediateRafExample />
 
-## Resize Observer Mock <SourceLink name="mocks/ResizeObserver" />
+## Resize Observer Mock [$SOURCE](packages/core/src/test-utils/mocks/ResizeObserver.ts)
 
 The `ResizeObserverMock` can be used to write tests that include the
 `useResizeObserver` hook. Here is a small example:
@@ -79,7 +78,7 @@ export function ExampleComponent() {
 
 <ResizeObserverMockExample />
 
-## Intersection Observer Mock <SourceLink name="mocks/IntersectionObserver" />
+## Intersection Observer Mock [$SOURCE](packages/core/src/test-utils/mocks/IntersectionObserver.ts)
 
 This mock currently does nothing other than preventing errors while running tests,
 but might be updated to have a similar API as the `ResizeObserverMock` to

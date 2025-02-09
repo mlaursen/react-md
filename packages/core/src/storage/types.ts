@@ -60,7 +60,7 @@ export interface StorageOptions<T> extends StorageSerializers<T> {
    */
   manual?: boolean;
 
-  /** @defaultValue `localStorage` */
+  /** @defaultValue `globalThis.localStorage` */
   storage?: Storage;
 }
 

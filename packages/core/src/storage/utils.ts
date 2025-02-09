@@ -90,11 +90,11 @@ export interface SetItemInStorageOptions<T> extends ModifyStorageOptions {
 
 /**
  * You'll most likely want to use `useStorage` instead, but this is a low-level
- * util to "safely" get an item from local storage.
+ * util to "safely" set an item in `localStorage` or `sessionStorage`.
  *
  * @example
  * ```ts
- * import { getItemFromStorage } from "@react-md/core/storage/utils";
+ * import { setItemFromStorage } from "@react-md/core/storage/utils";
  * import { identity } from "@react-md/core/utils/identity";
  *
  * const values = ["a", "b", "c", "d"] as const;

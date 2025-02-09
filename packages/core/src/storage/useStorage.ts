@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { useSsr } from "../SsrProvider.js";
 import { type UseStateSetter } from "../types.js";
@@ -135,10 +135,16 @@ export function useStorage<T>(
   } = options;
 
   const [initialValue] = useState(defaultValue);
-  const { serializer, deserializer } = getStorageSerializers({
-    ...options,
-    initialValue,
-  });
+  const { serializer, deserializer } = useMemo(
+    () =>
+      getStorageSerializers({
+        raw: options.raw,
+        serializer: options.serializer,
+        deserializer: options.deserializer,
+        initialValue,
+      }),
+    [initialValue, options.deserializer, options.raw, options.serializer]
+  );
 
   const ssr = useSsr();
   const [value, setStoredValue] = useState<T>(() => {

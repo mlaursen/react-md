@@ -1,13 +1,9 @@
 @use "everything";
 
-.absolute {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+.float {
+  float: right;
 
   @include everything.rtl {
-    left: 0;
-    right: auto;
+    float: left;
   }
 }

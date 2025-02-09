@@ -1,5 +1,3 @@
-import SourceLink from "./SourceLink.jsx";
-
 # Polyfills
 
 > !Success! All the polyfills are included by default when following the
@@ -10,7 +8,7 @@ By importing the `@react-md/core/test-utils/polyfills`, all the following
 polyfills will be applied. You can also manually import the specific polyfills
 instead.
 
-## matchMedia <SourceLink name="matchMedia" />
+## matchMedia [$SOURCE](packages/core/src/test-utils/polyfills/matchMedia.ts)
 
 ```ts
 import "@react-md/core/test-utils/polyfills/matchMedia";
@@ -18,7 +16,7 @@ import "@react-md/core/test-utils/polyfills/matchMedia";
 
 This updates `window.matchMedia` to default to desktop when `typeof window.matchMedia === "undefined"`.
 
-## ResizeObserver <SourceLink name="ResizeObserver" />
+## ResizeObserver [$SOURCE](packages/core/src/test-utils/polyfills/ResizeObserver.ts)
 
 ```ts
 import "@react-md/core/test-utils/polyfills/ResizeObserver";
@@ -28,7 +26,7 @@ This sets the `window.ResizeObserver` to the `ResizeObserverMock`
 when it is `undefined`. See the
 [ResizeObserverMock](./test-utils#resize-observer-mock) for more details.
 
-## IntersectionObserver <SourceLink name="IntersectionObserver" />
+## IntersectionObserver [$SOURCE](packages/core/src/test-utils/polyfills/IntersectionObserver.ts)
 
 ```ts
 import "@react-md/core/test-utils/polyfills/IntersectionObserver";
@@ -38,7 +36,7 @@ This sets the `window.IntersectionObserver` to the `IntersectionObserverMock`
 when it is `undefined`. See the
 [IntersectionObserverMock](./test-utils#intersection-observer-mock) for more details.
 
-## TextEncoder <SourceLink name="TextEncoder" />
+## TextEncoder [$SOURCE](packages/core/src/test-utils/polyfills/TextEncoder.ts)
 
 ```ts
 import "@react-md/core/test-utils/polyfills/TextEncoder";
@@ -48,7 +46,7 @@ This sets the `global.TextEncoder` to `node:util`
 [TextEncoder](https://nodejs.org/docs/latest-v22.x/api/util.html#class-utiltextencoder)
 when it is `undefined`.
 
-## TextDecoder <SourceLink name="TextDecoder" />
+## TextDecoder [$SOURCE](packages/core/src/test-utils/polyfills/TextDecoder.ts)
 
 ```ts
 import "@react-md/core/test-utils/polyfills/TextDecoder";
@@ -58,7 +56,7 @@ This sets the `global.TextDecoder` to `node:util`
 [TextDecoder](https://nodejs.org/docs/latest-v22.x/api/util.html#class-utiltextdecoder)
 when it is `undefined`.
 
-## offsetParent <SourceLink name="offsetParent" />
+## offsetParent [$SOURCE](packages/core/src/test-utils/polyfills/offsetParent.ts)
 
 ```ts
 import "@react-md/core/test-utils/polyfills/offsetParent";
@@ -66,7 +64,7 @@ import "@react-md/core/test-utils/polyfills/offsetParent";
 
 This polyfill was added for the tree keyboard movement behavior since `offsetParent` might return the incorrect value in jsdom.
 
-## scrollIntoView <SourceLink name="scrollIntoView" />
+## scrollIntoView [$SOURCE](packages/core/src/test-utils/polyfills/scrollIntoView.ts)
 
 ```ts
 import "@react-md/core/test-utils/polyfills/scrollIntoView";
