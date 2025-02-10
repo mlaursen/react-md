@@ -41,14 +41,14 @@
   },
   "devDependencies": {
     "@mlaursen/eslint-config": "^6.0.0",
-    "@swc/core": "^1.10.14",
+    "@swc/core": "^1.10.15",
     "@types/lodash": "^4.17.15",
     "@types/node": "^22.13.1",
     "@types/react": "^18.3.12",
-    "eslint": "^9.19.0",
+    "eslint": "^9.20.0",
     "glob": "^11.0.1",
     "lodash": "^4.17.21",
-    "prettier": "^3.4.2",
+    "prettier": "^3.5.0",
     "pretty-ms": "^9.2.0",
     "svgo": "^3.3.2",
     "tsx": "^4.19.2",
@@ -70,7 +70,7 @@
     "access": "public"
   },
   "volta": {
-    "node": "22.13.0",
+    "node": "22.13.1",
     "pnpm": "10.2.1"
   }
 }

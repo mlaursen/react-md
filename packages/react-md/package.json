@@ -57,13 +57,13 @@
   },
   "devDependencies": {
     "@swc/cli": "^0.6.0",
-    "@swc/core": "^1.10.14",
+    "@swc/core": "^1.10.15",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/node": "^22.13.1",
     "chokidar": "^4.0.3",
     "glob": "^11.0.1",
     "npm-run-all": "^4.1.5",
-    "prettier": "^3.4.2",
+    "prettier": "^3.5.0",
     "tsx": "^4.19.2",
     "typescript": "^5.7.3"
   },
@@ -107,7 +107,7 @@
     "access": "public"
   },
   "volta": {
-    "node": "22.13.0",
+    "node": "22.13.1",
     "pnpm": "10.2.1"
   }
 }
