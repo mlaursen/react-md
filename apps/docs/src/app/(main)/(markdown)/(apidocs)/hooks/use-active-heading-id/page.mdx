@@ -1,0 +1,107 @@
+# useActiveHeadingId [$SOURCE](packages/core/src/useActiveHeadingId.tsx)
+
+```ts disableTransform
+function useActiveHeadingId(options: ActiveHeadingIdOptions): string;
+```
+
+The `useActiveHeadingId` hook can be used to determine which heading group is
+visible within the viewport and normally used with a scrollable table of
+contents. This hook is heavily inspired by the
+[Mozilla Docs Table of Contents](https://github.com/mdn/yari/blob/231d6aab8f1c8efe159d268c261446c5b7ae12d9/client/src/document/hooks.ts#L171)
+behavior and is used for this website's Table of Contents view on non-mobile devices.
+
+## Example Usage
+
+The `useActiveHeadingId` requires providing a list of heading ids for the page
+to enable creating intersection observer events when the heading is scrolled
+into view. It is recommended to use this hook with
+[mdx](https://mdxjs.com/)/[rehype](https://github.com/rehypejs/rehype) but can be
+used for other applications as well. Here's a small example for adding a
+dynamic table of contents in a client-side app.
+
+> !Info! Check out this website's
+> [table of contents]($GITHUB/apps/docs/src/components/TableOfContents/TableOfContents.tsx)
+> and [rehype-toc]($GITHUB/packages/docs-generator/src/rehype-toc.ts)
+> implementation to see how it can integrate into MDX and rehype.
+
+```tsx
+"use client";
+
+import { useSsr } from "@react-md/core/SsrProvider";
+import {
+  type HeadingReferenceWithChildren,
+  useActiveHeadingId,
+} from "@react-md/core/navigation/useActiveHeadingId";
+import { useTableOfContentsLinks } from "@react-md/core/navigation/useTableOfContentsLinks";
+import { Typography } from "@react-md/core/typography/Typography";
+import { RenderRecursively } from "@react-md/core/utils/RenderRecursively";
+import { useId } from "react";
+
+import styles from "./TableOfContents.module.scss";
+
+export function TableOfContents() {
+  const headingId = useId();
+  const ssr = useSsr();
+  const headings = useTableOfContentsLinks();
+
+  const activeHeadingId = useActiveHeadingId({ headings });
+  return (
+    <nav aria-labelledby={headingId} className={styles.container}>
+      <Typography id={headingId} type="headline-5" margin="none">
+        Table of Contents
+      </Typography>
+      <TableOfContentsGroup root>
+        <RenderRecursively
+          data={activeHeadingId}
+          items={transformToItems(toc)}
+          render={RenderTableOfContentsItem}
+          getItemKey={({ item }) => item.id}
+        />
+      </TableOfContentsGroup>
+    </nav>
+  );
+}
+```
+
+## Parameters
+
+- `options` - An object with the following definition:
+
+```ts disableTransform
+export interface ActiveHeadingIdOptions {
+  headings: readonly HeadingReferenceWithChildren[];
+
+  /** @see {@link DEFAULT_ACTIVE_HEADING_THRESHOLD} */
+  threshold?: IntersectionObserverThreshold;
+
+  /** @see {@link DEFAULT_ACTIVE_HEADING_GET_ROOT_MARGIN} */
+  getRootMargin?: () => IntersectionObserverRootMargin;
+
+  /** @defaultValue `headings[0]?.id ?? ""` */
+  defaultActiveId?: UseStateInitializer<string>;
+
+  /** @defaultValue `0.8` */
+  scrollBottomThreshold?: number;
+}
+
+export interface HeadingReference {
+  id: string;
+}
+
+export interface HeadingReferenceWithChildren extends HeadingReference {
+  children?: readonly HeadingReferenceWithChildren[];
+}
+```
+
+## Returns
+
+The `id` for the heading that is currently "active" by having content mostly visible within the viewport.
+
+## See Also
+
+- [Mozilla Docs Table of Contents](https://github.com/mdn/yari/blob/231d6aab8f1c8efe159d268c261446c5b7ae12d9/client/src/document/hooks.ts#L171)
+- [useTableOfContentsLinks](./use-table-of-contents-links)
+- [useIntersectionObserver](./use-intersection-observer)
+- [This website's rehype-toc source code]($GITHUB/packages/docs-generator/src/rehype-toc.ts)
+- [This website's TableOfContents component]($GITHUB/apps/docs/src/components/TableOfContents/TableOfContents.tsx)
+- [RenderRecursively](/components/render-recursively)

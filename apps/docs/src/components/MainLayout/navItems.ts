@@ -452,6 +452,11 @@ export const navItems: readonly NavigationItem[] = [
       },
       {
         type: "route",
+        href: "/use-table-of-contents-links",
+        children: "useTableOfContentsLinks",
+      },
+      {
+        type: "route",
         href: "/use-layout-tree",
         children: "useLayoutTree",
       },

@@ -1,0 +1,81 @@
+# useTableOfContentsLinks [$SOURCE](packages/core/src/navigation/useTableOfContentsLinks.ts)
+
+```ts disableTransform
+function useTableOfContentsLinks(
+  options: TableOfContentsLinksOptions = {}
+): readonly HeadingReferenceWithChildren[];
+```
+
+The `useTableOfContentsLinks` should normally be used with the
+`useActiveHeadingId` hook to generate a table of contents for the current
+page.
+
+## Example Usage
+
+```tsx
+import { useActiveHeadingId } from "@react-md/core/navigation/useActiveHeadingId";
+import { useTableOfContentsLinks } from "@react-md/core/navigation/useTableOfContentsLinks";
+
+function Example() {
+  const headings = useTableOfContentsLinks();
+  const activeHeadingId = useActiveHeadingId({ headings });
+
+  return (
+    <TableOfContents headings={headings} activeHeadingId={activeHeadingId} />
+  );
+}
+```
+
+## Parameters
+
+- `options` - An object with the following definition:
+
+```ts disableTransform
+export interface TableOfContentsLinksOptions {
+  /**
+   * This should be a `document.querySelectorAll` query that returns elements
+   * to display in a table of contents component that have a valid id.
+   *
+   * @see {@link DEFAULT_HEADING_SELECTOR}
+   * @defaultValue `main :where(:not(nav *)):where(h1[id],h2[id],h3[id],h4[id],h5[id],h6[id])`
+   */
+  selector?: string;
+
+  /**
+   * @see {@link DEFAULT_GET_HEADING_DEPTH}
+   * @defaultValue `(element) => parseInt(element.tagName.substring(1))`
+   */
+  getDepth?: (element: Element) => number;
+}
+```
+
+## Returns
+
+A `readonly HeadingReferenceWithChildren[]`
+
+```ts disableTransform
+/**
+ * @since 6.0.0
+ */
+export interface HeadingReference {
+  id: string;
+}
+
+/**
+ * @since 6.0.0
+ */
+export interface HeadingReferenceWithChildren extends HeadingReference {
+  children?: readonly HeadingReferenceWithChildren[];
+}
+```
+
+The `id` for the heading that is currently "active" by having content mostly visible within the viewport.
+
+## See Also
+
+- [Mozilla Docs Table of Contents](https://github.com/mdn/yari/blob/231d6aab8f1c8efe159d268c261446c5b7ae12d9/client/src/document/hooks.ts#L171)
+- [useActiveHeadingId](./use-active-heading-id)
+- [useIntersectionObserver](./use-intersection-observer)
+- [This website's rehype-toc source code]($GITHUB/packages/docs-generator/src/rehype-toc.ts)
+- [This website's TableOfContents component]($GITHUB/apps/docs/src/components/TableOfContents/TableOfContents.tsx)
+- [RenderRecursively](/components/render-recursively)
