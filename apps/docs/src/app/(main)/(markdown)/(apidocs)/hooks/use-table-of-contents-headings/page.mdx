@@ -1,12 +1,12 @@
-# useTableOfContentsLinks [$SOURCE](packages/core/src/navigation/useTableOfContentsLinks.ts)
+# useTableOfContentsHeadings [$SOURCE](packages/core/src/navigation/useTableOfContentsHeadings.ts)
 
 ```ts disableTransform
-function useTableOfContentsLinks(
-  options: TableOfContentsLinksOptions = {}
+function useTableOfContentsHeadings(
+  options: TableOfContentsHeadingsOptions = {}
 ): readonly HeadingReferenceWithChildren[];
 ```
 
-The `useTableOfContentsLinks` should normally be used with the
+The `useTableOfContentsHeadings` should normally be used with the
 `useActiveHeadingId` hook to generate a table of contents for the current
 page.
 
@@ -14,10 +14,10 @@ page.
 
 ```tsx
 import { useActiveHeadingId } from "@react-md/core/navigation/useActiveHeadingId";
-import { useTableOfContentsLinks } from "@react-md/core/navigation/useTableOfContentsLinks";
+import { useTableOfContentsHeadings } from "@react-md/core/navigation/useTableOfContentsHeadings";
 
 function Example() {
-  const headings = useTableOfContentsLinks();
+  const headings = useTableOfContentsHeadings();
   const activeHeadingId = useActiveHeadingId({ headings });
 
   return (
@@ -31,7 +31,7 @@ function Example() {
 - `options` - An object with the following definition:
 
 ```ts disableTransform
-export interface TableOfContentsLinksOptions {
+export interface TableOfContentsHeadingsOptions {
   /**
    * This should be a `document.querySelectorAll` query that returns elements
    * to display in a table of contents component that have a valid id.

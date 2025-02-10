@@ -324,8 +324,8 @@ $variables: (
     }
 
     transition-duration: transition.$linear-duration;
-    transition-property: background-color,
-      if($focus-box-shadow, box-shadow, outline-color);
+    transition-property:
+      background-color, if($focus-box-shadow, box-shadow, outline-color);
     transition-timing-function: transition.$linear-timing-function;
   }
 

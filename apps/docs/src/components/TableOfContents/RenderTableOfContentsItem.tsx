@@ -1,15 +1,15 @@
+import { type TableOfContentsHeadingItem } from "@react-md/core/navigation/useTableOfContentsHeadings";
 import { type RenderRecursiveItemsProps } from "@react-md/core/utils/RenderRecursively";
-import { type TOCItem } from "docs-generator/rehype-toc";
 import { type ReactElement, useEffect, useRef } from "react";
 
 import styles from "./RenderTableOfContentsItem.module.scss";
 import { TableOfContentsGroup } from "./TableOfContentsGroup.jsx";
 
 export function RenderTableOfContentsItem(
-  props: RenderRecursiveItemsProps<TOCItem, string>
+  props: RenderRecursiveItemsProps<TableOfContentsHeadingItem, string>
 ): ReactElement {
   const { item, data: activeHeadingId, children } = props;
-  const { id, value, depth } = item;
+  const { id, children: linkChildren, depth } = item;
   const active = id === activeHeadingId;
   const ref = useRef<HTMLLIElement>(null);
   useEffect(() => {
@@ -30,7 +30,7 @@ export function RenderTableOfContentsItem(
         href={`#${id}`}
         className={styles.link}
       >
-        {value}
+        {linkChildren}
       </a>
       {children && <TableOfContentsGroup>{children}</TableOfContentsGroup>}
     </li>

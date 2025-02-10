@@ -788,6 +788,10 @@ export const TYPES: ReadonlySet<string> = new Set([
   "TableFooterProps",
   "TableHeaderClassNameOptions",
   "TableHeaderProps",
+  "TableOfContentsHeading",
+  "TableOfContentsHeadingItem",
+  "TableOfContentsHeadings",
+  "TableOfContentsHeadingsOptions",
   "TableProps",
   "TableRadioProps",
   "TableRadioSupportedRadioProps",
@@ -1165,6 +1169,9 @@ export const VARIABLES: ReadonlySet<string> = new Set([
   "DEFAULT_DESKTOP_MIN_WIDTH",
   "DEFAULT_DIALOG_CLASSNAMES",
   "DEFAULT_DIALOG_TIMEOUT",
+  "DEFAULT_GET_HEADING_DEPTH",
+  "DEFAULT_GET_HEADING_TEXT",
+  "DEFAULT_HEADING_SELECTOR",
   "DEFAULT_HORIZONTAL_LAYOUT_TRANSITION_CLASSNAMES",
   "DEFAULT_KEYBOARD_MOVEMENT",
   "DEFAULT_LIGHT_THEME",
@@ -1840,6 +1847,7 @@ export const VARIABLES: ReadonlySet<string> = new Set([
   "useStorage",
   "useTableConfig",
   "useTableContainer",
+  "useTableOfContentsHeadings",
   "useTableSectionConfig",
   "useTabList",
   "useTabs",
@@ -2346,6 +2354,12 @@ export const EXPORT_MAP: Record<string, string> = {
   DEFAULT_DESKTOP_MIN_WIDTH: "@react-md/core/media-queries/appSize",
   DEFAULT_DIALOG_CLASSNAMES: "@react-md/core/dialog/styles",
   DEFAULT_DIALOG_TIMEOUT: "@react-md/core/dialog/styles",
+  DEFAULT_GET_HEADING_DEPTH:
+    "@react-md/core/navigation/useTableOfContentsHeadings",
+  DEFAULT_GET_HEADING_TEXT:
+    "@react-md/core/navigation/useTableOfContentsHeadings",
+  DEFAULT_HEADING_SELECTOR:
+    "@react-md/core/navigation/useTableOfContentsHeadings",
   DEFAULT_HORIZONTAL_LAYOUT_TRANSITION_CLASSNAMES:
     "@react-md/core/layout/useHorizontalLayoutTransition",
   DEFAULT_KEYBOARD_MOVEMENT: "@react-md/core/movement/constants",
@@ -3474,6 +3488,14 @@ export const EXPORT_MAP: Record<string, string> = {
   tableHeader: "@react-md/core/table/tableHeaderStyles",
   TableHeaderClassNameOptions: "@react-md/core/table/tableHeaderStyles",
   TableHeaderProps: "@react-md/core/table/TableHeader",
+  TableOfContentsHeading:
+    "@react-md/core/navigation/useTableOfContentsHeadings",
+  TableOfContentsHeadingItem:
+    "@react-md/core/navigation/useTableOfContentsHeadings",
+  TableOfContentsHeadings:
+    "@react-md/core/navigation/useTableOfContentsHeadings",
+  TableOfContentsHeadingsOptions:
+    "@react-md/core/navigation/useTableOfContentsHeadings",
   TableProps: "@react-md/core/table/Table",
   TableRadio: "@react-md/core/table/TableRadio",
   TableRadioProps: "@react-md/core/table/TableRadio",
@@ -3771,7 +3793,7 @@ export const EXPORT_MAP: Record<string, string> = {
   useOrientation: "@react-md/core/useOrientation",
   usePageInactive: "@react-md/core/usePageInactive",
   usePortalContainer: "@react-md/core/portal/PortalContainerProvider",
-  usePrefersDarkTheme: "@react-md/core/theme/usePrefersDarkScheme",
+  usePrefersDarkTheme: "@react-md/core/theme/usePrefersDarkTheme",
   useRadioGroup: "@react-md/core/form/useRadioGroup",
   UserAgentAutocompleteProps: "@react-md/core/form/types",
   useRangeSlider: "@react-md/core/form/useRangeSlider",
@@ -3801,6 +3823,8 @@ export const EXPORT_MAP: Record<string, string> = {
   useStorage: "@react-md/core/storage/useStorage",
   useTableConfig: "@react-md/core/table/TableConfigurationProvider",
   useTableContainer: "@react-md/core/table/TableContainerProvider",
+  useTableOfContentsHeadings:
+    "@react-md/core/navigation/useTableOfContentsHeadings",
   useTableSectionConfig: "@react-md/core/table/useTableSectionConfig",
   useTabList: "@react-md/core/tabs/useTabList",
   useTabs: "@react-md/core/tabs/useTabs",

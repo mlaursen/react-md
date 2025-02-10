@@ -1,4 +1,5 @@
 import { Box } from "@react-md/core/box/Box";
+import { cssUtils } from "@react-md/core/cssUtils";
 import { FileInput } from "@react-md/core/files/FileInput";
 import { useFileUpload } from "@react-md/core/files/useFileUpload";
 import { LinearProgress } from "@react-md/core/progress/LinearProgress";
@@ -43,7 +44,8 @@ export default function SimpleExample(): ReactElement {
       className={cnb(
         styles.container,
         isOver && styles.dragover,
-        (isOver || isDragging) && styles.dragging
+        (isOver || isDragging) && styles.dragging,
+        cssUtils({ textAlign: "center" })
       )}
     >
       {isUploading && (

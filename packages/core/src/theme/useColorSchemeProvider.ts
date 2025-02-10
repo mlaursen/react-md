@@ -10,7 +10,7 @@ import {
   type ColorSchemeState,
 } from "./types.js";
 import { useColorSchemeMetaTag } from "./useColorSchemeMetaTag.js";
-import { usePrefersDarkTheme } from "./usePrefersDarkScheme.js";
+import { usePrefersDarkTheme } from "./usePrefersDarkTheme.js";
 
 /**
  * @since 6.0.0

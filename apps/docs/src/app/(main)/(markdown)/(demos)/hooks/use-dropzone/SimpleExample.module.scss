@@ -4,7 +4,7 @@
   @include everything.icon-set-var(size, 4rem);
   @include everything.interaction-outline();
 
-  height: 30vh;
+  min-height: 30vh;
   position: relative;
 }
 

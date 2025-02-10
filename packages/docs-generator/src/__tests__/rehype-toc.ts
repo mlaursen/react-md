@@ -1,10 +1,11 @@
 import { describe, expect, it } from "@jest/globals";
 import { compile } from "@mdx-js/mdx";
+import { type TableOfContentsHeadings } from "@react-md/core/navigation/useTableOfContentsHeadings";
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import rehypeSlug from "rehype-slug";
 
-import { type TOCItem, rehypeToc } from "../rehype-toc.js";
+import { rehypeToc } from "../rehype-toc.js";
 
 async function getFixture(name: string): Promise<string> {
   const filePath = resolve(process.cwd(), "src", "__testfixtures__", name);
@@ -21,40 +22,40 @@ describe("rehypeToc", () => {
     const markdown = await getFixture("LargeMarkdown.mdx");
     const processed = await processMarkdown(markdown);
     const { toc } = processed.data;
-    const expected: TOCItem[] = [
+    const expected: TableOfContentsHeadings = [
       {
         id: "installation",
-        value: "Installation",
+        children: "Installation",
         depth: 1,
-        children: [
+        items: [
           {
             id: "installing-dependencies",
-            value: "Installing Dependencies",
+            children: "Installing Dependencies",
             depth: 2,
           },
           {
             id: "adding-base-styles",
-            value: "Adding Base Styles",
+            children: "Adding Base Styles",
             depth: 2,
           },
           {
             id: "adding-the-roboto-font",
-            value: "Adding the Roboto Font",
+            children: "Adding the Roboto Font",
             depth: 2,
           },
           {
             id: "adding-the-material-icons-font",
-            value: "Adding the Material Icons Font",
+            children: "Adding the Material Icons Font",
             depth: 2,
           },
           {
             id: "react-md-should-now-be-fully-installed",
-            value: "react-md should now be fully installed!",
+            children: "react-md should now be fully installed!",
             depth: 2,
-            children: [
+            items: [
               {
                 id: "where-do-i-go-from-here",
-                value: "Where do I go from here?",
+                children: "Where do I go from here?",
                 depth: 3,
               },
             ],
@@ -80,32 +81,32 @@ describe("rehypeToc", () => {
     const markdown = await getFixture("RandomOrderHeadings.md");
     const processed = await processMarkdown(markdown);
     const { toc } = processed.data;
-    const expected: TOCItem[] = [
+    const expected: TableOfContentsHeadings = [
       {
         id: "heading-1",
-        value: "Heading 1",
+        children: "Heading 1",
         depth: 1,
-        children: [
+        items: [
           {
             id: "heading-3",
-            value: "Heading 3",
+            children: "Heading 3",
             depth: 3,
           },
           {
             id: "heading-2",
-            value: "Heading 2",
+            children: "Heading 2",
             depth: 2,
-            children: [
+            items: [
               {
                 id: "heading-6",
-                value: "Heading 6",
+                children: "Heading 6",
                 depth: 6,
               },
             ],
           },
           {
             id: "heading-2-again",
-            value: "Heading 2 Again",
+            children: "Heading 2 Again",
             depth: 2,
           },
         ],

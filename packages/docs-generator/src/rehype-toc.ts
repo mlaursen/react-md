@@ -1,3 +1,8 @@
+import {
+  type TableOfContentsHeading,
+  type TableOfContentsHeadingItem,
+  type TableOfContentsHeadings,
+} from "@react-md/core/navigation/useTableOfContentsHeadings";
 import { type Root } from "hast";
 import { headingRank } from "hast-util-heading-rank";
 import { toString } from "mdast-util-to-string";
@@ -6,30 +11,18 @@ import { visit } from "unist-util-visit";
 
 import { createJsxNode } from "./utils/createJsxNode.js";
 
-export interface TOCHeading {
-  id: string;
-  depth: number;
-  value: string;
-}
-
-export type TOCHeadings = TOCHeading[];
-
-export interface TOCItem extends TOCHeading {
-  children?: TOCItem[];
-}
-
-function getHeadings(ast: Root): TOCHeadings {
-  const headings: TOCHeadings = [];
+function getHeadings(ast: Root): TableOfContentsHeadings {
+  const headings: TableOfContentsHeadings = [];
 
   visit(ast, "element", (node) => {
     const level = headingRank(node);
     if (level !== undefined) {
       const { id } = node.properties;
-      const heading = {
+      const heading: TableOfContentsHeading = {
         id: typeof id === "string" ? id : "",
         depth: level,
         // remove any [$SOURCE](path/to/file) from headings
-        value: toString(node)
+        children: toString(node)
           .replace(/\$SOURCE/, "")
           .trim(),
       };
@@ -46,21 +39,21 @@ function getHeadings(ast: Root): TOCHeadings {
   return headings;
 }
 
-function createToc(headings: TOCHeadings): TOCHeadings {
-  const root: TOCItem = {
+function createToc(headings: TableOfContentsHeadings): TableOfContentsHeadings {
+  const root = {
     id: "",
-    value: "",
+    children: "",
     depth: 0,
-    children: [],
-  };
+    items: [],
+  } satisfies TableOfContentsHeadingItem;
 
-  const parents: TOCItem[] = [];
-  let previous: TOCItem = root;
+  const parents: TableOfContentsHeadingItem[] = [];
+  let previous: TableOfContentsHeadingItem = root;
 
   headings.forEach((heading) => {
     if (heading.depth > previous.depth) {
-      if (!previous.children) {
-        previous.children = [];
+      if (!previous.items) {
+        previous.items = [];
       }
       parents.push(previous);
     } else if (heading.depth < previous.depth) {
@@ -70,11 +63,11 @@ function createToc(headings: TOCHeadings): TOCHeadings {
     }
 
     const i = parents.length - 1;
-    parents[i].children = [...(parents[i].children ?? []), heading];
+    parents[i].items = [...(parents[i].items ?? []), heading];
     previous = heading;
   });
 
-  return root.children || [];
+  return root.items || [];
 }
 
 export interface RehypeTocOptions {
@@ -124,6 +117,6 @@ export const rehypeToc: Plugin<[options?: RehypeTocOptions], Root> = (
 
 declare module "vfile" {
   interface DataMap {
-    toc?: TOCItem[];
+    toc?: Readonly<TableOfContentsHeadings>;
   }
 }

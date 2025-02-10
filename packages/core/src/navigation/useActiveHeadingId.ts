@@ -21,7 +21,7 @@ export interface HeadingReference {
  * @since 6.0.0
  */
 export interface HeadingReferenceWithChildren extends HeadingReference {
-  children?: readonly HeadingReferenceWithChildren[];
+  items?: readonly HeadingReferenceWithChildren[];
 }
 
 /**
@@ -70,8 +70,8 @@ function getHeadingElements(
       headings.push(heading);
     }
 
-    if (item.children) {
-      headings.push(...getHeadingElements(item.children));
+    if (item.items) {
+      headings.push(...getHeadingElements(item.items));
     }
   });
 
@@ -90,8 +90,8 @@ function getLastHeadingId(
     return "";
   }
 
-  if (last.children) {
-    return getLastHeadingId(last.children);
+  if (last.items) {
+    return getLastHeadingId(last.items);
   }
 
   return last.id;

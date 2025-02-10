@@ -21,8 +21,8 @@ $green: #859900;
 
 @layer code {
   :root {
-    --code-font-family: var(--source-code-pro, "Source Code Pro"), Consolas,
-      Monaco, monospace;
+    --code-font-family:
+      var(--source-code-pro, "Source Code Pro"), Consolas, Monaco, monospace;
   }
 
   // this is _basically_ my current vim theme, but not as good since Prism

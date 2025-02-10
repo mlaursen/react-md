@@ -1,21 +1,21 @@
+import { type TableOfContentsHeadings } from "@react-md/core/navigation/useTableOfContentsHeadings";
 import { Typography } from "@react-md/core/typography/Typography";
-import { type TOCItem } from "docs-generator/rehype-toc";
 import { type ReactElement } from "react";
 
 import { LinkableHeading } from "@/components/LinkableHeading.jsx";
 import { MarkdownPage } from "@/components/MarkdownPage.jsx";
 import { TableOfContents } from "@/components/TableOfContents/TableOfContents.jsx";
 
-const toc: readonly TOCItem[] = [
+const toc: Readonly<TableOfContentsHeadings> = [
   {
     id: "example-projects",
     depth: 1,
-    value: "Example Projects",
+    children: "Example Projects",
   },
   {
     id: "templates",
     depth: 1,
-    value: "Templates",
+    children: "Templates",
   },
 ];
 

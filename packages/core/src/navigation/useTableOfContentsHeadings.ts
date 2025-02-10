@@ -2,8 +2,11 @@
 
 import { useMemo } from "react";
 
-import { useSsr } from "../SsrProvider.js";
-import { type HeadingReferenceWithChildren } from "./useActiveHeadingId.js";
+import { useSsr } from "../SsrProvider.jsx";
+import {
+  type HeadingReference,
+  type HeadingReferenceWithChildren,
+} from "./useActiveHeadingId.js";
 
 /**
  * This will find all headings that have an `id` that are not part of a `<nav>`
@@ -25,8 +28,14 @@ export const DEFAULT_GET_HEADING_DEPTH = (element: Element): number => {
   return Number.isNaN(depth) ? 0 : depth;
 };
 
+/**
+ * @since 6.0.0
+ */
+export const DEFAULT_GET_HEADING_TEXT = (element: Element): string =>
+  element.textContent || "";
+
 /** @since 6.0.0 */
-export interface TableOfContentsLinksOptions {
+export interface TableOfContentsHeadingsOptions {
   /**
    * This should be a `document.querySelectorAll` query that returns elements
    * to display in a table of contents component that have a valid id.
@@ -41,35 +50,45 @@ export interface TableOfContentsLinksOptions {
    * @defaultValue `(element) => parseInt(element.tagName.substring(1))`
    */
   getDepth?: (element: Element) => number;
+
+  /**
+   * This is used to get the text to display in a table of contents from each
+   * heading element.
+   *
+   * @see {@link DEFAULT_GET_HEADING_TEXT}
+   * @defaultValue `(element) => element.textContent || ""`
+   */
+  getHeadingText?: (element: Element) => string;
 }
 
 /** @since 6.0.0 */
-export interface TableOfContentsLink {
-  id: string;
+export interface TableOfContentsHeading extends HeadingReference {
   depth: number;
-  value: string;
+  children: string;
 }
 
 /** @since 6.0.0 */
-export interface TableOfContentsItem extends TableOfContentsLink {
-  children?: TableOfContentsLink[];
+export interface TableOfContentsHeadingItem
+  extends TableOfContentsHeading,
+    HeadingReferenceWithChildren {
+  items?: TableOfContentsHeadingItem[];
 }
 
 /** @since 6.0.0 */
-export type TableOfContentsItems = TableOfContentsItem[];
+export type TableOfContentsHeadings = TableOfContentsHeadingItem[];
 
 /**
- * The `useTableOfContentsLinks` should normally be used with the
+ * The `useTableOfContentsHeadings` should normally be used with the
  * `useActiveHeadingId` hook to generate a table of contents for the current
  * page.
  *
  * @example Example Usage
  * ```tsx
  * import { useActiveHeadingId } from "@react-md/core/navigation/useActiveHeadingId";
- * import { useTableOfContentsLinks } from "@react-md/core/navigation/useTableOfContentsLinks";
+ * import { useTableOfContentsHeadings } from "@react-md/core/navigation/useTableOfContentsHeadings";
  *
  * function Example() {
- *   const headings = useTableOfContentsLinks();
+ *   const headings = useTableOfContentsHeadings();
  *   const activeHeadingId = useActiveHeadingId({ headings });
  *
  *   return <TableOfContents headings={headings} activeHeadingId={activeHeadingId} />;
@@ -78,12 +97,13 @@ export type TableOfContentsItems = TableOfContentsItem[];
  *
  * @since 6.0.0
  */
-export function useTableOfContentsLinks(
-  options: TableOfContentsLinksOptions = {}
+export function useTableOfContentsHeadings(
+  options: TableOfContentsHeadingsOptions = {}
 ): readonly HeadingReferenceWithChildren[] {
   const {
     selector = DEFAULT_HEADING_SELECTOR,
     getDepth = DEFAULT_GET_HEADING_DEPTH,
+    getHeadingText = DEFAULT_GET_HEADING_TEXT,
   } = options;
   const ssr = useSsr();
 
@@ -94,26 +114,24 @@ export function useTableOfContentsLinks(
 
     const root = {
       id: "",
-      value: "",
       depth: 0,
-      children: [],
-    } satisfies TableOfContentsItem;
-
-    const parents: TableOfContentsItem[] = [];
-    let previous: TableOfContentsItem = root;
-
-    const links = document.querySelectorAll(selector);
-    links.forEach((link) => {
-      const depth = getDepth(link);
-      const item: TableOfContentsItem = {
-        id: link.id,
+      items: [],
+      children: "",
+    } satisfies TableOfContentsHeadingItem;
+    let previous: TableOfContentsHeadingItem = root;
+    const parents: TableOfContentsHeadingItem[] = [];
+    const headings = document.querySelectorAll(selector);
+    headings.forEach((heading) => {
+      const depth = getDepth(heading);
+      const item: TableOfContentsHeadingItem = {
+        id: heading.id,
         depth,
-        value: link.textContent || "",
-        children: [],
+        items: [],
+        children: getHeadingText(heading),
       };
       if (depth > previous.depth) {
-        if (!previous.children) {
-          previous.children = [];
+        if (!previous.items) {
+          previous.items = [];
         }
 
         parents.push(previous);
@@ -123,9 +141,10 @@ export function useTableOfContentsLinks(
         }
       }
       const i = parents.length - 1;
-      parents[i].children = [...(parents[i].children ?? []), item];
+      parents[i].items = [...(parents[i].items ?? []), item];
       previous = item;
     });
-    return root.children;
-  }, [getDepth, selector, ssr]);
+
+    return root.items;
+  }, [getDepth, getHeadingText, selector, ssr]);
 }

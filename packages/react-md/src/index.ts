@@ -9,6 +9,7 @@
 // - list/getListItemHeight
 // - menu/MenuWidgetKeyboardProvider
 // - menu/utils
+// - navigation/utils
 // - position/createHorizontalPosition
 // - position/createVerticalPosition
 // - storage/internalUtils
@@ -212,7 +213,21 @@ export * from "@react-md/core/movement/findMatchIndex";
 export * from "@react-md/core/movement/types";
 export * from "@react-md/core/movement/useKeyboardMovementProvider";
 export * from "@react-md/core/movement/utils";
-export * from "@react-md/core/navigation/useTableOfContentsLinks";
+export * from "@react-md/core/navigation/CollapsibleNavGroup";
+export * from "@react-md/core/navigation/DefaultNavigationRenderer";
+export * from "@react-md/core/navigation/NavGroup";
+export * from "@react-md/core/navigation/navGroupStyles";
+export * from "@react-md/core/navigation/Navigation";
+export * from "@react-md/core/navigation/NavItem";
+export * from "@react-md/core/navigation/NavItemButton";
+export * from "@react-md/core/navigation/NavItemLink";
+export * from "@react-md/core/navigation/navItemStyles";
+export * from "@react-md/core/navigation/NavSubheader";
+export * from "@react-md/core/navigation/types";
+export * from "@react-md/core/navigation/useActiveHeadingId";
+export * from "@react-md/core/navigation/useNavigationExpansion";
+export * from "@react-md/core/navigation/useTableOfContentsHeadings";
+export * from "@react-md/core/navigation/utils";
 export * from "@react-md/core/NoSsr";
 export * from "@react-md/core/objectFit";
 export * from "@react-md/core/overlay/Overlay";
@@ -307,7 +322,7 @@ export * from "@react-md/core/theme/useColorScheme";
 export * from "@react-md/core/theme/useColorSchemeMetaTag";
 export * from "@react-md/core/theme/useColorSchemeProvider";
 export * from "@react-md/core/theme/useCSSVariables";
-export * from "@react-md/core/theme/usePrefersDarkScheme";
+export * from "@react-md/core/theme/usePrefersDarkTheme";
 export * from "@react-md/core/theme/utils";
 export * from "@react-md/core/tooltip/constants";
 export * from "@react-md/core/tooltip/Tooltip";

@@ -1,4 +1,4 @@
-# useActiveHeadingId [$SOURCE](packages/core/src/useActiveHeadingId.tsx)
+# useActiveHeadingId [$SOURCE](packages/core/src/navigation/useActiveHeadingId.ts)
 
 ```ts disableTransform
 function useActiveHeadingId(options: ActiveHeadingIdOptions): string;
@@ -32,7 +32,7 @@ import {
   type HeadingReferenceWithChildren,
   useActiveHeadingId,
 } from "@react-md/core/navigation/useActiveHeadingId";
-import { useTableOfContentsLinks } from "@react-md/core/navigation/useTableOfContentsLinks";
+import { useTableOfContentsHeadings } from "@react-md/core/navigation/useTableOfContentsHeadings";
 import { Typography } from "@react-md/core/typography/Typography";
 import { RenderRecursively } from "@react-md/core/utils/RenderRecursively";
 import { useId } from "react";
@@ -42,7 +42,7 @@ import styles from "./TableOfContents.module.scss";
 export function TableOfContents() {
   const headingId = useId();
   const ssr = useSsr();
-  const headings = useTableOfContentsLinks();
+  const headings = useTableOfContentsHeadings();
 
   const activeHeadingId = useActiveHeadingId({ headings });
   return (
@@ -100,7 +100,7 @@ The `id` for the heading that is currently "active" by having content mostly vis
 ## See Also
 
 - [Mozilla Docs Table of Contents](https://github.com/mdn/yari/blob/231d6aab8f1c8efe159d268c261446c5b7ae12d9/client/src/document/hooks.ts#L171)
-- [useTableOfContentsLinks](./use-table-of-contents-links)
+- [useTableOfContentsHeadings](./use-table-of-contents-headings)
 - [useIntersectionObserver](./use-intersection-observer)
 - [This website's rehype-toc source code]($GITHUB/packages/docs-generator/src/rehype-toc.ts)
 - [This website's TableOfContents component]($GITHUB/apps/docs/src/components/TableOfContents/TableOfContents.tsx)

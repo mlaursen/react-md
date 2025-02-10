@@ -1,35 +1,17 @@
 "use client";
 
 import { useActiveHeadingId } from "@react-md/core/navigation/useActiveHeadingId";
+import { type TableOfContentsHeadings } from "@react-md/core/navigation/useTableOfContentsHeadings";
 import { Typography } from "@react-md/core/typography/Typography";
-import {
-  type RecursiveItem,
-  RenderRecursively,
-} from "@react-md/core/utils/RenderRecursively";
-import { type TOCItem } from "docs-generator/rehype-toc";
+import { RenderRecursively } from "@react-md/core/utils/RenderRecursively";
 import { type ReactElement, useId } from "react";
 
 import { RenderTableOfContentsItem } from "./RenderTableOfContentsItem.jsx";
 import styles from "./TableOfContents.module.scss";
 import { TableOfContentsGroup } from "./TableOfContentsGroup.jsx";
 
-function transformToItems(
-  toc: readonly TOCItem[]
-): readonly RecursiveItem<TOCItem>[];
-function transformToItems(
-  toc: readonly TOCItem[] | undefined
-): readonly RecursiveItem<TOCItem>[] | undefined;
-function transformToItems(
-  toc: readonly TOCItem[] | undefined
-): readonly RecursiveItem<TOCItem>[] | undefined {
-  return toc?.map(({ children, ...item }) => ({
-    ...item,
-    items: transformToItems(children),
-  }));
-}
-
 export interface TableOfContentsProps {
-  toc: readonly TOCItem[];
+  toc: Readonly<TableOfContentsHeadings>;
 }
 
 export function TableOfContents(props: TableOfContentsProps): ReactElement {
@@ -45,7 +27,7 @@ export function TableOfContents(props: TableOfContentsProps): ReactElement {
       <TableOfContentsGroup root>
         <RenderRecursively
           data={activeHeadingId}
-          items={transformToItems(toc)}
+          items={toc}
           render={RenderTableOfContentsItem}
           getItemKey={({ item }) => item.id}
         />
