@@ -304,6 +304,11 @@ export const navItems: readonly NavigationItem[] = [
       { type: "subheader", children: "Utils" },
       {
         type: "route",
+        href: "/render-recursively",
+        children: "RenderRecursively",
+      },
+      {
+        type: "route",
         href: "/portal",
         children: "Portal",
       },
