@@ -1,0 +1,218 @@
+# useHoverModeProvider [$SOURCE](packages/core/src/hoverMode/useHoverModeProvider.ts)
+
+```ts disableTransform
+function useHoverModeProvider(
+  options: HoverModeConfiguration
+): Readonly<HoverModeContext>;
+```
+
+## Example Usage
+
+See the [useTooltip]($GITHUB/packages/core/src/tooltip/useTooltip.ts) and
+[TooltipHoverModeProvider]($GITHUB/packages/core/src/tooltip/TooltipHoverModeProvider.tsx)
+for a real world example.
+
+```tsx
+import {
+  type HoverModeContext,
+  createHoverModeContext,
+  useHoverModeProvider,
+} from "@react-md/core/hoverMode/useHoverModeProvider";
+import {
+  type ReactElement,
+  type ReactNode,
+  createContext,
+  useContext,
+} from "react";
+
+export interface CustomHoverContext extends HoverModeContext {
+  // any additional fields in the context
+}
+
+const context = createContext<CustomHoverContext>(
+  createHoverModeContext()
+  // you can also provide default values if needed when the context provider
+  // isn't a parent component. the following are the defaults
+  // createHoverModeContext({
+  //    hoverTimeout: undefined,
+  //    leaveTimeout: 0,
+  //    defaultActiveId: "",
+  // })
+);
+const { Provider } = context;
+
+interface Props extends HoverModeConfiguration {
+  children: ReactNode;
+}
+
+export function CustomHoverModeProvider({
+  children,
+  // change to whatever defaults you want
+  hoverTimeout = 3000,
+  leaveTimeout = 3000,
+  defaultActiveId = "",
+  disableTimeout = 5000,
+}: Props): ReactElement {
+  const context = useHoverModeProvider({
+    hoverTimeout,
+    leaveTimeout,
+    defaultActiveId,
+    disableTimeout,
+  });
+
+  return <Provider value={context}>{children}</Provider>;
+}
+```
+
+## Parameters
+
+- `options` - An object with the following definition:
+
+```ts disableTransform
+export interface HoverModeConfiguration extends CreateHoverModeContextOptions {
+  /**
+   * The amount of time to wait before disabling the hover mode behavior if none
+   * of the components are being hovered.
+   *
+   * If this is `undefined`, {@link HoverModeContext.startDisableTimer} will do
+   * nothing. You must manually call {@link HoverModeContext.disableHoverMode}
+   * to disable the hover mode instead.
+   */
+  disableTimeout?: number;
+
+  /**
+   * @defaultValue `false`
+   */
+  forceRerender?: boolean;
+}
+
+export interface CreateHoverModeContextOptions {
+  /**
+   * TODO: I think this has something to do with how I implemented the MenuBar.
+   *
+   * @defaultValue `""`
+   */
+  defaultActiveId?: string;
+
+  /**
+   * When this is `undefined`, the hover mode behavior will be disabled.
+   * Otherwise, this will be the amount of time to wait on a `mouseenter` event
+   * before setting the visibility to `true`.
+   *
+   * @defaultValue `undefined`
+   */
+  hoverTimeout?: number;
+
+  /**
+   * The amount of time to wait after a `mouseleave` event before setting the
+   * visibility to `false`.
+   *
+   * @defaultValue `0`
+   * @since 6.0.0 This was renamed from `exitVisibilityDelay` and the
+   * default value changed from `300` to `0`.
+   */
+  leaveTimeout?: number;
+}
+```
+
+## Returns
+
+An object with the following definition:
+
+````ts disableTransform
+export interface HoverModeContext extends SimpleHoverModeContext {
+  /**
+   * This will only be updated if {@link HoverModeConfiguration.forceRerender} is `true`
+   */
+  activeId: string;
+
+  /**
+   * This ref contains the current DOM `id` for the element that is being
+   * hovered within the `HoverModeProvider`. This will be an empty string
+   * when the hover mode is not active.
+   */
+  activeIdRef: NonNullMutableRef<string>;
+
+  /**
+   * This ref can be used to disable transitions for a group of components using
+   * the same hover mode provider. The general flow would be:
+   *
+   * - set `disableTransition: animatedOnceRef.current` on hover mode components
+   * - set `animatedOnceRef.current = true` when the `onEntered` transition callback fires
+   * - set `animatedOnceRef.current = false` when the hover mode behavior is
+   *   disabled. This would normally be after a timeout for the `onExited`
+   *   callback
+   */
+  animatedOnceRef: NonNullMutableRef<boolean>;
+}
+
+export interface SimpleHoverModeContext {
+  /**
+   * @example Main Usage
+   * ```ts
+   * onMouseEnter(event) {
+   *   const hoverTimeout = hoverTimeoutRef.current;
+   *   if (typeof hoverTimeout !== "number" || mode === "touch") {
+   *     return;
+   *   }
+   *
+   *   const { id } = event.currentTarget;
+   *   clearDisableTimer();
+   *   window.clearTimeout(visibilityTimeout.current);
+   *   visibilityTimeout.current = window.setTimeout(() => {
+   *     enableHoverMode(id);
+   *     setVisible(true);
+   *   }, hoverTimeout);
+   * }
+   * ```
+   */
+  hoverTimeoutRef: NonNullRef<number | undefined>;
+
+  /**
+   * @example Main Usage
+   * ```ts
+   * onMouseLeave() {
+   *   if (mode === "touch") {
+   *     return
+   *   }
+   *
+   *   startDisableTimer();
+   *   window.clearTimeout(visibilityTimeout.current);
+   *   visibilityTimeout.current = window.setTimeout(() => {
+   *     setVisible(false)
+   *   }, leaveTimeoutRef.current);
+   * }
+   * ```
+   */
+  leaveTimeoutRef: NonNullRef<number>;
+
+  /**
+   * When this is called, the {@link hoverTimeoutRef} will be set to `0` and the
+   * {@link HoverModeContext.activeId} will be set to this `activeId` value.
+   *
+   * @see {@link hoverTimeoutRef} for an example.
+   */
+  enableHoverMode: (activeId: string) => void;
+
+  /**
+   * Disables all hover mode behavior by clearing all timeouts and resetting
+   * internal state.
+   */
+  disableHoverMode: () => void;
+
+  /**
+   * @see {@link leaveTimeoutRef} for an example.
+   */
+  startDisableTimer: () => void;
+
+  /**
+   * @see {@link hoverTimeoutRef} for an example.
+   */
+  clearDisableTimer: () => void;
+}
+````
+
+## See Also
+
+- [useHoverMode](./use-hover-mode-provider)
+- [useTooltip](./use-tooltip)

@@ -30,6 +30,11 @@ export const navItems: readonly NavigationItem[] = [
     items: [
       {
         type: "route",
+        href: "/global-configuration",
+        children: "Global Configuration",
+      },
+      {
+        type: "route",
         href: "/theme",
         children: "Theme",
       },

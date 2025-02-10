@@ -48,9 +48,10 @@ export interface ReadonlySetImplementation<T> {
 }
 
 /**
- * This is most likely an internal only hook to manage state for a
- * `ReadonlySet`. You most likely want to use one of the other hooks that
- * leverage this instead:
+ * The `useReadonlySet` hook is used to create a more performant lookup
+ * behavior for lists/arrays. This is most likely an internal only hook to
+ * manage state for a `ReadonlySet`. You most likely want to use one of the
+ * other hooks that leverage this instead:
  *
  * - `useCheckboxGroup`
  * - `useExpansionPanels`

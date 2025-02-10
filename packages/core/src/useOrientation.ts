@@ -34,7 +34,6 @@ export const getOrientationType = (): OrientationType => {
  * support this API yet, it will polyfill that behavior using a resize handler
  * instead.
  *
- * @internal
  * @see {@link https://caniuse.com/screen-orientation}
  * @returns the current orientation type
  */

@@ -1,6 +1,6 @@
-# useElementSize
+# useElementSize [$SOURCE](packages/core/src/useElementSize.ts)
 
-```ts
+```ts disableTransform
 function useElementSize<E extends HTMLElement>(
   options?: ElementSizeOptions<E>
 ): ElementSizeImplementation<E>;
@@ -69,7 +69,7 @@ size can be guessed. This is mostly useful for server-side-rendering.
 The default value can be static or using an initializer function to handle
 client side values.
 
-```ts
+```ts disableTransform
 const ssr = useSsr();
 const { height, width, elementRef } = useElementSize({
   defaultValue: () => {

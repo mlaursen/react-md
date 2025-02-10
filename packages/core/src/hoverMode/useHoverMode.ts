@@ -1,10 +1,19 @@
 "use client";
 
-import type { MouseEvent } from "react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  type MouseEvent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
-import type { UseStateInitializer, UseStateSetter } from "../types.js";
-import type { SimpleHoverModeContext } from "./useHoverModeProvider.js";
+import { type UseStateInitializer, type UseStateSetter } from "../types.js";
+import {
+  type SimpleHoverModeContext,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  type useHoverModeProvider,
+} from "./useHoverModeProvider.js";
 
 /**
  * @since 6.0.0
@@ -68,6 +77,67 @@ export interface HoverModeImplementation
 }
 
 /**
+ * The `useHoverMode` hook is used to implement an immediate hover state after
+ * hovering related elements for a short duration. The main use-case is for
+ * showing tooltips immediately after hovering another tooltipped element.
+ *
+ * This relies on creating a context provider using {@link useHoverModeProvider}
+ * to link related elements together.
+ *
+ * @example Example Usage
+ * ```ts
+ * import { type MouseEvent } from "react";
+ *
+ * import {
+ *   type CustomHoverContext,
+ *   useCustomHoverContext,
+ * } from "./useCustomHoverContext.jsx";
+ *
+ * interface CustomHoverModeImplementation {
+ *   onMouseEnter: <E extends HTMLElement>(event: MouseEvent<E>) => void;
+ *   onMouseLeave: <E extends HTMLElement>(event: MouseEvent<E>) => void;
+ * }
+ *
+ * function useCustomHoverMode(): CustomHoverModeImplementation {
+ *   const {
+ *     animatedOnceRef,
+ *     hoverTimeoutRef,
+ *     leaveTimeoutRef,
+ *     enableHoverMode,
+ *     disableHoverMode,
+ *     startDisableTimer,
+ *     clearDisableTimer,
+ *   } = useCustomHoverContext();
+ *   const {
+ *     visible,
+ *     setVisible,
+ *     startShowFlow,
+ *     startHideFlow,
+ *     clearVisibilityTimeout,
+ *   } = useHoverMode({
+ *     hoverTimeout,
+ *     hoverTimeoutRef,
+ *     leaveTimeout,
+ *     leaveTimeoutRef,
+ *     enableHoverMode,
+ *     disableHoverMode,
+ *     startDisableTimer,
+ *     clearDisableTimer,
+ *   });
+ *
+ *   return {
+ *     onMouseEnter(event) {
+ *       startShowFlow(event.currentTarget.id);
+ *     },
+ *     onMouseLeave(event) {
+ *       startHideFlow();
+ *     },
+ *   };
+ * }
+ * ```
+ *
+ * @see The `useTooltip` source code for a real world example.
+ *
  * @since 2.8.0
  * @since 5.0.0 This hook no longer returns `handlers` or
  * `stickyHandlers` and does not hide when an element on the page is clicked.

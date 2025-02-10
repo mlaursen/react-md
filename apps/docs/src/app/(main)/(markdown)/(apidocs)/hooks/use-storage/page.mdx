@@ -1,4 +1,4 @@
-# useStorage
+# useStorage [$SOURCE](packages/core/src/storage/useStorage.ts)
 
 ```ts disableTransform
 function useStorage<T>(options: StorageOptions<T>): StorageImplementation<T>;
@@ -317,7 +317,7 @@ util to "safely" set an item in `localStorage` or `sessionStorage`.
 
 #### Example Usage
 
-```ts
+```ts disableTransform
 import { getItemFromStorage } from "@react-md/core/storage/utils";
 import { identity } from "@react-md/core/utils/identity";
 

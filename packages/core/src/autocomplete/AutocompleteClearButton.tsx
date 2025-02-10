@@ -3,7 +3,7 @@
 import { type ReactElement } from "react";
 
 import { Button } from "../button/Button.js";
-import { getIcon } from "../icon/iconConfig.js";
+import { getIcon } from "../icon/config.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { autocompleteClearButton } from "./autocompleteStyles.js";
 import { type AutocompleteClearButtonProps } from "./types.js";

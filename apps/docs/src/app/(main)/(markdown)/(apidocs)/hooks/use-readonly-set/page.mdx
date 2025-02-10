@@ -1,0 +1,98 @@
+# useReadonlySet [$SOURCE](packages/core/src/useReadonlySet.tsx)
+
+```ts disableTransform
+function useElementInteraction(): void;
+```
+
+The `useReadonlySet` hook is used to create a more performant lookup
+behavior for lists/arrays. This is most likely an internal only hook to
+manage state for a `ReadonlySet`. You most likely want to use one of the
+other hooks that leverage this instead:
+
+- `useCheckboxGroup`
+- `useExpansionPanels`
+- `useTreeSelection`
+- `useTreeExpansion`
+- etc
+
+## Example Usage
+
+```tsx
+import { useReadonlySet } from "@react-md/core/useReadonlySet";
+import { cnb } from "cnbuilder";
+
+function Example() {
+  const { value, toggleValue } = useReadonlySet();
+  // the next two implementations are equivalent
+  // const { value, toggleValue } = useReadonlySet({
+  //   defaultValue: [],
+  // });
+  // const { value, toggleValue } = useReadonlySet({
+  //   defaultValue: () => new Set(),
+  // });
+
+  return (
+    <>
+      {someList.map((item) => (
+        <div
+          key={item.id}
+          className={cnb(value.has(item.id) && styles.selected)}
+        >
+          {item.name}
+          <Button onClick={() => toggleValue(item.id)}>Button</Button>
+        </div>
+      ))}
+    </>
+  );
+}
+```
+
+## Parameters
+
+- `options` (optional) - An object with the following definition:
+
+```ts disableTransform
+export interface ReadonlySetOptions<T> {
+  defaultValue?: UseStateInitializer<ReadonlySet<T> | readonly T[]>;
+
+  /**
+   * Sets the behavior for when the
+   * {@link ReadonlySetImplementation.toggleValue} is triggered and mostly for
+   * internal usage. The default behavior (`"multiple"`) is to work how most
+   * would expect:
+   * - If the item does not exist in the set, add it.
+   * - If the item exists in the set, remove it.
+   *
+   * Setting this to `"single"` makes it so that only a single item can be in
+   * the set at once and will toggle like normal:
+   * - If the item does not exist in the set, return a new set only including
+   *   the item.
+   * - If the item exists in the set, return an empty set.
+   * An example usage is the `useExpansionPanels` to allow only a single panel
+   * to be expanded at a time.
+   *
+   * Setting this to `"single-select"` makes it so that only a single item can
+   * be in the set at once but will not toggle:
+   * - If the item does not exist in the set, return a new set only including
+   *   the item.
+   * - If the item exists in the set, do nothing
+   * An example usage is the `useTreeSelection` to always require at least one
+   * tree item to be selected. It is impossible to deselect an item.
+   *
+   * @defaultValue `"multiple"`
+   */
+  toggleType?: "single" | "multiple" | "single-select";
+}
+```
+
+## Returns
+
+An object with the following definition:
+
+```ts disableTransform
+export interface ReadonlySetImplementation<T> {
+  value: ReadonlySet<T>;
+  setValue: UseStateSetter<ReadonlySet<T>>;
+  toggleValue: (item: T) => void;
+}
+```

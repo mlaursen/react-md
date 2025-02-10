@@ -1,0 +1,191 @@
+# useHoverMode [$SOURCE](packages/core/src/hoverMode/useHoverMode.ts)
+
+```ts disableTransform
+function useHoverMode(
+  options: ControlledHoverModeOptions | UncontrolledHoverModeOptions
+): HoverModeImplementation;
+```
+
+The `useHoverMode` hook is used to implement an immediate hover state after
+hovering related elements for a short duration. The main use-case is for
+showing tooltips immediately after hovering another tooltipped element.
+
+This relies on creating a context provider using
+[useHoverModeProvider](./use-hover-mode-provider) to link related elements
+together.
+
+## Example Usage
+
+See the [useTooltip]($GITHUB/packages/core/src/tooltip/useTooltip.ts) and
+[TooltipHoverModeProvider]($GITHUB/packages/core/src/tooltip/TooltipHoverModeProvider.tsx)
+for a real world example.
+
+```ts
+import { type MouseEvent } from "react";
+
+import {
+  type CustomHoverContext,
+  useCustomHoverContext,
+} from "./useCustomHoverContext.jsx";
+
+interface CustomHoverModeImplementation {
+  onMouseEnter: <E extends HTMLElement>(event: MouseEvent<E>) => void;
+  onMouseLeave: <E extends HTMLElement>(event: MouseEvent<E>) => void;
+}
+
+function useCustomHoverMode(): CustomHoverModeImplementation {
+  const {
+    animatedOnceRef,
+    hoverTimeoutRef,
+    leaveTimeoutRef,
+    enableHoverMode,
+    disableHoverMode,
+    startDisableTimer,
+    clearDisableTimer,
+  } = useCustomHoverContext();
+  const {
+    visible,
+    setVisible,
+    startShowFlow,
+    startHideFlow,
+    clearVisibilityTimeout,
+  } = useHoverMode({
+    hoverTimeout,
+    hoverTimeoutRef,
+    leaveTimeout,
+    leaveTimeoutRef,
+    enableHoverMode,
+    disableHoverMode,
+    startDisableTimer,
+    clearDisableTimer,
+  });
+
+  return {
+    onMouseEnter(event) {
+      startShowFlow(event.currentTarget.id);
+    },
+    onMouseLeave(event) {
+      startHideFlow();
+    },
+  };
+}
+```
+
+## Parameters
+
+- `options` - An object with the following definition:
+
+````ts disableTransform
+export type HoverModeOptions =
+  | ControlledHoverModeOptions
+  | UncontrolledHoverModeOptions;
+
+export interface ControlledHoverModeOptions
+  extends HoverModeConfigurationOptions {
+  setVisible: UseStateSetter<boolean>;
+}
+
+export interface UncontrolledHoverModeOptions
+  extends HoverModeConfigurationOptions {
+  defaultVisible?: UseStateInitializer<boolean>;
+}
+
+export interface HoverModeConfigurationOptions extends SimpleHoverModeContext {
+  /** @defaultValue `false` */
+  disabled?: boolean;
+
+  /**
+   * This can be used to override the `HoverModeContext`'s hover time.
+   */
+  hoverTimeout?: number;
+
+  /**
+   * This can be used to override the `HoverModeContext`'s leave time.
+   */
+  leaveTimeout?: number;
+}
+export interface SimpleHoverModeContext {
+  /**
+   * @example Main Usage
+   * ```ts
+   * onMouseEnter(event) {
+   *   const hoverTimeout = hoverTimeoutRef.current;
+   *   if (typeof hoverTimeout !== "number" || mode === "touch") {
+   *     return;
+   *   }
+   *
+   *   const { id } = event.currentTarget;
+   *   clearDisableTimer();
+   *   window.clearTimeout(visibilityTimeout.current);
+   *   visibilityTimeout.current = window.setTimeout(() => {
+   *     enableHoverMode(id);
+   *     setVisible(true);
+   *   }, hoverTimeout);
+   * }
+   * ```
+   */
+  hoverTimeoutRef: NonNullRef<number | undefined>;
+
+  /**
+   * @example Main Usage
+   * ```ts
+   * onMouseLeave() {
+   *   if (mode === "touch") {
+   *     return
+   *   }
+   *
+   *   startDisableTimer();
+   *   window.clearTimeout(visibilityTimeout.current);
+   *   visibilityTimeout.current = window.setTimeout(() => {
+   *     setVisible(false)
+   *   }, leaveTimeoutRef.current);
+   * }
+   * ```
+   */
+  leaveTimeoutRef: NonNullRef<number>;
+
+  /**
+   * When this is called, the {@link hoverTimeoutRef} will be set to `0` and the
+   * {@link HoverModeContext.activeId} will be set to this `activeId` value.
+   *
+   * @see {@link hoverTimeoutRef} for an example.
+   */
+  enableHoverMode: (activeId: string) => void;
+
+  /**
+   * Disables all hover mode behavior by clearing all timeouts and resetting
+   * internal state.
+   */
+  disableHoverMode: () => void;
+
+  /**
+   * @see {@link leaveTimeoutRef} for an example.
+   */
+  startDisableTimer: () => void;
+
+  /**
+   * @see {@link hoverTimeoutRef} for an example.
+   */
+  clearDisableTimer: () => void;
+}
+````
+
+## Returns
+
+An object with the following definition:
+
+```ts disableTransform
+export interface HoverModeImplementation {
+  // `visible` and `setVisible` will be defined if the `setVisible` option was not provided
+  visible?: boolean;
+  setVisible?: UseStateSetter<boolean>;
+  startShowFlow: (id?: string | MouseEvent) => void;
+  startHideFlow: () => void;
+  clearVisibilityTimeout: () => void;
+}
+```
+
+## See Also
+
+- [useHoverModeProvider](./use-hover-mode-provider)
+- [useTooltip](./use-tooltip)

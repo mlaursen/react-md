@@ -6,7 +6,7 @@ import {
   forwardRef,
 } from "react";
 
-import { getIcon } from "../icon/iconConfig.js";
+import { getIcon } from "../icon/config.js";
 import { MenuItem, type MenuItemProps } from "../menu/MenuItem.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 

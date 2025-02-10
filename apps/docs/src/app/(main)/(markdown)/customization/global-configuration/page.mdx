@@ -1,0 +1,125 @@
+# Global Configuration
+
+There are a few features that can be configured globally in ReactMD by
+modifying configuration objects. The [Installation](/getting-started/installation) page
+showcased how to modify the default icons, but this page will show the
+remaining features that can be configured.
+
+# Prerequisites
+
+It is recommended to create a root `src/rmdConfig.tsx` file that handle
+all the ReactMD configuration changes and is imported once into either
+the main import for a client side app, or the base client component in
+a server side rendered app.
+
+# Icons
+
+The default icons used by ReactMD component can be configured using the
+`configureIcons` util. The default behavior uses the `material-icons` font
+library but can be configured to use the `@react-md/material-icons` SVG components,
+`MaterialSymbol` components, or any custom icon.
+
+Since the
+[Installation](/getting-started/installation#configuring-custom-icons) page
+shows how to configure icons using the SVG material icons, this will show how
+to use material symbols instead.
+
+> !Info! Note: This would require including the icon font `<link>`.
+>
+> ```html
+> <link
+>   rel="stylesheet"
+>   href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+> />
+> ```
+>
+> See the [Material Symbols](/components/material-icons-and-symbols?icon=air&icon.stylesheet) examples for more examples.
+
+```tsx fileName="src/rmdConfig.tsx"
+"use client";
+
+import { MaterialSymbol } from "@react-md/core/icon/MaterialSymbol";
+import { configureIcons } from "@react-md/core/icon/config";
+
+configureIcons({
+  back: <MaterialSymbol name="keyboard_arrow_left" />,
+  close: <MaterialSymbol name="close" />,
+  checkbox: <MaterialSymbol name="check_box_outline_blank" />,
+  checkboxChecked: <MaterialSymbol name="check_box" />,
+  checkboxIndeterminate: <MaterialSymbol name="indeterminate_check_box" />,
+  dropdown: <MaterialSymbol name="arrow_drop_down" />,
+  error: <MaterialSymbol name="error" />,
+  expander: <MaterialSymbol name="keyboard_arrow_down" />,
+  forward: <MaterialSymbol name="keyboard_arrow_right" />,
+  menu: <MaterialSymbol name="menu" />,
+  notification: <MaterialSymbol name="notifications" />,
+  password: <MaterialSymbol name="visibility" />,
+  radio: <MaterialSymbol name="radio_button_unchecked" />,
+  radioChecked: <MaterialSymbol name="radio_button_checked" />,
+  selected: <MaterialSymbol name="check" />,
+  sort: <MaterialSymbol name="arrow_upward" />,
+  upload: <MaterialSymbol name="upload" />,
+});
+```
+
+# Interaction Behavior
+
+ReactMD defaults to displaying a ripple effect when elements are clicked and
+ensuring that text maintains a higher contrast ratio while hovering elements.
+This behavior can be modified by changing the `INTERACTION_CONFIG` object.
+
+## Interaction Mode
+
+> !Info! When changing the interaction mode, make sure to change the
+> `core.$interaction-mode` to match.
+
+```tsx fileName="src/rmdConfig.tsx"
+"use client";
+
+import { INTERACTION_CONFIG } from "@react-md/core/interaction/config";
+
+// this is the default -- elements ripple while pressed and clicked
+INTERACTION_CONFIG.mode = "ripple";
+
+// Or make it so that elements gain a slightly changed background color while pressed
+INTERACTION_CONFIG.mode = "press";
+
+// Or just disable all that behavior and rely on hover/focus states
+INTERACTION_CONFIG.mode = "none";
+```
+
+## Higher Contrast
+
+ReactMD usually applies a general `rgba(0, 0, 0, .12)` overlay while hovering
+elements which can cause text content to be covered by that overlay and become
+less visible. To work around this issue, all interactable elements have `> * {
+z-index: 1 }` applied so they can be raised above this overlay and no longer
+affected.
+
+Since text elements are not included in the `*` selector, ReactMD automatically
+attempts to wrap any `string` or `number` item in an additional `<span>` in
+interactable components to fix the issue instead. If this behavior is not desired,
+set the `INTERACTION_CONFIG.higherContrast` to `false`.
+
+```tsx fileName="src/rmdConfig.tsx"
+"use client";
+
+import { INTERACTION_CONFIG } from "@react-md/core/interaction/config";
+
+INTERACTION_CONFIG.higherContrast = false;
+```
+
+# Transition
+
+ReactMD only supports disabling all transitions at this time using the
+`TRANSITION_CONFIG.disabled` property. It is recommended to disable transitions
+in tests to improve test runner speed and is automatically disabled when
+following the [testing setup](/testing/quickstart).
+
+```tsx fileName="src/rmdConfig.tsx"
+"use client";
+
+import { TRANSITION_CONFIG } from "@react-md/core/transition/config";
+
+TRANSITION_CONFIG.disabled = true;
+```

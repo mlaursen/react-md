@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 
 import { Chip } from "../chip/Chip.js";
-import { getIcon } from "../icon/iconConfig.js";
+import { getIcon } from "../icon/config.js";
 import { autocompleteChip } from "./autocompleteStyles.js";
 import { type AutocompleteChipProps } from "./types.js";
 

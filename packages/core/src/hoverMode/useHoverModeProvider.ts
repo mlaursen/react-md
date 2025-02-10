@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import type { NonNullMutableRef, NonNullRef } from "../types.js";
+import { type NonNullMutableRef, type NonNullRef } from "../types.js";
 
 const noop = (): void => {
   // do nothing
@@ -179,22 +179,32 @@ export interface HoverModeConfiguration extends CreateHoverModeContextOptions {
 /**
  * @example Creating a Hover Mode Group
  * ```tsx
- * import type {
- *   HoverModeConfiguration,
- *   HoverModeContext,
- * } from "@react-md/core";
  * import {
+ *   type HoverModeContext,
  *   createHoverModeContext,
  *   useHoverModeProvider,
- * } from "@react-md/core";
- * import type { ReactElement } from "react";
- * import { createContext, useContext } from "react";
+ * } from "@react-md/core/hoverMode/useHoverModeProvider";
+ * import {
+ *   type ReactElement,
+ *   type ReactNode,
+ *   createContext,
+ *   useContext,
+ * } from "react";
  *
- * // extend as needed
- * type CustomHoverMode = HoverModeContext;
+ * export interface CustomHoverContext extends HoverModeContext {
+ *   // any additional fields in the context
+ * }
  *
- * // you can also add defaults if there is no parent provider.
- * const context = createContext<CustomHoverMode>(createHoverModeContext());
+ * const context = createContext<CustomHoverContext>(
+ *   createHoverModeContext()
+ *   // you can also provide default values if needed when the context provider
+ *   // isn't a parent component. the following are the defaults
+ *   // createHoverModeContext({
+ *   //    hoverTimeout: undefined,
+ *   //    leaveTimeout: 0,
+ *   //    defaultActiveId: "",
+ *   // })
+ * );
  * const { Provider } = context;
  *
  * interface Props extends HoverModeConfiguration {

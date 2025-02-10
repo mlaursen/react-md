@@ -1,6 +1,6 @@
-# useScrollLock
+# useScrollLock [$SOURCE](packages/core/src/scroll/useScrollLock.ts)
 
-```ts
+```ts disableTransform
 function useScrollLock(locked: boolean): void;
 ```
 
@@ -12,7 +12,7 @@ The `useScrollLock` hook can be used to lock scrolling on the entire page.
 
 ## Example Usage
 
-```ts
+```ts disableTransform
 function Example() {
   const { toggled, toggle } = useToggle();
   useScrollLock(toggled);
@@ -24,10 +24,6 @@ function Example() {
 ## Parameters
 
 - `locked` - Boolean if the `document.body` should be no longer be scrollable
-
-```ts disableTransform
-export interface Options {}
-```
 
 ## Returns
 

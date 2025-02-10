@@ -157,6 +157,11 @@ export function MaterialIconsAndSymbolsProvider({
             ...state,
             iconType: "icon-font" as const,
           };
+        case "setSymbolStylesheet":
+          return {
+            ...state,
+            symbolStylesheet: action.payload,
+          };
         default:
           throw new Error("Unreachable");
       }
@@ -173,6 +178,7 @@ export function MaterialIconsAndSymbolsProvider({
     symbolWeight,
     symbolGrade,
     symbolOpticalSize,
+    symbolStylesheet,
     filtersVisible,
     selectedIconName,
   } = state;
@@ -198,6 +204,7 @@ export function MaterialIconsAndSymbolsProvider({
       symbolFill,
       symbolWeight,
       symbolGrade,
+      symbolStylesheet,
       symbolOpticalSize,
       isFillChanged,
       isWeightChanged,
@@ -259,6 +266,9 @@ export function MaterialIconsAndSymbolsProvider({
         dispatch({ type: "setIconCategory", payload: iconCategory });
         scrollToTop();
       },
+      setSymbolStylesheet(enabled: boolean) {
+        dispatch({ type: "setSymbolStylesheet", payload: enabled });
+      },
       changeSvgToFont() {
         dispatch({ type: "changeSvgToFont" });
       },
@@ -279,6 +289,7 @@ export function MaterialIconsAndSymbolsProvider({
       symbolFill,
       symbolGrade,
       symbolOpticalSize,
+      symbolStylesheet,
       symbolWeight,
     ]
   );
@@ -296,6 +307,7 @@ export function MaterialIconsAndSymbolsProvider({
         selectedIconName,
         symbolFill,
         symbolGrade,
+        symbolStylesheet,
         symbolOpticalSize,
         symbolWeight,
       }),
@@ -312,6 +324,7 @@ export function MaterialIconsAndSymbolsProvider({
     symbolFill,
     symbolGrade,
     symbolOpticalSize,
+    symbolStylesheet,
     symbolWeight,
   ]);
 

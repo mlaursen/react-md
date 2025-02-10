@@ -15,7 +15,7 @@ export interface MutationObserverHookOptions<E extends HTMLElement>
    */
   disabled?: boolean;
 
-  onObserved: (mutation: MutationRecord) => void;
+  onUpdate: (mutation: MutationRecord) => void;
 }
 
 /**
@@ -23,7 +23,7 @@ export interface MutationObserverHookOptions<E extends HTMLElement>
  *
  * @example Simple Example
  * ```tsx
- * import { useMutationObserver } from "@react-md/core";
+ * import { useMutationObserver } from "@react-md/core/useMutationObserver";
  * import { useCallback, type HTMLAttributes, type ReactElement } from "react";
  *
  * function Example(props: HTMLAttributes<HTMLDivElement>): ReactElement {
@@ -61,7 +61,7 @@ export function useMutationObserver<E extends HTMLElement>(
 ): RefCallback<E> {
   const {
     ref,
-    onObserved,
+    onUpdate,
     attributes,
     attributeFilter,
     attributeOldValue,
@@ -86,7 +86,7 @@ export function useMutationObserver<E extends HTMLElement>(
     const observer = new MutationObserver((records) => {
       const [entry] = records;
       if (entry) {
-        onObserved(entry);
+        onUpdate(entry);
       }
     });
 
@@ -110,7 +110,7 @@ export function useMutationObserver<E extends HTMLElement>(
     characterDataOldValue,
     childList,
     disabled,
-    onObserved,
+    onUpdate,
     subtree,
     targetNodeRef,
   ]);

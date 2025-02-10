@@ -144,7 +144,7 @@ export * from "@react-md/core/form/validation";
 export * from "@react-md/core/hoverMode/useHoverMode";
 export * from "@react-md/core/hoverMode/useHoverModeProvider";
 export * from "@react-md/core/icon/FontIcon";
-export * from "@react-md/core/icon/iconConfig";
+export * from "@react-md/core/icon/config";
 export * from "@react-md/core/icon/IconRotator";
 export * from "@react-md/core/icon/material";
 export * from "@react-md/core/icon/materialConfig";

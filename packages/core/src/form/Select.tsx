@@ -15,7 +15,7 @@ import {
 
 import { type BoxProps } from "../box/Box.js";
 import { IconRotator } from "../icon/IconRotator.js";
-import { getIcon } from "../icon/iconConfig.js";
+import { getIcon } from "../icon/config.js";
 import { type MenuProps } from "../menu/Menu.js";
 import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
 import {

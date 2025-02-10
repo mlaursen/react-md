@@ -4,7 +4,7 @@ import { type ReactElement } from "react";
 
 import { Button } from "../button/Button.js";
 import { IconRotator } from "../icon/IconRotator.js";
-import { getIcon } from "../icon/iconConfig.js";
+import { getIcon } from "../icon/config.js";
 import { type LabelRequiredForA11y } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { autocompleteDropdownButton } from "./autocompleteStyles.js";

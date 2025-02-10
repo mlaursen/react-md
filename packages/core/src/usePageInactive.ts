@@ -54,7 +54,7 @@ export interface PageInactiveOptions {
 /**
  * @example
  * ```ts
- * import { usePageInactive } from "@react-md/core";
+ * import { usePageInactive } from "@react-md/core/usePageInactive";
  * import { useCallback, useEffect, useRef, useState } from "react";
  *
  * function Example(): null {
@@ -65,6 +65,11 @@ export interface PageInactiveOptions {
  *       setVisible(false);
  *     }, 10000);
  *   }, []);
+ *   useEffect(() => {
+ *     return () => {
+ *       window.clearTimeout(timeout.current);
+ *     };
+ *   }, []);
  *
  *   usePageInactive({
  *     onChange(active) {
@@ -74,7 +79,7 @@ export interface PageInactiveOptions {
  *       } else {
  *         startTimeout();
  *       }
- *     }
+ *     },
  *   });
  *
  *   // pretend implementation

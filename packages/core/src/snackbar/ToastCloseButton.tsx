@@ -5,7 +5,7 @@ import { forwardRef } from "react";
 
 import { Button, type ButtonProps } from "../button/Button.js";
 import { type ButtonType } from "../button/buttonStyles.js";
-import { getIcon } from "../icon/iconConfig.js";
+import { getIcon } from "../icon/config.js";
 import { bem } from "../utils/bem.js";
 import { useCurrentToastActions } from "./useCurrentToastActions.js";
 

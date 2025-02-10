@@ -1,23 +1,25 @@
 "use client";
 
-import type {
-  FocusEvent,
-  KeyboardEvent,
-  MouseEvent,
-  ReactElement,
-  TouchEvent,
+import {
+  type FocusEvent,
+  type KeyboardEvent,
+  type MouseEvent,
+  type ReactElement,
+  type TouchEvent,
+  useCallback,
+  useReducer,
+  useRef,
 } from "react";
-import { useCallback, useReducer, useRef } from "react";
 
 import { RippleContainer } from "./RippleContainer.js";
 import { useUserInteractionMode } from "./UserInteractionModeProvider.js";
 import { INTERACTION_CONFIG } from "./config.js";
-import type {
-  ElementInteractionHandlers,
-  ElementInteractionMode,
-  ElementInteractionState,
-  RippleState,
-  RippleStyle,
+import {
+  type ElementInteractionHandlers,
+  type ElementInteractionMode,
+  type ElementInteractionState,
+  type RippleState,
+  type RippleStyle,
 } from "./types.js";
 import { getRippleStyle, releaseRipple, updateRipplesState } from "./utils.js";
 
@@ -51,7 +53,7 @@ export interface ElementInteractionOptions<E extends HTMLElement>
 }
 
 /** @since 6.0.0 */
-export interface ElementInteractionHookReturnValue<E extends HTMLElement> {
+export interface ElementInteractionImplementation<E extends HTMLElement> {
   /**
    * The event handlers required for element interaction.
    */
@@ -92,9 +94,9 @@ const noop = (): void => {
  *
  * @example Providing Element Interaction
  * ```tsx
- * import { useElementInteraction } from "@react-md/core";
+ * import { useElementInteraction } from "@react-md/core/interaction/useElementInteraction";
  * import { cnb } from "cnbuilder";
- * import type { ReactElement } from "react";
+ * import { type ReactElement } from "react";
  *
  * import styles from "./CustomComponent.module.scss";
  *
@@ -116,26 +118,25 @@ const noop = (): void => {
  *     onTouchStart,
  *     onTouchMove,
  *     onTouchEnd,
- *     ...remaining,
+ *     ...remaining
  *   } = props;
  *
- *   const { handlers, pressed, ripples } =
- *     useElementInteraction({
- *       disabled,
- *       // pass remaining props so that if any event handlers were provided to
- *       // the component, they will be merged with the element interaction
- *       // handlers
- *       onBlur,
- *       onClick,
- *       onKeyDown,
- *       onKeyUp,
- *       onMouseDown,
- *       onMouseUp,
- *       onMouseLeave,
- *       onTouchStart,
- *       onTouchMove,
- *       onTouchEnd,
- *     })
+ *   const { handlers, pressed, ripples } = useElementInteraction({
+ *     disabled,
+ *     // pass remaining props so that if any event handlers were provided to
+ *     // the component, they will be merged with the element interaction
+ *     // handlers
+ *     onBlur,
+ *     onClick,
+ *     onKeyDown,
+ *     onKeyUp,
+ *     onMouseDown,
+ *     onMouseUp,
+ *     onMouseLeave,
+ *     onTouchStart,
+ *     onTouchMove,
+ *     onTouchEnd,
+ *   });
  *
  *   return (
  *     <div
@@ -155,14 +156,14 @@ const noop = (): void => {
  *
  * @param options - An object of {@link ElementInteractionOptions} that is used
  * to merge event handlers or disable the interactions.
- * @returns the {@link ElementInteractionHookReturnValue}
+ * @returns the {@link ElementInteractionImplementation}
  * @since 6.0.0 Touch interactions were removed since it never looked
  * good if the user touched a clickable element right before scrolling. The
  * ripple effect will only be fired on click now for touch devices.
  */
 export function useElementInteraction<E extends HTMLElement>(
   options: ElementInteractionOptions<E> = {}
-): ElementInteractionHookReturnValue<E> {
+): ElementInteractionImplementation<E> {
   const {
     onBlur = noop,
     onClick = noop,

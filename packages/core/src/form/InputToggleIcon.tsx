@@ -1,7 +1,7 @@
 import { cnb } from "cnbuilder";
 import { type HTMLAttributes, type ReactNode, forwardRef } from "react";
 
-import { getIcon } from "../icon/iconConfig.js";
+import { getIcon } from "../icon/config.js";
 import { FORM_CONFIG } from "./formConfig.js";
 import { type InputToggleSize, inputToggle } from "./inputToggleStyles.js";
 

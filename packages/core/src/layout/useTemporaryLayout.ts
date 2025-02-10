@@ -4,7 +4,7 @@ import { type PropsWithChildren, useEffect } from "react";
 
 import { type AppBarProps } from "../app-bar/AppBar.js";
 import { type ButtonProps } from "../button/Button.js";
-import { getIcon } from "../icon/iconConfig.js";
+import { getIcon } from "../icon/config.js";
 import { type SheetProps } from "../sheet/Sheet.js";
 import { type CssPosition, type UseStateInitializer } from "../types.js";
 import { useToggle } from "../useToggle.js";

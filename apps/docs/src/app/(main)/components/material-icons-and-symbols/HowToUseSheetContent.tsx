@@ -15,9 +15,15 @@ import { SVGIconImportAndUsage } from "./SVGIconImportAndUsage.jsx";
 import { isMaterialIconType } from "./searchParams.js";
 
 export function HowToUseSheetContent(): ReactElement | null {
-  const { selectedIconName, iconType } = useMaterialIconsAndSymbols();
+  const { selectedIconName, iconType, symbolStylesheet, setSymbolStylesheet } =
+    useMaterialIconsAndSymbols();
   const { getTabListProps, getTabProps, getTabPanelProps, getTabPanelsProps } =
-    useTabs();
+    useTabs({
+      activeTab: symbolStylesheet ? 1 : 0,
+      setActiveTab: (nextTab) => {
+        setSymbolStylesheet(nextTab === 1);
+      },
+    });
 
   if (!selectedIconName) {
     return null;

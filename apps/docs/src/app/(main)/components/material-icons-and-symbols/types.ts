@@ -31,6 +31,7 @@ export interface MaterialIconsAndSymbolsRef {
   symbolGrade: number;
   symbolWeight: number;
   symbolOpticalSize: number;
+  symbolStylesheet: boolean;
 
   selectedIconName: MaterialIconAndSymbolName | null;
 }
@@ -58,7 +59,8 @@ export type MaterialIconsAndSymbolsAction =
   | {
       type: "setFill" | "setWeight" | "setGrade" | "setOpticalSize";
       payload: number;
-    };
+    }
+  | { type: "setSymbolStylesheet"; payload: boolean };
 
 export interface MaterialIconsAndSymbolsContext
   extends MaterialIconsAndSymbolsState {
@@ -86,5 +88,6 @@ export interface MaterialIconsAndSymbolsContext
   setIconType: (iconType: IconType) => void;
   setIconFamily: (iconFamily: MaterialIconFamily) => void;
   setIconCategory: (iconCategory: IconCategoryFilter) => void;
+  setSymbolStylesheet: (enabled: boolean) => void;
   changeSvgToFont: () => void;
 }

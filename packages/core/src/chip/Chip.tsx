@@ -10,7 +10,7 @@ import {
 } from "react";
 
 import { type BackgroundColor } from "../cssUtils.js";
-import { getIcon } from "../icon/iconConfig.js";
+import { getIcon } from "../icon/config.js";
 import { type ComponentWithRippleProps } from "../interaction/types.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";

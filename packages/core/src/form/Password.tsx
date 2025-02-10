@@ -3,7 +3,7 @@
 import { type ReactNode, forwardRef } from "react";
 
 import { Button, type ButtonProps } from "../button/Button.js";
-import { getIcon } from "../icon/iconConfig.js";
+import { getIcon } from "../icon/config.js";
 import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { useToggle } from "../useToggle.js";

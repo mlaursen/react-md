@@ -1,0 +1,103 @@
+# usePageInactive [$SOURCE](packages/core/src/usePageInactive.ts)
+
+```ts disableTransform
+function usePageInactive(options: PageInactiveOptions): void {
+```
+
+The `usePageInactive` hook can be used to trigger specific actions when the
+user no longer has the page visible or focusing another application. The main
+use-case for this is to stop and restart timers for the
+[Snackbar toasts](/components/snackbar).
+
+## Example Usage
+
+```ts
+import { usePageInactive } from "@react-md/core/usePageInactive";
+import { useCallback, useEffect, useRef, useState } from "react";
+
+function Example() {
+  const [visible, setVisible] = useState(false);
+  const timeout = useRef<number | undefined>();
+  const startTimeout = useCallback(() => {
+    timeout.current = window.setTimeout(() => {
+      setVisible(false);
+    }, 10000);
+  }, []);
+  useEffect(() => {
+    return () => {
+      window.clearTimeout(timeout.current);
+    };
+  }, []);
+
+  usePageInactive({
+    onChange(active) {
+      if (!active) {
+        window.clearTimeout(timeout.current);
+        setVisible(false);
+      } else {
+        startTimeout();
+      }
+    },
+  });
+
+  // pretend implementation
+  return null;
+}
+```
+
+## Parameters
+
+- `options` - An object with the following definition:
+
+```ts disableTransform
+/**
+ * When this is set to `"focus"`, the change handler will be fired whenever the
+ * window gains or loses focus.
+ *
+ * When this is set to `visibility`, the change handler will be fired when the
+ * browser is no longer partially visible or becomes partially visible.
+ *
+ * @see https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilityState
+ */
+export type PageInactiveType = "focus" | "visibility";
+
+export interface PageInactiveOptions {
+  /**
+   * @see {@link PageInactiveType}
+   * @defaultValue `"focus"`
+   */
+  type?: PageInactiveType;
+
+  /**
+   * @defaultValue `false`
+   */
+  disabled?: boolean;
+
+  /**
+   * This will be called whenever the page activity changes based on the
+   * {@link PageInactiveType}.
+   */
+  onChange: (active: boolean) => void;
+
+  /**
+   * This will be fired whenever the {@link disabled} state is `true` which can
+   * be useful for clearing pending timers or resetting state.
+   *
+   * Since this is passed to a `useEffect` as a dependency, you might have to
+   * wrap this in a `useCallback` if unexpected re-rendering or errors occurs.
+   *
+   * @defaultValue `() => {}`
+   */
+  onDisabledCleanup?: () => void;
+}
+```
+
+## Returns
+
+Nothing.
+
+## See Also
+
+- [useAppSize](./use-app-size)
+- [ScreenOrientation](https://developer.mozilla.org/en-US/docs/Web/API/ScreenOrientation)
+- [caniuse Screen Orientation](https://caniuse.com/screen-orientation)

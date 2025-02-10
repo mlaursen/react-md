@@ -1,0 +1,178 @@
+# useElementInteraction [$SOURCE](packages/core/src/interaction/useElementInteraction.tsx)
+
+```ts disableTransform
+function useElementInteraction<E extends HTMLElement>(
+  options: ElementInteractionOptions<E> = {}
+): ElementInteractionHookReturnValue<E>;
+```
+
+The `useElementInteraction` hook is used to implement the ripple or pressed
+effect when elements are clicked. This hook should not be required for existing
+ReactMD components.
+
+> !Info! To be able to render the ripples in a component, it must have
+> `position: relative` set or use the `core.interaction-surface` mixin.
+
+## Example Usage
+
+> !Warn! This is just an example and it is recommended to use a real `<button>`
+> element to provide accessibility instead.
+
+```tsx
+import { useElementInteraction } from "@react-md/core/interaction/useElementInteraction";
+import { cnb } from "cnbuilder";
+import { type ReactElement } from "react";
+
+import styles from "./CustomComponent.module.scss";
+
+interface Props extends HTMLAttributes<HTMLDivElement> {
+  disabled?: boolean;
+}
+
+function CustomComponent(props: Props): ReactElement {
+  const {
+    disabled = false,
+    className,
+    onBlur,
+    onClick,
+    onKeyDown,
+    onKeyUp,
+    onMouseDown,
+    onMouseUp,
+    onMouseLeave,
+    onTouchStart,
+    onTouchMove,
+    onTouchEnd,
+    ...remaining
+  } = props;
+
+  const { handlers, pressed, ripples } = useElementInteraction({
+    disabled,
+    // pass remaining props so that if any event handlers were provided to
+    // the component, they will be merged with the element interaction
+    // handlers
+    onBlur,
+    onClick,
+    onKeyDown,
+    onKeyUp,
+    onMouseDown,
+    onMouseUp,
+    onMouseLeave,
+    onTouchStart,
+    onTouchMove,
+    onTouchEnd,
+  });
+
+  return (
+    <div
+      {...remaining}
+      {...handlers}
+      aria-disabled={disabled}
+      role="button"
+      className={cnb(styles.button, pressed && styles.pressed)}
+      tabIndex={disabled ? undefined : 0}
+    >
+      {children}
+      {ripples}
+    </div>
+  );
+}
+```
+
+## Parameters
+
+- `options` (optional) - An object with the following definition:
+
+```ts disableTransform
+export interface ElementInteractionOptions<E extends HTMLElement>
+  extends Parital<ElementInteractionHandlers<E>> {
+  /**
+   * This can be used to override the {@link INTERACTION_CONFIG.mode}
+   *
+   * @defaultValue `INTERACTION_CONFIG.mode`
+   */
+  mode?: ElementInteractionMode;
+
+  /**
+   * Boolean if the element is currently disabled which will prevent any of the
+   * element interaction states from happening.
+   *
+   * @defaultValue `false`
+   */
+  disabled?: boolean;
+}
+
+export interface ElementInteractionHandlers<E extends HTMLElement> {
+  onBlur: FocusEventHandler<E>;
+  onClick: MouseEventHandler<E>;
+  onKeyDown: KeyboardEventHandler<E>;
+  onKeyUp: KeyboardEventHandler<E>;
+  onMouseDown: MouseEventHandler<E>;
+  onMouseUp: MouseEventHandler<E>;
+  onMouseLeave: MouseEventHandler<E>;
+  onDragStart: DragEventHandler<E>;
+  onTouchStart: TouchEventHandler<E>;
+  onTouchEnd: TouchEventHandler<E>;
+  onTouchMove: TouchEventHandler<E>;
+}
+
+/**
+ * This is used to provide feedback to the user that they are interacting with
+ * elements on the page. It is recommended to not set this to `"none"` unless
+ * you will implement your own version.
+ *
+ * When this is set to `"press"`, the `background-color` for the element will
+ * become slightly darker while the user:
+ * - is holding the mouse down on the element
+ * - holding the enter or space key on the element
+ * - holding their finger on the element for touch devices
+ *
+ * The `background-color` will transition in and out based on the pressed state.
+ *
+ * When this is set to `"ripple"`, a water droplet type of animation will appear
+ * from the current coordinates of the mouse or touch event within the element.
+ * Keyboard events will just trigger the animation from the center of the
+ * element. Once the user stops pressing the element, the animation will start
+ * to fade out.
+ *
+ * Note: this should match the `$interaction-mode` SCSS variable.
+ *
+ * @defaultValue `"ripple"`
+ */
+export type ElementInteractionMode = "ripple" | "press" | "none";
+```
+
+## Returns
+
+```ts disableTransform
+export interface ElementInteractionImplementation<E extends HTMLElement> {
+  /**
+   * The event handlers required for element interaction.
+   */
+  handlers: Readonly<ElementInteractionHandlers<E>>;
+
+  /**
+   * Boolean if the element is currently pressed. This will always be `false` if
+   * the {@link ElementInteractionMode} is set to `"none"`
+   */
+  pressed: boolean;
+
+  /**
+   * This will be set to {@link PRESSED_CLASS_NAME} only when {@link pressed} is
+   * `true` and the {@link ElementInteractionMode} is set to `"press"`. It will
+   * be `undefined` otherwise.
+   */
+  pressedClassName: string | undefined;
+
+  /**
+   * The ripple click/touch interaction. This will be `undefined` when the {@link ElementInteractionMode}
+   * is set to `"none"` or `"press"`.
+   */
+  ripples?: ReactElement;
+}
+```
+
+## See Also
+
+- [Global Configuration](/customization/global-configuration)
+- [useHigherContrastChildren](./use-higher-contrast-children)

@@ -7,7 +7,7 @@ import {
   type EditableHTMLElement,
   triggerManualChangeEvent,
 } from "../form/utils.js";
-import { getIcon } from "../icon/iconConfig.js";
+import { getIcon } from "../icon/config.js";
 import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
 import { TRANSITION_CONFIG } from "../transition/config.js";
 import { type TransitionEnterHandler } from "../transition/types.js";

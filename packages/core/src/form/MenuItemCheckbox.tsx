@@ -3,7 +3,7 @@
 import { forwardRef } from "react";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { type ICON_CONFIG } from "../icon/iconConfig.js";
+import { type ICON_CONFIG } from "../icon/config.js";
 import {
   type MenuItemCheckboxProps,
   MenuItemInputToggle,

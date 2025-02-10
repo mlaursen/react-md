@@ -38,6 +38,7 @@ export const INITIAL_STATE: MaterialIconsAndSymbolsState = {
   symbolFill: DEFAULT_FILL,
   symbolWeight: DEFAULT_WEIGHT,
   symbolGrade: DEFAULT_GRADE,
+  symbolStylesheet: false,
   symbolOpticalSize: DEFAULT_OPTICAL_SIZE,
 
   filtersVisible: false,

@@ -1,6 +1,6 @@
-# useIntersectionObserver
+# useIntersectionObserver [$SOURCE](packages/core/src/useIntersectionObserver.ts)
 
-```ts
+```ts disableTransform
 function useIntersectionObserver<E extends HTMLElement>(
   options: IntersectionObserverHookOptions<E>
 ): RefCallback<E>;
@@ -139,7 +139,7 @@ function Example() {
 This option can be used to dynamically generate a threshold and will override
 the `threshold` value.
 
-```ts
+```ts disableTransform
 const targetRef = useIntersectionObserver({
   getThreshold: useCallback(() => {
     // pretend some expensive computation

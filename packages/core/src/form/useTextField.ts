@@ -11,7 +11,7 @@ import {
   useState,
 } from "react";
 
-import { getIcon } from "../icon/iconConfig.js";
+import { getIcon } from "../icon/config.js";
 import { type UseStateInitializer, type UseStateSetter } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";

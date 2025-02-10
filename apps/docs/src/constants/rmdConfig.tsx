@@ -1,5 +1,5 @@
 import { type ReactMDCoreConfiguration } from "@react-md/core/CoreProviders";
-import { configureIcons } from "@react-md/core/icon/iconConfig";
+import { configureIcons } from "@react-md/core/icon/config";
 import ArrowDropDownIcon from "@react-md/material-icons/ArrowDropDownIcon";
 import ArrowUpwardIcon from "@react-md/material-icons/ArrowUpwardIcon";
 import CancelIcon from "@react-md/material-icons/CancelIcon";

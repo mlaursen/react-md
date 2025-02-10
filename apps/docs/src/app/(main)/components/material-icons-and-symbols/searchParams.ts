@@ -28,6 +28,7 @@ export const SYMBOL_FILL = "FILL";
 export const SYMBOL_GRADE = "GRAD";
 export const SYMBOL_WEIGHT = "wght";
 export const SYMBOL_OPTICAL_SIZE = "opsz";
+export const SYMBOL_STYLESHEET = "icon.stylesheet";
 
 type NumberToString<N> = N extends number ? `${N}` : never;
 
@@ -144,6 +145,7 @@ export function getInitialState(
   const searchSymbolGrade = searchParams.get(SYMBOL_GRADE);
   const searchSymbolWeight = searchParams.get(SYMBOL_WEIGHT);
   const searchSymbolOpticalSize = searchParams.get(SYMBOL_OPTICAL_SIZE);
+  const searchSymbolStylesheet = searchParams.get(SYMBOL_STYLESHEET);
   let {
     search,
     iconType,
@@ -154,6 +156,7 @@ export function getInitialState(
     symbolGrade,
     symbolWeight,
     symbolOpticalSize,
+    symbolStylesheet,
   } = state;
   if (searchQuery) {
     search = searchQuery;
@@ -175,6 +178,7 @@ export function getInitialState(
   }
 
   if (iconType === "symbol") {
+    symbolStylesheet = searchSymbolStylesheet !== null;
     if (isValidSymbolGrade(searchSymbolGrade)) {
       symbolGrade = parseInt(searchSymbolGrade, 10);
     }
@@ -198,6 +202,7 @@ export function getInitialState(
     symbolFill,
     symbolGrade,
     symbolWeight,
+    symbolStylesheet,
     symbolOpticalSize,
     filtersVisible: false,
   };
@@ -218,6 +223,7 @@ export function getIconUrl(options: IconUrlOptions): string {
     symbolFill,
     symbolGrade,
     symbolWeight,
+    symbolStylesheet,
     symbolOpticalSize,
   } = options;
 
@@ -259,6 +265,9 @@ export function getIconUrl(options: IconUrlOptions): string {
     }
   }
 
-  const q = params.toString();
+  let q = params.toString();
+  if (symbolStylesheet) {
+    q = (q ? `${q}&` : "") + SYMBOL_STYLESHEET;
+  }
   return pathname + q ? `?${q}` : "";
 }

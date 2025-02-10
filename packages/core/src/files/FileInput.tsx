@@ -8,7 +8,7 @@ import {
 } from "react";
 
 import { type ButtonClassNameThemeOptions } from "../button/buttonStyles.js";
-import { getIcon } from "../icon/iconConfig.js";
+import { getIcon } from "../icon/config.js";
 import { type ComponentWithRippleProps } from "../interaction/types.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { type PropsWithRef } from "../types.js";

@@ -1,0 +1,75 @@
+# useMutationObserver [$SOURCE](packages/core/src/useMutationObserver.tsx)
+
+```ts disableTransform
+function useMutationObserver<E extends HTMLElement>(
+  options: MutationObserverHookOptions<E>
+): RefCallback<E>;
+```
+
+The `useMutationObserver` hook can bs used to interact with the
+[Mutation Observer API](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver)
+within React components.
+
+## Example Usage
+
+The `useMutationObserver` hook requires an `onUpdate` handler with any optional
+Mutation Observer attributes and returns a ref that should be provided to the
+target element.
+
+```tsx
+import { useMutationObserver } from "@react-md/core/useMutationObserver";
+import { type HTMLAttributes, type ReactElement, useCallback } from "react";
+
+function Example(props: HTMLAttributes<HTMLDivElement>): ReactElement {
+  const { children, ...remaining } = props;
+
+  const targetRef = useMutationObserver({
+    subtree: true,
+    attributes: true,
+    childList: true,
+    onUpdate: useCallback((mutation) => {
+      switch (mutation.type) {
+        case "childList":
+          console.log("A child node has been added or removed");
+          break;
+        case "attributes":
+          console.log(`The ${mutation.attributeName} attribute was modified`);
+          break;
+      }
+    }, []),
+  });
+
+  return (
+    <div {...remaining} ref={targetRef}>
+      {children}
+    </div>
+  );
+}
+```
+
+## Parameters
+
+- `options` - An object with the following definition:
+
+```ts disableTransform
+export interface MutationObserverHookOptions<E extends HTMLElement>
+  extends MutationObserverInit {
+  ref?: Ref<E>;
+
+  /**
+   * @see https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver/observe#options
+   * @defaultValue `!childList && !attributes && !characterData`
+   */
+  disabled?: boolean;
+
+  onObserved: (mutation: MutationRecord) => void;
+}
+```
+
+## Returns
+
+A `RefCallback<E>` to be provided to the element to observer.
+
+## See Also
+
+- [Mutation Observer API](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver)

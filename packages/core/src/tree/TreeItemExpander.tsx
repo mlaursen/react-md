@@ -10,7 +10,7 @@ import {
 } from "react";
 
 import { IconRotator } from "../icon/IconRotator.js";
-import { getIcon } from "../icon/iconConfig.js";
+import { getIcon } from "../icon/config.js";
 import { useTreeContext } from "./TreeProvider.js";
 
 /**

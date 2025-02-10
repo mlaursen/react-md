@@ -1,7 +1,7 @@
 import { AppBar } from "@react-md/core/app-bar/AppBar";
 import { AppBarTitle } from "@react-md/core/app-bar/AppBarTitle";
 import { Button } from "@react-md/core/button/Button";
-import { ICON_CONFIG } from "@react-md/core/icon/iconConfig";
+import { ICON_CONFIG } from "@react-md/core/icon/config";
 import { List } from "@react-md/core/list/List";
 import { ListItem } from "@react-md/core/list/ListItem";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";

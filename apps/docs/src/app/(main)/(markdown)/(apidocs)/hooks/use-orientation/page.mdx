@@ -1,0 +1,40 @@
+# useOrientation [$SOURCE](packages/core/src/useOrientation.ts)
+
+```ts disableTransform
+function useOrientation(): OrientationType;
+```
+
+> !Success! You most likely want to use the [useAppSize](./use-app-size) hook instead.
+
+This hook uses the
+[ScreenOrientation](https://developer.mozilla.org/en-US/docs/Web/API/ScreenOrientation)
+API to determine if the screen is landscape or portrait. For browsers that do
+not support this API yet, it will polyfill that behavior using a resize handler
+instead.
+
+## Example Usage
+
+```tsx
+import { useOrientation } from "@react-md/core/useOrientation";
+
+function Example() {
+  const orientation = useOrientation();
+  const isLandscape = orientation.includes("landscape");
+
+  return <>{isLandscape ? "Landscape" : "Portrait"}</>;
+}
+```
+
+## Parameters
+
+None.
+
+## Returns
+
+The `OrientationType` which is defined as `"landscape-primary" | "landscape-secondary" | "portrait-primary" | "portrait-secondary"`.
+
+## See Also
+
+- [useAppSize](./use-app-size)
+- [ScreenOrientation](https://developer.mozilla.org/en-US/docs/Web/API/ScreenOrientation)
+- [caniuse Screen Orientation](https://caniuse.com/screen-orientation)

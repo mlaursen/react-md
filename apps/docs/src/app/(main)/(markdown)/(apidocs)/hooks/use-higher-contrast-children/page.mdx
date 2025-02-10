@@ -1,0 +1,82 @@
+# useHigherContrastChildren [$SOURCE](packages/core/src/interaction/useHigherContrastChildren.tsx)
+
+```ts disableTransform
+function useHigherContrastChildren(
+  children: ReactNode,
+  disable?: boolean
+): ReactNode;
+```
+
+This hook is used to wrap any `number` and `string` children with a `<span>`
+so that the ripple/hover/focus background colors do not cause the text to
+become dimmed.
+
+If the `INTERACTION_CONFIG.higherContrast` is set to `false`, this hook will
+just return the `children` unmodified.
+
+> !Info! Note: This should generally be used with the
+> [useElementInteraction](./use-element-interaction) hook.
+
+## Example Usage
+
+```tsx
+import { useElementInteraction } from "@react-md/core/interaction/useElementInteraction";
+import { useHigherContrastChildren } from "@react-md/core/interaction/useHigherContrastChildren";
+import {
+  type ButtonHTMLAttributes,
+  type ReactElement,
+  type ReactNode,
+} from "react";
+
+function Example(props: ButtonHTMLAttributes<HTMLButtonElement>): ReactElement {
+  const {
+    children: propChildren,
+    disabled = false,
+    onClick,
+    onKeyDown,
+    onKeyUp,
+    onMouseDown,
+    onMouseUp,
+    onMouseLeave,
+    onTouchStart,
+    onTouchEnd,
+    onTouchMove,
+    ...remaining
+  } = props;
+  const { pressedClassName, ripples, handlers } = useElementInteraction({
+    disabled,
+    onClick,
+    onKeyDown,
+    onKeyUp,
+    onMouseDown,
+    onMouseUp,
+    onMouseLeave,
+    onTouchStart,
+    onTouchEnd,
+    onTouchMove,
+  });
+
+  const children = useHigherContrastChildren(propChildren);
+
+  return (
+    <button {...remaining} {...handlers} className={pressedClassName}>
+      {children}
+      {ripples}
+    </button>
+  );
+}
+```
+
+## Parameters
+
+- `children` - The children to conditionally traverse and wrap text in a `<span>`
+- `disable` (optional) - Set to `true` to disable this behavior for this component
+
+## Returns
+
+The `children` as-is or updated to include `<span>` around text and numbers.
+
+## See Also
+
+- [Global Configuration](/customization/global-configuration)
+- [useElementInteraction](./use-element-interaction)

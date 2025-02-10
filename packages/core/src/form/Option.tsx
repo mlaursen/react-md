@@ -7,7 +7,7 @@ import {
   TextIconSpacing,
   type TextIconSpacingProps,
 } from "../icon/TextIconSpacing.js";
-import { getIcon } from "../icon/iconConfig.js";
+import { getIcon } from "../icon/config.js";
 import { icon } from "../icon/styles.js";
 import { ListItemText } from "../list/ListItemText.js";
 import { getListItemHeight } from "../list/getListItemHeight.js";

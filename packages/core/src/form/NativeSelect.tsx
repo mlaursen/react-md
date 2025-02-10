@@ -6,7 +6,7 @@ import {
   forwardRef,
 } from "react";
 
-import { getIcon } from "../icon/iconConfig.js";
+import { getIcon } from "../icon/config.js";
 import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { FormMessageContainer } from "./FormMessageContainer.js";

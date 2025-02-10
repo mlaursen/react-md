@@ -8,7 +8,7 @@ import {
 
 import { ButtonUnstyled } from "../button/ButtonUnstyled.js";
 import { IconRotator, type IconRotatorProps } from "../icon/IconRotator.js";
-import { getIcon } from "../icon/iconConfig.js";
+import { getIcon } from "../icon/config.js";
 import { type PropsWithRef } from "../types.js";
 import { Typography, type TypographyProps } from "../typography/Typography.js";
 import { type TypographyType } from "../typography/typographyStyles.js";

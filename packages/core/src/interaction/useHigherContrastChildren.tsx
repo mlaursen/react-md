@@ -15,11 +15,13 @@ import { INTERACTION_CONFIG } from "./config.js";
  *
  * @example Simple Example
  * ```tsx
+ * import { useElementInteraction } from "@react-md/core/interaction/useElementInteraction";
+ * import { useHigherContrastChildren, } from "@react-md/core/interaction/useHigherContrastChildren";
  * import {
- *   useElementInteraction,
- *   useHigherContrastChildren,
- * } from "@react-md/core";
- * import type { ButtonHTMLAttributes, ReactElement, ReactNode } from "react";
+ *   type ButtonHTMLAttributes,
+ *   type ReactElement,
+ *   type ReactNode,
+ * } from "react";
  *
  * function Example(props: ButtonHTMLAttributes<HTMLButtonElement>): ReactElement {
  *   const {
@@ -61,7 +63,7 @@ import { INTERACTION_CONFIG } from "./config.js";
  * }
  * ```
  *
- * @param propChildren - The children to conditionally wrap in spans.
+ * @param children - The children to conditionally wrap in spans.
  * @param disable - Manually disable this functionality even if the higher
  * contrast mode is enabled. This is really used within `ListItem`s so there
  * aren't unneeded `<span>`s for string/number children when there are addons.
@@ -70,16 +72,16 @@ import { INTERACTION_CONFIG } from "./config.js";
  * @internal
  */
 export function useHigherContrastChildren(
-  propChildren: ReactNode,
+  children: ReactNode,
   disable = false
 ): ReactNode {
   if (!INTERACTION_CONFIG.higherContrast || disable) {
-    return propChildren;
+    return children;
   }
 
   // Note: This will fail if the child is wrapped in a Fragment, but that use
   // case doesn't matter to me
-  return Children.map(propChildren, (child) => {
+  return Children.map(children, (child) => {
     const t = typeof child;
     if (t === "string" || t === "number") {
       return <span>{child}</span>;

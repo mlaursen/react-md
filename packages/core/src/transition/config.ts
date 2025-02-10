@@ -9,7 +9,10 @@ export interface TransitionConfig {
    * simple and will automatically be set when using:
    *
    * ```ts
-   * import "@react-md/core/test-utils/jest-setup.js";
+   * import "@react-md/core/test-utils/jest-globals/setup";
+   *
+   * // or
+   * import "@react-md/core/test-utils/vitest/setup";
    * ```
    *
    * @defaultValue `false`

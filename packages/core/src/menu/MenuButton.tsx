@@ -5,7 +5,7 @@ import { forwardRef } from "react";
 import { Button, type ButtonProps } from "../button/Button.js";
 import { IconRotator, type IconRotatorProps } from "../icon/IconRotator.js";
 import { type TextIconSpacingProps } from "../icon/TextIconSpacing.js";
-import { getIcon } from "../icon/iconConfig.js";
+import { getIcon } from "../icon/config.js";
 import { useAppSize } from "../media-queries/AppSizeProvider.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { useMenuConfiguration } from "./MenuConfigurationProvider.js";
