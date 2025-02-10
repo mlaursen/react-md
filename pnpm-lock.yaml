@@ -64,7 +64,7 @@ importers:
         version: 14.2.15(@mdx-js/loader@3.1.0(acorn@8.14.0)(webpack@5.94.0(@swc/core@1.10.14(@swc/helpers@0.5.12))))
       '@next/third-parties':
         specifier: ^14.2.15
-        version: 14.2.15(next@14.2.15(@babel/core@7.26.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.84.0))(react@18.3.1)
+        version: 14.2.15(next@14.2.15(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.84.0))(react@18.3.1)
       '@react-md/code':
         specifier: workspace:*
         version: link:../../packages/code
@@ -94,7 +94,7 @@ importers:
         version: 3.0.5
       next:
         specifier: ^14.2.15
-        version: 14.2.15(@babel/core@7.26.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.84.0)
+        version: 14.2.15(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.84.0)
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -756,6 +756,9 @@ importers:
       '@swc/core':
         specifier: ^1.10.14
         version: 1.10.14(@swc/helpers@0.5.12)
+      '@trivago/prettier-plugin-sort-imports':
+        specifier: ^5.2.2
+        version: 5.2.2(prettier@3.4.2)
       '@types/node':
         specifier: ^22.13.1
         version: 22.13.1
@@ -768,6 +771,9 @@ importers:
       npm-run-all:
         specifier: ^4.1.5
         version: 4.1.5
+      prettier:
+        specifier: ^3.4.2
+        version: 3.4.2
       tsx:
         specifier: ^4.19.2
         version: 4.19.2
@@ -8952,9 +8958,9 @@ snapshots:
   '@next/swc-win32-x64-msvc@14.2.15':
     optional: true
 
-  '@next/third-parties@14.2.15(next@14.2.15(@babel/core@7.26.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.84.0))(react@18.3.1)':
+  '@next/third-parties@14.2.15(next@14.2.15(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.84.0))(react@18.3.1)':
     dependencies:
-      next: 14.2.15(@babel/core@7.26.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.84.0)
+      next: 14.2.15(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.84.0)
       react: 18.3.1
       third-party-capital: 1.0.20
 
@@ -13095,7 +13101,7 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  next@14.2.15(@babel/core@7.26.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.84.0):
+  next@14.2.15(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.84.0):
     dependencies:
       '@next/env': 14.2.15
       '@swc/helpers': 0.5.5
@@ -13105,7 +13111,7 @@ snapshots:
       postcss: 8.4.31
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
-      styled-jsx: 5.1.1(@babel/core@7.26.7)(react@18.3.1)
+      styled-jsx: 5.1.1(react@18.3.1)
     optionalDependencies:
       '@next/swc-darwin-arm64': 14.2.15
       '@next/swc-darwin-x64': 14.2.15
@@ -14365,12 +14371,10 @@ snapshots:
     dependencies:
       inline-style-parser: 0.2.4
 
-  styled-jsx@5.1.1(@babel/core@7.26.7)(react@18.3.1):
+  styled-jsx@5.1.1(react@18.3.1):
     dependencies:
       client-only: 0.0.1
       react: 18.3.1
-    optionalDependencies:
-      '@babel/core': 7.26.7
 
   stylehacks@7.0.4(postcss@8.5.1):
     dependencies:
