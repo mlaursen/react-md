@@ -39,7 +39,9 @@ control the text field behavior.
 ```tsx
 function Example() {
   const { value, error, errorMessage, reset, setState, fieldRef, fieldProps } =
-    useTextField();
+    useTextField({
+      name: "example",
+    });
 
   return <TextField label="Field" {...fieldProps} />;
 }
@@ -53,6 +55,22 @@ max length limit, enable the `disableMaxLength` option as well to prevent
 passing the `maxLength` option to the `<input>`>
 
 ```demo source="./InlineCounterExample.tsx"
+
+```
+
+### Validation Type
+
+This validation timing can be customized by providing the `validationType`
+option which can be one of:
+
+- `"recommended"` (default) - validate when the `"badInput"`, `"tooLong"`, or `"valueMissing"`
+  error occurs as the user types. otherwise display any errors once the input is blurred
+- `"blur"` - only validate on blur
+- `"change"` - validate on each keystroke
+- One or many of the [ValidityState input options](https://developer.mozilla.org/en-US/docs/Web/API/ValidityState#instance_properties)
+  - i.e. `"valueMissing"` or `["badInput", "customError", "tooLong"]`
+
+```demo source="./ValidationTypeExample.tsx"
 
 ```
 

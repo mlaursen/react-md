@@ -8,16 +8,15 @@ import { TextField } from "@react-md/core/form/TextField";
 import { useTextField } from "@react-md/core/form/useTextField";
 import { type ReactElement } from "react";
 
-export default function AddingConstraintsExample(): ReactElement {
+export default function ValidationTypeExample(): ReactElement {
   const { fieldProps, reset } = useTextField({
     name: "example",
     pattern: "^[A-Za-z,! ]+$",
+    counter: true,
     required: true,
-    minLength: 4,
     maxLength: 20,
-
-    // a default value could be provided
-    // defaultValue: "Hello, world!",
+    validationType: "change",
+    disableMaxLength: true,
   });
 
   return (

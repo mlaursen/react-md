@@ -91,6 +91,7 @@ export type GetErrorMessage = (options: ErrorMessageOptions) => string;
 /**
  * @internal
  * @since 2.5.0
+ * @since 6.0.0 Added `"valid"` since it exists in the type definition
  */
 const VALIDITY_STATE_KEYS: readonly (keyof ValidityState)[] = [
   "badInput",
@@ -102,6 +103,7 @@ const VALIDITY_STATE_KEYS: readonly (keyof ValidityState)[] = [
   "tooLong",
   "tooShort",
   "typeMismatch",
+  "valid",
   "valueMissing",
 ];
 

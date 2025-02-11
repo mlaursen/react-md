@@ -14,9 +14,19 @@ export default function FormLevelErrorMessagesExample(): ReactElement {
   const { fieldProps, reset, error, errorMessage } = useTextField({
     name: "example",
     pattern: "^[A-Za-z,! ]+$",
+    counter: true,
     required: true,
     maxLength: 20,
     disableMessage: true,
+    helpText: "Accepts letters, spaces, commas, or explamation marks.",
+    // make it so only submit events trigger the error message and then
+    // remove the error message after blurring
+    validationType: "blur",
+    onBlur(event) {
+      if (!error) {
+        event.stopPropagation();
+      }
+    },
   });
 
   return (

@@ -289,11 +289,12 @@ export interface TextFieldHookOptions<
   onErrorChange?: ErrorChangeHandler<E>;
 
   /**
-   * Boolean if the `TextField` or `TextArea` will **not** be rendered along
-   * with a `FormMessage` component. This will prevent the `aria-describedby`
-   * prop from being returned when set to `true`.
+   * Set this to `true` to prevent the `errorMessage` from being
+   * rendered inline below the `TextField`.
    *
    * @defaultValue `false`
+   * @since 6.0.0 Only disables the `errorMessage` behavior so
+   * that counters and help text can still be rendered easily.
    */
   disableMessage?: boolean;
 
@@ -470,7 +471,9 @@ export function useTextField<E extends HTMLInputElement | HTMLTextAreaElement>(
  *
  * @see https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/Constraint_validation
  * @since 2.5.6
- * @since 6.0.0 This hook returns an object instead of an ordered list.
+ * @since 6.0.0 This hook returns an object instead of an ordered list. Also
+ * added the ability to display an inline counter and help text while disabling
+ * the error messaging.
  */
 export function useTextField<E extends HTMLInputElement | HTMLTextAreaElement>(
   options: TextFieldHookOptions<E>
@@ -636,6 +639,7 @@ export function useTextField<E extends HTMLInputElement | HTMLTextAreaElement>(
       if (event.isPropagationStopped()) {
         return;
       }
+
       checkValidity(true);
     },
     onChange(event) {
@@ -645,9 +649,10 @@ export function useTextField<E extends HTMLInputElement | HTMLTextAreaElement>(
       }
 
       if (validationType === "blur") {
+        const { value } = event.currentTarget;
         setState((prevState) => ({
           ...prevState,
-          value: event.currentTarget.value,
+          value,
         }));
         return;
       }
@@ -684,15 +689,15 @@ export function useTextField<E extends HTMLInputElement | HTMLTextAreaElement>(
     },
   };
 
-  if (!disableMessage) {
+  const isCounter = counter && typeof maxLength === "number";
+  if (isCounter || helpText || !disableMessage) {
     fieldProps["aria-describedby"] = messageId;
     fieldProps.messageProps = {
       id: messageId,
       error,
       length: counter ? value.length : undefined,
-      maxLength:
-        counter && typeof maxLength === "number" ? maxLength : undefined,
-      children: errorMessage || helpText,
+      maxLength: (counter && maxLength) || undefined,
+      children: (!disableMessage && errorMessage) || helpText,
     };
   }
 
