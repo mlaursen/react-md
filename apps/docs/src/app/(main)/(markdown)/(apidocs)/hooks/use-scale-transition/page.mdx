@@ -1,0 +1,88 @@
+# useScaleTransition [$SOURCE](packages/core/src/transition/useScaleTransition.ts)
+
+```ts disableTransform
+function useScaleTransition<E extends HTMLElement>(
+  options: ScaleTransitionHookOptions<E>
+): CSSTransitionHookReturnValue<E>;
+```
+
+The `useScaleTransition` create a transition that uses `transform: scale(0)` ->
+`transform: scale(1)` and should generally be used for animating temporary
+elements.
+
+## Example Usage
+
+See the [ScaleTransition demo](/components/scale-transition#scale-transition-hook-example) for examples.
+
+## Parameters
+
+- `options` - An object with the following definition:
+
+```ts disableTransform
+export interface ScaleTransitionHookOptions<E extends HTMLElement>
+  extends PreconfiguredCSSTransitionOptions<E> {
+  /**
+   * Boolean if the scale transition should be vertical instead of horizontal.
+   * This really only changes the default value for the {@link classNames}.
+   *
+   * @defaultValue `false`
+   */
+  vertical?: boolean;
+
+  /**
+   * @see {@link PreconfiguredCSSTransitionOptions.temporary}
+   * @defaultValue `true`
+   */
+  temporary?: boolean;
+
+  /**
+   * @see {@link vertical}
+   * @see {@link SCALE_CLASSNAMES}
+   * @see {@link SCALE_Y_CLASSNAMES}
+   * @defaultValue `vertical ? SCALE_Y_CLASSNAMES : SCALE_CLASSNAMES`
+   */
+  classNames?: CSSTransitionClassNames;
+}
+
+export const SCALE_CLASSNAMES = {
+  appear: "rmd-scale-transition--enter",
+  appearActive: "rmd-scale-transition--enter-active",
+  enter: "rmd-scale-transition--enter",
+  enterActive: "rmd-scale-transition--enter-active",
+  enterDone: "",
+  exit: "rmd-scale-transition--exit",
+  exitActive: "rmd-scale-transition--exit-active",
+} as const satisfies CSSTransitionClassNames;
+
+export const SCALE_Y_CLASSNAMES = {
+  appear: "rmd-scale-transition--enter rmd-scale-transition--y-enter",
+  appearActive:
+    "rmd-scale-transition--enter-active rmd-scale-transition--y-enter-active",
+  enter: "rmd-scale-transition--enter rmd-scale-transition--y-enter",
+  enterActive:
+    "rmd-scale-transition--enter-active rmd-scale-transition--y-enter-active",
+  enterDone: "",
+  exit: "rmd-scale-transition--exit rmd-scale-transition--y-exit",
+  exitActive:
+    "rmd-scale-transition--exit-active rmd-scale-transition--y-exit-active",
+} as const satisfies CSSTransitionClassNames;
+
+export const SCALE_TIMEOUT = {
+  enter: 200,
+  exit: 150,
+} as const satisfies TransitionTimeout;
+```
+
+## Returns
+
+The [CSSTransitionHookReturnValue](./use-css-transition#returns).
+
+## See Also
+
+- [Scale demos](/components/scale-transition)
+- [useScaleTransition demo](/components/scale-transition#scale-transition-hook-example)
+- [useCSSTransition](./use-css-transition)
+- [useCollapseTransition](./use-collapse-transition)
+- [useScaleTransition](./use-scale-transition)
+- [useSlideTransition](./use-slide-transition)
+- [useSkeletonPlaceholder](./use-skeleton-placeholder)

@@ -19,6 +19,15 @@ export interface MaxWidthTransitionOptions {
 }
 
 /**
+ * The `useMaxWidthTransition` hook is used to animate the `max-width` using
+ * the {@link maxWidthTransition} utility classes.
+ *
+ * NOTE: This hook clones the className into the child element using the
+ * `cloneElement` API. The child **must** accept and pass the `className` forward
+ * to work correctly.
+ *
+ * @see {@link maxWidthTransition}
+ *
  * @since 6.0.0
  */
 export function useMaxWidthTransition(

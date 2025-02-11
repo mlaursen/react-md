@@ -1,0 +1,93 @@
+# useSlideTransition [$SOURCE](packages/core/src/transition/useSlideTransition.ts)
+
+```ts disableTransform
+function useSlideTransition<E extends HTMLElement>(
+  options: SlideTransitionOptions<E>
+): CSSTransitionHookReturnValue<E>;
+```
+
+The `useSlideTransition` can be used to implement sliding elements horizontally
+within a container for things like tab panels and carousel items. It is
+recommended to use the `Slide` and `SlideContainer` components instead since
+they utilize this component.
+
+## Example Usage
+
+This is pretty much how the `Slide` and `SlideContainer` components are created.
+
+```tsx
+import {
+  type SlideDirection,
+  slideContainer,
+} from "@react-md/core/transition/SlideContainer";
+import { useSlideTransition } from "@react-md/core/transition/useSlideTransition";
+import { type ReactElement, type ReactNode, useState } from "react";
+
+interface SlideProps {
+  active: boolean;
+  children: ReactNode;
+}
+
+function Slide({ active, children }: SlideProps): ReactElement | null {
+  const { rendered, elementProps } = useSlideTransition({
+    transitionIn: active,
+  });
+
+  if (!rendered) {
+    return null;
+  }
+
+  return <div {...elementProps}>{children}</div>;
+}
+
+interface State {
+  direction: SlideDirection;
+  activeIndex: number;
+}
+
+function Example(): ReactElement {
+  const [state, setState] = useState<State>({
+    direction: "left",
+    activeIndex: 0,
+  });
+  const { direction, activeIndex } = state;
+
+  // when changing a slide, `direction` should be set to "left" if the
+  // previous `activeIndex` is less than the next index
+  //
+  // i.e.
+  // setState((prevState) => ({
+  //   direction: prevState.activeIndex < index ? "left" : "right",
+  //   activeIndex: index,
+  // }))
+
+  return (
+    <div className={slideContainer({ direction })}>
+      <Slide active={activeIndex === 0}>Slide 1</Slide>
+      <Slide active={activeIndex === 1}>Slide 2</Slide>
+      <Slide active={activeIndex === 2}>Slide 3</Slide>
+    </div>
+  );
+}
+```
+
+## Parameters
+
+- `options` (optional) - An object with the following definition:
+
+```ts disableTransform
+const x = 3;
+```
+
+## Returns
+
+The [CSSTransitionHookReturnValue](./use-css-transition#returns).
+
+## See Also
+
+- [Slide demos](/components/slide)
+- [useCSSTransition](./use-css-transition)
+- [useCollapseTransition](./use-collapse-transition)
+- [useScaleTransition](./use-scale-transition)
+- [useSlideTransition](./use-slide-transition)
+- [useSkeletonPlaceholder](./use-skeleton-placeholder)

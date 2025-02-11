@@ -29,10 +29,12 @@ export type SlideTransitionOptions<E extends HTMLElement> =
 /**
  * @example Simple Example
  * ```tsx
- * import type { SlideDirection } from "@react-md/core";
- * import { slideContainer, useSlideTransition } from "@react-md/core";
- * import type { ReactElement, ReactNode } from "react";
- * import { useState } from "react";
+ * import {
+ *   type SlideDirection,
+ *   slideContainer,
+ * } from "@react-md/core/transition/SlideContainer";
+ * import { useSlideTransition } from "@react-md/core/transition/useSlideTransition";
+ * import { type ReactElement, type ReactNode, useState } from "react";
  *
  * interface SlideProps {
  *   active: boolean;
@@ -41,7 +43,7 @@ export type SlideTransitionOptions<E extends HTMLElement> =
  *
  * function Slide({ active, children }: SlideProps): ReactElement | null {
  *   const { rendered, elementProps } = useSlideTransition({
- *     transition: active,
+ *     transitionIn: active,
  *   });
  *
  *   if (!rendered) {
@@ -61,7 +63,7 @@ export type SlideTransitionOptions<E extends HTMLElement> =
  *     direction: "left",
  *     activeIndex: 0,
  *   });
- *   const { direction, activeIndex } = state
+ *   const { direction, activeIndex } = state;
  *
  *   // when changing a slide, `direction` should be set to "left" if the
  *   // previous `activeIndex` is less than the next index
@@ -73,16 +75,10 @@ export type SlideTransitionOptions<E extends HTMLElement> =
  *   // }))
  *
  *   return (
- *     <div className={slideContainer({ direction )}>
- *       <Slide active={activeIndex === 0}>
- *         Slide 1
- *       </Slide>
- *       <Slide active={activeIndex === 1}>
- *         Slide 2
- *       </Slide>
- *       <Slide active={activeIndex === 2}>
- *         Slide 3
- *       </Slide>
+ *     <div className={slideContainer({ direction })}>
+ *       <Slide active={activeIndex === 0}>Slide 1</Slide>
+ *       <Slide active={activeIndex === 1}>Slide 2</Slide>
+ *       <Slide active={activeIndex === 2}>Slide 3</Slide>
  *     </div>
  *   );
  * }

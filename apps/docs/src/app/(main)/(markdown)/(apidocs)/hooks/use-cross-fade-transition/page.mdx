@@ -1,0 +1,67 @@
+# useCrossFadeTransition [$SOURCE](packages/core/src/transition/useCrossFadeTransition.ts)
+
+```ts disableTransform
+function useCrossFadeTransition<E extends HTMLElement>(
+  options: CrossFadeTransitionHookOptions<E> = {}
+): CSSTransitionHookReturnValue<E>;
+```
+
+## Example Usage
+
+See the [CrossFade demos](/components/cross-fade#cross-fade-transition-hook) for examples.
+
+## Parameters
+
+- `options` (optional) - An object with the following definition:
+
+```ts disableTransform
+export interface CrossFadeTransitionHookOptions<E extends HTMLElement>
+  extends PreconfiguredCSSTransitionInDefaultedOptions<E> {
+  /**
+   * @see {@link TransitionTimeout}
+   * @see {@link CROSS_FADE_TIMEOUT}
+   * @defaultValue `CROSS_FADE_TIMEOUT`
+   */
+  timeout?: TransitionTimeout;
+
+  /**
+   * @see {@link CSSTransitionClassNames}
+   * @see {@link CROSS_FADE_CLASSNAMES}
+   * @defaultValue `CROSS_FADE_CLASSNAMES`
+   */
+  classNames?: CSSTransitionClassNames;
+
+  /**
+   * @see {@link PreconfiguredCSSTransitionInDefaultedOptions.transitionIn}
+   * @defaultValue `true`
+   */
+  transitionIn?: boolean;
+}
+
+export const CROSS_FADE_TIMEOUT: Readonly<TransitionTimeoutObject> = {
+  appear: 300,
+  enter: 300,
+  exit: 0,
+};
+
+export const CROSS_FADE_CLASSNAMES: Readonly<CSSTransitionClassNamesObject> = {
+  appear: "rmd-cross-fade",
+  appearActive: "rmd-cross-fade--active",
+  enter: "rmd-cross-fade",
+  enterActive: "rmd-cross-fade--active",
+};
+```
+
+## Returns
+
+The [CSSTransitionHookReturnValue](./use-css-transition#returns).
+
+## See Also
+
+- [CrossFade demos](/components/cross-fade)
+- [useCrossFadeTransition demo](/components/cross-fade#cross-fade-transition-hook)
+- [useCSSTransition](./use-css-transition)
+- [useCollapseTransition](./use-collapse-transition)
+- [useScaleTransition](./use-scale-transition)
+- [useSlideTransition](./use-slide-transition)
+- [useSkeletonPlaceholder](./use-skeleton-placeholder)

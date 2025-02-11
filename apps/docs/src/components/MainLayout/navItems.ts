@@ -462,11 +462,6 @@ export const navItems: readonly NavigationItem[] = [
       },
       {
         type: "route",
-        href: "/use-max-width-transition",
-        children: "useMaxWidthTransition",
-      },
-      {
-        type: "route",
         href: "/use-scale-transition",
         children: "useScaleTransition",
       },
