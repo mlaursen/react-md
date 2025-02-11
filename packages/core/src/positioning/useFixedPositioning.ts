@@ -140,8 +140,10 @@ export interface FixedPositioningOptions<
 /**
  * @typeParam E - An HTMLElement type for the fixed element.
  * @since 4.0.0
+ * @since 6.0.0 Renamed from `FixedPositioningHookReturnValue` to
+ * `FixedPositioningImplementation` to match naming conventions.
  */
-export interface FixedPositioningHookReturnValue<E extends HTMLElement> {
+export interface FixedPositioningImplementation<E extends HTMLElement> {
   /**
    * A ref that should be passed to a component for the fixed positioning
    * behavior to work correctly.
@@ -182,8 +184,12 @@ export interface FixedPositioningHookReturnValue<E extends HTMLElement> {
  *
  * @example Simple Example
  * ```tsx
- * import { ReactElement, useRef, useState } from "react";
- * import { Button, useCSSTransition, useFixedPositioning } from "@react-md/core";
+ * "use client";
+ *
+ * import { Button } from "@react-md/core/button/Button";
+ * import { useFixedPositioning } from "@react-md/core/positioning/useFixedPositioning";
+ * import { useCSSTransition } from "@react-md/core/transition/useCSSTransition";
+ * import { type ReactElement, useRef, useState } from "react";
  *
  * function Example(): ReactElement {
  *   const fixedTo = useRef<HTMLButtonElement>(null);
@@ -209,10 +215,7 @@ export interface FixedPositioningHookReturnValue<E extends HTMLElement> {
  *
  *   return (
  *     <>
- *       <Button
- *         ref={fixedTo}
- *         onClick={() => setTransitionIn(!transitionIn)}
- *       >
+ *       <Button ref={fixedTo} onClick={() => setTransitionIn(!transitionIn)}>
  *         Toggle
  *       </Button>
  *       {rendered && (
@@ -234,7 +237,7 @@ export function useFixedPositioning<
   FixedElement extends HTMLElement,
 >(
   options: FixedPositioningOptions<FixedToElement, FixedElement>
-): FixedPositioningHookReturnValue<FixedElement> {
+): FixedPositioningImplementation<FixedElement> {
   const {
     style: propStyle,
     nodeRef,

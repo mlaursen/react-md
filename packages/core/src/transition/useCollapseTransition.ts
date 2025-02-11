@@ -1,18 +1,17 @@
 "use client";
 
 import { cnb } from "cnbuilder";
-import type { CSSProperties } from "react";
-import { useState } from "react";
+import { type CSSProperties, useState } from "react";
 
 import { useEnsuredRef } from "../useEnsuredRef.js";
 import { DISPLAY_NONE_CLASS } from "../utils/isElementVisible.js";
 import { collapse } from "./collapseStyles.js";
-import type {
-  CSSTransitionElementProps,
-  CSSTransitionHookReturnValue,
-  PreconfiguredCSSTransitionOptions,
-  TransitionTimeout,
-  TransitionTimeoutObject,
+import {
+  type CSSTransitionElementProps,
+  type CSSTransitionHookReturnValue,
+  type PreconfiguredCSSTransitionOptions,
+  type TransitionTimeout,
+  type TransitionTimeoutObject,
 } from "./types.js";
 import { useTransition } from "./useTransition.js";
 import { getElementSizing, getTransitionTimeout } from "./utils.js";
@@ -196,8 +195,10 @@ export interface CollapseTransitionHookReturnValue<E extends HTMLElement>
  *
  * @example Simple Example
  * ```tsx
- * import { ReactElement, useState } from "react";
- * import { Button, Typography, useCollapseTransition } from "@react-md/core";
+ * import { Button } from "@react-md/core/button/Button";
+ * import { useCollapseTransition } from "@react-md/core/transition/useCollapseTransition";
+ * import { Typography } from "@react-md/core/typography/Typography";
+ * import { type ReactElement, useState } from "react";
  *
  * function Example(): ReactElement {
  *   const [collapsed, setCollapsed] = useState(true);
@@ -227,9 +228,12 @@ export interface CollapseTransitionHookReturnValue<E extends HTMLElement>
  *
  * @example See More Example
  * ```tsx
- * import { ReactElement, useState } from "react";
- * import { Button, IconRotator, Typography, useCollapseTransition } from "@react-md/core";
- * import { KeyboardArrowDownSVGIcon } from "@react-md/material-icons";
+ * import { Button } from "@react-md/core/button/Button";
+ * import { IconRotator } from "@react-md/core/icon/IconRotator";
+ * import KeyboardArrowDownIcon from "@react-md/material-icons/KeyboardArrowDownIcon"
+ * import { useCollapseTransition } from "@react-md/core/transition/useCollapseTransition";
+ * import { Typography } from "@react-md/core/typography/Typography";
+ * import { type ReactElement, useState } from "react";
  *
  * import styles from "./Example.module.scss";
  * // pretend styles:
@@ -266,7 +270,7 @@ export interface CollapseTransitionHookReturnValue<E extends HTMLElement>
  *         className={styles.button}
  *       >
  *         <IconRotator rotated={!collapsed}>
- *           <KeyboardArrowDownSVGIcon />
+ *           <KeyboardArrowDownIcon />
  *         </IconRotator>
  *       </Button>
  *       <SomeComponentWithALotOfContent />

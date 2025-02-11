@@ -50,7 +50,6 @@ export type TransitionTimeoutObject = {
  * Either a single timeout duration in milliseconds to use for each of the
  * {@link TransitionActions} stages, or an object of transition durations.
  *
- * @see {@link TransitionTimeout}
  * @since 4.0.0
  */
 export type TransitionTimeout = number | Readonly<TransitionTimeoutObject>;

@@ -1,0 +1,281 @@
+# useTransition [$SOURCE](packages/core/src/transition/useTransition.ts)
+
+```ts disableTransform
+function useTransition<E extends HTMLElement>(
+  options: TransitionHookOptions<E>
+): TransitionHookReturnValue<E>;
+```
+
+> !Warn! This is a low-level hook for handling transitions through timeouts.
+> You're most likely looking for [useCSSTransition](./useCSSTransition) instead.
+> This page is mostly to show all the available options for the hooks that extend
+> this hook.
+
+## Parameters
+
+- `options` - An object with the following definition:
+
+```ts disableTransform
+export interface TransitionHookOptions<E extends HTMLElement>
+  extends TransitionOptions<E>,
+    SSRTransitionOptions {
+  /**
+   * Boolean if the DOM should forcefully be reflow each time a transition
+   * change occurs. This is generally required for any CSS transition and is
+   * set to `true` for the {@link useCSSTransition} hook.
+   *
+   * @defaultValue `false`
+   */
+  reflow?: boolean;
+}
+
+export interface SSRTransitionOptions {
+  /**
+   * This is mostly used internally to make it so that you can render portalled
+   * elements inline with content if SSR is enabled in your app. To enable this
+   * feature, the {@link CoreProvidersProps.ssr} must be set to `true`.
+   *
+   * This value will be `true` if a portalled element was rendered by default
+   * from the server and remain true until it unmounts from the DOM.
+   *
+   * @defaultValue `false`
+   */
+  disablePortal?: boolean;
+}
+
+export interface TransitionOptions<E extends HTMLElement>
+  extends PreconfiguredTransitionOptions<E> {
+  timeout: TransitionTimeout;
+}
+
+export interface PreconfiguredTransitionOptions<E extends HTMLElement>
+  extends PreconfiguredTransitionInDefaultedOptions<E> {
+  transitionIn: boolean;
+}
+
+/**
+ * An object timeout values that would be used for each
+ * {@link TransitionActions}. If a value is set to `0` or `undefined`, the
+ * transition will not occur.
+ */
+export type TransitionTimeoutObject = {
+  [action in keyof TransitionActions]?: number;
+};
+
+/**
+ * Either a single timeout duration in milliseconds to use for each of the
+ * {@link TransitionActions} stages, or an object of transition durations.
+ */
+export type TransitionTimeout = number | Readonly<TransitionTimeoutObject>;
+
+export interface PreconfiguredTransitionInDefaultedOptions<
+  E extends HTMLElement,
+> extends TransitionActions,
+    TransitionCallbacks {
+  /**
+   * An optional ref that will be merged with the
+   * {@link TransitionHookReturnValue.ref}
+   */
+  nodeRef?: Ref<E>;
+
+  /**
+   * Boolean if the element should mount and unmount based on the
+   * {@link PreconfiguredTransitionInDefaultedOptions.transitionIn} value.
+   *
+   * @defaultValue `false`
+   */
+  temporary?: boolean;
+
+  /**
+   * This boolean controls the transition by activating flowing through the
+   * {@link TransitionStage}.
+   *
+   * @see {@link TransitionActions} for a description around the transitions.
+   */
+  transitionIn?: boolean;
+
+  /** {@inheritDoc TransitionTimeout} */
+  timeout?: TransitionTimeout;
+}
+
+export interface TransitionActions {
+  /**
+   * Boolean if the transition should occur immediately once the component
+   * mounts if the {@link TransitionOptions.transitionIn} is `true`
+   *
+   * @defaultValue `false`
+   */
+  appear?: boolean;
+
+  /**
+   * Boolean if the transition should occur whenever the
+   * {@link TransitionOptions.transitionIn} is switch to `true` after the
+   * component has been rendered in the DOM.
+   *
+   * @defaultValue `true`
+   */
+  enter?: boolean;
+
+  /**
+   * Boolean if the transition should occur whenever the
+   * {@link TransitionOptions.transitionIn} is switch to `false` after the
+   * component has been rendered in the DOM.
+   *
+   * @defaultValue `true`
+   */
+  exit?: boolean;
+}
+
+export interface TransitionCallbacks {
+  /**
+   * This function will be called once the {@link TransitionStage} has been set
+   * to `"enter"`.
+   *
+   * @see {@link TransitionEnterHandler}
+   */
+  onEnter?: TransitionEnterHandler;
+
+  /**
+   * This function will be called once the {@link TransitionStage} has been set
+   * to `"enter"`.
+   *
+   * @see {@link TransitionEnterHandler}
+   */
+  onEntering?: TransitionEnterHandler;
+
+  /**
+   * This function will be called once the {@link TransitionStage} has been set
+   * to `"entering"`.
+   *
+   * @see {@link TransitionEnterHandler}
+   */
+  onEntered?: TransitionEnterHandler;
+
+  /**
+   * This function will be called once the {@link TransitionStage} has been set
+   * to `"entered"`.
+   *
+   * @see {@link TransitionEnterHandler}
+   */
+  onExit?: TransitionExitHandler;
+
+  /**
+   * This function will be called once the {@link TransitionStage} has been set
+   * to `"exiting"`.
+   *
+   * @see {@link TransitionExitHandler}
+   */
+  onExiting?: TransitionExitHandler;
+
+  /**
+   * This function will be called once the {@link TransitionStage} has been set
+   * to `"exited"`.
+   *
+   * @see {@link TransitionExitHandler}
+   */
+  onExited?: TransitionExitHandler;
+}
+```
+
+## Returns
+
+An object with the following definition:
+
+````ts disableTransform
+export interface TransitionHookReturnValue<E extends HTMLElement>
+  extends TransitionState,
+    Required<SSRTransitionOptions> {
+  /**
+   * A ref that is required for the transition to occur and should be passed to
+   * the element affected by the transition.
+   */
+  ref: RefCallback<E>;
+
+  /**
+   * A function that can be used to specifically set the transition to a
+   * specific stage. This shouldn't really be used too much and is really just
+   * useful for "appear only transitions" that do not unmount the child
+   * elements.
+   *
+   * @example Simple Example
+   * ```tsx
+   * import { ReactElement, useEffect, useRef } from "react";
+   * import { useCSSTransition } from "@react-md/transition";
+   * import { useRouter } from "react-router-dom";
+   *
+   * function Example(): ReactElement {
+   *   const { pathname } = useRouter();
+   *   const { elementProps, transitionTo } = useCSSTransition({
+   *     transitionIn: true,
+   *     timeout: 1000,
+   *     classNames: "some-enter-transition",
+   *   });
+   *
+   *   useEffect(() => {
+   *     // Do not trigger transition on first load.
+   *     if (prevPathname.current === pathname) {
+   *       return;
+   *     }
+   *
+   *     prevPathname.current = pathname;
+   *     transitionTo("enter");
+   *   }, [pathname, transitionTo]);
+   *
+   *   return <div {...elementProps}>{content}</div>;
+   * }
+   * ```
+   *
+   * @param stage - The {@link TransitionStage} to set to
+   */
+  transitionTo: (stage: TransitionStage) => void;
+}
+
+/**
+ * The way the transition works is by flowing through the different stages and
+ * assigning waiting for a timeout to occur. Setting the `stage` to `enter` will
+ * begin the enter transition going from `enter -> entering -> entered` while
+ * setting the stage to `exit` will transition from `exit -> exiting -> exited`.
+ *
+ * @since 4.0.0
+ */
+export type TransitionStage =
+  | "enter"
+  | "entering"
+  | "entered"
+  | "exit"
+  | "exiting"
+  | "exited";
+
+export interface TransitionState {
+  /** {@inheritDoc TransitionStage} */
+  stage: TransitionStage;
+
+  /**
+   * Boolean if the element should be rendered or not. This will always be
+   * `true` if the {@link TransitionOptions.temporary} is `false`. Otherwise, it
+   * will be `true` when not the `"exited"` {@link TransitionStage}.
+   */
+  rendered: boolean;
+
+  /**
+   * Boolean if this is the first {@link TransitionActions.appear} transition.
+   * This will be `true` during the first transition if
+   * {@link TransitionActions.appear} was also `true`. Otherwise it will be
+   * `false`.
+   */
+  appearing: boolean;
+}
+````
+
+## See Also
+
+- [useCollapseTransition](./use-collapse-transition)
+- [useCrossFadeTransition](./use-cross-fade-transition)
+- [useMaxWidthTransition](./use-max-width-transition)
+- [useScaleTransition](./use-scale-transition)
+- [useSlideTransition](./use-slide-transition)
+- [useSkeletonPlaceholder](./use-skeleton-placeholder)
+- [useCSSTransition](./use-css-transition)
+- [CSSTransition](/components/css-transition)
+- [SkeletonPlaceholder](/components/skeleton-placeholder)
+- [useCSSTransition demo](/components/css-transition#simple-usecsstransition-example)

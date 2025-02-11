@@ -13,71 +13,13 @@ If values need to be validate with complex logic or against other fields, use
 
 ## Example Usage
 
-The `useTextField` will always require a `name` to be provided:
+The main purpose of this hook is to help validate the value using constraint
+validation. Use the `required`, `pattern`, `minLength`, and `maxLength` options
+to start getting real time validation once the field is blurred or the form is
+submitted.
 
-```tsx
-function Example() {
-  const { fieldProps } = useTextField({
-    name: "example",
-  });
+```demo source="./AddingConstraintsExample.tsx"
 
-  return <TextField {...fieldProps} label="Example" />;
-}
-```
-
-### No Inline Error messages
-
-If you do not want to display the error messages below the `TextField` and
-handle error messages separately, set the `disableMessage` option to `true`.
-
-```tsx
-function Example() {
-  const { fieldProps } = useTextField({
-    name: "example",
-    disableMessage: true,
-  });
-
-  return <TextField {...fieldProps} label="Example" />;
-}
-```
-
-### Inline Counter
-
-An inline counter can be rendered with the `TextField` be enabling the
-`counter` prop and setting a `maxLength` value.
-
-```tsx
-function Example() {
-  const { fieldProps } = useTextField({
-    name: "example",
-    counter: true,
-    required: true,
-    maxLength: 20,
-    // this allows the user to type beyond the max length limit and display
-    // an error message. omit or set to `false` to enforce the max length instead
-    disableMaxLength: true,
-  });
-
-  return <TextField {...fieldProps} label="Example" />;
-}
-```
-
-### Adding Constraints
-
-Simple constraint validation can be added using the `pattern`, `minLength`, and `maxLength` options.
-
-```tsx
-function Example() {
-  const { fieldProps } = useTextField({
-    name: "example",
-    required: true,
-    pattern: "^[A-z]+$",
-    minLength: 4,
-    maxLength: 20,
-  });
-
-  return <TextField {...fieldProps} label="Example" />;
-}
 ```
 
 ### Custom Validation
@@ -85,50 +27,8 @@ function Example() {
 Custom error messaging can be provided using the `getErrorMessage` option. It
 should return a string
 
-```tsx
-import { useTextField } from "@react-md/core/form/useTextField";
-import { defaultGetErrorMessage } from "@react-md/core/form/validation";
+```demo source="./CustomValidationExample.tsx"
 
-function Example() {
-  const { fieldProps } = useTextField({
-    name: "example",
-    required: true,
-    getErrorMessage(options) {
-      const {
-        value,
-        pattern,
-        required,
-        minLength,
-        maxLength,
-        validity,
-        validationMessage,
-        isNumber,
-        isBlurEvent,
-        validationType,
-      } = options;
-
-      if (validity.tooLong) {
-        return `No more than ${maxLength} characters.`;
-      }
-
-      if (validity.tooShort) {
-        return `No more than ${minLength} characters.`;
-      }
-
-      if (validity.valueMissing) {
-        return "This value is required!";
-      }
-
-      if (value === "bad value") {
-        return "Value cannot be bad value";
-      }
-
-      return defaultGetErrorMessage(options);
-    },
-  });
-
-  return <TextField {...fieldProps} label="Example" />;
-}
 ```
 
 ### Additional Return Values
@@ -143,6 +43,30 @@ function Example() {
 
   return <TextField label="Field" {...fieldProps} />;
 }
+```
+
+### Inline Counter
+
+An inline counter can be displayed be enabling the `counter` option along with
+the `maxLength` option. If the user should be able to insert text beyond the
+max length limit, enable the `disableMaxLength` option as well to prevent
+passing the `maxLength` option to the `<input>`>
+
+```demo source="./InlineCounterExample.tsx"
+
+```
+
+### Form-level Error Messaging
+
+It is sometimes useful to display error messages in a different area isntead
+of underneath the `TextField`. Enable the `disableMessage` option and manually
+render the `errorMessage` instead.
+
+> !Info! See the [W3C User Notifications](https://www.w3.org/WAI/tutorials/forms/notifications/)
+> for more information on creating accessible form-level alerts.
+
+```demo source="./FormLevelErrorMessagesExample.tsx"
+
 ```
 
 ## Parameters
@@ -361,4 +285,6 @@ export interface ProvidedTextFieldProps<
 
 ## See Also
 
+- [W3C Forms](https://www.w3.org/WAI/tutorials/forms/)
+- [W3C User Notifications](https://www.w3.org/WAI/tutorials/forms/notifications/)
 - [useNumberField](./use-number-field)

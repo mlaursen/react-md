@@ -449,6 +449,47 @@ export const navItems: readonly NavigationItem[] = [
         href: "/use-dropzone",
         children: "useDropzone",
       },
+      { type: "subheader", children: "Transitions" },
+      {
+        type: "route",
+        href: "/use-collapse-transition",
+        children: "useCollapseTransition",
+      },
+      {
+        type: "route",
+        href: "/use-cross-fade-transition",
+        children: "useCrossFadeTransition",
+      },
+      {
+        type: "route",
+        href: "/use-max-width-transition",
+        children: "useMaxWidthTransition",
+      },
+      {
+        type: "route",
+        href: "/use-scale-transition",
+        children: "useScaleTransition",
+      },
+      {
+        type: "route",
+        href: "/use-slide-transition",
+        children: "useSlideTransition",
+      },
+      {
+        type: "route",
+        href: "/use-skeleton-placeholder",
+        children: "useSkeletonPlaceholder",
+      },
+      {
+        type: "route",
+        href: "/use-css-transition",
+        children: "useCSSTransition",
+      },
+      {
+        type: "route",
+        href: "/use-transition",
+        children: "useTransition",
+      },
       { type: "subheader", children: "UI and State" },
       {
         type: "route",

@@ -1,0 +1,358 @@
+# useCSSTransition [$SOURCE](packages/core/src/transition/useCSSTransition.ts)
+
+```ts disableTransform
+function useCSSTransition<E extends HTMLElement>(
+  options: CSSTransitionHookOptions<E>
+): CSSTransitionHookReturnValue<E>;
+```
+
+The `useCSSTransition` can be used to create CSS transitions for React components
+while also dynamically rendering them. This ensures that the exit transition will
+complete before unmounting the component.
+
+## Example Usage
+
+```tsx
+import { Button } from "@react-md/core/button/Button";
+import { useCSSTransition } from "@react-md/core/transition/useCSSTransition";
+import { Typography } from "@react-md/core/typography/Typography";
+import { type ReactElement, useState } from "react";
+
+// Pretend styles
+// .enter {
+//   opacity: 0.5;
+//   transition: opacity .15s;
+// }
+//
+// .enter--active {
+//   opacity: 1;
+// }
+//
+// .exit {
+//   opacity: 1;
+//   transition: opacity .15s;
+// }
+//
+// .exit--active {
+//   opacity: 0.5;
+// }
+
+function Example(): ReactElement {
+  const [transitionIn, setTransitionIn] = useState(false);
+  const { elementProps } = useCSSTransition({
+    timeout: 150,
+    classNames: {
+      enter: "enter",
+      enterActive: "enter--active",
+      exit: "exit",
+      exitActive: "exit--active",
+    },
+    transitionIn,
+  });
+
+  return (
+    <>
+      <Button onClick={() => setTransitionIn(!transitionIn)}>Toggle</Button>
+      <Typography {...elementProps}>Some Opacity Changing Text</Typography>
+    </>
+  );
+}
+```
+
+### Visibility Transition
+
+```tsx
+import { Button } from "@react-md/core/button/Button";
+import { useCSSTransition } from "@react-md/core/transition/useCSSTransition";
+import { Typography } from "@react-md/core/typography/Typography";
+import { type ReactElement, useState } from "react";
+
+// Pretend styles
+// .enter {
+//   opacity: 0;
+//   transition: opacity .2s;
+// }
+//
+// .enter--active {
+//   opacity: 1;
+// }
+//
+// .exit {
+//   opacity: 1;
+//   transition: opacity .15s;
+// }
+//
+// .exit--active {
+//   opacity: 0;
+// }
+
+function Example(): ReactElement {
+  const [transitionIn, setTransitionIn] = useState(false);
+  const { elementProps, rendered } = useCSSTransition({
+    timeout: {
+      enter: 200,
+      exit: 150,
+    },
+    classNames: {
+      enter: "enter",
+      enterActive: "enter--active",
+      exit: "exit",
+      exitActive: "exit--active",
+    },
+    transitionIn,
+    temporary: true,
+  });
+
+  return (
+    <>
+      <Button onClick={() => setTransitionIn(!transitionIn)}>Toggle</Button>
+      {rendered && (
+        <Typography {...elementProps}>Some Opacity Changing Text</Typography>
+      )}
+    </>
+  );
+}
+```
+
+### Mount Transition
+
+```tsx
+import { useCSSTransition } from "@react-md/core/transition/useCSSTransition";
+import { type ReactElement } from "react";
+
+// Pretend styles
+// .opacity {
+//   opacity: 0;
+//   transition: opacity .3s;
+// }
+//
+// .opacity--active {
+//   opacity: 1;
+// }
+//
+
+function Example(): ReactElement {
+  const { elementProps } = useCSSTransition({
+    appear: true,
+    transitionIn: true,
+    timeout: 300,
+    classNames: "opacity",
+  });
+
+  return <div {...elementProps}>Some Content!</div>;
+}
+```
+
+## Parameters
+
+- `options` - An object with the following definition:
+
+```ts disableTransform
+export interface PreconfiguredCSSTransitionOptions<E extends HTMLElement> {
+  /**
+   * This boolean controls the transition by activating flowing through the
+   * {@link TransitionStage}.
+   */
+  transitionIn: boolean;
+
+  /**
+   * Either a single timeout duration in milliseconds to use for each of the
+   * {@link TransitionActions} stages, or an object of transition durations.
+   */
+  timeout: TransitionTimeout;
+  classNames: CSSTransitionClassNames;
+
+  /**
+   * An optional ref that will be merged with the
+   * {@link TransitionHookReturnValue.ref}
+   */
+  nodeRef?: Ref<E>;
+
+  /**
+   * Boolean if the element should mount and unmount based on the
+   * {@link PreconfiguredTransitionInDefaultedOptions.transitionIn} value.
+   *
+   * @defaultValue `false`
+   */
+  temporary?: boolean;
+
+  /**
+   * An optional className to be merged with the transition classes.
+   */
+  className?: string;
+
+  /**
+   * When this is `true` and the {@link temporary} option is `false`, the
+   * element will gain a class name to hide it with `display: none` instead of
+   * conditionally rendering the element.
+   *
+   * @defaultValue `false`
+   * @since 6.0.0
+   */
+  exitedHidden?: boolean;
+}
+
+export interface CSSTransitionClassNamesObject {
+  /**
+   * The class name to apply starting at the `"enter"` {@link TransitionStage}
+   * while {@link TransitionState.appearing}.
+   *
+   * @defaultValue `""`
+   */
+  appear?: string;
+
+  /**
+   * The class name to apply starting at the `"entering"` {@link TransitionStage}
+   * while {@link TransitionState.appearing}.
+   *
+   * @defaultValue `""`
+   */
+  appearActive?: string;
+
+  /**
+   * The class name to apply starting at the `"entered"` {@link TransitionStage}
+   * while {@link TransitionState.appearing}.
+   *
+   * @defaultValue `""`
+   */
+  appearDone?: string;
+
+  /**
+   * The class name to apply starting at the `"enter"` {@link TransitionStage}
+   *
+   * @defaultValue `""`
+   */
+  enter?: string;
+
+  /**
+   * The class name to apply starting at the `"entering"` {@link TransitionStage}
+   *
+   * @defaultValue `""`
+   */
+  enterActive?: string;
+
+  /**
+   * The class name to apply starting at the `"entered"` {@link TransitionStage}
+   *
+   * @defaultValue `""`
+   */
+  enterDone?: string;
+
+  /**
+   * The class name to apply starting at the `"exit"` {@link TransitionStage}
+   *
+   * @defaultValue `""`
+   */
+  exit?: string;
+
+  /**
+   * The class name to apply starting at the `"exiting"` {@link TransitionStage}
+   *
+   * @defaultValue `""`
+   */
+  exitActive?: string;
+
+  /**
+   * The class name to apply starting at the `"exited"` {@link TransitionStage}
+   *
+   * @defaultValue `""`
+   */
+  exitDone?: string;
+}
+
+/**
+ * @since 4.0.0
+ */
+export type CSSTransitionClassNames =
+  | string
+  | Readonly<CSSTransitionClassNamesObject>;
+```
+
+## Returns
+
+An object with the following definition:
+
+````ts disableTransform
+export interface CSSTransitionHookReturnValue<E extends HTMLElement>
+  extends TransitionHookReturnValue<E>,
+    CSSTransitionElementProps<E> {
+  /**
+   * This can be used so that you don't need to destructure multiple props from
+   * the hook return value to pass to the transitioning component.
+   *
+   * @example Simple Example
+   * ```tsx
+   * import type { ReactElement } from "react";
+   * import { useCSSTransition } from "@react-md/transition";
+   *
+   * interface ExampleProps {
+   *   transitionIn: boolean;
+   *   children: ReactNode;
+   * }
+   *
+   * function Example({ transitionIn, children }: ExampleProps): ReactElement | null {
+   *   const { elementProps, rendered } = useCSSTransition({
+   *     timeout: 150,
+   *     classNames: "example",
+   *     transitionIn,
+   *   });
+   *
+   *   if (!rendered) {
+   *     return null;
+   *   }
+   *
+   *   return <div {...elementProps}>{children}</div>
+   * }
+   * ```
+   *
+   * @example Verbose Version
+   * ```tsx
+   * import type { ReactElement } from "react";
+   * import { useCSSTransition } from "@react-md/transition";
+   *
+   * interface ExampleProps {
+   *   transitionIn: boolean;
+   *   children: ReactNode;
+   * }
+   *
+   * function Example({ transitionIn, children }: ExampleProps): ReactElement | null {
+   *   const { ref, className, rendered } = useCSSTransition({
+   *     timeout: 150,
+   *     classNames: "example",
+   *     transitionIn,
+   *   });
+   *
+   *   if (!rendered) {
+   *     return null;
+   *   }
+   *
+   *   return <div ref={ref} className={className}>{children}</div>
+   * }
+   * ```
+   */
+  elementProps: CSSTransitionElementProps<E>;
+}
+
+export interface CSSTransitionElementProps<E extends HTMLElement> {
+  /** @see {@link TransitionHookReturnValue.ref} */
+  ref: RefCallback<E>;
+
+  /**
+   * The current transition class name or `undefined`.
+   */
+  className: string | undefined;
+}
+````
+
+## See Also
+
+- [useTransition](./use-transition)
+- [useCollapseTransition](./use-collapse-transition)
+- [useCrossFadeTransition](./use-cross-fade-transition)
+- [useMaxWidthTransition](./use-max-width-transition)
+- [useScaleTransition](./use-scale-transition)
+- [useSlideTransition](./use-slide-transition)
+- [useSkeletonPlaceholder](./use-skeleton-placeholder)
+- [CSSTransition](/components/css-transition)
+- [SkeletonPlaceholder](/components/skeleton-placeholder)
+- [useCSSTransition demo](/components/css-transition#simple-usecsstransition-example)

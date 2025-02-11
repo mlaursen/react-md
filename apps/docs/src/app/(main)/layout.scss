@@ -45,6 +45,10 @@ html {
   scroll-behavior: smooth;
 }
 
+.rmd-layout-main :where([id]) {
+  scroll-margin-top: calc(0.5rem + everything.layout-get-var(header-height));
+}
+
 // global utility classes
 @include everything.phone-media {
   .display-none-phone {

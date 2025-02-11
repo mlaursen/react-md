@@ -323,7 +323,7 @@ export const TYPES: ReadonlySet<string> = new Set([
   "FixConfig",
   "FixedDialogProps",
   "FixedPosition",
-  "FixedPositioningHookReturnValue",
+  "FixedPositioningImplementation",
   "FixedPositioningOptions",
   "FixedPositioningScrollData",
   "FixedPositioningTransitionCallbacks",
@@ -2542,7 +2542,7 @@ export const EXPORT_MAP: Record<string, string> = {
   FixedDialog: "@react-md/core/dialog/FixedDialog",
   FixedDialogProps: "@react-md/core/dialog/FixedDialog",
   FixedPosition: "@react-md/core/positioning/types",
-  FixedPositioningHookReturnValue:
+  FixedPositioningImplementation:
     "@react-md/core/positioning/useFixedPositioning",
   FixedPositioningOptions: "@react-md/core/positioning/useFixedPositioning",
   FixedPositioningScrollData: "@react-md/core/positioning/useFixedPositioning",

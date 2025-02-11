@@ -8,10 +8,17 @@
   margin-top: 1.25em;
   padding-left: var(--spacing);
   position: relative;
-  scroll-margin-top: calc(0.5rem + everything.layout-get-var(header-height));
+  // NOTE: This was moved to the root layout.scss
+  // scroll-margin-top: calc(0.5rem + everything.layout-get-var(header-height));
 
   &:hover .link {
     opacity: 1;
+  }
+
+  &::after {
+    clear: both;
+    content: "";
+    display: block;
   }
 
   @include everything.touch-only($css-modules: true) {
