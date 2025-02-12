@@ -1,11 +1,7 @@
 import { type HTMLAttributes, forwardRef } from "react";
 
 import { Box } from "../box/Box.js";
-import {
-  type BoxAlignItems,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  type BoxOptions,
-} from "../box/styles.js";
+import { type BoxAlignItems, type BoxOptions } from "../box/styles.js";
 import { type CardClassNameOptions, card } from "./styles.js";
 
 declare module "react" {
@@ -22,22 +18,13 @@ declare module "react" {
  */
 export interface CardProps
   extends HTMLAttributes<HTMLDivElement>,
-    CardClassNameOptions {
-  /**
-   * @defaultValue `"stretch"`
-   */
+    CardClassNameOptions,
+    Pick<BoxOptions, "align" | "justify" | "fullWidth" | "disableWrap"> {
+  /** @defaultValue `"stretch"` */
   align?: BoxAlignItems;
 
-  /**
-   * @defaultValue `"start"`
-   */
+  /** @defaultValue `"start"` */
   justify?: BoxAlignItems;
-
-  /**
-   * @see {@link BoxOptions.fullWidth}
-   * @defaultValue `false`
-   */
-  fullWidth?: boolean;
 }
 
 /**
@@ -89,18 +76,17 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
       justify = "stretch",
       bordered,
       raisable,
-      fullWidth,
       interactable,
       ...remaining
     } = props;
 
     return (
       <Box
-        {...remaining}
         align={align}
         justify={justify}
+        disableWrap
+        {...remaining}
         stacked
-        fullWidth={fullWidth}
         disableGap
         disablePadding
         ref={ref}
