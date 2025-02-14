@@ -24,7 +24,7 @@
     "next-dev": "next dev",
     "next-build": "next build",
     "dev": "npm-run-all build-env dev-tasks",
-    "dev-tasks": "npm-run-all --parallel watch-demos watch-scss-lookup next-dev",
+    "dev-tasks": "npm-run-all --parallel watch-demos watch-scss-lookup generator-dev",
     "build": "npm-run-all build-env next-build",
     "start": "next start"
   },

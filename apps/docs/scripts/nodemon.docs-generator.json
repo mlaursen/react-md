@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/nodemon.json",
   "watch": ["../../packages/docs-generator/dist/**/*"],
-  "exec": "pnpm dev-tasks",
+  "exec": "pnpm next-dev",
   "ext": "*.js"
 }
