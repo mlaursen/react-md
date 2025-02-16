@@ -54,6 +54,7 @@ export interface BaseCodeFile {
   name: string;
   code: string;
   lang: SupportedCodeLanguage;
+  readOnly?: boolean;
 }
 
 export interface TypescriptCodeFile extends BaseCodeFile {
