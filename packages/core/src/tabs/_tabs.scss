@@ -6,6 +6,7 @@
 @use "../typography/typography";
 @use "../interaction/interaction";
 @use "../icon/icon";
+@use "../button/button";
 
 $disable-everything: false !default;
 $disable-icon: false !default;
@@ -44,13 +45,21 @@ $tablist-scroller-background-color: theme.theme-get-var(
   inherit
 ) !default;
 $tablist-vertical-indicator-left: 0 !default;
+$tablist-button-border-radius: 0 !default;
 
 $variables: (
   color,
   active-color,
   inactive-color,
   disabled-color,
-  indicator-background
+  indicator-background,
+  min-height,
+  max-width,
+  min-width,
+  stacked-height,
+  stacked-width,
+  padding,
+  stacked-padding
 );
 
 @function get-var($name, $fallback: null) {
@@ -177,6 +186,8 @@ $variables: (
 
 @mixin tablist-button-styles {
   .rmd-tablist-button {
+    @include button.set-var(icon-border-radius, $tablist-button-border-radius);
+
     align-items: center;
     background-color: $tablist-scroller-background-color;
     display: inline-flex;
@@ -234,6 +245,10 @@ $variables: (
   .rmd-tab {
     @include utils.map-to-styles($typography);
     @include use-var(color);
+    @include use-var(min-height);
+    @include use-var(max-width);
+    @include use-var(min-width);
+    @include use-var(padding);
     @if not $disable-icon {
       @include icon.set-var(color, currentcolor);
     }
@@ -242,20 +257,17 @@ $variables: (
     background-color: transparent;
     border-width: 0;
     display: inline-flex;
-    flex: 1 1 auto;
+    flex: 1 0 auto;
     gap: $gap;
     justify-content: center;
-    max-width: $max-width;
-    min-height: $height;
-    min-width: $min-width;
-    padding: 0 $horizontal-padding;
     transition: color $transition-duration $transition-timing-function;
 
     @if not $disable-stacked {
       &--stacked {
+        @include use-var(height, stacked-height);
+        @include use-var(padding, stacked-padding);
+
         flex-direction: column;
-        height: $stacked-height;
-        padding: $vertical-padding $horizontal-padding;
       }
 
       @if not $disable-reversed {
@@ -287,6 +299,15 @@ $variables: (
     @include set-var(active-color, $active-color);
     @include set-var(inactive-color, $inactive-color);
     @include set-var(disabled-color, $disabled-color);
+    @include set-var(min-height, $height);
+    @include set-var(max-width, $max-width);
+    @include set-var(min-width, $min-width);
+    @include set-var(padding, 0 $horizontal-padding);
+
+    @if not $disable-stacked {
+      @include set-var(stacked-height, $stacked-height);
+      @include set-var(stacked-padding, $vertical-padding $horizontal-padding);
+    }
 
     @if not $disable-indicator {
       @include set-var(indicator-background, $indicator-background);
