@@ -5,6 +5,15 @@ export const getTabRoleOnly = (container: Element): readonly HTMLElement[] => [
   ...container.querySelectorAll<HTMLElement>('[role="tab"]'),
 ];
 
+/**
+ * @internal
+ */
+export const getTabPanelRoleOnly = (
+  container: Element
+): readonly HTMLElement[] => [
+  ...container.querySelectorAll<HTMLElement>('[role="tabpanel"]'),
+];
+
 /** @internal */
 interface ScrollOptions {
   container: HTMLElement | null;

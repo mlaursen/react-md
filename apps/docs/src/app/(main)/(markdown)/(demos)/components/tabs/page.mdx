@@ -154,6 +154,43 @@ the `TabList` component.
 
 ```
 
+# Static Panel Height
+
+When the tab panel content height is unknown, it can cause the entire layout to
+shift as different tab panels become active. There are a few ways to handle it:
+
+- Find the max tab panel height and set the height to that value
+- Set a static height through CSS on the tab panels container component
+- Set a max height through CSS on the tab panels container component
+
+This example will showcase how to set a static height through CSS through
+either the `SlideContainer` or by setting it on each `Slide`.
+
+> !Info! When the `height` is set on the `SlideContainer`, it will gain the
+> scrollbar causing it to dynamically appear when large content becomes
+> visible. This will cause a slight layout shift when it disappears but it
+> allows all slides to maintain the same padding on the container element.
+>
+> When the `height` is set on the `Slide`, `overflow: auto` must also be set so
+> the scrollbar only appears on that single `Slide`.
+
+```demo source="./StaticPanelHeightExample.tsx"
+
+```
+
+## Use Max Tab Panel Height
+
+This example will use the `useMaxTabPanelHeight` hook provided through
+`react-md` to calculate the max tab panel height and set the height to that
+value.
+
+> !Warn! This will **not work** if conditionally rendering the active tab panel
+> by enabling the `temporary` prop on the `Slide` or manually.
+
+```demo source="./MaxTabPanelHeightExample.tsx"
+
+```
+
 # Custom Tab Panels
 
 The `SlideContainer` and `Slide` components are not required for rendering the
