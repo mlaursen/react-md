@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SimpleTabPanels should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<div
+  data-testid="tab-panels"
+>
+  <div
+    aria-labelledby="tab-:r0:-1"
+    class=""
+    id="tab-:r0:-panel-1"
+    role="tabpanel"
+  >
+    Tab 1 Content
+  </div>
+  <div
+    aria-labelledby="tab-:r0:-2"
+    class="rmd-display-none"
+    id="tab-:r0:-panel-2"
+    role="tabpanel"
+  >
+    Tab 2 Content
+  </div>
+  <div
+    aria-labelledby="tab-:r0:-3"
+    class="rmd-display-none"
+    id="tab-:r0:-panel-3"
+    role="tabpanel"
+  >
+    Tab 3 Content
+  </div>
+</div>
+`;
+
+exports[`SimpleTabPanels should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<div
+  class="custom-class-name"
+  data-testid="tab-panels"
+  style="color: white;"
+>
+  <div
+    aria-labelledby="tab-:r0:-1"
+    class=""
+    id="tab-:r0:-panel-1"
+    role="tabpanel"
+  >
+    Tab 1 Content
+  </div>
+  <div
+    aria-labelledby="tab-:r0:-2"
+    class="rmd-display-none"
+    id="tab-:r0:-panel-2"
+    role="tabpanel"
+  >
+    Tab 2 Content
+  </div>
+  <div
+    aria-labelledby="tab-:r0:-3"
+    class="rmd-display-none"
+    id="tab-:r0:-panel-3"
+    role="tabpanel"
+  >
+    Tab 3 Content
+  </div>
+</div>
+`;

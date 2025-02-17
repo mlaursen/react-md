@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SimpleTabPanel should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<div
+  aria-labelledby="fake-tab-id"
+  class="rmd-display-none"
+  id="fake-tab-panel-id"
+  role="tabpanel"
+>
+  Content
+</div>
+`;
+
+exports[`SimpleTabPanel should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<div
+  aria-labelledby="fake-tab-id"
+  class="rmd-display-none custom-class-name"
+  id="fake-tab-panel-id"
+  role="tabpanel"
+  style="color: white;"
+>
+  Content
+</div>
+`;

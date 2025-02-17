@@ -67,6 +67,15 @@ This example shows how the active tab could be derived from the current
 
 ```
 
+# Vertical Tabs
+
+Tabs can be rendered vertically instead of horizontally by enabling the
+`vertical` prop on the `TabList` component.
+
+```demo source="./VerticalTabsExample.tsx"
+
+```
+
 # Disable Active Tab Transition
 
 The active tab indicator transition can be disabled by setting
@@ -89,12 +98,15 @@ also be enabled on each `Tab` for the correct styles to apply.
 
 ```
 
-# Vertical Tabs
+## Disable Tab Panel Transition
 
-Tabs can be rendered vertically instead of horizontally by enabling the
-`vertical` prop on the `TabList` component.
+If the active tab panel should no longer animate while becoming active,
+the `Slide` could be updated to include `timeout={0}`. An alternative would be
+to use `SimpleTabPanels` and `SimpleTabPanel` instead of `SlideContainer` and
+`Slide`. These two components are just simple wrappers around a `<div>` that
+only apply the required props and `ref`.
 
-```demo source="./VerticalTabsExample.tsx"
+```demo source="./DisableTabPanelTransitionExample.tsx"
 
 ```
 
@@ -148,12 +160,11 @@ The `SlideContainer` and `Slide` components are not required for rendering the
 different tab panels, but it will make it easier to use since most of the
 required functionality has already been defined.
 
-> !Info! Check out the [Slide demos](/components/slide) to see how to disable
-> the transition or temporarily render each tab panel instead of hiding with
-> `display: none`.
+This example showcases how to create custom tab panels without the `SlideContainer`
+and `Slide` components.
 
-Here is a small example for creating custom tab panels without the
-`SlideContainer` and `Slide` components.
+> !Success! This is pretty much the source code for the `SimpleTabPanels` and
+> `SimpleTabPanel`.
 
 ```demo source="./CustomTabPanelsExample.tsx"
 

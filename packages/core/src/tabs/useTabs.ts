@@ -1,18 +1,12 @@
 "use client";
 
-import {
-  type Dispatch,
-  type Ref,
-  type RefObject,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { type Dispatch, type Ref, useEffect, useRef, useState } from "react";
 
 import { type SlideDirection } from "../transition/SlideContainer.js";
 import { type UseStateInitializer, type UseStateSetter } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { useEnsuredState } from "../useEnsuredState.js";
+import { applyRef } from "../utils/applyRef.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { type TabProps } from "./Tab.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -141,7 +135,9 @@ export interface TabsImplementation<TabValue extends string | number = number> {
   getTabProps: (tabValue: TabValue) => ProvidedTabProps;
   getTabListProps: () => ProvidedTabListProps;
   getTabPanelProps: (tabValue: TabValue) => ProvidedTabPanelProps;
-  getTabPanelsProps: <E extends HTMLElement>() => ProvidedTabPanelsProps<E>;
+  getTabPanelsProps: <E extends HTMLElement>(
+    ref?: Ref<E>
+  ) => ProvidedTabPanelsProps<E>;
 }
 
 /**
@@ -527,9 +523,12 @@ export function useTabs<TabValue extends string | number>(
         active: tabValue === activeTab,
       };
     },
-    getTabPanelsProps<E>() {
+    getTabPanelsProps(ref) {
       return {
-        ref: tabPanelsRef as RefObject<E>,
+        ref: (instance) => {
+          applyRef(instance, ref);
+          applyRef(instance, tabPanelsRef);
+        },
         direction,
       };
     },

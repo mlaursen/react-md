@@ -26,7 +26,7 @@ function DisableActiveTabTransitionExample(): ReactElement {
 }
 
 //.This behaves the same as the component above but also disables transitions
-// for the tab panels. Try setting `VERBOSE` to `false`
+// for the tabs. Try setting `VERBOSE` to `false`
 function DisableActiveTabTransitionExample2(): ReactElement {
   const { getTabProps, getTabListProps } = useTabs({ disableTransition: true });
 
