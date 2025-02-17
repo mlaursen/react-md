@@ -15,13 +15,30 @@ export type TabsAlignment = "left" | "center" | "right";
  */
 export interface TabListClassNameOptions {
   className?: string;
+
+  /** @defaultValue `"left"` */
   align?: TabsAlignment;
+
+  /** @defaultValue `false` */
   animate?: boolean;
+
+  /** @defaultValue `false` */
   inline?: boolean;
+
+  /** @defaultValue `false` */
   padded?: boolean;
+
+  /** @defaultValue `false` */
   vertical?: boolean;
+
+  /** @defaultValue `false` */
   scrollbar?: boolean;
+
+  /** @defaultValue `false` */
   indicator?: boolean;
+
+  /** @defaultValue `false` */
+  fullWidthTabs?: boolean;
 }
 
 /**
@@ -35,8 +52,9 @@ export function tabList(options: TabListClassNameOptions = {}): string {
     inline,
     vertical,
     scrollbar,
-    animate = false,
-    indicator = false,
+    animate,
+    indicator,
+    fullWidthTabs,
   } = options;
 
   return cnb(
@@ -45,6 +63,7 @@ export function tabList(options: TabListClassNameOptions = {}): string {
       padded,
       vertical,
       "full-width": !inline,
+      "full-width-tabs": fullWidthTabs,
       "no-scrollbar": !scrollbar,
     }),
     indicator && tabIndicator({ tablist: true, animate, vertical }),

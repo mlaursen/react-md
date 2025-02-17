@@ -8,14 +8,17 @@ import {
   useState,
 } from "react";
 
-import { useAppSize } from "../media-queries/AppSizeProvider.js";
 import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
 import {
   type BaseTabListScrollButtonProps,
   TabListScrollButton,
 } from "./TabListScrollButton.js";
 import { type GetTabListScrollToOptions } from "./getTabListScrollToOptions.js";
-import { type TabsAlignment, tabList } from "./tabListStyles.js";
+import { type TabListClassNameOptions, tabList } from "./tabListStyles.js";
+import {
+  type TabListActivationMode,
+  type TabListScrollButtonsBehavior,
+} from "./types.js";
 import { useTabList } from "./useTabList.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { type useTabs } from "./useTabs.js";
@@ -23,29 +26,11 @@ import { type useTabs } from "./useTabs.js";
 /**
  * @since 6.0.0
  */
-export interface TabListProps extends HTMLAttributes<HTMLDivElement> {
+export interface TabListProps
+  extends HTMLAttributes<HTMLDivElement>,
+    Omit<TabListClassNameOptions, "animate" | "indicator"> {
   activeIndex: number;
   setActiveIndex: (nextActiveIndex: number) => void;
-
-  /**
-   * @defaultValue `"left"`
-   */
-  align?: TabsAlignment;
-
-  /**
-   * @defaultValue `false`
-   */
-  padded?: boolean;
-
-  /**
-   * @defaultValue `false`
-   */
-  vertical?: boolean;
-
-  /**
-   * @defaultValue `false`
-   */
-  inline?: boolean;
 
   /**
    * Set this to `true` to show a scrollbar when the number of tabs cause
@@ -73,17 +58,15 @@ export interface TabListProps extends HTMLAttributes<HTMLDivElement> {
 
   /**
    * @defaultValue `"manual"`
+   * @see {@link TabListActivationMode}
    */
-  activationMode?: "manual" | "automatic";
+  activationMode?: TabListActivationMode;
 
   /**
-   * Set this to `true` to render buttons that can scroll forwards or backwards
-   * within the tab list if there is overflow **on desktop**. If you want to
-   * display the scroll buttons on mobile as well, set this to `"allow-phone"` .
-   *
    * @defaultValue `false`
+   * @see {@link TabListScrollButtonsBehavior}
    */
-  scrollButtons?: boolean | "allow-phone";
+  scrollButtons?: TabListScrollButtonsBehavior;
 
   /**
    * A convenience prop for the {@link BaseTabListScrollButtonProps.getScrollToOptions}
@@ -153,6 +136,7 @@ export const TabList = forwardRef<HTMLDivElement, TabListProps>(
       vertical = false,
       scrollbar = false,
       scrollButtons = false,
+      fullWidthTabs,
       disableTransition = false,
       transitionDuration = 150,
       getScrollToOptions,
@@ -161,24 +145,25 @@ export const TabList = forwardRef<HTMLDivElement, TabListProps>(
       ...remaining
     } = props;
 
-    const { isPhone } = useAppSize();
-    const showScrollButtons =
-      !!scrollButtons && (scrollButtons === "allow-phone" || !isPhone);
-
-    const { elementProps, movementContext, backwardProps, forwardProps } =
-      useTabList({
-        ref,
-        style,
-        onClick,
-        onFocus,
-        onKeyDown,
-        vertical,
-        activeIndex,
-        setActiveIndex,
-        activationMode,
-        scrollButtons: showScrollButtons,
-        disableTransition,
-      });
+    const {
+      elementProps,
+      movementContext,
+      backwardProps,
+      forwardProps,
+      showScrollButtons,
+    } = useTabList({
+      ref,
+      style,
+      onClick,
+      onFocus,
+      onKeyDown,
+      vertical,
+      activeIndex,
+      setActiveIndex,
+      activationMode,
+      scrollButtons,
+      disableTransition,
+    });
 
     const prevActiveIndex = useRef(activeIndex);
     const [animate, setAnimate] = useState(false);
@@ -213,6 +198,7 @@ export const TabList = forwardRef<HTMLDivElement, TabListProps>(
             vertical,
             scrollbar,
             indicator: !disableTransition,
+            fullWidthTabs,
             className,
           })}
         >

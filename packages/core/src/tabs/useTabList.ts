@@ -10,6 +10,7 @@ import type {
 } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import { useAppSize } from "../media-queries/AppSizeProvider.js";
 import type {
   KeyboardMovementContext,
   KeyboardMovementProps,
@@ -18,6 +19,10 @@ import { useKeyboardMovementProvider } from "../movement/useKeyboardMovementProv
 import { useDir } from "../typography/WritingDirectionProvider.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
 import { useResizeObserver } from "../useResizeObserver.js";
+import {
+  type TabListActivationMode,
+  type TabListScrollButtonsBehavior,
+} from "./types.js";
 import { getTabRoleOnly, scrollTabIntoView } from "./utils.js";
 
 const TAB_SIZE_VAR = "--rmd-tab-size";
@@ -38,8 +43,8 @@ export interface TabListHookOptions {
   style: CSSProperties | undefined;
   activeIndex: number;
   setActiveIndex: (nextActiveIndex: number) => void;
-  scrollButtons: boolean;
-  activationMode: "manual" | "automatic";
+  scrollButtons: TabListScrollButtonsBehavior;
+  activationMode: TabListActivationMode;
   vertical: boolean;
   onClick: MouseEventHandler<HTMLDivElement> | undefined;
   onFocus: FocusEventHandler<HTMLDivElement> | undefined;
@@ -67,6 +72,7 @@ export interface TabListHookReturnValue {
     vertical: boolean;
     disableTransition?: boolean;
   };
+  showScrollButtons: boolean;
 }
 
 /**
@@ -90,6 +96,15 @@ export function useTabList(
   } = options;
 
   const isRTL = useDir().dir === "rtl";
+  const { isPhone } = useAppSize();
+  const isScrollObserverEnabled =
+    scrollButtons === "auto" ||
+    (scrollButtons === "auto-tablet-or-above" && !isPhone);
+  const [autoScrollButtons, setAutoScrollButtons] = useState(false);
+  const showScrollButtons =
+    scrollButtons === true ||
+    (scrollButtons === "tablet-or-above" && !isPhone) ||
+    (isScrollObserverEnabled && autoScrollButtons);
 
   const [indicatorStyles, setIndicatorStyles] =
     useState<IndicatorCSSProperties>(() => {
@@ -103,17 +118,28 @@ export function useTabList(
   const [nodeRef, ref] = useEnsuredRef(propRef);
   const tabListRef = useResizeObserver({
     ref,
-    disabled: disableTransition,
+    disabled: disableTransition && !isScrollObserverEnabled,
+    disableHeight: disableTransition && !isScrollObserverEnabled && !vertical,
+    disableWidth: disableTransition && !isScrollObserverEnabled && vertical,
     onUpdate: useCallback(
       (entry) => {
-        // this is kind of hacky -- the styles should update when switching between
-        // RTL, but the RTL state isn't required for any styles. Just reference it
-        // so that the hooks eslint rule doesn't show a warning...
+        // this is kind of hacky -- the styles should update when switching
+        // between RTL or when the scroll buttons appear, but they aren't
+        // required for any styles. Just reference them so that the hooks
+        // eslint rule doesn't show a warning...
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         isRTL;
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        showScrollButtons;
+
+        if (isScrollObserverEnabled && nodeRef.current) {
+          setAutoScrollButtons(
+            nodeRef.current.scrollWidth > nodeRef.current.offsetWidth
+          );
+        }
 
         const activeTab = getTabRoleOnly(entry.target)[activeIndex];
-        if (!activeTab) {
+        if (!activeTab || disableTransition) {
           return;
         }
 
@@ -136,7 +162,15 @@ export function useTabList(
           return cssVars;
         });
       },
-      [activeIndex, isRTL, vertical]
+      [
+        activeIndex,
+        disableTransition,
+        isRTL,
+        isScrollObserverEnabled,
+        nodeRef,
+        showScrollButtons,
+        vertical,
+      ]
     ),
   });
   const forwardRef = useRef<HTMLDivElement>(null);
@@ -212,5 +246,6 @@ export function useTabList(
       disableTransition,
     },
     movementContext,
+    showScrollButtons,
   };
 }

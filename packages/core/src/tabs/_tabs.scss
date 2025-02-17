@@ -155,6 +155,10 @@ $variables: (
       width: 100%;
     }
 
+    &--full-width-tabs {
+      @include set-var(min-width, none);
+    }
+
     @if not $disable-tablist-hidden-scrollbar {
       &--no-scrollbar {
         @include utils.hide-scrollbar;

@@ -1,11 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TabList should update the tab indicator styles based on the active index 1`] = `
+exports[`TabList should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <div
   aria-orientation="horizontal"
   class="rmd-tablist rmd-tablist--left rmd-tablist--full-width rmd-tablist--no-scrollbar rmd-tab-indicator rmd-tab-indicator--h rmd-tab-indicator--tablist-h"
+  data-testid="tablist"
   role="tablist"
-  style="--rmd-tab-size: 120px; --rmd-tab-offset: 0px;"
+  style="--rmd-tab-size: 33.333333333333336%; --rmd-tab-offset: 0px;"
   tabindex="0"
 >
   <button
@@ -39,6 +40,108 @@ exports[`TabList should update the tab indicator styles based on the active inde
     aria-selected="false"
     class="rmd-tab rmd-interaction-surface"
     id="tab-:r0:-3"
+    role="tab"
+    tabindex="-1"
+    type="button"
+  >
+    <span>
+      Tab 3
+    </span>
+  </button>
+</div>
+`;
+
+exports[`TabList should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<div
+  aria-orientation="horizontal"
+  class="rmd-tablist rmd-tablist--left rmd-tablist--full-width rmd-tablist--no-scrollbar rmd-tab-indicator rmd-tab-indicator--h rmd-tab-indicator--tablist-h custom-class-name"
+  data-testid="tablist"
+  role="tablist"
+  style="--rmd-tab-size: 33.333333333333336%; --rmd-tab-offset: 0px; background: orange;"
+  tabindex="0"
+>
+  <button
+    aria-controls="tab-:r0:-panel-1"
+    aria-selected="true"
+    class="rmd-tab rmd-tab--active rmd-interaction-surface"
+    id="tab-:r0:-1"
+    role="tab"
+    tabindex="-1"
+    type="button"
+  >
+    <span>
+      Tab 1
+    </span>
+  </button>
+  <button
+    aria-controls="tab-:r0:-panel-2"
+    aria-selected="false"
+    class="rmd-tab rmd-interaction-surface"
+    id="tab-:r0:-2"
+    role="tab"
+    tabindex="-1"
+    type="button"
+  >
+    <span>
+      Tab 2
+    </span>
+  </button>
+  <button
+    aria-controls="tab-:r0:-panel-3"
+    aria-selected="false"
+    class="rmd-tab rmd-interaction-surface"
+    id="tab-:r0:-3"
+    role="tab"
+    tabindex="-1"
+    type="button"
+  >
+    <span>
+      Tab 3
+    </span>
+  </button>
+</div>
+`;
+
+exports[`TabList should update the tab indicator styles based on the active index 1`] = `
+<div
+  aria-orientation="horizontal"
+  class="rmd-tablist rmd-tablist--left rmd-tablist--full-width rmd-tablist--no-scrollbar rmd-tab-indicator rmd-tab-indicator--h rmd-tab-indicator--tablist-h"
+  data-testid="tablist"
+  role="tablist"
+  style="--rmd-tab-size: 120px; --rmd-tab-offset: 0px;"
+  tabindex="0"
+>
+  <button
+    aria-controls="tab-:r4:-panel-1"
+    aria-selected="true"
+    class="rmd-tab rmd-tab--active rmd-interaction-surface"
+    id="tab-:r4:-1"
+    role="tab"
+    tabindex="-1"
+    type="button"
+  >
+    <span>
+      Tab 1
+    </span>
+  </button>
+  <button
+    aria-controls="tab-:r4:-panel-2"
+    aria-selected="false"
+    class="rmd-tab rmd-interaction-surface"
+    id="tab-:r4:-2"
+    role="tab"
+    tabindex="-1"
+    type="button"
+  >
+    <span>
+      Tab 2
+    </span>
+  </button>
+  <button
+    aria-controls="tab-:r4:-panel-3"
+    aria-selected="false"
+    class="rmd-tab rmd-interaction-surface"
+    id="tab-:r4:-3"
     role="tab"
     tabindex="-1"
     type="button"
