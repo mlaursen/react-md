@@ -222,12 +222,23 @@ $variables: (
     &__button {
       @if not $disable-tablist-scroll-button-vertical {
         &--v {
-          transform: rotate(90deg);
+          width: 100%;
+
+          :where(.rmd-icon) {
+            transform: rotate(90deg);
+          }
         }
       }
     }
 
     @include utils.rtl {
+      $button-selector: "&__button" +
+        if(
+          $disable-tablist-scroll-button-vertical,
+          "",
+          ":where(:not(.rmd-tablist-button__button--v))"
+        );
+
       &--left {
         left: auto;
         right: 0;
@@ -238,7 +249,7 @@ $variables: (
         right: auto;
       }
 
-      &__button {
+      #{$button-selector} {
         transform: rotate(180deg);
       }
     }

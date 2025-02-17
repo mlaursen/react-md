@@ -80,7 +80,7 @@ export function GithubLink(props: GithubLinkProps): ReactElement {
               theme,
               themeType,
               responsive,
-              buttonType: "text",
+              buttonType,
             }),
           float && styles.float,
           className

@@ -13,6 +13,13 @@ declare module "react" {
 
     "--rmd-tab-size"?: string;
     "--rmd-tab-offset"?: string | number;
+    "--rmd-tab-min-width"?: string;
+    "--rmd-tab-max-width"?: string;
+    "--rmd-tab-min-height"?: string;
+    "--rmd-tab-stacked-height"?: string;
+    "--rmd-tab-stacked-width"?: string;
+    "--rmd-tab-padding"?: string | number;
+    "--rmd-tab-stacked-padding"?: string | number;
     "--rmd-tab-indicator-background"?: string;
   }
 }

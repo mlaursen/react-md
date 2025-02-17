@@ -143,6 +143,10 @@ $_layer-order: (
     height: 100%;
     margin: 0;
     padding: 0;
+
+    &:has(body.rmd-touch-mode) {
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
   }
 
   body {
@@ -150,10 +154,7 @@ $_layer-order: (
     @include theme.theme-use-var(color, text-primary-color);
     @include typography.typography-html-body-styles;
 
-    &:has(.rmd-touch-mode) {
-      // stylelint-disable order/properties-alphabetical-order
-      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-
+    &:where(.rmd-touch-mode) {
       // this allows for click events to be bubbleable on iOS to the root
       // document
       cursor: pointer;
