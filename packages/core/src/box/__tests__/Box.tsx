@@ -156,4 +156,20 @@ describe("Box", () => {
     expect(box).toHaveClass("rmd-box--reverse");
     expect(box).not.toHaveClass("rmd-box--column-reverse");
   });
+
+  it("should be able to support the grid-auto-rows behavior", () => {
+    const { rerender } = render(<Box {...BASE_PROPS} />);
+    const box = screen.getByTestId("box");
+
+    expect(box).not.toHaveClass("rmd-box--grid-auto-rows");
+    expect(box).toMatchSnapshot();
+
+    rerender(<Box {...BASE_PROPS} gridAutoRows />);
+    expect(box).not.toHaveClass("rmd-box--grid-auto-rows");
+    expect(box).toMatchSnapshot();
+
+    rerender(<Box {...BASE_PROPS} grid gridAutoRows />);
+    expect(box).toHaveClass("rmd-box--grid-auto-rows");
+    expect(box).toMatchSnapshot();
+  });
 });

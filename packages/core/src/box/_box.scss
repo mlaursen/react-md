@@ -24,6 +24,10 @@ $disable-grid: false !default;
 // @type boolean
 $disable-grid-columns: false !default;
 
+// Set to `true` to disable the styles for the `grid-auto-rows` behavior.
+// @type boolean
+$disable-grid-auto-rows: false !default;
+
 // This is the default `align-items` property value to set if you don't like
 // everything being centered by default. This value is always overridable using
 // the `alignItems` prop on the `Box` component.
@@ -91,7 +95,15 @@ $grids: () !default;
 // The available configurable css variables and mostly used internally for the
 // `get-var`, `set-var`, and `use-var` utils.
 // @type List
-$variables: (gap, padding, item-min-size, columns);
+$variables: (
+  gap,
+  padding,
+  item-min-size,
+  item-min-height,
+  columns,
+  row-max-height,
+  auto-rows-height
+);
 
 // @param {string} name - The supported variable name
 // @param {any} fallback - An optional fallback value
@@ -263,6 +275,17 @@ $variables: (gap, padding, item-min-size, columns);
           @if not $disable-grid-columns {
             &--grid-columns {
               @include set-var(item-min-size, 0);
+            }
+          }
+
+          @if not $disable-grid-auto-rows {
+            &--grid-auto-rows {
+              grid-auto-rows: minmax(
+                get-var(item-min-height, get-var(item-min-size)),
+                get-var(row-max-height, 1fr)
+              );
+              max-height: get-var(auto-rows-height, 100%);
+              overflow: auto;
             }
           }
 

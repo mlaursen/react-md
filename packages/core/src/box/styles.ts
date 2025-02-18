@@ -110,6 +110,18 @@ export interface BoxOptions {
   gridColumns?: "fit" | "fill" | number;
 
   /**
+   * Set this to `true` to enable equal height rows within the grid based
+   * on the current `max-height`. This requires the `max-height` to be set
+   * on the `Box` either by:
+   *
+   * - a custom class name that sets `max-height`
+   * - `core.box-set-var(auto-rows-height, VALUE)` on the box or a parent element
+   *
+   * @defaultValue `false`
+   */
+  gridAutoRows?: boolean;
+
+  /**
    * @defaultValue `""`
    */
   align?: BoxAlignItems;
@@ -150,6 +162,7 @@ export function box(options: BoxOptions = {}): string {
     grid,
     gridName = "",
     gridColumns = "fit",
+    gridAutoRows,
     justify = "",
     stacked,
     reversed,
@@ -169,8 +182,9 @@ export function box(options: BoxOptions = {}): string {
       "column-reverse": stacked && reversed,
       "full-width": fullWidth,
       grid,
-      "grid-fill": gridColumns === "fill",
-      "grid-columns": typeof gridColumns === "number",
+      "grid-fill": grid && gridColumns === "fill",
+      "grid-columns": grid && typeof gridColumns === "number",
+      "grid-auto-rows": grid && gridAutoRows,
       [gridName]: grid && gridName,
       "align-start": align === "start" || align === "flex-start",
       "align-center": align === "center",

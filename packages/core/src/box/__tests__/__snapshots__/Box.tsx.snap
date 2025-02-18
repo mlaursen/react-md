@@ -28,6 +28,33 @@ exports[`Box should be able to render as a grid using the grid prop 1`] = `
 </div>
 `;
 
+exports[`Box should be able to support the grid-auto-rows behavior 1`] = `
+<div
+  class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded"
+  data-testid="box"
+>
+  Content
+</div>
+`;
+
+exports[`Box should be able to support the grid-auto-rows behavior 2`] = `
+<div
+  class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded"
+  data-testid="box"
+>
+  Content
+</div>
+`;
+
+exports[`Box should be able to support the grid-auto-rows behavior 3`] = `
+<div
+  class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--grid rmd-box--grid-auto-rows"
+  data-testid="box"
+>
+  Content
+</div>
+`;
+
 exports[`Box should set the --rmd-box-columns variable and grid-columsn class when gridColumns is a number 1`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--grid"
