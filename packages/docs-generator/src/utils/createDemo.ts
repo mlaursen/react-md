@@ -2,7 +2,7 @@ import { type CodePreviewProps } from "@react-md/code/CodePreview";
 import { dirname, join, parse, resolve } from "node:path";
 import { type Project } from "ts-morph";
 
-import { assertString } from "./assertions.js";
+import { assertString, assertStringArray } from "./assertions.js";
 import { createJsxElementContent, createJsxNode } from "./createJsxNode.js";
 import { generateDemoFile } from "./generateDemoFile.js";
 import { log } from "./log.js";
@@ -82,6 +82,7 @@ export async function createDemo(options: CreateDemoOptions): Promise<void> {
     disablePadding: false,
   };
   let disableImportOnlySCSS = false;
+  const readOnlyImports = new Set<string>();
 
   const errors = new Set<string>();
   code.attributes.forEach((attr) => {
@@ -107,6 +108,25 @@ export async function createDemo(options: CreateDemoOptions): Promise<void> {
         break;
       case "disableImportOnlySCSS":
         disableImportOnlySCSS = true;
+        break;
+      case "readOnlyImports":
+        try {
+          if (typeof value !== "object" || typeof value?.value !== "string") {
+            throw new Error("not object or no value");
+          }
+
+          const parsed = JSON.parse(value.value);
+          assertStringArray(parsed);
+          parsed.forEach((item) => {
+            readOnlyImports.add(item);
+          });
+        } catch (e) {
+          // eslint-disable-next-line no-console
+          console.error(e);
+          throw new Error(
+            `readOnlyImports must be in the format of \`readOnlyImports={["@/componenents/Example.jsx"]}\``
+          );
+        }
         break;
       default:
         errors.add(`\`${name}\` is not a valid demo prop`);
@@ -153,6 +173,7 @@ ${Object.keys(props)
         project,
         demoOutPath,
         demoSourcePath: demoCodePath,
+        readOnlyImports,
       });
 
       if (scssModulesPath && !disableImportOnlySCSS) {
@@ -182,14 +203,15 @@ ${Object.keys(props)
   await log(
     generateDemoFile({
       props,
-      aliasDir,
       project,
+      aliasDir,
       demoDir,
       demoName,
       demoOutDir,
       demoOutPath,
       demoSourcePath: demoCodePath,
       generatedDir,
+      readOnlyImports,
     }),
     "",
     `Compiled ${aliasedDemoOutPath}`

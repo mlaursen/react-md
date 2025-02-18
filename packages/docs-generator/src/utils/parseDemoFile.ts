@@ -11,7 +11,6 @@ import {
 } from "./parseWithTsMorph.js";
 
 export interface ParseCompleteDemoFileOptions extends ParseWithTsMorphOptions {
-  aliasDir: string;
   demoDir: string;
   demoName: string;
   generatedDir: string;
@@ -26,11 +25,19 @@ export interface ParseCompleteDemoFileResult {
 export async function parseCompleteDemoFile(
   options: ParseCompleteDemoFileOptions
 ): Promise<ParseCompleteDemoFileResult> {
-  const { project, demoDir, demoName, demoOutPath, demoSourcePath } = options;
+  const {
+    project,
+    demoDir,
+    demoName,
+    demoOutPath,
+    demoSourcePath,
+    readOnlyImports,
+  } = options;
   const { imports, tsCodeFile, scssModulesPath } = await parseWithTsMorph({
     project,
     demoOutPath,
     demoSourcePath,
+    readOnlyImports,
   });
 
   const scssCodeFile = await getScssCodeFile({

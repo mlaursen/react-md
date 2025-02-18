@@ -1,4 +1,7 @@
-import { type TypescriptCodeFile } from "@react-md/code/types";
+import {
+  type BaseCodeFile,
+  type TypescriptCodeFile,
+} from "@react-md/code/types";
 import { type NonNullMutableRef } from "@react-md/core/types";
 import { format } from "prettier";
 import {
@@ -14,7 +17,14 @@ export interface ParseWithTsMorphOptions {
   project: Project;
   demoOutPath: string;
   demoSourcePath: string;
+  readOnlyImports: ReadonlySet<string>;
 }
+
+export interface ReadonlyScssFile extends BaseCodeFile {
+  lang: "scss";
+}
+
+export type ReadonlyExtraFiles = TypescriptCodeFile | ReadonlyScssFile;
 
 export interface ParseWithTsMorphResult {
   imports: ReadonlyMap<string, ReadonlySet<string>>;
@@ -48,12 +58,19 @@ interface HandleImportsOptions {
   imports: Map<string, Set<string>>;
   sourceFile: SourceFile;
   scssModulesPath: NonNullMutableRef<string>;
+  readOnlyImports: ReadonlySet<string>;
   importDeclaration: ImportDeclaration;
 }
 
 function handleImports(options: HandleImportsOptions): void {
-  const { project, imports, sourceFile, scssModulesPath, importDeclaration } =
-    options;
+  const {
+    project,
+    imports,
+    sourceFile,
+    scssModulesPath,
+    readOnlyImports,
+    importDeclaration,
+  } = options;
 
   const name = importDeclaration.getModuleSpecifier().getLiteralText();
   const namedImports = importDeclaration.getNamedImports();
@@ -65,11 +82,11 @@ function handleImports(options: HandleImportsOptions): void {
   if (name.endsWith(".module.scss")) {
     scssModulesPath.current = name;
   } else if (
-    importDeclaration.isModuleSpecifierRelative() ||
-    /^(@\/|\.)/.test(name)
+    !readOnlyImports.has(name) &&
+    (importDeclaration.isModuleSpecifierRelative() || /^(@\/|\.)/.test(name))
   ) {
     const nonAliasedName = name
-      .replace(/.*@/, "src")
+      .replace(/^@/, "src")
       .replace(/\.js(x)?$/, ".ts$1");
 
     // TODO: Clean this up...
@@ -158,7 +175,7 @@ function handleImports(options: HandleImportsOptions): void {
 export async function parseWithTsMorph(
   options: ParseWithTsMorphOptions
 ): Promise<ParseWithTsMorphResult> {
-  const { project, demoOutPath, demoSourcePath } = options;
+  const { project, demoOutPath, demoSourcePath, readOnlyImports } = options;
 
   project.addSourceFileAtPath(demoSourcePath);
 
@@ -172,6 +189,7 @@ export async function parseWithTsMorph(
       project,
       sourceFile,
       scssModulesPath,
+      readOnlyImports,
       importDeclaration,
     });
   });

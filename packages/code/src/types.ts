@@ -71,3 +71,4 @@ export interface ScssCodeFile extends BaseCodeFile {
 export type CompiledCodeFile = TypescriptCodeFile | ScssCodeFile;
 
 export type CodeFile = BaseCodeFile | CompiledCodeFile;
+export type ReadonlyCodeFile = CodeFile & { readOnly: true };

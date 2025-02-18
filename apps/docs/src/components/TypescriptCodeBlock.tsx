@@ -1,14 +1,14 @@
-import { type HighlightedCodeBlockWithAppBarAdditionalProps } from "@react-md/code/HighlightedCodeBlockWithAppBar";
 import { type ReactElement } from "react";
 
 import { MarkdownCode } from "./MarkdownCode.jsx";
-import { TypescriptCodeBlockContainer } from "./TypescriptCodeBlockContainer.jsx";
+import {
+  TypescriptCodeBlockContainer,
+  type TypescriptCodeBlockContainerProps,
+} from "./TypescriptCodeBlockContainer.jsx";
 
 export interface TypescriptCodeBlockProps
-  extends HighlightedCodeBlockWithAppBarAdditionalProps {
+  extends TypescriptCodeBlockContainerProps {
   isTsx: boolean;
-  jsCode: string;
-  tsCode: string;
 }
 
 export function TypescriptCodeBlock(

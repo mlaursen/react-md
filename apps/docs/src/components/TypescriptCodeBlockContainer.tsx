@@ -12,21 +12,31 @@ export interface TypescriptCodeBlockContainerProps
   extends HighlightedCodeBlockWithAppBarAdditionalProps {
   tsCode: ReactNode;
   jsCode: ReactNode;
+  disableAppBar?: boolean;
 }
 
 export function TypescriptCodeBlockContainer(
   props: TypescriptCodeBlockContainerProps
 ): ReactElement {
-  const { jsCode, tsCode, fileName, appBarProps, appBarChildren } = props;
+  const {
+    jsCode,
+    tsCode,
+    fileName,
+    appBarProps,
+    appBarChildren,
+    disableAppBar,
+  } = props;
   const { isTypescriptEnabled } = useTypescriptEnabledContext();
 
   return (
     <>
-      <CodeBlockAppBar {...appBarProps}>
-        {fileName && <CodeBlockFileName>{fileName}</CodeBlockFileName>}
-        {appBarChildren}
-        <ConfigureTypescriptEnabled disableLabel />
-      </CodeBlockAppBar>
+      {!disableAppBar && (
+        <CodeBlockAppBar {...appBarProps}>
+          {fileName && <CodeBlockFileName>{fileName}</CodeBlockFileName>}
+          {appBarChildren}
+          <ConfigureTypescriptEnabled disableLabel />
+        </CodeBlockAppBar>
+      )}
       {isTypescriptEnabled ? tsCode : jsCode}
     </>
   );
