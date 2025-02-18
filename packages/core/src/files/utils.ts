@@ -206,6 +206,36 @@ export interface SplitFileUploads {
 /**
  * This util will split all the current upload stats by status.
  *
+ * @example Main Usage
+ * ```tsx
+ * import { FileUpload } from "@react-md/core/files/FileUpload";
+ * import { useFileUpload } from "@react-md/core/files/useFileUpload";
+ * import { getSplitFileUploads } from "@react-md/core/files/utils";
+ *
+ * function Example() {
+ *   const { stats, errors, accept, onChange } = useFileUpload();
+ *   const { pending, uploading, completed } = getSplitFileUploads(stats);
+ *
+ *   return (
+ *     <>
+ *       <FileUpload accept={accept} onChange={onChange} />
+ *       {pending.map(({ key, file, progress, status }) => {
+ *         // pretend some UI for each pending item with the provided data
+ *         return null;
+ *       })}
+ *       {uploading.map(({ file, key, progress, status }) => {
+ *         // pretend some UI for each uploading item with the provided data
+ *         return null;
+ *       })}
+ *       {complete.map(({ file, key, progress, result, status }) => {
+ *         // pretend some UI for each complete item with the provided data
+ *         return null;
+ *       })}
+ *     </>
+ *   );
+ * }
+ * ```
+ *
  * @param stats - The {@link FileUploadStats} list generally returned by the
  * {@link useFileUpload} hook.
  * @returns the {@link SplitFileUploads}.

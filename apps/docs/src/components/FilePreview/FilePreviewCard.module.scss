@@ -1,0 +1,16 @@
+@use "everything";
+
+.content {
+  @include everything.icon-set-var(size, 3rem);
+
+  position: relative;
+}
+
+.progress {
+  @include everything.progress-set-var(linear-size, 0.5rem);
+
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}

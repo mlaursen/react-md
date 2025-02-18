@@ -6,7 +6,7 @@ import {
   box,
 } from "../box/styles.js";
 import {
-  type CSSTransitionClassNamesObject,
+  type CSSTransitionClassNames,
   type TransitionTimeout,
 } from "../transition/types.js";
 import { bem } from "../utils/bem.js";
@@ -74,13 +74,12 @@ export function overlay(
 }
 
 /** @since 2.4.0 */
-export const DEFAULT_OVERLAY_TIMEOUT: TransitionTimeout = 150;
+export const DEFAULT_OVERLAY_TIMEOUT = 150 as const satisfies TransitionTimeout;
 
 /** @since 2.4.0 */
-export const DEFAULT_OVERLAY_CLASSNAMES: Readonly<CSSTransitionClassNamesObject> =
-  {
-    appearActive: "rmd-overlay--active",
-    appearDone: "rmd-overlay--active",
-    enterActive: "rmd-overlay--active",
-    enterDone: "rmd-overlay--active",
-  };
+export const DEFAULT_OVERLAY_CLASSNAMES = {
+  appearActive: "rmd-overlay--active",
+  appearDone: "rmd-overlay--active",
+  enterActive: "rmd-overlay--active",
+  enterDone: "rmd-overlay--active",
+} as const satisfies CSSTransitionClassNames;

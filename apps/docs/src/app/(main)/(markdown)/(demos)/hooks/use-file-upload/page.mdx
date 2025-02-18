@@ -1,0 +1,402 @@
+# useFileUpload [$SOURCE](packages/core/src/files/useFileUpload.ts)
+
+```ts disableTransform
+function useFileUpload<E extends HTMLElement, CustomError = never>(
+  options: FileUploadOptions<E, CustomError> = {}
+): Readonly<FileUploadHookReturnValue<E, CustomError>>;
+```
+
+The `useFileUpload` hook can be used to upload files **to the browser** in
+different formats to be previewed `<img>`, `<video>`, `<embed>`, etc tags.
+However, it can also be used to upload the files as an `ArrayBuffer` and then
+uploaded to a server.
+
+## Example Usage
+
+This example will show how to handle simple validation and preview uploaded
+files. Only the `Demo` files are editable.
+
+```demo source="./FileUploadExample.tsx" readOnlyImports={["@/components/FilePreview/FilePreviewCard.jsx", "@/components/FilePreview/SimpleFilePreview.tsx", "@/components/FilePreview/FilePreviewCard.module.scss", "@/components/FileUploadErrorModal/FileUploadErrorModal.jsx", "@/components/FileUploadErrorModal/ErrorRenderer.jsx"]}
+
+```
+
+### Server Uploads
+
+If the files should be uploaded to the server instead of previewed in the
+browser, it is recommended to set the `getFileParser` option to always
+`"readAsArrayBuffer"`. Here is a small example for how you might want to
+upload files to the server using this hook.
+
+> !Success! This example also showcases some other UI that can be rendered by
+> utilizing the data returned by this hook.
+
+```demo source="./ServerUploadExample.tsx" readOnlyImports={["@/components/FilePreview/FilePreviewCard.jsx", "@/components/FilePreview/SimpleFilePreview.tsx", "@/components/FileUploadErrorModal/FileUploadErrorModal.jsx", "@/components/FileUploadErrorModal/ErrorRenderer.jsx"]}
+
+```
+
+## Parameters
+
+- `options` (optional) - an object with the following definition:
+
+````ts disableTransform
+interface FileUploadOptions<E extends HTMLElement, CustomError = never>
+  extends FileUploadHandlers<E>,
+    FileValidationOptions {
+  /**
+   * Setting this value to a number greater than `0` will update the browser
+   * upload process to queue the uploads in chunks instead of all at once. This
+   * can help prevent the browser from freezing if dealing with large files that
+   * are being converted to data urls.
+   *
+   * @defaultValue `-1`
+   */
+  concurrency?: number;
+
+  /** {@inheritDoc FilesValidator} */
+  validateFiles?: FilesValidator<CustomError>;
+  /** {@inheritDoc GetFileParser} */
+  getFileParser?: GetFileParser;
+}
+
+export interface FileUploadHandlers<E extends HTMLElement> {
+  onDrop?: DragEventHandler<E>;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
+}
+
+export interface FileValidationOptions {
+  /**
+   * If the number of files should be limited, set this value to a number
+   * greater than `0`.
+   *
+   * Note: This still allows "infinite" files when set to `0` since the
+   * `<input>` element should normally be set to `disabled` if files should not
+   * be able to be uploaded.
+   *
+   * @defaultValue `-1`
+   */
+  maxFiles?: number;
+
+  /**
+   * An optional minimum file size to enforce for each file. This will only be
+   * used when it is greater than `0`.
+   *
+   * @defaultValue `-1`
+   */
+  minFileSize?: number;
+
+  /**
+   * An optional maximum file size to enforce for each file. This will only be
+   * used when it is greater than `0`.
+   *
+   * @defaultValue `-1`
+   */
+  maxFileSize?: number;
+
+  /**
+   * An optional list of extensions to enforce when uploading files.
+   *
+   * Note: The extensions and file names will be compared ignoring case.
+   *
+   * @example Only Allow Images
+   * ```ts
+   * const extensions = ["png", "jpeg", "jpg", "gif"];
+   * ```
+   */
+  extensions?: readonly string[];
+
+  /** {@inheritDoc IsValidFileName} */
+  isValidFileName?: IsValidFileName;
+
+  /**
+   * An optional total file size to enforce when the {@link maxFiles} option is
+   * not set to `1`.
+   *
+   * @defaultValue `-1`
+   */
+  totalFileSize?: number;
+}
+````
+
+## Returns
+
+An object with the following definition:
+
+````ts disableTransform
+export interface FileUploadState<CustomError = never> {
+  /**
+   * All the files that have been validated and are either:
+   * - pending upload
+   * - uploading
+   * - complete
+   *
+   * Each key in this object is the {@link BaseFileUploadStats.key} generated
+   * once the upload starts pending.
+   */
+  stats: Readonly<Record<string, Readonly<FileUploadStats>>>;
+
+  /**
+   * A list of validation errors that have occurred before starting the upload
+   * process.
+   *
+   * @see {@link FileAccessError}
+   * @see {@link TooManyFilesError}
+   * @see {@link FileValidationError}
+   */
+  errors: readonly FileValidationError<CustomError>[];
+}
+
+export interface FileUploadHookReturnValue<
+  E extends HTMLElement = HTMLElement,
+  CustomError = never,
+> extends FileUploadActions,
+    Required<FileUploadHandlers<E>> {
+  errors: readonly FileValidationError<CustomError>[];
+
+  /**
+   * A list of all the {@link FileUploadStats}.
+   *
+   * @see {@link getSplitFileUploads} for separating by status
+   */
+  stats: readonly Readonly<FileUploadStats>[];
+
+  /**
+   * The total number of bytes for all the files that exist in the
+   * {@link stats} list.
+   */
+  totalBytes: number;
+
+  /**
+   * The total number of files in the {@link stats} list.
+   */
+  totalFiles: number;
+
+  /**
+   * An `accept` string that can be passed to the {@link FileInput} component
+   * when the {@link FileValidationOptions.extensions} list has been provided to
+   * limit which files the OS will _attempt_ to allow access to.
+   *
+   * @example Simple example
+   * ```ts
+   * const extensions = ['pdf', 'docx', 'ppt'];
+   * const { accept } = useFileUpload({ extensions, ...others });
+   *
+   * expect(accept).toBe("*.pdf,*.docx,*.ppt")
+   * ```
+   *
+   * @defaultValue `"*"`
+   */
+  accept: string;
+}
+
+export interface FileUploadActions {
+  /**
+   * Reset everything related to uploads ensuring that all file readers have
+   * been aborted.
+   */
+  reset: () => void;
+
+  /**
+   * Removes all the errors that exist in state without canceling any of the
+   * uploads already in progress.
+   */
+  clearErrors: () => void;
+
+  /**
+   * This function is used to cancel pending and uploading files or removing
+   * completed files.
+   *
+   * @param keyOrKeys - A single or list of {@link BaseFileUploadStats.key} to
+   * remove from state.
+   */
+  remove: (keyOrKeys: string | readonly string[]) => void;
+}
+````
+
+# Errors
+
+## TooManyFilesError [$SOURCE](packages/core/src/files/validation.ts#L59)
+
+This error will occur when the user attempts to upload more than the total
+number of files allowed. The `TooManyFilesError` error will contain:
+
+- `key` - a unique key that can be used as a `React` key
+- `files` - a readonly list of [File](https://developer.mozilla.org/en-US/docs/Web/API/File) that caused this error
+- `limit` - the max limit of files allowed
+
+## FileSizeError [$SOURCE](packages/core/src/files/validation.ts#L84)
+
+This error will occur when the user attempts to upload a file that is either:
+
+- less than the `minFileSize`
+- greater than the `maxFileSize`
+- greater than the `totalFileSize` when combined with all the other upload file sizes
+
+The `FileSizeError` error will contain:
+
+- `key` - a unique key that can be used as a `React` key
+- `files` - a readonly list of [File](https://developer.mozilla.org/en-US/docs/Web/API/File) that caused this error
+- `type` - either `"min"`, `"max"`, or `"total"` representing the file size error type
+- `limit` - the total number of bytes related to the file size error type
+
+## FileExtensionError [$SOURCE](packages/core/src/files/validation.ts#L107)
+
+This error will occur when the user attempts to upload a file that does not end with one
+of the supported `extensions`. The `FileExtensionError` error will contain:
+
+- `key` - a unique key that can be used as a `React` key
+- `files` - a readonly list of [File](https://developer.mozilla.org/en-US/docs/Web/API/File) that caused this error
+
+## GenericFileError [$SOURCE](packages/core/src/files/validation.ts#L32)
+
+This is a helper error class that is used by the other error types and
+probably won't be triggered. The `GenericFileError` error will contain:
+
+- `key` - a unique key that can be used as a `React` key
+- `files` - a readonly list of [File](https://developer.mozilla.org/en-US/docs/Web/API/File) that caused this error
+
+## FileAccessError [$SOURCE](packages/core/src/files/validation.ts#L10)
+
+This error will occur if the user attempts to drag and drop a file from a shared directory
+that they do not have access to. This error is very uncommon.
+
+# Utils
+
+## validateFiles [$SOURCE](packages/core/src/files/validation.ts#L373)
+
+```ts disableTransform
+function validateFiles<CustomError>(
+  files: readonly File[],
+  options: FilesValidationOptions
+): ValidatedFilesResult<CustomError>;
+```
+
+This is the default implementation for validating files with the
+`useFileUpload` hook.
+
+## getSplitFileUploads [$SOURCE](packages/core/src/files/utils.ts#L244)
+
+```ts disableTransform
+function getSplitFileUploads(
+  stats: readonly FileUploadStats[]
+): SplitFileUploads;
+```
+
+The `getSplitFileUploads` can be used to split the `stats` returned by the
+`useFileUpload` hook into the `pending`, `uploading`, and `complete` groups
+to create a dynamic UI for file uploads.
+
+### Main Usage
+
+```tsx
+import { FileUpload } from "@react-md/core/files/FileUpload";
+import { useFileUpload } from "@react-md/core/files/useFileUpload";
+import { getSplitFileUploads } from "@react-md/core/files/utils";
+
+function Example() {
+  const { stats, errors, accept, onChange } = useFileUpload();
+  const { pending, uploading, completed } = getSplitFileUploads(stats);
+
+  return (
+    <>
+      <FileUpload accept={accept} onChange={onChange} />
+      {pending.map(({ key, file, progress, status }) => {
+        // pretend some UI for each pending item with the provided data
+        return null;
+      })}
+      {uploading.map(({ file, key, progress, status }) => {
+        // pretend some UI for each uploading item with the provided data
+        return null;
+      })}
+      {complete.map(({ file, key, progress, result, status }) => {
+        // pretend some UI for each complete item with the provided data
+        return null;
+      })}
+    </>
+  );
+}
+```
+
+### Parameters
+
+- `stats` - a readonly list of objects with the following shape:
+
+```ts disableTransform
+export type FileUploadStats =
+  | ProcessingFileUploadStats
+  | CompletedFileUploadStats;
+
+export interface ProcessingFileUploadStats extends BaseFileUploadStats {
+  status: "pending" | "uploading";
+}
+
+export interface CompletedFileUploadStats extends BaseFileUploadStats {
+  status: "complete";
+  result: FileReader["result"];
+}
+
+export interface BaseFileUploadStats {
+  key: string;
+  file: File;
+  progress: number;
+}
+```
+
+### Returns
+
+An object with the following definition:
+
+```ts disableTransform
+export interface SplitFileUploads {
+  readonly pending: readonly ProcessingFileUploadStats[];
+  readonly uploading: readonly ProcessingFileUploadStats[];
+  readonly complete: readonly CompletedFileUploadStats[];
+}
+```
+
+## isValidFileName [$SOURCE](packages/core/src/files/validation.ts#L228)
+
+```ts disableTransform
+export type IsValidFileName = (
+  file: File,
+  extensionRegExp: RegExp | undefined,
+  extensions: readonly string[]
+) => boolean;
+
+export const isValidFileName: IsValidFileName;
+```
+
+This is just the default implementation for checking if a provided file is
+valid based on the provided extensions.
+
+# File Type Checkers
+
+The file type checkers are not guaranteed to be 100% correct and all have the
+following signature:
+
+```ts disableTransform
+type IsFileType = (file: File) => boolean;
+```
+
+- [isTextFile]($GITHUB/packages/core/src/files/utils.ts#L72)
+- [isImageFile]($GITHUB/packages/core/src/files/utils.ts#L88)
+- [isAudioFile]($GITHUB/packages/core/src/files/utils.ts#L104)
+- [isVideoFile]($GITHUB/packages/core/src/files/utils.ts#L120)
+- [isMediaFile]($GITHUB/packages/core/src/files/utils.ts#L132)
+
+# Type Guards
+
+The following type guards are provided to determine how to display the errors and all
+have the following signature:
+
+```ts disableTransform
+type IsKnownError<
+  CustomError extends object,
+  ExpectedError extends FileValidationError<never>,
+> = (error: FileValidationError<CustomError>) => error is ExpectedError;
+```
+
+- [isFileAccessError]($GITHUB/packages/core/src/files/validation.ts#L156)
+- [isTooManyFilesError]($GITHUB/packages/core/src/files/validation.ts#L170)
+- [isFileSizeError]($GITHUB/packages/core/src/files/validation.ts#L184)
+- [isFileExtensionError]($GITHUB/packages/core/src/files/validation.ts#L198)
+- [isGenericFileError]($GITHUB/packages/core/src/files/validation.ts#L142)

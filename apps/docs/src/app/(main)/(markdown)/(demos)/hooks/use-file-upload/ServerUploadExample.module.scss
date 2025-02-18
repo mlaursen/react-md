@@ -1,0 +1,40 @@
+@use "everything";
+
+.card {
+  max-width: 30rem;
+}
+
+.list {
+  @include everything.interaction-outline();
+  position: relative;
+}
+
+.dragging {
+  @include everything.interaction-focus-styles($disable-background: true);
+}
+
+.dragover {
+  @include everything.interaction-set-var(
+    focus-color,
+    everything.theme-get-var(success-color)
+  );
+}
+
+.upload {
+  margin: 1rem 0;
+  width: 100%;
+}
+
+.phoneHidden {
+  @include everything.phone-media {
+    display: none;
+  }
+}
+
+.progress {
+  @include everything.progress-set-var(color, currentcolor);
+}
+
+.uploadProgress {
+  margin-top: 1rem;
+}
